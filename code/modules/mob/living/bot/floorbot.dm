@@ -228,7 +228,7 @@
 			return
 		busy = 1
 		update_icons()
-		visible_message("<b>\The [src]</b> begins to repair the hole.")
+		visible_message(span_infoplain(span_bold("\The [src]") + " begins to repair the hole."))
 		if(do_after(src, 50))
 			if(A && (locate(/obj/structure/lattice, A) && building == 1 || !locate(/obj/structure/lattice, A) && building == 2)) // Make sure that it still needs repairs
 				var/obj/item/I
@@ -245,7 +245,7 @@
 		if(F.broken || F.burnt)
 			busy = 1
 			update_icons()
-			visible_message("<b>\The [src]</b> begins to remove the broken floor.")
+			visible_message(span_infoplain(span_bold("\The [src]") + " begins to remove the broken floor."))
 			if(do_after(src, 50, F))
 				if(F.broken || F.burnt)
 					F.make_plating()
@@ -255,7 +255,7 @@
 		else if(!F.flooring && amount)
 			busy = 1
 			update_icons()
-			visible_message("<b>\The [src]</b> begins to improve the floor.")
+			visible_message(span_infoplain(span_bold("\The [src]") + " begins to improve the floor."))
 			if(do_after(src, 50))
 				if(!F.flooring)
 					F.set_flooring(get_flooring_data(floor_build_type))
@@ -265,7 +265,7 @@
 			update_icons()
 	else if(istype(A, /obj/item/stack/tile/floor) && amount < maxAmount)
 		var/obj/item/stack/tile/floor/T = A
-		visible_message("<b>\The [src]</b> begins to collect tiles.")
+		visible_message(span_infoplain(span_bold("\The [src]") + " begins to collect tiles."))
 		busy = 1
 		update_icons()
 		if(do_after(src, 20))
@@ -279,7 +279,7 @@
 	else if(istype(A, /obj/item/stack/material) && amount + 4 <= maxAmount)
 		var/obj/item/stack/material/M = A
 		if(M.get_material_name() == MAT_STEEL)
-			visible_message("<b>\The [src]</b> begins to make tiles.")
+			visible_message(span_infoplain(span_bold("\The [src]") + " begins to make tiles."))
 			busy = 1
 			update_icons()
 			if(do_after(50))

@@ -205,7 +205,7 @@
 	if(W.has_tool_quality(TOOL_WRENCH) && !anchored)
 		playsound(src, W.usesound, 50, 1)
 		if(do_after(user, 20, src))
-			user.visible_message("<b>\The [user]</b> dismantles \the [src].", span_notice("You dismantle \the [src]."))
+			user.visible_message(span_infoplain(span_bold("\The [user]") + " dismantles \the [src]."), span_notice("You dismantle \the [src]."))
 			new /obj/item/stack/material/steel(get_turf(usr), 2)
 			qdel(src)
 			return
@@ -216,13 +216,13 @@
 		if(F.welding)
 			playsound(src, F.usesound, 50, 1)
 			if(do_after(user, 20, src))
-				user.visible_message("<b>\The [user]</b> repairs some damage to \the [src].", span_notice("You repair some damage to \the [src]."))
+				user.visible_message(span_infoplain(span_bold("\The [user]") + " repairs some damage to \the [src]."), span_notice("You repair some damage to \the [src]."))
 				health = min(health+(maxhealth/5), maxhealth) // 20% repair per application
 				return
 
 	// Install
 	if(W.has_tool_quality(TOOL_SCREWDRIVER))
-		user.visible_message(anchored ? "<b>\The [user]</b> begins unscrewing \the [src]." : "<b>\The [user]</b> begins fasten \the [src]." )
+		user.visible_message(span_info(anchored ? span_bold("\The [user]") + " begins unscrewing \the [src]." : span_bold("\The [user]") + "begins fasten \the [src]." ))
 		playsound(src, W.usesound, 75, 1)
 		if(do_after(user, 10, src))
 			to_chat(user, (anchored ? span_notice("You have unfastened \the [src] from the floor.") : span_notice("You have fastened \the [src] to the floor.")))

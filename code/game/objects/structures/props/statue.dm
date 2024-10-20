@@ -58,7 +58,7 @@
 	desc = "A sculpture made of pure phoron. It is covered in a lacquer that prevents erosion and renders it fireproof. It's safe. Probably."
 	icon_state = "phoronic"
 	layer = ABOVE_WINDOW_LAYER
-	interaction_message = "<span class = 'notice'>Cool to touch and unbelievable smooth. You can almost see your reflection in it.</span>"
+	interaction_message = span_notice("Cool to touch and unbelievable smooth. You can almost see your reflection in it.")
 
 /obj/structure/prop/statue/phoron/New()
 	set_light(2, 3, "#cc66ff")

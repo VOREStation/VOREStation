@@ -15,18 +15,18 @@
 	usr.set_machine(src)
 
 	if(chargesa <= 0)
-		to_chat(user, "The Wish Granter lies silent.")
+		to_chat(user, span_infoplain("The Wish Granter lies silent."))
 		return
 
 	else if(!istype(user, /mob/living/carbon/human))
-		to_chat(user, "You feel a dark stirring inside of the Wish Granter, something you want nothing of. Your instincts are better than any man's.")
+		to_chat(user, span_infoplain("You feel a dark stirring inside of the Wish Granter, something you want nothing of. Your instincts are better than any man's."))
 		return
 
 	else if(is_special_character(user))
-		to_chat(user, "Even to a heart as dark as yours, you know nothing good will come of this.  Something instinctual makes you pull away.")
+		to_chat(user, span_infoplain("Even to a heart as dark as yours, you know nothing good will come of this.  Something instinctual makes you pull away."))
 
 	else if (!insistinga)
-		to_chat(user, "Your first touch makes the Wish Granter stir, listening to you.  Are you really sure you want to do this?")
+		to_chat(user, span_infoplain("Your first touch makes the Wish Granter stir, listening to you.  Are you really sure you want to do this?"))
 		insistinga++
 
 	else
@@ -35,8 +35,8 @@
 		var/wish = tgui_input_list(usr, "You want...","Wish", list("Power","Wealth","Immortality","To Kill","Peace"))
 		switch(wish)
 			if("Power")
-				to_chat(user, "<B>Your wish is granted, but at a terrible cost...</B>")
-				to_chat(user, "The Wish Granter punishes you for your selfishness, claiming your soul.")
+				to_chat(user, span_boldwarning("Your wish is granted, but at a terrible cost..."))
+				to_chat(user, span_warning("The Wish Granter punishes you for your selfishness, claiming your soul."))
 				if (!(LASER in user.mutations))
 					user.mutations.Add(LASER)
 					to_chat(user, span_notice("You feel pressure building behind your eyes."))
@@ -50,19 +50,19 @@
 					user.see_invisible = SEE_INVISIBLE_LEVEL_TWO
 					to_chat(user, span_notice("The walls suddenly disappear."))
 			if("Wealth")
-				to_chat(user, "<B>Your wish is granted, but at a terrible cost...</B>")
-				to_chat(user, "The Wish Granter punishes you for your selfishness, claiming your soul.")
+				to_chat(user, span_boldwarning("Your wish is granted, but at a terrible cost..."))
+				to_chat(user, span_warning("The Wish Granter punishes you for your selfishness, claiming your soul."))
 				new /obj/structure/closet/syndicate/resources/everything(loc)
 			if("To Kill")
-				to_chat(user, "<B>Your wish is granted, but at a terrible cost...</B>")
-				to_chat(user, "The Wish Granter is outraged at your excessive wickedness, yet grants you your wish regardless. Someone will be killed soon.")
+				to_chat(user, span_boldwarning("Your wish is granted, but at a terrible cost..."))
+				to_chat(user, span_danger("The Wish Granter is outraged at your excessive wickedness, yet grants you your wish regardless. Someone will be killed soon."))
 				spawn(100)
 					if(user)
-						to_chat(user, "Suddenly, you feel as though you are being torn to countless shreds! Your wish is coming true!")
+						to_chat(user, span_bolddanger("Suddenly, you feel as though you are being torn to countless shreds! Your wish is coming true!"))
 						user.gib()
 			if("Peace")
-				to_chat(user, "<B>Whatever alien sentience that the Wish Granter possesses is satisfied with your wish. There is a distant wailing as the last of the Faithless begin to die, then silence.</B>")
-				to_chat(user, "You feel as if you just narrowly avoided a terrible fate...")
+				to_chat(user, span_infoplain(span_bold("Whatever alien sentience that the Wish Granter possesses is satisfied with your wish. There is a distant wailing as the last of the Faithless begin to die, then silence.")))
+				to_chat(user, span_infoplain("You feel as if you just narrowly avoided a terrible fate..."))
 				for(var/mob/living/simple_mob/faithless/F in living_mob_list)
 					F.health = -10
 					F.set_stat(DEAD)

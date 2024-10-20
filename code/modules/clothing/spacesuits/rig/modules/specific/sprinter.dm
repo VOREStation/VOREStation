@@ -27,7 +27,7 @@
 
 	var/mob/living/carbon/human/H = holder.wearer
 
-	to_chat(H, span_blue("<b>You activate the suit's sprint mode.</b>"))
+	to_chat(H, span_boldnotice("You activate the suit's sprint mode."))
 
 	holder.slowdown = initial(holder.slowdown) - sprint_speed
 

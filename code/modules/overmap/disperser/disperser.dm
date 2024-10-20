@@ -24,7 +24,7 @@
 /obj/machinery/disperser/attackby(obj/item/I, mob/user)
 	if(I && I.has_tool_quality(TOOL_WRENCH))
 		if(panel_open)
-			user.visible_message("<b>\The [user]</b> rotates \the [src] with \the [I].",
+			user.visible_message(span_infoplain(span_bold("\The [user]") + " rotates \the [src] with \the [I]."),
 				span_notice("You rotate \the [src] with \the [I]."))
 			set_dir(turn(dir, 90))
 			playsound(src, 'sound/items/jaws_pry.ogg', 50, 1)

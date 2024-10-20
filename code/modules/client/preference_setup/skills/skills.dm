@@ -25,7 +25,7 @@
 
 /datum/category_item/player_setup_item/skills/content()
 	. = list()
-	. += "<b>Select your Skills</b><br>"
+	. += span_bold("Select your Skills") + "<br>"
 	. += "Current skill level: <b>[pref.GetSkillClass(pref.used_skillpoints)]</b> ([pref.used_skillpoints])<br>"
 	. += "<a href='?src=\ref[src];preconfigured=1'>Use preconfigured skillset</a><br>"
 	. += "<table>"
@@ -50,13 +50,13 @@
 
 /datum/category_item/player_setup_item/proc/skill_to_button(var/skill, var/level_name, var/current_level, var/selection_level)
 	if(current_level == selection_level)
-		return "<th><span class='linkOn'>[level_name]</span></th>"
+		return "<th>" + span_linkOn("[level_name]") + "</th>"
 	return "<th><a href='?src=\ref[src];setskill=\ref[skill];newvalue=[selection_level]'>[level_name]</a></th>"
 
 /datum/category_item/player_setup_item/skills/OnTopic(href, href_list, user)
 	if(href_list["skillinfo"])
 		var/datum/skill/S = locate(href_list["skillinfo"])
-		var/HTML = "<b>[S.name]</b><br>[S.desc]"
+		var/HTML = span_bold("[S.name]") + "<br>[S.desc]"
 		user << browse(HTML, "window=\ref[user]skillinfo")
 		return TOPIC_HANDLED
 

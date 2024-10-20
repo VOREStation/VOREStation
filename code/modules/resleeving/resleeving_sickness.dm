@@ -3,8 +3,8 @@
 	desc = "You feel rather weak and unfocused, having been sleeved not so long ago."
 	stacks = MODIFIER_STACK_EXTEND
 
-	on_created_text = span_warning("<font size='3'>You feel weak and unfocused.</font>")
-	on_expired_text = span_notice("<font size='3'>You feel your strength and focus return to you.</font>")
+	on_created_text = span_warning(span_large("You feel weak and unfocused."))
+	on_expired_text = span_notice(span_large("You feel your strength and focus return to you."))
 
 	incoming_brute_damage_percent = 1.1			// 10% more brute damage
 	incoming_fire_damage_percent = 1.1			// 10% more burn damage

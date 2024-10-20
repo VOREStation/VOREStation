@@ -41,7 +41,7 @@
 	if(modifiers["alt"]) // alt and alt-gr (rightalt)
 		var/turf/T = get_turf(A)
 		if(T && TurfAdjacent(T))
-			ToggleTurfTab(T)
+			set_listed_turf(T)
 			return
 	// You are responsible for checking config.ghost_interaction when you override this function
 	// Not all of them require checking, see below

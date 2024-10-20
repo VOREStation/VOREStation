@@ -233,7 +233,7 @@ GLOBAL_DATUM(gateway_station, /obj/machinery/gateway/centerstation)
 			if(!awaygate) // We still can't find the damn thing because there is no destination.
 				to_chat(user, span_notice("Error: Programming failed. No destination found."))
 				return
-			to_chat(user, "<span class='notice'><b>Startup programming successful!</b></span>: A destination in another point of space and time has been detected.")
+			to_chat(user, span_boldnotice("Startup programming successful!") + ": A destination in another point of space and time has been detected.")
 		else
 			to_chat(user, span_black("The gate is already calibrated, there is no work for you to do here."))
 			return
@@ -362,6 +362,6 @@ GLOBAL_DATUM(gateway_away, /obj/machinery/gateway/centeraway)
 				return
 			// VOREStation Add End
 			else
-				to_chat(user, span_blue("<b>Recalibration successful!</b>:") + span_black(" This gate's systems have been fine tuned. Travel to this gate will now be on target."))
+				to_chat(user, span_blue(span_bold("Recalibration successful!") + "") + span_black(" This gate's systems have been fine tuned. Travel to this gate will now be on target."))
 				calibrated = 1
 				return

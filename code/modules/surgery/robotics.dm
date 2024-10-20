@@ -598,8 +598,8 @@
 
 	target.species = GLOB.all_species[SPECIES_DIONA]
 
-	target.verbs |= /mob/living/carbon/human/proc/diona_split_nymph
-	target.verbs |= /mob/living/carbon/human/proc/regenerate
+	add_verb(target, /mob/living/carbon/human/proc/diona_split_nymph)
+	add_verb(target, /mob/living/carbon/human/proc/regenerate)
 
 	spawn(0) //Name yourself on your own damn time
 		var/new_name = ""

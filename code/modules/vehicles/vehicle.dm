@@ -230,7 +230,7 @@
 		return TRUE
 
 /obj/vehicle/proc/explode()
-	src.visible_message(span_red("<B>[src] blows apart!</B>"), 1)
+	src.visible_message(span_bolddanger("[src] blows apart!"), 1)
 	var/turf/Tsec = get_turf(src)
 
 	//stuns people who are thrown off a train that has been blown up

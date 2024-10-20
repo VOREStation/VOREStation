@@ -27,7 +27,7 @@
 
 /obj/item/clothing/head/helmet/space/void/merc/odst
 	name = "\improper ODST Helmet"
-	desc = "<i>\"... we are glad to plunge feet first into hell in the knowledge that we will rise.\"</i>"
+	desc = span_italics("\"... we are glad to plunge feet first into hell in the knowledge that we will rise.\"")
 	icon_state = "rig0-odst"
 	item_state = "rig0-odst"
 	item_state_slots = null
@@ -46,7 +46,7 @@
 
 /obj/item/clothing/suit/space/void/merc/odst
 	name = "ODST Armor"
-	desc = "<i>\"... we are glad to plunge feet first into hell in the knowledge that we will rise.\"</i>"
+	desc = span_italics("\"... we are glad to plunge feet first into hell in the knowledge that we will rise.\"")
 	icon_state = "odst"
 	item_state = "odst"
 	item_state_slots = null

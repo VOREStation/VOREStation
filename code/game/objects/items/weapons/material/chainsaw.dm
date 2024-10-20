@@ -115,7 +115,7 @@
 /obj/item/chainsaw/examine(mob/user)
 	. = ..()
 	if(max_fuel && get_dist(user, src) == 0)
-		. += "<span class = 'notice'>The [src] feels like it contains roughtly [get_fuel()] units of fuel left.</span>"
+		. += span_notice("The [src] feels like it contains roughtly [get_fuel()] units of fuel left.")
 
 /obj/item/chainsaw/update_icon()
 	if(on)

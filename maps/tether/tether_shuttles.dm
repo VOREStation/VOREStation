@@ -101,18 +101,18 @@
 
 	#define MOVE_PER(x) move_time*(x/100) SECONDS
 
-	computer.visible_message("[icon2html(computer)] <span class='notice'>Beginning flight and telemetry monitoring.</span>")
+	computer.visible_message("[icon2html(computer), viewers(computer)] " + span_notice("Beginning flight and telemetry monitoring."))
 	sleep(MOVE_PER(5))
 
 	if(failures >= 1)
-		computer.visible_message("[icon2html(computer)] <span class='warning'>Single engine failure, continuing flight.</span>")
+		computer.visible_message("[icon2html(computer), viewers(computer)] " + span_warning("Single engine failure, continuing flight."))
 		sleep(MOVE_PER(10))
 
 	if(failures >= 2)
-		computer.visible_message("[icon2html(computer)] <span class='warning'>Second engine failure, unable to complete flight.</span>")
+		computer.visible_message("[icon2html(computer), viewers(computer)] " + span_warning("Second engine failure, unable to complete flight."))
 		playsound(computer,'sound/mecha/internaldmgalarm.ogg',100,0)
 		sleep(MOVE_PER(10))
-		computer.visible_message("[icon2html(computer)] <span class='warning'>Commencing RTLS abort mode.</span>")
+		computer.visible_message("[icon2html(computer), viewers(computer)] " + span_warning("Commencing RTLS abort mode."))
 		sleep(MOVE_PER(20))
 		if(failures < 3)
 			move(area_transition,origin)
@@ -120,18 +120,18 @@
 			return 1
 
 	if(failures >= 3)
-		computer.visible_message("[icon2html(computer)] <span class='danger'>Total engine failure, unable to complete abort mode.</span>")
+		computer.visible_message("[icon2html(computer), viewers(computer)] " + span_danger("Total engine failure, unable to complete abort mode."))
 		playsound(computer,'sound/mecha/internaldmgalarm.ogg',100,0)
 		sleep(MOVE_PER(5))
-		computer.visible_message("[icon2html(computer)] <span class='danger'>Distress signal broadcast.</span>")
+		computer.visible_message("[icon2html(computer), viewers(computer)] " + span_danger("Distress signal broadcast."))
 		playsound(computer,'sound/mecha/internaldmgalarm.ogg',100,0)
 		sleep(MOVE_PER(5))
-		computer.visible_message("[icon2html(computer)] <span class='danger'>Stall. Stall. Stall. Stall.</span>")
+		computer.visible_message("[icon2html(computer), viewers(computer)] " + span_danger("Stall. Stall. Stall. Stall."))
 		playsound(computer,'sound/mecha/internaldmgalarm.ogg',100,0)
 		sleep(MOVE_PER(5))
 		playsound(computer,'sound/mecha/internaldmgalarm.ogg',100,0)
 		sleep(MOVE_PER(5))
-		computer.visible_message("[icon2html(computer)] <span class='danger'>Terrain! Pull up! Terrain! Pull up!</span>")
+		computer.visible_message("[icon2html(computer), viewers(computer)] " + span_danger("Terrain! Pull up! Terrain! Pull up!"))
 		playsound(computer,'sound/mecha/internaldmgalarm.ogg',100,0)
 		playsound(computer,'sound/misc/bloblarm.ogg',100,0)
 		sleep(MOVE_PER(10))

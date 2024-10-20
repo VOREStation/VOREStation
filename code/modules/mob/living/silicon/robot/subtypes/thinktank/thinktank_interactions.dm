@@ -6,7 +6,7 @@
 			if(istype(recharging_atom) && !QDELETED(recharging_atom) && recharging_atom.loc == src)
 				recharging_atom.dropInto(loc)
 				user.put_in_hands(recharging_atom)
-				user.visible_message("<b>\The [user]</b> pops \the [recharging_atom] out of \the [src]'s recharging port.")
+				user.visible_message(span_infoplain(span_bold("\The [user]") + " pops \the [recharging_atom] out of \the [src]'s recharging port."))
 			recharging = null
 			return TRUE
 
@@ -24,7 +24,7 @@
 			W.forceMove(src)
 			recharging = WEAKREF(W)
 			recharge_complete = FALSE
-			user.visible_message("<b>\The [user]</b> slots \the [W] into \the [src]'s recharging port.")
+			user.visible_message(span_infoplain(span_bold("\The [user]") + " slots \the [W] into \the [src]'s recharging port."))
 		return TRUE
 
 	if(istype(W, /obj/item/floor_painter))
@@ -70,7 +70,7 @@
 
 /mob/living/silicon/robot/platform/proc/welcome_client()
 	if(client)
-		to_chat(src, span_notice("<b>You are a think-tank</b>, a kind of flexible and adaptive drone intelligence installed into an armoured platform. Your programming compels you to be friendly and helpful wherever possible."))
+		to_chat(src, span_notice(span_bold("You are a think-tank") + ", a kind of flexible and adaptive drone intelligence installed into an armoured platform. Your programming compels you to be friendly and helpful wherever possible."))
 	SetSleeping(0)
 	SetWeakened(0)
 	SetParalysis(0)

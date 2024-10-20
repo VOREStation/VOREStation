@@ -207,6 +207,7 @@ var/list/global_huds = list(
 /datum/hud/Destroy()
 	. = ..()
 	QDEL_NULL_LIST(minihuds)
+	QDEL_NULL(hide_actions_toggle)
 	grab_intent = null
 	hurt_intent = null
 	disarm_intent = null
@@ -322,10 +323,12 @@ var/list/global_huds = list(
 		return 0
 
 	mymob.create_mob_hud(src)
+	hide_actions_toggle = new()
+	hide_actions_toggle.InitialiseIcon(mymob)
 
 	persistant_inventory_update()
 	mymob.reload_fullscreen() // Reload any fullscreen overlays this mob has.
-	mymob.update_action_buttons()
+	mymob.update_action_buttons(TRUE)
 	reorganize_alerts()
 
 /mob/proc/create_mob_hud(datum/hud/HUD, apply_to_client = TRUE)
@@ -404,10 +407,11 @@ var/list/global_huds = list(
 
 		hud_used?.action_intent.screen_loc = ui_acti //Restore intent selection to the original position
 		client.screen += zone_sel				//This one is a special snowflake
+		client.screen += hud_used.hide_actions_toggle
 
 	hud_used.hidden_inventory_update()
 	hud_used.persistant_inventory_update()
-	update_action_buttons()
+	update_action_buttons(TRUE)
 	hud_used.reorganize_alerts()
 	return TRUE
 
@@ -467,7 +471,7 @@ var/list/global_huds = list(
 
 	hud_used.hidden_inventory_update()
 	hud_used.persistant_inventory_update()
-	update_action_buttons()
+	update_action_buttons(TRUE)
 
 /mob/proc/add_click_catcher()
 	client.screen += client.void

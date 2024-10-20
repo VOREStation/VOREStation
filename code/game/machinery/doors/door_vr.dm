@@ -18,6 +18,10 @@
 	heat_proof = 1
 
 /obj/machinery/door/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
+	for(var/obj/machinery/door/blast/B in loc.contents)
+		if(B.density)
+			return
+
 	var/maxtemperature = 1800 //same as a normal steel wall
 	var/destroytime = 20 //effectively gives an airlock 200HP between breaking and completely disintegrating
 	if(heat_proof)

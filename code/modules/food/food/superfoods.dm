@@ -299,11 +299,11 @@
 
 /obj/structure/theonepizza/attackby(var/obj/item/W, var/mob/living/user)
 	if(istype(W,/obj/item/material/knife))
-		user.visible_message("<b>\The [user]</b> starts to slowly cut through The One Pizza.", span_notice("You start to slowly cut through The One Pizza."))
+		user.visible_message(span_infoplain(span_bold("\The [user]") + " starts to slowly cut through The One Pizza."), span_notice("You start to slowly cut through The One Pizza."))
 		if(do_after(user, slicetime, exclusive = TASK_USER_EXCLUSIVE))
 			if(!src)
 				return		// We got disappeared already
-			user.visible_message("<b>\The [user]</b> successfully cuts The One Pizza.", span_notice("You successfully cut The One Pizza."))
+			user.visible_message(span_infoplain(span_bold("\The [user]") + " successfully cuts The One Pizza."), span_notice("You successfully cut The One Pizza."))
 			for(var/slicetype in slicelist)
 				new slicetype(src.loc)
 			qdel(src)

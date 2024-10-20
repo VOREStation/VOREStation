@@ -18,7 +18,7 @@
 <b>Important Notes:</b> Nanites will fail to complete their task if a suitable location cannot be found for the organ.<BR>
 <HR>
 <b>Implant Details:</b><BR>
-<b>Function:</b> Nanites will fabricate: <span class='alien'>[organ_display_name]</span><BR>
+<b>Function:</b> Nanites will fabricate: [span_alien("[organ_display_name]")]<BR>
 <b>Special Features:</b> Organ identification protocols.<BR>
 <b>Integrity:</b> N/A"}
 	return dat

@@ -32,6 +32,6 @@
 	if(input)
 		log_ghostemote(input, src)
 		if(!invisibility) //If the ghost is made visible by admins or cult. And to see if the ghost has toggled its own visibility, as well. -Mech
-			visible_message(span_deadsay("<B>[src]</B> [input]"))
+			visible_message(span_deadsay(span_bold("[src]") + " [input]"))
 		else
 			say_dead_direct(input, src)

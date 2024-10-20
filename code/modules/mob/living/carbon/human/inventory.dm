@@ -222,7 +222,6 @@ This saves us from having to call add_fingerprint() any time something is put in
 	else
 		return 0
 
-	update_action_buttons()
 	return 1
 
 
@@ -368,9 +367,6 @@ This saves us from having to call add_fingerprint() any time something is put in
 		update_inv_r_hand()
 
 	W.hud_layerise()
-
-	if(W.action_button_name)
-		update_action_buttons()
 
 	if(W.zoom)
 		W.zoom()

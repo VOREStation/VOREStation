@@ -78,7 +78,7 @@
 		return //Lost it meanwhile
 
 	eo.robotize(manu_choice)
-	visible_message("<B>[src]</B>'s [choice] loses its shape, then reforms.")
+	visible_message(span_infoplain(span_bold("[src]") + "'s [choice] loses its shape, then reforms."))
 	update_icons_body()
 
 ////
@@ -134,7 +134,7 @@
 
 		var/obj/item/organ/external/torso = organs_by_name[BP_TORSO]
 		to_chat(src, span_danger("Remain still while the process takes place! It will take 5 seconds."))
-		visible_message("<B>[src]</B>'s form collapses into an amorphous blob of black ichor...")
+		visible_message(span_infoplain(span_bold("[src]") + "'s form collapses into an amorphous blob of black ichor..."))
 
 		var/mob/living/simple_mob/protean_blob/blob = nano_intoblob()
 		active_regen = TRUE
@@ -142,7 +142,7 @@
 			synthetic = usable_manufacturers[manu_choice]
 			torso.robotize(manu_choice) //Will cascade to all other organs.
 			regenerate_icons()
-			visible_message("<B>[src]</B>'s form reshapes into a new one...")
+			visible_message(span_infoplain(span_bold("[src]") + "'s form reshapes into a new one..."))
 		active_regen = FALSE
 		nano_outofblob(blob)
 		return
@@ -154,7 +154,7 @@
 
 	var/delay_length = round(active_regen_delay * species.active_regen_mult)
 	to_chat(src, span_danger("Remain still while the process takes place! It will take [delay_length/10] seconds."))
-	visible_message("<B>[src]</B>'s form begins to shift and ripple as if made of oil...")
+	visible_message(span_infoplain(span_bold("[src]") + "'s form begins to shift and ripple as if made of oil..."))
 	active_regen = TRUE
 
 	var/mob/living/simple_mob/protean_blob/blob = nano_intoblob()
@@ -358,7 +358,7 @@
 	var/opts = clickprops["shift"]
 
 	if(opts)
-		to_chat(usr,span_notice("<b>[ability_name]</b> - [desc]"))
+		to_chat(usr,span_notice(span_bold("[ability_name]") + " - [desc]"))
 	else
 		//Humanform using it
 		if(ishuman(usr))

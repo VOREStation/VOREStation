@@ -66,8 +66,8 @@
 	. = ..()
 	if(!riding_datum)
 		riding_datum = new /datum/riding/simple_mob(src)
-	verbs |= /mob/living/simple_mob/proc/animal_mount
-	verbs |= /mob/living/proc/toggle_rider_reins
+	add_verb(src, /mob/living/simple_mob/proc/animal_mount)
+	add_verb(src, /mob/living/proc/toggle_rider_reins)
 	movement_cooldown = -1
 
 /mob/living/simple_mob/vore/leopardmander/Initialize()
@@ -141,7 +141,7 @@
 
 /mob/living/simple_mob/vore/leopardmander/exotic/New()
 	..()
-	verbs |= /mob/living/simple_mob/vore/leopardmander/exotic/proc/toggle_glow
+	add_verb(src, /mob/living/simple_mob/vore/leopardmander/exotic/proc/toggle_glow)
 
 /mob/living/simple_mob/vore/leopardmander/exotic/init_vore()
 	. = ..()

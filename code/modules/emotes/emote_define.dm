@@ -121,7 +121,7 @@ var/global/list/emotes_by_key
 		if(target)
 			raw_3p = replace_target_tokens(raw_3p, target)
 		prefinal_3p = replace_user_tokens(raw_3p, user)
-		use_3p = span_emote("<b>\The [user]</b> [prefinal_3p]")
+		use_3p = span_emote(span_bold("\The [user]") + " [prefinal_3p]")
 	var/use_radio = get_radio_message(user)
 	if(use_radio)
 		if(target)
@@ -155,7 +155,7 @@ var/global/list/emotes_by_key
 		. = replacetext(., "TARGET_THEM",  target_gender.him)
 		. = replacetext(., "TARGET_THEIR", target_gender.his)
 		. = replacetext(., "TARGET_SELF",  target_gender.himself)
-		. = replacetext(., "TARGET",       "<b>\the [target]</b>")
+		. = replacetext(., "TARGET",       span_bold("\the [target]"))
 
 /decl/emote/proc/replace_user_tokens(var/msg, var/atom/user)
 	. = msg
@@ -164,7 +164,7 @@ var/global/list/emotes_by_key
 		. = replacetext(., "USER_THEM",  user_gender.him)
 		. = replacetext(., "USER_THEIR", user_gender.his)
 		. = replacetext(., "USER_SELF",  user_gender.himself)
-		. = replacetext(., "USER",       "<b>\the [user]</b>")
+		. = replacetext(., "USER",       span_bold("\the [user]"))
 
 /decl/emote/proc/get_radio_message(var/atom/user)
 	if(emote_message_radio_synthetic && check_synthetic(user))

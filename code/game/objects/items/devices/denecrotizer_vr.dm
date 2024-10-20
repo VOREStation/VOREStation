@@ -77,11 +77,11 @@
 	ghostjoin = FALSE
 	ghostjoin_icon()
 	if(capture_caught)
-		to_chat(src, span_notice("You are bound to [revivedby], follow their commands within reason and to the best of your abilities, and avoid betraying or abandoning them.</span><span class= warning> You are allied with [revivedby]. Do not attack anyone for no reason. Of course, you may do scenes as you like, but you must still respect preferences."))
+		to_chat(src, span_notice("You are bound to [revivedby], follow their commands within reason and to the best of your abilities, and avoid betraying or abandoning them.") + " " + span_warning("You are allied with [revivedby]. Do not attack anyone for no reason. Of course, you may do scenes as you like, but you must still respect preferences."))
 		visible_message("[src]'s eyes flicker with a curious intelligence.", runemessage = "looks around")
 		return
 	if(revivedby != "no one")
-		to_chat(src, span_notice("Where once your life had been rough and scary, you have been assisted by [revivedby]. They seem to be the reason you are on your feet again... so perhaps you should help them out.</span> <span class= warning> Being as you were revived, you are allied with the station. Do not attack anyone unless they are threatening the one who revived you. And try to listen to the one who revived you within reason. Of course, you may do scenes as you like, but you must still respect preferences."))
+		to_chat(src, span_notice("Where once your life had been rough and scary, you have been assisted by [revivedby]. They seem to be the reason you are on your feet again... so perhaps you should help them out.") + " " + span_warning("Being as you were revived, you are allied with the station. Do not attack anyone unless they are threatening the one who revived you. And try to listen to the one who revived you within reason. Of course, you may do scenes as you like, but you must still respect preferences."))
 		visible_message("[src]'s eyes flicker with a curious intelligence.", runemessage = "looks around")
 
 /// Evaluate someone for being allowed to join as this mob from being a ghost
