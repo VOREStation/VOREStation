@@ -55,17 +55,17 @@
 
 /datum/map_template/debrisfield/sampleroid1	//2 common/uncommon samples
 	name = "Samples Rock 1"
-	mappath = 'sample_asteroid1.dmm'
+	mappath = "maps/submaps/pois_vr/debris_field/sample_asteroid1.dmm"
 	cost = 5
 
 /datum/map_template/debrisfield/sampleroid2 //cluster of 3 commons
 	name = "Samples Rock 2"
-	mappath = 'sample_asteroid2.dmm'
+	mappath = "maps/submaps/pois_vr/debris_field/sample_asteroid2.dmm"
 	cost = 5
 
 /datum/map_template/debrisfield/sampleroid3	//single rare surrounded by rock
 	name = "Samples Rock 3"
-	mappath = 'sample_asteroid3.dmm'
+	mappath = "maps/submaps/pois_vr/debris_field/sample_asteroid3.dmm"
 	cost = 5
 
 /datum/map_template/debrisfield/carp_asteroids1

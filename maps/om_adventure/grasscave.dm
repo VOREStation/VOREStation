@@ -156,7 +156,7 @@
 /datum/map_template/om_adventure/cave/darktear_sample
 	name = "darktear (Samples)"	//1 uncommon-or-rare sample
 	desc = "Ooh, spooky"
-	mappath = 'pois/darktear_sample.dmm'
+	mappath = "maps/om_adventure/pois/darktear_sample.dmm"
 	cost = 5
 
 /area/om_adventure/poi/fleshtear1
@@ -201,7 +201,7 @@
 /datum/map_template/om_adventure/cave/fleshtear_samples
 	name = "fleshtear (Samples)"	//3 common/uncommon samples
 	desc = "Ooh, meaty"
-	mappath = 'pois/fleshtear_samples.dmm'
+	mappath = "maps/om_adventure/pois/fleshtear_samples.dmm"
 	cost = 5
 
 /area/om_adventure/poi/cabin1
