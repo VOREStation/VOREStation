@@ -365,6 +365,7 @@ GLOBAL_LIST_BOILERPLATE(allCasters, /obj/machinery/newscaster)
 		if(!viewing_channel.censored)
 			for(var/datum/feed_message/M in viewing_channel.messages)
 				var/list/msgdata = list(
+					"title" = M.title,
 					"body" = M.body,
 					"img" = null,
 					"type" = M.message_type,
