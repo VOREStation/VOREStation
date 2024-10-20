@@ -111,7 +111,7 @@
 /datum/map_template/om_adventure/outdoor/darkstar
 	name = "Darkstar"
 	desc = "A mysterious shape!"
-	mappath = 'pois/darkstar.dmm'
+	mappath = "maps/om_adventure/pois/darkstar.dmm"
 	cost = 5
 
 /area/om_adventure/poi/darktear1
@@ -120,7 +120,7 @@
 /datum/map_template/om_adventure/cave/darktear1
 	name = "darktear1"
 	desc = "A mysterious shape!"
-	mappath = 'pois/darktear1.dmm'
+	mappath = "maps/om_adventure/pois/darktear1.dmm"
 	cost = 5
 
 /area/om_adventure/poi/darktear2
@@ -129,7 +129,7 @@
 /datum/map_template/om_adventure/cave/darktear2
 	name = "darktear2"
 	desc = "A mysterious shape!"
-	mappath = 'pois/darktear2.dmm'
+	mappath = "maps/om_adventure/pois/darktear2.dmm"
 	cost = 5
 
 /area/om_adventure/poi/darktear3
@@ -138,7 +138,7 @@
 /datum/map_template/om_adventure/cave/darktear3
 	name = "darktear3"
 	desc = "A mysterious shape!"
-	mappath = 'pois/darktear3.dmm'
+	mappath = "maps/om_adventure/pois/darktear3.dmm"
 	cost = 5
 
 /area/om_adventure/poi/darktear4
@@ -147,7 +147,7 @@
 /datum/map_template/om_adventure/cave/darktear4
 	name = "darktear4"
 	desc = "A mysterious shape!"
-	mappath = 'pois/darktear4.dmm'
+	mappath = "maps/om_adventure/pois/darktear4.dmm"
 	cost = 5
 
 /area/om_adventure/poi/darktear_sample
@@ -156,7 +156,7 @@
 /datum/map_template/om_adventure/cave/darktear_sample
 	name = "darktear (Samples)"	//1 uncommon-or-rare sample
 	desc = "Ooh, spooky"
-	mappath = 'pois/darktear_sample.dmm'
+	mappath = "maps/om_adventure/pois/darktear_sample.dmm"
 	cost = 5
 
 /area/om_adventure/poi/fleshtear1
@@ -165,7 +165,7 @@
 /datum/map_template/om_adventure/cave/fleshtear1
 	name = "fleshtear1"
 	desc = "Wow gross!"
-	mappath = 'pois/fleshtear1.dmm'
+	mappath = "maps/om_adventure/pois/fleshtear1.dmm"
 	cost = 5
 
 /area/om_adventure/poi/fleshtear2
@@ -174,7 +174,7 @@
 /datum/map_template/om_adventure/cave/fleshtear2
 	name = "fleshtear2"
 	desc = "Wow gross!"
-	mappath = 'pois/fleshtear2.dmm'
+	mappath = "maps/om_adventure/pois/fleshtear2.dmm"
 	cost = 5
 
 /area/om_adventure/poi/fleshtear3
@@ -183,7 +183,7 @@
 /datum/map_template/om_adventure/cave/fleshtear3
 	name = "fleshtear3"
 	desc = "Wow gross!"
-	mappath = 'pois/fleshtear3.dmm'
+	mappath = "maps/om_adventure/pois/fleshtear3.dmm"
 	cost = 5
 
 /area/om_adventure/poi/fleshtear4
@@ -192,7 +192,7 @@
 /datum/map_template/om_adventure/cave/fleshtear4
 	name = "fleshtear4"
 	desc = "Wow gross!"
-	mappath = 'pois/fleshtear4.dmm'
+	mappath = "maps/om_adventure/pois/fleshtear4.dmm"
 	cost = 5
 
 /area/om_adventure/poi/fleshtear_samples
@@ -201,7 +201,7 @@
 /datum/map_template/om_adventure/cave/fleshtear_samples
 	name = "fleshtear (Samples)"	//3 common/uncommon samples
 	desc = "Ooh, meaty"
-	mappath = 'pois/fleshtear_samples.dmm'
+	mappath = "maps/om_adventure/pois/fleshtear_samples.dmm"
 	cost = 5
 
 /area/om_adventure/poi/cabin1
@@ -210,7 +210,7 @@
 /datum/map_template/om_adventure/outdoor/cabin1
 	name = "cabin1"
 	desc = "A comfy home!"
-	mappath = 'pois/cabin1.dmm'
+	mappath = "maps/om_adventure/pois/cabin1.dmm"
 	cost = 20
 
 /area/om_adventure/poi/cabin2
@@ -219,7 +219,7 @@
 /datum/map_template/om_adventure/outdoor/cabin2
 	name = "cabin2"
 	desc = "A comfy home!"
-	mappath = 'pois/cabin2.dmm'
+	mappath = "maps/om_adventure/pois/cabin2.dmm"
 	cost = 20
 
 /area/om_adventure/poi/cabin3
@@ -228,7 +228,7 @@
 /datum/map_template/om_adventure/outdoor/cabin3
 	name = "cabin3"
 	desc = "A comfy... home?"
-	mappath = 'pois/cabin3.dmm'
+	mappath = "maps/om_adventure/pois/cabin3.dmm"
 	cost = 10
 
 /area/om_adventure/poi/camp
@@ -237,7 +237,7 @@
 /datum/map_template/om_adventure/outdoor/camp
 	name = "Camp"
 	desc = "A camp!"
-	mappath = 'pois/camp.dmm'
+	mappath = "maps/om_adventure/pois/camp.dmm"
 	cost = 20
 
 /area/om_adventure/poi/shuttlewreck1
@@ -246,7 +246,7 @@
 /datum/map_template/om_adventure/outdoor/shuttlewreck1
 	name = "Shuttle wreck"
 	desc = "Long abandoned!"
-	mappath = 'pois/shuttlewreck1.dmm'
+	mappath = "maps/om_adventure/pois/shuttlewreck1.dmm"
 	cost = 5
 
 /area/om_adventure/poi/shuttlewreck2
@@ -255,7 +255,7 @@
 /datum/map_template/om_adventure/outdoor/shuttlewreck2
 	name = "Shuttle wreck"
 	desc = "Long abandoned!"
-	mappath = 'pois/shuttlewreck2.dmm'
+	mappath = "maps/om_adventure/pois/shuttlewreck2.dmm"
 	cost = 10
 
 /area/om_adventure/poi/shuttlewreck3
@@ -264,7 +264,7 @@
 /datum/map_template/om_adventure/outdoor/shuttlewreck3
 	name = "Shuttle wreck"
 	desc = "Long abandoned!"
-	mappath = 'pois/shuttlewreck3.dmm'
+	mappath = "maps/om_adventure/pois/shuttlewreck3.dmm"
 	cost = 5
 
 /area/om_adventure/poi/shuttlewreck4
@@ -273,7 +273,7 @@
 /datum/map_template/om_adventure/outdoor/shuttlewreck4
 	name = "Shuttle wreck"
 	desc = "Long abandoned!"
-	mappath = 'pois/shuttlewreck4.dmm'
+	mappath = "maps/om_adventure/pois/shuttlewreck4.dmm"
 	cost = 10
 
 /area/om_adventure/poi/medicalcenter
@@ -282,7 +282,7 @@
 /datum/map_template/om_adventure/outdoor/medicalcenter
 	name = "Medical Center"
 	desc = "Maybe they used to heal people here."
-	mappath = 'pois/medicalcenter.dmm'
+	mappath = "maps/om_adventure/pois/medicalcenter.dmm"
 	cost = 10
 
 /area/om_adventure/poi/shippart1
@@ -291,7 +291,7 @@
 /datum/map_template/om_adventure/outdoor/shippart1
 	name = "Ship Part"
 	desc = "Something bad happened here."
-	mappath = 'pois/shippart1.dmm'
+	mappath = "maps/om_adventure/pois/shippart1.dmm"
 	cost = 10
 
 /area/om_adventure/poi/woodentemple
@@ -300,7 +300,7 @@
 /datum/map_template/om_adventure/cave/woodentemple
 	name = "Wooden Temple"
 	desc = "A comfy wooden temple."
-	mappath = 'pois/woodentemple.dmm'
+	mappath = "maps/om_adventure/pois/woodentemple.dmm"
 	cost = 10
 
 /area/om_adventure/poi/alienchamber1
@@ -309,7 +309,7 @@
 /datum/map_template/om_adventure/cave/alienchamber1
 	name = "Alien Chamber"
 	desc = "A mysterious alien chamber!"
-	mappath = 'pois/alienchamber1.dmm'
+	mappath = "maps/om_adventure/pois/alienchamber1.dmm"
 	cost = 10
 
 /area/om_adventure/poi/alienchamber2
@@ -318,7 +318,7 @@
 /datum/map_template/om_adventure/cave/alienchamber2
 	name = "Alien Chamber"
 	desc = "A mysterious alien chamber!"
-	mappath = 'pois/alienchamber2.dmm'
+	mappath = "maps/om_adventure/pois/alienchamber2.dmm"
 	cost = 10
 
 /area/om_adventure/poi/alienchamber3
@@ -327,7 +327,7 @@
 /datum/map_template/om_adventure/cave/alienchamber3
 	name = "Alien Chamber"
 	desc = "A mysterious alien chamber!"
-	mappath = 'pois/alienchamber3.dmm'
+	mappath = "maps/om_adventure/pois/alienchamber3.dmm"
 	cost = 10
 
 /area/om_adventure/poi/alienchamber4
@@ -336,7 +336,7 @@
 /datum/map_template/om_adventure/cave/alienchamber4
 	name = "Alien Chamber"
 	desc = "A mysterious alien chamber!"
-	mappath = 'pois/alienchamber4.dmm'
+	mappath = "maps/om_adventure/pois/alienchamber4.dmm"
 	cost = 10
 
 /obj/tether_away_spawner/spookyland
