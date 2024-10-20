@@ -349,7 +349,7 @@
 	var/obj/item/rig_module/gauntlets/storing_module
 
 /obj/item/kinetic_crusher/machete/gauntlets/rig/dropped(mob/user)
-	. = ..()
+	. = ..(user)
 	if(storing_module)
 		src.forceMove(storing_module)
 		storing_module.stored_gauntlets = src

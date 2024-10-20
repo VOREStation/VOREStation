@@ -88,7 +88,7 @@
 	var/obj/item/organ/my_augment = null	// Used to reference the object's host organ.
 
 /obj/item/dropped(mob/user)
-	. = ..()
+	. = ..(user)
 	if(src)
 		if(destroy_on_drop && !QDELETED(src))
 			qdel(src)
