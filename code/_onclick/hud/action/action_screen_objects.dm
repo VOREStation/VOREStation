@@ -89,15 +89,17 @@
 				client.screen += B
 
 		if(!button_number)
-			hud_used.hide_actions_toggle.screen_loc = null
+			hud_used.hide_actions_toggle?.screen_loc = null
 			return
 
-	if(!hud_used.hide_actions_toggle.moved)
-		hud_used.hide_actions_toggle.screen_loc = hud_used.ButtonNumberToScreenCoords(button_number+1)
-	else
-		hud_used.hide_actions_toggle.screen_loc = hud_used.hide_actions_toggle.moved
-	if(reload_screen)
-		client.screen += hud_used.hide_actions_toggle
+	// not exactly sure how this happens but it does
+	if(hud_used.hide_actions_toggle)
+		if(!hud_used.hide_actions_toggle.moved)
+			hud_used.hide_actions_toggle.screen_loc = hud_used.ButtonNumberToScreenCoords(button_number+1)
+		else
+			hud_used.hide_actions_toggle.screen_loc = hud_used.hide_actions_toggle.moved
+		if(reload_screen)
+			client.screen += hud_used.hide_actions_toggle
 
 #define AB_WEST_OFFSET 4
 #define AB_NORTH_OFFSET 26
