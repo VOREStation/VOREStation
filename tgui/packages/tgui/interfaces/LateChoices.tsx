@@ -98,16 +98,18 @@ export const LateChoices = (props) => {
                   ))}
                 </Section>
               ) : null}
-              {Object.entries(departments).map(([dept, jobs]) => (
-                <Section
-                  title={<DepartmentTitle department={dept} />}
-                  key={dept}
-                >
-                  {jobs.map((job) => (
-                    <JobButton key={job.title} job={job} />
-                  ))}
-                </Section>
-              ))}
+              {Object.entries(departments)
+                .sort((a, b) => a[0].localeCompare(b[0]))
+                .map(([dept, jobs]) => (
+                  <Section
+                    title={<DepartmentTitle department={dept} />}
+                    key={dept}
+                  >
+                    {jobs.map((job) => (
+                      <JobButton key={job.title} job={job} />
+                    ))}
+                  </Section>
+                ))}
             </Section>
           </Stack.Item>
         </Stack>
