@@ -68,7 +68,7 @@
 	icon_override = 'icons/vore/custom_clothes_vr.dmi'
 	item_state = "coatroiz_mob"
 
-/obj/item/clothing/suit/storage/hooded/wintercoat/roiz/ui_action_click()
+/obj/item/clothing/suit/storage/hooded/wintercoat/roiz/ui_action_click(mob/user, actiontype)
 	ToggleHood_roiz()
 
 /obj/item/clothing/suit/storage/hooded/wintercoat/roiz/equipped(mob/user, slot)
@@ -783,7 +783,7 @@
 	light_overlay = null
 	light_system = MOVABLE_LIGHT
 
-	action_button_name = "Toggle pom-pom"
+	actions_types = list(/datum/action/item_action/toggle_pom_pom)
 
 /obj/item/clothing/head/fluff/pompom/digest_act(var/atom/movable/item_storage = null)
 	return FALSE
@@ -1129,7 +1129,7 @@
 		if (ismob(loc)) //should allow masks to update when it is opened/closed
 			var/mob/M = loc
 			M.update_inv_wear_mask()
-		usr.update_action_buttons()
+		usr.update_action_buttons_icon()
 
 //Vorrarkul: Theodora Lindt
 /obj/item/clothing/suit/chococoat
@@ -1541,7 +1541,7 @@ Departamental Swimsuits, for general use
 	icon_override = 'icons/vore/custom_clothes_vr.dmi'
 	item_state = "kilanocoat_mob"
 
-/obj/item/clothing/suit/storage/hooded/wintercoat/kilanocoat/ui_action_click()
+/obj/item/clothing/suit/storage/hooded/wintercoat/kilanocoat/ui_action_click(mob/user, actiontype)
 	ToggleHood_kilano()
 
 /obj/item/clothing/suit/storage/hooded/wintercoat/kilanocoat/equipped(mob/user, slot)
@@ -2353,7 +2353,7 @@ Departamental Swimsuits, for general use
 	icon_override = 'icons/vore/custom_onmob_vr.dmi'
 	item_state = "mechahood_mob"
 
-/obj/item/clothing/suit/storage/hooded/wintercoat/fluff/mechanic/ui_action_click()
+/obj/item/clothing/suit/storage/hooded/wintercoat/fluff/mechanic/ui_action_click(mob/user, actiontype)
 	ToggleHood_mechacoat()
 
 /obj/item/clothing/suit/storage/hooded/wintercoat/fluff/mechanic/equipped(mob/user, slot)
@@ -2411,7 +2411,7 @@ Departamental Swimsuits, for general use
 	icon_override = 'icons/vore/custom_onmob_vr.dmi'
 	item_state = "evelynhood_mob"
 
-/obj/item/clothing/suit/storage/hooded/wintercoat/security/fluff/evelyn/ui_action_click()
+/obj/item/clothing/suit/storage/hooded/wintercoat/security/fluff/evelyn/ui_action_click(mob/user, actiontype)
 	ToggleHood_evelyn()
 
 /obj/item/clothing/suit/storage/hooded/wintercoat/security/fluff/evelyn/equipped(mob/user, slot)
@@ -2635,7 +2635,7 @@ Departamental Swimsuits, for general use
 		if (ismob(loc)) //should allow masks to update when it is opened/closed
 			var/mob/M = loc
 			M.update_inv_wear_mask()
-		usr.update_action_buttons()
+		usr.update_action_buttons_icon()
 
 /obj/item/clothing/suit/storage/toggle/labcoat/fluff/zeracloak
 	name = "Grand Purple Cloak"

@@ -19,7 +19,7 @@
 	w_class = ITEMSIZE_SMALL
 	slot_flags = SLOT_BELT
 	matter = list(MAT_STEEL = 50,MAT_GLASS = 20)
-	action_button_name = "Toggle Flashlight"
+	actions_types = list(/datum/action/item_action/toggle_flashlight)
 
 	light_system = MOVABLE_LIGHT_DIRECTIONAL
 	light_range = 4 //luminosity when on
@@ -102,7 +102,7 @@
 		STOP_PROCESSING(SSobj, src)
 	playsound(src, 'sound/weapons/empty.ogg', 15, 1, -3) // VOREStation Edit
 	update_brightness()
-	user.update_action_buttons()
+	user.update_action_buttons_icon()
 	return 1
 
 /obj/item/flashlight/emp_act(severity)
@@ -355,7 +355,7 @@
 	light_color = LIGHT_COLOR_FLARE
 	icon_state = "flare"
 	item_state = "flare"
-	action_button_name = null //just pull it manually, neckbeard.
+	actions_types = list() //just pull it manually, neckbeard.
 	var/fuel = 0
 	var/on_damage = 7
 	var/produce_heat = 1500

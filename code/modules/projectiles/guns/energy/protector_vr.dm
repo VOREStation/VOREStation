@@ -27,7 +27,7 @@
 	light_state = "prot_light"
 	flight_x_offset = 0
 	flight_y_offset = 0
-	action_button_name = "Toggle gun-light"
+	actions_types = list(/datum/action/item_action/toggle_gunlight)
 	var/gun_light_icon = TRUE
 	var/gun_light_on = FALSE
 	var/brightness_on = 5

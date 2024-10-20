@@ -35,10 +35,8 @@
 	var/max_pressure_protection // Set this variable if the item protects its wearer against high pressures below an upper bound. Keep at null to disable protection.
 	var/min_pressure_protection // Set this variable if the item protects its wearer against low pressures above a lower bound. Keep at null to disable protection. 0 represents protection against hard vacuum.
 
-
-	var/datum/action/item_action/action = null
-	var/action_button_name //It is also the text which gets displayed on the action button. If not set it defaults to 'Use [name]'. If it's not set, there'll be no button.
-	var/action_button_is_hands_free = 0 //If 1, bypass the restrained, lying, and stunned checks action buttons normally test for
+	var/list/actions = list() //list of /datum/action's that this item has.
+	var/list/actions_types = list() //list of paths of action datums to give to the item on New().
 
 	//This flag is used to determine when items in someone's inventory cover others. IE helmets making it so you can't see glasses, etc.
 	//It should be used purely for appearance. For gameplay effects caused by items covering body parts, use body_parts_covered.
@@ -117,6 +115,8 @@
 
 /obj/item/New()
 	..()
+	for(var/path in actions_types)
+		new path(src)
 	if(embed_chance < 0)
 		if(sharp)
 			embed_chance = max(5, round(force/w_class))
@@ -137,6 +137,8 @@
 		m.update_inv_r_hand()
 		m.update_inv_l_hand()
 		src.loc = null
+	for(var/X in actions)
+		qdel(X)
 	return ..()
 
 // Check if target is reasonable for us to operate on.
@@ -333,6 +335,9 @@
 	if(zoom)
 		zoom() //binoculars, scope, etc
 	appearance_flags &= ~NO_CLIENT_COLOR
+	for(var/X in actions)
+		var/datum/action/A = X
+		A.Remove(user)
 
 // called just as an item is picked up (loc is not yet changed)
 /obj/item/proc/pickup(mob/user)
@@ -358,6 +363,10 @@
 // for items that can be placed in multiple slots
 // note this isn't called during the initial dressing of a player
 /obj/item/proc/equipped(var/mob/user, var/slot)
+	for(var/X in actions)
+		var/datum/action/A = X
+		if(item_action_slot_check(slot, user)) //some items only give their actions buttons when in a specific slot.
+			A.Grant(user)
 	hud_layerise()
 	user.position_hud_item(src,slot)
 	if(user.client)	user.client.screen |= src
@@ -370,6 +379,12 @@
 	else if(slot == slot_l_hand || slot == slot_r_hand)
 		playsound(src, pickup_sound, 20, preference = /datum/preference/toggle/pickup_sounds)
 	return
+
+//sometimes we only want to grant the item's action if it's equipped in a specific slot.
+/obj/item/proc/item_action_slot_check(slot, mob/user)
+	if(slot == SLOT_BACK || slot == LEGS) //these aren't true slots, so avoid granting actions there
+		return FALSE
+	return TRUE
 
 // As above but for items being equipped to an active module on a robot.
 /obj/item/proc/equipped_robot(var/mob/user)
@@ -534,11 +549,11 @@ var/list/global/slot_flags_enumeration = list(
 	return
 
 
-//This proc is executed when someone clicks the on-screen UI button. To make the UI button show, set the 'icon_action_button' to the icon_state of the image of the button in screen1_action.dmi
+//This proc is executed when someone clicks the on-screen UI button.
 //The default action is attack_self().
 //Checks before we get to here are: mob is alive, mob is not restrained, paralyzed, asleep, resting, laying, item is on the mob.
-/obj/item/proc/ui_action_click()
-	attack_self(usr)
+/obj/item/proc/ui_action_click(mob/user, actiontype)
+	attack_self(user)
 
 //RETURN VALUES
 //handle_shield should return a positive value to indicate that the attack is blocked and should be prevented.

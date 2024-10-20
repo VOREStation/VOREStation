@@ -21,6 +21,9 @@
 /mob/living/silicon/robot/proc/uneq_active()
 	if(isnull(module_active))
 		return
+	var/obj/item/I = module_active
+	for(var/datum/action/A as anything in I.actions)
+		A.Remove(src)
 	if(module_state_1 == module_active)
 		if(istype(module_state_1,/obj/item/borg/sight))
 			sight_mode &= ~module_state_1:sight_mode
@@ -64,6 +67,9 @@
 		if (client)
 			client.screen -= module_state_1
 		contents -= module_state_1
+		var/obj/item/I = module_state_1
+		for(var/datum/action/A as anything in I.actions)
+			A.Remove(src)
 		module_state_1:loc = module
 		module_state_1 = null
 		inv1.icon_state = "inv1"
@@ -72,6 +78,9 @@
 			sight_mode &= ~module_state_2:sight_mode
 		if (client)
 			client.screen -= module_state_2
+		var/obj/item/I = module_state_2
+		for(var/datum/action/A as anything in I.actions)
+			A.Remove(src)
 		contents -= module_state_2
 		module_state_2:loc = module
 		module_state_2 = null
@@ -81,6 +90,9 @@
 			sight_mode &= ~module_state_3:sight_mode
 		if (client)
 			client.screen -= module_state_3
+		var/obj/item/I = module_state_3
+		for(var/datum/action/A as anything in I.actions)
+			A.Remove(src)
 		contents -= module_state_3
 		module_state_3:loc = module
 		module_state_3 = null
@@ -276,6 +288,9 @@
 			pounce.icon_state = initial(pounce.icon_state)
 			pounce.desc = initial(pounce.desc)
 			pounce.bluespace = initial(pounce.bluespace)
+	if(O)
+		for(var/datum/action/A as anything in O.actions)
+			A.Grant(src)
 
 /mob/living/silicon/robot/put_in_hands(var/obj/item/W) // No hands.
 	W.forceMove(get_turf(src))

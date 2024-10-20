@@ -557,7 +557,7 @@
 	item_flags = FLEXIBLEMATERIAL
 	var/breath_masked = FALSE
 	var/obj/item/clothing/mask/breath/breathmask
-	action_button_name = "Pull On Gaiter"
+	actions_types = list(/datum/action/item_action/pull_on_gaiter)
 
 /obj/item/clothing/accessory/gaiter/update_clothing_icon()
 	. = ..()

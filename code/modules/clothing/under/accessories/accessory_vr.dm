@@ -714,7 +714,7 @@
 	desc = "The latest fashion innovations by the Nanotrasen Uniform & Fashion Department have provided the brilliant invention of slicing a regular cloak in half! All the ponce, half the cost!"
 	icon_state = "roughcloak"
 	item_state = "roughcloak"
-	action_button_name = "Adjust Cloak"
+	actions_types = list(/datum/action/item_action/adjust_cloak)
 
 /obj/item/clothing/accessory/poncho/roles/cloak/half/update_clothing_icon()
 	. = ..()
@@ -985,7 +985,7 @@
 	desc = "Aim for the Heart, Ramon."
 	icon_state = "neo_ranger"
 	item_state = "neo_ranger"
-	action_button_name = "Adjust Poncho"
+	actions_types = list(/datum/action/item_action/adjust_poncho)
 
 /obj/item/clothing/accessory/poncho/roles/neo_ranger/update_clothing_icon()
 	. = ..()
