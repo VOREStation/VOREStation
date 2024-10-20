@@ -63,14 +63,14 @@
 /datum/map_template/virgo2/RareSample
 	name = "Rocky1"
 	desc = "Ooh, shiny!"	//a single rare sample, sitting in the open
-	mappath = 'RareSample.dmm'
+	mappath = "maps/submaps/pois_vr/aerostat/RareSample.dmm"
 	allow_duplicates = TRUE
 	cost = 5
 
 /datum/map_template/virgo2/SamplePocket
 	name = "Sampleroid"
 	desc = "What's in the (rock)box?"	//one common/uncommon, one uncommon/rare, and one any grade
-	mappath = 'SamplePocket.dmm'
+	mappath = "maps/submaps/pois_vr/aerostat/SamplePocket.dmm"
 	allow_duplicates = TRUE
 	cost = 5
 
