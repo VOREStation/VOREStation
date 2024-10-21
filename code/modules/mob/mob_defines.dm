@@ -238,3 +238,5 @@
 	var/datum/focus //What receives our keyboard inputs. src by default
 	/// dict of custom stat tabs with data
 	var/list/list/misc_tabs = list()
+
+	var/list/datum/action/actions

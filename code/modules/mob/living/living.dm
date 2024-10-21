@@ -973,6 +973,7 @@
 	if(lying != lying_prev)
 		lying_prev = lying
 		update_transform()
+		update_action_buttons_icon(status_only = TRUE)
 		//VOREStation Add
 		if(lying && LAZYLEN(buckled_mobs))
 			for(var/mob/living/L as anything in buckled_mobs)
