@@ -57,6 +57,13 @@ export const ModifyRobot = (props) => {
     channel,
     channels,
     law_sets,
+    camera_options,
+    radio_options,
+    actuator_options,
+    diagnosis_options,
+    comms_options,
+    armour_options,
+    current_gear,
   } = data;
 
   const [tab, setTab] = useState<number>(0);
@@ -82,7 +89,18 @@ export const ModifyRobot = (props) => {
   tabs[2] = <ModifyRobotPKA target={target!} />;
   tabs[3] = <ModifyRobotRadio target={target!} />;
   tabs[4] = (
-    <ModifyRobotComponent target={target!} cell={cell} cells={cell_options} />
+    <ModifyRobotComponent
+      target={target!}
+      cell={cell}
+      cells={cell_options}
+      cams={camera_options}
+      rads={radio_options}
+      acts={actuator_options}
+      diags={diagnosis_options}
+      comms={comms_options}
+      arms={armour_options}
+      gear={current_gear}
+    />
   );
   tabs[5] = (
     <ModifyRobotAccess
