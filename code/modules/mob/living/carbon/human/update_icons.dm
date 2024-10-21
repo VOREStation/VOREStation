@@ -1337,7 +1337,6 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 		return ears_s
 	return null
 
-
 /mob/living/carbon/human/proc/get_tail_image()
 	//If you are FBP with tail style and didn't set a custom one
 	var/datum/robolimb/model = isSynthetic()
