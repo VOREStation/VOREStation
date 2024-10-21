@@ -78,6 +78,8 @@
 		. = num+1
 	else if(findtext(X,"CENTER"))
 		. = view_dist+1
+	else
+		. = text2num(X)
 
 /obj/screen/movable/proc/encode_screen_Y(Y)
 	var/view_dist = world.view
@@ -106,6 +108,8 @@
 		. = num+1
 	else if(findtext(Y,"CENTER"))
 		. = view_dist+1
+	else
+		. = text2num(Y)
 
 //Debug procs
 /client/proc/test_movable_UI()
