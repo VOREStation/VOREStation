@@ -13,6 +13,10 @@
 /datum/tgui_module/crew_manifest/robot/tgui_state(mob/user)
 	return GLOB.tgui_self_state
 
+/datum/tgui_module/crew_manifest/new_player
+/datum/tgui_module/crew_manifest/new_player/tgui_state(mob/user)
+	return GLOB.tgui_always_state
+
 // Module that deletes itself when it's closed
 /datum/tgui_module/crew_manifest/self_deleting
 
