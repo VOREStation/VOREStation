@@ -94,7 +94,7 @@
 
 	var/dat = "<HEAD><TITLE>Book Inventory Management</TITLE></HEAD><BODY>\n"
 	dat += "<h3>ADMINISTRATIVE MANAGEMENT</h3>"
-	establish_old_db_connection()
+	establish_db_connection()
 
 	if(!dbcon_old.IsConnected())
 		dat += "<font color=red><b>ERROR</b>: Unable to contact External Archive. Please contact your system administrator for assistance.</font>"

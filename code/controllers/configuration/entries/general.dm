@@ -51,6 +51,9 @@
 /// logs world.log to a file
 /datum/config_entry/flag/log_runtime
 
+/// logs sql stuff
+/datum/config_entry/flag/log_sql
+
 /// log to_world_log(messages)
 /datum/config_entry/flag/log_world_output
 

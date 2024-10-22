@@ -43,7 +43,7 @@
 			<A href='?src=\ref[src];setauthor=1'>Filter by Author: [author]</A><BR>
 			<A href='?src=\ref[src];search=1'>\[Start Search\]</A><BR>"}
 		if(1)
-			establish_old_db_connection()
+			establish_db_connection()
 			if(!dbcon_old.IsConnected())
 				dat += span_red(span_bold("ERROR") + ": Unable to contact External Archive. Please contact your system administrator for assistance.") + "<BR>"
 			else if(!SQLquery)
@@ -273,7 +273,7 @@
 			<A href='?src=\ref[src];switchscreen=0'>No.</A><BR>"}
 		if(8)
 			dat += "<h3>External Archive</h3>" //VOREStation Edit
-			establish_old_db_connection()
+			establish_db_connection()
 
 			//dat += "<h3>" + span_red("arning: System Administrator has slated this archive for removal. Personal uploads should be taken to the NT board of internal literature.") + "</h3>" //VOREStation Removal
 
@@ -316,7 +316,7 @@
 		var/dat = "<HEAD><TITLE>Book Inventory Management</TITLE></HEAD><BODY>\n" // <META HTTP-EQUIV='Refresh' CONTENT='10'>
 
 		dat += "<h3>ADMINISTRATIVE MANAGEMENT</h3>"
-		establish_old_db_connection()
+		establish_db_connection()
 
 		if(!dbcon_old.IsConnected())
 			dat += span_red(span_bold("ERROR") + ": Unable to contact External Archive. Please contact your system administrator for assistance.")
@@ -436,7 +436,7 @@
 					if(scanner.cache.unique)
 						tgui_alert_async(usr, "This book has been rejected from the database. Aborting!")
 					else
-						establish_old_db_connection()
+						establish_db_connection()
 						if(!dbcon_old.IsConnected())
 							tgui_alert_async(usr, "Connection to Archive has been severed. Aborting.")
 						else
@@ -460,7 +460,7 @@
 
 	if(href_list["targetid"])
 		var/sqlid = sanitizeSQL(href_list["targetid"])
-		establish_old_db_connection()
+		establish_db_connection()
 		if(!dbcon_old.IsConnected())
 			tgui_alert_async(usr, "Connection to Archive has been severed. Aborting.")
 		if(bibledelay)
@@ -491,7 +491,7 @@
 		if(!check_rights(R_ADMIN))
 			return
 		var/sqlid = sanitizeSQL(href_list["delid"])
-		establish_old_db_connection()
+		establish_db_connection()
 		if(!dbcon_old.IsConnected())
 			tgui_alert_async(usr, "Connection to Archive has been severed. Aborting.")
 		else
