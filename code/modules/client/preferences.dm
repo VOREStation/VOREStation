@@ -26,8 +26,6 @@ var/list/preferences_datums = list()
 	var/ambience_freq = 5				// How often we're playing repeating ambience to a client.
 	var/ambience_chance = 35			// What's the % chance we'll play ambience (in conjunction with the above frequency)
 
-	var/obfuscate_key = FALSE
-	var/obfuscate_job = FALSE
 	var/chat_timestamp = FALSE
 
 	//character preferences

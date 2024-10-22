@@ -96,3 +96,17 @@ export const BrowserDevTools: FeatureToggle = {
     'When enabled, you can right click -> inspect to open Microsoft Edge dev tools. BYOND 516+ Only.',
   component: CheckboxInput,
 };
+
+export const obfuscate_key: FeatureToggle = {
+  name: 'Obfuscate Key',
+  category: 'UI',
+  description: 'Hide your byond ckey from other players in the lobby',
+  component: CheckboxInput,
+};
+
+export const obfuscate_job: FeatureToggle = {
+  name: 'Obfuscate Job',
+  category: 'UI',
+  description: 'Hide your job from other players in the lobby',
+  component: CheckboxInput,
+};

@@ -11,8 +11,6 @@
 	pref.client_fps			= savefile.get_entry("client_fps")
 	pref.ambience_freq		= savefile.get_entry("ambience_freq")
 	pref.ambience_chance	= savefile.get_entry("ambience_chance")
-	pref.obfuscate_key		= savefile.get_entry("obfuscate_key")
-	pref.obfuscate_job		= savefile.get_entry("obfuscate_job")
 	pref.chat_timestamp		= savefile.get_entry("chat_timestamp")
 
 /datum/category_item/player_setup_item/player_global/ui/save_preferences(datum/json_savefile/savefile)
@@ -24,8 +22,6 @@
 	savefile.set_entry("client_fps",		pref.client_fps)
 	savefile.set_entry("ambience_freq",		pref.ambience_freq)
 	savefile.set_entry("ambience_chance",	pref.ambience_chance)
-	savefile.set_entry("obfuscate_key",		pref.obfuscate_key)
-	savefile.set_entry("obfuscate_job",		pref.obfuscate_job)
 	savefile.set_entry("chat_timestamp",	pref.chat_timestamp)
 
 /datum/category_item/player_setup_item/player_global/ui/sanitize_preferences()
@@ -37,8 +33,6 @@
 	pref.client_fps			= sanitize_integer(pref.client_fps, 0, MAX_CLIENT_FPS, initial(pref.client_fps))
 	pref.ambience_freq		= sanitize_integer(pref.ambience_freq, 0, 60, initial(pref.ambience_freq)) // No more than once per hour.
 	pref.ambience_chance 	= sanitize_integer(pref.ambience_chance, 0, 100, initial(pref.ambience_chance)) // 0-100 range.)
-	pref.obfuscate_key		= sanitize_integer(pref.obfuscate_key, 0, 1, initial(pref.obfuscate_key))
-	pref.obfuscate_job		= sanitize_integer(pref.obfuscate_job, 0, 1, initial(pref.obfuscate_job))
 	pref.chat_timestamp		= sanitize_integer(pref.chat_timestamp, 0, 1, initial(pref.chat_timestamp))
 
 /datum/category_item/player_setup_item/player_global/ui/content(var/mob/user)
@@ -50,8 +44,6 @@
 	. += span_bold("Client FPS:") + " <a href='?src=\ref[src];select_client_fps=1'><b>[pref.client_fps]</b></a><br>"
 	. += span_bold("Random Ambience Frequency:") + " <a href='?src=\ref[src];select_ambience_freq=1'><b>[pref.ambience_freq]</b></a><br>"
 	. += span_bold("Ambience Chance:") + " <a href='?src=\ref[src];select_ambience_chance=1'><b>[pref.ambience_chance]</b></a><br>"
-	. += span_bold("Obfuscate Ckey:") + " <a href='?src=\ref[src];obfuscate_key=1'><b>[(pref.obfuscate_key) ? "Enabled" : "Disabled (default)"]</b></a><br>"
-	. += span_bold("Obfuscate Job:") + " <a href='?src=\ref[src];obfuscate_job=1'><b>[(pref.obfuscate_job) ? "Enabled" : "Disabled (default)"]</b></a><br>"
 	. += span_bold("Chat Timestamps:") + " <a href='?src=\ref[src];chat_timestamps=1'><b>[(pref.chat_timestamp) ? "Enabled" : "Disabled (default)"]</b></a><br>"
 	if(can_select_ooc_color(user))
 		. += span_bold("OOC Color:")
@@ -112,14 +104,6 @@
 		if(isnull(ambience_chance_new) || !CanUseTopic(user)) return TOPIC_NOACTION
 		if(ambience_chance_new < 0 || ambience_chance_new > 100) return TOPIC_NOACTION
 		pref.ambience_chance = ambience_chance_new
-		return TOPIC_REFRESH
-
-	else if(href_list["obfuscate_key"])
-		pref.obfuscate_key = !pref.obfuscate_key
-		return TOPIC_REFRESH
-
-	else if(href_list["obfuscate_job"])
-		pref.obfuscate_job = !pref.obfuscate_job
 		return TOPIC_REFRESH
 
 	else if(href_list["chat_timestamps"])
