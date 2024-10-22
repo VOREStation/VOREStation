@@ -81,3 +81,15 @@
 	savefile_key = "AutoPunctuation"
 	default_value = FALSE
 	savefile_identifier = PREFERENCE_PLAYER
+
+/datum/preference/toggle/obfuscate_key
+	category = PREFERENCE_CATEGORY_GAME_PREFERENCES
+	savefile_key = "obfuscate_key"
+	default_value = FALSE
+	savefile_identifier = PREFERENCE_PLAYER
+
+/datum/preference/toggle/obfuscate_job
+	category = PREFERENCE_CATEGORY_GAME_PREFERENCES
+	savefile_key = "obfuscate_job"
+	default_value = FALSE
+	savefile_identifier = PREFERENCE_PLAYER
