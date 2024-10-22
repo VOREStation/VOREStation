@@ -65,7 +65,7 @@
 	desc = "Shift-click any button to reset its position, and Control-click it to lock it in place. Alt-click this button reset all buttons to their default positions."
 	icon = 'icons/mob/actions.dmi'
 	icon_state = "bg_default"
-	var/hidden = 0
+	var/hidden = FALSE
 
 // /obj/screen/movable/action_button/hide_toggle/Initialize()
 // 	. = ..()
@@ -82,7 +82,7 @@
 
 /obj/screen/movable/action_button/hide_toggle/Click(location, control, params)
 	if(!can_use(usr))
-		return
+		return FALSE
 
 	var/list/modifiers = params2list(params)
 	if(LAZYACCESS(modifiers, SHIFT_CLICK))
@@ -145,6 +145,7 @@
 	// add_overlay(mutable_appearance(hide_icon, hidden ? show_state : hide_state))
 
 /obj/screen/movable/action_button/MouseEntered(location, control, params)
+	. = ..()
 	if(!QDELETED(src))
 		openToolTip(usr, src, params, title = name, content = desc, theme = actiontooltipstyle)
 

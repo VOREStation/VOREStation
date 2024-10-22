@@ -30,6 +30,7 @@
 
 /datum/action/proc/link_to(Target)
 	target = Target
+	RegisterSignal(Target, COMSIG_ATOM_UPDATED_ICON, .proc/OnUpdatedIcon)
 
 /datum/action/Destroy()
 	if(owner)
@@ -140,6 +141,11 @@
 		current_button.add_overlay(mutable_appearance(icon_icon, button_icon_state))
 		current_button.button_icon_state = button_icon_state
 
+// Currently never triggered
+/datum/action/proc/OnUpdatedIcon()
+	SIGNAL_HANDLER
+	UpdateButtonIcon()
+
 //Presets for item actions
 /datum/action/item_action
 	check_flags = AB_CHECK_RESTRAINED|AB_CHECK_STUNNED|AB_CHECK_LYING|AB_CHECK_CONSCIOUS
@@ -224,7 +230,7 @@
 
 /datum/action/cooldown/proc/StartCooldown()
 	next_use_time = world.time + cooldown_time
-	button.maptext = "<b>[round(cooldown_time/10, 0.1)]</b>"
+	button.maptext = span_maptext(span_bold("[round(cooldown_time/10, 0.1)]"))
 	UpdateButtonIcon()
 	START_PROCESSING(SSfastprocess, src)
 
@@ -238,7 +244,7 @@
 		UpdateButtonIcon()
 		STOP_PROCESSING(SSfastprocess, src)
 	else
-		button.maptext = "<b>[round(timeleft/10, 0.1)]</b>"
+		button.maptext = span_maptext(span_bold("[round(timeleft/10, 0.1)]"))
 
 /datum/action/cooldown/Grant(mob/M)
 	..()
