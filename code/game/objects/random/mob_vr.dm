@@ -70,7 +70,7 @@
 				prob(2);/obj/item/gun/projectile/automatic/l6_saw,
 				prob(2);/obj/item/gun/energy/gun/burst,
 				prob(2);/obj/item/storage/box/frags,
-				prob(2);/obj/item/twohanded/fireaxe,
+				prob(2);/obj/item/material/twohanded/fireaxe,
 				prob(2);/obj/item/gun/projectile/luger/brown,
 				prob(2);/obj/item/gun/launcher/crossbow,
 				prob(2);/obj/item/melee/shock_maul,
