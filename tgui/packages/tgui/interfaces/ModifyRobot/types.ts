@@ -7,6 +7,13 @@ export type Data = {
   model_options: string[] | null;
   cell: InstalledCell;
   cell_options: Record<string, Cell>;
+  camera_options: Record<string, Comp>;
+  radio_options: Record<string, Comp>;
+  actuator_options: Record<string, Comp>;
+  diagnosis_options: Record<string, Comp>;
+  comms_options: Record<string, Comp>;
+  armour_options: Record<string, Comp>;
+  current_gear: Record<string, string>;
   id_icon: string;
   access_options: Access[] | undefined;
   ion_law_nr: string;
@@ -85,6 +92,8 @@ export type Component = {
   brute_damage: number;
   electronics_damage: number;
   max_damage: number;
+  idle_usage: number;
+  active_usage: number;
   installed: number;
   exists: BooleanLike;
 };
@@ -115,9 +124,23 @@ export type Cell = {
   max_charge: number;
   charge_amount: number;
   self_charge: BooleanLike;
+  max_damage: number;
 };
 
+export type Comp = {
+  path: string;
+  max_damage: number;
+  idle_usage: number;
+  active_usage: number;
+} | null;
+
 export type Access = { id: number; name: string };
+
+export type Lookup = {
+  path: string;
+  selected: string | undefined;
+  active: string | undefined;
+};
 
 type law_pack = {
   name: string;

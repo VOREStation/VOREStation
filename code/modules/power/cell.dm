@@ -27,6 +27,7 @@
 	var/last_use = 0 // A tracker for use in self-charging
 	var/connector_type = "standard" //What connector sprite to use when in a cell charger, null if no connectors
 	var/charge_delay = 0 // How long it takes for the cell to start recharging after last use
+	var/robot_durability = 50
 	matter = list(MAT_STEEL = 700, MAT_GLASS = 50)
 	drop_sound = 'sound/items/drop/component.ogg'
 	pickup_sound = 'sound/items/pickup/component.ogg'
