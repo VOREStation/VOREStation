@@ -7,15 +7,51 @@
 	var/button_icon_state
 	var/appearance_cache
 
+	var/id
+
+/obj/screen/movable/action_button/proc/can_use(mob/user)
+	if(linked_action)
+		return linked_action.owner == user
+	else if(isobserver(user))
+		// var/mob/dead/observer/O = user
+		// return !O.observetarget
+		return TRUE
+	else
+		return TRUE
+
+/obj/screen/movable/action_button/MouseDrop(over_object)
+	if(!can_use(usr))
+		return
+	if((istype(over_object, /obj/screen/movable/action_button) && !istype(over_object, /obj/screen/movable/action_button/hide_toggle)))
+		if(locked)
+			to_chat(usr, span_warning("Action button \"[name]\" is locked, unlock it first."))
+			return
+		var/obj/screen/movable/action_button/B = over_object
+		var/list/actions = usr.actions
+		actions.Swap(actions.Find(src.linked_action), actions.Find(B.linked_action))
+		moved = FALSE
+		B.moved = FALSE
+		usr.update_action_buttons()
+	else
+		return ..()
+
 /obj/screen/movable/action_button/Click(location,control,params)
+	if(!can_use(usr))
+		return
+
 	var/list/modifiers = params2list(params)
 	if(LAZYACCESS(modifiers, SHIFT_CLICK))
+		if(locked)
+			to_chat(usr, span_warning("Action button \"[name]\" is locked, unlock it first."))
+			return TRUE
 		moved = FALSE
 		usr.update_action_buttons()
-		return 1
+		return TRUE
 	if(LAZYACCESS(modifiers, CTRL_CLICK))
 		locked = !locked
 		to_chat(usr, span_notice("Action button \"[name]\" [locked ? "" : "un"]locked."))
+		if(id && usr?.client?.prefs) // try to (un)remember position
+			LAZYSET(usr.client.prefs.action_button_screen_locs, "[name]_[id]", locked ? moved : null)
 		return TRUE
 	if(!usr.checkClickCooldown())
 		return
@@ -31,15 +67,36 @@
 	icon_state = "bg_default"
 	var/hidden = 0
 
+// /obj/screen/movable/action_button/hide_toggle/Initialize()
+// 	. = ..()
+// 	var/static/list/icon_cache = list()
+
+// 	var/cache_key = "[hide_icon][hide_state]"
+// 	hide_appearance = icon_cache[cache_key]
+// 	if(!hide_appearance)
+// 		hide_appearance = icon_cache[cache_key] = mutable_appearance(hide_icon, hide_state)
+// 	cache_key = "[hide_icon][show_state]"
+// 	show_appearance = icon_cache[cache_key]
+// 	if(!show_appearance)
+// 		show_appearance = icon_cache[cache_key] = mutable_appearance(hide_icon, show_state)
+
 /obj/screen/movable/action_button/hide_toggle/Click(location, control, params)
+	if(!can_use(usr))
+		return
+
 	var/list/modifiers = params2list(params)
 	if(LAZYACCESS(modifiers, SHIFT_CLICK))
+		if(locked)
+			to_chat(usr, span_warning("Action button \"[name]\" is locked, unlock it first."))
+			return TRUE
 		moved = FALSE
 		usr.update_action_buttons(TRUE)
 		return TRUE
 	if(LAZYACCESS(modifiers, CTRL_CLICK))
 		locked = !locked
 		to_chat(usr, span_notice("Action button \"[name]\" [locked ? "" : "un"]locked."))
+		if(id && usr?.client?.prefs) // try to (un)remember position
+			LAZYSET(usr.client.prefs.action_button_screen_locs, "[name]_[id]", locked ? moved : null)
 		return TRUE
 	if(LAZYACCESS(modifiers, ALT_CLICK))
 		AltClick(usr)
@@ -52,15 +109,19 @@
 		name = "Show Buttons"
 	else
 		name = "Hide Buttons"
-	UpdateIcon()
+	update_icon()
 	usr.update_action_buttons()
 
 /obj/screen/movable/action_button/hide_toggle/AltClick(mob/user)
 	for(var/datum/action/A as anything in user.actions)
 		var/obj/screen/movable/action_button/B = A.button
 		B.moved = FALSE
+		if(B.id && usr?.client?.prefs)
+			LAZYSET(usr.client.prefs.action_button_screen_locs, "[name]_[B.id]", null)
 		// B.locked = usr.client.prefs.buttons_locked
 	// locked = usr.client.prefs.buttons_locked
+	if(id && usr?.client?.prefs)
+		LAZYSET(usr.client.prefs.action_button_screen_locs, "[name]_[id]", null)
 	moved = FALSE
 	user.update_action_buttons(TRUE)
 	to_chat(user, span_notice("Action button positions have been reset."))
@@ -76,15 +137,16 @@
 		icon_state = "bg_alien"
 	else
 		icon_state = "bg_default"
-	UpdateIcon()
+	update_icon()
 
-/obj/screen/movable/action_button/hide_toggle/proc/UpdateIcon()
+/obj/screen/movable/action_button/hide_toggle/update_icon()
 	cut_overlays()
 	add_overlay(mutable_appearance(icon, hidden ? "show" : "hide"))
 	// add_overlay(mutable_appearance(hide_icon, hidden ? show_state : hide_state))
 
 /obj/screen/movable/action_button/MouseEntered(location, control, params)
-	openToolTip(usr, src, params, title = name, content = desc, theme = actiontooltipstyle)
+	if(!QDELETED(src))
+		openToolTip(usr, src, params, title = name, content = desc, theme = actiontooltipstyle)
 
 /obj/screen/movable/action_button/MouseExited(location, control, params)
 	closeToolTip(usr)

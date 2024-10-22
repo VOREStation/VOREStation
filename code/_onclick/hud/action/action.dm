@@ -4,14 +4,15 @@
 
 	var/atom/movable/target = null
 
-	var/check_flags = 0
-	var/processing = 0
+	var/check_flags = NONE
+	var/processing = FALSE
 
 	var/obj/screen/movable/action_button/button = null
 
 	var/button_icon = 'icons/mob/actions.dmi'
 	var/background_icon_state = "bg_default"
 	var/buttontooltipstyle = ""
+	var/transparent_when_unavailable = TRUE
 
 	var/icon_icon = 'icons/mob/actions.dmi'
 	var/button_icon_state = "default"
@@ -19,13 +20,16 @@
 	var/mob/owner
 
 /datum/action/New(Target)
-	target = Target
+	link_to(Target)
 	button = new
 	button.linked_action = src
 	button.name = name
 	button.actiontooltipstyle = buttontooltipstyle
 	if(desc)
 		button.desc = desc
+
+/datum/action/proc/link_to(Target)
+	target = Target
 
 /datum/action/Destroy()
 	if(owner)
@@ -41,10 +45,28 @@
 				return
 			Remove(owner)
 		owner = M
+
+
+		// button id generation
+		var/counter = 0
+		var/bitfield = 0
+		for(var/datum/action/A as anything in M.actions)
+			if(A.name == name && A.button.id)
+				counter += 1
+				bitfield |= A.button.id
+		bitfield = !bitfield
+		var/bitflag = 1
+		for(var/i in 1 to (counter + 1))
+			if(bitfield & bitflag)
+				button.id = bitflag
+				break
+			bitflag *= 2
+
 		LAZYADD(M.actions, src)
 		if(M.client)
 			M.client.screen += button
-			// button.locked = M.client.prefs.buttons_locked
+			button.locked = /* M.client.prefs.buttons_locked  || */ button.id ? LAZYACCESS(M.client.prefs.action_button_screen_locs, "[name]_[button.id]") : FALSE //even if its not defaultly locked we should remember we locked it before
+			button.moved = button.id ? LAZYACCESS(M.client.prefs.action_button_screen_locs, "[name]_[button.id]") : FALSE
 		M.update_action_buttons(TRUE)
 	else
 		Remove(owner)
@@ -59,33 +81,33 @@
 	owner = null
 	button.moved = FALSE //so the button appears in its normal position when given to another owner.
 	button.locked = FALSE
+	button.id = null
 
 /datum/action/proc/Trigger()
 	if(!IsAvailable())
-		return 0
-	return 1
-
-/datum/action/process()
-	return
+		return FALSE
+	if(SEND_SIGNAL(src, COMSIG_ACTION_TRIGGER, src) & COMPONENT_ACTION_BLOCK_TRIGGER)
+		return FALSE
+	return TRUE
 
 /datum/action/proc/IsAvailable()
 	if(!owner)
-		return 0
+		return FALSE
 	if(check_flags & AB_CHECK_RESTRAINED)
 		if(owner.restrained())
-			return 0
+			return FALSE
 	if(check_flags & AB_CHECK_STUNNED)
 		if(owner.stunned)
-			return 0
+			return FALSE
 	if(check_flags & AB_CHECK_LYING)
 		if(owner.lying)
-			return 0
+			return FALSE
 	if(check_flags & AB_CHECK_CONSCIOUS)
 		if(owner.stat)
-			return 0
-	return 1
+			return FALSE
+	return TRUE
 
-/datum/action/proc/UpdateButtonIcon(status_only = FALSE)
+/datum/action/proc/UpdateButtonIcon(status_only = FALSE, force = FALSE)
 	if(button)
 		if(!status_only)
 			button.name = name
@@ -104,16 +126,16 @@
 			if(button.icon_state != background_icon_state)
 				button.icon_state = background_icon_state
 
-			ApplyIcon(button)
+			ApplyIcon(button, force)
 
 		if(!IsAvailable())
-			button.color = rgb(128, 0, 0, 128)
+			button.color = transparent_when_unavailable ? rgb(128, 0, 0, 128) : rgb(128, 0, 0)
 		else
 			button.color = rgb(255, 255, 255, 255)
 			return TRUE
 
-/datum/action/proc/ApplyIcon(obj/screen/movable/action_button/current_button)
-	if(icon_icon && button_icon_state && current_button.button_icon_state != button_icon_state)
+/datum/action/proc/ApplyIcon(obj/screen/movable/action_button/current_button, force = FALSE)
+	if(icon_icon && button_icon_state && ((current_button.button_icon_state != button_icon_state) || force))
 		current_button.cut_overlays(TRUE)
 		current_button.add_overlay(mutable_appearance(icon_icon, button_icon_state))
 		current_button.button_icon_state = button_icon_state
@@ -143,12 +165,12 @@
 		I.ui_action_click(owner, src.type)
 	return 1
 
-/datum/action/item_action/ApplyIcon(obj/screen/movable/action_button/current_button)
+/datum/action/item_action/ApplyIcon(obj/screen/movable/action_button/current_button, force)
 	if(button_icon && button_icon_state)
 		// If set, use the custom icon that we set instead
 		// of the item appearence
-		return ..(current_button)
-	else if(target && current_button.appearance_cache != target.appearance)
+		return ..()
+	else if(target && ((current_button.appearance_cache != target.appearance) || force))
 		var/mutable_appearance/ma = new(target.appearance)
 		ma.plane = FLOAT_PLANE
 		ma.layer = FLOAT_LAYER
@@ -164,7 +186,7 @@
 
 
 /datum/action/innate
-	check_flags = 0
+	check_flags = NONE
 	var/active = 0
 
 /datum/action/innate/Trigger()
@@ -182,14 +204,45 @@
 /datum/action/innate/proc/Deactivate()
 	return
 
-//Preset for action that call specific procs (consider innate).
-/datum/action/generic
-	check_flags = 0
-	var/procname
+//Preset for an action with a cooldown
+/datum/action/cooldown
+	check_flags = NONE
+	transparent_when_unavailable = FALSE
+	var/cooldown_time = 0
+	var/next_use_time = 0
 
-/datum/action/generic/Trigger()
-	if(!..())
-		return 0
-	if(target && procname)
-		call(target, procname)(usr)
-	return 1
+/datum/action/cooldown/New()
+	..()
+	button.maptext = ""
+	button.maptext_x = 8
+	button.maptext_y = 0
+	button.maptext_width = 24
+	button.maptext_height = 12
+
+/datum/action/cooldown/IsAvailable()
+	return next_use_time <= world.time
+
+/datum/action/cooldown/proc/StartCooldown()
+	next_use_time = world.time + cooldown_time
+	button.maptext = "<b>[round(cooldown_time/10, 0.1)]</b>"
+	UpdateButtonIcon()
+	START_PROCESSING(SSfastprocess, src)
+
+/datum/action/cooldown/process()
+	if(!owner)
+		button.maptext = ""
+		STOP_PROCESSING(SSfastprocess, src)
+	var/timeleft = max(next_use_time - world.time, 0)
+	if(timeleft == 0)
+		button.maptext = ""
+		UpdateButtonIcon()
+		STOP_PROCESSING(SSfastprocess, src)
+	else
+		button.maptext = "<b>[round(timeleft/10, 0.1)]</b>"
+
+/datum/action/cooldown/Grant(mob/M)
+	..()
+	if(owner)
+		UpdateButtonIcon()
+		if(next_use_time > world.time)
+			START_PROCESSING(SSfastprocess, src)

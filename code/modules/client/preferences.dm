@@ -173,6 +173,10 @@ var/list/preferences_datums = list()
 	var/examine_text_mode = 0 // Just examine text, include usage (description_info), switch to examine panel.
 	var/multilingual_mode = 0 // Default behaviour, delimiter-key-space, delimiter-key-delimiter, off
 
+	// THIS IS NOT SAVED
+	// WE JUST HAVE NOWHERE ELSE TO STORE IT
+	var/list/action_button_screen_locs
+
 	var/list/volume_channels = list()
 
 	///If they are currently in the process of swapping slots, don't let them open 999 windows for it and get confused
