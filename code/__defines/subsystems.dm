@@ -1,33 +1,78 @@
-//Timing subsystem
-//Don't run if there is an identical unique timer active
-//if the arguments to addtimer are the same as an existing timer, it doesn't create a new timer, and returns the id of the existing timer
-#define TIMER_UNIQUE			(1<<0)
-//For unique timers: Replace the old timer rather then not start this one
-#define TIMER_OVERRIDE			(1<<1)
-//Timing should be based on how timing progresses on clients, not the sever.
-//	tracking this is more expensive,
-//	should only be used in conjuction with things that have to progress client side, such as animate() or sound()
-#define TIMER_CLIENT_TIME		(1<<2)
-//Timer can be stopped using deltimer()
-#define TIMER_STOPPABLE			(1<<3)
-//To be used with TIMER_UNIQUE
-//prevents distinguishing identical timers with the wait variable
-#define TIMER_NO_HASH_WAIT		(1<<4)
-//Loops the timer repeatedly until qdeleted
-//In most cases you want a subsystem instead
-#define TIMER_LOOP				(1<<5)
+//! Defines for subsystems and overlays
+//!
+//! Lots of important stuff in here, make sure you have your brain switched on
+//! when editing this file
 
+//! ## Timing subsystem
+/**
+ * Don't run if there is an identical unique timer active
+ *
+ * if the arguments to addtimer are the same as an existing timer, it doesn't create a new timer,
+ * and returns the id of the existing timer
+ */
+#define TIMER_UNIQUE (1<<0)
+
+///For unique timers: Replace the old timer rather then not start this one
+#define TIMER_OVERRIDE (1<<1)
+
+/**
+ * Timing should be based on how timing progresses on clients, not the server.
+ *
+ * Tracking this is more expensive,
+ * should only be used in conjunction with things that have to progress client side, such as
+ * animate() or sound()
+ */
+#define TIMER_CLIENT_TIME (1<<2)
+
+///Timer can be stopped using deltimer()
+#define TIMER_STOPPABLE (1<<3)
+
+///prevents distinguishing identical timers with the wait variable
+///
+///To be used with TIMER_UNIQUE
+#define TIMER_NO_HASH_WAIT (1<<4)
+
+///Loops the timer repeatedly until qdeleted
+///
+///In most cases you want a subsystem instead, so don't use this unless you have a good reason
+#define TIMER_LOOP (1<<5)
+
+///Delete the timer on parent datum Destroy() and when deltimer'd
+#define TIMER_DELETE_ME (1<<6)
+
+///Empty ID define
 #define TIMER_ID_NULL -1
 
-#define INITIALIZATION_INSSATOMS 0	//New should not call Initialize
-#define INITIALIZATION_INNEW_MAPLOAD 1	//New should call Initialize(TRUE)
-#define INITIALIZATION_INNEW_REGULAR 2	//New should call Initialize(FALSE)
+/// Used to trigger object removal from a processing list
+#define PROCESS_KILL 26
 
-#define INITIALIZE_HINT_NORMAL   0  //Nothing happens
-#define INITIALIZE_HINT_LATELOAD 1  //Call LateInitialize
-#define INITIALIZE_HINT_QDEL     2  //Call qdel on the atom
 
-//type and all subtypes should always call Initialize in New()
+//! ## Initialization subsystem
+
+///New should not call Initialize
+#define INITIALIZATION_INSSATOMS 0
+///New should call Initialize(TRUE)
+#define INITIALIZATION_INNEW_MAPLOAD 1
+///New should call Initialize(FALSE)
+#define INITIALIZATION_INNEW_REGULAR 2
+
+//! ### Initialization hints
+
+///Nothing happens
+#define INITIALIZE_HINT_NORMAL 0
+/**
+ * call LateInitialize at the end of all atom Initialization
+ *
+ * The item will be added to the late_loaders list, this is iterated over after
+ * initialization of subsystems is complete and calls LateInitalize on the atom
+ * see [this file for the LateIntialize proc](atom.html#proc/LateInitialize)
+ */
+#define INITIALIZE_HINT_LATELOAD 1
+
+///Call qdel on the atom after initialization
+#define INITIALIZE_HINT_QDEL 2
+
+///type and all subtypes should always immediately call Initialize in New()
 #define INITIALIZE_IMMEDIATE(X) ##X/New(loc, ...){\
 	..();\
 	if(!initialized) {\
@@ -51,27 +96,27 @@ var/global/list/runlevel_flags = list(RUNLEVEL_LOBBY, RUNLEVEL_SETUP, RUNLEVEL_G
 
 //! ### SS initialization hints
 /**
- * Negative values incidate a failure or warning of some kind, positive are good.
- * 0 and 1 are unused so that TRUE and FALSE are guarenteed to be invalid values.
+ * Negative values indicate a failure or warning of some kind, positive are good.
+ * 0 and 1 are unused so that TRUE and FALSE are guaranteed to be invalid values.
  */
 
 /// Subsystem failed to initialize entirely. Print a warning, log, and disable firing.
 #define SS_INIT_FAILURE -2
 
-/// The default return value which must be overriden. Will succeed with a warning.
+/// The default return value which must be overridden. Will succeed with a warning.
 #define SS_INIT_NONE -1
 
-/// Subsystem initialized sucessfully.
+/// Subsystem initialized successfully.
 #define SS_INIT_SUCCESS 2
 
-/// Successful, but don't print anything. Useful if subsystem was disabled.
+/// If your system doesn't need to be initialized (by being disabled or something)
 #define SS_INIT_NO_NEED 3
 
 //! ### SS initialization load orders
-
 // Subsystem init_order, from highest priority to lowest priority
 // Subsystems shutdown in the reverse of the order they initialize in
 // The numbers just define the ordering, they are meaningless otherwise.
+
 #define INIT_ORDER_WEBHOOKS			50
 #define INIT_ORDER_SQLITE			40
 #define INIT_ORDER_GARBAGE			39
@@ -112,8 +157,6 @@ var/global/list/runlevel_flags = list(RUNLEVEL_LOBBY, RUNLEVEL_SETUP, RUNLEVEL_G
 #define INIT_ORDER_STATPANELS		-98
 #define INIT_ORDER_CHAT				-100 //Should be last to ensure chat remains smooth during init.
 
-
-
 // Subsystem fire priority, from lowest to highest priority
 // If the subsystem isn't listed here it's either DEFAULT or PROCESS (if it's a processing subsystem child)
 #define FIRE_PRIORITY_PLAYERTIPS	5
@@ -144,4 +187,15 @@ var/global/list/runlevel_flags = list(RUNLEVEL_LOBBY, RUNLEVEL_SETUP, RUNLEVEL_G
 #define FIRE_PRIORITY_STATPANEL		390
 #define FIRE_PRIORITY_CHAT			400
 #define FIRE_PRIORITY_OVERLAYS		500
+#define FIRE_PRIORITY_TIMER			700
 #define FIRE_PRIORITY_INPUT			1000 // This must always always be the max highest priority. Player input must never be lost.
+
+/**
+	Create a new timer and add it to the queue.
+	* Arguments:
+	* * callback the callback to call on timer finish
+	* * wait deciseconds to run the timer for
+	* * flags flags for this timer, see: code\__DEFINES\subsystems.dm
+	* * timer_subsystem the subsystem to insert this timer into
+*/
+#define addtimer(args...) _addtimer(args, file = __FILE__, line = __LINE__)
