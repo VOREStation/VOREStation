@@ -1521,7 +1521,7 @@
 	pixel_x = -3;
 	pixel_y = -2
 	},
-/obj/item/book/manual/robotics_manual,
+/obj/item/book/manual/wiki/robotics_manual,
 /obj/item/book/manual/robotics_cyborgs,
 /obj/structure/closet/walllocker_double/science/east,
 /turf/simulated/floor/tiled/steel_dirty,
@@ -8990,7 +8990,7 @@
 /area/assembly/robotics)
 "sr" = (
 /obj/structure/closet/secure_closet/warden,
-/obj/item/book/manual/security_space_law,
+/obj/item/book/manual/wiki/security_space_law,
 /obj/item/gunbox/warden,
 /obj/machinery/power/apc/angled{
 	dir = 8
@@ -22348,7 +22348,7 @@
 	},
 /obj/machinery/atmospherics/unary/vent_pump/on,
 /obj/structure/table/woodentable,
-/obj/item/book/manual/security_space_law,
+/obj/item/book/manual/wiki/security_space_law,
 /turf/simulated/floor/tiled/milspec,
 /area/stellardelight/deck1/entrepreneur)
 "Vp" = (
@@ -22377,9 +22377,9 @@
 /obj/item/book/manual/command_guide,
 /obj/item/book/manual/cook_guide,
 /obj/item/book/manual/detective,
-/obj/item/book/manual/engineering_construction,
-/obj/item/book/manual/engineering_guide,
-/obj/item/book/manual/engineering_hacking,
+/obj/item/book/manual/wiki/engineering_construction,
+/obj/item/book/manual/wiki/engineering_guide,
+/obj/item/book/manual/wiki/engineering_hacking,
 /obj/item/book/manual/engineering_particle_accelerator,
 /obj/item/book/manual/engineering_singularity_safety,
 /obj/item/book/manual/evaguide,
@@ -22388,14 +22388,14 @@
 /obj/item/book/manual/mass_spectrometry,
 /obj/item/book/manual/materials_chemistry_analysis,
 /obj/item/book/manual/medical_cloning,
-/obj/item/book/manual/medical_diagnostics_manual,
+/obj/item/book/manual/wiki/medical_diagnostics_manual,
 /obj/item/book/manual/research_and_development,
 /obj/item/book/manual/resleeving,
 /obj/item/book/manual/ripley_build_and_repair,
 /obj/item/book/manual/robotics_cyborgs,
-/obj/item/book/manual/robotics_manual,
+/obj/item/book/manual/wiki/robotics_manual,
 /obj/item/book/manual/rust_engine,
-/obj/item/book/manual/security_space_law,
+/obj/item/book/manual/wiki/security_space_law,
 /obj/item/book/manual/standard_operating_procedure,
 /obj/item/book/manual/stasis,
 /obj/item/book/manual/supermatter_engine,
@@ -23961,7 +23961,7 @@
 /obj/structure/sign/painting/library_private{
 	pixel_x = -32
 	},
-/obj/item/book/manual/engineering_hacking,
+/obj/item/book/manual/wiki/engineering_hacking,
 /obj/item/book/manual/nuclear,
 /obj/item/book/custom_library/fiction/woodysgotwood,
 /turf/simulated/floor/wood,

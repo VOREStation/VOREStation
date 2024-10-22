@@ -89,7 +89,7 @@
 "bK" = (/obj/structure/stool/bed/chair/wood/normal{ icon_state = "wooden_chair"; dir = 4},/turf/simulated/floor{icon_state = "bar"},/area/awaymission/example)
 "bL" = (/obj/structure/table/woodentable,/turf/simulated/floor{icon_state = "bar"},/area/awaymission/example)
 "bM" = (/obj/structure/stool/bed/chair/wood/normal{ icon_state = "wooden_chair"; dir = 8},/turf/simulated/floor{icon_state = "bar"},/area/awaymission/example)
-"bN" = (/obj/structure/bookcase{density = 0; pixel_y = 32},/obj/item/book/manual/security_space_law,/obj/item/book/manual/security_space_law,/turf/simulated/floor{icon_state = "bar"},/area/awaymission/example)
+"bN" = (/obj/structure/bookcase{density = 0; pixel_y = 32},/obj/item/book/manual/wiki/security_space_law,/obj/item/book/manual/wiki/security_space_law,/turf/simulated/floor{icon_state = "bar"},/area/awaymission/example)
 "bO" = (/obj/structure/table/woodentable,/obj/item/reagent_containers/food/drinks/bottle/wine,/turf/simulated/floor{icon_state = "bar"},/area/awaymission/example)
 "bP" = (/obj/structure/stool/bed/chair/wood/normal{ icon_state = "wooden_chair"; dir = 1},/turf/simulated/floor{icon_state = "bar"},/area/awaymission/example)
 "bQ" = (/obj/machinery/vending/snack,/turf/simulated/floor,/area/awaymission/example)

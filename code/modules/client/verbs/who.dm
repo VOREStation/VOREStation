@@ -113,13 +113,13 @@
 
 	msg = span_bold("Current Admins ([num_admins_online]):") + "\n" + msg
 
-	if(config.show_mods)
+	if(CONFIG_GET(flag/show_mods))
 		msg += "\n" + span_bold(" Current Game Masters ([num_mods_online]):") + "\n" + modmsg
 
-	if(config.show_devs)
+	if(CONFIG_GET(flag/show_devs))
 		msg += "\n" + span_bold(" Current Developers ([num_devs_online]):") + "\n" + devmsg
 
-	if(config.show_event_managers)
+	if(CONFIG_GET(flag/show_event_managers))
 		msg += "\n" + span_bold(" Current Miscellaneous ([num_event_managers_online]):") + "\n" + eventMmsg
 
 	var/num_mentors_online = 0
@@ -141,7 +141,7 @@
 				mmsg += " (AFK - [round(seconds / 60)] minutes, [seconds % 60] seconds)"
 		mmsg += "\n"
 
-	if(config.show_mentors)
+	if(CONFIG_GET(flag/show_mentors))
 		msg += "\n" + span_bold(" Current Mentors ([num_mentors_online]):") + "\n" + mmsg
 
 	msg += "\n" + span_info("Adminhelps are also sent to Discord. If no admins are available in game try anyway and an admin on Discord may see it and respond.")

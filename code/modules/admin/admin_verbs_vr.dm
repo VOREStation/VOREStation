@@ -94,7 +94,7 @@
 
 	var/dat = "<HEAD><TITLE>Book Inventory Management</TITLE></HEAD><BODY>\n"
 	dat += "<h3>ADMINISTRATIVE MANAGEMENT</h3>"
-	establish_old_db_connection()
+	establish_db_connection()
 
 	if(!dbcon_old.IsConnected())
 		dat += "<font color=red><b>ERROR</b>: Unable to contact External Archive. Please contact your system administrator for assistance.</font>"
@@ -132,8 +132,8 @@
 	var/which = tgui_alert(usr, "Which do you want to toggle?", "Choose Recolour Toggle", list("Robot", "Simple Mob"))
 	switch(which)
 		if("Robot")
-			config.allow_robot_recolor = !config.allow_robot_recolor
-			to_chat(usr, "You have [config.allow_robot_recolor ? "enabled" : "disabled"] newly spawned cyborgs to spawn with the recolour verb")
+			CONFIG_SET(flag/allow_robot_recolor, !CONFIG_GET(flag/allow_robot_recolor))
+			to_chat(usr, "You have [CONFIG_GET(flag/allow_robot_recolor) ? "enabled" : "disabled"] newly spawned cyborgs to spawn with the recolour verb")
 		if("Simple Mob")
-			config.allow_simple_mob_recolor = !config.allow_simple_mob_recolor
-			to_chat(usr, "You have [config.allow_simple_mob_recolor ? "enabled" : "disabled"] newly spawned simple mobs to spawn with the recolour verb")
+			CONFIG_SET(flag/allow_simple_mob_recolor, !CONFIG_GET(flag/allow_simple_mob_recolor))
+			to_chat(usr, "You have [CONFIG_GET(flag/allow_simple_mob_recolor) ? "enabled" : "disabled"] newly spawned simple mobs to spawn with the recolour verb")

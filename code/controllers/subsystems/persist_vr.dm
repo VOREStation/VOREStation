@@ -16,7 +16,7 @@ SUBSYSTEM_DEF(persist)
 
 // Do PTO Accruals
 /datum/controller/subsystem/persist/proc/update_department_hours(var/resumed = FALSE)
-	if(!config.time_off)
+	if(!CONFIG_GET(flag/time_off))
 		return
 
 	establish_db_connection()
@@ -78,7 +78,7 @@ SUBSYSTEM_DEF(persist)
 				play_hours[department_earning] = wait_in_hours
 
 		// Cap it
-		dept_hours[department_earning] = min(config.pto_cap, dept_hours[department_earning])
+		dept_hours[department_earning] = min(CONFIG_GET(number/pto_cap), dept_hours[department_earning])
 
 		// Okay we figured it out, lets update database!
 		var/sql_ckey = sql_sanitize_text(C.ckey)

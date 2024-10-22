@@ -61,7 +61,7 @@ GLOBAL_LIST_EMPTY(asset_datums)
 
 /// Returns whether or not the asset should attempt to read from cache
 /datum/asset/proc/should_refresh()
-	return !cross_round_cachable || !config.cache_assets
+	return !cross_round_cachable || !CONFIG_GET(flag/cache_assets)
 
 /// Simply takes any generated file and saves it to the round-specific /logs folder. Useful for debugging potential issues with spritesheet generation/display.
 /// Only called when the SAVE_SPRITESHEETS config option is uncommented.
@@ -180,7 +180,7 @@ GLOBAL_LIST_EMPTY(asset_datums)
 		return
 
 	// If it's cached, may as well load it now, while the loading is cheap
-	if(config.cache_assets && cross_round_cachable)
+	if(CONFIG_GET(flag/cache_assets) && cross_round_cachable)
 		load_immediately = TRUE
 
 	create_spritesheets()
@@ -209,12 +209,12 @@ GLOBAL_LIST_EMPTY(asset_datums)
 	text2file(generate_css(), file_directory)
 	SSassets.transport.register_asset(css_name, fcopy_rsc(file_directory))
 
-	if(config.save_spritesheets)
+	if(CONFIG_GET(flag/save_spritesheets))
 		save_to_logs(file_name = css_name, file_location = file_directory)
 
 	fdel(file_directory)
 
-	if (config.cache_assets && cross_round_cachable)
+	if (CONFIG_GET(flag/cache_assets) && cross_round_cachable)
 		write_to_cache()
 	fully_generated = TRUE
 	// If we were ever in there, remove ourselves
@@ -267,7 +267,7 @@ GLOBAL_LIST_EMPTY(asset_datums)
 		size[SPRSZ_STRIPPED] = icon(file_directory)
 
 		// this is useful here for determining if weird sprite issues (like having a white background) are a cause of what we're doing DM-side or not since we can see the full flattened thing at-a-glance.
-		if(config.save_spritesheets)
+		if(CONFIG_GET(flag/save_spritesheets))
 			save_to_logs(file_name = png_name, file_location = file_directory)
 
 		fdel(file_directory)
@@ -321,7 +321,7 @@ GLOBAL_LIST_EMPTY(asset_datums)
 	rustg_file_write(replaced_css, replaced_css_filename)
 	SSassets.transport.register_asset(finalized_name, replaced_css_filename)
 
-	if(config.save_spritesheets)
+	if(CONFIG_GET(flag/save_spritesheets))
 		save_to_logs(file_name = finalized_name, file_location = replaced_css_filename)
 
 	fdel(replaced_css_filename)
