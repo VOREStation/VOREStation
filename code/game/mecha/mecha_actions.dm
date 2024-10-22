@@ -64,6 +64,7 @@
 /datum/action/innate/mecha
 	check_flags = AB_CHECK_RESTRAINED | AB_CHECK_STUNNED | AB_CHECK_CONSCIOUS
 	button_icon = 'icons/effects/actions_mecha.dmi'
+	icon_icon = 'icons/effects/actions_mecha.dmi'
 	var/obj/mecha/chassis
 
 /datum/action/innate/mecha/Destroy()

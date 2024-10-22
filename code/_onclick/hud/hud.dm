@@ -325,6 +325,8 @@ var/list/global_huds = list(
 	mymob.create_mob_hud(src)
 	hide_actions_toggle = new()
 	hide_actions_toggle.InitialiseIcon(mymob)
+	// if(mymob.client)
+	// 	hide_actions_toggle.locked = mymob.client.prefs.buttons_locked
 
 	persistant_inventory_update()
 	mymob.reload_fullscreen() // Reload any fullscreen overlays this mob has.
