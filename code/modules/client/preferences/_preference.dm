@@ -518,6 +518,9 @@ GLOBAL_LIST_INIT(preference_entries_by_key, init_preference_entries_by_key())
 
 	return data
 
+/datum/preference/choiced/human
+	abstract_type = /datum/preference/choiced/human
+
 /datum/preference/choiced/human/apply_to_living(mob/living/target, value)
 	return
 
@@ -526,6 +529,9 @@ GLOBAL_LIST_INIT(preference_entries_by_key, init_preference_entries_by_key())
 
 /datum/preference/choiced/human/apply_to_animal(mob/living/simple_mob, value)
 	return
+
+/datum/preference/choiced/living
+	abstract_type = /datum/preference/choiced/living
 
 /datum/preference/choiced/living/apply_to_human(mob/living/carbon/human/target, value)
 	return
@@ -536,6 +542,9 @@ GLOBAL_LIST_INIT(preference_entries_by_key, init_preference_entries_by_key())
 /datum/preference/choiced/living/apply_to_animal(mob/living/simple_mob, value)
 	return
 
+/datum/preference/choiced/silicon
+	abstract_type = /datum/preference/choiced/silicon
+
 /datum/preference/choiced/silicon/apply_to_human(mob/living/carbon/human/target, value)
 	return
 
@@ -544,6 +553,9 @@ GLOBAL_LIST_INIT(preference_entries_by_key, init_preference_entries_by_key())
 
 /datum/preference/choiced/silicon/apply_to_animal(mob/living/simple_mob, value)
 	return
+
+/datum/preference/choiced/animal
+	abstract_type = /datum/preference/choiced/animal
 
 /datum/preference/choiced/animal/apply_to_human(mob/living/carbon/human/target, value)
 	return
@@ -571,6 +583,9 @@ GLOBAL_LIST_INIT(preference_entries_by_key, init_preference_entries_by_key())
 /datum/preference/color/is_valid(value)
 	return findtext(value, GLOB.is_color)
 
+/datum/preference/color/human
+	abstract_type = /datum/preference/color/human
+
 /datum/preference/color/human/apply_to_living(mob/living/target, value)
 	return
 
@@ -579,6 +594,9 @@ GLOBAL_LIST_INIT(preference_entries_by_key, init_preference_entries_by_key())
 
 /datum/preference/color/human/apply_to_animal(mob/living/simple_mob, value)
 	return
+
+/datum/preference/color/living
+	abstract_type = /datum/preference/color/living
 
 /datum/preference/color/living/apply_to_human(mob/living/carbon/human/target, value)
 	return
@@ -589,6 +607,9 @@ GLOBAL_LIST_INIT(preference_entries_by_key, init_preference_entries_by_key())
 /datum/preference/color/living/apply_to_animal(mob/living/simple_mob, value)
 	return
 
+/datum/preference/color/silicon
+	abstract_type = /datum/preference/color/silicon
+
 /datum/preference/color/silicon/apply_to_human(mob/living/carbon/human/target, value)
 	return
 
@@ -597,6 +618,9 @@ GLOBAL_LIST_INIT(preference_entries_by_key, init_preference_entries_by_key())
 
 /datum/preference/color/silicon/apply_to_animal(mob/living/simple_mob, value)
 	return
+
+/datum/preference/color/animal
+	abstract_type = /datum/preference/color/animal
 
 /datum/preference/color/animal/apply_to_human(mob/living/carbon/human/target, value)
 	return
@@ -641,6 +665,9 @@ GLOBAL_LIST_INIT(preference_entries_by_key, init_preference_entries_by_key())
 		"step" = step,
 	)
 
+/datum/preference/numeric/human
+	abstract_type = /datum/preference/numeric/human
+
 /datum/preference/numeric/human/apply_to_living(mob/living/target, value)
 	return
 
@@ -649,6 +676,9 @@ GLOBAL_LIST_INIT(preference_entries_by_key, init_preference_entries_by_key())
 
 /datum/preference/numeric/human/apply_to_animal(mob/living/simple_mob, value)
 	return
+
+/datum/preference/numeric/living
+	abstract_type = /datum/preference/numeric/living
 
 /datum/preference/numeric/living/apply_to_human(mob/living/carbon/human/target, value)
 	return
@@ -659,6 +689,9 @@ GLOBAL_LIST_INIT(preference_entries_by_key, init_preference_entries_by_key())
 /datum/preference/numeric/living/apply_to_animal(mob/living/simple_mob, value)
 	return
 
+/datum/preference/numeric/silicon
+	abstract_type = /datum/preference/numeric/silicon
+
 /datum/preference/numeric/silicon/apply_to_human(mob/living/carbon/human/target, value)
 	return
 
@@ -667,6 +700,9 @@ GLOBAL_LIST_INIT(preference_entries_by_key, init_preference_entries_by_key())
 
 /datum/preference/numeric/silicon/apply_to_animal(mob/living/simple_mob, value)
 	return
+
+/datum/preference/numeric/animal
+	abstract_type = /datum/preference/numeric/animal
 
 /datum/preference/numeric/animal/apply_to_human(mob/living/carbon/human/target, value)
 	return
@@ -693,6 +729,9 @@ GLOBAL_LIST_INIT(preference_entries_by_key, init_preference_entries_by_key())
 /datum/preference/toggle/is_valid(value)
 	return value == TRUE || value == FALSE
 
+/datum/preference/toggle/human
+	abstract_type = /datum/preference/toggle/human
+
 /datum/preference/toggle/human/apply_to_living(mob/living/target, value)
 	return
 
@@ -701,6 +740,9 @@ GLOBAL_LIST_INIT(preference_entries_by_key, init_preference_entries_by_key())
 
 /datum/preference/toggle/human/apply_to_animal(mob/living/simple_mob, value)
 	return
+
+/datum/preference/toggle/living
+	abstract_type = /datum/preference/toggle/living
 
 /datum/preference/toggle/living/apply_to_human(mob/living/carbon/human/target, value)
 	return
@@ -711,6 +753,9 @@ GLOBAL_LIST_INIT(preference_entries_by_key, init_preference_entries_by_key())
 /datum/preference/toggle/living/apply_to_animal(mob/living/simple_mob, value)
 	return
 
+/datum/preference/toggle/silicon
+	abstract_type = /datum/preference/toggle/silicon
+
 /datum/preference/toggle/silicon/apply_to_human(mob/living/carbon/human/target, value)
 	return
 
@@ -719,6 +764,9 @@ GLOBAL_LIST_INIT(preference_entries_by_key, init_preference_entries_by_key())
 
 /datum/preference/toggle/silicon/apply_to_animal(mob/living/simple_mob, value)
 	return
+
+/datum/preference/toggle/animal
+	abstract_type = /datum/preference/toggle/animal
 
 /datum/preference/toggle/animal/apply_to_human(mob/living/carbon/human/target, value)
 	return
@@ -752,6 +800,9 @@ GLOBAL_LIST_INIT(preference_entries_by_key, init_preference_entries_by_key())
 /datum/preference/text/compile_constant_data()
 	return list("maximum_length" = maximum_value_length)
 
+/datum/preference/text/human
+	abstract_type = /datum/preference/text/human
+
 /datum/preference/text/human/apply_to_living(mob/living/target, value)
 	return
 
@@ -760,6 +811,9 @@ GLOBAL_LIST_INIT(preference_entries_by_key, init_preference_entries_by_key())
 
 /datum/preference/text/human/apply_to_animal(mob/living/simple_mob, value)
 	return
+
+/datum/preference/text/living
+	abstract_type = /datum/preference/text/living
 
 /datum/preference/text/living/apply_to_human(mob/living/carbon/human/target, value)
 	return
@@ -770,6 +824,9 @@ GLOBAL_LIST_INIT(preference_entries_by_key, init_preference_entries_by_key())
 /datum/preference/text/living/apply_to_animal(mob/living/simple_mob, value)
 	return
 
+/datum/preference/text/silicon
+	abstract_type = /datum/preference/text/silicon
+
 /datum/preference/text/silicon/apply_to_human(mob/living/carbon/human/target, value)
 	return
 
@@ -778,6 +835,9 @@ GLOBAL_LIST_INIT(preference_entries_by_key, init_preference_entries_by_key())
 
 /datum/preference/text/silicon/apply_to_animal(mob/living/simple_mob, value)
 	return
+
+/datum/preference/text/animal
+	abstract_type = /datum/preference/text/animal
 
 /datum/preference/text/animal/apply_to_human(mob/living/carbon/human/target, value)
 	return
