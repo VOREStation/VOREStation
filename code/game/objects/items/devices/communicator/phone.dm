@@ -290,7 +290,7 @@
 	if(confirm != "Yes")
 		return
 
-	if(config.antag_hud_restricted && has_enabled_antagHUD == 1)
+	if(CONFIG_GET(flag/antag_hud_restricted) && has_enabled_antagHUD == 1)
 		to_chat(src, span_danger("You have used the antagHUD and cannot respawn or use communicators!"))
 		return
 

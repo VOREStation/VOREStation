@@ -354,9 +354,9 @@
 	// Special cases, can never respawn
 	if(ticker?.mode?.deny_respawn)
 		time = -1
-	else if(!config.abandon_allowed)
+	else if(!CONFIG_GET(flag/abandon_allowed))
 		time = -1
-	else if(!config.respawn)
+	else if(!CONFIG_GET(flag/respawn))
 		time = -1
 
 	// Special case for observing before game start
@@ -365,7 +365,7 @@
 
 	// Wasn't given a time, use the config time
 	else if(!time)
-		time = config.respawn_time
+		time = CONFIG_GET(number/respawn_time)
 
 	var/keytouse = ckey
 	// Try harder to find a key to use
@@ -377,7 +377,7 @@
 	GLOB.respawn_timers[keytouse] = world.time + time
 
 /mob/observer/dead/set_respawn_timer()
-	if(config.antag_hud_restricted && has_enabled_antagHUD)
+	if(CONFIG_GET(flag/antag_hud_restricted) && has_enabled_antagHUD)
 		..(-1)
 	else
 		return // Don't set it, no need

@@ -30,7 +30,7 @@
 		random_icon_states.Remove(W.icon_state)
 	if(random_icon_states.len)
 		icon_state = pick(random_icon_states)
-	if(!mapload || !config.persistence_ignore_mapload)
+	if(!mapload || !CONFIG_GET(flag/persistence_ignore_mapload))
 		SSpersistence.track_value(src, /datum/persistent/graffiti)
 	. = ..()
 

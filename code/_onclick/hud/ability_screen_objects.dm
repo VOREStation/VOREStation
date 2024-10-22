@@ -16,6 +16,7 @@
 	if(owner)
 		my_mob = owner
 		update_abilities(0, owner)
+		overlays.Add(closed_state)
 	else
 		message_admins("ERROR: ability_master's New() was not given an owner argument.  This is a bug.")
 

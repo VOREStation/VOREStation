@@ -1305,13 +1305,13 @@
 /mob/living/silicon/robot/proc/add_robot_verbs()
 	add_verb(src, robot_verbs_default)
 	add_verb(src, silicon_subsystems)
-	if(config.allow_robot_recolor)
+	if(CONFIG_GET(flag/allow_robot_recolor))
 		add_verb(src, /mob/living/silicon/robot/proc/ColorMate)
 
 /mob/living/silicon/robot/proc/remove_robot_verbs()
 	remove_verb(src, robot_verbs_default)
 	remove_verb(src, silicon_subsystems)
-	if(config.allow_robot_recolor)
+	if(CONFIG_GET(flag/allow_robot_recolor))
 		remove_verb(src, /mob/living/silicon/robot/proc/ColorMate)
 
 // Uses power from cyborg's cell. Returns 1 on success or 0 on failure.

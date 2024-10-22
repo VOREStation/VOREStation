@@ -32,16 +32,21 @@
 		to_world_log("Your server's byond version does not meet the recommended requirements for this server. Please update BYOND")
 
 	TgsNew()
-	VgsNew() // VOREStation Edit - VGS
 
-	config.post_load()
+	config.Load(params[OVERRIDE_CONFIG_DIRECTORY_PARAMETER])
 
-	if(config && config.server_name != null && config.server_suffix && world.port > 0)
+	ConfigLoaded()
+	makeDatumRefLists()
+	VgsNew()
+
+	var servername = CONFIG_GET(string/servername)
+	if(config && servername != null && CONFIG_GET(flag/server_suffix) && world.port > 0)
 		// dumb and hardcoded but I don't care~
-		config.server_name += " #[(world.port % 1000) / 100]"
+		servername += " #[(world.port % 1000) / 100]"
+		CONFIG_SET(string/servername, servername)
 
 	// TODO - Figure out what this is. Can you assign to world.log?
-	// if(config && config.log_runtime)
+	// if(config && CONFIG_FLAG(flag/log_runtime))
 	// 	log = file("data/logs/runtime/[time2text(world.realtime,"YYYY-MM-DD-(hh-mm-ss)")]-runtime.log")
 
 	GLOB.timezoneOffset = get_timezone_offset()
@@ -83,12 +88,28 @@
 #endif
 
 	spawn(3000)		//so we aren't adding to the round-start lag
-		if(config.ToRban)
+		if(CONFIG_GET(flag/ToRban))
 			ToRban_autoupdate()
 
 #undef RECOMMENDED_VERSION
 
 	return
+
+/// Runs after config is loaded but before Master is initialized
+/world/proc/ConfigLoaded()
+	// Everything in here is prioritized in a very specific way.
+	// If you need to add to it, ask yourself hard if what your adding is in the right spot
+	// (i.e. basically nothing should be added before load_admins() in here)
+
+	// Try to set round ID
+	//SSdbcore.InitializeRound() TODO: Implement roundid on database subsystem and uncomment
+
+	//apply a default value to config.python_path, if needed
+	if (!CONFIG_GET(string/python_path))
+		if(world.system_type == UNIX)
+			CONFIG_SET(string/python_path, "/usr/bin/env python2")
+		else //probably windows, if not this should work anyway
+			CONFIG_SET(string/python_path, "python")
 
 var/world_topic_spam_protect_ip = "0.0.0.0"
 var/world_topic_spam_protect_time = world.timeofday
@@ -116,11 +137,11 @@ var/world_topic_spam_protect_time = world.timeofday
 		var/list/s = list()
 		s["version"] = game_version
 		s["mode"] = master_mode
-		s["respawn"] = config.abandon_allowed
-		s["persistance"] = config.persistence_disabled
-		s["enter"] = config.enter_allowed
-		s["vote"] = config.allow_vote_mode
-		s["ai"] = config.allow_ai
+		s["respawn"] = CONFIG_GET(flag/abandon_allowed)
+		s["persistance"] = CONFIG_GET(flag/persistence_disabled)
+		s["enter"] = CONFIG_GET(flag/enter_allowed)
+		s["vote"] = CONFIG_GET(flag/allow_vote_mode)
+		s["ai"] = CONFIG_GET(flag/allow_ai)
 		s["host"] = host ? host : null
 
 		// This is dumb, but spacestation13.com's banners break if player count isn't the 8th field of the reply, so... this has to go here.
@@ -238,7 +259,7 @@ var/world_topic_spam_protect_time = world.timeofday
 
 	else if(copytext(T,1,5) == "info")
 		var/input[] = params2list(T)
-		if(input["key"] != config.comms_password)
+		if(input["key"] != CONFIG_GET(string/comms_password))
 			if(world_topic_spam_protect_ip == addr && abs(world_topic_spam_protect_time - world.time) < 50)
 
 				spawn(50)
@@ -325,7 +346,7 @@ var/world_topic_spam_protect_time = world.timeofday
 
 
 		var/input[] = params2list(T)
-		if(input["key"] != config.comms_password)
+		if(input["key"] != CONFIG_GET(string/comms_password))
 			if(world_topic_spam_protect_ip == addr && abs(world_topic_spam_protect_time - world.time) < 50)
 
 				spawn(50)
@@ -375,7 +396,7 @@ var/world_topic_spam_protect_time = world.timeofday
 				2. validationkey = the key the bot has, it should match the gameservers commspassword in it's configuration.
 		*/
 		var/input[] = params2list(T)
-		if(input["key"] != config.comms_password)
+		if(input["key"] != CONFIG_GET(string/comms_password))
 			if(world_topic_spam_protect_ip == addr && abs(world_topic_spam_protect_time - world.time) < 50)
 
 				spawn(50)
@@ -390,7 +411,7 @@ var/world_topic_spam_protect_time = world.timeofday
 
 	else if(copytext(T,1,4) == "age")
 		var/input[] = params2list(T)
-		if(input["key"] != config.comms_password)
+		if(input["key"] != CONFIG_GET(string/comms_password))
 			if(world_topic_spam_protect_ip == addr && abs(world_topic_spam_protect_time - world.time) < 50)
 				spawn(50)
 					world_topic_spam_protect_time = world.time
@@ -426,8 +447,8 @@ var/world_topic_spam_protect_time = world.timeofday
 	else
 		Master.Shutdown()	//run SS shutdowns
 		for(var/client/C in GLOB.clients)
-			if(config.server)	//if you set a server location in config.txt, it sends you there instead of trying to reconnect to the same world address. -- NeoFite
-				C << link("byond://[config.server]")
+			if(CONFIG_GET(string/server))	//if you set a server location in config.txt, it sends you there instead of trying to reconnect to the same world address. -- NeoFite
+				C << link("byond://[CONFIG_GET(string/server)]")
 
 	TgsReboot()
 	log_world("World rebooted at [time_stamp()]")
@@ -461,13 +482,14 @@ var/world_topic_spam_protect_time = world.timeofday
 /world/proc/load_motd()
 	join_motd = file2text("config/motd.txt")
 
-
+/* Replaced with configuration controller
 /proc/load_configuration()
 	config = new /datum/configuration()
 	config.load("config/config.txt")
 	config.load("config/game_options.txt","game_options")
 	config.loadsql("config/dbconfig.txt")
 	config.loadforumsql("config/forumdbconfig.txt")
+*/
 
 /hook/startup/proc/loadMods()
 	world.load_mods()
@@ -475,7 +497,7 @@ var/world_topic_spam_protect_time = world.timeofday
 	return 1
 
 /world/proc/load_mods()
-	if(config.admin_legacy_system)
+	if(CONFIG_GET(flag/admin_legacy_system))
 		var/text = file2text("config/moderators.txt")
 		if (!text)
 			error("Failed to load config/mods.txt")
@@ -496,7 +518,7 @@ var/world_topic_spam_protect_time = world.timeofday
 				D.associate(GLOB.directory[ckey])
 
 /world/proc/load_mentors()
-	if(config.admin_legacy_system)
+	if(CONFIG_GET(flag/admin_legacy_system))
 		var/text = file2text("config/mentors.txt")
 		if (!text)
 			error("Failed to load config/mentors.txt")
@@ -515,8 +537,8 @@ var/world_topic_spam_protect_time = world.timeofday
 /world/proc/update_status()
 	var/s = ""
 
-	if (config && config.server_name)
-		s += span_bold("[config.server_name]") + " &#8212; "
+	if (config && CONFIG_GET(string/servername))
+		s += span_bold("[CONFIG_GET(string/servername)]") + " &#8212; "
 
 	s += span_bold("[station_name()]");
 	s += " ("
@@ -534,19 +556,19 @@ var/world_topic_spam_protect_time = world.timeofday
 	else
 		features += span_bold("STARTING")
 
-	if (!config.enter_allowed)
+	if (!CONFIG_GET(flag/enter_allowed))
 		features += "closed"
 
-	features += config.abandon_allowed ? "respawn" : "no respawn"
+	features += CONFIG_GET(flag/abandon_allowed) ? "respawn" : "no respawn"
 
-	features += config.persistence_disabled ? "persistence disabled" : "persistence enabled"
+	features += CONFIG_GET(flag/persistence_disabled) ? "persistence disabled" : "persistence enabled"
 
-	features += config.persistence_ignore_mapload ? "persistence mapload disabled" : "persistence mapload enabled"
+	features += CONFIG_GET(flag/persistence_ignore_mapload) ? "persistence mapload disabled" : "persistence mapload enabled"
 
-	if (config && config.allow_vote_mode)
+	if (config && CONFIG_GET(flag/allow_vote_mode))
 		features += "vote"
 
-	if (config && config.allow_ai)
+	if (config && CONFIG_GET(flag/allow_ai))
 		features += "AI allowed"
 
 	var/n = 0
@@ -560,8 +582,8 @@ var/world_topic_spam_protect_time = world.timeofday
 		features += "~[n] player"
 
 
-	if (config && config.hostedby)
-		features += "hosted by <b>[config.hostedby]</b>"
+	if (config && CONFIG_GET(string/hostedby))
+		features += "hosted by <b>[CONFIG_GET(string/hostedby)]</b>"
 
 	if (features)
 		s += ": [jointext(features, ", ")]"
@@ -575,7 +597,7 @@ var/failed_db_connections = 0
 var/failed_old_db_connections = 0
 
 /hook/startup/proc/connectDB()
-	if(!config.sql_enabled)
+	if(!CONFIG_GET(flag/sql_enabled))
 		to_world_log("SQL connection disabled in config.")
 	else if(!setup_database_connection())
 		to_world_log("Your server failed to establish a connection with the feedback database.")
@@ -584,7 +606,7 @@ var/failed_old_db_connections = 0
 	return 1
 
 /proc/setup_database_connection()
-	if(!config.sql_enabled)
+	if(!CONFIG_GET(flag/sql_enabled))
 		return 0
 	if(failed_db_connections > FAILED_DB_CONNECTION_CUTOFF)	//If it failed to establish a connection more than 5 times in a row, don't bother attempting to conenct anymore.
 		return 0
@@ -592,11 +614,11 @@ var/failed_old_db_connections = 0
 	if(!dbcon)
 		dbcon = new()
 
-	var/user = sqlfdbklogin
-	var/pass = sqlfdbkpass
-	var/db = sqlfdbkdb
-	var/address = sqladdress
-	var/port = sqlport
+	var/user = CONFIG_GET(string/feedback_login)
+	var/pass = CONFIG_GET(string/feedback_password)
+	var/db = CONFIG_GET(string/feedback_database)
+	var/address = CONFIG_GET(string/address)
+	var/port = CONFIG_GET(number/port)
 
 	dbcon.Connect("dbi:mysql:[db]:[address]:[port]","[user]","[pass]")
 	. = dbcon.IsConnected()
@@ -618,53 +640,6 @@ var/failed_old_db_connections = 0
 	else
 		return 1
 
-
-/hook/startup/proc/connectOldDB()
-	if(!config.sql_enabled)
-		to_world_log("SQL connection disabled in config.")
-	else if(!setup_old_database_connection())
-		to_world_log("Your server failed to establish a connection with the SQL database.")
-	else
-		to_world_log("SQL database connection established.")
-	return 1
-
-//These two procs are for the old database, while it's being phased out. See the tgstation.sql file in the SQL folder for more information.
-/proc/setup_old_database_connection()
-	if(!config.sql_enabled)
-		return 0
-
-	if(failed_old_db_connections > FAILED_DB_CONNECTION_CUTOFF)	//If it failed to establish a connection more than 5 times in a row, don't bother attempting to conenct anymore.
-		return 0
-
-	if(!dbcon_old)
-		dbcon_old = new()
-
-	var/user = sqllogin
-	var/pass = sqlpass
-	var/db = sqldb
-	var/address = sqladdress
-	var/port = sqlport
-
-	dbcon_old.Connect("dbi:mysql:[db]:[address]:[port]","[user]","[pass]")
-	. = dbcon_old.IsConnected()
-	if ( . )
-		failed_old_db_connections = 0	//If this connection succeeded, reset the failed connections counter.
-	else
-		failed_old_db_connections++		//If it failed, increase the failed connections counter.
-		to_world_log(dbcon.ErrorMsg())
-
-	return .
-
-//This proc ensures that the connection to the feedback database (global variable dbcon) is established
-/proc/establish_old_db_connection()
-	if(failed_old_db_connections > FAILED_DB_CONNECTION_CUTOFF)
-		return 0
-
-	if(!dbcon_old || !dbcon_old.IsConnected())
-		return setup_old_database_connection()
-	else
-		return 1
-
 // Cleans up DB connections and recreates them
 /proc/reset_database_connections()
 	var/list/results = list("-- Resetting DB connections --")
@@ -679,7 +654,7 @@ var/failed_old_db_connections = 0
 	if(dbcon_old?.IsConnected())
 		results += "WARNING: dbcon_old is connected, not touching it, but is this intentional?"
 
-	if(!config.sql_enabled)
+	if(!CONFIG_GET(flag/sql_enabled))
 		results += "stopping because config.sql_enabled = false"
 	else
 		. = setup_database_connection()
@@ -727,10 +702,10 @@ var/failed_old_db_connections = 0
 
 /proc/get_world_url()
 	. = "byond://"
-	if(config.serverurl)
-		. += config.serverurl
-	else if(config.server)
-		. += config.server
+	if(CONFIG_GET(string/serverurl))
+		. += CONFIG_GET(string/serverurl)
+	else if(CONFIG_GET(string/server))
+		. += CONFIG_GET(string/server)
 	else
 		. += "[world.address]:[world.port]"
 
