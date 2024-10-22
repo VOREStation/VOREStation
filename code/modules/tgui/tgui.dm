@@ -353,8 +353,7 @@
 		log_tgui(user, "Action: [act_type] [href_list["payload"]], Window: [window.id], Source: [src_object]")
 		#endif
 		process_status()
-		if(src_object.tgui_act(act_type, payload, src, state))
-			SStgui.update_uis(src_object)
+		DEFAULT_QUEUE_OR_CALL_VERB(VERB_CALLBACK(src, PROC_REF(on_act_message), act_type, payload, state))
 		return FALSE
 	switch(type)
 		if("ready")
@@ -382,3 +381,10 @@
 			log_tgui(user, "Fallback Triggered: [href_list["payload"]], Window: [window.id], Source: [src_object]")
 			#endif
 			src_object.tgui_fallback(payload)
+
+/// Wrapper for behavior to potentially wait until the next tick if the server is overloaded
+/datum/tgui/proc/on_act_message(act_type, payload, state)
+	if(QDELETED(src) || QDELETED(src_object))
+		return
+	if(src_object.tgui_act(act_type, payload, src, state))
+		SStgui.update_uis(src_object)
