@@ -88,3 +88,17 @@ export const AutoPunctuation: FeatureToggle = {
     'When enabled, if your message ends in a letter with no punctuation, a period will be added.',
   component: CheckboxInput,
 };
+
+export const obfuscate_key: FeatureToggle = {
+  name: 'Obfuscate Key',
+  category: 'UI',
+  description: 'Hide your byond ckey from other players in the lobby',
+  component: CheckboxInput,
+};
+
+export const obfuscate_job: FeatureToggle = {
+  name: 'Obfuscate Job',
+  category: 'UI',
+  description: 'Hide your job from other players in the lobby',
+  component: CheckboxInput,
+};
