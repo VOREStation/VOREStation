@@ -103,7 +103,7 @@
 /obj/item/telecube/Destroy()
 	if(mate)
 		var/turf/T = get_turf(mate)
-		mate.visible_message("<span class='critical'>\The [mate] collapses into itself!</span>")
+		mate.visible_message(span_critical("\The [mate] collapses into itself!"))
 		mate.mate = null
 		mate = null
 		explosion(T,1,3,7)
@@ -133,7 +133,7 @@
 		return .
 
 	if(A == src || A == mate)
-		A.visible_message("<span class='alien'>\The [A] distorts and fades, before popping back into existence.</span>")
+		A.visible_message(span_alien("\The [A] distorts and fades, before popping back into existence."))
 		animate_out(A)
 		animate_in(A)
 		return .
@@ -149,7 +149,7 @@
 		return .
 
 	if((A.anchored && !omniteleport) || !mate)
-		A.visible_message("<span class='alien'>\The [A] distorts for a moment, before reforming in the same position.</span>")
+		A.visible_message(span_alien("\The [A] distorts for a moment, before reforming in the same position."))
 		animate_out(A)
 		animate_in(A)
 		return .
@@ -159,12 +159,12 @@
 	var/turf/T1 = get_turf(locate(TLocate.x + (A.x - x), TLocate.y + (A.y - y), TLocate.z))
 
 	if(T1)
-		A.visible_message("<span class='alien'>\The [A] fades out of existence.</span>")
+		A.visible_message(span_alien("\The [A] fades out of existence."))
 		animate_out(A)
 		A.forceMove(T1)
 		animate_in(A)
 		. = TRUE
-		A.visible_message("<span class='alien'>\The [A] fades into existence.</span>")
+		A.visible_message(span_alien("\The [A] fades into existence."))
 	else
 		return .
 

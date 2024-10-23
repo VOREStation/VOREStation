@@ -24,8 +24,8 @@
 	desc = "You feel rather clean and pure."
 	mob_overlay_state = "green_sparkles"
 
-	on_created_text = "<span class='warning'>Sparkles begin to appear around you, and you feel really.. pure.</span>"
-	on_expired_text = "<span class='notice'>The sparkles have faded, although you feel healthier than before.</span>"
+	on_created_text = span_warning("Sparkles begin to appear around you, and you feel really.. pure.")
+	on_expired_text = span_notice("The sparkles have faded, although you feel healthier than before.")
 	stacks = MODIFIER_STACK_EXTEND
 
 /datum/modifier/technomancer/purify/tick()

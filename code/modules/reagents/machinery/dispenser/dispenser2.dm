@@ -63,27 +63,27 @@
 /obj/machinery/chemical_dispenser/proc/add_cartridge(obj/item/reagent_containers/chem_disp_cartridge/C, mob/user)
 	if(!istype(C))
 		if(user)
-			to_chat(user, "<span class='warning'>\The [C] will not fit in \the [src]!</span>")
+			to_chat(user, span_warning("\The [C] will not fit in \the [src]!"))
 		return
 
 	if(cartridges.len >= max_catriges)
 		if(user)
-			to_chat(user, "<span class='warning'>\The [src] does not have any slots open for \the [C] to fit into!</span>")
+			to_chat(user, span_warning("\The [src] does not have any slots open for \the [C] to fit into!"))
 		return
 
 	if(!C.label)
 		if(user)
-			to_chat(user, "<span class='warning'>\The [C] does not have a label!</span>")
+			to_chat(user, span_warning("\The [C] does not have a label!"))
 		return
 
 	if(cartridges[C.label])
 		if(user)
-			to_chat(user, "<span class='warning'>\The [src] already contains a cartridge with that label!</span>")
+			to_chat(user, span_warning("\The [src] already contains a cartridge with that label!"))
 		return
 
 	if(user)
 		user.drop_from_inventory(C)
-		to_chat(user, "<span class='notice'>You add \the [C] to \the [src].</span>")
+		to_chat(user, span_notice("You add \the [C] to \the [src]."))
 
 	C.loc = src
 	cartridges[C.label] = C
@@ -98,15 +98,15 @@
 /obj/machinery/chemical_dispenser/attackby(obj/item/W, mob/user)
 	if(W.has_tool_quality(TOOL_WRENCH))
 		playsound(src, W.usesound, 50, 1)
-		to_chat(user, "<span class='notice'>You begin to [anchored ? "un" : ""]fasten \the [src].</span>")
+		to_chat(user, span_notice("You begin to [anchored ? "un" : ""]fasten \the [src]."))
 		if (do_after(user, 20 * W.toolspeed))
 			user.visible_message(
-				"<span class='notice'>\The [user] [anchored ? "un" : ""]fastens \the [src].</span>",
-				"<span class='notice'>You have [anchored ? "un" : ""]fastened \the [src].</span>",
+				span_notice("\The [user] [anchored ? "un" : ""]fastens \the [src]."),
+				span_notice("You have [anchored ? "un" : ""]fastened \the [src]."),
 				"You hear a ratchet.")
 			anchored = !anchored
 		else
-			to_chat(user, "<span class='notice'>You decide not to [anchored ? "un" : ""]fasten \the [src].</span>")
+			to_chat(user, span_notice("You decide not to [anchored ? "un" : ""]fasten \the [src]."))
 
 	else if(istype(W, /obj/item/reagent_containers/chem_disp_cartridge))
 		add_cartridge(W, user)
@@ -116,29 +116,29 @@
 		if(!label) return
 		var/obj/item/reagent_containers/chem_disp_cartridge/C = remove_cartridge(label)
 		if(C)
-			to_chat(user, "<span class='notice'>You remove \the [C] from \the [src].</span>")
+			to_chat(user, span_notice("You remove \the [C] from \the [src]."))
 			C.loc = loc
 			playsound(src, W.usesound, 50, 1)
 
 	else if(istype(W, /obj/item/reagent_containers/glass) || istype(W, /obj/item/reagent_containers/food))
 		if(container)
-			to_chat(user, "<span class='warning'>There is already \a [container] on \the [src]!</span>")
+			to_chat(user, span_warning("There is already \a [container] on \the [src]!"))
 			return
 
 		var/obj/item/reagent_containers/RC = W
 
 		if(!accept_drinking && istype(RC,/obj/item/reagent_containers/food))
-			to_chat(user, "<span class='warning'>This machine only accepts beakers!</span>")
+			to_chat(user, span_warning("This machine only accepts beakers!"))
 			return
 
 		if(!RC.is_open_container())
-			to_chat(user, "<span class='warning'>You don't see how \the [src] could dispense reagents into \the [RC].</span>")
+			to_chat(user, span_warning("You don't see how \the [src] could dispense reagents into \the [RC]."))
 			return
 
 		container =  RC
 		user.drop_from_inventory(RC)
 		RC.loc = src
-		to_chat(user, "<span class='notice'>You set \the [RC] on \the [src].</span>")
+		to_chat(user, span_notice("You set \the [RC] on \the [src]."))
 	else
 		return ..()
 

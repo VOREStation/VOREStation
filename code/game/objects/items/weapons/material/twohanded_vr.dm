@@ -29,7 +29,7 @@
 /obj/item/material/twohanded/saber/handle_shield(mob/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
 	if (src.wielded == 1)
 		if(unique_parry_check(user, attacker, damage_source) && prob(50))
-			user.visible_message("<span class='danger'>\The [user] parries [attack_text] with \the [src]!</span>")
+			user.visible_message(span_danger("\The [user] parries [attack_text] with \the [src]!"))
 			playsound(src, 'sound/weapons/punchmiss.ogg', 50, 1)
 		return 1
 	return 0
@@ -69,7 +69,7 @@
 		else
 			parry_chance = base_parry_chance
 		if(unique_parry_check(user, attacker, damage_source) && prob(parry_chance))
-			user.visible_message("<span class='danger'>\The [user] parries [attack_text] with \the [src]!</span>")
+			user.visible_message(span_danger("\The [user] parries [attack_text] with \the [src]!"))
 			playsound(src, 'sound/weapons/punchmiss.ogg', 50, 1)
 			return 1
 	return 0
@@ -78,4 +78,4 @@
 	. = ..()
 	if(src.wielded == 1 && user.a_intent == I_DISARM && prob(stun_chance))
 		target.Weaken(stun_duration)
-		user.visible_message("<span class='danger'>\The [user] trips [target] with \the [src]!</span>")
+		user.visible_message(span_danger("\The [user] trips [target] with \the [src]!"))

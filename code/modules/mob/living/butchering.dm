@@ -86,11 +86,11 @@
 
 		if(!ckey)
 			if(issmall(src))
-				user?.visible_message("<span class='danger'>[user] chops up \the [src]!</span>")
+				user?.visible_message(span_danger("[user] chops up \the [src]!"))
 				new /obj/effect/decal/cleanable/blood/splatter(get_turf(src))
 				if(gib_on_butchery)
 					qdel(src)
 			else
-				user?.visible_message("<span class='danger'>[user] butchers \the [src] messily!</span>")
+				user?.visible_message(span_danger("[user] butchers \the [src] messily!"))
 				if(gib_on_butchery)
 					gib()

@@ -66,7 +66,7 @@
 				to_chat(user,"[target] didn't have any breakable legs, sorry.")
 
 		if("bluespace_artillery")
-			bluespace_artillery(target,src)
+			bluespace_artillery(target,usr)
 
 		if("spont_combustion")
 			var/mob/living/carbon/human/Tar = target
@@ -171,7 +171,7 @@
 			sleep(1 SECOND)
 			shadekin.dir = SOUTH
 			sleep(1 SECOND)
-			shadekin.audible_message("<b>[shadekin]</b> belches loudly!", runemessage = "URRRRRP")
+			shadekin.audible_message(span_vwarning(span_bold("[shadekin]") + " belches loudly!"), runemessage = "URRRRRP")
 			sleep(2 SECONDS)
 			shadekin.phase_shift()
 			target.transforming = FALSE //Undo cheap hack
@@ -187,13 +187,13 @@
 
 
 		if("redspace_abduct")
-			redspace_abduction(target, src)
+			redspace_abduction(target, usr)
 
 		if("autosave")
-			fake_autosave(target, src)
+			fake_autosave(target, usr)
 
 		if("autosave2")
-			fake_autosave(target, src, TRUE)
+			fake_autosave(target, usr, TRUE)
 
 		if("adspam")
 			if(target.client)
@@ -453,13 +453,48 @@
 			else
 				Tar.Stasis(100000)
 
+		if("give_chem")
+			var/mob/living/carbon/human/Tar = target
+			if(!istype(Tar))
+				return
+			var/list/chem_list = typesof(/datum/reagent)
+			var/datum/reagent/chemical = tgui_input_list(user, "Which chemical would you like to add?", "Chemicals", chem_list)
+
+			if(!chemical)
+				return
+
+			var/chem = chemical.id
+
+			var/amount = tgui_input_number(user, "How much of the chemical would you like to add?", "Amount", 5)
+			if(!amount)
+				return
+
+			var/location = tgui_alert(user, "Where do you want to add the chemical?", "Location", list("Blood", "Stomach", "Skin", "Cancel"))
+
+			if(!location || location == "Cancel")
+				return
+			if(location == "Blood")
+				Tar.bloodstr.add_reagent(chem, amount)
+			if(location == "Stomach")
+				Tar.ingested.add_reagent(chem, amount)
+			if(location == "Skin")
+				Tar.touching.add_reagent(chem, amount)
+
+		if("purge")
+			var/mob/living/carbon/Tar = target
+			if(!istype(Tar))
+				return
+			Tar.bloodstr.clear_reagents()
+			Tar.ingested.clear_reagents()
+			Tar.touching.clear_reagents()
+
 		////////ABILITIES//////////////
 
 		if("vent_crawl")
 			var/mob/living/Tar = target
 			if(!istype(Tar))
 				return
-			Tar.verbs |= /mob/living/proc/ventcrawl
+			add_verb(Tar, /mob/living/proc/ventcrawl)
 
 		if("darksight")
 			var/mob/living/carbon/human/Tar = target
@@ -474,26 +509,26 @@
 			var/mob/living/carbon/human/Tar = target
 			if(!istype(Tar))
 				return
-			Tar.verbs |= /mob/living/carbon/human/proc/enter_cocoon
+			add_verb(Tar, /mob/living/carbon/human/proc/enter_cocoon)
 
 		if("transformation")
 			var/mob/living/carbon/human/Tar = target
 			if(!istype(Tar))
 				return
-			Tar.verbs |= /mob/living/carbon/human/proc/shapeshifter_select_hair
-			Tar.verbs |= /mob/living/carbon/human/proc/shapeshifter_select_hair_colors
-			Tar.verbs |= /mob/living/carbon/human/proc/shapeshifter_select_gender
-			Tar.verbs |= /mob/living/carbon/human/proc/shapeshifter_select_wings
-			Tar.verbs |= /mob/living/carbon/human/proc/shapeshifter_select_tail
-			Tar.verbs |= /mob/living/carbon/human/proc/shapeshifter_select_ears
-			Tar.verbs |= /mob/living/carbon/human/proc/lleill_select_shape //designed for non-shapeshifter mobs
-			Tar.verbs |= /mob/living/carbon/human/proc/lleill_select_colour
+			add_verb(Tar, /mob/living/carbon/human/proc/shapeshifter_select_hair)
+			add_verb(Tar, /mob/living/carbon/human/proc/shapeshifter_select_hair_colors)
+			add_verb(Tar, /mob/living/carbon/human/proc/shapeshifter_select_gender)
+			add_verb(Tar, /mob/living/carbon/human/proc/shapeshifter_select_wings)
+			add_verb(Tar, /mob/living/carbon/human/proc/shapeshifter_select_tail)
+			add_verb(Tar, /mob/living/carbon/human/proc/shapeshifter_select_ears)
+			add_verb(Tar, /mob/living/carbon/human/proc/lleill_select_shape) //designed for non-shapeshifter mobs
+			add_verb(Tar, /mob/living/carbon/human/proc/lleill_select_colour)
 
 		if("set_size")
 			var/mob/living/Tar = target
 			if(!istype(Tar))
 				return
-			Tar.verbs |= /mob/living/proc/set_size
+			add_verb(Tar, /mob/living/proc/set_size)
 
 		if("lleill_energy")
 			var/mob/living/carbon/human/Tar = target
@@ -508,44 +543,44 @@
 			var/mob/living/carbon/human/Tar = target
 			if(!istype(Tar))
 				return
-			Tar.verbs |= /mob/living/carbon/human/proc/lleill_invisibility
+			add_verb(Tar, /mob/living/carbon/human/proc/lleill_invisibility)
 
 		if("beast_form")
 			var/mob/living/carbon/human/Tar = target
 			if(!istype(Tar))
 				return
-			Tar.verbs |= /mob/living/carbon/human/proc/lleill_beast_form
+			add_verb(Tar, /mob/living/carbon/human/proc/lleill_beast_form)
 
 		if("lleill_transmute")
 			var/mob/living/carbon/human/Tar = target
 			if(!istype(Tar))
 				return
-			Tar.verbs |= /mob/living/carbon/human/proc/lleill_transmute
+			add_verb(Tar, /mob/living/carbon/human/proc/lleill_transmute)
 
 		if("lleill_alchemy")
 			var/mob/living/carbon/human/Tar = target
 			if(!istype(Tar))
 				return
-			Tar.verbs |= /mob/living/carbon/human/proc/lleill_alchemy
+			add_verb(Tar, /mob/living/carbon/human/proc/lleill_alchemy)
 
 		if("lleill_drain")
 			var/mob/living/carbon/human/Tar = target
 			if(!istype(Tar))
 				return
-			Tar.verbs |= /mob/living/carbon/human/proc/lleill_contact
+			add_verb(Tar, /mob/living/carbon/human/proc/lleill_contact)
 
 		if("brutal_pred")
 			var/mob/living/Tar = target
 			if(!istype(Tar))
 				return
-			Tar.verbs |= /mob/living/proc/shred_limb
+			add_verb(Tar, /mob/living/proc/shred_limb)
 
 		if("trash_eater")
 			var/mob/living/carbon/human/Tar = target
 			if(!istype(Tar))
 				return
-			Tar.verbs |= /mob/living/proc/eat_trash
-			Tar.verbs |= /mob/living/proc/toggle_trash_catching
+			add_verb(Tar, /mob/living/proc/eat_trash)
+			add_verb(Tar, /mob/living/proc/toggle_trash_catching)
 
 
 		////////INVENTORY//////////////
@@ -721,6 +756,12 @@
 			L.a_intent = tgui_input_list(usr, "Please choose AI intent", "AI intent", list(I_HURT, I_HELP))
 			if(tgui_alert(usr, "Make mob wake up? This is needed for carbon mobs.", "Wake mob?", list("Yes", "No")) == "Yes")
 				L.AdjustSleeping(-100)
+
+		if("cloaking")
+			if(target.cloaked)
+				target.uncloak()
+			else if(!target.cloaked)
+				target.cloak()
 
 
 		////////FIXES//////////////

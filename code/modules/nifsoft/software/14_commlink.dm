@@ -81,7 +81,7 @@
 			var/message = combined["formatted"]
 			var/name_used = M.GetVoice()
 			var/rendered = null
-			rendered = "<span class='game say'>[icon2html(icon_object,mob.client)] <span class='name'>[name_used]</span> [message]</span>"
+			rendered = span_game(span_say("[icon2html(icon_object,mob.client)] [span_name(name_used)] [message]"))
 			mob.show_message(rendered, 2)
 
 //Not supported by the internal one

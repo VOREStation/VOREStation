@@ -63,7 +63,7 @@
 		var/obj/item/weldingtool/WT = C.get_welder()
 		if(WT.welding == 1)
 			if(WT.remove_fuel(0, user))
-				to_chat(user, "<span class='notice'>Slicing lattice joints ...</span>")
+				to_chat(user, span_notice("Slicing lattice joints ..."))
 			new /obj/item/stack/rods(src.loc, 1) //VOREstation Edit: Return the same amount of rods used to build this.
 			qdel(src)
 		return
@@ -93,7 +93,7 @@
 
 //Vorestation Edit: Moves upgrading lattices to their own proc for other stuff to call. Also makes them instant.
 /obj/structure/lattice/proc/upgrade(obj/item/stack/rods/R, mob/user)
-	to_chat(user, "<span class='notice'>You start connecting \the [R.name] to \the [src.name] ...</span>")
+	to_chat(user, span_notice("You start connecting \the [R.name] to \the [src.name] ..."))
 	R.use(1)
 	src.alpha = 0 // Note: I don't know why this is set, Eris did it, just trusting for now. ~Leshana
 	new /obj/structure/catwalk(src.loc)

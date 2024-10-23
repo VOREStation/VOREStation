@@ -47,10 +47,10 @@
 		return
 
 	if(!id_tag)
-		to_chat(user, "<span class='warning'>This console has not been assigned an ident tag. Please contact your system administrator or conduct a manual update with a standard multitool.</span>")
+		to_chat(user, span_warning("This console has not been assigned an ident tag. Please contact your system administrator or conduct a manual update with a standard multitool."))
 		return
 
-	var/dat = "<B>Reactor Core Fuel Control #[id_tag]</B><BR>"
+	var/dat = span_bold("Reactor Core Fuel Control #[id_tag]") + "<BR>"
 	dat += {"
 		<hr>
 		<table border=1 width='100%'>
@@ -67,9 +67,9 @@
 		dat += "<tr>"
 
 		if(I.stat & (BROKEN|NOPOWER))
-			dat += "<td><span class='danger'>ERROR</span></td>"
-			dat += "<td><span class='danger'>ERROR</span></td>"
-			dat += "<td><span class='danger'>ERROR</span></td>"
+			dat += "<td>" + span_danger("ERROR") + "</td>"
+			dat += "<td>" + span_danger("ERROR") + "</td>"
+			dat += "<td>" + span_danger("ERROR") + "</td>"
 		else
 			dat += "<td>[I.cur_assembly ? I.cur_assembly.fuel_type : "NONE"]</td>"
 			if(I.cur_assembly)

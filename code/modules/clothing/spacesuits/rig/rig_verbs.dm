@@ -10,9 +10,9 @@
 		tgui_interact(usr)
 
 // So the UI button clicks come here
-/obj/item/rig/ui_action_click()
-	if(usr == wearer && (wearer.back == src || wearer.belt == src))
-		tgui_interact(usr)
+/obj/item/rig/ui_action_click(mob/user, actiontype)
+	if(user == wearer && (wearer.back == src || wearer.belt == src))
+		tgui_interact(user)
 
 /obj/item/rig/verb/toggle_vision()
 
@@ -22,21 +22,21 @@
 	set src = usr.contents
 
 	if(!istype(wearer) || (!wearer.back == src && !wearer.belt == src))
-		to_chat(usr, "<span class='warning'>The hardsuit is not being worn.</span>")
+		to_chat(usr, span_warning("The hardsuit is not being worn."))
 		return
 
 	if(!check_power_cost(usr))
 		return
 
 	if(canremove)
-		to_chat(usr, "<span class='warning'>The suit is not active.</span>")
+		to_chat(usr, span_warning("The suit is not active."))
 		return
 
 	if(!check_suit_access(usr))
 		return
 
 	if(!visor)
-		to_chat(usr, "<span class='warning'>The hardsuit does not have a configurable visor.</span>")
+		to_chat(usr, span_warning("The hardsuit does not have a configurable visor."))
 		return
 
 	if(!visor.active)
@@ -52,7 +52,7 @@
 	set src = usr.contents
 
 	if(!istype(wearer) || (!wearer.back == src && !wearer.belt == src))
-		to_chat(usr, "<span class='warning'>The hardsuit is not being worn.</span>")
+		to_chat(usr, span_warning("The hardsuit is not being worn."))
 		return
 
 	if(!check_suit_access(usr))
@@ -80,7 +80,7 @@
 	set src = usr.contents
 
 	if(!istype(wearer) || (!wearer.back == src && !wearer.belt == src))
-		to_chat(usr, "<span class='warning'>The hardsuit is not being worn.</span>")
+		to_chat(usr, span_warning("The hardsuit is not being worn."))
 		return
 
 	if(!check_suit_access(usr))
@@ -96,7 +96,7 @@
 	set src = usr.contents
 
 	if(!istype(wearer) || (!wearer.back == src && !wearer.belt == src))
-		to_chat(usr, "<span class='warning'>The hardsuit is not being worn.</span>")
+		to_chat(usr, span_warning("The hardsuit is not being worn."))
 		return
 
 	if(!check_suit_access(usr))
@@ -112,7 +112,7 @@
 	set src = usr.contents
 
 	if(!istype(wearer) || (!wearer.back == src && !wearer.belt == src))
-		to_chat(usr, "<span class='warning'>The hardsuit is not being worn.</span>")
+		to_chat(usr, span_warning("The hardsuit is not being worn."))
 		return
 
 	if(!check_suit_access(usr))
@@ -131,7 +131,7 @@
 	set src = usr.contents
 
 	if(!istype(wearer) || (!wearer.back == src && !wearer.belt == src))
-		to_chat(usr, "<span class='warning'>The hardsuit is not being worn.</span>")
+		to_chat(usr, span_warning("The hardsuit is not being worn."))
 		return
 
 	if(!check_suit_access(usr))
@@ -153,18 +153,18 @@
 		return
 
 	if(canremove)
-		to_chat(usr, "<span class='warning'>The suit is not active.</span>")
+		to_chat(usr, span_warning("The suit is not active."))
 		return
 
 	if(!visor)
-		to_chat(usr, "<span class='warning'>The hardsuit does not have a configurable visor.</span>")
+		to_chat(usr, span_warning("The hardsuit does not have a configurable visor."))
 		return
 
 	if(!visor.active)
 		visor.activate()
 
 	if(!visor.active)
-		to_chat(usr, "<span class='warning'>The visor is suffering a hardware fault and cannot be configured.</span>")
+		to_chat(usr, span_warning("The visor is suffering a hardware fault and cannot be configured."))
 		return
 
 	visor.engage()
@@ -180,15 +180,15 @@
 		return
 
 	if(canremove)
-		to_chat(usr, "<span class='warning'>The suit is not active.</span>")
+		to_chat(usr, span_warning("The suit is not active."))
 		return
 
 	if(!istype(wearer) || (!wearer.back == src && !wearer.belt == src))
-		to_chat(usr, "<span class='warning'>The hardsuit is not being worn.</span>")
+		to_chat(usr, span_warning("The hardsuit is not being worn."))
 		return
 
 	if(!speech)
-		to_chat(usr, "<span class='warning'>The hardsuit does not have a speech synthesiser.</span>")
+		to_chat(usr, span_warning("The hardsuit does not have a speech synthesiser."))
 		return
 
 	speech.engage()
@@ -207,11 +207,11 @@
 		return
 
 	if(canremove)
-		to_chat(usr, "<span class='warning'>The suit is not active.</span>")
+		to_chat(usr, span_warning("The suit is not active."))
 		return
 
 	if(!istype(wearer) || (!wearer.back == src && !wearer.belt == src))
-		to_chat(usr, "<span class='warning'>The hardsuit is not being worn.</span>")
+		to_chat(usr, span_warning("The hardsuit is not being worn."))
 		return
 
 	var/list/selectable = list()
@@ -223,11 +223,11 @@
 
 	if(!istype(module))
 		selected_module = null
-		to_chat(usr, span_blue("<b>Primary system is now: deselected.</b>"))
+		to_chat(usr, span_boldnotice("Primary system is now: deselected."))
 		return
 
 	selected_module = module
-	to_chat(usr, span_blue("<b>Primary system is now: [selected_module.interface_name].</b>"))
+	to_chat(usr, span_boldnotice("Primary system is now: [selected_module.interface_name]."))
 
 /obj/item/rig/verb/toggle_module()
 
@@ -243,11 +243,11 @@
 		return
 
 	if(canremove)
-		to_chat(usr, "<span class='warning'>The suit is not active.</span>")
+		to_chat(usr, span_warning("The suit is not active."))
 		return
 
 	if(!istype(wearer) || (!wearer.back == src && !wearer.belt == src))
-		to_chat(usr, "<span class='warning'>The hardsuit is not being worn.</span>")
+		to_chat(usr, span_warning("The hardsuit is not being worn."))
 		return
 
 	var/list/selectable = list()
@@ -261,10 +261,10 @@
 		return
 
 	if(module.active)
-		to_chat(usr, span_blue("<b>You attempt to deactivate \the [module.interface_name].</b>"))
+		to_chat(usr, span_boldnotice("You attempt to deactivate \the [module.interface_name]."))
 		module.deactivate()
 	else
-		to_chat(usr, span_blue("<b>You attempt to activate \the [module.interface_name].</b>"))
+		to_chat(usr, span_boldnotice("You attempt to activate \the [module.interface_name]."))
 		module.activate()
 
 /obj/item/rig/verb/engage_module()
@@ -278,11 +278,11 @@
 		return
 
 	if(canremove)
-		to_chat(usr, "<span class='warning'>The suit is not active.</span>")
+		to_chat(usr, span_warning("The suit is not active."))
 		return
 
 	if(!istype(wearer) || (!wearer.back == src && !wearer.belt == src))
-		to_chat(usr, "<span class='warning'>The hardsuit is not being worn.</span>")
+		to_chat(usr, span_warning("The hardsuit is not being worn."))
 		return
 
 	if(!check_power_cost(usr, 0, 0, 0, 0))
@@ -298,5 +298,5 @@
 	if(!istype(module))
 		return
 
-	to_chat(usr, span_blue("<b>You attempt to engage the [module.interface_name].</b>"))
+	to_chat(usr, span_boldnotice("You attempt to engage the [module.interface_name]."))
 	module.engage()

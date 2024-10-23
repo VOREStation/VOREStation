@@ -1,5 +1,5 @@
 // Compile in the map for CI testing if we're testing compileability of all the maps
-#if MAP_TEST
+#ifdef MAP_TEST
 #include "mackerel_sh.dmm"
 #include "mackerel_lc.dmm"
 #include "mackerel_lc_wreck.dmm"

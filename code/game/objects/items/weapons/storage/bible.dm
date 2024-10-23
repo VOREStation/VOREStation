@@ -65,7 +65,7 @@ GLOBAL_LIST_INIT(bibleitemstates, list(
 	name = user.mind.my_religion.bible_name
 	icon_state = user.mind.my_religion.bible_icon_state
 	item_state = user.mind.my_religion.bible_item_state
-	to_chat(user, "<span class='notice'>You invoke [user.mind.my_religion.deity] and prepare a copy of [src].</span>")
+	to_chat(user, span_notice("You invoke [user.mind.my_religion.deity] and prepare a copy of [src]."))
 
 /**
   * Checks if we are allowed to interact with a radial menu
@@ -104,7 +104,7 @@ GLOBAL_LIST_INIT(bibleitemstates, list(
 	if(!proximity) return
 	if(user.mind && (user.mind.assigned_role == JOB_CHAPLAIN))
 		if(A.reagents && A.reagents.has_reagent("water")) //blesses all the water in the holder
-			to_chat(user, "<span class='notice'>You bless [A].</span>")
+			to_chat(user, span_notice("You bless [A]."))
 			var/water2holy = A.reagents.get_reagent_amount("water")
 			A.reagents.del_reagent("water")
 			A.reagents.add_reagent("holywater",water2holy)

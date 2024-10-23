@@ -35,15 +35,15 @@
 
 /obj/machinery/power/quantumpad/examine(mob/user)
 	. = ..()
-	. += "<span class='notice'>It is [linked_pad ? "currently" : "not"] linked to another pad.</span>"
+	. += span_notice("It is [linked_pad ? "currently" : "not"] linked to another pad.")
 	if(world.time < last_teleport + teleport_cooldown)
-		. += "<span class='warning'>[src] is recharging power. A timer on the side reads <b>[round((last_teleport + teleport_cooldown - world.time)/10)]</b> seconds.</span>"
+		. += span_warning("[src] is recharging power. A timer on the side reads <b>[round((last_teleport + teleport_cooldown - world.time)/10)]</b> seconds.")
 	if(boosted)
-		. += SPAN_NOTICE("There appears to be a booster haphazardly jammed into the side of [src]. That looks unsafe.")
+		. += span_notice("There appears to be a booster haphazardly jammed into the side of [src]. That looks unsafe.")
 	if(!panel_open)
-		. += "<span class='notice'>The panel is <i>screwed</i> in, obstructing the linking device.</span>"
+		. += span_notice("The panel is <i>screwed</i> in, obstructing the linking device.")
 	else
-		. += "<span class='notice'>The <i>linking</i> device is now able to be <i>scanned</i> with a multitool.</span>"
+		. += span_notice("The <i>linking</i> device is now able to be <i>scanned</i> with a multitool.")
 
 /obj/machinery/power/quantumpad/RefreshParts()
 	var/E = 0
@@ -67,22 +67,22 @@
 	if(istype(I, /obj/item/multitool))
 		//VOREStation Addition Start
 		if(istype(get_area(src), /area/shuttle))
-			to_chat(user, "<span class='warning'>This is too unstable a platform for \the [src] to operate on!</span>")
+			to_chat(user, span_warning("This is too unstable a platform for \the [src] to operate on!"))
 			return
 		//VOREStation Addition End
 		if(panel_open)
 			var/obj/item/multitool/M = I
 			M.connectable = src
-			to_chat(user, "<span class='notice'>You save the data in [I]'s buffer.</span>")
+			to_chat(user, span_notice("You save the data in [I]'s buffer."))
 			return 1
 		else
 			var/obj/item/multitool/M = I
 			if(istype(M.connectable, /obj/machinery/power/quantumpad))
 				linked_pad = M.connectable
-				to_chat(user, "<span class='notice'>You link [src] to the one in [I]'s buffer.</span>")
+				to_chat(user, span_notice("You link [src] to the one in [I]'s buffer."))
 				update_icon()
 				return 1
-	
+
 	if(istype(I, /obj/item/quantum_pad_booster))
 		var/obj/item/quantum_pad_booster/booster = I
 		visible_message("[user] violently jams [booster] into the side of [src]. [src] beeps, quietly.", \
@@ -101,11 +101,11 @@
 
 /obj/machinery/power/quantumpad/update_icon()
 	. = ..()
-	
+
 	cut_overlays()
 	if(panel_open)
 		add_overlay("qpad-panel")
-	
+
 	if(inoperable() || panel_open || !powernet)
 		icon_state = "[initial(icon_state)]-o"
 	else if (!linked_pad)
@@ -121,18 +121,18 @@
 			disconnect_from_network()
 		connect_to_network()
 		if(powernet != original_powernet)
-			update_icon()		
+			update_icon()
 
 /obj/machinery/power/quantumpad/attack_hand(mob/user)
 	. = ..()
 	if(.)
 		return
 	if(panel_open)
-		to_chat(user, "<span class='warning'>The panel must be closed before operating this machine!</span>")
+		to_chat(user, span_warning("The panel must be closed before operating this machine!"))
 		return
 
 	if(istype(get_area(src), /area/shuttle))
-		to_chat(user, "<span class='warning'>This is too unstable a platform for \the [src] to operate on!</span>")
+		to_chat(user, span_warning("This is too unstable a platform for \the [src] to operate on!"))
 		//VOREStation Addition Start
 		if(linked_pad)
 			linked_pad.linked_pad = null
@@ -140,28 +140,28 @@
 		return
 
 	if(!powernet)
-		to_chat(user, "<span class='warning'>[src] is not attached to a powernet!</span>")
+		to_chat(user, span_warning("[src] is not attached to a powernet!"))
 		return
 
 	if(!linked_pad || QDELETED(linked_pad))
 		if(!map_pad_link_id || !initMappedLink())
-			to_chat(user, "<span class='warning'>There is no linked pad!</span>")
+			to_chat(user, span_warning("There is no linked pad!"))
 			return
 
 	if(world.time < last_teleport + teleport_cooldown)
-		to_chat(user, "<span class='warning'>[src] is recharging power. Please wait [round((last_teleport + teleport_cooldown - world.time)/10)] seconds.</span>")
+		to_chat(user, span_warning("[src] is recharging power. Please wait [round((last_teleport + teleport_cooldown - world.time)/10)] seconds."))
 		return
 
 	if(teleporting)
-		to_chat(user, "<span class='warning'>[src] is charging up. Please wait.</span>")
+		to_chat(user, span_warning("[src] is charging up. Please wait."))
 		return
 
 	if(linked_pad.teleporting)
-		to_chat(user, "<span class='warning'>Linked pad is busy. Please wait.</span>")
+		to_chat(user, span_warning("Linked pad is busy. Please wait."))
 		return
 
 	if(linked_pad.inoperable())
-		to_chat(user, "<span class='warning'>Linked pad is not responding to ping.</span>")
+		to_chat(user, span_warning("Linked pad is not responding to ping."))
 		return
 	src.add_fingerprint(user)
 	doteleport(user)
@@ -186,7 +186,7 @@
 		return
 	//VOREStation Addition Start
 	if(istype(get_area(src), /area/shuttle))
-		to_chat(user, "<span class='warning'>This is too unstable a platform for \the [src] to operate on!</span>")
+		to_chat(user, span_warning("This is too unstable a platform for \the [src] to operate on!"))
 		return
 	//VOREStation Addition End
 	playsound(src, 'sound/weapons/flash.ogg', 25, 1)
@@ -199,7 +199,7 @@
 			return
 		// Broken or whatever
 		if(inoperable())
-			to_chat(user, "<span class='warning'>[src] is nonfunctional!</span>")
+			to_chat(user, span_warning("[src] is nonfunctional!"))
 			teleporting = 0
 			return
 		// Linked pad or not, we can always re-scatter people
@@ -210,12 +210,12 @@
 			return
 		// Nothing to teleport to
 		if(!linked_pad || QDELETED(linked_pad) || linked_pad.inoperable())
-			to_chat(user, "<span class='warning'>Linked pad is not responding to ping. Teleport aborted.</span>")
+			to_chat(user, span_warning("Linked pad is not responding to ping. Teleport aborted."))
 			teleporting = 0
 			return
 		// Insufficient power
 		if(!use_teleport_power())
-			to_chat(user, "<span class='warning'>Power is not sufficient to complete a teleport. Teleport aborted.</span>")
+			to_chat(user, span_warning("Power is not sufficient to complete a teleport. Teleport aborted."))
 			teleporting = 0
 			return
 
@@ -229,7 +229,7 @@
 		playsound(src, 'sound/weapons/emitter2.ogg', 25, 1, extrarange = 3, falloff = 5)
 		flick("qpad-beam-in", linked_pad)
 		playsound(linked_pad, 'sound/weapons/emitter2.ogg', 25, 1, extrarange = 3, falloff = 5)
-		
+
 		transport_objects(get_turf(linked_pad))
 
 /obj/machinery/power/quantumpad/proc/initMappedLink()
@@ -245,7 +245,7 @@
 	// Well, I guess you can do it!
 	if(!A?.requires_power)
 		return TRUE
-	
+
 	// Otherwise we'll need a powernet
 	var/power_to_use = 10000 / power_efficiency
 	if(boosted)
@@ -277,7 +277,7 @@
 	// Well, if there's no gateway map we're definitely not on it
 	if(!GLOB.gateway_away)
 		return TRUE
-	
+
 	// Traverse!
 	if(GLOB.gateway_away.calibrated)
 		return TRUE
@@ -285,21 +285,21 @@
 	var/list/gateway_zs = GetConnectedZlevels(GLOB.gateway_away.z)
 	if(z in gateway_zs)
 		return FALSE // It's not calibrated and we're in a connected z
-	
+
 	return TRUE
 
 /obj/machinery/power/quantumpad/proc/gateway_scatter(mob/user)
 	var/obj/effect/landmark/dest = pick(awaydestinations)
 	if(!dest)
-		to_chat(user, "<span class='warning'>Nothing happens... maybe there's no signal to the remote pad?</span>")
+		to_chat(user, span_warning("Nothing happens... maybe there's no signal to the remote pad?"))
 		return
 	// Insufficient power
 	if(!use_teleport_power())
-		to_chat(user, "<span class='warning'>Power is not sufficient to complete a teleport. Teleport aborted.</span>")
+		to_chat(user, span_warning("Power is not sufficient to complete a teleport. Teleport aborted."))
 		return
 
 	sparks()
-	to_chat(user, "<span class='warning'>You feel yourself pulled in different directions, before ending up not far from where you started.</span>")
+	to_chat(user, span_warning("You feel yourself pulled in different directions, before ending up not far from where you started."))
 	flick("qpad-beam-out", src)
 	transport_objects(get_turf(dest))
 

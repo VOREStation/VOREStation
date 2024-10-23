@@ -51,20 +51,20 @@
 
 /obj/item/gun/projectile/smartgun/load_ammo(var/obj/item/A, mob/user)
 	if(closed)
-		to_chat(user, "<span class='warning'>[src] can't be loaded until you un-ready it. (Alt-click)</span>")
+		to_chat(user, span_warning("[src] can't be loaded until you un-ready it. (Alt-click)"))
 		return
 	return ..()
 
 /obj/item/gun/projectile/smartgun/unload_ammo(mob/user, var/allow_dump=0)
 	if(closed)
-		to_chat(user, "<span class='warning'>[src] can't be unloaded until you un-ready it. (Alt-click)</span>")
+		to_chat(user, span_warning("[src] can't be unloaded until you un-ready it. (Alt-click)"))
 		return
 	return ..()
 
 /obj/item/gun/projectile/smartgun/AltClick(mob/user)
 	if(ishuman(user) && !user.incapacitated() && Adjacent(user))
 		if(cycling)
-			to_chat(user, "<span class='warning'>[src] is still cycling!</span>")
+			to_chat(user, span_warning("[src] is still cycling!"))
 			return
 
 		cycling = TRUE
@@ -72,11 +72,11 @@
 		if(closed)
 			icon_state = "[initial(icon_state)]_open"
 			playsound(src, 'sound/weapons/smartgunopen.ogg', 75, 0)
-			to_chat(user, "<span class='notice'>You unready [src] so that it can be reloaded.</span>")
+			to_chat(user, span_notice("You unready [src] so that it can be reloaded."))
 		else
 			icon_state = "[initial(icon_state)]_closed"
 			playsound(src, 'sound/weapons/smartgunclose.ogg', 75, 0)
-			to_chat(user, "<span class='notice'>You ready [src] so that it can be fired.</span>")
+			to_chat(user, span_notice("You ready [src] so that it can be fired."))
 		addtimer(CALLBACK(src, PROC_REF(toggle_real_state)), 2 SECONDS, TIMER_UNIQUE)
 
 /obj/item/gun/projectile/smartgun/proc/toggle_real_state()

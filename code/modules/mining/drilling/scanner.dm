@@ -11,7 +11,7 @@
 	var/exact = FALSE
 
 /obj/item/mining_scanner/attack_self(mob/user as mob)
-	to_chat(user, "<span class='notice'>You begin sweeping \the [src] about, scanning for metal deposits.</span>")
+	to_chat(user, span_notice("You begin sweeping \the [src] about, scanning for metal deposits."))
 	playsound(src, 'sound/items/goggles_charge.ogg', 50, 1, -6)
 
 	if(!do_after(user, scan_time))
@@ -51,7 +51,7 @@
 
 			if(ore_type) metals[ore_type] += T.resources[metal]
 
-	var/message = "[icon2html(src, user.client)] <span class='notice'>The scanner beeps and displays a readout.</span>"
+	var/message = "[icon2html(src, user.client)] " + span_notice("The scanner beeps and displays a readout.")
 
 	for(var/ore_type in metals)
 		var/result = "no sign"
@@ -65,7 +65,7 @@
 		else
 			result = metals[ore_type]
 
-		message += "<br><span class='notice'>- [result] of [ore_type].</span>"
+		message += "<br>" + span_notice("- [result] of [ore_type].")
 
 	to_chat(user, message)
 
@@ -87,4 +87,4 @@
 	var/custom_range = tgui_input_list(usr, "Scanner Range","Pick a range to scan. ", list(0,1,2,3,4,5,6,7))
 	if(custom_range)
 		range = custom_range
-		to_chat(usr, "<span class='notice'>Scanner will now look up to [range] tile(s) away.</span>")
+		to_chat(usr, span_notice("Scanner will now look up to [range] tile(s) away."))

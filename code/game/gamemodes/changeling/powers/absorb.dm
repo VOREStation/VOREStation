@@ -16,43 +16,43 @@
 
 	var/obj/item/grab/G = src.get_active_hand()
 	if(!istype(G))
-		to_chat(src, "<span class='warning'>We must be grabbing a creature in our active hand to absorb them.</span>")
+		to_chat(src, span_warning("We must be grabbing a creature in our active hand to absorb them."))
 		return
 
 	var/mob/living/carbon/human/T = G.affecting
 	if(!istype(T) || T.isSynthetic())
-		to_chat(src, "<span class='warning'>\The [T] is not compatible with our biology.</span>")
+		to_chat(src, span_warning("\The [T] is not compatible with our biology."))
 		return
 
 	if(T.species.flags & NO_SCAN)
-		to_chat(src, "<span class='warning'>We do not know how to parse this creature's DNA!</span>")
+		to_chat(src, span_warning("We do not know how to parse this creature's DNA!"))
 		return
 
 	if(HUSK in T.mutations) //Lings can always absorb other lings, unless someone beat them to it first.
 		if(!T.mind.changeling || T.mind.changeling && T.mind.changeling.geneticpoints < 0)
-			to_chat(src, "<span class='warning'>This creature's DNA is ruined beyond useability!</span>")
+			to_chat(src, span_warning("This creature's DNA is ruined beyond useability!"))
 			return
 
 	if(G.state != GRAB_KILL)
-		to_chat(src, "<span class='warning'>We must have a tighter grip to absorb this creature.</span>")
+		to_chat(src, span_warning("We must have a tighter grip to absorb this creature."))
 		return
 
 	if(changeling.isabsorbing)
-		to_chat(src, "<span class='warning'>We are already absorbing!</span>")
+		to_chat(src, span_warning("We are already absorbing!"))
 		return
 
 	changeling.isabsorbing = 1
 	for(var/stage = 1, stage<=3, stage++)
 		switch(stage)
 			if(1)
-				to_chat(src, "<span class='notice'>This creature is compatible. We must hold still...</span>")
+				to_chat(src, span_notice("This creature is compatible. We must hold still..."))
 			if(2)
-				to_chat(src, "<span class='notice'>We extend a proboscis.</span>")
-				src.visible_message("<span class='warning'>[src] extends a proboscis!</span>")
+				to_chat(src, span_notice("We extend a proboscis."))
+				src.visible_message(span_warning("[src] extends a proboscis!"))
 			if(3)
-				to_chat(src, "<span class='notice'>We stab [T] with the proboscis.</span>")
-				src.visible_message("<span class='danger'>[src] stabs [T] with the proboscis!</span>")
-				to_chat(T, "<span class='danger'>You feel a sharp stabbing pain!</span>")
+				to_chat(src, span_notice("We stab [T] with the proboscis."))
+				src.visible_message(span_danger("[src] stabs [T] with the proboscis!"))
+				to_chat(T, span_danger("You feel a sharp stabbing pain!"))
 				add_attack_logs(src,T,"Absorbed (changeling)")
 				var/obj/item/organ/external/affecting = T.get_organ(src.zone_sel.selecting)
 				if(affecting.take_damage(39,0,1,0,"large organic needle"))
@@ -60,13 +60,13 @@
 
 		feedback_add_details("changeling_powers","A[stage]")
 		if(!do_mob(src, T, 150) || G.state != GRAB_KILL)
-			to_chat(src, "<span class='warning'>Our absorption of [T] has been interrupted!</span>")
+			to_chat(src, span_warning("Our absorption of [T] has been interrupted!"))
 			changeling.isabsorbing = 0
 			return
 
-	to_chat(src, "<span class='notice'>We have absorbed [T]!</span>")
-	src.visible_message("<span class='danger'>[src] sucks the fluids from [T]!</span>")
-	to_chat(T, "<span class='danger'>You have been absorbed by the changeling!</span>")
+	to_chat(src, span_notice("We have absorbed [T]!"))
+	src.visible_message(span_danger("[src] sucks the fluids from [T]!"))
+	to_chat(T, span_danger("You have been absorbed by the changeling!"))
 	adjust_nutrition(T.nutrition)
 	changeling.chem_charges += 10
 	if(changeling.readapts <= 0)
@@ -75,7 +75,7 @@
 	if(changeling.readapts > changeling.max_readapts)
 		changeling.readapts = changeling.max_readapts
 
-	to_chat(src, "<span class='notice'>We can now re-adapt, reverting our evolution so that we may start anew, if needed.</span>")
+	to_chat(src, span_notice("We can now re-adapt, reverting our evolution so that we may start anew, if needed."))
 
 	var/datum/absorbed_dna/newDNA = new(T.real_name, T.dna, T.species.name, T.languages, T.identifying_gender, T.flavor_texts, T.modifiers)
 	absorbDNA(newDNA)
@@ -97,7 +97,7 @@
 				changeling.geneticpoints += 4
 				changeling.max_geneticpoints += 4
 
-		to_chat(src, "<span class='notice'>We absorbed another changeling, and we grow stronger.  Our genomes increase.</span>")
+		to_chat(src, span_notice("We absorbed another changeling, and we grow stronger.  Our genomes increase."))
 
 		T.mind.changeling.chem_charges = 0
 		T.mind.changeling.geneticpoints = -1

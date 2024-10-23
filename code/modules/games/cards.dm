@@ -59,10 +59,10 @@
 			for(var/datum/playingcard/P in H.cards)
 				cards += P
 			qdel(H)
-			to_chat(user,"<span class='notice'>You place your cards on the bottom of \the [src]</span>.")
+			to_chat(user,span_notice("You place your cards on the bottom of \the [src]."))
 			return
 		else
-			to_chat(user,"<span class='warning'>You can't mix cards from other decks!</span>")
+			to_chat(user,span_warning("You can't mix cards from other decks!"))
 			return
 	..()
 
@@ -85,19 +85,19 @@
 	if(usr.stat || !Adjacent(usr)) return
 
 	if(user.hands_are_full()) // Safety check lest the card disappear into oblivion
-		to_chat(user,"<span class='notice'>Your hands are full!</span>")
+		to_chat(user,span_notice("Your hands are full!"))
 		return
 
 	if(!istype(usr,/mob/living/carbon))
 		return
 
 	if(!cards.len)
-		to_chat(user,"<span class='notice'>There are no cards in the deck.</span>")
+		to_chat(user,span_notice("There are no cards in the deck."))
 		return
 
 	var/obj/item/hand/H = user.get_type_in_hands(/obj/item/hand)
 	if(H && !(H.parentdeck == src))
-		to_chat(user,"<span class='warning'>You can't mix cards from different decks!</span>")
+		to_chat(user,span_warning("You can't mix cards from different decks!"))
 		return
 
 	if(!H)
@@ -111,8 +111,8 @@
 	cards -= P
 	H.parentdeck = src
 	H.update_icon()
-	user.visible_message("<b>\The [user]</b> draws a card.")
-	to_chat(user,"<span class='notice'>It's the [P].</span>")
+	user.visible_message(span_infoplain(span_bold("\The [user]") + " draws a card."))
+	to_chat(user,span_notice("It's the [P]."))
 
 /obj/item/deck/verb/deal_card()
 
@@ -124,7 +124,7 @@
 	if(usr.stat || !Adjacent(usr)) return
 
 	if(!cards.len)
-		to_chat(usr,"<span class='notice'>There are no cards in the deck.</span>")
+		to_chat(usr,span_notice("There are no cards in the deck."))
 		return
 
 	var/list/players = list()
@@ -148,7 +148,7 @@
 	if(usr.stat || !Adjacent(usr)) return
 
 	if(!cards.len)
-		to_chat(usr,"<span class='notice'>There are no cards in the deck.</span>")
+		to_chat(usr,span_notice("There are no cards in the deck."))
 		return
 
 	var/list/players = list()
@@ -176,9 +176,9 @@
 		H.update_icon()
 	if(user==target)
 		var/datum/gender/TU = gender_datums[user.get_visible_gender()]
-		user.visible_message("<span class = 'notice'>\The [user] deals [dcard] card(s) to [TU.himself].</span>")
+		user.visible_message(span_notice("\The [user] deals [dcard] card(s) to [TU.himself]."))
 	else
-		user.visible_message("<span class = 'notice'>\The [user] deals [dcard] card(s) to \the [target].</span>")
+		user.visible_message(span_notice("\The [user] deals [dcard] card(s) to \the [target]."))
 	H.throw_at(get_step(target,target.dir),10,1,H)
 
 
@@ -186,7 +186,7 @@
 	if(cards.len == 1 && istype(O, /obj/item/pen))
 		var/datum/playingcard/P = cards[1]
 		if(P.name != "Blank Card")
-			to_chat(user,"<span class = 'notice'>You cannot write on that card.</span>")
+			to_chat(user,span_notice("You cannot write on that card."))
 			return
 		var/cardtext = sanitize(tgui_input_text(user, "What do you wish to write on the card?", "Card Editing", null, MAX_PAPER_MESSAGE_LEN), MAX_PAPER_MESSAGE_LEN)
 		if(!cardtext)
@@ -206,7 +206,7 @@
 			H.update_icon()
 			return
 		else
-			to_chat(user,"<span class = 'notice'>You cannot mix cards from other decks!</span>")
+			to_chat(user,span_notice("You cannot mix cards from other decks!"))
 			return
 
 	..()
@@ -231,7 +231,7 @@
 			newcards += P
 			cards -= P
 		cards = newcards
-		user.visible_message("<span class = 'notice'>\The [user] shuffles [src].</span>")
+		user.visible_message(span_notice("\The [user] shuffles [src]."))
 		playsound(src, 'sound/items/cardshuffle.ogg', 50, 1)
 		cooldown = world.time
 	else
@@ -248,10 +248,10 @@
 				if (H.hand)
 					temp = H.organs_by_name["l_hand"]
 				if(temp && !temp.is_usable())
-					to_chat(user,"<span class='notice'>You try to move your [temp.name], but cannot!</span>")
+					to_chat(user,span_notice("You try to move your [temp.name], but cannot!"))
 					return
 
-				to_chat(user,"<span class='notice'>You pick up [src].</span>")
+				to_chat(user,span_notice("You pick up [src]."))
 				user.put_in_hands(src)
 
 	return
@@ -267,10 +267,10 @@
 				if (H.hand)
 					temp = H.organs_by_name["l_hand"]
 				if(temp && !temp.is_usable())
-					to_chat(user,"<span class='notice'>You try to move your [temp.name], but cannot!</span>")
+					to_chat(user,span_notice("You try to move your [temp.name], but cannot!"))
 					return
 
-				to_chat(user,"<span class='notice'>You pick up [src].</span>")
+				to_chat(user,span_notice("You pick up [src]."))
 				user.put_in_hands(src)
 	return
 
@@ -288,7 +288,7 @@
 
 
 /obj/item/pack/attack_self(var/mob/user as mob)
-	user.visible_message("<span class ='danger'>[user] rips open \the [src]!</span>")
+	user.visible_message(span_danger("[user] rips open \the [src]!"))
 	var/obj/item/hand/H = new()
 
 	H.cards += cards
@@ -342,7 +342,7 @@
 		H.parentdeck = src.parentdeck
 		H.update_icon()
 		src.update_icon()
-		usr.visible_message("<span class = 'notice'>\The [usr] plays \the [discarding].</span>")
+		usr.visible_message(span_notice("\The [usr] plays \the [discarding]."))
 		H.loc = get_turf(usr)
 		H.Move(get_step(usr,usr.dir))
 
@@ -352,7 +352,7 @@
 /obj/item/hand/attack_self(var/mob/user as mob)
 	concealed = !concealed
 	update_icon()
-	user.visible_message("<span class = 'notice'>\The [user] [concealed ? "conceals" : "reveals"] their hand.</span>")
+	user.visible_message(span_notice("\The [user] [concealed ? "conceals" : "reveals"] their hand."))
 
 /obj/item/hand/examine(mob/user)
 	. = ..()
@@ -373,7 +373,7 @@
 	if(user.stat || !Adjacent(user)) return
 
 	if(user.hands_are_full()) // Safety check lest the card disappear into oblivion
-		to_chat(usr,"<span class='danger'>Your hands are full!</span>")
+		to_chat(usr,span_danger("Your hands are full!"))
 		return
 
 	var/pickablecards = list()

@@ -25,10 +25,10 @@
 	var/mob/living/silicon/robot/C = usr
 	if(C.connected_ai)
 		C.connected_ai.aiCamera.injectaialbum(p.copy(1), " (synced from [C.name])")
-		to_chat(C.connected_ai, "<span class='unconscious'>Image uploaded by [C.name]</span>")
-		to_chat(usr, "<span class='unconscious'>Image synced to remote database</span>")	//feedback to the Cyborg player that the picture was taken
+		to_chat(C.connected_ai, span_unconscious("Image uploaded by [C.name]"))
+		to_chat(usr, span_unconscious("Image synced to remote database"))	//feedback to the Cyborg player that the picture was taken
 	else
-		to_chat(usr, "<span class='unconscious'>Image recorded</span>")
+		to_chat(usr, span_unconscious("Image recorded"))
 	// Always save locally
 	injectaialbum(p)
 
@@ -39,7 +39,7 @@
 	var/list/nametemp = list()
 	var/find
 	if(cam.aipictures.len == 0)
-		to_chat(usr, "<span class='userdanger'>No images saved</span>")
+		to_chat(usr, span_userdanger("No images saved"))
 		return
 	for(var/obj/item/photo/t in cam.aipictures)
 		nametemp += t.name
@@ -67,7 +67,7 @@
 		return
 
 	aipictures -= selection
-	to_chat(usr, "<span class='unconscious'>Local image deleted</span>")
+	to_chat(usr, span_unconscious("Local image deleted"))
 
 /obj/item/camera/siliconcam/ai_camera/can_capture_turf(turf/T, mob/user)
 	var/mob/living/silicon/ai = user
@@ -81,15 +81,15 @@
 
 /obj/item/camera/siliconcam/proc/camera_mode_off()
 	src.in_camera_mode = 0
-	to_chat(usr, "<B>Camera Mode deactivated</B>")
+	to_chat(usr, span_infoplain(span_bold("Camera Mode deactivated")))
 
 /obj/item/camera/siliconcam/proc/camera_mode_on()
 	src.in_camera_mode = 1
-	to_chat(usr, "<B>Camera Mode activated</B>")
+	to_chat(usr, span_infoplain(span_bold("Camera Mode activated")))
 
 /obj/item/camera/siliconcam/ai_camera/printpicture(mob/user, obj/item/photo/p)
 	injectaialbum(p)
-	to_chat(usr, "<span class='unconscious'>Image recorded</span>")
+	to_chat(usr, span_unconscious("Image recorded"))
 
 /obj/item/camera/siliconcam/robot_camera/printpicture(mob/user, obj/item/photo/p)
 	injectmasteralbum(p)
@@ -119,7 +119,7 @@
 		aiCamera.deletepicture()
 
 /mob/living/silicon/robot/proc/take_image()
-	set category ="Robot Commands"
+	set category ="Abilities.Silicon"
 	set name = "Take Image"
 	set desc = "Takes an image"
 
@@ -127,7 +127,7 @@
 		aiCamera.toggle_camera_mode()
 
 /mob/living/silicon/robot/proc/view_images()
-	set category ="Robot Commands"
+	set category ="Abilities.Silicon"
 	set name = "View Images"
 	set desc = "View images"
 
@@ -135,7 +135,7 @@
 		aiCamera.viewpictures()
 
 /mob/living/silicon/robot/proc/delete_images()
-	set category = "Robot Commands"
+	set category = "Abilities.Silicon"
 	set name = "Delete Image"
 	set desc = "Delete a local image"
 

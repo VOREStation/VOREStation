@@ -16,9 +16,9 @@
 		if("run")
 			if(drowsyness > 0)
 				. += 6
-			. += config.run_speed
+			. += CONFIG_GET(number/run_speed)
 		if("walk")
-			. += config.walk_speed
+			. += CONFIG_GET(number/walk_speed)
 
 /client/proc/client_dir(input, direction=-1)
 	return turn(input, direction*dir2angle(dir))
@@ -208,7 +208,7 @@
 			return result
 
 	// Can't control ourselves when drifting
-	if((isspace(loc) || my_mob.lastarea?.has_gravity == 0) && isturf(loc))
+	if((isspace(loc) || my_mob.lastarea?.get_gravity() == 0) && isturf(loc))
 		if(!my_mob.Process_Spacemove(0))
 			return 0
 
@@ -353,7 +353,7 @@
 			if(!T)
 				return
 			if(mob.check_holy(T))
-				to_chat(mob, "<span class='warning'>You cannot get past holy grounds while you are in this plane of existence!</span>")
+				to_chat(mob, span_warning("You cannot get past holy grounds while you are in this plane of existence!"))
 				return
 			else
 				mob.forceMove(get_step(mob, direct))
@@ -428,7 +428,7 @@
 
 	//Check to see if we slipped
 	if(prob(Process_Spaceslipping(5)) && !buckled)
-		to_chat(src, "<span class='notice'><B>You slipped!</B></span>")
+		to_chat(src, span_boldnotice("You slipped!"))
 		inertia_dir = last_move
 		step(src, src.inertia_dir) // Not using Move for smooth glide here because this is a 'slip' so should be sudden.
 		return 0
@@ -447,7 +447,7 @@
 
 		if(istype(turf,/turf/simulated/floor)) // Floors don't count if they don't have gravity
 			var/area/A = turf.loc
-			if(istype(A) && A.has_gravity == 0)
+			if(istype(A) && A.get_gravity() == 0)
 				if(shoegrip == null)
 					shoegrip = Check_Shoegrip() //Shoegrip is only ever checked when a zero-gravity floor is encountered to reduce load
 				if(!shoegrip)
@@ -486,8 +486,8 @@
 	prob_slip = round(prob_slip)
 	return(prob_slip)
 
-/mob/proc/mob_has_gravity(turf/T)
-	return has_gravity(src, T)
+/mob/proc/mob_get_gravity(turf/T)
+	return get_gravity(src, T)
 
 /mob/proc/update_gravity()
 	return

@@ -16,14 +16,14 @@
 
 /obj/item/teleportation_scroll/attack_self(mob/user as mob)
 	if((user.mind && !wizards.is_antagonist(user.mind)))
-		to_chat(usr, "<span class='warning'>You stare at the scroll but cannot make sense of the markings!</span>")
+		to_chat(usr, span_warning("You stare at the scroll but cannot make sense of the markings!"))
 		return
 
 	user.set_machine(src)
-	var/dat = "<B>Teleportation Scroll:</B><BR>"
+	var/dat = span_bold("Teleportation Scroll:") + "<BR>"
 	dat += "Number of uses: [src.uses]<BR>"
 	dat += "<HR>"
-	dat += "<B>Four uses use them wisely:</B><BR>"
+	dat += span_bold("Four uses use them wisely:") + "<BR>"
 	dat += "<A href='byond://?src=\ref[src];spell_teleport=1'>Teleport</A><BR>"
 	dat += "Kind regards,<br>Wizards Federation<br><br>P.S. Don't forget to bring your gear, you'll need it to cast most spells.<HR>"
 	user << browse(dat, "window=scroll")

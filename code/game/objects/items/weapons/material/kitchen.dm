@@ -46,16 +46,16 @@
 
 /obj/item/material/kitchen/utensil/proc/load_food(var/mob/user, var/obj/item/reagent_containers/food/snacks/loading)
 	if (reagents.total_volume > 0)
-		to_chat(user, SPAN_DANGER("There is already something on \the [src]."))
+		to_chat(user, span_danger("There is already something on \the [src]."))
 		return
 	if (!loading?.reagents?.total_volume)
-		to_chat(user, SPAN_NOTICE("Nothing to scoop up in \the [loading]!"))
+		to_chat(user, span_notice("Nothing to scoop up in \the [loading]!"))
 
 
 	loaded = "\the [loading]"
 	user.visible_message( \
-		"<b>\The [user]</b> scoops up some of [loaded] with \the [src]!",
-		SPAN_NOTICE("You scoop up some of [loaded] with \the [src]!")
+		span_infoplain(span_bold("\The [user]") + " scoops up some of [loaded] with \the [src]!"),
+		span_notice("You scoop up some of [loaded] with \the [src]!")
 	)
 	loading.bitecount++
 	loading.reagents.trans_to_obj(src, min(loading.reagents.total_volume, scoop_volume))
@@ -108,18 +108,18 @@
 		if(M == user)
 			if(!M.can_eat(loaded))
 				return
-			M.visible_message("<b>\The [user]</b> eats some of [loaded] with \the [src].")
+			M.visible_message(span_bold("\The [user]") + "eats some of [loaded] with \the [src].")
 		else
-			user.visible_message(SPAN_WARNING("\The [user] begins to feed \the [M]!"))
+			user.visible_message(span_warning("\The [user] begins to feed \the [M]!"))
 			if(!(M.can_force_feed(user, loaded) && do_mob(user, M, 5 SECONDS)))
 				return
-			M.visible_message("<b>\The [user]</b> feeds some of [loaded] to \the [M] with \the [src].")
+			M.visible_message(span_bold("\The [user]") + "feeds some of [loaded] to \the [M] with \the [src].")
 		playsound(src,'sound/items/eatfood.ogg', rand(10,40), 1)
 		loaded = null
 		update_icon()
 		return
 	else
-		to_chat(user, SPAN_WARNING("You don't have anything on \the [src]."))	//if we have help intent and no food scooped up DON'T STAB OURSELVES WITH THE FORK
+		to_chat(user, span_warning("You don't have anything on \the [src]."))	//if we have help intent and no food scooped up DON'T STAB OURSELVES WITH THE FORK
 		return
 
 /obj/item/material/kitchen/utensil/on_rag_wipe()
@@ -133,7 +133,7 @@
 	if(food_inserted_micros)
 		food_inserted_micros -= M
 	M.forceMove(get_turf(src))
-	to_chat(M, "<span class='warning'>You climb off of \the [src].</span>")
+	to_chat(M, span_warning("You climb off of \the [src]."))
 
 /obj/item/material/kitchen/utensil/fork
 	name = "fork"
@@ -184,7 +184,7 @@
 /* From the time of Clowns. Commented out for posterity, and sanity.
 /obj/item/material/knife/attack(target as mob, mob/living/user as mob)
 	if ((CLUMSY in user.mutations) && prob(50))
-		to_chat(user, "<span class='warning'>You accidentally cut yourself with \the [src].</span>")
+		to_chat(user, span_warning("You accidentally cut yourself with \the [src]."))
 		user.take_organ_damage(20)
 		return
 	return ..()
@@ -210,7 +210,7 @@
 
 /obj/item/material/kitchen/rollingpin/attack(mob/living/M as mob, mob/living/user as mob)
 	if ((CLUMSY in user.mutations) && prob(50))
-		to_chat(user, "<span class='warning'>\The [src] slips out of your hand and hits your head.</span>")
+		to_chat(user, span_warning("\The [src] slips out of your hand and hits your head."))
 		user.take_organ_damage(10)
 		user.Paralyse(2)
 		return

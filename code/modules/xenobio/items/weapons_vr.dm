@@ -17,7 +17,7 @@
 /obj/item/xenobio/attack_hand(mob/user as mob)
 	if(user.get_inactive_hand() == src && loaded_item)
 		user.put_in_hands(loaded_item)
-		user.visible_message("<span class='notice'>[user] removes [loaded_item] from [src].</span>", "<span class='notice'>You remove [loaded_item] from [src].</span>")
+		user.visible_message(span_notice("[user] removes [loaded_item] from [src]."), span_notice("You remove [loaded_item] from [src]."))
 		loaded_item = null
 		playsound(src, 'sound/weapons/empty.ogg', 50, 1)
 	else
@@ -26,26 +26,26 @@
 /obj/item/xenobio/attackby(obj/item/I as obj, mob/user as mob)
 	if(istype(I, loadable_item))
 		if(loaded_item)
-			to_chat(user, "<span class = 'warning'>[I] doesn't seem to fit into [src].</span>")
+			to_chat(user, span_warning("[I] doesn't seem to fit into [src]."))
 			return
 		//var/obj/item/reagent_containers/glass/beaker/B = I
 		user.drop_item()
 		I.loc = src
 		loaded_item = I
-		user.visible_message("<span class='notice'>[user] inserts [I] into [src].</span>", "<span class='notice'>You slot [I] into [src].</span>")
+		user.visible_message(span_notice("[user] inserts [I] into [src]."), span_notice("You slot [I] into [src]."))
 		return 1
 	..()
 
 /obj/item/xenobio/attack_self(mob/living/user as mob)
 	if(loaded_item)
 		user.put_in_hands(loaded_item)
-		user.visible_message("<span class='notice'>[user] removes [loaded_item] from [src].</span>", "<span class='notice'>You remove [loaded_item] from [src].</span>")
+		user.visible_message(span_notice("[user] removes [loaded_item] from [src]."), span_notice("You remove [loaded_item] from [src]."))
 		loaded_item = null
 		playsound(src, 'sound/weapons/empty.ogg', 50, 1)
 
 /obj/item/xenobio/afterattack(atom/A, mob/user as mob)
 	if(!loaded_item)
-		to_chat(user,"<span class = 'warning'>\The [src] shot fizzles, it appears you need to load something!</span>")
+		to_chat(user,span_warning("\The [src] shot fizzles, it appears you need to load something!"))
 		//playsound(src, 'sound/weapons/wave.ogg', 60, 1)
 		playsound(src, 'sound/weapons/empty.ogg', 50, 1)
 		return
@@ -54,7 +54,7 @@
 
 	playsound(src, 'sound/weapons/wave.ogg', 60, 1)
 
-	user.visible_message("<span class='warning'>[user] fires \the [src]!</span>","<span class='warning'>You fire \the [src]!</span>")
+	user.visible_message(span_warning("[user] fires \the [src]!"),span_warning("You fire \the [src]!"))
 
 	var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
 	s.set_up(4, 1, A)
@@ -79,11 +79,11 @@
 
 	var/turf/T = get_turf(A)
 	if(!T || (T.check_density(ignore_mobs = TRUE)))
-		to_chat(user,"<span class = 'warning'>Your rehydrator flashes an error as it attempts to process your target.</span>")
+		to_chat(user,span_warning("Your rehydrator flashes an error as it attempts to process your target."))
 		playsound(src, 'sound/weapons/empty.ogg', 50, 1)
 		return
 	if(istype(A, /mob/living))
-		to_chat(user,"<span class = 'warning'>The rehydrator's saftey systems prevent firing into living creatures!</span>")
+		to_chat(user,span_warning("The rehydrator's saftey systems prevent firing into living creatures!"))
 		playsound(src, 'sound/weapons/empty.ogg', 50, 1)
 		return
 	if(loaded_item)
@@ -151,7 +151,7 @@
 	if(processing)
 		return
 	if(!can_insert(M))
-		to_chat(user, "<span class='warning'>\The [src] cannot process \the [M] at this time.</span>")
+		to_chat(user, span_warning("\The [src] cannot process \the [M] at this time."))
 		playsound(src, 'sound/machines/buzz-sigh.ogg', 50, 1)
 		return
 

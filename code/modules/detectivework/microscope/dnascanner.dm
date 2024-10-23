@@ -21,11 +21,11 @@
 
 /obj/machinery/dnaforensics/attackby(obj/item/W, mob/user)
 	if(bloodsamp)
-		to_chat(user, "<span class='warning'>There is a sample in the machine.</span>")
+		to_chat(user, span_warning("There is a sample in the machine."))
 		return
 
 	if(scanning)
-		to_chat(user, "<span class='warning'>[src] is busy scanning right now.</span>")
+		to_chat(user, span_warning("[src] is busy scanning right now."))
 		return
 
 	if(default_deconstruction_screwdriver(user, W))
@@ -38,10 +38,10 @@
 		user.unEquip(W)
 		bloodsamp = swab
 		swab.forceMove(src)
-		to_chat(user, "<span class='notice'>You insert [W] into [src].</span>")
+		to_chat(user, span_notice("You insert [W] into [src]."))
 		update_icon()
 	else
-		to_chat(user, "<span class='warning'>\The [src] only accepts used swabs.</span>")
+		to_chat(user, span_warning("\The [src] only accepts used swabs."))
 		return
 
 /obj/machinery/dnaforensics/tgui_interact(mob/user, datum/tgui/ui)
@@ -77,10 +77,10 @@
 				if(bloodsamp)
 					scanner_progress = 0
 					scanning = TRUE
-					to_chat(usr, "<span class='notice'>Scan initiated.</span>")
+					to_chat(usr, span_notice("Scan initiated."))
 					update_icon()
 				else
-					to_chat(usr, "<span class='warning'>Insert an item to scan.</span>")
+					to_chat(usr, span_warning("Insert an item to scan."))
 			. = TRUE
 
 		if("ejectItem")
@@ -105,7 +105,7 @@
 	last_process_worldtime = world.time
 
 /obj/machinery/dnaforensics/proc/complete_scan()
-	visible_message("<span class='notice'>[icon2html(src,viewers(src))] makes an insistent chime.</span>", 2)
+	visible_message(span_notice("[icon2html(src,viewers(src))] makes an insistent chime."), 2)
 	update_icon()
 	if(bloodsamp)
 		var/obj/item/paper/P = new(src)
@@ -121,8 +121,8 @@
 				data += "<font color='blue'>Blood type: [bloodsamp.dna[blood]]<br>\nDNA: [blood]<br><br></font>"
 		else
 			data += "No DNA found.<br>"
-		P.info = "<b>[src] analysis report #[report_num]</b><br>"
-		P.info += "<b>Scanned item:</b><br>[bloodsamp.name]<br>[bloodsamp.desc]<br><br>" + data
+		P.info = span_bold("[src] analysis report #[report_num]") + "<br>"
+		P.info += span_bold("Scanned item:") + "<br>[bloodsamp.name]<br>[bloodsamp.desc]<br><br>" + data
 		P.forceMove(loc)
 		P.update_icon()
 		scanning = FALSE

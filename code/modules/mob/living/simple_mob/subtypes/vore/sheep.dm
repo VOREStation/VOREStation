@@ -48,8 +48,8 @@
 	. = ..()
 	if(!riding_datum)
 		riding_datum = new /datum/riding/simple_mob(src)
-	verbs |= /mob/living/simple_mob/proc/animal_mount
-	verbs |= /mob/living/proc/toggle_rider_reins
+	add_verb(src, /mob/living/simple_mob/proc/animal_mount)
+	add_verb(src, /mob/living/proc/toggle_rider_reins)
 	movement_cooldown = -1
 
 /mob/living/simple_mob/vore/sheep/MouseDrop_T(mob/living/M, mob/living/user)
@@ -93,7 +93,7 @@
 		if(!harvestable_wool)
 			return ..()
 		if(do_after(user, 3 SECONDS, exclusive = TASK_USER_EXCLUSIVE, target = src))
-			user.visible_message("<span class='notice'>\The [user] shears \the [src] with \the [O].</span>","<span class='notice'>You shear \the [src] with \the [O].</span>")
+			user.visible_message(span_notice("\The [user] shears \the [src] with \the [O]."),span_notice("You shear \the [src] with \the [O]."))
 			var/obj/item/stack/material/fur/wool/W = new(get_turf(user))
 			harvestable_wool = FALSE
 			update_icon()

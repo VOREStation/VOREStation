@@ -35,12 +35,12 @@
 	//must place on a wall and user must not be inside a closet/mecha/whatever
 	var/turf/W = A
 	if (!iswall(W) || !isturf(user.loc))
-		to_chat(user, "<span class='warning'>You can't place this here!</span>")
+		to_chat(user, span_warning("You can't place this here!"))
 		return
 
 	var/placement_dir = get_dir(user, W)
 	if (!(placement_dir in cardinal))
-		to_chat(user, "<span class='warning'>You must stand directly in front of the wall you wish to place that on.</span>")
+		to_chat(user, span_warning("You must stand directly in front of the wall you wish to place that on."))
 		return
 
 	//just check if there is a poster on or adjacent to the wall
@@ -56,10 +56,10 @@
 			break
 
 	if (stuff_on_wall)
-		to_chat(user, "<span class='notice'>There is already a poster there!</span>")
+		to_chat(user, span_notice("There is already a poster there!"))
 		return
 
-	to_chat(user, "<span class='notice'>You start placing the poster on the wall...</span>") //Looks like it's uncluttered enough. Place the poster.
+	to_chat(user, span_notice("You start placing the poster on the wall...")) //Looks like it's uncluttered enough. Place the poster.
 
 	var/obj/structure/sign/poster/P = new poster_type(user.loc, placement_dir=get_dir(user, W), serial=serial_number, itemtype = src.type)
 
@@ -72,7 +72,7 @@
 		if(!P) return
 
 		if(iswall(W) && user && P.loc == user.loc) //Let's check if everything is still there
-			to_chat(user, "<span class='notice'>You place the poster!</span>")
+			to_chat(user, span_notice("You place the poster!"))
 		else
 			P.roll_and_drop(P.loc)
 
@@ -183,10 +183,10 @@
 	if(W.has_tool_quality(TOOL_WIRECUTTER))
 		playsound(src, W.usesound, 100, 1)
 		if(ruined)
-			to_chat(user, "<span class='notice'>You remove the remnants of the poster.</span>")
+			to_chat(user, span_notice("You remove the remnants of the poster."))
 			qdel(src)
 		else
-			to_chat(user, "<span class='notice'>You carefully remove the poster from the wall.</span>")
+			to_chat(user, span_notice("You carefully remove the poster from the wall."))
 			roll_and_drop(user.loc)
 		return
 
@@ -200,7 +200,7 @@
 		if(ruined || !user.Adjacent(src))
 			return
 
-		visible_message("<span class='warning'>[user] rips [src] in a single, decisive motion!</span>" )
+		visible_message(span_warning("[user] rips [src] in a single, decisive motion!") )
 		playsound(src, 'sound/items/poster_ripped.ogg', 100, 1)
 		ruined = 1
 		icon_state = "poster_ripped"

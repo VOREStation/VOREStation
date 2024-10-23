@@ -1,5 +1,6 @@
-import { useBackend } from '../../backend';
-import { Box, Collapsible, LabeledList } from '../../components';
+import { useBackend } from 'tgui/backend';
+import { Box, Collapsible, LabeledList } from 'tgui-core/components';
+
 import { Data } from './types';
 
 export const MedicalRecordsMedbots = (props) => {

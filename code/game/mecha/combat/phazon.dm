@@ -116,18 +116,18 @@
 		phasing = FALSE
 		SSradiation.radiate(get_turf(src), 30)
 		log_append_to_last("WARNING: BLUESPACE DRIVE INSTABILITY DETECTED. DISABLING DRIVE.",1)
-		visible_message("<span class='alien'>The [src.name] appears to flicker, before its silhouette stabilizes!</span>")
+		visible_message(span_alien("The [src.name] appears to flicker, before its silhouette stabilizes!"))
 	return
 
 /obj/mecha/combat/phazon/janus/dynbulletdamage(var/obj/item/projectile/Proj)
 	if((Proj.damage && !Proj.nodamage) && !istype(Proj, /obj/item/projectile/beam) && prob(max(1, 33 - round(Proj.damage / 4))))
-		src.occupant_message("<span class='alien'>The armor absorbs the incoming projectile's force, negating it!</span>")
-		src.visible_message("<span class='alien'>The [src.name] absorbs the incoming projectile's force, negating it!</span>")
+		src.occupant_message(span_alien("The armor absorbs the incoming projectile's force, negating it!"))
+		src.visible_message(span_alien("The [src.name] absorbs the incoming projectile's force, negating it!"))
 		src.log_append_to_last("Armor negated.")
 		return
 	else if((Proj.damage && !Proj.nodamage) && istype(Proj, /obj/item/projectile/beam) && prob(max(1, (50 - round((Proj.damage / 2) * inherent_damage_absorption["laser"])) * (1 - (Proj.armor_penetration / 100)))))	// Base 50% chance to deflect a beam,lowered by half the beam's damage scaled to laser absorption, then multiplied by the remaining percent of non-penetrated armor, with a minimum chance of 1%.
-		src.occupant_message("<span class='alien'>The armor reflects the incoming beam, negating it!</span>")
-		src.visible_message("<span class='alien'>The [src.name] reflects the incoming beam, negating it!</span>")
+		src.occupant_message(span_alien("The armor reflects the incoming beam, negating it!"))
+		src.visible_message(span_alien("The [src.name] reflects the incoming beam, negating it!"))
 		src.log_append_to_last("Armor reflected.")
 		return
 
@@ -135,8 +135,8 @@
 
 /obj/mecha/combat/phazon/janus/dynattackby(obj/item/W as obj, mob/user as mob)
 	if(prob(max(1, (50 - round((W.force / 2) * inherent_damage_absorption["brute"])) * (1 - (W.armor_penetration / 100)))))
-		src.occupant_message("<span class='alien'>The armor absorbs the incoming attack's force, negating it!</span>")
-		src.visible_message("<span class='alien'>The [src.name] absorbs the incoming attack's force, negating it!</span>")
+		src.occupant_message(span_alien("The armor absorbs the incoming attack's force, negating it!"))
+		src.visible_message(span_alien("The [src.name] absorbs the incoming attack's force, negating it!"))
 		src.log_append_to_last("Armor absorbed.")
 		return
 

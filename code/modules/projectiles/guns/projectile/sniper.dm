@@ -9,7 +9,7 @@
 	w_class = ITEMSIZE_HUGE // So it can't fit in a backpack.
 	force = 10
 	slot_flags = SLOT_BACK
-	action_button_name = "Use Scope"
+	actions_types = list(/datum/action/item_action/use_scope)
 	origin_tech = list(TECH_COMBAT = 8, TECH_MATERIAL = 2, TECH_ILLEGAL = 8)
 	caliber = "14.5mm"
 	recoil = 5 //extra kickback
@@ -35,21 +35,21 @@
 	bolt_open = !bolt_open
 	if(bolt_open)
 		if(chambered)
-			to_chat(user, "<span class='notice'>You work the bolt open, ejecting [chambered]!</span>")
+			to_chat(user, span_notice("You work the bolt open, ejecting [chambered]!"))
 			chambered.loc = get_turf(src)
 			loaded -= chambered
 			chambered = null
 		else
-			to_chat(user, "<span class='notice'>You work the bolt open.</span>")
+			to_chat(user, span_notice("You work the bolt open."))
 	else
-		to_chat(user, "<span class='notice'>You work the bolt closed.</span>")
+		to_chat(user, span_notice("You work the bolt closed."))
 		bolt_open = 0
 	add_fingerprint(user)
 	update_icon()
 
 /obj/item/gun/projectile/heavysniper/special_check(mob/user)
 	if(bolt_open)
-		to_chat(user, "<span class='warning'>You can't fire [src] while the bolt is open!</span>")
+		to_chat(user, span_warning("You can't fire [src] while the bolt is open!"))
 		return 0
 	return ..()
 
@@ -63,7 +63,7 @@
 		return
 	..()
 
-/obj/item/gun/projectile/heavysniper/ui_action_click()
+/obj/item/gun/projectile/heavysniper/ui_action_click(mob/user, actiontype)
 	scope()
 
 /obj/item/gun/projectile/heavysniper/verb/scope()
@@ -84,7 +84,7 @@
 	w_class = ITEMSIZE_HUGE // So it can't fit in a backpack.
 	force = 10
 	slot_flags = SLOT_BACK // Needs a sprite.
-	action_button_name = "Use Scope"
+	actions_types = list(/datum/action/item_action/use_scope)
 	origin_tech = list(TECH_COMBAT = 8, TECH_MATERIAL = 2, TECH_ILLEGAL = 8)
 	caliber = "7.62mm"
 	load_method = MAGAZINE
@@ -102,7 +102,7 @@
 	else
 		icon_state = "SVD-empty"
 
-/obj/item/gun/projectile/SVD/ui_action_click()
+/obj/item/gun/projectile/SVD/ui_action_click(mob/user, actiontype)
 	scope()
 
 /obj/item/gun/projectile/SVD/verb/scope()

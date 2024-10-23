@@ -88,7 +88,7 @@
 /obj/structure/ghost_pod/ghost_activated/attack_ghost(var/mob/observer/dead/user)
 	//VOREStation Add Start
 	if(jobban_isbanned(user, JOB_GHOSTROLES))
-		to_chat(user, "<span class='warning'>You cannot inhabit this creature because you are banned from playing ghost roles.</span>")
+		to_chat(user, span_warning("You cannot inhabit this creature because you are banned from playing ghost roles."))
 		return
 
 	//No OOC notes
@@ -97,7 +97,7 @@
 
 	//VOREStation Add End
 	if(used)
-		to_chat(user, "<span class='warning'>Another spirit appears to have gotten to \the [src] before you.  Sorry.</span>")
+		to_chat(user, span_warning("Another spirit appears to have gotten to \the [src] before you.  Sorry."))
 		return
 
 	var/choice = tgui_alert(user, "Are you certain you wish to activate this pod?", "Control Pod", list("Yes", "No"))
@@ -106,7 +106,7 @@
 		return
 
 	else if(used)
-		to_chat(user, "<span class='warning'>Another spirit appears to have gotten to \the [src] before you.  Sorry.</span>")
+		to_chat(user, span_warning("Another spirit appears to have gotten to \the [src] before you.  Sorry."))
 		return
 
 	create_occupant(user)

@@ -49,7 +49,7 @@
 	ghost_query_type = /datum/ghost_query/apprentice
 
 /obj/item/antag_spawner/technomancer_apprentice/attack_self(mob/user)
-	to_chat(user, "<span class='notice'>Teleporter attempting to lock on to your apprentice.</span>")
+	to_chat(user, span_notice("Teleporter attempting to lock on to your apprentice."))
 	request_player()
 
 /obj/item/antag_spawner/technomancer_apprentice/request_player()
@@ -60,7 +60,7 @@
 	..()
 	if(!used)
 		icon_state = "oldshieldoff"
-		visible_message("<span class='warning'>The teleporter failed to find the apprentice.  Perhaps another attempt could be made later?</span>")
+		visible_message(span_warning("The teleporter failed to find the apprentice.  Perhaps another attempt could be made later?"))
 
 /obj/item/antag_spawner/technomancer_apprentice/spawn_antag(client/C, turf/T)
 	sparks.start()
@@ -68,10 +68,10 @@
 	C.prefs.copy_to(H)
 	H.key = C.key
 
-	to_chat(H, "<b>You are the Technomancer's apprentice!  Your goal is to assist them in their mission at the [station_name()].</b>")
-	to_chat(H, "<b>Your service has not gone unrewarded, however. Studying under them, you have learned how to use a Manipulation Core \
-	of your own.  You also have a catalog, to purchase your own functions and equipment as you see fit.</b>")
-	to_chat(H, "<b>It would be wise to speak to your master, and learn what their plans are for today.</b>")
+	to_chat(H, span_infoplain(span_bold("You are the Technomancer's apprentice! Your goal is to assist them in their mission at the [station_name()].")))
+	to_chat(H, span_infoplain(span_bold("Your service has not gone unrewarded, however. Studying under them, you have learned how to use a Manipulation Core \
+	of your own. You also have a catalog, to purchase your own functions and equipment as you see fit.")))
+	to_chat(H, span_infoplain(span_bold("It would be wise to speak to your master, and learn what their plans are for today.")))
 
 	spawn(1)
 		technomancers.add_antagonist(H.mind, 0, 1, 0, 0, 0)
@@ -95,7 +95,7 @@
 	var/drone_type = null
 
 /obj/item/antag_spawner/syndicate_drone/attack_self(mob/user)
-	to_chat(user, "<span class='notice'>Teleporter attempting to lock on to an available unit.</span>")
+	to_chat(user, span_notice("Teleporter attempting to lock on to an available unit."))
 	request_player()
 
 /obj/item/antag_spawner/syndicate_drone/request_player()
@@ -106,16 +106,16 @@
 	..()
 	if(!used)
 		icon_state = "oldshieldoff"
-		visible_message("<span class='warning'>The teleporter failed to find any available.  Perhaps another attempt could be made later?</span>")
+		visible_message(span_warning("The teleporter failed to find any available.  Perhaps another attempt could be made later?"))
 
 /obj/item/antag_spawner/syndicate_drone/spawn_antag(client/C, turf/T)
 	sparks.start()
 	var/mob/living/silicon/robot/R = new drone_type(T)
 
 	// Put this text here before ckey change so that their laws are shown below it, since borg login() shows it.
-	to_chat(C, "<span class='notice'>You are a <b>Mercenary Drone</b>, activated to serve your team.</span>")
-	to_chat(C, "<span class='notice'><b>Be sure to examine your currently loaded lawset closely.</b>  It would be wise \
-	to speak with your team, and learn what their plan is for today.</span>")
+	to_chat(C, span_notice("You are a " + span_bold("Mercenary Drone") + ", activated to serve your team."))
+	to_chat(C, span_notice(span_bold("Be sure to examine your currently loaded lawset closely.") + " It would be wise \
+	to speak with your team, and learn what their plan is for today."))
 
 	R.key = C.key
 //	R.Namepick() // Apparnetly making someone a merc lets them pick a name, so this isn't needed.

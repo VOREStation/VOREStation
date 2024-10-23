@@ -241,10 +241,10 @@
 		if(!has_AI())//No autobarf on player control.
 			return
 		if(istype(O, /obj/item/reagent_containers/food/snacks/donut) && istype(src, /mob/living/simple_mob/vore/otie/security))
-			to_chat(user,"<span class='notice'>The guard pup accepts your offer for their catch.</span>")
+			to_chat(user,span_notice("The guard pup accepts your offer for their catch."))
 			release_vore_contents()
 		else if(prob(2)) //Small chance to get prey out from non-sec oties.
-			to_chat(user,"<span class='notice'>The pup accepts your offer for their catch.</span>")
+			to_chat(user,span_notice("The pup accepts your offer for their catch."))
 			release_vore_contents()
 		return
 	. = ..()
@@ -276,7 +276,7 @@
 	switch(M.a_intent)
 		if(I_HELP)
 			if(health > 0)
-				M.visible_message("<span class='notice'>[M] [response_help] \the [src].</span>")
+				M.visible_message(span_notice("[M] [response_help] \the [src]."))
 				if(has_AI())
 					var/datum/ai_holder/AI = ai_holder
 					AI.set_stance(STANCE_IDLE)
@@ -313,8 +313,8 @@
 	. = ..()
 	if(!riding_datum)
 		riding_datum = new /datum/riding/simple_mob(src)
-	verbs |= /mob/living/simple_mob/proc/animal_mount
-	verbs |= /mob/living/proc/toggle_rider_reins
+	add_verb(src, /mob/living/simple_mob/proc/animal_mount)
+	add_verb(src, /mob/living/proc/toggle_rider_reins)
 	movement_cooldown = 0
 
 /mob/living/simple_mob/vore/otie/MouseDrop_T(mob/living/M, mob/living/user)

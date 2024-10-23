@@ -33,14 +33,14 @@
 	. = ..()
 	if(victim)
 		if(stat & NOPOWER)
-			. += "<span class='notice'>It's unpowered.</span>"
+			. += span_notice("It's unpowered.")
 			return
-		. += "<span class='notice'>Vitals of [victim]:</span>"
-		. += "<span class='notice'>Pulse: [victim.get_pulse(GETPULSE_TOOL)]</span>"
+		. += span_notice("Vitals of [victim]:")
+		. += span_notice("Pulse: [victim.get_pulse(GETPULSE_TOOL)]")
 
 		var/brain_activity = "none"
 		var/breathing = "none"
-		
+
 		if(victim.stat != DEAD && !(victim.status_flags & FAKEDEATH))
 			var/obj/item/organ/internal/brain/brain = victim.internal_organs_by_name[O_BRAIN]
 			if(istype(brain))
@@ -50,7 +50,7 @@
 					brain_activity = "weak"
 				else
 					brain_activity = "normal"
-			
+
 			var/obj/item/organ/internal/lungs/lungs = victim.internal_organs_by_name[O_LUNGS]
 			if(istype(lungs))
 				var/oxyloss = victim.getOxyLoss()
@@ -60,9 +60,9 @@
 					breathing = "shallow"
 				else
 					breathing = "normal"
-		
-		. += "<span class='notice'>Brain activity: [brain_activity]</span>"
-		. += "<span class='notice'>Breathing: [breathing]</span>"
+
+		. += span_notice("Brain activity: [brain_activity]")
+		. += span_notice("Breathing: [breathing]")
 
 /obj/machinery/vitals_monitor/process()
 	if(QDELETED(victim))
@@ -87,7 +87,7 @@
 	else if(ishuman(over_object))
 		victim = over_object
 		update_use_power(USE_POWER_ACTIVE)
-		visible_message("<span class='notice'>\The [src] is now showing data for [victim].</span>")
+		visible_message(span_notice("\The [src] is now showing data for [victim]."))
 
 /obj/machinery/vitals_monitor/update_icon()
 	cut_overlays()
@@ -118,7 +118,7 @@
 		else if(victim.stat == UNCONSCIOUS)
 			add_overlay("brain_bad")
 		else
-			add_overlay("brain_ok")				
+			add_overlay("brain_ok")
 	else
 		add_overlay("brain_warning")
 
@@ -146,4 +146,4 @@
 
 	if(CanInteract(user, GLOB.tgui_physical_state))
 		beep = !beep
-		to_chat(user, "<span class='notice'>You turn the sound on \the [src] [beep ? "on" : "off"].</span>")
+		to_chat(user, span_notice("You turn the sound on \the [src] [beep ? "on" : "off"]."))

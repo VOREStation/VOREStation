@@ -3,7 +3,7 @@
 	set name = "Advanced Who"
 	set category = "OOC"
 
-	var/msg = "<b>Current Players:</b>\n"
+	var/msg = span_bold("Current Players:") + "\n"
 
 	var/list/Lines = list()
 
@@ -11,30 +11,30 @@
 		for(var/client/C in GLOB.clients)
 			var/entry = "<tr><td>[C.key]"
 			if(C.holder && C.holder.fakekey)
-				entry += " <i>(as [C.holder.fakekey])</i>"
+				entry += " " + span_italics("(as [C.holder.fakekey])")
 
 			entry += "</td><td>"
 
 			if(C.mob.real_name)
 				switch(C.mob.stat)
 					if(UNCONSCIOUS)
-						entry += "<span class='darkgray'><b>Unconscious</b></span>" // these are literally all spans so I can apply .inverted to them because black on dark grey isn't legible
+						entry += span_darkgray(span_bold("Unconscious")) // these are literally all spans so I can apply .inverted to them because black on dark grey isn't legible
 
 					if(DEAD)
 						if(isobserver(C.mob))
 							var/mob/observer/dead/O = C.mob
 							if(O.started_as_observer)
-								entry += "<span class='gray'>Observing</span>"
+								entry += span_gray("Observing")
 							else
-								entry += "<span class='black'><b>Died</b></span>"
+								entry += span_black(span_bold("Died"))
 
 					else
-						entry += "<span class='green'>Playing</span>"
+						entry += span_green("Playing")
 
 				entry += " as [C.mob.real_name]"
 
 			else if(isnewplayer(C.mob))
-				entry += "<span class='blue'><b>In lobby</b></span>"
+				entry += span_blue(span_bold("In lobby"))
 
 			entry += "</td><td>"
 
@@ -45,18 +45,18 @@
 				age = 0
 
 			if(age <= 1)
-				age = "<span class='red'><b>[age]</b></span>"
+				age = span_red(span_bold("[age]"))
 			else if(age < 10)
-				age = "<span class='orange'><b>[age]</b></span>"
+				age = span_orange(span_bold("[age]"))
 
 			entry += "Age: [age]"
 			entry += "</td><td>"
 
 			if(is_special_character(C.mob))
 				if(C.mob?.mind?.special_role)
-					entry += "<b><span class='red'>[C.mob.mind.special_role]</span></b>"
+					entry += span_red(span_bold("[C.mob.mind.special_role]"))
 				else
-					entry += "<b><span class='red'>Antagonist</span></b>"
+					entry += span_red(span_bold("Antagonist"))
 
 			entry += "</td><td>"
 
@@ -80,11 +80,11 @@
 				entry += "[C.key]"
 			var/mob/observer/dead/O = C.mob
 			if(isobserver(O))
-				entry += " - <span class='gray'>Observing</span><br>"
+				entry += " - " + span_gray("Observing") + "<br>"
 			else if(istype(O,/mob/new_player))
-				entry += " - <span class='blue'>In Lobby</span><br>"
+				entry += " - " + span_blue("In Lobby") + "<br>"
 			else
-				entry += " - <span class='green'>Playing</span><br>"
+				entry += " - "+ span_green("Playing") + "<br>"
 
 			Lines += entry
 
@@ -92,6 +92,6 @@
 	for(var/line in sortList(Lines))
 		msg += "[line]"
 	msg += "</table>"
-	msg += "<b>Total Players: [length(Lines)]</b>"
-	msg = "<span class='filter_notice'>" + msg + "</span>"
+	msg += span_bold("Total Players: [length(Lines)]")
+	msg = span_filter_notice(msg)
 	to_chat(src, msg)

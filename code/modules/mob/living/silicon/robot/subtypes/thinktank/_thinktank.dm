@@ -141,9 +141,9 @@
 		if(new_recharge_state != last_recharge_state)
 			last_recharge_state = new_recharge_state
 			if(last_recharge_state)
-				to_chat(src, SPAN_NOTICE("<b>Your integrated solar panels begin recharging your battery.</b>"))
+				to_chat(src, span_boldnotice("Your integrated solar panels begin recharging your battery."))
 			else
-				to_chat(src, SPAN_DANGER("Your integrated solar panels cease recharging your battery."))
+				to_chat(src, span_danger("Your integrated solar panels cease recharging your battery."))
 
 		if(last_recharge_state)
 			var/charge_amt = recharger_charge_amount * CELLRATE
@@ -166,4 +166,4 @@
 
 			if(!recharge_complete && recharging_atom.percent() >= 100)
 				recharge_complete = TRUE
-				visible_message("<b>\The [src]</b> beeps and flashes a green light above \his recharging port.")
+				visible_message(span_infoplain("[span_bold("\The [src]")] beeps and flashes a green light above \his recharging port."))

@@ -44,19 +44,19 @@
 
 	var/atom/movable/to_locate = temporary_form || src
 	if(!isturf(to_locate.loc))
-		to_chat(to_locate,"<span class='warning'>You need more space to perform this action!</span>")
+		to_chat(to_locate,span_warning("You need more space to perform this action!"))
 		return
 	/*
 	//Blob form
 	if(temporary_form)
 		if(temporary_form.stat)
-			to_chat(temporary_form,"<span class='warning'>You can only do this while not stunned.</span>")
+			to_chat(temporary_form,span_warning("You can only do this while not stunned."))
 		else
 			prommie_outofblob(temporary_form)
 	*/
 	//Human form
 	else if(stat || paralysis || stunned || weakened || restrained())
-		to_chat(src,"<span class='warning'>You can only do this while not stunned.</span>")
+		to_chat(src,span_warning("You can only do this while not stunned."))
 		return
 	else
 		prommie_intoblob()

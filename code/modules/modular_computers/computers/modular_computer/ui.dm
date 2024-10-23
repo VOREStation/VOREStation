@@ -102,7 +102,7 @@
 				return
 
 			P.kill_program(1)
-			to_chat(user, "<span class='notice'>Program [P.filename].[P.filetype] with PID [rand(100,999)] has been killed.</span>")
+			to_chat(user, span_notice("Program [P.filename].[P.filetype] with PID [rand(100,999)] has been killed."))
 			return TRUE
 		if("PC_runprogram")
 			return run_program(params["name"])

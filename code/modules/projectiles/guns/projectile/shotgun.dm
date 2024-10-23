@@ -163,7 +163,7 @@
 	options["Blued"] = "dshotgun_b"
 	var/choice = tgui_input_list(M,"Choose your sprite!","Resprite Gun", options)
 	if(sawn_off)
-		to_chat(M, "<span class='warning'>The [src] is already shortened and cannot be resprited!</span>")
+		to_chat(M, span_warning("The [src] is already shortened and cannot be resprited!"))
 		return
 	if(src && choice && !M.stat && in_range(M,src))
 		icon_state = options[choice]
@@ -174,14 +174,14 @@
 //this is largely hacky and bad :(	-Pete //less hacky and bad now :) -Ghost
 /obj/item/gun/projectile/shotgun/doublebarrel/attackby(var/obj/item/A as obj, mob/user as mob)
 	if(sawn_off)
-		to_chat(user, "<span class='warning'>The [src] is already shortened!</span>")
+		to_chat(user, span_warning("The [src] is already shortened!"))
 		return
 	if(istype(A, /obj/item/surgical/circular_saw) || istype(A, /obj/item/melee/energy) || istype(A, /obj/item/pickaxe/plasmacutter))
-		to_chat(user, "<span class='notice'>You begin to shorten the barrel of \the [src].</span>")
+		to_chat(user, span_notice("You begin to shorten the barrel of \the [src]."))
 		if(loaded.len)
 			var/burstsetting = burst
 			burst = 2
-			user.visible_message("<span class='danger'>The shotgun goes off!</span>", "<span class='danger'>The shotgun goes off in your face!</span>")
+			user.visible_message(span_danger("The shotgun goes off!"), span_danger("The shotgun goes off in your face!"))
 			Fire_userless(user)
 			user.hud_used.update_ammo_hud(user, src) // TGMC Ammo HUD Port
 			burst = burstsetting
@@ -200,7 +200,7 @@
 			slot_flags |= (SLOT_BELT|SLOT_HOLSTER) // but you can wear it on your belt (poorly concealed under a trenchcoat, ideally) - or in a holster, why not.
 			name = "sawn-off shotgun"
 			desc = "Omar's coming!"
-			to_chat(user, "<span class='warning'>You shorten the barrel of \the [src]!</span>")
+			to_chat(user, span_warning("You shorten the barrel of \the [src]!"))
 			sawn_off = TRUE
 	else
 		..()
@@ -233,4 +233,3 @@
 	load_method = SINGLE_CASING
 	max_shells = 5
 	ammo_type = /obj/item/ammo_casing/a12g/beanbag
-

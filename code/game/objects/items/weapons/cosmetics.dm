@@ -31,7 +31,7 @@
 	name = "[colour] lipstick"
 
 /obj/item/lipstick/attack_self(mob/user as mob)
-	to_chat(user, "<span class='notice'>You twist \the [src] [open ? "closed" : "open"].</span>")
+	to_chat(user, span_notice("You twist \the [src] [open ? "closed" : "open"]."))
 	open = !open
 	if(open)
 		icon_state = "[initial(icon_state)]_[colour]"
@@ -46,23 +46,23 @@
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		if(H.lip_style)	//if they already have lipstick on
-			to_chat(user, "<span class='notice'>You need to wipe off the old lipstick first!</span>")
+			to_chat(user, span_notice("You need to wipe off the old lipstick first!"))
 			return
 		if(H == user)
-			user.visible_message("<span class='notice'>[user] does their lips with \the [src].</span>", \
-								 "<span class='notice'>You take a moment to apply \the [src]. Perfect!</span>")
+			user.visible_message(span_notice("[user] does their lips with \the [src]."), \
+								 span_notice("You take a moment to apply \the [src]. Perfect!"))
 			H.lip_style = colour
 			H.update_icons_body()
 		else
-			user.visible_message("<span class='warning'>[user] begins to do [H]'s lips with \the [src].</span>", \
-								 "<span class='notice'>You begin to apply \the [src].</span>")
+			user.visible_message(span_warning("[user] begins to do [H]'s lips with \the [src]."), \
+								 span_notice("You begin to apply \the [src]."))
 			if(do_after(user, 20, H))	//user needs to keep their active hand, H does not.
-				user.visible_message("<span class='notice'>[user] does [H]'s lips with \the [src].</span>", \
-									 "<span class='notice'>You apply \the [src].</span>")
+				user.visible_message(span_notice("[user] does [H]'s lips with \the [src]."), \
+									 span_notice("You apply \the [src]."))
 				H.lip_style = colour
 				H.update_icons_body()
 	else
-		to_chat(user, "<span class='notice'>Where are the lips on that?</span>")
+		to_chat(user, span_notice("Where are the lips on that?"))
 
 //you can wipe off lipstick with paper! see code/modules/paperwork/paper.dm, paper/attack()
 
@@ -89,7 +89,7 @@
 				text = "guy"
 			if(FEMALE)
 				text = "lady"
-	user.visible_message("<span class='notice'>[user] uses [src] to comb their hair with incredible style and sophistication. What a [text].</span>")
+	user.visible_message(span_notice("[user] uses [src] to comb their hair with incredible style and sophistication. What a [text]."))
 
 /obj/item/makeover
 	name = "makeover kit"
@@ -105,7 +105,7 @@
 
 /obj/item/makeover/attack_self(mob/living/carbon/user as mob)
 	if(ishuman(user))
-		to_chat(user, "<span class='notice'>You flip open \the [src] and begin to adjust your appearance.</span>")
+		to_chat(user, span_notice("You flip open \the [src] and begin to adjust your appearance."))
 		M.tgui_interact(user)
 		var/mob/living/carbon/human/H = user
 		var/obj/item/organ/internal/eyes/E = H.internal_organs_by_name[O_EYES]

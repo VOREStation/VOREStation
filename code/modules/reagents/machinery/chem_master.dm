@@ -226,12 +226,14 @@
 					if(condi || !reagents.total_volume)
 						return
 					tgui_modal_input(src, id, "Please enter the amount of patches to make (max [MAX_MULTI_AMOUNT] at a time):", null, arguments, pillamount, 5)
-				if("create_bottle")
+				if("create_bottle", "create_bottle_two")
 					if(condi || !reagents.total_volume)
 						return
 					var/num = round(text2num(arguments["num"] || 1))
 					if(!num)
 						return
+					if(id == "create_bottle_two")
+						num = 2
 					arguments["num"] = num
 					var/amount_per_bottle = CLAMP(reagents.total_volume / num, 0, MAX_UNITS_PER_BOTTLE)
 					var/default_name = "[reagents.get_master_reagent_name()]"
@@ -298,7 +300,7 @@
 					var/amount_per_pill = CLAMP(reagents.total_volume / count, 0, MAX_UNITS_PER_PILL)
 					while(count--)
 						if(reagents.total_volume <= 0)
-							to_chat(usr, "<span class='notice'>Not enough reagents to create these pills!</span>")
+							to_chat(usr, span_notice("Not enough reagents to create these pills!"))
 							return
 
 						var/obj/item/reagent_containers/pill/P = new(loc)
@@ -334,7 +336,7 @@
 					// var/is_medical_patch = chemical_safety_check(reagents)
 					while(count--)
 						if(reagents.total_volume <= 0)
-							to_chat(usr, "<span class='notice'>Not enough reagents to create these patches!</span>")
+							to_chat(usr, span_notice("Not enough reagents to create these patches!"))
 							return
 
 						var/obj/item/reagent_containers/pill/patch/P = new(loc)
@@ -349,7 +351,7 @@
 					if(condi || !reagents.total_volume)
 						return
 					tgui_act("modal_open", list("id" = "create_patch", "arguments" = list("num" = answer)), ui, state)
-				if("create_bottle")
+				if("create_bottle", "create_bottle_two")
 					if(condi || !reagents.total_volume)
 						return
 					var/count = CLAMP(round(text2num(arguments["num"]) || 0), 0, MAX_MULTI_AMOUNT)
@@ -361,7 +363,7 @@
 					var/amount_per_bottle = CLAMP(reagents.total_volume / count, 0, MAX_UNITS_PER_BOTTLE)
 					while(count--)
 						if(reagents.total_volume <= 0)
-							to_chat(usr, "<span class='notice'>Not enough reagents to create these bottles!</span>")
+							to_chat(usr, span_notice("Not enough reagents to create these bottles!"))
 							return
 						var/obj/item/reagent_containers/glass/bottle/P = new(loc)
 						P.name = "[answer] bottle"
@@ -417,18 +419,18 @@
 			var/datum/reagent/R = reagent_list[idx]
 
 			printing = TRUE
-			visible_message("<span class='notice'>[src] rattles and prints out a sheet of paper.</span>")
+			visible_message(span_notice("[src] rattles and prints out a sheet of paper."))
 			// playsound(loc, 'sound/goonstation/machines/printer_dotmatrix.ogg', 50, 1)
 
 			var/obj/item/paper/P = new /obj/item/paper(loc)
 			P.info = "<center><b>Chemical Analysis</b></center><br>"
-			P.info += "<b>Time of analysis:</b> [worldtime2stationtime(world.time)]<br><br>"
-			P.info += "<b>Chemical name:</b> [R.name]<br>"
+			P.info += span_bold("Time of analysis:") + " [worldtime2stationtime(world.time)]<br><br>"
+			P.info += span_bold("Chemical name:") + " [R.name]<br>"
 			if(istype(R, /datum/reagent/blood))
 				var/datum/reagent/blood/B = R
-				P.info += "<b>Description:</b> N/A<br><b>Blood Type:</b> [B.data["blood_type"]]<br><b>DNA:</b> [B.data["blood_DNA"]]"
+				P.info += span_bold("Description:") + " N/A<br><b>Blood Type:</b> [B.data["blood_type"]]<br><b>DNA:</b> [B.data["blood_DNA"]]"
 			else
-				P.info += "<b>Description:</b> [R.description]"
+				P.info += span_bold("Description:") + " [R.description]"
 			P.info += "<br><br><b>Notes:</b><br>"
 			P.name = "Chemical Analysis - [R.name]"
 			spawn(50)

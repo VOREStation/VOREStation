@@ -62,7 +62,7 @@
 
 	var/obj/item/robot_module/robot/platform/tank_module = module
 	if(!istype(tank_module))
-		to_chat(user, SPAN_WARNING("\The [src] is not paintable."))
+		to_chat(user, span_warning("\The [src] is not paintable."))
 		return FALSE
 
 	var/list/options = list("Eyes", "Armour", "Body", "Clear Colors")

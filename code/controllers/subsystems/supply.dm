@@ -39,8 +39,9 @@ SUBSYSTEM_DEF(supply)
 /datum/controller/subsystem/supply/fire()
 	points += points_per_process
 
-/datum/controller/subsystem/supply/stat_entry()
-	..("Points: [points]")
+/datum/controller/subsystem/supply/stat_entry(msg)
+	msg = "Points: [points]"
+	return ..()
 
 //To stop things being sent to CentCom which should not be sent to centcomm. Recursively checks for these types.
 /datum/controller/subsystem/supply/proc/forbidden_atoms_check(atom/A)
@@ -200,7 +201,7 @@ SUBSYSTEM_DEF(supply)
 					A.req_access = L.Copy()
 					LAZYCLEARLIST(A.req_one_access)
 				else
-					log_debug("<span class='danger'>Supply pack with invalid access restriction [SP.access] encountered!</span>")
+					log_debug(span_danger("Supply pack with invalid access restriction [SP.access] encountered!"))
 
 		//supply manifest generation begin
 		var/obj/item/paper/manifest/slip

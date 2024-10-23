@@ -50,7 +50,7 @@
 	icon_state = "c-4[size]_1"
 	playsound(src, 'sound/weapons/armbomb.ogg', 75, 1)
 	for(var/mob/O in hearers(src, null))
-		O.show_message("[icon2html(src, O.client)] <span class = 'warning'> The [src.name] beeps! </span>")
+		O.show_message("[icon2html(src, O.client)] " + span_warning(" The [src.name] beeps!"))
 	sleep(50)
 	explosion(get_turf(src), devastate, heavy_impact, light_impact, flash_range)
 	for(var/dirn in cardinal)		//This is to guarantee that C4 at least breaks down all immediately adjacent walls and doors.
@@ -86,27 +86,27 @@
 		lit = 1
 		icon_state = "[base_state]1"
 		//item_state = "[base_state]on"
-		user.visible_message("<span class='rose'>Without even breaking stride, \the [user] flips open \the [src] in one smooth movement.</span>")
+		user.visible_message(span_rose("Without even breaking stride, \the [user] flips open \the [src] in one smooth movement."))
 
 	else if(lit && detonator_mode)
 		switch(tgui_alert(user, "What would you like to do?", "Lighter", list("Press the button.", "Close the lighter.")))
 			if("Press the button.")
-				to_chat(user, "<span class='warning'>You press the button.</span>")
+				to_chat(user, span_warning("You press the button."))
 				icon_state = "[base_state]click"
 				if(src.bomb)
 					src.bomb.detonate()
 					log_admin("[key_name(user)] has triggered [src.bomb] with [src].")
-					message_admins("<span class='danger'>[key_name_admin(user)] has triggered [src.bomb] with [src].</span>")
+					message_admins(span_danger("[key_name_admin(user)] has triggered [src.bomb] with [src]."))
 
 			if("Close the lighter.")
 				lit = 0
 				icon_state = "[base_state]"
 				//item_state = "[base_state]"
-				user.visible_message("<span class='rose'>You hear a quiet click, as \the [user] shuts off \the [src] without even looking at what they're doing.</span>")
+				user.visible_message(span_rose("You hear a quiet click, as \the [user] shuts off \the [src] without even looking at what they're doing."))
 
 
 /obj/item/flame/lighter/zippo/c4detonator/attackby(obj/item/W, mob/user as mob)
 	if(W.has_tool_quality(TOOL_SCREWDRIVER))
 		detonator_mode = !detonator_mode
 		playsound(src, W.usesound, 50, 1)
-		to_chat(user, "<span class='notice'>You unscrew the top panel of \the [src] revealing a button.</span>")
+		to_chat(user, span_notice("You unscrew the top panel of \the [src] revealing a button."))

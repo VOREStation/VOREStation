@@ -14,7 +14,7 @@
 
 /obj/item/borg/upgrade/proc/action(var/mob/living/silicon/robot/R)
 	if(R.stat == DEAD)
-		to_chat(usr, "<span class='warning'>The [src] will not function on a deceased robot.</span>")
+		to_chat(usr, span_warning("The [src] will not function on a deceased robot."))
 		return 1
 	return 0
 
@@ -119,7 +119,7 @@
 		to_chat(usr, "It'd be unwise to plug another vtec module in!")
 		return 0
 
-	R.verbs += /mob/living/silicon/robot/proc/toggle_vtec
+	add_verb(R, /mob/living/silicon/robot/proc/toggle_vtec)
 	R.vtec_active = TRUE
 	R.hud_used.toggle_vtec_control()
 	return 1
@@ -139,7 +139,7 @@
 		to_chat(usr, "There's no space for another size alteration module!")
 		return 0
 
-	R.verbs += /mob/living/proc/set_size
+	add_verb(R, /mob/living/proc/set_size)
 	return 1
 
 /obj/item/borg/upgrade/basic/syndicate
@@ -236,7 +236,7 @@
 
 	var/obj/T = R.has_upgrade_module(/obj/item/dogborg/sleeper)
 	if(!T)
-		to_chat(usr, "<span class='warning'>This robot has had its processor removed!</span>")
+		to_chat(usr, span_warning("This robot has had its processor removed!"))
 		return 0
 
 	if(R.has_advanced_upgrade(type))
@@ -328,7 +328,7 @@
 
 	var/obj/T = R.has_upgrade_module(/obj/item/dogborg/sleeper)
 	if(!T)
-		to_chat(usr, "<span class='warning'>This robot has had its processor removed!</span>")
+		to_chat(usr, span_warning("This robot has had its processor removed!"))
 		return 0
 
 	if(R.has_restricted_upgrade(type))
@@ -362,7 +362,7 @@
 
 	var/obj/T = R.has_upgrade_module(/obj/item/gun/energy/taser/mounted/cyborg)
 	if(!T)
-		to_chat(usr, "<span class='warning'>This robot has had its taser removed!</span>")
+		to_chat(usr, span_warning("This robot has had its taser removed!"))
 		return 0
 
 	if(R.has_restricted_upgrade(type))

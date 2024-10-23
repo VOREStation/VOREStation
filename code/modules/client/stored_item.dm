@@ -61,7 +61,7 @@
 		return
 	if(istype(user) && Adjacent(user))
 		if(inoperable() || panel_open)
-			to_chat(user, "<span class='warning'>\The [src] seems to be nonfunctional...</span>")
+			to_chat(user, span_warning("\The [src] seems to be nonfunctional..."))
 		else
 			start_using(user)
 
@@ -69,7 +69,7 @@
 	if(!ishuman(user))
 		return
 	if(busy_bank)
-		to_chat(user, "<span class='warning'>\The [src] is already in use.</span>")
+		to_chat(user, span_warning("\The [src] is already in use."))
 		return
 	busy_bank = TRUE
 	var/I = persist_item_savefile_load(user, "type")
@@ -79,15 +79,15 @@
 		busy_bank = FALSE
 		return
 	else if(choice == "Check contents" && I)
-		to_chat(user, "<span class='notice'>\The [src] has \the [Iname] for you!</span>")
+		to_chat(user, span_notice("\The [src] has \the [Iname] for you!"))
 		busy_bank = FALSE
 	else if(choice == "Retrieve item" && I)
 		if(user.hands_are_full())
-			to_chat(user,"<span class='notice'>Your hands are full!</span>")
+			to_chat(user,span_notice("Your hands are full!"))
 			busy_bank = FALSE
 			return
 		if(user.ckey in item_takers)
-			to_chat(user, "<span class='warning'>You have already taken something out of \the [src] this shift.</span>")
+			to_chat(user, span_warning("You have already taken something out of \the [src] this shift."))
 			busy_bank = FALSE
 			return
 		choice = tgui_alert(user, "If you remove this item from the bank, it will be unable to be stored again. Do you still want to remove it?", "[src]", list("No", "Yes"), timeout = 10 SECONDS)
@@ -102,7 +102,7 @@
 			return
 		var/obj/N = new I(get_turf(src))
 		log_admin("[key_name_admin(user)] retrieved [N] from the item bank.")
-		visible_message("<span class='notice'>\The [src] dispenses the [N] to \the [user].</span>")
+		visible_message(span_notice("\The [src] dispenses the [N] to \the [user]."))
 		user.put_in_hands(N)
 		N.persist_storable = FALSE
 		var/path = src.persist_item_savefile_path(user)
@@ -114,24 +114,24 @@
 		busy_bank = FALSE
 		icon_state = "item_bank"
 	else if(choice == "Info")
-		to_chat(user, "<span class='notice'>\The [src] can store a single item for you between shifts! Anything that has been retrieved from the bank cannot be stored again in the same shift. Anyone can withdraw from the bank one time per shift. Some items are not able to be accepted by the bank.</span>")
+		to_chat(user, span_notice("\The [src] can store a single item for you between shifts! Anything that has been retrieved from the bank cannot be stored again in the same shift. Anyone can withdraw from the bank one time per shift. Some items are not able to be accepted by the bank."))
 		busy_bank = FALSE
 		return
 	else if(!I)
-		to_chat(user, "<span class='warning'>\The [src] doesn't seem to have anything for you...</span>")
+		to_chat(user, span_warning("\The [src] doesn't seem to have anything for you..."))
 		busy_bank = FALSE
 
 /obj/machinery/item_bank/attackby(obj/item/O, mob/living/user)
 	if(!ishuman(user))
 		return
 	if(busy_bank)
-		to_chat(user, "<span class='warning'>\The [src] is already in use.</span>")
+		to_chat(user, span_warning("\The [src] is already in use."))
 		return
 	busy_bank = TRUE
 	var/I = persist_item_savefile_load(user, "type")
 	if(!istool(O) && O.persist_storable)
 		if(ispath(I))
-			to_chat(user, "<span class='warning'>You cannot store \the [O]. You already have something stored.</span>")
+			to_chat(user, span_warning("You cannot store \the [O]. You already have something stored."))
 			busy_bank = FALSE
 			return
 		var/choice = tgui_alert(user, "If you store \the [O], anything it contains may be lost to \the [src]. Are you sure?", "[src]", list("Store", "Cancel"), timeout = 10 SECONDS)
@@ -140,23 +140,23 @@
 			return
 		for(var/obj/check in O.contents)
 			if(!check.persist_storable)
-				to_chat(user, "<span class='warning'>\The [src] buzzes. \The [O] contains [check], which cannot be stored. Please remove this item before attempting to store \the [O]. As a reminder, any contents of \the [O] will be lost if you store it with contents.</span>")
+				to_chat(user, span_warning("\The [src] buzzes. \The [O] contains [check], which cannot be stored. Please remove this item before attempting to store \the [O]. As a reminder, any contents of \the [O] will be lost if you store it with contents."))
 				busy_bank = FALSE
 				return
-		user.visible_message("<span class='notice'>\The [user] begins storing \the [O] in \the [src].</span>","<span class='notice'>You begin storing \the [O] in \the [src].</span>")
+		user.visible_message(span_notice("\The [user] begins storing \the [O] in \the [src]."),span_notice("You begin storing \the [O] in \the [src]."))
 		icon_state = "item_bank_o"
 		if(!do_after(user, 10 SECONDS, src, exclusive = TASK_ALL_EXCLUSIVE) || inoperable())
 			busy_bank = FALSE
 			icon_state = "item_bank"
 			return
 		src.persist_item_savefile_save(user, O)
-		user.visible_message("<span class='notice'>\The [user] stores \the [O] in \the [src].</span>","<span class='notice'>You stored \the [O] in \the [src].</span>")
+		user.visible_message(span_notice("\The [user] stores \the [O] in \the [src]."),span_notice("You stored \the [O] in \the [src]."))
 		log_admin("[key_name_admin(user)] stored [O] in the item bank.")
 		qdel(O)
 		busy_bank = FALSE
 		icon_state = "item_bank"
 	else
-		to_chat(user, "<span class='warning'>You cannot store \the [O]. \The [src] either does not accept that, or it has already been retrieved from storage this shift.</span>")
+		to_chat(user, span_warning("You cannot store \the [O]. \The [src] either does not accept that, or it has already been retrieved from storage this shift."))
 		busy_bank = FALSE
 
 /////STORABLE ITEMS AND ALL THAT JAZZ/////

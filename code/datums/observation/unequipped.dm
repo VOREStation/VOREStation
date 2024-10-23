@@ -35,7 +35,7 @@ GLOBAL_DATUM_INIT(item_unequipped_event, /decl/observ/item_unequipped, new)
 **********************/
 
 /obj/item/dropped(var/mob/user)
-	..()
+	. = ..(user)
 	//SEND_SIGNAL(user, COMSIG_OBSERVER_MOB_UNEQUIPPED, src)
 	//SEND_SIGNAL(src, COMSIG_OBSERVER_ITEM_UNEQUIPPED, user)
 	if(user) // Cannot always guarantee that user won't be null

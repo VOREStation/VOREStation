@@ -61,7 +61,7 @@
 /obj/item/assembly/proc/attach_assembly(var/obj/item/assembly/A, var/mob/user)
 	holder = new/obj/item/assembly_holder(get_turf(src))
 	if(holder.attach(A,src,user))
-		to_chat(user, "<span class='notice'>You attach \the [A] to \the [src]!</span>")
+		to_chat(user, span_notice("You attach \the [A] to \the [src]!"))
 		return TRUE
 
 /obj/item/assembly/attackby(obj/item/W as obj, mob/user as mob)
@@ -72,9 +72,9 @@
 			return
 	if(W.has_tool_quality(TOOL_SCREWDRIVER))
 		if(toggle_secure())
-			to_chat(user, "<span class='notice'>\The [src] is ready!</span>")
+			to_chat(user, span_notice("\The [src] is ready!"))
 		else
-			to_chat(user, "<span class='notice'>\The [src] can now be attached!</span>")
+			to_chat(user, span_notice("\The [src] can now be attached!"))
 		return
 	return ..()
 

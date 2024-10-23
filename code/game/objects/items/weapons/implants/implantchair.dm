@@ -35,10 +35,10 @@
 		else
 			health_text = "[round(src.occupant.health,0.1)]"
 
-	var/dat ="<B>Implanter Status</B><BR>"
+	var/dat =span_bold("Implanter Status") + "<BR>"
 
-	dat +="<B>Current occupant:</B> [src.occupant ? "<BR>Name: [src.occupant]<BR>Health: [health_text]<BR>" : "<FONT color=red>None</FONT>"]<BR>"
-	dat += "<B>Implants:</B> [src.implant_list.len ? "[implant_list.len]" : "<A href='?src=\ref[src];replenish=1'>Replenish</A>"]<BR>"
+	dat +=span_bold("Current occupant:") + " [src.occupant ? "<BR>Name: [src.occupant]<BR>Health: [health_text]<BR>" : "<FONT color=red>None</FONT>"]<BR>"
+	dat += span_bold("Implants:") + " [src.implant_list.len ? "[implant_list.len]" : "<A href='?src=\ref[src];replenish=1'>Replenish</A>"]<BR>"
 	if(src.occupant)
 		dat += "[src.ready ? "<A href='?src=\ref[src];implant=1'>Implant</A>" : "Recharging"]<BR>"
 	user.set_machine(src)
@@ -73,7 +73,7 @@
 		if(!ismob(grab.affecting))
 			return
 		if(grab.affecting.has_buckled_mobs())
-			to_chat(user, span("warning", "\The [grab.affecting] has other entities attached to them. Remove them first."))
+			to_chat(user, span_warning("\The [grab.affecting] has other entities attached to them. Remove them first."))
 			return
 		var/mob/M = grab.affecting
 		if(put_mob(M))
@@ -101,10 +101,10 @@
 
 /obj/machinery/implantchair/proc/put_mob(mob/living/carbon/M as mob)
 	if(!iscarbon(M))
-		to_chat(usr, "<span class='warning'>\The [src] cannot hold this!</span>")
+		to_chat(usr, span_warning("\The [src] cannot hold this!"))
 		return
 	if(src.occupant)
-		to_chat(usr, "<span class='warning'>\The [src] is already occupied!</span>")
+		to_chat(usr, span_warning("\The [src] is already occupied!"))
 		return
 	if(M.client)
 		M.client.perspective = EYE_PERSPECTIVE
@@ -125,7 +125,7 @@
 		if(!imp)	continue
 		if(istype(imp, /obj/item/implant/loyalty))
 			for (var/mob/O in viewers(M, null))
-				O.show_message("<span class='warning'>\The [M] has been implanted by \the [src].</span>", 1)
+				O.show_message(span_warning("\The [M] has been implanted by \the [src]."), 1)
 
 			if(imp.handle_implant(M, BP_TORSO))
 				imp.post_implant(M)

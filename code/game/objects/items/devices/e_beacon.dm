@@ -6,6 +6,8 @@
 	var/beacon_active = FALSE
 	var/list/levels_for_distress
 	var/obj/item/gps/gps = null
+	pickup_sound = 'sound/items/pickup/device.ogg'
+	drop_sound = 'sound/items/drop/device.ogg'
 
 /obj/item/emergency_beacon/New()
 	gps = new/obj/item/gps/emergency_beacon(src)
@@ -17,17 +19,17 @@
 	var/T = user.loc
 	if(!beacon_active)
 		if(!isturf(T))
-			to_chat(user,"<span class='warning'>You cannot activate the beacon when you are not on a turf!</span>")
+			to_chat(user,span_warning("You cannot activate the beacon when you are not on a turf!"))
 			return
 		else if(isnonsolidturf(T))
-			to_chat(user,"<span class='warning'>You cannot activate the beacon when you are not on sufficiently solid ground!</span>")
+			to_chat(user,span_warning("You cannot activate the beacon when you are not on sufficiently solid ground!"))
 			return
 		else
 			var/answer = tgui_alert(user, "Would you like to activate this personal emergency beacon?","\The [src]", list("Yes", "No"))
 			if(answer != "Yes")
 				return
 			else if(do_after(user, (3 SECONDS)))	//short delay, so they can still abort if they want to
-				user.visible_message("<span class='warning'>[user] activates \the [src]!</span>","<span class='warning'>You activate \the [src], spiking it into the ground!</span>")
+				user.visible_message(span_warning("[user] activates \the [src]!"),span_warning("You activate \the [src], spiking it into the ground!"))
 				beacon_active = TRUE
 				icon_state = "e_beacon_active"
 				user.drop_item()
@@ -48,7 +50,7 @@
 
 /obj/item/emergency_beacon/attack_hand(mob/user)
 	if(beacon_active)
-		to_chat(user,"<span class='warning'>The beacon is already active and cannot be moved!</span>")
+		to_chat(user,span_warning("The beacon is already active and cannot be moved!"))
 		return
 
 	. = ..()

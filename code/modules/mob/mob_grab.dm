@@ -47,8 +47,8 @@
 		return
 
 	affecting.grabbed_by += src
-	affecting.reveal("<span class='warning'>You are revealed as [assailant] grabs you.</span>")
-	assailant.reveal("<span class='warning'>You reveal yourself as you grab [affecting].</span>")
+	affecting.reveal(span_warning("You are revealed as [assailant] grabs you."))
+	assailant.reveal(span_warning("You reveal yourself as you grab [affecting]."))
 
 	hud = new /obj/screen/grab(src)
 	hud.icon_state = "reinforce"
@@ -166,12 +166,12 @@
 	switch(target_zone)
 		if(O_MOUTH)
 			if(announce)
-				user.visible_message("<span class='warning'>\The [user] covers [target]'s mouth!</span>")
+				user.visible_message(span_warning("\The [user] covers [target]'s mouth!"))
 			if(target.silent < 3)
 				target.silent = 3
 		if(O_EYES)
 			if(announce)
-				assailant.visible_message("<span class='warning'>[assailant] covers [affecting]'s eyes!</span>")
+				assailant.visible_message(span_warning("[assailant] covers [affecting]'s eyes!"))
 			if(affecting.eye_blind < 3)
 				affecting.Blind(3)
 		//VOREStation Edit
@@ -179,7 +179,7 @@
 			if(force_down)
 				if(user.a_intent == I_HELP)
 					if(announce)
-						assailant.visible_message("<span class='warning'>[assailant] sits on [target]'s face!</span>")
+						assailant.visible_message(span_warning("[assailant] sits on [target]'s face!"))
 		//VOREStation Edit End
 
 /obj/item/grab/attack_self()
@@ -254,9 +254,9 @@
 		if(!allow_upgrade)
 			return
 		if(!affecting.lying || size_difference(affecting, assailant) > 0)
-			assailant.visible_message("<span class='warning'>[assailant] has grabbed [affecting] aggressively (now hands)!</span>")
+			assailant.visible_message(span_warning("[assailant] has grabbed [affecting] aggressively (now hands)!"))
 		else
-			assailant.visible_message("<span class='warning'>[assailant] pins [affecting] down to the ground (now hands)!</span>")
+			assailant.visible_message(span_warning("[assailant] pins [affecting] down to the ground (now hands)!"))
 			apply_pinning(affecting, assailant)
 
 		state = GRAB_AGGRESSIVE
@@ -265,10 +265,10 @@
 		add_attack_logs(assailant, affecting, "Aggressively grabbed", FALSE) // Not important enough to notify admins, but still helpful.
 	else if(state < GRAB_NECK)
 		if(isslime(affecting))
-			to_chat(assailant, "<span class='notice'>You squeeze [affecting], but nothing interesting happens.</span>")
+			to_chat(assailant, span_notice("You squeeze [affecting], but nothing interesting happens."))
 			return
 
-		assailant.visible_message("<span class='warning'>[assailant] has reinforced [TU.his] grip on [affecting] (now neck)!</span>")
+		assailant.visible_message(span_warning("[assailant] has reinforced [TU.his] grip on [affecting] (now neck)!"))
 		state = GRAB_NECK
 		icon_state = "grabbed+1"
 		assailant.set_dir(get_dir(assailant, affecting))
@@ -277,11 +277,11 @@
 		hud.name = "kill"
 		affecting.Stun(10) //10 ticks of ensured grab
 	else if(state < GRAB_UPGRADING)
-		assailant.visible_message("<span class='danger'>[assailant] starts to tighten [TU.his] grip on [affecting]'s neck!</span>")
+		assailant.visible_message(span_danger("[assailant] starts to tighten [TU.his] grip on [affecting]'s neck!"))
 		hud.icon_state = "kill1"
 
 		state = GRAB_KILL
-		assailant.visible_message("<span class='danger'>[assailant] has tightened [TU.his] grip on [affecting]'s neck!</span>")
+		assailant.visible_message(span_danger("[assailant] has tightened [TU.his] grip on [affecting]'s neck!"))
 		add_attack_logs(assailant,affecting,"Strangled")
 		affecting.setClickCooldown(10)
 		affecting.AdjustLosebreath(1)
@@ -321,7 +321,7 @@
 			switch(assailant.a_intent)
 				if(I_HELP)
 					if(force_down)
-						to_chat(assailant, "<span class='warning'>You are no longer pinning [affecting] to the ground.</span>")
+						to_chat(assailant, span_warning("You are no longer pinning [affecting] to the ground."))
 						force_down = 0
 						return
 					if(state >= GRAB_AGGRESSIVE)
@@ -355,7 +355,7 @@
 /obj/item/grab/proc/reset_kill_state()
 	if(state == GRAB_KILL)
 		var/datum/gender/T = gender_datums[assailant.get_visible_gender()]
-		assailant.visible_message("<span class='warning'>[assailant] lost [T.his] tight grip on [affecting]'s neck!</span>")
+		assailant.visible_message(span_warning("[assailant] lost [T.his] tight grip on [affecting]'s neck!"))
 		hud.icon_state = "kill"
 		state = GRAB_NECK
 
@@ -394,7 +394,7 @@
 			reset_kill_state()
 			return
 		else if(grab_name)
-			affecting.visible_message("<span class='warning'>[affecting] has broken free of [assailant]'s [grab_name]!</span>")
+			affecting.visible_message(span_warning("[affecting] has broken free of [assailant]'s [grab_name]!"))
 		qdel(src)
 
 //returns the number of size categories between affecting and assailant, rounded. Positive means A is larger than B

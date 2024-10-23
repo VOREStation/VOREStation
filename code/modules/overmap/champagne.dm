@@ -23,41 +23,41 @@
 		return
 
 	if(comp.shuttle_tag)
-		to_chat(user, "<span class='warning'>[comp] is already configured to link with [comp.shuttle_tag]</span>")
+		to_chat(user, span_warning("[comp] is already configured to link with [comp.shuttle_tag]"))
 		return
 
-	user.visible_message("<span class='notice'>[user] lifts [src] bottle over [comp]!</span>")
+	user.visible_message(span_notice("[user] lifts [src] bottle over [comp]!"))
 	var/shuttle_name = tgui_input_text(usr, "Choose a name for the shuttle", "New Shuttle Name")
 	if(!shuttle_name || QDELETED(src) || QDELETED(comp) || comp.shuttle_tag || user.incapacitated())
 		return // After input() safety re-checks
 
 	// Tons of safety checks here.  Make sure they don't destroy everything.
 	if(length(shuttle_name) < min_name_len || length(shuttle_name) > max_name_len)
-		to_chat(user, "<span class='warning'>Name length must be between [min_name_len] and [max_name_len].</span>")
+		to_chat(user, span_warning("Name length must be between [min_name_len] and [max_name_len]."))
 		return
 	if(shuttle_name in SSshuttles.shuttles)
-		to_chat(user, "<span class='warning'>Invalid name: Already in use.</span>")
+		to_chat(user, span_warning("Invalid name: Already in use."))
 		return
 
 	var/area/my_area = get_area(comp)
 	if(!my_area || istype(my_area, /area/space))
-		to_chat(user, "<span class='warning'>[comp] must be in a valid area to become a shuttle.</span>")
+		to_chat(user, span_warning("[comp] must be in a valid area to become a shuttle."))
 		return
 	if(my_area in SSshuttles.shuttle_areas)
-		to_chat(user, "<span class='warning'>[comp] is already in a shuttle.</span>")
+		to_chat(user, span_warning("[comp] is already in a shuttle."))
 		return
 	// Count turfs in the area
 	var/list/turfs = get_current_area_turfs(my_area)
 	if(turfs.len > max_area_turfs)
-		to_chat(user, "<span class='warning'>The new shuttle area is too large.</span>")
+		to_chat(user, span_warning("The new shuttle area is too large."))
 		return
 
 	var/turf/comp_turf = get_turf(comp)
 	var/datum/shuttle/autodock/S = create_landable_shuttle(shuttle_name, comp_turf, my_area)
 	playsound(src, 'sound/effects/Glassbr3.ogg', 100, 0)
-	user.visible_message("<span class='notice'>[user] smashes [src] on [comp]</span>",
-		"<span class='info'>You smash [src] on [comp], christening a new landable ship named [S.name]</span>",
-		"<span class='notice'>You hear glass shattering</span>")
+	user.visible_message(span_notice("[user] smashes [src] on [comp]"),
+		span_info("You smash [src] on [comp], christening a new landable ship named [S.name]"),
+		span_notice("You hear glass shattering"))
 	log_and_message_admins("[key_name_admin(user)] Created a new shuttle [S.name]. [ADMIN_JMP(comp_turf)]")
 	spawn(1 SECOND)
 		playsound(comp_turf, 'sound/voice/Serithi/Shuttlehere.ogg', 75, 0)

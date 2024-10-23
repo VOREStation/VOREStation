@@ -29,7 +29,7 @@
 	for(var/obj/item/research_sample/S in T)
 		S.loc = src
 		update_icon()
-		to_chat(user, "<span class='notice'>You scoop \the [S] into \the [src].</span>")
+		to_chat(user, span_notice("You scoop \the [S] into \the [src]."))
 
 //Splice research sample containers into the list of valid items for these belts *without* overriding the lists entirely
 /obj/item/storage/belt/explorer/New()

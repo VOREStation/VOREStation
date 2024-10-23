@@ -1,5 +1,5 @@
 /datum/design/item/biotech/nif
-	name = "nanite implant framework"
+	name = "nanite implant framework (NIF)"
 	id = "nif"
 	req_tech = list(TECH_MAGNET = 5, TECH_BLUESPACE = 5, TECH_MATERIAL = 5, TECH_ENGINEERING = 5, TECH_DATA = 5)
 	materials = list(MAT_STEEL = 5000, MAT_GLASS = 8000, MAT_URANIUM = 6000, MAT_DIAMOND = 6000)

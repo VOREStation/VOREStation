@@ -33,7 +33,7 @@
 
 /obj/structure/filingcabinet/attackby(obj/item/P as obj, mob/user as mob)
 	if(istype(P, /obj/item/paper) || istype(P, /obj/item/folder) || istype(P, /obj/item/photo) || istype(P, /obj/item/paper_bundle))
-		to_chat(user, "<span class='notice'>You put [P] in [src].</span>")
+		to_chat(user, span_notice("You put [P] in [src]."))
 		user.drop_item()
 		P.loc = src
 		open_animation()
@@ -41,24 +41,24 @@
 	else if(P.has_tool_quality(TOOL_WRENCH))
 		playsound(src, P.usesound, 50, 1)
 		anchored = !anchored
-		to_chat(user, "<span class='notice'>You [anchored ? "wrench" : "unwrench"] \the [src].</span>")
+		to_chat(user, span_notice("You [anchored ? "wrench" : "unwrench"] \the [src]."))
 	else if(P.has_tool_quality(TOOL_SCREWDRIVER))
-		to_chat(user, "<span class='notice'>You begin taking the [name] apart.</span>")
+		to_chat(user, span_notice("You begin taking the [name] apart."))
 		playsound(src, P.usesound, 50, 1)
 		if(do_after(user, 10 * P.toolspeed))
 			playsound(src, P.usesound, 50, 1)
-			to_chat(user, "<span class='notice'>You take the [name] apart.</span>")
+			to_chat(user, span_notice("You take the [name] apart."))
 			new /obj/item/stack/material/steel( src.loc, 4 )
 			for(var/obj/item/I in contents)
 				I.forceMove(loc)
 			qdel(src)
 		return
 	else
-		to_chat(user, "<span class='notice'>You can't put [P] in [src]!</span>")
+		to_chat(user, span_notice("You can't put [P] in [src]!"))
 
 /obj/structure/filingcabinet/attack_hand(mob/user as mob)
 	if(contents.len <= 0)
-		to_chat(user, "<span class='notice'>\The [src] is empty.</span>")
+		to_chat(user, span_notice("\The [src] is empty."))
 		return
 
 	tgui_interact(user)
@@ -75,9 +75,9 @@
 			I.loc = loc
 			if(prob(25))
 				step_rand(I)
-			to_chat(user, "<span class='notice'>You pull \a [I] out of [src] at random.</span>")
+			to_chat(user, span_notice("You pull \a [I] out of [src] at random."))
 			return
-	to_chat(user, "<span class='notice'>You find nothing in [src].</span>")
+	to_chat(user, span_notice("You find nothing in [src]."))
 
 /obj/structure/filingcabinet/tgui_state(mob/user)
 	return GLOB.tgui_physical_state

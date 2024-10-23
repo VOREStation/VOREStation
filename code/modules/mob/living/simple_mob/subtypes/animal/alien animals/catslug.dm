@@ -51,7 +51,7 @@
 	catalogue_data = list(/datum/category_item/catalogue/fauna/catslug)
 	ai_holder_type = /datum/ai_holder/simple_mob/melee/evasive/catslug
 	say_list_type = /datum/say_list/catslug
-	player_msg = "You have escaped the foul weather, into this much more pleasant place. You are an intelligent creature capable of more than most think. You can pick up and use many things, and even carry some of them with you into the vents, which you can use to move around quickly. You're quiet and capable, you speak with your hands and your deeds! <br>- - - - -<br> <span class='notice'>Keep in mind, your goal should generally be to survive. You're expected to follow the same rules as everyone else, so don't go self antagging without permission from the staff team, but you are able and capable of defending yourself from those who would attack you for no reason.</span>"
+	player_msg = "You have escaped the foul weather, into this much more pleasant place. You are an intelligent creature capable of more than most think. You can pick up and use many things, and even carry some of them with you into the vents, which you can use to move around quickly. You're quiet and capable, you speak with your hands and your deeds!<br>- - - - -<br>" + span_notice("Keep in mind, your goal should generally be to survive. You're expected to follow the same rules as everyone else, so don't go self antagging without permission from the staff team, but you are able and capable of defending yourself from those who would attack you for no reason.")
 
 	has_langs = list(LANGUAGE_SIGN)
 
@@ -137,9 +137,9 @@
 
 /mob/living/simple_mob/vore/alienanimals/catslug/Initialize()
 	. = ..()
-	verbs += /mob/living/proc/ventcrawl
-	verbs += /mob/living/proc/hide
-	verbs += /mob/living/simple_mob/vore/alienanimals/catslug/proc/catslug_color
+	add_verb(src, /mob/living/proc/ventcrawl)
+	add_verb(src, /mob/living/proc/hide)
+	add_verb(src, /mob/living/simple_mob/vore/alienanimals/catslug/proc/catslug_color)
 
 /mob/living/simple_mob/vore/alienanimals/catslug/Destroy()
 	if(hat)
@@ -153,13 +153,13 @@
 	else if(!istype(O, /obj/item/reagent_containers/food/snacks))
 		return ..()
 	if(resting)
-		to_chat(user, "<span class='notice'>\The [src] is napping, and doesn't respond to \the [O].</span>")
+		to_chat(user, span_notice("\The [src] is napping, and doesn't respond to \the [O]."))
 		return
 	if(nutrition >= max_nutrition)
 		if(user == src)
-			to_chat(src, "<span class='notice'>You're too full to eat another bite.</span>")
+			to_chat(src, span_notice("You're too full to eat another bite."))
 			return
-		to_chat(user, "<span class='notice'>\The [src] seems too full to eat.</span>")
+		to_chat(user, span_notice("\The [src] seems too full to eat."))
 		return
 	var/nutriment_amount = O.reagents?.get_reagent_amount("nutriment") //does it have nutriment, if so how much?
 	var/protein_amount = O.reagents?.get_reagent_amount("protein") //does it have protein, if so how much?
@@ -172,11 +172,11 @@
 	if(O.bitecount >= 3)
 		user.drop_from_inventory(O)
 		qdel(O)
-		visible_message("<span class='notice'>\The [src] eats \the [O].</span>")
+		visible_message(span_notice("\The [src] eats \the [O]."))
 	else
-		to_chat(user, "<span class='notice'>\The [src] takes a bite of \the [O].</span>")
+		to_chat(user, span_notice("\The [src] takes a bite of \the [O]."))
 		if(user != src)
-			to_chat(src, "<span class='notice'>\The [user] feeds \the [O] to you.</span>")
+			to_chat(src, span_notice("\The [user] feeds \the [O] to you."))
 	playsound(src, 'sound/items/eatfood.ogg', 75, 1)
 
 /mob/living/simple_mob/vore/alienanimals/catslug/attack_hand(mob/living/carbon/human/M as mob)
@@ -190,41 +190,41 @@
 		return ..()
 	playsound(src, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
 	if(resting)
-		M.visible_message("<span class='notice'>\The [M.name] shakes \the [src] awake from their nap.</span>","<span class='notice'>You shake \the [src] awake!</span>")
+		M.visible_message(span_notice("\The [M.name] shakes \the [src] awake from their nap."),span_notice("You shake \the [src] awake!"))
 		lay_down()
 		ai_holder.go_wake()
 		return
 	if(M.zone_sel.selecting == BP_HEAD)
 		M.visible_message( \
-			"<span class='notice'>[M] pats \the [src] on the head.</span>", \
-			"<span class='notice'>You pat \the [src] on the head.</span>", )
+			span_notice("[M] pats \the [src] on the head."), \
+			span_notice("You pat \the [src] on the head."), )
 		if(client)
 			return
 		if(prob(10))
-			visible_message("<span class='notice'>\The [src] purrs and leans into [M]'s hand.</span>")
+			visible_message(span_notice("\The [src] purrs and leans into [M]'s hand."))
 	else if(M.zone_sel.selecting == BP_R_HAND || M.zone_sel.selecting == BP_L_HAND)
 		M.visible_message( \
-			"<span class='notice'>[M] shakes \the [src]'s hand.</span>", \
-			"<span class='notice'>You shake \the [src]'s hand.</span>", )
+			span_notice("[M] shakes \the [src]'s hand."), \
+			span_notice("You shake \the [src]'s hand."), )
 		if(client)
 			return
 		if(prob(10))
-			visible_message("<span class='notice'>\The [src]'s looks a little confused nibbles at [M]'s hand experimentally.</span>")
+			visible_message(span_notice("\The [src]'s looks a little confused nibbles at [M]'s hand experimentally."))
 	else if(M.zone_sel.selecting == "mouth")
 		M.visible_message( \
-			"<span class='notice'>[M] boops \the [src]'s nose.</span>", \
-			"<span class='notice'>You boop \the [src] on the nose.</span>", )
+			span_notice("[M] boops \the [src]'s nose."), \
+			span_notice("You boop \the [src] on the nose."), )
 		if(client)
 			return
 		if(prob(10))
-			visible_message("<span class='notice'>\The [src]'s eyes widen as they stare at [M]. After a moment they rub their prodded snoot.</span>")
+			visible_message(span_notice("\The [src]'s eyes widen as they stare at [M]. After a moment they rub their prodded snoot."))
 	else if(M.zone_sel.selecting == BP_GROIN)
 		M.visible_message( \
-			"<span class='notice'>[M] rubs \the [src]'s tummy...</span>", \
-			"<span class='notice'>You rub \the [src]'s tummy... You feel the danger.</span>", )
+			span_notice("[M] rubs \the [src]'s tummy..."), \
+			span_notice("You rub \the [src]'s tummy... You feel the danger."), )
 		if(client)
 			return
-		visible_message("<span class='notice'>\The [src] pushes [M]'s hand away from their tummy and furrows their brow!</span>")
+		visible_message(span_notice("\The [src] pushes [M]'s hand away from their tummy and furrows their brow!"))
 		if(prob(5))
 			ai_holder.give_target(M, urgent = TRUE)
 	else
@@ -244,28 +244,28 @@
 
 /mob/living/simple_mob/vore/alienanimals/catslug/proc/give_hat(var/obj/item/clothing/head/new_hat, var/mob/living/user)
 	if(!istype(new_hat))
-		to_chat(user, span("warning", "\The [new_hat] isn't a hat."))
+		to_chat(user, span_warning("\The [new_hat] isn't a hat."))
 		return
 	if(hat)
-		to_chat(user, span("warning", "\The [src] is already wearing \a [hat]."))
+		to_chat(user, span_warning("\The [src] is already wearing \a [hat]."))
 		return
 	else if(!can_wear_hat)
-		to_chat(user, span("warning", "\The [src] is unable to wear \a [hat]."))
+		to_chat(user, span_warning("\The [src] is unable to wear \a [hat]."))
 	else
 		user.drop_item(new_hat)
 		hat = new_hat
 		new_hat.forceMove(src)
-		to_chat(user, span("notice", "You place \a [new_hat] on \the [src]. How adorable!"))
+		to_chat(user, span_notice("You place \a [new_hat] on \the [src]. How adorable!"))
 		update_icon()
 		return
 
 /mob/living/simple_mob/vore/alienanimals/catslug/proc/remove_hat(var/mob/living/user)
 	if(!hat)
-		to_chat(user, "<span class='warning'>\The [src] doesn't have a hat to remove.</span>")
+		to_chat(user, span_warning("\The [src] doesn't have a hat to remove."))
 	else
 		hat.forceMove(get_turf(src))
 		user.put_in_hands(hat)
-		to_chat(user, "<span class='warning'>You take away \the [src]'s [hat.name]. How mean.</span>")
+		to_chat(user, span_warning("You take away \the [src]'s [hat.name]. How mean."))
 		hat = null
 		update_icon()
 
@@ -287,7 +287,7 @@
 	set category = "Abilities"
 	set desc = "You can set your color!"
 	if(picked_color)
-		to_chat(src, "<span class='notice'>You have already picked a color! If you picked the wrong color, ask an admin to change your picked_color variable to 0.</span>")
+		to_chat(src, span_notice("You have already picked a color! If you picked the wrong color, ask an admin to change your picked_color variable to 0."))
 		return
 	var/newcolor = input(usr, "Choose a color.", "", color) as color|null
 	if(newcolor)
@@ -358,9 +358,9 @@
 
 /mob/living/simple_mob/vore/alienanimals/catslug/custom/Initialize()
 	. = ..()
-	verbs += /mob/living/proc/ventcrawl
-	verbs += /mob/living/proc/hide
-	verbs -= /mob/living/simple_mob/vore/alienanimals/catslug/proc/catslug_color	//Most of these have custom sprites with colour already, so we'll not let them have this.
+	add_verb(src, /mob/living/proc/ventcrawl)
+	add_verb(src, /mob/living/proc/hide)
+	remove_verb(src, /mob/living/simple_mob/vore/alienanimals/catslug/proc/catslug_color)	//Most of these have custom sprites with colour already, so we'll not let them have this.
 
 
 /datum/category_item/catalogue/fauna/catslug/custom/spaceslug
@@ -404,7 +404,7 @@
 	min_n2 = 0
 	max_n2 = 0
 
-	player_msg = "You are an intelligent creature capable of more than most think, clad in a spacesuit that protects you from the ravages of vacuum and hostile atmospheres alike. You can pick up and use many things, and even carry some of them with you into the vents, which you can use to move around quickly. You're quiet and capable, you speak with your hands and your deeds! <br>- - - - -<br> <span class='notice'>Keep in mind, your goal should generally be to survive. You're expected to follow the same rules as everyone else, so don't go self antagging without permission from the staff team, but you are able and capable of defending yourself from those who would attack you for no reason.</span>"
+	player_msg = "You are an intelligent creature capable of more than most think, clad in a spacesuit that protects you from the ravages of vacuum and hostile atmospheres alike. You can pick up and use many things, and even carry some of them with you into the vents, which you can use to move around quickly. You're quiet and capable, you speak with your hands and your deeds!<br>- - - - -<br>" + span_notice("Keep in mind, your goal should generally be to survive. You're expected to follow the same rules as everyone else, so don't go self antagging without permission from the staff team, but you are able and capable of defending yourself from those who would attack you for no reason.")
 
 /datum/say_list/catslug/custom/spaceslug
 	speak = list("Have any porl?", "What is that?", "What kind of ship is that?", "What are you doing?", "How did you get here?", "Don't take off your helmet.", "SPAAAAAACE!", "WAOW!", "Nice weather we're having, isn't it?")
@@ -417,41 +417,41 @@
 		return ..()
 	playsound(src, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
 	if(resting)
-		M.visible_message("<span class='notice'>\The [M.name] shakes \the [src] awake from their nap.</span>","<span class='notice'>You shake \the [src] awake!</span>")
+		M.visible_message(span_notice("\The [M.name] shakes \the [src] awake from their nap."),span_notice("You shake \the [src] awake!"))
 		lay_down()
 		ai_holder.go_wake()
 		return
 	if(M.zone_sel.selecting == BP_HEAD)
 		M.visible_message( \
-			"<span class='notice'>[M] pats \the [src] on their helmet.</span>", \
-			"<span class='notice'>You pat \the [src] on their helmet.</span>", )
+			span_notice("[M] pats \the [src] on their helmet."), \
+			span_notice("You pat \the [src] on their helmet."), )
 		if(client)
 			return
 		if(prob(10))
-			visible_message("<span class='notice'>\The [src] purrs and leans into [M]'s hand.</span>")
+			visible_message(span_notice("\The [src] purrs and leans into [M]'s hand."))
 	else if(M.zone_sel.selecting == BP_R_HAND || M.zone_sel.selecting == BP_L_HAND)
 		M.visible_message( \
-			"<span class='notice'>[M] shakes \the [src]'s hand.</span>", \
-			"<span class='notice'>You shake \the [src]'s hand.</span>", )
+			span_notice("[M] shakes \the [src]'s hand."), \
+			span_notice("You shake \the [src]'s hand."), )
 		if(client)
 			return
 		if(prob(10))
-			visible_message("<span class='notice'>\The [src]'s looks a little confused and bonks their helmet's faceplate against [M]'s hand experimentally, attempting to nibble at it.</span>")
+			visible_message(span_notice("\The [src]'s looks a little confused and bonks their helmet's faceplate against [M]'s hand experimentally, attempting to nibble at it."))
 	else if(M.zone_sel.selecting == "mouth")
 		M.visible_message( \
-			"<span class='notice'>[M] attempts to boop \the [src]'s nose, defeated only by the helmet they wear.</span>", \
-			"<span class='notice'>You attempt to boop \the [src] on the nose, stopped only by that helmet they wear.</span>", )
+			span_notice("[M] attempts to boop \the [src]'s nose, defeated only by the helmet they wear."), \
+			span_notice("You attempt to boop \the [src] on the nose, stopped only by that helmet they wear."), )
 		if(client)
 			return
 		if(prob(10))
-			visible_message("<span class='notice'>\The [src]'s eyes widen as they stare at [M]. After a moment they rub at the faint mark [M]'s digit left upon the surface of their helmet's faceplate.</span>")
+			visible_message(span_notice("\The [src]'s eyes widen as they stare at [M]. After a moment they rub at the faint mark [M]'s digit left upon the surface of their helmet's faceplate."))
 	else if(M.zone_sel.selecting == BP_GROIN)
 		M.visible_message( \
-			"<span class='notice'>[M] rubs \the [src]'s tummy...</span>", \
-			"<span class='notice'>You rub \the [src]'s tummy, accidently pressing a few of the buttons on their chestpiece in the process... You feel the danger.</span>", )
+			span_notice("[M] rubs \the [src]'s tummy..."), \
+			span_notice("You rub \the [src]'s tummy, accidently pressing a few of the buttons on their chestpiece in the process... You feel the danger."), )
 		if(client)
 			return
-		visible_message("<span class='notice'>\The [src] pushes [M]'s hand away from their tummy and furrows their brow, frantically pressing at the buttons [M] so carelessly pushed!</span>")
+		visible_message(span_notice("\The [src] pushes [M]'s hand away from their tummy and furrows their brow, frantically pressing at the buttons [M] so carelessly pushed!"))
 		if(prob(5))
 			ai_holder.give_target(M, urgent = TRUE)
 	else
@@ -517,41 +517,41 @@
 		return ..()
 	playsound(src, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
 	if(resting)
-		M.visible_message("<span class='notice'>\The [M.name] shakes \the [src] awake from their nap.</span>","<span class='notice'>You shake \the [src] awake!</span>")
+		M.visible_message(span_notice("\The [M.name] shakes \the [src] awake from their nap."),span_notice("You shake \the [src] awake!"))
 		lay_down()
 		ai_holder.go_wake()
 		return
 	if(M.zone_sel.selecting == BP_HEAD)
 		M.visible_message( \
-			"<span class='notice'>[M] pats \the [src] on their helmet.</span>", \
-			"<span class='notice'>You pat \the [src] on their helmet.</span>", )
+			span_notice("[M] pats \the [src] on their helmet."), \
+			span_notice("You pat \the [src] on their helmet."), )
 		if(client)
 			return
 		if(prob(10))
-			visible_message("<span class='notice'>\The [src] purrs and leans into [M]'s hand.</span>")
+			visible_message(span_notice("\The [src] purrs and leans into [M]'s hand."))
 	else if(M.zone_sel.selecting == BP_R_HAND || M.zone_sel.selecting == BP_L_HAND)
 		M.visible_message( \
-			"<span class='notice'>[M] shakes \the [src]'s hand.</span>", \
-			"<span class='notice'>You shake \the [src]'s hand.</span>", )
+			span_notice("[M] shakes \the [src]'s hand."), \
+			span_notice("You shake \the [src]'s hand."), )
 		if(client)
 			return
 		if(prob(10))
-			visible_message("<span class='notice'>\The [src]'s looks a little confused and bonks their helmet's faceplate against [M]'s hand experimentally, attempting to nibble at it.</span>")
+			visible_message(span_notice("\The [src]'s looks a little confused and bonks their helmet's faceplate against [M]'s hand experimentally, attempting to nibble at it."))
 	else if(M.zone_sel.selecting == "mouth")
 		M.visible_message( \
-			"<span class='notice'>[M] attempts to boop \the [src]'s nose, defeated only by the helmet they wear.</span>", \
-			"<span class='notice'>You attempt to boop \the [src] on the nose, stopped only by that helmet they wear.</span>", )
+			span_notice("[M] attempts to boop \the [src]'s nose, defeated only by the helmet they wear."), \
+			span_notice("You attempt to boop \the [src] on the nose, stopped only by that helmet they wear."), )
 		if(client)
 			return
 		if(prob(10))
-			visible_message("<span class='notice'>\The [src]'s eyes widen as they stare at [M]. After a moment they rub at the faint mark [M]'s digit left upon the surface of their helmet's faceplate.</span>")
+			visible_message(span_notice("\The [src]'s eyes widen as they stare at [M]. After a moment they rub at the faint mark [M]'s digit left upon the surface of their helmet's faceplate."))
 	else if(M.zone_sel.selecting == BP_GROIN)
 		M.visible_message( \
-			"<span class='notice'>[M] rubs \the [src]'s tummy...</span>", \
-			"<span class='notice'>You rub \the [src]'s tummy... You feel the danger.</span>", )
+			span_notice("[M] rubs \the [src]'s tummy..."), \
+			span_notice("You rub \the [src]'s tummy... You feel the danger."), )
 		if(client)
 			return
-		visible_message("<span class='notice'>\The [src] pushes [M]'s hand away from their tummy and furrows their brow!</span>")
+		visible_message(span_notice("\The [src] pushes [M]'s hand away from their tummy and furrows their brow!"))
 		if(prob(5))
 			ai_holder.give_target(M, urgent = TRUE)
 	else
@@ -1080,7 +1080,7 @@
 
 /mob/living/simple_mob/vore/alienanimals/catslug/suslug/Initialize()
 	. = ..()
-	verbs += /mob/living/simple_mob/vore/alienanimals/catslug/suslug/proc/assussinate
+	add_verb(src, /mob/living/simple_mob/vore/alienanimals/catslug/suslug/proc/assussinate)
 	update_icon()
 
 /mob/living/simple_mob/vore/alienanimals/catslug/suslug/update_icon()
@@ -1095,7 +1095,7 @@
 
 /mob/living/simple_mob/vore/alienanimals/catslug/suslug/can_ventcrawl()
 	if(!is_impostor)
-		to_chat(src, "<span class='notice'>You are not an impostor! You can't vent!</span>")
+		to_chat(src, span_notice("You are not an impostor! You can't vent!"))
 		return FALSE
 	.=..()
 
@@ -1106,19 +1106,19 @@
 		var/mob/living/simple_mob/vore/alienanimals/catslug/suslug/us = user
 		if(us.is_impostor)
 			if(src.is_impostor)
-				. += "<span class='notice'>They appear to be a fellow impostor!</span>"
+				. += span_notice("They appear to be a fellow impostor!")
 			else
-				. += "<span class='notice'>They appear to be a filthy innocent!</span>"
+				. += span_notice("They appear to be a filthy innocent!")
 
 /mob/living/simple_mob/vore/alienanimals/catslug/suslug/proc/assussinate()
 	set name = "Kill Innocent"
 	set category = "Abilities"
 	set desc = "Kill an innocent suslug!"
 	if(!is_impostor)
-		to_chat(src, "<span class='notice'>You are not an impostor! You can't kill like that!</span>")
+		to_chat(src, span_notice("You are not an impostor! You can't kill like that!"))
 		return
 	if((world.time - kill_cooldown) < 1 MINUTE)
-		to_chat(src, "<span class='notice'>You cannot kill so soon after previous kill!</span>")
+		to_chat(src, span_notice("You cannot kill so soon after previous kill!"))
 		return
 
 	var/mob/living/simple_mob/vore/alienanimals/catslug/suslug/target
@@ -1127,7 +1127,7 @@
 		if(!S.is_impostor)
 			victims += S
 	if(!victims || !victims.len)
-		to_chat(src, "<span class='warning'>There are no innocent suslugs nearby!</span>")
+		to_chat(src, span_warning("There are no innocent suslugs nearby!"))
 		return
 	if(victims.len == 1)
 		target = victims[1]
@@ -1136,7 +1136,7 @@
 
 	if(target && istype(target))
 		target.adjustBruteLoss(3000)
-		visible_message("<span class='warning'>\The [src] kills \the [target]!</span>")
+		visible_message(span_warning("\The [src] kills \the [target]!"))
 		kill_cooldown = world.time
 
 /mob/living/simple_mob/vore/alienanimals/catslug/suslug/color

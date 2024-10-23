@@ -15,6 +15,7 @@ export type Data = {
     maximum_size: number;
     resize_cost: number;
   };
+  vore_words: Record<string, string[]>;
 };
 
 export type hostMob = {

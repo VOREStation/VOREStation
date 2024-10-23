@@ -70,9 +70,9 @@
 		var/mob/living/L = A
 		if(prob(knockdown_chance))
 			L.Weaken(4)
-			L.visible_message(span("danger", "\The [src] buffets \the [L]!"))
+			L.visible_message(span_danger("\The [src] buffets \the [L]!"))
 			src.ai_holder.remove_target()
-			L.visible_message(span("notice", "\The [src] seems to lose interest in \the [L]..."))
+			L.visible_message(span_notice("\The [src] seems to lose interest in \the [L]..."))
 
 /datum/say_list/space_ray
 	emote_see = list("swoops","dives","drifts on a solar current","glides elegantly through the void","briefly tumbles")

@@ -14,9 +14,9 @@
 /datum/blob_type/classic/on_chunk_use(obj/item/blobcore_chunk/B, mob/living/user)
 	var/turf/T = get_turf(B)
 
-	to_chat(user, "<span class='alien'>\The [B] produces a soothing ooze!</span>")
+	to_chat(user, span_alien("\The [B] produces a soothing ooze!"))
 
-	T.visible_message("<span class='alium'>\The [B] shudders at \the [user]'s touch, before disgorging a disgusting ooze.</span>")
+	T.visible_message(span_alium("\The [B] shudders at \the [user]'s touch, before disgorging a disgusting ooze."))
 
 	for(var/turf/simulated/floor/F in view(2, T))
 		spawn()

@@ -1,5 +1,5 @@
 /proc/sql_poll_population()
-	if(!sqllogging)
+	if(!CONFIG_GET(flag/log_sql))
 		return
 	var/admincount = GLOB.admins.len
 	var/playercount = 0
@@ -18,15 +18,15 @@
 
 /proc/sql_report_round_start()
 	// TODO
-	if(!sqllogging)
+	if(!CONFIG_GET(flag/log_sql))
 		return
 /proc/sql_report_round_end()
 	// TODO
-	if(!sqllogging)
+	if(!CONFIG_GET(flag/log_sql))
 		return
 
 /proc/sql_report_death(var/mob/living/carbon/human/H)
-	if(!sqllogging)
+	if(!CONFIG_GET(flag/log_sql))
 		return
 	if(!H)
 		return
@@ -60,7 +60,7 @@
 
 
 /proc/sql_report_cyborg_death(var/mob/living/silicon/robot/H)
-	if(!sqllogging)
+	if(!CONFIG_GET(flag/log_sql))
 		return
 	if(!H)
 		return
@@ -95,7 +95,7 @@
 
 /proc/statistic_cycle()
 	set waitfor = 0
-	if(!sqllogging)
+	if(!CONFIG_GET(flag/log_sql))
 		return
 	while(1)
 		sql_poll_population()

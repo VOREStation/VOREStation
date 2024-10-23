@@ -137,24 +137,24 @@
 	if(istype(I,/obj/item/disk/limb))
 		var/obj/item/disk/limb/D = I
 		if(!D.company || !(D.company in all_robolimbs))
-			to_chat(user, "<span class='warning'>This disk seems to be corrupted!</span>")
+			to_chat(user, span_warning("This disk seems to be corrupted!"))
 		else
-			to_chat(user, "<span class='notice'>Installing blueprint files for [D.company]...</span>")
+			to_chat(user, span_notice("Installing blueprint files for [D.company]..."))
 			if(do_after(user,50,src))
 				var/datum/robolimb/R = all_robolimbs[D.company]
 				R.unavailable_to_build = 0
-				to_chat(user, "<span class='notice'>Installed [D.company] blueprints!</span>")
+				to_chat(user, span_notice("Installed [D.company] blueprints!"))
 				qdel(I)
 		return
 
 	if(istype(I,/obj/item/disk/species))
 		var/obj/item/disk/species/D = I
 		if(!D.species || !(D.species in GLOB.all_species))
-			to_chat(user, "<span class='warning'>This disk seems to be corrupted!</span>")
+			to_chat(user, span_warning("This disk seems to be corrupted!"))
 		else
-			to_chat(user, "<span class='notice'>Uploading modification files for [D.species]...</span>")
+			to_chat(user, span_notice("Uploading modification files for [D.species]..."))
 			if(do_after(user,50,src))
 				species_types |= D.species
-				to_chat(user, "<span class='notice'>Uploaded [D.species] files!</span>")
+				to_chat(user, span_notice("Uploaded [D.species] files!"))
 				qdel(I)
 		return

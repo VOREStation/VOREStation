@@ -19,15 +19,15 @@
 
 	opened = !opened
 	if(opened)
-		to_chat(usr, "<span class='notice'>The access panel is now open.</span>")
+		to_chat(usr, span_notice("The access panel is now open."))
 	else
-		to_chat(usr, "<span class='notice'>The access panel is now closed.</span>")
+		to_chat(usr, span_notice("The access panel is now closed."))
 	return
 
 
 /obj/machinery/computer/aiupload/attackby(obj/item/O as obj, mob/user as mob)
 	if (using_map && !(user.z in using_map.contact_levels))
-		to_chat(user, "<span class='danger'>Unable to establish a connection:</span> You're too far away from the station!")
+		to_chat(user, span_danger("Unable to establish a connection:") + " You're too far away from the station!")
 		return
 	if(istype(O, /obj/item/aiModule))
 		var/obj/item/aiModule/M = O

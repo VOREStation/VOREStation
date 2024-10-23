@@ -35,7 +35,7 @@
 	if(get_restraining_bolt())	// Borgs with Restraining Bolts move slower.
 		. += 1
 
-	. += config.robot_delay
+	. += CONFIG_GET(number/robot_delay)
 
 	. += ..()
 
@@ -96,4 +96,4 @@
 						cleaned_human.shoes.clean_blood()
 						cleaned_human.update_inv_shoes(0)
 					cleaned_human.clean_blood(1)
-					to_chat(cleaned_human, "<span class='warning'>[src] cleans your face!</span>")
+					to_chat(cleaned_human, span_warning("[src] cleans your face!"))

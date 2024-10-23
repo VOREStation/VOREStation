@@ -55,14 +55,14 @@
 
 	if(W.has_tool_quality(TOOL_CROWBAR))
 		playsound(src, 'sound/machines/click.ogg', 50, 1)
-		user.visible_message("<span class='notice'>[user] begins to take the glass off the solar tracker.</span>")
+		user.visible_message(span_notice("[user] begins to take the glass off the solar tracker."))
 		if(do_after(user, 50))
 			var/obj/item/solar_assembly/S = new(loc)
 			S.tracker = TRUE
 			S.anchored = TRUE
 			new glass_type(loc, 2)
 			playsound(src, 'sound/items/Deconstruct.ogg', 50, 1)
-			user.visible_message("<span class='notice'>[user] takes the glass off the tracker.</span>")
+			user.visible_message(span_notice("[user] takes the glass off the tracker."))
 			qdel(src)
 		return
 	..()

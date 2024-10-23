@@ -115,7 +115,7 @@
 	return scrambled_text
 
 /datum/language/proc/format_message(message, verb)
-	return "<span class='message'><span class='[colour]'>[message]</span></span>"
+	return span_message("<span class='[colour]'>[message]</span>")
 
 /datum/language/proc/format_message_plain(message, verb)
 	return "[capitalize(message)]"
@@ -130,7 +130,7 @@
 /datum/language/proc/broadcast(var/mob/living/speaker,var/message,var/speaker_mask)
 	log_say("(HIVE) [message]", speaker)
 
-	speaker.verbs |= /mob/proc/adjust_hive_range
+	add_verb(speaker, /mob/proc/adjust_hive_range)
 
 	if(!speaker_mask) speaker_mask = speaker.real_name
 	message = "[get_spoken_verb(message)], \"[format_message(message, get_spoken_verb(message))]\""
@@ -154,7 +154,7 @@
 
 /mob/proc/hear_broadcast(var/datum/language/language, var/mob/speaker, var/speaker_name, var/message)
 	if((language in languages) && language.check_special_condition(src))
-		var/msg = span_hivemind("[language.name], <span class='name'>[speaker_name]</span> [message]")
+		var/msg = span_hivemind("[language.name], " + span_name("[speaker_name]") + " [message]")
 		to_chat(src,msg)
 
 /mob/new_player/hear_broadcast(var/datum/language/language, var/mob/speaker, var/speaker_name, var/message)
@@ -162,9 +162,9 @@
 
 /mob/observer/dead/hear_broadcast(var/datum/language/language, var/mob/speaker, var/speaker_name, var/message)
 	if(speaker.name == speaker_name || antagHUD)
-		to_chat(src, span_hivemind("[language.name], <span class='name'>[speaker_name]</span> ([ghost_follow_link(speaker, src)]) [message]"))
+		to_chat(src, span_hivemind("[language.name], " + span_name("[speaker_name]") + " ([ghost_follow_link(speaker, src)]) [message]"))
 	else
-		to_chat(src, span_hivemind("[language.name], <span class='name'>[speaker_name]</span> [message]"))
+		to_chat(src, span_hivemind("[language.name], " + span_name("[speaker_name]") + " [message]"))
 
 /datum/language/proc/check_special_condition(var/mob/other)
 	return 1
@@ -205,7 +205,7 @@
 	languages.Add(new_language)
 	//VOREStation Addition Start
 	if(new_language.flags & HIVEMIND)
-		verbs |= /mob/proc/adjust_hive_range
+		add_verb(src, /mob/proc/adjust_hive_range)
 	//VOREStation Addition End
 
 	return 1
@@ -250,13 +250,13 @@
 	if(client && client.prefs.language_prefixes && client.prefs.language_prefixes.len)
 		return client.prefs.language_prefixes[1]
 
-	return config.language_prefixes[1]
+	return CONFIG_GET(str_list/language_prefixes)[1]
 
 /mob/proc/is_language_prefix(var/prefix)
 	if(client && client.prefs.language_prefixes && client.prefs.language_prefixes.len)
 		return prefix in client.prefs.language_prefixes
 
-	return prefix in config.language_prefixes
+	return prefix in CONFIG_GET(str_list/language_prefixes)
 
 //TBD
 /mob/proc/check_lang_data()
@@ -265,7 +265,7 @@
 	for(var/datum/language/L in languages)
 		if(!(L.flags & NONGLOBAL))
 			var/lang_key = get_custom_prefix_by_lang(src, L)
-			. += "<b>[L.name] ([get_language_prefix()][L.key][lang_key ? " [get_language_prefix()][lang_key]" : ""])</b><br/>[L.desc]<br/><br/>"
+			. += span_bold("[L.name] ([get_language_prefix()][L.key][lang_key ? " [get_language_prefix()][lang_key]" : ""])") + "<br/>[L.desc]<br/><br/>"
 
 /mob/living/check_lang_data()
 	. = ""
@@ -277,11 +277,11 @@
 		if(!(L.flags & NONGLOBAL))
 			var/lang_key = get_custom_prefix_by_lang(src, L)
 			if(L == default_language)
-				. += "<b>[L.name] ([get_language_prefix()][L.key][lang_key ? " [get_language_prefix()][lang_key]" : ""])</b> <a href='byond://?src=\ref[src];set_lang_key=\ref[L]'>Edit Custom Key</a> - default - <a href='byond://?src=\ref[src];default_lang=reset'>reset</a><br/>[L.desc]<br/><br/>"
+				. += span_bold("[L.name] ([get_language_prefix()][L.key][lang_key ? " [get_language_prefix()][lang_key]" : ""])") + " <a href='byond://?src=\ref[src];set_lang_key=\ref[L]'>Edit Custom Key</a> - default - <a href='byond://?src=\ref[src];default_lang=reset'>reset</a><br/>[L.desc]<br/><br/>"
 			else if (can_speak(L))
-				. += "<b>[L.name] ([get_language_prefix()][L.key][lang_key ? " [get_language_prefix()][lang_key]" : ""])</b> <a href='byond://?src=\ref[src];set_lang_key=\ref[L]'>Edit Custom Key</a> - <a href='byond://?src=\ref[src];default_lang=\ref[L]'>set default</a><br/>[L.desc]<br/><br/>"
+				. += span_bold("[L.name] ([get_language_prefix()][L.key][lang_key ? " [get_language_prefix()][lang_key]" : ""])") + " <a href='byond://?src=\ref[src];set_lang_key=\ref[L]'>Edit Custom Key</a> - <a href='byond://?src=\ref[src];default_lang=\ref[L]'>set default</a><br/>[L.desc]<br/><br/>"
 			else
-				. += "<b>[L.name] ([get_language_prefix()][L.key][lang_key ? " [get_language_prefix()][lang_key]" : ""])</b> <a href='byond://?src=\ref[src];set_lang_key=\ref[L]'>Edit Custom Key</a> - cannot speak!<br/>[L.desc]<br/><br/>"
+				. += span_bold("[L.name] ([get_language_prefix()][L.key][lang_key ? " [get_language_prefix()][lang_key]" : ""])") + " <a href='byond://?src=\ref[src];set_lang_key=\ref[L]'>Edit Custom Key</a> - cannot speak!<br/>[L.desc]<br/><br/>"
 
 /mob/verb/check_languages()
 	set name = "Check Known Languages"

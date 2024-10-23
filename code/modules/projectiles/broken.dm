@@ -27,10 +27,10 @@
 	. = ..()
 	spawn()
 		if(get_dist(get_turf(user),get_turf(src)) <= 1)
-			to_chat(user, "<span class='notice'>You begin inspecting \the [src].</span>")
+			to_chat(user, span_notice("You begin inspecting \the [src]."))
 
 			if(do_after(user, 5 SECONDS))
-				to_chat(user, "<span class='notice'>\The [src] can possibly be restored with:</span>")
+				to_chat(user, span_notice("\The [src] can possibly be restored with:"))
 				for(var/obj/item/res as anything in material_needs)
 					if(material_needs[res] > 0)
 						var/res_name = ""
@@ -43,7 +43,7 @@
 								res_name = "[mat.use_name] [mat.sheet_singular_name]"
 						else
 							res_name = initial(res.name)
-						to_chat(user, "<span class='notice'>- x [material_needs[res]] [res_name]</span>")
+						to_chat(user, span_notice("- x [material_needs[res]] [res_name]"))
 
 /obj/item/broken_gun/proc/setup_gun(var/obj/item/gun/path)
 	if(ispath(path))
@@ -105,7 +105,7 @@
 					if(S.can_use(material_needs[path]))
 						return TRUE
 					else
-						to_chat(user, "<span class='notice'>You do not have enough [path] to continue repairs.</span>")
+						to_chat(user, span_notice("You do not have enough [path] to continue repairs."))
 				else
 					return TRUE
 
@@ -120,11 +120,11 @@
 					if(S.can_use(material_needs[path]))
 						S.use(material_needs[path])
 						material_needs[path] = 0
-						to_chat(user, "<span class='notice'>You repair some damage on \the [src] with \the [S].</span>")
+						to_chat(user, span_notice("You repair some damage on \the [src] with \the [S]."))
 				else
 					material_needs[path] = max(0, material_needs[path] - 1)
 					user.drop_from_inventory(I)
-					to_chat(user, "<span class='notice'>You repair some damage on \the [src] with \the [I].</span>")
+					to_chat(user, span_notice("You repair some damage on \the [src] with \the [I]."))
 					qdel(I)
 
 	check_complete_repair(user)
@@ -141,5 +141,5 @@
 	if(fully_repaired)
 		my_guntype = new my_guntype(get_turf(src))
 		my_guntype.name = "[pick("salvaged", "repaired", "old")] [initial(my_guntype.name)]"
-		to_chat(user, "<span class='notice'>You finish your repairs on \the [my_guntype].</span>")
+		to_chat(user, span_notice("You finish your repairs on \the [my_guntype]."))
 		qdel(src)

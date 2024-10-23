@@ -84,7 +84,7 @@
 			if(l_spell.aspect == ASPECT_CHROMATIC) //Check the other hand too.
 				l_spell.on_combine_cast(S, src)
 		else //Welp
-			to_chat(src, "<span class='warning'>You require a free manipulator to use this power.</span>")
+			to_chat(src, span_warning("You require a free manipulator to use this power."))
 			return 0
 
 	if(S.run_checks())
@@ -126,9 +126,9 @@
 			var/repair_upper_bound = A.melee_damage_upper * -1
 			adjustBruteLoss(rand(repair_lower_bound, repair_upper_bound))
 			adjustFireLoss(rand(repair_lower_bound, repair_upper_bound))
-			user.visible_message("<b>\The [user]</b> mends some of \the [src]'s wounds.")
+			user.visible_message(span_infoplain(span_bold("\The [user]") + " mends some of \the [src]'s wounds."))
 		else
-			to_chat(user, "<span class='notice'>\The [src] is undamaged.</span>")
+			to_chat(user, span_notice("\The [src] is undamaged."))
 		return
 	return ..()
 
@@ -137,9 +137,9 @@
 	var/max = getMaxHealth()
 	if (health < max)
 		if (health >= max/2)
-			. += "<span class='warning'>It looks slightly dented.</span>"
+			. += span_warning("It looks slightly dented.")
 		else
-			. += "<span class='warning'><B>It looks severely dented!</B></span>"
+			. += span_boldwarning("It looks severely dented!")
 
 //Constructs levitate, can fall from a shuttle with no harm, and are piloted by either damned spirits or some otherworldly entity. Let 'em float in space.
 /mob/living/simple_mob/construct/Process_Spacemove()

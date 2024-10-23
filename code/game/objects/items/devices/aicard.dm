@@ -19,7 +19,7 @@
 		return ..()
 	else
 		M.death()
-		to_chat(user, "<b>ERROR ERROR ERROR</b>")
+		to_chat(user, span_infoplain(span_bold("ERROR ERROR ERROR")))
 
 /obj/item/aicard/attack_self(mob/user)
 	tgui_interact(user)
@@ -74,12 +74,12 @@
 			INVOKE_ASYNC(src, PROC_REF(wipe_ai))
 		if("radio")
 			carded_ai.aiRadio.disabledAi = !carded_ai.aiRadio.disabledAi
-			to_chat(carded_ai, "<span class='warning'>Your Subspace Transceiver has been [carded_ai.aiRadio.disabledAi ? "disabled" : "enabled"]!</span>")
-			to_chat(user, "<span class='notice'>You [carded_ai.aiRadio.disabledAi ? "disable" : "enable"] the AI's Subspace Transceiver.</span>")
+			to_chat(carded_ai, span_warning("Your Subspace Transceiver has been [carded_ai.aiRadio.disabledAi ? "disabled" : "enabled"]!"))
+			to_chat(user, span_notice("You [carded_ai.aiRadio.disabledAi ? "disable" : "enable"] the AI's Subspace Transceiver."))
 		if("wireless")
 			carded_ai.control_disabled = !carded_ai.control_disabled
-			to_chat(carded_ai, "<span class='warning'>Your wireless interface has been [carded_ai.control_disabled ? "disabled" : "enabled"]!</span>")
-			to_chat(user, "<span class='notice'>You [carded_ai.control_disabled ? "disable" : "enable"] the AI's wireless interface.</span>")
+			to_chat(carded_ai, span_warning("Your wireless interface has been [carded_ai.control_disabled ? "disabled" : "enabled"]!"))
+			to_chat(user, span_notice("You [carded_ai.control_disabled ? "disable" : "enable"] the AI's wireless interface."))
 			if(carded_ai.control_disabled && carded_ai.deployed_shell)
 				carded_ai.disconnect_shell("Disconnecting from remote shell due to [src] wireless access interface being disabled.")
 			update_icon()
@@ -100,11 +100,11 @@
 
 /obj/item/aicard/proc/grab_ai(var/mob/living/silicon/ai/ai, var/mob/living/user)
 	if(!ai.client && !ai.deployed_shell)
-		to_chat(user, "<span class='danger'>ERROR:</span> AI [ai.name] is offline. Unable to transfer.")
+		to_chat(user, span_danger("ERROR:") + " AI [ai.name] is offline. Unable to transfer.")
 		return 0
 
 	if(carded_ai)
-		to_chat(user, "<span class='danger'>Transfer failed:</span> Existing AI found on remote device. Remove existing AI to install a new one.")
+		to_chat(user, span_danger("Transfer failed:") + " Existing AI found on remote device. Remove existing AI to install a new one.")
 		return 0
 
 	if(!user.IsAdvancedToolUser() && isanimal(user))
@@ -113,11 +113,11 @@
 			return 0
 
 	user.visible_message("\The [user] starts transferring \the [ai] into \the [src]...", "You start transferring \the [ai] into \the [src]...")
-	show_message(span("critical", "\The [user] is transferring you into \the [src]!"))
+	show_message(span_critical("\The [user] is transferring you into \the [src]!"))
 
 	if(do_after(user, 100))
 		if(carded_ai)
-			to_chat(user, "<span class='danger'>Transfer failed:</span> Existing AI found on remote device. Remove existing AI to install a new one.")
+			to_chat(user, span_danger("Transfer failed:") + " Existing AI found on remote device. Remove existing AI to install a new one.")
 			return 0
 		if(istype(ai.loc, /turf/))
 			new /obj/structure/AIcore/deactivated(get_turf(ai))
@@ -135,9 +135,9 @@
 		ai.disconnect_shell("Disconnected from remote shell due to core intelligence transfer.") //If the AI is controlling a borg, force the player back to core!
 
 		if(ai.client)
-			to_chat(ai, "You have been transferred into a mobile core. Remote access lost.")
+			to_chat(ai, span_infoplain("You have been transferred into a mobile core. Remote access lost."))
 		if(user.client)
-			to_chat(ai, "<span class='notice'><b>Transfer successful:</b></span> [ai.name] extracted from current device and placed within mobile core.")
+			to_chat(ai, span_notice(span_bold("Transfer successful:")) + " [ai.name] extracted from current device and placed within mobile core.")
 
 		ai.canmove = 1
 		update_icon()
@@ -153,13 +153,13 @@
 
 /obj/item/aicard/see_emote(mob/living/M, text)
 	if(carded_ai && carded_ai.client)
-		var/rendered = "<span class='message'>[text]</span>"
+		var/rendered = span_message("[text]")
 		carded_ai.show_message(rendered, 2)
 	..()
 
 /obj/item/aicard/show_message(msg, type, alt, alt_type)
 	if(carded_ai && carded_ai.client)
-		var/rendered = "<span class='message'>[msg]</span>"
+		var/rendered = span_message("[msg]")
 		carded_ai.show_message(rendered, type)
 	..()
 

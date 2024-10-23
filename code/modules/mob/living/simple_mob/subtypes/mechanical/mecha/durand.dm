@@ -48,11 +48,11 @@
 	defense_mode = new_mode
 	deflect_chance = defense_mode ? defense_deflect : initial(deflect_chance)
 	projectile_accuracy = defense_mode ? -10 : initial(projectile_accuracy)
-	to_chat(src, span("notice", "You [defense_mode ? "en" : "dis"]able defense mode."))
+	to_chat(src, span_notice("You [defense_mode ? "en" : "dis"]able defense mode."))
 
 /mob/living/simple_mob/mechanical/mecha/combat/durand/SelfMove(turf/n, direct)
 	if(defense_mode)
-		to_chat(src, span("warning", "You are in defense mode, you cannot move."))
+		to_chat(src, span_warning("You are in defense mode, you cannot move."))
 		return FALSE
 	return ..()
 

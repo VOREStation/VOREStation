@@ -14,6 +14,9 @@
 
 	origin_tech = list(TECH_MAGNET = 1, TECH_ENGINEERING = 1)
 
+	pickup_sound = 'sound/items/pickup/device.ogg'
+	drop_sound = 'sound/items/drop/device.ogg'
+
 /obj/item/analyzer/atmosanalyze(var/mob/user)
 	var/air = user.return_air()
 	if (!air)
@@ -25,7 +28,7 @@
 	if (user.stat)
 		return
 	if (!user.IsAdvancedToolUser())
-		to_chat(usr, "<span class='warning'>You don't have the dexterity to do this!</span>")
+		to_chat(usr, span_warning("You don't have the dexterity to do this!"))
 		return
 
 	analyze_gases(src, user)

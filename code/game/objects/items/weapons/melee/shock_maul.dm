@@ -150,7 +150,7 @@
 	..()
 	if(status)
 		status = 0
-		visible_message("<span class='warning'>\The [src]'s grip safety engages!</span>")
+		visible_message(span_warning("\The [src]'s grip safety engages!"))
 	update_held_icon()
 
 /obj/item/melee/shock_maul/examine(mob/user)
@@ -158,9 +158,9 @@
 
 	if(Adjacent(user))
 		if(bcell)
-			. += "<span class='notice'>The concussion maul is [round(bcell.percent())]% charged.</span>"
+			. += span_notice("The concussion maul is [round(bcell.percent())]% charged.")
 		if(!bcell)
-			. += "<span class='warning'>The concussion maul does not have a power source installed.</span>"
+			. += span_warning("The concussion maul does not have a power source installed.")
 
 /obj/item/melee/shock_maul/attackby(obj/item/W, mob/user)
 	if(!user.IsAdvancedToolUser())
@@ -171,12 +171,12 @@
 				user.drop_item()
 				W.loc = src
 				bcell = W
-				to_chat(user, "<span class='notice'>You install a cell in \the [src].</span>")
+				to_chat(user, span_notice("You install a cell in \the [src]."))
 				update_held_icon()
 			else
-				to_chat(user, "<span class='notice'>\The [src] already has a cell.</span>")
+				to_chat(user, span_notice("\The [src] already has a cell."))
 		else
-			to_chat(user, "<span class='notice'>This cell is not fitted for [src].</span>")
+			to_chat(user, span_notice("This cell is not fitted for [src]."))
 
 /obj/item/melee/shock_maul/attack_hand(mob/user as mob)
 	if(user.get_inactive_hand() == src)
@@ -186,7 +186,7 @@
 			bcell.update_icon()
 			user.put_in_hands(bcell)
 			bcell = null
-			to_chat(user, "<span class='notice'>You remove the cell from the [src].</span>")
+			to_chat(user, span_notice("You remove the cell from the [src]."))
 			status = 0
 			update_held_icon()
 			return
@@ -200,18 +200,18 @@
 	if(!status && bcell && bcell.charge >= hitcost)
 		if(do_after(user, 2 SECONDS))
 			status = 1
-			user.visible_message("<span class='warning'>[user] charges \the [src]!</span>","<span class='warning'>You charge \the [src]. <b>It's hammer time!</b></span>")
+			user.visible_message(span_warning("[user] charges \the [src]!"),span_warning("You charge \the [src]. <b>It's hammer time!</b>"))
 			playsound(src, "sparks", 75, 1, -1)
 			update_held_icon()
 	else if(status)
 		status = 0
-		user.visible_message("<span class='notice'>[user] safely disengages \the [src]'s power field.</span>","<span class='notice'>\The [src] is now off.</span>")
+		user.visible_message(span_notice("[user] safely disengages \the [src]'s power field."),span_notice("\The [src] is now off."))
 		update_held_icon()
 		playsound(src, "sparks", 75, 1, -1)
 		if(!bcell)
-			to_chat(user, "<span class='warning'>\The [src] does not have a power source!</span>")
+			to_chat(user, span_warning("\The [src] does not have a power source!"))
 	else
-		to_chat(user, "<span class='warning'>\The [src] is out of charge.</span>")
+		to_chat(user, span_warning("\The [src] is out of charge."))
 	add_fingerprint(user)
 
 /obj/item/melee/shock_maul/afterattack(atom/A as mob|obj|turf|area, mob/user as mob, proximity)
@@ -220,12 +220,12 @@
 	if(A && wielded && status)
 		deductcharge()
 		status = 0
-		user.visible_message("<span class='warning'>\The [src] discharges with a thunderous, hair-raising crackle!</span>")
+		user.visible_message(span_warning("\The [src] discharges with a thunderous, hair-raising crackle!"))
 		playsound(src, 'sound/weapons/resonator_blast.ogg', 100, 1, -1)
 		update_held_icon()
 		if(istype(A,/obj/structure/window))
 			var/obj/structure/window/W = A
-			visible_message("<span class='warning'>\The [W] crumples under the force of the impact!</span>")
+			visible_message(span_warning("\The [W] crumples under the force of the impact!"))
 			W.shatter()
 		else if(istype(A,/obj/structure/barricade))
 			var/obj/structure/barricade/B = A
@@ -249,7 +249,7 @@
 
 		deductcharge()
 		status = 0
-		user.visible_message("<span class='warning'>\The [src] discharges with a thunderous, hair-raising crackle!</span>")
+		user.visible_message(span_warning("\The [src] discharges with a thunderous, hair-raising crackle!"))
 		playsound(src, 'sound/weapons/resonator_blast.ogg', 100, 1, -1)
 		update_held_icon()
 	powercheck(hitcost)
@@ -259,7 +259,7 @@
 		bcell.emp_act(severity)	//let's not duplicate code everywhere if we don't have to please.
 	if(status)
 		status = 0
-		visible_message("<span class='warning'>\The [src]'s power field hisses and sputters out.</span>")
+		visible_message(span_warning("\The [src]'s power field hisses and sputters out."))
 		update_held_icon()
 	..()
 

@@ -143,7 +143,7 @@
 
 /mob/living/simple_mob/animal/passive/snake/python/noodle/attackby(var/obj/item/O, var/mob/user)
 	if(istype(O, /obj/item/reagent_containers/food/snacks/snakesnack))
-		visible_message("<span class='notice'>[user] feeds \the [O] to [src].</span>")
+		visible_message(span_notice("[user] feeds \the [O] to [src]."))
 		qdel(O)
 	else
 		return ..()

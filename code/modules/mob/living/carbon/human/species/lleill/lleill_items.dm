@@ -24,7 +24,7 @@
 
 /datum/reagent/glamour_transparent/affect_blood(var/mob/living/carbon/target, var/removed)
 	if(!target.cloaked)
-		target.visible_message("<b>\The [target]</b> vanishes from sight.")
+		target.visible_message(span_infoplain(span_bold("\The [target]") + " vanishes from sight."))
 		target.cloak()
 	target.bloodstr.clear_reagents() //instantly clears reagents afterwards
 	target.ingested.clear_reagents()
@@ -32,7 +32,7 @@
 	spawn(600)
 		if(target.cloaked)
 			target.uncloak()
-			target.visible_message("<b>\The [target]</b> appears as if from thin air.")
+			target.visible_message(span_infoplain(span_bold("\The [target]") + " appears as if from thin air."))
 
 //Shrinking Glamour (scaling potion)
 
@@ -60,8 +60,8 @@
 
 /datum/reagent/glamour_scaling/affect_blood(var/mob/living/carbon/target, var/removed)
 	if(!(/mob/living/proc/set_size in target.verbs))
-		to_chat(target, "<span class='warning'>You feel as though you could change size at any moment.</span>")
-		target.verbs |= /mob/living/proc/set_size
+		to_chat(target, span_warning("You feel as though you could change size at any moment."))
+		add_verb(target, /mob/living/proc/set_size)
 	target.bloodstr.clear_reagents() //instantly clears reagents afterwards
 	target.ingested.clear_reagents()
 	target.touching.clear_reagents()
@@ -92,11 +92,11 @@
 
 /datum/reagent/glamour_twinkling/affect_blood(var/mob/living/carbon/human/target, var/removed)
 	if(target.species.darksight < 10)
-		to_chat(target, "<span class='warning'>You can suddenly see much better than before.</span>")
+		to_chat(target, span_warning("You can suddenly see much better than before."))
 		target.species.darksight = 10
 	if(target.disabilities & NEARSIGHTED)
 		target.disabilities &= ~NEARSIGHTED
-		to_chat(target, "<span class='warning'>Everything is much less blurry.</span>")
+		to_chat(target, span_warning("Everything is much less blurry."))
 	target.bloodstr.clear_reagents() //instantly clears reagents afterwards
 	target.ingested.clear_reagents()
 	target.touching.clear_reagents()
@@ -135,7 +135,7 @@
 			targets |= M
 
 		if(!targets)
-			to_chat(user, "<span class='warning'>There are no appropriate targets in range.</span>")
+			to_chat(user, span_warning("There are no appropriate targets in range."))
 			return
 
 		var/mob/living/carbon/human/chosen_target = tgui_input_list(user, "Which target do you wish to create a homunculus of?", "homunculus", targets)
@@ -159,7 +159,7 @@
 		if(!h_action || h_action == "Cancel")
 			return
 		if(h_action == "Recall")
-			H.visible_message("<b>\The [H]</b> returns to the face.")
+			H.visible_message(span_infoplain(span_bold("\The [H]") + " returns to the face."))
 			qdel(H)
 			homunculus = 0
 			return
@@ -212,7 +212,7 @@
 	if(!L.say_understands(null, langset))
 		new_message = langset.scramble(new_message)
 
-	to_chat(L, "<span class='filter_say'><i><b>[src]</b> translates, </i>\"<span class='[langset.colour]'>[new_message]</span>\"</span>")
+	to_chat(L, span_filter_say("<i><b>[src]</b> translates, </i>\"<span class='[langset.colour]'>[new_message]</span>\""))
 
 //Teleporter ring
 
@@ -248,24 +248,24 @@
 		return
 
 	if(m_action == "Yes")
-		to_chat(M, "<span class='warning'>You begin to break the lines of the glamour ring.</span>")
+		to_chat(M, span_warning("You begin to break the lines of the glamour ring."))
 		if(!do_after(M, 10 SECONDS, src, exclusive = TASK_USER_EXCLUSIVE))
-			to_chat(M, "<span class='warning'>You leave the glamour ring alone.</span>")
+			to_chat(M, span_warning("You leave the glamour ring alone."))
 			return
-		to_chat(M, "<span class='warning'>You have destroyed \the [src].</span>")
-		src.visible_message("<b>\The [M]</b> has broken apart \the [src].")
+		to_chat(M, span_warning("You have destroyed \the [src]."))
+		src.visible_message(span_infoplain(span_bold("\The [M]") + " has broken apart \the [src]."))
 		if(M != connected_mob && connected_mob)
-			to_chat(connected_mob, "<span class='warning'>\The [src] has been destroyed by \the [M].</span>")
+			to_chat(connected_mob, span_warning("\The [src] has been destroyed by \the [M]."))
 		if(istype(LL))
 			L.teleporters -= src
 		qdel(src)
 
 	if(m_action == "Restore Energy")
 		if(LL.ring_cooldown + 10 MINUTES > world.time)
-			to_chat(M, "<span class='warning'>You must wait a while before drawing energy from the glamour again.</span>")
+			to_chat(M, span_warning("You must wait a while before drawing energy from the glamour again."))
 			return
 		if(!do_after(M, 10 SECONDS, src, exclusive = TASK_USER_EXCLUSIVE))
-			to_chat(M, "<span class='warning'>You stop drawing energy.</span>")
+			to_chat(M, span_warning("You stop drawing energy."))
 			return
 		LL.lleill_energy = min((LL.lleill_energy + 75),LL.lleill_energy_max)
 

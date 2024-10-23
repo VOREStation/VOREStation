@@ -138,10 +138,10 @@
 			inturf = get_step(src, dir)
 			locate_machinery()
 			if(turbine)
-				to_chat(user, "<span class='notice'>Turbine connected.</span>")
+				to_chat(user, span_notice("Turbine connected."))
 				stat &= ~BROKEN
 			else
-				to_chat(user, "<span class='alert'>Turbine not connected.</span>")
+				to_chat(user, span_warning("Turbine not connected."))
 				stat |= BROKEN
 
 /obj/machinery/compressor/process()
@@ -236,10 +236,10 @@
 			outturf = get_step(src, dir)
 			locate_machinery()
 			if(compressor)
-				to_chat(user, "<span class='notice'>Compressor connected.</span>")
+				to_chat(user, span_notice("Compressor connected."))
 				stat &= ~BROKEN
 			else
-				to_chat(user, "<span class='alert'>Compressor not connected.</span>")
+				to_chat(user, span_warning("Compressor not connected."))
 				stat |= BROKEN
 
 /obj/machinery/power/turbine/process()
@@ -291,7 +291,7 @@
 	var/t = "<TT><B>Gas Turbine Generator</B><HR><PRE>"
 	t += "Generated power : [DisplayPower(lastgen)]<BR><BR>"
 	t += "Turbine: [round(compressor.rpm)] RPM<BR>"
-	t += "Starter: [ compressor.starter ? "<A href='?src=\ref[src];str=1'>Off</A> <B>On</B>" : "<B>Off</B> <A href='?src=\ref[src];str=1'>On</A>"]"
+	t += "Starter: [ compressor.starter ? "<A href='?src=\ref[src];str=1'>Off</A> " + span_bold("On") : span_bold("Off") + " <A href='?src=\ref[src];str=1'>On</A>"]"
 	t += "</PRE><HR><A href='?src=\ref[src];close=1'>Close</A>"
 	t += "</TT>"
 	var/datum/browser/popup = new(user, "turbine", name, 700, 500, src)

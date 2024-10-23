@@ -19,14 +19,14 @@
 /obj/item/airlock_electronics/emag_act(var/remaining_charges, var/mob/user)
 	if(!emagged)
 		emagged = 1
-		to_chat(user, "<span class='notice'>You remove the access restrictions on [src]!</span>")
+		to_chat(user, span_notice("You remove the access restrictions on [src]!"))
 		return 1
 
 /obj/item/airlock_electronics/attack_self(mob/user as mob)
 	if (!ishuman(user) && !istype(user,/mob/living/silicon/robot))
 		return ..(user)
 
-	var/t1 = text("<B>Access control</B><br>\n")
+	var/t1 = span_bold("Access control") + "<br>\n"
 
 	if (last_configurator)
 		t1 += "Operator: [last_configurator]<br>"
@@ -149,5 +149,5 @@
 	secure = 1
 
 /obj/item/airlock_electronics/secure/emag_act(var/remaining_charges, var/mob/user)
-	to_chat(user, "<span class='warning'>You don't appear to be able to bypass this hardened device!</span>")
+	to_chat(user, span_warning("You don't appear to be able to bypass this hardened device!"))
 	return -1

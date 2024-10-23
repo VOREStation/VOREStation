@@ -2,7 +2,7 @@
 /datum/preferences/proc/migration_14_nifs(datum/json_savefile/S)
 	var/datum/json_savefile/new_savefile = new /datum/json_savefile(nif_savefile_path(client_ckey))
 
-	for(var/slot in 1 to config.character_slots)
+	for(var/slot in 1 to CONFIG_GET(number/character_slots))
 		var/list/prefs = S.get_entry("character[slot]", null)
 		if(!islist(prefs))
 			continue

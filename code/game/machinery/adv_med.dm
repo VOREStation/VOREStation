@@ -37,22 +37,22 @@
 	if(istype(G, /obj/item/grab))
 		var/obj/item/grab/H = G
 		if(panel_open)
-			to_chat(user, "<span class='notice'>Close the maintenance panel first.</span>")
+			to_chat(user, span_notice("Close the maintenance panel first."))
 			return
 		if(!ismob(H.affecting))
 			return
 		if(!ishuman(H.affecting))
-			to_chat(user, "<span class='warning'>\The [src] is not designed for that organism!</span>")
+			to_chat(user, span_warning("\The [src] is not designed for that organism!"))
 			return
 		if(occupant)
-			to_chat(user, "<span class='notice'>\The [src] is already occupied!</span>")
+			to_chat(user, span_notice("\The [src] is already occupied!"))
 			return
 		if(H.affecting.has_buckled_mobs())
-			to_chat(user, span("warning", "\The [H.affecting] has other entities attached to it. Remove them first."))
+			to_chat(user, span_warning("\The [H.affecting] has other entities attached to it. Remove them first."))
 			return
 		var/mob/M = H.affecting
 		if(M.abiotic())
-			to_chat(user, "<span class='notice'>Subject cannot have abiotic items on.</span>")
+			to_chat(user, span_notice("Subject cannot have abiotic items on."))
 			return
 		M.forceMove(src)
 		occupant = M
@@ -79,19 +79,19 @@
 	if(!ishuman(user) && !isrobot(user))
 		return 0 //not a borg or human
 	if(panel_open)
-		to_chat(user, "<span class='notice'>Close the maintenance panel first.</span>")
+		to_chat(user, span_notice("Close the maintenance panel first."))
 		return 0 //panel open
 	if(occupant)
-		to_chat(user, "<span class='notice'>\The [src] is already occupied.</span>")
+		to_chat(user, span_notice("\The [src] is already occupied."))
 		return 0 //occupied
 
 	if(O.buckled)
 		return 0
 	if(O.abiotic())
-		to_chat(user, "<span class='notice'>Subject cannot have abiotic items on.</span>")
+		to_chat(user, span_notice("Subject cannot have abiotic items on."))
 		return 0
 	if(O.has_buckled_mobs())
-		to_chat(user, span("warning", "\The [O] has other entities attached to it. Remove them first."))
+		to_chat(user, span_warning("\The [O] has other entities attached to it. Remove them first."))
 		return
 
 	if(O == user)
@@ -350,14 +350,14 @@
 			eject()
 		if("print_p")
 			var/atom/target = console ? console : src
-			visible_message("<span class='notice'>[target] rattles and prints out a sheet of paper.</span>")
+			visible_message(span_notice("[target] rattles and prints out a sheet of paper."))
 			playsound(src, 'sound/machines/printer.ogg', 50, 1)
 			var/obj/item/paper/P = new /obj/item/paper(get_turf(target))
 			var/name = occupant ? occupant.name : "Unknown"
-			P.info = "<CENTER><B>Body Scan - [name]</B></CENTER><BR>"
-			P.info += "<b>Time of scan:</b> [stationtime2text()]<br><br>"
+			P.info = "<CENTER>" + span_bold("Body Scan - [name]") + "</CENTER><BR>"
+			P.info += span_bold("Time of scan:") + " [stationtime2text()]<br><br>"
 			P.info += "[generate_printing_text()]"
-			P.info += "<br><br><b>Notes:</b><br>"
+			P.info += "<br><br>" + span_bold("Notes:") + "<br>"
 			P.name = "Body Scan - [name] ([stationtime2text()])"
 		else
 			return FALSE
@@ -365,7 +365,7 @@
 /obj/machinery/bodyscanner/proc/generate_printing_text()
 	var/dat = ""
 
-	dat = "<font color='blue'><b>Occupant Statistics:</b></font><br>" //Blah obvious
+	dat = span_blue(span_bold("Occupant Statistics:")) + "<br>" //Blah obvious
 	if(istype(occupant)) //is there REALLY someone in there?
 		var/t1
 		switch(occupant.stat) // obvious, see what their status is
@@ -375,32 +375,33 @@
 				t1 = "Unconscious"
 			else
 				t1 = "*dead*"
-		dat += "<font color=[occupant.health > (occupant.getMaxHealth() / 2) ? "blue" : "red"]>\tHealth %: [(occupant.health / occupant.getMaxHealth())*100], ([t1])</font><br>"
+		var/health_text = "\tHealth %: [(occupant.health / occupant.getMaxHealth())*100], ([t1])"
+		dat += (occupant.health > (occupant.getMaxHealth() / 2) ? span_blue(health_text) : span_red(health_text))
+		dat += "<br>"
 
 		if(occupant.virus2.len)
-			dat += "<font color='red'>Viral pathogen detected in blood stream.</font><BR>"
+			dat += span_red("Viral pathogen detected in blood stream.") + "<BR>"
 
-		var/extra_font = null
-		extra_font = "<font color=[occupant.getBruteLoss() < 60 ? "blue" : "red"]>"
-		dat += "[extra_font]\t-Brute Damage %: [occupant.getBruteLoss()]</font><br>"
+		var/damage_string = null
+		damage_string = "\t-Brute Damage %: [occupant.getBruteLoss()]"
+		dat += (occupant.getBruteLoss() < 60 ? span_blue(damage_string) : span_red(damage_string)) + "<br>"
+		damage_string = "\t-Respiratory Damage %: [occupant.getOxyLoss()]"
+		dat += (occupant.getOxyLoss() < 60 ? span_blue(damage_string) : span_red(damage_string)) + "<br>"
 
-		extra_font = "<font color=[occupant.getOxyLoss() < 60 ? "blue" : "red"]>"
-		dat += "[extra_font]\t-Respiratory Damage %: [occupant.getOxyLoss()]</font><br>"
+		damage_string = "\t-Toxin Content %: [occupant.getToxLoss()]"
+		dat += (occupant.getToxLoss() < 60 ? span_blue(damage_string) : span_red(damage_string)) + "<br>"
 
-		extra_font = "<font color=[occupant.getToxLoss() < 60 ? "blue" : "red"]>"
-		dat += "[extra_font]\t-Toxin Content %: [occupant.getToxLoss()]</font><br>"
+		damage_string = "\t-Burn Severity %: [occupant.getFireLoss()]"
+		dat += (occupant.getFireLoss() < 60 ? span_blue(damage_string) : span_red(damage_string)) + "<br>"
 
-		extra_font = "<font color=[occupant.getFireLoss() < 60 ? "blue" : "red"]>"
-		dat += "[extra_font]\t-Burn Severity %: [occupant.getFireLoss()]</font><br>"
+		damage_string = "\tRadiation Level %: [occupant.radiation]"
+		dat += (occupant.radiation < 10 ? span_blue(damage_string) : span_red(damage_string)) + "<br>"
 
-		extra_font = "<font color=[occupant.radiation < 10 ? "blue" : "red"]>"
-		dat += "[extra_font]\tRadiation Level %: [occupant.radiation]</font><br>"
+		damage_string = "\tGenetic Tissue Damage %: [occupant.getCloneLoss()]"
+		dat += (occupant.getCloneLoss() < 1 ? span_blue(damage_string) : span_red(damage_string)) + "<br>"
 
-		extra_font = "<font color=[occupant.getCloneLoss() < 1 ? "blue" : "red"]>"
-		dat += "[extra_font]\tGenetic Tissue Damage %: [occupant.getCloneLoss()]</font><br>"
-
-		extra_font = "<font color=[occupant.getBrainLoss() < 1 ? "blue" : "red"]>"
-		dat += "[extra_font]\tApprox. Brain Damage %: [occupant.getBrainLoss()]</font><br>"
+		damage_string = "\tApprox. Brain Damage %: [occupant.getBrainLoss()]"
+		dat += (occupant.getBrainLoss() < 1 ? span_blue(damage_string) : span_red(damage_string)) + "<br>"
 
 		dat += "Paralysis Summary %: [occupant.paralysis] ([round(occupant.paralysis / 4)] seconds left!)<br>"
 		dat += "Body Temperature: [occupant.bodytemperature-T0C]&deg;C ([occupant.bodytemperature*1.8-459.67]&deg;F)<br>"
@@ -416,8 +417,8 @@
 			var/blood_percent =  blood_volume / blood_max
 			blood_percent *= 100
 
-			extra_font = "<font color=[blood_volume > 448 ? "blue" : "red"]>"
-			dat += "[extra_font]\tBlood Level %: [blood_percent] ([blood_volume] units)</font><br>"
+			damage_string = "\tBlood Level %: [blood_percent] ([blood_volume] units)"
+			dat += (blood_volume > 448 ? span_blue(damage_string) : span_red(damage_string)) + "<br>"
 
 		if(occupant.reagents)
 			for(var/datum/reagent/R in occupant.reagents.reagent_list)
@@ -535,11 +536,11 @@
 			dat += "</tr>"
 		dat += "</table>"
 		if(occupant.sdisabilities & BLIND)
-			dat += "<font color='red'>Cataracts detected.</font><BR>"
+			dat += span_red("Cataracts detected.") + "<BR>"
 		if(occupant.disabilities & NEARSIGHTED)
-			dat += "<font color='red'>Retinal misalignment detected.</font><BR>"
+			dat += span_red("Retinal misalignment detected.") + "<BR>"
 		if(HUSK in occupant.mutations) // VOREstation edit
-			dat += "<font color='red'>Anatomical structure lost, resuscitation not possible!</font><BR>"
+			dat += span_red("Anatomical structure lost, resuscitation not possible!") + "<BR>"
 	else
 		dat += "\The [src] is empty."
 
@@ -579,9 +580,9 @@
 				var/obj/machinery/bodyscanner/C = P.connectable
 				scanner = C
 				C.console = src
-				to_chat(user, "<span class='warning'> You link the [src] to the [P.connectable]!</span>")
+				to_chat(user, span_warning(" You link the [src] to the [P.connectable]!"))
 		else
-			to_chat(user, "<span class='warning'> You store the [src] in the [P]'s buffer!</span>")
+			to_chat(user, span_warning(" You store the [src] in the [P]'s buffer!"))
 			P.connectable = src
 		return
 	else
@@ -641,11 +642,11 @@
 	if(!scanner)
 		findscanner()
 		if(!scanner)
-			to_chat(user, "<span class='notice'>Scanner not found!</span>")
+			to_chat(user, span_notice("Scanner not found!"))
 			return
 
 	if(scanner.panel_open)
-		to_chat(user, "<span class='notice'>Close the maintenance panel first.</span>")
+		to_chat(user, span_notice("Close the maintenance panel first."))
 		return
 
 	if(scanner)

@@ -98,7 +98,7 @@ var/global/list/obj/item/pda/PDAs = list()
 		if(id)
 			remove_id()
 		else
-			to_chat(usr, "<span class='notice'>This PDA does not have an ID in it.</span>")
+			to_chat(usr, span_notice("This PDA does not have an ID in it."))
 
 /obj/item/pda/proc/play_ringtone()
 	var/S
@@ -295,7 +295,7 @@ var/global/list/obj/item/pda/PDAs = list()
 			message += "Your [P] shatters in a thousand pieces!"
 
 	if(M && isliving(M))
-		message = "<span class='warning'>[message]</span>"
+		message = span_warning("[message]")
 		M.show_message(message, 1)
 
 /obj/item/pda/proc/remove_id()
@@ -303,7 +303,7 @@ var/global/list/obj/item/pda/PDAs = list()
 		if (ismob(loc))
 			var/mob/M = loc
 			M.put_in_hands(id)
-			to_chat(usr, "<span class='notice'>You remove the ID from the [name].</span>")
+			to_chat(usr, span_notice("You remove the ID from the [name]."))
 			playsound(src, 'sound/machines/id_swipe.ogg', 100, 1)
 		else
 			id.loc = get_turf(src)
@@ -317,12 +317,12 @@ var/global/list/obj/item/pda/PDAs = list()
 			var/mob/M = loc
 			if(M.get_active_hand() == null)
 				M.put_in_hands(O)
-				to_chat(usr, "<span class='notice'>You remove \the [O] from \the [src].</span>")
+				to_chat(usr, span_notice("You remove \the [O] from \the [src]."))
 				cut_overlay("pda-pen")
 				return
 		O.loc = get_turf(src)
 	else
-		to_chat(usr, "<span class='notice'>This PDA does not have a pen in it.</span>")
+		to_chat(usr, span_notice("This PDA does not have a pen in it."))
 
 /obj/item/pda/verb/verb_reset_pda()
 	set category = "Object"
@@ -336,9 +336,9 @@ var/global/list/obj/item/pda/PDAs = list()
 		start_program(find_program(/datum/data/pda/app/main_menu))
 		notifying_programs.Cut()
 		cut_overlay("pda-r")
-		to_chat(usr, "<span class='notice'>You press the reset button on \the [src].</span>")
+		to_chat(usr, span_notice("You press the reset button on \the [src]."))
 	else
-		to_chat(usr, "<span class='notice'>You cannot do this while restrained.</span>")
+		to_chat(usr, span_notice("You cannot do this while restrained."))
 
 /obj/item/pda/verb/verb_remove_id()
 	set category = "Object"
@@ -352,9 +352,9 @@ var/global/list/obj/item/pda/PDAs = list()
 		if(id)
 			remove_id()
 		else
-			to_chat(usr, "<span class='notice'>This PDA does not have an ID in it.</span>")
+			to_chat(usr, span_notice("This PDA does not have an ID in it."))
 	else
-		to_chat(usr, "<span class='notice'>You cannot do this while restrained.</span>")
+		to_chat(usr, span_notice("You cannot do this while restrained."))
 
 
 /obj/item/pda/verb/verb_remove_pen()
@@ -368,7 +368,7 @@ var/global/list/obj/item/pda/PDAs = list()
 	if ( can_use(usr) )
 		remove_pen()
 	else
-		to_chat(usr, "<span class='notice'>You cannot do this while restrained.</span>")
+		to_chat(usr, span_notice("You cannot do this while restrained."))
 
 /obj/item/pda/verb/verb_remove_cartridge()
 	set category = "Object"
@@ -379,11 +379,11 @@ var/global/list/obj/item/pda/PDAs = list()
 		return
 
 	if(!can_use(usr))
-		to_chat(usr, "<span class='notice'>You cannot do this while restrained.</span>")
+		to_chat(usr, span_notice("You cannot do this while restrained."))
 		return
 
 	if(isnull(cartridge))
-		to_chat(usr, "<span class='notice'>There's no cartridge to eject.</span>")
+		to_chat(usr, span_notice("There's no cartridge to eject."))
 		return
 
 	cartridge.forceMove(get_turf(src))
@@ -394,7 +394,7 @@ var/global/list/obj/item/pda/PDAs = list()
 	// scanmode = 0
 	if (cartridge.radio)
 		cartridge.radio.hostpda = null
-	to_chat(usr, "<span class='notice'>You remove \the [cartridge] from the [name].</span>")
+	to_chat(usr, span_notice("You remove \the [cartridge] from the [name]."))
 	playsound(src, 'sound/machines/id_swipe.ogg', 100, 1)
 	cartridge = null
 	update_programs()
@@ -432,26 +432,26 @@ var/global/list/obj/item/pda/PDAs = list()
 		cartridge.loc = src
 		cartridge.update_programs(src)
 		update_shortcuts()
-		to_chat(usr, "<span class='notice'>You insert [cartridge] into [src].</span>")
+		to_chat(usr, span_notice("You insert [cartridge] into [src]."))
 		if(cartridge.radio)
 			cartridge.radio.hostpda = src
 
 	else if(istype(C, /obj/item/card/id))
 		var/obj/item/card/id/idcard = C
 		if(!idcard.registered_name)
-			to_chat(user, "<span class='notice'>\The [src] rejects the ID.</span>")
+			to_chat(user, span_notice("\The [src] rejects the ID."))
 			return
 		if(!owner)
 			owner = idcard.registered_name
 			ownjob = idcard.assignment
 			ownrank = idcard.rank
 			name = "PDA-[owner] ([ownjob])"
-			to_chat(user, "<span class='notice'>Card scanned.</span>")
+			to_chat(user, span_notice("Card scanned."))
 		else
 			//Basic safety check. If either both objects are held by user or PDA is on ground and card is in hand.
 			if(((src in user.contents) && (C in user.contents)) || (istype(loc, /turf) && in_range(src, user) && (C in user.contents)) )
 				if(id_check(user, 2))
-					to_chat(user, "<span class='notice'>You put the ID into \the [src]'s slot.</span>")
+					to_chat(user, span_notice("You put the ID into \the [src]'s slot."))
 					add_overlay("pda-id")
 					updateSelfDialog()//Update self dialog on success.
 			return	//Return in case of failed check or when successful.
@@ -460,16 +460,16 @@ var/global/list/obj/item/pda/PDAs = list()
 		user.drop_item()
 		C.loc = src
 		pai = C
-		to_chat(user, "<span class='notice'>You slot \the [C] into \the [src].</span>")
+		to_chat(user, span_notice("You slot \the [C] into \the [src]."))
 		SStgui.update_uis(src) // update all UIs attached to src
 	else if(istype(C, /obj/item/pen))
 		var/obj/item/pen/O = locate() in src
 		if(O)
-			to_chat(user, "<span class='notice'>There is already a pen in \the [src].</span>")
+			to_chat(user, span_notice("There is already a pen in \the [src]."))
 		else
 			user.drop_item()
 			C.loc = src
-			to_chat(user, "<span class='notice'>You slot \the [C] into \the [src].</span>")
+			to_chat(user, span_notice("You slot \the [C] into \the [src]."))
 			add_overlay("pda-pen")
 	return
 

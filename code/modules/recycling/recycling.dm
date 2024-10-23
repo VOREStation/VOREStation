@@ -24,7 +24,7 @@
 		return
 
 	if(working)
-		to_chat(user, "<span class='warning'>\The [src] is busy! Wait until it's idle.</span>")
+		to_chat(user, span_warning("\The [src] is busy! Wait until it's idle."))
 		return
 
 	if(default_deconstruction_screwdriver(user, O))
@@ -38,9 +38,9 @@
 	if(can_accept_item(O))
 		M.drop_from_inventory(O)
 		take_item(O)
-		M.visible_message("<b>[M]</b> inserts [O] into [src].", "You insert [O] into [src].")
+		M.visible_message(span_infoplain(span_bold("[M]") + " inserts [O] into [src]."), span_info("You insert [O] into [src]."))
 	else
-		to_chat(user, "<span class='warning'>\The [src] can't accept [O] for recycling.</span>")
+		to_chat(user, span_warning("\The [src] can't accept [O] for recycling."))
 
 // Conveyors etc
 /obj/machinery/recycling/Bumped(atom/A)

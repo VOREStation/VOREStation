@@ -52,14 +52,14 @@ GLOBAL_LIST_EMPTY(fuel_injectors)
 	if(istype(W, /obj/item/fuel_assembly))
 
 		if(injecting)
-			to_chat(user, "<span class='warning'>Shut \the [src] off before playing with the fuel rod!</span>")
+			to_chat(user, span_warning("Shut \the [src] off before playing with the fuel rod!"))
 			return
 
 		if(cur_assembly)
 			cur_assembly.forceMove(get_turf(src))
-			visible_message("<b>\The [user]</b> swaps \the [src]'s [cur_assembly] for \a [W].")
+			visible_message(span_infoplain(span_bold("\The [user]") + " swaps \the [src]'s [cur_assembly] for \a [W]."))
 		else
-			visible_message("<b>\The [user]</b> inserts \a [W] into \the [src].")
+			visible_message(span_infoplain(span_bold("\The [user]") + " inserts \a [W] into \the [src]."))
 
 		user.drop_from_inventory(W)
 		W.forceMove(src)
@@ -71,7 +71,7 @@ GLOBAL_LIST_EMPTY(fuel_injectors)
 
 	if(W.has_tool_quality(TOOL_WRENCH) || W.has_tool_quality(TOOL_SCREWDRIVER) || W.has_tool_quality(TOOL_CROWBAR) || istype(W, /obj/item/storage/part_replacer))
 		if(injecting)
-			to_chat(user, "<span class='warning'>Shut \the [src] off first!</span>")
+			to_chat(user, span_warning("Shut \the [src] off first!"))
 			return
 		if(default_unfasten_wrench(user, W))
 			return
@@ -87,17 +87,17 @@ GLOBAL_LIST_EMPTY(fuel_injectors)
 /obj/machinery/fusion_fuel_injector/attack_hand(mob/user)
 
 	if(injecting)
-		to_chat(user, "<span class='warning'>Shut \the [src] off before playing with the fuel rod!</span>")
+		to_chat(user, span_warning("Shut \the [src] off before playing with the fuel rod!"))
 		return
 
 	if(cur_assembly)
 		cur_assembly.forceMove(get_turf(src))
 		user.put_in_hands(cur_assembly)
-		visible_message("<b>\The [user]</b> removes \the [cur_assembly] from \the [src].")
+		visible_message(span_infoplain(span_bold("\The [user]") + " removes \the [cur_assembly] from \the [src]."))
 		cur_assembly = null
 		return
 	else
-		to_chat(user, "<span class='warning'>There is no fuel rod in \the [src].</span>")
+		to_chat(user, span_warning("There is no fuel rod in \the [src]."))
 		return
 
 /obj/machinery/fusion_fuel_injector/proc/BeginInjecting()

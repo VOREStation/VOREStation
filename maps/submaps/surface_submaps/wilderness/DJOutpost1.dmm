@@ -21,7 +21,7 @@
 "u" = (/obj/effect/overlay/snow/floor,/obj/structure/cable/yellow{d1 = 1; d2 = 2; icon_state = "1-2"},/obj/structure/closet/crate,/obj/item/stack/material/phoron{amount = 25},/turf/simulated/floor{outdoors = 1},/area/submap/DJOutpost1)
 "v" = (/obj/structure/table/woodentable,/obj/item/trash/candle,/turf/simulated/floor/wood,/area/submap/DJOutpost1)
 "w" = (/obj/structure/bed/chair/wood{ icon_state = "wooden_chair"; dir = 8},/turf/simulated/floor/wood,/area/submap/DJOutpost1)
-"x" = (/obj/structure/bookcase,/obj/item/book/codex/lore/vir,/obj/item/book/manual/excavation,/obj/item/book/manual/engineering_construction,/obj/item/storage/bible,/turf/simulated/floor/wood,/area/submap/DJOutpost1)
+"x" = (/obj/structure/bookcase,/obj/item/book/codex/lore/vir,/obj/item/book/manual/excavation,/obj/item/book/manual/wiki/engineering_construction,/obj/item/storage/bible,/turf/simulated/floor/wood,/area/submap/DJOutpost1)
 "y" = (/obj/item/storage/toolbox/mechanical,/turf/simulated/floor/wood,/area/submap/DJOutpost1)
 "z" = (/obj/structure/table/steel_reinforced,/obj/item/radio/phone,/obj/random_multi/single_item/sfr_headset,/turf/simulated/floor/wood,/area/submap/DJOutpost1)
 "A" = (/obj/structure/table/steel_reinforced,/obj/item/radio/intercom/syndicate{desc = "Talk through this."; name = "station intercom (General)"},/obj/item/multitool,/turf/simulated/floor/wood,/area/submap/DJOutpost1)

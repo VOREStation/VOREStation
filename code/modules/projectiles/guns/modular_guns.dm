@@ -52,16 +52,16 @@
 
 /obj/item/gun/energy/modular/attackby(obj/item/O, mob/user)
 	if(O.has_tool_quality(TOOL_SCREWDRIVER))
-		to_chat(user, "<span class='notice'>You [assembled ? "disassemble" : "assemble"] the gun.</span>")
+		to_chat(user, span_notice("You [assembled ? "disassemble" : "assemble"] the gun."))
 		assembled = !assembled
 		playsound(src, O.usesound, 50, 1)
 		return
 	if(O.has_tool_quality(TOOL_CROWBAR))
 		if(assembled == 1)
-			to_chat(user, "<span class='warning'>Disassemble the [src] first!</span>")
+			to_chat(user, span_warning("Disassemble the [src] first!"))
 			return
 		for(var/obj/item/I in guncomponents)
-			to_chat(user, "<span class='notice'>You remove the gun's components.</span>")
+			to_chat(user, span_notice("You remove the gun's components."))
 			playsound(src, O.usesound, 50, 1)
 			I.forceMove(get_turf(src))
 			guncomponents.Remove(I)
@@ -72,18 +72,18 @@
 	if(assembled) // can't put anything in
 		return
 	if(!(O.type in accepted_components))//check if we can accept it
-		to_chat(user, "<span class='warning'>You can't add this to [src]!</span>")
+		to_chat(user, span_warning("You can't add this to [src]!"))
 		return
 	if(guncomponents.len >= max_components) //We have too many componenets and can't fit more.
-		to_chat(user, "<span class='warning'>You can't add any more components!</span>")
+		to_chat(user, span_warning("You can't add any more components!"))
 		return
 	if(istype(O, /obj/item/stock_parts/capacitor) && capacitor_rating == 5)
-		to_chat(user, "<span class='warning'>You can't add any more capacitors!</span>")
+		to_chat(user, span_warning("You can't add any more capacitors!"))
 		return
 	user.drop_item()
 	guncomponents += O
 	O.forceMove(src)
-	to_chat(user, "<span class='notice'>You add a component to the [src]</span>")
+	to_chat(user, span_notice("You add a component to the [src]"))
 	CheckParts()
 
 
@@ -131,18 +131,18 @@
 /obj/item/gun/energy/modular/load_ammo(var/obj/item/C, mob/user)
 	if(istype(C, cell_type))
 		if(self_recharge || battery_lock)
-			to_chat(user, "<span class='notice'>[src] does not have a battery port.</span>")
+			to_chat(user, span_notice("[src] does not have a battery port."))
 			return
 		var/obj/item/cell/P = C
 		if(power_supply)
-			to_chat(user, "<span class='notice'>[src] already has a power cell.</span>")
+			to_chat(user, span_notice("[src] already has a power cell."))
 		else
-			user.visible_message("[user] is reloading [src].", "<span class='notice'>You start to insert [P] into [src].</span>")
+			user.visible_message("[user] is reloading [src].", span_notice("You start to insert [P] into [src]."))
 			if(do_after(user, 10))
 				user.remove_from_mob(P)
 				power_supply = P
 				P.loc = src
-				user.visible_message("[user] inserts [P] into [src].", "<span class='notice'>You insert [P] into [src].</span>")
+				user.visible_message("[user] inserts [P] into [src].", span_notice("You insert [P] into [src]."))
 				playsound(src, 'sound/weapons/flipblade.ogg', 50, 1)
 				update_icon()
 				update_held_icon()

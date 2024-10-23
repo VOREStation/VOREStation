@@ -44,9 +44,9 @@
 /obj/item/clothing/suit/space/changeling/New()
 	..()
 	if(ismob(loc))
-		loc.visible_message("<span class='warning'>[loc.name]\'s flesh rapidly inflates, forming a bloated mass around their body!</span>",
-		"<span class='warning'>We inflate our flesh, creating a spaceproof suit!</span>",
-		"<span class='italics'>You hear organic matter ripping and tearing!</span>")
+		loc.visible_message(span_warning("[loc.name]\'s flesh rapidly inflates, forming a bloated mass around their body!"),
+		span_warning("We inflate our flesh, creating a spaceproof suit!"),
+		span_warningplain("You hear organic matter ripping and tearing!"))
 
 /obj/item/clothing/suit/space/changeling/dropped()
 	qdel(src)
@@ -67,7 +67,7 @@
 	desc = "A suction cupped mass of flesh, shaped like a foot."
 	name = "fleshy grippers"
 	icon_state = "lingspacesuit"
-	action_button_name = "Toggle Grippers"
+	actions_types = list(/datum/action/item_action/toggle_grippers)
 	canremove = FALSE
 
 /obj/item/clothing/shoes/magboots/changeling/set_slowdown()
@@ -108,9 +108,9 @@
 /obj/item/clothing/suit/space/changeling/armored/New()
 	..()
 	if(ismob(loc))
-		loc.visible_message("<span class='warning'>[loc.name]\'s flesh turns black, quickly transforming into a hard, chitinous mass!</span>",
-		"<span class='warning'>We harden our flesh, creating a suit of armor!</span>",
-		"<span class='italics'>You hear organic matter ripping and tearing!</span>")
+		loc.visible_message(span_warning("[loc.name]\'s flesh turns black, quickly transforming into a hard, chitinous mass!"),
+		span_warning("We harden our flesh, creating a suit of armor!"),
+		span_warningplain("You hear organic matter ripping and tearing!"))
 
 /obj/item/clothing/head/helmet/space/changeling/armored
 	name = "chitinous mass"
@@ -124,7 +124,7 @@
 	desc = "A tough, hard mass of chitin, with long talons for digging into terrain."
 	name = "chitinous talons"
 	icon_state = "lingarmor"
-	action_button_name = "Toggle Talons"
+	actions_types = list(/datum/action/item_action/toggle_talons)
 
 /obj/item/clothing/gloves/combat/changeling //Combined insulated/fireproof gloves
 	name = "chitinous gauntlets"

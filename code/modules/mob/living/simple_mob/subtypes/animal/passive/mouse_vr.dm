@@ -16,7 +16,7 @@
 	for(var/mob/living/simple_mob/M in src.contents)
 		if((I_HELP) && U.checkClickCooldown()) //a little snowflakey, but makes it use the same cooldown as interacting with non-inventory objects
 			U.setClickCooldown(U.get_attack_speed()) //if there's a cleaner way in baycode, I'll change this
-			U.visible_message("<span class='notice'>[U] [M.response_help] \the [M].</span>")
+			U.visible_message(span_notice("[U] [M.response_help] \the [M]."))
 
 //Jank grabber that uses the 'attack_hand' insead of 'MouseDrop'
 /mob/living/simple_mob/animal/passive/mouse/attack_hand(var/atom/over_object)
@@ -41,12 +41,12 @@
 	grabber.put_in_hands(H)
 
 	if(self_grab)
-		to_chat(grabber, "<span class='notice'>\The [src] clambers onto you!</span>")
-		to_chat(src, "<span class='notice'>You climb up onto \the [grabber]!</span>")
+		to_chat(grabber, span_notice("\The [src] clambers onto you!"))
+		to_chat(src, span_notice("You climb up onto \the [grabber]!"))
 		grabber.equip_to_slot_if_possible(H, slot_back, 0, 1)
 	else
-		to_chat(grabber, "<span class='notice'>You scoop up \the [src]!</span>")
-		to_chat(src, "<span class='notice'>\The [grabber] scoops you up!</span>")
+		to_chat(grabber, span_notice("You scoop up \the [src]!"))
+		to_chat(src, span_notice("\The [grabber] scoops you up!"))
 
 	add_attack_logs(grabber, H.held_mob, "Scooped up", FALSE) // Not important enough to notify admins, but still helpful.
 	return H
@@ -67,5 +67,4 @@
 	for(var/L in contents)
 		if(isanimal(L))
 			var/mob/living/simple_mob/S = L
-			user.visible_message("<span class='notice'>[user] [S.response_help] \the [S].</span>")
-
+			user.visible_message(span_notice("[user] [S.response_help] \the [S]."))

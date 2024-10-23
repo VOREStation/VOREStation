@@ -1,5 +1,5 @@
 // Compile in the map for CI testing if we're testing compileability of all the maps
-#if MAP_TEST
+#ifdef MAP_TEST
 #include "abductor.dmm"
 #endif
 
@@ -85,4 +85,3 @@ You will find a dispenser within the room you started in which contains some bas
 /obj/machinery/power/rtg/abductor/built/abductor
 	name = "Void Core"
 	power_gen = 5000000
-

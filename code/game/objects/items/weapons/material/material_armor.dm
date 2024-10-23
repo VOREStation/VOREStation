@@ -91,7 +91,7 @@ Protectiveness | Armor %
 	if(!material)
 		return
 	var/turf/T = get_turf(src)
-	T.visible_message("<span class='danger'>\The [src] [material.destruction_desc]!</span>")
+	T.visible_message(span_danger("\The [src] [material.destruction_desc]!"))
 	if(istype(loc, /mob/living))
 		var/mob/living/M = loc
 		M.drop_from_inventory(src)
@@ -108,11 +108,11 @@ Protectiveness | Armor %
 		return ..()
 
 	if(material.negation && prob(material.negation)) // Strange and Alien materials, or just really strong materials.
-		user.visible_message("<span class='danger'>\The [src] completely absorbs [attack_text]!</span>")
+		user.visible_message(span_danger("\The [src] completely absorbs [attack_text]!"))
 		return TRUE
 
 	if(material.spatial_instability && prob(material.spatial_instability))
-		user.visible_message("<span class='danger'>\The [src] flashes [user] clear of [attack_text]!</span>")
+		user.visible_message(span_danger("\The [src] flashes [user] clear of [attack_text]!"))
 		var/list/turfs = new/list()
 		for(var/turf/T in orange(round(material.spatial_instability / 10) + 1, user))
 			if(istype(T,/turf/space)) continue
@@ -144,7 +144,7 @@ Protectiveness | Armor %
 			if(!(def_zone in list(BP_TORSO, BP_GROIN)))
 				reflectchance /= 2
 			if(P.starting && prob(reflectchance))
-				visible_message("<span class='danger'>\The [user]'s [src.name] reflects [attack_text]!</span>")
+				visible_message(span_danger("\The [user]'s [src.name] reflects [attack_text]!"))
 
 				// Find a turf near or on the original location to bounce to
 				var/new_x = P.starting.x + pick(0, 0, 0, 0, 0, -1, 1, -2, 2)
@@ -296,23 +296,23 @@ Protectiveness | Armor %
 	if(istype(O, /obj/item/stack/cable_coil))
 		var/obj/item/stack/cable_coil/S = O
 		if(wired)
-			to_chat(user, "<span class='warning'>This already has enough wires on it.</span>")
+			to_chat(user, span_warning("This already has enough wires on it."))
 			return
 		if(S.use(20))
-			to_chat(user, "<span class='notice'>You attach several wires to \the [src].  Now it needs another plate.</span>")
+			to_chat(user, span_notice("You attach several wires to \the [src].  Now it needs another plate."))
 			wired = TRUE
 			icon_state = "[initial(icon_state)]_wired"
 			return
 		else
-			to_chat(user, "<span class='notice'>You need more wire for that.</span>")
+			to_chat(user, span_notice("You need more wire for that."))
 			return
 	if(istype(O, /obj/item/material/armor_plating))
 		var/obj/item/material/armor_plating/second_plate = O
 		if(!wired && !second_plate.wired)
-			to_chat(user, "<span class='warning'>You need something to hold the two pieces of plating together.</span>")
+			to_chat(user, span_warning("You need something to hold the two pieces of plating together."))
 			return
 		if(second_plate.material != src.material)
-			to_chat(user, "<span class='warning'>Both plates need to be the same type of material.</span>")
+			to_chat(user, span_warning("Both plates need to be the same type of material."))
 			return
 		user.drop_from_inventory(src)
 		user.drop_from_inventory(second_plate)
@@ -332,7 +332,7 @@ Protectiveness | Armor %
 		var /obj/item/weldingtool/S = O.get_welder()
 		if(S.remove_fuel(0,user))
 			if(!src || !S.isOn()) return
-			to_chat(user, "<span class='notice'>You trim down the edges to size.</span>")
+			to_chat(user, span_notice("You trim down the edges to size."))
 			user.drop_from_inventory(src)
 			var/obj/item/clothing/accessory/material/makeshift/light/new_armor = new(null, src.material.name)
 			user.put_in_hands(new_armor)
@@ -342,9 +342,9 @@ Protectiveness | Armor %
 	if(istype(O, /obj/item/material/armor_plating/insert))
 		var/obj/item/material/armor_plating/insert/second_plate = O
 		if(second_plate.material != src.material)
-			to_chat(user, "<span class='warning'>Both plates need to be the same type of material.</span>")
+			to_chat(user, span_warning("Both plates need to be the same type of material."))
 			return
-		to_chat(user, "<span class='notice'>You bond the two plates together.</span>")
+		to_chat(user, span_notice("You bond the two plates together."))
 		user.drop_from_inventory(src)
 		user.drop_from_inventory(second_plate)
 		var/obj/item/clothing/accessory/material/makeshift/heavy/new_armor = new(null, src.material.name)
@@ -354,7 +354,7 @@ Protectiveness | Armor %
 		return
 
 	if(istype(O, /obj/item/tool/wirecutters))
-		to_chat(user, "<span class='notice'>You split the plate down the middle, and joint it at the elbow.</span>")
+		to_chat(user, span_notice("You split the plate down the middle, and joint it at the elbow."))
 		user.drop_from_inventory(src)
 		var/obj/item/clothing/accessory/material/makeshift/armguards/new_armor = new(null, src.material.name)
 		user.put_in_hands(new_armor)
@@ -365,7 +365,7 @@ Protectiveness | Armor %
 		var/obj/item/stack/material/S = O
 		if(S.material == get_material_by_name("leather"))
 			if(S.use(2))
-				to_chat(user, "<span class='notice'>You curve the plate inwards, and add a strap for adjustment.</span>")
+				to_chat(user, span_notice("You curve the plate inwards, and add a strap for adjustment."))
 				user.drop_from_inventory(src)
 				var/obj/item/clothing/accessory/material/makeshift/legguards/new_armor = new(null, src.material.name)
 				user.put_in_hands(new_armor)
@@ -388,14 +388,14 @@ Protectiveness | Armor %
 	if(istype(O, /obj/item/stack/material))
 		var/obj/item/stack/material/S = O
 		if(S.use(2))
-			to_chat(user, "<span class='notice'>You apply some [S.material.use_name] to \the [src].  Hopefully it'll make the makeshift helmet stronger.</span>")
+			to_chat(user, span_notice("You apply some [S.material.use_name] to \the [src].  Hopefully it'll make the makeshift helmet stronger."))
 			var/obj/item/clothing/head/helmet/material/makeshift/helmet = new(null, S.material.name)
 			user.put_in_hands(helmet)
 			user.drop_from_inventory(src)
 			qdel(src)
 			return
 		else
-			to_chat(user, "<span class='warning'>You don't have enough material to build a helmet!</span>")
+			to_chat(user, span_warning("You don't have enough material to build a helmet!"))
 	else
 		..()
 

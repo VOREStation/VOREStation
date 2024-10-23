@@ -83,14 +83,14 @@
 		hat = null
 		update_icon()
 		if(user == src)
-			to_chat(user, "<span class='notice'>You removed your hat.</span>")
+			to_chat(user, span_notice("You removed your hat."))
 			return
-		to_chat(user, "<span class='warning'>You removed \the [src]'s hat. You monster.</span>")
+		to_chat(user, span_warning("You removed \the [src]'s hat. You monster."))
 	else
 		if(user == src)
-			to_chat(user, "<span class='notice'>You are not wearing a hat!</span>")
+			to_chat(user, span_notice("You are not wearing a hat!"))
 			return
-		to_chat(user, "<span class='notice'>\The [src] is not wearing a hat!</span>")
+		to_chat(user, span_notice("\The [src] is not wearing a hat!"))
 
 /mob/living/simple_mob/animal/sif/sakimm/verb/give_hat()
 	set name = "Give Hat"
@@ -103,16 +103,16 @@
 /mob/living/simple_mob/animal/sif/sakimm/proc/take_hat(var/mob/user)
 	if(hat)
 		if(user == src)
-			to_chat(user, "<span class='notice'>You already have a hat!</span>")
+			to_chat(user, span_notice("You already have a hat!"))
 			return
-		to_chat(user, "<span class='notice'>\The [src] already has a hat!</span>")
+		to_chat(user, span_notice("\The [src] already has a hat!"))
 	else
 		if(user == src)
 			if(istype(get_active_hand(), /obj/item/clothing/head))
 				hat = get_active_hand()
 				drop_from_inventory(hat, src)
 				hat.forceMove(src)
-				to_chat(user, "<span class='notice'>You put on the hat.</span>")
+				to_chat(user, span_notice("You put on the hat."))
 				update_icon()
 			return
 		else if(ishuman(user))
@@ -125,10 +125,10 @@
 					a_intent = I_HELP
 					newhat.attack_hand(src)
 			else if(src.get_active_hand())
-				to_chat(user, "<span class='notice'>\The [src] seems busy with \the [get_active_hand()] already!</span>")
+				to_chat(user, span_notice("\The [src] seems busy with \the [get_active_hand()] already!"))
 
 			else
-				to_chat(user, "<span class='warning'>You aren't holding a hat...</span>")
+				to_chat(user, span_warning("You aren't holding a hat..."))
 
 /datum/say_list/sakimm
 	speak = list("Shurr.", "|R|rr?", "Hss.")
@@ -153,8 +153,8 @@
 /mob/living/simple_mob/animal/sif/sakimm/Initialize()
 	. = ..()
 
-	verbs += /mob/living/proc/ventcrawl
-	verbs += /mob/living/proc/hide
+	add_verb(src, /mob/living/proc/ventcrawl)
+	add_verb(src, /mob/living/proc/hide)
 
 	if(randomize_size)
 		adjust_scale(rand(8, 11) / 10)
@@ -182,7 +182,7 @@
 	if(holder.get_active_hand() && istype(holder.get_active_hand(), /obj/item/clothing/head) && !S.hat)
 		var/obj/item/I = holder.get_active_hand()
 		S.take_hat(S)
-		holder.visible_message("<b>\The [holder]</b> wears \the [I]")
+		holder.visible_message(span_infoplain(span_bold("\The [holder]") + " wears \the [I]"))
 
 /mob/living/simple_mob/animal/sif/sakimm/intelligent
 	desc = "What appears to be an oversized rodent with hands. This one has a curious look in its eyes."
@@ -328,7 +328,7 @@
 		if(istype(holder) && istype(holder.get_active_hand(), /obj/item/clothing/head) && !S.hat)
 			var/obj/item/I = holder.get_active_hand()
 			S.take_hat(S)
-			holder.visible_message("<b>\The [holder]</b> wears \the [I]")
+			holder.visible_message(span_bold("\The [holder]") + "wears \the [I]")
 		carrying_item = TRUE
 
 	if(istype(holder) && S.hat)		// Do we have a hat? Hats are loot.

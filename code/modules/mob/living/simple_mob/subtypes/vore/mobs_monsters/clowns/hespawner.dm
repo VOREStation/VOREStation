@@ -13,7 +13,7 @@
 	cutoff_number = 1
 
 /obj/structure/ghost_pod/manual/clegg/trigger()
-	..("<span class='warning'>\The [usr] places their hand on the egg!</span>", "is attempting to make a mistake!")
+	..(span_warning("\The [usr] places their hand on the egg!"), "is attempting to make a mistake!")
 
 /obj/structure/ghost_pod/manual/clegg/create_occupant(var/mob/M)
 	lightning_strike(get_turf(src), cosmetic = TRUE)
@@ -23,8 +23,8 @@
 	var/mob/living/simple_mob/R = new chosen_clown(get_turf(src))
 	if(M.mind)
 		M.mind.transfer_to(R)
-	to_chat(M, "<span class='notice'>You are a <b>Clown!</b>! HONK!</span>")
+	to_chat(M, span_notice("You are a <b>Clown!</b>! HONK!"))
 	R.ckey = M.ckey
-	visible_message("<span class='warning'>With a bright flash of light, \the [src] disappears, and in its place you see a... Clown?</span>")
+	visible_message(span_warning("With a bright flash of light, \the [src] disappears, and in its place you see a... Clown?"))
 	log_and_message_admins("successfully touched \a [src] and summoned a mistake!")
 	..()

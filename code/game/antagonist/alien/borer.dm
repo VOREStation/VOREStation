@@ -63,7 +63,7 @@ var/datum/antagonist/borer/borers
 		borer.forceMove(get_turf(pick(get_vents())))
 
 /datum/antagonist/borer/attempt_random_spawn()
-	if(config.aliens_allowed) ..()
+	if(CONFIG_GET(flag/aliens_allowed)) ..()
 
 /datum/antagonist/borer/proc/get_vents()
 	var/list/vents = list()

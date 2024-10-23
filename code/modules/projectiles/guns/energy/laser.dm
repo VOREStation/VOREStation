@@ -201,7 +201,7 @@
 	power_supply.charge = 0
 	power_supply.maxcharge = 1 //just to avoid div/0 runtimes
 	desc = "A rare weapon, produced by the Lunar Arms Company around 2105 - one of humanity's first wholly extra-terrestrial weapon designs. It looks to have completely burned out."
-	user.visible_message("<span class='warning'>\The [src] erupts in a shower of sparks!</span>", "<span class='danger'>\the [src] bursts into a shower of sparks!</span>")
+	user.visible_message(span_warning("\The [src] erupts in a shower of sparks!"), span_danger("\the [src] bursts into a shower of sparks!"))
 	var/turf/T = get_turf(src)
 	var/datum/effect/effect/system/spark_spread/sparks = new /datum/effect/effect/system/spark_spread()
 	sparks.set_up(2, 1, T)
@@ -218,7 +218,7 @@
 			sparks.set_up(2, 1, T)
 			sparks.start()
 			update_icon()
-			user.visible_message("<span class='warning'>\The [src] shorts out!</span>", "<span class='danger'>\the [src] shorts out!</span>")
+			user.visible_message(span_warning("\The [src] shorts out!"), span_danger("\the [src] shorts out!"))
 			failurechance += rand(1,5)
 			return
 		if(6 to 7) //20% chance of weakening the beam type, possibly to uselessness
@@ -238,18 +238,18 @@
 					projectile_type = /obj/item/projectile/beam/heavylaser
 				if(81 to 100) //pulse becomes cannon
 					projectile_type = /obj/item/projectile/beam/heavylaser/cannon
-			user.visible_message("<span class='warning'>\The [src] dims slightly!</span>", "<span class='danger'>\the [src] dims slightly!</span>")
+			user.visible_message(span_warning("\The [src] dims slightly!"), span_danger("\the [src] dims slightly!"))
 			return
 		if(8) //10% chance of reducing the number of shots you have left, or giving you a limit if there isn't one
 			if(!remainingshots)
 				remainingshots = rand(1,40)
 			else
 				remainingshots = min(1, round(remainingshots/2))
-			user.visible_message("<span class='warning'>\The [src] lets out a faint pop.</span>", "<span class='danger'>\the [src] lets out a faint pop.</span>")
+			user.visible_message(span_warning("\The [src] lets out a faint pop."), span_danger("\the [src] lets out a faint pop."))
 		if(9) //10% chance of permanently reducing the cell's max charge
 			power_supply.maxcharge = power_supply.maxcharge/2
 			power_supply.charge = min(power_supply.charge, power_supply.maxcharge)
-			user.visible_message("<span class='warning'>\The [src] sparks,letting off a puff of smoke!</span>", "<span class='danger'>\the [src] sparks,letting off a puff of smoke!</span>")
+			user.visible_message(span_warning("\The [src] sparks,letting off a puff of smoke!"), span_danger("\the [src] sparks,letting off a puff of smoke!"))
 			var/turf/T = get_turf(src)
 			var/datum/effect/effect/system/spark_spread/sparks = new /datum/effect/effect/system/spark_spread()
 			sparks.set_up(2, 1, T)
@@ -319,7 +319,7 @@
 	origin_tech = list(TECH_COMBAT = 6, TECH_MATERIAL = 5, TECH_POWER = 4)
 	projectile_type = /obj/item/projectile/beam/sniper
 	slot_flags = SLOT_BACK
-	action_button_name = "Use Scope"
+	actions_types = list(/datum/action/item_action/use_scope)
 	battery_lock = 1
 	charge_cost = 600
 	fire_delay = 35
@@ -329,7 +329,7 @@
 	scoped_accuracy = 50
 	one_handed_penalty = 60 // The weapon itself is heavy, and the long barrel makes it hard to hold steady with just one hand.
 
-/obj/item/gun/energy/sniperrifle/ui_action_click()
+/obj/item/gun/energy/sniperrifle/ui_action_click(mob/user, actiontype)
 	scope()
 
 /obj/item/gun/energy/sniperrifle/verb/scope()
@@ -424,7 +424,7 @@
 	origin_tech = list(TECH_COMBAT = 6, TECH_MATERIAL = 4, TECH_POWER = 3)
 	projectile_type = /obj/item/projectile/beam/sniper
 	slot_flags = SLOT_BACK
-	action_button_name = "Aim Down Sights"
+	actions_types = list(/datum/action/item_action/aim_down_sights)
 	charge_cost = 2400
 	fire_delay = 20
 	force = 8
@@ -434,7 +434,7 @@
 	charge_meter = FALSE
 	var/scope_multiplier = 1.5
 
-/obj/item/gun/energy/monorifle/ui_action_click()
+/obj/item/gun/energy/monorifle/ui_action_click(mob/user, actiontype)
 	sights()
 
 /obj/item/gun/energy/monorifle/verb/sights()

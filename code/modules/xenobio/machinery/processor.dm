@@ -20,13 +20,13 @@
 
 /obj/machinery/processor/attack_hand(mob/living/user)
 	if(processing)
-		to_chat(user, "<span class='warning'>The processor is in the process of processing!</span>")
+		to_chat(user, span_warning("The processor is in the process of processing!"))
 		return
 	if(to_be_processed.len)
 		spawn(1)
 			begin_processing()
 	else
-		to_chat(user, "<span class='warning'>The processor is empty.</span>")
+		to_chat(user, span_warning("The processor is empty."))
 		playsound(src, 'sound/machines/buzz-sigh.ogg', 50, 1)
 		return
 
@@ -53,12 +53,12 @@
 	if(!Adjacent(AM))
 		return
 	if(!can_insert(AM))
-		to_chat(user, "<span class='warning'>\The [src] cannot process \the [AM] at this time.</span>")
+		to_chat(user, span_warning("\The [src] cannot process \the [AM] at this time."))
 		playsound(src, 'sound/machines/buzz-sigh.ogg', 50, 1)
 		return
 	to_be_processed.Add(AM)
 	AM.forceMove(src)
-	visible_message("<b>\The [user]</b> places [AM] inside \the [src].")
+	visible_message(span_infoplain(span_bold("\The [user]") + " places [AM] inside \the [src]."))
 
 /obj/machinery/processor/proc/begin_processing()
 	if(processing)

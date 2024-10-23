@@ -10,7 +10,7 @@
 	return
 
 /obj/item/card/id/keycard/read()
-	to_chat(usr, "<span class='notice'>It is a red keycard, it must unlock something.</span>")
+	to_chat(usr, span_notice("It is a red keycard, it must unlock something."))
 
 /obj/item/card/id/keycard/attack_self(mob/living/user as mob)
 	return
@@ -45,9 +45,9 @@
 		crystal = 1
 		user.drop_item()
 		qdel(W)
-		to_chat(usr, "<span class='notice'>You insert the crystal into the receptacle.</span>")
+		to_chat(usr, span_notice("You insert the crystal into the receptacle."))
 	else
-		to_chat(usr, "<span class='notice'>There isn't a slot for that.</span>")
+		to_chat(usr, span_notice("There isn't a slot for that."))
 
 /obj/machinery/crystalexperimenter
 	name = "crystal experimenter"
@@ -114,4 +114,3 @@
 	light_power = 1
 	light_color = "#ffffff"
 	light_on = TRUE
-

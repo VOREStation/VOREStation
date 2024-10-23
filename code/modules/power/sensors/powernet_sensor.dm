@@ -177,7 +177,7 @@
 	var/list/L = find_apcs()
 	var/total_apc_load = 0
 	if(L.len <= 0) 	// No APCs found.
-		out = "<b>No APCs located in connected powernet!</b>"
+		out = span_bold("No APCs located in connected powernet!")
 	else			// APCs found. Create very ugly (but working!) HTML table.
 
 		out += "<table><tr><th>Name<th>EQUIP<th>LIGHT<th>ENVIRON<th>CELL<th>LOAD"

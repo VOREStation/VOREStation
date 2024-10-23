@@ -173,6 +173,10 @@ var/list/preferences_datums = list()
 	var/examine_text_mode = 0 // Just examine text, include usage (description_info), switch to examine panel.
 	var/multilingual_mode = 0 // Default behaviour, delimiter-key-space, delimiter-key-delimiter, off
 
+	// THIS IS NOT SAVED
+	// WE JUST HAVE NOWHERE ELSE TO STORE IT
+	var/list/action_button_screen_locs
+
 	var/list/volume_channels = list()
 
 	///If they are currently in the process of swapping slots, don't let them open 999 windows for it and get confused
@@ -284,7 +288,7 @@ var/list/preferences_datums = list()
 	if(!user || !user.client)	return
 
 	if(!get_mob_by_key(client_ckey))
-		to_chat(user, "<span class='danger'>No mob exists for the given client!</span>")
+		to_chat(user, span_danger("No mob exists for the given client!"))
 		return
 
 	if(!char_render_holders)
@@ -372,10 +376,10 @@ var/list/preferences_datums = list()
 	if(!istype(user, /mob/new_player))	return
 
 	if(href_list["preference"] == "open_whitelist_forum")
-		if(config.forumurl)
-			user << link(config.forumurl)
+		if(CONFIG_GET(string/forumurl))
+			user << link(CONFIG_GET(string/forumurl))
 		else
-			to_chat(user, "<span class='danger'>The forum URL is not set in the server configuration.</span>")
+			to_chat(user, span_danger("The forum URL is not set in the server configuration."))
 			return
 	ShowChoices(usr)
 	return 1
@@ -452,7 +456,7 @@ var/list/preferences_datums = list()
 
 /datum/preferences/proc/open_load_dialog(mob/user)
 	if(selecting_slots)
-		to_chat(user, "<span class='warning'>You already have a slot selection dialog open!</span>")
+		to_chat(user, span_warning("You already have a slot selection dialog open!"))
 		return
 	if(!savefile)
 		return
@@ -460,7 +464,7 @@ var/list/preferences_datums = list()
 	var/default
 	var/list/charlist = list()
 
-	for(var/i in 1 to config.character_slots)
+	for(var/i in 1 to CONFIG_GET(number/character_slots))
 		var/list/save_data = savefile.get_entry("character[i]", list())
 		var/name = save_data["real_name"]
 		var/nickname = save_data["nickname"]
@@ -494,14 +498,14 @@ var/list/preferences_datums = list()
 
 /datum/preferences/proc/open_copy_dialog(mob/user)
 	if(selecting_slots)
-		to_chat(user, "<span class='warning'>You already have a slot selection dialog open!</span>")
+		to_chat(user, span_warning("You already have a slot selection dialog open!"))
 		return
 	if(!savefile)
 		return
 
 	var/list/charlist = list()
 
-	for(var/i in 1 to config.character_slots)
+	for(var/i in 1 to CONFIG_GET(number/character_slots))
 		var/list/save_data = savefile.get_entry("character[i]", list())
 		var/name = save_data["real_name"]
 		var/nickname = save_data["nickname"]

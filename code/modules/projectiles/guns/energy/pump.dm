@@ -24,10 +24,10 @@
 	if(istype(id) && lockable)
 		if(check_access(id))
 			locked = !locked
-			to_chat(user, "<span class='warning'>You [locked ? "enable" : "disable"] the safety lock on \the [src].</span>")
+			to_chat(user, span_warning("You [locked ? "enable" : "disable"] the safety lock on \the [src]."))
 		else
-			to_chat(user, "<span class='warning'>Access denied.</span>")
-		user.visible_message("<span class='notice'>[user] swipes \the [I] against \the [src].</span>")
+			to_chat(user, span_warning("Access denied."))
+		user.visible_message(span_notice("[user] swipes \the [I] against \the [src]."))
 	else
 		return ..()
 
@@ -35,14 +35,14 @@
 	..()
 	if(lockable)
 		locked = !locked
-		to_chat(user, "<span class='warning'>You [locked ? "enable" : "disable"] the safety lock on \the [src]!</span>")
+		to_chat(user, span_warning("You [locked ? "enable" : "disable"] the safety lock on \the [src]!"))
 		return 1
 
 /obj/item/gun/energy/locked/special_check(mob/user)
 	if(locked)
 		var/turf/T = get_turf(src)
 		if(T.z in using_map.station_levels)
-			to_chat(user, "<span class='warning'>The safety device prevents the gun from firing this close to the facility.</span>")
+			to_chat(user, span_warning("The safety device prevents the gun from firing this close to the facility."))
 			return 0
 	return ..()
 
@@ -85,8 +85,8 @@
 		return
 	recharging = 1
 	update_icon()
-	user.visible_message("<span class='notice'>[user] opens \the [src] and starts pumping the handle.</span>", \
-						"<span class='notice'>You open \the [src] and start pumping the handle.</span>")
+	user.visible_message(span_notice("[user] opens \the [src] and starts pumping the handle."), \
+						span_notice("You open \the [src] and start pumping the handle."))
 	while(recharging)
 		if(!do_after(user, 10, src))
 			break
@@ -176,7 +176,7 @@
 	item_state = "lsniper"
 	item_state_slots = list(slot_r_hand_str = "lsniper", slot_l_hand_str = "lsniper")
 	wielded_item_state = "lsniper-wielded"
-	action_button_name = "Use Scope"
+	actions_types = list(/datum/action/item_action/use_scope)
 	w_class = ITEMSIZE_LARGE
 	item_icons = list(slot_l_hand_str = 'icons/mob/items/lefthand_guns.dmi', slot_r_hand_str = 'icons/mob/items/righthand_guns.dmi')
 	accuracy = -15 //better than most snipers but still has penalty
@@ -194,7 +194,7 @@
 		list(mode_name="lethal", fire_delay=12, projectile_type=/obj/item/projectile/beam, modifystate="phriflekill", charge_cost = 200),
 	)
 
-/obj/item/gun/energy/locked/frontier/rifle/ui_action_click()
+/obj/item/gun/energy/locked/frontier/rifle/ui_action_click(mob/user, actiontype)
 	scope()
 
 /obj/item/gun/energy/locked/frontier/rifle/verb/scope()

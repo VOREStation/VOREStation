@@ -37,7 +37,7 @@
 	projectile_type = /obj/item/projectile/bullet/shotgun
 	one_handed_penalty = 30 //You madman, one-handing a 12g shotgun.
 	recoil = 5 //Unfold the damn stock you fool!
-	action_button_name = "Toggle stock"
+	actions_types = list(/datum/action/item_action/toggle_stock)
 	var/stock = FALSE
 
 
@@ -45,8 +45,8 @@
 	var/mob/living/user = loc
 	stock = !stock
 	if(stock)
-		user.visible_message("<span class='warning'>With a fluid movement, [user] unfolds their shotgun's stock and foregrip.</span>",\
-		"<span class='warning'>You unfold the shotgun's stock and foregrip.</span>",\
+		user.visible_message(span_warning("With a fluid movement, [user] unfolds their shotgun's stock and foregrip."),\
+		span_warning("You unfold the shotgun's stock and foregrip."),\
 		"You hear an ominous click.")
 		icon_state = "compshot"
 		item_state = icon_state
@@ -54,8 +54,8 @@
 		one_handed_penalty = 15 //Stock extended to steady it, even with just the one hand.
 		recoil = 1 //As above, stock and foregrip would help with the kick
 	else
-		user.visible_message("<b>\The [user]</b> collapses their shotgun's stock and fold it's foregrip.",\
-		"<span class='notice'>You fold the shotgun's stock and foregrip.</span>",\
+		user.visible_message(span_infoplain(span_bold("\The [user]") + " collapses their shotgun's stock and fold it's foregrip."),\
+		span_notice("You fold the shotgun's stock and foregrip."),\
 		"You hear a click.")
 		icon_state = "compshotc"
 		item_state = icon_state
@@ -69,7 +69,7 @@
 		H.update_inv_r_hand()
 
 	playsound(src, 'sound/weapons/targeton.ogg', 50, 1)
-	user.update_action_buttons()
+	user.update_action_buttons_icon()
 
 /obj/item/gun/projectile/shotgun/compact/verb/verb_toggle_stock(mob/user as mob)
 	set category = "Object"
@@ -82,7 +82,7 @@
 	if (isliving(usr))
 		toggle_stock()
 	else
-		to_chat(usr, "<span class='notice'>You cannot do this in your current state.</span>")
+		to_chat(usr, span_notice("You cannot do this in your current state."))
 
 
 /obj/item/gun/projectile/shotgun/compact/attack_self(mob/user as mob)
@@ -92,9 +92,9 @@
 	if (isliving(usr))
 		toggle_stock()
 	else
-		to_chat(usr, "<span class='notice'>You cannot do this in your current state.</span>")
+		to_chat(usr, span_notice("You cannot do this in your current state."))
 
-/obj/item/gun/projectile/shotgun/compact/ui_action_click()
+/obj/item/gun/projectile/shotgun/compact/ui_action_click(mob/unused_user, actiontype)
 	var/mob/living/user = loc
 	if(!isliving(user))
 		return

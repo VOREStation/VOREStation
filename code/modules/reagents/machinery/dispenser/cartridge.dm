@@ -41,23 +41,23 @@
 /obj/item/reagent_containers/chem_disp_cartridge/proc/setLabel(L, mob/user = null)
 	if(L)
 		if(user)
-			to_chat(user, "<span class='notice'>You set the label on \the [src] to '[L]'.</span>")
+			to_chat(user, span_notice("You set the label on \the [src] to '[L]'."))
 
 		label = L
 		name = "[initial(name)] - '[L]'"
 	else
 		if(user)
-			to_chat(user, "<span class='notice'>You clear the label on \the [src].</span>")
+			to_chat(user, span_notice("You clear the label on \the [src]."))
 		label = ""
 		name = initial(name)
 
 /obj/item/reagent_containers/chem_disp_cartridge/attack_self()
 	..()
 	if (is_open_container())
-		to_chat(usr, "<span class = 'notice'>You put the cap on \the [src].</span>")
+		to_chat(usr, span_notice("You put the cap on \the [src]."))
 		flags ^= OPENCONTAINER
 	else
-		to_chat(usr, "<span class = 'notice'>You take the cap off \the [src].</span>")
+		to_chat(usr, span_notice("You take the cap off \the [src]."))
 		flags |= OPENCONTAINER
 
 /obj/item/reagent_containers/chem_disp_cartridge/afterattack(obj/target, mob/user , flag)
@@ -68,28 +68,28 @@
 		target.add_fingerprint(user)
 
 		if(!target.reagents.total_volume && target.reagents)
-			to_chat(user, "<span class='warning'>\The [target] is empty.</span>")
+			to_chat(user, span_warning("\The [target] is empty."))
 			return
 
 		if(reagents.total_volume >= reagents.maximum_volume)
-			to_chat(user, "<span class='warning'>\The [src] is full.</span>")
+			to_chat(user, span_warning("\The [src] is full."))
 			return
 
 		var/trans = target.reagents.trans_to(src, target:amount_per_transfer_from_this)
-		to_chat(user, "<span class='notice'>You fill \the [src] with [trans] units of the contents of \the [target].</span>")
+		to_chat(user, span_notice("You fill \the [src] with [trans] units of the contents of \the [target]."))
 
 	else if(target.is_open_container() && target.reagents) //Something like a glass. Player probably wants to transfer TO it.
 
 		if(!reagents.total_volume)
-			to_chat(user, "<span class='warning'>\The [src] is empty.</span>")
+			to_chat(user, span_warning("\The [src] is empty."))
 			return
 
 		if(target.reagents.total_volume >= target.reagents.maximum_volume)
-			to_chat(user, "<span class='warning'>\The [target] is full.</span>")
+			to_chat(user, span_warning("\The [target] is full."))
 			return
 
 		var/trans = src.reagents.trans_to(target, amount_per_transfer_from_this)
-		to_chat(user, "<span class='notice'>You transfer [trans] units of the solution to \the [target].</span>")
+		to_chat(user, span_notice("You transfer [trans] units of the solution to \the [target]."))
 
 	else
 		return ..()

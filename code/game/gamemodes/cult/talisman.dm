@@ -29,7 +29,7 @@
 			if("blind")
 				call(/obj/effect/rune/proc/blind)()
 			if("runestun")
-				to_chat(user, "<span class='warning'>To use this talisman, attack your target directly.</span>")
+				to_chat(user, span_warning("To use this talisman, attack your target directly."))
 				return
 			if("supply")
 				supply()
@@ -60,7 +60,7 @@
 		qdel(src)
 		return
 
-	var/dat = "<B>There are [src.uses] bloody runes on the parchment.</B><BR>"
+	var/dat = span_bold("There are [src.uses] bloody runes on the parchment.") + "<BR>"
 	dat += "Please choose the chant to be imbued into the fabric of reality.<BR>"
 	dat += "<HR>"
 	dat += "<A href='?src=\ref[src];rune=newtome'>N'ath reth sh'yro eth d'raggathnor!</A> - Allows you to summon a new arcane tome.<BR>"

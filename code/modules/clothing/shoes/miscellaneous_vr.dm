@@ -14,7 +14,7 @@
 	icon = 'icons/inventory/feet/item_vr.dmi'
 	icon_override = 'icons/inventory/feet/mob_vr.dmi'
 	// resistance_flags = FIRE_PROOF
-	action_button_name = "Activate Jump Boots"
+	actions_types = list(/datum/action/item_action/activate_jump_boots)
 	permeability_coefficient = 0.05
 	var/jumpdistance = 5 //-1 from to see the actual distance, e.g 4 goes over 3 tiles
 	var/jumpspeed = 3
@@ -22,7 +22,7 @@
 	var/recharging_time = 0 //time until next dash
 	// var/jumping = FALSE //are we mid-jump? We have no throw_at callback, so we have to check user.throwing.
 
-/obj/item/clothing/shoes/bhop/ui_action_click()
+/obj/item/clothing/shoes/bhop/ui_action_click(mob/unused_user, actiontype)
 	var/mob/living/user = loc
 	if(!isliving(user))
 		return
@@ -31,13 +31,13 @@
 		return // User is already being thrown
 
 	if(recharging_time > world.time)
-		to_chat(user, "<span class='warning'>The boot's internal propulsion needs to recharge still!</span>")
+		to_chat(user, span_warning("The boot's internal propulsion needs to recharge still!"))
 		return
 
 	var/atom/target = get_edge_target_turf(user, user.dir) //gets the user's direction
 
 	playsound(src, 'sound/effects/stealthoff.ogg', 50, 1, 1)
-	user.visible_message("<span class='warning'>[user] dashes forward into the air!</span>")
+	user.visible_message(span_warning("[user] dashes forward into the air!"))
 	user.throw_at(target, jumpdistance, jumpspeed)
 	recharging_time = world.time + recharging_rate
 

@@ -45,31 +45,31 @@ var/list/turf_edge_cache = list()
 		var/obj/item/shovel/our_shovel = C
 		if(our_shovel.grave_mode)
 			if(contents.len > 0)
-				to_chat(user, SPAN_WARNING("You can't dig here!"))
+				to_chat(user, span_warning("You can't dig here!"))
 				return
-			to_chat(user, SPAN_NOTICE("\The [user] begins digging into \the [src] with \the [C]."))
+			to_chat(user, span_notice("\The [user] begins digging into \the [src] with \the [C]."))
 			var/delay = (5 SECONDS * C.toolspeed)
 			user.setClickCooldown(delay)
 			if(do_after(user, delay, src))
 				new/obj/structure/closet/grave/dirthole(src)
-				to_chat(user, SPAN_NOTICE("You dug up \a hole!"))
+				to_chat(user, span_notice("You dug up \a hole!"))
 				return
 		else
-			to_chat(user, SPAN_NOTICE("\The [user] begins digging into \the [src] with \the [C]."))
+			to_chat(user, span_notice("\The [user] begins digging into \the [src] with \the [C]."))
 			var/delay = (3 SECONDS * C.toolspeed)
 			user.setClickCooldown(delay)
 			if(do_after(user, delay, src))
 				if(!(locate(/obj/machinery/portable_atmospherics/hydroponics/soil) in contents))
 					var/obj/machinery/portable_atmospherics/hydroponics/soil/soil = new(src)
-					user.visible_message(SPAN_NOTICE("\The [src] digs \a [soil] into \the [src]."))
+					user.visible_message(span_notice("\The [src] digs \a [soil] into \the [src]."))
 				else
 					var/loot_type = get_loot_type()
 					if(loot_type)
 						loot_count--
 						var/obj/item/loot = new loot_type(src)
-						to_chat(user, SPAN_NOTICE("You dug up \a [loot]!"))
+						to_chat(user, span_notice("You dug up \a [loot]!"))
 					else
-						to_chat(user, SPAN_NOTICE("You didn't find anything of note in \the [src]."))
+						to_chat(user, span_notice("You didn't find anything of note in \the [src]."))
 				return
 
 	. = ..()

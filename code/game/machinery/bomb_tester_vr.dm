@@ -102,7 +102,7 @@
 				tank2 = I
 			update_icon()
 			SStgui.update_uis(src)
-			to_chat(user, "<span class='notice'>You connect \the [I] to \the [src]'s [I==tank1 ? "primary" : "secondary"] slot.</span>")
+			to_chat(user, span_notice("You connect \the [I] to \the [src]'s [I==tank1 ? "primary" : "secondary"] slot."))
 			return
 	..()
 
@@ -128,7 +128,7 @@
 		data["tank2ref"] = REF(tank2)
 		data["canister"] = test_canister
 		data["sim_canister_output"] = sim_canister_output
-	
+
 	return data
 
 /obj/machinery/bomb_tester/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
@@ -149,9 +149,9 @@
 					text_mode = "tank transfer valve detonation"
 				if(MODE_CANISTER)
 					text_mode = "canister-assisted single gas tank detonation"
-			to_chat(usr, "<span class='notice'>[src] set to simulate a [text_mode].</span>")
+			to_chat(usr, span_notice("[src] set to simulate a [text_mode]."))
 			return TRUE
-		
+
 		if("add_tank")
 			if(istype(usr.get_active_hand(), /obj/item/tank))
 				var/obj/item/tank/T = usr.get_active_hand()
@@ -161,14 +161,14 @@
 				else if(slot == 2 && !tank2)
 					tank2 = T
 				else
-					to_chat(usr, "<span class='warning'>Slot [slot] is full.</span>")
+					to_chat(usr, span_warning("Slot [slot] is full."))
 					return
-				
+
 				usr.drop_item(T)
 				T.forceMove(src)
 				return TRUE
 			else
-				to_chat(usr, "<span class='warning'>You must be wielding a tank to insert it!</span>")
+				to_chat(usr, span_warning("You must be wielding a tank to insert it!"))
 
 		if("remove_tank")
 			var/obj/item/tank/T = locate(params["ref"]) in list(tank1, tank2)

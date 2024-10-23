@@ -12,7 +12,7 @@
 	preserve_item = 1
 	var/magpulse = 0
 	var/icon_base = "magboots"
-	action_button_name = "Toggle Magboots"
+	actions_types = list(/datum/action/item_action/toggle_magboots)
 	var/obj/item/clothing/shoes/shoes = null	//Undershoes
 	var/mob/living/carbon/human/wearer = null	//For shoe procs
 	step_volume_mod = 1.3
@@ -41,7 +41,7 @@
 		playsound(src, 'sound/effects/magnetclamp.ogg', 20)
 		to_chat(user, "You enable the mag-pulse traction system.")
 	user.update_inv_shoes()	//so our mob-overlays update
-	user.update_action_buttons()
+	user.update_action_buttons_icon()
 
 /obj/item/clothing/shoes/magboots/mob_can_equip(mob/user, slot, disable_warning = FALSE)
 	var/mob/living/carbon/human/H = user
@@ -90,8 +90,7 @@
 	icon_state = "boots-vox"
 	flags = PHORONGUARD
 	species_restricted = list(SPECIES_VOX)
-
-	action_button_name = "Toggle the magclaws"
+	actions_types = list(/datum/action/item_action/toggle_magclaws)
 
 /obj/item/clothing/shoes/magboots/vox/attack_self(mob/user)
 	if(src.magpulse)
@@ -112,7 +111,7 @@
 		magpulse = 1
 		canremove = FALSE	//kinda hard to take off magclaws when you are gripping them tightly.
 		to_chat(user, "You dig your claws deeply into the flooring, bracing yourself.")
-	user.update_action_buttons()
+	user.update_action_buttons_icon()
 
 //In case they somehow come off while enabled.
 /obj/item/clothing/shoes/magboots/vox/dropped(mob/user as mob)

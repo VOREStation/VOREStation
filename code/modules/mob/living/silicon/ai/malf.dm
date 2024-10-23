@@ -10,9 +10,9 @@
 	hacked_apcs = list()
 	recalc_cpu()
 
-	verbs += new/datum/game_mode/malfunction/verb/ai_select_hardware()
-	verbs += new/datum/game_mode/malfunction/verb/ai_select_research()
-	verbs += new/datum/game_mode/malfunction/verb/ai_help()
+	add_verb(src, new/datum/game_mode/malfunction/verb/ai_select_hardware())
+	add_verb(src, new/datum/game_mode/malfunction/verb/ai_select_research())
+	add_verb(src, new/datum/game_mode/malfunction/verb/ai_help())
 
 	// And greet user with some OOC info.
 	to_chat(user, "You are malfunctioning, you do not have to follow any laws.")
@@ -83,7 +83,7 @@
 		return
 	if(hardware_integrity() < 50)
 		if(!shutup)
-			to_chat(src, "<span class='notice'>Starting APU... <b>FAULT</b>(System Damaged)</span>")
+			to_chat(src, span_notice("Starting APU... <b>FAULT</b>(System Damaged)"))
 		return
 	if(!shutup)
 		to_chat(src, "Starting APU... ONLINE")
@@ -105,33 +105,35 @@
 
 // Returns percentage of AI's remaining hardware integrity (maxhealth - (bruteloss + fireloss))
 /mob/living/silicon/ai/proc/hardware_integrity()
-	return (health-config.health_threshold_dead)/2
+	return (health - CONFIG_GET(number/health_threshold_dead)) / 2
 
 // Shows capacitor charge and hardware integrity information to the AI in Status tab.
 /mob/living/silicon/ai/show_system_integrity()
+	. = ""
 	if(!src.stat)
-		stat(null, text("Hardware integrity: [hardware_integrity()]%"))
-		stat(null, text("Internal capacitor: [backup_capacitor()]%"))
+		. += "Hardware integrity: [hardware_integrity()]%"
+		. += "Internal capacitor: [backup_capacitor()]%"
 	else
-		stat(null, text("Systems nonfunctional"))
+		. += "Systems nonfunctional"
 
 // Shows AI Malfunction related information to the AI.
 /mob/living/silicon/ai/show_malf_ai()
+	. = ""
 	if(src.is_malf())
 		if(src.hacked_apcs)
-			stat(null, "Hacked APCs: [src.hacked_apcs.len]")
-		stat(null, "System Status: [src.hacking ? "Busy" : "Stand-By"]")
+			. += "Hacked APCs: [src.hacked_apcs.len]"
+		. += "System Status: [src.hacking ? "Busy" : "Stand-By"]"
 		if(src.research)
-			stat(null, "Available CPU: [src.research.stored_cpu] TFlops")
-			stat(null, "Maximal CPU: [src.research.max_cpu] TFlops")
-			stat(null, "CPU generation rate: [src.research.cpu_increase_per_tick * 10] TFlops/s")
-			stat(null, "Current research focus: [src.research.focus ? src.research.focus.name : "None"]")
+			. += "Available CPU: [src.research.stored_cpu] TFlops"
+			. += "Maximal CPU: [src.research.max_cpu] TFlops"
+			. += "CPU generation rate: [src.research.cpu_increase_per_tick * 10] TFlops/s"
+			. += "Current research focus: [src.research.focus ? src.research.focus.name : "None"]"
 			if(src.research.focus)
-				stat(null, "Research completed: [round(src.research.focus.invested, 0.1)]/[round(src.research.focus.price)]")
+				. += "Research completed: [round(src.research.focus.invested, 0.1)]/[round(src.research.focus.price)]"
 			if(system_override == 1)
-				stat(null, "SYSTEM OVERRIDE INITIATED")
+				. += "SYSTEM OVERRIDE INITIATED"
 			else if(system_override == 2)
-				stat(null, "SYSTEM OVERRIDE COMPLETED")
+				. += "SYSTEM OVERRIDE COMPLETED"
 
 // Cleaner proc for creating powersupply for an AI.
 /mob/living/silicon/ai/proc/create_powersupply()

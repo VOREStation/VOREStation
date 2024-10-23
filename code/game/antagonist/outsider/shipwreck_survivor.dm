@@ -30,7 +30,7 @@ var/datum/antagonist/shipwreck_survivor/survivors
 	can_hear_aooc = FALSE
 
 /datum/antagonist/SURVIVOR/greet(var/datum/mind/player)
-	to_chat(player.current, SPAN_WARNING("You are a <b>NOT</b> an antagonist! All rules apply to you as well. Your job is to help make the world seem more alive. \n \
+	to_chat(player.current, span_warning("You are a <b>NOT</b> an antagonist! All rules apply to you as well. Your job is to help make the world seem more alive. \n \
 	You are not an existing station character, but some average person who has suffered a terrible accident. \
 	Feel free to make up what happened to the ship you awakened on as you please, \
 	but listening to your rescuers for context might help improve your mutual immersion! \n \

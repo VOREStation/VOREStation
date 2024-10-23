@@ -63,8 +63,8 @@
 		humanform = H
 		updatehealth()
 		refactory = locate() in humanform.internal_organs
-		verbs |= /mob/living/proc/ventcrawl
-		verbs |= /mob/living/proc/hide
+		add_verb(src, /mob/living/proc/ventcrawl)
+		add_verb(src, /mob/living/proc/hide)
 	else
 		update_icon()
 
@@ -99,10 +99,10 @@
 /mob/living/simple_mob/protean_blob/isSynthetic()
 	return TRUE // yup
 
-/mob/living/simple_mob/protean_blob/Stat()
-	..()
+/mob/living/simple_mob/protean_blob/update_misc_tabs()
+	. = ..()
 	if(humanform)
-		humanform.species.Stat(humanform)
+		humanform.species.update_misc_tabs(src)
 
 /mob/living/simple_mob/protean_blob/update_icon()
 	if(humanform)
@@ -276,7 +276,7 @@
 					if(target.buckled)
 						target.buckled.unbuckle_mob(target, force = TRUE)
 					target.forceMove(vore_selected)
-					to_chat(target,"<span class='vwarning'>\The [src] quickly engulfs you, [vore_selected.vore_verb]ing you into their [vore_selected.name]!</span>")
+					to_chat(target,span_vwarning("\The [src] quickly engulfs you, [vore_selected.vore_verb]ing you into their [vore_selected.name]!"))
 
 /mob/living/simple_mob/protean_blob/attack_target(var/atom/A)
 	if(refactory && istype(A,/obj/item/stack/material))
@@ -288,7 +288,7 @@
 		if(!allowed)
 			return
 		if(refactory.add_stored_material(S.material.name,1*S.perunit) && S.use(1))
-			visible_message("<b>[name]</b> gloms over some of \the [S], absorbing it.")
+			visible_message(span_infoplain(span_bold("[name]") + " gloms over some of \the [S], absorbing it."))
 	else
 		return ..()
 
@@ -302,7 +302,7 @@
 		if(!allowed)
 			return
 		if(refactory.add_stored_material(S.material.name,1*S.perunit) && S.use(1))
-			visible_message("<b>[name]</b> gloms over some of \the [S], absorbing it.")
+			visible_message(span_infoplain(span_bold("[name]") + " gloms over some of \the [S], absorbing it."))
 	else
 		return ..()
 
@@ -320,12 +320,8 @@ var/global/list/disallowed_protean_accessories = list(
 // Helpers - Unsafe, WILL perform change.
 /mob/living/carbon/human/proc/nano_intoblob(force)
 	if(!force && !isturf(loc))
-		to_chat(src,"<span class='warning'>You can't change forms while inside something.</span>")
+		to_chat(src,span_warning("You can't change forms while inside something."))
 		return
-
-	var/panel_was_up = FALSE
-	if(client?.statpanel == "Protean")
-		panel_was_up = TRUE
 
 	handle_grasp() //It's possible to blob out before some key parts of the life loop. This results in things getting dropped at null. TODO: Fix the code so this can be done better.
 	remove_micros(src, src) //Living things don't fare well in roblobs.
@@ -389,7 +385,7 @@ var/global/list/disallowed_protean_accessories = list(
 	moveToNullspace()
 
 	//Message
-	blob.visible_message("<b>[src.name]</b> collapses into a gooey blob!")
+	blob.visible_message(span_infoplain(span_bold("[src.name]") + " collapses into a gooey blob!"))
 
 	//Duration of the to_puddle iconstate that the blob starts with
 	sleep(13)
@@ -405,9 +401,6 @@ var/global/list/disallowed_protean_accessories = list(
 	//We can still speak our languages!
 	blob.languages = languages.Copy()
 
-	//Flip them to the protean panel
-	if(panel_was_up)
-		client?.statpanel = "Protean"
 
 	//Return our blob in case someone wants it
 	return blob
@@ -424,12 +417,8 @@ var/global/list/disallowed_protean_accessories = list(
 		return
 
 	if(!force && !isturf(blob.loc))
-		to_chat(blob,"<span class='warning'>You can't change forms while inside something.</span>")
+		to_chat(blob,span_warning("You can't change forms while inside something."))
 		return
-
-	var/panel_was_up = FALSE
-	if(client?.statpanel == "Protean")
-		panel_was_up = TRUE
 
 	if(buckled)
 		buckled.unbuckle_mob()
@@ -448,7 +437,7 @@ var/global/list/disallowed_protean_accessories = list(
 	blob.icon_state = "from_puddle"
 
 	//Message
-	blob.visible_message("<b>[src.name]</b> reshapes into a humanoid appearance!")
+	blob.visible_message(span_infoplain(span_bold("[src.name]") + " reshapes into a humanoid appearance!"))
 
 	//Duration of above animation
 	sleep(8)
@@ -482,10 +471,6 @@ var/global/list/disallowed_protean_accessories = list(
 
 	//Get rid of friend blob
 	qdel(blob)
-
-	//Flip them to the protean panel
-	if(panel_was_up)
-		client?.statpanel = "Protean"
 
 	//Return ourselves in case someone wants it
 	return src

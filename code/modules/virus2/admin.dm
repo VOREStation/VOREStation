@@ -19,10 +19,10 @@
 	. = list()
 	for(var/datum/disease2/effectholder/E in effects)
 		. += "[E.stage]: [E.effect.name]"
-	return {"
+	. = list({"
 		<b>[name()]</b><br><font size=1>
 		[jointext(., "<br>")]</font>
-	"}
+	"})
 
 /datum/disease2/disease/get_view_variables_options()
 	return ..() + {"
@@ -215,7 +215,7 @@
 
 			spawned_viruses += D
 
-			message_admins("<span class='danger'>[key_name_admin(usr)] infected [key_name_admin(infectee)] with a virus (<a href='?src=\ref[D];[HrefToken()];info=1'>Info</a>)</span>")
+			message_admins(span_danger("[key_name_admin(usr)] infected [key_name_admin(infectee)] with a virus (<a href='?src=\ref[D];[HrefToken()];info=1'>Info</a>)"))
 			log_admin("[key_name_admin(usr)] infected [key_name_admin(infectee)] with a virus!")
 			infect_virus2(infectee, D, forced=1)
 

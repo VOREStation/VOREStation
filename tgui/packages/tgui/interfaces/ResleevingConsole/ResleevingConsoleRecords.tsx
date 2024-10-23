@@ -1,5 +1,6 @@
-import { useBackend } from '../../backend';
-import { Box, Button, Flex, Icon } from '../../components';
+import { useBackend } from 'tgui/backend';
+import { Box, Button, Flex, Icon } from 'tgui-core/components';
+
 import { record } from './types';
 
 export const ResleevingConsoleRecords = (props: {

@@ -44,15 +44,15 @@
 		return
 
 	if(!id_tag)
-		to_chat(user, "<span class='warning'>This console has not been assigned an ident tag. Please contact your system administrator or conduct a manual update with a standard multitool.</span>")
+		to_chat(user, span_warning("This console has not been assigned an ident tag. Please contact your system administrator or conduct a manual update with a standard multitool."))
 		return
 
-	var/dat = "<td><b>Gyrotron controller #[id_tag]</b>"
+	var/dat = "<td>" + span_bold("Gyrotron controller #[id_tag]")
 
 	dat = "<table><tr>"
-	dat += "<td><b>Mode</b></td>"
-	dat += "<td><b>Fire Delay</b></td>"
-	dat += "<td><b>Power</b></td>"
+	dat += "<td>" + span_bold("Mode") + "</td>"
+	dat += "<td>" + span_bold("Fire Delay") + "</td>"
+	dat += "<td>" + span_bold("Power") + "</td>"
 	dat += "</tr>"
 
 	for(var/obj/machinery/power/emitter/gyrotron/G in gyrotrons)
@@ -61,9 +61,9 @@
 
 		dat += "<tr>"
 		if(G.state != 2 || (G.stat & (NOPOWER | BROKEN))) //Error data not found.
-			dat += "<td><span style='color: red'>ERROR</span></td>"
-			dat += "<td><span style='color: red'>ERROR</span></td>"
-			dat += "<td><span style='color: red'>ERROR</span></td>"
+			dat += "<td>" + span_red("ERROR") + "</td>"
+			dat += "<td>" + span_red("ERROR") + "</td>"
+			dat += "<td>" + span_red("ERROR") + "</td>"
 		else
 			dat += "<td><a href='?src=\ref[src];machine=\ref[G];toggle=1'>[G.active  ? "Emitting" : "Standing By"]</a></td>"
 			dat += "<td><a href='?src=\ref[src];machine=\ref[G];modifyrate=1'>[G.rate]</a></td>"
@@ -92,7 +92,7 @@
 	if(href_list["modifypower"])
 		var/new_val = input(usr, "Enter new emission power level (1 - 50)", "Modifying power level", G.mega_energy) as num
 		if(!new_val)
-			to_chat(usr, "<span class='warning'>That's not a valid number.</span>")
+			to_chat(usr, span_warning("That's not a valid number."))
 			return 1
 		G.mega_energy = CLAMP(new_val, 1, 50)
 		G.update_active_power_usage(G.mega_energy * 1500)
@@ -102,7 +102,7 @@
 	if(href_list["modifyrate"])
 		var/new_val = input(usr, "Enter new emission delay between 1 and 10 seconds.", "Modifying emission rate", G.rate) as num
 		if(!new_val)
-			to_chat(usr, "<span class='warning'>That's not a valid number.</span>")
+			to_chat(usr, span_warning("That's not a valid number."))
 			return 1
 		G.rate = CLAMP(new_val, 1, 10)
 		updateUsrDialog()

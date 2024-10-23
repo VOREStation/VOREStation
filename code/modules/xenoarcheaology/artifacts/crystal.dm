@@ -17,7 +17,7 @@
 	"It's mesmerizing to behold.")
 
 /obj/structure/crystal/Destroy()
-	src.visible_message(span_red("<b>[src] shatters!</b>"))
+	src.visible_message(span_bolddanger("[src] shatters!"))
 	if(prob(75))
 		new /obj/item/material/shard/phoron(src.loc)
 	if(prob(50))

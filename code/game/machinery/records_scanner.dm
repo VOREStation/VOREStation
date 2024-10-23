@@ -69,8 +69,8 @@
 
 	<b><u>Black Marks</u></b>:<br> "}
 	for(var/A in marks)
-		text += "<span class='danger'>[A]</span><br>"
-	to_chat(user, "<span class='notice'>You feel a sting as the scanner extracts some of your blood.</span>")
+		text += span_danger("[A]") + "<br>"
+	to_chat(user, span_notice("You feel a sting as the scanner extracts some of your blood."))
 	var/turf/T = get_step(src,outputdir)
 	var/obj/item/paper/print = new(T)
 	print.name = "[mname] Report"

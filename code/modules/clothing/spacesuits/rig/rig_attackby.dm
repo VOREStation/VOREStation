@@ -14,16 +14,16 @@
 	if(W.GetID())
 		if(subverted)
 			locked = 0
-			to_chat(user, "<span class='danger'>It looks like the locking system has been shorted out.</span>")
+			to_chat(user, span_danger("It looks like the locking system has been shorted out."))
 			return
 
 		if(!LAZYLEN(req_access) && !LAZYLEN(req_one_access))
 			locked = 0
-			to_chat(user, "<span class='danger'>\The [src] doesn't seem to have a locking mechanism.</span>")
+			to_chat(user, span_danger("\The [src] doesn't seem to have a locking mechanism."))
 			return
 
 		if(security_check_enabled && !src.allowed(user))
-			to_chat(user, "<span class='danger'>Access denied.</span>")
+			to_chat(user, span_danger("Access denied."))
 			return
 
 		locked = !locked
@@ -67,7 +67,7 @@
 			if(istype(src.loc,/mob/living/carbon/human))
 				var/mob/living/carbon/human/H = src.loc
 				if(H.back == src || H.belt == src)
-					to_chat(user, "<span class='danger'>You can't install a hardsuit module while the suit is being worn.</span>")
+					to_chat(user, span_danger("You can't install a hardsuit module while the suit is being worn."))
 					return 1
 
 			if(!installed_modules)
@@ -194,5 +194,5 @@
 		LAZYCLEARLIST(req_one_access)
 		locked = 0
 		subverted = 1
-		to_chat(user, "<span class='danger'>You short out the access protocol for the suit.</span>")
+		to_chat(user, span_danger("You short out the access protocol for the suit."))
 		return 1

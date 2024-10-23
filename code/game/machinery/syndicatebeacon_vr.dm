@@ -32,7 +32,7 @@
 		charges -= 1
 		if(istype(M, /mob/living/carbon/human))
 			var/mob/living/carbon/human/N = M
-			to_chat(N, "<B>Access granted, here are the supplies!</B>")
+			to_chat(N, span_infoplain(span_bold("Access granted, here are the supplies!")))
 			traitors.spawn_uplink(N)
 			N.mind.tcrystals = DEFAULT_TELECRYSTAL_AMOUNT
 			N.mind.accept_tcrystals = 1

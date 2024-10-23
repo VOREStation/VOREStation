@@ -37,7 +37,7 @@
 		return 0
 
 	var/mob/living/carbon/human/H = holder.wearer
-	to_chat(H,"<span class='notice'>You activate the P.A.T. module.</span>")
+	to_chat(H,span_notice("You activate the P.A.T. module."))
 	H.AddComponent(/datum/component/recursive_move)
 	RegisterSignal(H, COMSIG_OBSERVER_MOVED, /obj/item/rig_module/pat_module/proc/boop)
 
@@ -46,7 +46,7 @@
 		return 0
 
 	var/mob/living/carbon/human/H = holder.wearer
-	to_chat(H,"<span class='notice'>Your disable the P.A.T. module.</span>")
+	to_chat(H,span_notice("Your disable the P.A.T. module."))
 	UnregisterSignal(H, COMSIG_OBSERVER_MOVED)
 
 /obj/item/rig_module/pat_module/proc/boop(var/mob/living/carbon/human/user,var/turf/To,var/turf/Tn)
@@ -75,10 +75,10 @@
 
 	//Okay, we either found an airlock or we're about to give up.
 	if(!A || !A.density || !A.can_open() || !..())
-		to_chat(H,"<span class='warning'>Unable to comply! Energy too low, or not facing a working airlock!</span>")
+		to_chat(H,span_warning("Unable to comply! Energy too low, or not facing a working airlock!"))
 		return 0
 
-	H.visible_message("<span class='warning'>[H] begins overriding the airlock!</span>","<span class='notice'>You begin overriding the airlock!</span>")
+	H.visible_message(span_warning("[H] begins overriding the airlock!"),span_notice("You begin overriding the airlock!"))
 	if(do_after(H,6 SECONDS,A) && A.density)
 		A.open()
 

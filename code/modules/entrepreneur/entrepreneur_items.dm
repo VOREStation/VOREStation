@@ -190,29 +190,29 @@
 	if(zodiac)
 		switch(zodiac)
 			if("aries")
-				to_chat(user, "<span class='notice'>Today's reading for Aries: [aries]</span>")
+				to_chat(user, span_notice("Today's reading for Aries: [aries]"))
 			if("taurus")
-				to_chat(user, "<span class='notice'>Today's reading for Taurus: [taurus]</span>")
+				to_chat(user, span_notice("Today's reading for Taurus: [taurus]"))
 			if("gemini")
-				to_chat(user, "<span class='notice'>Today's reading for Gemini: [gemini]</span>")
+				to_chat(user, span_notice("Today's reading for Gemini: [gemini]"))
 			if("cancer")
-				to_chat(user, "<span class='notice'>Today's reading for Cancer: [cancer]</span>")
+				to_chat(user, span_notice("Today's reading for Cancer: [cancer]"))
 			if("leo")
-				to_chat(user, "<span class='notice'>Today's reading for Leo: [leo]</span>")
+				to_chat(user, span_notice("Today's reading for Leo: [leo]"))
 			if("virgo")
-				to_chat(user, "<span class='notice'>Today's reading for Virgo: [virgo]</span>")
+				to_chat(user, span_notice("Today's reading for Virgo: [virgo]"))
 			if("libra")
-				to_chat(user, "<span class='notice'>Today's reading for Libra: [libra]</span>")
+				to_chat(user, span_notice("Today's reading for Libra: [libra]"))
 			if("scorpio")
-				to_chat(user, "<span class='notice'>Today's reading for Scorpio: [scorpio]</span>")
+				to_chat(user, span_notice("Today's reading for Scorpio: [scorpio]"))
 			if("sagittarius")
-				to_chat(user, "<span class='notice'>Today's reading for Sagittarius: [sagittarius]</span>")
+				to_chat(user, span_notice("Today's reading for Sagittarius: [sagittarius]"))
 			if("capricorn")
-				to_chat(user, "<span class='notice'>Today's reading for Capricorn: [capricorn]</span>")
+				to_chat(user, span_notice("Today's reading for Capricorn: [capricorn]"))
 			if("aquarius")
-				to_chat(user, "<span class='notice'>Today's reading for Aquarius: [aquarius]</span>")
+				to_chat(user, span_notice("Today's reading for Aquarius: [aquarius]"))
 			if("pisces")
-				to_chat(user, "<span class='notice'>Today's reading for Pisces: [pisces]</span>")
+				to_chat(user, span_notice("Today's reading for Pisces: [pisces]"))
 
 ///////Dentist tools, basically just fluff for RP
 
@@ -225,8 +225,8 @@
 
 /obj/item/entrepreneur/dentist_mirror/attack(mob/M, mob/user)
 	if(user.a_intent == I_HELP)	//A tad messy, but this should stop people from smacking their patients in surgery
-		to_chat(user, "<span class='notice'>You use the mirror to get a good look inside of [M]'s mouth.</span>")
-		to_chat(M, "<span class='notice'>[user] uses a small mirror to look inside of your mouth.</span>")
+		to_chat(user, span_notice("You use the mirror to get a good look inside of [M]'s mouth."))
+		to_chat(M, span_notice("[user] uses a small mirror to look inside of your mouth."))
 		return 0
 	..()
 
@@ -239,8 +239,8 @@
 
 /obj/item/entrepreneur/dentist_probe/attack(mob/M, mob/user)
 	if(user.a_intent == I_HELP)	//A tad messy, but this should stop people from smacking their patients in surgery
-		to_chat(user, "<span class='notice'>You use the probe to poke about inside of [M]'s mouth.</span>")
-		to_chat(M, "<span class='notice'>[user] examines the inside of your mouth with a sharp probe, it hurts a little being prodded.</span>")
+		to_chat(user, span_notice("You use the probe to poke about inside of [M]'s mouth."))
+		to_chat(M, span_notice("[user] examines the inside of your mouth with a sharp probe, it hurts a little being prodded."))
 		return 0
 	..()
 
@@ -253,8 +253,8 @@
 
 /obj/item/entrepreneur/dentist_sickle/attack(mob/M, mob/user)
 	if(user.a_intent == I_HELP)	//A tad messy, but this should stop people from smacking their patients in surgery
-		to_chat(user, "<span class='notice'>You loosen some stuck debris from [M]'s mouth with the hook.</span>")
-		to_chat(M, "<span class='notice'>[user] uses a hook to scrape out something stuck in your mouth, it's pretty uncomfortable.</span>")
+		to_chat(user, span_notice("You loosen some stuck debris from [M]'s mouth with the hook."))
+		to_chat(M, span_notice("[user] uses a hook to scrape out something stuck in your mouth, it's pretty uncomfortable."))
 		return 0
 	..()
 
@@ -267,8 +267,8 @@
 
 /obj/item/entrepreneur/dentist_scaler/attack(mob/M, mob/user)
 	if(user.a_intent == I_HELP)	//A tad messy, but this should stop people from smacking their patients in surgery
-		to_chat(user, "<span class='notice'>You scrape debris out from [M]'s mouth.</span>")
-		to_chat(M, "<span class='notice'>[user] scrapes debris from out of your mouth.</span>")
+		to_chat(user, span_notice("You scrape debris out from [M]'s mouth."))
+		to_chat(M, span_notice("[user] scrapes debris from out of your mouth."))
 		return 0
 	..()
 
@@ -292,12 +292,12 @@
 /obj/item/entrepreneur/dumbbell/attack_self(var/mob/user)
 	var/mob/living/M = user
 	if(M.nutrition <= 100)
-		to_chat(user, "<span class='notice'>You are too hungry to exercise right now.</span>")
+		to_chat(user, span_notice("You are too hungry to exercise right now."))
 		return 0
 	if(!do_after(user, 3 SECONDS, src, exclusive = TASK_USER_EXCLUSIVE))
 		return 0
 	M.adjust_nutrition(-10)
-	to_chat(user, "<span class='notice'>You successfully perform a [src] exercise!</span>")
+	to_chat(user, span_notice("You successfully perform a [src] exercise!"))
 	if(M.weight > 50)
 		M.weight -= 0.5
 
@@ -330,7 +330,7 @@
 		last_used = get_turf(user)
 		emf = (emf + emf_change)
 		update_icon()
-	to_chat(user, "<span class='notice'>You update the EMF scanner and check the reading. It reads [emf]mG!</span>")
+	to_chat(user, span_notice("You update the EMF scanner and check the reading. It reads [emf]mG!"))
 
 /obj/item/entrepreneur/emf/update_icon()
 	switch(emf)
@@ -359,7 +359,7 @@
 	if(!istype(user))
 		return 0
 	if(!istype(W))
-		to_chat(user, "<span class='notice'>You need some sort of glass, bottle or cup to contact the spirit world.</span>")
+		to_chat(user, span_notice("You need some sort of glass, bottle or cup to contact the spirit world."))
 		return 0
 	var/result = 0
 	if(!do_after(user, 3 SECONDS, src, exclusive = TASK_USER_EXCLUSIVE))
@@ -368,7 +368,7 @@
 		result = next_result
 	else
 		result = pick(possible_results)
-	src.visible_message("<span class='notice'>[user] slides the [W] over to [result]!</span>")
+	src.visible_message(span_notice("[user] slides the [W] over to [result]!"))
 	next_result = 0
 
 /obj/item/entrepreneur/spirit_board/AltClick(mob/living/carbon/user)
@@ -380,7 +380,7 @@
 	if(!ghost_enabled)
 		return
 	if(jobban_isbanned(user, JOB_GHOSTROLES))
-		to_chat(user, "<span class='warning'>You cannot interact with this board because you are banned from playing ghost roles.</span>")
+		to_chat(user, span_warning("You cannot interact with this board because you are banned from playing ghost roles."))
 		return
 	next_result = tgui_input_list(user, "What should it land on next?", "Next result", possible_results)
 	if(!is_admin(user)) //admins can bypass this for event stuff
@@ -430,10 +430,10 @@
 /obj/structure/bed/roller/massage/AltClick(mob/living/carbon/user)
 	if(anchored)
 		anchored = 0
-		src.visible_message("<span class='notice'>[user] turns the breaks off on the [src]!</span>")
+		src.visible_message(span_notice("[user] turns the breaks off on the [src]!"))
 	else if(!anchored)
 		anchored = 1
-		src.visible_message("<span class='notice'>[user] turns the breaks on for the [src]!</span>")
+		src.visible_message(span_notice("[user] turns the breaks on for the [src]!"))
 
 /obj/structure/bed/roller/massage/buckle_mob(mob/living/M)
 	..()
@@ -451,7 +451,7 @@
 /obj/item/entrepreneur/magnifying_glass/afterattack(atom/T, mob/living/user as mob)
 	if(!T.desc)
 		return
-	user.visible_message("<span class='notice'>\The [user] examines the \the [T] with \the [src]!</span>")
+	user.visible_message(span_notice("\The [user] examines the \the [T] with \the [src]!"))
 	to_chat(user, "<FONT size=4>[T.desc]</FONT>")
 
 // Streamer and influencer

@@ -62,14 +62,14 @@
 		return 0
 
 	if(locate(/obj/structure/gravemarker, user.loc))
-		to_chat(user, "<span class='warning'>There's already something there.</span>")
+		to_chat(user, span_warning("There's already something there."))
 		return 0
 	else
-		to_chat(user, "<span class='notice'>You begin to place \the [src.name].</span>")
+		to_chat(user, span_notice("You begin to place \the [src.name]."))
 		if(!do_after(usr, 10))
 			return 0
 		var/obj/structure/gravemarker/G = new /obj/structure/gravemarker/(user.loc, src.get_material())
-		to_chat(user, "<span class='notice'>You place \the [src.name].</span>")
+		to_chat(user, span_notice("You place \the [src.name]."))
 		G.grave_name = grave_name
 		G.epitaph = epitaph
 		G.add_fingerprint(usr)

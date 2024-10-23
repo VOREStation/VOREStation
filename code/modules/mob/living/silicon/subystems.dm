@@ -51,7 +51,7 @@
 ********************/
 /mob/living/silicon/proc/subsystem_alarm_monitor()
 	set name = "Alarm Monitor"
-	set category = "Subystems"
+	set category = "Abilities.Silicon"
 
 	alarm_monitor.tgui_interact(usr)
 
@@ -59,7 +59,7 @@
 *	Atmos Control	*
 ********************/
 /mob/living/silicon/proc/subsystem_atmos_control()
-	set category = "Subystems"
+	set category = "Abilities.Silicon"
 	set name = "Atmospherics Control"
 
 	atmos_control.tgui_interact(usr)
@@ -68,7 +68,7 @@
 *	Crew Manifest	*
 ********************/
 /mob/living/silicon/proc/subsystem_crew_manifest()
-	set category = "Subystems"
+	set category = "Abilities.Silicon"
 	set name = "Crew Manifest"
 
 	crew_manifest.tgui_interact(usr)
@@ -77,7 +77,7 @@
 *	Crew Monitor	*
 ********************/
 /mob/living/silicon/proc/subsystem_crew_monitor()
-	set category = "Subystems"
+	set category = "Abilities.Silicon"
 	set name = "Crew Monitor"
 
 	crew_monitor.tgui_interact(usr)
@@ -87,7 +87,7 @@
 ****************/
 /mob/living/silicon/proc/subsystem_law_manager()
 	set name = "Law Manager"
-	set category = "Subystems"
+	set category = "Abilities.Silicon"
 
 	law_manager.tgui_interact(usr)
 
@@ -95,7 +95,7 @@
 *	Power Monitor	*
 ********************/
 /mob/living/silicon/proc/subsystem_power_monitor()
-	set category = "Subystems"
+	set category = "Abilities.Silicon"
 	set name = "Power Monitor"
 
 	power_monitor.tgui_interact(usr)
@@ -104,7 +104,7 @@
 *	RCON	*
 ************/
 /mob/living/silicon/proc/subsystem_rcon()
-	set category = "Subystems"
+	set category = "Abilities.Silicon"
 	set name = "RCON"
 
 	rcon.tgui_interact(usr)

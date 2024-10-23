@@ -33,7 +33,7 @@
 		user.put_in_active_hand(gift)
 		src.gift.add_fingerprint(user)
 	else
-		to_chat(user, "<span class='warning'>The gift was empty!</span>")
+		to_chat(user, span_warning("The gift was empty!"))
 	qdel(src)
 	return
 
@@ -44,16 +44,16 @@
 /obj/effect/spresent/relaymove(mob/user as mob)
 	if (user.stat)
 		return
-	to_chat(user, "<span class='warning'>You can't move.</span>")
+	to_chat(user, span_warning("You can't move."))
 
 /obj/effect/spresent/attackby(obj/item/W as obj, mob/user as mob)
 	..()
 
 	if (!W.has_tool_quality(TOOL_WIRECUTTER))
-		to_chat(user, "<span class='warning'>I need wirecutters for that.</span>")
+		to_chat(user, span_warning("I need wirecutters for that."))
 		return
 
-	to_chat(user, "<span class='notice'>You cut open the present.</span>")
+	to_chat(user, span_notice("You cut open the present."))
 
 	for(var/mob/M in src) //Should only be one but whatever.
 		M.forceMove(src.loc)
@@ -129,17 +129,17 @@
 /obj/item/wrapping_paper/attackby(obj/item/W as obj, mob/living/user as mob)
 	..()
 	if (!( locate(/obj/structure/table, src.loc) ))
-		to_chat(user, "<span class='warning'>You MUST put the paper on a table!</span>")
+		to_chat(user, span_warning("You MUST put the paper on a table!"))
 	if (W.w_class < ITEMSIZE_LARGE)
 		var/obj/item/I = user.get_inactive_hand()
 		if(I && I.has_tool_quality(TOOL_WIRECUTTER))
 			var/a_used = 2 ** (src.w_class - 1)
 			if (src.amount < a_used)
-				to_chat(user, "<span class='warning'>You need more paper!</span>")
+				to_chat(user, span_warning("You need more paper!"))
 				return
 			else
 				if(istype(W, /obj/item/smallDelivery) || istype(W, /obj/item/gift)) //No gift wrapping gifts!
-					to_chat(user, "<span class='warning'>You can't wrap something that's already wrapped!</span>")
+					to_chat(user, span_warning("You can't wrap something that's already wrapped!"))
 					return
 
 				src.amount -= a_used
@@ -158,9 +158,9 @@
 				qdel(src)
 				return
 		else
-			to_chat(user, "<span class='warning'>You need scissors!</span>")
+			to_chat(user, span_warning("You need scissors!"))
 	else
-		to_chat(user, "<span class='warning'>The object is FAR too large!</span>")
+		to_chat(user, span_warning("The object is FAR too large!"))
 	return
 
 
@@ -182,6 +182,6 @@
 
 			add_attack_logs(user,H,"Wrapped with [src]")
 		else
-			to_chat(user, "<span class='warning'>You need more paper.</span>")
+			to_chat(user, span_warning("You need more paper."))
 	else
 		to_chat(user, "They are moving around too much. A straightjacket would help.")

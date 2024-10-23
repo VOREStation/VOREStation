@@ -17,6 +17,9 @@
 	var/obj/machinery/camera/bug/camera
 	var/camtype = /obj/machinery/camera/bug
 
+	pickup_sound = 'sound/items/pickup/device.ogg'
+	drop_sound = 'sound/items/drop/device.ogg'
+
 /obj/item/camerabug/New()
 	..()
 //	radio = new(src)
@@ -24,8 +27,8 @@
 
 /obj/item/camerabug/attack_self(mob/user)
 	if(user.a_intent == I_HURT)
-		to_chat(user, "<span class='notice'>You crush the [src] under your foot, breaking it.</span>")
-		visible_message("[user.name] crushes the [src] under their foot, breaking it!</span>")
+		to_chat(user, span_notice("You crush the [src] under your foot, breaking it."))
+		visible_message(span_notice("[user.name] crushes the [src] under their foot, breaking it!"))
 		new brokentype(get_turf(src))
 		spawn(0)
 		qdel(src)
@@ -41,7 +44,7 @@
 	linkedmonitor = null
 	qdel(camera)
 	camera = new camtype(src)
-	to_chat(usr, "<span class='notice'>You turn the [src] off and on again, delinking it from any monitors.")
+	to_chat(usr, span_notice("You turn the [src] off and on again, delinking it from any monitors."))
 
 /obj/item/brokenbug
 	name = "broken mobile camera pod"
@@ -55,6 +58,9 @@
 	throw_range = 15
 	throw_speed = 3
 	origin_tech = list(TECH_ENGINEERING = 1)
+
+	pickup_sound = 'sound/items/pickup/device.ogg'
+	drop_sound = 'sound/items/drop/device.ogg'
 
 /obj/item/brokenbug/spy
 	name = "broken bug"
@@ -100,11 +106,11 @@
 	if(istype(W, /obj/item/bug_monitor))
 		var/obj/item/bug_monitor/SM = W
 		if(!linkedmonitor)
-			to_chat(user, "<span class='notice'>\The [src] has been paired with \the [SM].</span>")
+			to_chat(user, span_notice("\The [src] has been paired with \the [SM]."))
 			SM.pair(src)
 			linkedmonitor = SM
 		else if (linkedmonitor == SM)
-			to_chat(user, "<span class='notice'>\The [src] has been unpaired from \the [SM].</span>")
+			to_chat(user, span_notice("\The [src] has been unpaired from \the [SM]."))
 			linkedmonitor.unpair(src)
 			linkedmonitor = null
 		else
@@ -114,7 +120,7 @@
 		if(isturf(loc))
 			anchored = !anchored
 
-			to_chat(user, "<span class='notice'>You [anchored ? "" : "un"]secure \the [src].</span>")
+			to_chat(user, span_notice("You [anchored ? "" : "un"]secure \the [src]."))
 
 			update_icon()
 			return
@@ -157,6 +163,10 @@
 //	var/obj/item/radio/bug/radio
 	var/obj/machinery/camera/bug/selected_camera
 	var/list/obj/machinery/camera/bug/cameras = new()
+
+	pickup_sound = 'sound/items/pickup/device.ogg'
+	drop_sound = 'sound/items/drop/device.ogg'
+
 /*
 /obj/item/bug_monitor/New()
 	radio = new(src)
@@ -202,7 +212,7 @@
 			if(!T || !is_on_same_plane_or_station(T.z, user.z) || !selected_camera.can_use())
 				user.unset_machine()
 				user.reset_view(null)
-				to_chat(user, "<span class='notice'>Link to [selected_camera] has been lost.</span>")
+				to_chat(user, span_notice("Link to [selected_camera] has been lost."))
 				src.unpair(selected_camera.loc)
 				sleep(90)
 			else
@@ -217,8 +227,8 @@
 		return
 
 	if(!cameras.len)
-		to_chat(user, "<span class='warning'>No paired cameras detected!</span>")
-		to_chat(user, "<span class='warning'>Bring a camera in contact with this device to pair the camera.</span>")
+		to_chat(user, span_warning("No paired cameras detected!"))
+		to_chat(user, span_warning("Bring a camera in contact with this device to pair the camera."))
 		return
 
 	return 1

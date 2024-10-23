@@ -35,7 +35,7 @@
 			if(H.is_sentient())
 				if(prob(50))
 					if(prob(75))
-						to_chat(H, span_red("<b><font size='[num2text(rand(1,5))]'>[pick(drastic_messages)]</b></font>"))
+						to_chat(H, span_red(span_bold("<font size='[num2text(rand(1,5))]'>[pick(drastic_messages)]") + "</font>"))
 					else
 						to_chat(H, span_red("[pick(messages)]"))
 

@@ -9,7 +9,7 @@
 	if(!.)
 		return
 
-	var/dat = "<B>Showing last [length(lastsignalers)] signalers.</B><HR>"
+	var/dat = span_bold("Showing last [length(lastsignalers)] signalers.") + "<HR>"
 	for(var/sig in lastsignalers)
 		dat += "[sig]<BR>"
 	user << browse(dat, "window=lastsignalers;size=800x500")

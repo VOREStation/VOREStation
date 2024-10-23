@@ -28,7 +28,7 @@
 
 /datum/riding/taur/force_dismount(mob/M)
 	. = ..()
-	ridden.visible_message("<span class='notice'>[M] stops riding [ridden]!</span>")
+	ridden.visible_message(span_notice("[M] stops riding [ridden]!"))
 
 //Hoooo boy.
 /datum/riding/taur/get_offsets(pass_index) // list(dir = x, y, layer)
@@ -68,7 +68,7 @@
 	if(M in buckled_mobs)
 		return FALSE
 //	if(M.size_multiplier > size_multiplier * 1.2)
-//		to_chat(M,"<span class='warning'>This isn't a pony show! You need to be bigger for them to ride.</span>")
+//		to_chat(M,span_warning("This isn't a pony show! You need to be bigger for them to ride."))
 //		return FALSE
 	if(M.loc != src.loc)
 		if(M.Adjacent(src))
@@ -77,7 +77,7 @@
 	var/mob/living/carbon/human/H = M
 
 	if(istaurtail(H.tail_style))
-		to_chat(src,"<span class='warning'>Too many legs. TOO MANY LEGS!!</span>")
+		to_chat(src,span_warning("Too many legs. TOO MANY LEGS!!"))
 		return FALSE
 
 	. = ..()
@@ -103,7 +103,7 @@
 	if(!can_buckle || !istype(M) || !M.Adjacent(src) || M.buckled)
 		return
 	if(buckle_mob(M))
-		visible_message("<span class='notice'>[M] starts riding [name]!</span>")
+		visible_message(span_notice("[M] starts riding [name]!"))
 
 /mob/living/carbon/human/attack_hand(mob/user as mob)
 	if(LAZYLEN(buckled_mobs))

@@ -176,10 +176,10 @@
 /obj/item/pickaxe/excavationdrill/attack_self(mob/user as mob)
 	var/depth = tgui_input_number(usr, "Put the desired depth (1-30 centimeters).", "Set Depth", 30, 30, 1)
 	if(depth>30 || depth<1)
-		to_chat(user, "<span class='notice'>Invalid depth.</span>")
+		to_chat(user, span_notice("Invalid depth."))
 		return
 	excavation_amount = depth
-	to_chat(user, "<span class='notice'>You set the depth to [depth]cm.</span>")
+	to_chat(user, span_notice("You set the depth to [depth]cm."))
 	switch(depth)
 		if(1 to 5)
 			icon_state = "excavationdrill0"
@@ -196,4 +196,4 @@
 
 /obj/item/pickaxe/excavationdrill/examine(mob/user)
 	. = ..()
-	. += "<span class='info'>It is currently set at [excavation_amount]cms.</span>"
+	. += span_info("It is currently set at [excavation_amount]cms.")

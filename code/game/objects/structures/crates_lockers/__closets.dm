@@ -228,7 +228,7 @@
 	if(is_animating_door)
 		return
 	if(!(opened ? close() : open()))
-		to_chat(user, "<span class='notice'>It won't budge!</span>")
+		to_chat(user, span_notice("It won't budge!"))
 		return
 
 // this should probably use dump_contents()
@@ -280,11 +280,11 @@
 				user.visible_message("\The [user] begins securing \the [src] to the floor.", "You start securing \the [src] to the floor.")
 			if(do_after(user, 20 * W.toolspeed))
 				if(!src) return
-				to_chat(user, "<span class='notice'>You [anchored? "un" : ""]secured \the [src]!</span>")
+				to_chat(user, span_notice("You [anchored? "un" : ""]secured \the [src]!"))
 				anchored = !anchored
 				return
 		else
-			to_chat(user, "<span class='notice'>You can't reach the anchoring bolts when the door is closed!</span>")
+			to_chat(user, span_notice("You can't reach the anchoring bolts when the door is closed!"))
 	else if(opened)
 		if(istype(W, /obj/item/grab))
 			var/obj/item/grab/G = W
@@ -298,12 +298,12 @@
 				if(!WT.isOn())
 					return
 				else
-					to_chat(user, "<span class='notice'>You need more welding fuel to complete this task.</span>")
+					to_chat(user, span_notice("You need more welding fuel to complete this task."))
 					return
 			playsound(src, WT.usesound, 50)
 			new /obj/item/stack/material/steel(loc)
 			for(var/mob/M in viewers(src))
-				M.show_message("<span class='notice'>\The [src] has been cut apart by [user] with \the [WT].</span>", 3, "You hear welding.", 2)
+				M.show_message(span_notice("\The [src] has been cut apart by [user] with \the [WT]."), 3, "You hear welding.", 2)
 			qdel(src)
 			return
 		if(istype(W, /obj/item/storage/laundry_basket) && W.contents.len)
@@ -311,9 +311,9 @@
 			var/turf/T = get_turf(src)
 			for(var/obj/item/I in LB.contents)
 				LB.remove_from_storage(I, T)
-			user.visible_message("<span class='notice'>[user] empties \the [LB] into \the [src].</span>", \
-								 "<span class='notice'>You empty \the [LB] into \the [src].</span>", \
-								 "<span class='notice'>You hear rustling of clothes.</span>")
+			user.visible_message(span_notice("[user] empties \the [LB] into \the [src]."), \
+								 span_notice("You empty \the [LB] into \the [src]."), \
+								 span_notice("You hear rustling of clothes."))
 			return
 		if(isrobot(user))
 			return
@@ -333,14 +333,14 @@
 					if(!WT.isOn())
 						return
 					else
-						to_chat(user, "<span class='notice'>You need more welding fuel to complete this task.</span>")
+						to_chat(user, span_notice("You need more welding fuel to complete this task."))
 						return
 			if(do_after(user, 20 * S.toolspeed))
 				playsound(src, S.usesound, 50)
 				sealed = !sealed
 				update_icon()
 				for(var/mob/M in viewers(src))
-					M.show_message("<span class='warning'>[src] has been [sealed?"sealed":"unsealed"] by [user.name].</span>", 3)
+					M.show_message(span_warning("[src] has been [sealed?"sealed":"unsealed"] by [user.name]."), 3)
 	else
 		attack_hand(user)
 	return
@@ -362,7 +362,7 @@
 		return
 	step_towards(O, loc)
 	if(user != O)
-		user.show_viewers("<span class='danger'>[user] stuffs [O] into [src]!</span>")
+		user.show_viewers(span_danger("[user] stuffs [O] into [src]!"))
 	add_fingerprint(user)
 	return
 
@@ -375,7 +375,7 @@
 		return
 
 	if(!open())
-		to_chat(user, "<span class='notice'>It won't budge!</span>")
+		to_chat(user, span_notice("It won't budge!"))
 
 /obj/structure/closet/attack_hand(mob/user as mob)
 	add_fingerprint(user)
@@ -385,7 +385,7 @@
 /obj/structure/closet/attack_self_tk(mob/user as mob)
 	add_fingerprint(user)
 	if(!toggle())
-		to_chat(usr, "<span class='notice'>It won't budge!</span>")
+		to_chat(usr, span_notice("It won't budge!"))
 
 /obj/structure/closet/verb/verb_toggleopen()
 	set src in oview(1)
@@ -404,9 +404,9 @@
 			add_fingerprint(usr)
 			toggle(usr)
 		else
-			to_chat(usr, "<span class='warning'>This mob type can't use this verb.</span>")		//VOREStation Addition End
+			to_chat(usr, span_warning("This mob type can't use this verb."))		//VOREStation Addition End
 	else
-		to_chat(usr, "<span class='warning'>This mob type can't use this verb.</span>")
+		to_chat(usr, span_warning("This mob type can't use this verb."))
 
 /obj/structure/closet/update_icon()
 	if(opened)
@@ -418,7 +418,7 @@
 	if(damage < STRUCTURE_MIN_DAMAGE_THRESHOLD)
 		return
 	user.do_attack_animation(src)
-	visible_message("<span class='danger'>[user] [attack_message] the [src]!</span>")
+	visible_message(span_danger("[user] [attack_message] the [src]!"))
 	dump_contents()
 	spawn(1) qdel(src)
 	return 1
@@ -437,9 +437,9 @@
 	escapee.setClickCooldown(100)
 
 	//okay, so the closet is either sealed or locked... resist!!!
-	to_chat(escapee, "<span class='warning'>You lean on the back of \the [src] and start pushing the door open. (this will take about [breakout_time] minutes)</span>")
+	to_chat(escapee, span_warning("You lean on the back of \the [src] and start pushing the door open. (this will take about [breakout_time] minutes)"))
 
-	visible_message("<span class='danger'>\The [src] begins to shake violently!</span>")
+	visible_message(span_danger("\The [src] begins to shake violently!"))
 
 	breakout = 1 //can't think of a better way to do this right now.
 	for(var/i in 1 to (6*breakout_time * 2)) //minutes * 6 * 5seconds * 2
@@ -460,8 +460,8 @@
 
 	//Well then break it!
 	breakout = 0
-	to_chat(escapee, "<span class='warning'>You successfully break out!</span>")
-	visible_message("<span class='danger'>\The [escapee] successfully broke out of \the [src]!</span>")
+	to_chat(escapee, span_warning("You successfully break out!"))
+	visible_message(span_danger("\The [escapee] successfully broke out of \the [src]!"))
 	playsound(src, breakout_sound, 100, 1)
 	break_open()
 	animate_shake()
@@ -556,7 +556,7 @@
 		return
 
 	if(!(usr in src.contents))
-		to_chat(usr, "<span class='warning'>You need to be inside \the [src] to do this.</span>")
+		to_chat(usr, span_warning("You need to be inside \the [src] to do this."))
 		return
 
 	var/list/targets = list() //IF IT IS NOT BROKEN. DO NOT FIX IT.
@@ -570,7 +570,7 @@
 			targets += L
 
 	if(targets == 0)
-		to_chat(src, "<span class='notice'>No eligible targets found.</span>")
+		to_chat(src, span_notice("No eligible targets found."))
 		return
 
 	var/mob/living/target = tgui_input_list(usr, "Please select a target.", "Victim", targets)
@@ -579,11 +579,11 @@
 		return
 
 	if(!istype(target, /mob/living)) //Safety.
-		to_chat(src, "<span class='warning'>You need to select a living target!</span>")
+		to_chat(src, span_warning("You need to select a living target!"))
 		return
 
 	if (get_dist(src,target) >= 1 || get_dist(src,usr) >= 1) //in case they leave the locker
-		to_chat(src, "<span class='warning'>You are no longer both in \the [src].</span>")
+		to_chat(src, span_warning("You are no longer both in \the [src]."))
 		return
 
 	playsound(src, vore_sound, 25)

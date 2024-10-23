@@ -43,14 +43,14 @@
 		. += get_harvestable_desc()
 		if(harvest_tool)
 			var/obj/item/tool = harvest_tool
-			. += SPAN_NOTICE("\The [src] can be harvested with \a [initial(tool.name)].")
+			. += span_notice("\The [src] can be harvested with \a [initial(tool.name)].")
 
 	if(removal_tool)
 		var/obj/item/tool = removal_tool
-		. += SPAN_NOTICE("\The [src] can be removed with \a [initial(tool.name)].")
+		. += span_notice("\The [src] can be removed with \a [initial(tool.name)].")
 
 /obj/structure/flora/proc/get_harvestable_desc()
-	return "<span class='notice'>\The [src] seems to have something hanging from it.</span>"
+	return span_notice("\The [src] seems to have something hanging from it.")
 
 /obj/structure/flora/attackby(var/obj/item/W, var/mob/living/user)
 
@@ -58,15 +58,15 @@
 		var/harvest_spawn = pickweight(harvest_loot)
 		var/atom/movable/AM = spawn_harvest(harvest_spawn, user)
 		if(AM)
-			to_chat(user, SPAN_NOTICE("You harvest \the [AM] from \the [src]."))
+			to_chat(user, span_notice("You harvest \the [AM] from \the [src]."))
 		else
-			to_chat(user, SPAN_NOTICE("You fail to harvest anything from \the [src]."))
+			to_chat(user, span_notice("You fail to harvest anything from \the [src]."))
 		return
 
 	if(removal_tool && istype(W, removal_tool))
-		to_chat(user, SPAN_WARNING("You start uprooting \the [src]..."))
+		to_chat(user, span_warning("You start uprooting \the [src]..."))
 		if(do_after(user, 30))
-			visible_message(SPAN_NOTICE("\The [user] uproots and discards \the [src]!"))
+			visible_message(span_notice("\The [user] uproots and discards \the [src]!"))
 			qdel(src)
 		return
 
@@ -282,18 +282,18 @@
 /obj/structure/flora/pottedplant/examine(mob/user)
 	. = ..()
 	if(in_range(user, src) && stored_item)
-		. += "<span class='filter_notice'><i>You can see something in there...</i></span>"
+		. += span_filter_notice(span_italics("You can see something in there..."))
 
 /obj/structure/flora/pottedplant/attackby(obj/item/I, mob/user)
 	if(issilicon(user))
 		return // Don't try to put modules in here, you're a borg. TODO: Inventory refactor to not be ass.
 
 	if(stored_item)
-		to_chat(user, "<span class='notice'>[I] won't fit in. There already appears to be something in here...</span>")
+		to_chat(user, span_notice("[I] won't fit in. There already appears to be something in here..."))
 		return
 
 	if(I.w_class > ITEMSIZE_TINY)
-		to_chat(user, "<span class='notice'>[I] is too big to fit inside [src].</span>")
+		to_chat(user, span_notice("[I] is too big to fit inside [src]."))
 		return
 
 	if(do_after(user, 10))
@@ -303,15 +303,15 @@
 		src.visible_message("[icon2html(src,viewers(src))] [icon2html(I,viewers(src))] [user] places [I] into [src].")
 		return
 	else
-		to_chat(user, "<span class='notice'>You refrain from putting things into the plant pot.</span>")
+		to_chat(user, span_notice("You refrain from putting things into the plant pot."))
 		return
 
 /obj/structure/flora/pottedplant/attack_hand(mob/user)
 	if(!stored_item)
-		to_chat(user, "<span class='filter_notice'><b>You see nothing of interest in [src]...</b></span>")
+		to_chat(user, span_filter_notice(span_bold("You see nothing of interest in [src]...")))
 	else
 		if(do_after(user, 10))
-			to_chat(user, "<span class='filter_notice'>You find [icon2html(stored_item, user.client)] [stored_item] in [src]!</span>")
+			to_chat(user, span_filter_notice("You find [icon2html(stored_item, user.client)] [stored_item] in [src]!"))
 			stored_item.forceMove(get_turf(src))
 			stored_item = null
 	..()
@@ -598,7 +598,7 @@
 	. = ..()
 
 /obj/structure/flora/sif/tendrils/get_harvestable_desc()
-	return "<span class='notice'>\The [src] seems to be growing over something.</span>"
+	return span_notice("\The [src] seems to be growing over something.")
 
 /datum/category_item/catalogue/flora/frostbelle
 	name = "Sivian Flora - Frostbelle"
@@ -639,7 +639,7 @@
 		icon_state = initial(icon_state)
 
 /obj/structure/flora/sif/frostbelle/get_harvestable_desc()
-	return "<span class='notice'>\The [src] seems to be budding.</span>"
+	return span_notice("\The [src] seems to be budding.")
 
 //Start of underwater plants
 

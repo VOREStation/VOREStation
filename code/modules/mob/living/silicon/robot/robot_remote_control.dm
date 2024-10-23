@@ -65,8 +65,8 @@ GLOBAL_LIST_EMPTY(available_ai_shells)
 	lawsync()
 
 	// Give button to leave.
-	verbs += /mob/living/silicon/robot/proc/undeploy_act
-	to_chat(AI, span("notice", "You have connected to an AI Shell remotely, and are now in control of it.<br>\
+	add_verb(src, /mob/living/silicon/robot/proc/undeploy_act)
+	to_chat(AI, span_notice("You have connected to an AI Shell remotely, and are now in control of it.<br>\
 	To return to your core, use the <b>Release Control</b> verb."))
 
 	// Languages and comms.
@@ -88,7 +88,7 @@ GLOBAL_LIST_EMPTY(available_ai_shells)
 //	mainframe.redeploy_action.Grant(mainframe)
 //	mainframe.redeploy_action.last_used_shell = src
 	if(message)
-		to_chat(src, span("notice", message))
+		to_chat(src, span_notice(message))
 	mind.transfer_to(mainframe)
 	src.copy_vore_prefs_to_mob(mainframe)
 	deployed = FALSE
@@ -110,12 +110,12 @@ GLOBAL_LIST_EMPTY(available_ai_shells)
 /mob/living/silicon/robot/proc/undeploy_act()
 	set name = "Release Control"
 	set desc = "Release control of a remote drone."
-	set category = "Robot Commands"
+	set category = "Abilities.Silicon"
 
 	undeploy("Remote session terminated.")
 
 /mob/living/silicon/robot/attack_ai(mob/user)
-	if(shell && config.allow_ai_shells && (!connected_ai || connected_ai == user))
+	if(shell && CONFIG_GET(flag/allow_ai_shells) && (!connected_ai || connected_ai == user))
 		var/mob/living/silicon/ai/AI = user
 		if(istype(AI))		// Just in case we're clicked by a borg
 			AI.deploy_to_shell(src)
@@ -132,6 +132,6 @@ GLOBAL_LIST_EMPTY(available_ai_shells)
 	delete_me = TRUE
 
 /obj/effect/landmark/free_ai_shell/Initialize()
-	if(config.allow_ai_shells && config.give_free_ai_shell)
+	if(CONFIG_GET(flag/allow_ai_shells) && CONFIG_GET(flag/give_free_ai_shell))
 		new /mob/living/silicon/robot/ai_shell(get_turf(src))
 	return ..()

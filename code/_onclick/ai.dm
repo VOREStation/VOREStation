@@ -25,13 +25,13 @@
 /mob/living/silicon/ai/ClickOn(var/atom/A, params)
 	if(!checkClickCooldown())
 		return
-	
+
 	setClickCooldown(1)
 
 	if(client.buildmode) // comes after object.Click to allow buildmode gui objects to be clicked
 		build_click(src, client.buildmode, params, A)
 		return
-		
+
 	if(multicam_on)
 		var/turf/T = get_turf(A)
 		if(T)
@@ -173,7 +173,7 @@
 		to_chat(user, "The bolt lights wire is cut - The door bolt lights are permanently disabled.")
 		return
 	lights = !lights
-	to_chat(user, "<span class='notice'>Lights are now [lights ? "on." : "off."]</span>")
+	to_chat(user, span_notice("Lights are now [lights ? "on." : "off."]"))
 	update_icon()
 	return TRUE
 

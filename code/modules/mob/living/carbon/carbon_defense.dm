@@ -58,7 +58,7 @@
 	if(!W.edge || !W.force || W.damtype != BRUTE)
 		return 0 //unsuitable weapon
 
-	user.visible_message("<span class='danger'>\The [user] begins to slit [src]'s throat with \the [W]!</span>")
+	user.visible_message(span_danger("\The [user] begins to slit [src]'s throat with \the [W]!"))
 
 	user.next_move = world.time + 20 //also should prevent user from triggering this repeatedly
 	if(!do_after(user, 20))
@@ -87,9 +87,9 @@
 
 	if(total_damage)
 		if(oxyloss >= 40)
-			user.visible_message("<span class='danger'>\The [user] slit [src]'s throat open with \the [W]!</span>")
+			user.visible_message(span_danger("\The [user] slit [src]'s throat open with \the [W]!"))
 		else
-			user.visible_message("<span class='danger'>\The [user] cut [src]'s neck with \the [W]!</span>")
+			user.visible_message(span_danger("\The [user] cut [src]'s neck with \the [W]!"))
 
 		if(W.hitsound)
 			playsound(src, W.hitsound, 50, 1, -1)
@@ -106,7 +106,7 @@
 	if(!W.sharp || !W.force || W.damtype != BRUTE)
 		return 0 //unsuitable weapon
 
-	user.visible_message("<span class='danger'>\The [user] plunges \the [W] into \the [src]!</span>")
+	user.visible_message(span_danger("\The [user] plunges \the [W] into \the [src]!"))
 
 	var/damage = shank_armor_helper(W, G, user)
 	apply_damage(damage, W.damtype, "torso", 0, sharp=W.sharp, edge=W.edge)

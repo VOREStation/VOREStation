@@ -78,7 +78,7 @@
 	var/scan_data = ""
 
 	if(timeofdeath)
-		scan_data += "<b>Time of death:</b> [worldtime2stationtime(timeofdeath)]<br><br>"
+		scan_data += span_bold("Time of death:") + " [worldtime2stationtime(timeofdeath)]<br><br>"
 
 	var/n = 1
 	for(var/wdata_idx in wdata)
@@ -121,7 +121,7 @@
 
 		if(!total_score) total_score = D.organs_scanned.len
 
-		scan_data += "<b>Weapon #[n]</b><br>"
+		scan_data += span_bold("Weapon #[n]") + "<br>"
 		if(damaging_weapon)
 			scan_data += "Severity: [damage_desc]<br>"
 			scan_data += "Hits by weapon: [total_hits]<br>"
@@ -136,13 +136,13 @@
 		n++
 
 	if(chemtraces.len)
-		scan_data += "<b>Trace Chemicals: </b><br>"
+		scan_data += span_bold("Trace Chemicals: ") + "<br>"
 		for(var/chemID in chemtraces)
 			scan_data += chemID
 			scan_data += "<br>"
 
 	for(var/mob/O in viewers(usr))
-		O.show_message("<span class='notice'>\The [src] rattles and prints out a sheet of paper.</span>", 1)
+		O.show_message(span_notice("\The [src] rattles and prints out a sheet of paper."), 1)
 
 	sleep(10)
 
@@ -166,18 +166,18 @@
 		src.wdata = list()
 		src.chemtraces = list()
 		src.timeofdeath = null
-		to_chat(user, "<span class='notice'>A new patient has been registered. Purging data for previous patient.</span>")
+		to_chat(user, span_notice("A new patient has been registered. Purging data for previous patient."))
 
 	src.timeofdeath = M.timeofdeath
 
 	var/obj/item/organ/external/S = M.get_organ(user.zone_sel.selecting)
 	if(!S)
-		to_chat(user, "<span class='warning'>You can't scan this body part.</span>")
+		to_chat(user, span_warning("You can't scan this body part."))
 		return
 	if(!S.open)
-		to_chat(user, "<span class='warning'>You have to cut [S] open first!</span>")
+		to_chat(user, span_warning("You have to cut [S] open first!"))
 		return
-	M.visible_message("<b>\The [user]</b> scans the wounds on [M]'s [S.name] with [src]")
+	M.visible_message(span_infoplain(span_bold("\The [user]") + " scans the wounds on [M]'s [S.name] with [src]"))
 
 	src.add_data(S)
 

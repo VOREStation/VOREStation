@@ -43,7 +43,7 @@
 		var/throw_dist = get_dist(throw_source, loc)
 		if(smash_check(throw_dist)) //not as reliable as smashing directly
 			if(reagents)
-				hit_atom.visible_message("<span class='notice'>The contents of \the [src] splash all over [hit_atom]!</span>")
+				hit_atom.visible_message(span_notice("The contents of \the [src] splash all over [hit_atom]!"))
 				reagents.splash(hit_atom, reagents.total_volume)
 			src.smash(loc, hit_atom)
 
@@ -100,12 +100,12 @@
 	if(!choice)
 		return
 	if(!(choice.density && usr.Adjacent(choice)))
-		to_chat(usr, "<span class='warning'>You must stay close to your target! You moved away from \the [choice]</span>")
+		to_chat(usr, span_warning("You must stay close to your target! You moved away from \the [choice]"))
 		return
 
 	usr.put_in_hands(src.smash(usr.loc, choice))
-	usr.visible_message("<span class='danger'>\The [usr] smashed \the [src] on \the [choice]!</span>")
-	to_chat(usr, "<span class='danger'>You smash \the [src] on \the [choice]!</span>")
+	usr.visible_message(span_danger("\The [usr] smashed \the [src] on \the [choice]!"))
+	to_chat(usr, span_danger("You smash \the [src] on \the [choice]!"))
 
 /obj/item/reagent_containers/food/drinks/bottle/attackby(obj/item/W, mob/user)
 	if(!rag && istype(W, /obj/item/reagent_containers/glass/rag))
@@ -125,7 +125,7 @@
 /obj/item/reagent_containers/food/drinks/bottle/proc/insert_rag(obj/item/reagent_containers/glass/rag/R, mob/user)
 	if(!isGlass || rag) return
 	if(user.unEquip(R))
-		to_chat(user, "<span class='notice'>You stuff [R] into [src].</span>")
+		to_chat(user, span_notice("You stuff [R] into [src]."))
 		rag = R
 		rag.forceMove(src)
 		flags &= ~OPENCONTAINER
@@ -165,15 +165,15 @@
 		weaken_duration = smash_duration + min(0, force - target.getarmor(hit_zone, "melee") + 10)
 
 	if(hit_zone == "head" && istype(target, /mob/living/carbon/))
-		user.visible_message("<span class='danger'>\The [user] smashes [src] over [target]'s head!</span>")
+		user.visible_message(span_danger("\The [user] smashes [src] over [target]'s head!"))
 		if(weaken_duration)
 			target.apply_effect(min(weaken_duration, 5), WEAKEN, blocked) // Never weaken more than a flash!
 	else
-		user.visible_message("<span class='danger'>\The [user] smashes [src] into [target]!</span>")
+		user.visible_message(span_danger("\The [user] smashes [src] into [target]!"))
 
 	//The reagents in the bottle splash all over the target, thanks for the idea Nodrak
 	if(reagents)
-		user.visible_message("<span class='notice'>The contents of \the [src] splash all over [target]!</span>")
+		user.visible_message(span_notice("The contents of \the [src] splash all over [target]!"))
 		reagents.splash(target, reagents.total_volume)
 
 	//Finally, smash the bottle. This kills (qdel) the bottle.
@@ -189,11 +189,11 @@
 		return
 
 	if(!isturf(src.loc))
-		to_chat(usr, "<span class='notice'>\The [src] needs to be on the floor to spin.</span>")
+		to_chat(usr, span_notice("\The [src] needs to be on the floor to spin."))
 		return
 
 	var/spin_rotation = (rand(0,359))
-	usr.visible_message("<span class='warning'>\The [usr] spins \the [src]!</span>","<span class='notice'>You spin \the [src]!</span>")
+	usr.visible_message(span_warning("\The [usr] spins \the [src]!"),span_notice("You spin \the [src]!"))
 	SpinAnimation(3,10)
 	spawn(30)
 		icon_rotation = spin_rotation

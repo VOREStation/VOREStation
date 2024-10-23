@@ -27,7 +27,7 @@
 		if(damage > 0)
 			var/reinforce_probability = min(damage, 70)
 			if(prob(reinforce_probability))
-				B.visible_message("<span class='danger'>The [name] quakes, before rapidly hardening!</span>")
+				B.visible_message(span_danger("The [name] quakes, before rapidly hardening!"))
 				new/obj/structure/blob/shield(get_turf(B), B.overmind)
 				qdel(B)
 	return ..()

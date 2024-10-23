@@ -126,7 +126,7 @@ var/list/runechat_image_cache = list()
 		// Always force it back to a pref if they have one
 		if(ismob(target))
 			var/mob/M = target
-			if(M?.client?.prefs?.runechat_color != COLOR_BLACK)
+			if(M?.client?.prefs && M.client.prefs.runechat_color != COLOR_BLACK)
 				target.chat_color = M.client.prefs.runechat_color
 				target.chat_color_darkened = M.client.prefs.runechat_color
 
@@ -148,7 +148,7 @@ var/list/runechat_image_cache = list()
 	// Differnt from our own system of name emphasis, maybe unify
 	var/list/names = splittext(owner.name, " ")
 	for (var/word in names)
-		text = replacetext(text, word, "<b>[word]</b>")
+		text = replacetext(text, word, span_bold("[word]"))
 
 	var/list/prefixes
 

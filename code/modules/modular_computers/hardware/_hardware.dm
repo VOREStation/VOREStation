@@ -88,9 +88,9 @@
 /obj/item/computer_hardware/examine(var/mob/user)
 	. = ..()
 	if(damage > damage_failure)
-		. += "<span class='danger'>It seems to be severely damaged!</span>"
+		. += span_danger("It seems to be severely damaged!")
 	else if(damage > damage_malfunction)
-		. += "<span class='notice'>It seems to be damaged!</span>"
+		. += span_notice("It seems to be damaged!")
 	else if(damage)
 		. += "It seems to be slightly damaged."
 

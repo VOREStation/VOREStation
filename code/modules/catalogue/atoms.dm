@@ -14,7 +14,7 @@
 	// First check if anything is even on here.
 	var/list/data = get_catalogue_data()
 	if(!LAZYLEN(data))
-		to_chat(user, span("warning", "\The [src] is not interesting enough to catalogue."))
+		to_chat(user, span_warning("\The [src] is not interesting enough to catalogue."))
 		return FALSE
 	else
 		// Check if this has nothing new on it.
@@ -26,20 +26,20 @@
 				break
 
 		if(!has_new_data)
-			to_chat(user, span("warning", "Scanning \the [src] would provide no new information."))
+			to_chat(user, span_warning("Scanning \the [src] would provide no new information."))
 			return FALSE
 
 	return TRUE
 
 /mob/living/can_catalogue(mob/user) // Dead mobs can't be scanned.
 	if(stat >= DEAD)
-		to_chat(user, span("warning", "Entities must be alive for a comprehensive scan."))
+		to_chat(user, span_warning("Entities must be alive for a comprehensive scan."))
 		return FALSE
 	return ..()
 
 /obj/item/can_catalogue(mob/user) // Items must be identified to be scanned.
 	if(!is_identified())
-		to_chat(user, span("warning", "The properties of this object has not been determined. Identify it first."))
+		to_chat(user, span_warning("The properties of this object has not been determined. Identify it first."))
 		return FALSE
 	return ..()
 

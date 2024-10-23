@@ -64,7 +64,7 @@
 		set_light(0)
 		light_applied = 0
 	update_icon(user)
-	user.update_action_buttons()
+	user.update_action_buttons_icon()
 	playsound(src, 'sound/weapons/empty.ogg', 15, 1, -3)
 
 /obj/item/shield/riot/explorer/update_icon()
@@ -81,7 +81,7 @@
 /obj/item/shield/riot/explorer/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/material/knife/machete))
 		if(cooldown < world.time - 25)
-			user.visible_message("<span class='warning'>[user] bashes [src] with [W]!</span>")
+			user.visible_message(span_warning("[user] bashes [src] with [W]!"))
 			playsound(src, 'sound/effects/shieldbash.ogg', 50, 1)
 			cooldown = world.time
 	else

@@ -133,13 +133,13 @@
 	if(usr.stat != 0)
 		return
 	if(!ishuman(usr) && !issmall(usr)) //Make sure they're a mob that has dna
-		to_chat(usr, "<span class='notice'>Try as you might, you can not climb up into the scanner.</span>")
+		to_chat(usr, span_notice("Try as you might, you can not climb up into the scanner."))
 		return
 	if(src.occupant)
-		to_chat(usr, "<span class='warning'>The scanner is already occupied!</span>")
+		to_chat(usr, span_warning("The scanner is already occupied!"))
 		return
 	if(usr.abiotic())
-		to_chat(usr, "<span class='warning'>The subject cannot have abiotic items on.</span>")
+		to_chat(usr, span_warning("The subject cannot have abiotic items on."))
 		return
 	usr.stop_pulling()
 	usr.client.perspective = EYE_PERSPECTIVE
@@ -153,7 +153,7 @@
 /obj/machinery/dna_scannernew/attackby(var/obj/item/item as obj, var/mob/user as mob)
 	if(istype(item, /obj/item/reagent_containers/glass))
 		if(beaker)
-			to_chat(user, "<span class='warning'>A beaker is already loaded into the machine.</span>")
+			to_chat(user, span_warning("A beaker is already loaded into the machine."))
 			return
 
 		beaker = item
@@ -165,7 +165,7 @@
 
 	else if(istype(item, /obj/item/organ/internal/brain))
 		if(src.occupant)
-			to_chat(user, "<span class='warning'>The scanner is already occupied!</span>")
+			to_chat(user, span_warning("The scanner is already occupied!"))
 			return
 		var/obj/item/organ/internal/brain/brain = item
 		if(brain.clone_source)
@@ -185,10 +185,10 @@
 	if(!ismob(G.affecting))
 		return
 	if(src.occupant)
-		to_chat(user, "<span class='warning'>The scanner is already occupied!</span>")
+		to_chat(user, span_warning("The scanner is already occupied!"))
 		return
 	if(G.affecting.abiotic())
-		to_chat(user, "<span class='warning'>The subject cannot have abiotic items on.</span>")
+		to_chat(user, span_warning("The subject cannot have abiotic items on."))
 		return
 	put_in(G.affecting)
 	src.add_fingerprint(user)
@@ -212,7 +212,7 @@
 		if(!M.client && M.mind)
 			for(var/mob/observer/dead/ghost in player_list)
 				if(ghost.mind == M.mind)
-					to_chat(ghost, span_interface("<font size = 3><b>Your corpse has been placed into a cloning scanner. Return to your body if you want to be resurrected/cloned!</b> (Verbs -> Ghost -> Re-enter corpse)</font>"))
+					to_chat(ghost, span_interface(span_large(span_bold("Your corpse has been placed into a cloning scanner. Return to your body if you want to be resurrected/cloned!") + " (Verbs -> Ghost -> Re-enter corpse)")))
 					break
 	SStgui.update_uis(src)
 
@@ -428,7 +428,7 @@
 			occupantData["isViableSubject"] = 0
 		occupantData["health"] = connected.occupant.health
 		occupantData["maxHealth"] = connected.occupant.maxHealth
-		occupantData["minHealth"] = config.health_threshold_dead
+		occupantData["minHealth"] = CONFIG_GET(number/health_threshold_dead)
 		occupantData["uniqueEnzymes"] = connected.occupant.dna.unique_enzymes
 		occupantData["uniqueIdentity"] = connected.occupant.dna.uni_identity
 		occupantData["structuralEnzymes"] = connected.occupant.dna.struc_enzymes

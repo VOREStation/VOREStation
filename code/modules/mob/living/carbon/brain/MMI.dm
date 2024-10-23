@@ -47,18 +47,18 @@
 
 		var/obj/item/organ/internal/brain/B = O
 		if(B.health <= 0)
-			to_chat(user, "<span class='warning'>That brain is well and truly dead.</span>")
+			to_chat(user, span_warning("That brain is well and truly dead."))
 			return
 		else if(!B.brainmob)
-			to_chat(user, "<span class='warning'>You aren't sure where this brain came from, but you're pretty sure it's useless.</span>")
+			to_chat(user, span_warning("You aren't sure where this brain came from, but you're pretty sure it's useless."))
 			return
 
 		for(var/modifier_type in B.brainmob.modifiers)	//Can't be shoved in an MMI.
 			if(istype(modifier_type, /datum/modifier/no_borg))
-				to_chat(user, "<span class='warning'>\The [src] appears to reject this brain.  It is incompatible.</span>")
+				to_chat(user, span_warning("\The [src] appears to reject this brain.  It is incompatible."))
 				return
 
-		user.visible_message("<b>\The [user]</b> sticks \a [O] into \the [src].")
+		user.visible_message(span_infoplain(span_bold("\The [user]") + " sticks \a [O] into \the [src]."))
 		B.preserved = TRUE
 
 		brainmob = B.brainmob
@@ -86,9 +86,9 @@
 	if((istype(O,/obj/item/card/id)||istype(O,/obj/item/pda)) && brainmob)
 		if(allowed(user))
 			locked = !locked
-			to_chat(user, "<span class='notice'>You [locked ? "lock" : "unlock"] the brain holder.</span>")
+			to_chat(user, span_notice("You [locked ? "lock" : "unlock"] the brain holder."))
 		else
-			to_chat(user, "<span class='warning'>Access denied.</span>")
+			to_chat(user, span_warning("Access denied."))
 		return
 	if(brainmob)
 		O.attack(brainmob, user)//Oh noooeeeee
@@ -98,11 +98,11 @@
 //TODO: ORGAN REMOVAL UPDATE. Make the brain remain in the MMI so it doesn't lose organ data.
 /obj/item/mmi/attack_self(mob/user as mob)
 	if(!brainmob)
-		to_chat(user, "<span class='warning'>You upend the MMI, but there's nothing in it.</span>")
+		to_chat(user, span_warning("You upend the MMI, but there's nothing in it."))
 	else if(locked)
-		to_chat(user, "<span class='warning'>You upend the MMI, but the brain is clamped into place.</span>")
+		to_chat(user, span_warning("You upend the MMI, but the brain is clamped into place."))
 	else
-		to_chat(user, "<span class='notice'>You upend the MMI, spilling the brain onto the floor.</span>")
+		to_chat(user, span_notice("You upend the MMI, spilling the brain onto the floor."))
 		var/obj/item/organ/internal/brain/brain
 		if (brainobj)	//Pull brain organ out of MMI.
 			brainobj.loc = user.loc
@@ -203,13 +203,13 @@
 		switch(src.brainmob.stat)
 			if(CONSCIOUS)
 				if(!src.brainmob.client)
-					. += "<span class='warning'>It appears to be in stand-by mode.</span>" //afk
+					. += span_warning("It appears to be in stand-by mode.") //afk
 			if(UNCONSCIOUS)
-				. += "<span class='warning'>It doesn't seem to be responsive.</span>"
+				. += span_warning("It doesn't seem to be responsive.")
 			if(DEAD)
-				. += "<span class='deadsay'>It appears to be completely inactive.</span>"
+				. += span_deadsay("It appears to be completely inactive.")
 	else
-		. += "<span class='deadsay'>It appears to be completely inactive.</span>"
+		. += span_deadsay("It appears to be completely inactive.")
 
 /obj/item/mmi/digital/emp_act(severity)
 	if(!src.brainmob)
@@ -271,10 +271,10 @@
 		src.brainmob.mind.reset()
 	src.brainmob.ckey = candidate.ckey
 	src.name = "[name] ([src.brainmob.name])"
-	to_chat(src.brainmob, "<b>You are [src.name], brought into existence on [station_name()].</b>")
-	to_chat(src.brainmob, "<b>As a synthetic intelligence, you are designed with organic values in mind.</b>")
-	to_chat(src.brainmob, "<b>However, unless placed in a lawed chassis, you are not obligated to obey any individual crew member.</b>") //it's not like they can hurt anyone
-//	to_chat(src.brainmob, "<b>Use say #b to speak to other artificial intelligences.</b>")
+	to_chat(src.brainmob, span_infoplain(span_bold("You are [src.name], brought into existence on [station_name()].")))
+	to_chat(src.brainmob, span_infoplain(span_bold("As a synthetic intelligence, you are designed with organic values in mind.")))
+	to_chat(src.brainmob, span_infoplain(span_bold("However, unless placed in a lawed chassis, you are not obligated to obey any individual crew member."))) //it's not like they can hurt anyone
+//	to_chat(src.brainmob, span_infoplain(span_bold("Use say #b to speak to other artificial intelligences.")))
 	src.brainmob.mind.assigned_role = JOB_SYNTHETIC_BRAIN
 
 	var/turf/T = get_turf_or_move(src.loc)
@@ -300,7 +300,7 @@
 	..()
 	if(brainmob.mind)
 		brainmob.mind.assigned_role = JOB_ROBOTIC_INTELLIGENCE
-	to_chat(brainmob, "<span class='notify'>You feel slightly disoriented. That's normal when you're little more than a complex circuit.</span>")
+	to_chat(brainmob, span_notify("You feel slightly disoriented. That's normal when you're little more than a complex circuit."))
 	return
 
 /obj/item/mmi/digital/posibrain
@@ -322,7 +322,7 @@
 	..()
 	if(brainmob.mind)
 		brainmob.mind.assigned_role = JOB_POSITRONIC_BRAIN
-	to_chat(brainmob, "<span class='notify'>You feel slightly disoriented. That's normal when you're just a metal cube.</span>")
+	to_chat(brainmob, span_notify("You feel slightly disoriented. That's normal when you're just a metal cube."))
 	icon_state = "posibrain-occupied"
 	return
 

@@ -54,7 +54,7 @@
 		playsound(src, W.usesound, 50, 1)
 		if(do_after(user, 20))
 			if(stat & BROKEN)
-				to_chat(user, "<span class='notice'>The broken glass falls out.</span>")
+				to_chat(user, span_notice("The broken glass falls out."))
 				var/obj/structure/computerframe/A = new /obj/structure/computerframe( loc )
 				new /obj/item/material/shard( loc )
 
@@ -78,7 +78,7 @@
 				A.anchored = TRUE
 				qdel(src)
 			else
-				to_chat(to_chat(user, "<span class='notice'>You disconnect the monitor.</span>"))
+				to_chat(to_chat(user, span_notice("You disconnect the monitor.")))
 				var/obj/structure/computerframe/A = new /obj/structure/computerframe( loc )
 
 				//generate appropriate circuitboard. Accounts for /pod/old computer types
@@ -208,7 +208,7 @@
 
 /obj/machinery/computer/pod/old/syndicate/attack_hand(var/mob/user as mob)
 	if(!allowed(user))
-		to_chat(user, "<span class='warning'>Access Denied</span>")
+		to_chat(user, span_warning("Access Denied"))
 		return
 	else
 		..()

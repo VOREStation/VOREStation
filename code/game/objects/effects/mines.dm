@@ -5,7 +5,7 @@
 	anchored = TRUE
 	icon = 'icons/obj/weapons.dmi'
 	icon_state = "landmine"
-	var/triggered = 0
+	var/triggered = FALSE
 	var/smoke_strength = 3
 	var/obj/item/mine/mineitemtype = /obj/item/mine
 	var/panel_open = FALSE
@@ -42,8 +42,10 @@
 			new_turf.register_dangerous_object(src)
 
 /obj/effect/mine/proc/explode(var/mob/living/M)
+	if(triggered) // Prevents circular mine explosions from two mines detonating eachother
+		return
 	var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread()
-	triggered = 1
+	triggered = TRUE
 	s.set_up(3, 1, src)
 	s.start()
 
@@ -103,8 +105,8 @@
 /obj/effect/mine/attackby(obj/item/W as obj, mob/living/user as mob)
 	if(W.has_tool_quality(TOOL_SCREWDRIVER))
 		panel_open = !panel_open
-		user.visible_message("<span class='warning'>[user] very carefully screws the mine's panel [panel_open ? "open" : "closed"].</span>",
-		"<span class='notice'>You very carefully screw the mine's panel [panel_open ? "open" : "closed"].</span>")
+		user.visible_message(span_warning("[user] very carefully screws the mine's panel [panel_open ? "open" : "closed"]."),
+		span_notice("You very carefully screw the mine's panel [panel_open ? "open" : "closed"]."))
 		playsound(src, W.usesound, 50, 1)
 
 		// Panel open, stay uncloaked, or uncloak if already cloaked. If you don't cloak on place, ignore it and just be normal alpha.
@@ -128,8 +130,10 @@
 	mineitemtype = /obj/item/mine/dnascramble
 
 /obj/effect/mine/dnascramble/explode(var/mob/living/M)
+	if(triggered) // Prevents circular mine explosions from two mines detonating eachother
+		return
 	var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread()
-	triggered = 1
+	triggered = TRUE
 	s.set_up(3, 1, src)
 	s.start()
 	if(istype(M))
@@ -145,7 +149,9 @@
 	mineitemtype = /obj/item/mine/stun
 
 /obj/effect/mine/stun/explode(var/mob/living/M)
-	triggered = 1
+	if(triggered) // Prevents circular mine explosions from two mines detonating eachother
+		return
+	triggered = TRUE
 	var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread()
 	s.set_up(3, 1, src)
 	s.start()
@@ -160,7 +166,9 @@
 	mineitemtype = /obj/item/mine/n2o
 
 /obj/effect/mine/n2o/explode(var/mob/living/M)
-	triggered = 1
+	if(triggered) // Prevents circular mine explosions from two mines detonating eachother
+		return
+	triggered = TRUE
 	for (var/turf/simulated/floor/target in range(1,src))
 		if(!target.blocks_air)
 			target.assume_gas("nitrous_oxide", 30)
@@ -172,7 +180,9 @@
 	mineitemtype = /obj/item/mine/phoron
 
 /obj/effect/mine/phoron/explode(var/mob/living/M)
-	triggered = 1
+	if(triggered) // Prevents circular mine explosions from two mines detonating eachother
+		return
+	triggered = TRUE
 	for (var/turf/simulated/floor/target in range(1,src))
 		if(!target.blocks_air)
 			target.assume_gas("phoron", 30)
@@ -185,8 +195,10 @@
 	mineitemtype = /obj/item/mine/kick
 
 /obj/effect/mine/kick/explode(var/mob/living/M)
+	if(triggered) // Prevents circular mine explosions from two mines detonating eachother
+		return
 	var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread()
-	triggered = 1
+	triggered = TRUE
 	s.set_up(3, 1, src)
 	s.start()
 	if(istype(M, /obj/mecha))
@@ -206,8 +218,10 @@
 	var/spread_range = 7
 
 /obj/effect/mine/frag/explode(var/mob/living/M)
+	if(triggered) // Prevents circular mine explosions from two mines detonating eachother
+		return
 	var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread()
-	triggered = 1
+	triggered = TRUE
 	s.set_up(3, 1, src)
 	s.start()
 	var/turf/O = get_turf(src)
@@ -225,7 +239,9 @@
 	mineitemtype = /obj/item/mine/training
 
 /obj/effect/mine/training/explode(var/mob/living/M)
-	triggered = 1
+	if(triggered) // Prevents circular mine explosions from two mines detonating eachother
+		return
+	triggered = TRUE
 	visible_message("\The [src.name]'s light flashes rapidly as it 'explodes'.")
 	new src.mineitemtype(get_turf(src))
 	spawn(0)
@@ -235,6 +251,9 @@
 	mineitemtype = /obj/item/mine/emp
 
 /obj/effect/mine/emp/explode(var/mob/living/M)
+	if(triggered) // Prevents circular mine explosions from two mines detonating eachother
+		return
+	triggered = TRUE
 	var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread()
 	s.set_up(3, 1, src)
 	s.start()
@@ -250,7 +269,9 @@
 	mineitemtype = /obj/item/mine/incendiary
 
 /obj/effect/mine/incendiary/explode(var/mob/living/M)
-	triggered = 1
+	if(triggered) // Prevents circular mine explosions from two mines detonating eachother
+		return
+	triggered = TRUE
 	var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread()
 	s.set_up(3, 1, src)
 	s.start()
@@ -265,8 +286,10 @@
 	mineitemtype = /obj/item/mine/gadget
 
 /obj/effect/mine/gadget/explode(var/mob/living/M)
+	if(triggered) // Prevents circular mine explosions from two mines detonating eachother
+		return
 	var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread()
-	triggered = 1
+	triggered = TRUE
 	s.set_up(3, 1, src)
 	s.start()
 
@@ -310,9 +333,9 @@
 
 /obj/item/mine/attackby(obj/item/W as obj, mob/living/user as mob)
 	if(W.has_tool_quality(TOOL_SCREWDRIVER) && trap)
-		to_chat(user, "<span class='notice'>You begin removing \the [trap].</span>")
+		to_chat(user, span_notice("You begin removing \the [trap]."))
 		if(do_after(user, 10 SECONDS))
-			to_chat(user, "<span class='notice'>You finish disconnecting the mine's trigger.</span>")
+			to_chat(user, span_notice("You finish disconnecting the mine's trigger."))
 			trap.forceMove(get_turf(src))
 			trap = null
 		return

@@ -52,17 +52,17 @@
 
 	if(istype(W, /obj/item/cell) && anchored)
 		if(istype(W, /obj/item/cell/device))
-			to_chat(user, "<span class='warning'>\The [src] isn't fitted for that type of cell.</span>")
+			to_chat(user, span_warning("\The [src] isn't fitted for that type of cell."))
 			return
 		if(charging)
-			to_chat(user, "<span class='warning'>There is already [charging] in [src].</span>")
+			to_chat(user, span_warning("There is already [charging] in [src]."))
 			return
 		else
 			var/area/a = loc.loc // Gets our locations location, like a dream within a dream
 			if(!isarea(a))
 				return
 			if(a.power_equip == 0) // There's no APC in this area, don't try to cheat power!
-				to_chat(user, "<span class='warning'>\The [src] blinks red as you try to insert [W]!</span>")
+				to_chat(user, span_warning("\The [src] blinks red as you try to insert [W]!"))
 				return
 
 			user.drop_item()
@@ -73,7 +73,7 @@
 		update_icon()
 	else if(W.has_tool_quality(TOOL_WRENCH))
 		if(charging)
-			to_chat(user, "<span class='warning'>Remove [charging] first!</span>")
+			to_chat(user, span_warning("Remove [charging] first!"))
 			return
 
 		anchored = !anchored

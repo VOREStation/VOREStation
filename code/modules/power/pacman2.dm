@@ -45,7 +45,7 @@
 
 	examine(mob/user)
 		. = ..()
-		. += "<span class='notice'>The generator has [P.air_contents.phoron] units of fuel left, producing [power_gen] per cycle.</span>"
+		. += span_notice("The generator has [P.air_contents.phoron] units of fuel left, producing [power_gen] per cycle.")
 
 	handleInactive()
 		heat -= 2
@@ -117,7 +117,7 @@
 
 			user.machine = src
 
-			var/dat = text("<b>[name]</b><br>")
+			var/dat = text(span_bold("[name]") + "<br>")
 			if (active)
 				dat += text("Generator: <A href='?src=\ref[src];action=disable'>On</A><br>")
 			else

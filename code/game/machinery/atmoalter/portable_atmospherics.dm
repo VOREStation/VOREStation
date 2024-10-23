@@ -120,7 +120,7 @@
 	else if (W.has_tool_quality(TOOL_WRENCH))
 		if(connected_port)
 			disconnect()
-			to_chat(user, "<span class='notice'>You disconnect \the [src] from the port.</span>")
+			to_chat(user, span_notice("You disconnect \the [src] from the port."))
 			update_icon()
 			playsound(src, W.usesound, 50, 1)
 			return
@@ -128,15 +128,15 @@
 			var/obj/machinery/atmospherics/portables_connector/possible_port = locate(/obj/machinery/atmospherics/portables_connector/) in loc
 			if(possible_port)
 				if(connect(possible_port))
-					to_chat(user, "<span class='notice'>You connect \the [src] to the port.</span>")
+					to_chat(user, span_notice("You connect \the [src] to the port."))
 					update_icon()
 					playsound(src, W.usesound, 50, 1)
 					return
 				else
-					to_chat(user, "<span class='notice'>\The [src] failed to connect to the port.</span>")
+					to_chat(user, span_notice("\The [src] failed to connect to the port."))
 					return
 			else
-				to_chat(user, "<span class='notice'>Nothing happens.</span>")
+				to_chat(user, span_notice("Nothing happens."))
 				return
 	return
 
@@ -169,16 +169,16 @@
 		C.add_fingerprint(user)
 		cell = C
 		C.loc = src
-		user.visible_message("<span class='notice'>[user] opens the panel on [src] and inserts [C].</span>", "<span class='notice'>You open the panel on [src] and insert [C].</span>")
+		user.visible_message(span_notice("[user] opens the panel on [src] and inserts [C]."), span_notice("You open the panel on [src] and insert [C]."))
 		power_change()
 		return
 
 	if(I.has_tool_quality(TOOL_SCREWDRIVER) && removeable_cell)
 		if(!cell)
-			to_chat(user, "<span class='warning'>There is no power cell installed.</span>")
+			to_chat(user, span_warning("There is no power cell installed."))
 			return
 
-		user.visible_message("<span class='notice'>[user] opens the panel on [src] and removes [cell].</span>", "<span class='notice'>You open the panel on [src] and remove [cell].</span>")
+		user.visible_message(span_notice("[user] opens the panel on [src] and removes [cell]."), span_notice("You open the panel on [src] and remove [cell]."))
 		playsound(src, I.usesound, 50, 1)
 		cell.add_fingerprint(user)
 		cell.loc = src.loc

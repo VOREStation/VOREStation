@@ -47,7 +47,7 @@
 	desc = "Our eyes are capable of seeing into the infrared spectrum to accurately identify prey through walls."
 	vision_flags = SEE_MOBS
 
-	on_expired_text = "<span class='alien'>Your sight returns to what it once was.</span>"
+	on_expired_text = span_alien("Your sight returns to what it once was.")
 	stacks = MODIFIER_STACK_EXTEND
 
 /datum/modifier/changeling/thermal_sight/check_if_valid()

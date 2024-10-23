@@ -94,7 +94,7 @@
 		return
 	var/obj/mecha/M = locate() in T
 	if(M)
-		M.visible_message("<span class='danger'>The blob attacks \the [M]!</span>")
+		M.visible_message(span_danger("The blob attacks \the [M]!"))
 		M.take_damage(40)
 		return
 
@@ -102,7 +102,7 @@
 	for(var/mob/living/L in T)
 		if(L.stat == DEAD)
 			continue
-		L.visible_message("<span class='danger'>The blob attacks \the [L]!</span>", "<span class='danger'>The blob attacks you!</span>")
+		L.visible_message(span_danger("The blob attacks \the [L]!"), span_danger("The blob attacks you!"))
 		playsound(src, 'sound/effects/attackblob.ogg', 50, 1)
 		L.take_organ_damage(rand(30, 40))
 		return
@@ -136,7 +136,7 @@
 /obj/effect/blob/attackby(var/obj/item/W, var/mob/user)
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 	playsound(src, 'sound/effects/attackblob.ogg', 50, 1)
-	visible_message("<span class='danger'>\The [src] has been attacked with \the [W][(user ? " by [user]." : ".")]</span>")
+	visible_message(span_danger("\The [src] has been attacked with \the [W][(user ? " by [user]." : ".")]"))
 	var/damage = 0
 	switch(W.damtype)
 		if("fire")
