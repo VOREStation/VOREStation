@@ -1,18 +1,18 @@
 /datum/action
 	var/name = "Generic Action"
-	var/desc = null
+	var/desc
 
-	var/atom/movable/target = null
+	var/datum/target
 
 	var/check_flags = NONE
 	var/processing = FALSE
 
 	var/obj/screen/movable/action_button/button = null
 
-	var/button_icon = 'icons/mob/actions.dmi'
-	var/background_icon_state = "bg_default"
 	var/buttontooltipstyle = ""
 	var/transparent_when_unavailable = TRUE
+	var/button_icon = 'icons/mob/actions.dmi'
+	var/background_icon_state = "bg_default"
 
 	var/icon_icon = 'icons/mob/actions.dmi'
 	var/button_icon_state = "default"
@@ -46,6 +46,7 @@
 				return
 			Remove(owner)
 		owner = M
+		RegisterSignal(owner, COMSIG_PARENT_QDELETING, PROC_REF(owner_deleted))
 
 
 		// button id generation
@@ -72,6 +73,10 @@
 	else
 		Remove(owner)
 
+/datum/action/proc/owner_deleted(datum/source)
+	SIGNAL_HANDLER
+	Remove(owner)
+
 /datum/action/proc/Remove(mob/M)
 	if(M)
 		if(M.client)
@@ -79,7 +84,9 @@
 		button.moved = FALSE
 		LAZYREMOVE(M.actions, src)
 		M.update_action_buttons(TRUE)
-	owner = null
+	if(owner)
+		UnregisterSignal(owner, COMSIG_PARENT_QDELETING)
+		owner = null
 	button.moved = FALSE //so the button appears in its normal position when given to another owner.
 	button.locked = FALSE
 	button.id = null
@@ -172,12 +179,13 @@
 	return 1
 
 /datum/action/item_action/ApplyIcon(obj/screen/movable/action_button/current_button, force)
+	var/obj/item/item_target = target
 	if(button_icon && button_icon_state)
 		// If set, use the custom icon that we set instead
 		// of the item appearence
 		return ..()
-	else if(target && ((current_button.appearance_cache != target.appearance) || force))
-		var/mutable_appearance/ma = new(target.appearance)
+	else if(item_target && ((current_button.appearance_cache != item_target.appearance) || force))
+		var/mutable_appearance/ma = new(item_target.appearance)
 		ma.plane = FLOAT_PLANE
 		ma.layer = FLOAT_LAYER
 		ma.pixel_x = 0
@@ -185,7 +193,7 @@
 
 		current_button.cut_overlays()
 		current_button.add_overlay(ma)
-		current_button.appearance_cache = target.appearance
+		current_button.appearance_cache = item_target.appearance
 
 /datum/action/item_action/hands_free
 	check_flags = AB_CHECK_CONSCIOUS
