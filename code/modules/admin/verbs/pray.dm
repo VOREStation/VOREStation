@@ -2,10 +2,6 @@
 	set category = "IC"
 	set name = "Pray"
 
-	if(say_disabled)	//This is here to try to identify lag problems
-		to_chat(usr, span_red("Speech is currently admin-disabled."))
-		return
-
 	var/raw_msg = sanitize(tgui_input_text(usr, "Prayers are sent to staff but do not open tickets or go to Discord. If you have a technical difficulty or an event/spice idea/hook - please ahelp instead. Thank you!", "Pray", null, MAX_MESSAGE_LEN))
 	if(!raw_msg)	return
 
