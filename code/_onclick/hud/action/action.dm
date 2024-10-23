@@ -1,34 +1,51 @@
+/**
+ * # Action system
+ *
+ * A simple base for an modular behavior attached to atom or datum.
+ */
 /datum/action
+	/// The name of the action
 	var/name = "Generic Action"
+	/// The description of what the action does
 	var/desc
-
+	/// The target the action is attached to. If the target datum is deleted, the action is as well.
+	/// Set in New() via the proc link_to(). PLEASE set a target if you're making an action
 	var/datum/target
-
-	var/check_flags = NONE
-	var/processing = FALSE
-
-	var/buttontooltipstyle = ""
-	var/transparent_when_unavailable = TRUE
 	/// Where any buttons we create should be by default. Accepts screen_loc and location defines
 	var/default_button_position = SCRN_OBJ_IN_LIST
-
-	var/button_icon = 'icons/mob/actions.dmi'
-	var/background_icon_state = "bg_default"
-
-	var/icon_icon = 'icons/mob/actions.dmi'
-	var/button_icon_state = "default"
-
+	/// This is who currently owns the action, and most often, this is who is using the action if it is triggered
+	/// This can be the same as "target" but is not ALWAYS the same - this is set and unset with Grant() and Remove()
 	var/mob/owner
+	/// Flags that will determine of the owner / user of the action can... use the action
+	var/check_flags = NONE
+	/// The style the button's tooltips appear to be
+	var/buttontooltipstyle = ""
+	/// Whether the button becomes transparent when it can't be used or just reddened
+	var/transparent_when_unavailable = TRUE
+	/// This is the file for the BACKGROUND icon of the button
+	var/button_icon = 'icons/mob/actions.dmi'
+	/// This is the icon state state for the BACKGROUND icon of the button
+	var/background_icon_state = "bg_default"
+	/// This is the file for the icon that appears OVER the button background
+	var/icon_icon = 'icons/mob/actions.dmi'
+	/// This is the icon state for the icon that appears OVER the button background
+	var/button_icon_state = "default"
 	/// List of all mobs that are viewing our action button -> A unique movable for them to view.
 	var/list/viewers = list()
 
 /datum/action/New(Target)
 	link_to(Target)
 
+/// Links the passed target to our action, registering any relevant signals
 /datum/action/proc/link_to(Target)
 	target = Target
-	RegisterSignal(Target, COMSIG_ATOM_UPDATED_ICON, PROC_REF(OnUpdatedIcon))
 	RegisterSignal(target, COMSIG_PARENT_QDELETING, PROC_REF(clear_ref), override = TRUE)
+
+	if(isatom(target))
+		RegisterSignal(target, COMSIG_ATOM_UPDATED_ICON, PROC_REF(update_icon_on_signal))
+
+	// if(istype(target, /datum/mind))
+	// 	RegisterSignal(target, COMSIG_MIND_TRANSFERRED, .proc/on_target_mind_swapped)
 
 /datum/action/Destroy()
 	if(owner)
@@ -37,20 +54,9 @@
 	QDEL_LIST_ASSOC_VAL(viewers)
 	return ..()
 
-/datum/action/proc/Grant(mob/M)
-	if(!M)
-		Remove(owner)
-		return
 
-	if(owner)
-		if(owner == M)
-			return
-		Remove(owner)
-	owner = M
-	RegisterSignal(owner, COMSIG_PARENT_QDELETING, PROC_REF(clear_ref), override = TRUE)
-
-	GiveAction(M)
-
+/// Signal proc that clears any references based on the owner or target deleting
+/// If the owner's deleted, we will simply remove from them, but if the target's deleted, we will self-delete
 /datum/action/proc/clear_ref(datum/ref)
 	SIGNAL_HANDLER
 	if(ref == owner)
@@ -58,20 +64,44 @@
 	if(ref == target)
 		qdel(src)
 
-/datum/action/proc/Remove(mob/M)
+/// Grants the action to the passed mob, making it the owner
+/datum/action/proc/Grant(mob/grant_to)
+	if(!grant_to)
+		Remove(owner)
+		return
+	if(owner)
+		if(owner == grant_to)
+			return
+		Remove(owner)
+
+	SEND_SIGNAL(src, COMSIG_ACTION_GRANTED, grant_to)
+	owner = grant_to
+	RegisterSignal(owner, COMSIG_PARENT_QDELETING, PROC_REF(clear_ref), override = TRUE)
+
+	GiveAction(grant_to)
+
+/// Remove the passed mob from being owner of our action
+/datum/action/proc/Remove(mob/remove_from)
+	SHOULD_CALL_PARENT(TRUE)
+
 	for(var/datum/hud/hud in viewers)
 		if(!hud.mymob)
 			continue
 		HideFrom(hud.mymob)
-	LAZYREMOVE(M.actions, src) // We aren't always properly inserted into the viewers list, gotta make sure that action's cleared
+	LAZYREMOVE(remove_from.actions, src) // We aren't always properly inserted into the viewers list, gotta make sure that action's cleared
 	viewers = list()
 
 	if(owner)
+		SEND_SIGNAL(src, COMSIG_ACTION_REMOVED, owner)
+
 		UnregisterSignal(owner, COMSIG_PARENT_QDELETING)
 		if(target == owner)
 			RegisterSignal(target, COMSIG_PARENT_QDELETING, PROC_REF(clear_ref))
+
 		owner = null
 
+/// Actually triggers the effects of the action.
+/// Called when the on-screen button is clicked, for example.
 /datum/action/proc/Trigger(trigger_flags)
 	if(!IsAvailable())
 		return FALSE
@@ -79,6 +109,7 @@
 		return FALSE
 	return TRUE
 
+/// Whether our action is currently available to use or not
 /datum/action/proc/IsAvailable()
 	if(!owner)
 		return FALSE
@@ -121,24 +152,22 @@
 
 		ApplyIcon(button, force)
 
-	if(!IsAvailable())
-		button.color = transparent_when_unavailable ? rgb(128, 0, 0, 128) : rgb(128, 0, 0)
+	var/available = IsAvailable()
+	if(available)
+		button.color = rgb(255,255,255,255)
 	else
-		button.color = rgb(255, 255, 255, 255)
-		return TRUE
+		button.color = transparent_when_unavailable ? rgb(128,0,0,128) : rgb(128,0,0)
+	return available
 
+/// Applies our button icon over top the background icon of the action
 /datum/action/proc/ApplyIcon(obj/screen/movable/action_button/current_button, force = FALSE)
 	if(icon_icon && button_icon_state && ((current_button.button_icon_state != button_icon_state) || force))
 		current_button.cut_overlays(TRUE)
 		current_button.add_overlay(mutable_appearance(icon_icon, button_icon_state))
 		current_button.button_icon_state = button_icon_state
 
-// Currently never triggered
-/datum/action/proc/OnUpdatedIcon()
-	SIGNAL_HANDLER
-	UpdateButtons()
-
-// Give our action button to the player
+/// Gives our action to the passed viewer.
+/// Puts our action in their actions list and shows them the button.
 /datum/action/proc/GiveAction(mob/viewer)
 	var/datum/hud/our_hud = viewer.hud_used
 	if(viewers[our_hud]) // Already have a copy of us? go away
@@ -147,6 +176,7 @@
 	LAZYOR(viewer.actions, src) // Move this in
 	ShowTo(viewer)
 
+/// Adds our action button to the screen of the passed viewer.
 /datum/action/proc/ShowTo(mob/viewer)
 	var/datum/hud/our_hud = viewer.hud_used
 	if(!our_hud || viewers[our_hud]) // There's no point in this if you have no hud in the first place
@@ -163,7 +193,7 @@
 	button.load_position(viewer)
 	viewer.update_action_buttons()
 
-//Removes our action button from the screen of a player
+/// Removes our action from the passed viewer.
 /datum/action/proc/HideFrom(mob/viewer)
 	var/datum/hud/our_hud = viewer.hud_used
 	var/obj/screen/movable/action_button/button = viewers[our_hud]
@@ -171,6 +201,7 @@
 	if(button)
 		qdel(button)
 
+/// Creates an action button movable for the passed mob, and returns it.
 /datum/action/proc/CreateButton()
 	var/obj/screen/movable/action_button/button = new()
 	button.linked_action = src
@@ -197,67 +228,8 @@
 			our_button.id = bitflag
 			return
 
-//Presets for item actions
-/datum/action/item_action
-	check_flags = AB_CHECK_RESTRAINED|AB_CHECK_STUNNED|AB_CHECK_LYING|AB_CHECK_CONSCIOUS
-	button_icon_state = null
-	// If you want to override the normal icon being the item
-	// then change this to an icon state
-
-/datum/action/item_action/New(Target)
-	. = ..()
-	var/obj/item/I = target
-	LAZYADD(I.actions, src)
-
-/datum/action/item_action/Destroy()
-	var/obj/item/I = target
-	LAZYREMOVE(I.actions, src)
-	return ..()
-
-/datum/action/item_action/Trigger(trigger_flags)
-	if(!..())
-		return 0
-	if(target)
-		var/obj/item/I = target
-		I.ui_action_click(owner, src.type)
-	return 1
-
-/datum/action/item_action/ApplyIcon(obj/screen/movable/action_button/current_button, force)
-	var/obj/item/item_target = target
-	if(button_icon && button_icon_state)
-		// If set, use the custom icon that we set instead
-		// of the item appearence
-		return ..()
-	else if(item_target && ((current_button.appearance_cache != item_target.appearance) || force))
-		var/mutable_appearance/ma = new(item_target.appearance)
-		ma.plane = FLOAT_PLANE
-		ma.layer = FLOAT_LAYER
-		ma.pixel_x = 0
-		ma.pixel_y = 0
-
-		current_button.cut_overlays()
-		current_button.add_overlay(ma)
-		current_button.appearance_cache = item_target.appearance
-
-/datum/action/item_action/hands_free
-	check_flags = AB_CHECK_CONSCIOUS
-
-
-/datum/action/innate
-	check_flags = NONE
-	var/active = 0
-
-/datum/action/innate/Trigger(trigger_flags)
-	if(!..())
-		return 0
-	if(!active)
-		Activate()
-	else
-		Deactivate()
-	return 1
-
-/datum/action/innate/proc/Activate()
-	return
-
-/datum/action/innate/proc/Deactivate()
-	return
+/// A general use signal proc that reacts to an event and updates our button icon in accordance
+/// Currently never triggered
+/datum/action/proc/update_icon_on_signal()
+	SIGNAL_HANDLER
+	UpdateButtons()
