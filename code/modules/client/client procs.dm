@@ -164,6 +164,10 @@
 	//CONNECT//
 	///////////
 /client/New(TopicData)
+	// TODO: Remove version check with 516
+	if(byond_version >= 516) // Enable 516 compat browser storage mechanisms
+		winset(src, null, "browser-options=[DEFAULT_CLIENT_BROWSER_OPTIONS]")
+
 	TopicData = null							//Prevent calls to client.Topic from connect
 
 	if(!(connection in list("seeker", "web")))					//Invalid connection type.
@@ -294,6 +298,12 @@
 		//VOREStation Edit end.
 	fully_created = TRUE
 	attempt_auto_fit_viewport()
+
+	// TODO: Remove version check with 516
+	if(byond_version >= 516)
+		// Now that we're fully initialized, use our prefs
+		if(prefs?.read_preference(/datum/preference/toggle/browser_dev_tools))
+			winset(src, null, "browser-options=[DEFAULT_CLIENT_BROWSER_OPTIONS],devtools")
 
 	//////////////
 	//DISCONNECT//

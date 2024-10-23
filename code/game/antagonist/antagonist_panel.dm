@@ -17,7 +17,7 @@
 /datum/antagonist/proc/get_extra_panel_options()
 	return
 
-/datum/antagonist/proc/get_check_antag_output(var/datum/admins/caller)
+/datum/antagonist/proc/get_check_antag_output(var/datum/admins/requester)
 
 	if(!current_antagonists || !current_antagonists.len)
 		return ""
@@ -31,7 +31,7 @@
 			if(!M.client)      dat += " <i>(logged out)</i>"
 			if(M.stat == DEAD) dat += " <b><font color=red>(DEAD)</font></b>"
 			dat += "</td>"
-			dat += "<td>\[<A HREF='?src=\ref[caller];[HrefToken()];adminplayeropts=\ref[M]'>PP</A>]\[<A href='?src=\ref[caller];[HrefToken()];priv_msg=\ref[M]'>PM</A>\]\[<A href='?src=\ref[caller];[HrefToken()];traitor=\ref[M]'>TP</A>\]</td>"
+			dat += "<td>\[<A HREF='?src=\ref[requester];[HrefToken()];adminplayeropts=\ref[M]'>PP</A>]\[<A href='?src=\ref[requester];[HrefToken()];priv_msg=\ref[M]'>PM</A>\]\[<A href='?src=\ref[requester];[HrefToken()];traitor=\ref[M]'>TP</A>\]</td>"
 		else
 			dat += "<td>[player.key] <i>Mob not found!</i></td>"
 		dat += "</tr>"
@@ -45,17 +45,17 @@
 			while(!istype(disk_loc, /turf))
 				if(istype(disk_loc, /mob))
 					var/mob/M = disk_loc
-					dat += "carried by <a href='?src=\ref[caller];[HrefToken()];adminplayeropts=\ref[M]'>[M.real_name]</a> "
+					dat += "carried by <a href='?src=\ref[requester];[HrefToken()];adminplayeropts=\ref[M]'>[M.real_name]</a> "
 				if(istype(disk_loc, /obj))
 					var/obj/O = disk_loc
 					dat += "in \a [O.name] "
 				disk_loc = disk_loc.loc
 			dat += "in [disk_loc.loc] at ([disk_loc.x], [disk_loc.y], [disk_loc.z])</td></tr>"
 		dat += "</table>"
-	dat += get_additional_check_antag_output(caller)
+	dat += get_additional_check_antag_output(requester)
 	dat += "<hr>"
 	return dat
 
 //Overridden elsewhere.
-/datum/antagonist/proc/get_additional_check_antag_output(var/datum/admins/caller)
+/datum/antagonist/proc/get_additional_check_antag_output(var/datum/admins/requester)
 	return ""
