@@ -368,7 +368,7 @@ GLOBAL_LIST_EMPTY(all_cataloguers)
 
 	if (ismob(usr))
 		var/mob/M = usr
-		M.update_action_buttons_icon()
+		M.update_mob_action_buttons()
 
 /obj/item/cataloguer/compact/afterattack(atom/target, mob/user, proximity_flag)
 	if(!deployed)

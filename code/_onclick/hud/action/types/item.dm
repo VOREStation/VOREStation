@@ -4,7 +4,6 @@
 /datum/action/item_action/activate/New(Target, name)
 	. = ..()
 	src.name = name
-	button.name = name
 
 // Specific names
 /datum/action/item_action/toggle_grippers

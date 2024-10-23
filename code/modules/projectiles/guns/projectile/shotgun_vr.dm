@@ -69,7 +69,7 @@
 		H.update_inv_r_hand()
 
 	playsound(src, 'sound/weapons/targeton.ogg', 50, 1)
-	user.update_action_buttons_icon()
+	user.update_mob_action_buttons()
 
 /obj/item/gun/projectile/shotgun/compact/verb/verb_toggle_stock(mob/user as mob)
 	set category = "Object"

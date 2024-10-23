@@ -106,7 +106,7 @@
 	if(src && choice && !user.incapacitated() && in_range(user,src))
 		icon_state = options[choice]
 		user.update_inv_glasses()
-		user.update_action_buttons_icon()
+		user.update_mob_action_buttons()
 		to_chat(user, span_notice("Your [src] now displays [choice] ."))
 		return 1
 

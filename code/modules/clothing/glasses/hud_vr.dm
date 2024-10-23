@@ -141,7 +141,7 @@
 		away_planes = null
 		to_chat(usr, span_notice("You enabled the Augmented Reality HUD of your [src.name]."))
 	ar_toggled = !ar_toggled
-	usr.update_action_buttons_icon()
+	usr.update_mob_action_buttons()
 	usr.recalculate_vis()
 
 
@@ -249,7 +249,7 @@
 			item_state = initial(item_state)
 			usr.update_inv_glasses()
 			to_chat(usr, "You activate the retinal projector on the [src].")
-		usr.update_action_buttons_icon()
+		usr.update_mob_action_buttons()
 
 /obj/item/clothing/glasses/omnihud/all
 	name = "\improper AR-B glasses"

@@ -373,7 +373,7 @@
 	if(src && choice && !user.incapacitated() && in_range(user,src))
 		icon_state = options[choice]
 		user.update_inv_wear_mask()
-		user.update_action_buttons_icon()
+		user.update_mob_action_buttons()
 		to_chat(user, span_notice("Your paper mask now is now [choice]."))
 		return 1
 
@@ -408,7 +408,7 @@
 	if(src && choice && !user.incapacitated() && in_range(user,src))
 		icon_state = options[choice]
 		user.update_inv_wear_mask()
-		user.update_action_buttons_icon()
+		user.update_mob_action_buttons()
 		to_chat(user, span_notice("Your [src] now displays a [choice] emotion."))
 		return 1
 
