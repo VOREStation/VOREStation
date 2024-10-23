@@ -205,9 +205,9 @@
 		for(var/channel in 1 to DNA_UI_EARS_SECONDARY_COLOR_CHANNEL_COUNT)
 			var/offset = DNA_UI_EARS_SECONDARY_START + (channel - 1) * 3
 			H.ear_secondary_colors[channel] = rgb(
-				dna.GetUIValueRange(offset, 255)
-				dna.GetUIValueRange(offset + 1, 255)
-				dna.GetUIValueRange(offset + 2, 255)
+				dna.GetUIValueRange(offset, 255),
+				dna.GetUIValueRange(offset + 1, 255),
+				dna.GetUIValueRange(offset + 2, 255),
 			)
 
 		//Tail
