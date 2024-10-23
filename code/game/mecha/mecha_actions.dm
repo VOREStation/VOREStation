@@ -83,7 +83,7 @@
 
 /datum/action/innate/mecha/mech_toggle_lights/Activate()
 	button_icon_state = "mech_lights_[chassis.lights ? "off" : "on"]"
-	UpdateButtonIcon()
+	UpdateButtons()
 	chassis.lights()
 
 
@@ -94,7 +94,7 @@
 
 /datum/action/innate/mecha/mech_toggle_internals/Activate()
 	button_icon_state = "mech_internals_[chassis.use_internal_tank ? "off" : "on"]"
-	UpdateButtonIcon()
+	UpdateButtons()
 	chassis.internal_tank()
 
 
@@ -123,7 +123,7 @@
 
 /datum/action/innate/mecha/strafe/Activate()
 	button_icon_state = "mech_strafe_[chassis.strafing ? "off" : "on"]"
-	UpdateButtonIcon()
+	UpdateButtons()
 	chassis.strafing()
 
 
@@ -134,7 +134,7 @@
 
 /datum/action/innate/mecha/mech_defence_mode/Activate()
 	button_icon_state = "mech_defense_mode_[chassis.defence_mode ? "off" : "on"]"
-	UpdateButtonIcon()
+	UpdateButtons()
 	chassis.defence_mode()
 
 
@@ -145,7 +145,7 @@
 
 /datum/action/innate/mecha/mech_overload_mode/Activate()
 	button_icon_state = "mech_overload_[chassis.overload ? "off" : "on"]"
-	UpdateButtonIcon()
+	UpdateButtons()
 	chassis.overload()
 
 
@@ -156,7 +156,7 @@
 
 /datum/action/innate/mecha/mech_smoke/Activate()
 	//button_icon_state = "mech_smoke_[chassis.smoke ? "off" : "on"]"
-	//UpdateButtonIcon()	//Dual colors notneeded ATM
+	//UpdateButtons()	//Dual colors notneeded ATM
 	chassis.smoke()
 
 
@@ -167,7 +167,7 @@
 
 /datum/action/innate/mecha/mech_zoom/Activate()
 	button_icon_state = "mech_zoom_[chassis.zoom ? "off" : "on"]"
-	UpdateButtonIcon()
+	UpdateButtons()
 	chassis.zoom()
 
 
@@ -178,7 +178,7 @@
 
 /datum/action/innate/mecha/mech_toggle_thrusters/Activate()
 	button_icon_state = "mech_thrusters_[chassis.thrusters ? "off" : "on"]"
-	UpdateButtonIcon()
+	UpdateButtons()
 	chassis.thrusters()
 
 
@@ -203,7 +203,7 @@
 		chassis.occupant_message("You select [chassis.selected]")
 		send_byjax(chassis.occupant,"exosuit.browser","eq_list",chassis.get_equipment_list())
 		button_icon_state = "mech_cycle_equip_on"
-		UpdateButtonIcon()
+		UpdateButtons()
 		return
 	var/number = 0
 	for(var/A in available_equipment)
@@ -218,7 +218,7 @@
 				chassis.occupant_message("You switch to [chassis.selected]")
 				button_icon_state = "mech_cycle_equip_on"
 			send_byjax(chassis.occupant,"exosuit.browser","eq_list",chassis.get_equipment_list())
-			UpdateButtonIcon()
+			UpdateButtons()
 			return
 
 
@@ -233,7 +233,7 @@
 
 	button_icon_state = "mech_damtype_[chassis.damtype]"
 	playsound(src, 'sound/mecha/mechmove01.ogg', 50, 1)
-	UpdateButtonIcon()
+	UpdateButtons()
 	chassis.query_damtype()
 
 
@@ -244,7 +244,7 @@
 
 /datum/action/innate/mecha/mech_toggle_phasing/Activate()
 	button_icon_state = "mech_phasing_[chassis.phasing ? "off" : "on"]"
-	UpdateButtonIcon()
+	UpdateButtons()
 	chassis.phasing()
 
 
@@ -255,7 +255,7 @@
 
 /datum/action/innate/mecha/mech_toggle_cloaking/Activate()
 	button_icon_state = "mech_phasing_[chassis.cloaked ? "off" : "on"]"
-	UpdateButtonIcon()
+	UpdateButtons()
 	chassis.toggle_cloaking()
 
 

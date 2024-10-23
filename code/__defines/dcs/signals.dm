@@ -191,6 +191,8 @@
 #define COMSIG_ENTER_AREA "enter_area"
 ///from base of area/Exited(): (/area)
 #define COMSIG_EXIT_AREA "exit_area"
+///from base of client/Click(): (atom/target, atom/location, control, params, mob/user)
+#define COMSIG_CLIENT_CLICK "atom_client_click"
 ///from base of atom/Click(): (location, control, params, mob/user)
 #define COMSIG_CLICK "atom_click"
 ///from base of atom/ShiftClick(): (/mob)

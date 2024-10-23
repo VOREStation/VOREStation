@@ -25,6 +25,7 @@
 
 #define SIGN(x) ( (x)!=0 ? (x) / abs(x) : 0 )
 
+#define ROUND_UP(x) ( -round(-(x)))
 #define CEILING(x, y) ( -round(-(x) / (y)) * (y) )
 
 // round() acts like floor(x, 1) by default but can't handle other values

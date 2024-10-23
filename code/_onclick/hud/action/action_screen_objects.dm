@@ -1,17 +1,37 @@
 
 /obj/screen/movable/action_button
 	var/datum/action/linked_action
+	var/datum/hud/our_hud
 	var/actiontooltipstyle = ""
 	screen_loc = null
 
 	var/button_icon_state
 	var/appearance_cache
 
+	/// Where we are currently placed on the hud. SCRN_OBJ_DEFAULT asks the linked action what it thinks
+	var/location = SCRN_OBJ_DEFAULT
+	/// A unique bitflag, combined with the name of our linked action this lets us persistently remember any user changes to our position
 	var/id
+	/// A weakref of the last thing we hovered over
+	/// God I hate how dragging works
+	var/datum/weakref/last_hovored_ref
+
+/obj/screen/movable/action_button/Destroy()
+	if(our_hud)
+		var/mob/viewer = our_hud.mymob
+		our_hud.hide_action(src)
+		viewer?.client?.screen -= src
+		linked_action.viewers -= our_hud
+		viewer.update_action_buttons()
+		our_hud = null
+	linked_action = null
+	return ..()
 
 /obj/screen/movable/action_button/proc/can_use(mob/user)
 	if(linked_action)
-		return linked_action.owner == user
+		if(linked_action.viewers[user.hud_used])
+			return TRUE
+		return FALSE
 	else if(isobserver(user))
 		// var/mob/dead/observer/O = user
 		// return !O.observetarget
@@ -19,130 +39,46 @@
 	else
 		return TRUE
 
-/obj/screen/movable/action_button/MouseDrop(over_object)
-	if(!can_use(usr))
-		return
-	if((istype(over_object, /obj/screen/movable/action_button) && !istype(over_object, /obj/screen/movable/action_button/hide_toggle)))
-		if(locked)
-			to_chat(usr, span_warning("Action button \"[name]\" is locked, unlock it first."))
-			return
-		var/obj/screen/movable/action_button/B = over_object
-		var/list/actions = usr.actions
-		actions.Swap(actions.Find(src.linked_action), actions.Find(B.linked_action))
-		moved = FALSE
-		B.moved = FALSE
-		usr.update_action_buttons()
-	else
-		return ..()
-
 /obj/screen/movable/action_button/Click(location,control,params)
 	if(!can_use(usr))
 		return
 
 	var/list/modifiers = params2list(params)
 	if(LAZYACCESS(modifiers, SHIFT_CLICK))
-		if(locked)
-			to_chat(usr, span_warning("Action button \"[name]\" is locked, unlock it first."))
-			return TRUE
-		moved = FALSE
-		usr.update_action_buttons()
-		return TRUE
-	if(LAZYACCESS(modifiers, CTRL_CLICK))
-		locked = !locked
-		to_chat(usr, span_notice("Action button \"[name]\" [locked ? "" : "un"]locked."))
-		if(id && usr?.client?.prefs) // try to (un)remember position
-			LAZYSET(usr.client.prefs.action_button_screen_locs, "[name]_[id]", locked ? moved : null)
+		var/datum/hud/our_hud = usr.hud_used
+		our_hud.position_action(src, SCRN_OBJ_DEFAULT)
 		return TRUE
 	if(!usr.checkClickCooldown())
 		return
 	usr.setClickCooldown(1)
-	linked_action.Trigger()
+	var/trigger_flags
+	if(LAZYACCESS(modifiers, RIGHT_CLICK))
+		trigger_flags |= TRIGGER_SECONDARY_ACTION
+	linked_action.Trigger(trigger_flags = trigger_flags)
 	return TRUE
 
-//Hide/Show Action Buttons ... Button
-/obj/screen/movable/action_button/hide_toggle
-	name = "Hide Buttons"
-	desc = "Shift-click any button to reset its position, and Control-click it to lock it in place. Alt-click this button reset all buttons to their default positions."
-	icon = 'icons/mob/actions.dmi'
-	icon_state = "bg_default"
-	var/hidden = FALSE
-
-// /obj/screen/movable/action_button/hide_toggle/Initialize()
-// 	. = ..()
-// 	var/static/list/icon_cache = list()
-
-// 	var/cache_key = "[hide_icon][hide_state]"
-// 	hide_appearance = icon_cache[cache_key]
-// 	if(!hide_appearance)
-// 		hide_appearance = icon_cache[cache_key] = mutable_appearance(hide_icon, hide_state)
-// 	cache_key = "[hide_icon][show_state]"
-// 	show_appearance = icon_cache[cache_key]
-// 	if(!show_appearance)
-// 		show_appearance = icon_cache[cache_key] = mutable_appearance(hide_icon, show_state)
-
-/obj/screen/movable/action_button/hide_toggle/Click(location, control, params)
+// Entered and Exited won't fire while you're dragging something, because you're still "holding" it
+// Very much byond logic, but I want nice behavior, so we fake it with drag
+/obj/screen/movable/action_button/MouseDrag(atom/over_object, src_location, over_location, src_control, over_control, params)
+	. = ..()
 	if(!can_use(usr))
-		return FALSE
+		return
+	if(IS_WEAKREF_OF(over_object, last_hovored_ref))
+		return
 
-	var/list/modifiers = params2list(params)
-	if(LAZYACCESS(modifiers, SHIFT_CLICK))
-		if(locked)
-			to_chat(usr, span_warning("Action button \"[name]\" is locked, unlock it first."))
-			return TRUE
-		moved = FALSE
-		usr.update_action_buttons(TRUE)
-		return TRUE
-	if(LAZYACCESS(modifiers, CTRL_CLICK))
-		locked = !locked
-		to_chat(usr, span_notice("Action button \"[name]\" [locked ? "" : "un"]locked."))
-		if(id && usr?.client?.prefs) // try to (un)remember position
-			LAZYSET(usr.client.prefs.action_button_screen_locs, "[name]_[id]", locked ? moved : null)
-		return TRUE
-	if(LAZYACCESS(modifiers, ALT_CLICK))
-		AltClick(usr)
-		return TRUE
+	var/atom/old_object
+	if(last_hovored_ref)
+		old_object = last_hovored_ref.resolve()
+	else // If there is no current ref, we assume it was us. We also treat this as our "first go" location.
+		old_object = src
+		var/datum/hud/our_hud = usr.hud_used
+		our_hud?.generate_landings(src)
 
-	usr.hud_used.action_buttons_hidden = !usr.hud_used.action_buttons_hidden
+	if(old_object)
+		old_object.MouseExited(over_location, over_control, params)
 
-	hidden = usr.hud_used.action_buttons_hidden
-	if(hidden)
-		name = "Show Buttons"
-	else
-		name = "Hide Buttons"
-	update_icon()
-	usr.update_action_buttons()
-
-/obj/screen/movable/action_button/hide_toggle/AltClick(mob/user)
-	for(var/datum/action/A as anything in user.actions)
-		var/obj/screen/movable/action_button/B = A.button
-		B.moved = FALSE
-		if(B.id && usr?.client?.prefs)
-			LAZYSET(usr.client.prefs.action_button_screen_locs, "[name]_[B.id]", null)
-		// B.locked = usr.client.prefs.buttons_locked
-	// locked = usr.client.prefs.buttons_locked
-	if(id && usr?.client?.prefs)
-		LAZYSET(usr.client.prefs.action_button_screen_locs, "[name]_[id]", null)
-	moved = FALSE
-	user.update_action_buttons(TRUE)
-	to_chat(user, span_notice("Action button positions have been reset."))
-
-/obj/screen/movable/action_button/hide_toggle/proc/InitialiseIcon(mob/user)
-	// var/settings = owner_hud.get_action_buttons_icons()
-	// icon = settings["bg_icon"]
-	// icon_state = settings["bg_state"]
-	// hide_icon = settings["toggle_icon"]
-	// hide_state = settings["toggle_hide"]
-	// show_state = settings["toggle_show"]
-	if(isalien(user))
-		icon_state = "bg_alien"
-	else
-		icon_state = "bg_default"
-	update_icon()
-
-/obj/screen/movable/action_button/hide_toggle/update_icon()
-	cut_overlays()
-	add_overlay(mutable_appearance(icon, hidden ? "show" : "hide"))
-	// add_overlay(mutable_appearance(hide_icon, hidden ? show_state : hide_state))
+	last_hovored_ref = WEAKREF(over_object)
+	over_object?.MouseEntered(over_location, over_control, params)
 
 /obj/screen/movable/action_button/MouseEntered(location, control, params)
 	. = ..()
@@ -151,22 +87,70 @@
 
 /obj/screen/movable/action_button/MouseExited(location, control, params)
 	closeToolTip(usr)
+	return ..()
 
-// /datum/hud/proc/get_action_buttons_icons()
-// 	. = list()
-// 	.["bg_icon"] = ui_style_icon
-// 	.["bg_state"] = "template"
+/obj/screen/movable/action_button/MouseDrop(over_object)
+	last_hovored_ref = null
+	if(!can_use(usr))
+		return
+	var/datum/hud/our_hud = usr.hud_used
+	if(over_object == src)
+		our_hud.hide_landings()
+		return
+	if(istype(over_object, /obj/screen/action_landing))
+		var/obj/screen/action_landing/reserve = over_object
+		reserve.hit_by(src)
+		our_hud.hide_landings()
+		save_position()
+		return
 
-// 	//TODO : Make these fit theme
-// 	.["toggle_icon"] = 'icons/mob/actions.dmi'
-// 	.["toggle_hide"] = "hide"
-// 	.["toggle_show"] = "show"
+	our_hud.hide_landings()
+	if(istype(over_object, /obj/screen/button_palette) || istype(over_object, /obj/screen/palette_scroll))
+		our_hud.position_action(src, SCRN_OBJ_IN_PALETTE)
+		save_position()
+		return
+	if(istype(over_object, /obj/screen/movable/action_button))
+		var/obj/screen/movable/action_button/button = over_object
+		our_hud.position_action_relative(src, button)
+		save_position()
+		return
+	. = ..()
+	our_hud.position_action(src, screen_loc)
+	save_position()
+
+/obj/screen/movable/action_button/proc/save_position()
+	var/mob/user = our_hud.mymob
+	if(!user?.client)
+		return
+	var/position_info = ""
+	switch(location)
+		if(SCRN_OBJ_FLOATING)
+			position_info = screen_loc
+		if(SCRN_OBJ_IN_LIST)
+			position_info = SCRN_OBJ_IN_LIST
+		if(SCRN_OBJ_IN_PALETTE)
+			position_info = SCRN_OBJ_IN_PALETTE
+
+	LAZYSET(user.client.prefs.action_button_screen_locs, "[name]_[id]", position_info)
+
+/obj/screen/movable/action_button/proc/load_position()
+	var/mob/user = our_hud.mymob
+	if(!user)
+		return
+	var/position_info = LAZYACCESS(user.client?.prefs?.action_button_screen_locs, "[name]_[id]") || SCRN_OBJ_DEFAULT
+	user.hud_used.position_action(src, position_info)
+
+/obj/screen/movable/action_button/proc/dump_save()
+	var/mob/user = our_hud.mymob
+	if(!user?.client)
+		return
+	LAZYREMOVE(user.client.prefs.action_button_screen_locs, "[name]_[id]")
 
 //used to update the buttons icon.
 /mob/proc/update_action_buttons_icon(status_only = FALSE)
 	for(var/X in actions)
 		var/datum/action/A = X
-		A.UpdateButtonIcon(status_only)
+		A.UpdateButtons(status_only)
 
 //This is the proc used to update all the action buttons.
 /mob/proc/update_action_buttons(reload_screen)
@@ -176,64 +160,251 @@
 	if(!hud_used.hud_shown)	//Hud toggled to minimal
 		return
 
-	var/button_number = 0
-
-	if(hud_used.action_buttons_hidden)
-		for(var/datum/action/A in actions)
-			A.button.screen_loc = null
-			if(reload_screen)
-				client.screen += A.button
-	else
-		for(var/datum/action/A in actions)
-			button_number++
-			A.UpdateButtonIcon()
-			var/obj/screen/movable/action_button/B = A.button
-			if(!B.moved)
-				B.screen_loc = hud_used.ButtonNumberToScreenCoords(button_number)
-			else
-				B.screen_loc = B.moved
-			if(reload_screen)
-				client.screen += B
-
-		if(!button_number)
-			hud_used.hide_actions_toggle?.screen_loc = null
-			return
-
-	// not exactly sure how this happens but it does
-	if(hud_used.hide_actions_toggle)
-		if(!hud_used.hide_actions_toggle.moved)
-			hud_used.hide_actions_toggle.screen_loc = hud_used.ButtonNumberToScreenCoords(button_number+1)
-		else
-			hud_used.hide_actions_toggle.screen_loc = hud_used.hide_actions_toggle.moved
+	for(var/datum/action/action as anything in actions)
+		var/obj/screen/movable/action_button/button = action.viewers[hud_used]
+		action.UpdateButtons()
 		if(reload_screen)
-			client.screen += hud_used.hide_actions_toggle
+			client.screen += button
 
-#define AB_WEST_OFFSET 4
-#define AB_NORTH_OFFSET 26
-#define AB_MAX_COLUMNS 10
+	if(reload_screen)
+		hud_used.update_our_owner()
+	// This holds the logic for the palette buttons
+	hud_used.palette_actions.refresh_actions()
 
-/datum/hud/proc/ButtonNumberToScreenCoords(var/number) // TODO : Make this zero-indexed for readabilty
-	var/row = round((number-1)/AB_MAX_COLUMNS)
-	var/col = ((number - 1)%(AB_MAX_COLUMNS)) + 1
+// Button Palette
+// A new way to interact with actions
 
-	var/coord_col = "+[col-1]"
-	var/coord_col_offset = AB_WEST_OFFSET+2*col
+/obj/screen/button_palette
+	desc = "<b>Drag</b> buttons to move them<br><b>Shift-click</b> any button to reset it<br><b>Alt-click</b> this to reset all buttons"
+	icon = 'icons/hud/64x16_actions.dmi'
+	icon_state = "screen_gen_palette"
+	screen_loc = ui_action_palette
+	var/datum/hud/our_hud
+	var/expanded = FALSE
+	/// Id of any currently running timers that set our color matrix
+	var/color_timer_id
 
-	var/coord_row = "[-1 - row]"
-	var/coord_row_offset = AB_NORTH_OFFSET
+/obj/screen/button_palette/Destroy()
+	if(our_hud)
+		our_hud.mymob?.client?.screen -= src
+		our_hud.toggle_palette = null
+		our_hud = null
+	return ..()
 
-	return "WEST[coord_col]:[coord_col_offset],NORTH[coord_row]:[coord_row_offset]"
+/obj/screen/button_palette/Initialize(mapload)
+	. = ..()
+	// update_appearance()
+	update_name()
 
-/datum/hud/proc/SetButtonCoords(var/obj/screen/button,var/number)
-	var/row = round((number-1)/AB_MAX_COLUMNS)
-	var/col = ((number - 1)%(AB_MAX_COLUMNS)) + 1
-	var/x_offset = 32*(col-1) + AB_WEST_OFFSET + 2*col
-	var/y_offset = -32*(row+1) + AB_NORTH_OFFSET
+/obj/screen/button_palette/proc/set_hud(datum/hud/our_hud)
+	src.our_hud = our_hud
+	refresh_owner()
 
-	var/matrix/M = matrix()
-	M.Translate(x_offset,y_offset)
-	button.transform = M
+// /obj/screen/button_palette/update_name(updates)
+/obj/screen/button_palette/proc/update_name()
+	// . = ..()
+	if(expanded)
+		name = "Hide Buttons"
+	else
+		name = "Show Buttons"
 
-#undef AB_WEST_OFFSET
-#undef AB_NORTH_OFFSET
-#undef AB_MAX_COLUMNS
+/obj/screen/button_palette/proc/refresh_owner()
+	var/mob/viewer = our_hud.mymob
+	if(viewer.client)
+		viewer.client.screen |= src
+
+	// var/list/settings = our_hud.get_action_buttons_icons()
+	// var/ui_icon = "[settings["bg_icon"]]"
+	// var/list/ui_segments = splittext(ui_icon, ".")
+	// var/list/ui_paths = splittext(ui_segments[1], "/")
+	// var/ui_name = ui_paths[length(ui_paths)]
+
+	// icon_state = "[ui_name]_palette"
+
+/obj/screen/button_palette/MouseEntered(location, control, params)
+	. = ..()
+	if(QDELETED(src))
+		return
+	show_tooltip(params)
+
+/obj/screen/button_palette/MouseExited()
+	closeToolTip(usr)
+	return ..()
+
+/obj/screen/button_palette/proc/show_tooltip(params)
+	openToolTip(usr, src, params, title = name, content = desc)
+
+GLOBAL_LIST_INIT(palette_added_matrix, list(0.4,0.5,0.2,0, 0,1.4,0,0, 0,0.4,0.6,0, 0,0,0,1, 0,0,0,0))
+GLOBAL_LIST_INIT(palette_removed_matrix, list(1.4,0,0,0, 0.7,0.4,0,0, 0.4,0,0.6,0, 0,0,0,1, 0,0,0,0))
+
+/obj/screen/button_palette/proc/play_item_added()
+	color_for_now(GLOB.palette_added_matrix)
+
+/obj/screen/button_palette/proc/play_item_removed()
+	color_for_now(GLOB.palette_removed_matrix)
+
+/obj/screen/button_palette/proc/color_for_now(list/color)
+	if(color_timer_id)
+		return
+	add_atom_colour(color, TEMPORARY_COLOUR_PRIORITY) //We unfortunately cannot animate matrix colors. Curse you lummy it would be ~~non~~trivial to interpolate between the two valuessssssssss
+	color_timer_id = addtimer(CALLBACK(src, PROC_REF(remove_color), color), 2 SECONDS)
+
+/obj/screen/button_palette/proc/remove_color(list/to_remove)
+	color_timer_id = null
+	remove_atom_colour(TEMPORARY_COLOUR_PRIORITY, to_remove)
+
+/obj/screen/button_palette/proc/can_use(mob/user)
+	if(isobserver(user))
+		// var/mob/dead/observer/O = user
+		// return !O.observetarget
+		return TRUE
+	return TRUE
+
+/obj/screen/button_palette/Click(location, control, params)
+	if(!can_use(usr))
+		return
+
+	var/list/modifiers = params2list(params)
+
+	if(LAZYACCESS(modifiers, ALT_CLICK))
+		for(var/datum/action/action as anything in usr.actions) // Reset action positions to default
+			for(var/datum/hud/hud as anything in action.viewers)
+				var/obj/screen/movable/action_button/button = action.viewers[hud]
+				hud.position_action(button, SCRN_OBJ_DEFAULT)
+		to_chat(usr, span_notice("Action button positions have been reset."))
+		return TRUE
+
+	set_expanded(!expanded)
+
+/obj/screen/button_palette/proc/clicked_while_open(datum/source, atom/target, atom/location, control, params, mob/user)
+	if(istype(target, /obj/screen/movable/action_button) || istype(target, /obj/screen/palette_scroll) || target == src) // If you're clicking on an action button, or us, you can live
+		return
+	set_expanded(FALSE)
+	if(source)
+		UnregisterSignal(source, COMSIG_CLIENT_CLICK)
+
+/obj/screen/button_palette/proc/set_expanded(new_expanded)
+	var/datum/action_group/our_group = our_hud.palette_actions
+	if(!length(our_group.actions)) //Looks dumb, trust me lad
+		new_expanded = FALSE
+	if(expanded == new_expanded)
+		return
+
+	expanded = new_expanded
+	our_group.refresh_actions()
+	// update_appearance()
+	update_name()
+
+	if(!usr.client)
+		return
+
+	if(expanded)
+		RegisterSignal(usr.client, COMSIG_CLIENT_CLICK, PROC_REF(clicked_while_open))
+	else
+		UnregisterSignal(usr.client, COMSIG_CLIENT_CLICK)
+
+	closeToolTip(usr) //Our tooltips are now invalid, can't seem to update them in one frame, so here, just close them
+
+/obj/screen/palette_scroll
+	icon = 'icons/hud/screen_gen.dmi'
+	screen_loc = ui_palette_scroll
+	/// How should we move the palette's actions?
+	/// Positive scrolls down the list, negative scrolls back
+	var/scroll_direction = 0
+	var/datum/hud/our_hud
+
+/obj/screen/palette_scroll/proc/can_use(mob/user)
+	if(isobserver(user))
+		// var/mob/dead/observer/O = user
+		// return !O.observetarget
+		return TRUE
+	return TRUE
+
+/obj/screen/palette_scroll/proc/set_hud(datum/hud/our_hud)
+	src.our_hud = our_hud
+	refresh_owner()
+
+/obj/screen/palette_scroll/proc/refresh_owner()
+	var/mob/viewer = our_hud.mymob
+	if(viewer.client)
+		viewer.client.screen |= src
+
+	// var/list/settings = our_hud.get_action_buttons_icons()
+	// icon = settings["bg_icon"]
+
+/obj/screen/palette_scroll/Click(location, control, params)
+	if(!can_use(usr))
+		return
+	our_hud.palette_actions.scroll(scroll_direction)
+
+/obj/screen/palette_scroll/MouseEntered(location, control, params)
+	. = ..()
+	if(QDELETED(src))
+		return
+	openToolTip(usr, src, params, title = name, content = desc)
+
+/obj/screen/palette_scroll/MouseExited()
+	closeToolTip(usr)
+	return ..()
+
+/obj/screen/palette_scroll/down
+	name = "Scroll Down"
+	desc = "<b>Click</b> on this to scroll the actions above down"
+	icon_state = "scroll_down"
+	scroll_direction = 1
+
+/obj/screen/palette_scroll/down/Destroy()
+	if(our_hud)
+		our_hud.mymob?.client?.screen -= src
+		our_hud.palette_down = null
+		our_hud = null
+	return ..()
+
+/obj/screen/palette_scroll/up
+	name = "Scroll Up"
+	desc = "<b>Click</b> on this to scroll the actions above up"
+	icon_state = "scroll_up"
+	scroll_direction = -1
+
+/obj/screen/palette_scroll/up/Destroy()
+	if(our_hud)
+		our_hud.mymob?.client?.screen -= src
+		our_hud.palette_up = null
+		our_hud = null
+	return ..()
+
+/// Exists so you have a place to put your buttons when you move them around
+/obj/screen/action_landing
+	name = "Button Space"
+	desc = "<b>Drag and drop</b> a button into this spot<br>to add it to the group"
+	icon = 'icons/hud/screen_gen.dmi'
+	icon_state = "reserved"
+	// We want our whole 32x32 space to be clickable, so dropping's forgiving
+	mouse_opacity = MOUSE_OPACITY_OPAQUE
+	var/datum/action_group/owner
+
+/obj/screen/action_landing/Destroy()
+	if(owner)
+		owner.landing = null
+		owner?.owner?.mymob?.client?.screen -= src
+		owner.refresh_actions()
+		owner = null
+	return ..()
+
+/obj/screen/action_landing/proc/set_owner(datum/action_group/owner)
+	src.owner = owner
+	refresh_owner()
+
+/obj/screen/action_landing/proc/refresh_owner()
+	var/datum/hud/our_hud = owner.owner
+	var/mob/viewer = our_hud.mymob
+	if(viewer.client)
+		viewer.client.screen |= src
+
+	// var/list/settings = our_hud.get_action_buttons_icons()
+	// icon = settings["bg_icon"]
+
+/// Reacts to having a button dropped on it
+/obj/screen/action_landing/proc/hit_by(obj/screen/movable/action_button/button)
+	var/datum/hud/our_hud = owner.owner
+	our_hud.position_action(button, owner.location)
