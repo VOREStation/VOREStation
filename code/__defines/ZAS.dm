@@ -11,3 +11,5 @@
 #define ATMOS_PASS_NO			2	// Never blocks air or zones.
 #define ATMOS_PASS_DENSITY		3	// Blocks air and zones if density = TRUE, allows both if density = FALSE
 #define ATMOS_PASS_PROC			4	// Call CanZASPass() using c_airblock
+
+#define HAS_VALID_ZONE(T) (T.zone && !T.zone.invalid)

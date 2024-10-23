@@ -32,9 +32,6 @@
 	set desc = "Emote to nearby people (and your pred/prey)"
 	set hidden = 1
 
-	if(say_disabled)	//This is here to try to identify lag problems
-		to_chat(usr, span_red("Speech is currently admin-disabled."))
-		return
 	//VOREStation Addition Start
 	if(forced_psay)
 		pme(message)
@@ -56,10 +53,6 @@
 		usr.emote(message)
 
 /mob/proc/say_dead(var/message)
-	if(say_disabled)	//This is here to try to identify lag problems
-		to_chat(usr, span_danger("Speech is currently admin-disabled."))
-		return
-
 	if(!client)
 		return // Clientless mobs shouldn't be trying to talk in deadchat.
 
