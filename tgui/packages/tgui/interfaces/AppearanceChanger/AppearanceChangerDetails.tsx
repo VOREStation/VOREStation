@@ -65,7 +65,7 @@ export const AppearanceChangerColors = (props) => {
             </Button>
           </Box>
           {data.ear_secondary_colors.map((color, index) => (
-            <Button onClick={() => act('ears_secondary_color', {channel: index})}>
+            <Button key={`${index}`} onClick={() => act('ears_secondary_color', { channel: index })}>
               Change Secondary Ears Color ({SPRITE_ACCESSORY_COLOR_CHANNEL_NAMES.at(index)})
             </Button>
           ))}
