@@ -468,7 +468,7 @@
 		// secondary ear colors
 		var/list/ear_secondary_color_channels = target.ear_secondary_colors || list()
 		ear_secondary_color_channels.len = target.ear_secondary_style?.get_color_channel_count() || 0
-		data["ears_secondary_colors"] = ear_secondary_color_channels
+		data["ear_secondary_colors"] = ear_secondary_color_channels
 
 		data["tail_color"] = rgb(target.r_tail, target.g_tail, target.b_tail)
 		data["tail2_color"] = rgb(target.r_tail2, target.g_tail2, target.b_tail2)

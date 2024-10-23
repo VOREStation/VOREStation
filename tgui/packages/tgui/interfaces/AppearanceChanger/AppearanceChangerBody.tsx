@@ -1,7 +1,7 @@
 import { sortBy } from 'common/collections';
 
 import { useBackend } from '../../backend';
-import { Button, LabeledList, Section } from '../../components';
+import { Button, LabeledList, Section, Stack } from '../../components';
 import { Data, species, styles } from './types';
 
 export const AppearanceChangerSpecies = (props) => {
@@ -66,42 +66,46 @@ export const AppearanceChangerEars = (props) => {
   const { ear_style, ear_styles } = data;
 
   return (
-    <>
-      <Section title="Ears" fill scrollable>
-        <Button
-          onClick={() => act('ear', { clear: true })}
-          selected={ear_style === null}
-          >
-          -- Not Set --
-        </Button>
-        {sortBy(ear_styles, (e: styles) => e.name.toLowerCase()).map((ear) => (
+    <Stack vertical>
+      <Stack.Item grow={1}>
+        <Section title="Ears" fill scrollable>
           <Button
-            key={ear.instance}
-            onClick={() => act('ear', { ref: ear.instance })}
-            selected={ear.name === ear_style}
-          >
-            {ear.name}
+            onClick={() => act('ear', { clear: true })}
+            selected={ear_style === null}
+            >
+            -- Not Set --
           </Button>
-        ))}
-      </Section>
-      <Section title="Ears - Secondary" fill scrollable>
-        <Button
-          onClick={() => act('ear_secondary', { clear: true })}
-          selected={data.ear_secondary_style === null}
-          >
-          -- Not Set --
-        </Button>
-        {sortBy(ear_styles, (e: styles) => e.name.toLowerCase()).map((ear) => (
+          {sortBy(ear_styles, (e: styles) => e.name.toLowerCase()).map((ear) => (
+            <Button
+              key={ear.instance}
+              onClick={() => act('ear', { ref: ear.instance })}
+              selected={ear.name === ear_style}
+            >
+              {ear.name}
+            </Button>
+          ))}
+        </Section>
+      </Stack.Item>
+      <Stack.Item grow={1}>
+        <Section title="Ears - Secondary" fill scrollable>
           <Button
-            key={ear.instance}
-            onClick={() => act('ear_secondary', { ref: ear.instance })}
-            selected={ear.name === ear_style}
-          >
-            {ear.name}
+            onClick={() => act('ear_secondary', { clear: true })}
+            selected={data.ear_secondary_style === null}
+            >
+            -- Not Set --
           </Button>
-        ))}
-      </Section>
-    </>
+          {sortBy(ear_styles, (e: styles) => e.name.toLowerCase()).map((ear) => (
+            <Button
+              key={ear.instance}
+              onClick={() => act('ear_secondary', { ref: ear.instance })}
+              selected={ear.name === ear_style}
+            >
+              {ear.name}
+            </Button>
+          ))}
+        </Section>
+      </Stack.Item>
+    </Stack>
   );
 };
 
