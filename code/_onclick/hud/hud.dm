@@ -212,7 +212,9 @@ var/list/global_huds = list(
 	..()
 
 /datum/hud/Destroy()
-	. = ..()
+	if(mymob.hud_used == src)
+		mymob.hud_used = null
+
 	QDEL_NULL_LIST(minihuds)
 
 	// Actions
@@ -246,6 +248,8 @@ var/list/global_huds = list(
 		remove_ammo_hud(mymob, x)
 	ammo_hud_list = null
 	mymob = null
+
+	return ..()
 
 /datum/hud/proc/hidden_inventory_update()
 	if(!mymob) return

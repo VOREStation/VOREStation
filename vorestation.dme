@@ -256,6 +256,7 @@
 #include "code\_onclick\hud\action\action.dm"
 #include "code\_onclick\hud\action\action_group.dm"
 #include "code\_onclick\hud\action\action_group_helpers.dm"
+#include "code\_onclick\hud\action\action_item_overlay.dm"
 #include "code\_onclick\hud\action\action_screen_objects.dm"
 #include "code\_onclick\hud\action\innate_action.dm"
 #include "code\_onclick\hud\action\item_action.dm"

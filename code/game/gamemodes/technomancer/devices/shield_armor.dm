@@ -78,7 +78,7 @@
 	to_chat(user, span_notice("You [active ? "" : "de"]activate \the [src]."))
 	update_icon()
 	user.update_inv_wear_suit()
-	user.update_action_buttons_icon()
+	user.update_mob_action_buttons()
 
 /obj/item/clothing/suit/armor/shield/update_icon()
 	icon_state = "shield_armor_[active]"

@@ -45,7 +45,8 @@
 
 /datum/action_group/proc/remove_action(obj/screen/action)
 	actions -= action
-	refresh_actions()
+	if(!QDELING(src))
+		refresh_actions()
 
 /datum/action_group/proc/refresh_actions()
 	// We don't use size() here because landings are not canon
@@ -167,6 +168,8 @@
 	var/obj/screen/button_palette/palette = owner.toggle_palette
 	var/obj/screen/palette_scroll/scroll_down = owner.palette_down
 	var/obj/screen/palette_scroll/scroll_up = owner.palette_up
+	if(!palette || !scroll_down || !scroll_up)
+		return
 
 	var/actions_above = round((owner.listed_actions.size() - 1) / owner.listed_actions.column_max)
 	north_offset = initial(north_offset) + actions_above
@@ -206,4 +209,4 @@
 
 /datum/action_group/listed/refresh_actions()
 	. = ..()
-	owner.palette_actions.refresh_actions() // We effect them, so we gotta refresh em
+	owner?.palette_actions.refresh_actions() // We effect them, so we gotta refresh em
