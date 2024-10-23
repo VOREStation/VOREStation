@@ -35,6 +35,7 @@ const ROWS: Record<keyof typeof WINDOW_SIZES, number> = {
   small: 1,
   medium: 2,
   large: 3,
+  max: 4,
   width: 1, // not used
 } as const;
 
