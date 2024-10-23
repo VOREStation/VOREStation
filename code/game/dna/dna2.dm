@@ -216,19 +216,15 @@ var/global/list/datum/dna/gene/dna_genes[0]
 	SetUIValueRange(DNA_UI_EARS3_G,   character.g_ears3,   255,    1)
 	SetUIValueRange(DNA_UI_EARS3_B,   character.b_ears3,   255,    1)
 
-	#warn deal with this
-	SetUIValueRange(DNA_UI_EARS_SECONDARY_R,    character.r_ears,    255,    1)
-	SetUIValueRange(DNA_UI_EARS_SECONDARY_G,    character.g_ears,    255,    1)
-	SetUIValueRange(DNA_UI_EARS_SECONDARY_B,    character.b_ears,    255,    1)
-
-	SetUIValueRange(DNA_UI_EARS_SECONDARY2_R,   character.r_ears2,   255,    1)
-	SetUIValueRange(DNA_UI_EARS_SECONDARY2_G,   character.g_ears2,   255,    1)
-	SetUIValueRange(DNA_UI_EARS_SECONDARY2_B,   character.b_ears2,   255,    1)
-
-	SetUIValueRange(DNA_UI_EARS_SECONDARY3_R,   character.r_ears3,   255,    1)
-	SetUIValueRange(DNA_UI_EARS_SECONDARY3_G,   character.g_ears3,   255,    1)
-	SetUIValueRange(DNA_UI_EARS_SECONDARY3_B,   character.b_ears3,   255,    1)
-
+	for(var/channel in 1 to DNA_UI_EARS_SECONDARY_COLOR_CHANNEL_COUNT)
+		var/offset = DNA_UI_EARS_SECONDARY_START + (channel - 1) * 3
+		var/list/read_rgb = ReadRGB(LAZYACCESS(character.ear_secondary_colors, channel) || "#ffffff")
+		var/red = read_rgb[1]
+		var/green = read_rgb[2]
+		var/blue = read_rgb[3]
+		SetUIValueRange(offset, red, 255, 1)
+		SetUIValueRange(offset + 1, green, 255, 1)
+		SetUIValueRange(offset + 2, blue, 255, 1)
 	// VORE Station Edit End
 
 	SetUIValueRange(DNA_UI_HAIR_R,    character.r_hair,    255,    1)
