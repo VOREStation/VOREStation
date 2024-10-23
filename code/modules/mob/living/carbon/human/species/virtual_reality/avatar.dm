@@ -37,6 +37,7 @@
 		/mob/living/carbon/human/proc/shapeshifter_select_wings,
 		/mob/living/carbon/human/proc/shapeshifter_select_tail,
 		/mob/living/carbon/human/proc/shapeshifter_select_ears,
+		/mob/living/carbon/human/proc/shapeshifter_select_secondary_ears,
 		/mob/living/proc/set_size,
 		/mob/living/carbon/human/proc/regenerate,
 		/mob/living/carbon/human/proc/promethean_select_opaqueness,

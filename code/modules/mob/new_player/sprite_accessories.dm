@@ -17,6 +17,14 @@
 	conversion in savefile.dm
 */
 
+/**
+ * Color channel names; this is used in things like character setup, editors, etc.
+ *
+ * * The length of this is also used to sanitize color channel list lengths. This should never be longer than the
+ *   maximum number of color channels possible across all sprite accessories.
+ */
+GLOBAL_LIST_INIT(fancy_sprite_accessory_color_channel_names, list("Primary", "Secondary", "Tertiary", "Quaternary"))
+
 /datum/sprite_accessory
 
 	var/icon			// the icon file the accessory is located in
@@ -43,6 +51,12 @@
 	var/em_block = FALSE
 
 	var/list/hide_body_parts = list() //Uses organ tag defines. Bodyparts in this list do not have their icons rendered, allowing for more spriter freedom when doing taur/digitigrade stuff.
+
+/**
+ * Gets the number of color channels we have.
+ */
+/datum/sprite_accessory/proc/get_color_channel_count()
+	return do_colouration ? 1 : 0
 
 /*
 ////////////////////////////

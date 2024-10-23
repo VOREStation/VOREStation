@@ -148,6 +148,17 @@
 				temp["colorHref2"] = "ear_color2"
 		styles["Ears"] = temp
 
+		temp = list("styleHref" = "ear_style", "style" = "Normal")
+		if(mannequin.ear_secondary_style)
+			temp["style"] = mannequin.ear_secondary_style.name
+			if(length(mannequin.ear_secondary_colors) >= 1)
+				temp["color"] = mannequin.ear_secondary_colors[1]
+				temp["colorHref"] = list("act" = "ear_secondary_color", "channel" = 1)
+			if(length(mannequin.ear_secondary_colors) >= 2)
+				temp["color"] = mannequin.ear_secondary_colors[2]
+				temp["colorHref"] = list("act" = "ear_secondary_color", "channel" = 2)
+		styles["Horns"] = temp
+
 		temp = list("styleHref" = "tail_style", "style" = "Normal")
 		if(mannequin.tail_style)
 			temp["style"] = mannequin.tail_style.name
@@ -419,7 +430,15 @@
 
 	var/href_list = list()
 	href_list["src"] = "\ref[src]"
-	href_list["[params["target_href"]]"] = params["target_value"]
+	var/list/target_href_maybe = params["target_href"]
+	// convert list-form inputs as needed
+	if(islist(target_href_maybe))
+		href_list[target_href_maybe["act"]] = TRUE
+		for(var/key in target_href_maybe["params"])
+			var/val = target_href_maybe["params"][key]
+			href_list[key] = "[val]"
+	else
+		href_list[target_href_maybe] = params["target_value"]
 	var/datum/category_item/player_setup_item/to_use = (params["target_href"] in use_different_category) ? use_different_category[params["target_href"]] : B
 
 	var/action = 0
