@@ -41,8 +41,7 @@
 		if(istype(unsim, /turf/simulated))
 
 			var/turf/simulated/sim = unsim
-			if(SSair.has_valid_zone(sim))
-
+			if(HAS_VALID_ZONE(sim))
 				SSair.connect(sim, src)
 
 /*
@@ -162,7 +161,7 @@
 			var/turf/simulated/sim = unsim
 			sim.open_directions |= reverse_dir[d]
 
-			if(SSair.has_valid_zone(sim))
+			if(HAS_VALID_ZONE(sim))
 
 				//Might have assigned a zone, since this happens for each direction.
 				if(!zone)
@@ -210,7 +209,7 @@
 			if(!postponed) postponed = list()
 			postponed.Add(unsim)
 
-	if(!SSair.has_valid_zone(src)) //Still no zone, make a new one.
+	if(!HAS_VALID_ZONE(src)) //Still no zone, make a new one.
 		var/zone/newzone = new/zone()
 		newzone.add(src)
 

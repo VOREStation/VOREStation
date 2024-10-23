@@ -27,10 +27,6 @@ Class Procs:
 		AIR_BLOCKED - The connection between turfs is physically blocked. No air can pass.
 		ZONE_BLOCKED - There is a door between the turfs, so zones cannot cross. Air may or may not be permeable.
 
-	has_valid_zone(turf/T)
-		Checks the presence and validity of T's zone.
-		May be called on unsimulated turfs, returning 0.
-
 	merge(zone/A, zone/B)
 		Called when zones have a direct connection and equivalent pressure and temperature.
 		Merges the zones to create a single zone.
@@ -395,12 +391,6 @@ Total Unsimulated Turfs: [world.maxx*world.maxy*world.maxz - simulated_turf_coun
 	if(ablock == BLOCKED)
 		return BLOCKED
 	return ablock | B.c_airblock(A)
-
-/datum/controller/subsystem/air/proc/has_valid_zone(turf/simulated/T)
-	#ifdef ZASDBG
-	ASSERT(istype(T))
-	#endif
-	return istype(T) && T.zone && !T.zone.invalid
 
 /datum/controller/subsystem/air/proc/merge(zone/A, zone/B)
 	#ifdef ZASDBG
