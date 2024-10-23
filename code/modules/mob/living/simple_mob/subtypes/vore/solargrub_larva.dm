@@ -88,7 +88,7 @@ var/global/list/grub_machine_overlays = list()
 		return
 
 	if(istype(loc, /obj/machinery))
-		if(machine_effect && air_master.current_cycle%30)
+		if(machine_effect && SSair.current_cycle%30)
 			for(var/mob/M in player_list)
 				M << machine_effect
 		if(prob(10))

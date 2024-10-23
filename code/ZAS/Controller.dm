@@ -1,5 +1,3 @@
-var/datum/controller/subsystem/air/air_master
-
 var/tick_multiplier = 2
 
 /*
@@ -133,7 +131,7 @@ Class Procs:
 	ASSERT(A != B)
 	#endif
 
-	var/block = air_master.air_blocked(A,B)
+	var/block = SSair.air_blocked(A,B)
 	if(block & AIR_BLOCKED) return
 
 	var/direct = !(block & ZONE_BLOCKED)

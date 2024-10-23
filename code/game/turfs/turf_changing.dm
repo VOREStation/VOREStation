@@ -28,7 +28,7 @@
 
 	if(N == /turf/space)
 		var/turf/below = GetBelow(src)
-		if(istype(below) && (air_master.has_valid_zone(below) || air_master.has_valid_zone(src)) && !(src.z in using_map.below_blocked_levels) && (!istype(below, /turf/unsimulated/wall) && !istype(below, /turf/simulated/sky)))	// VOREStation Edit: Weird open space
+		if(istype(below) && (SSair.has_valid_zone(below) || SSair.has_valid_zone(src)) && !(src.z in using_map.below_blocked_levels) && (!istype(below, /turf/unsimulated/wall) && !istype(below, /turf/simulated/sky)))	// VOREStation Edit: Weird open space
 			N = /turf/simulated/open
 
 	var/obj/fire/old_fire = fire
@@ -75,8 +75,8 @@
 	if(tell_universe)
 		universe.OnTurfChange(W)
 
-	if(air_master)
-		air_master.mark_for_update(W)
+	if(SSair)
+		SSair.mark_for_update(W)
 
 	for(var/turf/space/S in range(W, 1))
 		S.update_starlight()

@@ -8,12 +8,12 @@
 	/*
 	if(!check_rights(R_DEBUG)) return
 
-	var/result = air_master.Tick()
+	var/result = SSair.Tick()
 	if(result)
 		to_chat(src, "Successfully Processed.")
 
 	else
-		to_chat(src, "Failed to process! ([air_master.tick_progress])")
+		to_chat(src, "Failed to process! ([SSair.tick_progress])")
 	*/
 
 /client/proc/Zone_Info(turf/T as null|turf)

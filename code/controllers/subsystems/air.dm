@@ -30,9 +30,6 @@ SUBSYSTEM_DEF(air)
 	// This is used to tell CI WHERE the edges are.
 	var/list/startup_active_edge_log = list()
 
-/datum/controller/subsystem/air/PreInit()
-	air_master = src
-
 /datum/controller/subsystem/air/Initialize(timeofday)
 	report_progress("Processing Geometry...")
 
@@ -109,7 +106,7 @@ Total Unsimulated Turfs: [world.maxx*world.maxy*world.maxz - simulated_turf_coun
 			log_and_message_admins("SSair: Was told to start a new run, but the previous run wasn't finished! currentrun.len=[currentrun.len], current_step=[current_step]")
 			resumed = TRUE
 		else
-			current_cycle++ // Begin a new air_master cycle!
+			current_cycle++ // Begin a new SSair cycle!
 			current_step = SSAIR_TURFS // Start with Step 1 of course
 
 	INTERNAL_PROCESS_STEP(SSAIR_TURFS, TRUE, process_tiles_to_update, cost_turfs, SSAIR_EDGES)
@@ -118,7 +115,7 @@ Total Unsimulated Turfs: [world.maxx*world.maxy*world.maxz - simulated_turf_coun
 	INTERNAL_PROCESS_STEP(SSAIR_HOTSPOTS, FALSE, process_active_hotspots, cost_hotspots, SSAIR_ZONES)
 	INTERNAL_PROCESS_STEP(SSAIR_ZONES, FALSE, process_zones_to_update, cost_zones, SSAIR_DONE)
 
-	// Okay, we're done! Woo! Got thru a whole air_master cycle!
+	// Okay, we're done! Woo! Got thru a whole SSair cycle!
 	if(LAZYLEN(currentrun) || current_step != SSAIR_DONE)
 		log_and_message_admins("SSair: Was not able to complete a full air cycle despite reaching the end of fire(). This shouldn't happen.")
 	else
