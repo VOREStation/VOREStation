@@ -72,18 +72,20 @@ export const AppearanceChangerEars = (props) => {
           <Button
             onClick={() => act('ear', { clear: true })}
             selected={ear_style === null}
-            >
+          >
             -- Not Set --
           </Button>
-          {sortBy(ear_styles, (e: styles) => e.name.toLowerCase()).map((ear) => (
-            <Button
-              key={ear.instance}
-              onClick={() => act('ear', { ref: ear.instance })}
-              selected={ear.name === ear_style}
-            >
-              {ear.name}
-            </Button>
-          ))}
+          {sortBy(ear_styles, (e: styles) => e.name.toLowerCase()).map(
+            (ear) => (
+              <Button
+                key={ear.instance}
+                onClick={() => act('ear', { ref: ear.instance })}
+                selected={ear.name === ear_style}
+              >
+                {ear.name}
+              </Button>
+            ),
+          )}
         </Section>
       </Stack.Item>
       <Stack.Item grow={1}>
@@ -91,18 +93,20 @@ export const AppearanceChangerEars = (props) => {
           <Button
             onClick={() => act('ear_secondary', { clear: true })}
             selected={data.ear_secondary_style === null}
-            >
+          >
             -- Not Set --
           </Button>
-          {sortBy(ear_styles, (e: styles) => e.name.toLowerCase()).map((ear) => (
-            <Button
-              key={ear.instance}
-              onClick={() => act('ear_secondary', { ref: ear.instance })}
-              selected={ear.name === ear_style}
-            >
-              {ear.name}
-            </Button>
-          ))}
+          {sortBy(ear_styles, (e: styles) => e.name.toLowerCase()).map(
+            (ear) => (
+              <Button
+                key={ear.instance}
+                onClick={() => act('ear_secondary', { ref: ear.instance })}
+                selected={ear.name === ear_style}
+              >
+                {ear.name}
+              </Button>
+            ),
+          )}
         </Section>
       </Stack.Item>
     </Stack>

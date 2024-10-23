@@ -10,9 +10,9 @@ export type Data = {
     styleHref: string;
     style: string;
     color: string | undefined;
-    colorHref: string | undefined | {"act": string, "params": Object};
+    colorHref: string | undefined | { act: string; params: Object };
     color2?: string | undefined;
-    colorHref2?: string | undefined | {"act": string, "params": Object};
+    colorHref2?: string | undefined | { act: string; params: Object };
   };
   disk: BooleanLike;
   diskStored: BooleanLike;
