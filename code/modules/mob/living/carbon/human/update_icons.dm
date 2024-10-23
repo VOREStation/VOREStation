@@ -556,7 +556,7 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 			face_standing.Crop(1, 1, face_standing.Width(), ears_s.Height())
 		face_standing.Blend(ears_s, ICON_OVERLAY)
 		// todo: these should be considered separately, but it'd take a slight refactor to how sprite acc's are rendered (or atleast ears)
-		if(ear_style?.em_block || ear_secondary_Style?.em_block)
+		if(ear_style?.em_block || ear_secondary_style?.em_block)
 			em_block_ears = em_block_image_generic(image(ears_s))
 
 	var/image/semifinal = image(face_standing, layer = BODY_LAYER+HAIR_LAYER, "pixel_y" = head_organ.head_offset)
@@ -1343,21 +1343,21 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 	if(ear_secondary_style && !(head && (head.flags_inv & BLOCKHEADHAIR)))
 		var/icon/ears_s = new/icon("icon" = ear_secondary_style.icon, "icon_state" = ear_secondary_style.icon_state)
 		if(ear_secondary_style.do_colouration)
-			ears_s.Blend(rgb(src.r_ears, src.g_ears, src.b_ears), ear_secondary_style.color_blend_mode)
+			ears_s.Blend(LAZYACCESS(ear_secondary_colors, 1), ear_secondary_style.color_blend_mode)
 		if(ear_secondary_style.extra_overlay)
 			var/icon/overlay = new/icon("icon" = ear_secondary_style.icon, "icon_state" = ear_secondary_style.extra_overlay)
-			overlay.Blend(rgb(src.r_ears2, src.g_ears2, src.b_ears2), ear_secondary_style.color_blend_mode)
+			overlay.Blend(LAZYACCESS(ear_secondary_colors, 2), ear_secondary_style.color_blend_mode)
 			ears_s.Blend(overlay, ICON_OVERLAY)
 			qdel(overlay)
 		if(ear_secondary_style.extra_overlay2) //MORE COLOURS IS BETTERER
 			var/icon/overlay = new/icon("icon" = ear_secondary_style.icon, "icon_state" = ear_secondary_style.extra_overlay2)
-			overlay.Blend(rgb(src.r_ears3, src.g_ears3, src.b_ears3), ear_secondary_style.color_blend_mode)
+			overlay.Blend(LAZYACCESS(ear_secondary_colors, 3), ear_secondary_style.color_blend_mode)
 			ears_s.Blend(overlay, ICON_OVERLAY)
 			qdel(overlay)
 		if(!rendered)
 			rendered = ears_s
 		else
-			rendered.Blend(ears_s)
+			rendered.Blend(ears_s, ICON_OVERLAY)
 
 	return rendered
 

@@ -653,7 +653,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 		. += " Style: <a href='?src=\ref[src];ear_style=1'>Select</a><br>"
 
 	var/datum/sprite_accessory/ears/ears_secondary = ear_styles[pref.ear_secondary_style]
-	. += span_bold("Ears") + "<br>"
+	. += span_bold("Horns") + "<br>"
 	if(istype(ears_secondary))
 		. += " Style: <a href='?src=\ref[src];ear_secondary_style=1'>[ears_secondary.name]</a><br>"
 		for(var/channel in 1 to min(ears_secondary.get_color_channel_count(), length(GLOB.fancy_sprite_accessory_color_channel_names)))

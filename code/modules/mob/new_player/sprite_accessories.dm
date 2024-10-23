@@ -56,7 +56,7 @@ GLOBAL_LIST_INIT(fancy_sprite_accessory_color_channel_names, list("Primary", "Se
  * Gets the number of color channels we have.
  */
 /datum/sprite_accessory/proc/get_color_channel_count()
-	return do_coloration ? 1 : 0
+	return do_colouration ? 1 : 0
 
 /*
 ////////////////////////////

@@ -22,7 +22,7 @@
  * Gets the number of color channels we have.
  */
 /datum/sprite_accessory/ears/get_color_channel_count()
-	if(!do_coloration)
+	if(!do_colouration)
 		return 0
 	. = 1
 	if(extra_overlay)
