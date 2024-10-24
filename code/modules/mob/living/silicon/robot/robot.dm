@@ -132,6 +132,7 @@
 	spark_system = new /datum/effect/effect/system/spark_spread()
 	spark_system.set_up(5, 0, src)
 	spark_system.attach(src)
+	robotact = new(src)
 
 	add_language("Robot Talk", 1)
 	add_language(LANGUAGE_GALCOM, 1)
@@ -315,6 +316,7 @@
 		revert_shell() // To get it out of the GLOB list.
 	qdel(wires)
 	wires = null
+	QDEL_NULL(robotact)
 	return ..()
 
 // CONTINUE CODING HERE
@@ -372,6 +374,7 @@
 	updatename()
 	hud_used.update_robot_modules_display()
 	notify_ai(ROBOT_NOTIFICATION_NEW_MODULE, module.name)
+	robotact?.update_static_data_for_all_viewers()
 
 /mob/living/silicon/robot/proc/update_braintype()
 	if(istype(mmi, /obj/item/mmi/digital/posibrain))
@@ -453,17 +456,6 @@
 
 	sprite_datum.handle_extra_customization(src)
 
-/mob/living/silicon/robot/proc/self_diagnosis()
-	if(!is_component_functioning("diagnosis unit"))
-		return null
-
-	var/dat = "<HEAD><TITLE>[src.name] Self-Diagnosis Report</TITLE></HEAD><BODY>\n"
-	for (var/V in components)
-		var/datum/robot_component/C = components[V]
-		dat += span_bold("[C.name]") + "<br><table><tr><td>Brute Damage:</td><td>[C.brute_damage]</td></tr><tr><td>Electronics Damage:</td><td>[C.electronics_damage]</td></tr><tr><td>Powered:</td><td>[(!C.idle_usage || C.is_powered()) ? "Yes" : "No"]</td></tr><tr><td>Toggled:</td><td>[ C.toggled ? "Yes" : "No"]</td></table><br>"
-
-	return dat
-
 /mob/living/silicon/robot/verb/toggle_lights()
 	set category = "Abilities.Silicon"
 	set name = "Toggle Lights"
@@ -472,44 +464,6 @@
 	to_chat(usr, span_filter_notice("You [lights_on ? "enable" : "disable"] your integrated light."))
 	handle_light()
 	update_icon()
-
-/mob/living/silicon/robot/verb/self_diagnosis_verb()
-	set category = "Abilities.Silicon"
-	set name = "Self Diagnosis"
-
-	if(!is_component_functioning("diagnosis unit"))
-		to_chat(src, span_red("Your self-diagnosis component isn't functioning."))
-
-	var/datum/robot_component/CO = get_component("diagnosis unit")
-	if (!cell_use_power(CO.active_usage))
-		to_chat(src, span_red("Low Power."))
-	var/dat = self_diagnosis()
-	src << browse(dat, "window=robotdiagnosis")
-
-
-/mob/living/silicon/robot/verb/toggle_component()
-	set category = "Abilities.Silicon"
-	set name = "Toggle Component"
-	set desc = "Toggle a component, conserving power."
-
-	var/list/installed_components = list()
-	for(var/V in components)
-		if(V == "power cell") continue
-		var/datum/robot_component/C = components[V]
-		if(C.installed)
-			installed_components += V
-
-	var/toggle = tgui_input_list(src, "Which component do you want to toggle?", "Toggle Component", installed_components)
-	if(!toggle)
-		return
-
-	var/datum/robot_component/C = components[toggle]
-	if(C.toggled)
-		C.toggled = 0
-		to_chat(src, span_red("You disable [C.name]."))
-	else
-		C.toggled = 1
-		to_chat(src, span_red("You enable [C.name]."))
 
 /mob/living/silicon/robot/verb/spark_plug() //So you can still sparkle on demand without violence.
 	set category = "Abilities.Silicon"
@@ -844,6 +798,7 @@
 	module = null
 	updatename("Default")
 	has_recoloured = FALSE
+	robotact?.update_static_data_for_all_viewers()
 
 /mob/living/silicon/robot/proc/ColorMate()
 	set name = "Recolour Module"
@@ -1063,42 +1018,7 @@
 			add_overlay(open_overlay)
 
 /mob/living/silicon/robot/proc/installed_modules()
-	if(weapon_lock)
-		to_chat(src, span_filter_warning("" + span_red("Weapon lock active, unable to use modules! Count:[weaponlock_time]") + ""))
-		return
-
-	if(!module)
-		pick_module()
-		return
-	var/dat = "<HEAD><TITLE>Modules</TITLE></HEAD><BODY>\n"
-	dat += {"
-	<B>Activated Modules</B>
-	<BR>
-	Module 1: [module_state_1 ? "<A HREF=?src=\ref[src];mod=\ref[module_state_1]>[module_state_1]<A>" : "No Module"]<BR>
-	Module 2: [module_state_2 ? "<A HREF=?src=\ref[src];mod=\ref[module_state_2]>[module_state_2]<A>" : "No Module"]<BR>
-	Module 3: [module_state_3 ? "<A HREF=?src=\ref[src];mod=\ref[module_state_3]>[module_state_3]<A>" : "No Module"]<BR>
-	<BR>
-	<B>Installed Modules</B><BR><BR>"}
-
-
-	for (var/obj in module.modules)
-		if (!obj)
-			dat += span_bold("Resource depleted") + "<BR>"
-		else if(activated(obj))
-			dat += text("[obj]: <B>Activated</B><BR>")
-		else
-			dat += text("[obj]: <A HREF=?src=\ref[src];act=\ref[obj]>Activate</A><BR>")
-	if (emagged || emag_items)
-		for (var/obj in module.emag)
-			if (!obj)
-				dat += span_bold("Resource depleted") + "<BR>"
-			else if(activated(obj))
-				dat += text("[obj]: <B>Activated</B><BR>")
-			else
-				dat += text("[obj]: <A HREF=?src=\ref[src];act=\ref[obj]>Activate</A><BR>")
-
-	src << browse(dat, "window=robotmod")
-
+	robotact.tgui_interact(src)
 
 /mob/living/silicon/robot/Topic(href, href_list)
 	if(..())
@@ -1111,69 +1031,6 @@
 	if (href_list["showalerts"])
 		subsystem_alarm_monitor()
 		return 1
-
-	if (href_list["mod"])
-		var/obj/item/O = locate(href_list["mod"])
-		if (istype(O) && (O.loc == src))
-			O.attack_self(src)
-		return 1
-
-	if (href_list["act"])
-		var/obj/item/O = locate(href_list["act"])
-		if (!istype(O))
-			return 1
-
-		if(!((O in src.module.modules) || (O in src.module.emag)))
-			return 1
-
-		if(activated(O))
-			to_chat(src, span_filter_notice("Already activated."))
-			return 1
-		if(!module_state_1)
-			module_state_1 = O
-			O.hud_layerise()
-			O.equipped_robot()
-			contents += O
-			if(istype(module_state_1,/obj/item/borg/sight))
-				sight_mode |= module_state_1:sight_mode
-		else if(!module_state_2)
-			module_state_2 = O
-			O.hud_layerise()
-			O.equipped_robot()
-			contents += O
-			if(istype(module_state_2,/obj/item/borg/sight))
-				sight_mode |= module_state_2:sight_mode
-		else if(!module_state_3)
-			module_state_3 = O
-			O.hud_layerise()
-			O.equipped_robot()
-			contents += O
-			if(istype(module_state_3,/obj/item/borg/sight))
-				sight_mode |= module_state_3:sight_mode
-		else
-			to_chat(src, span_filter_notice("You need to disable a module first!"))
-		installed_modules()
-		return 1
-
-	if (href_list["deact"])
-		var/obj/item/O = locate(href_list["deact"])
-		if(activated(O))
-			if(module_state_1 == O)
-				module_state_1 = null
-				contents -= O
-			else if(module_state_2 == O)
-				module_state_2 = null
-				contents -= O
-			else if(module_state_3 == O)
-				module_state_3 = null
-				contents -= O
-			else
-				to_chat(src, span_filter_notice("Module isn't activated."))
-		else
-			to_chat(src, span_filter_notice("Module isn't activated."))
-		installed_modules()
-		return 1
-	return
 
 /mob/living/silicon/robot/proc/radio_menu()
 	radio.interact(src)//Just use the radio's Topic() instead of bullshit special-snowflake code
@@ -1432,6 +1289,7 @@
 		sleep(6)
 		if(prob(50))
 			emagged = 1
+			robotact.update_static_data_for_all_viewers()
 			lawupdate = 0
 			disconnect_from_ai()
 			to_chat(user, span_filter_notice("You emag [src]'s interface."))
@@ -1712,3 +1570,12 @@
 	return (has_basic_upgrade(given_type) || has_advanced_upgrade(given_type) || has_restricted_upgrade(given_type) || has_no_prod_upgrade(given_type))
 
 #undef CYBORG_POWER_USAGE_MULTIPLIER
+
+/mob/living/silicon/robot/vv_edit_var(var_name, var_value)
+	switch(var_name)
+		if(NAMEOF(src, emagged))
+			robotact?.update_static_data_for_all_viewers()
+		if(NAMEOF(src, emag_items))
+			robotact?.update_static_data_for_all_viewers()
+
+	. = ..()

@@ -158,6 +158,7 @@
 		return 0
 
 	R.emag_items = 1
+	R.robotact.update_static_data_for_all_viewers()
 	return 1
 
 /obj/item/borg/upgrade/basic/language

@@ -18,13 +18,11 @@
 	set hidden = 1
 	toggle_module(module)
 
-/mob/living/silicon/robot/proc/uneq_active()
-	if(isnull(module_active))
+/mob/living/silicon/robot/proc/uneq_specific(obj/item/I)
+	if(!istype(I))
 		return
-	var/obj/item/I = module_active
-	for(var/datum/action/A as anything in I.actions)
-		A.Remove(src)
-	if(module_state_1 == module_active)
+
+	if(module_state_1 == I)
 		if(istype(module_state_1,/obj/item/borg/sight))
 			sight_mode &= ~module_state_1:sight_mode
 		if (client)
@@ -34,29 +32,45 @@
 		module_state_1:loc = module //So it can be used again later
 		module_state_1 = null
 		inv1.icon_state = "inv1"
-	else if(module_state_2 == module_active)
+	else if(module_state_2 == I)
 		if(istype(module_state_2,/obj/item/borg/sight))
 			sight_mode &= ~module_state_2:sight_mode
 		if (client)
 			client.screen -= module_state_2
 		contents -= module_state_2
 		module_active = null
-		module_state_2:loc = module
+		module_state_2:loc = module //So it can be used again later
 		module_state_2 = null
 		inv2.icon_state = "inv2"
-	else if(module_state_3 == module_active)
+	else if(module_state_3 == I)
 		if(istype(module_state_3,/obj/item/borg/sight))
 			sight_mode &= ~module_state_3:sight_mode
 		if (client)
 			client.screen -= module_state_3
 		contents -= module_state_3
 		module_active = null
-		module_state_3:loc = module
+		module_state_3:loc = module //So it can be used again later
 		module_state_3 = null
 		inv3.icon_state = "inv3"
+	else
+		return
+
+	for(var/datum/action/A as anything in I.actions)
+		A.Remove(src)
+
 	after_equip()
 	update_icon()
 	hud_used.update_robot_modules_display()
+
+/mob/living/silicon/robot/proc/uneq_active()
+	if(isnull(module_active))
+		return
+
+	var/obj/item/I = module_active
+	for(var/datum/action/A as anything in I.actions)
+		A.Remove(src)
+
+	uneq_specific(I)
 
 /mob/living/silicon/robot/proc/uneq_all()
 	module_active = null
@@ -99,6 +113,17 @@
 		inv3.icon_state = "inv3"
 	after_equip()
 	update_icon()
+
+// Just used for pretty display in TGUI
+/mob/living/silicon/robot/proc/get_slot_from_module(obj/item/I)
+	if(module_state_1 == I)
+		return 1
+	else if(module_state_2 == I)
+		return 2
+	else if(module_state_3 == I)
+		return 3
+	else
+		return 0
 
 /mob/living/silicon/robot/proc/activated(obj/item/O)
 	if(module_state_1 == O)
