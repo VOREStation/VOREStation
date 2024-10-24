@@ -379,12 +379,10 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 	var/area/A
 
-	if(!areaname)
-		var/list/areas = jumpable_areas()
-		var/input = tgui_input_list(usr, "Select an area:", "Ghost Teleport", areas)
-		if(!input)
-			return
-		A = areas[input]
+	if(areaname)
+		A = return_sorted_areas()[areaname]
+	else
+		A = return_sorted_areas()[tgui_input_list(usr,  "Select an area:", "Ghost Teleport", jumpable_areas())]
 		if(!A)
 			return
 
@@ -392,7 +390,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		to_chat(usr, "Not when you're not dead!")
 		return
 
-	usr.forceMove(pick(get_area_turfs(A || jumpable_areas()[areaname])))
+	usr.forceMove(pick(get_area_turfs(A)))
 	usr.on_mob_jump()
 
 /mob/observer/dead/verb/follow(mobname as anything in jumpable_mobs())
