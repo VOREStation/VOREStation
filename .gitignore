@@ -19,6 +19,7 @@ cfg/
 #Ignore everything in datafolder and subdirectories
 /data/**/*
 /tmp/**/*
+/cache/**/*
 
 #Visual studio stuff
 *.vscode/*

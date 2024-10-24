@@ -209,6 +209,13 @@
 		result = first - second
 	return result
 
+/**
+ * Removes any null entries from the list
+ * Returns TRUE if the list had nulls, FALSE otherwise
+**/
+/proc/list_clear_nulls(list/list_to_clear)
+	return (list_to_clear.RemoveAll(null) > 0)
+
 /*
 Two lists may be different (A!=B) even if they have the same elements.
 This actually tests if they have the same entries and values.
