@@ -90,7 +90,7 @@
 	var/list/data = ..()
 	data["busy"] = busy
 	var/datum/component/material_container/materials = GetComponent(/datum/component/material_container)
-	data["materials"] = materials.tgui_data()
+	data["materials"] = materials.tgui_data(user, TRUE)
 	data["mat_efficiency"] = mat_efficiency
 	return data
 
