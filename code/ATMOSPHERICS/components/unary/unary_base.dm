@@ -13,10 +13,10 @@
 
 	var/welded = 0 //defining this here for ventcrawl stuff
 
-/obj/machinery/atmospherics/unary/New()
-	..()
-	air_contents = new
+/obj/machinery/atmospherics/unary/Initialize()
+	. = ..()
 
+	air_contents = new
 	air_contents.volume = 200
 
 /obj/machinery/atmospherics/unary/init_dir()
