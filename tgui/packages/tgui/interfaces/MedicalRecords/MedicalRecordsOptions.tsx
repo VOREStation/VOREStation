@@ -36,6 +36,14 @@ export const MedicalRecordsView = (props) => {
         <MedicalRecordsViewMedical />
       </Section>
       <Section title="Actions">
+        <Button
+          icon="upload"
+          disabled={!!medical!.empty}
+          color="good"
+          onClick={() => act('sync_r')}
+        >
+          Sync Medical Record
+        </Button>
         <Button.Confirm
           icon="trash"
           disabled={!!medical!.empty}
