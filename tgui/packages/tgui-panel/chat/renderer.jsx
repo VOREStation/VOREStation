@@ -157,6 +157,7 @@ class ChatRenderer {
     this.loaded = false;
     /** @type {HTMLElement} */
     this.rootNode = null;
+    this.workingQueue = false;
     this.queue = [];
     this.messages = [];
     this.archivedMessages = [];
@@ -229,10 +230,22 @@ class ChatRenderer {
     this.tryFlushQueue();
   }
 
-  tryFlushQueue(doArchive = false) {
+  tryFlushQueue() {
     if (this.isReady() && this.queue.length > 0) {
-      this.processBatch(this.queue, { doArchive: doArchive });
-      this.queue = [];
+      this.workingQueue = true;
+
+      const chunker = () => {
+        let batch = this.queue.splice(0, 250);
+        // all messages except ours will be queued while we work through the backlog
+        this.processBatch(batch, { flush: true });
+        if (this.queue.length) {
+          setTimeout(chunker, 100);
+        } else {
+          this.workingQueue = false;
+        }
+      };
+
+      chunker();
     }
   }
 
@@ -475,10 +488,15 @@ class ChatRenderer {
   }
 
   processBatch(batch, options = {}) {
-    const { prepend, notifyListeners = true, doArchive = false } = options;
+    const {
+      prepend,
+      notifyListeners = true,
+      doArchive = false,
+      flush = false,
+    } = options;
     const now = Date.now();
     // Queue up messages until chat is ready
-    if (!this.isReady()) {
+    if (!this.isReady() || (this.workingQueue && !flush)) {
       if (prepend) {
         this.queue = [...batch, ...this.queue];
       } else {
