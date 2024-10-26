@@ -200,3 +200,14 @@
 #define ui_mech_deco2_f "WEST+2:-7, SOUTH+9"
 
 #define ui_smallquad "EAST-4:22,SOUTH:5"
+
+//Upper left (action buttons)
+#define ui_action_palette "WEST+0:23,NORTH-1:5"
+#define ui_action_palette_offset(north_offset) ("WEST+0:23,NORTH-[1+north_offset]:5")
+
+#define ui_palette_scroll "WEST+1:8,NORTH-6:28"
+#define ui_palette_scroll_offset(north_offset) ("WEST+1:8,NORTH-[6+north_offset]:28")
+
+#define ui_shadekin_display "EAST-1:28,CENTER-3:15"
+#define ui_lleill_display "EAST-1:28,CENTER-3:15"
+#define ui_xenochimera_danger_display "EAST-1:28,CENTER-3:15"

@@ -1,96 +1,130 @@
+/**
+ * # Action system
+ *
+ * A simple base for an modular behavior attached to atom or datum.
+ */
 /datum/action
+	/// The name of the action
 	var/name = "Generic Action"
-	var/desc = null
-
-	var/atom/movable/target = null
-
+	/// The description of what the action does, shown in button tooltips
+	var/desc
+	/// The target the action is attached to. If the target datum is deleted, the action is as well.
+	/// Set in New() via the proc link_to(). PLEASE set a target if you're making an action
+	var/datum/target
+	/// Where any buttons we create should be by default. Accepts screen_loc and location defines
+	var/default_button_position = SCRN_OBJ_IN_LIST
+	/// This is who currently owns the action, and most often, this is who is using the action if it is triggered
+	/// This can be the same as "target" but is not ALWAYS the same - this is set and unset with Grant() and Remove()
+	var/mob/owner
+	/// Flags that will determine of the owner / user of the action can... use the action
 	var/check_flags = NONE
-	var/processing = FALSE
-
-	var/obj/screen/movable/action_button/button = null
-
-	var/button_icon = 'icons/mob/actions.dmi'
-	var/background_icon_state = "bg_default"
-	var/buttontooltipstyle = ""
+	/// Whether the button becomes transparent when it can't be used or just reddened
 	var/transparent_when_unavailable = TRUE
+	/// List of all mobs that are viewing our action button -> A unique movable for them to view.
+	var/list/viewers = list()
+	/// If TRUE, this action button will be shown to observers / other mobs who view from this action's owner's eyes.
+	/// Used in [/mob/proc/show_other_mob_action_buttons]
+	/// (Not really, this behavior is unimplemented)
+	var/show_to_observers = TRUE
 
-	var/icon_icon = 'icons/mob/actions.dmi'
+	/// The style the button's tooltips appear to be
+	var/buttontooltipstyle = ""
+
+	/// This is the file for the BACKGROUND underlay icon of the button
+	var/background_icon = 'icons/mob/actions/backgrounds.dmi'
+	/// This is the icon state state for the BACKGROUND underlay icon of the button
+	/// (If set to ACTION_BUTTON_DEFAULT_BACKGROUND, uses the hud's default background)
+	var/background_icon_state = ACTION_BUTTON_DEFAULT_BACKGROUND
+
+	/// This is the file for the icon that appears on the button
+	var/button_icon = 'icons/mob/actions.dmi'
+	/// This is the icon state for the icon that appears on the button
 	var/button_icon_state = "default"
 
-	var/mob/owner
+	/// This is the file for any FOREGROUND overlay icons on the button (such as borders)
+	var/overlay_icon = 'icons/mob/actions/backgrounds.dmi'
+	/// This is the icon state for any FOREGROUND overlay icons on the button (such as borders)
+	var/overlay_icon_state
 
 /datum/action/New(Target)
 	link_to(Target)
-	button = new
-	button.linked_action = src
-	button.name = name
-	button.actiontooltipstyle = buttontooltipstyle
-	if(desc)
-		button.desc = desc
 
+/// Links the passed target to our action, registering any relevant signals
 /datum/action/proc/link_to(Target)
 	target = Target
-	RegisterSignal(Target, COMSIG_ATOM_UPDATED_ICON, .proc/OnUpdatedIcon)
+	RegisterSignal(target, COMSIG_PARENT_QDELETING, PROC_REF(clear_ref), override = TRUE)
+
+	if(isatom(target))
+		RegisterSignal(target, COMSIG_ATOM_UPDATED_ICON, PROC_REF(on_target_icon_update))
+
+	// if(istype(target, /datum/mind))
+	// 	RegisterSignal(target, COMSIG_MIND_TRANSFERRED, .proc/on_target_mind_swapped)
 
 /datum/action/Destroy()
 	if(owner)
 		Remove(owner)
 	target = null
-	QDEL_NULL(button)
+	QDEL_LIST_ASSOC_VAL(viewers)
 	return ..()
 
-/datum/action/proc/Grant(mob/M)
-	if(M)
-		if(owner)
-			if(owner == M)
-				return
-			Remove(owner)
-		owner = M
 
+/// Signal proc that clears any references based on the owner or target deleting
+/// If the owner's deleted, we will simply remove from them, but if the target's deleted, we will self-delete
+/datum/action/proc/clear_ref(datum/ref)
+	SIGNAL_HANDLER
+	if(ref == owner)
+		Remove(owner)
+	if(ref == target)
+		qdel(src)
 
-		// button id generation
-		var/counter = 0
-		var/bitfield = 0
-		for(var/datum/action/A as anything in M.actions)
-			if(A.name == name && A.button.id)
-				counter += 1
-				bitfield |= A.button.id
-		bitfield = !bitfield
-		var/bitflag = 1
-		for(var/i in 1 to (counter + 1))
-			if(bitfield & bitflag)
-				button.id = bitflag
-				break
-			bitflag *= 2
-
-		LAZYADD(M.actions, src)
-		if(M.client)
-			M.client.screen += button
-			button.locked = /* M.client.prefs.buttons_locked  || */ button.id ? LAZYACCESS(M.client.prefs.action_button_screen_locs, "[name]_[button.id]") : FALSE //even if its not defaultly locked we should remember we locked it before
-			button.moved = button.id ? LAZYACCESS(M.client.prefs.action_button_screen_locs, "[name]_[button.id]") : FALSE
-		M.update_action_buttons(TRUE)
-	else
+/// Grants the action to the passed mob, making it the owner
+/datum/action/proc/Grant(mob/grant_to)
+	if(!grant_to)
+		Remove(owner)
+		return
+	if(owner)
+		if(owner == grant_to)
+			return
 		Remove(owner)
 
-/datum/action/proc/Remove(mob/M)
-	if(M)
-		if(M.client)
-			M.client.screen -= button
-		button.moved = FALSE
-		LAZYREMOVE(M.actions, src)
-		M.update_action_buttons(TRUE)
-	owner = null
-	button.moved = FALSE //so the button appears in its normal position when given to another owner.
-	button.locked = FALSE
-	button.id = null
+	SEND_SIGNAL(src, COMSIG_ACTION_GRANTED, grant_to)
+	SEND_SIGNAL(grant_to, COMSIG_MOB_GRANTED_ACTION, src)
+	owner = grant_to
+	RegisterSignal(owner, COMSIG_PARENT_QDELETING, PROC_REF(clear_ref), override = TRUE)
 
-/datum/action/proc/Trigger()
+	GiveAction(grant_to)
+
+/// Remove the passed mob from being owner of our action
+/datum/action/proc/Remove(mob/remove_from)
+	SHOULD_CALL_PARENT(TRUE)
+
+	for(var/datum/hud/hud in viewers)
+		if(!hud.mymob)
+			continue
+		HideFrom(hud.mymob)
+	LAZYREMOVE(remove_from.actions, src) // We aren't always properly inserted into the viewers list, gotta make sure that action's cleared
+	viewers = list()
+
+	if(owner)
+		SEND_SIGNAL(src, COMSIG_ACTION_REMOVED, owner)
+		SEND_SIGNAL(owner, COMSIG_MOB_REMOVED_ACTION, src)
+
+		UnregisterSignal(owner, COMSIG_PARENT_QDELETING)
+		if(target == owner)
+			RegisterSignal(target, COMSIG_PARENT_QDELETING, PROC_REF(clear_ref))
+
+		owner = null
+
+/// Actually triggers the effects of the action.
+/// Called when the on-screen button is clicked, for example.
+/datum/action/proc/Trigger(trigger_flags)
 	if(!IsAvailable())
 		return FALSE
 	if(SEND_SIGNAL(src, COMSIG_ACTION_TRIGGER, src) & COMPONENT_ACTION_BLOCK_TRIGGER)
 		return FALSE
 	return TRUE
 
+/// Whether our action is currently available to use or not
 /datum/action/proc/IsAvailable()
 	if(!owner)
 		return FALSE
@@ -108,147 +142,207 @@
 			return FALSE
 	return TRUE
 
-/datum/action/proc/UpdateButtonIcon(status_only = FALSE, force = FALSE)
+/// Builds / updates all buttons we have shared or given out
+/datum/action/proc/build_all_button_icons(update_flags = ALL, force)
+	for(var/datum/hud/hud as anything in viewers)
+		build_button_icon(viewers[hud], update_flags, force)
+
+/**
+ * Builds the icon of the button.
+ *
+ * Concept:
+ * - Underlay (Background icon)
+ * - Icon (button icon)
+ * - Maptext
+ * - Overlay (Background border)
+ *
+ * button - which button we are modifying the icon of
+ * force - whether we're forcing a full update
+ */
+/datum/action/proc/build_button_icon(obj/screen/movable/action_button/button, update_flags = ALL, force = FALSE)
+	if(!button)
+		return
+
+	if(update_flags & UPDATE_BUTTON_NAME)
+		update_button_name(button, force)
+
+	if(update_flags & UPDATE_BUTTON_BACKGROUND)
+		apply_button_background(button, force)
+
+	if(update_flags & UPDATE_BUTTON_ICON)
+		apply_button_icon(button, force)
+
+	if(update_flags & UPDATE_BUTTON_OVERLAY)
+		apply_button_overlay(button, force)
+
+	if(update_flags & UPDATE_BUTTON_STATUS)
+		update_button_status(button, force)
+
+/**
+ * Updates the name and description of the button to match our action name and discription.
+ *
+ * current_button - what button are we editing?
+ * force - whether an update is forced regardless of existing status
+ */
+/datum/action/proc/update_button_name(obj/screen/movable/action_button/button, force = FALSE)
+	button.name = name
+	if(desc)
+		button.desc = desc
+
+/**
+ * Creates the background underlay for the button
+ *
+ * current_button - what button are we editing?
+ * force - whether an update is forced regardless of existing status
+ */
+/datum/action/proc/apply_button_background(obj/screen/movable/action_button/current_button, force = FALSE)
+	if(!background_icon || !background_icon_state || (current_button.active_underlay_icon_state == background_icon_state && !force))
+		return
+
+	// What icons we use for our background
+	var/list/icon_settings = list(
+		// The icon file
+		"bg_icon" = background_icon,
+		// The icon state, if is_action_active() returns FALSE
+		"bg_state" = background_icon_state,
+		// The icon state, if is_action_active() returns TRUE
+		"bg_state_active" = background_icon_state,
+	)
+
+	// If background_icon_state is ACTION_BUTTON_DEFAULT_BACKGROUND instead use our hud's action button scheme
+	if(background_icon_state == ACTION_BUTTON_DEFAULT_BACKGROUND && owner?.hud_used)
+		icon_settings = owner.hud_used.get_action_buttons_icons()
+
+	// Determine which icon to use
+	var/used_icon_key = is_action_active(current_button) ? "bg_state_active" : "bg_state"
+
+	// Make the underlay
+	current_button.underlays.Cut()
+	current_button.underlays += image(icon = icon_settings["bg_icon"], icon_state = icon_settings[used_icon_key])
+	current_button.active_underlay_icon_state = icon_settings[used_icon_key]
+
+/**
+ * Applies our button icon and icon state to the button
+ *
+ * current_button - what button are we editing?
+ * force - whether an update is forced regardless of existing status
+ */
+/datum/action/proc/apply_button_icon(obj/screen/movable/action_button/current_button, force = FALSE)
+	if(!button_icon || !button_icon_state || (current_button.icon_state == button_icon_state && !force))
+		return
+
+	current_button.icon = button_icon
+	current_button.icon_state = button_icon_state
+
+/**
+ * Applies any overlays to our button
+ *
+ * current_button - what button are we editing?
+ * force - whether an update is forced regardless of existing status
+ */
+/datum/action/proc/apply_button_overlay(obj/screen/movable/action_button/current_button, force = FALSE)
+	SEND_SIGNAL(src, COMSIG_ACTION_OVERLAY_APPLY, current_button, force)
+
+	if(!overlay_icon || !overlay_icon_state || (current_button.active_overlay_icon_state == overlay_icon_state && !force))
+		return
+
+	current_button.cut_overlay(current_button.button_overlay)
+	current_button.button_overlay = mutable_appearance(icon = overlay_icon, icon_state = overlay_icon_state)
+	current_button.add_overlay(current_button.button_overlay)
+	current_button.active_overlay_icon_state = overlay_icon_state
+
+/**
+ * Any other miscellaneous "status" updates within the action button is handled here,
+ * such as redding out when unavailable or modifying maptext.
+ *
+ * current_button - what button are we editing?
+ * force - whether an update is forced regardless of existing status
+ */
+/datum/action/proc/update_button_status(obj/screen/movable/action_button/current_button, force = FALSE)
+	if(IsAvailable())
+		current_button.color = rgb(255,255,255,255)
+	else
+		current_button.color = transparent_when_unavailable ? rgb(128,0,0,128) : rgb(128,0,0)
+
+/// Gives our action to the passed viewer.
+/// Puts our action in their actions list and shows them the button.
+/datum/action/proc/GiveAction(mob/viewer)
+	var/datum/hud/our_hud = viewer.hud_used
+	if(viewers[our_hud]) // Already have a copy of us? go away
+		return
+
+	LAZYOR(viewer.actions, src) // Move this in
+	ShowTo(viewer)
+
+/// Adds our action button to the screen of the passed viewer.
+/datum/action/proc/ShowTo(mob/viewer)
+	var/datum/hud/our_hud = viewer.hud_used
+	if(!our_hud || viewers[our_hud]) // There's no point in this if you have no hud in the first place
+		return
+
+	var/obj/screen/movable/action_button/button = create_button()
+	SetId(button, viewer)
+
+	button.our_hud = our_hud
+	viewers[our_hud] = button
+	if(viewer.client)
+		viewer.client.screen += button
+
+	button.load_position(viewer)
+	viewer.update_action_buttons()
+
+/// Removes our action from the passed viewer.
+/datum/action/proc/HideFrom(mob/viewer)
+	var/datum/hud/our_hud = viewer.hud_used
+	var/obj/screen/movable/action_button/button = viewers[our_hud]
+	LAZYREMOVE(viewer.actions, src)
 	if(button)
-		if(!status_only)
-			button.name = name
-			button.desc = desc
+		qdel(button)
 
-			// if(owner && owner.hud_used && background_icon_state == ACTION_BUTTON_DEFAULT_BACKGROUND)
-			// 	var/list/settings = owner.hud_used.get_action_buttons_icons()
-			// 	if(button.icon != settings["bg_icon"])
-			// 		button.icon = settings["bg_icon"]
-			// 	if(button.icon_state != settings["bg_state"])
-			// 		button.icon_state = settings["bg_state"]
-			// else
+/// Creates an action button movable for the passed mob, and returns it.
+/datum/action/proc/create_button()
+	var/obj/screen/movable/action_button/button = new()
+	button.linked_action = src
+	build_button_icon(button, ALL, TRUE)
+	return button
 
-			if(button.icon != button_icon)
-				button.icon = button_icon
-			if(button.icon_state != background_icon_state)
-				button.icon_state = background_icon_state
+/datum/action/proc/SetId(obj/screen/movable/action_button/our_button, mob/owner)
+	//button id generation
+	var/bitfield = 0
+	for(var/datum/action/action in owner.actions)
+		if(action == src) // This could be us, which is dumb
+			continue
+		var/obj/screen/movable/action_button/button = action.viewers[owner.hud_used]
+		if(action.name == name && button.id)
+			bitfield |= button.id
 
-			ApplyIcon(button, force)
+	bitfield = ~bitfield // Flip our possible ids, so we can check if we've found a unique one
+	for(var/i in 0 to 23) // We get 24 possible bitflags in dm
+		var/bitflag = 1 << i // Shift us over one
+		if(bitfield & bitflag)
+			our_button.id = bitflag
+			return
 
-		if(!IsAvailable())
-			button.color = transparent_when_unavailable ? rgb(128, 0, 0, 128) : rgb(128, 0, 0)
-		else
-			button.color = rgb(255, 255, 255, 255)
-			return TRUE
-
-/datum/action/proc/ApplyIcon(obj/screen/movable/action_button/current_button, force = FALSE)
-	if(icon_icon && button_icon_state && ((current_button.button_icon_state != button_icon_state) || force))
-		current_button.cut_overlays(TRUE)
-		current_button.add_overlay(mutable_appearance(icon_icon, button_icon_state))
-		current_button.button_icon_state = button_icon_state
-
-// Currently never triggered
-/datum/action/proc/OnUpdatedIcon()
+/// Updates our buttons if our target's icon was updated
+/// Still never triggered lmao
+/datum/action/proc/on_target_icon_update(datum/source, updates, updated)
 	SIGNAL_HANDLER
-	UpdateButtonIcon()
 
-//Presets for item actions
-/datum/action/item_action
-	check_flags = AB_CHECK_RESTRAINED|AB_CHECK_STUNNED|AB_CHECK_LYING|AB_CHECK_CONSCIOUS
-	button_icon_state = null
-	// If you want to override the normal icon being the item
-	// then change this to an icon state
+	var/update_flag = NONE
+	var/forced = FALSE
+	if(updates & UPDATE_ICON_STATE)
+		update_flag |= UPDATE_BUTTON_ICON
+		forced = TRUE
+	if(updates & UPDATE_OVERLAYS)
+		update_flag |= UPDATE_BUTTON_OVERLAY
+		forced = TRUE
+	if(updates & (UPDATE_NAME|UPDATE_DESC))
+		update_flag |= UPDATE_BUTTON_NAME
+	// Status is not relevant, and background is not relevant. Neither will change
 
-/datum/action/item_action/New(Target)
-	. = ..()
-	var/obj/item/I = target
-	LAZYADD(I.actions, src)
+	// Force the update if an icon state or overlay change was done
+	build_all_button_icons(update_flag, forced)
 
-/datum/action/item_action/Destroy()
-	var/obj/item/I = target
-	LAZYREMOVE(I.actions, src)
-	return ..()
-
-/datum/action/item_action/Trigger()
-	if(!..())
-		return 0
-	if(target)
-		var/obj/item/I = target
-		I.ui_action_click(owner, src.type)
-	return 1
-
-/datum/action/item_action/ApplyIcon(obj/screen/movable/action_button/current_button, force)
-	if(button_icon && button_icon_state)
-		// If set, use the custom icon that we set instead
-		// of the item appearence
-		return ..()
-	else if(target && ((current_button.appearance_cache != target.appearance) || force))
-		var/mutable_appearance/ma = new(target.appearance)
-		ma.plane = FLOAT_PLANE
-		ma.layer = FLOAT_LAYER
-		ma.pixel_x = 0
-		ma.pixel_y = 0
-
-		current_button.cut_overlays()
-		current_button.add_overlay(ma)
-		current_button.appearance_cache = target.appearance
-
-/datum/action/item_action/hands_free
-	check_flags = AB_CHECK_CONSCIOUS
-
-
-/datum/action/innate
-	check_flags = NONE
-	var/active = 0
-
-/datum/action/innate/Trigger()
-	if(!..())
-		return 0
-	if(!active)
-		Activate()
-	else
-		Deactivate()
-	return 1
-
-/datum/action/innate/proc/Activate()
-	return
-
-/datum/action/innate/proc/Deactivate()
-	return
-
-//Preset for an action with a cooldown
-/datum/action/cooldown
-	check_flags = NONE
-	transparent_when_unavailable = FALSE
-	var/cooldown_time = 0
-	var/next_use_time = 0
-
-/datum/action/cooldown/New()
-	..()
-	button.maptext = ""
-	button.maptext_x = 8
-	button.maptext_y = 0
-	button.maptext_width = 24
-	button.maptext_height = 12
-
-/datum/action/cooldown/IsAvailable()
-	return next_use_time <= world.time
-
-/datum/action/cooldown/proc/StartCooldown()
-	next_use_time = world.time + cooldown_time
-	button.maptext = span_maptext(span_bold("[round(cooldown_time/10, 0.1)]"))
-	UpdateButtonIcon()
-	START_PROCESSING(SSfastprocess, src)
-
-/datum/action/cooldown/process()
-	if(!owner)
-		button.maptext = ""
-		STOP_PROCESSING(SSfastprocess, src)
-	var/timeleft = max(next_use_time - world.time, 0)
-	if(timeleft == 0)
-		button.maptext = ""
-		UpdateButtonIcon()
-		STOP_PROCESSING(SSfastprocess, src)
-	else
-		button.maptext = span_maptext(span_bold("[round(timeleft/10, 0.1)]"))
-
-/datum/action/cooldown/Grant(mob/M)
-	..()
-	if(owner)
-		UpdateButtonIcon()
-		if(next_use_time > world.time)
-			START_PROCESSING(SSfastprocess, src)
+/// Checks if our action is actively selected. Used for selecting icons primarily.
+/datum/action/proc/is_action_active(obj/screen/movable/action_button/current_button)
+	return FALSE

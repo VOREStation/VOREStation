@@ -55,7 +55,7 @@
 	if (ismob(usr))
 		var/mob/M = usr
 		M.update_inv_back()
-		M.update_action_buttons_icon()
+		M.update_mob_action_buttons()
 
 	to_chat(usr, "You toggle the thrusters [on? "on":"off"].")
 
