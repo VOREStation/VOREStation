@@ -38,3 +38,5 @@ package-lock.json
 #These get built by some automatic process
 tgui/public/tgui.bundle.css
 tgui/public/tgui.bundle.js
+#ignore tracy dll
+prof.dll

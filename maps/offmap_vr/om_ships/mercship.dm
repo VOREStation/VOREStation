@@ -8,7 +8,7 @@
 /datum/map_template/om_ships/syndicatecarrier
 	name = "OM Ship - Generic Cruiser (New Z)"
 	desc = "Mercenary Ship."
-	mappath = 'mercship.dmm'
+	mappath = "maps/offmap_vr/om_ships/mercship.dmm"
 
 	// The ship's area(s)
 /area/ship/mercenary

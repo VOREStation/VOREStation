@@ -266,7 +266,6 @@ var/list/gamemode_cache = list()
 	var/static/radiation_material_resistance_divisor = 1
 	var/static/radiation_lower_limit = 0.35 //If the radiation level for a turf would be below this, ignore it.
 
-	var/static/random_submap_orientation = FALSE // If true, submaps loaded automatically can be rotated.
 	var/static/autostart_solars = FALSE // If true, specifically mapped in solar control computers will set themselves up when the round starts.
 
 	// New shiny SQLite stuff.
@@ -942,9 +941,6 @@ var/list/gamemode_cache = list()
 
 				if("ipr_minimum_age")
 					config.ipr_minimum_age = text2num(value)
-
-				if("random_submap_orientation")
-					config.random_submap_orientation = 1
 
 				if("autostart_solars")
 					config.autostart_solars = TRUE

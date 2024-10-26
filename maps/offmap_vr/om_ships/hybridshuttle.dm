@@ -7,7 +7,7 @@
 /datum/map_template/om_ships/hybrid
 	name = "OM Ship - Hybrid Shuttle"
 	desc = "A prototype human/alien tech hybrid shuttle."
-	mappath = 'hybridshuttle.dmm'
+	mappath = "maps/offmap_vr/om_ships/hybridshuttle.dmm"
 	annihilate = TRUE
 
 // The shuttle's area(s)

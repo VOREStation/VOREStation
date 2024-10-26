@@ -15,6 +15,7 @@
 
 /datum/random_map/automata/generate_map()
 	map = verdigris_generate_automata(limit_x, limit_y, iterations, initial_wall_cell)
+	return
 
 /datum/random_map/automata/get_additional_spawns(value, turf/T)
 	return

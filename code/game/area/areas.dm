@@ -1,5 +1,7 @@
 // Areas.dm
 
+GLOBAL_LIST_EMPTY(areas_by_type)
+
 /area
 	var/fire = null
 	var/atmos = 1
@@ -54,6 +56,11 @@
 	var/forbid_singulo = FALSE // If true singulo will not move in.
 	var/no_spoilers = FALSE // If true, makes it much more difficult to see what is inside an area with things like mesons.
 	var/soundproofed = FALSE // If true, blocks sounds from other areas and prevents hearers on other areas from hearing the sounds within.
+
+/area/New()
+	// Used by the maploader, this must be done in New, not init
+	GLOB.areas_by_type[type] = src
+	return ..()
 
 /area/Initialize()
 	. = ..()

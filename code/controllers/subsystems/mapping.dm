@@ -5,7 +5,6 @@ SUBSYSTEM_DEF(mapping)
 	flags = SS_NO_FIRE
 
 	var/list/map_templates = list()
-	var/dmm_suite/maploader = null
 	var/obj/effect/landmark/engine_loader/engine_loader
 	var/list/shelter_templates = list()
 
@@ -17,7 +16,6 @@ SUBSYSTEM_DEF(mapping)
 	if(subsystem_initialized)
 		return
 	world.max_z_changed() // This is to set up the player z-level list, maxz hasn't actually changed (probably)
-	maploader = new()
 	load_map_templates()
 
 	if(CONFIG_GET(flag/generate_map))
@@ -173,3 +171,10 @@ SUBSYSTEM_DEF(mapping)
 	if (!Debug2)
 		return // Only show up in stat panel if debugging is enabled.
 	. = ..()
+
+// VOREStation Edit: BAPI-dmm
+/datum/controller/subsystem/mapping/Shutdown()
+	// Force bapi to drop it's cached maps on server shutdown.
+	_bapidmm_clear_map_data()
+	fdel("data/baked_dmm_files/")
+// VOREStation Edit End
