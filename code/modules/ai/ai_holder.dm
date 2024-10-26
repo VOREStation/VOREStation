@@ -64,7 +64,7 @@
 										// consider sleeping the AI instead.
 	var/process_flags = 0				// Where we're processing, see flag defines.
 	var/list/snapshot = null			// A list used in mass-editing of AI datums, holding a snapshot of the 'before' state
-	var/list/static/fastprocess_stances = list(
+	var/static/list/fastprocess_stances = list(
 		STANCE_ALERT,
 		STANCE_APPROACH,
 		STANCE_FIGHT,
@@ -75,7 +75,7 @@
 		STANCE_FLEE,
 		STANCE_DISABLED
 	)
-	var/list/static/noprocess_stances = list(
+	var/static/list/noprocess_stances = list(
 		STANCE_SLEEP
 	)
 
