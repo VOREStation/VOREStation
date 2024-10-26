@@ -64,9 +64,9 @@
 		to_chat(user, span_notice("\The [I] does <b>[DPS]</b> damage per second."))
 		if(DPS > 0)
 			to_chat(user, span_notice("At your maximum health ([user.getMaxHealth()]), it would take approximately;"))
-			to_chat(user, span_notice("[(user.getMaxHealth() - config.health_threshold_softcrit) / DPS] seconds to softcrit you. ([config.health_threshold_softcrit] health)"))
-			to_chat(user, span_notice("[(user.getMaxHealth() - config.health_threshold_crit) / DPS] seconds to hardcrit you. ([config.health_threshold_crit] health)"))
-			to_chat(user, span_notice("[(user.getMaxHealth() - config.health_threshold_dead) / DPS] seconds to kill you. ([config.health_threshold_dead] health)"))
+			to_chat(user, span_notice("[(user.getMaxHealth() - CONFIG_GET(number/health_threshold_softcrit)) / DPS] seconds to softcrit you. ([CONFIG_GET(number/health_threshold_softcrit)] health)"))
+			to_chat(user, span_notice("[(user.getMaxHealth() - CONFIG_GET(number/health_threshold_crit)) / DPS] seconds to hardcrit you. ([CONFIG_GET(number/health_threshold_crit)] health)"))
+			to_chat(user, span_notice("[(user.getMaxHealth() - CONFIG_GET(number/health_threshold_dead)) / DPS] seconds to kill you. ([CONFIG_GET(number/health_threshold_dead)] health)"))
 
 	else
 		to_chat(user, span_warning("You need to be a living mob, with hands, and for an object to be in your active hand, to use this verb."))
@@ -206,9 +206,9 @@
 	set category = "Server"
 	set name = "Toggle Aliens"
 
-	config.aliens_allowed = !config.aliens_allowed
-	log_admin("[key_name(src)] has turned aliens [config.aliens_allowed ? "on" : "off"].")
-	message_admins("[key_name_admin(src)] has turned aliens [config.aliens_allowed ? "on" : "off"].", 0)
+	CONFIG_SET(flag/aliens_allowed, !CONFIG_GET(flag/aliens_allowed))
+	log_admin("[key_name(src)] has turned aliens [CONFIG_GET(flag/aliens_allowed) ? "on" : "off"].")
+	message_admins("[key_name_admin(src)] has turned aliens [CONFIG_GET(flag/aliens_allowed) ? "on" : "off"].", 0)
 	feedback_add_details("admin_verb","TAL") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/cmd_display_del_log()
@@ -217,7 +217,7 @@
 	set desc = "Display del's log of everything that's passed through it."
 
 	if(!check_rights(R_DEBUG))	return
-	var/list/dellog = list("<B>List of things that have gone through qdel this round</B><BR><BR><ol>")
+	var/list/dellog = list(span_bold("List of things that have gone through qdel this round") + "<BR><BR><ol>")
 	sortTim(SSgarbage.items, cmp=/proc/cmp_qdel_item_time, associative = TRUE)
 	for(var/path in SSgarbage.items)
 		var/datum/qdel_item/I = SSgarbage.items[path]
@@ -393,31 +393,31 @@
 	var/list/areas_without_intercom = areas_all - areas_with_intercom
 	var/list/areas_without_camera = areas_all - areas_with_camera
 
-	to_world("<b>AREAS WITHOUT AN APC:</b>")
+	to_world(span_bold("AREAS WITHOUT AN APC:"))
 	for(var/areatype in areas_without_APC)
 		to_world("* [areatype]")
 
-	to_world("<b>AREAS WITHOUT AN AIR ALARM:</b>")
+	to_world(span_bold("AREAS WITHOUT AN AIR ALARM:"))
 	for(var/areatype in areas_without_air_alarm)
 		to_world("* [areatype]")
 
-	to_world("<b>AREAS WITHOUT A REQUEST CONSOLE:</b>")
+	to_world(span_bold("AREAS WITHOUT A REQUEST CONSOLE:"))
 	for(var/areatype in areas_without_RC)
 		to_world("* [areatype]")
 
-	to_world("<b>AREAS WITHOUT ANY LIGHTS:</b>")
+	to_world(span_bold("AREAS WITHOUT ANY LIGHTS:"))
 	for(var/areatype in areas_without_light)
 		to_world("* [areatype]")
 
-	to_world("<b>AREAS WITHOUT A LIGHT SWITCH:</b>")
+	to_world(span_bold("AREAS WITHOUT A LIGHT SWITCH:"))
 	for(var/areatype in areas_without_LS)
 		to_world("* [areatype]")
 
-	to_world("<b>AREAS WITHOUT ANY INTERCOMS:</b>")
+	to_world(span_bold("AREAS WITHOUT ANY INTERCOMS:"))
 	for(var/areatype in areas_without_intercom)
 		to_world("* [areatype]")
 
-	to_world("<b>AREAS WITHOUT ANY CAMERAS:</b>")
+	to_world(span_bold("AREAS WITHOUT ANY CAMERAS:"))
 	for(var/areatype in areas_without_camera)
 		to_world("* [areatype]")
 

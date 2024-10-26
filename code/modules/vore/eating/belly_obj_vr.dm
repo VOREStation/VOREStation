@@ -115,6 +115,7 @@
 	var/tmp/list/items_preserved = list()		// Stuff that wont digest so we shouldn't process it again.
 	var/tmp/recent_sound = FALSE				// Prevent audio spam
 	var/tmp/drainmode = DR_NORMAL				// Simply drains the prey then does nothing.
+	var/tmp/digested_prey_count = 0				// Amount of prey that have been digested
 
 	var/item_digest_mode = IM_DIGEST_FOOD	// Current item-related mode from item_digest_modes
 	var/contaminates = FALSE					// Whether the belly will contaminate stuff
@@ -266,7 +267,7 @@
 	if(istype(thing, /mob/observer)) //Ports CHOMPStation PR#3072
 		if(desc) //Ports CHOMPStation PR#4772
 			//Allow ghosts see where they are if they're still getting squished along inside.
-			to_chat(thing, span_vnotice("<B>[belly_format_string(desc, thing)]</B>"))
+			to_chat(thing, span_vnotice(span_bold("[belly_format_string(desc, thing)]")))
 
 	if(OldLoc in contents)
 		return //Someone dropping something (or being stripdigested)
@@ -299,7 +300,7 @@
 		//Was there a description text? If so, it's time to format it!
 		if(raw_desc)
 			//Replace placeholder vars
-			to_chat(M, span_vnotice("<B>[belly_format_string(raw_desc, M)]</B>"))
+			to_chat(M, span_vnotice(span_bold("[belly_format_string(raw_desc, M)]")))
 
 		var/taste
 		if(can_taste && (taste = M.get_taste_message(FALSE)))
@@ -460,7 +461,7 @@
 
 	//Print notifications/sound if necessary
 	if(!silent && count)
-		owner.visible_message(span_vnotice("[span_green("<b>[owner] [release_verb] everything from their [lowertext(name)]!</b>")]"), range = privacy_range)
+		owner.visible_message(span_vnotice(span_green(span_bold("[owner] [release_verb] everything from their [lowertext(name)]!"))), range = privacy_range)
 		var/soundfile
 		if(!fancy_vore)
 			soundfile = classic_release_sounds[release_sound]
@@ -546,7 +547,7 @@
 
 	//Print notifications/sound if necessary
 	if(!silent && !isobserver(M))
-		owner.visible_message(span_vnotice("[span_green("<b>[owner] [release_verb] [M] from their [lowertext(name)]!</b>")]"),range = privacy_range)
+		owner.visible_message(span_vnotice(span_green(span_bold("[owner] [release_verb] [M] from their [lowertext(name)]!"))),range = privacy_range)
 		var/soundfile
 		if(!fancy_vore)
 			soundfile = classic_release_sounds[release_sound]
@@ -594,6 +595,7 @@
 // Default implementation calls M.death() and removes from internal contents.
 // Indigestable items are removed, and M is deleted.
 /obj/belly/proc/digestion_death(mob/living/M)
+	digested_prey_count++
 	add_attack_logs(owner, M, "Digested in [lowertext(name)]")
 
 	// If digested prey is also a pred... anyone inside their bellies gets moved up.
@@ -601,7 +603,7 @@
 		M.release_vore_contents(include_absorbed = TRUE, silent = TRUE)
 
 	//Drop all items into the belly.
-	if(config.items_survive_digestion)
+	if(CONFIG_GET(flag/items_survive_digestion))
 		for(var/obj/item/W in M)
 			if(istype(W, /obj/item/organ/internal/mmi_holder/posibrain))
 				var/obj/item/organ/internal/mmi_holder/MMI = W
@@ -681,7 +683,7 @@
 
 	if(absorbed_desc)
 		//Replace placeholder vars
-		to_chat(M, span_vnotice("<B>[belly_format_string(absorbed_desc, M)]</B>"))
+		to_chat(M, span_vnotice(span_bold("[belly_format_string(absorbed_desc, M)]")))
 
 	//Update owner
 	owner.updateVRPanel()
@@ -709,7 +711,7 @@
 	to_chat(owner, span_vnotice(belly_format_string(unabsorb_messages_owner, M, use_absorbed_count = TRUE)))
 
 	if(desc)
-		to_chat(M, span_vnotice("<B>[belly_format_string(desc, M)]</B>"))
+		to_chat(M, span_vnotice(span_bold("[belly_format_string(desc, M)]")))
 
 	//Update owner
 	owner.updateVRPanel()

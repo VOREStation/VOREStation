@@ -42,15 +42,14 @@
 		/decl/emote/visible/floorspin
 	)
 /mob/living/simple_mob/slime/promethean/Initialize(mapload, null)
-	//verbs -= /mob/living/proc/ventcrawl
-	verbs += /mob/living/simple_mob/slime/promethean/proc/prommie_blobform
-	verbs += /mob/living/proc/set_size
-	verbs += /mob/living/proc/hide
-	verbs += /mob/living/simple_mob/proc/animal_nom
-	verbs += /mob/living/proc/shred_limb
-	verbs += /mob/living/simple_mob/slime/promethean/proc/toggle_expand
-	verbs += /mob/living/simple_mob/slime/promethean/proc/prommie_select_colour
-	verbs += /mob/living/simple_mob/slime/promethean/proc/toggle_shine
+	add_verb(src, /mob/living/simple_mob/slime/promethean/proc/prommie_blobform)
+	add_verb(src, /mob/living/proc/set_size)
+	add_verb(src, /mob/living/proc/hide)
+	add_verb(src, /mob/living/simple_mob/proc/animal_nom)
+	add_verb(src, /mob/living/proc/shred_limb)
+	add_verb(src, /mob/living/simple_mob/slime/promethean/proc/toggle_expand)
+	add_verb(src, /mob/living/simple_mob/slime/promethean/proc/prommie_select_colour)
+	add_verb(src, /mob/living/simple_mob/slime/promethean/proc/toggle_shine)
 	update_mood()
 	if(rad_glow)
 		rad_glow = CLAMP(rad_glow,0,250)
@@ -81,10 +80,10 @@
 		QDEL_NULL(stored_blob)
 	return ..()
 
-/mob/living/simple_mob/slime/promethean/Stat()
-	..()
+/mob/living/simple_mob/slime/promethean/update_misc_tabs()
+	. = ..()
 	if(humanform)
-		humanform.species.Stat(humanform)
+		humanform.species.update_misc_tabs(src)
 
 /mob/living/simple_mob/slime/promethean/handle_special() // Should disable default slime healing, we'll use nutrition based heals instead.
 	if(rad_glow)
@@ -264,11 +263,11 @@
 
 	if(is_wide)
 		is_wide = FALSE
-		src.visible_message("<b>[src.name]</b> pulls together, compacting themselves into a small ball!")
+		src.visible_message(span_infoplain(span_bold("[src.name]") + " pulls together, compacting themselves into a small ball!"))
 		update_icon()
 	else
 		is_wide = TRUE
-		src.visible_message("<b>[src.name]</b> flows outwards, their goop expanding!")
+		src.visible_message(span_infoplain(span_bold("[src.name]") + " flows outwards, their goop expanding!"))
 		update_icon()
 
 /mob/living/simple_mob/slime/promethean/proc/toggle_shine()
@@ -284,11 +283,11 @@
 
 	if(shiny)
 		shiny = FALSE
-		src.visible_message("<b>[src.name]</b> dulls their shine, becoming more translucent.")
+		src.visible_message(span_infoplain(span_bold("[src.name]") + " dulls their shine, becoming more translucent."))
 		update_icon()
 	else
 		shiny = TRUE
-		src.visible_message("<b>[src.name]</b> glistens and sparkles, shining brilliantly.")
+		src.visible_message(span_infoplain(span_bold("[src.name]") + " glistens and sparkles, shining brilliantly."))
 		update_icon()
 
 /mob/living/simple_mob/slime/promethean/proc/prommie_select_colour()
@@ -409,14 +408,14 @@
 		new_hat.forceMove(src)
 
 	blob.update_icon()
-	blob.verbs -= /mob/living/proc/ventcrawl // Absolutely not.
-	blob.verbs -= /mob/living/simple_mob/proc/set_name // We already have a name.
+	remove_verb(blob, /mob/living/proc/ventcrawl) // Absolutely not.
+	remove_verb(blob, /mob/living/simple_mob/proc/set_name) // We already have a name.
 	temporary_form = blob
 	//Mail them to nullspace
 	moveToNullspace()
 
 	//Message
-	blob.visible_message("<b>[src.name]</b> squishes into their true form!")
+	blob.visible_message(span_infoplain(span_bold("[src.name]") + " squishes into their true form!"))
 
 	//Transfer vore organs
 	blob.vore_organs = vore_organs
@@ -449,7 +448,7 @@
 	stop_pulling()
 
 	//Message
-	blob.visible_message("<b>[src.name]</b> pulls together, forming a humanoid shape!")
+	blob.visible_message(span_infoplain(span_bold("[src.name]") + " pulls together, forming a humanoid shape!"))
 
 	//Record where they should go
 	var/atom/reform_spot = blob.drop_location()

@@ -55,7 +55,7 @@ export const MESSAGE_TYPES = [
     type: MESSAGE_TYPE_SYSTEM,
     name: 'System Messages',
     description: 'Messages from your client, always enabled',
-    selector: '.boldannounce',
+    selector: '.boldannounce, .world, .span_filter_system, .sinister',
     important: true,
   },
   // Basic types
@@ -75,7 +75,7 @@ export const MESSAGE_TYPES = [
     type: MESSAGE_TYPE_LOCALCHAT,
     name: 'Local',
     description: 'In-character local messages (say, emote, etc)',
-    selector: '.say, .emote, .emotesubtle',
+    selector: '.say, .emote, .emotesubtle, .pnarrate, .filter_say',
   },
   {
     type: MESSAGE_TYPE_PLOCALCHAT,
@@ -113,14 +113,14 @@ export const MESSAGE_TYPES = [
     name: 'Info',
     description: 'Non-urgent messages from the game and items',
     selector:
-      '.notice:not(.pm):not(.mentor), .adminnotice:not(.pm), .info, .sinister, .cult, .alium, .infoplain, .announce, .hear, .smallnotice, .holoparasite, .boldnotice, .suicide, .unconscious',
+      '.notice:not(.pm):not(.mentor), .adminnotice:not(.pm), .info, .cult, .alium, .infoplain, .announce, .hear, .smallnotice, .holoparasite, .boldnotice, .suicide, .unconscious, .filter_notice',
   },
   {
     type: MESSAGE_TYPE_WARNING,
     name: 'Warnings',
     description: 'Urgent messages from the game and items',
     selector:
-      '.warning:not(.pm):not(.mentor), .boldwarning:not(.pm):not(.mentor), .critical, .userdanger, .alertsyndie, .warningplain, .sinister',
+      '.warning:not(.pm):not(.mentor), .boldwarning:not(.pm):not(.mentor), .critical, .userdanger, .alertsyndie, .warningplain, .sinister, .filter_warning',
   },
   {
     type: MESSAGE_TYPE_DEADCHAT,
@@ -145,7 +145,7 @@ export const MESSAGE_TYPES = [
     type: MESSAGE_TYPE_ADMINPM,
     name: 'Admin PMs',
     description: 'Messages to/from admins (adminhelp)',
-    selector: '.pm, .adminhelp',
+    selector: '.pm, .adminhelp, .filter_pm',
   },
   {
     type: MESSAGE_TYPE_MENTORPM,
@@ -157,7 +157,8 @@ export const MESSAGE_TYPES = [
     type: MESSAGE_TYPE_COMBAT,
     name: 'Combat Log',
     description: 'Urist McTraitor has stabbed you with a knife!',
-    selector: '.danger, .attack, .disarm, .passive, .bolddanger',
+    selector:
+      '.danger, .attack, .disarm, .passive, .bolddanger, .filter_combat',
   },
   {
     type: MESSAGE_TYPE_CHATPRINT,
@@ -209,7 +210,6 @@ export const MESSAGE_TYPES = [
     type: MESSAGE_TYPE_ADMINLOG,
     name: 'Admin Log',
     description: 'ADMIN LOG: Urist McAdmin has jumped to coordinates X, Y, Z',
-    selector: '.log_message, .filter_adminlog',
     admin: true,
   },
   {
@@ -222,8 +222,6 @@ export const MESSAGE_TYPES = [
     type: MESSAGE_TYPE_DEBUG,
     name: 'Debug Log',
     description: 'DEBUG: SSPlanets subsystem Recover().',
-    selector:
-      '.filter_debuglogs, .debug_error, .debug_warning, .debug_info, .debug_debug, .debug_trace',
     admin: true,
   },
 ];

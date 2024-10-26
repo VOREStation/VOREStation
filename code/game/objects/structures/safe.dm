@@ -48,7 +48,7 @@ FLOOR SAFES
 		if(tumbler_2_pos == tumbler_2_open)
 			to_chat(user, span_notice("You hear a [pick("tink", "krink", "plink")] from \the [src]."))
 	if(tumbler_1_pos == tumbler_1_open && tumbler_2_pos == tumbler_2_open)
-		if(user) visible_message("<b>[pick("Spring", "Sprang", "Sproing", "Clunk", "Krunk")]!</b>")
+		if(user) visible_message(span_infoplain(span_bold("[pick("Spring", "Sprang", "Sproing", "Clunk", "Krunk")]!")))
 		return 1
 	return 0
 

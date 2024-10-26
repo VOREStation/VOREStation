@@ -9,6 +9,8 @@
 	var/emagged = 0
 	var/insults = 0
 	var/list/insultmsg = list("FUCK EVERYONE!", "I'M A TERRORIST!", "ALL SECURITY TO SHOOT ME ON SIGHT!", "I HAVE A BOMB!", "CAPTAIN IS A COMDOM!", "GLORY TO ALMACH!")
+	pickup_sound = 'sound/items/pickup/device.ogg'
+	drop_sound = 'sound/items/drop/device.ogg'
 
 /obj/item/megaphone/proc/can_broadcast(var/mob/living/user)
 	if(user.client)
@@ -33,12 +35,12 @@
 	if(emagged)
 		if(insults)
 			var/insult = pick(insultmsg)
-			user.audible_message("<B>[user.GetVoice()]</B>[user.GetAltName()] broadcasts, <FONT size=3>\"[insult]\"</FONT>", runemessage = insult)
+			user.audible_message(span_infoplain(span_bold("[user.GetVoice()]") + "[user.GetAltName()] broadcasts, " + span_large("\"[insult]\"")), runemessage = insult)
 			insults--
 		else
 			to_chat(user, span_warning("*BZZZZzzzzzt*"))
 	else
-		user.audible_message("<B>[user.GetVoice()]</B>[user.GetAltName()] broadcasts, <FONT size=3>\"[message]\"</FONT>", runemessage = message)
+		user.audible_message(span_infoplain(span_bold("[user.GetVoice()]") + "[user.GetAltName()] broadcasts, " + span_large("\"[message]\"")), runemessage = message)
 
 /obj/item/megaphone/attack_self(var/mob/living/user)
 	var/message = sanitize(tgui_input_text(user, "Shout a message?", "Megaphone", null))
@@ -134,7 +136,7 @@
 	if(emagged)
 		if(insults)
 			var/insult = pick(insultmsg)
-			user.audible_message("<B>[user.GetVoice()]</B>[user.GetAltName()] broadcasts, <FONT size=[broadcast_size] face='[broadcast_font]' color='[broadcast_color]'>\"[insult]\"</FONT>", runemessage = insult)
+			user.audible_message(span_bold("[user.GetVoice()]") + "[user.GetAltName()] broadcasts, <FONT size=[broadcast_size] face='[broadcast_font]' color='[broadcast_color]'>\"[insult]\"</FONT>", runemessage = insult)
 			if(broadcast_size >= 11)
 				var/turf/T = get_turf(user)
 				playsound(src, 'sound/items/AirHorn.ogg', 100, 1)
@@ -163,4 +165,4 @@
 					qdel(src)
 					return
 	else
-		user.audible_message("<B>[user.GetVoice()]</B>[user.GetAltName()] broadcasts, <FONT size=[broadcast_size] face='[broadcast_font]' color='[broadcast_color]'>\"[message]\"</FONT>", runemessage = message)
+		user.audible_message(span_bold("[user.GetVoice()]") + "[user.GetAltName()] broadcasts, <FONT size=[broadcast_size] face='[broadcast_font]' color='[broadcast_color]'>\"[message]\"</FONT>", runemessage = message)

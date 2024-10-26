@@ -7,7 +7,7 @@
 /datum/map_template/om_ships/curabiturmedical
 	name = "OM Ship - Curabitur Rescue Shuttle (new Z)"
 	desc = "A small corporate rescue shuttle."
-	mappath = 'curashuttle.dmm'
+	mappath = "maps/offmap_vr/om_ships/curashuttle.dmm"
 	annihilate = TRUE
 
 // The shuttle's area(s)

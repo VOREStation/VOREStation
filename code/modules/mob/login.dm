@@ -4,7 +4,7 @@
 	lastKnownIP	= client.address
 	computer_id	= client.computer_id
 	log_access_in(client)
-	if(config.log_access)
+	if(CONFIG_GET(flag/log_access))
 		for(var/mob/M in player_list)
 			if(M == src)	continue
 			if( M.key && (M.key != key) )
@@ -14,14 +14,14 @@
 				if( (client.connection != "web") && (M.computer_id == client.computer_id) )
 					if(matches)	matches += " and "
 					matches += "ID ([client.computer_id])"
-					if(!config.disable_cid_warn_popup)
+					if(!CONFIG_GET(flag/disable_cid_warn_popup))
 						tgui_alert_async(usr, "You appear to have logged in with another key this round, which is not permitted. Please contact an administrator if you believe this message to be in error.")
 				if(matches)
 					if(M.client)
-						message_admins("[span_red("<B>Notice: </B>")][span_blue("[key_name_admin(src)] has the same [matches] as [key_name_admin(M)].")]", 1)
+						message_admins("[span_red(span_bold("Notice:"))] [span_blue("[key_name_admin(src)] has the same [matches] as [key_name_admin(M)].")]", 1)
 						log_adminwarn("Notice: [key_name(src)] has the same [matches] as [key_name(M)].")
 					else
-						message_admins("[span_red("<B>Notice: </B>")][span_blue("[key_name_admin(src)] has the same [matches] as [key_name_admin(M)] (no longer logged in). ")]", 1)
+						message_admins("[span_red(span_bold("Notice:"))] [span_blue("[key_name_admin(src)] has the same [matches] as [key_name_admin(M)] (no longer logged in). ")]", 1)
 						log_adminwarn("Notice: [key_name(src)] has the same [matches] as [key_name(M)] (no longer logged in).")
 
 /mob/Login()
@@ -32,8 +32,9 @@
 
 	client.images = null				//remove the images such as AIs being unable to see runes
 	client.screen = list()				//remove hud items just in case
-	if(hud_used)	qdel(hud_used)		//remove the hud objects
-	hud_used = new /datum/hud(src)
+	if(hud_used)
+		qdel(hud_used)		//remove the hud objects
+	new /datum/hud(src)
 
 	if(client.prefs && client.prefs.client_fps)
 		client.fps = client.prefs.client_fps
@@ -83,4 +84,5 @@
 
 	if(cloaked && cloaked_selfimage)
 		client.images += cloaked_selfimage
+	client.init_verbs()
 	SEND_SIGNAL(src, COMSIG_MOB_CLIENT_LOGIN, client)

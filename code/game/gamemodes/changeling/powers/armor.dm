@@ -67,7 +67,7 @@
 	desc = "A suction cupped mass of flesh, shaped like a foot."
 	name = "fleshy grippers"
 	icon_state = "lingspacesuit"
-	action_button_name = "Toggle Grippers"
+	actions_types = list(/datum/action/item_action/toggle_grippers)
 	canremove = FALSE
 
 /obj/item/clothing/shoes/magboots/changeling/set_slowdown()
@@ -124,7 +124,7 @@
 	desc = "A tough, hard mass of chitin, with long talons for digging into terrain."
 	name = "chitinous talons"
 	icon_state = "lingarmor"
-	action_button_name = "Toggle Talons"
+	actions_types = list(/datum/action/item_action/toggle_talons)
 
 /obj/item/clothing/gloves/combat/changeling //Combined insulated/fireproof gloves
 	name = "chitinous gauntlets"

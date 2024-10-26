@@ -23,6 +23,8 @@ var/list/GPS_list = list()
 	var/list/tracking_devices
 	var/list/showing_tracked_names
 	var/obj/compass_holder/compass
+	pickup_sound = 'sound/items/pickup/device.ogg'
+	drop_sound = 'sound/items/drop/device.ogg'
 
 /obj/item/gps/Initialize()
 	. = ..()

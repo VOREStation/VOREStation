@@ -147,7 +147,7 @@
 			return
 
 		if(A.reagents && A.reagents.trans_to_obj(src, reagents.maximum_volume))
-			user.visible_message("<b>\The [user]</b> soaks [src] using [A].", span_notice("You soak [src] using [A]."))
+			user.visible_message(span_infoplain(span_bold("\The [user]") + " soaks [src] using [A]."), span_notice("You soak [src] using [A]."))
 			update_name()
 		return
 

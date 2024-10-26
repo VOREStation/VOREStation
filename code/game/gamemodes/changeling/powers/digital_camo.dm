@@ -29,8 +29,8 @@
 			C.mind.changeling.chem_charges = max(C.mind.changeling.chem_charges - 1, 0)
 			sleep(40)
 
-	src.verbs -= /mob/proc/changeling_digitalcamo
+	remove_verb(src, /mob/proc/changeling_digitalcamo)
 	spawn(5)
-		src.verbs += /mob/proc/changeling_digitalcamo
+		add_verb(src, /mob/proc/changeling_digitalcamo)
 	feedback_add_details("changeling_powers","CAM")
 	return 1

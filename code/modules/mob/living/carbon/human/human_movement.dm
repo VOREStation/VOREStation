@@ -116,7 +116,7 @@
 			. *= 0.5
 		. -= chem_effects[CE_SPEEDBOOST]	// give 'em a buff on top.
 
-	. = max(HUMAN_LOWEST_SLOWDOWN, . + config.human_delay)	// Minimum return should be the same as force_max_speed
+	. = max(HUMAN_LOWEST_SLOWDOWN, . + CONFIG_GET(number/human_delay))	// Minimum return should be the same as force_max_speed
 	. += ..()
 
 /mob/living/carbon/human/Moved()
@@ -257,7 +257,7 @@
 		return
 	if(is_incorporeal())
 		return
-	if(!config.footstep_volume || !T.footstep_sounds || !T.footstep_sounds.len)
+	if(!CONFIG_GET(number/footstep_volume) || !T.footstep_sounds || !T.footstep_sounds.len)
 		return
 	// Future Upgrades - Multi species support
 	var/list/footstep_sounds = T.footstep_sounds["human"]
@@ -276,7 +276,7 @@
 	if(m_intent == "run" && step_count++ % 2 != 0)
 		return
 
-	var/volume = config.footstep_volume
+	var/volume = CONFIG_GET(number/footstep_volume)
 
 	// Reduce volume while walking or barefoot
 	if(!shoes || m_intent == "walk")

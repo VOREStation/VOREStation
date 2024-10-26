@@ -485,7 +485,7 @@
 		update_light()
 
 	update_icon(user)
-	user.update_action_buttons()
+	user.update_mob_action_buttons()
 
 /obj/item/clothing/head/attack_ai(var/mob/user)
 	if(!mob_wear_hat(user))
@@ -670,7 +670,7 @@
 		user.unEquip(I)
 		I.forceMove(src)
 		holding = I
-		user.visible_message("<b>\The [user]</b> shoves \the [I] into \the [src].")
+		user.visible_message(span_infoplain(span_bold("\The [user]") + " shoves \the [I] into \the [src]."))
 		verbs |= /obj/item/clothing/shoes/proc/draw_knife
 		update_icon()
 	else

@@ -26,7 +26,7 @@
 /obj/item/xenobio/attackby(obj/item/I as obj, mob/user as mob)
 	if(istype(I, loadable_item))
 		if(loaded_item)
-			to_chat(user, "<span class = 'warning'>[I] doesn't seem to fit into [src].</span>")
+			to_chat(user, span_warning("[I] doesn't seem to fit into [src]."))
 			return
 		//var/obj/item/reagent_containers/glass/beaker/B = I
 		user.drop_item()
@@ -45,7 +45,7 @@
 
 /obj/item/xenobio/afterattack(atom/A, mob/user as mob)
 	if(!loaded_item)
-		to_chat(user,"<span class = 'warning'>\The [src] shot fizzles, it appears you need to load something!</span>")
+		to_chat(user,span_warning("\The [src] shot fizzles, it appears you need to load something!"))
 		//playsound(src, 'sound/weapons/wave.ogg', 60, 1)
 		playsound(src, 'sound/weapons/empty.ogg', 50, 1)
 		return
@@ -79,11 +79,11 @@
 
 	var/turf/T = get_turf(A)
 	if(!T || (T.check_density(ignore_mobs = TRUE)))
-		to_chat(user,"<span class = 'warning'>Your rehydrator flashes an error as it attempts to process your target.</span>")
+		to_chat(user,span_warning("Your rehydrator flashes an error as it attempts to process your target."))
 		playsound(src, 'sound/weapons/empty.ogg', 50, 1)
 		return
 	if(istype(A, /mob/living))
-		to_chat(user,"<span class = 'warning'>The rehydrator's saftey systems prevent firing into living creatures!</span>")
+		to_chat(user,span_warning("The rehydrator's saftey systems prevent firing into living creatures!"))
 		playsound(src, 'sound/weapons/empty.ogg', 50, 1)
 		return
 	if(loaded_item)

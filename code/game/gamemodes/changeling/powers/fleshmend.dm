@@ -33,9 +33,9 @@
 				C.adjustFireLoss(-heal_amount)
 				sleep(1 SECOND)
 
-	src.verbs -= /mob/proc/changeling_fleshmend
+	remove_verb(src, /mob/proc/changeling_fleshmend)
 	spawn(50 SECONDS)
 		to_chat(src, span_notice("Our regeneration has slowed to normal levels."))
-		src.verbs += /mob/proc/changeling_fleshmend
+		add_verb(src, /mob/proc/changeling_fleshmend)
 	feedback_add_details("changeling_powers","FM")
 	return 1

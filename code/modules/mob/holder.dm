@@ -32,6 +32,41 @@ var/list/holder_mob_icon_cache = list()
 	held.reset_view(src)
 	START_PROCESSING(SSobj, src)
 
+/mob/living/get_status_tab_items()
+	. = ..()
+	if(. && istype(loc, /obj/item/holder))
+		var/location = ""
+		var/obj/item/holder/H = loc
+		if(ishuman(H.loc))
+			var/mob/living/carbon/human/HH = H.loc
+			if(HH.l_hand == H)
+				location = "[HH]'s left hand"
+			else if(HH.r_hand == H)
+				location = "[HH]'s right hand"
+			else if(HH.r_store == H || HH.l_store == H)
+				location = "[HH]'s pocket"
+			else if(HH.head == H)
+				location = "[HH]'s head"
+			else if(HH.shoes == H)
+				location = "[HH]'s feet"
+			else
+				location = "[HH]"
+		else if(ismob(H.loc))
+			var/mob/living/M = H.loc
+			if(M.l_hand == H)
+				location = "[M]'s left hand"
+			else if(M.r_hand == H)
+				location = "[M]'s right hand"
+			else
+				location = "[M]"
+		else if(ismob(H.loc.loc))
+			location = "[H.loc.loc]'s [H.loc]"
+		else
+			location = "[H.loc]"
+		if (location != "")
+			. += ""
+			. += "Location: [location]"
+
 /obj/item/holder/Entered(mob/held, atom/OldLoc)
 	if(held_mob)
 		held.forceMove(get_turf(src))

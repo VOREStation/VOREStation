@@ -15,10 +15,12 @@
 	w_class = ITEMSIZE_LARGE
 	unacidable = TRUE
 	origin_tech = list(TECH_BIO = 4, TECH_POWER = 2)
-	action_button_name = "Remove/Replace Paddles"
+	actions_types = list(/datum/action/item_action/remove_replace_paddles)
 
 	var/obj/item/shockpaddles/linked/paddles
 	var/obj/item/cell/bcell = null
+	pickup_sound = 'sound/items/pickup/device.ogg'
+	drop_sound = 'sound/items/drop/device.ogg'
 
 /obj/item/defib_kit/get_cell()
 	return bcell
@@ -62,7 +64,7 @@
 	else
 		add_overlay("[initial(icon_state)]-nocell")
 
-/obj/item/defib_kit/ui_action_click()
+/obj/item/defib_kit/ui_action_click(mob/user, actiontype)
 	toggle_paddles()
 
 /obj/item/defib_kit/attack_hand(mob/user)
@@ -293,10 +295,10 @@
 	H.updatehealth()
 
 	if(H.isSynthetic())
-		if(H.health + H.getOxyLoss() + H.getToxLoss() <= config.health_threshold_dead)
+		if(H.health + H.getOxyLoss() + H.getToxLoss() <= CONFIG_GET(number/health_threshold_dead))
 			return "buzzes, \"Resuscitation failed - Severe damage detected. Begin manual repair before further attempts futile.\""
 
-	else if(H.health + H.getOxyLoss() <= config.health_threshold_dead || (HUSK in H.mutations) || !H.can_defib)
+	else if(H.health + H.getOxyLoss() <= CONFIG_GET(number/health_threshold_dead) || (HUSK in H.mutations) || !H.can_defib)
 		return "buzzes, \"Resuscitation failed - Severe tissue damage makes recovery of patient impossible via defibrillator. Further attempts futile.\""
 
 	var/bad_vital_organ = check_vital_organs(H)
@@ -393,7 +395,7 @@
 	user.visible_message(span_warning("\The [user] begins to place [src] on [H]'s chest."), span_warning("You begin to place [src] on [H]'s chest..."))
 	if(!do_after(user, 30, H))
 		return
-	user.visible_message("<b>\The [user]</b> places [src] on [H]'s chest.", span_warning("You place [src] on [H]'s chest."))
+	user.visible_message(span_infoplain(span_bold("\The [user]") + " places [src] on [H]'s chest."), span_warning("You place [src] on [H]'s chest."))
 	playsound(src, 'sound/machines/defib_charge.ogg', 50, 0)
 
 	var/error = can_defib(H)
@@ -429,7 +431,7 @@
 	H.apply_damage(burn_damage_amt, BURN, BP_TORSO)
 
 	//set oxyloss so that the patient is just barely in crit, if possible
-	var/barely_in_crit = config.health_threshold_crit - 1
+	var/barely_in_crit = CONFIG_GET(number/health_threshold_crit) - 1
 	var/adjust_health = barely_in_crit - H.health //need to increase health by this much
 	H.adjustOxyLoss(-adjust_health)
 
@@ -470,7 +472,7 @@
 		playsound(src, 'sound/machines/defib_failed.ogg', 50, 0)
 		return
 
-	user.visible_message(span_danger("<i>\The [user] shocks [H] with \the [src]!</i>"), span_warning("You shock [H] with \the [src]!"))
+	user.visible_message(span_danger(span_italics("\The [user] shocks [H] with \the [src]!")), span_warning("You shock [H] with \the [src]!"))
 	playsound(src, 'sound/machines/defib_zap.ogg', 100, 1, -1)
 	playsound(src, 'sound/weapons/Egloves.ogg', 100, 1, -1)
 	set_cooldown(cooldowntime)
@@ -514,7 +516,7 @@
 
 	// If the brain'd `defib_timer` var gets below this number, brain damage will happen at a linear rate.
 	// This is measures in `Life()` ticks. E.g. 10 minute defib timer = 300 `Life()` ticks.				// Original math was VERY off. Life() tick occurs every ~2 seconds, not every 2 world.time ticks.
-	var/brain_damage_timer = ((config.defib_timer MINUTES) / 20) - ((config.defib_braindamage_timer MINUTES) / 20)
+	var/brain_damage_timer = ((CONFIG_GET(number/defib_timer) MINUTES) / 20) - ((CONFIG_GET(number/defib_braindamage_timer) MINUTES) / 20)
 
 	if(brain.defib_timer > brain_damage_timer)
 		return // They got revived before brain damage got a chance to set in.
@@ -531,7 +533,7 @@
 	H.setBrainLoss(brain_damage)
 
 /obj/item/shockpaddles/proc/make_announcement(var/message, var/msg_class)
-	audible_message("<b>\The [src]</b> [message]", "\The [src] vibrates slightly.", runemessage = "buzz")
+	audible_message(span_bold(span_info("\The [src]") + " [message]"), span_info("\The [src] vibrates slightly."), runemessage = "buzz")
 
 /obj/item/shockpaddles/emag_act(mob/user)
 	if(safety)
@@ -615,7 +617,7 @@
 	return (base_unit.bcell && base_unit.bcell.checked_use(charge_amt))
 
 /obj/item/shockpaddles/linked/make_announcement(var/message, var/msg_class)
-	base_unit.audible_message("<b>\The [base_unit]</b> [message]", "\The [base_unit] vibrates slightly.")
+	base_unit.audible_message(span_infoplain(span_bold("\The [base_unit]") + " [message]"), span_info("\The [base_unit] vibrates slightly."))
 
 /*
 	Standalone Shockpaddles

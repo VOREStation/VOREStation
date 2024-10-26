@@ -115,7 +115,7 @@
 	if(L.weakened) //Don't stun people while they're already stunned! That's SILLY!
 		return
 	if(prob(15))
-		visible_message("<span class='danger'>\The [src] trips \the [L]!</span>!")
+		visible_message(span_danger("\The [src] trips \the [L]!"))
 		L.weakened += rand(1,10)
 
 /mob/living/simple_mob/vore/alienanimals/startreader/Life()

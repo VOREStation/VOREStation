@@ -153,7 +153,7 @@
 /obj/item/reagent_containers/spray/mister/doMove(atom/destination)
 	if(destination && (destination != tank.loc || !ismob(destination)))
 		if (loc != tank)
-			to_chat(tank.loc, "<span class = 'notice'>The mister snaps back onto the watertank.</span>")
+			to_chat(tank.loc, span_notice("The mister snaps back onto the watertank."))
 		destination = tank
 	..()
 

@@ -190,7 +190,7 @@
 		occupantData["stat"] = occupant.stat
 		occupantData["health"] = occupant.health
 		occupantData["maxHealth"] = occupant.maxHealth
-		occupantData["minHealth"] = config.health_threshold_dead
+		occupantData["minHealth"] = CONFIG_GET(number/health_threshold_dead)
 		occupantData["bruteLoss"] = occupant.getBruteLoss()
 		occupantData["oxyLoss"] = occupant.getOxyLoss()
 		occupantData["toxLoss"] = occupant.getToxLoss()
@@ -384,7 +384,7 @@
 			beaker = I
 			user.drop_item()
 			I.loc = src
-			user.visible_message("<b>\The [user]</b> adds \a [I] to \the [src].", span_notice("You add \a [I] to \the [src]."))
+			user.visible_message(span_infoplain(span_bold("\The [user]") + " adds \a [I] to \the [src]."), span_notice("You add \a [I] to \the [src]."))
 		else
 			to_chat(user, span_warning("\The [src] has a beaker already."))
 		return
@@ -459,6 +459,8 @@
 		return
 	if(stat & (BROKEN|NOPOWER))
 		return
+	if(M.buckled)
+		return
 	if(occupant)
 		to_chat(user, span_warning("\The [src] is already occupied."))
 		return
@@ -471,6 +473,8 @@
 		visible_message("\The [user] starts putting [M] into \the [src].")
 
 	if(do_after(user, 20))
+		if(M.buckled)
+			return
 		if(occupant)
 			to_chat(user, span_warning("\The [src] is already occupied."))
 			return

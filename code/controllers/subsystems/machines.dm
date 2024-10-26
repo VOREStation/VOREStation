@@ -82,9 +82,8 @@ SUBSYSTEM_DEF(machines)
 			T.broadcast_status()
 		CHECK_TICK
 
-/datum/controller/subsystem/machines/stat_entry()
-	var/msg = list()
-	msg += "C:{"
+/datum/controller/subsystem/machines/stat_entry(msg)
+	msg = "C:{"
 	msg += "PI:[round(cost_pipenets,1)]|"
 	msg += "MC:[round(cost_machinery,1)]|"
 	msg += "PN:[round(cost_powernets,1)]|"
@@ -95,7 +94,7 @@ SUBSYSTEM_DEF(machines)
 	msg += "PN:[SSmachines.powernets.len]|"
 	msg += "PO:[SSmachines.powerobjs.len]|"
 	msg += "MC/MS:[round((cost ? SSmachines.processing_machines.len/cost_machinery : 0),0.1)]"
-	..(jointext(msg, null))
+	return ..()
 
 /datum/controller/subsystem/machines/proc/process_pipenets(resumed = 0)
 	if (!resumed)

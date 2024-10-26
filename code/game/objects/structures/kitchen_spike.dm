@@ -16,11 +16,11 @@
 	if(!istype(G, /obj/item/grab) || !ismob(G.affecting))
 		return
 	if(occupied)
-		to_chat(user, "<span class = 'danger'>The spike already has something on it, finish collecting its meat first!</span>")
+		to_chat(user, span_danger("The spike already has something on it, finish collecting its meat first!"))
 	else
 		if(spike(G.affecting))
 			var/datum/gender/T = gender_datums[G.affecting.get_visible_gender()]
-			visible_message("<span class = 'danger'>[user] has forced [G.affecting] onto the spike, killing [T.him] instantly!</span>")
+			visible_message(span_danger("[user] has forced [G.affecting] onto the spike, killing [T.him] instantly!"))
 			var/mob/M = G.affecting
 			M.forceMove(src)
 			qdel(G)

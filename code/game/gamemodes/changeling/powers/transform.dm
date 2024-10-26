@@ -56,9 +56,9 @@
 		for(var/datum/modifier/mod in chosen_dna.genMods)
 			self.modifiers.Add(mod.type)
 
-	src.verbs -= /mob/proc/changeling_transform
+	remove_verb(src, /mob/proc/changeling_transform)
 	spawn(10)
-		src.verbs += /mob/proc/changeling_transform
+		add_verb(src, /mob/proc/changeling_transform)
 		src.regenerate_icons()
 
 	feedback_add_details("changeling_powers","TR")

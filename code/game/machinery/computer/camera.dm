@@ -133,7 +133,7 @@ GLOBAL_LIST_EMPTY(entertainment_screens)
 	if(modifiers["alt"])
 		if(isliving(usr) && Adjacent(usr) && !usr.incapacitated())
 			toggle()
-			visible_message("<b>[usr]</b> toggles [src] [enabled ? "on" : "off"].","You toggle [src] [enabled ? "on" : "off"].", runemessage = "click")
+			visible_message(span_infoplain(span_bold("[usr]") + " toggles [src] [enabled ? "on" : "off"]."),span_info("You toggle [src] [enabled ? "on" : "off"]."), runemessage = "click")
 	else
 		attack_hand(usr)
 

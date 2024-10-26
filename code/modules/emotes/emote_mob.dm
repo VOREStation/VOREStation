@@ -45,7 +45,7 @@
 					if(emote_datum.mob_can_use(src))
 						usable_emotes[emote_datum.key] = emote_datum
 				last_emote_summary = english_list(sortAssoc(usable_emotes))
-			to_chat(src,"<b>Usable emotes:</b> [last_emote_summary].")
+			to_chat(src,span_bold("Usable emotes:") + " [last_emote_summary].")
 			return
 
 		if(!can_emote(m_type))
@@ -95,7 +95,7 @@
 
 	if(use_emote.message_type == AUDIBLE_MESSAGE && is_muzzled())
 		var/muffle_message = use_emote.emote_message_muffled || "makes a muffled sound."
-		audible_message("<b>\The [src]</b> [muffle_message]", runemessage = "[muffle_message]")
+		audible_message(span_bold("\The [src]") + " [muffle_message]", runemessage = "[muffle_message]")
 		return
 
 	next_emote = world.time + use_emote.emote_delay
@@ -158,7 +158,7 @@
 	nametext = html_encode(nametext)
 	subtext = html_encode(subtext)
 	// Store the player's name in a nice bold, naturalement
-	nametext = "<B>[emoter]</B>"
+	nametext = span_bold("[emoter]")
 	return list("pretext" = pretext, "nametext" = nametext, "subtext" = subtext)
 
 /mob/proc/custom_emote(var/m_type = VISIBLE_MESSAGE, var/message, var/range = world.view)
@@ -189,9 +189,9 @@
 	if(input)
 		log_emote(message,src) //Log before we add junk
 		if(usr && usr.client)
-			message = span_emote("<B>[src]</B> [input]")
+			message = span_emote(span_bold("[src]") + " [input]")
 		else
-			message = span_npc_emote("<B>[src]</B> [input]")
+			message = span_npc_emote(span_bold("[src]") + " [input]")
 	else
 		return
 
@@ -221,7 +221,7 @@
 			spawn(0) // It's possible that it could be deleted in the meantime, or that it runtimes.
 				if(M)
 					if(isobserver(M))
-						message = span_emote("<B>[src]</B> ([ghost_follow_link(src, M)]) [input]")
+						message = span_emote(span_bold("[src]") + " ([ghost_follow_link(src, M)]) [input]")
 					if(usr && usr.client && M && !(get_z(usr) == get_z(M)))
 						message = span_multizsay("[message]")
 					M.show_message(message, m_type)

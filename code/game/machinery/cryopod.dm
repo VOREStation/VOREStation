@@ -606,7 +606,7 @@
 		return
 
 	if(occupant)
-		to_chat(usr, span_notice("<B>\The [src] is in use.</B>"))
+		to_chat(usr, span_boldnotice("\The [src] is in use."))
 		return
 
 	if(isliving(usr))
@@ -623,7 +623,7 @@
 			return
 
 		if(occupant)
-			to_chat(usr, span_notice("<B>\The [src] is in use.</B>"))
+			to_chat(usr, span_boldnotice("\The [src] is in use."))
 			return
 
 		usr.stop_pulling()
@@ -640,7 +640,7 @@
 		icon_state = occupied_icon_state
 
 		to_chat(usr, span_notice("[on_enter_occupant_message]"))
-		to_chat(usr, span_notice("<b>If you ghost, log out or close your client now, your character will shortly be permanently removed from the round.</b>"))
+		to_chat(usr, span_boldnotice("If you ghost, log out or close your client now, your character will shortly be permanently removed from the round."))
 
 		time_entered = world.time
 
@@ -727,7 +727,7 @@
 		icon_state = occupied_icon_state
 
 		to_chat(M, span_notice("[on_enter_occupant_message]"))
-		to_chat(M, span_notice("<b>If you ghost, log out or close your client now, your character will shortly be permanently removed from the round.</b>"))
+		to_chat(M, span_boldnotice("If you ghost, log out or close your client now, your character will shortly be permanently removed from the round."))
 		set_occupant(M)
 		time_entered = world.time
 		if(ishuman(M) && applies_stasis)

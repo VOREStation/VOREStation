@@ -138,7 +138,7 @@
 
 	if(!breath || (breath.total_moles == 0))
 		H.failed_last_breath = 1
-		if(H.health > config.health_threshold_crit)
+		if(H.health > CONFIG_GET(number/health_threshold_crit))
 			H.adjustOxyLoss(ALRAUNE_MAX_OXYLOSS)
 		else
 			H.adjustOxyLoss(ALRAUNE_CRIT_MAX_OXYLOSS)
@@ -393,8 +393,8 @@
 		var/selection = tgui_input_list(src, "Choose your character's fruit type. Choosing nothing will result in a default of apples.", "Fruit Type", acceptable_fruit_types)
 		if(selection)
 			fruit_gland.fruit_type = selection
-		verbs |= /mob/living/carbon/human/proc/alraune_fruit_pick
-		verbs -= /mob/living/carbon/human/proc/alraune_fruit_select
+		add_verb(src, /mob/living/carbon/human/proc/alraune_fruit_pick)
+		remove_verb(src, /mob/living/carbon/human/proc/alraune_fruit_select)
 		fruit_gland.organ_owner = src
 		fruit_gland.emote_descriptor = list("fruit right off of [fruit_gland.organ_owner]!", "a fruit from [fruit_gland.organ_owner]!")
 

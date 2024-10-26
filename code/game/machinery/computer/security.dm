@@ -422,7 +422,7 @@
   */
 /obj/machinery/computer/secure_data/proc/print_finish()
 	var/obj/item/paper/P = new(loc)
-	P.info = "<center><b>Security Record</b></center><br>"
+	P.info = "<center>" + span_bold("Security Record") + "</center><br>"
 	if(istype(active1, /datum/data/record) && data_core.general.Find(active1))
 		P.info += {"Name: [active1.fields["name"]] ID: [active1.fields["id"]]
 		<br>\nSex: [active1.fields["sex"]]
@@ -432,7 +432,7 @@
 		<br>\nPhysical Status: [active1.fields["p_stat"]]
 		<br>\nMental Status: [active1.fields["m_stat"]]<br>"}
 	else
-		P.info += "<b>General Record Lost!</b><br>"
+		P.info += span_bold("General Record Lost!") + "<br>"
 	if(istype(active2, /datum/data/record) && data_core.security.Find(active2))
 		P.info += {"<br>\n<center><b>Security Data</b></center>
 		<br>\nCriminal Status: [active2.fields["criminal"]]<br>\n
@@ -447,7 +447,7 @@
 		for(var/c in active2.fields["comments"])
 			P.info += "[c["header"]]<br>[c["text"]]<br>"
 	else
-		P.info += "<b>Security Record Lost!</b><br>"
+		P.info += span_bold("Security Record Lost!") + "<br>"
 	P.info += "</tt>"
 	P.name = "paper - 'Security Record: [active1.fields["name"]]'"
 	printing = FALSE

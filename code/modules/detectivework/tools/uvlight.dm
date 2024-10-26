@@ -5,7 +5,7 @@
 	slot_flags = SLOT_BELT
 	w_class = ITEMSIZE_SMALL
 	item_state = "electronic"
-	action_button_name = "Toggle UV light"
+	actions_types = list(/datum/action/item_action/toggle_uv_light)
 	matter = list(MAT_STEEL = 150)
 	origin_tech = list(TECH_MAGNET = 1, TECH_ENGINEERING = 1)
 
@@ -16,6 +16,8 @@
 	var/range = 3
 	var/on = 0
 	var/step_alpha = 50
+	pickup_sound = 'sound/items/pickup/device.ogg'
+	drop_sound = 'sound/items/drop/device.ogg'
 
 /obj/item/uv_light/attack_self(var/mob/user)
 	on = !on

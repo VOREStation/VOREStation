@@ -17,6 +17,9 @@
 	var/obj/machinery/camera/bug/camera
 	var/camtype = /obj/machinery/camera/bug
 
+	pickup_sound = 'sound/items/pickup/device.ogg'
+	drop_sound = 'sound/items/drop/device.ogg'
+
 /obj/item/camerabug/New()
 	..()
 //	radio = new(src)
@@ -25,7 +28,7 @@
 /obj/item/camerabug/attack_self(mob/user)
 	if(user.a_intent == I_HURT)
 		to_chat(user, span_notice("You crush the [src] under your foot, breaking it."))
-		visible_message("[user.name] crushes the [src] under their foot, breaking it!</span>")
+		visible_message(span_notice("[user.name] crushes the [src] under their foot, breaking it!"))
 		new brokentype(get_turf(src))
 		spawn(0)
 		qdel(src)
@@ -41,7 +44,7 @@
 	linkedmonitor = null
 	qdel(camera)
 	camera = new camtype(src)
-	to_chat(usr, "<span class='notice'>You turn the [src] off and on again, delinking it from any monitors.")
+	to_chat(usr, span_notice("You turn the [src] off and on again, delinking it from any monitors."))
 
 /obj/item/brokenbug
 	name = "broken mobile camera pod"
@@ -55,6 +58,9 @@
 	throw_range = 15
 	throw_speed = 3
 	origin_tech = list(TECH_ENGINEERING = 1)
+
+	pickup_sound = 'sound/items/pickup/device.ogg'
+	drop_sound = 'sound/items/drop/device.ogg'
 
 /obj/item/brokenbug/spy
 	name = "broken bug"
@@ -157,6 +163,10 @@
 //	var/obj/item/radio/bug/radio
 	var/obj/machinery/camera/bug/selected_camera
 	var/list/obj/machinery/camera/bug/cameras = new()
+
+	pickup_sound = 'sound/items/pickup/device.ogg'
+	drop_sound = 'sound/items/drop/device.ogg'
+
 /*
 /obj/item/bug_monitor/New()
 	radio = new(src)

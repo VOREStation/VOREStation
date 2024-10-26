@@ -20,27 +20,27 @@
 		return
 
 	if(!holder)
-		if(!config.ooc_allowed)
+		if(!CONFIG_GET(flag/ooc_allowed))
 			to_chat(src, span_danger("OOC is globally muted."))
 			return
-		if(!config.dooc_allowed && (mob.stat == DEAD))
+		if(!CONFIG_GET(flag/dooc_allowed) && (mob.stat == DEAD))
 			to_chat(usr, span_danger("OOC for dead mobs has been turned off."))
 			return
 		if(prefs.muted & MUTE_OOC)
 			to_chat(src, span_danger("You cannot use OOC (muted)."))
 			return
-		if(findtext(msg, "byond://") && !config.allow_byond_links)
-			to_chat(src, "<B>Advertising other servers is not allowed.</B>")
+		if(findtext(msg, "byond://") && !CONFIG_GET(flag/allow_byond_links))
+			to_chat(src, span_bold("Advertising other servers is not allowed."))
 			log_admin("[key_name(src)] has attempted to advertise in OOC: [msg]")
 			message_admins("[key_name_admin(src)] has attempted to advertise in OOC: [msg]")
 			return
-		if(findtext(msg, "discord.gg") && !config.allow_discord_links)
-			to_chat(src, "<B>Advertising discords is not allowed.</B>")
+		if(findtext(msg, "discord.gg") && !CONFIG_GET(flag/allow_discord_links))
+			to_chat(src, span_bold("Advertising discords is not allowed."))
 			log_admin("[key_name(src)] has attempted to advertise a discord server in OOC: [msg]")
 			message_admins("[key_name_admin(src)] has attempted to advertise a discord server in OOC: [msg]")
 			return
-		if((findtext(msg, "http://") || findtext(msg, "https://")) && !config.allow_url_links)
-			to_chat(src, "<B>Posting external links is not allowed.</B>")
+		if((findtext(msg, "http://") || findtext(msg, "https://")) && !CONFIG_GET(flag/allow_url_links))
+			to_chat(src, span_bold("Posting external links is not allowed."))
 			log_admin("[key_name(src)] has attempted to post a link in OOC: [msg]")
 			message_admins("[key_name_admin(src)] has attempted to post a link in OOC: [msg]")
 			return
@@ -76,7 +76,7 @@
 						display_name = "[holder.fakekey]/([src.key])"
 					else
 						display_name = holder.fakekey
-			if(holder && !holder.fakekey && (holder.rights & R_ADMIN|R_FUN|R_EVENT) && config.allow_admin_ooccolor && (src.prefs.ooccolor != initial(src.prefs.ooccolor))) // keeping this for the badmins
+			if(holder && !holder.fakekey && (holder.rights & R_ADMIN|R_FUN|R_EVENT) && CONFIG_GET(flag/allow_admin_ooccolor) && (src.prefs.ooccolor != initial(src.prefs.ooccolor))) // keeping this for the badmins
 				to_chat(target, span_ooc("<font color='[src.prefs.ooccolor]'>" + create_text_tag("ooc", "OOC:", target) + " <EM>[display_name]:</EM> [span_message(msg)]</font>"))
 			else
 				to_chat(target, span_ooc("<span class='[ooc_style]'>" + create_text_tag("ooc", "OOC:", target) + " <EM>[display_name]:</EM> " + span_message(msg)) + "</span>")
@@ -106,27 +106,27 @@
 		return
 
 	if(!holder)
-		if(!config.looc_allowed)
+		if(!CONFIG_GET(flag/looc_allowed))
 			to_chat(src, span_danger("LOOC is globally muted."))
 			return
-		if(!config.dooc_allowed && (mob.stat == DEAD))
+		if(!CONFIG_GET(flag/dooc_allowed) && (mob.stat == DEAD))
 			to_chat(usr, span_danger("OOC for dead mobs has been turned off."))
 			return
 		if(prefs.muted & MUTE_LOOC)
 			to_chat(src, span_danger("You cannot use OOC (muted)."))
 			return
-		if(findtext(msg, "byond://") && !config.allow_byond_links)
-			to_chat(src, "<B>Advertising other servers is not allowed.</B>")
+		if(findtext(msg, "byond://") && !CONFIG_GET(flag/allow_byond_links))
+			to_chat(src, span_bold("Advertising other servers is not allowed."))
 			log_admin("[key_name(src)] has attempted to advertise in OOC: [msg]")
 			message_admins("[key_name_admin(src)] has attempted to advertise in OOC: [msg]")
 			return
-		if(findtext(msg, "discord.gg") && !config.allow_discord_links)
-			to_chat(src, "<B>Advertising discords is not allowed.</B>")
+		if(findtext(msg, "discord.gg") && !CONFIG_GET(flag/allow_discord_links))
+			to_chat(src, span_bold("Advertising discords is not allowed."))
 			log_admin("[key_name(src)] has attempted to advertise a discord server in OOC: [msg]")
 			message_admins("[key_name_admin(src)] has attempted to advertise a discord server in OOC: [msg]")
 			return
-		if((findtext(msg, "http://") || findtext(msg, "https://")) && !config.allow_url_links)
-			to_chat(src, "<B>Posting external links is not allowed.</B>")
+		if((findtext(msg, "http://") || findtext(msg, "https://")) && !CONFIG_GET(flag/allow_url_links))
+			to_chat(src, span_bold("Posting external links is not allowed."))
 			log_admin("[key_name(src)] has attempted to post a link in OOC: [msg]")
 			message_admins("[key_name_admin(src)] has attempted to post a link in OOC: [msg]")
 			return
@@ -181,12 +181,12 @@
 		if(target in GLOB.admins)
 			admin_stuff += "/([key])"
 
-		to_chat(target, span_looc("" + create_text_tag("looc", "LOOC:", target) + " <EM>[display_name][admin_stuff]:</EM> <span class='message'>[msg]</span>"))
+		to_chat(target, span_looc(create_text_tag("looc", "LOOC:", target) + " <EM>[display_name][admin_stuff]:</EM> " + span_message("[msg]")))
 
 	for(var/client/target in r_receivers)
 		var/admin_stuff = "/([key])([admin_jump_link(mob, target.holder)])"
 
-		to_chat(target, span_rlooc("" + create_text_tag("looc", "LOOC:", target) + " <span class='prefix'>(R)</span><EM>[display_name][admin_stuff]:</EM> <span class='message'>[msg]</span>"))
+		to_chat(target, span_rlooc(create_text_tag("rlooc", "RLOOC:", target) + " " + span_prefix("(R)") + "<EM>[display_name][admin_stuff]:</EM> " + span_message("[msg]")))
 
 /mob/proc/get_looc_source()
 	return src
@@ -275,3 +275,9 @@
 		INVOKE_ASYNC(src, VERB_REF(fit_viewport))
 	else //Delayed to avoid wingets from Login calls.
 		addtimer(CALLBACK(src, VERB_REF(fit_viewport), 1 SECONDS))
+
+/client/verb/fix_stat_panel()
+	set name = "Fix Stat Panel"
+	set hidden = TRUE
+
+	init_verbs()

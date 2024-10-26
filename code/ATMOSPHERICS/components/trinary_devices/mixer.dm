@@ -105,7 +105,7 @@
 	// 	return
 	// usr.set_machine(src)
 	// var/list/node_connects = get_node_connect_dirs()
-	// var/dat = {"<b>Power: </b><a href='?src=\ref[src];power=1'>[use_power?"On":"Off"]</a><br>
+	// var/dat = {span_bold("Power: ") + "<a href='?src=\ref[src];power=1'>[use_power?"On":"Off"]</a><br>
 	// 			<b>Set Flow Rate Limit: </b>
 	// 			[set_flow_rate]L/s | <a href='?src=\ref[src];set_press=1'>Change</a>
 	// 			<br>

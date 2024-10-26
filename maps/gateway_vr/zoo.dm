@@ -20,7 +20,7 @@
 
 /obj/item/paper/zoo
 	name = "\improper Quarterly Report"
-	info = {"<i>There's nothing but spreadsheets and budget reports on this document, apparently regarding a zoo owned by NanoTrasen.</i>"}
+	info = span_italics("There's nothing but spreadsheets and budget reports on this document, apparently regarding a zoo owned by NanoTrasen.")
 
 /obj/item/paper/zoo/pirate
 	name = "odd note"

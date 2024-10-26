@@ -108,20 +108,20 @@
 		icon_state = "circuit"
 
 /obj/item/circuitboard/mecha/imperion/main
-		desc = "It is marked with a <span class='alien'>strange glyph</span>."
+		desc = "It is marked with a " + span_alien("strange glyph") + "."
 
 /obj/item/circuitboard/mecha/imperion/peripherals
-		desc = "It is marked with a <span class='alien'>pulsing glyph</span>."
+		desc = "It is marked with a " + span_alien("pulsing glyph") + "."
 
 /obj/item/circuitboard/mecha/imperion/targeting
-		desc = "It is marked with an <span class='alien'>ominous glyph</span>."
+		desc = "It is marked with an " + span_alien("ominous glyph") + "."
 
 /obj/item/circuitboard/mecha/imperion/phasing
-		desc = "It is marked with a <span class='alien'>disturbing glyph</span>."
+		desc = "It is marked with a " + span_alien("disturbing glyph") + "."
 
 /obj/item/circuitboard/mecha/imperion/damaged
 		name = "Damaged Alien Circuit"
-		desc = "It is marked with a <span class='alien'>constantly shifting glyph</span>."
+		desc = "It is marked with a " + span_alien("constantly shifting glyph") + "."
 		origin_tech = list(TECH_DATA = 3, TECH_BLUESPACE = 1, TECH_PRECURSOR = 2)
 
 //Undef the macro, shouldn't be needed anywhere else

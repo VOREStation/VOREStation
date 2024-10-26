@@ -1,7 +1,7 @@
 
 /obj/mecha/combat/gorilla
 	name = "Gorilla"
-	desc = "<b>Blitzkrieg!</b>" //stop using all caps in item descs i will fight you. its redundant with the bold.
+	desc = span_bold("Blitzkrieg!") //stop using all caps in item descs i will fight you. its redundant with the bold.
 	icon = 'icons/mecha/mecha64x64.dmi'
 	icon_state = "pzrmech"
 	initial_icon = "pzrmech"
@@ -95,7 +95,7 @@
 
 /obj/mecha/combat/gorilla/get_stats_part()
 	var/output = ..()
-	output += {"<b>Smoke:</b> [smoke_reserve]"}
+	output += span_bold("Smoke:") + {"[smoke_reserve]"}
 	return output
 
 
@@ -113,7 +113,7 @@
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/cannon
 	name = "8.8cm KwK 47"
-	desc = "<i>Precision German engineering!</i>" // Why would you ever take this off the mech, anyway?
+	desc = span_italics("Precision German engineering!") // Why would you ever take this off the mech, anyway?
 	icon_state = "mecha_uac2"
 	equip_cooldown = 60 // 6 seconds
 	projectile = /obj/item/projectile/bullet/cannon

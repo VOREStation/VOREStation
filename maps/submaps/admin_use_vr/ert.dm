@@ -8,7 +8,7 @@
 /datum/map_template/om_ships/ert_ship
 	name = "OM Ship - ERT Ship (New Z)"
 	desc = "NT Emergency Response Ship."
-	mappath = 'ert.dmm'
+	mappath = "maps/submaps/admin_use_vr/ert.dmm"
 
 	// The ship's area(s)
 /area/ship/ert

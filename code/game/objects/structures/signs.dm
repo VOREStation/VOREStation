@@ -1494,7 +1494,7 @@
 	. = ..()
 	. += "The calendar shows that the date is [stationdate2text()]."
 	if (Holiday.len)
-		. += "Today is <strong><span class='green'>[english_list(Holiday)]</span></strong>."
+		. += "Today is " + span_bold(span_green("[english_list(Holiday)]")) + "."
 
 /obj/structure/sign/explosive
 	name = "\improper HIGH EXPLOSIVES sign"

@@ -17,6 +17,7 @@
 	icon_state = "ship_nosprite"
 	appearance_flags = TILE_BOUND|KEEP_TOGETHER|LONG_GLIDE //VOREStation Edit
 	light_power = 4
+	layer = OBJ_LAYER + 0.1 // make movables a little higher than regular sectors
 
 	unknown_name = "unknown ship"
 	unknown_state = "ship"
@@ -46,6 +47,7 @@
 
 	/// Vis contents overlay holding the ship's vector when in motion
 	var/obj/effect/overlay/vis/vector
+	render_map = TRUE
 
 /obj/effect/overmap/visitable/ship/Initialize()
 	. = ..()
@@ -217,6 +219,7 @@
 			pixel_y = new_pixel_y
 			return
 	animate(src, pixel_x = new_pixel_x, pixel_y = new_pixel_y, time = wait, flags = ANIMATION_END_NOW)
+	update_screen()
 
 // If we get moved, update our internal tracking to account for it
 /obj/effect/overmap/visitable/ship/Moved(atom/old_loc, direction, forced = FALSE)
@@ -229,6 +232,7 @@
 		pixel_y = 0
 	position_x = ((loc.x - 1) * WORLD_ICON_SIZE) + MODULUS(position_x, WORLD_ICON_SIZE)
 	position_y = ((loc.y - 1) * WORLD_ICON_SIZE) + MODULUS(position_y, WORLD_ICON_SIZE)
+	update_screen()
 
 /obj/effect/overmap/visitable/ship/update_icon()
 	if(!is_still())

@@ -38,7 +38,7 @@
 	var/opts = clickprops["shift"]
 
 	if(opts)
-		to_chat(my_kin,span_notice("<b>[name]</b> (Cost: [cost]%) - [desc]"))
+		to_chat(my_kin,span_notice(span_bold("[name]") + " (Cost: [cost]%) - [desc]"))
 	else
 		do_ability(my_kin)
 

@@ -302,7 +302,7 @@ var/last_chew = 0
 		return 1
 
 /obj/item/handcuffs/legcuffs/bola/dropped()
-	visible_message("<b>\The [src]</b> falls apart!")
+	visible_message(span_infoplain(span_bold("\The [src]") + " falls apart!"))
 	qdel(src)
 
 /obj/item/handcuffs/legcuffs/bola/place_legcuffs(var/mob/living/carbon/target, var/mob/user)
@@ -314,7 +314,7 @@ var/last_chew = 0
 		return 0
 
 	if(!H.has_organ_for_slot(slot_legcuffed))
-		H.visible_message("<b>\The [src]</b> slams into [H], but slides off!")
+		H.visible_message(span_infoplain(span_bold("\The [src]") + " slams into [H], but slides off!"))
 		src.dropped()
 		return 0
 

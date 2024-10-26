@@ -40,7 +40,7 @@
 	if(stat & (NOPOWER|BROKEN))
 		if(occupant)
 			go_out()
-			visible_message("<b>\The [src]</b> emits a low droning sound, before the pod door clicks open.")
+			visible_message(span_infoplain(span_bold("\The [src]") + " emits a low droning sound, before the pod door clicks open."))
 		return
 	else if(eject_dead && occupant && occupant.stat == DEAD) // If someone dies somehow while inside, spit them out.
 		visible_message(span_warning("\The [src] sounds an alarm, swinging its hatch open."))
@@ -257,7 +257,7 @@
 		//Yes, I am using a aheal just so your markings transfer over, I could not get .prefs.copy_to working. This is very stupid, and I can't be assed to rewrite this.  Too bad!
 		avatar.revive()
 		avatar.revive()
-		avatar.verbs += /mob/living/carbon/human/proc/exit_vr //ahealing removes the prommie verbs and the VR verbs, giving it back
+		add_verb(avatar, /mob/living/carbon/human/proc/exit_vr) //ahealing removes the prommie verbs and the VR verbs, giving it back
 		avatar.Sleeping(1)
 
 		// Prompt for username after they've enterred the body.

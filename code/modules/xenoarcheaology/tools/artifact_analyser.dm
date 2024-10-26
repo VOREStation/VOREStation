@@ -123,7 +123,7 @@
 		atom_say("Scanning complete.")
 		var/obj/item/paper/P = new(src.loc)
 		P.name = "[src] report #[++report_num]"
-		P.info = "<b>[src] analysis report #[report_num]</b><br>"
+		P.info = span_bold("[src] analysis report #[report_num]") + "<br>"
 		P.info += "<br>"
 		P.info += "[bicon(scanned_object)] [results]"
 		P.stamped = list(/obj/item/stamp)

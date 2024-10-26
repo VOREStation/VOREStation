@@ -458,13 +458,13 @@
 /datum/species/proc/remove_inherent_verbs(var/mob/living/carbon/human/H)
 	if(inherent_verbs)
 		for(var/verb_path in inherent_verbs)
-			H.verbs -= verb_path
+			remove_verb(H, verb_path)
 	return
 
 /datum/species/proc/add_inherent_verbs(var/mob/living/carbon/human/H)
 	if(inherent_verbs)
 		for(var/verb_path in inherent_verbs)
-			H.verbs |= verb_path
+			add_verb(H, verb_path)
 	return
 
 /datum/species/proc/handle_post_spawn(var/mob/living/carbon/human/H) //Handles anything not already covered by basic species assignment.
@@ -556,8 +556,8 @@
 	return FALSE
 
 // Allow species to display interesting information in the human stat panels
-/datum/species/proc/Stat(var/mob/living/carbon/human/H)
-	return
+/datum/species/proc/get_status_tab_items(var/mob/living/carbon/human/H)
+	return ""
 
 /datum/species/proc/handle_water_damage(var/mob/living/carbon/human/H, var/amount = 0)
 	amount *= 1 - H.get_water_protection()
@@ -576,11 +576,14 @@
 
 		if(!silent)
 			to_chat(H, span_notice("You manage to lower impact of the fall and land safely."))
-			landing.visible_message("<b>\The [H]</b> lowers down from above, landing safely.")
+			landing.visible_message(span_infoplain(span_bold("\The [H]") + " lowers down from above, landing safely."))
 			playsound(H, "rustle", 25, 1)
 		return TRUE
 
 	return FALSE
 
 /datum/species/proc/post_spawn_special(mob/living/carbon/human/H)
+	return
+
+/datum/species/proc/update_misc_tabs(var/mob/living/carbon/human/H)
 	return

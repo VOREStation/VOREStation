@@ -128,7 +128,7 @@
 			L.visible_message(
 				span_danger("[L] steps on \the [src]."),
 				span_danger("You step on \the [src]!"),
-				"<b>You hear a loud metallic snap!</b>"
+				span_infoplain(span_bold("You hear a loud metallic snap!"))
 				)
 			attack_mob(L)
 			if(!has_buckled_mobs())
@@ -275,7 +275,7 @@
 			L.visible_message(
 				span_danger("[L] steps in \the [src]."),
 				span_danger("You step in \the [src]!"),
-				"<b>You hear a sharp rustling!</b>"
+				span_infoplain(span_bold("You hear a sharp rustling!"))
 				)
 			attack_mob(L)
 			update_icon()

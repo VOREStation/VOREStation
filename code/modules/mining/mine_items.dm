@@ -245,7 +245,7 @@
 		upright = 0
 		icon_state = base_state
 		anchored = FALSE
-		src.visible_message("<b>[user]</b> knocks down [src].")
+		src.visible_message(span_infoplain(span_bold("[user]") + " knocks down [src]."))
 	else
 		..()
 
@@ -268,5 +268,5 @@
 	newflag.anchored = TRUE
 	newflag.name = newflag.singular_name
 	newflag.icon_state = "[newflag.base_state]_open"
-	newflag.visible_message("<b>[user]</b> plants [newflag] firmly in the ground.")
+	newflag.visible_message(span_infoplain(span_bold("[user]") + " plants [newflag] firmly in the ground."))
 	src.use(1)

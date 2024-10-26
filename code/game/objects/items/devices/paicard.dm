@@ -35,6 +35,8 @@ GLOBAL_LIST_BOILERPLATE(all_pai_cards, /obj/item/paicard)
 	var/screen_color = "#00ff0d"
 	var/last_notify = 0
 	var/screen_msg
+	pickup_sound = 'sound/items/pickup/device.ogg'
+	drop_sound = 'sound/items/drop/device.ogg'
 
 /obj/item/paicard/relaymove(var/mob/user, var/direction)
 	if(user.stat || user.stunned)
@@ -275,7 +277,7 @@ GLOBAL_LIST_BOILERPLATE(all_pai_cards, /obj/item/paicard)
 			"}
 		dat += "<br>"
 		if(radio)
-			dat += "<b>Radio Uplink</b>"
+			dat += span_bold("Radio Uplink")
 			dat += {"
 				<table class="request">
 					<tr>
@@ -294,7 +296,7 @@ GLOBAL_LIST_BOILERPLATE(all_pai_cards, /obj/item/paicard)
 				<br>
 			"}
 		else //</font></font>
-			dat += "<b>Radio Uplink</b><br>"
+			dat += span_bold("Radio Uplink") + "<br>"
 			dat += "<font color=red><i>Radio firmware not loaded. Please install a pAI personality to load firmware.</i></font><br>"
 		/* - //A button for instantly deleting people from the game is lame, especially considering that pAIs on our server tend to activate without a master.
 		dat += {"
@@ -306,7 +308,7 @@ GLOBAL_LIST_BOILERPLATE(all_pai_cards, /obj/item/paicard)
 		"}
 		*/
 		if(screen_msg)
-			dat += "<b>Message from [pai.name]</b><br>[screen_msg]"
+			dat += span_bold("Message from [pai.name]") + "<br>[screen_msg]"
 	else
 		if(looking_for_personality)
 			dat += {"

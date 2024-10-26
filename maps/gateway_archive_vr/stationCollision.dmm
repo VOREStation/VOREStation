@@ -2726,7 +2726,7 @@
 /area/awaymission/arrivalblock)
 "ha" = (
 /obj/structure/table/standard,
-/obj/item/book/manual/security_space_law,
+/obj/item/book/manual/wiki/security_space_law,
 /obj/item/melee/baton,
 /obj/item/clothing/head/helmet/warden,
 /turf/simulated/floor{

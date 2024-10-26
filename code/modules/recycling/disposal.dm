@@ -110,7 +110,7 @@
 	if(istype(I, /obj/item/material/ashtray))
 		var/obj/item/material/ashtray/A = I
 		if(A.contents.len > 0)
-			user.visible_message("<b>\The [user]</b> empties \the [A] into [src].")
+			user.visible_message(span_infoplain(span_bold("\The [user]") + " empties \the [A] into [src]."))
 			for(var/obj/item/O in A.contents)
 				O.forceMove(src)
 			A.update_icon()
@@ -380,6 +380,15 @@
 // 	return
 
 // eject the contents of the disposal unit
+
+/obj/machinery/disposal/verb/force_eject()
+	set src in oview(1)
+	set category = "Object"
+	set name = "Force Eject"
+	if(flushing)
+		return
+	eject()
+
 /obj/machinery/disposal/proc/eject()
 	for(var/atom/movable/AM in src)
 		AM.forceMove(src.loc)

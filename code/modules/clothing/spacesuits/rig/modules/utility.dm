@@ -508,7 +508,7 @@
 		to_chat(user, span_danger("Another grenade of that type will not fit into the module."))
 		return 0
 
-	to_chat(user, span_blue("<b>You slot \the [input_device] into the suit module.</b>"))
+	to_chat(user, span_boldnotice("You slot \the [input_device] into the suit module."))
 	user.drop_from_inventory(input_device)
 	qdel(input_device)
 	accepted_item.charges++
@@ -632,7 +632,7 @@
 
 	var/mob/living/carbon/human/H = holder.wearer
 
-	to_chat(H, span_blue("<b>You activate the suit's sprint mode.</b>"))
+	to_chat(H, span_boldnotice("You activate the suit's sprint mode."))
 
 	holder.slowdown = initial(holder.slowdown) - sprint_speed
 

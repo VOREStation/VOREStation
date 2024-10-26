@@ -14,6 +14,8 @@
 		/obj/item/clothing/head/helmet/space/void,
 		/obj/item/clothing/suit/space/void
 		)
+	pickup_sound = 'sound/items/pickup/device.ogg'
+	drop_sound = 'sound/items/drop/device.ogg'
 
 /obj/item/modkit/afterattack(obj/item/O, mob/user as mob, proximity)
 	if(!proximity)
@@ -50,7 +52,7 @@
 
 	playsound(src, O.usesound, 100, 1)
 
-	user.visible_message("<b>\The [user]</b> opens \the [src] and modifies \the [O].",span_notice("You open \the [src] and modify \the [O]."))
+	user.visible_message(span_infoplain(span_bold("\The [user]") + " opens \the [src] and modifies \the [O]."),span_notice("You open \the [src] and modify \the [O]."))
 
 	I.refit_for_species(target_species)
 

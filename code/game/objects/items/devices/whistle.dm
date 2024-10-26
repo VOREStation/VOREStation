@@ -10,6 +10,9 @@
 	var/spamcheck = 0
 	var/insults
 
+	pickup_sound = 'sound/items/pickup/device.ogg'
+	drop_sound = 'sound/items/drop/device.ogg'
+
 /obj/item/hailer/verb/set_message()
 	set name = "Set Hailer Message"
 	set category = "Object"

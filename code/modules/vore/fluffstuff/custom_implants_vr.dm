@@ -112,7 +112,7 @@
 /obj/item/implant/reagent_generator/roiz/post_implant(mob/living/carbon/source)
 	START_PROCESSING(SSobj, src)
 	to_chat(source, span_notice("You implant [source] with \the [src]."))
-	source.verbs |= assigned_proc
+	add_verb(source, assigned_proc)
 	return 1
 
 /obj/item/implanter/reagent_generator/roiz
@@ -181,7 +181,7 @@
 /obj/item/implant/reagent_generator/jasmine/post_implant(mob/living/carbon/source)
 	START_PROCESSING(SSobj, src)
 	to_chat(source, span_notice("You implant [source] with \the [src]."))
-	source.verbs |= assigned_proc
+	add_verb(source, assigned_proc)
 	return 1
 
 /obj/item/implanter/reagent_generator/jasmine
@@ -250,7 +250,7 @@
 /obj/item/implant/reagent_generator/yonra/post_implant(mob/living/carbon/source)
 	START_PROCESSING(SSobj, src)
 	to_chat(source, span_notice("You implant [source] with \the [src]."))
-	source.verbs |= assigned_proc
+	add_verb(source, assigned_proc)
 	return 1
 
 /obj/item/implanter/reagent_generator/yonra
@@ -335,7 +335,7 @@
 /obj/item/implant/reagent_generator/rischi/post_implant(mob/living/carbon/source)
 	START_PROCESSING(SSobj, src)
 	to_chat(source, span_notice("You implant [source] with \the [src]."))
-	source.verbs |= assigned_proc
+	add_verb(source, assigned_proc)
 	return 1
 
 /obj/item/implanter/reagent_generator/rischi
@@ -486,7 +486,7 @@
 /obj/item/implant/reagent_generator/evian/post_implant(mob/living/carbon/source)
 	START_PROCESSING(SSobj, src)
 	to_chat(source, span_notice("You implant [source] with \the [src]."))
-	source.verbs |= assigned_proc
+	add_verb(source, assigned_proc)
 	return 1
 
 /obj/item/implanter/reagent_generator/evian
