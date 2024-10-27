@@ -99,37 +99,53 @@ var/SMALLSIZEBLOCK     = 0
 #define DNA_UI_BEARD_STYLE 15
 #define DNA_UI_HAIR_STYLE  16
 #define DNA_UI_EAR_STYLE   17 // VOREStation snippet.
-#define DNA_UI_TAIL_STYLE  18
-#define DNA_UI_PLAYERSCALE 19
-#define DNA_UI_TAIL_R      20
-#define DNA_UI_TAIL_G      21
-#define DNA_UI_TAIL_B      22
-#define DNA_UI_TAIL2_R     23
-#define DNA_UI_TAIL2_G     24
-#define DNA_UI_TAIL2_B     25
-#define DNA_UI_TAIL3_R     26
-#define DNA_UI_TAIL3_G     27
-#define DNA_UI_TAIL3_B     28
-#define DNA_UI_EARS_R      29
-#define DNA_UI_EARS_G      30
-#define DNA_UI_EARS_B      31
-#define DNA_UI_EARS2_R     32
-#define DNA_UI_EARS2_G     33
-#define DNA_UI_EARS2_B     34
-#define DNA_UI_EARS3_R     35
-#define DNA_UI_EARS3_G     36
-#define DNA_UI_EARS3_B     37
-#define DNA_UI_WING_STYLE  38
-#define DNA_UI_WING_R      39
-#define DNA_UI_WING_G      40
-#define DNA_UI_WING_B      41
-#define DNA_UI_WING2_R     42
-#define DNA_UI_WING2_G     43
-#define DNA_UI_WING2_B     44
-#define DNA_UI_WING3_R     45
-#define DNA_UI_WING3_G     46
-#define DNA_UI_WING3_B     47 // VOREStation snippet end.
-#define DNA_UI_LENGTH      47 // VOREStation Edit - Needs to match the highest number above.
+#define DNA_UI_EAR_SECONDARY_STYLE   18 // VOREStation snippet.
+#define DNA_UI_TAIL_STYLE  19
+#define DNA_UI_PLAYERSCALE 20
+#define DNA_UI_TAIL_R      21
+#define DNA_UI_TAIL_G      22
+#define DNA_UI_TAIL_B      23
+#define DNA_UI_TAIL2_R     24
+#define DNA_UI_TAIL2_G     25
+#define DNA_UI_TAIL2_B     26
+#define DNA_UI_TAIL3_R     27
+#define DNA_UI_TAIL3_G     28
+#define DNA_UI_TAIL3_B     29
+
+#define DNA_UI_EARS_R      30
+#define DNA_UI_EARS_G      31
+#define DNA_UI_EARS_B      32
+#define DNA_UI_EARS2_R     33
+#define DNA_UI_EARS2_G     34
+#define DNA_UI_EARS2_B     35
+#define DNA_UI_EARS3_R     36
+#define DNA_UI_EARS3_G     37
+#define DNA_UI_EARS3_B     38
+
+#define DNA_UI_EARS_SECONDARY_START 39
+#define DNA_UI_EARS_SECONDARY_COLOR_CHANNEL_COUNT 3
+
+#define DNA_UI_EARS_SECONDARY_R      39
+#define DNA_UI_EARS_SECONDARY_G      40
+#define DNA_UI_EARS_SECONDARY_B      41
+#define DNA_UI_EARS_SECONDARY2_R     42
+#define DNA_UI_EARS_SECONDARY2_G     43
+#define DNA_UI_EARS_SECONDARY2_B     44
+#define DNA_UI_EARS_SECONDARY3_R     45
+#define DNA_UI_EARS_SECONDARY3_G     46
+#define DNA_UI_EARS_SECONDARY3_B     47
+
+#define DNA_UI_WING_STYLE  48
+#define DNA_UI_WING_R      49
+#define DNA_UI_WING_G      50
+#define DNA_UI_WING_B      51
+#define DNA_UI_WING2_R     52
+#define DNA_UI_WING2_G     53
+#define DNA_UI_WING2_B     54
+#define DNA_UI_WING3_R     55
+#define DNA_UI_WING3_G     56
+#define DNA_UI_WING3_B     57 // VOREStation snippet end.
+#define DNA_UI_LENGTH      57 // VOREStation Edit - Needs to match the highest number above.
 
 #define DNA_SE_LENGTH 49 // VOREStation Edit (original was UI+11)
 
