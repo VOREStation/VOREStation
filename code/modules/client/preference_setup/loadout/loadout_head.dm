@@ -239,6 +239,10 @@
 	display_name = "rabbit ears"
 	path = /obj/item/clothing/head/rabbitears
 
+/datum/gear/head/rabbit/New()
+	..()
+	gear_tweaks += gear_tweak_free_color_choice
+
 /datum/gear/head/beanie
 	display_name = "beanie"
 	path = /obj/item/clothing/head/beanie

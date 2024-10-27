@@ -1,5 +1,12 @@
 import { BooleanLike } from 'common/react';
 
+export const SPRITE_ACCESSORY_COLOR_CHANNEL_NAMES = [
+  'Primary',
+  'Secondary',
+  'Tertiary',
+  'Quaternary',
+];
+
 export type Data = {
   name: string;
   specimen: string;
@@ -39,6 +46,8 @@ export type Data = {
   wing2_color: string;
   facial_hair_styles: { facialhairstyle: string }[];
   hair_styles: { hairstyle: string }[];
+  ear_secondary_style: string;
+  ear_secondary_colors: string[];
 };
 
 type genders = { gender_name: string; gender_key: string }[];

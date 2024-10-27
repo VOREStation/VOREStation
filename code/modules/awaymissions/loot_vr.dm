@@ -135,7 +135,7 @@
 					prob(9);/obj/item/gun/projectile/automatic/mini_uzi,\
 					prob(9);/obj/item/gun/projectile/pistol,\
 					prob(9);/obj/item/gun/projectile/shotgun/pump/combat,\
-					prob(9);/obj/item/twohanded/fireaxe,\
+					prob(9);/obj/item/material/twohanded/fireaxe,\
 					prob(9);/obj/item/cane/concealed,\
 					prob(9);/obj/item/gun/energy/gun,\
 					prob(8);/obj/item/gun/energy/ionrifle,\

@@ -7,7 +7,6 @@
 	var/mappath = null
 	var/loaded = 0 // Times loaded this round
 	var/annihilate = FALSE // If true, all (movable) atoms at the location where the map is loaded will be deleted before the map is loaded in.
-	var/fixed_orientation = FALSE // If true, the submap will not be rotated randomly when loaded.
 
 	var/cost = null /* The map generator has a set 'budget' it spends to place down different submaps. It will pick available submaps randomly until
 	it runs out. The cost of a submap should roughly corrispond with several factors such as size, loot, difficulty, desired scarcity, etc.
@@ -24,15 +23,12 @@
 	if(rename)
 		name = rename
 
-/datum/map_template/proc/preload_size(path, orientation = 0)
-	var/bounds = SSmapping.maploader.load_map(file(path), 1, 1, 1, cropMap=FALSE, measureOnly=TRUE, orientation=orientation)
+/datum/map_template/proc/preload_size(path)
+	var/datum/bapi_parsed_map/map = load_map_bapi(path, 1, 1, 1, crop_map=FALSE, measure_only=TRUE)
+	var/list/bounds = map.parsed_bounds
 	if(bounds)
-		if(orientation & (90 | 270))
-			width = bounds[MAP_MAXY]
-			height = bounds[MAP_MAXX]
-		else
-			width = bounds[MAP_MAXX] // Assumes all templates are rectangular, have a single Z level, and begin at 1,1,1
-			height = bounds[MAP_MAXY]
+		width = bounds[MAP_MAXX] // Assumes all templates are rectangular, have a single Z level, and begin at 1,1,1
+		height = bounds[MAP_MAXY]
 	return bounds
 
 /datum/map_template/proc/initTemplateBounds(var/list/bounds)
@@ -80,7 +76,7 @@
 
 	admin_notice(span_danger("Submap initializations finished."), R_DEBUG)
 
-/datum/map_template/proc/load_new_z(var/centered = FALSE, var/orientation = 0)
+/datum/map_template/proc/load_new_z(var/centered = FALSE)
 	var/x = 1
 	var/y = 1
 
@@ -88,7 +84,8 @@
 		x = round((world.maxx - width)/2)
 		y = round((world.maxy - height)/2)
 
-	var/list/bounds = SSmapping.maploader.load_map(file(mappath), x, y, no_changeturf = TRUE, orientation=orientation)
+	var/datum/bapi_parsed_map/map = load_map_bapi(mappath, x, y, no_changeturf = TRUE)
+	var/list/bounds = map.bounds
 	if(!bounds)
 		return FALSE
 
@@ -100,10 +97,10 @@
 	on_map_loaded(world.maxz) //VOREStation Edit
 	return TRUE
 
-/datum/map_template/proc/load(turf/T, centered = FALSE, orientation = 0)
+/datum/map_template/proc/load(turf/T, centered = FALSE)
 	var/old_T = T
 	if(centered)
-		T = locate(T.x - round(((orientation%180) ? height : width)/2) , T.y - round(((orientation%180) ? width : height)/2) , T.z) // %180 catches East/West (90,270) rotations on true, North/South (0,180) rotations on false
+		T = locate(T.x - round((width)/2) , T.y - round((height)/2) , T.z) // %180 catches East/West (90,270) rotations on true, North/South (0,180) rotations on false
 	if(!T)
 		return
 	if(T.x+width > world.maxx)
@@ -112,9 +109,10 @@
 		return
 
 	if(annihilate)
-		annihilate_bounds(old_T, centered, orientation)
+		annihilate_bounds(old_T, centered)
 
-	var/list/bounds = SSmapping.maploader.load_map(file(mappath), T.x, T.y, T.z, cropMap=TRUE, orientation = orientation)
+	var/datum/bapi_parsed_map/map = load_map_bapi(mappath, T.x, T.y, T.z, crop_map = TRUE)
+	var/list/bounds = map.bounds
 	if(!bounds)
 		return
 
@@ -128,18 +126,18 @@
 	loaded++
 	return TRUE
 
-/datum/map_template/proc/get_affected_turfs(turf/T, centered = FALSE, orientation = 0)
+/datum/map_template/proc/get_affected_turfs(turf/T, centered = FALSE)
 	var/turf/placement = T
 	if(centered)
-		var/turf/corner = locate(placement.x - round(((orientation%180) ? height : width)/2), placement.y - round(((orientation%180) ? width : height)/2), placement.z) // %180 catches East/West (90,270) rotations on true, North/South (0,180) rotations on false
+		var/turf/corner = locate(placement.x - round((width)/2), placement.y - round((height)/2), placement.z) // %180 catches East/West (90,270) rotations on true, North/South (0,180) rotations on false
 		if(corner)
 			placement = corner
-	return block(placement, locate(placement.x+((orientation%180) ? height : width)-1, placement.y+((orientation%180) ? width : height)-1, placement.z))
+	return block(placement, locate(placement.x+(width)-1, placement.y+(height)-1, placement.z))
 
-/datum/map_template/proc/annihilate_bounds(turf/origin, centered = FALSE, orientation = 0)
+/datum/map_template/proc/annihilate_bounds(turf/origin, centered = FALSE)
 	var/deleted_atoms = 0
 	admin_notice(span_danger("Annihilating objects in submap loading locatation."), R_DEBUG)
-	var/list/turfs_to_clean = get_affected_turfs(origin, centered, orientation)
+	var/list/turfs_to_clean = get_affected_turfs(origin, centered)
 	if(turfs_to_clean.len)
 		for(var/turf/T in turfs_to_clean)
 			for(var/atom/movable/AM in T)
@@ -150,9 +148,9 @@
 
 //for your ever biggening badminnery kevinz000
 //❤ - Cyberboss
-/proc/load_new_z_level(var/file, var/name, var/orientation = 0)
+/proc/load_new_z_level(var/file, var/name)
 	var/datum/map_template/template = new(file, name)
-	template.load_new_z(orientation)
+	template.load_new_z()
 
 // Very similar to the /tg/ version.
 /proc/seed_submaps(var/list/z_levels, var/budget = 0, var/whitelist = /area/space, var/desired_map_template_type = null)
@@ -231,20 +229,14 @@
 		while(specific_sanity > 0)
 			specific_sanity--
 
-			var/orientation
-			if(chosen_template.fixed_orientation || !CONFIG_GET(flag/random_submap_orientation))
-				orientation = 0
-			else
-				orientation = pick(list(0, 90, 180, 270))
-
-			chosen_template.preload_size(chosen_template.mappath, orientation)
-			var/width_border = SUBMAP_MAP_EDGE_PAD + round(((orientation%180) ? chosen_template.height : chosen_template.width) / 2) // %180 catches East/West (90,270) rotations on true, North/South (0,180) rotations on false		//VOREStation Edit
-			var/height_border = SUBMAP_MAP_EDGE_PAD + round(((orientation%180) ? chosen_template.width : chosen_template.height) / 2)																									//VOREStation Edit
+			chosen_template.preload_size(chosen_template.mappath)
+			var/width_border = SUBMAP_MAP_EDGE_PAD + round((chosen_template.width) / 2)
+			var/height_border = SUBMAP_MAP_EDGE_PAD + round((chosen_template.height) / 2)																									//VOREStation Edit
 			var/z_level = pick(z_levels)
 			var/turf/T = locate(rand(width_border, world.maxx - width_border), rand(height_border, world.maxy - height_border), z_level)
 			var/valid = TRUE
 
-			for(var/turf/check in chosen_template.get_affected_turfs(T,TRUE,orientation))
+			for(var/turf/check in chosen_template.get_affected_turfs(T,TRUE))
 				var/area/new_area = get_area(check)
 				if(!(istype(new_area, whitelist)))
 					valid = FALSE // Probably overlapping something important.
@@ -267,7 +259,7 @@
 				specific_sanity = -1 // force end the placement loop
 
 			// Do loading here.
-			chosen_template.load(T, centered = TRUE, orientation=orientation) // This is run before the main map's initialization routine, so that can initilize our submaps for us instead.
+			chosen_template.load(T, centered = TRUE) // This is run before the main map's initialization routine, so that can initilize our submaps for us instead.
 
 			CHECK_TICK
 
@@ -306,3 +298,10 @@
 	else
 		admin_notice("Submaps loaded.", R_DEBUG)
 	admin_notice("Loaded: [english_list(pretty_submap_list)]", R_DEBUG)
+
+/area/template_noop
+	name = "Area Passthrough"
+
+/turf/template_noop
+	name = "Turf Passthrough"
+	icon_state = "template_void"

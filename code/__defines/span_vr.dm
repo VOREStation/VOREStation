@@ -241,3 +241,5 @@
 
 // Just used downstream
 #define span_wingdings(str) ("<span class='wingdings'>" + str + "</span>")
+
+#define span_maptext(str) ("<span class='maptext'>" + str + "</span>")

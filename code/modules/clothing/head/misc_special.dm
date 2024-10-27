@@ -65,7 +65,7 @@
 		if (ismob(src.loc)) //should allow masks to update when it is opened/closed
 			var/mob/M = src.loc
 			M.update_inv_wear_mask()
-		usr.update_action_buttons_icon()
+		usr.update_mob_action_buttons()
 
 /obj/item/clothing/head/welding/demon
 	name = "demonic welding helmet"

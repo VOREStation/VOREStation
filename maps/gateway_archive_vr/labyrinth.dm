@@ -220,7 +220,7 @@
 //	speak_chance = 1
 	a_intent = "harm"
 	var/corpse = /obj/effect/landmark/mobcorpse/tunnelclown
-	var/weapon1 = /obj/item/twohanded/fireaxe
+	var/weapon1 = /obj/item/material/twohanded/fireaxe
 	stop_when_pulled = 0
 	maxHealth = 100
 	health = 100

@@ -191,6 +191,22 @@
 				update_dna()
 				changed_hook(APPEARANCECHANGER_CHANGED_HAIRSTYLE)
 				return TRUE
+		if("ear_secondary")
+			if(can_change(APPEARANCE_ALL_HAIR))
+				var/datum/sprite_accessory/ears/instance = locate(params["ref"])
+				if(params["clear"])
+					instance = null
+				if(!istype(instance) && !params["clear"])
+					return FALSE
+				target.ear_secondary_style = instance
+				if(!islist(target.ear_secondary_colors))
+					target.ear_secondary_colors = list()
+				if(length(target.ear_secondary_colors) < instance.get_color_channel_count())
+					target.ear_secondary_colors.len = instance.get_color_channel_count()
+				target.update_hair()
+				update_dna()
+				changed_hook(APPEARANCECHANGER_CHANGED_HAIRSTYLE)
+				return TRUE
 		if("ears_color")
 			if(can_change(APPEARANCE_HAIR_COLOR))
 				var/new_hair = input(usr, "Please select ear color.", "Ear Color", rgb(target.r_ears, target.g_ears, target.b_ears)) as color|null
@@ -213,6 +229,19 @@
 					target.update_hair()
 					changed_hook(APPEARANCECHANGER_CHANGED_HAIRCOLOR)
 					return 1
+		if("ears_secondary_color")
+			if(can_change(APPEARANCE_HAIR_COLOR))
+				var/channel = params["channel"]
+				if(channel > length(target.ear_secondary_colors))
+					return TRUE
+				var/existing = LAZYACCESS(target.ear_secondary_colors, channel) || "#ffffff"
+				var/new_color = input(usr, "Please select ear color.", "2nd Ear Color", existing) as color|null
+				if(new_color && can_still_topic(usr, state))
+					target.ear_secondary_colors[channel] = new_color
+					update_dna()
+					target.update_hair()
+					changed_hook(APPEARANCECHANGER_CHANGED_HAIRCOLOR)
+					return TRUE
 		if("tail")
 			if(can_change(APPEARANCE_ALL_HAIR))
 				var/datum/sprite_accessory/tail/instance = locate(params["ref"])
@@ -406,6 +435,7 @@
 
 		// VOREStation Add - Ears/Tails/Wings
 		data["ear_style"] = target.ear_style
+		data["ear_secondary_style"] = target.ear_secondary_style?.name
 		data["tail_style"] = target.tail_style
 		data["wing_style"] = target.wing_style
 		var/list/markings_data[0]
@@ -434,6 +464,12 @@
 		// VOREStation Add - Ears/Tails/Wings
 		data["ears_color"] = rgb(target.r_ears, target.g_ears, target.b_ears)
 		data["ears2_color"] = rgb(target.r_ears2, target.g_ears2, target.b_ears2)
+
+		// secondary ear colors
+		var/list/ear_secondary_color_channels = target.ear_secondary_colors || list()
+		ear_secondary_color_channels.len = target.ear_secondary_style?.get_color_channel_count() || 0
+		data["ear_secondary_colors"] = ear_secondary_color_channels
+
 		data["tail_color"] = rgb(target.r_tail, target.g_tail, target.b_tail)
 		data["tail2_color"] = rgb(target.r_tail2, target.g_tail2, target.b_tail2)
 		data["wing_color"] = rgb(target.r_wing, target.g_wing, target.b_wing)
