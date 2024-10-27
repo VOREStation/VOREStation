@@ -500,7 +500,7 @@ function draw_listedturf() {
 		table.appendChild(b);
 		table.appendChild(document.createElement("br"));
 	}
-	document.getElementById("statcontent").appendChild(table);
+	statcontentdiv.appendChild(table);
 }
 
 function remove_listedturf() {
