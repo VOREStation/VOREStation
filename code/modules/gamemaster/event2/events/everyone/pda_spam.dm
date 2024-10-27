@@ -132,7 +132,7 @@
 /datum/event2/event/pda_spam/proc/send_spam(obj/item/pda/P, sender, message)
 	last_spam_time = world.time
 	var/datum/data/pda/app/messenger/PM = P.find_program(/datum/data/pda/app/messenger)
-	PM.notify("<b>Message from [sender] (Unknown / spam?), </b>\"[message]\" (Unable to Reply)", 0)
+	PM.notify(span_bold("Message from [sender] (Unknown / spam?), ") + "\"[message]\" (Unable to Reply)", 0)
 	if(spam_debug)
 		log_debug("PDA Spam event sent spam to \the [P].")
 

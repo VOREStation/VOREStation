@@ -119,18 +119,12 @@
 /mob/living/simple_mob/animal/sif/leech/Initialize()
 	. = ..()
 
-	verbs += /mob/living/proc/ventcrawl
-	verbs += /mob/living/proc/hide
+	add_verb(src, /mob/living/proc/ventcrawl)
+	add_verb(src, /mob/living/proc/hide)
 
-/mob/living/simple_mob/animal/sif/leech/Stat()
-	..()
-	if(client.statpanel == "Status")
-		statpanel("Status")
-		if(emergency_shuttle)
-			var/eta_status = emergency_shuttle.get_status_panel_eta()
-			if(eta_status)
-				stat(null, eta_status)
-		stat("Chemicals", chemicals)
+/mob/living/simple_mob/animal/sif/leech/get_status_tab_items()
+	. = ..()
+	. += "Chemicals: [chemicals]"
 
 /mob/living/simple_mob/animal/sif/leech/do_special_attack(atom/A)
 	. = TRUE

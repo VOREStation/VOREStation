@@ -6,7 +6,7 @@
 	if(!.)
 		return
 
-	var/dat = "<B>Bombing List</B>"
+	var/dat = span_bold("Bombing List")
 	for(var/l in bombers)
 		dat += text("[l]<BR>")
 	user << browse(dat, "window=bombers")

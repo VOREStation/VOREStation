@@ -74,7 +74,7 @@
 			src.take_organ_damage(0,5,emp=1)
 			Confuse(2)
 	flash_eyes(affect_silicon = 1)
-	to_chat(src, span_danger("<B>*BZZZT*</B>"))
+	to_chat(src, span_bolddanger("*BZZZT*"))
 	to_chat(src, span_danger("Warning: Electromagnetic pulse detected."))
 	..()
 
@@ -130,30 +130,30 @@
 // this function shows the health of the AI in the Status panel
 /mob/living/silicon/proc/show_system_integrity()
 	if(!src.stat)
-		stat(null, text("System integrity: [round((health/getMaxHealth())*100)]%"))
+		. = "System integrity: [round((health/getMaxHealth())*100)]%"
 	else
-		stat(null, text("Systems nonfunctional"))
+		. = "Systems nonfunctional"
 
 
 // This is a pure virtual function, it should be overwritten by all subclasses
 /mob/living/silicon/proc/show_malf_ai()
-	return 0
+	return ""
 
 // this function displays the shuttles ETA in the status panel if the shuttle has been called
 /mob/living/silicon/proc/show_emergency_shuttle_eta()
 	if(emergency_shuttle)
 		var/eta_status = emergency_shuttle.get_status_panel_eta()
 		if(eta_status)
-			stat(null, eta_status)
+			. = "[eta_status]"
 
 
 // This adds the basic clock, shuttle recall timer, and malf_ai info to all silicon lifeforms
-/mob/living/silicon/Stat()
-	if(statpanel("Status"))
-		show_emergency_shuttle_eta()
-		show_system_integrity()
-		show_malf_ai()
-	..()
+/mob/living/silicon/get_status_tab_items()
+	. = ..()
+	. += ""
+	. += show_emergency_shuttle_eta()
+	. += show_system_integrity()
+	. += show_malf_ai()
 
 /* VOREStation Removal
 // this function displays the stations manifest in a separate window
@@ -221,7 +221,7 @@
 				default_str = " - <a href='byond://?src=\ref[src];default_lang=\ref[L]'>set default</a>"
 
 			var/synth = (L in speech_synthesizer_langs)
-			. += "<b>[L.name] ([get_language_prefix()][L.key])</b>[synth ? default_str : null]<br>Speech Synthesizer: <i>[synth ? "YES" : "NOT SUPPORTED"]</i><br>[L.desc]<br><br>"
+			. += span_bold("[L.name] ([get_language_prefix()][L.key])") + "[synth ? default_str : null]<br>Speech Synthesizer: <i>[synth ? "YES" : "NOT SUPPORTED"]</i><br>[L.desc]<br><br>"
 
 /mob/living/silicon/proc/toggle_sensor_mode() //VOREStation Add to make borgs use omni starts here - Tank, clueless bird
 	if(sensor_type)

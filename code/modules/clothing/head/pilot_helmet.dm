@@ -188,7 +188,7 @@
 	name = "pilot helmet"
 	desc = "Standard pilot gear. Protects the head from impacts. This one has a retractable visor"
 	icon_state = "pilot_helmet2"
-	action_button_name = "Toggle Visor"
+	actions_types = list(/datum/action/item_action/toggle_visor)
 
 /obj/item/clothing/head/pilot/alt/attack_self(mob/user as mob)
 	if(src.icon_state == initial(icon_state))

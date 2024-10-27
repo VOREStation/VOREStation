@@ -29,7 +29,7 @@
 			pref.volume_channels["[channel]"] = clamp(pref.volume_channels["[channel]"], 0, 2)
 
 /datum/category_item/player_setup_item/volume_sliders/volume/content(var/mob/user)
-	. += "<b>Volume Settings</b><br>"
+	. += span_bold("Volume Settings") + "<br>"
 	for(var/channel in pref.volume_channels)
 		. += "[channel]: <a href='?src=\ref[src];change_volume=[channel];'><b>[pref.volume_channels[channel] * 100]%</b></a><br>"
 	. += "<br>"

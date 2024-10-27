@@ -1,0 +1,25 @@
+[package]
+name = "verdigris"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+crate-type = ["cdylib"]
+
+[profile.release]
+debug = "full"
+lto = "thin"
+split-debuginfo = "packed"
+
+[profile.dev]
+debug = "full"
+opt-level = 0
+
+[dependencies]
+const_format = "0.2.33"
+eyre = "0.6.12"
+meowtonin = { git = "https://github.com/Absolucy/meowtonin.git" }
+rand = "0.8.5"
+
+[build-dependencies]
+bosion = "1.1.1"

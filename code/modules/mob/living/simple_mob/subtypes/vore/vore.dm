@@ -9,8 +9,8 @@
 
 /mob/living/simple_mob/Login()
 	. = ..()
-	verbs |= /mob/living/simple_mob/proc/set_name
-	verbs |= /mob/living/simple_mob/proc/set_desc
+	add_verb(src, /mob/living/simple_mob/proc/set_name)
+	add_verb(src, /mob/living/simple_mob/proc/set_desc)
 
 	if(copy_prefs_to_mob)
 		login_prefs()

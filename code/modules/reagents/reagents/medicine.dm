@@ -349,7 +349,7 @@
 		var/obj/item/stack/medical/M = C.upgrade_stack(to_produce)
 
 		if(M && M.get_amount())
-			holder.my_atom.visible_message("<b>\The [packname]</b> bubbles.")
+			holder.my_atom.visible_message(span_infoplain(span_bold("\The [packname]") + " bubbles."))
 			remove_self(to_produce * 5)
 
 /datum/reagent/cryoxadone
@@ -1261,7 +1261,7 @@
 		var/obj/item/stack/medical/M = C.upgrade_stack(to_produce)
 
 		if(M && M.get_amount())
-			holder.my_atom.visible_message("<b>\The [packname]</b> bubbles.")
+			holder.my_atom.visible_message(span_infoplain(span_bold("\The [packname]") + " bubbles."))
 			remove_self(to_produce)
 
 /datum/reagent/sterilizine

@@ -85,7 +85,7 @@ log transactions
 	if(istype(I, /obj/item/card))
 		if(emagged > 0)
 			//prevent inserting id into an emagged ATM
-			to_chat(user, span_red("[icon2html(src, user.client)] CARD READER ERROR. This system has been compromised!"))
+			to_chat(user, span_boldwarning("[icon2html(src, user.client)] CARD READER ERROR. This system has been compromised!"))
 			return
 		else if(istype(I,/obj/item/card/emag))
 			I.resolve_attackby(src, user)
@@ -190,7 +190,7 @@ log transactions
 				release_held_id(usr)
 			else
 				if(emagged > 0)
-					to_chat(usr, span_red("[icon2html(src, usr.client)] The ATM card reader rejected your ID because this machine has been sabotaged!"))
+					to_chat(usr, span_boldwarning("[icon2html(src, usr.client)] The ATM card reader rejected your ID because this machine has been sabotaged!"))
 				else
 					var/obj/item/I = usr.get_active_hand()
 					if(istype(I, /obj/item/card/id))
@@ -211,12 +211,12 @@ log transactions
 
 			var/obj/item/paper/R = new(loc)
 			R.name = "Account balance: [authenticated_account.owner_name]"
-			R.info = "<b>NT Automated Teller Account Statement</b><br><br>"
-			R.info += "<i>Account holder:</i> [authenticated_account.owner_name]<br>"
-			R.info += "<i>Account number:</i> [authenticated_account.account_number]<br>"
-			R.info += "<i>Balance:</i> $[authenticated_account.money]<br>"
-			R.info += "<i>Date and time:</i> [stationtime2text()], [current_date_string]<br><br>"
-			R.info += "<i>Service terminal ID:</i> [machine_id]<br>"
+			R.info = span_bold("NT Automated Teller Account Statement") + "<br><br>"
+			R.info += span_italics("Account holder:") + " [authenticated_account.owner_name]<br>"
+			R.info += span_italics("Account number:") + " [authenticated_account.account_number]<br>"
+			R.info += span_italics("Balance:") + " $[authenticated_account.money]<br>"
+			R.info += span_italics("Date and time:") + " [stationtime2text()], [current_date_string]<br><br>"
+			R.info += span_italics("Service terminal ID:") + " [machine_id]<br>"
 
 			//stamp the paper
 			var/image/stampoverlay = image('icons/obj/bureaucracy.dmi')
@@ -225,7 +225,7 @@ log transactions
 				R.stamped = new
 			R.stamped += /obj/item/stamp
 			R.add_overlay(stampoverlay)
-			R.stamps += "<HR><i>This paper has been stamped by the Automatic Teller Machine.</i>"
+			R.stamps += "<HR>" + span_italics("This paper has been stamped by the Automatic Teller Machine.")
 
 			if(prob(50))
 				playsound(src, 'sound/items/polaroid1.ogg', 50, 1)
@@ -240,19 +240,19 @@ log transactions
 
 			var/obj/item/paper/R = new(loc)
 			R.name = "Transaction logs: [authenticated_account.owner_name]"
-			R.info = "<b>Transaction logs</b><br>"
-			R.info += "<i>Account holder:</i> [authenticated_account.owner_name]<br>"
-			R.info += "<i>Account number:</i> [authenticated_account.account_number]<br>"
-			R.info += "<i>Date and time:</i> [stationtime2text()], [current_date_string]<br><br>"
-			R.info += "<i>Service terminal ID:</i> [machine_id]<br>"
+			R.info = span_bold("Transaction logs") + "<br>"
+			R.info += span_italics("Account holder:") + " [authenticated_account.owner_name]<br>"
+			R.info += span_italics("Account number:") + " [authenticated_account.account_number]<br>"
+			R.info += span_italics("Date and time:") + " [stationtime2text()], [current_date_string]<br><br>"
+			R.info += span_italics("Service terminal ID:") + " [machine_id]<br>"
 			R.info += "<table border=1 style='width:100%'>"
 			R.info += "<tr>"
-			R.info += "<td><b>Date</b></td>"
-			R.info += "<td><b>Time</b></td>"
-			R.info += "<td><b>Target</b></td>"
-			R.info += "<td><b>Purpose</b></td>"
-			R.info += "<td><b>Value</b></td>"
-			R.info += "<td><b>Source terminal ID</b></td>"
+			R.info += "<td>" + span_bold("Date") + "</td>"
+			R.info += "<td>" + span_bold("Time") + "</td>"
+			R.info += "<td>" + span_bold("Target") + "</td>"
+			R.info += "<td>" + span_bold("Purpose") + "</td>"
+			R.info += "<td>" + span_bold("Value") + "</td>"
+			R.info += "<td>" + span_bold("Source terminal ID") + "</td>"
 			R.info += "</tr>"
 			for(var/datum/transaction/T in authenticated_account.transaction_log)
 				R.info += "<tr>"
@@ -272,7 +272,7 @@ log transactions
 				R.stamped = new
 			R.stamped += /obj/item/stamp
 			R.add_overlay(stampoverlay)
-			R.stamps += "<HR><i>This paper has been stamped by the Automatic Teller Machine.</i>"
+			R.stamps += "<HR>" + span_italics("This paper has been stamped by the Automatic Teller Machine.")
 
 			if(prob(50))
 				playsound(src, 'sound/items/polaroid1.ogg', 50, 1)
@@ -317,11 +317,11 @@ log transactions
 							T.time = stationtime2text()
 							failed_account.transaction_log.Add(T)
 					else
-						to_chat(usr, span_red("[icon2html(src, usr.client)] Incorrect pin/account combination entered, [max_pin_attempts - number_incorrect_tries] attempts remaining."))
+						to_chat(usr, span_warning("[icon2html(src, usr.client)] Incorrect pin/account combination entered, [max_pin_attempts - number_incorrect_tries] attempts remaining."))
 						previous_account_number = tried_account_num
 						playsound(src, 'sound/machines/buzz-sigh.ogg', 50, 1)
 				else
-					to_chat(usr, span_red("[icon2html(src, usr.client)] incorrect pin/account combination entered."))
+					to_chat(usr, span_warning("[icon2html(src, usr.client)] incorrect pin/account combination entered."))
 					number_incorrect_tries = 0
 			else
 				playsound(src, 'sound/machines/twobeep.ogg', 50, 1)
@@ -337,7 +337,7 @@ log transactions
 				T.time = stationtime2text()
 				authenticated_account.transaction_log.Add(T)
 
-				to_chat(usr, span_blue("[icon2html(src, usr.client)] Access granted. Welcome user '[authenticated_account.owner_name].'"))
+				to_chat(usr, span_notice("[icon2html(src, usr.client)] Access granted. Welcome user '[authenticated_account.owner_name].'"))
 
 			previous_account_number = tried_account_num
 			. = TRUE
@@ -353,7 +353,7 @@ log transactions
 				var/target_account_number = text2num(params["target_acc_number"])
 				var/transfer_purpose = params["purpose"]
 				if(charge_to_account(target_account_number, authenticated_account.owner_name, transfer_purpose, machine_id, transfer_amount))
-					to_chat(usr, "[icon2html(src, usr.client)]<span class='info'>Funds transfer successful.</span>")
+					to_chat(usr, "[icon2html(src, usr.client)]" + span_info("Funds transfer successful."))
 					authenticated_account.money -= transfer_amount
 
 					//create an entry in the account transaction log
@@ -366,10 +366,10 @@ log transactions
 					T.amount = "([transfer_amount])"
 					authenticated_account.transaction_log.Add(T)
 				else
-					to_chat(usr, "[icon2html(src, usr.client)]<span class='warning'>Funds transfer failed.</span>")
+					to_chat(usr, "[icon2html(src, usr.client)]" + span_warning("Funds transfer failed."))
 
 			else
-				to_chat(usr, "[icon2html(src, usr.client)]<span class='warning'>You don't have enough funds to do that!</span>")
+				to_chat(usr, "[icon2html(src, usr.client)]" + span_warning("You don't have enough funds to do that!"))
 			. = TRUE
 
 		if("e_withdrawal")
@@ -401,7 +401,7 @@ log transactions
 				T.time = stationtime2text()
 				authenticated_account.transaction_log.Add(T)
 			else
-				to_chat(usr, "[icon2html(src, usr.client)]<span class='warning'>You don't have enough funds to do that!</span>")
+				to_chat(usr, "[icon2html(src, usr.client)]" + span_warning("You don't have enough funds to do that!"))
 			. = TRUE
 
 		if("withdrawal")
@@ -432,7 +432,7 @@ log transactions
 				T.time = stationtime2text()
 				authenticated_account.transaction_log.Add(T)
 			else
-				to_chat(usr, "[icon2html(src, usr.client)]<span class='warning'>You don't have enough funds to do that!</span>")
+				to_chat(usr, "[icon2html(src, usr.client)]" + span_warning("You don't have enough funds to do that!"))
 			. = TRUE
 
 	if(.)

@@ -435,7 +435,7 @@
 
 /obj/item/toy/chewtoy/attack_self(mob/user)
 	playsound(loc, 'sound/items/drop/plushie.ogg', 50, 1)
-	user.visible_message(span_notice("<b>\The [user]</b> gnaws on [src]!"),span_notice("You gnaw on [src]!"))
+	user.visible_message(span_notice(span_bold("\The [user]") + " gnaws on [src]!"),span_notice("You gnaw on [src]!"))
 
 /*
  * Cat toys
@@ -635,7 +635,7 @@
 			icon_state = "nuketoyidle"
 	else
 		var/timeleft = (cooldown - world.time)
-		to_chat(user, span_warning("Nothing happens, and '</span>[round(timeleft/10)]<span class='alert'>' appears on a small display."))
+		to_chat(user, span_warning("Nothing happens, and") + " '[round(timeleft/10)]' " + span_warning("appears on a small display."))
 
 /obj/item/toy/nuke/attackby(obj/item/I as obj, mob/living/user as mob)
 	if(istype(I, /obj/item/disk/nuclear))
@@ -677,7 +677,7 @@
 				O.forceMove(src)
 				stored_minature = O
 		else
-			user.visible_message(span_notice("You stop feeding \the [O] into \the [src].</span>"),"<span class='notice'>[user] stops feeding \the [O] into \the [src]!/span>")
+			user.visible_message(span_notice("You stop feeding \the [O] into \the [src]."),span_notice("[user] stops feeding \the [O] into \the [src]!"))
 
 	else ..()
 
@@ -1174,5 +1174,5 @@
 	if(M.stat)
 		to_chat(user, span_notice("\The [M] doesn't look like it's any condition to do that."))
 		return
-	user.visible_message("<span class='danger'>\The [user] waves \the [src] in front of the [M]!</span>!")
+	user.visible_message(span_danger("\The [user] waves \the [src] in front of the [M]!"))
 	M.PounceTarget(user,100)

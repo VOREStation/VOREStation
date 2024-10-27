@@ -170,11 +170,11 @@
 			to_chat(user, span_notice("You cannot access the debug interface with the panel screwed on!"))
 		else if(unscrewed && !wirecutted)
 			message_turf.audible_message(message = examine_multitool,
-			deaf_message = "<b>[src]</b> flashes red repeatedly", runemessage= "Beep! Beep!")
+			deaf_message = span_bold("[src]") + " flashes red repeatedly", runemessage= "Beep! Beep!")
 			to_chat(user, span_warning("The components spark from the multitool's unregulated pulse. \
 			Perhaps it'd been better to use more sophisticated tools..."))
 			fried = TRUE
-			message_turf.visible_message(message = "<b>[src]</b> FLASHES VIOLENTLY!",
+			message_turf.visible_message(message = span_bold("[src]") + " FLASHES VIOLENTLY!",
 			blind_message = "ZAP!", runemessage = "CRACKLE!")
 			var/used_hand = user.get_organ(user.get_active_hand())
 			user.electrocute_act(10,def_zone = used_hand)
@@ -192,13 +192,13 @@
 			Perhaps, it would've been a good idea to disconnect some wires while pulsing the security circuit..."))
 		else
 			if(!has_paper)
-				message_turf.visible_message(message = "<b>[src]</b> displays, 'PAPER NOT BIN'",
+				message_turf.visible_message(message = span_bold("[src]") + " displays, 'PAPER NOT BIN'",
 				blind_message = "you hear VERY ANGRY beeping.", runemessage = "BEEP BEEP!")
-				message_turf.audible_message(message = "<b>[src]</b> recites, \n '[examine_canalyzer]'",
-				deaf_message = "<b>[src]</b> flashes green!", runemessage= "Ping!")
+				message_turf.audible_message(message = span_bold("[src]") + " recites, \n '[examine_canalyzer]'",
+				deaf_message = span_bold("[src]") + " flashes green!", runemessage= "Ping!")
 			else
-				message_turf.audible_message(message = "<b>[src]</b> rattles loudly as it prints",
-				deaf_message = "<b>[src]</b> flashes green!", runemessage= "RATTLE RATTLE")
+				message_turf.audible_message(message = span_bold("[src]") + " rattles loudly as it prints",
+				deaf_message = span_bold("[src]") + " flashes green!", runemessage= "RATTLE RATTLE")
 				var/obj/item/paper/P = new /obj/item/paper(get_turf(src))
 				P.name = "[drone_name] blackbox transcript"
 				P.info = "[examine_canalyzer_printed ? examine_canalyzer_printed : examine_canalyzer]"

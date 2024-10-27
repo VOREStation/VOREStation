@@ -299,7 +299,7 @@
 		if(count > 1)
 			pretty_submap_list += "[count] <b>[submap_name]</b>"
 		else
-			pretty_submap_list += "<b>[submap_name]</b>"
+			pretty_submap_list += span_bold("[submap_name]")
 
 	if(!overall_sanity)
 		admin_notice("Submap loader gave up with [budget] left to spend.", R_DEBUG)

@@ -86,12 +86,12 @@
 	. = ..()
 	if(!riding_datum)
 		riding_datum = new /datum/riding/simple_mob(src)
-	verbs |= /mob/living/simple_mob/proc/animal_mount
-	verbs |= /mob/living/proc/toggle_rider_reins
-	verbs |= /mob/living/proc/glow_toggle
-	verbs |= /mob/living/proc/glow_color
-	verbs |= /mob/living/proc/long_vore
-	verbs |= /mob/living/proc/target_lunge
+	add_verb(src, /mob/living/simple_mob/proc/animal_mount)
+	add_verb(src, /mob/living/proc/toggle_rider_reins)
+	add_verb(src, /mob/living/proc/glow_toggle)
+	add_verb(src, /mob/living/proc/glow_color)
+	add_verb(src, /mob/living/proc/long_vore)
+	add_verb(src, /mob/living/proc/target_lunge)
 	movement_cooldown = -1
 
 /mob/living/simple_mob/vore/scel/init_vore()

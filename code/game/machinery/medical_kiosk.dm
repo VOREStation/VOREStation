@@ -92,10 +92,10 @@
 			to_chat(user, span_boldnotice("Health report results:")+health_report)
 		if("Backup Scan")
 			if(!our_db)
-				to_chat(user, span_boldnotice("<b>Backup scan results:</b>") + "<br>DATABASE ERROR!")
+				to_chat(user, span_notice(span_bold("Backup scan results:")) + "<br>DATABASE ERROR!")
 			else
 				var/scan_report = do_backup_scan(user)
-				to_chat(user, span_notice("<b>Backup scan results:</b>")+scan_report)
+				to_chat(user, span_notice(span_bold("Backup scan results:"))+scan_report)
 
 	// Standby
 	suspend()

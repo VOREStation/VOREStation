@@ -150,7 +150,7 @@
 			src.set_material(material)
 			return TRUE
 	else
-		to_chat(M, "<span class = 'warning'>You can't sharpen and re-edge [src].</span>")
+		to_chat(M, span_warning("You can't sharpen and re-edge [src]."))
 		return FALSE
 
 /*

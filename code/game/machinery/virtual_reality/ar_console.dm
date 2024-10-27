@@ -25,7 +25,7 @@
 	if(stat & (BROKEN))
 		if(occupant)
 			go_out()
-			visible_message("<b>\The [src]</b> emits a low droning sound, before the pod door clicks open.")
+			visible_message(span_infoplain(span_bold("\The [src]") + " emits a low droning sound, before the pod door clicks open."))
 		return
 	else if(eject_dead && occupant && occupant.stat == DEAD)
 		visible_message(span_warning("\The [src] sounds an alarm, swinging its hatch open."))

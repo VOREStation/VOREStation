@@ -82,7 +82,7 @@
 	C.set_stat(CONSCIOUS)
 	C.forbid_seeing_deadchat = FALSE
 	C.timeofdeath = null
-	verbs.Remove(/mob/proc/changeling_revive)
+	remove_verb(src, /mob/proc/changeling_revive)
 	// re-add our changeling powers
 	C.make_changeling()
 

@@ -68,7 +68,7 @@
 	icon_override = 'icons/vore/custom_clothes_vr.dmi'
 	item_state = "coatroiz_mob"
 
-/obj/item/clothing/suit/storage/hooded/wintercoat/roiz/ui_action_click()
+/obj/item/clothing/suit/storage/hooded/wintercoat/roiz/ui_action_click(mob/user, actiontype)
 	ToggleHood_roiz()
 
 /obj/item/clothing/suit/storage/hooded/wintercoat/roiz/equipped(mob/user, slot)
@@ -547,7 +547,7 @@
 
 	//Chica Head
 /obj/item/clothing/head/helmet/fluff/freddy/chica
-	desc = span_red("<b>LET'S EAT!</b>")
+	desc = span_red(span_bold("LET'S EAT!"))
 	icon_state = "chicahead"
 	item_state = "chicahead_mob"
 
@@ -586,7 +586,7 @@
 
 	//Chica Suit
 /obj/item/clothing/suit/fluff/freddy/chica
-	desc = span_red("<b>LET'S EAT!</b>")
+	desc = span_red(span_bold("LET'S EAT!"))
 	icon_state = "chicasuit"
 	item_state = "chicasuit_mob"
 
@@ -783,7 +783,7 @@
 	light_overlay = null
 	light_system = MOVABLE_LIGHT
 
-	action_button_name = "Toggle pom-pom"
+	actions_types = list(/datum/action/item_action/toggle_pom_pom)
 
 /obj/item/clothing/head/fluff/pompom/digest_act(var/atom/movable/item_storage = null)
 	return FALSE
@@ -1129,7 +1129,7 @@
 		if (ismob(loc)) //should allow masks to update when it is opened/closed
 			var/mob/M = loc
 			M.update_inv_wear_mask()
-		usr.update_action_buttons()
+		usr.update_action_buttons_icon()
 
 //Vorrarkul: Theodora Lindt
 /obj/item/clothing/suit/chococoat
@@ -1302,7 +1302,7 @@ Departamental Swimsuits, for general use
 //For general use maybe
 /obj/item/clothing/under/batter //I guess we're going OFF limits.
 	name = "Worn baseball outfit"
-	desc = "<b>Purification in progress...</b>"
+	desc = span_bold("Purification in progress...")
 	icon = 'icons/vore/custom_clothes_vr.dmi'
 	icon_override = 'icons/vore/custom_clothes_vr.dmi'
 	icon_state = "batter"
@@ -1541,7 +1541,7 @@ Departamental Swimsuits, for general use
 	icon_override = 'icons/vore/custom_clothes_vr.dmi'
 	item_state = "kilanocoat_mob"
 
-/obj/item/clothing/suit/storage/hooded/wintercoat/kilanocoat/ui_action_click()
+/obj/item/clothing/suit/storage/hooded/wintercoat/kilanocoat/ui_action_click(mob/user, actiontype)
 	ToggleHood_kilano()
 
 /obj/item/clothing/suit/storage/hooded/wintercoat/kilanocoat/equipped(mob/user, slot)
@@ -2115,7 +2115,7 @@ Departamental Swimsuits, for general use
 		user.visible_message(span_notice("[user] harmlessly bops [target] with \the [src]."), \
 		span_notice("\The [src] harmlessly bops [target]. The hat seems... unwilling?"))
 	else
-		user.visible_message("<b>\The [src]</b> flops over [user]'s' head for a moment, but they seem alright.", \
+		user.visible_message(span_bold("\The [src]") + " flops over [user]'s' head for a moment, but they seem alright.", \
 		span_notice("\The [src] flops over your head for a moment, but you correct it without issue. There we go!"))
 
 /obj/item/clothing/head/fluff/nikki/proc/hat_warp_checks(var/mob/living/target, mob/user, proximity_flag)
@@ -2187,13 +2187,13 @@ Departamental Swimsuits, for general use
 		translocator.attack_self(user, user)
 		return
 	else
-		to_chat(user, "<span_class='warning'>\The [src] doesn't have a translocator inside it right now.</span>")
+		to_chat(user, span_warning("\The [src] doesn't have a translocator inside it right now."))
 		return
 
 /obj/item/clothing/head/fluff/nikki/examine(mob/user) // If it has a translocator installed, make it very obvious to viewers that something WEIRD is going on with this hat.
 	. = ..()
 	if (translocator)
-		. += "Weird... <span class='danger'>You can't see the bottom of the hole inside the hat...</span>"
+		. += "Weird... " + span_danger("You can't see the bottom of the hole inside the hat...")
 
 /obj/item/clothing/head/fluff/nikki/equipped(mob/living/carbon/human/user, slot)
 	. = ..()
@@ -2353,7 +2353,7 @@ Departamental Swimsuits, for general use
 	icon_override = 'icons/vore/custom_onmob_vr.dmi'
 	item_state = "mechahood_mob"
 
-/obj/item/clothing/suit/storage/hooded/wintercoat/fluff/mechanic/ui_action_click()
+/obj/item/clothing/suit/storage/hooded/wintercoat/fluff/mechanic/ui_action_click(mob/user, actiontype)
 	ToggleHood_mechacoat()
 
 /obj/item/clothing/suit/storage/hooded/wintercoat/fluff/mechanic/equipped(mob/user, slot)
@@ -2411,7 +2411,7 @@ Departamental Swimsuits, for general use
 	icon_override = 'icons/vore/custom_onmob_vr.dmi'
 	item_state = "evelynhood_mob"
 
-/obj/item/clothing/suit/storage/hooded/wintercoat/security/fluff/evelyn/ui_action_click()
+/obj/item/clothing/suit/storage/hooded/wintercoat/security/fluff/evelyn/ui_action_click(mob/user, actiontype)
 	ToggleHood_evelyn()
 
 /obj/item/clothing/suit/storage/hooded/wintercoat/security/fluff/evelyn/equipped(mob/user, slot)
@@ -2635,7 +2635,7 @@ Departamental Swimsuits, for general use
 		if (ismob(loc)) //should allow masks to update when it is opened/closed
 			var/mob/M = loc
 			M.update_inv_wear_mask()
-		usr.update_action_buttons()
+		usr.update_action_buttons_icon()
 
 /obj/item/clothing/suit/storage/toggle/labcoat/fluff/zeracloak
 	name = "Grand Purple Cloak"

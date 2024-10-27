@@ -9,7 +9,7 @@
 	gas_transfer_coefficient = 0.10
 	permeability_coefficient = 0.50
 	var/hanging = 0
-	action_button_name = "Adjust Breath Mask"
+	actions_types = list(/datum/action/item_action/adjust_breath_mask)
 	pickup_sound = 'sound/items/pickup/component.ogg'
 	drop_sound = 'sound/items/drop/component.ogg'
 

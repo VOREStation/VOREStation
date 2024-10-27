@@ -32,7 +32,7 @@
 		return
 	. = ..()
 	lets_register_our_signals()
-	verbs |= /mob/living/dominated_brain/proc/resist_control
+	add_verb(src, /mob/living/dominated_brain/proc/resist_control)
 
 /mob/living/dominated_brain/Life()
 	. = ..()
@@ -114,7 +114,7 @@
 		prey_goes_here.ooc_notes = prey_ooc_notes
 		prey_goes_here.ooc_notes_likes = prey_ooc_likes
 		prey_goes_here.ooc_notes_dislikes = prey_ooc_dislikes
-		prey_goes_here.verbs |= /mob/living/dominated_brain/proc/cease_this_foolishness
+		add_verb(prey_goes_here, /mob/living/dominated_brain/proc/cease_this_foolishness)
 
 
 	else		//The prey body does not exist, let's put them in the back seat instead!
@@ -134,7 +134,7 @@
 	///////////////////
 
 	// Handle Pred
-	pred_body.verbs -= /mob/proc/release_predator
+	remove_verb(pred_body, /mob/proc/release_predator)
 
 	//Now actually put the people in the mobs
 	prey_goes_here.ckey = src.prey_ckey
@@ -166,7 +166,7 @@
 		langlist -= languages
 		for(var/datum/language/L in langlist)
 			if(L.flags & HIVEMIND)
-				verbs |= /mob/proc/adjust_hive_range
+				add_verb(src, /mob/proc/adjust_hive_range)
 		temp_languages |= langlist
 		languages |= langlist
 
@@ -259,7 +259,7 @@
 	pred.ooc_notes_likes = pred_brain.prey_ooc_likes
 	pred.ooc_notes_dislikes = pred_brain.prey_ooc_dislikes
 
-	pred.verbs |= /mob/proc/release_predator
+	add_verb(pred, /mob/proc/release_predator)
 
 	//Now actually put the people in the mobs
 	pred_brain.ckey = pred_brain.pred_ckey
@@ -286,7 +286,7 @@
 			else
 				continue
 	to_chat(src, span_danger("You haven't been taken over, and shouldn't have this verb. I'll clean that up for you. Report this on the github, it is a bug."))
-	verbs -= /mob/proc/release_predator
+	remove_verb(src, /mob/proc/release_predator)
 
 /mob/living/dominated_brain/proc/resist_control()
 	set category = "Abilities"
@@ -368,7 +368,7 @@
 	db.ooc_notes_dislikes = M.ooc_notes_dislikes
 	db.prey_ooc_likes = M.ooc_notes_likes
 	db.prey_ooc_dislikes = M.ooc_notes_dislikes
-	db.verbs |= /mob/living/dominated_brain/proc/cease_this_foolishness
+	add_verb(db, /mob/living/dominated_brain/proc/cease_this_foolishness)
 
 	absorb_langs()
 
@@ -402,7 +402,7 @@
 		to_chat(src, span_warning("You can sense your body... but it is not contained within [pred_body]... You cannot return to it at this time."))
 	else
 		to_chat(src, span_warning("Your body seems to no longer exist, so, you cannot return to it."))
-		verbs -= /mob/living/dominated_brain/proc/cease_this_foolishness
+		remove_verb(src, /mob/living/dominated_brain/proc/cease_this_foolishness)
 
 /mob/living/proc/lend_prey_control()
 	set category = "Abilities"
@@ -489,7 +489,7 @@
 	pred.ooc_notes_likes = pred_brain.prey_ooc_likes
 	pred.ooc_notes_dislikes = pred_brain.prey_ooc_dislikes
 
-	pred.verbs |= /mob/proc/release_predator
+	add_verb(pred, /mob/proc/release_predator)
 
 	//Now actually put the people in the mobs
 	pred_brain.ckey = pred_brain.pred_ckey

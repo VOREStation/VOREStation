@@ -14,7 +14,7 @@
 
 /obj/item/slime_scanner/attack(mob/living/M as mob, mob/living/user as mob)
 	if(!istype(M, /mob/living/simple_mob/slime/xenobio))
-		to_chat(user, "<B>This device can only scan lab-grown slimes!</B>")
+		to_chat(user, span_infoplain(span_bold("This device can only scan lab-grown slimes!")))
 		return
 	var/mob/living/simple_mob/slime/xenobio/S = M
 	user.show_message("Slime scan results:<br>[S.slime_color] [S.is_adult ? "adult" : "baby"] slime<br>Health: [S.health]<br>Mutation Probability: [S.mutation_chance]")

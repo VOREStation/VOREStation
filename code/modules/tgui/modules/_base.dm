@@ -93,3 +93,6 @@ Code is pretty much ripped verbatim from nano modules, but with un-needed stuff 
 
 /datum/tgui_module/proc/relaymove(mob/user, direction)
 	return FALSE
+
+/datum/tgui_module/proc/close_ui()
+	SStgui.close_uis(src)

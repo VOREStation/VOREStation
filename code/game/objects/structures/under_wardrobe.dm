@@ -13,7 +13,7 @@
 
 /obj/structure/undies_wardrobe/interact(var/mob/living/carbon/human/H)
 	var/dat = list()
-	dat += "<b>Underwear:</b><br>"
+	dat += span_bold("Underwear:") + "<br>"
 	for(var/datum/category_group/underwear/UWC in global_underwear.categories)
 		var/datum/category_item/underwear/UWI = H.all_underwear[UWC.name]
 		var/item_name = UWI ? UWI.name : "None"

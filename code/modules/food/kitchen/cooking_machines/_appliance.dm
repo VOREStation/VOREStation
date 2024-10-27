@@ -116,11 +116,11 @@
 	if (progress < 0.75)
 		return span_notice("It's cooking away nicely.")
 	if (progress < 1)
-		return span_notice("<b>It's almost ready!</b>")
+		return span_boldnotice("It's almost ready!")
 
 	var/half_overcook = (CI.overcook_mult - 1)*0.5
 	if (progress < 1+half_overcook)
-		return span_soghun("<b>It is done !</b>")
+		return span_soghun(span_bold("It is done!"))
 	if (progress < CI.overcook_mult)
 		return span_warning("It looks overcooked, get it out!")
 	else
@@ -317,7 +317,7 @@
 		CI = new /datum/cooking_item/(CC)
 		I.forceMove(src)
 		cooking_objs.Add(CI)
-		user.visible_message("<b>\The [user]</b> puts \the [I] into \the [src].")
+		user.visible_message(span_infoplain(span_bold("\The [user]") + " puts \the [I] into \the [src]."))
 		if (CC.check_contents() == 0)//If we're just putting an empty container in, then dont start any processing.
 			return TRUE
 	else
@@ -331,7 +331,7 @@
 		CI.combine_target = selected_option
 
 	// We can actually start cooking now.
-	user.visible_message("<b>\The [user]</b> puts \the [I] into \the [src].")
+	user.visible_message(span_infoplain(span_bold("\The [user]") + " puts \the [I] into \the [src]."))
 
 	get_cooking_work(CI)
 	cooking = TRUE
@@ -432,7 +432,7 @@
 
 /obj/machinery/appliance/proc/finish_cooking(var/datum/cooking_item/CI)
 
-	src.visible_message("<b>\The [src]</b> pings!")
+	src.visible_message(span_infoplain(span_bold("\The [src]") + " pings!"))
 	if(cooked_sound)
 		playsound(get_turf(src), cooked_sound, 50, 1)
 	//Check recipes first, a valid recipe overrides other options
@@ -668,7 +668,7 @@
 	if(user)
 		user.visible_message(span_notice("\The [user] remove \the [thing] from \the [src]."))
 	else
-		src.visible_message("<b>\The [src]</b> pings as it automatically ejects its contents!")
+		src.visible_message(span_infoplain(span_bold("\The [src]") + " pings as it automatically ejects its contents!"))
 		if(cooked_sound)
 			playsound(get_turf(src), cooked_sound, 50, 1)
 
@@ -812,4 +812,4 @@
 		return
 
 	food_safety = !food_safety
-	to_chat(usr, "<span class = 'notice'>You flip \the [src]'s safe mode switch. Safe mode is now [food_safety ? "on" : "off"].</span>")
+	to_chat(usr, span_notice("You flip \the [src]'s safe mode switch. Safe mode is now [food_safety ? "on" : "off"]."))

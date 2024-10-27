@@ -21,8 +21,8 @@
 		if(L.has_modifier_of_type(/datum/modifier/feysight))
 			to_chat(L, span_warning("An otherworldly feeling seems to enter your mind again, and it holds the visions in place."))
 		else
-			to_chat(L, "<span class='warning'>An otherworldly feeling seems to enter your mind, and you briefly feel peace, but \
-			it quickly passes.</span>")
+			to_chat(L, span_warning("An otherworldly feeling seems to enter your mind, and you briefly feel peace, but \
+			it quickly passes."))
 		return FALSE
 
 /datum/artifact_effect/feysight/DoEffectTouch(var/mob/toucher)

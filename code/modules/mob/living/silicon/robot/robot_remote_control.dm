@@ -65,7 +65,7 @@ GLOBAL_LIST_EMPTY(available_ai_shells)
 	lawsync()
 
 	// Give button to leave.
-	verbs += /mob/living/silicon/robot/proc/undeploy_act
+	add_verb(src, /mob/living/silicon/robot/proc/undeploy_act)
 	to_chat(AI, span_notice("You have connected to an AI Shell remotely, and are now in control of it.<br>\
 	To return to your core, use the <b>Release Control</b> verb."))
 
@@ -110,7 +110,7 @@ GLOBAL_LIST_EMPTY(available_ai_shells)
 /mob/living/silicon/robot/proc/undeploy_act()
 	set name = "Release Control"
 	set desc = "Release control of a remote drone."
-	set category = "Robot Commands"
+	set category = "Abilities.Silicon"
 
 	undeploy("Remote session terminated.")
 

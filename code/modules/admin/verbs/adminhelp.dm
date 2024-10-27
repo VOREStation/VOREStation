@@ -66,24 +66,29 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	var/list/dat = list("<html><head><title>[title]</title></head>")
 	dat += "<A HREF='?_src_=holder;[HrefToken()];ahelp_tickets=[state]'>Refresh</A><br><br>"
 	for(var/datum/admin_help/AH as anything in l2b)
-		dat += "<span class='adminnotice'><span class='adminhelp'>Ticket #[AH.id]</span>: <A HREF='?_src_=holder;ahelp=\ref[AH];[HrefToken()];ahelp_action=ticket'>[AH.initiator_key_name]: [AH.name]</A></span><br>"
+		dat += span_adminnotice(span_adminhelp("Ticket #[AH.id]") + ": <A HREF='?_src_=holder;ahelp=\ref[AH];[HrefToken()];ahelp_action=ticket'>[AH.initiator_key_name]: [AH.name]</A>") + "<br>"
 
 	usr << browse(dat.Join(), "window=ahelp_list[state];size=600x480")
 
 //Tickets statpanel
 /datum/admin_help_tickets/proc/stat_entry()
+	SHOULD_CALL_PARENT(TRUE)
+	SHOULD_NOT_SLEEP(TRUE)
+	var/list/L = list()
 	var/num_disconnected = 0
-	stat("== Admin Tickets ==")
-	stat("Active Tickets:", astatclick.update("[active_tickets.len]"))
+	L[++L.len] = list("== Admin Tickets ==", "", null, null)
+	L[++L.len] = list("Active Tickets:", "[astatclick.update("[active_tickets.len]")]", null, REF(astatclick))
+	astatclick.update("[active_tickets.len]")
 	for(var/datum/admin_help/AH as anything in active_tickets)
 		if(AH.initiator)
-			stat("#[AH.id]. [AH.initiator_key_name]:", AH.statclick.update())
+			L[++L.len] = list("#[AH.id]. [AH.initiator_key_name]:", "[AH.statclick.update()]", REF(AH))
 		else
 			++num_disconnected
 	if(num_disconnected)
-		stat("Disconnected:", astatclick.update("[num_disconnected]"))
-	stat("Closed Tickets:", cstatclick.update("[closed_tickets.len]"))
-	stat("Resolved Tickets:", rstatclick.update("[resolved_tickets.len]"))
+		L[++L.len] = list("Disconnected:", "[astatclick.update("[num_disconnected]")]", null, REF(astatclick))
+	L[++L.len] = list("Closed Tickets:", "[cstatclick.update("[closed_tickets.len]")]", null, REF(cstatclick))
+	L[++L.len] = list("Resolved Tickets:", "[rstatclick.update("[resolved_tickets.len]")]", null, REF(rstatclick))
+	return L
 
 //Reassociate still open ticket if one exists
 /datum/admin_help_tickets/proc/ClientLogin(client/C)
@@ -119,6 +124,9 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 /obj/effect/statclick/ticket_list/Click()
 	GLOB.ahelp_tickets.BrowseTickets(current_state)
 
+//called by admin topic
+/obj/effect/statclick/ticket_list/proc/Action()
+	Click()
 //
 //TICKET DATUM
 //
@@ -365,9 +373,9 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 		if(initiator.prefs?.read_preference(/datum/preference/toggle/holder/play_adminhelp_ping))
 			initiator << 'sound/effects/adminhelp.ogg'
 
-		to_chat(initiator, "<span class='filter_pm'>[span_red("<font size='4'><b>- AdminHelp Rejected! -</b></font>")]<br>\
-							[span_red("<b>Your admin help was rejected.</b>")]<br>\
-							Please try to be calm, clear, and descriptive in admin helps, do not assume the admin has seen any related events, and clearly state the names of anybody you are reporting.</span>")
+		to_chat(initiator, span_filter_pm("[span_red(span_huge(span_bold("- AdminHelp Rejected! -")))]<br>\
+							[span_red(span_bold("Your admin help was rejected."))]<br>\
+							Please try to be calm, clear, and descriptive in admin helps, do not assume the admin has seen any related events, and clearly state the names of anybody you are reporting."))
 
 	feedback_inc("ahelp_reject")
 	var/msg = "Ticket [TicketHref("#[id]")] rejected by [key_name_admin(usr)]"
@@ -389,12 +397,12 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	if(state != AHELP_ACTIVE)
 		return
 
-	var/msg = "<span class='filter_pm'>[span_red("<font size='4'><b>- AdminHelp marked as IC issue! -</b></font>")]<br>"
-	msg += "[span_red("<b>This is something that can be solved ICly, and does not currently require staff intervention.</b>")]<br>"
-	msg += "[span_red("Your AdminHelp may also be unanswerable due to ongoing events.")]</span>"
+	var/msg = "[span_red(span_huge(span_bold("- AdminHelp marked as IC issue! -")))]<br>"
+	msg += "[span_red(span_bold("This is something that can be solved ICly, and does not currently require staff intervention."))]<br>"
+	msg += "[span_red("Your AdminHelp may also be unanswerable due to ongoing events.")]"
 
 	if(initiator)
-		to_chat(initiator, msg)
+		to_chat(initiator,span_filter_pm(msg))
 
 	feedback_inc("ahelp_icissue")
 	msg = "Ticket [TicketHref("#[id]")] marked as IC by [key_name_admin(usr)]"
@@ -461,9 +469,9 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 		dat += "<br>Closed at: [gameTimestamp(wtime = closed_at)] (Approx [(world.time - closed_at) / 600] minutes ago)"
 	dat += "<br><br>"
 	if(initiator)
-		dat += "<b>Actions:</b> [FullMonty(ref_src)]<br>"
+		dat += span_bold("Actions:") + " [FullMonty(ref_src)]<br>"
 	else
-		dat += "<b>DISCONNECTED</b>[GLOB.TAB][ClosureLinks(ref_src)]<br>"
+		dat += span_bold("DISCONNECTED") + "[GLOB.TAB][ClosureLinks(ref_src)]<br>"
 	dat += "<br><b>Log:</b><br><br>"
 	for(var/I in _interactions)
 		dat += "[I]<br>"
@@ -606,9 +614,9 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 		return
 
 	//remove out adminhelp verb temporarily to prevent spamming of admins.
-	src.verbs -= /client/verb/adminhelp
+	remove_verb(src, /client/verb/adminhelp)
 	spawn(1200)
-		src.verbs += /client/verb/adminhelp	// 2 minute cool-down for adminhelps
+		add_verb(src, /client/verb/adminhelp)	// 2 minute cool-down for adminhelps
 
 	feedback_add_details("admin_verb","Adminhelp") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	if(current_ticket)
@@ -779,7 +787,8 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 							if(found.mind && found.mind.special_role)
 								is_antag = 1
 							founds += "Name: [found.name]([found.real_name]) Ckey: [found.ckey] [is_antag ? "(Antag)" : null] "
-							msg += "[original_word]<font size='1' color='[is_antag ? "red" : "black"]'>(<A HREF='?_src_=holder;[HrefToken()];adminmoreinfo=\ref[found]'>?</A>|<A HREF='?_src_=holder;[HrefToken()];adminplayerobservefollow=\ref[found]'>F</A>)</font> "
+							var/textentry = "(<A HREF='?_src_=holder;[HrefToken()];adminmoreinfo=\ref[found]'>?</A>|<A HREF='?_src_=holder;[HrefToken()];adminplayerobservefollow=\ref[found]'>F</A> "
+							msg += "[original_word]" + span_small((is_antag ? span_red(textentry) : span_black(textentry)))
 							continue
 		msg += "[original_word] "
 	if(irc)

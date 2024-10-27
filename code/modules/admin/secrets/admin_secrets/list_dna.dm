@@ -5,7 +5,7 @@
 	. = ..()
 	if(!.)
 		return
-	var/dat = "<B>Showing DNA from blood.</B><HR>"
+	var/dat = span_bold("Showing DNA from blood.") + "<HR>"
 	dat += "<table cellspacing=5><tr><th>Name</th><th>DNA</th><th>Blood Type</th></tr>"
 	for(var/mob/living/carbon/human/H in mob_list)
 		if(H.dna && H.ckey)

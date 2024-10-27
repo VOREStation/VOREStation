@@ -23,6 +23,8 @@ em						{font-style: normal;font-weight: bold;}
 
 .bold					{					font-weight: bold;}
 
+.underline				{			text-decoration: underline;}
+
 .prefix					{font-weight: bold;}
 .log_message			{color: #386AFF;	font-weight: bold;}
 
@@ -85,7 +87,7 @@ em						{font-style: normal;font-weight: bold;}
 .alert, .valert			{color: #ff0000;}
 h1.alert, h2.alert		{color: #000000;}
 .ghostalert				{color: #5c00e6;	font-style: italic; font-weight: bold;}
-
+.wingdings				{font-family: Wingdings, Webdings}
 
 /* VOREStation Edit Start */
 .emote					{}
@@ -102,9 +104,11 @@ h1.alert, h2.alert		{color: #000000;}
 .critical				{color: #ff0000; font-weight: bold; font-size: 150%;}
 .danger, .vdanger		{color: #ff0000; font-weight: bold;}
 .warning, .vwarning		{color: #ff0000; font-style: italic;}
+.boldwarning			{color: #ff0000; font-style: italic; font-weight: bold;}
 .rose					{color: #ff5050;}
 .info					{color: #0000CC;}
 .notice, .vnotice		{color: #000099;}
+.boldnoitce				{color: #000099; font-weight: bold;}
 .alium					{color: #00ff00;}
 .cult					{color: #800080; font-weight: bold; font-style: italic;}
 
@@ -141,6 +145,7 @@ h1.alert, h2.alert		{color: #000000;}
 .spacer					{color: #9c660b;}
 .blob					{color: #ff950d; font-weight: bold; font-style: italic;}
 .teppi					{color: #816540; word-spacing:4pt; font-family: "Segoe Script Bold","Segoe Script",sans-serif,Verdana;}
+.marish 				{color: #9e31a4;}
 .shadekin				{color: #be3cc5; font-size: 150%; font-weight: bold; font-family: "Gabriola", cursive, sans-serif;}
 
 BIG IMG.icon 			{width: 32px; height: 32px;}
@@ -161,6 +166,7 @@ BIG IMG.icon 			{width: 32px; height: 32px;}
 .orange					{color: #FF8C00;}
 .blue					{color: #0000FF;}
 .green					{color: #00DD00;}
+.darkgreen				{color: #008000;}
 .purple					{color: #800080;}
 .yellow					{color: #ffcc00;}
 .pink					{color: #ffc0cb;}

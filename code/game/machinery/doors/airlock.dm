@@ -60,6 +60,7 @@
 	var/knock_sound = 'sound/machines/2beeplow.ogg'
 	var/knock_hammer_sound = 'sound/weapons/sonic_jackhammer.ogg'
 	var/knock_unpowered_sound = 'sound/machines/door/knock_glass.ogg'
+	var/mob/hold_open
 
 /obj/machinery/door/airlock/attack_generic(var/mob/living/user, var/damage)
 	if(stat & (BROKEN|NOPOWER))
@@ -988,6 +989,14 @@ About the new airlock wires panel:
 			if(src.shock(user, 100))
 				return
 
+	if(!Adjacent(hold_open))
+		hold_open = null
+	if(hold_open && !density)
+		if(hold_open == user)
+			hold_open = null
+		else
+			to_chat(user, span_warning("[hold_open] is holding \the [src] open!"))
+
 	if(istype(user, /mob/living/carbon/human))
 		var/mob/living/carbon/human/X = user
 		if(istype(X.species, /datum/species/xenos))
@@ -1030,6 +1039,12 @@ About the new airlock wires panel:
 		src.add_fingerprint(user)
 		playsound(src, knock_unpowered_sound, 50, 0, 3)
 	return
+
+/obj/machinery/door/airlock/CtrlClick(mob/user as mob) //Hold door open
+	if(!Adjacent(user))
+		return
+	src.hold_open = user
+	src.attack_hand(user)
 
 /obj/machinery/door/airlock/tgui_act(action, params)
 	if(..())
@@ -1127,6 +1142,13 @@ About the new airlock wires panel:
 	else if(locked)
 		to_chat(user, span_warning("The door bolts are down!"))
 	else if(!density)
+		if(hold_open)
+			if(hold_open == user)
+				hold_open = null
+				close()
+			else
+				to_chat(user, span_warning("[hold_open] is holding \the [src] open!"))
+				return
 		close()
 	else
 		open()
@@ -1280,6 +1302,9 @@ About the new airlock wires panel:
 		return 0
 	use_power(360)	//360 W seems much more appropriate for an actuator moving an industrial door capable of crushing people
 
+	if(hold_open)
+		visible_message("[hold_open] holds \the [src] open.")
+
 	//if the door is unpowered then it doesn't make sense to hear the woosh of a pneumatic actuator
 	for(var/mob/M as anything in player_list)
 		if(!M || !M.client)
@@ -1335,6 +1360,11 @@ About the new airlock wires panel:
 
 	if(!forced)
 		//despite the name, this wire is for general door control.
+		if(hold_open)
+			if(Adjacent(hold_open) && !hold_open.incapacitated())
+				return 0
+			else
+				hold_open = null
 		if(!arePowerSystemsOn() || wires.is_cut(WIRE_OPEN_DOOR))
 			return	0
 
@@ -1391,6 +1421,8 @@ About the new airlock wires panel:
 /obj/machinery/door/airlock/close(var/forced=0)
 	if(!can_close(forced))
 		return 0
+
+	hold_open = null //if it passes the can close check, always make sure to clear hold open
 
 	if(safe)
 		for(var/turf/turf in locs)

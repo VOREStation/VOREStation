@@ -34,16 +34,16 @@
 /////////////////////////////////////////////////////////
 
 /datum/game_mode/epidemic/send_intercept()
-	var/intercepttext = "<FONT size = 3 color='red'><B>CONFIDENTIAL REPORT</B></FONT><HR>"
+	var/intercepttext = span_large(span_red(span_bold("CONFIDENTIAL REPORT"))) + "<HR>"
 	virus_name = "X-[rand(1,99)]&trade;"
-	intercepttext += "<B>Warning: Pathogen [virus_name] has been detected on [station_name()].</B><BR><BR>"
-	intercepttext += "<B>Code violet quarantine of [station_name()] put under immediate effect.</B><BR>"
-	intercepttext += "<B>Class [rand(2,5)] cruiser has been dispatched. ETA: [round(cruiser_seconds() / 60)] minutes.</B><BR>"
-	intercepttext += "<BR><B><FONT size = 2 color='blue'>Instructions</FONT></B><BR>"
-	intercepttext += "<B>* ELIMINATE THREAT WITH EXTREME PREJUDICE. [virus_name] IS HIGHLY CONTAGIOUS. INFECTED CREW MEMBERS MUST BE QUARANTINED IMMEDIATELY.</B><BR>"
-	intercepttext += "<B>* [station_name()] is under QUARANTINE. Any vessels outbound from [station_name()] will be tracked down and destroyed.</B><BR>"
-	intercepttext += "<B>* The existence of [virus_name] is highly confidential. To prevent a panic, only high-ranking staff members are authorized to know of its existence. Crew members that illegally obtained knowledge of [virus_name] are to be neutralized.</B><BR>"
-	intercepttext += "<B>* A cure is to be researched immediately, but NanoTrasen intellectual property must be respected. To prevent knowledge of [virus_name] from falling into unauthorized hands, all medical staff that work with the pathogen must be enhanced with a NanoTrasen loyality implant.</B><BR>"
+	intercepttext += span_bold("Warning: Pathogen [virus_name] has been detected on [station_name()].") + "<BR><BR>"
+	intercepttext += span_bold("Code violet quarantine of [station_name()] put under immediate effect.") + "<BR>"
+	intercepttext += span_bold("Class [rand(2,5)] cruiser has been dispatched. ETA: [round(cruiser_seconds() / 60)] minutes.") + "<BR>"
+	intercepttext += "<BR>" + span_bold(span_normal(span_blue("Instructions"))) + "<BR>"
+	intercepttext += span_bold("* ELIMINATE THREAT WITH EXTREME PREJUDICE. [virus_name] IS HIGHLY CONTAGIOUS. INFECTED CREW MEMBERS MUST BE QUARANTINED IMMEDIATELY.") + "<BR>"
+	intercepttext += span_bold("* [station_name()] is under QUARANTINE. Any vessels outbound from [station_name()] will be tracked down and destroyed.") + "<BR>"
+	intercepttext += span_bold("* The existence of [virus_name] is highly confidential. To prevent a panic, only high-ranking staff members are authorized to know of its existence. Crew members that illegally obtained knowledge of [virus_name] are to be neutralized.") + "<BR>"
+	intercepttext += span_bold("* A cure is to be researched immediately, but NanoTrasen intellectual property must be respected. To prevent knowledge of [virus_name] from falling into unauthorized hands, all medical staff that work with the pathogen must be enhanced with a NanoTrasen loyality implant.") + "<BR>"
 
 
 	//New message handling won't hurt if someone enables epidemic
@@ -58,9 +58,9 @@
 		to_chat(M, span_danger("[extra_law]"))
 
 /datum/game_mode/epidemic/proc/announce_to_kill_crew()
-	var/intercepttext = "<FONT size = 3 color='red'><B>CONFIDENTIAL REPORT</B></FONT><HR>"
-	intercepttext += "<FONT size = 2;color='red'><B>PATHOGEN [virus_name] IS STILL PRESENT ON [station_name()]. IN COMPLIANCE WITH NANOTRASEN LAWS FOR INTERSTELLAR SAFETY, EMERGENCY SAFETY MEASURES HAVE BEEN AUTHORIZED. ALL INFECTED CREW MEMBERS ON [station_name()] ARE TO BE NEUTRALIZED AND DISPOSED OF IN A MANNER THAT WILL DESTROY ALL TRACES OF THE PATHOGEN. FAILURE TO COMPLY WILL RESULT IN IMMEDIATE DESTRUCTION OF [station_name].</B></FONT><BR>"
-	intercepttext += "<B>CRUISER WILL ARRIVE IN [round(cruiser_seconds()/60)] MINUTES</B><BR>"
+	var/intercepttext = span_large(span_red(span_bold("CONFIDENTIAL REPORT"))) + "<HR>"
+	intercepttext += span_normal(span_red(span_bold("PATHOGEN [virus_name] IS STILL PRESENT ON [station_name()]. IN COMPLIANCE WITH NANOTRASEN LAWS FOR INTERSTELLAR SAFETY, EMERGENCY SAFETY MEASURES HAVE BEEN AUTHORIZED. ALL INFECTED CREW MEMBERS ON [station_name()] ARE TO BE NEUTRALIZED AND DISPOSED OF IN A MANNER THAT WILL DESTROY ALL TRACES OF THE PATHOGEN. FAILURE TO COMPLY WILL RESULT IN IMMEDIATE DESTRUCTION OF [station_name].")) + "<BR>"
+	intercepttext += span_bold("CRUISER WILL ARRIVE IN [round(cruiser_seconds()/60)] MINUTES") + "<BR>"
 
 	post_comm_message("Cent. Com. CONFIDENTIAL REPORT", intercepttext)
 	world << sound('sound/AI/commandreport.ogg')
@@ -78,8 +78,8 @@
 		crew += H
 
 	if(crew.len < 2)
-		to_world(span_danger("There aren't enough players for this mode!"))
-		to_world(span_danger("Rebooting world in 5 seconds."))
+		to_world(span_boldannounce("There aren't enough players for this mode!"))
+		to_world(span_boldannounce("Rebooting world in 5 seconds."))
 
 		if(blackbox)
 			blackbox.save_all_data_to_sql()
@@ -169,10 +169,10 @@
 	for(var/mob/M in world)
 		if(M.client)
 			M << 'sound/machines/Alarm.ogg'
-	to_world(span_notice("<b>Incoming missile detected.. Impact in 10..</b>"))
+	to_world(span_boldannounce("Incoming missile detected.. Impact in 10.."))
 	for (var/i=9 to 1 step -1)
 		sleep(10)
-		to_world(span_notice("<b>[i]..</b>"))
+		to_world(span_boldannounce("[i].."))
 	sleep(10)
 	enter_allowed = 0
 	if(ticker)
@@ -190,9 +190,9 @@
 /datum/game_mode/epidemic/declare_completion()
 	if(finished == 1)
 		feedback_set_details("round_end_result","win - epidemic cured")
-		to_world(span_danger(span_large("The virus outbreak was contained! The crew wins!")))
+		to_world(span_boldannounce(span_large("The virus outbreak was contained! The crew wins!")))
 	else if(finished == 2)
 		feedback_set_details("round_end_result","loss - rev heads killed")
-		to_world(span_danger(span_large("The crew succumbed to the epidemic!")))
+		to_world(span_boldannounce(span_large("The crew succumbed to the epidemic!")))
 	..()
 	return 1

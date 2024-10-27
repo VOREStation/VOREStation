@@ -189,7 +189,7 @@ var/list/ventcrawl_machinery = list(
 			if(!can_ventcrawl())
 				return
 
-			visible_message("<B>[src] scrambles into the ventilation ducts!</B>", "You climb into the ventilation system.")
+			visible_message(span_infoplain(span_bold("[src] scrambles into the ventilation ducts!")), span_infoplain("You climb into the ventilation system."))
 
 			forceMove(vent_found)
 			add_ventcrawl(vent_found)

@@ -84,7 +84,7 @@ var/global/list/security_printer_tickets = list()	//VOREStation Edit
 	//VOREStation Add End
 
 	if(LAZYLEN(valid_stats_list))
-		to_world("<B>Shift trivia!</B>")
+		to_world(span_world("Shift trivia!"))
 
 		for(var/body in valid_stats_list)
-			to_world("[body]")
+			to_world(span_filter_system("[body]"))

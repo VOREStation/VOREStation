@@ -400,7 +400,7 @@
 			return
 		if(H.size_multiplier != target_size)
 			if(!(world.time - last_activated > 10 SECONDS))
-				to_chat(M, "<span class ='warning'>\The [src] flickers. It seems to be recharging.</span>")
+				to_chat(M, span_warning("\The [src] flickers. It seems to be recharging."))
 				return
 			last_activated = world.time
 			original_size = H.size_multiplier
@@ -418,7 +418,7 @@
 			original_size = null
 			H.visible_message(span_warning("The space around [H] distorts as they return to their original size!"),span_notice("The space around you distorts as you return to your original size!"))
 			log_admin("Admin [key_name(M)]'s size was altered by a bluespace collar.")
-			to_chat(M, "<span class ='warning'>\The [src] flickers. It is now recharging and will be ready again in ten  seconds.</span>")
+			to_chat(M, span_warning("\The [src] flickers. It is now recharging and will be ready again in ten  seconds."))
 			s.set_up(3, 1, M)
 			s.start()
 	return
@@ -501,7 +501,7 @@
 			return
 		if(H.size_multiplier != target_size)
 			if(!(world.time - last_activated > 10 SECONDS))
-				to_chat(M, "<span class ='warning'>\The [src] flickers. It seems to be recharging.</span>")
+				to_chat(M, span_warning("\The [src] flickers. It seems to be recharging."))
 				return
 			last_activated = world.time
 			original_size = H.size_multiplier
@@ -519,7 +519,7 @@
 			original_size = null
 			H.visible_message(span_warning("The space around [H] distorts as they return to their original size!"),span_notice("The space around you distorts as you return to your original size!"))
 			log_admin("Admin [key_name(M)]'s size was altered by a bluespace collar.")
-			to_chat(M, "<span class ='warning'>\The [src] flickers. It is now recharging and will be ready again in ten  seconds.</span>")
+			to_chat(M, span_warning("\The [src] flickers. It is now recharging and will be ready again in ten  seconds."))
 			s.set_up(3, 1, M)
 			s.start()
 	return
@@ -573,7 +573,7 @@
 			return
 		if(currently_shrinking == 0)
 			if(!(world.time - last_activated > 10 SECONDS))
-				to_chat(M, "<span class ='warning'>\The [src] flickers. It seems to be recharging.</span>")
+				to_chat(M, span_warning("\The [src] flickers. It seems to be recharging."))
 				return
 			last_activated = world.time
 			original_size = H.size_multiplier
@@ -593,7 +593,7 @@
 			currently_shrinking = 0
 			H.visible_message(span_warning("The space around [H] distorts as they return to their original size!"),span_notice("The space around you distorts as you return to your original size!"))
 			log_admin("Admin [key_name(M)]'s size was altered by a bluespace collar.")
-			to_chat(M, "<span class ='warning'>\The [src] flickers. It is now recharging and will be ready again in ten  seconds.</span>")
+			to_chat(M, span_warning("\The [src] flickers. It is now recharging and will be ready again in ten  seconds."))
 			s.set_up(3, 1, M)
 			s.start()
 	return
@@ -714,7 +714,7 @@
 	desc = "The latest fashion innovations by the Nanotrasen Uniform & Fashion Department have provided the brilliant invention of slicing a regular cloak in half! All the ponce, half the cost!"
 	icon_state = "roughcloak"
 	item_state = "roughcloak"
-	action_button_name = "Adjust Cloak"
+	actions_types = list(/datum/action/item_action/adjust_cloak)
 
 /obj/item/clothing/accessory/poncho/roles/cloak/half/update_clothing_icon()
 	. = ..()
@@ -985,7 +985,7 @@
 	desc = "Aim for the Heart, Ramon."
 	icon_state = "neo_ranger"
 	item_state = "neo_ranger"
-	action_button_name = "Adjust Poncho"
+	actions_types = list(/datum/action/item_action/adjust_poncho)
 
 /obj/item/clothing/accessory/poncho/roles/neo_ranger/update_clothing_icon()
 	. = ..()

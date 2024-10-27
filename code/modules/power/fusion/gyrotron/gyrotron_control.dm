@@ -47,12 +47,12 @@
 		to_chat(user, span_warning("This console has not been assigned an ident tag. Please contact your system administrator or conduct a manual update with a standard multitool."))
 		return
 
-	var/dat = "<td><b>Gyrotron controller #[id_tag]</b>"
+	var/dat = "<td>" + span_bold("Gyrotron controller #[id_tag]")
 
 	dat = "<table><tr>"
-	dat += "<td><b>Mode</b></td>"
-	dat += "<td><b>Fire Delay</b></td>"
-	dat += "<td><b>Power</b></td>"
+	dat += "<td>" + span_bold("Mode") + "</td>"
+	dat += "<td>" + span_bold("Fire Delay") + "</td>"
+	dat += "<td>" + span_bold("Power") + "</td>"
 	dat += "</tr>"
 
 	for(var/obj/machinery/power/emitter/gyrotron/G in gyrotrons)
@@ -61,9 +61,9 @@
 
 		dat += "<tr>"
 		if(G.state != 2 || (G.stat & (NOPOWER | BROKEN))) //Error data not found.
-			dat += "<td><span style='color: red'>ERROR</span></td>"
-			dat += "<td><span style='color: red'>ERROR</span></td>"
-			dat += "<td><span style='color: red'>ERROR</span></td>"
+			dat += "<td>" + span_red("ERROR") + "</td>"
+			dat += "<td>" + span_red("ERROR") + "</td>"
+			dat += "<td>" + span_red("ERROR") + "</td>"
 		else
 			dat += "<td><a href='?src=\ref[src];machine=\ref[G];toggle=1'>[G.active  ? "Emitting" : "Standing By"]</a></td>"
 			dat += "<td><a href='?src=\ref[src];machine=\ref[G];modifyrate=1'>[G.rate]</a></td>"

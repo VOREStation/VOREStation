@@ -33,7 +33,7 @@
 		return
 
 	//if they requested spice, then remove spice verb temporarily to prevent spamming
-	usr.verbs -= /client/verb/adminspice
+	remove_verb(usr, /client/verb/adminspice)
 	spawn(10 MINUTES)
 		if(usr)		// In case we left in the 10 minute cooldown
-			usr.verbs += /client/verb/adminspice	// 10 minute cool-down for spice request
+			add_verb(usr, /client/verb/adminspice)	// 10 minute cool-down for spice request

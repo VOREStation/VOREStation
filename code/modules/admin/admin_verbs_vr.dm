@@ -31,13 +31,13 @@
 	if(!orbiter)
 		orbiter = input(usr, "What should act as the orbiter of the orbit?", "Orbiter") as anything in possible_things
 	if(!center || !orbiter)
-		to_chat(usr, "<span class = 'warning'>A center of orbit and an orbiter must be configured. You can also do this by marking a target.</span>")
+		to_chat(usr, span_warning("A center of orbit and an orbiter must be configured. You can also do this by marking a target."))
 		return
 	if(center == orbiter)
-		to_chat(usr, "<span class = 'warning'>The center of the orbit cannot also be the orbiter.</span>")
+		to_chat(usr, span_warning("The center of the orbit cannot also be the orbiter."))
 		return
 	if(isturf(orbiter))
-		to_chat(usr, "<span class = 'warning'>The orbiter cannot be a turf. It can only be used as a center.</span>")
+		to_chat(usr, span_warning("The orbiter cannot be a turf. It can only be used as a center."))
 		return
 	var/distance = tgui_input_number(usr, "How large will their orbit radius be? (In pixels. 32 is 'near around a character)", "Orbit Radius", 32)
 	var/speed = tgui_input_number(usr, "How fast will they orbit (negative numbers spin clockwise)", "Orbit Speed", 20)
@@ -89,7 +89,7 @@
 			break
 
 	if(!our_comp)
-		to_chat(usr, "<span class = 'warning'>Unable to locate a library computer to use for book deleting.</span>")
+		to_chat(usr, span_warning("Unable to locate a library computer to use for book deleting."))
 		return
 
 	var/dat = "<HEAD><TITLE>Book Inventory Management</TITLE></HEAD><BODY>\n"
