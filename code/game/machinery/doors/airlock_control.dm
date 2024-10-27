@@ -125,10 +125,12 @@
 	return
 
 /obj/machinery/door/airlock/proc/set_frequency(new_frequency)
+	radio_connection = null
 	radio_controller.remove_object(src, frequency)
+	frequency = new_frequency
+
 	if(new_frequency)
-		frequency = new_frequency
-		radio_connection = radio_controller.add_object(src, frequency, RADIO_AIRLOCK)
+		radio_connection = radio_controller.add_object(src, new_frequency, RADIO_AIRLOCK)
 
 
 /obj/machinery/door/airlock/Initialize()
@@ -152,6 +154,7 @@
 
 	anchored = TRUE
 	power_channel = ENVIRON
+	circuit = /obj/item/circuitboard/airlock_cycling
 
 	var/id_tag
 	var/master_tag
@@ -165,6 +168,9 @@
 	var/previousPressure
 
 /obj/machinery/airlock_sensor/update_icon()
+	if(panel_open)
+		icon_state = "airlock_sensor_open"
+		return
 	if(on)
 		if(alert)
 			icon_state = "airlock_sensor_alert"
@@ -216,6 +222,45 @@
 		radio_controller.remove_object(src,frequency)
 	return ..()
 
+/obj/machinery/airlock_sensor/examine(mob/user, infix, suffix)
+	. = ..()
+	if(in_range(src, user))
+		. += "It has a master tag of \"[master_tag]\"."
+		. += "It has an ID tag of \"[id_tag]\"."
+		. += "It has a frequency of [frequency]."
+		. += "It has a command of \"[command]\"."
+		if(panel_open)
+			. += "It's panel is open."
+
+/obj/machinery/airlock_sensor/attackby(obj/item/I, mob/user)
+	if(default_deconstruction_screwdriver(user, I))
+		return
+	if(default_deconstruction_crowbar(user, I))
+		return
+	if(I.has_tool_quality(TOOL_MULTITOOL))
+		var/choice = tgui_alert(user, "What would you like to configure?", "[src] Configuration", list("Master Tag", "ID Tag", "Frequency", "Command", "None"))
+		switch(choice)
+			if("Master Tag")
+				var/new_value = tgui_input_text(user, "The current master tag is \"[master_tag]\", what would you like it to be?", "[src] Master Tag", master_tag, 30, encode = TRUE)
+				if(new_value)
+					master_tag = new_value
+			if("ID Tag")
+				var/new_value = tgui_input_text(user, "The current id tag is \"[id_tag]\", what would you like it to be?", "[src] ID Tag", id_tag, 30, encode = TRUE)
+				if(new_value)
+					id_tag = new_value
+			if("Frequency")
+				var/new_frequency = tgui_input_number(user, "[src] has a frequency of [frequency]. What would you like it to be?", "[src] frequency", frequency, RADIO_HIGH_FREQ, RADIO_LOW_FREQ)
+				if(new_frequency)
+					new_frequency = sanitize_frequency(new_frequency, RADIO_LOW_FREQ, RADIO_HIGH_FREQ)
+					set_frequency(new_frequency)
+			if("Command")
+				var/new_value = tgui_input_text(user, "The current command is \"[command]\", what would you like it to be? Valid options include: cycle, cycle_interior, cycle_exterior.", "[src] command", command, encode = TRUE)
+				if(new_value)
+					command = new_value
+
+		return TRUE
+	return ..()
+
 /obj/machinery/airlock_sensor/airlock_interior
 	command = "cycle_interior"
 
@@ -237,6 +282,7 @@
 
 	anchored = TRUE
 	power_channel = ENVIRON
+	circuit = /obj/item/circuitboard/airlock_cycling
 
 	var/master_tag
 	var/frequency = 1449
@@ -246,18 +292,50 @@
 
 	var/on = 1
 
-
 /obj/machinery/access_button/update_icon()
-	if(on)
+	if(panel_open)
+		icon_state = "access_button_open"
+	else if(on)
 		icon_state = "access_button_standby"
 	else
 		icon_state = "access_button_off"
+
+/obj/machinery/access_button/examine(mob/user, infix, suffix)
+	. = ..()
+	if(in_range(src, user))
+		. += "It has a master tag of \"[master_tag]\"."
+		. += "It has a frequency of \"[frequency]\"."
+		. += "It is sending a command of \"[command]\"."
+		if(panel_open)
+			. += "It's panel is open."
 
 /obj/machinery/access_button/attackby(obj/item/I as obj, mob/user as mob)
 	//Swiping ID on the access button
 	if (istype(I, /obj/item/card/id) || istype(I, /obj/item/pda))
 		attack_hand(user)
 		return
+	if(default_deconstruction_screwdriver(user, I))
+		return
+	if(default_deconstruction_crowbar(user, I))
+		return
+	if(I.has_tool_quality(TOOL_MULTITOOL))
+		var/choice = tgui_alert(user, "What would you like to change?", "[src] Settings", list("Tag", "Frequency", "Command", "None"))
+		switch(choice)
+			if("Tag")
+				var/new_id = tgui_input_text(user, "[src] has an master tag of \"[master_tag]\". What would you like it to be?", "[src] ID", master_tag, 30, FALSE, TRUE)
+				if(new_id)
+					master_tag = new_id
+			if("Frequency")
+				var/new_frequency = tgui_input_number(user, "[src] has a frequency of [frequency]. What would you like it to be?", "[src] frequency", frequency, RADIO_HIGH_FREQ, RADIO_LOW_FREQ)
+				if(new_frequency)
+					new_frequency = sanitize_frequency(new_frequency, RADIO_LOW_FREQ, RADIO_HIGH_FREQ)
+					set_frequency(new_frequency)
+			if("Command")
+				var/new_command = tgui_input_text(user, "[src] has a command of \"[command]\". Valid options include: cycle, cycle_interior, cycle_exterior", "[src] command", command, encode = TRUE)
+				if(new_command)
+					command = new_command
+
+		return TRUE
 	..()
 
 /obj/machinery/access_button/attack_hand(mob/user)

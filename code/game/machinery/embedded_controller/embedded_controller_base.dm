@@ -17,6 +17,11 @@
 		qdel(program) // the program will clear the ref in its Destroy
 	return ..()
 
+/obj/machinery/embedded_controller/examine(mob/user, infix, suffix)
+	. = ..()
+	if(in_range(src, user))
+		. += "It has an ID tag of \"[program?.id_tag]\""
+
 /obj/machinery/embedded_controller/proc/post_signal(datum/signal/signal, comm_line)
 	return 0
 
@@ -36,6 +41,7 @@
 	if(LAZYLEN(valid_actions))
 		if(action in valid_actions)
 			program.receive_user_command(action)
+			return TRUE
 	if(ui.user)
 		add_fingerprint(ui.user)
 
