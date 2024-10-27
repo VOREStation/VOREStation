@@ -5,7 +5,7 @@
 	icon_state = "bonfire"
 	density = TRUE
 	anchored = TRUE
-	interaction_message = "<span class='warning'>You feel like you shouldn't be sticking your nose into a wild animal's den.</span>"
+	interaction_message = span_warning("You feel like you shouldn't be sticking your nose into a wild animal's den.")
 
 	var/disturbance_spawn_chance = 20
 	var/last_spawn
@@ -54,7 +54,7 @@
 		var/mob/living/L = new spawn_choice(spawnpoint)
 		if(den_faction)
 			L.faction = den_faction
-		visible_message("<span class='warning'>\The [L] crawls out of \the [src].</span>")
+		visible_message(span_warning("\The [L] crawls out of \the [src]."))
 		den_mobs += L
 		tally++
 

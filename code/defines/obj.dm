@@ -4,7 +4,7 @@
 	anchored = TRUE
 	density = TRUE
 
-/obj/structure/signpost/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/structure/signpost/attackby(obj/item/W as obj, mob/user as mob)
 	return attack_hand(user)
 
 /obj/structure/signpost/attack_hand(mob/user as mob)
@@ -107,7 +107,7 @@
 
 /obj/item/mouse_drag_pointer = MOUSE_ACTIVE_POINTER
 
-/obj/item/weapon/beach_ball
+/obj/item/beach_ball
 	icon = 'icons/misc/beach.dmi'
 	icon_state = "beachball"
 	name = "beach ball"
@@ -121,11 +121,11 @@
 	drop_sound = 'sound/items/drop/rubber.ogg'
 	pickup_sound = 'sound/items/pickup/rubber.ogg'
 
-/obj/item/weapon/beach_ball/afterattack(atom/target as mob|obj|turf|area, mob/user as mob)
+/obj/item/beach_ball/afterattack(atom/target as mob|obj|turf|area, mob/user as mob)
 	user.drop_item()
 	src.throw_at(target, throw_range, throw_speed, user)
 
-/obj/item/weapon/beach_ball/dodgeball
+/obj/item/beach_ball/dodgeball
 	icon = 'icons/obj/balls_vr.dmi'
 	icon_state = "dodgeball"
 	item_state = "dodgeball"

@@ -1,5 +1,5 @@
 
-/obj/item/weapon/gun/magic/firestaff
+/obj/item/gun/magic/firestaff
 	name = "flaming staff"
 	desc = "A long, everburning torch."
 	icon = 'icons/obj/wizard.dmi'

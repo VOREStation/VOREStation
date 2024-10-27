@@ -151,14 +151,14 @@
 // Parameters: 2 (C - Item this object was clicked with, user - Mob which clicked this object)
 // Description: If we are clicked with crowbar, wielded fire axe, or armblade, try to manually open the door.
 // This only works on broken doors or doors without power. Also allows repair with Plasteel.
-/obj/machinery/door/blast/attackby(obj/item/weapon/C as obj, mob/user as mob)
+/obj/machinery/door/blast/attackby(obj/item/C as obj, mob/user as mob)
 	src.add_fingerprint(user)
-	if(istype(C, /obj/item/weapon)) // For reasons unknown, sometimes C is actually not what it is advertised as, like a mob.
+	if(istype(C, /obj/item)) // For reasons unknown, sometimes C is actually not what it is advertised as, like a mob.
 		if(C.pry == 1 && (user.a_intent != I_HURT || (stat & BROKEN))) // Can we pry it open with something, like a crowbar/fireaxe/lingblade?
-			if(istype(C,/obj/item/weapon/material/twohanded/fireaxe)) // Fireaxes need to be in both hands to pry.
-				var/obj/item/weapon/material/twohanded/fireaxe/F = C
+			if(istype(C,/obj/item/material/twohanded/fireaxe)) // Fireaxes need to be in both hands to pry.
+				var/obj/item/material/twohanded/fireaxe/F = C
 				if(!F.wielded)
-					to_chat(user, "<span class='warning'>You need to be wielding \the [F] to do that.</span>")
+					to_chat(user, span_warning("You need to be wielding \the [F] to do that."))
 					return
 
 			// If we're at this point, it's a fireaxe in both hands or something else that doesn't care for twohanding.
@@ -166,19 +166,19 @@
 				force_toggle(1, user)
 
 			else
-				to_chat(user, "<span class='notice'>[src]'s motors resist your effort.</span>")
+				to_chat(user, span_notice("[src]'s motors resist your effort."))
 			return
 
 
 		else if(src.density && (user.a_intent == I_HURT)) //If we can't pry it open and it's a weapon, let's hit it.
-			var/obj/item/weapon/W = C
+			var/obj/item/W = C
 			user.setClickCooldown(user.get_attack_speed(W))
 			if(W.damtype == BRUTE || W.damtype == BURN)
 				user.do_attack_animation(src)
 				if(W.force < min_force)
-					user.visible_message("<span class='danger'>\The [user] hits \the [src] with \the [W] with no visible effect.</span>")
+					user.visible_message(span_danger("\The [user] hits \the [src] with \the [W] with no visible effect."))
 				else
-					user.visible_message("<span class='danger'>\The [user] forcefully strikes \the [src] with \the [W]!</span>")
+					user.visible_message(span_danger("\The [user] forcefully strikes \the [src] with \the [W]!"))
 					playsound(src, hitsound, 100, 1)
 					take_damage(W.force*0.35) //it's a blast door, it should take a while. -Luke
 				return
@@ -186,29 +186,29 @@
 	else if(istype(C, /obj/item/stack/material) && C.get_material_name() == "plasteel") // Repairing.
 		var/amt = CEILING((maxhealth - health)/150, 1)
 		if(!amt)
-			to_chat(user, "<span class='notice'>\The [src] is already fully repaired.</span>")
+			to_chat(user, span_notice("\The [src] is already fully repaired."))
 			return
 		var/obj/item/stack/P = C
 		if(P.get_amount() < amt)
-			to_chat(user, "<span class='warning'>You don't have enough sheets to repair this! You need at least [amt] sheets.</span>")
+			to_chat(user, span_warning("You don't have enough sheets to repair this! You need at least [amt] sheets."))
 			return
-		to_chat(user, "<span class='notice'>You begin repairing [src]...</span>")
+		to_chat(user, span_notice("You begin repairing [src]..."))
 		if(do_after(usr, 30))
 			if(P.use(amt))
-				to_chat(user, "<span class='notice'>You have repaired \The [src]</span>")
+				to_chat(user, span_notice("You have repaired \The [src]"))
 				src.repair()
 			else
-				to_chat(user, "<span class='warning'>You don't have enough sheets to repair this! You need at least [amt] sheets.</span>")
+				to_chat(user, span_warning("You don't have enough sheets to repair this! You need at least [amt] sheets."))
 
 	else if(src.density && (user.a_intent == I_HURT)) //If we can't pry it open and it's not a weapon.... Eh, let's attack it anyway.
-		var/obj/item/weapon/W = C
+		var/obj/item/W = C
 		user.setClickCooldown(user.get_attack_speed(W))
 		if(istype(W) && (W.damtype == BRUTE || W.damtype == BURN))
 			user.do_attack_animation(src)
 			if(W.force < min_force) //No actual non-weapon item shouls have a force greater than the min_force, but let's include this just in case.
-				user.visible_message("<span class='danger'>\The [user] hits \the [src] with \the [W] with no visible effect.</span>")
+				user.visible_message(span_danger("\The [user] hits \the [src] with \the [W] with no visible effect."))
 			else
-				user.visible_message("<span class='danger'>\The [user] forcefully strikes \the [src] with \the [W]!</span>")
+				user.visible_message(span_danger("\The [user] forcefully strikes \the [src] with \the [W]!"))
 				playsound(src, hitsound, 100, 1)
 				take_damage(W.force*0.15) //If the item isn't a weapon, let's make this take longer than usual to break it down.
 			return
@@ -221,19 +221,19 @@
 		var/mob/living/carbon/human/X = user
 		if(istype(X.species, /datum/species/xenos))
 			if(src.density)
-				visible_message("<span class='alium'>\The [user] begins forcing \the [src] open!</span>")
+				visible_message(span_alium("\The [user] begins forcing \the [src] open!"))
 				if(do_after(user, 15 SECONDS,src))
 					playsound(src, 'sound/machines/door/airlock_creaking.ogg', 100, 1)
-					visible_message("<span class='danger'>\The [user] forces \the [src] open!</span>")
+					visible_message(span_danger("\The [user] forces \the [src] open!"))
 					force_open(1)
 			else
-				visible_message("<span class='alium'>\The [user] begins forcing \the [src] closed!</span>")
+				visible_message(span_alium("\The [user] begins forcing \the [src] closed!"))
 				if(do_after(user, 5 SECONDS,src))
 					playsound(src, 'sound/machines/door/airlock_creaking.ogg', 100, 1)
-					visible_message("<span class='danger'>\The [user] forces \the [src] closed!</span>")
+					visible_message(span_danger("\The [user] forces \the [src] closed!"))
 					force_close(1)
 		else
-			visible_message("<span class='notice'>\The [user] strains fruitlessly to force \the [src] [density ? "open" : "closed"].</span>")
+			visible_message(span_notice("\The [user] strains fruitlessly to force \the [src] [density ? "open" : "closed"]."))
 			return
 	..()
 
@@ -245,18 +245,18 @@
 		if(damage >= STRUCTURE_MIN_DAMAGE_THRESHOLD)
 			user.set_AI_busy(TRUE) // If the mob doesn't have an AI attached, this won't do anything.
 			if(src.density)
-				visible_message("<span class='danger'>\The [user] starts forcing \the [src] open!</span>")
+				visible_message(span_danger("\The [user] starts forcing \the [src] open!"))
 				if(do_after(user, 5 SECONDS, src))
-					visible_message("<span class='danger'>\The [user] forces \the [src] open!</span>")
+					visible_message(span_danger("\The [user] forces \the [src] open!"))
 					force_open(1)
 			else
-				visible_message("<span class='danger'>\The [user] starts forcing \the [src] closed!</span>")
+				visible_message(span_danger("\The [user] starts forcing \the [src] closed!"))
 				if(do_after(user, 2 SECONDS, src))
-					visible_message("<span class='danger'>\The [user] forces \the [src] closed!</span>")
+					visible_message(span_danger("\The [user] forces \the [src] closed!"))
 					force_close(1)
 			user.set_AI_busy(FALSE)
 		else
-			visible_message("<span class='notice'>\The [user] strains fruitlessly to force \the [src] [density ? "open" : "closed"].</span>")
+			visible_message(span_notice("\The [user] strains fruitlessly to force \the [src] [density ? "open" : "closed"]."))
 		return
 	..()
 

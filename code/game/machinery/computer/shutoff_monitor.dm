@@ -4,7 +4,7 @@
 	icon_keyboard = "power_key"
 	icon_screen = "power_monitor"
 	light_color = "#a97faa"
-	circuit = /obj/item/weapon/circuitboard/shutoff_monitor
+	circuit = /obj/item/circuitboard/shutoff_monitor
 	var/datum/tgui_module/shutoff_monitor/monitor
 
 /obj/machinery/computer/shutoff_monitor/New()

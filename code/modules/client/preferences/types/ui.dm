@@ -36,3 +36,27 @@
 
 /datum/preference/toggle/tgui_say_light/apply_to_client(client/client, value)
 	client.tgui_say?.load()
+
+/datum/preference/toggle/tgui_say_emotes
+	category = PREFERENCE_CATEGORY_GAME_PREFERENCES
+	savefile_key = "tgui_say_emotes"
+	default_value = TRUE
+	savefile_identifier = PREFERENCE_PLAYER
+
+/datum/preference/toggle/tgui_say_emotes/apply_to_client(client/client, value)
+	client.tgui_say?.load()
+
+/datum/preference/numeric/tgui_say_height
+	category = PREFERENCE_CATEGORY_GAME_PREFERENCES
+	savefile_key = "tgui_say_height"
+	savefile_identifier = PREFERENCE_PLAYER
+
+	minimum = 1
+	maximum = 5
+	step = 1
+
+/datum/preference/numeric/tgui_say_height/create_default_value()
+	return 1
+
+/datum/preference/numeric/tgui_say_height/apply_to_client(client/client, value)
+	client.tgui_say?.load()

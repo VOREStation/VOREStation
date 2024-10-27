@@ -1,4 +1,4 @@
-/obj/item/weapon/material/fishing_net
+/obj/item/material/fishing_net
 	name = "fishing net"
 	desc = "A crude fishing net."
 	icon = 'icons/obj/items.dmi'
@@ -22,11 +22,11 @@
 
 	var/list/accepted_mobs = list(/mob/living/simple_mob/animal/passive/fish)
 
-/obj/item/weapon/material/fishing_net/Initialize()
+/obj/item/material/fishing_net/Initialize()
 	. = ..()
 	update_icon()
 
-/obj/item/weapon/material/fishing_net/afterattack(var/atom/A, var/mob/user, var/proximity)
+/obj/item/material/fishing_net/afterattack(var/atom/A, var/mob/user, var/proximity)
 	if(get_dist(get_turf(src), A) > reach)
 		return
 
@@ -45,38 +45,38 @@
 				accept = TRUE
 		for(var/atom/At in src.contents)
 			if(isliving(At))
-				to_chat(user, "<span class='notice'>Your net is already holding something!</span>")
+				to_chat(user, span_notice("Your net is already holding something!"))
 				accept = FALSE
 		if(!accept)
-			to_chat(user, "<span class='filter_notice'>[A] can't be trapped in \the [src].</span>")
+			to_chat(user, span_filter_notice("[A] can't be trapped in \the [src]."))
 			return
 		var/mob/L = A
-		user.visible_message("<span class='notice'>[user] snatches [L] with \the [src].</span>", "<span class='notice'>You snatch [L] with \the [src].</span>")
+		user.visible_message(span_notice("[user] snatches [L] with \the [src]."), span_notice("You snatch [L] with \the [src]."))
 		L.forceMove(src)
 		update_icon()
 		update_weight()
 		return
 	return ..()
 
-/obj/item/weapon/material/fishing_net/attack_self(var/mob/user)
+/obj/item/material/fishing_net/attack_self(var/mob/user)
 	for(var/mob/M in src)
 		M.forceMove(get_turf(src))
-		user.visible_message("<span class='notice'>[user] releases [M] from \the [src].</span>", "<span class='notice'>You release [M] from \the [src].</span>")
+		user.visible_message(span_notice("[user] releases [M] from \the [src]."), span_notice("You release [M] from \the [src]."))
 	for(var/obj/item/I in src)
 		I.forceMove(get_turf(src))
-		user.visible_message("<span class='notice'>[user] dumps \the [I] out of \the [src].</span>", "<span class='notice'>You dump \the [I] out of \the [src].</span>")
+		user.visible_message(span_notice("[user] dumps \the [I] out of \the [src]."), span_notice("You dump \the [I] out of \the [src]."))
 	update_icon()
 	update_weight()
 	return
 
-/obj/item/weapon/material/fishing_net/attackby(var/obj/item/W, var/mob/user)
+/obj/item/material/fishing_net/attackby(var/obj/item/W, var/mob/user)
 	if(contents)
 		for(var/mob/living/L in contents)
 			if(prob(25))
 				L.attackby(W, user)
 	..()
 
-/obj/item/weapon/material/fishing_net/update_icon() // Also updates name and desc
+/obj/item/material/fishing_net/update_icon() // Also updates name and desc
 	underlays.Cut()
 	cut_overlays()
 
@@ -100,7 +100,7 @@
 
 	return
 
-/obj/item/weapon/material/fishing_net/proc/update_weight()
+/obj/item/material/fishing_net/proc/update_weight()
 	if(icon_state == contain_state)	// Let's not do a for loop just to see if a mob is in here.
 		slowdown = initial(slowdown) * 2
 		reach = 1
@@ -108,7 +108,7 @@
 		slowdown = initial(slowdown)
 		reach = initial(reach)
 
-/obj/item/weapon/material/fishing_net/butterfly_net
+/obj/item/material/fishing_net/butterfly_net
 	name = "butterfly net"
 	desc = "A butterfly net, it can be used to catch small critters, such as butterflies, but perhaps also friends?"
 	icon = 'icons/obj/items.dmi'
@@ -129,7 +129,7 @@
 
 	accepted_mobs = list(/mob/living/simple_mob/animal/sif/glitterfly, /mob/living/carbon/human)
 
-/obj/item/weapon/material/fishing_net/butterfly_net/afterattack(var/atom/A, var/mob/user, var/proximity)
+/obj/item/material/fishing_net/butterfly_net/afterattack(var/atom/A, var/mob/user, var/proximity)
 	if(get_dist(get_turf(src), A) > reach)
 		return
 
@@ -154,13 +154,13 @@
 					accept = TRUE
 		for(var/atom/At in src.contents)
 			if(isliving(At))
-				to_chat(user, "<span class='notice'>Your net is already holding something!</span>")
+				to_chat(user, span_notice("Your net is already holding something!"))
 				accept = FALSE
 		if(!accept)
-			to_chat(user, "<span class='filter_notice'>[A] can't be trapped in \the [src].</span>")
+			to_chat(user, span_filter_notice("[A] can't be trapped in \the [src]."))
 			return
 		var/mob/L = A
-		user.visible_message("<span class='notice'>[user] snatches [L] with \the [src].</span>", "<span class='notice'>You snatch [L] with \the [src].</span>")
+		user.visible_message(span_notice("[user] snatches [L] with \the [src]."), span_notice("You snatch [L] with \the [src]."))
 		L.forceMove(src)
 		playsound(src, 'sound/effects/plop.ogg', 50, 1)
 		update_icon()
@@ -168,32 +168,32 @@
 		return
 	return ..()
 
-/obj/item/weapon/material/fishing_net/butterfly_net/attack_self(var/mob/user)
+/obj/item/material/fishing_net/butterfly_net/attack_self(var/mob/user)
 	for(var/mob/living/M in src)
 		if(!user.get_inactive_hand()) //Check if the inactive hand is empty
 			M.forceMove(get_turf(src))
 			M.attempt_to_scoop(user)
-			user.visible_message("<span class='notice'>[user] scoops [M] out from \the [src].</span>", "<span class='notice'>You pull [M] from \the [src].</span>")
+			user.visible_message(span_notice("[user] scoops [M] out from \the [src]."), span_notice("You pull [M] from \the [src]."))
 		else
 			M.forceMove(get_turf(src))
-			user.visible_message("<span class='notice'>[user] releases [M] from \the [src].</span>", "<span class='notice'>You release [M] from \the [src].</span>")
+			user.visible_message(span_notice("[user] releases [M] from \the [src]."), span_notice("You release [M] from \the [src]."))
 	for(var/obj/item/I in src)
 		I.forceMove(get_turf(src))
-		user.visible_message("<span class='notice'>[user] dumps \the [I] out of \the [src].</span>", "<span class='notice'>You dump \the [I] out of \the [src].</span>")
+		user.visible_message(span_notice("[user] dumps \the [I] out of \the [src]."), span_notice("You dump \the [I] out of \the [src]."))
 	update_icon()
 	update_weight()
 	return
 
-/obj/item/weapon/material/fishing_net/butterfly_net/container_resist(mob/living/M)
+/obj/item/material/fishing_net/butterfly_net/container_resist(mob/living/M)
 	if(prob(20))
 		M.forceMove(get_turf(src))
-		to_chat(M, "<span class='warning'>You climb out of \the [src].</span>")
+		to_chat(M, span_warning("You climb out of \the [src]."))
 		update_icon()
 		update_weight()
 	else
-		to_chat(M, "<span class='warning'>You fail to escape \the [src].</span>")
+		to_chat(M, span_warning("You fail to escape \the [src]."))
 
-/obj/item/weapon/material/fishing_net/butterfly_net/update_icon() // Also updates name and desc
+/obj/item/material/fishing_net/butterfly_net/update_icon() // Also updates name and desc
 	underlays.Cut()
 	cut_overlays()
 
@@ -215,7 +215,7 @@
 
 /datum/crafting_recipe/butterfly_net
 	name = "butterfly net"
-	result = /obj/item/weapon/material/fishing_net/butterfly_net
+	result = /obj/item/material/fishing_net/butterfly_net
 	reqs = list(
 		list(/obj/item/stack/material/cloth = 2)
 	)

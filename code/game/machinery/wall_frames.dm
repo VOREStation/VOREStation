@@ -17,7 +17,7 @@
 	if(!frame_types_wall)
 		frame_types_wall = construction_frame_wall
 
-/obj/item/frame/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/item/frame/attackby(obj/item/W as obj, mob/user as mob)
 	if(W.has_tool_quality(TOOL_WRENCH))
 		new refund_type(get_turf(src.loc), refund_amt)
 		qdel(src)
@@ -48,7 +48,7 @@
 	M.fingerprints = fingerprints
 	M.fingerprintshidden = fingerprintshidden
 	M.fingerprintslast = fingerprintslast
-	if(istype(src.loc, /obj/item/weapon/gripper)) //Typical gripper shenanigans
+	if(istype(src.loc, /obj/item/gripper)) //Typical gripper shenanigans
 		user.drop_item()
 	qdel(src)
 
@@ -70,15 +70,15 @@
 	var/turf/loc = get_turf(user)
 	var/area/A = loc.loc
 	if(!istype(loc, /turf/simulated/floor))
-		to_chat(user, "<span class='danger'>\The frame cannot be placed on this spot.</span>")
+		to_chat(user, span_danger("\The frame cannot be placed on this spot."))
 		return
 
 	if(A.requires_power == 0 || A.name == "Space")
-		to_chat(user, "<span class='danger'>\The [src] Alarm cannot be placed in this area.</span>")
+		to_chat(user, span_danger("\The [src] Alarm cannot be placed in this area."))
 		return
 
 	if(gotwallitem(loc, ndir))
-		to_chat(user, "<span class='danger'>There's already an item on this wall!</span>")
+		to_chat(user, span_danger("There's already an item on this wall!"))
 		return
 
 	var/datum/frame/frame_types/frame_type
@@ -97,7 +97,7 @@
 	M.fingerprints = fingerprints
 	M.fingerprintshidden = fingerprintshidden
 	M.fingerprintslast = fingerprintslast
-	if(istype(src.loc, /obj/item/weapon/gripper)) //Typical gripper shenanigans
+	if(istype(src.loc, /obj/item/gripper)) //Typical gripper shenanigans
 		user.drop_item()
 	qdel(src)
 

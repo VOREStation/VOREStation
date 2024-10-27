@@ -19,7 +19,7 @@
 	activators = list(
 		"fire" = IC_PINTYPE_PULSE_IN
 	)
-	var/obj/item/weapon/gun/installed_gun = null
+	var/obj/item/gun/installed_gun = null
 	spawn_flags = IC_SPAWN_RESEARCH
 	origin_tech = list(TECH_ENGINEERING = 3, TECH_DATA = 3, TECH_COMBAT = 4)
 	power_draw_per_use = 50 // The targeting mechanism uses this.  The actual gun uses its own cell for firing if it's an energy weapon.
@@ -29,16 +29,16 @@
 	return ..()
 
 /obj/item/integrated_circuit/manipulation/weapon_firing/attackby(var/obj/O, var/mob/user)
-	if(istype(O, /obj/item/weapon/gun))
-		var/obj/item/weapon/gun/gun = O
+	if(istype(O, /obj/item/gun))
+		var/obj/item/gun/gun = O
 		if(installed_gun)
-			to_chat(user, "<span class='warning'>There's already a weapon installed.</span>")
+			to_chat(user, span_warning("There's already a weapon installed."))
 			return
 		user.drop_from_inventory(gun)
 		installed_gun = gun
 		size += gun.w_class
 		gun.forceMove(src)
-		to_chat(user, "<span class='notice'>You slide \the [gun] into the firing mechanism.</span>")
+		to_chat(user, span_notice("You slide \the [gun] into the firing mechanism."))
 		playsound(src, 'sound/items/Crowbar.ogg', 50, 1)
 	else
 		..()
@@ -46,12 +46,12 @@
 /obj/item/integrated_circuit/manipulation/weapon_firing/attack_self(var/mob/user)
 	if(installed_gun)
 		installed_gun.forceMove(get_turf(src))
-		to_chat(user, "<span class='notice'>You slide \the [installed_gun] out of the firing mechanism.</span>")
+		to_chat(user, span_notice("You slide \the [installed_gun] out of the firing mechanism."))
 		size = initial(size)
 		playsound(src, 'sound/items/Crowbar.ogg', 50, 1)
 		installed_gun = null
 	else
-		to_chat(user, "<span class='notice'>There's no weapon to remove from the mechanism.</span>")
+		to_chat(user, span_notice("There's no weapon to remove from the mechanism."))
 
 /obj/item/integrated_circuit/manipulation/weapon_firing/do_work()
 	if(!installed_gun)
@@ -142,7 +142,7 @@
 	activators = list("prime grenade" = IC_PINTYPE_PULSE_IN)
 	spawn_flags = IC_SPAWN_RESEARCH
 	origin_tech = list(TECH_ENGINEERING = 3, TECH_DATA = 3, TECH_COMBAT = 4)
-	var/obj/item/weapon/grenade/attached_grenade
+	var/obj/item/grenade/attached_grenade
 	var/pre_attached_grenade_type
 
 /obj/item/integrated_circuit/manipulation/grenade/New()
@@ -157,12 +157,12 @@
 	detach_grenade()
 	. =..()
 
-/obj/item/integrated_circuit/manipulation/grenade/attackby(var/obj/item/weapon/grenade/G, var/mob/user)
+/obj/item/integrated_circuit/manipulation/grenade/attackby(var/obj/item/grenade/G, var/mob/user)
 	if(istype(G))
 		if(attached_grenade)
-			to_chat(user, "<span class='warning'>There is already a grenade attached!</span>")
+			to_chat(user, span_warning("There is already a grenade attached!"))
 		else if(user.unEquip(G, force=1))
-			user.visible_message("<span class='warning'>\The [user] attaches \a [G] to \the [src]!</span>", "<span class='notice'>You attach \the [G] to \the [src].</span>")
+			user.visible_message(span_warning("\The [user] attaches \a [G] to \the [src]!"), span_notice("You attach \the [G] to \the [src]."))
 			attach_grenade(G)
 			G.forceMove(src)
 	else
@@ -170,7 +170,7 @@
 
 /obj/item/integrated_circuit/manipulation/grenade/attack_self(var/mob/user)
 	if(attached_grenade)
-		user.visible_message("<span class='warning'>\The [user] removes \an [attached_grenade] from \the [src]!</span>", "<span class='notice'>You remove \the [attached_grenade] from \the [src].</span>")
+		user.visible_message(span_warning("\The [user] removes \an [attached_grenade] from \the [src]!"), span_notice("You remove \the [attached_grenade] from \the [src]."))
 		user.put_in_any_hand_if_possible(attached_grenade) || attached_grenade.dropInto(loc)
 		detach_grenade()
 	else
@@ -186,7 +186,7 @@
 		log_and_message_admins("activated a grenade assembly. Last touches: Assembly: [holder.fingerprintslast] Circuit: [fingerprintslast] Grenade: [attached_grenade.fingerprintslast]")
 
 // These procs do not relocate the grenade, that's the callers responsibility
-/obj/item/integrated_circuit/manipulation/grenade/proc/attach_grenade(var/obj/item/weapon/grenade/G)
+/obj/item/integrated_circuit/manipulation/grenade/proc/attach_grenade(var/obj/item/grenade/G)
 	attached_grenade = G
 	RegisterSignal(attached_grenade, COMSIG_OBSERVER_DESTROYED, /obj/item/integrated_circuit/manipulation/grenade/proc/detach_grenade)
 	size += G.w_class
@@ -201,6 +201,6 @@
 	desc = initial(desc)
 
 /obj/item/integrated_circuit/manipulation/grenade/frag
-	pre_attached_grenade_type = /obj/item/weapon/grenade/explosive
+	pre_attached_grenade_type = /obj/item/grenade/explosive
 	origin_tech = list(TECH_ENGINEERING = 3, TECH_DATA = 3, TECH_COMBAT = 10)
 	spawn_flags = null			// Used for world initializing, see the #defines above.

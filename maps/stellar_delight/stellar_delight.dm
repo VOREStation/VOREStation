@@ -11,7 +11,7 @@
 	#include "..\offmap_vr\common_offmaps.dm"
 	#include "..\tether\tether_jobs.dm"
 
-	#if !AWAY_MISSION_TEST //Don't include these for just testing away missions
+	#ifndef AWAY_MISSION_TEST //Don't include these for just testing away missions
 		#include "stellar_delight1.dmm"
 		#include "stellar_delight2.dmm"
 		#include "stellar_delight3.dmm"

@@ -4,7 +4,7 @@
 	display_name = "ears of corn"
 	kitchen_tag = "corn"
 	chems = list("nutriment" = list(1,10), "cornoil" = list(3,15))
-	trash_type = /obj/item/weapon/corncob
+	trash_type = /obj/item/corncob
 
 /datum/seed/corn/New()
 	..()

@@ -35,8 +35,9 @@ SUBSYSTEM_DEF(tgui)
 /datum/controller/subsystem/tgui/Shutdown()
 	close_all_uis()
 
-/datum/controller/subsystem/tgui/stat_entry()
-	..("P:[all_uis.len]")
+/datum/controller/subsystem/tgui/stat_entry(msg)
+	msg = "P:[all_uis.len]"
+	return ..()
 
 /datum/controller/subsystem/tgui/fire(resumed = FALSE)
 	if(!resumed)

@@ -70,13 +70,14 @@ var/list/overminds = list()
 	overminds -= src
 	return ..()
 
-/mob/observer/blob/Stat()
-	..()
-	if(statpanel("Status"))
-		if(blob_core)
-			stat(null, "Core Health: [blob_core.integrity]")
-		stat(null, "Power Stored: [blob_points]/[max_blob_points]")
-		stat(null, "Total Blobs: [GLOB.all_blobs.len]")
+/mob/observer/blob/get_status_tab_items()
+	. = ..()
+	. += ""
+	. += "BLOB STATUS"
+	if(blob_core)
+		. += "Core Health: [blob_core.integrity]"
+	. += "Power Stored: [blob_points]/[max_blob_points]"
+	. += "Total Blobs: [GLOB.all_blobs.len]"
 
 /mob/observer/blob/Move(var/atom/NewLoc, Dir = 0)
 	if(placed)
@@ -116,7 +117,7 @@ var/list/overminds = list()
 		if(message)
 			client.handle_spam_prevention(MUTE_IC)
 			if((client.prefs.muted & MUTE_IC) || say_disabled)
-				to_chat(src, "<span class='warning'>You cannot speak in IC (Muted).</span>")
+				to_chat(src, span_warning("You cannot speak in IC (Muted)."))
 				return
 
 	//These will contain the main receivers of the message

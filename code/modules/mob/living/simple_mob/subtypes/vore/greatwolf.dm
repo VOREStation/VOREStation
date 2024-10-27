@@ -11,7 +11,7 @@
 	faction = FACTION_SIF
 	has_eye_glow = TRUE
 	meat_amount = 40 //Big dog, lots of meat
-	meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat
+	meat_type = /obj/item/reagent_containers/food/snacks/meat
 	old_x = -48
 	old_y = 0
 	vis_height = 92
@@ -93,8 +93,8 @@
 	. = ..()
 	if(!riding_datum)
 		riding_datum = new /datum/riding/simple_mob(src)
-	verbs |= /mob/living/simple_mob/proc/animal_mount
-	verbs |= /mob/living/proc/toggle_rider_reins
+	add_verb(src, /mob/living/simple_mob/proc/animal_mount)
+	add_verb(src, /mob/living/proc/toggle_rider_reins)
 	movement_cooldown = -1.5
 
 /mob/living/simple_mob/vore/greatwolf/MouseDrop_T(mob/living/M, mob/living/user)
@@ -102,16 +102,16 @@
 
 
 /mob/living/simple_mob/vore/greatwolf/attackby(var/obj/item/O, var/mob/user) // Trade food for people!
-	if(istype(O, /obj/item/weapon/reagent_containers/food))
+	if(istype(O, /obj/item/reagent_containers/food))
 		qdel(O)
 		playsound(src,'sound/vore/gulp.ogg', rand(10,50), 1)
 		if(!has_AI())//No autobarf on player control.
 			return
-		if(istype(O, /obj/item/weapon/reagent_containers/food/snacks/donut) && istype(src, /mob/living/simple_mob/vore/greatwolf/black))
-			to_chat(user,"<span class='notice'>The huge wolf begrudgingly accepts your offer in exchange for it's catch.</span>")
+		if(istype(O, /obj/item/reagent_containers/food/snacks/donut) && istype(src, /mob/living/simple_mob/vore/greatwolf/black))
+			to_chat(user,span_notice("The huge wolf begrudgingly accepts your offer in exchange for it's catch."))
 			release_vore_contents()
 		else if(prob(2)) //Small chance to get prey out from white doggos
-			to_chat(user,"<span class='notice'>The huge wolf accepts your offer for their catch.</span>")
+			to_chat(user,span_notice("The huge wolf accepts your offer for their catch."))
 			release_vore_contents()
 		return
 	. = ..()

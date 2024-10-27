@@ -4,7 +4,7 @@
 /turf/template_noop,
 /area/submap/groundbase/poi/wildvillage)
 "j" = (
-/obj/item/weapon/beach_ball/dodgeball,
+/obj/item/beach_ball/dodgeball,
 /turf/simulated/floor/outdoors/newdirt,
 /area/submap/groundbase/poi/wildvillage/long/long4)
 "s" = (

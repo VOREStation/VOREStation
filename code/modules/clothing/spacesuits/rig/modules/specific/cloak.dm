@@ -29,7 +29,7 @@
 
 	var/mob/living/carbon/human/H = holder.wearer
 
-	to_chat(H, span_blue("<b>You are now nearly invisible to normal detection.</b>"))
+	to_chat(H, span_boldnotice("You are now nearly invisible to normal detection."))
 	H.alpha = 5
 
 	anim(get_turf(H), H, 'icons/effects/effects.dmi', "electricity",null,20,null)
@@ -43,7 +43,7 @@
 
 	var/mob/living/carbon/human/H = holder.wearer
 
-	to_chat(H, "<span class='danger'>You are now visible.</span>")
+	to_chat(H, span_danger("You are now visible."))
 
 	anim(get_turf(H), H,'icons/mob/mob.dmi',,"uncloak",,H.dir)
 	anim(get_turf(H), H, 'icons/effects/effects.dmi', "electricity",null,20,null)

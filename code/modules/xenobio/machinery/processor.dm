@@ -13,20 +13,20 @@
 	var/monkeys_recycled = 0
 	description_info = "Clickdrag dead slimes or monkeys to it to insert them.  It will make a new monkey cube for every four monkeys it processes."
 
-/obj/item/weapon/circuitboard/processor
+/obj/item/circuitboard/processor
 	name = T_BOARD("slime processor")
 	build_path = /obj/machinery/processor
 	origin_tech = list(TECH_DATA = 2, TECH_BIO = 2)
 
 /obj/machinery/processor/attack_hand(mob/living/user)
 	if(processing)
-		to_chat(user, "<span class='warning'>The processor is in the process of processing!</span>")
+		to_chat(user, span_warning("The processor is in the process of processing!"))
 		return
 	if(to_be_processed.len)
 		spawn(1)
 			begin_processing()
 	else
-		to_chat(user, "<span class='warning'>The processor is empty.</span>")
+		to_chat(user, span_warning("The processor is empty."))
 		playsound(src, 'sound/machines/buzz-sigh.ogg', 50, 1)
 		return
 
@@ -53,12 +53,12 @@
 	if(!Adjacent(AM))
 		return
 	if(!can_insert(AM))
-		to_chat(user, "<span class='warning'>\The [src] cannot process \the [AM] at this time.</span>")
+		to_chat(user, span_warning("\The [src] cannot process \the [AM] at this time."))
 		playsound(src, 'sound/machines/buzz-sigh.ogg', 50, 1)
 		return
 	to_be_processed.Add(AM)
 	AM.forceMove(src)
-	visible_message("<b>\The [user]</b> places [AM] inside \the [src].")
+	visible_message(span_infoplain(span_bold("\The [user]") + " places [AM] inside \the [src]."))
 
 /obj/machinery/processor/proc/begin_processing()
 	if(processing)
@@ -70,7 +70,7 @@
 		sleep(1 SECONDS)
 
 	while(monkeys_recycled >= 4)
-		new /obj/item/weapon/reagent_containers/food/snacks/monkeycube(get_turf(src))
+		new /obj/item/reagent_containers/food/snacks/monkeycube(get_turf(src))
 		playsound(src, 'sound/effects/splat.ogg', 50, 1)
 		monkeys_recycled -= 4
 		sleep(1 SECOND)

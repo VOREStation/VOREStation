@@ -31,8 +31,8 @@
 	. = ..()
 	if(!running)
 		return
-	var/obj/item/weapon/computer_hardware/processor_unit/CPU = computer.processor_unit
-	var/obj/item/weapon/computer_hardware/card_slot/RFID = computer.card_slot
+	var/obj/item/computer_hardware/processor_unit/CPU = computer.processor_unit
+	var/obj/item/computer_hardware/card_slot/RFID = computer.card_slot
 	if(!istype(CPU) || !CPU.check_functionality() || !istype(RFID) || !RFID.check_functionality())
 		message = "A fatal hardware error has been detected."
 		return
@@ -62,8 +62,8 @@
 				return TRUE
 			if(text2num(params["allowed"]))
 				return TRUE
-			var/obj/item/weapon/computer_hardware/processor_unit/CPU = computer.processor_unit
-			var/obj/item/weapon/computer_hardware/card_slot/RFID = computer.card_slot
+			var/obj/item/computer_hardware/processor_unit/CPU = computer.processor_unit
+			var/obj/item/computer_hardware/card_slot/RFID = computer.card_slot
 			if(!istype(CPU) || !CPU.check_functionality() || !istype(RFID) || !RFID.check_functionality())
 				message = "A fatal hardware error has been detected."
 				return
@@ -92,7 +92,7 @@
 		data["rate"] = computer.processor_unit.max_idle_programs
 		data["factor"] = (progress / target_progress)
 	else if(computer?.card_slot?.stored_card)
-		var/obj/item/weapon/card/id/id_card = computer.card_slot.stored_card
+		var/obj/item/card/id/id_card = computer.card_slot.stored_card
 		for(var/i = 1; i <= 7; i++)
 			var/list/accesses = list()
 			for(var/access in get_region_accesses(i))

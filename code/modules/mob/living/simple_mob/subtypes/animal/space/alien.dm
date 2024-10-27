@@ -30,7 +30,7 @@
 	attacktext = list("slashed")
 	attack_sound = 'sound/weapons/bladeslice.ogg'
 
-	meat_type = /obj/item/weapon/reagent_containers/food/snacks/xenomeat
+	meat_type = /obj/item/reagent_containers/food/snacks/xenomeat
 	meat_amount = 5
 
 /mob/living/simple_mob/animal/space/alien/drone

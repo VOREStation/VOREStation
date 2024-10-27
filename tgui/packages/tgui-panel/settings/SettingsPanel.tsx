@@ -11,6 +11,7 @@ import { ChatPageSettings } from '../chat';
 import { changeSettingsTab } from './actions';
 import { SETTINGS_TABS } from './constants';
 import { selectActiveTab } from './selectors';
+import { SettingsStatPanel } from './SettingsStatPanel';
 import { AdminSettings } from './SettingTabs/AdminSettings';
 import { ExportTab } from './SettingTabs/ExportTab';
 import { MessageLimits } from './SettingTabs/MessageLimits';
@@ -49,6 +50,7 @@ export const SettingsPanel = (props) => {
         {activeTab === 'export' && <ExportTab />}
         {activeTab === 'chatPage' && <ChatPageSettings />}
         {activeTab === 'textHighlight' && <TextHighlightSettings />}
+        {activeTab === 'statPanel' && <SettingsStatPanel />}
         {activeTab === 'adminSettings' && <AdminSettings />}
       </Stack.Item>
     </Stack>

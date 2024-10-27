@@ -1048,11 +1048,11 @@
 /obj/item/clothing/glasses/sunglasses/aviator,
 /obj/item/clothing/accessory/permit/gun,
 /obj/item/clothing/accessory/holster/leg,
-/obj/item/device/flashlight/maglight,
-/obj/item/device/flash,
-/obj/item/device/gps/syndie,
-/obj/item/weapon/storage/belt/security/tactical,
-/obj/item/weapon/storage/backpack/dufflebag/syndie,
+/obj/item/flashlight/maglight,
+/obj/item/flash,
+/obj/item/gps/syndie,
+/obj/item/storage/belt/security/tactical,
+/obj/item/storage/backpack/dufflebag/syndie,
 /obj/item/clothing/accessory/storage/black_vest,
 /obj/item/clothing/accessory/storage/black_drop_pouches,
 /turf/simulated/floor/tiled/dark,
@@ -1274,11 +1274,11 @@
 /obj/item/clothing/glasses/sunglasses/aviator,
 /obj/item/clothing/accessory/permit/gun,
 /obj/item/clothing/accessory/holster/leg,
-/obj/item/device/flashlight/maglight,
-/obj/item/device/flash,
-/obj/item/device/gps/syndie,
-/obj/item/weapon/storage/belt/security/tactical,
-/obj/item/weapon/storage/backpack/dufflebag/syndie,
+/obj/item/flashlight/maglight,
+/obj/item/flash,
+/obj/item/gps/syndie,
+/obj/item/storage/belt/security/tactical,
+/obj/item/storage/backpack/dufflebag/syndie,
 /obj/item/clothing/accessory/storage/black_vest,
 /obj/item/clothing/accessory/storage/black_drop_pouches,
 /turf/simulated/floor/tiled/dark,
@@ -2374,11 +2374,11 @@
 /obj/item/clothing/glasses/sunglasses/aviator,
 /obj/item/clothing/accessory/permit/gun,
 /obj/item/clothing/accessory/holster/leg,
-/obj/item/device/flashlight/maglight,
-/obj/item/device/flash,
-/obj/item/device/gps/syndie,
-/obj/item/weapon/storage/belt/security/tactical,
-/obj/item/weapon/storage/backpack/dufflebag/syndie,
+/obj/item/flashlight/maglight,
+/obj/item/flash,
+/obj/item/gps/syndie,
+/obj/item/storage/belt/security/tactical,
+/obj/item/storage/backpack/dufflebag/syndie,
 /obj/item/clothing/accessory/storage/black_vest,
 /obj/item/clothing/accessory/storage/black_drop_pouches,
 /turf/simulated/floor/tiled/dark,
@@ -2588,7 +2588,7 @@
 /obj/machinery/power/terminal,
 /obj/structure/cable,
 /obj/structure/table/reinforced,
-/obj/item/device/healthanalyzer/advanced,
+/obj/item/healthanalyzer/advanced,
 /turf/simulated/floor/tiled/dark,
 /area/mercbase/medical)
 "lD" = (
@@ -2689,9 +2689,9 @@
 /area/mercbase/eqroom)
 "lO" = (
 /obj/structure/table/reinforced,
-/obj/item/weapon/storage/firstaid/combat,
-/obj/item/weapon/storage/firstaid/combat,
-/obj/item/weapon/storage/firstaid/combat,
+/obj/item/storage/firstaid/combat,
+/obj/item/storage/firstaid/combat,
+/obj/item/storage/firstaid/combat,
 /turf/simulated/floor/tiled/dark,
 /area/mercbase/medical)
 "lP" = (
@@ -2721,8 +2721,8 @@
 /obj/item/clothing/accessory/armor/armguards/merc,
 /obj/item/clothing/accessory/armor/legguards/merc,
 /obj/item/clothing/head/helmet/merc,
-/obj/item/weapon/gun/energy/gun,
-/obj/item/weapon/grenade/flashbang,
+/obj/item/gun/energy/gun,
+/obj/item/grenade/flashbang,
 /turf/simulated/floor/tiled/dark,
 /area/mercbase/eqroom)
 "lR" = (
@@ -2764,8 +2764,8 @@
 /obj/item/clothing/accessory/armor/armguards/merc,
 /obj/item/clothing/accessory/armor/legguards/merc,
 /obj/item/clothing/head/helmet/merc,
-/obj/item/weapon/gun/energy/gun,
-/obj/item/weapon/grenade/flashbang,
+/obj/item/gun/energy/gun,
+/obj/item/grenade/flashbang,
 /turf/simulated/floor/tiled/dark,
 /area/mercbase/eqroom)
 "lT" = (
@@ -2777,7 +2777,7 @@
 /area/mercbase/eqroom)
 "lU" = (
 /obj/structure/table/reinforced,
-/obj/item/weapon/storage/toolbox/syndicate,
+/obj/item/storage/toolbox/syndicate,
 /turf/simulated/floor/tiled/dark,
 /area/mercbase/engineering)
 "lV" = (
@@ -2822,7 +2822,7 @@
 /area/mercbase/barracks)
 "ma" = (
 /obj/structure/table/reinforced,
-/obj/item/weapon/storage/firstaid/surgery,
+/obj/item/storage/firstaid/surgery,
 /turf/simulated/floor/tiled/dark,
 /area/mercbase/medicalOR)
 "mb" = (
@@ -3481,7 +3481,7 @@
 /area/mercbase/roid)
 "nS" = (
 /obj/structure/table/standard,
-/obj/item/weapon/soap/syndie,
+/obj/item/soap/syndie,
 /turf/simulated/floor/tiled/dark,
 /area/mercbase/roid)
 "nT" = (
@@ -3614,8 +3614,8 @@
 /obj/item/clothing/accessory/armor/armguards/merc,
 /obj/item/clothing/accessory/armor/legguards/merc,
 /obj/item/clothing/head/helmet/merc,
-/obj/item/weapon/gun/energy/gun,
-/obj/item/weapon/grenade/flashbang,
+/obj/item/gun/energy/gun,
+/obj/item/grenade/flashbang,
 /turf/simulated/floor/tiled/dark,
 /area/mercbase/eqroom)
 "oo" = (
@@ -3630,12 +3630,12 @@
 /turf/simulated/floor/tiled/dark,
 /area/mercbase/medicalstorage)
 "oq" = (
-/obj/item/weapon/gun/projectile/automatic/bullpup,
-/obj/item/weapon/gun/projectile/automatic/bullpup,
-/obj/item/weapon/gun/projectile/automatic/bullpup,
-/obj/item/weapon/gun/projectile/automatic/p90,
-/obj/item/weapon/gun/projectile/automatic/p90,
-/obj/item/weapon/gun/projectile/automatic/p90,
+/obj/item/gun/projectile/automatic/bullpup,
+/obj/item/gun/projectile/automatic/bullpup,
+/obj/item/gun/projectile/automatic/bullpup,
+/obj/item/gun/projectile/automatic/p90,
+/obj/item/gun/projectile/automatic/p90,
+/obj/item/gun/projectile/automatic/p90,
 /obj/structure/closet/secure_closet/guncabinet{
 	req_one_access = list(150)
 	},
@@ -3655,22 +3655,22 @@
 /obj/item/clothing/accessory/armor/armguards/merc,
 /obj/item/clothing/accessory/armor/legguards/merc,
 /obj/item/clothing/head/helmet/merc,
-/obj/item/weapon/gun/energy/gun,
-/obj/item/weapon/grenade/flashbang,
+/obj/item/gun/energy/gun,
+/obj/item/grenade/flashbang,
 /turf/simulated/floor/tiled/dark,
 /area/mercbase/eqroom)
 "os" = (
 /obj/structure/table/reinforced,
-/obj/item/weapon/storage/toolbox/electrical,
+/obj/item/storage/toolbox/electrical,
 /turf/simulated/floor/tiled/dark,
 /area/mercbase/engineering)
 "ot" = (
-/obj/item/weapon/gun/energy/laser,
-/obj/item/weapon/gun/energy/laser,
-/obj/item/weapon/gun/energy/laser,
-/obj/item/weapon/gun/energy/laser,
-/obj/item/weapon/gun/energy/laser,
-/obj/item/weapon/gun/energy/laser,
+/obj/item/gun/energy/laser,
+/obj/item/gun/energy/laser,
+/obj/item/gun/energy/laser,
+/obj/item/gun/energy/laser,
+/obj/item/gun/energy/laser,
+/obj/item/gun/energy/laser,
 /obj/structure/closet/secure_closet/guncabinet{
 	req_one_access = list(150)
 	},
@@ -3681,7 +3681,7 @@
 /obj/structure/closet/hydrant{
 	pixel_w = -32
 	},
-/obj/item/weapon/storage/toolbox/syndicate,
+/obj/item/storage/toolbox/syndicate,
 /turf/simulated/floor/tiled/dark,
 /area/mercbase/engineering)
 "ov" = (
@@ -3690,11 +3690,11 @@
 /area/mercbase/medicalOR)
 "ow" = (
 /obj/structure/table/reinforced,
-/obj/item/weapon/storage/firstaid/regular,
-/obj/item/weapon/storage/firstaid/regular,
-/obj/item/weapon/storage/firstaid/regular,
-/obj/item/weapon/storage/firstaid/clotting,
-/obj/item/weapon/storage/firstaid/clotting,
+/obj/item/storage/firstaid/regular,
+/obj/item/storage/firstaid/regular,
+/obj/item/storage/firstaid/regular,
+/obj/item/storage/firstaid/clotting,
+/obj/item/storage/firstaid/clotting,
 /turf/simulated/floor/tiled/dark,
 /area/mercbase/medicalstorage)
 "ox" = (

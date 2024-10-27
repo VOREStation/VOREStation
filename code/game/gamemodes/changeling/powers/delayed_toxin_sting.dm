@@ -12,7 +12,7 @@
 	name = "delayed toxin injection"
 	hidden = TRUE
 	stacks = MODIFIER_STACK_FORBID
-	on_expired_text = "<span class='danger'>You feel a burning sensation flowing through your veins!</span>"
+	on_expired_text = span_danger("You feel a burning sensation flowing through your veins!")
 
 /datum/modifier/delayed_toxin_sting/on_expire()
 	holder.adjustToxLoss(rand(20, 30))
@@ -32,7 +32,7 @@
 	var/type_to_give = /datum/modifier/delayed_toxin_sting
 	if(src.mind.changeling.recursive_enhancement)
 		type_to_give = /datum/modifier/delayed_toxin_sting/strong
-		to_chat(src, "<span class='notice'>Our toxin will be extra potent, when it strikes.</span>")
+		to_chat(src, span_notice("Our toxin will be extra potent, when it strikes."))
 
 	T.add_modifier(type_to_give, 2 MINUTES)
 

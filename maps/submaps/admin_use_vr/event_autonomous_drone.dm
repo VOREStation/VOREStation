@@ -1,12 +1,12 @@
 // Compile in the map for CI testing if we're testing compileability of all the maps
-#if MAP_TEST
+#ifdef MAP_TEST
 #include "event_autonomous_drone.dmm"
 #endif
 
 /datum/map_template/om_ships/event_autonomous_drone
 	name = "OM Ship - Cargo Drone"
 	desc = "A small cargo hauler"
-	mappath = 'event_autonomous_drone.dmm'
+	mappath = "maps/submaps/admin_use_vr/event_autonomous_drone.dmm"
 	annihilate = TRUE
 
 /datum/shuttle/autodock/overmap/event_autonomous_drone

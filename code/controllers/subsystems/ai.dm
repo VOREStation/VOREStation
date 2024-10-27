@@ -12,8 +12,9 @@ SUBSYSTEM_DEF(ai)
 	var/slept_mobs = 0
 	var/list/process_z = list()
 
-/datum/controller/subsystem/ai/stat_entry(msg_prefix)
-	..("P: [processing.len] | S: [slept_mobs]")
+/datum/controller/subsystem/ai/stat_entry(msg)
+	msg = "P: [processing.len] | S: [slept_mobs]"
+	return ..()
 
 /datum/controller/subsystem/ai/fire(resumed = 0)
 	if (!resumed)

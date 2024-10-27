@@ -17,7 +17,7 @@
 "q" = (/obj/random/tech_supply,/obj/random/energy,/turf/simulated/floor/outdoors/dirt/sif,/area/submap/ChemSpill2)
 "r" = (/obj/random/humanoidremains,/obj/random/rigsuit,/turf/simulated/floor/outdoors/dirt/sif,/area/submap/ChemSpill2)
 "s" = (/obj/effect/decal/remains/lizard,/turf/simulated/floor/outdoors/mud,/area/submap/ChemSpill2)
-"t" = (/obj/item/weapon/storage/mre/random,/turf/simulated/floor/outdoors/dirt/sif,/area/submap/ChemSpill2)
+"t" = (/obj/item/storage/mre/random,/turf/simulated/floor/outdoors/dirt/sif,/area/submap/ChemSpill2)
 "u" = (/obj/effect/decal/remains/mouse,/turf/simulated/floor/outdoors/mud,/area/submap/ChemSpill2)
 "v" = (/obj/effect/decal/cleanable/blood/oil,/turf/simulated/floor/outdoors/rocks,/area/submap/ChemSpill2)
 "w" = (/obj/effect/decal/remains/xeno,/turf/simulated/floor/outdoors/mud,/area/submap/ChemSpill2)

@@ -10,11 +10,11 @@
 /area/survivalpod)
 "f" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/reagent_containers/food/drinks/bottle/wine,
-/obj/item/weapon/reagent_containers/food/drinks/drinkingglass{
+/obj/item/reagent_containers/food/drinks/bottle/wine,
+/obj/item/reagent_containers/food/drinks/drinkingglass{
 	pixel_x = 4
 	},
-/obj/item/weapon/reagent_containers/food/drinks/drinkingglass{
+/obj/item/reagent_containers/food/drinks/drinkingglass{
 	pixel_x = -4
 	},
 /turf/simulated/floor/wood,
@@ -24,13 +24,13 @@
 /obj/machinery/status_display{
 	pixel_y = 32
 	},
-/obj/item/weapon/reagent_containers/food/snacks/pastatomato,
-/obj/item/weapon/reagent_containers/food/snacks/pastatomato,
+/obj/item/reagent_containers/food/snacks/pastatomato,
+/obj/item/reagent_containers/food/snacks/pastatomato,
 /turf/simulated/floor/wood,
 /area/survivalpod)
 "u" = (
 /obj/structure/bed/double/padded,
-/obj/item/weapon/bedsheet/browndouble,
+/obj/item/bedsheet/browndouble,
 /turf/simulated/floor/wood,
 /area/survivalpod)
 "v" = (
@@ -87,13 +87,13 @@
 	dir = 4
 	},
 /obj/structure/closet/secure_closet/personal,
-/obj/item/weapon/towel/random,
+/obj/item/towel/random,
 /turf/simulated/floor/wood,
 /area/survivalpod)
 "N" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/storage/box/donkpockets,
-/obj/item/weapon/storage/box/donkpockets{
+/obj/item/storage/box/donkpockets,
+/obj/item/storage/box/donkpockets{
 	pixel_x = 3;
 	pixel_y = -3
 	},

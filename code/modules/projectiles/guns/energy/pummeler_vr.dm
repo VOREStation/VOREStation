@@ -1,5 +1,5 @@
 // -------------- Pummeler -------------
-/obj/item/weapon/gun/energy/pummeler
+/obj/item/gun/energy/pummeler
 	name = "hypersonic gun"
 	desc = "For when you want to get that pesky marketing guy out of your face ASAP. The PML9 'Pummeler' fires one HUGE \
 	sonic blast in the direction of fire, throwing the target away from you at high speed. Now you can REALLY \
@@ -50,7 +50,7 @@
 			var/mob/living/simple_mob/vore/alienanimals/startreader/S = L
 			if(!S.flipped)
 				S.adjustBruteLoss(100)
-				S.visible_message("<span class='notice'>\The [S] is flipped over!!!</span>")
+				S.visible_message(span_notice("\The [S] is flipped over!!!"))
 				S.flipped = TRUE
 				S.flip_cooldown = 10
 				S.handle_flip()

@@ -3,7 +3,7 @@
 	icon_keyboard = "teleport_key"
 	icon_screen = "teleport"
 	light_color = "#77fff8"
-	circuit = /obj/item/weapon/circuitboard/sensors
+	circuit = /obj/item/circuitboard/sensors
 	extra_view = 4
 	var/obj/machinery/shipsensors/sensors
 
@@ -99,7 +99,7 @@
 		if("scan")
 			var/obj/effect/overmap/O = locate(params["scan"])
 			if(istype(O) && !QDELETED(O) && (O in view(7,linked)))
-				new/obj/item/weapon/paper/(get_turf(src), O.get_scan_data(usr), "paper (Sensor Scan - [O])")
+				new/obj/item/paper/(get_turf(src), O.get_scan_data(usr), "paper (Sensor Scan - [O])")
 				playsound(src, "sound/machines/printer.ogg", 30, 1)
 			. = TRUE
 
@@ -143,23 +143,23 @@
 	var/range = 1
 	idle_power_usage = 5000
 
-/obj/machinery/shipsensors/attackby(obj/item/weapon/W, mob/user)
+/obj/machinery/shipsensors/attackby(obj/item/W, mob/user)
 	var/damage = max_health - health
 	if(damage && W.has_tool_quality(TOOL_WELDER))
 
-		var/obj/item/weapon/weldingtool/WT = W.get_welder()
+		var/obj/item/weldingtool/WT = W.get_welder()
 
 		if(!WT.isOn())
 			return
 
 		if(WT.remove_fuel(0,user))
-			to_chat(user, "<span class='notice'>You start repairing the damage to [src].</span>")
+			to_chat(user, span_notice("You start repairing the damage to [src]."))
 			playsound(src, 'sound/items/Welder.ogg', 100, 1)
 			if(do_after(user, max(5, damage / 5), src) && WT && WT.isOn())
-				to_chat(user, "<span class='notice'>You finish repairing the damage to [src].</span>")
+				to_chat(user, span_notice("You finish repairing the damage to [src]."))
 				take_damage(-damage)
 		else
-			to_chat(user, "<span class='notice'>You need more welding fuel to complete this task.</span>")
+			to_chat(user, span_notice("You need more welding fuel to complete this task."))
 			return
 		return
 	..()
@@ -182,11 +182,11 @@
 /obj/machinery/shipsensors/examine(mob/user)
 	. = ..()
 	if(health <= 0)
-		. += "<span class='danger'>It is wrecked.</span>"
+		. += span_danger("It is wrecked.")
 	else if(health < max_health * 0.25)
-		. += "<span class='danger'>It looks like it's about to break!</span>"
+		. += span_danger("It looks like it's about to break!")
 	else if(health < max_health * 0.5)
-		. += "<span class='danger'>It looks seriously damaged!</span>"
+		. += span_danger("It looks seriously damaged!")
 	else if(health < max_health * 0.75)
 		. += "It shows signs of damage!"
 
@@ -207,7 +207,7 @@
 		if(!in_vacuum())
 			toggle()
 		if(heat > critical_heat)
-			src.visible_message("<span class='danger'>\The [src] violently spews out sparks!</span>")
+			src.visible_message(span_danger("\The [src] violently spews out sparks!"))
 			var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
 			s.set_up(3, 1, src)
 			s.start()

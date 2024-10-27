@@ -4,7 +4,7 @@
  *
  */
 
-/obj/item/device/debugger
+/obj/item/debugger
 	name = "debugger"
 	desc = "Used to debug electronic equipment."
 	icon = 'icons/obj/hacktool.dmi'
@@ -15,31 +15,33 @@
 	throw_range = 15
 	throw_speed = 3
 	desc = "You can use this on airlocks or APCs to try to hack them without cutting wires."
+	pickup_sound = 'sound/items/pickup/device.ogg'
+	drop_sound = 'sound/items/drop/device.ogg'
 
 	matter = list(MAT_STEEL = 50,MAT_GLASS = 20)
 
 	origin_tech = list(TECH_MAGNET = 1, TECH_ENGINEERING = 1)
 	var/obj/machinery/telecomms/buffer // simple machine buffer for device linkage
 
-/obj/item/device/debugger/is_used_on(obj/O, mob/user)
+/obj/item/debugger/is_used_on(obj/O, mob/user)
 	if(istype(O, /obj/machinery/power/apc))
 		var/obj/machinery/power/apc/A = O
 		if(A.emagged || A.hacker)
-			to_chat(user, "<span class='warning'>There is a software error with the device.</span>")
+			to_chat(user, span_warning("There is a software error with the device."))
 		else
-			to_chat(user, "<span class='notice'>The device's software appears to be fine.</span>")
+			to_chat(user, span_notice("The device's software appears to be fine."))
 		return 1
 	if(istype(O, /obj/machinery/door))
 		var/obj/machinery/door/D = O
 		if(D.operating == -1)
-			to_chat(user, "<span class='warning'>There is a software error with the device.</span>")
+			to_chat(user, span_warning("There is a software error with the device."))
 		else
-			to_chat(user, "<span class='notice'>The device's software appears to be fine.</span>")
+			to_chat(user, span_notice("The device's software appears to be fine."))
 		return 1
 	else if(istype(O, /obj/machinery))
 		var/obj/machinery/A = O
 		if(A.emagged)
-			to_chat(user, "<span class='warning'>There is a software error with the device.</span>")
+			to_chat(user, span_warning("There is a software error with the device."))
 		else
-			to_chat(user, "<span class='notice'>The device's software appears to be fine.</span>")
+			to_chat(user, span_notice("The device's software appears to be fine."))
 		return 1

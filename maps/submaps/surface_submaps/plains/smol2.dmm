@@ -4,7 +4,7 @@
 "d" = (/turf/simulated/mineral/ignore_mapgen,/area/submap/smol2)
 "e" = (/obj/item/stack/material/wood/sif,/obj/item/stack/material/wood/sif,/obj/item/stack/material/wood/sif,/obj/item/stack/material/wood/sif,/obj/item/stack/material/wood/sif,/obj/item/stack/material/wood/sif,/turf/template_noop,/area/submap/smol2)
 "f" = (/obj/structure/table/woodentable,/turf/template_noop,/area/submap/smol2)
-"g" = (/obj/item/weapon/storage/firstaid,/obj/item/stack/medical/splint,/obj/item/weapon/reagent_containers/pill/tramadol,/turf/template_noop,/area/submap/smol2)
+"g" = (/obj/item/storage/firstaid,/obj/item/stack/medical/splint,/obj/item/reagent_containers/pill/tramadol,/turf/template_noop,/area/submap/smol2)
 "h" = (/obj/effect/decal/cleanable/blood,/turf/template_noop,/area/submap/smol2)
 
 (1,1,1) = {"

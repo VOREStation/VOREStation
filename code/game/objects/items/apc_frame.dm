@@ -18,17 +18,17 @@
 	var/turf/loc = get_turf(user)
 	var/area/A = loc.loc
 	if (!istype(loc, /turf/simulated/floor))
-		to_chat(user, "<span class='warning'>APC cannot be placed on this spot.</span>")
+		to_chat(user, span_warning("APC cannot be placed on this spot."))
 		return
 	if (A.requires_power == 0 || istype(A, /area/space))
-		to_chat(user, "<span class='warning'>APC cannot be placed in this area.</span>")
+		to_chat(user, span_warning("APC cannot be placed in this area."))
 		return
 	if (A.get_apc())
-		to_chat(user, "<span class='warning'>This area already has an APC.</span>")
+		to_chat(user, span_warning("This area already has an APC."))
 		return //only one APC per area
 	for(var/obj/machinery/power/terminal/T in loc)
 		if (T.master)
-			to_chat(user, "<span class='warning'>There is another network terminal here.</span>")
+			to_chat(user, span_warning("There is another network terminal here."))
 			return
 		else
 			new /obj/item/stack/cable_coil(loc, 10)

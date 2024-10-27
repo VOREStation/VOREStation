@@ -42,7 +42,7 @@
 	see_in_dark = 8
 
 	meat_amount = 8
-	meat_type = /obj/item/weapon/reagent_containers/food/snacks/xenomeat/spidermeat
+	meat_type = /obj/item/reagent_containers/food/snacks/xenomeat/spidermeat
 
 	melee_damage_lower = 8
 	melee_damage_upper = 16
@@ -89,7 +89,7 @@
 
 /mob/living/simple_mob/vore/sect_queen/Login()
 	. = ..()
-	verbs |= /mob/living/simple_mob/vore/sect_queen/proc/set_abdomen_color
+	add_verb(src,  /mob/living/simple_mob/vore/sect_queen/proc/set_abdomen_color)
 
 /mob/living/simple_mob/vore/sect_queen/proc/set_abdomen_color()
 	set name = "Set Glow Color"

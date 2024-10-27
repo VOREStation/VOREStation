@@ -36,7 +36,7 @@
 				m.forceMove(src.loc)
 			else
 				m.forceMove(get_turf(src.loc))
-			m.visible_message("<span class = 'notice'>\The [m] tumbles out of \the [src]!</span>")
+			m.visible_message(span_notice("\The [m] tumbles out of \the [src]!"))
 	//VOREStation Add End
 
 	return ..()
@@ -57,7 +57,7 @@
 /obj/CanUseTopic(var/mob/user, var/datum/tgui_state/state = GLOB.tgui_default_state)
 	if(user.CanUseObjTopic(src))
 		return ..()
-	to_chat(user, "<span class='danger'>[icon2html(src, user.client)]Access Denied!</span>")
+	to_chat(user, span_danger("[icon2html(src, user.client)]Access Denied!"))
 	return STATUS_CLOSE
 
 /mob/living/silicon/CanUseObjTopic(var/obj/O)
@@ -165,7 +165,7 @@
 /*
 	var/mob/mo = locate(/mob) in src
 	if(mo)
-		var/rendered = "<span class='game say'><span class='name'>[M.name]: </span> <span class='message'>[text]</span></span>"
+		var/rendered = span_game(span_say(span_name("[M.name]:") + " " + span_message("[text]"))))
 		mo.show_message(rendered, 2)
 		*/
 	return

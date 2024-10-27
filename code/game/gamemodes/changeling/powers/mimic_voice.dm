@@ -19,7 +19,7 @@
 
 	if(changeling.mimicing)
 		changeling.mimicing = ""
-		to_chat(src, "<span class='notice'>We return our vocal glands to their original location.</span>")
+		to_chat(src, span_notice("We return our vocal glands to their original location."))
 		return
 
 	var/mimic_voice = sanitize(tgui_input_text(usr, "Enter a name to mimic.", "Mimic Voice", null, MAX_NAME_LEN), MAX_NAME_LEN)
@@ -28,8 +28,8 @@
 
 	changeling.mimicing = mimic_voice
 
-	to_chat(src, "<span class='notice'>We shape our glands to take the voice of <b>[mimic_voice]</b>, this will stop us from regenerating chemicals while active.</span>")
-	to_chat(src, "<span class='notice'>Use this power again to return to our original voice and reproduce chemicals again.</span>")
+	to_chat(src, span_notice("We shape our glands to take the voice of <b>[mimic_voice]</b>, this will stop us from regenerating chemicals while active."))
+	to_chat(src, span_notice("Use this power again to return to our original voice and reproduce chemicals again."))
 
 	feedback_add_details("changeling_powers","MV")
 

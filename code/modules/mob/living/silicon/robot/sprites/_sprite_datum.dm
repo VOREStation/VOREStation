@@ -97,7 +97,7 @@
 /datum/robot_sprite/proc/handle_extra_customization(var/mob/living/silicon/robot/ourborg)
 	return
 
-/datum/robot_sprite/proc/do_equipment_glamour(var/obj/item/weapon/robot_module/module)
+/datum/robot_sprite/proc/do_equipment_glamour(var/obj/item/robot_module/module)
 	return
 
 // Dogborgs and not-dogborgs that use dogborg stuff. Oh no.
@@ -127,11 +127,11 @@
 /datum/robot_sprite/dogborg/get_belly_overlay(var/mob/living/silicon/robot/ourborg)
 	return "[sprite_icon_state]-sleeper"
 */
-/datum/robot_sprite/dogborg/do_equipment_glamour(var/obj/item/weapon/robot_module/module)
+/datum/robot_sprite/dogborg/do_equipment_glamour(var/obj/item/robot_module/module)
 	if(!has_custom_equipment_sprites)
 		return
 
-	var/obj/item/weapon/tool/crowbar/cyborg/C = locate() in module.modules
+	var/obj/item/tool/crowbar/cyborg/C = locate() in module.modules
 	if(C)
 		C.name = "puppy jaws"
 		C.desc = "The jaws of a small dog. Still strong enough to pry things."

@@ -5,7 +5,7 @@
 	icon_state = "pdamulti"
 	density = TRUE
 	anchored = TRUE
-	circuit = /obj/item/weapon/circuitboard/telecomms/pda_multicaster
+	circuit = /obj/item/circuitboard/telecomms/pda_multicaster
 	use_power = USE_POWER_IDLE
 	idle_power_usage = 750
 	var/on = 1		// If we're currently active,
@@ -14,14 +14,14 @@
 
 /obj/machinery/pda_multicaster/New()
 	..()
-	internal_PDAs = list("command" = new /obj/item/device/pda/multicaster/command(src),
-		"security" = new /obj/item/device/pda/multicaster/security(src),
-		"engineering" = new /obj/item/device/pda/multicaster/engineering(src),
-		"medical" = new /obj/item/device/pda/multicaster/medical(src),
-		"research" = new /obj/item/device/pda/multicaster/research(src),
-		"exploration" = new /obj/item/device/pda/multicaster/exploration(src), //VOREStation Add,
-		"cargo" = new /obj/item/device/pda/multicaster/cargo(src),
-		"civilian" = new /obj/item/device/pda/multicaster/civilian(src))
+	internal_PDAs = list("command" = new /obj/item/pda/multicaster/command(src),
+		"security" = new /obj/item/pda/multicaster/security(src),
+		"engineering" = new /obj/item/pda/multicaster/engineering(src),
+		"medical" = new /obj/item/pda/multicaster/medical(src),
+		"research" = new /obj/item/pda/multicaster/research(src),
+		"exploration" = new /obj/item/pda/multicaster/exploration(src), //VOREStation Add,
+		"cargo" = new /obj/item/pda/multicaster/cargo(src),
+		"civilian" = new /obj/item/pda/multicaster/civilian(src))
 
 /obj/machinery/pda_multicaster/prebuilt/Initialize()
 	. = ..()
@@ -62,7 +62,7 @@
 		log_game(msg)
 
 /obj/machinery/pda_multicaster/proc/update_PDAs(var/turn_off)
-	for(var/obj/item/device/pda/pda in contents)
+	for(var/obj/item/pda/pda in contents)
 		var/datum/data/pda/app/messenger/M = pda.find_program(/datum/data/pda/app/messenger/multicast)
 		if(M)
 			M.toff = turn_off

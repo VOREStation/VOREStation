@@ -21,7 +21,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/landmark/poi_loader)
 
 /obj/effect/landmark/poi_loader/proc/annihilate_bounds()
 	//var/deleted_atoms = 0
-	//admin_notice("<span class='danger'>Annihilating objects in poi loading location.</span>", R_DEBUG)
+	//admin_notice(span_danger("Annihilating objects in poi loading location."), R_DEBUG)
 	var/list/turfs_to_clean = get_turfs_to_clean()
 	if(turfs_to_clean.len)
 		for(var/x in 1 to 2) // Requires two passes to get everything.
@@ -29,7 +29,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/landmark/poi_loader)
 				for(var/atom/movable/AM in T)
 					//++deleted_atoms
 					qdel(AM)
-	//admin_notice("<span class='danger'>Annihilated [deleted_atoms] objects.</span>", R_DEBUG)
+	//admin_notice(span_danger("Annihilated [deleted_atoms] objects."), R_DEBUG)
 
 /obj/effect/landmark/poi_loader/proc/load_poi()
 	var/turf/T = get_turf(src)
@@ -61,7 +61,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/landmark/poi_loader)
 	if(!template_to_use)
 		return
 
-	//admin_notice("<span class='danger'>Chosen Predefined PoI Map: [chosen_type.name]</span>", R_DEBUG)
+	//admin_notice(span_danger("Chosen Predefined PoI Map: [chosen_type.name]"), R_DEBUG)
 
 	if(remove_from_pool)
 		global_used_pois[poi_type] -= template_to_use

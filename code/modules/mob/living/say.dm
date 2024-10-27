@@ -126,7 +126,7 @@ var/list/channel_to_radio_key = new
 
 /mob/living/proc/handle_message_mode(message_mode, list/message_pieces, verb, used_radios)
 	if(message_mode == "intercom")
-		for(var/obj/item/device/radio/intercom/I in view(1, null))
+		for(var/obj/item/radio/intercom/I in view(1, null))
 			I.talk_into(src, message_pieces, verb)
 			used_radios += I
 	return 0
@@ -150,7 +150,7 @@ var/list/channel_to_radio_key = new
 		if(message)
 			client.handle_spam_prevention(MUTE_IC)
 			if((client.prefs.muted & MUTE_IC) || say_disabled)
-				to_chat(src, "<span class='warning'>You cannot speak in IC (Muted).</span>")
+				to_chat(src, span_warning("You cannot speak in IC (Muted)."))
 				return
 
 	//Redirect to say_dead if talker is dead
@@ -192,6 +192,13 @@ var/list/channel_to_radio_key = new
 		return
 	// VOREStation Edit End
 
+	// If the message ends in an alphanumeric character (therefore, not punctuation),
+	// and autopunctuation is turned on, add a period.
+	// This must be done right here, before parse_languages is called, to make sure it's in the last multilingual say piece.
+	if(contains_az09(copytext(message, length(message))))
+		if(client?.prefs?.read_preference(/datum/preference/toggle/autopunctuation))
+			message += "."
+
 	//Parse the language code and consume it
 	var/list/message_pieces = parse_languages(message)
 	if(istype(message_pieces, /datum/multilingual_say_piece)) // Little quark for dealing with hivemind/signlang languages.
@@ -206,7 +213,7 @@ var/list/channel_to_radio_key = new
 	// If you're muzzled, you can only speak sign language
 	// However, sign language is handled above.
 	if(is_muzzled())
-		to_chat(src, "<span class='danger'>You're muzzled and cannot speak!</span>")
+		to_chat(src, span_danger("You're muzzled and cannot speak!"))
 		return
 
 	//Whisper vars
@@ -272,7 +279,7 @@ var/list/channel_to_radio_key = new
 			message_range = first_piece.speaking.get_talkinto_msg_range(message)
 		var/msg
 		if(!first_piece.speaking || !(first_piece.speaking.flags & NO_TALK_MSG))
-			msg = "<span class='notice'>[src] talks into [used_radios[1]]</span>"
+			msg = span_notice("[src] talks into [used_radios[1]]")
 
 		if(msg)
 			for(var/mob/living/M in hearers(5, src) - src)
@@ -365,7 +372,7 @@ var/list/channel_to_radio_key = new
 				//VOREStation Add - Ghosts don't hear whispers
 				if(whispering && isobserver(M) && (!M.client?.prefs?.read_preference(/datum/preference/toggle/ghost_see_whisubtle) || \
 				(!client?.prefs?.read_preference(/datum/preference/toggle/whisubtle_vis)  && !M.client?.holder)))
-					M.show_message("<span class='game say'><span class='name'>[src.name]</span> [w_not_heard].</span>", 2)
+					M.show_message(span_game(span_say(span_name(src.name) + " [w_not_heard].")), 2)
 					return
 				//VOREStation Add End
 
@@ -386,7 +393,7 @@ var/list/channel_to_radio_key = new
 								images_to_clients[I2] |= M.client
 								M << I2
 					if(dst > w_scramble_range && dst <= world.view) //Inside whisper 'visible' range
-						M.show_message("<span class='game say'><span class='name'>[name]</span> [w_not_heard].</span>", 2)
+						M.show_message(span_game(span_say(span_name(name) + " [w_not_heard].")), 2)
 
 	//Object message delivery
 	for(var/obj/O in listening_obj)

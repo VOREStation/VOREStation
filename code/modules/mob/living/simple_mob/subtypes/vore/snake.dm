@@ -39,7 +39,7 @@
 	melee_damage_upper = 12
 
 	meat_amount = 6
-	meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat
+	meat_type = /obj/item/reagent_containers/food/snacks/meat
 
 	response_help = "pats"
 	response_disarm = "tries to shove"

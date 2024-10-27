@@ -12,7 +12,7 @@
 	interface_name = "death blossom launcher"
 	interface_desc = "An integrated microfactory that produces poisoned throwing stars from thin air and electricity."
 
-	var/fabrication_type = /obj/item/weapon/material/star/ninja
+	var/fabrication_type = /obj/item/material/star/ninja
 	var/fire_force = 30
 	var/fire_distance = 10
 
@@ -26,15 +26,15 @@
 	if(target)
 		var/obj/item/firing = new fabrication_type()
 		firing.forceMove(get_turf(src))
-		H.visible_message("<span class='danger'>[H] launches \a [firing]!</span>")
+		H.visible_message(span_danger("[H] launches \a [firing]!"))
 		firing.throw_at(target,fire_force,fire_distance)
 	else
 		if(H.l_hand && H.r_hand)
-			to_chat(H, "<span class='danger'>Your hands are full.</span>")
+			to_chat(H, span_danger("Your hands are full."))
 		else
 			var/obj/item/new_weapon = new fabrication_type()
 			new_weapon.forceMove(H)
-			to_chat(H, span_blue("<b>You quickly fabricate \a [new_weapon].</b>"))
+			to_chat(H, span_boldnotice("You quickly fabricate \a [new_weapon]."))
 			H.put_in_hands(new_weapon)
 
 	return 1
@@ -50,7 +50,7 @@
 
 	engage_string = "Fabricate Net"
 
-	fabrication_type = /obj/item/weapon/energy_net
+	fabrication_type = /obj/item/energy_net
 	use_power_cost = 70
 
 /obj/item/rig_module/fabricator/energy_net/engage(atom/target)

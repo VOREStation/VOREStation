@@ -160,7 +160,7 @@
 	desc = "A specially designed fedora that is woven with protective fibers. It also makes you look cool."
 	icon_state = "fedora_brown"
 	item_state_slots = list(slot_r_hand_str = "detective", slot_l_hand_str = "detective")
-	allowed = list(/obj/item/weapon/reagent_containers/food/snacks/candy_corn, /obj/item/weapon/pen)
+	allowed = list(/obj/item/reagent_containers/food/snacks/candy_corn, /obj/item/pen)
 	armor = list(melee = 10, bullet = 10, laser = 15, energy = 10, bomb = 0, bio = 0, rad = 0)
 	siemens_coefficient = 0.9
 	valid_accessory_slots = null

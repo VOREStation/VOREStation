@@ -12,7 +12,7 @@
 /obj/effect/floor_decal/spline/plain{
 	dir = 5
 	},
-/obj/item/weapon/bikehorn/rubberducky,
+/obj/item/bikehorn/rubberducky,
 /turf/simulated/floor/water/pool{
 	name = "hot tub"
 	},
@@ -25,9 +25,9 @@
 /area/template_noop)
 "e" = (
 /obj/structure/closet/crate/engineering,
-/obj/item/weapon/tank/oxygen,
+/obj/item/tank/oxygen,
 /obj/item/clothing/mask/gas/clear,
-/obj/item/weapon/reagent_containers/glass/bucket,
+/obj/item/reagent_containers/glass/bucket,
 /obj/random/medical/lite,
 /obj/random/maintenance/clean,
 /obj/random/maintenance,
@@ -71,8 +71,8 @@
 /area/template_noop)
 "n" = (
 /obj/structure/table/rack,
-/obj/item/weapon/towel/random,
-/obj/item/weapon/towel/random,
+/obj/item/towel/random,
+/obj/item/towel/random,
 /turf/simulated/floor/tiled/techfloor,
 /area/template_noop)
 "o" = (

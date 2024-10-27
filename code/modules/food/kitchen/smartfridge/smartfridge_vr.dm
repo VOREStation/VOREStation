@@ -23,7 +23,7 @@
 	. = ..()
 	if(accept_check(A) && A.thrower)
 		//Try to find what job they are via ID
-		var/obj/item/weapon/card/id/thrower_id
+		var/obj/item/card/id/thrower_id
 		if(ismob(A.thrower))
 			var/mob/T = A.thrower
 			thrower_id = T.GetIdCard()
@@ -46,7 +46,7 @@
 	var/obj/machinery/smartfridge/chemistry/chemvator/attached
 
 /obj/machinery/smartfridge/chemistry/chemvator/accept_check(var/obj/item/O as obj)
-	if(istype(O,/obj/item/weapon/storage/pill_bottle) || istype(O,/obj/item/weapon/reagent_containers) || istype(O,/obj/item/weapon/reagent_containers/glass/))
+	if(istype(O,/obj/item/storage/pill_bottle) || istype(O,/obj/item/reagent_containers) || istype(O,/obj/item/reagent_containers/glass/))
 		return 1
 	return 0
 
@@ -65,4 +65,4 @@
 		attached = above
 		item_records = attached.item_records
 	else
-		to_chat(world,"<span class='danger'>[src] at [x],[y],[z] cannot find the unit above it!</span>")
+		to_chat(world,span_danger("[src] at [x],[y],[z] cannot find the unit above it!"))

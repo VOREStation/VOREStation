@@ -24,7 +24,7 @@ mob
 				sandbox.owner = src.ckey
 				if(src.client.holder)
 					sandbox.admin = 1
-				verbs += new/mob/proc/sandbox_panel
+				add_verb(src, /mob/proc/sandbox_panel)
 		sandbox_panel()
 			if(sandbox)
 				sandbox.update()
@@ -36,9 +36,9 @@ mob
 		update()
 			var/hsbpanel = "<center><b>h_Sandbox Panel</b></center><hr>"
 			if(admin)
-				hsbpanel += "<b>Administration Tools:</b><br>"
+				hsbpanel += span_bold("Administration Tools:") + "<br>"
 				hsbpanel += "- <a href=\"?\ref[src];hsb=hsbtobj\">Toggle Object Spawning</a><br><br>"
-			hsbpanel += "<b>Regular Tools:</b><br>"
+			hsbpanel += span_bold("Regular Tools:") + "<br>"
 			for(var/T in hrefs)
 				hsbpanel += "- <a href=\"?\ref[src];hsb=[T]\">[hrefs[T]]</a><br>"
 			if(hsboxspawn)
@@ -52,11 +52,11 @@ mob
 				if("hsbtobj")
 					if(!admin) return
 					if(hsboxspawn)
-						to_world("<b>Sandbox:  [usr.key] has disabled object spawning!</b>")
+						to_world(span_world("Sandbox:  [usr.key] has disabled object spawning!"))
 						hsboxspawn = 0
 						return
 					if(!hsboxspawn)
-						to_world("<b>Sandbox:  [usr.key] has enabled object spawning!</b>")
+						to_world(span_world("Sandbox:  [usr.key] has enabled object spawning!"))
 						hsboxspawn = 1
 						return
 				if("hsbsuit")
@@ -83,7 +83,7 @@ mob
 						P.back.loc = P.loc
 						P.back.reset_plane_and_layer()
 						P.back = null
-					P.back = new/obj/item/weapon/tank/jetpack(P)
+					P.back = new/obj/item/tank/jetpack(P)
 					P.back.hud_layerise()
 					P.internal = P.back
 				if("hsbmetal")
@@ -105,7 +105,7 @@ mob
 							LAZYADD(hsb.req_access, A)
 
 					hsb.loc = usr.loc
-					to_chat(usr, "<b>Sandbox:  Created an airlock.</b>")
+					to_chat(usr, span_bold("Sandbox:  Created an airlock."))
 				if("hsbcanister")
 					var/list/hsbcanisters = subtypesof(/obj/machinery/portable_atmospherics/canister)
 					var/hsbcanister = tgui_input_list(usr, "Choose a canister to spawn:", "Sandbox", hsbcanisters)
@@ -118,13 +118,13 @@ mob
 					//var/obj/hsb = new/obj/watertank
 					//hsb.loc = usr.loc
 				if("hsbtoolbox")
-					var/obj/item/weapon/storage/hsb = new/obj/item/weapon/storage/toolbox/mechanical
-					for(var/obj/item/device/radio/T in hsb)
+					var/obj/item/storage/hsb = new/obj/item/storage/toolbox/mechanical
+					for(var/obj/item/radio/T in hsb)
 						qdel(T)
-					new/obj/item/weapon/tool/crowbar (hsb)
+					new/obj/item/tool/crowbar (hsb)
 					hsb.loc = usr.loc
 				if("hsbmedkit")
-					var/obj/item/weapon/storage/firstaid/hsb = new/obj/item/weapon/storage/firstaid/regular
+					var/obj/item/storage/firstaid/hsb = new/obj/item/storage/firstaid/regular
 					hsb.loc = usr.loc
 				if("hsbobj")
 					if(!hsboxspawn) return
@@ -132,15 +132,15 @@ mob
 					var/list/selectable = list()
 					for(var/O in typesof(/obj/item/))
 					//Note, these istypes don't work
-						if(istype(O, /obj/item/weapon/gun))
+						if(istype(O, /obj/item/gun))
 							continue
 						if(istype(O, /obj/item/assembly))
 							continue
-						if(istype(O, /obj/item/device/camera))
+						if(istype(O, /obj/item/camera))
 							continue
-						if(istype(O, /obj/item/weapon/dummy))
+						if(istype(O, /obj/item/dummy))
 							continue
-						if(istype(O, /obj/item/weapon/melee/energy/sword))
+						if(istype(O, /obj/item/melee/energy/sword))
 							continue
 						if(istype(O, /obj/structure))
 							continue

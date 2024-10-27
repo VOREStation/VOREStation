@@ -6,7 +6,7 @@
 /obj/structure/table/standard,
 /obj/random/maintenance/misc,
 /obj/random/maintenance/misc,
-/obj/item/device/flashlight/lamp{
+/obj/item/flashlight/lamp{
 	pixel_x = 2;
 	pixel_y = 7
 	},
@@ -35,7 +35,7 @@
 /obj/structure/table/standard,
 /obj/random/maintenance/misc,
 /obj/random/maintenance/misc,
-/obj/item/device/flashlight/lamp/green{
+/obj/item/flashlight/lamp/green{
 	pixel_y = 8
 	},
 /turf/simulated/floor/carpet,
@@ -65,7 +65,7 @@
 /area/submap/groundbase/poi/wildvillage/square/square2)
 "q" = (
 /obj/structure/bed/double/padded,
-/obj/item/weapon/bedsheet/browndouble,
+/obj/item/bedsheet/browndouble,
 /obj/structure/curtain/open/bed{
 	color = "#5e0c1d"
 	},

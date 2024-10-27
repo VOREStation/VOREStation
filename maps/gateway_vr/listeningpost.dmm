@@ -68,8 +68,8 @@
 /turf/simulated/floor/airless,
 /area/awaymission/listeningpost)
 "aq" = (
-/obj/item/weapon/pen,
-/obj/item/weapon/paper/listeningpost/departure,
+/obj/item/pen,
+/obj/item/paper/listeningpost/departure,
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/airless,
 /area/awaymission/listeningpost)
@@ -108,7 +108,7 @@
 /obj/structure/bed/chair/bay/comfy/red{
 	dir = 1
 	},
-/obj/item/weapon/tank/oxygen,
+/obj/item/tank/oxygen,
 /turf/simulated/shuttle/floor/red/airless,
 /area/space)
 "ay" = (
@@ -130,7 +130,7 @@
 /turf/simulated/floor/airless,
 /area/awaymission/listeningpost)
 "aB" = (
-/obj/item/weapon/gun/projectile/pistol,
+/obj/item/gun/projectile/pistol,
 /turf/simulated/shuttle/floor/red/airless,
 /area/space)
 "aC" = (
@@ -141,7 +141,7 @@
 /turf/simulated/floor/airless,
 /area/awaymission/listeningpost)
 "aD" = (
-/obj/item/weapon/circuitboard/broken,
+/obj/item/circuitboard/broken,
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/airless,
 /area/awaymission/listeningpost)
@@ -171,13 +171,13 @@
 /area/awaymission/listeningpost)
 "aI" = (
 /obj/structure/table/rack,
-/obj/item/weapon/paper/listeningpost/reciept,
+/obj/item/paper/listeningpost/reciept,
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/airless,
 /area/awaymission/listeningpost)
 "aJ" = (
 /obj/machinery/door/airlock,
-/obj/item/weapon/silencer,
+/obj/item/silencer,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/airless,
@@ -280,7 +280,7 @@
 /turf/simulated/floor/airless,
 /area/awaymission/listeningpost)
 "bc" = (
-/obj/item/weapon/card/emag_broken,
+/obj/item/card/emag_broken,
 /turf/space,
 /area/space)
 "bd" = (
@@ -328,7 +328,7 @@
 /area/awaymission/listeningpost)
 "bm" = (
 /obj/structure/closet,
-/obj/item/weapon/paper/listeningpost/mission,
+/obj/item/paper/listeningpost/mission,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/airless,
@@ -368,7 +368,7 @@
 /obj/effect/floor_decal/techfloor/hole/right{
 	dir = 4
 	},
-/obj/item/weapon/broken_bottle,
+/obj/item/broken_bottle,
 /obj/effect/decal/cleanable/cobweb2,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/floor_decal/rust,
@@ -385,8 +385,8 @@
 	dir = 8;
 	icon_state = "toilet00"
 	},
-/obj/item/weapon/tool/crowbar,
-/obj/item/weapon/paper/crumpled/listeningpost/fanfiction,
+/obj/item/tool/crowbar,
+/obj/item/paper/crumpled/listeningpost/fanfiction,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/airless,

@@ -1,4 +1,4 @@
-/obj/item/device/communicator/proc/analyze_air()
+/obj/item/communicator/proc/analyze_air()
 	var/list/results = list()
 	var/turf/T = get_turf(src.loc)
 	if(!isnull(T))
@@ -36,7 +36,7 @@
 // Proc - compile_news()
 // Parameters - none
 // Description - Returns the list of newsfeeds, compiled for template processing
-/obj/item/device/communicator/proc/compile_news()
+/obj/item/communicator/proc/compile_news()
 	var/list/feeds = list()
 	for(var/datum/feed_channel/channel in news_network.network_channels)
 		var/list/messages = list()
@@ -69,7 +69,7 @@
 // Proc - get_recent_news()
 // Parameters - none
 // Description - Returns the latest three newscasts, compiled for template processing
-/obj/item/device/communicator/proc/get_recent_news()
+/obj/item/communicator/proc/get_recent_news()
 	var/list/news = list()
 
 	// Compile all the newscasts

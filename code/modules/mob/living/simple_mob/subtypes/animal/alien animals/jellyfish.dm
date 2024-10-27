@@ -63,7 +63,7 @@ GLOBAL_VAR_INIT(jellyfish_count, 0)
 	speak_emote = list("thrumms")
 
 	meat_amount = 0
-	meat_type = /obj/item/weapon/reagent_containers/food/snacks/jellyfishcore
+	meat_type = /obj/item/reagent_containers/food/snacks/jellyfishcore
 
 	say_list_type = /datum/say_list/jellyfish
 
@@ -116,7 +116,7 @@ GLOBAL_VAR_INIT(jellyfish_count, 0)
 
 /mob/living/simple_mob/vore/alienanimals/space_jellyfish/death()
 	. = ..()
-	new /obj/item/weapon/reagent_containers/food/snacks/jellyfishcore(loc, nutrition)
+	new /obj/item/reagent_containers/food/snacks/jellyfishcore(loc, nutrition)
 	GLOB.jellyfish_count --
 	qdel(src)
 
@@ -150,7 +150,7 @@ GLOBAL_VAR_INIT(jellyfish_count, 0)
 	wander = TRUE
 	unconscious_vore = TRUE
 
-/obj/item/weapon/reagent_containers/food/snacks/jellyfishcore
+/obj/item/reagent_containers/food/snacks/jellyfishcore
 	name = "jellyfish core"
 	icon = 'icons/obj/food_vr.dmi'
 	icon_state = "jellyfish_core"
@@ -161,11 +161,11 @@ GLOBAL_VAR_INIT(jellyfish_count, 0)
 
 	var/inherited_nutriment = 0
 
-/obj/item/weapon/reagent_containers/food/snacks/jellyfishcore/New(newloc, inherit)
+/obj/item/reagent_containers/food/snacks/jellyfishcore/New(newloc, inherit)
 	inherited_nutriment	= inherit
 	. = ..()
 
-/obj/item/weapon/reagent_containers/food/snacks/jellyfishcore/Initialize()
+/obj/item/reagent_containers/food/snacks/jellyfishcore/Initialize()
 	nutriment_amt += inherited_nutriment
 	. = ..()
 	reagents.add_reagent("nutriment", nutriment_amt, nutriment_desc)

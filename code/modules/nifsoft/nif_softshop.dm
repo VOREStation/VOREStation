@@ -102,21 +102,21 @@
 		var/datum/nifsoft/path = R.item_path
 		if(!ishuman(user))
 			return FALSE
-		
+
 		var/mob/living/carbon/human/H = user
 		if(!H.nif || !H.nif.stat == NIF_WORKING)
-			to_chat(H, "<span class='warning'>[src] seems unable to connect to your NIF...</span>")
+			to_chat(H, span_warning("[src] seems unable to connect to your NIF..."))
 			return FALSE
 
 		if(!H.nif.can_install(path))
 			flick("[icon_state]-deny", entopic.my_image)
 			return FALSE
-		
+
 		if(initial(path.access))
 			var/list/soft_access = list(initial(path.access))
 			var/list/usr_access = user.GetAccess()
 			if(scan_id && !has_access(soft_access, list(), usr_access) && !emagged)
-				to_chat(user, "<span class='warning'>You aren't authorized to buy [initial(path.name)].</span>")
+				to_chat(user, span_warning("You aren't authorized to buy [initial(path.name)]."))
 				flick("[icon_state]-deny", entopic.my_image)
 				return FALSE
 
@@ -124,7 +124,7 @@
 /obj/machinery/vending/nifsoft_shop/vend(datum/stored_item/vending_product/R, mob/user)
 	var/mob/living/carbon/human/H = user
 	if(!can_buy(R, user))	//For SECURE VENDING MACHINES YEAH
-		to_chat(user, "<span class='warning'>Purchase not allowed.</span>")	//Unless emagged of course
+		to_chat(user, span_warning("Purchase not allowed."))	//Unless emagged of course
 		flick("[icon_state]-deny",entopic.my_image)
 		return
 	vend_ready = 0 //One thing at a time!!
@@ -132,13 +132,13 @@
 
 	if(R.category & CAT_COIN)
 		if(!coin)
-			to_chat(user, "<span class='notice'>You need to insert a coin to get this item.</span>")
+			to_chat(user, span_notice("You need to insert a coin to get this item."))
 			return
 		if(coin.string_attached)
 			if(prob(50))
-				to_chat(user, "<span class='notice'>You successfully pull the coin out before \the [src] could swallow it.</span>")
+				to_chat(user, span_notice("You successfully pull the coin out before \the [src] could swallow it."))
 			else
-				to_chat(user, "<span class='notice'>You weren't able to pull the coin out fast enough, the machine ate it, string and all.</span>")
+				to_chat(user, span_notice("You weren't able to pull the coin out fast enough, the machine ate it, string and all."))
 				qdel(coin)
 				coin = null
 				categories &= ~CAT_COIN

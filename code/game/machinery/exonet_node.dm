@@ -16,7 +16,7 @@
 
 	var/list/logs = list() // Gets written to by exonet's send_message() function.
 
-	circuit = /obj/item/weapon/circuitboard/telecomms/exonet_node
+	circuit = /obj/item/circuitboard/telecomms/exonet_node
 // Proc: New()
 // Parameters: None
 // Description: Adds components to the machine for deconstruction.

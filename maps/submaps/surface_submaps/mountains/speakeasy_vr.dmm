@@ -5,7 +5,7 @@
 "h" = (/obj/random/handgun,/turf/simulated/floor/wood,/area/submap/Speakeasy)
 "i" = (/obj/item/clothing/head/fedora,/turf/simulated/floor/wood,/area/submap/Speakeasy)
 "j" = (/obj/structure/bookcase,/turf/simulated/floor/wood,/area/submap/Speakeasy)
-"k" = (/obj/item/weapon/stool/padded,/turf/simulated/floor/wood,/area/submap/Speakeasy)
+"k" = (/obj/item/stool/padded,/turf/simulated/floor/wood,/area/submap/Speakeasy)
 "l" = (/obj/structure/bed/chair/comfy/black,/turf/simulated/floor/carpet/turcarpet,/area/submap/Speakeasy)
 "m" = (/obj/structure/table/woodentable,/obj/machinery/light/poi{dir = 4},/turf/simulated/floor/wood,/area/submap/Speakeasy)
 "n" = (/obj/structure/reagent_dispensers/beerkeg,/turf/simulated/floor/wood,/area/submap/Speakeasy)

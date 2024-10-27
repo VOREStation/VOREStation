@@ -63,6 +63,9 @@ export const ControlSmites = (props) => {
       <Button fluid onClick={() => act('hot_dog')}>
         Hot Dog
       </Button>
+      <Button fluid onClick={() => act('mob_tf')}>
+        Mob Transformation
+      </Button>
     </Section>
   );
 };

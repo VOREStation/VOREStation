@@ -130,7 +130,7 @@ var/global/list/env_messages = list()
 		return
 
 	if(isnewplayer(mob))
-		to_chat(src, "<span class='warning'>You must spawn or observe to place messages.</span>")
+		to_chat(src, span_warning("You must spawn or observe to place messages."))
 		return
 
 	if(!get_turf(mob) || !src.ckey)
@@ -167,7 +167,7 @@ var/global/list/env_messages = list()
 		all_map_messages |= A.combined_message
 
 	if(!all_map_messages.len)
-		to_chat(src, "<span class='warning'>There are no map or env messages.</span>")
+		to_chat(src, span_warning("There are no map or env messages."))
 		return
 
 	var/mob/chosen_message = tgui_input_list(src, "Which message do you want to remove?", "Make contact", all_map_messages)

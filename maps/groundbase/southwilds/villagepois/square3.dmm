@@ -106,7 +106,7 @@
 /obj/structure/table/standard,
 /obj/random/maintenance/misc,
 /obj/random/maintenance/misc,
-/obj/item/device/flashlight/lamp{
+/obj/item/flashlight/lamp{
 	pixel_x = 2;
 	pixel_y = 7
 	},
@@ -114,7 +114,7 @@
 /area/submap/groundbase/poi/wildvillage/square/square3)
 "M" = (
 /obj/structure/bed/double/padded,
-/obj/item/weapon/bedsheet/browndouble,
+/obj/item/bedsheet/browndouble,
 /obj/structure/curtain/open/bed{
 	color = "#5e0c1d"
 	},
@@ -128,7 +128,7 @@
 /obj/machinery/light/small{
 	dir = 4
 	},
-/obj/item/device/flashlight/lamp/green{
+/obj/item/flashlight/lamp/green{
 	pixel_y = 8
 	},
 /turf/simulated/floor/wood,

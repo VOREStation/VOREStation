@@ -22,7 +22,7 @@
 
 //Escape most railing interactions besides tackling people over them
 /obj/structure/railing/overhang/attackby(obj/item/W)
-	if(!istype(W, /obj/item/weapon/grab))
+	if(!istype(W, /obj/item/grab))
 		return
 	return ..()
 

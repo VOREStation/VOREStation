@@ -1,4 +1,4 @@
-/obj/item/weapon/simple_key
+/obj/item/simple_key
 	name = "key"
 	desc = "A plain, old-timey key, as one might use to unlock a door."
 	icon = 'icons/obj/keys.dmi'

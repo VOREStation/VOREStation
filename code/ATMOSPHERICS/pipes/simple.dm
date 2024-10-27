@@ -77,7 +77,7 @@
 			initialize_directions = SOUTH|WEST
 
 /obj/machinery/atmospherics/pipe/simple/proc/burst()
-	src.visible_message("<span class='danger'>\The [src] bursts!</span>");
+	src.visible_message(span_danger("\The [src] bursts!"));
 	playsound(src, 'sound/effects/bang.ogg', 25, 1)
 	var/datum/effect/effect/system/smoke_spread/smoke = new
 	smoke.set_up(1,0, src.loc, 0)

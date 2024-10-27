@@ -71,7 +71,7 @@
 		"rad" = 100
 		)
 
-	loot_list = list(/obj/item/weapon/ore/diamond = 100, /obj/item/weapon/ectoplasm = 3)
+	loot_list = list(/obj/item/ore/diamond = 100, /obj/item/ectoplasm = 3)
 
 	speak_emote = list("rumbles")
 

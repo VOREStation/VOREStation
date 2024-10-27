@@ -16,7 +16,7 @@ var/datum/antagonist/trader/traders
 	leader_welcome_text = "As Captain of the Beruang, you have control over your crew and cargo. It may be worth briefly discussing a consistent shared backstory with your crew."
 	landmark_id = "Trader"
 
-	id_type = /obj/item/weapon/card/id/external
+	id_type = /obj/item/card/id/external
 
 	flags = ANTAG_OVERRIDE_JOB | ANTAG_SET_APPEARANCE | ANTAG_HAS_LEADER | ANTAG_CHOOSE_NAME
 
@@ -49,11 +49,11 @@ var/datum/antagonist/trader/traders
 
 	create_radio(PUB_FREQ, player) //Assume they tune their headsets into the station's public radio as they approach
 
-	var/obj/item/weapon/card/id/id = create_id("Trader", player, equip = 0)
+	var/obj/item/card/id/id = create_id("Trader", player, equip = 0)
 	id.name = "[player.real_name]'s Passport"
 	id.assignment = "Trader"
 	id.access |= access_trader
-	var/obj/item/weapon/storage/wallet/W = new(player)
+	var/obj/item/storage/wallet/W = new(player)
 	W.handle_item_insertion(id)
 	player.equip_to_slot_or_del(W, slot_wear_id)
 	spawn_money(rand(50,150)*10,W)
@@ -61,8 +61,8 @@ var/datum/antagonist/trader/traders
 	return 1
 
 /datum/antagonist/trader/update_access(var/mob/living/player)
-	for(var/obj/item/weapon/storage/wallet/W in player.contents)
-		for(var/obj/item/weapon/card/id/id in W.contents)
+	for(var/obj/item/storage/wallet/W in player.contents)
+		for(var/obj/item/card/id/id in W.contents)
 			id.name = "[player.real_name]'s Passport"
 			id.registered_name = player.real_name
 			W.name = "[initial(W.name)] ([id.name])"

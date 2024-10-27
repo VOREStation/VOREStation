@@ -58,9 +58,9 @@
 
 // Locate one of the things that set the material type, and update it from the default (glass)
 /datum/crafting_recipe/spear/on_craft_completion(mob/user, atom/result)
-	var/obj/item/weapon/material/M
+	var/obj/item/material/M
 	for(var/path in parts)
-		var/obj/item/weapon/material/N = locate(path) in result
+		var/obj/item/material/N = locate(path) in result
 		if(istype(N, path))
 			if(!istype(M))
 				M = N
@@ -69,6 +69,6 @@
 	if(!istype(M))
 		return
 
-	var/obj/item/weapon/material/twohanded/spear/S = result
+	var/obj/item/material/twohanded/spear/S = result
 	S.set_material(M.material.name)
 	qdel(M)

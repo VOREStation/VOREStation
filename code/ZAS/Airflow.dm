@@ -9,13 +9,13 @@ Contains helper procs for airflow, handled in /connection_group.
 	if(last_airflow_stun > world.time - vsc.airflow_stun_cooldown)	return 0
 
 	if(!(status_flags & CANSTUN) && !(status_flags & CANWEAKEN))
-		to_chat(src, "<span class='notice'>You stay upright as the air rushes past you.</span>")
+		to_chat(src, span_notice("You stay upright as the air rushes past you."))
 		return 0
 	if(buckled)
-		to_chat(src, "<span class='notice'>Air suddenly rushes past you!</span>")
+		to_chat(src, span_notice("Air suddenly rushes past you!"))
 		return 0
 	if(!lying)
-		to_chat(src, "<span class='warning'>The sudden rush of air knocks you over!</span>")
+		to_chat(src, span_warning("The sudden rush of air knocks you over!"))
 	Weaken(5)
 	last_airflow_stun = world.time
 
@@ -24,7 +24,7 @@ Contains helper procs for airflow, handled in /connection_group.
 
 /mob/living/carbon/human/airflow_stun()
 	if(shoes && (shoes.item_flags & NOSLIP))
-		to_chat(src, "<span class='notice'>Air suddenly rushes past you!</span>")
+		to_chat(src, span_notice("Air suddenly rushes past you!"))
 		return 0
 	..()
 
@@ -96,7 +96,7 @@ Contains helper procs for airflow, handled in /connection_group.
 
 /mob/airflow_hit(atom/A)
 	for(var/mob/M in hearers(src))
-		M.show_message("<span class='danger'>\The [src] slams into \a [A]!</span>",1,"<span class='danger'>You hear a loud slam!</span>",2)
+		M.show_message(span_danger("\The [src] slams into \a [A]!"),1,span_danger("You hear a loud slam!"),2)
 	playsound(src, "smash.ogg", 25, 1, -1)
 	var/weak_amt = istype(A,/obj/item) ? A:w_class : rand(1,5) //Heheheh
 	Weaken(weak_amt)
@@ -104,7 +104,7 @@ Contains helper procs for airflow, handled in /connection_group.
 
 /obj/airflow_hit(atom/A)
 	for(var/mob/M in hearers(src))
-		M.show_message("<span class='danger'>\The [src] slams into \a [A]!</span>",1,"<span class='danger'>You hear a loud slam!</span>",2)
+		M.show_message(span_danger("\The [src] slams into \a [A]!"),1,span_danger("You hear a loud slam!"),2)
 	playsound(src, "smash.ogg", 25, 1, -1)
 	. = ..()
 
@@ -114,7 +114,7 @@ Contains helper procs for airflow, handled in /connection_group.
 
 /mob/living/carbon/human/airflow_hit(atom/A)
 //	for(var/mob/M in hearers(src))
-//		M.show_message("<span class='danger'>[src] slams into [A]!</span>",1,"<span class='danger'>You hear a loud slam!</span>",2)
+//		M.show_message(span_danger("[src] slams into [A]!"),1,span_danger("You hear a loud slam!"),2)
 	playsound(src, "punch", 25, 1, -1)
 	if (prob(33))
 		loc:add_blood(src)

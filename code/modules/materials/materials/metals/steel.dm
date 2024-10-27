@@ -79,7 +79,7 @@
 		new /datum/stack_recipe("steel shelves", /obj/structure/table/rack/shelf/steel, 1, one_per_turf = TRUE, time = 5, on_floor = TRUE, recycle_material = "[name]"),
 		new /datum/stack_recipe("closet", /obj/structure/closet, 2, time = 15, one_per_turf = 1, on_floor = 1, recycle_material = "[name]"),
 		new /datum/stack_recipe("canister", /obj/machinery/portable_atmospherics/canister, 10, time = 15, one_per_turf = 1, on_floor = 1, recycle_material = "[name]"),
-		new /datum/stack_recipe("cannon frame", /obj/item/weapon/cannonframe, 10, time = 15, one_per_turf = 0, on_floor = 0, recycle_material = "[name]"),
+		new /datum/stack_recipe("cannon frame", /obj/item/cannonframe, 10, time = 15, one_per_turf = 0, on_floor = 0, recycle_material = "[name]"),
 		new /datum/stack_recipe_list("floor tiles", list(
 			new /datum/stack_recipe("regular floor tile", /obj/item/stack/tile/floor, 1, 4, 20, recycle_material = "[name]"),
 			new /datum/stack_recipe("steel hi-grip tile", /obj/item/stack/tile/floor/steelgrip, 1, 4, 20, recycle_material = "[name]"),
@@ -144,14 +144,14 @@
 		//new /datum/stack_recipe("IV drip", /obj/machinery/iv_drip, 4, time = 20, one_per_turf = 1, on_floor = 1, recycle_material = "[name]"), //VOREStation Removal
 		new /datum/stack_recipe("medical stand", /obj/structure/medical_stand, 4, time = 20, one_per_turf = 1, on_floor = 1, recycle_material = "[name]"), //VOREStation Replacement,
 		new /datum/stack_recipe("conveyor switch", /obj/machinery/conveyor_switch, 2, time = 20, one_per_turf = 1, on_floor = 1, recycle_material = "[name]"),
-		new /datum/stack_recipe("grenade casing", /obj/item/weapon/grenade/chem_grenade, recycle_material = "[name]"),
+		new /datum/stack_recipe("grenade casing", /obj/item/grenade/chem_grenade, recycle_material = "[name]"),
 		new /datum/stack_recipe("light fixture frame", /obj/item/frame/light, 2, recycle_material = "[name]"),
 		new /datum/stack_recipe("floor light fixture frame", /obj/machinery/light_construct/floortube, 2, recycle_material = "[name]"),
 		new /datum/stack_recipe("small light fixture frame", /obj/item/frame/light/small, 1, recycle_material = "[name]"),
 		new /datum/stack_recipe("floor lamp fixture frame", /obj/machinery/light_construct/flamp, 2, recycle_material = "[name]"),
 		new /datum/stack_recipe("big floor lamp fixture frame", /obj/machinery/light_construct/bigfloorlamp, 3, recycle_material = "[name]"),
 		new /datum/stack_recipe("apc frame", /obj/item/frame/apc, 2, recycle_material = "[name]"),
-		new /datum/stack_recipe("desk bell", /obj/item/weapon/deskbell, 1, on_floor = 1, supplied_material = "[name]"),
+		new /datum/stack_recipe("desk bell", /obj/item/deskbell, 1, on_floor = 1, supplied_material = "[name]"),
 		new /datum/stack_recipe("tanning rack", /obj/structure/tanning_rack, 3, one_per_turf = TRUE, time = 20, on_floor = TRUE, supplied_material = "[name]"),
 		new /datum/stack_recipe("steel hull sheet", /obj/item/stack/material/steel/hull, 2, 1, 5, time = 20, one_per_turf = 0, on_floor = 1, recycle_material = "[name]")
 	)

@@ -23,8 +23,8 @@
 /datum/modifier/hivebot_weaken
 	name = "Shocked"
 	desc = "You feel less able to exert yourself after being prodded."
-	on_created_text = "<span class='warning'>You feel weak...</span>"
-	on_expired_text = "<span class='notice'>You feel better.</span>"
+	on_created_text = span_warning("You feel weak...")
+	on_expired_text = span_notice("You feel better.")
 	stacks = MODIFIER_STACK_EXTEND
 	mob_overlay_state = "electricity"
 
@@ -152,8 +152,8 @@
 	if(istype(P, /obj/item/projectile/energy) || istype(P, /obj/item/projectile/beam))
 		var/reflect_prob = reflect_chance - round(P.damage/3)
 		if(prob(reflect_prob))
-			visible_message(span("danger", "The [P.name] gets reflected by [src]'s armor!"), \
-							span("userdanger", "The [P.name] gets reflected by [src]'s armor!"))
+			visible_message(span_danger("The [P.name] gets reflected by [src]'s armor!"), \
+							span_userdanger("The [P.name] gets reflected by [src]'s armor!"))
 
 			// Find a turf near or on the original location to bounce to
 			if(P.starting)

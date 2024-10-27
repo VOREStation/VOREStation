@@ -1,4 +1,9 @@
-import { CheckboxInput, FeatureToggle } from '../base';
+import {
+  CheckboxInput,
+  FeatureNumeric,
+  FeatureSliderInput,
+  FeatureToggle,
+} from '../base';
 
 export const BROWSER_STYLED: FeatureToggle = {
   name: 'Use Fake NanoUI Browser Style',
@@ -26,4 +31,18 @@ export const TGUI_SAY_LIGHT_MODE: FeatureToggle = {
   category: 'UI',
   description: 'Sets TGUI Say to use a light mode.',
   component: CheckboxInput,
+};
+
+export const tgui_say_emotes: FeatureToggle = {
+  name: 'Say: Use TGUI For Emotes',
+  category: 'UI',
+  description: 'Sets whether to use TGUI Say for emotes.',
+  component: CheckboxInput,
+};
+
+export const tgui_say_height: FeatureNumeric = {
+  name: 'Say: TGUI Height (Lines)',
+  category: 'UI',
+  description: 'Amount of lines to show in the tgui say input.',
+  component: FeatureSliderInput,
 };

@@ -4,6 +4,7 @@
 /obj/item/clothing/ears/earmuffs
 	name = "earmuffs"
 	desc = "Protects your hearing from loud noises, and quiet ones as well."
+	icon = 'icons/obj/items.dmi'
 	icon_state = "earmuffs"
 	item_state_slots = list(slot_r_hand_str = "earmuffs", slot_l_hand_str = "earmuffs")
 	slot_flags = SLOT_EARS | SLOT_TWOEARS
@@ -29,11 +30,11 @@
 	if(headphones_on)
 		icon_state = "[base_icon]_off"
 		headphones_on = 0
-		to_chat(usr, "<span class='notice'>You turn the music off.</span>")
+		to_chat(usr, span_notice("You turn the music off."))
 	else
 		icon_state = "[base_icon]_on"
 		headphones_on = 1
-		to_chat(usr, "<span class='notice'>You turn the music on.</span>")
+		to_chat(usr, span_notice("You turn the music on."))
 
 	update_clothing_icon()
 

@@ -20,9 +20,9 @@
 	icon_state = "tachi"
 	color = "#68a2f2"
 
-	cell =        /obj/item/weapon/cell/mech
-	idcard_type = /obj/item/weapon/card/id/platform
-	module =      /obj/item/weapon/robot_module/robot/platform
+	cell =        /obj/item/cell/mech
+	idcard_type = /obj/item/card/id/platform
+	module =      /obj/item/robot_module/robot/platform
 
 	lawupdate = FALSE
 	modtype = "Standard"
@@ -67,7 +67,7 @@
 /mob/living/silicon/robot/platform/Initialize(var/mapload)
 	. = ..()
 	if(!mmi)
-		mmi = new /obj/item/device/mmi/digital/robot(src)
+		mmi = new /obj/item/mmi/digital/robot(src)
 	SetName("inactive [initial(name)]")
 	update_icon()
 
@@ -99,7 +99,7 @@
 	if(distance <= 3)
 
 		if(recharging)
-			var/obj/item/weapon/cell/recharging_atom = recharging.resolve()
+			var/obj/item/cell/recharging_atom = recharging.resolve()
 			if(istype(recharging_atom) && !QDELETED(recharging_atom))
 				. += "It has \a [recharging_atom] slotted into its recharging port."
 				. += "The cell readout shows [round(recharging_atom.percent(),1)]% charge."
@@ -124,7 +124,7 @@
 
 /mob/living/silicon/robot/platform/init()
 	. = ..()
-	if(ispath(module, /obj/item/weapon/robot_module))
+	if(ispath(module, /obj/item/robot_module))
 		module = new module(src)
 
 /mob/living/silicon/robot/platform/module_reset()
@@ -141,9 +141,9 @@
 		if(new_recharge_state != last_recharge_state)
 			last_recharge_state = new_recharge_state
 			if(last_recharge_state)
-				to_chat(src, SPAN_NOTICE("<b>Your integrated solar panels begin recharging your battery.</b>"))
+				to_chat(src, span_boldnotice("Your integrated solar panels begin recharging your battery."))
 			else
-				to_chat(src, SPAN_DANGER("Your integrated solar panels cease recharging your battery."))
+				to_chat(src, span_danger("Your integrated solar panels cease recharging your battery."))
 
 		if(last_recharge_state)
 			var/charge_amt = recharger_charge_amount * CELLRATE
@@ -153,7 +153,7 @@
 
 		if(recharging)
 
-			var/obj/item/weapon/cell/recharging_atom = recharging.resolve()
+			var/obj/item/cell/recharging_atom = recharging.resolve()
 			if(!istype(recharging_atom) || QDELETED(recharging_atom) || recharging_atom.loc != src)
 				recharging = null
 				return
@@ -166,4 +166,4 @@
 
 			if(!recharge_complete && recharging_atom.percent() >= 100)
 				recharge_complete = TRUE
-				visible_message("<b>\The [src]</b> beeps and flashes a green light above \his recharging port.")
+				visible_message(span_infoplain("[span_bold("\The [src]")] beeps and flashes a green light above \his recharging port."))

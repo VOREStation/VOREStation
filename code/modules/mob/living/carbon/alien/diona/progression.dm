@@ -1,7 +1,8 @@
-/mob/living/carbon/alien/diona/Stat() //Specified where progression is at, doesn't work right for some things in carbon/alien
+/mob/living/carbon/alien/diona/get_status_tab_items() //Specified where progression is at, doesn't work right for some things in carbon/alien
 	. = ..()
-	if(. && statpanel("Status"))
-		stat("Growth", "[round(amount_grown)]/[max_grown]")
+	if(.)
+		. += ""
+		. += "Diona Growth: [round(amount_grown)]/[max_grown]"
 
 /mob/living/carbon/alien/diona/confirm_evolution()
 
@@ -15,8 +16,8 @@
 
 	src.split()
 
-	if(istype(loc,/obj/item/weapon/holder/diona))
-		var/obj/item/weapon/holder/diona/L = loc
+	if(istype(loc,/obj/item/holder/diona))
+		var/obj/item/holder/diona/L = loc
 		src.loc = L.loc
 		qdel(L)
 

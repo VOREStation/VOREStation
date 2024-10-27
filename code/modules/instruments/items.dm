@@ -31,7 +31,7 @@
 
 /obj/item/instrument/attack_self(mob/user)
 	if(!user.IsAdvancedToolUser())
-		to_chat(user, "<span class='warning'>You don't have the dexterity to do this!</span>")
+		to_chat(user, span_warning("You don't have the dexterity to do this!"))
 		return TRUE
 	interact(user)
 
@@ -247,7 +247,7 @@
 /obj/item/instrument/harmonica/proc/handle_speech(datum/source, list/speech_args)
 	SIGNAL_HANDLER
 	if(song.playing && ismob(loc))
-		to_chat(loc, "<span class='warning'>You stop playing the harmonica to talk...</span>")
+		to_chat(loc, span_warning("You stop playing the harmonica to talk..."))
 		song.playing = FALSE
 
 /obj/item/instrument/harmonica/equipped(mob/M, slot)

@@ -9,28 +9,28 @@
 
 /datum/supply_pack/hydro/monkey
 	name = "Monkey crate"
-	contains = list (/obj/item/weapon/storage/box/monkeycubes)
+	contains = list (/obj/item/storage/box/monkeycubes)
 	cost = 20
 	containertype = /obj/structure/closet/crate/freezer/nanotrasen
 	containername = "Monkey crate"
 
 /datum/supply_pack/hydro/farwa
 	name = "Farwa crate"
-	contains = list (/obj/item/weapon/storage/box/monkeycubes/farwacubes)
+	contains = list (/obj/item/storage/box/monkeycubes/farwacubes)
 	cost = 20
 	containertype = /obj/structure/closet/crate/freezer
 	containername = "Farwa crate"
 
 /datum/supply_pack/hydro/neara
 	name = "Neaera crate"
-	contains = list (/obj/item/weapon/storage/box/monkeycubes/neaeracubes)
+	contains = list (/obj/item/storage/box/monkeycubes/neaeracubes)
 	cost = 20
 	containertype = /obj/structure/closet/crate/freezer
 	containername = "Neaera crate"
 
 /datum/supply_pack/hydro/stok
 	name = "Stok crate"
-	contains = list (/obj/item/weapon/storage/box/monkeycubes/stokcubes)
+	contains = list (/obj/item/storage/box/monkeycubes/stokcubes)
 	cost = 20
 	containertype = /obj/structure/closet/crate/freezer
 	containername = "Stok crate"
@@ -59,15 +59,15 @@
 /datum/supply_pack/hydro/hydroponics
 	name = "Hydroponics Supply Crate"
 	contains = list(
-			/obj/item/weapon/reagent_containers/spray/plantbgone = 4,
-			/obj/item/weapon/reagent_containers/glass/bottle/ammonia = 2,
-			/obj/item/weapon/material/knife/machete/hatchet,
-			/obj/item/weapon/material/minihoe,
-			/obj/item/device/analyzer/plant_analyzer,
+			/obj/item/reagent_containers/spray/plantbgone = 4,
+			/obj/item/reagent_containers/glass/bottle/ammonia = 2,
+			/obj/item/material/knife/machete/hatchet,
+			/obj/item/material/minihoe,
+			/obj/item/analyzer/plant_analyzer,
 			/obj/item/clothing/gloves/botanic_leather,
 			/obj/item/clothing/suit/storage/apron,
-			/obj/item/weapon/material/minihoe,
-			/obj/item/weapon/storage/box/botanydisk
+			/obj/item/material/minihoe,
+			/obj/item/storage/box/botanydisk
 			)
 	cost = 20
 	containertype = /obj/structure/closet/crate/hydroponics
@@ -124,11 +124,11 @@
 /datum/supply_pack/hydro/weedcontrol
 	name = "Weed control crate"
 	contains = list(
-			/obj/item/weapon/material/knife/machete/hatchet = 2,
-			/obj/item/weapon/reagent_containers/spray/plantbgone = 4,
+			/obj/item/material/knife/machete/hatchet = 2,
+			/obj/item/reagent_containers/spray/plantbgone = 4,
 			/obj/item/clothing/mask/gas = 2,
-			/obj/item/weapon/grenade/chem_grenade/antiweed = 2,
-			/obj/item/weapon/material/twohanded/fireaxe/scythe
+			/obj/item/grenade/chem_grenade/antiweed = 2,
+			/obj/item/material/twohanded/fireaxe/scythe
 			)
 	cost = 45
 	containertype = /obj/structure/closet/crate/grayson
@@ -172,28 +172,28 @@
 
 /datum/supply_pack/hydro/sobaka
 	name = "Sobaka crate"
-	contains = list (/obj/item/weapon/storage/box/monkeycubes/sobakacubes)
+	contains = list (/obj/item/storage/box/monkeycubes/sobakacubes)
 	cost = 20
 	containertype = /obj/structure/closet/crate/freezer
 	containername = "Sobaka crate"
 
 /datum/supply_pack/hydro/saru
 	name = "Saru crate"
-	contains = list (/obj/item/weapon/storage/box/monkeycubes/sarucubes)
+	contains = list (/obj/item/storage/box/monkeycubes/sarucubes)
 	cost = 20
 	containertype = /obj/structure/closet/crate/freezer
 	containername = "Saru crate"
 
 /datum/supply_pack/hydro/sparra
 	name = "Sparra crate"
-	contains = list (/obj/item/weapon/storage/box/monkeycubes/sparracubes)
+	contains = list (/obj/item/storage/box/monkeycubes/sparracubes)
 	cost = 20
 	containertype = /obj/structure/closet/crate/freezer
 	containername = "Sparra crate"
 
 /datum/supply_pack/hydro/wolpin
 	name = "Wolpin crate"
-	contains = list (/obj/item/weapon/storage/box/monkeycubes/wolpincubes)
+	contains = list (/obj/item/storage/box/monkeycubes/wolpincubes)
 	cost = 20
 	containertype = /obj/structure/closet/crate/freezer
 	containername = "Wolpin crate"
@@ -207,9 +207,9 @@
 /datum/supply_pack/hydro/fish
 	name = "Fish supply crate"
 	contains = list(
-			/obj/item/weapon/reagent_containers/food/snacks/lobster = 6,
-			/obj/item/weapon/reagent_containers/food/snacks/cuttlefish = 8,
-			/obj/item/weapon/reagent_containers/food/snacks/sliceable/monkfish = 1
+			/obj/item/reagent_containers/food/snacks/lobster = 6,
+			/obj/item/reagent_containers/food/snacks/cuttlefish = 8,
+			/obj/item/reagent_containers/food/snacks/sliceable/monkfish = 1
 			)
 	cost = 20
 	containertype = /obj/structure/closet/crate/freezer
@@ -218,14 +218,14 @@
 /datum/supply_pack/hydro/fennec_food
 	name = "Fennec treats crate"
 	contains = list(
-			/obj/item/weapon/reagent_containers/food/snacks/locust = 6,
-			/obj/item/weapon/storage/box/wings/bucket = 2,
-			/obj/item/weapon/reagent_containers/food/snacks/grub_pink = 2,
-			/obj/item/weapon/reagent_containers/food/snacks/grub_blue = 2,
-			/obj/item/weapon/reagent_containers/food/snacks/grub_purple = 2,
-			/obj/item/weapon/reagent_containers/food/snacks/honey_candy = 4,
-			/obj/item/weapon/reagent_containers/food/snacks/scorpion = 4,
-			/obj/item/weapon/reagent_containers/food/snacks/ant = 4
+			/obj/item/reagent_containers/food/snacks/locust = 6,
+			/obj/item/storage/box/wings/bucket = 2,
+			/obj/item/reagent_containers/food/snacks/grub_pink = 2,
+			/obj/item/reagent_containers/food/snacks/grub_blue = 2,
+			/obj/item/reagent_containers/food/snacks/grub_purple = 2,
+			/obj/item/reagent_containers/food/snacks/honey_candy = 4,
+			/obj/item/reagent_containers/food/snacks/scorpion = 4,
+			/obj/item/reagent_containers/food/snacks/ant = 4
 			)
 	cost = 20
 	containertype = /obj/structure/closet/crate/fennec

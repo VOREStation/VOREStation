@@ -12,7 +12,7 @@
 	a stunbaton, handcuffs, an agent ID, energy sword, pinpointer, and a jetpack."
 	item_cost = DEFAULT_TELECRYSTAL_AMOUNT * 1.5
 	antag_roles = list("mercenary", "ert") //VOREStation Edit
-	path = /obj/item/weapon/antag_spawner/syndicate_drone/protector
+	path = /obj/item/antag_spawner/syndicate_drone/protector
 
 /datum/uplink_item/item/backup/syndicate_drone_combat_medic
 	name = "Drone (Combat Medic)"
@@ -22,7 +22,7 @@
 	sword, pinpointer, and a jetpack."
 	item_cost = DEFAULT_TELECRYSTAL_AMOUNT * 1.5
 	antag_roles = list("mercenary", "ert") //VOREStation Edit
-	path = /obj/item/weapon/antag_spawner/syndicate_drone/combat_medic
+	path = /obj/item/antag_spawner/syndicate_drone/combat_medic
 
 /datum/uplink_item/item/backup/syndicate_drone_mechanist
 	name = "Drone (Mechanist)"
@@ -32,4 +32,4 @@
 	a set of construction materials, an ionic rapier, an agent ID, energy sword, pinpointer, and a jetpack."
 	item_cost = DEFAULT_TELECRYSTAL_AMOUNT * 1.5
 	antag_roles = list("mercenary", "ert") //VOREStation Edit
-	path = /obj/item/weapon/antag_spawner/syndicate_drone/mechanist
+	path = /obj/item/antag_spawner/syndicate_drone/mechanist

@@ -5,15 +5,15 @@
 
 	var/turf/T = get_turf(src)
 	if(!T.CanPass(src,T) || loc != T)
-		to_chat(src,"<span class='warning'>You can't use that here!</span>")
+		to_chat(src,span_warning("You can't use that here!"))
 		return FALSE
 
 	if(shift_state && shift_state == AB_SHIFT_ACTIVE)
-		to_chat(src,"<span class='warning'>You can't do a shift while actively shifting!</span>")
+		to_chat(src,span_warning("You can't do a shift while actively shifting!"))
 		return FALSE
 
 	if(!(locate(/obj/effect/decal/cleanable/blood) in src.loc))
-		to_chat(src,"<span class='warning'>You need blood to shift between realities!</span>")
+		to_chat(src,span_warning("You need blood to shift between realities!"))
 		return FALSE
 
 	forceMove(T)
@@ -57,7 +57,7 @@
 				var/mob/living/target = pick(potentials)
 				if(istype(target) && target.devourable && target.can_be_drop_prey && vore_selected)
 					target.forceMove(vore_selected)
-					to_chat(target,"<span class='vwarning'>\The [src] phases in around you, [vore_selected.vore_verb]ing you into their [vore_selected.name]!</span>")
+					to_chat(target,span_vwarning("\The [src] phases in around you, [vore_selected.vore_verb]ing you into their [vore_selected.name]!"))
 
 		// Do this after the potential vore, so we get the belly
 		update_icon()
@@ -114,15 +114,15 @@
 	var/turf/T = get_turf(src)
 
 	if(shift_state && shift_state == AB_SHIFT_PASSIVE)
-		to_chat(src,"<span class='warning'>You can't do a shift while passively shifting!</span>")
+		to_chat(src,span_warning("You can't do a shift while passively shifting!"))
 		return FALSE
 
 	if(shifted_out)
-		to_chat(src,"<span class='warning'>You can't return to the physical world yet!</span>")
+		to_chat(src,span_warning("You can't return to the physical world yet!"))
 		return FALSE
 
 	if(world.time - last_shift < 600)
-		to_chat(src,"<span class='warning'>You can't temporarily shift so soon! You need to wait [round(((last_shift+600)-world.time)/10)] second\s!</span>")
+		to_chat(src,span_warning("You can't temporarily shift so soon! You need to wait [round(((last_shift+600)-world.time)/10)] second\s!"))
 		return FALSE
 
 	shift_state = AB_SHIFT_ACTIVE
@@ -201,7 +201,7 @@
 				var/mob/living/target = pick(potentials)
 				if(istype(target) && target.devourable && target.can_be_drop_prey && vore_selected)
 					target.forceMove(vore_selected)
-					to_chat(target,"<span class='vwarning'>\The [src] phases in around you, [vore_selected.vore_verb]ing you into their [vore_selected.name]!</span>")
+					to_chat(target,span_vwarning("\The [src] phases in around you, [vore_selected.vore_verb]ing you into their [vore_selected.name]!"))
 
 		// Do this after the potential vore, so we get the belly
 		update_icon()

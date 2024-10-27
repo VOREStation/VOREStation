@@ -32,29 +32,29 @@
 
 	ai_holder_type = /datum/ai_holder/simple_mob/melee
 
-	var/obj/item/weapon/technomancer_core/golem/core = null
-	var/obj/item/weapon/spell/active_spell = null // Shield and ranged spells
+	var/obj/item/technomancer_core/golem/core = null
+	var/obj/item/spell/active_spell = null // Shield and ranged spells
 	var/mob/living/master = null
 	var/casting = FALSE // Used to ensure the correct animation is played. Testing if a spell exists won't always work as some spells delete themselves upon use.
 
 	var/list/known_spells = list(
-		"beam"				= /obj/item/weapon/spell/projectile/beam,
-		"chain lightning"	= /obj/item/weapon/spell/projectile/chain_lightning,
-		"force missile"		= /obj/item/weapon/spell/projectile/force_missile,
-		"ionic bolt"		= /obj/item/weapon/spell/projectile/ionic_bolt,
-		"lightning"			= /obj/item/weapon/spell/projectile/lightning,
-		"blink"				= /obj/item/weapon/spell/blink,
-		"dispel"			= /obj/item/weapon/spell/dispel,
-		"oxygenate"			= /obj/item/weapon/spell/oxygenate,
-		"mend life"			= /obj/item/weapon/spell/modifier/mend_life,
-		"mend synthetic"	= /obj/item/weapon/spell/modifier/mend_synthetic,
-		"mend organs"		= /obj/item/weapon/spell/mend_organs,
-		"purify"			= /obj/item/weapon/spell/modifier/purify,
-		"resurrect"			= /obj/item/weapon/spell/resurrect,
-		"passwall"			= /obj/item/weapon/spell/passwall,
-		"repel missiles"	= /obj/item/weapon/spell/modifier/repel_missiles,
-		"corona"			= /obj/item/weapon/spell/modifier/corona,
-		"haste"				= /obj/item/weapon/spell/modifier/haste
+		"beam"				= /obj/item/spell/projectile/beam,
+		"chain lightning"	= /obj/item/spell/projectile/chain_lightning,
+		"force missile"		= /obj/item/spell/projectile/force_missile,
+		"ionic bolt"		= /obj/item/spell/projectile/ionic_bolt,
+		"lightning"			= /obj/item/spell/projectile/lightning,
+		"blink"				= /obj/item/spell/blink,
+		"dispel"			= /obj/item/spell/dispel,
+		"oxygenate"			= /obj/item/spell/oxygenate,
+		"mend life"			= /obj/item/spell/modifier/mend_life,
+		"mend synthetic"	= /obj/item/spell/modifier/mend_synthetic,
+		"mend organs"		= /obj/item/spell/mend_organs,
+		"purify"			= /obj/item/spell/modifier/purify,
+		"resurrect"			= /obj/item/spell/resurrect,
+		"passwall"			= /obj/item/spell/passwall,
+		"repel missiles"	= /obj/item/spell/modifier/repel_missiles,
+		"corona"			= /obj/item/spell/modifier/corona,
+		"haste"				= /obj/item/spell/modifier/haste
 		)
 
 /mob/living/simple_mob/mechanical/technomancer_golem/Initialize()

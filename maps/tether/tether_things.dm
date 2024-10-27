@@ -115,7 +115,7 @@
 
 /obj/effect/step_trigger/lost_in_space/Trigger(var/atom/movable/A) //replacement for shuttle dump zones because there's no empty space levels to dump to
 	if(ismob(A))
-		to_chat(A, "<span class='danger'>[deathmessage]</span>")
+		to_chat(A, span_danger("[deathmessage]"))
 	qdel(A)
 
 /obj/effect/step_trigger/lost_in_space/bluespace
@@ -288,9 +288,9 @@
 // ### Wall Machines On Full Windows ###
 // To make sure wall-mounted machines placed on full-tile windows are clickable they must be above the window
 //
-/obj/item/device/radio/intercom
+/obj/item/radio/intercom
 	layer = ABOVE_WINDOW_LAYER
-/obj/item/weapon/storage/secure/safe
+/obj/item/storage/secure/safe
 	layer = ABOVE_WINDOW_LAYER
 /obj/machinery/airlock_sensor
 	layer = ABOVE_WINDOW_LAYER

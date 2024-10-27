@@ -377,8 +377,8 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/shuttle/salamander_trader)
 "fZ" = (
-/obj/item/device/suit_cooling_unit,
-/obj/item/weapon/tank/air,
+/obj/item/suit_cooling_unit,
+/obj/item/tank/air,
 /obj/item/clothing/suit/space/void/refurb,
 /obj/item/clothing/head/helmet/space/void/refurb,
 /obj/structure/handrail,
@@ -847,14 +847,14 @@
 /obj/structure/railing/grey{
 	dir = 8
 	},
-/obj/item/weapon/tank/phoron/pressurized,
-/obj/item/weapon/tank/phoron/pressurized,
+/obj/item/tank/phoron/pressurized,
+/obj/item/tank/phoron/pressurized,
 /obj/structure/closet/walllocker{
 	dir = 1;
 	name = "Spare Fuel";
 	pixel_y = -32
 	},
-/obj/item/weapon/tool/crowbar/red,
+/obj/item/tool/crowbar/red,
 /obj/item/stack/material/tritium{
 	amount = 25
 	},
@@ -1003,8 +1003,8 @@
 /area/shuttle/salamander_trader)
 "oi" = (
 /obj/structure/closet/secure_closet/freezer/fridge,
-/obj/item/weapon/storage/box/donkpockets,
-/obj/item/weapon/storage/box/donkpockets,
+/obj/item/storage/box/donkpockets,
+/obj/item/storage/box/donkpockets,
 /obj/random/snack,
 /obj/random/snack,
 /obj/random/snack,
@@ -1030,7 +1030,7 @@
 /area/shuttle/salamander_trader_cockpit)
 "oF" = (
 /obj/structure/bed/pod,
-/obj/item/weapon/bedsheet/blue,
+/obj/item/bedsheet/blue,
 /obj/machinery/light_switch{
 	dir = 4;
 	pixel_x = 22
@@ -1501,8 +1501,8 @@
 /turf/simulated/floor/plating,
 /area/shuttle/salamander_trader_cockpit)
 "IL" = (
-/obj/item/device/suit_cooling_unit,
-/obj/item/weapon/tank/air,
+/obj/item/suit_cooling_unit,
+/obj/item/tank/air,
 /obj/item/clothing/suit/space/void/refurb,
 /obj/item/clothing/head/helmet/space/void/refurb,
 /obj/structure/handrail{
@@ -1612,7 +1612,7 @@
 /area/shuttle/salamander_trader_galley)
 "Ns" = (
 /obj/structure/bed/pod,
-/obj/item/weapon/bedsheet/blue,
+/obj/item/bedsheet/blue,
 /obj/machinery/light_switch{
 	dir = 4;
 	pixel_x = 22
@@ -1726,7 +1726,7 @@
 /area/shuttle/salamander_trader)
 "RO" = (
 /obj/structure/bed/pod,
-/obj/item/weapon/bedsheet/blue,
+/obj/item/bedsheet/blue,
 /obj/machinery/alarm/alarms_hidden{
 	dir = 8;
 	pixel_x = 26
@@ -1789,8 +1789,8 @@
 /turf/simulated/wall/shull,
 /area/shuttle/salamander_trader_head)
 "Tl" = (
-/obj/item/device/suit_cooling_unit,
-/obj/item/weapon/tank/air,
+/obj/item/suit_cooling_unit,
+/obj/item/tank/air,
 /obj/item/clothing/suit/space/void/refurb,
 /obj/item/clothing/head/helmet/space/void/refurb,
 /obj/structure/railing/grey{
@@ -1910,8 +1910,8 @@
 /turf/simulated/floor/plating,
 /area/shuttle/salamander_trader)
 "Xc" = (
-/obj/item/device/suit_cooling_unit,
-/obj/item/weapon/tank/air,
+/obj/item/suit_cooling_unit,
+/obj/item/tank/air,
 /obj/item/clothing/suit/space/void/refurb,
 /obj/item/clothing/head/helmet/space/void/refurb,
 /obj/structure/railing/grey{
@@ -1975,7 +1975,7 @@
 /area/shuttle/salamander_trader_engineering)
 "Xu" = (
 /obj/structure/bed/pod,
-/obj/item/weapon/bedsheet/blue,
+/obj/item/bedsheet/blue,
 /obj/machinery/alarm/alarms_hidden{
 	dir = 8;
 	pixel_x = 26

@@ -16,7 +16,7 @@
 /obj/item/mecha_parts/mecha_equipment/tool/passenger/destroy()
 	for(var/atom/movable/AM in src)
 		AM.forceMove(get_turf(src))
-		to_chat(AM, "<span class='danger'>You tumble out of the destroyed [src.name]!</span>")
+		to_chat(AM, span_danger("You tumble out of the destroyed [src.name]!"))
 	return ..()
 
 /obj/item/mecha_parts/mecha_equipment/tool/passenger/Exit(atom/movable/O)
@@ -24,7 +24,7 @@
 
 /obj/item/mecha_parts/mecha_equipment/tool/passenger/proc/move_inside(var/mob/user)
 	if (chassis)
-		chassis.visible_message("<span class='notice'>[user] starts to climb into [chassis].</span>")
+		chassis.visible_message(span_notice("[user] starts to climb into [chassis]."))
 
 	if(do_after(user, 40, needhand=0))
 		if(!src.occupant)
@@ -33,9 +33,13 @@
 			log_message("[user] boarded.")
 			occupant_message("[user] boarded.")
 		else if(src.occupant != user)
-			to_chat(user, "<span class='warning'>[src.occupant] was faster. Try harder next time, loser.</span>")
+			to_chat(user, span_warning("[src.occupant] was faster. Try harder next time, loser."))
 	else
-		to_chat(user, "You stop entering the exosuit.")
+		to_chat(user, span_info("You stop entering the exosuit."))
+
+/obj/item/mecha_parts/mecha_equipment/tool/passenger/container_resist(var/mob/living)
+	if(occupant == living)
+		eject()
 
 /obj/item/mecha_parts/mecha_equipment/tool/passenger/verb/eject()
 	set name = "Eject"
@@ -45,7 +49,17 @@
 
 	if(usr != occupant)
 		return
-	to_chat(occupant, "You climb out from \the [src].")
+	if(door_locked)
+		to_chat(occupant, span_notice("\The [src] is locked! You begin operating the emergency unlock mechanism. This will take one minute."))
+		sleep(600)
+		if(!src || !usr || !occupant || (occupant != usr)) //Check if someone's released/replaced/bombed him already
+			return
+		if(door_locked)
+			door_locked = FALSE
+			occupant_message("Passenger compartment hatch unlocked.")
+			if (chassis)
+				chassis.visible_message(span_infoplain("The hatch on \the [chassis] unlocks."), span_hear("You hear something latching."))
+	to_chat(occupant, span_info("You climb out from \the [src]."))
 	go_out()
 	occupant_message("[occupant] disembarked.")
 	log_message("[occupant] disembarked.")
@@ -107,19 +121,19 @@
 		return
 
 	if (!isturf(usr.loc))
-		to_chat(usr, "<span class='danger'>You can't reach the passenger compartment from here.</span>")
+		to_chat(usr, span_danger("You can't reach the passenger compartment from here."))
 		return
 
 	if(iscarbon(usr))
 		var/mob/living/carbon/C = usr
 		if(C.handcuffed)
-			to_chat(usr, "<span class='danger'>Kinda hard to climb in while handcuffed don't you think?</span>")
+			to_chat(usr, span_danger("Kinda hard to climb in while handcuffed don't you think?"))
 			return
 
 	if(isliving(usr))
 		var/mob/living/L = usr
 		if(L.has_buckled_mobs())
-			to_chat(L, span("warning", "You have other entities attached to yourself. Remove them first."))
+			to_chat(L, span_warning("You have other entities attached to yourself. Remove them first."))
 			return
 
 	//search for a valid passenger compartment
@@ -139,13 +153,13 @@
 	//didn't find anything
 	switch (feedback)
 		if (OCCUPIED)
-			to_chat(usr, "<span class='danger'>The passenger compartment is already occupied!</span>")
+			to_chat(usr, span_danger("The passenger compartment is already occupied!"))
 		if (LOCKED)
-			to_chat(usr, "<span class='warning'>The passenger compartment hatch is locked!</span>")
+			to_chat(usr, span_warning("The passenger compartment hatch is locked!"))
 		if (OCCUPIED|LOCKED)
-			to_chat(usr, "<span class='danger'>All of the passenger compartments are already occupied or locked!</span>")
+			to_chat(usr, span_danger("All of the passenger compartments are already occupied or locked!"))
 		if (0)
-			to_chat(usr, "<span class='warning'>\The [src] doesn't have a passenger compartment.</span>")
+			to_chat(usr, span_warning("\The [src] doesn't have a passenger compartment."))
 
 #undef LOCKED
 #undef OCCUPIED

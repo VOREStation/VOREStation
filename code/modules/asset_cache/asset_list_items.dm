@@ -354,10 +354,10 @@
 
 		// I really don't like the fact that I have to do this, but what the hell else *can* I do to make all of these
 		// random special items work?
-		if(ispath(item, /obj/item/weapon/reagent_containers/food/drinks/glass2) && !ispath(item, /obj/item/weapon/reagent_containers/food/drinks/glass2/fitnessflask))
-			var/obj/item/weapon/reagent_containers/food/drinks/glass2/G = item
+		if(ispath(item, /obj/item/reagent_containers/food/drinks/glass2) && !ispath(item, /obj/item/reagent_containers/food/drinks/glass2/fitnessflask))
+			var/obj/item/reagent_containers/food/drinks/glass2/G = item
 			icon_state = initial(G.base_icon)
-		if(ispath(item, /obj/item/weapon/reagent_containers/hypospray/autoinjector))
+		if(ispath(item, /obj/item/reagent_containers/hypospray/autoinjector))
 			icon_state += "0"
 
 		var/icon/I

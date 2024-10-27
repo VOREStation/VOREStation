@@ -1,51 +1,53 @@
 //Analyzer, pestkillers, weedkillers, nutrients, hatchets, cutters.
 
-/obj/item/weapon/tool/wirecutters/clippers
+/obj/item/tool/wirecutters/clippers
 	name = "plant clippers"
 	desc = "A tool used to take samples from plants."
 	icon = 'icons/obj/weapons.dmi'
 	icon_state = "clippers"
 	random_color = FALSE
 
-/obj/item/weapon/tool/wirecutters/clippers/trimmers
+/obj/item/tool/wirecutters/clippers/trimmers
     name = "hedgetrimmers"
     desc = "An old pair of trimmers with a pretty dull blade. You would probably have a hard time cutting anything but plants with it."
     icon_state = "hedget"
     item_state = "hedget"
     force = 7 //One point extra than standard wire cutters.
 
-/obj/item/weapon/tool/wirecutters/clippers/trimmers/afterattack(atom/A as mob|obj|turf|area, mob/user as mob, proximity)
+/obj/item/tool/wirecutters/clippers/trimmers/afterattack(atom/A as mob|obj|turf|area, mob/user as mob, proximity)
 	if(!proximity) return
 	..()
 	if(A && istype(A,/obj/effect/plant))
 		var/obj/effect/plant/P = A
 		P.die_off()
 
-/obj/item/device/analyzer/plant_analyzer
+/obj/item/analyzer/plant_analyzer
 	name = "plant analyzer"
 	icon = 'icons/obj/device.dmi'
 	icon_state = "hydro"
 	item_state = "analyzer"
 	var/datum/seed/last_seed
 	var/list/last_reagents
+	pickup_sound = 'sound/items/pickup/device.ogg'
+	drop_sound = 'sound/items/drop/device.ogg'
 
-/obj/item/device/analyzer/plant_analyzer/Destroy()
+/obj/item/analyzer/plant_analyzer/Destroy()
 	. = ..()
 	QDEL_NULL(last_seed)
 
-/obj/item/device/analyzer/plant_analyzer/attack_self(mob/user)
+/obj/item/analyzer/plant_analyzer/attack_self(mob/user)
 	tgui_interact(user)
 
-/obj/item/device/analyzer/plant_analyzer/tgui_interact(mob/user, datum/tgui/ui)
+/obj/item/analyzer/plant_analyzer/tgui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "PlantAnalyzer", name)
 		ui.open()
 
-/obj/item/device/analyzer/plant_analyzer/tgui_state(mob/user)
+/obj/item/analyzer/plant_analyzer/tgui_state(mob/user)
 	return GLOB.tgui_inventory_state
 
-/obj/item/device/analyzer/plant_analyzer/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
+/obj/item/analyzer/plant_analyzer/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
 	var/list/data = ..()
 
 	var/datum/seed/grown_seed = last_seed
@@ -58,7 +60,7 @@
 
 	return data
 
-/obj/item/device/analyzer/plant_analyzer/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
+/obj/item/analyzer/plant_analyzer/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
 	if(..())
 		return TRUE
 
@@ -71,7 +73,7 @@
 			last_reagents = null
 			return TRUE
 
-/obj/item/device/analyzer/plant_analyzer/afterattack(obj/target, mob/user, flag)
+/obj/item/analyzer/plant_analyzer/afterattack(obj/target, mob/user, flag)
 	if(!flag)
 		return
 
@@ -79,15 +81,15 @@
 	var/datum/reagents/grown_reagents
 	if(istype(target,/obj/structure/table))
 		return ..()
-	else if(istype(target,/obj/item/weapon/reagent_containers/food/snacks/grown))
+	else if(istype(target,/obj/item/reagent_containers/food/snacks/grown))
 
-		var/obj/item/weapon/reagent_containers/food/snacks/grown/G = target
+		var/obj/item/reagent_containers/food/snacks/grown/G = target
 		grown_seed = SSplants.seeds[G.plantname]
 		grown_reagents = G.reagents
 
-	else if(istype(target,/obj/item/weapon/grown))
+	else if(istype(target,/obj/item/grown))
 
-		var/obj/item/weapon/grown/G = target
+		var/obj/item/grown/G = target
 		grown_seed = SSplants.seeds[G.plantname]
 		grown_reagents = G.reagents
 
@@ -100,20 +102,20 @@
 
 		var/obj/machinery/portable_atmospherics/hydroponics/H = target
 		if(H.frozen == 1)
-			to_chat(user, "<span class='warning'>Disable the cryogenic freezing first!</span>")
+			to_chat(user, span_warning("Disable the cryogenic freezing first!"))
 			return
 		grown_seed = H.seed
 		grown_reagents = H.reagents
 
 	if(!grown_seed)
-		to_chat(user, "<span class='danger'>[src] can tell you nothing about \the [target].</span>")
+		to_chat(user, span_danger("[src] can tell you nothing about \the [target]."))
 		return
 
 	last_seed = grown_seed.diverge()
 	if(!istype(last_seed))
 		last_seed = grown_seed // TRAIT_IMMUTABLE makes diverge() return null
 
-	user.visible_message("<span class='notice'>[user] runs the scanner over \the [target].</span>")
+	user.visible_message(span_notice("[user] runs the scanner over \the [target]."))
 
 	last_reagents = list()
 	if(grown_reagents && grown_reagents.reagent_list && grown_reagents.reagent_list.len)
@@ -125,7 +127,7 @@
 
 	tgui_interact(user)
 
-/obj/item/device/analyzer/plant_analyzer/proc/print_report_verb()
+/obj/item/analyzer/plant_analyzer/proc/print_report_verb()
 	set name = "Print Plant Report"
 	set category = "Object"
 	set src = usr
@@ -134,10 +136,10 @@
 		return
 	print_report(usr)
 
-/obj/item/device/analyzer/plant_analyzer/proc/print_report(var/mob/living/user)
+/obj/item/analyzer/plant_analyzer/proc/print_report(var/mob/living/user)
 	var/datum/seed/grown_seed = last_seed
 	if(!istype(grown_seed))
-		to_chat(user, "<span class='warning'>There is no scan data to print.</span>")
+		to_chat(user, span_warning("There is no scan data to print."))
 		return
 
 	var/form_title = "[grown_seed.seed_name] (#[grown_seed.uid])"
@@ -163,7 +165,7 @@
 
 	dat += jointext(tgui_data["trait_info"], "<br>\n")
 
-	var/obj/item/weapon/paper/P = new /obj/item/weapon/paper(get_turf(src))
+	var/obj/item/paper/P = new /obj/item/paper(get_turf(src))
 	P.name = "paper - [form_title]"
 	P.info = "[dat]"
 	if(istype(user,/mob/living/carbon/human))

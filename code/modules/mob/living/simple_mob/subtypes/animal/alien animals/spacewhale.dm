@@ -122,10 +122,10 @@
 	if(child_om_marker.known == TRUE)
 		if(restless)
 			child_om_marker.icon_state = "space_whale_restless"
-			visible_message("<span class='notice'>\The [child_om_marker.name] ripples excitedly.</span>")
+			visible_message(span_notice("\The [child_om_marker.name] ripples excitedly."))
 		else
 			child_om_marker.icon_state = "space_whale"
-			visible_message("<span class='notice'>\The [child_om_marker.name] settles down.</span>")
+			visible_message(span_notice("\The [child_om_marker.name] settles down."))
 
 /datum/ai_holder/simple_mob/melee/spacewhale
 	hostile = TRUE

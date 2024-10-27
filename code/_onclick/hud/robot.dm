@@ -256,9 +256,9 @@ var/obj/screen/robot_inventory
 			control_vtec.icon_state = "speed_2"
 		R.m_intent = "run"
 		R.hud_used.move_intent.icon_state = "running"
-		R.client.screen += control_vtec
+		R.client?.screen += control_vtec
 	else
-		R.client.screen -= control_vtec
+		R.client?.screen -= control_vtec
 		R.speed = 0
 
 /datum/hud/proc/toggle_show_robot_modules()
@@ -282,11 +282,11 @@ var/obj/screen/robot_inventory
 		//r.client.screen += robot_inventory	//"store" icon
 
 		if(!r.module)
-			to_chat(usr, "<span class='danger'>No module selected</span>")
+			to_chat(usr, span_danger("No module selected"))
 			return
 
 		if(!r.module.modules)
-			to_chat(usr, "<span class='danger'>Selected module has no modules to select</span>")
+			to_chat(usr, span_danger("Selected module has no modules to select"))
 			return
 
 		if(!r.robot_modules_background)

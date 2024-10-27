@@ -4,7 +4,7 @@
 
 // Mutable appearances are children of images, just so you know.
 
-/mutable_appearance/New(copy_from, ...)
+/image/mutable_appearance/New(copy_from, ...)
 	..()
 	if(!copy_from)
 		plane = FLOAT_PLANE // No clue why this is 0 by default yet images are on FLOAT_PLANE

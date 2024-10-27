@@ -117,7 +117,7 @@
 	var/has_gun_sprite = FALSE
 
 /datum/robot_sprite/dogborg/tall/protector/handle_extra_icon_updates(var/mob/living/silicon/robot/ourborg)
-	if(has_gun_sprite && istype (ourborg.module_active, /obj/item/weapon/gun/energy/dakkalaser))
+	if(has_gun_sprite && istype (ourborg.module_active, /obj/item/gun/energy/dakkalaser))
 		ourborg.add_overlay("[sprite_icon_state]-gun")
 
 /datum/robot_sprite/dogborg/tall/protector/syndiprotraptor
@@ -190,13 +190,13 @@
 	sprite_icon = 'icons/mob/robot/combat_medic_wide.dmi'
 	sprite_hud_icon_state = "malf"
 
-/datum/robot_sprite/dogborg/combat_medic/do_equipment_glamour(var/obj/item/weapon/robot_module/module)
+/datum/robot_sprite/dogborg/combat_medic/do_equipment_glamour(var/obj/item/robot_module/module)
 	if(!has_custom_equipment_sprites)
 		return
 
 	..()
 
-	var/obj/item/weapon/shockpaddles/robot/SP = locate() in module.modules
+	var/obj/item/shockpaddles/robot/SP = locate() in module.modules
 	if(SP)
 		SP.name = "paws of life"
 		SP.desc = "Zappy paws. For fixing cardiac arrest."

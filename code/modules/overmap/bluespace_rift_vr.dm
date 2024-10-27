@@ -13,7 +13,7 @@
 	. = ..()
 	if(new_partner)
 		pair(new_partner)
-	
+
 /obj/effect/overmap/bluespace_rift/proc/pair(var/obj/effect/overmap/bluespace_rift/new_partner)
 	if(istype(new_partner))
 		partner = new_partner
@@ -37,6 +37,6 @@
 			new type(get_turf(user), src)
 	else if(partner)
 		user.forceMove(get_turf(partner))
-		to_chat(user, "<span class='notice'>Your ghostly form is pulled through the rift!</span>")
+		to_chat(user, span_notice("Your ghostly form is pulled through the rift!"))
 	else
 		return ..()

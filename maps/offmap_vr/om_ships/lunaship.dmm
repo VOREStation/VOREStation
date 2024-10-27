@@ -20,11 +20,11 @@
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 4
 	},
-/obj/item/device/perfect_tele/alien{
+/obj/item/perfect_tele/alien{
 	desc = "An enhanced device that allows one to teleport people and objects across large distances.";
 	name = "advanced translocator"
 	},
-/obj/item/weapon/card/id/event/polymorphic/altcard{
+/obj/item/card/id/event/polymorphic/altcard{
 	access = list(777)
 	},
 /obj/structure/table/hardwoodtable,
@@ -689,11 +689,11 @@
 /area/lunaship/medical)
 "kM" = (
 /obj/structure/table/glass,
-/obj/item/weapon/storage/firstaid/adv,
+/obj/item/storage/firstaid/adv,
 /obj/structure/closet/walllocker/medical/west,
-/obj/item/weapon/storage/firstaid/fire,
-/obj/item/weapon/storage/firstaid/o2,
-/obj/item/weapon/storage/firstaid/toxin,
+/obj/item/storage/firstaid/fire,
+/obj/item/storage/firstaid/o2,
+/obj/item/storage/firstaid/toxin,
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 4
 	},
@@ -712,7 +712,7 @@
 /turf/simulated/floor/reinforced/airless,
 /area/space)
 "kZ" = (
-/obj/item/device/radio/beacon,
+/obj/item/radio/beacon,
 /turf/simulated/floor/tiled/milspec/raised{
 	name = "computer corium plating"
 	},
@@ -805,9 +805,9 @@
 	dir = 4
 	},
 /obj/structure/closet/walllocker_double/east,
-/obj/item/device/lightreplacer,
-/obj/item/weapon/storage/belt/utility/chief/full,
-/obj/item/weapon/storage/belt/utility/chief/full{
+/obj/item/lightreplacer,
+/obj/item/storage/belt/utility/chief/full,
+/obj/item/storage/belt/utility/chief/full{
 	pixel_y = 5
 	},
 /obj/item/clothing/gloves/yellow,
@@ -1093,8 +1093,8 @@
 	dir = 4;
 	pixel_x = -26
 	},
-/obj/item/weapon/implanter,
-/obj/item/weapon/implant/organ/limbaugment/upperarm/blade,
+/obj/item/implanter,
+/obj/item/implant/organ/limbaugment/upperarm/blade,
 /obj/structure/table/hardwoodtable,
 /turf/simulated/floor/wood,
 /area/lunaship/office)
@@ -1138,10 +1138,10 @@
 	dir = 6
 	},
 /obj/structure/table/steel,
-/obj/item/weapon/storage/toolbox/electrical{
+/obj/item/storage/toolbox/electrical{
 	pixel_y = 5
 	},
-/obj/item/weapon/storage/toolbox/mechanical,
+/obj/item/storage/toolbox/mechanical,
 /turf/simulated/floor/tiled/milspec,
 /area/lunaship/robotics_bay)
 "qI" = (
@@ -1252,12 +1252,12 @@
 	dir = 1
 	},
 /obj/structure/table/glass,
-/obj/item/device/paicard/sleevecard,
-/obj/item/device/paicard/sleevecard,
-/obj/item/device/sleevemate{
+/obj/item/paicard/sleevecard,
+/obj/item/paicard/sleevecard,
+/obj/item/sleevemate{
 	pixel_y = -5
 	},
-/obj/item/device/sleevemate,
+/obj/item/sleevemate,
 /obj/machinery/light{
 	dir = 8;
 	icon_state = "tube1"
@@ -1367,13 +1367,13 @@
 /turf/simulated/floor/tiled/milspec,
 /area/lunaship/robotics_bay)
 "sZ" = (
-/obj/item/weapon/soap/nanotrasen,
+/obj/item/soap/nanotrasen,
 /obj/effect/floor_decal/milspec_sterile/green/corner{
 	dir = 4
 	},
 /obj/structure/closet/walllocker/medical/east,
-/obj/item/weapon/soap/nanotrasen,
-/obj/item/weapon/soap/nanotrasen,
+/obj/item/soap/nanotrasen,
+/obj/item/soap/nanotrasen,
 /obj/machinery/light,
 /turf/simulated/floor/tiled/milspec/sterile,
 /area/lunaship/medical)
@@ -1632,9 +1632,9 @@
 /area/lunaship/robotics_bay)
 "wK" = (
 /obj/structure/table/glass,
-/obj/item/weapon/storage/firstaid/combat,
-/obj/item/weapon/storage/firstaid/bonemed,
-/obj/item/weapon/storage/firstaid/clotting,
+/obj/item/storage/firstaid/combat,
+/obj/item/storage/firstaid/bonemed,
+/obj/item/storage/firstaid/clotting,
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 4
 	},
@@ -1881,9 +1881,9 @@
 /obj/item/clothing/gloves/sterile/nitrile,
 /obj/item/clothing/gloves/sterile/nitrile,
 /obj/item/clothing/gloves/sterile/nitrile,
-/obj/item/weapon/storage/belt/medical,
-/obj/item/weapon/storage/belt/medical,
-/obj/item/weapon/storage/belt/medical,
+/obj/item/storage/belt/medical,
+/obj/item/storage/belt/medical,
+/obj/item/storage/belt/medical,
 /turf/simulated/floor/tiled/milspec/sterile,
 /area/lunaship/medical)
 "zB" = (
@@ -2013,7 +2013,7 @@
 /area/lunaship/hallway_port)
 "AS" = (
 /obj/structure/bed/double/padded,
-/obj/item/weapon/bedsheet/bluedouble,
+/obj/item/bedsheet/bluedouble,
 /turf/simulated/floor/wood,
 /area/lunaship/office)
 "AT" = (
@@ -2225,7 +2225,7 @@
 /obj/structure/reagent_dispensers/acid{
 	pixel_x = 32
 	},
-/obj/item/weapon/reagent_containers/glass/beaker/sulphuric,
+/obj/item/reagent_containers/glass/beaker/sulphuric,
 /turf/simulated/floor/tiled/milspec,
 /area/lunaship/robotics_bay)
 "EK" = (
@@ -2424,7 +2424,7 @@
 /turf/simulated/floor/tiled/milspec,
 /area/lunaship/hallway_port)
 "HC" = (
-/obj/item/device/flashlight/lamp,
+/obj/item/flashlight/lamp,
 /obj/structure/table/hardwoodtable,
 /turf/simulated/floor/wood,
 /area/lunaship/office)
@@ -2456,8 +2456,8 @@
 /obj/machinery/computer/ship/navigation/telescreen{
 	pixel_y = 23
 	},
-/obj/item/weapon/gun/energy/locked/frontier/carbine,
-/obj/item/weapon/gun/energy/locked/frontier/unlocked,
+/obj/item/gun/energy/locked/frontier/carbine,
+/obj/item/gun/energy/locked/frontier/unlocked,
 /turf/simulated/floor/wood,
 /area/lunaship/office)
 "Ia" = (
@@ -2473,9 +2473,9 @@
 /turf/simulated/floor/tiled/milspec,
 /area/lunaship/hallway_starboard)
 "Ih" = (
-/obj/item/device/defib_kit/jumper_kit,
+/obj/item/defib_kit/jumper_kit,
 /obj/structure/table/steel,
-/obj/item/weapon/storage/firstaid/surgery,
+/obj/item/storage/firstaid/surgery,
 /obj/structure/closet/walllocker_double/east,
 /obj/effect/floor_decal/milspec/color/black/half{
 	dir = 6
@@ -2668,13 +2668,13 @@
 	light_color = "#00AAFF"
 	},
 /obj/structure/table/darkglass,
-/obj/item/device/juke_remote,
-/obj/item/device/juke_remote,
-/obj/item/device/juke_remote,
-/obj/item/device/juke_remote,
-/obj/item/device/juke_remote,
-/obj/item/device/juke_remote,
-/obj/item/device/juke_remote,
+/obj/item/juke_remote,
+/obj/item/juke_remote,
+/obj/item/juke_remote,
+/obj/item/juke_remote,
+/obj/item/juke_remote,
+/obj/item/juke_remote,
+/obj/item/juke_remote,
 /obj/structure/closet/walllocker_double/east,
 /turf/simulated/floor/tiled/eris/steel/bar_dance,
 /area/lunaship/bar)
@@ -2790,18 +2790,18 @@
 /area/lunaship/engineering)
 "NS" = (
 /obj/structure/closet/walllocker_double/east,
-/obj/item/device/nif/protean,
-/obj/item/device/nif/protean,
-/obj/item/device/nif/protean,
+/obj/item/nif/protean,
+/obj/item/nif/protean,
+/obj/item/nif/protean,
 /obj/item/organ/internal/nano/orchestrator,
 /obj/item/organ/internal/nano/orchestrator,
 /obj/item/organ/internal/nano/orchestrator,
 /obj/item/organ/internal/nano/refactory,
 /obj/item/organ/internal/nano/refactory,
 /obj/item/organ/internal/nano/refactory,
-/obj/item/device/mmi/digital/posibrain/nano,
-/obj/item/device/mmi/digital/posibrain/nano,
-/obj/item/device/mmi/digital/posibrain/nano,
+/obj/item/mmi/digital/posibrain/nano,
+/obj/item/mmi/digital/posibrain/nano,
+/obj/item/mmi/digital/posibrain/nano,
 /turf/simulated/floor/wood,
 /area/lunaship/office)
 "Oa" = (
@@ -2838,57 +2838,57 @@
 /area/lunaship/office)
 "OG" = (
 /obj/structure/closet/wardrobe,
-/obj/item/weapon/stock_parts/capacitor/omni,
-/obj/item/weapon/stock_parts/capacitor/omni,
-/obj/item/weapon/stock_parts/capacitor/omni,
-/obj/item/weapon/stock_parts/capacitor/omni,
-/obj/item/weapon/stock_parts/capacitor/omni,
-/obj/item/weapon/stock_parts/manipulator/omni,
-/obj/item/weapon/stock_parts/manipulator/omni,
-/obj/item/weapon/stock_parts/manipulator/omni,
-/obj/item/weapon/stock_parts/manipulator/omni,
-/obj/item/weapon/stock_parts/manipulator/omni,
-/obj/item/weapon/stock_parts/matter_bin/omni,
-/obj/item/weapon/stock_parts/matter_bin/omni,
-/obj/item/weapon/stock_parts/matter_bin/omni,
-/obj/item/weapon/stock_parts/matter_bin/omni,
-/obj/item/weapon/stock_parts/matter_bin/omni,
-/obj/item/weapon/stock_parts/scanning_module/omni,
-/obj/item/weapon/stock_parts/scanning_module/omni,
-/obj/item/weapon/stock_parts/scanning_module/omni,
-/obj/item/weapon/stock_parts/scanning_module/omni,
-/obj/item/weapon/stock_parts/scanning_module/omni,
-/obj/item/weapon/stock_parts/micro_laser/omni,
-/obj/item/weapon/stock_parts/micro_laser/omni,
-/obj/item/weapon/stock_parts/micro_laser/omni,
-/obj/item/weapon/stock_parts/micro_laser/omni,
-/obj/item/weapon/stock_parts/micro_laser/omni,
-/obj/item/weapon/stock_parts/capacitor/omni,
-/obj/item/weapon/stock_parts/capacitor/omni,
-/obj/item/weapon/stock_parts/capacitor/omni,
-/obj/item/weapon/stock_parts/capacitor/omni,
-/obj/item/weapon/stock_parts/capacitor/omni,
-/obj/item/weapon/stock_parts/manipulator/omni,
-/obj/item/weapon/stock_parts/manipulator/omni,
-/obj/item/weapon/stock_parts/manipulator/omni,
-/obj/item/weapon/stock_parts/manipulator/omni,
-/obj/item/weapon/stock_parts/manipulator/omni,
-/obj/item/weapon/stock_parts/matter_bin/omni,
-/obj/item/weapon/stock_parts/matter_bin/omni,
-/obj/item/weapon/stock_parts/matter_bin/omni,
-/obj/item/weapon/stock_parts/matter_bin/omni,
-/obj/item/weapon/stock_parts/matter_bin/omni,
-/obj/item/weapon/stock_parts/micro_laser/omni,
-/obj/item/weapon/stock_parts/micro_laser/omni,
-/obj/item/weapon/stock_parts/micro_laser/omni,
-/obj/item/weapon/stock_parts/micro_laser/omni,
-/obj/item/weapon/stock_parts/micro_laser/omni,
-/obj/item/weapon/stock_parts/scanning_module/omni,
-/obj/item/weapon/stock_parts/scanning_module/omni,
-/obj/item/weapon/stock_parts/scanning_module/omni,
-/obj/item/weapon/stock_parts/scanning_module/omni,
-/obj/item/weapon/stock_parts/scanning_module/omni,
-/obj/item/weapon/storage/part_replacer/adv/discount_bluespace,
+/obj/item/stock_parts/capacitor/omni,
+/obj/item/stock_parts/capacitor/omni,
+/obj/item/stock_parts/capacitor/omni,
+/obj/item/stock_parts/capacitor/omni,
+/obj/item/stock_parts/capacitor/omni,
+/obj/item/stock_parts/manipulator/omni,
+/obj/item/stock_parts/manipulator/omni,
+/obj/item/stock_parts/manipulator/omni,
+/obj/item/stock_parts/manipulator/omni,
+/obj/item/stock_parts/manipulator/omni,
+/obj/item/stock_parts/matter_bin/omni,
+/obj/item/stock_parts/matter_bin/omni,
+/obj/item/stock_parts/matter_bin/omni,
+/obj/item/stock_parts/matter_bin/omni,
+/obj/item/stock_parts/matter_bin/omni,
+/obj/item/stock_parts/scanning_module/omni,
+/obj/item/stock_parts/scanning_module/omni,
+/obj/item/stock_parts/scanning_module/omni,
+/obj/item/stock_parts/scanning_module/omni,
+/obj/item/stock_parts/scanning_module/omni,
+/obj/item/stock_parts/micro_laser/omni,
+/obj/item/stock_parts/micro_laser/omni,
+/obj/item/stock_parts/micro_laser/omni,
+/obj/item/stock_parts/micro_laser/omni,
+/obj/item/stock_parts/micro_laser/omni,
+/obj/item/stock_parts/capacitor/omni,
+/obj/item/stock_parts/capacitor/omni,
+/obj/item/stock_parts/capacitor/omni,
+/obj/item/stock_parts/capacitor/omni,
+/obj/item/stock_parts/capacitor/omni,
+/obj/item/stock_parts/manipulator/omni,
+/obj/item/stock_parts/manipulator/omni,
+/obj/item/stock_parts/manipulator/omni,
+/obj/item/stock_parts/manipulator/omni,
+/obj/item/stock_parts/manipulator/omni,
+/obj/item/stock_parts/matter_bin/omni,
+/obj/item/stock_parts/matter_bin/omni,
+/obj/item/stock_parts/matter_bin/omni,
+/obj/item/stock_parts/matter_bin/omni,
+/obj/item/stock_parts/matter_bin/omni,
+/obj/item/stock_parts/micro_laser/omni,
+/obj/item/stock_parts/micro_laser/omni,
+/obj/item/stock_parts/micro_laser/omni,
+/obj/item/stock_parts/micro_laser/omni,
+/obj/item/stock_parts/micro_laser/omni,
+/obj/item/stock_parts/scanning_module/omni,
+/obj/item/stock_parts/scanning_module/omni,
+/obj/item/stock_parts/scanning_module/omni,
+/obj/item/stock_parts/scanning_module/omni,
+/obj/item/stock_parts/scanning_module/omni,
+/obj/item/storage/part_replacer/adv/discount_bluespace,
 /turf/simulated/floor/wood,
 /area/lunaship/office)
 "OH" = (
@@ -3258,32 +3258,32 @@
 	pixel_y = 5
 	},
 /obj/structure/closet/walllocker_double/west,
-/obj/item/weapon/material/kitchen/utensil/fork,
-/obj/item/weapon/material/kitchen/utensil/fork,
-/obj/item/weapon/material/kitchen/utensil/fork,
-/obj/item/weapon/material/kitchen/utensil/fork,
-/obj/item/weapon/material/kitchen/utensil/spoon{
+/obj/item/material/kitchen/utensil/fork,
+/obj/item/material/kitchen/utensil/fork,
+/obj/item/material/kitchen/utensil/fork,
+/obj/item/material/kitchen/utensil/fork,
+/obj/item/material/kitchen/utensil/spoon{
 	pixel_x = 5
 	},
-/obj/item/weapon/material/kitchen/utensil/spoon{
+/obj/item/material/kitchen/utensil/spoon{
 	pixel_x = 5
 	},
-/obj/item/weapon/material/kitchen/utensil/spoon{
+/obj/item/material/kitchen/utensil/spoon{
 	pixel_x = 5
 	},
-/obj/item/weapon/material/kitchen/utensil/spoon{
+/obj/item/material/kitchen/utensil/spoon{
 	pixel_x = 5
 	},
-/obj/item/weapon/material/knife{
+/obj/item/material/knife{
 	pixel_x = -3
 	},
-/obj/item/weapon/material/knife{
+/obj/item/material/knife{
 	pixel_x = -3
 	},
-/obj/item/weapon/material/knife{
+/obj/item/material/knife{
 	pixel_x = -3
 	},
-/obj/item/weapon/material/knife{
+/obj/item/material/knife{
 	pixel_x = -3
 	},
 /obj/machinery/disposal/wall{
@@ -3304,10 +3304,10 @@
 /area/lunaship/park)
 "UK" = (
 /obj/structure/table/glass,
-/obj/item/device/healthanalyzer/advanced{
+/obj/item/healthanalyzer/advanced{
 	pixel_x = -5
 	},
-/obj/item/device/healthanalyzer/advanced{
+/obj/item/healthanalyzer/advanced{
 	pixel_x = -5;
 	pixel_y = -5
 	},
@@ -3734,11 +3734,11 @@
 	dir = 6
 	},
 /obj/structure/closet/walllocker_double/east,
-/obj/item/device/radio/beacon,
-/obj/item/device/radio/beacon,
-/obj/item/device/radio/beacon,
-/obj/item/device/multitool,
-/obj/item/device/multitool,
+/obj/item/radio/beacon,
+/obj/item/radio/beacon,
+/obj/item/radio/beacon,
+/obj/item/multitool,
+/obj/item/multitool,
 /obj/structure/table/darkglass,
 /turf/simulated/floor/tiled/milspec/raised{
 	name = "computer corium plating"

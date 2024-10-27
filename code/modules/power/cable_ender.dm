@@ -25,10 +25,10 @@
 /obj/structure/cable/ender/attackby(obj/item/W, mob/user)
 	src.add_fingerprint(user)
 	if(W.has_tool_quality(TOOL_WIRECUTTER))
-		to_chat(user,  "<span class='notice'> These cables are too tough to be cut with those [W.name].</span>")
+		to_chat(user,  span_notice(" These cables are too tough to be cut with those [W.name]."))
 		return
 	else if(istype(W, /obj/item/stack/cable_coil))
-		to_chat(user,  "<span class='notice'> You will need heavier cables to connect to these.</span>")
+		to_chat(user,  span_notice(" You will need heavier cables to connect to these."))
 		return
 	else
 		..()
@@ -36,4 +36,3 @@
 // Because they cannot be rebuilt, they are hard to destroy
 /obj/structure/cable/ender/ex_act(severity)
 	return
-

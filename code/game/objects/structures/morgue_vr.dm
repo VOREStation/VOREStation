@@ -1,7 +1,7 @@
 /obj/structure/morgue/crematorium/vr
 	var/list/allowed_items = list(/obj/item/organ,
-			/obj/item/weapon/implant,
-			/obj/item/weapon/material/shard/shrapnel,
+			/obj/item/implant,
+			/obj/item/material/shard/shrapnel,
 			/mob/living)
 
 
@@ -11,26 +11,26 @@
 
 	if(contents.len <= 0)
 		for (var/mob/M in viewers(src))
-			M.show_message("<span class='warning'>You hear a hollow crackle.</span>", 1)
+			M.show_message(span_warning("You hear a hollow crackle."), 1)
 			return
 	else
-		if(!isemptylist(src.search_contents_for(/obj/item/weapon/disk/nuclear)))
+		if(!isemptylist(src.search_contents_for(/obj/item/disk/nuclear)))
 			to_chat(usr, "You get the feeling that you shouldn't cremate one of the items in the cremator.")
 			return
 
 		for(var/I in contents)
 			if(!(I in allowed_items))
-				to_chat(user, "<span class='notice'>\The [src] cannot cremate while there are items inside!</span>")
+				to_chat(user, span_notice("\The [src] cannot cremate while there are items inside!"))
 				return
 			if(istype(I, /mob/living))
 				var/mob/living/cremated = I
 				for(var/Z in cremated.contents)
 					if(!(Z in allowed_items))
-						to_chat(user, "<span class='notice'>\The [src] cannot cremate while there are items inside!</span>")
+						to_chat(user, span_notice("\The [src] cannot cremate while there are items inside!"))
 						return
 
 		for (var/mob/M in viewers(src))
-			M.show_message("<span class='warning'>You hear a roar as the crematorium activates.</span>", 1)
+			M.show_message(span_warning("You hear a roar as the crematorium activates."), 1)
 
 		cremating = 1
 		locked = 1

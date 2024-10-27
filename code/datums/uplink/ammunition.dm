@@ -130,4 +130,4 @@
 
 /datum/uplink_item/item/ammo/cell
 	name = "weapon cell"
-	path = /obj/item/weapon/cell/device/weapon
+	path = /obj/item/cell/device/weapon

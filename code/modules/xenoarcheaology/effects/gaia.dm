@@ -33,7 +33,7 @@
 
 /datum/artifact_effect/gaia/DoEffectTouch(var/mob/user)
 	var/atom/holder = get_master_holder()
-	to_chat(user, "<span class='alien'>You feel the presence of something long forgotten.</span>")
+	to_chat(user, span_alien("You feel the presence of something long forgotten."))
 	for(var/obj/machinery/portable_atmospherics/hydroponics/Tray in view(world.view,get_turf(holder)))
 		age_plantlife(Tray)
 		if(prob(30))

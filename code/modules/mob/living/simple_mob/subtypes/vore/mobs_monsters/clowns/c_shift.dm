@@ -5,7 +5,7 @@
 /mob/living/simple_mob/clowns/big/c_shift/proc/phase_shift()
 	var/turf/T = get_turf(src)
 	if(!T.CanPass(src,T) || loc != T)
-		to_chat(src,"<span class='warning'>You can't use that here!</span>")
+		to_chat(src,span_warning("You can't use that here!"))
 		return FALSE
 
 	forceMove(T)

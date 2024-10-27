@@ -54,11 +54,11 @@
 	maxbodytemp = 900
 
 	loot_list = list(
-		/obj/item/weapon/bone = 25,
-		/obj/item/weapon/bone/skull = 25,
-		/obj/item/weapon/bone/ribs = 25,
-		/obj/item/weapon/bone/arm = 25,
-		/obj/item/weapon/bone/leg = 25
+		/obj/item/bone = 25,
+		/obj/item/bone/skull = 25,
+		/obj/item/bone/ribs = 25,
+		/obj/item/bone/arm = 25,
+		/obj/item/bone/leg = 25
 		)
 
 	speak_emote = list("rattles")

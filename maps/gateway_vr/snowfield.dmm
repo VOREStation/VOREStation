@@ -79,7 +79,7 @@
 	amount = 2;
 	icon_state = "coil2"
 	},
-/obj/item/weapon/shovel,
+/obj/item/shovel,
 /obj/machinery/light/small{
 	dir = 1
 	},
@@ -157,7 +157,7 @@
 /area/awaymission/snowfield/base)
 "aw" = (
 /obj/structure/table/standard,
-/obj/item/weapon/hand_labeler,
+/obj/item/hand_labeler,
 /obj/effect/floor_decal/corner/green/full{
 	dir = 8
 	},
@@ -215,7 +215,7 @@
 /area/awaymission/snowfield/base)
 "aE" = (
 /obj/machinery/atmospherics/portables_connector,
-/obj/item/weapon/tool/wrench,
+/obj/item/tool/wrench,
 /obj/machinery/light{
 	dir = 1
 	},
@@ -239,7 +239,7 @@
 	dir = 6
 	},
 /obj/structure/table/glass,
-/obj/item/weapon/storage/box/beakers{
+/obj/item/storage/box/beakers{
 	pixel_x = 2;
 	pixel_y = 2
 	},
@@ -247,12 +247,12 @@
 /area/awaymission/snowfield/base)
 "aJ" = (
 /obj/structure/closet/jcloset,
-/obj/item/weapon/soap,
+/obj/item/soap,
 /turf/simulated/floor/tiled/steel,
 /area/awaymission/snowfield/base)
 "aK" = (
 /obj/structure/closet/jcloset,
-/obj/item/weapon/soap/deluxe,
+/obj/item/soap/deluxe,
 /turf/simulated/floor/tiled/steel,
 /area/awaymission/snowfield/base)
 "aL" = (
@@ -367,7 +367,7 @@
 	dir = 4
 	},
 /obj/structure/table/glass,
-/obj/item/weapon/storage/box/botanydisk,
+/obj/item/storage/box/botanydisk,
 /turf/simulated/floor/tiled/white,
 /area/awaymission/snowfield/base)
 "ba" = (
@@ -405,7 +405,7 @@
 /area/awaymission/snowfield/base)
 "bh" = (
 /obj/effect/floor_decal/corner/green/full,
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	dir = 8;
 	name = "Station Intercom (General)";
 	pixel_x = -21
@@ -457,15 +457,15 @@
 /turf/simulated/floor/tiled/hydro,
 /area/awaymission/snowfield/base)
 "bn" = (
-/obj/item/weapon/grenade/chem_grenade/cleaner,
-/obj/item/weapon/grenade/chem_grenade/cleaner,
-/obj/item/weapon/grenade/chem_grenade/cleaner,
-/obj/item/weapon/reagent_containers/spray/cleaner,
+/obj/item/grenade/chem_grenade/cleaner,
+/obj/item/grenade/chem_grenade/cleaner,
+/obj/item/grenade/chem_grenade/cleaner,
+/obj/item/reagent_containers/spray/cleaner,
 /obj/structure/table/steel,
-/obj/item/weapon/storage/box/mousetraps,
-/obj/item/weapon/storage/box/lights/mixed,
-/obj/item/weapon/storage/box/lights/mixed,
-/obj/item/weapon/reagent_containers/spray/cleaner,
+/obj/item/storage/box/mousetraps,
+/obj/item/storage/box/lights/mixed,
+/obj/item/storage/box/lights/mixed,
+/obj/item/reagent_containers/spray/cleaner,
 /turf/simulated/floor/tiled/steel,
 /area/awaymission/snowfield/base)
 "bo" = (
@@ -543,11 +543,11 @@
 	dir = 1
 	},
 /obj/structure/table/glass,
-/obj/item/weapon/paper_bin{
+/obj/item/paper_bin{
 	pixel_x = 1;
 	pixel_y = 9
 	},
-/obj/item/weapon/pen,
+/obj/item/pen,
 /turf/simulated/floor/tiled/white,
 /area/awaymission/snowfield/base)
 "by" = (
@@ -565,7 +565,7 @@
 /turf/simulated/floor/tiled/hydro,
 /area/awaymission/snowfield/base)
 "bB" = (
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	name = "Station Intercom (General)";
 	pixel_y = -21
 	},
@@ -580,8 +580,8 @@
 	pixel_y = -32
 	},
 /obj/structure/table/standard,
-/obj/item/weapon/storage/box/syringes,
-/obj/item/weapon/storage/box/gloves{
+/obj/item/storage/box/syringes,
+/obj/item/storage/box/gloves{
 	pixel_x = 4;
 	pixel_y = 4
 	},
@@ -592,7 +592,7 @@
 /obj/effect/floor_decal/industrial/warning{
 	dir = 9
 	},
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	layer = 4;
 	name = "Station Intercom (General)";
 	pixel_y = -21
@@ -608,7 +608,7 @@
 /area/awaymission/snowfield/base)
 "bF" = (
 /obj/structure/reagent_dispensers/watertank,
-/obj/item/weapon/reagent_containers/glass/bucket,
+/obj/item/reagent_containers/glass/bucket,
 /obj/machinery/light,
 /turf/simulated/floor/tiled/white,
 /area/awaymission/snowfield/base)
@@ -626,8 +626,8 @@
 /obj/structure/closet/medical_wall{
 	pixel_y = -32
 	},
-/obj/item/weapon/storage/firstaid/toxin,
-/obj/item/weapon/storage/firstaid/regular,
+/obj/item/storage/firstaid/toxin,
+/obj/item/storage/firstaid/regular,
 /turf/simulated/floor/tiled/white,
 /area/awaymission/snowfield/base)
 "bI" = (
@@ -647,8 +647,8 @@
 /area/awaymission/snowfield/base)
 "bL" = (
 /obj/structure/table/glass,
-/obj/item/weapon/tape_roll,
-/obj/item/device/analyzer/plant_analyzer,
+/obj/item/tape_roll,
+/obj/item/analyzer/plant_analyzer,
 /turf/simulated/floor/tiled/white,
 /area/awaymission/snowfield/base)
 "bM" = (
@@ -656,13 +656,13 @@
 	dir = 6
 	},
 /obj/structure/table/glass,
-/obj/item/weapon/clipboard,
-/obj/item/weapon/folder/white,
+/obj/item/clipboard,
+/obj/item/folder/white,
 /turf/simulated/floor/tiled/white,
 /area/awaymission/snowfield/base)
 "bN" = (
-/obj/item/weapon/mop,
-/obj/item/weapon/reagent_containers/glass/bucket,
+/obj/item/mop,
+/obj/item/reagent_containers/glass/bucket,
 /obj/structure/janitorialcart,
 /turf/simulated/floor/tiled/steel,
 /area/awaymission/snowfield/base)
@@ -791,7 +791,7 @@
 "cf" = (
 /obj/effect/floor_decal/corner/paleblue/diagonal,
 /obj/structure/table/standard,
-/obj/item/weapon/storage/box/donkpockets{
+/obj/item/storage/box/donkpockets{
 	pixel_x = 3;
 	pixel_y = 2
 	},
@@ -873,7 +873,7 @@
 /area/awaymission/snowfield/base)
 "cq" = (
 /obj/effect/floor_decal/corner/paleblue/diagonal,
-/obj/item/weapon/stool/padded,
+/obj/item/stool/padded,
 /turf/simulated/floor/tiled/white,
 /area/awaymission/snowfield/base)
 "cr" = (
@@ -918,7 +918,7 @@
 "cw" = (
 /obj/effect/floor_decal/corner/paleblue/diagonal,
 /obj/structure/table/standard,
-/obj/item/weapon/deck/cards,
+/obj/item/deck/cards,
 /turf/simulated/floor/tiled/white,
 /area/awaymission/snowfield/base)
 "cx" = (
@@ -1247,7 +1247,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/item/device/radio/phone,
+/obj/item/radio/phone,
 /turf/simulated/floor/tiled/dark,
 /area/awaymission/snowfield/base)
 "dH" = (
@@ -1296,14 +1296,14 @@
 /obj/structure/closet/medical_wall{
 	pixel_y = -32
 	},
-/obj/item/weapon/storage/firstaid/toxin,
-/obj/item/weapon/storage/firstaid/regular,
-/obj/item/weapon/storage/firstaid/adv,
+/obj/item/storage/firstaid/toxin,
+/obj/item/storage/firstaid/regular,
+/obj/item/storage/firstaid/adv,
 /turf/simulated/floor/tiled/dark,
 /area/awaymission/snowfield/base)
 "dP" = (
 /obj/structure/table/steel_reinforced,
-/obj/item/weapon/storage/backpack/satchel/sec,
+/obj/item/storage/backpack/satchel/sec,
 /turf/simulated/floor/tiled/dark,
 /area/awaymission/snowfield/base)
 "dQ" = (
@@ -1354,7 +1354,7 @@
 /obj/item/clothing/under/soviet,
 /obj/item/clothing/shoes/boots/jackboots,
 /obj/item/clothing/head/ushanka,
-/obj/item/weapon/storage/backpack/dufflebag/syndie/ammo,
+/obj/item/storage/backpack/dufflebag/syndie/ammo,
 /turf/simulated/floor/tiled/dark,
 /area/awaymission/snowfield/base)
 "dZ" = (
@@ -1369,7 +1369,7 @@
 "ea" = (
 /obj/effect/floor_decal/industrial/outline/yellow,
 /obj/structure/closet/crate,
-/obj/item/weapon/storage/backpack/dufflebag/syndie/ammo,
+/obj/item/storage/backpack/dufflebag/syndie/ammo,
 /turf/simulated/floor/tiled/neutral,
 /area/awaymission/snowfield/base)
 "eb" = (
@@ -1412,7 +1412,7 @@
 /area/awaymission/snowfield/base)
 "eh" = (
 /obj/structure/closet/crate/secure/weapon,
-/obj/item/weapon/gun/projectile/shotgun/pump/rifle,
+/obj/item/gun/projectile/shotgun/pump/rifle,
 /turf/simulated/floor/tiled/dark,
 /area/awaymission/snowfield/base)
 "ei" = (
@@ -1427,12 +1427,12 @@
 "ek" = (
 /obj/effect/floor_decal/industrial/outline/yellow,
 /obj/structure/closet/crate/medical,
-/obj/item/weapon/storage/firstaid/regular,
-/obj/item/weapon/storage/firstaid/regular,
-/obj/item/weapon/storage/firstaid/regular,
-/obj/item/device/flashlight/flare,
-/obj/item/device/flashlight/flare,
-/obj/item/device/flashlight/flare,
+/obj/item/storage/firstaid/regular,
+/obj/item/storage/firstaid/regular,
+/obj/item/storage/firstaid/regular,
+/obj/item/flashlight/flare,
+/obj/item/flashlight/flare,
+/obj/item/flashlight/flare,
 /turf/simulated/floor/tiled/neutral,
 /area/awaymission/snowfield/base)
 "el" = (

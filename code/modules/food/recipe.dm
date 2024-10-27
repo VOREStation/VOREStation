@@ -32,14 +32,14 @@
 
 /datum/recipe
 	var/list/reagents		// Example: = list("berryjuice" = 5) // do not list same reagent twice
-	var/list/items			// Example: = list(/obj/item/weapon/tool/crowbar, /obj/item/weapon/welder) // place /foo/bar before /foo
+	var/list/items			// Example: = list(/obj/item/tool/crowbar, /obj/item/welder) // place /foo/bar before /foo
 	var/list/fruit			// Example: = list("fruit" = 3)
 	var/coating = null		// Required coating on all items in the recipe. The default value of null explitly requires no coating
 							// A value of -1 is permissive and cares not for any coatings
 							// Any typepath indicates a specific coating that should be present
 							// Coatings are used for batter, breadcrumbs, beer-batter, colonel's secret coating, etc
 
-	var/result				// Example: = /obj/item/weapon/reagent_containers/food/snacks/donut/normal
+	var/result				// Example: = /obj/item/reagent_containers/food/snacks/donut/normal
 	var/result_quantity = 1 // Number of instances of result that are created.
 	var/time = 100			// 1/10 part of second
 
@@ -91,7 +91,7 @@
 		var/list/checklist = list()
 		 // You should trust Copy().
 		checklist = fruit.Copy()
-		for(var/obj/item/weapon/reagent_containers/food/snacks/grown/G in container)
+		for(var/obj/item/reagent_containers/food/snacks/grown/G in container)
 			if(!G.seed || !G.seed.kitchen_tag || isnull(checklist[G.seed.kitchen_tag]))
 				continue
 			if(check_coating(G))
@@ -116,7 +116,7 @@
 		if(istype(container, /obj/machinery))
 			var/obj/machinery/machine = container
 			for(var/obj/O in ((machine.contents - machine.component_parts) - machine.circuit))
-				if(istype(O,/obj/item/weapon/reagent_containers/food/snacks/grown))
+				if(istype(O,/obj/item/reagent_containers/food/snacks/grown))
 					continue // Fruit is handled in check_fruit().
 				var/found = FALSE
 				for(var/i = 1; i < checklist.len+1; i++)
@@ -129,7 +129,7 @@
 					return FALSE
 		else
 			for(var/obj/O in container.contents)
-				if(istype(O,/obj/item/weapon/reagent_containers/food/snacks/grown))
+				if(istype(O,/obj/item/reagent_containers/food/snacks/grown))
 					continue // Fruit is handled in check_fruit().
 				var/found = FALSE
 				for(var/i = 1; i < checklist.len+1; i++)
@@ -147,13 +147,13 @@
 
 //This is called on individual items within the container.
 /datum/recipe/proc/check_coating(var/obj/O, var/exact = FALSE)
-	if(!istype(O,/obj/item/weapon/reagent_containers/food/snacks))
+	if(!istype(O,/obj/item/reagent_containers/food/snacks))
 		return TRUE //Only snacks can be battered
 
 	if (coating == -1)
 		return TRUE //-1 value doesnt care
 
-	var/obj/item/weapon/reagent_containers/food/snacks/S = O
+	var/obj/item/reagent_containers/food/snacks/S = O
 	if (!S.coating)
 		if (!coating)
 			return TRUE
@@ -182,16 +182,16 @@
 // This proc is called under the assumption that the container has already been checked and found to contain the necessary ingredients
 /datum/recipe/proc/make_food(var/obj/container as obj)
 	if(!result)
-		log_runtime(EXCEPTION("<span class='danger'>Recipe [type] is defined without a result, please bug report this.</span>"))
+		log_runtime(EXCEPTION(span_danger("Recipe [type] is defined without a result, please bug report this.")))
 		if(istype(container, /obj/machinery/microwave))
 			var/obj/machinery/microwave/M = container
 			M.dispose(FALSE)
 
-		else if(istype(container, /obj/item/weapon/reagent_containers/cooking_container))
-			var/obj/item/weapon/reagent_containers/cooking_container/CC = container
+		else if(istype(container, /obj/item/reagent_containers/cooking_container))
+			var/obj/item/reagent_containers/cooking_container/CC = container
 			CC.clear()
 
-		container.visible_message(SPAN_WARNING("[container] inexplicably spills, and its contents are lost!"))
+		container.visible_message(span_warning("[container] inexplicably spills, and its contents are lost!"))
 
 		return
 
@@ -209,6 +209,14 @@
 			var/obj/item/I = locate(i) in container
 			if (I && I.reagents)
 				I.reagents.trans_to_holder(buffer,I.reagents.total_volume)
+			// Outpost 21 upport start - Handle holders dropping mobs on destruction. No more endless mice burgers
+			if(istype(I,/obj/item/holder))
+				var/obj/item/holder/hol = I
+				if(hol.held_mob?.client)
+					hol.held_mob.ghostize()
+				qdel(hol.held_mob)
+				hol.held_mob = null
+			// Outpost 21 upport end
 			qdel(I)
 
 	//Find fruits
@@ -216,7 +224,7 @@
 		var/list/checklist = list()
 		checklist = fruit.Copy()
 
-		for(var/obj/item/weapon/reagent_containers/food/snacks/grown/G in container)
+		for(var/obj/item/reagent_containers/food/snacks/grown/G in container)
 			if(!G.seed || !G.seed.kitchen_tag || isnull(checklist[G.seed.kitchen_tag]))
 				continue
 

@@ -65,51 +65,51 @@
 			resize(H.size_multiplier, ignore_prefs = TRUE)
 			var/obj/item/A = H.get_active_hand()
 			var/obj/item/I = H.get_inactive_hand()
-			if(istype(A,/obj/item/weapon/material) || istype(A,/obj/item/weapon/melee) || istype(I,/obj/item/weapon/material) || istype(I,/obj/item/weapon/melee))
+			if(istype(A,/obj/item/material) || istype(A,/obj/item/melee) || istype(I,/obj/item/material) || istype(I,/obj/item/melee))
 				seen_melee = 1
 				melee_damage_lower = 20
 				melee_damage_upper = 30
-			if(istype(A,/obj/item/weapon/gun/projectile) || istype(I,/obj/item/weapon/gun/projectile))
+			if(istype(A,/obj/item/gun/projectile) || istype(I,/obj/item/gun/projectile))
 				seen_gun = 1
 				projectiletype = /obj/item/projectile/bullet/pistol/medium
 				projectilesound = 'sound/weapons/Gunshot_light.ogg'
-				if(istype(A,/obj/item/weapon/gun/projectile/shotgun) || istype(I,/obj/item/weapon/gun/projectile/shotgun))
+				if(istype(A,/obj/item/gun/projectile/shotgun) || istype(I,/obj/item/gun/projectile/shotgun))
 					projectiletype = /obj/item/projectile/bullet/pellet/shotgun
 					projectilesound = 'sound/weapons/Gunshot_shotgun.ogg'
 					reload_time = 1.5 SECONDS
 					ranged_attack_delay = 1.5 SECONDS
 					projectile_dispersion = 8
 					projectile_accuracy = -40
-				if(istype(A,/obj/item/weapon/gun/projectile/automatic) || istype(I,/obj/item/weapon/gun/projectile/automatic))
+				if(istype(A,/obj/item/gun/projectile/automatic) || istype(I,/obj/item/gun/projectile/automatic))
 					base_attack_cooldown = 5
 					projectile_dispersion = 7
 					projectile_accuracy = -20
-				if(istype(A,/obj/item/weapon/gun/projectile/heavysniper) || istype(I,/obj/item/weapon/gun/projectile/heavysniper))
+				if(istype(A,/obj/item/gun/projectile/heavysniper) || istype(I,/obj/item/gun/projectile/heavysniper))
 					projectiletype = /obj/item/projectile/bullet/rifle/a145/highvel // Do not get seen with a big ass sniper!
 					projectilesound = 'sound/weapons/Gunshot_cannon.ogg'
 					ranged_attack_delay = 2.5 SECONDS
 					reload_time = 5 SECONDS
 					projectile_accuracy = 75
-			if(istype(A,/obj/item/weapon/gun/energy) || istype(I,/obj/item/weapon/gun/energy))
+			if(istype(A,/obj/item/gun/energy) || istype(I,/obj/item/gun/energy))
 				seen_gun = 1
 				projectiletype = /obj/item/projectile/beam/midlaser
 				projectilesound = 'sound/weapons/Laser.ogg'
 				projectile_dispersion = 5
 				projectile_accuracy = -20
-				if(istype(A,/obj/item/weapon/gun/energy/ionrifle) || istype(I,/obj/item/weapon/gun/energy/ionrifle))
+				if(istype(A,/obj/item/gun/energy/ionrifle) || istype(I,/obj/item/gun/energy/ionrifle))
 					projectiletype = /obj/item/projectile/ion
-				if(istype(A,/obj/item/weapon/gun/energy/lasercannon) || istype(I,/obj/item/weapon/gun/energy/lasercannon))
+				if(istype(A,/obj/item/gun/energy/lasercannon) || istype(I,/obj/item/gun/energy/lasercannon))
 					projectiletype = /obj/item/projectile/beam/heavylaser
 					ranged_attack_delay = 2.5 SECONDS
 					reload_time = 5 SECONDS
 					projectilesound = 'sound/weapons/lasercannonfire.ogg'
-				if(istype(A,/obj/item/weapon/gun/energy/sniperrifle) || istype(I,/obj/item/weapon/gun/energy/sniperrifle))
+				if(istype(A,/obj/item/gun/energy/sniperrifle) || istype(I,/obj/item/gun/energy/sniperrifle))
 					projectiletype = /obj/item/projectile/beam/sniper // Do not get seen with a big ass sniper!
 					projectilesound = 'sound/weapons/gauss_shoot.ogg'
 					ranged_attack_delay = 2.5 SECONDS
 					reload_time = 5 SECONDS
 					projectile_accuracy = 75
-			if(istype(A,/obj/item/weapon/gun/magnetic) || istype(I,/obj/item/weapon/gun/magnetic))
+			if(istype(A,/obj/item/gun/magnetic) || istype(I,/obj/item/gun/magnetic))
 				seen_gun = 1
 				projectiletype = /obj/item/projectile/bullet/magnetic/bore
 				projectilesound = 'sound/weapons/railgun.ogg'

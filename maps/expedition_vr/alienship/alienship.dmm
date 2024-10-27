@@ -126,17 +126,17 @@
 /turf/simulated/shuttle/floor/alien,
 /area/tether_away/alienship)
 "aB" = (
-/obj/item/weapon/cell/device/weapon/recharge/alien,
+/obj/item/cell/device/weapon/recharge/alien,
 /turf/simulated/shuttle/floor/alienplating,
 /area/tether_away/alienship)
 "aC" = (
-/obj/item/device/gps,
+/obj/item/gps,
 /obj/structure/table/alien,
 /turf/simulated/shuttle/floor/alienplating,
 /area/tether_away/alienship)
 "aD" = (
 /obj/structure/table/alien,
-/obj/item/weapon/cell/device/weapon/recharge/alien,
+/obj/item/cell/device/weapon/recharge/alien,
 /turf/simulated/shuttle/floor/alienplating,
 /area/tether_away/alienship)
 "aE" = (
@@ -144,86 +144,86 @@
 /area/tether_away/alienship/equip_dump)
 "aF" = (
 /obj/structure/closet/crate,
-/obj/item/device/multitool,
-/obj/item/weapon/tool/wrench,
-/obj/item/device/radio,
+/obj/item/multitool,
+/obj/item/tool/wrench,
+/obj/item/radio,
 /turf/simulated/shuttle/floor/alien,
 /area/tether_away/alienship)
 "aG" = (
 /obj/structure/closet/crate,
-/obj/item/weapon/tool/crowbar,
-/obj/item/weapon/weldingtool,
+/obj/item/tool/crowbar,
+/obj/item/weldingtool,
 /turf/simulated/shuttle/floor/alien,
 /area/tether_away/alienship)
 "aH" = (
 /obj/structure/closet/crate,
-/obj/item/weapon/tool/crowbar,
-/obj/item/weapon/tool/screwdriver,
-/obj/item/weapon/tool/wirecutters,
-/obj/item/weapon/weldingtool,
-/obj/item/weapon/storage/firstaid,
+/obj/item/tool/crowbar,
+/obj/item/tool/screwdriver,
+/obj/item/tool/wirecutters,
+/obj/item/weldingtool,
+/obj/item/storage/firstaid,
 /turf/simulated/shuttle/floor/alienplating,
 /area/tether_away/alienship)
 "aI" = (
 /obj/structure/table/alien,
-/obj/item/weapon/storage/belt/utility/alien/full,
+/obj/item/storage/belt/utility/alien/full,
 /turf/simulated/shuttle/floor/alienplating,
 /area/tether_away/alienship)
 "aJ" = (
 /obj/structure/closet/crate,
-/obj/item/device/multitool,
-/obj/item/weapon/tool/screwdriver,
-/obj/item/weapon/tool/wirecutters,
-/obj/item/weapon/tool/wrench,
+/obj/item/multitool,
+/obj/item/tool/screwdriver,
+/obj/item/tool/wirecutters,
+/obj/item/tool/wrench,
 /turf/simulated/shuttle/floor/alien,
 /area/tether_away/alienship)
 "aK" = (
 /obj/structure/closet/crate,
-/obj/item/weapon/tool/transforming/jawsoflife,
-/obj/item/weapon/tool/wrench,
+/obj/item/tool/transforming/jawsoflife,
+/obj/item/tool/wrench,
 /turf/simulated/shuttle/floor/alien,
 /area/tether_away/alienship)
 "aL" = (
 /obj/structure/closet/crate,
-/obj/item/device/multitool,
-/obj/item/weapon/tool/screwdriver,
-/obj/item/weapon/weldingtool,
-/obj/item/weapon/storage/firstaid/regular,
-/obj/item/weapon/reagent_containers/food/snacks/liquidfood,
-/obj/item/weapon/reagent_containers/food/snacks/liquidfood,
+/obj/item/multitool,
+/obj/item/tool/screwdriver,
+/obj/item/weldingtool,
+/obj/item/storage/firstaid/regular,
+/obj/item/reagent_containers/food/snacks/liquidfood,
+/obj/item/reagent_containers/food/snacks/liquidfood,
 /turf/simulated/shuttle/floor/alien,
 /area/tether_away/alienship)
 "aM" = (
 /obj/structure/closet/crate,
-/obj/item/weapon/tool/crowbar/red,
-/obj/item/weapon/tool/transforming/powerdrill,
-/obj/item/weapon/tool/wirecutters,
+/obj/item/tool/crowbar/red,
+/obj/item/tool/transforming/powerdrill,
+/obj/item/tool/wirecutters,
 /turf/simulated/shuttle/floor/alien,
 /area/tether_away/alienship)
 "aN" = (
 /obj/structure/closet/crate,
-/obj/item/device/multitool,
-/obj/item/weapon/tool/wirecutters,
-/obj/item/device/radio,
-/obj/item/weapon/weldingtool,
+/obj/item/multitool,
+/obj/item/tool/wirecutters,
+/obj/item/radio,
+/obj/item/weldingtool,
 /turf/simulated/shuttle/floor/alienplating,
 /area/tether_away/alienship)
 "aO" = (
-/obj/item/device/radio,
+/obj/item/radio,
 /turf/simulated/shuttle/floor/alienplating,
 /area/tether_away/alienship)
 "aP" = (
 /obj/effect/decal/remains/xeno,
-/obj/item/device/radio,
+/obj/item/radio,
 /turf/simulated/shuttle/floor/alien,
 /area/tether_away/alienship)
 "aQ" = (
-/obj/item/device/radio,
+/obj/item/radio,
 /turf/simulated/shuttle/floor/alien,
 /area/tether_away/alienship)
 "aR" = (
 /obj/structure/table/alien,
-/obj/item/weapon/reagent_containers/food/drinks/glass2/pint{
+/obj/item/reagent_containers/food/drinks/glass2/pint{
 	desc = "There's a permanent colored stain around the inside, as if it held a liquid for a very, very long time.";
 	name = "ancient pint glass"
 	},
@@ -254,12 +254,12 @@
 /area/tether_away/alienship)
 "aX" = (
 /obj/structure/closet/alien,
-/obj/item/weapon/reagent_containers/hypospray/autoinjector/alien,
+/obj/item/reagent_containers/hypospray/autoinjector/alien,
 /turf/simulated/shuttle/floor/alienplating,
 /area/tether_away/alienship)
 "aY" = (
 /obj/structure/table/alien,
-/obj/item/weapon/reagent_containers/hypospray/autoinjector/alien,
+/obj/item/reagent_containers/hypospray/autoinjector/alien,
 /turf/simulated/shuttle/floor/alienplating,
 /area/tether_away/alienship)
 "bJ" = (
@@ -334,7 +334,7 @@
 /area/tether_away/alienship)
 "ca" = (
 /obj/structure/table/alien,
-/obj/item/weapon/paper/alien{
+/obj/item/paper/alien{
 	icon_state = "alienpaper_words";
 	info = "\[i]This tablet has a large collection of symbols that you've never seen before outside this ship. You have no hope of figuring out what any of the mean...\[/i]"
 	},
@@ -350,17 +350,17 @@
 /area/tether_away/alienship)
 "cd" = (
 /obj/structure/table/alien,
-/obj/item/weapon/surgical/FixOVein/alien,
+/obj/item/surgical/FixOVein/alien,
 /turf/simulated/shuttle/floor/alien,
 /area/tether_away/alienship)
 "ce" = (
 /obj/structure/table/alien,
-/obj/item/weapon/surgical/bone_clamp/alien,
+/obj/item/surgical/bone_clamp/alien,
 /turf/simulated/shuttle/floor/alien,
 /area/tether_away/alienship)
 "cf" = (
 /obj/structure/table/alien,
-/obj/item/weapon/paper/alien{
+/obj/item/paper/alien{
 	icon_state = "alienpaper_words";
 	info = "\[i]This tablet has a large collection of symbols that you've never seen before outside this ship. You have no hope of figuring out what any of the mean...\[/i]"
 	},
@@ -368,7 +368,7 @@
 /area/tether_away/alienship)
 "cg" = (
 /obj/structure/table/alien,
-/obj/item/weapon/surgical/circular_saw/alien,
+/obj/item/surgical/circular_saw/alien,
 /turf/simulated/shuttle/floor/alien,
 /area/tether_away/alienship)
 "ch" = (
@@ -382,7 +382,7 @@
 /area/tether_away/alienship)
 "cj" = (
 /obj/structure/closet/alien,
-/obj/item/weapon/paper/alien,
+/obj/item/paper/alien,
 /turf/simulated/shuttle/floor/alienplating,
 /area/tether_away/alienship)
 "ck" = (
@@ -433,7 +433,7 @@
 /area/tether_away/alienship)
 "cu" = (
 /obj/structure/table/alien,
-/obj/item/device/multitool/alien,
+/obj/item/multitool/alien,
 /turf/simulated/shuttle/floor/alienplating,
 /area/tether_away/alienship)
 "cv" = (
@@ -448,12 +448,12 @@
 /area/tether_away/alienship)
 "cx" = (
 /obj/structure/table/alien,
-/obj/item/weapon/surgical/hemostat/alien,
+/obj/item/surgical/hemostat/alien,
 /turf/simulated/shuttle/floor/alien,
 /area/tether_away/alienship)
 "cy" = (
 /obj/structure/table/alien,
-/obj/item/weapon/storage/belt/utility/alien/full,
+/obj/item/storage/belt/utility/alien/full,
 /turf/simulated/shuttle/floor/alien,
 /area/tether_away/alienship)
 "cz" = (
@@ -471,7 +471,7 @@
 /area/tether_away/alienship)
 "cC" = (
 /obj/structure/table/alien,
-/obj/item/weapon/surgical/cautery/alien,
+/obj/item/surgical/cautery/alien,
 /turf/simulated/shuttle/floor/alien,
 /area/tether_away/alienship)
 "cD" = (
@@ -480,69 +480,69 @@
 /area/tether_away/alienship)
 "cE" = (
 /obj/structure/table/alien,
-/obj/item/weapon/surgical/hemostat/alien,
+/obj/item/surgical/hemostat/alien,
 /turf/simulated/shuttle/floor/alienplating,
 /area/tether_away/alienship)
 "cF" = (
 /obj/structure/closet/alien,
-/obj/item/weapon/gun/energy/alien,
+/obj/item/gun/energy/alien,
 /turf/simulated/shuttle/floor/alienplating,
 /area/tether_away/alienship)
 "cG" = (
 /obj/structure/table/alien,
-/obj/item/weapon/surgical/bone_clamp/alien,
+/obj/item/surgical/bone_clamp/alien,
 /turf/simulated/shuttle/floor/alienplating,
 /area/tether_away/alienship)
 "cH" = (
-/obj/item/device/multitool/alien,
+/obj/item/multitool/alien,
 /turf/simulated/shuttle/floor/alien,
 /area/tether_away/alienship)
 "cI" = (
-/obj/item/weapon/cell/device/weapon/recharge/alien,
+/obj/item/cell/device/weapon/recharge/alien,
 /obj/structure/table/alien,
-/obj/item/weapon/weldingtool/alien,
+/obj/item/weldingtool/alien,
 /turf/simulated/shuttle/floor/alienplating,
 /area/tether_away/alienship)
 "cJ" = (
-/obj/item/weapon/cell/device/weapon/recharge/alien,
+/obj/item/cell/device/weapon/recharge/alien,
 /obj/structure/table/alien,
 /turf/simulated/shuttle/floor/alienplating,
 /area/tether_away/alienship)
 "cL" = (
 /obj/structure/table/alien,
-/obj/item/weapon/tool/crowbar/alien,
+/obj/item/tool/crowbar/alien,
 /turf/simulated/shuttle/floor/alienplating,
 /area/tether_away/alienship)
 "cM" = (
-/obj/item/weapon/tool/screwdriver/alien,
+/obj/item/tool/screwdriver/alien,
 /turf/simulated/shuttle/floor/alien,
 /area/tether_away/alienship)
 "cO" = (
 /obj/structure/table/alien,
-/obj/item/weapon/surgical/scalpel/alien,
+/obj/item/surgical/scalpel/alien,
 /turf/simulated/shuttle/floor/alien,
 /area/tether_away/alienship)
 "cP" = (
 /obj/structure/table/alien,
-/obj/item/weapon/surgical/retractor/alien,
+/obj/item/surgical/retractor/alien,
 /turf/simulated/shuttle/floor/alienplating,
 /area/tether_away/alienship)
 "cQ" = (
 /obj/structure/table/alien,
-/obj/item/device/gps,
+/obj/item/gps,
 /turf/simulated/shuttle/floor/alienplating,
 /area/tether_away/alienship)
 "cR" = (
-/obj/item/device/gps,
+/obj/item/gps,
 /turf/simulated/shuttle/floor/alienplating,
 /area/tether_away/alienship)
 "cS" = (
 /obj/structure/table/alien,
-/obj/item/weapon/gun/energy/alien,
+/obj/item/gun/energy/alien,
 /turf/simulated/shuttle/floor/alienplating,
 /area/tether_away/alienship)
 "cT" = (
-/obj/item/device/gps,
+/obj/item/gps,
 /turf/simulated/shuttle/floor/alien,
 /area/tether_away/alienship)
 "da" = (
@@ -555,11 +555,11 @@
 /turf/simulated/shuttle/floor/alienplating,
 /area/tether_away/alienship)
 "gG" = (
-/obj/item/weapon/reagent_containers/food/snacks/liquidfood,
+/obj/item/reagent_containers/food/snacks/liquidfood,
 /turf/simulated/shuttle/floor/alienplating,
 /area/tether_away/alienship)
 "nr" = (
-/obj/item/weapon/storage/firstaid,
+/obj/item/storage/firstaid,
 /turf/simulated/shuttle/floor/alien,
 /area/tether_away/alienship)
 "us" = (
@@ -580,7 +580,7 @@
 /turf/simulated/shuttle/floor/alien,
 /area/tether_away/alienship/equip_dump)
 "Rx" = (
-/obj/item/weapon/reagent_containers/food/snacks/liquidfood,
+/obj/item/reagent_containers/food/snacks/liquidfood,
 /turf/simulated/shuttle/floor/alien,
 /area/tether_away/alienship)
 "YP" = (

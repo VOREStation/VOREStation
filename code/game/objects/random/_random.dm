@@ -46,12 +46,12 @@ var/list/random_junk_
 var/list/random_useful_
 /proc/get_random_useful_type()
 	if(!random_useful_)
-		random_useful_ = subtypesof(/obj/item/weapon/pen/crayon)
-		random_useful_ += /obj/item/weapon/pen
-		random_useful_ += /obj/item/weapon/pen/blue
-		random_useful_ += /obj/item/weapon/pen/red
-		random_useful_ += /obj/item/weapon/pen/multi
-		random_useful_ += /obj/item/weapon/storage/box/matches
+		random_useful_ = subtypesof(/obj/item/pen/crayon)
+		random_useful_ += /obj/item/pen
+		random_useful_ += /obj/item/pen/blue
+		random_useful_ += /obj/item/pen/red
+		random_useful_ += /obj/item/pen/multi
+		random_useful_ += /obj/item/storage/box/matches
 		random_useful_ += /obj/item/stack/material/cardboard
 	return pick(random_useful_)
 
@@ -64,10 +64,10 @@ var/list/random_useful_
 			random_junk_ += /obj/effect/decal/cleanable/bug_remains
 			random_junk_ += /obj/effect/decal/remains/mouse
 			random_junk_ += /obj/effect/decal/remains/robot
-			random_junk_ += /obj/item/weapon/paper/crumpled
+			random_junk_ += /obj/item/paper/crumpled
 			random_junk_ += /obj/item/inflatable/torn
 			random_junk_ += /obj/effect/decal/cleanable/molten_item
-			random_junk_ += /obj/item/weapon/material/shard
+			random_junk_ += /obj/item/material/shard
 
 			random_junk_ -= /obj/item/trash/plate
 			random_junk_ -= /obj/item/trash/snack_bowl

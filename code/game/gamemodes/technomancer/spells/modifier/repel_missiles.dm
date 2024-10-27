@@ -3,11 +3,11 @@
 	desc = "Places a repulsion field around you, which attempts to deflect incoming bullets and lasers, making them 45% less likely \
 	to hit you.  The field lasts for 10 minutes and can be granted to yourself or an ally."
 	cost = 25
-	obj_path = /obj/item/weapon/spell/modifier/repel_missiles
+	obj_path = /obj/item/spell/modifier/repel_missiles
 	ability_icon_state = "tech_repelmissiles"
 	category = SUPPORT_SPELLS
 
-/obj/item/weapon/spell/modifier/repel_missiles
+/obj/item/spell/modifier/repel_missiles
 	name = "repel missiles"
 	desc = "Use it before they start shooting at you!"
 	icon_state = "generic"
@@ -22,7 +22,7 @@
 	desc = "A repulsion field can always be useful to have."
 	mob_overlay_state = "repel_missiles"
 
-	on_created_text = "<span class='notice'>You have a repulsion field around you, which will attempt to deflect projectiles.</span>"
-	on_expired_text = "<span class='warning'>Your repulsion field has expired.</span>"
+	on_created_text = span_notice("You have a repulsion field around you, which will attempt to deflect projectiles.")
+	on_expired_text = span_warning("Your repulsion field has expired.")
 	evasion = 45
 	stacks = MODIFIER_STACK_EXTEND

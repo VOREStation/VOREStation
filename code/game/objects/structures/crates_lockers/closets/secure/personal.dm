@@ -6,15 +6,15 @@
 
 	/* //VOREStation Removal
 	starts_with = list(
-		/obj/item/device/radio/headset)
+		/obj/item/radio/headset)
 	*/
 
 /obj/structure/closet/secure_closet/personal/Initialize()
 	/* //VOREStation Removal
 	if(prob(50))
-		starts_with += /obj/item/weapon/storage/backpack
+		starts_with += /obj/item/storage/backpack
 	else
-		starts_with += /obj/item/weapon/storage/backpack/satchel/norm
+		starts_with += /obj/item/storage/backpack/satchel/norm
 	*/
 	return ..()
 
@@ -35,20 +35,20 @@
 	close_sound = 'sound/effects/wooden_closet_close.ogg'
 
 	starts_with = list(
-		/obj/item/weapon/storage/backpack/satchel/withwallet,
-		/obj/item/device/radio/headset
+		/obj/item/storage/backpack/satchel/withwallet,
+		/obj/item/radio/headset
 		)
 
-/obj/structure/closet/secure_closet/personal/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/structure/closet/secure_closet/personal/attackby(obj/item/W as obj, mob/user as mob)
 	if (src.opened)
-		if(istype(W, /obj/item/weapon/storage/laundry_basket))
+		if(istype(W, /obj/item/storage/laundry_basket))
 			return ..(W,user)
-		if(istype(W, /obj/item/weapon/grab))
-			var/obj/item/weapon/grab/G = W
+		if(istype(W, /obj/item/grab))
+			var/obj/item/grab/G = W
 			if(large)
 				MouseDrop_T(G.affecting, user)	//act like they were dragged onto the closet
 			else
-				to_chat(user, "<span class='notice'>The locker is too small to stuff [G.affecting] into!</span>")
+				to_chat(user, span_notice("The locker is too small to stuff [G.affecting] into!"))
 		if(isrobot(user))
 			return
 		if(W.loc != user) // This should stop mounted modules ending up outside the module.
@@ -57,10 +57,10 @@
 		if(W)
 			W.forceMove(loc)
 	else if(W.GetID())
-		var/obj/item/weapon/card/id/I = W.GetID()
+		var/obj/item/card/id/I = W.GetID()
 
 		if(src.broken)
-			to_chat(user, "<span class='warning'>It appears to be broken.</span>")
+			to_chat(user, span_warning("It appears to be broken."))
 			return
 		if(!I || !I.registered_name)	return
 		if(src.allowed(user) || !src.registered_name || (istype(I) && (src.registered_name == I.registered_name)))
@@ -71,8 +71,8 @@
 				src.registered_name = I.registered_name
 				src.desc = "Owned by [I.registered_name]."
 		else
-			to_chat(user, "<span class='warning'>Access Denied</span>")
-	else if(istype(W, /obj/item/weapon/melee/energy/blade))
+			to_chat(user, span_warning("Access Denied"))
+	else if(istype(W, /obj/item/melee/energy/blade))
 		if(emag_act(INFINITY, user, "The locker has been sliced open by [user] with \an [W]!", "You hear metal being sliced and sparks flying."))
 			var/datum/effect/effect/system/spark_spread/spark_system = new /datum/effect/effect/system/spark_spread()
 			spark_system.set_up(5, 0, src.loc)
@@ -80,7 +80,7 @@
 			playsound(src, 'sound/weapons/blade1.ogg', 50, 1)
 			playsound(src, "sparks", 50, 1)
 	else
-		to_chat(user, "<span class='warning'>Access Denied</span>")
+		to_chat(user, span_warning("Access Denied"))
 	update_icon()
 
 /obj/structure/closet/secure_closet/personal/emag_act(var/remaining_charges, var/mob/user, var/visual_feedback, var/audible_feedback)
@@ -90,7 +90,7 @@
 		desc = "It appears to be broken."
 		update_icon()
 		if(visual_feedback)
-			visible_message("<span class='warning'>[visual_feedback]</span>", "<span class='warning'>[audible_feedback]</span>")
+			visible_message(span_warning("[visual_feedback]"), span_warning("[audible_feedback]"))
 		return 1
 
 /obj/structure/closet/secure_closet/personal/verb/reset()
@@ -102,9 +102,9 @@
 	if(ishuman(usr))
 		src.add_fingerprint(usr)
 		if (src.locked || !src.registered_name)
-			to_chat(usr, "<span class='warning'>You need to unlock it first.</span>")
+			to_chat(usr, span_warning("You need to unlock it first."))
 		else if (src.broken)
-			to_chat(usr, "<span class='warning'>It appears to be broken.</span>")
+			to_chat(usr, span_warning("It appears to be broken."))
 		else
 			if (src.opened)
 				if(!src.close())

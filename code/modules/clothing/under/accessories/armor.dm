@@ -17,13 +17,13 @@
 			if((body_parts_covered & ARMS) && istype(H.gloves, /obj/item/clothing))
 				var/obj/item/clothing/G = H.gloves
 				if(G.body_parts_covered & ARMS)
-					to_chat(H, "<span class='warning'>You can't wear \the [src] with \the [G], it's in the way.</span>")
+					to_chat(H, span_warning("You can't wear \the [src] with \the [G], it's in the way."))
 					S.accessories -= src
 					return
 			else if((body_parts_covered & LEGS) && istype(H.shoes, /obj/item/clothing))
 				var/obj/item/clothing/Sh = H.shoes
 				if(Sh.body_parts_covered & LEGS)
-					to_chat(H, "<span class='warning'>You can't wear \the [src] with \the [Sh], it's in the way.</span>")
+					to_chat(H, span_warning("You can't wear \the [src] with \the [Sh], it's in the way."))
 					S.accessories -= src
 					return
 	..()
@@ -167,7 +167,7 @@
 		if(!(def_zone in list(BP_TORSO, BP_GROIN)))
 			reflectchance /= 2
 		if(P.starting && prob(reflectchance))
-			visible_message("<span class='danger'>\The [user]'s [src.name] reflects [attack_text]!</span>")
+			visible_message(span_danger("\The [user]'s [src.name] reflects [attack_text]!"))
 
 
 			var/new_x = P.starting.x + pick(0, 0, 0, 0, 0, -1, 1, -2, 2)

@@ -1,23 +1,23 @@
-/obj/item/weapon/pickaxe/brush
+/obj/item/pickaxe/brush
 	icon = 'icons/obj/xenoarchaeology_vr.dmi'
 
-/obj/item/weapon/pickaxe/one_pick
+/obj/item/pickaxe/one_pick
 	icon = 'icons/obj/xenoarchaeology_vr.dmi'
 
-/obj/item/weapon/pickaxe/two_pick
+/obj/item/pickaxe/two_pick
 	icon = 'icons/obj/xenoarchaeology_vr.dmi'
 
-/obj/item/weapon/pickaxe/three_pick
+/obj/item/pickaxe/three_pick
 	icon = 'icons/obj/xenoarchaeology_vr.dmi'
 
-/obj/item/weapon/pickaxe/four_pick
+/obj/item/pickaxe/four_pick
 	icon = 'icons/obj/xenoarchaeology_vr.dmi'
 
-/obj/item/weapon/pickaxe/five_pick
+/obj/item/pickaxe/five_pick
 	icon = 'icons/obj/xenoarchaeology_vr.dmi'
 
-/obj/item/weapon/pickaxe/six_pick
+/obj/item/pickaxe/six_pick
 	icon = 'icons/obj/xenoarchaeology_vr.dmi'
 
-/obj/item/weapon/pickaxe/hand
+/obj/item/pickaxe/hand
 	icon = 'icons/obj/xenoarchaeology_vr.dmi'

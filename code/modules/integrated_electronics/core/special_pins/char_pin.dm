@@ -5,7 +5,7 @@
 /datum/integrated_io/char/ask_for_pin_data(mob/user)
 	var/new_data = tgui_input_text(usr, "Please type in one character.","[src] char writing")
 	if(holder.check_interactivity(user) )
-		to_chat(user, "<span class='notice'>You input [new_data ? "new_data" : "NULL"] into the pin.</span>")
+		to_chat(user, span_notice("You input [new_data ? "new_data" : "NULL"] into the pin."))
 		write_data_to_pin(new_data)
 
 /datum/integrated_io/char/write_data_to_pin(var/new_data)

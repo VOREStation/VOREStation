@@ -135,3 +135,9 @@
 //VOREStation edit ends
 /obj/effect/projectile/tracer/pointdefense
 	icon_state = "beam_pointdef"
+
+/obj/effect/projectile/tracer/rainbow
+	icon_state = "rainbow"
+	light_range = 3
+	light_power = 1
+	light_color = "#ffffff"

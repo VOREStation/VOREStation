@@ -62,6 +62,9 @@ const initialState = {
   hideImportantInAdminTab: false,
   interleave: false,
   interleaveColor: '#909090',
+  statLinked: true,
+  statFontSize: 12,
+  statTabsStyle: 'default',
 } as const;
 
 export function settingsReducer(

@@ -11,8 +11,8 @@
 	name = "alien console"
 	desc = "The console flashes what appear to be symbols you've never seen before."
 	icon_state = "console-c"
-	interaction_message = "<span class='warning'>The console flashes a series of unknown symbols as you press a button on what is presumably a keyboard. It probably some sort of \
-	authentication error. Since you're not an alien, you should probably leave it alone.</span>"
+	interaction_message = span_warning("The console flashes a series of unknown symbols as you press a button on what is presumably a keyboard. It probably some sort of \
+	authentication error. Since you're not an alien, you should probably leave it alone.")
 
 /obj/structure/prop/alien/computer/camera
 	desc = "This console is briefly flashing video feeds of various locations close by."
@@ -25,19 +25,19 @@
 	name = "alien dispenser"
 	desc = "This looks like it dispenses... something?"
 	icon_state = "dispenser"
-	interaction_message = "<span class='warning'>You don't see any mechanism to operate this. Probably for the best.</span>"
+	interaction_message = span_warning("You don't see any mechanism to operate this. Probably for the best.")
 
 /obj/structure/prop/alien/pod
 	name = "alien pod"
 	desc = "This seems to be a container for something."
 	icon_state = "experiment"
-	interaction_message = "<span class='warning'>You don't see any mechanism to open this thing. Probably for the best.</span>"
+	interaction_message = span_warning("You don't see any mechanism to open this thing. Probably for the best.")
 
 /obj/structure/prop/alien/pod/open
 	name = "opened alien pod"
 	desc = "At one point, this probably contained something interesting..."
 	icon_state = "experiment-open"
-	interaction_message = "<span class='warning'>You don't see any mechanism to close this thing.</span>"
+	interaction_message = span_warning("You don't see any mechanism to close this thing.")
 
 
 // Obtained by scanning both a void core and void cell.
@@ -89,7 +89,7 @@
 	name = "void core"
 	icon_state = "core"
 	desc = "An alien machine that seems to be producing energy seemingly out of nowhere."
-	interaction_message = "<span class='warning'>Messing with something that makes energy out of nowhere seems very unwise.</span>"
+	interaction_message = span_warning("Messing with something that makes energy out of nowhere seems very unwise.")
 	catalogue_data = list(/datum/category_item/catalogue/anomalous/precursor_a/alien_void_core)
 
 /obj/item/prop/alien

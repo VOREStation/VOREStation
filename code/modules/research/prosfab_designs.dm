@@ -376,7 +376,7 @@
 /datum/design/item/prosfab/cyborg/component/ai_shell
 	name = "AI Remote Interface"
 	id = "mmi_ai_shell"
-	build_path = /obj/item/device/mmi/inert/ai_remote
+	build_path = /obj/item/mmi/inert/ai_remote
 
 //////////////////// Cyborg Modules ////////////////////
 /datum/design/item/prosfab/robot_upgrade

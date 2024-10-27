@@ -85,7 +85,7 @@ var/global/list/navbeacons = list()	// no I don't like putting this in, but it w
 				locked = !locked
 				to_chat(user, "Controls are now [locked ? "locked." : "unlocked."]")
 			else
-				to_chat(user, "<span class='warning'>Access denied.</span>")
+				to_chat(user, span_warning("Access denied."))
 			updateDialog()
 		else
 			to_chat(user, "You must open the cover first!")

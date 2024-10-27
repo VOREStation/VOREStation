@@ -4,11 +4,11 @@
 	set desc = "Check a player's attack logs."
 
 //Views specific attack logs belonging to one player.
-	var/dat = "<B>[M]'s Attack Log:<HR></B>"
-	dat += "<b>Viewing attack logs of [M]</b> - (Played by ([key_name(M)]).<br>"
+	var/dat = span_bold("[M]'s Attack Log:<HR>")
+	dat += span_bold("Viewing attack logs of [M]") + " - (Played by ([key_name(M)]).<br>"
 	if(M.mind)
-		dat += "<b>Current Antag?:</b> [(M.mind.special_role)?"Yes":"No"]<br>"
-	dat += "<br><b>Note:</b> This is arranged from earliest to latest. <br><br>"
+		dat += span_bold("Current Antag?:") + " [(M.mind.special_role)?"Yes":"No"]<br>"
+	dat += "<br>" + span_bold("Note:") + " This is arranged from earliest to latest. <br><br>"
 
 
 	if(!isemptylist(M.attack_log))
@@ -19,7 +19,7 @@
 		dat += "</fieldset>"
 
 	else
-		dat += "<i>No attack logs found for [M].</i>"
+		dat += span_italics("No attack logs found for [M].")
 
 	var/datum/browser/popup = new(usr, "admin_attack_log", "[src]", 650, 650, src)
 	popup.set_content(jointext(dat,null))
@@ -35,11 +35,11 @@
 	set desc = "Check a player's dialogue logs."
 
 //Views specific dialogue logs belonging to one player.
-	var/dat = "<B>[M]'s Dialogue Log:<HR></B>"
-	dat += "<b>Viewing say and emote logs of [M]</b> - (Played by ([key_name(M)]).<br>"
+	var/dat = span_bold("[M]'s Dialogue Log:<HR>")
+	dat += span_bold("Viewing say and emote logs of [M]") + " - (Played by ([key_name(M)]).<br>"
 	if(M.mind)
-		dat += "<b>Current Antag?:</b> [(M.mind.special_role)?"Yes":"No"]<br>"
-	dat += "<br><b>Note:</b> This is arranged from earliest to latest. <br><br>"
+		dat += span_bold("Current Antag?:") + " [(M.mind.special_role)?"Yes":"No"]<br>"
+	dat += "<br>" + span_bold("Note:") + " This is arranged from earliest to latest. <br><br>"
 
 	if(!isemptylist(M.dialogue_log))
 		dat += "<fieldset style='border: 2px solid white; display: inline'>"
@@ -49,7 +49,7 @@
 
 		dat += "</fieldset>"
 	else
-		dat += "<i>No dialogue logs found for [M].</i>"
+		dat += span_italics("No dialogue logs found for [M].")
 	var/datum/browser/popup = new(usr, "admin_dialogue_log", "[src]", 650, 650, src)
 	popup.set_content(jointext(dat,null))
 	popup.open()

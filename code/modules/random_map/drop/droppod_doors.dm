@@ -25,7 +25,7 @@
 
 /obj/structure/droppod_door/attack_hand(var/mob/user)
 	if(deploying) return
-	to_chat(user, "<span class='danger'>You prime the explosive bolts. Better get clear!</span>")
+	to_chat(user, span_danger("You prime the explosive bolts. Better get clear!"))
 	sleep(30)
 	deploy()
 
@@ -34,7 +34,7 @@
 		return
 
 	deployed = 1
-	visible_message("<span class='danger'>The explosive bolts on \the [src] detonate, throwing it open!</span>")
+	visible_message(span_danger("The explosive bolts on \the [src] detonate, throwing it open!"))
 	playsound(src, 'sound/effects/bang.ogg', 50, 1, 5)
 
 	// This is shit but it will do for the sake of testing.

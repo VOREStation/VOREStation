@@ -20,7 +20,7 @@
 			if(istype(I) && !I.anchored)
 				bowl_contents += I
 		if(bowl_contents.len)
-			user.visible_message("<span class='notice'>[user] flushes the toilet.</span>", "<span class='notice'>You flush the toilet.</span>")
+			user.visible_message(span_notice("[user] flushes the toilet."), span_notice("You flush the toilet."))
 			playsound(src, 'sound/vore/death7.ogg', 50, 1) //Got lazy about getting new sound files. Have a sick remix lmao.
 			playsound(src, 'sound/effects/bubbles.ogg', 50, 1)
 			playsound(src, 'sound/mecha/powerup.ogg', 30, 1)

@@ -16,7 +16,7 @@
 	anchored = TRUE
 	var/invuln = 0
 	var/bugged = 0
-	var/obj/item/weapon/camera_assembly/assembly = null
+	var/obj/item/camera_assembly/assembly = null
 
 	var/toughness = 5 //sorta fragile
 
@@ -124,7 +124,7 @@
 	if (istype(AM, /obj))
 		var/obj/O = AM
 		if (O.throwforce >= src.toughness)
-			visible_message("<span class='warning'><B>[src] was hit by [O].</B></span>")
+			visible_message(span_boldwarning("[src] was hit by [O]."))
 		take_damage(O.throwforce)
 
 /obj/machinery/camera/proc/setViewRange(var/num = 7)
@@ -139,7 +139,7 @@
 		set_status(0)
 		user.do_attack_animation(src)
 		user.setClickCooldown(user.get_attack_speed())
-		visible_message("<span class='warning'>\The [user] slashes at [src]!</span>")
+		visible_message(span_warning("\The [user] slashes at [src]!"))
 		playsound(src, 'sound/weapons/slash.ogg', 100, 1)
 		add_hiddenprint(user)
 		destroy()
@@ -150,7 +150,7 @@
 		set_status(0)
 		S.do_attack_animation(src)
 		S.setClickCooldown(user.get_attack_speed())
-		visible_message("<span class='warning'>\The [user] [pick(S.attacktext)] \the [src]!</span>")
+		visible_message(span_warning("\The [user] [pick(S.attacktext)] \the [src]!"))
 		playsound(src, S.attack_sound, 100, 1)
 		add_hiddenprint(user)
 		destroy()
@@ -160,14 +160,14 @@
 	update_coverage()
 	// DECONSTRUCTION
 	if(W.has_tool_quality(TOOL_SCREWDRIVER))
-		//to_chat(user, "<span class='notice'>You start to [panel_open ? "close" : "open"] the camera's panel.</span>")
+		//to_chat(user, span_notice("You start to [panel_open ? "close" : "open"] the camera's panel."))
 		//if(toggle_panel(user)) // No delay because no one likes screwdrivers trying to be hip and have a duration cooldown
 		panel_open = !panel_open
-		user.visible_message("<span class='warning'>[user] screws the camera's panel [panel_open ? "open" : "closed"]!</span>",
-		"<span class='notice'>You screw the camera's panel [panel_open ? "open" : "closed"].</span>")
+		user.visible_message(span_warning("[user] screws the camera's panel [panel_open ? "open" : "closed"]!"),
+		span_notice("You screw the camera's panel [panel_open ? "open" : "closed"]."))
 		playsound(src, W.usesound, 50, 1)
 
-	else if((W.has_tool_quality(TOOL_WIRECUTTER) || istype(W, /obj/item/device/multitool)) && panel_open)
+	else if((W.has_tool_quality(TOOL_WIRECUTTER) || istype(W, /obj/item/multitool)) && panel_open)
 		interact(user)
 
 	else if(W.has_tool_quality(TOOL_WELDER) && (wires.CanDeconstruct() || (stat & BROKEN)))
@@ -181,23 +181,23 @@
 				assembly.dir = src.dir
 				if(stat & BROKEN)
 					assembly.state = 2
-					to_chat(user, "<span class='notice'>You repaired \the [src] frame.</span>")
+					to_chat(user, span_notice("You repaired \the [src] frame."))
 				else
 					assembly.state = 1
-					to_chat(user, "<span class='notice'>You cut \the [src] free from the wall.</span>")
+					to_chat(user, span_notice("You cut \the [src] free from the wall."))
 					new /obj/item/stack/cable_coil(src.loc, length=2)
 				assembly = null //so qdel doesn't eat it.
 			qdel(src)
 
 	// OTHER
-	else if (can_use() && (istype(W, /obj/item/weapon/paper) || istype(W, /obj/item/device/pda)) && isliving(user))
+	else if (can_use() && (istype(W, /obj/item/paper) || istype(W, /obj/item/pda)) && isliving(user))
 		var/mob/living/U = user
-		var/obj/item/weapon/paper/X = null
-		var/obj/item/device/pda/P = null
+		var/obj/item/paper/X = null
+		var/obj/item/pda/P = null
 
 		var/itemname = ""
 		var/info = ""
-		if(istype(W, /obj/item/weapon/paper))
+		if(istype(W, /obj/item/paper))
 			X = W
 			itemname = X.name
 			info = X.info
@@ -212,27 +212,27 @@
 			if(!O.client)
 				continue
 			if(U.name == "Unknown")
-				to_chat(O, "<b>[U]</b> holds \a [itemname] up to one of your cameras ...")
+				to_chat(O, span_infoplain(span_bold("[U]") + " holds \a [itemname] up to one of your cameras ..."))
 			else
-				to_chat(O, "<b><a href='byond://?src=\ref[O];track2=\ref[O];track=\ref[U];trackname=[U.name]'>[U]</a></b> holds \a [itemname] up to one of your cameras ...")
+				to_chat(O, span_infoplain(span_bold("<a href='byond://?src=\ref[O];track2=\ref[O];track=\ref[U];trackname=[U.name]'>[U]</a>") + " holds \a [itemname] up to one of your cameras ..."))
 			O << browse(text("<HTML><HEAD><TITLE>[]</TITLE></HEAD><BODY><TT>[]</TT></BODY></HTML>", itemname, info), text("window=[]", itemname))
 
-	else if (istype(W, /obj/item/weapon/camera_bug))
+	else if (istype(W, /obj/item/camera_bug))
 		if (!src.can_use())
-			to_chat(user, "<span class='warning'>Camera non-functional.</span>")
+			to_chat(user, span_warning("Camera non-functional."))
 			return
 		if (src.bugged)
-			to_chat(user, "<span class='notice'>Camera bug removed.</span>")
+			to_chat(user, span_notice("Camera bug removed."))
 			src.bugged = 0
 		else
-			to_chat(user, "<span class='notice'>Camera bugged.</span>")
+			to_chat(user, span_notice("Camera bugged."))
 			src.bugged = 1
 
 	else if(W.damtype == BRUTE || W.damtype == BURN) //bashing cameras
 		user.setClickCooldown(user.get_attack_speed(W))
 		if (W.force >= src.toughness)
 			user.do_attack_animation(src)
-			visible_message("<span class='warning'><b>[src] has been [LAZYLEN(W.attack_verb) ? pick(W.attack_verb) : "attacked"] with [W] by [user]!</b></span>")
+			visible_message(span_boldwarning("[src] has been [LAZYLEN(W.attack_verb) ? pick(W.attack_verb) : "attacked"] with [W] by [user]!"))
 			if (istype(W, /obj/item)) //is it even possible to get into attackby() with non-items?
 				var/obj/item/I = W
 				if (I.hitsound)
@@ -253,17 +253,17 @@
 	set_status(!src.status)
 	if (!(src.status))
 		if(user)
-			visible_message("<span class='notice'> [user] has deactivated [src]!</span>")
+			visible_message(span_notice(" [user] has deactivated [src]!"))
 		else
-			visible_message("<span class='notice'> [src] clicks and shuts down. </span>")
+			visible_message(span_notice(" [src] clicks and shuts down. "))
 		playsound(src, 'sound/items/Wirecutter.ogg', 100, 1)
 		icon_state = "[initial(icon_state)]1"
 		add_hiddenprint(user)
 	else
 		if(user)
-			visible_message("<span class='notice'> [user] has reactivated [src]!</span>")
+			visible_message(span_notice(" [user] has reactivated [src]!"))
 		else
-			visible_message("<span class='notice'> [src] clicks and reactivates itself. </span>")
+			visible_message(span_notice(" [src] clicks and reactivates itself. "))
 		playsound(src, 'sound/items/Wirecutter.ogg', 100, 1)
 		icon_state = initial(icon_state)
 		add_hiddenprint(user)
@@ -371,7 +371,7 @@
 
 	return null
 
-/obj/machinery/camera/proc/weld(var/obj/item/weapon/weldingtool/WT, var/mob/user)
+/obj/machinery/camera/proc/weld(var/obj/item/weldingtool/WT, var/mob/user)
 	WT = WT.get_welder()
 
 	if(busy)
@@ -380,7 +380,7 @@
 		return 0
 
 	// Do after stuff here
-	to_chat(user, "<span class='notice'>You start to weld [src]..</span>")
+	to_chat(user, span_notice("You start to weld [src].."))
 	playsound(src, WT.usesound, 50, 1)
 	WT.eyecheck(user)
 	busy = 1
@@ -397,7 +397,7 @@
 		return
 
 	if(stat & BROKEN)
-		to_chat(user, "<span class='warning'>\The [src] is broken.</span>")
+		to_chat(user, span_warning("\The [src] is broken."))
 		return
 
 	user.set_machine(src)

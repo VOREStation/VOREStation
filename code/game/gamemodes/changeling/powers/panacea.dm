@@ -18,7 +18,7 @@
 		return 0
 	src.mind.changeling.chem_charges -= 20
 
-	to_chat(src, "<span class='notice'>We cleanse impurities from our form.</span>")
+	to_chat(src, span_notice("We cleanse impurities from our form."))
 
 	var/mob/living/carbon/human/C = src
 
@@ -32,7 +32,7 @@
 	var/heal_amount = 5
 	if(src.mind.changeling.recursive_enhancement)
 		heal_amount = heal_amount * 2
-		to_chat(src, "<span class='notice'>We will heal much faster.</span>")
+		to_chat(src, span_notice("We will heal much faster."))
 
 	for(var/i = 0, i<10,i++)
 		if(C)

@@ -3,7 +3,7 @@
 	desc = "A machine that reacts to unstable conditions in the powernet, by safely shutting everything down.  Probably better \
 	than the alternative."
 	icon_state = "gridchecker_on"
-	circuit = /obj/item/weapon/circuitboard/grid_checker
+	circuit = /obj/item/circuitboard/grid_checker
 	density = TRUE
 	anchored = TRUE
 	var/power_failing = FALSE // Turns to TRUE when the grid check event is fired by the Game Master, or perhaps a cheeky antag.
@@ -43,7 +43,7 @@
 		opened = !opened
 	else if(W.has_tool_quality(TOOL_CROWBAR))
 		default_deconstruction_crowbar(user, W)
-	else if(istype(W, /obj/item/device/multitool) || W.has_tool_quality(TOOL_WIRECUTTER))
+	else if(istype(W, /obj/item/multitool) || W.has_tool_quality(TOOL_WIRECUTTER))
 		attack_hand(user)
 
 /obj/machinery/power/grid_checker/attack_hand(mob/user)

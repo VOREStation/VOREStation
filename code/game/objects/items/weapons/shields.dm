@@ -32,7 +32,7 @@
 /obj/item/proc/unique_parry_check(mob/user, mob/attacker, atom/damage_source)	// An overrideable version of the above proc.
 	return default_parry_check(user, attacker, damage_source)
 
-/obj/item/weapon/shield
+/obj/item/shield
 	name = "shield"
 	var/base_block_chance = 50
 	preserve_item = 1
@@ -41,7 +41,7 @@
 				slot_r_hand_str = 'icons/mob/items/righthand_melee.dmi',
 				)
 
-/obj/item/weapon/shield/handle_shield(mob/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
+/obj/item/shield/handle_shield(mob/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
 	if(user.incapacitated())
 		return 0
 
@@ -49,14 +49,14 @@
 	var/bad_arc = reverse_direction(user.dir) //arc of directions from which we cannot block
 	if(check_shield_arc(user, bad_arc, damage_source, attacker))
 		if(prob(get_block_chance(user, damage, damage_source, attacker)))
-			user.visible_message("<span class='danger'>\The [user] blocks [attack_text] with \the [src]!</span>")
+			user.visible_message(span_danger("\The [user] blocks [attack_text] with \the [src]!"))
 			return 1
 	return 0
 
-/obj/item/weapon/shield/proc/get_block_chance(mob/user, var/damage, atom/damage_source = null, mob/attacker = null)
+/obj/item/shield/proc/get_block_chance(mob/user, var/damage, atom/damage_source = null, mob/attacker = null)
 	return base_block_chance
 
-/obj/item/weapon/shield/riot
+/obj/item/shield/riot
 	name = "riot shield"
 	desc = "A shield adept for close quarters engagement.  It's also capable of protecting from less powerful projectiles."
 	icon = 'icons/obj/weapons.dmi'
@@ -72,7 +72,7 @@
 	attack_verb = list("shoved", "bashed")
 	var/cooldown = 0 //shield bash cooldown. based on world.time
 
-/obj/item/weapon/shield/riot/handle_shield(mob/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
+/obj/item/shield/riot/handle_shield(mob/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
 	if(user.incapacitated())
 		return 0
 
@@ -88,20 +88,20 @@
 					//If we're at this point, the bullet/beam is going to go through the shield, however it will hit for less damage.
 					//Bullets get slowed down, while beams are diffused as they hit the shield, so these shields are not /completely/
 					//useless.  Extremely penetrating projectiles will go through the shield without less damage.
-					user.visible_message("<span class='danger'>\The [user]'s [src.name] is pierced by [attack_text]!</span>")
+					user.visible_message(span_danger("\The [user]'s [src.name] is pierced by [attack_text]!"))
 					if(P.armor_penetration < 30) //PTR bullets and x-rays will bypass this entirely.
 						P.damage = P.damage / 2
 					return 0
 			//Otherwise, if we're here, we're gonna stop the attack entirely.
-			user.visible_message("<span class='danger'>\The [user] blocks [attack_text] with \the [src]!</span>")
+			user.visible_message(span_danger("\The [user] blocks [attack_text] with \the [src]!"))
 			playsound(src, 'sound/weapons/Genhit.ogg', 50, 1)
 			return 1
 	return 0
 
-/obj/item/weapon/shield/riot/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/weapon/melee/baton))
+/obj/item/shield/riot/attackby(obj/item/W as obj, mob/user as mob)
+	if(istype(W, /obj/item/melee/baton))
 		if(cooldown < world.time - 25)
-			user.visible_message("<span class='warning'>[user] bashes [src] with [W]!</span>")
+			user.visible_message(span_warning("[user] bashes [src] with [W]!"))
 			playsound(src, 'sound/effects/shieldbash.ogg', 50, 1)
 			cooldown = world.time
 	else
@@ -111,7 +111,7 @@
  * Energy Shield
  */
 
-/obj/item/weapon/shield/energy
+/obj/item/shield/energy
 	name = "energy combat shield"
 	desc = "A shield capable of stopping most projectile and melee attacks. It can be retracted, expanded, and stored anywhere."
 	icon = 'icons/obj/weapons.dmi'
@@ -135,7 +135,7 @@
 			slot_r_hand_str = 'icons/mob/items/righthand_melee.dmi',
 			)
 
-/obj/item/weapon/shield/energy/handle_shield(mob/user)
+/obj/item/shield/energy/handle_shield(mob/user)
 	if(!active)
 		return 0 //turn it on first!
 	. = ..()
@@ -146,16 +146,16 @@
 		spark_system.start()
 		playsound(src, 'sound/weapons/blade1.ogg', 50, 1)
 
-/obj/item/weapon/shield/energy/get_block_chance(mob/user, var/damage, atom/damage_source = null, mob/attacker = null)
+/obj/item/shield/energy/get_block_chance(mob/user, var/damage, atom/damage_source = null, mob/attacker = null)
 	if(istype(damage_source, /obj/item/projectile))
 		var/obj/item/projectile/P = damage_source
 		if((is_sharp(P) && damage > 10) || istype(P, /obj/item/projectile/beam))
 			return (base_block_chance - round(damage / 3)) //block bullets and beams using the old block chance
 	return base_block_chance
 
-/obj/item/weapon/shield/energy/attack_self(mob/living/user as mob)
+/obj/item/shield/energy/attack_self(mob/living/user as mob)
 	if ((CLUMSY in user.mutations) && prob(50))
-		to_chat(user, "<span class='warning'>You beat yourself in the head with [src].</span>")
+		to_chat(user, span_warning("You beat yourself in the head with [src]."))
 		user.take_organ_damage(5)
 	active = !active
 	if (active)
@@ -164,7 +164,7 @@
 		w_class = ITEMSIZE_LARGE
 		slot_flags = null
 		playsound(src, 'sound/weapons/saberon.ogg', 50, 1)
-		to_chat(user, "<span class='notice'>\The [src] is now active.</span>")
+		to_chat(user, span_notice("\The [src] is now active."))
 
 	else
 		force = 3
@@ -172,7 +172,7 @@
 		w_class = ITEMSIZE_TINY
 		slot_flags = SLOT_EARS
 		playsound(src, 'sound/weapons/saberoff.ogg', 50, 1)
-		to_chat(user, "<span class='notice'>\The [src] can now be concealed.</span>")
+		to_chat(user, span_notice("\The [src] can now be concealed."))
 
 	if(istype(user,/mob/living/carbon/human))
 		var/mob/living/carbon/human/H = user
@@ -182,7 +182,7 @@
 	add_fingerprint(user)
 	return
 
-/obj/item/weapon/shield/energy/update_icon()
+/obj/item/shield/energy/update_icon()
 	var/mutable_appearance/blade_overlay = mutable_appearance(icon, "[icon_state]_blade")
 	if(lcolor)
 		blade_overlay.color = lcolor
@@ -202,11 +202,11 @@
 		H.update_inv_l_hand()
 		H.update_inv_r_hand()
 
-/obj/item/weapon/shield/energy/AltClick(mob/living/user)
+/obj/item/shield/energy/AltClick(mob/living/user)
 	if(!in_range(src, user))	//Basic checks to prevent abuse
 		return
 	if(user.incapacitated() || !istype(user))
-		to_chat(user, "<span class='warning'>You can't do that right now!</span>")
+		to_chat(user, span_warning("You can't do that right now!"))
 		return
 	if(tgui_alert(usr, "Are you sure you want to recolor your shield?", "Confirm Recolor", list("Yes", "No")) == "Yes")
 		var/energy_color_input = input(usr,"","Choose Energy Color",lcolor) as color|null
@@ -214,11 +214,11 @@
 			lcolor = sanitize_hexcolor(energy_color_input)
 		update_icon()
 
-/obj/item/weapon/shield/energy/examine(mob/user)
+/obj/item/shield/energy/examine(mob/user)
 	. = ..()
-	. += "<span class='notice'>Alt-click to recolor it.</span>"
+	. += span_notice("Alt-click to recolor it.")
 
-/obj/item/weapon/shield/riot/tele
+/obj/item/shield/riot/tele
 	name = "telescopic shield"
 	desc = "An advanced riot shield made of lightweight materials that collapses for easy storage."
 	icon = 'icons/obj/weapons.dmi'
@@ -231,13 +231,13 @@
 	w_class = ITEMSIZE_NORMAL
 	var/active = 0
 /*
-/obj/item/weapon/shield/energy/IsShield()
+/obj/item/shield/energy/IsShield()
 	if(active)
 		return 1
 	else
 		return 0
 */
-/obj/item/weapon/shield/riot/tele/attack_self(mob/living/user)
+/obj/item/shield/riot/tele/attack_self(mob/living/user)
 	active = !active
 	icon_state = "teleriot[active]"
 	playsound(src, 'sound/weapons/empty.ogg', 50, 1)
@@ -248,14 +248,14 @@
 		throw_speed = 2
 		w_class = ITEMSIZE_LARGE
 		slot_flags = SLOT_BACK
-		to_chat(user, "<span class='notice'>You extend \the [src].</span>")
+		to_chat(user, span_notice("You extend \the [src]."))
 	else
 		force = 3
 		throwforce = 3
 		throw_speed = 3
 		w_class = ITEMSIZE_NORMAL
 		slot_flags = null
-		to_chat(user, "<span class='notice'>[src] can now be concealed.</span>")
+		to_chat(user, span_notice("[src] can now be concealed."))
 
 	if(istype(user,/mob/living/carbon/human))
 		var/mob/living/carbon/human/H = user

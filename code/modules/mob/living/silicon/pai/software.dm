@@ -26,7 +26,7 @@ var/global/list/default_pai_software = list()
 		var/datum/pai_software/P = new type()
 		if(pai_software_by_key[P.id])
 			var/datum/pai_software/O = pai_software_by_key[P.id]
-			to_world("<span class='warning'>pAI software module [P.name] has the same key as [O.name]!</span>")
+			to_world(span_warning("pAI software module [P.name] has the same key as [O.name]!"))
 			r = 0
 			continue
 		pai_software_by_key[P.id] = P
@@ -55,7 +55,7 @@ var/global/list/default_pai_software = list()
 
 /mob/living/silicon/pai/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
 	var/list/data = ..()
-	
+
 	// Software we have bought
 	var/list/bought_software = list()
 	// Software we have not bought

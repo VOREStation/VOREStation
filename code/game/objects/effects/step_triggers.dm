@@ -257,7 +257,7 @@ var/global/list/tele_landmarks = list() // Terrible, but the alternative is loop
 
 /obj/effect/step_trigger/death/Trigger(var/atom/movable/A)
 	if(isliving(A))
-		to_chat(A, "<span class='danger'>[deathmessage]</span>")
+		to_chat(A, span_danger("[deathmessage]"))
 		log_and_message_admins("[A] [deathalert]")
 		qdel(A)
 
@@ -281,7 +281,7 @@ var/global/list/tele_landmarks = list() // Terrible, but the alternative is loop
 
 /obj/effect/step_trigger/warning/Trigger(var/atom/movable/A)
 	if(isliving(A))
-		to_chat(A, "<span class='warning'>[warningmessage]</span>")
+		to_chat(A, span_warning("[warningmessage]"))
 
 /obj/effect/step_trigger/warning/train_edge
 	warningmessage = "The wind billowing alongside the train is extremely strong here! Any movement could easily pull you down beneath the carriages, return to the train immediately!"

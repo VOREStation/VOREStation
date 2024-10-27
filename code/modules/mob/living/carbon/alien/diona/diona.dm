@@ -43,7 +43,7 @@ var/list/_nymph_default_emotes = list(
 	can_pull_size = ITEMSIZE_SMALL
 	can_pull_mobs = MOB_PULL_SMALLER
 
-	holder_type = /obj/item/weapon/holder/diona
+	holder_type = /obj/item/holder/diona
 	var/obj/item/hat
 
 /mob/living/carbon/alien/diona/get_available_emotes()
@@ -54,7 +54,7 @@ var/list/_nymph_default_emotes = list(
 	species = GLOB.all_species[SPECIES_DIONA]
 	add_language(LANGUAGE_ROOTGLOBAL)
 	add_language(LANGUAGE_GALCOM)
-	verbs += /mob/living/carbon/alien/diona/proc/merge
+	add_verb(src, /mob/living/carbon/alien/diona/proc/merge)
 
 /mob/living/carbon/alien/diona/put_in_hands(var/obj/item/W) // No hands.
 	W.loc = get_turf(src)

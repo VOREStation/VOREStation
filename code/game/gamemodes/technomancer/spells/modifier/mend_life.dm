@@ -5,11 +5,11 @@
 	if the target is completely healthy, preventing further instability."
 	spell_power_desc = "Healing amount increased."
 	cost = 50
-	obj_path = /obj/item/weapon/spell/modifier/mend_life
+	obj_path = /obj/item/spell/modifier/mend_life
 	ability_icon_state = "tech_mendwounds"
 	category = SUPPORT_SPELLS
 
-/obj/item/weapon/spell/modifier/mend_life
+/obj/item/spell/modifier/mend_life
 	name = "mend life"
 	desc = "Watch your wounds close up before your eyes."
 	icon_state = "mend_life"
@@ -24,8 +24,8 @@
 	desc = "You feel rather refreshed."
 	mob_overlay_state = "green_sparkles"
 
-	on_created_text = "<span class='warning'>Sparkles begin to appear around you, and you feel really.. refreshed.</span>"
-	on_expired_text = "<span class='notice'>The sparkles have faded, although you feel healthier than before.</span>"
+	on_created_text = span_warning("Sparkles begin to appear around you, and you feel really.. refreshed.")
+	on_expired_text = span_notice("The sparkles have faded, although you feel healthier than before.")
 	stacks = MODIFIER_STACK_EXTEND
 
 /datum/modifier/technomancer/mend_life/tick()

@@ -7,8 +7,8 @@
 
 /obj/item/clothing/head/woodcirclet/attackby(obj/item/W as obj, mob/user as mob)
 	var/obj/item/complete
-	if(istype(W, /obj/item/weapon/reagent_containers/food/snacks/grown))
-		var/obj/item/weapon/reagent_containers/food/snacks/grown/G = W
+	if(istype(W, /obj/item/reagent_containers/food/snacks/grown))
+		var/obj/item/reagent_containers/food/snacks/grown/G = W
 		if(G.seed.kitchen_tag == "poppy")
 			to_chat(user, "You attach the poppy to the circlet and create a beautiful flower crown.")
 			complete = new /obj/item/clothing/head/poppy_crown(get_turf(user))

@@ -83,7 +83,7 @@
 /area/om_adventure/poi/cabin2)
 "x" = (
 /obj/structure/bed/double/padded,
-/obj/item/weapon/bedsheet/browndouble,
+/obj/item/bedsheet/browndouble,
 /obj/structure/curtain/black,
 /turf/simulated/floor/carpet,
 /area/om_adventure/poi/cabin2)

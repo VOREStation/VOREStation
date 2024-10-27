@@ -26,17 +26,17 @@
 /obj/structure/cable/cyan{
 	icon_state = "1-8"
 	},
-/obj/item/weapon/tank/phoron,
-/obj/item/weapon/tank/phoron,
-/obj/item/weapon/tool/crowbar/red,
+/obj/item/tank/phoron,
+/obj/item/tank/phoron,
+/obj/item/tool/crowbar/red,
 /obj/structure/closet/walllocker_double/engineering/east,
 /turf/simulated/floor,
 /area/shuttle/groundbase/exploration)
 "ak" = (
 /obj/structure/table/glass,
-/obj/item/weapon/paper_bin,
-/obj/item/weapon/pen,
-/obj/item/device/radio/intercom/department/medbay{
+/obj/item/paper_bin,
+/obj/item/pen,
+/obj/item/radio/intercom/department/medbay{
 	dir = 1;
 	pixel_y = 24
 	},
@@ -50,25 +50,25 @@
 /turf/simulated/floor/carpet,
 /area/groundbase/medical/cmo)
 "aN" = (
-/obj/item/weapon/stool/padded{
+/obj/item/stool/padded{
 	dir = 4
 	},
 /turf/simulated/floor/wmarble,
 /area/groundbase/civilian/kitchen)
 "aQ" = (
 /obj/structure/table/glass,
-/obj/item/weapon/folder/white_cmo,
-/obj/item/weapon/stamp/cmo,
-/obj/item/weapon/paper_bin,
-/obj/item/weapon/pen,
+/obj/item/folder/white_cmo,
+/obj/item/stamp/cmo,
+/obj/item/paper_bin,
+/obj/item/pen,
 /turf/simulated/floor/carpet,
 /area/groundbase/medical/cmo)
 "bf" = (
 /obj/structure/table/rack,
-/obj/item/weapon/storage/toolbox/mechanical,
-/obj/item/device/multitool,
-/obj/item/device/gps/medical,
-/obj/item/device/radio,
+/obj/item/storage/toolbox/mechanical,
+/obj/item/multitool,
+/obj/item/gps/medical,
+/obj/item/radio,
 /turf/simulated/floor/tiled/white,
 /area/groundbase/medical/paramedic)
 "bk" = (
@@ -78,7 +78,7 @@
 /area/groundbase/cargo/office)
 "bm" = (
 /obj/structure/table/steel,
-/obj/item/device/flashlight/lamp,
+/obj/item/flashlight/lamp,
 /turf/simulated/floor/tiled/milspec,
 /area/groundbase/civilian/pilot)
 "bM" = (
@@ -262,7 +262,7 @@
 /area/groundbase/medical/paramedic)
 "ey" = (
 /obj/structure/table/rack,
-/obj/item/device/suit_cooling_unit{
+/obj/item/suit_cooling_unit{
 	pixel_y = -5
 	},
 /turf/simulated/floor/tiled/white,
@@ -626,8 +626,8 @@
 /area/groundbase/level3/ne)
 "kE" = (
 /obj/structure/table/glass,
-/obj/item/weapon/clipboard,
-/obj/item/device/radio/intercom{
+/obj/item/clipboard,
+/obj/item/radio/intercom{
 	dir = 1;
 	pixel_y = 24
 	},
@@ -824,14 +824,14 @@
 /area/groundbase/medical/patient3)
 "nC" = (
 /obj/structure/closet/secure_closet/CMO,
-/obj/item/weapon/storage/belt/medical,
-/obj/item/device/flashlight/pen,
+/obj/item/storage/belt/medical,
+/obj/item/flashlight/pen,
 /obj/item/clothing/accessory/stethoscope,
 /obj/item/clothing/glasses/hud/health,
-/obj/item/device/defib_kit/compact/combat/loaded,
-/obj/item/weapon/cmo_disk_holder,
-/obj/item/weapon/storage/secure/briefcase/ml3m_pack_cmo,
-/obj/item/weapon/storage/mrebag/pill/sleevingcure,
+/obj/item/defib_kit/compact/combat/loaded,
+/obj/item/cmo_disk_holder,
+/obj/item/storage/secure/briefcase/ml3m_pack_cmo,
+/obj/item/storage/mrebag/pill/sleevingcure,
 /obj/structure/sign/painting/library_secure{
 	pixel_x = 30
 	},
@@ -959,9 +959,9 @@
 /area/groundbase/medical/cmo)
 "oX" = (
 /obj/structure/table/glass,
-/obj/item/weapon/paper_bin,
-/obj/item/weapon/pen,
-/obj/item/device/radio/intercom/department/medbay{
+/obj/item/paper_bin,
+/obj/item/pen,
+/obj/item/radio/intercom/department/medbay{
 	dir = 1;
 	pixel_y = 24
 	},
@@ -969,7 +969,7 @@
 /turf/simulated/floor/tiled/white,
 /area/groundbase/medical/patient4)
 "pa" = (
-/obj/item/weapon/stool/padded,
+/obj/item/stool/padded,
 /turf/simulated/floor/wmarble,
 /area/groundbase/civilian/kitchen)
 "pd" = (
@@ -1125,7 +1125,7 @@
 /area/shuttle/groundbase/exploration)
 "ro" = (
 /obj/structure/bed/padded,
-/obj/item/weapon/bedsheet/medical,
+/obj/item/bedsheet/medical,
 /obj/machinery/alarm{
 	dir = 1
 	},
@@ -1407,8 +1407,8 @@
 /area/groundbase/level3/escapepad)
 "wu" = (
 /obj/structure/table/rack/shelf,
-/obj/item/weapon/tank/oxygen,
-/obj/item/device/suit_cooling_unit,
+/obj/item/tank/oxygen,
+/obj/item/suit_cooling_unit,
 /obj/item/clothing/shoes/magboots,
 /obj/item/clothing/suit/space/void/pilot,
 /obj/item/clothing/head/helmet/space/void/pilot,
@@ -1628,14 +1628,14 @@
 	name = "misc equipment cabinet";
 	pixel_x = -32
 	},
-/obj/item/weapon/storage/box/nifsofts_pilot,
-/obj/item/device/multitool/station_buffered,
+/obj/item/storage/box/nifsofts_pilot,
+/obj/item/multitool/station_buffered,
 /obj/structure/table/steel,
 /turf/simulated/floor/tiled,
 /area/groundbase/civilian/pilot)
 "zL" = (
 /obj/structure/table/rack,
-/obj/item/device/defib_kit/compact/loaded,
+/obj/item/defib_kit/compact/loaded,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 10
 	},
@@ -1667,7 +1667,7 @@
 /area/groundbase/level3/escapepad)
 "Aa" = (
 /obj/structure/bed/padded,
-/obj/item/weapon/bedsheet/medical,
+/obj/item/bedsheet/medical,
 /obj/machinery/alarm{
 	dir = 1
 	},
@@ -1695,7 +1695,7 @@
 /area/groundbase/medical/patient2)
 "AY" = (
 /obj/structure/bed/double/padded,
-/obj/item/weapon/bedsheet/cosmosdouble{
+/obj/item/bedsheet/cosmosdouble{
 	icon_state = "dobulesheetcosmos"
 	},
 /turf/simulated/floor/wood,
@@ -1794,7 +1794,7 @@
 /area/groundbase/civilian/kitchen)
 "Cv" = (
 /obj/structure/bed/padded,
-/obj/item/weapon/bedsheet/medical,
+/obj/item/bedsheet/medical,
 /obj/machinery/alarm{
 	dir = 1
 	},
@@ -1816,7 +1816,7 @@
 /turf/simulated/floor/tiled,
 /area/shuttle/groundbase/exploration)
 "CS" = (
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	pixel_y = -24
 	},
 /turf/simulated/floor/outdoors/sidewalk/slab{
@@ -1909,7 +1909,7 @@
 /area/groundbase/medical/uhallway)
 "DQ" = (
 /obj/structure/table/rack,
-/obj/item/device/suit_cooling_unit{
+/obj/item/suit_cooling_unit{
 	pixel_y = -5
 	},
 /obj/machinery/camera/network/medbay,
@@ -2021,8 +2021,8 @@
 /area/groundbase/level3/nw)
 "Fb" = (
 /obj/structure/table/glass,
-/obj/item/weapon/clipboard,
-/obj/item/device/radio/intercom{
+/obj/item/clipboard,
+/obj/item/radio/intercom{
 	dir = 1;
 	pixel_y = 24
 	},
@@ -2051,7 +2051,7 @@
 /turf/simulated/floor/wood,
 /area/groundbase/dorms/bathroom)
 "Fr" = (
-/obj/item/weapon/stool/padded{
+/obj/item/stool/padded{
 	dir = 1
 	},
 /turf/simulated/floor/wmarble,
@@ -2086,8 +2086,8 @@
 /area/groundbase/civilian/kitchen)
 "FV" = (
 /obj/structure/table/rack/shelf,
-/obj/item/weapon/tank/oxygen,
-/obj/item/device/suit_cooling_unit,
+/obj/item/tank/oxygen,
+/obj/item/suit_cooling_unit,
 /obj/item/clothing/shoes/magboots,
 /obj/item/clothing/suit/space/void/pilot,
 /obj/item/clothing/head/helmet/space/void/pilot,
@@ -2215,7 +2215,7 @@
 /area/groundbase/level3/escapepad)
 "Io" = (
 /obj/structure/table/rack,
-/obj/item/weapon/rig/medical/equipped,
+/obj/item/rig/medical/equipped,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/tiled/white,
 /area/groundbase/medical/paramedic)
@@ -2234,8 +2234,8 @@
 /area/shuttle/groundbase/exploration)
 "ID" = (
 /obj/structure/table/glass,
-/obj/item/weapon/clipboard,
-/obj/item/device/radio/intercom{
+/obj/item/clipboard,
+/obj/item/radio/intercom{
 	dir = 1;
 	pixel_y = 24
 	},
@@ -2405,8 +2405,8 @@
 /area/groundbase/level3/sw)
 "Lw" = (
 /obj/structure/table/glass,
-/obj/item/weapon/clipboard,
-/obj/item/device/radio/intercom{
+/obj/item/clipboard,
+/obj/item/radio/intercom{
 	dir = 1;
 	pixel_y = 24
 	},
@@ -2598,10 +2598,10 @@
 /area/shuttle/groundbase/exploration)
 "Ok" = (
 /obj/structure/table/rack,
-/obj/item/weapon/storage/toolbox/mechanical,
-/obj/item/device/multitool,
-/obj/item/device/gps/medical,
-/obj/item/device/radio,
+/obj/item/storage/toolbox/mechanical,
+/obj/item/multitool,
+/obj/item/gps/medical,
+/obj/item/radio,
 /obj/machinery/alarm,
 /turf/simulated/floor/tiled/white,
 /area/groundbase/medical/paramedic)
@@ -2634,7 +2634,7 @@
 /turf/simulated/open,
 /area/groundbase/dorms/bathroom)
 "Pd" = (
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	pixel_y = -24
 	},
 /turf/simulated/floor/tiled{
@@ -2982,9 +2982,9 @@
 /area/groundbase/medical/uhallway)
 "ST" = (
 /obj/structure/table/glass,
-/obj/item/weapon/paper_bin,
-/obj/item/weapon/pen,
-/obj/item/device/radio/intercom/department/medbay{
+/obj/item/paper_bin,
+/obj/item/pen,
+/obj/item/radio/intercom/department/medbay{
 	dir = 1;
 	pixel_y = 24
 	},
@@ -3016,9 +3016,9 @@
 /area/groundbase/civilian/pilot)
 "Tv" = (
 /obj/structure/table/glass,
-/obj/item/weapon/paper_bin,
-/obj/item/weapon/pen,
-/obj/item/device/radio/intercom/department/medbay{
+/obj/item/paper_bin,
+/obj/item/pen,
+/obj/item/radio/intercom/department/medbay{
 	dir = 1;
 	pixel_y = 24
 	},
@@ -3234,7 +3234,7 @@
 /area/groundbase/civilian/kitchen)
 "XB" = (
 /obj/structure/bed/padded,
-/obj/item/weapon/bedsheet/medical,
+/obj/item/bedsheet/medical,
 /obj/machinery/alarm{
 	dir = 1
 	},
@@ -3338,7 +3338,7 @@
 /area/groundbase/unexplored/outdoors)
 "Zp" = (
 /obj/structure/bed/padded,
-/obj/item/weapon/bedsheet/brown,
+/obj/item/bedsheet/brown,
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 1
 	},

@@ -1,6 +1,6 @@
 #define T_FIREWORK_WEATHER_STAR(name)	"weather firework star (" + (name) + ")"
 
-/obj/item/weapon/firework_star
+/obj/item/firework_star
 	icon = 'icons/obj/firework_stars.dmi'
 	name = "firework star"
 	desc = "A very tightly compacted ball of chemicals for use with firework launcher."
@@ -8,17 +8,17 @@
 	w_class = ITEMSIZE_SMALL
 	origin_tech = list(TECH_MATERIAL = 2, TECH_ENGINEERING = 1)
 
-/obj/item/weapon/firework_star/proc/trigger_firework(var/datum/weather_holder/w_holder)
+/obj/item/firework_star/proc/trigger_firework(var/datum/weather_holder/w_holder)
 	return
 
 
-/obj/item/weapon/firework_star/weather
+/obj/item/firework_star/weather
 	name = "weather firework star"
 	desc = "A firework star designed to alter a weather, rather than put on a show."
 	var/weather_type
 	origin_tech = list(TECH_MATERIAL = 5, TECH_ENGINEERING = 2)
 
-/obj/item/weapon/firework_star/weather/trigger_firework(var/datum/weather_holder/w_holder)
+/obj/item/firework_star/weather/trigger_firework(var/datum/weather_holder/w_holder)
 	if(!w_holder)						// Sanity
 		return
 	if(w_holder.firework_override)		// Make sure weather-based events can't be interfered with
@@ -29,81 +29,81 @@
 		var/datum/weather/our_weather = w_holder.allowed_weather_types[weather_type]
 		w_holder.message_all_outdoor_players(our_weather.imminent_transition_message)
 
-/obj/item/weapon/firework_star/weather/clear
+/obj/item/firework_star/weather/clear
 	name = T_FIREWORK_WEATHER_STAR("CLEAR SKY")
 	weather_type = WEATHER_CLEAR
 	icon_state = "clear"
 
-/obj/item/weapon/firework_star/weather/overcast
+/obj/item/firework_star/weather/overcast
 	name = T_FIREWORK_WEATHER_STAR("CLOUDY")
 	weather_type = WEATHER_OVERCAST
 	icon_state = "cloudy"
 
-/obj/item/weapon/firework_star/weather/fog
+/obj/item/firework_star/weather/fog
 	name = T_FIREWORK_WEATHER_STAR("FOG")
 	weather_type = WEATHER_FOG
 	icon_state = "cloudy"
 
-/obj/item/weapon/firework_star/weather/rain
+/obj/item/firework_star/weather/rain
 	name = T_FIREWORK_WEATHER_STAR("RAIN")
 	weather_type = WEATHER_RAIN
 	icon_state = "rain"
 
-/obj/item/weapon/firework_star/weather/storm
+/obj/item/firework_star/weather/storm
 	name = T_FIREWORK_WEATHER_STAR("STORM")
 	weather_type = WEATHER_STORM
 	icon_state = "rain"
 
-/obj/item/weapon/firework_star/weather/light_snow
+/obj/item/firework_star/weather/light_snow
 	name = T_FIREWORK_WEATHER_STAR("SNOW - LIGHT")
 	weather_type = WEATHER_LIGHT_SNOW
 	icon_state = "snow"
 
-/obj/item/weapon/firework_star/weather/snow
+/obj/item/firework_star/weather/snow
 	name = T_FIREWORK_WEATHER_STAR("SNOW - MEDIUM")
 	weather_type = WEATHER_SNOW
 	icon_state = "snow"
 
-/obj/item/weapon/firework_star/weather/blizzard
+/obj/item/firework_star/weather/blizzard
 	name = T_FIREWORK_WEATHER_STAR("SNOW - HEAVY")
 	weather_type = WEATHER_BLIZZARD
 	icon_state = "snow"
 
-/obj/item/weapon/firework_star/weather/hail
+/obj/item/firework_star/weather/hail
 	name = T_FIREWORK_WEATHER_STAR("HAIL")
 	weather_type = WEATHER_HAIL
 	icon_state = "snow"
 	origin_tech = list(TECH_MATERIAL = 5, TECH_ENGINEERING = 2, TECH_ILLEGAL = 1)
 
-/obj/item/weapon/firework_star/weather/fallout
+/obj/item/firework_star/weather/fallout
 	name = T_FIREWORK_WEATHER_STAR("NUCLEAR")
 	desc = "This is the worst idea ever."
 	weather_type = WEATHER_FALLOUT_TEMP
 	icon_state = "nuclear"
 	origin_tech = list(TECH_MATERIAL = 7, TECH_ENGINEERING = 3, TECH_ILLEGAL = 5)
 
-/obj/item/weapon/firework_star/weather/confetti
+/obj/item/firework_star/weather/confetti
 	name = T_FIREWORK_WEATHER_STAR("CONFETTI")
 	desc = "A firework star designed to alter a weather, rather than put on a show. This one makes colorful confetti rain from the sky."
 	weather_type = WEATHER_CONFETTI
 	icon_state = "confetti"
 
 
-/obj/item/weapon/firework_star/aesthetic
+/obj/item/firework_star/aesthetic
 	name = "aesthetic firework star"
 	desc = "A firework star designed to paint the sky with pretty lights."
 	var/list/firework_adjectives = list("beautiful", "pretty", "fancy", "colorful", "bright", "shimmering")
 	var/list/firework_colors = list("red", "orange", "yellow", "green", "cyan", "blue", "purple", "pink", "beige", "white")
 
-/obj/item/weapon/firework_star/aesthetic/trigger_firework(var/datum/weather_holder/w_holder)
+/obj/item/firework_star/aesthetic/trigger_firework(var/datum/weather_holder/w_holder)
 	if(!w_holder)
 		return
 	w_holder.message_all_outdoor_players(get_firework_message())
 
-/obj/item/weapon/firework_star/aesthetic/proc/get_firework_message()
+/obj/item/firework_star/aesthetic/proc/get_firework_message()
 	return "You see a [pick(firework_adjectives)] explosion of [pick(firework_colors)] sparks in the sky!"
 
-/obj/item/weapon/firework_star/aesthetic/configurable
+/obj/item/firework_star/aesthetic/configurable
 	name = "configurable aesthetic firework star"
 	desc = "A firework star designed to paint the sky with pretty lights. This one's advanced and can be configured to specific shapes or colors."
 	icon_state = "config"
@@ -116,7 +116,7 @@
 								"a bottle", "a boat", "a spaceship",
 								"Nanotrasen logo", "a geometric-looking letter S", "a dodecahedron")
 
-/obj/item/weapon/firework_star/aesthetic/configurable/attack_self(var/mob/user)
+/obj/item/firework_star/aesthetic/configurable/attack_self(var/mob/user)
 	var/choice = tgui_alert(usr, "What setting do you want to adjust?", "Firework Star", list("Color", "Shape", "Nothing"))
 	if(src.loc != user)
 		return
@@ -135,7 +135,7 @@
 		if(shape_choice)
 			current_shape = shape_choice
 
-/obj/item/weapon/firework_star/aesthetic/configurable/get_firework_message()
+/obj/item/firework_star/aesthetic/configurable/get_firework_message()
 	var/temp_shape = current_shape
 	if(temp_shape == "Random")
 		var/list/shapes_copy = firework_shapes.Copy()

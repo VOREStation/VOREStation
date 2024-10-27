@@ -5,7 +5,7 @@
 	desc = "For storing all sorts of delicious foods!"
 
 /obj/machinery/smartfridge/chef/accept_check(var/obj/item/O as obj)
-	if(istype(O,/obj/item/weapon/reagent_containers/food/snacks))
+	if(istype(O,/obj/item/reagent_containers/food/snacks))
 		return 1
 	return 0
 
@@ -18,7 +18,7 @@
 	icon_contents = "drinks"
 
 /obj/machinery/smartfridge/drinks/accept_check(var/obj/item/O as obj)
-	if(istype(O,/obj/item/weapon/reagent_containers/glass) || istype(O,/obj/item/weapon/reagent_containers/food/drinks) || istype(O,/obj/item/weapon/reagent_containers/food/condiment))
+	if(istype(O,/obj/item/reagent_containers/glass) || istype(O,/obj/item/reagent_containers/food/drinks) || istype(O,/obj/item/reagent_containers/food/condiment))
 		return 1
 	return 0
 
@@ -62,7 +62,7 @@
 	persistent = /datum/persistent/storage/smartfridge/produce/lossy
 
 /obj/machinery/smartfridge/produce/accept_check(var/obj/item/O as obj)
-	if(istype(O,/obj/item/weapon/reagent_containers/food/snacks/grown/) || istype(O,/obj/item/seeds/))
+	if(istype(O,/obj/item/reagent_containers/food/snacks/grown/) || istype(O,/obj/item/seeds/))
 		return 1
 	return 0
 

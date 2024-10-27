@@ -37,7 +37,7 @@
 	T.wet_floor()
 
 /datum/blob_type/pressurized_slime/on_death(obj/structure/blob/B)
-	B.visible_message("<span class='danger'>The blob ruptures, spraying the area with liquid!</span>")
+	B.visible_message(span_danger("The blob ruptures, spraying the area with liquid!"))
 	wet_surroundings(B, 50)
 
 /datum/blob_type/pressurized_slime/proc/wet_surroundings(var/obj/structure/blob/B, var/probability = 50)
@@ -47,10 +47,10 @@
 		for(var/atom/movable/AM in T)
 			AM.water_act(2)
 
-/datum/blob_type/pressurized_slime/on_chunk_tick(obj/item/weapon/blobcore_chunk/B)
+/datum/blob_type/pressurized_slime/on_chunk_tick(obj/item/blobcore_chunk/B)
 	wet_surroundings(B, 10)
 
-/datum/blob_type/pressurized_slime/on_chunk_use(obj/item/weapon/blobcore_chunk/B, mob/living/user)	// Drenches you in water.
+/datum/blob_type/pressurized_slime/on_chunk_use(obj/item/blobcore_chunk/B, mob/living/user)	// Drenches you in water.
 	if(user)
 		user.ExtinguishMob()
 		user.fire_stacks = CLAMP(user.fire_stacks - 1, -25, 25)

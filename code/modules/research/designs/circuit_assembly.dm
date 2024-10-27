@@ -10,7 +10,7 @@
 	id = "ic_printer"
 	req_tech = list(TECH_MATERIAL = 3, TECH_ENGINEERING = 4, TECH_DATA = 5)
 	materials = list(MAT_STEEL = 10000)
-	build_path = /obj/item/device/integrated_circuit_printer
+	build_path = /obj/item/integrated_circuit_printer
 	sort_string = "UAAAA"
 
 /datum/design/item/integrated_circuitry/custom_circuit_printer_upgrade
@@ -19,7 +19,7 @@
 	id = "ic_printer_upgrade_adv"
 	req_tech = list(TECH_ENGINEERING = 3, TECH_DATA = 4)
 	materials = list(MAT_STEEL = 2000)
-	build_path = /obj/item/weapon/disk/integrated_circuit/upgrade/advanced
+	build_path = /obj/item/disk/integrated_circuit/upgrade/advanced
 	sort_string = "UBAAA"
 
 /datum/design/item/integrated_circuitry/wirer
@@ -27,7 +27,7 @@
 	id = "wirer"
 	req_tech = list(TECH_MATERIAL = 2, TECH_ENGINEERING = 2)
 	materials = list(MAT_STEEL = 5000, MAT_GLASS = 2500)
-	build_path = /obj/item/device/integrated_electronics/wirer
+	build_path = /obj/item/integrated_electronics/wirer
 	sort_string = "UCAAA"
 
 /datum/design/item/integrated_circuitry/debugger
@@ -35,7 +35,7 @@
 	id = "debugger"
 	req_tech = list(TECH_MATERIAL = 2, TECH_ENGINEERING = 2)
 	materials = list(MAT_STEEL = 5000, MAT_GLASS = 2500)
-	build_path = /obj/item/device/integrated_electronics/debugger
+	build_path = /obj/item/integrated_electronics/debugger
 	sort_string = "UCBBB"
 
 // Assemblies
@@ -50,7 +50,7 @@
 	id = "assembly-small"
 	req_tech = list(TECH_MATERIAL = 3, TECH_ENGINEERING = 2, TECH_POWER = 2)
 	materials = list(MAT_STEEL = 10000)
-	build_path = /obj/item/device/electronic_assembly
+	build_path = /obj/item/electronic_assembly
 	sort_string = "UDAAA"
 
 /datum/design/item/integrated_circuitry/assembly/custom_circuit_assembly_medium
@@ -59,7 +59,7 @@
 	id = "assembly-medium"
 	req_tech = list(TECH_MATERIAL = 4, TECH_ENGINEERING = 3, TECH_POWER = 3)
 	materials = list(MAT_STEEL = 20000)
-	build_path = /obj/item/device/electronic_assembly/medium
+	build_path = /obj/item/electronic_assembly/medium
 	sort_string = "UDAAB"
 
 /datum/design/item/integrated_circuitry/assembly/custom_circuit_assembly_large
@@ -68,7 +68,7 @@
 	id = "assembly-large"
 	req_tech = list(TECH_MATERIAL = 5, TECH_ENGINEERING = 4, TECH_POWER = 4)
 	materials = list(MAT_STEEL = 40000)
-	build_path = /obj/item/device/electronic_assembly/large
+	build_path = /obj/item/electronic_assembly/large
 	sort_string = "UDAAC"
 
 /datum/design/item/integrated_circuitry/assembly/custom_circuit_assembly_drone
@@ -77,7 +77,7 @@
 	id = "assembly-drone"
 	req_tech = list(TECH_MATERIAL = 4, TECH_ENGINEERING = 4, TECH_POWER = 4)
 	materials = list(MAT_STEEL = 30000)
-	build_path = /obj/item/device/electronic_assembly/drone
+	build_path = /obj/item/electronic_assembly/drone
 	sort_string = "UDAAD"
 
 /datum/design/item/integrated_circuitry/assembly/custom_circuit_assembly_device
@@ -86,7 +86,7 @@
 	id = "assembly-device"
 	req_tech = list(TECH_MATERIAL = 2, TECH_ENGINEERING = 2, TECH_POWER = 2)
 	materials = list(MAT_STEEL = 5000)
-	build_path = /obj/item/device/assembly/electronic_assembly
+	build_path = /obj/item/assembly/electronic_assembly
 	sort_string = "UDAAE"
 
 /datum/design/item/integrated_circuitry/assembly/custom_circuit_assembly_implant
@@ -95,5 +95,5 @@
 	id = "assembly-implant"
 	req_tech = list(TECH_MATERIAL = 5, TECH_ENGINEERING = 4, TECH_POWER = 3, TECH_BIO = 5)
 	materials = list(MAT_STEEL = 2000)
-	build_path = /obj/item/weapon/implant/integrated_circuit
+	build_path = /obj/item/implant/integrated_circuit
 	sort_string = "UDAAF"

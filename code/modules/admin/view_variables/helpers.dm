@@ -2,7 +2,7 @@
 // Keep these two together, they *must* be defined on both
 // If /client ever becomes /datum/client or similar, they can be merged
 /datum/proc/get_view_variables_header()
-	return "<b>[src]</b>"
+	return span_bold("[src]")
 
 /atom/get_view_variables_header()
 	return {"
@@ -86,7 +86,7 @@
 		<option value='?_src_=vars;[HrefToken()];emp=\ref[src]'>Trigger EM pulse</option>
 		"}
 
-/obj/item/device/pda/get_view_variables_options()
+/obj/item/pda/get_view_variables_options()
 	return ..() + {"
 		<option value='?_src_=vars;[HrefToken()];fakepdapropconvo=\ref[src]'>Add Fake Prop Conversation</option>
 		"}
@@ -178,7 +178,7 @@
 	if(!user)
 		return FALSE
 	if(!(var_to_edit in vars))
-		to_chat(user, "<span class='warning'>\The [src] does not have a var '[var_to_edit]'</span>")
+		to_chat(user, span_warning("\The [src] does not have a var '[var_to_edit]'"))
 		return FALSE
 	if(var_to_edit in VV_static())
 		return FALSE

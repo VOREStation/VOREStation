@@ -2,10 +2,10 @@
 	name = "Darkness"
 	desc = "Disrupts photons moving in a local area, causing darkness to shroud yourself or a position of your choosing."
 	cost = 25
-	obj_path = /obj/item/weapon/spell/spawner/darkness
+	obj_path = /obj/item/spell/spawner/darkness
 	category = UTILITY_SPELLS
 
-/obj/item/weapon/spell/spawner/darkness
+/obj/item/spell/spawner/darkness
 	name = "darkness"
 	desc = "Not even light can stand in your way now."
 	icon_state = "darkness"
@@ -13,12 +13,12 @@
 	aspect = ASPECT_DARK
 	spawner_type = /obj/effect/temporary_effect/darkness
 
-/obj/item/weapon/spell/spawner/darkness/on_ranged_cast(atom/hit_atom, mob/user)
+/obj/item/spell/spawner/darkness/on_ranged_cast(atom/hit_atom, mob/user)
 	if(pay_energy(500))
 		adjust_instability(4)
 		..()
 
-/obj/item/weapon/spell/spawner/darkness/New()
+/obj/item/spell/spawner/darkness/New()
 	..()
 	set_light(6, -20, l_color = "#FFFFFF")
 

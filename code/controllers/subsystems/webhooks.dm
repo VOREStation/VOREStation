@@ -64,7 +64,7 @@ SUBSYSTEM_DEF(webhooks)
 		return
 
 	if(!SSwebhooks.subsystem_initialized)
-		to_chat(usr, SPAN_WARNING("Let the webhook subsystem initialize before trying to reload it."))
+		to_chat(usr, span_warning("Let the webhook subsystem initialize before trying to reload it."))
 		return
 
 	to_world_log("[usr.key] has reloaded webhooks.")
@@ -79,7 +79,7 @@ SUBSYSTEM_DEF(webhooks)
 		return
 
 	if(!length(SSwebhooks.webhook_decls))
-		to_chat(usr, SPAN_WARNING("Webhook list is empty; either webhooks are disabled, webhooks aren't configured, or the subsystem hasn't initialized."))
+		to_chat(usr, span_warning("Webhook list is empty; either webhooks are disabled, webhooks aren't configured, or the subsystem hasn't initialized."))
 		return
 
 	var/choice = tgui_input_list(usr, "Select a webhook to ping.", "Ping Webhook", SSwebhooks.webhook_decls)

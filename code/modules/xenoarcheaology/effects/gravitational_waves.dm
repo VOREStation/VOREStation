@@ -28,13 +28,13 @@
 	var/seconds_since_last_pull = max(0, round((last_wave_pull - world.time) / 10))
 
 	if(prob(10 + seconds_since_last_pull))
-		holder.visible_message("<span class='alien'>\The [holder] distorts as local gravity intensifies, and shifts toward it.</span>")
+		holder.visible_message(span_alien("\The [holder] distorts as local gravity intensifies, and shifts toward it."))
 		last_wave_pull = world.time
 		gravwave(get_turf(holder), effectrange, pull_power)
 
 /datum/artifact_effect/extreme/gravity_wave/DoEffectPulse()
 	var/atom/holder = get_master_holder()
-	holder.visible_message("<span class='alien'>\The [holder] distorts as local gravity intensifies, and shifts toward it.</span>")
+	holder.visible_message(span_alien("\The [holder] distorts as local gravity intensifies, and shifts toward it."))
 	gravwave(get_turf(holder), effectrange, pull_power)
 
 /datum/artifact_effect/extreme/gravity_wave/proc/gravwave(var/atom/target, var/pull_range = 7, var/pull_power = STAGE_TWO)

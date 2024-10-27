@@ -10,12 +10,12 @@
  *		Now get ready to battle for the fate of the universe: Wiz-Off!
  */
 
-/obj/item/weapon/deck/wizoff
+/obj/item/deck/wizoff
 	name = "\improper Wiz-Off deck"
 	desc = "A Wiz-Off deck. Fight an arcane battle for the fate of the universe: Draw 5! Play 5! Best of 5!"
 	icon_state = "wizoff"
 
-/obj/item/weapon/deck/wizoff/New()
+/obj/item/deck/wizoff/New()
 	..()
 	var/datum/playingcard/P
 	for(var/cardtext in card_wiz_list)
@@ -25,7 +25,7 @@
 		P.back_icon = "[icon_state]_card_back"
 		cards += P
 
-/obj/item/weapon/deck/wizoff/var/list/card_wiz_list = list(
+/obj/item/deck/wizoff/var/list/card_wiz_list = list(
 	"O1: Spell Cards",
 	"O2: Summon Bees",
 	"O3: Polymorph",
@@ -55,7 +55,7 @@
 	"U9: Jaunt"
 	)
 
-/obj/item/weapon/book/manual/wizzoffguide
+/obj/item/book/manual/wizzoffguide
 	name = "WizOff Guide"
 	icon = 'icons/obj/playing_cards.dmi'
 	icon_state ="wizoff_guide"
@@ -65,7 +65,7 @@
 	drop_sound = 'sound/items/drop/paper.ogg'
 	pickup_sound = 'sound/items/pickup/paper.ogg'
 
-/obj/item/weapon/book/manual/wizzoffguide/New()
+/obj/item/book/manual/wizzoffguide/New()
 	..()
 	dat = {"
 

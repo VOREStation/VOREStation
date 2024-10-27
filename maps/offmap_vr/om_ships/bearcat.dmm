@@ -182,7 +182,7 @@
 	dir = 8;
 	icon_state = "tube1"
 	},
-/obj/item/weapon/gun/energy/stunrevolver,
+/obj/item/gun/energy/stunrevolver,
 /obj/structure/closet/cabinet,
 /obj/item/clothing/suit/space/void/refurb/officer,
 /obj/item/clothing/head/helmet/space/void/refurb/officer,
@@ -201,13 +201,13 @@
 /turf/simulated/floor/bluegrid,
 /area/shuttle/bearcat/comms)
 "aB" = (
-/obj/item/weapon/bedsheet/captain,
+/obj/item/bedsheet/captain,
 /obj/structure/bed/pod,
 /turf/simulated/floor/wood,
 /area/shuttle/bearcat/command_captain)
 "aC" = (
-/obj/item/weapon/paper_bin,
-/obj/item/weapon/pen,
+/obj/item/paper_bin,
+/obj/item/pen,
 /obj/structure/table/woodentable,
 /obj/machinery/light_switch{
 	pixel_y = 25
@@ -247,7 +247,7 @@
 /obj/structure/handrail{
 	dir = 1
 	},
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	pixel_y = -22
 	},
 /turf/simulated/floor/tiled/techmaint,
@@ -329,7 +329,7 @@
 	icon_state = "1-4"
 	},
 /obj/item/ammo_magazine/ammo_box/b12g/beanbag,
-/obj/item/weapon/gun/projectile/shotgun/pump/combat{
+/obj/item/gun/projectile/shotgun/pump/combat{
 	desc = "When words don't strike hard enough.";
 	name = "Solid Argument"
 	},
@@ -339,7 +339,7 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	pixel_y = -22
 	},
 /turf/simulated/floor/wood,
@@ -389,16 +389,16 @@
 /area/shuttle/bearcat/dock_central)
 "aT" = (
 /obj/structure/closet/crate,
-/obj/item/weapon/tank/jetpack/oxygen,
-/obj/item/weapon/tank/jetpack/oxygen,
+/obj/item/tank/jetpack/oxygen,
+/obj/item/tank/jetpack/oxygen,
 /obj/item/clothing/shoes/magboots,
 /obj/item/clothing/shoes/magboots,
 /obj/item/clothing/suit/space/void/refurb/engineering,
 /obj/item/clothing/suit/space/void/refurb/engineering,
 /obj/item/clothing/head/helmet/space/void/refurb/engineering,
 /obj/item/clothing/head/helmet/space/void/refurb/engineering,
-/obj/item/weapon/storage/belt/utility/full,
-/obj/item/weapon/storage/belt/utility/full,
+/obj/item/storage/belt/utility/full,
+/obj/item/storage/belt/utility/full,
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/bearcat/dock_port)
 "aU" = (
@@ -874,7 +874,7 @@
 	dir = 4;
 	icon_state = "shower"
 	},
-/obj/item/weapon/soap,
+/obj/item/soap,
 /obj/machinery/light{
 	dir = 1
 	},
@@ -974,7 +974,7 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/bearcat/crew_dorms)
 "cv" = (
-/obj/item/weapon/bedsheet/blue,
+/obj/item/bedsheet/blue,
 /obj/structure/bed,
 /obj/structure/closet/walllocker/emerglocker/north,
 /turf/simulated/floor/tiled/techfloor,
@@ -1095,7 +1095,7 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/bearcat/crew_dorms)
 "cK" = (
-/obj/item/weapon/bedsheet/brown,
+/obj/item/bedsheet/brown,
 /obj/structure/bed,
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 8
@@ -1160,16 +1160,16 @@
 /area/shuttle/bearcat/maintenance_engine)
 "cS" = (
 /obj/structure/closet/crate,
-/obj/item/weapon/tank/jetpack/oxygen,
-/obj/item/weapon/tank/jetpack/oxygen,
+/obj/item/tank/jetpack/oxygen,
+/obj/item/tank/jetpack/oxygen,
 /obj/item/clothing/shoes/magboots,
 /obj/item/clothing/shoes/magboots,
 /obj/item/clothing/suit/space/void/refurb/engineering,
 /obj/item/clothing/suit/space/void/refurb/engineering,
 /obj/item/clothing/head/helmet/space/void/refurb/engineering,
 /obj/item/clothing/head/helmet/space/void/refurb/engineering,
-/obj/item/weapon/storage/belt/utility/full,
-/obj/item/weapon/storage/belt/utility/full,
+/obj/item/storage/belt/utility/full,
+/obj/item/storage/belt/utility/full,
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/bearcat/dock_starboard)
 "cT" = (
@@ -1210,7 +1210,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	pixel_y = -22
 	},
 /obj/machinery/light,
@@ -1244,7 +1244,7 @@
 /area/shuttle/bearcat/crew_corridors)
 "db" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	pixel_x = -32
 	},
 /obj/structure/cable{
@@ -1256,7 +1256,7 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/bearcat/crew_dorms)
 "dc" = (
-/obj/item/weapon/bedsheet/orange,
+/obj/item/bedsheet/orange,
 /obj/structure/bed,
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/bearcat/crew_dorms)
@@ -1299,7 +1299,7 @@
 /area/shuttle/bearcat/crew_dorms)
 "dh" = (
 /obj/structure/closet/walllocker/emerglocker/south,
-/obj/item/weapon/bedsheet/green,
+/obj/item/bedsheet/green,
 /obj/structure/bed,
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/bearcat/crew_dorms)
@@ -1349,7 +1349,7 @@
 /area/shuttle/bearcat/crew_kitchen)
 "dq" = (
 /obj/structure/closet/secure_closet/freezer/fridge,
-/obj/item/weapon/storage/box/donkpockets,
+/obj/item/storage/box/donkpockets,
 /obj/machinery/light{
 	dir = 4
 	},
@@ -1368,7 +1368,7 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/bearcat/cargo)
 "dt" = (
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	dir = 1;
 	pixel_y = 22
 	},
@@ -1513,7 +1513,7 @@
 /area/shuttle/bearcat/crew_medbay)
 "dK" = (
 /obj/structure/bed,
-/obj/item/weapon/bedsheet/medical,
+/obj/item/bedsheet/medical,
 /obj/effect/decal/cleanable/blood,
 /obj/structure/closet/walllocker/emerglocker/east,
 /turf/simulated/floor/tiled/techfloor,
@@ -1684,10 +1684,10 @@
 /area/shuttle/bearcat/crew_medbay)
 "ec" = (
 /obj/structure/table/standard,
-/obj/item/weapon/storage/pill_bottle/kelotane,
-/obj/item/weapon/storage/box/syringes,
+/obj/item/storage/pill_bottle/kelotane,
+/obj/item/storage/box/syringes,
 /obj/structure/cable,
-/obj/item/weapon/storage/firstaid,
+/obj/item/storage/firstaid,
 /obj/machinery/power/apc/alarms_hidden{
 	dir = 8;
 	icon_state = "apc0"
@@ -1832,9 +1832,9 @@
 /area/shuttle/bearcat/crew_corridors)
 "ex" = (
 /obj/structure/table/standard,
-/obj/item/device/healthanalyzer,
-/obj/item/weapon/storage/pill_bottle/kelotane,
-/obj/item/weapon/storage/pill_bottle/antitox,
+/obj/item/healthanalyzer,
+/obj/item/storage/pill_bottle/kelotane,
+/obj/item/storage/pill_bottle/antitox,
 /obj/machinery/light_switch{
 	pixel_x = -25
 	},
@@ -1971,7 +1971,7 @@
 /obj/structure/handrail{
 	dir = 1
 	},
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	pixel_y = -22
 	},
 /turf/simulated/floor/tiled/techfloor,
@@ -1987,7 +1987,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	dir = 1;
 	pixel_y = 22
 	},
@@ -2018,13 +2018,13 @@
 /area/shuttle/bearcat/crew_corridors)
 "eV" = (
 /obj/structure/table/standard,
-/obj/item/weapon/storage/toolbox/electrical,
-/obj/item/weapon/storage/toolbox/electrical{
+/obj/item/storage/toolbox/electrical,
+/obj/item/storage/toolbox/electrical{
 	pixel_x = 7;
 	pixel_y = 4
 	},
-/obj/item/device/t_scanner,
-/obj/item/weapon/cell/high,
+/obj/item/t_scanner,
+/obj/item/cell/high,
 /obj/machinery/light_switch{
 	pixel_y = 25
 	},
@@ -2055,7 +2055,7 @@
 /obj/fiftyspawner/steel,
 /obj/fiftyspawner/rods,
 /obj/fiftyspawner/rglass,
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	dir = 1;
 	pixel_y = 22
 	},
@@ -2063,11 +2063,11 @@
 /area/shuttle/bearcat/maintenance_storage)
 "eZ" = (
 /obj/structure/table/standard,
-/obj/item/weapon/tank/jetpack/oxygen,
+/obj/item/tank/jetpack/oxygen,
 /obj/item/clothing/shoes/magboots,
 /obj/item/clothing/suit/space/void/refurb/engineering,
 /obj/item/clothing/head/helmet/space/void/refurb/engineering,
-/obj/item/weapon/storage/belt/utility/full,
+/obj/item/storage/belt/utility/full,
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/bearcat/maintenance_storage)
 "fa" = (
@@ -2084,7 +2084,7 @@
 /area/shuttle/bearcat/crew_corridors)
 "fb" = (
 /obj/structure/bed,
-/obj/item/weapon/bedsheet/medical,
+/obj/item/bedsheet/medical,
 /obj/structure/closet/walllocker/emerglocker/east,
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/bearcat/crew_medbay)
@@ -2118,13 +2118,13 @@
 /area/shuttle/bearcat/crew_corridors)
 "fh" = (
 /obj/structure/table/standard,
-/obj/item/weapon/storage/toolbox/mechanical{
+/obj/item/storage/toolbox/mechanical{
 	pixel_x = 5;
 	pixel_y = -7
 	},
-/obj/item/weapon/storage/toolbox/mechanical,
+/obj/item/storage/toolbox/mechanical,
 /obj/item/clothing/head/welding,
-/obj/item/device/analyzer,
+/obj/item/analyzer,
 /obj/machinery/light_switch{
 	pixel_x = -25
 	},
@@ -2159,7 +2159,7 @@
 /area/shuttle/bearcat/maintenance_storage)
 "fm" = (
 /obj/structure/table/standard,
-/obj/item/weapon/tank/jetpack/oxygen,
+/obj/item/tank/jetpack/oxygen,
 /obj/item/clothing/shoes/magboots,
 /obj/item/clothing/suit/space/void/refurb/engineering,
 /obj/item/clothing/head/helmet/space/void/refurb/engineering,
@@ -2168,7 +2168,7 @@
 	icon_state = "alarm0";
 	pixel_x = 26
 	},
-/obj/item/weapon/storage/belt/utility/full,
+/obj/item/storage/belt/utility/full,
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/bearcat/maintenance_storage)
 "fn" = (
@@ -2279,7 +2279,7 @@
 /obj/structure/closet/walllocker/emerglocker/east,
 /obj/effect/decal/cleanable/cobweb2,
 /obj/machinery/washing_machine,
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	dir = 1;
 	pixel_y = 22
 	},
@@ -2297,10 +2297,10 @@
 /area/shuttle/bearcat/crew_corridors)
 "fA" = (
 /obj/structure/table/standard,
-/obj/item/device/flashlight,
-/obj/item/device/flashlight,
-/obj/item/weapon/storage/box/lights/bulbs,
-/obj/item/weapon/storage/box/lights/mixed,
+/obj/item/flashlight,
+/obj/item/flashlight,
+/obj/item/storage/box/lights/bulbs,
+/obj/item/storage/box/lights/mixed,
 /obj/structure/cable,
 /obj/machinery/alarm/alarms_hidden{
 	dir = 4;
@@ -2309,7 +2309,7 @@
 	},
 /obj/machinery/power/apc/alarms_hidden,
 /obj/item/clothing/head/welding,
-/obj/item/device/radio,
+/obj/item/radio,
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/bearcat/maintenance_storage)
 "fB" = (
@@ -2459,8 +2459,8 @@
 /area/shuttle/bearcat/unused2)
 "fR" = (
 /obj/structure/table/reinforced,
-/obj/item/device/flashlight/lamp,
-/obj/item/weapon/spacecash/c1000,
+/obj/item/flashlight/lamp,
+/obj/item/spacecash/c1000,
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/bearcat/unused2)
 "fS" = (
@@ -2584,7 +2584,7 @@
 /area/shuttle/bearcat/unused2)
 "gg" = (
 /obj/machinery/light/small,
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	pixel_y = -22
 	},
 /turf/simulated/floor/tiled/techfloor,
@@ -2679,7 +2679,7 @@
 /obj/machinery/light/small{
 	dir = 1
 	},
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	dir = 1;
 	pixel_y = 22
 	},
@@ -2728,15 +2728,15 @@
 /area/shuttle/bearcat/maintenance_power)
 "gx" = (
 /obj/structure/table/standard,
-/obj/item/device/flashlight,
-/obj/item/weapon/storage/toolbox/electrical{
+/obj/item/flashlight,
+/obj/item/storage/toolbox/electrical{
 	pixel_x = 7;
 	pixel_y = 4
 	},
 /obj/machinery/light_switch{
 	pixel_y = 25
 	},
-/obj/item/weapon/tool/wrench,
+/obj/item/tool/wrench,
 /obj/machinery/light/small{
 	dir = 1
 	},
@@ -2747,7 +2747,7 @@
 /obj/item/stack/material/uranium{
 	amount = 10
 	},
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	dir = 1;
 	pixel_y = 22
 	},
@@ -2911,7 +2911,7 @@
 /obj/structure/handrail{
 	dir = 8
 	},
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	pixel_y = -22
 	},
 /turf/simulated/floor/plating,
@@ -2949,8 +2949,8 @@
 /obj/structure/closet/crate{
 	dir = 8
 	},
-/obj/item/weapon/tank/phoron,
-/obj/item/weapon/tank/phoron,
+/obj/item/tank/phoron,
+/obj/item/tank/phoron,
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/bearcat/maintenance_enginecontrol)
 "gS" = (
@@ -3209,7 +3209,7 @@
 /turf/simulated/wall/rshull,
 /area/shuttle/bearcat/maintenance_engine_pod_starboard)
 "in" = (
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	pixel_y = -22
 	},
 /turf/simulated/floor/tiled/techfloor,
@@ -3289,7 +3289,7 @@
 /area/shuttle/bearcat/dock_port)
 "nx" = (
 /obj/structure/bed,
-/obj/item/weapon/bedsheet/medical,
+/obj/item/bedsheet/medical,
 /obj/structure/closet/walllocker/emerglocker/south,
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/bearcat/crew_medbay)
@@ -3323,7 +3323,7 @@
 /turf/simulated/floor/airless,
 /area/shuttle/bearcat/command)
 "sP" = (
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	pixel_y = -22
 	},
 /obj/structure/closet/walllocker/emerglocker/east,
@@ -3356,7 +3356,7 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/bearcat/dock_starboard)
 "Bo" = (
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	pixel_y = -22
 	},
 /turf/simulated/floor/tiled/techfloor,
@@ -3508,7 +3508,7 @@
 /obj/structure/bed/chair/bay/comfy/black{
 	dir = 1
 	},
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	pixel_y = -22
 	},
 /turf/simulated/floor/tiled/techfloor,

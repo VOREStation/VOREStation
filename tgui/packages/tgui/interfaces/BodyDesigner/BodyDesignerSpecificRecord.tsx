@@ -1,15 +1,15 @@
 import { capitalize } from 'common/string';
-
-import { useBackend } from '../../backend';
+import { useBackend } from 'tgui/backend';
 import {
   Box,
   Button,
-  ByondUi,
   ColorBox,
   Flex,
   LabeledList,
   Section,
-} from '../../components';
+} from 'tgui/components';
+import { ByondUi } from 'tgui-core/components';
+
 import { activeBodyRecord } from './types';
 
 export const BodyDesignerSpecificRecord = (props: {

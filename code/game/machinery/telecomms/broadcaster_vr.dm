@@ -32,7 +32,7 @@
 
 		var/list/forced_radios
 		for(var/datum/weakref/wr in linked_radios_weakrefs)
-			var/obj/item/device/radio/R = wr.resolve()
+			var/obj/item/radio/R = wr.resolve()
 			if(istype(R))
 				LAZYDISTINCTADD(forced_radios, R)
 

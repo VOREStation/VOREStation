@@ -45,7 +45,7 @@
 	if(env)
 		env.add_thermal_energy(-10 * 1000)
 
-/datum/blob_type/cryogenic_goo/on_chunk_tick(obj/item/weapon/blobcore_chunk/B)
+/datum/blob_type/cryogenic_goo/on_chunk_tick(obj/item/blobcore_chunk/B)
 	B.reagents.add_reagent("cryoslurry", 0.5)
 
 	var/turf/simulated/T = get_turf(B)
@@ -56,6 +56,6 @@
 	if(env)
 		env.add_thermal_energy(-10 * 1000)
 
-/datum/blob_type/cryogenic_goo/on_chunk_use(obj/item/weapon/blobcore_chunk/B, mob/living/user)
+/datum/blob_type/cryogenic_goo/on_chunk_use(obj/item/blobcore_chunk/B, mob/living/user)
 	user.add_modifier(/datum/modifier/endothermic, 5 MINUTES)
 	return

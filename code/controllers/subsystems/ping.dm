@@ -12,8 +12,9 @@ SUBSYSTEM_DEF(ping)
 	runlevels = RUNLEVEL_LOBBY | RUNLEVELS_DEFAULT
 	var/list/currentrun = list()
 
-/datum/controller/subsystem/ping/stat_entry()
-	..("P:[GLOB.clients.len]")
+/datum/controller/subsystem/ping/stat_entry(msg)
+	msg = "P:[GLOB.clients.len]"
+	return ..()
 
 /datum/controller/subsystem/ping/fire(resumed = FALSE)
 	// Prepare the new batch of clients

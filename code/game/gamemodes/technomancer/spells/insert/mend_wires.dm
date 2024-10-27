@@ -3,20 +3,20 @@
 	desc = "Binds the internal wiring of robotic limbs and components over time."
 	spell_power_desc = "Healing amount increased."
 	cost = 50
-	obj_path = /obj/item/weapon/spell/insert/mend_wires
+	obj_path = /obj/item/spell/insert/mend_wires
 	ability_icon_state = "tech_mendwounds"
 	category = SUPPORT_SPELLS
 
-/obj/item/weapon/spell/insert/mend_wires
+/obj/item/spell/insert/mend_wires
 	name = "mend wires"
 	desc = "A roboticist is now obsolete."
 	icon_state = "mend_wounds"
 	cast_methods = CAST_MELEE
 	aspect = ASPECT_BIOMED
 	light_color = "#FF5C5C"
-	inserting = /obj/item/weapon/inserted_spell/mend_wires
+	inserting = /obj/item/inserted_spell/mend_wires
 
-/obj/item/weapon/inserted_spell/mend_wires/on_insert()
+/obj/item/inserted_spell/mend_wires/on_insert()
 	spawn(1)
 		if(ishuman(host))
 			var/mob/living/carbon/human/H = host

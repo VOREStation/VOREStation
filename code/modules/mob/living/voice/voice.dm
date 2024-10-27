@@ -3,7 +3,7 @@
 	name = "unknown person"
 	desc = "How are you examining me?"
 	see_invisible = SEE_INVISIBLE_LIVING
-	var/obj/item/device/communicator/comm = null
+	var/obj/item/communicator/comm = null
 
 	emote_type = 2 //This lets them emote through containers.  The communicator has a image feed of the person calling them so...
 
@@ -11,7 +11,7 @@
 	add_language(LANGUAGE_GALCOM)
 	set_default_language(GLOB.all_languages[LANGUAGE_GALCOM])
 
-	if(istype(loc, /obj/item/device/communicator))
+	if(istype(loc, /obj/item/communicator))
 		comm = loc
 	. = ..()
 
@@ -83,14 +83,14 @@
 	var/new_name = sanitizeSafe(tgui_input_text(src, "Who would you like to be now?", "Communicator", src.client.prefs.real_name, MAX_NAME_LEN), MAX_NAME_LEN)
 	if(new_name)
 		if(comm)
-			comm.visible_message("<span class='notice'>[icon2html(comm,viewers(comm))] [src.name] has left, and now you see [new_name].</span>")
+			comm.visible_message(span_notice("[icon2html(comm,viewers(comm))] [src.name] has left, and now you see [new_name]."))
 		//Do a bit of logging in-case anyone tries to impersonate other characters for whatever reason.
 		var/msg = "[src.client.key] ([src]) has changed their communicator identity's name to [new_name]."
 		message_admins(msg)
 		log_game(msg)
 		src.name = new_name
 	else
-		to_chat(src, "<span class='warning'>Invalid name.  Rejected.</span>")
+		to_chat(src, span_warning("Invalid name.  Rejected."))
 
 // Proc: Life()
 // Parameters: None

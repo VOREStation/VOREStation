@@ -44,9 +44,9 @@
 /obj/structure/ghost_pod/manual/survivor/trigger()
 	. = ..()
 	desc += "\n The Pod's stasis is broken!"
-	visible_message(message = SPAN_WARNING("\The [src] hisses and blinks in a myriad of lights as its stasis ceases! \n \
+	visible_message(message = span_warning("\The [src] hisses and blinks in a myriad of lights as its stasis ceases! \n \
 	What or whoever lays beneath may yet stir once more, but their wounds may be too grevious... "),
-	blind_message = SPAN_WARNING("You hear hissing from [src]!"),
+	blind_message = span_warning("You hear hissing from [src]!"),
 	runemessage = "HISS")
 
 
@@ -56,7 +56,7 @@
 	clothing_possibilities |= subtypesof(/obj/item/clothing/under/utility)
 	clothing_possibilities |= subtypesof(/obj/item/clothing/head/beret)
 	clothing_possibilities |= /obj/item/clothing/shoes/black
-	clothing_possibilities |= /obj/item/device/radio/headset
+	clothing_possibilities |= /obj/item/radio/headset
 
 /obj/structure/ghost_pod/manual/survivor/create_occupant(var/mob/M)
 	..()
@@ -64,9 +64,9 @@
 	var/mob/living/carbon/human/H = new(src)
 	if(M.mind)
 		M.mind.transfer_to(H)
-	to_chat(M, "<span class='notice'>You are a [occupant_type]!</span>")
+	to_chat(M, span_notice("You are a [occupant_type]!"))
 	H.ckey = M.ckey
-	visible_message("<span class='warning'>As \the [src] opens, the pipes on \the [src] surge, before it grows dark.</span>")
+	visible_message(span_warning("As \the [src] opens, the pipes on \the [src] surge, before it grows dark."))
 	log_and_message_admins("successfully opened \a [src] and got a [occupant_type].")
 
 	var/list/uniform_options
@@ -88,7 +88,7 @@
 				if(!head_options)
 					head_options = list()
 				head_options |= path
-			if(ispath(path, /obj/item/device/radio/headset))
+			if(ispath(path, /obj/item/radio/headset))
 				if(!headset_options)
 					headset_options = list()
 				headset_options |= path
@@ -144,4 +144,4 @@
 	if(allow_appearance_change)
 		H.change_appearance(APPEARANCE_ALL, H, check_species_whitelist = 1)
 
-	visible_message("<span class='aliem'>\The [src] [pick("gurgles", "seizes", "clangs")] before releasing \the [H]!</span>")
+	visible_message(span_alien("\The [src] [pick("gurgles", "seizes", "clangs")] before releasing \the [H]!"))

@@ -18,7 +18,7 @@
 		/obj/item/clothing/suit/bio_suit/virology,
 		/obj/item/clothing/head/bio_hood/virology,
 		/obj/item/clothing/mask/gas,
-		/obj/item/weapon/tank/oxygen)
+		/obj/item/tank/oxygen)
 
 
 /obj/structure/closet/l3closet/security
@@ -27,7 +27,7 @@
 	starts_with = list(
 		/obj/item/clothing/suit/bio_suit/security,
 		/obj/item/clothing/head/bio_hood/security)
-		///obj/item/weapon/gun/energy/taser/xeno/sec) //VOREStation Removal
+		///obj/item/gun/energy/taser/xeno/sec) //VOREStation Removal
 
 /obj/structure/closet/l3closet/janitor
 	closet_appearance = /decl/closet_appearance/bio/janitor
@@ -36,7 +36,7 @@
 		/obj/item/clothing/suit/bio_suit/janitor = 2,
 		/obj/item/clothing/head/bio_hood/janitor = 2,
 		/obj/item/clothing/mask/gas = 2,
-		/obj/item/weapon/tank/emergency/oxygen/engi = 2)
+		/obj/item/tank/emergency/oxygen/engi = 2)
 
 
 /obj/structure/closet/l3closet/scientist
@@ -45,13 +45,13 @@
 	starts_with = list(
 		/obj/item/clothing/suit/bio_suit/scientist,
 		/obj/item/clothing/head/bio_hood/scientist,
-		/obj/item/weapon/storage/bag/xeno = 1)
+		/obj/item/storage/bag/xeno = 1)
 
 /obj/structure/closet/l3closet/scientist/double
 	starts_with = list(
 		/obj/item/clothing/suit/bio_suit/scientist = 2,
 		/obj/item/clothing/head/bio_hood/scientist = 2,
-		/obj/item/weapon/storage/bag/xeno = 2) // VOREEdit, adding the xenobag to xenobio.
+		/obj/item/storage/bag/xeno = 2) // VOREEdit, adding the xenobag to xenobio.
 
 
 /obj/structure/closet/l3closet/medical

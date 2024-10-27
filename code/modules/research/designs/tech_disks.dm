@@ -8,7 +8,7 @@
 	id = "design_disk"
 	req_tech = list(TECH_DATA = 1)
 	materials = list(MAT_STEEL = 30, MAT_GLASS = 10)
-	build_path = /obj/item/weapon/disk/design_disk
+	build_path = /obj/item/disk/design_disk
 	sort_string = "CAAAA"
 
 /datum/design/item/disk/tech_disk
@@ -17,5 +17,5 @@
 	id = "tech_disk"
 	req_tech = list(TECH_DATA = 1)
 	materials = list(MAT_STEEL = 30, MAT_GLASS = 10)
-	build_path = /obj/item/weapon/disk/tech_disk
+	build_path = /obj/item/disk/tech_disk
 	sort_string = "CAAAB"

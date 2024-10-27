@@ -39,7 +39,7 @@
 /obj/structure/cable/green{
 	icon_state = "0-4"
 	},
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	desc = "Talk... listen through this.";
 	name = "Station Intercom (Brig Radio)";
 	pixel_y = -21;

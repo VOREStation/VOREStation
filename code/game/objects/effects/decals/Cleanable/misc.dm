@@ -16,7 +16,7 @@
 	anchored = TRUE
 
 /obj/effect/decal/cleanable/ash/attack_hand(mob/user as mob)
-	to_chat(user, "<span class='notice'>[src] sifts through your fingers.</span>")
+	to_chat(user, span_notice("[src] sifts through your fingers."))
 	var/turf/simulated/floor/F = get_turf(src)
 	if (istype(F))
 		F.dirt += 4
@@ -158,6 +158,6 @@
 	icon_state = "confetti"
 
 /obj/effect/decal/cleanable/confetti/attack_hand(mob/user)
-	to_chat(user, "<span class='notice'>You start to meticulously pick up the confetti.</span>")
+	to_chat(user, span_notice("You start to meticulously pick up the confetti."))
 	if(do_after(user, 60))
 		qdel(src)

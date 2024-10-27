@@ -2,4 +2,4 @@
 	name = "Military Uniform"
 	hierarchy_type = /decl/hierarchy/outfit/military
 
-	l_ear = /obj/item/device/radio/headset
+	l_ear = /obj/item/radio/headset

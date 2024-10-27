@@ -10,11 +10,11 @@
 	icon = null//We dont want people to see this guy
 	density = FALSE
 	anchored = TRUE
-	var/obj/item/weapon/gun/gun
+	var/obj/item/gun/gun
 	var/active = 0//Just tells us that it was clicked on so we should start shooting
 	var/delay_del = 0//Delays the del if we retarget without shooting
 
-/obj/screen/auto_target/New(loc, var/obj/item/weapon/gun/G)
+/obj/screen/auto_target/New(loc, var/obj/item/gun/G)
 		..()
 		gun = G
 		var/image/I = image('icons/effects/Targeted.dmi', src, "locked")

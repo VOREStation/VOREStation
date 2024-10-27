@@ -3,8 +3,8 @@
 	desc = "You are filled with an inner peace, and widened sight."
 	client_color = "#42e6ca"
 
-	on_created_text = "<span class='alien'>You feel an inner peace as your mind's eye expands!</span>"
-	on_expired_text = "<span class='notice'>Your sight returns to what it once was.</span>"
+	on_created_text = span_alien("You feel an inner peace as your mind's eye expands!")
+	on_expired_text = span_notice("Your sight returns to what it once was.")
 	stacks = MODIFIER_STACK_EXTEND
 
 	accuracy = -15
@@ -20,7 +20,7 @@
 
 /datum/modifier/feysight/can_apply(var/mob/living/L)
 	if(L.stat)
-		to_chat(L, "<span class='warning'>You can't be unconscious or dead to experience tranquility.</span>")
+		to_chat(L, span_warning("You can't be unconscious or dead to experience tranquility."))
 		return FALSE
 
 	if(!L.is_sentient())
@@ -29,7 +29,7 @@
 	if(ishuman(L))
 		var/mob/living/carbon/human/H = L
 		if(H.species.name == "Diona")
-			to_chat(L, "<span class='warning'>You feel strange for a moment, but it passes.</span>")
+			to_chat(L, span_warning("You feel strange for a moment, but it passes."))
 			return FALSE // Happy trees aren't affected by tranquility.
 
 	return ..()

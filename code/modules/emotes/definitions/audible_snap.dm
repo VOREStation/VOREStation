@@ -24,6 +24,6 @@
 
 /decl/emote/audible/snap/do_emote(var/atom/user, var/extra_params)
 	if(!can_snap(user))
-		to_chat(user, SPAN_WARNING("You need at least one working hand to snap your fingers."))
+		to_chat(user, span_warning("You need at least one working hand to snap your fingers."))
 		return FALSE
 	. = ..()

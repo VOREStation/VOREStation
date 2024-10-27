@@ -45,7 +45,7 @@
 /area/submap/groundbase/poi/wildvillage/wide/wide4)
 "i" = (
 /obj/structure/bed/double/padded,
-/obj/item/weapon/bedsheet/browndouble,
+/obj/item/bedsheet/browndouble,
 /obj/random/plushie,
 /obj/structure/curtain/open/bed,
 /turf/simulated/floor/carpet/bcarpet,
@@ -63,7 +63,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/item/weapon/handcuffs/fuzzy,
+/obj/item/handcuffs/fuzzy,
 /turf/simulated/floor/wmarble,
 /area/submap/groundbase/poi/wildvillage/wide/wide4)
 "m" = (

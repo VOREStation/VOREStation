@@ -31,7 +31,7 @@
 	corpsesuit = /obj/item/clothing/suit/space/void/altevian_heartbreaker
 	corpseshoes = /obj/item/clothing/shoes/boots/swat
 	corpsegloves = /obj/item/clothing/gloves/swat
-	corpseradio = /obj/item/device/radio/headset
+	corpseradio = /obj/item/radio/headset
 	corpsemask = /obj/item/clothing/mask/altevian_breath
 	corpsehelmet = /obj/item/clothing/head/helmet/space/void/altevian_heartbreaker
 	corpseid = 1

@@ -5,8 +5,8 @@
 	anchored = TRUE
 	icon = 'icons/obj/virology_vr.dmi' //VOREStation Edit
 	icon_state = "incubator"
-	var/obj/item/weapon/virusdish/dish
-	var/obj/item/weapon/reagent_containers/glass/beaker = null
+	var/obj/item/virusdish/dish
+	var/obj/item/reagent_containers/glass/beaker = null
 	var/radiation = 0
 
 	var/on = 0
@@ -19,7 +19,7 @@
 	if(default_unfasten_wrench(user, O, 20))
 		return
 
-	if(istype(O, /obj/item/weapon/reagent_containers/glass) || istype(O,/obj/item/weapon/reagent_containers/syringe))
+	if(istype(O, /obj/item/reagent_containers/glass) || istype(O,/obj/item/reagent_containers/syringe))
 
 		if(beaker)
 			to_chat(user, "\The [src] is already loaded.")
@@ -35,7 +35,7 @@
 		src.attack_hand(user)
 		return
 
-	if(istype(O, /obj/item/weapon/virusdish))
+	if(istype(O, /obj/item/virusdish))
 
 		if(dish)
 			to_chat(user, "The dish tray is aleady full!")

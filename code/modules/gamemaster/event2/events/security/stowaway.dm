@@ -53,7 +53,7 @@
 	pod.make_antag = antag_type
 	pod.occupant_type = "[pod.make_antag] [pod.occupant_type]"
 
-	say_dead_object("[span("notice", pod.occupant_type)] pod is now available in \the [get_area(pod)].", pod)
+	say_dead_object("[span_notice(pod.occupant_type)] pod is now available in \the [get_area(pod)].", pod)
 
 /datum/event2/event/ghost_pod_spawner/stowaway/announce()
 	if(prob(announce_odds))

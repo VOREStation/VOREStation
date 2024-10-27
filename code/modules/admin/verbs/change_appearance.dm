@@ -23,7 +23,7 @@
 	if(!H) return
 
 	if(!H.client)
-		to_chat(usr, "<span class='filter_arning'> Only mobs with clients can alter their own appearance.</span>")
+		to_chat(usr, span_filter_warning(" Only mobs with clients can alter their own appearance."))
 		return
 	var/datum/gender/T = gender_datums[H.get_visible_gender()]
 	switch(tgui_alert(usr, "Do you wish for [H] to be allowed to select non-whitelisted races?","Alter Mob Appearance","Yes","No","Cancel"))
@@ -44,7 +44,7 @@
 	var/mob/living/carbon/human/M = tgui_input_list(usr, "Select mob.", "Edit Appearance", human_mob_list)
 
 	if(!istype(M, /mob/living/carbon/human))
-		to_chat(usr, "<span class='warning'>You can only do this to humans!</span>")
+		to_chat(usr, span_warning("You can only do this to humans!"))
 		return
 	if(tgui_alert(usr, "Are you sure you wish to edit this mob's appearance? Skrell, Unathi, Tajaran can result in unintended consequences.","Danger!",list("Yes","No")) != "Yes")
 		return

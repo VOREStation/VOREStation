@@ -96,7 +96,7 @@
 		step_away(broodling, src)
 		count++
 
-	visible_message(span("danger", "\The [src] releases brood from its birthing sack!"))
+	visible_message(span_danger("\The [src] releases brood from its birthing sack!"))
 
 /mob/living/simple_mob/animal/giant_spider/broodmother/proc/launch_brood(atom/A)
 	set waitfor = FALSE
@@ -110,7 +110,7 @@
 		broodling.throw_at(A, 10)
 		count++
 
-	visible_message(span("danger", "\The [src] launches brood from the distance!"))
+	visible_message(span_danger("\The [src] launches brood from the distance!"))
 
 /mob/living/simple_mob/animal/giant_spider/broodmother/proc/can_spawn_brood()
 	var/brood_amount = 0

@@ -16,7 +16,7 @@
 /obj/machinery/telecomms/attackby(obj/item/P as obj, mob/user as mob)
 
 	// Using a multitool lets you access the receiver's interface
-	if(istype(P, /obj/item/device/multitool))
+	if(istype(P, /obj/item/multitool))
 		attack_hand(user)
 
 	// REPAIRING: Use Nanopaste to repair 10-20 integrity points.
@@ -63,7 +63,7 @@
 
 		data["options"] = Options_Menu()
 
-		var/obj/item/device/multitool/P = get_multitool(user)
+		var/obj/item/multitool/P = get_multitool(user)
 		data["multitool"] = !!P
 		data["multitool_buffer"] = null
 		if(P && P.buffer)
@@ -94,7 +94,7 @@
 
 /obj/machinery/telecomms/tgui_status(mob/user)
 	if(!issilicon(user))
-		if(!istype(user.get_active_hand(), /obj/item/device/multitool))
+		if(!istype(user.get_active_hand(), /obj/item/multitool))
 			return STATUS_CLOSE
 	. = ..()
 
@@ -130,15 +130,15 @@
 
 /obj/machinery/proc/get_multitool(mob/user as mob)	//No need to have this being a telecomms specific proc.
 
-	var/obj/item/device/multitool/P = null
+	var/obj/item/multitool/P = null
 	// Let's double check
-	if(!issilicon(user) && istype(user.get_active_hand(), /obj/item/device/multitool))
+	if(!issilicon(user) && istype(user.get_active_hand(), /obj/item/multitool))
 		P = user.get_active_hand()
 	else if(isAI(user))
 		var/mob/living/silicon/ai/U = user
 		P = U.aiMulti
 	else if(isrobot(user) && in_range(user, src))
-		if(istype(user.get_active_hand(), /obj/item/device/multitool))
+		if(istype(user.get_active_hand(), /obj/item/multitool))
 			P = user.get_active_hand()
 	return P
 
@@ -278,7 +278,7 @@
 	if(..())
 		return TRUE
 
-	var/obj/item/device/multitool/P = get_multitool(usr)
+	var/obj/item/multitool/P = get_multitool(usr)
 
 	switch(action)
 		if("toggle")

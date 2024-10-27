@@ -53,8 +53,8 @@
 	},
 /obj/structure/window/reinforced,
 /obj/item/stack/rods,
-/obj/item/weapon/material/shard,
-/obj/item/weapon/material/shard{
+/obj/item/material/shard,
+/obj/item/material/shard{
 	icon_state = "medium"
 	},
 /turf/simulated/shuttle/floor/virgo3b,
@@ -69,7 +69,7 @@
 /obj/machinery/status_display{
 	pixel_y = -32
 	},
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	dir = 1;
 	name = "Station Intercom (General)";
 	pixel_y = 21
@@ -88,7 +88,7 @@
 /obj/effect/decal/cleanable/blood/drip,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/blood/drip,
-/obj/item/weapon/reagent_containers/hypospray/autoinjector/empty,
+/obj/item/reagent_containers/hypospray/autoinjector/empty,
 /turf/simulated/shuttle/floor/virgo3b,
 /area/submap/Epod2)
 "n" = (

@@ -83,7 +83,7 @@
 	icon_state = "0-2"
 	},
 /obj/machinery/power/apc{
-	cell_type = /obj/item/weapon/cell/super;
+	cell_type = /obj/item/cell/super;
 	dir = 8;
 	name = "west bump";
 	pixel_x = -24
@@ -104,7 +104,7 @@
 /area/aro2/room1)
 "aE" = (
 /obj/structure/bed/double/padded,
-/obj/item/weapon/bedsheet/bluedouble,
+/obj/item/bedsheet/bluedouble,
 /turf/simulated/floor/carpet/blue,
 /area/aro2/room1)
 "aI" = (
@@ -257,7 +257,7 @@
 /area/aro2/room2)
 "bB" = (
 /obj/structure/bed/double/padded,
-/obj/item/weapon/bedsheet/bluedouble,
+/obj/item/bedsheet/bluedouble,
 /turf/simulated/floor/carpet/gaycarpet,
 /area/aro2/room2)
 "bC" = (
@@ -386,7 +386,7 @@
 	icon_state = "0-2"
 	},
 /obj/machinery/power/apc{
-	cell_type = /obj/item/weapon/cell/super;
+	cell_type = /obj/item/cell/super;
 	dir = 8;
 	name = "west bump";
 	pixel_x = -24
@@ -404,7 +404,7 @@
 /area/aro2/room3)
 "cF" = (
 /obj/structure/bed/double/padded,
-/obj/item/weapon/bedsheet/bluedouble,
+/obj/item/bedsheet/bluedouble,
 /turf/simulated/floor/carpet/purcarpet,
 /area/aro2/room3)
 "cG" = (
@@ -742,7 +742,7 @@
 	pixel_y = 23
 	},
 /obj/structure/table/steel,
-/obj/item/weapon/storage/toolbox/mechanical,
+/obj/item/storage/toolbox/mechanical,
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/aro2/airarea)
 "fm" = (
@@ -1346,7 +1346,7 @@
 	icon_state = "0-2"
 	},
 /obj/machinery/power/apc{
-	cell_type = /obj/item/weapon/cell/super;
+	cell_type = /obj/item/cell/super;
 	dir = 8;
 	name = "west bump";
 	pixel_x = -24
@@ -1585,7 +1585,7 @@
 	icon_state = "0-2"
 	},
 /obj/machinery/power/apc{
-	cell_type = /obj/item/weapon/cell/super;
+	cell_type = /obj/item/cell/super;
 	dir = 8;
 	name = "west bump";
 	pixel_x = -24
@@ -1882,7 +1882,7 @@
 /obj/structure/table/steel,
 /obj/structure/cable/cyan,
 /obj/machinery/power/apc{
-	cell_type = /obj/item/weapon/cell/super;
+	cell_type = /obj/item/cell/super;
 	dir = 8;
 	name = "west bump";
 	pixel_x = -24
@@ -1917,11 +1917,11 @@
 /area/aro2/airarea)
 "sB" = (
 /obj/structure/table/steel,
-/obj/item/weapon/magnetic_ammo/pistol/khi{
+/obj/item/magnetic_ammo/pistol/khi{
 	pixel_x = 5;
 	pixel_y = 2
 	},
-/obj/item/weapon/magnetic_ammo/pistol/khi{
+/obj/item/magnetic_ammo/pistol/khi{
 	pixel_x = -3;
 	pixel_y = 5
 	},
@@ -2266,7 +2266,7 @@
 /area/aro2/boatdeck)
 "wM" = (
 /obj/structure/table/rack/shelf/steel,
-/obj/item/weapon/storage/toolbox/syndicate,
+/obj/item/storage/toolbox/syndicate,
 /turf/simulated/floor/tiled/eris/techmaint_perforated,
 /area/aro2/starboardbay)
 "wS" = (
@@ -2378,7 +2378,7 @@
 	dir = 8
 	},
 /obj/structure/table/steel,
-/obj/item/weapon/inducer/hybrid,
+/obj/item/inducer/hybrid,
 /turf/simulated/floor/tiled/eris/techmaint_perforated,
 /area/aro2/surfluid)
 "yw" = (
@@ -2431,13 +2431,13 @@
 /obj/structure/closet/secure_closet/freezer/fridge{
 	starts_with = null
 	},
-/obj/item/weapon/reagent_containers/food/snacks/generalschicken,
-/obj/item/weapon/storage/box/wings,
-/obj/item/weapon/reagent_containers/food/snacks/kitsuneudon,
-/obj/item/weapon/reagent_containers/food/snacks/fries,
-/obj/item/weapon/reagent_containers/food/snacks/grilledcheese,
-/obj/item/weapon/reagent_containers/food/snacks/jellysandwich,
-/obj/item/weapon/reagent_containers/food/snacks/enchiladas,
+/obj/item/reagent_containers/food/snacks/generalschicken,
+/obj/item/storage/box/wings,
+/obj/item/reagent_containers/food/snacks/kitsuneudon,
+/obj/item/reagent_containers/food/snacks/fries,
+/obj/item/reagent_containers/food/snacks/grilledcheese,
+/obj/item/reagent_containers/food/snacks/jellysandwich,
+/obj/item/reagent_containers/food/snacks/enchiladas,
 /turf/simulated/floor/tiled/eris/techmaint_perforated,
 /area/aro2/dining)
 "yY" = (
@@ -3159,7 +3159,7 @@
 /area/aro2/airarea)
 "HT" = (
 /obj/structure/table/steel,
-/obj/item/device/perfect_tele/alien,
+/obj/item/perfect_tele/alien,
 /turf/simulated/floor/tiled/eris/dark/cargo,
 /area/shuttle/aroboat2)
 "Ib" = (
@@ -3515,7 +3515,7 @@
 /area/shuttle/aroboat2)
 "Lv" = (
 /obj/structure/table/steel,
-/obj/item/weapon/storage/box/metalfoam,
+/obj/item/storage/box/metalfoam,
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 8
 	},
@@ -3689,7 +3689,7 @@
 	dir = 4
 	},
 /obj/structure/table/steel,
-/obj/item/device/sleevemate,
+/obj/item/sleevemate,
 /turf/simulated/floor/tiled/eris/techmaint_perforated,
 /area/aro2/surfluid)
 "NQ" = (
@@ -4217,7 +4217,7 @@
 /area/space)
 "TT" = (
 /obj/structure/table/rack/shelf/steel,
-/obj/item/weapon/storage/toolbox/syndicate,
+/obj/item/storage/toolbox/syndicate,
 /turf/simulated/floor/tiled/eris/techmaint_perforated,
 /area/aro2/portbay)
 "TU" = (
@@ -4282,7 +4282,7 @@
 /area/aro2/boatdeck)
 "Vg" = (
 /obj/structure/table/steel,
-/obj/item/weapon/storage/toolbox/electrical,
+/obj/item/storage/toolbox/electrical,
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/aro2/powerarea)
 "Vm" = (

@@ -1,15 +1,15 @@
 
-/obj/item/weapon/broken_gun
+/obj/item/broken_gun
 	desc = "The remains of an unfortunate firearm."
 
-	var/obj/item/weapon/gun/my_guntype = null
+	var/obj/item/gun/my_guntype = null
 
 	// Materials needed for repair. Associative list, path - number of items
 	var/list/material_needs
 
 	var/do_rotation = TRUE
 
-/obj/item/weapon/broken_gun/New(var/newloc, var/path)
+/obj/item/broken_gun/New(var/newloc, var/path)
 	..()
 	if(path)
 		if(!setup_gun(path))
@@ -17,20 +17,20 @@
 			return
 		setup_repair_needs()
 
-/obj/item/weapon/broken_gun/Initialize()
+/obj/item/broken_gun/Initialize()
 	. = ..()
 	spawn(30 SECONDS)
 		if(!my_guntype && !QDELETED(src))
 			qdel(src)
 
-/obj/item/weapon/broken_gun/examine(mob/user)
+/obj/item/broken_gun/examine(mob/user)
 	. = ..()
 	spawn()
 		if(get_dist(get_turf(user),get_turf(src)) <= 1)
-			to_chat(user, "<span class='notice'>You begin inspecting \the [src].</span>")
+			to_chat(user, span_notice("You begin inspecting \the [src]."))
 
 			if(do_after(user, 5 SECONDS))
-				to_chat(user, "<span class='notice'>\The [src] can possibly be restored with:</span>")
+				to_chat(user, span_notice("\The [src] can possibly be restored with:"))
 				for(var/obj/item/res as anything in material_needs)
 					if(material_needs[res] > 0)
 						var/res_name = ""
@@ -43,9 +43,9 @@
 								res_name = "[mat.use_name] [mat.sheet_singular_name]"
 						else
 							res_name = initial(res.name)
-						to_chat(user, "<span class='notice'>- x [material_needs[res]] [res_name]</span>")
+						to_chat(user, span_notice("- x [material_needs[res]] [res_name]"))
 
-/obj/item/weapon/broken_gun/proc/setup_gun(var/obj/item/weapon/gun/path)
+/obj/item/broken_gun/proc/setup_gun(var/obj/item/gun/path)
 	if(ispath(path))
 		name = "[pick("busted", "broken", "shattered", "scrapped")] [initial(path.name)]"
 		icon = initial(path.icon)
@@ -62,7 +62,7 @@
 
 	return FALSE
 
-/obj/item/weapon/broken_gun/proc/setup_repair_needs()
+/obj/item/broken_gun/proc/setup_repair_needs()
 	if(!LAZYLEN(material_needs))
 		material_needs = list()
 
@@ -71,24 +71,24 @@
 		material_needs[chosen_mat] = rand(1, 3)
 
 	if(prob(30))
-		var/component_needed = pick(/obj/item/weapon/stock_parts/gear,/obj/item/weapon/stock_parts/spring,/obj/item/weapon/stock_parts/manipulator)
+		var/component_needed = pick(/obj/item/stock_parts/gear,/obj/item/stock_parts/spring,/obj/item/stock_parts/manipulator)
 		material_needs[component_needed] = rand(1,3)
 
-	if(ispath(my_guntype, /obj/item/weapon/gun/energy) && prob(25))
-		var/component_needed = pick(/obj/item/stack/cable_coil, /obj/item/weapon/stock_parts/scanning_module,/obj/item/weapon/stock_parts/capacitor)
+	if(ispath(my_guntype, /obj/item/gun/energy) && prob(25))
+		var/component_needed = pick(/obj/item/stack/cable_coil, /obj/item/stock_parts/scanning_module,/obj/item/stock_parts/capacitor)
 		material_needs[component_needed] = rand(1,3)
 
-	if(ispath(my_guntype, /obj/item/weapon/gun/launcher) && prob(50))
-		var/component_needed = pick(/obj/item/weapon/tape_roll, /obj/item/stack/rods, /obj/item/weapon/handcuffs/cable)
+	if(ispath(my_guntype, /obj/item/gun/launcher) && prob(50))
+		var/component_needed = pick(/obj/item/tape_roll, /obj/item/stack/rods, /obj/item/handcuffs/cable)
 		material_needs[component_needed] = 1
 
-	if(ispath(my_guntype, /obj/item/weapon/gun/magnetic) && prob(70))
-		var/component_needed = pick(/obj/item/weapon/smes_coil, /obj/item/device/assembly/prox_sensor, /obj/item/weapon/module/power_control)
+	if(ispath(my_guntype, /obj/item/gun/magnetic) && prob(70))
+		var/component_needed = pick(/obj/item/smes_coil, /obj/item/assembly/prox_sensor, /obj/item/module/power_control)
 		material_needs[component_needed] = 1
 
 	material_needs[/obj/item/stack/material/steel] = rand(1,5)
 
-/obj/item/weapon/broken_gun/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/broken_gun/attackby(obj/item/W as obj, mob/user as mob)
 	if(can_repair_with(W, user))
 		if(do_after(user, (rand() * 10 SECONDS) + 5 SECONDS))
 			repair_with(W, user)
@@ -96,7 +96,7 @@
 
 	..()
 
-/obj/item/weapon/broken_gun/proc/can_repair_with(obj/item/I, mob/user)
+/obj/item/broken_gun/proc/can_repair_with(obj/item/I, mob/user)
 	for(var/path in material_needs)
 		if(ispath(path) && istype(I, path))
 			if(material_needs[path] > 0)
@@ -105,13 +105,13 @@
 					if(S.can_use(material_needs[path]))
 						return TRUE
 					else
-						to_chat(user, "<span class='notice'>You do not have enough [path] to continue repairs.</span>")
+						to_chat(user, span_notice("You do not have enough [path] to continue repairs."))
 				else
 					return TRUE
 
 	return FALSE
 
-/obj/item/weapon/broken_gun/proc/repair_with(obj/item/I, mob/user)
+/obj/item/broken_gun/proc/repair_with(obj/item/I, mob/user)
 	for(var/path in material_needs)
 		if(ispath(path) && istype(I, path))
 			if(material_needs[path] > 0)
@@ -120,18 +120,18 @@
 					if(S.can_use(material_needs[path]))
 						S.use(material_needs[path])
 						material_needs[path] = 0
-						to_chat(user, "<span class='notice'>You repair some damage on \the [src] with \the [S].</span>")
+						to_chat(user, span_notice("You repair some damage on \the [src] with \the [S]."))
 				else
 					material_needs[path] = max(0, material_needs[path] - 1)
 					user.drop_from_inventory(I)
-					to_chat(user, "<span class='notice'>You repair some damage on \the [src] with \the [I].</span>")
+					to_chat(user, span_notice("You repair some damage on \the [src] with \the [I]."))
 					qdel(I)
 
 	check_complete_repair(user)
 
 	return
 
-/obj/item/weapon/broken_gun/proc/check_complete_repair(mob/user)
+/obj/item/broken_gun/proc/check_complete_repair(mob/user)
 	var/fully_repaired = TRUE
 	for(var/resource in material_needs)
 		if(material_needs[resource] > 0)
@@ -141,5 +141,5 @@
 	if(fully_repaired)
 		my_guntype = new my_guntype(get_turf(src))
 		my_guntype.name = "[pick("salvaged", "repaired", "old")] [initial(my_guntype.name)]"
-		to_chat(user, "<span class='notice'>You finish your repairs on \the [my_guntype].</span>")
+		to_chat(user, span_notice("You finish your repairs on \the [my_guntype]."))
 		qdel(src)

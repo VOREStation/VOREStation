@@ -25,18 +25,18 @@
 /area/submap/virgo2/Drugd)
 "i" = (
 /obj/structure/closet/cabinet,
-/obj/item/weapon/lipstick/random,
+/obj/item/lipstick/random,
 /turf/simulated/floor/carpet,
 /area/submap/virgo2/Drugd)
 "j" = (
 /obj/structure/bed,
-/obj/item/weapon/bedsheet,
+/obj/item/bedsheet,
 /obj/structure/curtain/open/bed,
 /turf/simulated/floor/carpet,
 /area/submap/virgo2/Drugd)
 "k" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/reagent_containers/pill/happy{
+/obj/item/reagent_containers/pill/happy{
 	name = "pill"
 	},
 /turf/simulated/floor/carpet,
@@ -66,7 +66,7 @@
 /area/submap/virgo2/Drugd)
 "r" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/reagent_containers/pill/methylphenidate{
+/obj/item/reagent_containers/pill/methylphenidate{
 	name = "pill"
 	},
 /turf/simulated/floor/carpet,
@@ -79,7 +79,7 @@
 /turf/simulated/floor/carpet,
 /area/submap/virgo2/Drugd)
 "t" = (
-/obj/item/weapon/reagent_containers/pill/citalopram{
+/obj/item/reagent_containers/pill/citalopram{
 	name = "pill"
 	},
 /turf/simulated/floor/carpet,
@@ -99,13 +99,13 @@
 /area/submap/virgo2/Drugd)
 "x" = (
 /obj/structure/table/woodentable,
-/obj/item/device/flashlight/lamp,
-/obj/item/weapon/reagent_containers/syringe/drugs,
+/obj/item/flashlight/lamp,
+/obj/item/reagent_containers/syringe/drugs,
 /turf/simulated/floor/carpet,
 /area/submap/virgo2/Drugd)
 "y" = (
 /obj/structure/bed/chair/comfy/beige,
-/obj/item/weapon/reagent_containers/pill/citalopram{
+/obj/item/reagent_containers/pill/citalopram{
 	name = "pill"
 	},
 /turf/simulated/floor/carpet,
@@ -115,17 +115,17 @@
 /turf/simulated/floor,
 /area/submap/virgo2/Drugd)
 "A" = (
-/obj/item/weapon/reagent_containers/pill/citalopram{
+/obj/item/reagent_containers/pill/citalopram{
 	name = "pill"
 	},
-/obj/item/weapon/reagent_containers/pill/citalopram{
+/obj/item/reagent_containers/pill/citalopram{
 	name = "pill"
 	},
 /turf/simulated/floor/carpet,
 /area/submap/virgo2/Drugd)
 "B" = (
 /obj/structure/table/standard,
-/obj/item/weapon/storage/pill_bottle/happy,
+/obj/item/storage/pill_bottle/happy,
 /turf/simulated/floor/tiled,
 /area/submap/virgo2/Drugd)
 "C" = (
@@ -135,31 +135,31 @@
 /area/submap/virgo2/Drugd)
 "D" = (
 /obj/structure/table/standard,
-/obj/item/weapon/reagent_containers/pill/citalopram,
-/obj/item/weapon/reagent_containers/pill/citalopram,
+/obj/item/reagent_containers/pill/citalopram,
+/obj/item/reagent_containers/pill/citalopram,
 /turf/simulated/floor/tiled,
 /area/submap/virgo2/Drugd)
 "E" = (
 /obj/structure/table/standard,
-/obj/item/weapon/reagent_containers/pill/tramadol,
-/obj/item/weapon/reagent_containers/pill/tramadol,
+/obj/item/reagent_containers/pill/tramadol,
+/obj/item/reagent_containers/pill/tramadol,
 /turf/simulated/floor/tiled,
 /area/submap/virgo2/Drugd)
 "F" = (
 /obj/structure/closet/cabinet,
 /obj/item/clothing/accessory/jacket,
-/obj/item/weapon/material/butterfly/switchblade,
+/obj/item/material/butterfly/switchblade,
 /turf/simulated/floor/carpet,
 /area/submap/virgo2/Drugd)
 "G" = (
-/obj/item/weapon/reagent_containers/pill/zoom{
+/obj/item/reagent_containers/pill/zoom{
 	name = "pill"
 	},
 /obj/random/trash,
 /turf/simulated/floor/carpet,
 /area/submap/virgo2/Drugd)
 "H" = (
-/obj/item/weapon/reagent_containers/pill/zoom{
+/obj/item/reagent_containers/pill/zoom{
 	name = "pill"
 	},
 /turf/simulated/floor/carpet,
@@ -170,7 +170,7 @@
 /area/submap/virgo2/Drugd)
 "J" = (
 /obj/structure/table/standard,
-/obj/item/weapon/surgical/scalpel,
+/obj/item/surgical/scalpel,
 /turf/simulated/floor/tiled,
 /area/submap/virgo2/Drugd)
 "K" = (
@@ -189,18 +189,18 @@
 "N" = (
 /obj/effect/floor_decal/rust,
 /obj/structure/table/standard,
-/obj/item/device/survivalcapsule,
+/obj/item/survivalcapsule,
 /turf/simulated/floor/tiled,
 /area/submap/virgo2/Drugd)
 "O" = (
 /obj/structure/table/standard,
-/obj/item/weapon/reagent_containers/pill/zoom,
-/obj/item/weapon/reagent_containers/pill/zoom,
+/obj/item/reagent_containers/pill/zoom,
+/obj/item/reagent_containers/pill/zoom,
 /turf/simulated/floor,
 /area/submap/virgo2/Drugd)
 "P" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/reagent_containers/pill/tramadol{
+/obj/item/reagent_containers/pill/tramadol{
 	name = "pill"
 	},
 /turf/simulated/floor/carpet,
@@ -210,17 +210,17 @@
 /turf/simulated/floor,
 /area/submap/virgo2/Drugd)
 "S" = (
-/obj/item/weapon/material/shard,
+/obj/item/material/shard,
 /turf/simulated/floor,
 /area/submap/virgo2/Drugd)
 "T" = (
 /obj/structure/table/woodentable,
-/obj/item/device/flashlight/lamp,
+/obj/item/flashlight/lamp,
 /turf/simulated/floor/carpet,
 /area/submap/virgo2/Drugd)
 "U" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/reagent_containers/syringe/drugs,
+/obj/item/reagent_containers/syringe/drugs,
 /turf/simulated/floor/carpet,
 /area/submap/virgo2/Drugd)
 "V" = (

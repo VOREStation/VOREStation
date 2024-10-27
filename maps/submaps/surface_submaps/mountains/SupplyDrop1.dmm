@@ -5,7 +5,7 @@
 "e" = (/obj/structure/droppod_door{dir = 1},/turf/simulated/wall/titanium,/area/submap/cave/SupplyDrop1)
 "f" = (/turf/simulated/floor/reinforced,/area/submap/cave/SupplyDrop1)
 "g" = (/obj/structure/droppod_door{dir = 8},/turf/simulated/wall/titanium,/area/submap/cave/SupplyDrop1)
-"h" = (/obj/structure/closet/crate,/obj/item/weapon/gun/energy/stunrevolver,/obj/item/weapon/gun/energy/stunrevolver,/obj/item/weapon/storage/box/flare,/obj/item/stack/marker_beacon/ten,/obj/item/weapon/cell/device/weapon,/obj/item/weapon/cell/device/weapon,/obj/item/trash/tastybread,/obj/item/trash/tastybread,/obj/item/trash/sosjerky,/obj/item/trash/sosjerky,/obj/item/trash/liquidfood,/obj/item/trash/liquidfood,/obj/item/weapon/flame/lighter/random,/obj/item/device/gps,/turf/simulated/floor/reinforced,/area/submap/cave/SupplyDrop1)
+"h" = (/obj/structure/closet/crate,/obj/item/gun/energy/stunrevolver,/obj/item/gun/energy/stunrevolver,/obj/item/storage/box/flare,/obj/item/stack/marker_beacon/ten,/obj/item/cell/device/weapon,/obj/item/cell/device/weapon,/obj/item/trash/tastybread,/obj/item/trash/tastybread,/obj/item/trash/sosjerky,/obj/item/trash/sosjerky,/obj/item/trash/liquidfood,/obj/item/trash/liquidfood,/obj/item/flame/lighter/random,/obj/item/gps,/turf/simulated/floor/reinforced,/area/submap/cave/SupplyDrop1)
 "i" = (/obj/structure/droppod_door{dir = 4},/turf/simulated/wall/titanium,/area/submap/cave/SupplyDrop1)
 "j" = (/obj/structure/droppod_door,/turf/simulated/wall/titanium,/area/submap/cave/SupplyDrop1)
 

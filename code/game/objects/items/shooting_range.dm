@@ -34,7 +34,7 @@
 
 /obj/item/target/attackby(obj/item/W as obj, mob/user as mob)
 	if (W.has_tool_quality(TOOL_WELDER))
-		var/obj/item/weapon/weldingtool/WT = W.get_welder()
+		var/obj/item/weldingtool/WT = W.get_welder()
 		if(WT.remove_fuel(0, user))
 			cut_overlays()
 			to_chat(usr, "You slice off [src]'s uneven chunks of aluminum and scorch marks.")
@@ -96,7 +96,7 @@
 		if(hp <= 0)
 			for(var/mob/O in oviewers())
 				if ((O.client && !( O.blinded )))
-					to_chat(O, "<span class='warning'>\The [src] breaks into tiny pieces and collapses!</span>")
+					to_chat(O, span_warning("\The [src] breaks into tiny pieces and collapses!"))
 			qdel(src)
 
 		// Create a temporary object to represent the damage

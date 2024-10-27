@@ -50,7 +50,7 @@
 	vore_icons = SA_ICON_LIVING
 
 	meat_amount = 4
-	meat_type = /obj/item/weapon/reagent_containers/food/snacks/xenomeat/spidermeat
+	meat_type = /obj/item/reagent_containers/food/snacks/xenomeat/spidermeat
 
 	//Beeg bug don't give a fuck about atmos. Something something, phoron mutation.
 	min_oxy = 0
@@ -88,7 +88,7 @@
 
 /mob/living/simple_mob/vore/sect_drone/Login()
 	. = ..()
-	verbs |= /mob/living/simple_mob/vore/sect_drone/proc/set_abdomen_color
+	add_verb(src,  /mob/living/simple_mob/vore/sect_drone/proc/set_abdomen_color)
 
 /mob/living/simple_mob/vore/sect_drone/proc/set_abdomen_color()
 	set name = "Set Glow Color"

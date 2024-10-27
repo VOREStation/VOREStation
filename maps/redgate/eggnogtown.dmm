@@ -30,15 +30,15 @@
 /area/redgate/eggnogtown/vibeout)
 "af" = (
 /obj/structure/table/fancyblack,
-/obj/item/weapon/reagent_containers/food/drinks/cup{
+/obj/item/reagent_containers/food/drinks/cup{
 	pixel_x = -5;
 	pixel_y = 9
 	},
-/obj/item/weapon/reagent_containers/food/drinks/cup{
+/obj/item/reagent_containers/food/drinks/cup{
 	pixel_x = 6;
 	pixel_y = 9
 	},
-/obj/item/weapon/reagent_containers/food/drinks/cup{
+/obj/item/reagent_containers/food/drinks/cup{
 	pixel_x = 6;
 	pixel_y = -1
 	},
@@ -84,7 +84,7 @@
 /area/redgate/eggnogtown/nigloo)
 "am" = (
 /obj/structure/bed/double/padded,
-/obj/item/weapon/bedsheet/purpledouble,
+/obj/item/bedsheet/purpledouble,
 /obj/random/awayloot,
 /turf/simulated/mineral/floor/ignore_cavegen/cave{
 	temperature = 258.15
@@ -97,7 +97,7 @@
 /obj/structure/noticeboard{
 	pixel_y = 32
 	},
-/obj/item/weapon/paper{
+/obj/item/paper{
 	info = "Loni Nesumi's humbble abode, feel free to rest inside if the lights are out, please go change the cell in the maint room otherwise enjoy your stay and please don't take anything"
 	},
 /turf/simulated/mineral/floor/ignore_cavegen/cave{
@@ -106,13 +106,13 @@
 /area/redgate/eggnogtown/loniabode)
 "ap" = (
 /obj/structure/table/marble,
-/obj/item/weapon/flame/lighter/zippo,
-/obj/item/weapon/tool/screwdriver,
+/obj/item/flame/lighter/zippo,
+/obj/item/tool/screwdriver,
 /obj/item/clothing/head/that{
 	pixel_x = 4;
 	pixel_y = 6
 	},
-/obj/item/weapon/reagent_containers/spray/cleaner,
+/obj/item/reagent_containers/spray/cleaner,
 /obj/item/clothing/suit/storage/hooded/wintercoat/bar{
 	pixel_x = -8;
 	pixel_y = -8
@@ -217,7 +217,7 @@
 /area/redgate/eggnogtown/bar)
 "aD" = (
 /obj/structure/bed/double/padded,
-/obj/item/weapon/bedsheet/browndouble,
+/obj/item/bedsheet/browndouble,
 /turf/simulated/mineral/floor/ignore_cavegen/cave{
 	temperature = 258.15
 	},
@@ -353,7 +353,7 @@
 /area/redgate/eggnogtown/bar)
 "aW" = (
 /obj/structure/table/fancyblack,
-/obj/item/device/flashlight/lantern{
+/obj/item/flashlight/lantern{
 	pixel_x = 3;
 	pixel_y = 12
 	},
@@ -457,20 +457,20 @@
 /area/redgate/eggnogtown/vibeout)
 "bw" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/storage/toolbox/mechanical,
-/obj/item/weapon/storage/toolbox/mechanical,
-/obj/item/weapon/storage/toolbox/mechanical,
-/obj/item/weapon/storage/toolbox/mechanical,
-/obj/item/weapon/storage/toolbox/mechanical,
+/obj/item/storage/toolbox/mechanical,
+/obj/item/storage/toolbox/mechanical,
+/obj/item/storage/toolbox/mechanical,
+/obj/item/storage/toolbox/mechanical,
+/obj/item/storage/toolbox/mechanical,
 /obj/item/clothing/glasses/welding,
 /obj/item/clothing/glasses/welding,
-/obj/item/weapon/shovel,
+/obj/item/shovel,
 /obj/random/tool/power,
-/obj/item/weapon/pickaxe/drill,
-/obj/item/device/flashlight,
-/obj/item/device/flashlight,
-/obj/item/device/flashlight,
-/obj/item/device/flashlight,
+/obj/item/pickaxe/drill,
+/obj/item/flashlight,
+/obj/item/flashlight,
+/obj/item/flashlight,
+/obj/item/flashlight,
 /turf/simulated/floor/tiled/techmaint{
 	temperature = 258.15
 	},
@@ -528,19 +528,19 @@
 /area/redgate/eggnogtown/storage)
 "bM" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/storage/toolbox/mechanical,
-/obj/item/weapon/storage/toolbox/mechanical,
-/obj/item/weapon/storage/toolbox/mechanical,
-/obj/item/weapon/storage/toolbox/mechanical,
-/obj/item/weapon/storage/toolbox/mechanical,
+/obj/item/storage/toolbox/mechanical,
+/obj/item/storage/toolbox/mechanical,
+/obj/item/storage/toolbox/mechanical,
+/obj/item/storage/toolbox/mechanical,
+/obj/item/storage/toolbox/mechanical,
 /obj/item/clothing/glasses/welding,
 /obj/item/clothing/glasses/welding,
-/obj/item/weapon/shovel,
-/obj/item/weapon/pickaxe/drill,
-/obj/item/device/flashlight,
-/obj/item/device/flashlight,
-/obj/item/device/flashlight,
-/obj/item/device/flashlight,
+/obj/item/shovel,
+/obj/item/pickaxe/drill,
+/obj/item/flashlight,
+/obj/item/flashlight,
+/obj/item/flashlight,
+/obj/item/flashlight,
 /obj/machinery/light/small,
 /turf/simulated/floor/tiled/techmaint{
 	temperature = 258.15
@@ -548,25 +548,25 @@
 /area/redgate/eggnogtown/storage)
 "bO" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/storage/toolbox/mechanical,
-/obj/item/weapon/storage/toolbox/mechanical,
-/obj/item/weapon/storage/toolbox/mechanical,
-/obj/item/weapon/storage/toolbox/mechanical,
-/obj/item/weapon/storage/toolbox/mechanical,
+/obj/item/storage/toolbox/mechanical,
+/obj/item/storage/toolbox/mechanical,
+/obj/item/storage/toolbox/mechanical,
+/obj/item/storage/toolbox/mechanical,
+/obj/item/storage/toolbox/mechanical,
 /obj/item/clothing/glasses/welding,
 /obj/item/clothing/glasses/welding,
-/obj/item/weapon/reagent_containers/spray/cleaner,
-/obj/item/weapon/reagent_containers/spray/cleaner,
-/obj/item/weapon/reagent_containers/spray/cleaner,
-/obj/item/weapon/reagent_containers/spray/cleaner,
-/obj/item/weapon/reagent_containers/spray/cleaner,
-/obj/item/weapon/shovel,
+/obj/item/reagent_containers/spray/cleaner,
+/obj/item/reagent_containers/spray/cleaner,
+/obj/item/reagent_containers/spray/cleaner,
+/obj/item/reagent_containers/spray/cleaner,
+/obj/item/reagent_containers/spray/cleaner,
+/obj/item/shovel,
 /obj/random/tool/alien,
-/obj/item/weapon/pickaxe/drill,
-/obj/item/device/flashlight,
-/obj/item/device/flashlight,
-/obj/item/device/flashlight,
-/obj/item/device/flashlight,
+/obj/item/pickaxe/drill,
+/obj/item/flashlight,
+/obj/item/flashlight,
+/obj/item/flashlight,
+/obj/item/flashlight,
 /turf/simulated/floor/tiled/techmaint{
 	temperature = 258.15
 	},
@@ -630,7 +630,7 @@
 /area/redgate/eggnogtown/stokeswashere)
 "cx" = (
 /obj/structure/table/fancyblack,
-/obj/item/device/flashlight/lantern{
+/obj/item/flashlight/lantern{
 	pixel_x = 15;
 	pixel_y = 10
 	},
@@ -756,7 +756,7 @@
 	},
 /area/redgate/eggnogtown/sigloo)
 "dy" = (
-/obj/item/weapon/stool/padded{
+/obj/item/stool/padded{
 	dir = 4
 	},
 /obj/effect/floor_decal/spline/plain{
@@ -801,12 +801,12 @@
 /area/redgate/eggnogtown/visitorlounge)
 "dX" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/reagent_containers/food/snacks/lasagna,
-/obj/item/weapon/reagent_containers/food/snacks/lasagna,
-/obj/item/weapon/reagent_containers/food/snacks/lasagna,
-/obj/item/weapon/reagent_containers/food/snacks/lasagna,
-/obj/item/weapon/reagent_containers/food/snacks/lasagna,
-/obj/item/device/flashlight/lamp/green,
+/obj/item/reagent_containers/food/snacks/lasagna,
+/obj/item/reagent_containers/food/snacks/lasagna,
+/obj/item/reagent_containers/food/snacks/lasagna,
+/obj/item/reagent_containers/food/snacks/lasagna,
+/obj/item/reagent_containers/food/snacks/lasagna,
+/obj/item/flashlight/lamp/green,
 /turf/simulated/floor/wood{
 	temperature = 258.15
 	},
@@ -837,26 +837,26 @@
 /area/redgate/eggnogtown/bar)
 "ew" = (
 /obj/structure/table/woodentable,
-/obj/item/device/flashlight/lamp,
+/obj/item/flashlight/lamp,
 /turf/simulated/floor/wood{
 	temperature = 258.15
 	},
 /area/redgate/eggnogtown/stokeswashere/bedroom)
 "ex" = (
 /obj/structure/table/fancyblack,
-/obj/item/weapon/reagent_containers/food/drinks/cup{
+/obj/item/reagent_containers/food/drinks/cup{
 	pixel_x = 6;
 	pixel_y = -1
 	},
-/obj/item/weapon/reagent_containers/food/drinks/cup{
+/obj/item/reagent_containers/food/drinks/cup{
 	pixel_x = -5;
 	pixel_y = -1
 	},
-/obj/item/weapon/reagent_containers/food/drinks/cup{
+/obj/item/reagent_containers/food/drinks/cup{
 	pixel_x = 6;
 	pixel_y = 9
 	},
-/obj/item/weapon/reagent_containers/food/drinks/cup{
+/obj/item/reagent_containers/food/drinks/cup{
 	pixel_x = -5;
 	pixel_y = 9
 	},
@@ -901,7 +901,7 @@
 /area/redgate/eggnogtown/stokeswashere)
 "eY" = (
 /obj/structure/bed/double/padded,
-/obj/item/weapon/bedsheet/double,
+/obj/item/bedsheet/double,
 /turf/simulated/floor/wood{
 	temperature = 258.15
 	},
@@ -931,7 +931,7 @@
 /area/redgate/eggnogtown/kitchihome/diningroom)
 "fj" = (
 /obj/structure/bed/double/padded,
-/obj/item/weapon/bedsheet/iandouble,
+/obj/item/bedsheet/iandouble,
 /obj/structure/curtain/black,
 /turf/simulated/floor/wood,
 /area/redgate/eggnogtown/visitorlounge/room2)
@@ -939,7 +939,7 @@
 /obj/structure/noticeboard{
 	pixel_x = -32
 	},
-/obj/item/weapon/paper{
+/obj/item/paper{
 	info = "Ali's Kickass Pad of Awesomeness"
 	},
 /turf/simulated/floor/wood,
@@ -994,31 +994,31 @@
 /turf/simulated/floor/tiled,
 /area/redgate/eggnogtown/loniabode)
 "gk" = (
-/obj/item/weapon/reagent_containers/food/condiment/carton/flour,
-/obj/item/weapon/reagent_containers/food/condiment/carton/flour,
-/obj/item/weapon/reagent_containers/food/condiment/carton/flour,
-/obj/item/weapon/reagent_containers/food/condiment/carton/flour,
-/obj/item/weapon/reagent_containers/food/condiment/carton/flour,
-/obj/item/weapon/reagent_containers/food/condiment/carton/flour,
-/obj/item/weapon/reagent_containers/food/condiment/carton/flour,
-/obj/item/weapon/reagent_containers/food/condiment/carton/flour,
-/obj/item/weapon/reagent_containers/food/condiment/carton/flour,
-/obj/item/weapon/reagent_containers/food/condiment/carton/flour,
-/obj/item/weapon/reagent_containers/food/condiment/small/sugar,
-/obj/item/weapon/reagent_containers/food/condiment/small/sugar,
-/obj/item/weapon/reagent_containers/food/condiment/small/sugar,
-/obj/item/weapon/reagent_containers/food/condiment/small/sugar,
-/obj/item/weapon/reagent_containers/food/condiment/spacespice,
-/obj/item/weapon/reagent_containers/food/condiment/spacespice,
-/obj/item/weapon/reagent_containers/food/condiment/spacespice,
-/obj/item/weapon/reagent_containers/food/condiment/spacespice,
-/obj/item/weapon/reagent_containers/food/condiment/carton/flour,
-/obj/item/weapon/reagent_containers/food/condiment/carton/flour,
-/obj/item/weapon/reagent_containers/food/condiment/carton/flour,
-/obj/item/weapon/reagent_containers/food/condiment/carton/flour,
+/obj/item/reagent_containers/food/condiment/carton/flour,
+/obj/item/reagent_containers/food/condiment/carton/flour,
+/obj/item/reagent_containers/food/condiment/carton/flour,
+/obj/item/reagent_containers/food/condiment/carton/flour,
+/obj/item/reagent_containers/food/condiment/carton/flour,
+/obj/item/reagent_containers/food/condiment/carton/flour,
+/obj/item/reagent_containers/food/condiment/carton/flour,
+/obj/item/reagent_containers/food/condiment/carton/flour,
+/obj/item/reagent_containers/food/condiment/carton/flour,
+/obj/item/reagent_containers/food/condiment/carton/flour,
+/obj/item/reagent_containers/food/condiment/small/sugar,
+/obj/item/reagent_containers/food/condiment/small/sugar,
+/obj/item/reagent_containers/food/condiment/small/sugar,
+/obj/item/reagent_containers/food/condiment/small/sugar,
+/obj/item/reagent_containers/food/condiment/spacespice,
+/obj/item/reagent_containers/food/condiment/spacespice,
+/obj/item/reagent_containers/food/condiment/spacespice,
+/obj/item/reagent_containers/food/condiment/spacespice,
+/obj/item/reagent_containers/food/condiment/carton/flour,
+/obj/item/reagent_containers/food/condiment/carton/flour,
+/obj/item/reagent_containers/food/condiment/carton/flour,
+/obj/item/reagent_containers/food/condiment/carton/flour,
 /obj/structure/closet,
-/obj/item/weapon/reagent_containers/food/condiment/small/saltshaker,
-/obj/item/weapon/reagent_containers/food/condiment/small/peppermill,
+/obj/item/reagent_containers/food/condiment/small/saltshaker,
+/obj/item/reagent_containers/food/condiment/small/peppermill,
 /obj/machinery/alarm/alarms_hidden{
 	pixel_y = 21
 	},
@@ -1074,7 +1074,7 @@
 /turf/simulated/floor/carpet/bcarpet,
 /area/redgate/eggnogtown/kitchihome/den)
 "gP" = (
-/obj/item/weapon/stool/padded,
+/obj/item/stool/padded,
 /turf/simulated/floor/outdoors/newdirt{
 	outdoors = 0
 	},
@@ -1084,10 +1084,10 @@
 /area/redgate/eggnogtown/eastcaveland)
 "gV" = (
 /obj/structure/table/marble,
-/obj/item/device/flashlight/lantern{
+/obj/item/flashlight/lantern{
 	pixel_y = 25
 	},
-/obj/item/weapon/storage/box/beakers,
+/obj/item/storage/box/beakers,
 /turf/simulated/floor/tiled/eris/white/monofloor,
 /area/redgate/eggnogtown/kitchihome/kitchen)
 "hd" = (
@@ -1163,7 +1163,7 @@
 	},
 /area/redgate/eggnogtown/cavehome)
 "hS" = (
-/obj/item/weapon/reagent_containers/glass/bucket/wood,
+/obj/item/reagent_containers/glass/bucket/wood,
 /turf/simulated/floor/outdoors/grass{
 	outdoors = 0
 	},
@@ -1229,7 +1229,7 @@
 /area/redgate/eggnogtown/vibeout)
 "jb" = (
 /obj/structure/table/fancyblack,
-/obj/item/device/flashlight/lantern{
+/obj/item/flashlight/lantern{
 	pixel_x = 3;
 	pixel_y = 12
 	},
@@ -1257,7 +1257,7 @@
 /turf/simulated/floor/bmarble,
 /area/redgate/eggnogtown/arturoswolfden)
 "jy" = (
-/obj/item/weapon/stool/padded{
+/obj/item/stool/padded{
 	dir = 8
 	},
 /turf/simulated/floor/outdoors/newdirt{
@@ -1267,13 +1267,13 @@
 "jB" = (
 /obj/structure/table/woodentable,
 /obj/item/toy/plushie/black_fox,
-/obj/item/device/flashlight/lamp/green,
+/obj/item/flashlight/lamp/green,
 /turf/simulated/floor/wood{
 	temperature = 258.15
 	},
 /area/redgate/eggnogtown/houserhomestead)
 "jH" = (
-/obj/item/weapon/stool/padded{
+/obj/item/stool/padded{
 	dir = 8
 	},
 /turf/simulated/floor/carpet/bcarpet,
@@ -1358,7 +1358,7 @@
 /turf/simulated/floor/wood,
 /area/redgate/eggnogtown/kitchihome/diningroom)
 "lB" = (
-/obj/item/weapon/stool/padded,
+/obj/item/stool/padded,
 /turf/simulated/floor/carpet/bcarpet,
 /area/redgate/eggnogtown/hall/south)
 "lF" = (
@@ -1373,7 +1373,7 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/redgate/eggnogtown/dining/storage)
 "lK" = (
-/obj/item/weapon/bedsheet/yellowdouble,
+/obj/item/bedsheet/yellowdouble,
 /obj/structure/curtain/black,
 /obj/structure/bed/double/padded,
 /turf/simulated/floor/wood,
@@ -1436,7 +1436,7 @@
 /area/redgate/eggnogtown/hall/north)
 "mt" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/material/ashtray,
+/obj/item/material/ashtray,
 /obj/random/awayloot,
 /turf/simulated/floor/wood{
 	temperature = 258.15
@@ -1448,7 +1448,7 @@
 /area/redgate/eggnogtown/hall/south)
 "mw" = (
 /obj/structure/closet,
-/obj/item/device/camera,
+/obj/item/camera,
 /obj/random/maintenance,
 /obj/random/maintenance,
 /obj/random/maintenance,
@@ -1499,7 +1499,7 @@
 /area/redgate/eggnogtown/dining/storage)
 "mP" = (
 /obj/structure/table/fancyblack,
-/obj/item/device/flashlight/lantern{
+/obj/item/flashlight/lantern{
 	pixel_x = 3;
 	pixel_y = 12
 	},
@@ -1563,12 +1563,12 @@
 	},
 /area/redgate/eggnogtown)
 "nQ" = (
-/obj/item/weapon/material/minihoe,
-/obj/item/device/analyzer/plant_analyzer,
-/obj/item/weapon/reagent_containers/glass/bucket,
+/obj/item/material/minihoe,
+/obj/item/analyzer/plant_analyzer,
+/obj/item/reagent_containers/glass/bucket,
 /obj/item/robot_parts/l_arm,
-/obj/item/weapon/material/knife/machete/hatchet,
-/obj/item/weapon/material/minihoe,
+/obj/item/material/knife/machete/hatchet,
+/obj/item/material/minihoe,
 /obj/structure/closet,
 /turf/simulated/floor/tiled/monotile,
 /area/redgate/eggnogtown/dining/botany)
@@ -1815,8 +1815,8 @@
 /area/redgate/eggnogtown/dining/botany)
 "rQ" = (
 /obj/structure/table/standard,
-/obj/item/weapon/material/kitchen/utensil/spoon,
-/obj/item/weapon/material/knife,
+/obj/item/material/kitchen/utensil/spoon,
+/obj/item/material/knife,
 /turf/simulated/floor/wood{
 	temperature = 258.15
 	},
@@ -1926,7 +1926,7 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/redgate/eggnogtown/dining/storage)
 "tc" = (
-/obj/item/weapon/stool/padded{
+/obj/item/stool/padded{
 	dir = 4
 	},
 /turf/simulated/floor/outdoors/newdirt{
@@ -1965,9 +1965,9 @@
 /area/redgate/eggnogtown/dining/kitchen)
 "tC" = (
 /obj/structure/table/marble,
-/obj/item/weapon/reagent_containers/glass/rag,
-/obj/item/weapon/reagent_containers/food/drinks/flask/vacuumflask,
-/obj/item/weapon/book/manual/barman_recipes,
+/obj/item/reagent_containers/glass/rag,
+/obj/item/reagent_containers/food/drinks/flask/vacuumflask,
+/obj/item/book/manual/barman_recipes,
 /obj/random/awayloot,
 /turf/simulated/floor/lino,
 /area/redgate/eggnogtown/bar)
@@ -2050,12 +2050,12 @@
 /area/redgate/eggnogtown/stokeswashere)
 "uX" = (
 /obj/structure/table/steel_reinforced,
-/obj/item/weapon/material/kitchen/rollingpin,
-/obj/item/weapon/book/manual/chef_recipes,
-/obj/item/weapon/reagent_containers/food/condiment/enzyme{
+/obj/item/material/kitchen/rollingpin,
+/obj/item/book/manual/chef_recipes,
+/obj/item/reagent_containers/food/condiment/enzyme{
 	layer = 5
 	},
-/obj/item/weapon/reagent_containers/glass/bucket,
+/obj/item/reagent_containers/glass/bucket,
 /turf/simulated/floor/tiled/eris/cafe,
 /area/redgate/eggnogtown/dining/kitchen)
 "uY" = (
@@ -2087,7 +2087,7 @@
 /area/redgate/eggnogtown/nigloo)
 "vc" = (
 /obj/structure/table/rack/shelf/steel,
-/obj/item/weapon/material/knife/butch,
+/obj/item/material/knife/butch,
 /obj/machinery/light{
 	dir = 1
 	},
@@ -2095,7 +2095,7 @@
 /area/redgate/eggnogtown/dining/kitchen)
 "vn" = (
 /obj/structure/table/standard,
-/obj/item/weapon/material/ashtray,
+/obj/item/material/ashtray,
 /turf/simulated/floor/wood,
 /area/redgate/eggnogtown/arturoswolfden)
 "vq" = (
@@ -2189,12 +2189,12 @@
 /turf/simulated/floor/wood,
 /area/redgate/eggnogtown/dining)
 "wP" = (
-/obj/item/weapon/deck/cards,
-/obj/item/weapon/storage/dicecup,
-/obj/item/weapon/storage/pill_bottle/dice_nerd,
-/obj/item/weapon/deck/cah,
-/obj/item/weapon/deck/cah/black,
-/obj/item/weapon/deck/tarot,
+/obj/item/deck/cards,
+/obj/item/storage/dicecup,
+/obj/item/storage/pill_bottle/dice_nerd,
+/obj/item/deck/cah,
+/obj/item/deck/cah/black,
+/obj/item/deck/tarot,
 /obj/structure/closet,
 /turf/simulated/floor/wood,
 /area/redgate/eggnogtown/hall/south)
@@ -2221,7 +2221,7 @@
 /area/redgate/eggnogtown/stokeswashere/bathroom)
 "xn" = (
 /obj/structure/table/glass,
-/obj/item/device/flashlight/lamp/green,
+/obj/item/flashlight/lamp/green,
 /turf/simulated/floor/carpet/bcarpet,
 /area/redgate/eggnogtown/loniabode)
 "xq" = (
@@ -2353,7 +2353,7 @@
 /area/redgate/eggnogtown/dining)
 "zJ" = (
 /obj/structure/table/woodentable,
-/obj/item/device/flashlight/lamp,
+/obj/item/flashlight/lamp,
 /turf/simulated/floor/wood{
 	temperature = 258.15
 	},
@@ -2477,7 +2477,7 @@
 /area/redgate/eggnogtown/vibeout)
 "AZ" = (
 /obj/structure/table/fancyblack,
-/obj/item/device/flashlight/lantern{
+/obj/item/flashlight/lantern{
 	pixel_x = 3;
 	pixel_y = 12
 	},
@@ -2529,7 +2529,7 @@
 	},
 /area/redgate/eggnogtown)
 "BR" = (
-/obj/item/weapon/stool/baystool,
+/obj/item/stool/baystool,
 /turf/simulated/floor/wood,
 /area/redgate/eggnogtown/visitorlounge)
 "BW" = (
@@ -2588,7 +2588,7 @@
 /obj/structure/noticeboard{
 	pixel_x = -32
 	},
-/obj/item/weapon/paper{
+/obj/item/paper{
 	info = "Arturo's Wolf Den"
 	},
 /turf/simulated/floor/outdoors/snow{
@@ -2619,7 +2619,7 @@
 /area/redgate/eggnogtown/teshnest)
 "Dj" = (
 /obj/structure/table/darkglass,
-/obj/item/weapon/deck/cards,
+/obj/item/deck/cards,
 /turf/simulated/floor/wood,
 /area/redgate/eggnogtown/visitorlounge)
 "DG" = (
@@ -2683,7 +2683,7 @@
 /area/redgate/eggnogtown/cavehome)
 "Ew" = (
 /obj/structure/table/marble,
-/obj/item/weapon/storage/box/donkpockets,
+/obj/item/storage/box/donkpockets,
 /turf/simulated/floor/wood,
 /area/redgate/eggnogtown/loniabode)
 "Ey" = (
@@ -2701,12 +2701,12 @@
 /area/redgate/eggnogtown/sigloo)
 "EC" = (
 /obj/structure/table/marble,
-/obj/item/weapon/storage/fancy/egg_box,
+/obj/item/storage/fancy/egg_box,
 /turf/simulated/floor/tiled/eris/white/monofloor,
 /area/redgate/eggnogtown/kitchihome/kitchen)
 "EI" = (
 /obj/structure/bed/double/padded,
-/obj/item/weapon/bedsheet/purpledouble,
+/obj/item/bedsheet/purpledouble,
 /turf/simulated/floor/carpet/bcarpet,
 /area/redgate/eggnogtown/kitchihome/bedroom)
 "EK" = (
@@ -2799,7 +2799,7 @@
 	},
 /obj/fiftyspawner/log/sif,
 /obj/fiftyspawner/log/sif,
-/obj/item/weapon/flame/lighter/random,
+/obj/item/flame/lighter/random,
 /turf/simulated/floor/wood{
 	temperature = 258.15
 	},
@@ -2827,7 +2827,7 @@
 /turf/simulated/floor/tiled/eris/cafe,
 /area/redgate/eggnogtown/dining/kitchen)
 "Gj" = (
-/obj/item/weapon/stool/padded{
+/obj/item/stool/padded{
 	dir = 4
 	},
 /turf/simulated/floor/carpet/bcarpet,
@@ -2977,7 +2977,7 @@
 /turf/simulated/floor/bmarble,
 /area/redgate/eggnogtown/hall)
 "II" = (
-/obj/item/weapon/stool/padded{
+/obj/item/stool/padded{
 	dir = 8
 	},
 /obj/effect/floor_decal/spline/plain{
@@ -3016,11 +3016,11 @@
 /area/redgate/eggnogtown/hall/south)
 "Jc" = (
 /obj/structure/table/rack,
-/obj/item/weapon/reagent_containers/spray/cleaner,
-/obj/item/weapon/reagent_containers/spray/cleaner,
-/obj/item/weapon/reagent_containers/spray/cleaner,
-/obj/item/weapon/reagent_containers/spray/cleaner,
-/obj/item/weapon/reagent_containers/spray/cleaner,
+/obj/item/reagent_containers/spray/cleaner,
+/obj/item/reagent_containers/spray/cleaner,
+/obj/item/reagent_containers/spray/cleaner,
+/obj/item/reagent_containers/spray/cleaner,
+/obj/item/reagent_containers/spray/cleaner,
 /turf/simulated/floor/tiled/techmaint,
 /area/redgate/eggnogtown/dining/storage)
 "Jk" = (
@@ -3042,7 +3042,7 @@
 "JE" = (
 /obj/structure/table/standard,
 /obj/item/trash/bowl,
-/obj/item/weapon/material/kitchen/utensil/fork,
+/obj/item/material/kitchen/utensil/fork,
 /turf/simulated/floor/wood{
 	temperature = 258.15
 	},
@@ -3139,7 +3139,7 @@
 /obj/structure/bed/chair/sofa/left/black{
 	dir = 1
 	},
-/obj/item/weapon/card/id{
+/obj/item/card/id{
 	access = list(777);
 	name = "Houser's secret hidden keycard";
 	registered_name = "Houser"
@@ -3320,7 +3320,7 @@
 "MV" = (
 /obj/structure/bed/pod,
 /obj/structure/curtain/open/bed,
-/obj/item/weapon/bedsheet/purple,
+/obj/item/bedsheet/purple,
 /turf/simulated/floor/wood,
 /area/redgate/eggnogtown/visitorlounge/room1)
 "MZ" = (
@@ -3359,7 +3359,7 @@
 /obj/structure/noticeboard{
 	pixel_y = 32
 	},
-/obj/item/weapon/paper{
+/obj/item/paper{
 	info = "Houser Homestead. Private Property. Trespassers will be eaten"
 	},
 /turf/simulated/floor/beach/sand{
@@ -3570,11 +3570,11 @@
 	icon_state = "0-10"
 	},
 /obj/structure/cable/yellow,
-/obj/item/weapon/paper{
+/obj/item/paper{
 	info = "Dear Santa Talon. Please make this Christmas run with red. Because red is a real flappin nice colour. Like a strawberry. Or a cranberry river. From your biggest friendo, Xinxim! P.S. Please make those real spooky snow ghosts go away. They're scary! P.P.S. Here are some offerings to make sure I don't get haunted when I'm trying to roost!";
 	name = "Christmasacrifice"
 	},
-/obj/item/weapon/tray,
+/obj/item/tray,
 /turf/simulated/floor/plating{
 	temperature = 258.15
 	},
@@ -3604,7 +3604,7 @@
 /area/redgate/eggnogtown/stokeswashere/bathroom)
 "PY" = (
 /obj/structure/table/darkglass,
-/obj/item/weapon/storage/pill_bottle/dice_nerd,
+/obj/item/storage/pill_bottle/dice_nerd,
 /turf/simulated/floor/wood,
 /area/redgate/eggnogtown/visitorlounge)
 "Qh" = (
@@ -3652,11 +3652,11 @@
 /area/redgate/eggnogtown/kitchihome/kitchen)
 "Rd" = (
 /obj/structure/table/marble,
-/obj/item/weapon/material/kitchen/rollingpin,
-/obj/item/weapon/reagent_containers/food/condiment/carton/flour,
-/obj/item/weapon/reagent_containers/food/condiment/yeast,
-/obj/item/weapon/reagent_containers/food/condiment/spacespice,
-/obj/item/weapon/reagent_containers/food/condiment/yeast,
+/obj/item/material/kitchen/rollingpin,
+/obj/item/reagent_containers/food/condiment/carton/flour,
+/obj/item/reagent_containers/food/condiment/yeast,
+/obj/item/reagent_containers/food/condiment/spacespice,
+/obj/item/reagent_containers/food/condiment/yeast,
 /turf/simulated/floor/tiled/eris/white/monofloor,
 /area/redgate/eggnogtown/kitchihome/kitchen)
 "Ri" = (
@@ -3698,7 +3698,7 @@
 /turf/simulated/floor/wood,
 /area/redgate/eggnogtown/visitorlounge/room2)
 "Sa" = (
-/obj/item/weapon/stool/padded{
+/obj/item/stool/padded{
 	dir = 1
 	},
 /turf/simulated/floor/lino,
@@ -3870,8 +3870,8 @@
 /turf/simulated/floor/tiled/eris/white/monofloor,
 /area/redgate/eggnogtown/kitchihome/kitchen)
 "UK" = (
-/obj/item/weapon/material/minihoe,
-/obj/item/weapon/material/knife/machete/hatchet,
+/obj/item/material/minihoe,
+/obj/item/material/knife/machete/hatchet,
 /turf/simulated/floor/outdoors/grass{
 	outdoors = 0
 	},
@@ -3891,7 +3891,7 @@
 /area/redgate/eggnogtown/alipad)
 "US" = (
 /obj/structure/bed/double/padded,
-/obj/item/weapon/bedsheet/iandouble,
+/obj/item/bedsheet/iandouble,
 /turf/simulated/floor/wood{
 	temperature = 258.15
 	},
@@ -3956,7 +3956,7 @@
 /area/redgate/eggnogtown/stokeswashere)
 "VJ" = (
 /obj/structure/closet,
-/obj/item/weapon/cell/hyper,
+/obj/item/cell/hyper,
 /obj/random/maintenance,
 /obj/random/maintenance,
 /obj/random/maintenance,
@@ -3978,7 +3978,7 @@
 /area/redgate/eggnogtown/dining/kitchen)
 "Wd" = (
 /obj/structure/table/marble,
-/obj/item/weapon/tape_roll,
+/obj/item/tape_roll,
 /turf/simulated/floor/wood,
 /area/redgate/eggnogtown/loniabode)
 "Wf" = (
@@ -3995,7 +3995,7 @@
 /area/redgate/eggnogtown/dining)
 "WF" = (
 /obj/structure/bed/double/padded,
-/obj/item/weapon/bedsheet/bluedouble,
+/obj/item/bedsheet/bluedouble,
 /turf/simulated/floor/wood{
 	temperature = 258.15
 	},
@@ -4165,7 +4165,7 @@
 /turf/simulated/floor/wood,
 /area/redgate/eggnogtown/loniabode)
 "YK" = (
-/obj/item/weapon/stool/padded{
+/obj/item/stool/padded{
 	dir = 1
 	},
 /turf/simulated/floor/carpet/bcarpet,
@@ -4198,10 +4198,10 @@
 /area/redgate/eggnogtown/stokeswashere)
 "Zl" = (
 /obj/structure/table/marble,
-/obj/item/weapon/reagent_containers/food/condiment/ketchup,
-/obj/item/weapon/reagent_containers/food/condiment/hotsauce,
-/obj/item/weapon/reagent_containers/food/condiment/enzyme,
-/obj/item/weapon/reagent_containers/food/condiment/soysauce,
+/obj/item/reagent_containers/food/condiment/ketchup,
+/obj/item/reagent_containers/food/condiment/hotsauce,
+/obj/item/reagent_containers/food/condiment/enzyme,
+/obj/item/reagent_containers/food/condiment/soysauce,
 /turf/simulated/floor/tiled/eris/white/monofloor,
 /area/redgate/eggnogtown/kitchihome/kitchen)
 "Zm" = (
@@ -4214,7 +4214,7 @@
 /area/redgate/eggnogtown/vibeout)
 "Zo" = (
 /obj/structure/table/marble,
-/obj/item/weapon/storage/firstaid,
+/obj/item/storage/firstaid,
 /turf/simulated/floor/lino,
 /area/redgate/eggnogtown/bar)
 "Zr" = (
@@ -4250,10 +4250,10 @@
 /area/redgate/eggnogtown/kitchihome/bedroom)
 "ZJ" = (
 /obj/structure/table/fancyblack,
-/obj/item/weapon/reagent_containers/food/condiment/small/peppermill{
+/obj/item/reagent_containers/food/condiment/small/peppermill{
 	pixel_x = 3
 	},
-/obj/item/weapon/reagent_containers/food/condiment/small/saltshaker{
+/obj/item/reagent_containers/food/condiment/small/saltshaker{
 	pixel_x = -3
 	},
 /turf/simulated/floor/wood,

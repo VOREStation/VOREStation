@@ -1,5 +1,3 @@
-#define span(class, text) ("<span class='[class]'>[text]</span>")
-
 #define get_turf(A) get_step(A,0)
 
 #define get_x(A) (get_step(A, 0)?.x || 0)

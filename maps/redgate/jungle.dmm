@@ -5,31 +5,31 @@
 /area/redgate/jungle/temple)
 "af" = (
 /obj/structure/closet/crate/wooden,
-/obj/item/weapon/reagent_containers/food/condiment/carton/flour/rustic,
-/obj/item/weapon/reagent_containers/food/condiment/carton/flour/rustic,
-/obj/item/weapon/reagent_containers/food/condiment/carton/flour/rustic,
-/obj/item/weapon/reagent_containers/food/condiment/carton/flour/rustic,
-/obj/item/weapon/reagent_containers/food/condiment/carton/flour/rustic,
-/obj/item/weapon/reagent_containers/food/condiment/carton/flour/rustic,
-/obj/item/weapon/reagent_containers/food/condiment/carton/sugar/rustic,
-/obj/item/weapon/reagent_containers/food/condiment/carton/sugar/rustic,
-/obj/item/weapon/reagent_containers/food/condiment/carton/sugar/rustic,
-/obj/item/weapon/reagent_containers/food/condiment/carton/sugar/rustic,
-/obj/item/weapon/reagent_containers/food/condiment/carton/sugar/rustic,
-/obj/item/weapon/reagent_containers/food/condiment/carton/sugar/rustic,
-/obj/item/weapon/reagent_containers/food/condiment/carton/sugar/rustic,
-/obj/item/weapon/reagent_containers/food/condiment/enzyme,
-/obj/item/weapon/reagent_containers/food/snacks/egg,
-/obj/item/weapon/reagent_containers/food/snacks/egg,
-/obj/item/weapon/reagent_containers/food/snacks/egg,
-/obj/item/weapon/reagent_containers/food/snacks/egg,
-/obj/item/weapon/reagent_containers/food/snacks/egg,
-/obj/item/weapon/reagent_containers/food/snacks/egg,
-/obj/item/weapon/reagent_containers/food/snacks/egg,
-/obj/item/weapon/reagent_containers/food/snacks/egg,
-/obj/item/weapon/reagent_containers/food/snacks/egg,
-/obj/item/weapon/reagent_containers/food/snacks/egg,
-/obj/item/weapon/reagent_containers/food/snacks/egg,
+/obj/item/reagent_containers/food/condiment/carton/flour/rustic,
+/obj/item/reagent_containers/food/condiment/carton/flour/rustic,
+/obj/item/reagent_containers/food/condiment/carton/flour/rustic,
+/obj/item/reagent_containers/food/condiment/carton/flour/rustic,
+/obj/item/reagent_containers/food/condiment/carton/flour/rustic,
+/obj/item/reagent_containers/food/condiment/carton/flour/rustic,
+/obj/item/reagent_containers/food/condiment/carton/sugar/rustic,
+/obj/item/reagent_containers/food/condiment/carton/sugar/rustic,
+/obj/item/reagent_containers/food/condiment/carton/sugar/rustic,
+/obj/item/reagent_containers/food/condiment/carton/sugar/rustic,
+/obj/item/reagent_containers/food/condiment/carton/sugar/rustic,
+/obj/item/reagent_containers/food/condiment/carton/sugar/rustic,
+/obj/item/reagent_containers/food/condiment/carton/sugar/rustic,
+/obj/item/reagent_containers/food/condiment/enzyme,
+/obj/item/reagent_containers/food/snacks/egg,
+/obj/item/reagent_containers/food/snacks/egg,
+/obj/item/reagent_containers/food/snacks/egg,
+/obj/item/reagent_containers/food/snacks/egg,
+/obj/item/reagent_containers/food/snacks/egg,
+/obj/item/reagent_containers/food/snacks/egg,
+/obj/item/reagent_containers/food/snacks/egg,
+/obj/item/reagent_containers/food/snacks/egg,
+/obj/item/reagent_containers/food/snacks/egg,
+/obj/item/reagent_containers/food/snacks/egg,
+/obj/item/reagent_containers/food/snacks/egg,
 /turf/simulated/floor/wood,
 /area/redgate/jungle/aboveground)
 "ak" = (
@@ -67,25 +67,25 @@
 /area/redgate/jungle/temple)
 "aC" = (
 /obj/structure/closet/walllocker/wooden/south,
-/obj/item/weapon/reagent_containers/food/drinks/bottle/kahlua,
-/obj/item/weapon/reagent_containers/food/drinks/bottle/kahlua,
-/obj/item/weapon/reagent_containers/food/drinks/bottle/kahlua,
-/obj/item/weapon/reagent_containers/food/drinks/bottle/kahlua,
-/obj/item/weapon/reagent_containers/food/drinks/bottle/kahlua,
-/obj/item/weapon/reagent_containers/food/drinks/bottle/grenadine,
-/obj/item/weapon/reagent_containers/food/drinks/bottle/grenadine,
-/obj/item/weapon/reagent_containers/food/drinks/bottle/rum,
-/obj/item/weapon/reagent_containers/food/drinks/bottle/rum,
-/obj/item/weapon/reagent_containers/food/drinks/bottle/rum,
-/obj/item/weapon/reagent_containers/food/drinks/bottle/rum,
-/obj/item/weapon/reagent_containers/food/drinks/bottle/specialwhiskey,
-/obj/item/weapon/reagent_containers/food/drinks/bottle/specialwhiskey,
-/obj/item/weapon/reagent_containers/food/drinks/bottle/specialwhiskey,
-/obj/item/weapon/reagent_containers/food/drinks/bottle/specialwhiskey,
+/obj/item/reagent_containers/food/drinks/bottle/kahlua,
+/obj/item/reagent_containers/food/drinks/bottle/kahlua,
+/obj/item/reagent_containers/food/drinks/bottle/kahlua,
+/obj/item/reagent_containers/food/drinks/bottle/kahlua,
+/obj/item/reagent_containers/food/drinks/bottle/kahlua,
+/obj/item/reagent_containers/food/drinks/bottle/grenadine,
+/obj/item/reagent_containers/food/drinks/bottle/grenadine,
+/obj/item/reagent_containers/food/drinks/bottle/rum,
+/obj/item/reagent_containers/food/drinks/bottle/rum,
+/obj/item/reagent_containers/food/drinks/bottle/rum,
+/obj/item/reagent_containers/food/drinks/bottle/rum,
+/obj/item/reagent_containers/food/drinks/bottle/specialwhiskey,
+/obj/item/reagent_containers/food/drinks/bottle/specialwhiskey,
+/obj/item/reagent_containers/food/drinks/bottle/specialwhiskey,
+/obj/item/reagent_containers/food/drinks/bottle/specialwhiskey,
 /turf/simulated/floor/wood/alt,
 /area/redgate/jungle/aboveground)
 "aE" = (
-/obj/item/weapon/reagent_containers/food/snacks/packaged/meatration,
+/obj/item/reagent_containers/food/snacks/packaged/meatration,
 /turf/simulated/mineral/floor/light{
 	nitrogen = 82.1472;
 	oxygen = 21.8366;
@@ -144,7 +144,7 @@
 /obj/effect/floor_decal/atoll/border{
 	dir = 4
 	},
-/obj/item/weapon/reagent_containers/food/drinks/bottle/pwine,
+/obj/item/reagent_containers/food/drinks/bottle/pwine,
 /turf/simulated/mineral/floor/light{
 	nitrogen = 82.1472;
 	oxygen = 21.8366;
@@ -208,15 +208,15 @@
 /area/redgate/jungle/temple)
 "cq" = (
 /obj/structure/closet/crate/wooden,
-/obj/item/weapon/reagent_containers/food/snacks/flatbread,
-/obj/item/weapon/reagent_containers/food/snacks/sliceable/bread,
-/obj/item/weapon/reagent_containers/food/snacks/berrymuffin,
-/obj/item/weapon/reagent_containers/food/snacks/berrymuffin,
-/obj/item/weapon/reagent_containers/food/snacks/berrymuffin,
-/obj/item/weapon/reagent_containers/food/snacks/berrymuffin,
-/obj/item/weapon/reagent_containers/food/snacks/sausage,
-/obj/item/weapon/reagent_containers/food/snacks/sausage,
-/obj/item/weapon/material/knife,
+/obj/item/reagent_containers/food/snacks/flatbread,
+/obj/item/reagent_containers/food/snacks/sliceable/bread,
+/obj/item/reagent_containers/food/snacks/berrymuffin,
+/obj/item/reagent_containers/food/snacks/berrymuffin,
+/obj/item/reagent_containers/food/snacks/berrymuffin,
+/obj/item/reagent_containers/food/snacks/berrymuffin,
+/obj/item/reagent_containers/food/snacks/sausage,
+/obj/item/reagent_containers/food/snacks/sausage,
+/obj/item/material/knife,
 /turf/simulated/floor/outdoors/grass/forest,
 /area/redgate/jungle/aboveground)
 "ct" = (
@@ -244,7 +244,7 @@
 /area/redgate/jungle/temple)
 "cA" = (
 /obj/structure/closet/crate/chest,
-/obj/item/weapon/simple_key/dungeon{
+/obj/item/simple_key/dungeon{
 	color = "#06362e";
 	key_id = "silver";
 	name = "silver key"
@@ -270,19 +270,19 @@
 /area/redgate/jungle/aboveground)
 "cU" = (
 /obj/structure/closet/crate/chest,
-/obj/item/weapon/coin/gold,
-/obj/item/weapon/coin/gold,
-/obj/item/weapon/potion_material/golden_scale,
-/obj/item/weapon/potion_material/golden_scale,
+/obj/item/coin/gold,
+/obj/item/coin/gold,
+/obj/item/potion_material/golden_scale,
+/obj/item/potion_material/golden_scale,
 /obj/item/seeds/goldappleseed,
-/obj/item/weapon/potion_material/golden_grapes,
+/obj/item/potion_material/golden_grapes,
 /obj/item/clothing/under/dress/golddress,
 /obj/item/clothing/under/dress/goldwrap,
 /obj/item/clothing/accessory/bracelet/material/gold,
 /turf/simulated/floor/tiled/eris/white/golden,
 /area/redgate/jungle/temple)
 "cW" = (
-/obj/item/weapon/bluespace_crystal,
+/obj/item/bluespace_crystal,
 /turf/simulated/floor/reinforced,
 /area/redgate/jungle/temple)
 "cX" = (
@@ -309,7 +309,7 @@
 /area/redgate/jungle/southcaves)
 "df" = (
 /obj/fiftyspawner/log,
-/obj/item/weapon/storage/box/matches,
+/obj/item/storage/box/matches,
 /turf/simulated/mineral/floor/cave,
 /area/redgate/jungle/westcaves)
 "di" = (
@@ -337,7 +337,7 @@
 /area/redgate/jungle/aboveground)
 "dz" = (
 /obj/effect/floor_decal/milspec/color/purple,
-/obj/item/weapon/potion_material/solid_mist,
+/obj/item/potion_material/solid_mist,
 /turf/simulated/shuttle/floor/purple,
 /area/redgate/jungle/temple)
 "dB" = (
@@ -348,7 +348,7 @@
 /area/redgate/jungle/aboveground)
 "dC" = (
 /obj/structure/bed/padded,
-/obj/item/weapon/bedsheet/red,
+/obj/item/bedsheet/red,
 /turf/simulated/mineral/floor/cave,
 /area/redgate/jungle/westcaves)
 "dJ" = (
@@ -425,7 +425,7 @@
 /turf/simulated/floor/wood,
 /area/redgate/jungle/aboveground)
 "eK" = (
-/obj/item/weapon/picnic_blankets_carried,
+/obj/item/picnic_blankets_carried,
 /turf/simulated/mineral/floor/cave,
 /area/redgate/jungle/eastcaves)
 "eT" = (
@@ -439,16 +439,16 @@
 /area/redgate/jungle/aboveground)
 "eU" = (
 /obj/structure/closet/crate/chest,
-/obj/item/weapon/reagent_containers/food/snacks/egg/purple,
-/obj/item/weapon/reagent_containers/food/snacks/egg/purple,
-/obj/item/weapon/reagent_containers/food/snacks/egg/purple,
-/obj/item/weapon/reagent_containers/food/snacks/egg/purple,
-/obj/item/weapon/reagent_containers/food/snacks/egg/purple,
-/obj/item/weapon/reagent_containers/glass/paint/purple,
-/obj/item/weapon/reagent_containers/food/snacks/grub_purple,
-/obj/item/weapon/reagent_containers/food/snacks/grub_purple,
-/obj/item/weapon/reagent_containers/food/snacks/grub_purple,
-/obj/item/weapon/pen/crayon/purple,
+/obj/item/reagent_containers/food/snacks/egg/purple,
+/obj/item/reagent_containers/food/snacks/egg/purple,
+/obj/item/reagent_containers/food/snacks/egg/purple,
+/obj/item/reagent_containers/food/snacks/egg/purple,
+/obj/item/reagent_containers/food/snacks/egg/purple,
+/obj/item/reagent_containers/glass/paint/purple,
+/obj/item/reagent_containers/food/snacks/grub_purple,
+/obj/item/reagent_containers/food/snacks/grub_purple,
+/obj/item/reagent_containers/food/snacks/grub_purple,
+/obj/item/pen/crayon/purple,
 /obj/item/toy/plushie/therapy/purple,
 /obj/item/clothing/under/cheongsam/purple,
 /obj/item/clothing/shoes/flats/purple,
@@ -477,9 +477,9 @@
 /obj/random/potion_base,
 /obj/random/potion_base,
 /obj/random/potion_base,
-/obj/item/weapon/potion_base/alkahest,
-/obj/item/weapon/potion_base/aqua_regia,
-/obj/item/weapon/potion_base/ichor,
+/obj/item/potion_base/alkahest,
+/obj/item/potion_base/aqua_regia,
+/obj/item/potion_base/ichor,
 /turf/simulated/floor/wood/alt,
 /area/redgate/jungle/aboveground)
 "fg" = (
@@ -488,11 +488,11 @@
 /area/redgate/jungle/aboveground)
 "fi" = (
 /obj/structure/closet/crate/wooden,
-/obj/item/weapon/reagent_containers/food/snacks/meat,
-/obj/item/weapon/reagent_containers/food/snacks/meat,
-/obj/item/weapon/reagent_containers/food/snacks/meat,
-/obj/item/weapon/reagent_containers/food/snacks/meat,
-/obj/item/weapon/reagent_containers/food/snacks/meat,
+/obj/item/reagent_containers/food/snacks/meat,
+/obj/item/reagent_containers/food/snacks/meat,
+/obj/item/reagent_containers/food/snacks/meat,
+/obj/item/reagent_containers/food/snacks/meat,
+/obj/item/reagent_containers/food/snacks/meat,
 /obj/random/potion_ingredient,
 /turf/simulated/mineral/floor/cave,
 /area/redgate/jungle/westcaves)
@@ -505,31 +505,31 @@
 	dir = 8
 	},
 /obj/structure/closet/walllocker/wooden/west,
-/obj/item/weapon/reagent_containers/food/condiment/carton/flour/rustic,
-/obj/item/weapon/reagent_containers/food/condiment/carton/flour/rustic,
-/obj/item/weapon/reagent_containers/food/condiment/carton/flour/rustic,
-/obj/item/weapon/reagent_containers/food/condiment/carton/flour/rustic,
-/obj/item/weapon/reagent_containers/food/condiment/carton/flour/rustic,
-/obj/item/weapon/reagent_containers/food/condiment/carton/flour/rustic,
-/obj/item/weapon/reagent_containers/food/condiment/carton/flour/rustic,
-/obj/item/weapon/reagent_containers/food/condiment/carton/sugar/rustic,
-/obj/item/weapon/reagent_containers/food/condiment/carton/sugar/rustic,
-/obj/item/weapon/reagent_containers/food/condiment/carton/sugar/rustic,
-/obj/item/weapon/reagent_containers/food/condiment/carton/sugar/rustic,
-/obj/item/weapon/reagent_containers/food/condiment/carton/sugar/rustic,
-/obj/item/weapon/reagent_containers/food/condiment/carton/sugar/rustic,
-/obj/item/weapon/reagent_containers/food/condiment/carton/sugar/rustic,
-/obj/item/weapon/reagent_containers/food/condiment/carton/sugar/rustic,
-/obj/item/weapon/reagent_containers/food/condiment/enzyme,
-/obj/item/weapon/reagent_containers/food/condiment/enzyme,
-/obj/item/weapon/storage/fancy/egg_box,
-/obj/item/weapon/storage/fancy/egg_box,
-/obj/item/weapon/storage/fancy/egg_box,
-/obj/item/weapon/storage/fancy/egg_box,
-/obj/item/weapon/reagent_containers/food/drinks/bottle/milk,
-/obj/item/weapon/reagent_containers/food/drinks/bottle/milk,
-/obj/item/weapon/reagent_containers/food/drinks/bottle/milk,
-/obj/item/weapon/reagent_containers/food/drinks/bottle/milk,
+/obj/item/reagent_containers/food/condiment/carton/flour/rustic,
+/obj/item/reagent_containers/food/condiment/carton/flour/rustic,
+/obj/item/reagent_containers/food/condiment/carton/flour/rustic,
+/obj/item/reagent_containers/food/condiment/carton/flour/rustic,
+/obj/item/reagent_containers/food/condiment/carton/flour/rustic,
+/obj/item/reagent_containers/food/condiment/carton/flour/rustic,
+/obj/item/reagent_containers/food/condiment/carton/flour/rustic,
+/obj/item/reagent_containers/food/condiment/carton/sugar/rustic,
+/obj/item/reagent_containers/food/condiment/carton/sugar/rustic,
+/obj/item/reagent_containers/food/condiment/carton/sugar/rustic,
+/obj/item/reagent_containers/food/condiment/carton/sugar/rustic,
+/obj/item/reagent_containers/food/condiment/carton/sugar/rustic,
+/obj/item/reagent_containers/food/condiment/carton/sugar/rustic,
+/obj/item/reagent_containers/food/condiment/carton/sugar/rustic,
+/obj/item/reagent_containers/food/condiment/carton/sugar/rustic,
+/obj/item/reagent_containers/food/condiment/enzyme,
+/obj/item/reagent_containers/food/condiment/enzyme,
+/obj/item/storage/fancy/egg_box,
+/obj/item/storage/fancy/egg_box,
+/obj/item/storage/fancy/egg_box,
+/obj/item/storage/fancy/egg_box,
+/obj/item/reagent_containers/food/drinks/bottle/milk,
+/obj/item/reagent_containers/food/drinks/bottle/milk,
+/obj/item/reagent_containers/food/drinks/bottle/milk,
+/obj/item/reagent_containers/food/drinks/bottle/milk,
 /turf/simulated/floor/wood/alt,
 /area/redgate/jungle/aboveground)
 "fo" = (
@@ -552,15 +552,15 @@
 "fK" = (
 /obj/structure/closet/crate/wooden,
 /obj/random/fishing_junk,
-/obj/item/weapon/reagent_containers/food/snacks/worm,
-/obj/item/weapon/reagent_containers/food/snacks/worm,
-/obj/item/weapon/reagent_containers/food/snacks/worm,
-/obj/item/weapon/reagent_containers/food/snacks/worm,
-/obj/item/weapon/reagent_containers/food/snacks/worm,
-/obj/item/weapon/reagent_containers/food/snacks/worm,
-/obj/item/weapon/reagent_containers/food/snacks/worm,
-/obj/item/weapon/reagent_containers/food/snacks/worm,
-/obj/item/weapon/reagent_containers/food/snacks/worm,
+/obj/item/reagent_containers/food/snacks/worm,
+/obj/item/reagent_containers/food/snacks/worm,
+/obj/item/reagent_containers/food/snacks/worm,
+/obj/item/reagent_containers/food/snacks/worm,
+/obj/item/reagent_containers/food/snacks/worm,
+/obj/item/reagent_containers/food/snacks/worm,
+/obj/item/reagent_containers/food/snacks/worm,
+/obj/item/reagent_containers/food/snacks/worm,
+/obj/item/reagent_containers/food/snacks/worm,
 /obj/random/potion_base,
 /turf/simulated/floor/wood,
 /area/redgate/jungle/aboveground)
@@ -604,7 +604,7 @@
 /area/redgate/jungle/aboveground)
 "gm" = (
 /obj/structure/flora/ausbushes/stalkybush,
-/obj/item/weapon/bone/skull/tajaran,
+/obj/item/bone/skull/tajaran,
 /turf/simulated/floor/outdoors/grass/forest,
 /area/redgate/jungle/aboveground)
 "gt" = (
@@ -651,7 +651,7 @@
 /area/redgate/jungle/temple)
 "hg" = (
 /obj/structure/table/hardwoodtable,
-/obj/item/weapon/reagent_containers/glass/pint_mug,
+/obj/item/reagent_containers/glass/pint_mug,
 /turf/simulated/floor/wood,
 /area/redgate/jungle/aboveground)
 "hh" = (
@@ -678,8 +678,8 @@
 /area/redgate/jungle/aboveground)
 "hq" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/material/fishing_net,
-/obj/item/weapon/material/fishing_rod/modern/strong,
+/obj/item/material/fishing_net,
+/obj/item/material/fishing_rod/modern/strong,
 /turf/simulated/floor/wood,
 /area/redgate/jungle/aboveground)
 "hA" = (
@@ -746,11 +746,11 @@
 /turf/simulated/floor/tiled/yellow,
 /area/redgate/jungle/temple)
 "iG" = (
-/obj/item/weapon/ore/phoron,
+/obj/item/ore/phoron,
 /turf/simulated/floor/reinforced,
 /area/redgate/jungle/temple)
 "iI" = (
-/obj/item/weapon/pickaxe/gold,
+/obj/item/pickaxe/gold,
 /turf/simulated/floor/tiled/eris/white/golden,
 /area/redgate/jungle/temple)
 "iJ" = (
@@ -796,7 +796,7 @@
 /turf/simulated/wall/solidrock,
 /area/redgate/jungle/southcaves)
 "jd" = (
-/obj/item/weapon/bone/skull,
+/obj/item/bone/skull,
 /turf/simulated/mineral/floor/light{
 	nitrogen = 82.1472;
 	oxygen = 21.8366;
@@ -831,7 +831,7 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/redgate/jungle/westcaves)
 "jQ" = (
-/obj/item/weapon/reagent_containers/glass/bucket/wood,
+/obj/item/reagent_containers/glass/bucket/wood,
 /turf/simulated/floor/tiled/yellow,
 /area/redgate/jungle/temple)
 "jW" = (
@@ -937,7 +937,7 @@
 /area/redgate/jungle/eastcaves)
 "ld" = (
 /obj/structure/bed/double/padded,
-/obj/item/weapon/bedsheet/reddouble,
+/obj/item/bedsheet/reddouble,
 /turf/simulated/floor/wood,
 /area/redgate/jungle/aboveground)
 "ll" = (
@@ -989,8 +989,8 @@
 /area/redgate/jungle/temple)
 "lI" = (
 /obj/structure/table/rack/shelf/wood,
-/obj/item/weapon/material/fishing_net,
-/obj/item/weapon/material/fishing_net,
+/obj/item/material/fishing_net,
+/obj/item/material/fishing_net,
 /turf/simulated/mineral/floor/light{
 	nitrogen = 82.1472;
 	oxygen = 21.8366;
@@ -1025,7 +1025,7 @@
 /area/redgate/jungle/temple)
 "mm" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/reagent_containers/food/snacks/carpmeat,
+/obj/item/reagent_containers/food/snacks/carpmeat,
 /turf/simulated/floor/wood,
 /area/redgate/jungle/aboveground)
 "mv" = (
@@ -1043,19 +1043,19 @@
 /obj/structure/closet/crate/wooden,
 /obj/random/fantasy_item,
 /obj/random/fantasy_item,
-/obj/item/weapon/gun/launcher/crossbow/bow,
-/obj/item/weapon/arrow/standard,
-/obj/item/weapon/arrow/standard,
-/obj/item/weapon/arrow/standard,
-/obj/item/weapon/arrow/standard,
-/obj/item/weapon/arrow/standard,
-/obj/item/weapon/arrow/standard,
-/obj/item/weapon/arrow/standard,
+/obj/item/gun/launcher/crossbow/bow,
+/obj/item/arrow/standard,
+/obj/item/arrow/standard,
+/obj/item/arrow/standard,
+/obj/item/arrow/standard,
+/obj/item/arrow/standard,
+/obj/item/arrow/standard,
+/obj/item/arrow/standard,
 /turf/simulated/floor/wood/alt,
 /area/redgate/jungle/aboveground)
 "mz" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/material/sword/foam,
+/obj/item/material/sword/foam,
 /turf/simulated/mineral/floor/light{
 	nitrogen = 82.1472;
 	oxygen = 21.8366;
@@ -1064,12 +1064,12 @@
 /area/redgate/jungle/temple)
 "mH" = (
 /obj/structure/bed/padded,
-/obj/item/weapon/bedsheet/brown,
-/obj/item/weapon/bedsheet/pillow/white,
+/obj/item/bedsheet/brown,
+/obj/item/bedsheet/pillow/white,
 /turf/simulated/floor/wood,
 /area/redgate/jungle/aboveground)
 "mI" = (
-/obj/item/weapon/melee/shock_maul,
+/obj/item/melee/shock_maul,
 /obj/structure/table/alien/blue,
 /turf/simulated/floor/reinforced,
 /area/redgate/jungle/temple)
@@ -1082,7 +1082,7 @@
 /area/redgate/jungle/southcaves)
 "mT" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/material/knife/machete/hatchet/stone,
+/obj/item/material/knife/machete/hatchet/stone,
 /turf/simulated/mineral/floor/cave,
 /area/redgate/jungle/westcaves)
 "mX" = (
@@ -1136,7 +1136,7 @@
 /area/redgate/jungle/aboveground)
 "nP" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/reagent_containers/food/snacks/sliceable/chocolatecake,
+/obj/item/reagent_containers/food/snacks/sliceable/chocolatecake,
 /turf/simulated/mineral/floor/light{
 	nitrogen = 82.1472;
 	oxygen = 21.8366;
@@ -1185,8 +1185,8 @@
 /area/redgate/jungle/aboveground)
 "oo" = (
 /obj/structure/closet/crate/wooden,
-/obj/item/weapon/storage/box/matches,
-/obj/item/device/slow_sizegun/magic,
+/obj/item/storage/box/matches,
+/obj/item/slow_sizegun/magic,
 /obj/random/fantasy_item,
 /obj/random/potion_ingredient,
 /turf/simulated/floor/wood,
@@ -1267,7 +1267,7 @@
 /obj/structure/closet/cabinet,
 /obj/item/clothing/under/primitive,
 /obj/item/clothing/shoes/primitive,
-/obj/item/weapon/material/knife/stone/bone,
+/obj/item/material/knife/stone/bone,
 /turf/simulated/floor/wood,
 /area/redgate/jungle/aboveground)
 "pt" = (
@@ -1330,7 +1330,7 @@
 /area/redgate/jungle/southcaves)
 "pU" = (
 /obj/random/tool/alien,
-/obj/item/weapon/aliencoin/phoron,
+/obj/item/aliencoin/phoron,
 /obj/item/trash/meatration,
 /obj/item/trash/meatration,
 /obj/item/trash/meatration,
@@ -1340,7 +1340,7 @@
 /turf/simulated/shuttle/floor,
 /area/redgate/jungle/aboveground)
 "pX" = (
-/obj/item/weapon/reagent_containers/food/snacks/xenomeat/spidermeat,
+/obj/item/reagent_containers/food/snacks/xenomeat/spidermeat,
 /turf/simulated/mineral/floor/light{
 	nitrogen = 82.1472;
 	oxygen = 21.8366;
@@ -1367,7 +1367,7 @@
 /area/redgate/jungle/aboveground)
 "qc" = (
 /obj/structure/grille,
-/obj/item/weapon/material/shard/titaniumglass,
+/obj/item/material/shard/titaniumglass,
 /turf/simulated/floor/plating,
 /area/redgate/jungle/aboveground)
 "qe" = (
@@ -1376,7 +1376,7 @@
 /area/redgate/jungle/aboveground)
 "qi" = (
 /obj/structure/grille/broken,
-/obj/item/weapon/material/shard/titaniumglass,
+/obj/item/material/shard/titaniumglass,
 /turf/simulated/floor/plating,
 /area/redgate/jungle/aboveground)
 "qj" = (
@@ -1460,7 +1460,7 @@
 /turf/simulated/shuttle/floor,
 /area/redgate/jungle/aboveground)
 "qU" = (
-/obj/item/weapon/bone,
+/obj/item/bone,
 /turf/simulated/floor/outdoors/grass/forest,
 /area/redgate/jungle/aboveground)
 "qV" = (
@@ -1474,7 +1474,7 @@
 /turf/simulated/floor/wmarble,
 /area/redgate/jungle/aboveground)
 "ra" = (
-/obj/item/weapon/reagent_containers/food/drinks/golden_cup,
+/obj/item/reagent_containers/food/drinks/golden_cup,
 /obj/structure/sign/goldenplaque{
 	desc = "Surprisingly written in galcom, the enscryption reads: The phoron room key is stored in the sealed room closest to the lava.";
 	name = "gold engraving";
@@ -1544,7 +1544,7 @@
 /area/redgate/jungle/temple)
 "rJ" = (
 /obj/structure/table/alien/blue,
-/obj/item/weapon/pickaxe/diamonddrill,
+/obj/item/pickaxe/diamonddrill,
 /turf/simulated/floor/bluegrid,
 /area/redgate/jungle/temple)
 "rL" = (
@@ -1559,7 +1559,7 @@
 "rZ" = (
 /obj/structure/closet/crate/wooden,
 /obj/item/instrument/musicalmoth,
-/obj/item/weapon/flame/lighter/zippo/royal,
+/obj/item/flame/lighter/zippo/royal,
 /obj/random/fantasy_item,
 /obj/random/potion_base,
 /obj/random/plushielarge,
@@ -1571,7 +1571,7 @@
 /area/redgate/jungle/westcaves)
 "sh" = (
 /obj/structure/salvageable/shuttle_console,
-/obj/item/weapon/material/shard/titaniumglass,
+/obj/item/material/shard/titaniumglass,
 /turf/simulated/shuttle/floor,
 /area/redgate/jungle/aboveground)
 "sm" = (
@@ -1605,7 +1605,7 @@
 /turf/simulated/shuttle/floor,
 /area/redgate/jungle/aboveground)
 "sU" = (
-/obj/item/weapon/aliencoin/phoron,
+/obj/item/aliencoin/phoron,
 /turf/simulated/floor/weird_things/dark,
 /area/redgate/jungle/temple)
 "sX" = (
@@ -1620,7 +1620,7 @@
 /area/redgate/jungle/aboveground)
 "ti" = (
 /obj/structure/closet/coffin,
-/obj/item/weapon/bone,
+/obj/item/bone,
 /turf/simulated/mineral/floor/light{
 	nitrogen = 82.1472;
 	oxygen = 21.8366;
@@ -1628,7 +1628,7 @@
 	},
 /area/redgate/jungle/temple)
 "tj" = (
-/obj/item/weapon/material/shard/titaniumglass,
+/obj/item/material/shard/titaniumglass,
 /obj/structure/bed/chair/bay/chair/padded/purple{
 	dir = 1
 	},
@@ -1636,7 +1636,7 @@
 /area/redgate/jungle/aboveground)
 "tk" = (
 /obj/structure/closet/crate/nanotrasen,
-/obj/item/device/gps/explorer,
+/obj/item/gps/explorer,
 /obj/random/bluespace,
 /turf/simulated/mineral/floor/cave,
 /area/redgate/jungle/westcaves)
@@ -1727,12 +1727,12 @@
 /area/redgate/jungle/temple)
 "uM" = (
 /obj/structure/closet/crate/chest,
-/obj/item/weapon/simple_key/dungeon{
+/obj/item/simple_key/dungeon{
 	color = "#fff700";
 	key_id = "gold";
 	name = "gold key"
 	},
-/obj/item/weapon/spellbook/oneuse/knock,
+/obj/item/spellbook/oneuse/knock,
 /obj/random/fantasy_item,
 /turf/simulated/floor/tiled/yellow,
 /area/redgate/jungle/temple)
@@ -1745,7 +1745,7 @@
 /turf/simulated/floor/outdoors/grass/forest,
 /area/redgate/jungle/aboveground)
 "uZ" = (
-/obj/item/weapon/potion_material/folded_dark,
+/obj/item/potion_material/folded_dark,
 /turf/simulated/floor/weird_things/dark,
 /area/redgate/jungle/southcaves)
 "vi" = (
@@ -1756,11 +1756,11 @@
 /area/redgate/jungle/aboveground)
 "vj" = (
 /obj/structure/bed/double/padded,
-/obj/item/weapon/bedsheet/double,
+/obj/item/bedsheet/double,
 /turf/simulated/floor/reinforced,
 /area/redgate/jungle/aboveground)
 "vs" = (
-/obj/item/weapon/circuitboard/broken,
+/obj/item/circuitboard/broken,
 /turf/simulated/shuttle/floor,
 /area/redgate/jungle/aboveground)
 "vv" = (
@@ -1775,7 +1775,7 @@
 "vx" = (
 /obj/item/clothing/head/cowboy/wide,
 /obj/structure/loot_pile/surface/bones,
-/obj/item/weapon/melee/chainofcommand/curator_whip,
+/obj/item/melee/chainofcommand/curator_whip,
 /turf/simulated/mineral/floor/light{
 	nitrogen = 82.1472;
 	oxygen = 21.8366;
@@ -1802,9 +1802,9 @@
 /area/redgate/jungle/temple)
 "vP" = (
 /obj/structure/table/rack/shelf/wood,
-/obj/item/weapon/reagent_containers/food/snacks/bearmeat,
-/obj/item/weapon/reagent_containers/food/snacks/bearmeat,
-/obj/item/weapon/reagent_containers/food/snacks/bearmeat,
+/obj/item/reagent_containers/food/snacks/bearmeat,
+/obj/item/reagent_containers/food/snacks/bearmeat,
+/obj/item/reagent_containers/food/snacks/bearmeat,
 /turf/simulated/floor/wood/alt,
 /area/redgate/jungle/aboveground)
 "vQ" = (
@@ -1817,22 +1817,22 @@
 /area/redgate/jungle/aboveground)
 "vU" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/storage/backpack/parachute,
+/obj/item/storage/backpack/parachute,
 /turf/simulated/mineral/floor/cave,
 /area/redgate/jungle/westcaves)
 "wa" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/reagent_containers/glass/pint_mug,
-/obj/item/weapon/reagent_containers/glass/pint_mug,
-/obj/item/weapon/reagent_containers/glass/pint_mug,
-/obj/item/weapon/reagent_containers/glass/pint_mug,
-/obj/item/weapon/reagent_containers/glass/pint_mug,
-/obj/item/weapon/reagent_containers/glass/pint_mug,
-/obj/item/weapon/reagent_containers/glass/pint_mug,
-/obj/item/weapon/reagent_containers/glass/pint_mug,
-/obj/item/weapon/reagent_containers/glass/pint_mug,
-/obj/item/weapon/reagent_containers/glass/pint_mug,
-/obj/item/weapon/reagent_containers/glass/pint_mug,
+/obj/item/reagent_containers/glass/pint_mug,
+/obj/item/reagent_containers/glass/pint_mug,
+/obj/item/reagent_containers/glass/pint_mug,
+/obj/item/reagent_containers/glass/pint_mug,
+/obj/item/reagent_containers/glass/pint_mug,
+/obj/item/reagent_containers/glass/pint_mug,
+/obj/item/reagent_containers/glass/pint_mug,
+/obj/item/reagent_containers/glass/pint_mug,
+/obj/item/reagent_containers/glass/pint_mug,
+/obj/item/reagent_containers/glass/pint_mug,
+/obj/item/reagent_containers/glass/pint_mug,
 /turf/simulated/floor/wood/alt,
 /area/redgate/jungle/aboveground)
 "wi" = (
@@ -1952,14 +1952,14 @@
 /obj/item/paint_palette,
 /obj/item/paint_brush,
 /obj/item/paint_brush,
-/obj/item/weapon/reagent_containers/glass/paint/black,
-/obj/item/weapon/reagent_containers/glass/paint/blue,
-/obj/item/weapon/reagent_containers/glass/paint/cyan,
-/obj/item/weapon/reagent_containers/glass/paint/green,
-/obj/item/weapon/reagent_containers/glass/paint/red,
-/obj/item/weapon/reagent_containers/glass/paint/yellow,
-/obj/item/weapon/reagent_containers/glass/paint/purple,
-/obj/item/weapon/reagent_containers/glass/paint/orange,
+/obj/item/reagent_containers/glass/paint/black,
+/obj/item/reagent_containers/glass/paint/blue,
+/obj/item/reagent_containers/glass/paint/cyan,
+/obj/item/reagent_containers/glass/paint/green,
+/obj/item/reagent_containers/glass/paint/red,
+/obj/item/reagent_containers/glass/paint/yellow,
+/obj/item/reagent_containers/glass/paint/purple,
+/obj/item/reagent_containers/glass/paint/orange,
 /turf/simulated/floor/wood,
 /area/redgate/jungle/aboveground)
 "xD" = (
@@ -1976,31 +1976,31 @@
 /turf/simulated/floor/outdoors/grass/forest,
 /area/redgate/jungle/aboveground)
 "xH" = (
-/obj/item/weapon/reagent_containers/food/condiment/carton/flour/rustic,
-/obj/item/weapon/reagent_containers/food/condiment/carton/flour/rustic,
-/obj/item/weapon/reagent_containers/food/condiment/carton/flour/rustic,
-/obj/item/weapon/reagent_containers/food/condiment/carton/flour/rustic,
-/obj/item/weapon/reagent_containers/food/condiment/carton/flour/rustic,
-/obj/item/weapon/reagent_containers/food/condiment/carton/flour/rustic,
-/obj/item/weapon/reagent_containers/food/condiment/carton/sugar/rustic,
-/obj/item/weapon/reagent_containers/food/condiment/carton/sugar/rustic,
-/obj/item/weapon/reagent_containers/food/condiment/carton/sugar/rustic,
-/obj/item/weapon/reagent_containers/food/condiment/carton/sugar/rustic,
-/obj/item/weapon/reagent_containers/food/condiment/carton/sugar/rustic,
-/obj/item/weapon/reagent_containers/food/condiment/carton/sugar/rustic,
-/obj/item/weapon/reagent_containers/food/condiment/carton/sugar/rustic,
-/obj/item/weapon/reagent_containers/food/condiment/enzyme,
-/obj/item/weapon/reagent_containers/food/snacks/egg,
-/obj/item/weapon/reagent_containers/food/snacks/egg,
-/obj/item/weapon/reagent_containers/food/snacks/egg,
-/obj/item/weapon/reagent_containers/food/snacks/egg,
-/obj/item/weapon/reagent_containers/food/snacks/egg,
-/obj/item/weapon/reagent_containers/food/snacks/egg,
-/obj/item/weapon/reagent_containers/food/snacks/egg,
-/obj/item/weapon/reagent_containers/food/snacks/egg,
-/obj/item/weapon/reagent_containers/food/snacks/egg,
-/obj/item/weapon/reagent_containers/food/snacks/egg,
-/obj/item/weapon/reagent_containers/food/snacks/egg,
+/obj/item/reagent_containers/food/condiment/carton/flour/rustic,
+/obj/item/reagent_containers/food/condiment/carton/flour/rustic,
+/obj/item/reagent_containers/food/condiment/carton/flour/rustic,
+/obj/item/reagent_containers/food/condiment/carton/flour/rustic,
+/obj/item/reagent_containers/food/condiment/carton/flour/rustic,
+/obj/item/reagent_containers/food/condiment/carton/flour/rustic,
+/obj/item/reagent_containers/food/condiment/carton/sugar/rustic,
+/obj/item/reagent_containers/food/condiment/carton/sugar/rustic,
+/obj/item/reagent_containers/food/condiment/carton/sugar/rustic,
+/obj/item/reagent_containers/food/condiment/carton/sugar/rustic,
+/obj/item/reagent_containers/food/condiment/carton/sugar/rustic,
+/obj/item/reagent_containers/food/condiment/carton/sugar/rustic,
+/obj/item/reagent_containers/food/condiment/carton/sugar/rustic,
+/obj/item/reagent_containers/food/condiment/enzyme,
+/obj/item/reagent_containers/food/snacks/egg,
+/obj/item/reagent_containers/food/snacks/egg,
+/obj/item/reagent_containers/food/snacks/egg,
+/obj/item/reagent_containers/food/snacks/egg,
+/obj/item/reagent_containers/food/snacks/egg,
+/obj/item/reagent_containers/food/snacks/egg,
+/obj/item/reagent_containers/food/snacks/egg,
+/obj/item/reagent_containers/food/snacks/egg,
+/obj/item/reagent_containers/food/snacks/egg,
+/obj/item/reagent_containers/food/snacks/egg,
+/obj/item/reagent_containers/food/snacks/egg,
 /obj/structure/closet/walllocker/wooden/east,
 /turf/simulated/mineral/floor/light{
 	nitrogen = 82.1472;
@@ -2051,7 +2051,7 @@
 /area/redgate/jungle/aboveground)
 "yj" = (
 /obj/structure/table/gold,
-/obj/item/weapon/material/knife/ritual,
+/obj/item/material/knife/ritual,
 /obj/random/fantasy_item/better,
 /turf/simulated/floor/bmarble,
 /area/redgate/jungle/temple)
@@ -2094,10 +2094,10 @@
 /area/redgate/jungle/aboveground)
 "yH" = (
 /obj/structure/closet/walllocker/wooden/south,
-/obj/item/weapon/reagent_containers/food/drinks/flask/barflask,
-/obj/item/weapon/reagent_containers/food/drinks/flask/barflask,
-/obj/item/weapon/reagent_containers/food/drinks/flask/barflask,
-/obj/item/weapon/reagent_containers/food/drinks/flask/barflask,
+/obj/item/reagent_containers/food/drinks/flask/barflask,
+/obj/item/reagent_containers/food/drinks/flask/barflask,
+/obj/item/reagent_containers/food/drinks/flask/barflask,
+/obj/item/reagent_containers/food/drinks/flask/barflask,
 /turf/simulated/floor/wood/alt,
 /area/redgate/jungle/aboveground)
 "yJ" = (
@@ -2160,7 +2160,7 @@
 /area/redgate/jungle/aboveground)
 "zr" = (
 /obj/structure/table/woodentable,
-/obj/item/device/healthanalyzer/scroll,
+/obj/item/healthanalyzer/scroll,
 /obj/item/robot_parts/robot_component/diagnosis_unit,
 /turf/simulated/floor/reinforced,
 /area/redgate/jungle/aboveground)
@@ -2176,7 +2176,7 @@
 /area/redgate/jungle/aboveground)
 "zv" = (
 /obj/structure/table/rack/shelf/wood,
-/obj/item/device/flashlight/lantern,
+/obj/item/flashlight/lantern,
 /turf/simulated/mineral/floor/light{
 	nitrogen = 82.1472;
 	oxygen = 21.8366;
@@ -2215,7 +2215,7 @@
 /area/redgate/jungle/aboveground)
 "zV" = (
 /obj/structure/table/gold,
-/obj/item/weapon/material/knife/hook,
+/obj/item/material/knife/hook,
 /turf/simulated/floor/bmarble,
 /area/redgate/jungle/temple)
 "zX" = (
@@ -2257,8 +2257,8 @@
 /area/redgate/jungle/temple)
 "AU" = (
 /obj/structure/table/rack/shelf/wood,
-/obj/item/weapon/beartrap/hunting,
-/obj/item/weapon/beartrap/hunting,
+/obj/item/beartrap/hunting,
+/obj/item/beartrap/hunting,
 /obj/machinery/light/small/torch{
 	dir = 4
 	},
@@ -2309,8 +2309,8 @@
 /area/redgate/jungle/aboveground)
 "Bu" = (
 /obj/structure/closet/crate/wooden,
-/obj/item/weapon/material/twohanded/spear,
-/obj/item/weapon/material/knife/machete,
+/obj/item/material/twohanded/spear,
+/obj/item/material/knife/machete,
 /obj/random/fantasy_item,
 /turf/simulated/mineral/floor/cave,
 /area/redgate/jungle/eastcaves)
@@ -2350,10 +2350,10 @@
 /turf/simulated/floor/wood/alt,
 /area/redgate/jungle/aboveground)
 "BS" = (
-/obj/item/weapon/ore/coal,
-/obj/item/weapon/ore/coal,
-/obj/item/weapon/ore/coal,
-/obj/item/weapon/ore/coal,
+/obj/item/ore/coal,
+/obj/item/ore/coal,
+/obj/item/ore/coal,
+/obj/item/ore/coal,
 /turf/simulated/mineral/floor/light{
 	nitrogen = 82.1472;
 	oxygen = 21.8366;
@@ -2416,15 +2416,15 @@
 /obj/structure/closet/crate/wooden,
 /obj/item/clothing/under/tribalwear/hunter,
 /obj/item/clothing/shoes/sandal,
-/obj/item/weapon/gun/launcher/crossbow/bow,
-/obj/item/weapon/arrow/standard,
-/obj/item/weapon/arrow/standard,
-/obj/item/weapon/arrow/standard,
-/obj/item/weapon/arrow/standard,
-/obj/item/weapon/arrow/standard,
-/obj/item/weapon/arrow/standard,
-/obj/item/weapon/arrow/standard,
-/obj/item/weapon/arrow/standard,
+/obj/item/gun/launcher/crossbow/bow,
+/obj/item/arrow/standard,
+/obj/item/arrow/standard,
+/obj/item/arrow/standard,
+/obj/item/arrow/standard,
+/obj/item/arrow/standard,
+/obj/item/arrow/standard,
+/obj/item/arrow/standard,
+/obj/item/arrow/standard,
 /obj/random/fantasy_item,
 /turf/simulated/floor/wood,
 /area/redgate/jungle/westcaves)
@@ -2479,7 +2479,7 @@
 /area/redgate/jungle/temple)
 "DQ" = (
 /obj/structure/closet/coffin,
-/obj/item/weapon/bone/ribs,
+/obj/item/bone/ribs,
 /turf/simulated/mineral/floor/light{
 	nitrogen = 82.1472;
 	oxygen = 21.8366;
@@ -2495,7 +2495,7 @@
 /area/redgate/jungle/aboveground)
 "Ei" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/handcuffs/cable/plantfiber,
+/obj/item/handcuffs/cable/plantfiber,
 /turf/simulated/floor/wood,
 /area/redgate/jungle/aboveground)
 "Ej" = (
@@ -2556,8 +2556,8 @@
 /area/redgate/jungle/aboveground)
 "EJ" = (
 /obj/structure/closet/cabinet,
-/obj/item/weapon/bedsheet/cosmos,
-/obj/item/weapon/bedsheet/pillow/black,
+/obj/item/bedsheet/cosmos,
+/obj/item/bedsheet/pillow/black,
 /obj/item/clothing/under/tribalwear/hunter,
 /obj/item/clothing/shoes/tribalwear,
 /obj/item/clothing/head/helmet/bucket/wood,
@@ -2594,11 +2594,11 @@
 /area/redgate/jungle/aboveground)
 "Fl" = (
 /obj/structure/closet/crate/wooden,
-/obj/item/weapon/storage/backpack/explorer,
+/obj/item/storage/backpack/explorer,
 /obj/item/clothing/suit/storage/toggle/labcoat/neo_ranger,
 /obj/item/clothing/accessory/poncho/roles/ranger/tan,
 /obj/item/clothing/shoes/boots/jungle,
-/obj/item/weapon/material/knife/tacknife/boot,
+/obj/item/material/knife/tacknife/boot,
 /turf/simulated/mineral/floor/light{
 	nitrogen = 82.1472;
 	oxygen = 21.8366;
@@ -2607,7 +2607,7 @@
 /area/redgate/jungle/temple)
 "Fq" = (
 /obj/effect/floor_decal/milspec/color/silver,
-/obj/item/weapon/coin/silver,
+/obj/item/coin/silver,
 /turf/simulated/mineral/floor/light{
 	nitrogen = 82.1472;
 	oxygen = 21.8366;
@@ -2616,7 +2616,7 @@
 /area/redgate/jungle/temple)
 "Fu" = (
 /obj/structure/table/alien/blue,
-/obj/item/device/nif,
+/obj/item/nif,
 /turf/simulated/floor/bluegrid,
 /area/redgate/jungle/temple)
 "Fv" = (
@@ -2625,11 +2625,11 @@
 /area/redgate/jungle/southcaves)
 "Fx" = (
 /obj/structure/table/rack/shelf/wood,
-/obj/item/weapon/gun/launcher/crossbow/bow,
-/obj/item/weapon/arrow/standard,
-/obj/item/weapon/arrow/standard,
-/obj/item/weapon/arrow/standard,
-/obj/item/weapon/arrow/standard,
+/obj/item/gun/launcher/crossbow/bow,
+/obj/item/arrow/standard,
+/obj/item/arrow/standard,
+/obj/item/arrow/standard,
+/obj/item/arrow/standard,
 /turf/simulated/floor/wood/alt/panel,
 /area/redgate/jungle/aboveground)
 "FA" = (
@@ -2685,7 +2685,7 @@
 /turf/simulated/floor/wood/alt,
 /area/redgate/jungle/aboveground)
 "FQ" = (
-/obj/item/weapon/reagent_containers/food/snacks/packaged/genration,
+/obj/item/reagent_containers/food/snacks/packaged/genration,
 /turf/simulated/mineral/floor/light{
 	nitrogen = 82.1472;
 	oxygen = 21.8366;
@@ -2714,18 +2714,18 @@
 /area/redgate/jungle/aboveground)
 "GF" = (
 /obj/structure/closet/walllocker/wooden/west,
-/obj/item/weapon/reagent_containers/food/snacks/meat,
-/obj/item/weapon/reagent_containers/food/snacks/meat,
-/obj/item/weapon/reagent_containers/food/snacks/meat,
-/obj/item/weapon/reagent_containers/food/snacks/meat,
-/obj/item/weapon/reagent_containers/food/snacks/meat,
-/obj/item/weapon/reagent_containers/food/snacks/meat,
-/obj/item/weapon/reagent_containers/food/snacks/meat,
-/obj/item/weapon/reagent_containers/food/snacks/meat,
-/obj/item/weapon/reagent_containers/food/snacks/meat,
-/obj/item/weapon/reagent_containers/food/snacks/meat,
-/obj/item/weapon/reagent_containers/food/snacks/meat,
-/obj/item/weapon/reagent_containers/food/snacks/meat,
+/obj/item/reagent_containers/food/snacks/meat,
+/obj/item/reagent_containers/food/snacks/meat,
+/obj/item/reagent_containers/food/snacks/meat,
+/obj/item/reagent_containers/food/snacks/meat,
+/obj/item/reagent_containers/food/snacks/meat,
+/obj/item/reagent_containers/food/snacks/meat,
+/obj/item/reagent_containers/food/snacks/meat,
+/obj/item/reagent_containers/food/snacks/meat,
+/obj/item/reagent_containers/food/snacks/meat,
+/obj/item/reagent_containers/food/snacks/meat,
+/obj/item/reagent_containers/food/snacks/meat,
+/obj/item/reagent_containers/food/snacks/meat,
 /turf/simulated/floor/wood/alt,
 /area/redgate/jungle/aboveground)
 "GJ" = (
@@ -2747,19 +2747,19 @@
 /obj/random/fantasy_item,
 /obj/random/potion_base,
 /obj/random/potion_ingredient,
-/obj/item/weapon/simple_key/dungeon{
+/obj/item/simple_key/dungeon{
 	color = "#00fff2";
 	key_id = "diamond";
 	name = "diamond key"
 	},
-/obj/item/weapon/coin/diamond,
+/obj/item/coin/diamond,
 /turf/simulated/floor/tiled/yellow,
 /area/redgate/jungle/temple)
 "GP" = (
 /obj/structure/table/rack/wood,
 /obj/item/clothing/under/tribalwear/hunter,
 /obj/item/clothing/shoes/tribalwear,
-/obj/item/weapon/material/knife/stone/wood,
+/obj/item/material/knife/stone/wood,
 /turf/simulated/floor/wood/alt,
 /area/redgate/jungle/aboveground)
 "GT" = (
@@ -2767,8 +2767,8 @@
 /area/redgate/jungle/temple)
 "GV" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/handcuffs/cable/plantfiber,
-/obj/item/weapon/handcuffs/cable/plantfiber,
+/obj/item/handcuffs/cable/plantfiber,
+/obj/item/handcuffs/cable/plantfiber,
 /turf/simulated/floor/wood,
 /area/redgate/jungle/westcaves)
 "HB" = (
@@ -2798,7 +2798,7 @@
 /obj/item/stack/material/log,
 /obj/item/stack/material/log,
 /obj/item/stack/material/log,
-/obj/item/weapon/storage/box/matches,
+/obj/item/storage/box/matches,
 /obj/random/potion_ingredient,
 /turf/simulated/floor/wood,
 /area/redgate/jungle/aboveground)
@@ -2861,7 +2861,7 @@
 /turf/simulated/floor/outdoors/grass/forest,
 /area/redgate/jungle/aboveground)
 "IV" = (
-/obj/item/weapon/soap/golden_soap,
+/obj/item/soap/golden_soap,
 /turf/simulated/floor/tiled/eris/white/golden,
 /area/redgate/jungle/temple)
 "IZ" = (
@@ -2878,8 +2878,8 @@
 /area/redgate/jungle/aboveground)
 "Jd" = (
 /obj/effect/floor_decal/milspec/color/silver,
-/obj/item/weapon/coin/silver,
-/obj/item/weapon/coin/silver,
+/obj/item/coin/silver,
+/obj/item/coin/silver,
 /turf/simulated/mineral/floor/light{
 	nitrogen = 82.1472;
 	oxygen = 21.8366;
@@ -2917,13 +2917,13 @@
 /obj/random/fantasy_item,
 /obj/random/fantasy_item,
 /obj/fiftyspawner/iron,
-/obj/item/weapon/coin/iron,
-/obj/item/weapon/coin/iron,
-/obj/item/weapon/coin/iron,
-/obj/item/weapon/coin/iron,
-/obj/item/weapon/coin/iron,
-/obj/item/weapon/ore/iron,
-/obj/item/weapon/ore/iron,
+/obj/item/coin/iron,
+/obj/item/coin/iron,
+/obj/item/coin/iron,
+/obj/item/coin/iron,
+/obj/item/coin/iron,
+/obj/item/ore/iron,
+/obj/item/ore/iron,
 /turf/simulated/mineral/floor/light{
 	nitrogen = 82.1472;
 	oxygen = 21.8366;
@@ -2982,7 +2982,7 @@
 /area/redgate/jungle/temple)
 "JL" = (
 /obj/structure/closet/cabinet,
-/obj/item/weapon/bedsheet/pillow/orange,
+/obj/item/bedsheet/pillow/orange,
 /obj/item/clothing/gloves/evening,
 /obj/item/clothing/under/wedding/floofdress,
 /obj/item/clothing/head/lavender_crown,
@@ -2994,11 +2994,11 @@
 /obj/random/fantasy_item,
 /obj/random/fantasy_item,
 /obj/random/fantasy_item/better,
-/obj/item/weapon/potion_material/golden_scale,
-/obj/item/weapon/coin/gold,
-/obj/item/weapon/coin/gold,
-/obj/item/weapon/coin/gold,
-/obj/item/weapon/coin/gold,
+/obj/item/potion_material/golden_scale,
+/obj/item/coin/gold,
+/obj/item/coin/gold,
+/obj/item/coin/gold,
+/obj/item/coin/gold,
 /obj/random/potion_ingredient,
 /turf/simulated/mineral/floor/cave,
 /area/redgate/jungle/eastcaves)
@@ -3023,7 +3023,7 @@
 /area/redgate/jungle/eastcaves)
 "Kk" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/paper,
+/obj/item/paper,
 /turf/simulated/floor/wood/alt,
 /area/redgate/jungle/aboveground)
 "Kl" = (
@@ -3049,7 +3049,7 @@
 /area/redgate/jungle/aboveground)
 "Kw" = (
 /obj/structure/bed/double,
-/obj/item/weapon/bedsheet/browndouble,
+/obj/item/bedsheet/browndouble,
 /turf/simulated/floor/wood/alt,
 /area/redgate/jungle/aboveground)
 "Kz" = (
@@ -3076,7 +3076,7 @@
 /area/redgate/jungle/aboveground)
 "KM" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/soap/white_soap,
+/obj/item/soap/white_soap,
 /turf/simulated/floor/wood/alt,
 /area/redgate/jungle/aboveground)
 "KO" = (
@@ -3094,7 +3094,7 @@
 /area/redgate/jungle/temple)
 "KV" = (
 /obj/structure/table/rack/shelf/wood,
-/obj/item/weapon/material/twohanded/spear,
+/obj/item/material/twohanded/spear,
 /turf/simulated/floor/wood,
 /area/redgate/jungle/aboveground)
 "La" = (
@@ -3169,8 +3169,8 @@
 /area/redgate/jungle/aboveground)
 "LM" = (
 /obj/structure/table/rack/wood,
-/obj/item/weapon/shield/primitive,
-/obj/item/weapon/material/twohanded/spear/flint,
+/obj/item/shield/primitive,
+/obj/item/material/twohanded/spear/flint,
 /turf/simulated/mineral/floor/light{
 	nitrogen = 82.1472;
 	oxygen = 21.8366;
@@ -3195,12 +3195,12 @@
 /turf/simulated/floor/water/deep,
 /area/redgate/jungle/aboveground)
 "Mj" = (
-/obj/item/weapon/reagent_containers/food/snacks/carpmeat/fish,
-/obj/item/weapon/reagent_containers/food/snacks/carpmeat/fish,
-/obj/item/weapon/reagent_containers/food/snacks/carpmeat/fish,
-/obj/item/weapon/reagent_containers/food/snacks/carpmeat/fish,
-/obj/item/weapon/reagent_containers/food/snacks/carpmeat/fish,
-/obj/item/weapon/reagent_containers/food/snacks/carpmeat/fish,
+/obj/item/reagent_containers/food/snacks/carpmeat/fish,
+/obj/item/reagent_containers/food/snacks/carpmeat/fish,
+/obj/item/reagent_containers/food/snacks/carpmeat/fish,
+/obj/item/reagent_containers/food/snacks/carpmeat/fish,
+/obj/item/reagent_containers/food/snacks/carpmeat/fish,
+/obj/item/reagent_containers/food/snacks/carpmeat/fish,
 /obj/structure/table/woodentable,
 /obj/random/potion_ingredient,
 /turf/simulated/mineral/floor/cave,
@@ -3270,24 +3270,24 @@
 	},
 /area/redgate/jungle/temple)
 "MV" = (
-/obj/item/weapon/coin/gold,
-/obj/item/weapon/coin/gold,
-/obj/item/weapon/coin/gold,
-/obj/item/weapon/coin/gold,
-/obj/item/weapon/coin/gold,
-/obj/item/weapon/coin/gold,
+/obj/item/coin/gold,
+/obj/item/coin/gold,
+/obj/item/coin/gold,
+/obj/item/coin/gold,
+/obj/item/coin/gold,
+/obj/item/coin/gold,
 /turf/simulated/floor/tiled/eris/white/golden,
 /area/redgate/jungle/temple)
 "Nc" = (
-/obj/item/weapon/bone/skull/unknown,
+/obj/item/bone/skull/unknown,
 /turf/simulated/floor/outdoors/grass/forest,
 /area/redgate/jungle/aboveground)
 "Ne" = (
 /obj/structure/table/rack/shelf/wood,
-/obj/item/weapon/reagent_containers/glass/bottle/potion/antidote,
-/obj/item/weapon/reagent_containers/glass/bottle/potion/antidote,
-/obj/item/weapon/reagent_containers/glass/bottle/potion/water,
-/obj/item/weapon/reagent_containers/glass/bottle/potion/water,
+/obj/item/reagent_containers/glass/bottle/potion/antidote,
+/obj/item/reagent_containers/glass/bottle/potion/antidote,
+/obj/item/reagent_containers/glass/bottle/potion/water,
+/obj/item/reagent_containers/glass/bottle/potion/water,
 /obj/random/potion,
 /obj/machinery/light/small/torch{
 	dir = 1
@@ -3317,7 +3317,7 @@
 /turf/simulated/floor/wood/alt,
 /area/redgate/jungle/aboveground)
 "NY" = (
-/obj/item/weapon/coin/phoron,
+/obj/item/coin/phoron,
 /obj/structure/table/alien,
 /turf/simulated/floor/reinforced,
 /area/redgate/jungle/temple)
@@ -3450,8 +3450,8 @@
 /area/redgate/jungle/temple)
 "Pf" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/beartrap/hunting,
-/obj/item/weapon/beartrap/hunting,
+/obj/item/beartrap/hunting,
+/obj/item/beartrap/hunting,
 /turf/simulated/floor/wood/alt,
 /area/redgate/jungle/aboveground)
 "Ph" = (
@@ -3477,9 +3477,9 @@
 /area/redgate/jungle/aboveground)
 "Pv" = (
 /obj/structure/closet/walllocker/wooden/east,
-/obj/item/weapon/reagent_containers/food/drinks/bottle/cognac,
-/obj/item/weapon/reagent_containers/food/drinks/bottle/cognac,
-/obj/item/weapon/reagent_containers/food/drinks/bottle/cognac,
+/obj/item/reagent_containers/food/drinks/bottle/cognac,
+/obj/item/reagent_containers/food/drinks/bottle/cognac,
+/obj/item/reagent_containers/food/drinks/bottle/cognac,
 /obj/item/clothing/suit/shrine_maiden,
 /obj/random/coin,
 /obj/random/coin,
@@ -3504,7 +3504,7 @@
 /turf/simulated/floor/outdoors/grass/forest,
 /area/redgate/jungle/aboveground)
 "PK" = (
-/obj/item/weapon/bedsheet/pillow,
+/obj/item/bedsheet/pillow,
 /turf/simulated/mineral/floor/cave,
 /area/redgate/jungle/southcaves)
 "PO" = (
@@ -3513,12 +3513,12 @@
 /area/redgate/jungle/eastcaves)
 "PS" = (
 /obj/structure/table/rack/shelf/wood,
-/obj/item/weapon/reagent_containers/glass/bottle/potion/healing,
-/obj/item/weapon/reagent_containers/glass/bottle/potion/healing,
-/obj/item/weapon/reagent_containers/glass/bottle/potion/fire_resist,
-/obj/item/weapon/reagent_containers/glass/bottle/potion/fire_resist,
-/obj/item/weapon/reagent_containers/glass/bottle/potion/pain,
-/obj/item/weapon/reagent_containers/glass/bottle/potion/pain,
+/obj/item/reagent_containers/glass/bottle/potion/healing,
+/obj/item/reagent_containers/glass/bottle/potion/healing,
+/obj/item/reagent_containers/glass/bottle/potion/fire_resist,
+/obj/item/reagent_containers/glass/bottle/potion/fire_resist,
+/obj/item/reagent_containers/glass/bottle/potion/pain,
+/obj/item/reagent_containers/glass/bottle/potion/pain,
 /turf/simulated/floor/wood/alt,
 /area/redgate/jungle/aboveground)
 "PW" = (
@@ -3554,20 +3554,20 @@
 /area/redgate/jungle/eastcaves)
 "Qv" = (
 /obj/structure/table/darkglass,
-/obj/item/weapon/potion_material/folded_dark,
+/obj/item/potion_material/folded_dark,
 /turf/simulated/mineral/floor/cave,
 /area/redgate/jungle/westcaves)
 "Qx" = (
 /obj/effect/floor_decal/milspec/color/purple,
-/obj/item/weapon/storage/vore_egg/purple,
+/obj/item/storage/vore_egg/purple,
 /turf/simulated/shuttle/floor/purple,
 /area/redgate/jungle/temple)
 "Qz" = (
 /obj/structure/table/rack/shelf/wood,
-/obj/item/weapon/handcuffs/cable/plantfiber,
-/obj/item/weapon/handcuffs/cable/plantfiber,
-/obj/item/weapon/handcuffs/cable/plantfiber,
-/obj/item/weapon/handcuffs/cable/plantfiber,
+/obj/item/handcuffs/cable/plantfiber,
+/obj/item/handcuffs/cable/plantfiber,
+/obj/item/handcuffs/cable/plantfiber,
+/obj/item/handcuffs/cable/plantfiber,
 /turf/simulated/mineral/floor/light{
 	nitrogen = 82.1472;
 	oxygen = 21.8366;
@@ -3618,7 +3618,7 @@
 /turf/simulated/floor/wood,
 /area/redgate/jungle/aboveground)
 "Rj" = (
-/obj/item/weapon/material/knife/stone/bone,
+/obj/item/material/knife/stone/bone,
 /turf/simulated/floor/wood,
 /area/redgate/jungle/aboveground)
 "Rl" = (
@@ -3666,9 +3666,9 @@
 /obj/item/trash/genration,
 /obj/item/trash/sweetration,
 /obj/item/trash/meatration,
-/obj/item/weapon/reagent_containers/food/snacks/meat,
-/obj/item/weapon/reagent_containers/food/snacks/meat,
-/obj/item/weapon/reagent_containers/food/snacks/meat,
+/obj/item/reagent_containers/food/snacks/meat,
+/obj/item/reagent_containers/food/snacks/meat,
+/obj/item/reagent_containers/food/snacks/meat,
 /obj/fruitspawner/watermelon,
 /turf/simulated/mineral/floor/cave,
 /area/redgate/jungle/westcaves)
@@ -3690,8 +3690,8 @@
 /area/redgate/jungle/aboveground)
 "RX" = (
 /obj/structure/table/rack/shelf/wood,
-/obj/item/weapon/reagent_containers/food/snacks/meat,
-/obj/item/weapon/reagent_containers/food/snacks/meat,
+/obj/item/reagent_containers/food/snacks/meat,
+/obj/item/reagent_containers/food/snacks/meat,
 /turf/simulated/floor/wood/alt/panel,
 /area/redgate/jungle/aboveground)
 "RZ" = (
@@ -3709,7 +3709,7 @@
 	},
 /area/redgate/jungle/temple)
 "Sp" = (
-/obj/item/weapon/digestion_remains/skull/akula,
+/obj/item/digestion_remains/skull/akula,
 /turf/simulated/mineral/floor/light{
 	nitrogen = 82.1472;
 	oxygen = 21.8366;
@@ -3778,7 +3778,7 @@
 /area/redgate/jungle/aboveground)
 "Tw" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/material/knife/stone/bone,
+/obj/item/material/knife/stone/bone,
 /turf/simulated/floor/wood,
 /area/redgate/jungle/westcaves)
 "TA" = (
@@ -3787,12 +3787,12 @@
 /area/redgate/jungle/aboveground)
 "TC" = (
 /obj/structure/table/hardwoodtable,
-/obj/item/weapon/reagent_containers/glass/pint_mug,
-/obj/item/weapon/reagent_containers/glass/pint_mug,
-/obj/item/weapon/reagent_containers/glass/pint_mug,
-/obj/item/weapon/reagent_containers/glass/pint_mug,
-/obj/item/weapon/reagent_containers/glass/pint_mug,
-/obj/item/weapon/reagent_containers/glass/pint_mug,
+/obj/item/reagent_containers/glass/pint_mug,
+/obj/item/reagent_containers/glass/pint_mug,
+/obj/item/reagent_containers/glass/pint_mug,
+/obj/item/reagent_containers/glass/pint_mug,
+/obj/item/reagent_containers/glass/pint_mug,
+/obj/item/reagent_containers/glass/pint_mug,
 /turf/simulated/mineral/floor/light{
 	nitrogen = 82.1472;
 	oxygen = 21.8366;
@@ -3813,7 +3813,7 @@
 /turf/simulated/mineral/floor/cave,
 /area/redgate/jungle/eastcaves)
 "TI" = (
-/obj/item/weapon/simple_key/dungeon{
+/obj/item/simple_key/dungeon{
 	color = "#ff00ee";
 	key_id = "phoron";
 	name = "phoron key"
@@ -3839,7 +3839,7 @@
 /turf/simulated/floor/wood/alt/panel,
 /area/redgate/jungle/aboveground)
 "Ui" = (
-/obj/item/weapon/bedsheet/pillow/orange,
+/obj/item/bedsheet/pillow/orange,
 /turf/simulated/floor/wood/alt,
 /area/redgate/jungle/aboveground)
 "Uk" = (
@@ -3866,12 +3866,12 @@
 /area/redgate/jungle/aboveground)
 "UA" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/reagent_containers/glass/pint_mug,
-/obj/item/weapon/reagent_containers/glass/pint_mug,
-/obj/item/weapon/reagent_containers/glass/pint_mug,
-/obj/item/weapon/reagent_containers/glass/pint_mug,
-/obj/item/weapon/reagent_containers/glass/pint_mug,
-/obj/item/weapon/reagent_containers/glass/pint_mug,
+/obj/item/reagent_containers/glass/pint_mug,
+/obj/item/reagent_containers/glass/pint_mug,
+/obj/item/reagent_containers/glass/pint_mug,
+/obj/item/reagent_containers/glass/pint_mug,
+/obj/item/reagent_containers/glass/pint_mug,
+/obj/item/reagent_containers/glass/pint_mug,
 /turf/simulated/floor/wood/alt,
 /area/redgate/jungle/aboveground)
 "UC" = (
@@ -3910,7 +3910,7 @@
 /turf/simulated/floor/outdoors/grass/forest,
 /area/redgate/jungle/aboveground)
 "UY" = (
-/obj/item/weapon/bedsheet/pillow/orange,
+/obj/item/bedsheet/pillow/orange,
 /turf/simulated/mineral/floor/cave,
 /area/redgate/jungle/westcaves)
 "UZ" = (
@@ -3929,8 +3929,8 @@
 /area/redgate/jungle/aboveground)
 "Ve" = (
 /obj/structure/bed/double/padded,
-/obj/item/weapon/bedsheet/rainbowdouble,
-/obj/item/weapon/bedsheet/pillow/red,
+/obj/item/bedsheet/rainbowdouble,
+/obj/item/bedsheet/pillow/red,
 /turf/simulated/floor/wood,
 /area/redgate/jungle/aboveground)
 "Vf" = (
@@ -3943,8 +3943,8 @@
 /turf/simulated/floor/outdoors/grass/forest,
 /area/redgate/jungle/aboveground)
 "Vj" = (
-/obj/item/weapon/ore/gold,
-/obj/item/weapon/ore/gold,
+/obj/item/ore/gold,
+/obj/item/ore/gold,
 /turf/simulated/floor/tiled/eris/white/golden,
 /area/redgate/jungle/temple)
 "Vk" = (
@@ -3961,8 +3961,8 @@
 /area/redgate/jungle/aboveground)
 "Vt" = (
 /obj/structure/bed/double,
-/obj/item/weapon/bedsheet/browndouble,
-/obj/item/weapon/bedsheet/pillow/orange,
+/obj/item/bedsheet/browndouble,
+/obj/item/bedsheet/pillow/orange,
 /turf/simulated/floor/carpet/turcarpet,
 /area/redgate/jungle/temple)
 "VB" = (
@@ -3972,12 +3972,12 @@
 /area/redgate/jungle/temple)
 "VN" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/gun/launcher/syringe,
-/obj/item/weapon/reagent_containers/syringe,
-/obj/item/weapon/reagent_containers/syringe,
-/obj/item/weapon/reagent_containers/syringe,
-/obj/item/weapon/reagent_containers/syringe,
-/obj/item/weapon/reagent_containers/syringe,
+/obj/item/gun/launcher/syringe,
+/obj/item/reagent_containers/syringe,
+/obj/item/reagent_containers/syringe,
+/obj/item/reagent_containers/syringe,
+/obj/item/reagent_containers/syringe,
+/obj/item/reagent_containers/syringe,
 /turf/simulated/floor/wood/alt/panel,
 /area/redgate/jungle/aboveground)
 "VQ" = (
@@ -3987,7 +3987,7 @@
 	},
 /area/redgate/jungle/aboveground)
 "VT" = (
-/obj/item/weapon/reagent_containers/glass/bucket/wood,
+/obj/item/reagent_containers/glass/bucket/wood,
 /turf/simulated/floor/wood/alt/panel,
 /area/redgate/jungle/aboveground)
 "VY" = (
@@ -4003,8 +4003,8 @@
 /area/redgate/jungle/southcaves)
 "Wd" = (
 /obj/structure/table/rack/shelf/wood,
-/obj/item/weapon/melee/classic_baton,
-/obj/item/weapon/melee/classic_baton,
+/obj/item/melee/classic_baton,
+/obj/item/melee/classic_baton,
 /turf/simulated/mineral/floor/light{
 	nitrogen = 82.1472;
 	oxygen = 21.8366;
@@ -4013,7 +4013,7 @@
 /area/redgate/jungle/temple)
 "Wj" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/material/knife/butch,
+/obj/item/material/knife/butch,
 /turf/simulated/floor/wood,
 /area/redgate/jungle/westcaves)
 "Wk" = (
@@ -4038,8 +4038,8 @@
 /area/redgate/jungle/aboveground)
 "WT" = (
 /obj/structure/bed/double/padded,
-/obj/item/weapon/bedsheet/pillow/orange,
-/obj/item/weapon/bedsheet/orangedouble,
+/obj/item/bedsheet/pillow/orange,
+/obj/item/bedsheet/orangedouble,
 /turf/simulated/floor/wood/alt,
 /area/redgate/jungle/aboveground)
 "WW" = (
@@ -4067,7 +4067,7 @@
 /area/redgate/jungle/temple)
 "Xi" = (
 /obj/effect/floor_decal/milspec/color/purple,
-/obj/item/weapon/potion_material/living_coral,
+/obj/item/potion_material/living_coral,
 /turf/simulated/shuttle/floor/purple,
 /area/redgate/jungle/temple)
 "Xk" = (
@@ -4107,7 +4107,7 @@
 /turf/simulated/floor/bluegrid,
 /area/redgate/jungle/temple)
 "XG" = (
-/obj/item/weapon/reagent_containers/glass/bucket/wood,
+/obj/item/reagent_containers/glass/bucket/wood,
 /turf/simulated/floor/wood/alt,
 /area/redgate/jungle/aboveground)
 "XJ" = (
@@ -4132,18 +4132,18 @@
 /area/redgate/jungle/temple)
 "XX" = (
 /obj/structure/closet/crate/wooden,
-/obj/item/device/flashlight/lantern,
-/obj/item/device/flashlight/lantern,
-/obj/item/device/flashlight/lantern,
-/obj/item/device/flashlight/lantern,
-/obj/item/device/flashlight/lantern,
-/obj/item/device/flashlight/lantern,
-/obj/item/device/flashlight/lantern,
-/obj/item/device/flashlight/lantern,
-/obj/item/weapon/storage/pouch/flares/full_flare,
-/obj/item/weapon/storage/pouch/flares/full_flare,
-/obj/item/weapon/storage/pouch/flares/full_flare,
-/obj/item/weapon/storage/pouch/flares/full_flare,
+/obj/item/flashlight/lantern,
+/obj/item/flashlight/lantern,
+/obj/item/flashlight/lantern,
+/obj/item/flashlight/lantern,
+/obj/item/flashlight/lantern,
+/obj/item/flashlight/lantern,
+/obj/item/flashlight/lantern,
+/obj/item/flashlight/lantern,
+/obj/item/storage/pouch/flares/full_flare,
+/obj/item/storage/pouch/flares/full_flare,
+/obj/item/storage/pouch/flares/full_flare,
+/obj/item/storage/pouch/flares/full_flare,
 /turf/simulated/floor/wood/alt,
 /area/redgate/jungle/aboveground)
 "Ya" = (
@@ -4159,7 +4159,7 @@
 /turf/simulated/floor/outdoors/grass/forest,
 /area/redgate/jungle/aboveground)
 "Yj" = (
-/obj/item/weapon/gun/energy/mouseray/metamorphosis/advanced/random,
+/obj/item/gun/energy/mouseray/metamorphosis/advanced/random,
 /obj/structure/closet/alien,
 /obj/random/bluespace,
 /obj/random/maintenance/research,
@@ -4195,7 +4195,7 @@
 /area/redgate/jungle/temple)
 "YH" = (
 /obj/structure/closet/tent/B,
-/obj/item/weapon/material/twohanded/fireaxe,
+/obj/item/material/twohanded/fireaxe,
 /obj/random/potion,
 /obj/random/potion_base,
 /obj/random/coin,
@@ -4206,7 +4206,7 @@
 /area/redgate/jungle/temple)
 "YP" = (
 /obj/structure/table/hardwoodtable,
-/obj/item/weapon/reagent_containers/glass/pint_mug,
+/obj/item/reagent_containers/glass/pint_mug,
 /turf/simulated/mineral/floor/light{
 	nitrogen = 82.1472;
 	oxygen = 21.8366;

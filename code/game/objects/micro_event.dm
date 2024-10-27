@@ -74,7 +74,7 @@
 	. = ..()
 
 	var/ourtime = (((start_time + time_til_open) - world.time) / 600)
-	. += "<span class ='notice'>It will open in [ourtime] minutes!</span>"
+	. += span_notice("It will open in [ourtime] minutes!")
 
 /obj/structure/timer_door/Initialize()
 	START_PROCESSING(SSobj, src)
@@ -83,7 +83,7 @@
 
 /obj/structure/timer_door/Destroy()
 	STOP_PROCESSING(SSobj, src)
-	visible_message("<span class = 'danger'>\The [src] opens up!</span>")
+	visible_message(span_danger("\The [src] opens up!"))
 	playsound(src, 'sound/effects/bang.ogg', 75, 1)
 	return ..()
 

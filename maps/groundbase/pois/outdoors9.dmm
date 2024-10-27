@@ -45,7 +45,7 @@
 /area/submap/groundbase/poi/outdoor/cabin4)
 "Q" = (
 /obj/structure/table/glass,
-/obj/item/device/flashlight/lamp/green{
+/obj/item/flashlight/lamp/green{
 	pixel_x = 1;
 	pixel_y = 5
 	},

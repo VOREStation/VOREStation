@@ -21,7 +21,7 @@
 /area/awaymission/carpfarm/base/entry
 	icon_state = "blue"
 
-/obj/item/weapon/paper/awaygate/carpfarm/suicide
+/obj/item/paper/awaygate/carpfarm/suicide
 	name = "suicide letter"
 	info = "dear rescue,<br><br>my name markov. if reading this, i am dead. i <s>am</s> was miner for 3rd union of soviet socialist republiks. \
 			comrades yuri, dimitri, ivan, all eaten by space carp. all started month ago when soviet shipment sent new sonic jackhammers. \

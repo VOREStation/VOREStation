@@ -54,11 +54,11 @@
 /turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_lowsnow,
 /area/submap/groundbase/poi/wildvillage/square/square5)
 "T" = (
-/obj/item/weapon/material/minihoe,
+/obj/item/material/minihoe,
 /turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_lowsnow,
 /area/submap/groundbase/poi/wildvillage/square/square5)
 "V" = (
-/obj/item/weapon/reagent_containers/glass/bucket/wood,
+/obj/item/reagent_containers/glass/bucket/wood,
 /turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_lowsnow,
 /area/submap/groundbase/poi/wildvillage/square/square5)
 

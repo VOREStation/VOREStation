@@ -64,7 +64,7 @@
 		while(!istype(M, /mob/living))
 			if(!M || !M.loc || count > 6)
 				//For a runtime where M ends up in nullspace (similar to bluespace but less colourful)
-				to_chat(src, "You are not being carried by anyone!")
+				to_chat(src, span_infoplain("You are not being carried by anyone!"))
 				return 0
 			M = M.loc
 			count++
@@ -75,15 +75,15 @@
 		if(answer == "Yes")
 			var/turf/T = get_turf(P.loc)
 			for (var/mob/v in viewers(T))
-				v.show_message("<span class='notice'>[M] presses [TM.his] thumb against [P].</span>", 3, "<span class='notice'>[P] makes a sharp clicking sound as it extracts DNA material from [M].</span>", 2)
+				v.show_message(span_notice("[M] presses [TM.his] thumb against [P]."), 3, span_notice("[P] makes a sharp clicking sound as it extracts DNA material from [M]."), 2)
 			var/datum/dna/dna = M.dna
-			to_chat(P, span_red("<h3>[M]'s UE string : [dna.unique_enzymes]</h3>"))
+			to_chat(P, span_infoplain(span_red("<h3>[M]'s UE string : [dna.unique_enzymes]</h3>")))
 			if(dna.unique_enzymes == P.master_dna)
-				to_chat(P, "<b>DNA is a match to stored Master DNA.</b>")
+				to_chat(P, span_infoplain(span_bold("DNA is a match to stored Master DNA.")))
 			else
-				to_chat(P, "<b>DNA does not match stored Master DNA.</b>")
+				to_chat(P, span_infoplain(span_bold("DNA does not match stored Master DNA.")))
 		else
-			to_chat(P, "[M] does not seem like [TM.he] is going to provide a DNA sample willingly.")
+			to_chat(P, span_infoplain("[M] does not seem like [TM.he] is going to provide a DNA sample willingly."))
 		return TRUE
 
 /datum/pai_software/radio_config
@@ -283,19 +283,19 @@
 		if("cable")
 			var/turf/T = get_turf(P)
 			P.hack_aborted = 0
-			P.cable = new /obj/item/weapon/pai_cable(T)
+			P.cable = new /obj/item/pai_cable(T)
 			for(var/mob/M in viewers(T))
-				M.show_message("<span class='warning'>A port on [P] opens to reveal [P.cable], which promptly falls to the floor.</span>", 3,
-								"<span class='warning'>You hear the soft click of something light and hard falling to the ground.</span>", 2)
+				M.show_message(span_warning("A port on [P] opens to reveal [P.cable], which promptly falls to the floor."), 3,
+								span_warning("You hear the soft click of something light and hard falling to the ground."), 2)
 			return 1
 
 /mob/living/silicon/pai/proc/hackloop()
 	var/turf/T = get_turf(src)
 	for(var/mob/living/silicon/ai/AI in player_list)
 		if(T.loc)
-			to_chat(AI, span_red("<b>Network Alert: Brute-force encryption crack in progress in [T.loc].</b>"))
+			to_chat(AI, span_bolddanger("Network Alert: Brute-force encryption crack in progress in [T.loc]."))
 		else
-			to_chat(AI, span_red("<b>Network Alert: Brute-force encryption crack in progress. Unable to pinpoint location.</b>"))
+			to_chat(AI, span_bolddanger("Network Alert: Brute-force encryption crack in progress. Unable to pinpoint location."))
 	var/obj/machinery/door/D = cable.machine
 	if(!istype(D))
 		hack_aborted = 1

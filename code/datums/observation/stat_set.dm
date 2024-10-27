@@ -30,6 +30,6 @@ stat_set_event, /decl/observ/stat_set, new)
 			if(!ourbelly.owner.client)
 				return
 			if(stat == CONSCIOUS)
-				to_chat(ourbelly.owner, "<span class='notice'>\The [src.name] is awake.</span>")
+				to_chat(ourbelly.owner, span_notice("\The [src.name] is awake."))
 			else if(stat == UNCONSCIOUS)
-				to_chat(ourbelly.owner, "<span class='red'>\The [src.name] has fallen unconscious!</span>")
+				to_chat(ourbelly.owner, span_red("\The [src.name] has fallen unconscious!"))

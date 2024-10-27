@@ -5,7 +5,7 @@
 /area/redgate/islands/gear)
 "az" = (
 /obj/structure/bed/double/padded,
-/obj/item/weapon/bedsheet/greendouble,
+/obj/item/bedsheet/greendouble,
 /turf/simulated/floor/carpet/green,
 /area/redgate/islands/dorm1)
 "aL" = (
@@ -13,7 +13,7 @@
 /turf/simulated/floor/wood/alt,
 /area/redgate/islands/diningroom)
 "aP" = (
-/obj/item/weapon/material/shard/titaniumglass,
+/obj/item/material/shard/titaniumglass,
 /turf/simulated/shuttle/floor/alienplating/blue,
 /area/redgate/islands/alienship)
 "bg" = (
@@ -25,12 +25,12 @@
 /turf/simulated/floor/wood/alt,
 /area/redgate/islands/diningroom)
 "bo" = (
-/obj/item/weapon/circuitboard/broken,
+/obj/item/circuitboard/broken,
 /turf/simulated/shuttle/floor/alien/blue,
 /area/redgate/islands/alienship)
 "bt" = (
 /obj/structure/table/steel_reinforced,
-/obj/item/weapon/toy/desk/officetoy,
+/obj/item/toy/desk/officetoy,
 /turf/simulated/floor/tiled/dark,
 /area/redgate/islands/control)
 "bv" = (
@@ -85,20 +85,20 @@
 /turf/simulated/floor/tiled/dark,
 /area/redgate/islands/gear)
 "dk" = (
-/obj/item/weapon/oar,
+/obj/item/oar,
 /turf/simulated/floor/outdoors/newdirt,
 /area/redgate/islands/ocean)
 "dr" = (
 /obj/structure/table/darkglass,
-/obj/item/weapon/toy/desk/newtoncradle,
+/obj/item/toy/desk/newtoncradle,
 /turf/simulated/floor/wood/alt,
 /area/redgate/islands/office)
 "dt" = (
-/obj/item/weapon/picnic_blankets_carried,
+/obj/item/picnic_blankets_carried,
 /turf/simulated/floor/beach/sand/desert/outdoors,
 /area/redgate/islands/ocean)
 "dD" = (
-/obj/item/weapon/bone/skull/unknown,
+/obj/item/bone/skull/unknown,
 /turf/simulated/shuttle/floor/alien/blue,
 /area/redgate/islands/alienship)
 "dF" = (
@@ -117,8 +117,8 @@
 /area/redgate/islands/kitchen)
 "dX" = (
 /obj/structure/table/marble,
-/obj/item/weapon/material/knife/butch,
-/obj/item/weapon/material/kitchen/rollingpin,
+/obj/item/material/knife/butch,
+/obj/item/material/kitchen/rollingpin,
 /turf/simulated/floor/tiled/kafel_full,
 /area/redgate/islands/kitchen)
 "ea" = (
@@ -146,7 +146,7 @@
 /turf/simulated/floor/wood/alt,
 /area/redgate/islands/diningroom)
 "eG" = (
-/obj/item/weapon/beach_ball,
+/obj/item/beach_ball,
 /turf/simulated/floor/beach/sand/desert/outdoors,
 /area/redgate/islands/ocean)
 "eH" = (
@@ -171,7 +171,7 @@
 /area/redgate/islands/livingroom)
 "fc" = (
 /obj/structure/grille,
-/obj/item/weapon/material/shard/titaniumglass,
+/obj/item/material/shard/titaniumglass,
 /turf/simulated/shuttle/floor/alien/blue,
 /area/redgate/islands/alienship)
 "fd" = (
@@ -218,7 +218,7 @@
 /area/redgate/islands/dorm1)
 "gH" = (
 /obj/structure/table/darkglass,
-/obj/item/weapon/toy/desk/fan,
+/obj/item/toy/desk/fan,
 /turf/simulated/floor/wood/alt,
 /area/redgate/islands/office)
 "gJ" = (
@@ -235,7 +235,7 @@
 /area/redgate/islands/livingroom)
 "gT" = (
 /obj/structure/salvageable/shuttle_console,
-/obj/item/weapon/material/shard/titaniumglass,
+/obj/item/material/shard/titaniumglass,
 /turf/simulated/shuttle/floor/alienplating/blue/half{
 	dir = 1
 	},
@@ -264,26 +264,26 @@
 "hP" = (
 /obj/structure/table/marble,
 /obj/structure/closet/walllocker_double/kitchen/west,
-/obj/item/weapon/reagent_containers/food/condiment/carton/flour,
-/obj/item/weapon/reagent_containers/food/condiment/carton/flour,
-/obj/item/weapon/reagent_containers/food/condiment/carton/flour,
-/obj/item/weapon/reagent_containers/food/condiment/carton/flour,
-/obj/item/weapon/reagent_containers/food/condiment/carton/flour,
-/obj/item/weapon/reagent_containers/food/condiment/carton/flour,
-/obj/item/weapon/reagent_containers/food/condiment/carton/flour,
-/obj/item/weapon/reagent_containers/food/condiment/carton/sugar,
-/obj/item/weapon/reagent_containers/food/condiment/carton/sugar,
-/obj/item/weapon/reagent_containers/food/condiment/carton/sugar,
-/obj/item/weapon/reagent_containers/food/condiment/carton/sugar,
-/obj/item/weapon/reagent_containers/food/condiment/carton/sugar,
-/obj/item/weapon/reagent_containers/food/condiment/carton/sugar,
-/obj/item/weapon/reagent_containers/food/condiment/carton/sugar,
+/obj/item/reagent_containers/food/condiment/carton/flour,
+/obj/item/reagent_containers/food/condiment/carton/flour,
+/obj/item/reagent_containers/food/condiment/carton/flour,
+/obj/item/reagent_containers/food/condiment/carton/flour,
+/obj/item/reagent_containers/food/condiment/carton/flour,
+/obj/item/reagent_containers/food/condiment/carton/flour,
+/obj/item/reagent_containers/food/condiment/carton/flour,
+/obj/item/reagent_containers/food/condiment/carton/sugar,
+/obj/item/reagent_containers/food/condiment/carton/sugar,
+/obj/item/reagent_containers/food/condiment/carton/sugar,
+/obj/item/reagent_containers/food/condiment/carton/sugar,
+/obj/item/reagent_containers/food/condiment/carton/sugar,
+/obj/item/reagent_containers/food/condiment/carton/sugar,
+/obj/item/reagent_containers/food/condiment/carton/sugar,
 /obj/machinery/light,
 /turf/simulated/floor/tiled/kafel_full,
 /area/redgate/islands/kitchen)
 "hS" = (
 /obj/structure/table/steel_reinforced,
-/obj/item/weapon/toy/desk/fan,
+/obj/item/toy/desk/fan,
 /turf/simulated/floor/tiled/dark,
 /area/redgate/islands/control)
 "hU" = (
@@ -316,8 +316,8 @@
 /area/redgate/islands/oxygen)
 "it" = (
 /obj/structure/table/marble,
-/obj/item/weapon/reagent_containers/glass/beaker/measuring_cup,
-/obj/item/weapon/reagent_containers/glass/beaker/measuring_cup,
+/obj/item/reagent_containers/glass/beaker/measuring_cup,
+/obj/item/reagent_containers/glass/beaker/measuring_cup,
 /turf/simulated/floor/tiled/kafel_full,
 /area/redgate/islands/kitchen)
 "iu" = (
@@ -363,9 +363,9 @@
 /area/redgate/islands/cave)
 "iX" = (
 /obj/structure/bookcase,
-/obj/item/weapon/book/bundle/custom_library/fiction/apurrrrfectman,
-/obj/item/weapon/book/bundle/custom_library/fiction/beyondthedoor,
-/obj/item/weapon/book/bundle/custom_library/fiction/ghostship,
+/obj/item/book/bundle/custom_library/fiction/apurrrrfectman,
+/obj/item/book/bundle/custom_library/fiction/beyondthedoor,
+/obj/item/book/bundle/custom_library/fiction/ghostship,
 /turf/simulated/floor/wood/alt,
 /area/redgate/islands/office)
 "jt" = (
@@ -386,8 +386,8 @@
 /area/redgate/islands/ocean)
 "kd" = (
 /obj/structure/table/steel_reinforced,
-/obj/item/weapon/paper_bin,
-/obj/item/weapon/pen/fountain7,
+/obj/item/paper_bin,
+/obj/item/pen/fountain7,
 /turf/simulated/floor/tiled/dark,
 /area/redgate/islands/control)
 "kf" = (
@@ -444,7 +444,7 @@
 	},
 /area/redgate/islands/ocean)
 "lJ" = (
-/obj/item/weapon/material/shard/titaniumglass,
+/obj/item/material/shard/titaniumglass,
 /obj/structure/bed/chair/bay/chair/padded/purple{
 	dir = 1
 	},
@@ -633,9 +633,9 @@
 /area/redgate/islands/ocean)
 "qF" = (
 /obj/structure/bookcase,
-/obj/item/weapon/book/custom_library/fiction/blacksmithandkinglybloke,
-/obj/item/weapon/book/custom_library/fiction/irishairmanforseesdeath,
-/obj/item/weapon/book/custom_library/fiction/myrock,
+/obj/item/book/custom_library/fiction/blacksmithandkinglybloke,
+/obj/item/book/custom_library/fiction/irishairmanforseesdeath,
+/obj/item/book/custom_library/fiction/myrock,
 /turf/simulated/floor/wood/alt,
 /area/redgate/islands/office)
 "qU" = (
@@ -666,10 +666,10 @@
 /area/redgate/islands/control)
 "rA" = (
 /obj/structure/table/gold,
-/obj/item/weapon/tank/oxygen/yellow,
-/obj/item/weapon/tank/oxygen/yellow,
-/obj/item/weapon/tank/oxygen/yellow,
-/obj/item/weapon/tank/oxygen/yellow,
+/obj/item/tank/oxygen/yellow,
+/obj/item/tank/oxygen/yellow,
+/obj/item/tank/oxygen/yellow,
+/obj/item/tank/oxygen/yellow,
 /turf/simulated/floor/concrete,
 /area/redgate/islands/oxygen)
 "rT" = (
@@ -703,7 +703,7 @@
 /turf/simulated/floor/outdoors/grass/heavy,
 /area/redgate/islands/ocean)
 "sO" = (
-/obj/item/weapon/material/shard/titaniumglass,
+/obj/item/material/shard/titaniumglass,
 /turf/simulated/floor/water/deep/ocean/diving,
 /area/redgate/islands/ocean)
 "sR" = (
@@ -723,7 +723,7 @@
 /turf/simulated/floor/lava,
 /area/redgate/islands/ocean)
 "tA" = (
-/obj/item/weapon/oar,
+/obj/item/oar,
 /turf/simulated/floor/beach/sand/desert/outdoors,
 /area/redgate/islands/ocean)
 "tD" = (
@@ -775,7 +775,7 @@
 /area/redgate/islands/ocean)
 "wp" = (
 /obj/structure/table/hardwoodtable,
-/obj/item/device/flashlight/lamp/green{
+/obj/item/flashlight/lamp/green{
 	pixel_y = 7
 	},
 /turf/simulated/floor/wood/alt,
@@ -824,7 +824,7 @@
 /area/redgate/islands/office)
 "xN" = (
 /obj/structure/table/hardwoodtable,
-/obj/item/device/flashlight/lamp/green{
+/obj/item/flashlight/lamp/green{
 	pixel_y = 7
 	},
 /turf/simulated/floor/wood/alt,
@@ -1008,7 +1008,7 @@
 /area/redgate/islands/livingroom)
 "CT" = (
 /obj/structure/table/hardwoodtable,
-/obj/item/weapon/oar,
+/obj/item/oar,
 /obj/machinery/light_switch{
 	dir = 8;
 	pixel_x = 24;
@@ -1024,7 +1024,7 @@
 /area/redgate/islands/livingroom)
 "Dx" = (
 /obj/structure/grille/broken,
-/obj/item/weapon/material/shard/titaniumglass,
+/obj/item/material/shard/titaniumglass,
 /turf/simulated/shuttle/floor/alien/blue,
 /area/redgate/islands/alienship)
 "DD" = (
@@ -1261,16 +1261,16 @@
 /obj/structure/closet/crate{
 	name = "oar box"
 	},
-/obj/item/weapon/oar,
-/obj/item/weapon/oar,
-/obj/item/weapon/oar,
-/obj/item/weapon/oar,
-/obj/item/weapon/oar,
-/obj/item/weapon/oar,
+/obj/item/oar,
+/obj/item/oar,
+/obj/item/oar,
+/obj/item/oar,
+/obj/item/oar,
+/obj/item/oar,
 /turf/simulated/floor/beach/sand/desert/outdoors,
 /area/redgate/islands/ocean)
 "LC" = (
-/obj/item/weapon/oar,
+/obj/item/oar,
 /turf/simulated/floor/tiled{
 	outdoors = 1
 	},
@@ -1339,9 +1339,9 @@
 /area/redgate/islands/gear)
 "Ns" = (
 /obj/structure/table/marble,
-/obj/item/weapon/reagent_containers/food/condiment/enzyme,
-/obj/item/weapon/reagent_containers/food/condiment/enzyme,
-/obj/item/weapon/reagent_containers/food/condiment/enzyme,
+/obj/item/reagent_containers/food/condiment/enzyme,
+/obj/item/reagent_containers/food/condiment/enzyme,
+/obj/item/reagent_containers/food/condiment/enzyme,
 /obj/machinery/light,
 /turf/simulated/floor/tiled/kafel_full,
 /area/redgate/islands/kitchen)
@@ -1389,7 +1389,7 @@
 /obj/structure/table/rack/shelf/steel{
 	pixel_y = 16
 	},
-/obj/item/weapon/towel/random,
+/obj/item/towel/random,
 /obj/random/soap,
 /turf/simulated/floor/tiled/kafel_full/gray,
 /area/redgate/islands/bathroom)
@@ -1447,7 +1447,7 @@
 /area/redgate/islands/livingroom)
 "QQ" = (
 /obj/structure/table/darkglass,
-/obj/item/weapon/book/bundle/custom_library/fiction/taleoftherainbowcat,
+/obj/item/book/bundle/custom_library/fiction/taleoftherainbowcat,
 /turf/simulated/floor/wood/alt,
 /area/redgate/islands/office)
 "RG" = (
@@ -1465,7 +1465,7 @@
 /turf/simulated/shuttle/floor/alien/blue,
 /area/redgate/islands/alienship)
 "RP" = (
-/obj/item/weapon/oar,
+/obj/item/oar,
 /turf/simulated/floor/water/beach,
 /area/redgate/islands/ocean)
 "RZ" = (
@@ -1474,9 +1474,9 @@
 /area/redgate/islands/cave)
 "Si" = (
 /obj/structure/bookcase,
-/obj/item/weapon/book/custom_library/fiction/starsandsometimesfallingones,
-/obj/item/weapon/book/custom_library/fiction/truelovehathmyheart,
-/obj/item/weapon/book/custom_library/fiction/woodysgotwood,
+/obj/item/book/custom_library/fiction/starsandsometimesfallingones,
+/obj/item/book/custom_library/fiction/truelovehathmyheart,
+/obj/item/book/custom_library/fiction/woodysgotwood,
 /turf/simulated/floor/wood/alt,
 /area/redgate/islands/office)
 "Sk" = (
@@ -1624,28 +1624,28 @@
 /area/redgate/islands/redgate)
 "Xl" = (
 /obj/structure/closet/cabinet,
-/obj/item/weapon/material/kitchen/utensil/fork,
-/obj/item/weapon/material/kitchen/utensil/fork,
-/obj/item/weapon/material/kitchen/utensil/fork,
-/obj/item/weapon/material/kitchen/utensil/fork,
-/obj/item/weapon/material/kitchen/utensil/fork,
-/obj/item/weapon/material/kitchen/utensil/fork,
-/obj/item/weapon/material/kitchen/utensil/spoon,
-/obj/item/weapon/material/kitchen/utensil/spoon,
-/obj/item/weapon/material/kitchen/utensil/spoon,
-/obj/item/weapon/material/kitchen/utensil/spoon,
-/obj/item/weapon/material/kitchen/utensil/spoon,
-/obj/item/weapon/material/kitchen/utensil/spoon,
-/obj/item/weapon/material/kitchen/utensil/spoon,
-/obj/item/weapon/material/kitchen/utensil/spork,
-/obj/item/weapon/material/kitchen/utensil/foon,
-/obj/item/weapon/material/knife,
-/obj/item/weapon/material/knife,
-/obj/item/weapon/material/knife,
-/obj/item/weapon/material/knife,
-/obj/item/weapon/material/knife,
-/obj/item/weapon/material/knife,
-/obj/item/weapon/material/knife,
+/obj/item/material/kitchen/utensil/fork,
+/obj/item/material/kitchen/utensil/fork,
+/obj/item/material/kitchen/utensil/fork,
+/obj/item/material/kitchen/utensil/fork,
+/obj/item/material/kitchen/utensil/fork,
+/obj/item/material/kitchen/utensil/fork,
+/obj/item/material/kitchen/utensil/spoon,
+/obj/item/material/kitchen/utensil/spoon,
+/obj/item/material/kitchen/utensil/spoon,
+/obj/item/material/kitchen/utensil/spoon,
+/obj/item/material/kitchen/utensil/spoon,
+/obj/item/material/kitchen/utensil/spoon,
+/obj/item/material/kitchen/utensil/spoon,
+/obj/item/material/kitchen/utensil/spork,
+/obj/item/material/kitchen/utensil/foon,
+/obj/item/material/knife,
+/obj/item/material/knife,
+/obj/item/material/knife,
+/obj/item/material/knife,
+/obj/item/material/knife,
+/obj/item/material/knife,
+/obj/item/material/knife,
 /turf/simulated/floor/wood/alt,
 /area/redgate/islands/diningroom)
 "Xq" = (
@@ -1719,7 +1719,7 @@
 /turf/simulated/floor/water/deep/ocean/diving,
 /area/redgate/islands/ocean)
 "Zg" = (
-/obj/item/weapon/melee/umbrella/random,
+/obj/item/melee/umbrella/random,
 /turf/simulated/floor/wood/alt,
 /area/redgate/islands/diningroom)
 "ZF" = (
@@ -1739,12 +1739,12 @@
 /area/redgate/islands/ocean)
 "ZR" = (
 /obj/structure/table/hardwoodtable,
-/obj/item/weapon/material/fishing_rod/modern/strong,
+/obj/item/material/fishing_rod/modern/strong,
 /turf/simulated/floor/wood/alt,
 /area/redgate/islands/livingroom)
 "ZY" = (
 /obj/structure/bed/double/padded,
-/obj/item/weapon/bedsheet/purpledouble,
+/obj/item/bedsheet/purpledouble,
 /turf/simulated/floor/wood/alt,
 /area/redgate/islands/dorm2)
 

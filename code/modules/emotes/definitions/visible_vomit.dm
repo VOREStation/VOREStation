@@ -7,4 +7,4 @@
 		if(!M.isSynthetic())
 			M.vomit()
 			return
-	to_chat(src, SPAN_WARNING("You are unable to vomit."))	
+	to_chat(src, span_warning("You are unable to vomit."))

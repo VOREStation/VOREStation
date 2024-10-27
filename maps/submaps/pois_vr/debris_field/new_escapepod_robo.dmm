@@ -40,7 +40,7 @@
 /area/submap/debrisfield/misc_debris)
 "B" = (
 /obj/effect/decal/cleanable/blood/oil,
-/obj/item/weapon/paper/robo_escape_pod,
+/obj/item/paper/robo_escape_pod,
 /turf/simulated/floor/reinforced/airless,
 /area/submap/debrisfield/misc_debris)
 "D" = (

@@ -29,12 +29,12 @@
 /area/redgate/fantasy/restaurant)
 "aj" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/reagent_containers/food/snacks/slice/bread/filled,
+/obj/item/reagent_containers/food/snacks/slice/bread/filled,
 /turf/simulated/floor/carpet/oracarpet,
 /area/redgate/fantasy/arena)
 "al" = (
 /obj/structure/table/rack/shelf/wood,
-/obj/item/weapon/gun/launcher/crossbow/bow,
+/obj/item/gun/launcher/crossbow/bow,
 /turf/simulated/floor/wood/alt/parquet,
 /area/redgate/fantasy/guardhouse)
 "ao" = (
@@ -45,16 +45,16 @@
 /area/redgate/fantasy/church)
 "ap" = (
 /obj/structure/closet/cabinet,
-/obj/item/weapon/material/knife/butch,
-/obj/item/weapon/arrow/standard,
+/obj/item/material/knife/butch,
+/obj/item/arrow/standard,
 /obj/random/potion_base,
 /turf/simulated/floor/wood/alt/parquet,
 /area/redgate/fantasy/guardhouse)
 "aq" = (
 /obj/structure/table/rack/shelf/wood,
-/obj/item/weapon/reagent_containers/food/condiment/vinegar,
-/obj/item/weapon/reagent_containers/food/condiment/vinegar,
-/obj/item/weapon/reagent_containers/food/condiment/vinegar,
+/obj/item/reagent_containers/food/condiment/vinegar,
+/obj/item/reagent_containers/food/condiment/vinegar,
+/obj/item/reagent_containers/food/condiment/vinegar,
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/farmhouse)
 "ar" = (
@@ -63,7 +63,7 @@
 /area/redgate/fantasy/tavern)
 "as" = (
 /obj/structure/bed/double/padded,
-/obj/item/weapon/bedsheet/browndouble,
+/obj/item/bedsheet/browndouble,
 /obj/machinery/light/small/torch{
 	dir = 4
 	},
@@ -78,11 +78,11 @@
 /turf/simulated/floor/wood/alt/panel,
 /area/redgate/fantasy/castle)
 "ax" = (
-/obj/item/weapon/material/knife/machete/hatchet/stone,
+/obj/item/material/knife/machete/hatchet/stone,
 /turf/simulated/floor/outdoors/grass/seasonal,
 /area/redgate/fantasy/druid)
 "aA" = (
-/obj/item/weapon/reagent_containers/glass/bottle/potion/relaxation,
+/obj/item/reagent_containers/glass/bottle/potion/relaxation,
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/house)
 "aB" = (
@@ -99,7 +99,7 @@
 /area/redgate/fantasy/druid)
 "aE" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/material/twohanded/fireaxe{
+/obj/item/material/twohanded/fireaxe{
 	icon_state = "fireaxe_mask0";
 	name = "big axe"
 	},
@@ -124,7 +124,7 @@
 /area/redgate/fantasy/druid)
 "aQ" = (
 /obj/structure/table/rack/wood,
-/obj/item/weapon/shield/primitive,
+/obj/item/shield/primitive,
 /obj/machinery/light/small/torch{
 	dir = 8
 	},
@@ -132,7 +132,7 @@
 /area/redgate/fantasy/castle)
 "aS" = (
 /obj/structure/bed/double/padded,
-/obj/item/weapon/bedsheet/browndouble,
+/obj/item/bedsheet/browndouble,
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/house)
 "aT" = (
@@ -170,7 +170,7 @@
 /area/redgate/fantasy/rogue)
 "bn" = (
 /obj/structure/table/rack/shelf/wood,
-/obj/item/weapon/pickaxe/hand,
+/obj/item/pickaxe/hand,
 /turf/simulated/floor/wood,
 /area/redgate/fantasy/mininghouse)
 "bo" = (
@@ -191,7 +191,7 @@
 /area/redgate/fantasy/mininghouse)
 "bw" = (
 /obj/structure/table/rack/shelf/wood,
-/obj/item/weapon/reagent_containers/food/snacks/sliceable/creamcheesebread,
+/obj/item/reagent_containers/food/snacks/sliceable/creamcheesebread,
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/bakery)
 "bx" = (
@@ -214,7 +214,7 @@
 /area/redgate/fantasy/tavern)
 "bC" = (
 /obj/structure/table/rack/shelf/wood,
-/obj/item/weapon/shield/riot{
+/obj/item/shield/riot{
 	color = "#A1662F"
 	},
 /turf/simulated/floor/concrete,
@@ -224,7 +224,7 @@
 /obj/item/clothing/head/wizard/fake/realistic,
 /obj/item/clothing/suit/wizrobe,
 /obj/item/clothing/shoes/sandal,
-/obj/item/weapon/staff,
+/obj/item/staff,
 /turf/simulated/floor/wood/alt/panel,
 /area/redgate/fantasy/castle)
 "bE" = (
@@ -267,35 +267,35 @@
 /area/redgate/fantasy/blacksmith)
 "bT" = (
 /obj/structure/table/steel,
-/obj/item/weapon/paper{
+/obj/item/paper{
 	info = "This is a request to our staff adventuring out into this place: Please don't bring deadly weapons back to our ships and stations. If you have to, take them straight to security or research if appropriate. Thank you.";
 	name = "Leave weapons here!"
 	},
-/obj/item/weapon/paper{
+/obj/item/paper{
 	info = "This is a request to our staff adventuring out into this place: Please don't bring deadly weapons back to our ships and stations. If you have to, take them straight to security or research if appropriate. Thank you.";
 	name = "Leave weapons here!"
 	},
-/obj/item/weapon/paper{
+/obj/item/paper{
 	info = "This is a request to our staff adventuring out into this place: Please don't bring deadly weapons back to our ships and stations. If you have to, take them straight to security or research if appropriate. Thank you.";
 	name = "Leave weapons here!"
 	},
-/obj/item/weapon/paper{
+/obj/item/paper{
 	info = "This is a request to our staff adventuring out into this place: Please don't bring deadly weapons back to our ships and stations. If you have to, take them straight to security or research if appropriate. Thank you.";
 	name = "Leave weapons here!"
 	},
-/obj/item/weapon/paper{
+/obj/item/paper{
 	info = "This is a request to our staff adventuring out into this place: Please don't bring deadly weapons back to our ships and stations. If you have to, take them straight to security or research if appropriate. Thank you.";
 	name = "Leave weapons here!"
 	},
-/obj/item/weapon/paper{
+/obj/item/paper{
 	info = "This is a request to our staff adventuring out into this place: Please don't bring deadly weapons back to our ships and stations. If you have to, take them straight to security or research if appropriate. Thank you.";
 	name = "Leave weapons here!"
 	},
-/obj/item/weapon/paper{
+/obj/item/paper{
 	info = "This is a request to our staff adventuring out into this place: Please don't bring deadly weapons back to our ships and stations. If you have to, take them straight to security or research if appropriate. Thank you.";
 	name = "Leave weapons here!"
 	},
-/obj/item/weapon/paper{
+/obj/item/paper{
 	info = "This is a request to our staff adventuring out into this place: Please don't bring deadly weapons back to our ships and stations. If you have to, take them straight to security or research if appropriate. Thank you.";
 	name = "Leave weapons here!"
 	},
@@ -331,7 +331,7 @@
 /area/redgate/fantasy/aliens)
 "cf" = (
 /obj/structure/bed,
-/obj/item/weapon/bedsheet/brown,
+/obj/item/bedsheet/brown,
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/house)
 "ch" = (
@@ -352,12 +352,12 @@
 /area/redgate/fantasy/castle)
 "cl" = (
 /obj/structure/table/rack/wood,
-/obj/item/weapon/material/sword/rapier,
+/obj/item/material/sword/rapier,
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/rogue)
 "co" = (
 /obj/structure/bed/double/padded,
-/obj/item/weapon/bedsheet/browndouble,
+/obj/item/bedsheet/browndouble,
 /turf/simulated/floor/wood,
 /area/redgate/fantasy/blacksmith)
 "cq" = (
@@ -374,11 +374,11 @@
 /area/redgate/fantasy/druid)
 "cs" = (
 /obj/structure/table/standard,
-/obj/item/weapon/reagent_containers/food/snacks/xenomeat,
+/obj/item/reagent_containers/food/snacks/xenomeat,
 /turf/simulated/floor/wood,
 /area/redgate/fantasy/butcher)
 "ct" = (
-/obj/item/weapon/reagent_containers/glass/bucket/wood,
+/obj/item/reagent_containers/glass/bucket/wood,
 /turf/simulated/floor/wood/alt/panel,
 /area/redgate/fantasy/house)
 "cu" = (
@@ -451,17 +451,17 @@
 /area/redgate/fantasy/alchemist)
 "cS" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/reagent_containers/food/snacks/meatbun,
+/obj/item/reagent_containers/food/snacks/meatbun,
 /turf/simulated/floor/carpet/oracarpet,
 /area/redgate/fantasy/arena)
 "cT" = (
 /obj/structure/bed/padded,
-/obj/item/weapon/bedsheet/brown,
+/obj/item/bedsheet/brown,
 /turf/simulated/floor/wood/alt/panel,
 /area/redgate/fantasy/walls)
 "cU" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/reagent_containers/food/snacks/pancakes,
+/obj/item/reagent_containers/food/snacks/pancakes,
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/bakery)
 "cV" = (
@@ -490,8 +490,8 @@
 /area/redgate/fantasy/aliens)
 "df" = (
 /obj/structure/table/rack/shelf/wood,
-/obj/item/weapon/reagent_containers/glass/bottle/potion/healing,
-/obj/item/weapon/reagent_containers/glass/bottle/potion/healing,
+/obj/item/reagent_containers/glass/bottle/potion/healing,
+/obj/item/reagent_containers/glass/bottle/potion/healing,
 /turf/simulated/floor/wood,
 /area/redgate/fantasy/alchemist)
 "dg" = (
@@ -500,12 +500,12 @@
 /area/redgate/fantasy/house)
 "dh" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/material/twohanded/baseballbat,
+/obj/item/material/twohanded/baseballbat,
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/house)
 "di" = (
 /obj/structure/closet/cabinet,
-/obj/item/weapon/reagent_containers/food/snacks/rawmeatball,
+/obj/item/reagent_containers/food/snacks/rawmeatball,
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/house)
 "dj" = (
@@ -518,7 +518,7 @@
 /area/redgate/fantasy/aliens)
 "dl" = (
 /obj/structure/bed/padded,
-/obj/item/weapon/bedsheet/brown,
+/obj/item/bedsheet/brown,
 /turf/simulated/floor/wood/alt/parquet,
 /area/redgate/fantasy/house)
 "dm" = (
@@ -545,7 +545,7 @@
 /area/redgate/fantasy/streets)
 "du" = (
 /obj/structure/table/standard,
-/obj/item/weapon/reagent_containers/food/snacks/bearmeat,
+/obj/item/reagent_containers/food/snacks/bearmeat,
 /turf/simulated/floor/wood,
 /area/redgate/fantasy/butcher)
 "dw" = (
@@ -565,7 +565,7 @@
 /area/redgate/fantasy/mininghouse)
 "dF" = (
 /obj/structure/table/rack/shelf/wood,
-/obj/item/weapon/gun/launcher/crossbow/bow,
+/obj/item/gun/launcher/crossbow/bow,
 /obj/machinery/light/small/torch{
 	dir = 8
 	},
@@ -593,7 +593,7 @@
 /area/redgate/fantasy/streets)
 "dM" = (
 /obj/structure/table/rack/shelf/wood,
-/obj/item/weapon/reagent_containers/glass/bottle/potion/fire_resist,
+/obj/item/reagent_containers/glass/bottle/potion/fire_resist,
 /turf/simulated/floor/wood,
 /area/redgate/fantasy/alchemist)
 "dO" = (
@@ -601,7 +601,7 @@
 /turf/simulated/floor/wood,
 /area/redgate/fantasy/blacksmith)
 "dQ" = (
-/obj/item/weapon/reagent_containers/glass/bucket/wood,
+/obj/item/reagent_containers/glass/bucket/wood,
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/gambling)
 "dU" = (
@@ -639,7 +639,7 @@
 /area/redgate/fantasy/guardhouse)
 "eg" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/material/minihoe,
+/obj/item/material/minihoe,
 /turf/simulated/floor/concrete,
 /area/redgate/fantasy/farmhouse)
 "ei" = (
@@ -718,12 +718,12 @@
 /area/redgate/fantasy/jewler)
 "eE" = (
 /obj/structure/table/hardwoodtable,
-/obj/item/weapon/reagent_containers/food/drinks/bottle/holywater,
+/obj/item/reagent_containers/food/drinks/bottle/holywater,
 /turf/simulated/floor/carpet/gaycarpet,
 /area/redgate/fantasy/castle)
 "eF" = (
 /obj/structure/table/hardwoodtable,
-/obj/item/weapon/storage/bible,
+/obj/item/storage/bible,
 /turf/simulated/floor/concrete,
 /area/redgate/fantasy/paladinhouse)
 "eH" = (
@@ -742,18 +742,18 @@
 /area/redgate/fantasy/paladinhouse)
 "eN" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/reagent_containers/food/snacks/quicheslice/filled,
+/obj/item/reagent_containers/food/snacks/quicheslice/filled,
 /turf/simulated/floor/carpet/oracarpet,
 /area/redgate/fantasy/arena)
 "eO" = (
 /obj/structure/closet/crate/wooden,
-/obj/item/weapon/firework_star/weather/confetti,
+/obj/item/firework_star/weather/confetti,
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/house)
 "eQ" = (
 /obj/structure/table/woodentable,
 /obj/random/potion_ingredient,
-/obj/item/weapon/paper{
+/obj/item/paper{
 	info = "<b>Apprentice, I have written out these instructions so that you may operate the alembic in your own time without me needing to watch over your every step.<br><br>The alembic is simple to operate, simply activate the spontaneous heating stone beneath it to begin boiling the contents. However, the contents that you choose are critical in creating a potion of any merit, and mixing the wrong materials may create something completely useless, wasting our resources!<br><br>You must mix two materials, and only ever two. One primary ingredient, this can be one of many materials with valuable alchemical properties. The other is a potion base, this will be essential to properly break down and transmute the ingredient into a potent potion. Once you have added the two, boil as above, and collect the distilate in a bottle. As for choosing your base, here is a short guide, but be aware that the properties of an ingredient are not always immediately apparent and some experimentation may be required:<br><br>Alkahest is a potent solvent and particularly useful for dissolving metals.<br><br>Aqua Regia is a heavily corrosive mixture of acids that readily dissolve most organic materials.<br><br>Ichor is a rich ferrous fluid that binds well to minerals, it can often break down gemstones.</b>";
 	name = "alchemy instructions"
 	},
@@ -776,8 +776,8 @@
 /area/redgate/fantasy/bard)
 "eT" = (
 /obj/structure/table/rack/shelf/wood,
-/obj/item/weapon/reagent_containers/food/snacks/sliceable/carrotcake,
-/obj/item/weapon/reagent_containers/food/snacks/sliceable/carrotcake,
+/obj/item/reagent_containers/food/snacks/sliceable/carrotcake,
+/obj/item/reagent_containers/food/snacks/sliceable/carrotcake,
 /turf/simulated/floor/wood/alt/parquet,
 /area/redgate/fantasy/grocery)
 "eV" = (
@@ -785,19 +785,19 @@
 	dir = 4
 	},
 /obj/structure/bed/padded,
-/obj/item/weapon/bedsheet/brown,
+/obj/item/bedsheet/brown,
 /turf/simulated/floor/wood/alt/panel,
 /area/redgate/fantasy/walls)
 "eW" = (
 /obj/structure/table/marble,
-/obj/item/weapon/flame/candle/candelabra,
+/obj/item/flame/candle/candelabra,
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/church)
 "eX" = (
 /obj/structure/closet/cabinet,
 /obj/item/clothing/accessory/maidcorset,
 /obj/item/clothing/under/dress/black_corset,
-/obj/item/weapon/handcuffs/cable/plantfiber,
+/obj/item/handcuffs/cable/plantfiber,
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/washhouse)
 "eY" = (
@@ -814,7 +814,7 @@
 /area/redgate/fantasy/arena)
 "fb" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/reagent_containers/food/snacks/bearmeat,
+/obj/item/reagent_containers/food/snacks/bearmeat,
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/barbarian)
 "fc" = (
@@ -822,7 +822,7 @@
 /area/redgate/fantasy/farmhouse)
 "ff" = (
 /obj/structure/table/rack/wood,
-/obj/item/weapon/gun/launcher/crossbow,
+/obj/item/gun/launcher/crossbow,
 /obj/machinery/light/small/torch{
 	dir = 4
 	},
@@ -884,7 +884,7 @@
 /area/redgate/fantasy/blacksmith)
 "fz" = (
 /obj/structure/bookcase,
-/obj/item/weapon/book/custom_library/fiction/truelovehathmyheart,
+/obj/item/book/custom_library/fiction/truelovehathmyheart,
 /turf/simulated/floor/concrete,
 /area/redgate/fantasy/castle)
 "fB" = (
@@ -912,7 +912,7 @@
 /area/redgate/fantasy/castle)
 "fH" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/material/knife/butch,
+/obj/item/material/knife/butch,
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/farmhouse)
 "fJ" = (
@@ -921,7 +921,7 @@
 /area/redgate/fantasy/gambling)
 "fL" = (
 /obj/structure/bed/double/padded,
-/obj/item/weapon/bedsheet/purpledouble,
+/obj/item/bedsheet/purpledouble,
 /turf/simulated/floor/carpet/purple,
 /area/redgate/fantasy/bard)
 "fM" = (
@@ -949,9 +949,9 @@
 /area/redgate/fantasy/bard)
 "fY" = (
 /obj/structure/table/rack/shelf/wood,
-/obj/item/device/flashlight/lantern,
-/obj/item/device/flashlight/lantern,
-/obj/item/device/flashlight/lantern,
+/obj/item/flashlight/lantern,
+/obj/item/flashlight/lantern,
+/obj/item/flashlight/lantern,
 /turf/simulated/floor/wood,
 /area/redgate/fantasy/mininghouse)
 "ga" = (
@@ -1001,8 +1001,8 @@
 /area/redgate/fantasy/blacksmith)
 "gx" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/material/knife/butch,
-/obj/item/weapon/material/kitchen/rollingpin,
+/obj/item/material/knife/butch,
+/obj/item/material/kitchen/rollingpin,
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/tavern)
 "gz" = (
@@ -1043,7 +1043,7 @@
 /area/redgate/fantasy/gambling)
 "gN" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/reagent_containers/food/snacks/bun,
+/obj/item/reagent_containers/food/snacks/bun,
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/bakery)
 "gO" = (
@@ -1076,7 +1076,7 @@
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/cafe)
 "ha" = (
-/obj/item/weapon/reagent_containers/glass/bucket/wood,
+/obj/item/reagent_containers/glass/bucket/wood,
 /turf/simulated/floor/wood,
 /area/redgate/fantasy/paladinhouse)
 "hg" = (
@@ -1086,7 +1086,7 @@
 /obj/structure/closet/cabinet,
 /obj/item/clothing/head/fancy_crown,
 /obj/item/clothing/suit/wizrobe/magusred,
-/obj/item/weapon/material/sword/sabre{
+/obj/item/material/sword/sabre{
 	color = "#FFD700"
 	},
 /turf/simulated/floor/carpet,
@@ -1172,7 +1172,7 @@
 /area/redgate/fantasy/tavern)
 "hR" = (
 /obj/structure/bed/double/padded,
-/obj/item/weapon/bedsheet/hosdouble,
+/obj/item/bedsheet/hosdouble,
 /obj/structure/curtain{
 	color = "#FF0000"
 	},
@@ -1210,7 +1210,7 @@
 "hZ" = (
 /obj/structure/table/rack/shelf/wood,
 /obj/random/soap,
-/obj/item/weapon/towel/random,
+/obj/item/towel/random,
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/bard)
 "ia" = (
@@ -1219,7 +1219,7 @@
 /area/redgate/fantasy/farmhouse)
 "ic" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/material/fishing_rod/built,
+/obj/item/material/fishing_rod/built,
 /turf/simulated/floor/outdoors/grass/seasonal,
 /area/redgate/fantasy/streets)
 "id" = (
@@ -1253,7 +1253,7 @@
 /area/redgate/fantasy/jewler)
 "in" = (
 /obj/structure/table/rack/shelf/wood,
-/obj/item/weapon/towel/random,
+/obj/item/towel/random,
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/farmhouse)
 "io" = (
@@ -1298,8 +1298,8 @@
 /obj/item/clothing/shoes/knight/black,
 /obj/item/clothing/gloves/combat/knight/brown,
 /obj/item/clothing/head/helmet/gladiator,
-/obj/item/weapon/shield/primitive,
-/obj/item/weapon/handcuffs/cable/plantfiber,
+/obj/item/shield/primitive,
+/obj/item/handcuffs/cable/plantfiber,
 /turf/simulated/floor/concrete,
 /area/redgate/fantasy/walls)
 "iD" = (
@@ -1323,7 +1323,7 @@
 /area/redgate/fantasy/farmhouse)
 "iJ" = (
 /obj/structure/bed/padded,
-/obj/item/weapon/bedsheet/brown,
+/obj/item/bedsheet/brown,
 /turf/simulated/floor/wood/alt/panel,
 /area/redgate/fantasy/redgate)
 "iK" = (
@@ -1340,8 +1340,8 @@
 /area/redgate/fantasy/gambling)
 "iQ" = (
 /obj/structure/table/rack/shelf/wood,
-/obj/item/weapon/material/twohanded/fireaxe/foam,
-/obj/item/weapon/material/twohanded/fireaxe/foam,
+/obj/item/material/twohanded/fireaxe/foam,
+/obj/item/material/twohanded/fireaxe/foam,
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/house)
 "iS" = (
@@ -1353,7 +1353,7 @@
 /area/redgate/fantasy/house)
 "iV" = (
 /obj/structure/table/rack/wood,
-/obj/item/weapon/material/sword/longsword,
+/obj/item/material/sword/longsword,
 /obj/structure/prop/fantasy/pinkbanner{
 	pixel_y = 32
 	},
@@ -1385,7 +1385,7 @@
 /area/redgate/fantasy/arena)
 "jc" = (
 /obj/structure/table/marble,
-/obj/item/weapon/reagent_containers/food/drinks/golden_cup,
+/obj/item/reagent_containers/food/drinks/golden_cup,
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/church)
 "je" = (
@@ -1401,26 +1401,26 @@
 /area/redgate/fantasy/paladinhouse)
 "jj" = (
 /obj/structure/closet/walllocker/wooden/north,
-/obj/item/weapon/material/knife/table,
-/obj/item/weapon/material/knife/table,
-/obj/item/weapon/material/knife/table,
-/obj/item/weapon/material/knife/table,
-/obj/item/weapon/material/kitchen/utensil/fork,
-/obj/item/weapon/material/kitchen/utensil/fork,
-/obj/item/weapon/material/kitchen/utensil/fork,
-/obj/item/weapon/material/kitchen/utensil/fork,
-/obj/item/weapon/material/kitchen/utensil/spoon,
-/obj/item/weapon/material/kitchen/utensil/spoon,
-/obj/item/weapon/material/kitchen/utensil/spoon,
-/obj/item/weapon/material/kitchen/utensil/spoon,
-/obj/item/weapon/reagent_containers/glass/pint_mug,
-/obj/item/weapon/reagent_containers/glass/pint_mug,
-/obj/item/weapon/reagent_containers/glass/pint_mug,
+/obj/item/material/knife/table,
+/obj/item/material/knife/table,
+/obj/item/material/knife/table,
+/obj/item/material/knife/table,
+/obj/item/material/kitchen/utensil/fork,
+/obj/item/material/kitchen/utensil/fork,
+/obj/item/material/kitchen/utensil/fork,
+/obj/item/material/kitchen/utensil/fork,
+/obj/item/material/kitchen/utensil/spoon,
+/obj/item/material/kitchen/utensil/spoon,
+/obj/item/material/kitchen/utensil/spoon,
+/obj/item/material/kitchen/utensil/spoon,
+/obj/item/reagent_containers/glass/pint_mug,
+/obj/item/reagent_containers/glass/pint_mug,
+/obj/item/reagent_containers/glass/pint_mug,
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/farmhouse)
 "jl" = (
 /obj/structure/bookcase,
-/obj/item/weapon/book/bundle/custom_library/fiction/chroniclesofmargatavol1,
+/obj/item/book/bundle/custom_library/fiction/chroniclesofmargatavol1,
 /obj/machinery/light/small/torch{
 	dir = 1
 	},
@@ -1444,7 +1444,7 @@
 /area/redgate/fantasy/house)
 "jv" = (
 /obj/structure/table/rack/shelf/wood,
-/obj/item/weapon/reagent_containers/food/snacks/sliceable/tofubread,
+/obj/item/reagent_containers/food/snacks/sliceable/tofubread,
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/bakery)
 "jw" = (
@@ -1453,7 +1453,7 @@
 /area/redgate/fantasy/farmhouse)
 "jx" = (
 /obj/structure/table/woodentable,
-/obj/item/device/flashlight/lantern,
+/obj/item/flashlight/lantern,
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/jewler)
 "jz" = (
@@ -1466,7 +1466,7 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/redgate/fantasy/aliens)
 "jD" = (
-/obj/item/weapon/mop,
+/obj/item/mop,
 /turf/simulated/floor/wood/alt/panel,
 /area/redgate/fantasy/castle)
 "jG" = (
@@ -1489,7 +1489,7 @@
 /area/redgate/fantasy/tavern)
 "jM" = (
 /obj/structure/table/rack/shelf/wood,
-/obj/item/weapon/reagent_containers/glass/rag,
+/obj/item/reagent_containers/glass/rag,
 /turf/simulated/floor/wood/alt/panel,
 /area/redgate/fantasy/castle)
 "jO" = (
@@ -1555,7 +1555,7 @@
 /area/redgate/fantasy/house)
 "kg" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/reagent_containers/glass/bucket/wood,
+/obj/item/reagent_containers/glass/bucket/wood,
 /turf/simulated/floor/concrete,
 /area/redgate/fantasy/walls)
 "ki" = (
@@ -1614,7 +1614,7 @@
 /area/redgate/fantasy/castle)
 "kH" = (
 /obj/structure/bed/double/padded,
-/obj/item/weapon/bedsheet/purpledouble,
+/obj/item/bedsheet/purpledouble,
 /turf/simulated/floor/wood,
 /area/redgate/fantasy/alchemist)
 "kJ" = (
@@ -1622,12 +1622,12 @@
 /obj/effect/floor_decal/spline/fancy/wood{
 	dir = 5
 	},
-/obj/item/weapon/deck/cards/casino,
+/obj/item/deck/cards/casino,
 /turf/simulated/floor/carpet/green,
 /area/redgate/fantasy/gambling)
 "kK" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/pen/crayon/blue{
+/obj/item/pen/crayon/blue{
 	name = "chalk"
 	},
 /turf/simulated/floor/wood,
@@ -1646,16 +1646,16 @@
 /area/redgate/fantasy/arena)
 "kO" = (
 /obj/structure/table/rack/shelf/wood,
-/obj/item/weapon/reagent_containers/glass/pint_mug,
-/obj/item/weapon/reagent_containers/glass/pint_mug,
-/obj/item/weapon/reagent_containers/glass/pint_mug,
-/obj/item/weapon/reagent_containers/glass/pint_mug,
-/obj/item/weapon/reagent_containers/glass/pint_mug,
-/obj/item/weapon/reagent_containers/glass/pint_mug,
-/obj/item/weapon/reagent_containers/glass/pint_mug,
-/obj/item/weapon/reagent_containers/glass/pint_mug,
-/obj/item/weapon/reagent_containers/glass/pint_mug,
-/obj/item/weapon/reagent_containers/glass/pint_mug,
+/obj/item/reagent_containers/glass/pint_mug,
+/obj/item/reagent_containers/glass/pint_mug,
+/obj/item/reagent_containers/glass/pint_mug,
+/obj/item/reagent_containers/glass/pint_mug,
+/obj/item/reagent_containers/glass/pint_mug,
+/obj/item/reagent_containers/glass/pint_mug,
+/obj/item/reagent_containers/glass/pint_mug,
+/obj/item/reagent_containers/glass/pint_mug,
+/obj/item/reagent_containers/glass/pint_mug,
+/obj/item/reagent_containers/glass/pint_mug,
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/cafe)
 "kP" = (
@@ -1673,7 +1673,7 @@
 /turf/simulated/floor/wood/alt/parquet,
 /area/redgate/fantasy/restaurant)
 "kU" = (
-/obj/item/weapon/reagent_containers/glass/bottle/potion/faerie,
+/obj/item/reagent_containers/glass/bottle/potion/faerie,
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/house)
 "kX" = (
@@ -1696,7 +1696,7 @@
 /area/redgate/fantasy/jewler)
 "lb" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/material/kitchen/rollingpin,
+/obj/item/material/kitchen/rollingpin,
 /turf/simulated/floor/wood/alt/parquet,
 /area/redgate/fantasy/restaurant)
 "ld" = (
@@ -1726,7 +1726,7 @@
 /area/redgate/fantasy/shop)
 "lk" = (
 /obj/structure/bookcase,
-/obj/item/weapon/book/custom_library/religious/wayofbleedingswan,
+/obj/item/book/custom_library/religious/wayofbleedingswan,
 /turf/simulated/floor/concrete,
 /area/redgate/fantasy/castle)
 "ll" = (
@@ -1780,7 +1780,7 @@
 /area/redgate/fantasy/paladinhouse)
 "ly" = (
 /obj/structure/bed/double/padded,
-/obj/item/weapon/bedsheet/orangedouble,
+/obj/item/bedsheet/orangedouble,
 /obj/machinery/light/small/torch{
 	dir = 4
 	},
@@ -1793,7 +1793,7 @@
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/cafe)
 "lC" = (
-/obj/item/weapon/reagent_containers/glass/bucket/wood,
+/obj/item/reagent_containers/glass/bucket/wood,
 /turf/simulated/floor/concrete,
 /area/redgate/fantasy/guardhouse)
 "lF" = (
@@ -1814,7 +1814,7 @@
 /obj/structure/closet/crate/wooden,
 /obj/item/clothing/under/primitive,
 /obj/item/clothing/shoes/primitive,
-/obj/item/weapon/material/twohanded/staff,
+/obj/item/material/twohanded/staff,
 /obj/item/clothing/accessory/poncho/roles/cloak{
 	name = "simple cloak"
 	},
@@ -1848,7 +1848,7 @@
 /area/redgate/fantasy/castle)
 "lR" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/reagent_containers/food/snacks/flatbread,
+/obj/item/reagent_containers/food/snacks/flatbread,
 /obj/machinery/light/small/torch{
 	dir = 4
 	},
@@ -1856,8 +1856,8 @@
 /area/redgate/fantasy/bakery)
 "lS" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/material/knife/butch,
-/obj/item/weapon/material/kitchen/rollingpin,
+/obj/item/material/knife/butch,
+/obj/item/material/kitchen/rollingpin,
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/house)
 "lT" = (
@@ -1878,7 +1878,7 @@
 /area/redgate/fantasy/washhouse)
 "ma" = (
 /obj/structure/table/rack/shelf/wood,
-/obj/item/weapon/shovel,
+/obj/item/shovel,
 /turf/simulated/floor/concrete,
 /area/redgate/fantasy/blacksmith)
 "md" = (
@@ -1903,7 +1903,7 @@
 /area/redgate/fantasy/butcher)
 "ml" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/material/fishing_net,
+/obj/item/material/fishing_net,
 /turf/simulated/floor/outdoors/grass/seasonal,
 /area/redgate/fantasy/streets)
 "mm" = (
@@ -1931,7 +1931,7 @@
 /area/redgate/fantasy/restaurant)
 "mn" = (
 /obj/structure/table/standard,
-/obj/item/weapon/reagent_containers/food/snacks/meat,
+/obj/item/reagent_containers/food/snacks/meat,
 /turf/simulated/floor/wood,
 /area/redgate/fantasy/butcher)
 "mo" = (
@@ -1941,7 +1941,7 @@
 /obj/item/clothing/mask/smokable/cigarette/cigar,
 /obj/item/clothing/mask/smokable/cigarette/cigar,
 /obj/item/clothing/mask/smokable/cigarette/cigar,
-/obj/item/weapon/storage/box/matches,
+/obj/item/storage/box/matches,
 /turf/simulated/floor/wood/alt/parquet,
 /area/redgate/fantasy/house)
 "mp" = (
@@ -1950,7 +1950,7 @@
 /area/redgate/fantasy/blacksmith)
 "mq" = (
 /obj/structure/bed/double/padded,
-/obj/item/weapon/bedsheet/purpledouble,
+/obj/item/bedsheet/purpledouble,
 /turf/simulated/floor/carpet/gaycarpet,
 /area/redgate/fantasy/castle)
 "ms" = (
@@ -2019,7 +2019,7 @@
 /area/redgate/fantasy/paladinhouse)
 "mG" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/storage/bible,
+/obj/item/storage/bible,
 /turf/simulated/floor/concrete,
 /area/redgate/fantasy/paladinhouse)
 "mL" = (
@@ -2034,7 +2034,7 @@
 /turf/simulated/floor/wood/alt/panel,
 /area/redgate/fantasy/ranger)
 "mM" = (
-/obj/item/weapon/reagent_containers/glass/bucket/wood,
+/obj/item/reagent_containers/glass/bucket/wood,
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/jewler)
 "mO" = (
@@ -2042,7 +2042,7 @@
 /obj/effect/floor_decal/spline/fancy/wood{
 	dir = 9
 	},
-/obj/item/weapon/deck/cards/casino,
+/obj/item/deck/cards/casino,
 /turf/simulated/floor/carpet/green,
 /area/redgate/fantasy/gambling)
 "mQ" = (
@@ -2058,7 +2058,7 @@
 /area/redgate/fantasy/arena)
 "mT" = (
 /obj/structure/bed/double/padded,
-/obj/item/weapon/bedsheet/browndouble,
+/obj/item/bedsheet/browndouble,
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/farmhouse)
 "mU" = (
@@ -2092,7 +2092,7 @@
 /area/redgate/fantasy/butcher)
 "ng" = (
 /obj/structure/table/woodentable,
-/obj/item/device/flashlight/lantern,
+/obj/item/flashlight/lantern,
 /turf/simulated/floor/wood/alt/parquet,
 /area/redgate/fantasy/house)
 "nj" = (
@@ -2105,7 +2105,7 @@
 /area/redgate/fantasy/house)
 "nn" = (
 /obj/structure/table/rack/shelf/wood,
-/obj/item/weapon/storage/bag/ore,
+/obj/item/storage/bag/ore,
 /turf/simulated/floor/wood,
 /area/redgate/fantasy/mininghouse)
 "nr" = (
@@ -2175,7 +2175,7 @@
 /area/redgate/fantasy/house)
 "nJ" = (
 /obj/structure/bed/double/padded,
-/obj/item/weapon/bedsheet/cedouble,
+/obj/item/bedsheet/cedouble,
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/jewler)
 "nK" = (
@@ -2184,18 +2184,18 @@
 /area/redgate/fantasy/farmhouse)
 "nM" = (
 /obj/structure/closet/crate/wooden,
-/obj/item/weapon/material/minihoe,
-/obj/item/weapon/shovel/spade,
+/obj/item/material/minihoe,
+/obj/item/shovel/spade,
 /turf/simulated/floor/wood,
 /area/redgate/fantasy/druid)
 "nN" = (
 /obj/structure/table/marble,
-/obj/item/weapon/surgical/scalpel,
+/obj/item/surgical/scalpel,
 /turf/simulated/floor/concrete,
 /area/redgate/fantasy/churchhouse)
 "nP" = (
 /obj/structure/table/rack/shelf/wood,
-/obj/item/weapon/reagent_containers/food/snacks/sliceable/bread,
+/obj/item/reagent_containers/food/snacks/sliceable/bread,
 /obj/machinery/light/small/torch{
 	dir = 4
 	},
@@ -2227,7 +2227,7 @@
 /turf/simulated/floor/concrete,
 /area/redgate/fantasy/arena)
 "nX" = (
-/obj/item/weapon/reagent_containers/glass/bucket/wood,
+/obj/item/reagent_containers/glass/bucket/wood,
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/tavern)
 "nY" = (
@@ -2247,8 +2247,8 @@
 /area/redgate/fantasy/gambling)
 "od" = (
 /obj/structure/closet/crate/wooden,
-/obj/item/device/flashlight/lantern,
-/obj/item/weapon/material/knife/tacknife/boot,
+/obj/item/flashlight/lantern,
+/obj/item/material/knife/tacknife/boot,
 /obj/random/potion_ingredient,
 /turf/simulated/floor/wood/alt/panel,
 /area/redgate/fantasy/walls)
@@ -2280,15 +2280,15 @@
 /area/redgate/fantasy/streets)
 "oq" = (
 /obj/structure/closet/walllocker/wooden/north,
-/obj/item/weapon/reagent_containers/glass/pint_mug,
-/obj/item/weapon/reagent_containers/glass/pint_mug,
-/obj/item/weapon/reagent_containers/glass/pint_mug,
-/obj/item/weapon/reagent_containers/glass/pint_mug,
-/obj/item/weapon/reagent_containers/glass/pint_mug,
-/obj/item/weapon/reagent_containers/glass/pint_mug,
-/obj/item/weapon/reagent_containers/glass/pint_mug,
-/obj/item/weapon/reagent_containers/glass/pint_mug,
-/obj/item/weapon/reagent_containers/glass/pint_mug,
+/obj/item/reagent_containers/glass/pint_mug,
+/obj/item/reagent_containers/glass/pint_mug,
+/obj/item/reagent_containers/glass/pint_mug,
+/obj/item/reagent_containers/glass/pint_mug,
+/obj/item/reagent_containers/glass/pint_mug,
+/obj/item/reagent_containers/glass/pint_mug,
+/obj/item/reagent_containers/glass/pint_mug,
+/obj/item/reagent_containers/glass/pint_mug,
+/obj/item/reagent_containers/glass/pint_mug,
 /turf/simulated/floor/carpet/purcarpet,
 /area/redgate/fantasy/washhouse)
 "os" = (
@@ -2297,7 +2297,7 @@
 /area/redgate/fantasy/house)
 "ot" = (
 /obj/structure/bed/padded,
-/obj/item/weapon/bedsheet/brown,
+/obj/item/bedsheet/brown,
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/tavern)
 "ou" = (
@@ -2308,13 +2308,13 @@
 /area/redgate/fantasy/castle)
 "oz" = (
 /obj/structure/closet/walllocker/wooden/north,
-/obj/item/weapon/reagent_containers/glass/pint_mug,
-/obj/item/weapon/reagent_containers/glass/pint_mug,
-/obj/item/weapon/reagent_containers/glass/pint_mug,
-/obj/item/weapon/reagent_containers/glass/pint_mug,
-/obj/item/weapon/reagent_containers/glass/pint_mug,
-/obj/item/weapon/reagent_containers/glass/pint_mug,
-/obj/item/weapon/reagent_containers/glass/pint_mug,
+/obj/item/reagent_containers/glass/pint_mug,
+/obj/item/reagent_containers/glass/pint_mug,
+/obj/item/reagent_containers/glass/pint_mug,
+/obj/item/reagent_containers/glass/pint_mug,
+/obj/item/reagent_containers/glass/pint_mug,
+/obj/item/reagent_containers/glass/pint_mug,
+/obj/item/reagent_containers/glass/pint_mug,
 /turf/simulated/floor/concrete,
 /area/redgate/fantasy/arena)
 "oA" = (
@@ -2344,7 +2344,7 @@
 /area/redgate/fantasy/castle)
 "oH" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/paper{
+/obj/item/paper{
 	info = "<b>Apprentice, I have written out these instructions so that you may operate the alembic in your own time without me needing to watch over your every step.<br><br>The alembic is simple to operate, simply activate the spontaneous heating stone beneath it to begin boiling the contents. However, the contents that you choose are critical in creating a potion of any merit, and mixing the wrong materials may create something completely useless, wasting our resources!<br><br>You must mix two materials, and only ever two. One primary ingredient, this can be one of many materials with valuable alchemical properties. The other is a potion base, this will be essential to properly break down and transmute the ingredient into a potent potion. Once you have added the two, boil as above, and collect the distilate in a bottle. As for choosing your base, here is a short guide, but be aware that the properties of an ingredient are not always immediately apparent and some experimentation may be required:<br><br>Alkahest is a potent solvent and particularly useful for dissolving metals.<br><br>Aqua Regia is a heavily corrosive mixture of acids that readily dissolve most organic materials.<br><br>Ichor is a rich ferrous fluid that binds well to minerals, it can often break down gemstones.</b>";
 	name = "alchemy instructions"
 	},
@@ -2359,61 +2359,61 @@
 /area/redgate/fantasy/aliens)
 "oJ" = (
 /obj/structure/closet/cabinet,
-/obj/item/weapon/tray,
-/obj/item/weapon/tray,
-/obj/item/weapon/tray,
-/obj/item/weapon/material/knife{
+/obj/item/tray,
+/obj/item/tray,
+/obj/item/tray,
+/obj/item/material/knife{
 	default_material = "gold"
 	},
-/obj/item/weapon/material/knife{
+/obj/item/material/knife{
 	default_material = "gold"
 	},
-/obj/item/weapon/material/knife{
+/obj/item/material/knife{
 	default_material = "gold"
 	},
-/obj/item/weapon/material/knife{
+/obj/item/material/knife{
 	default_material = "gold"
 	},
-/obj/item/weapon/material/knife{
+/obj/item/material/knife{
 	default_material = "gold"
 	},
-/obj/item/weapon/material/knife{
+/obj/item/material/knife{
 	default_material = "gold"
 	},
-/obj/item/weapon/material/kitchen/utensil/fork{
+/obj/item/material/kitchen/utensil/fork{
 	default_material = "gold"
 	},
-/obj/item/weapon/material/kitchen/utensil/fork{
+/obj/item/material/kitchen/utensil/fork{
 	default_material = "gold"
 	},
-/obj/item/weapon/material/kitchen/utensil/fork{
+/obj/item/material/kitchen/utensil/fork{
 	default_material = "gold"
 	},
-/obj/item/weapon/material/kitchen/utensil/fork{
+/obj/item/material/kitchen/utensil/fork{
 	default_material = "gold"
 	},
-/obj/item/weapon/material/kitchen/utensil/fork{
+/obj/item/material/kitchen/utensil/fork{
 	default_material = "gold"
 	},
-/obj/item/weapon/material/kitchen/utensil/fork{
+/obj/item/material/kitchen/utensil/fork{
 	default_material = "gold"
 	},
-/obj/item/weapon/material/kitchen/utensil/spoon{
+/obj/item/material/kitchen/utensil/spoon{
 	default_material = "gold"
 	},
-/obj/item/weapon/material/kitchen/utensil/spoon{
+/obj/item/material/kitchen/utensil/spoon{
 	default_material = "gold"
 	},
-/obj/item/weapon/material/kitchen/utensil/spoon{
+/obj/item/material/kitchen/utensil/spoon{
 	default_material = "gold"
 	},
-/obj/item/weapon/material/kitchen/utensil/spoon{
+/obj/item/material/kitchen/utensil/spoon{
 	default_material = "gold"
 	},
-/obj/item/weapon/material/kitchen/utensil/spoon{
+/obj/item/material/kitchen/utensil/spoon{
 	default_material = "gold"
 	},
-/obj/item/weapon/material/kitchen/utensil/spoon{
+/obj/item/material/kitchen/utensil/spoon{
 	default_material = "gold"
 	},
 /turf/simulated/floor/concrete,
@@ -2431,18 +2431,18 @@
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/bakery)
 "oV" = (
-/obj/item/weapon/reagent_containers/glass/bucket/wood,
+/obj/item/reagent_containers/glass/bucket/wood,
 /obj/machinery/light/small/torch,
 /turf/simulated/floor/wood/alt/parquet,
 /area/redgate/fantasy/house)
 "oW" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/reagent_containers/food/snacks/berryclafoutis,
+/obj/item/reagent_containers/food/snacks/berryclafoutis,
 /turf/simulated/floor/wood,
 /area/redgate/fantasy/mininghouse)
 "oX" = (
 /obj/structure/bed/double/padded,
-/obj/item/weapon/bedsheet/browndouble,
+/obj/item/bedsheet/browndouble,
 /turf/simulated/floor/wood,
 /area/redgate/fantasy/butcher)
 "pa" = (
@@ -2451,7 +2451,7 @@
 /area/redgate/fantasy/bard)
 "pb" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/coin/gold,
+/obj/item/coin/gold,
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/jewler)
 "pc" = (
@@ -2473,8 +2473,8 @@
 /area/redgate/fantasy/aliens)
 "pg" = (
 /obj/structure/table/rack/shelf/wood,
-/obj/item/weapon/reagent_containers/food/snacks/sliceable/bread,
-/obj/item/weapon/reagent_containers/food/snacks/sliceable/bread,
+/obj/item/reagent_containers/food/snacks/sliceable/bread,
+/obj/item/reagent_containers/food/snacks/sliceable/bread,
 /turf/simulated/floor/wood/alt/parquet,
 /area/redgate/fantasy/grocery)
 "pi" = (
@@ -2483,7 +2483,7 @@
 /area/redgate/fantasy/house)
 "pj" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/shovel/spade,
+/obj/item/shovel/spade,
 /turf/simulated/floor/concrete,
 /area/redgate/fantasy/farmhouse)
 "pl" = (
@@ -2555,13 +2555,13 @@
 /area/redgate/fantasy/bard)
 "pI" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/potion_material/blood_ruby,
+/obj/item/potion_material/blood_ruby,
 /turf/simulated/floor/wood,
 /area/redgate/fantasy/alchemist)
 "pJ" = (
 /obj/structure/closet/cabinet,
 /obj/item/clothing/under/sexyclown,
-/obj/item/weapon/handcuffs/cable/plantfiber,
+/obj/item/handcuffs/cable/plantfiber,
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/washhouse)
 "pK" = (
@@ -2579,7 +2579,7 @@
 "pQ" = (
 /obj/structure/closet/cabinet,
 /obj/item/clothing/under/dress/westernbustle,
-/obj/item/weapon/storage/wallet,
+/obj/item/storage/wallet,
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/tavern)
 "pS" = (
@@ -2588,7 +2588,7 @@
 /area/redgate/fantasy/castle)
 "pU" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/material/knife/butch,
+/obj/item/material/knife/butch,
 /obj/machinery/light/small/torch,
 /turf/simulated/floor/concrete,
 /area/redgate/fantasy/castle)
@@ -2655,7 +2655,7 @@
 /area/redgate/fantasy/walls)
 "qm" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/material/knife/butch,
+/obj/item/material/knife/butch,
 /turf/simulated/floor/wood/alt/parquet,
 /area/redgate/fantasy/restaurant)
 "qp" = (
@@ -2684,7 +2684,7 @@
 /area/redgate/fantasy/bard)
 "qB" = (
 /obj/structure/bed/double/padded,
-/obj/item/weapon/bedsheet/purpledouble,
+/obj/item/bedsheet/purpledouble,
 /obj/structure/curtain{
 	color = "#FF0000"
 	},
@@ -2703,7 +2703,7 @@
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/shop)
 "qI" = (
-/obj/item/weapon/potion_material/fairy_house,
+/obj/item/potion_material/fairy_house,
 /turf/simulated/floor/outdoors/grass/seasonal/notrees,
 /area/redgate/fantasy/streets)
 "qK" = (
@@ -2736,14 +2736,14 @@
 /obj/random/meat,
 /obj/random/meat,
 /obj/random/meat,
-/obj/item/weapon/reagent_containers/food/snacks/flatbread,
-/obj/item/weapon/reagent_containers/food/snacks/flatbread,
-/obj/item/weapon/reagent_containers/food/snacks/flatbread,
-/obj/item/weapon/reagent_containers/food/snacks/flatbread,
-/obj/item/weapon/reagent_containers/food/snacks/sliceable/bread,
-/obj/item/weapon/reagent_containers/food/snacks/sliceable/bread,
-/obj/item/weapon/reagent_containers/food/snacks/sliceable/bread,
-/obj/item/weapon/reagent_containers/food/snacks/sliceable/bread,
+/obj/item/reagent_containers/food/snacks/flatbread,
+/obj/item/reagent_containers/food/snacks/flatbread,
+/obj/item/reagent_containers/food/snacks/flatbread,
+/obj/item/reagent_containers/food/snacks/flatbread,
+/obj/item/reagent_containers/food/snacks/sliceable/bread,
+/obj/item/reagent_containers/food/snacks/sliceable/bread,
+/obj/item/reagent_containers/food/snacks/sliceable/bread,
+/obj/item/reagent_containers/food/snacks/sliceable/bread,
 /obj/machinery/light/small/torch{
 	dir = 8
 	},
@@ -2791,7 +2791,7 @@
 /area/redgate/fantasy/arena)
 "rg" = (
 /obj/structure/closet/crate/wooden,
-/obj/item/weapon/pickaxe/gold,
+/obj/item/pickaxe/gold,
 /turf/simulated/floor/wood,
 /area/redgate/fantasy/mininghouse)
 "rh" = (
@@ -2801,7 +2801,7 @@
 /area/redgate/fantasy/rogue)
 "ri" = (
 /obj/structure/table/gamblingtable,
-/obj/item/weapon/deck/cards/casino,
+/obj/item/deck/cards/casino,
 /turf/simulated/floor/carpet/green,
 /area/redgate/fantasy/gambling)
 "rk" = (
@@ -2823,23 +2823,23 @@
 /turf/simulated/floor/concrete,
 /area/redgate/fantasy/blacksmith)
 "ru" = (
-/obj/item/weapon/potion_base/aqua_regia,
+/obj/item/potion_base/aqua_regia,
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/house)
 "rv" = (
 /obj/structure/closet/crate/wooden,
-/obj/item/weapon/material/star/ninja,
-/obj/item/weapon/material/star/ninja,
-/obj/item/weapon/material/star/ninja,
-/obj/item/weapon/material/star/ninja,
-/obj/item/weapon/material/star/ninja,
+/obj/item/material/star/ninja,
+/obj/item/material/star/ninja,
+/obj/item/material/star/ninja,
+/obj/item/material/star/ninja,
+/obj/item/material/star/ninja,
 /obj/item/clothing/accessory/gaiter/charcoal,
 /obj/item/clothing/under/shiny/catsuit,
 /obj/item/clothing/head/shiny_hood,
 /obj/item/clothing/accessory/shiny/gloves,
 /obj/item/clothing/accessory/shiny/socks,
 /obj/random/potion,
-/obj/item/weapon/handcuffs/legcuffs/bola,
+/obj/item/handcuffs/legcuffs/bola,
 /turf/simulated/floor/wood/alt/panel,
 /area/redgate/fantasy/house)
 "rx" = (
@@ -2855,7 +2855,7 @@
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/house)
 "rz" = (
-/obj/item/weapon/reagent_containers/glass/bucket/wood,
+/obj/item/reagent_containers/glass/bucket/wood,
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/bakery)
 "rB" = (
@@ -2890,7 +2890,7 @@
 /turf/simulated/floor/concrete,
 /area/redgate/fantasy/arena)
 "rL" = (
-/obj/item/weapon/stool/padded{
+/obj/item/stool/padded{
 	dir = 1
 	},
 /obj/machinery/light/small/torch{
@@ -3003,7 +3003,7 @@
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/tavern)
 "sq" = (
-/obj/item/weapon/reagent_containers/glass/bucket/wood,
+/obj/item/reagent_containers/glass/bucket/wood,
 /turf/simulated/floor/wood/alt/panel,
 /area/redgate/fantasy/redgate)
 "ss" = (
@@ -3041,12 +3041,12 @@
 /turf/simulated/wall/wood,
 /area/redgate/fantasy/aliens)
 "sK" = (
-/obj/item/weapon/reagent_containers/glass/bucket/wood,
+/obj/item/reagent_containers/glass/bucket/wood,
 /turf/simulated/floor/wood/alt/parquet,
 /area/redgate/fantasy/restaurant)
 "sL" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/reagent_containers/glass/pint_mug,
+/obj/item/reagent_containers/glass/pint_mug,
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/cafe)
 "sN" = (
@@ -3079,13 +3079,13 @@
 /area/redgate/fantasy/guardhouse)
 "sZ" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/handcuffs,
+/obj/item/handcuffs,
 /turf/simulated/floor/wood,
 /area/redgate/fantasy/paladinhouse)
 "tc" = (
 /obj/structure/table/rack/shelf/wood,
-/obj/item/weapon/material/knife/tacknife,
-/obj/item/weapon/material/knife/tacknife,
+/obj/item/material/knife/tacknife,
+/obj/item/material/knife/tacknife,
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/rogue)
 "td" = (
@@ -3176,21 +3176,21 @@
 /area/redgate/fantasy/grocery)
 "tG" = (
 /obj/structure/closet/walllocker/wooden/north,
-/obj/item/weapon/reagent_containers/glass/pint_mug,
-/obj/item/weapon/reagent_containers/glass/pint_mug,
-/obj/item/weapon/reagent_containers/glass/pint_mug,
-/obj/item/weapon/reagent_containers/glass/pint_mug,
-/obj/item/weapon/reagent_containers/glass/pint_mug,
-/obj/item/weapon/reagent_containers/glass/pint_mug,
-/obj/item/weapon/reagent_containers/glass/pint_mug,
-/obj/item/weapon/reagent_containers/glass/pint_mug,
-/obj/item/weapon/reagent_containers/glass/pint_mug,
-/obj/item/weapon/glass_extra/straw,
+/obj/item/reagent_containers/glass/pint_mug,
+/obj/item/reagent_containers/glass/pint_mug,
+/obj/item/reagent_containers/glass/pint_mug,
+/obj/item/reagent_containers/glass/pint_mug,
+/obj/item/reagent_containers/glass/pint_mug,
+/obj/item/reagent_containers/glass/pint_mug,
+/obj/item/reagent_containers/glass/pint_mug,
+/obj/item/reagent_containers/glass/pint_mug,
+/obj/item/reagent_containers/glass/pint_mug,
+/obj/item/glass_extra/straw,
 /turf/simulated/floor/wood/alt/parquet,
 /area/redgate/fantasy/restaurant)
 "tJ" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/material/knife/butch,
+/obj/item/material/knife/butch,
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/bard)
 "tK" = (
@@ -3210,17 +3210,17 @@
 /area/redgate/fantasy/streets)
 "tO" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/reagent_containers/glass/pint_mug,
-/obj/item/weapon/reagent_containers/glass/pint_mug,
-/obj/item/weapon/reagent_containers/glass/pint_mug,
-/obj/item/weapon/reagent_containers/glass/pint_mug,
-/obj/item/weapon/reagent_containers/glass/pint_mug,
-/obj/item/weapon/reagent_containers/glass/pint_mug,
-/obj/item/weapon/reagent_containers/glass/pint_mug,
-/obj/item/weapon/reagent_containers/glass/pint_mug,
-/obj/item/weapon/reagent_containers/glass/pint_mug,
-/obj/item/weapon/reagent_containers/glass/pint_mug,
-/obj/item/weapon/reagent_containers/glass/pint_mug,
+/obj/item/reagent_containers/glass/pint_mug,
+/obj/item/reagent_containers/glass/pint_mug,
+/obj/item/reagent_containers/glass/pint_mug,
+/obj/item/reagent_containers/glass/pint_mug,
+/obj/item/reagent_containers/glass/pint_mug,
+/obj/item/reagent_containers/glass/pint_mug,
+/obj/item/reagent_containers/glass/pint_mug,
+/obj/item/reagent_containers/glass/pint_mug,
+/obj/item/reagent_containers/glass/pint_mug,
+/obj/item/reagent_containers/glass/pint_mug,
+/obj/item/reagent_containers/glass/pint_mug,
 /obj/structure/closet/walllocker/wooden/north,
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/tavern)
@@ -3240,7 +3240,7 @@
 	dir = 1
 	},
 /obj/structure/table/alien/blue,
-/obj/item/weapon/paper/alien{
+/obj/item/paper/alien{
 	info = "<b>Thus far the mission has been a success, we've managed to integrate ourselves into the local community without arousing suspicion.<br><br>We had initially overestimated the technological level of the locals, and their initial encounters with our equipment did cause a concern. However, we were able to latch onto their superstitious beliefs in magic to explain away the abilities that we possess. To enhance this perception, we've taken to hiding our technology in more mundane looking materials, and the townsfolk appear to be content with this.</b>"
 	},
 /turf/simulated/floor/tiled/milspec/sterile,
@@ -3267,7 +3267,7 @@
 /area/redgate/fantasy/house)
 "ud" = (
 /obj/structure/table/hardwoodtable,
-/obj/item/weapon/reagent_containers/food/drinks/golden_cup,
+/obj/item/reagent_containers/food/drinks/golden_cup,
 /turf/simulated/floor/carpet/gaycarpet,
 /area/redgate/fantasy/castle)
 "ue" = (
@@ -3320,7 +3320,7 @@
 /area/redgate/fantasy/paladinhouse)
 "uq" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/reagent_containers/food/snacks/cookie,
+/obj/item/reagent_containers/food/snacks/cookie,
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/bakery)
 "ur" = (
@@ -3342,24 +3342,24 @@
 /area/redgate/fantasy/cafe)
 "uu" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/reagent_containers/food/condiment/carton/sugar/rustic,
-/obj/item/weapon/reagent_containers/food/condiment/carton/sugar/rustic,
-/obj/item/weapon/reagent_containers/food/condiment/carton/sugar/rustic,
-/obj/item/weapon/reagent_containers/food/condiment/carton/sugar/rustic,
-/obj/item/weapon/reagent_containers/food/condiment/carton/sugar/rustic,
-/obj/item/weapon/reagent_containers/food/condiment/carton/sugar/rustic,
-/obj/item/weapon/reagent_containers/food/condiment/carton/sugar/rustic,
-/obj/item/weapon/reagent_containers/food/condiment/carton/flour/rustic,
-/obj/item/weapon/reagent_containers/food/condiment/carton/flour/rustic,
-/obj/item/weapon/reagent_containers/food/condiment/carton/flour/rustic,
-/obj/item/weapon/reagent_containers/food/condiment/carton/flour/rustic,
-/obj/item/weapon/reagent_containers/food/condiment/carton/flour/rustic,
-/obj/item/weapon/reagent_containers/food/condiment/carton/flour/rustic,
-/obj/item/weapon/reagent_containers/food/condiment/carton/flour/rustic,
-/obj/item/weapon/storage/fancy/egg_box,
-/obj/item/weapon/storage/fancy/egg_box,
-/obj/item/weapon/storage/fancy/egg_box,
-/obj/item/weapon/storage/fancy/egg_box,
+/obj/item/reagent_containers/food/condiment/carton/sugar/rustic,
+/obj/item/reagent_containers/food/condiment/carton/sugar/rustic,
+/obj/item/reagent_containers/food/condiment/carton/sugar/rustic,
+/obj/item/reagent_containers/food/condiment/carton/sugar/rustic,
+/obj/item/reagent_containers/food/condiment/carton/sugar/rustic,
+/obj/item/reagent_containers/food/condiment/carton/sugar/rustic,
+/obj/item/reagent_containers/food/condiment/carton/sugar/rustic,
+/obj/item/reagent_containers/food/condiment/carton/flour/rustic,
+/obj/item/reagent_containers/food/condiment/carton/flour/rustic,
+/obj/item/reagent_containers/food/condiment/carton/flour/rustic,
+/obj/item/reagent_containers/food/condiment/carton/flour/rustic,
+/obj/item/reagent_containers/food/condiment/carton/flour/rustic,
+/obj/item/reagent_containers/food/condiment/carton/flour/rustic,
+/obj/item/reagent_containers/food/condiment/carton/flour/rustic,
+/obj/item/storage/fancy/egg_box,
+/obj/item/storage/fancy/egg_box,
+/obj/item/storage/fancy/egg_box,
+/obj/item/storage/fancy/egg_box,
 /obj/structure/closet/walllocker/wooden/south,
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/tavern)
@@ -3370,7 +3370,7 @@
 /area/redgate/fantasy/castle)
 "uC" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/material/knife/tacknife/boot,
+/obj/item/material/knife/tacknife/boot,
 /turf/simulated/floor/wood/alt/panel,
 /area/redgate/fantasy/house)
 "uD" = (
@@ -3400,7 +3400,7 @@
 /area/redgate/fantasy/tavern)
 "uR" = (
 /obj/structure/table/rack/wood,
-/obj/item/weapon/material/sword/katana,
+/obj/item/material/sword/katana,
 /turf/simulated/floor/wood/alt/panel,
 /area/redgate/fantasy/castle)
 "uT" = (
@@ -3430,10 +3430,10 @@
 /area/redgate/fantasy/mininghouse)
 "uZ" = (
 /obj/structure/closet/cabinet,
-/obj/item/device/flashlight/lantern,
+/obj/item/flashlight/lantern,
 /obj/item/clothing/under/redpyjamas,
 /obj/item/clothing/under/assistantformal,
-/obj/item/weapon/storage/wallet,
+/obj/item/storage/wallet,
 /obj/item/clothing/mask/gas/plaguedoctor,
 /turf/simulated/floor/wood,
 /area/redgate/fantasy/alchemist)
@@ -3442,12 +3442,12 @@
 /area/redgate/fantasy/cafe)
 "vb" = (
 /obj/structure/table/rack/shelf/wood,
-/obj/item/weapon/reagent_containers/food/snacks/sliceable/meatbread,
+/obj/item/reagent_containers/food/snacks/sliceable/meatbread,
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/bakery)
 "ve" = (
 /obj/structure/bed/double/padded,
-/obj/item/weapon/bedsheet/browndouble,
+/obj/item/bedsheet/browndouble,
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/cafe)
 "vf" = (
@@ -3473,14 +3473,14 @@
 /area/redgate/fantasy/jewler)
 "vm" = (
 /obj/structure/table/rack/wood,
-/obj/item/weapon/melee/chainofcommand{
+/obj/item/melee/chainofcommand{
 	name = "iron whip"
 	},
 /turf/simulated/floor/concrete,
 /area/redgate/fantasy/arena)
 "vn" = (
 /obj/structure/bookcase,
-/obj/item/weapon/book/bundle/custom_library/fiction/silence,
+/obj/item/book/bundle/custom_library/fiction/silence,
 /turf/simulated/floor/concrete,
 /area/redgate/fantasy/castle)
 "vo" = (
@@ -3497,8 +3497,8 @@
 /area/redgate/fantasy/jewler)
 "vq" = (
 /obj/structure/table/rack/shelf/wood,
-/obj/item/weapon/material/twohanded/spear/foam,
-/obj/item/weapon/material/twohanded/spear/foam,
+/obj/item/material/twohanded/spear/foam,
+/obj/item/material/twohanded/spear/foam,
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/house)
 "vt" = (
@@ -3539,7 +3539,7 @@
 /area/redgate/fantasy/jewler)
 "vI" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/paper,
+/obj/item/paper,
 /turf/simulated/floor/wood/alt/parquet,
 /area/redgate/fantasy/guardhouse)
 "vJ" = (
@@ -3588,7 +3588,7 @@
 /turf/simulated/floor/carpet,
 /area/redgate/fantasy/castle)
 "vU" = (
-/obj/item/weapon/reagent_containers/glass/bucket/wood,
+/obj/item/reagent_containers/glass/bucket/wood,
 /turf/simulated/floor/concrete,
 /area/redgate/fantasy/farmhouse)
 "vX" = (
@@ -3601,7 +3601,7 @@
 /area/redgate/fantasy/washhouse)
 "vZ" = (
 /obj/structure/bookcase,
-/obj/item/weapon/book/custom_library/fiction/blacksmithandkinglybloke,
+/obj/item/book/custom_library/fiction/blacksmithandkinglybloke,
 /obj/machinery/light/small/torch,
 /turf/simulated/floor/concrete,
 /area/redgate/fantasy/castle)
@@ -3636,7 +3636,7 @@
 /turf/simulated/floor/carpet,
 /area/redgate/fantasy/castle)
 "wh" = (
-/obj/item/weapon/shovel/wood,
+/obj/item/shovel/wood,
 /turf/simulated/floor/wood,
 /area/redgate/fantasy/druid)
 "wi" = (
@@ -3658,7 +3658,7 @@
 /turf/simulated/floor/wood/alt/panel,
 /area/redgate/fantasy/washhouse)
 "wq" = (
-/obj/item/weapon/reagent_containers/glass/bucket/wood,
+/obj/item/reagent_containers/glass/bucket/wood,
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/bard)
 "wr" = (
@@ -3742,7 +3742,7 @@
 /area/redgate/fantasy/castle)
 "wX" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/reagent_containers/glass/pint_mug,
+/obj/item/reagent_containers/glass/pint_mug,
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/barbarian)
 "wY" = (
@@ -3763,7 +3763,7 @@
 /area/redgate/fantasy/alchemist)
 "xb" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/reagent_containers/food/snacks/beetsoup,
+/obj/item/reagent_containers/food/snacks/beetsoup,
 /turf/simulated/floor/wood,
 /area/redgate/fantasy/mininghouse)
 "xc" = (
@@ -3779,8 +3779,8 @@
 /area/redgate/fantasy/bard)
 "xf" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/reagent_containers/glass/pint_mug,
-/obj/item/weapon/reagent_containers/glass/pint_mug,
+/obj/item/reagent_containers/glass/pint_mug,
+/obj/item/reagent_containers/glass/pint_mug,
 /obj/machinery/light/small/torch{
 	dir = 4
 	},
@@ -3836,7 +3836,7 @@
 /area/redgate/fantasy/bakery)
 "xu" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/potion_material/frozen_dew,
+/obj/item/potion_material/frozen_dew,
 /turf/simulated/floor/wood,
 /area/redgate/fantasy/alchemist)
 "xy" = (
@@ -3853,9 +3853,9 @@
 /obj/item/clothing/suit/wizrobe/fake{
 	color = "#000000"
 	},
-/obj/item/weapon/staff/broom,
+/obj/item/staff/broom,
 /obj/item/clothing/shoes/sandal,
-/obj/item/weapon/material/knife/stone/bone,
+/obj/item/material/knife/stone/bone,
 /turf/simulated/floor/wood/alt/panel,
 /area/redgate/fantasy/redgate)
 "xA" = (
@@ -3930,7 +3930,7 @@
 /area/redgate/fantasy/farmhouse)
 "xU" = (
 /obj/structure/table/rack/wood,
-/obj/item/weapon/material/knife/machete/hatchet/unathiknife,
+/obj/item/material/knife/machete/hatchet/unathiknife,
 /obj/structure/prop/fantasy/pinkbanner{
 	pixel_y = 32
 	},
@@ -3944,8 +3944,8 @@
 /area/redgate/fantasy/farmhouse)
 "xX" = (
 /obj/structure/table/rack/shelf/wood,
-/obj/item/weapon/storage/fancy/egg_box,
-/obj/item/weapon/storage/fancy/egg_box,
+/obj/item/storage/fancy/egg_box,
+/obj/item/storage/fancy/egg_box,
 /turf/simulated/floor/wood/alt/parquet,
 /area/redgate/fantasy/grocery)
 "xY" = (
@@ -3996,7 +3996,7 @@
 /obj/item/clothing/mask/smokable/cigarette/cigar,
 /obj/item/clothing/mask/smokable/cigarette/cigar,
 /obj/item/clothing/mask/smokable/cigarette/cigar,
-/obj/item/weapon/storage/box/matches,
+/obj/item/storage/box/matches,
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/house)
 "yp" = (
@@ -4016,14 +4016,14 @@
 /area/redgate/fantasy/cafe)
 "yy" = (
 /obj/structure/table/rack/shelf/wood,
-/obj/item/weapon/reagent_containers/glass/bucket/wood,
-/obj/item/weapon/reagent_containers/glass/bucket/wood,
-/obj/item/weapon/reagent_containers/glass/bucket/wood,
+/obj/item/reagent_containers/glass/bucket/wood,
+/obj/item/reagent_containers/glass/bucket/wood,
+/obj/item/reagent_containers/glass/bucket/wood,
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/shop)
 "yA" = (
 /obj/structure/table/hardwoodtable,
-/obj/item/weapon/pen/crayon/red{
+/obj/item/pen/crayon/red{
 	name = "chalk"
 	},
 /turf/simulated/floor/concrete,
@@ -4035,8 +4035,8 @@
 /area/redgate/fantasy/churchhouse)
 "yC" = (
 /obj/structure/table/rack/shelf/wood,
-/obj/item/weapon/towel/random,
-/obj/item/weapon/towel/random,
+/obj/item/towel/random,
+/obj/item/towel/random,
 /obj/machinery/light/small/torch{
 	dir = 8
 	},
@@ -4081,21 +4081,21 @@
 /area/redgate/fantasy/hedgemaze)
 "yR" = (
 /obj/structure/table/woodentable,
-/obj/item/device/flashlight/lantern,
+/obj/item/flashlight/lantern,
 /turf/simulated/floor/carpet/purple,
 /area/redgate/fantasy/bard)
 "yT" = (
 /obj/structure/table/rack/shelf/wood,
-/obj/item/weapon/storage/fancy/egg_box,
-/obj/item/weapon/storage/fancy/egg_box,
-/obj/item/weapon/storage/fancy/egg_box,
-/obj/item/weapon/storage/fancy/egg_box,
-/obj/item/weapon/storage/fancy/egg_box,
+/obj/item/storage/fancy/egg_box,
+/obj/item/storage/fancy/egg_box,
+/obj/item/storage/fancy/egg_box,
+/obj/item/storage/fancy/egg_box,
+/obj/item/storage/fancy/egg_box,
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/farmhouse)
 "yV" = (
 /obj/structure/table/rack/wood,
-/obj/item/weapon/material/sword/longsword,
+/obj/item/material/sword/longsword,
 /obj/structure/prop/fantasy/redbanner{
 	pixel_y = 32
 	},
@@ -4168,7 +4168,7 @@
 /area/redgate/fantasy/guardhouse)
 "zp" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/flame/candle/candelabra/everburn,
+/obj/item/flame/candle/candelabra/everburn,
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/cafe)
 "zq" = (
@@ -4181,7 +4181,7 @@
 /area/redgate/fantasy/streets)
 "zx" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/paper,
+/obj/item/paper,
 /turf/simulated/floor/wood,
 /area/redgate/fantasy/alchemist)
 "zz" = (
@@ -4216,7 +4216,7 @@
 /area/redgate/fantasy/aliens)
 "zK" = (
 /obj/structure/table/hardwoodtable,
-/obj/item/weapon/reagent_containers/food/drinks/bottle/holywater,
+/obj/item/reagent_containers/food/drinks/bottle/holywater,
 /turf/simulated/floor/concrete,
 /area/redgate/fantasy/paladinhouse)
 "zP" = (
@@ -4263,7 +4263,7 @@
 /turf/simulated/floor/wood/alt/panel,
 /area/redgate/fantasy/castle)
 "Ae" = (
-/obj/item/weapon/reagent_containers/glass/bucket/wood,
+/obj/item/reagent_containers/glass/bucket/wood,
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/house)
 "Af" = (
@@ -4299,8 +4299,8 @@
 /area/redgate/fantasy/churchhouse)
 "Ao" = (
 /obj/structure/closet/crate/wooden,
-/obj/item/device/flashlight/lantern,
-/obj/item/weapon/material/knife/tacknife/boot,
+/obj/item/flashlight/lantern,
+/obj/item/material/knife/tacknife/boot,
 /obj/random/fantasy_item,
 /turf/simulated/floor/wood/alt/panel,
 /area/redgate/fantasy/walls)
@@ -4310,13 +4310,13 @@
 /area/redgate/fantasy/house)
 "Aq" = (
 /obj/structure/closet/cabinet,
-/obj/item/weapon/moneybag,
-/obj/item/weapon/simple_key/dungeon,
+/obj/item/moneybag,
+/obj/item/simple_key/dungeon,
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/house)
 "As" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/reagent_containers/food/snacks/bun,
+/obj/item/reagent_containers/food/snacks/bun,
 /turf/simulated/floor/wood,
 /area/redgate/fantasy/mininghouse)
 "At" = (
@@ -4324,10 +4324,10 @@
 /area/redgate/fantasy/bakery)
 "Au" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/paper/crumpled,
-/obj/item/weapon/paper/crumpled,
-/obj/item/weapon/paper/crumpled,
-/obj/item/weapon/paper/crumpled,
+/obj/item/paper/crumpled,
+/obj/item/paper/crumpled,
+/obj/item/paper/crumpled,
+/obj/item/paper/crumpled,
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/farmhouse)
 "Av" = (
@@ -4339,7 +4339,7 @@
 /turf/simulated/wall/stonelogs,
 /area/redgate/fantasy/churchhouse)
 "Az" = (
-/obj/item/weapon/reagent_containers/glass/bucket/wood,
+/obj/item/reagent_containers/glass/bucket/wood,
 /turf/simulated/floor/wood/alt/parquet,
 /area/redgate/fantasy/grocery)
 "AA" = (
@@ -4368,7 +4368,7 @@
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/farmhouse)
 "AL" = (
-/obj/item/weapon/shovel,
+/obj/item/shovel,
 /turf/simulated/floor/concrete,
 /area/redgate/fantasy/farmhouse)
 "AN" = (
@@ -4378,21 +4378,21 @@
 /area/redgate/fantasy/castle)
 "AO" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/towel/random,
-/obj/item/weapon/towel/random,
-/obj/item/weapon/towel/random,
-/obj/item/weapon/towel/random,
-/obj/item/weapon/towel/random,
+/obj/item/towel/random,
+/obj/item/towel/random,
+/obj/item/towel/random,
+/obj/item/towel/random,
+/obj/item/towel/random,
 /turf/simulated/floor/wood/alt/panel,
 /area/redgate/fantasy/washhouse)
 "AQ" = (
 /obj/structure/bookcase,
-/obj/item/weapon/book/custom_library/fiction/myrock,
+/obj/item/book/custom_library/fiction/myrock,
 /turf/simulated/floor/wood/alt/panel,
 /area/redgate/fantasy/redgate)
 "AR" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/material/knife/stone/wood,
+/obj/item/material/knife/stone/wood,
 /turf/simulated/floor/wood,
 /area/redgate/fantasy/druid)
 "AS" = (
@@ -4414,12 +4414,12 @@
 /area/redgate/fantasy/aliens)
 "AY" = (
 /obj/structure/bookcase,
-/obj/item/weapon/book/bundle/custom_library/fiction/manfromsnowyriver,
+/obj/item/book/bundle/custom_library/fiction/manfromsnowyriver,
 /turf/simulated/floor/concrete,
 /area/redgate/fantasy/castle)
 "Ba" = (
 /obj/structure/table/rack/shelf/wood,
-/obj/item/weapon/reagent_containers/food/snacks/sliceable/xenomeatbread,
+/obj/item/reagent_containers/food/snacks/sliceable/xenomeatbread,
 /obj/machinery/light/small/torch{
 	dir = 4
 	},
@@ -4427,7 +4427,7 @@
 /area/redgate/fantasy/bakery)
 "Bb" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/tool/wrench,
+/obj/item/tool/wrench,
 /turf/simulated/floor/wood,
 /area/redgate/fantasy/blacksmith)
 "Bd" = (
@@ -4459,7 +4459,7 @@
 /area/redgate/fantasy/washhouse)
 "Bn" = (
 /obj/structure/bed,
-/obj/item/weapon/bedsheet/brown,
+/obj/item/bedsheet/brown,
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/barbarian)
 "Bp" = (
@@ -4485,13 +4485,13 @@
 /area/redgate/fantasy/house)
 "Bz" = (
 /obj/structure/table/rack/shelf/wood,
-/obj/item/weapon/material/knife/tacknife/boot,
+/obj/item/material/knife/tacknife/boot,
 /turf/simulated/floor/concrete,
 /area/redgate/fantasy/blacksmith)
 "BA" = (
 /obj/structure/closet/crate/chest,
 /obj/random/fantasy_item,
-/obj/item/weapon/material/sword/longsword,
+/obj/item/material/sword/longsword,
 /obj/item/clothing/suit/armor/combat/imperial,
 /turf/simulated/floor/wood/alt/parquet,
 /area/redgate/fantasy/guardhouse)
@@ -4528,7 +4528,7 @@
 /area/redgate/fantasy/paladinhouse)
 "BN" = (
 /obj/structure/bed/double/padded,
-/obj/item/weapon/bedsheet/greendouble,
+/obj/item/bedsheet/greendouble,
 /turf/simulated/floor/carpet/green,
 /area/redgate/fantasy/house)
 "BQ" = (
@@ -4537,8 +4537,8 @@
 /area/redgate/fantasy/restaurant)
 "BT" = (
 /obj/structure/table/rack/shelf/wood,
-/obj/item/weapon/material/sword/foam,
-/obj/item/weapon/material/sword/foam,
+/obj/item/material/sword/foam,
+/obj/item/material/sword/foam,
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/house)
 "BY" = (
@@ -4546,7 +4546,7 @@
 /area/redgate/fantasy/arena)
 "Ca" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/reagent_containers/glass/bottle/potion,
+/obj/item/reagent_containers/glass/bottle/potion,
 /obj/machinery/light/small/torch{
 	dir = 1
 	},
@@ -4559,16 +4559,16 @@
 "Cf" = (
 /obj/structure/table/woodentable,
 /obj/structure/closet/walllocker/wooden/south,
-/obj/item/weapon/reagent_containers/glass/pint_mug,
-/obj/item/weapon/reagent_containers/glass/pint_mug,
-/obj/item/weapon/reagent_containers/glass/pint_mug,
-/obj/item/weapon/reagent_containers/glass/pint_mug,
-/obj/item/weapon/reagent_containers/glass/pint_mug,
+/obj/item/reagent_containers/glass/pint_mug,
+/obj/item/reagent_containers/glass/pint_mug,
+/obj/item/reagent_containers/glass/pint_mug,
+/obj/item/reagent_containers/glass/pint_mug,
+/obj/item/reagent_containers/glass/pint_mug,
 /turf/simulated/floor/concrete,
 /area/redgate/fantasy/castle)
 "Cg" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/material/kitchen/rollingpin,
+/obj/item/material/kitchen/rollingpin,
 /turf/simulated/floor/concrete,
 /area/redgate/fantasy/castle)
 "Ci" = (
@@ -4577,8 +4577,8 @@
 /obj/item/clothing/shoes/knight/black,
 /obj/item/clothing/gloves/combat/knight/brown,
 /obj/item/clothing/head/helmet/gladiator,
-/obj/item/weapon/shield/primitive,
-/obj/item/weapon/handcuffs/cable/plantfiber,
+/obj/item/shield/primitive,
+/obj/item/handcuffs/cable/plantfiber,
 /turf/simulated/floor/wood/alt/parquet,
 /area/redgate/fantasy/guardhouse)
 "Ck" = (
@@ -4598,8 +4598,8 @@
 /area/redgate/fantasy/blacksmith)
 "Cu" = (
 /obj/structure/closet/crate/wooden,
-/obj/item/device/flashlight/lantern,
-/obj/item/weapon/material/knife/tacknife/boot,
+/obj/item/flashlight/lantern,
+/obj/item/material/knife/tacknife/boot,
 /obj/random/potion_base,
 /turf/simulated/floor/wood/alt/panel,
 /area/redgate/fantasy/walls)
@@ -4652,12 +4652,12 @@
 /area/redgate/fantasy/streets)
 "CI" = (
 /obj/structure/table/rack/shelf/wood,
-/obj/item/weapon/material/knife/stone/wood,
+/obj/item/material/knife/stone/wood,
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/rogue)
 "CK" = (
 /obj/structure/closet/crate/wooden,
-/obj/item/weapon/material/sword/longsword,
+/obj/item/material/sword/longsword,
 /obj/item/clothing/accessory/holster/machete/rapier/swords,
 /turf/simulated/floor/wood,
 /area/redgate/fantasy/blacksmith)
@@ -4692,14 +4692,14 @@
 /turf/simulated/floor/concrete,
 /area/redgate/fantasy/guardhouse)
 "CY" = (
-/obj/item/weapon/reagent_containers/glass/bucket/wood,
+/obj/item/reagent_containers/glass/bucket/wood,
 /obj/machinery/light/small/torch{
 	dir = 8
 	},
 /turf/simulated/floor/wood/alt/panel,
 /area/redgate/fantasy/washhouse)
 "Db" = (
-/obj/item/weapon/stool/padded,
+/obj/item/stool/padded,
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/cafe)
 "Dc" = (
@@ -4742,22 +4742,22 @@
 /turf/simulated/floor/wood,
 /area/redgate/fantasy/mininghouse)
 "Dn" = (
-/obj/item/weapon/reagent_containers/glass/bucket/wood,
+/obj/item/reagent_containers/glass/bucket/wood,
 /turf/simulated/floor/concrete,
 /area/redgate/fantasy/walls)
 "Do" = (
 /obj/structure/closet/crate/chest,
 /obj/item/clothing/accessory/bracelet/material/gold,
 /obj/item/clothing/ears/earring/dangle/gold,
-/obj/item/weapon/coin/gold,
-/obj/item/weapon/coin/gold,
-/obj/item/weapon/coin/gold,
-/obj/item/weapon/coin/gold,
-/obj/item/weapon/coin/gold,
-/obj/item/weapon/coin/gold,
-/obj/item/weapon/coin/gold,
+/obj/item/coin/gold,
+/obj/item/coin/gold,
+/obj/item/coin/gold,
+/obj/item/coin/gold,
+/obj/item/coin/gold,
+/obj/item/coin/gold,
+/obj/item/coin/gold,
 /obj/random/potion_base,
-/obj/item/weapon/picnic_blankets_carried,
+/obj/item/picnic_blankets_carried,
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/castle)
 "Dq" = (
@@ -4782,11 +4782,11 @@
 /turf/simulated/floor/carpet,
 /area/redgate/fantasy/castle)
 "Dw" = (
-/obj/item/device/flashlight/lantern,
+/obj/item/flashlight/lantern,
 /turf/simulated/floor/concrete,
 /area/redgate/fantasy/mininghouse)
 "Dz" = (
-/obj/item/weapon/reagent_containers/food/drinks/bottle/holywater,
+/obj/item/reagent_containers/food/drinks/bottle/holywater,
 /obj/structure/table/rack/shelf/wood,
 /turf/simulated/floor/concrete,
 /area/redgate/fantasy/paladinhouse)
@@ -4796,7 +4796,7 @@
 /turf/simulated/floor/wood,
 /area/redgate/fantasy/blacksmith)
 "DI" = (
-/obj/item/weapon/stool/padded{
+/obj/item/stool/padded{
 	dir = 1
 	},
 /turf/simulated/floor/wood/alt,
@@ -4812,7 +4812,7 @@
 	dir = 5
 	},
 /obj/structure/table/woodentable,
-/obj/item/weapon/flame/candle/candelabra/everburn,
+/obj/item/flame/candle/candelabra/everburn,
 /turf/simulated/floor/carpet/bcarpet,
 /area/redgate/fantasy/cafe)
 "DN" = (
@@ -4835,7 +4835,7 @@
 /area/redgate/fantasy/redgate)
 "DS" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/reagent_containers/food/snacks/twobread,
+/obj/item/reagent_containers/food/snacks/twobread,
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/bakery)
 "DT" = (
@@ -4847,7 +4847,7 @@
 /area/redgate/fantasy/castle)
 "DU" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/tool/crowbar,
+/obj/item/tool/crowbar,
 /turf/simulated/floor/wood/alt/panel,
 /area/redgate/fantasy/house)
 "DV" = (
@@ -4927,8 +4927,8 @@
 /area/redgate/fantasy/guardhouse)
 "Ew" = (
 /obj/structure/closet/crate/wooden,
-/obj/item/device/flashlight/lantern,
-/obj/item/weapon/material/knife/tacknife/boot,
+/obj/item/flashlight/lantern,
+/obj/item/material/knife/tacknife/boot,
 /obj/random/instrument,
 /turf/simulated/floor/wood/alt/panel,
 /area/redgate/fantasy/walls)
@@ -4964,9 +4964,9 @@
 /area/redgate/fantasy/streets)
 "EO" = (
 /obj/structure/closet/walllocker/wooden/east,
-/obj/item/weapon/potion_base/alkahest,
-/obj/item/weapon/potion_base/aqua_regia,
-/obj/item/weapon/potion_base/ichor,
+/obj/item/potion_base/alkahest,
+/obj/item/potion_base/aqua_regia,
+/obj/item/potion_base/ichor,
 /obj/random/potion_base,
 /obj/random/potion_ingredient,
 /turf/simulated/floor/wood,
@@ -4992,7 +4992,7 @@
 /area/redgate/fantasy/rogue)
 "EY" = (
 /obj/structure/bed/double/padded,
-/obj/item/weapon/bedsheet/double,
+/obj/item/bedsheet/double,
 /turf/simulated/floor/wood/alt/panel,
 /area/redgate/fantasy/house)
 "Fa" = (
@@ -5009,8 +5009,8 @@
 /obj/item/clothing/shoes/knight/black,
 /obj/item/clothing/gloves/combat/knight/brown,
 /obj/item/clothing/head/helmet/gladiator,
-/obj/item/weapon/shield/primitive,
-/obj/item/weapon/handcuffs/cable/plantfiber,
+/obj/item/shield/primitive,
+/obj/item/handcuffs/cable/plantfiber,
 /obj/machinery/light/small/torch{
 	dir = 4
 	},
@@ -5029,7 +5029,7 @@
 /area/redgate/fantasy/churchhouse)
 "Fg" = (
 /obj/structure/table/rack/shelf/wood,
-/obj/item/weapon/towel/random,
+/obj/item/towel/random,
 /turf/simulated/floor/wood,
 /area/redgate/fantasy/mininghouse)
 "Fh" = (
@@ -5056,7 +5056,7 @@
 "Fn" = (
 /obj/structure/closet/cabinet,
 /obj/item/clothing/under/pirate,
-/obj/item/weapon/reagent_containers/food/snacks/sliceable/bread,
+/obj/item/reagent_containers/food/snacks/sliceable/bread,
 /turf/simulated/floor/wood/alt/panel,
 /area/redgate/fantasy/house)
 "Fo" = (
@@ -5076,7 +5076,7 @@
 /area/redgate/fantasy/house)
 "Fs" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/reagent_containers/glass/bottle/potion/relaxation,
+/obj/item/reagent_containers/glass/bottle/potion/relaxation,
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/house)
 "Fw" = (
@@ -5095,12 +5095,12 @@
 /area/redgate/fantasy/church)
 "FB" = (
 /obj/structure/table/rack/shelf/wood,
-/obj/item/weapon/pickaxe/four_pick,
+/obj/item/pickaxe/four_pick,
 /turf/simulated/floor/wood,
 /area/redgate/fantasy/mininghouse)
 "FD" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/tray,
+/obj/item/tray,
 /turf/simulated/floor/concrete,
 /area/redgate/fantasy/castle)
 "FE" = (
@@ -5131,17 +5131,17 @@
 /area/redgate/fantasy/house)
 "FS" = (
 /obj/structure/table/marble,
-/obj/item/weapon/surgical/retractor,
+/obj/item/surgical/retractor,
 /turf/simulated/floor/concrete,
 /area/redgate/fantasy/churchhouse)
 "FV" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/reagent_containers/glass/pint_mug,
+/obj/item/reagent_containers/glass/pint_mug,
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/bard)
 "FX" = (
 /obj/structure/bed/double/padded,
-/obj/item/weapon/bedsheet/browndouble,
+/obj/item/bedsheet/browndouble,
 /turf/simulated/floor/wood/alt/panel,
 /area/redgate/fantasy/ranger)
 "FZ" = (
@@ -5153,7 +5153,7 @@
 /area/redgate/fantasy/rogue)
 "Gb" = (
 /obj/structure/table/rack/shelf/wood,
-/obj/item/weapon/pickaxe,
+/obj/item/pickaxe,
 /turf/simulated/floor/wood,
 /area/redgate/fantasy/mininghouse)
 "Gc" = (
@@ -5168,12 +5168,12 @@
 /area/redgate/fantasy/house)
 "Ge" = (
 /obj/structure/closet/cabinet,
-/obj/item/weapon/storage/wallet,
+/obj/item/storage/wallet,
 /turf/simulated/floor/wood/alt/parquet,
 /area/redgate/fantasy/grocery)
 "Gf" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/reagent_containers/food/snacks/roastbeef,
+/obj/item/reagent_containers/food/snacks/roastbeef,
 /turf/simulated/floor/carpet/oracarpet,
 /area/redgate/fantasy/arena)
 "Gi" = (
@@ -5203,7 +5203,7 @@
 /obj/structure/closet/cabinet,
 /obj/item/clothing/head/collectable/tophat,
 /obj/item/clothing/under/gentlesuit,
-/obj/item/weapon/cane,
+/obj/item/cane,
 /obj/item/clothing/gloves/white,
 /obj/item/clothing/glasses/monocle,
 /obj/item/clothing/shoes/dress,
@@ -5221,7 +5221,7 @@
 /area/redgate/fantasy/barbarian)
 "Gt" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/material/knife/tacknife/combatknife,
+/obj/item/material/knife/tacknife/combatknife,
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/rogue)
 "Gu" = (
@@ -5276,7 +5276,7 @@
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/rogue)
 "GL" = (
-/obj/item/weapon/reagent_containers/food/snacks/old/taco,
+/obj/item/reagent_containers/food/snacks/old/taco,
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/house)
 "GM" = (
@@ -5288,7 +5288,7 @@
 "GP" = (
 /obj/structure/closet/cabinet,
 /obj/item/clothing/under/dress/wench,
-/obj/item/weapon/storage/wallet,
+/obj/item/storage/wallet,
 /obj/random/potion_base,
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/tavern)
@@ -5308,14 +5308,14 @@
 /area/redgate/fantasy/hedgemaze)
 "GX" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/bone/horn,
+/obj/item/bone/horn,
 /turf/simulated/floor/wood/alt/panel,
 /area/redgate/fantasy/redgate)
 "Ha" = (
 /obj/structure/table/rack/shelf/wood,
-/obj/item/weapon/melee/classic_baton,
-/obj/item/weapon/melee/classic_baton,
-/obj/item/weapon/melee/classic_baton,
+/obj/item/melee/classic_baton,
+/obj/item/melee/classic_baton,
+/obj/item/melee/classic_baton,
 /turf/simulated/floor/wood/alt/parquet,
 /area/redgate/fantasy/guardhouse)
 "Hb" = (
@@ -5328,7 +5328,7 @@
 /area/redgate/fantasy/house)
 "Hd" = (
 /obj/structure/table/rack/shelf/wood,
-/obj/item/weapon/towel/random,
+/obj/item/towel/random,
 /turf/simulated/floor/wood,
 /area/redgate/fantasy/paladinhouse)
 "He" = (
@@ -5354,7 +5354,7 @@
 /turf/simulated/floor/wood/alt/panel,
 /area/redgate/fantasy/washhouse)
 "Hn" = (
-/obj/item/weapon/tool/wrench/brass,
+/obj/item/tool/wrench/brass,
 /turf/simulated/floor/concrete,
 /area/redgate/fantasy/farmhouse)
 "Ho" = (
@@ -5370,12 +5370,12 @@
 /area/redgate/fantasy/alchemist)
 "Hx" = (
 /obj/structure/bookcase,
-/obj/item/weapon/book/custom_library/fiction/myrock,
+/obj/item/book/custom_library/fiction/myrock,
 /turf/simulated/floor/concrete,
 /area/redgate/fantasy/castle)
 "Hy" = (
 /obj/structure/table/rack/shelf/wood,
-/obj/item/weapon/ore/iron,
+/obj/item/ore/iron,
 /turf/simulated/floor/wood,
 /area/redgate/fantasy/mininghouse)
 "Hz" = (
@@ -5389,7 +5389,7 @@
 /obj/effect/floor_decal/spline/fancy/wood{
 	dir = 4
 	},
-/obj/item/weapon/deck/cards/casino,
+/obj/item/deck/cards/casino,
 /turf/simulated/floor/carpet/green,
 /area/redgate/fantasy/gambling)
 "HC" = (
@@ -5405,12 +5405,12 @@
 /area/redgate/fantasy/mininghouse)
 "HE" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/book/custom_library/fiction/blacksmithandkinglybloke,
+/obj/item/book/custom_library/fiction/blacksmithandkinglybloke,
 /turf/simulated/floor/wood,
 /area/redgate/fantasy/blacksmith)
 "HF" = (
 /obj/structure/bed/double/padded,
-/obj/item/weapon/bedsheet/reddouble,
+/obj/item/bedsheet/reddouble,
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/house)
 "HH" = (
@@ -5467,7 +5467,7 @@
 /area/redgate/fantasy/aliens)
 "HY" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/material/knife/butch,
+/obj/item/material/knife/butch,
 /turf/simulated/floor/wood/alt/panel,
 /area/redgate/fantasy/ranger)
 "Ib" = (
@@ -5476,7 +5476,7 @@
 /area/redgate/fantasy/castle)
 "Id" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/flame/candle/candelabra/everburn,
+/obj/item/flame/candle/candelabra/everburn,
 /turf/simulated/floor/wood/alt/parquet,
 /area/redgate/fantasy/restaurant)
 "If" = (
@@ -5529,7 +5529,7 @@
 /area/redgate/fantasy/house)
 "IC" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/storage/box/roulette_balls_fancy,
+/obj/item/storage/box/roulette_balls_fancy,
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/gambling)
 "ID" = (
@@ -5575,21 +5575,21 @@
 /area/redgate/fantasy/house)
 "IM" = (
 /obj/structure/closet/walllocker/wooden/north,
-/obj/item/weapon/material/knife/table,
-/obj/item/weapon/material/knife/table,
-/obj/item/weapon/material/knife/table,
-/obj/item/weapon/material/knife/table,
-/obj/item/weapon/material/knife/table,
-/obj/item/weapon/material/kitchen/utensil/fork,
-/obj/item/weapon/material/kitchen/utensil/fork,
-/obj/item/weapon/material/kitchen/utensil/fork,
-/obj/item/weapon/material/kitchen/utensil/fork,
-/obj/item/weapon/material/kitchen/utensil/fork,
-/obj/item/weapon/material/kitchen/utensil/spoon,
-/obj/item/weapon/material/kitchen/utensil/spoon,
-/obj/item/weapon/material/kitchen/utensil/spoon,
-/obj/item/weapon/material/kitchen/utensil/spoon,
-/obj/item/weapon/material/kitchen/utensil/spoon,
+/obj/item/material/knife/table,
+/obj/item/material/knife/table,
+/obj/item/material/knife/table,
+/obj/item/material/knife/table,
+/obj/item/material/knife/table,
+/obj/item/material/kitchen/utensil/fork,
+/obj/item/material/kitchen/utensil/fork,
+/obj/item/material/kitchen/utensil/fork,
+/obj/item/material/kitchen/utensil/fork,
+/obj/item/material/kitchen/utensil/fork,
+/obj/item/material/kitchen/utensil/spoon,
+/obj/item/material/kitchen/utensil/spoon,
+/obj/item/material/kitchen/utensil/spoon,
+/obj/item/material/kitchen/utensil/spoon,
+/obj/item/material/kitchen/utensil/spoon,
 /turf/simulated/floor/wood/alt/parquet,
 /area/redgate/fantasy/restaurant)
 "IP" = (
@@ -5628,11 +5628,11 @@
 /area/redgate/fantasy/aliens)
 "Ja" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/reagent_containers/glass/pint_mug,
-/obj/item/weapon/reagent_containers/glass/pint_mug,
-/obj/item/weapon/reagent_containers/glass/pint_mug,
-/obj/item/weapon/reagent_containers/glass/pint_mug,
-/obj/item/weapon/reagent_containers/glass/pint_mug,
+/obj/item/reagent_containers/glass/pint_mug,
+/obj/item/reagent_containers/glass/pint_mug,
+/obj/item/reagent_containers/glass/pint_mug,
+/obj/item/reagent_containers/glass/pint_mug,
+/obj/item/reagent_containers/glass/pint_mug,
 /turf/simulated/floor/concrete,
 /area/redgate/fantasy/walls)
 "Jd" = (
@@ -5656,7 +5656,7 @@
 /area/redgate/fantasy/house)
 "Jg" = (
 /obj/structure/bed/double/padded,
-/obj/item/weapon/bedsheet/browndouble,
+/obj/item/bedsheet/browndouble,
 /turf/simulated/floor/wood/alt/parquet,
 /area/redgate/fantasy/grocery)
 "Jh" = (
@@ -5679,12 +5679,12 @@
 /obj/item/clothing/suit/storage/hooded/chaplain_hoodie,
 /obj/item/clothing/under/rank/chaplain,
 /obj/item/clothing/shoes/dress,
-/obj/item/weapon/storage/bible/booze,
+/obj/item/storage/bible/booze,
 /turf/simulated/floor/concrete,
 /area/redgate/fantasy/church)
 "Jm" = (
 /obj/structure/bookcase,
-/obj/item/weapon/book/custom_library/fiction/irishairmanforseesdeath,
+/obj/item/book/custom_library/fiction/irishairmanforseesdeath,
 /turf/simulated/floor/concrete,
 /area/redgate/fantasy/castle)
 "Jn" = (
@@ -5696,8 +5696,8 @@
 /area/redgate/fantasy/castle)
 "Jo" = (
 /obj/structure/closet/crate/wooden,
-/obj/item/device/flashlight/lantern,
-/obj/item/weapon/material/knife/tacknife/boot,
+/obj/item/flashlight/lantern,
+/obj/item/material/knife/tacknife/boot,
 /turf/simulated/floor/wood/alt/panel,
 /area/redgate/fantasy/walls)
 "Jr" = (
@@ -5706,7 +5706,7 @@
 /area/redgate/fantasy/arena)
 "Js" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/picnic_blankets_carried,
+/obj/item/picnic_blankets_carried,
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/house)
 "Jt" = (
@@ -5736,7 +5736,7 @@
 /area/redgate/fantasy/guardhouse)
 "JD" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/picnic_blankets_carried,
+/obj/item/picnic_blankets_carried,
 /turf/simulated/floor/wood,
 /area/redgate/fantasy/mininghouse)
 "JE" = (
@@ -5767,7 +5767,7 @@
 /area/redgate/fantasy/walls)
 "JO" = (
 /obj/structure/bookcase,
-/obj/item/weapon/book/bundle/custom_library/fiction/ghostship,
+/obj/item/book/bundle/custom_library/fiction/ghostship,
 /turf/simulated/floor/concrete,
 /area/redgate/fantasy/castle)
 "JP" = (
@@ -5775,7 +5775,7 @@
 /obj/item/instrument/violin/golden,
 /obj/random/instrument,
 /obj/random/potion_base,
-/obj/item/weapon/material/sword/rapier,
+/obj/item/material/sword/rapier,
 /turf/simulated/floor/carpet/purple,
 /area/redgate/fantasy/bard)
 "JT" = (
@@ -5791,8 +5791,8 @@
 /area/redgate/fantasy/hedgemaze)
 "JW" = (
 /obj/structure/closet/crate/wooden,
-/obj/item/device/flashlight/lantern,
-/obj/item/weapon/material/knife/tacknife/boot,
+/obj/item/flashlight/lantern,
+/obj/item/material/knife/tacknife/boot,
 /obj/random/material,
 /turf/simulated/floor/wood/alt/panel,
 /area/redgate/fantasy/walls)
@@ -5804,7 +5804,7 @@
 /area/redgate/fantasy/house)
 "JY" = (
 /obj/structure/table/rack/shelf/wood,
-/obj/item/weapon/reagent_containers/glass/bucket/wood,
+/obj/item/reagent_containers/glass/bucket/wood,
 /turf/simulated/floor/wood/alt/panel,
 /area/redgate/fantasy/house)
 "JZ" = (
@@ -5813,7 +5813,7 @@
 /area/redgate/fantasy/mininghouse)
 "Ka" = (
 /obj/structure/table/rack/shelf/wood,
-/obj/item/weapon/material/sword/sabre,
+/obj/item/material/sword/sabre,
 /turf/simulated/floor/concrete,
 /area/redgate/fantasy/walls)
 "Kb" = (
@@ -5838,7 +5838,7 @@
 /turf/simulated/floor/carpet/green,
 /area/redgate/fantasy/house)
 "Ki" = (
-/obj/item/weapon/material/gravemarker,
+/obj/item/material/gravemarker,
 /turf/simulated/floor/outdoors/grass/seasonal/notrees,
 /area/redgate/fantasy/streets)
 "Kk" = (
@@ -5849,7 +5849,7 @@
 /area/redgate/fantasy/grocery)
 "Km" = (
 /obj/structure/table/woodentable,
-/obj/item/device/flashlight/lantern,
+/obj/item/flashlight/lantern,
 /turf/simulated/floor/carpet/green,
 /area/redgate/fantasy/house)
 "Kq" = (
@@ -5879,7 +5879,7 @@
 /area/redgate/fantasy/guardhouse)
 "KB" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/material/twohanded/staff,
+/obj/item/material/twohanded/staff,
 /turf/simulated/floor/concrete,
 /area/redgate/fantasy/arena)
 "KE" = (
@@ -5897,7 +5897,7 @@
 /turf/simulated/floor/wood/alt/panel,
 /area/redgate/fantasy/castle)
 "KK" = (
-/obj/item/weapon/reagent_containers/food/snacks/worm,
+/obj/item/reagent_containers/food/snacks/worm,
 /turf/simulated/floor/outdoors/grass/seasonal,
 /area/redgate/fantasy/streets)
 "KM" = (
@@ -5955,7 +5955,7 @@
 /area/redgate/fantasy/gambling)
 "Lg" = (
 /obj/structure/bookcase,
-/obj/item/weapon/book/custom_library/fiction/woodysgotwood,
+/obj/item/book/custom_library/fiction/woodysgotwood,
 /turf/simulated/floor/concrete,
 /area/redgate/fantasy/castle)
 "Lh" = (
@@ -5964,7 +5964,7 @@
 /area/redgate/fantasy/aliens)
 "Lj" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/reagent_containers/food/snacks/risottoballs,
+/obj/item/reagent_containers/food/snacks/risottoballs,
 /turf/simulated/floor/carpet/oracarpet,
 /area/redgate/fantasy/arena)
 "Lk" = (
@@ -5983,7 +5983,7 @@
 /area/redgate/fantasy/castle)
 "Ln" = (
 /obj/structure/table/rack/shelf/wood,
-/obj/item/weapon/material/sword/longsword,
+/obj/item/material/sword/longsword,
 /turf/simulated/floor/wood/alt/parquet,
 /area/redgate/fantasy/guardhouse)
 "Lo" = (
@@ -6024,7 +6024,7 @@
 /area/redgate/fantasy/bard)
 "Lz" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/material/knife/butch,
+/obj/item/material/knife/butch,
 /turf/simulated/floor/wood,
 /area/redgate/fantasy/butcher)
 "LA" = (
@@ -6033,12 +6033,12 @@
 /turf/simulated/floor/outdoors/sidewalk/slab,
 /area/redgate/fantasy/hedgemaze)
 "LE" = (
-/obj/item/weapon/reagent_containers/glass/bucket/wood,
+/obj/item/reagent_containers/glass/bucket/wood,
 /turf/simulated/floor/concrete,
 /area/redgate/fantasy/castle)
 "LI" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/paper,
+/obj/item/paper,
 /turf/simulated/floor/wood,
 /area/redgate/fantasy/mininghouse)
 "LJ" = (
@@ -6047,12 +6047,12 @@
 /area/redgate/fantasy/streets)
 "LK" = (
 /obj/structure/bed/double/padded,
-/obj/item/weapon/bedsheet/browndouble,
+/obj/item/bedsheet/browndouble,
 /turf/simulated/floor/concrete,
 /area/redgate/fantasy/church)
 "LN" = (
 /obj/structure/closet/crate/wooden,
-/obj/item/weapon/storage/bag/ore,
+/obj/item/storage/bag/ore,
 /turf/simulated/floor/concrete,
 /area/redgate/fantasy/mininghouse)
 "LR" = (
@@ -6104,16 +6104,16 @@
 /area/redgate/fantasy/walls)
 "Mj" = (
 /obj/structure/table/standard,
-/obj/item/weapon/reagent_containers/food/snacks/carpmeat/fish,
+/obj/item/reagent_containers/food/snacks/carpmeat/fish,
 /turf/simulated/floor/wood,
 /area/redgate/fantasy/butcher)
 "Ml" = (
-/obj/item/weapon/reagent_containers/glass/bucket/wood,
+/obj/item/reagent_containers/glass/bucket/wood,
 /turf/simulated/floor/wood,
 /area/redgate/fantasy/alchemist)
 "Mn" = (
 /obj/structure/bed/double/padded,
-/obj/item/weapon/bedsheet/browndouble,
+/obj/item/bedsheet/browndouble,
 /turf/simulated/floor/wood,
 /area/redgate/fantasy/paladinhouse)
 "Mo" = (
@@ -6188,7 +6188,7 @@
 /turf/simulated/floor/wood,
 /area/redgate/fantasy/paladinhouse)
 "MG" = (
-/obj/item/weapon/reagent_containers/glass/bucket/wood,
+/obj/item/reagent_containers/glass/bucket/wood,
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/cafe)
 "MI" = (
@@ -6198,7 +6198,7 @@
 /area/redgate/fantasy/house)
 "MJ" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/potion_material/thorny_bulb,
+/obj/item/potion_material/thorny_bulb,
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/house)
 "MK" = (
@@ -6217,7 +6217,7 @@
 /area/redgate/fantasy/jewler)
 "MN" = (
 /obj/structure/table/rack/wood,
-/obj/item/weapon/material/twohanded/longsword,
+/obj/item/material/twohanded/longsword,
 /turf/simulated/floor/wood/alt/panel,
 /area/redgate/fantasy/castle)
 "MO" = (
@@ -6251,7 +6251,7 @@
 /area/redgate/fantasy/cafe)
 "MZ" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/reagent_containers/glass/rag,
+/obj/item/reagent_containers/glass/rag,
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/tavern)
 "Nb" = (
@@ -6265,7 +6265,7 @@
 /area/redgate/fantasy/castle)
 "Ne" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/reagent_containers/glass/pint_mug,
+/obj/item/reagent_containers/glass/pint_mug,
 /turf/simulated/floor/wood/alt/parquet,
 /area/redgate/fantasy/bard)
 "Ng" = (
@@ -6278,7 +6278,7 @@
 /area/redgate/fantasy/churchhouse)
 "Nn" = (
 /obj/structure/table/marble,
-/obj/item/weapon/reagent_containers/food/drinks/bottle/wine,
+/obj/item/reagent_containers/food/drinks/bottle/wine,
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/church)
 "Np" = (
@@ -6298,7 +6298,7 @@
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/house)
 "Nw" = (
-/obj/item/weapon/material/knife/machete/hatchet/stone/bone,
+/obj/item/material/knife/machete/hatchet/stone/bone,
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/barbarian)
 "Nx" = (
@@ -6306,7 +6306,7 @@
 /area/redgate/fantasy/aliens)
 "Ny" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/flame/match,
+/obj/item/flame/match,
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/house)
 "Nz" = (
@@ -6340,7 +6340,7 @@
 	dir = 9
 	},
 /obj/structure/table/woodentable,
-/obj/item/weapon/flame/candle/candelabra/everburn,
+/obj/item/flame/candle/candelabra/everburn,
 /turf/simulated/floor/carpet/bcarpet,
 /area/redgate/fantasy/cafe)
 "NH" = (
@@ -6355,7 +6355,7 @@
 /area/redgate/fantasy/house)
 "NJ" = (
 /obj/structure/table/rack/shelf/wood,
-/obj/item/weapon/gun/launcher/crossbow/bow,
+/obj/item/gun/launcher/crossbow/bow,
 /turf/simulated/floor/concrete,
 /area/redgate/fantasy/paladinhouse)
 "NL" = (
@@ -6374,7 +6374,7 @@
 /turf/simulated/floor/concrete,
 /area/redgate/fantasy/mininghouse)
 "NP" = (
-/obj/item/weapon/reagent_containers/glass/bucket/wood,
+/obj/item/reagent_containers/glass/bucket/wood,
 /turf/simulated/floor/wood,
 /area/redgate/fantasy/mininghouse)
 "NR" = (
@@ -6385,7 +6385,7 @@
 /area/redgate/fantasy/restaurant)
 "NT" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/reagent_containers/food/snacks/berrymuffin/berry,
+/obj/item/reagent_containers/food/snacks/berrymuffin/berry,
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/bakery)
 "NW" = (
@@ -6393,11 +6393,11 @@
 /turf/simulated/floor/outdoors/grass/seasonal/notrees,
 /area/redgate/fantasy/streets)
 "NZ" = (
-/obj/item/weapon/reagent_containers/glass/bucket/wood,
+/obj/item/reagent_containers/glass/bucket/wood,
 /turf/simulated/floor/wood/alt/panel,
 /area/redgate/fantasy/ranger)
 "Ob" = (
-/obj/item/weapon/stool/padded{
+/obj/item/stool/padded{
 	dir = 4
 	},
 /turf/simulated/floor/wood/alt,
@@ -6413,7 +6413,7 @@
 /area/redgate/fantasy/grocery)
 "Od" = (
 /obj/structure/table/rack/shelf/wood,
-/obj/item/weapon/pickaxe/five_pick,
+/obj/item/pickaxe/five_pick,
 /turf/simulated/floor/wood,
 /area/redgate/fantasy/mininghouse)
 "Of" = (
@@ -6459,17 +6459,17 @@
 /area/redgate/fantasy/cafe)
 "Ow" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/bone/skull,
+/obj/item/bone/skull,
 /turf/simulated/floor/wood/alt/panel,
 /area/redgate/fantasy/redgate)
 "Ox" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/reagent_containers/glass/bucket/wood,
+/obj/item/reagent_containers/glass/bucket/wood,
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/house)
 "Oy" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/reagent_containers/glass/pint_mug,
+/obj/item/reagent_containers/glass/pint_mug,
 /turf/simulated/floor/wood/alt/parquet,
 /area/redgate/fantasy/guardhouse)
 "Oz" = (
@@ -6502,13 +6502,13 @@
 /area/redgate/fantasy/rogue)
 "OK" = (
 /obj/structure/closet/crate/chest,
-/obj/item/weapon/storage/fancy/candle_box,
-/obj/item/weapon/storage/fancy/candle_box,
-/obj/item/weapon/storage/fancy/candle_box,
-/obj/item/weapon/flame/candle/candelabra,
-/obj/item/weapon/flame/candle/candelabra,
-/obj/item/weapon/flame/candle/candelabra,
-/obj/item/weapon/flame/candle/candelabra,
+/obj/item/storage/fancy/candle_box,
+/obj/item/storage/fancy/candle_box,
+/obj/item/storage/fancy/candle_box,
+/obj/item/flame/candle/candelabra,
+/obj/item/flame/candle/candelabra,
+/obj/item/flame/candle/candelabra,
+/obj/item/flame/candle/candelabra,
 /turf/simulated/floor/concrete,
 /area/redgate/fantasy/castle)
 "OM" = (
@@ -6523,7 +6523,7 @@
 /area/redgate/fantasy/restaurant)
 "OQ" = (
 /obj/structure/table/rack/shelf/wood,
-/obj/item/weapon/material/twohanded/longsword,
+/obj/item/material/twohanded/longsword,
 /turf/simulated/floor/concrete,
 /area/redgate/fantasy/paladinhouse)
 "OS" = (
@@ -6538,8 +6538,8 @@
 /area/redgate/fantasy/mininghouse)
 "OU" = (
 /obj/structure/bed/padded,
-/obj/item/weapon/bedsheet/brown,
-/obj/item/weapon/bedsheet/brown,
+/obj/item/bedsheet/brown,
+/obj/item/bedsheet/brown,
 /turf/simulated/floor/wood/alt/panel,
 /area/redgate/fantasy/walls)
 "OX" = (
@@ -6550,7 +6550,7 @@
 /area/redgate/fantasy/barbarian)
 "OY" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/material/kitchen/rollingpin,
+/obj/item/material/kitchen/rollingpin,
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/bard)
 "Pa" = (
@@ -6558,7 +6558,7 @@
 /area/redgate/fantasy/redgate)
 "Pb" = (
 /obj/structure/table/rack/shelf/wood,
-/obj/item/weapon/towel/random,
+/obj/item/towel/random,
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/house)
 "Pc" = (
@@ -6582,13 +6582,13 @@
 /area/redgate/fantasy/arena)
 "Pf" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/tray,
+/obj/item/tray,
 /turf/simulated/floor/wood/alt/parquet,
 /area/redgate/fantasy/restaurant)
 "Ph" = (
 /obj/structure/table/rack/shelf/wood,
-/obj/item/weapon/reagent_containers/glass/bottle/potion/antidote,
-/obj/item/weapon/reagent_containers/glass/bottle/potion/antidote,
+/obj/item/reagent_containers/glass/bottle/potion/antidote,
+/obj/item/reagent_containers/glass/bottle/potion/antidote,
 /turf/simulated/floor/wood,
 /area/redgate/fantasy/alchemist)
 "Pj" = (
@@ -6609,7 +6609,7 @@
 /area/redgate/fantasy/aliens)
 "Ps" = (
 /obj/structure/table/rack/shelf/wood,
-/obj/item/weapon/shovel/wood,
+/obj/item/shovel/wood,
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/shop)
 "Pu" = (
@@ -6627,7 +6627,7 @@
 /area/redgate/fantasy/paladinhouse)
 "Py" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/material/knife/machete,
+/obj/item/material/knife/machete,
 /turf/simulated/floor/wood,
 /area/redgate/fantasy/paladinhouse)
 "Pz" = (
@@ -6643,30 +6643,30 @@
 /area/redgate/fantasy/house)
 "PG" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/reagent_containers/food/condiment/carton/sugar/rustic,
-/obj/item/weapon/reagent_containers/food/condiment/carton/sugar/rustic,
-/obj/item/weapon/reagent_containers/food/condiment/carton/sugar/rustic,
-/obj/item/weapon/reagent_containers/food/condiment/carton/sugar/rustic,
-/obj/item/weapon/reagent_containers/food/condiment/carton/sugar/rustic,
-/obj/item/weapon/reagent_containers/food/condiment/carton/sugar/rustic,
-/obj/item/weapon/reagent_containers/food/condiment/carton/sugar/rustic,
-/obj/item/weapon/reagent_containers/food/condiment/carton/flour/rustic,
-/obj/item/weapon/reagent_containers/food/condiment/carton/flour/rustic,
-/obj/item/weapon/reagent_containers/food/condiment/carton/flour/rustic,
-/obj/item/weapon/reagent_containers/food/condiment/carton/flour/rustic,
-/obj/item/weapon/reagent_containers/food/condiment/carton/flour/rustic,
-/obj/item/weapon/reagent_containers/food/condiment/carton/flour/rustic,
-/obj/item/weapon/reagent_containers/food/condiment/carton/flour/rustic,
-/obj/item/weapon/storage/fancy/egg_box,
-/obj/item/weapon/storage/fancy/egg_box,
-/obj/item/weapon/storage/fancy/egg_box,
-/obj/item/weapon/storage/fancy/egg_box,
+/obj/item/reagent_containers/food/condiment/carton/sugar/rustic,
+/obj/item/reagent_containers/food/condiment/carton/sugar/rustic,
+/obj/item/reagent_containers/food/condiment/carton/sugar/rustic,
+/obj/item/reagent_containers/food/condiment/carton/sugar/rustic,
+/obj/item/reagent_containers/food/condiment/carton/sugar/rustic,
+/obj/item/reagent_containers/food/condiment/carton/sugar/rustic,
+/obj/item/reagent_containers/food/condiment/carton/sugar/rustic,
+/obj/item/reagent_containers/food/condiment/carton/flour/rustic,
+/obj/item/reagent_containers/food/condiment/carton/flour/rustic,
+/obj/item/reagent_containers/food/condiment/carton/flour/rustic,
+/obj/item/reagent_containers/food/condiment/carton/flour/rustic,
+/obj/item/reagent_containers/food/condiment/carton/flour/rustic,
+/obj/item/reagent_containers/food/condiment/carton/flour/rustic,
+/obj/item/reagent_containers/food/condiment/carton/flour/rustic,
+/obj/item/storage/fancy/egg_box,
+/obj/item/storage/fancy/egg_box,
+/obj/item/storage/fancy/egg_box,
+/obj/item/storage/fancy/egg_box,
 /obj/structure/closet/walllocker/wooden/south,
 /turf/simulated/floor/concrete,
 /area/redgate/fantasy/castle)
 "PH" = (
 /obj/structure/table/rack/wood,
-/obj/item/weapon/material/knife/machete/hatchet/unathiknife,
+/obj/item/material/knife/machete/hatchet/unathiknife,
 /obj/structure/prop/fantasy/redbanner{
 	pixel_y = 32
 	},
@@ -6677,13 +6677,13 @@
 	dir = 4
 	},
 /obj/structure/table/alien/blue,
-/obj/item/weapon/surgical/FixOVein/alien,
+/obj/item/surgical/FixOVein/alien,
 /turf/simulated/floor/tiled/milspec/sterile,
 /area/redgate/fantasy/aliens)
 "PJ" = (
 /obj/structure/table/rack/shelf/wood,
-/obj/item/weapon/reagent_containers/food/snacks/funnelcake,
-/obj/item/weapon/reagent_containers/food/snacks/funnelcake,
+/obj/item/reagent_containers/food/snacks/funnelcake,
+/obj/item/reagent_containers/food/snacks/funnelcake,
 /turf/simulated/floor/wood/alt/parquet,
 /area/redgate/fantasy/grocery)
 "PK" = (
@@ -6696,7 +6696,7 @@
 /area/redgate/fantasy/rogue)
 "PL" = (
 /obj/structure/table/gamblingtable,
-/obj/item/weapon/deck/cards/casino,
+/obj/item/deck/cards/casino,
 /turf/simulated/floor/wood/alt/panel,
 /area/redgate/fantasy/gambling)
 "PM" = (
@@ -6722,7 +6722,7 @@
 /turf/simulated/floor/wood/alt/parquet,
 /area/redgate/fantasy/bard)
 "PU" = (
-/obj/item/weapon/potion_material/blood_ruby,
+/obj/item/potion_material/blood_ruby,
 /turf/simulated/floor/wood/alt/panel,
 /area/redgate/fantasy/redgate)
 "PV" = (
@@ -6740,24 +6740,24 @@
 /area/redgate/fantasy/castle)
 "PX" = (
 /obj/structure/closet/cabinet,
-/obj/item/weapon/reagent_containers/food/condiment/carton/sugar/rustic,
-/obj/item/weapon/reagent_containers/food/condiment/carton/sugar/rustic,
-/obj/item/weapon/reagent_containers/food/condiment/carton/sugar/rustic,
-/obj/item/weapon/reagent_containers/food/condiment/carton/sugar/rustic,
-/obj/item/weapon/reagent_containers/food/condiment/carton/sugar/rustic,
-/obj/item/weapon/reagent_containers/food/condiment/carton/sugar/rustic,
-/obj/item/weapon/reagent_containers/food/condiment/carton/flour/rustic,
-/obj/item/weapon/reagent_containers/food/condiment/carton/flour/rustic,
-/obj/item/weapon/reagent_containers/food/condiment/carton/flour/rustic,
-/obj/item/weapon/reagent_containers/food/condiment/carton/flour/rustic,
-/obj/item/weapon/reagent_containers/food/condiment/carton/flour/rustic,
-/obj/item/weapon/reagent_containers/food/condiment/carton/flour/rustic,
-/obj/item/weapon/reagent_containers/food/condiment/carton/flour/rustic,
-/obj/item/weapon/reagent_containers/food/condiment/enzyme,
-/obj/item/weapon/reagent_containers/food/condiment/enzyme,
-/obj/item/weapon/storage/fancy/egg_box,
-/obj/item/weapon/storage/fancy/egg_box,
-/obj/item/weapon/storage/fancy/egg_box,
+/obj/item/reagent_containers/food/condiment/carton/sugar/rustic,
+/obj/item/reagent_containers/food/condiment/carton/sugar/rustic,
+/obj/item/reagent_containers/food/condiment/carton/sugar/rustic,
+/obj/item/reagent_containers/food/condiment/carton/sugar/rustic,
+/obj/item/reagent_containers/food/condiment/carton/sugar/rustic,
+/obj/item/reagent_containers/food/condiment/carton/sugar/rustic,
+/obj/item/reagent_containers/food/condiment/carton/flour/rustic,
+/obj/item/reagent_containers/food/condiment/carton/flour/rustic,
+/obj/item/reagent_containers/food/condiment/carton/flour/rustic,
+/obj/item/reagent_containers/food/condiment/carton/flour/rustic,
+/obj/item/reagent_containers/food/condiment/carton/flour/rustic,
+/obj/item/reagent_containers/food/condiment/carton/flour/rustic,
+/obj/item/reagent_containers/food/condiment/carton/flour/rustic,
+/obj/item/reagent_containers/food/condiment/enzyme,
+/obj/item/reagent_containers/food/condiment/enzyme,
+/obj/item/storage/fancy/egg_box,
+/obj/item/storage/fancy/egg_box,
+/obj/item/storage/fancy/egg_box,
 /obj/machinery/light/small/torch{
 	dir = 8
 	},
@@ -6788,28 +6788,28 @@
 "Qi" = (
 /obj/structure/closet/cabinet,
 /obj/item/clothing/suit/storage/apron/white,
-/obj/item/weapon/storage/wallet,
+/obj/item/storage/wallet,
 /turf/simulated/floor/wood,
 /area/redgate/fantasy/blacksmith)
 "Qj" = (
 /obj/structure/closet/cabinet,
-/obj/item/weapon/storage/fancy/egg_box,
-/obj/item/weapon/storage/fancy/egg_box,
-/obj/item/weapon/storage/fancy/egg_box,
-/obj/item/weapon/storage/fancy/egg_box,
-/obj/item/weapon/reagent_containers/food/condiment/carton/flour/rustic,
-/obj/item/weapon/reagent_containers/food/condiment/carton/flour/rustic,
-/obj/item/weapon/reagent_containers/food/condiment/carton/flour/rustic,
-/obj/item/weapon/reagent_containers/food/condiment/carton/flour/rustic,
-/obj/item/weapon/reagent_containers/food/condiment/carton/flour/rustic,
-/obj/item/weapon/reagent_containers/food/condiment/carton/flour/rustic,
-/obj/item/weapon/reagent_containers/food/condiment/carton/sugar/rustic,
-/obj/item/weapon/reagent_containers/food/condiment/carton/sugar/rustic,
-/obj/item/weapon/reagent_containers/food/condiment/carton/sugar/rustic,
-/obj/item/weapon/reagent_containers/food/condiment/carton/sugar/rustic,
-/obj/item/weapon/reagent_containers/food/condiment/carton/sugar/rustic,
-/obj/item/weapon/reagent_containers/food/condiment/enzyme,
-/obj/item/weapon/reagent_containers/food/condiment/enzyme,
+/obj/item/storage/fancy/egg_box,
+/obj/item/storage/fancy/egg_box,
+/obj/item/storage/fancy/egg_box,
+/obj/item/storage/fancy/egg_box,
+/obj/item/reagent_containers/food/condiment/carton/flour/rustic,
+/obj/item/reagent_containers/food/condiment/carton/flour/rustic,
+/obj/item/reagent_containers/food/condiment/carton/flour/rustic,
+/obj/item/reagent_containers/food/condiment/carton/flour/rustic,
+/obj/item/reagent_containers/food/condiment/carton/flour/rustic,
+/obj/item/reagent_containers/food/condiment/carton/flour/rustic,
+/obj/item/reagent_containers/food/condiment/carton/sugar/rustic,
+/obj/item/reagent_containers/food/condiment/carton/sugar/rustic,
+/obj/item/reagent_containers/food/condiment/carton/sugar/rustic,
+/obj/item/reagent_containers/food/condiment/carton/sugar/rustic,
+/obj/item/reagent_containers/food/condiment/carton/sugar/rustic,
+/obj/item/reagent_containers/food/condiment/enzyme,
+/obj/item/reagent_containers/food/condiment/enzyme,
 /turf/simulated/floor/wood/alt/parquet,
 /area/redgate/fantasy/restaurant)
 "Qn" = (
@@ -6822,29 +6822,29 @@
 /area/redgate/fantasy/house)
 "Qu" = (
 /obj/structure/table/rack/shelf/wood,
-/obj/item/weapon/reagent_containers/food/snacks/sliceable/bananabread,
+/obj/item/reagent_containers/food/snacks/sliceable/bananabread,
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/bakery)
 "Qv" = (
 /obj/structure/closet/cabinet,
-/obj/item/weapon/reagent_containers/food/condiment/carton/sugar/rustic,
-/obj/item/weapon/reagent_containers/food/condiment/carton/sugar/rustic,
-/obj/item/weapon/reagent_containers/food/condiment/carton/sugar/rustic,
-/obj/item/weapon/reagent_containers/food/condiment/carton/sugar/rustic,
-/obj/item/weapon/reagent_containers/food/condiment/carton/sugar/rustic,
-/obj/item/weapon/reagent_containers/food/condiment/carton/sugar/rustic,
-/obj/item/weapon/reagent_containers/food/condiment/carton/flour/rustic,
-/obj/item/weapon/reagent_containers/food/condiment/carton/flour/rustic,
-/obj/item/weapon/reagent_containers/food/condiment/carton/flour/rustic,
-/obj/item/weapon/reagent_containers/food/condiment/carton/flour/rustic,
-/obj/item/weapon/reagent_containers/food/condiment/carton/flour/rustic,
-/obj/item/weapon/reagent_containers/food/condiment/carton/flour/rustic,
-/obj/item/weapon/reagent_containers/food/condiment/carton/flour/rustic,
-/obj/item/weapon/reagent_containers/food/condiment/enzyme,
-/obj/item/weapon/reagent_containers/food/condiment/enzyme,
-/obj/item/weapon/storage/fancy/egg_box,
-/obj/item/weapon/storage/fancy/egg_box,
-/obj/item/weapon/storage/fancy/egg_box,
+/obj/item/reagent_containers/food/condiment/carton/sugar/rustic,
+/obj/item/reagent_containers/food/condiment/carton/sugar/rustic,
+/obj/item/reagent_containers/food/condiment/carton/sugar/rustic,
+/obj/item/reagent_containers/food/condiment/carton/sugar/rustic,
+/obj/item/reagent_containers/food/condiment/carton/sugar/rustic,
+/obj/item/reagent_containers/food/condiment/carton/sugar/rustic,
+/obj/item/reagent_containers/food/condiment/carton/flour/rustic,
+/obj/item/reagent_containers/food/condiment/carton/flour/rustic,
+/obj/item/reagent_containers/food/condiment/carton/flour/rustic,
+/obj/item/reagent_containers/food/condiment/carton/flour/rustic,
+/obj/item/reagent_containers/food/condiment/carton/flour/rustic,
+/obj/item/reagent_containers/food/condiment/carton/flour/rustic,
+/obj/item/reagent_containers/food/condiment/carton/flour/rustic,
+/obj/item/reagent_containers/food/condiment/enzyme,
+/obj/item/reagent_containers/food/condiment/enzyme,
+/obj/item/storage/fancy/egg_box,
+/obj/item/storage/fancy/egg_box,
+/obj/item/storage/fancy/egg_box,
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/house)
 "Qy" = (
@@ -6853,13 +6853,13 @@
 /area/redgate/fantasy/jewler)
 "QA" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/reagent_containers/food/snacks/meatsteak,
+/obj/item/reagent_containers/food/snacks/meatsteak,
 /turf/simulated/floor/concrete,
 /area/redgate/fantasy/arena)
 "QF" = (
 /obj/structure/table/rack/shelf/wood,
-/obj/item/device/flashlight/lantern,
-/obj/item/device/flashlight/lantern,
+/obj/item/flashlight/lantern,
+/obj/item/flashlight/lantern,
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/shop)
 "QL" = (
@@ -6891,14 +6891,14 @@
 /area/redgate/fantasy/tavern)
 "QR" = (
 /obj/structure/closet/cabinet,
-/obj/item/weapon/reagent_containers/food/condiment/carton/sugar/rustic,
-/obj/item/weapon/reagent_containers/food/condiment/carton/sugar/rustic,
-/obj/item/weapon/reagent_containers/food/condiment/carton/sugar/rustic,
-/obj/item/weapon/reagent_containers/food/condiment/carton/sugar/rustic,
-/obj/item/weapon/reagent_containers/food/condiment/carton/flour/rustic,
-/obj/item/weapon/reagent_containers/food/condiment/carton/flour/rustic,
-/obj/item/weapon/reagent_containers/food/condiment/carton/flour/rustic,
-/obj/item/weapon/reagent_containers/food/condiment/carton/flour/rustic,
+/obj/item/reagent_containers/food/condiment/carton/sugar/rustic,
+/obj/item/reagent_containers/food/condiment/carton/sugar/rustic,
+/obj/item/reagent_containers/food/condiment/carton/sugar/rustic,
+/obj/item/reagent_containers/food/condiment/carton/sugar/rustic,
+/obj/item/reagent_containers/food/condiment/carton/flour/rustic,
+/obj/item/reagent_containers/food/condiment/carton/flour/rustic,
+/obj/item/reagent_containers/food/condiment/carton/flour/rustic,
+/obj/item/reagent_containers/food/condiment/carton/flour/rustic,
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/farmhouse)
 "QS" = (
@@ -6938,8 +6938,8 @@
 /area/redgate/fantasy/house)
 "Rj" = (
 /obj/structure/closet/cabinet,
-/obj/item/weapon/reagent_containers/food/snacks/chocolatebar,
-/obj/item/weapon/reagent_containers/food/snacks/chocolatebar,
+/obj/item/reagent_containers/food/snacks/chocolatebar,
+/obj/item/reagent_containers/food/snacks/chocolatebar,
 /obj/fruitspawner/apple,
 /obj/fruitspawner/apple,
 /obj/fruitspawner/apple,
@@ -6968,7 +6968,7 @@
 /area/redgate/fantasy/church)
 "Rp" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/reagent_containers/food/snacks/croissant,
+/obj/item/reagent_containers/food/snacks/croissant,
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/bakery)
 "Rq" = (
@@ -7012,12 +7012,12 @@
 /area/redgate/fantasy/walls)
 "RA" = (
 /obj/structure/bookcase,
-/obj/item/weapon/book/bundle/custom_library/fiction/coldmountain,
+/obj/item/book/bundle/custom_library/fiction/coldmountain,
 /turf/simulated/floor/concrete,
 /area/redgate/fantasy/castle)
 "RC" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/reagent_containers/food/snacks/cherrypie,
+/obj/item/reagent_containers/food/snacks/cherrypie,
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/bakery)
 "RE" = (
@@ -7029,8 +7029,8 @@
 /area/redgate/fantasy/restaurant)
 "RF" = (
 /obj/structure/table/rack/shelf/wood,
-/obj/item/weapon/reagent_containers/food/snacks/flatbread,
-/obj/item/weapon/reagent_containers/food/snacks/flatbread,
+/obj/item/reagent_containers/food/snacks/flatbread,
+/obj/item/reagent_containers/food/snacks/flatbread,
 /turf/simulated/floor/wood/alt/parquet,
 /area/redgate/fantasy/grocery)
 "RG" = (
@@ -7091,7 +7091,7 @@
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/castle)
 "RW" = (
-/obj/item/weapon/reagent_containers/glass/bucket/wood,
+/obj/item/reagent_containers/glass/bucket/wood,
 /turf/simulated/floor/wood/alt/panel,
 /area/redgate/fantasy/castle)
 "RX" = (
@@ -7110,7 +7110,7 @@
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/farmhouse)
 "Sj" = (
-/obj/item/weapon/ore/coal,
+/obj/item/ore/coal,
 /turf/simulated/floor/concrete,
 /area/redgate/fantasy/mininghouse)
 "Sm" = (
@@ -7213,7 +7213,7 @@
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/house)
 "SS" = (
-/obj/item/weapon/reagent_containers/glass/bucket/wood,
+/obj/item/reagent_containers/glass/bucket/wood,
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/farmhouse)
 "SW" = (
@@ -7310,7 +7310,7 @@
 /area/redgate/fantasy/streets)
 "TG" = (
 /obj/structure/table/rack/shelf/wood,
-/obj/item/weapon/towel/random,
+/obj/item/towel/random,
 /turf/simulated/floor/concrete,
 /area/redgate/fantasy/church)
 "TH" = (
@@ -7323,11 +7323,11 @@
 /area/redgate/fantasy/bakery)
 "TJ" = (
 /obj/structure/closet/crate/chest,
-/obj/item/weapon/storage/box/matches,
-/obj/item/weapon/storage/fancy/blackcandle_box,
-/obj/item/weapon/storage/fancy/candle_box,
-/obj/item/weapon/storage/fancy/candle_box,
-/obj/item/weapon/storage/fancy/whitecandle_box,
+/obj/item/storage/box/matches,
+/obj/item/storage/fancy/blackcandle_box,
+/obj/item/storage/fancy/candle_box,
+/obj/item/storage/fancy/candle_box,
+/obj/item/storage/fancy/whitecandle_box,
 /obj/random/potion_ingredient,
 /obj/random/fantasy_item,
 /turf/simulated/floor/concrete,
@@ -7370,7 +7370,7 @@
 /area/redgate/fantasy/castle)
 "TR" = (
 /obj/structure/table/standard,
-/obj/item/weapon/reagent_containers/food/snacks/meat/grubmeat,
+/obj/item/reagent_containers/food/snacks/meat/grubmeat,
 /turf/simulated/floor/wood,
 /area/redgate/fantasy/butcher)
 "TS" = (
@@ -7379,9 +7379,9 @@
 /area/redgate/fantasy/guardhouse)
 "TT" = (
 /obj/structure/closet/cabinet,
-/obj/item/weapon/towel/random,
-/obj/item/weapon/towel/random,
-/obj/item/weapon/towel/random,
+/obj/item/towel/random,
+/obj/item/towel/random,
+/obj/item/towel/random,
 /obj/random/soap,
 /obj/random/soap,
 /obj/random/soap,
@@ -7398,12 +7398,12 @@
 "Uc" = (
 /obj/structure/closet/cabinet,
 /obj/item/clothing/under/dress/maid/sexy,
-/obj/item/weapon/handcuffs/cable/plantfiber,
+/obj/item/handcuffs/cable/plantfiber,
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/washhouse)
 "Ug" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/reagent_containers/glass/pint_mug,
+/obj/item/reagent_containers/glass/pint_mug,
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/tavern)
 "Ui" = (
@@ -7416,7 +7416,7 @@
 /obj/item/clothing/suit/storage/apron,
 /obj/item/clothing/under/dress/hightrousers,
 /obj/item/clothing/shoes/sandal/clogs,
-/obj/item/weapon/storage/wallet,
+/obj/item/storage/wallet,
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/cafe)
 "Un" = (
@@ -7464,7 +7464,7 @@
 /area/redgate/fantasy/guardhouse)
 "UB" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/reagent_containers/food/snacks/old/horseburger,
+/obj/item/reagent_containers/food/snacks/old/horseburger,
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/house)
 "UF" = (
@@ -7527,17 +7527,17 @@
 /area/redgate/fantasy/castle)
 "UX" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/storage/bible,
+/obj/item/storage/bible,
 /turf/simulated/floor/wood,
 /area/redgate/fantasy/paladinhouse)
 "UY" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/reagent_containers/glass/bucket/wood,
+/obj/item/reagent_containers/glass/bucket/wood,
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/tavern)
 "UZ" = (
 /obj/structure/bed/padded,
-/obj/item/weapon/bedsheet/brown,
+/obj/item/bedsheet/brown,
 /obj/machinery/light/small/torch{
 	dir = 4
 	},
@@ -7545,7 +7545,7 @@
 /area/redgate/fantasy/house)
 "Va" = (
 /obj/structure/bed,
-/obj/item/weapon/bedsheet/brown,
+/obj/item/bedsheet/brown,
 /turf/simulated/floor/wood/alt/panel,
 /area/redgate/fantasy/house)
 "Ve" = (
@@ -7553,7 +7553,7 @@
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/shop)
 "Vh" = (
-/obj/item/weapon/stool/padded{
+/obj/item/stool/padded{
 	dir = 8
 	},
 /turf/simulated/floor/wood/alt,
@@ -7577,7 +7577,7 @@
 /area/redgate/fantasy/house)
 "Vm" = (
 /obj/structure/bookcase,
-/obj/item/weapon/book/bundle/custom_library/religious/zoroastrianism,
+/obj/item/book/bundle/custom_library/religious/zoroastrianism,
 /obj/machinery/light/small/torch,
 /turf/simulated/floor/concrete,
 /area/redgate/fantasy/castle)
@@ -7631,7 +7631,7 @@
 /area/redgate/fantasy/ranger)
 "VK" = (
 /obj/structure/table/marble,
-/obj/item/weapon/reagent_containers/food/drinks/bottle/holywater,
+/obj/item/reagent_containers/food/drinks/bottle/holywater,
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/church)
 "VL" = (
@@ -7650,7 +7650,7 @@
 /turf/simulated/floor/wood/alt/panel,
 /area/redgate/fantasy/ranger)
 "VS" = (
-/obj/item/weapon/reagent_containers/glass/bucket/wood,
+/obj/item/reagent_containers/glass/bucket/wood,
 /turf/simulated/floor/concrete,
 /area/redgate/fantasy/church)
 "VT" = (
@@ -7682,7 +7682,7 @@
 /turf/simulated/floor/outdoors/sidewalk,
 /area/redgate/fantasy/streets)
 "Wa" = (
-/obj/item/weapon/melee/umbrella/random,
+/obj/item/melee/umbrella/random,
 /turf/simulated/floor/carpet/gaycarpet,
 /area/redgate/fantasy/castle)
 "Wc" = (
@@ -7697,7 +7697,7 @@
 /area/redgate/fantasy/mininghouse)
 "Wf" = (
 /obj/structure/bed/double/padded,
-/obj/item/weapon/bedsheet/browndouble,
+/obj/item/bedsheet/browndouble,
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/shop)
 "Wg" = (
@@ -7705,7 +7705,7 @@
 /obj/effect/floor_decal/spline/fancy/wood{
 	dir = 8
 	},
-/obj/item/weapon/deck/cards/casino,
+/obj/item/deck/cards/casino,
 /turf/simulated/floor/carpet/green,
 /area/redgate/fantasy/gambling)
 "Wj" = (
@@ -7767,17 +7767,17 @@
 /area/redgate/fantasy/castle)
 "WC" = (
 /obj/structure/closet/crate/chest,
-/obj/item/weapon/gun/launcher/crossbow/bow,
-/obj/item/weapon/arrow/standard,
-/obj/item/weapon/arrow/standard,
-/obj/item/weapon/arrow/standard,
-/obj/item/weapon/arrow/standard,
+/obj/item/gun/launcher/crossbow/bow,
+/obj/item/arrow/standard,
+/obj/item/arrow/standard,
+/obj/item/arrow/standard,
+/obj/item/arrow/standard,
 /turf/simulated/floor/wood/alt/panel,
 /area/redgate/fantasy/ranger)
 "WF" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/material/knife/butch,
-/obj/item/weapon/material/kitchen/rollingpin,
+/obj/item/material/knife/butch,
+/obj/item/material/kitchen/rollingpin,
 /obj/machinery/light/small/torch{
 	dir = 8
 	},
@@ -7785,7 +7785,7 @@
 /area/redgate/fantasy/bakery)
 "WH" = (
 /obj/structure/table/standard,
-/obj/item/weapon/reagent_containers/food/snacks/meat/chicken,
+/obj/item/reagent_containers/food/snacks/meat/chicken,
 /turf/simulated/floor/wood,
 /area/redgate/fantasy/butcher)
 "WP" = (
@@ -7799,34 +7799,34 @@
 /area/redgate/fantasy/mininghouse)
 "WT" = (
 /obj/structure/closet/cabinet,
-/obj/item/weapon/reagent_containers/food/condiment/carton/sugar/rustic,
-/obj/item/weapon/reagent_containers/food/condiment/carton/sugar/rustic,
-/obj/item/weapon/reagent_containers/food/condiment/carton/sugar/rustic,
-/obj/item/weapon/reagent_containers/food/condiment/carton/sugar/rustic,
-/obj/item/weapon/reagent_containers/food/condiment/carton/sugar/rustic,
-/obj/item/weapon/reagent_containers/food/condiment/carton/sugar/rustic,
-/obj/item/weapon/reagent_containers/food/condiment/carton/flour/rustic,
-/obj/item/weapon/reagent_containers/food/condiment/carton/flour/rustic,
-/obj/item/weapon/reagent_containers/food/condiment/carton/flour/rustic,
-/obj/item/weapon/reagent_containers/food/condiment/carton/flour/rustic,
-/obj/item/weapon/reagent_containers/food/condiment/carton/flour/rustic,
-/obj/item/weapon/reagent_containers/food/condiment/carton/flour/rustic,
-/obj/item/weapon/reagent_containers/food/condiment/carton/flour/rustic,
-/obj/item/weapon/reagent_containers/food/condiment/enzyme,
-/obj/item/weapon/reagent_containers/food/condiment/enzyme,
-/obj/item/weapon/storage/fancy/egg_box,
-/obj/item/weapon/storage/fancy/egg_box,
-/obj/item/weapon/storage/fancy/egg_box,
-/obj/item/weapon/picnic_blankets_carried,
+/obj/item/reagent_containers/food/condiment/carton/sugar/rustic,
+/obj/item/reagent_containers/food/condiment/carton/sugar/rustic,
+/obj/item/reagent_containers/food/condiment/carton/sugar/rustic,
+/obj/item/reagent_containers/food/condiment/carton/sugar/rustic,
+/obj/item/reagent_containers/food/condiment/carton/sugar/rustic,
+/obj/item/reagent_containers/food/condiment/carton/sugar/rustic,
+/obj/item/reagent_containers/food/condiment/carton/flour/rustic,
+/obj/item/reagent_containers/food/condiment/carton/flour/rustic,
+/obj/item/reagent_containers/food/condiment/carton/flour/rustic,
+/obj/item/reagent_containers/food/condiment/carton/flour/rustic,
+/obj/item/reagent_containers/food/condiment/carton/flour/rustic,
+/obj/item/reagent_containers/food/condiment/carton/flour/rustic,
+/obj/item/reagent_containers/food/condiment/carton/flour/rustic,
+/obj/item/reagent_containers/food/condiment/enzyme,
+/obj/item/reagent_containers/food/condiment/enzyme,
+/obj/item/storage/fancy/egg_box,
+/obj/item/storage/fancy/egg_box,
+/obj/item/storage/fancy/egg_box,
+/obj/item/picnic_blankets_carried,
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/bard)
 "WU" = (
 /obj/structure/table/rack/shelf/wood,
-/obj/item/weapon/reagent_containers/food/snacks/bun,
-/obj/item/weapon/reagent_containers/food/snacks/bun,
-/obj/item/weapon/reagent_containers/food/snacks/bun,
-/obj/item/weapon/reagent_containers/food/snacks/bun,
-/obj/item/weapon/reagent_containers/food/snacks/bun,
+/obj/item/reagent_containers/food/snacks/bun,
+/obj/item/reagent_containers/food/snacks/bun,
+/obj/item/reagent_containers/food/snacks/bun,
+/obj/item/reagent_containers/food/snacks/bun,
+/obj/item/reagent_containers/food/snacks/bun,
 /turf/simulated/floor/concrete,
 /area/redgate/fantasy/arena)
 "WV" = (
@@ -7887,7 +7887,7 @@
 /area/redgate/fantasy/redgate)
 "Xr" = (
 /obj/structure/table/rack/shelf/wood,
-/obj/item/weapon/gun/launcher/crossbow/bow,
+/obj/item/gun/launcher/crossbow/bow,
 /turf/simulated/floor/concrete,
 /area/redgate/fantasy/walls)
 "Xs" = (
@@ -7899,13 +7899,13 @@
 "Xx" = (
 /obj/structure/table/woodentable,
 /obj/structure/closet/walllocker/wooden/north,
-/obj/item/weapon/reagent_containers/glass/pint_mug,
-/obj/item/weapon/reagent_containers/glass/pint_mug,
-/obj/item/weapon/reagent_containers/glass/pint_mug,
-/obj/item/weapon/reagent_containers/glass/pint_mug,
-/obj/item/weapon/reagent_containers/glass/pint_mug,
-/obj/item/weapon/reagent_containers/glass/pint_mug,
-/obj/item/weapon/material/knife/tacknife/combatknife,
+/obj/item/reagent_containers/glass/pint_mug,
+/obj/item/reagent_containers/glass/pint_mug,
+/obj/item/reagent_containers/glass/pint_mug,
+/obj/item/reagent_containers/glass/pint_mug,
+/obj/item/reagent_containers/glass/pint_mug,
+/obj/item/reagent_containers/glass/pint_mug,
+/obj/item/material/knife/tacknife/combatknife,
 /obj/effect/floor_decal/spline/fancy/wood{
 	dir = 8
 	},
@@ -7942,7 +7942,7 @@
 /area/redgate/fantasy/restaurant)
 "XF" = (
 /obj/structure/table/rack/shelf/wood,
-/obj/item/weapon/towel/random,
+/obj/item/towel/random,
 /turf/simulated/floor/wood/alt/parquet,
 /area/redgate/fantasy/restaurant)
 "XG" = (
@@ -8026,7 +8026,7 @@
 /area/redgate/fantasy/castle)
 "Yn" = (
 /obj/structure/closet/crate/chest,
-/obj/item/device/slow_sizegun/magic,
+/obj/item/slow_sizegun/magic,
 /obj/item/toy/character/wizard,
 /obj/machinery/light/small/torch{
 	dir = 4
@@ -8069,12 +8069,12 @@
 /area/redgate/fantasy/castle)
 "Yx" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/reagent_containers/food/snacks/soup/onion,
+/obj/item/reagent_containers/food/snacks/soup/onion,
 /turf/simulated/floor/carpet/oracarpet,
 /area/redgate/fantasy/arena)
 "YC" = (
 /obj/structure/bookcase,
-/obj/item/weapon/book/bundle/custom_library/fiction/poemsforarainyday,
+/obj/item/book/bundle/custom_library/fiction/poemsforarainyday,
 /turf/simulated/floor/concrete,
 /area/redgate/fantasy/castle)
 "YD" = (
@@ -8095,7 +8095,7 @@
 /area/redgate/fantasy/gambling)
 "YO" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/reagent_containers/food/snacks/meatpie,
+/obj/item/reagent_containers/food/snacks/meatpie,
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/bakery)
 "YP" = (
@@ -8116,7 +8116,7 @@
 /area/redgate/fantasy/guardhouse)
 "YU" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/surgical/scalpel,
+/obj/item/surgical/scalpel,
 /turf/simulated/floor/concrete,
 /area/redgate/fantasy/arena)
 "Za" = (
@@ -8159,7 +8159,7 @@
 /turf/simulated/floor/wood/alt/panel,
 /area/redgate/fantasy/walls)
 "Zo" = (
-/obj/item/weapon/ore/coal,
+/obj/item/ore/coal,
 /obj/machinery/light/small/torch,
 /turf/simulated/floor/wood,
 /area/redgate/fantasy/mininghouse)
@@ -8218,13 +8218,13 @@
 /area/redgate/fantasy/ranger)
 "ZD" = (
 /obj/structure/bookcase,
-/obj/item/weapon/book/custom_library/fiction/starsandsometimesfallingones,
+/obj/item/book/custom_library/fiction/starsandsometimesfallingones,
 /turf/simulated/floor/wood/alt/panel,
 /area/redgate/fantasy/redgate)
 "ZE" = (
 /obj/structure/table/rack/shelf/wood,
-/obj/item/weapon/ore/coal,
-/obj/item/weapon/ore/coal,
+/obj/item/ore/coal,
+/obj/item/ore/coal,
 /turf/simulated/floor/wood,
 /area/redgate/fantasy/mininghouse)
 "ZH" = (
@@ -8260,7 +8260,7 @@
 /area/redgate/fantasy/jewler)
 "ZS" = (
 /obj/structure/table/rack/shelf/wood,
-/obj/item/weapon/potion_material/golden_scale,
+/obj/item/potion_material/golden_scale,
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/jewler)
 "ZW" = (
@@ -8269,7 +8269,7 @@
 /area/redgate/fantasy/rogue)
 "ZZ" = (
 /obj/structure/table/rack/shelf/wood,
-/obj/item/weapon/toy/snowglobe/snowvillage,
+/obj/item/toy/snowglobe/snowvillage,
 /turf/simulated/floor/wood/alt/parquet,
 /area/redgate/fantasy/house)
 

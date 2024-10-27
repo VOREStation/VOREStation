@@ -13,7 +13,7 @@
 /mob/living/carbon/proc/custom_pain(message, power, force)
 	if((!message || stat || !can_feel_pain() || chem_effects[CE_PAINKILLER] > power) && !synth_cosmetic_pain)
 		return 0
-	message = "<span class='danger'>[message]</span>"
+	message = span_danger("[message]")
 	if(power >= 50)
 		message = "<font size=3>[message]</font>"
 

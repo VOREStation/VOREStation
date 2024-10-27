@@ -3,28 +3,28 @@
 /obj/machinery/gateway/centeraway/mcguffin
 	icon = 'icons/obj/machines/gateway_vr.dmi'
 	calibrated = 0
-	var/mcguffin_type = /obj/item/device/mcguffin/brass //you should be able to change the var to be whatever kind of path you like, so maybe you can use other things on it sometimes
+	var/mcguffin_type = /obj/item/mcguffin/brass //you should be able to change the var to be whatever kind of path you like, so maybe you can use other things on it sometimes
 	var/key //holds a ref to the key we spawned
 
-/obj/machinery/gateway/centeraway/mcguffin/attackby(obj/item/device/W as obj, mob/user as mob)
+/obj/machinery/gateway/centeraway/mcguffin/attackby(obj/item/W as obj, mob/user as mob)
 	if(calibrated && stationgate)
-		to_chat(user, "<span class='info'>The gate is already configured, you should be able to activate it.</span>")
+		to_chat(user, span_info("The gate is already configured, you should be able to activate it."))
 		return
 	else if(!stationgate)
-		to_chat(user, "<span class='danger'>Error: Configuration failed. No destination found... That can't be good.</span>")
+		to_chat(user, span_danger("Error: Configuration failed. No destination found... That can't be good."))
 		return
 
 	if(istype(W,mcguffin_type) && !calibrated)
-		to_chat(user, "<span class='emote'>As the device nears the gateway, mechanical clunks and whirrs can be heard. <br>[span_blue("<b>Configuration successful! </b>")]<br>This gate's systems have been fine tuned. Travel to this gate will now be on target.</span>")
+		to_chat(user, span_npc_emote("As the device nears the gateway, mechanical clunks and whirrs can be heard. <br>[span_blue(span_bold("Configuration successful! "))]<br>This gate's systems have been fine tuned. Travel to this gate will now be on target."))
 		calibrated = 1
 		return
 	else
-		to_chat(user, "<span class='danger'>This device does not seem to interface correctly with the gateway. Perhaps you should try something else.</span>")
+		to_chat(user, span_danger("This device does not seem to interface correctly with the gateway. Perhaps you should try something else."))
 		return
 
 //If you use this kind of gateway you NEED one of these on the map or the players won't be able to leave//
 //You should use the random spawner though so it won't always be in the same place//
-/obj/item/device/mcguffin/brass
+/obj/item/mcguffin/brass
 	name = "mysterious brass device"
 	desc = "A curious object made of what appears to be brass and silver. Its purpose is unclear by looking at it. Perhaps it should be used with something of similar materials?"
 	icon = 'icons/obj/machines/gateway_vr.dmi'
@@ -75,5 +75,5 @@
 	icon = 'icons/obj/machines/gateway_vr.dmi'
 
 //No, you can't digest the key to leave the gateway.
-/obj/item/device/mcguffin/digest_act(var/atom/movable/item_storage = null)
+/obj/item/mcguffin/digest_act(var/atom/movable/item_storage = null)
 	return FALSE

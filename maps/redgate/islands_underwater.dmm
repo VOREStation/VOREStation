@@ -5,7 +5,7 @@
 /area/redgate/islands/ruins)
 "ad" = (
 /obj/structure/bed/padded,
-/obj/item/weapon/bedsheet/red,
+/obj/item/bedsheet/red,
 /turf/simulated/floor/wood/alt,
 /area/redgate/islands/sparerooms)
 "af" = (
@@ -45,12 +45,12 @@
 /area/redgate/islands/sparerooms)
 "bi" = (
 /obj/structure/table/gold,
-/obj/item/weapon/material/knife/ritual,
+/obj/item/material/knife/ritual,
 /turf/simulated/floor/water/underwater/sand,
 /area/redgate/islands/ruins)
 "bl" = (
 /obj/structure/bed/padded,
-/obj/item/weapon/bedsheet/rainbow,
+/obj/item/bedsheet/rainbow,
 /turf/simulated/floor/wood/alt,
 /area/redgate/islands/sparerooms)
 "bm" = (
@@ -64,7 +64,7 @@
 	},
 /area/redgate/islands/ruins)
 "by" = (
-/obj/item/weapon/stool/padded{
+/obj/item/stool/padded{
 	dir = 8
 	},
 /obj/machinery/light/small{
@@ -74,18 +74,18 @@
 /area/redgate/islands/gambling)
 "bZ" = (
 /obj/structure/closet/grave,
-/obj/item/weapon/bone/skull,
-/obj/item/weapon/bone/skull,
-/obj/item/weapon/bone/skull/tajaran,
-/obj/item/weapon/bone/skull/unathi,
-/obj/item/weapon/bone/skull/unknown,
+/obj/item/bone/skull,
+/obj/item/bone/skull,
+/obj/item/bone/skull/tajaran,
+/obj/item/bone/skull/unathi,
+/obj/item/bone/skull/unknown,
 /obj/item/clothing/suit/dress/solgov/fleet/sailor,
 /obj/random/contraband/nofail,
 /turf/simulated/floor/water/underwater,
 /area/redgate/islands/underwater)
 "cl" = (
 /obj/structure/bed/padded,
-/obj/item/weapon/bedsheet/hop,
+/obj/item/bedsheet/hop,
 /turf/simulated/floor/wood/alt,
 /area/redgate/islands/sparerooms)
 "cu" = (
@@ -105,49 +105,49 @@
 /area/redgate/islands/bar)
 "cK" = (
 /obj/structure/closet/walllocker_double/north,
-/obj/item/weapon/spacecasinocash/c1,
-/obj/item/weapon/spacecasinocash/c1,
-/obj/item/weapon/spacecasinocash/c1,
-/obj/item/weapon/spacecasinocash/c1,
-/obj/item/weapon/spacecasinocash/c1,
-/obj/item/weapon/spacecasinocash/c10,
-/obj/item/weapon/spacecasinocash/c10,
-/obj/item/weapon/spacecasinocash/c10,
-/obj/item/weapon/spacecasinocash/c10,
-/obj/item/weapon/spacecasinocash/c10,
-/obj/item/weapon/spacecasinocash/c10,
-/obj/item/weapon/spacecasinocash/c10,
-/obj/item/weapon/spacecasinocash/c10,
-/obj/item/weapon/spacecasinocash/c100,
-/obj/item/weapon/spacecasinocash/c100,
-/obj/item/weapon/spacecasinocash/c100,
-/obj/item/weapon/spacecasinocash/c100,
-/obj/item/weapon/spacecasinocash/c100,
-/obj/item/weapon/spacecasinocash/c100,
-/obj/item/weapon/spacecasinocash/c100,
-/obj/item/weapon/spacecasinocash/c1000,
-/obj/item/weapon/spacecasinocash/c1000,
-/obj/item/weapon/spacecasinocash/c1000,
-/obj/item/weapon/spacecasinocash/c1000,
-/obj/item/weapon/spacecasinocash/c1000,
-/obj/item/weapon/spacecasinocash/c1000,
-/obj/item/weapon/spacecasinocash/c20,
-/obj/item/weapon/spacecasinocash/c20,
-/obj/item/weapon/spacecasinocash/c20,
-/obj/item/weapon/spacecasinocash/c20,
-/obj/item/weapon/spacecasinocash/c200,
-/obj/item/weapon/spacecasinocash/c200,
-/obj/item/weapon/spacecasinocash/c200,
-/obj/item/weapon/spacecasinocash/c200,
-/obj/item/weapon/spacecasinocash/c50,
-/obj/item/weapon/spacecasinocash/c50,
-/obj/item/weapon/spacecasinocash/c50,
-/obj/item/weapon/spacecasinocash/c50,
-/obj/item/weapon/spacecasinocash/c500,
-/obj/item/weapon/spacecasinocash/c500,
-/obj/item/weapon/spacecasinocash/c500,
-/obj/item/weapon/spacecasinocash/c500,
-/obj/item/weapon/spacecasinocash/c500,
+/obj/item/spacecasinocash/c1,
+/obj/item/spacecasinocash/c1,
+/obj/item/spacecasinocash/c1,
+/obj/item/spacecasinocash/c1,
+/obj/item/spacecasinocash/c1,
+/obj/item/spacecasinocash/c10,
+/obj/item/spacecasinocash/c10,
+/obj/item/spacecasinocash/c10,
+/obj/item/spacecasinocash/c10,
+/obj/item/spacecasinocash/c10,
+/obj/item/spacecasinocash/c10,
+/obj/item/spacecasinocash/c10,
+/obj/item/spacecasinocash/c10,
+/obj/item/spacecasinocash/c100,
+/obj/item/spacecasinocash/c100,
+/obj/item/spacecasinocash/c100,
+/obj/item/spacecasinocash/c100,
+/obj/item/spacecasinocash/c100,
+/obj/item/spacecasinocash/c100,
+/obj/item/spacecasinocash/c100,
+/obj/item/spacecasinocash/c1000,
+/obj/item/spacecasinocash/c1000,
+/obj/item/spacecasinocash/c1000,
+/obj/item/spacecasinocash/c1000,
+/obj/item/spacecasinocash/c1000,
+/obj/item/spacecasinocash/c1000,
+/obj/item/spacecasinocash/c20,
+/obj/item/spacecasinocash/c20,
+/obj/item/spacecasinocash/c20,
+/obj/item/spacecasinocash/c20,
+/obj/item/spacecasinocash/c200,
+/obj/item/spacecasinocash/c200,
+/obj/item/spacecasinocash/c200,
+/obj/item/spacecasinocash/c200,
+/obj/item/spacecasinocash/c50,
+/obj/item/spacecasinocash/c50,
+/obj/item/spacecasinocash/c50,
+/obj/item/spacecasinocash/c50,
+/obj/item/spacecasinocash/c500,
+/obj/item/spacecasinocash/c500,
+/obj/item/spacecasinocash/c500,
+/obj/item/spacecasinocash/c500,
+/obj/item/spacecasinocash/c500,
 /turf/simulated/floor/wood/alt,
 /area/redgate/islands/gamblingbackroom)
 "da" = (
@@ -160,7 +160,7 @@
 /turf/simulated/floor/wood/alt,
 /area/redgate/islands/bar)
 "db" = (
-/obj/item/weapon/storage/backpack/cultpack,
+/obj/item/storage/backpack/cultpack,
 /obj/structure/grille/broken/cult,
 /turf/simulated/floor/water/underwater/cult,
 /area/redgate/islands/cult)
@@ -197,14 +197,14 @@
 /turf/simulated/floor/wood/alt,
 /area/redgate/islands/piratecave)
 "dT" = (
-/obj/item/weapon/casino_platinum_chip,
+/obj/item/casino_platinum_chip,
 /turf/simulated/floor/outdoors/rocks/caves,
 /area/redgate/islands/piratecave)
 "eb" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/storage/dicecup,
-/obj/item/weapon/storage/dicecup,
-/obj/item/weapon/storage/box/roulette_balls_fancy,
+/obj/item/storage/dicecup,
+/obj/item/storage/dicecup,
+/obj/item/storage/box/roulette_balls_fancy,
 /turf/simulated/floor/wood/alt,
 /area/redgate/islands/gamblingbackroom)
 "eD" = (
@@ -226,8 +226,8 @@
 /area/redgate/islands/underwater)
 "eX" = (
 /obj/structure/table/steel_reinforced,
-/obj/item/weapon/paper_bin,
-/obj/item/weapon/pen/fountain9,
+/obj/item/paper_bin,
+/obj/item/pen/fountain9,
 /turf/simulated/floor/tiled/dark,
 /area/redgate/islands/meeting)
 "eY" = (
@@ -257,7 +257,7 @@
 /turf/simulated/floor/water/underwater,
 /area/redgate/islands/underwater)
 "fF" = (
-/obj/item/weapon/stool/padded{
+/obj/item/stool/padded{
 	dir = 8
 	},
 /turf/simulated/floor/carpet/bcarpet,
@@ -281,7 +281,7 @@
 /area/redgate/islands/underwater)
 "fU" = (
 /obj/structure/table/gold,
-/obj/item/weapon/coin/gold,
+/obj/item/coin/gold,
 /turf/simulated/floor/water/underwater/sand,
 /area/redgate/islands/ruins)
 "fZ" = (
@@ -425,7 +425,7 @@
 /area/redgate/islands/backroom)
 "iT" = (
 /obj/structure/table/gold,
-/obj/item/weapon/gun/energy/mouseray/metamorphosis/advanced/random,
+/obj/item/gun/energy/mouseray/metamorphosis/advanced/random,
 /turf/simulated/floor/water/underwater/sand,
 /area/redgate/islands/ruins)
 "iV" = (
@@ -456,7 +456,7 @@
 /turf/simulated/floor/outdoors/rocks/caves,
 /area/redgate/islands/underwatercave)
 "jv" = (
-/obj/item/weapon/stool/padded{
+/obj/item/stool/padded{
 	dir = 1
 	},
 /obj/machinery/light/small,
@@ -536,7 +536,7 @@
 /obj/structure/bed/double/padded{
 	color = "#FFD700"
 	},
-/obj/item/weapon/bedsheet/yellowdouble,
+/obj/item/bedsheet/yellowdouble,
 /turf/simulated/floor/water/underwater/sand,
 /area/redgate/islands/ruins)
 "kJ" = (
@@ -553,33 +553,33 @@
 /area/redgate/islands/piratecave)
 "lk" = (
 /obj/structure/closet/walllocker_double/kitchen/west,
-/obj/item/weapon/reagent_containers/food/drinks/drinkingglass,
-/obj/item/weapon/reagent_containers/food/drinks/drinkingglass,
-/obj/item/weapon/reagent_containers/food/drinks/drinkingglass,
-/obj/item/weapon/reagent_containers/food/drinks/drinkingglass,
-/obj/item/weapon/reagent_containers/food/drinks/drinkingglass,
-/obj/item/weapon/reagent_containers/food/drinks/glass2/carafe,
-/obj/item/weapon/reagent_containers/food/drinks/metaglass,
-/obj/item/weapon/reagent_containers/food/drinks/metaglass,
-/obj/item/weapon/reagent_containers/food/drinks/metaglass,
-/obj/item/weapon/reagent_containers/food/drinks/metaglass,
-/obj/item/weapon/reagent_containers/food/drinks/metaglass,
-/obj/item/weapon/reagent_containers/food/drinks/metaglass,
-/obj/item/weapon/reagent_containers/food/drinks/metaglass/metapint,
-/obj/item/weapon/reagent_containers/food/drinks/metaglass/metapint,
-/obj/item/weapon/reagent_containers/food/drinks/metaglass/metapint,
-/obj/item/weapon/reagent_containers/food/drinks/metaglass/metapint,
-/obj/item/weapon/reagent_containers/food/drinks/metaglass/metapint,
-/obj/item/weapon/reagent_containers/food/drinks/metaglass/metapint,
-/obj/item/weapon/reagent_containers/food/drinks/metaglass/metapint,
-/obj/item/weapon/reagent_containers/food/drinks/metaglass/metapint,
-/obj/item/weapon/reagent_containers/food/drinks/drinkingglass/shotglass,
-/obj/item/weapon/reagent_containers/food/drinks/drinkingglass/shotglass,
-/obj/item/weapon/reagent_containers/food/drinks/drinkingglass/shotglass,
-/obj/item/weapon/reagent_containers/food/drinks/drinkingglass/shotglass,
-/obj/item/weapon/reagent_containers/food/drinks/drinkingglass/shotglass,
-/obj/item/weapon/reagent_containers/food/drinks/drinkingglass/shotglass,
-/obj/item/weapon/reagent_containers/food/drinks/drinkingglass/shotglass,
+/obj/item/reagent_containers/food/drinks/drinkingglass,
+/obj/item/reagent_containers/food/drinks/drinkingglass,
+/obj/item/reagent_containers/food/drinks/drinkingglass,
+/obj/item/reagent_containers/food/drinks/drinkingglass,
+/obj/item/reagent_containers/food/drinks/drinkingglass,
+/obj/item/reagent_containers/food/drinks/glass2/carafe,
+/obj/item/reagent_containers/food/drinks/metaglass,
+/obj/item/reagent_containers/food/drinks/metaglass,
+/obj/item/reagent_containers/food/drinks/metaglass,
+/obj/item/reagent_containers/food/drinks/metaglass,
+/obj/item/reagent_containers/food/drinks/metaglass,
+/obj/item/reagent_containers/food/drinks/metaglass,
+/obj/item/reagent_containers/food/drinks/metaglass/metapint,
+/obj/item/reagent_containers/food/drinks/metaglass/metapint,
+/obj/item/reagent_containers/food/drinks/metaglass/metapint,
+/obj/item/reagent_containers/food/drinks/metaglass/metapint,
+/obj/item/reagent_containers/food/drinks/metaglass/metapint,
+/obj/item/reagent_containers/food/drinks/metaglass/metapint,
+/obj/item/reagent_containers/food/drinks/metaglass/metapint,
+/obj/item/reagent_containers/food/drinks/metaglass/metapint,
+/obj/item/reagent_containers/food/drinks/drinkingglass/shotglass,
+/obj/item/reagent_containers/food/drinks/drinkingglass/shotglass,
+/obj/item/reagent_containers/food/drinks/drinkingglass/shotglass,
+/obj/item/reagent_containers/food/drinks/drinkingglass/shotglass,
+/obj/item/reagent_containers/food/drinks/drinkingglass/shotglass,
+/obj/item/reagent_containers/food/drinks/drinkingglass/shotglass,
+/obj/item/reagent_containers/food/drinks/drinkingglass/shotglass,
 /turf/simulated/floor/wood/alt,
 /area/redgate/islands/bar)
 "lq" = (
@@ -604,7 +604,7 @@
 /area/redgate/islands/underwater)
 "lB" = (
 /obj/structure/table/rack/steel,
-/obj/item/weapon/tank/oxygen/yellow,
+/obj/item/tank/oxygen/yellow,
 /obj/item/clothing/mask/gas/half{
 	name = "diving mask"
 	},
@@ -631,18 +631,18 @@
 /area/redgate/islands/robotics)
 "lW" = (
 /obj/structure/closet/secure_closet/personal,
-/obj/item/weapon/reagent_containers/food/snacks/bigbiteburger,
-/obj/item/weapon/reagent_containers/food/snacks/bigbiteburger,
-/obj/item/weapon/reagent_containers/food/snacks/bigbiteburger,
-/obj/item/weapon/reagent_containers/food/snacks/bigbiteburger,
-/obj/item/weapon/reagent_containers/food/snacks/bigbiteburger,
-/obj/item/weapon/reagent_containers/food/snacks/bigbiteburger,
-/obj/item/weapon/reagent_containers/food/snacks/bigbiteburger,
-/obj/item/weapon/reagent_containers/food/snacks/bigbiteburger,
-/obj/item/weapon/reagent_containers/food/snacks/bigbiteburger,
-/obj/item/weapon/reagent_containers/food/snacks/bigbiteburger,
-/obj/item/weapon/reagent_containers/food/snacks/bigbiteburger,
-/obj/item/weapon/reagent_containers/food/snacks/bigbiteburger,
+/obj/item/reagent_containers/food/snacks/bigbiteburger,
+/obj/item/reagent_containers/food/snacks/bigbiteburger,
+/obj/item/reagent_containers/food/snacks/bigbiteburger,
+/obj/item/reagent_containers/food/snacks/bigbiteburger,
+/obj/item/reagent_containers/food/snacks/bigbiteburger,
+/obj/item/reagent_containers/food/snacks/bigbiteburger,
+/obj/item/reagent_containers/food/snacks/bigbiteburger,
+/obj/item/reagent_containers/food/snacks/bigbiteburger,
+/obj/item/reagent_containers/food/snacks/bigbiteburger,
+/obj/item/reagent_containers/food/snacks/bigbiteburger,
+/obj/item/reagent_containers/food/snacks/bigbiteburger,
+/obj/item/reagent_containers/food/snacks/bigbiteburger,
 /obj/item/clothing/under/pants/khaki,
 /turf/simulated/floor/tiled/dark,
 /area/redgate/islands/mess)
@@ -800,7 +800,7 @@
 /area/redgate/islands/shower)
 "qb" = (
 /obj/structure/table/glass,
-/obj/item/weapon/newspaper,
+/obj/item/newspaper,
 /turf/simulated/floor/tiled/dark,
 /area/redgate/islands/mess)
 "qk" = (
@@ -813,7 +813,7 @@
 /area/redgate/islands/underwater)
 "qn" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/material/sword/sabre,
+/obj/item/material/sword/sabre,
 /turf/simulated/floor/wood/alt,
 /area/redgate/islands/piratecave)
 "qo" = (
@@ -863,7 +863,7 @@
 /obj/structure/table/rack{
 	color = "#FFD700"
 	},
-/obj/item/weapon/soap/golden_soap,
+/obj/item/soap/golden_soap,
 /turf/simulated/floor/water/underwater/sand,
 /area/redgate/islands/ruins)
 "rq" = (
@@ -904,7 +904,7 @@
 /area/redgate/islands/ruins)
 "sh" = (
 /obj/structure/table/rack/steel,
-/obj/item/weapon/tank/air,
+/obj/item/tank/air,
 /obj/item/clothing/mask/gas/half{
 	name = "diving mask"
 	},
@@ -919,7 +919,7 @@
 /turf/simulated/floor/outdoors/rocks/caves,
 /area/redgate/islands/piratecave)
 "sF" = (
-/obj/item/weapon/reagent_containers/food/snacks/packaged/vendhotdog,
+/obj/item/reagent_containers/food/snacks/packaged/vendhotdog,
 /turf/simulated/floor/water/underwater,
 /area/redgate/islands/underwater)
 "sH" = (
@@ -930,7 +930,7 @@
 /area/redgate/islands/ruins)
 "sR" = (
 /obj/structure/bed/double/padded,
-/obj/item/weapon/bedsheet/piratedouble,
+/obj/item/bedsheet/piratedouble,
 /turf/simulated/floor/carpet/brown,
 /area/redgate/islands/backroom)
 "tb" = (
@@ -947,7 +947,7 @@
 /turf/simulated/floor/wood/alt,
 /area/redgate/islands/bar)
 "ts" = (
-/obj/item/weapon/pickaxe/gold,
+/obj/item/pickaxe/gold,
 /turf/simulated/floor/water/underwater/sand,
 /area/redgate/islands/ruins)
 "tv" = (
@@ -1004,10 +1004,10 @@
 /area/redgate/islands/lavabase)
 "ud" = (
 /obj/structure/closet,
-/obj/item/weapon/folder/blue,
-/obj/item/weapon/folder/blue,
-/obj/item/weapon/folder/blue,
-/obj/item/weapon/folder/blue,
+/obj/item/folder/blue,
+/obj/item/folder/blue,
+/obj/item/folder/blue,
+/obj/item/folder/blue,
 /turf/simulated/floor/tiled/dark,
 /area/redgate/islands/meeting)
 "uf" = (
@@ -1035,7 +1035,7 @@
 /area/redgate/islands/robotics)
 "us" = (
 /obj/structure/table/woodentable,
-/obj/item/device/flashlight/lamp/green{
+/obj/item/flashlight/lamp/green{
 	pixel_y = 7
 	},
 /turf/simulated/floor/wood/alt,
@@ -1059,7 +1059,7 @@
 /turf/simulated/floor/water/underwater/sand,
 /area/redgate/islands/ruins)
 "uK" = (
-/obj/item/weapon/bluespace_crystal,
+/obj/item/bluespace_crystal,
 /turf/simulated/floor/water/underwater,
 /area/redgate/islands/underwater)
 "uN" = (
@@ -1118,7 +1118,7 @@
 /turf/simulated/floor/carpet/blue2,
 /area/redgate/islands/rig1)
 "wc" = (
-/obj/item/weapon/stool/padded{
+/obj/item/stool/padded{
 	dir = 1
 	},
 /turf/simulated/floor/carpet/bcarpet,
@@ -1152,7 +1152,7 @@
 /turf/simulated/floor/tiled/dark,
 /area/redgate/islands/mess)
 "wG" = (
-/obj/item/weapon/stool/padded{
+/obj/item/stool/padded{
 	dir = 4
 	},
 /obj/machinery/light/small{
@@ -1168,7 +1168,7 @@
 /turf/simulated/floor/greengrid,
 /area/redgate/islands/lavabase)
 "xa" = (
-/obj/item/weapon/material/twohanded/baseballbat/gold,
+/obj/item/material/twohanded/baseballbat/gold,
 /turf/simulated/floor/water/underwater/sand,
 /area/redgate/islands/ruins)
 "xg" = (
@@ -1180,14 +1180,14 @@
 /area/redgate/islands/rig2)
 "xm" = (
 /obj/structure/table/steel_reinforced,
-/obj/item/device/flashlight/lamp,
+/obj/item/flashlight/lamp,
 /turf/simulated/floor/carpet/blue2,
 /area/redgate/islands/rig1)
 "xz" = (
 /obj/structure/table/rack/shelf,
-/obj/item/weapon/storage/mre/random,
-/obj/item/weapon/storage/mre/random,
-/obj/item/weapon/storage/mre/random,
+/obj/item/storage/mre/random,
+/obj/item/storage/mre/random,
+/obj/item/storage/mre/random,
 /turf/simulated/floor/wood/alt,
 /area/redgate/islands/storeroom)
 "xC" = (
@@ -1218,7 +1218,7 @@
 /area/redgate/islands/rig2)
 "yd" = (
 /obj/machinery/optable,
-/obj/item/device/robotanalyzer,
+/obj/item/robotanalyzer,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/redgate/islands/robotics)
 "yl" = (
@@ -1237,7 +1237,7 @@
 /area/redgate/islands/gamblingbackroom)
 "yv" = (
 /obj/structure/bed/double/padded,
-/obj/item/weapon/bedsheet/bluedouble,
+/obj/item/bedsheet/bluedouble,
 /turf/simulated/floor/carpet/blue2,
 /area/redgate/islands/rig1)
 "yB" = (
@@ -1287,7 +1287,7 @@
 /turf/simulated/wall/cult,
 /area/redgate/islands/cult)
 "zE" = (
-/obj/item/weapon/reagent_containers/food/snacks/old/hotdog,
+/obj/item/reagent_containers/food/snacks/old/hotdog,
 /turf/simulated/floor/water/underwater,
 /area/redgate/islands/underwater)
 "zK" = (
@@ -1322,10 +1322,10 @@
 /area/redgate/islands/underwater)
 "Ai" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/storage/pill_bottle/dice,
-/obj/item/weapon/storage/pill_bottle/dice,
-/obj/item/weapon/storage/pill_bottle/dice_nerd,
-/obj/item/weapon/storage/pill_bottle/dice_nerd,
+/obj/item/storage/pill_bottle/dice,
+/obj/item/storage/pill_bottle/dice,
+/obj/item/storage/pill_bottle/dice_nerd,
+/obj/item/storage/pill_bottle/dice_nerd,
 /obj/machinery/light/small{
 	dir = 8
 	},
@@ -1362,7 +1362,7 @@
 /area/redgate/islands/ruins)
 "Bu" = (
 /obj/structure/table/woodentable,
-/obj/item/device/flashlight/lamp/green{
+/obj/item/flashlight/lamp/green{
 	pixel_y = 7
 	},
 /turf/simulated/floor/carpet/brown,
@@ -1414,7 +1414,7 @@
 /area/redgate/islands/underwater)
 "Cs" = (
 /obj/structure/table/rack/steel,
-/obj/item/weapon/tank/oxygen/yellow,
+/obj/item/tank/oxygen/yellow,
 /obj/item/clothing/mask/gas/half{
 	name = "diving mask"
 	},
@@ -1444,7 +1444,7 @@
 /turf/simulated/floor/water/underwater/wood,
 /area/redgate/islands/underwater)
 "CM" = (
-/obj/item/weapon/ore/gold,
+/obj/item/ore/gold,
 /turf/simulated/floor/water/underwater/sand,
 /area/redgate/islands/ruins)
 "CN" = (
@@ -1482,7 +1482,7 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/redgate/islands/lavabase)
 "DF" = (
-/obj/item/weapon/material/shard/titaniumglass,
+/obj/item/material/shard/titaniumglass,
 /turf/simulated/floor/water/underwater,
 /area/redgate/islands/underwater)
 "DJ" = (
@@ -1491,7 +1491,7 @@
 /turf/simulated/floor/tiled/dark,
 /area/redgate/islands/mess)
 "DK" = (
-/obj/item/weapon/coin/gold,
+/obj/item/coin/gold,
 /turf/simulated/floor/water/underwater/sand,
 /area/redgate/islands/ruins)
 "DM" = (
@@ -1512,7 +1512,7 @@
 /turf/simulated/floor/water/underwater,
 /area/redgate/islands/underwater)
 "DW" = (
-/obj/item/weapon/reagent_containers/food/snacks/packaged/meatration,
+/obj/item/reagent_containers/food/snacks/packaged/meatration,
 /turf/simulated/floor/outdoors/rocks/caves,
 /area/redgate/islands/underwatercave)
 "DZ" = (
@@ -1625,7 +1625,7 @@
 /area/redgate/islands/underwatercave)
 "Gv" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/reagent_containers/food/drinks/shaker,
+/obj/item/reagent_containers/food/drinks/shaker,
 /turf/simulated/floor/wood/alt,
 /area/redgate/islands/bar)
 "Gz" = (
@@ -1641,7 +1641,7 @@
 /area/redgate/islands/lavadorm)
 "GE" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/gun/projectile/pirate,
+/obj/item/gun/projectile/pirate,
 /turf/simulated/floor/wood/alt,
 /area/redgate/islands/piratecave)
 "GL" = (
@@ -1772,7 +1772,7 @@
 "KV" = (
 /obj/structure/table/woodentable,
 /obj/item/ammo_magazine/s45/rubber,
-/obj/item/weapon/gun/projectile/revolver/detective45,
+/obj/item/gun/projectile/revolver/detective45,
 /turf/simulated/floor/wood/alt,
 /area/redgate/islands/backroom)
 "KX" = (
@@ -1789,13 +1789,13 @@
 /turf/simulated/floor/water/underwater,
 /area/redgate/islands/underwater)
 "Lt" = (
-/obj/item/weapon/paper/alien,
+/obj/item/paper/alien,
 /turf/simulated/floor/water/underwater,
 /area/redgate/islands/underwater)
 "Lu" = (
 /obj/structure/table/rack/shelf/steel,
-/obj/item/weapon/towel/random,
-/obj/item/weapon/towel/random,
+/obj/item/towel/random,
+/obj/item/towel/random,
 /obj/random/soap,
 /turf/simulated/floor/tiled/old_tile,
 /area/redgate/islands/shower)
@@ -1806,7 +1806,7 @@
 	pixel_y = 21
 	},
 /obj/structure/bed/double/padded,
-/obj/item/weapon/bedsheet/bluedouble,
+/obj/item/bedsheet/bluedouble,
 /obj/machinery/light_switch{
 	dir = 8;
 	pixel_x = 25;
@@ -1871,7 +1871,7 @@
 /turf/simulated/floor/water/underwater,
 /area/redgate/islands/underwater)
 "Mq" = (
-/obj/item/weapon/stool/padded{
+/obj/item/stool/padded{
 	dir = 4
 	},
 /obj/effect/floor_decal/spline/plain{
@@ -1903,7 +1903,7 @@
 /turf/simulated/floor/outdoors/rocks/caves,
 /area/redgate/islands/piratecave)
 "MO" = (
-/obj/item/weapon/lipstick/random,
+/obj/item/lipstick/random,
 /turf/simulated/floor/water/underwater,
 /area/redgate/islands/underwater)
 "MU" = (
@@ -1966,7 +1966,7 @@
 /area/redgate/islands/underwater)
 "Oz" = (
 /obj/structure/table/gold,
-/obj/item/weapon/ore/gold,
+/obj/item/ore/gold,
 /turf/simulated/floor/water/underwater/sand,
 /area/redgate/islands/ruins)
 "OA" = (
@@ -2068,7 +2068,7 @@
 /turf/simulated/floor/carpet/brown,
 /area/redgate/islands/gambling)
 "QF" = (
-/obj/item/weapon/handcuffs/cable/plantfiber,
+/obj/item/handcuffs/cable/plantfiber,
 /turf/simulated/floor/wood/alt,
 /area/redgate/islands/piratecave)
 "QM" = (
@@ -2131,7 +2131,7 @@
 /area/redgate/islands/underwater)
 "RF" = (
 /obj/structure/bed/double/padded,
-/obj/item/weapon/bedsheet/rddouble,
+/obj/item/bedsheet/rddouble,
 /turf/simulated/floor/carpet/purcarpet,
 /area/redgate/islands/lavadorm)
 "RJ" = (
@@ -2143,7 +2143,7 @@
 /obj/item/clothing/accessory/jacket/gambler,
 /obj/item/clothing/under/suit_jacket/gambler,
 /obj/item/clothing/shoes/flats,
-/obj/item/weapon/gun/energy/sickshot,
+/obj/item/gun/energy/sickshot,
 /turf/simulated/floor/wood/alt,
 /area/redgate/islands/gamblingbackroom)
 "RR" = (
@@ -2204,7 +2204,7 @@
 /turf/simulated/floor/water/underwater,
 /area/redgate/islands/underwater)
 "Su" = (
-/obj/item/weapon/aliencoin/gold,
+/obj/item/aliencoin/gold,
 /turf/simulated/floor/water/underwater,
 /area/redgate/islands/underwater)
 "Sx" = (
@@ -2271,7 +2271,7 @@
 /turf/simulated/floor/carpet/bcarpet,
 /area/redgate/islands/gambling)
 "To" = (
-/obj/item/weapon/stool/padded,
+/obj/item/stool/padded,
 /turf/simulated/floor/carpet/bcarpet,
 /area/redgate/islands/gambling)
 "Tt" = (
@@ -2331,7 +2331,7 @@
 /area/redgate/islands/underwatercave)
 "Um" = (
 /obj/structure/table/steel_reinforced,
-/obj/item/device/flashlight/lamp,
+/obj/item/flashlight/lamp,
 /turf/simulated/floor/carpet/blue2,
 /area/redgate/islands/rig2)
 "Uo" = (
@@ -2351,7 +2351,7 @@
 /area/redgate/islands/underwater)
 "Uy" = (
 /obj/structure/bed/padded,
-/obj/item/weapon/bedsheet/purple,
+/obj/item/bedsheet/purple,
 /turf/simulated/floor/wood/alt,
 /area/redgate/islands/sparerooms)
 "UC" = (
@@ -2366,7 +2366,7 @@
 /turf/simulated/floor/water/underwater,
 /area/redgate/islands/underwater)
 "UI" = (
-/obj/item/weapon/paper/sec_ticket,
+/obj/item/paper/sec_ticket,
 /turf/simulated/floor/water/underwater,
 /area/redgate/islands/underwater)
 "UO" = (
@@ -2444,11 +2444,11 @@
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/redgate/islands/robotics)
 "Wq" = (
-/obj/item/weapon/paperplane,
+/obj/item/paperplane,
 /turf/simulated/floor/tiled/dark,
 /area/redgate/islands/meeting)
 "Wx" = (
-/obj/item/weapon/material/knife/tacknife/boot,
+/obj/item/material/knife/tacknife/boot,
 /turf/simulated/floor/water/underwater,
 /area/redgate/islands/underwater)
 "WB" = (
@@ -2470,13 +2470,13 @@
 /turf/simulated/floor/wood/alt,
 /area/redgate/islands/piratecave)
 "Xk" = (
-/obj/item/weapon/stool/padded{
+/obj/item/stool/padded{
 	dir = 8
 	},
 /turf/simulated/floor/carpet/brown,
 /area/redgate/islands/gambling)
 "Xl" = (
-/obj/item/weapon/stool/padded{
+/obj/item/stool/padded{
 	dir = 1
 	},
 /turf/simulated/floor/wood/alt,
@@ -2495,7 +2495,7 @@
 /turf/simulated/floor/tiled/eris/dark/techfloor,
 /area/redgate/islands/divingbay)
 "XI" = (
-/obj/item/weapon/tank/air,
+/obj/item/tank/air,
 /turf/simulated/floor/outdoors/rocks/caves,
 /area/redgate/islands/underwatercave)
 "XM" = (
@@ -2505,9 +2505,9 @@
 /area/redgate/islands/bar)
 "XS" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/deck/cards/casino,
-/obj/item/weapon/deck/cards/casino,
-/obj/item/weapon/deck/cards/casino,
+/obj/item/deck/cards/casino,
+/obj/item/deck/cards/casino,
+/obj/item/deck/cards/casino,
 /turf/simulated/floor/wood/alt,
 /area/redgate/islands/gamblingbackroom)
 "XU" = (
@@ -2529,7 +2529,7 @@
 /area/redgate/islands/bar)
 "XZ" = (
 /obj/structure/table/gold,
-/obj/item/weapon/reagent_containers/food/drinks/golden_cup,
+/obj/item/reagent_containers/food/drinks/golden_cup,
 /turf/simulated/floor/water/underwater/sand,
 /area/redgate/islands/ruins)
 "Yd" = (

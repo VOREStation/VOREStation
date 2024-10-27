@@ -1,21 +1,24 @@
-/obj/item/device/tvcamera
+/obj/item/tvcamera
 	name = "press camera drone"
 	desc = "A Ward-Takahashi EyeBuddy media streaming hovercam. Weapon of choice for war correspondents and reality show cameramen."
+	icon = 'icons/obj/device.dmi'
 	icon_state = "camcorder"
 	item_state = "camcorder"
 	w_class = ITEMSIZE_LARGE
 	slot_flags = SLOT_BELT
 	var/channel = "NCS Northern Star News Feed"
 	var/obj/machinery/camera/network/thunder/camera
-	var/obj/item/device/radio/radio
+	var/obj/item/radio/radio
 	var/datum/weakref/showing
 	var/showing_name
+	pickup_sound = 'sound/items/pickup/device.ogg'
+	drop_sound = 'sound/items/drop/device.ogg'
 
-/obj/item/device/tvcamera/New()
+/obj/item/tvcamera/New()
 	..()
 	listening_objects += src
 
-/obj/item/device/tvcamera/Destroy()
+/obj/item/tvcamera/Destroy()
 	listening_objects -= src
 	qdel(camera)
 	qdel(radio)
@@ -23,12 +26,12 @@
 	radio = null
 	..()
 
-/obj/item/device/tvcamera/examine()
+/obj/item/tvcamera/examine()
 	. = ..()
 	. += "Video feed is [camera.status ? "on" : "off"]"
 	. += "Audio feed is [radio.broadcasting ? "on" : "off"]"
 
-/obj/item/device/tvcamera/Initialize()
+/obj/item/tvcamera/Initialize()
 	. = ..()
 	camera = new(src)
 	camera.c_tag = channel
@@ -40,16 +43,16 @@
 	radio.icon_state = src.icon_state
 	update_icon()
 
-/obj/item/device/tvcamera/hear_talk(mob/M, list/message_pieces, verb)
+/obj/item/tvcamera/hear_talk(mob/M, list/message_pieces, verb)
 	radio.hear_talk(M, message_pieces, verb)
 	. = ..()
 
-/obj/item/device/tvcamera/attack_self(mob/user)
+/obj/item/tvcamera/attack_self(mob/user)
 	add_fingerprint(user)
 	user.set_machine(src)
 	show_ui(user)
 
-/obj/item/device/tvcamera/proc/show_ui(mob/user)
+/obj/item/tvcamera/proc/show_ui(mob/user)
 	var/dat = list()
 	dat += "Channel name is: <a href='?src=\ref[src];channel=1'>[channel ? channel : "unidentified broadcast"]</a><br>"
 	dat += "Video streaming is <a href='?src=\ref[src];video=1'>[camera.status ? "on" : "off"]</a><br>"
@@ -61,7 +64,7 @@
 	popup.set_content(jointext(dat,null))
 	popup.open()
 
-/obj/item/device/tvcamera/Topic(bred, href_list, state = GLOB.tgui_physical_state)
+/obj/item/tvcamera/Topic(bred, href_list, state = GLOB.tgui_physical_state)
 	if(..())
 		return 1
 	if(href_list["channel"])
@@ -70,14 +73,14 @@
 		if(nc)
 			channel = nc
 			camera.c_tag = channel
-			to_chat(usr, "<span class='notice'>New channel name - '[channel]' is set</span>")
+			to_chat(usr, span_notice("New channel name - '[channel]' is set"))
 	if(href_list["video"])
 		camera.set_status(!camera.status)
 		if(camera.status)
-			to_chat(usr,"<span class='notice'>Video streaming activated. Broadcasting on channel '[channel]'</span>")
+			to_chat(usr,span_notice("Video streaming activated. Broadcasting on channel '[channel]'"))
 			show_tvs(loc)
 		else
-			to_chat(usr,"<span class='notice'>Video streaming deactivated.</span>")
+			to_chat(usr,span_notice("Video streaming deactivated."))
 			hide_tvs()
 			for(var/obj/machinery/computer/security/telescreen/entertainment/ES as anything in GLOB.entertainment_screens)
 				ES.stop_showing()
@@ -85,13 +88,13 @@
 	if(href_list["sound"])
 		radio.ToggleBroadcast()
 		if(radio.broadcasting)
-			to_chat(usr,"<span class='notice'>Audio streaming activated. Broadcasting on frequency [format_frequency(radio.frequency)].</span>")
+			to_chat(usr,span_notice("Audio streaming activated. Broadcasting on frequency [format_frequency(radio.frequency)]."))
 		else
-			to_chat(usr,"<span class='notice'>Audio streaming deactivated.</span>")
+			to_chat(usr,span_notice("Audio streaming deactivated."))
 	if(!href_list["close"])
 		attack_self(usr)
 
-/obj/item/device/tvcamera/proc/show_tvs(atom/thing)
+/obj/item/tvcamera/proc/show_tvs(atom/thing)
 	if(showing)
 		hide_tvs(showing)
 
@@ -102,7 +105,7 @@
 
 	START_PROCESSING(SSobj, src)
 
-/obj/item/device/tvcamera/proc/hide_tvs()
+/obj/item/tvcamera/proc/hide_tvs()
 	if(!showing)
 		return
 	for(var/obj/machinery/computer/security/telescreen/entertainment/ES as anything in GLOB.entertainment_screens)
@@ -111,20 +114,20 @@
 	showing = null
 	showing_name = null
 
-/obj/item/device/tvcamera/Moved(atom/old_loc, direction, forced = FALSE, movetime)
+/obj/item/tvcamera/Moved(atom/old_loc, direction, forced = FALSE, movetime)
 	. = ..()
 	if(camera.status && loc != old_loc)
 		show_tvs(loc)
 
-/obj/item/device/tvcamera/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
+/obj/item/tvcamera/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
 	. = ..()
 	if(camera.status && !isturf(target))
 		show_tvs(target)
-		user.visible_message("<b>[user]</b> aims [src] at [target].", "You aim [src] at [target].")
+		user.visible_message(span_infoplain(span_bold("[user]") + " aims [src] at [target]."), span_info("You aim [src] at [target]."))
 		if(user.machine == src)
 			show_ui(user) // refresh the UI
 
-/obj/item/device/tvcamera/process()
+/obj/item/tvcamera/process()
 	if(!showing)
 		return PROCESS_KILL
 
@@ -132,10 +135,11 @@
 	if(!A || QDELETED(A))
 		show_tvs(loc)
 
-	if(get_dist(get_turf(src), get_turf(A)) > 5)
+	if(get_dist(get_turf(src), get_turf(A)) > 0) // No realtime updates
 		show_tvs(loc)
+		update_feed()
 
-/obj/item/device/tvcamera/update_icon()
+/obj/item/tvcamera/update_icon()
 	..()
 	if(camera.status)
 		icon_state = "camcorder_on"
@@ -149,22 +153,25 @@
 		H.update_inv_l_hand()
 		H.update_inv_belt()
 
+/obj/item/tvcamera/proc/update_feed()
+	if(camera.status)
+		SEND_SIGNAL(camera, COMSIG_OBSERVER_MOVED) // Forward the movement signal
 
 //Assembly by roboticist
 
-/obj/item/robot_parts/head/attackby(var/obj/item/device/assembly/S, mob/user as mob)
-	if(!istype(S, /obj/item/device/assembly/infra))
+/obj/item/robot_parts/head/attackby(var/obj/item/assembly/S, mob/user as mob)
+	if(!istype(S, /obj/item/assembly/infra))
 		..()
 		return
-	var/obj/item/weapon/TVAssembly/A = new(user)
+	var/obj/item/TVAssembly/A = new(user)
 	qdel(S)
 	user.put_in_hands(A)
-	to_chat(user, "<span class='notice'>You add the infrared sensor to the robot head.</span>")
+	to_chat(user, span_notice("You add the infrared sensor to the robot head."))
 	user.drop_from_inventory(src)
 	qdel(src)
 
 
-/obj/item/weapon/TVAssembly
+/obj/item/TVAssembly
 	name = "\improper TV Camera Assembly"
 	desc = "A robotic head with an infrared sensor inside."
 	icon = 'icons/obj/robot_parts.dmi'
@@ -173,38 +180,38 @@
 	var/buildstep = 0
 	w_class = ITEMSIZE_LARGE
 
-/obj/item/weapon/TVAssembly/attackby(W, mob/user)
+/obj/item/TVAssembly/attackby(W, mob/user)
 	switch(buildstep)
 		if(0)
 			if(istype(W, /obj/item/robot_parts/robot_component/camera))
 				var/obj/item/robot_parts/robot_component/camera/CA = W
-				to_chat(user, "<span class='notice'>You add the camera module to [src]</span>")
+				to_chat(user, span_notice("You add the camera module to [src]"))
 				user.drop_item()
 				qdel(CA)
 				desc = "This TV camera assembly has a camera module."
 				buildstep++
 		if(1)
-			if(istype(W, /obj/item/device/taperecorder))
-				var/obj/item/device/taperecorder/T = W
+			if(istype(W, /obj/item/taperecorder))
+				var/obj/item/taperecorder/T = W
 				user.drop_item()
 				qdel(T)
 				buildstep++
-				to_chat(user, "<span class='notice'>You add the tape recorder to [src]</span>")
+				to_chat(user, span_notice("You add the tape recorder to [src]"))
 		if(2)
 			if(istype(W, /obj/item/stack/cable_coil))
 				var/obj/item/stack/cable_coil/C = W
 				if(!C.use(3))
-					to_chat(user, "<span class='notice'>You need six cable coils to wire the devices.</span>")
+					to_chat(user, span_notice("You need six cable coils to wire the devices."))
 					..()
 					return
 				C.use(3)
 				buildstep++
-				to_chat(user, "<span class='notice'>You wire the assembly</span>")
+				to_chat(user, span_notice("You wire the assembly"))
 				desc = "This TV camera assembly has wires sticking out"
 				return
 		if(3)
-			if(istype(W, /obj/item/weapon/tool/wirecutters))
-				to_chat(user, "<span class='notice'> You trim the wires.</span>")
+			if(istype(W, /obj/item/tool/wirecutters))
+				to_chat(user, span_notice(" You trim the wires."))
 				buildstep++
 				desc = "This TV camera assembly needs casing."
 				return
@@ -213,9 +220,9 @@
 				var/obj/item/stack/material/steel/S = W
 				buildstep++
 				S.use(1)
-				to_chat(user, "<span class='notice'>You encase the assembly in a Ward-Takeshi casing.</span>")
+				to_chat(user, span_notice("You encase the assembly in a Ward-Takeshi casing."))
 				var/turf/T = get_turf(src)
-				new /obj/item/device/tvcamera(T)
+				new /obj/item/tvcamera(T)
 				user.drop_from_inventory(src)
 				qdel(src)
 				return

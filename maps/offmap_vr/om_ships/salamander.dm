@@ -1,5 +1,5 @@
 // Compile in the map for CI testing if we're testing compileability of all the maps
-#if MAP_TEST
+#ifdef MAP_TEST
 #include "salamander.dmm"
 #endif
 
@@ -7,14 +7,14 @@
 /datum/map_template/om_ships/salamander
 	name = "OM Ship - Salamander Corvette"
 	desc = "A medium multirole spacecraft."
-	mappath = 'salamander.dmm'
+	mappath = "maps/offmap_vr/om_ships/salamander.dmm"
 	annihilate = TRUE
 
 // Map template for spawning the shuttle
 /datum/map_template/om_ships/salamander_wreck
 	name = "OM Ship - Salamander Corvette Wreckage"
 	desc = "A medium multirole spacecraft, or at least what's left of it."
-	mappath = 'salamander_wreck.dmm'
+	mappath = "maps/offmap_vr/om_ships/salamander_wreck.dmm"
 	annihilate = TRUE
 
 // The shuttle's area(s)
@@ -189,7 +189,7 @@
 	shuttle = "Salamander Wreckage"
 	known = FALSE
 
-/obj/item/weapon/paper/unity_notice
+/obj/item/paper/unity_notice
 	name = "hastily-scrawled missive"
 	info = {"<i>The writing on this scrap of paper is barely legible. Whoever wrote it was clearly in a hurry.</i><br>\
 <br>\

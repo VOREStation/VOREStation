@@ -32,8 +32,8 @@
 // The boost is lost if the commander is too far away or dies.
 /datum/modifier/aura/hivebot_commander_buff
 	name = "Strategicals"
-	on_created_text = "<span class='notice'>Signal established with commander. Optimizating combat performance...</span>"
-	on_expired_text = "<span class='warning'>Lost signal to commander. Optimization halting.</span>"
+	on_created_text = span_notice("Signal established with commander. Optimizating combat performance...")
+	on_expired_text = span_warning("Lost signal to commander. Optimization halting.")
 	stacks = MODIFIER_STACK_FORBID
 	aura_max_distance = 4
 	mob_overlay_state = "signal_blue"
@@ -82,8 +82,8 @@
 		if(IIsAlly(SM)) // Don't resupply enemies.
 			if(!isnull(SM.special_attack_charges) && SM.special_attack_charges < initial(SM.special_attack_charges))
 				SM.special_attack_charges += 1
-				to_chat(SM, span("notice", "\The [src] has resupplied you, and you can use your special ability one additional time."))
-				to_chat(src, span("notice", "You have resupplied \the [SM]."))
+				to_chat(SM, span_notice("\The [src] has resupplied you, and you can use your special ability one additional time."))
+				to_chat(src, span_notice("You have resupplied \the [SM]."))
 				last_resupply = world.time
 				break // Only one resupply per pulse.
 
@@ -104,7 +104,7 @@
 
 /mob/living/simple_mob/mechanical/hivebot/support/harry/death()
 	..()
-	visible_message(span("Connection... terminated... Sweet Release... obtained.","\The [src] blows apart!"))
+	visible_message(span_warning("Connection... terminated... Sweet Release... obtained."),span_danger("\The [src] blows apart!"))
 	new /obj/effect/decal/cleanable/blood/gibs/robot(src.loc)
 	var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
 	s.set_up(3, 1, src)

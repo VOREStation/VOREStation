@@ -17,8 +17,8 @@
 				if(prob(stun_power * 10)) // Try an electric shock.
 					power_charge = max(0, power_charge - 3)
 					L.visible_message(
-						span("danger", "\The [src] has shocked \the [L]!"),
-						span("danger", "\The [src] has shocked you!")
+						span_danger("\The [src] has shocked \the [L]!"),
+						span_danger("\The [src] has shocked you!")
 						)
 					playsound(src, 'sound/weapons/Egloves.ogg', 75, 1)
 					L.Weaken(4)
@@ -38,8 +38,8 @@
 
 				else if(prob(20)) // Try to do a regular disarm attack.
 					L.visible_message(
-						span("danger", "\The [src] has pounced at \the [L]!"),
-						span("danger", "\The [src] has pounced at you!")
+						span_danger("\The [src] has pounced at \the [L]!"),
+						span_danger("\The [src] has pounced at you!")
 						)
 					playsound(src, 'sound/weapons/thudswoosh.ogg', 75, 1)
 					L.Weaken(2)
@@ -50,8 +50,8 @@
 
 				else // Failed to do anything this time.
 					L.visible_message(
-						span("warning", "\The [src] has tried to pounce at \the [L]!"),
-						span("warning", "\The [src] has tried to pounce at you!")
+						span_warning("\The [src] has tried to pounce at \the [L]!"),
+						span_warning("\The [src] has tried to pounce at you!")
 						)
 					playsound(src, 'sound/weapons/punchmiss.ogg', 75, 1)
 					do_attack_animation(L)

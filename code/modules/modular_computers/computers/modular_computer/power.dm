@@ -1,6 +1,6 @@
 /obj/item/modular_computer/proc/power_failure(var/malfunction = 0)
 	if(enabled) // Shut down the computer
-		visible_message("<span class='danger'>\The [src]'s screen flickers briefly and then goes dark.</span>")
+		visible_message(span_danger("\The [src]'s screen flickers briefly and then goes dark."))
 		if(active_program)
 			active_program.event_powerfailure(0)
 		for(var/datum/computer_file/program/PRG in idle_threads)
@@ -44,7 +44,7 @@
 // Handles power-related things, such as battery interaction, recharging, shutdown when it's discharged
 /obj/item/modular_computer/proc/handle_power()
 	var/power_usage = screen_on ? base_active_power_usage : base_idle_power_usage
-	for(var/obj/item/weapon/computer_hardware/H in get_all_components())
+	for(var/obj/item/computer_hardware/H in get_all_components())
 		if(H.enabled)
 			power_usage += H.power_usage
 	last_power_usage = power_usage

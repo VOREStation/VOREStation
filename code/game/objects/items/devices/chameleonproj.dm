@@ -1,5 +1,6 @@
-/obj/item/device/chameleon
+/obj/item/chameleon
 	name = "chameleon projector"
+	icon = 'icons/obj/device.dmi'
 	icon_state = "shield0"
 	slot_flags = SLOT_BELT
 	item_state = "electronic"
@@ -15,37 +16,40 @@
 	var/saved_icon_state = "cigbutt"
 	var/saved_overlays
 
-/obj/item/device/chameleon/dropped()
+	pickup_sound = 'sound/items/pickup/device.ogg'
+	drop_sound = 'sound/items/drop/device.ogg'
+
+/obj/item/chameleon/dropped()
 	disrupt()
 	..()
 
-/obj/item/device/chameleon/equipped()
+/obj/item/chameleon/equipped()
 	..()
 	disrupt()
 	..()
 
-/obj/item/device/chameleon/attack_self()
+/obj/item/chameleon/attack_self()
 	toggle()
 
-/obj/item/device/chameleon/afterattack(atom/target, mob/user , proximity)
+/obj/item/chameleon/afterattack(atom/target, mob/user , proximity)
 	if(!proximity) return
 	if(!active_dummy)
-		if(istype(target,/obj/item) && !istype(target, /obj/item/weapon/disk/nuclear))
+		if(istype(target,/obj/item) && !istype(target, /obj/item/disk/nuclear))
 			playsound(src, 'sound/weapons/flash.ogg', 100, 1, -6)
-			to_chat(user, "<span class='notice'>Scanned [target].</span>")
+			to_chat(user, span_notice("Scanned [target]."))
 			saved_item = target.type
 			saved_icon = target.icon
 			saved_icon_state = target.icon_state
 			saved_overlays = target.overlays
 
-/obj/item/device/chameleon/proc/toggle()
+/obj/item/chameleon/proc/toggle()
 	if(!can_use || !saved_item) return
 	if(active_dummy)
 		eject_all()
 		playsound(src, 'sound/effects/pop.ogg', 100, 1, -6)
 		qdel(active_dummy)
 		active_dummy = null
-		to_chat(usr, "<span class='notice'>You deactivate the [src].</span>")
+		to_chat(usr, span_notice("You deactivate the [src]."))
 		var/obj/effect/overlay/T = new /obj/effect/overlay(get_turf(src))
 		T.icon = 'icons/effects/effects.dmi'
 		flick("emppulse",T)
@@ -57,13 +61,13 @@
 		var/obj/effect/dummy/chameleon/C = new /obj/effect/dummy/chameleon(usr.loc)
 		C.activate(O, usr, saved_icon, saved_icon_state, saved_overlays, src)
 		qdel(O)
-		to_chat(usr, "<span class='notice'>You activate the [src].</span>")
+		to_chat(usr, span_notice("You activate the [src]."))
 		var/obj/effect/overlay/T = new/obj/effect/overlay(get_turf(src))
 		T.icon = 'icons/effects/effects.dmi'
 		flick("emppulse",T)
 		spawn(8) qdel(T)
 
-/obj/item/device/chameleon/proc/disrupt(var/delete_dummy = 1)
+/obj/item/chameleon/proc/disrupt(var/delete_dummy = 1)
 	if(active_dummy)
 		var/datum/effect/effect/system/spark_spread/spark_system = new /datum/effect/effect/system/spark_spread
 		spark_system.set_up(5, 0, src)
@@ -76,7 +80,7 @@
 		can_use = 0
 		spawn(50) can_use = 1
 
-/obj/item/device/chameleon/proc/eject_all()
+/obj/item/chameleon/proc/eject_all()
 	for(var/atom/movable/A in active_dummy)
 		A.loc = active_dummy.loc
 		if(ismob(A))
@@ -89,9 +93,9 @@
 	density = FALSE
 	anchored = TRUE
 	var/can_move = 1
-	var/obj/item/device/chameleon/master = null
+	var/obj/item/chameleon/master = null
 
-/obj/effect/dummy/chameleon/proc/activate(var/obj/O, var/mob/M, new_icon, new_iconstate, new_overlays, var/obj/item/device/chameleon/C)
+/obj/effect/dummy/chameleon/proc/activate(var/obj/O, var/mob/M, new_icon, new_iconstate, new_overlays, var/obj/item/chameleon/C)
 	name = O.name
 	desc = O.desc
 	icon = new_icon
@@ -104,22 +108,22 @@
 
 /obj/effect/dummy/chameleon/attackby()
 	for(var/mob/M in src)
-		to_chat(M, "<span class='warning'>Your chameleon-projector deactivates.</span>")
+		to_chat(M, span_warning("Your chameleon-projector deactivates."))
 	master.disrupt()
 
 /obj/effect/dummy/chameleon/attack_hand()
 	for(var/mob/M in src)
-		to_chat(M, "<span class='warning'>Your chameleon-projector deactivates.</span>")
+		to_chat(M, span_warning("Your chameleon-projector deactivates."))
 	master.disrupt()
 
 /obj/effect/dummy/chameleon/ex_act()
 	for(var/mob/M in src)
-		to_chat(M, "<span class='warning'>Your chameleon-projector deactivates.</span>")
+		to_chat(M, span_warning("Your chameleon-projector deactivates."))
 	master.disrupt()
 
 /obj/effect/dummy/chameleon/bullet_act()
 	for(var/mob/M in src)
-		to_chat(M, "<span class='warning'>Your chameleon-projector deactivates.</span>")
+		to_chat(M, span_warning("Your chameleon-projector deactivates."))
 	..()
 	master.disrupt()
 

@@ -80,3 +80,11 @@ export const MessengerEmbeds: FeatureToggle = {
     'When enabled, PDAs and Communicators will attempt to embed links from discord & imgur.',
   component: CheckboxInput,
 };
+
+export const AutoPunctuation: FeatureToggle = {
+  name: 'Automatic Punctuation',
+  category: 'GAMEPLAY',
+  description:
+    'When enabled, if your message ends in a letter with no punctuation, a period will be added.',
+  component: CheckboxInput,
+};

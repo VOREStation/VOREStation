@@ -5,11 +5,11 @@
 	unharmed."
 	spell_power_desc = "Radius is increased."
 	cost = 150
-	obj_path = /obj/item/weapon/spell/aura/unstable
+	obj_path = /obj/item/spell/aura/unstable
 	ability_icon_state = "tech_unstableaura"
 	category = OFFENSIVE_SPELLS
 
-/obj/item/weapon/spell/aura/unstable
+/obj/item/spell/aura/unstable
 	name = "degen aura"
 	desc = "Breaks down your entities from the inside."
 	icon_state = "generic"
@@ -17,7 +17,7 @@
 	aspect = ASPECT_UNSTABLE
 	glow_color = "#CC00CC"
 
-/obj/item/weapon/spell/aura/unstable/process()
+/obj/item/spell/aura/unstable/process()
 	if(!pay_energy(200))
 		qdel(src)
 	var/list/nearby_mobs = range(calculate_spell_power(14),owner)
@@ -35,11 +35,11 @@
 		if(L.isSynthetic())
 			L.adjustBruteLoss(damage_to_inflict)
 			if(damage_to_inflict && prob(10))
-				to_chat(L, "<span class='danger'>Your chassis seems to slowly be decaying and breaking down.</span>")
+				to_chat(L, span_danger("Your chassis seems to slowly be decaying and breaking down."))
 		else
 			L.adjustToxLoss(damage_to_inflict)
 			if(damage_to_inflict && prob(10))
-				to_chat(L, "<span class='danger'>You feel almost like you're melting from the inside!</span>")
+				to_chat(L, span_danger("You feel almost like you're melting from the inside!"))
 
 
 	adjust_instability(2)

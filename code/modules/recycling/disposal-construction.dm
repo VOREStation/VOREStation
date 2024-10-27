@@ -304,7 +304,7 @@
 	// weldingtool: convert to real pipe
 	else if(I.has_tool_quality(TOOL_WELDER))
 		if(anchored)
-			var/obj/item/weapon/weldingtool/W = I.get_welder()
+			var/obj/item/weldingtool/W = I.get_welder()
 			if(W.remove_fuel(0,user))
 				playsound(src, W.usesound, 100, 1)
 				to_chat(user, "Welding the [nicetype] in place.")

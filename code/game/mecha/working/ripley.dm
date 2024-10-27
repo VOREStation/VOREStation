@@ -10,7 +10,7 @@
 	maxhealth = 200		//Don't forget to update the /old variant if  you change this number.
 	wreckage = /obj/effect/decal/mecha_wreckage/ripley
 	cargo_capacity = 10
-	var/obj/item/weapon/mining_scanner/orescanner // vorestation addition
+	var/obj/item/mining_scanner/orescanner // vorestation addition
 
 	minimum_penetration = 10
 
@@ -36,7 +36,7 @@
 	if(locate(/obj/item/mecha_parts/mecha_equipment/tool/hydraulic_clamp) in equipment)
 		var/obj/structure/ore_box/ore_box = locate(/obj/structure/ore_box) in cargo
 		if(ore_box)
-			for(var/obj/item/weapon/ore/ore in range(1, src))
+			for(var/obj/item/ore/ore in range(1, src))
 				if(ore.Adjacent(src) && ((get_dir(src, ore) & dir) || ore.loc == loc)) //we can reach it and it's in front of us? grab it!
 					ore_box.stored_ore[ore.material]++
 					qdel(ore)
@@ -127,7 +127,7 @@
 
 /obj/mecha/working/ripley/New()
 	..()
-	orescanner = new /obj/item/weapon/mining_scanner
+	orescanner = new /obj/item/mining_scanner
 
 /obj/mecha/working/ripley/verb/detect_ore()
 	set category = "Exosuit Interface"

@@ -51,7 +51,7 @@
 		var/time = (3 SECONDS / max(W.force / 10, 1)) * W.toolspeed
 		user.setClickCooldown(time)
 		if(do_after(user, time, src) && use(1))
-			to_chat(user, "<span class='notice'>You cut up a log into planks.</span>")
+			to_chat(user, span_notice("You cut up a log into planks."))
 			playsound(src, 'sound/effects/woodcutting.ogg', 50, 1)
 			var/obj/item/stack/material/wood/existing_wood = null
 			for(var/obj/item/stack/material/wood/M in user.loc)
@@ -61,7 +61,7 @@
 
 			var/obj/item/stack/material/wood/new_wood = new plank_type(user.loc, 2)
 			if(existing_wood && new_wood.transfer_to(existing_wood))
-				to_chat(user, "<span class='notice'>You add the newly-formed wood to the stack. It now contains [existing_wood.get_amount()] planks.</span>")
+				to_chat(user, span_notice("You add the newly-formed wood to the stack. It now contains [existing_wood.get_amount()] planks."))
 	else
 		return ..()
 

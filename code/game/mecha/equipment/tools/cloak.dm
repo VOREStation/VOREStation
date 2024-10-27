@@ -22,7 +22,7 @@
 /obj/item/mecha_parts/mecha_equipment/cloak/get_equip_info()
 	if(!chassis)
 		return
-	return "<span style=\"color:[equip_ready ? "#0f0":"#f00"];\">*</span>&nbsp;[src.name] - <a href='?src=\ref[src];toggle_cloak=1'>[equip_ready ? "A" : "Dea"]ctivate</a>"
+	return (equip_ready ? span_green("*") : span_red("*")) + "&nbsp;[src.name] - <a href='?src=\ref[src];toggle_cloak=1'>[equip_ready ? "A" : "Dea"]ctivate</a>"
 
 /obj/item/mecha_parts/mecha_equipment/cloak/Topic(href, href_list)
 	..()

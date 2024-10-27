@@ -156,7 +156,7 @@ SUBSYSTEM_DEF(game_master)
 	if(check_rights(R_ADMIN|R_EVENT|R_DEBUG))
 		SSgame_master.interact(usr)
 	else
-		to_chat(usr, span("warning", "You do not have sufficient rights to view the GM panel, sorry."))
+		to_chat(usr, span_warning("You do not have sufficient rights to view the GM panel, sorry."))
 
 /datum/controller/subsystem/game_master/proc/interact(var/client/user)
 	if(!user)

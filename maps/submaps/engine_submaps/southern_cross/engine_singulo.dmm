@@ -792,11 +792,11 @@
 /turf/simulated/floor/tiled,
 /area/submap/pa_room)
 "bu" = (
-/obj/item/weapon/book/manual/engineering_particle_accelerator{
+/obj/item/book/manual/engineering_particle_accelerator{
 	pixel_x = 5;
 	pixel_y = 5
 	},
-/obj/item/weapon/book/manual/engineering_singularity_safety,
+/obj/item/book/manual/engineering_singularity_safety,
 /turf/template_noop,
 /area/template_noop)
 "bv" = (
@@ -1472,7 +1472,7 @@
 /turf/simulated/floor/airless,
 /area/space)
 "cE" = (
-/obj/item/weapon/weldingtool,
+/obj/item/weldingtool,
 /turf/space,
 /area/space)
 "cF" = (

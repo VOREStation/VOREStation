@@ -81,7 +81,7 @@ other types of metals and chemistry for reagents).
 		for(var/matname in materials)
 			I.matter[matname] = materials[matname]
 
-	var/obj/item/weapon/cell/C = I.get_cell()
+	var/obj/item/cell/C = I.get_cell()
 	if(C)
 		C.charge = 0
 		I.update_icon()

@@ -46,7 +46,7 @@ var/global/economy_init = 0
 	create_department_account("Vendor")
 	vendor_account = department_accounts["Vendor"]
 
-	for(var/obj/item/device/retail_scanner/RS in transaction_devices)
+	for(var/obj/item/retail_scanner/RS in transaction_devices)
 		if(RS.account_to_connect)
 			RS.linked_account = department_accounts[RS.account_to_connect]
 	for(var/obj/machinery/cash_register/CR in transaction_devices)

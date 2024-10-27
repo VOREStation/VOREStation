@@ -165,7 +165,7 @@
 /* //VOREStation AI Temporary removal
 /mob/living/simple_mob/animal/passive/cat/PunchTarget()
 	if(istype(target_mob,/mob/living/simple_mob/animal/passive/mouse))
-		visible_message("<span class='warning'>\The [src] pounces on \the [target_mob]!]</span>")
+		visible_message(span_warning("\The [src] pounces on \the [target_mob]!]"))
 		target_mob.Stun(5)
 		return EatTarget()
 	else ..()

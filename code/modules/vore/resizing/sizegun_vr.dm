@@ -1,7 +1,7 @@
 //
 // Size Gun
 //
-/obj/item/weapon/gun/energy/sizegun
+/obj/item/gun/energy/sizegun
 	name = "size gun" //I have no idea why this was called shrink ray when this increased and decreased size.
 	desc = "A highly advanced ray gun with a knob on the side to adjust the size you desire. Warning: Do not insert into mouth."
 	icon = 'icons/obj/gun_vr.dmi'
@@ -24,30 +24,30 @@
 			fire_sound		= 'sound/weapons/pulse3.ogg'
 		))
 
-/obj/item/weapon/gun/energy/sizegun/New()
+/obj/item/gun/energy/sizegun/New()
 	..()
-	verbs += /obj/item/weapon/gun/energy/sizegun/proc/select_size
-	verbs += /obj/item/weapon/gun/energy/sizegun/proc/spin_dial
+	verbs += /obj/item/gun/energy/sizegun/proc/select_size
+	verbs += /obj/item/gun/energy/sizegun/proc/spin_dial
 
-/obj/item/weapon/gun/energy/sizegun/attack_self(mob/user)
+/obj/item/gun/energy/sizegun/attack_self(mob/user)
 	. = ..()
 	select_size()
 
-/obj/item/weapon/gun/energy/sizegun/proc/spin_dial()
+/obj/item/gun/energy/sizegun/proc/spin_dial()
 	set name = "Spin Size Dial"
 	set category = "Object"
 	set src in view(1)
 
 	size_set_to = (rand(25,200)) /100
-	usr.visible_message("<span class='warning'>\The [usr] spins the size dial to a random value!</span>","<span class='notice'>You spin the dial to a random value!</span>")
+	usr.visible_message(span_warning("\The [usr] spins the size dial to a random value!"),span_notice("You spin the dial to a random value!"))
 
-/obj/item/weapon/gun/energy/sizegun/consume_next_projectile()
+/obj/item/gun/energy/sizegun/consume_next_projectile()
 	. = ..()
 	var/obj/item/projectile/beam/sizelaser/G = .
 	if(istype(G))
 		G.set_size = size_set_to
 
-/obj/item/weapon/gun/energy/sizegun/proc/select_size()
+/obj/item/gun/energy/sizegun/proc/select_size()
 	set name = "Select Size"
 	set category = "Object"
 	set src in view(1)
@@ -58,11 +58,11 @@
 	//We do valid resize testing in actual firings because people move after setting these things.
 	//Just a basic clamp here to the valid ranges.
 	size_set_to = clamp((size_select/100), RESIZE_MINIMUM_DORMS, RESIZE_MAXIMUM_DORMS)
-	to_chat(usr, "<span class='notice'>You set the size to [size_select]%</span>")
+	to_chat(usr, span_notice("You set the size to [size_select]%"))
 	if(size_set_to < RESIZE_MINIMUM || size_set_to > RESIZE_MAXIMUM)
-		to_chat(usr, "<span class='notice'>Note: Resizing limited to 25-200% automatically while outside dormatory areas.</span>") //hint that we clamp it in resize
+		to_chat(usr, span_notice("Note: Resizing limited to 25-200% automatically while outside dormatory areas.")) //hint that we clamp it in resize
 
-/obj/item/weapon/gun/energy/sizegun/update_icon(var/ignore_inhands)
+/obj/item/gun/energy/sizegun/update_icon(var/ignore_inhands)
 	var/grow_mode = "shrink"
 	if(size_set_to > 1)
 		grow_mode = "grow"
@@ -80,11 +80,11 @@
 
 	if(!ignore_inhands) update_held_icon()
 
-/obj/item/weapon/gun/energy/sizegun/examine(mob/user)
+/obj/item/gun/energy/sizegun/examine(mob/user)
 	. = ..()
-	. += "<span class='info'>It is currently set at [size_set_to*100]%</span>"
+	. += span_info("It is currently set at [size_set_to*100]%")
 
-/obj/item/weapon/gun/energy/sizegun/admin
+/obj/item/gun/energy/sizegun/admin
 	name = "modified size gun"
 	desc = "An older model sizegun, modified to be without limits on minimum/maximum size, and have an unlimited charge. Time to show 'em that size does matter."
 	description_fluff = "A standard size gun that has been modified with \
@@ -113,7 +113,7 @@
 	have their theories as they continue to analyse the technology."
 	value = CATALOGUER_REWARD_MEDIUM
 
-/obj/item/weapon/gun/energy/sizegun/admin/abductor
+/obj/item/gun/energy/sizegun/admin/abductor
 	name = "alien size gun"
 	desc = "A strange looking ray gun weapon with an adjustor knob on the side. The design is alien, but it bares a striking resemblence to the older model size guns that NT uses for research."
 	catalogue_data = list(/datum/category_item/catalogue/anomalous/precursor_a/alien_sizegun)
@@ -123,7 +123,7 @@
 	charge_cost = 0
 	projectile_type = /obj/item/projectile/beam/sizelaser/admin/alien
 
-/obj/item/weapon/gun/energy/sizegun/admin/select_size()
+/obj/item/gun/energy/sizegun/admin/select_size()
 	set name = "Select Size"
 	set category = "Object"
 	set src in view(1)
@@ -132,14 +132,14 @@
 	if(!size_select)
 		return //cancelled
 	size_set_to = clamp((size_select/100), 0, 1000) //eheh
-	to_chat(usr, "<span class='notice'>You set the size to [size_select]%</span>")
+	to_chat(usr, span_notice("You set the size to [size_select]%"))
 
-/obj/item/weapon/gun/energy/sizegun/afterattack(atom/A, mob/living/user, adjacent, params)
+/obj/item/gun/energy/sizegun/afterattack(atom/A, mob/living/user, adjacent, params)
 	if(adjacent) return //A is adjacent, is the user, or is on the user's person
 
 	if(backfire)
 		if(prob(50))
-			to_chat(user, "<span class='notice'>\The [src] backfires and consumes its entire charge!</span>")
+			to_chat(user, span_notice("\The [src] backfires and consumes its entire charge!"))
 			Fire(user, user)
 			power_supply.charge = 0
 			var/mob/living/M = loc // TGMC Ammo HUD
@@ -151,10 +151,10 @@
 	else
 		return ..()
 
-/obj/item/weapon/gun/energy/sizegun/attack(atom/A, mob/living/user, adjacent, params)
+/obj/item/gun/energy/sizegun/attack(atom/A, mob/living/user, adjacent, params)
 	if(backfire)
 		if(prob(50))
-			to_chat(user, "<span class='notice'>\The [src] backfires and consumes its entire charge!</span>")
+			to_chat(user, span_notice("\The [src] backfires and consumes its entire charge!"))
 			Fire(user, user)
 			power_supply.charge = 0
 			var/mob/living/M = loc // TGMC Ammo HUD
@@ -167,23 +167,23 @@
 		return ..()
 
 
-/obj/item/weapon/gun/energy/sizegun/attackby(var/obj/item/A as obj, mob/user as mob)
+/obj/item/gun/energy/sizegun/attackby(var/obj/item/A as obj, mob/user as mob)
 	if(A.has_tool_quality(TOOL_WIRECUTTER))
 		if(backfire)
-			to_chat(user, "<span class='warning'>You repair the damage to the \the [src].</span>")
+			to_chat(user, span_warning("You repair the damage to the \the [src]."))
 			backfire = 0
 			name = "size gun"
 		else
-			to_chat(user, "<span class='warning'>You snip a wire on \the [src], making it less reliable.</span>")
+			to_chat(user, span_warning("You snip a wire on \the [src], making it less reliable."))
 			backfire = 1
 			name = "unstable size gun"
 	..()
 
-/obj/item/weapon/gun/energy/sizegun/backfire
+/obj/item/gun/energy/sizegun/backfire
 	name = "unstable size gun"
 	backfire = 1
 
-/obj/item/weapon/gun/energy/sizegun/mounted
+/obj/item/gun/energy/sizegun/mounted
 	name = "mounted size gun"
 	self_recharge = 1
 	use_external_power = 1
@@ -210,7 +210,7 @@
 		if(ishuman(M))
 			var/mob/living/carbon/human/H = M
 			if(istype(H.gloves, /obj/item/clothing/gloves/bluespace))
-				M.visible_message("<span class='warning'>\The [H]'s bracelet flashes and absorbs the beam!</span>","<span class='notice'>Your bracelet flashes and absorbs the beam!</span>")
+				M.visible_message(span_warning("\The [H]'s bracelet flashes and absorbs the beam!"),span_notice("Your bracelet flashes and absorbs the beam!"))
 				return
 		if(!M.resize(set_size, uncapped = M.has_large_resize_bounds(), ignore_prefs = ignoring_prefs))
 			to_chat(M, span_blue("The beam fires into your body, changing your size!"))
@@ -227,9 +227,9 @@
 		var/very_big = is_extreme_size(set_size)
 
 		if(very_big && can_be_big) // made an extreme size in an area that allows it, don't assume adminbuse
-			to_chat(firer, "<span class='warning'>[M] will lose this size upon moving into an area where this size is not allowed.</span>")
+			to_chat(firer, span_warning("[M] will lose this size upon moving into an area where this size is not allowed."))
 		else if(very_big) // made an extreme size in an area that doesn't allow it, assume adminbuse
-			to_chat(firer, "<span class='warning'>[M] will retain this normally unallowed size outside this area.</span>")
+			to_chat(firer, span_warning("[M] will retain this normally unallowed size outside this area."))
 
 		M.resize(set_size, uncapped = TRUE, ignore_prefs = TRUE) // Always ignores prefs, caution is advisable
 

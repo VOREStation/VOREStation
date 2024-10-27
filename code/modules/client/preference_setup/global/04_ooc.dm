@@ -15,7 +15,7 @@
 		pref.ignored_players = list()
 
 /datum/category_item/player_setup_item/player_global/ooc/content(var/mob/user)
-	. += "<b>OOC:</b><br>"
+	. += span_bold("OOC:") + "<br>"
 	. += "Ignored Players<br>"
 	for(var/ignored_player in pref.ignored_players)
 		. += "[ignored_player] (<a href='?src=\ref[src];unignore_player=[ignored_player]'>Unignore</a>)<br>"
@@ -33,7 +33,7 @@
 			if(player_to_ignore)
 				player_to_ignore = sanitize(ckey(player_to_ignore))
 				if(player_to_ignore == user.ckey)
-					to_chat(user, "<span class='notice'>You can't ignore yourself.</span>")
+					to_chat(user, span_notice("You can't ignore yourself."))
 					return TOPIC_REFRESH
 				pref.ignored_players |= player_to_ignore
 			return TOPIC_REFRESH

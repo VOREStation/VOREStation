@@ -12,7 +12,7 @@
 	#include "tether_events.dm"
 	#include "../offmap_vr/common_offmaps.dm"
 
-	#if !AWAY_MISSION_TEST //Don't include these for just testing away missions
+	#ifndef AWAY_MISSION_TEST //Don't include these for just testing away missions
 		#include "tether-01-surface1.dmm"
 		#include "tether-02-surface2.dmm"
 		#include "tether-03-surface3.dmm"

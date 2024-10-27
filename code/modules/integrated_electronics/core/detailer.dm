@@ -1,4 +1,4 @@
-/obj/item/device/integrated_electronics/detailer
+/obj/item/integrated_electronics/detailer
 	name = "assembly detailer"
 	desc = "A combination autopainter and flash anodizer designed to give electronic assemblies a colorful, wear-resistant finish."
 	icon = 'icons/obj/integrated_electronics/electronic_tools.dmi'
@@ -25,32 +25,32 @@
 		"hot pink" = COLOR_ASSEMBLY_HOT_PINK
 		)
 
-/obj/item/device/integrated_electronics/detailer/Initialize()
+/obj/item/integrated_electronics/detailer/Initialize()
 	update_icon()
 	return ..()
 
-/obj/item/device/integrated_electronics/detailer/update_icon()
+/obj/item/integrated_electronics/detailer/update_icon()
 	cut_overlays()
 	var/mutable_appearance/detail_overlay = mutable_appearance('icons/obj/integrated_electronics/electronic_tools.dmi', "detailer-color")
 	detail_overlay.color = detail_color
 	add_overlay(detail_overlay)
 
-/obj/item/device/integrated_electronics/detailer/tgui_state(mob/user)
+/obj/item/integrated_electronics/detailer/tgui_state(mob/user)
 	return GLOB.tgui_inventory_state
 
-/obj/item/device/integrated_electronics/detailer/tgui_interact(mob/user, datum/tgui/ui, datum/tgui/parent_ui)
+/obj/item/integrated_electronics/detailer/tgui_interact(mob/user, datum/tgui/ui, datum/tgui/parent_ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "ICDetailer", name)
 		ui.open()
 
-/obj/item/device/integrated_electronics/detailer/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
+/obj/item/integrated_electronics/detailer/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
 	var/list/data = ..()
 	data["detail_color"] = detail_color
 	data["color_list"] = color_list
 	return data
 
-/obj/item/device/integrated_electronics/detailer/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
+/obj/item/integrated_electronics/detailer/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
 	if(..())
 		return TRUE
 
@@ -62,7 +62,7 @@
 			update_icon()
 			return TRUE
 
-/obj/item/device/integrated_electronics/detailer/attack_self(mob/user)
+/obj/item/integrated_electronics/detailer/attack_self(mob/user)
 	tgui_interact(user)
 
 	// Leaving this commented out in case someone decides that this would be better as an "any color" selection system

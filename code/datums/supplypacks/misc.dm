@@ -14,9 +14,9 @@
 /datum/supply_pack/randomised/misc/card_packs
 	num_contained = 5
 	contains = list(
-			/obj/item/weapon/pack/cardemon,
-			/obj/item/weapon/pack/spaceball,
-			/obj/item/weapon/deck/holder
+			/obj/item/pack/cardemon,
+			/obj/item/pack/spaceball,
+			/obj/item/deck/holder
 			)
 	name = "Trading Card Crate"
 	cost = 10
@@ -94,7 +94,7 @@
 	containername = "Plushies Crate"
 
 /datum/supply_pack/misc/eftpos
-	contains = list(/obj/item/device/eftpos)
+	contains = list(/obj/item/eftpos)
 	name = "EFTPOS scanner"
 	cost = 10
 	containertype = /obj/structure/closet/crate/nanotrasen
@@ -111,8 +111,8 @@
 			/obj/item/clothing/suit/storage/hooded/chaplain_hoodie/whiteout,
 			/obj/item/clothing/suit/holidaypriest,
 			/obj/item/clothing/under/wedding/bride_white,
-			/obj/item/weapon/storage/backpack/cultpack,
-			/obj/item/weapon/storage/fancy/candle_box = 3
+			/obj/item/storage/backpack/cultpack,
+			/obj/item/storage/fancy/candle_box = 3
 			)
 	cost = 10
 	containertype = /obj/structure/closet/crate/gilthari
@@ -151,7 +151,7 @@
 /datum/supply_pack/misc/glucose_hypos
 	name = "Glucose Hypoinjectors"
 	contains = list(
-			/obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/glucose = 5
+			/obj/item/reagent_containers/hypospray/autoinjector/biginjector/glucose = 5
 			)
 	cost = 25
 	containertype = /obj/structure/closet/crate/zenghu
@@ -160,16 +160,16 @@
 /datum/supply_pack/misc/mre_rations
 	num_contained = 6
 	name = "Emergency - MREs"
-	contains = list(/obj/item/weapon/storage/mre,
-					/obj/item/weapon/storage/mre/menu2,
-					/obj/item/weapon/storage/mre/menu3,
-					/obj/item/weapon/storage/mre/menu4,
-					/obj/item/weapon/storage/mre/menu5,
-					/obj/item/weapon/storage/mre/menu6,
-					/obj/item/weapon/storage/mre/menu7,
-					/obj/item/weapon/storage/mre/menu8,
-					/obj/item/weapon/storage/mre/menu9,
-					/obj/item/weapon/storage/mre/menu10)
+	contains = list(/obj/item/storage/mre,
+					/obj/item/storage/mre/menu2,
+					/obj/item/storage/mre/menu3,
+					/obj/item/storage/mre/menu4,
+					/obj/item/storage/mre/menu5,
+					/obj/item/storage/mre/menu6,
+					/obj/item/storage/mre/menu7,
+					/obj/item/storage/mre/menu8,
+					/obj/item/storage/mre/menu9,
+					/obj/item/storage/mre/menu10)
 	cost = 50
 	containertype = /obj/structure/closet/crate/centauri
 	containername = "ready to eat rations"
@@ -177,7 +177,7 @@
 /datum/supply_pack/misc/paste_rations
 	name = "Emergency - Paste"
 	contains = list(
-			/obj/item/weapon/storage/mre/menu11 = 2
+			/obj/item/storage/mre/menu11 = 2
 			)
 	cost = 25
 	containertype = /obj/structure/closet/crate/freezer/centauri
@@ -186,7 +186,7 @@
 /datum/supply_pack/misc/medical_rations
 	name = "Emergency - VitaPaste"
 	contains = list(
-			/obj/item/weapon/storage/mre/menu13 = 2
+			/obj/item/storage/mre/menu13 = 2
 			)
 	cost = 40
 	containertype = /obj/structure/closet/crate/zenghu
@@ -204,12 +204,12 @@
 /datum/supply_pack/misc/beltminer
 	name = "Belt-miner gear crate"
 	contains = list(
-			/obj/item/weapon/gun/energy/particle = 2,
-			/obj/item/weapon/cell/device/weapon = 2,
-			/obj/item/weapon/storage/firstaid/regular = 1,
-			/obj/item/device/gps = 2,
-			/obj/item/weapon/storage/box/traumainjectors = 1,
-			/obj/item/device/binoculars = 1
+			/obj/item/gun/energy/particle = 2,
+			/obj/item/cell/device/weapon = 2,
+			/obj/item/storage/firstaid/regular = 1,
+			/obj/item/gps = 2,
+			/obj/item/storage/box/traumainjectors = 1,
+			/obj/item/binoculars = 1
 			)
 	cost = 60
 	containertype = /obj/structure/closet/crate/secure/gear
@@ -221,7 +221,7 @@
 /datum/supply_pack/misc/jetpack
 	name = "jetpack (empty)"
 	contains = list(
-			/obj/item/weapon/tank/jetpack = 1
+			/obj/item/tank/jetpack = 1
 			)
 	cost = 75
 	containertype = /obj/structure/closet/crate/secure/gear
@@ -236,8 +236,8 @@
 	name = JOB_EXPLORER + " shield"
 	num_contained = 2
 	contains = list(
-			/obj/item/weapon/shield/riot/explorer,
-			/obj/item/weapon/shield/riot/explorer/purple
+			/obj/item/shield/riot/explorer,
+			/obj/item/shield/riot/explorer/purple
 			)
 	cost = 75
 	containertype = /obj/structure/closet/crate/secure/gear
@@ -249,7 +249,7 @@
 /datum/supply_pack/misc/music_players
 	name = "music players (3)"
 	contains = list(
-		/obj/item/device/walkpod = 3
+		/obj/item/walkpod = 3
 	)
 	cost = 150
 	containertype = /obj/structure/closet/crate
@@ -258,7 +258,7 @@
 /datum/supply_pack/misc/juke_remotes
 	name = "jukebox remote speakers (2)"
 	contains = list(
-		/obj/item/device/juke_remote = 2
+		/obj/item/juke_remote = 2
 	)
 	cost = 300
 	containertype = /obj/structure/closet/crate
@@ -267,7 +267,7 @@
 /datum/supply_pack/misc/explorer_headsets
 	name = "shortwave-capable headsets (x4)"
 	contains = list(
-		/obj/item/device/radio/headset/explorer = 4
+		/obj/item/radio/headset/explorer = 4
 	)
 	cost = 20
 	containertype = /obj/structure/closet/crate/secure/gear
@@ -282,7 +282,7 @@
 /datum/supply_pack/misc/emergency_beacons
 	name = "emergency locator beacons (x4)"
 	contains = list(
-		/obj/item/device/emergency_beacon = 4
+		/obj/item/emergency_beacon = 4
 	)
 	cost = 20
 	containertype = /obj/structure/closet/crate

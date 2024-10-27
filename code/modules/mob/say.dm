@@ -57,24 +57,24 @@
 
 /mob/proc/say_dead(var/message)
 	if(say_disabled)	//This is here to try to identify lag problems
-		to_chat(usr, "<span class='danger'>Speech is currently admin-disabled.</span>")
+		to_chat(usr, span_danger("Speech is currently admin-disabled."))
 		return
 
 	if(!client)
 		return // Clientless mobs shouldn't be trying to talk in deadchat.
 
 	if(!client.holder)
-		if(!config.dsay_allowed)
-			to_chat(src, "<span class='danger'>Deadchat is globally muted.</span>")
+		if(!CONFIG_GET(flag/dsay_allowed))
+			to_chat(src, span_danger("Deadchat is globally muted."))
 			return
 
 	if(!client?.prefs?.read_preference(/datum/preference/toggle/show_dsay))
-		to_chat(usr, "<span class='danger'>You have deadchat muted.</span>")
+		to_chat(usr, span_danger("You have deadchat muted."))
 		return
 
 	message = encode_html_emphasis(message)
 
-	say_dead_direct("[pick("complains","moans","whines","laments","blubbers")], <span class='message'>\"[message]\"</span>", src)
+	say_dead_direct("[pick("complains","moans","whines","laments","blubbers")], " + span_message("\"[message]\""), src)
 
 /mob/proc/say_understands(var/mob/other, var/datum/language/speaking = null)
 	if(stat == DEAD)

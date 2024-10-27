@@ -33,7 +33,7 @@
 			burn_user = FALSE
 
 		if(burn_user)
-			H.visible_message("<span class='danger'>\The [src] flashes as it scorches [H]'s hands!</span>")
+			H.visible_message(span_danger("\The [src] flashes as it scorches [H]'s hands!"))
 			H.apply_damage(amount / 2 + 5, BURN, "r_hand", used_weapon="Supermatter Chunk")
 			H.apply_damage(amount / 2 + 5, BURN, "l_hand", used_weapon="Supermatter Chunk")
 			H.drop_from_inventory(src, get_turf(H))

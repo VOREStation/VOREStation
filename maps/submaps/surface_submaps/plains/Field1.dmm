@@ -17,7 +17,7 @@
 /turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/submap/Field1)
 "f" = (
-/obj/item/device/radio,
+/obj/item/radio,
 /turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/submap/Field1)
 "g" = (
@@ -29,7 +29,7 @@
 /turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/submap/Field1)
 "i" = (
-/obj/item/device/flashlight,
+/obj/item/flashlight,
 /turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/submap/Field1)
 

@@ -31,7 +31,7 @@
 	set name = "Me verb"
 	set category = "IC"
 
-	if(client?.prefs?.read_preference(/datum/preference/toggle/tgui_say))
+	if(client?.prefs?.read_preference(/datum/preference/toggle/tgui_say) && client?.prefs?.read_preference(/datum/preference/toggle/tgui_say_emotes))
 		winset(src, null, "command=[client.tgui_say_create_open_command(ME_CHANNEL)]")
 		return
 
@@ -65,7 +65,7 @@
 	set category = "IC"
 	set desc = "Emote to nearby people (and your pred/prey)"
 
-	if(client?.prefs?.read_preference(/datum/preference/toggle/tgui_say))
+	if(client?.prefs?.read_preference(/datum/preference/toggle/tgui_say) && client?.prefs?.read_preference(/datum/preference/toggle/tgui_say_emotes))
 		winset(src, null, "command=[client.tgui_say_create_open_command(SUBTLE_CHANNEL)]")
 		return
 

@@ -135,6 +135,12 @@
 	var/r_ears3 = 30 //Trust me, we could always use more colour. No japes.
 	var/g_ears3 = 30
 	var/b_ears3 = 30
+
+	/// secondary ears sprite accessory reference
+	var/datum/sprite_accessory/ears/ear_secondary_style
+	/// secondary ears color channels; can be null, or a list of #aabbcc hexcolors
+	var/list/ear_secondary_colors
+
 	var/datum/sprite_accessory/tail/tail_style = null
 	var/r_tail = 30
 	var/g_tail = 30

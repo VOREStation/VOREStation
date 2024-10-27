@@ -6,7 +6,7 @@
 		if(can_open == WALL_OPENING)
 			return
 		can_open = WALL_CAN_OPEN
-		user.visible_message("<span class='alium'>\The [user] strokes its feelers against \the [src] and the biomass [density ? "moves aside" : "closes up"].</span>")
+		user.visible_message(span_alium("\The [user] strokes its feelers against \the [src] and the biomass [density ? "moves aside" : "closes up"]."))
 		toggle_open(user)
 		sleep(15)
 		if(can_open == WALL_CAN_OPEN) can_open = 0

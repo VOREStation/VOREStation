@@ -50,7 +50,7 @@
 		var/mob/living/L = A
 		if(prob(12))
 			L.Weaken(3)
-			L.visible_message("<span class='danger'>\The [src] knocks down \the [L]!</span>")
+			L.visible_message(span_danger("\The [src] knocks down \the [L]!"))
 
 // Strong Variant
 /mob/living/simple_mob/faithless/strong

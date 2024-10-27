@@ -1,6 +1,6 @@
 // The lighting system
 //
-// consists of light fixtures (/obj/machinery/light) and light tube/bulb items (/obj/item/weapon/light)
+// consists of light fixtures (/obj/machinery/light) and light tube/bulb items (/obj/item/light)
 
 
 // status values shared between lighting fixtures and items
@@ -27,7 +27,7 @@ var/global/list/light_type_cache = list()
 	var/fixture_type = /obj/machinery/light
 	var/sheets_refunded = 2
 	var/obj/machinery/light/newlight = null
-	var/obj/item/weapon/cell/cell = null
+	var/obj/item/cell/cell = null
 
 	var/cell_connectors = TRUE
 
@@ -67,32 +67,32 @@ var/global/list/light_type_cache = list()
 			else
 				. += "The casing has no power cell for backup power."
 		else
-			. += "<span class='danger'>This casing doesn't support power cells for backup power.</span>"
+			. += span_danger("This casing doesn't support power cells for backup power.")
 
 /obj/machinery/light_construct/attack_hand(mob/user)
 	. = ..()
 	if(.)
 		return . // obj/machinery/attack_hand returns 1 if user can't use the machine
 	if(cell)
-		user.visible_message("[user] removes [cell] from [src]!","<span class='notice'>You remove [cell].</span>")
+		user.visible_message("[user] removes [cell] from [src]!",span_notice("You remove [cell]."))
 		user.put_in_hands(cell)
 		cell.update_icon()
 		cell = null
 
-/obj/machinery/light_construct/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/machinery/light_construct/attackby(obj/item/W as obj, mob/user as mob)
 	src.add_fingerprint(user)
-	if(istype(W, /obj/item/weapon/cell/emergency_light))
+	if(istype(W, /obj/item/cell/emergency_light))
 		if(!cell_connectors)
-			to_chat(user, "<span class='warning'>This [name] can't support a power cell!</span>")
+			to_chat(user, span_warning("This [name] can't support a power cell!"))
 			return
 		if(!user.unEquip(W))
-			to_chat(user, "<span class='warning'>[W] is stuck to your hand!</span>")
+			to_chat(user, span_warning("[W] is stuck to your hand!"))
 			return
 		if(cell)
-			to_chat(user, "<span class='warning'>There is a power cell already installed!</span>")
+			to_chat(user, span_warning("There is a power cell already installed!"))
 		else if(user.drop_from_inventory(W))
-			user.visible_message("<span class='notice'>[user] hooks up [W] to [src].</span>", \
-			"<span class='notice'>You add [W] to [src].</span>")
+			user.visible_message(span_notice("[user] hooks up [W] to [src]."), \
+			span_notice("You add [W] to [src]."))
 			playsound(src, 'sound/machines/click.ogg', 50, TRUE)
 			W.forceMove(src)
 			cell = W
@@ -211,14 +211,14 @@ var/global/list/light_type_cache = list()
 	idle_power_usage = 2
 	active_power_usage = 10
 	power_channel = LIGHT //Lights are calc'd via area so they dont need to be in the machine list
-	var/obj/item/weapon/light/installed_light //What light is currently in the socket! Updated in new()
+	var/obj/item/light/installed_light //What light is currently in the socket! Updated in new()
 	var/on = 0					// 1 if on, 0 if off
 	var/brightness_range
 	var/brightness_power
 	var/brightness_color
 	var/status = LIGHT_OK		// LIGHT_OK, _EMPTY, _BURNED or _BROKEN
 	var/flickering = 0
-	var/light_type = /obj/item/weapon/light/tube		// the type of light item
+	var/light_type = /obj/item/light/tube		// the type of light item
 	var/construct_type = /obj/machinery/light_construct
 	var/switchcount = 0			// count of number of times switched on/off
 								// this is used to calc the probability the light burns out
@@ -232,7 +232,7 @@ var/global/list/light_type_cache = list()
 
 	var/auto_flicker = FALSE // If true, will constantly flicker, so long as someone is around to see it (otherwise its a waste of CPU).
 
-	var/obj/item/weapon/cell/emergency_light/cell
+	var/obj/item/cell/emergency_light/cell
 	var/start_with_cell = TRUE	// if true, this fixture generates a very weak cell at roundstart
 
 	var/emergency_mode = FALSE	// if true, the light is in emergency mode
@@ -263,7 +263,7 @@ var/global/list/light_type_cache = list()
 	icon_state = "bulb1"
 	base_state = "bulb"
 	desc = "A small lighting fixture."
-	light_type = /obj/item/weapon/light/bulb
+	light_type = /obj/item/light/bulb
 	construct_type = /obj/machinery/light_construct/small
 	shows_alerts = FALSE	//VOREStation Edit
 	overlay_color = LIGHT_COLOR_INCANDESCENT_BULB
@@ -284,7 +284,7 @@ var/global/list/light_type_cache = list()
 	plane = OBJ_PLANE
 	layer = OBJ_LAYER
 	desc = "A floor lamp."
-	light_type = /obj/item/weapon/light/bulb/large
+	light_type = /obj/item/light/bulb/large
 	construct_type = /obj/machinery/light_construct/flamp
 	shows_alerts = FALSE	//VOREStation Edit
 	var/lamp_shade = 1
@@ -298,21 +298,21 @@ var/global/list/light_type_cache = list()
 		update_icon()
 	else
 		if(start_with_cell && !no_emergency)
-			cell = new/obj/item/weapon/cell/emergency_light(src)
+			cell = new/obj/item/cell/emergency_light(src)
 
 
 /obj/machinery/light/flamp/flicker
 	auto_flicker = TRUE
 
 /obj/machinery/light/small/emergency
-	light_type = /obj/item/weapon/light/bulb/red
+	light_type = /obj/item/light/bulb/red
 
 /obj/machinery/light/small/emergency/flicker
 	auto_flicker = TRUE
 
 /obj/machinery/light/spot
 	name = "spotlight"
-	light_type = /obj/item/weapon/light/tube/large
+	light_type = /obj/item/light/tube/large
 	shows_alerts = FALSE	//VOREStation Edit
 
 /obj/machinery/light/spot/flicker
@@ -336,8 +336,8 @@ var/global/list/light_type_cache = list()
 	else
 		installed_light = new light_type(src)
 		if(start_with_cell && !no_emergency)
-			cell = new/obj/item/weapon/cell/emergency_light(src)
-		var/obj/item/weapon/light/L = get_light_type_instance(light_type) //This is fine, but old code.
+			cell = new/obj/item/cell/emergency_light(src)
+		var/obj/item/light/L = get_light_type_instance(light_type) //This is fine, but old code.
 		update_from_bulb(L)
 		if(prob(L.broken_chance))
 			broken(1)
@@ -430,7 +430,7 @@ var/global/list/light_type_cache = list()
 		return
 
 	current_alert = null
-	var/obj/item/weapon/light/L = installed_light //This ensures any special bulbs will stay special!
+	var/obj/item/light/L = installed_light //This ensures any special bulbs will stay special!
 
 	if(L)
 		update_from_bulb(L)
@@ -508,7 +508,7 @@ var/global/list/light_type_cache = list()
 		return
 	if(!(status == LIGHT_OK||status == LIGHT_BURNED))
 		return
-	visible_message("<span class='danger'>[user] smashes the light!</span>")
+	visible_message(span_danger("[user] smashes the light!"))
 	user.do_attack_animation(src)
 	broken()
 	return 1
@@ -552,10 +552,10 @@ var/global/list/light_type_cache = list()
 		. += "Its backup power charge meter reads [round((cell.charge / cell.maxcharge) * 100, 0.1)]%."
 
 /obj/machinery/light/proc/get_fitting_name()
-	var/obj/item/weapon/light/L = light_type
+	var/obj/item/light/L = light_type
 	return initial(L.name)
 
-/obj/machinery/light/proc/update_from_bulb(obj/item/weapon/light/L)
+/obj/machinery/light/proc/update_from_bulb(obj/item/light/L)
 	status = L.status
 	switchcount = L.switchcount
 	rigged = L.rigged
@@ -571,7 +571,7 @@ var/global/list/light_type_cache = list()
 
 // attack with item - insert light (if right type), otherwise try to break the light
 
-/obj/machinery/light/proc/insert_bulb(obj/item/weapon/light/L)
+/obj/machinery/light/proc/insert_bulb(obj/item/light/L)
 	update_from_bulb(L)
 	installed_light = L
 	L.loc = src //Move it into the socket!
@@ -597,15 +597,15 @@ var/global/list/light_type_cache = list()
 /obj/machinery/light/attackby(obj/item/W, mob/user)
 
 	//Light replacer code
-	if(istype(W, /obj/item/device/lightreplacer)) //These will never be modified, so it's fine to use old code.
-		var/obj/item/device/lightreplacer/LR = W
+	if(istype(W, /obj/item/lightreplacer)) //These will never be modified, so it's fine to use old code.
+		var/obj/item/lightreplacer/LR = W
 		if(isliving(user))
 			var/mob/living/U = user
 			LR.ReplaceLight(src, U)
 			return
 
 	// attempt to insert light
-	if(istype(W, /obj/item/weapon/light))
+	if(istype(W, /obj/item/light))
 		if(status != LIGHT_EMPTY)
 			to_chat(user, "There is a [get_fitting_name()] already inserted.")
 			return
@@ -664,10 +664,10 @@ var/global/list/light_type_cache = list()
 	if(W.has_tool_quality(TOOL_WRENCH))
 		anchored = !anchored
 		playsound(src, W.usesound, 50, 1)
-		to_chat(user, "<span class='notice'>You [anchored ? "wrench" : "unwrench"] \the [src].</span>")
+		to_chat(user, span_notice("You [anchored ? "wrench" : "unwrench"] \the [src]."))
 
 	if(!lamp_shade)
-		if(istype(W, /obj/item/weapon/lampshade))
+		if(istype(W, /obj/item/lampshade))
 			lamp_shade = 1
 			qdel(W)
 			update_icon()
@@ -679,7 +679,7 @@ var/global/list/light_type_cache = list()
 			user.visible_message("[user.name] removes [src]'s lamp shade.", \
 				"You remove [src]'s lamp shade.", "You hear a noise.")
 			lamp_shade = 0
-			new /obj/item/weapon/lampshade(src.loc)
+			new /obj/item/lampshade(src.loc)
 			update_icon()
 			return
 
@@ -719,7 +719,7 @@ var/global/list/light_type_cache = list()
 	if(!has_emergency_power(pwr))
 		return FALSE
 	if(cell.charge > 300) //it's meant to handle 120 W, ya doofus
-		visible_message("<span class='warning'>[src] short-circuits from too powerful of a power cell!</span>")
+		visible_message(span_warning("[src] short-circuits from too powerful of a power cell!"))
 		status = LIGHT_BURNED
 		installed_light.status = status
 		return FALSE
@@ -746,7 +746,7 @@ var/global/list/light_type_cache = list()
 // ai attack - turn on/off emergency lighting for a specific fixture
 /obj/machinery/light/attack_ai(mob/user)
 	no_emergency = !no_emergency
-	to_chat(user, "<span class='notice'>Emergency lights for this fixture have been [no_emergency ? "disabled" : "enabled"].</span>")
+	to_chat(user, span_notice("Emergency lights for this fixture have been [no_emergency ? "disabled" : "enabled"]."))
 	update(FALSE)
 	return
 
@@ -831,6 +831,13 @@ var/global/list/light_type_cache = list()
 		return
 
 	to_chat(user, "You telekinetically remove the light [get_fitting_name()].")
+	installed_light.status = status
+	installed_light.forceMove(src.loc)
+	var/obj/item/tk_grab/O = new(src)
+	user.put_in_active_hand(O)
+	O.host = user
+	O.focus_object(installed_light)
+	installed_light.update_icon()
 	remove_bulb()
 
 // break the light and make sparks if was on
@@ -927,7 +934,7 @@ var/global/list/light_type_cache = list()
 // can be tube or bulb subtypes
 // will fit into empty /obj/machinery/light of the corresponding type
 
-/obj/item/weapon/light
+/obj/item/light
 	icon = 'icons/obj/lighting.dmi'
 	force = 2
 	throwforce = 5
@@ -970,7 +977,7 @@ var/global/list/light_type_cache = list()
 	var/init_nightshift_power = 0.45
 	//VOREStation Edit End - Modifiable Lighting
 
-/obj/item/weapon/light/tube
+/obj/item/light/tube
 	name = "light tube"
 	desc = "A replacement light tube."
 	icon_state = "ltube"
@@ -982,7 +989,7 @@ var/global/list/light_type_cache = list()
 	init_brightness_range = 7
 	init_brightness_power = 2
 
-/obj/item/weapon/light/tube/large
+/obj/item/light/tube/large
 	w_class = ITEMSIZE_SMALL
 	name = "large light tube"
 	brightness_range = 15
@@ -996,7 +1003,7 @@ var/global/list/light_type_cache = list()
 	init_nightshift_range = 10
 	init_nightshift_power = 1.5
 
-/obj/item/weapon/light/bulb
+/obj/item/light/bulb
 	name = "light bulb"
 	desc = "A replacement light bulb."
 	icon_state = "lbulb"
@@ -1016,7 +1023,7 @@ var/global/list/light_type_cache = list()
 	init_nightshift_power = 0.5
 
 // For 'floor lamps' in outdoor use and such
-/obj/item/weapon/light/bulb/large
+/obj/item/light/bulb/large
 	name = "large light bulb"
 	brightness_range = 7
 	brightness_power = 1.5
@@ -1029,17 +1036,17 @@ var/global/list/light_type_cache = list()
 	init_nightshift_range = 4
 	init_nightshift_power = 0.75
 
-/obj/item/weapon/light/throw_impact(atom/hit_atom)
+/obj/item/light/throw_impact(atom/hit_atom)
 	..()
 	shatter()
 
-/obj/item/weapon/light/bulb/red
+/obj/item/light/bulb/red
 	brightness_range = 4
 	color = "#da0205"
 	brightness_color = "#da0205"
 	init_brightness_range = 4
 
-/obj/item/weapon/light/bulb/fire
+/obj/item/light/bulb/fire
 	name = "fire bulb"
 	desc = "A replacement fire bulb."
 	icon_state = "fbulb"
@@ -1048,7 +1055,7 @@ var/global/list/light_type_cache = list()
 	matter = list(MAT_GLASS = 100)
 
 // update the icon state and description of the light
-/obj/item/weapon/light/update_icon()
+/obj/item/light/update_icon()
 	switch(status)
 		if(LIGHT_OK)
 			icon_state = base_state
@@ -1061,7 +1068,7 @@ var/global/list/light_type_cache = list()
 			desc = "A broken [name]."
 
 
-/obj/item/weapon/light/New(atom/newloc, obj/machinery/light/fixture = null)
+/obj/item/light/New(atom/newloc, obj/machinery/light/fixture = null)
 	..()
 	if(fixture)
 		status = fixture.status
@@ -1078,11 +1085,11 @@ var/global/list/light_type_cache = list()
 
 // attack bulb/tube with object
 // if a syringe, can inject phoron to make it explode
-/obj/item/weapon/light/attackby(var/obj/item/I, var/mob/user)
+/obj/item/light/attackby(var/obj/item/I, var/mob/user)
 	..()
 
 	//VOREStation Edit Start - Multitool Lighting!
-	if(istype(I,/obj/item/device/multitool))
+	if(istype(I,/obj/item/multitool))
 		var/list/menu_list = list(
 		"Normal Range",
 		"Normal Brightness",
@@ -1129,8 +1136,8 @@ var/global/list/light_type_cache = list()
 			else //Should never happen.
 				return
 
-	else if(istype(I, /obj/item/weapon/reagent_containers/syringe))
-		var/obj/item/weapon/reagent_containers/syringe/S = I
+	else if(istype(I, /obj/item/reagent_containers/syringe))
+		var/obj/item/reagent_containers/syringe/S = I
 
 		to_chat(user, "You inject the solution into the [src].")
 
@@ -1150,7 +1157,7 @@ var/global/list/light_type_cache = list()
 // shatter light, unless it was an attempt to put it in a light socket
 // now only shatter if the intent was harm
 
-/obj/item/weapon/light/afterattack(atom/target, mob/user, proximity)
+/obj/item/light/afterattack(atom/target, mob/user, proximity)
 	if(!proximity) return
 	if(istype(target, /obj/machinery/light))
 		return
@@ -1159,7 +1166,7 @@ var/global/list/light_type_cache = list()
 
 	shatter()
 
-/obj/item/weapon/light/proc/shatter()
+/obj/item/light/proc/shatter()
 	if(status == LIGHT_OK || status == LIGHT_BURNED)
 		src.visible_message(span_red("[name] shatters."),span_red("You hear a small glass object shatter."))
 		status = LIGHT_BROKEN
@@ -1169,7 +1176,7 @@ var/global/list/light_type_cache = list()
 		update_icon()
 
 //Lamp Shade
-/obj/item/weapon/lampshade
+/obj/item/lampshade
 	name = "lamp shade"
 	desc = "A lamp shade for a lamp."
 	icon = 'icons/obj/lighting.dmi'

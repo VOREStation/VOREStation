@@ -322,21 +322,21 @@
 /turf/simulated/mineral/floor/ignore_cavegen/virgo3b,
 /area/mine/explored/underdark)
 "bv" = (
-/obj/item/device/assembly/prox_sensor,
+/obj/item/assembly/prox_sensor,
 /turf/simulated/floor/tiled/steel_dirty/virgo3b,
 /area/mine/explored/underdark)
 "bw" = (
-/obj/item/device/electronic_assembly/drone/genbot,
+/obj/item/electronic_assembly/drone/genbot,
 /turf/simulated/floor/tiled/steel_dirty/virgo3b,
 /area/mine/explored/underdark)
 "bx" = (
 /obj/structure/table/steel,
-/obj/item/device/assembly/electronic_assembly,
-/obj/item/weapon/circuitboard/aicore,
+/obj/item/assembly/electronic_assembly,
+/obj/item/circuitboard/aicore,
 /turf/simulated/floor/tiled/steel_dirty/virgo3b,
 /area/mine/explored/underdark)
 "by" = (
-/obj/item/device/assembly/signaler,
+/obj/item/assembly/signaler,
 /turf/simulated/floor/tiled/steel_dirty/virgo3b,
 /area/mine/explored/underdark)
 "bz" = (
@@ -368,7 +368,7 @@
 /turf/simulated/floor/tiled/steel_dirty/virgo3b,
 /area/mine/explored/underdark)
 "bE" = (
-/obj/item/device/geiger,
+/obj/item/geiger,
 /turf/simulated/mineral/floor/ignore_cavegen/virgo3b,
 /area/mine/explored/underdark)
 "DS" = (

@@ -44,52 +44,52 @@
 		var/wish = tgui_input_list(usr, "You want...","Wish", list("Power","Wealth","Immortality","To Kill","Peace"))
 		switch(wish)
 			if("Power")
-				to_chat(user, "<B>Your wish is granted, but at a terrible cost...</B>")
-				to_chat(user, "The Wish Granter punishes you for your selfishness, claiming your soul and warping your body to match the darkness in your heart.")
+				to_chat(user, span_boldwarning("Your wish is granted, but at a terrible cost..."))
+				to_chat(user, span_warning("The Wish Granter punishes you for your selfishness, claiming your soul and warping your body to match the darkness in your heart."))
 				if (!(LASER in user.mutations))
 					user.mutations.Add(LASER)
-					to_chat(user, "<span class='notice'>You feel pressure building behind your eyes.</span>")
+					to_chat(user, span_notice("You feel pressure building behind your eyes."))
 				if (!(COLD_RESISTANCE in user.mutations))
 					user.mutations.Add(COLD_RESISTANCE)
-					to_chat(user, "<span class='notice'>Your body feels warm.</span>")
+					to_chat(user, span_notice("Your body feels warm."))
 				if (!(XRAY in user.mutations))
 					user.mutations.Add(XRAY)
 					user.sight |= (SEE_MOBS|SEE_OBJS|SEE_TURFS)
 					user.see_in_dark = 8
 					user.see_invisible = SEE_INVISIBLE_LEVEL_TWO
-					to_chat(user, "<span class='notice'>The walls suddenly disappear.</span>")
+					to_chat(user, span_notice("The walls suddenly disappear."))
 				user.dna.mutantrace = "shadow"
 				user.update_mutantrace()
 			if("Wealth")
-				to_chat(user, "<B>Your wish is granted, but at a terrible cost...</B>")
-				to_chat(user, "The Wish Granter punishes you for your selfishness, claiming your soul and warping your body to match the darkness in your heart.")
+				to_chat(user, span_boldwarning("Your wish is granted, but at a terrible cost..."))
+				to_chat(user, span_warning("The Wish Granter punishes you for your selfishness, claiming your soul and warping your body to match the darkness in your heart."))
 				new /obj/structure/closet/syndicate/resources/everything(loc)
 				user.dna.mutantrace = "shadow"
 				user.update_mutantrace()
 			if("Immortality")
-				to_chat(user, "<B>Your wish is granted, but at a terrible cost...</B>")
-				to_chat(user, "The Wish Granter punishes you for your selfishness, claiming your soul and warping your body to match the darkness in your heart.")
-				user.verbs += /mob/living/carbon/proc/immortality
+				to_chat(user, span_boldwarning("Your wish is granted, but at a terrible cost..."))
+				to_chat(user, span_warning("The Wish Granter punishes you for your selfishness, claiming your soul and warping your body to match the darkness in your heart."))
+				add_verb(user, /mob/living/carbon/proc/immortality)
 				user.dna.mutantrace = "shadow"
 				user.update_mutantrace()
 			if("To Kill")
-				to_chat(user, "<B>Your wish is granted, but at a terrible cost...</B>")
-				to_chat(user, "The Wish Granter punishes you for your wickedness, claiming your soul and warping your body to match the darkness in your heart.")
+				to_chat(user, span_boldwarning("Your wish is granted, but at a terrible cost..."))
+				to_chat(user, span_warning("The Wish Granter punishes you for your wickedness, claiming your soul and warping your body to match the darkness in your heart."))
 				ticker.mode.traitors += user.mind
 				user.mind.special_role = "traitor"
 				var/datum/objective/hijack/hijack = new
 				hijack.owner = user.mind
 				user.mind.objectives += hijack
-				to_chat(user, "<B>Your inhibitions are swept away, the bonds of loyalty broken, you are free to murder as you please!</B>")
+				to_chat(user, span_infoplain(span_bold("Your inhibitions are swept away, the bonds of loyalty broken, you are free to murder as you please!")))
 				var/obj_count = 1
 				for(var/datum/objective/OBJ in user.mind.objectives)
-					to_chat(user, "<B>Objective #[obj_count]</B>: [OBJ.explanation_text]")
+					to_chat(user, span_infoplain(span_bold("Objective #[obj_count]") + ": [OBJ.explanation_text]"))
 					obj_count++
 				user.dna.mutantrace = "shadow"
 				user.update_mutantrace()
 			if("Peace")
-				to_chat(user, "<B>Whatever alien sentience that the Wish Granter possesses is satisfied with your wish. There is a distant wailing as the last of the Faithless begin to die, then silence.</B>")
-				to_chat(user, "You feel as if you just narrowly avoided a terrible fate...")
+				to_chat(user, span_infoplain(span_bold("Whatever alien sentience that the Wish Granter possesses is satisfied with your wish. There is a distant wailing as the last of the Faithless begin to die, then silence.")))
+				to_chat(user, span_infoplain("You feel as if you just narrowly avoided a terrible fate..."))
 				for(var/mob/living/simple_mob/faithless/F in living_mob_list)
 					F.health = -10
 					F.set_stat(DEAD)
@@ -148,9 +148,9 @@
 
 	var/mob/living/carbon/C = usr
 	if(!C.stat)
-		to_chat(C, "<span class='notice'>You're not dead yet!</span>")
+		to_chat(C, span_notice("You're not dead yet!"))
 		return
-	to_chat(C, "<span class='notice'>Death is not your end!</span>")
+	to_chat(C, span_notice("Death is not your end!"))
 
 	spawn(rand(800,1200))
 		if(C.stat == DEAD)
@@ -167,7 +167,7 @@
 		C.radiation = 0
 		C.heal_overall_damage(C.getBruteLoss(), C.getFireLoss())
 		C.reagents.clear_reagents()
-		to_chat(C, "<span class='notice'>You have regenerated.</span>")
-		C.visible_message("<span class='warning'>[usr] appears to wake from the dead, having healed all wounds.</span>")
+		to_chat(C, span_notice("You have regenerated."))
+		C.visible_message(span_warning("[usr] appears to wake from the dead, having healed all wounds."))
 		C.update_canmove()
 	return 1

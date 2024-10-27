@@ -1,4 +1,4 @@
-/obj/item/device/suit_cooling_unit
+/obj/item/suit_cooling_unit
 	name = "portable suit cooling unit"
 	desc = "A portable heat sink and liquid cooled radiator that can be hooked up to a space suit's existing temperature controls to provide industrial levels of cooling."
 	w_class = ITEMSIZE_LARGE
@@ -12,33 +12,35 @@
 	throwforce = 10.0
 	throw_speed = 1
 	throw_range = 4
-	action_button_name = "Toggle Heatsink"
+	actions_types = list(/datum/action/item_action/toggle_heatsink)
 
 	matter = list(MAT_STEEL = 15000, MAT_GLASS = 3500)
 	origin_tech = list(TECH_MAGNET = 2, TECH_MATERIAL = 2)
 
 	var/on = 0				//is it turned on?
 	var/cover_open = 0		//is the cover open?
-	var/obj/item/weapon/cell/cell = /obj/item/weapon/cell/high
+	var/obj/item/cell/cell = /obj/item/cell/high
 	var/max_cooling = 15				// in degrees per second - probably don't need to mess with heat capacity here
 	var/charge_consumption = 3			// charge per second at max_cooling
 	var/thermostat = T20C
+	pickup_sound = 'sound/items/pickup/device.ogg'
+	drop_sound = 'sound/items/drop/device.ogg'
 
 	//TODO: make it heat up the surroundings when not in space
 
-/obj/item/device/suit_cooling_unit/ui_action_click()
-	toggle(usr)
+/obj/item/suit_cooling_unit/ui_action_click(mob/user, actiontype)
+	toggle(user)
 
-/obj/item/device/suit_cooling_unit/Initialize()
+/obj/item/suit_cooling_unit/Initialize()
 	. = ..()
 	if(ispath(cell))
 		cell = new cell(src)
 
-/obj/item/device/suit_cooling_unit/Destroy()
+/obj/item/suit_cooling_unit/Destroy()
 	qdel_null(cell)
 	return ..()
 
-/obj/item/device/suit_cooling_unit/process()
+/obj/item/suit_cooling_unit/process()
 	if (!on || !cell)
 		return PROCESS_KILL
 
@@ -74,7 +76,7 @@
 	if(cell.charge <= 0)
 		turn_off(1)
 
-/obj/item/device/suit_cooling_unit/proc/get_environment_temperature()
+/obj/item/suit_cooling_unit/proc/get_environment_temperature()
 	if (ishuman(loc))
 		var/mob/living/carbon/human/H = loc
 		if(istype(H.loc, /obj/mecha))
@@ -94,7 +96,7 @@
 
 	return environment.temperature
 
-/obj/item/device/suit_cooling_unit/proc/attached_to_suit(mob/M)
+/obj/item/suit_cooling_unit/proc/attached_to_suit(mob/M)
 	if (!ishuman(M))
 		return 0
 
@@ -105,7 +107,7 @@
 
 	return 1
 
-/obj/item/device/suit_cooling_unit/proc/turn_on()
+/obj/item/suit_cooling_unit/proc/turn_on()
 	if(!cell)
 		return
 	if(cell.charge <= 0)
@@ -115,13 +117,13 @@
 	START_PROCESSING(SSobj, src)
 	update_icon()
 
-/obj/item/device/suit_cooling_unit/proc/turn_off(var/failed)
+/obj/item/suit_cooling_unit/proc/turn_off(var/failed)
 	if(failed) visible_message("\The [src] clicks and whines as it powers down.")
 	on = 0
 	STOP_PROCESSING(SSobj, src)
 	update_icon()
 
-/obj/item/device/suit_cooling_unit/attack_self(var/mob/user)
+/obj/item/suit_cooling_unit/attack_self(var/mob/user)
 	if(cover_open && cell)
 		if(ishuman(user))
 			user.put_in_hands(cell)
@@ -138,14 +140,14 @@
 
 	toggle(user)
 
-/obj/item/device/suit_cooling_unit/proc/toggle(var/mob/user)
+/obj/item/suit_cooling_unit/proc/toggle(var/mob/user)
 	if(on)
 		turn_off()
 	else
 		turn_on()
-	to_chat(user, "<span class='notice'>You switch \the [src] [on ? "on" : "off"].</span>")
+	to_chat(user, span_notice("You switch \the [src] [on ? "on" : "off"]."))
 
-/obj/item/device/suit_cooling_unit/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/item/suit_cooling_unit/attackby(obj/item/W as obj, mob/user as mob)
 	if (W.has_tool_quality(TOOL_SCREWDRIVER))
 		if(cover_open)
 			cover_open = 0
@@ -157,7 +159,7 @@
 		update_icon()
 		return
 
-	if (istype(W, /obj/item/weapon/cell))
+	if (istype(W, /obj/item/cell))
 		if(cover_open)
 			if(cell)
 				to_chat(user, "There is a [cell] already installed here.")
@@ -171,7 +173,7 @@
 
 	return ..()
 
-/obj/item/device/suit_cooling_unit/update_icon()
+/obj/item/suit_cooling_unit/update_icon()
 	cut_overlays()
 	if(cover_open)
 		if(cell)
@@ -199,7 +201,7 @@
 		if(-INFINITY to 17)
 			add_overlay("battery-5")
 
-/obj/item/device/suit_cooling_unit/examine(mob/user)
+/obj/item/suit_cooling_unit/examine(mob/user)
 	. = ..()
 
 	if(Adjacent(user))
@@ -223,22 +225,22 @@
 		else
 			. += "It doesn't have a power cell installed."
 
-/obj/item/device/suit_cooling_unit/emergency
+/obj/item/suit_cooling_unit/emergency
 	icon_state = "esuitcooler"
-	cell = /obj/item/weapon/cell
+	cell = /obj/item/cell
 	w_class = ITEMSIZE_NORMAL
 
-/obj/item/device/suit_cooling_unit/emergency/update_icon()
+/obj/item/suit_cooling_unit/emergency/update_icon()
 	return
 
-/obj/item/device/suit_cooling_unit/emergency/get_cell()
+/obj/item/suit_cooling_unit/emergency/get_cell()
 	if(on)
 		return null // Don't let recharging happen while we're on
 	return cell
 
-/obj/item/device/suit_cooling_unit/emergency/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/item/suit_cooling_unit/emergency/attackby(obj/item/W as obj, mob/user as mob)
 	if (W.has_tool_quality(TOOL_SCREWDRIVER))
-		to_chat(user, "<span class='warning'>This cooler's cell is permanently installed!</span>")
+		to_chat(user, span_warning("This cooler's cell is permanently installed!"))
 		return
 
 	return ..()

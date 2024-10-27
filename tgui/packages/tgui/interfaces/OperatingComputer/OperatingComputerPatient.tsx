@@ -74,7 +74,7 @@ export const OperatingComputerPatient = (props: { occupant: occupant }) => {
         </LabeledList>
       </Section>
       <Section title="Current Procedure">
-        {occupant.surgery && occupant.surgery.length ? (
+        {occupant.surgery?.length ? (
           <LabeledList>
             {occupant.surgery.map((limb) => (
               <LabeledList.Item key={limb.name} label={limb.name}>

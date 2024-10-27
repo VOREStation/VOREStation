@@ -8,7 +8,7 @@
 	food_color = "#A34719"
 	can_burn_food = TRUE
 	var/datum/looping_sound/oven/oven_loop
-	circuit = /obj/item/weapon/circuitboard/oven
+	circuit = /obj/item/circuitboard/oven
 	active_power_usage = 6 KILOWATTS
 	heating_power = 6 KILOWATTS
 	//Based on a double deck electric convection oven
@@ -21,22 +21,22 @@
 	light_x = 3
 	light_y = 4
 	max_contents = 5
-	container_type = /obj/item/weapon/reagent_containers/cooking_container/oven
+	container_type = /obj/item/reagent_containers/cooking_container/oven
 
 	stat = POWEROFF	//Starts turned off
 
 	var/open = FALSE // Start closed just so people don't try to preheat with it open, lol.
 
 	output_options = list(
-		"Pizza" = /obj/item/weapon/reagent_containers/food/snacks/variable/pizza,
-		"Bread" = /obj/item/weapon/reagent_containers/food/snacks/variable/bread,
-		"Pie" = /obj/item/weapon/reagent_containers/food/snacks/variable/pie,
-		"Cake" = /obj/item/weapon/reagent_containers/food/snacks/variable/cake,
-		"Hot Pocket" = /obj/item/weapon/reagent_containers/food/snacks/variable/pocket,
-		"Kebab" = /obj/item/weapon/reagent_containers/food/snacks/variable/kebab,
-		"Waffles" = /obj/item/weapon/reagent_containers/food/snacks/variable/waffles,
-		"Cookie" = /obj/item/weapon/reagent_containers/food/snacks/variable/cookie,
-		"Donut" = /obj/item/weapon/reagent_containers/food/snacks/variable/donut,
+		"Pizza" = /obj/item/reagent_containers/food/snacks/variable/pizza,
+		"Bread" = /obj/item/reagent_containers/food/snacks/variable/bread,
+		"Pie" = /obj/item/reagent_containers/food/snacks/variable/pie,
+		"Cake" = /obj/item/reagent_containers/food/snacks/variable/cake,
+		"Hot Pocket" = /obj/item/reagent_containers/food/snacks/variable/pocket,
+		"Kebab" = /obj/item/reagent_containers/food/snacks/variable/kebab,
+		"Waffles" = /obj/item/reagent_containers/food/snacks/variable/waffles,
+		"Cookie" = /obj/item/reagent_containers/food/snacks/variable/cookie,
+		"Donut" = /obj/item/reagent_containers/food/snacks/variable/donut,
 		)
 
 /obj/machinery/appliance/cooker/oven/Initialize()
@@ -86,11 +86,11 @@
 		return
 
 	if(!usr.IsAdvancedToolUser())
-		to_chat(user, "<span class='notice'>You lack the dexterity to do that.</span>")
+		to_chat(user, span_notice("You lack the dexterity to do that."))
 		return
 
 	if(!Adjacent(usr))
-		to_chat(user, "<span class='notice'>You can't reach the [src] from there, get closer!</span>")
+		to_chat(user, span_notice("You can't reach the [src] from there, get closer!"))
 		return
 
 	if(open)
@@ -104,20 +104,20 @@
 		cooking = FALSE
 
 	playsound(src, 'sound/machines/hatch_open.ogg', 20, 1)
-	to_chat(user, "<span class='notice'>You [open? "open":"close"] the oven door</span>")
+	to_chat(user, span_notice("You [open? "open":"close"] the oven door"))
 	update_icon()
 
 /obj/machinery/appliance/cooker/oven/proc/manip(var/obj/item/I)
 	// check if someone's trying to manipulate the machine
 
-	if(I.has_tool_quality(TOOL_CROWBAR) || I.has_tool_quality(TOOL_SCREWDRIVER) || istype(I, /obj/item/weapon/storage/part_replacer))
+	if(I.has_tool_quality(TOOL_CROWBAR) || I.has_tool_quality(TOOL_SCREWDRIVER) || istype(I, /obj/item/storage/part_replacer))
 		return TRUE
 	else
 		return FALSE
 
 /obj/machinery/appliance/cooker/oven/can_insert(var/obj/item/I, var/mob/user)
 	if(!open && !manip(I))
-		to_chat(user, "<span class='warning'>You can't put anything in while the door is closed!</span>")
+		to_chat(user, span_warning("You can't put anything in while the door is closed!"))
 		return 0
 
 	else
@@ -136,7 +136,7 @@
 /obj/machinery/appliance/cooker/oven/can_remove_items(var/mob/user, show_warning = TRUE)
 	if(!open)
 		if(show_warning)
-			to_chat(user, "<span class='warning'>You can't take anything out while the door is closed!</span>")
+			to_chat(user, span_warning("You can't take anything out while the door is closed!"))
 		return 0
 
 	else
@@ -148,7 +148,7 @@
 /obj/machinery/appliance/cooker/oven/finish_cooking(var/datum/cooking_item/CI)
 	if(CI.combine_target)
 		CI.result_type = 3//Combination type. We're making something out of our ingredients
-		visible_message("<b>\The [src]</b> pings!")
+		visible_message(span_infoplain(span_bold("\The [src]") + " pings!"))
 		combination_cook(CI)
 		return
 	else

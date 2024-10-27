@@ -15,6 +15,9 @@ export const ControlFixes = (props) => {
       <Button fluid onClick={() => act('stop-orbits')}>
         Clear All Orbiters
       </Button>
+      <Button fluid onClick={() => act('revert-mob-tf')}>
+        Revert Mob Transformation
+      </Button>
     </Section>
   );
 };

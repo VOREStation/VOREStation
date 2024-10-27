@@ -5,11 +5,11 @@
 	if the target is completely healthy, preventing further instability."
 	spell_power_desc = "Healing amount increased."
 	cost = 25
-	obj_path = /obj/item/weapon/spell/modifier/purify
+	obj_path = /obj/item/spell/modifier/purify
 	ability_icon_state = "tech_purify"
 	category = SUPPORT_SPELLS
 
-/obj/item/weapon/spell/modifier/purify
+/obj/item/spell/modifier/purify
 	name = "mend life"
 	desc = "Watch your wounds close up before your eyes."
 	icon_state = "mend_life"
@@ -24,8 +24,8 @@
 	desc = "You feel rather clean and pure."
 	mob_overlay_state = "green_sparkles"
 
-	on_created_text = "<span class='warning'>Sparkles begin to appear around you, and you feel really.. pure.</span>"
-	on_expired_text = "<span class='notice'>The sparkles have faded, although you feel healthier than before.</span>"
+	on_created_text = span_warning("Sparkles begin to appear around you, and you feel really.. pure.")
+	on_expired_text = span_notice("The sparkles have faded, although you feel healthier than before.")
 	stacks = MODIFIER_STACK_EXTEND
 
 /datum/modifier/technomancer/purify/tick()

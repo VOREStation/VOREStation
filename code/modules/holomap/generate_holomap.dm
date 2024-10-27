@@ -26,7 +26,7 @@
 /// Generates all the holo minimaps, initializing it all nicely, probably.
 /datum/controller/subsystem/holomaps/proc/generateHoloMinimaps()
 	var/start_time = world.timeofday
-	
+
 	// Starting over if we're running midround (it runs real fast, so that's possible)
 	holoMiniMaps.Cut()
 	extraMiniMaps.Cut()
@@ -45,7 +45,7 @@
 			smooshTetherHolomaps(smoosh_list)
 
 	holomaps_initialized = TRUE
-	admin_notice("<span class='notice'>Holomaps initialized in [round(0.1*(world.timeofday-start_time),0.1)] seconds.</span>", R_DEBUG)
+	admin_notice(span_notice("Holomaps initialized in [round(0.1*(world.timeofday-start_time),0.1)] seconds."), R_DEBUG)
 
 	// TODO - Check - They had a delayed init perhaps?
 	for (var/obj/machinery/station_map/S in station_holomaps)
@@ -133,7 +133,7 @@
 		z_terrain.Blend(HOLOMAP_HOLOFIER, ICON_MULTIPLY, offset_x, offset_y)
 		big_map.Blend(z_terrain, ICON_OVERLAY, offset_x, offset_y)
 		small_map.Blend(z_terrain, ICON_OVERLAY, offset_x, offset_y)
-		
+
 		var/icon/z_areas = extraMiniMaps["[HOLOMAP_EXTRA_STATIONMAPAREAS]_[zLevel]"]
 		big_map.Blend(z_areas, ICON_OVERLAY, offset_x, offset_y)
 		small_map.Blend(z_areas, ICON_OVERLAY, offset_x, offset_y)

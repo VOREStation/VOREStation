@@ -222,6 +222,10 @@ a.popt {
   color: #638500;
 }
 
+.underline {
+  text-decoration: underline;
+}
+
 /* ADD HERE FOR BOLD */
 
 .bold,
@@ -367,6 +371,10 @@ img.icon.bigicon {
   font-weight: bold;
 }
 
+.world {
+  font-weight: bold;
+}
+
 .say,
 .emote,
 .emotesubtle,
@@ -375,9 +383,12 @@ img.icon.bigicon {
 .npcsay,
 .infoplain,
 .oocplain,
-.warningplain,
 .chatexport,
 .body {
+}
+
+.warningplain {
+  font-style: italic;
 }
 
 .hivemind {
@@ -661,6 +672,10 @@ img.icon.bigicon {
 
 .green {
   color: #44ff44;
+}
+
+.darkgreen {
+  color: #008000;
 }
 
 .grey {
@@ -1414,10 +1429,18 @@ $border-width-px: $border-width * 1px;
   font-family: 'Segoe Script Bold', 'Segoe Script', sans-serif, Verdana;
 }
 
+.marish {
+  color: #9e31a4;
+}
+
 .shadekin {
   color: #be3cc5;
   font-size: 150%;
   font-weight: bold;
   font-family: 'Gabriola', cursive, sans-serif;
   line-height: 0.3;
+}
+
+.wingdings {
+  font-family: Wingdings, Webdings;
 }

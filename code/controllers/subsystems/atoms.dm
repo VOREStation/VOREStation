@@ -21,7 +21,7 @@ SUBSYSTEM_DEF(atoms)
 	setupgenetics() //to set the mutations' place in structural enzymes, so initializers know where to put mutations.
 	initialized = INITIALIZATION_INNEW_MAPLOAD
 	to_world_log("Initializing objects")
-	admin_notice("<span class='danger'>Initializing objects</span>", R_DEBUG)
+	admin_notice(span_danger("Initializing objects"), R_DEBUG)
 	InitializeAtoms()
 	return ..()
 

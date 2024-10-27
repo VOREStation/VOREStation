@@ -78,22 +78,22 @@
 		if("Never for this round")
 			if(be_special_flag)
 				D.client.prefs.be_special ^= be_special_flag
-				to_chat(D, "<span class='notice'>You will not be prompted to join similar roles to [role_name] for the rest of this round. Note: If you save your character now, it will save this permanently.</span>")
+				to_chat(D, span_notice("You will not be prompted to join similar roles to [role_name] for the rest of this round. Note: If you save your character now, it will save this permanently."))
 			else
-				to_chat(D, "<span class='warning'>This type of ghost-joinable role doesn't have a role type flag associated with it, so I can't prevent future requests, sorry. Bug a dev!</span>")
+				to_chat(D, span_warning("This type of ghost-joinable role doesn't have a role type flag associated with it, so I can't prevent future requests, sorry. Bug a dev!"))
 		if("Yes")
 			if(!evaluate_candidate(D)) // Failed revalidation
-				to_chat(D, "<span class='warning'>Unfortunately, you no longer qualify for this role. Sorry.</span>")
+				to_chat(D, span_warning("Unfortunately, you no longer qualify for this role. Sorry."))
 			else if(finished) // Already finished candidate list
-				to_chat(D, "<span class='warning'>Unfortunately, you were not fast enough, and there are no more available roles. Sorry.</span>")
+				to_chat(D, span_warning("Unfortunately, you were not fast enough, and there are no more available roles. Sorry."))
 			else // Prompt a second time
 				tgui_alert_async(D, "Are you sure you want to play as a [role_name]?", "[role_name] request", list("I'm Sure", "Nevermind"), CALLBACK(src, PROC_REF(get_reply)), wait_time SECONDS)
 
 		if("I'm Sure")
 			if(!evaluate_candidate(D)) // Failed revalidation
-				to_chat(D, "<span class='warning'>Unfortunately, you no longer qualify for this role. Sorry.</span>")
+				to_chat(D, span_warning("Unfortunately, you no longer qualify for this role. Sorry."))
 			else if(finished) // Already finished candidate list
-				to_chat(D, "<span class='warning'>Unfortunately, you were not fast enough, and there are no more available roles. Sorry.</span>")
+				to_chat(D, span_warning("Unfortunately, you were not fast enough, and there are no more available roles. Sorry."))
 			else // Accept their nomination
 				candidates.Add(D)
 				if(cutoff_number && candidates.len >= cutoff_number)

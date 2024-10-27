@@ -12,8 +12,8 @@
 	desc = "We feel limitless amounts of energy surge in our veins.  Nothing can stop us!"
 
 	stacks = MODIFIER_STACK_EXTEND
-	on_created_text = "<span class='notice'>We feel unstoppable!</span>"
-	on_expired_text = "<span class='warning'>We feel our newfound energy fade...</span>"
+	on_created_text = span_notice("We feel unstoppable!")
+	on_expired_text = span_warning("We feel our newfound energy fade...")
 	disable_duration_percent = 0
 
 //Recover from stuns.
@@ -28,7 +28,7 @@
 	changeling.chem_charges -= 30
 
 	var/mob/living/carbon/human/C = src
-	to_chat(C, "<span class='notice'>Energy rushes through us.  [C.lying ? "We arise." : ""]</span>")
+	to_chat(C, span_notice("Energy rushes through us.  [C.lying ? "We arise." : ""]"))
 	C.set_stat(CONSCIOUS)
 	C.SetParalysis(0)
 	C.SetStunned(0)

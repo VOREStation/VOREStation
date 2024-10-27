@@ -4,20 +4,20 @@
 	robotic, reforms bones, patches internal bleeding, and restores missing blood."
 	spell_power_desc = "Healing amount increased."
 	cost = 100
-	obj_path = /obj/item/weapon/spell/insert/mend_organs
+	obj_path = /obj/item/spell/insert/mend_organs
 	ability_icon_state = "tech_mendwounds"
 	category = SUPPORT_SPELLS
 
-/obj/item/weapon/spell/insert/mend_organs
+/obj/item/spell/insert/mend_organs
 	name = "great mend wounds"
 	desc = "A walking medbay is now you!"
 	icon_state = "mend_wounds"
 	cast_methods = CAST_MELEE
 	aspect = ASPECT_BIOMED
 	light_color = "#FF5C5C"
-	inserting = /obj/item/weapon/inserted_spell/mend_organs
+	inserting = /obj/item/inserted_spell/mend_organs
 
-/obj/item/weapon/inserted_spell/mend_organs/on_insert()
+/obj/item/inserted_spell/mend_organs/on_insert()
 	spawn(1)
 		if(ishuman(host))
 			var/mob/living/carbon/human/H = host

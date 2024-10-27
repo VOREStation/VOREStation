@@ -15,7 +15,7 @@
 	density = TRUE
 	anchored = TRUE
 	unacidable = TRUE
-	circuit = /obj/item/weapon/circuitboard/breakerbox
+	circuit = /obj/item/circuitboard/breakerbox
 	var/on = 0
 	var/busy = 0
 	var/directions = list(1,2,4,8,5,6,9,10)
@@ -47,9 +47,9 @@
 /obj/machinery/power/breakerbox/examine(mob/user)
 	. = ..()
 	if(on)
-		. += "<span class='notice'>It seems to be online.</span>"
+		. += span_notice("It seems to be online.")
 	else
-		. += "<span class='warning'>It seems to be offline.</span>"
+		. += span_warning("It seems to be offline.")
 
 /obj/machinery/power/breakerbox/attack_ai(mob/user)
 	if(update_locked)
@@ -87,20 +87,20 @@
 	if(do_after(user, 50))
 		set_state(!on)
 		user.visible_message(\
-		"<span class='notice'>[user.name] [on ? "enabled" : "disabled"] the breaker box!</span>",\
-		"<span class='notice'>You [on ? "enabled" : "disabled"] the breaker box!</span>")
+		span_notice("[user.name] [on ? "enabled" : "disabled"] the breaker box!"),\
+		span_notice("You [on ? "enabled" : "disabled"] the breaker box!"))
 		update_locked = 1
 		spawn(600)
 			update_locked = 0
 	busy = 0
 
-/obj/machinery/power/breakerbox/attackby(var/obj/item/weapon/W as obj, var/mob/user as mob)
-	if(istype(W, /obj/item/device/multitool))
+/obj/machinery/power/breakerbox/attackby(var/obj/item/W as obj, var/mob/user as mob)
+	if(istype(W, /obj/item/multitool))
 		var/newtag = tgui_input_text(user, "Enter new RCON tag. Use \"NO_TAG\" to disable RCON or leave empty to cancel.", "SMES RCON system", "", MAX_NAME_LEN)
 		newtag = sanitize(newtag,MAX_NAME_LEN)
 		if(newtag)
 			RCon_tag = newtag
-			to_chat(user, "<span class='notice'>You changed the RCON tag to: [newtag]</span>")
+			to_chat(user, span_notice("You changed the RCON tag to: [newtag]"))
 	if(on)
 		to_chat(user, span_red("Disable the breaker before performing maintenance."))
 		return

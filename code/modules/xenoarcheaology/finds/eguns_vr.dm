@@ -1,11 +1,11 @@
-/obj/item/weapon/gun/energy/laser/xenoarch
+/obj/item/gun/energy/laser/xenoarch
 	icon = 'icons/obj/xenoarchaeology_vr.dmi'
 
-/obj/item/weapon/gun/energy/laser/practice/xenoarch
+/obj/item/gun/energy/laser/practice/xenoarch
 	icon = 'icons/obj/xenoarchaeology_vr.dmi'
 
-/obj/item/weapon/gun/energy/xray/xenoarch
+/obj/item/gun/energy/xray/xenoarch
 	icon = 'icons/obj/xenoarchaeology_vr.dmi'
 
-/obj/item/weapon/gun/energy/captain/xenoarch
+/obj/item/gun/energy/captain/xenoarch
 	icon = 'icons/obj/xenoarchaeology_vr.dmi'

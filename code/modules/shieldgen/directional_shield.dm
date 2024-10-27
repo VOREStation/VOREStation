@@ -149,7 +149,7 @@
 		if(shield_health <= 0)
 			destroy_shields()
 			var/turf/T = get_turf(src)
-			T.visible_message("<span class='danger'>\The [src] overloads and the shield vanishes!</span>")
+			T.visible_message(span_danger("\The [src] overloads and the shield vanishes!"))
 			playsound(src, 'sound/machines/defib_failed.ogg', 75, 0)
 		else
 			if(shield_health < max_shield_health / 4) // Play a more urgent sounding beep if it's at 25% health.
@@ -189,13 +189,13 @@
 /obj/item/shield_projector/attack_self(var/mob/living/user)
 	if(active)
 		if(always_on)
-			to_chat(user, "<span class='warning'>You can't seem to deactivate \the [src].</span>")
+			to_chat(user, span_warning("You can't seem to deactivate \the [src]."))
 			return
 		set_on(FALSE)
 	else
 		set_dir(user.dir) // Needed for linear shields.
 		set_on(TRUE)
-	visible_message("<span class='notice'>\The [user] [!active ? "de":""]activates \the [src].</span>")
+	visible_message(span_notice("\The [user] [!active ? "de":""]activates \the [src]."))
 
 /obj/item/shield_projector/proc/set_on(var/on)
 	if(isnull(on))
@@ -381,7 +381,7 @@
 /obj/item/shield_projector/line/exosuit/attack_self(var/mob/living/user)
 	if(active)
 		if(always_on)
-			to_chat(user, "<span class='warning'>You can't seem to deactivate \the [src].</span>")
+			to_chat(user, span_warning("You can't seem to deactivate \the [src]."))
 			return
 
 		destroy_shields()
@@ -391,7 +391,7 @@
 		else
 			set_dir(user.dir)
 		create_shields()
-	visible_message("<span class='notice'>\The [user] [!active ? "de":""]activates \the [src].</span>")
+	visible_message(span_notice("\The [user] [!active ? "de":""]activates \the [src]."))
 
 /obj/item/shield_projector/line/exosuit/adjust_health(amount)
 	..()

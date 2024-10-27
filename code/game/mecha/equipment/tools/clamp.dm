@@ -24,41 +24,41 @@
 		if(O.has_buckled_mobs())
 			return
 		if(locate(/mob/living) in O)
-			occupant_message("<span class='warning'>You can't load living things into the cargo compartment.</span>")
+			occupant_message(span_warning("You can't load living things into the cargo compartment."))
 			return
 		if(O.anchored)
 			if(enable_special)
 				if(istype(O, /obj/machinery/door/firedoor))	// I love doors.
 					var/obj/machinery/door/firedoor/FD = O
 					if(FD.blocked)
-						FD.visible_message("<span class='danger'>\The [chassis] begins prying on \the [FD]!</span>")
+						FD.visible_message(span_danger("\The [chassis] begins prying on \the [FD]!"))
 						if(do_after(chassis.occupant,10 SECONDS,FD))
 							playsound(FD, 'sound/machines/door/airlock_creaking.ogg', 100, 1)
 							FD.blocked = 0
 							FD.update_icon()
 							FD.open(1)
-							FD.visible_message("<span class='warning'>\The [chassis] tears \the [FD] open!</span>")
+							FD.visible_message(span_warning("\The [chassis] tears \the [FD] open!"))
 					else if(FD.density)
-						FD.visible_message("<span class='warning'>\The [chassis] begins forcing \the [FD] open!</span>")
+						FD.visible_message(span_warning("\The [chassis] begins forcing \the [FD] open!"))
 						if(do_after(chassis.occupant, 5 SECONDS,FD))
 							playsound(FD, 'sound/machines/door/airlock_creaking.ogg', 100, 1)
-							FD.visible_message("<span class='danger'>\The [chassis] forces \the [FD] open!</span>")
+							FD.visible_message(span_danger("\The [chassis] forces \the [FD] open!"))
 							FD.open(1)
 					else
-						FD.visible_message("<span class='danger'>\The [chassis] forces \the [FD] closed!</span>")
+						FD.visible_message(span_danger("\The [chassis] forces \the [FD] closed!"))
 						FD.close(1)
 				else if(istype(O, /obj/machinery/door/airlock))	// D o o r s.
 					var/obj/machinery/door/airlock/AD = O
 					if(AD.locked)
-						occupant_message("<span class='notice'>The airlock's bolts prevent it from being forced.</span>")
+						occupant_message(span_notice("The airlock's bolts prevent it from being forced."))
 					else if(!AD.operating)
 						if(AD.welded)
-							AD.visible_message("<span class='warning'>\The [chassis] begins prying on \the [AD]!</span>")
+							AD.visible_message(span_warning("\The [chassis] begins prying on \the [AD]!"))
 							if(do_after(chassis.occupant, 15 SECONDS,AD) && chassis.Adjacent(AD))
 								AD.welded = FALSE
 								AD.update_icon()
 								playsound(AD, 'sound/machines/door/airlock_creaking.ogg', 100, 1)
-								AD.visible_message("<span class='danger'>\The [chassis] tears \the [AD] open!</span>")
+								AD.visible_message(span_danger("\The [chassis] tears \the [AD] open!"))
 						if(!AD.welded)
 							if(density)
 								spawn(0)
@@ -68,10 +68,10 @@
 									AD.close(1)
 				return
 			else
-				occupant_message("<span class='warning'>[target] is firmly secured.</span>")
+				occupant_message(span_warning("[target] is firmly secured."))
 			return
 		if(cargo_holder.cargo.len >= cargo_holder.cargo_capacity)
-			occupant_message("<span class='warning'>Not enough room in cargo compartment.</span>")
+			occupant_message(span_warning("Not enough room in cargo compartment."))
 			return
 
 		occupant_message("You lift [target] and start to load it into cargo compartment.")
@@ -85,10 +85,10 @@
 				cargo_holder.cargo += O
 				O.loc = chassis
 				O.anchored = FALSE
-				occupant_message("<span class='notice'>[target] succesfully loaded.</span>")
+				occupant_message(span_notice("[target] succesfully loaded."))
 				log_message("Loaded [O]. Cargo compartment capacity: [cargo_holder.cargo_capacity - cargo_holder.cargo.len]")
 			else
-				occupant_message("<span class='warning'>You must hold still while handling objects.</span>")
+				occupant_message(span_warning("You must hold still while handling objects."))
 				O.anchored = initial(O.anchored)
 
 	//attacking
@@ -99,17 +99,17 @@
 			M.take_overall_damage(dam_force)
 			M.adjustOxyLoss(round(dam_force/2))
 			M.updatehealth()
-			occupant_message("<span class='warning'>You squeeze [target] with [src.name]. Something cracks.</span>")
+			occupant_message(span_warning("You squeeze [target] with [src.name]. Something cracks."))
 			playsound(src, "fracture", 5, 1, -2) //CRACK
-			chassis.visible_message("<span class='warning'>[chassis] squeezes [target].</span>")
+			chassis.visible_message(span_warning("[chassis] squeezes [target]."))
 		else if(chassis.occupant.a_intent == I_DISARM && enable_special)
 			playsound(src, 'sound/mecha/hydraulic.ogg', 10, 1, -2)
 			M.take_overall_damage(dam_force/2)
 			M.adjustOxyLoss(round(dam_force/3))
 			M.updatehealth()
-			occupant_message("<span class='warning'>You slam [target] with [src.name]. Something cracks.</span>")
+			occupant_message(span_warning("You slam [target] with [src.name]. Something cracks."))
 			playsound(src, "fracture", 3, 1, -2) //CRACK 2
-			chassis.visible_message("<span class='warning'>[chassis] slams [target].</span>")
+			chassis.visible_message(span_warning("[chassis] slams [target]."))
 			M.throw_at(get_step(M,get_dir(src, M)), 14, 1.5, chassis)
 		else
 			step_away(M,chassis)
@@ -146,25 +146,25 @@
 						cargo_holder.cargo += O
 						O.loc = chassis
 						O.anchored = FALSE
-						chassis.occupant_message("<span class='notice'>[target] succesfully loaded.</span>")
+						chassis.occupant_message(span_notice("[target] succesfully loaded."))
 						chassis.log_message("Loaded [O]. Cargo compartment capacity: [cargo_holder.cargo_capacity - cargo_holder.cargo.len]")
 					else
-						chassis.occupant_message("<span class='warning'>You must hold still while handling objects.</span>")
+						chassis.occupant_message(span_warning("You must hold still while handling objects."))
 						O.anchored = initial(O.anchored)
 			else
-				chassis.occupant_message("<span class='warning'>Not enough room in cargo compartment.</span>")
+				chassis.occupant_message(span_warning("Not enough room in cargo compartment."))
 		else
-			chassis.occupant_message("<span class='warning'>[target] is firmly secured.</span>")
+			chassis.occupant_message(span_warning("[target] is firmly secured."))
 
 	else if(istype(target,/mob/living))
 		var/mob/living/M = target
 		if(M.stat>1) return
 		if(chassis.occupant.a_intent == I_HURT)
-			chassis.occupant_message("<span class='danger'>You obliterate [target] with [src.name], leaving blood and guts everywhere.</span>")
-			chassis.visible_message("<span class='danger'>[chassis] destroys [target] in an unholy fury.</span>")
+			chassis.occupant_message(span_danger("You obliterate [target] with [src.name], leaving blood and guts everywhere."))
+			chassis.visible_message(span_danger("[chassis] destroys [target] in an unholy fury."))
 		if(chassis.occupant.a_intent == I_DISARM)
-			chassis.occupant_message("<span class='danger'>You tear [target]'s limbs off with [src.name].</span>")
-			chassis.visible_message("<span class='danger'>[chassis] rips [target]'s arms off.</span>")
+			chassis.occupant_message(span_danger("You tear [target]'s limbs off with [src.name]."))
+			chassis.visible_message(span_danger("[chassis] rips [target]'s arms off."))
 		else
 			step_away(M,chassis)
 			chassis.occupant_message("You smash into [target], sending them flying.")

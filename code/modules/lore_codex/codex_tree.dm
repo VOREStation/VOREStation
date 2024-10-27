@@ -71,7 +71,7 @@
 	var/datum/lore/codex/checked = current_page["[user]"]
 	if(istype(checked))
 		var/output = ""
-		output = "<b>[checked.name]</b>"
+		output = span_bold("[checked.name]")
 		while(checked.parent)
 			output = "<a href='?src=\ref[src];target=\ref[checked.parent]'>[checked.parent.name]</a> \> [output]"
 			checked = checked.parent
@@ -164,7 +164,7 @@
 		quick_link(href_list["quick_link"], usr)
 	else if(href_list["close"])
 		// Close the book, if our holder is actually a book.
-		//if(istype(holder, /obj/item/weapon/book/codex))
+		//if(istype(holder, /obj/item/book/codex))
 			//holder.icon_state = initial(holder.icon_state)
 		usr << browse(null, "window=the_empress_protects")
 		return

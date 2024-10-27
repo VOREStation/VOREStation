@@ -10,10 +10,10 @@
 	return
 
 /obj/effect/manifest/proc/manifest()
-	var/dat = "<B>Crew Manifest</B>:<BR>"
+	var/dat = span_bold("Crew Manifest") + ":<BR>"
 	for(var/mob/living/carbon/human/M in mob_list)
 		dat += text("    <B>[]</B> -  []<BR>", M.name, M.get_assignment())
-	var/obj/item/weapon/paper/P = new /obj/item/weapon/paper( src.loc )
+	var/obj/item/paper/P = new /obj/item/paper( src.loc )
 	P.info = dat
 	P.name = "paper- 'Crew Manifest'"
 	//SN src = null

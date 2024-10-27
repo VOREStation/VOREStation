@@ -33,6 +33,12 @@ export const ControlMedical = (props) => {
       <Button fluid onClick={() => act('stasis')}>
         Toggle Stasis
       </Button>
+      <Button fluid onClick={() => act('give_chem')}>
+        Give Reagent
+      </Button>
+      <Button fluid onClick={() => act('purge')}>
+        Purge Reagents
+      </Button>
     </Section>
   );
 };

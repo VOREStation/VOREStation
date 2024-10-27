@@ -11,7 +11,7 @@
 	if(!check_rights(R_ADMIN|R_MOD|R_DEBUG|R_EVENT))
 		return
 
-	if(!config.allow_admin_jump)
+	if(!CONFIG_GET(flag/allow_admin_jump))
 		tgui_alert_async(usr, "Admin jumping disabled")
 		return
 
@@ -36,7 +36,7 @@
 	set category = "Admin"
 	if(!check_rights(R_ADMIN|R_MOD|R_DEBUG|R_EVENT))
 		return
-	if(config.allow_admin_jump)
+	if(CONFIG_GET(flag/allow_admin_jump))
 		log_admin("[key_name(usr)] jumped to [T.x],[T.y],[T.z] in [T.loc]")
 		message_admins("[key_name_admin(usr)] jumped to [T.x],[T.y],[T.z] in [T.loc]", 1)
 		usr.on_mob_jump()
@@ -59,7 +59,7 @@
 
 /// Performs the jumps, also called from admin Topic() for JMP links
 /client/proc/do_jumptomob(var/mob/M)
-	if(!config.allow_admin_jump)
+	if(!CONFIG_GET(flag/allow_admin_jump))
 		tgui_alert_async(usr, "Admin jumping disabled")
 		return
 
@@ -77,7 +77,7 @@
 		message_admins("[key_name_admin(usr)] jumped to [key_name_admin(M)]", 1)
 		feedback_add_details("admin_verb","JM") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	else
-		to_chat(A, "<span class='filter_adminlog'>This mob is not located in the game world.</span>")
+		to_chat(A, span_filter_adminlog("This mob is not located in the game world."))
 
 /client/proc/jumptocoord(tx as num, ty as num, tz as num)
 	set category = "Admin"
@@ -86,13 +86,13 @@
 	if(!check_rights(R_ADMIN|R_MOD|R_DEBUG|R_EVENT))
 		return
 
-	if (config.allow_admin_jump)
+	if (CONFIG_GET(flag/allow_admin_jump))
 		if(src.mob)
 			var/mob/A = src.mob
 			A.on_mob_jump()
 			var/turf/T = locate(tx, ty, tz)
 			if(!T)
-				to_chat(usr, "<span class='warning'>Those coordinates are outside the boundaries of the map.</span>")
+				to_chat(usr, span_warning("Those coordinates are outside the boundaries of the map."))
 				return
 			A.forceMove(T)
 			feedback_add_details("admin_verb","JC") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
@@ -108,7 +108,7 @@
 	if(!check_rights(R_ADMIN|R_MOD|R_DEBUG|R_EVENT))
 		return
 
-	if(config.allow_admin_jump)
+	if(CONFIG_GET(flag/allow_admin_jump))
 		var/list/keys = list()
 		for(var/mob/M in player_list)
 			keys += M.client
@@ -132,7 +132,7 @@
 
 	if(!check_rights(R_ADMIN|R_MOD|R_DEBUG|R_EVENT))
 		return
-	if(config.allow_admin_jump)
+	if(CONFIG_GET(flag/allow_admin_jump))
 		if(!M)	//VOREStation Edit
 			M = tgui_input_list(usr, "Pick a mob:", "Get Mob", mob_list)	//VOREStation Edit
 		if(!M)
@@ -155,7 +155,7 @@
 	if(!check_rights(R_ADMIN|R_MOD|R_DEBUG|R_EVENT))
 		return
 
-	if(config.allow_admin_jump)
+	if(CONFIG_GET(flag/allow_admin_jump))
 		var/list/keys = list()
 		for(var/mob/M in player_list)
 			keys += M.client
@@ -183,7 +183,7 @@
 	if(!check_rights(R_ADMIN|R_MOD|R_DEBUG|R_EVENT))
 		return
 
-	if(config.allow_admin_jump)
+	if(CONFIG_GET(flag/allow_admin_jump))
 		var/area/A = tgui_input_list(usr, "Pick an area:", "Send Mob", return_sorted_areas())
 		if(!A)
 			return
@@ -208,7 +208,7 @@
 	if(!check_rights(R_ADMIN|R_DEBUG|R_EVENT))
 		return
 
-	if(config.allow_admin_jump)
+	if(CONFIG_GET(flag/allow_admin_jump))
 		if(isnull(tx))
 			tx = tgui_input_number(usr, "Select X coordinate", "Move Atom", null, null)
 			if(!tx) return
@@ -220,7 +220,7 @@
 			if(!tz) return
 		var/turf/T = locate(tx, ty, tz)
 		if(!T)
-			to_chat(usr, "<span class='warning'>Those coordinates are outside the boundaries of the map.</span>")
+			to_chat(usr, span_warning("Those coordinates are outside the boundaries of the map."))
 			return
 		if(ismob(AM))
 			var/mob/M = AM

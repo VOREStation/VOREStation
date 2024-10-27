@@ -14,8 +14,8 @@
 	icon_screen = "medcomp"
 	light_color = "#315ab4"
 	req_one_access = list(access_medical, access_forensics_lockers, access_robotics)
-	circuit = /obj/item/weapon/circuitboard/med_data
-	var/obj/item/weapon/card/id/scan = null
+	circuit = /obj/item/circuitboard/med_data
+	var/obj/item/card/id/scan = null
 	var/authenticated = null
 	var/rank = null
 	var/screen = null
@@ -86,7 +86,7 @@
 	return
 
 /obj/machinery/computer/med_data/attackby(var/obj/item/O, var/mob/user)
-	if(istype(O, /obj/item/weapon/card/id) && !scan && user.unEquip(O))
+	if(istype(O, /obj/item/card/id) && !scan && user.unEquip(O))
 		O.loc = src
 		scan = O
 		to_chat(user, "You insert \the [O].")
@@ -224,7 +224,7 @@
 				scan = null
 			else
 				var/obj/item/I = usr.get_active_hand()
-				if(istype(I, /obj/item/weapon/card/id))
+				if(istype(I, /obj/item/card/id))
 					usr.drop_item()
 					I.forceMove(src)
 					scan = I
@@ -418,8 +418,8 @@
   * Called when the print timer finishes
   */
 /obj/machinery/computer/med_data/proc/print_finish()
-	var/obj/item/weapon/paper/P = new(loc)
-	P.info = "<center><b>Medical Record</b></center><br>"
+	var/obj/item/paper/P = new(loc)
+	P.info = "<center>" + span_bold("Medical Record") + "</center><br>"
 	if(istype(active1, /datum/data/record) && data_core.general.Find(active1))
 		P.info += {"Name: [active1.fields["name"]] ID: [active1.fields["id"]]
 		<br>\nSex: [active1.fields["sex"]]
@@ -429,7 +429,7 @@
 		<br>\nPhysical Status: [active1.fields["p_stat"]]
 		<br>\nMental Status: [active1.fields["m_stat"]]<br>"}
 	else
-		P.info += "<b>General Record Lost!</b><br>"
+		P.info += span_bold("General Record Lost!") + "<br>"
 	if(istype(active2, /datum/data/record) && data_core.medical.Find(active2))
 		P.info += {"<br>\n<center><b>Medical Data</b></center>
 		<br>\nGender Identity: [active2.fields["id_gender"]]
@@ -451,7 +451,7 @@
 		for(var/c in active2.fields["comments"])
 			P.info += "[c["header"]]<br>[c["text"]]<br>"
 	else
-		P.info += "<b>Medical Record Lost!</b><br>"
+		P.info += span_bold("Medical Record Lost!") + "<br>"
 	P.info += "</tt>"
 	P.name = "paper - 'Medical Record: [active1.fields["name"]]'"
 	printing = FALSE
@@ -507,7 +507,7 @@
 	icon_state = "pcu_med"
 	icon_keyboard = "pcu_key"
 	light_color = "#5284e7"
-	circuit = /obj/item/weapon/circuitboard/med_data/pcu
+	circuit = /obj/item/circuitboard/med_data/pcu
 	density = FALSE
 
 #undef MED_DATA_R_LIST

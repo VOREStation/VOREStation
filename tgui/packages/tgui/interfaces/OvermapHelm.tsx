@@ -1,4 +1,5 @@
 import { BooleanLike } from 'common/react';
+import { ByondUi, Stack } from 'tgui-core/components';
 
 import { useBackend } from '../backend';
 import { Box, Button, Flex, LabeledList, Section, Table } from '../components';
@@ -6,6 +7,7 @@ import { Window } from '../layouts';
 import { OvermapFlightData, OvermapPanControls } from './common/Overmap';
 
 type Data = {
+  mapRef: string | null;
   sector: string;
   sector_info: string;
   landed: string;
@@ -30,7 +32,7 @@ type Data = {
 
 export const OvermapHelm = (props) => {
   return (
-    <Window width={565} height={545}>
+    <Window width={800} height={530}>
       <Window.Content>
         <OvermapHelmContent />
       </Window.Content>
@@ -52,7 +54,14 @@ export const OvermapHelmContent = (props) => {
           <OvermapAutopilot />
         </Flex.Item>
       </Flex>
-      <OvermapNavComputer />
+      <Stack>
+        <Stack.Item grow>
+          <OvermapNavComputer />
+        </Stack.Item>
+        <Stack.Item grow>
+          <OvermapMapView />
+        </Stack.Item>
+      </Stack>
     </>
   );
 };
@@ -82,23 +91,11 @@ const OvermapManualControl = (props) => {
       className="Section"
     >
       <legend>Manual Control</legend>
-      <Flex align="center" justify="center">
-        <Flex.Item>
+      <Stack fill align="center" justify="center">
+        <Stack.Item fontSize={2}>
           <OvermapPanControls disabled={!canburn} actToDo="move" />
-        </Flex.Item>
-      </Flex>
-      <Box textAlign="center" mt={1}>
-        <Box bold underline>
-          Direct Control
-        </Box>
-        <Button
-          selected={manual_control}
-          onClick={() => act('manual')}
-          icon="compass"
-        >
-          {manual_control ? 'Enabled' : 'Disabled'}
-        </Button>
-      </Box>
+        </Stack.Item>
+      </Stack>
     </fieldset>
   );
 };
@@ -189,6 +186,45 @@ const OvermapAutopilot = (props) => {
         Lock Autopilot
       </Button>
     </fieldset>
+  );
+};
+
+const OvermapMapView = (props) => {
+  const { act, data } = useBackend<Data>();
+
+  const { mapRef, manual_control } = data;
+
+  return (
+    <Section
+      mt={1}
+      title="Camera View"
+      fill
+      height="97%"
+      buttons={
+        <>
+          <Button
+            selected={manual_control}
+            onClick={() => act('manual')}
+            icon="compass"
+          >
+            Direct Control
+          </Button>
+          <Button
+            icon="refresh"
+            tooltip="Update Camera View"
+            onClick={() => act('update_camera_view')}
+          />
+        </>
+      }
+    >
+      <ByondUi
+        height="100%"
+        params={{
+          id: mapRef,
+          type: 'map',
+        }}
+      />
+    </Section>
   );
 };
 

@@ -46,7 +46,7 @@
 /area/ninja_dojo/dojo)
 "aj" = (
 /obj/structure/table/wooden_reinforced,
-/obj/item/weapon/flame/candle,
+/obj/item/flame/candle,
 /turf/unsimulated/floor{
 	dir = 8;
 	icon_state = "wood"
@@ -54,7 +54,7 @@
 /area/ninja_dojo/dojo)
 "ak" = (
 /obj/structure/table/wooden_reinforced,
-/obj/item/weapon/material/sword/katana,
+/obj/item/material/sword/katana,
 /turf/unsimulated/floor{
 	dir = 8;
 	icon_state = "wood"
@@ -308,11 +308,11 @@
 /area/shuttle/ninja)
 "aQ" = (
 /obj/structure/table/steel_reinforced,
-/obj/item/weapon/storage/firstaid/adv{
+/obj/item/storage/firstaid/adv{
 	pixel_x = 5;
 	pixel_y = 5
 	},
-/obj/item/weapon/storage/firstaid/combat,
+/obj/item/storage/firstaid/combat,
 /turf/simulated/shuttle/floor/voidcraft/dark,
 /area/shuttle/ninja)
 "aR" = (
@@ -433,7 +433,7 @@
 "bc" = (
 /obj/structure/table/steel_reinforced,
 /obj/random/paicard,
-/obj/item/device/pda/syndicate,
+/obj/item/pda/syndicate,
 /turf/simulated/shuttle/floor/voidcraft/light,
 /area/shuttle/ninja)
 "bd" = (
@@ -442,7 +442,7 @@
 /area/shuttle/ninja)
 "be" = (
 /obj/structure/table/steel_reinforced,
-/obj/item/weapon/storage/toolbox/syndicate{
+/obj/item/storage/toolbox/syndicate{
 	pixel_x = -1;
 	pixel_y = 3
 	},
@@ -647,7 +647,7 @@
 /area/ninja_dojo/dojo)
 "by" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/reagent_containers/food/snacks/fortunecookie,
+/obj/item/reagent_containers/food/snacks/fortunecookie,
 /turf/unsimulated/floor{
 	dir = 8;
 	icon_state = "wood"
@@ -663,7 +663,7 @@
 /area/ninja_dojo/dojo)
 "bA" = (
 /obj/structure/bed/padded,
-/obj/item/weapon/bedsheet,
+/obj/item/bedsheet,
 /turf/unsimulated/floor{
 	dir = 8;
 	icon_state = "wood"
@@ -718,11 +718,11 @@
 	dir = 1
 	},
 /obj/structure/table/glass,
-/obj/item/weapon/towel{
+/obj/item/towel{
 	color = "#FF6666";
 	name = "light red towel"
 	},
-/obj/item/weapon/towel{
+/obj/item/towel{
 	color = "#FF6666";
 	name = "light red towel"
 	},
@@ -744,7 +744,7 @@
 /area/ninja_dojo/dojo)
 "bJ" = (
 /obj/structure/table/wooden_reinforced,
-/obj/item/device/radio/uplink,
+/obj/item/radio/uplink,
 /turf/unsimulated/floor{
 	dir = 8;
 	icon_state = "wood"
@@ -766,14 +766,14 @@
 	},
 /area/ninja_dojo/dojo)
 "bL" = (
-/obj/item/weapon/rig/light/stealth,
+/obj/item/rig/light/stealth,
 /obj/structure/table/rack,
 /turf/unsimulated/floor{
 	icon_state = "dark"
 	},
 /area/ninja_dojo/dojo)
 "bM" = (
-/obj/item/device/suit_cooling_unit,
+/obj/item/suit_cooling_unit,
 /turf/unsimulated/floor{
 	icon_state = "dark"
 	},
@@ -836,7 +836,7 @@
 /area/ninja_dojo/dojo)
 "bV" = (
 /obj/structure/table/steel_reinforced,
-/obj/item/weapon/storage/toolbox/syndicate{
+/obj/item/storage/toolbox/syndicate{
 	pixel_x = -1;
 	pixel_y = 3
 	},
@@ -904,11 +904,11 @@
 /area/ninja_dojo/dojo)
 "cd" = (
 /obj/structure/table/standard,
-/obj/item/weapon/storage/firstaid/adv{
+/obj/item/storage/firstaid/adv{
 	pixel_x = 5;
 	pixel_y = 5
 	},
-/obj/item/weapon/storage/firstaid/adv,
+/obj/item/storage/firstaid/adv,
 /turf/unsimulated/floor{
 	icon_state = "white"
 	},

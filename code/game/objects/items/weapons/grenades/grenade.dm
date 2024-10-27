@@ -1,4 +1,4 @@
-/obj/item/weapon/grenade
+/obj/item/grenade
 	name = "grenade"
 	desc = "A hand held grenade, with an adjustable timer."
 	w_class = ITEMSIZE_SMALL
@@ -16,9 +16,12 @@
 	var/hud_state = "grenade_he" // TGMC Ammo HUD Port
 	var/hud_state_empty = "grenade_empty" // TGMC Ammo HUD Port
 
-/obj/item/weapon/grenade/proc/clown_check(var/mob/living/user)
+	pickup_sound = 'sound/items/pickup/device.ogg'
+	drop_sound = 'sound/items/drop/device.ogg'
+
+/obj/item/grenade/proc/clown_check(var/mob/living/user)
 	if((CLUMSY in user.mutations) && prob(50))
-		to_chat(user, "<span class='warning'>Huh? How does this thing work?</span>")
+		to_chat(user, span_warning("Huh? How does this thing work?"))
 
 		activate(user)
 		add_fingerprint(user)
@@ -28,11 +31,11 @@
 	return 1
 
 
-/*/obj/item/weapon/grenade/afterattack(atom/target as mob|obj|turf|area, mob/user as mob)
-	if (istype(target, /obj/item/weapon/storage)) return ..() // Trying to put it in a full container
-	if (istype(target, /obj/item/weapon/gun/grenadelauncher)) return ..()
+/*/obj/item/grenade/afterattack(atom/target as mob|obj|turf|area, mob/user as mob)
+	if (istype(target, /obj/item/storage)) return ..() // Trying to put it in a full container
+	if (istype(target, /obj/item/gun/grenadelauncher)) return ..()
 	if((user.get_active_hand() == src) && (!active) && (clown_check(user)) && target.loc != src.loc)
-		to_chat(user, "<span class='warning'>You prime the [name]! [det_time/10] seconds!</span>")
+		to_chat(user, span_warning("You prime the [name]! [det_time/10] seconds!"))
 		active = 1
 		icon_state = initial(icon_state) + "_active"
 		playsound(src, 'sound/weapons/armbomb.ogg', 75, 1, -3)
@@ -46,7 +49,7 @@
 	return*/
 
 
-/obj/item/weapon/grenade/examine(mob/user)
+/obj/item/grenade/examine(mob/user)
 	. = ..()
 	if(get_dist(user, src) == 0)
 		if(det_time > 1)
@@ -55,10 +58,10 @@
 			. += "\The [src] is set for instant detonation."
 
 
-/obj/item/weapon/grenade/attack_self(mob/user as mob)
+/obj/item/grenade/attack_self(mob/user as mob)
 	if(!active)
 		if(clown_check(user))
-			to_chat(user, "<span class='warning'>You prime \the [name]! [det_time/10] seconds!</span>")
+			to_chat(user, span_warning("You prime \the [name]! [det_time/10] seconds!"))
 
 			activate(user)
 			add_fingerprint(user)
@@ -68,7 +71,7 @@
 	return
 
 
-/obj/item/weapon/grenade/proc/activate(mob/user as mob)
+/obj/item/grenade/proc/activate(mob/user as mob)
 	if(active)
 		return
 
@@ -84,36 +87,36 @@
 		return
 
 
-/obj/item/weapon/grenade/proc/detonate()
+/obj/item/grenade/proc/detonate()
 //	playsound(src, 'sound/items/Welder2.ogg', 25, 1)
 	var/turf/T = get_turf(src)
 	if(T)
 		T.hotspot_expose(700,125)
 
 
-/obj/item/weapon/grenade/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/item/grenade/attackby(obj/item/W as obj, mob/user as mob)
 	if(W.has_tool_quality(TOOL_SCREWDRIVER))
 		switch(det_time)
 			if (1)
 				det_time = 10
-				to_chat(user, "<span class='notice'>You set the [name] for 1 second detonation time.</span>")
+				to_chat(user, span_notice("You set the [name] for 1 second detonation time."))
 			if (10)
 				det_time = 30
-				to_chat(user, "<span class='notice'>You set the [name] for 3 second detonation time.</span>")
+				to_chat(user, span_notice("You set the [name] for 3 second detonation time."))
 			if (30)
 				det_time = 50
-				to_chat(user, "<span class='notice'>You set the [name] for 5 second detonation time.</span>")
+				to_chat(user, span_notice("You set the [name] for 5 second detonation time."))
 			if (50)
 				det_time = 1
-				to_chat(user, "<span class='notice'>You set the [name] for instant detonation.</span>")
+				to_chat(user, span_notice("You set the [name] for instant detonation."))
 		add_fingerprint(user)
 	..()
 	return
 
-/obj/item/weapon/grenade/attack_hand()
+/obj/item/grenade/attack_hand()
 	walk(src, null, null)
 	..()
 	return
 
-/obj/item/weapon/grenade/vendor_action(var/obj/machinery/vending/V)
+/obj/item/grenade/vendor_action(var/obj/machinery/vending/V)
 	activate(V)

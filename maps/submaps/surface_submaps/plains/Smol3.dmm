@@ -17,30 +17,30 @@
 /area/submap/Smol3)
 "f" = (
 /obj/structure/closet/crate/freezer,
-/obj/item/weapon/reagent_containers/food/snacks/meat,
-/obj/item/weapon/reagent_containers/food/snacks/meat,
-/obj/item/weapon/reagent_containers/food/snacks/meat,
-/obj/item/weapon/reagent_containers/food/snacks/meat,
-/obj/item/weapon/reagent_containers/food/snacks/meat,
-/obj/item/weapon/reagent_containers/food/snacks/meat,
-/obj/item/weapon/reagent_containers/food/snacks/meat,
+/obj/item/reagent_containers/food/snacks/meat,
+/obj/item/reagent_containers/food/snacks/meat,
+/obj/item/reagent_containers/food/snacks/meat,
+/obj/item/reagent_containers/food/snacks/meat,
+/obj/item/reagent_containers/food/snacks/meat,
+/obj/item/reagent_containers/food/snacks/meat,
+/obj/item/reagent_containers/food/snacks/meat,
 /turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/submap/Smol3)
 "g" = (
 /obj/structure/closet/crate/freezer,
-/obj/item/weapon/reagent_containers/food/snacks/chips,
-/obj/item/weapon/reagent_containers/food/snacks/chips,
-/obj/item/weapon/reagent_containers/food/drinks/cans/waterbottle,
-/obj/item/weapon/reagent_containers/food/drinks/cans/waterbottle,
-/obj/item/weapon/reagent_containers/food/drinks/cans/waterbottle,
-/obj/item/weapon/reagent_containers/food/drinks/cans/waterbottle,
-/obj/item/weapon/reagent_containers/food/drinks/cans/waterbottle,
-/obj/item/weapon/reagent_containers/food/drinks/cans/waterbottle,
+/obj/item/reagent_containers/food/snacks/chips,
+/obj/item/reagent_containers/food/snacks/chips,
+/obj/item/reagent_containers/food/drinks/cans/waterbottle,
+/obj/item/reagent_containers/food/drinks/cans/waterbottle,
+/obj/item/reagent_containers/food/drinks/cans/waterbottle,
+/obj/item/reagent_containers/food/drinks/cans/waterbottle,
+/obj/item/reagent_containers/food/drinks/cans/waterbottle,
+/obj/item/reagent_containers/food/drinks/cans/waterbottle,
 /turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/submap/Smol3)
 "h" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/paper{
+/obj/item/paper{
 	desc = "Lamen's Hunter Shack! Selling freshly hunted meat for six thalers a slab. Support Locale hunters! Also selling Getmore Products for 3 thalers a bag, or 2 thalers for a bottle of water. Please place all payments into the nearbye bag."
 	},
 /turf/simulated/floor/outdoors/dirt/virgo3b,
@@ -51,7 +51,7 @@
 /area/submap/Smol3)
 "j" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/spacecash/c200,
+/obj/item/spacecash/c200,
 /turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/submap/Smol3)
 

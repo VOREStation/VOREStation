@@ -1,5 +1,5 @@
 // -------------- Dominator -------------
-/obj/item/weapon/gun/energy/gun/fluff/dominator
+/obj/item/gun/energy/gun/fluff/dominator
 	name = "bulky energy gun"
 	desc = "A MWPSB Dominator from the Federation. Like the basic Energy Gun, this gun has two settings. It is used by the United Federation Public Safety Bureau's Criminal Investigation Division. The weapon can only be fired by the owner and is alert-level locked."
 
@@ -25,18 +25,18 @@
 	var/emagged = FALSE
 
 
-/obj/item/weapon/gun/energy/gun/fluff/dominator/special_check(mob/user)
+/obj/item/gun/energy/gun/fluff/dominator/special_check(mob/user)
 	if(!emagged && mode_name == "lethal" && get_security_level() == "green")
-		to_chat(user,"<span class='warning'>The trigger refuses to depress while on the lethal setting under security level green!</span>")
+		to_chat(user,span_warning("The trigger refuses to depress while on the lethal setting under security level green!"))
 		return FALSE
 
 	return ..()
 
-/obj/item/weapon/gun/energy/gun/fluff/dominator/emag_act(var/remaining_charges,var/mob/user)
+/obj/item/gun/energy/gun/fluff/dominator/emag_act(var/remaining_charges,var/mob/user)
 	..()
 	if(!emagged)
 		emagged = TRUE
-		to_chat(user,"<span class='warning'>You disable the alert level locking mechanism on \the [src]!</span>")
+		to_chat(user,span_warning("You disable the alert level locking mechanism on \the [src]!"))
 
 	return TRUE
 

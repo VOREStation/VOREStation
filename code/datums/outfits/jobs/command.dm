@@ -2,13 +2,13 @@
 	name = OUTFIT_JOB_NAME(JOB_ALT_CAPTAIN) // Keep Captain for now, not JOB_SITE_MANAGER
 	glasses = /obj/item/clothing/glasses/sunglasses
 	uniform = /obj/item/clothing/under/rank/captain
-	l_ear = /obj/item/device/radio/headset/heads/captain
+	l_ear = /obj/item/radio/headset/heads/captain
 	shoes = /obj/item/clothing/shoes/brown
-	backpack = /obj/item/weapon/storage/backpack/captain
-	satchel_one = /obj/item/weapon/storage/backpack/satchel/cap
-	messenger_bag = /obj/item/weapon/storage/backpack/messenger/com
-	id_type = /obj/item/weapon/card/id/gold
-	pda_type = /obj/item/device/pda/captain
+	backpack = /obj/item/storage/backpack/captain
+	satchel_one = /obj/item/storage/backpack/satchel/cap
+	messenger_bag = /obj/item/storage/backpack/messenger/com
+	id_type = /obj/item/card/id/gold
+	pda_type = /obj/item/pda/captain
 
 /decl/hierarchy/outfit/job/captain/post_equip(var/mob/living/carbon/human/H)
 	..()
@@ -26,18 +26,18 @@
 /decl/hierarchy/outfit/job/hop
 	name = OUTFIT_JOB_NAME(JOB_HEAD_OF_PERSONNEL)
 	uniform = /obj/item/clothing/under/rank/head_of_personnel
-	l_ear = /obj/item/device/radio/headset/heads/hop
+	l_ear = /obj/item/radio/headset/heads/hop
 	shoes = /obj/item/clothing/shoes/brown
-	id_type = /obj/item/weapon/card/id/silver/hop
-	pda_type = /obj/item/device/pda/heads/hop
+	id_type = /obj/item/card/id/silver/hop
+	pda_type = /obj/item/pda/heads/hop
 
 /decl/hierarchy/outfit/job/secretary
 	name = OUTFIT_JOB_NAME(JOB_COMMAND_SECRETARY)
-	l_ear = /obj/item/device/radio/headset/headset_com
+	l_ear = /obj/item/radio/headset/headset_com
 	shoes = /obj/item/clothing/shoes/brown
-	id_type = /obj/item/weapon/card/id/silver/secretary
-	pda_type = /obj/item/device/pda/heads
-	r_hand = /obj/item/weapon/clipboard
+	id_type = /obj/item/card/id/silver/secretary
+	pda_type = /obj/item/pda/heads
+	r_hand = /obj/item/clipboard
 
 /decl/hierarchy/outfit/job/secretary/pre_equip(mob/living/carbon/human/H)
 	..()

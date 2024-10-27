@@ -1,0 +1,31 @@
+// https://codepen.io/ovr/pen/yLXBbB
+.BigButton {
+  border-radius: 50%;
+  width: 20rem;
+  height: 20rem;
+  border: none;
+  color: white;
+  font-weight: 900;
+  font-size: 2rem;
+  background-color: rgb(180, 17, 8);
+  text-shadow: 0 3px 1px rgba(80, 17, 8, 0.8);
+  box-shadow: 0 8px 0 rgb(80, 9, 0);
+  text-transform: uppercase;
+  transition: 0.2s all ease-in;
+  cursor: pointer;
+  text-align: center;
+}
+
+.BigButton:hover {
+  transition: 0.2s all ease-in;
+}
+
+.BigButton:focus {
+  transition: 0.2s all ease-in;
+}
+
+.BigButton__Pressed {
+  padding-top: 3px;
+  transform: translateY(4px);
+  box-shadow: 0 4px 0 rgb(80, 0, 0);
+}

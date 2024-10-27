@@ -20,7 +20,7 @@
 
 /datum/dna/gene/basic/remoteview/activate(var/mob/M, var/connected, var/flags)
 	..(M,connected,flags)
-	M.verbs += /mob/living/carbon/human/proc/remoteobserve
+	add_verb(M, /mob/living/carbon/human/proc/remoteobserve)
 
 /datum/dna/gene/basic/regenerate
 	name="Regenerate"
@@ -48,7 +48,7 @@
 
 /datum/dna/gene/basic/remotetalk/activate(var/mob/M, var/connected, var/flags)
 	..(M,connected,flags)
-	M.verbs += /mob/living/carbon/human/proc/remotesay
+	add_verb(M, /mob/living/carbon/human/proc/remotesay)
 
 /datum/dna/gene/basic/morph
 	name="Morph"
@@ -60,7 +60,7 @@
 
 /datum/dna/gene/basic/morph/activate(var/mob/M)
 	..(M)
-	M.verbs += /mob/living/carbon/human/proc/morph
+	add_verb(M, /mob/living/carbon/human/proc/morph)
 
 /datum/dna/gene/basic/cold_resist
 	name="Cold Resistance"
@@ -143,7 +143,7 @@
 	if(M.health <= 25)
 		M.mutations.Remove(HULK)
 		M.update_mutations()		//update our mutation overlays
-		to_chat(M, "<span class='warning'>You suddenly feel very weak.</span>")
+		to_chat(M, span_warning("You suddenly feel very weak."))
 		M.Weaken(3)
 		M.emote("collapse")
 

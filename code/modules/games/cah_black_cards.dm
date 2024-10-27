@@ -1,7 +1,7 @@
 /*
  * Black CAH cards
  */
-/obj/item/weapon/deck/cah/black/card_text_list = list(
+/obj/item/deck/cah/black/card_text_list = list(
 	"Why am I itchy?",
 	"Today, Security shot ____.",
 	"The " + JOB_CHAPLAIN + " this shift is worshiping _____.",

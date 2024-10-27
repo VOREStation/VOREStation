@@ -8,7 +8,7 @@
 	name = "\improper BNI Flare Launcher"
 	desc = "A flare-gun, but bigger."
 	icon_state = "mecha_flaregun"
-	projectile = /obj/item/device/flashlight/flare
+	projectile = /obj/item/flashlight/flare
 	fire_sound = 'sound/weapons/tablehit1.ogg'
 	auto_rearm = 1
 	fire_cooldown = 20
@@ -23,7 +23,7 @@
 	equip_type = EQUIP_UTILITY
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/missile_rack/flare/Fire(atom/movable/AM, atom/target, turf/aimloc)
-	var/obj/item/device/flashlight/flare/fired = AM
+	var/obj/item/flashlight/flare/fired = AM
 	fired.ignite()
 	..()
 

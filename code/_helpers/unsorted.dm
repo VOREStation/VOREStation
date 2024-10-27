@@ -315,16 +315,16 @@ Turf and target are seperate in case you want to teleport some distance from a t
 		var/search_pda = 1
 
 		for(var/A in searching)
-			if( search_id && istype(A,/obj/item/weapon/card/id) )
-				var/obj/item/weapon/card/id/ID = A
+			if( search_id && istype(A,/obj/item/card/id) )
+				var/obj/item/card/id/ID = A
 				if(ID.registered_name == oldname)
 					ID.registered_name = newname
 					ID.name = "[newname]'s ID Card ([ID.assignment])"
 					if(!search_pda)	break
 					search_id = 0
 
-			else if( search_pda && istype(A,/obj/item/device/pda) )
-				var/obj/item/device/pda/PDA = A
+			else if( search_pda && istype(A,/obj/item/pda) )
+				var/obj/item/pda/PDA = A
 				if(PDA.owner == oldname)
 					PDA.owner = newname
 					PDA.name = "PDA-[newname] ([PDA.ownjob])"
@@ -367,7 +367,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 			if(isAI(src))
 				var/mob/living/silicon/ai/A = src
 				oldname = null//don't bother with the records update crap
-				//to_world("<b>[newname] is the AI!</b>")
+				//to_world(span_world("[newname] is the AI!"))
 				//world << sound('sound/AI/newAI.ogg')
 				// Set eyeobj name
 				A.SetName(newname)
@@ -1030,13 +1030,13 @@ Turf and target are seperate in case you want to teleport some distance from a t
 //Quick type checks for some tools
 var/global/list/common_tools = list(
 /obj/item/stack/cable_coil,
-/obj/item/weapon/tool/wrench,
-/obj/item/weapon/weldingtool,
-/obj/item/weapon/tool/screwdriver,
-/obj/item/weapon/tool/wirecutters,
-/obj/item/device/multitool,
-/obj/item/weapon/tool/crowbar,
-/obj/item/weapon/tool/transforming)
+/obj/item/tool/wrench,
+/obj/item/weldingtool,
+/obj/item/tool/screwdriver,
+/obj/item/tool/wirecutters,
+/obj/item/multitool,
+/obj/item/tool/crowbar,
+/obj/item/tool/transforming)
 
 /proc/istool(O)
 	if(O && is_type_in_list(O, common_tools))
@@ -1045,32 +1045,32 @@ var/global/list/common_tools = list(
 
 
 /proc/is_wire_tool(obj/item/I)
-	if(istype(I, /obj/item/device/multitool) || I.has_tool_quality(TOOL_WIRECUTTER))
+	if(istype(I, /obj/item/multitool) || I.has_tool_quality(TOOL_WIRECUTTER))
 		return TRUE
-	if(istype(I, /obj/item/device/assembly/signaler))
+	if(istype(I, /obj/item/assembly/signaler))
 		return TRUE
 	return
 
 /proc/is_hot(obj/item/W as obj)
 	switch(W.type)
-		if(/obj/item/weapon/weldingtool)
-			var/obj/item/weapon/weldingtool/WT = W
+		if(/obj/item/weldingtool)
+			var/obj/item/weldingtool/WT = W
 			if(WT.isOn())
 				return 3800
 			else
 				return 0
-		if(/obj/item/weapon/tool/transforming)
-			var/obj/item/weapon/tool/transforming/TT = W
+		if(/obj/item/tool/transforming)
+			var/obj/item/tool/transforming/TT = W
 			if(TT.possible_tooltypes[TT.current_tooltype] == TOOL_WELDER)
 				return 3800
 			else
 				return 0
-		if(/obj/item/weapon/flame/lighter)
+		if(/obj/item/flame/lighter)
 			if(W:lit)
 				return 1500
 			else
 				return 0
-		if(/obj/item/weapon/flame/match)
+		if(/obj/item/flame/match)
 			if(W:lit)
 				return 1000
 			else
@@ -1080,9 +1080,9 @@ var/global/list/common_tools = list(
 				return 1000
 			else
 				return 0
-		if(/obj/item/weapon/pickaxe/plasmacutter)
+		if(/obj/item/pickaxe/plasmacutter)
 			return 3800
-		if(/obj/item/weapon/melee/energy)
+		if(/obj/item/melee/energy)
 			return 3500
 		else
 			return 0
@@ -1113,12 +1113,12 @@ var/global/list/common_tools = list(
 		return TRUE
 	return ( \
 		W.has_tool_quality(TOOL_SCREWDRIVER)		     				              || \
-		istype(W, /obj/item/weapon/pen)                           || \
-		istype(W, /obj/item/weapon/weldingtool)					  || \
-		istype(W, /obj/item/weapon/flame/lighter/zippo)			  || \
-		istype(W, /obj/item/weapon/flame/match)            		  || \
+		istype(W, /obj/item/pen)                           || \
+		istype(W, /obj/item/weldingtool)					  || \
+		istype(W, /obj/item/flame/lighter/zippo)			  || \
+		istype(W, /obj/item/flame/match)            		  || \
 		istype(W, /obj/item/clothing/mask/smokable/cigarette) 		      || \
-		istype(W, /obj/item/weapon/shovel) \
+		istype(W, /obj/item/shovel) \
 	)
 
 // check if mob is lying down on something we can operate him on.
@@ -1153,12 +1153,12 @@ Checks if that loc and dir has a item on the wall
 TODO - Fix this ancient list of wall items. Preferably make it dynamically populated. ~Leshana
 */
 var/list/WALLITEMS = list(
-	/obj/machinery/power/apc, /obj/machinery/alarm, /obj/item/device/radio/intercom, /obj/structure/frame,
+	/obj/machinery/power/apc, /obj/machinery/alarm, /obj/item/radio/intercom, /obj/structure/frame,
 	/obj/structure/extinguisher_cabinet, /obj/structure/reagent_dispensers/peppertank,
 	/obj/machinery/status_display, /obj/machinery/requests_console, /obj/machinery/light_switch, /obj/structure/sign,
 	/obj/machinery/newscaster, /obj/machinery/firealarm, /obj/structure/noticeboard, /obj/machinery/button/remote,
 	/obj/machinery/computer/security/telescreen, /obj/machinery/embedded_controller/radio,
-	/obj/item/weapon/storage/secure/safe, /obj/machinery/door_timer, /obj/machinery/flasher, /obj/machinery/keycard_auth,
+	/obj/item/storage/secure/safe, /obj/machinery/door_timer, /obj/machinery/flasher, /obj/machinery/keycard_auth,
 	/obj/structure/mirror, /obj/structure/fireaxecabinet, /obj/machinery/computer/security/telescreen/entertainment
 	)
 /proc/gotwallitem(loc, dir)
@@ -1328,39 +1328,36 @@ var/mob/dview/dview_mob = new
 
 	if (NOT_FLAG(USE_ALLOW_NON_ADJACENT) && !Adjacent(user))
 		if (show_messages)
-			to_chat(user, span("notice","You're too far away from [src] to do that."))
+			to_chat(user, span_notice("You're too far away from [src] to do that."))
 		return USE_FAIL_NON_ADJACENT
 
 	if (NOT_FLAG(USE_ALLOW_DEAD) && user.stat == DEAD)
 		if (show_messages)
-			to_chat(user, span("notice","You can't do that when you're dead."))
+			to_chat(user, span_notice("You can't do that when you're dead."))
 		return USE_FAIL_DEAD
 
 	if (NOT_FLAG(USE_ALLOW_INCAPACITATED) && (user.incapacitated()))
 		if (show_messages)
-			to_chat(user, span("notice","You cannot do that in your current state."))
+			to_chat(user, span_notice("You cannot do that in your current state."))
 		return USE_FAIL_INCAPACITATED
 
 	if (NOT_FLAG(USE_ALLOW_NON_ADV_TOOL_USR) && !user.IsAdvancedToolUser())
 		if (show_messages)
-			to_chat(user, span("notice","You don't know how to operate [src]."))
+			to_chat(user, span_notice("You don't know how to operate [src]."))
 		return USE_FAIL_NON_ADV_TOOL_USR
 
 	if (HAS_FLAG(USE_DISALLOW_SILICONS) && issilicon(user))
 		if (show_messages)
-			to_chat(user, span("notice","You need hands for that."))
+			to_chat(user, span_notice("You need hands for that."))
 		return USE_FAIL_IS_SILICON
 
 	if (HAS_FLAG(USE_FORCE_SRC_IN_USER) && !(src in user))
 		if (show_messages)
-			to_chat(user, span("notice","You need to be holding [src] to do that."))
+			to_chat(user, span_notice("You need to be holding [src] to do that."))
 		return USE_FAIL_NOT_IN_USER
 
 #undef NOT_FLAG
 #undef HAS_FLAG
-
-//datum may be null, but it does need to be a typed var
-#define NAMEOF(datum, X) (#X || ##datum.##X)
 
 #define VARSET_LIST_CALLBACK(target, var_name, var_value) CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(___callbackvarset), ##target, ##var_name, ##var_value)
 //dupe code because dm can't handle 3 level deep macros
@@ -1463,12 +1460,12 @@ var/mob/dview/dview_mob = new
 		var/typename = "[type]"
 		var/static/list/TYPES_SHORTCUTS = list(
 			/obj/effect/decal/cleanable = "CLEANABLE",
-			/obj/item/device/radio/headset = "HEADSET",
+			/obj/item/radio/headset = "HEADSET",
 			/obj/item/clothing/head/helmet/space = "SPESSHELMET",
-			/obj/item/weapon/book/manual = "MANUAL",
-			/obj/item/weapon/reagent_containers/food/drinks = "DRINK",
-			/obj/item/weapon/reagent_containers/food = "FOOD",
-			/obj/item/weapon/reagent_containers = "REAGENT_CONTAINERS",
+			/obj/item/book/manual = "MANUAL",
+			/obj/item/reagent_containers/food/drinks = "DRINK",
+			/obj/item/reagent_containers/food = "FOOD",
+			/obj/item/reagent_containers = "REAGENT_CONTAINERS",
 			/obj/machinery/atmospherics = "ATMOS_MECH",
 			/obj/machinery/portable_atmospherics = "PORT_ATMOS",
 			/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/missile_rack = "MECHA_MISSILE_RACK",

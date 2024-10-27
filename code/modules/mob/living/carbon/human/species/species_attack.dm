@@ -33,7 +33,7 @@
 	attack_damage = CLAMP(attack_damage, 1, 5)
 
 	if(target == user)
-		user.visible_message("<span class='danger'>[user] [pick(attack_verb)] [T.himself] in the [affecting.name]!</span>")
+		user.visible_message(span_danger("[user] [pick(attack_verb)] [T.himself] in the [affecting.name]!"))
 		return 0
 
 	switch(zone)
@@ -41,20 +41,20 @@
 			// ----- HEAD ----- //
 			switch(attack_damage)
 				if(1 to 2)
-					user.visible_message("<span class='danger'>[user] scratched [target] across [TT.his] cheek!</span>")
+					user.visible_message(span_danger("[user] scratched [target] across [TT.his] cheek!"))
 				if(3 to 4)
-					user.visible_message("<span class='danger'>[user] [pick(attack_verb)] [target]'s [pick("head", "neck")]!</span>") //'with spread claws' sounds a little bit odd, just enough that conciseness is better here I think
+					user.visible_message(span_danger("[user] [pick(attack_verb)] [target]'s [pick("head", "neck")]!")) //'with spread claws' sounds a little bit odd, just enough that conciseness is better here I think
 				if(5)
 					user.visible_message(pick(
-						"<span class='danger'>[user] rakes [T.his] [pick(attack_noun)] across [target]'s face!</span>",
-						"<span class='danger'>[user] tears [T.his] [pick(attack_noun)] into [target]'s face!</span>",
+						span_danger("[user] rakes [T.his] [pick(attack_noun)] across [target]'s face!"),
+						span_danger("[user] tears [T.his] [pick(attack_noun)] into [target]'s face!"),
 						))
 		else
 			// ----- BODY ----- //
 			switch(attack_damage)
-				if(1 to 2)	user.visible_message("<span class='danger'>[user] scratched [target]'s [affecting.name]!</span>")
-				if(3 to 4)	user.visible_message("<span class='danger'>[user] [pick(attack_verb)] [pick("", "", "the side of")] [target]'s [affecting.name]!</span>")
-				if(5)		user.visible_message("<span class='danger'>[user] tears [T.his] [pick(attack_noun)] [pick("deep into", "into", "across")] [target]'s [affecting.name]!</span>")
+				if(1 to 2)	user.visible_message(span_danger("[user] scratched [target]'s [affecting.name]!"))
+				if(3 to 4)	user.visible_message(span_danger("[user] [pick(attack_verb)] [pick("", "", "the side of")] [target]'s [affecting.name]!"))
+				if(5)		user.visible_message(span_danger("[user] tears [T.his] [pick(attack_noun)] [pick("deep into", "into", "across")] [target]'s [affecting.name]!"))
 
 /datum/unarmed_attack/claws/strong
 	attack_name = "strong claws"
@@ -98,5 +98,5 @@
 
 /datum/unarmed_attack/stomp/weak/show_attack(var/mob/living/carbon/human/user, var/mob/living/carbon/human/target, var/zone, var/attack_damage)
 	var/obj/item/organ/external/affecting = target.get_organ(zone)
-	user.visible_message("<span class='warning'>[user] jumped up and down on \the [target]'s [affecting.name]!</span>")
+	user.visible_message(span_warning("[user] jumped up and down on \the [target]'s [affecting.name]!"))
 	playsound(user, attack_sound, 25, 1, -1)

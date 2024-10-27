@@ -1,5 +1,5 @@
 
-/obj/item/weapon/blobcore_chunk
+/obj/item/blobcore_chunk
 	name = "core chunk"
 	desc = "The remains of some strange life-form. It smells awful."
 	description_info = "Some blob types will have core effects when the chunk is used in-hand, toggled with an alt click, or constantly active."
@@ -20,23 +20,23 @@
 
 	drop_sound = 'sound/effects/slime_squish.ogg'
 
-/obj/item/weapon/blobcore_chunk/is_open_container()
+/obj/item/blobcore_chunk/is_open_container()
 	return 1
 
-/obj/item/weapon/blobcore_chunk/New(var/atom/newloc, var/datum/blob_type/parentblob = null)
+/obj/item/blobcore_chunk/New(var/atom/newloc, var/datum/blob_type/parentblob = null)
 	..(newloc)
 
 	create_reagents(120)
 	setup_blobtype(parentblob)
 
-/obj/item/weapon/blobcore_chunk/Destroy()
+/obj/item/blobcore_chunk/Destroy()
 	STOP_PROCESSING(SSobj, src)
 
 	blob_type = null
 
 	..()
 
-/obj/item/weapon/blobcore_chunk/proc/setup_blobtype(var/datum/blob_type/parentblob = null)
+/obj/item/blobcore_chunk/proc/setup_blobtype(var/datum/blob_type/parentblob = null)
 	if(!parentblob)
 		name = "inert [initial(name)]"
 
@@ -61,12 +61,12 @@
 
 		START_PROCESSING(SSobj, src)
 
-/obj/item/weapon/blobcore_chunk/proc/call_chunk_unique()
+/obj/item/blobcore_chunk/proc/call_chunk_unique()
 	if(blob_type)
 		blob_type.chunk_unique(src, args)
 	return
 
-/obj/item/weapon/blobcore_chunk/proc/get_carrier(var/atom/target)
+/obj/item/blobcore_chunk/proc/get_carrier(var/atom/target)
 	var/atom/A = target ? target.loc : src
 
 	if(isturf(A) || isarea(A))	// Something has gone horribly wrong if the second is true.
@@ -77,36 +77,36 @@
 
 	return A
 
-/obj/item/weapon/blobcore_chunk/blob_act(obj/structure/blob/B)
+/obj/item/blobcore_chunk/blob_act(obj/structure/blob/B)
 	if(B.overmind && !blob_type)
 		setup_blobtype(B.overmind.blob_type)
 
 	return
 
-/obj/item/weapon/blobcore_chunk/attack_self(var/mob/user)
+/obj/item/blobcore_chunk/attack_self(var/mob/user)
 	if(blob_type && world.time > active_ability_cooldown + last_active_use)
 		last_active_use = world.time
-		to_chat(user, "<span class='alien'>[icon2html(src, user.client)] \The [src] gesticulates.</span>")
+		to_chat(user, span_alien("[icon2html(src, user.client)] \The [src] gesticulates."))
 		blob_type.on_chunk_use(src, user)
 	else
-		to_chat(user, "<span class='notice'>\The [src] doesn't seem to respond.</span>")
+		to_chat(user, span_notice("\The [src] doesn't seem to respond."))
 	..()
 
-/obj/item/weapon/blobcore_chunk/process()
+/obj/item/blobcore_chunk/process()
 	if(blob_type && should_tick && world.time > passive_ability_cooldown + last_passive_use)
 		last_passive_use = world.time
 		blob_type.on_chunk_tick(src)
 
-/obj/item/weapon/blobcore_chunk/AltClick(mob/living/carbon/user)
+/obj/item/blobcore_chunk/AltClick(mob/living/carbon/user)
 	if(blob_type && blob_type.chunk_active_type == BLOB_CHUNK_TOGGLE)
 		should_tick = !should_tick
 
 		if(should_tick)
-			to_chat(user, "<span class='alien'>\The [src] shudders with life.</span>")
+			to_chat(user, span_alien("\The [src] shudders with life."))
 		else
-			to_chat(user, "<span class='alien'>\The [src] stills, returning to a death-like state.</span>")
+			to_chat(user, span_alien("\The [src] stills, returning to a death-like state."))
 
-/obj/item/weapon/blobcore_chunk/proc/regen(var/newfaction = null)
+/obj/item/blobcore_chunk/proc/regen(var/newfaction = null)
 	if(istype(blob_type))
 		if(newfaction)
 			blob_type.faction = newfaction
@@ -126,17 +126,17 @@
 	result_amount = 1
 
 /decl/chemical_reaction/instant/blob_reconstitution/can_happen(var/datum/reagents/holder)
-	if(holder.my_atom && istype(holder.my_atom, /obj/item/weapon/blobcore_chunk))
+	if(holder.my_atom && istype(holder.my_atom, /obj/item/blobcore_chunk))
 		return ..()
 	return FALSE
 
 /decl/chemical_reaction/instant/blob_reconstitution/on_reaction(var/datum/reagents/holder)
-	var/obj/item/weapon/blobcore_chunk/chunk = holder.my_atom
+	var/obj/item/blobcore_chunk/chunk = holder.my_atom
 	if(chunk.can_genesis && chunk.regen())
-		chunk.visible_message("<span class='notice'>[chunk] bubbles, surrounding itself with a rapidly expanding mass of [chunk.blob_type.name]!</span>")
+		chunk.visible_message(span_notice("[chunk] bubbles, surrounding itself with a rapidly expanding mass of [chunk.blob_type.name]!"))
 		chunk.can_genesis = FALSE
 	else
-		chunk.visible_message("<span class='warning'>[chunk] shifts strangely, but falls still.</span>")
+		chunk.visible_message(span_warning("[chunk] shifts strangely, but falls still."))
 
 /decl/chemical_reaction/instant/blob_reconstitution/domination
 	name = "Allied Blob Revival"
@@ -146,9 +146,9 @@
 	result_amount = 1
 
 /decl/chemical_reaction/instant/blob_reconstitution/domination/on_reaction(var/datum/reagents/holder)
-	var/obj/item/weapon/blobcore_chunk/chunk = holder.my_atom
+	var/obj/item/blobcore_chunk/chunk = holder.my_atom
 	if(chunk.can_genesis && chunk.regen("neutral"))
-		chunk.visible_message("<span class='notice'>[chunk] bubbles, surrounding itself with a rapidly expanding mass of [chunk.blob_type.name]!</span>")
+		chunk.visible_message(span_notice("[chunk] bubbles, surrounding itself with a rapidly expanding mass of [chunk.blob_type.name]!"))
 		chunk.can_genesis = FALSE
 	else
-		chunk.visible_message("<span class='warning'>[chunk] shifts strangely, but falls still.</span>")
+		chunk.visible_message(span_warning("[chunk] shifts strangely, but falls still."))

@@ -12,7 +12,7 @@ var/datum/antagonist/highlander/highlanders
 	initial_spawn_req = 3
 	initial_spawn_target = 5
 
-	id_type = /obj/item/weapon/card/id/centcom/ERT
+	id_type = /obj/item/card/id/centcom/ERT
 
 /datum/antagonist/highlander/New()
 	..()
@@ -47,11 +47,11 @@ var/datum/antagonist/highlander/highlanders
 	// highlanders!
 	player.equip_to_slot_or_del(new /obj/item/clothing/under/kilt(player), slot_w_uniform)
 	player.equip_to_slot_or_del(new /obj/item/clothing/head/beret(player), slot_head)
-	player.equip_to_slot_or_del(new /obj/item/weapon/material/sword(player), slot_l_hand)
+	player.equip_to_slot_or_del(new /obj/item/material/sword(player), slot_l_hand)
 	player.equip_to_slot_or_del(new /obj/item/clothing/shoes/boots/combat(player), slot_shoes)
-	player.equip_to_slot_or_del(new /obj/item/weapon/pinpointer(get_turf(player)), slot_l_store)
+	player.equip_to_slot_or_del(new /obj/item/pinpointer(get_turf(player)), slot_l_store)
 
-	var/obj/item/weapon/card/id/id = create_id("Highlander", player)
+	var/obj/item/card/id/id = create_id("Highlander", player)
 	if(id)
 		id.access |= get_all_station_access()
 		id.icon_state = "centcom"
@@ -68,5 +68,5 @@ var/datum/antagonist/highlander/highlanders
 		if(is_special_character(H)) continue
 		highlanders.add_antagonist(H.mind)
 
-	message_admins("<span class='notice'>[key_name_admin(usr)] used THERE CAN BE ONLY ONE!</span>", 1)
+	message_admins(span_notice("[key_name_admin(usr)] used THERE CAN BE ONLY ONE!"), 1)
 	log_admin("[key_name(usr)] used there can be only one.")

@@ -32,7 +32,7 @@ SUBSYSTEM_DEF(machines)
 
 /datum/controller/subsystem/machines/Initialize(timeofday)
 	makepowernets()
-	admin_notice("<span class='danger'>Initializing atmos machinery.</span>", R_DEBUG)
+	admin_notice(span_danger("Initializing atmos machinery."), R_DEBUG)
 	setup_atmos_machinery(all_machines)
 	fire()
 	..()
@@ -63,7 +63,7 @@ SUBSYSTEM_DEF(machines)
 
 /datum/controller/subsystem/machines/proc/setup_atmos_machinery(list/atmos_machines)
 	var/list/actual_atmos_machines = list()
-	
+
 	for(var/obj/machinery/atmospherics/machine in atmos_machines)
 		machine.atmos_init()
 		actual_atmos_machines += machine
@@ -82,9 +82,8 @@ SUBSYSTEM_DEF(machines)
 			T.broadcast_status()
 		CHECK_TICK
 
-/datum/controller/subsystem/machines/stat_entry()
-	var/msg = list()
-	msg += "C:{"
+/datum/controller/subsystem/machines/stat_entry(msg)
+	msg = "C:{"
 	msg += "PI:[round(cost_pipenets,1)]|"
 	msg += "MC:[round(cost_machinery,1)]|"
 	msg += "PN:[round(cost_powernets,1)]|"
@@ -95,7 +94,7 @@ SUBSYSTEM_DEF(machines)
 	msg += "PN:[SSmachines.powernets.len]|"
 	msg += "PO:[SSmachines.powerobjs.len]|"
 	msg += "MC/MS:[round((cost ? SSmachines.processing_machines.len/cost_machinery : 0),0.1)]"
-	..(jointext(msg, null))
+	return ..()
 
 /datum/controller/subsystem/machines/proc/process_pipenets(resumed = 0)
 	if (!resumed)

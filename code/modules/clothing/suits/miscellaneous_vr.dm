@@ -39,7 +39,7 @@
 		if(istype(H) && istype(H.tail_style, /datum/sprite_accessory/tail/taur/drake))
 			return ..()
 		else
-			to_chat(H, "<span class='warning'>You need to have a drake-taur half to wear this.</span>")
+			to_chat(H, span_warning("You need to have a drake-taur half to wear this."))
 			return 0
 
 /obj/item/clothing/suit/barding
@@ -55,7 +55,7 @@
 		if(istype(H) && istype(H.tail_style, /datum/sprite_accessory/tail/taur/horse))
 			return ..()
 		else
-			to_chat(H, "<span class='warning'>You need to have a horse-taur half to wear this.</span>")
+			to_chat(H, span_warning("You need to have a horse-taur half to wear this."))
 			return 0
 
 //Bardings are medieval suits of armor.

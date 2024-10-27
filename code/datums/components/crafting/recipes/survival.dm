@@ -1,6 +1,6 @@
 /datum/crafting_recipe/shovel
 	name = "Wooden Shovel"
-	result = /obj/item/weapon/shovel/wood
+	result = /obj/item/shovel/wood
 	reqs = list(
 		list(/obj/item/stack/material/stick = 5),
 		list(/obj/item/stack/material/wood = 1),
@@ -13,7 +13,7 @@
 
 /datum/crafting_recipe/stoneblade
 	name = "stone blade"
-	result = /obj/item/weapon/material/knife/stone
+	result = /obj/item/material/knife/stone
 	reqs = list(
 		list(/obj/item/stack/material/flint = 2)
 	)
@@ -23,9 +23,9 @@
 
 /datum/crafting_recipe/stonewoodknife
 	name = "stone knife"
-	result = /obj/item/weapon/material/knife/stone/wood
+	result = /obj/item/material/knife/stone/wood
 	reqs = list(
-		list(/obj/item/weapon/material/knife/stone = 1),
+		list(/obj/item/material/knife/stone = 1),
 		list(/obj/item/stack/material/flint = 1),
 		list(/obj/item/stack/material/wood = 1),
 		list(/obj/item/stack/material/fiber = 3)
@@ -36,11 +36,11 @@
 
 /datum/crafting_recipe/stoneboneknife
 	name = "stone knife"
-	result = /obj/item/weapon/material/knife/stone/bone
+	result = /obj/item/material/knife/stone/bone
 	reqs = list(
-		list(/obj/item/weapon/material/knife/stone = 1),
+		list(/obj/item/material/knife/stone = 1),
 		list(/obj/item/stack/material/flint = 1),
-		list(/obj/item/weapon/bone = 1),
+		list(/obj/item/bone = 1),
 		list(/obj/item/stack/material/fiber = 3)
 	)
 	time = 120
@@ -49,7 +49,7 @@
 
 /datum/crafting_recipe/woodbucket
 	name = "wooden bucket"
-	result = /obj/item/weapon/reagent_containers/glass/bucket/wood
+	result = /obj/item/reagent_containers/glass/bucket/wood
 	reqs = list(
 		list(/obj/item/stack/material/wood = 1),
 		list(/obj/item/stack/material/stick = 1),
@@ -62,15 +62,15 @@
 	name = "sticks"
 	result = /obj/item/stack/material/stick/fivestack
 	reqs = list(list(/obj/item/stack/material/wood = 1))
-	tool_paths = list(/obj/item/weapon/material/knife)
+	tool_paths = list(/obj/item/material/knife)
 	time = 200
 	category = CAT_MISC
 
 /datum/crafting_recipe/stonewoodaxe
 	name = "stone axe"
-	result = /obj/item/weapon/material/knife/machete/hatchet/stone
+	result = /obj/item/material/knife/machete/hatchet/stone
 	reqs = list(
-		list(/obj/item/weapon/material/knife/stone = 1),
+		list(/obj/item/material/knife/stone = 1),
 		list(/obj/item/stack/material/flint = 1),
 		list(/obj/item/stack/material/stick = 1),
 		list(/obj/item/stack/material/fiber = 3)
@@ -81,11 +81,11 @@
 
 /datum/crafting_recipe/stoneboneaxe
 	name = "stone axe"
-	result = /obj/item/weapon/material/knife/machete/hatchet/stone/bone
+	result = /obj/item/material/knife/machete/hatchet/stone/bone
 	reqs = list(
-		list(/obj/item/weapon/material/knife/stone = 1),
+		list(/obj/item/material/knife/stone = 1),
 		list(/obj/item/stack/material/flint = 1),
-		list(/obj/item/weapon/bone = 1),
+		list(/obj/item/bone = 1),
 		list(/obj/item/stack/material/fiber = 3)
 	)
 	time = 120
@@ -94,9 +94,9 @@
 
 /datum/crafting_recipe/stonewoodspear
 	name = "stone spear"
-	result = /obj/item/weapon/material/twohanded/spear/flint
+	result = /obj/item/material/twohanded/spear/flint
 	reqs = list(
-		list(/obj/item/weapon/material/knife/stone = 1),
+		list(/obj/item/material/knife/stone = 1),
 		list(/obj/item/stack/material/flint = 1),
 		list(/obj/item/stack/material/wood = 2),
 		list(/obj/item/stack/material/fiber = 3)
@@ -107,11 +107,11 @@
 
 /datum/crafting_recipe/stonebonespear
 	name = "stone spear"
-	result = /obj/item/weapon/material/twohanded/spear/flint
+	result = /obj/item/material/twohanded/spear/flint
 	reqs = list(
-		list(/obj/item/weapon/material/knife/stone = 1),
+		list(/obj/item/material/knife/stone = 1),
 		list(/obj/item/stack/material/flint = 1),
-		list(/obj/item/weapon/bone = 2),
+		list(/obj/item/bone = 2),
 		list(/obj/item/stack/material/fiber = 3)
 	)
 	time = 120
@@ -120,7 +120,7 @@
 
 /datum/crafting_recipe/ropebindings
 	name = "rope bindings"
-	result = /obj/item/weapon/handcuffs/cable/plantfiber
+	result = /obj/item/handcuffs/cable/plantfiber
 	reqs = list(list(/obj/item/stack/material/fiber = 3))
 	time = 60
 	category = CAT_MISC

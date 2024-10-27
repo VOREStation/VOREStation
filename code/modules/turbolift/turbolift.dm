@@ -28,7 +28,7 @@
 	priority_mode = TRUE
 	cancel_pending_floors()
 	update_ext_panel_icons()
-	control_panel_interior.audible_message("<span class='info'>This turbolift is responding to a priority call.  Please exit the lift when it stops and make way.</span>", runemessage = "BUZZ")
+	control_panel_interior.audible_message(span_info("This turbolift is responding to a priority call.  Please exit the lift when it stops and make way."), runemessage = "BUZZ")
 	spawn(time)
 		priority_mode = FALSE
 		update_ext_panel_icons()
@@ -118,7 +118,7 @@
 				return PROCESS_KILL
 		if(LIFT_WAITING_A)
 			var/area/turbolift/origin = locate(current_floor.area_ref)
-			control_panel_interior.visible_message("<b>The elevator</b> announces, \"[origin.lift_announce_str]\"")
+			control_panel_interior.visible_message(span_infoplain(span_bold("The elevator") + " announces, \"[origin.lift_announce_str]\""))
 			next_process = world.time + floor_wait_delay
 			busy_state = LIFT_WAITING_B
 		if(LIFT_WAITING_B)

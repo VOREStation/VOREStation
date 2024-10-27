@@ -11,7 +11,7 @@
 
 	faction = FACTION_CLOWN
 
-	loot_list = list(/obj/item/weapon/bikehorn = 100)
+	loot_list = list(/obj/item/bikehorn = 100)
 
 	response_help = "pokes"
 	response_disarm = "gently pushes aside"

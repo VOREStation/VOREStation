@@ -7,7 +7,7 @@
 	anchored = TRUE
 	icon_keyboard = "med_key"
 	icon_screen = "crew"
-	circuit = /obj/item/weapon/circuitboard/operating
+	circuit = /obj/item/circuitboard/operating
 	var/obj/machinery/optable/table = null
 	var/mob/living/carbon/human/victim = null
 	var/verbose = 1 //general speaker toggle
@@ -68,7 +68,7 @@
 		occupantData["stat"] = occupant.stat
 		occupantData["health"] = occupant.health
 		occupantData["maxHealth"] = occupant.maxHealth
-		occupantData["minHealth"] = config.health_threshold_dead
+		occupantData["minHealth"] = CONFIG_GET(number/health_threshold_dead)
 		occupantData["bruteLoss"] = occupant.getBruteLoss()
 		occupantData["oxyLoss"] = occupant.getOxyLoss()
 		occupantData["toxLoss"] = occupant.getToxLoss()

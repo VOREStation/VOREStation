@@ -87,7 +87,7 @@
 				qdel(src)
 				return
 
-/obj/structure/bed/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/structure/bed/attackby(obj/item/W as obj, mob/user as mob)
 	if(W.has_tool_quality(TOOL_WRENCH))
 		playsound(src, W.usesound, 50, 1)
 		dismantle()
@@ -127,28 +127,28 @@
 		playsound(src, W.usesound, 100, 1)
 		remove_padding()
 
-	else if(istype(W, /obj/item/weapon/disk) || (istype(W, /obj/item/toy/plushie)))
+	else if(istype(W, /obj/item/disk) || (istype(W, /obj/item/toy/plushie)))
 		user.drop_from_inventory(W, get_turf(src))
 		W.pixel_x = 10 //make sure they reach the pillow
 		W.pixel_y = -6
-		if(istype(W, /obj/item/weapon/disk))
-			user.visible_message("<span class='notice'>[src] sleeps soundly. Sleep tight, disky.</span>")
+		if(istype(W, /obj/item/disk))
+			user.visible_message(span_notice("[src] sleeps soundly. Sleep tight, disky."))
 
-	else if(istype(W, /obj/item/weapon/grab))
-		var/obj/item/weapon/grab/G = W
+	else if(istype(W, /obj/item/grab))
+		var/obj/item/grab/G = W
 		var/mob/living/affecting = G.affecting
 		if(has_buckled_mobs()) //Handles trying to buckle someone else to a chair when someone else is on it
-			to_chat(user, "<span class='notice'>\The [src] already has someone buckled to it.</span>")
+			to_chat(user, span_notice("\The [src] already has someone buckled to it."))
 			return
-		user.visible_message("<span class='notice'>[user] attempts to buckle [affecting] into \the [src]!</span>")
+		user.visible_message(span_notice("[user] attempts to buckle [affecting] into \the [src]!"))
 		if(do_after(user, 20, G.affecting))
 			affecting.loc = loc
 			spawn(0)
 				if(buckle_mob(affecting))
 					affecting.visible_message(\
-						"<span class='danger'>[affecting.name] is buckled to [src] by [user.name]!</span>",\
-						"<span class='danger'>You are buckled to [src] by [user.name]!</span>",\
-						"<span class='notice'>You hear metal clanking.</span>")
+						span_danger("[affecting.name] is buckled to [src] by [user.name]!"),\
+						span_danger("You are buckled to [src] by [user.name]!"),\
+						span_notice("You hear metal clanking."))
 			qdel(W)
 	else
 		..()
@@ -218,7 +218,7 @@
 /obj/structure/bed/roller/update_icon()
 	return
 
-/obj/structure/bed/roller/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/structure/bed/roller/attackby(obj/item/W as obj, mob/user as mob)
 	if(W.has_tool_quality(TOOL_WRENCH) || istype(W,/obj/item/stack) || W.has_tool_quality(TOOL_WIRECUTTER))
 		return
 	else if(istype(W,/obj/item/roller_holder))
@@ -251,12 +251,12 @@
 	R.add_fingerprint(user)
 	qdel(src)
 
-/obj/item/roller/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/item/roller/attackby(obj/item/W as obj, mob/user as mob)
 
 	if(istype(W,/obj/item/roller_holder))
 		var/obj/item/roller_holder/RH = W
 		if(!RH.held)
-			to_chat(user, "<span class='notice'>You collect the roller bed.</span>")
+			to_chat(user, span_notice("You collect the roller bed."))
 			src.loc = RH
 			RH.held = src
 			return
@@ -285,10 +285,10 @@
 /obj/item/roller_holder/attack_self(mob/user as mob)
 
 	if(!held)
-		to_chat(user, "<span class='notice'>The rack is empty.</span>")
+		to_chat(user, span_notice("The rack is empty."))
 		return
 
-	to_chat(user, "<span class='notice'>You deploy the roller bed.</span>")
+	to_chat(user, span_notice("You deploy the roller bed."))
 	var/obj/structure/bed/roller/R = new held.bedtype(user.loc)
 	R.add_fingerprint(user)
 	qdel(held)
@@ -351,7 +351,7 @@
 /obj/structure/bed/alien/update_icon()
 	return // Doesn't care about material or anything else.
 
-/obj/structure/bed/alien/attackby(obj/item/weapon/W, mob/user)
+/obj/structure/bed/alien/attackby(obj/item/W, mob/user)
 	return // No deconning.
 
 /*
@@ -368,7 +368,7 @@
 	buckle_dir = SOUTH
 	buckle_lying = 1
 
-/obj/structure/dirtybed/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/structure/dirtybed/attackby(obj/item/W as obj, mob/user as mob)
 	if(W.has_tool_quality(TOOL_WRENCH))
 		playsound(src, W.usesound, 100, 1)
 		if(anchored)
@@ -378,10 +378,10 @@
 
 		if(do_after(user, 20 * W.toolspeed))
 			if(!src) return
-			to_chat(user, "<span class='notice'>You [anchored? "un" : ""]secured \the [src]!</span>")
+			to_chat(user, span_notice("You [anchored? "un" : ""]secured \the [src]!"))
 			anchored = !anchored
 		return
 
 	if(!anchored)
-		to_chat(user,"<span class='notice'> The bed isn't secured.</span>")
+		to_chat(user,span_notice(" The bed isn't secured."))
 		return

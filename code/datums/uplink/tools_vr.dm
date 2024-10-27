@@ -4,28 +4,28 @@
 /datum/uplink_item/item/tools/oxygen
 	name = "Emergency Oxygen Tank"
 	item_cost = 2
-	path = /obj/item/weapon/tank/emergency/oxygen/double
+	path = /obj/item/tank/emergency/oxygen/double
 
 /datum/uplink_item/item/tools/phoron
 	name = "Emergency Phoron Tank"
 	item_cost = 2
-	path = /obj/item/weapon/tank/emergency/phoron/double
+	path = /obj/item/tank/emergency/phoron/double
 
 /datum/uplink_item/item/tools/suitcooler
 	name = "Emergency Suit Cooler"
 	item_cost = 2
-	path = /obj/item/device/suit_cooling_unit/emergency
+	path = /obj/item/suit_cooling_unit/emergency
 
 /datum/uplink_item/item/tools/beacon_op
 	name = "Holomap Beacon-M"
 	item_cost = 2
-	path = /obj/item/device/holomap_beacon/operative
+	path = /obj/item/holomap_beacon/operative
 	antag_roles = list("mercenary")
 
 /datum/uplink_item/item/tools/beacon_ert
 	name = "Holomap Beacon-E"
 	item_cost = 2
-	path = /obj/item/device/holomap_beacon/ert
+	path = /obj/item/holomap_beacon/ert
 	antag_roles = list("ert")
 
 /datum/uplink_item/item/tools/basiclaptop
@@ -36,12 +36,12 @@
 /datum/uplink_item/item/tools/survivalcapsule
 	name = "Survival Capsule"
 	item_cost = 5
-	path = /obj/item/device/survivalcapsule
+	path = /obj/item/survivalcapsule
 
 /datum/uplink_item/item/tools/popcabin
 	name = "Cabin Capsule"
 	item_cost = 5
-	path = /obj/item/device/survivalcapsule/popcabin
+	path = /obj/item/survivalcapsule/popcabin
 
 /datum/uplink_item/item/tools/nanopaste
 	name = "Nanopaste (Advanced)"
@@ -56,7 +56,7 @@
 /datum/uplink_item/item/tools/inflatable
 	name = "Inflatables"
 	item_cost = 10
-	path = /obj/item/weapon/storage/briefcase/inflatable
+	path = /obj/item/storage/briefcase/inflatable
 
 /datum/uplink_item/item/tools/elitetablet
 	name = "Tablet (Advanced)"
@@ -76,17 +76,17 @@
 /datum/uplink_item/item/tools/smallpouch
 	name = "Small Pouch"
 	item_cost = 5
-	path = /obj/item/weapon/storage/pouch/small
+	path = /obj/item/storage/pouch/small
 
 /datum/uplink_item/item/tools/normalpouch
 	name = "Standard Pouch"
 	item_cost = 10
-	path = /obj/item/weapon/storage/pouch
+	path = /obj/item/storage/pouch
 
 /datum/uplink_item/item/tools/largepouch
 	name = "Large Pouch"
 	item_cost = 15
-	path = /obj/item/weapon/storage/pouch/large
+	path = /obj/item/storage/pouch/large
 
 /datum/uplink_item/item/tools/elitelaptop
 	name = "Laptop (Advanced)"
@@ -96,39 +96,39 @@
 /datum/uplink_item/item/tools/inducer
 	name = "Inducer"
 	item_cost = 20
-	path = /obj/item/weapon/inducer/syndicate
+	path = /obj/item/inducer/syndicate
 
 /datum/uplink_item/item/tools/mappingunit_op
 	name = "Mapping Unit-M"
 	item_cost = 20
-	path = /obj/item/device/mapping_unit/operative
+	path = /obj/item/mapping_unit/operative
 	antag_roles = list("mercenary")
 
 /datum/uplink_item/item/tools/mappingunit_ert
 	name = "Mapping Unit-E"
 	item_cost = 20
-	path = /obj/item/device/mapping_unit/ert
+	path = /obj/item/mapping_unit/ert
 	antag_roles = list("ert")
 
 /datum/uplink_item/item/tools/luxurycapsule
 	name = "Survival Capsule (Luxury)"
 	item_cost = 40
-	path = /obj/item/device/survivalcapsule/luxury
+	path = /obj/item/survivalcapsule/luxury
 
 /datum/uplink_item/item/tools/translocator
 	name = "Translocator"
 	item_cost = 40
-	path = /obj/item/device/perfect_tele
+	path = /obj/item/perfect_tele
 
 /datum/uplink_item/item/tools/uav
 	name = "Recon Skimmer"
 	item_cost = 40
-	path = /obj/item/device/uav
+	path = /obj/item/uav
 
 /datum/uplink_item/item/tools/barcapsule
 	name = "Survival Capsule (Bar)"
 	item_cost = 80
-	path = /obj/item/device/survivalcapsule/luxurybar
+	path = /obj/item/survivalcapsule/luxurybar
 
 /datum/uplink_item/item/tools/capturecrystal
 	name = "Capture Crystal"

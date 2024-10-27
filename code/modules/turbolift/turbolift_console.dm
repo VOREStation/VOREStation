@@ -24,9 +24,9 @@
 /obj/structure/lift/proc/pressed(var/mob/user)
 	if(!istype(user, /mob/living/silicon))
 		if(user.a_intent == I_HURT)
-			user.visible_message("<span class='danger'>\The [user] hammers on the lift button!</span>")
+			user.visible_message(span_danger("\The [user] hammers on the lift button!"))
 		else
-			user.visible_message("<b>\The [user]</b> presses the lift button.")
+			user.visible_message(span_infoplain(span_bold("\The [user]") + " presses the lift button."))
 
 
 /obj/structure/lift/New(var/newloc, var/datum/turbolift/_lift)
@@ -69,7 +69,7 @@
 
 // Hit it with a PDA or ID to enable priority call mode
 /obj/structure/lift/button/attackby(obj/item/W as obj, mob/user as mob)
-	var/obj/item/weapon/card/id/id = W.GetID()
+	var/obj/item/card/id/id = W.GetID()
 	if(istype(id))
 		if(!check_access(id))
 			playsound(src, 'sound/machines/buzz-two.ogg', 50, 0)
@@ -123,17 +123,17 @@
 
 // Hit it with a PDA or ID to enable priority call mode
 /obj/structure/lift/panel/attackby(obj/item/W as obj, mob/user as mob)
-	var/obj/item/weapon/card/id/id = W.GetID()
+	var/obj/item/card/id/id = W.GetID()
 	if(istype(id))
 		if(!check_access(id))
 			playsound(src, 'sound/machines/buzz-two.ogg', 50, 0)
 			return
 		lift.update_fire_mode(!lift.fire_mode)
 		if(lift.fire_mode)
-			audible_message("<span class='danger'>Firefighter Mode Activated.  Door safeties disabled.  Manual control engaged.</span>", runemessage = "SCREECH")
+			audible_message(span_danger("Firefighter Mode Activated.  Door safeties disabled.  Manual control engaged."), runemessage = "SCREECH")
 			playsound(src, 'sound/machines/airalarm.ogg', 25, 0, 4, volume_channel = VOLUME_CHANNEL_ALARMS)
 		else
-			audible_message("<span class='warning'>Firefighter Mode Deactivated. Door safeties enabled.  Automatic control engaged.</span>", runemessage = "ding")
+			audible_message(span_warning("Firefighter Mode Deactivated. Door safeties enabled.  Automatic control engaged."), runemessage = "ding")
 		return
 	. = ..()
 
@@ -143,7 +143,7 @@
 /obj/structure/lift/panel/interact(var/mob/user)
 	if(!..())
 		return
-	
+
 	tgui_interact(user)
 
 /obj/structure/lift/panel/tgui_interact(mob/user, datum/tgui/ui)
@@ -171,7 +171,7 @@
 			"name" = floor.name,
 		)))
 	data["floors"] = floors
-	
+
 	return data
 
 /obj/structure/lift/panel/tgui_act(action, params)

@@ -20,9 +20,9 @@
 	var/production_modifier = 2			// Multiplier on the ammo_casing's matter cost
 	var/production_delay = 75			// If we're in a gun, how long since it last shot do we need to wait before making bullets?
 
-	var/obj/item/weapon/gun/holding_gun = null	// What gun are we in, if any?
+	var/obj/item/gun/holding_gun = null	// What gun are we in, if any?
 
-	var/obj/item/weapon/cell/device/attached_cell = null	// What cell are we using, if any?
+	var/obj/item/cell/device/attached_cell = null	// What cell are we using, if any?
 
 	var/emagged = 0		// If you emag the smart mag, you can get the bullets out by clicking it
 
@@ -36,7 +36,7 @@
 
 /obj/item/ammo_magazine/smart/process()
 	if(!holding_gun)	// Yes, this is awful, sorry. Don't know a better way to figure out if we've been moved into or out of a gun.
-		if(istype(src.loc, /obj/item/weapon/gun))
+		if(istype(src.loc, /obj/item/gun))
 			holding_gun = src.loc
 
 	if(caliber && ammo_type && attached_cell)
@@ -53,9 +53,9 @@
 	. = ..()
 
 	if(attached_cell)
-		. += "<span class='notice'>\The [src] is loaded with a [attached_cell.name]. It is [round(attached_cell.percent())]% charged.</span>"
+		. += span_notice("\The [src] is loaded with a [attached_cell.name]. It is [round(attached_cell.percent())]% charged.")
 	else
-		. += "<span class='warning'>\The [src] does not appear to have a power source installed.</span>"
+		. += span_warning("\The [src] does not appear to have a power source installed.")
 
 /obj/item/ammo_magazine/smart/update_icon()
 	if(attached_cell)
@@ -66,16 +66,16 @@
 // Emagging lets you remove bullets from your bullet-making magazine
 /obj/item/ammo_magazine/smart/emag_act(var/remaining_charges, var/mob/user)
 	if(!emagged)
-		to_chat(user, "<span class='notice'>You overload \the [src]'s security measures causing widespread destabilisation. It is likely you could empty \the [src] now.</span>")
+		to_chat(user, span_notice("You overload \the [src]'s security measures causing widespread destabilisation. It is likely you could empty \the [src] now."))
 		emagged = TRUE
 		can_remove_ammo = TRUE
 		return TRUE
 	return FALSE
 
 /obj/item/ammo_magazine/smart/attackby(var/obj/item/I as obj, mob/user)
-	if(istype(I, /obj/item/weapon/cell/device))
+	if(istype(I, /obj/item/cell/device))
 		if(attached_cell)
-			to_chat(user, "<span class='notice'>\The [src] already has a [attached_cell.name] attached.</span>")
+			to_chat(user, span_notice("\The [src] already has a [attached_cell.name] attached."))
 			return
 		else
 			to_chat(user, "You begin inserting \the [I] into \the [src].")
@@ -182,7 +182,7 @@
 		msg += "ammunition type."
 
 	if(change)
-		to_chat(user, "<span class='notice'>[msg]</span>")
+		to_chat(user, span_notice("[msg]"))
 		caliber = new_caliber
 		ammo_type = new_ammo_type
 		set_production_cost(ammo_type)	// Update our cost
@@ -214,10 +214,10 @@
 		return
 
 	if(LAZYLEN(stored_ammo))
-		to_chat(usr, "<span class='warning'>You can't reset \the [src] unless it's empty!</span>")
+		to_chat(usr, span_warning("You can't reset \the [src] unless it's empty!"))
 		return
 
-	to_chat(usr, "<span class='notice'>You clear \the [src]'s data buffers.</span>")
+	to_chat(usr, span_notice("You clear \the [src]'s data buffers."))
 
 	caliber = null
 	ammo_type = null

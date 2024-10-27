@@ -66,7 +66,7 @@
 /turf/simulated/shuttle/floor/black,
 /area/redgate/train/tableseating)
 "bC" = (
-/obj/item/weapon/stool/padded,
+/obj/item/stool/padded,
 /turf/simulated/shuttle/floor/black,
 /area/redgate/train/bar)
 "bT" = (
@@ -150,7 +150,7 @@
 /turf/simulated/floor/plating,
 /area/redgate/train/meeting)
 "dN" = (
-/obj/item/weapon/material/sword/battleaxe,
+/obj/item/material/sword/battleaxe,
 /turf/simulated/shuttle/floor/voidcraft{
 	outdoors = 1
 	},
@@ -276,13 +276,13 @@
 /obj/structure/closet/hydrant{
 	pixel_x = -30
 	},
-/obj/item/weapon/storage/firstaid/o2{
+/obj/item/storage/firstaid/o2{
 	layer = 2.8;
 	pixel_x = 4;
 	pixel_y = 6
 	},
-/obj/item/weapon/storage/firstaid/fire,
-/obj/item/weapon/storage/firstaid/toxin,
+/obj/item/storage/firstaid/fire,
+/obj/item/storage/firstaid/toxin,
 /turf/simulated/shuttle/floor/black,
 /area/redgate/train/viewing)
 "fM" = (
@@ -539,7 +539,7 @@
 	},
 /area/redgate/train/meeting)
 "le" = (
-/obj/item/weapon/stool/padded{
+/obj/item/stool/padded{
 	dir = 8
 	},
 /turf/simulated/shuttle/floor/skipjack{
@@ -550,9 +550,9 @@
 /area/redgate/train/casino)
 "lo" = (
 /obj/structure/table/standard,
-/obj/item/weapon/pen,
-/obj/item/weapon/pen,
-/obj/item/weapon/pen,
+/obj/item/pen,
+/obj/item/pen,
+/obj/item/pen,
 /turf/simulated/shuttle/floor/black,
 /area/redgate/train/tableseating)
 "lC" = (
@@ -660,13 +660,13 @@
 /obj/structure/closet/hydrant{
 	pixel_x = -30
 	},
-/obj/item/weapon/storage/firstaid/o2{
+/obj/item/storage/firstaid/o2{
 	layer = 2.8;
 	pixel_x = 4;
 	pixel_y = 6
 	},
-/obj/item/weapon/storage/firstaid/fire,
-/obj/item/weapon/storage/firstaid/toxin,
+/obj/item/storage/firstaid/fire,
+/obj/item/storage/firstaid/toxin,
 /turf/simulated/shuttle/floor/black,
 /area/redgate/train/seating)
 "mW" = (
@@ -708,13 +708,13 @@
 /obj/structure/closet/hydrant{
 	pixel_x = -30
 	},
-/obj/item/weapon/storage/firstaid/o2{
+/obj/item/storage/firstaid/o2{
 	layer = 2.8;
 	pixel_x = 4;
 	pixel_y = 6
 	},
-/obj/item/weapon/storage/firstaid/fire,
-/obj/item/weapon/storage/firstaid/toxin,
+/obj/item/storage/firstaid/fire,
+/obj/item/storage/firstaid/toxin,
 /turf/simulated/shuttle/floor/black,
 /area/redgate/train/rear)
 "np" = (
@@ -857,13 +857,13 @@
 /area/redgate/train/overboard)
 "pM" = (
 /obj/structure/closet/walllocker_double/misc_civ/north,
-/obj/item/weapon/pack/cardemon,
-/obj/item/weapon/pack/cardemon,
-/obj/item/weapon/pack/cardemon,
-/obj/item/weapon/deck/cards,
-/obj/item/weapon/deck/wizoff,
-/obj/item/weapon/deck/schnapsen,
-/obj/item/weapon/deck/egy,
+/obj/item/pack/cardemon,
+/obj/item/pack/cardemon,
+/obj/item/pack/cardemon,
+/obj/item/deck/cards,
+/obj/item/deck/wizoff,
+/obj/item/deck/schnapsen,
+/obj/item/deck/egy,
 /turf/simulated/shuttle/floor/black,
 /area/redgate/train/arena)
 "pT" = (
@@ -879,9 +879,9 @@
 /area/redgate/train/redgate)
 "qk" = (
 /obj/structure/table/marble,
-/obj/item/weapon/reagent_containers/food/drinks/flask/vacuumflask,
-/obj/item/weapon/flame/lighter/zippo,
-/obj/item/weapon/book/manual/barman_recipes,
+/obj/item/reagent_containers/food/drinks/flask/vacuumflask,
+/obj/item/flame/lighter/zippo,
+/obj/item/book/manual/barman_recipes,
 /obj/item/clothing/head/that{
 	pixel_x = 4;
 	pixel_y = 6
@@ -1052,7 +1052,7 @@
 /area/redgate/train/storage)
 "tg" = (
 /obj/structure/table/marble,
-/obj/item/weapon/reagent_containers/glass/rag,
+/obj/item/reagent_containers/glass/rag,
 /turf/simulated/shuttle/floor/skipjack{
 	name = "floor";
 	nitrogen = 82.1472;
@@ -1163,7 +1163,7 @@
 /turf/simulated/shuttle/floor/black,
 /area/redgate/train/tableseating)
 "vg" = (
-/obj/item/weapon/stool/padded,
+/obj/item/stool/padded,
 /turf/simulated/shuttle/floor/black,
 /area/redgate/train/tableseating)
 "vn" = (
@@ -1339,7 +1339,7 @@
 	},
 /area/redgate/train/overboard)
 "yq" = (
-/obj/item/weapon/stool/padded,
+/obj/item/stool/padded,
 /turf/simulated/shuttle/floor/skipjack{
 	name = "floor";
 	nitrogen = 82.1472;
@@ -2078,8 +2078,8 @@
 /area/redgate/train/redgate)
 "Io" = (
 /obj/structure/table/standard,
-/obj/item/weapon/pen,
-/obj/item/weapon/pen,
+/obj/item/pen,
+/obj/item/pen,
 /turf/simulated/shuttle/floor/yellow,
 /area/redgate/train/meeting)
 "Ip" = (
@@ -2162,7 +2162,7 @@
 /turf/simulated/floor/outdoors/newdirt,
 /area/redgate/train/animals)
 "Kb" = (
-/obj/item/weapon/stool/padded{
+/obj/item/stool/padded{
 	dir = 4
 	},
 /turf/simulated/shuttle/floor/skipjack{
@@ -2326,7 +2326,7 @@
 	},
 /area/redgate/train/meeting)
 "Lw" = (
-/obj/item/weapon/stool/padded{
+/obj/item/stool/padded{
 	dir = 1
 	},
 /turf/simulated/shuttle/floor/skipjack{
@@ -2351,7 +2351,7 @@
 /area/redgate/train/redgate)
 "LG" = (
 /obj/structure/table/standard,
-/obj/item/weapon/paper_bin,
+/obj/item/paper_bin,
 /turf/simulated/shuttle/floor/black,
 /area/redgate/train/tableseating)
 "LI" = (
@@ -2382,13 +2382,13 @@
 /obj/structure/closet/hydrant{
 	pixel_x = -30
 	},
-/obj/item/weapon/storage/firstaid/o2{
+/obj/item/storage/firstaid/o2{
 	layer = 2.8;
 	pixel_x = 4;
 	pixel_y = 6
 	},
-/obj/item/weapon/storage/firstaid/fire,
-/obj/item/weapon/storage/firstaid/toxin,
+/obj/item/storage/firstaid/fire,
+/obj/item/storage/firstaid/toxin,
 /turf/simulated/shuttle/floor/black,
 /area/redgate/train/bar)
 "LU" = (
@@ -2502,15 +2502,15 @@
 /area/redgate/train/wood)
 "Or" = (
 /obj/structure/closet/walllocker_double/casino/north,
-/obj/item/weapon/storage/pill_bottle/dice,
-/obj/item/weapon/storage/pill_bottle/dice,
-/obj/item/weapon/storage/pill_bottle/dice,
-/obj/item/weapon/storage/pill_bottle/dice_nerd,
-/obj/item/weapon/storage/pill_bottle/dice_nerd,
-/obj/item/weapon/storage/pill_bottle/dice_nerd,
-/obj/item/weapon/storage/dicecup,
-/obj/item/weapon/storage/dicecup,
-/obj/item/weapon/storage/dicecup,
+/obj/item/storage/pill_bottle/dice,
+/obj/item/storage/pill_bottle/dice,
+/obj/item/storage/pill_bottle/dice,
+/obj/item/storage/pill_bottle/dice_nerd,
+/obj/item/storage/pill_bottle/dice_nerd,
+/obj/item/storage/pill_bottle/dice_nerd,
+/obj/item/storage/dicecup,
+/obj/item/storage/dicecup,
+/obj/item/storage/dicecup,
 /obj/machinery/light{
 	dir = 8
 	},
@@ -2518,8 +2518,8 @@
 /area/redgate/train/casino)
 "Os" = (
 /obj/structure/table/standard,
-/obj/item/weapon/paper_bin,
-/obj/item/weapon/paper_bin,
+/obj/item/paper_bin,
+/obj/item/paper_bin,
 /turf/simulated/shuttle/floor/white{
 	color = "#cccccc"
 	},
@@ -2613,15 +2613,15 @@
 /area/redgate/train/bar)
 "Px" = (
 /obj/structure/closet/walllocker_double/casino/south,
-/obj/item/weapon/storage/pill_bottle/dice,
-/obj/item/weapon/storage/pill_bottle/dice,
-/obj/item/weapon/storage/pill_bottle/dice,
-/obj/item/weapon/storage/pill_bottle/dice_nerd,
-/obj/item/weapon/storage/pill_bottle/dice_nerd,
-/obj/item/weapon/storage/pill_bottle/dice_nerd,
-/obj/item/weapon/storage/dicecup,
-/obj/item/weapon/storage/dicecup,
-/obj/item/weapon/storage/dicecup,
+/obj/item/storage/pill_bottle/dice,
+/obj/item/storage/pill_bottle/dice,
+/obj/item/storage/pill_bottle/dice,
+/obj/item/storage/pill_bottle/dice_nerd,
+/obj/item/storage/pill_bottle/dice_nerd,
+/obj/item/storage/pill_bottle/dice_nerd,
+/obj/item/storage/dicecup,
+/obj/item/storage/dicecup,
+/obj/item/storage/dicecup,
 /obj/machinery/light{
 	dir = 4
 	},
@@ -3031,13 +3031,13 @@
 /obj/structure/closet/hydrant{
 	pixel_x = -30
 	},
-/obj/item/weapon/storage/firstaid/o2{
+/obj/item/storage/firstaid/o2{
 	layer = 2.8;
 	pixel_x = 4;
 	pixel_y = 6
 	},
-/obj/item/weapon/storage/firstaid/fire,
-/obj/item/weapon/storage/firstaid/toxin,
+/obj/item/storage/firstaid/fire,
+/obj/item/storage/firstaid/toxin,
 /turf/simulated/shuttle/floor/black,
 /area/redgate/train/tableseating)
 "VK" = (
@@ -3067,13 +3067,13 @@
 /area/redgate/train/overboard)
 "VU" = (
 /obj/structure/closet/walllocker_double/misc_civ/south,
-/obj/item/weapon/pack/cardemon,
-/obj/item/weapon/pack/cardemon,
-/obj/item/weapon/pack/cardemon,
-/obj/item/weapon/deck/cards,
-/obj/item/weapon/deck/wizoff,
-/obj/item/weapon/deck/schnapsen,
-/obj/item/weapon/deck/egy,
+/obj/item/pack/cardemon,
+/obj/item/pack/cardemon,
+/obj/item/pack/cardemon,
+/obj/item/deck/cards,
+/obj/item/deck/wizoff,
+/obj/item/deck/schnapsen,
+/obj/item/deck/egy,
 /turf/simulated/shuttle/floor/black,
 /area/redgate/train/arena)
 "Wd" = (
@@ -3095,7 +3095,7 @@
 /area/redgate/train/overboard)
 "Wr" = (
 /obj/structure/table/standard,
-/obj/item/weapon/pen,
+/obj/item/pen,
 /turf/simulated/shuttle/floor/black,
 /area/redgate/train/tableseating)
 "Wy" = (
@@ -3340,13 +3340,13 @@
 /area/redgate/train/teppi)
 "ZP" = (
 /obj/structure/closet/walllocker_double/casino/north,
-/obj/item/weapon/deck/cards/casino,
-/obj/item/weapon/deck/cards/casino,
-/obj/item/weapon/deck/cards/casino,
-/obj/item/weapon/deck/cards/casino,
-/obj/item/weapon/deck/cards/casino,
-/obj/item/weapon/deck/cards/casino,
-/obj/item/weapon/storage/box/roulette_balls_fancy,
+/obj/item/deck/cards/casino,
+/obj/item/deck/cards/casino,
+/obj/item/deck/cards/casino,
+/obj/item/deck/cards/casino,
+/obj/item/deck/cards/casino,
+/obj/item/deck/cards/casino,
+/obj/item/storage/box/roulette_balls_fancy,
 /obj/machinery/light{
 	dir = 4
 	},
@@ -3354,13 +3354,13 @@
 /area/redgate/train/casino)
 "ZY" = (
 /obj/structure/closet/walllocker_double/casino/south,
-/obj/item/weapon/deck/cards/casino,
-/obj/item/weapon/deck/cards/casino,
-/obj/item/weapon/deck/cards/casino,
-/obj/item/weapon/deck/cards/casino,
-/obj/item/weapon/deck/cards/casino,
-/obj/item/weapon/deck/cards/casino,
-/obj/item/weapon/storage/box/roulette_balls_normal,
+/obj/item/deck/cards/casino,
+/obj/item/deck/cards/casino,
+/obj/item/deck/cards/casino,
+/obj/item/deck/cards/casino,
+/obj/item/deck/cards/casino,
+/obj/item/deck/cards/casino,
+/obj/item/storage/box/roulette_balls_normal,
 /obj/machinery/light{
 	dir = 8
 	},

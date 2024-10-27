@@ -1,5 +1,3 @@
-GLOBAL_DATUM(revdata, /datum/getrev)
-
 /datum/getrev
 	var/branch
 	var/revision
@@ -15,7 +13,7 @@ GLOBAL_DATUM(revdata, /datum/getrev)
 			revision = REV.origin_commit || REV.commit
 			branch = "-Using TGS-" // TGS doesn't provide branch info yet
 			date = "-Using TGS-" // Or date
-	
+
 	if(!revision) // File parse method
 		var/list/head_branch = file2list(".git/HEAD", "\n")
 		if(head_branch.len)
@@ -50,7 +48,7 @@ GLOBAL_DATUM(revdata, /datum/getrev)
 		var/details = ": '" + html_encode(tm.title) + "' by " + html_encode(tm.author) + " at commit " + html_encode(copytext_char(cm, 1, 11))
 		if(details && findtext(details, "\[s\]") && (!usr || !usr.client.holder))
 			continue
-		. += "<a href=\"[config.githuburl]/pull/[tm.number]\">#[tm.number][details]</a>"
+		. += "<a href=\"[CONFIG_GET(string/githuburl)]/pull/[tm.number]\">#[tm.number][details]</a>"
 
 /client/verb/showrevinfo()
 	set category = "OOC"
@@ -58,25 +56,25 @@ GLOBAL_DATUM(revdata, /datum/getrev)
 	set desc = "Check the current server code revision"
 
 	if(!GLOB.revdata)
-		to_chat(src, "<span class='warning'>Please wait until server initializations are complete.</span>")
+		to_chat(src, span_warning("Please wait until server initializations are complete."))
 		return
-	
+
 	var/list/msg = list()
-	
+
 	if(GLOB.revdata.revision)
-		msg += "<b>Server revision:</b> B:[GLOB.revdata.branch] D:[GLOB.revdata.date]"
-		if(config.githuburl)
-			msg += "<b>Commit:</b> <a href='[config.githuburl]/commit/[GLOB.revdata.revision]'>[GLOB.revdata.revision]</a>"
+		msg += span_bold("Server revision:") + " B:[GLOB.revdata.branch] D:[GLOB.revdata.date]"
+		if(CONFIG_GET(string/githuburl))
+			msg += span_bold("Commit:") + " <a href='[CONFIG_GET(string/githuburl)]/commit/[GLOB.revdata.revision]'>[GLOB.revdata.revision]</a>"
 		else
-			msg += "<b>Commit:</b> GLOB.revdata.revision"
+			msg += span_bold("Commit:") + " GLOB.revdata.revision"
 	else
-		msg += "<b>Server revision:</b> Unknown"
+		msg += span_bold("Server revision:") + " Unknown"
 
 	if(world.TgsAvailable())
 		var/datum/tgs_version/version = world.TgsVersion()
-		msg += "<b>TGS version:</b> [version.raw_parameter]"
+		msg += span_bold("TGS version:") + " [version.raw_parameter]"
 		var/datum/tgs_version/api_version = world.TgsApiVersion()
-		msg += "<b>DMAPI version:</b> [api_version.raw_parameter]"
+		msg += span_bold("DMAPI version:") + " [api_version.raw_parameter]"
 
 	if(GLOB.revdata.testmerge.len)
 		msg += GLOB.revdata.GetTestMergeInfo()

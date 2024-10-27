@@ -14,10 +14,10 @@
 /datum/supply_pack/recreation/foam_weapons
 	name = "Foam Weapon Crate"
 	contains = list(
-			/obj/item/weapon/material/sword/foam = 2,
-			/obj/item/weapon/material/twohanded/baseballbat/foam = 2,
-			/obj/item/weapon/material/twohanded/spear/foam = 2,
-			/obj/item/weapon/material/twohanded/fireaxe/foam = 2
+			/obj/item/material/sword/foam = 2,
+			/obj/item/material/twohanded/baseballbat/foam = 2,
+			/obj/item/material/twohanded/spear/foam = 2,
+			/obj/item/material/twohanded/fireaxe/foam = 2
 			)
 	cost = 50
 	containertype = /obj/structure/closet/crate/allico
@@ -27,8 +27,8 @@
 	name = "Donk-Soft Weapon Crate"
 	contains = list(
 			/obj/item/ammo_magazine/ammo_box/foam = 2,
-			/obj/item/weapon/gun/projectile/shotgun/pump/toy = 2,
-			/obj/item/weapon/gun/projectile/pistol/toy = 2,
+			/obj/item/gun/projectile/shotgun/pump/toy = 2,
+			/obj/item/gun/projectile/pistol/toy = 2,
 			/obj/item/ammo_magazine/mfoam_dart/pistol = 2
 			)
 	cost = 50
@@ -54,9 +54,9 @@
 /datum/supply_pack/recreation/lasertag
 	name = "Lasertag equipment"
 	contains = list(
-			/obj/item/weapon/gun/energy/lasertag/red,
+			/obj/item/gun/energy/lasertag/red,
 			/obj/item/clothing/suit/redtag,
-			/obj/item/weapon/gun/energy/lasertag/blue,
+			/obj/item/gun/energy/lasertag/blue,
 			/obj/item/clothing/suit/bluetag
 			)
 	containertype = /obj/structure/closet/crate/ward
@@ -66,14 +66,14 @@
 /datum/supply_pack/recreation/artscrafts
 	name = "Arts and Crafts supplies"
 	contains = list(
-			/obj/item/weapon/storage/fancy/crayons,
-			/obj/item/weapon/storage/fancy/markers,
-			/obj/item/device/camera,
-			/obj/item/device/camera_film = 2,
-			/obj/item/weapon/storage/photo_album,
-			/obj/item/weapon/packageWrap,
+			/obj/item/storage/fancy/crayons,
+			/obj/item/storage/fancy/markers,
+			/obj/item/camera,
+			/obj/item/camera_film = 2,
+			/obj/item/storage/photo_album,
+			/obj/item/packageWrap,
 			/obj/item/poster/custom,
-			/obj/item/weapon/wrapping_paper = 3,
+			/obj/item/wrapping_paper = 3,
 			/obj/structure/easel,
 			/obj/item/paint_brush,
 			/obj/item/paint_palette,
@@ -93,19 +93,19 @@
 	containername = "station painting supplies crate"
 	containertype = /obj/structure/closet/crate/grayson
 	contains = list(
-			/obj/item/device/pipe_painter = 2,
-			/obj/item/device/floor_painter = 2,
-			/obj/item/weapon/reagent_containers/glass/paint/red,
-			/obj/item/weapon/reagent_containers/glass/paint/green,
-			/obj/item/weapon/reagent_containers/glass/paint/blue,
-			/obj/item/weapon/reagent_containers/glass/paint/yellow,
-			/obj/item/weapon/reagent_containers/glass/paint/violet,
-			/obj/item/weapon/reagent_containers/glass/paint/cyan,
-			/obj/item/weapon/reagent_containers/glass/paint/orange,
-			/obj/item/weapon/reagent_containers/glass/paint/purple,
-			/obj/item/weapon/reagent_containers/glass/paint/grey,
-			/obj/item/weapon/reagent_containers/glass/paint/black,
-			/obj/item/weapon/reagent_containers/glass/paint/white = 3
+			/obj/item/pipe_painter = 2,
+			/obj/item/floor_painter = 2,
+			/obj/item/reagent_containers/glass/paint/red,
+			/obj/item/reagent_containers/glass/paint/green,
+			/obj/item/reagent_containers/glass/paint/blue,
+			/obj/item/reagent_containers/glass/paint/yellow,
+			/obj/item/reagent_containers/glass/paint/violet,
+			/obj/item/reagent_containers/glass/paint/cyan,
+			/obj/item/reagent_containers/glass/paint/orange,
+			/obj/item/reagent_containers/glass/paint/purple,
+			/obj/item/reagent_containers/glass/paint/grey,
+			/obj/item/reagent_containers/glass/paint/black,
+			/obj/item/reagent_containers/glass/paint/white = 3
 			)
 
 /datum/supply_pack/recreation/cheapbait
@@ -114,7 +114,7 @@
 	containername = "cheap bait crate"
 	containertype = /obj/structure/closet/crate/freezer
 	contains = list(
-			/obj/item/weapon/storage/box/wormcan/sickly = 5
+			/obj/item/storage/box/wormcan/sickly = 5
 			)
 
 /datum/supply_pack/randomised/recreation/cheapbait
@@ -124,8 +124,8 @@
 	containertype = /obj/structure/closet/crate/carp
 	num_contained = 8
 	contains = list(
-			/obj/item/weapon/storage/box/wormcan,
-			/obj/item/weapon/storage/box/wormcan/deluxe
+			/obj/item/storage/box/wormcan,
+			/obj/item/storage/box/wormcan/deluxe
 			)
 
 /datum/supply_pack/recreation/ltagturrets
@@ -144,7 +144,7 @@
 	containername = "monster bait crate"
 	containertype = /obj/structure/closet/crate/allico
 	contains = list(
-			/obj/item/weapon/toy/monster_bait
+			/obj/item/toy/monster_bait
 			)
 
 /*
@@ -162,14 +162,14 @@
 	contains = list(
 			/obj/item/clothing/mask/muzzle,
 			/obj/item/clothing/glasses/sunglasses/blindfold,
-			/obj/item/weapon/handcuffs/fuzzy,
-			/obj/item/weapon/tape_roll,
+			/obj/item/handcuffs/fuzzy,
+			/obj/item/tape_roll,
 			/obj/item/stack/cable_coil/random,
 			/obj/item/clothing/accessory/collar/shock,
 			/obj/item/clothing/suit/straight_jacket,
-			/obj/item/weapon/handcuffs/legcuffs/fuzzy,
-			/obj/item/weapon/melee/fluff/holochain/mass,
-			/obj/item/weapon/material/twohanded/riding_crop,
+			/obj/item/handcuffs/legcuffs/fuzzy,
+			/obj/item/melee/fluff/holochain/mass,
+			/obj/item/material/twohanded/riding_crop,
 			/obj/item/clothing/under/fluff/latexmaid
 			)
 	containertype = /obj/structure/closet/crate
@@ -182,8 +182,8 @@
 			/obj/item/clothing/head/fluff/wolfgirl = 1,
 			/obj/item/clothing/shoes/fluff/wolfgirl = 1,
 			/obj/item/clothing/under/fluff/wolfgirl = 1,
-			/obj/item/weapon/melee/fluffstuff/wolfgirlsword = 1,
-			/obj/item/weapon/shield/fluff/wolfgirlshield = 1
+			/obj/item/melee/fluffstuff/wolfgirlsword = 1,
+			/obj/item/shield/fluff/wolfgirlshield = 1
 			)
 	cost = 50
 	containertype = /obj/structure/closet/crate
@@ -240,7 +240,7 @@
 /datum/supply_pack/recreation/smoleworld
 	name = "Smole Bulding Bricks"
 	contains = list(
-			/obj/item/weapon/storage/smolebrickcase, /obj/item/weapon/storage/smolebrickcase,
+			/obj/item/storage/smolebrickcase, /obj/item/storage/smolebrickcase,
 			)
 	cost = 50
 	containertype = /obj/structure/closet/crate
@@ -250,7 +250,7 @@
 	name = "Snack planets pack"
 	num_contained = 4
 	contains = list(
-			/obj/item/weapon/storage/bagoplanets, /obj/item/weapon/storage/bagoplanets
+			/obj/item/storage/bagoplanets, /obj/item/storage/bagoplanets
 			)
 	cost = 25
 	containertype = /obj/structure/closet/crate
@@ -259,7 +259,7 @@
 /datum/supply_pack/recreation/pinkpillows
 	name = "Pillow Crate - Pink"
 	contains = list(
-		/obj/item/weapon/bedsheet/pillow = 6
+		/obj/item/bedsheet/pillow = 6
 	)
 	cost = 10
 	containertype = /obj/structure/closet/crate
@@ -267,7 +267,7 @@
 /datum/supply_pack/recreation/tealpillows
 	name = "Pillow Crate - Teal"
 	contains = list(
-		/obj/item/weapon/bedsheet/pillow/teal = 6
+		/obj/item/bedsheet/pillow/teal = 6
 	)
 	cost = 10
 	containertype = /obj/structure/closet/crate
@@ -275,7 +275,7 @@
 /datum/supply_pack/recreation/whitepillows
 	name = "Pillow Crate - White"
 	contains = list(
-		/obj/item/weapon/bedsheet/pillow/white = 6
+		/obj/item/bedsheet/pillow/white = 6
 	)
 	cost = 10
 	containertype = /obj/structure/closet/crate
@@ -283,7 +283,7 @@
 /datum/supply_pack/recreation/blackpillows
 	name = "Pillow Crate - Black"
 	contains = list(
-		/obj/item/weapon/bedsheet/pillow/black = 6
+		/obj/item/bedsheet/pillow/black = 6
 	)
 	cost = 10
 	containertype = /obj/structure/closet/crate
@@ -291,7 +291,7 @@
 /datum/supply_pack/recreation/redpillows
 	name = "Pillow Crate - Red"
 	contains = list(
-		/obj/item/weapon/bedsheet/pillow/red = 6
+		/obj/item/bedsheet/pillow/red = 6
 	)
 	cost = 10
 	containertype = /obj/structure/closet/crate
@@ -299,7 +299,7 @@
 /datum/supply_pack/recreation/greenpillows
 	name = "Pillow Crate - Green"
 	contains = list(
-		/obj/item/weapon/bedsheet/pillow/green = 6
+		/obj/item/bedsheet/pillow/green = 6
 	)
 	cost = 10
 	containertype = /obj/structure/closet/crate
@@ -307,7 +307,7 @@
 /datum/supply_pack/recreation/orangepillows
 	name = "Pillow Crate - Orange"
 	contains = list(
-		/obj/item/weapon/bedsheet/pillow/orange = 6
+		/obj/item/bedsheet/pillow/orange = 6
 	)
 	cost = 10
 	containertype = /obj/structure/closet/crate
@@ -315,7 +315,7 @@
 /datum/supply_pack/recreation/yellowpillows
 	name = "Pillow Crate - Yellow"
 	contains = list(
-		/obj/item/weapon/bedsheet/pillow/yellow = 6
+		/obj/item/bedsheet/pillow/yellow = 6
 	)
 	cost = 10
 	containertype = /obj/structure/closet/crate

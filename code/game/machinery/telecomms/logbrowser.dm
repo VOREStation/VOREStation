@@ -10,7 +10,7 @@
 
 	var/list/servers = list()	// the servers located by the computer
 	var/obj/machinery/telecomms/server/SelectedServer
-	circuit = /obj/item/weapon/circuitboard/comm_server
+	circuit = /obj/item/circuitboard/comm_server
 
 	var/network = "NULL"		// the network to probe
 	var/list/temp = null				// temporary feedback messages
@@ -115,7 +115,7 @@
 
 		if("delete")
 			if(!allowed(usr) && !emagged)
-				to_chat(usr, "<span class='warning'>ACCESS DENIED.</span>")
+				to_chat(usr, span_warning("ACCESS DENIED."))
 				return
 
 			if(SelectedServer)
@@ -149,7 +149,7 @@
 	if(!emagged)
 		playsound(src, 'sound/effects/sparks4.ogg', 75, 1)
 		emagged = 1
-		to_chat(user, "<span class='notice'>You you disable the security protocols</span>")
+		to_chat(user, span_notice("You you disable the security protocols"))
 		src.updateUsrDialog()
 		return 1
 

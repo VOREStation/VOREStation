@@ -171,5 +171,5 @@
 					R.word3=cultwords["technology"]
 					R.check_icon()
 	else
-		to_chat(user, "<span class='warning'> You do not have enough space to write a proper rune.</span>")
+		to_chat(user, span_warning(" You do not have enough space to write a proper rune."))
 	return

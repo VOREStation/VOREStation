@@ -1,4 +1,4 @@
-/obj/item/weapon/material/harpoon
+/obj/item/material/harpoon
 	name = "harpoon"
 	sharp = TRUE
 	edge = FALSE
@@ -8,7 +8,7 @@
 	force_divisor = 0.3 // 18 with hardness 60 (steel)
 	attack_verb = list("jabbed","stabbed","ripped")
 
-/obj/item/weapon/material/knife/machete/hatchet
+/obj/item/material/knife/machete/hatchet
 	name = "hatchet"
 	desc = "A very sharp axe blade upon a short fibremetal handle. It has a long history of chopping things, but now it is used for chopping wood."
 	icon = 'icons/obj/weapons.dmi'
@@ -24,7 +24,7 @@
 	drop_sound = 'sound/items/drop/axe.ogg'
 	pickup_sound = 'sound/items/pickup/axe.ogg'
 /* VOREStation Removal - We have one already
-/obj/item/weapon/material/knife/machete/hatchet/stone
+/obj/item/material/knife/machete/hatchet/stone
 	name = "sharp rock"
 	desc = "The secret is to bang the rocks together, guys."
 	force_divisor = 0.2
@@ -32,12 +32,12 @@
 	item_state = "rock"
 	attack_verb = list("chopped", "torn", "cut")
 
-/obj/item/weapon/material/knife/machete/hatchet/stone/set_material(var/new_material)
+/obj/item/material/knife/machete/hatchet/stone/set_material(var/new_material)
 	var/old_name = name
 	. = ..()
 	name = old_name
 */
-/obj/item/weapon/material/knife/machete/hatchet/unathiknife
+/obj/item/material/knife/machete/hatchet/unathiknife
 	name = "duelling knife"
 	desc = "A length of leather-bound wood studded with razor-sharp teeth. How crude."
 	icon = 'icons/obj/weapons.dmi'
@@ -46,22 +46,22 @@
 	can_cleave = FALSE
 	var/hits = 0
 
-/obj/item/weapon/material/knife/machete/hatchet/unathiknife/attack(mob/M as mob, mob/user as mob)
+/obj/item/material/knife/machete/hatchet/unathiknife/attack(mob/M as mob, mob/user as mob)
 	if(hits > 0)
 		return
 	var/obj/item/I = user.get_inactive_hand()
-	if(istype(I, /obj/item/weapon/material/knife/machete/hatchet/unathiknife))
+	if(istype(I, /obj/item/material/knife/machete/hatchet/unathiknife))
 		hits ++
-		var/obj/item/weapon/W = I
+		var/obj/item/W = I
 		W.attack(M, user)
 		W.afterattack(M, user)
 	..()
 
-/obj/item/weapon/material/knife/machete/hatchet/unathiknife/afterattack(mob/M as mob, mob/user as mob)
+/obj/item/material/knife/machete/hatchet/unathiknife/afterattack(mob/M as mob, mob/user as mob)
 	hits = initial(hits)
 	..()
 
-/obj/item/weapon/material/minihoe // -- Numbers
+/obj/item/material/minihoe // -- Numbers
 	name = "mini hoe"
 	desc = "It's used for removing weeds or scratching your back."
 	icon = 'icons/obj/weapons.dmi'
@@ -72,7 +72,7 @@
 	w_class = ITEMSIZE_SMALL
 	attack_verb = list("slashed", "sliced", "cut", "clawed")
 
-/obj/item/weapon/material/snow/snowball
+/obj/item/material/snow/snowball
 	name = "loose packed snowball"
 	desc = "A fun snowball. Throw it at your friends!"
 	icon = 'icons/obj/weapons.dmi'
@@ -85,27 +85,27 @@
 	w_class = ITEMSIZE_SMALL
 	attack_verb = list("mushed", "splatted", "splooshed", "splushed") // Words that totally exist.
 
-/obj/item/weapon/material/snow/snowball/attack_self(mob/user as mob)
+/obj/item/material/snow/snowball/attack_self(mob/user as mob)
 	if(user.a_intent == I_HURT)
-		to_chat(user, SPAN_NOTICE("You smash the snowball in your hand."))
+		to_chat(user, span_notice("You smash the snowball in your hand."))
 		var/atom/S = new /obj/item/stack/material/snow(user.loc)
 		qdel(src)
 		user.put_in_hands(S)
 	else
-		to_chat(user, SPAN_NOTICE("You start compacting the snowball."))
+		to_chat(user, span_notice("You start compacting the snowball."))
 		if(do_after(user, 2 SECONDS))
-			var/atom/S = new /obj/item/weapon/material/snow/snowball/reinforced(user.loc)
+			var/atom/S = new /obj/item/material/snow/snowball/reinforced(user.loc)
 			qdel(src)
 			user.put_in_hands(S)
 
-/obj/item/weapon/material/snow/snowball/reinforced
+/obj/item/material/snow/snowball/reinforced
 	name = "snowball"
 	desc = "A well-formed and fun snowball. It looks kind of dangerous."
 	//icon_state = "reinf-snowball"
 	force_divisor = 0.20
 	thrown_force_divisor = 0.25
 
-/obj/item/weapon/material/whip
+/obj/item/material/whip
 	name = "whip"
 	desc = "A tool used to discipline animals, or look cool. Mostly the latter."
 	description_info = "Help - Standard attack, no modifiers.<br>\
@@ -129,7 +129,7 @@
 			slot_r_hand_str = 'icons/mob/items/righthand_melee.dmi',
 			)
 
-/obj/item/weapon/material/whip/afterattack(atom/A as mob|obj|turf|area, mob/user as mob, proximity)
+/obj/item/material/whip/afterattack(atom/A as mob|obj|turf|area, mob/user as mob, proximity)
 	..()
 
 	if(!proximity)
@@ -138,54 +138,54 @@
 	if(istype(A, /atom/movable))
 		var/atom/movable/AM = A
 		if(AM.anchored)
-			to_chat(user, "<span class='notice'>\The [AM] won't budge.</span>")
+			to_chat(user, span_notice("\The [AM] won't budge."))
 			return
 
 		else
 			if(!istype(AM, /obj/item))
-				user.visible_message("<span class='warning'>\The [AM] is pulled along by \the [src]!</span>")
+				user.visible_message(span_warning("\The [AM] is pulled along by \the [src]!"))
 				AM.Move(get_step(AM, get_dir(AM, src)))
 				return
 
 			else
-				user.visible_message("<span class='warning'>\The [AM] is snatched by \the [src]!</span>")
+				user.visible_message(span_warning("\The [AM] is snatched by \the [src]!"))
 				AM.throw_at(user, reach, 0.1, user)
 
-/obj/item/weapon/material/whip/apply_hit_effect(mob/living/target, mob/living/user, var/hit_zone)
+/obj/item/material/whip/apply_hit_effect(mob/living/target, mob/living/user, var/hit_zone)
 	if(user.a_intent)
 		switch(user.a_intent)
 			if(I_HURT)
 				if(prob(10) && istype(target, /mob/living/carbon/human) && (user.zone_sel in list(BP_L_LEG, BP_R_LEG, BP_L_FOOT, BP_R_FOOT, BP_L_ARM, BP_R_ARM, BP_L_HAND, BP_R_HAND)))
-					to_chat(target, "<span class='warning'>\The [src] rips at your hands!</span>")
+					to_chat(target, span_warning("\The [src] rips at your hands!"))
 					ranged_disarm(target)
 			if(I_DISARM)
 				if(prob(min(90, force * 3)) && istype(target, /mob/living/carbon/human) && (user.zone_sel in list(BP_L_LEG, BP_R_LEG, BP_L_FOOT, BP_R_FOOT, BP_L_ARM, BP_R_ARM, BP_L_HAND, BP_R_HAND)))
 					ranged_disarm(target)
 				else
-					target.visible_message("<span class='danger'>\The [src] sends \the [target] stumbling away.</span>")
+					target.visible_message(span_danger("\The [src] sends \the [target] stumbling away."))
 					target.Move(get_step(target,get_dir(user,target)))
 			if(I_GRAB)
 				var/turf/STurf = get_turf(target)
 				spawn(2)
 					playsound(STurf, 'sound/effects/snap.ogg', 60, 1)
-				target.visible_message("<span class='critical'>\The [src] yanks \the [target] towards \the [user]!</span>")
+				target.visible_message(span_critical("\The [src] yanks \the [target] towards \the [user]!"))
 				target.throw_at(get_turf(get_step(user,get_dir(user,target))), 2, 1, src)
 
 	..()
 
-/obj/item/weapon/material/whip/proc/ranged_disarm(var/mob/living/carbon/human/H, var/mob/living/user)
+/obj/item/material/whip/proc/ranged_disarm(var/mob/living/carbon/human/H, var/mob/living/user)
 	if(istype(H))
 		var/list/holding = list(H.get_active_hand() = 40, H.get_inactive_hand() = 20)
 
 		if(user.zone_sel in list(BP_L_ARM, BP_R_ARM, BP_L_HAND, BP_R_HAND))
-			for(var/obj/item/weapon/gun/W in holding)
+			for(var/obj/item/gun/W in holding)
 				if(W && prob(holding[W]))
 					var/list/turfs = list()
 					for(var/turf/T in view())
 						turfs += T
 					if(turfs.len)
 						var/turf/target = pick(turfs)
-						visible_message("<span class='danger'>[H]'s [W] goes off due to \the [src]!</span>")
+						visible_message(span_danger("[H]'s [W] goes off due to \the [src]!"))
 						return W.afterattack(target,H)
 
 		if(!(H.species.flags & NO_SLIP) && prob(10) && (user.zone_sel in list(BP_L_LEG, BP_R_LEG, BP_L_FOOT, BP_R_FOOT)))
@@ -193,9 +193,9 @@
 			H.apply_effect(3, WEAKEN, armor_check)
 			playsound(src, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
 			if(armor_check < 60)
-				visible_message("<span class='danger'>\The [src] has tripped [H]!</span>")
+				visible_message(span_danger("\The [src] has tripped [H]!"))
 			else
-				visible_message("<span class='warning'>\The [src] attempted to trip [H]!</span>")
+				visible_message(span_warning("\The [src] attempted to trip [H]!"))
 			return
 
 		else
@@ -207,15 +207,15 @@
 				for(var/obj/item/I in holding)
 					if(I && prob(holding[I]))
 						H.drop_from_inventory(I)
-						visible_message("<span class='danger'>\The [src] has disarmed [H]!</span>")
+						visible_message(span_danger("\The [src] has disarmed [H]!"))
 						playsound(src, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
 						return
 
-/obj/item/weapon/material/whip/attack_self(mob/user)
-	user.visible_message("<span class='warning'>\The [user] cracks \the [src]!</span>")
+/obj/item/material/whip/attack_self(mob/user)
+	user.visible_message(span_warning("\The [user] cracks \the [src]!"))
 	playsound(src, 'sound/effects/snap.ogg', 50, 1)
 
-/obj/item/weapon/material/knife/machete/hatchet/stone
+/obj/item/material/knife/machete/hatchet/stone
 	name = "hatchet"
 	desc = "A very sharp axe blade upon a short fibremetal handle. It has a long history of chopping things, but now it is used for chopping wood."
 	icon = 'icons/obj/weapons_vr.dmi'
@@ -224,5 +224,5 @@
 	origin_tech = list()
 	applies_material_colour = FALSE
 
-/obj/item/weapon/material/knife/machete/hatchet/stone/bone
+/obj/item/material/knife/machete/hatchet/stone/bone
 	icon_state = "stone_bone_axe"

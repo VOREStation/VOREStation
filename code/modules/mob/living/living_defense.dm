@@ -29,15 +29,15 @@
 		armor = max(armor - armour_pen, 0)			//Armor pen makes armor less effective.
 		if(armor >= 100)
 			if(absorb_text)
-				to_chat(src, "<span class='danger'>[absorb_text]</span>")
+				to_chat(src, span_danger("[absorb_text]"))
 			else
-				to_chat(src, "<span class='danger'>Your armor absorbs the blow!</span>")
+				to_chat(src, span_danger("Your armor absorbs the blow!"))
 
 		else if(armor > 0)
 			if(soften_text)
-				to_chat(src, "<span class='danger'>[soften_text]</span>")
+				to_chat(src, span_danger("[soften_text]"))
 			else
-				to_chat(src, "<span class='danger'>Your armor softens the blow!</span>")
+				to_chat(src, span_danger("Your armor softens the blow!"))
 		if(Debug2)
 			to_world_log("## DEBUG: Armor when [src] was attacked was [armor].")
 	return armor
@@ -66,13 +66,13 @@
 		if(absorb_text)
 			show_message("[absorb_text]")
 		else
-			show_message("<span class='warning'>Your armor absorbs the blow!</span>")
+			show_message(span_warning("Your armor absorbs the blow!"))
 		return 2
 	if(absorb == 1)
 		if(absorb_text)
 			show_message("[soften_text]",4)
 		else
-			show_message("<span class='warning'>Your armor softens the blow!</span>")
+			show_message(span_warning("Your armor softens the blow!"))
 		return 1
 	return 0
 */
@@ -200,7 +200,7 @@
 		damage_type = BRUTE
 		damage *= 0.66 // Take 2/3s as much damage.
 
-	visible_message("<span class='danger'>\The [B] [attack_verb] \the [src]!</span>", "<span class='danger'>[attack_message]!</span>")
+	visible_message(span_danger("\The [B] [attack_verb] \the [src]!"), span_danger("[attack_message]!"))
 	playsound(src, 'sound/effects/attackblob.ogg', 50, 1)
 
 	//Armor
@@ -217,7 +217,7 @@
 
 //Called when the mob is hit with an item in combat. Returns the blocked result
 /mob/living/proc/hit_with_weapon(obj/item/I, mob/living/user, var/effective_force, var/hit_zone)
-	visible_message("<span class='danger'>[src] has been [LAZYLEN(I.attack_verb) ? pick(I.attack_verb) : "attacked"] with [I.name] by [user]!</span>")
+	visible_message(span_danger("[src] has been [LAZYLEN(I.attack_verb) ? pick(I.attack_verb) : "attacked"] with [I.name] by [user]!"))
 
 	if(ai_holder)
 		ai_holder.react_to_attack(user)
@@ -260,7 +260,7 @@
 		if(stat != DEAD && istype(O,/obj/item) && trash_catching && vore_selected) //ported from chompstation
 			var/obj/item/I = O
 			if(adminbus_trash || is_type_in_list(I,edible_trash) && I.trash_eatable && !is_type_in_list(I,item_vore_blacklist))
-				visible_message("<span class='warning'>[I] is thrown directly into [src]'s [lowertext(vore_selected.name)]!</span>")
+				visible_message(span_warning("[I] is thrown directly into [src]'s [lowertext(vore_selected.name)]!"))
 				I.throwing = 0
 				I.forceMove(vore_selected)
 				return
@@ -273,10 +273,10 @@
 			miss_chance = max(15*(distance-2), 0)
 
 		if (prob(miss_chance))
-			visible_message("<span class='notice'>\The [O] misses [src] narrowly!</span>")
+			visible_message(span_notice("\The [O] misses [src] narrowly!"))
 			return
 
-		src.visible_message("<span class='filter_warning'>[span_red("[src] has been hit by [O].")]</span>")
+		src.visible_message(span_filter_warning("[span_red("[src] has been hit by [O].")]"))
 		var/armor = run_armor_check(null, "melee")
 		var/soaked = get_armor_soak(null, "melee")
 
@@ -303,7 +303,7 @@
 		if(O.throw_source && momentum >= THROWNOBJ_KNOCKBACK_SPEED)
 			var/dir = get_dir(O.throw_source, src)
 
-			visible_message("<span class='filter_warning'>[span_red("[src] staggers under the impact!")]</span>","<span class='filter_warning'>[span_red("You stagger under the impact!")]</span>")
+			visible_message(span_filter_warning("[span_red("[src] staggers under the impact!")]"),span_filter_warning("[span_red("You stagger under the impact!")]"))
 			src.throw_at(get_edge_target_turf(src,dir),1,momentum)
 
 			if(!O || !src) return
@@ -319,7 +319,7 @@
 
 				if(T)
 					src.loc = T
-					visible_message("<span class='warning'>[src] is pinned to the wall by [O]!</span>","<span class='warning'>You are pinned to the wall by [O]!</span>")
+					visible_message(span_warning("[src] is pinned to the wall by [O]!"),span_warning("You are pinned to the wall by [O]!"))
 					src.anchored = TRUE
 					src.pinned += O
 
@@ -339,7 +339,7 @@
 			if(!vore_selected)
 				return
 			vore_selected.nom_mob(thrown_mob) //Eat them!!!
-			visible_message("<span class='vwarning'>[thrown_mob] is thrown right into [src]'s [lowertext(vore_selected.name)]!</span>")
+			visible_message(span_vwarning("[thrown_mob] is thrown right into [src]'s [lowertext(vore_selected.name)]!"))
 			if(thrown_mob.loc != vore_selected)
 				thrown_mob.forceMove(vore_selected) //Double check. Should never happen but...Weirder things have happened!
 			on_throw_vore_special(TRUE, thrown_mob)
@@ -351,7 +351,7 @@
 		else if((can_be_drop_prey && throw_vore && devourable) && (thrown_mob.can_be_drop_pred && thrown_mob.throw_vore) && thrown_mob.vore_selected) //Pred thrown into prey.
 			if(!thrown_mob.vore_selected)
 				return
-			visible_message("<span class='vwarning'>[src] suddenly slips inside of [thrown_mob]'s [lowertext(thrown_mob.vore_selected.name)] as [thrown_mob] flies into them!</span>")
+			visible_message(span_vwarning("[src] suddenly slips inside of [thrown_mob]'s [lowertext(thrown_mob.vore_selected.name)] as [thrown_mob] flies into them!"))
 			thrown_mob.vore_selected.nom_mob(src) //Eat them!!!
 			if(src.loc != thrown_mob.vore_selected)
 				src.forceMove(thrown_mob.vore_selected) //Double check. Should never happen but...Weirder things have happened!
@@ -365,7 +365,7 @@
 /mob/living/proc/embed(var/obj/O, var/def_zone=null)
 	O.loc = src
 	src.embedded += O
-	src.verbs += /mob/proc/yank_out_object
+	add_verb(src, /mob/proc/yank_out_object)
 	throw_alert("embeddedobject", /obj/screen/alert/embeddedobject)
 
 //This is called when the mob is thrown into a dense turf
@@ -398,7 +398,7 @@
 	add_attack_logs(user,src,"Generic attack (probably animal)", admin_notify = FALSE) //Usually due to simple_mob attacks
 	if(ai_holder)
 		ai_holder.react_to_attack(user)
-	src.visible_message("<span class='danger'>[user] has [attack_message] [src]!</span>")
+	src.visible_message(span_danger("[user] has [attack_message] [src]!"))
 	user.do_attack_animation(src)
 	spawn(1) updatehealth()
 	return 1
@@ -511,7 +511,7 @@
 	stuttering += 20
 	make_jittery(150)
 	emp_act(1)
-	to_chat(src, span("critical", "You've been struck by lightning!"))
+	to_chat(src, span_critical("You've been struck by lightning!"))
 
 // Called when touching a lava tile.
 // Does roughly 70 damage (30 instantly, up to ~40 over time) to unprotected mobs, and 10 to fully protected mobs.
@@ -524,75 +524,6 @@
 /mob/living/proc/reagent_permeability()
 	return 1
 
-/mob/living/proc/handle_actions()
-	//Pretty bad, i'd use picked/dropped instead but the parent calls in these are nonexistent
-	for(var/datum/action/A in actions)
-		if(A.CheckRemoval(src))
-			A.Remove(src)
-	for(var/obj/item/I in src)
-		if(I.action_button_name)
-			if(!I.action)
-				if(I.action_button_is_hands_free)
-					I.action = new/datum/action/item_action/hands_free
-				else
-					I.action = new/datum/action/item_action
-				I.action.name = I.action_button_name
-				I.action.target = I
-			I.action.Grant(src)
-	return
-
-/mob/living/update_action_buttons()
-	if(!hud_used) return
-	if(!client) return
-
-	if(hud_used.hud_shown != 1)	//Hud toggled to minimal
-		return
-
-	client.screen -= hud_used.hide_actions_toggle
-	for(var/datum/action/A in actions)
-		if(A.button)
-			client.screen -= A.button
-
-	if(hud_used.action_buttons_hidden)
-		if(!hud_used.hide_actions_toggle)
-			hud_used.hide_actions_toggle = new(hud_used)
-			hud_used.hide_actions_toggle.UpdateIcon()
-
-		if(!hud_used.hide_actions_toggle.moved)
-			hud_used.hide_actions_toggle.screen_loc = hud_used.ButtonNumberToScreenCoords(1)
-			//hud_used.SetButtonCoords(hud_used.hide_actions_toggle,1)
-
-		client.screen += hud_used.hide_actions_toggle
-		return
-
-	var/button_number = 0
-	for(var/datum/action/A in actions)
-		button_number++
-		if(A.button == null)
-			var/obj/screen/movable/action_button/N = new(hud_used)
-			N.owner = A
-			A.button = N
-
-		var/obj/screen/movable/action_button/B = A.button
-
-		B.UpdateIcon()
-
-		B.name = A.UpdateName()
-
-		client.screen += B
-
-		if(!B.moved)
-			B.screen_loc = hud_used.ButtonNumberToScreenCoords(button_number)
-			//hud_used.SetButtonCoords(B,button_number)
-
-	if(button_number > 0)
-		if(!hud_used.hide_actions_toggle)
-			hud_used.hide_actions_toggle = new(hud_used)
-			hud_used.hide_actions_toggle.InitialiseIcon(src)
-		if(!hud_used.hide_actions_toggle.moved)
-			hud_used.hide_actions_toggle.screen_loc = hud_used.ButtonNumberToScreenCoords(button_number+1)
-			//hud_used.SetButtonCoords(hud_used.hide_actions_toggle,button_number+1)
-		client.screen += hud_used.hide_actions_toggle
 
 // Returns a number to determine if something is harder or easier to hit than normal.
 /mob/living/proc/get_evasion()

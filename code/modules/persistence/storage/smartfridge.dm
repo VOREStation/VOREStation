@@ -104,7 +104,7 @@
 				. += A
 
 /datum/persistent/storage/smartfridge/produce/create_item(var/seedtype)
-	return new /obj/item/weapon/reagent_containers/food/snacks/grown(null, seedtype) // Smartfridge will be stock()ed with it, loc is unimportant
+	return new /obj/item/reagent_containers/food/snacks/grown(null, seedtype) // Smartfridge will be stock()ed with it, loc is unimportant
 
 /datum/persistent/storage/smartfridge/produce/get_storage_list(var/obj/machinery/smartfridge/produce/entry)
 	if(!istype(entry))
@@ -115,7 +115,7 @@
 		if(prob(go_missing_chance))
 			continue
 		if(LAZYLEN(I.instances))
-			var/obj/item/weapon/reagent_containers/food/snacks/grown/G = I.instances[1]
+			var/obj/item/reagent_containers/food/snacks/grown/G = I.instances[1]
 			if(!istype(G))
 				continue
 			.[G.plantname] = I.get_amount() // Store the seed type, because that's what's used to generate the fruit

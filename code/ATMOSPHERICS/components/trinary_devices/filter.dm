@@ -116,7 +116,7 @@
 		return
 
 	if(!src.allowed(user))
-		to_chat(user, "<span class='warning'>Access denied.</span>")
+		to_chat(user, span_warning("Access denied."))
 		return
 
 	tgui_interact(user)
@@ -157,7 +157,7 @@
 
 	// user << browse("<HEAD><TITLE>[src.name] control</TITLE></HEAD><TT>[dat]</TT>", "window=atmos_filter")
 	// onclose(user, "atmos_filter")
-	
+
 
 
 /obj/machinery/atmospherics/trinary/atmos_filter/tgui_interact(mob/user, datum/tgui/ui)

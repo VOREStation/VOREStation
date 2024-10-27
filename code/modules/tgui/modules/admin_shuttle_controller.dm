@@ -56,11 +56,11 @@
 					else if(LAZYLEN(V.restricted_waypoints))
 						target =  V.restricted_waypoints[1]
 					else
-						to_chat(C, "<span class='warning'>Unable to jump to [V].</span>")
+						to_chat(C, span_warning("Unable to jump to [V]."))
 						return
 					var/turf/T = get_turf(target)
 					if(!istype(T))
-						to_chat(C, "<span class='warning'>Unable to jump to [V].</span>")
+						to_chat(C, span_warning("Unable to jump to [V]."))
 						return
 					C.jumptoturf(T)
 			return TRUE
@@ -77,7 +77,7 @@
 				var/list/possible_d = shuttle.get_possible_destinations()
 				var/D
 				if(!LAZYLEN(possible_d))
-					to_chat(usr, "<span class='warning'>There are no possible destinations for [shuttle] ([shuttle.type])</span>")
+					to_chat(usr, span_warning("There are no possible destinations for [shuttle] ([shuttle.type])"))
 					return FALSE
 				D = tgui_input_list(usr, "Choose shuttle destination", "Shuttle Destination", possible_d)
 				if(D)
@@ -88,9 +88,9 @@
 				if(tgui_alert(usr, "Are you sure you want to launch [shuttle]?", "Launching Shuttle", list("Yes", "No")) == "Yes")
 					shuttle.launch(src)
 			else
-				to_chat(usr, "<span class='notice'>The shuttle control panel isn't quite sure how to move [S] ([S?.type]).</span>")
+				to_chat(usr, span_notice("The shuttle control panel isn't quite sure how to move [S] ([S?.type])."))
 				return FALSE
-			to_chat(usr, "<span class='notice'>Launching shuttle [S].</span>")
+			to_chat(usr, span_notice("Launching shuttle [S]."))
 			return TRUE
 		if("overmap_control")
 			var/obj/effect/overmap/visitable/ship/V = locate(params["ref"])

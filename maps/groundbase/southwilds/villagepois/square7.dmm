@@ -25,7 +25,7 @@
 /area/submap/groundbase/poi/wildvillage/square/square7)
 "k" = (
 /obj/structure/table/standard,
-/obj/item/weapon/book/manual/cook_guide,
+/obj/item/book/manual/cook_guide,
 /turf/simulated/floor/tiled/eris/cafe,
 /area/submap/groundbase/poi/wildvillage/square/square7)
 "m" = (
@@ -44,16 +44,16 @@
 	dir = 8
 	},
 /obj/structure/table/standard,
-/obj/item/weapon/storage/box/beakers{
+/obj/item/storage/box/beakers{
 	name = "box of measuring cups";
 	pixel_x = 2;
 	pixel_y = 3;
-	starts_with = list(/obj/item/weapon/reagent_containers/glass/beaker/measuring_cup = 7)
+	starts_with = list(/obj/item/reagent_containers/glass/beaker/measuring_cup = 7)
 	},
 /turf/simulated/floor/tiled/eris/cafe,
 /area/submap/groundbase/poi/wildvillage/square/square7)
 "r" = (
-/obj/item/weapon/stool/baystool/padded{
+/obj/item/stool/baystool/padded{
 	dir = 1
 	},
 /turf/simulated/floor/lino,
@@ -107,7 +107,7 @@
 /area/submap/groundbase/poi/wildvillage/square/square7)
 "D" = (
 /obj/structure/table/standard,
-/obj/item/weapon/material/kitchen/rollingpin,
+/obj/item/material/kitchen/rollingpin,
 /turf/simulated/floor/tiled/eris/cafe,
 /area/submap/groundbase/poi/wildvillage/square/square7)
 "E" = (
@@ -119,22 +119,22 @@
 /turf/simulated/floor/tiled/eris/cafe,
 /area/submap/groundbase/poi/wildvillage/square/square7)
 "G" = (
-/obj/item/weapon/reagent_containers/food/condiment/carton/flour,
-/obj/item/weapon/reagent_containers/food/condiment/carton/flour,
-/obj/item/weapon/reagent_containers/food/condiment/carton/flour,
-/obj/item/weapon/reagent_containers/food/condiment/carton/flour,
-/obj/item/weapon/reagent_containers/food/condiment/carton/flour,
-/obj/item/weapon/reagent_containers/food/condiment/carton/flour,
-/obj/item/weapon/reagent_containers/food/condiment/carton/flour,
-/obj/item/weapon/reagent_containers/food/condiment/carton/flour,
-/obj/item/weapon/reagent_containers/food/condiment/spacespice,
-/obj/item/weapon/reagent_containers/food/condiment/spacespice,
-/obj/item/weapon/reagent_containers/food/condiment/carton/sugar,
-/obj/item/weapon/reagent_containers/food/condiment/carton/sugar,
-/obj/item/weapon/reagent_containers/food/condiment/small/saltshaker,
-/obj/item/weapon/reagent_containers/food/condiment/small/saltshaker,
-/obj/item/weapon/reagent_containers/food/condiment/small/peppermill,
-/obj/item/weapon/reagent_containers/food/condiment/small/peppermill,
+/obj/item/reagent_containers/food/condiment/carton/flour,
+/obj/item/reagent_containers/food/condiment/carton/flour,
+/obj/item/reagent_containers/food/condiment/carton/flour,
+/obj/item/reagent_containers/food/condiment/carton/flour,
+/obj/item/reagent_containers/food/condiment/carton/flour,
+/obj/item/reagent_containers/food/condiment/carton/flour,
+/obj/item/reagent_containers/food/condiment/carton/flour,
+/obj/item/reagent_containers/food/condiment/carton/flour,
+/obj/item/reagent_containers/food/condiment/spacespice,
+/obj/item/reagent_containers/food/condiment/spacespice,
+/obj/item/reagent_containers/food/condiment/carton/sugar,
+/obj/item/reagent_containers/food/condiment/carton/sugar,
+/obj/item/reagent_containers/food/condiment/small/saltshaker,
+/obj/item/reagent_containers/food/condiment/small/saltshaker,
+/obj/item/reagent_containers/food/condiment/small/peppermill,
+/obj/item/reagent_containers/food/condiment/small/peppermill,
 /obj/structure/closet,
 /obj/random/donkpocketbox,
 /obj/machinery/light{
@@ -147,7 +147,7 @@
 	dir = 4
 	},
 /obj/structure/table/standard,
-/obj/item/weapon/material/knife/butch,
+/obj/item/material/knife/butch,
 /turf/simulated/floor/tiled/eris/cafe,
 /area/submap/groundbase/poi/wildvillage/square/square7)
 "J" = (

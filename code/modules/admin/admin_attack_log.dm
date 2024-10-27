@@ -33,7 +33,7 @@
 	for(var/mob/victim in victims)
 		admin_attack_log(attacker, victim, attacker_message, victim_message, admin_message)
 
-/proc/admin_inject_log(mob/attacker, mob/victim, obj/item/weapon, reagents, amount_transferred, violent=0)
+/proc/admin_inject_log(mob/attacker, mob/victim, obj/item, reagents, amount_transferred, violent=0)
 	if(violent)
 		violent = "violently "
 	else

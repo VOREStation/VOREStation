@@ -23,9 +23,9 @@
 			return 0
 		if(C.does_not_breathe == 0)
 			C.does_not_breathe = 1
-			to_chat(src, "<span class='notice'>We stop breathing, as we no longer need to.</span>")
+			to_chat(src, span_notice("We stop breathing, as we no longer need to."))
 			return 1
 		else
 			C.does_not_breathe = 0
-			to_chat(src, "<span class='notice'>We resume breathing, as we now need to again.</span>")
+			to_chat(src, span_notice("We resume breathing, as we now need to again."))
 	return 0

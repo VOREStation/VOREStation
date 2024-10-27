@@ -125,7 +125,7 @@
 /area/submap/groundbase/poi/wildvillage/wide/wide2)
 "A" = (
 /obj/structure/table/standard,
-/obj/item/device/flashlight/lamp{
+/obj/item/flashlight/lamp{
 	pixel_x = 2;
 	pixel_y = 7
 	},
@@ -144,7 +144,7 @@
 /area/submap/groundbase/poi/wildvillage/wide/wide2)
 "C" = (
 /obj/structure/table/standard,
-/obj/item/device/flashlight/lamp{
+/obj/item/flashlight/lamp{
 	pixel_x = 2;
 	pixel_y = 7
 	},
@@ -262,7 +262,7 @@
 /area/submap/groundbase/poi/wildvillage/wide/wide2)
 "Z" = (
 /obj/structure/bed/double/padded,
-/obj/item/weapon/bedsheet/browndouble,
+/obj/item/bedsheet/browndouble,
 /obj/structure/curtain/open/bed{
 	color = "#5e0c1d"
 	},

@@ -1,7 +1,7 @@
 /*
  * Trays - Agouri
  */
-/obj/item/weapon/tray
+/obj/item/tray
 	name = "tray"
 	icon = 'icons/obj/food.dmi'
 	icon_state = "tray"
@@ -16,7 +16,7 @@
 	var/max_carry = 10
 	drop_sound = 'sound/items/trayhit1.ogg'
 
-/obj/item/weapon/tray/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
+/obj/item/tray/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
 	user.setClickCooldown(user.get_attack_speed(src))
 	// Drop all the things. All of them.
 	cut_overlays()
@@ -32,7 +32,7 @@
 
 
 	if((CLUMSY in user.mutations) && prob(50))              //What if he's a clown?
-		to_chat(M, "<span class='warning'>You accidentally slam yourself with the [src]!</span>")
+		to_chat(M, span_warning("You accidentally slam yourself with the [src]!"))
 		M.Weaken(1)
 		user.take_organ_damage(2)
 		if(prob(50))
@@ -62,12 +62,12 @@
 		if(prob(50))
 			playsound(src, 'sound/items/trayhit1.ogg', 50, 1)
 			for(var/mob/O in viewers(M, null))
-				O.show_message(text("<span class='danger'>[] slams [] with the tray!</span>", user, M), 1)
+				O.show_message(span_danger("[user] slams [M] with the tray!"), 1)
 			return
 		else
 			playsound(src, 'sound/items/trayhit2.ogg', 50, 1)  //we applied the damage, we played the sound, we showed the appropriate messages. Time to return and stop the proc
 			for(var/mob/O in viewers(M, null))
-				O.show_message(text("<span class='danger'>[] slams [] with the tray!</span>", user, M), 1)
+				O.show_message(span_danger("[user] slams [M] with the tray!"), 1)
 			return
 
 
@@ -79,7 +79,7 @@
 			break
 
 	if(protected)
-		to_chat(M, "<span class='warning'>You get slammed in the face with the tray, against your mask!</span>")
+		to_chat(M, span_warning("You get slammed in the face with the tray, against your mask!"))
 		if(prob(33))
 			src.add_blood(H)
 			if (H.wear_mask)
@@ -95,11 +95,11 @@
 		if(prob(50))
 			playsound(src, 'sound/items/trayhit1.ogg', 50, 1)
 			for(var/mob/O in viewers(M, null))
-				O.show_message(text("<span class='danger'>[] slams [] with the tray!</span>", user, M), 1)
+				O.show_message(span_danger("[user] slams [M] with the tray!"), 1)
 		else
 			playsound(src, 'sound/items/trayhit2.ogg', 50, 1)  //sound playin'
 			for(var/mob/O in viewers(M, null))
-				O.show_message(text("<span class='danger'>[] slams [] with the tray!</span>", user, M), 1)
+				O.show_message(span_danger("[user] slams [M] with the tray!"), 1)
 		if(prob(10))
 			M.Stun(rand(1,3))
 			M.take_organ_damage(3)
@@ -109,7 +109,7 @@
 			return
 
 	else //No eye or head protection, tough luck!
-		to_chat(M, "<span class='warning'>You get slammed in the face with the tray!</span>")
+		to_chat(M, span_warning("You get slammed in the face with the tray!"))
 		if(prob(33))
 			src.add_blood(M)
 			var/turf/location = H.loc
@@ -119,11 +119,11 @@
 		if(prob(50))
 			playsound(src, 'sound/items/trayhit1.ogg', 50, 1)
 			for(var/mob/O in viewers(M, null))
-				O.show_message(text("<span class='danger'>[] slams [] in the face with the tray!</span>", user, M), 1)
+				O.show_message(span_danger("[user] slams [M] in the face with the tray!"), 1)
 		else
 			playsound(src, 'sound/items/trayhit2.ogg', 50, 1)  //sound playin' again
 			for(var/mob/O in viewers(M, null))
-				O.show_message(text("<span class='danger'>[] slams [] in the face with the tray!</span>", user, M), 1)
+				O.show_message(span_danger("[user] slams [M] in the face with the tray!"), 1)
 		if(prob(30))
 			M.Stun(rand(2,4))
 			M.take_organ_damage(4)
@@ -135,12 +135,12 @@
 				return
 			return
 
-/obj/item/weapon/tray/var/cooldown = 0	//shield bash cooldown. based on world.time
+/obj/item/tray/var/cooldown = 0	//shield bash cooldown. based on world.time
 
-/obj/item/weapon/tray/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/weapon/material/kitchen/rollingpin))
+/obj/item/tray/attackby(obj/item/W as obj, mob/user as mob)
+	if(istype(W, /obj/item/material/kitchen/rollingpin))
 		if(cooldown < world.time - 25)
-			user.visible_message("<span class='warning'>[user] bashes [src] with [W]!</span>")
+			user.visible_message(span_warning("[user] bashes [src] with [W]!"))
 			playsound(src, 'sound/effects/shieldbash.ogg', 50, 1)
 			cooldown = world.time
 	else
@@ -153,7 +153,7 @@
 =																			=
 ===============~~~~~================================~~~~~====================
 */
-/obj/item/weapon/tray/proc/calc_carry()
+/obj/item/tray/proc/calc_carry()
 	// calculate the weight of the items on the tray
 	var/val = 0 // value to return
 
@@ -167,7 +167,7 @@
 
 	return val
 
-/obj/item/weapon/tray/pickup(mob/user)
+/obj/item/tray/pickup(mob/user)
 
 	if(!isturf(loc))
 		return
@@ -189,13 +189,13 @@
 			Img.icon = I.icon
 			Img.icon_state = I.icon_state
 			Img.layer = layer + I.layer*0.01
-			if(istype(I, /obj/item/weapon/material))
-				var/obj/item/weapon/material/O = I
+			if(istype(I, /obj/item/material))
+				var/obj/item/material/O = I
 				if(O.applies_material_colour)
 					Img.color = O.color
 			add_overlay(Img)
 
-/obj/item/weapon/tray/dropped(mob/user)
+/obj/item/tray/dropped(mob/user)
 	var/noTable = null
 
 	spawn() //Allows the tray to udpate location, rather than just checking against mob's location

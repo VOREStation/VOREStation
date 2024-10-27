@@ -42,7 +42,7 @@
 
 	return damage / max(blobs_to_hurt.len, 1) // To hurt the blob that got hit.
 
-/datum/blob_type/synchronous_mesh/on_chunk_tick(obj/item/weapon/blobcore_chunk/B)
+/datum/blob_type/synchronous_mesh/on_chunk_tick(obj/item/blobcore_chunk/B)
 	var/mob/living/carrier = B.get_carrier()
 
 	if(!carrier)
@@ -68,5 +68,5 @@
 				carrier.adjustFireLoss(-3 / nearby_mobs.len)
 
 			if(need_beam)
-				carrier.visible_message("<span class='alien'>[icon2html(B,viewers(carrier))] \The [B] sends noxious spores toward \the [victim]!</span>")
+				carrier.visible_message(span_alien("[icon2html(B,viewers(carrier))] \The [B] sends noxious spores toward \the [victim]!"))
 				carrier.Beam(victim, icon_state = "lichbeam", time = 2 SECONDS)

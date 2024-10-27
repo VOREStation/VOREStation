@@ -5,7 +5,7 @@
 	anchored = TRUE
 	density = FALSE
 	unacidable = TRUE
-	var/falling_type = /obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza/margherita
+	var/falling_type = /obj/item/reagent_containers/food/snacks/sliceable/pizza/margherita
 	var/crushing = TRUE
 
 /obj/effect/falling_effect/Initialize(mapload, type)
@@ -37,7 +37,7 @@
 			for(var/mob/living/P in loc)
 				if(P.can_be_drop_prey && P.drop_vore)
 					L.feed_grabbed_to_self_falling_nom(L,P)
-					L.visible_message("<span class='vdanger'>\The [L] falls right onto \the [P]!</span>")
+					L.visible_message(span_vdanger("\The [L] falls right onto \the [P]!"))
 
 	if(crushing)
 		for(var/atom/movable/AM in loc)

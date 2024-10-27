@@ -12,7 +12,7 @@
 	#include "..\offmap_vr\common_offmaps.dm"
 	#include "..\~map_system\maps_vr.dm"
 
-	#if !AWAY_MISSION_TEST //Don't include these for just testing away missions
+	#ifndef AWAY_MISSION_TEST //Don't include these for just testing away missions
 		#include "gb-z1.dmm"
 		#include "gb-z2.dmm"
 		#include "gb-z3.dmm"

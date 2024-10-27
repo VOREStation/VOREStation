@@ -1,6 +1,6 @@
 /* Syndicate modules */
 
-/obj/item/weapon/robot_module/robot/syndicate
+/obj/item/robot_module/robot/syndicate
 	name = "illegal robot module"
 	hide_on_manifest = TRUE
 	languages = list(
@@ -21,10 +21,10 @@
 	var/id
 
 // All syndie modules get these, and the base borg items (flash, crowbar, etc).
-/obj/item/weapon/robot_module/robot/syndicate/create_equipment(var/mob/living/silicon/robot/robot)
+/obj/item/robot_module/robot/syndicate/create_equipment(var/mob/living/silicon/robot/robot)
 	..()
-	src.modules += new /obj/item/weapon/pinpointer/shuttle/merc(src)
-	src.modules += new /obj/item/weapon/melee/energy/sword(src)
+	src.modules += new /obj/item/pinpointer/shuttle/merc(src)
+	src.modules += new /obj/item/melee/energy/sword(src)
 
 	var/datum/matter_synth/cloth = new /datum/matter_synth/cloth(40000)
 	synths += cloth
@@ -32,7 +32,7 @@
 	var/obj/item/stack/sandbags/cyborg/SB = new /obj/item/stack/sandbags/cyborg(src)
 	SB.synths += list(cloth)
 
-	var/jetpack = new/obj/item/weapon/tank/jetpack/carbondioxide(src)
+	var/jetpack = new/obj/item/tank/jetpack/carbondioxide(src)
 	src.modules += jetpack
 	robot.internals = jetpack
 
@@ -40,51 +40,51 @@
 	id.forceMove(src)
 	src.modules += id
 
-/obj/item/weapon/robot_module/robot/syndicate/Destroy()
+/obj/item/robot_module/robot/syndicate/Destroy()
 	src.modules -= id
 	id = null
 	return ..()
 
 // Gets a big shield and a gun that shoots really fast to scare the opposing force.
-/obj/item/weapon/robot_module/robot/syndicate/protector
+/obj/item/robot_module/robot/syndicate/protector
 	name = "protector robot module"
 	supported_upgrades = list(/obj/item/borg/upgrade/restricted/bellycapupgrade)
 
-/obj/item/weapon/robot_module/robot/syndicate/protector/create_equipment(var/mob/living/silicon/robot/robot)
+/obj/item/robot_module/robot/syndicate/protector/create_equipment(var/mob/living/silicon/robot/robot)
 	..()
 	src.modules += new /obj/item/shield_projector/rectangle/weak(src)
-	src.modules += new /obj/item/weapon/gun/energy/dakkalaser(src)
-	src.modules += new /obj/item/weapon/handcuffs/cyborg(src)
-	src.modules += new /obj/item/weapon/melee/baton/robot(src)
+	src.modules += new /obj/item/gun/energy/dakkalaser(src)
+	src.modules += new /obj/item/handcuffs/cyborg(src)
+	src.modules += new /obj/item/melee/baton/robot(src)
 
-	src.modules += new /obj/item/device/dogborg/sleeper/K9/syndie(src)
-	src.modules += new /obj/item/weapon/dogborg/pounce(src)
+	src.modules += new /obj/item/dogborg/sleeper/K9/syndie(src)
+	src.modules += new /obj/item/dogborg/pounce(src)
 
 // 95% engi-borg and 15% roboticist.
-/obj/item/weapon/robot_module/robot/syndicate/mechanist
+/obj/item/robot_module/robot/syndicate/mechanist
 	name = "mechanist robot module"
 
-/obj/item/weapon/robot_module/robot/syndicate/mechanist/create_equipment(var/mob/living/silicon/robot/robot)
+/obj/item/robot_module/robot/syndicate/mechanist/create_equipment(var/mob/living/silicon/robot/robot)
 	..()
 	// General engineering/hacking.
 	src.modules += new /obj/item/borg/sight/meson(src)
-	src.modules += new /obj/item/weapon/weldingtool/electric/mounted/cyborg(src)
-	src.modules += new /obj/item/weapon/tool/screwdriver/cyborg(src)
-	src.modules += new /obj/item/weapon/tool/wrench/cyborg(src)
-	src.modules += new /obj/item/weapon/tool/wirecutters/cyborg(src)
-	src.modules += new /obj/item/device/multitool/ai_detector(src)
-	src.modules += new /obj/item/weapon/pickaxe/plasmacutter(src)
-	src.modules += new /obj/item/weapon/rcd/electric/mounted/borg/lesser(src) // Can't eat rwalls to prevent AI core cheese.
-	src.modules += new /obj/item/weapon/melee/energy/sword/ionic_rapier(src)
+	src.modules += new /obj/item/weldingtool/electric/mounted/cyborg(src)
+	src.modules += new /obj/item/tool/screwdriver/cyborg(src)
+	src.modules += new /obj/item/tool/wrench/cyborg(src)
+	src.modules += new /obj/item/tool/wirecutters/cyborg(src)
+	src.modules += new /obj/item/multitool/ai_detector(src)
+	src.modules += new /obj/item/pickaxe/plasmacutter(src)
+	src.modules += new /obj/item/rcd/electric/mounted/borg/lesser(src) // Can't eat rwalls to prevent AI core cheese.
+	src.modules += new /obj/item/melee/energy/sword/ionic_rapier(src)
 
 	// FBP repair.
-	src.modules += new /obj/item/device/robotanalyzer(src)
-	src.modules += new /obj/item/weapon/shockpaddles/robot/jumper(src)
-	src.modules += new /obj/item/weapon/gripper/no_use/organ/robotics(src)
+	src.modules += new /obj/item/robotanalyzer(src)
+	src.modules += new /obj/item/shockpaddles/robot/jumper(src)
+	src.modules += new /obj/item/gripper/no_use/organ/robotics(src)
 
 	// Hacking other things.
-	src.modules += new /obj/item/weapon/card/robot/syndi(src)
-	src.modules += new /obj/item/weapon/card/emag/borg(src)
+	src.modules += new /obj/item/card/robot/syndi(src)
+	src.modules += new /obj/item/card/emag/borg(src)
 
 	// Materials.
 	var/datum/matter_synth/nanite = new /datum/matter_synth/nanite(10000)
@@ -122,43 +122,43 @@
 	RG.synths = list(metal, glass)
 	src.modules += RG
 
-	var/obj/item/device/dogborg/sleeper/compactor/syndie/MD = new /obj/item/device/dogborg/sleeper/compactor/syndie(src)
+	var/obj/item/dogborg/sleeper/compactor/syndie/MD = new /obj/item/dogborg/sleeper/compactor/syndie(src)
 	MD.metal = metal
 	MD.glass = glass
 	src.modules += MD
 
-	src.modules += new /obj/item/weapon/dogborg/pounce(src)
+	src.modules += new /obj/item/dogborg/pounce(src)
 
 
 
 // Mediborg optimized for on-the-field healing, but can also do surgery if needed.
-/obj/item/weapon/robot_module/robot/syndicate/combat_medic
+/obj/item/robot_module/robot/syndicate/combat_medic
 	name = "combat medic robot module"
 	supported_upgrades = list(/obj/item/borg/upgrade/restricted/bellycapupgrade)
 
-/obj/item/weapon/robot_module/robot/syndicate/combat_medic/create_equipment(var/mob/living/silicon/robot/robot)
+/obj/item/robot_module/robot/syndicate/combat_medic/create_equipment(var/mob/living/silicon/robot/robot)
 	..()
-	src.modules += new /obj/item/device/healthanalyzer/phasic(src)
-	src.modules += new /obj/item/weapon/reagent_containers/borghypo/merc(src)
+	src.modules += new /obj/item/healthanalyzer/phasic(src)
+	src.modules += new /obj/item/reagent_containers/borghypo/merc(src)
 
 	// Surgery things.
-	src.modules += new /obj/item/weapon/autopsy_scanner(src)
-	src.modules += new /obj/item/weapon/surgical/scalpel/cyborg(src)
-	src.modules += new /obj/item/weapon/surgical/hemostat/cyborg(src)
-	src.modules += new /obj/item/weapon/surgical/retractor/cyborg(src)
-	src.modules += new /obj/item/weapon/surgical/cautery/cyborg(src)
-	src.modules += new /obj/item/weapon/surgical/bonegel/cyborg(src)
-	src.modules += new /obj/item/weapon/surgical/FixOVein/cyborg(src)
-	src.modules += new /obj/item/weapon/surgical/bonesetter/cyborg(src)
-	src.modules += new /obj/item/weapon/surgical/circular_saw/cyborg(src)
-	src.modules += new /obj/item/weapon/surgical/surgicaldrill/cyborg(src)
-	src.modules += new /obj/item/weapon/gripper/no_use/organ(src)
+	src.modules += new /obj/item/autopsy_scanner(src)
+	src.modules += new /obj/item/surgical/scalpel/cyborg(src)
+	src.modules += new /obj/item/surgical/hemostat/cyborg(src)
+	src.modules += new /obj/item/surgical/retractor/cyborg(src)
+	src.modules += new /obj/item/surgical/cautery/cyborg(src)
+	src.modules += new /obj/item/surgical/bonegel/cyborg(src)
+	src.modules += new /obj/item/surgical/FixOVein/cyborg(src)
+	src.modules += new /obj/item/surgical/bonesetter/cyborg(src)
+	src.modules += new /obj/item/surgical/circular_saw/cyborg(src)
+	src.modules += new /obj/item/surgical/surgicaldrill/cyborg(src)
+	src.modules += new /obj/item/gripper/no_use/organ(src)
 
 	// General healing.
-	src.modules += new /obj/item/weapon/gripper/medical(src)
-	src.modules += new /obj/item/weapon/shockpaddles/robot/combat(src)
-	src.modules += new /obj/item/weapon/reagent_containers/dropper(src) // Allows borg to fix necrosis apparently
-	src.modules += new /obj/item/weapon/reagent_containers/syringe(src)
+	src.modules += new /obj/item/gripper/medical(src)
+	src.modules += new /obj/item/shockpaddles/robot/combat(src)
+	src.modules += new /obj/item/reagent_containers/dropper(src) // Allows borg to fix necrosis apparently
+	src.modules += new /obj/item/reagent_containers/syringe(src)
 	src.modules += new /obj/item/roller_holder(src)
 
 	// Materials.
@@ -181,12 +181,12 @@
 	src.modules += B
 	src.modules += S
 
-	src.modules += new /obj/item/device/dogborg/sleeper/syndie(src)
-	src.modules += new /obj/item/weapon/dogborg/pounce(src)
+	src.modules += new /obj/item/dogborg/sleeper/syndie(src)
+	src.modules += new /obj/item/dogborg/pounce(src)
 
-/obj/item/weapon/robot_module/robot/syndicate/combat_medic/respawn_consumable(var/mob/living/silicon/robot/R, var/amount)
+/obj/item/robot_module/robot/syndicate/combat_medic/respawn_consumable(var/mob/living/silicon/robot/R, var/amount)
 
-	var/obj/item/weapon/reagent_containers/syringe/S = locate() in src.modules
+	var/obj/item/reagent_containers/syringe/S = locate() in src.modules
 	if(S.mode == 2)
 		S.reagents.clear_reagents()
 		S.mode = initial(S.mode)

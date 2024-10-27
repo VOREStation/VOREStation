@@ -103,7 +103,7 @@
 	name = "\improper Trader Base"
 	})
 "ao" = (
-/obj/item/weapon/stool/padded,
+/obj/item/stool/padded,
 /turf/unsimulated/floor{
 	icon_state = "dark"
 	},
@@ -119,7 +119,7 @@
 	name = "\improper Trader Base"
 	})
 "aq" = (
-/obj/item/weapon/stool/padded,
+/obj/item/stool/padded,
 /turf/unsimulated/floor{
 	icon_state = "steel"
 	},
@@ -218,7 +218,7 @@
 	})
 "aB" = (
 /obj/structure/table/standard,
-/obj/item/weapon/soap/deluxe,
+/obj/item/soap/deluxe,
 /turf/simulated/shuttle/floor,
 /area/syndicate_mothership{
 	name = "\improper Trader Base"
@@ -364,7 +364,7 @@
 /area/shuttle/trade)
 "aQ" = (
 /obj/structure/bed/padded,
-/obj/item/weapon/bedsheet/rd,
+/obj/item/bedsheet/rd,
 /turf/simulated/shuttle/floor/black,
 /area/shuttle/trade)
 "aR" = (
@@ -471,7 +471,7 @@
 /area/shuttle/trade)
 "bf" = (
 /obj/structure/table/standard,
-/obj/item/weapon/storage/box/donkpockets,
+/obj/item/storage/box/donkpockets,
 /turf/simulated/floor/carpet,
 /area/shuttle/trade)
 "bg" = (
@@ -503,11 +503,11 @@
 /turf/simulated/shuttle/floor/black,
 /area/shuttle/trade)
 "bl" = (
-/obj/item/weapon/storage/firstaid/regular{
+/obj/item/storage/firstaid/regular{
 	pixel_x = -2;
 	pixel_y = 4
 	},
-/obj/item/weapon/storage/firstaid/regular{
+/obj/item/storage/firstaid/regular{
 	pixel_x = -2;
 	pixel_y = 4
 	},
@@ -517,33 +517,33 @@
 /obj/item/bodybag/cryobag{
 	pixel_x = 5
 	},
-/obj/item/weapon/storage/firstaid/o2{
+/obj/item/storage/firstaid/o2{
 	layer = 2.8;
 	pixel_x = 4;
 	pixel_y = 6
 	},
-/obj/item/weapon/storage/box/masks{
+/obj/item/storage/box/masks{
 	pixel_x = 0;
 	pixel_y = 0
 	},
-/obj/item/weapon/storage/box/gloves{
+/obj/item/storage/box/gloves{
 	pixel_x = 3;
 	pixel_y = 4
 	},
-/obj/item/weapon/storage/firstaid/toxin,
-/obj/item/weapon/storage/firstaid/fire{
+/obj/item/storage/firstaid/toxin,
+/obj/item/storage/firstaid/fire{
 	layer = 2.9;
 	pixel_x = 2;
 	pixel_y = 3
 	},
-/obj/item/weapon/storage/firstaid/adv{
+/obj/item/storage/firstaid/adv{
 	pixel_x = -2
 	},
-/obj/item/weapon/reagent_containers/blood/empty,
-/obj/item/weapon/reagent_containers/blood/OMinus,
-/obj/item/weapon/reagent_containers/blood/OMinus,
-/obj/item/weapon/reagent_containers/blood/OMinus,
-/obj/item/weapon/reagent_containers/blood/OMinus,
+/obj/item/reagent_containers/blood/empty,
+/obj/item/reagent_containers/blood/OMinus,
+/obj/item/reagent_containers/blood/OMinus,
+/obj/item/reagent_containers/blood/OMinus,
+/obj/item/reagent_containers/blood/OMinus,
 /obj/structure/closet/medical_wall{
 	pixel_y = 32
 	},
@@ -580,11 +580,11 @@
 /turf/simulated/shuttle/floor/black,
 /area/shuttle/trade)
 "bp" = (
-/obj/item/weapon/paper_bin{
+/obj/item/paper_bin{
 	pixel_x = -3;
 	pixel_y = 8
 	},
-/obj/item/weapon/pen{
+/obj/item/pen{
 	pixel_y = 4
 	},
 /obj/machinery/light,
@@ -593,7 +593,7 @@
 /area/shuttle/trade)
 "bq" = (
 /obj/structure/bed/padded,
-/obj/item/weapon/bedsheet/hos,
+/obj/item/bedsheet/hos,
 /obj/structure/sign/poster{
 	pixel_y = -32
 	},
@@ -607,12 +607,12 @@
 /area/shuttle/trade)
 "bs" = (
 /obj/structure/table/standard,
-/obj/item/weapon/storage/box/glasses/square,
+/obj/item/storage/box/glasses/square,
 /turf/simulated/floor/carpet,
 /area/shuttle/trade)
 "bt" = (
 /obj/structure/table/steel_reinforced,
-/obj/item/weapon/inflatable_duck,
+/obj/item/inflatable_duck,
 /turf/simulated/shuttle/floor/black,
 /area/shuttle/trade)
 "bu" = (
@@ -624,7 +624,7 @@
 /area/shuttle/trade)
 "bv" = (
 /obj/structure/table/steel_reinforced,
-/obj/item/weapon/rig/internalaffairs,
+/obj/item/rig/internalaffairs,
 /obj/item/clothing/head/helmet/space/void/wizard,
 /obj/item/clothing/suit/space/void/wizard,
 /turf/simulated/shuttle/floor/black,
@@ -740,7 +740,7 @@
 /obj/random/tech_supply,
 /obj/random/tech_supply,
 /obj/random/tech_supply,
-/obj/item/weapon/weldpack,
+/obj/item/weldpack,
 /turf/simulated/shuttle/floor/black,
 /area/shuttle/trade)
 "bL" = (
@@ -796,13 +796,13 @@
 /area/shuttle/trade)
 "bS" = (
 /obj/structure/table/steel_reinforced,
-/obj/item/weapon/coin/uranium,
-/obj/item/weapon/coin/silver,
-/obj/item/weapon/coin/platinum,
-/obj/item/weapon/coin/phoron,
-/obj/item/weapon/coin/iron,
-/obj/item/weapon/coin/gold,
-/obj/item/weapon/coin/diamond,
+/obj/item/coin/uranium,
+/obj/item/coin/silver,
+/obj/item/coin/platinum,
+/obj/item/coin/phoron,
+/obj/item/coin/iron,
+/obj/item/coin/gold,
+/obj/item/coin/diamond,
 /obj/structure/window/reinforced,
 /turf/simulated/shuttle/floor/black,
 /area/shuttle/trade)
@@ -815,10 +815,10 @@
 /area/shuttle/trade)
 "bU" = (
 /obj/structure/table/steel_reinforced,
-/obj/item/weapon/cell/high,
-/obj/item/weapon/cell/high,
-/obj/item/weapon/cell/hyper,
-/obj/item/weapon/cell/potato,
+/obj/item/cell/high,
+/obj/item/cell/high,
+/obj/item/cell/hyper,
+/obj/item/cell/potato,
 /obj/structure/window/reinforced,
 /turf/simulated/shuttle/floor/black,
 /area/shuttle/trade)
@@ -837,27 +837,27 @@
 /obj/structure/table/standard,
 /obj/item/clothing/gloves/sterile/latex,
 /obj/item/clothing/mask/surgical,
-/obj/item/weapon/surgical/retractor{
+/obj/item/surgical/retractor{
 	pixel_x = 0;
 	pixel_y = 6
 	},
-/obj/item/weapon/surgical/scalpel,
-/obj/item/weapon/surgical/surgicaldrill,
-/obj/item/weapon/surgical/circular_saw,
+/obj/item/surgical/scalpel,
+/obj/item/surgical/surgicaldrill,
+/obj/item/surgical/circular_saw,
 /obj/item/stack/nanopaste,
-/obj/item/weapon/surgical/hemostat{
+/obj/item/surgical/hemostat{
 	pixel_y = 4
 	},
-/obj/item/weapon/surgical/cautery{
+/obj/item/surgical/cautery{
 	pixel_y = 4
 	},
-/obj/item/weapon/surgical/FixOVein{
+/obj/item/surgical/FixOVein{
 	pixel_x = -6;
 	pixel_y = 1
 	},
 /obj/item/stack/medical/advanced/bruise_pack,
-/obj/item/weapon/surgical/bonesetter,
-/obj/item/weapon/surgical/bonegel{
+/obj/item/surgical/bonesetter,
+/obj/item/surgical/bonegel{
 	pixel_x = 4;
 	pixel_y = 3
 	},
@@ -925,11 +925,11 @@
 /area/shuttle/trade)
 "ce" = (
 /obj/structure/table/steel_reinforced,
-/obj/item/weapon/paper_bin{
+/obj/item/paper_bin{
 	pixel_x = -3;
 	pixel_y = 8
 	},
-/obj/item/weapon/pen{
+/obj/item/pen{
 	pixel_y = 4
 	},
 /turf/simulated/shuttle/floor/black,
@@ -1062,7 +1062,7 @@
 	dir = 4;
 	name = "Cigarette machine";
 	prices = list();
-	products = list(/obj/item/weapon/storage/fancy/cigarettes = 10, /obj/item/weapon/storage/box/matches = 10, /obj/item/weapon/flame/lighter/zippo = 4, /obj/item/clothing/mask/smokable/cigarette/cigar/havana = 2)
+	products = list(/obj/item/storage/fancy/cigarettes = 10, /obj/item/storage/box/matches = 10, /obj/item/flame/lighter/zippo = 4, /obj/item/clothing/mask/smokable/cigarette/cigar/havana = 2)
 	},
 /turf/simulated/shuttle/floor/black,
 /area/shuttle/trade)
@@ -1095,10 +1095,10 @@
 	icon_state = "warning";
 	dir = 1
 	},
-/obj/item/device/kit/paint/ripley/death,
-/obj/item/device/kit/paint/ripley/flames_blue,
-/obj/item/device/kit/paint/ripley/flames_red,
-/obj/item/device/kit/paint/ripley,
+/obj/item/kit/paint/ripley/death,
+/obj/item/kit/paint/ripley/flames_blue,
+/obj/item/kit/paint/ripley/flames_red,
+/obj/item/kit/paint/ripley,
 /turf/simulated/shuttle/floor/black,
 /area/shuttle/trade)
 "cy" = (
@@ -1211,11 +1211,11 @@
 "cL" = (
 /obj/structure/table/rack,
 /obj/effect/floor_decal/industrial/warning,
-/obj/item/device/kit/paint/gygax/darkgygax,
-/obj/item/device/kit/paint/gygax/recitence,
-/obj/item/device/kit/paint/durand,
-/obj/item/device/kit/paint/durand/phazon,
-/obj/item/device/kit/paint/durand/seraph,
+/obj/item/kit/paint/gygax/darkgygax,
+/obj/item/kit/paint/gygax/recitence,
+/obj/item/kit/paint/durand,
+/obj/item/kit/paint/durand/phazon,
+/obj/item/kit/paint/durand/seraph,
 /turf/simulated/shuttle/floor/black,
 /area/shuttle/trade)
 "cM" = (
@@ -1275,7 +1275,7 @@
 /obj/machinery/vending/assist{
 	contraband = null;
 	name = "Old Vending Machine";
-	products = list(/obj/item/device/assembly/prox_sensor = 5, /obj/item/device/assembly/signaler = 4, /obj/item/device/assembly/infra = 4, /obj/item/device/assembly/prox_sensor = 4, /obj/item/weapon/handcuffs = 8, /obj/item/device/flash = 4, /obj/item/weapon/cartridge/signal = 4, /obj/item/clothing/glasses/sunglasses = 4)
+	products = list(/obj/item/assembly/prox_sensor = 5, /obj/item/assembly/signaler = 4, /obj/item/assembly/infra = 4, /obj/item/assembly/prox_sensor = 4, /obj/item/handcuffs = 8, /obj/item/flash = 4, /obj/item/cartridge/signal = 4, /obj/item/clothing/glasses/sunglasses = 4)
 	},
 /turf/simulated/shuttle/floor/black,
 /area/shuttle/trade)
@@ -1283,9 +1283,9 @@
 /obj/structure/closet{
 	name = "custodial"
 	},
-/obj/item/weapon/reagent_containers/spray/cleaner,
-/obj/item/weapon/reagent_containers/glass/bucket,
-/obj/item/weapon/mop,
+/obj/item/reagent_containers/spray/cleaner,
+/obj/item/reagent_containers/glass/bucket,
+/obj/item/mop,
 /turf/simulated/shuttle/floor/black,
 /area/shuttle/trade)
 "cU" = (
@@ -1295,8 +1295,8 @@
 "cV" = (
 /obj/machinery/light,
 /obj/structure/table/standard,
-/obj/item/weapon/soap,
-/obj/item/weapon/towel{
+/obj/item/soap,
+/obj/item/towel{
 	color = "#0000FF"
 	},
 /turf/simulated/shuttle/floor/black,
@@ -1381,7 +1381,7 @@
 /area/shuttle/trade)
 "de" = (
 /obj/structure/table/standard,
-/obj/item/weapon/storage/toolbox/mechanical,
+/obj/item/storage/toolbox/mechanical,
 /turf/simulated/shuttle/floor/black,
 /area/shuttle/trade)
 "df" = (
@@ -1479,7 +1479,7 @@
 /obj/random/contraband,
 /obj/random/contraband,
 /obj/random/contraband,
-/obj/item/weapon/bikehorn,
+/obj/item/bikehorn,
 /turf/simulated/shuttle/floor/black,
 /area/shuttle/trade)
 "dp" = (
@@ -1601,11 +1601,11 @@
 /area/shuttle/trade)
 "dC" = (
 /obj/structure/table/steel_reinforced,
-/obj/item/weapon/lipstick/black,
-/obj/item/weapon/lipstick/jade,
-/obj/item/weapon/lipstick/purple,
-/obj/item/weapon/lipstick,
-/obj/item/weapon/lipstick/random,
+/obj/item/lipstick/black,
+/obj/item/lipstick/jade,
+/obj/item/lipstick/purple,
+/obj/item/lipstick,
+/obj/item/lipstick/random,
 /turf/simulated/shuttle/floor/black,
 /area/shuttle/trade)
 "dD" = (
@@ -1719,11 +1719,11 @@
 /area/shuttle/trade)
 "dJ" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/paper_bin{
+/obj/item/paper_bin{
 	pixel_x = -3;
 	pixel_y = 8
 	},
-/obj/item/weapon/pen{
+/obj/item/pen{
 	pixel_y = 4
 	},
 /turf/simulated/floor/carpet,
@@ -1861,7 +1861,7 @@
 /area/shuttle/trade)
 "dV" = (
 /obj/structure/bed/padded,
-/obj/item/weapon/bedsheet/captain,
+/obj/item/bedsheet/captain,
 /turf/simulated/shuttle/floor/black,
 /area/shuttle/trade)
 "dW" = (

@@ -146,6 +146,11 @@
 	prefs.r_ears3			= character.r_ears3
 	prefs.g_ears3			= character.g_ears3
 	prefs.b_ears3			= character.b_ears3
+
+	// secondary ears
+	prefs.ear_secondary_style = character.ear_secondary_style?.name
+	prefs.ear_secondary_colors = character.ear_secondary_colors
+
 	prefs.r_tail			= character.r_tail
 	prefs.b_tail			= character.b_tail
 	prefs.g_tail			= character.g_tail
@@ -236,7 +241,7 @@
 		stack_trace("Persist (NIF): Given a nonhuman: [H]")
 		return
 
-	var/obj/item/device/nif/nif = H.nif
+	var/obj/item/nif/nif = H.nif
 
 	if(nif && H.ckey != nif.owner_key)
 		return

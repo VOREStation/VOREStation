@@ -19,7 +19,7 @@ var/list/slot_equipment_priority = list( \
 	)
 
 /mob
-	var/obj/item/weapon/storage/s_active = null // Even ghosts can/should be able to peek into boxes on the ground
+	var/obj/item/storage/s_active = null // Even ghosts can/should be able to peek into boxes on the ground
 
 //This proc is called whenever someone clicks an inventory ui slot.
 /mob/proc/attack_ui(var/slot)
@@ -207,12 +207,6 @@ var/list/slot_equipment_priority = list( \
 //item MUST BE FORCEMOVE'D OR QDEL'D
 /mob/proc/temporarilyRemoveItemFromInventory(obj/item/I, force = FALSE, idrop = TRUE)
 	return u_equip(I, force, null, TRUE, idrop)
-
-///sometimes we only want to grant the item's action if it's equipped in a specific slot.
-/obj/item/proc/item_action_slot_check(slot, mob/user)
-	if(slot == SLOT_BACK || slot == LEGS) //these aren't true slots, so avoid granting actions there
-		return FALSE
-	return TRUE
 
 ///Get the item on the mob in the storage slot identified by the id passed in
 /mob/proc/get_item_by_slot(slot_id)

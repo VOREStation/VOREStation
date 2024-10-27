@@ -39,8 +39,8 @@
 
 /*
 /decl/chemical_reaction/distilling/on_reaction(var/datum/reagents/holder, var/created_volume)
-	if(istype(holder.my_atom, /obj/item/weapon/reagent_containers/glass/distilling))
-		var/obj/item/weapon/reagent_containers/glass/distilling/D = holder.my_atom
+	if(istype(holder.my_atom, /obj/item/reagent_containers/glass/distilling))
+		var/obj/item/reagent_containers/glass/distilling/D = holder.my_atom
 		var/obj/machinery/portable_atmospherics/powered/reagent_distillery/RD = D.Master
 		RD.current_temp += temp_shift
 	return

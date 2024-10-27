@@ -13,17 +13,17 @@
 /area/submap/debrisfield/foodstand)
 "e" = (
 /obj/structure/closet/secure_closet/freezer/meat,
-/obj/item/weapon/reagent_containers/food/snacks/carpmeat,
-/obj/item/weapon/reagent_containers/food/snacks/carpmeat,
-/obj/item/weapon/reagent_containers/food/snacks/carpmeat,
+/obj/item/reagent_containers/food/snacks/carpmeat,
+/obj/item/reagent_containers/food/snacks/carpmeat,
+/obj/item/reagent_containers/food/snacks/carpmeat,
 /turf/simulated/floor/wood,
 /area/submap/debrisfield/foodstand)
 "f" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/reagent_containers/food/condiment/coldsauce,
-/obj/item/weapon/reagent_containers/food/condiment/ketchup,
-/obj/item/weapon/reagent_containers/food/condiment/hotsauce,
-/obj/item/weapon/reagent_containers/food/condiment/soysauce,
+/obj/item/reagent_containers/food/condiment/coldsauce,
+/obj/item/reagent_containers/food/condiment/ketchup,
+/obj/item/reagent_containers/food/condiment/hotsauce,
+/obj/item/reagent_containers/food/condiment/soysauce,
 /turf/simulated/floor/wood,
 /area/submap/debrisfield/foodstand)
 "g" = (
@@ -40,13 +40,13 @@
 /area/submap/debrisfield/foodstand)
 "j" = (
 /obj/structure/closet/crate/freezer,
-/obj/item/weapon/reagent_containers/food/snacks/taco,
-/obj/item/weapon/reagent_containers/food/snacks/taco,
-/obj/item/weapon/reagent_containers/food/snacks/taco,
-/obj/item/weapon/reagent_containers/food/snacks/hotdog,
-/obj/item/weapon/reagent_containers/food/snacks/hotdog,
-/obj/item/weapon/reagent_containers/food/snacks/cheeseburrito,
-/obj/item/weapon/reagent_containers/food/snacks/cheeseburrito,
+/obj/item/reagent_containers/food/snacks/taco,
+/obj/item/reagent_containers/food/snacks/taco,
+/obj/item/reagent_containers/food/snacks/taco,
+/obj/item/reagent_containers/food/snacks/hotdog,
+/obj/item/reagent_containers/food/snacks/hotdog,
+/obj/item/reagent_containers/food/snacks/cheeseburrito,
+/obj/item/reagent_containers/food/snacks/cheeseburrito,
 /turf/simulated/floor/wood,
 /area/submap/debrisfield/foodstand)
 "k" = (
@@ -58,7 +58,7 @@
 /area/submap/debrisfield/foodstand)
 "l" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/reagent_containers/food/snacks/taco,
+/obj/item/reagent_containers/food/snacks/taco,
 /turf/simulated/floor/wood,
 /area/submap/debrisfield/foodstand)
 "m" = (

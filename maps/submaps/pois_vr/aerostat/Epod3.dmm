@@ -30,7 +30,7 @@
 /obj/structure/closet/walllocker/emerglocker{
 	pixel_y = 28
 	},
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	pixel_y = -26
 	},
 /turf/simulated/shuttle/floor,
@@ -44,7 +44,7 @@
 	pixel_y = 28
 	},
 /obj/machinery/light,
-/obj/item/weapon/weldingtool/largetank,
+/obj/item/weldingtool/largetank,
 /turf/simulated/shuttle/floor,
 /area/submap/virgo2/Epod3)
 "j" = (

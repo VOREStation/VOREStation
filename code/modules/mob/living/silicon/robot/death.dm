@@ -13,9 +13,9 @@
 	if(camera)
 		camera.status = 0
 	if(module)
-		var/obj/item/weapon/gripper/G = locate(/obj/item/weapon/gripper) in module
+		var/obj/item/gripper/G = locate(/obj/item/gripper) in module
 		if(G) G.drop_item()
-		var/obj/item/device/dogborg/sleeper/S = locate(/obj/item/device/dogborg/sleeper) in module //VOREStation edit.
+		var/obj/item/dogborg/sleeper/S = locate(/obj/item/dogborg/sleeper) in module //VOREStation edit.
 		if(S) S.go_out() //VOREStation edit.
 	remove_robot_verbs()
 	sql_report_cyborg_death(src)

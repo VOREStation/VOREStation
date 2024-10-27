@@ -1,4 +1,4 @@
-/obj/item/weapon/gun/energy/altevian
+/obj/item/gun/energy/altevian
 	name = "Magneto-Electric Energy Projector"
 	desc = "A hand-held version of an energy weapon for the Altevian Hegemony. This one is the civilian grade version that has a reduced charge capacity. However, it is a lot easier to use."
 	icon_state = "meep"
@@ -12,7 +12,7 @@
 	projectile_type = /obj/item/projectile/beam/meeplaser
 	charge_cost = 400
 
-/obj/item/weapon/gun/energy/altevian/large
+/obj/item/gun/energy/altevian/large
 	name = "Proto-Reactive Beam Thruster"
 	desc = "The main energy rifle that the Altevian Hegemony uses for its military operations."
 	icon_state = "altevian-pdw"
@@ -58,7 +58,7 @@
 	light_power = 0.5
 	light_color = "#77A6E1"
 
-/obj/item/weapon/gun/energy/ratminer
+/obj/item/gun/energy/ratminer
 	name = "Altevian Repulsion Mineral Slicer"
 	desc = "An advanced piece of mining focused technology from the Altevian Hegemony. \
 			This model appears to be their standard asteroid clearing laser with a tailored system to work with an ore-bag, \
@@ -123,7 +123,7 @@
 			var/turf/simulated/mineral/M = T
 			M.GetDrilled(TRUE)
 	if(firer)
-		var/obj/item/weapon/storage/bag/ore/orebag = locate(/obj/item/weapon/storage/bag/ore) in firer
+		var/obj/item/storage/bag/ore/orebag = locate(/obj/item/storage/bag/ore) in firer
 		if(orebag)
 			for(var/turf/T in RANGE_TURFS(2, target_turf))
 				orebag.gather_all(T, firer, TRUE)

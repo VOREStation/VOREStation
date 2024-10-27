@@ -4,7 +4,7 @@
 /turf/simulated/floor/airless,
 /area/space)
 "b" = (
-/obj/item/weapon/material/shard,
+/obj/item/material/shard,
 /turf/simulated/floor/airless,
 /area/space)
 "c" = (
@@ -12,7 +12,7 @@
 /area/space)
 "d" = (
 /obj/structure/grille/broken,
-/obj/item/weapon/material/shard,
+/obj/item/material/shard,
 /turf/simulated/floor/airless,
 /area/space)
 "e" = (

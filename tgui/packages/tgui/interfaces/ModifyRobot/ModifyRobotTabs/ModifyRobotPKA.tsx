@@ -27,7 +27,7 @@ export const ModifyRobotPKA = (props: { target: Target }) => {
       {!target.pka ? (
         <NoticeBox danger>{target.name} has no PKA installed.</NoticeBox>
       ) : (
-        <Flex height={!target.active ? '80%' : '85%'}>
+        <Flex height={!target.active ? '75%' : '80%'}>
           <Flex.Item width="35%" fill>
             <Divider />
             <Box>Remaining Capacity: {target.pka.capacity}</Box>

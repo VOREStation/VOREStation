@@ -19,7 +19,7 @@
 	melee_damage_upper = 15
 	attacktext = list("punched")
 
-	loot_list = list(/obj/item/weapon/material/knife = 100)
+	loot_list = list(/obj/item/material/knife = 100)
 
 	corpse = /obj/effect/landmark/mobcorpse/russian
 
@@ -31,6 +31,6 @@
 	casingtype = /obj/item/ammo_casing/spent
 	projectilesound = 'sound/weapons/Gunshot4.ogg'
 
-	loot_list = list(/obj/item/weapon/gun/projectile/revolver/mateba = 100)
+	loot_list = list(/obj/item/gun/projectile/revolver/mateba = 100)
 
 	corpse = /obj/effect/landmark/mobcorpse/russian/ranged

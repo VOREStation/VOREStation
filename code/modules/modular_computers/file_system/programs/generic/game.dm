@@ -111,7 +111,7 @@
 	if(..()) // Always call parent in tgui_act, it handles making sure the user is allowed to interact with the UI.
 		return TRUE
 
-	var/obj/item/weapon/computer_hardware/nano_printer/printer
+	var/obj/item/computer_hardware/nano_printer/printer
 	if(computer)
 		printer = computer.nano_printer
 
@@ -162,20 +162,20 @@
 			return TRUE
 		if("Dispense_Tickets")
 			if(!printer)
-				to_chat(usr, "<span class='notice'>Hardware error: A printer is required to redeem tickets.</span>")
+				to_chat(usr, span_notice("Hardware error: A printer is required to redeem tickets."))
 				return
 			if(printer.stored_paper <= 0)
-				to_chat(usr, "<span class='notice'>Hardware error: Printer is out of paper.</span>")
+				to_chat(usr, span_notice("Hardware error: Printer is out of paper."))
 				return
 			else
-				computer.visible_message("<b>\The [computer]</b> prints out paper.")
+				computer.visible_message(span_infoplain(span_bold("\The [computer]") + " prints out paper."))
 				if(ticket_count >= 1)
 					new /obj/item/stack/arcadeticket((get_turf(computer)), 1)
-					to_chat(usr, "<span class='notice'>[src] dispenses a ticket!</span>")
+					to_chat(usr, span_notice("[src] dispenses a ticket!"))
 					ticket_count -= 1
 					printer.stored_paper -= 1
 				else
-					to_chat(usr, "<span class='notice'>You don't have any stored tickets!</span>")
+					to_chat(usr, span_notice("You don't have any stored tickets!"))
 				return TRUE
 		if("Start_Game")
 			game_active = TRUE

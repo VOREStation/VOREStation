@@ -117,10 +117,10 @@
 /obj/item/projectile/bullet/magnetic/fuelrod/on_impact(var/atom/A) //Future-proofing, again. In the event new fuel rods are introduced, and have special effects for when they stop flying.
 	if(src.loc)
 		if(detonate_travel && detonate_mob)
-			visible_message("<span class='warning'>\The [src] shatters in a violent explosion!</span>")
+			visible_message(span_warning("\The [src] shatters in a violent explosion!"))
 			explosion(src.loc, 1, 1, 3, 4)
 		else if(detonate_travel)
-			visible_message("<span class='warning'>\The [src] explodes in a shower of embers!</span>")
+			visible_message(span_warning("\The [src] explodes in a shower of embers!"))
 			explosion(src.loc, -1, 1, 2, 3)
 	..(A)
 
@@ -163,7 +163,7 @@
 
 /obj/item/projectile/bullet/magnetic/fuelrod/supermatter/on_hit(var/atom/target, var/blocked = 0, var/def_zone = null) //You cannot touch the supermatter without disentigrating. Assumedly, this is true for condensed rods of it flying at relativistic speeds.
 	if(istype(target,/turf/simulated/wall) || istype(target,/mob/living))
-		target.visible_message("<span class='danger'>The [src] burns a perfect hole through \the [target] with a blinding flash!</span>")
+		target.visible_message(span_danger("The [src] burns a perfect hole through \the [target] with a blinding flash!"))
 		playsound(target, 'sound/effects/teleport.ogg', 40, 0)
 	return ..(target, blocked, def_zone)
 

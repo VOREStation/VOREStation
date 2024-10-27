@@ -18,7 +18,7 @@
 	blood_overlay_type = "armor"
 	slowdown = 0
 	armor = list(melee = 0, bullet = 0, laser = 0, energy = 0, bomb = 0, bio = 0, rad = 0)
-	action_button_name = "Toggle Shield Projector"
+	actions_types = list(/datum/action/item_action/toggle_shield_projector)
 	var/active = 0
 	var/damage_to_energy_multiplier = 50.0 //Determines how much energy to charge for blocking, e.g. 20 damage attack = 750 energy cost
 	var/datum/effect/effect/system/spark_spread/spark_system = null
@@ -49,7 +49,7 @@
 	var/damage_to_energy_cost = (damage_to_energy_multiplier * damage_blocked)
 
 	if(!user.technomancer_pay_energy(damage_to_energy_cost))
-		to_chat(user, "<span class='danger'>Your shield fades due to lack of energy!</span>")
+		to_chat(user, span_danger("Your shield fades due to lack of energy!"))
 		active = 0
 		update_icon()
 		return 0
@@ -66,8 +66,8 @@
 			P.agony -= agony_blocked
 		P.damage = P.damage - damage_blocked
 
-	user.visible_message("<span class='danger'>\The [user]'s [src] absorbs [attack_text]!</span>")
-	to_chat(user, "<span class='warning'>Your shield has absorbed most of \the [damage_source].</span>")
+	user.visible_message(span_danger("\The [user]'s [src] absorbs [attack_text]!"))
+	to_chat(user, span_warning("Your shield has absorbed most of \the [damage_source]."))
 
 	spark_system.start()
 	playsound(src, 'sound/weapons/blade1.ogg', 50, 1)
@@ -75,10 +75,10 @@
 
 /obj/item/clothing/suit/armor/shield/attack_self(mob/user)
 	active = !active
-	to_chat(user, "<span class='notice'>You [active ? "" : "de"]activate \the [src].</span>")
+	to_chat(user, span_notice("You [active ? "" : "de"]activate \the [src]."))
 	update_icon()
 	user.update_inv_wear_suit()
-	user.update_action_buttons()
+	user.update_mob_action_buttons()
 
 /obj/item/clothing/suit/armor/shield/update_icon()
 	icon_state = "shield_armor_[active]"

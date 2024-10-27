@@ -31,7 +31,6 @@
 #define MAX_CLIENT_FPS	200
 
 // Some arbitrary defines to be used by self-pruning global lists. (see master_controller)
-#define PROCESS_KILL 26 // Used to trigger removal from a processing list.
 #define MAX_GEAR_COST 15 // Used in chargen for accessory loadout limit.
 
 // For secHUDs and medHUDs and variants. The number is the location of the image on the list hud_list of humans.
@@ -310,11 +309,6 @@ var/global/list/##LIST_NAME = list();\
 #define RAD_RESIST_CALC_DIV 0 // Each turf absorbs some fraction of the working radiation level
 #define RAD_RESIST_CALC_SUB 1 // Each turf absorbs a fixed amount of radiation
 
-//https://secure.byond.com/docs/ref/info.html#/atom/var/mouse_opacity
-#define MOUSE_OPACITY_TRANSPARENT 0
-#define MOUSE_OPACITY_ICON 1
-#define MOUSE_OPACITY_OPAQUE 2
-
 // Used by radios to indicate that they have sent a message via something other than subspace
 #define RADIO_CONNECTION_FAIL 0
 #define RADIO_CONNECTION_NON_SUBSPACE 1
@@ -415,24 +409,6 @@ var/global/list/##LIST_NAME = list();\
 
 #define send_link(target, url) target << link(url)
 
-#define SPAN_NOTICE(X) "<span class='notice'>[X]</span>"
-
-#define SPAN_WARNING(X) "<span class='warning'>[X]</span>"
-
-#define SPAN_DANGER(X) "<span class='danger'>[X]</span>"
-
-#define SPAN_OCCULT(X) "<span class='cult'>[X]</span>"
-
-#define FONT_SMALL(X) "<font size='1'>[X]</font>"
-
-#define FONT_NORMAL(X) "<font size='2'>[X]</font>"
-
-#define FONT_LARGE(X) "<font size='3'>[X]</font>"
-
-#define FONT_HUGE(X) "<font size='4'>[X]</font>"
-
-#define FONT_GIANT(X) "<font size='5'>[X]</font>"
-
 // Volume Channel Defines
 
 #define VOLUME_CHANNEL_MASTER "Master"
@@ -495,3 +471,7 @@ GLOBAL_LIST_INIT(all_volume_channels, list(
 #define SPECIES_SORT_WHITELISTED 2
 #define SPECIES_SORT_RESTRICTED 3
 #define SPECIES_SORT_CUSTOM 4
+
+// Vote Types
+#define VOTE_RESULT_TYPE_MAJORITY	"Majority"
+#define VOTE_RESULT_TYPE_SKEWED		"Seventy"

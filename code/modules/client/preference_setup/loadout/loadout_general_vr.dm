@@ -41,13 +41,13 @@
 	toytype["Foam dart crossbow"] = /obj/item/toy/blink
 	toytype["Toy sword"] = /obj/item/toy/sword
 	toytype["Toy katana"] = /obj/item/toy/katana
-	toytype["Snap pops"] = /obj/item/weapon/storage/box/snappops
+	toytype["Snap pops"] = /obj/item/storage/box/snappops
 	toytype["Plastic flowers"] = /obj/item/toy/bouquet/fake
 	toytype["Stick horse"] = /obj/item/toy/stickhorse
 	toytype["Toy X-mas tree"] = /obj/item/toy/xmastree
-	toytype["Fake handcuff kit"] = /obj/item/weapon/storage/box/handcuffs/fake
+	toytype["Fake handcuff kit"] = /obj/item/storage/box/handcuffs/fake
 	toytype["Gravitational singularity"] = /obj/item/toy/spinningtoy
-	toytype["Water flower"] = /obj/item/weapon/reagent_containers/spray/waterflower
+	toytype["Water flower"] = /obj/item/reagent_containers/spray/waterflower
 	toytype["Bosun's whistle"] = /obj/item/toy/bosunwhistle
 	toytype["Magic 8 Ball"] = /obj/item/toy/eight_ball
 	toytype["Magic Conch shell"] = /obj/item/toy/eight_ball/conch
@@ -90,19 +90,19 @@
 /datum/gear/textmug
 	display_name = "mug with text"
 	description = "A mug with something written on it."
-	path = /obj/item/weapon/reagent_containers/food/drinks/textmug
+	path = /obj/item/reagent_containers/food/drinks/textmug
 
 /datum/gear/schnapsen
 	display_name = "schnapsen playing cards"
 	description = "An ancient Austro-Hungarian suit of cards!"
-	path = /obj/item/weapon/deck/schnapsen
+	path = /obj/item/deck/schnapsen
 
 /datum/gear/egy_game
 	display_name = "EGY playing cards"
 	description = "A deck of cards for playing EGY! Be the first to lose all cards!"
-	path = /obj/item/weapon/deck/egy
+	path = /obj/item/deck/egy
 
 /datum/gear/fluff_permit
 	display_name = "Customizable Permit"
 	description = "A customizable permit you can use for... just about anything! Be sure to customize the name and description. It is meant to represent generic driver's or pilot's licenses, and similar fluff items. It includes an irremovable disclaimer and may be freely confiscated or revoked at the discretion of Security and/or Command if you attempt to abuse it!"
-	path = /obj/item/weapon/card_fluff
+	path = /obj/item/card_fluff

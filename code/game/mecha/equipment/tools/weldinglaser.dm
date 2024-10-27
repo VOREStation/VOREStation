@@ -10,7 +10,7 @@
 	ready_sound = 'sound/items/Ratchet.ogg'
 	required_type = list(/obj/mecha/working/ripley)
 
-	tooltype = /obj/item/weapon/weldingtool/electric/mounted/exosuit
+	tooltype = /obj/item/weldingtool/electric/mounted/exosuit
 
 /obj/item/mecha_parts/mecha_equipment/tool/powertool/welding/action(var/atom/target)
 	..()

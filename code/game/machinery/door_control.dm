@@ -24,7 +24,7 @@
 	else
 		to_chat(user, "Error, no route to host.")
 
-/obj/machinery/button/remote/attackby(obj/item/weapon/W, mob/user as mob)
+/obj/machinery/button/remote/attackby(obj/item/W, mob/user as mob)
 	return attack_hand(user)
 
 /obj/machinery/button/remote/emag_act(var/remaining_charges, var/mob/user)
@@ -43,7 +43,7 @@
 		return
 
 	if(!allowed(user) && (wires & 1))
-		to_chat(user, "<span class='warning'>Access Denied</span>")
+		to_chat(user, span_warning("Access Denied"))
 		flick("doorctrl-denied",src)
 		return
 

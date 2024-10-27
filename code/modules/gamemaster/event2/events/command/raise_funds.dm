@@ -92,5 +92,5 @@
 
 /datum/event2/event/raise_funds/proc/send_command_report(title, message)
 	post_comm_message(title, message)
-	to_world(span("danger", "New [using_map.company_name] Update available at all communication consoles."))
+	to_world(span_danger("New [using_map.company_name] Update available at all communication consoles."))
 	SEND_SOUND(world, 'sound/AI/commandreport.ogg')

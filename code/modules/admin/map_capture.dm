@@ -7,13 +7,13 @@
 		return
 
 	if(isnull(tx) || isnull(ty) || isnull(tz) || isnull(range))
-		to_chat(usr, "<span class='filter_notice'>Capture Map Part, captures part of a map using camara like rendering.</span>")
-		to_chat(usr, "<span class='filter_notice'>Usage: Capture-Map-Part target_x_cord target_y_cord target_z_cord range.</span>")
-		to_chat(usr, "<span class='filter_notice'>Target coordinates specify bottom left corner of the capture, range defines render distance to opposite corner.</span>")
+		to_chat(usr, span_filter_notice("Capture Map Part, captures part of a map using camara like rendering."))
+		to_chat(usr, span_filter_notice("Usage: Capture-Map-Part target_x_cord target_y_cord target_z_cord range."))
+		to_chat(usr, span_filter_notice("Target coordinates specify bottom left corner of the capture, range defines render distance to opposite corner."))
 		return
 
 	if(range > 32 || range <= 0)
-		to_chat(usr, "<span class='filter_notice'>Capturing range is incorrect, it must be within 1-32.</span>")
+		to_chat(usr, span_filter_notice("Capturing range is incorrect, it must be within 1-32."))
 		return
 
 	if(locate(tx,ty,tz))
@@ -53,7 +53,7 @@
 					cap.Blend(img, blendMode2iconMode(A.blend_mode),  A.pixel_x + xoff, A.pixel_y + yoff)
 
 		var/file_name = "map_capture_x[tx]_y[ty]_z[tz]_r[range].png"
-		to_chat(usr, "<span class='filter_notice'>Saved capture in cache as [file_name].</span>")
+		to_chat(usr, span_filter_notice("Saved capture in cache as [file_name]."))
 		usr << browse_rsc(cap, file_name)
 	else
-		to_chat(usr, "<span class='filter_notice'>Target coordinates are incorrect.</span>")
+		to_chat(usr, span_filter_notice("Target coordinates are incorrect."))

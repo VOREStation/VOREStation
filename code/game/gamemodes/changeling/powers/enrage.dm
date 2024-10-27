@@ -24,7 +24,7 @@
 	var/modifier_to_use = /datum/modifier/berserk/changeling
 	if(src.mind.changeling.recursive_enhancement)
 		modifier_to_use = /datum/modifier/berserk/changeling/recursive
-		to_chat(src, "<span class='notice'>We optimize our levels of anger, which will avoid excessive stress on ourselves.</span>")
+		to_chat(src, span_notice("We optimize our levels of anger, which will avoid excessive stress on ourselves."))
 
 	if(add_modifier(modifier_to_use, 30 SECONDS))
 		changeling.chem_charges -= 30

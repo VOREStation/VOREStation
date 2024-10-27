@@ -46,7 +46,7 @@
 	organ_names = /decl/mob_organ_names/fish
 
 	meat_amount = 1
-	meat_type = /obj/item/weapon/reagent_containers/food/snacks/carpmeat/gnat
+	meat_type = /obj/item/reagent_containers/food/snacks/carpmeat/gnat
 
 	ai_holder_type = /datum/ai_holder/simple_mob/melee/evasive/jellyfish
 	mob_bump_flag = 0

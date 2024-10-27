@@ -344,7 +344,7 @@ var/list/_simple_mob_default_emotes = list(
 
 	var/HTML = "<body>"
 	HTML += "<tt><center>"
-	HTML += "<b>Update Flavour Text</b> <hr />"
+	HTML += span_bold("Update Flavour Text") + " <hr />"
 	HTML += "<br></center>"
 	HTML += "<a href='byond://?src=\ref[src];flavor_change=general'>General:</a> "
 	HTML += TextPreview(flavor_texts["general"])
@@ -381,7 +381,7 @@ var/list/_simple_mob_default_emotes = list(
 /mob/living/carbon/human/proc/toggle_tail(var/setting,var/message = 0)
 	if(!tail_style || !tail_style.ani_state)
 		if(message)
-			to_chat(src, "<span class='warning'>You don't have a tail that supports this.</span>")
+			to_chat(src, span_warning("You don't have a tail that supports this."))
 		return 0
 
 	var/new_wagging = isnull(setting) ? !wagging : setting
@@ -393,7 +393,7 @@ var/list/_simple_mob_default_emotes = list(
 /mob/living/carbon/human/proc/toggle_wing(var/setting,var/message = 0)
 	if(!wing_style || !wing_style.ani_state)
 		if(message)
-			to_chat(src, "<span class='warning'>You don't have a wingtype that supports this.</span>")
+			to_chat(src, span_warning("You don't have a wingtype that supports this."))
 		return 0
 
 	var/new_flapping = isnull(setting) ? !flapping : setting

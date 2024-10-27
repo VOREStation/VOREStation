@@ -241,7 +241,7 @@
 			ourborg.sprite_extra_customization += "boozehound"
 		ourborg.sprite_extra_customization["boozehound"] = choice
 		playsound(ourborg.loc, 'sound/effects/bubbles.ogg', 100, 0, 4)
-		to_chat(ourborg, "<span class='filter_notice'>Your tank now displays [choice]. Drink up and enjoy!</span>")
+		to_chat(ourborg, span_filter_notice("Your tank now displays [choice]. Drink up and enjoy!"))
 		ourborg.update_icon()
 		return 1
 

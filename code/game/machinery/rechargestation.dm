@@ -6,11 +6,11 @@
 	density = TRUE
 	anchored = TRUE
 	unacidable = TRUE
-	circuit = /obj/item/weapon/circuitboard/recharge_station
+	circuit = /obj/item/circuitboard/recharge_station
 	use_power = USE_POWER_IDLE
 	idle_power_usage = 50
 	var/mob/occupant = null
-	var/obj/item/weapon/cell/cell = null
+	var/obj/item/cell/cell = null
 	var/icon_update_tick = 0	// Used to rebuild the overlay only once every 10 ticks
 	var/charging = 0
 
@@ -122,20 +122,20 @@
 				H.accumulated_rads = max(H.accumulated_rads - 25, 0)
 
 		if(H.wearing_rig) // stepping into a borg charger to charge your rig and fix your shit
-			var/obj/item/weapon/rig/wornrig = H.get_rig()
+			var/obj/item/rig/wornrig = H.get_rig()
 			if(wornrig) // just to make sure
 				for(var/obj/item/rig_module/storedmod in wornrig.installed_modules)
 					if(weld_rate && storedmod.damage && cell.checked_use(weld_power_use * weld_rate * CELLRATE))
-						to_chat(H, "<span class='notice'>[storedmod] is repaired!</span>")
+						to_chat(H, span_notice("[storedmod] is repaired!"))
 						storedmod.damage = 0
 				if(wornrig.chest)
 					var/obj/item/clothing/suit/space/rig/rigchest = wornrig.chest
 					if(weld_rate && rigchest.damage && cell.checked_use(weld_power_use * weld_rate * CELLRATE))
 						rigchest.breaches = list()
 						rigchest.calc_breach_damage()
-						to_chat(H, "<span class='notice'>[rigchest] is repaired!</span>")
+						to_chat(H, span_notice("[rigchest] is repaired!"))
 				if(wornrig.cell)
-					var/obj/item/weapon/cell/rigcell = wornrig.cell
+					var/obj/item/cell/rigcell = wornrig.cell
 					var/diff = min(rigcell.maxcharge - rigcell.charge, charging_power * CELLRATE) // Capped by charging_power / tick
 					var/charge_used = cell.use(diff)
 					rigcell.give(charge_used)
@@ -171,8 +171,8 @@
 			return
 		if(default_part_replacement(user, O))
 			return
-		if (istype(O, /obj/item/weapon/grab) && get_dist(src,user)<2)
-			var/obj/item/weapon/grab/G = O
+		if (istype(O, /obj/item/grab) && get_dist(src,user)<2)
+			var/obj/item/grab/G = O
 			if(istype(G.affecting,/mob/living))
 				var/mob/living/M = G.affecting
 				qdel(O)
@@ -191,12 +191,12 @@
 	var/man_rating = 0
 	var/cap_rating = 0
 
-	for(var/obj/item/weapon/stock_parts/P in component_parts)
-		if(istype(P, /obj/item/weapon/stock_parts/capacitor))
+	for(var/obj/item/stock_parts/P in component_parts)
+		if(istype(P, /obj/item/stock_parts/capacitor))
 			cap_rating += P.rating
-		if(istype(P, /obj/item/weapon/stock_parts/manipulator))
+		if(istype(P, /obj/item/stock_parts/manipulator))
 			man_rating += P.rating
-	cell = locate(/obj/item/weapon/cell) in component_parts
+	cell = locate(/obj/item/cell) in component_parts
 
 	charging_power = 40000 + 40000 * cap_rating
 	restore_power_active = 10000 + 15000 * cap_rating
@@ -262,7 +262,7 @@
 			return
 
 		if(istype(R, /mob/living/silicon/robot/platform))
-			to_chat(R, SPAN_WARNING("You are too large to fit into \the [src]."))
+			to_chat(R, span_warning("You are too large to fit into \the [src]."))
 			return
 
 		add_fingerprint(R)

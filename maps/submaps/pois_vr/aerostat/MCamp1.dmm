@@ -17,7 +17,7 @@
 /turf/simulated/mineral/floor/ignore_mapgen/virgo2,
 /area/submap/virgo2/MilitaryCamp1)
 "g" = (
-/obj/item/weapon/material/shard,
+/obj/item/material/shard,
 /turf/simulated/mineral/floor/ignore_mapgen/virgo2,
 /area/submap/virgo2/MilitaryCamp1)
 "h" = (
@@ -44,7 +44,7 @@
 /area/submap/virgo2/MilitaryCamp1)
 "n" = (
 /obj/structure/table/standard,
-/obj/item/weapon/gun/energy/gun,
+/obj/item/gun/energy/gun,
 /turf/simulated/floor/tiled/techfloor/virgo2,
 /area/submap/virgo2/MilitaryCamp1)
 "o" = (
@@ -53,12 +53,12 @@
 /area/submap/virgo2/MilitaryCamp1)
 "q" = (
 /obj/structure/table/standard,
-/obj/item/weapon/gun/projectile/automatic/c20r,
+/obj/item/gun/projectile/automatic/c20r,
 /turf/simulated/floor/tiled/techfloor/virgo2,
 /area/submap/virgo2/MilitaryCamp1)
 "r" = (
 /obj/structure/table/standard,
-/obj/item/weapon/storage/box/syndie_kit/space,
+/obj/item/storage/box/syndie_kit/space,
 /turf/simulated/floor/tiled/techfloor/virgo2,
 /area/submap/virgo2/MilitaryCamp1)
 "s" = (

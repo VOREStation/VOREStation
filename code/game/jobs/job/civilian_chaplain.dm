@@ -28,15 +28,15 @@
 	if(!ask_questions)
 		return
 
-	var/obj/item/weapon/storage/bible/B = locate(/obj/item/weapon/storage/bible) in H
-	var/obj/item/weapon/card/id/I = locate(/obj/item/weapon/card/id) in H
+	var/obj/item/storage/bible/B = locate(/obj/item/storage/bible) in H
+	var/obj/item/card/id/I = locate(/obj/item/card/id) in H
 
 	if(!B || !I)
 		return
 
 	INVOKE_ASYNC(src, PROC_REF(religion_prompts), H, B, I)
 
-/datum/job/chaplain/proc/religion_prompts(mob/living/carbon/human/H, obj/item/weapon/storage/bible/B, obj/item/weapon/card/id/I)
+/datum/job/chaplain/proc/religion_prompts(mob/living/carbon/human/H, obj/item/storage/bible/B, obj/item/card/id/I)
 	var/religion_name = "Unitarianism"
 	var/new_religion = sanitize(input(H, "You are the crew services officer. Would you like to change your religion? Default is Unitarianism", "Name change", religion_name), MAX_NAME_LEN)
 	if(!new_religion)

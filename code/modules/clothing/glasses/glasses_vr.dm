@@ -12,14 +12,14 @@
 	playsound(src,'sound/items/screwdriver.ogg', 50, 1)
 
 //Prescription kit
-/obj/item/device/glasses_kit
+/obj/item/glasses_kit
 	name = "prescription glasses kit"
 	desc = "A kit containing all the needed tools and parts to develop and apply a prescription for someone."
 	icon = 'icons/obj/device.dmi'
 	icon_state = "modkit"
 	var/scrip_loaded = 0
 
-/obj/item/device/glasses_kit/afterattack(var/target, var/mob/living/carbon/human/user, var/proximity)
+/obj/item/glasses_kit/afterattack(var/target, var/mob/living/carbon/human/user, var/proximity)
 	if(!proximity)
 		return
 	if(!istype(user))
@@ -27,14 +27,14 @@
 
 	//Too difficult
 	if(target == user)
-		to_chat(user, "<span class='warning'>You can't use this on yourself. Get someone to help you.</span>")
+		to_chat(user, span_warning("You can't use this on yourself. Get someone to help you."))
 		return
 
 	//We're applying a prescription
 	if(istype(target,/obj/item/clothing/glasses))
 		var/obj/item/clothing/glasses/G = target
 		if(!scrip_loaded)
-			to_chat(user, "<span class='warning'>You need to build a prescription from someone first! Use the kit on someone.</span>")
+			to_chat(user, span_warning("You need to build a prescription from someone first! Use the kit on someone."))
 			return
 
 		if(do_after(user,5 SECONDS))
@@ -45,14 +45,14 @@
 	else if(ishuman(target))
 		var/mob/living/carbon/human/T = target
 		if(T.glasses || (T.head && T.head.flags_inv & HIDEEYES))
-			to_chat(user, "<span class='warning'>The person's eyes can't be covered!</span>")
+			to_chat(user, span_warning("The person's eyes can't be covered!"))
 			return
 
 		T.visible_message("[user] begins making measurements for prescription lenses for [target].","[user] begins measuring your eyes. Hold still!")
 		if(do_after(user,5 SECONDS,T))
 			T.flash_eyes()
 			scrip_loaded = 1
-			T.visible_message("[user] finishes making prescription lenses for [target].","<span class='warning'>Gah, that's bright!</span>")
+			T.visible_message("[user] finishes making prescription lenses for [target].",span_warning("Gah, that's bright!"))
 
 	else
 		..()
@@ -68,7 +68,7 @@
 	icon_override = 'icons/inventory/eyes/mob_vr.dmi'
 	icon_state = "medgravpatch"
 	item_state_slots = list(slot_r_hand_str = "blindfold", slot_l_hand_str = "blindfold")
-	action_button_name = "Toggle Eyepatch"
+	actions_types = list(/datum/action/item_action/toggle_eyepatch)
 	off_state = "eyepatch"
 	enables_planes = list(VIS_CH_STATUS,VIS_CH_HEALTH,VIS_FULLBRIGHT,VIS_MESONS)
 
@@ -82,8 +82,7 @@
 	flash_protection = FLASH_PROTECTION_MODERATE
 	item_flags = AIRTIGHT
 	body_parts_covered = EYES
-	action_button_name = "Change scanning pattern"
-	action_button_is_hands_free = TRUE
+	actions_types = list(/datum/action/item_action/hands_free/change_scanning_pattern)
 	var/static/list/tac_sec_vis_anim = list()
 
 /obj/item/clothing/glasses/sunglasses/sechud/tactical_sec_vis/Initialize(mapload)
@@ -107,8 +106,8 @@
 	if(src && choice && !user.incapacitated() && in_range(user,src))
 		icon_state = options[choice]
 		user.update_inv_glasses()
-		user.update_action_buttons()
-		to_chat(user, "<span class='notice'>Your [src] now displays [choice] .</span>")
+		user.update_mob_action_buttons()
+		to_chat(user, span_notice("Your [src] now displays [choice] ."))
 		return 1
 
 /*---Tajaran-specific Eyewear---*/

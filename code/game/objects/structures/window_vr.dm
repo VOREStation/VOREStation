@@ -4,7 +4,7 @@
 	basestate = "window"
 	icon_state = "window"
 	color = "#A7A3A6"
-	shardtype = /obj/item/weapon/material/shard/titaniumglass
+	shardtype = /obj/item/material/shard/titaniumglass
 	glasstype = /obj/item/stack/material/glass/titanium
 	reinf = 0
 	maximal_heat = T0C + 5000
@@ -23,7 +23,7 @@
 	basestate = "window"
 	icon_state = "window"
 	color = "#676366"
-	shardtype = /obj/item/weapon/material/shard/plastitaniumglass
+	shardtype = /obj/item/material/shard/plastitaniumglass
 	glasstype = /obj/item/stack/material/glass/plastitanium
 	reinf = 0
 	maximal_heat = T0C + 7000

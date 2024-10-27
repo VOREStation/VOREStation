@@ -1,0 +1,42 @@
+.AutomatedTellerMachine__Card {
+  animation: cardAnim 0.75s linear 0s infinite normal both;
+}
+
+@keyframes cardAnim {
+  0% {
+    transform: translate(0, 40px);
+  }
+
+  25% {
+    transform: translate(0, -32px);
+  }
+
+  100% {
+    transform: translate(0, 40px);
+  }
+}
+
+.AutomatedTellerMachine__Card--glitch {
+  animation: cardAnimGlitch 0.2s linear 0s infinite normal both;
+  transform-origin: 'center';
+}
+
+@keyframes cardAnimGlitch {
+  0% {
+    transform: translate(0, 40px) rotate(-45deg);
+  }
+
+  25% {
+    transform: translate(0, -32px) rotate(45deg);
+  }
+
+  100% {
+    transform: translate(0, 40px) rotate(-45deg);
+  }
+}
+
+.AutomatedTellerMachine__Table,
+.AutomatedTellerMachine__Table td {
+  border: 4px solid #aaa;
+  border-style: ridge;
+}

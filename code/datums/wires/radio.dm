@@ -1,5 +1,5 @@
 /datum/wires/radio
-	holder_type = /obj/item/device/radio
+	holder_type = /obj/item/radio
 	wire_count = 3
 	proper_name = "Radio"
 
@@ -8,13 +8,13 @@
 	return ..()
 
 /datum/wires/radio/interactable(mob/user)
-	var/obj/item/device/radio/R = holder
+	var/obj/item/radio/R = holder
 	if(R.b_stat)
 		return TRUE
 	return FALSE
 
 /datum/wires/radio/on_pulse(wire)
-	var/obj/item/device/radio/R = holder
+	var/obj/item/radio/R = holder
 	switch(wire)
 		if(WIRE_RADIO_SIGNAL)
 			R.listening = !R.listening && !is_cut(WIRE_RADIO_RECEIVER)
@@ -28,7 +28,7 @@
 	..()
 
 /datum/wires/radio/on_cut(wire, mend)
-	var/obj/item/device/radio/R = holder
+	var/obj/item/radio/R = holder
 	switch(wire)
 		if(WIRE_RADIO_SIGNAL)
 			R.listening = mend && !is_cut(WIRE_RADIO_RECEIVER)

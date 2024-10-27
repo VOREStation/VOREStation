@@ -119,7 +119,7 @@
 	data["safetyDisabled"] = safety_disabled
 	data["emagged"] = emagged
 	data["gravity"] = FALSE
-	if(linkedholodeck.has_gravity)
+	if(linkedholodeck.get_gravity())
 		data["gravity"] = TRUE
 
 	return data
@@ -166,7 +166,7 @@
 		emagged = 1
 		safety_disabled = 1
 		update_projections()
-		to_chat(user, "<span class='notice'>You vastly increase projector power and override the safety and security protocols.</span>")
+		to_chat(user, span_notice("You vastly increase projector power and override the safety and security protocols."))
 		to_chat(user, "Warning.  Automatic shutoff and derezing protocols have been corrupted.  Please call [using_map.company_name] maintenance and do not use the simulator.")
 		log_game("[key_name(usr)] emagged the Holodeck Control Computer")
 		return 1
@@ -175,11 +175,11 @@
 /obj/machinery/computer/HolodeckControl/proc/update_projections()
 	if (safety_disabled)
 		item_power_usage = 2500
-		for(var/obj/item/weapon/holo/esword/H in linkedholodeck)
+		for(var/obj/item/holo/esword/H in linkedholodeck)
 			H.damtype = BRUTE
 	else
 		item_power_usage = initial(item_power_usage)
-		for(var/obj/item/weapon/holo/esword/H in linkedholodeck)
+		for(var/obj/item/holo/esword/H in linkedholodeck)
 			H.damtype = initial(H.damtype)
 
 	for(var/mob/living/simple_mob/animal/space/carp/holodeck/C in holographic_mobs)
@@ -192,7 +192,7 @@
 	current_program = powerdown_program
 	linkedholodeck = locate(projection_area)
 	if(!linkedholodeck)
-		to_world("<span class='danger'>Holodeck computer at [x],[y],[z] failed to locate projection area.</span>")
+		to_world(span_danger("Holodeck computer at [x],[y],[z] failed to locate projection area."))
 
 //This could all be done better, but it works for now.
 /obj/machinery/computer/HolodeckControl/Destroy()
@@ -272,7 +272,7 @@
 	else
 		loadProgram(powerdown_program, 0)
 
-		if(!linkedholodeck.has_gravity)
+		if(!linkedholodeck.get_gravity())
 			linkedholodeck.gravitychange(1)
 
 		active = 0
@@ -300,7 +300,7 @@
 			if(world.time < (last_change + 15))//To prevent super-spam clicking, reduced process size and annoyance -Sieve
 				return 0
 			for(var/mob/M in range(3,src))
-				M.show_message("<b>ERROR. Recalibrating projection apparatus.</b>")
+				M.show_message(span_warningplain(span_bold("ERROR. Recalibrating projection apparatus.")))
 				last_change = world.time
 				return 0
 
@@ -371,7 +371,7 @@
 		if(world.time < (last_gravity_change + 15))//To prevent super-spam clicking
 			return
 		for(var/mob/M in range(3,src))
-			M.show_message("<b>ERROR. Recalibrating gravity field.</b>")
+			M.show_message(span_warningplain(span_bold("ERROR. Recalibrating gravity field.")))
 			last_change = world.time
 			return
 
@@ -379,7 +379,7 @@
 	active = 1
 	update_use_power(USE_POWER_IDLE)
 
-	if(A.has_gravity)
+	if(A.get_gravity())
 		A.gravitychange(0)
 	else
 		A.gravitychange(1)
@@ -388,7 +388,7 @@
 	//Turn it back to the regular non-holographic room
 	loadProgram(powerdown_program, 0)
 
-	if(!linkedholodeck.has_gravity)
+	if(!linkedholodeck.get_gravity())
 		linkedholodeck.gravitychange(1)
 
 	active = 0

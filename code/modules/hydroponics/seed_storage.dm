@@ -389,47 +389,47 @@
 /obj/machinery/seed_storage/attackby(var/obj/item/O as obj, var/mob/user as mob)
 	if (istype(O, /obj/item/seeds) && !lockdown)
 		add(O)
-		user.visible_message("<span class ='filter_notice'>[user] puts \the [O.name] into \the [src].</span>", "<span class ='filter_notice'>You put \the [O] into \the [src].</span>")
+		user.visible_message(span_filter_notice("[user] puts \the [O.name] into \the [src]."), span_filter_notice("You put \the [O] into \the [src]."))
 		return
-	else if (istype(O, /obj/item/weapon/storage/bag/plants) && !lockdown)
-		var/obj/item/weapon/storage/P = O
+	else if (istype(O, /obj/item/storage/bag/plants) && !lockdown)
+		var/obj/item/storage/P = O
 		var/loaded = 0
 		for(var/obj/item/seeds/G in P.contents)
 			++loaded
 			add(G)
 		if (loaded)
-			user.visible_message("<span class ='filter_notice'>[user] puts the seeds from \the [O.name] into \the [src].</span>", "<span class ='filter_notice'>You put the seeds from \the [O.name] into \the [src].</span>")
+			user.visible_message(span_filter_notice("[user] puts the seeds from \the [O.name] into \the [src]."), span_filter_notice("You put the seeds from \the [O.name] into \the [src]."))
 		else
-			to_chat(user, "<span class='notice'>There are no seeds in \the [O.name].</span>")
+			to_chat(user, span_notice("There are no seeds in \the [O.name]."))
 		return
 	else if(O.has_tool_quality(TOOL_WRENCH))
 		playsound(src, O.usesound, 50, 1)
 		anchored = !anchored
-		to_chat(user, "<span class ='filter_notice'>You [anchored ? "wrench" : "unwrench"] \the [src].</span>")
+		to_chat(user, span_filter_notice("You [anchored ? "wrench" : "unwrench"] \the [src]."))
 	else if(O.has_tool_quality(TOOL_SCREWDRIVER))
 		panel_open = !panel_open
-		to_chat(user, "<span class ='filter_notice'>You [panel_open ? "open" : "close"] the maintenance panel.</span>")
+		to_chat(user, span_filter_notice("You [panel_open ? "open" : "close"] the maintenance panel."))
 		playsound(src, O.usesound, 50, 1)
 		cut_overlays()
 		if(panel_open)
 			add_overlay("[initial(icon_state)]-panel")
-	else if((O.has_tool_quality(TOOL_WIRECUTTER) || istype(O, /obj/item/device/multitool)) && panel_open)
+	else if((O.has_tool_quality(TOOL_WIRECUTTER) || istype(O, /obj/item/multitool)) && panel_open)
 		wires.Interact(user)
 
 /obj/machinery/seed_storage/emag_act(var/remaining_charges, var/mob/user)
 	if(!src.emagged)
 		emagged = 1
 		if(lockdown)
-			to_chat(user, "<span class='notice'>\The [src]'s control panel thunks, as its cover retracts.</span>")
+			to_chat(user, span_notice("\The [src]'s control panel thunks, as its cover retracts."))
 			lockdown = 0
 		if(LAZYLEN(req_access) || LAZYLEN(req_one_access))
 			req_access = list()
 			req_one_access = list()
-			to_chat(user, "<span class='warning'>\The [src]'s access mechanism shorts out.</span>")
+			to_chat(user, span_warning("\The [src]'s access mechanism shorts out."))
 			var/datum/effect/effect/system/spark_spread/sparks = new /datum/effect/effect/system/spark_spread()
 			sparks.set_up(3, 0, get_turf(src))
 			sparks.start()
-			visible_message("<span class='warning'>\The [src]'s panel sparks!</span>")
+			visible_message(span_warning("\The [src]'s panel sparks!"))
 			qdel(sparks)
 		return 1
 
@@ -437,8 +437,8 @@
 	if (istype(O.loc, /mob))
 		var/mob/user = O.loc
 		user.remove_from_mob(O)
-	else if(istype(O.loc,/obj/item/weapon/storage))
-		var/obj/item/weapon/storage/S = O.loc
+	else if(istype(O.loc,/obj/item/storage))
+		var/obj/item/storage/S = O.loc
 		S.remove_from_storage(O, src)
 
 	O.loc = src

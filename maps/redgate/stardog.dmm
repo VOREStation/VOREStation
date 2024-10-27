@@ -226,7 +226,7 @@
 /turf/simulated/floor/lino,
 /area/redgate/stardog/lounge)
 "ud" = (
-/obj/item/weapon/pickaxe/hand,
+/obj/item/pickaxe/hand,
 /turf/simulated/floor/flesh,
 /area/redgate/stardog/flesh_abyss/stomach)
 "uQ" = (

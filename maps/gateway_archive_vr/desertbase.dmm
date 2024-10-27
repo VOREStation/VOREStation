@@ -269,7 +269,7 @@
 /area/space)
 "aW" = (
 /obj/structure/table/standard,
-/obj/item/weapon/storage/box/donkpockets{
+/obj/item/storage/box/donkpockets{
 	pixel_x = 2;
 	pixel_y = 3
 	},
@@ -298,14 +298,14 @@
 /obj/item/stack/material/glass{
 	amount = 15
 	},
-/obj/item/weapon/cell{
+/obj/item/cell{
 	charge = 100;
 	maxcharge = 15000
 	},
 /turf/simulated/shuttle/floor/darkred,
 /area/space)
 "ba" = (
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	desc = "Talk through this. Evilly";
 	frequency = 1213;
 	name = "Syndicate Intercom";
@@ -318,11 +318,11 @@
 /area/space)
 "bb" = (
 /obj/structure/table/standard,
-/obj/item/weapon/paper_bin{
+/obj/item/paper_bin{
 	pixel_x = -3;
 	pixel_y = 8
 	},
-/obj/item/weapon/pen{
+/obj/item/pen{
 	pixel_y = 4
 	},
 /turf/simulated/shuttle/floor/darkred,
@@ -343,8 +343,8 @@
 /obj/item/stack/medical/bruise_pack,
 /obj/item/stack/medical/bruise_pack,
 /obj/item/stack/medical/bruise_pack,
-/obj/item/weapon/storage/belt/medical/emt,
-/obj/item/weapon/storage/belt/medical/emt,
+/obj/item/storage/belt/medical/emt,
+/obj/item/storage/belt/medical/emt,
 /turf/simulated/shuttle/floor/darkred,
 /area/space)
 "be" = (
@@ -404,10 +404,10 @@
 /area/space)
 "bm" = (
 /obj/structure/closet,
-/obj/item/weapon/reagent_containers/food/snacks/liquidfood,
-/obj/item/weapon/reagent_containers/food/snacks/liquidfood,
-/obj/item/weapon/reagent_containers/food/snacks/liquidfood,
-/obj/item/weapon/reagent_containers/food/snacks/liquidfood,
+/obj/item/reagent_containers/food/snacks/liquidfood,
+/obj/item/reagent_containers/food/snacks/liquidfood,
+/obj/item/reagent_containers/food/snacks/liquidfood,
+/obj/item/reagent_containers/food/snacks/liquidfood,
 /obj/machinery/light{
 	dir = 4
 	},
@@ -415,10 +415,10 @@
 /area/space)
 "bn" = (
 /obj/structure/closet,
-/obj/item/weapon/reagent_containers/food/snacks/tastybread,
-/obj/item/weapon/reagent_containers/food/snacks/tastybread,
-/obj/item/weapon/reagent_containers/food/snacks/tastybread,
-/obj/item/weapon/reagent_containers/food/snacks/tastybread,
+/obj/item/reagent_containers/food/snacks/tastybread,
+/obj/item/reagent_containers/food/snacks/tastybread,
+/obj/item/reagent_containers/food/snacks/tastybread,
+/obj/item/reagent_containers/food/snacks/tastybread,
 /turf/simulated/shuttle/floor/darkred,
 /area/space)
 "bo" = (
@@ -439,7 +439,7 @@
 /turf/simulated/shuttle/floor/darkred,
 /area/space)
 "bq" = (
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	desc = "Talk through this. Evilly";
 	frequency = 1213;
 	name = "Syndicate Intercom";
@@ -504,7 +504,7 @@
 /obj/machinery/vending/assist{
 	contraband = null;
 	name = "AntagCorpVend";
-	products = list(/obj/item/device/assembly/prox_sensor = 5, /obj/item/device/assembly/signaler = 4, /obj/item/device/assembly/infra = 4, /obj/item/device/assembly/prox_sensor = 4, /obj/item/weapon/handcuffs = 8, /obj/item/device/flash = 4, /obj/item/weapon/cartridge/signal = 4, /obj/item/clothing/glasses/sunglasses = 4)
+	products = list(/obj/item/assembly/prox_sensor = 5, /obj/item/assembly/signaler = 4, /obj/item/assembly/infra = 4, /obj/item/assembly/prox_sensor = 4, /obj/item/handcuffs = 8, /obj/item/flash = 4, /obj/item/cartridge/signal = 4, /obj/item/clothing/glasses/sunglasses = 4)
 	},
 /obj/machinery/light{
 	dir = 4
@@ -543,7 +543,7 @@
 /obj/machinery/vending/cigarette{
 	name = "hacked cigarette machine";
 	prices = list();
-	products = list(/obj/item/weapon/storage/fancy/cigarettes = 10, /obj/item/weapon/storage/box/matches = 10, /obj/item/weapon/flame/lighter/zippo = 4, /obj/item/clothing/mask/smokable/cigarette/cigar/havana = 2)
+	products = list(/obj/item/storage/fancy/cigarettes = 10, /obj/item/storage/box/matches = 10, /obj/item/flame/lighter/zippo = 4, /obj/item/clothing/mask/smokable/cigarette/cigar/havana = 2)
 	},
 /turf/simulated/shuttle/floor/darkred,
 /area/space)
@@ -568,18 +568,18 @@
 /area/space)
 "bG" = (
 /obj/structure/table/standard,
-/obj/item/weapon/material/kitchen/utensil/knife{
+/obj/item/material/kitchen/utensil/knife{
 	pixel_x = -6
 	},
-/obj/item/weapon/reagent_containers/syringe/drugs{
+/obj/item/reagent_containers/syringe/drugs{
 	pixel_x = 3;
 	pixel_y = -1
 	},
-/obj/item/weapon/reagent_containers/syringe/drugs{
+/obj/item/reagent_containers/syringe/drugs{
 	pixel_x = 3;
 	pixel_y = 4
 	},
-/obj/item/weapon/reagent_containers/syringe/drugs{
+/obj/item/reagent_containers/syringe/drugs{
 	pixel_x = 3;
 	pixel_y = 9
 	},
@@ -611,9 +611,9 @@
 /obj/structure/closet{
 	name = "custodial"
 	},
-/obj/item/weapon/reagent_containers/glass/bucket,
-/obj/item/weapon/mop,
-/obj/item/weapon/reagent_containers/spray/cleaner,
+/obj/item/reagent_containers/glass/bucket,
+/obj/item/mop,
+/obj/item/reagent_containers/spray/cleaner,
 /turf/simulated/shuttle/floor/darkred,
 /area/space)
 "bL" = (
@@ -647,8 +647,8 @@
 /area/space)
 "bQ" = (
 /obj/structure/table/standard,
-/obj/item/weapon/reagent_containers/blood/OMinus,
-/obj/item/weapon/reagent_containers/blood/OMinus,
+/obj/item/reagent_containers/blood/OMinus,
+/obj/item/reagent_containers/blood/OMinus,
 /turf/simulated/shuttle/floor/darkred,
 /area/space)
 "bR" = (
@@ -658,18 +658,18 @@
 	req_access = list(150)
 	},
 /obj/item/bodybag,
-/obj/item/weapon/reagent_containers/syringe/antiviral,
-/obj/item/weapon/reagent_containers/syringe/antiviral,
-/obj/item/weapon/reagent_containers/syringe/antiviral,
-/obj/item/weapon/reagent_containers/glass/bottle/antitoxin{
+/obj/item/reagent_containers/syringe/antiviral,
+/obj/item/reagent_containers/syringe/antiviral,
+/obj/item/reagent_containers/syringe/antiviral,
+/obj/item/reagent_containers/glass/bottle/antitoxin{
 	pixel_x = -4;
 	pixel_y = 8
 	},
-/obj/item/weapon/reagent_containers/glass/bottle/inaprovaline{
+/obj/item/reagent_containers/glass/bottle/inaprovaline{
 	pixel_x = 4;
 	pixel_y = 7
 	},
-/obj/item/weapon/reagent_containers/syringe,
+/obj/item/reagent_containers/syringe,
 /obj/machinery/light{
 	dir = 4
 	},
@@ -693,7 +693,7 @@
 /area/space)
 "bU" = (
 /obj/structure/table/standard,
-/obj/item/device/binoculars,
+/obj/item/binoculars,
 /turf/simulated/shuttle/floor/darkred,
 /area/space)
 "bV" = (
@@ -810,7 +810,7 @@
 /turf/simulated/shuttle/floor/darkred,
 /area/space)
 "ch" = (
-/obj/item/weapon/stool/padded,
+/obj/item/stool/padded,
 /turf/simulated/shuttle/floor/darkred,
 /area/space)
 "ci" = (
@@ -895,7 +895,7 @@
 /area/space)
 "co" = (
 /obj/structure/table/rack,
-/obj/item/device/multitool,
+/obj/item/multitool,
 /obj/machinery/light{
 	dir = 8;
 	icon_state = "tube1";
@@ -908,9 +908,9 @@
 	dir = 1
 	},
 /obj/structure/table/standard,
-/obj/item/weapon/surgical/surgicaldrill,
-/obj/item/weapon/surgical/cautery,
-/obj/item/weapon/surgical/retractor,
+/obj/item/surgical/surgicaldrill,
+/obj/item/surgical/cautery,
+/obj/item/surgical/retractor,
 /obj/item/stack/nanopaste,
 /turf/simulated/shuttle/floor/darkred,
 /area/space)
@@ -919,12 +919,12 @@
 	dir = 1
 	},
 /obj/structure/table/standard,
-/obj/item/weapon/surgical/circular_saw,
-/obj/item/weapon/surgical/FixOVein{
+/obj/item/surgical/circular_saw,
+/obj/item/surgical/FixOVein{
 	pixel_x = -6;
 	pixel_y = 1
 	},
-/obj/item/weapon/surgical/hemostat,
+/obj/item/surgical/hemostat,
 /turf/simulated/shuttle/floor/darkred,
 /area/space)
 "cr" = (
@@ -932,21 +932,21 @@
 /obj/structure/window/reinforced{
 	dir = 8
 	},
-/obj/item/weapon/storage/firstaid/toxin{
+/obj/item/storage/firstaid/toxin{
 	pixel_x = 3;
 	pixel_y = 3
 	},
-/obj/item/weapon/storage/firstaid/adv{
+/obj/item/storage/firstaid/adv{
 	pixel_x = 1
 	},
-/obj/item/weapon/storage/firstaid/fire{
+/obj/item/storage/firstaid/fire{
 	pixel_x = 1
 	},
-/obj/item/weapon/storage/firstaid/o2{
+/obj/item/storage/firstaid/o2{
 	pixel_x = 3;
 	pixel_y = 3
 	},
-/obj/item/weapon/storage/firstaid/regular,
+/obj/item/storage/firstaid/regular,
 /turf/simulated/shuttle/floor/darkred,
 /area/space)
 "cs" = (
@@ -957,7 +957,7 @@
 /turf/simulated/shuttle/floor/darkred,
 /area/space)
 "ct" = (
-/obj/item/weapon/weldingtool,
+/obj/item/weldingtool,
 /obj/machinery/light{
 	dir = 8;
 	icon_state = "tube1";
@@ -1008,12 +1008,12 @@
 	pixel_y = 0;
 	req_access = list(150)
 	},
-/obj/item/weapon/tank/anesthetic,
+/obj/item/tank/anesthetic,
 /obj/item/clothing/mask/breath/medical,
 /obj/item/clothing/mask/surgical,
-/obj/item/weapon/reagent_containers/syringe,
-/obj/item/weapon/reagent_containers/glass/bottle/stoxin,
-/obj/item/weapon/reagent_containers/glass/bottle/stoxin,
+/obj/item/reagent_containers/syringe,
+/obj/item/reagent_containers/glass/bottle/stoxin,
+/obj/item/reagent_containers/glass/bottle/stoxin,
 /turf/simulated/shuttle/floor/darkred,
 /area/space)
 "cz" = (
@@ -1021,7 +1021,7 @@
 /turf/simulated/shuttle/floor/darkred,
 /area/space)
 "cA" = (
-/obj/item/weapon/tool/crowbar,
+/obj/item/tool/crowbar,
 /turf/simulated/shuttle/floor/darkred,
 /area/space)
 "cB" = (
@@ -1055,9 +1055,9 @@
 /area/space)
 "cH" = (
 /obj/structure/table/standard,
-/obj/item/weapon/surgical/scalpel,
-/obj/item/weapon/surgical/bonesetter,
-/obj/item/weapon/surgical/bonegel{
+/obj/item/surgical/scalpel,
+/obj/item/surgical/bonesetter,
+/obj/item/surgical/bonegel{
 	pixel_x = 4;
 	pixel_y = 3
 	},

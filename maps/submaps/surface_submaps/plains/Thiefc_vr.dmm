@@ -10,20 +10,20 @@
 /area/submap/Thiefc)
 "d" = (
 /obj/structure/ore_box,
-/obj/item/weapon/ore/coal,
-/obj/item/weapon/ore/coal,
-/obj/item/weapon/ore/coal,
-/obj/item/weapon/ore/coal,
-/obj/item/weapon/ore/coal,
+/obj/item/ore/coal,
+/obj/item/ore/coal,
+/obj/item/ore/coal,
+/obj/item/ore/coal,
+/obj/item/ore/coal,
 /turf/simulated/floor/outdoors/dirt/virgo3b{
 	outdoors = 0
 	},
 /area/submap/Thiefc)
 "e" = (
 /obj/structure/closet/crate,
-/obj/item/weapon/extinguisher,
-/obj/item/weapon/extinguisher,
-/obj/item/weapon/extinguisher,
+/obj/item/extinguisher,
+/obj/item/extinguisher,
+/obj/item/extinguisher,
 /turf/simulated/floor/outdoors/dirt/virgo3b{
 	outdoors = 0
 	},
@@ -35,14 +35,14 @@
 	},
 /area/submap/Thiefc)
 "g" = (
-/obj/item/weapon/ore/coal,
-/obj/item/weapon/ore/coal,
-/obj/item/weapon/ore/coal,
-/obj/item/weapon/ore/coal,
-/obj/item/weapon/ore/coal,
-/obj/item/weapon/ore/coal,
-/obj/item/weapon/ore/coal,
-/obj/item/weapon/ore/coal,
+/obj/item/ore/coal,
+/obj/item/ore/coal,
+/obj/item/ore/coal,
+/obj/item/ore/coal,
+/obj/item/ore/coal,
+/obj/item/ore/coal,
+/obj/item/ore/coal,
+/obj/item/ore/coal,
 /turf/simulated/floor/outdoors/dirt/virgo3b{
 	outdoors = 0
 	},
@@ -54,17 +54,17 @@
 /area/submap/Thiefc)
 "i" = (
 /obj/structure/closet/crate,
-/obj/item/weapon/lipstick,
-/obj/item/weapon/lipstick/black,
-/obj/item/weapon/lipstick/random,
+/obj/item/lipstick,
+/obj/item/lipstick/black,
+/obj/item/lipstick/random,
 /turf/simulated/floor/outdoors/dirt/virgo3b{
 	outdoors = 0
 	},
 /area/submap/Thiefc)
 "j" = (
 /obj/structure/table/steel,
-/obj/item/weapon/beartrap,
-/obj/item/device/survivalcapsule,
+/obj/item/beartrap,
+/obj/item/survivalcapsule,
 /turf/simulated/floor/outdoors/dirt/virgo3b{
 	outdoors = 0
 	},
@@ -81,16 +81,16 @@
 /area/submap/Thiefc)
 "l" = (
 /obj/structure/closet/crate,
-/obj/item/device/nif,
-/obj/item/device/nif/bad,
-/obj/item/device/nif/bad,
+/obj/item/nif,
+/obj/item/nif/bad,
+/obj/item/nif/bad,
 /turf/simulated/floor/outdoors/dirt/virgo3b{
 	outdoors = 0
 	},
 /area/submap/Thiefc)
 "m" = (
 /obj/structure/table/steel,
-/obj/item/weapon/paper{
+/obj/item/paper{
 	desc = "This is some bullshit. First chance we got to knick something that looks half decent turns out to be mostly junk. And now we're getting calls that the other stash we've got has got a spider problem. Fuck this, Between the shitty weather, The pissed of bugs, And now apparently some NT goon running around in the area there's hardly enough reason to stick around. I'm telling Carl I'm out tommorow.";
 	name = "Note"
 	},
@@ -108,11 +108,11 @@
 /area/submap/Thiefc)
 "o" = (
 /obj/structure/closet/crate,
-/obj/item/weapon/cell/device/weapon,
-/obj/item/weapon/cell/device/weapon,
-/obj/item/weapon/cell/device/weapon,
-/obj/item/weapon/cell/device/weapon,
-/obj/item/device/perfect_tele/one_beacon,
+/obj/item/cell/device/weapon,
+/obj/item/cell/device/weapon,
+/obj/item/cell/device/weapon,
+/obj/item/cell/device/weapon,
+/obj/item/perfect_tele/one_beacon,
 /turf/simulated/floor/outdoors/dirt/virgo3b{
 	outdoors = 0
 	},

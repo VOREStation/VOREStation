@@ -6,11 +6,11 @@
 	enhancement_desc = "Rate of siphoning is doubled."
 	spell_power_desc = "Rate of siphoning is scaled up based on spell power."
 	cost = 100
-	obj_path = /obj/item/weapon/spell/energy_siphon
+	obj_path = /obj/item/spell/energy_siphon
 	ability_icon_state = "tech_energysiphon"
 	category = UTILITY_SPELLS
 
-/obj/item/weapon/spell/energy_siphon
+/obj/item/spell/energy_siphon
 	name = "energy siphon"
 	desc = "Now you are an energy vampire."
 	icon_state = "energy_siphon"
@@ -20,40 +20,40 @@
 	var/list/things_to_siphon = list() //Things which are actually drained as a result of the above not being null.
 	var/flow_rate = 1000 // Limits how much electricity can be drained per second.  Measured by default in god knows what.
 
-/obj/item/weapon/spell/energy_siphon/New()
+/obj/item/spell/energy_siphon/New()
 	..()
 	START_PROCESSING(SSobj, src)
 
-/obj/item/weapon/spell/energy_siphon/Destroy()
+/obj/item/spell/energy_siphon/Destroy()
 	stop_siphoning()
 	STOP_PROCESSING(SSobj, src)
 	return ..()
 
-/obj/item/weapon/spell/energy_siphon/process()
+/obj/item/spell/energy_siphon/process()
 	if(!siphoning)
 		return
 	if(!pay_energy(100))
-		to_chat(owner, "<span class='warning'>You can't afford to maintain the siphon link!</span>")
+		to_chat(owner, span_warning("You can't afford to maintain the siphon link!"))
 		stop_siphoning()
 		return
 	if(get_dist(siphoning, get_turf(src)) > 4)
-		to_chat(owner, "<span class='warning'>\The [siphoning] is too far to drain from!</span>")
+		to_chat(owner, span_warning("\The [siphoning] is too far to drain from!"))
 		stop_siphoning()
 		return
 	if(!(siphoning in view(owner)))
-		to_chat(owner, "<span class='warning'>\The [siphoning] cannot be seen!</span>")
+		to_chat(owner, span_warning("\The [siphoning] cannot be seen!"))
 		stop_siphoning()
 		return
 	siphon(siphoning, owner)
 
 
 
-/obj/item/weapon/spell/energy_siphon/on_ranged_cast(atom/hit_atom, mob/user)
+/obj/item/spell/energy_siphon/on_ranged_cast(atom/hit_atom, mob/user)
 	if(istype(hit_atom, /atom/movable) && within_range(hit_atom, 4))
 		var/atom/movable/AM = hit_atom
 		populate_siphon_list(AM)
 		if(!things_to_siphon.len)
-			to_chat(user, "<span class='warning'>You cannot steal energy from \a [AM].</span>")
+			to_chat(user, span_warning("You cannot steal energy from \a [AM]."))
 			return 0
 		siphoning = AM
 		update_icon()
@@ -61,7 +61,7 @@
 	else
 		stop_siphoning()
 
-/obj/item/weapon/spell/energy_siphon/proc/populate_siphon_list(atom/movable/target)
+/obj/item/spell/energy_siphon/proc/populate_siphon_list(atom/movable/target)
 	things_to_siphon.Cut()
 	things_to_siphon |= target // The recursive check below does not add the object being checked to its list.
 	things_to_siphon |= recursive_content_check(target, things_to_siphon, recursion_limit = 3, client_check = 0, sight_check = 0, include_mobs = 1, include_objects = 1, ignore_show_messages = 1)
@@ -73,7 +73,7 @@
 		if(AM.drain_power(1) <= 0) // This checks if whatever's in the list can be drained from.
 			things_to_siphon.Remove(AM)
 
-/obj/item/weapon/spell/energy_siphon/proc/stop_siphoning()
+/obj/item/spell/energy_siphon/proc/stop_siphoning()
 	siphoning = null
 	things_to_siphon.Cut()
 	update_icon()
@@ -83,7 +83,7 @@
 #define SIPHON_CORE_TO_ENERGY	0.5
 
 // This is called every tick, so long as a link exists between the target and the Technomancer.
-/obj/item/weapon/spell/energy_siphon/proc/siphon(atom/movable/siphoning, mob/living/user)
+/obj/item/spell/energy_siphon/proc/siphon(atom/movable/siphoning, mob/living/user)
 	var/list/things_to_drain = things_to_siphon // Temporary list copy of what we're gonna steal from.
 	var/charge_to_give = 0 // How much energy to give to the Technomancer at the end.
 	var/flow_remaining = calculate_spell_power(flow_rate)
@@ -125,8 +125,8 @@
 				charge_to_give += nutrition_delta * SIPHON_FBP_TO_ENERGY
 				flow_remaining = flow_remaining - nutrition_to_steal / 0.025
 			// Let's steal some energy from another Technomancer.
-			if(istype(H.back, /obj/item/weapon/technomancer_core) && H != user)
-				var/obj/item/weapon/technomancer_core/their_core = H.back
+			if(istype(H.back, /obj/item/technomancer_core) && H != user)
+				var/obj/item/technomancer_core/their_core = H.back
 				if(their_core.pay_energy(flow_remaining / 2)) // Don't give energy from nothing.
 					charge_to_give += flow_remaining * SIPHON_CORE_TO_ENERGY
 					flow_remaining = 0
@@ -137,28 +137,28 @@
 	// Now we can actually fill up the core.
 	if(core.energy < core.max_energy)
 		give_energy(charge_to_give)
-		to_chat(user, "<span class='notice'>Stolen [charge_to_give * CELLRATE] kJ and converted to [charge_to_give] Core energy.</span>")
+		to_chat(user, span_notice("Stolen [charge_to_give * CELLRATE] kJ and converted to [charge_to_give] Core energy."))
 		if( (core.max_energy - core.energy) < charge_to_give ) // We have some overflow, if this is true.
 			if(user.isSynthetic()) // Let's do something with it, if we're a robot.
 				charge_to_give = charge_to_give - (core.max_energy - core.energy)
 				user.adjust_nutrition(charge_to_give / SIPHON_FBP_TO_ENERGY)
-				to_chat(user, "<span class='notice'>Redirected energy to internal microcell.</span>")
+				to_chat(user, span_notice("Redirected energy to internal microcell."))
 	else
-		to_chat(user, "<span class='notice'>Stolen [charge_to_give * CELLRATE] kJ.</span>")
+		to_chat(user, span_notice("Stolen [charge_to_give * CELLRATE] kJ."))
 	adjust_instability(2)
 
 	if(flow_remaining == flow_rate) // We didn't drain anything.
-		to_chat(user, "<span class='warning'>\The [siphoning] cannot be drained any further.</span>")
+		to_chat(user, span_warning("\The [siphoning] cannot be drained any further."))
 		stop_siphoning()
 
-/obj/item/weapon/spell/energy_siphon/update_icon()
+/obj/item/spell/energy_siphon/update_icon()
 	..()
 	if(siphoning)
 		icon_state = "energy_siphon_drain"
 	else
 		icon_state = "energy_siphon"
 
-/obj/item/weapon/spell/energy_siphon/proc/create_lightning(mob/user, atom/source)
+/obj/item/spell/energy_siphon/proc/create_lightning(mob/user, atom/source)
 	if(user && source && user != source)
 		spawn(0)
 			var/i = 7 // process() takes two seconds to tick, this ensures the appearance of a ongoing beam.

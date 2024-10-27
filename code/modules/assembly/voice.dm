@@ -1,4 +1,4 @@
-/obj/item/device/assembly/voice
+/obj/item/assembly/voice
 	name = "voice analyzer"
 	desc = "A small electronic device able to record a voice sample, and send a signal when that sample is repeated."
 	icon_state = "voice"
@@ -7,7 +7,7 @@
 	var/listening = 0
 	var/recorded	//the activation message
 
-/obj/item/device/assembly/voice/hear_talk(mob/M, list/message_pieces, verb)
+/obj/item/assembly/voice/hear_talk(mob/M, list/message_pieces, verb)
 	var/msg = multilingual_to_message(message_pieces)
 	if(listening)
 		recorded = msg
@@ -18,7 +18,7 @@
 		if(findtext(msg, recorded))
 			pulse(0)
 
-/obj/item/device/assembly/voice/activate()
+/obj/item/assembly/voice/activate()
 	if(secured)
 		if(!holder)
 			listening = !listening
@@ -26,12 +26,12 @@
 			T.visible_message("[icon2html(src,viewers(src))] beeps, \"[listening ? "Now" : "No longer"] recording input.\"")
 
 
-/obj/item/device/assembly/voice/attack_self(mob/user)
+/obj/item/assembly/voice/attack_self(mob/user)
 	if(!user)
 		return FALSE
 	activate()
 	return TRUE
 
-/obj/item/device/assembly/voice/toggle_secure()
+/obj/item/assembly/voice/toggle_secure()
 	. = ..()
 	listening = 0

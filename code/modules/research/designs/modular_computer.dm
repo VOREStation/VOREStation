@@ -10,14 +10,14 @@
 	id = "hdd_basic"
 	req_tech = list(TECH_DATA = 1, TECH_ENGINEERING = 1)
 	materials = list(MAT_STEEL = 2000, MAT_GLASS = 100)
-	build_path = /obj/item/weapon/computer_hardware/hard_drive/
+	build_path = /obj/item/computer_hardware/hard_drive/
 	sort_string = "VAAAA"
 
 /datum/design/item/modularcomponent/disk/advanced
 	name = "advanced hard drive"
 	id = "hdd_advanced"
 	materials = list(MAT_STEEL = 4000, MAT_GLASS = 200)
-	build_path = /obj/item/weapon/computer_hardware/hard_drive/advanced
+	build_path = /obj/item/computer_hardware/hard_drive/advanced
 	sort_string = "VAAAB"
 
 /datum/design/item/modularcomponent/disk/super
@@ -25,7 +25,7 @@
 	id = "hdd_super"
 	req_tech = list(TECH_DATA = 3, TECH_ENGINEERING = 3)
 	materials = list(MAT_STEEL = 8000, MAT_GLASS = 400)
-	build_path = /obj/item/weapon/computer_hardware/hard_drive/super
+	build_path = /obj/item/computer_hardware/hard_drive/super
 	sort_string = "VAAAC"
 
 /datum/design/item/modularcomponent/disk/cluster
@@ -33,7 +33,7 @@
 	id = "hdd_cluster"
 	req_tech = list(TECH_DATA = 4, TECH_ENGINEERING = 4)
 	materials = list(MAT_STEEL = 16000, MAT_GLASS = 800)
-	build_path = /obj/item/weapon/computer_hardware/hard_drive/cluster
+	build_path = /obj/item/computer_hardware/hard_drive/cluster
 	sort_string = "VAAAD"
 
 /datum/design/item/modularcomponent/disk/small
@@ -41,7 +41,7 @@
 	id = "hdd_small"
 	req_tech = list(TECH_DATA = 2, TECH_ENGINEERING = 2)
 	materials = list(MAT_STEEL = 4000, MAT_GLASS = 200)
-	build_path = /obj/item/weapon/computer_hardware/hard_drive/small
+	build_path = /obj/item/computer_hardware/hard_drive/small
 	sort_string = "VAAAE"
 
 /datum/design/item/modularcomponent/disk/micro
@@ -49,7 +49,7 @@
 	id = "hdd_micro"
 	req_tech = list(TECH_DATA = 1, TECH_ENGINEERING = 1)
 	materials = list(MAT_STEEL = 2000, MAT_GLASS = 100)
-	build_path = /obj/item/weapon/computer_hardware/hard_drive/micro
+	build_path = /obj/item/computer_hardware/hard_drive/micro
 	sort_string = "VAAAF"
 
 // Network cards
@@ -59,7 +59,7 @@
 	id = "netcard_basic"
 	req_tech = list(TECH_DATA = 2, TECH_ENGINEERING = 1)
 	materials = list(MAT_STEEL = 500, MAT_GLASS = 100)
-	build_path = /obj/item/weapon/computer_hardware/network_card
+	build_path = /obj/item/computer_hardware/network_card
 	sort_string = "VBAAA"
 
 /datum/design/item/modularcomponent/netcard/advanced
@@ -67,7 +67,7 @@
 	id = "netcard_advanced"
 	req_tech = list(TECH_DATA = 4, TECH_ENGINEERING = 2)
 	materials = list(MAT_STEEL = 1000, MAT_GLASS = 200)
-	build_path = /obj/item/weapon/computer_hardware/network_card/advanced
+	build_path = /obj/item/computer_hardware/network_card/advanced
 	sort_string = "VBAAB"
 
 /datum/design/item/modularcomponent/netcard/wired
@@ -75,7 +75,7 @@
 	id = "netcard_wired"
 	req_tech = list(TECH_DATA = 5, TECH_ENGINEERING = 3)
 	materials = list(MAT_STEEL = 5000, MAT_GLASS = 400)
-	build_path = /obj/item/weapon/computer_hardware/network_card/wired
+	build_path = /obj/item/computer_hardware/network_card/wired
 	sort_string = "VBAAC"
 
 // Batteries
@@ -85,7 +85,7 @@
 	id = "bat_normal"
 	req_tech = list(TECH_POWER = 1, TECH_ENGINEERING = 1)
 	materials = list(MAT_STEEL = 2000)
-	build_path = /obj/item/weapon/computer_hardware/battery_module
+	build_path = /obj/item/computer_hardware/battery_module
 	sort_string = "VCAAA"
 
 /datum/design/item/modularcomponent/battery/advanced
@@ -93,7 +93,7 @@
 	id = "bat_advanced"
 	req_tech = list(TECH_POWER = 2, TECH_ENGINEERING = 2)
 	materials = list(MAT_STEEL = 4000)
-	build_path = /obj/item/weapon/computer_hardware/battery_module/advanced
+	build_path = /obj/item/computer_hardware/battery_module/advanced
 	sort_string = "VCAAB"
 
 /datum/design/item/modularcomponent/battery/super
@@ -101,7 +101,7 @@
 	id = "bat_super"
 	req_tech = list(TECH_POWER = 3, TECH_ENGINEERING = 3)
 	materials = list(MAT_STEEL = 8000)
-	build_path = /obj/item/weapon/computer_hardware/battery_module/super
+	build_path = /obj/item/computer_hardware/battery_module/super
 	sort_string = "VCAAC"
 
 /datum/design/item/modularcomponent/battery/ultra
@@ -109,7 +109,7 @@
 	id = "bat_ultra"
 	req_tech = list(TECH_POWER = 5, TECH_ENGINEERING = 4)
 	materials = list(MAT_STEEL = 16000)
-	build_path = /obj/item/weapon/computer_hardware/battery_module/ultra
+	build_path = /obj/item/computer_hardware/battery_module/ultra
 	sort_string = "VCAAD"
 
 /datum/design/item/modularcomponent/battery/nano
@@ -117,7 +117,7 @@
 	id = "bat_nano"
 	req_tech = list(TECH_POWER = 1, TECH_ENGINEERING = 1)
 	materials = list(MAT_STEEL = 2000)
-	build_path = /obj/item/weapon/computer_hardware/battery_module/nano
+	build_path = /obj/item/computer_hardware/battery_module/nano
 	sort_string = "VCAAE"
 
 /datum/design/item/modularcomponent/battery/micro
@@ -125,7 +125,7 @@
 	id = "bat_micro"
 	req_tech = list(TECH_POWER = 2, TECH_ENGINEERING = 2)
 	materials = list(MAT_STEEL = 4000)
-	build_path = /obj/item/weapon/computer_hardware/battery_module/micro
+	build_path = /obj/item/computer_hardware/battery_module/micro
 	sort_string = "VCAAF"
 
 // Processor unit
@@ -135,7 +135,7 @@
 	id = "cpu_normal"
 	req_tech = list(TECH_DATA = 3, TECH_ENGINEERING = 2)
 	materials = list(MAT_STEEL = 8000)
-	build_path = /obj/item/weapon/computer_hardware/processor_unit
+	build_path = /obj/item/computer_hardware/processor_unit
 	sort_string = "VDAAA"
 
 /datum/design/item/modularcomponent/cpu/small
@@ -143,7 +143,7 @@
 	id = "cpu_small"
 	req_tech = list(TECH_DATA = 2, TECH_ENGINEERING = 2)
 	materials = list(MAT_STEEL = 4000)
-	build_path = /obj/item/weapon/computer_hardware/processor_unit/small
+	build_path = /obj/item/computer_hardware/processor_unit/small
 	sort_string = "VDAAB"
 
 /datum/design/item/modularcomponent/cpu/photonic
@@ -151,7 +151,7 @@
 	id = "pcpu_normal"
 	req_tech = list(TECH_DATA = 5, TECH_ENGINEERING = 4)
 	materials = list(MAT_STEEL = 32000, glass = 8000)
-	build_path = /obj/item/weapon/computer_hardware/processor_unit/photonic
+	build_path = /obj/item/computer_hardware/processor_unit/photonic
 	sort_string = "VDAAC"
 
 /datum/design/item/modularcomponent/cpu/photonic/small
@@ -159,7 +159,7 @@
 	id = "pcpu_small"
 	req_tech = list(TECH_DATA = 4, TECH_ENGINEERING = 3)
 	materials = list(MAT_STEEL = 16000, glass = 4000)
-	build_path = /obj/item/weapon/computer_hardware/processor_unit/photonic/small
+	build_path = /obj/item/computer_hardware/processor_unit/photonic/small
 	sort_string = "VDAAD"
 
 // Other parts
@@ -169,7 +169,7 @@
 	id = "cardslot"
 	req_tech = list(TECH_DATA = 2)
 	materials = list(MAT_STEEL = 3000)
-	build_path = /obj/item/weapon/computer_hardware/card_slot
+	build_path = /obj/item/computer_hardware/card_slot
 	sort_string = "VEAAA"
 
 /datum/design/item/modularcomponent/nanoprinter
@@ -177,7 +177,7 @@
 	id = "nanoprinter"
 	req_tech = list(TECH_DATA = 2, TECH_ENGINEERING = 2)
 	materials = list(MAT_STEEL = 3000)
-	build_path = /obj/item/weapon/computer_hardware/nano_printer
+	build_path = /obj/item/computer_hardware/nano_printer
 	sort_string = "VEAAB"
 
 /datum/design/item/modularcomponent/teslalink
@@ -185,7 +185,7 @@
 	id = "teslalink"
 	req_tech = list(TECH_DATA = 2, TECH_POWER = 3, TECH_ENGINEERING = 2)
 	materials = list(MAT_STEEL = 10000)
-	build_path = /obj/item/weapon/computer_hardware/tesla_link
+	build_path = /obj/item/computer_hardware/tesla_link
 	sort_string = "VEAAC"
 
 // Data crystals (USB flash drives)
@@ -199,7 +199,7 @@
 	id = "portadrive_basic"
 	req_tech = list(TECH_DATA = 1)
 	materials = list(MAT_GLASS = 8000)
-	build_path = /obj/item/weapon/computer_hardware/hard_drive/portable
+	build_path = /obj/item/computer_hardware/hard_drive/portable
 	sort_string = "VFAAA"
 
 /datum/design/item/modularcomponent/portabledrive/advanced
@@ -207,7 +207,7 @@
 	id = "portadrive_advanced"
 	req_tech = list(TECH_DATA = 2)
 	materials = list(MAT_GLASS = 16000)
-	build_path = /obj/item/weapon/computer_hardware/hard_drive/portable/advanced
+	build_path = /obj/item/computer_hardware/hard_drive/portable/advanced
 	sort_string = "VFAAB"
 
 /datum/design/item/modularcomponent/portabledrive/super
@@ -215,5 +215,5 @@
 	id = "portadrive_super"
 	req_tech = list(TECH_DATA = 4)
 	materials = list(MAT_GLASS = 32000)
-	build_path = /obj/item/weapon/computer_hardware/hard_drive/portable/super
+	build_path = /obj/item/computer_hardware/hard_drive/portable/super
 	sort_string = "VFAAC"

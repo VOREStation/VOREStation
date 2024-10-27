@@ -152,7 +152,7 @@
 			color_to_use = color_matrix_hsv(build_hue, build_sat, build_val)
 			color_matrix_last = color_to_use
 	if(!color_to_use || !check_valid_color(color_to_use, user))
-		to_chat(user, SPAN_NOTICE("Invalid color."))
+		to_chat(user, span_notice("Invalid color."))
 		return FALSE
 	inserted.add_atom_colour(color_to_use, FIXED_COLOUR_PRIORITY)
 	playsound(src, 'sound/effects/spray3.ogg', 50, 1)

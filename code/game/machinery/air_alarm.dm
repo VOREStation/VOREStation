@@ -58,7 +58,7 @@
 	panel_open = FALSE // If it's been screwdrivered open.
 	var/aidisabled = 0
 	var/shorted = 0
-	circuit = /obj/item/weapon/circuitboard/airalarm
+	circuit = /obj/item/circuitboard/airalarm
 
 	var/datum/wires/alarm/wires
 
@@ -808,7 +808,7 @@
 	if(alarm_deconstruction_wirecutters(user, W))
 		return
 
-	if(istype(W, /obj/item/weapon/card/id) || istype(W, /obj/item/device/pda))// trying to unlock the interface with an ID card
+	if(istype(W, /obj/item/card/id) || istype(W, /obj/item/pda))// trying to unlock the interface with an ID card
 		togglelock()
 	return ..()
 
@@ -819,9 +819,9 @@
 	else
 		if(allowed(usr) && !wires.is_cut(WIRE_IDSCAN))
 			locked = !locked
-			to_chat(user, "<span class='notice'>You [locked ? "lock" : "unlock"] the Air Alarm interface.</span>")
+			to_chat(user, span_notice("You [locked ? "lock" : "unlock"] the Air Alarm interface."))
 		else
-			to_chat(user, "<span class='warning'>Access denied.</span>")
+			to_chat(user, span_warning("Access denied."))
 		return
 
 /obj/machinery/alarm/AltClick()

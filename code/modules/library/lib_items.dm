@@ -23,16 +23,16 @@
 /obj/structure/bookcase/Initialize()
 	. = ..()
 	for(var/obj/item/I in loc)
-		if(istype(I, /obj/item/weapon/book))
+		if(istype(I, /obj/item/book))
 			I.loc = src
 	update_icon()
 
 /obj/structure/bookcase/attackby(obj/item/O as obj, mob/user as mob)
-	if(istype(O, /obj/item/weapon/book))
+	if(istype(O, /obj/item/book))
 		user.drop_item()
 		O.loc = src
 		update_icon()
-	else if(istype(O, /obj/item/weapon/pen))
+	else if(istype(O, /obj/item/pen))
 		var/newname = sanitizeSafe(tgui_input_text(usr, "What would you like to title this bookshelf?", null, null, MAX_NAME_LEN), MAX_NAME_LEN)
 		if(!newname)
 			return
@@ -40,15 +40,15 @@
 			name = ("bookcase ([newname])")
 	else if(O.has_tool_quality(TOOL_WRENCH))
 		playsound(src, O.usesound, 100, 1)
-		to_chat(user, (anchored ? "<span class='notice'>You unfasten \the [src] from the floor.</span>" : "<span class='notice'>You secure \the [src] to the floor.</span>"))
+		to_chat(user, (anchored ? span_notice("You unfasten \the [src] from the floor.") : span_notice("You secure \the [src] to the floor.")))
 		anchored = !anchored
 	else if(O.has_tool_quality(TOOL_SCREWDRIVER))
 		playsound(src, O.usesound, 75, 1)
-		to_chat(user, "<span class='notice'>You begin dismantling \the [src].</span>")
+		to_chat(user, span_notice("You begin dismantling \the [src]."))
 		if(do_after(user,25 * O.toolspeed))
-			to_chat(user, "<span class='notice'>You dismantle \the [src].</span>")
+			to_chat(user, span_notice("You dismantle \the [src]."))
 			new /obj/item/stack/material/wood(get_turf(src), 3)
-			for(var/obj/item/weapon/book/b in contents)
+			for(var/obj/item/book/b in contents)
 				b.loc = (get_turf(src))
 			qdel(src)
 
@@ -57,7 +57,7 @@
 
 /obj/structure/bookcase/attack_hand(var/mob/user as mob)
 	if(contents.len)
-		var/obj/item/weapon/book/choice = tgui_input_list(usr, "Which book would you like to remove from the shelf?", "Book Selection", contents)
+		var/obj/item/book/choice = tgui_input_list(usr, "Which book would you like to remove from the shelf?", "Book Selection", contents)
 		if(choice)
 			if(!usr.canmove || usr.stat || usr.restrained() || !in_range(loc, usr))
 				return
@@ -71,19 +71,19 @@
 /obj/structure/bookcase/ex_act(severity)
 	switch(severity)
 		if(1.0)
-			for(var/obj/item/weapon/book/b in contents)
+			for(var/obj/item/book/b in contents)
 				qdel(b)
 			qdel(src)
 			return
 		if(2.0)
-			for(var/obj/item/weapon/book/b in contents)
+			for(var/obj/item/book/b in contents)
 				if (prob(50)) b.loc = (get_turf(src))
 				else qdel(b)
 			qdel(src)
 			return
 		if(3.0)
 			if (prob(50))
-				for(var/obj/item/weapon/book/b in contents)
+				for(var/obj/item/book/b in contents)
 					b.loc = (get_turf(src))
 				qdel(src)
 			return
@@ -108,7 +108,7 @@ Book Cart
 	opacity = 0
 
 /obj/structure/bookcase/bookcart/attackby(obj/item/O as obj, mob/user as mob)
-	if(istype(O, /obj/item/weapon/book))
+	if(istype(O, /obj/item/book))
 		user.drop_item()
 		O.loc = src
 		update_icon()
@@ -130,10 +130,10 @@ Book Cart End
 
 /obj/structure/bookcase/manuals/medical/New()
 	..()
-	new /obj/item/weapon/book/manual/medical_cloning(src)
-	new /obj/item/weapon/book/manual/medical_diagnostics_manual(src)
-	new /obj/item/weapon/book/manual/medical_diagnostics_manual(src)
-	new /obj/item/weapon/book/manual/medical_diagnostics_manual(src)
+	new /obj/item/book/manual/medical_cloning(src)
+	new /obj/item/book/manual/wiki/medical_diagnostics_manual(src)
+	new /obj/item/book/manual/wiki/medical_diagnostics_manual(src)
+	new /obj/item/book/manual/wiki/medical_diagnostics_manual(src)
 	update_icon()
 
 
@@ -142,13 +142,13 @@ Book Cart End
 
 /obj/structure/bookcase/manuals/engineering/New()
 	..()
-	new /obj/item/weapon/book/manual/engineering_construction(src)
-	new /obj/item/weapon/book/manual/engineering_particle_accelerator(src)
-	new /obj/item/weapon/book/manual/engineering_hacking(src)
-	new /obj/item/weapon/book/manual/engineering_guide(src)
-	new /obj/item/weapon/book/manual/atmospipes(src)
-	new /obj/item/weapon/book/manual/engineering_singularity_safety(src)
-	new /obj/item/weapon/book/manual/evaguide(src)
+	new /obj/item/book/manual/wiki/engineering_construction(src)
+	new /obj/item/book/manual/engineering_particle_accelerator(src)
+	new /obj/item/book/manual/wiki/engineering_hacking(src)
+	new /obj/item/book/manual/wiki/engineering_guide(src)
+	new /obj/item/book/manual/atmospipes(src)
+	new /obj/item/book/manual/engineering_singularity_safety(src)
+	new /obj/item/book/manual/evaguide(src)
 	update_icon()
 
 /obj/structure/bookcase/manuals/research_and_development
@@ -156,14 +156,14 @@ Book Cart End
 
 /obj/structure/bookcase/manuals/research_and_development/New()
 	..()
-	new /obj/item/weapon/book/manual/research_and_development(src)
+	new /obj/item/book/manual/research_and_development(src)
 	update_icon()
 
 
 /*
  * Book
  */
-/obj/item/weapon/book
+/obj/item/book
 	name = "book"
 	icon = 'icons/obj/library.dmi'
 	icon_state ="book"
@@ -188,18 +188,18 @@ Book Cart End
 	drop_sound = 'sound/items/drop/book.ogg'
 	pickup_sound = 'sound/items/pickup/book.ogg'
 
-/obj/item/weapon/book/attack_self(var/mob/user as mob)
+/obj/item/book/attack_self(var/mob/user as mob)
 	if(carved)
 		if(store)
-			to_chat(user, "<span class='notice'>[store] falls out of [title]!</span>")
+			to_chat(user, span_notice("[store] falls out of [title]!"))
 			store.loc = get_turf(src.loc)
 			store = null
 			return
 		else
-			to_chat(user, "<span class='notice'>The pages of [title] have been cut out!</span>")
+			to_chat(user, span_notice("The pages of [title] have been cut out!"))
 			return
 	if(src.dat)
-		user << browse("<TT><I>Penned by [author].</I></TT> <BR>" + "[dat]", "window=book")
+		display_content(user)
 		user.visible_message("[user] opens a book titled \"[src.title]\" and begins reading intently.")
 		playsound(src, 'sound/bureaucracy/bookopen.ogg', 50, 1)
 		onclose(user, "book")
@@ -207,22 +207,25 @@ Book Cart End
 	else
 		to_chat(user, "This book is completely blank!")
 
-/obj/item/weapon/book/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/item/book/proc/display_content(mob/living/user)
+	user << browse("<TT><I>Penned by [author].</I></TT> <BR>" + "[dat]", "window=book")
+
+/obj/item/book/attackby(obj/item/W as obj, mob/user as mob)
 	if(carved)
 		if(!store)
 			if(W.w_class < ITEMSIZE_LARGE)
 				user.drop_item()
 				W.loc = src
 				store = W
-				to_chat(user, "<span class='notice'>You put [W] in [title].</span>")
+				to_chat(user, span_notice("You put [W] in [title]."))
 				return
 			else
-				to_chat(user, "<span class='notice'>[W] won't fit in [title].</span>")
+				to_chat(user, span_notice("[W] won't fit in [title]."))
 				return
 		else
-			to_chat(user, "<span class='notice'>There's already something in [title]!</span>")
+			to_chat(user, span_notice("There's already something in [title]!"))
 			return
-	if(istype(W, /obj/item/weapon/pen))
+	if(istype(W, /obj/item/pen))
 		if(unique)
 			to_chat(user, "These pages don't seem to take the ink well. Looks like you can't modify it.")
 			return
@@ -252,8 +255,8 @@ Book Cart End
 					src.author = newauthor
 			else
 				return
-	else if(istype(W, /obj/item/weapon/barcodescanner))
-		var/obj/item/weapon/barcodescanner/scanner = W
+	else if(istype(W, /obj/item/barcodescanner))
+		var/obj/item/barcodescanner/scanner = W
 		if(!scanner.computer)
 			to_chat(user, "[W]'s screen flashes: 'No associated computer found!'")
 		else
@@ -275,44 +278,44 @@ Book Cart End
 					to_chat(user, "[W]'s screen flashes: 'Book stored in buffer. No active check-out record found for current title.'")
 				if(3)
 					scanner.book = src
-					for(var/obj/item/weapon/book in scanner.computer.inventory)
+					for(var/obj/item/book in scanner.computer.inventory)
 						if(book == src)
 							to_chat(user, "[W]'s screen flashes: 'Book stored in buffer. Title already present in inventory, aborting to avoid duplicate entry.'")
 							return
 					scanner.computer.inventory.Add(src)
 					to_chat(user, "[W]'s screen flashes: 'Book stored in buffer. Title added to general inventory.'")
-	else if(istype(W, /obj/item/weapon/material/knife) || W.has_tool_quality(TOOL_WIRECUTTER))
+	else if(istype(W, /obj/item/material/knife) || W.has_tool_quality(TOOL_WIRECUTTER))
 		if(carved)	return
-		to_chat(user, "<span class='notice'>You begin to carve out [title].</span>")
+		to_chat(user, span_notice("You begin to carve out [title]."))
 		if(do_after(user, 30))
-			to_chat(user, "<span class='notice'>You carve out the pages from [title]! You didn't want to read it anyway.</span>")
+			to_chat(user, span_notice("You carve out the pages from [title]! You didn't want to read it anyway."))
 			playsound(src, 'sound/bureaucracy/papercrumple.ogg', 50, 1)
-			new /obj/item/weapon/shreddedp(get_turf(src))
+			new /obj/item/shreddedp(get_turf(src))
 			carved = 1
 			return
 	else
 		..()
 
-/obj/item/weapon/book/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
+/obj/item/book/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
 	if(user.zone_sel.selecting == O_EYES)
-		user.visible_message("<span class='notice'>You open up the book and show it to [M]. </span>", \
-			"<span class='notice'> [user] opens up a book and shows it to [M]. </span>")
-		M << browse("<TT><I>Penned by [author].</I></TT> <BR>" + "[dat]", "window=book")
+		user.visible_message(span_notice("You open up the book and show it to [M]."), \
+			span_notice(" [user] opens up a book and shows it to [M]."))
+		display_content(M)
 		user.setClickCooldown(DEFAULT_QUICK_COOLDOWN) //to prevent spam
 
 /*
 * Book Bundle (Multi-page book)
 */
 
-/obj/item/weapon/book/bundle
+/obj/item/book/bundle
 	var/page = 1 //current page
 	var/list/pages = list() //the contents of each page
 
-/obj/item/weapon/book/bundle/proc/show_content(mob/user as mob)
+/obj/item/book/bundle/proc/show_content(mob/user as mob)
 	if(!pages.len)
 		return
 	var/dat
-	var/obj/item/weapon/W = pages[page]
+	var/obj/item/W = pages[page]
 	// first
 	if(page == 1)
 		dat+= "<DIV STYLE='float:left; text-align:left; width:33.33333%'><A href='?src=\ref[src];prev_page=1'>Front</A></DIV>"
@@ -325,15 +328,15 @@ Book Cart End
 	else
 		dat+= "<DIV STYLE='float:left; text-align:left; width:33.33333%'><A href='?src=\ref[src];prev_page=1'>Previous Page</A></DIV>"
 		dat+= "<DIV STYLE='float:right; text-align:right; width:33.33333%'><A href='?src=\ref[src];next_page=1'>Next Page</A></DIV><BR><HR>"
-	if(istype(pages[page], /obj/item/weapon/paper))
-		var/obj/item/weapon/paper/P = W
+	if(istype(pages[page], /obj/item/paper))
+		var/obj/item/paper/P = W
 		if(!(istype(usr, /mob/living/carbon/human) || isobserver(usr) || istype(usr, /mob/living/silicon)))
 			dat += "<HTML><HEAD><TITLE>[P.name]</TITLE></HEAD><BODY>[stars(P.info)][P.stamps]</BODY></HTML>"
 		else
 			dat += "<HTML><HEAD><TITLE>[P.name]</TITLE></HEAD><BODY>[P.info][P.stamps]</BODY></HTML>"
 		user << browse(dat, "window=[name]")
-	else if(istype(pages[page], /obj/item/weapon/photo))
-		var/obj/item/weapon/photo/P = W
+	else if(istype(pages[page], /obj/item/photo))
+		var/obj/item/photo/P = W
 		user << browse_rsc(P.img, "tmp_photo.png")
 		user << browse(dat + "<html><head><title>[P.name]</title></head>" \
 		+ "<body style='overflow:hidden'>" \
@@ -347,16 +350,16 @@ Book Cart End
 			dat += "<HTML><HEAD><TITLE>Page [page]</TITLE></HEAD><BODY>[pages[page]]</BODY></HTML>"
 		user << browse(dat, "window=[name]")
 
-/obj/item/weapon/book/bundle/attack_self(mob/user as mob)
+/obj/item/book/bundle/attack_self(mob/user as mob)
 	src.show_content(user)
 	add_fingerprint(usr)
 	update_icon()
 	return
 
-/obj/item/weapon/book/bundle/Topic(href, href_list)
+/obj/item/book/bundle/Topic(href, href_list)
 	if(..())
 		return 1
-	if((src in usr.contents) || (istype(src.loc, /obj/item/weapon/folder) && (src.loc in usr.contents)))
+	if((src in usr.contents) || (istype(src.loc, /obj/item/folder) && (src.loc in usr.contents)))
 		usr.set_machine(src)
 		if(href_list["next_page"])
 			if(page != pages.len)
@@ -369,12 +372,12 @@ Book Cart End
 		src.attack_self(usr)
 		updateUsrDialog()
 	else
-		to_chat(usr, "<span class='notice'>You need to hold it in your hands!</span>")
+		to_chat(usr, span_notice("You need to hold it in your hands!"))
 
 /*
  * Barcode Scanner
  */
-/obj/item/weapon/barcodescanner
+/obj/item/barcodescanner
 	name = "barcode scanner"
 	icon = 'icons/obj/library.dmi'
 	icon_state ="scanner"
@@ -382,10 +385,10 @@ Book Cart End
 	throw_range = 5
 	w_class = ITEMSIZE_SMALL
 	var/obj/machinery/librarycomp/computer // Associated computer - Modes 1 to 3 use this
-	var/obj/item/weapon/book/book	 //  Currently scanned book
+	var/obj/item/book/book	 //  Currently scanned book
 	var/mode = 0 					// 0 - Scan only, 1 - Scan and Set Buffer, 2 - Scan and Attempt to Check In, 3 - Scan and Attempt to Add to Inventory
 
-/obj/item/weapon/barcodescanner/attack_self(mob/user as mob)
+/obj/item/barcodescanner/attack_self(mob/user as mob)
 	mode += 1
 	if(mode > 3)
 		mode = 0

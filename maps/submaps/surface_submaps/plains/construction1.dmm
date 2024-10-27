@@ -37,7 +37,7 @@
 /turf/simulated/floor/tiled/external/virgo3b,
 /area/submap/construction1)
 "k" = (
-/obj/item/weapon/tool/wrench,
+/obj/item/tool/wrench,
 /turf/simulated/floor/plating/external/virgo3b,
 /area/submap/construction1)
 "l" = (
@@ -48,7 +48,7 @@
 /turf/simulated/floor/plating/external/virgo3b,
 /area/submap/construction1)
 "n" = (
-/obj/item/weapon/pickaxe/drill,
+/obj/item/pickaxe/drill,
 /turf/simulated/floor/outdoors/rocks/virgo3b,
 /area/template_noop)
 "o" = (
@@ -76,11 +76,11 @@
 /turf/simulated/floor/plating/external/virgo3b,
 /area/submap/construction1)
 "u" = (
-/obj/item/weapon/storage/toolbox/electrical,
+/obj/item/storage/toolbox/electrical,
 /turf/simulated/floor/plating/external/virgo3b,
 /area/submap/construction1)
 "v" = (
-/obj/item/weapon/airlock_electronics,
+/obj/item/airlock_electronics,
 /turf/simulated/floor/tiled/external/virgo3b,
 /area/submap/construction1)
 "w" = (
@@ -92,7 +92,7 @@
 /turf/simulated/floor/tiled/external/virgo3b,
 /area/submap/construction1)
 "y" = (
-/obj/item/weapon/storage/toolbox/mechanical,
+/obj/item/storage/toolbox/mechanical,
 /turf/simulated/floor/plating/external/virgo3b,
 /area/submap/construction1)
 "z" = (
@@ -100,19 +100,19 @@
 /turf/simulated/floor/tiled/external/virgo3b,
 /area/submap/construction1)
 "A" = (
-/obj/item/weapon/shovel,
+/obj/item/shovel,
 /turf/simulated/floor/plating/external/virgo3b,
 /area/submap/construction1)
 "B" = (
-/obj/item/weapon/airlock_electronics,
+/obj/item/airlock_electronics,
 /turf/simulated/floor/plating/external/virgo3b,
 /area/submap/construction1)
 "C" = (
-/obj/item/weapon/weldingtool/largetank,
+/obj/item/weldingtool/largetank,
 /turf/simulated/floor/tiled/external/virgo3b,
 /area/submap/construction1)
 "D" = (
-/obj/item/weapon/tool/crowbar,
+/obj/item/tool/crowbar,
 /turf/simulated/floor/plating/external/virgo3b,
 /area/submap/construction1)
 "E" = (

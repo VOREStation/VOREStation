@@ -1,5 +1,5 @@
 
-/obj/item/weapon/book/manual/excavation
+/obj/item/book/manual/excavation
 	name = "Out on the Dig"
 	icon_state = "excavation"
 	item_state = "book6"
@@ -113,7 +113,7 @@
 				</html>
 			"}
 
-/obj/item/weapon/book/manual/mass_spectrometry
+/obj/item/book/manual/mass_spectrometry
 	name = "High Power Mass Spectrometry: A Comprehensive Guide"
 	icon_state = "analysis"
 	item_state = "book6"
@@ -185,7 +185,7 @@
 				</html>
 			"}
 
-/obj/item/weapon/book/manual/anomaly_spectroscopy
+/obj/item/book/manual/anomaly_spectroscopy
 	name = "Spectroscopy: Analysing the Anomalies of the Cosmos"
 	icon_state = "anomaly"
 	item_state = "book6"
@@ -211,7 +211,7 @@
 				</body>
 			</html>"}
 
-/obj/item/weapon/book/manual/materials_chemistry_analysis
+/obj/item/book/manual/materials_chemistry_analysis
 	name = "Materials Analysis and the Chemical Implications"
 	icon_state = "chemistry"
 	item_state = "book6"
@@ -239,7 +239,7 @@
 				a new element that defies classification. I defy you to classify it without reviving this once great field!
 			"}
 
-/obj/item/weapon/book/manual/anomaly_testing
+/obj/item/book/manual/anomaly_testing
 	name = "Anomalous Materials and Energies"
 	icon_state = "triangulate"
 	item_state = "book6"
@@ -318,7 +318,7 @@
 				</html>
 			"}
 
-/obj/item/weapon/book/manual/stasis
+/obj/item/book/manual/stasis
 	name = "Cellular Suspension, the New Cryogenics?"
 	icon_state = "stasis"
 	item_state = "book6"

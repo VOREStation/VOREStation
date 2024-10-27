@@ -44,7 +44,7 @@
 /turf/template_noop,
 /area/submap/Rocky2)
 "A" = (
-/obj/item/weapon/shovel,
+/obj/item/shovel,
 /turf/template_noop,
 /area/submap/Rocky2)
 

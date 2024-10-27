@@ -43,11 +43,11 @@
 		if(!assembly)
 			return FALSE // Pointless to do everything else if there's no battery to draw from.
 
-		var/obj/item/weapon/cell/cell = null
-		if(istype(AM, /obj/item/weapon/cell)) // Is this already a cell?
+		var/obj/item/cell/cell = null
+		if(istype(AM, /obj/item/cell)) // Is this already a cell?
 			cell = AM
 		else // If not, maybe there's a cell inside it?
-			for(var/obj/item/weapon/cell/C in AM.contents)
+			for(var/obj/item/cell/C in AM.contents)
 				if(C) // Find one cell to charge.
 					cell = C
 					break
@@ -87,5 +87,5 @@
 			var/datum/effect/effect/system/spark_spread/sparks = new /datum/effect/effect/system/spark_spread()
 			sparks.set_up(3, 0, get_turf(src))
 			sparks.start()
-			visible_message("<span class='warning'>\The [assembly] makes some sparks!</span>")
+			visible_message(span_warning("\The [assembly] makes some sparks!"))
 			qdel(sparks)

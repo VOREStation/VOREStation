@@ -93,7 +93,7 @@
 /datum/preferences/proc/create_character_profiles()
 	var/list/profiles = list()
 
-	for(var/index in 1 to config.character_slots)
+	for(var/index in 1 to CONFIG_GET(number/character_slots))
 		// TODO: It won't be updated in the savefile yet, so just read the name directly
 		// if(index == default_slot)
 		// 	profiles += read_preference(/datum/preference/name/real_name)

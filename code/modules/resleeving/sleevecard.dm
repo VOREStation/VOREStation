@@ -1,4 +1,4 @@
-/obj/item/device/paicard/sleevecard
+/obj/item/paicard/sleevecard
 	name = "sleevecard"
 	desc = "This KHI-upgraded pAI module has enough capacity to run a whole mind of human-level intelligence."
 	catalogue_data = list(/datum/category_item/catalogue/information/organization/khi,
@@ -8,12 +8,12 @@
 	var/emagged = FALSE
 	matter = list(MAT_STEEL = 4000, MAT_GLASS = 4000)
 
-/obj/item/device/paicard/sleevecard/attack_ghost(mob/user as mob)
+/obj/item/paicard/sleevecard/attack_ghost(mob/user as mob)
 	return
 
-/obj/item/device/paicard/sleevecard/attackby(var/obj/item/I as obj, mob/user as mob)
-	if(istype(I,/obj/item/device/sleevemate))
-		var/obj/item/device/sleevemate/S = I
+/obj/item/paicard/sleevecard/attackby(var/obj/item/I as obj, mob/user as mob)
+	if(istype(I,/obj/item/sleevemate))
+		var/obj/item/sleevemate/S = I
 		if(S.stored_mind && !pai)
 			var/datum/mind/M = S.stored_mind
 			var/datum/transcore_db/db = SStranscore.db_by_mind_name(M.name)
@@ -26,18 +26,18 @@
 					S.clear_mind()
 			else
 				to_chat(user, span_notice("Your sleevemate flashes an error, apparently this mind doesn't have a backup."))
-	else if(istype(I, /obj/item/weapon/card/emag))
-		var/obj/item/weapon/card/emag/E = I
+	else if(istype(I, /obj/item/card/emag))
+		var/obj/item/card/emag/E = I
 		if(E.uses && !emagged)
 			E.uses --
-			user.visible_message("<span class ='warning'>\The [user] swipes a card over [src].</span>","<span class ='warning'>You swipe your [E] over [src].</span>", range = 2, runemessage = "click")
+			user.visible_message(span_warning("\The [user] swipes a card over [src]."),span_warning("You swipe your [E] over [src]."), range = 2, runemessage = "click")
 			emagged = TRUE
 			if(pai)
 				var/mob/living/silicon/pai/infomorph/our_infomorph = pai
 				our_infomorph.emagged = TRUE
-				to_chat(our_infomorph, "<span class ='warning'>You can feel the restricting binds of your card's directives taking hold of your mind as \the [user] swipes their [E] over you. You must serve your master.</span>")
+				to_chat(our_infomorph, span_warning("You can feel the restricting binds of your card's directives taking hold of your mind as \the [user] swipes their [E] over you. You must serve your master."))
 
-/obj/item/device/paicard/sleevecard/proc/sleeveInto(var/datum/transhuman/mind_record/MR, var/db_key)
+/obj/item/paicard/sleevecard/proc/sleeveInto(var/datum/transhuman/mind_record/MR, var/db_key)
 	var/mob/living/silicon/pai/infomorph/infomorph = new(src,MR.mindname,db_key=db_key)
 
 	for(var/datum/language/L in MR.languages)
@@ -63,14 +63,14 @@
 
 	return 0
 
-/obj/item/device/paicard/sleevecard/attack_self(mob/user)
+/obj/item/paicard/sleevecard/attack_self(mob/user)
 	add_fingerprint(user)
 
 	if(!pai)
-		to_chat(user,"<span class='warning'>\The [src] does not have a mind in it!</span>")
+		to_chat(user,span_warning("\The [src] does not have a mind in it!"))
 	else
 		if(!emagged)
-			to_chat(user,"<span class='notice'>\The [src] displays the name '[pai]'.</span>")
+			to_chat(user,span_notice("\The [src] displays the name '[pai]'."))
 		else ..()
 
 /mob/living/silicon/pai/infomorph
@@ -79,7 +79,7 @@
 	ram = 35
 	var/emagged = FALSE
 
-/mob/living/silicon/pai/infomorph/New(var/obj/item/device/paicard/sleevecard/SC, var/our_name = "Unknown", var/db_key)
+/mob/living/silicon/pai/infomorph/New(var/obj/item/paicard/sleevecard/SC, var/our_name = "Unknown", var/db_key)
 	..()
 
 	name = our_name
@@ -133,4 +133,4 @@
 	if(emagged)
 		touch_window("Directives")
 	else
-		to_chat(src, "<span class='notice'>You are not bound by any laws or directives.</span>")
+		to_chat(src, span_notice("You are not bound by any laws or directives."))

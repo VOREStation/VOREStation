@@ -1,4 +1,4 @@
-/obj/item/device/retail_scanner
+/obj/item/retail_scanner
 	name = "retail scanner"
 	desc = "Swipe your ID card to make purchases electronically."
 	icon = 'icons/obj/device.dmi'
@@ -24,7 +24,7 @@
 
 
 // Claim machine ID
-/obj/item/device/retail_scanner/New()
+/obj/item/retail_scanner/New()
 	machine_id = "[station_name()] RETAIL #[num_financial_terminals++]"
 	if(locate(/obj/structure/table) in loc)
 		pixel_y = 3
@@ -32,7 +32,7 @@
 
 
 // Always face the user when put on a table
-/obj/item/device/retail_scanner/afterattack(atom/movable/AM, mob/user, proximity)
+/obj/item/retail_scanner/afterattack(atom/movable/AM, mob/user, proximity)
 	if(!proximity)	return
 	if(istype(AM, /obj/structure/table))
 		src.pixel_y = 3 // Shift it up slightly to look better on table
@@ -41,27 +41,27 @@
 		scan_item_price(AM)
 
 // Reset dir when picked back up
-/obj/item/device/retail_scanner/pickup(mob/user)
+/obj/item/retail_scanner/pickup(mob/user)
 	src.dir = SOUTH
 	src.pixel_y = 0
 
 
-/obj/item/device/retail_scanner/attack_self(mob/user as mob)
+/obj/item/retail_scanner/attack_self(mob/user as mob)
 	user.set_machine(src)
 	interact(user)
 
 
-/obj/item/device/retail_scanner/AltClick(var/mob/user)
+/obj/item/retail_scanner/AltClick(var/mob/user)
 	if(Adjacent(user))
 		user.set_machine(src)
 		interact(user)
 
-/obj/item/device/retail_scanner/examine(mob/user as mob)
+/obj/item/retail_scanner/examine(mob/user as mob)
 	. = ..()
 	if(transaction_amount)
 		. += "It has a purchase of [transaction_amount] pending[transaction_purpose ? " for [transaction_purpose]" : ""]."
 
-/obj/item/device/retail_scanner/interact(mob/user as mob)
+/obj/item/retail_scanner/interact(mob/user as mob)
 	var/dat = "<h2>Retail Scanner<hr></h2>"
 	if (locked)
 		dat += "<a href='?src=\ref[src];choice=toggle_lock'>Unlock</a><br>"
@@ -86,7 +86,7 @@
 	onclose(user, "retail")
 
 
-/obj/item/device/retail_scanner/Topic(var/href, var/href_list)
+/obj/item/retail_scanner/Topic(var/href, var/href_list)
 	if(..())
 		return
 
@@ -99,7 +99,7 @@
 				if(allowed(usr))
 					locked = !locked
 				else
-					to_chat(usr, "[icon2html(src, usr.client)]<span class='warning'>Insufficient access.</span>")
+					to_chat(usr, "[icon2html(src, usr.client)]" + span_warning("Insufficient access."))
 			if("link_account")
 				var/attempt_account_num = tgui_input_number(usr, "Enter account number", "New account number")
 				var/attempt_pin = tgui_input_number(usr, "Enter PIN", "Account PIN")
@@ -107,9 +107,9 @@
 				if(linked_account)
 					if(linked_account.suspended)
 						linked_account = null
-						src.visible_message("[icon2html(src,viewers(src))]<span class='warning'>Account has been suspended.</span>")
+						src.visible_message("[icon2html(src,viewers(src))]" + span_warning("Account has been suspended."))
 				else
-					to_chat(usr, "[icon2html(src, usr.client)]<span class='warning'>Account not found.</span>")
+					to_chat(usr, "[icon2html(src, usr.client)]" + span_warning("Account not found."))
 			if("custom_order")
 				var/t_purpose = sanitize(tgui_input_text(usr, "Enter purpose", "New purpose"))
 				if (!t_purpose || !Adjacent(usr)) return
@@ -157,35 +157,35 @@
 					price_list.Cut()
 			if("reset_log")
 				transaction_logs.Cut()
-				to_chat(usr, "[icon2html(src, usr.client)]<span class='notice'>Transaction log reset.</span>")
+				to_chat(usr, "[icon2html(src, usr.client)]" + span_notice("Transaction log reset."))
 	updateDialog()
 
 
 
-/obj/item/device/retail_scanner/attackby(obj/O as obj, user as mob)
+/obj/item/retail_scanner/attackby(obj/O as obj, user as mob)
 	// Check for a method of paying (ID, PDA, e-wallet, cash, ect.)
-	var/obj/item/weapon/card/id/I = O.GetID()
+	var/obj/item/card/id/I = O.GetID()
 	if(I)
 		scan_card(I, O)
-	else if (istype(O, /obj/item/weapon/spacecash/ewallet))
-		var/obj/item/weapon/spacecash/ewallet/E = O
+	else if (istype(O, /obj/item/spacecash/ewallet))
+		var/obj/item/spacecash/ewallet/E = O
 		scan_wallet(E)
-	else if (istype(O, /obj/item/weapon/spacecash))
-		to_chat(usr, "<span class='warning'>This device does not accept cash.</span>")
+	else if (istype(O, /obj/item/spacecash))
+		to_chat(usr, span_warning("This device does not accept cash."))
 
-	else if(istype(O, /obj/item/weapon/card/emag))
+	else if(istype(O, /obj/item/card/emag))
 		return ..()
 	// Not paying: Look up price and add it to transaction_amount
 	else
 		scan_item_price(O)
 
 
-/obj/item/device/retail_scanner/showoff(mob/user)
+/obj/item/retail_scanner/showoff(mob/user)
 	for (var/mob/M in view(user))
 		M.show_message("[user] holds up [src]. <a HREF=?src=\ref[M];clickitem=\ref[src]>Swipe card or item.</a>",1)
 
 
-/obj/item/device/retail_scanner/proc/confirm(var/obj/item/I)
+/obj/item/retail_scanner/proc/confirm(var/obj/item/I)
 	if(confirm_item == I)
 		return 1
 	else
@@ -195,7 +195,7 @@
 		return 0
 
 
-/obj/item/device/retail_scanner/proc/scan_card(var/obj/item/weapon/card/id/I, var/obj/item/ID_container)
+/obj/item/retail_scanner/proc/scan_card(var/obj/item/card/id/I, var/obj/item/ID_container)
 	if (!transaction_amount)
 		return
 
@@ -203,7 +203,7 @@
 		return
 
 	if (!linked_account)
-		usr.visible_message("[icon2html(src,viewers(src))]<span class='warning'>Unable to connect to linked account.</span>")
+		usr.visible_message("[icon2html(src,viewers(src))]" + span_warning("Unable to connect to linked account."))
 		return
 
 	// Access account for transaction
@@ -216,13 +216,13 @@
 		D = attempt_account_access(I.associated_account_number, attempt_pin, 2)
 
 		if(!D)
-			src.visible_message("[icon2html(src,viewers(src))]<span class='warning'>Unable to access account. Check security settings and try again.</span>")
+			src.visible_message("[icon2html(src,viewers(src))]" + span_warning("Unable to access account. Check security settings and try again."))
 		else
 			if(D.suspended)
-				src.visible_message("[icon2html(src,viewers(src))]<span class='warning'>Your account has been suspended.</span>")
+				src.visible_message("[icon2html(src,viewers(src))]" + span_warning("Your account has been suspended."))
 			else
 				if(transaction_amount > D.money)
-					src.visible_message("[icon2html(src,viewers(src))]<span class='warning'>Not enough funds.</span>")
+					src.visible_message("[icon2html(src,viewers(src))]" + span_warning("Not enough funds."))
 				else
 					// Transfer the money
 					D.money -= transaction_amount
@@ -255,7 +255,7 @@
 					transaction_complete()
 
 
-/obj/item/device/retail_scanner/proc/scan_wallet(var/obj/item/weapon/spacecash/ewallet/E)
+/obj/item/retail_scanner/proc/scan_wallet(var/obj/item/spacecash/ewallet/E)
 	if (!transaction_amount)
 		return
 
@@ -265,7 +265,7 @@
 	// Access account for transaction
 	if(check_account())
 		if(transaction_amount > E.worth)
-			src.visible_message("[icon2html(src,viewers(src))]<span class='warning'>Not enough funds.</span>")
+			src.visible_message("[icon2html(src,viewers(src))]" + span_warning("Not enough funds."))
 		else
 			// Transfer the money
 			E.worth -= transaction_amount
@@ -288,16 +288,16 @@
 			transaction_complete()
 
 
-/obj/item/device/retail_scanner/proc/scan_item_price(var/obj/O)
+/obj/item/retail_scanner/proc/scan_item_price(var/obj/O)
 	if(!istype(O))	return
 	if(item_list.len > 10)
-		src.visible_message("[icon2html(src,viewers(src))]<span class='warning'>Only up to ten different items allowed per purchase.</span>")
+		src.visible_message("[icon2html(src,viewers(src))]" + span_warning("Only up to ten different items allowed per purchase."))
 		return
 
 	// First check if item has a valid price
 	var/price = O.get_item_cost()
 	if(isnull(price))
-		src.visible_message("[icon2html(src,viewers(src))]<span class='warning'>Unable to find item in database.</span>")
+		src.visible_message("[icon2html(src,viewers(src))]" + span_warning("Unable to find item in database."))
 		return
 	// Call out item cost
 	src.visible_message("[icon2html(src,viewers(src))]\A [O]: [price ? "[price] Thaler\s" : "free of charge"].")
@@ -320,7 +320,7 @@
 	confirm_item = null
 
 
-/obj/item/device/retail_scanner/proc/get_current_transaction()
+/obj/item/retail_scanner/proc/get_current_transaction()
 	var/dat = {"
 	<head><style>
 		.tx-title-r {text-align: center; background-color:#ffdddd; font-weight: bold}
@@ -340,7 +340,7 @@
 	return dat
 
 
-/obj/item/device/retail_scanner/proc/add_transaction_log(var/c_name, var/p_method, var/t_amount)
+/obj/item/retail_scanner/proc/add_transaction_log(var/c_name, var/p_method, var/t_amount)
 	var/dat = {"
 	<head><style>
 		.tx-title {text-align: center; background-color:#ddddff; font-weight: bold}
@@ -366,27 +366,27 @@
 	transaction_logs += dat
 
 
-/obj/item/device/retail_scanner/proc/check_account()
+/obj/item/retail_scanner/proc/check_account()
 	if (!linked_account)
-		usr.visible_message("[icon2html(src,viewers(src))]<span class='warning'>Unable to connect to linked account.</span>")
+		usr.visible_message("[icon2html(src,viewers(src))]" + span_warning("Unable to connect to linked account."))
 		return 0
 
 	if(linked_account.suspended)
-		src.visible_message("[icon2html(src,viewers(src))]<span class='warning'>Connected account has been suspended.</span>")
+		src.visible_message("[icon2html(src,viewers(src))]" + span_warning("Connected account has been suspended."))
 		return 0
 	return 1
 
 
-/obj/item/device/retail_scanner/proc/transaction_complete()
+/obj/item/retail_scanner/proc/transaction_complete()
 	/// Visible confirmation
 	playsound(src, 'sound/machines/chime.ogg', 25)
-	src.visible_message("[icon2html(src,viewers(src))]<span class='notice'>Transaction complete.</span>")
+	src.visible_message("[icon2html(src,viewers(src))]" + span_notice("Transaction complete."))
 	flick("retail_approve", src)
 	reset_memory()
 	updateDialog()
 
 
-/obj/item/device/retail_scanner/proc/reset_memory()
+/obj/item/retail_scanner/proc/reset_memory()
 	transaction_amount = null
 	transaction_purpose = ""
 	item_list.Cut()
@@ -394,32 +394,32 @@
 	confirm_item = null
 
 
-/obj/item/device/retail_scanner/emag_act(var/remaining_charges, var/mob/user)
+/obj/item/retail_scanner/emag_act(var/remaining_charges, var/mob/user)
 	if(!emagged)
-		to_chat(user, "<span class='danger'>You stealthily swipe the cryptographic sequencer through \the [src].</span>")
+		to_chat(user, span_danger("You stealthily swipe the cryptographic sequencer through \the [src]."))
 		playsound(src, "sparks", 50, 1)
 		req_access = list()
 		emagged = 1
 
 //--Premades--//
 
-/obj/item/device/retail_scanner/command
+/obj/item/retail_scanner/command
 	account_to_connect = "Command"
 
-/obj/item/device/retail_scanner/medical
+/obj/item/retail_scanner/medical
 	account_to_connect = "Medical"
 
-/obj/item/device/retail_scanner/engineering
+/obj/item/retail_scanner/engineering
 	account_to_connect = "Engineering"
 
-/obj/item/device/retail_scanner/science
+/obj/item/retail_scanner/science
 	account_to_connect = "Science"
 
-/obj/item/device/retail_scanner/security
+/obj/item/retail_scanner/security
 	account_to_connect = "Security"
 
-/obj/item/device/retail_scanner/cargo
+/obj/item/retail_scanner/cargo
 	account_to_connect = "Cargo"
 
-/obj/item/device/retail_scanner/civilian
+/obj/item/retail_scanner/civilian
 	account_to_connect = "Civilian"

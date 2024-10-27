@@ -20,7 +20,7 @@
 
 		var/target = pick(M.organs_by_name)
 		M.apply_damage(rand(5, 10), SEARING, target)
-		to_chat(M, "<span class='critical'>The skin on your [parse_zone(target)] feels like it's ripping apart, and a stream of blood flies out.</span>")
+		to_chat(M, span_critical("The skin on your [parse_zone(target)] feels like it's ripping apart, and a stream of blood flies out."))
 		var/obj/effect/decal/cleanable/blood/splatter/animated/B = new(M.loc)
 		B.basecolor = M.species.get_blood_colour(M)
 		B.color = M.species.get_blood_colour(M)
@@ -64,7 +64,7 @@
 
 	if(charges >= 10)
 		charges -= 10
-		var/manifestation = pick(/obj/item/device/soulstone, /mob/living/simple_mob/faithless/cult/strong, /mob/living/simple_mob/creature/cult/strong, /mob/living/simple_mob/animal/space/bats/cult/strong)
+		var/manifestation = pick(/obj/item/soulstone, /mob/living/simple_mob/faithless/cult/strong, /mob/living/simple_mob/creature/cult/strong, /mob/living/simple_mob/animal/space/bats/cult/strong)
 		new manifestation(pick(RANGE_TURFS(1,T)))
 
 	if(charges >= 3)
@@ -83,7 +83,7 @@
 
 	if(charges >= 0.1)
 		if(prob(5))
-			holder.visible_message("<span class='alien'>[icon2html(holder,viewers(holder))] \The [holder] gleams a bloody red!</span>")
+			holder.visible_message(span_alien("[icon2html(holder,viewers(holder))] \The [holder] gleams a bloody red!"))
 			charges -= 0.1
 
 /datum/artifact_effect/vampire/DoEffectPulse()

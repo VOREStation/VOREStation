@@ -1,5 +1,5 @@
 
-/obj/item/weapon/material/fishing_rod
+/obj/item/material/fishing_rod
 	name = "crude fishing rod"
 	desc = "A crude rod made for catching fish."
 	description_info = "A tool usable on water-tiles to attempt to catch fish by swiping it over them.\
@@ -22,68 +22,68 @@
 	var/strung = TRUE
 	var/line_break = TRUE
 
-	var/obj/item/weapon/reagent_containers/food/snacks/Bait
-	var/bait_type = /obj/item/weapon/reagent_containers/food/snacks
+	var/obj/item/reagent_containers/food/snacks/Bait
+	var/bait_type = /obj/item/reagent_containers/food/snacks
 
 	var/cast = FALSE
 
 	attackspeed = 3 SECONDS
 
-/obj/item/weapon/material/fishing_rod/built
+/obj/item/material/fishing_rod/built
 	strung = FALSE
 
-/obj/item/weapon/material/fishing_rod/examine(mob/user)
+/obj/item/material/fishing_rod/examine(mob/user)
 	. = ..()
 	if(Bait)
-		. += "<span class='notice'>It has [Bait] hanging on its hook: </span>"
+		. += span_notice("It has [Bait] hanging on its hook: ")
 		. += Bait.examine(user)
 
-/obj/item/weapon/material/fishing_rod/CtrlClick(mob/user)
+/obj/item/material/fishing_rod/CtrlClick(mob/user)
 	if((src.loc == user || Adjacent(user)) && Bait)
 		Bait.forceMove(get_turf(user))
-		to_chat(user, "<span class='notice'>You remove the bait from \the [src].</span>")
+		to_chat(user, span_notice("You remove the bait from \the [src]."))
 		Bait = null
 	else
 		..()
 
-/obj/item/weapon/material/fishing_rod/Initialize()
+/obj/item/material/fishing_rod/Initialize()
 	. = ..()
 	update_icon()
 
-/obj/item/weapon/material/fishing_rod/attackby(obj/item/I as obj, mob/user as mob)
+/obj/item/material/fishing_rod/attackby(obj/item/I as obj, mob/user as mob)
 	if(I.has_tool_quality(TOOL_WIRECUTTER) && strung)
 		strung = FALSE
-		to_chat(user, "<span class='notice'>You cut \the [src]'s string!</span>")
+		to_chat(user, span_notice("You cut \the [src]'s string!"))
 		update_icon()
 		return
 	else if(istype(I, /obj/item/stack/cable_coil) && !strung)
 		var/obj/item/stack/cable_coil/C = I
 		if(C.get_amount() < 5)
-			to_chat(user, "<span class='warning'>You do not have enough length in \the [C] to string this!</span>")
+			to_chat(user, span_warning("You do not have enough length in \the [C] to string this!"))
 			return
 		if(do_after(user, rand(10 SECONDS, 20 SECONDS)))
 			C.use(5)
 			strung = TRUE
-			to_chat(user, "<span class='notice'>You string \the [src]!</span>")
+			to_chat(user, span_notice("You string \the [src]!"))
 			update_icon()
 			return
 	else if(istype(I, bait_type))
 		if(Bait)
 			Bait.forceMove(get_turf(user))
-			to_chat(user, "<span class='notice'>You swap \the [Bait] with \the [I].</span>")
+			to_chat(user, span_notice("You swap \the [Bait] with \the [I]."))
 		Bait = I
 		user.drop_from_inventory(Bait)
 		Bait.forceMove(src)
 		update_bait()
 	return ..()
 
-/obj/item/weapon/material/fishing_rod/update_icon()
+/obj/item/material/fishing_rod/update_icon()
 	cut_overlays()
 	..()
 	if(strung)
 		add_overlay("[icon_state]_string")
 
-/obj/item/weapon/material/fishing_rod/proc/update_bait()
+/obj/item/material/fishing_rod/proc/update_bait()
 	if(istype(Bait, bait_type))
 		var/foodvolume
 		for(var/datum/reagent/re in Bait.reagents.reagent_list)
@@ -95,21 +95,21 @@
 	else
 		toolspeed = initial(toolspeed)
 
-/obj/item/weapon/material/fishing_rod/proc/consume_bait()
+/obj/item/material/fishing_rod/proc/consume_bait()
 	if(Bait)
 		qdel(Bait)
 		Bait = null
 		return TRUE
 	return FALSE
 
-/obj/item/weapon/material/fishing_rod/attack(var/mob/M as mob, var/mob/user as mob, var/def_zone)
+/obj/item/material/fishing_rod/attack(var/mob/M as mob, var/mob/user as mob, var/def_zone)
 	if(cast)
-		to_chat(user, "<span class='notice'>You cannot cast \the [src] when it is already in use!</span>")
+		to_chat(user, span_notice("You cannot cast \the [src] when it is already in use!"))
 		return FALSE
 	update_bait()
 	return ..()
 
-/obj/item/weapon/material/fishing_rod/modern
+/obj/item/material/fishing_rod/modern
 	name = "fishing rod"
 	desc = "A refined rod for catching fish."
 	icon_state = "fishing_rod_modern"
@@ -120,10 +120,10 @@
 
 	toolspeed = 0.75
 
-/obj/item/weapon/material/fishing_rod/modern/built
+/obj/item/material/fishing_rod/modern/built
 	strung = FALSE
 
-/obj/item/weapon/material/fishing_rod/modern/cheap //A rod sold by the fishing vendor. Done so that the rod sold by mining reward vendors doesn't loose its value.
+/obj/item/material/fishing_rod/modern/cheap //A rod sold by the fishing vendor. Done so that the rod sold by mining reward vendors doesn't loose its value.
 	name = "cheap fishing rod"
 	desc = "Mass produced, but somewhat reliable."
 	default_material = "plastic"

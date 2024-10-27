@@ -1,4 +1,4 @@
-/obj/item/weapon/reagent_containers/chem_disp_cartridge
+/obj/item/reagent_containers/chem_disp_cartridge
 	//Xenoflora
 	ammonia			spawn_reagent = "ammonia"
 	diethylamine	spawn_reagent = "diethylamine"

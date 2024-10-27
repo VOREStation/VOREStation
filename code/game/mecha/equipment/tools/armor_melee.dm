@@ -15,19 +15,19 @@
 
 /obj/item/mecha_parts/mecha_equipment/anticcw_armor_booster/get_equip_info()
 	if(!chassis) return
-	return "<span style=\"color:[equip_ready?"#0f0":"#f00"];\">*</span>&nbsp;[src.name]"
+	return (equip_ready ? span_green("*") : span_red("*")) + "&nbsp;[src.name]"
 
-/obj/item/mecha_parts/mecha_equipment/anticcw_armor_booster/handle_melee_contact(var/obj/item/weapon/W, var/mob/living/user, var/inc_damage = null)
+/obj/item/mecha_parts/mecha_equipment/anticcw_armor_booster/handle_melee_contact(var/obj/item/W, var/mob/living/user, var/inc_damage = null)
 	if(!action_checks(user))
 		return inc_damage
 	chassis.log_message("Attacked by [W]. Attacker - [user]")
 	if(prob(chassis.deflect_chance*deflect_coeff))
-		to_chat(user, "<span class='danger'>\The [W] bounces off \the [chassis]'s armor.</span>")
+		to_chat(user, span_danger("\The [W] bounces off \the [chassis]'s armor."))
 		chassis.log_append_to_last("Armor saved.")
 		inc_damage = 0
 	else
-		chassis.occupant_message("<span class='danger'>\The [user] hits [chassis] with [W].</span>")
-		user.visible_message("<span class='danger'>\The [user] hits [chassis] with [W].</span>", "<span class='danger'>You hit [src] with [W].</span>")
+		chassis.occupant_message(span_danger("\The [user] hits [chassis] with [W]."))
+		user.visible_message(span_danger("\The [user] hits [chassis] with [W]."), span_danger("You hit [src] with [W]."))
 		inc_damage *= damage_coeff
 	set_ready_state(FALSE)
 	chassis.use_power(energy_drain)
@@ -53,16 +53,16 @@
 	..()
 	return
 
-/obj/item/mecha_parts/mecha_equipment/anticcw_armor_booster/proc/dynattackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/item/mecha_parts/mecha_equipment/anticcw_armor_booster/proc/dynattackby(obj/item/W as obj, mob/user as mob)
 	if(!action_checks(user))
 		return chassis.dynattackby(W,user)
 	chassis.log_message("Attacked by [W]. Attacker - [user]")
 	if(prob(chassis.deflect_chance*deflect_coeff))
-		to_chat(user, "<span class='danger'>\The [W] bounces off [chassis] armor.</span>")
+		to_chat(user, span_danger("\The [W] bounces off [chassis] armor."))
 		chassis.log_append_to_last("Armor saved.")
 	else
-		chassis.occupant_message("<span class='danger'>\The [user] hits [chassis] with [W].</span>")
-		user.visible_message("<span class='danger'>\The [user] hits [chassis] with [W].</span>", "<span class='danger'>You hit [src] with [W].</span>")
+		chassis.occupant_message(span_danger("\The [user] hits [chassis] with [W]."))
+		user.visible_message(span_danger("\The [user] hits [chassis] with [W]."), span_danger("You hit [src] with [W]."))
 		chassis.take_damage(round(W.force*damage_coeff),W.damtype)
 		chassis.check_for_internal_damage(list(MECHA_INT_TEMP_CONTROL,MECHA_INT_TANK_BREACH,MECHA_INT_CONTROL_LOST))
 	set_ready_state(FALSE)

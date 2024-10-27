@@ -1,7 +1,7 @@
 /obj/item/clothing/head/helmet/space/rig/combat
 	light_overlay = "helmet_light_dual_green"
 
-/obj/item/weapon/rig/combat
+/obj/item/rig/combat
 	name = "combat hardsuit control module"
 	desc = "A sleek and dangerous hardsuit for active combat."
 	icon_state = "security_rig"
@@ -13,16 +13,16 @@
 
 	helm_type = /obj/item/clothing/head/helmet/space/rig/combat
 	allowed = list(
-		/obj/item/weapon/gun,
-		/obj/item/device/flashlight,
-		/obj/item/weapon/tank,
-		/obj/item/device/suit_cooling_unit,
-		/obj/item/weapon/melee/baton,
-		/obj/item/weapon/storage
+		/obj/item/gun,
+		/obj/item/flashlight,
+		/obj/item/tank,
+		/obj/item/suit_cooling_unit,
+		/obj/item/melee/baton,
+		/obj/item/storage
 		)
 
 
-/obj/item/weapon/rig/combat/equipped
+/obj/item/rig/combat/equipped
 
 	initial_modules = list(
 		/obj/item/rig_module/mounted,
@@ -34,13 +34,13 @@
 		/obj/item/rig_module/chem_dispenser/combat
 		)
 
-/obj/item/weapon/rig/combat/empty
+/obj/item/rig/combat/empty
 	initial_modules = list(
 		/obj/item/rig_module/ai_container,
 		/obj/item/rig_module/electrowarfare_suite,
 		)
 
-/obj/item/weapon/rig/military
+/obj/item/rig/military
 	name = "military hardsuit control module"
 	desc = "An austere hardsuit used by paramilitary groups and real soldiers alike."
 	icon_state = "military_rig"
@@ -50,24 +50,24 @@
 	offline_slowdown = 1.5
 	offline_vision_restriction = 1
 	allowed = list(
-		/obj/item/device/flashlight,
-		/obj/item/weapon/tank,
+		/obj/item/flashlight,
+		/obj/item/tank,
 		/obj/item/ammo_magazine,
 		/obj/item/ammo_casing,
-		/obj/item/weapon/handcuffs,
-		/obj/item/device/t_scanner,
-		/obj/item/weapon/rcd,
-		/obj/item/weapon/weldingtool,
-		/obj/item/weapon/tool,
-		/obj/item/device/multitool,
-		/obj/item/device/radio,
-		/obj/item/device/analyzer,
-		/obj/item/weapon/melee/baton,
-		/obj/item/weapon/gun,
-		/obj/item/weapon/storage,
-		/obj/item/weapon/reagent_containers/hypospray,
+		/obj/item/handcuffs,
+		/obj/item/t_scanner,
+		/obj/item/rcd,
+		/obj/item/weldingtool,
+		/obj/item/tool,
+		/obj/item/multitool,
+		/obj/item/radio,
+		/obj/item/analyzer,
+		/obj/item/melee/baton,
+		/obj/item/gun,
+		/obj/item/storage,
+		/obj/item/reagent_containers/hypospray,
 		/obj/item/roller,
-		/obj/item/device/suit_cooling_unit
+		/obj/item/suit_cooling_unit
 		)
 
 	chest_type = /obj/item/clothing/suit/space/rig/military
@@ -88,7 +88,7 @@
 /obj/item/clothing/gloves/gauntlets/rig/military
 	species_restricted = list(SPECIES_HUMAN,SPECIES_PROMETHEAN)
 
-/obj/item/weapon/rig/military/equipped
+/obj/item/rig/military/equipped
 	initial_modules = list(
 		/obj/item/rig_module/mounted/egun,
 		/obj/item/rig_module/vision/multi,
@@ -99,7 +99,7 @@
 		/obj/item/rig_module/chem_dispenser/combat,
 		)
 
-/obj/item/weapon/rig/military/empty
+/obj/item/rig/military/empty
 	initial_modules = list(
 		/obj/item/rig_module/ai_container,
 		/obj/item/rig_module/electrowarfare_suite,

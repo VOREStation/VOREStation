@@ -48,7 +48,7 @@
 		var/obj/item/projectile/arc/spore/P = new(get_turf(B))
 		P.launch_projectile(L, BP_TORSO, B)
 
-/datum/blob_type/roiling_mold/on_chunk_use(obj/item/weapon/blobcore_chunk/B, mob/living/user)
+/datum/blob_type/roiling_mold/on_chunk_use(obj/item/blobcore_chunk/B, mob/living/user)
 	for(var/mob/living/L in oview(world.view, get_turf(B)))
 		if(istype(user) && user == L)
 			continue
@@ -58,7 +58,7 @@
 
 		var/obj/item/projectile/P = new spore_projectile(get_turf(B))
 
-		user.visible_message("<span class='danger'>[icon2html(B,viewers(user))] \The [B] discharges energy toward \the [L]!</span>")
+		user.visible_message(span_danger("[icon2html(B,viewers(user))] \The [B] discharges energy toward \the [L]!"))
 		P.launch_projectile(L, BP_TORSO, user)
 
 	return

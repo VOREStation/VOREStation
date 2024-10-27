@@ -76,18 +76,18 @@
 		num2text(EXP_FREQ) = list(access_explorer)
 	)
 
-/obj/item/device/multitool/station_buffered
+/obj/item/multitool/station_buffered
 	name = "pre-linked multitool (Rascal's Pass hub)"
 	desc = "This multitool has already been linked to the groundbase telecomms hub and can be used to configure one (1) relay."
 
-/obj/item/device/multitool/station_buffered/Initialize()
+/obj/item/multitool/station_buffered/Initialize()
 	. = ..()
 	buffer = locate(/obj/machinery/telecomms/hub/preset/groundbase)
 
-/obj/item/device/bluespaceradio/groundbase_prelinked
+/obj/item/bluespaceradio/groundbase_prelinked
 	name = "bluespace radio (Rascal's Pass)"
-	handset = /obj/item/device/radio/bluespacehandset/linked/groundbase_prelinked
+	handset = /obj/item/radio/bluespacehandset/linked/groundbase_prelinked
 
-/obj/item/device/radio/bluespacehandset/linked/groundbase_prelinked
+/obj/item/radio/bluespacehandset/linked/groundbase_prelinked
 	bs_tx_preload_id = "groundbase_rx" //Transmit to a receiver
 	bs_rx_preload_id = "groundbase_tx" //Recveive from a transmitter

@@ -4,10 +4,10 @@
 	for a directed lightning strike to occur.  The lightning is very strong, however it requires a few seconds to prepare a \
 	strike.  Lightning functions cannot miss due to distance."
 	cost = 150
-	obj_path = /obj/item/weapon/spell/projectile/lightning
+	obj_path = /obj/item/spell/projectile/lightning
 	category = OFFENSIVE_SPELLS
 
-/obj/item/weapon/spell/projectile/lightning
+/obj/item/spell/projectile/lightning
 	name = "lightning strike"
 	icon_state = "lightning_strike"
 	desc = "Now you can feel like Zeus."

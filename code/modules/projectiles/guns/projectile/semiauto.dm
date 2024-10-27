@@ -1,7 +1,7 @@
 /*
  * M1 Garand
  */
-/obj/item/weapon/gun/projectile/garand
+/obj/item/gun/projectile/garand
 	name = "semi-automatic rifle"
 	desc = "A vintage styled frontier rifle by Hedberg-Hammarstrom. The distinctive 'ping' is considered \
 	traditional, though its origins are much debated. Uses 7.62mm rounds."
@@ -23,7 +23,7 @@
 	auto_eject = 1
 	auto_eject_sound = 'sound/weapons/garand_ping.ogg'
 
-/obj/item/weapon/gun/projectile/garand/update_icon()
+/obj/item/gun/projectile/garand/update_icon()
 	if(ammo_magazine)
 		icon_state = initial(icon_state)
 	else
@@ -33,7 +33,7 @@
  * Revolver Rifle
  *		Bastard child of a revolver and a semi-auto rifle.
  */
-/obj/item/weapon/gun/projectile/revolvingrifle
+/obj/item/gun/projectile/revolvingrifle
 	name = "revolving rifle"
 	desc = "The Gungnir is a novel, antique idea brought into the modern era by Hedberg-Hammarstrom. \
 	The semi-automatic revolving mechanism offers no real advantage, but some colonists swear by it. \
@@ -57,7 +57,7 @@
 /*
  * Vintage Revolver Rifle
  */
-/obj/item/weapon/gun/projectile/revolvingrifle/vintage
+/obj/item/gun/projectile/revolvingrifle/vintage
 	name = "vintage revolving rifle"
 	desc = "The Willhem is the Gungir's older cousin by Hedberg-Hammarstrom, the perfect collector piece. \
 	The semi-automatic revolving mechanism offers no real advantage, but some colonists swear by it. \

@@ -52,7 +52,7 @@
 /datum/reagent/modapplying/cryofluid/touch_turf(var/turf/T, var/amount)
 	..()
 	if(istype(T, /turf/simulated/floor/water) && prob(amount))
-		T.visible_message("<span class='danger'>\The [T] crackles loudly as the cryogenic fluid causes it to boil away, leaving behind a hard layer of ice.</span>")
+		T.visible_message(span_danger("\The [T] crackles loudly as the cryogenic fluid causes it to boil away, leaving behind a hard layer of ice."))
 		T.ChangeTurf(/turf/simulated/floor/outdoors/ice, 1, 1, TRUE)
 	else
 		if(istype(T, /turf/simulated))

@@ -30,15 +30,15 @@
 		"rutile" = 0)
 
 
-/obj/structure/ore_box/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if (istype(W, /obj/item/weapon/ore))
-		var/obj/item/weapon/ore/ore = W
+/obj/structure/ore_box/attackby(obj/item/W as obj, mob/user as mob)
+	if (istype(W, /obj/item/ore))
+		var/obj/item/ore/ore = W
 		stored_ore[ore.material]++
 		user.remove_from_mob(W)
 		qdel(ore)
 
-	else if (istype(W, /obj/item/weapon/storage/bag/ore))
-		var/obj/item/weapon/storage/bag/ore/S = W
+	else if (istype(W, /obj/item/storage/bag/ore))
+		var/obj/item/storage/bag/ore/S = W
 		S.hide_from(user)
 		for(var/ore in S.stored_ore)
 			if(S.stored_ore[ore] > 0)
@@ -46,7 +46,7 @@
 				stored_ore[ore] += ore_amount 		// Add the ore to the machine.
 				S.stored_ore[ore] = 0 				// Set the value of the ore in the satchel to 0.
 				S.current_capacity = 0				// Set the amount of ore in the satchel  to 0.
-		to_chat(user, "<span class='notice'>You empty the satchel into the box.</span>")
+		to_chat(user, span_notice("You empty the satchel into the box."))
 
 	return
 
@@ -55,7 +55,7 @@
 
 	stored_ore = list()
 
-	for(var/obj/item/weapon/ore/O in contents)
+	for(var/obj/item/ore/O in contents)
 
 		if(stored_ore[O.name])
 			stored_ore[O.name]++
@@ -85,7 +85,7 @@
 //	set src in view(1)
 //
 //	if(!ishuman(usr) && !isrobot(usr)) //Only living, intelligent creatures with gripping aparatti can empty ore boxes.
-//		to_chat(usr, "<span class='warning'>You are physically incapable of emptying the ore box.</span>")
+//		to_chat(usr, span_warning("You are physically incapable of emptying the ore box."))
 //		return
 //	if(usr.stat || usr.restrained())
 //		return
@@ -97,13 +97,13 @@
 //	add_fingerprint(usr)
 //
 //	if(contents.len < 1)
-//		to_chat(usr, "<span class='warning'>The ore box is empty.</span>")
+//		to_chat(usr, span_warning("The ore box is empty."))
 //		return
 //
-//	for (var/obj/item/weapon/ore/O in contents)
+//	for (var/obj/item/ore/O in contents)
 //		contents -= O
 //		O.loc = src.loc
-//	to_chat(usr, "<span class='notice'>You empty the ore box.</span>")
+//	to_chat(usr, span_notice("You empty the ore box."))
 //
 //	return
 

@@ -66,7 +66,7 @@
 /area/redgate/wilds)
 "hS" = (
 /obj/structure/bed/double/padded,
-/obj/item/weapon/bedsheet/hopdouble,
+/obj/item/bedsheet/hopdouble,
 /turf/simulated/floor/tiled/dark,
 /area/redgate/structure)
 "iy" = (
@@ -140,7 +140,7 @@
 	},
 /area/redgate/wilds)
 "rE" = (
-/obj/item/weapon/paper,
+/obj/item/paper,
 /turf/simulated/floor/tiled/dark,
 /area/redgate/structure)
 "si" = (
@@ -185,7 +185,7 @@
 /area/redgate/structure)
 "xw" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/paper,
+/obj/item/paper,
 /turf/simulated/floor/tiled/dark,
 /area/redgate/structure)
 "yA" = (
@@ -216,7 +216,7 @@
 /area/redgate/wilds)
 "AU" = (
 /obj/structure/bed/double/padded,
-/obj/item/weapon/bedsheet/purpledouble,
+/obj/item/bedsheet/purpledouble,
 /turf/simulated/floor/tiled/dark,
 /area/redgate/structure)
 "BD" = (
@@ -231,7 +231,7 @@
 /turf/simulated/floor/outdoors/grass/forest,
 /area/redgate/wilds)
 "Cg" = (
-/obj/item/weapon/paper,
+/obj/item/paper,
 /obj/structure/table/woodentable,
 /turf/simulated/floor/tiled/dark,
 /area/redgate/structure)
@@ -350,7 +350,7 @@
 	},
 /area/redgate/wilds)
 "Rd" = (
-/obj/item/weapon/broken_bottle,
+/obj/item/broken_bottle,
 /turf/simulated/floor/tiled/dark,
 /area/redgate/structure)
 "Rl" = (

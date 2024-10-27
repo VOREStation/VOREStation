@@ -117,7 +117,7 @@ GLOBAL_LIST_BOILERPLATE(all_debugging_effects, /obj/effect/debugging)
 		qdel(M)
 
 	if(intercom_range_display_status)
-		for(var/obj/item/device/radio/intercom/I in machines)
+		for(var/obj/item/radio/intercom/I in machines)
 			for(var/turf/T in orange(7,I))
 				var/obj/effect/debugging/marker/F = new/obj/effect/debugging/marker(T)
 				if (!(F in view(7,I.loc)))
@@ -172,7 +172,7 @@ var/list/debug_verbs = list (
 
 	if(!check_rights(R_DEBUG)) return
 
-	verbs += debug_verbs
+	add_verb(src, debug_verbs)
 
 	feedback_add_details("admin_verb","mDV") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
@@ -182,7 +182,7 @@ var/list/debug_verbs = list (
 
 	if(!check_rights(R_DEBUG)) return
 
-	verbs -= debug_verbs
+	remove_verb(src, debug_verbs)
 
 	feedback_add_details("admin_verb","hDV") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 

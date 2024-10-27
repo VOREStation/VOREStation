@@ -11,7 +11,7 @@ var/list/_brain_default_emotes = list(
 )
 
 /mob/living/carbon/brain/can_emote()
-	return (istype(container, /obj/item/device/mmi) && ..())
+	return (istype(container, /obj/item/mmi) && ..())
 
 /mob/living/carbon/brain/get_available_emotes()
 	return global._brain_default_emotes.Copy()

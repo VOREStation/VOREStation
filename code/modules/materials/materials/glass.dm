@@ -25,12 +25,12 @@
 		return 0
 
 	if(!user.IsAdvancedToolUser())
-		to_chat(user, "<span class='warning'>This task is too complex for your clumsy hands.</span>")
+		to_chat(user, span_warning("This task is too complex for your clumsy hands."))
 		return 1
 
 	var/turf/T = user.loc
 	if(!istype(T))
-		to_chat(user, "<span class='warning'>You must be standing on open flooring to build a window.</span>")
+		to_chat(user, span_warning("You must be standing on open flooring to build a window."))
 		return 1
 
 	var/message = "Sheet-[used_stack.name] ([used_stack.get_amount()] sheet\s left)"
@@ -68,7 +68,7 @@
 			else
 				failed_to_build = 1
 	if(failed_to_build)
-		to_chat(user, "<span class='warning'>There is no room in this location.</span>")
+		to_chat(user, span_warning("There is no room in this location."))
 		return 1
 
 	var/build_path = /obj/structure/windoor_assembly
@@ -82,7 +82,7 @@
 		build_path = created_window
 
 	if(used_stack.get_amount() < sheets_needed)
-		to_chat(user, "<span class='warning'>You need at least [sheets_needed] sheets to build this.</span>")
+		to_chat(user, span_warning("You need at least [sheets_needed] sheets to build this."))
 		return 1
 
 	// Build the structure and update sheet count etc.

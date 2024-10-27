@@ -97,7 +97,7 @@
 		if(M.z == pos_z)
 			to_chat(M, msg)
 	log_admin("ZNarrate: [key_name(usr)] : [msg]")
-	message_admins(span_blue("<B> ZNarrate: [key_name_admin(usr)] : [msg]<BR></B>"), 1)
+	message_admins(span_blue(span_bold(" ZNarrate: [key_name_admin(usr)] : [msg]<BR>")), 1)
 	feedback_add_details("admin_verb","GLNA") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/toggle_vantag_hud(var/mob/target as mob)

@@ -7,7 +7,7 @@
 	new_data = sanitizeSafe(new_data, MAX_MESSAGE_LEN, 0, 0)
 
 	if(new_data && holder.check_interactivity(user) )
-		to_chat(user, "<span class='notice'>You input [new_data ? "new_data" : "NULL"] into the pin.</span>")
+		to_chat(user, span_notice("You input [new_data ? "new_data" : "NULL"] into the pin."))
 		write_data_to_pin(new_data)
 
 /datum/integrated_io/string/write_data_to_pin(var/new_data)

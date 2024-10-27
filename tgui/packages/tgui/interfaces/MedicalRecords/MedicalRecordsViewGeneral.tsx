@@ -1,5 +1,6 @@
-import { useBackend } from '../../backend';
-import { Box, Button, Image, LabeledList } from '../../components';
+import { useBackend } from 'tgui/backend';
+import { Box, Button, Image, LabeledList, Stack } from 'tgui-core/components';
+
 import { doEdit } from '../GeneralRecords/functions';
 import { Data } from './types';
 
@@ -10,13 +11,8 @@ export const MedicalRecordsViewGeneral = (props) => {
     return <Box color="bad">General records lost!</Box>;
   }
   return (
-    <>
-      <Box
-        width="50%"
-        style={{
-          float: 'left',
-        }}
-      >
+    <Stack>
+      <Stack.Item grow>
         <LabeledList>
           {general.fields.map((field, i) => (
             <LabeledList.Item key={i} label={field.field}>
@@ -33,14 +29,8 @@ export const MedicalRecordsViewGeneral = (props) => {
             </LabeledList.Item>
           ))}
         </LabeledList>
-      </Box>
-      <Box
-        width="50%"
-        style={{
-          float: 'right',
-        }}
-        textAlign="right"
-      >
+      </Stack.Item>
+      <Stack.Item>
         {!!general.has_photos &&
           general.photos!.map((p, i) => (
             <Box key={i} inline textAlign="center" color="label">
@@ -55,7 +45,7 @@ export const MedicalRecordsViewGeneral = (props) => {
               Photo #{i + 1}
             </Box>
           ))}
-      </Box>
-    </>
+      </Stack.Item>
+    </Stack>
   );
 };
