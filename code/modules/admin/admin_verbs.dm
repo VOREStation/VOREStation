@@ -563,6 +563,6 @@
 
 /client/proc/debugstatpanel()
 	set name = "Debug Stat Panel"
-	set category = "Debug.Game"
+	set category = "Debug.Misc"
 
 	src.stat_panel.send_message("create_debug")
