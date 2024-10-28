@@ -62,6 +62,7 @@
 	data["max_charge"] = R.cell?.maxcharge
 	data["health"] = R.health
 	data["max_health"] = R.getMaxHealth()
+	data["light_color"] = R.robot_light_col
 
 	data["weapon_lock"] = R.weapon_lock
 
@@ -111,6 +112,11 @@
 	var/mob/living/silicon/robot/R = host
 
 	switch(action)
+		if("set_light_col")
+			var/new_color = params["value"]
+			if(findtext(new_color, GLOB.is_color))
+				R.robot_light_col = new_color
+			. = TRUE
 		if("select_module")
 			R.pick_module()
 			. = TRUE

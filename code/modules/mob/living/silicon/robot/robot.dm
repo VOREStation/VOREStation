@@ -15,6 +15,7 @@
 	blocks_emissive = EMISSIVE_BLOCK_UNIQUE
 
 	var/lights_on = 0 // Is our integrated light on?
+	var/robot_light_col = "#FFFFFF"
 	var/used_power_this_tick = 0
 	var/sight_mode = 0
 	var/custom_name = ""
