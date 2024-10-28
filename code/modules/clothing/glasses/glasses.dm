@@ -71,7 +71,7 @@ BLIND     // can't see anything
 		tint = initial(tint)
 		enables_planes = away_planes
 		away_planes = null
-	user.update_action_buttons_icon()
+	user.update_mob_action_buttons()
 	user.recalculate_vis()
 
 /obj/item/clothing/glasses/attack_self(mob/user)
@@ -408,7 +408,7 @@ BLIND     // can't see anything
 			tint = TINT_NONE
 			to_chat(usr, "You push \the [src] up out of your face.")
 		update_clothing_icon()
-		usr.update_action_buttons_icon()
+		usr.update_mob_action_buttons()
 
 /obj/item/clothing/glasses/welding/superior
 	name = "superior welding goggles"
@@ -503,7 +503,7 @@ BLIND     // can't see anything
 		user << activation_sound
 		user.recalculate_vis()
 		user.update_inv_glasses()
-		user.update_action_buttons_icon()
+		user.update_mob_action_buttons()
 
 /obj/item/clothing/glasses/sunglasses/sechud/aviator/update_icon()
 	if(on)
@@ -623,4 +623,4 @@ BLIND     // can't see anything
 			icon_state = "[initial(icon_state)]up"
 			to_chat(usr, "You push \the [src] up from in front of your eyes.")
 		update_clothing_icon()
-		usr.update_action_buttons_icon()
+		usr.update_mob_action_buttons()

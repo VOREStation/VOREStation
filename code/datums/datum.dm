@@ -22,7 +22,7 @@
 	var/list/open_uis
 
 	/// Active timers with this datum as the target
-	var/list/active_timers
+	var/list/_active_timers
 	/// Status traits attached to this datum. associative list of the form: list(trait name (string) = list(source1, source2, source3,...))
 	var/list/_status_traits
 
@@ -69,20 +69,35 @@
 	// Create and destroy is weird and I wanna cover my bases
 	var/harddel_deets_dumped = FALSE
 
-// Default implementation of clean-up code.
-// This should be overridden to remove all references pointing to the object being destroyed.
-// Return the appropriate QDEL_HINT; in most cases this is QDEL_HINT_QUEUE.
+/**
+ * Default implementation of clean-up code.
+ *
+ * This should be overridden to remove all references pointing to the object being destroyed, if
+ * you do override it, make sure to call the parent and return its return value by default
+ *
+ * Return an appropriate [QDEL_HINT][QDEL_HINT_QUEUE] to modify handling of your deletion;
+ * in most cases this is [QDEL_HINT_QUEUE].
+ *
+ * The base case is responsible for doing the following
+ * * Erasing timers pointing to this datum
+ * * Erasing compenents on this datum
+ * * Notifying datums listening to signals from this datum that we are going away
+ *
+ * Returns [QDEL_HINT_QUEUE]
+ */
 /datum/proc/Destroy(force=FALSE)
+	//SHOULD_CALL_PARENT(TRUE)
+	//SHOULD_NOT_SLEEP(TRUE)
+	tag = null
+	weak_reference = null //ensure prompt GCing of weakref.
 
-	//clear timers
-	var/list/timers = active_timers
-	active_timers = null
-	for(var/datum/timedevent/timer as anything in timers)
-		if (timer.spent)
-			continue
-		qdel(timer)
-
-	weak_reference = null // Clear this reference to ensure it's kept for as brief duration as possible.
+	if(_active_timers)
+		var/list/timers = _active_timers
+		_active_timers = null
+		for(var/datum/timedevent/timer as anything in timers)
+			if (timer.spent && !(timer.flags & TIMER_DELETE_ME))
+				continue
+			qdel(timer)
 
 	//BEGIN: ECS SHIT
 	signal_enabled = FALSE
@@ -114,7 +129,6 @@
 		UnregisterSignal(target, signal_procs[target])
 	//END: ECS SHIT
 
-	tag = null
 	SStgui.close_uis(src)
 
 	#ifdef REFERENCE_TRACKING

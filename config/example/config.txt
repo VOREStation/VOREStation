@@ -446,11 +446,6 @@ PTO_CAP 50
 # Forbids players from joining if they have no set General flavor text
 REQUIRE_FLAVOR
 
-## Uncomment to enable submaps to have their orientation rotated randomly during map generation.
-## Submap rotation is an experimental feature and can cause bugs and weirdness if certain objects inside the submap are coded poorly.
-## Submaps can still be rotated when loading manually with the admin verbs, if desired.
-# RANDOM_SUBMAP_ORIENTATION
-
 ## Uncomment to allow the AI job to use 'AI Shells', a new type of borg that lets the AI hop into and out of them at will.
 ## This has some balance implications, and so it might not be desirable for all servers.
 ALLOW_AI_SHELLS

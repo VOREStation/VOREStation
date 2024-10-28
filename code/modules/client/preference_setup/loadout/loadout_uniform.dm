@@ -635,3 +635,22 @@
 	"black tabard-dress"=/obj/item/clothing/under/dress/tabard/black
 	)
 	gear_tweaks += list(new/datum/gear_tweak/path(tabarddress))
+
+//bunny suits
+
+/datum/gear/uniform/bunnysuit
+	display_name = "bunny suit selection, colorable"
+	path = /obj/item/clothing/under/bunnysuit
+
+/datum/gear/uniform/bunnysuit/New()
+	..()
+	var/list/bunnysuit = list(
+	"bunnysuit"=/obj/item/clothing/under/bunnysuit,
+	"maid bunnysuit"=/obj/item/clothing/under/bunnysuit_maid,
+	"reverse bunnysuit"=/obj/item/clothing/under/reverse_bunnysuit,
+	"maid reverse bunnysuit"=/obj/item/clothing/under/reverse_bunnysuit_maid,
+	"reverse bunnysuit, no legs"=/obj/item/clothing/under/reverse_bunnytop,
+	"maid reverse bunnysuit, no legs"=/obj/item/clothing/under/reverse_bunnytop_maid
+	)
+	gear_tweaks += list(new/datum/gear_tweak/path(bunnysuit))
+	gear_tweaks += gear_tweak_free_color_choice

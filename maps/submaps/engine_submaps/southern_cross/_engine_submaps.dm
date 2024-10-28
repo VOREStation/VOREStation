@@ -18,19 +18,19 @@
 /datum/map_template/engine/rust
 	name = "R-UST Engine"
 	desc = "R-UST Fusion Tokamak Engine"
-	mappath = 'maps/submaps/engine_submaps/southern_cross/engine_rust.dmm'
+	mappath = "maps/submaps/engine_submaps/southern_cross/engine_rust.dmm"
 
 /datum/map_template/engine/singulo
 	name = "Singularity Engine"
 	desc = "Lord Singuloth"
-	mappath = 'maps/submaps/engine_submaps/southern_cross/engine_singulo.dmm'
+	mappath = "maps/submaps/engine_submaps/southern_cross/engine_singulo.dmm"
 
 /datum/map_template/engine/supermatter
 	name = "Supermatter Engine"
 	desc = "Old Faithful Supermatter"
-	mappath = 'maps/submaps/engine_submaps/southern_cross/engine_sme.dmm'
+	mappath = "maps/submaps/engine_submaps/southern_cross/engine_sme.dmm"
 
 /datum/map_template/engine/tesla
 	name = "Edison's Bane"
 	desc = "The Telsa Engine"
-	mappath = 'maps/submaps/engine_submaps/southern_cross/engine_tesla.dmm'
+	mappath = "maps/submaps/engine_submaps/southern_cross/engine_tesla.dmm"

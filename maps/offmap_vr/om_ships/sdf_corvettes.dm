@@ -9,19 +9,19 @@
 /datum/map_template/om_ships/sdf_corvette
 	name = "OM Ship - SDF Corvette (new Z)"
 	desc = "A small SDF patrol corvette."
-	mappath = 'sdf_corvette.dmm'
+	mappath = "maps/offmap_vr/om_ships/sdf_corvette.dmm"
 	annihilate = TRUE
 
 /datum/map_template/om_ships/sdf_corvette_wreck
 	name = "OM Ship - SDF Corvette Wreck (new Z)"
 	desc = "A small SD patrol corvette. It seems to have had a bad day."
-	mappath = 'sdf_corvette_wreck.dmm'
+	mappath = "maps/offmap_vr/om_ships/sdf_corvette_wreck.dmm"
 	annihilate = TRUE
 
 /datum/map_template/om_ships/sdf_corvette
 	name = "OM Ship - SDF Cutter (new Z)"
 	desc = "A small SDF cutter, outfitted with an ORB/OFD."
-	mappath = 'sdf_cutter.dmm'
+	mappath = "maps/offmap_vr/om_ships/sdf_cutter.dmm"
 	annihilate = TRUE
 
 // The shuttle's area(s)

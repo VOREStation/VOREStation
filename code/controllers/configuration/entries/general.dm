@@ -60,6 +60,9 @@
 /// logs graffiti
 /datum/config_entry/flag/log_graffiti
 
+/// logs all timers in buckets on automatic bucket reset (Useful for timer debugging)
+/datum/config_entry/flag/log_timers_on_bucket_reset
+
 // FIXME: Unused
 ///datum/config_entry/string/nudge_script_path // where the nudge.py script is located
 //	default = "nudge.py"

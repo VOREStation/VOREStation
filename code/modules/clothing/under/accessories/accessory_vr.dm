@@ -1033,3 +1033,13 @@
 	desc = "A studded belt for holding your pants up and looking cool."
 	icon_state = "belt_studded"
 	item_state = "belt_studded"
+
+/obj/item/clothing/accessory/bunny_tail
+	name = "Bunny Tail"
+	desc = "A little fluffy bunny tail to spice up your outfit."
+	icon = 'icons/inventory/accessory/item.dmi'
+	icon_override = 'icons/inventory/accessory/mob.dmi'
+	icon_state = "bunny_tail"
+	item_state = "bunny_tail"
+	slot_flags = SLOT_TIE | SLOT_BELT
+	slot = ACCESSORY_SLOT_DECOR
