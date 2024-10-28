@@ -5,7 +5,7 @@ export type Data = {
   show_pictures: BooleanLike;
   inside: insideData;
   host_mobtype: hostMob;
-  our_bellies: bellyData[] | null;
+  our_bellies: bellyData[];
   selected: selectedData;
   prefs: prefData;
   abilities: {
