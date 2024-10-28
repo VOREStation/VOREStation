@@ -1,7 +1,9 @@
 import { useBackend } from 'tgui/backend';
 import {
   Box,
+  ColorBox,
   ImageButton,
+  Input,
   LabeledList,
   NoticeBox,
   ProgressBar,
@@ -164,9 +166,9 @@ const Configuration = (props) => {
 };
 
 const Status = (props) => {
-  const { data } = useBackend<Data>();
+  const { act, data } = useBackend<Data>();
 
-  const { charge, max_charge, health, max_health } = data;
+  const { charge, max_charge, health, max_health, light_color } = data;
 
   return (
     <Section title="Status" fill>
@@ -198,6 +200,17 @@ const Status = (props) => {
               bad: [Number.NEGATIVE_INFINITY, max_health * 0.3],
             }}
           />
+        </LabeledList.Item>
+        <LabeledList.Item label="Light color">
+          <Box inline>
+            <ColorBox mr={1} color={light_color} />
+            <Input
+              width="5em"
+              monospace
+              value={light_color}
+              onChange={(e, value: string) => act('set_light_col', { value })}
+            />
+          </Box>
         </LabeledList.Item>
       </LabeledList>
     </Section>
