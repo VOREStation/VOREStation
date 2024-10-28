@@ -329,11 +329,11 @@
 	access = access_medical_equip
 
 /datum/supply_pack/med/virus
-	name = "Virus sample crate"
-	contains = list(/obj/item/virusdish/random = 4)
+	name = "Virus culture crate"
+	contains = list(/obj/item/reagent_containers/glass/bottle/culture/cold = 1, /obj/item/reagent_containers/glass/bottle/culture/flu = 1)
 	cost = 25
 	containertype = /obj/structure/closet/crate/secure/zenghu
-	containername = "Virus sample crate"
+	containername = "Virus culture crate"
 	access = access_cmo
 
 /datum/supply_pack/med/defib
@@ -410,11 +410,11 @@
 	access = access_medical_equip
 
 /datum/supply_pack/med/virus
-	name = "Virus sample crate"
-	contains = list(/obj/item/virusdish/random = 4)
+	name = "Virus culture crate"
+	contains = list(/obj/item/reagent_containers/glass/bottle/culture/cold = 1, /obj/item/reagent_containers/glass/bottle/culture/flu = 1)
 	cost = 25
 	containertype = /obj/structure/closet/crate/secure
-	containername = "Virus sample crate"
+	containername = "Virus culture crate"
 	access = access_medical_equip
 
 

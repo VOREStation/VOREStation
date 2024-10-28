@@ -172,8 +172,10 @@
 					medical["empty"] = 1
 			if(MED_DATA_V_DATA)
 				data["virus"] = list()
-				for(var/ID in virusDB)
-					var/datum/data/record/v = virusDB[ID]
+				for(var/datum/disease/D in active_diseases)
+					if(!D.discovered)
+						continue
+					var/datum/data/record/v = active_diseases[D]
 					data["virus"] += list(list("name" = v.fields["name"], "D" = "\ref[v]"))
 			if(MED_DATA_MEDBOT)
 				data["medbots"] = list()

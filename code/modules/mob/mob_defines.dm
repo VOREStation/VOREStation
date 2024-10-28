@@ -240,3 +240,6 @@
 	var/list/list/misc_tabs = list()
 
 	var/list/datum/action/actions
+
+	var/list/viruses = list()
+	var/list/resistances = list()
