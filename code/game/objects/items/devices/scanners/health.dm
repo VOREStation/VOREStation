@@ -248,8 +248,8 @@
 				else
 					dat += span_warning("Unknown substance[(unknown > 1)?"s":""] found in subject's dermis.")
 					dat += "<br>"
-		if(C.viruses.len)
-			for (var/datum/disease/virus in C.viruses)
+		if(C.resistances.len)
+			for (var/datum/disease/virus in C.GetViruses())
 				if(virus.visibility_flags & HIDDEN_SCANNER || virus.visibility_flags & HIDDEN_PANDEMIC)
 					continue
 				if(virus.discovered)

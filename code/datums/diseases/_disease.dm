@@ -126,7 +126,7 @@ GLOBAL_LIST_INIT(diseases, subtypesof(/datum/disease))
 /datum/disease/proc/cure()
 	if(affected_mob)
 		if(disease_flags & CAN_RESIST)
-			if(!(type in affected_mob.resistances))
+			if(!(type in affected_mob.GetResistances()))
 				affected_mob.resistances += type
 		remove_virus()
 	qdel(src)

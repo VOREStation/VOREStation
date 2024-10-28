@@ -1,5 +1,5 @@
 /mob/proc/HasDisease(datum/disease/D)
-	for(var/thing in viruses)
+	for(var/thing in GetViruses())
 		var/datum/disease/DD = thing
 		if(DD.IsSame(D))
 			return TRUE
@@ -9,13 +9,13 @@
 	if(stat == DEAD && !D.allow_dead)
 		return FALSE
 
-	if(D.GetDiseaseID() in resistances)
+	if(D.GetDiseaseID() in GetResistances())
 		return FALSE
 
 	if(HasDisease(D))
 		return FALSE
 
-	if(istype(D, /datum/disease/advance) && count_by_type(viruses, /datum/disease/advance) > 0)
+	if(istype(D, /datum/disease/advance) && count_by_type(GetViruses(), /datum/disease/advance) > 0)
 		return FALSE
 
 	if(!(type in D.viable_mobtypes))
@@ -160,6 +160,14 @@
 
 /mob/living/proc/handle_diseases()
 	return
+
+/mob/proc/GetViruses()
+	LAZYINITLIST(viruses)
+	return viruses
+
+/mob/proc/GetResistances()
+	LAZYINITLIST(resistances)
+	return resistances
 
 // Test procs, poke Guti if it forgets to remove it
 

@@ -397,7 +397,7 @@
 	..()
 	if(istype(A, /mob/living/carbon) && prob(10))
 		var/mob/living/carbon/human/H = A
-		for(var/datum/disease/D in viruses)
+		for(var/datum/disease/D in GetViruses())
 			if(D.spread_flags & CONTACT_GENERAL)
 				H.ContractDisease(D)
 
@@ -545,7 +545,7 @@
 	return 0
 
 /mob/living/carbon/handle_diseases()
-	for(var/thing in viruses)
+	for(var/thing in GetViruses())
 		var/datum/disease/D = thing
 		if(prob(D.infectivity))
 			D.spread()

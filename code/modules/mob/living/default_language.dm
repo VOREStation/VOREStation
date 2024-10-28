@@ -3,7 +3,7 @@
 
 /mob/living/verb/set_default_language()
 	set name = "Set Default Language"
-	set category = "IC.Settings" //CHOMPEdit
+	set category = "IC"
 
 	var/language = tgui_input_list(usr, "Select your default language", "Available languages", languages)
 

@@ -98,7 +98,7 @@
 	if(bone)
 		dat += span_bold("Bone fracture") + " - Splint damaged area. Treat with bone repair surgery or Osteodaxon after treating brute damage.<br>"
 	if(M.viruses.len)
-		for(var/datum/disease/D in M.viruses)
+		for(var/datum/disease/D in M.GetViruses())
 			if(D.visibility_flags & HIDDEN_SCANNER)
 				continue
 			else

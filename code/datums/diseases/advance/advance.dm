@@ -73,8 +73,8 @@ GLOBAL_LIST_INIT(advance_cures, list(
 /datum/disease/advance/cure(resistance=1)
 	if(affected_mob)
 		var/id = "[GetDiseaseID()]"
-		if(resistance && !(id in affected_mob.resistances))
-			affected_mob.resistances[id] = id
+		if(resistance && !(id in affected_mob.GetResistances()))
+			affected_mob.GetResistances()[id] = id
 		remove_virus()
 	qdel(src)
 

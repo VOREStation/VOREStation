@@ -45,12 +45,12 @@
 			to_chat(H, span_warning("You can't use your hand."))
 			return
 
-		for(var/thing in viruses)
+		for(var/thing in GetViruses())
 			var/datum/disease/D = thing
 			if(D.IsSpreadByTouch())
 				H.ContractDisease(D)
 
-		for(var/thing in H.viruses)
+		for(var/thing in H.GetViruses())
 			var/datum/disease/D = thing
 			if(D.IsSpreadByTouch())
 				ContractDisease(D)
@@ -76,7 +76,7 @@
 			return FALSE
 
 	if(istype(M,/mob/living/carbon))
-		for(var/datum/disease/D in M.viruses)
+		for(var/datum/disease/D in M.GetViruses())
 			if(D.spread_flags & CONTACT_HANDS)
 				ContractDisease(D)
 

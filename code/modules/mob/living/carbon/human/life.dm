@@ -505,7 +505,7 @@
 	..()
 	//spread some viruses while we are at it
 	if(breath && viruses.len > 0 && prob(10))
-		for(var/datum/disease/D in viruses)
+		for(var/datum/disease/D in GetViruses())
 			if((D.spread_flags & SPECIAL) || (D.spread_flags & NON_CONTAGIOUS))
 				continue
 			for(var/mob/living/carbon/M in view(1,src))
@@ -2034,7 +2034,7 @@
 
 	if (BITTEST(hud_updateflag, STATUS_HUD))
 		var/foundVirus = 0
-		for (var/datum/disease/D in viruses)
+		for (var/datum/disease/D in GetViruses())
 			if(D.discovered)
 				foundVirus = 1
 				break
@@ -2058,7 +2058,7 @@
 		else
 			holder.icon_state = "hudhealthy"
 			if(viruses.len)
-				for(var/datum/disease/D in viruses)
+				for(var/datum/disease/D in GetViruses())
 					if(D.discovered)
 						holder2.icon_state = "hudill"
 			else

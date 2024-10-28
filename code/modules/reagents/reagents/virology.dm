@@ -6,7 +6,7 @@
 
 /datum/reagent/vaccine/affect_blood(mob/living/carbon/M, alien, removed)
 	if(islist(data))
-		for(var/thing in M.viruses)
+		for(var/thing in M.GetViruses())
 			var/datum/disease/D = thing
 			if(D.GetDiseaseID() in data)
 				D.cure()

@@ -249,7 +249,7 @@ var/const/CE_STABLE_THRESHOLD = 0.5
 	if(!B.data["viruses"])
 		B.data["viruses"] = list()
 
-	for(var/datum/disease/D in viruses)
+	for(var/datum/disease/D in GetViruses())
 		if(D.spread_flags & SPECIAL || D.spread_flags & NON_CONTAGIOUS)
 			continue
 		B.data["viruses"] |= D.Copy()
@@ -258,7 +258,7 @@ var/const/CE_STABLE_THRESHOLD = 0.5
 		B.data["resistances"] = list()
 
 	if(B.data["resistances"])
-		B.data["resistances"] |= resistances
+		B.data["resistances"] |= GetResistances()
 	B.data["blood_DNA"] = copytext(src.dna.unique_enzymes,1,0)
 	B.data["blood_type"] = copytext(src.dna.b_type,1,0)
 

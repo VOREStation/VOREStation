@@ -62,7 +62,7 @@ BONUS
 	phage.base_disease = A
 
 	if(A.spread_flags & CONTACT_GENERAL)
-		for(var/datum/disease/D in M.viruses)
+		for(var/datum/disease/D in M.GetViruses())
 			if((D.spread_flags & SPECIAL) || (D.spread_flags & NON_CONTAGIOUS))
 				continue
 			if(D == A)

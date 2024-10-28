@@ -479,7 +479,7 @@
 	if( istype(src, /turf/simulated) )
 		var/obj/effect/decal/cleanable/vomit/this = new /obj/effect/decal/cleanable/vomit(src)
 
-		for(var/datum/disease/D in M.viruses)
+		for(var/datum/disease/D in M.GetViruses())
 			this.viruses |= D.Copy()
 
 		// Make toxins vomit look different

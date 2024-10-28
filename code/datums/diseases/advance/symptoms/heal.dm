@@ -65,7 +65,7 @@ Bonus
 
 /datum/symptom/heal/metabolism/Heal(mob/living/M, datum/disease/advance/A)
 	var/cured = 0
-	for(var/thing in M.viruses)
+	for(var/thing in M.GetViruses())
 		var/datum/disease/D = thing
 		if(D.virus_heal_resistant)
 			continue
@@ -80,7 +80,7 @@ Bonus
 	var/mob/living/M = A.affected_mob
 	if(istype(M))
 		if(length(cured_diseases))
-			for(var/res in M.resistances)
+			for(var/res in M.GetResistances())
 				M.resistances -= res
 		to_chat(M, span_warning("You feel weaker."))
 

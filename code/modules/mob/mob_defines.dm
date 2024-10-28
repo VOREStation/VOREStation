@@ -241,5 +241,5 @@
 
 	var/list/datum/action/actions
 
-	var/list/viruses = list()
-	var/list/resistances = list()
+	var/list/viruses
+	var/list/resistances

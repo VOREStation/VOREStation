@@ -380,7 +380,7 @@
 		dat += "<br>"
 
 		if(occupant.viruses.len)
-			for(var/datum/disease/D in occupant.viruses)
+			for(var/datum/disease/D in occupant.GetViruses())
 				if(D.visibility_flags & HIDDEN_SCANNER)
 					continue
 				else
