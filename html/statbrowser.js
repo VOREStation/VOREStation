@@ -62,7 +62,7 @@ function createStatusTab(name) {
 	button.onclick = function () {
 		tab_change(name);
 		this.blur();
-		document.getElementById("statcontent").focus();
+		statcontentdiv.focus();
 	};
 	button.id = name;
 	button.textContent = name;
