@@ -1,7 +1,7 @@
 
 /client/verb/who_advanced()
 	set name = "Advanced Who"
-	set category = "OOC"
+	set category = "OOC.Resources"
 
 	var/msg = span_bold("Current Players:") + "\n"
 

@@ -617,7 +617,7 @@
 	name = "Drake (Taur)"
 	icon_state = "drake_s"
 	extra_overlay = "drake_markings"
-///	suit_sprites = 'icons/mob/taursuits_drake_vr.dmi'	///Chomp edit
+///	suit_sprites = 'icons/mob/taursuits_drake_vr.dmi'
 	suit_sprites = 'icons/mob/taursuits_drake_ch.dmi'
 	icon_sprite_tag = "drake"
 	can_loaf = TRUE

@@ -227,7 +227,7 @@
 	return 1
 
 /mob/living/silicon/pai/verb/reset_record_view()
-	set category = "pAI Commands"
+	set category = "Abilities.pAI Commands"
 	set name = "Reset Records Software"
 
 	securityActive1 = null
@@ -240,7 +240,7 @@
 	to_chat(usr, span_notice("You reset your record-viewing software."))
 
 /mob/living/silicon/pai/cancel_camera()
-	set category = "pAI Commands"
+	set category = "Abilities.pAI Commands"
 	set name = "Cancel Camera View"
 	src.reset_view(null)
 	src.unset_machine()
@@ -251,7 +251,7 @@
 // to it. Really this deserves its own file, but for the moment it can sit here. ~ Z
 
 /mob/living/silicon/pai/verb/fold_out()
-	set category = "pAI Commands"
+	set category = "Abilities.pAI Commands"
 	set name = "Unfold Chassis"
 
 	if(stat || sleeping || paralysis || weakened)
@@ -309,7 +309,7 @@
 	update_icon()
 
 /mob/living/silicon/pai/verb/fold_up()
-	set category = "pAI Commands"
+	set category = "Abilities.pAI Commands"
 	set name = "Collapse Chassis"
 
 	if(stat || sleeping || paralysis || weakened)
@@ -326,7 +326,7 @@
 
 /* //VOREStation Removal Start
 /mob/living/silicon/pai/proc/choose_chassis()
-	set category = "pAI Commands"
+	set category = "Abilities.pAI Commands"
 	set name = "Choose Chassis"
 
 	var/choice
@@ -345,7 +345,7 @@
 */
 
 /mob/living/silicon/pai/proc/choose_verbs()
-	set category = "pAI Commands"
+	set category = "Abilities.pAI Commands"
 	set name = "Choose Speech Verbs"
 
 	var/choice = tgui_input_list(usr,"What theme would you like to use for your speech verbs?","Theme Choice", possible_say_verbs)
@@ -358,7 +358,7 @@
 
 /mob/living/silicon/pai/lay_down()
 	set name = "Rest"
-	set category = "IC"
+	set category = "IC.Game"
 
 	// Pass lying down or getting up to our pet human, if we're in a rig.
 	if(istype(src.loc,/obj/item/paicard))
@@ -522,7 +522,7 @@
 
 /mob/living/silicon/pai/verb/allowmodification()
 	set name = "Change Access Modifcation Permission"
-	set category = "pAI Commands"
+	set category = "Abilities.pAI Commands"
 	set desc = "Allows people to modify your access or block people from modifying your access."
 
 	if(idaccessible == 0)
@@ -535,7 +535,7 @@
 
 /mob/living/silicon/pai/verb/wipe_software()
 	set name = "Enter Storage"
-	set category = "pAI Commands"
+	set category = "Abilities.pAI Commands"
 	set desc = "Upload your personality to the cloud and wipe your software from the card. This is functionally equivalent to cryo or robotic storage, freeing up your job slot."
 
 	// Make sure people don't kill themselves accidentally

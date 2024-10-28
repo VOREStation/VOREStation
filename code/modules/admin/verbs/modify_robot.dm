@@ -2,7 +2,7 @@
 /client/proc/modify_robot(var/mob/living/silicon/robot/target in silicon_mob_list)
 	set name = "Modify Robot Module"
 	set desc = "Allows to add or remove modules to/from robots."
-	set category = "Admin"
+	set category = "Admin.Silicon"
 	if(!check_rights(R_ADMIN|R_FUN|R_VAREDIT|R_EVENT))
 		return
 
@@ -90,8 +90,8 @@
 						robot.module.contents.Remove(add_item)
 						target.module.modules.Add(add_item)
 						target.module.contents.Add(add_item)
-						spawn(0) //ChompEDIT Must be after to allow the movement to finish
-							SEND_SIGNAL(add_item, COMSIG_OBSERVER_MOVED)//ChompEDIT - report the movement since setting loc doesn't call Move or Moved
+						spawn(0) Must be after to allow the movement to finish
+							SEND_SIGNAL(add_item, COMSIG_OBSERVER_MOVED)
 						target.hud_used.update_robot_modules_display()
 						to_chat(usr, span_danger("You added \"[add_item]\" to [target]."))
 						if(istype(add_item, /obj/item/stack/))

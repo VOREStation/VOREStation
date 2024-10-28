@@ -252,7 +252,7 @@
 		if(3)
 			if(diff==FORWARD)
 				user.visible_message("[user] installs external reinforced armor layer to [holder].", "You install external reinforced armor layer to [holder].")
-				qdel(used_atom)//CHOMPedit upstream port. Fixes polecat not useing it's armor plates up.
+				qdel(used_atom)// upstream port. Fixes polecat not useing it's armor plates up.
 				holder.icon_state = "polecat18"
 			else
 				user.visible_message("[user] cuts internal armor layer from [holder].", "You cut the internal armor layer from [holder].")

@@ -247,7 +247,7 @@
 
 /mob/living/simple_mob/vore/morph/proc/morph_color()
 	set name = "Pick Color"
-	set category = "Abilities"
+	set category = "Abilities.Settings"
 	set desc = "You can set your color!"
 	var/newcolor = input(usr, "Choose a color.", "", color) as color|null
 	if(newcolor)
@@ -257,7 +257,7 @@
 
 /mob/living/simple_mob/vore/morph/proc/take_over_prey()
 	set name = "Take Over Prey"
-	set category = "Abilities"
+	set category = "Abilities.Morph"
 	set desc = "Take command of your prey's body."
 	if(morphed)
 		to_chat(src, span_warning("You must restore to your original form first!"))

@@ -207,7 +207,7 @@ var/global/list/SKILL_PRE = list(JOB_ENGINEER = SKILL_ENGINEER, JOB_ROBOTICIST =
 	return
 
 /mob/living/carbon/human/verb/show_skills()
-	set category = "IC"
+	set category = "IC.Game"
 	set name = "Show Own Skills"
 
 	show_skill_window(src, src)

@@ -95,7 +95,7 @@
 	injectmasteralbum(p)
 
 /mob/living/silicon/ai/proc/take_image()
-	set category = "AI Commands"
+	set category = "AI.Commands"
 	set name = "Take Image"
 	set desc = "Takes an image"
 
@@ -103,7 +103,7 @@
 		aiCamera.toggle_camera_mode()
 
 /mob/living/silicon/ai/proc/view_images()
-	set category = "AI Commands"
+	set category = "AI.Commands"
 	set name = "View Images"
 	set desc = "View images"
 
@@ -111,7 +111,7 @@
 		aiCamera.viewpictures()
 
 /mob/living/silicon/ai/proc/delete_images()
-	set category = "AI Commands"
+	set category = "AI.Commands"
 	set name = "Delete Image"
 	set desc = "Delete image"
 

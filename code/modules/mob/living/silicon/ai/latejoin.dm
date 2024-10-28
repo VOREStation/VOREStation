@@ -12,7 +12,7 @@ var/global/list/empty_playable_ai_cores = list()
 
 /mob/living/silicon/ai/verb/store_core()
 	set name = "Store Core"
-	set category = "OOC"
+	set category = "OOC.Game"
 	set desc = "Enter intelligence storage. This is functionally equivalent to cryo or robotic storage, freeing up your job slot."
 
 	if(ticker && ticker.mode && ticker.mode.name == "AI malfunction")

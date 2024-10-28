@@ -17,7 +17,7 @@
 
 /client/proc/atmos_toggle_debug(var/obj/machinery/atmospherics/M in view())
 	set name = "Toggle Debug Messages"
-	set category = "Debug"
+	set category = "Debug.Misc"
 	M.debug = !M.debug
 	to_chat(usr, "[M]: Debug messages toggled [M.debug? "on" : "off"].")
 
@@ -439,7 +439,7 @@
 		var/sink_heat_capacity = sink.heat_capacity()
 		var/transfer_heat_capacity = source.heat_capacity()*estimate_moles/source_total_moles
 		air_temperature = (sink.temperature*sink_heat_capacity  + source.temperature*transfer_heat_capacity) / (sink_heat_capacity + transfer_heat_capacity)
-	
+
 	//get the number of moles that would have to be transfered to bring sink to the target pressure
 	return pressure_delta*output_volume/(air_temperature * R_IDEAL_GAS_EQUATION)
 

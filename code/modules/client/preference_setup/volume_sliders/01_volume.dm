@@ -97,7 +97,7 @@
 
 /client/verb/volume_panel()
 	set name = "Volume Panel"
-	set category = "Preferences"
+	set category = "Preferences.Sounds"
 	set desc = "Allows you to adjust volume levels on the fly."
 
 	if(!volume_panel)
