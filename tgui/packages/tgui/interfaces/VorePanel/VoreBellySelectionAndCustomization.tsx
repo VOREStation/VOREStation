@@ -7,14 +7,14 @@ import { bellyData, hostMob, selectedData } from './types';
 import { VoreSelectedBelly } from './VoreSelectedBelly';
 
 export const VoreBellySelectionAndCustomization = (props: {
-  our_bellies: bellyData[] | null;
+  our_bellies: bellyData[];
   selected: selectedData;
   host_mobtype: hostMob;
   show_pictures: BooleanLike;
 }) => {
   const { act } = useBackend();
 
-  const { our_bellies = [], selected, show_pictures, host_mobtype } = props;
+  const { our_bellies, selected, show_pictures, host_mobtype } = props;
 
   return (
     <Flex height="83%">
@@ -34,7 +34,7 @@ export const VoreBellySelectionAndCustomization = (props: {
               <Icon name="file-import" ml={0.5} />
             </Tabs.Tab>
             <Divider />
-            {our_bellies!.map((belly) => (
+            {our_bellies.map((belly) => (
               <Tabs.Tab
                 key={belly.name}
                 selected={!!belly.selected}
