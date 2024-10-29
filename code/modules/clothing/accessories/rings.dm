@@ -45,8 +45,8 @@
 	flags = OPENCONTAINER
 	origin_tech = list(TECH_MATERIAL = 2, TECH_ILLEGAL = 4)
 
-/obj/item/clothing/accessory/ring/reagent/New()
-	..()
+/obj/item/clothing/accessory/ring/reagent/Initialize()
+	. = ..()
 	create_reagents(15)
 
 /obj/item/clothing/accessory/ring/reagent/equipped(var/mob/living/carbon/human/H)
@@ -68,8 +68,8 @@
 	icon_state = "material"
 	origin_tech = list(TECH_MATERIAL = 2, TECH_ILLEGAL = 5)
 
-/obj/item/clothing/accessory/ring/reagent/sleepy/New()
-	..()
+/obj/item/clothing/accessory/ring/reagent/sleepy/Initialize()
+	. = ..()
 	reagents.add_reagent("chloralhydrate", 15) // Less than a sleepy-pen, but still enough to knock someone out
 
 /////////////////////////////////////////
