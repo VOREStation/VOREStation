@@ -366,7 +366,7 @@ SUBSYSTEM_DEF(statpanels)
 	/// Our owner client
 	var/client/parent
 	/// Are we currently tracking a turf?
-	var/actively_tracking = FALSE
+	var/actively_tracking
 	///For reusing this logic for examines
 	var/atom/examine_target
 	var/flags = 0
@@ -426,15 +426,15 @@ SUBSYSTEM_DEF(statpanels)
 		COMSIG_MOB_LOGOUT = PROC_REF(on_mob_logout),
 	)
 	AddComponent(/datum/component/connect_mob_behalf, parent, connections)
-	RegisterSignal(parent.mob.listed_turf, COMSIG_ATOM_ENTERED, PROC_REF(turflist_changed))
-	RegisterSignal(parent.mob.listed_turf, COMSIG_ATOM_EXITED, PROC_REF(turflist_changed))
-	actively_tracking = TRUE
+	actively_tracking = parent.mob.listed_turf
+	RegisterSignal(actively_tracking, COMSIG_ATOM_ENTERED, PROC_REF(turflist_changed))
+	RegisterSignal(actively_tracking, COMSIG_ATOM_EXITED, PROC_REF(turflist_changed))
 
 /datum/object_window_info/proc/stop_turf_tracking()
 	qdel(GetComponent(/datum/component/connect_mob_behalf))
-	UnregisterSignal(parent.mob.listed_turf, COMSIG_ATOM_ENTERED)
-	UnregisterSignal(parent.mob.listed_turf, COMSIG_ATOM_EXITED)
-	actively_tracking = FALSE
+	UnregisterSignal(actively_tracking, COMSIG_ATOM_ENTERED)
+	UnregisterSignal(actively_tracking, COMSIG_ATOM_EXITED)
+	actively_tracking = null
 
 /datum/object_window_info/proc/on_mob_move(mob/source)
 	SIGNAL_HANDLER
