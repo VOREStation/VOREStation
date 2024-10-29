@@ -211,7 +211,7 @@
 		/obj/item/radio,
 		/obj/item/gps/explorer,
 		/obj/item/gun/energy/gun/protector/pilotgun/locked,
-		/obj/item/clothing/gloves/watch/survival,
+		/obj/item/clothing/accessory/watch/survival,
 		/obj/item/clothing/accessory/storage/webbing/pilot1,
 		/obj/item/clothing/accessory/storage/webbing/pilot2,
 		/obj/item/emergency_beacon

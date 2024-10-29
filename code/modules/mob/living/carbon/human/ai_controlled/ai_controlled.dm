@@ -22,7 +22,7 @@
 	var/to_wear_r_radio = null
 	var/to_wear_uniform = /obj/item/clothing/under/color/grey
 	var/to_wear_suit = /obj/item/clothing/suit/armor/material/makeshift/glass
-	var/to_wear_gloves = /obj/item/clothing/gloves/ring/material/platinum
+	var/to_wear_gloves = /obj/item/clothing/accessory/ring/material/platinum
 	var/to_wear_shoes = /obj/item/clothing/shoes/galoshes
 	var/to_wear_belt = /obj/item/storage/belt/utility/full
 	var/to_wear_l_pocket = /obj/item/soap
