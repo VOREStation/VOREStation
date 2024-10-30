@@ -1,13 +1,13 @@
-/datum/category_item/player_setup_item/player_global/ooc
-	name = "OOC"
-	sort_order = 4
+// /datum/category_item/player_setup_item/player_global/ooc
+// 	name = "OOC"
+// 	sort_order = 4
 
-/datum/category_item/player_setup_item/player_global/ooc/load_preferences(datum/json_savefile/savefile)
-	pref.ignored_players = savefile.get_entry("ignored_players")
+// /datum/category_item/player_setup_item/player_global/ooc/load_preferences(datum/json_savefile/savefile)
+// 	pref.ignored_players = savefile.get_entry("ignored_players")
 
 
-/datum/category_item/player_setup_item/player_global/ooc/save_preferences(datum/json_savefile/savefile)
-	savefile.set_entry("ignored_players", pref.ignored_players)
+// /datum/category_item/player_setup_item/player_global/ooc/save_preferences(datum/json_savefile/savefile)
+// 	savefile.set_entry("ignored_players", pref.ignored_players)
 
 /*
 /datum/category_item/player_setup_item/player_global/ooc/sanitize_preferences()

@@ -2145,6 +2145,7 @@
 #include "code\modules\client\preferences\types\game\auto_fit_viewport.dm"
 #include "code\modules\client\preferences\types\game\chat.dm"
 #include "code\modules\client\preferences\types\game\ghost.dm"
+#include "code\modules\client\preferences\types\game\ignored_players.dm"
 #include "code\modules\client\preferences\types\game\misc.dm"
 #include "code\modules\client\preferences\types\game\runechat.dm"
 #include "code\modules\client\preferences\types\game\sound.dm"

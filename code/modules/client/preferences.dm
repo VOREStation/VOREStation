@@ -143,7 +143,7 @@ var/list/preferences_datums = list()
 	var/metadata = ""
 	var/metadata_likes = ""
 	var/metadata_dislikes = ""
-	var/list/ignored_players = list()
+	// var/list/ignored_players = list()
 
 	var/client/client = null
 	var/client_ckey = null
