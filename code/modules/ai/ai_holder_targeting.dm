@@ -50,7 +50,7 @@
 	. = list()
 	if(!has_targets_list)
 		possible_targets = list_targets()
-	for(var/atom/possible_target in possible_targets)
+	for(var/atom/possible_target as anything in possible_targets)
 		if(guard_limit)
 			if((holder.dir == 1 && holder.y >= possible_target.y) || (holder.dir == 2 && holder.y <= possible_target.y) || (holder.dir == 4 && holder.x >= possible_target.x) || (holder.dir == 8 && holder.x <= possible_target.x)) //Ignore targets that are behind you
 				continue
