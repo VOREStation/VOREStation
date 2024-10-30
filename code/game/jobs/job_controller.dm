@@ -582,7 +582,7 @@ var/global/datum/controller/occupations/job_master
 	return H
 
 /datum/controller/occupations/proc/LoadJobs(jobsfile) //ran during round setup, reads info from jobs.txt -- Urist
-	if(!config.load_jobs_from_txt)
+	if(!CONFIG_GET(flag/load_jobs_from_txt))
 		return 0
 
 	var/list/jobEntries = file2list(jobsfile)

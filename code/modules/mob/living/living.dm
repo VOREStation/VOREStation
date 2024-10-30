@@ -713,7 +713,7 @@
 	set category = "OOC"
 	set src in view()
 	//VOREStation Edit Start - Making it so SSD people have prefs with fallback to original style.
-	if(config.allow_Metadata)
+	if(CONFIG_GET(flag/allow_metadata))
 		if(ooc_notes)
 			ooc_notes_window(usr)
 //			to_chat(usr, span_filter_notice("[src]'s Metainfo:<br>[ooc_notes]"))
@@ -973,6 +973,7 @@
 	if(lying != lying_prev)
 		lying_prev = lying
 		update_transform()
+		update_mob_action_buttons()
 		//VOREStation Add
 		if(lying && LAZYLEN(buckled_mobs))
 			for(var/mob/living/L as anything in buckled_mobs)
@@ -1137,7 +1138,7 @@
 				add_attack_logs(src,M,"Thrown via grab to [end_T.x],[end_T.y],[end_T.z]")
 			if(ishuman(M))
 				var/mob/living/carbon/human/N = M
-				if((N.health + N.halloss) < config.health_threshold_crit || N.stat == DEAD)
+				if((N.health + N.halloss) < CONFIG_GET(number/health_threshold_crit) || N.stat == DEAD)
 					N.adjustBruteLoss(rand(10,30))
 			src.drop_from_inventory(G)
 

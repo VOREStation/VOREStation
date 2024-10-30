@@ -32,40 +32,40 @@
 	if(level >= SEC_LEVEL_GREEN && level <= SEC_LEVEL_DELTA && level != security_level)
 		switch(level)
 			if(SEC_LEVEL_GREEN)
-				security_announcement_down.Announce("[config.alert_desc_green]", "Attention! Alert level lowered to code green.")
+				security_announcement_down.Announce("[CONFIG_GET(string/alert_desc_green)]", "Attention! Alert level lowered to code green.")
 				security_level = SEC_LEVEL_GREEN
 			if(SEC_LEVEL_YELLOW)
 				if(security_level < SEC_LEVEL_YELLOW)
-					security_announcement_up.Announce("[config.alert_desc_yellow_upto]", "Attention! Alert level elevated to yellow")
+					security_announcement_up.Announce("[CONFIG_GET(string/alert_desc_yellow_upto)]", "Attention! Alert level elevated to yellow")
 				else
-					security_announcement_down.Announce("[config.alert_desc_yellow_downto]", "Attention! Alert level lowered to yellow")
+					security_announcement_down.Announce("[CONFIG_GET(string/alert_desc_yellow_downto)]", "Attention! Alert level lowered to yellow")
 				security_level = SEC_LEVEL_YELLOW
 			if(SEC_LEVEL_VIOLET)
 				if(security_level < SEC_LEVEL_VIOLET)
-					security_announcement_up.Announce("[config.alert_desc_violet_upto]", "Attention! Alert level elevated to violet")
+					security_announcement_up.Announce("[CONFIG_GET(string/alert_desc_violet_upto)]", "Attention! Alert level elevated to violet")
 				else
-					security_announcement_down.Announce("[config.alert_desc_violet_downto]", "Attention! Alert level lowered to violet")
+					security_announcement_down.Announce("[CONFIG_GET(string/alert_desc_violet_downto)]", "Attention! Alert level lowered to violet")
 				security_level = SEC_LEVEL_VIOLET
 			if(SEC_LEVEL_ORANGE)
 				if(security_level < SEC_LEVEL_ORANGE)
-					security_announcement_up.Announce("[config.alert_desc_orange_upto]", "Attention! Alert level elevated to orange")
+					security_announcement_up.Announce("[CONFIG_GET(string/alert_desc_orange_upto)]", "Attention! Alert level elevated to orange")
 				else
-					security_announcement_down.Announce("[config.alert_desc_orange_downto]", "Attention! Alert level lowered to orange")
+					security_announcement_down.Announce("[CONFIG_GET(string/alert_desc_orange_downto)]", "Attention! Alert level lowered to orange")
 				security_level = SEC_LEVEL_ORANGE
 			if(SEC_LEVEL_BLUE)
 				if(security_level < SEC_LEVEL_BLUE)
-					security_announcement_up.Announce("[config.alert_desc_blue_upto]", "Attention! Alert level elevated to blue")
+					security_announcement_up.Announce("[CONFIG_GET(string/alert_desc_blue_upto)]", "Attention! Alert level elevated to blue")
 				else
-					security_announcement_down.Announce("[config.alert_desc_blue_downto]", "Attention! Alert level lowered to blue")
+					security_announcement_down.Announce("[CONFIG_GET(string/alert_desc_blue_downto)]", "Attention! Alert level lowered to blue")
 				security_level = SEC_LEVEL_BLUE
 			if(SEC_LEVEL_RED)
 				if(security_level < SEC_LEVEL_RED)
-					security_announcement_up.Announce("[config.alert_desc_red_upto]", "Attention! Code red!", new_sound = sound('sound/effects/alert_levels/red_alert.ogg', volume = 75))
+					security_announcement_up.Announce("[CONFIG_GET(string/alert_desc_red_upto)]", "Attention! Code red!", new_sound = sound('sound/effects/alert_levels/red_alert.ogg', volume = 75))
 				else
-					security_announcement_down.Announce("[config.alert_desc_red_downto]", "Attention! Code red!")
+					security_announcement_down.Announce("[CONFIG_GET(string/alert_desc_red_downto)]", "Attention! Code red!")
 				security_level = SEC_LEVEL_RED
 			if(SEC_LEVEL_DELTA)
-				security_announcement_up.Announce("[config.alert_desc_delta]", "Attention! Delta alert level reached!", new_sound = 'sound/effects/alert_levels/deltaklaxon.ogg')
+				security_announcement_up.Announce("[CONFIG_GET(string/alert_desc_delta)]", "Attention! Delta alert level reached!", new_sound = 'sound/effects/alert_levels/deltaklaxon.ogg')
 				security_level = SEC_LEVEL_DELTA
 
 		var/newlevel = get_security_level()

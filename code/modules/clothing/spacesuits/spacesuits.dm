@@ -31,6 +31,44 @@
 	light_overlay = "helmet_light"
 	light_range = 4
 
+	overhead = TRUE // prevents stacking helmets indefinitely
+	var/obj/item/clothing/head/stored_under_head = null // under head
+	var/mob/living/carbon/human/wearer = null	// Used to restore our under when we're dropped
+
+/obj/item/clothing/head/helmet/space/mob_can_equip(mob/user, slot, disable_warning = FALSE)
+	var/mob/living/carbon/human/H = user
+	if(H.head)
+		stored_under_head = H.head
+		if(!istype(stored_under_head))
+			to_chat(user, "You are unable to wear \the [src] as \the [H.head] is in the way.")
+			stored_under_head = null
+			return 0
+		if(stored_under_head.overhead)
+			to_chat(user, "You are unable to wear \the [src] as \the [H.head] is in the way.")
+			stored_under_head = null
+			return 0
+		H.drop_from_inventory(stored_under_head)
+		stored_under_head.forceMove(src)
+
+	if(!..())
+		if(stored_under_head)
+			if(H.equip_to_slot_if_possible(stored_under_head, slot_head))
+				stored_under_head = null
+			return 0
+	if(stored_under_head)
+		to_chat(user, "You slip \the [src] on over \the [stored_under_head].")
+	wearer = H
+	return 1
+
+/obj/item/clothing/head/helmet/space/dropped()
+	..()
+	var/mob/living/carbon/human/H = wearer
+	if(stored_under_head)
+		if(!H.equip_to_slot_if_possible(stored_under_head, slot_head))
+			stored_under_head.forceMove(get_turf(src))
+		src.stored_under_head = null
+	wearer = null
+
 /obj/item/clothing/head/helmet/space/Initialize()
 	. = ..()
 	if(camera_networks)

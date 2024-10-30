@@ -308,7 +308,7 @@
 	// push them faster into paincrit though, as the additional damage is converted into shock.
 	var/brute_overflow = 0
 	var/burn_overflow = 0
-	if(is_damageable(brute + burn) || !config.limbs_can_break)
+	if(is_damageable(brute + burn) || !CONFIG_GET(flag/limbs_can_break))
 		if(brute)
 			if(can_cut)
 				if(sharp && !edge)
@@ -322,7 +322,7 @@
 	else
 		//If we can't inflict the full amount of damage, spread the damage in other ways
 		//How much damage can we actually cause?
-		var/can_inflict = max_damage * config.organ_health_multiplier - (brute_dam + burn_dam)
+		var/can_inflict = max_damage * CONFIG_GET(number/organ_health_multiplier) - (brute_dam + burn_dam)
 		var/spillover = 0
 		if(can_inflict)
 			if (brute > 0)
@@ -339,7 +339,7 @@
 				//How much brute damage is left to inflict
 				spillover += max(0, brute - can_inflict)
 
-			can_inflict = max_damage * config.organ_health_multiplier - (brute_dam + burn_dam) //Refresh the can_inflict var, so burn doesn't overload the limb if it is set to take both.
+			can_inflict = max_damage * CONFIG_GET(number/organ_health_multiplier) - (brute_dam + burn_dam) //Refresh the can_inflict var, so burn doesn't overload the limb if it is set to take both.
 
 			if (burn > 0 && can_inflict)
 				//Inflict all burn damage we can
@@ -350,7 +350,7 @@
 
 		//If there is pain to dispense.
 		if(spillover)
-			owner.shock_stage += spillover * config.organ_damage_spillover_multiplier
+			owner.shock_stage += spillover * CONFIG_GET(number/organ_damage_spillover_multiplier)
 
 	// sync the organ's damage with its wounds
 	src.update_damages()
@@ -359,7 +359,7 @@
 
 	//If limb took enough damage, try to cut or tear it off
 	if(owner && loc == owner && !is_stump())
-		if(!cannot_amputate && config.limbs_can_break && (brute_dam + burn_dam) >= (max_damage * config.organ_health_multiplier))
+		if(!cannot_amputate && CONFIG_GET(flag/limbs_can_break) && (brute_dam + burn_dam) >= (max_damage * CONFIG_GET(number/organ_health_multiplier)))
 			//organs can come off in three cases
 			//1. If the damage source is edge_eligible and the brute damage dealt exceeds the edge threshold, then the organ is cut off.
 			//2. If the damage amount dealt exceeds the disintegrate threshold, the organ is completely obliterated.
@@ -550,7 +550,7 @@ This function completely restores a damaged organ to perfect condition.
 //Burn damage can cause fluid loss due to blistering and cook-off
 
 	if((damage > 5 || damage + burn_dam >= 15) && type == BURN && (robotic < ORGAN_ROBOT) && !(species.flags & NO_BLOOD))
-		var/fluid_loss = 0.4 * (damage/(owner.getMaxHealth() - config.health_threshold_dead)) * owner.species.blood_volume*(1 - owner.species.blood_level_fatal)
+		var/fluid_loss = 0.4 * (damage/(owner.getMaxHealth() - CONFIG_GET(number/health_threshold_dead))) * owner.species.blood_volume*(1 - owner.species.blood_level_fatal)
 		owner.remove_blood(fluid_loss)
 
 	// first check whether we can widen an existing wound
@@ -777,7 +777,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 		//we only update wounds once in [wound_update_accuracy] ticks so have to emulate realtime
 		heal_amt = heal_amt * wound_update_accuracy
 		//configurable regen speed woo, no-regen hardcore or instaheal hugbox, choose your destiny
-		heal_amt = heal_amt * config.organ_regeneration_multiplier
+		heal_amt = heal_amt * CONFIG_GET(number/organ_regeneration_multiplier)
 		// amount of healing is spread over all the wounds
 		heal_amt = heal_amt / (wounds.len + 1)
 		// making it look prettier on scanners
@@ -827,7 +827,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 		status |= ORGAN_BLEEDING
 
 	//Bone fractures
-	if(config.bones_can_break && brute_dam > min_broken_damage * config.organ_health_multiplier && !(robotic >= ORGAN_ROBOT))
+	if(CONFIG_GET(flag/bones_can_break) && brute_dam > min_broken_damage * CONFIG_GET(number/organ_health_multiplier) && !(robotic >= ORGAN_ROBOT))
 		src.fracture()
 
 	update_health()
@@ -1112,7 +1112,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 /obj/item/organ/external/proc/mend_fracture()
 	if(robotic >= ORGAN_ROBOT)
 		return 0	//ORGAN_BROKEN doesn't have the same meaning for robot limbs
-	if(brute_dam > min_broken_damage * config.organ_health_multiplier)
+	if(brute_dam > min_broken_damage * CONFIG_GET(number/organ_health_multiplier))
 		return 0	//will just immediately fracture again
 
 	status &= ~ORGAN_BROKEN

@@ -1,0 +1,10 @@
+# Job whitelist in format ckey - jobname
+# Like arokha - clown
+#x - ai
+#x - chief engineer
+#x - chief medical officer
+#x - head of personnel
+#x - head of security
+#x - internal affairs agent
+#x - research director
+#x - site manager

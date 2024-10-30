@@ -1782,7 +1782,7 @@
 /area/shuttle/escape)
 "gi" = (
 /obj/structure/table/reinforced,
-/obj/item/book/manual/security_space_law,
+/obj/item/book/manual/wiki/security_space_law,
 /obj/item/taperecorder,
 /obj/effect/floor_decal/borderfloorblack,
 /obj/effect/floor_decal/corner/blue/border,
@@ -2712,8 +2712,8 @@
 	dir = 10
 	},
 /obj/structure/table/reinforced,
-/obj/item/book/manual/security_space_law,
-/obj/item/book/manual/security_space_law,
+/obj/item/book/manual/wiki/security_space_law,
+/obj/item/book/manual/wiki/security_space_law,
 /turf/simulated/floor/tiled/dark,
 /area/centcom/security{
 	name = "\improper CentCom Security Arrivals"
@@ -4402,7 +4402,7 @@
 /area/centcom/security)
 "pe" = (
 /obj/structure/table/reinforced,
-/obj/item/book/manual/security_space_law,
+/obj/item/book/manual/wiki/security_space_law,
 /turf/simulated/floor/tiled,
 /area/centcom/security)
 "pg" = (
@@ -10344,7 +10344,7 @@
 /area/centcom/living)
 "IG" = (
 /obj/structure/table/reinforced,
-/obj/item/book/manual/security_space_law,
+/obj/item/book/manual/wiki/security_space_law,
 /obj/effect/floor_decal/borderfloor{
 	dir = 8
 	},
@@ -12229,7 +12229,7 @@
 /area/centcom/command)
 "OA" = (
 /obj/structure/table/reinforced,
-/obj/item/book/manual/security_space_law,
+/obj/item/book/manual/wiki/security_space_law,
 /obj/item/gun/energy/taser,
 /obj/effect/floor_decal/borderfloor,
 /obj/effect/floor_decal/corner/blue/border,
@@ -15186,7 +15186,7 @@
 /area/centcom/terminal)
 "XR" = (
 /obj/structure/table/reinforced,
-/obj/item/book/manual/security_space_law,
+/obj/item/book/manual/wiki/security_space_law,
 /turf/simulated/floor/tiled/dark,
 /area/centcom/security)
 "XT" = (

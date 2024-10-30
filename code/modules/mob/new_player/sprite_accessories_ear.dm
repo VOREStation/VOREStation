@@ -18,6 +18,18 @@
 
 	//species_allowed = list(SPECIES_EVENT1, SPECIES_EVENT2, SPECIES_EVENT3)			//Removing Polaris whitelits, ones we need are defined in our files
 
+/**
+ * Gets the number of color channels we have.
+ */
+/datum/sprite_accessory/ears/get_color_channel_count()
+	if(!do_colouration)
+		return 0
+	. = 1
+	if(extra_overlay)
+		. += 1
+	if(extra_overlay2)
+		. += 1
+
 /datum/sprite_accessory/ears/shadekin
 	name = "Shadekin Ears, colorable"
 	desc = ""

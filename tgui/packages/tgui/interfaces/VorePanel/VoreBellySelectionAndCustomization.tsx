@@ -29,6 +29,10 @@ export const VoreBellySelectionAndCustomization = (props: {
               Export
               <Icon name="file-export" ml={0.5} />
             </Tabs.Tab>
+            <Tabs.Tab onClick={() => act('importpanel')}>
+              Import
+              <Icon name="file-import" ml={0.5} />
+            </Tabs.Tab>
             <Divider />
             {our_bellies.map((belly) => (
               <Tabs.Tab

@@ -59,7 +59,7 @@
 					/obj/item/toy/nanotrasenballoon,
 					/obj/item/toy/syndicateballoon,
 					/obj/item/aiModule/syndicate,
-					/obj/item/book/manual/engineering_hacking,
+					/obj/item/book/manual/wiki/engineering_hacking,
 					/obj/item/card/emag,
 					/obj/item/card/emag_broken,
 					/obj/item/card/id/syndicate,

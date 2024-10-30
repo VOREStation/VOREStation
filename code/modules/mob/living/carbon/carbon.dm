@@ -194,7 +194,7 @@
 	return shock_damage
 
 /mob/living/carbon/proc/help_shake_act(mob/living/carbon/M)
-	if (src.health >= config.health_threshold_crit)
+	if (src.health >= CONFIG_GET(number/health_threshold_crit))
 		if(src == M && istype(src, /mob/living/carbon/human))
 			var/mob/living/carbon/human/H = src
 			var/datum/gender/T = gender_datums[H.get_visible_gender()]
@@ -455,7 +455,7 @@
 		throw_alert("handcuffed", /obj/screen/alert/restrained/handcuffed, new_master = handcuffed)
 	else
 		clear_alert("handcuffed")
-	update_action_buttons_icon() //some of our action buttons might be unusable when we're handcuffed.
+	update_mob_action_buttons() //some of our action buttons might be unusable when we're handcuffed.
 	update_inv_handcuffed()
 
 // Clears blood overlays

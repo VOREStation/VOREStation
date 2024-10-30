@@ -203,7 +203,7 @@
 	var/drug_strength = 20
 	M.druggy = max(M.druggy, drug_strength)
 
-/datum/reagent/drugs/bliss/overdose(var/mob/living/M as mob)
+/datum/reagent/drugs/rainbow_toxin/overdose(var/mob/living/M as mob)
 	if(prob_proc == TRUE && prob(20))
 		M.hallucination = max(M.hallucination, 5)
 		prob_proc = FALSE

@@ -471,11 +471,14 @@
 	return materials[mat]
 
 /// List format is list(list(name = ..., amount = ..., ref = ..., etc.), list(...))
-/datum/component/material_container/tgui_data(mob/user)
+/datum/component/material_container/tgui_data(mob/user, skip_empty = FALSE)
 	var/list/data = list()
 
 	for(var/datum/material/material as anything in materials)
 		var/amount = materials[material]
+
+		if(amount == 0 && skip_empty)
+			continue
 
 		data += list(list(
 			"name" = material.name,

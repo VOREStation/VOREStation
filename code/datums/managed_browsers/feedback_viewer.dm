@@ -143,7 +143,7 @@
 
 	if(href_list["filter_topic"])
 		var/topic_to_search = tgui_input_text(my_client, "Write desired topic here. Partial topics are allowed. \
-		\nThe current topics in the config are [english_list(config.sqlite_feedback_topics)].", "Filter by Topic", null)
+		\nThe current topics in the config are [english_list(CONFIG_GET(str_list/sqlite_feedback_topics))].", "Filter by Topic", null)
 		if(topic_to_search)
 			last_query = feedback_filter(SQLITE_FEEDBACK_COLUMN_TOPIC, topic_to_search)
 

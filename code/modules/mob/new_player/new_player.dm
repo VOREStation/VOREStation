@@ -8,7 +8,7 @@
 	var/show_hidden_jobs = 0	//Show jobs that are set to "Never" in preferences
 	var/has_respawned = FALSE	//Determines if we're using RESPAWN_MESSAGE
 	var/datum/browser/panel
-	var/datum/tgui_module/crew_manifest/manifest = null
+	var/datum/tgui_module/crew_manifest/new_player/manifest_dialog = null
 	var/datum/tgui_module/late_choices/late_choices_dialog = null
 	universal_speak = 1
 
@@ -31,8 +31,8 @@
 /mob/new_player/Destroy()
 	if(panel)
 		QDEL_NULL(panel)
-	if(manifest)
-		QDEL_NULL(manifest)
+	if(manifest_dialog)
+		QDEL_NULL(manifest_dialog)
 	if(late_choices_dialog)
 		QDEL_NULL(late_choices_dialog)
 	. = ..()
@@ -197,7 +197,7 @@
 				client.prefs.real_name = random_name(client.prefs.identifying_gender)
 			observer.real_name = client.prefs.real_name
 			observer.name = observer.real_name
-			if(!client.holder && !config.antag_hud_allowed)           // For new ghosts we remove the verb from even showing up if it's not allowed.
+			if(!client.holder && !CONFIG_GET(flag/antag_hud_allowed))           // For new ghosts we remove the verb from even showing up if it's not allowed.
 				remove_verb(observer, /mob/observer/dead/verb/toggle_antagHUD)        // Poor guys, don't know what they are missing!
 			observer.key = key
 			observer.set_respawn_timer(time_till_respawn()) // Will keep their existing time if any, or return 0 and pass 0 into set_respawn_timer which will use the defaults
@@ -413,7 +413,7 @@
 	if(!ticker || ticker.current_state != GAME_STATE_PLAYING)
 		to_chat(usr, span_red("The round is either not ready, or has already finished..."))
 		return 0
-	if(!config.enter_allowed)
+	if(!CONFIG_GET(flag/enter_allowed))
 		to_chat(usr, span_notice("There is an administrative lock on entering the game!"))
 		return 0
 	if(!IsJobAvailable(rank))
@@ -593,15 +593,15 @@
 	return new_character
 
 /mob/new_player/proc/ViewManifest()
-	if(!manifest)
-		manifest = new(src)
-	manifest.tgui_interact(src)
+	if(!manifest_dialog)
+		manifest_dialog = new(src)
+	manifest_dialog.tgui_interact(src)
 
 /mob/new_player/Move()
 	return 0
 
 /mob/new_player/proc/close_spawn_windows()
-	manifest?.close_ui()
+	manifest_dialog?.close_ui()
 	late_choices_dialog?.close_ui()
 
 	src << browse(null, "window=latechoices") //closes late choices window
