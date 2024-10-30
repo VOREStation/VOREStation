@@ -431,10 +431,12 @@ SUBSYSTEM_DEF(statpanels)
 	RegisterSignal(actively_tracking, COMSIG_ATOM_EXITED, PROC_REF(turflist_changed))
 
 /datum/object_window_info/proc/stop_turf_tracking()
-	qdel(GetComponent(/datum/component/connect_mob_behalf))
-	UnregisterSignal(actively_tracking, COMSIG_ATOM_ENTERED)
-	UnregisterSignal(actively_tracking, COMSIG_ATOM_EXITED)
-	actively_tracking = null
+	if(GetComponent(/datum/component/connect_mob_behalf))
+		qdel(GetComponent(/datum/component/connect_mob_behalf))
+	if(actively_tracking)
+		UnregisterSignal(actively_tracking, COMSIG_ATOM_ENTERED)
+		UnregisterSignal(actively_tracking, COMSIG_ATOM_EXITED)
+		actively_tracking = null
 
 /datum/object_window_info/proc/on_mob_move(mob/source)
 	SIGNAL_HANDLER
@@ -465,6 +467,8 @@ SUBSYSTEM_DEF(statpanels)
 	atoms_to_images -= deleted
 
 /mob/proc/set_listed_turf(turf/new_turf)
+	if(listed_turf == new_turf)
+		return
 	if(!client)
 		listed_turf = new_turf
 		return
