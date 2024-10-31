@@ -105,6 +105,7 @@
 
 	if(new_character.client)
 		new_character.client.init_verbs() // re-initialize character specific verbs
+		new_character.set_listed_turf(null)
 
 /datum/mind/proc/store_memory(new_text)
 	memory += "[new_text]<BR>"
