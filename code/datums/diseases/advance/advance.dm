@@ -18,7 +18,6 @@ GLOBAL_LIST_INIT(advance_cures, list(
 
 	var/list/symptoms = list()
 	var/id = ""
-	var/processing = FALSE
 
 /datum/disease/advance/New(process = 1, datum/disease/advance/D)
 	if(!istype(D))

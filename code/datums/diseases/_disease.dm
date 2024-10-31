@@ -41,10 +41,13 @@ GLOBAL_LIST_INIT(diseases, subtypesof(/datum/disease))
 	var/list/strain_data = list()
 	var/allow_dead = FALSE
 	var/infect_synthetics = FALSE
+	var/processing = FALSE
 
 /datum/disease/Destroy()
 	affected_mob = null
 	active_diseases.Remove(src)
+	if(processing)
+		End()
 	return ..()
 
 /datum/disease/proc/stage_act()
@@ -54,6 +57,10 @@ GLOBAL_LIST_INIT(diseases, subtypesof(/datum/disease))
 
 	if(carrier && !cure)
 		return FALSE
+
+	if(!processing)
+		processing = TRUE
+		Start()
 
 	stage = min(stage, max_stages)
 
@@ -152,3 +159,9 @@ GLOBAL_LIST_INIT(diseases, subtypesof(/datum/disease))
 /datum/disease/proc/remove_virus()
 	affected_mob.viruses -= src
 	BITSET(affected_mob.hud_updateflag, STATUS_HUD)
+
+/datum/disease/proc/Start()
+	return
+
+/datum/disease/proc/End()
+	return
