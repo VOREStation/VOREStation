@@ -187,8 +187,7 @@ var/list/runechat_image_cache = list()
 				if(sched_remaining > CHAT_MESSAGE_SPAWN_TIME)
 					var/remaining_time = (sched_remaining) * (CHAT_MESSAGE_EXP_DECAY ** idx++) * (CHAT_MESSAGE_HEIGHT_DECAY ** combined_height)
 					m.scheduled_destruction = world.time + remaining_time
-					spawn(remaining_time)
-						m.end_of_life()
+					m.schedule_end_of_life(remaining_time)
 
 	// Build message image
 	message = image(loc = message_loc, layer = ABOVE_MOB_LAYER)
@@ -214,13 +213,16 @@ var/list/runechat_image_cache = list()
 
 	// Prepare for destruction
 	scheduled_destruction = world.time + (lifespan - CHAT_MESSAGE_EOL_FADE)
-	spawn(lifespan - CHAT_MESSAGE_EOL_FADE)
-		end_of_life()
+	schedule_end_of_life(lifespan - CHAT_MESSAGE_EOL_FADE)
 
 /datum/chatmessage/proc/unregister_qdel_self()  // this should only call owned_by if the client is destroyed
 	UnregisterSignal(owned_by, COMSIG_PARENT_QDELETING)
 	owned_by = null
 	qdel_self()
+
+/datum/chatmessage/proc/schedule_end_of_life(var/schedule)
+	addtimer(CALLBACK(src, PROC_REF(end_of_life)), schedule, TIMER_DELETE_ME)
+
 /**
   * Applies final animations to overlay CHAT_MESSAGE_EOL_FADE deciseconds prior to message deletion
   */
