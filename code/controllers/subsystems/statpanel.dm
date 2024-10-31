@@ -321,8 +321,7 @@ SUBSYSTEM_DEF(statpanels)
 
 	if(target.tracked_turf)
 		if(!target_mob.TurfAdjacent(target.tracked_turf))
-			target.stat_panel.send_message("removed_listedturf")
-			target.tracked_turf = null
+			target_mob.set_listed_turf(null)
 
 		else if(target.stat_tab == target.tracked_turf.name || !(target.tracked_turf.name in target.panel_tabs))
 			set_turf_examine_tab(target, target_mob)
