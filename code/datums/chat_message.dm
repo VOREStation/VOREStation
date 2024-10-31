@@ -51,8 +51,6 @@ var/list/runechat_image_cache = list()
 	/// If we are currently processing animation and cleanup at EOL
 	var/ending_life
 
-	/// deletion timer
-	var/timer_delete
 
 /**
   * Constructs a chat message overlay
@@ -75,9 +73,6 @@ var/list/runechat_image_cache = list()
 	generate_image(text, target, owner, extra_classes, lifespan)
 
 /datum/chatmessage/Destroy()
-	if(timer_delete)
-		deltimer(timer_delete)
-		timer_delete = null
 	if(istype(owned_by, /client)) // hopefully the PARENT_QDELETING on client should beat this if it's a disconnect
 		UnregisterSignal(owned_by, COMSIG_PARENT_QDELETING)
 		if(owned_by.seen_messages)
@@ -99,7 +94,6 @@ var/list/runechat_image_cache = list()
   * * lifespan - The lifespan of the message in deciseconds
   */
 /datum/chatmessage/proc/generate_image(text, atom/target, mob/owner, list/extra_classes, lifespan)
-	set waitfor = FALSE
 
 	if(!target || !owner)
 		qdel(src)
@@ -193,8 +187,7 @@ var/list/runechat_image_cache = list()
 				if(sched_remaining > CHAT_MESSAGE_SPAWN_TIME)
 					var/remaining_time = (sched_remaining) * (CHAT_MESSAGE_EXP_DECAY ** idx++) * (CHAT_MESSAGE_HEIGHT_DECAY ** combined_height)
 					m.scheduled_destruction = world.time + remaining_time
-					spawn(remaining_time)
-						m.end_of_life()
+					m.schedule_end_of_life(remaining_time)
 
 	// Build message image
 	message = image(loc = message_loc, layer = ABOVE_MOB_LAYER)
@@ -220,13 +213,16 @@ var/list/runechat_image_cache = list()
 
 	// Prepare for destruction
 	scheduled_destruction = world.time + (lifespan - CHAT_MESSAGE_EOL_FADE)
-	spawn(lifespan - CHAT_MESSAGE_EOL_FADE)
-		end_of_life()
+	schedule_end_of_life(lifespan - CHAT_MESSAGE_EOL_FADE)
 
 /datum/chatmessage/proc/unregister_qdel_self()  // this should only call owned_by if the client is destroyed
 	UnregisterSignal(owned_by, COMSIG_PARENT_QDELETING)
 	owned_by = null
 	qdel_self()
+
+/datum/chatmessage/proc/schedule_end_of_life(var/schedule)
+	addtimer(CALLBACK(src, PROC_REF(end_of_life)), schedule, TIMER_DELETE_ME)
+
 /**
   * Applies final animations to overlay CHAT_MESSAGE_EOL_FADE deciseconds prior to message deletion
   */
@@ -235,7 +231,7 @@ var/list/runechat_image_cache = list()
 		return
 	ending_life = TRUE
 	animate(message, alpha = 0, time = fadetime, flags = ANIMATION_PARALLEL)
-	timer_delete = QDEL_IN(src, fadetime)
+	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(qdel), src), fadetime, TIMER_DELETE_ME, TIMER_UNIQUE)
 
 /**
   * Creates a message overlay at a defined location for a given speaker
@@ -250,6 +246,9 @@ var/list/runechat_image_cache = list()
 	if(!client)
 		return
 
+	// Source Deleting
+	if(QDELETED(speaker))
+		return
 	// Doesn't want to hear
 	if(ismob(speaker) && !client.prefs?.read_preference(/datum/preference/toggle/runechat_mob))
 		return
@@ -356,7 +355,7 @@ var/list/runechat_image_cache = list()
 		hearing_mobs = hear["mobs"]
 
 	for(var/mob/M as anything in hearing_mobs)
-		if(!M.client)
+		if(!M?.client)
 			continue
 		M.create_chat_message(src, message, italics, classes, audible)
 
