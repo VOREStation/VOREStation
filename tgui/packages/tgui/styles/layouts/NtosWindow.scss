@@ -16,7 +16,7 @@
   font-family: Consolas, monospace;
   font-size: base.em(14px);
   user-select: none;
-  -ms-user-select: none;
+  -ms-user-select: none; // TODO: Remove with 516
 }
 
 .NtosWindow__content .Layout__content {

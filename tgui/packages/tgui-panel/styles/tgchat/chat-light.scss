@@ -33,7 +33,7 @@ img {
   margin: 0;
   padding: 0;
   line-height: 1;
-  -ms-interpolation-mode: nearest-neighbor;
+  -ms-interpolation-mode: nearest-neighbor; // TODO: Remove with 516
   image-rendering: pixelated;
 }
 
@@ -192,12 +192,6 @@ a.popt {
 
 .filterMessages div {
   padding: 2px 0;
-}
-
-.filterMessages input {
-}
-
-.filterMessages label {
 }
 
 .icon-stack {
@@ -393,28 +387,12 @@ img.icon.bigicon {
   font-weight: bold;
 }
 
-.say,
-.emote,
-.emotesubtle,
-.multizsay,
-.npcemote,
-.npcsay,
-.infoplain,
-.oocplain,
-.warningplain,
-.chatexport,
-.body {
-}
-
 .warningplain {
   font-style: italic;
 }
 
 .hivemind {
   font-style: italic;
-}
-
-.nif {
 }
 
 .psay {
