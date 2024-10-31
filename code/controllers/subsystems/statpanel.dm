@@ -320,10 +320,7 @@ SUBSYSTEM_DEF(statpanels)
 	// Handle turfs
 
 	if(target.tracked_turf)
-		if(!target_mob.TurfAdjacent(target.tracked_turf))
-			target_mob.set_listed_turf(null)
-
-		else if(target.stat_tab == target.tracked_turf.name || !(target.tracked_turf.name in target.panel_tabs))
+		if(target_mob.in_listed_range() && (target.stat_tab == target.tracked_turf.name || !(target.tracked_turf.name in target.panel_tabs)))
 			set_turf_examine_tab(target, target_mob)
 			return TRUE
 
@@ -477,3 +474,12 @@ SUBSYSTEM_DEF(statpanels)
 		client.obj_window.stop_turf_tracking() //Needs to go before listed_turf is set to null so signals can be removed
 		return
 	client.obj_window.start_turf_tracking(new_turf)
+
+/mob/proc/in_listed_range()
+	if(!client)
+		return FALSE
+	if(client.tracked_turf)
+		if(!TurfAdjacent(client.tracked_turf))
+			set_listed_turf(null)
+			return FALSE
+	return TRUE
