@@ -71,8 +71,6 @@
 
 			if(M.stat == DEAD)
 				M.species = /datum/species/xenochimera
-				var/datum/disease/D = new /datum/disease/roanoake/xenoch
-				affected_mob.ContractDisease(D)
 				cure()
 	return
 
