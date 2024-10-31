@@ -340,7 +340,7 @@
 /obj/structure/reagent_dispensers/water_cooler/Initialize()
 	. = ..()
 	if(bottle)
-		reagents.add_reagent("water",120)
+		reagents.add_reagent("water",2000)
 	update_icon()
 
 /obj/structure/reagent_dispensers/water_cooler/examine(mob/user)
