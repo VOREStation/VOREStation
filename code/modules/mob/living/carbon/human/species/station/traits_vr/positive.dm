@@ -302,3 +302,4 @@
 	var_changes = list("water_movement" = -2, "swim_mult" = 0.5)
 	varchange_type = TRAIT_VARCHANGE_LESS_BETTER
 	excludes = list(/datum/trait/negative/bad_swimmer)
+	banned_species = list(SPECIES_AKULA)	// They already swim better than this
