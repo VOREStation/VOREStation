@@ -292,3 +292,13 @@
 /datum/trait/positive/wall_climber_pro/apply(var/datum/species/S,var/mob/living/carbon/human/H)
 	..()
 	S.can_climb = TRUE
+
+/datum/trait/positive/good_swimmer
+	name = "Pro Swimmer"
+	desc = "You were top of your group in swimming class! This is of questionable usefulness on most planets, but hey, maybe you'll get to visit a nice beach world someday?"
+	tutorial = "You move faster in water, and can move up and down z-levels faster than other swimmers!"
+	cost = 1
+	custom_only = FALSE
+	var_changes = list("water_movement" = -0.5, "swim_mult" = 0.5)
+	varchange_type = TRAIT_VARCHANGE_LESS_BETTER
+	excludes = list(/datum/trait/negative/bad_swimmer)
