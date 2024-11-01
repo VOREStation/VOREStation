@@ -299,6 +299,6 @@
 	tutorial = "You move faster in water, and can move up and down z-levels faster than other swimmers!"
 	cost = 1
 	custom_only = FALSE
-	var_changes = list("water_movement" = -0.5, "swim_mult" = 0.5)
+	var_changes = list("water_movement" = -2, "swim_mult" = 0.5)
 	varchange_type = TRAIT_VARCHANGE_LESS_BETTER
 	excludes = list(/datum/trait/negative/bad_swimmer)
