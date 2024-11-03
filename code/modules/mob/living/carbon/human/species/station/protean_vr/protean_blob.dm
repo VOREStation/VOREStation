@@ -9,7 +9,7 @@
 	icon_rest = "puddle0-eyes"
 	icon_dead = "puddle0-eyes"
 
-	faction = "neutral"
+	faction = FACTION_NEUTRAL
 	maxHealth = 200
 	health = 200
 	say_list_type = /datum/say_list/protean_blob

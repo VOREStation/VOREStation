@@ -133,7 +133,7 @@ It also makes it so a ghost wont know where all the goodies/mobs are.
 	name = "Corgi Lazy Spawner"
 	desc = "This is a proof of concept, not sure why you would use this one"
 	spawn_delay = 3 MINUTES
-	mob_faction = "Corgi"
+	mob_faction = FACTION_CORGI
 	spawn_types = list(
 	/mob/living/simple_mob/animal/passive/dog/corgi = 75,
 	/mob/living/simple_mob/animal/passive/dog/corgi/puppy = 50
@@ -150,7 +150,7 @@ It also makes it so a ghost wont know where all the goodies/mobs are.
 	spawn_delay = 10 MINUTES
 	range = 10
 	simultaneous_spawns = 1
-	mob_faction = "wild animal"
+	mob_faction = FACTION_WILD_ANIMAL
 	total_spawns = -1
 	destructible = 0
 	anchored = TRUE
@@ -167,7 +167,7 @@ It also makes it so a ghost wont know where all the goodies/mobs are.
 	spawn_delay = 10 MINUTES
 	range = 10
 	simultaneous_spawns = 1
-	mob_faction = "xeno"
+	mob_faction = FACTION_XENO
 	total_spawns = -1
 	destructible = 1
 	health = 50
@@ -186,7 +186,7 @@ It also makes it so a ghost wont know where all the goodies/mobs are.
 	spawn_delay = 10 MINUTES
 	range = 10
 	simultaneous_spawns = 1
-	mob_faction = "xeno"
+	mob_faction = FACTION_XENO
 	total_spawns = 1
 	destructible = 1
 	health = 50
