@@ -322,6 +322,13 @@
 	return fulllist
 /mob/living/carbon/human
 	var/mob/living/simple_mob/slime/promethean/stored_blob = null
+
+var/global/list/disallowed_protean_accessories = list(
+	/obj/item/clothing/accessory/holster,
+	/obj/item/clothing/accessory/storage,
+	/obj/item/clothing/accessory/armor
+	)
+
 // Helpers - Unsafe, WILL perform change.
 /mob/living/carbon/human/proc/prommie_intoblob(force)
 	if(!force && !isturf(loc))

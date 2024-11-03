@@ -16,7 +16,7 @@ var/list/wrapped_species_by_ref = list()
 	//var/default_form = SPECIES_HUMAN //VOREStation edit
 
 /datum/species/shapeshifter/get_valid_shapeshifter_forms(var/mob/living/carbon/human/H)
-	return valid_transform_species
+	return list(vanity_base_fit)|valid_transform_species
 
 /datum/species/shapeshifter/get_icobase(var/mob/living/carbon/human/H, var/get_deform)
 	if(!H) return ..(null, get_deform)
