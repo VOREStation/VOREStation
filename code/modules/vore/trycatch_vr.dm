@@ -49,10 +49,10 @@ The hooks you're calling should return nonzero values on success.
 			error("hook_vr: Invalid hook '/hook/[hook]' called.")
 			return 0
 
-		var/caller = new hook_path
+		var/hook_instance = new hook_path
 		var/status = 1
 		for(var/P in typesof("[hook_path]/proc"))
-			if(!call(caller, P)(arglist(args)))
+			if(!call(hook_instance, P)(arglist(args)))
 				error("hook_vr: Hook '[P]' failed or runtimed.")
 				status = 0
 
