@@ -7207,6 +7207,12 @@
 /obj/structure/closet/crate/bin{
 	anchored = 1
 	},
+/obj/machinery/button/remote/airlock/release{
+	pixel_y = -22;
+	pixel_x = 6;
+	dir = 1;
+	id = "dorm4"
+	},
 /turf/simulated/floor/carpet,
 /area/stellardelight/deck1/dorms/dorm4)
 "oB" = (
@@ -7544,6 +7550,12 @@
 	},
 /obj/structure/closet/crate/bin{
 	anchored = 1
+	},
+/obj/machinery/button/remote/airlock/release{
+	pixel_y = -22;
+	pixel_x = -8;
+	dir = 1;
+	id = "dorm6"
 	},
 /turf/simulated/floor/carpet/purcarpet,
 /area/stellardelight/deck1/dorms/dorm6)
@@ -8798,6 +8810,11 @@
 	},
 /obj/structure/closet/crate/bin{
 	anchored = 1
+	},
+/obj/machinery/button/remote/airlock/release{
+	pixel_y = 24;
+	pixel_x = -7;
+	id = "dorm8"
 	},
 /turf/simulated/floor/carpet,
 /area/stellardelight/deck1/dorms/dorm8)
@@ -16042,6 +16059,11 @@
 /obj/structure/closet/crate/bin{
 	anchored = 1
 	},
+/obj/machinery/button/remote/airlock/release{
+	pixel_y = 24;
+	pixel_x = 7;
+	id = "dorm1"
+	},
 /turf/simulated/floor/carpet,
 /area/stellardelight/deck1/dorms/dorm1)
 "HY" = (
@@ -21133,6 +21155,12 @@
 /obj/structure/closet/crate/bin{
 	anchored = 1
 	},
+/obj/machinery/button/remote/airlock/release{
+	pixel_y = -22;
+	pixel_x = 6;
+	dir = 1;
+	id = "dorm3"
+	},
 /turf/simulated/floor/carpet/purcarpet,
 /area/stellardelight/deck1/dorms/dorm3)
 "SQ" = (
@@ -22475,6 +22503,11 @@
 /obj/structure/closet/crate/bin{
 	anchored = 1
 	},
+/obj/machinery/button/remote/airlock/release{
+	pixel_y = 24;
+	pixel_x = -7;
+	id = "dorm7"
+	},
 /turf/simulated/floor/carpet/purcarpet,
 /area/stellardelight/deck1/dorms/dorm7)
 "Vw" = (
@@ -22759,6 +22792,11 @@
 	},
 /obj/structure/closet/crate/bin{
 	anchored = 1
+	},
+/obj/machinery/button/remote/airlock/release{
+	pixel_y = 24;
+	pixel_x = 7;
+	id = "dorm2"
 	},
 /turf/simulated/floor/carpet/purcarpet,
 /area/stellardelight/deck1/dorms/dorm2)
@@ -23884,6 +23922,12 @@
 	},
 /obj/structure/closet/crate/bin{
 	anchored = 1
+	},
+/obj/machinery/button/remote/airlock/release{
+	pixel_y = -22;
+	pixel_x = -8;
+	dir = 1;
+	id = "dorm5"
 	},
 /turf/simulated/floor/carpet,
 /area/stellardelight/deck1/dorms/dorm5)
