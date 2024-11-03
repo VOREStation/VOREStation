@@ -94,6 +94,7 @@ var/list/runechat_image_cache = list()
   * * lifespan - The lifespan of the message in deciseconds
   */
 /datum/chatmessage/proc/generate_image(text, atom/target, mob/owner, list/extra_classes, lifespan)
+	set waitfor = FALSE
 
 	if(!target || !owner)
 		qdel(src)
