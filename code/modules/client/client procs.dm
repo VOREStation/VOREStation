@@ -518,7 +518,7 @@
 
 /client/verb/game_options()
 	set name = "Game Options"
-	set category = "Preferences.Character"
+	set category = "Preferences.Game"
 	if(prefs)
 		prefs.tgui_interact(usr)
 
