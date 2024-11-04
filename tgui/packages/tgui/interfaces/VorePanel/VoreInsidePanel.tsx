@@ -36,15 +36,15 @@ export const VoreInsidePanel = (props: {
         and you are
       </Box>
       &nbsp;
-      <Box color={digestModeToColor[belly_mode]} inline>
-        {digestModeToPreyMode[belly_mode]}
+      <Box color={digestModeToColor[belly_mode!]} inline>
+        {digestModeToPreyMode[belly_mode!]}
       </Box>
       &nbsp;
       <Box color="label">{desc}</Box>
-      {(contents.length && (
+      {(contents!.length && (
         <Collapsible title="Belly Contents">
           <VoreContentsPanel
-            contents={contents}
+            contents={contents!}
             belly={ref}
             show_pictures={show_pictures}
           />

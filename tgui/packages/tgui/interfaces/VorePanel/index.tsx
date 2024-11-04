@@ -66,7 +66,7 @@ export const VorePanel = (props) => {
             )) ||
               ''}
           </Stack.Item>
-          <Stack.Item basis={inside?.desc.length > 500 ? '30%' : '20%'}>
+          <Stack.Item basis={inside?.desc?.length || 0 > 500 ? '30%' : '20%'}>
             <VoreInsidePanel inside={inside} show_pictures={show_pictures} />
           </Stack.Item>
           <Stack.Item>
