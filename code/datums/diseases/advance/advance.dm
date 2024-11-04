@@ -320,7 +320,7 @@ GLOBAL_LIST_INIT(advance_cures, list(
 			R.data["viruses"] = preserve
 
 /client/proc/AdminCreateVirus()
-	set category = "Admin.Game"
+	set category = "Fun.Event Kit"
 	set name = "Create Advanced Virus"
 	set desc = "Create an advanced virus and release it."
 

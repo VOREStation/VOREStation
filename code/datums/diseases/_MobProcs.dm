@@ -169,9 +169,11 @@
 	LAZYINITLIST(resistances)
 	return resistances
 
-// Test procs, poke Guti if it forgets to remove it
+/mob/living/proc/ReleaseVirus()
+	set category = "Fun.Event Kit"
+	set name = "Release Virus"
+	set desc = "Release a pre-set virus."
 
-/mob/living/proc/sickEm()
 	var/datum/disease/thesick = tgui_input_list(usr, "Choose virus", "Viruses", subtypesof(/datum/disease), subtypesof(/datum/disease))
 
 	if(thesick)
