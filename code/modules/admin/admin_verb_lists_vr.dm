@@ -196,7 +196,8 @@ var/list/admin_verbs_spawn = list(
 	/client/proc/generic_item, //VOREStation Add
 	/client/proc/create_gm_message,
 	/client/proc/remove_gm_message,
-	/client/proc/AdminCreateVirus
+	/client/proc/AdminCreateVirus,
+	/client/proc/ReleaseVirus
 	)
 
 var/list/admin_verbs_server = list(
@@ -564,7 +565,8 @@ var/list/admin_verbs_event_manager = list(
 	/client/proc/modify_server_news,
 	/client/proc/toggle_spawning_with_recolour,
 	/client/proc/start_vote,
-	/client/proc/AdminCreateVirus
+	/client/proc/AdminCreateVirus,
+	/client/proc/ReleaseVirus
 )
 
 /client/proc/add_admin_verbs()

@@ -169,14 +169,27 @@
 	LAZYINITLIST(resistances)
 	return resistances
 
-/mob/living/proc/ReleaseVirus()
+/client/proc/ReleaseVirus()
 	set category = "Fun.Event Kit"
 	set name = "Release Virus"
 	set desc = "Release a pre-set virus."
 
-	var/datum/disease/thesick = tgui_input_list(usr, "Choose virus", "Viruses", subtypesof(/datum/disease), subtypesof(/datum/disease))
+	if(!is_admin())
+		return FALSE
 
-	if(thesick)
-		var/datum/disease/D = new thesick(0)
-		ForceContractDisease(D)
-		return TRUE
+	var/datum/disease/D = tgui_input_list(usr, "Choose virus", "Viruses", subtypesof(/datum/disease), subtypesof(/datum/disease))
+	var/mob/living/carbon/human/H = null
+
+	if(isnull(D))
+		return FALSE
+
+	for(var/thing in shuffle(human_mob_list))
+		H = thing
+		if(H.stat == DEAD)
+			continue
+		if(!H.HasDisease(D))
+			H.ForceContractDisease(D)
+			break
+
+	message_admins("[key_name_admin(usr)] has triggered a virus outbreak of [D.name]! Affected mob: [key_name_admin(H)]")
+	log_admin("[key_name_admin(usr)] infected [key_name_admin(H)] with [D.name]")

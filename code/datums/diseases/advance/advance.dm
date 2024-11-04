@@ -325,9 +325,10 @@ GLOBAL_LIST_INIT(advance_cures, list(
 	set desc = "Create an advanced virus and release it."
 
 	if(!is_admin())
-		return
+		return FALSE
 
 	var/i = VIRUS_SYMPTOM_LIMIT
+	var/mob/living/carbon/human/H = null
 
 	var/datum/disease/advance/D = new(0, null)
 	D.symptoms = list()
@@ -361,7 +362,7 @@ GLOBAL_LIST_INIT(advance_cures, list(
 			AD.Refresh()
 
 		for(var/thing in shuffle(human_mob_list))
-			var/mob/living/carbon/human/H = thing
+			H = thing
 			if(H.stat == DEAD)
 				continue
 			if(!H.HasDisease(D))
@@ -372,6 +373,7 @@ GLOBAL_LIST_INIT(advance_cures, list(
 		for(var/datum/symptom/S in D.symptoms)
 			name_symptoms += S.name
 		message_admins("[key_name_admin(usr)] has triggered a custom virus outbreak of [D.name]! It has these symptoms: [english_list(name_symptoms)]")
+		log_admin("[key_name_admin(usr)] infected [key_name_admin(H)] with [D.name]. It has these symptoms: [english_list(name_symptoms)]")
 
 /datum/disease/advance/proc/totalStageSpeed()
 	var/total_stage_speed = 0
