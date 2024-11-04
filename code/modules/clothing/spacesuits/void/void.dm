@@ -32,7 +32,7 @@
 	max_heat_protection_temperature = SPACE_SUIT_MAX_HEAT_PROTECTION_TEMPERATURE
 	min_pressure_protection = 0 * ONE_ATMOSPHERE
 	max_pressure_protection = 10 * ONE_ATMOSPHERE
-	action_button_name = "Toggle Helmet"
+	actions_types = list(/datum/action/item_action/toggle_helmet)
 	species_restricted = list("Human", SPECIES_SKRELL, "Promethean")
 	sprite_sheets = VR_SPECIES_SPRITE_SHEETS_SUIT_MOB
 	sprite_sheets_obj = VR_SPECIES_SPRITE_SHEETS_SUIT_ITEM

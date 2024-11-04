@@ -38,7 +38,7 @@
 
 // Debug verbs.
 /client/proc/restart_controller(controller in list("Master", "Failsafe"))
-	set category = "Debug"
+	set category = "Debug.Dangerous"
 	set name = "Restart Controller"
 	set desc = "Restart one of the various periodic loop controllers for the game (be careful!)"
 
@@ -55,7 +55,7 @@
 	message_admins("Admin [key_name_admin(usr)] has restarted the [controller] controller.")
 
 /client/proc/debug_antagonist_template(antag_type in all_antag_types)
-	set category = "Debug"
+	set category = "Debug.Investigate"
 	set name = "Debug Antagonist"
 	set desc = "Debug an antagonist template."
 
@@ -65,7 +65,7 @@
 		message_admins("Admin [key_name_admin(usr)] is debugging the [antag.role_text] template.")
 
 /client/proc/debug_controller()
-	set category = "Debug"
+	set category = "Debug.Investigate"
 	set name = "Debug Controller"
 	set desc = "Debug the various subsystems/controllers for the game (be careful!)"
 

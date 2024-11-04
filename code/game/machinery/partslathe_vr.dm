@@ -174,8 +174,9 @@
 	return
 
 /obj/machinery/partslathe/proc/removeFromQueue(var/index)
-	queue.Cut(index, index + 1)
-	return
+	if(queue.len >= index)
+		queue.Cut(index, index + 1)
+		return
 
 /obj/machinery/partslathe/proc/canBuild(var/datum/category_item/partslathe/D)
 	for(var/M in D.resources)

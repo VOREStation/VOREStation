@@ -10,6 +10,7 @@
 	var/micro_hunt = FALSE					// Will target mobs at or under the micro_hunt_size size, requires vore_hostile to be true
 	var/micro_hunt_size = 0.25
 	var/belly_attack = TRUE					//Mobs attack if they are in a belly!
+	var/guard_limit = FALSE					//Mobs will not acquire targets unless they are in front of them.
 
 	var/atom/movable/target = null			// The thing (mob or object) we're trying to kill.
 	var/atom/movable/preferred_target = null// If set, and if given the chance, we will always prefer to target this over other options.
@@ -49,7 +50,10 @@
 	. = list()
 	if(!has_targets_list)
 		possible_targets = list_targets()
-	for(var/possible_target in possible_targets)
+	for(var/atom/possible_target as anything in possible_targets)
+		if(guard_limit)
+			if((holder.dir == 1 && holder.y >= possible_target.y) || (holder.dir == 2 && holder.y <= possible_target.y) || (holder.dir == 4 && holder.x >= possible_target.x) || (holder.dir == 8 && holder.x <= possible_target.x)) //Ignore targets that are behind you
+				continue
 		if(can_attack(possible_target)) // Can we attack it?
 			. += possible_target
 

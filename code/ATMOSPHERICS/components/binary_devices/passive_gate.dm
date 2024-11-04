@@ -27,10 +27,12 @@
 	var/id = null
 	var/datum/radio_frequency/radio_connection
 
-/obj/machinery/atmospherics/binary/passive_gate/New()
-	..()
+/obj/machinery/atmospherics/binary/passive_gate/Initialize()
+	. = ..()
 	air1.volume = ATMOS_DEFAULT_VOLUME_PUMP * 2.5
 	air2.volume = ATMOS_DEFAULT_VOLUME_PUMP * 2.5
+	if(frequency)
+		set_frequency(frequency)
 
 /obj/machinery/atmospherics/binary/passive_gate/Destroy()
 	unregister_radio(src, frequency)
@@ -169,11 +171,6 @@
 
 	return 1
 
-/obj/machinery/atmospherics/binary/passive_gate/Initialize()
-	. = ..()
-	if(frequency)
-		set_frequency(frequency)
-
 /obj/machinery/atmospherics/binary/passive_gate/receive_signal(datum/signal/signal)
 	if(!signal.data["tag"] || (signal.data["tag"] != id) || (signal.data["sigtype"]!="command"))
 		return 0
@@ -292,7 +289,7 @@
 	to_chat(user, span_notice("You begin to unfasten \the [src]..."))
 	if (do_after(user, 40 * W.toolspeed))
 		user.visible_message( \
-			"<b>\The [user]</b> unfastens \the [src].", \
+			span_infoplain(span_bold("\The [user]") + " unfastens \the [src]."), \
 			span_notice("You have unfastened \the [src]."), \
 			"You hear ratchet.")
 		deconstruct()

@@ -664,8 +664,8 @@
 	density = 0;
 	pixel_y = 32
 	},
-/obj/item/book/manual/security_space_law,
-/obj/item/book/manual/security_space_law,
+/obj/item/book/manual/wiki/security_space_law,
+/obj/item/book/manual/wiki/security_space_law,
 /turf/simulated/floor{
 	icon_state = "bar"
 	},

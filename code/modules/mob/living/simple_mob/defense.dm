@@ -76,7 +76,7 @@
 			if(health < getMaxHealth())
 				if(MED.use(1))
 					adjustBruteLoss(-MED.heal_brute)
-					visible_message("<b>\The [user]</b> applies the [MED] on [src].")
+					visible_message(span_infoplain(span_bold("\The [user]") + " applies the [MED] on [src]."))
 		else
 			var/datum/gender/T = gender_datums[src.get_visible_gender()]
 			to_chat(user, span_notice("\The [src] is dead, medical items won't bring [T.him] back to life.")) // the gender lookup is somewhat overkill, but it functions identically to the obsolete gender macros and future-proofs this code

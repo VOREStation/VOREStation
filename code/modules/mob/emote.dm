@@ -16,7 +16,7 @@
 		return
 
 	if(!src.client.holder)
-		if(!config.dsay_allowed)
+		if(!CONFIG_GET(flag/dsay_allowed))
 			to_chat(src, span_danger("Deadchat is globally muted."))
 			return
 
@@ -32,6 +32,6 @@
 	if(input)
 		log_ghostemote(input, src)
 		if(!invisibility) //If the ghost is made visible by admins or cult. And to see if the ghost has toggled its own visibility, as well. -Mech
-			visible_message(span_deadsay("<B>[src]</B> [input]"))
+			visible_message(span_deadsay(span_bold("[src]") + " [input]"))
 		else
 			say_dead_direct(input, src)

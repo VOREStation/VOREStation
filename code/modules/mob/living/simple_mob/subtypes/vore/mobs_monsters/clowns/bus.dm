@@ -4,4 +4,4 @@
 
 /mob/living/simple_mob/clowns/big/c_shift/New()
 	..()
-	verbs += /mob/living/simple_mob/clowns/big/c_shift/proc/phase_shift
+	add_verb(src, /mob/living/simple_mob/clowns/big/c_shift/proc/phase_shift)

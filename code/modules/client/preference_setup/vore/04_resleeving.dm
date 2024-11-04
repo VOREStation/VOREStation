@@ -42,9 +42,9 @@
 
 /datum/category_item/player_setup_item/vore/resleeve/content(var/mob/user)
 	. += "<br>"
-	. += "<b>Start With Body Scan:</b> <a [pref.resleeve_scan ? "class='linkOn'" : ""] href='?src=\ref[src];toggle_resleeve_scan=1'><b>[pref.resleeve_scan ? "Yes" : "No"]</b></a><br>"
-	. += "<b>Start With Mind Scan:</b> <a [pref.mind_scan ? "class='linkOn'" : ""] href='?src=\ref[src];toggle_mind_scan=1'><b>[pref.mind_scan ? "Yes" : "No"]</b></a><br>"
-	. += "<b>Prevent Body Impersonation:</b> <a [pref.resleeve_lock ? "class='linkOn'" : ""] href='?src=\ref[src];toggle_resleeve_lock=1'><b>[pref.resleeve_lock ? "Yes" : "No"]</b></a><br>"
+	. += span_bold("Start With Body Scan:") + " <a [pref.resleeve_scan ? "class='linkOn'" : ""] href='?src=\ref[src];toggle_resleeve_scan=1'><b>[pref.resleeve_scan ? "Yes" : "No"]</b></a><br>"
+	. += span_bold("Start With Mind Scan:") + " <a [pref.mind_scan ? "class='linkOn'" : ""] href='?src=\ref[src];toggle_mind_scan=1'><b>[pref.mind_scan ? "Yes" : "No"]</b></a><br>"
+	. += span_bold("Prevent Body Impersonation:") + " <a [pref.resleeve_lock ? "class='linkOn'" : ""] href='?src=\ref[src];toggle_resleeve_lock=1'><b>[pref.resleeve_lock ? "Yes" : "No"]</b></a><br>"
 
 /datum/category_item/player_setup_item/vore/resleeve/OnTopic(var/href, var/list/href_list, var/mob/user)
 	if(href_list["toggle_resleeve_lock"])

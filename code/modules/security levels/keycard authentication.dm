@@ -89,7 +89,7 @@
 	if(screen == 1)
 		dat += "Select an event to trigger:<ul>"
 		dat += "<li><A href='?src=\ref[src];triggerevent=Red alert'>Red alert</A></li>"
-		if(!config.ert_admin_call_only)
+		if(!CONFIG_GET(flag/ert_admin_call_only))
 			dat += "<li><A href='?src=\ref[src];triggerevent=Emergency Response Team'>Emergency Response Team</A></li>"
 
 		dat += "<li><A href='?src=\ref[src];triggerevent=Grant Emergency Maintenance Access'>Grant Emergency Maintenance Access</A></li>"
@@ -182,20 +182,20 @@
 			feedback_inc("alert_keycard_auth_ert",1)
 
 /obj/machinery/keycard_auth/proc/is_ert_blocked()
-	if(config.ert_admin_call_only) return 1
+	if(CONFIG_GET(flag/ert_admin_call_only)) return 1
 	return ticker.mode && ticker.mode.ert_disabled
 
 var/global/maint_all_access = 0
 
 /proc/make_maint_all_access()
 	maint_all_access = 1
-	to_world(span_red("<font size=4>Attention!</font>"))
-	to_world(span_red("The maintenance access requirement has been revoked on all airlocks."))
+	to_world(span_alert(span_red(span_huge("Attention!"))))
+	to_world(span_alert(span_red("The maintenance access requirement has been revoked on all airlocks.")))
 
 /proc/revoke_maint_all_access()
 	maint_all_access = 0
-	to_world(span_red("<font size=4>Attention!</font>"))
-	to_world(span_red("The maintenance access requirement has been readded on all maintenance airlocks."))
+	to_world(span_alert(span_red(span_huge("Attention!"))))
+	to_world(span_alert(span_red("The maintenance access requirement has been readded on all maintenance airlocks.")))
 
 /obj/machinery/door/airlock/allowed(mob/M)
 	if(maint_all_access && src.check_access_list(list(access_maint_tunnels)))

@@ -90,7 +90,7 @@
 					return
 	// Added voice muffling for Issue 41.
 	if(stat == UNCONSCIOUS || sleeping > 0)
-		to_chat(src, span_filter_notice("<I>... You can almost hear someone talking ...</I>"))
+		to_chat(src, span_filter_notice(span_italics("... You can almost hear someone talking ...")))
 	else
 		if(client && client.prefs.chat_timestamp)
 			// TG-Chat filters latch directly to the spans, we no longer need that
@@ -288,7 +288,7 @@
 
 /mob/verb/memory()
 	set name = "Notes"
-	set category = "IC"
+	set category = "IC.Game"
 	if(mind)
 		mind.show_memory(src)
 	else
@@ -296,7 +296,7 @@
 
 /mob/verb/add_memory(msg as message)
 	set name = "Add Note"
-	set category = "IC"
+	set category = "IC.Game"
 
 	msg = sanitize(msg)
 
@@ -339,7 +339,7 @@
 		if(length(msg) <= 40)
 			return span_notice("[msg]")
 		else
-			return "<span class='notice'>[copytext_preserve_html(msg, 1, 37)]... <a href='byond://?src=\ref[src];flavor_more=1'>More...</span></a>"
+			return span_notice("[copytext_preserve_html(msg, 1, 37)]... <a href='byond://?src=\ref[src];flavor_more=1'>More...</a>")
 
 /*
 /mob/verb/help()
@@ -354,9 +354,9 @@
 	// Special cases, can never respawn
 	if(ticker?.mode?.deny_respawn)
 		time = -1
-	else if(!config.abandon_allowed)
+	else if(!CONFIG_GET(flag/abandon_allowed))
 		time = -1
-	else if(!config.respawn)
+	else if(!CONFIG_GET(flag/respawn))
 		time = -1
 
 	// Special case for observing before game start
@@ -365,7 +365,7 @@
 
 	// Wasn't given a time, use the config time
 	else if(!time)
-		time = config.respawn_time
+		time = CONFIG_GET(number/respawn_time)
 
 	var/keytouse = ckey
 	// Try harder to find a key to use
@@ -377,17 +377,17 @@
 	GLOB.respawn_timers[keytouse] = world.time + time
 
 /mob/observer/dead/set_respawn_timer()
-	if(config.antag_hud_restricted && has_enabled_antagHUD)
+	if(CONFIG_GET(flag/antag_hud_restricted) && has_enabled_antagHUD)
 		..(-1)
 	else
 		return // Don't set it, no need
 
 /mob/verb/abandon_mob()
 	set name = "Return to Menu"
-	set category = "OOC"
+	set category = "OOC.Game"
 
 	if(stat != DEAD || !ticker)
-		to_chat(usr, span_notice("<B>You must be dead to use this!</B>"))
+		to_chat(usr, span_boldnotice("You must be dead to use this!"))
 		return
 
 	// Final chance to abort "respawning"
@@ -465,7 +465,7 @@
 
 /client/verb/changes()
 	set name = "Changelog"
-	set category = "OOC"
+	set category = "OOC.Resources"
 	src << link("https://wiki.vore-station.net/Changelog")
 
 	/*
@@ -477,7 +477,7 @@
 
 /mob/verb/observe()
 	set name = "Observe"
-	set category = "OOC"
+	set category = "OOC.Game"
 	var/is_admin = 0
 
 	if(client.holder && (client.holder.rights & R_ADMIN|R_EVENT))
@@ -519,7 +519,7 @@
 
 /mob/verb/cancel_camera()
 	set name = "Cancel Camera View"
-	set category = "OOC"
+	set category = "OOC.Game"
 	unset_machine()
 	reset_view(null)
 
@@ -534,8 +534,7 @@
 		onclose(usr, "[name]")
 	if(href_list["flavor_change"])
 		update_flavor_text()
-//	..()
-	return
+	return ..()
 
 
 /mob/proc/pull_damage()
@@ -544,7 +543,7 @@
 /mob/verb/stop_pulling()
 
 	set name = "Stop Pulling"
-	set category = "IC"
+	set category = "IC.Game"
 
 	if(pulling)
 		if(ishuman(pulling))
@@ -634,7 +633,7 @@
 		playsound(src.loc, 'sound/weapons/thudswoosh.ogg', 25) //Quieter than hugging/grabbing but we still want some audio feedback
 
 		if(H.pull_damage())
-			to_chat(src, span_filter_notice("[span_red("<B>Pulling \the [H] in their current condition would probably be a bad idea.</B>")]"))
+			to_chat(src, span_filter_notice("[span_red(span_bold("Pulling \the [H] in their current condition would probably be a bad idea."))]"))
 
 	//Attempted fix for people flying away through space when cuffed and dragged.
 	if(ismob(AM))
@@ -694,86 +693,19 @@
 	for(var/mob/M in viewers())
 		M.see(message)
 
-/mob/Stat()
-	..()
-	. = (is_client_active(10 MINUTES))
+/// Adds this list to the output to the stat browser
+/mob/proc/get_status_tab_items()
+	. = list()
 
-	if(.)
-		if(statpanel("Status"))
-			stat(null, "Time Dilation: [round(SStime_track.time_dilation_current,1)]% AVG:([round(SStime_track.time_dilation_avg_fast,1)]%, [round(SStime_track.time_dilation_avg,1)]%, [round(SStime_track.time_dilation_avg_slow,1)]%)")
-			if(ticker && ticker.current_state != GAME_STATE_PREGAME)
-				stat("Station Time", stationtime2text())
-				var/date = "[stationdate2text()], [capitalize(world_time_season)]"
-				stat("Station Date", date)
-				stat("Round Duration", roundduration2text())
+/// Gets all relevant proc holders for the browser statpenl
+/mob/proc/get_proc_holders()
+	. = list()
+	//if(mind)
+		//. += get_spells_for_statpanel(mind.spell_list)
+	//. += get_spells_for_statpanel(mob_spell_list)
 
-		if(client.holder)
-			if(statpanel("Status"))
-				stat("Location:", "([x], [y], [z]) [loc]")
-				stat("CPU:","[world.cpu]")
-				stat("Instances:","[world.contents.len]")
-				stat(null, "Time Dilation: [round(SStime_track.time_dilation_current,1)]% AVG:([round(SStime_track.time_dilation_avg_fast,1)]%, [round(SStime_track.time_dilation_avg,1)]%, [round(SStime_track.time_dilation_avg_slow,1)]%)")
-				stat("Keys Held", keys2text(client.move_keys_held | client.mod_keys_held))
-				stat("Next Move ADD", dirs2text(client.next_move_dir_add))
-				stat("Next Move SUB", dirs2text(client.next_move_dir_sub))
-				stat("Current size:", size_multiplier * 100)
-
-			if(statpanel("MC"))
-				stat("Location:", "([x], [y], [z]) [loc]")
-				stat("CPU:","[world.cpu]")
-				stat("Instances:","[world.contents.len]")
-				stat("World Time:", world.time)
-				stat("Real time of day:", REALTIMEOFDAY)
-				stat(null)
-				if(GLOB)
-					GLOB.stat_entry()
-				else
-					stat("Globals:", "ERROR")
-				if(Master)
-					Master.stat_entry()
-				else
-					stat("Master Controller:", "ERROR")
-				if(Failsafe)
-					Failsafe.stat_entry()
-				else
-					stat("Failsafe Controller:", "ERROR")
-				if(Master)
-					stat(null)
-					for(var/datum/controller/subsystem/SS in Master.subsystems)
-						SS.stat_entry()
-
-			if(statpanel("Tickets"))
-				if(check_rights(R_ADMIN|R_SERVER,FALSE)) //Prevents non-staff from opening the list of ahelp tickets
-					GLOB.ahelp_tickets.stat_entry()
-
-
-			if(length(GLOB.sdql2_queries))
-				if(statpanel("SDQL2"))
-					stat("Access Global SDQL2 List", GLOB.sdql2_vv_statobj)
-					for(var/datum/SDQL2_query/Q as anything in GLOB.sdql2_queries)
-						Q.generate_stat()
-
-		if(has_mentor_powers(client))
-			if(statpanel("Tickets"))
-				GLOB.mhelp_tickets.stat_entry()
-
-		if(listed_turf && client)
-			if(!TurfAdjacent(listed_turf))
-				listed_turf = null
-			else
-				if(statpanel("Turf"))
-					stat(listed_turf)
-					for(var/atom/A in listed_turf)
-						if(!A.mouse_opacity)
-							continue
-						if(A.invisibility > see_invisible)
-							continue
-						if(is_type_in_list(A, shouldnt_see))
-							continue
-						if(A.plane > plane)
-							continue
-						stat(A)
-
+/mob/proc/update_misc_tabs()
+	misc_tabs = list() //Reset misc_tabs every Stat() to prevent old shit sticking around
 
 // facing verbs
 /mob/proc/canface()
@@ -1003,12 +935,12 @@
 		return
 
 	if(self)
-		visible_message(span_warning("<b>[src] rips [selection] out of their body.</b>"),span_warning("<b>You rip [selection] out of your body.</b>"))
+		visible_message(span_boldwarning("[src] rips [selection] out of their body."),span_boldwarning("You rip [selection] out of your body."))
 	else
-		visible_message(span_warning("<b>[usr] rips [selection] out of [src]'s body.</b>"),span_warning("<b>[usr] rips [selection] out of your body.</b>"))
+		visible_message(span_boldwarning("[usr] rips [selection] out of [src]'s body."),span_boldwarning("[usr] rips [selection] out of your body."))
 	valid_objects = get_visible_implants(0)
 	if(valid_objects.len == 1) //Yanking out last object - removing verb.
-		src.verbs -= /mob/proc/yank_out_object
+		remove_verb(src, /mob/proc/yank_out_object)
 		clear_alert("embeddedobject")
 
 	if(ishuman(src))
@@ -1066,7 +998,7 @@
 /mob/verb/face_direction()
 
 	set name = "Face Direction"
-	set category = "IC"
+	set category = "IC.Game"
 	set src = usr
 
 	set_face_dir()

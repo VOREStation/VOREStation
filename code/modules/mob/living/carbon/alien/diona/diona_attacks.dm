@@ -18,6 +18,6 @@
 			return
 		user.unEquip(W)
 		wear_hat(W)
-		user.visible_message("<b>\The [user]</b> puts \the [W] on \the [src].")
+		user.visible_message(span_infoplain(span_bold("\The [user]") + " puts \the [W] on \the [src]."))
 		return
 	return ..()

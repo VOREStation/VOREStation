@@ -188,7 +188,7 @@ Example: USING PROCCALL = BLOCKING, SELECT = FORCE_NULLS, PRIORITY = HIGH SELECT
 		CRASH("SDQL2 fatal error");};
 
 /client/proc/SDQL2_query(query_text as message)
-	set category = "Debug"
+	set category = "Debug.Misc"
 	if(!check_rights(R_DEBUG))  //Shouldn't happen... but just to be safe.
 		message_admins(span_danger("ERROR: Non-admin [key_name(usr)] attempted to execute a SDQL query!"))
 		log_admin("Non-admin [key_name(usr)] attempted to execute a SDQL query!")
@@ -384,11 +384,13 @@ GLOBAL_DATUM_INIT(sdql2_vv_statobj, /obj/effect/statclick/SDQL2_VV_all, new(null
 		delete_click = new(null, "INITIALIZING", src)
 	if(!action_click)
 		action_click = new(null, "INITIALIZNG", src)
-	stat("[id]		", delete_click.update("DELETE QUERY | STATE : [text_state()] | ALL/ELIG/FIN \
+	var/list/L = list()
+	L[++L.len] = list("[id] ", "[delete_click.update("DELETE QUERY | STATE : [text_state()] | ALL/ELIG/FIN \
 	[islist(obj_count_all)? length(obj_count_all) : (isnull(obj_count_all)? "0" : obj_count_all)]/\
 	[islist(obj_count_eligible)? length(obj_count_eligible) : (isnull(obj_count_eligible)? "0" : obj_count_eligible)]/\
-	[islist(obj_count_finished)? length(obj_count_finished) : (isnull(obj_count_finished)? "0" : obj_count_finished)] - [get_query_text()]"))
-	stat("			", action_click.update("[SDQL2_IS_RUNNING? "HALT" : "RUN"]"))
+	[islist(obj_count_finished)? length(obj_count_finished) : (isnull(obj_count_finished)? "0" : obj_count_finished)] - [get_query_text()]")]", REF(delete_click))
+	L[++L.len] = list(" ", "[action_click.update("[SDQL2_IS_RUNNING? "HALT" : "RUN"]")]", REF(action_click))
+	return L
 
 /datum/SDQL2_query/proc/delete_click()
 	admin_del(usr)
@@ -478,10 +480,10 @@ GLOBAL_DATUM_INIT(sdql2_vv_statobj, /obj/effect/statclick/SDQL2_VV_all, new(null
 		var/client/C = GLOB.directory[show_next_to_key]
 		if(C)
 			var/mob/showmob = C.mob
-			to_chat(showmob, "<span class='admin'>SDQL query results: [get_query_text()]<br>\
+			to_chat(showmob, span_admin("SDQL query results: [get_query_text()]<br>\
 			SDQL query completed: [islist(obj_count_all)? length(obj_count_all) : obj_count_all] objects selected by path, and \
 			[where_switched? "[islist(obj_count_eligible)? length(obj_count_eligible) : obj_count_eligible] objects executed on after WHERE keyword selection." : ""]<br>\
-			SDQL query took [DisplayTimeText(end_time - start_time)] to complete.</span>")
+			SDQL query took [DisplayTimeText(end_time - start_time)] to complete."))
 			if(length(select_text))
 				var/text = islist(select_text)? select_text.Join() : select_text
 				var/static/result_offset = 0

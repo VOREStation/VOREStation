@@ -4,7 +4,7 @@
 
 /mob/living/carbon/human/proc/shapeshifter_select_ears()
 	set name = "Select Ears"
-	set category = "Abilities"
+	set category = "Abilities.Shapeshift"
 
 	if(stat || world.time < last_special)
 		return
@@ -56,9 +56,40 @@
 
 	update_hair() //Includes Virgo ears
 
+/mob/living/carbon/human/proc/shapeshifter_select_secondary_ears()
+	set name = "Select Secondary Ears"
+	set category = "Abilities"
+
+	if(stat || world.time < last_special)
+		return
+	last_special = world.time + 1 SECONDS
+
+	// Construct the list of names allowed for this user.
+	var/list/pretty_ear_styles = list("Normal" = null)
+	for(var/path in ear_styles_list)
+		var/datum/sprite_accessory/ears/instance = ear_styles_list[path]
+		if((!instance.ckeys_allowed) || (ckey in instance.ckeys_allowed))
+			pretty_ear_styles[instance.name] = path
+
+	// Handle style pick
+	var/new_ear_style = tgui_input_list(src, "Pick some ears!", "Character Preference", pretty_ear_styles)
+	if(!new_ear_style)
+		return
+	ear_secondary_style = ear_styles_list[pretty_ear_styles[new_ear_style]]
+
+	// Handle color picks
+	var/list/new_colors = list()
+	for(var/channel in 1 to ear_secondary_style.get_color_channel_count())
+		var/channel_name = GLOB.fancy_sprite_accessory_color_channel_names[channel]
+		var/default = LAZYACCESS(ear_secondary_colors, channel) || "#ffffff"
+		var/new_color = input(usr, "Pick [channel_name]", "Ear Color ([channel_name])", default) as color | null
+		new_colors += new_color || default
+
+	update_hair()
+
 /mob/living/carbon/human/proc/shapeshifter_select_tail()
 	set name = "Select Tail"
-	set category = "Abilities"
+	set category = "Abilities.Shapeshift"
 
 	if(stat || world.time < last_special)
 		return
@@ -112,7 +143,7 @@
 
 /mob/living/carbon/human/proc/shapeshifter_select_wings()
 	set name = "Select Wings"
-	set category = "Abilities"
+	set category = "Abilities.Shapeshift"
 
 	if(stat || world.time < last_special)
 		return
@@ -168,7 +199,7 @@
 /mob/living/carbon/human/proc/promethean_select_opaqueness()
 
 	set name = "Toggle Transparency"
-	set category = "Abilities"
+	set category = "Abilities.Shapeshift"
 
 	if(stat || world.time < last_special)
 		return
@@ -189,5 +220,5 @@
 	species.base_species = new_species
 	wrapped_species_by_ref["\ref[src]"] = new_species
 	if (visible)
-		visible_message(span_filter_notice("<b>\The [src]</b> shifts and contorts, taking the form of \a [new_species]!"))
+		visible_message(span_filter_notice(span_bold("\The [src]") + " shifts and contorts, taking the form of \a [new_species]!"))
 		regenerate_icons()

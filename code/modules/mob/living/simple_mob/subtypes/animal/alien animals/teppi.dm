@@ -130,7 +130,7 @@ GLOBAL_VAR_INIT(teppi_count, 0)	// How mant teppi DO we have?
 
 	has_langs = list(LANGUAGE_TEPPI)
 	say_list_type = /datum/say_list/teppi
-	player_msg = "Teppi are large omnivorous quadrupeds. You have four toes on each paw, a long, strong tail, and are quite tough and powerful. You’re a lot more intimidating than you are actually harmful though. Your kind are ordinarily rather passive, only really rising to violence when someone does violence to you or others like you. You’re not stupid though, you can commiunicate with others of your kind, and form bonds with those who are kind to you, be they Teppi or otherwise. <br>- - - - -<br><span class='notice'>While you may have access to galactic common, this is purely meant for making it so you can understand people in an OOC manner, for facilitating roleplay. You almost certainly should not be speaking to people or roleplaying as though you understand everything everyone says perfectly, but it's not unreasonable to be able to intuit intent and such through people's tones when they speak. Teppi are kind of smart, but they are animals, and should be roleplayed as such.</span> <span class='warning'>ADDITIONALLY, you have the ability to produce offspring if you're well fed enough every once in a while, and the ability to disable this from happening to you. These verbs exist for to preserve the mechanical functionality of the mob you are playing. You should be aware of your surroundings when you use this verb, and NEVER use it to prefbreak or be disruptive. If in doubt, don't use it.</span> <span class='notice'>Also, to note, AI Teppi will never initiate breeding with player Teppi.</span>"
+	player_msg = "Teppi are large omnivorous quadrupeds. You have four toes on each paw, a long, strong tail, and are quite tough and powerful. You’re a lot more intimidating than you are actually harmful though. Your kind are ordinarily rather passive, only really rising to violence when someone does violence to you or others like you. You’re not stupid though, you can commiunicate with others of your kind, and form bonds with those who are kind to you, be they Teppi or otherwise. <br>- - - - -<br>" + span_notice("While you may have access to galactic common, this is purely meant for making it so you can understand people in an OOC manner, for facilitating roleplay. You almost certainly should not be speaking to people or roleplaying as though you understand everything everyone says perfectly, but it's not unreasonable to be able to intuit intent and such through people's tones when they speak. Teppi are kind of smart, but they are animals, and should be roleplayed as such.") + " " + span_warning("ADDITIONALLY, you have the ability to produce offspring if you're well fed enough every once in a while, and the ability to disable this from happening to you. These verbs exist for to preserve the mechanical functionality of the mob you are playing. You should be aware of your surroundings when you use this verb, and NEVER use it to prefbreak or be disruptive. If in doubt, don't use it.") + " " + span_notice("Also, to note, AI Teppi will never initiate breeding with player Teppi.")
 	loot_list = list(/obj/item/bone/horn = 100)
 	internal_organs = list(\
 		/obj/item/organ/internal/brain,\
@@ -333,11 +333,11 @@ GLOBAL_VAR_INIT(teppi_count, 0)	// How mant teppi DO we have?
 		real_name = name
 	if(!teppi_adult)
 		nutrition = 0
-		verbs += /mob/living/proc/ventcrawl
-		verbs += /mob/living/proc/hide
+		add_verb(src, /mob/living/proc/ventcrawl)
+		add_verb(src, /mob/living/proc/hide)
 	else
-		verbs += /mob/living/simple_mob/vore/alienanimals/teppi/proc/produce_offspring
-		verbs += /mob/living/simple_mob/vore/alienanimals/teppi/proc/toggle_producing_offspring
+		add_verb(src, /mob/living/simple_mob/vore/alienanimals/teppi/proc/produce_offspring)
+		add_verb(src, /mob/living/simple_mob/vore/alienanimals/teppi/proc/toggle_producing_offspring)
 
 
 //	teppi_id = rand(1,100000)
@@ -548,7 +548,7 @@ GLOBAL_VAR_INIT(teppi_count, 0)	// How mant teppi DO we have?
 		qdel(O)
 		playsound(src, 'sound/items/eatfood.ogg', 75, 1)
 		if(!client && lets_eat(user) && prob(1))
-			visible_message("<span class='danger'>\The [src] scromfs \the [user] along with the food!</span>!")
+			visible_message(span_danger("\The [src] scromfs \the [user] along with the food!"))
 			to_chat(user, span_notice("\The [src] leans in close, spreading its jaws in front of you. A hot, humid gust of breath blows over you as the weight of \the [src]'s presses you over, knocking you off of your feet as the warm gooey tough of jaws scromf over your figure, rapidly guzzling you away with the [O], leaving you to tumble down into the depths of its body..."))
 			playsound(src, pick(bodyfall_sound), 75, 1)
 			teppi_pounce(user)
@@ -962,7 +962,7 @@ GLOBAL_VAR_INIT(teppi_count, 0)	// How mant teppi DO we have?
 //
 /mob/living/simple_mob/vore/alienanimals/teppi/proc/produce_offspring()
 	set name = "Produce Offspring"
-	set category = "Abilities"
+	set category = "Abilities.Teppi"
 	set desc = "You can have babies if the conditions are right."
 	if(prevent_breeding)
 		to_chat(src, span_notice("You have elected to not participate in breeding mechanics, and so cannot complete that action."))
@@ -1004,7 +1004,7 @@ GLOBAL_VAR_INIT(teppi_count, 0)	// How mant teppi DO we have?
 
 /mob/living/simple_mob/vore/alienanimals/teppi/proc/toggle_producing_offspring()
 	set name = "Toggle Producing Offspring"
-	set category = "Abilities"
+	set category = "Abilities.Teppi"
 	set desc = "You can toggle whether or not you can produce offspring."
 	if(!prevent_breeding)
 		to_chat(src, span_notice("You disable breeding."))

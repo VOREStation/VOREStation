@@ -31,6 +31,7 @@
 		/mob/living/carbon/human/proc/shapeshifter_select_wings,
 		/mob/living/carbon/human/proc/shapeshifter_select_tail,
 		/mob/living/carbon/human/proc/shapeshifter_select_ears,
+		/mob/living/carbon/human/proc/shapeshifter_select_secondary_ears,
 		/mob/living/carbon/human/proc/prommie_blobform,
 		/mob/living/proc/set_size,
 		/mob/living/carbon/human/proc/promethean_select_opaqueness,
@@ -39,7 +40,7 @@
 /mob/living/carbon/human/proc/prommie_blobform()
 	set name = "Toggle Blobform"
 	set desc = "Switch between amorphous and humanoid forms."
-	set category = "Abilities"
+	set category = "Abilities.Promethean"
 	set hidden = FALSE
 
 	var/atom/movable/to_locate = temporary_form || src

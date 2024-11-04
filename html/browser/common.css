@@ -157,23 +157,22 @@ h4
 }
 
 .uiTitleWrapper
- {
- 	position:fixed;
- 	top:0px;
- 	left:0px;
- 	right:0px;
- 	z-index: 10
- }
+{
+	position:fixed;
+	top:0px;
+	left:0px;
+	right:0px;
+	z-index: 10
+}
 
- .uiTitleButtons
- {
- 	position:fixed;
- 	top:0px;
- 	right:0px;
- 	height:32px;
- 	z-index:11;
- }
-
+.uiTitleButtons
+{
+	position:fixed;
+	top:0px;
+	right:0px;
+	height:32px;
+	z-index:11;
+}
 
 .uiTitle.icon
 {
@@ -214,11 +213,80 @@ h4
 	color: #272727;
 }
 
+.darkgreen {
+	color: #008000;
+}
+
+.grey {
+	color: #838383;
+}
+
+
+.crimson {
+	color: #dc143c;
+}
+
+.maroon {
+	color: #800000;
+}
+
+.brown {
+	color: #8d4925;
+}
+
+.blue {
+	color: #0000ff;
+}
+
+.black {
+	color: #000000;
+}
+
+.white {
+	color: #000000;
+}
+
+.darkgray {
+	color: #808080;
+}
+
+.gray {
+	color: #a9a9a9;
+}
+
+.yellow {
+	color: #ffcc00;
+}
+
+.pink {
+	color: #ffc0cb;
+}
+
+.cyan {
+	color: #00ffff;
+}
+
+.nicegreen {
+	color: #14a833;
+}
+
 .notice
 {
 	position: relative;
 	background: #E9C183;
 	color: #15345A;
+	font-size: 10px;
+	font-style: italic;
+	padding: 2px 4px 0 4px;
+	margin: 4px;
+}
+
+.boldnotice
+{
+	position: relative;
+	background: #E9C183;
+	color: #15345A;
+	font-weight: bold;
 	font-size: 10px;
 	font-style: italic;
 	padding: 2px 4px 0 4px;
@@ -327,4 +395,17 @@ div.notice
 {
 	width: 100%;
 	clear: both;
+}
+
+.italic,
+.italics {
+	font-style: italic;
+}
+
+.bold {
+	font-weight: bold;
+}
+
+.underline {
+	text-decoration: underline;
 }

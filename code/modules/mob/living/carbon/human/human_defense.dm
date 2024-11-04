@@ -369,7 +369,7 @@ emp_act
 		effective_force -= round(effective_force*0.8)
 
 	//want the dislocation chance to be such that the limb is expected to dislocate after dealing a fraction of the damage needed to break the limb
-	var/dislocate_chance = effective_force/(dislocate_mult * organ.min_broken_damage * config.organ_health_multiplier)*100
+	var/dislocate_chance = effective_force/(dislocate_mult * organ.min_broken_damage * CONFIG_GET(number/organ_health_multiplier))*100
 	if(prob(dislocate_chance * (100 - blocked)/100))
 		visible_message(span_danger("[src]'s [organ.joint] [pick("gives way","caves in","crumbles","collapses")]!"))
 		organ.dislocate(1)
@@ -443,7 +443,7 @@ emp_act
 		var/throw_damage = O.throwforce*(speed/THROWFORCE_SPEED_DIVISOR)
 
 		if(species && species.throwforce_absorb_threshold >= throw_damage)
-			visible_message("<b>\The [O]</b> simply bounces off of [src]'s body!")
+			visible_message(span_infoplain(span_bold("\The [O]") + " simply bounces off of [src]'s body!"))
 			return
 
 		var/zone
@@ -468,7 +468,7 @@ emp_act
 				return
 
 		if(!zone)
-			visible_message("<b>\The [O]</b> misses [src] narrowly!")
+			visible_message(span_infoplain(span_bold("\The [O]") + " misses [src] narrowly!"))
 			return
 
 		O.throwing = 0		//it hit, so stop moving

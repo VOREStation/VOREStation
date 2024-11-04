@@ -555,7 +555,8 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 		if(ears_s.Height() > face_standing.Height()) // Tol ears
 			face_standing.Crop(1, 1, face_standing.Width(), ears_s.Height())
 		face_standing.Blend(ears_s, ICON_OVERLAY)
-		if(ear_style?.em_block)
+		// todo: these should be considered separately, but it'd take a slight refactor to how sprite acc's are rendered (or atleast ears)
+		if(ear_style?.em_block || ear_secondary_style?.em_block)
 			em_block_ears = em_block_image_generic(image(ears_s))
 
 	var/image/semifinal = image(face_standing, layer = BODY_LAYER+HAIR_LAYER, "pixel_y" = head_organ.head_offset)
@@ -1315,10 +1316,12 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 /mob/living/carbon/human/proc/get_ears_overlay()
 	//If you are FBP with ear style and didn't set a custom one
 	var/datum/robolimb/model = isSynthetic()
-	if(istype(model) && model.includes_ears && !ear_style)
+	if(istype(model) && model.includes_ears && !ear_style && !ear_secondary_style)
 		var/icon/ears_s = new/icon("icon" = synthetic.icon, "icon_state" = "ears")
 		ears_s.Blend(rgb(src.r_ears, src.g_ears, src.b_ears), species.color_mult ? ICON_MULTIPLY : ICON_ADD)
 		return ears_s
+
+	var/icon/rendered
 
 	if(ear_style && !(head && (head.flags_inv & BLOCKHEADHAIR)))
 		var/icon/ears_s = new/icon("icon" = ear_style.icon, "icon_state" = ear_style.icon_state)
@@ -1334,9 +1337,35 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 			overlay.Blend(rgb(src.r_ears3, src.g_ears3, src.b_ears3), ear_style.color_blend_mode)
 			ears_s.Blend(overlay, ICON_OVERLAY)
 			qdel(overlay)
-		return ears_s
-	return null
+		rendered = ears_s
 
+	// todo: this is utterly horrible but i don't think i should be violently refactoring sprite acc rendering in a feature PR ~silicons
+	if(ear_secondary_style && !(head && (head.flags_inv & BLOCKHEADHAIR)))
+		var/icon/ears_s = new/icon("icon" = ear_secondary_style.icon, "icon_state" = ear_secondary_style.icon_state)
+		if(ear_secondary_style.do_colouration)
+			var/color = LAZYACCESS(ear_secondary_colors, 1)
+			if(color)
+				ears_s.Blend(color, ear_secondary_style.color_blend_mode)
+		if(ear_secondary_style.extra_overlay)
+			var/icon/overlay = new/icon("icon" = ear_secondary_style.icon, "icon_state" = ear_secondary_style.extra_overlay)
+			var/color = LAZYACCESS(ear_secondary_colors, 2)
+			if(color)
+				overlay.Blend(color, ear_secondary_style.color_blend_mode)
+			ears_s.Blend(overlay, ICON_OVERLAY)
+			qdel(overlay)
+		if(ear_secondary_style.extra_overlay2) //MORE COLOURS IS BETTERER
+			var/icon/overlay = new/icon("icon" = ear_secondary_style.icon, "icon_state" = ear_secondary_style.extra_overlay2)
+			var/color = LAZYACCESS(ear_secondary_colors, 3)
+			if(color)
+				overlay.Blend(color, ear_secondary_style.color_blend_mode)
+			ears_s.Blend(overlay, ICON_OVERLAY)
+			qdel(overlay)
+		if(!rendered)
+			rendered = ears_s
+		else
+			rendered.Blend(ears_s, ICON_OVERLAY)
+
+	return rendered
 
 /mob/living/carbon/human/proc/get_tail_image()
 	//If you are FBP with tail style and didn't set a custom one
@@ -1348,13 +1377,13 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 
 	//If you have a custom tail selected
 	if(tail_style && !(wear_suit && wear_suit.flags_inv & HIDETAIL && !istaurtail(tail_style)) && !tail_hidden)
-		var/icon/tail_s = new/icon("icon" = (tail_style.can_loaf && resting) ? tail_style.icon_loaf : tail_style.icon, "icon_state" = (wagging && tail_style.ani_state ? tail_style.ani_state : tail_style.icon_state)) //CHOMPEdit
+		var/icon/tail_s = new/icon("icon" = (tail_style.can_loaf && resting) ? tail_style.icon_loaf : tail_style.icon, "icon_state" = (wagging && tail_style.ani_state ? tail_style.ani_state : tail_style.icon_state))
 		if(tail_style.can_loaf && !is_shifted)
 			pixel_y = (resting) ? -tail_style.loaf_offset*size_multiplier : default_pixel_y //move player down, then taur up, to fit the overlays correctly // VOREStation Edit: Taur Loafing
 		if(tail_style.do_colouration)
 			tail_s.Blend(rgb(src.r_tail, src.g_tail, src.b_tail), tail_style.color_blend_mode)
 		if(tail_style.extra_overlay)
-			var/icon/overlay = new/icon("icon" = (tail_style?.can_loaf && resting) ? tail_style.icon_loaf : tail_style.icon, "icon_state" = tail_style.extra_overlay) //CHOMPEdit
+			var/icon/overlay = new/icon("icon" = (tail_style?.can_loaf && resting) ? tail_style.icon_loaf : tail_style.icon, "icon_state" = tail_style.extra_overlay)
 			if(wagging && tail_style.ani_state)
 				overlay = new/icon("icon" = (tail_style?.can_loaf && resting) ? tail_style.icon_loaf : tail_style.icon, "icon_state" = tail_style.extra_overlay_w)	//RS EDIT
 				overlay.Blend(rgb(src.r_tail2, src.g_tail2, src.b_tail2), tail_style.color_blend_mode)
@@ -1366,7 +1395,7 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 				qdel(overlay)
 
 		if(tail_style.extra_overlay2)
-			var/icon/overlay = new/icon("icon" = (tail_style?.can_loaf && resting) ? tail_style.icon_loaf : tail_style.icon, "icon_state" = tail_style.extra_overlay2) //CHOMPEdit
+			var/icon/overlay = new/icon("icon" = (tail_style?.can_loaf && resting) ? tail_style.icon_loaf : tail_style.icon, "icon_state" = tail_style.extra_overlay2)
 			if(wagging && tail_style.ani_state)
 				overlay = new/icon("icon" = (tail_style?.can_loaf && resting) ? tail_style.icon_loaf : tail_style.icon, "icon_state" = tail_style.extra_overlay2_w)	//RS EDIT
 				overlay.Blend(rgb(src.r_tail3, src.g_tail3, src.b_tail3), tail_style.color_blend_mode)
@@ -1387,8 +1416,8 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 			working.pixel_y = tail_style.offset_y
 			if(taurtype.can_ride && !riding_datum)
 				riding_datum = new /datum/riding/taur(src)
-				verbs |= /mob/living/carbon/human/proc/taur_mount
-				verbs |= /mob/living/proc/toggle_rider_reins
+				add_verb(src, /mob/living/carbon/human/proc/taur_mount)
+				add_verb(src, /mob/living/proc/toggle_rider_reins)
 		else if(islongtail(tail_style))
 			working.pixel_x = tail_style.offset_x
 			working.pixel_y = tail_style.offset_y

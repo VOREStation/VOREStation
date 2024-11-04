@@ -57,4 +57,4 @@
 		new pref.nif_path(character, pref.nif_durability, pref.nif_savedata)
 
 /datum/category_item/player_setup_item/vore/nif/content(var/mob/user)
-	. += "<b>NIF:</b> [ispath(pref.nif_path) ? "Present" : "None"]"
+	. += span_bold("NIF:") + " [ispath(pref.nif_path) ? "Present" : "None"]"

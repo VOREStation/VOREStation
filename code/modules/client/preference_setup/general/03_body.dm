@@ -17,6 +17,15 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	var/r_ears3 = 30	// Ear tertiary color.
 	var/g_ears3 = 30	// Ear tertiary color
 	var/b_ears3 = 30	// Ear tertiary color
+
+	/// The typepath of the character's selected secondary ears.
+	var/ear_secondary_style
+	/// The color channels for the character's selected secondary ears
+	///
+	/// * This is a lazy list. Its length, when populated, should but cannot be assumed
+	///   to be the number of color channels supported by the secondary ear style.
+	var/list/ear_secondary_colors = list()
+
 	var/tail_style		// Type of selected tail style
 	var/r_tail = 30		// Tail/Taur color
 	var/g_tail = 30		// Tail/Taur color
@@ -27,6 +36,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	var/r_tail3 = 30 	// For tertiary overlay.
 	var/g_tail3 = 30	// For tertiary overlay.
 	var/b_tail3 = 30	// For tertiary overlay.
+
 	var/wing_style		// Type of selected wing style
 	var/r_wing = 30		// Wing color
 	var/g_wing = 30		// Wing color
@@ -37,6 +47,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	var/r_wing3 = 30	// Wing tertiary color
 	var/g_wing3 = 30	// Wing tertiary color
 	var/b_wing3 = 30	// Wing tertiary color
+
 	var/datum/browser/markings_subwindow = null
 
 // Sanitize ear/wing/tail styles
@@ -59,6 +70,8 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	// Sanitize for non-existent keys.
 	if(ear_style && !(ear_style in get_available_styles(global.ear_styles_list)))
 		ear_style = null
+	if(ear_secondary_style && !(ear_secondary_style in get_available_styles(global.ear_styles_list)))
+		ear_secondary_style = null
 	if(wing_style && !(wing_style in get_available_styles(global.wing_styles_list)))
 		wing_style = null
 	if(tail_style && !(tail_style in get_available_styles(global.tail_styles_list)))
@@ -137,6 +150,8 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	pref.r_ears3			= save_data["r_ears3"]
 	pref.g_ears3			= save_data["g_ears3"]
 	pref.b_ears3			= save_data["b_ears3"]
+	pref.ear_secondary_style = save_data["ear_secondary_style"]
+	pref.ear_secondary_colors = save_data["ear_secondary_colors"]
 	pref.tail_style			= save_data["tail_style"]
 	pref.r_tail				= save_data["r_tail"]
 	pref.g_tail				= save_data["g_tail"]
@@ -207,6 +222,8 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	save_data["r_ears3"]			= pref.r_ears3
 	save_data["g_ears3"]			= pref.g_ears3
 	save_data["b_ears3"]			= pref.b_ears3
+	save_data["ear_secondary_style"] = pref.ear_secondary_style
+	save_data["ear_secondary_colors"] = pref.ear_secondary_colors
 	save_data["tail_style"]			= pref.tail_style
 	save_data["r_tail"]				= pref.r_tail
 	save_data["g_tail"]				= pref.g_tail
@@ -274,6 +291,14 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	pref.r_ears3	= sanitize_integer(pref.r_ears3, 0, 255, initial(pref.r_ears3))
 	pref.g_ears3	= sanitize_integer(pref.g_ears3, 0, 255, initial(pref.g_ears3))
 	pref.b_ears3	= sanitize_integer(pref.b_ears3, 0, 255, initial(pref.b_ears3))
+
+	// sanitize secondary ears
+	pref.ear_secondary_colors = SANITIZE_LIST(pref.ear_secondary_colors)
+	if(length(pref.ear_secondary_colors) > length(GLOB.fancy_sprite_accessory_color_channel_names))
+		pref.ear_secondary_colors.len = length(GLOB.fancy_sprite_accessory_color_channel_names)
+	for(var/i in 1 to length(pref.ear_secondary_colors))
+		pref.ear_secondary_colors[i] = sanitize_hexcolor(pref.ear_secondary_colors[i], "#ffffff")
+
 	pref.r_tail		= sanitize_integer(pref.r_tail, 0, 255, initial(pref.r_tail))
 	pref.g_tail		= sanitize_integer(pref.g_tail, 0, 255, initial(pref.g_tail))
 	pref.b_tail		= sanitize_integer(pref.b_tail, 0, 255, initial(pref.b_tail))
@@ -347,6 +372,10 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	character.r_ears3 =    pref.r_ears3
 	character.b_ears3 =    pref.b_ears3
 	character.g_ears3 =    pref.g_ears3
+
+	// apply secondary ears; sanitize again to prevent runtimes in rendering
+	character.ear_secondary_style = ear_styles[pref.ear_secondary_style]
+	character.ear_secondary_colors = SANITIZE_LIST(pref.ear_secondary_colors)
 
 	var/list/tail_styles = pref.get_available_styles(global.tail_styles_list)
 	character.tail_style = tail_styles[pref.tail_style]
@@ -582,12 +611,12 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	. += "<br><a href='?src=\ref[src];toggle_animations=1'>[pref.animations_toggle ? "Stop animations" : "Show animations"]</a>"
 	. += "</td></tr></table>"
 
-	. += "<b>Hair</b><br>"
+	. += span_bold("Hair") + "<br>"
 	if(has_flag(mob_species, HAS_HAIR_COLOR))
 		. += "<a href='?src=\ref[src];hair_color=1'>Change Color</a> [color_square(pref.r_hair, pref.g_hair, pref.b_hair)] "
 	. += " Style: <a href='?src=\ref[src];hair_style_left=[pref.h_style]'><</a> <a href='?src=\ref[src];hair_style_right=[pref.h_style]''>></a> <a href='?src=\ref[src];hair_style=1'>[pref.h_style]</a><br>" //The <</a> & ></a> in this line is correct-- those extra characters are the arrows you click to switch between styles.
 
-	. += "<b>Gradient</b><br>"
+	. += span_bold("Gradient") + "<br>"
 	. += "<a href='?src=\ref[src];grad_color=1'>Change Color</a> [color_square(pref.r_grad, pref.g_grad, pref.b_grad)] "
 	. += " Style: <a href='?src=\ref[src];grad_style_left=[pref.grad_style]'><</a> <a href='?src=\ref[src];grad_style_right=[pref.grad_style]''>></a> <a href='?src=\ref[src];grad_style=1'>[pref.grad_style]</a><br>"
 
@@ -611,7 +640,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 
 	var/list/ear_styles = pref.get_available_styles(global.ear_styles_list)
 	var/datum/sprite_accessory/ears/ear = ear_styles[pref.ear_style]
-	. += "<b>Ears</b><br>"
+	. += span_bold("Ears") + "<br>"
 	if(istype(ear))
 		. += " Style: <a href='?src=\ref[src];ear_style=1'>[ear.name]</a><br>"
 		if(ear.do_colouration)
@@ -623,9 +652,18 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	else
 		. += " Style: <a href='?src=\ref[src];ear_style=1'>Select</a><br>"
 
+	var/datum/sprite_accessory/ears/ears_secondary = ear_styles[pref.ear_secondary_style]
+	. += span_bold("Horns") + "<br>"
+	if(istype(ears_secondary))
+		. += " Style: <a href='?src=\ref[src];ear_secondary_style=1'>[ears_secondary.name]</a><br>"
+		for(var/channel in 1 to min(ears_secondary.get_color_channel_count(), length(GLOB.fancy_sprite_accessory_color_channel_names)))
+			. += "<a href='?src=\ref[src];ear_secondary_color=[channel]'>Change [GLOB.fancy_sprite_accessory_color_channel_names[channel]] Color</a> [color_square(hex = LAZYACCESS(pref.ear_secondary_colors, channel) || "#ffffff")]<br>"
+	else
+		. += " Style: <a href='?src=\ref[src];ear_secondary_style=1'>Select</a><br>"
+
 	var/list/tail_styles = pref.get_available_styles(global.tail_styles_list)
 	var/datum/sprite_accessory/tail/tail = tail_styles[pref.tail_style]
-	. += "<b>Tail</b><br>"
+	. += span_bold("Tail") + "<br>"
 	if(istype(tail))
 		. += " Style: <a href='?src=\ref[src];tail_style=1'>[tail.name]</a><br>"
 		if(tail.do_colouration)
@@ -639,7 +677,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 
 	var/list/wing_styles = pref.get_available_styles(global.wing_styles_list)
 	var/datum/sprite_accessory/wing/wings = wing_styles[pref.wing_style]
-	. += "<b>Wing</b><br>"
+	. += span_bold("Wing") + "<br>"
 	if(istype(wings))
 		. += " Style: <a href='?src=\ref[src];wing_style=1'>[wings.name]</a><br>"
 		if(wings.do_colouration)
@@ -658,8 +696,8 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 
 	. += "</table>"
 	. += "<br>"
-	. += "<b>Allow Synth markings:</b> <a href='?src=\ref[src];synth_markings=1'><b>[pref.synth_markings ? "Yes" : "No"]</b></a><br>"
-	. += "<b>Allow Synth color:</b> <a href='?src=\ref[src];synth_color=1'><b>[pref.synth_color ? "Yes" : "No"]</b></a><br>"
+	. += span_bold("Allow Synth markings:") + " <a href='?src=\ref[src];synth_markings=1'><b>[pref.synth_markings ? "Yes" : "No"]</b></a><br>"
+	. += span_bold("Allow Synth color:") + " <a href='?src=\ref[src];synth_color=1'><b>[pref.synth_color ? "Yes" : "No"]</b></a><br>"
 	if(pref.synth_color)
 		. += "<a href='?src=\ref[src];synth2_color=1'>Change Color</a> [color_square(pref.r_synth, pref.g_synth, pref.b_synth)]"
 
@@ -1264,6 +1302,32 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 			pref.b_ears3 = hex2num(copytext(new_earc3, 6, 8))
 			return TOPIC_REFRESH_UPDATE_PREVIEW
 
+	else if(href_list["ear_secondary_style"])
+		var/new_style = tgui_input_list(user, "Select an ear style for this character:", "Character Preference", pref.get_available_styles(global.ear_styles_list), pref.ear_secondary_style)
+		if(!new_style)
+			return TOPIC_NOACTION
+		pref.ear_secondary_style = new_style
+		return TOPIC_REFRESH_UPDATE_PREVIEW
+	else if(href_list["ear_secondary_color"])
+		var/channel = text2num(href_list["ear_secondary_color"])
+		// very important sanity check; this makes sure someone can't crash the server by setting channel to some insanely high value
+		if(channel > GLOB.fancy_sprite_accessory_color_channel_names.len)
+			return TOPIC_NOACTION
+		// this would say 'secondary ears' but you'd get 'choose your character's primary secondary ear colour' which sounds silly
+		var/new_color = input(
+			user,
+			"Choose your character's [lowertext(GLOB.fancy_sprite_accessory_color_channel_names[channel])] ear colour:",
+			"Secondary Ear Coloration",
+			LAZYACCESS(pref.ear_secondary_colors, channel) || "#ffffff",
+		) as color | null
+		if(!new_color)
+			return TOPIC_NOACTION
+		// ensures color channel list is at least that long
+		// the upper bound is to have a secondary safety check because list index set is a dangerous call
+		pref.ear_secondary_colors.len = clamp(length(pref.ear_secondary_colors), channel, length(GLOB.fancy_sprite_accessory_color_channel_names))
+		pref.ear_secondary_colors[channel] = new_color
+		return TOPIC_REFRESH_UPDATE_PREVIEW
+
 	else if(href_list["tail_style"])
 		var/new_tail_style = tgui_input_list(user, "Select a tail style for this character:", "Character Preference", pref.get_available_styles(global.tail_styles_list), pref.tail_style)
 		if(new_tail_style)
@@ -1368,7 +1432,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	if("preview" in cached_icon_states(current_species.icobase))
 		usr << browse_rsc(icon(current_species.icobase,"preview"), "species_preview_[current_species.name].png")
 		dat += "<img src='species_preview_[current_species.name].png' width='64px' height='64px'><br/><br/>"
-	dat += "<b>Language:</b> [current_species.species_language]<br/>"
+	dat += span_bold("Language:") + " [current_species.species_language]<br/>"
 	dat += "<small>"
 	if(current_species.spawn_flags & SPECIES_CAN_JOIN)
 		switch(current_species.rarity_value)

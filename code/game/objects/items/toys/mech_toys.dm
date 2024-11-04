@@ -168,7 +168,7 @@
 		//extend the offer of battle to the other mech
 		var/datum/gender/T = gender_datums[user.get_visible_gender()]
 		to_chat(user, span_notice("You offer battle to [target.name]!"))
-		to_chat(target, span_notice("<b>[user.name] wants to battle with [T.His] [name]!</b> <i>Attack them with a toy mech to initiate combat.</i>"))
+		to_chat(target, span_notice(span_bold("[user.name] wants to battle with [T.His] [name]!") + " " + span_italics("Attack them with a toy mech to initiate combat.")))
 		wants_to_battle = TRUE
 		addtimer(CALLBACK(src, PROC_REF(withdraw_offer), user), 6 SECONDS)
 		return
@@ -365,7 +365,7 @@
 						span_notice(" [src] collapses!"), null)
 		attacker.visible_message("[pick(winlines)]")
 		attacker_controller.visible_message(span_notice(" [attacker] demolishes [src] and walks away victorious!"), \
-							"<span class='notice'> You raise up [attacker] proudly over [src]</span>!")
+							span_notice("You raise up [attacker] proudly over [src]") + "!")
 	else //both win?
 		visible_message("NEXT TIME.")
 		//don't want to make this a one sided conversation

@@ -7,11 +7,11 @@
 /client/proc/Jump(areaname as null|anything in return_sorted_areas())
 	set name = "Jump to Area"
 	set desc = "Area to jump to"
-	set category = "Admin"
+	set category = "Admin.Game"
 	if(!check_rights(R_ADMIN|R_MOD|R_DEBUG|R_EVENT))
 		return
 
-	if(!config.allow_admin_jump)
+	if(!CONFIG_GET(flag/allow_admin_jump))
 		tgui_alert_async(usr, "Admin jumping disabled")
 		return
 
@@ -33,10 +33,10 @@
 
 /client/proc/jumptoturf(var/turf/T in world)
 	set name = "Jump to Turf"
-	set category = "Admin"
+	set category = "Admin.Game"
 	if(!check_rights(R_ADMIN|R_MOD|R_DEBUG|R_EVENT))
 		return
-	if(config.allow_admin_jump)
+	if(CONFIG_GET(flag/allow_admin_jump))
 		log_admin("[key_name(usr)] jumped to [T.x],[T.y],[T.z] in [T.loc]")
 		message_admins("[key_name_admin(usr)] jumped to [T.x],[T.y],[T.z] in [T.loc]", 1)
 		usr.on_mob_jump()
@@ -48,7 +48,7 @@
 
 /// Verb wrapper around do_jumptomob()
 /client/proc/jumptomob(mob as null|anything in mob_list)
-	set category = "Admin"
+	set category = "Admin.Game"
 	set name = "Jump to Mob"
 	set popup_menu = FALSE //VOREStation Edit - Declutter.
 
@@ -59,7 +59,7 @@
 
 /// Performs the jumps, also called from admin Topic() for JMP links
 /client/proc/do_jumptomob(var/mob/M)
-	if(!config.allow_admin_jump)
+	if(!CONFIG_GET(flag/allow_admin_jump))
 		tgui_alert_async(usr, "Admin jumping disabled")
 		return
 
@@ -80,13 +80,13 @@
 		to_chat(A, span_filter_adminlog("This mob is not located in the game world."))
 
 /client/proc/jumptocoord(tx as num, ty as num, tz as num)
-	set category = "Admin"
+	set category = "Admin.Game"
 	set name = "Jump to Coordinate"
 
 	if(!check_rights(R_ADMIN|R_MOD|R_DEBUG|R_EVENT))
 		return
 
-	if (config.allow_admin_jump)
+	if (CONFIG_GET(flag/allow_admin_jump))
 		if(src.mob)
 			var/mob/A = src.mob
 			A.on_mob_jump()
@@ -102,13 +102,13 @@
 		tgui_alert_async(usr, "Admin jumping disabled")
 
 /client/proc/jumptokey()
-	set category = "Admin"
+	set category = "Admin.Game"
 	set name = "Jump to Key"
 
 	if(!check_rights(R_ADMIN|R_MOD|R_DEBUG|R_EVENT))
 		return
 
-	if(config.allow_admin_jump)
+	if(CONFIG_GET(flag/allow_admin_jump))
 		var/list/keys = list()
 		for(var/mob/M in player_list)
 			keys += M.client
@@ -125,14 +125,14 @@
 		tgui_alert_async(usr, "Admin jumping disabled")
 
 /client/proc/Getmob(mob/living/M as null|anything in mob_list)	//VOREStation Edit
-	set category = "Admin"
+	set category = "Admin.Game"
 	set name = "Get Mob"
 	set desc = "Mob to teleport"
 	set popup_menu = TRUE	//VOREStation Edit
 
 	if(!check_rights(R_ADMIN|R_MOD|R_DEBUG|R_EVENT))
 		return
-	if(config.allow_admin_jump)
+	if(CONFIG_GET(flag/allow_admin_jump))
 		if(!M)	//VOREStation Edit
 			M = tgui_input_list(usr, "Pick a mob:", "Get Mob", mob_list)	//VOREStation Edit
 		if(!M)
@@ -148,14 +148,14 @@
 		tgui_alert_async(usr, "Admin jumping disabled")
 
 /client/proc/Getkey()
-	set category = "Admin"
+	set category = "Admin.Game"
 	set name = "Get Key"
 	set desc = "Key to teleport"
 
 	if(!check_rights(R_ADMIN|R_MOD|R_DEBUG|R_EVENT))
 		return
 
-	if(config.allow_admin_jump)
+	if(CONFIG_GET(flag/allow_admin_jump))
 		var/list/keys = list()
 		for(var/mob/M in player_list)
 			keys += M.client
@@ -178,12 +178,12 @@
 		tgui_alert_async(usr, "Admin jumping disabled")
 
 /client/proc/sendmob()
-	set category = "Admin"
+	set category = "Admin.Game"
 	set name = "Send Mob"
 	if(!check_rights(R_ADMIN|R_MOD|R_DEBUG|R_EVENT))
 		return
 
-	if(config.allow_admin_jump)
+	if(CONFIG_GET(flag/allow_admin_jump))
 		var/area/A = tgui_input_list(usr, "Pick an area:", "Send Mob", return_sorted_areas())
 		if(!A)
 			return
@@ -202,13 +202,13 @@
 		tgui_alert_async(usr, "Admin jumping disabled")
 
 /client/proc/cmd_admin_move_atom(var/atom/movable/AM, tx as num, ty as num, tz as num)
-	set category = "Admin"
+	set category = "Admin.Game"
 	set name = "Move Atom to Coordinate"
 
 	if(!check_rights(R_ADMIN|R_DEBUG|R_EVENT))
 		return
 
-	if(config.allow_admin_jump)
+	if(CONFIG_GET(flag/allow_admin_jump))
 		if(isnull(tx))
 			tx = tgui_input_number(usr, "Select X coordinate", "Move Atom", null, null)
 			if(!tx) return

@@ -6,12 +6,12 @@
 		if (src.getBruteLoss() < 75)
 			. += span_warning("It looks slightly dented.")
 		else
-			. += span_warning("<B>It looks severely dented!</B>")
+			. += span_boldwarning("It looks severely dented!")
 	if (src.getFireLoss())
 		if (src.getFireLoss() < 75)
 			. += span_warning("It looks slightly charred.")
 		else
-			. += span_warning("<B>It looks severely burnt and heat-warped!</B>")
+			. += span_boldwarning("It looks severely burnt and heat-warped!")
 
 	if(opened)
 		. += span_warning("Its cover is open and the power cell is [cell ? "installed" : "missing"].")

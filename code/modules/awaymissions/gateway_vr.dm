@@ -15,7 +15,7 @@
 		return
 
 	if(istype(W,mcguffin_type) && !calibrated)
-		to_chat(user, span_emote("As the device nears the gateway, mechanical clunks and whirrs can be heard. <br>[span_blue("<b>Configuration successful! </b>")]<br>This gate's systems have been fine tuned. Travel to this gate will now be on target."))
+		to_chat(user, span_npc_emote("As the device nears the gateway, mechanical clunks and whirrs can be heard. <br>[span_blue(span_bold("Configuration successful! "))]<br>This gate's systems have been fine tuned. Travel to this gate will now be on target."))
 		calibrated = 1
 		return
 	else

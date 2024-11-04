@@ -10,5 +10,6 @@
 	origin_tech = list(TECH_DATA = 1)
 	req_components = list(
 							/obj/item/stock_parts/matter_bin = 2,
+							/obj/item/cell = 1,
 							/obj/item/stock_parts/motor = 2,
 							/obj/item/stock_parts/manipulator = 1)

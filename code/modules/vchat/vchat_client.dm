@@ -132,7 +132,7 @@ GLOBAL_DATUM_INIT(iconCache, /savefile, new("data/iconCache.sav")) //Cache of ic
 	send_playerinfo()
 	load_database()
 
-	owner.verbs += /client/proc/vchat_export_log
+	add_verb(owner, /client/proc/vchat_export_log)
 
 //Perform DB shenanigans
 /datum/chatOutput/proc/load_database()
@@ -387,7 +387,7 @@ var/to_chat_src
 
 /client/proc/vchat_export_log()
 	set name = "Export chatlog"
-	set category = "OOC"
+	set category = "OOC.Chat"
 
 	if(chatOutput.broken)
 		to_chat(src, span_warning("Error: VChat isn't processing your messages!"))

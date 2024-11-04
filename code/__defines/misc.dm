@@ -31,7 +31,6 @@
 #define MAX_CLIENT_FPS	200
 
 // Some arbitrary defines to be used by self-pruning global lists. (see master_controller)
-#define PROCESS_KILL 26 // Used to trigger removal from a processing list.
 #define MAX_GEAR_COST 15 // Used in chargen for accessory loadout limit.
 
 // For secHUDs and medHUDs and variants. The number is the location of the image on the list hud_list of humans.
@@ -309,11 +308,6 @@ var/global/list/##LIST_NAME = list();\
 // Calculation modes for effective radiation
 #define RAD_RESIST_CALC_DIV 0 // Each turf absorbs some fraction of the working radiation level
 #define RAD_RESIST_CALC_SUB 1 // Each turf absorbs a fixed amount of radiation
-
-//https://secure.byond.com/docs/ref/info.html#/atom/var/mouse_opacity
-#define MOUSE_OPACITY_TRANSPARENT 0
-#define MOUSE_OPACITY_ICON 1
-#define MOUSE_OPACITY_OPAQUE 2
 
 // Used by radios to indicate that they have sent a message via something other than subspace
 #define RADIO_CONNECTION_FAIL 0

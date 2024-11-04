@@ -30,7 +30,7 @@
 		random_icon_states.Remove(W.icon_state)
 	if(random_icon_states.len)
 		icon_state = pick(random_icon_states)
-	if(!mapload || !config.persistence_ignore_mapload)
+	if(!mapload || !CONFIG_GET(flag/persistence_ignore_mapload))
 		SSpersistence.track_value(src, /datum/persistent/graffiti)
 	. = ..()
 
@@ -47,7 +47,7 @@
 		var/obj/item/weldingtool/welder = thing.get_welder()
 		if(welder.isOn() && welder.remove_fuel(0,user) && do_after(user, 5, src) && !QDELETED(src))
 			playsound(src.loc, welder.usesound, 50, 1)
-			user.visible_message("<b>\The [user]</b> clears away some graffiti.")
+			user.visible_message(span_infoplain(span_bold("\The [user]") + " clears away some graffiti."))
 			qdel(src)
 	else if(thing.sharp)
 

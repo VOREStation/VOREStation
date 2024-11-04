@@ -66,12 +66,12 @@
 			for(var/mob/living/L as anything in buckled_mobs)
 				if(!(user in buckled_mobs))
 					L.visible_message(\
-					"<b>\The [user]</b> frees \the [L] from \the [src].",\
-					"<b>\The [user]</b> frees you from \the [src].",\
+					span_infoplain(span_bold("\The [user]") + " frees \the [L] from \the [src]."),\
+					span_infoplain(span_bold("\The [user]") + " frees you from \the [src]."),\
 					span_warning("You hear shredding and ripping."))
 				else
 					L.visible_message(\
-					"<b>\The [L]</b> struggles free of \the [src].",\
+					span_infoplain(span_bold("\The [L]") + " struggles free of \the [src]."),\
 					span_notice("You untangle \the [src] from around yourself."),\
 					span_warning("You hear shredding and ripping."))
 				unbuckle()

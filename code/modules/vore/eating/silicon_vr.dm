@@ -41,7 +41,7 @@
 
 /mob/living/silicon/ai/verb/holo_nom()
 	set name = "Hardlight Nom"
-	set category = "AI Commands"
+	set category = "AI.Vore"
 	set desc = "Wrap up a person in hardlight holograms."
 
 	// Wrong state
@@ -80,7 +80,7 @@
 //I basically have to do this, you know?
 /mob/living/silicon/ai/examinate(atom/A as mob|obj|turf in view(eyeobj))
 	set name = "Examine"
-	set category = "IC"
+	set category = "IC.Game"
 
 	A.examine(src)
 */
@@ -99,7 +99,7 @@
 			. += "[flavor_text]"
 
 		if(master.ooc_notes)
-			. += "<span class = 'deptradio'>OOC Notes:</span> <a href='?src=\ref[master];ooc_notes=1'>\[View\]</a> - <a href='?src=\ref[master];print_ooc_notes_to_chat=1'>\[Print\]</a>"
+			. += span_deptradio("OOC Notes:") + "<a href='?src=\ref[master];ooc_notes=1'>\[View\]</a> - <a href='?src=\ref[master];print_ooc_notes_to_chat=1'>\[Print\]</a>"
 
 // Allow dissipating ai holograms by attacking them
 /obj/effect/overlay/aiholo/attack_hand(mob/living/user)

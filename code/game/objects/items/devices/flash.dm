@@ -45,7 +45,7 @@
 		if(repairing)
 			to_chat(user, span_notice("\The [src] is already being repaired!"))
 			return
-		user.visible_message("<b>\The [user]</b> starts trying to repair \the [src]'s bulb.")
+		user.visible_message(span_infoplain(span_bold("\The [user]") + " starts trying to repair \the [src]'s bulb."))
 		repairing = TRUE
 		if(do_after(user, (40 SECONDS + rand(0, 20 SECONDS)) * W.toolspeed) && can_repair)
 			if(prob(30))
@@ -54,7 +54,7 @@
 				update_icon()
 			playsound(src, W.usesound, 50, 1)
 		else
-			user.visible_message("<b>\The [user]</b> fails to repair \the [src].")
+			user.visible_message(span_infoplain(span_bold("\The [user]") + " fails to repair \the [src]."))
 		repairing = FALSE
 	else
 		..()
@@ -141,7 +141,7 @@
 	else if(!charge_only)	//can only use it 10 times a minute, unless it runs purely on charge.
 		if(user)
 			update_icon()
-			to_chat(user, span_warning("<i>click</i>"))
+			to_chat(user, span_warning(span_italics("click")))
 			playsound(src, 'sound/weapons/empty.ogg', 80, 1)
 		return FALSE
 	else if(battery && battery.checked_use(charge_cost + (round(charge_cost / 4) * max(0, times_used - max_flashes)))) // Using over your maximum flashes starts taking more charge per added flash.

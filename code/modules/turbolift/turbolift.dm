@@ -118,7 +118,7 @@
 				return PROCESS_KILL
 		if(LIFT_WAITING_A)
 			var/area/turbolift/origin = locate(current_floor.area_ref)
-			control_panel_interior.visible_message("<b>The elevator</b> announces, \"[origin.lift_announce_str]\"")
+			control_panel_interior.visible_message(span_infoplain(span_bold("The elevator") + " announces, \"[origin.lift_announce_str]\""))
 			next_process = world.time + floor_wait_delay
 			busy_state = LIFT_WAITING_B
 		if(LIFT_WAITING_B)

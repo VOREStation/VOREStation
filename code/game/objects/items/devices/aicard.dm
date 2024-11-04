@@ -19,7 +19,7 @@
 		return ..()
 	else
 		M.death()
-		to_chat(user, "<b>ERROR ERROR ERROR</b>")
+		to_chat(user, span_infoplain(span_bold("ERROR ERROR ERROR")))
 
 /obj/item/aicard/attack_self(mob/user)
 	tgui_interact(user)
@@ -100,11 +100,11 @@
 
 /obj/item/aicard/proc/grab_ai(var/mob/living/silicon/ai/ai, var/mob/living/user)
 	if(!ai.client && !ai.deployed_shell)
-		to_chat(user, "<span class='danger'>ERROR:</span> AI [ai.name] is offline. Unable to transfer.")
+		to_chat(user, span_danger("ERROR:") + " AI [ai.name] is offline. Unable to transfer.")
 		return 0
 
 	if(carded_ai)
-		to_chat(user, "<span class='danger'>Transfer failed:</span> Existing AI found on remote device. Remove existing AI to install a new one.")
+		to_chat(user, span_danger("Transfer failed:") + " Existing AI found on remote device. Remove existing AI to install a new one.")
 		return 0
 
 	if(!user.IsAdvancedToolUser() && isanimal(user))
@@ -117,7 +117,7 @@
 
 	if(do_after(user, 100))
 		if(carded_ai)
-			to_chat(user, "<span class='danger'>Transfer failed:</span> Existing AI found on remote device. Remove existing AI to install a new one.")
+			to_chat(user, span_danger("Transfer failed:") + " Existing AI found on remote device. Remove existing AI to install a new one.")
 			return 0
 		if(istype(ai.loc, /turf/))
 			new /obj/structure/AIcore/deactivated(get_turf(ai))
@@ -135,9 +135,9 @@
 		ai.disconnect_shell("Disconnected from remote shell due to core intelligence transfer.") //If the AI is controlling a borg, force the player back to core!
 
 		if(ai.client)
-			to_chat(ai, "You have been transferred into a mobile core. Remote access lost.")
+			to_chat(ai, span_infoplain("You have been transferred into a mobile core. Remote access lost."))
 		if(user.client)
-			to_chat(ai, "<span class='notice'><b>Transfer successful:</b></span> [ai.name] extracted from current device and placed within mobile core.")
+			to_chat(ai, span_notice(span_bold("Transfer successful:")) + " [ai.name] extracted from current device and placed within mobile core.")
 
 		ai.canmove = 1
 		update_icon()

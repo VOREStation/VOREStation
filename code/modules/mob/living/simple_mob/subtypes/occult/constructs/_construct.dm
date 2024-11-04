@@ -126,7 +126,7 @@
 			var/repair_upper_bound = A.melee_damage_upper * -1
 			adjustBruteLoss(rand(repair_lower_bound, repair_upper_bound))
 			adjustFireLoss(rand(repair_lower_bound, repair_upper_bound))
-			user.visible_message("<b>\The [user]</b> mends some of \the [src]'s wounds.")
+			user.visible_message(span_infoplain(span_bold("\The [user]") + " mends some of \the [src]'s wounds."))
 		else
 			to_chat(user, span_notice("\The [src] is undamaged."))
 		return
@@ -139,7 +139,7 @@
 		if (health >= max/2)
 			. += span_warning("It looks slightly dented.")
 		else
-			. += span_warning("<B>It looks severely dented!</B>")
+			. += span_boldwarning("It looks severely dented!")
 
 //Constructs levitate, can fall from a shuttle with no harm, and are piloted by either damned spirits or some otherworldly entity. Let 'em float in space.
 /mob/living/simple_mob/construct/Process_Spacemove()

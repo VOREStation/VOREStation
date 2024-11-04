@@ -165,7 +165,7 @@
 	M.ghostjoin = 1
 	active_ghost_pods |= M
 	if(!M.vore_active)
-		M.verbs += /mob/living/simple_mob/proc/animal_nom
+		add_verb(M, /mob/living/simple_mob/proc/animal_nom)
 	M.ghostjoin_icon()
 	log_and_message_admins("[key_name_admin(user)] used a sapience potion on a simple mob: [M]. [ADMIN_FLW(src)]")
 	playsound(src, 'sound/effects/bubbles.ogg', 50, 1)

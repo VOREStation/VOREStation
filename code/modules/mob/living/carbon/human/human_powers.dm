@@ -4,7 +4,7 @@
 /mob/living/carbon/human/proc/tie_hair()
 	set name = "Tie Hair"
 	set desc = "Style your hair."
-	set category = "IC"
+	set category = "IC.Game"
 
 	if(incapacitated())
 		to_chat(src, span_warning("You can't mess with your hair right now!"))
@@ -14,7 +14,7 @@
 		var/datum/sprite_accessory/hair/hair_style = hair_styles_list[h_style]
 		var/selected_string
 		if(!(hair_style.flags & HAIR_TIEABLE))
-			to_chat(src, "<span class ='warning'>Your hair isn't long enough to tie.</span>")
+			to_chat(src, span_warning("Your hair isn't long enough to tie."))
 			return
 		else
 			var/list/datum/sprite_accessory/hair/valid_hairstyles = list()
@@ -31,10 +31,10 @@
 			regenerate_icons()
 			visible_message(span_notice("[src] pauses a moment to style their hair."))
 		else
-			to_chat(src, "<span class ='notice'>You're already using that style.</span>")
+			to_chat(src, span_notice("You're already using that style."))
 
 /mob/living/carbon/human/proc/tackle()
-	set category = "Abilities"
+	set category = "Abilities.General"
 	set name = "Tackle"
 	set desc = "Tackle someone down."
 
@@ -42,7 +42,7 @@
 		return
 
 	if(stat || paralysis || stunned || weakened || lying || restrained() || buckled)
-		to_chat(src, "You cannot tackle someone in your current state.")
+		to_chat(src, span_notice("You cannot tackle someone in your current state."))
 		return
 
 	var/list/choices = list()
@@ -61,7 +61,7 @@
 		return
 
 	if(stat || paralysis || stunned || weakened || lying || restrained() || buckled)
-		to_chat(src, span_filter_notice("You cannot tackle in your current state."))
+		to_chat(src, span_notice("You cannot tackle in your current state."))
 		return
 
 	last_special = world.time + 50
@@ -78,10 +78,10 @@
 
 	for(var/mob/O in viewers(src, null))
 		if ((O.client && !( O.blinded )))
-			O.show_message(span_filter_warning("[span_red("<B>[src] [failed ? "tried to tackle" : "has tackled"] down [T]!</B>")]"), 1)
+			O.show_message(span_warning(span_red(span_bold("[src] [failed ? "tried to tackle" : "has tackled"] down [T]!"))), 1)
 
 /mob/living/carbon/human/proc/commune()
-	set category = "Abilities"
+	set category = "Abilities.General"
 	set name = "Commune with creature"
 	set desc = "Send a telepathic message to an unlucky recipient."
 
@@ -119,20 +119,20 @@
 /mob/living/carbon/human/proc/regurgitate()
 	set name = "Regurgitate"
 	set desc = "Empties the contents of your stomach"
-	set category = "Abilities"
+	set category = "Abilities.General"
 
 	if(stomach_contents.len)
 		for(var/mob/M in src)
 			if(M in stomach_contents)
 				stomach_contents.Remove(M)
 				M.loc = loc
-		src.visible_message(span_filter_warning("[span_red("<B>[src] hurls out the contents of their stomach!</B>")]"))
+		src.visible_message(span_filter_warning(span_red(span_bold("[src] hurls out the contents of their stomach!"))))
 	return
 
 /mob/living/carbon/human/proc/psychic_whisper(mob/M as mob in oview())
 	set name = "Psychic Whisper"
 	set desc = "Whisper silently to someone over a distance."
-	set category = "Abilities"
+	set category = "Abilities.General"
 
 	var/msg = sanitize(tgui_input_text(usr, "Message:", "Psychic Whisper"))
 	if(msg)
@@ -144,7 +144,7 @@
 /mob/living/carbon/human/proc/diona_split_nymph()
 	set name = "Split"
 	set desc = "Split your humanoid form into its constituent nymphs."
-	set category = "Abilities"
+	set category = "Abilities.Diona"
 	diona_split_into_nymphs(5)	// Separate proc to void argments being supplied when used as a verb
 
 /mob/living/carbon/human/proc/diona_split_into_nymphs(var/number_of_resulting_nymphs)
@@ -191,8 +191,8 @@
 			qdel(Org)
 
 		// Purge the diona verbs.
-		verbs -= /mob/living/carbon/human/proc/diona_split_nymph
-		verbs -= /mob/living/carbon/human/proc/regenerate
+		remove_verb(src, /mob/living/carbon/human/proc/diona_split_nymph)
+		remove_verb(src, /mob/living/carbon/human/proc/regenerate)
 
 		for(var/obj/item/organ/external/E in organs) // Just fall apart.
 			E.droplimb(TRUE)
@@ -204,14 +204,14 @@
 /mob/living/carbon/human/proc/self_diagnostics()
 	set name = "Self-Diagnostics"
 	set desc = "Run an internal self-diagnostic to check for damage."
-	set category = "IC"
+	set category = "Abilities.General"
 
 	if(stat == DEAD) return
 
 	to_chat(src, span_notice("Performing self-diagnostic, please wait..."))
 
 	spawn(50)
-		var/output = span_filter_notice("<span class='notice'>Self-Diagnostic Results:\n")
+		var/output = span_filter_notice("Self-Diagnostic Results:\n")
 
 		output += "Internal Temperature: [convert_k2c(bodytemperature)] Degrees Celsius\n"
 
@@ -220,24 +220,24 @@
 
 			var/toxDam = getToxLoss()
 			if(toxDam)
-				output += "System Instability: <span class='warning'>[toxDam > 25 ? "Severe" : "Moderate"]</span>. Seek charging station for cleanup.\n"
+				output += "System Instability: " + span_warning("[toxDam > 25 ? "Severe" : "Moderate"]") + ". Seek charging station for cleanup.\n"
 			else
-				output += "System Instability: <span style='color:green;'>OK</span>\n"
+				output += "System Instability: " + span_green("OK") + "\n"
 
 		for(var/obj/item/organ/external/EO in organs)
 			if(EO.robotic >= ORGAN_ASSISTED)
 				if(EO.brute_dam || EO.burn_dam)
-					output += "[EO.name] - <span class='warning'>[EO.burn_dam + EO.brute_dam > EO.min_broken_damage ? "Heavy Damage" : "Light Damage"]</span>\n" //VOREStation Edit - Makes robotic limb damage scalable
+					output += "[EO.name] - " + span_warning("[EO.burn_dam + EO.brute_dam > EO.min_broken_damage ? "Heavy Damage" : "Light Damage"]") + "\n" //VOREStation Edit - Makes robotic limb damage scalable
 				else
-					output += "[EO.name] - <span style='color:green;'>OK</span>\n"
+					output += "[EO.name] - " + span_green("OK") + "\n"
 
 		for(var/obj/item/organ/IO in internal_organs)
 			if(IO.robotic >= ORGAN_ASSISTED)
 				if(IO.damage)
-					output += "[IO.name] - <span class='warning'>[IO.damage > 10 ? "Heavy Damage" : "Light Damage"]</span>\n"
+					output += "[IO.name] - " + span_warning("[IO.damage > 10 ? "Heavy Damage" : "Light Damage"]") + "\n"
 				else
-					output += "[IO.name] - <span style='color:green;'>OK</span>\n"
-		output += "</span>"
+					output += "[IO.name] - " + span_green("OK") + "\n"
+		output = span_notice(output)
 
 		to_chat(src,output)
 
@@ -247,7 +247,7 @@
 /mob/living/carbon/human/proc/sonar_ping()
 	set name = "Listen In"
 	set desc = "Allows you to listen in to movement and noises around you."
-	set category = "Abilities"
+	set category = "Abilities.General"
 
 	if(incapacitated())
 		to_chat(src, span_warning("You need to recover before you can use this ability."))
@@ -267,7 +267,7 @@
 			continue
 		heard_something = TRUE
 		var/feedback = list()
-		feedback += "<span class='notice'>There are noises of movement "
+		feedback += "There are noises of movement "
 		var/direction = get_dir(src, L)
 		if(direction)
 			feedback += "towards the [dir2text(direction)], "
@@ -284,15 +284,14 @@
 					feedback += "far away."
 		else // No need to check distance if they're standing right on-top of us
 			feedback += "right on top of you."
-		feedback += "</span>"
-		to_chat(src,jointext(feedback,null))
+		to_chat(src,span_notice(jointext(feedback,null)))
 	if(!heard_something)
 		to_chat(src, span_notice("You hear no movement but your own."))
 
 /mob/living/carbon/human/proc/regenerate()
 	set name = "Regenerate"
 	set desc = "Allows you to regrow limbs and heal organs after a period of rest."
-	set category = "Abilities"
+	set category = "Abilities.General"
 
 	if(nutrition < 250)
 		to_chat(src, span_warning("You lack the biomass to begin regeneration!"))
@@ -303,7 +302,7 @@
 		return
 	else
 		active_regen = TRUE
-		src.visible_message(span_filter_notice("<B>[src]</B>'s flesh begins to mend..."))
+		src.visible_message(span_filter_notice(span_bold("[src]") + "'s flesh begins to mend..."))
 
 	var/delay_length = round(active_regen_delay * species.active_regen_mult)
 	if(do_after(src,delay_length))
@@ -356,7 +355,7 @@
 /mob/living/carbon/human/proc/setmonitor_state()
 	set name = "Set monitor display"
 	set desc = "Set your monitor display"
-	set category = "IC"
+	set category = "IC.Settings"
 	if(stat)
 		to_chat(src,span_warning("You must be awake and standing to perform this action!"))
 		return

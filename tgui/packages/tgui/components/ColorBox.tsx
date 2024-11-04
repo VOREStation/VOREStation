@@ -24,7 +24,7 @@ export function ColorBox(props: Props) {
       className={classes(['ColorBox', className, computeBoxClassName(rest)])}
       {...computeBoxProps(rest)}
     >
-      {content || '.'}
+      {content}
     </div>
   );
 }

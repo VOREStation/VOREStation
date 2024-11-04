@@ -145,7 +145,7 @@
 /obj/structure/bookcase,
 /obj/item/book/codex/lore/vir,
 /obj/item/book/manual/excavation,
-/obj/item/book/manual/engineering_construction,
+/obj/item/book/manual/wiki/engineering_construction,
 /obj/item/storage/bible,
 /turf/simulated/floor/wood,
 /area/submap/virgo2/DJOutpost1)

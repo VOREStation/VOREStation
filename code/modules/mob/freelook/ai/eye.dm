@@ -10,7 +10,7 @@
 /mob/observer/eye/aiEye/New()
 	..()
 	visualnet = cameranet
-	
+
 /mob/observer/eye/aiEye/Destroy()
 	if(owner)
 		var/mob/living/silicon/ai/ai = owner
@@ -105,7 +105,7 @@
 	src.eyeobj.setLoc(src)
 
 /mob/living/silicon/ai/proc/toggle_acceleration()
-	set category = "AI Settings"
+	set category = "AI.Settings"
 	set name = "Toggle Camera Acceleration"
 
 	if(!eyeobj)

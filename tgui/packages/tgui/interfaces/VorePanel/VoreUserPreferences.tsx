@@ -1,7 +1,7 @@
 import { BooleanLike } from 'common/react';
 
 import { useBackend } from '../../backend';
-import { Box, Button, Divider, Flex, Section } from '../../components';
+import { Button, Divider, Flex, Section } from '../../components';
 import { prefData } from './types';
 import { VoreUserPreferencesAesthetic } from './VoreUserPreferencesTabs/VoreUserPreferencesAesthetic ';
 import { VoreUserPreferencesMechanical } from './VoreUserPreferencesTabs/VoreUserPreferencesMechanical ';
@@ -442,7 +442,7 @@ export const VoreUserPreferences = (props: {
   };
 
   return (
-    <Box nowrap>
+    <Section fill scrollable>
       <VoreUserPreferencesMechanical
         show_pictures={show_pictures}
         preferences={preferences}
@@ -472,6 +472,6 @@ export const VoreUserPreferences = (props: {
           </Flex.Item>
         </Flex>
       </Section>
-    </Box>
+    </Section>
   );
 };

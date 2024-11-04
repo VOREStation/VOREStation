@@ -47,7 +47,7 @@
 /obj/item/clothing/mask/monitor/verb/set_monitor_state()
 	set name = "Set Monitor State"
 	set desc = "Choose an icon for your monitor."
-	set category = "IC"
+	set category = "IC.Game"
 
 	set src in usr
 	var/mob/living/carbon/human/H = loc

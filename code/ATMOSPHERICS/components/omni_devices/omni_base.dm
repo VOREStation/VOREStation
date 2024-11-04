@@ -25,8 +25,9 @@
 
 	var/list/ports = new()
 
-/obj/machinery/atmospherics/omni/New()
-	..()
+/obj/machinery/atmospherics/omni/Initialize()
+	. = ..()
+
 	icon_state = "base"
 
 	ports = new()
@@ -91,7 +92,7 @@
 	playsound(src, W.usesound, 50, 1)
 	if(do_after(user, 40 * W.toolspeed))
 		user.visible_message( \
-			"<b>\The [user]</b> unfastens \the [src].", \
+			span_infoplain(span_bold("\The [user]") + "unfastens \the [src]."), \
 			span_notice("You have unfastened \the [src]."), \
 			"You hear a ratchet.")
 		deconstruct()

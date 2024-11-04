@@ -113,7 +113,7 @@
 		occupantData["stat"] = occupant.stat
 		occupantData["health"] = occupant.health
 		occupantData["maxHealth"] = occupant.getMaxHealth()
-		occupantData["minHealth"] = config.health_threshold_dead
+		occupantData["minHealth"] = CONFIG_GET(number/health_threshold_dead)
 		occupantData["bruteLoss"] = occupant.getBruteLoss()
 		occupantData["oxyLoss"] = occupant.getOxyLoss()
 		occupantData["toxLoss"] = occupant.getToxLoss()
@@ -302,7 +302,7 @@
 	M.loc = src
 	M.ExtinguishMob()
 	if(M.health > -100 && (M.health < 0 || M.sleeping))
-		to_chat(M, span_notice("<b>You feel a cold liquid surround you. Your skin starts to freeze up.</b>"))
+		to_chat(M, span_boldnotice("You feel a cold liquid surround you. Your skin starts to freeze up."))
 	occupant = M
 	buckle_mob(occupant, forced = TRUE, check_loc = FALSE)
 	vis_contents |= occupant

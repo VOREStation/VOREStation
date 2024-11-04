@@ -27,7 +27,7 @@
 /client/proc/add_mob_for_narration(E as obj|mob|turf in orange(world.view))
 	set name = "Narrate Entity (Add ref)"
 	set desc = "Saves a reference of target mob to be called when narrating."
-	set category = "Fun"
+	set category = "Fun.Narrate"
 
 	if(!check_rights(R_FUN)) return
 
@@ -77,7 +77,7 @@
 /client/proc/remove_mob_for_narration()
 	set name = "Narrate Entity (Remove ref)"
 	set desc = "Remove mobs you're no longer narrating from your list for easier work."
-	set category = "Fun"
+	set category = "Fun.Narrate"
 
 	if(!check_rights(R_FUN)) return
 
@@ -107,7 +107,7 @@
 /client/proc/narrate_mob()
 	set name = "Narrate Entity (Interface)"
 	set desc = "Send either a visible or audiable message through your chosen entities using an interface"
-	set category = "Fun"
+	set category = "Fun.Narrate"
 
 	if(!check_rights(R_FUN)) return
 
@@ -138,7 +138,7 @@
 /client/proc/narrate_mob_args(name as text, mode as text, message as text)
 	set name = "Narrate Entity"
 	set desc = "Narrate entities using positional arguments. Name should be as saved in ref list, mode should be Speak or Emote, follow with message"
-	set category = "Fun"
+	set category = "Fun.Narrate"
 
 
 
@@ -191,9 +191,9 @@
 			message = tgui_input_text(usr, "Input what you want [our_entity] to [mode]", "narrate", null)
 		message = encode_html_emphasis(sanitize(message))
 		if(message && mode == "Speak")
-			our_entity.audible_message("<b>[our_entity.name]</b> [message]")
+			our_entity.audible_message(span_bold("[our_entity.name]") + " [message]")
 		else if(message && mode == "Emote")
-			our_entity.visible_message("<b>[our_entity.name]</b> [message]")
+			our_entity.visible_message(span_bold("[our_entity.name]") + " [message]")
 		else
 			return
 
@@ -339,10 +339,10 @@
 /datum/entity_narrate/proc/narrate_tgui_atom(atom/A, message as text)
 	message = encode_html_emphasis(sanitize(message))
 	if(tgui_narrate_mode && tgui_narrate_privacy)
-		A.visible_message("<i><b>\The [A.name]</b> [message]</i>", range = 1)
+		A.visible_message(span_italics(span_bold("\The [A.name]") + " [message]"), range = 1)
 	else if(tgui_narrate_mode && !tgui_narrate_privacy)
-		A.visible_message("<b>\The [A.name]</b> [message]",)
+		A.visible_message(span_bold("\The [A.name]") + "[message]",)
 	else if(!tgui_narrate_mode && tgui_narrate_privacy)
-		A.audible_message("<i><b>\The [A.name]</b> [message]</i>", hearing_distance = 1)
+		A.audible_message(span_italics(span_bold("\The [A.name]") + " [message]"), hearing_distance = 1)
 	else if(!tgui_narrate_mode && !tgui_narrate_privacy)
-		A.audible_message("<b>\The [A.name]</b> [message]")
+		A.audible_message(span_bold("\The [A.name]") + "[message]")

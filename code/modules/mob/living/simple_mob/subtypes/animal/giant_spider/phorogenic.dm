@@ -63,22 +63,16 @@
 	adjust_scale(1.25)
 	return ..()
 
+/mob/living/simple_mob/animal/giant_spider/phorogenic/proc/explode()
+	if(src && !exploded)
+		visible_message(span_danger("\The [src]'s body detonates!"))
+		exploded = TRUE
+		explosion(src.loc, explosion_dev_range, explosion_heavy_range, explosion_light_range, explosion_flash_range)
+
 /mob/living/simple_mob/animal/giant_spider/phorogenic/death()
 	visible_message(span_critical("\The [src]'s body begins to rupture!"))
 	var/delay = rand(explosion_delay_lower, explosion_delay_upper)
-	spawn(0)
-		// Flash black and red as a warning.
-		for(var/i = 1 to delay)
-			if(i % 2 == 0)
-				color = "#000000"
-			else
-				color = "#FF0000"
-			sleep(1)
-
-	spawn(delay)
-		// The actual boom.
-		if(src && !exploded)
-			visible_message(span_danger("\The [src]'s body detonates!"))
-			exploded = TRUE
-			explosion(src.loc, explosion_dev_range, explosion_heavy_range, explosion_light_range, explosion_flash_range)
+	animate(src, color = "#000000", time = 0.1 SECONDS, loop = ceil(delay/2))
+	animate(color = "#FF0000", time = 0.1 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(explode)), delay, TIMER_DELETE_ME)
 	return ..()

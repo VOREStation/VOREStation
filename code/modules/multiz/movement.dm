@@ -1,13 +1,13 @@
 /mob/verb/up()
 	set name = "Move Upwards"
-	set category = "IC"
+	set category = "IC.Game"
 
 	if(zMove(UP))
 		to_chat(src, span_notice("You move upwards."))
 
 /mob/verb/down()
 	set name = "Move Down"
-	set category = "IC"
+	set category = "IC.Game"
 
 	if(zMove(DOWN))
 		to_chat(src, span_notice("You move down."))
@@ -540,8 +540,8 @@
 	else
 		if(!silent)
 			if(planetary)
-				visible_message(span_danger("<font size='3'>\A [src] falls out of the sky and crashes into \the [landing]!</font>"), \
-					span_danger("<font size='3'> You fall out of the sky and crash into \the [landing]!</font>"), \
+				visible_message(span_danger(span_large("\A [src] falls out of the sky and crashes into \the [landing]!")), \
+					span_danger(span_large(" You fall out of the sky and crash into \the [landing]!")), \
 					"You hear something slam into \the [landing].")
 				var/turf/T = get_turf(landing)
 				explosion(T, 0, 1, 2)
@@ -639,8 +639,8 @@
 	else
 		if(!silent)
 			if(planetary)
-				visible_message(span_danger("<font size='3'>\A [src] falls out of the sky and crashes into \the [landing]!</font>"), \
-					span_danger("<font size='3'> You fall out of the skiy and crash into \the [landing]!</font>"), \
+				visible_message(span_danger(span_large("\A [src] falls out of the sky and crashes into \the [landing]!")), \
+					span_danger(span_large(" You fall out of the skiy and crash into \the [landing]!")), \
 					"You hear something slam into \the [landing].")
 				var/turf/T = get_turf(landing)
 				explosion(T, 0, 1, 2)

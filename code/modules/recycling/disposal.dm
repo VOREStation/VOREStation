@@ -110,7 +110,7 @@
 	if(istype(I, /obj/item/material/ashtray))
 		var/obj/item/material/ashtray/A = I
 		if(A.contents.len > 0)
-			user.visible_message("<b>\The [user]</b> empties \the [A] into [src].")
+			user.visible_message(span_infoplain(span_bold("\The [user]") + " empties \the [A] into [src]."))
 			for(var/obj/item/O in A.contents)
 				O.forceMove(src)
 			A.update_icon()

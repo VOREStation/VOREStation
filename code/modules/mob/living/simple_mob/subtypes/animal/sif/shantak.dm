@@ -77,7 +77,7 @@
 /mob/living/simple_mob/animal/sif/shantak/leader/verb/rally_pack()
 	set name = "Rally Pack"
 	set desc = "Commands your fellow packmembers to follow you, the leader."
-	set category = "Abilities"
+	set category = "Abilities.Shantak"
 
 	for(var/mob/living/simple_mob/animal/sif/shantak/S in hearers(7, src))
 		if(istype(S, /mob/living/simple_mob/animal/sif/shantak/leader)) // Leaders won't follow other leaders. Also avoids trying to follow ourselves.

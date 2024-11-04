@@ -37,7 +37,7 @@
 
 	var/mob/living/carbon/human/H = holder.wearer
 
-	to_chat(H, span_blue("<b>You are now nearly invisible to normal detection.</b>"))
+	to_chat(H, span_boldnotice("You are now nearly invisible to normal detection."))
 	H.alpha = 5
 
 	anim(get_turf(H), H, 'icons/effects/effects.dmi', "electricity",null,20,null)

@@ -186,8 +186,15 @@ var/list/global_huds = list(
 	var/list/miniobjs
 	var/list/obj/screen/hotkeybuttons
 
-	var/obj/screen/movable/action_button/hide_toggle/hide_actions_toggle
-	var/action_buttons_hidden = 0
+	var/obj/screen/button_palette/toggle_palette
+	var/obj/screen/palette_scroll/down/palette_down
+	var/obj/screen/palette_scroll/up/palette_up
+
+	var/datum/action_group/palette/palette_actions
+	var/datum/action_group/listed/listed_actions
+	var/list/floating_actions
+
+
 	var/list/slot_info
 
 	var/icon/ui_style
@@ -205,8 +212,19 @@ var/list/global_huds = list(
 	..()
 
 /datum/hud/Destroy()
-	. = ..()
+	if(mymob.hud_used == src)
+		mymob.hud_used = null
+
 	QDEL_NULL_LIST(minihuds)
+
+	// Actions
+	QDEL_NULL(toggle_palette)
+	QDEL_NULL(palette_down)
+	QDEL_NULL(palette_up)
+	QDEL_NULL(palette_actions)
+	QDEL_NULL(listed_actions)
+	QDEL_LIST(floating_actions)
+
 	grab_intent = null
 	hurt_intent = null
 	disarm_intent = null
@@ -230,6 +248,8 @@ var/list/global_huds = list(
 		remove_ammo_hud(mymob, x)
 	ammo_hud_list = null
 	mymob = null
+
+	return ..()
 
 /datum/hud/proc/hidden_inventory_update()
 	if(!mymob) return
@@ -323,9 +343,18 @@ var/list/global_huds = list(
 
 	mymob.create_mob_hud(src)
 
+	// Past this point, mymob.hud_used is set
+
+	toggle_palette = new()
+	toggle_palette.set_hud(src)
+	palette_down = new()
+	palette_down.set_hud(src)
+	palette_up = new()
+	palette_up.set_hud(src)
+
 	persistant_inventory_update()
 	mymob.reload_fullscreen() // Reload any fullscreen overlays this mob has.
-	mymob.update_action_buttons()
+	mymob.update_action_buttons(TRUE)
 	reorganize_alerts()
 
 /mob/proc/create_mob_hud(datum/hud/HUD, apply_to_client = TRUE)
@@ -335,6 +364,11 @@ var/list/global_huds = list(
 	HUD.ui_style = ui_style2icon(client?.prefs?.UI_style)
 	HUD.ui_color = client?.prefs?.UI_style_color
 	HUD.ui_alpha = client?.prefs?.UI_style_alpha
+	set_hud_used(HUD)
+
+/mob/proc/set_hud_used(datum/hud/new_hud)
+	hud_used = new_hud
+	new_hud.build_action_groups()
 
 /datum/hud/proc/apply_minihud(var/datum/mini_hud/MH)
 	if(MH in minihuds)
@@ -404,10 +438,11 @@ var/list/global_huds = list(
 
 		hud_used?.action_intent.screen_loc = ui_acti //Restore intent selection to the original position
 		client.screen += zone_sel				//This one is a special snowflake
+		client.screen += hud_used.toggle_palette
 
 	hud_used.hidden_inventory_update()
 	hud_used.persistant_inventory_update()
-	update_action_buttons()
+	update_action_buttons(TRUE)
 	hud_used.reorganize_alerts()
 	return TRUE
 
@@ -467,7 +502,7 @@ var/list/global_huds = list(
 
 	hud_used.hidden_inventory_update()
 	hud_used.persistant_inventory_update()
-	update_action_buttons()
+	update_action_buttons(TRUE)
 
 /mob/proc/add_click_catcher()
 	client.screen += client.void

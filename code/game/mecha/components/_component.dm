@@ -38,9 +38,9 @@
 		if(25 to 45)
 			. += span_warning("It's heavily damaged.")
 		if(2 to 25)
-			. += span_warning("<b>It's falling apart.</b>")
+			. += span_boldwarning("It's falling apart.")
 		if(0 to 1)
-			. += span_warning("<b>It is completely destroyed.</b>")
+			. += span_boldwarning("It is completely destroyed.")
 
 /obj/item/mecha_parts/component/Initialize()
 	. = ..()

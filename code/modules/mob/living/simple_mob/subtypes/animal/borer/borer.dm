@@ -57,8 +57,8 @@
 /mob/living/simple_mob/animal/borer/Initialize()
 	add_language("Cortical Link")
 
-	verbs += /mob/living/proc/ventcrawl
-	verbs += /mob/living/proc/hide
+	add_verb(src, /mob/living/proc/ventcrawl)
+	add_verb(src, /mob/living/proc/hide)
 
 	true_name = "[pick("Primary","Secondary","Tertiary","Quaternary")] [rand(1000,9999)]"
 
@@ -99,15 +99,9 @@
 			if(prob(host.brainloss/20))
 				host.say("*[pick(list("blink","blink_r","choke","aflap","drool","twitch","twitch_v","gasp"))]")
 
-/mob/living/simple_mob/animal/borer/Stat()
-	..()
-	if(client.statpanel == "Status")
-		statpanel("Status")
-		if(emergency_shuttle)
-			var/eta_status = emergency_shuttle.get_status_panel_eta()
-			if(eta_status)
-				stat(null, eta_status)
-		stat("Chemicals", chemicals)
+/mob/living/simple_mob/animal/borer/get_status_tab_items()
+	. = ..()
+	. += "Chemicals: [chemicals]"
 
 /mob/living/simple_mob/animal/borer/proc/detatch()
 	if(!host || !controlling)
@@ -122,9 +116,9 @@
 	controlling = FALSE
 
 	host.remove_language("Cortical Link")
-	host.verbs -= /mob/living/carbon/proc/release_control
-	host.verbs -= /mob/living/carbon/proc/punish_host
-	host.verbs -= /mob/living/carbon/proc/spawn_larvae
+	remove_verb(host, /mob/living/carbon/proc/release_control)
+	remove_verb(host, /mob/living/carbon/proc/punish_host)
+	remove_verb(host, /mob/living/carbon/proc/spawn_larvae)
 
 	if(host_brain)
 		// these are here so bans and multikey warnings are not triggered on the wrong people when ckey is changed.

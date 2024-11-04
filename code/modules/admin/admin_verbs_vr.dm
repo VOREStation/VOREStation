@@ -1,5 +1,5 @@
 /client/proc/adminorbit()
-	set category = "Fun"
+	set category = "Fun.Event Kit"
 	set name = "Orbit Things"
 	set desc = "Makes something orbit around something else."
 	set popup_menu = FALSE
@@ -31,13 +31,13 @@
 	if(!orbiter)
 		orbiter = input(usr, "What should act as the orbiter of the orbit?", "Orbiter") as anything in possible_things
 	if(!center || !orbiter)
-		to_chat(usr, "<span class = 'warning'>A center of orbit and an orbiter must be configured. You can also do this by marking a target.</span>")
+		to_chat(usr, span_warning("A center of orbit and an orbiter must be configured. You can also do this by marking a target."))
 		return
 	if(center == orbiter)
-		to_chat(usr, "<span class = 'warning'>The center of the orbit cannot also be the orbiter.</span>")
+		to_chat(usr, span_warning("The center of the orbit cannot also be the orbiter."))
 		return
 	if(isturf(orbiter))
-		to_chat(usr, "<span class = 'warning'>The orbiter cannot be a turf. It can only be used as a center.</span>")
+		to_chat(usr, span_warning("The orbiter cannot be a turf. It can only be used as a center."))
 		return
 	var/distance = tgui_input_number(usr, "How large will their orbit radius be? (In pixels. 32 is 'near around a character)", "Orbit Radius", 32)
 	var/speed = tgui_input_number(usr, "How fast will they orbit (negative numbers spin clockwise)", "Orbit Speed", 20)
@@ -57,7 +57,7 @@
 
 /client/proc/removetickets()
 	set name = "Security Tickets"
-	set category = "Admin"
+	set category = "Admin.Investigate"
 	set desc = "Allows one to remove tickets from the global list."
 
 	if(!check_rights(R_ADMIN))
@@ -77,7 +77,7 @@
 /client/proc/delbook()
 	set name = "Delete Book"
 	set desc = "Permamently deletes a book from the database."
-	set category = "Admin"
+	set category = "Admin.Game"
 	if(!src.holder)
 		to_chat(src, "Only administrators may use this command.")
 		return
@@ -89,12 +89,12 @@
 			break
 
 	if(!our_comp)
-		to_chat(usr, "<span class = 'warning'>Unable to locate a library computer to use for book deleting.</span>")
+		to_chat(usr, span_warning("Unable to locate a library computer to use for book deleting."))
 		return
 
 	var/dat = "<HEAD><TITLE>Book Inventory Management</TITLE></HEAD><BODY>\n"
 	dat += "<h3>ADMINISTRATIVE MANAGEMENT</h3>"
-	establish_old_db_connection()
+	establish_db_connection()
 
 	if(!dbcon_old.IsConnected())
 		dat += "<font color=red><b>ERROR</b>: Unable to contact External Archive. Please contact your system administrator for assistance.</font>"
@@ -124,7 +124,7 @@
 /client/proc/toggle_spawning_with_recolour()
 	set name = "Toggle Simple/Robot recolour verb"
 	set desc = "Makes it so new robots/simple_mobs spawn with a verb to recolour themselves for this round. You must set them separately."
-	set category = "Server"
+	set category = "Server.Game"
 
 	if(!check_rights(R_ADMIN|R_EVENT|R_FUN))
 		return
@@ -132,8 +132,8 @@
 	var/which = tgui_alert(usr, "Which do you want to toggle?", "Choose Recolour Toggle", list("Robot", "Simple Mob"))
 	switch(which)
 		if("Robot")
-			config.allow_robot_recolor = !config.allow_robot_recolor
-			to_chat(usr, "You have [config.allow_robot_recolor ? "enabled" : "disabled"] newly spawned cyborgs to spawn with the recolour verb")
+			CONFIG_SET(flag/allow_robot_recolor, !CONFIG_GET(flag/allow_robot_recolor))
+			to_chat(usr, "You have [CONFIG_GET(flag/allow_robot_recolor) ? "enabled" : "disabled"] newly spawned cyborgs to spawn with the recolour verb")
 		if("Simple Mob")
-			config.allow_simple_mob_recolor = !config.allow_simple_mob_recolor
-			to_chat(usr, "You have [config.allow_simple_mob_recolor ? "enabled" : "disabled"] newly spawned simple mobs to spawn with the recolour verb")
+			CONFIG_SET(flag/allow_simple_mob_recolor, !CONFIG_GET(flag/allow_simple_mob_recolor))
+			to_chat(usr, "You have [CONFIG_GET(flag/allow_simple_mob_recolor) ? "enabled" : "disabled"] newly spawned simple mobs to spawn with the recolour verb")

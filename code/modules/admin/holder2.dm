@@ -37,12 +37,14 @@ var/list/admin_datums = list()
 		owner = C
 		owner.holder = src
 		owner.add_admin_verbs()	//TODO
+		owner.init_verbs() //re-initialize the verb list
 		GLOB.admins |= C
 
 /datum/admins/proc/disassociate()
 	if(owner)
 		GLOB.admins -= owner
 		owner.remove_admin_verbs()
+		owner.init_verbs() //re-initialize the verb list
 		owner.deadmin_holder = owner.holder
 		owner.holder = null
 
@@ -116,7 +118,7 @@ NOTE: It checks usr by default. Supply the "user" argument if you wish to check 
 	vv_update_display(D, "marked", VV_MSG_MARKED)
 
 /client/proc/mark_datum_mapview(datum/D as mob|obj|turf|area in view(view))
-	set category = "Debug"
+	set category = "Debug.Game"
 	set name = "Mark Object"
 	mark_datum(D)
 

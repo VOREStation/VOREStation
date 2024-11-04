@@ -1,5 +1,5 @@
 /client/proc/debug_variables(datum/D in world)
-	set category = "Debug"
+	set category = "Debug.Investigate"
 	set name = "View Variables"
 	//set src in world
 	var/static/cookieoffset = rand(1, 9999) //to force cookies to reset after the round.
@@ -40,7 +40,7 @@
 		var/sprite_text
 		if(sprite)
 			sprite_text = "<img src='vv[hash].png'></td><td>"
-		var/list/header = islist(D)? list("<b>/list</b>") : D.vv_get_header()
+		var/list/header = islist(D)? list(span_bold("/list")) : D.vv_get_header()
 
 		var/marked
 		if(holder && holder.marked_datum && holder.marked_datum == D)

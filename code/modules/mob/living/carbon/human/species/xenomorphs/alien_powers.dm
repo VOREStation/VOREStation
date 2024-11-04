@@ -56,7 +56,7 @@
 /mob/living/carbon/human/proc/transfer_plasma(mob/living/carbon/human/M as mob in oview())
 	set name = "Transfer Plasma"
 	set desc = "Transfer Plasma to another alien"
-	set category = "Abilities"
+	set category = "Abilities.Alien"
 
 	if (get_dist(src,M) <= 1)
 		to_chat(src, span_alium("You need to be closer."))
@@ -81,11 +81,11 @@
 
 	set name = "Lay Egg (500)" //Cost is entire queen reserve, to compensate being able to reproduce on it's own
 	set desc = "Lay an egg that will eventually hatch into a new xenomorph larva. Life finds a way."
-	set category = "Abilities"
+	set category = "Abilities.Alien"
 
-	if(!config.aliens_allowed)
+	if(!CONFIG_GET(flag/aliens_allowed))
 		to_chat(src, "You begin to lay an egg, but hesitate. You suspect it isn't allowed.")
-		verbs -= /mob/living/carbon/human/proc/lay_egg
+		remove_verb(src, /mob/living/carbon/human/proc/lay_egg)
 		return
 
 	if(locate(/obj/structure/ghost_pod/automatic/xenomorph_egg) in get_turf(src))
@@ -93,7 +93,7 @@
 		return
 
 	if(check_alien_ability(500,1,O_EGG))
-		visible_message(span_alium("<B>[src] has laid an egg!</B>"))
+		visible_message(span_alium(span_bold("[src] has laid an egg!")))
 		new /obj/structure/ghost_pod/automatic/xenomorph_egg(loc)
 
 	return
@@ -102,14 +102,14 @@
 /mob/living/carbon/human/proc/evolve()
 	set name = "Evolve (500)"
 	set desc = "Produce an internal egg sac capable of spawning children. Only one queen can exist at a time."
-	set category = "Abilities"
+	set category = "Abilities.Alien"
 
 	if(alien_queen_exists())
 		to_chat(src, span_notice("We already have an active queen."))
 		return
 
 	if(check_alien_ability(500))
-		visible_message(span_alium("<B>[src] begins to twist and contort!</B>"), span_alium("You begin to evolve!"))
+		visible_message(span_alium(span_bold("[src] begins to twist and contort!")), span_alium("You begin to evolve!"))
 		src.set_species("Xenomorph Queen")
 
 	return
@@ -117,10 +117,10 @@
 /mob/living/carbon/human/proc/plant()
 	set name = "Plant Weeds (50)"
 	set desc = "Plants some alien weeds"
-	set category = "Abilities"
+	set category = "Abilities.Alien"
 
 	if(check_alien_ability(50,1,O_RESIN))
-		visible_message(span_alium("<B>[src] has planted some alien weeds!</B>"))
+		visible_message(span_alium(span_bold("[src] has planted some alien weeds!")))
 		new /obj/effect/alien/weeds/node(get_turf(src), null, "#321D37")
 	return
 
@@ -149,7 +149,7 @@
 /mob/living/carbon/human/proc/corrosive_acid(O as obj|turf in oview(1)) //If they right click to corrode, an error will flash if its an invalid target./N
 	set name = "Corrosive Acid (200)"
 	set desc = "Drench an object in acid, destroying it over time."
-	set category = "Abilities"
+	set category = "Abilities.Alien"
 
 	if(!(O in oview(1)))
 		to_chat(src, span_alium("[O] is too far away."))
@@ -179,14 +179,14 @@
 
 	if(check_alien_ability(200,0,O_ACID))
 		new /obj/effect/alien/acid(get_turf(O), O)
-		visible_message(span_alium("<B>[src] vomits globs of vile stuff all over [O]. It begins to sizzle and melt under the bubbling mess of acid!</B>"))
+		visible_message(span_alium(span_bold("[src] vomits globs of vile stuff all over [O]. It begins to sizzle and melt under the bubbling mess of acid!")))
 
 	return
 
 /mob/living/carbon/human/proc/neurotoxin()
 	set name = "Toggle Neurotoxic Spit (40)"
 	set desc = "Readies a neurotoxic spit, which paralyzes the target for a short time if they are not wearing protective gear."
-	set category = "Abilities"
+	set category = "Abilities.Alien"
 
 	if(spitting)
 		to_chat(src, span_alium("You stop preparing to spit."))
@@ -207,7 +207,7 @@
 /mob/living/carbon/human/proc/acidspit()
 	set name = "Toggle Acid Spit (50)"
 	set desc = "Readies an acidic spit, which burns the target if they are not wearing protective gear."
-	set category = "Abilities"
+	set category = "Abilities.Alien"
 
 	if(spitting)
 		to_chat(src, span_alium("You stop preparing to spit."))
@@ -228,7 +228,7 @@
 /mob/living/carbon/human/proc/resin() //Gurgs : Refactored resin ability, big thanks to Jon.
 	set name = "Secrete Resin (75)"
 	set desc = "Secrete tough malleable resin."
-	set category = "Abilities"
+	set category = "Abilities.Alien"
 
 	var/list/options = list("resin door","resin wall","resin membrane","nest","resin blob")
 	for(var/option in options)
@@ -269,14 +269,14 @@
 			else O = new /obj/item/stack/material/resin(targetLoc)
 
 	if(O)
-		visible_message(span_warning("<B>[src] vomits up a thick purple substance and begins to shape it!</B>"), span_alium("You shape a [choice]."))
+		visible_message(span_boldwarning("[src] vomits up a thick purple substance and begins to shape it!"), span_alium("You shape a [choice]."))
 		O.color = "#321D37"
 		playsound(src, 'sound/effects/blobattack.ogg', 40, 1)
 
 	return
 
 /mob/living/carbon/human/proc/leap()
-	set category = "Abilities"
+	set category = "Abilities.Alien"
 	set name = "Leap"
 	set desc = "Leap at a target and grab them aggressively."
 
@@ -331,7 +331,7 @@
 		else
 			use_hand = "right"
 
-	src.visible_message(span_warning("<b>\The [src]</b> seizes [T] aggressively!"))
+	src.visible_message(span_boldwarning("\The [src]") + " seizes [T] aggressively!")
 
 	var/obj/item/grab/G = new(src,T)
 	if(use_hand == "left")
@@ -344,7 +344,7 @@
 	G.synch()
 
 /mob/living/carbon/human/proc/gut()
-	set category = "Abilities"
+	set category = "Abilities.Alien"
 	set name = "Slaughter"
 	set desc = "While grabbing someone aggressively, rip their guts out or tear them apart."
 
@@ -366,7 +366,7 @@
 
 	last_special = world.time + 50
 
-	visible_message(span_warning("<b>\The [src]</b> rips viciously at \the [G.affecting]'s body with its claws!"))
+	visible_message(span_warning(span_bold("\The [src]") + " rips viciously at \the [G.affecting]'s body with its claws!"))
 
 	if(istype(G.affecting,/mob/living/carbon/human))
 		var/mob/living/carbon/human/H = G.affecting

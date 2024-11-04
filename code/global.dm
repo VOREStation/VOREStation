@@ -83,8 +83,6 @@ var/list/reverse_dir = list( // reverse_dir[dir] = reverse of dir
 )
 var/global/const/SQRT_TWO = 1.41421356237
 
-var/datum/configuration/config      = null
-
 var/list/combatlog = list()
 var/list/IClog     = list()
 var/list/OOClog    = list()

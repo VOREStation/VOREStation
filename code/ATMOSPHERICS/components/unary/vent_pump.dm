@@ -81,10 +81,7 @@
 
 /obj/machinery/atmospherics/unary/vent_pump/Initialize()
 	. = ..()
-	//soundloop = new(list(src), FALSE)
 
-/obj/machinery/atmospherics/unary/vent_pump/New()
-	..()
 	air_contents.volume = ATMOS_DEFAULT_VOLUME_PUMP
 
 	icon = null
@@ -119,8 +116,8 @@
 	icon_connect_type = "-aux"
 	connect_types = CONNECT_TYPE_AUX //connects to aux pipes
 
-/obj/machinery/atmospherics/unary/vent_pump/high_volume/New()
-	..()
+/obj/machinery/atmospherics/unary/vent_pump/high_volume/Initialize()
+	. = ..()
 	air_contents.volume = ATMOS_DEFAULT_VOLUME_PUMP + 800
 
 // VOREStation Edit Start - Wall mounted vents
@@ -144,8 +141,8 @@
 	power_channel = ENVIRON
 	power_rating = 30000	//15 kW ~ 20 HP
 
-/obj/machinery/atmospherics/unary/vent_pump/engine/New()
-	..()
+/obj/machinery/atmospherics/unary/vent_pump/engine/Initialize()
+	. = ..()
 	air_contents.volume = ATMOS_DEFAULT_VOLUME_PUMP + 500 //meant to match air injector
 
 /obj/machinery/atmospherics/unary/vent_pump/update_icon(var/safety = 0)
@@ -398,7 +395,7 @@
 				if(!src || !WT.isOn()) return
 				playsound(src, WT.usesound, 50, 1)
 				if(!welded)
-					user.visible_message("<b>\The [user]</b> welds the vent shut.", span_notice("You weld the vent shut."), "You hear welding.")
+					user.visible_message(span_bold("\The [user]") + " welds the vent shut.", span_notice("You weld the vent shut."), "You hear welding.")
 					welded = 1
 					update_icon()
 				else
@@ -446,7 +443,7 @@
 	to_chat(user, span_notice("You begin to unfasten \the [src]..."))
 	if (do_after(user, 40 * W.toolspeed))
 		user.visible_message( \
-			"<b>\The [user]</b> unfastens \the [src].", \
+			span_infoplain(span_bold("\The [user]") + " unfastens \the [src]."), \
 			span_notice("You have unfastened \the [src]."), \
 			"You hear a ratchet.")
 		deconstruct()

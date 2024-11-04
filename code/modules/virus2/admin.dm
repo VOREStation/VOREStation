@@ -19,10 +19,10 @@
 	. = list()
 	for(var/datum/disease2/effectholder/E in effects)
 		. += "[E.stage]: [E.effect.name]"
-	return {"
+	. = list({"
 		<b>[name()]</b><br><font size=1>
 		[jointext(., "<br>")]</font>
-	"}
+	"})
 
 /datum/disease2/disease/get_view_variables_options()
 	return ..() + {"
@@ -32,7 +32,7 @@
 /datum/admins/var/datum/virus2_editor/virus2_editor_datum = new
 /client/proc/virus2_editor()
 	set name = "Virus Editor"
-	set category = "Admin"
+	set category = "Admin.Events"
 	if(!holder || !check_rights(R_SPAWN)) return // spawn privileges to create viruses
 
 	holder.virus2_editor_datum.show_ui(src)

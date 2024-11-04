@@ -26,7 +26,7 @@
 	w_class = ITEMSIZE_HUGE //It's a giant shield generator!!!
 	unacidable = TRUE
 	origin_tech = list(TECH_MATERIAL = 6, TECH_COMBAT = 8, TECH_POWER = 6, TECH_DATA = 4) //These are limited AND high tech. Breaking one of them down is massive.
-	action_button_name = "Toggle Shield"
+	actions_types = list(/datum/action/item_action/toggle_shield)
 	var/obj/item/gun/energy/gun/generator/active_weapon
 	var/obj/item/cell/device/bcell = null
 	var/upgraded = 0 										// If the PSG has been upgraded by some method or not. Only used for the mining belt ATM.
@@ -126,11 +126,11 @@
 						s.start()
 						shield_active = 0
 						if(bcell.charge_delay) //It WILL blow up soon. Downside of self-charging cells.
-							to_chat(src.loc, "<span class='critical'>Your shield generator sparks and suddenly goes down! A warning message pops up on screen: \
-							'WARNING, INTERNAL CELL MELTDOWN IMMINENT. TIME TILL EXPLOSION: [bcell.charge_delay/10] SECONDS. DISCARD UNIT IMMEDIATELY!'</span>")
+							to_chat(src.loc, span_critical("Your shield generator sparks and suddenly goes down! A warning message pops up on screen: \
+							'WARNING, INTERNAL CELL MELTDOWN IMMINENT. TIME TILL EXPLOSION: [bcell.charge_delay/10] SECONDS. DISCARD UNIT IMMEDIATELY!'"))
 						else //It won't blow up unless you turn it back on again. Upside of using non-charging cells.
-							to_chat(src.loc, "<span class='critical'>Your shield generator sparks and suddenly goes down! A warning message pops up on screen: \
-							'WARNING, INTERNAL CELL CRITICALLY DAMAGED. REPLACE CELL IMMEDIATELY.'</span>")
+							to_chat(src.loc, span_critical("Your shield generator sparks and suddenly goes down! A warning message pops up on screen: \
+							'WARNING, INTERNAL CELL CRITICALLY DAMAGED. REPLACE CELL IMMEDIATELY.'"))
 						STOP_PROCESSING(SSobj, src)
 						update_icon()
 			else
@@ -138,7 +138,7 @@
 					bcell.emp_act(severity)
 	..()
 
-/obj/item/personal_shield_generator/ui_action_click()
+/obj/item/personal_shield_generator/ui_action_click(mob/user, actiontype)
 	toggle_shield()
 
 /obj/item/personal_shield_generator/attack_hand(mob/user)

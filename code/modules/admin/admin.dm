@@ -3,7 +3,7 @@ var/global/floorIsLava = 0
 
 ////////////////////////////////
 /proc/message_admins(var/msg)
-	msg = "<span class='filter_adminlog log_message'><span class='prefix'>ADMIN LOG:</span> <span class=\"message\">[msg]</span></span>"
+	msg = span_filter_adminlog(span_log_message(span_prefix("ADMIN LOG:") + span_message("[msg]")))
 	//log_adminwarn(msg) //log_and_message_admins is for this
 
 	for(var/client/C in GLOB.admins)
@@ -14,7 +14,7 @@ var/global/floorIsLava = 0
 					confidential = TRUE)
 
 /proc/msg_admin_attack(var/text) //Toggleable Attack Messages
-	var/rendered = "<span class='filter_attacklog log_message'><span class='prefix'>ATTACK:</span> <span class=\"message\">[text]</span></span>"
+	var/rendered = span_filter_attacklog(span_log_message(span_prefix("ATTACK:") + span_message("[text]")))
 	for(var/client/C in GLOB.admins)
 		if((R_ADMIN|R_MOD) & C.holder.rights)
 			if(C.prefs?.read_preference(/datum/preference/toggle/show_attack_logs))
@@ -32,7 +32,7 @@ var/global/floorIsLava = 0
 ///////////////////////////////////////////////////////////////////////////////////////////////Panels
 
 /datum/admins/proc/show_player_panel(var/mob/M in mob_list)
-	set category = "Admin"
+	set category = "Admin.Game"
 	set name = "Show Player Panel"
 	set desc="Edit player (respawn, ban, heal, etc)"
 
@@ -104,7 +104,7 @@ var/global/floorIsLava = 0
 	if (M.client)
 		if(!istype(M, /mob/new_player))
 			body += "<br><br>"
-			body += "<b>Transformation:</b>"
+			body += span_bold("Transformation:")
 			body += "<br>"
 
 			//Monkey
@@ -224,7 +224,7 @@ var/global/floorIsLava = 0
 /datum/player_info/var/timestamp // Because this is bloody annoying
 
 /datum/admins/proc/PlayerNotes()
-	set category = "Admin"
+	set category = "Admin.Logs"
 	set name = "Player Notes"
 	if (!istype(src,/datum/admins))
 		src = usr.client.holder
@@ -264,7 +264,7 @@ var/global/floorIsLava = 0
 
 
 /datum/admins/proc/show_player_info(var/key as text)
-	set category = "Admin"
+	set category = "Admin.Investigate"
 	set name = "Show Player Info"
 	if (!istype(src,/datum/admins))
 		src = usr.client.holder
@@ -278,7 +278,7 @@ var/global/floorIsLava = 0
 
 
 /datum/admins/proc/access_news_network() //MARKER
-	set category = "Fun"
+	set category = "Fun.Event Kit"
 	set name = "Access Newscaster Network"
 	set desc = "Allows you to view, add and edit news feeds."
 
@@ -318,13 +318,13 @@ var/global/floorIsLava = 0
 		if(1)
 			dat+= "Station Feed Channels<HR>"
 			if( isemptylist(news_network.network_channels) )
-				dat+="<I>No active channels found...</I>"
+				dat+=span_italics("No active channels found...")
 			else
 				for(var/datum/feed_channel/CHANNEL in news_network.network_channels)
 					if(CHANNEL.is_admin_channel)
 						dat+="<B><FONT style='BACKGROUND-COLOR: LightGreen'><A href='?src=\ref[src];[HrefToken()];ac_show_channel=\ref[CHANNEL]'>[CHANNEL.channel_name]</A></FONT></B><BR>"
 					else
-						dat+="<B><A href='?src=\ref[src];[HrefToken()];ac_show_channel=\ref[CHANNEL]'>[CHANNEL.channel_name]</A> [(CHANNEL.censored) ? ("<FONT COLOR='red'>***</FONT>") : null]<BR></B>"
+						dat+=span_bold("<A href='?src=\ref[src];[HrefToken()];ac_show_channel=\ref[CHANNEL]'>[CHANNEL.channel_name]</A> [(CHANNEL.censored) ? ("<FONT COLOR='red'>***</FONT>") : null]<BR>")
 			dat+={"<BR><HR><A href='?src=\ref[src];[HrefToken()];ac_refresh=1'>Refresh</A>
 				<BR><A href='?src=\ref[src];[HrefToken()];ac_setScreen=[0]'>Back</A>
 			"}
@@ -460,7 +460,7 @@ var/global/floorIsLava = 0
 
 			dat+="<BR><A href='?src=\ref[src];[HrefToken()];ac_setScreen=[11]'>Back</A>"
 		if(14)
-			dat+="<B>Wanted Issue Handler:</B>"
+			dat+=span_bold("Wanted Issue Handler:")
 			var/wanted_already = 0
 			var/end_param = 1
 			if(news_network.wanted_issue)
@@ -594,7 +594,7 @@ var/global/floorIsLava = 0
 
 
 /datum/admins/proc/restart()
-	set category = "Server"
+	set category = "Server.Game"
 	set name = "Restart"
 	set desc="Restarts the world"
 	if (!usr.client.holder)
@@ -617,7 +617,7 @@ var/global/floorIsLava = 0
 
 
 /datum/admins/proc/announce()
-	set category = "Special Verbs"
+	set category = "Admin.Chat"
 	set name = "Announce"
 	set desc="Announce your desires to the world"
 	if(!check_rights(0))	return
@@ -627,7 +627,7 @@ var/global/floorIsLava = 0
 		if(!check_rights(R_SERVER,0))
 			message = sanitize(message, 500, extra = 0)
 		message = replacetext(message, "\n", "<br>") // required since we're putting it in a <p> tag
-		to_world("<span class=notice><b>[usr.client.holder.fakekey ? "Administrator" : usr.key] Announces:</b><p style='text-indent: 50px'>[message]</p></span>")
+		to_world(span_notice(span_bold("[usr.client.holder.fakekey ? "Administrator" : usr.key] Announces:") + "<p style='text-indent: 50px'>[message]</p>"))
 		log_admin("Announce: [key_name(usr)] : [message]")
 	feedback_add_details("admin_verb","A") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
@@ -635,7 +635,7 @@ var/global/floorIsLava = 0
 var/datum/announcement/priority/admin_pri_announcer = new
 var/datum/announcement/minor/admin_min_announcer = new
 /datum/admins/proc/intercom()
-	set category = "Fun"
+	set category = "Fun.Event Kit"
 	set name = "Intercom Msg"
 	set desc = "Send an intercom message, like an arrivals announcement."
 	if(!check_rights(0))	return
@@ -663,7 +663,7 @@ var/datum/announcement/minor/admin_min_announcer = new
 	feedback_add_details("admin_verb","IN") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /datum/admins/proc/intercom_convo()
-	set category = "Fun"
+	set category = "Fun.Event Kit"
 	set name = "Intercom Convo"
 	set desc = "Send an intercom conversation, like several uses of the Intercom Msg verb."
 	set waitfor = FALSE //Why bother? We have some sleeps. You can leave tho!
@@ -678,7 +678,7 @@ var/datum/announcement/minor/admin_min_announcer = new
 	if(!speech_verb)
 		return
 
-	to_chat(usr, "<span class='notice'><B>Intercom Convo Directions</B><br>Start the conversation with the sender, a pipe (|), and then the message on one line. Then hit enter to \
+	to_chat(usr, span_notice(span_bold("Intercom Convo Directions") + "<br>Start the conversation with the sender, a pipe (|), and then the message on one line. Then hit enter to \
 		add another line, and type a (whole) number of seconds to pause between that message, and the next message, then repeat the message syntax up to 20 times. For example:<br>\
 		--- --- ---<br>\
 		Some Guy|Hello guys, what's up?<br>\
@@ -687,7 +687,7 @@ var/datum/announcement/minor/admin_min_announcer = new
 		5<br>\
 		Some Guy|Yeah, you too.<br>\
 		--- --- ---<br>\
-		The above will result in those messages playing, with a 5 second gap between each. Maximum of 20 messages allowed.</span>")
+		The above will result in those messages playing, with a 5 second gap between each. Maximum of 20 messages allowed."))
 
 	var/list/decomposed
 	var/message = tgui_input_text(usr,"See your chat box for instructions. Keep a copy elsewhere in case it is rejected when you click OK.", "Input Conversation", "", multiline = TRUE, prevent_enter = TRUE)
@@ -750,70 +750,70 @@ var/datum/announcement/minor/admin_min_announcer = new
 			sleep(this_wait SECONDS)
 
 /datum/admins/proc/toggleooc()
-	set category = "Server"
+	set category = "Server.Chat"
 	set desc="Globally Toggles OOC"
 	set name="Toggle Player OOC"
 
 	if(!check_rights(R_ADMIN))
 		return
 
-	config.ooc_allowed = !(config.ooc_allowed)
-	if (config.ooc_allowed)
-		to_world("<B>The OOC channel has been globally enabled!</B>")
+	CONFIG_SET(flag/ooc_allowed, !CONFIG_GET(flag/ooc_allowed))
+	if (CONFIG_GET(flag/ooc_allowed))
+		to_world(span_world("The OOC channel has been globally enabled!"))
 	else
-		to_world("<B>The OOC channel has been globally disabled!</B>")
+		to_world(span_world("The OOC channel has been globally disabled!"))
 	log_and_message_admins("toggled OOC.")
 	feedback_add_details("admin_verb","TOOC") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /datum/admins/proc/togglelooc()
-	set category = "Server"
+	set category = "Server.Chat"
 	set desc="Globally Toggles LOOC"
 	set name="Toggle Player LOOC"
 
 	if(!check_rights(R_ADMIN))
 		return
 
-	config.looc_allowed = !(config.looc_allowed)
-	if (config.looc_allowed)
-		to_world("<B>The LOOC channel has been globally enabled!</B>")
+	CONFIG_SET(flag/looc_allowed, !CONFIG_GET(flag/looc_allowed))
+	if (CONFIG_GET(flag/looc_allowed))
+		to_world(span_world("The LOOC channel has been globally enabled!"))
 	else
-		to_world("<B>The LOOC channel has been globally disabled!</B>")
+		to_world(span_world("The LOOC channel has been globally disabled!"))
 	log_and_message_admins("toggled LOOC.")
 	feedback_add_details("admin_verb","TLOOC") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 
 /datum/admins/proc/toggledsay()
-	set category = "Server"
+	set category = "Server.Chat"
 	set desc="Globally Toggles DSAY"
 	set name="Toggle DSAY"
 
 	if(!check_rights(R_ADMIN))
 		return
 
-	config.dsay_allowed = !(config.dsay_allowed)
-	if (config.dsay_allowed)
-		to_world("<B>Deadchat has been globally enabled!</B>")
+	CONFIG_SET(flag/dsay_allowed, !CONFIG_GET(flag/dsay_allowed))
+	if (CONFIG_GET(flag/dsay_allowed))
+		to_world(span_world("Deadchat has been globally enabled!"))
 	else
-		to_world("<B>Deadchat has been globally disabled!</B>")
+		to_world(span_world("Deadchat has been globally disabled!"))
 	log_admin("[key_name(usr)] toggled deadchat.")
 	message_admins("[key_name_admin(usr)] toggled deadchat.", 1)
 	feedback_add_details("admin_verb","TDSAY") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc
 
 /datum/admins/proc/toggleoocdead()
-	set category = "Server"
+	set category = "Server.Chat"
 	set desc="Toggle Dead OOC."
 	set name="Toggle Dead OOC"
 
 	if(!check_rights(R_ADMIN))
 		return
 
-	config.dooc_allowed = !( config.dooc_allowed )
+	CONFIG_SET(flag/dooc_allowed, !CONFIG_GET(flag/dooc_allowed))
 	log_admin("[key_name(usr)] toggled Dead OOC.")
 	message_admins("[key_name_admin(usr)] toggled Dead OOC.", 1)
 	feedback_add_details("admin_verb","TDOOC") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /datum/admins/proc/togglehubvisibility()
-	set category = "Server"
+	set category = "Server.Config"
 	set desc="Globally Toggles Hub Visibility"
 	set name="Toggle Hub Visibility"
 
@@ -826,16 +826,16 @@ var/datum/announcement/minor/admin_min_announcer = new
 	feedback_add_details("admin_verb","THUB") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc
 
 /datum/admins/proc/toggletraitorscaling()
-	set category = "Server"
+	set category = "Server.Game"
 	set desc="Toggle traitor scaling"
 	set name="Toggle Traitor Scaling"
-	config.traitor_scaling = !config.traitor_scaling
-	log_admin("[key_name(usr)] toggled Traitor Scaling to [config.traitor_scaling].")
-	message_admins("[key_name_admin(usr)] toggled Traitor Scaling [config.traitor_scaling ? "on" : "off"].", 1)
+	CONFIG_SET(flag/traitor_scaling, !CONFIG_GET(flag/traitor_scaling))
+	log_admin("[key_name(usr)] toggled Traitor Scaling to [CONFIG_GET(flag/traitor_scaling)].")
+	message_admins("[key_name_admin(usr)] toggled Traitor Scaling [CONFIG_GET(flag/traitor_scaling) ? "on" : "off"].", 1)
 	feedback_add_details("admin_verb","TTS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /datum/admins/proc/startnow()
-	set category = "Server"
+	set category = "Server.Game"
 	set desc="Start the round ASAP"
 	set name="Start Now"
 
@@ -854,98 +854,98 @@ var/datum/announcement/minor/admin_min_announcer = new
 		feedback_add_details("admin_verb","SN") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	else
 		SSticker.start_immediately = FALSE
-		to_world(span_notice("Immediate game start canceled.  Normal startup resumed."))
+		to_world(span_filter_system(span_blue("Immediate game start canceled. Normal startup resumed.")))
 		log_and_message_admins("cancelled immediate game start.")
 
 /datum/admins/proc/toggleenter()
-	set category = "Server"
+	set category = "Server.Game"
 	set desc="People can't enter"
 	set name="Toggle Entering"
-	config.enter_allowed = !(config.enter_allowed)
-	if (!(config.enter_allowed))
-		to_world("<B>New players may no longer enter the game.</B>")
+	CONFIG_SET(flag/enter_allowed, !CONFIG_GET(flag/enter_allowed))
+	if (!CONFIG_GET(flag/enter_allowed))
+		to_world(span_world("New players may no longer enter the game."))
 	else
-		to_world("<B>New players may now enter the game.</B>")
+		to_world(span_world("New players may now enter the game."))
 	log_admin("[key_name(usr)] toggled new player game entering.")
 	message_admins(span_blue("[key_name_admin(usr)] toggled new player game entering."), 1)
 	world.update_status()
 	feedback_add_details("admin_verb","TE") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /datum/admins/proc/toggleAI()
-	set category = "Server"
+	set category = "Server.Game"
 	set desc="People can't be AI"
 	set name="Toggle AI"
-	config.allow_ai = !( config.allow_ai )
-	if (!( config.allow_ai ))
-		to_world("<B>The AI job is no longer chooseable.</B>")
+	CONFIG_SET(flag/allow_ai, !CONFIG_GET(flag/allow_ai))
+	if (!CONFIG_GET(flag/allow_ai))
+		to_world(span_world("The AI job is no longer chooseable."))
 	else
-		to_world("<B>The AI job is chooseable now.</B>")
+		to_world(span_world("The AI job is chooseable now."))
 	log_admin("[key_name(usr)] toggled AI allowed.")
 	world.update_status()
 	feedback_add_details("admin_verb","TAI") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /datum/admins/proc/toggleaban()
-	set category = "Server"
+	set category = "Server.Game"
 	set desc="Respawn basically"
 	set name="Toggle Respawn"
-	config.abandon_allowed = !(config.abandon_allowed)
-	if(config.abandon_allowed)
-		to_world("<B>You may now respawn.</B>")
+	CONFIG_SET(flag/abandon_allowed, !CONFIG_GET(flag/abandon_allowed))
+	if(CONFIG_GET(flag/abandon_allowed))
+		to_world(span_world("You may now respawn."))
 	else
-		to_world("<B>You may no longer respawn :(</B>")
-	message_admins(span_blue("[key_name_admin(usr)] toggled respawn to [config.abandon_allowed ? "On" : "Off"]."), 1)
-	log_admin("[key_name(usr)] toggled respawn to [config.abandon_allowed ? "On" : "Off"].")
+		to_world(span_world("You may no longer respawn :("))
+	message_admins(span_blue("[key_name_admin(usr)] toggled respawn to [CONFIG_GET(flag/abandon_allowed) ? "On" : "Off"]."), 1)
+	log_admin("[key_name(usr)] toggled respawn to [CONFIG_GET(flag/abandon_allowed) ? "On" : "Off"].")
 	world.update_status()
 	feedback_add_details("admin_verb","TR") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /datum/admins/proc/togglepersistence()
-	set category = "Server"
+	set category = "Server.Config"
 	set desc="Whether persistent data will be saved from now on."
 	set name="Toggle Persistent Data"
-	config.persistence_disabled = !(config.persistence_disabled)
-	if(!config.persistence_disabled)
-		to_world("<B>Persistence is now enabled..</B>")
+	CONFIG_SET(flag/persistence_disabled, !CONFIG_GET(flag/persistence_disabled))
+	if(!CONFIG_GET(flag/persistence_disabled))
+		to_world(span_world("Persistence is now enabled."))
 	else
-		to_world("<B>Persistence is no longer enabled.</B>")
-	message_admins(span_blue("[key_name_admin(usr)] toggled persistence to [config.persistence_disabled ? "Off" : "On"]."), 1)
-	log_admin("[key_name(usr)] toggled persistence to [config.persistence_disabled ? "Off" : "On"].")
+		to_world(span_world("Persistence is no longer enabled."))
+	message_admins(span_blue("[key_name_admin(usr)] toggled persistence to [CONFIG_GET(flag/persistence_disabled) ? "Off" : "On"]."), 1)
+	log_admin("[key_name(usr)] toggled persistence to [CONFIG_GET(flag/persistence_disabled) ? "Off" : "On"].")
 	world.update_status()
 	feedback_add_details("admin_verb","TPD") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /datum/admins/proc/togglemaploadpersistence()
-	set category = "Server"
+	set category = "Server.Config"
 	set desc="Whether mapload persistent data will be saved from now on."
 	set name="Toggle Mapload Persistent Data"
-	config.persistence_ignore_mapload = !(config.persistence_ignore_mapload)
-	if(!config.persistence_ignore_mapload)
-		to_world("<B>Persistence is now enabled..</B>")
+	CONFIG_SET(flag/persistence_ignore_mapload, !CONFIG_GET(flag/persistence_ignore_mapload))
+	if(!CONFIG_GET(flag/persistence_ignore_mapload))
+		to_world(span_world("Persistence is now enabled."))
 	else
-		to_world("<B>Persistence is no longer enabled.</B>")
-	message_admins(span_blue("[key_name_admin(usr)] toggled persistence to [config.persistence_ignore_mapload ? "Off" : "On"]."), 1)
-	log_admin("[key_name(usr)] toggled persistence to [config.persistence_ignore_mapload ? "Off" : "On"].")
+		to_world(span_world("Persistence is no longer enabled."))
+	message_admins(span_blue("[key_name_admin(usr)] toggled persistence to [CONFIG_GET(flag/persistence_ignore_mapload) ? "Off" : "On"]."), 1)
+	log_admin("[key_name(usr)] toggled persistence to [CONFIG_GET(flag/persistence_ignore_mapload) ? "Off" : "On"].")
 	world.update_status()
 	feedback_add_details("admin_verb","TMPD") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /datum/admins/proc/toggle_aliens()
-	set category = "Server"
+	set category = "Server.Game"
 	set desc="Toggle alien mobs"
 	set name="Toggle Aliens"
-	config.aliens_allowed = !config.aliens_allowed
-	log_admin("[key_name(usr)] toggled Aliens to [config.aliens_allowed].")
-	message_admins("[key_name_admin(usr)] toggled Aliens [config.aliens_allowed ? "on" : "off"].", 1)
+	CONFIG_SET(flag/aliens_allowed, !CONFIG_GET(flag/aliens_allowed))
+	log_admin("[key_name(usr)] toggled Aliens to [CONFIG_GET(flag/aliens_allowed)].")
+	message_admins("[key_name_admin(usr)] toggled Aliens [CONFIG_GET(flag/aliens_allowed) ? "on" : "off"].", 1)
 	feedback_add_details("admin_verb","TA") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /datum/admins/proc/toggle_space_ninja()
-	set category = "Server"
+	set category = "Server.Game"
 	set desc="Toggle space ninjas spawning."
 	set name="Toggle Space Ninjas"
-	config.ninjas_allowed = !config.ninjas_allowed
-	log_admin("[key_name(usr)] toggled Space Ninjas to [config.ninjas_allowed].")
-	message_admins("[key_name_admin(usr)] toggled Space Ninjas [config.ninjas_allowed ? "on" : "off"].", 1)
+	CONFIG_SET(flag/ninjas_allowed, !CONFIG_GET(flag/ninjas_allowed))
+	log_admin("[key_name(usr)] toggled Space Ninjas to [CONFIG_GET(flag/ninjas_allowed)].")
+	message_admins("[key_name_admin(usr)] toggled Space Ninjas [CONFIG_GET(flag/ninjas_allowed) ? "on" : "off"].", 1)
 	feedback_add_details("admin_verb","TSN") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /datum/admins/proc/delay()
-	set category = "Server"
+	set category = "Server.Game"
 	set desc="Delay the game start/end"
 	set name="Delay"
 
@@ -957,45 +957,45 @@ var/datum/announcement/minor/admin_min_announcer = new
 		return
 	round_progressing = !round_progressing
 	if (!round_progressing)
-		to_world("<b>The game start has been delayed.</b>")
+		to_world(span_world("The game start has been delayed."))
 		log_admin("[key_name(usr)] delayed the game.")
 	else
-		to_world("<b>The game will start soon.</b>")
+		to_world(span_world("The game will start soon."))
 		log_admin("[key_name(usr)] removed the delay.")
 	feedback_add_details("admin_verb","DELAY") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /datum/admins/proc/adjump()
-	set category = "Server"
+	set category = "Server.Game"
 	set desc="Toggle admin jumping"
 	set name="Toggle Jump"
-	config.allow_admin_jump = !(config.allow_admin_jump)
-	message_admins(span_blue("Toggled admin jumping to [config.allow_admin_jump]."))
+	CONFIG_SET(flag/allow_admin_jump, !CONFIG_GET(flag/allow_admin_jump))
+	message_admins(span_blue("Toggled admin jumping to [CONFIG_GET(flag/allow_admin_jump)]."))
 	feedback_add_details("admin_verb","TJ") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /datum/admins/proc/adspawn()
-	set category = "Server"
+	set category = "Server.Game"
 	set desc="Toggle admin spawning"
 	set name="Toggle Spawn"
-	config.allow_admin_spawning = !(config.allow_admin_spawning)
-	message_admins(span_blue("Toggled admin item spawning to [config.allow_admin_spawning]."))
+	CONFIG_SET(flag/allow_admin_spawning, !CONFIG_GET(flag/allow_admin_spawning))
+	message_admins(span_blue("Toggled admin item spawning to [CONFIG_GET(flag/allow_admin_spawning)]."))
 	feedback_add_details("admin_verb","TAS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /datum/admins/proc/adrev()
-	set category = "Server"
+	set category = "Server.Game"
 	set desc="Toggle admin revives"
 	set name="Toggle Revive"
-	config.allow_admin_rev = !(config.allow_admin_rev)
-	message_admins(span_blue("Toggled reviving to [config.allow_admin_rev]."))
+	CONFIG_SET(flag/allow_admin_rev, !CONFIG_GET(flag/allow_admin_rev))
+	message_admins(span_blue("Toggled reviving to [CONFIG_GET(flag/allow_admin_rev)]."))
 	feedback_add_details("admin_verb","TAR") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /datum/admins/proc/immreboot()
-	set category = "Server"
+	set category = "Server.Game"
 	set desc="Reboots the server post haste"
 	set name="Immediate Reboot"
 	if(!usr.client.holder)	return
 	if(alert(usr, "Reboot server?","Reboot!","Yes","No") != "Yes") // Not tgui_alert for safety
 		return
-	to_world("[span_red("<b>Rebooting world!</b>")] [span_blue("Initiated by [usr.client.holder.fakekey ? "Admin" : usr.key]!")]")
+	to_world(span_filter_system("[span_red(span_bold("Rebooting world!"))] [span_blue("Initiated by [usr.client.holder.fakekey ? "Admin" : usr.key]!")]"))
 	log_admin("[key_name(usr)] initiated an immediate reboot.")
 
 	feedback_set_details("end_error","immediate admin reboot - by [usr.key] [usr.client.holder.fakekey ? "(stealth)" : ""]")
@@ -1007,10 +1007,10 @@ var/datum/announcement/minor/admin_min_announcer = new
 	world.Reboot()
 
 /datum/admins/proc/unprison(var/mob/M in mob_list)
-	set category = "Admin"
+	set category = "Admin.Moderation"
 	set name = "Unprison"
 	if (M.z == 2)
-		if (config.allow_admin_jump)
+		if (CONFIG_GET(flag/allow_admin_jump))
 			M.loc = pick(latejoin)
 			message_admins("[key_name_admin(usr)] has unprisoned [key_name_admin(M)]", 1)
 			log_admin("[key_name(usr)] has unprisoned [key_name(M)]")
@@ -1048,7 +1048,7 @@ var/datum/announcement/minor/admin_min_announcer = new
 	return 0
 
 /datum/admins/proc/spawn_fruit(seedtype in SSplants.seeds)
-	set category = "Debug"
+	set category = "Debug.Game"
 	set desc = "Spawn the product of a seed."
 	set name = "Spawn Fruit"
 
@@ -1063,7 +1063,7 @@ var/datum/announcement/minor/admin_min_announcer = new
 	log_admin("[key_name(usr)] spawned [seedtype] fruit at ([usr.x],[usr.y],[usr.z])")
 
 /datum/admins/proc/spawn_custom_item()
-	set category = "Debug"
+	set category = "Debug.Game"
 	set desc = "Spawn a custom item."
 	set name = "Spawn Custom Item"
 
@@ -1081,8 +1081,7 @@ var/datum/announcement/minor/admin_min_announcer = new
 	item_to_spawn.spawn_item(get_turf(usr))
 
 /datum/admins/proc/check_custom_items()
-
-	set category = "Debug"
+	set category = "Debug.Investigate"
 	set desc = "Check the custom item list."
 	set name = "Check Custom Items"
 
@@ -1103,7 +1102,7 @@ var/datum/announcement/minor/admin_min_announcer = new
 			to_chat(usr, "- name: [item.name] icon: [item.item_icon] path: [item.item_path] desc: [item.item_desc]")
 
 /datum/admins/proc/spawn_plant(seedtype in SSplants.seeds)
-	set category = "Debug"
+	set category = "Debug.Game"
 	set desc = "Spawn a spreading plant effect."
 	set name = "Spawn Plant"
 
@@ -1116,7 +1115,7 @@ var/datum/announcement/minor/admin_min_announcer = new
 
 /datum/admins/proc/spawn_atom(var/object as text)
 	set name = "Spawn"
-	set category = "Debug"
+	set category = "Debug.Game"
 	set desc = "(atom path) Spawn an atom"
 
 	if(!check_rights(R_SPAWN))	return
@@ -1150,7 +1149,7 @@ var/datum/announcement/minor/admin_min_announcer = new
 
 
 /datum/admins/proc/show_traitor_panel(var/mob/M in mob_list)
-	set category = "Admin"
+	set category = "Admin.Events"
 	set desc = "Edit mobs's memory and role"
 	set name = "Show Traitor Panel"
 
@@ -1165,7 +1164,7 @@ var/datum/announcement/minor/admin_min_announcer = new
 	feedback_add_details("admin_verb","STP") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /datum/admins/proc/show_game_mode()
-	set category = "Admin"
+	set category = "Admin.Game"
 	set desc = "Show the current round configuration."
 	set name = "Show Game Mode"
 
@@ -1223,7 +1222,7 @@ var/datum/announcement/minor/admin_min_announcer = new
 	else
 		out += "<b>Autotraitor <a href='?src=\ref[ticker.mode];[HrefToken()];toggle=autotraitor'>disabled</a></b>.<br/>"
 
-	out += "<b>All antag ids:</b>"
+	out += span_bold("All antag ids:")
 	if(ticker.mode.antag_templates && ticker.mode.antag_templates.len)
 		for(var/datum/antagonist/antag in ticker.mode.antag_templates)
 			antag.update_current_antag_max()
@@ -1239,29 +1238,29 @@ var/datum/announcement/minor/admin_min_announcer = new
 
 
 /datum/admins/proc/toggletintedweldhelmets()
-	set category = "Debug"
+	set category = "Server.Config"
 	set desc="Reduces view range when wearing welding helmets"
 	set name="Toggle tinted welding helmets."
-	config.welder_vision = !( config.welder_vision )
-	if (config.welder_vision)
-		to_world("<B>Reduced welder vision has been enabled!</B>")
+	CONFIG_SET(flag/welder_vision, !CONFIG_GET(flag/welder_vision))
+	if (CONFIG_GET(flag/welder_vision))
+		to_world(span_world("Reduced welder vision has been enabled!"))
 	else
-		to_world("<B>Reduced welder vision has been disabled!</B>")
+		to_world(span_world("Reduced welder vision has been disabled!"))
 	log_admin("[key_name(usr)] toggled welder vision.")
 	message_admins("[key_name_admin(usr)] toggled welder vision.", 1)
 	feedback_add_details("admin_verb","TTWH") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /datum/admins/proc/toggleguests()
-	set category = "Server"
+	set category = "Server.Config"
 	set desc="Guests can't enter"
 	set name="Toggle guests"
-	config.guests_allowed = !(config.guests_allowed)
-	if (!(config.guests_allowed))
-		to_world("<B>Guests may no longer enter the game.</B>")
+	CONFIG_SET(flag/guests_allowed, !CONFIG_GET(flag/guests_allowed))
+	if (!CONFIG_GET(flag/guests_allowed))
+		to_world(span_world("Guests may no longer enter the game."))
 	else
-		to_world("<B>Guests may now enter the game.</B>")
-	log_admin("[key_name(usr)] toggled guests game entering [config.guests_allowed?"":"dis"]allowed.")
-	message_admins(span_blue("[key_name_admin(usr)] toggled guests game entering [config.guests_allowed?"":"dis"]allowed."), 1)
+		to_world(span_world("Guests may now enter the game."))
+	log_admin("[key_name(usr)] toggled guests game entering [CONFIG_GET(flag/guests_allowed)?"":"dis"]allowed.")
+	message_admins(span_blue("[key_name_admin(usr)] toggled guests game entering [CONFIG_GET(flag/guests_allowed)?"":"dis"]allowed."), 1)
 	feedback_add_details("admin_verb","TGU") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /datum/admins/proc/output_ai_laws()
@@ -1269,24 +1268,24 @@ var/datum/announcement/minor/admin_min_announcer = new
 	for(var/mob/living/silicon/S in mob_list)
 		ai_number++
 		if(isAI(S))
-			to_chat(usr, "<b>AI [key_name(S, usr)]'s laws:</b>")
+			to_chat(usr, span_bold("AI [key_name(S, usr)]'s laws:"))
 		else if(isrobot(S))
 			var/mob/living/silicon/robot/R = S
-			to_chat(usr, "<b>CYBORG [key_name(S, usr)] [R.connected_ai?"(Slaved to: [R.connected_ai])":"(Independent)"]: laws:</b>")
+			to_chat(usr, span_bold("CYBORG [key_name(S, usr)] [R.connected_ai?"(Slaved to: [R.connected_ai])":"(Independent)"]: laws:"))
 		else if (ispAI(S))
-			to_chat(usr, "<b>pAI [key_name(S, usr)]'s laws:</b>")
+			to_chat(usr, span_bold("pAI [key_name(S, usr)]'s laws:"))
 		else
-			to_chat(usr, "<b>SOMETHING SILICON [key_name(S, usr)]'s laws:</b>")
+			to_chat(usr, span_bold("SOMETHING SILICON [key_name(S, usr)]'s laws:"))
 
 		if (S.laws == null)
 			to_chat(usr, "[key_name(S, usr)]'s laws are null?? Contact a coder.")
 		else
 			S.laws.show_laws(usr)
 	if(!ai_number)
-		to_chat(usr, "<b>No AIs located</b>") //Just so you know the thing is actually working and not just ignoring you.
+		to_chat(usr, span_bold("No AIs located")) //Just so you know the thing is actually working and not just ignoring you.
 
 /datum/admins/proc/show_skills()
-	set category = "Admin"
+	set category = "Admin.Investigate"
 	set name = "Show Skills"
 
 	if (!istype(src,/datum/admins))
@@ -1303,7 +1302,7 @@ var/datum/announcement/minor/admin_min_announcer = new
 	return
 
 /client/proc/update_mob_sprite(mob/living/carbon/human/H as mob)
-	set category = "Admin"
+	set category = "Admin.Game"
 	set name = "Update Mob Sprite"
 	set desc = "Should fix any mob sprite update errors."
 
@@ -1316,7 +1315,7 @@ var/datum/announcement/minor/admin_min_announcer = new
 
 /proc/get_options_bar(whom, detail = 2, name = 0, link = 1, highlight_special = 1)
 	if(!whom)
-		return "<b>(*null*)</b>"
+		return span_bold("(*null*)")
 	var/mob/M
 	var/client/C
 	if(istype(whom, /client))
@@ -1326,25 +1325,25 @@ var/datum/announcement/minor/admin_min_announcer = new
 		M = whom
 		C = M.client
 	else
-		return "<b>(*not a mob*)</b>"
+		return span_bold("(*not a mob*)")
 	switch(detail)
 		if(0)
-			return "<b>[key_name(C, link, name, highlight_special)]</b>"
+			return span_bold("[key_name(C, link, name, highlight_special)]")
 
 		if(1)	//Private Messages
-			return "<b>[key_name(C, link, name, highlight_special)](<A HREF='?_src_=holder;[HrefToken()];adminmoreinfo=\ref[M]'>?</A>)</b>"
+			return span_bold("[key_name(C, link, name, highlight_special)](<A HREF='?_src_=holder;[HrefToken()];adminmoreinfo=\ref[M]'>?</A>)")
 
 		if(2)	//Admins
 			var/ref_mob = "\ref[M]"
-			return "<b>[key_name(C, link, name, highlight_special)](<A HREF='?_src_=holder;[HrefToken()];adminmoreinfo=[ref_mob]'>?</A>) (<A HREF='?_src_=holder;[HrefToken()];adminplayeropts=[ref_mob]'>PP</A>) (<A HREF='?_src_=vars;[HrefToken()];Vars=[ref_mob]'>VV</A>) (<A HREF='?_src_=holder;[HrefToken()];subtlemessage=[ref_mob]'>SM</A>) ([admin_jump_link(M)]) (<A HREF='?_src_=holder;[HrefToken()];check_antagonist=1'>CA</A>) (<A HREF='?_src_=holder;[HrefToken()];take_question=\ref[M]'>TAKE</A>)</b>"
+			return span_bold("[key_name(C, link, name, highlight_special)](<A HREF='?_src_=holder;[HrefToken()];adminmoreinfo=[ref_mob]'>?</A>) (<A HREF='?_src_=holder;[HrefToken()];adminplayeropts=[ref_mob]'>PP</A>) (<A HREF='?_src_=vars;[HrefToken()];Vars=[ref_mob]'>VV</A>) (<A HREF='?_src_=holder;[HrefToken()];subtlemessage=[ref_mob]'>SM</A>) ([admin_jump_link(M)]) (<A HREF='?_src_=holder;[HrefToken()];check_antagonist=1'>CA</A>) (<A HREF='?_src_=holder;[HrefToken()];take_question=\ref[M]'>TAKE</A>)")
 
 		if(3)	//Devs
 			var/ref_mob = "\ref[M]"
-			return "<b>[key_name(C, link, name, highlight_special)](<A HREF='?_src_=vars;[HrefToken()];Vars=[ref_mob]'>VV</A>)([admin_jump_link(M)]) (<A HREF='?_src_=holder;[HrefToken()];take_question=\ref[M]'>TAKE</A>)</b>"
+			return span_bold("[key_name(C, link, name, highlight_special)](<A HREF='?_src_=vars;[HrefToken()];Vars=[ref_mob]'>VV</A>)([admin_jump_link(M)]) (<A HREF='?_src_=holder;[HrefToken()];take_question=\ref[M]'>TAKE</A>)")
 
 		if(4)	//Event Managers
 			var/ref_mob = "\ref[M]"
-			return "<b>[key_name(C, link, name, highlight_special)] (<A HREF='?_src_=holder;[HrefToken()];adminmoreinfo=\ref[M]'>?</A>) (<A HREF='?_src_=holder;[HrefToken()];adminplayeropts=[ref_mob]'>PP</A>) (<A HREF='?_src_=vars;[HrefToken()];Vars=[ref_mob]'>VV</A>) (<A HREF='?_src_=holder;[HrefToken()];subtlemessage=[ref_mob]'>SM</A>) ([admin_jump_link(M)]) (<A HREF='?_src_=holder;[HrefToken()];take_question=\ref[M]'>TAKE</A>)</b>"
+			return span_bold("[key_name(C, link, name, highlight_special)] (<A HREF='?_src_=holder;[HrefToken()];adminmoreinfo=\ref[M]'>?</A>) (<A HREF='?_src_=holder;[HrefToken()];adminplayeropts=[ref_mob]'>PP</A>) (<A HREF='?_src_=vars;[HrefToken()];Vars=[ref_mob]'>VV</A>) (<A HREF='?_src_=holder;[HrefToken()];subtlemessage=[ref_mob]'>SM</A>) ([admin_jump_link(M)]) (<A HREF='?_src_=holder;[HrefToken()];take_question=\ref[M]'>TAKE</A>)")
 
 
 /proc/ishost(whom)
@@ -1402,7 +1401,7 @@ var/datum/announcement/minor/admin_min_announcer = new
 	return 1
 
 /datum/admins/proc/force_antag_latespawn()
-	set category = "Admin"
+	set category = "Admin.Events"
 	set name = "Force Template Spawn"
 	set desc = "Force an antagonist template to spawn."
 
@@ -1426,7 +1425,7 @@ var/datum/announcement/minor/admin_min_announcer = new
 	antag.attempt_late_spawn()
 
 /datum/admins/proc/force_mode_latespawn()
-	set category = "Admin"
+	set category = "Admin.Events"
 	set name = "Force Mode Spawn"
 	set desc = "Force autotraitor to proc."
 
@@ -1444,7 +1443,7 @@ var/datum/announcement/minor/admin_min_announcer = new
 	ticker.mode.try_latespawn()
 
 /datum/admins/proc/paralyze_mob(mob/living/H as mob)
-	set category = "Admin"
+	set category = "Admin.Events"
 	set name = "Toggle Paralyze"
 	set desc = "Paralyzes a player. Or unparalyses them."
 
@@ -1462,7 +1461,7 @@ var/datum/announcement/minor/admin_min_announcer = new
 				log_and_message_admins(msg)
 
 /datum/admins/proc/set_tcrystals(mob/living/carbon/human/H as mob)
-	set category = "Debug"
+	set category = "Debug.Game"
 	set name = "Set Telecrystals"
 	set desc = "Allows admins to change telecrystals of a user."
 	set popup_menu = FALSE //VOREStation Edit - Declutter.
@@ -1478,7 +1477,7 @@ var/datum/announcement/minor/admin_min_announcer = new
 		to_chat(usr, "You do not have access to this command.")
 
 /datum/admins/proc/add_tcrystals(mob/living/carbon/human/H as mob)
-	set category = "Debug"
+	set category = "Debug.Game"
 	set name = "Add Telecrystals"
 	set desc = "Allows admins to change telecrystals of a user by addition."
 	set popup_menu = FALSE //VOREStation Edit - Declutter.
@@ -1495,7 +1494,7 @@ var/datum/announcement/minor/admin_min_announcer = new
 
 
 /datum/admins/proc/sendFax()
-	set category = "Special Verbs"
+	set category = "Fun.Event Kit"
 	set name = "Send Fax"
 	set desc = "Sends a fax to this machine"
 	var/department = tgui_input_list(usr, "Choose a fax", "Fax", alldepartments)

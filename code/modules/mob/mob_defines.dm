@@ -208,7 +208,6 @@
 	//so don't treat them as being SSD even though their client var is null.
 	var/mob/teleop = null
 
-	var/turf/listed_turf = null  	//the current turf being examined in the stat panel
 	var/list/shouldnt_see = list(/mob/observer/eye)	//list of objects that this mob shouldn't see in the stat panel. this silliness is needed because of AI alt+click and cult blood runes
 
 	var/list/active_genes=list()
@@ -236,3 +235,7 @@
 	var/list/progressbars = null //VOREStation Edit
 
 	var/datum/focus //What receives our keyboard inputs. src by default
+	/// dict of custom stat tabs with data
+	var/list/list/misc_tabs = list()
+
+	var/list/datum/action/actions

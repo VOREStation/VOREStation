@@ -28,7 +28,7 @@
 
 /obj/machinery/embedded_controller/Topic()
 	. = ..()
-	stack_trace("WARNING: Embedded controller [src] ([type]) had Topic() called unexpectedly. Please report this.")
+	// stack_trace("WARNING: Embedded controller [src] ([type]) had Topic() called unexpectedly. Please report this.") // statpanel means that topic can always be called for clicking
 
 /obj/machinery/embedded_controller/tgui_act(action, params)
 	if(..())

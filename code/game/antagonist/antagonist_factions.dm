@@ -1,6 +1,6 @@
 /mob/living/proc/convert_to_rev(mob/M as mob in oview(src))
 	set name = "Convert Bourgeoise"
-	set category = "Abilities"
+	set category = "Abilities.Antag"
 	if(!M.mind)
 		return
 	convert_to_faction(M.mind, revs)
@@ -44,7 +44,7 @@
 
 /mob/living/proc/convert_to_loyalist(mob/M as mob in oview(src))
 	set name = "Convert Recidivist"
-	set category = "Abilities"
+	set category = "Abilities.Antag"
 	if(!M.mind)
 		return
 	convert_to_faction(M.mind, loyalists)

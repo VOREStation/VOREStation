@@ -8,6 +8,10 @@ export const downloadPrefs = (extension: string) => {
 
   const { db_version, db_repo, mob_name, bellies } = data;
 
+  if (!bellies) {
+    return;
+  }
+
   let datesegment = getCurrentTimestamp();
 
   let filename = mob_name + datesegment + extension;

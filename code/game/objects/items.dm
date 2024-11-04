@@ -35,10 +35,8 @@
 	var/max_pressure_protection // Set this variable if the item protects its wearer against high pressures below an upper bound. Keep at null to disable protection.
 	var/min_pressure_protection // Set this variable if the item protects its wearer against low pressures above a lower bound. Keep at null to disable protection. 0 represents protection against hard vacuum.
 
-
-	var/datum/action/item_action/action = null
-	var/action_button_name //It is also the text which gets displayed on the action button. If not set it defaults to 'Use [name]'. If it's not set, there'll be no button.
-	var/action_button_is_hands_free = 0 //If 1, bypass the restrained, lying, and stunned checks action buttons normally test for
+	var/list/actions //list of /datum/action's that this item has.
+	var/list/actions_types //list of paths of action datums to give to the item on New().
 
 	//This flag is used to determine when items in someone's inventory cover others. IE helmets making it so you can't see glasses, etc.
 	//It should be used purely for appearance. For gameplay effects caused by items covering body parts, use body_parts_covered.
@@ -117,6 +115,10 @@
 
 /obj/item/New()
 	..()
+
+	for(var/path in actions_types)
+		add_item_action(path)
+
 	if(embed_chance < 0)
 		if(sharp)
 			embed_chance = max(5, round(force/w_class))
@@ -137,7 +139,54 @@
 		m.update_inv_r_hand()
 		m.update_inv_l_hand()
 		src.loc = null
+
+	// Handle celaning up our actions list
+	for(var/datum/action/action as anything in actions)
+		remove_item_action(action)
+
 	return ..()
+
+
+/// Called when an action associated with our item is deleted
+/obj/item/proc/on_action_deleted(datum/source)
+	SIGNAL_HANDLER
+
+	if(!(source in actions))
+		CRASH("An action ([source.type]) was deleted that was associated with an item ([src]), but was not found in the item's actions list.")
+
+	LAZYREMOVE(actions, source)
+
+/// Adds an item action to our list of item actions.
+/// Item actions are actions linked to our item, that are granted to mobs who equip us.
+/// This also ensures that the actions are properly tracked in the actions list and removed if they're deleted.
+/// Can be be passed a typepath of an action or an instance of an action.
+/obj/item/proc/add_item_action(action_or_action_type)
+	var/datum/action/action
+	if(ispath(action_or_action_type, /datum/action))
+		action = new action_or_action_type(src)
+	else if(istype(action_or_action_type, /datum/action))
+		action = action_or_action_type
+	else
+		CRASH("item add_item_action got a type or instance of something that wasn't an action.")
+
+	LAZYADD(actions, action)
+	RegisterSignal(action, COMSIG_PARENT_QDELETING, PROC_REF(on_action_deleted))
+	if(ismob(loc))
+		// We're being held or are equipped by someone while adding an action?
+		// Then they should also probably be granted the action, given it's in a correct slot
+		var/mob/holder = loc
+		give_item_action(action, holder, holder.get_inventory_slot(src))
+
+	return action
+
+/// Removes an instance of an action from our list of item actions.
+/obj/item/proc/remove_item_action(datum/action/action)
+	if(!action)
+		return
+
+	UnregisterSignal(action, COMSIG_PARENT_QDELETING)
+	LAZYREMOVE(actions, action)
+	qdel(action)
 
 // Check if target is reasonable for us to operate on.
 /obj/item/proc/check_allowed_items(atom/target, not_inside, target_self)
@@ -333,6 +382,9 @@
 	if(zoom)
 		zoom() //binoculars, scope, etc
 	appearance_flags &= ~NO_CLIENT_COLOR
+	// Remove any item actions we temporary gave out.
+	for(var/datum/action/action_item_has as anything in actions)
+		action_item_has.Remove(user)
 
 // called just as an item is picked up (loc is not yet changed)
 /obj/item/proc/pickup(mob/user)
@@ -358,6 +410,9 @@
 // for items that can be placed in multiple slots
 // note this isn't called during the initial dressing of a player
 /obj/item/proc/equipped(var/mob/user, var/slot)
+	// Give out actions our item has to people who equip it.
+	for(var/datum/action/action as anything in actions)
+		give_item_action(action, user, slot)
 	hud_layerise()
 	user.position_hud_item(src,slot)
 	if(user.client)	user.client.screen |= src
@@ -370,6 +425,24 @@
 	else if(slot == slot_l_hand || slot == slot_r_hand)
 		playsound(src, pickup_sound, 20, preference = /datum/preference/toggle/pickup_sounds)
 	return
+
+/// Gives one of our item actions to a mob, when equipped to a certain slot
+/obj/item/proc/give_item_action(datum/action/action, mob/to_who, slot)
+	// Some items only give their actions buttons when in a specific slot.
+	if(!item_action_slot_check(slot, to_who))
+		// There is a chance we still have our item action currently,
+		// and are moving it from a "valid slot" to an "invalid slot".
+		// So call Remove() here regardless, even if excessive.
+		action.Remove(to_who)
+		return
+
+	action.Grant(to_who)
+
+//sometimes we only want to grant the item's action if it's equipped in a specific slot.
+/obj/item/proc/item_action_slot_check(slot, mob/user)
+	if(slot == SLOT_BACK || slot == LEGS) //these aren't true slots, so avoid granting actions there
+		return FALSE
+	return TRUE
 
 // As above but for items being equipped to an active module on a robot.
 /obj/item/proc/equipped_robot(var/mob/user)
@@ -534,11 +607,11 @@ var/list/global/slot_flags_enumeration = list(
 	return
 
 
-//This proc is executed when someone clicks the on-screen UI button. To make the UI button show, set the 'icon_action_button' to the icon_state of the image of the button in screen1_action.dmi
+//This proc is executed when someone clicks the on-screen UI button.
 //The default action is attack_self().
 //Checks before we get to here are: mob is alive, mob is not restrained, paralyzed, asleep, resting, laying, item is on the mob.
-/obj/item/proc/ui_action_click()
-	attack_self(usr)
+/obj/item/proc/ui_action_click(mob/user, actiontype)
+	attack_self(user)
 
 //RETURN VALUES
 //handle_shield should return a positive value to indicate that the attack is blocked and should be prevented.
@@ -650,8 +723,10 @@ var/list/global/slot_flags_enumeration = list(
 		return
 
 	//if we haven't made our blood_overlay already
-	if( !blood_overlay )
+	if(!blood_overlay)
 		generate_blood_overlay()
+	else
+		overlays.Remove(blood_overlay)
 
 	//Make the blood_overlay have the proper color then apply it.
 	blood_overlay.color = blood_color

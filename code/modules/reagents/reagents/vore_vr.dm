@@ -113,7 +113,7 @@
 			else if(prob(1))
 				playsound(M, 'sound/vore/schlorp.ogg', 50, 1)
 				P.absorbed = 0
-				M.visible_message(span_green("<b>Something spills into [M]'s [lowertext(B.name)]!</b>"))
+				M.visible_message(span_infoplain(span_green(span_bold("Something spills into [M]'s [lowertext(B.name)]!"))))
 
 ////////////////////////// TF Drugs //////////////////////////
 
@@ -203,7 +203,7 @@
 	var/drug_strength = 20
 	M.druggy = max(M.druggy, drug_strength)
 
-/datum/reagent/drugs/bliss/overdose(var/mob/living/M as mob)
+/datum/reagent/drugs/rainbow_toxin/overdose(var/mob/living/M as mob)
 	if(prob_proc == TRUE && prob(20))
 		M.hallucination = max(M.hallucination, 5)
 		prob_proc = FALSE

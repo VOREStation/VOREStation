@@ -166,13 +166,13 @@
 		if(weedlevel > 0)
 			nymph.reagents.add_reagent("glucose", weedlevel)
 			weedlevel = 0
-			nymph.visible_message(span_notice("<b>[nymph]</b> begins rooting through [src], ripping out weeds and eating them noisily."),span_notice("You begin rooting through [src], ripping out weeds and eating them noisily."))
+			nymph.visible_message(span_notice(span_bold("[nymph]") + " begins rooting through [src], ripping out weeds and eating them noisily."),span_notice("You begin rooting through [src], ripping out weeds and eating them noisily."))
 		else if(nymph.nutrition > 100 && nutrilevel < 10)
 			nymph.nutrition -= ((10-nutrilevel)*5)
 			nutrilevel = 10
-			nymph.visible_message(span_notice("<b>[nymph]</b> secretes a trickle of green liquid, refilling [src]."),span_notice("You secrete a trickle of green liquid, refilling [src]."))
+			nymph.visible_message(span_notice(span_bold("[nymph]") + " secretes a trickle of green liquid, refilling [src]."),span_notice("You secrete a trickle of green liquid, refilling [src]."))
 		else
-			nymph.visible_message(span_notice("<b>[nymph]</b> rolls around in [src] for a bit."),span_notice("You roll around in [src] for a bit."))
+			nymph.visible_message(span_notice(span_bold("[nymph]") + " rolls around in [src] for a bit."),span_notice("You roll around in [src] for a bit."))
 		return
 
 /obj/machinery/portable_atmospherics/hydroponics/Initialize()
@@ -480,7 +480,7 @@
 	weedlevel = 0
 
 	update_icon()
-	visible_message(span_danger("The <span class='notice'>[previous_plant]</span> has suddenly mutated into <span class='notice'>[seed.display_name]!</span>"))
+	visible_message(span_danger("The " + span_notice("[previous_plant]") + " has suddenly mutated into " + span_notice("[seed.display_name]") + "!"))
 
 	return
 
@@ -648,13 +648,13 @@
 
 	if(seed)
 		if(weedlevel >= 5)
-			. += "It is <span class='danger'>infested with weeds</span>!"
+			. += "It is " + span_danger("infested with weeds") + "!"
 		if(pestlevel >= 5)
-			. += "It is <span class='danger'>infested with tiny worms</span>!"
+			. += "It is " + span_danger("infested with tiny worms") + "!"
 		if(dead)
-			. += "It has <span class='danger'>a dead plant</span>!"
+			. += "It has " + span_danger("a dead plant") + "!"
 		else if(health <= (seed.get_trait(TRAIT_ENDURANCE)/ 2))
-			. += "It has <span class='danger'>an unhealthy plant</span>!"
+			. += "It has " + span_danger("an unhealthy plant") + "!"
 	if(frozen == 1)
 		. += span_notice("It is cryogenically frozen.")
 	if(mechanical)

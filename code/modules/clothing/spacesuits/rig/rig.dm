@@ -15,7 +15,7 @@
 	req_one_access = list()
 	req_access = list()
 	w_class = ITEMSIZE_HUGE
-	action_button_name = "Toggle Heatsink"
+	actions_types = list(/datum/action/item_action/toggle_heatsink)
 
 	// These values are passed on to all component pieces.
 	armor = list(melee = 40, bullet = 5, laser = 20,energy = 5, bomb = 35, bio = 100, rad = 20)
@@ -98,7 +98,7 @@
 	var/datum/mini_hud/rig/minihud
 
 	// Action button
-	action_button_name = "Hardsuit Interface"
+	actions_types = list(/datum/action/item_action/hardsuit_interface)
 
 /obj/item/rig/New()
 	..()
@@ -384,7 +384,7 @@
 			QDEL_NULL(minihud)
 		else
 			minihud = new (M.hud_used, src)
-	to_chat(M, span_notice("<b>Your entire suit [canremove ? "loosens as the components relax" : "tightens around you as the components lock into place"].</b>"))
+	to_chat(M, span_boldnotice("Your entire suit [canremove ? "loosens as the components relax" : "tightens around you as the components lock into place"]."))
 	playsound(src, 'sound/machines/rig/rigstarted.ogg', 10, FALSE)
 	M.client?.screen -= booting_L
 	qdel(booting_L)
@@ -406,9 +406,6 @@
 			update_airtight(piece, 0) // Unseal
 		else
 			update_airtight(piece, 1) // Seal
-
-/obj/item/rig/ui_action_click()
-	toggle_cooling(usr)
 
 /obj/item/rig/proc/toggle_cooling(var/mob/user)
 	if(cooling_on)
@@ -675,7 +672,7 @@
 			return
 
 	if(istype(M) && (M.back == src || M.belt == src))
-		M.visible_message(span_notice("<b>[M] struggles into \the [src].</b>"), span_notice("<b>You struggle into \the [src].</b>"))
+		M.visible_message(span_boldnotice("[M] struggles into \the [src]."), span_boldnotice("You struggle into \the [src]."))
 		wearer = M
 		wearer.wearing_rig = src
 		update_icon()
@@ -725,7 +722,7 @@
 				holder = use_obj.loc
 				if(istype(holder))
 					if(use_obj && check_slot == use_obj)
-						to_chat(H, span_notice("<b>Your [use_obj.name] [use_obj.gender == PLURAL ? "retract" : "retracts"] swiftly.</b>"))
+						to_chat(H, span_boldnotice("Your [use_obj.name] [use_obj.gender == PLURAL ? "retract" : "retracts"] swiftly."))
 						playsound(src, 'sound/machines/rig/rigservo.ogg', 10, FALSE)
 						use_obj.canremove = TRUE
 						holder.drop_from_inventory(use_obj)
@@ -788,7 +785,7 @@
 		toggle_piece(piece, H, ONLY_DEPLOY)
 
 /obj/item/rig/dropped(var/mob/user)
-	..()
+	. = ..(user)
 	for(var/piece in list("helmet","gauntlets","chest","boots"))
 		toggle_piece(piece, user, ONLY_RETRACT)
 	if(wearer && wearer.wearing_rig == src)
@@ -953,7 +950,7 @@
 						M.stop_pulling()
 
 	if(wearer.pinned.len)
-		to_chat(src, "<span class='notice'>Your host is pinned to a wall by [wearer.pinned[1]]</span>!")
+		to_chat(src, span_notice("Your host is pinned to a wall by [wearer.pinned[1]]!"))
 		return 0
 
 	// AIs are a bit slower than regular and ignore move intent.
