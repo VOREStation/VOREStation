@@ -1,40 +1,40 @@
 //Tweaked existing vendors
-/obj/machinery/vending/hydroseeds/New()
+/obj/machinery/vending/hydroseeds/Initialize()
+	. = ..()
 	products += list(/obj/item/seeds/shrinkshroom = 3,/obj/item/seeds/megashroom = 3)
-	..()
 
-/obj/machinery/vending/security/New()
+/obj/machinery/vending/security/Initialize()
+	. = ..()
 	products += list(/obj/item/gun/energy/taser = 8,/obj/item/gun/energy/stunrevolver = 4,
 					/obj/item/reagent_containers/spray/pepper = 6,/obj/item/taperoll/police = 6,
 					/obj/item/clothing/glasses/omnihud/sec = 6)
 	contraband += list(/obj/item/implanter/compliance = 1)
-	..()
 
-/obj/machinery/vending/tool/New()
+/obj/machinery/vending/tool/Initialize()
+	. = ..()
 	products += list(/obj/item/reagent_containers/spray/windowsealant = 5)
-	..()
 
-/obj/machinery/vending/engivend/New()
+/obj/machinery/vending/engivend/Initialize()
+	. = ..()
 	products += list(/obj/item/clothing/glasses/omnihud/eng = 6)
 	contraband += list(/obj/item/rms = 5)
-	..()
 
-/obj/machinery/vending/medical/New()
+/obj/machinery/vending/medical/Initialize()
+	. = ..()
 	products += list(/obj/item/storage/box/khcrystal = 4,/obj/item/backup_implanter = 3,
 					/obj/item/clothing/glasses/omnihud/med = 4, /obj/item/glasses_kit = 1,  /obj/item/storage/quickdraw/syringe_case = 4)
-	..()
 
-/obj/machinery/vending/wallmed1/New()
+/obj/machinery/vending/wallmed1/Initialize()
+	. = ..()
 	products += list(/obj/item/bodybag/cryobag = 2)
-	..()
 
-/obj/machinery/vending/wallmed2/New()
+/obj/machinery/vending/wallmed2/Initialize()
+	. = ..()
 	products += list(/obj/item/bodybag/cryobag = 3)
-	..()
 
-/obj/machinery/vending/wallmed1/public/New()
+/obj/machinery/vending/wallmed1/public/Initialize()
+	. = ..()
 	products += list(/obj/item/bodybag/cryobag = 4)
-	..()
 
 // Food Machines (for event/away maps)
 
