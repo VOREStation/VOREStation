@@ -25,12 +25,12 @@ export type hostMob = {
 
 export type insideData = {
   absorbed: BooleanLike;
-  belly_name: string;
-  belly_mode: string;
-  desc: string;
-  pred: string;
-  ref: string;
-  contents: contentData[];
+  belly_name?: string;
+  belly_mode?: string;
+  desc?: string;
+  pred?: string;
+  ref?: string;
+  contents?: contentData[];
 };
 
 export type contentData = {
