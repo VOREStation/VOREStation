@@ -222,7 +222,7 @@
 
 	// Install
 	if(W.has_tool_quality(TOOL_SCREWDRIVER))
-		user.visible_message(span_info(anchored ? span_bold("\The [user]") + " begins unscrewing \the [src]." : span_bold("\The [user]") + "begins fasten \the [src]." ))
+		user.visible_message(span_info((anchored ? (span_bold("\The [user]") + " begins unscrewing \the [src].") : (span_bold("\The [user]") + "begins fasten \the [src]."))))
 		playsound(src, W.usesound, 75, 1)
 		if(do_after(user, 10, src))
 			to_chat(user, (anchored ? span_notice("You have unfastened \the [src] from the floor.") : span_notice("You have fastened \the [src] to the floor.")))

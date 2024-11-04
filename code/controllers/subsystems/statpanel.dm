@@ -203,12 +203,12 @@ SUBSYSTEM_DEF(statpanels)
 		return
 	var/list/overrides = list()
 	for(var/image/target_image as anything in target.images)
-		if(!target_image.loc || target_image.loc.loc != target_mob.listed_turf || !target_image.override)
+		if(!target_image.loc || target_image.loc.loc != target.tracked_turf || !target_image.override)
 			continue
 		overrides += target_image.loc
 
-	var/list/atoms_to_display = list(target_mob.listed_turf)
-	for(var/atom/movable/turf_content as anything in target_mob.listed_turf)
+	var/list/atoms_to_display = list(target.tracked_turf)
+	for(var/atom/movable/turf_content as anything in target.tracked_turf)
 		if(turf_content.mouse_opacity == MOUSE_OPACITY_TRANSPARENT)
 			continue
 		if(turf_content.invisibility > target_mob.see_invisible)
@@ -319,12 +319,11 @@ SUBSYSTEM_DEF(statpanels)
 
 	// Handle turfs
 
-	if(target_mob?.listed_turf)
-		if(!target_mob.TurfAdjacent(target_mob.listed_turf))
-			target.stat_panel.send_message("removed_listedturf")
-			target_mob.listed_turf = null
+	if(target.tracked_turf)
+		if(!target_mob.TurfAdjacent(target.tracked_turf))
+			target_mob.set_listed_turf(null)
 
-		else if(target.stat_tab == target_mob?.listed_turf.name || !(target_mob?.listed_turf.name in target.panel_tabs))
+		else if(target.stat_tab == target.tracked_turf.name || !(target.tracked_turf.name in target.panel_tabs))
 			set_turf_examine_tab(target, target_mob)
 			return TRUE
 
@@ -351,6 +350,8 @@ SUBSYSTEM_DEF(statpanels)
 
 /// Stat panel window declaration
 /client/var/datum/tgui_window/stat_panel
+/// Turf examine turf
+/client/var/turf/tracked_turf
 
 /// Datum that holds and tracks info about a client's object window
 /// Really only exists because I want to be able to do logic with signals
@@ -365,8 +366,6 @@ SUBSYSTEM_DEF(statpanels)
 	var/list/atoms_to_imagify = list()
 	/// Our owner client
 	var/client/parent
-	/// Are we currently tracking a turf?
-	var/actively_tracking = FALSE
 	///For reusing this logic for examines
 	var/atom/examine_target
 	var/flags = 0
@@ -418,28 +417,31 @@ SUBSYSTEM_DEF(statpanels)
 	if(!length(to_make))
 		return PROCESS_KILL
 
-/datum/object_window_info/proc/start_turf_tracking()
-	if(actively_tracking)
+/datum/object_window_info/proc/start_turf_tracking(turf/new_turf)
+	if(parent.tracked_turf)
 		stop_turf_tracking()
 	var/static/list/connections = list(
 		COMSIG_MOVABLE_MOVED = PROC_REF(on_mob_move),
 		COMSIG_MOB_LOGOUT = PROC_REF(on_mob_logout),
 	)
 	AddComponent(/datum/component/connect_mob_behalf, parent, connections)
-	RegisterSignal(parent.mob.listed_turf, COMSIG_ATOM_ENTERED, PROC_REF(turflist_changed))
-	RegisterSignal(parent.mob.listed_turf, COMSIG_ATOM_EXITED, PROC_REF(turflist_changed))
-	actively_tracking = TRUE
+	RegisterSignal(parent.tracked_turf, COMSIG_ATOM_ENTERED, PROC_REF(turflist_changed))
+	RegisterSignal(parent.tracked_turf, COMSIG_ATOM_EXITED, PROC_REF(turflist_changed))
+	parent.stat_panel.send_message("create_listedturf", new_turf)
+	parent.tracked_turf = new_turf
 
 /datum/object_window_info/proc/stop_turf_tracking()
-	qdel(GetComponent(/datum/component/connect_mob_behalf))
-	UnregisterSignal(parent.mob.listed_turf, COMSIG_ATOM_ENTERED)
-	UnregisterSignal(parent.mob.listed_turf, COMSIG_ATOM_EXITED)
-	actively_tracking = FALSE
+	if(GetComponent(/datum/component/connect_mob_behalf))
+		qdel(GetComponent(/datum/component/connect_mob_behalf))
+	if(parent.tracked_turf)
+		UnregisterSignal(parent.tracked_turf, COMSIG_ATOM_ENTERED)
+		UnregisterSignal(parent.tracked_turf, COMSIG_ATOM_EXITED)
+		parent.stat_panel.send_message("remove_listedturf")
+		parent.tracked_turf = null
 
 /datum/object_window_info/proc/on_mob_move(mob/source)
 	SIGNAL_HANDLER
-	var/turf/listed = source.listed_turf
-	if(!listed || !source.TurfAdjacent(listed))
+	if(!parent.tracked_turf || !source.TurfAdjacent(parent.tracked_turf))
 		source.set_listed_turf(null)
 
 /datum/object_window_info/proc/on_mob_logout(mob/source)
@@ -466,16 +468,12 @@ SUBSYSTEM_DEF(statpanels)
 
 /mob/proc/set_listed_turf(turf/new_turf)
 	if(!client)
-		listed_turf = new_turf
 		return
 	if(!client.obj_window)
 		client.obj_window = new(client)
+	if(client.tracked_turf == new_turf)
+		return
 	if(!new_turf)
 		client.obj_window.stop_turf_tracking() //Needs to go before listed_turf is set to null so signals can be removed
-	listed_turf = new_turf
-
-	if(listed_turf)
-		client.stat_panel.send_message("create_listedturf", listed_turf.name)
-		client.obj_window.start_turf_tracking()
-	else
-		client.stat_panel.send_message("remove_listedturf")
+		return
+	client.obj_window.start_turf_tracking(new_turf)
