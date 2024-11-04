@@ -2,6 +2,7 @@
 	var/obj/effect/overmap/visitable/ship/linked
 	var/list/viewers
 	var/extra_view = 0
+	var/map_view_used = FALSE
 
 /datum/tgui_module/ship/New()
 	. = ..()
@@ -77,13 +78,17 @@
 		user.reset_view(linked)
 	user.set_viewsize(world.view + extra_view)
 	user.AddComponent(/datum/component/recursive_move)
-	RegisterSignal(user, COMSIG_OBSERVER_MOVED, /datum/tgui_module/ship/proc/unlook)
+	if(!map_view_used)
+		RegisterSignal(user, COMSIG_OBSERVER_MOVED, /datum/tgui_module/ship/proc/unlook)
+		map_view_used = TRUE
 	LAZYDISTINCTADD(viewers, WEAKREF(user))
 
 /datum/tgui_module/ship/proc/unlook(var/mob/user)
 	user.reset_view()
 	user.set_viewsize() // reset to default
-	UnregisterSignal(user, COMSIG_OBSERVER_MOVED)
+	if(map_view_used)
+		UnregisterSignal(user, COMSIG_OBSERVER_MOVED)
+		map_view_used = FALSE
 	LAZYREMOVE(viewers, WEAKREF(user))
 
 /datum/tgui_module/ship/proc/viewing_overmap(mob/user)

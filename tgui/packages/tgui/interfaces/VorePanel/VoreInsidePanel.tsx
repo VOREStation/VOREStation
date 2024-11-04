@@ -19,7 +19,7 @@ export const VoreInsidePanel = (props: {
   }
 
   return (
-    <Section title="Inside">
+    <Section title="Inside" fill scrollable>
       <Box color="green" inline>
         You are currently {absorbed ? 'absorbed into' : 'inside'}
       </Box>

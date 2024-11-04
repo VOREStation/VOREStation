@@ -6,7 +6,7 @@ var/global/list/engwords = list("travel", "blood", "join", "hell", "destroy", "t
 var/global/list/rnwords = list("ire","ego","nahlizet","certum","veri","jatkaa","mgar","balaq", "karazet", "geeri")
 
 /client/proc/check_words() // -- Urist
-	set category = "Special Verbs"
+	set category = "Admin.Secrets"
 	set name = "Check Rune Words"
 	set desc = "Check the rune-word meaning"
 	if(!cultwords["travel"])

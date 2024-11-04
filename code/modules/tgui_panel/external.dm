@@ -10,7 +10,7 @@
  */
 /client/verb/fix_tgui_panel()
 	set name = "Fix chat"
-	set category = "OOC"
+	set category = "OOC.Debug"
 	var/action
 	log_tgui(src, "Started fixing.", context = "verb/fix_tgui_panel")
 
@@ -35,10 +35,16 @@
 	// Force show the panel to see if there are any errors
 	winset(src, "output", "is-disabled=1&is-visible=0")
 	winset(src, "browseroutput", "is-disabled=0;is-visible=1")
+	// TODO: Remove version check with 516
+	if(byond_version >= 516)
+		if(prefs?.read_preference(/datum/preference/toggle/browser_dev_tools))
+			winset(src, null, "browser-options=[DEFAULT_CLIENT_BROWSER_OPTIONS],devtools")
+		else
+			winset(src, null, "browser-options=[DEFAULT_CLIENT_BROWSER_OPTIONS]")
 
 /client/verb/refresh_tgui()
 	set name = "Refresh TGUI"
-	set category = "OOC"
+	set category = "OOC.Debug"
 
 	for(var/window_id in tgui_windows)
 		var/datum/tgui_window/window = tgui_windows[window_id]

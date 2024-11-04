@@ -1,5 +1,5 @@
 /client/proc/roll_dices()
-	set category = "Fun"
+	set category = "Fun.Event Kit"
 	set name = "Roll Dice"
 	if(!check_rights(R_FUN))
 		return

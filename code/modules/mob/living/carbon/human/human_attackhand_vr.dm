@@ -3,7 +3,7 @@
 
 /mob/living/carbon/human/verb/check_attacks()
 	set name = "Check Attacks"
-	set category = "IC"
+	set category = "IC.Game"
 	set src = usr
 
 	var/dat = span_bold("<font size = 5>Known Attacks</font>") + "<br/><br/>"

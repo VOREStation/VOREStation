@@ -20,7 +20,7 @@
 /client/verb/toggle_autohiss()
 	set name = "Toggle Auto-Hiss"
 	set desc = "Toggle automatic hissing as Unathi and r-rolling as Taj"
-	set category = "OOC"
+	set category = "OOC.Game Settings"
 
 	autohiss_mode = (autohiss_mode + 1) % AUTOHISS_NUM
 	switch(autohiss_mode)

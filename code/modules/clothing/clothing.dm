@@ -460,7 +460,6 @@
 
 	var/light_overlay = "helmet_light"
 	var/image/helmet_light
-	var/overhead = 0			//Used by spacesuit helmets
 
 	sprite_sheets = list(
 		SPECIES_TESHARI = 'icons/inventory/head/mob_teshari.dmi',
@@ -631,7 +630,7 @@
 /obj/item/clothing/shoes/proc/draw_knife()
 	set name = "Draw Boot Knife"
 	set desc = "Pull out your boot knife."
-	set category = "IC"
+	set category = "IC.Game"
 	set src in usr
 
 	if(usr.stat || usr.restrained() || usr.incapacitated())

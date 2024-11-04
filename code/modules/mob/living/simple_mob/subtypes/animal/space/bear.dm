@@ -44,6 +44,6 @@
 /mob/living/simple_mob/animal/space/bear/verb/berserk()
 	set name = "Berserk"
 	set desc = "Enrage and become vastly stronger for a period of time, however you will be weaker afterwards."
-	set category = "Abilities"
+	set category = "Abilities.Bear"
 
 	add_modifier(/datum/modifier/berserk, 30 SECONDS)

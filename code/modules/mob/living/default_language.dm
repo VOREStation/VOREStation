@@ -3,7 +3,7 @@
 
 /mob/living/verb/set_default_language()
 	set name = "Set Default Language"
-	set category = "IC"
+	set category = "IC.Settings"
 
 	var/language = tgui_input_list(usr, "Select your default language", "Available languages", languages)
 
@@ -42,7 +42,7 @@
 
 /mob/living/verb/check_default_language()
 	set name = "Check Default Language"
-	set category = "Game"
+	set category = "IC.Game"
 
 	if(default_language)
 		to_chat(src, span_notice("You are currently speaking [default_language] by default."))

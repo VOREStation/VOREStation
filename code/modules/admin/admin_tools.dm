@@ -1,5 +1,5 @@
 /client/proc/cmd_admin_check_player_logs(mob/living/M as mob in mob_list)
-	set category = "Admin"
+	set category = "Admin.Logs"
 	set name = "Check Player Attack Logs"
 	set desc = "Check a player's attack logs."
 
@@ -30,7 +30,7 @@
 	feedback_add_details("admin_verb","PL") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/cmd_admin_check_dialogue_logs(mob/living/M as mob in mob_list)
-	set category = "Admin"
+	set category = "Admin.Logs"
 	set name = "Check Player Dialogue Logs"
 	set desc = "Check a player's dialogue logs."
 

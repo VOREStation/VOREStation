@@ -114,7 +114,7 @@
 // Parameters: None
 // Description: Allows a ghost to send a text message to a communicator.
 /mob/observer/dead/verb/text_communicator()
-	set category = "Ghost"
+	set category = "Ghost.Message"
 	set name = "Text Communicator"
 	set desc = "If there is a communicator available, send a text message to it."
 
@@ -174,7 +174,7 @@
 // Parameters: None
 // Description: Lets ghosts review messages they've sent or received.
 /mob/observer/dead/verb/show_text_messages()
-	set category = "Ghost"
+	set category = "Ghost.Settings"
 	set name = "Show Text Messages"
 	set desc = "Allows you to see exonet text messages you've sent and received."
 

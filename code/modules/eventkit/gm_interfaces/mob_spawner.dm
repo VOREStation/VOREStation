@@ -193,7 +193,7 @@
 	qdel(src)
 
 /client/proc/eventkit_open_mob_spawner()
-	set category = "EventKit"
+	set category = "Fun.Event Kit"
 	set name = "Open Mob Spawner"
 	set desc = "Opens an advanced version of the mob spawner."
 

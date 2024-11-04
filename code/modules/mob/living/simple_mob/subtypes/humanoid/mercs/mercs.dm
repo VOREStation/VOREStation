@@ -87,13 +87,22 @@
 	intelligence_level = AI_SMART // Also knows not to walk while confused if it risks death.
 	threaten_delay = 30 SECONDS // Mercs will give you 30 seconds to leave or get shot.
 
+/datum/ai_holder/simple_mob/merc/guard_limit
+	guard_limit = TRUE
+
 /datum/ai_holder/simple_mob/merc/ranged
 	pointblank = TRUE		// They get close? Just shoot 'em!
 	firing_lanes = TRUE		// But not your buddies!
 	conserve_ammo = TRUE	// And don't go wasting bullets!
 
+/datum/ai_holder/simple_mob/merc/ranged/guard_limit
+	guard_limit = TRUE
+
 /datum/ai_holder/simple_mob/merc/ranged/sniper
 	vision_range = 14	// We're a person with a long-ranged gun.
+
+/datum/ai_holder/simple_mob/merc/ranged/sniper/guard_limit
+	guard_limit = TRUE
 
 /datum/ai_holder/simple_mob/merc/ranged/sniper/max_range(atom/movable/AM)
 	return holder.ICheckRangedAttack(AM) ? 14 : 1
@@ -426,3 +435,42 @@
 		/obj/item/grenade/spawnergrenade/manhacks/mercenary = 50,
 		/obj/item/grenade/spawnergrenade/manhacks/mercenary = 30
 		)
+
+
+////////////////////////////////
+//		Stealth Mission Mercs
+////////////////////////////////
+
+// Most likely to drop a broken weapon matching them, if it's a gun.
+/mob/living/simple_mob/humanoid/merc/melee/poi/guard_limit
+	ai_holder_type = /datum/ai_holder/simple_mob/merc/guard_limit
+
+/mob/living/simple_mob/humanoid/merc/melee/sword/poi/guard_limit
+	ai_holder_type = /datum/ai_holder/simple_mob/merc/guard_limit
+
+/mob/living/simple_mob/humanoid/merc/ranged/poi/guard_limit
+	ai_holder_type = /datum/ai_holder/simple_mob/merc/ranged/guard_limit
+
+/mob/living/simple_mob/humanoid/merc/ranged/smg/poi/guard_limit
+	ai_holder_type = /datum/ai_holder/simple_mob/merc/ranged/guard_limit
+
+/mob/living/simple_mob/humanoid/merc/ranged/laser/poi/guard_limit
+	ai_holder_type = /datum/ai_holder/simple_mob/merc/ranged/guard_limit
+
+/mob/living/simple_mob/humanoid/merc/ranged/ionrifle/poi/guard_limit
+	ai_holder_type = /datum/ai_holder/simple_mob/merc/ranged/guard_limit
+
+/mob/living/simple_mob/humanoid/merc/ranged/grenadier/poi/guard_limit
+	ai_holder_type = /datum/ai_holder/simple_mob/merc/ranged/guard_limit
+
+/mob/living/simple_mob/humanoid/merc/ranged/rifle/poi/guard_limit
+	ai_holder_type = /datum/ai_holder/simple_mob/merc/ranged/guard_limit
+
+/mob/living/simple_mob/humanoid/merc/ranged/rifle/mag/poi/guard_limit
+	ai_holder_type = /datum/ai_holder/simple_mob/merc/ranged/guard_limit
+
+/mob/living/simple_mob/humanoid/merc/ranged/technician/poi/guard_limit
+	ai_holder_type = /datum/ai_holder/simple_mob/merc/ranged/guard_limit
+
+/mob/living/simple_mob/humanoid/merc/ranged/sniper/guard_limit
+	ai_holder_type = /datum/ai_holder/simple_mob/merc/ranged/sniper/guard_limit
