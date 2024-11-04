@@ -241,9 +241,6 @@
 	cost = 1
 	var_changes = list("throwforce_absorb_threshold" = 10)
 
-
-
-
 /datum/trait/positive/wall_climber
 	name = "Climber, Amateur"
 	desc = "You can climb certain walls without tools! This is likely a personal skill you developed. You can also climb lattices and ladders a little bit faster than everyone else."
@@ -255,7 +252,7 @@
 	cost = 1
 	custom_only = FALSE
 	banned_species = list(SPECIES_TAJ, SPECIES_VASILISSAN)	// They got unique climbing delay.
-	var_changes = list("can_climb" = TRUE, "climb_mult" = 0.9)
+	var_changes = list("can_climb" = TRUE, "climb_mult" = 0.75)
 	excludes = list(/datum/trait/positive/wall_climber_pro, /datum/trait/positive/wall_climber_natural)
 
 /datum/trait/positive/wall_climber_natural
@@ -268,7 +265,7 @@
 	a climbable wall. To climbe like so, use the verb 'Climb Down Wall' in IC tab!"
 	cost = 0
 	custom_only = FALSE
-	var_changes = list("can_climb" = TRUE, "climb_mult" = 0.8)
+	var_changes = list("can_climb" = TRUE, "climb_mult" = 0.75)
 	allowed_species = list(SPECIES_XENOCHIMERA, SPECIES_CUSTOM)	//So that we avoid needless bloat for xenochim
 	excludes = list(/datum/trait/positive/wall_climber_pro, /datum/trait/positive/wall_climber)
 
@@ -282,7 +279,7 @@
 	a climbable wall. To climbe like so, use the verb 'Climb Down Wall' in IC tab!"
 	cost = 2
 	custom_only = FALSE
-	var_changes = list("climbing_delay" = 1.25, "climb_mult" = 0.6)
+	var_changes = list("climbing_delay" = 1.25, "climb_mult" = 0.5)
 	varchange_type = TRAIT_VARCHANGE_LESS_BETTER
 	excludes = list(/datum/trait/positive/wall_climber,/datum/trait/positive/wall_climber_natural)
 
