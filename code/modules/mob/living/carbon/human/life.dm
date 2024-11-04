@@ -504,7 +504,7 @@
 /mob/living/carbon/human/handle_post_breath(datum/gas_mixture/breath)
 	..()
 	//spread some viruses while we are at it
-	if(breath && viruses.len > 0 && prob(10))
+	if(breath && !isnull(viruses) && prob(10))
 		for(var/datum/disease/D in GetViruses())
 			if((D.spread_flags & SPECIAL) || (D.spread_flags & NON_CONTAGIOUS))
 				continue
