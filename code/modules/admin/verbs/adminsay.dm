@@ -1,5 +1,5 @@
 /client/proc/cmd_admin_say(msg as text)
-	set category = "Special Verbs"
+	set category = "Admin.Chat"
 	set name = "Asay" //Gave this shit a shorter name so you only have to time out "asay" rather than "admin say" to use it --NeoFite
 	set hidden = 1
 	if(!check_rights(R_ADMIN)) //VOREStation Edit
@@ -18,7 +18,7 @@
 	feedback_add_details("admin_verb","M") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/cmd_mod_say(msg as text)
-	set category = "Special Verbs"
+	set category = "Admin.Chat"
 	set name = "Msay"
 	set hidden = 1
 
@@ -41,7 +41,7 @@
 	feedback_add_details("admin_verb","MS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/cmd_event_say(msg as text)
-	set category = "Special Verbs"
+	set category = "Admin.Chat"
 	set name = "Esay"
 	set hidden = 1
 

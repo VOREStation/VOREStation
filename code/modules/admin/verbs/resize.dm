@@ -1,7 +1,7 @@
 /client/proc/resize(var/mob/living/L in mob_list)
     set name = "Resize"
     set desc = "Resizes any living mob without any restrictions on size."
-    set category = "Fun"
+    set category = "Fun.Event Kit"
     if(!check_rights(R_ADMIN|R_FUN|R_VAREDIT))
         return
 

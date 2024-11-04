@@ -288,7 +288,7 @@
 
 /mob/verb/memory()
 	set name = "Notes"
-	set category = "IC"
+	set category = "IC.Game"
 	if(mind)
 		mind.show_memory(src)
 	else
@@ -296,7 +296,7 @@
 
 /mob/verb/add_memory(msg as message)
 	set name = "Add Note"
-	set category = "IC"
+	set category = "IC.Game"
 
 	msg = sanitize(msg)
 
@@ -384,7 +384,7 @@
 
 /mob/verb/abandon_mob()
 	set name = "Return to Menu"
-	set category = "OOC"
+	set category = "OOC.Game"
 
 	if(stat != DEAD || !ticker)
 		to_chat(usr, span_boldnotice("You must be dead to use this!"))
@@ -465,7 +465,7 @@
 
 /client/verb/changes()
 	set name = "Changelog"
-	set category = "OOC"
+	set category = "OOC.Resources"
 	src << link("https://wiki.vore-station.net/Changelog")
 
 	/*
@@ -477,7 +477,7 @@
 
 /mob/verb/observe()
 	set name = "Observe"
-	set category = "OOC"
+	set category = "OOC.Game"
 	var/is_admin = 0
 
 	if(client.holder && (client.holder.rights & R_ADMIN|R_EVENT))
@@ -519,7 +519,7 @@
 
 /mob/verb/cancel_camera()
 	set name = "Cancel Camera View"
-	set category = "OOC"
+	set category = "OOC.Game"
 	unset_machine()
 	reset_view(null)
 
@@ -543,7 +543,7 @@
 /mob/verb/stop_pulling()
 
 	set name = "Stop Pulling"
-	set category = "IC"
+	set category = "IC.Game"
 
 	if(pulling)
 		if(ishuman(pulling))
@@ -998,7 +998,7 @@
 /mob/verb/face_direction()
 
 	set name = "Face Direction"
-	set category = "IC"
+	set category = "IC.Game"
 	set src = usr
 
 	set_face_dir()

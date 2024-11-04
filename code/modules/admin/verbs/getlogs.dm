@@ -81,7 +81,7 @@
 
 //Shows today's server log
 /datum/admins/proc/view_txt_log()
-	set category = "Admin"
+	set category = "Admin.Logs"
 	set name = "Show Server Log"
 	set desc = "Shows today's server log."
 
@@ -96,7 +96,7 @@
 
 //Shows today's attack log
 /datum/admins/proc/view_atk_log()
-	set category = "Admin"
+	set category = "Admin.Logs"
 	set name = "Show Server Attack Log"
 	set desc = "Shows today's server attack log."
 

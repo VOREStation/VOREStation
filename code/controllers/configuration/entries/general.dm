@@ -549,13 +549,12 @@
 /datum/config_entry/flag/persistence_ignore_mapload
 
 /datum/config_entry/flag/allow_byond_links
-	default = TRUE //CHOMP Edit turned this on
-
+	default = TRUE
 /datum/config_entry/flag/allow_discord_links
-	default = TRUE //CHOMP Edit turned this on
+	default = TRUE
 
 /datum/config_entry/flag/allow_url_links
-	default = TRUE // honestly if I were you i'd leave this one off, only use in dire situations //CHOMP Edit: pussy.
+	default = TRUE // honestly if I were you i'd leave this one off, only use in dire situations
 
 /datum/config_entry/flag/starlight // Whether space turfs have ambient light or not
 

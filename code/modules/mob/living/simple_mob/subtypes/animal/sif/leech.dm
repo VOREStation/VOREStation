@@ -225,7 +225,7 @@
 		leave_host()
 
 /mob/living/simple_mob/animal/sif/leech/verb/infest()
-	set category = "Abilities"
+	set category = "Abilities.Leech"
 	set name = "Infest"
 	set desc = "Infest a suitable humanoid host."
 
@@ -312,7 +312,7 @@
 		return
 
 /mob/living/simple_mob/animal/sif/leech/verb/uninfest()
-	set category = "Abilities"
+	set category = "Abilities.Leech"
 	set name = "Uninfest"
 	set desc = "Leave your current host."
 
@@ -336,7 +336,7 @@
 	host = null
 
 /mob/living/simple_mob/animal/sif/leech/verb/inject_victim()
-	set category = "Abilities"
+	set category = "Abilities.Leech"
 	set name = "Incapacitate Potential Host"
 	set desc = "Inject an organic host with an incredibly painful mixture of chemicals."
 
@@ -384,7 +384,7 @@
 	H.add_modifier(/datum/modifier/poisoned/paralysis, 15 SECONDS)
 
 /mob/living/simple_mob/animal/sif/leech/verb/medicate_host()
-	set category = "Abilities"
+	set category = "Abilities.Leech"
 	set name = "Produce Chemicals (50)"
 	set desc = "Inject your host with possibly beneficial chemicals, to keep the blood flowing."
 
@@ -407,7 +407,7 @@
 		to_chat(src, span_alien("We injected \the [host] with five units of [chem]."))
 
 /mob/living/simple_mob/animal/sif/leech/verb/feed_on_organ()
-	set category = "Abilities"
+	set category = "Abilities.Leech"
 	set name = "Feed on Organ"
 	set desc = "Extend probosci to feed on a piece of your host's organs."
 

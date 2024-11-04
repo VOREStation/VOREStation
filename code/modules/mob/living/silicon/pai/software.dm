@@ -39,7 +39,7 @@ var/global/list/default_pai_software = list()
 	software = default_pai_software.Copy()
 
 /mob/living/silicon/pai/verb/paiInterface()
-	set category = "pAI Commands"
+	set category = "Abilities.pAI Commands"
 	set name = "Software Interface"
 
 	tgui_interact(src)

@@ -22,7 +22,7 @@
 
 //AI verb and proc for sending PDA messages.
 /obj/item/pda/ai/verb/cmd_pda_open_ui()
-	set category = "Abilities.AI_IM"
+	set category = "Abilities.AI"
 	set name = "Use PDA"
 	set src in usr
 

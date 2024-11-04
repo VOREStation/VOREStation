@@ -1,7 +1,7 @@
 /mob/living/carbon/human/verb/toggle_resizing_immunity()
 	set name = "Toggle Resizing Immunity"
 	set desc = "Toggles your ability to resist resizing attempts"
-	set category = "IC"
+	set category = "IC.Settings"
 
 	resizable = !resizable
 	to_chat(src, span_notice("You are now [resizable ? "susceptible" : "immune"] to being resized."))
@@ -35,7 +35,7 @@
 /mob/living/carbon/human/verb/toggle_gender_identity_vr()
 	set name = "Set Gender Identity"
 	set desc = "Sets the pronouns when examined and performing an emote."
-	set category = "IC"
+	set category = "IC.Settings"
 	var/new_gender_identity = tgui_input_list(usr, "Please select a gender Identity:", "Set Gender Identity", list(FEMALE, MALE, NEUTER, PLURAL, HERM))
 	if(!new_gender_identity)
 		return 0
@@ -44,14 +44,14 @@
 
 /mob/living/carbon/human/verb/switch_tail_layer()
 	set name = "Switch tail layer"
-	set category = "IC"
+	set category = "IC.Game"
 	set desc = "Switch tail layer on top."
 	tail_alt = !tail_alt
 	update_tail_showing()
 
 /mob/living/carbon/human/verb/hide_wings_vr()
 	set name = "Show/Hide wings"
-	set category = "IC"
+	set category = "IC.Settings"
 	set desc = "Hide your wings, or show them if you already hid them."
 	wings_hidden = !wings_hidden
 	update_wing_showing()
@@ -64,7 +64,7 @@
 
 /mob/living/carbon/human/verb/hide_tail_vr()
 	set name = "Show/Hide tail"
-	set category = "IC"
+	set category = "IC.Settings"
 	set desc = "Hide your tail, or show it if you already hid it."
 	if(!tail_style) //Just some checks.
 		to_chat(src,span_notice("You have no tail to hide!"))

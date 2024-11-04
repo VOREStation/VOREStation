@@ -525,7 +525,7 @@
 					new_belly.egg_type = new_egg_type
 
 		/* Not implemented on virgo
-		if(istext(belly_data["egg_name"])) //CHOMPAdd Start
+		if(istext(belly_data["egg_name"]))
 			var/new_egg_name = html_encode(belly_data["egg_name"])
 			if(new_egg_name)
 				new_egg_name = readd_quotes(new_egg_name)
@@ -643,7 +643,7 @@
 			var/new_sound_volume = belly_data["sound_volume"]
 			new_belly.sound_volume = sanitize_integer(new_sound_volume, 0, 100, initial(new_belly.sound_volume))
 
-		if(isnum(belly_data["noise_freq"])) //CHOMPAdd Start
+		if(isnum(belly_data["noise_freq"]))
 			var/new_noise_freq = belly_data["noise_freq"]
 			new_belly.noise_freq = sanitize_integer(new_noise_freq, MIN_VOICE_FREQ, MAX_VOICE_FREQ, initial(new_belly.noise_freq))
 		*/

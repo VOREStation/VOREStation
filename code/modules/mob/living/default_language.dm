@@ -3,7 +3,7 @@
 
 /mob/living/verb/set_default_language(language as null|anything in languages)
 	set name = "Set Default Language"
-	set category = "IC"
+	set category = "IC.Settings"
 
 	if (only_species_language && language != GLOB.all_languages[src.species_language])
 		to_chat(src, span_notice("You can only speak your species language, [src.species_language]."))
@@ -28,7 +28,7 @@
 
 /mob/living/verb/check_default_language()
 	set name = "Check Default Language"
-	set category = "IC"
+	set category = "IC.Game"
 
 	if(default_language)
 		to_chat(src, span_notice("You are currently speaking [default_language] by default."))
