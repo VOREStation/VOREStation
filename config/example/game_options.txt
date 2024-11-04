@@ -18,12 +18,12 @@ BONES_CAN_BREAK 1
 LIMBS_CAN_BREAK 1
 
 ## multiplier which enables organs to take more damage before bones breaking or limbs being destroyed
-## 100 means normal, 50 means half
-ORGAN_HEALTH_MULTIPLIER 100
+## 1.0 means normal, 0.5 means half
+ORGAN_HEALTH_MULTIPLIER 1.0
 
 ## multiplier which influences how fast organs regenerate naturally
-## 100 means normal, 50 means half
-ORGAN_REGENERATION_MULTIPLIER 50
+## 1.0 means normal, 0.5 means half
+ORGAN_REGENERATION_MULTIPLIER 0.5
 
 ### REVIVAL ###
 
