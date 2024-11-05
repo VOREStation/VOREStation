@@ -173,7 +173,9 @@ SUBSYSTEM_DEF(statpanels)
 	target.stat_panel.send_message("update_examine", examine_update)
 
 /datum/controller/subsystem/statpanels/proc/set_tickets_tab(client/target)
-	var/list/tickets = GLOB.ahelp_tickets.stat_entry(target)
+	var/list/tickets = list()
+	if(check_rights(R_ADMIN|R_SERVER|R_MOD,FALSE,target)) //Prevents non-staff from opening the list of ahelp tickets
+		tickets += GLOB.ahelp_tickets.stat_entry(target)
 	tickets += GLOB.mhelp_tickets.stat_entry(target)
 	target.stat_panel.send_message("update_tickets", tickets)
 

@@ -504,9 +504,12 @@
 /mob/living/carbon/human/handle_post_breath(datum/gas_mixture/breath)
 	..()
 	//spread some viruses while we are at it
-	if(breath && virus2.len > 0 && prob(10))
-		for(var/mob/living/carbon/M in view(1,src))
-			src.spread_disease_to(M)
+	if(breath && !isnull(viruses) && prob(10))
+		for(var/datum/disease/D in GetViruses())
+			if((D.spread_flags & SPECIAL) || (D.spread_flags & NON_CONTAGIOUS))
+				continue
+			for(var/mob/living/carbon/M in view(1,src))
+				ContractDisease(D)
 
 
 /mob/living/carbon/human/get_breath_from_internal(volume_needed=BREATH_VOLUME)
@@ -2031,8 +2034,8 @@
 
 	if (BITTEST(hud_updateflag, STATUS_HUD))
 		var/foundVirus = 0
-		for (var/ID in virus2)
-			if (ID in virusDB)
+		for (var/datum/disease/D in GetViruses())
+			if(D.discovered)
 				foundVirus = 1
 				break
 
@@ -2054,8 +2057,10 @@
 			holder2.icon_state = "hudbrainworm"
 		else
 			holder.icon_state = "hudhealthy"
-			if(virus2.len)
-				holder2.icon_state = "hudill"
+			if(viruses.len)
+				for(var/datum/disease/D in GetViruses())
+					if(D.discovered)
+						holder2.icon_state = "hudill"
 			else
 				holder2.icon_state = "hudhealthy"
 		if(block_hud)

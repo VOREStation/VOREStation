@@ -11,8 +11,6 @@
 /mob/living/carbon/Life()
 	..()
 
-	handle_viruses()
-
 	// Increase germ_level regularly
 	if(germ_level < GERM_LEVEL_AMBIENT && prob(30))	//if you're just standing there, you shouldn't get more germs beyond an ambient level
 		germ_level++
@@ -398,7 +396,10 @@
 		return
 	..()
 	if(istype(A, /mob/living/carbon) && prob(10))
-		spread_disease_to(A, "Contact")
+		var/mob/living/carbon/human/H = A
+		for(var/datum/disease/D in GetViruses())
+			if(D.spread_flags & CONTACT_GENERAL)
+				H.ContractDisease(D)
 
 /mob/living/carbon/cannot_use_vents()
 	return
@@ -542,3 +543,12 @@
 	if(allergen_type in species.food_preference)
 		return species.food_preference_bonus
 	return 0
+
+/mob/living/carbon/handle_diseases()
+	for(var/thing in GetViruses())
+		var/datum/disease/D = thing
+		if(prob(D.infectivity))
+			D.spread()
+
+		if(stat != DEAD || D.allow_dead)
+			D.stage_act()

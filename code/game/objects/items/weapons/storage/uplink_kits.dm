@@ -300,7 +300,7 @@
 
 /obj/item/storage/box/syndie_kit/viral
 	starts_with = list(
-		/obj/item/virusdish/random = 3
+		// /obj/item/virusdish/random = 3
 		)
 
 /obj/item/storage/secure/briefcase/rifle
