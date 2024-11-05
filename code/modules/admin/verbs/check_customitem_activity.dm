@@ -2,7 +2,7 @@ var/checked_for_inactives = 0
 var/inactive_keys = "None<br>"
 
 /client/proc/check_customitem_activity()
-	set category = "Admin"
+	set category = "Admin.Investigate"
 	set name = "Check activity of players with custom items"
 
 	var/dat = span_bold("Inactive players with custom items") + "<br>"

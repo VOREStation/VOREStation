@@ -94,7 +94,7 @@
 /mob/living/simple_mob/vore/sect_queen/proc/set_abdomen_color()
 	set name = "Set Glow Color"
 	set desc = "Customize your eyes and abdomen glow color."
-	set category = "Abilities"
+	set category = "Abilities.Sect Queen"
 
 	var/new_color = input(src, "Please select color.", "Glow Color", custom_eye_color) as color|null
 	if(new_color)

@@ -2120,6 +2120,12 @@
 	icon_state = "2-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/button/remote/airlock/release{
+	dir = 8;
+	pixel_y = -7;
+	pixel_x = 27;
+	id = "dorm5"
+	},
 /turf/simulated/floor/wood,
 /area/groundbase/dorms/room5)
 "fn" = (
@@ -2641,6 +2647,12 @@
 	icon_state = "2-4"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/button/remote/airlock/release{
+	dir = 4;
+	pixel_y = -7;
+	pixel_x = -27;
+	id = "dorm4"
+	},
 /turf/simulated/floor/wood,
 /area/groundbase/dorms/room4)
 "gQ" = (
@@ -6090,6 +6102,12 @@
 	icon_state = "2-4"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/button/remote/airlock/release{
+	dir = 4;
+	pixel_y = -7;
+	pixel_x = -27;
+	id = "dorm6"
+	},
 /turf/simulated/floor/wood,
 /area/groundbase/dorms/room6)
 "qG" = (
@@ -7288,6 +7306,12 @@
 	icon_state = "2-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/button/remote/airlock/release{
+	dir = 8;
+	pixel_y = -7;
+	pixel_x = 27;
+	id = "dorm3"
+	},
 /turf/simulated/floor/wood,
 /area/groundbase/dorms/room3)
 "uf" = (
@@ -13390,6 +13414,11 @@
 /obj/structure/bed/chair/sofa/corp/left{
 	dir = 4
 	},
+/obj/machinery/button/remote/airlock/release{
+	pixel_y = 27;
+	pixel_x = 7;
+	id = "dorm8"
+	},
 /turf/simulated/floor/wood,
 /area/groundbase/dorms/room8)
 "Lu" = (
@@ -15037,6 +15066,12 @@
 /obj/structure/bed/chair/sofa/corp/left{
 	dir = 8
 	},
+/obj/machinery/button/remote/airlock/release{
+	dir = 8;
+	pixel_y = -7;
+	pixel_x = 27;
+	id = "dorm1"
+	},
 /turf/simulated/floor/wood,
 /area/groundbase/dorms/room1)
 "PU" = (
@@ -15367,6 +15402,11 @@
 	},
 /obj/structure/bed/chair/sofa/corp/right{
 	dir = 8
+	},
+/obj/machinery/button/remote/airlock/release{
+	pixel_y = 27;
+	pixel_x = -7;
+	id = "dorm7"
 	},
 /turf/simulated/floor/wood,
 /area/groundbase/dorms/room7)
@@ -16944,6 +16984,12 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/structure/bed/chair/sofa/corp/right{
 	dir = 4
+	},
+/obj/machinery/button/remote/airlock/release{
+	dir = 4;
+	pixel_y = -7;
+	pixel_x = -27;
+	id = "dorm2"
 	},
 /turf/simulated/floor/wood,
 /area/groundbase/dorms/room2)

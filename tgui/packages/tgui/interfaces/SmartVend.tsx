@@ -20,7 +20,7 @@ export const SmartVend = (props) => {
   const { secure, locked, contents } = data;
 
   return (
-    <Window width={500} height={550}>
+    <Window width={640} height={550}>
       <Window.Content scrollable>
         <Section title="Storage">
           {(secure && locked === -1 && (
@@ -39,7 +39,7 @@ export const SmartVend = (props) => {
           {(contents.length === 0 && (
             <NoticeBox>Unfortunately, this {config.title} is empty.</NoticeBox>
           )) || (
-            <Table>
+            <Table style={{ tableLayout: 'fixed', width: '100%' }}>
               <Table.Row header>
                 <Table.Cell collapsing>Item</Table.Cell>
                 <Table.Cell collapsing textAlign="center">
@@ -51,7 +51,12 @@ export const SmartVend = (props) => {
               </Table.Row>
               {map(contents, (value: content, key) => (
                 <Table.Row key={key}>
-                  <Table.Cell collapsing>{value.name}</Table.Cell>
+                  <Table.Cell
+                    collapsing
+                    style={{ overflow: 'hidden', textOverflow: 'ellipsis' }}
+                  >
+                    {value.name}
+                  </Table.Cell>
                   <Table.Cell collapsing textAlign="center">
                     {value.amount} in stock
                   </Table.Cell>

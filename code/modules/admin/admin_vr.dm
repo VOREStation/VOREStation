@@ -1,5 +1,5 @@
 /datum/admins/proc/set_uplink(mob/living/carbon/human/H as mob)
-	set category = "Debug"
+	set category = "Debug.Events"
 	set name = "Set Uplink"
 	set desc = "Allows admins to set up an uplink on a character. This will be required for a character to use telecrystals."
 	set popup_menu = FALSE

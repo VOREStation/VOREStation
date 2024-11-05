@@ -1,7 +1,7 @@
 //Merged Doohl's and the existing ticklag as they both had good elements about them ~
 //Replaces the old Ticklag verb, fps is easier to understand
 /client/proc/set_server_fps()
-	set category = "Debug"
+	set category = "Debug.Server"
 	set name = "Set Server FPS"
 	set desc = "Sets game speed in frames-per-second. Can potentially break the game"
 

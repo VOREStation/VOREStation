@@ -480,7 +480,7 @@ GLOBAL_DATUM_INIT(mhelp_tickets, /datum/mentor_help_tickets, new)
 //admin proc
 /client/proc/cmd_mentor_ticket_panel()
 	set name = "Mentor Ticket List"
-	set category = "Admin"
+	set category = "Admin.Misc"
 
 	var/browse_to
 

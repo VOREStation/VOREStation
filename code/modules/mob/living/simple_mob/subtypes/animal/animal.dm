@@ -31,7 +31,7 @@
 
 /mob/living/simple_mob/animal/verb/set_flavour_text()
 	set name = "Set Flavour Text"
-	set category = "IC"
+	set category = "IC.Settings"
 	set desc = "Set your flavour text."
 	set src = usr
 	var/new_flavour_text = sanitize((input("Please describe yourself.", "Flavour Text", flavor_text) as message|null), MAX_MESSAGE_LEN)

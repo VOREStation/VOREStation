@@ -1,7 +1,7 @@
 /client/proc/change_human_appearance_admin()
 	set name = "Change Mob Appearance - Admin"
 	set desc = "Allows you to change the mob appearance"
-	set category = "Admin"
+	set category = "Admin.Events"
 
 	if(!check_rights(R_FUN)) return
 
@@ -15,7 +15,7 @@
 /client/proc/change_human_appearance_self()
 	set name = "Change Mob Appearance - Self"
 	set desc = "Allows the mob to change its appearance"
-	set category = "Admin"
+	set category = "Admin.Events"
 
 	if(!check_rights(R_FUN)) return
 
@@ -37,7 +37,7 @@
 
 /client/proc/editappear()
 	set name = "Edit Appearance"
-	set category = "Fun"
+	set category = "Fun.Event Kit"
 
 	if(!check_rights(R_FUN))	return
 

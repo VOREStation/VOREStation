@@ -365,6 +365,7 @@
 #include "code\controllers\subsystems\player_tips.dm"
 #include "code\controllers\subsystems\radiation.dm"
 #include "code\controllers\subsystems\robot_sprites.dm"
+#include "code\controllers\subsystems\server_maint.dm"
 #include "code\controllers\subsystems\shuttles.dm"
 #include "code\controllers\subsystems\skybox.dm"
 #include "code\controllers\subsystems\sounds.dm"
