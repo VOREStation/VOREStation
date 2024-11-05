@@ -51,6 +51,10 @@
 	//Chemicals in the body, this is moved over here so that blood can be added after death
 	handle_chemicals_in_body()
 
+	// Handle viruses - Dead or not!
+	if(LAZYLEN(viruses))
+		handle_diseases()
+
 	//Handle temperature/pressure differences between body and environment
 	if(environment)
 		handle_environment(environment)

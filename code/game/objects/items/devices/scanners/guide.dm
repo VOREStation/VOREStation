@@ -97,8 +97,12 @@
 		dat += span_bold("Genetic damage") + " - Utilize cryogenic pod with appropriate chemicals (i.e. Cryoxadone) and below 70 K, or give Rezadone.<br>"
 	if(bone)
 		dat += span_bold("Bone fracture") + " - Splint damaged area. Treat with bone repair surgery or Osteodaxon after treating brute damage.<br>"
-	if(M.virus2.len)
-		dat += span_bold("Viral infection") + " - Proceed with virology pathogen curing procedures or apply antiviral chemicals (i.e. Corophizine).<br>"
+	if(M.viruses.len)
+		for(var/datum/disease/D in M.GetViruses())
+			if(D.visibility_flags & HIDDEN_SCANNER)
+				continue
+			else
+				dat += span_bold("Viral Infection") + " - Inform a Virologist or the Chief Medical Officer and administer antiviral chemicals such as Spaceacilin. Limit exposure to other personnel.<br>"
 	if(robotparts)
 		dat += span_bold("Robotic body parts") + " - Should not be repaired by medical personnel, refer to robotics if damaged."
 

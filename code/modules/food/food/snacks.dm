@@ -6892,6 +6892,7 @@
 				"zombiepowder",
 				"cryptobiolin",
 				"psilocybin")), 5)
+	reagents.add_reagent("salmonella", 5)
 
 /obj/item/reagent_containers/food/snacks/old/pizza
 	name = "\improper Pizza!"
