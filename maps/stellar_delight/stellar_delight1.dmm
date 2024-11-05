@@ -8914,7 +8914,6 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/stellardelight/deck1/starboard)
 "sf" = (
-/obj/machinery/disease2/isolator,
 /obj/machinery/light/floortube{
 	dir = 8;
 	pixel_x = -6
@@ -8924,6 +8923,12 @@
 	dir = 8;
 	pixel_x = -24
 	},
+/obj/structure/closet/crate/medical,
+/obj/item/reagent_containers/glass/bottle/culture/cold{
+	pixel_x = -5;
+	pixel_y = 5
+	},
+/obj/item/reagent_containers/glass/bottle/culture/flu,
 /turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/medical/virology)
 "sg" = (
@@ -11002,9 +11007,6 @@
 /turf/simulated/floor,
 /area/maintenance/stellardelight/deck1/portaft)
 "wR" = (
-/obj/machinery/computer/diseasesplicer{
-	dir = 1
-	},
 /turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/medical/virology)
 "wS" = (
@@ -13403,7 +13405,6 @@
 /turf/simulated/wall/bay/black,
 /area/chapel/main)
 "BV" = (
-/obj/machinery/disease2/incubator,
 /obj/structure/reagent_dispensers/virusfood{
 	pixel_y = 27
 	},
@@ -13734,7 +13735,6 @@
 "CJ" = (
 /obj/structure/table/glass,
 /obj/item/book/manual/virology,
-/obj/item/antibody_scanner,
 /obj/item/reagent_containers/glass/beaker,
 /obj/item/paper_bin,
 /obj/item/folder/white,
@@ -15325,11 +15325,11 @@
 /turf/simulated/floor/tiled/steel_ridged,
 /area/prison/cell_block)
 "Gn" = (
-/obj/machinery/disease2/diseaseanalyser,
 /obj/machinery/light/floortube{
 	dir = 8;
 	pixel_x = -6
 	},
+/obj/machinery/computer/pandemic,
 /turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/medical/virology)
 "Go" = (
@@ -22433,7 +22433,6 @@
 /turf/simulated/floor/wood,
 /area/library)
 "Vq" = (
-/obj/machinery/computer/centrifuge,
 /obj/machinery/embedded_controller/radio/airlock/access_controller{
 	dir = 4;
 	id_tag = "virology_airlock_control";

@@ -12580,10 +12580,6 @@
 /obj/structure/catwalk,
 /turf/simulated/floor/plating,
 /area/maintenance/lower/solars)
-"avQ" = (
-/obj/machinery/disease2/isolator,
-/turf/simulated/floor/tiled/white,
-/area/medical/virology)
 "avR" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/yellow,
 /obj/structure/disposalpipe/segment,
@@ -14214,11 +14210,6 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/yellow,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/structure/table/glass,
-/obj/item/antibody_scanner,
-/obj/item/antibody_scanner{
-	pixel_x = 2;
-	pixel_y = 2
-	},
 /turf/simulated/floor/tiled/white,
 /area/medical/virology)
 "ayk" = (
@@ -30657,7 +30648,6 @@
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/security/brig)
 "cdl" = (
-/obj/machinery/disease2/diseaseanalyser,
 /obj/item/radio/intercom{
 	dir = 1;
 	name = "Station Intercom (General)";
@@ -30669,6 +30659,7 @@
 /obj/effect/floor_decal/corner/lime/border{
 	dir = 9
 	},
+/obj/structure/table/standard,
 /turf/simulated/floor/tiled/white,
 /area/medical/virology)
 "cdO" = (
@@ -34892,10 +34883,11 @@
 	dir = 1
 	},
 /obj/structure/closet/crate/freezer,
-/obj/item/virusdish/random,
-/obj/item/virusdish/random,
-/obj/item/virusdish/random,
-/obj/item/virusdish/random,
+/obj/item/reagent_containers/glass/bottle/culture/cold{
+	pixel_x = -5;
+	pixel_y = 5
+	},
+/obj/item/reagent_containers/glass/bottle/culture/flu,
 /turf/simulated/floor/tiled/white,
 /area/medical/virology)
 "nMH" = (
@@ -36544,7 +36536,6 @@
 /turf/simulated/floor/plating,
 /area/maintenance/lower/vacant_site)
 "sLf" = (
-/obj/machinery/computer/diseasesplicer,
 /obj/machinery/light{
 	dir = 1
 	},
@@ -36554,6 +36545,7 @@
 /obj/effect/floor_decal/corner/lime/border{
 	dir = 1
 	},
+/obj/machinery/computer/pandemic,
 /turf/simulated/floor/tiled/white,
 /area/medical/virology)
 "sLi" = (
@@ -37426,7 +37418,7 @@
 /obj/effect/floor_decal/corner/lime/border{
 	dir = 1
 	},
-/obj/machinery/computer/centrifuge,
+/obj/structure/table/standard,
 /turf/simulated/floor/tiled/white,
 /area/medical/virology)
 "vBy" = (
@@ -37545,10 +37537,6 @@
 /obj/machinery/computer/arcade/orion_trail,
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/security/brig)
-"vXS" = (
-/obj/machinery/disease2/incubator,
-/turf/simulated/floor/tiled/white,
-/area/medical/virology)
 "waR" = (
 /turf/simulated/floor/tiled/dark,
 /area/tether/surfacebase/security/weaponsrange)
@@ -54128,7 +54116,7 @@ aeE
 vwM
 avl
 afB
-avQ
+avl
 axj
 ayk
 ayK
@@ -54270,7 +54258,7 @@ aeE
 nLm
 avl
 afD
-vXS
+avl
 axF
 ayl
 avl

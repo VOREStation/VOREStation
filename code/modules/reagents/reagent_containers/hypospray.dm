@@ -381,5 +381,4 @@
 /obj/item/reagent_containers/hypospray/autoinjector/biginjector/contaminated/do_injection(mob/living/carbon/human/H, mob/living/user)
 	. = ..()
 	if(.) // Will occur if successfully injected.
-		infect_mob_random_lesser(H)
 		add_attack_logs(user, H, "Infected \the [H] with \the [src], by \the [user].")

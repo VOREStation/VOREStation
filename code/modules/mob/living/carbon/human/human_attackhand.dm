@@ -44,6 +44,17 @@
 		if(!temp || !temp.is_usable())
 			to_chat(H, span_warning("You can't use your hand."))
 			return
+
+		for(var/thing in GetViruses())
+			var/datum/disease/D = thing
+			if(D.IsSpreadByTouch())
+				H.ContractDisease(D)
+
+		for(var/thing in H.GetViruses())
+			var/datum/disease/D = thing
+			if(D.IsSpreadByTouch())
+				ContractDisease(D)
+
 	if(H.lying)
 		return
 	M.break_cloak()
@@ -65,8 +76,9 @@
 			return FALSE
 
 	if(istype(M,/mob/living/carbon))
-		var/mob/living/carbon/C = M
-		C.spread_disease_to(src, "Contact")
+		for(var/datum/disease/D in M.GetViruses())
+			if(D.spread_flags & CONTACT_HANDS)
+				ContractDisease(D)
 
 	switch(M.a_intent)
 		if(I_HELP)

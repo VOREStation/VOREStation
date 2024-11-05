@@ -31,9 +31,7 @@
 	icon_contents = "viro"
 
 /obj/machinery/smartfridge/virology/accept_check(var/obj/item/O as obj)
-	if(istype(O,/obj/item/reagent_containers/glass/beaker/vial/))
-		return 1
-	if(istype(O,/obj/item/virusdish/))
+	if(istype(O,/obj/item/storage/pill_bottle) || istype(O,/obj/item/reagent_containers) || istype(O,/obj/item/reagent_containers/glass/))
 		return 1
 	return 0
 
@@ -44,9 +42,7 @@
 	req_access = list(access_virology)
 
 /obj/machinery/smartfridge/secure/virology/accept_check(var/obj/item/O as obj)
-	if(istype(O,/obj/item/reagent_containers/glass/beaker/vial/))
-		return 1
-	if(istype(O,/obj/item/virusdish/))
+	if(istype(O,/obj/item/storage/pill_bottle) || istype(O,/obj/item/reagent_containers) || istype(O,/obj/item/reagent_containers/glass/))
 		return 1
 	return 0
 
