@@ -114,15 +114,15 @@
 					keyslot2 = null
 
 			recalculateChannels()
-			to_chat(user, "You pop out the encryption keys in the headset!")
+			to_chat(user, span_notice("You pop out the encryption keys in the headset!"))
 			playsound(src, W.usesound, 50, 1)
 
 		else
-			to_chat(user, "This headset doesn't have any encryption keys!  How useless...")
+			to_chat(user, span_notice("This headset doesn't have any encryption keys!  How useless..."))
 
 	if(istype(W, /obj/item/encryptionkey/))
 		if(keyslot1 && keyslot2)
-			to_chat(user, "The headset can't hold another key!")
+			to_chat(user, span_notice("The headset can't hold another key!"))
 			return
 
 		if(!keyslot1)
