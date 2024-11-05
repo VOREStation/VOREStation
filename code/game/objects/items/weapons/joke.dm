@@ -18,7 +18,7 @@
 		M.update_transform()
 	return ..()
 
-
+// Do not ever just leave this laying about, it will go horribly wrong!
 /obj/item/squishhammer/dark
 	name = "The Dark Short Stacker"
 	desc = "Wield the power of this weapon with responsibility (God knows you won't)."
