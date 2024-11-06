@@ -1,8 +1,8 @@
 /obj/item/multitool/hacktool
 	var/is_hacking = 0
 	var/max_known_targets
-	var/hackspeed = 1
-	var/max_level = 4		//what's the max door security_level we can handle?
+	var/hackspeed = 1		//time taken to hack: lower is faster
+	var/max_level = 4		//what's the max door security_level we can handle? default is 1, med/eng/atmos are 1.5, sec/sci are 2, command is 3, vault is 5
 	var/full_override = FALSE	//can we override door bolts too? defaults to false for event/safety reasons
 
 	var/in_hack_mode = 0
@@ -155,3 +155,16 @@
 	if(!hacktool || !hacktool.in_hack_mode || !(src_object in hacktool.known_targets))
 		return STATUS_CLOSE
 	return ..()
+
+/obj/item/multitool/hacktool/modified
+	name = "modified multitool"
+	desc = "Used for pulsing wires to test which to cut. Not recommended by doctors. This ones seems a bit larger and heavier than the usual model, for some reason. Maybe it's an older version?"
+	description_info = "You can use this on airlocks or APCs to try to hack them without cutting wires."
+	icon_state = "multitool_modified"
+
+/obj/item/multitool/hacktool/obvious
+	name = "non-standard multitool"
+	desc = "Used for pulsing wires to test which to cut. Not recommended by doctors. This one doesn't look like the usual model at all!"
+	description_info = "You can use this on airlocks or APCs to try to hack them without cutting wires."
+	icon_state = "multitool_suspicious"
+	in_hack_mode = 1	//start in hackmode
