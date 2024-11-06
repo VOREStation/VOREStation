@@ -160,7 +160,7 @@ var/global/list/valid_ringtones = list(
 	if(href_list["change_headset"])
 		var/new_headset = tgui_input_list(user, "Choose your character's style of headset:", "Character Preference", headsetlist, headsetlist[pref.headset])
 		if(!isnull(new_headset) && CanUseTopic(user))
-			pref.headset = headsetlist.Find(new_headset)
+			pref.headset = GLOB.headsetlist.Find(new_headset)
 			return TOPIC_REFRESH_UPDATE_PREVIEW
 
 	if(href_list["change_backpack"])
