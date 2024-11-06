@@ -113,7 +113,7 @@ var/global/list/valid_ringtones = list(
 	for(var/underwear_metadata in pref.all_underwear_metadata)
 		if(!(underwear_metadata in pref.all_underwear))
 			pref.all_underwear_metadata -= underwear_metadata
-	pref.headset	= sanitize_integer(pref.headset, 1, headsetlist.len, initial(pref.headset))
+	pref.headset	= sanitize_integer(pref.headset, 1, GLOB.headsetlist.len, initial(pref.headset))
 	pref.backbag	= sanitize_integer(pref.backbag, 1, backbaglist.len, initial(pref.backbag))
 	pref.pdachoice	= sanitize_integer(pref.pdachoice, 1, pdachoicelist.len, initial(pref.pdachoice))
 	pref.ringtone	= sanitize(pref.ringtone, 20)
