@@ -1,5 +1,3 @@
-#define span(class, text) ("<span class='[class]'>[text]</span>")
-
 #define get_turf(A) get_step(A,0)
 
 #define get_x(A) (get_step(A, 0)?.x || 0)
@@ -26,6 +24,7 @@
 // From TG, might be useful to have.
 // Didn't port SEND_TEXT() since to_chat() appears to serve the same purpose.
 #define DIRECT_OUTPUT(A, B) A << B
+#define DIRECT_INPUT(A, B) A >> B
 #define SEND_IMAGE(target, image) DIRECT_OUTPUT(target, image)
 #define SEND_SOUND(target, sound) DIRECT_OUTPUT(target, sound)
 //#define WRITE_LOG is in logging.dm

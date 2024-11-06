@@ -1,16 +1,17 @@
 /client/proc/cinematic(var/cinematic as anything in list("explosion",null))
 	set name = "Cinematic"
-	set category = "Fun"
+	set category = "Fun.Do Not"
 	set desc = "Shows a cinematic."	// Intended for testing but I thought it might be nice for events on the rare occasion Feel free to comment it out if it's not wanted.
 
 	if(!check_rights(R_FUN))
 		return
 
-	if(tgui_alert(usr, "Are you sure you want to run [cinematic]?","Confirmation",list("Yes","No"))=="No") return
+	if(tgui_alert(usr, "Are you sure you want to run [cinematic]?","Confirmation",list("Yes","No")) != "Yes") return
 	if(!ticker)	return
 	switch(cinematic)
 		if("explosion")
-			if(tgui_alert(usr, "The game will be over. Are you really sure?", "Confirmation", list("Continue","Cancel")) == "Cancel")
+			var/input = tgui_alert(usr, "The game will be over. Are you really sure?", "Confirmation", list("Continue","Cancel"))
+			if(!input || input == "Cancel")
 				return
 			var/parameter = tgui_input_number(src,"station_missed = ?","Enter Parameter",0,1,0)
 			var/override

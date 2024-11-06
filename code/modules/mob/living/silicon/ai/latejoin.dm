@@ -2,7 +2,7 @@ var/global/list/empty_playable_ai_cores = list()
 
 /hook/roundstart/proc/spawn_empty_ai()
 	for(var/obj/effect/landmark/start/S in landmarks_list)
-		if(S.name != "AI")
+		if(S.name != JOB_AI)
 			continue
 		if(locate(/mob/living) in S.loc)
 			continue
@@ -12,11 +12,11 @@ var/global/list/empty_playable_ai_cores = list()
 
 /mob/living/silicon/ai/verb/store_core()
 	set name = "Store Core"
-	set category = "OOC"
+	set category = "OOC.Game"
 	set desc = "Enter intelligence storage. This is functionally equivalent to cryo or robotic storage, freeing up your job slot."
 
 	if(ticker && ticker.mode && ticker.mode.name == "AI malfunction")
-		to_chat(usr, "<span class='danger'>You cannot use this verb in malfunction. If you need to leave, please adminhelp.</span>")
+		to_chat(usr, span_danger("You cannot use this verb in malfunction. If you need to leave, please adminhelp."))
 		return
 
 	// Guard against misclicks, this isn't the sort of thing we want happening accidentally

@@ -25,7 +25,7 @@
 	ai_holder_type = /datum/ai_holder/simple_mob/retaliate
 
 	meat_amount = 5
-	meat_type = /obj/item/weapon/reagent_containers/food/snacks/xenomeat/spidermeat
+	meat_type = /obj/item/reagent_containers/food/snacks/xenomeat/spidermeat
 
 	//Space bees aren't affected by atmos.
 	min_oxy = 0
@@ -38,7 +38,7 @@
 	max_n2 = 0
 	minbodytemp = 0
 
-	faction = "bee"
+	faction = FACTION_BEE
 
 	var/poison_type = "spidertoxin"	// The reagent that gets injected when it attacks, can be changed to different toxin.
 	var/poison_chance = 10			// Chance for injection to occur.
@@ -65,7 +65,7 @@
 // Does actual poison injection, after all checks passed.
 /mob/living/simple_mob/vore/bee/proc/inject_poison(mob/living/L, target_zone)
 	if(prob(poison_chance))
-		to_chat(L, "<span class='warning'>You feel a tiny prick.</span>")
+		to_chat(L, span_warning("You feel a tiny prick."))
 		L.reagents.add_reagent(poison_type, poison_per_bite)
 
 /datum/say_list/bee

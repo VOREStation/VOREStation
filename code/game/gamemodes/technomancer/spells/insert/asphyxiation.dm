@@ -4,27 +4,27 @@
 	hits, which inhibits the delivery of oxygen.  The effectiveness of the toxin is heavily dependent on how healthy the target is, \
 	with the target taking more damage the more wounded they are.  The effect lasts for twelve seconds."
 	cost = 140
-	obj_path = /obj/item/weapon/spell/insert/asphyxiation
+	obj_path = /obj/item/spell/insert/asphyxiation
 
-/obj/item/weapon/spell/insert/asphyxiation
+/obj/item/spell/insert/asphyxiation
 	name = "asphyxiation"
 	desc = "Now you can cause suffication from afar!"
 	icon_state = "generic"
 	cast_methods = CAST_RANGED
 	aspect = ASPECT_BIOMED
 	light_color = "#FF5C5C"
-	inserting = /obj/item/weapon/inserted_spell/asphyxiation
+	inserting = /obj/item/inserted_spell/asphyxiation
 
 // maxHealth - getOxyLoss() - getToxLoss() - getFireLoss() - getBruteLoss() - getCloneLoss() - halloss
 
-/obj/item/weapon/inserted_spell/asphyxiation/on_insert()
+/obj/item/inserted_spell/asphyxiation/on_insert()
 	spawn(1)
 		if(ishuman(host))
 			var/mob/living/carbon/human/H = host
 			if(H.isSynthetic() || H.does_not_breathe) // It's hard to choke a robot or something that doesn't breathe.
 				on_expire()
 				return
-			to_chat(H, "<span class='warning'>You are having difficulty breathing!</span>")
+			to_chat(H, span_warning("You are having difficulty breathing!"))
 			var/pulses = 3
 			var/warned_victim = 0
 			while(pulses)
@@ -39,12 +39,12 @@
 			if(src) //We might've been dispelled at this point and deleted, better safe than sorry.
 				on_expire()
 
-/obj/item/weapon/inserted_spell/asphyxiation/on_expire()
+/obj/item/inserted_spell/asphyxiation/on_expire()
 	..()
 
 // if((getOxyLoss() > (species.total_health/2)) || (health <= config.health_threshold_crit))
 
-/obj/item/weapon/inserted_spell/asphyxiation/proc/predict_crit(var/pulses_remaining, var/mob/living/carbon/human/victim, var/previous_damage = 0)
+/obj/item/inserted_spell/asphyxiation/proc/predict_crit(var/pulses_remaining, var/mob/living/carbon/human/victim, var/previous_damage = 0)
 	if(pulses_remaining <= 0) // Infinite loop protection
 		return 0
 	var/health_lost
@@ -63,12 +63,12 @@
 		return .(pulses_remaining, victim, previous_damage)
 	// Now check if our damage predictions are going to cause the victim to go into crit if no healing occurs.
 	if(previous_damage + health_lost >= victim.getMaxHealth()) // We're probably going to hardcrit
-		to_chat(victim, "<span class='danger'><font size='3'>A feeling of immense dread starts to overcome you as everything starts \
-		to fade to black...</font></span>")
+		to_chat(victim, span_danger(span_large("A feeling of immense dread starts to overcome you as everything starts \
+		to fade to black...")))
 		//to_world("Predicted hardcrit.")
 		return 1
 	else if(predicted_damage >= victim.species.total_health / 2) // Or perhaps we're gonna go into 'oxy crit'.
-		to_chat(victim, "<span class='danger'>You feel really light-headed, and everything seems to be fading...</span>")
+		to_chat(victim, span_danger("You feel really light-headed, and everything seems to be fading..."))
 		//to_world("Predicted oxycrit.")
 		return 1
 	//If we're at this point, the spell is not going to result in critting.

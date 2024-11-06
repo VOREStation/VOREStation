@@ -27,7 +27,7 @@
 /client/proc/add_mob_for_narration(E as obj|mob|turf in orange(world.view))
 	set name = "Narrate Entity (Add ref)"
 	set desc = "Saves a reference of target mob to be called when narrating."
-	set category = "Fun"
+	set category = "Fun.Narrate"
 
 	if(!check_rights(R_FUN)) return
 
@@ -40,20 +40,20 @@
 
 	//Since we extended to include all atoms, we're shutting things down with a guard clause for ghosts
 	if(istype(E, /mob/observer))
-		to_chat(usr, SPAN_NOTICE("Ghosts shouldn't be narrated! If you want a ghost, make it a subtype of mob/living!"))
+		to_chat(usr, span_notice("Ghosts shouldn't be narrated! If you want a ghost, make it a subtype of mob/living!"))
 		return
 	//We require a static mob/living type to check for .client and also later on, to use the unique .say mechanics for stuttering and language
 	if(istype(E, /mob/living))
 		var/mob/living/L = E
 		if(L.client)
-			to_chat(usr, SPAN_NOTICE("[L.name] is a player. All attempts to speak through them \
+			to_chat(usr, span_notice("[L.name] is a player. All attempts to speak through them \
 			gets logged in case of abuse."))
 			log_and_message_admins("has added [L.ckey]'s mob to their entity narrate list", usr)
 			return
 		var/unique_name = sanitize(tgui_input_text(usr, "Please give the entity a unique name to track internally. \
 		This doesn't override how it appears in game", "tracker", L.name))
 		if(unique_name in holder.entity_names)
-			to_chat(usr, SPAN_NOTICE("[unique_name] is not unique! Pick another!"))
+			to_chat(usr, span_notice("[unique_name] is not unique! Pick another!"))
 			add_mob_for_narration(L) //Recursively calling ourselves until cancelled or a unique name is given.
 			return
 		holder.entity_names += unique_name
@@ -66,7 +66,7 @@
 		var/unique_name = sanitize(tgui_input_text(usr, "Please give the entity a unique name to track internally. \
 		This doesn't override how it appears in game", "tracker", A.name))
 		if(unique_name in holder.entity_names)
-			to_chat(usr, SPAN_NOTICE("[unique_name] is not unique! Pick another!"))
+			to_chat(usr, span_notice("[unique_name] is not unique! Pick another!"))
 			add_mob_for_narration(A)
 			return
 		holder.entity_names += unique_name
@@ -77,7 +77,7 @@
 /client/proc/remove_mob_for_narration()
 	set name = "Narrate Entity (Remove ref)"
 	set desc = "Remove mobs you're no longer narrating from your list for easier work."
-	set category = "Fun"
+	set category = "Fun.Narrate"
 
 	if(!check_rights(R_FUN)) return
 
@@ -92,10 +92,10 @@
 	var/options = holder.entity_names + "Clear All"
 	var/removekey = tgui_input_list(usr, "Choose which entity to remove", "remove reference", options, null)
 	if(removekey == "Clear All")
-		var/confirm = tgui_alert(usr, "Do you really want to clear your entity list?", "confirm", list("Yes", "No"), "No")
-		if(confirm == "Yes")
-			holder.entity_names = list()
-			holder.entity_refs = list()
+		if(tgui_alert(usr, "Do you really want to clear your entity list?", "confirm", list("Yes", "No")) != "Yes")
+			return
+		holder.entity_names = list()
+		holder.entity_refs = list()
 	else if(removekey)
 		holder.entity_refs -= removekey
 		holder.entity_names -= removekey
@@ -107,7 +107,7 @@
 /client/proc/narrate_mob()
 	set name = "Narrate Entity (Interface)"
 	set desc = "Send either a visible or audiable message through your chosen entities using an interface"
-	set category = "Fun"
+	set category = "Fun.Narrate"
 
 	if(!check_rights(R_FUN)) return
 
@@ -128,7 +128,7 @@
 		holder.tgui_interact(usr)
 	else
 		var/mode = tgui_alert(usr, "Speak or emote?", "mode", list("Speak", "Emote", "Cancel"))
-		if(mode == "Cancel") return
+		if(!mode || mode == "Cancel") return
 		var/message = tgui_input_text(usr, "Input what you want [which_entity] to [mode]", "narrate",
 		null, multiline = TRUE, prevent_enter = TRUE)
 		if(message)
@@ -138,7 +138,7 @@
 /client/proc/narrate_mob_args(name as text, mode as text, message as text)
 	set name = "Narrate Entity"
 	set desc = "Narrate entities using positional arguments. Name should be as saved in ref list, mode should be Speak or Emote, follow with message"
-	set category = "Fun"
+	set category = "Fun.Narrate"
 
 
 
@@ -157,17 +157,17 @@
 	mode = sanitize(mode)
 
 	if(!(mode in list("Speak", "Emote")))
-		to_chat(usr, SPAN_NOTICE("Valid modes are 'Speak' and 'Emote'."))
+		to_chat(usr, span_notice("Valid modes are 'Speak' and 'Emote'."))
 		return
 	if(!holder.entity_refs[name])
-		to_chat(usr, SPAN_NOTICE("[name] not in saved references!"))
+		to_chat(usr, span_notice("[name] not in saved references!"))
 
 	//Separate definition for mob/living and /obj due to .say() code allowing us to engage with languages, stuttering etc
 	//We also need this so we can check for .client
 	var/datum/weakref/wref = holder.entity_refs[name]
 	var/selection = wref.resolve()
 	if(!selection)
-		to_chat(usr, SPAN_NOTICE("[name] has invalid reference, deleting"))
+		to_chat(usr, span_notice("[name] has invalid reference, deleting"))
 		holder.entity_names -= name
 		holder.entity_refs -= name
 	if(istype(selection, /mob/living))
@@ -191,9 +191,9 @@
 			message = tgui_input_text(usr, "Input what you want [our_entity] to [mode]", "narrate", null)
 		message = encode_html_emphasis(sanitize(message))
 		if(message && mode == "Speak")
-			our_entity.audible_message("<b>[our_entity.name]</b> [message]")
+			our_entity.audible_message(span_bold("[our_entity.name]") + " [message]")
 		else if(message && mode == "Emote")
-			our_entity.visible_message("<b>[our_entity.name]</b> [message]")
+			our_entity.visible_message(span_bold("[our_entity.name]") + " [message]")
 		else
 			return
 
@@ -260,7 +260,7 @@
 					var/datum/weakref/wref = entity_refs[tgui_selected_id]
 					tgui_selected_refs = wref.resolve()
 					if(!tgui_selected_refs)
-						to_chat(usr, SPAN_NOTICE("[tgui_selected_id] has invalid reference, deleting"))
+						to_chat(usr, span_notice("[tgui_selected_id] has invalid reference, deleting"))
 						entity_names -= tgui_selected_id
 						entity_refs -= tgui_selected_id
 						tgui_selected_id = ""
@@ -281,9 +281,9 @@
 						tgui_selected_name = A.name
 		if("narrate")
 			if(world.time < (tgui_last_message + 0.5 SECONDS))
-				to_chat(usr, SPAN_NOTICE("You can't messages that quickly! Wait at least half a second"))
+				to_chat(usr, span_notice("You can't messages that quickly! Wait at least half a second"))
 			else
-				to_chat(usr, SPAN_NOTICE("Message successfully sent!"))
+				to_chat(usr, span_notice("Message successfully sent!"))
 				tgui_last_message = world.time
 				var/message = params["message"] //Sanitizing before speaking it
 				if(tgui_selection_mode)
@@ -291,7 +291,7 @@
 						var/datum/weakref/wref = entity_refs[entity]
 						var/ref = wref.resolve()
 						if(!ref)
-							to_chat(usr, SPAN_NOTICE("[entity] has invalid reference, deleting"))
+							to_chat(usr, span_notice("[entity] has invalid reference, deleting"))
 							entity_names -= entity
 							entity_refs -= entity
 							tgui_selected_id_multi -= entity
@@ -308,7 +308,7 @@
 					var/datum/weakref/wref = entity_refs[tgui_selected_id]
 					var/ref = wref.resolve()
 					if(!ref)
-						to_chat(usr, SPAN_NOTICE("[tgui_selected_id] has invalid reference, deleting"))
+						to_chat(usr, span_notice("[tgui_selected_id] has invalid reference, deleting"))
 						entity_names -= tgui_selected_id
 						entity_refs -= tgui_selected_id
 						tgui_selected_id = ""
@@ -339,10 +339,10 @@
 /datum/entity_narrate/proc/narrate_tgui_atom(atom/A, message as text)
 	message = encode_html_emphasis(sanitize(message))
 	if(tgui_narrate_mode && tgui_narrate_privacy)
-		A.visible_message("<i><b>\The [A.name]</b> [message]</i>", range = 1)
+		A.visible_message(span_italics(span_bold("\The [A.name]") + " [message]"), range = 1)
 	else if(tgui_narrate_mode && !tgui_narrate_privacy)
-		A.visible_message("<b>\The [A.name]</b> [message]",)
+		A.visible_message(span_bold("\The [A.name]") + "[message]",)
 	else if(!tgui_narrate_mode && tgui_narrate_privacy)
-		A.audible_message("<i><b>\The [A.name]</b> [message]</i>", hearing_distance = 1)
+		A.audible_message(span_italics(span_bold("\The [A.name]") + " [message]"), hearing_distance = 1)
 	else if(!tgui_narrate_mode && !tgui_narrate_privacy)
-		A.audible_message("<b>\The [A.name]</b> [message]")
+		A.audible_message(span_bold("\The [A.name]") + "[message]")

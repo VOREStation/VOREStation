@@ -19,7 +19,7 @@ var/global/list/image/splatter_cache=list()
 	blood_DNA = list()
 	var/basecolor="#A10808" // Color when wet.
 	var/synthblood = 0
-	var/list/datum/disease2/disease/virus2 = list()
+	var/list/datum/disease/viruses = list()
 	var/amount = 5
 	generic_filth = TRUE
 	persistent = FALSE
@@ -89,6 +89,7 @@ var/global/list/image/splatter_cache=list()
 		if(istype(S))
 			S.blood_color = basecolor
 			S.track_blood = max(amount,S.track_blood)
+			S.update_icon() // Cut previous overlays
 			if(!S.blood_overlay)
 				S.generate_blood_overlay()
 			if(!S.blood_DNA)
@@ -127,14 +128,14 @@ var/global/list/image/splatter_cache=list()
 			return
 		var/taken = rand(1,amount)
 		amount -= taken
-		to_chat(user, "<span class='notice'>You get some of \the [src] on your hands.</span>")
+		to_chat(user, span_notice("You get some of \the [src] on your hands."))
 		if (!user.blood_DNA)
 			user.blood_DNA = list()
 		user.blood_DNA |= blood_DNA.Copy()
 		user.bloody_hands += taken
 		user.hand_blood_color = basecolor
 		user.update_inv_gloves(1)
-		user.verbs += /mob/living/carbon/human/proc/bloody_doodle
+		add_verb(user, /mob/living/carbon/human/proc/bloody_doodle)
 
 /obj/effect/decal/cleanable/blood/splatter
         random_icon_states = list("mgibbl1", "mgibbl2", "mgibbl3", "mgibbl4", "mgibbl5")
@@ -241,7 +242,7 @@ var/global/list/image/splatter_cache=list()
 	icon_state = "mucus"
 	random_icon_states = list("mucus")
 
-	var/list/datum/disease2/disease/virus2 = list()
+	var/list/datum/disease/viruses = list()
 	var/dry = 0 // Keeps the lag down
 
 /obj/effect/decal/cleanable/mucus/Initialize()
@@ -251,11 +252,10 @@ var/global/list/image/splatter_cache=list()
 //This version should be used for admin spawns and pre-mapped virus vectors (e.g. in PoIs), this version does not dry
 /obj/effect/decal/cleanable/mucus/mapped/Initialize()
 	. = ..()
-	virus2 |= new /datum/disease2/disease
-	virus2[1].makerandom()
+	viruses |= new /datum/disease/advance
 
 /obj/effect/decal/cleanable/mucus/mapped/Destroy()
-	virus2.Cut()
+	viruses.Cut()
 	return ..()
 
 #undef DRYING_TIME

@@ -39,8 +39,9 @@
 	if(frequency)
 		radio_connection = radio_controller.add_object(src, frequency, RADIO_ATMOSIA)
 
-/obj/machinery/atmospherics/trinary/atmos_filter/New()
-	..()
+/obj/machinery/atmospherics/trinary/atmos_filter/Initialize()
+	. = ..()
+
 	switch(filter_type)
 		if(0) //removing hydrocarbons
 			filtered_out = list("phoron")
@@ -56,6 +57,8 @@
 	air1.volume = ATMOS_DEFAULT_VOLUME_FILTER
 	air2.volume = ATMOS_DEFAULT_VOLUME_FILTER
 	air3.volume = ATMOS_DEFAULT_VOLUME_FILTER
+	if(frequency)
+		set_frequency(frequency)
 
 /obj/machinery/atmospherics/trinary/atmos_filter/Destroy()
 	unregister_radio(src, frequency)
@@ -106,17 +109,12 @@
 
 	return 1
 
-/obj/machinery/atmospherics/trinary/atmos_filter/Initialize()
-	. = ..()
-	if(frequency)
-		set_frequency(frequency)
-
 /obj/machinery/atmospherics/trinary/atmos_filter/attack_hand(user) // -- TLE
 	if(..())
 		return
 
 	if(!src.allowed(user))
-		to_chat(user, "<span class='warning'>Access denied.</span>")
+		to_chat(user, span_warning("Access denied."))
 		return
 
 	tgui_interact(user)
@@ -157,7 +155,7 @@
 
 	// user << browse("<HEAD><TITLE>[src.name] control</TITLE></HEAD><TT>[dat]</TT>", "window=atmos_filter")
 	// onclose(user, "atmos_filter")
-	
+
 
 
 /obj/machinery/atmospherics/trinary/atmos_filter/tgui_interact(mob/user, datum/tgui/ui)

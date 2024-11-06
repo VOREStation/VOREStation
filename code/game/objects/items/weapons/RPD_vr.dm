@@ -7,7 +7,7 @@
 #define DESTROY_MODE (1<<2)
 #define PAINT_MODE (1<<3)
 
-/obj/item/weapon/pipe_dispenser
+/obj/item/pipe_dispenser
 	name = "Rapid Piping Device (RPD)"
 	desc = "A device used to rapidly pipe things."
 	icon = 'icons/obj/tools_vr.dmi'
@@ -31,7 +31,7 @@
 	var/paint_color = "grey"	// Pipe color index for next pipe painted/built.
 	var/category = ATMOS_CATEGORY
 	var/piping_layer = PIPING_LAYER_DEFAULT
-	var/obj/item/weapon/tool/wrench/tool
+	var/obj/item/tool/wrench/tool
 	var/datum/pipe_recipe/recipe	// pipe recipie selected for display/construction
 	var/static/datum/pipe_recipe/first_atmos
 	var/static/datum/pipe_recipe/first_disposal
@@ -44,14 +44,14 @@
 		"Aux" = PIPING_LAYER_AUX
 	)
 
-/obj/item/weapon/pipe_dispenser/Initialize()
+/obj/item/pipe_dispenser/Initialize()
 	. = ..()
 	src.spark_system = new /datum/effect/effect/system/spark_spread
 	spark_system.set_up(5, 0, src)
 	spark_system.attach(src)
-	tool = new /obj/item/weapon/tool/wrench/cyborg(src) // RPDs have wrenches inside of them, so that they can wrench down spawned pipes without being used as superior wrenches themselves.
+	tool = new /obj/item/tool/wrench/cyborg(src) // RPDs have wrenches inside of them, so that they can wrench down spawned pipes without being used as superior wrenches themselves.
 
-/obj/item/weapon/pipe_dispenser/proc/SetupPipes()
+/obj/item/pipe_dispenser/proc/SetupPipes()
 	if(!first_atmos)
 		first_atmos = GLOB.atmos_pipe_recipes[GLOB.atmos_pipe_recipes[1]][1]
 	if(!first_disposal)
@@ -59,30 +59,30 @@
 	if(!recipe)
 		recipe = first_atmos
 
-/obj/item/weapon/pipe_dispenser/Destroy()
+/obj/item/pipe_dispenser/Destroy()
 	qdel_null(spark_system)
 	qdel_null(tool)
 	return ..()
 
-/obj/item/weapon/pipe_dispenser/attack_self(mob/user)
+/obj/item/pipe_dispenser/attack_self(mob/user)
 	tgui_interact(user)
 
-/obj/item/weapon/pipe_dispenser/ui_assets(mob/user)
+/obj/item/pipe_dispenser/ui_assets(mob/user)
 	return list(
 		get_asset_datum(/datum/asset/spritesheet/pipes),
 	)
 
-/obj/item/weapon/pipe_dispenser/tgui_state(mob/user)
+/obj/item/pipe_dispenser/tgui_state(mob/user)
 	return GLOB.tgui_inventory_state
 
-/obj/item/weapon/pipe_dispenser/tgui_interact(mob/user, datum/tgui/ui)
+/obj/item/pipe_dispenser/tgui_interact(mob/user, datum/tgui/ui)
 	SetupPipes()
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "RapidPipeDispenser", name)
 		ui.open()
 
-/obj/item/weapon/pipe_dispenser/tgui_data(mob/user)
+/obj/item/pipe_dispenser/tgui_data(mob/user)
 	var/list/data = list(
 		"category" = category,
 		"piping_layer" = piping_layer,
@@ -112,7 +112,7 @@
 
 	return data
 
-/obj/item/weapon/pipe_dispenser/tgui_act(action, params)
+/obj/item/pipe_dispenser/tgui_act(action, params)
 	if(..())
 		return TRUE
 	if(!usr.canmove || usr.stat || usr.restrained() || !in_range(loc, usr))
@@ -159,7 +159,7 @@
 		playsound(get_turf(src), 'sound/effects/pop.ogg', 50, FALSE)
 	return TRUE
 
-/obj/item/weapon/pipe_dispenser/afterattack(atom/A, mob/user as mob, proximity)
+/obj/item/pipe_dispenser/afterattack(atom/A, mob/user as mob, proximity)
 	if(!user.IsAdvancedToolUser() || istype(A, /turf/space/transit) || !proximity)
 		return ..()
 
@@ -178,7 +178,7 @@
 
 	. = TRUE
 	if((mode & DESTROY_MODE) && can_destroy_pipe)
-		to_chat(user, "<span class='notice'>You start destroying a pipe...</span>")
+		to_chat(user, span_notice("You start destroying a pipe..."))
 		playsound(src, 'sound/machines/click.ogg', 50, 1)
 		if(do_after(user, 2, target = A))
 			activate()
@@ -190,7 +190,7 @@
 			var/obj/machinery/atmospherics/pipe/P = A
 			playsound(src, 'sound/machines/click.ogg', 50, 1)
 			P.change_color(pipe_colors[paint_color])
-			user.visible_message("<span class='notice'>[user] paints \the [P] [paint_color].</span>", "<span class='notice'>You paint \the [P] [paint_color].</span>")
+			user.visible_message(span_notice("[user] paints \the [P] [paint_color]."), span_notice("You paint \the [P] [paint_color]."))
 			return
 
 	if(mode & BUILD_MODE) //Making pipes
@@ -200,7 +200,7 @@
 					return ..()
 				playsound(src, 'sound/machines/click.ogg', 50, 1)
 				if(istype(recipe, /datum/pipe_recipe/meter))
-					to_chat(user, "<span class='notice'>You start building a meter...</span>")
+					to_chat(user, span_notice("You start building a meter..."))
 					if(do_after(user, 2, target = A))
 						activate()
 						var/obj/item/pipe_meter/PM = new /obj/item/pipe_meter(get_turf(A))
@@ -209,7 +209,7 @@
 							do_wrench(PM, user)
 				else if(istype(recipe, /datum/pipe_recipe/pipe))
 					var/datum/pipe_recipe/pipe/R = recipe
-					to_chat(user, "<span class='notice'>You start building a pipe...</span>")
+					to_chat(user, span_notice("You start building a pipe..."))
 					if(do_after(user, 2, target = A))
 						activate()
 						var/obj/machinery/atmospherics/path = R.pipe_type
@@ -234,15 +234,15 @@
 					return ..()
 				A = get_turf(A)
 				if(istype(A, /turf/unsimulated))
-					to_chat(user, "<span class='warning'>[src]'s error light flickers; there's something in the way!</span>")
+					to_chat(user, span_warning("[src]'s error light flickers; there's something in the way!"))
 					return
-				to_chat(user, "<span class='notice'>You start building a disposals pipe...</span>")
+				to_chat(user, span_notice("You start building a disposals pipe..."))
 				playsound(src, 'sound/machines/click.ogg', 50, 1)
 				if(do_after(user, 4, target = A))
 					var/obj/structure/disposalconstruct/C = new(A, R.pipe_type, queued_p_dir, queued_p_flipped, R.subtype)
 
 					if(!C.can_place())
-						to_chat(user, "<span class='warning'>There's not enough room to build that here!</span>")
+						to_chat(user, span_warning("There's not enough room to build that here!"))
 						qdel(C)
 						return
 
@@ -258,7 +258,7 @@
 			else
 				return ..()
 
-/obj/item/weapon/pipe_dispenser/proc/build_effect(var/obj/P, var/time = 1.5)
+/obj/item/pipe_dispenser/proc/build_effect(var/obj/P, var/time = 1.5)
 	set waitfor = FALSE
 	P.filters += filter(type = "angular_blur", size = 30)
 	animate(P.filters[P.filters.len], size = 0, time = time)
@@ -268,7 +268,7 @@
 	P.filters -= outline
 	P.filters -= filter(type = "angular_blur", size = 0)
 
-/obj/item/weapon/pipe_dispenser/proc/animate_deletion(var/obj/P, var/time = 1.5)
+/obj/item/pipe_dispenser/proc/animate_deletion(var/obj/P, var/time = 1.5)
 	set waitfor = FALSE
 	P.filters += filter(type = "angular_blur", size = 0)
 	animate(P.filters[P.filters.len], size = 30, time = time)
@@ -277,10 +277,10 @@
 		P.filters -= filter(type = "angular_blur", size = 30)
 		qdel(P)
 
-/obj/item/weapon/pipe_dispenser/proc/activate()
+/obj/item/pipe_dispenser/proc/activate()
 	playsound(src, 'sound/items/deconstruct.ogg', 50, 1)
 
-/obj/item/weapon/pipe_dispenser/proc/do_wrench(var/atom/target, mob/user)
+/obj/item/pipe_dispenser/proc/do_wrench(var/atom/target, mob/user)
 	var/resolved = target.attackby(tool,user)
 	if(!resolved && tool && target)
 		tool.afterattack(target,user,1)

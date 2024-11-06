@@ -4,7 +4,7 @@
 	icon = 'icons/obj/monitors.dmi'
 	icon_state = "auth_off"
 	layer = ABOVE_WINDOW_LAYER
-	circuit = /obj/item/weapon/circuitboard/keycard_auth
+	circuit = /obj/item/circuitboard/keycard_auth
 	var/active = 0 //This gets set to 1 on all devices except the one where the initial request was made.
 	var/event = ""
 	var/screen = 1
@@ -23,16 +23,16 @@
 	power_channel = ENVIRON
 
 /obj/machinery/keycard_auth/attack_ai(mob/user as mob)
-	to_chat (user, "<span class='warning'>A firewall prevents you from interfacing with this device!</span>")
+	to_chat (user, span_warning("A firewall prevents you from interfacing with this device!"))
 	return
 
-/obj/machinery/keycard_auth/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/machinery/keycard_auth/attackby(obj/item/W as obj, mob/user as mob)
 	if(stat & (NOPOWER|BROKEN))
 		to_chat(user, "This device is not powered.")
 		return
-	if(istype(W,/obj/item/weapon/card/id))
-		var/obj/item/weapon/card/id/ID = W
-		if(access_keycard_auth in ID.access)
+	if(istype(W,/obj/item/card/id))
+		var/obj/item/card/id/ID = W
+		if(access_keycard_auth in ID.GetAccess())
 			if(active == 1)
 				//This is not the device that made the initial request. It is the device confirming the request.
 				if(event_source)
@@ -48,7 +48,7 @@
 		if(do_after(user, 10 * W.toolspeed))
 			to_chat(user, "You remove the faceplate from the [src]")
 			var/obj/structure/frame/A = new /obj/structure/frame(loc)
-			var/obj/item/weapon/circuitboard/M = new circuit(A)
+			var/obj/item/circuitboard/M = new circuit(A)
 			A.frame_type = M.board_type
 			A.need_circuit = 0
 			A.pixel_x = pixel_x
@@ -89,7 +89,7 @@
 	if(screen == 1)
 		dat += "Select an event to trigger:<ul>"
 		dat += "<li><A href='?src=\ref[src];triggerevent=Red alert'>Red alert</A></li>"
-		if(!config.ert_admin_call_only)
+		if(!CONFIG_GET(flag/ert_admin_call_only))
 			dat += "<li><A href='?src=\ref[src];triggerevent=Emergency Response Team'>Emergency Response Team</A></li>"
 
 		dat += "<li><A href='?src=\ref[src];triggerevent=Grant Emergency Maintenance Access'>Grant Emergency Maintenance Access</A></li>"
@@ -182,20 +182,20 @@
 			feedback_inc("alert_keycard_auth_ert",1)
 
 /obj/machinery/keycard_auth/proc/is_ert_blocked()
-	if(config.ert_admin_call_only) return 1
+	if(CONFIG_GET(flag/ert_admin_call_only)) return 1
 	return ticker.mode && ticker.mode.ert_disabled
 
 var/global/maint_all_access = 0
 
 /proc/make_maint_all_access()
 	maint_all_access = 1
-	to_world(span_red("<font size=4>Attention!</font>"))
-	to_world(span_red("The maintenance access requirement has been revoked on all airlocks."))
+	to_world(span_alert(span_red(span_huge("Attention!"))))
+	to_world(span_alert(span_red("The maintenance access requirement has been revoked on all airlocks.")))
 
 /proc/revoke_maint_all_access()
 	maint_all_access = 0
-	to_world(span_red("<font size=4>Attention!</font>"))
-	to_world(span_red("The maintenance access requirement has been readded on all maintenance airlocks."))
+	to_world(span_alert(span_red(span_huge("Attention!"))))
+	to_world(span_alert(span_red("The maintenance access requirement has been readded on all maintenance airlocks.")))
 
 /obj/machinery/door/airlock/allowed(mob/M)
 	if(maint_all_access && src.check_access_list(list(access_maint_tunnels)))

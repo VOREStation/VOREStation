@@ -14,9 +14,9 @@
 	icon_keyboard = "pcu_key"
 	light_color = "#5284e7"
 	req_one_access = list(access_heads)
-	circuit = /obj/item/weapon/circuitboard/skills/pcu
+	circuit = /obj/item/circuitboard/skills/pcu
 	density = FALSE
-	var/obj/item/weapon/card/id/scan = null
+	var/obj/item/card/id/scan = null
 	var/authenticated = null
 	var/rank = null
 	var/screen = null
@@ -58,7 +58,7 @@
 	return ..()
 
 /obj/machinery/computer/skills/attackby(obj/item/O as obj, var/mob/user)
-	if(istype(O, /obj/item/weapon/card/id) && !scan && user.unEquip(O))
+	if(istype(O, /obj/item/card/id) && !scan && user.unEquip(O))
 		O.loc = src
 		scan = O
 		to_chat(user, "You insert [O].")
@@ -74,7 +74,7 @@
 	if(..())
 		return
 	if (using_map && !(src.z in using_map.contact_levels))
-		to_chat(user, "<span class='danger'>Unable to establish a connection:</span> You're too far away from the station!")
+		to_chat(user, span_danger("Unable to establish a connection:") + " You're too far away from the station!")
 		return
 	tgui_interact(user)
 
@@ -165,7 +165,7 @@
 				scan = null
 			else
 				var/obj/item/I = usr.get_active_hand()
-				if(istype(I, /obj/item/weapon/card/id))
+				if(istype(I, /obj/item/card/id))
 					usr.drop_item()
 					I.forceMove(src)
 					scan = I
@@ -179,7 +179,7 @@
 					rank = scan.assignment
 			else if(login_type == LOGIN_TYPE_AI && isAI(usr))
 				authenticated = usr.name
-				rank = "AI"
+				rank = JOB_AI
 			else if(login_type == LOGIN_TYPE_ROBOT && isrobot(usr))
 				authenticated = usr.name
 				var/mob/living/silicon/robot/R = usr
@@ -316,8 +316,8 @@
   * Called when the print timer finishes
   */
 /obj/machinery/computer/skills/proc/print_finish()
-	var/obj/item/weapon/paper/P = new(loc)
-	P.info = "<center><b>Medical Record</b></center><br>"
+	var/obj/item/paper/P = new(loc)
+	P.info = "<center>" + span_bold("Medical Record") + "</center><br>"
 	if(istype(active1, /datum/data/record) && data_core.general.Find(active1))
 		P.info += {"Name: [active1.fields["name"]] ID: [active1.fields["id"]]
 		<br>\nSex: [active1.fields["sex"]]
@@ -338,7 +338,7 @@
 		for(var/c in active1.fields["comments"])
 			P.info += "[c["header"]]<br>[c["text"]]<br>"
 	else
-		P.info += "<b>General Record Lost!</b><br>"
+		P.info += span_bold("General Record Lost!") + "<br>"
 	P.info += "</tt>"
 	P.name = "paper - 'Employment Record: [active1.fields["name"]]'"
 	printing = FALSE

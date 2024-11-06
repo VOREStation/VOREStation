@@ -1,4 +1,4 @@
-/obj/item/device/floor_painter
+/obj/item/floor_painter
 	name = "paint sprayer"
 	icon = 'icons/obj/bureaucracy.dmi'
 	icon_state = "labeler1"
@@ -38,8 +38,10 @@
 		"northeast" =   NORTHEAST,
 		"precise" = 0
 		)
+	pickup_sound = 'sound/items/pickup/device.ogg'
+	drop_sound = 'sound/items/drop/device.ogg'
 
-/obj/item/device/floor_painter/afterattack(var/atom/A, var/mob/user, proximity, params)
+/obj/item/floor_painter/afterattack(var/atom/A, var/mob/user, proximity, params)
 	if(!proximity)
 		return
 
@@ -49,11 +51,11 @@
 
 	var/turf/simulated/floor/F = A
 	if(!istype(F))
-		to_chat(user, "<span class='warning'>\The [src] can only be used on station flooring.</span>")
+		to_chat(user, span_warning("\The [src] can only be used on station flooring."))
 		return
 
 	if(!F.flooring || !F.flooring.can_paint || F.broken || F.burnt)
-		to_chat(user, "<span class='warning'>\The [src] cannot paint broken or missing tiles.</span>")
+		to_chat(user, span_warning("\The [src] cannot paint broken or missing tiles."))
 		return
 
 	var/list/decal_data = decals[decal]
@@ -67,11 +69,11 @@
 			config_error = 1
 
 	if(config_error)
-		to_chat(user, "<span class='warning'>\The [src] flashes an error light. You might need to reconfigure it.</span>")
+		to_chat(user, span_warning("\The [src] flashes an error light. You might need to reconfigure it."))
 		return
 
 	if(F.decals && F.decals.len > 5 && painting_decal != /obj/effect/floor_decal/reset)
-		to_chat(user, "<span class='warning'>\The [F] has been painted too much; you need to clear it off.</span>")
+		to_chat(user, span_warning("\The [F] has been painted too much; you need to clear it off."))
 		return
 
 	var/painting_dir = 0
@@ -104,7 +106,7 @@
 
 	new painting_decal(F, painting_dir, painting_colour)
 
-/obj/item/device/floor_painter/attack_self(var/mob/user)
+/obj/item/floor_painter/attack_self(var/mob/user)
 	var/choice = tgui_alert(usr, "Do you wish to change the decal type, paint direction, or paint colour?", "Modify What?", list("Decal","Direction","Colour","Cancel"))
 	if(choice == "Cancel")
 		return
@@ -115,11 +117,11 @@
 	else if(choice == "Colour")
 		choose_colour()
 
-/obj/item/device/floor_painter/examine(mob/user)
+/obj/item/floor_painter/examine(mob/user)
 	. = ..()
 	. += "It is configured to produce the '[decal]' decal with a direction of '[paint_dir]' using [paint_colour] paint."
 
-/obj/item/device/floor_painter/verb/choose_colour()
+/obj/item/floor_painter/verb/choose_colour()
 	set name = "Choose Colour"
 	set desc = "Choose a paint colour."
 	set category = "Object"
@@ -130,9 +132,9 @@
 	var/new_colour = input(usr, "Choose a colour.", name, paint_colour) as color|null
 	if(new_colour && new_colour != paint_colour)
 		paint_colour = new_colour
-		to_chat(usr, "<span class='notice'>You set \the [src] to paint with <font color='[paint_colour]'>a new colour</font>.</span>")
+		to_chat(usr, span_notice("You set \the [src] to paint with <font color='[paint_colour]'>a new colour</font>."))
 
-/obj/item/device/floor_painter/verb/choose_decal()
+/obj/item/floor_painter/verb/choose_decal()
 	set name = "Choose Decal"
 	set desc = "Choose a painting decal."
 	set category = "Object"
@@ -144,9 +146,9 @@
 	var/new_decal = tgui_input_list(usr, "Select a decal:", "Decal Choice", decals)
 	if(new_decal && !isnull(decals[new_decal]))
 		decal = new_decal
-		to_chat(usr, "<span class='notice'>You set \the [src] decal to '[decal]'.</span>")
+		to_chat(usr, span_notice("You set \the [src] decal to '[decal]'."))
 
-/obj/item/device/floor_painter/verb/choose_direction()
+/obj/item/floor_painter/verb/choose_direction()
 	set name = "Choose Direction"
 	set desc = "Choose a painting direction."
 	set category = "Object"
@@ -158,4 +160,4 @@
 	var/new_dir = tgui_input_list(usr, "Select a direction:", "Direction Choice", paint_dirs)
 	if(new_dir && !isnull(paint_dirs[new_dir]))
 		paint_dir = new_dir
-		to_chat(usr, "<span class='notice'>You set \the [src] direction to '[paint_dir]'.</span>")
+		to_chat(usr, span_notice("You set \the [src] direction to '[paint_dir]'."))

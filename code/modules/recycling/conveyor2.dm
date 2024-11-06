@@ -14,7 +14,7 @@
 	layer = ABOVE_TURF_LAYER
 	anchored = TRUE
 	active_power_usage = 100
-	circuit = /obj/item/weapon/circuitboard/conveyor
+	circuit = /obj/item/circuitboard/conveyor
 	var/operating = OFF	// 1 if running forward, -1 if backwards, 0 if off
 	var/operable = 1	// true if can operate (no broken segments in this belt run)
 	var/forwards		// this is the default (forward) direction, set by the map dir
@@ -113,6 +113,8 @@
 		for(var/atom/movable/A in affecting)
 			if(istype(A,/obj/effect/abstract)) // Flashlight's lights are not physical objects
 				continue
+			if(istype(A,/obj/effect/decal/jan_hud)) // Ignore these too
+				continue
 			if(!A.anchored)
 				if(A.loc == src.loc) // prevents the object from being affected if it's not currently here.
 					step(A,movedir)
@@ -130,7 +132,7 @@
 	if(default_deconstruction_crowbar(user, I))
 		return
 
-	if(istype(I, /obj/item/device/multitool))
+	if(istype(I, /obj/item/multitool))
 		if(panel_open)
 			var/input = sanitize(tgui_input_text(usr, "What id would you like to give this conveyor?", "Multitool-Conveyor interface", id))
 			if(!input)
@@ -268,7 +270,7 @@
 // attack with hand, switch position
 /obj/machinery/conveyor_switch/attack_hand(mob/user)
 	if(!allowed(user))
-		to_chat(user, "<span class='warning'>Access denied.</span>")
+		to_chat(user, span_warning("Access denied."))
 		return
 
 	if(position == 0)
@@ -299,14 +301,14 @@
 		return
 
 	if(I.has_tool_quality(TOOL_WELDER))
-		var/obj/item/weapon/weldingtool/WT = I.get_welder()
+		var/obj/item/weldingtool/WT = I.get_welder()
 		if(!WT.remove_fuel(0, user))
 			to_chat(user, "The welding tool must be on to complete this task.")
 			return
 		playsound(src, WT.usesound, 50, 1)
 		if(do_after(user, 20 * WT.toolspeed))
 			if(!src || !WT.isOn()) return
-			to_chat(user, "<span class='notice'>You deconstruct the frame.</span>")
+			to_chat(user, span_notice("You deconstruct the frame."))
 			new /obj/item/stack/material/steel( src.loc, 2 )
 			qdel(src)
 			return

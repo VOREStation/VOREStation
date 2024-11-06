@@ -1,4 +1,4 @@
-/obj/item/device/mmi/digital/posibrain
+/obj/item/mmi/digital/posibrain
 	name = "positronic brain"
 	desc = "A cube of shining metal, four inches to a side and covered in shallow grooves."
 	icon = 'icons/obj/assemblies.dmi'
@@ -13,7 +13,7 @@
 	mecha = null//This does not appear to be used outside of reference in mecha.dm.
 
 
-/obj/item/device/mmi/digital/posibrain/attack_self(mob/user as mob)
+/obj/item/mmi/digital/posibrain/attack_self(mob/user as mob)
 	if(brainmob && !brainmob.key && searching == 0)
 		//Start the process of searching for a new user.
 		to_chat(user, span_blue("You carefully locate the manual activation switch and start the positronic brain's boot process."))
@@ -22,17 +22,17 @@
 		src.request_player()
 		spawn(600) reset_search()
 
-/obj/item/device/mmi/digital/posibrain/proc/request_player()
+/obj/item/mmi/digital/posibrain/proc/request_player()
 	for(var/mob/observer/dead/O in player_list)
 		if(!O.MayRespawn())
 			continue
-		if(jobban_isbanned(O, "AI") && jobban_isbanned(O, "Cyborg"))
+		if(jobban_isbanned(O, JOB_AI) && jobban_isbanned(O, JOB_CYBORG))
 			continue
 		if(O.client)
 			if(O.client.prefs.be_special & BE_AI)
 				question(O.client)
 
-/obj/item/device/mmi/digital/posibrain/proc/question(var/client/C)
+/obj/item/mmi/digital/posibrain/proc/question(var/client/C)
 	spawn(0)
 		if(!C)	return
 		var/response = tgui_alert(C, "Someone is requesting a personality for a positronic brain. Would you like to play as one?", "Positronic brain request", list("Yes", "No", "Never for this round"))
@@ -45,26 +45,26 @@
 			C.prefs.be_special ^= BE_AI
 
 
-/obj/item/device/mmi/digital/posibrain/transfer_identity(var/mob/living/carbon/H)
+/obj/item/mmi/digital/posibrain/transfer_identity(var/mob/living/carbon/H)
 	..()
 	if(brainmob.mind)
-		brainmob.mind.assigned_role = "Positronic Brain"
-	to_chat(brainmob, "<span class='notify'>You feel slightly disoriented. That's normal when you're just a metal cube.</span>")
+		brainmob.mind.assigned_role = JOB_POSITRONIC_BRAIN
+	to_chat(brainmob, span_notify("You feel slightly disoriented. That's normal when you're just a metal cube."))
 	icon_state = "posibrain-occupied"
 	return
 
-/obj/item/device/mmi/digital/posibrain/proc/transfer_personality(var/mob/candidate)
+/obj/item/mmi/digital/posibrain/proc/transfer_personality(var/mob/candidate)
 	announce_ghost_joinleave(candidate, 0, "They are occupying a positronic brain now.")
 	src.searching = 0
 	src.brainmob.mind = candidate.mind
 	src.brainmob.ckey = candidate.ckey
 	src.brainmob.mind.reset()
 	src.name = "positronic brain ([src.brainmob.name])"
-	to_chat(src.brainmob, "<b>You are a positronic brain, brought into existence on [station_name()].</b>")
-	to_chat(src.brainmob, "<b>As a synthetic intelligence, you answer to all crewmembers, as well as the AI.</b>")
-	to_chat(src.brainmob, "<b>Remember, the purpose of your existence is to serve the crew and the station. Above all else, do no harm.</b>")
-	to_chat(src.brainmob, "<b>Use say #b to speak to other artificial intelligences.</b>")
-	src.brainmob.mind.assigned_role = "Positronic Brain"
+	to_chat(src.brainmob, span_infoplain(span_bold("You are a positronic brain, brought into existence on [station_name()].")))
+	to_chat(src.brainmob, span_infoplain(span_bold("As a synthetic intelligence, you answer to all crewmembers, as well as the AI.")))
+	to_chat(src.brainmob, span_infoplain(span_bold("Remember, the purpose of your existence is to serve the crew and the station. Above all else, do no harm.")))
+	to_chat(src.brainmob, span_infoplain(span_bold("Use say #b to speak to other artificial intelligences.")))
+	src.brainmob.mind.assigned_role = JOB_POSITRONIC_BRAIN
 
 	var/turf/T = get_turf_or_move(src.loc)
 	for (var/mob/M in viewers(T))
@@ -72,7 +72,7 @@
 	playsound(src, 'sound/misc/boobeebeep.ogg', 50, 1)
 	icon_state = "posibrain-occupied"
 
-/obj/item/device/mmi/digital/posibrain/proc/reset_search() //We give the players sixty seconds to decide, then reset the timer.
+/obj/item/mmi/digital/posibrain/proc/reset_search() //We give the players sixty seconds to decide, then reset the timer.
 
 	if(src.brainmob && src.brainmob.key) return
 	to_world_log("Resetting Posibrain: [brainmob][brainmob ? ", [brainmob.key]" : ""]")
@@ -85,7 +85,7 @@
 		M.show_message(span_blue("The positronic brain buzzes and beeps, and the golden lights fade away. Perhaps you could try again?"))
 	playsound(src, 'sound/misc/buzzbeep.ogg', 50, 1)
 
-/obj/item/device/mmi/digital/posibrain/emp_act(severity)
+/obj/item/mmi/digital/posibrain/emp_act(severity)
 	if(!src.brainmob)
 		return
 	else
@@ -100,7 +100,7 @@
 				src.brainmob.emp_damage += rand(0,5)
 	..()
 
-/obj/item/device/mmi/digital/posibrain/New()
+/obj/item/mmi/digital/posibrain/New()
 	..()
 	src.brainmob.name = "[pick(list("PBU","HIU","SINA","ARMA","OSI"))]-[rand(100, 999)]"
 	src.brainmob.real_name = src.brainmob.name

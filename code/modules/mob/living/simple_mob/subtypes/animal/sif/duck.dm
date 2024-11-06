@@ -19,7 +19,7 @@
 	tt_desc = "S Anatidae vitriae"
 	//catalogue_data = list(/datum/category_item/catalogue/fauna/crystalduck)		TODO: Write non-sif lore
 
-	faction = "duck"
+	faction = FACTION_DUCK
 
 	icon_state = "duck"
 	icon_living = "duck"
@@ -33,7 +33,7 @@
 	movement_cooldown = -1
 
 	meat_amount = 4
-	meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat/chicken
+	meat_type = /obj/item/reagent_containers/food/snacks/meat/chicken
 
 	melee_damage_lower = 2
 	melee_damage_upper = 10
@@ -44,8 +44,8 @@
 	organ_names = /decl/mob_organ_names/bird
 
 	tame_items = list(
-	/obj/item/weapon/reagent_containers/food/snacks/sliceable/bread = 90,
-	/obj/item/weapon/reagent_containers/food/snacks/slice/bread = 25
+	/obj/item/reagent_containers/food/snacks/sliceable/bread = 90,
+	/obj/item/reagent_containers/food/snacks/slice/bread = 25
 	)
 
 	say_list_type = /datum/say_list/duck
@@ -62,7 +62,7 @@
 	var/has_food = FALSE
 	if(isliving(L))
 		for(var/obj/item/I in L.get_contents())	// Do they have food?
-			if(istype(I, /obj/item/weapon/reagent_containers/food))
+			if(istype(I, /obj/item/reagent_containers/food))
 				has_food = TRUE
 				break
 	if(has_food)	// Yes? Gimme the food.

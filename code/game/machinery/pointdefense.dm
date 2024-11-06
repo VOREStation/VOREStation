@@ -14,7 +14,7 @@ GLOBAL_LIST_BOILERPLATE(pointdefense_turrets, /obj/machinery/power/pointdefense)
 	icon_state = "control"
 	density = TRUE
 	anchored = TRUE
-	circuit = /obj/item/weapon/circuitboard/pointdefense_control
+	circuit = /obj/item/circuitboard/pointdefense_control
 	var/list/targets = list()  // Targets being engaged by associated batteries
 	var/id_tag = null
 
@@ -62,7 +62,7 @@ GLOBAL_LIST_BOILERPLATE(pointdefense_turrets, /obj/machinery/power/pointdefense)
 			return FALSE
 
 		if(!(get_z(PD) in GetConnectedZlevels(get_z(src))))
-			to_chat(usr, "<span class='warning'>[PD] is not within control range.</span>")
+			to_chat(usr, span_warning("[PD] is not within control range."))
 			return FALSE
 
 		if(!PD.Activate()) //Activate() whilst the device is active will return false.
@@ -100,9 +100,9 @@ GLOBAL_LIST_BOILERPLATE(pointdefense_turrets, /obj/machinery/power/pointdefense)
 			// Check for duplicate controllers with this ID
 			for(var/obj/machinery/pointdefense_control/PC as anything in pointdefense_controllers)
 				if(PC != src && PC.id_tag == id_tag)
-					to_chat(user, "<span class='warning'>The [new_ident] network already has a controller.</span>")
+					to_chat(user, span_warning("The [new_ident] network already has a controller."))
 					return
-			to_chat(user, "<span class='notice'>You register [src] with the [new_ident] network.</span>")
+			to_chat(user, span_notice("You register [src] with the [new_ident] network."))
 			id_tag = new_ident
 		return
 	if(default_deconstruction_screwdriver(user, W))
@@ -125,7 +125,7 @@ GLOBAL_LIST_BOILERPLATE(pointdefense_turrets, /obj/machinery/power/pointdefense)
 	description_info = "Must have the same ident tag as a fire assist mainframe on the same facility. Use a multitool to set the ident tag."
 	density = TRUE
 	anchored = TRUE
-	circuit = /obj/item/weapon/circuitboard/pointdefense
+	circuit = /obj/item/circuitboard/pointdefense
 	idle_power_usage = 0.1 KILOWATTS
 	active_power_usage = 1 KILOWATTS
 	appearance_flags = PIXEL_SCALE
@@ -166,7 +166,7 @@ GLOBAL_LIST_BOILERPLATE(pointdefense_turrets, /obj/machinery/power/pointdefense)
 	else
 		icon_state = initial(icon_state)
 
-/obj/machinery/power/pointdefense/default_unfasten_wrench(var/mob/user, var/obj/item/weapon/W, var/time)
+/obj/machinery/power/pointdefense/default_unfasten_wrench(var/mob/user, var/obj/item/W, var/time)
 	if((. = ..()))
 		src.transform = null // Reset rotation if we're anchored/unanchored
 
@@ -215,7 +215,7 @@ GLOBAL_LIST_BOILERPLATE(pointdefense_turrets, /obj/machinery/power/pointdefense)
 		var/new_ident = tgui_input_text(user, "Enter a new ident tag.", "[src]", id_tag, MAX_NAME_LEN)
 		new_ident = sanitize(new_ident,MAX_NAME_LEN)
 		if(new_ident && new_ident != id_tag && user.Adjacent(src) && CanInteract(user, GLOB.tgui_physical_state))
-			to_chat(user, "<span class='notice'>You register [src] with the [new_ident] network.</span>")
+			to_chat(user, span_notice("You register [src] with the [new_ident] network."))
 			id_tag = new_ident
 		return
 	if(default_deconstruction_screwdriver(user, W))
@@ -338,17 +338,17 @@ GLOBAL_LIST_BOILERPLATE(pointdefense_turrets, /obj/machinery/power/pointdefense)
 /obj/machinery/power/pointdefense/RefreshParts()
 	. = ..()
 	// Calculates an average rating of components that affect shooting rate
-	var/shootrate_divisor = total_component_rating_of_type(/obj/item/weapon/stock_parts/capacitor)
+	var/shootrate_divisor = total_component_rating_of_type(/obj/item/stock_parts/capacitor)
 
 	charge_cooldown = 2 SECONDS / (shootrate_divisor ? shootrate_divisor : 1)
 
 	//Calculate max shooting range
-	var/killrange_multiplier = total_component_rating_of_type(/obj/item/weapon/stock_parts/capacitor)
-	killrange_multiplier += 1.5 * total_component_rating_of_type(/obj/item/weapon/stock_parts/scanning_module)
+	var/killrange_multiplier = total_component_rating_of_type(/obj/item/stock_parts/capacitor)
+	killrange_multiplier += 1.5 * total_component_rating_of_type(/obj/item/stock_parts/scanning_module)
 
 	kill_range = 10 + 4 * killrange_multiplier
 
-	var/rotation_divisor = total_component_rating_of_type(/obj/item/weapon/stock_parts/manipulator)
+	var/rotation_divisor = total_component_rating_of_type(/obj/item/stock_parts/manipulator)
 	rotation_speed = 0.5 SECONDS / (rotation_divisor ? rotation_divisor : 1)
 
 /obj/machinery/power/pointdefense/proc/Activate()

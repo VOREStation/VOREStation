@@ -13,13 +13,13 @@
 /mob/living/carbon/proc/custom_pain(message, power, force)
 	if((!message || stat || !can_feel_pain() || chem_effects[CE_PAINKILLER] > power) && !synth_cosmetic_pain)
 		return 0
-	message = "<span class='danger'>[message]</span>"
+	message = span_danger("[message]")
 	if(power >= 50)
 		message = "<font size=3>[message]</font>"
 
 	// Anti message spam checks
 	// If multiple limbs are injured, cooldown is ignored to print all injuries until all limbs are iterated over
-	if(src.is_preference_enabled(/datum/client_preference/pain_frequency))
+	if(client?.prefs?.read_preference(/datum/preference/toggle/pain_frequency))
 		switch(power)
 			if(0 to 5)
 				force = 0

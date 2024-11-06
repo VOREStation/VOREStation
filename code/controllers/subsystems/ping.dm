@@ -12,8 +12,9 @@ SUBSYSTEM_DEF(ping)
 	runlevels = RUNLEVEL_LOBBY | RUNLEVELS_DEFAULT
 	var/list/currentrun = list()
 
-/datum/controller/subsystem/ping/stat_entry()
-	..("P:[GLOB.clients.len]")
+/datum/controller/subsystem/ping/stat_entry(msg)
+	msg = "P:[GLOB.clients.len]"
+	return ..()
 
 /datum/controller/subsystem/ping/fire(resumed = FALSE)
 	// Prepare the new batch of clients
@@ -27,7 +28,7 @@ SUBSYSTEM_DEF(ping)
 		var/client/client = currentrun[currentrun.len]
 		currentrun.len--
 
-		if(!client?.is_preference_enabled(/datum/client_preference/vchat_enable))
+		if(!client?.prefs?.read_preference(/datum/preference/toggle/vchat_enable))
 			winset(client, "output", "on-show=&is-disabled=0&is-visible=1")
 			winset(client, "browseroutput", "is-disabled=1;is-visible=0")
 			client.tgui_panel.oldchat = TRUE

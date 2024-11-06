@@ -9,7 +9,7 @@
 	idle_power_usage = 20
 	active_power_usage = 5000
 	req_access = list(access_robotics)
-	circuit = /obj/item/weapon/circuitboard/mechfab
+	circuit = /obj/item/circuitboard/mechfab
 
 	/// Current items in the build queue.
 	var/list/queue = list()
@@ -101,13 +101,13 @@
 
 /obj/machinery/mecha_part_fabricator/RefreshParts()
 	res_max_amount = 0
-	for(var/obj/item/weapon/stock_parts/matter_bin/M in component_parts)
+	for(var/obj/item/stock_parts/matter_bin/M in component_parts)
 		res_max_amount += M.rating * 100000 // 200k -> 600k
 	var/T = 0
-	for(var/obj/item/weapon/stock_parts/manipulator/M in component_parts)
+	for(var/obj/item/stock_parts/manipulator/M in component_parts)
 		T += M.rating
 	component_coeff = max(1 - (T - 1) / 4, 0.2) // 1 -> 0.2
-	for(var/obj/item/weapon/stock_parts/micro_laser/M in component_parts) // Not resetting T is intended; time_coeff is affected by both
+	for(var/obj/item/stock_parts/micro_laser/M in component_parts) // Not resetting T is intended; time_coeff is affected by both
 		T += M.rating
 	time_coeff = T / 2 // 1 -> 3
 	update_tgui_static_data(usr)
@@ -467,7 +467,7 @@
 	if(..())
 		return
 	if(!allowed(user))
-		to_chat(user, SPAN_WARNING("\The [src] rejects your use due to lack of access!"))
+		to_chat(user, span_warning("\The [src] rejects your use due to lack of access!"))
 		return
 	tgui_interact(user)
 
@@ -624,7 +624,7 @@
 
 /obj/machinery/mecha_part_fabricator/attackby(var/obj/item/I, var/mob/user)
 	if(being_built)
-		to_chat(user, "<span class='notice'>\The [src] is busy. Please wait for completion of previous operation.</span>")
+		to_chat(user, span_notice("\The [src] is busy. Please wait for completion of previous operation."))
 		return 1
 	if(default_deconstruction_screwdriver(user, I))
 		return
@@ -636,7 +636,7 @@
 	if(istype(I,/obj/item/stack/material))
 		var/obj/item/stack/material/S = I
 		if(!(S.material.name in materials))
-			to_chat(user, "<span class='warning'>The [src] doesn't accept [S.material]!</span>")
+			to_chat(user, span_warning("The [src] doesn't accept [S.material]!"))
 			return
 
 		var/sname = "[S.name]"

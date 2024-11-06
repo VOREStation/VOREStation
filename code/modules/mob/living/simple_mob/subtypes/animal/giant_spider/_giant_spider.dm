@@ -69,7 +69,7 @@
 	icon_dead = "guard_dead"
 	has_eye_glow = TRUE
 
-	faction = "spiders"
+	faction = FACTION_SPIDERS
 	maxHealth = 200
 	health = 200
 	pass_flags = PASSTABLE
@@ -99,14 +99,14 @@
 	speak_emote = list("chitters")
 
 	meat_amount = 5
-	meat_type = /obj/item/weapon/reagent_containers/food/snacks/xenomeat/spidermeat
+	meat_type = /obj/item/reagent_containers/food/snacks/xenomeat/spidermeat
 
 	say_list_type = /datum/say_list/spider
 
 	tame_items = list(
-	/obj/item/weapon/reagent_containers/food/snacks/xenomeat = 10,
-	/obj/item/weapon/reagent_containers/food/snacks/crabmeat = 40,
-	/obj/item/weapon/reagent_containers/food/snacks/meat = 20
+	/obj/item/reagent_containers/food/snacks/xenomeat = 10,
+	/obj/item/reagent_containers/food/snacks/crabmeat = 40,
+	/obj/item/reagent_containers/food/snacks/meat = 20
 	)
 
 	var/poison_type = "spidertoxin"	// The reagent that gets injected when it attacks.
@@ -130,7 +130,7 @@
 // Does actual poison injection, after all checks passed.
 /mob/living/simple_mob/animal/giant_spider/proc/inject_poison(mob/living/L, target_zone)
 	if(prob(poison_chance))
-		to_chat(L, "<span class='warning'>You feel a tiny prick.</span>")
+		to_chat(L, span_warning("You feel a tiny prick."))
 		L.reagents.add_reagent(poison_type, poison_per_bite)
 
 /mob/living/simple_mob/animal/giant_spider/proc/make_spiderling()

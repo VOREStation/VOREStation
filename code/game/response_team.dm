@@ -9,31 +9,30 @@ var/silent_ert = 0
 
 /client/proc/response_team()
 	set name = "Dispatch Emergency Response Team"
-	set category = "Special Verbs"
+	set category = "Fun.Event Kit"
 	set desc = "Send an emergency response team to the station"
 
 	if(!holder)
-		to_chat(usr, "<span class='danger'>Only administrators may use this command.</span>")
+		to_chat(usr, span_danger("Only administrators may use this command."))
 		return
 	if(!ticker)
-		to_chat(usr, "<span class='danger'>The game hasn't started yet!</span>")
+		to_chat(usr, span_danger("The game hasn't started yet!"))
 		return
 	if(ticker.current_state == 1)
-		to_chat(usr, "<span class='danger'>The round hasn't started yet!</span>")
+		to_chat(usr, span_danger("The round hasn't started yet!"))
 		return
 	if(send_emergency_team)
-		to_chat(usr, "<span class='danger'>[using_map.boss_name] has already dispatched an emergency response team!</span>")
+		to_chat(usr, span_danger("[using_map.boss_name] has already dispatched an emergency response team!"))
 		return
 	if(tgui_alert(usr, "Do you want to dispatch an Emergency Response Team?","ERT",list("Yes","No")) != "Yes")
 		return
 	if(tgui_alert(usr, "Do you want this Response Team to be announced?","ERT",list("Yes","No")) != "Yes")
 		silent_ert = 1
 	if(get_security_level() != "red") // Allow admins to reconsider if the alert level isn't Red
-		switch(tgui_alert(usr, "The station is not in red alert. Do you still want to dispatch a response team?","ERT",list("Yes","No")))
-			if("No")
-				return
+		if(tgui_alert(usr, "The station is not in red alert. Do you still want to dispatch a response team?","ERT",list("Yes","No")) != "Yes")
+			return
 	if(send_emergency_team)
-		to_chat(usr, "<span class='danger'>Looks like somebody beat you to it!</span>")
+		to_chat(usr, span_danger("Looks like somebody beat you to it!"))
 		return
 
 	message_admins("[key_name_admin(usr)] is dispatching an Emergency Response Team.", 1)
@@ -44,18 +43,18 @@ var/silent_ert = 0
 /client/verb/JoinResponseTeam()
 
 	set name = "Join Response Team"
-	set category = "IC"
+	set category = "IC.Event"
 
 	if(!MayRespawn(1))
-		to_chat(usr, "<span class='warning'>You cannot join the response team at this time.</span>")
+		to_chat(usr, span_warning("You cannot join the response team at this time."))
 		return
 
 	if(istype(usr,/mob/observer/dead) || istype(usr,/mob/new_player))
 		if(!send_emergency_team)
 			to_chat(usr, "No emergency response team is currently being sent.")
 			return
-		if(jobban_isbanned(usr, "Syndicate") || jobban_isbanned(usr, "Emergency Response Team") || jobban_isbanned(usr, "Security Officer"))
-			to_chat(usr, "<span class='danger'>You are jobbanned from the emergency reponse team!</span>")
+		if(jobban_isbanned(usr, JOB_SYNDICATE) || jobban_isbanned(usr, JOB_EMERGENCY_RESPONSE_TEAM) || jobban_isbanned(usr, JOB_SECURITY_OFFICER))
+			to_chat(usr, span_danger("You are jobbanned from the emergency reponse team!"))
 			return
 		if(ert.current_antagonists.len >= ert.hard_cap)
 			to_chat(usr, "The emergency response team is already full!")

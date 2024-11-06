@@ -9,7 +9,7 @@
 
 	// A headset, so that talking parrots can yell at the crew over comms.
 	// If set to a type, on initialize it will be instantiated into that type.
-	var/obj/item/device/radio/headset/my_headset = null
+	var/obj/item/radio/headset/my_headset = null
 
 // Say list
 /datum/say_list/bird/poly
@@ -44,13 +44,13 @@
 /mob/living/simple_mob/animal/passive/bird/parrot/handle_message_mode(message_mode, message, verb, used_radios, whispering)
 	..()
 	if(message_mode)
-		if(my_headset && istype(my_headset, /obj/item/device/radio))
+		if(my_headset && istype(my_headset, /obj/item/radio))
 			my_headset.talk_into(src, message, message_mode, verb, whispering)
 			used_radios += my_headset
 
 // Clicked on while holding an object.
 /mob/living/simple_mob/animal/passive/bird/parrot/attackby(obj/item/I, mob/user)
-	if(istype(I, /obj/item/device/radio/headset))
+	if(istype(I, /obj/item/radio/headset))
 		give_headset(I, user)
 		return
 	return ..()
@@ -63,30 +63,30 @@
 		..()
 
 
-/mob/living/simple_mob/animal/passive/bird/parrot/proc/give_headset(obj/item/device/radio/headset/new_headset, mob/living/user)
+/mob/living/simple_mob/animal/passive/bird/parrot/proc/give_headset(obj/item/radio/headset/new_headset, mob/living/user)
 	if(!istype(new_headset))
-		to_chat(user, span("warning", "\The [new_headset] isn't a headset."))
+		to_chat(user, span_warning("\The [new_headset] isn't a headset."))
 		return
 	if(my_headset)
-		to_chat(user, span("warning", "\The [src] is already wearing \a [my_headset]."))
+		to_chat(user, span_warning("\The [src] is already wearing \a [my_headset]."))
 		return
 	else
 		user.drop_item(new_headset)
 		my_headset = new_headset
 		new_headset.forceMove(src)
-		to_chat(user, span("warning", "You place \a [new_headset] on \the [src]. You monster."))
-		to_chat(src, span("notice", "\The [user] gives you \a [new_headset]. You should put it to good use immediately."))
+		to_chat(user, span_warning("You place \a [new_headset] on \the [src]. You monster."))
+		to_chat(src, span_notice("\The [user] gives you \a [new_headset]. You should put it to good use immediately."))
 		return
 
 /mob/living/simple_mob/animal/passive/bird/parrot/proc/remove_headset(mob/living/user)
 	if(!my_headset)
-		to_chat(user, "<span class='warning'>\The [src] doesn't have a headset to remove, thankfully.</span>")
+		to_chat(user, span_warning("\The [src] doesn't have a headset to remove, thankfully."))
 	else
 		ISay("BAWWWWWK LEAVE THE HEADSET BAWKKKKK!")
 		my_headset.forceMove(get_turf(src))
 		user.put_in_hands(my_headset)
-		to_chat(user, span("notice", "You take away \the [src]'s [my_headset.name]. Finally."))
-		to_chat(src, span("warning", "\The [user] takes your [my_headset.name] away! How cruel!"))
+		to_chat(user, span_notice("You take away \the [src]'s [my_headset.name]. Finally."))
+		to_chat(src, span_warning("\The [user] takes your [my_headset.name] away! How cruel!"))
 		my_headset = null
 
 /mob/living/simple_mob/animal/passive/bird/parrot/examine(mob/user)
@@ -110,12 +110,12 @@
 	icon_dead = "poly-dead"
 	tt_desc = "E Ara macao"
 	attack_armor_pen = 20	//HE HAS THE B E A K
-	my_headset = /obj/item/device/radio/headset/headset_eng
+	my_headset = /obj/item/radio/headset/headset_eng
 	say_list_type = /datum/say_list/bird/poly
 
 // Best Bird with best headset.
 /mob/living/simple_mob/animal/passive/bird/parrot/poly/ultimate
-	my_headset = /obj/item/device/radio/headset/omni
+	my_headset = /obj/item/radio/headset/omni
 
 /mob/living/simple_mob/animal/passive/bird/parrot/kea
 	name = "kea"

@@ -25,7 +25,7 @@
 	if(!src.can_open())
 		return 0
 
-	if(rigged && locate(/obj/item/device/radio/electropack) in src)
+	if(rigged && locate(/obj/item/radio/electropack) in src)
 		if(isliving(usr))
 			var/mob/living/L = usr
 			if(L.electrocute_act(17, src))
@@ -69,6 +69,14 @@
 	update_icon()
 	return 1
 
+/obj/structure/closet/crate/MouseDrop_T(mob/target, mob/user)
+	// Adds climbing from drag, You can't put yourself in crates with a drag anyway... Nore anyone else actually.
+	var/mob/living/H = user
+	if(istype(H) && can_climb(H) && target == user)
+		do_climb(target)
+	else
+		return ..()
+
 /obj/structure/closet/crate/verb/rotate_clockwise()
 	set name = "Rotate Crate Clockwise"
 	set category = "Object"
@@ -89,7 +97,7 @@
 
 	src.set_dir(turn(src.dir, 90))
 
-/obj/structure/closet/crate/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/structure/closet/crate/attackby(obj/item/W as obj, mob/user as mob)
 	if(W.has_tool_quality(TOOL_WRENCH) && istype(src,/obj/structure/closet/crate/bin))
 		return ..()
 	else if(opened)
@@ -97,31 +105,31 @@
 			return
 		if(W.loc != user) // This should stop mounted modules ending up outside the module.
 			return
-		if(istype(W, /obj/item/weapon/grab)) //VOREstation edit: we don't want to drop grabs into the crate
+		if(istype(W, /obj/item/grab)) //VOREstation edit: we don't want to drop grabs into the crate
 			return
 		user.drop_item()
 		if(W)
 			W.forceMove(src.loc)
-	else if(istype(W, /obj/item/weapon/packageWrap))
+	else if(istype(W, /obj/item/packageWrap))
 		return
 	else if(istype(W, /obj/item/stack/cable_coil))
 		var/obj/item/stack/cable_coil/C = W
 		if(rigged)
-			to_chat(user, "<span class='notice'>[src] is already rigged!</span>")
+			to_chat(user, span_notice("[src] is already rigged!"))
 			return
 		if (C.use(1))
-			to_chat(user , "<span class='notice'>You rig [src].</span>")
+			to_chat(user , span_notice("You rig [src]."))
 			rigged = 1
 			return
-	else if(istype(W, /obj/item/device/radio/electropack))
+	else if(istype(W, /obj/item/radio/electropack))
 		if(rigged)
-			to_chat(user , "<span class='notice'>You attach [W] to [src].</span>")
+			to_chat(user , span_notice("You attach [W] to [src]."))
 			user.drop_item()
 			W.forceMove(src)
 			return
 	else if(W.has_tool_quality(TOOL_WIRECUTTER))
 		if(rigged)
-			to_chat(user , "<span class='notice'>You cut away the wiring.</span>")
+			to_chat(user , span_notice("You cut away the wiring."))
 			playsound(src, W.usesound, 100, 1)
 			rigged = 0
 			return
@@ -171,15 +179,15 @@
 
 /obj/structure/closet/crate/secure/proc/togglelock(mob/user as mob)
 	if(src.opened)
-		to_chat(user, "<span class='notice'>Close the crate first.</span>")
+		to_chat(user, span_notice("Close the crate first."))
 		return
 	if(src.broken)
-		to_chat(user, "<span class='warning'>The crate appears to be broken.</span>")
+		to_chat(user, span_warning("The crate appears to be broken."))
 		return
 	if(src.allowed(user))
 		set_locked(!locked, user)
 	else
-		to_chat(user, "<span class='notice'>Access Denied</span>")
+		to_chat(user, span_notice("Access Denied"))
 
 /obj/structure/closet/crate/secure/proc/set_locked(var/newlocked, mob/user = null)
 	if(locked == newlocked) return
@@ -187,7 +195,7 @@
 	locked = newlocked
 	if(user)
 		for(var/mob/O in viewers(user, 3))
-			O.show_message( "<span class='notice'>The crate has been [locked ? null : "un"]locked by [user].</span>", 1)
+			O.show_message( span_notice("The crate has been [locked ? null : "un"]locked by [user]."), 1)
 	update_icon()
 
 /obj/structure/closet/crate/secure/verb/verb_togglelock()
@@ -202,7 +210,7 @@
 		src.add_fingerprint(usr)
 		src.togglelock(usr)
 	else
-		to_chat(usr, "<span class='warning'>This mob type can't use this verb.</span>")
+		to_chat(usr, span_warning("This mob type can't use this verb."))
 
 /obj/structure/closet/crate/secure/attack_hand(mob/user as mob)
 	src.add_fingerprint(user)
@@ -211,10 +219,10 @@
 	else
 		src.toggle(user)
 
-/obj/structure/closet/crate/secure/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(is_type_in_list(W, list(/obj/item/weapon/packageWrap, /obj/item/stack/cable_coil, /obj/item/device/radio/electropack, /obj/item/weapon/tool/wirecutters)))
+/obj/structure/closet/crate/secure/attackby(obj/item/W as obj, mob/user as mob)
+	if(is_type_in_list(W, list(/obj/item/packageWrap, /obj/item/stack/cable_coil, /obj/item/radio/electropack, /obj/item/tool/wirecutters)))
 		return ..()
-	if(istype(W, /obj/item/weapon/melee/energy/blade))
+	if(istype(W, /obj/item/melee/energy/blade))
 		emag_act(INFINITY, user)
 	if(!opened)
 		src.togglelock(user)
@@ -226,7 +234,7 @@
 		playsound(src, "sparks", 60, 1)
 		locked = 0
 		broken = 1
-		to_chat(user, "<span class='notice'>You unlock \the [src].</span>")
+		to_chat(user, span_notice("You unlock \the [src]."))
 		update_icon()
 		return 1
 
@@ -283,17 +291,17 @@
 	desc = "A crate with rapid construction device."
 
 	starts_with = list(
-		/obj/item/weapon/rcd_ammo = 3,
-		/obj/item/weapon/rcd)
+		/obj/item/rcd_ammo = 3,
+		/obj/item/rcd)
 
 /obj/structure/closet/crate/solar
 	name = "solar pack crate"
 
 	starts_with = list(
 		/obj/item/solar_assembly = 21,
-		/obj/item/weapon/circuitboard/solar_control,
-		/obj/item/weapon/tracker_electronics,
-		/obj/item/weapon/paper/solar)
+		/obj/item/circuitboard/solar_control,
+		/obj/item/tracker_electronics,
+		/obj/item/paper/solar)
 
 /obj/structure/closet/crate/freezer
 	name = "freezer"
@@ -717,8 +725,8 @@
 
 /obj/structure/closet/crate/hydroponics/prespawned
 	starts_with = list(
-		/obj/item/weapon/reagent_containers/spray/plantbgone = 2,
-		/obj/item/weapon/material/minihoe)
+		/obj/item/reagent_containers/spray/plantbgone = 2,
+		/obj/item/material/minihoe)
 
 //Laundry Cart
 /obj/structure/closet/crate/laundry

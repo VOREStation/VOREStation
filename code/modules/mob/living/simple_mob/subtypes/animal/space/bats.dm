@@ -8,7 +8,7 @@
 	icon_dead = "bat_dead"
 	icon_gib = "bat_dead"
 
-	faction = "scarybat"
+	faction = FACTION_SCARYBAT
 
 	maxHealth = 20
 	health = 20
@@ -32,7 +32,7 @@
 
 	has_langs = list(LANGUAGE_MOUSE, LANGUAGE_ECHOSONG)		// Haha squeak
 
-	meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat
+	meat_type = /obj/item/reagent_containers/food/snacks/meat
 	meat_amount = 2
 
 	say_list_type = /datum/say_list/mouse	// Close enough
@@ -44,11 +44,11 @@
 		var/mob/living/L = A
 		if(prob(scare_chance))
 			L.Stun(1)
-			L.visible_message("<span class='danger'>\The [src] scares \the [L]!</span>")
+			L.visible_message(span_danger("\The [src] scares \the [L]!"))
 
 // Spookiest of bats
 /mob/living/simple_mob/animal/space/bats/cult
-	faction = "cult"
+	faction = FACTION_CULT
 	supernatural = TRUE
 
 /mob/living/simple_mob/animal/space/bats/cult/cultify()

@@ -116,7 +116,7 @@
 			. *= 0.5
 		. -= chem_effects[CE_SPEEDBOOST]	// give 'em a buff on top.
 
-	. = max(HUMAN_LOWEST_SLOWDOWN, . + config.human_delay)	// Minimum return should be the same as force_max_speed
+	. = max(HUMAN_LOWEST_SLOWDOWN, . + CONFIG_GET(number/human_delay))	// Minimum return should be the same as force_max_speed
 	. += ..()
 
 /mob/living/carbon/human/Moved()
@@ -147,7 +147,7 @@
 	if(!T)
 		return 0
 
-	if(T.movement_cost)
+	if(T.movement_cost && !flying) //VOREStation Add: If you are flying you are probably not affected by the terrain on the ground.
 		var/turf_move_cost = T.movement_cost
 		if(istype(T, /turf/simulated/floor/water))
 			if(species.water_movement)
@@ -191,8 +191,8 @@
 
 /mob/living/carbon/human/get_jetpack()
 	if(back)
-		var/obj/item/weapon/rig/rig = get_rig()
-		if(istype(back, /obj/item/weapon/tank/jetpack))
+		var/obj/item/rig/rig = get_rig()
+		if(istype(back, /obj/item/tank/jetpack))
 			return back
 		else if(istype(rig))
 			for(var/obj/item/rig_module/maneuvering_jets/module in rig.installed_modules)
@@ -212,7 +212,7 @@
 		return TRUE  //VOREStation Edit.
 
 	//Do we have a working jetpack?
-	var/obj/item/weapon/tank/jetpack/thrust = get_jetpack()
+	var/obj/item/tank/jetpack/thrust = get_jetpack()
 
 	if(thrust)
 		if(((!check_drift) || (check_drift && thrust.stabilization_on)) && (!lying) && (thrust.do_thrust(0.01, src)))
@@ -231,7 +231,7 @@
 	if(species.can_space_freemove || species.can_zero_g_move)
 		return FALSE
 
-	var/obj/item/weapon/tank/jetpack/thrust = get_jetpack()
+	var/obj/item/tank/jetpack/thrust = get_jetpack()
 	if(thrust?.can_thrust(0.01))
 		return FALSE
 
@@ -257,7 +257,7 @@
 		return
 	if(is_incorporeal())
 		return
-	if(!config.footstep_volume || !T.footstep_sounds || !T.footstep_sounds.len)
+	if(!CONFIG_GET(number/footstep_volume) || !T.footstep_sounds || !T.footstep_sounds.len)
 		return
 	// Future Upgrades - Multi species support
 	var/list/footstep_sounds = T.footstep_sounds["human"]
@@ -276,7 +276,7 @@
 	if(m_intent == "run" && step_count++ % 2 != 0)
 		return
 
-	var/volume = config.footstep_volume
+	var/volume = CONFIG_GET(number/footstep_volume)
 
 	// Reduce volume while walking or barefoot
 	if(!shoes || m_intent == "walk")
@@ -292,7 +292,7 @@
 	if(buckled || lying || throwing)
 		return // people flying, lying down or sitting do not step
 
-	if(!has_gravity(src) && prob(75))
+	if(!get_gravity(src) && prob(75))
 		return // Far less likely to make noise in no gravity
 
 	playsound(T, S, volume, FALSE)

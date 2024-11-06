@@ -1,4 +1,4 @@
-/obj/item/device/camerabug
+/obj/item/camerabug
 	name = "mobile camera pod"
 	desc = "A camera pod used by tactical operators. Must be linked to a camera scanner unit."
 	icon = 'icons/obj/grenade.dmi'
@@ -10,22 +10,25 @@
 	throw_range = 15
 	throw_speed = 3
 	origin_tech = list(TECH_DATA = 1, TECH_ENGINEERING = 1)
-	var/obj/item/device/bug_monitor/linkedmonitor
+	var/obj/item/bug_monitor/linkedmonitor
 	var/brokentype = /obj/item/brokenbug
 
-//	var/obj/item/device/radio/bug/radio
+//	var/obj/item/radio/bug/radio
 	var/obj/machinery/camera/bug/camera
 	var/camtype = /obj/machinery/camera/bug
 
-/obj/item/device/camerabug/New()
+	pickup_sound = 'sound/items/pickup/device.ogg'
+	drop_sound = 'sound/items/drop/device.ogg'
+
+/obj/item/camerabug/New()
 	..()
 //	radio = new(src)
 	camera = new camtype(src)
 
-/obj/item/device/camerabug/attack_self(mob/user)
+/obj/item/camerabug/attack_self(mob/user)
 	if(user.a_intent == I_HURT)
-		to_chat(user, "<span class='notice'>You crush the [src] under your foot, breaking it.</span>")
-		visible_message("[user.name] crushes the [src] under their foot, breaking it!</span>")
+		to_chat(user, span_notice("You crush the [src] under your foot, breaking it."))
+		visible_message(span_notice("[user.name] crushes the [src] under their foot, breaking it!"))
 		new brokentype(get_turf(src))
 		spawn(0)
 		qdel(src)
@@ -33,7 +36,7 @@
 		user.set_machine(radio)
 		radio.interact(user)
 */
-/obj/item/device/camerabug/verb/reset()
+/obj/item/camerabug/verb/reset()
 	set name = "Reset camera bug"
 	set category = "Object"
 	if(linkedmonitor)
@@ -41,7 +44,7 @@
 	linkedmonitor = null
 	qdel(camera)
 	camera = new camtype(src)
-	to_chat(usr, "<span class='notice'>You turn the [src] off and on again, delinking it from any monitors.")
+	to_chat(usr, span_notice("You turn the [src] off and on again, delinking it from any monitors."))
 
 /obj/item/brokenbug
 	name = "broken mobile camera pod"
@@ -55,6 +58,9 @@
 	throw_range = 15
 	throw_speed = 3
 	origin_tech = list(TECH_ENGINEERING = 1)
+
+	pickup_sound = 'sound/items/pickup/device.ogg'
+	drop_sound = 'sound/items/drop/device.ogg'
 
 /obj/item/brokenbug/spy
 	name = "broken bug"
@@ -71,7 +77,7 @@
 	throw_range = 15
 	throw_speed = 3
 
-/obj/item/device/camerabug/spy
+/obj/item/camerabug/spy
 	name = "bug"
 	desc = ""	//Nothing to see here
 	icon = 'icons/obj/weapons.dmi'
@@ -83,12 +89,12 @@
 	origin_tech = list(TECH_DATA = 1, TECH_ENGINEERING = 1, TECH_ILLEGAL = 3)
 	camtype = /obj/machinery/camera/bug/spy
 
-/obj/item/device/camerabug/examine(mob/user)
+/obj/item/camerabug/examine(mob/user)
 	. = ..()
 	if(get_dist(user, src) == 0)
 		. += "It has a tiny camera inside. Needs to be both configured and brought in contact with monitor device to be fully functional."
 
-/obj/item/device/camerabug/update_icon()
+/obj/item/camerabug/update_icon()
 	..()
 
 	if(anchored)	// Standard versions are relatively obvious if not hidden in a container. Anchoring them is advised, to disguise them.
@@ -96,15 +102,15 @@
 	else
 		alpha = 255
 
-/obj/item/device/camerabug/attackby(obj/item/W as obj, mob/living/user as mob)
-	if(istype(W, /obj/item/device/bug_monitor))
-		var/obj/item/device/bug_monitor/SM = W
+/obj/item/camerabug/attackby(obj/item/W as obj, mob/living/user as mob)
+	if(istype(W, /obj/item/bug_monitor))
+		var/obj/item/bug_monitor/SM = W
 		if(!linkedmonitor)
-			to_chat(user, "<span class='notice'>\The [src] has been paired with \the [SM].</span>")
+			to_chat(user, span_notice("\The [src] has been paired with \the [SM]."))
 			SM.pair(src)
 			linkedmonitor = SM
 		else if (linkedmonitor == SM)
-			to_chat(user, "<span class='notice'>\The [src] has been unpaired from \the [SM].</span>")
+			to_chat(user, span_notice("\The [src] has been unpaired from \the [SM]."))
 			linkedmonitor.unpair(src)
 			linkedmonitor = null
 		else
@@ -114,7 +120,7 @@
 		if(isturf(loc))
 			anchored = !anchored
 
-			to_chat(user, "<span class='notice'>You [anchored ? "" : "un"]secure \the [src].</span>")
+			to_chat(user, span_notice("You [anchored ? "" : "un"]secure \the [src]."))
 
 			update_icon()
 			return
@@ -129,7 +135,7 @@
 			qdel(src)
 		..()
 
-/obj/item/device/camerabug/bullet_act()
+/obj/item/camerabug/bullet_act()
 	visible_message("The [src] lens shatters!")
 	new brokentype(get_turf(src))
 	if(linkedmonitor)
@@ -138,13 +144,13 @@
 	spawn(0)
 	qdel(src)
 
-/obj/item/device/camerabug/Destroy()
+/obj/item/camerabug/Destroy()
 	if(linkedmonitor)
 		linkedmonitor.unpair(src)
 	linkedmonitor = null
 	..()
 
-/obj/item/device/bug_monitor
+/obj/item/bug_monitor
 	name = "mobile camera pod monitor"
 	desc = "A portable camera console designed to work with mobile camera pods."
 	icon = 'icons/obj/device.dmi'
@@ -154,34 +160,38 @@
 	origin_tech = list(TECH_DATA = 1, TECH_ENGINEERING = 1)
 
 	var/operating = 0
-//	var/obj/item/device/radio/bug/radio
+//	var/obj/item/radio/bug/radio
 	var/obj/machinery/camera/bug/selected_camera
 	var/list/obj/machinery/camera/bug/cameras = new()
+
+	pickup_sound = 'sound/items/pickup/device.ogg'
+	drop_sound = 'sound/items/drop/device.ogg'
+
 /*
-/obj/item/device/bug_monitor/New()
+/obj/item/bug_monitor/New()
 	radio = new(src)
 */
-/obj/item/device/bug_monitor/attack_self(mob/user)
+/obj/item/bug_monitor/attack_self(mob/user)
 	if(operating)
 		return
 
 //	radio.attack_self(user)
 	view_cameras(user)
 
-/obj/item/device/bug_monitor/attackby(obj/item/W as obj, mob/living/user as mob)
-	if(istype(W, /obj/item/device/camerabug))
+/obj/item/bug_monitor/attackby(obj/item/W as obj, mob/living/user as mob)
+	if(istype(W, /obj/item/camerabug))
 		W.attackby(src, user)
 	else
 		return ..()
 
-/obj/item/device/bug_monitor/proc/unpair(var/obj/item/device/camerabug/SB)
+/obj/item/bug_monitor/proc/unpair(var/obj/item/camerabug/SB)
 	if(SB.camera in cameras)
 		cameras -= SB.camera
 
-/obj/item/device/bug_monitor/proc/pair(var/obj/item/device/camerabug/SB)
+/obj/item/bug_monitor/proc/pair(var/obj/item/camerabug/SB)
 	cameras += SB.camera
 
-/obj/item/device/bug_monitor/proc/view_cameras(mob/user)
+/obj/item/bug_monitor/proc/view_cameras(mob/user)
 	if(!can_use_cam(user))
 		return
 
@@ -195,14 +205,14 @@
 	selected_camera = null
 	operating = 0
 
-/obj/item/device/bug_monitor/proc/view_camera(mob/user)
+/obj/item/bug_monitor/proc/view_camera(mob/user)
 	spawn(0)
 		while(selected_camera && Adjacent(user))
 			var/turf/T = get_turf(selected_camera)
 			if(!T || !is_on_same_plane_or_station(T.z, user.z) || !selected_camera.can_use())
 				user.unset_machine()
 				user.reset_view(null)
-				to_chat(user, "<span class='notice'>Link to [selected_camera] has been lost.</span>")
+				to_chat(user, span_notice("Link to [selected_camera] has been lost."))
 				src.unpair(selected_camera.loc)
 				sleep(90)
 			else
@@ -212,18 +222,18 @@
 		user.unset_machine()
 		user.reset_view(null)
 
-/obj/item/device/bug_monitor/proc/can_use_cam(mob/user)
+/obj/item/bug_monitor/proc/can_use_cam(mob/user)
 	if(operating)
 		return
 
 	if(!cameras.len)
-		to_chat(user, "<span class='warning'>No paired cameras detected!</span>")
-		to_chat(user, "<span class='warning'>Bring a camera in contact with this device to pair the camera.</span>")
+		to_chat(user, span_warning("No paired cameras detected!"))
+		to_chat(user, span_warning("Bring a camera in contact with this device to pair the camera."))
 		return
 
 	return 1
 
-/obj/item/device/bug_monitor/spy
+/obj/item/bug_monitor/spy
 	name = "\improper PDA"
 	desc = "A portable microcomputer by Thinktronic Systems, LTD. Functionality determined by a preprogrammed ROM cartridge."
 	icon = 'icons/obj/pda.dmi'
@@ -231,7 +241,7 @@
 	item_state = "electronic"
 	origin_tech = list(TECH_DATA = 1, TECH_ENGINEERING = 1, TECH_ILLEGAL = 3)
 
-/obj/item/device/bug_monitor/spy/examine(mob/user)
+/obj/item/bug_monitor/spy/examine(mob/user)
 	. = ..()
 	if(Adjacent(user))
 		. += "The time '12:00' is blinking in the corner of the screen and \the [src] looks very cheaply made."
@@ -257,7 +267,7 @@
 	c_tag = name
 
 /* //These were originally supposed to have radios in them. Doesn't work.
-/obj/item/device/radio/bug
+/obj/item/radio/bug
 	listening = 0 //turn it on first
 	frequency = 1359 //sec comms
 	broadcasting = 0
@@ -265,7 +275,7 @@
 	name = "camera bug device"
 	icon_state = "syn_cypherkey"
 
-/obj/item/device/radio/bug/spy
+/obj/item/radio/bug/spy
 	listening = 0
 	frequency = 1473
 	broadcasting = 0

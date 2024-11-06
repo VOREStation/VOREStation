@@ -1,6 +1,6 @@
 // Gambit only spell.  Heals everything unconditionally.
 
-/obj/item/weapon/spell/modifier/mend_all
+/obj/item/spell/modifier/mend_all
 	name = "mend all"
 	desc = "One function to heal them all."
 	icon_state = "mend_all"
@@ -15,8 +15,8 @@
 	desc = "You feel serene and well rested."
 	mob_overlay_state = "green_sparkles"
 
-	on_created_text = "<span class='warning'>Sparkles begin to appear around you, and all your ills seem to fade away.</span>"
-	on_expired_text = "<span class='notice'>The sparkles have faded, although you feel much healthier than before.</span>"
+	on_created_text = span_warning("Sparkles begin to appear around you, and all your ills seem to fade away.")
+	on_expired_text = span_notice("The sparkles have faded, although you feel much healthier than before.")
 	stacks = MODIFIER_STACK_EXTEND
 
 /datum/modifier/technomancer/mend_all/tick()

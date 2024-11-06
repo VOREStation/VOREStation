@@ -17,7 +17,7 @@ var/list/SKILL_ENGINEER = list("field" = "Engineering", "EVA" = SKILL_BASIC, "co
 var/list/SKILL_ORGAN_ROBOTICIST = list("field" = "Science", "devices" = SKILL_ADEPT, "electrical" = SKILL_BASIC, "computer" = SKILL_ADEPT, "anatomy" = SKILL_BASIC)
 var/list/SKILL_SECURITY_OFFICER = list("field" = "Security", "combat" = SKILL_BASIC, "weapons" = SKILL_ADEPT, "law" = SKILL_ADEPT, "forensics" = SKILL_BASIC)
 var/list/SKILL_CHEMIST = list("field" = "Science", "chemistry" = SKILL_ADEPT, "science" = SKILL_ADEPT, "medical" = SKILL_BASIC, "devices" = SKILL_BASIC)
-var/global/list/SKILL_PRE = list("Engineer" = SKILL_ENGINEER, "Roboticist" = SKILL_ORGAN_ROBOTICIST, "Security Officer" = SKILL_SECURITY_OFFICER, "Chemist" = SKILL_CHEMIST)
+var/global/list/SKILL_PRE = list(JOB_ENGINEER = SKILL_ENGINEER, JOB_ROBOTICIST = SKILL_ORGAN_ROBOTICIST, JOB_SECURITY_OFFICER = SKILL_SECURITY_OFFICER, JOB_CHEMIST = SKILL_CHEMIST)
 
 /datum/skill/management
 	ID = "management"
@@ -181,11 +181,11 @@ var/global/list/SKILL_PRE = list("Engineer" = SKILL_ENGINEER, "Roboticist" = SKI
 		return
 
 	var/HTML = "<body>"
-	HTML += "<b>Select your Skills</b><br>"
+	HTML += span_bold("Select your Skills") + "<br>"
 	HTML += "Current skill level: <b>[M.GetSkillClass(M.used_skillpoints)]</b> ([M.used_skillpoints])<br>"
 	HTML += "<table>"
 	for(var/V in SKILLS)
-		HTML += "<tr><th colspan = 5><b>[V]</b>"
+		HTML += "<tr><th colspan = 5>" + span_bold("[V]")
 		HTML += "</th></tr>"
 		for(var/datum/skill/S in SKILLS[V])
 			var/level = M.skills[S.ID]
@@ -207,7 +207,7 @@ var/global/list/SKILL_PRE = list("Engineer" = SKILL_ENGINEER, "Roboticist" = SKI
 	return
 
 /mob/living/carbon/human/verb/show_skills()
-	set category = "IC"
+	set category = "IC.Game"
 	set name = "Show Own Skills"
 
 	show_skill_window(src, src)

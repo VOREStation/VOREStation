@@ -8,7 +8,7 @@
 	icon_living = "sonadile"
 	icon_state = "sonadile"
 	icon_rest = "sonadile"
-	faction = "sonadile"
+	faction = FACTION_SONADILE
 	old_x = -16
 	old_y = 0
 	default_pixel_x = -16

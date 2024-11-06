@@ -27,7 +27,7 @@ TGUI frontend path: tgui\packages\tgui\interfaces\TraitTutorial.tsx
 /mob/living/carbon/human/proc/trait_tutorial()
 	set name = "Explain Custom Traits"
 	set desc = "Click this verb to obtain a detailed tutorial on your selected traits. "
-	set category = "Abilities"
+	set category = "Abilities.General"
 	var/datum/tgui_module/trait_tutorial_tgui/fancy_UI
 	if(!fancy_UI)
 		fancy_UI = new /datum/tgui_module/trait_tutorial_tgui/ //Preventing a bunch of instances being spawned all over the place. Hopefully
@@ -36,12 +36,12 @@ TGUI frontend path: tgui\packages\tgui\interfaces\TraitTutorial.tsx
 
 	var/list/list_of_traits = species.traits
 	if(!LAZYLEN(list_of_traits)) //Although we shouldn't show up if no traits, leaving this in case someone loses theirs after (re)spawning.
-		to_chat(usr, SPAN_NOTICE("You do not have any custom traits!"))
+		to_chat(usr, span_notice("You do not have any custom traits!"))
 		return //Dont want an empty TGUI panel and list by accident after all.
 
 
 	var/UI_choice = tgui_alert(src, "Would you like the tutorial text to be printed to chat?", "Choose preferred tutorial interface", list("TGUI","To Chat", "Cancel"))
-	if(UI_choice == "Cancel")
+	if(!UI_choice || UI_choice == "Cancel")
 		return
 
 	//Initializing associative lists
@@ -66,8 +66,8 @@ TGUI frontend path: tgui\packages\tgui\interfaces\TraitTutorial.tsx
 	if(UI_choice == "To Chat")
 		var/to_chat_choice = tgui_input_list(usr, "Please choose the trait to be explained", "Print to Chat", trait_names, null)
 		if(to_chat_choice)
-			to_chat(usr,SPAN_NOTICE("<b>Name:</b> [to_chat_choice] \n <b>Category:</b> [trait_category[to_chat_choice]] \n <b>Description:</b> [trait_desc[to_chat_choice]] \n \
-			<b>Guide:</b> \n [trait_tutorial[to_chat_choice]]"))
+			to_chat(usr,span_notice(span_bold("Name:") + " [to_chat_choice] \n " + span_bold("Category:")  + " [trait_category[to_chat_choice]] \n " + span_bold("Description:")  + " [trait_desc[to_chat_choice]] \n \
+			" + span_bold("Guide:")  + " \n [trait_tutorial[to_chat_choice]]"))
 
 
 	else if(UI_choice == "TGUI")

@@ -6,7 +6,7 @@
 	density = TRUE
 	anchored = TRUE
 	var/equip_body = FALSE				//If true, this will spawn the person with equipment
-	var/default_job = USELESS_JOB		//The job that will be assigned if equip_body is true and the ghost doesn't have a job
+	var/default_job = JOB_ALT_VISITOR		//The job that will be assigned if equip_body is true and the ghost doesn't have a job
 	var/ghost_spawns = FALSE			//If true, allows ghosts who haven't been spawned yet to spawn
 	var/vore_respawn = 5 MINUTES		//The time to wait if you died from vore
 	var/respawn = 30 MINUTES			//The time to wait if you didn't die from vore
@@ -27,19 +27,19 @@
 /obj/machinery/transhuman/autoresleever/attack_ghost(mob/observer/dead/user as mob)
 	update_icon()
 	if(spawn_slots == 0)
-		to_chat(user, "<span class='warning'>There are no more respawn slots.</span>")
+		to_chat(user, span_warning("There are no more respawn slots."))
 		return
 	if(user.mind)
 		if(user.mind.vore_death)
 			if(vore_respawn <= world.time - user.timeofdeath)
 				autoresleeve(user)
 			else
-				to_chat(user, "<span class='warning'>You must wait [((vore_respawn - (world.time - user.timeofdeath)) * 0.1) / 60] minutes to use \the [src].</span>")
+				to_chat(user, span_warning("You must wait [((vore_respawn - (world.time - user.timeofdeath)) * 0.1) / 60] minutes to use \the [src]."))
 				return
 		else if(respawn <= world.time - user.timeofdeath)
 			autoresleeve(user)
 		else
-			to_chat(user, "<span class='warning'>You must wait [((respawn - (world.time - user.timeofdeath)) * 0.1) /60] minutes to use \the [src].</span>")
+			to_chat(user, span_warning("You must wait [((respawn - (world.time - user.timeofdeath)) * 0.1) /60] minutes to use \the [src]."))
 			return
 	else if(spawntype)
 		if(tgui_alert(user, "This [src] spawns something special, would you like to play as it?", "Creachur", list("No","Yes")) == "Yes")
@@ -48,7 +48,7 @@
 		if(tgui_alert(user, "Would you like to be spawned here as your presently loaded character?", "Spawn here", list("No","Yes")) == "Yes")
 			autoresleeve(user)
 	else
-		to_chat(user, "<span class='warning'>You need to have been spawned in order to respawn here.</span>")
+		to_chat(user, span_warning("You need to have been spawned in order to respawn here."))
 
 /obj/machinery/transhuman/autoresleever/attackby(var/mob/user)	//Let's not let people mess with this.
 	update_icon()
@@ -59,24 +59,24 @@
 
 /obj/machinery/transhuman/autoresleever/proc/autoresleeve(var/mob/observer/dead/ghost)
 	if(stat)
-		to_chat(ghost, "<span class='warning'>This machine is not functioning...</span>")
+		to_chat(ghost, span_warning("This machine is not functioning..."))
 		return
 	if(!istype(ghost,/mob/observer/dead))
 		return
 	if(ghost.mind && ghost.mind.current && ghost.mind.current.stat != DEAD)
-		if(istype(ghost.mind.current.loc, /obj/item/device/mmi))
+		if(istype(ghost.mind.current.loc, /obj/item/mmi))
 			if(tgui_alert(ghost, "Your brain is still alive, using the auto-resleever will delete that brain. Are you sure?", "Delete Brain", list("No","Yes")) != "Yes")
 				return
-			if(istype(ghost.mind.current.loc, /obj/item/device/mmi))
+			if(istype(ghost.mind.current.loc, /obj/item/mmi))
 				qdel(ghost.mind.current.loc)
 		else
-			to_chat(ghost, "<span class='warning'>Your body is still alive, you cannot be resleeved.</span>")
+			to_chat(ghost, span_warning("Your body is still alive, you cannot be resleeved."))
 			return
 
 	var/client/ghost_client = ghost.client
 
 	if(!is_alien_whitelisted(ghost, GLOB.all_species[ghost_client?.prefs?.species]) && !check_rights(R_ADMIN, 0)) // Prevents a ghost ghosting in on a slot and spawning via a resleever with race they're not whitelisted for, getting around normal join restrictions.
-		to_chat(ghost, "<span class='warning'>You are not whitelisted to spawn as this species!</span>")
+		to_chat(ghost, span_warning("You are not whitelisted to spawn as this species!"))
 		return
 
 	/* // Comments out NO_SCAN restriction, as per headmin/maintainer request.
@@ -85,7 +85,7 @@
 		chosen_species = GLOB.all_species[ghost_client.prefs.species]
 
 	if(chosen_species.flags && NO_SCAN) // Sanity. Prevents species like Xenochimera, Proteans, etc from rejoining the round via resleeve, as they should have their own methods of doing so already, as agreed to when you whitelist as them.
-		to_chat(ghost, "<span class='warning'>This species cannot be resleeved!</span>")
+		to_chat(ghost, span_warning("This species cannot be resleeved!"))
 		return
 	*/
 
@@ -100,7 +100,7 @@
 	else if(equip_body || ghost_spawns)
 		charjob = default_job
 	else
-		to_chat(ghost, "<span class='warning'>It appears as though your loaded character has not been spawned this round, or has quit the round. If you died as a different character, please load them, and try again.</span>")
+		to_chat(ghost, span_warning("It appears as though your loaded character has not been spawned this round, or has quit the round. If you died as a different character, please load them, and try again."))
 		return
 
 	//For logging later
@@ -111,7 +111,7 @@
 	var/spawnloc = get_turf(src)
 	//Did we actually get a loc to spawn them?
 	if(!spawnloc)
-		to_chat(ghost, "<span class='warning'>Could not find a valid location to spawn your character.</span>")
+		to_chat(ghost, span_warning("Could not find a valid location to spawn your character."))
 		return
 
 	if(spawntype)
@@ -123,7 +123,7 @@
 			log_admin("[L.ckey]'s has been spawned as [L] via \the [src].")
 			message_admins("[L.ckey]'s has been spawned as [L] via \the [src].")
 		else
-			to_chat(ghost, "<span class='warning'>You can't play as a [spawnthing]...</span>")
+			to_chat(ghost, span_warning("You can't play as a [spawnthing]..."))
 			return
 		if(spawn_slots == -1)
 			return
@@ -133,7 +133,7 @@
 			spawn_slots --
 			return
 
-	if(tgui_alert(ghost, "Would you like to be resleeved?", "Resleeve", list("No","Yes")) == "No")
+	if(tgui_alert(ghost, "Would you like to be resleeved?", "Resleeve", list("No","Yes")) != "Yes")
 		return
 	var/mob/living/carbon/human/new_character
 	new_character = new(spawnloc)
@@ -194,7 +194,7 @@
 	log_admin("[new_character.ckey]'s character [new_character.real_name] has been auto-resleeved.")
 	message_admins("[new_character.ckey]'s character [new_character.real_name] has been auto-resleeved.")
 
-	var/obj/item/weapon/implant/backup/imp = new(src)
+	var/obj/item/implant/backup/imp = new(src)
 
 	if(imp.handle_implant(new_character,new_character.zone_sel.selecting))
 		imp.post_implant(new_character)
@@ -206,7 +206,7 @@
 			global_announcer.autosay("[new_character.name] has been resleeved by the automatic resleeving system.", "TransCore Oversight", new_character.isSynthetic() ? "Science" : "Medical")
 		spawn(0)	//Wait a second for nif to do its thing if there is one
 		if(record.nif_path)
-			var/obj/item/device/nif/nif
+			var/obj/item/nif/nif
 			if(new_character.nif)
 				nif = new_character.nif
 			else

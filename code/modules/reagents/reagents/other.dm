@@ -456,6 +456,9 @@
 			var/turf/simulated/S = T
 			S.dirt = 0
 		T.clean_blood()
+		for(var/obj/effect/O in T)
+			if(istype(O,/obj/effect/rune) || istype(O,/obj/effect/decal/cleanable) || istype(O,/obj/effect/overlay))
+				qdel(O)
 
 		for(var/mob/living/simple_mob/slime/M in T)
 			M.adjustToxLoss(rand(5, 10))
@@ -506,7 +509,7 @@
 				var/obj/item/clothing/mask/smokable/S = H.wear_mask
 				if(S.lit)
 					S.quench() // No smoking in my medbay!
-					H.visible_message("<span class='notice'>[H]\'s [S.name] is put out.</span>")
+					H.visible_message(span_notice("[H]\'s [S.name] is put out."))
 
 /datum/reagent/lube // TODO: spraying on borgs speeds them up
 	name = "Space Lube"

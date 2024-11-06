@@ -79,7 +79,7 @@ var/list/wrapped_species_by_ref = list()
 /mob/living/carbon/human/proc/shapeshifter_select_hair()
 
 	set name = "Select Hair"
-	set category = "Abilities"
+	set category = "Abilities.Shapeshift"
 
 	if(stat || world.time < last_special)
 		return
@@ -109,7 +109,7 @@ var/list/wrapped_species_by_ref = list()
 		valid_facialhairstyles += facialhairstyle
 
 
-	visible_message("<span class='notice'>\The [src]'s form contorts subtly.</span>")
+	visible_message(span_notice("\The [src]'s form contorts subtly."))
 	if(valid_hairstyles.len)
 		var/new_hair = tgui_input_list(usr, "Select a hairstyle.", "Shapeshifter Hair", valid_hairstyles)
 		change_hair(new_hair ? new_hair : "Bald")
@@ -123,7 +123,7 @@ var/list/wrapped_species_by_ref = list()
 /mob/living/carbon/human/proc/shapeshifter_select_gender()
 
 	set name = "Select Gender"
-	set category = "Abilities"
+	set category = "Abilities.Shapeshift"
 
 	if(stat || world.time < last_special)
 		return
@@ -138,14 +138,14 @@ var/list/wrapped_species_by_ref = list()
 	if(!new_gender_identity)
 		return
 
-	visible_message("<span class='notice'>\The [src]'s form contorts subtly.</span>")
+	visible_message(span_notice("\The [src]'s form contorts subtly."))
 	change_gender(new_gender)
 	change_gender_identity(new_gender_identity)
 
 /mob/living/carbon/human/proc/shapeshifter_select_shape()
 
 	set name = "Select Body Shape"
-	set category = "Abilities"
+	set category = "Abilities.Shapeshift"
 
 	if(stat || world.time < last_special)
 		return
@@ -165,14 +165,14 @@ var/list/wrapped_species_by_ref = list()
 		return
 
 	wrapped_species_by_ref["\ref[src]"] = new_species
-	visible_message("<b>\The [src]</b> shifts and contorts, taking the form of \a [new_species]!")
+	visible_message(span_infoplain(span_bold("\The [src]") + " shifts and contorts, taking the form of \a [new_species]!"))
 	regenerate_icons()
 */
 
 /mob/living/carbon/human/proc/shapeshifter_select_colour()
 
 	set name = "Select Body Colour"
-	set category = "Abilities"
+	set category = "Abilities.Shapeshift"
 
 	if(stat || world.time < last_special)
 		return
@@ -210,7 +210,7 @@ var/list/wrapped_species_by_ref = list()
 /mob/living/carbon/human/proc/shapeshifter_select_hair_colors()
 
 	set name = "Select Hair Colors"
-	set category = "Abilities"
+	set category = "Abilities.Shapeshift"
 
 	if(stat || world.time < last_special)
 		return
@@ -309,7 +309,7 @@ var/list/wrapped_species_by_ref = list()
 /mob/living/carbon/human/proc/shapeshifter_select_eye_colour()
 
 	set name = "Select Eye Color"
-	set category = "Abilities"
+	set category = "Abilities.Shapeshift"
 
 	if(stat || world.time < last_special)
 		return

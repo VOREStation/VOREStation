@@ -110,7 +110,7 @@ Class Procs:
 	var/clicksound			// sound played on succesful interface. Just put it in the list of vars at the start.
 	var/clickvol = 40		// volume
 	var/interact_offline = 0 // Can the machine be interacted with while de-powered.
-	var/obj/item/weapon/circuitboard/circuit = null
+	var/obj/item/circuitboard/circuit = null
 
 	// 0.0 - 1.0 multipler for prob() based on bullet structure damage
 	// So if this is 1.0 then a 100 damage bullet will always break this structure
@@ -257,15 +257,15 @@ Class Procs:
 	if(user.lying || user.stat)
 		return 1
 	if(!user.IsAdvancedToolUser())  //Vorestation edit
-		to_chat(user, "<span class='warning'>You don't have the dexterity to do this!</span>")
+		to_chat(user, span_warning("You don't have the dexterity to do this!"))
 		return 1
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
 		if(H.getBrainLoss() >= 55)
-			visible_message("<span class='warning'>[H] stares cluelessly at [src].</span>")
+			visible_message(span_warning("[H] stares cluelessly at [src]."))
 			return 1
 		else if(prob(H.getBrainLoss()))
-			to_chat(user, "<span class='warning'>You momentarily forget how to use [src].</span>")
+			to_chat(user, span_warning("You momentarily forget how to use [src]."))
 			return 1
 
 	if(clicksound && istype(user, /mob/living/carbon))
@@ -284,7 +284,7 @@ Class Procs:
 
 /obj/machinery/proc/state(var/msg)
 	for(var/mob/O in hearers(src, null))
-		O.show_message("[icon2html(src,O.client)] <span class = 'notice'>[msg]</span>", 2)
+		O.show_message("[icon2html(src,O.client)] " + span_notice("[msg]"), 2)
 
 /obj/machinery/proc/ping(text=null)
 	if(!text)
@@ -313,33 +313,33 @@ Class Procs:
 	return 0
 
 /obj/machinery/proc/default_apply_parts()
-	var/obj/item/weapon/circuitboard/CB = circuit
+	var/obj/item/circuitboard/CB = circuit
 	if(!istype(CB))
 		return
 	CB.apply_default_parts(src)
 	RefreshParts()
 
 /obj/machinery/proc/default_use_hicell()
-	var/obj/item/weapon/cell/C = locate(/obj/item/weapon/cell) in component_parts
+	var/obj/item/cell/C = locate(/obj/item/cell) in component_parts
 	if(C)
 		component_parts -= C
 		qdel(C)
-		C = new /obj/item/weapon/cell/high(src)
+		C = new /obj/item/cell/high(src)
 		component_parts += C
 		RefreshParts()
 		return C
 
-/obj/machinery/proc/default_part_replacement(var/mob/user, var/obj/item/weapon/storage/part_replacer/R)
+/obj/machinery/proc/default_part_replacement(var/mob/user, var/obj/item/storage/part_replacer/R)
 	var/parts_replaced = FALSE
 	if(!istype(R))
 		return 0
 	if(!component_parts)
 		return 0
-	to_chat(user, "<span class='notice'>Following parts detected in [src]:</span>")
+	to_chat(user, span_notice("Following parts detected in [src]:"))
 	for(var/obj/item/C in component_parts)
-		to_chat(user, "<span class='notice'>    [C.name]</span>")
+		to_chat(user, span_notice("    [C.name]"))
 	if(panel_open || !R.panel_req)
-		var/obj/item/weapon/circuitboard/CB = circuit
+		var/obj/item/circuitboard/CB = circuit
 		var/P
 		for(var/obj/item/A in component_parts)
 			for(var/T in CB.req_components)
@@ -354,7 +354,7 @@ Class Procs:
 						component_parts -= A
 						component_parts += B
 						B.loc = null
-						to_chat(user, "<span class='notice'>[A.name] replaced with [B.name].</span>")
+						to_chat(user, span_notice("[A.name] replaced with [B.name]."))
 						parts_replaced = TRUE
 						break
 			update_icon()
@@ -373,12 +373,12 @@ Class Procs:
 	var/actual_time = W.toolspeed * time
 	if(actual_time != 0)
 		user.visible_message( \
-			"<span class='warning'>\The [user] begins [anchored ? "un" : ""]securing \the [src].</span>", \
-			"<span class='notice'>You start [anchored ? "un" : ""]securing \the [src].</span>")
+			span_warning("\The [user] begins [anchored ? "un" : ""]securing \the [src]."), \
+			span_notice("You start [anchored ? "un" : ""]securing \the [src]."))
 	if(actual_time == 0 || do_after(user, actual_time, target = src))
 		user.visible_message( \
-			"<span class='warning'>\The [user] has [anchored ? "un" : ""]secured \the [src].</span>", \
-			"<span class='notice'>You [anchored ? "un" : ""]secure \the [src].</span>")
+			span_warning("\The [user] has [anchored ? "un" : ""]secured \the [src]."), \
+			span_notice("You [anchored ? "un" : ""]secure \the [src]."))
 		anchored = !anchored
 		power_change() //Turn on or off the machine depending on the status of power in the new area.
 		update_icon()
@@ -396,7 +396,7 @@ Class Procs:
 		return 0
 	playsound(src, S.usesound, 50, 1)
 	panel_open = !panel_open
-	to_chat(user, "<span class='notice'>You [panel_open ? "open" : "close"] the maintenance hatch of [src].</span>")
+	to_chat(user, span_notice("You [panel_open ? "open" : "close"] the maintenance hatch of [src]."))
 	update_icon()
 	return 1
 
@@ -405,14 +405,14 @@ Class Procs:
 		return 0
 	if(!circuit)
 		return 0
-	to_chat(user, "<span class='notice'>You start disconnecting the monitor.</span>")
+	to_chat(user, span_notice("You start disconnecting the monitor."))
 	playsound(src, S.usesound, 50, 1)
 	if(do_after(user, 20 * S.toolspeed))
 		if(stat & BROKEN)
-			to_chat(user, "<span class='notice'>The broken glass falls out.</span>")
-			new /obj/item/weapon/material/shard(src.loc)
+			to_chat(user, span_notice("The broken glass falls out."))
+			new /obj/item/material/shard(src.loc)
 		else
-			to_chat(user, "<span class='notice'>You disconnect the monitor.</span>")
+			to_chat(user, span_notice("You disconnect the monitor."))
 		. = dismantle()
 
 /obj/machinery/proc/alarm_deconstruction_screwdriver(var/mob/user, var/obj/item/S)
@@ -429,7 +429,7 @@ Class Procs:
 		return 0
 	if(!panel_open)
 		return 0
-	user.visible_message("<span class='warning'>[user] has cut the wires inside \the [src]!</span>", "You have cut the wires inside \the [src].")
+	user.visible_message(span_warning("[user] has cut the wires inside \the [src]!"), "You have cut the wires inside \the [src].")
 	playsound(src, W.usesound, 50, 1)
 	new/obj/item/stack/cable_coil(get_turf(src), 5)
 	. = dismantle()
@@ -437,13 +437,13 @@ Class Procs:
 /obj/machinery/proc/dismantle()
 	playsound(src, 'sound/items/Crowbar.ogg', 50, 1)
 	for(var/obj/I in contents)
-		if(istype(I,/obj/item/weapon/card/id))
+		if(istype(I,/obj/item/card/id))
 			I.forceMove(src.loc)
 
 	if(!circuit)
 		return 0
 	var/obj/structure/frame/A = new /obj/structure/frame(src.loc)
-	var/obj/item/weapon/circuitboard/M = circuit
+	var/obj/item/circuitboard/M = circuit
 	A.circuit = M
 	A.anchored = TRUE
 	A.frame_type = M.board_type
@@ -511,7 +511,7 @@ Class Procs:
 	var/list/surviving_parts = list()
 	// Deleting IDs is lame, unless this is like nuclear severity
 	if(severity != 1)
-		for(var/obj/item/weapon/card/id/I in contents)
+		for(var/obj/item/card/id/I in contents)
 			surviving_parts |= I
 
 	// May populate some items to throw around

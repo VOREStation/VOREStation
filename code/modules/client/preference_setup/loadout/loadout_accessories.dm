@@ -27,16 +27,16 @@
 
 /datum/gear/accessory/wallet
 	display_name = "wallet, orange"
-	path = /obj/item/weapon/storage/wallet/random
+	path = /obj/item/storage/wallet/random
 
 /datum/gear/accessory/wallet_poly
 	display_name = "wallet, polychromic"
-	path = /obj/item/weapon/storage/wallet/poly
+	path = /obj/item/storage/wallet/poly
 	cost = 0 //VOREStation Edit
 
 /datum/gear/accessory/wallet/womens
 	display_name = "wallet, womens"
-	path = /obj/item/weapon/storage/wallet/womens
+	path = /obj/item/storage/wallet/womens
 	cost = 0 //VOREStation Edit
 
 /datum/gear/accessory/wallet/womens/New()
@@ -45,7 +45,7 @@
 
 /datum/gear/accessory/clutch
 	display_name = "clutch bag"
-	path = /obj/item/weapon/storage/briefcase/clutch
+	path = /obj/item/storage/briefcase/clutch
 	cost = 2
 
 /datum/gear/accessory/clutch/New()
@@ -54,7 +54,7 @@
 
 /datum/gear/accessory/purse
 	display_name = "purse"
-	path = /obj/item/weapon/storage/backpack/purse
+	path = /obj/item/storage/backpack/purse
 	cost = 3
 
 /datum/gear/accessory/purse/New()
@@ -77,7 +77,7 @@
 	display_name = "holster selection"
 	description = "Select from a number of general-purpose handgun holsters, or a baton lanyard."
 	path = /obj/item/clothing/accessory/holster
-	allowed_roles = list("Site Manager", "Head of Personnel", "Security Officer", "Warden", "Head of Security","Detective","Talon Captain","Talon Guard")
+	allowed_roles = list(JOB_SITE_MANAGER, JOB_HEAD_OF_PERSONNEL, JOB_SECURITY_OFFICER, JOB_WARDEN, JOB_HEAD_OF_SECURITY,JOB_DETECTIVE,JOB_TALON_CAPTAIN,JOB_TALON_GUARD)
 
 /datum/gear/accessory/holster/New()
 	..()
@@ -185,12 +185,12 @@
 /datum/gear/accessory/fannypack
 	display_name = "fannypack selection"
 	cost = 2
-	path = /obj/item/weapon/storage/belt/fannypack
+	path = /obj/item/storage/belt/fannypack
 
 /datum/gear/accessory/fannypack/New()
 	..()
 	var/list/fannys = list()
-	for(var/obj/item/weapon/storage/belt/fannypack/fanny_type as anything in typesof(/obj/item/weapon/storage/belt/fannypack))
+	for(var/obj/item/storage/belt/fannypack/fanny_type as anything in typesof(/obj/item/storage/belt/fannypack))
 		fannys[initial(fanny_type.name)] = fanny_type
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(fannys))
 
@@ -250,7 +250,7 @@
 /datum/gear/accessory/stethoscope
 	display_name = "stethoscope"
 	path = /obj/item/clothing/accessory/stethoscope
-	allowed_roles = list("Chief Medical Officer","Medical Doctor","Chemist","Psychiatrist","Paramedic","Talon Doctor")
+	allowed_roles = list(JOB_CHIEF_MEDICAL_OFFICER,JOB_MEDICAL_DOCTOR,JOB_CHEMIST,JOB_PSYCHIATRIST,JOB_PARAMEDIC,JOB_TALON_DOCTOR)
 
 /datum/gear/accessory/locket
 	display_name = "locket"
@@ -335,12 +335,12 @@
 /datum/gear/accessory/badge
 	display_name = "sheriff badge (Security)"
 	path = /obj/item/clothing/accessory/badge/holo/sheriff
-	allowed_roles = list("Security Officer","Detective","Head of Security","Warden")
+	allowed_roles = list(JOB_SECURITY_OFFICER,JOB_DETECTIVE,JOB_HEAD_OF_SECURITY,JOB_WARDEN)
 
 /datum/gear/accessory/corpbadge
 	display_name = "investigator holobadge (IAA)"
 	path = /obj/item/clothing/accessory/badge/holo/investigator
-	allowed_roles = list("Internal Affairs Agent")
+	allowed_roles = list(JOB_INTERNAL_AFFAIRS_AGENT)
 
 /datum/gear/accessory/pressbadge
 	display_name = "corporate press pass"
@@ -370,7 +370,8 @@
 	"Red and Orange" = /obj/item/clothing/accessory/wristbandcollection/les,
 	"White, Pink and Blue" = /obj/item/clothing/accessory/wristbandcollection/trans,
 	"Blue, Purple and Pink" = /obj/item/clothing/accessory/wristbandcollection/bi,
-	"Black, White and Grey" = /obj/item/clothing/accessory/wristbandcollection/ace
+	"Black, White and Grey" = /obj/item/clothing/accessory/wristbandcollection/ace,
+	"Spiked" = /obj/item/clothing/accessory/wristband_spiked
 	)
 	gear_tweaks += new/datum/gear_tweak/path(wristband_lists)
 
@@ -434,7 +435,7 @@
 
 /datum/gear/accessory/khcrystal
 	display_name = "KH Life Crystal"
-	path = /obj/item/weapon/storage/box/khcrystal
+	path = /obj/item/storage/box/khcrystal
 	description = "A small necklace device that will notify an offsite cloning facility should you expire after activating it."
 
 /datum/gear/accessory/tronket
@@ -458,7 +459,7 @@
 
 /datum/gear/accessory/dosimeter
 	display_name = "Dosimeter"
-	path = /obj/item/weapon/storage/box/dosimeter
+	path = /obj/item/storage/box/dosimeter
 	description = "A small device that will warn the bearer when they are exposed to dangerous levels of radiation."
 
 /*
@@ -553,3 +554,26 @@ Talon pin
 	"Service - Echelons" = /obj/item/clothing/accessory/solgov/department/service/army
 	)
 	gear_tweaks += new/datum/gear_tweak/path(insignia)
+
+/datum/gear/accessory/belt_selection
+	display_name = "belts (selection, colorable)"
+	path = /obj/item/clothing/accessory/belt
+
+/datum/gear/accessory/belt_selection/New()
+	..()
+	var/list/wristband_lists = list(
+	"Thin Belt" = /obj/item/clothing/accessory/belt,
+	"Thick Belt" = /obj/item/clothing/accessory/belt/thick,
+	"Strap Belt" = /obj/item/clothing/accessory/belt/strap,
+	"Studded Belt" = /obj/item/clothing/accessory/belt/studded
+	)
+	gear_tweaks += new/datum/gear_tweak/path(wristband_lists)
+	gear_tweaks += gear_tweak_free_color_choice
+
+/datum/gear/accessory/bunny_tail
+	display_name = "bunny tail, colorable"
+	path = /obj/item/clothing/accessory/bunny_tail
+
+/datum/gear/accessory/bunny_tail/New()
+	..()
+	gear_tweaks += gear_tweak_free_color_choice

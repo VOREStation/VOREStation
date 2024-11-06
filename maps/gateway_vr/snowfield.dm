@@ -68,7 +68,7 @@
 	vore_active = 1
 	say_list_type = /datum/say_list/polar_bear
 
-	faction = "polar"
+	faction = FACTION_POLAR
 	maxHealth = 80
 	health = 80 // Polar bear will fuck you up.
 
@@ -86,7 +86,7 @@
 	minbodytemp = 0
 
 	//speak_chance = 1 //VORESTATION AI TEMPORARY REMOVAL
-	meat_type = /obj/item/weapon/reagent_containers/food/snacks/bearmeat
+	meat_type = /obj/item/reagent_containers/food/snacks/bearmeat
 /datum/say_list/polar_bear
 	speak = list("RAWR!","Rawr!","GRR!","Growl!")
 	emote_hear = list("rawrs","grumbles","grawls")
@@ -99,13 +99,13 @@
 	..()
 
 /mob/living/simple_mob/animal/sif/sakimm/polar
-	faction = "polar"
+	faction = FACTION_POLAR
 
 /mob/living/simple_mob/animal/sif/diyaab/polar
-	faction = "polar"
+	faction = FACTION_POLAR
 
 /mob/living/simple_mob/animal/sif/shantak/polar
-	faction = "polar"
+	faction = FACTION_POLAR
 
 // -- Items -- //
 

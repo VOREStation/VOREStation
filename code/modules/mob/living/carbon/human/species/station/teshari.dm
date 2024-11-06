@@ -51,7 +51,7 @@
 	burn_mod =  1.35
 	mob_size = MOB_SMALL
 	pass_flags = PASSTABLE
-	holder_type = /obj/item/weapon/holder/human
+	holder_type = /obj/item/holder/human
 //	short_sighted = 1
 	gluttonous = 1
 	blood_volume = 400
@@ -181,14 +181,14 @@
 
 	if(H.buckled)
 		if(!silent)
-			to_chat(H, SPAN_WARNING("You try to spread your wings to slow your fall, but \the [H.buckled] weighs you down!"))
+			to_chat(H, span_warning("You try to spread your wings to slow your fall, but \the [H.buckled] weighs you down!"))
 		return ..()
 
 	// Is there enough air to flap against?
 	var/datum/gas_mixture/environment = landing.return_air()
 	if(!environment || environment.return_pressure() < (ONE_ATMOSPHERE * 0.75))
 		if(!silent)
-			to_chat(H, SPAN_WARNING("You spread your wings to slow your fall, but the air is too thin!"))
+			to_chat(H, span_warning("You spread your wings to slow your fall, but the air is too thin!"))
 		return ..()
 
 	// Are we wearing a space suit?
@@ -196,7 +196,7 @@
 		for(var/blacklisted_type in flight_suit_blacklisted_types)
 			if(istype(H.wear_suit, blacklisted_type))
 				if(!silent)
-					to_chat(H, SPAN_WARNING("You try to spread your wings to slow your fall, but \the [H.wear_suit] is in the way!"))
+					to_chat(H, span_warning("You try to spread your wings to slow your fall, but \the [H.wear_suit] is in the way!"))
 				return ..()
 
 	// Do we have working wings?
@@ -204,13 +204,13 @@
 		var/obj/item/organ/external/E = H.organs_by_name[bp]
 		if(!istype(E) || !E.is_usable() || E.is_broken() || E.is_stump())
 			if(!silent)
-				to_chat(H, SPAN_WARNING("You try to spread your wings to slow your fall, but they won't hold your weight!"))
+				to_chat(H, span_warning("You try to spread your wings to slow your fall, but they won't hold your weight!"))
 			return ..()
 
 	// Handled!
 	if(!silent)
-		to_chat(H, SPAN_NOTICE("You catch the air in your wings and greatly slow your fall."))
-		landing.visible_message("<b>\The [H]</b> glides down from above, landing safely.")
+		to_chat(H, span_notice("You catch the air in your wings and greatly slow your fall."))
+		landing.visible_message(span_infoplain(span_bold("\The [H]") + " glides down from above, landing safely."))
 		H.Stun(1)
 		playsound(H, "rustle", 25, 1)
 	return TRUE

@@ -326,14 +326,14 @@
 /area/shuttle/mackerel_hc)
 "we" = (
 /obj/structure/closet/crate/engineering,
-/obj/item/weapon/storage/toolbox/mechanical,
-/obj/item/weapon/storage/toolbox/electrical,
+/obj/item/storage/toolbox/mechanical,
+/obj/item/storage/toolbox/electrical,
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/mackerel_hc)
 "wv" = (
 /obj/structure/closet/crate/engineering/electrical,
-/obj/item/weapon/tank/phoron,
-/obj/item/weapon/tank/phoron,
+/obj/item/tank/phoron,
+/obj/item/tank/phoron,
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/mackerel_hc)
 "wF" = (

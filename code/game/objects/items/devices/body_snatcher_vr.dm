@@ -1,5 +1,5 @@
 //Body snatcher. Based off the sleevemate, but instead of storing a mind it lets you swap your mind with someone. Extremely illegal and being caught with one s
-/obj/item/device/bodysnatcher
+/obj/item/bodysnatcher
 	name = "\improper Body Snatcher Device"
 	desc = "An extremely illegal tool that allows the user to swap minds with the selected humanoid victim. The LED panel on the side states 'Place both heads on the device, pull trigger, then wait for the transfer to complete.'"
 	icon = 'icons/obj/device_alt.dmi'
@@ -9,38 +9,46 @@
 	w_class = ITEMSIZE_SMALL
 	matter = list(MAT_STEEL = 200)
 	origin_tech = list(TECH_MAGNET = 2, TECH_BIO = 2, TECH_ILLEGAL = 1)
+	pickup_sound = 'sound/items/pickup/device.ogg'
+	drop_sound = 'sound/items/drop/device.ogg'
 
-/obj/item/device/bodysnatcher/New()
+/obj/item/bodysnatcher/New()
 	..()
 	flags |= NOBLUDGEON //So borgs don't spark.
 
-/obj/item/device/bodysnatcher/attack(mob/living/M, mob/living/user)
+/obj/item/bodysnatcher/attack(mob/living/M, mob/living/user)
 	usr.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 	if(ishuman(M) || issilicon(M)) //Allows body swapping with humans, synths, and pAI's/borgs since they all have a mind.
 		if(usr == M)
-			to_chat(user,"<span class='warning'> A message pops up on the LED display, informing you that you that the mind transfer to yourself was successful... Wait, did that even do anything?</span>")
+			to_chat(user,span_warning(" A message pops up on the LED display, informing you that you that the mind transfer to yourself was successful... Wait, did that even do anything?"))
 			return
 
 		if(!M.mind) //Do they have a mind?
-			to_chat(usr,"<span class='warning'>A warning pops up on the device, informing you that [M] appears braindead.</span>")
+			to_chat(usr,span_warning("A warning pops up on the device, informing you that [M] appears braindead."))
 			return
 
 		if(!M.allow_mind_transfer)
-			to_chat(usr,"<span class='danger'>The target's mind is too complex to be affected!</span>")
+			to_chat(usr,span_danger("The target's mind is too complex to be affected!"))
 			return
 
+		if(ishuman(M))
+			var/mob/living/carbon/human/H = M
+			if(H.resleeve_lock && usr.ckey != H.resleeve_lock)
+				to_chat(src, span_danger("[H] cannot be impersonated!"))
+				return
+
 		if(M.stat == DEAD) //Are they dead?
-			to_chat(usr,"<span class='warning'>A warning pops up on the device, informing you that [M] is dead, and, as such, the mind transfer can not be done.</span>")
+			to_chat(usr,span_warning("A warning pops up on the device, informing you that [M] is dead, and, as such, the mind transfer can not be done."))
 			return
 
 		var/choice = tgui_alert(usr,"This will swap your mind with the target's mind. This will result in them controlling your body, and you controlling their body. Continue?","Confirmation",list("Continue","Cancel"))
 		if(choice == "Continue" && usr.get_active_hand() == src && usr.Adjacent(M))
 
-			usr.visible_message("<span class='warning'>[usr] pushes the device up their forehead and [M]'s head, the device beginning to let out a series of light beeps!</span>","<span class='notice'>You begin swap minds with [M]!</span>")
+			usr.visible_message(span_warning("[usr] pushes the device up their forehead and [M]'s head, the device beginning to let out a series of light beeps!"),span_notice("You begin swap minds with [M]!"))
 			if(do_after(usr,35 SECONDS,M))
 				if(usr.mind && M.mind && M.stat != DEAD && usr.stat != DEAD)
 					log_and_message_admins("[usr.ckey] used a Bodysnatcher to swap bodies with [M.ckey]")
-					to_chat(usr,"<span class='notice'>Your minds have been swapped! Have a nice day.</span>")
+					to_chat(usr,span_notice("Your minds have been swapped! Have a nice day."))
 					var/datum/mind/user_mind = user.mind
 					var/datum/mind/prey_mind = M.mind
 					var/target_ooc_notes = M.ooc_notes
@@ -74,8 +82,8 @@
 						M.slurring = 50
 
 	else
-		to_chat(user,"<span class='warning'> A warning pops up on the LED display on the side of the device, informing you that the target is not able to have their mind swapped with!</span>")
+		to_chat(user,span_warning(" A warning pops up on the LED display on the side of the device, informing you that the target is not able to have their mind swapped with!"))
 
-/obj/item/device/bodysnatcher/attack_self(mob/living/user)
-		to_chat(user,"<span class='warning'> A message pops up on the LED display, informing you that you that the mind transfer to yourself was successful... Wait, did that even do anything?</span>")
+/obj/item/bodysnatcher/attack_self(mob/living/user)
+		to_chat(user,span_warning(" A message pops up on the LED display, informing you that you that the mind transfer to yourself was successful... Wait, did that even do anything?"))
 		return

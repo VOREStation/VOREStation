@@ -20,11 +20,11 @@
 	if(!owner.checkClickCooldown())
 		return
 	owner.setClickCooldown(5) // Spam prevention, essentially.
-	if(owner.a_intent == I_HELP && owner.is_preference_enabled(/datum/client_preference/safefiring))
-		to_chat(owner, "<span class='warning'>You refrain from firing \the [aiming_with] as your intent is set to help.</span>")
+	if(owner.a_intent == I_HELP && owner.client?.prefs?.read_preference(/datum/preference/toggle/safefiring))
+		to_chat(owner, span_warning("You refrain from firing \the [aiming_with] as your intent is set to help."))
 		return
-	owner.visible_message("<span class='danger'>\The [owner] pulls the trigger reflexively!</span>")
-	var/obj/item/weapon/gun/G = aiming_with
+	owner.visible_message(span_danger("\The [owner] pulls the trigger reflexively!"))
+	var/obj/item/gun/G = aiming_with
 	if(istype(G))
 		G.Fire(aiming_at, owner, reflex = 1)
 		locked = 0

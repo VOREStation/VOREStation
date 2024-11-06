@@ -24,12 +24,12 @@
 /obj/machinery/disperser/attackby(obj/item/I, mob/user)
 	if(I && I.has_tool_quality(TOOL_WRENCH))
 		if(panel_open)
-			user.visible_message("<b>\The [user]</b> rotates \the [src] with \the [I].",
-				"<span class='notice'>You rotate \the [src] with \the [I].</span>")
+			user.visible_message(span_infoplain(span_bold("\The [user]") + " rotates \the [src] with \the [I]."),
+				span_notice("You rotate \the [src] with \the [I]."))
 			set_dir(turn(dir, 90))
 			playsound(src, 'sound/items/jaws_pry.ogg', 50, 1)
 		else
-			to_chat(user, "<span class='notice'>The maintenance panel must be screwed open for this!</span>")
+			to_chat(user, span_notice("The maintenance panel must be screwed open for this!"))
 		return
 	if(default_deconstruction_screwdriver(user, I))
 		return
@@ -44,7 +44,7 @@
 	desc = "A complex machine which shoots concentrated material beams.\
 		<br>A sign on it reads: <i>STAY CLEAR! DO NOT BLOCK!</i>"
 	icon_state = "front"
-	circuit = /obj/item/weapon/circuitboard/disperserfront
+	circuit = /obj/item/circuitboard/disperserfront
 
 /obj/machinery/disperser/middle
 	name = "obstruction removal ballista fusor"
@@ -52,14 +52,14 @@
 		from the material deconstructor to the particle beam generator.\
 		<br>A sign on it reads: <i>EXPLOSIVE! DO NOT OVERHEAT!</i>"
 	icon_state = "middle"
-	circuit = /obj/item/weapon/circuitboard/dispersermiddle
-	// maximum_component_parts = list(/obj/item/weapon/stock_parts = 15)
+	circuit = /obj/item/circuitboard/dispersermiddle
+	// maximum_component_parts = list(/obj/item/stock_parts = 15)
 
 /obj/machinery/disperser/back
 	name = "obstruction removal ballista material deconstructor"
 	desc = "A prototype machine which can deconstruct materials atom by atom.\
 		<br>A sign on it reads: <i>KEEP AWAY FROM LIVING MATERIAL!</i>"
 	icon_state = "back"
-	circuit = /obj/item/weapon/circuitboard/disperserback
+	circuit = /obj/item/circuitboard/disperserback
 	density = FALSE
 	layer = UNDER_JUNK_LAYER //So the charges go above us.

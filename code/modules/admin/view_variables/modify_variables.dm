@@ -181,7 +181,7 @@ GLOBAL_PROTECT(VVpixelmovement)
 	var/assoc = 0
 	if(IS_VALID_ASSOC_KEY(L[index]))
 		var/prompt = tgui_alert(src, "Do you want to edit the key or its assigned value?", "Associated List", list("Key", "Assigned Value", "Cancel"))
-		if (prompt == "Cancel")
+		if (!prompt || prompt == "Cancel")
 			return
 		if (prompt == "Assigned Value")
 			assoc = 1
@@ -194,7 +194,7 @@ GLOBAL_PROTECT(VVpixelmovement)
 	else
 		variable = L[index]
 		//EXPERIMENTAL - Keep old associated value while modifying key, if any
-		if(IS_VALID_ASSOC_KEY(variable))		
+		if(IS_VALID_ASSOC_KEY(variable))
 			var/found = L[variable]
 			if(!isnull(found))
 				old_assoc_value = found

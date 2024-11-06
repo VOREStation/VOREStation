@@ -6,7 +6,7 @@
 var/list/sounds_cache = list()
 
 /client/proc/play_sound(S as sound)
-	set category = "Fun"
+	set category = "Fun.Sounds"
 	set name = "Play Global Sound"
 	if(!check_rights(R_SOUNDS))
 		return
@@ -30,9 +30,11 @@ var/list/sounds_cache = list()
 	sounds_cache += S
 
 	var/res = tgui_alert(usr, "Show the title of this song ([S]) to the players?\nOptions 'Yes' and 'No' will play the sound.",, list("Yes", "No", "Cancel"))
+	if(!res)
+		return
 	switch(res)
 		if("Yes")
-			to_chat(world, "<span class='boldannounce'>An admin played: [S]</span>", confidential = TRUE)
+			to_chat(world, span_boldannounce("An admin played: [S]"), confidential = TRUE)
 		if("Cancel")
 			return
 
@@ -40,7 +42,7 @@ var/list/sounds_cache = list()
 	message_admins("[key_name_admin(src)] played sound [S]", 1)
 
 	for(var/mob/M in player_list)
-		if(M.is_preference_enabled(/datum/client_preference/play_admin_midis))
+		if(M.read_preference(/datum/preference/toggle/play_admin_midis))
 			admin_sound.volume = vol * M.client.admin_music_volume
 			SEND_SOUND(M, admin_sound)
 			admin_sound.volume = vol
@@ -48,7 +50,7 @@ var/list/sounds_cache = list()
 	feedback_add_details("admin_verb", "Play Global Sound")
 
 /client/proc/play_local_sound(S as sound)
-	set category = "Fun"
+	set category = "Fun.Sounds"
 	set name = "Play Local Sound"
 	if(!check_rights(R_SOUNDS))
 		return
@@ -59,7 +61,7 @@ var/list/sounds_cache = list()
 	feedback_add_details("admin_verb", "Play Local Sound")
 
 /client/proc/play_direct_mob_sound(S as sound, mob/M)
-	set category = "Fun"
+	set category = "Fun.Sounds"
 	set name = "Play Direct Mob Sound"
 	if(!check_rights(R_SOUNDS))
 		return
@@ -74,7 +76,7 @@ var/list/sounds_cache = list()
 	feedback_add_details("admin_verb", "Play Direct Mob Sound")
 
 /client/proc/play_z_sound(S as sound)
-	set category = "Fun"
+	set category = "Fun.Sounds"
 	set name = "Play Z Sound"
 	if(!check_rights(R_SOUNDS))	return
 	var/target_z = mob.z
@@ -83,20 +85,20 @@ var/list/sounds_cache = list()
 
 	sounds_cache += S
 
-	if(tgui_alert(usr, "Do you ready?\nSong: [S]\nNow you can also play this sound using \"Play Server Sound\".", "Confirmation request", list("Play","Cancel")) == "Cancel")
+	if(tgui_alert(usr, "Do you ready?\nSong: [S]\nNow you can also play this sound using \"Play Server Sound\".", "Confirmation request", list("Play","Cancel")) != "Play")
 		return
 
 	log_admin("[key_name(src)] played sound [S] on Z[target_z]")
 	message_admins("[key_name_admin(src)] played sound [S] on Z[target_z]", 1)
 	for(var/mob/M in player_list)
-		if(M.is_preference_enabled(/datum/client_preference/play_admin_midis) && M.z == target_z)
+		if(M.read_preference(/datum/preference/toggle/play_admin_midis) && M.z == target_z)
 			M << uploaded_sound
 
 	feedback_add_details("admin_verb", "Play Z Sound") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 
 /client/proc/play_server_sound()
-	set category = "Fun"
+	set category = "Fun.Sounds"
 	set name = "Play Server Sound"
 	if(!check_rights(R_SOUNDS))
 		return
@@ -117,9 +119,9 @@ var/list/sounds_cache = list()
 /proc/web_sound(mob/user, input, credit)
 	if(!check_rights(R_SOUNDS))
 		return
-	var/ytdl = config.invoke_youtubedl
+	var/ytdl = CONFIG_GET(string/invoke_youtubedl)
 	if(!ytdl)
-		to_chat(user, "<span class='boldwarning'>Youtube-dl was not configured, action unavailable</span>", confidential = TRUE) //Check config.txt for the INVOKE_YOUTUBEDL value
+		to_chat(user, span_boldwarning("Youtube-dl was not configured, action unavailable"), confidential = TRUE) //Check config.txt for the INVOKE_YOUTUBEDL value
 		return
 	var/web_sound_url = ""
 	var/stop_web_sounds = FALSE
@@ -132,15 +134,15 @@ var/list/sounds_cache = list()
 		var/stdout = output[SHELLEO_STDOUT]
 		var/stderr = output[SHELLEO_STDERR]
 		if(errorlevel)
-			to_chat(user, "<span class='boldwarning'>Youtube-dl URL retrieval FAILED:</span>", confidential = TRUE)
-			to_chat(user, "<span class='warning'>[stderr]</span>", confidential = TRUE)
+			to_chat(user, span_boldwarning("Youtube-dl URL retrieval FAILED:"), confidential = TRUE)
+			to_chat(user, span_warning("[stderr]"), confidential = TRUE)
 			return
 		var/list/data
 		try
 			data = json_decode(stdout)
 		catch(var/exception/e)
-			to_chat(user, "<span class='boldwarning'>Youtube-dl JSON parsing FAILED:</span>", confidential = TRUE)
-			to_chat(user, "<span class='warning'>[e]: [stdout]</span>", confidential = TRUE)
+			to_chat(user, span_boldwarning("Youtube-dl JSON parsing FAILED:"), confidential = TRUE)
+			to_chat(user, span_warning("[e]: [stdout]"), confidential = TRUE)
 			return
 		if (data["url"])
 			web_sound_url = data["url"]
@@ -173,16 +175,16 @@ var/list/sounds_cache = list()
 		switch(anon)
 			if("Yes")
 				if(res == "Yes")
-					to_chat(world, "<span class='boldannounce'>[user.key] played: [webpage_url]</span>", confidential = TRUE)
+					to_chat(world, span_boldannounce("[user.key] played: [webpage_url]"), confidential = TRUE)
 				else
-					to_chat(world, "<span class='boldannounce'>[user.key] played a sound</span>", confidential = TRUE)
+					to_chat(world, span_boldannounce("[user.key] played a sound"), confidential = TRUE)
 			if("No")
 				if(res == "Yes")
-					to_chat(world, "<span class='boldannounce'>An admin played: [webpage_url]</span>", confidential = TRUE)
+					to_chat(world, span_boldannounce("An admin played: [webpage_url]"), confidential = TRUE)
 			if("Cancel", null)
 				return
 		if(credit)
-			to_chat(world, "<span class='boldannounce'>[credit]</span>", confidential = TRUE)
+			to_chat(world, span_boldannounce("[credit]"), confidential = TRUE)
 		//SSblackbox.record_feedback("nested tally", "played_url", 1, list("[user.ckey]", "[input]"))
 		log_admin("[key_name(user)] played web sound: [input]")
 		message_admins("[key_name(user)] played web sound: [input]")
@@ -195,14 +197,14 @@ var/list/sounds_cache = list()
 		stop_web_sounds = TRUE
 	if(web_sound_url && !findtext(web_sound_url, GLOB.is_http_protocol))
 		tgui_alert(user, "The media provider returned a content URL that isn't using the HTTP or HTTPS protocol. This is a security risk and the sound will not be played.", "Security Risk", list("OK"))
-		to_chat(user, "<span class='boldwarning'>BLOCKED: Content URL not using HTTP(S) Protocol!</span>", confidential = TRUE)
+		to_chat(user, span_boldwarning("BLOCKED: Content URL not using HTTP(S) Protocol!"), confidential = TRUE)
 
 		return
 	if(web_sound_url || stop_web_sounds)
 		for(var/m in player_list)
 			var/mob/M = m
 			var/client/C = M.client
-			if(C.is_preference_enabled(/datum/client_preference/play_admin_midis))
+			if(C.prefs?.read_preference(/datum/preference/toggle/play_admin_midis))
 				if(!stop_web_sounds)
 					C.tgui_panel?.play_music(web_sound_url, music_extra_data)
 				else
@@ -213,14 +215,14 @@ var/list/sounds_cache = list()
 	feedback_add_details("admin_verb", "Play Internet Sound")
 
 /client/proc/play_web_sound()
-	set category = "Fun"
+	set category = "Fun.Sounds"
 	set name = "Play Internet Sound"
 	if(!check_rights(R_SOUNDS))
 		return
 
-	var/ytdl = config.invoke_youtubedl
+	var/ytdl = CONFIG_GET(string/invoke_youtubedl)
 	if(!ytdl)
-		to_chat(src, "<span class='boldwarning'>Youtube-dl was not configured, action unavailable</span>", confidential = TRUE) //Check config.txt for the INVOKE_YOUTUBEDL value
+		to_chat(src, span_boldwarning("Youtube-dl was not configured, action unavailable"), confidential = TRUE) //Check config.txt for the INVOKE_YOUTUBEDL value
 		return
 
 	if(S_TIMER_COOLDOWN_TIMELEFT(SStimer, COOLDOWN_INTERNET_SOUND))
@@ -233,15 +235,15 @@ var/list/sounds_cache = list()
 	if(length(web_sound_input))
 		web_sound_input = trim(web_sound_input)
 		if(findtext(web_sound_input, ":") && !findtext(web_sound_input, GLOB.is_http_protocol))
-			to_chat(src, "<span class='boldwarning'>Non-http(s) URIs are not allowed.</span>", confidential = TRUE)
-			to_chat(src, "<span class='warning'>For youtube-dl shortcuts like ytsearch: please use the appropriate full URL from the website.</span>", confidential = TRUE)
+			to_chat(src, span_boldwarning("Non-http(s) URIs are not allowed."), confidential = TRUE)
+			to_chat(src, span_warning("For youtube-dl shortcuts like ytsearch: please use the appropriate full URL from the website."), confidential = TRUE)
 			return
 		web_sound(usr, web_sound_input)
 	else
 		web_sound(usr, null)
 
 /client/proc/stop_sounds()
-	set category = "Debug"
+	set category = "Debug.Dangerous"
 	set name = "Stop All Playing Sounds"
 	if(!src.holder)
 		return
@@ -262,8 +264,8 @@ var/list/sounds_cache = list()
 #undef SHELLEO_STDERR
 
 /*
-/client/proc/cuban_pete()
-	set category = "Fun"
+/client/proc/cuban_pete()"
+	set category = "Fun.Sounds"
 	set name = "Cuban Pete Time"
 
 	message_admins("[key_name_admin(usr)] has declared Cuban Pete Time!", 1)
@@ -278,8 +280,8 @@ var/list/sounds_cache = list()
 			CP.gib()
 
 
-/client/proc/bananaphone()
-	set category = "Fun"
+/client/proc/bananaphone()"
+	set category = "Fun.Sounds"
 	set name = "Banana Phone"
 
 	message_admins("[key_name_admin(usr)] has activated Banana Phone!", 1)
@@ -289,8 +291,8 @@ var/list/sounds_cache = list()
 				M << 'bananaphone.ogg'
 
 
-/client/proc/space_asshole()
-	set category = "Fun"
+/client/proc/space_asshole()"
+	set category = "Fun.Sounds"
 	set name = "Space Asshole"
 
 	message_admins("[key_name_admin(usr)] has played the Space Asshole Hymn.", 1)
@@ -300,8 +302,8 @@ var/list/sounds_cache = list()
 				M << 'sound/music/space_asshole.ogg'
 
 
-/client/proc/honk_theme()
-	set category = "Fun"
+/client/proc/honk_theme()"
+	set category = "Fun.Sounds"
 	set name = "Honk"
 
 	message_admins("[key_name_admin(usr)] has creeped everyone out with Blackest Honks.", 1)

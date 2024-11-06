@@ -19,7 +19,7 @@ GLOBAL_LIST_EMPTY(all_waypoints)
 	icon_keyboard = "teleport_key"
 	icon_screen = "helm"
 	light_color = "#7faaff"
-	circuit = /obj/item/weapon/circuitboard/helm
+	circuit = /obj/item/circuitboard/helm
 	core_skill = /datum/skill/pilot
 	var/autopilot = 0
 	var/autopilot_disabled = TRUE
@@ -94,8 +94,23 @@ GLOBAL_LIST_EMPTY(all_waypoints)
 
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
+		user.client.register_map_obj(linked.cam_screen)
+		for(var/plane in linked.cam_plane_masters)
+			user.client.register_map_obj(plane)
+		user.client.register_map_obj(linked.cam_background)
+
 		ui = new(user, src, "OvermapHelm", "[linked.name] Helm Control") // 565, 545
 		ui.open()
+		addtimer(CALLBACK(src, PROC_REF(update_map)), 0.1 SECONDS)
+
+/obj/machinery/computer/ship/helm/proc/update_map()
+	linked.update_screen()
+
+/obj/machinery/computer/ship/helm/tgui_close(mob/user)
+	. = ..()
+
+	// Unregister map objects
+	user.client?.clear_map(linked?.map_name)
 
 /obj/machinery/computer/ship/helm/tgui_data(mob/user)
 	var/list/data = ..()
@@ -103,6 +118,7 @@ GLOBAL_LIST_EMPTY(all_waypoints)
 	var/turf/T = get_turf(linked)
 	var/obj/effect/overmap/visitable/sector/current_sector = locate() in T
 
+	data["mapRef"] = linked?.map_name
 	data["sector"] = current_sector ? current_sector.name : "Deep Space"
 	data["sector_info"] = current_sector ? current_sector.desc : "Not Available"
 	data["landed"] = linked.get_landed_info()
@@ -155,6 +171,13 @@ GLOBAL_LIST_EMPTY(all_waypoints)
 		return FALSE
 
 	switch(action)
+		if("update_camera_view")
+			if(TIMER_COOLDOWN_RUNNING(src, COOLDOWN_SHIP_REFRESH))
+				to_chat(usr, span_warning("You cannot refresh the map so often."))
+				return
+			update_map()
+			TIMER_COOLDOWN_START(src, COOLDOWN_SHIP_REFRESH, 5 SECONDS)
+			. = TRUE
 		if("add")
 			var/datum/computer_file/data/waypoint/R = new()
 			var/sec_name = tgui_input_text(usr, "Input navigation entry name", "New navigation entry", "Sector #[known_sectors.len]", MAX_NAME_LEN)
@@ -165,7 +188,7 @@ GLOBAL_LIST_EMPTY(all_waypoints)
 				sec_name = "Sector #[known_sectors.len]"
 			R.fields["name"] = sec_name
 			if(sec_name in known_sectors)
-				to_chat(usr, "<span class='warning'>Sector with that name already exists, please input a different name.</span>")
+				to_chat(usr, span_warning("Sector with that name already exists, please input a different name."))
 				return TRUE
 			switch(params["add"])
 				if("current")
@@ -264,7 +287,7 @@ GLOBAL_LIST_EMPTY(all_waypoints)
 	name = "navigation console"
 	icon_keyboard = "generic_key"
 	icon_screen = "helm"
-	circuit = /obj/item/weapon/circuitboard/nav
+	circuit = /obj/item/circuitboard/nav
 	var/datum/tgui_module/ship/nav/nav_tgui
 
 /obj/machinery/computer/ship/navigation/Initialize()
@@ -286,7 +309,7 @@ GLOBAL_LIST_EMPTY(all_waypoints)
 	layer = ABOVE_WINDOW_LAYER
 	icon_keyboard = null
 	icon_screen = null
-	circuit = /obj/item/weapon/circuitboard/nav/tele
+	circuit = /obj/item/circuitboard/nav/tele
 	density = FALSE
 
 /obj/machinery/computer/ship/navigation/telescreen/update_icon()

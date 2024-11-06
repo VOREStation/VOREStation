@@ -69,7 +69,7 @@
 	if(src.corpseback)
 		M.equip_to_slot_or_del(new src.corpseback(M), slot_back)
 	if(src.corpseid == 1)
-		var/obj/item/weapon/card/id/W = new(M)
+		var/obj/item/card/id/W = new(M)
 		var/datum/job/jobdatum
 		for(var/jobtype in typesof(/datum/job))
 			var/datum/job/J = new jobtype
@@ -103,13 +103,13 @@
 	corpsesuit = /obj/item/clothing/suit/armor/vest
 	corpseshoes = /obj/item/clothing/shoes/boots/swat
 	corpsegloves = /obj/item/clothing/gloves/swat
-	corpseradio = /obj/item/device/radio/headset
+	corpseradio = /obj/item/radio/headset
 	corpsemask = /obj/item/clothing/mask/gas
 	corpsehelmet = /obj/item/clothing/head/helmet/swat
-	corpseback = /obj/item/weapon/storage/backpack
+	corpseback = /obj/item/storage/backpack
 	corpseid = 1
 	corpseidjob = "Operative"
-	corpseidaccess = "Syndicate"
+	corpseidaccess = JOB_SYNDICATE
 
 /obj/effect/landmark/corpse/syndicatecommando
 	name = "Mercenary Commando"
@@ -117,14 +117,14 @@
 	corpsesuit = /obj/item/clothing/suit/space/void/merc
 	corpseshoes = /obj/item/clothing/shoes/boots/swat
 	corpsegloves = /obj/item/clothing/gloves/swat
-	corpseradio = /obj/item/device/radio/headset
+	corpseradio = /obj/item/radio/headset
 	corpsemask = /obj/item/clothing/mask/gas/syndicate
 	corpsehelmet = /obj/item/clothing/head/helmet/space/void/merc
-	corpseback = /obj/item/weapon/tank/jetpack/oxygen
-	corpsepocket1 = /obj/item/weapon/tank/emergency/oxygen
+	corpseback = /obj/item/tank/jetpack/oxygen
+	corpsepocket1 = /obj/item/tank/emergency/oxygen
 	corpseid = 1
 	corpseidjob = "Operative"
-	corpseidaccess = "Syndicate"
+	corpseidaccess = JOB_SYNDICATE
 
 ///////////Civilians//////////////////////
 
@@ -137,91 +137,91 @@
 
 
 /obj/effect/landmark/corpse/chef
-	name = "Chef"
+	name = JOB_CHEF
 	corpseuniform = /obj/item/clothing/under/rank/chef
 	corpsesuit = /obj/item/clothing/suit/chef/classic
 	corpseshoes = /obj/item/clothing/shoes/black
 	corpsehelmet = /obj/item/clothing/head/chefhat
-	corpseback = /obj/item/weapon/storage/backpack
-	corpseradio = /obj/item/device/radio/headset
+	corpseback = /obj/item/storage/backpack
+	corpseradio = /obj/item/radio/headset
 	corpseid = 1
-	corpseidjob = "Chef"
-	corpseidaccess = "Chef"
+	corpseidjob = JOB_CHEF
+	corpseidaccess = JOB_CHEF
 
 
 /obj/effect/landmark/corpse/doctor
 	name = "Doctor"
-	corpseradio = /obj/item/device/radio/headset/headset_med
+	corpseradio = /obj/item/radio/headset/headset_med
 	corpseuniform = /obj/item/clothing/under/rank/medical
 	corpsesuit = /obj/item/clothing/suit/storage/toggle/labcoat
-	corpseback = /obj/item/weapon/storage/backpack/medic
-	corpsepocket1 = /obj/item/device/flashlight/pen
+	corpseback = /obj/item/storage/backpack/medic
+	corpsepocket1 = /obj/item/flashlight/pen
 	corpseshoes = /obj/item/clothing/shoes/black
 	corpseid = 1
-	corpseidjob = "Medical Doctor"
-	corpseidaccess = "Medical Doctor"
+	corpseidjob = JOB_MEDICAL_DOCTOR
+	corpseidaccess = JOB_MEDICAL_DOCTOR
 
 /obj/effect/landmark/corpse/engineer
-	name = "Engineer"
-	corpseradio = /obj/item/device/radio/headset/headset_eng
+	name = JOB_ENGINEER
+	corpseradio = /obj/item/radio/headset/headset_eng
 	corpseuniform = /obj/item/clothing/under/rank/engineer
-	corpseback = /obj/item/weapon/storage/backpack/industrial
+	corpseback = /obj/item/storage/backpack/industrial
 	corpseshoes = /obj/item/clothing/shoes/orange
-	corpsebelt = /obj/item/weapon/storage/belt/utility/full
+	corpsebelt = /obj/item/storage/belt/utility/full
 	corpsegloves = /obj/item/clothing/gloves/yellow
 	corpsehelmet = /obj/item/clothing/head/hardhat
 	corpseid = 1
-	corpseidjob = "Engineer"
-	corpseidaccess = "Engineer"
+	corpseidjob = JOB_ENGINEER
+	corpseidaccess = JOB_ENGINEER
 
 /obj/effect/landmark/corpse/engineer/rig
 	corpsesuit = /obj/item/clothing/suit/space/void/engineering
 	corpsemask = /obj/item/clothing/mask/breath
 	corpsehelmet = /obj/item/clothing/head/helmet/space/void/engineering
-	corpseback = /obj/item/weapon/tank/oxygen
+	corpseback = /obj/item/tank/oxygen
 
 /obj/effect/landmark/corpse/clown
-	name = "Clown"
+	name = JOB_CLOWN
 	corpseuniform = /obj/item/clothing/under/rank/clown
 	corpseshoes = /obj/item/clothing/shoes/clown_shoes
-	corpseradio = /obj/item/device/radio/headset
+	corpseradio = /obj/item/radio/headset
 	corpsemask = /obj/item/clothing/mask/gas/clown_hat
-	corpsepocket1 = /obj/item/weapon/bikehorn
-	corpseback = /obj/item/weapon/storage/backpack/clown
+	corpsepocket1 = /obj/item/bikehorn
+	corpseback = /obj/item/storage/backpack/clown
 	corpseid = 1
-	corpseidjob = "Clown"
-	corpseidaccess = "Clown"
+	corpseidjob = JOB_CLOWN
+	corpseidaccess = JOB_CLOWN
 
 /obj/effect/landmark/corpse/scientist
-	name = "Scientist"
-	corpseradio = /obj/item/device/radio/headset/headset_sci
+	name = JOB_SCIENTIST
+	corpseradio = /obj/item/radio/headset/headset_sci
 	corpseuniform = /obj/item/clothing/under/rank/scientist
 	corpsesuit = /obj/item/clothing/suit/storage/toggle/labcoat/science
-	corpseback = /obj/item/weapon/storage/backpack
+	corpseback = /obj/item/storage/backpack
 	corpseshoes = /obj/item/clothing/shoes/white
 	corpseid = 1
-	corpseidjob = "Scientist"
-	corpseidaccess = "Scientist"
+	corpseidjob = JOB_SCIENTIST
+	corpseidaccess = JOB_SCIENTIST
 
 /obj/effect/landmark/corpse/security
-	name = "Security Officer"
-	corpseradio = /obj/item/device/radio/headset/headset_sec
+	name = JOB_SECURITY_OFFICER
+	corpseradio = /obj/item/radio/headset/headset_sec
 	corpseuniform = /obj/item/clothing/under/rank/security
 	corpsesuit = /obj/item/clothing/suit/armor/vest
-	corpseback = /obj/item/weapon/storage/backpack/security
+	corpseback = /obj/item/storage/backpack/security
 	corpseshoes = /obj/item/clothing/shoes/boots/jackboots
 	corpseglasses = /obj/item/clothing/glasses/sunglasses/sechud
 	corpsegloves = /obj/item/clothing/gloves/black
 	corpsehelmet = /obj/item/clothing/head/helmet
 	corpseid = 1
-	corpseidjob = "Security Officer"
-	corpseidaccess = "Security Officer"
+	corpseidjob = JOB_SECURITY_OFFICER
+	corpseidaccess = JOB_SECURITY_OFFICER
 
 /obj/effect/landmark/corpse/security/rig
 	corpsesuit = /obj/item/clothing/suit/space/void/security
 	corpsemask = /obj/item/clothing/mask/breath
 	corpsehelmet = /obj/item/clothing/head/helmet/space/void/security
-	corpseback = /obj/item/weapon/tank/jetpack/oxygen
+	corpseback = /obj/item/tank/jetpack/oxygen
 
 /obj/effect/landmark/corpse/security/rig/eva
 	corpsesuit = /obj/item/clothing/suit/space/void/security/alt
@@ -237,20 +237,20 @@
 	random_species = TRUE
 
 /obj/effect/landmark/corpse/miner
-	corpseradio = /obj/item/device/radio/headset/headset_cargo
+	corpseradio = /obj/item/radio/headset/headset_cargo
 	corpseuniform = /obj/item/clothing/under/rank/miner
 	corpsegloves = /obj/item/clothing/gloves/black
-	corpseback = /obj/item/weapon/storage/backpack/industrial
+	corpseback = /obj/item/storage/backpack/industrial
 	corpseshoes = /obj/item/clothing/shoes/black
 	corpseid = 1
-	corpseidjob = "Shaft Miner"
-	corpseidaccess = "Shaft Miner"
+	corpseidjob = JOB_SHAFT_MINER
+	corpseidaccess = JOB_SHAFT_MINER
 
 /obj/effect/landmark/corpse/miner/rig
 	corpsesuit = /obj/item/clothing/suit/space/void/mining
 	corpsemask = /obj/item/clothing/mask/breath
 	corpsehelmet = /obj/item/clothing/head/helmet/space/void/mining
-	corpseback = /obj/item/weapon/tank/oxygen
+	corpseback = /obj/item/tank/oxygen
 
 /////////////////Vintage//////////////////////
 
@@ -261,86 +261,86 @@
 	corpsesuit = /obj/item/clothing/suit/space/void/refurb
 	corpsehelmet = /obj/item/clothing/head/helmet/space/void/refurb
 	corpsemask = /obj/item/clothing/mask/breath
-	corpseback = /obj/item/weapon/tank/oxygen
+	corpseback = /obj/item/tank/oxygen
 	corpseid = 1
 	corpseidjob = "Crewmate"
 
 /obj/effect/landmark/corpse/vintage/engineering
-	name = "Unknown Engineer"
+	name = "Unknown " + JOB_ENGINEER
 	corpsesuit = /obj/item/clothing/suit/space/void/refurb/engineering
 	corpsehelmet = /obj/item/clothing/head/helmet/space/void/refurb/engineering
-	corpsebelt = /obj/item/weapon/storage/belt/utility/full
-	corpseback = /obj/item/weapon/tank/oxygen/yellow
-	corpseidjob = "Engineer"
+	corpsebelt = /obj/item/storage/belt/utility/full
+	corpseback = /obj/item/tank/oxygen/yellow
+	corpseidjob = JOB_ENGINEER
 
 /obj/effect/landmark/corpse/vintage/marine
 	name = "Unknown Marine"
 	corpsesuit = /obj/item/clothing/suit/space/void/refurb/marine
 	corpsehelmet = /obj/item/clothing/head/helmet/space/void/refurb/marine
-	corpsebelt = /obj/item/weapon/storage/belt/security/tactical
+	corpsebelt = /obj/item/storage/belt/security/tactical
 	corpseidjob = "Marine"
 
 /obj/effect/landmark/corpse/vintage/medical
 	name = "Unknown Medic"
 	corpsesuit = /obj/item/clothing/suit/space/void/refurb/medical
 	corpsehelmet = /obj/item/clothing/head/helmet/space/void/refurb/medical
-	corpsebelt = /obj/item/weapon/storage/belt/medical
+	corpsebelt = /obj/item/storage/belt/medical
 	corpseidjob = "Medic"
 
 /obj/effect/landmark/corpse/vintage/mercenary
 	name = "Unknown Mercenary"
 	corpsesuit = /obj/item/clothing/suit/space/void/refurb/mercenary
 	corpsehelmet = /obj/item/clothing/head/helmet/space/void/refurb/mercenary
-	corpsebelt = /obj/item/weapon/storage/belt/security/tactical
-	corpseback = /obj/item/weapon/tank/oxygen/red
+	corpsebelt = /obj/item/storage/belt/security/tactical
+	corpseback = /obj/item/tank/oxygen/red
 	corpseidjob = "Mercenary"
 
 /obj/effect/landmark/corpse/vintage/officer
-	name = "Unknown Captain"
+	name = "Unknown " + JOB_ALT_CAPTAIN
 	corpsesuit = /obj/item/clothing/suit/space/void/refurb/officer
 	corpsehelmet = /obj/item/clothing/head/helmet/space/void/refurb/officer
-	corpseback = /obj/item/weapon/tank/oxygen/yellow
-	corpseidjob = "Captain"
+	corpseidjob = JOB_ALT_CAPTAIN
+	corpseback = /obj/item/tank/oxygen/yellow
 
 /obj/effect/landmark/corpse/vintage/pilot
-	name = "Unknown Pilot"
+	name = "Unknown " + JOB_PILOT
 	corpsesuit = /obj/item/clothing/suit/space/void/refurb/pilot
 	corpsehelmet = /obj/item/clothing/head/helmet/space/void/refurb/pilot
-	corpseidjob = "Pilot"
+	corpseidjob = JOB_PILOT
 
 /obj/effect/landmark/corpse/vintage/research
-	name = "Unknown Researcher"
+	name = "Unknown " + JOB_ALT_RESEARCHER
 	corpsesuit = /obj/item/clothing/suit/space/void/refurb/research
 	corpsehelmet = /obj/item/clothing/head/helmet/space/void/refurb/research
-	corpseidjob = "Researcher"
+	corpseidjob = JOB_ALT_RESEARCHER
 
 /////////////////Officers//////////////////////
 
 /obj/effect/landmark/corpse/bridgeofficer
 	name = "Bridge Officer"
-	corpseradio = /obj/item/device/radio/headset/heads/hop
+	corpseradio = /obj/item/radio/headset/heads/hop
 	corpseuniform = /obj/item/clothing/under/rank/centcom_officer
 	corpsesuit = /obj/item/clothing/suit/armor/bulletproof
 	corpseshoes = /obj/item/clothing/shoes/black
 	corpseglasses = /obj/item/clothing/glasses/sunglasses
 	corpseid = 1
 	corpseidjob = "Bridge Officer"
-	corpseidaccess = "Captain"
+	corpseidaccess = JOB_ALT_CAPTAIN
 
 /obj/effect/landmark/corpse/commander
 	name = "Commander"
 	corpseuniform = /obj/item/clothing/under/rank/centcom_captain
 	corpsesuit = /obj/item/clothing/suit/armor/bulletproof
-	corpseradio = /obj/item/device/radio/headset/heads/captain
+	corpseradio = /obj/item/radio/headset/heads/captain
 	corpseglasses = /obj/item/clothing/glasses/eyepatch
 	corpsemask = /obj/item/clothing/mask/smokable/cigarette/cigar/cohiba
 	corpsehelmet = /obj/item/clothing/head/centhat
 	corpsegloves = /obj/item/clothing/gloves/swat
 	corpseshoes = /obj/item/clothing/shoes/boots/swat
-	corpsepocket1 = /obj/item/weapon/flame/lighter/zippo
+	corpsepocket1 = /obj/item/flame/lighter/zippo
 	corpseid = 1
 	corpseidjob = "Commander"
-	corpseidaccess = "Captain"
+	corpseidaccess = JOB_ALT_CAPTAIN
 
 /////////////////Lore Factions//////////////////////
 
@@ -348,7 +348,7 @@
 	name = "Patrolman"
 	corpseuniform = /obj/item/clothing/under/solgov/utility/sifguard
 	corpsesuit = /obj/item/clothing/suit/storage/hooded/wintercoat/solgov
-	corpsebelt = /obj/item/weapon/storage/belt/security/tactical
+	corpsebelt = /obj/item/storage/belt/security/tactical
 	corpseglasses = /obj/item/clothing/glasses/sunglasses/sechud
 	corpsemask = /obj/item/clothing/mask/balaclava
 	corpsehelmet = /obj/item/clothing/head/beret/solgov/sifguard
@@ -362,7 +362,7 @@
 	name = "Hedberg-Hammarstrom Mercenary"
 	corpseuniform = /obj/item/clothing/under/solgov/utility/sifguard
 	corpsesuit = /obj/item/clothing/suit/storage/vest/solgov/hedberg
-	corpsebelt = /obj/item/weapon/storage/belt/security
+	corpsebelt = /obj/item/storage/belt/security
 	corpseglasses = /obj/item/clothing/glasses/sunglasses/sechud
 	corpsehelmet = /obj/item/clothing/head/beret/corp/hedberg
 	corpseshoes = /obj/item/clothing/shoes/boots/jackboots
@@ -371,11 +371,10 @@
 
 /obj/effect/landmark/corpse/hedberg/merc
 	name = "Hedberg-Hammarstrom Mercenary"
-	corpsebelt = /obj/item/weapon/storage/belt/security/tactical
+	corpsebelt = /obj/item/storage/belt/security/tactical
 	corpseglasses = /obj/item/clothing/glasses/sunglasses/sechud
 	corpsehelmet = /obj/item/clothing/head/helmet/flexitac
 	corpsegloves = /obj/item/clothing/gloves/combat
 	corpseshoes = /obj/item/clothing/shoes/boots/tactical
 	corpseid = 1
 	corpseidjob = "Hedberg-Hammarstrom Enforcer"
-

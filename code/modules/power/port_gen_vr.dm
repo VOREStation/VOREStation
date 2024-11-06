@@ -35,45 +35,45 @@
 //Port Emd, RS PR #484
 
 // Circuits for the RTGs below
-/obj/item/weapon/circuitboard/machine/rtg
+/obj/item/circuitboard/machine/rtg
 	name = T_BOARD("radioisotope TEG")
 	build_path = /obj/machinery/power/rtg
 	board_type = new /datum/frame/frame_types/machine
 	origin_tech = list(TECH_DATA = 3, TECH_POWER = 3, TECH_PHORON = 3, TECH_ENGINEERING = 3)
 	req_components = list(
 		/obj/item/stack/cable_coil = 5,
-		/obj/item/weapon/stock_parts/capacitor = 1,
+		/obj/item/stock_parts/capacitor = 1,
 		/obj/item/stack/material/uranium = 10) // We have no Pu-238, and this is the closest thing to it.
 
-/obj/item/weapon/circuitboard/machine/rtg/advanced
+/obj/item/circuitboard/machine/rtg/advanced
 	name = T_BOARD("advanced radioisotope TEG")
 	build_path = /obj/machinery/power/rtg/advanced
 	origin_tech = list(TECH_DATA = 5, TECH_POWER = 5, TECH_PHORON = 5, TECH_ENGINEERING = 5)
 	req_components = list(
 		/obj/item/stack/cable_coil = 5,
-		/obj/item/weapon/stock_parts/capacitor = 1,
-		/obj/item/weapon/stock_parts/micro_laser = 1,
+		/obj/item/stock_parts/capacitor = 1,
+		/obj/item/stock_parts/micro_laser = 1,
 		/obj/item/stack/material/uranium = 10,
 		/obj/item/stack/material/phoron = 5)
 
-/obj/item/weapon/circuitboard/machine/abductor/core
+/obj/item/circuitboard/machine/abductor/core
 	name = T_BOARD("void generator")
 	build_path = /obj/machinery/power/rtg/abductor
 	board_type = new /datum/frame/frame_types/machine
 	origin_tech = list(TECH_DATA = 8, TECH_POWER = 8, TECH_PHORON = 8, TECH_ENGINEERING = 8)
 	req_components = list(
 		/obj/item/stack/cable_coil = 5,
-		/obj/item/weapon/stock_parts/capacitor/hyper = 1)
+		/obj/item/stock_parts/capacitor/hyper = 1)
 
-/obj/item/weapon/circuitboard/machine/abductor/core/hybrid
+/obj/item/circuitboard/machine/abductor/core/hybrid
 	name = T_BOARD("void generator (hybrid)")
 	build_path = /obj/machinery/power/rtg/abductor/hybrid
 	board_type = new /datum/frame/frame_types/machine
 	origin_tech = list(TECH_DATA = 8, TECH_POWER = 8, TECH_PHORON = 8, TECH_ENGINEERING = 8)
 	req_components = list(
 		/obj/item/stack/cable_coil = 5,
-		/obj/item/weapon/stock_parts/capacitor/hyper = 1,
-		/obj/item/weapon/stock_parts/micro_laser/hyper = 1)
+		/obj/item/stock_parts/capacitor/hyper = 1,
+		/obj/item/stock_parts/micro_laser/hyper = 1)
 
 // Radioisotope Thermoelectric Generator (RTG)
 // Simple power generator that would replace "magic SMES" on various derelicts.
@@ -84,7 +84,7 @@
 	icon_state = "rtg"
 	density = TRUE
 	use_power = USE_POWER_OFF
-	circuit = /obj/item/weapon/circuitboard/machine/rtg
+	circuit = /obj/item/circuitboard/machine/rtg
 
 	// You can buckle someone to RTG, then open its panel. Fun stuff.
 	can_buckle = TRUE
@@ -108,7 +108,7 @@
 
 /obj/machinery/power/rtg/RefreshParts()
 	var/part_level = 0
-	for(var/obj/item/weapon/stock_parts/SP in component_parts)
+	for(var/obj/item/stock_parts/SP in component_parts)
 		part_level += SP.rating
 
 	power_gen = initial(power_gen) * part_level
@@ -116,7 +116,7 @@
 /obj/machinery/power/rtg/examine(mob/user)
 	. = ..()
 	if(Adjacent(user, src) || isobserver(user))
-		. += "<span class='notice'>The status display reads: Power generation now at <b>[power_gen*0.001]</b>kW.</span>"
+		. += span_notice("The status display reads: Power generation now at <b>[power_gen*0.001]</b>kW.")
 
 /obj/machinery/power/rtg/attackby(obj/item/I, mob/user, params)
 	if(default_deconstruction_screwdriver(user, I))
@@ -136,14 +136,14 @@
 /obj/machinery/power/rtg/advanced
 	desc = "An advanced RTG capable of moderating isotope decay, increasing power output but reducing lifetime. It uses plasma-fueled radiation collectors to increase output even further."
 	power_gen = 1250 // 2500 on T1, 10000 on T4.
-	circuit = /obj/item/weapon/circuitboard/machine/rtg/advanced
+	circuit = /obj/item/circuitboard/machine/rtg/advanced
 
 /obj/machinery/power/rtg/fake_gen
 	name = "area power generator"
 	desc = "Some power generation equipment that might be powering the current area."
 	icon_state = "rtg_gen"
 	power_gen = 6000
-	circuit = /obj/item/weapon/circuitboard/machine/rtg
+	circuit = /obj/item/circuitboard/machine/rtg
 	can_buckle = FALSE
 
 /obj/machinery/power/rtg/fake_gen/RefreshParts()
@@ -159,13 +159,13 @@
 	name = "Void Core"
 	icon_state = "core-nocell"
 	desc = "An alien power source that produces energy seemingly out of nowhere."
-	circuit = /obj/item/weapon/circuitboard/machine/abductor/core
+	circuit = /obj/item/circuitboard/machine/abductor/core
 	power_gen = 10000
 	irradiate = FALSE // Green energy!
 	can_buckle = FALSE
 	pixel_y = 7
 	var/going_kaboom = FALSE // Is it about to explode?
-	var/obj/item/weapon/cell/void/cell
+	var/obj/item/cell/void/cell
 
 	var/icon_base = "core"
 	var/state_change = TRUE
@@ -179,8 +179,8 @@
 	if(going_kaboom)
 		return
 	going_kaboom = TRUE
-	visible_message("<span class='danger'>\The [src] lets out an shower of sparks as it starts to lose stability!</span>",\
-		"<span class='italics'>You hear a loud electrical crack!</span>")
+	visible_message(span_danger("\The [src] lets out an shower of sparks as it starts to lose stability!"),\
+		span_warningplain("You hear a loud electrical crack!"))
 	playsound(src, 'sound/effects/lightningshock.ogg', 100, 1, extrarange = 5)
 	tesla_zap(src, 5, power_gen * 0.05)
 	addtimer(CALLBACK(GLOBAL_PROC, PROC_REF(explosion), get_turf(src), 2, 3, 4, 8), 100) // Not a normal explosion.
@@ -207,7 +207,7 @@
 
 /obj/machinery/power/rtg/abductor/attackby(obj/item/I, mob/user, params)
 	state_change = TRUE //Can't tell if parent did something
-	if(istype(I, /obj/item/weapon/cell/void) && !cell)
+	if(istype(I, /obj/item/cell/void) && !cell)
 		user.remove_from_mob(I)
 		I.forceMove(src)
 		cell = I
@@ -260,14 +260,14 @@
 /obj/machinery/power/rtg/abductor/hybrid
 	icon_state = "coreb-nocell"
 	icon_base = "coreb"
-	circuit = /obj/item/weapon/circuitboard/machine/abductor/core/hybrid
+	circuit = /obj/item/circuitboard/machine/abductor/core/hybrid
 
 /obj/machinery/power/rtg/abductor/hybrid/built
 	icon_state = "coreb"
 
 /obj/machinery/power/rtg/abductor/hybrid/built/Initialize()
 	. = ..()
-	cell = new /obj/item/weapon/cell/void/hybrid(src)
+	cell = new /obj/item/cell/void/hybrid(src)
 	RefreshParts()
 
 
@@ -285,8 +285,8 @@
 	can_buckle = FALSE
 
 /obj/machinery/power/rtg/kugelblitz/proc/asplod()
-	visible_message("<span class='danger'>\The [src] lets out an shower of sparks as it starts to lose stability!</span>",\
-		"<span class='italics'>You hear a loud electrical crack!</span>")
+	visible_message(span_danger("\The [src] lets out an shower of sparks as it starts to lose stability!"),\
+		span_warningplain("You hear a loud electrical crack!"))
 	playsound(src, 'sound/effects/lightningshock.ogg', 100, 1, extrarange = 5)
 	var/turf/T = get_turf(src)
 	qdel(src)
@@ -316,7 +316,7 @@
 	desc = "It looks kind of like a large hamster wheel."
 	icon = 'icons/obj/power_vrx96.dmi'
 	icon_state = "reg"
-	circuit = /obj/item/weapon/circuitboard/machine/reg_d
+	circuit = /obj/item/circuitboard/machine/reg_d
 	irradiate = FALSE
 	power_gen = 0
 	var/default_power_gen = 1000000	//It's big but it gets adjusted based on what you put into it!!!
@@ -339,7 +339,7 @@
 /obj/machinery/power/rtg/reg/user_buckle_mob(mob/living/M, mob/user, var/forced = FALSE, var/silent = TRUE)
 	. = ..()
 	M.pixel_y = 8
-	M.visible_message("<span class='notice'>\The [M], hops up onto \the [src] and begins running!</span>")
+	M.visible_message(span_notice("\The [M], hops up onto \the [src] and begins running!"))
 
 /obj/machinery/power/rtg/reg/unbuckle_mob(mob/living/buckled_mob, force = FALSE)
 	. = ..()
@@ -347,7 +347,7 @@
 
 /obj/machinery/power/rtg/reg/RefreshParts()
 	var/n = 0
-	for(var/obj/item/weapon/stock_parts/SP in component_parts)
+	for(var/obj/item/stock_parts/SP in component_parts)
 		n += SP.rating
 	part_mult = n
 
@@ -380,7 +380,7 @@
 /obj/machinery/power/rtg/reg/proc/runner_process(var/mob/living/runner)
 	if(runner.stat != CONSCIOUS)
 		unbuckle_mob(runner)
-		runner.visible_message("<span class='warning'>\The [runner], topples off of \the [src]!</span>")
+		runner.visible_message(span_warning("\The [runner], topples off of \the [src]!"))
 		return
 	var/cool_rotations
 	if(ishuman(runner))
@@ -407,7 +407,7 @@
 			cool_rotations *= 0.25
 		else	//TOO HUNGY IT TIME TO STOP!!!
 			unbuckle_mob(runner)
-			runner.visible_message("<span class='notice'>\The [runner], panting and exhausted hops off of \the [src]!</span>")
+			runner.visible_message(span_notice("\The [runner], panting and exhausted hops off of \the [src]!"))
 	if(part_mult > 1)
 		cool_rotations += (cool_rotations * (part_mult - 1)) / 4
 	power_gen = cool_rotations
@@ -416,27 +416,27 @@
 /obj/machinery/power/rtg/reg/emp_act(severity)
 	return
 
-/obj/item/weapon/circuitboard/machine/reg_d
+/obj/item/circuitboard/machine/reg_d
 	name = T_BOARD("D-Type-REG")
 	build_path = /obj/machinery/power/rtg/reg
 	board_type = new /datum/frame/frame_types/machine
 	origin_tech = list(TECH_DATA = 2, TECH_POWER = 4, TECH_ENGINEERING = 4)
 	req_components = list(
 		/obj/item/stack/cable_coil = 5,
-		/obj/item/weapon/stock_parts/capacitor = 1)
+		/obj/item/stock_parts/capacitor = 1)
 
-/obj/item/weapon/circuitboard/machine/reg_c
+/obj/item/circuitboard/machine/reg_c
 	name = T_BOARD("C-Type-REG")
 	build_path = /obj/machinery/power/rtg/reg/c
 	board_type = new /datum/frame/frame_types/machine
 	origin_tech = list(TECH_DATA = 2, TECH_POWER = 4, TECH_ENGINEERING = 4)
 	req_components = list(
 		/obj/item/stack/cable_coil = 5,
-		/obj/item/weapon/stock_parts/capacitor = 1)
+		/obj/item/stock_parts/capacitor = 1)
 
 /obj/machinery/power/rtg/reg/c
 	name = "c-type rotary electric generator"
-	circuit = /obj/item/weapon/circuitboard/machine/reg_c
+	circuit = /obj/item/circuitboard/machine/reg_c
 	default_power_gen = 500000 //Half power
 	nutrition_drain = 0.5	//for half cost - EQUIVALENT EXCHANGE >:O
 
@@ -497,9 +497,9 @@
 		var/obj/item/stack/addstack = O
 		var/amount = min((max_sheets - sheets), addstack.get_amount())
 		if(amount < 1)
-			to_chat(user, "<span class='warning'>The [src.name] is full!</span>")
+			to_chat(user, span_warning("The [src.name] is full!"))
 			return
-		to_chat(user, "<span class='notice'>You add [amount] sheet\s to the [src.name].</span>")
+		to_chat(user, span_notice("You add [amount] sheet\s to the [src.name]."))
 		sheets += amount
 		addstack.use(amount)
 		update_icon()

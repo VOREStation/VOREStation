@@ -62,8 +62,8 @@
 
 	// During dynamic mapload (reader.dm) this assigns the var overrides from the .dmm file
 	// Native BYOND maploading sets those vars before invoking New(), by doing this FIRST we come as close to that behavior as we can.
-	if(GLOB.use_preloader && (src.type == GLOB._preloader.target_path))//in case the instanciated atom is creating other atoms in New()
-		GLOB._preloader.load(src)
+	if(GLOB.use_preloader && (src.type == GLOB._preloader_path))//in case the instanciated atom is creating other atoms in New()
+		world.preloader_load(src)
 
 	// Pass our arguments to InitAtom so they can be passed to initialize(), but replace 1st with if-we're-during-mapload.
 	var/do_initialize = SSatoms.initialized
@@ -231,7 +231,7 @@
 		else
 			f_name = "a "
 		if(blood_color != SYNTH_BLOOD_COLOUR)
-			f_name += "<span class='danger'>blood-stained</span> [name][infix]!"
+			f_name += "[span_danger("blood-stained")] [name][infix]!"
 		else
 			f_name += "oil-stained [name][infix]."
 
@@ -247,7 +247,7 @@
 
 // Don't make these call bicon or anything, these are what bicon uses. They need to return an icon.
 /atom/proc/examine_icon()
-	return icon(icon=src.icon, icon_state=src.icon_state, dir=SOUTH, frame=1, moving=0)
+	return src // 99% of the time just returning src will be sufficient. More complex examine icon things are available where they are needed
 
 // called by mobs when e.g. having the atom as their machine, pulledby, loc (AKA mob being inside the atom) or buckled var set.
 // see code/modules/mob/mob_movement.dm for more.
@@ -287,10 +287,10 @@
 // Returns an assoc list of RCD information.
 // Example would be: list(RCD_VALUE_MODE = RCD_DECONSTRUCT, RCD_VALUE_DELAY = 50, RCD_VALUE_COST = RCD_SHEETS_PER_MATTER_UNIT * 4)
 // This occurs before rcd_act() is called, and it won't be called if it returns FALSE.
-/atom/proc/rcd_values(mob/living/user, obj/item/weapon/rcd/the_rcd, passed_mode)
+/atom/proc/rcd_values(mob/living/user, obj/item/rcd/the_rcd, passed_mode)
 	return FALSE
 
-/atom/proc/rcd_act(mob/living/user, obj/item/weapon/rcd/the_rcd, passed_mode)
+/atom/proc/rcd_act(mob/living/user, obj/item/rcd/the_rcd, passed_mode)
 	return
 
 /atom/proc/melt()
@@ -478,7 +478,9 @@
 /atom/proc/add_vomit_floor(mob/living/carbon/M as mob, var/toxvomit = 0)
 	if( istype(src, /turf/simulated) )
 		var/obj/effect/decal/cleanable/vomit/this = new /obj/effect/decal/cleanable/vomit(src)
-		this.virus2 = virus_copylist(M.virus2)
+
+		for(var/datum/disease/D in M.GetViruses())
+			this.viruses |= D.Copy()
 
 		// Make toxins vomit look different
 		if(toxvomit)
@@ -493,7 +495,7 @@
 		blood_DNA = null
 		return TRUE
 
-/atom/proc/on_rag_wipe(var/obj/item/weapon/reagent_containers/glass/rag/R)
+/atom/proc/on_rag_wipe(var/obj/item/reagent_containers/glass/rag/R)
 	clean_blood()
 	R.reagents.splash(src, 1)
 
@@ -595,13 +597,13 @@
 /atom/proc/InsertedContents()
 	return contents
 
-/atom/proc/has_gravity(turf/T)
+/atom/proc/get_gravity(turf/T)
 	if(!T || !isturf(T))
 		T = get_turf(src)
 	if(istype(T, /turf/space)) // Turf never has gravity
 		return FALSE
 	var/area/A = get_area(T)
-	if(A && A.has_gravity())
+	if(A && A.get_gravity())
 		return TRUE
 	return FALSE
 
@@ -698,7 +700,7 @@
 		return
 	var/list/speech_bubble_hearers = list()
 	for(var/mob/M in get_mobs_in_view(7, src))
-		M.show_message("<span class='npcsay'><span class='name'>[src]</span> [atom_say_verb], \"[message]\"</span>", 2, null, 1)
+		M.show_message(span_npc_say(span_name("[src]") + " [atom_say_verb], \"[message]\""), 2, null, 1)
 		if(M.client)
 			speech_bubble_hearers += M.client
 
@@ -786,3 +788,33 @@
 		else if(C)
 			color = C
 			return
+
+///Passes Stat Browser Panel clicks to the game and calls client click on an atom
+/atom/Topic(href, list/href_list)
+	. = ..()
+	if(!usr?.client)
+		return
+	var/client/usr_client = usr.client
+	var/list/paramslist = list()
+
+	if(href_list["statpanel_item_click"])
+		switch(href_list["statpanel_item_click"])
+			if("left")
+				paramslist["left"] = "1"
+			if("right")
+				paramslist["right"] = "1"
+			if("middle")
+				paramslist["middle"] = "1"
+			else
+				return
+
+		if(href_list["statpanel_item_shiftclick"])
+			paramslist["shift"] = "1"
+		if(href_list["statpanel_item_ctrlclick"])
+			paramslist["ctrl"] = "1"
+		if(href_list["statpanel_item_altclick"])
+			paramslist["alt"] = "1"
+
+		var/mouseparams = list2params(paramslist)
+		usr_client.Click(src, loc, null, mouseparams)
+		return TRUE

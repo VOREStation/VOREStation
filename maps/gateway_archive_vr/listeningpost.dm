@@ -1,14 +1,14 @@
-/obj/item/weapon/paper/listneningpost/mission
+/obj/item/paper/listneningpost/mission
 	name = "\improper Operation: Watchtower"
 	info = {"<b>Mission Details</b>: You have been assigned to a newly constructed listening post
 			constructed within an asteroid in Nanotrasen space to monitor their plasma mining operations.
 			Accurate intel is crucial to the success of our operatives onboard, do not fail us."}
 
-/obj/item/weapon/paper/listneningpost/reciept
+/obj/item/paper/listneningpost/reciept
 	name = "\improper SpacEx reciept"
 	info = {"1 x Stechtkin pistol plus ammo - $600<br>1 x silencer - $200<br>shipping charge - $4360<br>total - $5160"}
 
-/obj/item/weapon/paper/listneningpost/oddreport
+/obj/item/paper/listneningpost/oddreport
 	name = "\improper Odd Report"
 	info = {"I wonder how much longer they will accept my empty reports. They will cancel the case soon without
 	results. When the pickup comes, I will tell them I have lost faith in our cause, and beg them to consider a diplomatic

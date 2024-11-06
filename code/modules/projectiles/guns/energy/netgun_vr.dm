@@ -1,6 +1,6 @@
 //Contains the Energy Net Gun code and information/lore
 
-/obj/item/weapon/gun/energy/netgun
+/obj/item/gun/energy/netgun
 	name = "energy net gun"
 	desc = "Specially made-to-order by Xenonomix, the  \"Varmint Catcher\" is designed to trap even the most unruly of creatures for safe transport."
 	description_fluff = "The Xenonomix Brand XX-1 Energy Net Cannon is a marvel of technology that is used heavily by several departments within NanoTrasen. \
@@ -17,7 +17,7 @@
 	charge_cost = 800
 	fire_delay = 50
 
-/obj/item/weapon/gun/energy/netgun/update_icon()
+/obj/item/gun/energy/netgun/update_icon()
 	if(power_supply == null)
 		if(modifystate)
 			icon_state = "[modifystate]_open"

@@ -84,8 +84,8 @@
 
 /mob/living/carbon/human/GetVoice()
 	var/voice_sub
-	if(istype(get_rig(),/obj/item/weapon/rig))
-		var/obj/item/weapon/rig/rig = get_rig()
+	if(istype(get_rig(),/obj/item/rig))
+		var/obj/item/rig/rig = get_rig()
 		// todo: fix this shit
 		if(rig.speech && rig.speech.voice_holder && rig.speech.voice_holder.active && rig.speech.voice_holder.voice)
 			voice_sub = rig.speech.voice_holder.voice
@@ -147,12 +147,12 @@
 	switch(message_mode)
 		if("intercom")
 			if(!restrained())
-				for(var/obj/item/device/radio/intercom/I in view(1))
+				for(var/obj/item/radio/intercom/I in view(1))
 					I.talk_into(src, message_pieces, null, verb)
 					I.add_fingerprint(src)
 					used_radios += I
 		if("headset")
-			var/obj/item/device/radio/R = null
+			var/obj/item/radio/R = null
 			if(isradio(l_ear))
 				R = l_ear
 				if(R.talk_into(src, message_pieces, null, verb))
@@ -165,7 +165,7 @@
 					used_radios += R
 					return
 		if("right ear")
-			var/obj/item/device/radio/R = null
+			var/obj/item/radio/R = null
 			if(isradio(r_ear))
 				R = r_ear
 			if(isradio(r_hand))
@@ -174,7 +174,7 @@
 				if(R.talk_into(src, message_pieces, null, verb))
 					used_radios += R
 		if("left ear")
-			var/obj/item/device/radio/R = null
+			var/obj/item/radio/R = null
 			if(isradio(l_ear))
 				R = l_ear
 			if(isradio(l_hand))
@@ -202,13 +202,13 @@
 
 /mob/living/carbon/human/binarycheck()
 	. = FALSE
-	var/obj/item/device/radio/headset/R = null
-	if(istype(l_ear, /obj/item/device/radio/headset))
+	var/obj/item/radio/headset/R = null
+	if(istype(l_ear, /obj/item/radio/headset))
 		R = l_ear
 		if(R.translate_binary)
 			. = TRUE
 
-	if(istype(r_ear, /obj/item/device/radio/headset))
+	if(istype(r_ear, /obj/item/radio/headset))
 		R = r_ear
 		if(R.translate_binary)
 			. = TRUE

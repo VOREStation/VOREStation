@@ -22,7 +22,7 @@
 	hoodtype = /obj/item/clothing/head/hood/galahad
 	armor = list(melee = 80, bullet = 50, laser = 10, energy = 0, bomb = 0, bio = 0, rad = 0)
 	siemens_coefficient = 2
-	action_button_name = "Toggle Knight Headgear"
+	actions_types = list(/datum/action/item_action/toggle_knight_headgear)
 
 /obj/item/clothing/suit/storage/hooded/knight/galahad
 	name = "crusader's armor"
@@ -53,7 +53,7 @@
 	icon = 'icons/obj/clothing/knights_vr.dmi'
 	icon_override = 'icons/obj/clothing/knights_vr.dmi'
 	hoodtype = /obj/item/clothing/head/hood/galahad_costume
-	action_button_name = "Toggle Knight Headgear"
+	actions_types = list(/datum/action/item_action/toggle_knight_headgear)
 
 /obj/item/clothing/suit/storage/hooded/knight_costume/galahad
 	icon_state = "galahad"
@@ -84,7 +84,7 @@
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO
 	flags_inv = HIDETIE|HIDEHOLSTER
 	cold_protection = UPPER_TORSO|LOWER_TORSO
-	action_button_name = "Toggle Hood"
+	actions_types = list(/datum/action/item_action/toggle_hood)
 
 /obj/item/clothing/suit/storage/hooded/foodcostume/hotdog	//Belly filler uniform :^).
 	name = "hotdog costume"
@@ -118,8 +118,8 @@
 	cold_protection = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
 	min_cold_protection_temperature = SPACE_SUIT_MIN_COLD_PROTECTION_TEMPERATURE
 	hoodtype = /obj/item/clothing/head/hood/hoodie
-	allowed = list(/obj/item/weapon/pen, /obj/item/weapon/paper, /obj/item/device/flashlight, /obj/item/weapon/tank/emergency/oxygen, /obj/item/weapon/storage/fancy/cigarettes,
-	/obj/item/weapon/storage/box/matches, /obj/item/weapon/reagent_containers/food/drinks/flask, /obj/item/device/suit_cooling_unit)
+	allowed = list(/obj/item/pen, /obj/item/paper, /obj/item/flashlight, /obj/item/tank/emergency/oxygen, /obj/item/storage/fancy/cigarettes,
+	/obj/item/storage/box/matches, /obj/item/reagent_containers/food/drinks/flask, /obj/item/suit_cooling_unit)
 
 /obj/item/clothing/suit/storage/hooded/hoodie/redtrim
 	name = "red-trimmed hoodie"

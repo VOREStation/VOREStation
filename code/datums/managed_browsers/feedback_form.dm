@@ -19,7 +19,7 @@ GENERAL_PROTECT_DATUM(/datum/managed_browser/feedback_form)
 	var/feedback_hide_author = FALSE
 
 /datum/managed_browser/feedback_form/New(client/new_client)
-	feedback_topic = config.sqlite_feedback_topics[1]
+	feedback_topic = CONFIG_GET(str_list/sqlite_feedback_topics)[1]
 	..(new_client)
 
 /datum/managed_browser/feedback_form/Destroy()
@@ -29,7 +29,7 @@ GENERAL_PROTECT_DATUM(/datum/managed_browser/feedback_form)
 
 // Privacy option is allowed if both the config allows it, and the pepper file exists and isn't blank.
 /datum/managed_browser/feedback_form/proc/can_be_private()
-	return config.sqlite_feedback_privacy && SSsqlite.get_feedback_pepper()
+	return CONFIG_GET(flag/sqlite_feedback_privacy) && SSsqlite.get_feedback_pepper()
 
 /datum/managed_browser/feedback_form/display()
 	if(!my_client)
@@ -58,34 +58,35 @@ GENERAL_PROTECT_DATUM(/datum/managed_browser/feedback_form)
 	if(can_be_private())
 		if(!feedback_hide_author)
 			dat += "[my_client.ckey] "
-			dat += span("linkOn", "<b>Visible</b>")
+			dat += span_linkOn(span_bold("Visible"))
 			dat += " | "
 			dat += href(src, list("feedback_hide_author" = 1), "Hashed")
 		else
 			dat += "[md5(ckey(lowertext(my_client.ckey + SSsqlite.get_feedback_pepper())))] "
 			dat += href(src, list("feedback_hide_author" = 0), "Visible")
 			dat += " | "
-			dat += span("linkOn", "<b>Hashed</b>")
+			dat += span_linkOn(span_bold("Hashed"))
 	else
 		dat += my_client.ckey
 	dat += "<br>"
 
-	if(config.sqlite_feedback_topics.len > 1)
+	var/list/sqlite_feedback_topics = CONFIG_GET(str_list/sqlite_feedback_topics)
+	if(sqlite_feedback_topics.len > 1)
 		dat += "Topic: [href(src, list("feedback_choose_topic" = 1), feedback_topic)]<br>"
 	else
-		dat += "Topic: [config.sqlite_feedback_topics[1]]<br>"
+		dat += "Topic: [sqlite_feedback_topics[1]]<br>"
 
 	dat += "<br>"
 	if(feedback_body)
 		dat += replacetext(feedback_body, "\n", "<br>") // So newlines will look like they work in the preview.
 	else
-		dat += "<i>\[Feedback goes here...\]</i>"
+		dat += span_italics("\[Feedback goes here...\]")
 	dat += "<br>"
 	dat += href(src, list("feedback_edit_body" = 1), "Edit")
 	dat += "<hr>"
 
-	if(config.sqlite_feedback_cooldown)
-		dat += "<i>Please note that you will have to wait [config.sqlite_feedback_cooldown] day\s before \
+	if(CONFIG_GET(number/sqlite_feedback_cooldown))
+		dat += "<i>Please note that you will have to wait [CONFIG_GET(number/sqlite_feedback_cooldown)] day\s before \
 		being able to write more feedback after submitting.</i><br>"
 
 	dat += href(src, list("feedback_submit" = 1), "Submit")
@@ -112,7 +113,7 @@ GENERAL_PROTECT_DATUM(/datum/managed_browser/feedback_form)
 		return
 
 	if(href_list["feedback_choose_topic"])
-		feedback_topic = tgui_input_list(my_client, "Choose the topic you want to submit your feedback under.", "Feedback Topic", config.sqlite_feedback_topics)
+		feedback_topic = tgui_input_list(my_client, "Choose the topic you want to submit your feedback under.", "Feedback Topic", CONFIG_GET(str_list/sqlite_feedback_topics))
 		display()
 		return
 
@@ -120,13 +121,13 @@ GENERAL_PROTECT_DATUM(/datum/managed_browser/feedback_form)
 		// Do some last minute validation, and tell the user if something goes wrong,
 		// so we don't wipe out their ten thousand page essay due to having a few too many characters.
 		if(length(feedback_body) > MAX_FEEDBACK_LENGTH)
-			to_chat(my_client, span("warning", "Your feedback is too long, at [length(feedback_body)] characters, where as the \
+			to_chat(my_client, span_warning("Your feedback is too long, at [length(feedback_body)] characters, where as the \
 			limit is [MAX_FEEDBACK_LENGTH]. Please shorten it and try again."))
 			return
 
 		var/text = sanitize(feedback_body, max_length = 0, encode = TRUE, trim = FALSE, extra = FALSE)
 		if(!text) // No text, or it was super invalid.
-			to_chat(my_client, span("warning", "It appears you didn't write anything, or it was invalid."))
+			to_chat(my_client, span_warning("It appears you didn't write anything, or it was invalid."))
 			return
 
 		if(tgui_alert(my_client, "Are you sure you want to submit your feedback?", "Confirm Submission", list("No", "Yes")) == "Yes")
@@ -136,7 +137,7 @@ GENERAL_PROTECT_DATUM(/datum/managed_browser/feedback_form)
 
 			var/success = SSsqlite.insert_feedback(author = author_text, topic = feedback_topic, content = feedback_body, sqlite_object = SSsqlite.sqlite_db)
 			if(!success)
-				to_chat(my_client, span("warning", "Something went wrong while inserting your feedback into the database. Please try again. \
+				to_chat(my_client, span_warning("Something went wrong while inserting your feedback into the database. Please try again. \
 				If this happens again, you should contact a developer."))
 				return
 

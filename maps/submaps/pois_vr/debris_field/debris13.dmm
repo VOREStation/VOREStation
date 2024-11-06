@@ -40,11 +40,11 @@
 /area/tether_away/debrisfield/shuttle_buffer)
 "j" = (
 /obj/structure/lattice,
-/obj/item/weapon/material/shard/shrapnel,
+/obj/item/material/shard/shrapnel,
 /turf/template_noop,
 /area/space)
 "k" = (
-/obj/item/weapon/material/shard/shrapnel,
+/obj/item/material/shard/shrapnel,
 /turf/template_noop,
 /area/space)
 

@@ -26,7 +26,7 @@
 
 
 /mob/living/silicon/ai/proc/ai_camera_list(var/camera in get_camera_list())
-	set category = "AI Commands"
+	set category = "AI.Camera Control"
 	set name = "Show Camera List"
 
 	if(check_unable())
@@ -41,26 +41,26 @@
 	return
 
 /mob/living/silicon/ai/proc/ai_store_location(loc as text)
-	set category = "AI Commands"
+	set category = "AI.Camera Control"
 	set name = "Store Camera Location"
 	set desc = "Stores your current camera location by the given name"
 
 	loc = sanitize(loc)
 	if(!loc)
-		to_chat(src, "<span class='warning'>Must supply a location name</span>")
+		to_chat(src, span_warning("Must supply a location name"))
 		return
 
 	if(stored_locations.len >= max_locations)
-		to_chat(src, "<span class='warning'>Cannot store additional locations. Remove one first</span>")
+		to_chat(src, span_warning("Cannot store additional locations. Remove one first"))
 		return
 
 	if(loc in stored_locations)
-		to_chat(src, "<span class='warning'>There is already a stored location by this name</span>")
+		to_chat(src, span_warning("There is already a stored location by this name"))
 		return
 
 	var/L = src.eyeobj.getLoc()
 	if (InvalidPlayerTurf(get_turf(L)))
-		to_chat(src, "<span class='warning'>Unable to store this location</span>")
+		to_chat(src, span_warning("Unable to store this location"))
 		return
 
 	stored_locations[loc] = L
@@ -70,24 +70,24 @@
 	return sortList(stored_locations)
 
 /mob/living/silicon/ai/proc/ai_goto_location(loc in sorted_stored_locations())
-	set category = "AI Commands"
+	set category = "AI.Camera Control"
 	set name = "Goto Camera Location"
 	set desc = "Returns to the selected camera location"
 
 	if (!(loc in stored_locations))
-		to_chat(src, "<span class='warning'>Location [loc] not found</span>")
+		to_chat(src, span_warning("Location [loc] not found"))
 		return
 
 	var/L = stored_locations[loc]
 	src.eyeobj.setLoc(L)
 
 /mob/living/silicon/ai/proc/ai_remove_location(loc in sorted_stored_locations())
-	set category = "AI Commands"
+	set category = "AI.Camera Control"
 	set name = "Delete Camera Location"
 	set desc = "Deletes the selected camera location"
 
 	if (!(loc in stored_locations))
-		to_chat(src, "<span class='warning'>Location [loc] not found</span>")
+		to_chat(src, span_warning("Location [loc] not found"))
 		return
 
 	stored_locations.Remove(loc)
@@ -129,7 +129,7 @@
 	return targets
 
 /mob/living/silicon/ai/proc/ai_camera_track(var/target_name in trackable_mobs())
-	set category = "AI Commands"
+	set category = "AI.Camera Control"
 	set name = "Follow With Camera"
 	set desc = "Select who you would like to track."
 
@@ -225,7 +225,7 @@
 /mob/living/proc/tracking_status()
 	// Easy checks first.
 	// Don't detect mobs on CentCom. Since the wizard den is on CentCom, we only need this.
-	var/obj/item/weapon/card/id/id = GetIdCard()
+	var/obj/item/card/id/id = GetIdCard()
 	if(id && id.prevent_tracking())
 		return TRACKING_TERMINATE
 	var/turf/pos = get_turf(src)
@@ -270,14 +270,14 @@
 /mob/living/silicon/robot/tracking_initiated()
 	tracking_entities++
 	if(tracking_entities == 1 && has_zeroth_law())
-		to_chat(src, "<span class='warning'>Internal camera is currently being accessed.</span>")
+		to_chat(src, span_warning("Internal camera is currently being accessed."))
 
 /mob/living/proc/tracking_cancelled()
 
 /mob/living/silicon/robot/tracking_initiated()
 	tracking_entities--
 	if(!tracking_entities && has_zeroth_law())
-		to_chat(src, "<span class='notice'>Internal camera is no longer being accessed.</span>")
+		to_chat(src, span_notice("Internal camera is no longer being accessed."))
 
 
 #undef TRACKING_POSSIBLE

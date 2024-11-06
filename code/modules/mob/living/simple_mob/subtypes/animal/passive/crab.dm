@@ -3,7 +3,7 @@
 	name = "crab"
 	desc = "A hard-shelled crustacean. Seems quite content to lounge around all the time."
 	tt_desc = "E Cancer bellianus"
-	faction = "crabs"
+	faction = FACTION_CRABS
 
 	icon_state = "crab"
 	icon_living = "crab"
@@ -18,7 +18,7 @@
 
 	organ_names = /decl/mob_organ_names/crab
 
-	meat_type = /obj/item/weapon/reagent_containers/food/snacks/crabmeat
+	meat_type = /obj/item/reagent_containers/food/snacks/crabmeat
 	meat_amount = 3
 
 	say_list_type = /datum/say_list/crab

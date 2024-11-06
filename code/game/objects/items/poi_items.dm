@@ -67,7 +67,7 @@
 	climbable = FALSE
 
 	starts_with = list(
-		/obj/item/weapon/fuel_assembly/deuterium = 6)
+		/obj/item/fuel_assembly/deuterium = 6)
 
 /obj/item/poi/brokenoldreactor
 	icon_state = "poireactor_broken"
@@ -149,15 +149,15 @@
 		return FALSE
 
 	var/turf/message_turf = get_turf(user)	//We use this to ensure everyone can see it!
-	if(istype(I, /obj/item/weapon/tool/screwdriver))
+	if(istype(I, /obj/item/tool/screwdriver))
 		unscrewed = !unscrewed
 		to_chat(user, "You screw the blackbox panel [unscrewed ? "off" : "on"]")
 
-	if(istype(I, /obj/item/weapon/tool/wirecutters))
+	if(istype(I, /obj/item/tool/wirecutters))
 		wirecutted = !wirecutted
 		to_chat(user, "You [wirecutted ? "cut" : "mend"] the power wire to the blackbox")
 
-	if(istype(I, /obj/item/weapon/paper) && unscrewed)
+	if(istype(I, /obj/item/paper) && unscrewed)
 		if(!has_paper)
 			to_chat(user, "You feed the debug printer some paper")
 			has_paper = TRUE
@@ -165,16 +165,16 @@
 		else
 			to_chat(user, span_notice("[src] cannot hold more than 1 sheet of paper."))
 
-	if(istype(I, /obj/item/device/multitool))
+	if(istype(I, /obj/item/multitool))
 		if(!unscrewed && !wirecutted)
 			to_chat(user, span_notice("You cannot access the debug interface with the panel screwed on!"))
 		else if(unscrewed && !wirecutted)
 			message_turf.audible_message(message = examine_multitool,
-			deaf_message = "<b>[src]</b> flashes red repeatedly", runemessage= "Beep! Beep!")
+			deaf_message = span_bold("[src]") + " flashes red repeatedly", runemessage= "Beep! Beep!")
 			to_chat(user, span_warning("The components spark from the multitool's unregulated pulse. \
 			Perhaps it'd been better to use more sophisticated tools..."))
 			fried = TRUE
-			message_turf.visible_message(message = "<b>[src]</b> FLASHES VIOLENTLY!",
+			message_turf.visible_message(message = span_bold("[src]") + " FLASHES VIOLENTLY!",
 			blind_message = "ZAP!", runemessage = "CRACKLE!")
 			var/used_hand = user.get_organ(user.get_active_hand())
 			user.electrocute_act(10,def_zone = used_hand)
@@ -182,7 +182,7 @@
 			to_chat(user, span_notice("You modify the security settings."))
 			unlocked = TRUE
 
-	if(istype(I, /obj/item/device/robotanalyzer))
+	if(istype(I, /obj/item/robotanalyzer))
 		if(!unscrewed)
 			to_chat(user, span_notice("You cannot access the debug interface with the panel screwed on!"))
 		else if(wirecutted)
@@ -192,14 +192,14 @@
 			Perhaps, it would've been a good idea to disconnect some wires while pulsing the security circuit..."))
 		else
 			if(!has_paper)
-				message_turf.visible_message(message = "<b>[src]</b> displays, 'PAPER NOT BIN'",
+				message_turf.visible_message(message = span_bold("[src]") + " displays, 'PAPER NOT BIN'",
 				blind_message = "you hear VERY ANGRY beeping.", runemessage = "BEEP BEEP!")
-				message_turf.audible_message(message = "<b>[src]</b> recites, \n '[examine_canalyzer]'",
-				deaf_message = "<b>[src]</b> flashes green!", runemessage= "Ping!")
+				message_turf.audible_message(message = span_bold("[src]") + " recites, \n '[examine_canalyzer]'",
+				deaf_message = span_bold("[src]") + " flashes green!", runemessage= "Ping!")
 			else
-				message_turf.audible_message(message = "<b>[src]</b> rattles loudly as it prints",
-				deaf_message = "<b>[src]</b> flashes green!", runemessage= "RATTLE RATTLE")
-				var/obj/item/weapon/paper/P = new /obj/item/weapon/paper(get_turf(src))
+				message_turf.audible_message(message = span_bold("[src]") + " rattles loudly as it prints",
+				deaf_message = span_bold("[src]") + " flashes green!", runemessage= "RATTLE RATTLE")
+				var/obj/item/paper/P = new /obj/item/paper(get_turf(src))
 				P.name = "[drone_name] blackbox transcript"
 				P.info = "[examine_canalyzer_printed ? examine_canalyzer_printed : examine_canalyzer]"
 				has_paper = FALSE

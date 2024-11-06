@@ -4,7 +4,7 @@
 /**
  * Etc variables on the NIF to keep this self contained
  */
-/obj/item/device/nif
+/obj/item/nif
 	var/static/list/valid_ui_themes = list(
 		"abductor",
 		"cardtable",
@@ -46,7 +46,7 @@
 			UnregisterSignal(screen_icon, COMSIG_CLICK)
 			qdel_null(screen_icon)
 		if(ishuman(parent))
-			owner.verbs -= /mob/living/carbon/human/proc/nif_menu
+			remove_verb(owner, /mob/living/carbon/human/proc/nif_menu)
 
 
 /datum/component/nif_menu/proc/create_mob_button(mob/user)
@@ -60,7 +60,7 @@
 	LAZYADD(HUD.other_important, screen_icon)
 	user.client?.screen += screen_icon
 
-	user.verbs |= /mob/living/carbon/human/proc/nif_menu
+	add_verb(user, /mob/living/carbon/human/proc/nif_menu)
 
 /datum/component/nif_menu/proc/nif_menu_click(source, location, control, params, user)
 	var/mob/living/carbon/human/H = user
@@ -81,23 +81,23 @@
  */
 /mob/living/carbon/human/proc/nif_menu()
 	set name = "NIF Menu"
-	set category = "IC"
+	set category = "IC.Nif"
 	set desc = "Open the NIF user interface."
 
-	var/obj/item/device/nif/N = nif
+	var/obj/item/nif/N = nif
 	if(istype(N))
 		N.tgui_interact(usr)
 
 /**
  * The NIF State ensures that only our authorized implanted user can touch us.
  */
-/obj/item/device/nif/tgui_state(mob/user)
+/obj/item/nif/tgui_state(mob/user)
 	return GLOB.tgui_nif_main_state
 
 /**
  * Standard TGUI stub to open the NIF.js template.
  */
-/obj/item/device/nif/tgui_interact(mob/user, datum/tgui/ui, datum/tgui/parent_ui)
+/obj/item/nif/tgui_interact(mob/user, datum/tgui/ui, datum/tgui/parent_ui)
 	if(!ishuman(user))
 		return FALSE
 	ui = SStgui.try_update_ui(user, src, ui)
@@ -109,7 +109,7 @@
  * tgui_data gives the UI any relevant data it needs.
  * In our case, that's basically everything from our statpanel.
  */
-/obj/item/device/nif/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
+/obj/item/nif/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
 	var/list/data = ..()
 
 	data["valid_themes"] = valid_ui_themes
@@ -150,7 +150,7 @@
 /**
  * tgui_act handles all user input in the UI.
  */
-/obj/item/device/nif/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
+/obj/item/nif/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
 	if(..())
 		return TRUE
 

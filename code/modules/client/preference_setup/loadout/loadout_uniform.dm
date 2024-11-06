@@ -152,14 +152,14 @@
 	path = /obj/item/clothing/under/scratch/skirt
 
 /datum/gear/uniform/suit/detectiveskirt
-	display_name = "suit, detective skirt (Detective)"
+	display_name = "suit, detective skirt (" + JOB_DETECTIVE + ")"
 	path = /obj/item/clothing/under/det/skirt
-	allowed_roles = list("Detective")
+	allowed_roles = list(JOB_DETECTIVE)
 
 /datum/gear/uniform/suit/iaskirt
 	display_name = "suit, Internal Affairs skirt (Internal Affairs)"
 	path = /obj/item/clothing/under/rank/internalaffairs/skirt
-	allowed_roles = list("Internal Affairs Agent")
+	allowed_roles = list(JOB_INTERNAL_AFFAIRS_AGENT)
 
 /datum/gear/uniform/suit/bartenderskirt
 	display_name = "suit, bartender skirt"
@@ -635,3 +635,22 @@
 	"black tabard-dress"=/obj/item/clothing/under/dress/tabard/black
 	)
 	gear_tweaks += list(new/datum/gear_tweak/path(tabarddress))
+
+//bunny suits
+
+/datum/gear/uniform/bunnysuit
+	display_name = "bunny suit selection, colorable"
+	path = /obj/item/clothing/under/bunnysuit
+
+/datum/gear/uniform/bunnysuit/New()
+	..()
+	var/list/bunnysuit = list(
+	"bunnysuit"=/obj/item/clothing/under/bunnysuit,
+	"maid bunnysuit"=/obj/item/clothing/under/bunnysuit_maid,
+	"reverse bunnysuit"=/obj/item/clothing/under/reverse_bunnysuit,
+	"maid reverse bunnysuit"=/obj/item/clothing/under/reverse_bunnysuit_maid,
+	"reverse bunnysuit, no legs"=/obj/item/clothing/under/reverse_bunnytop,
+	"maid reverse bunnysuit, no legs"=/obj/item/clothing/under/reverse_bunnytop_maid
+	)
+	gear_tweaks += list(new/datum/gear_tweak/path(bunnysuit))
+	gear_tweaks += gear_tweak_free_color_choice

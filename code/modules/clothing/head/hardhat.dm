@@ -19,7 +19,7 @@
 	armor = list(melee = 30, bullet = 5, laser = 20,energy = 10, bomb = 20, bio = 10, rad = 20)
 	flags_inv = 0
 	siemens_coefficient = 0.9
-	action_button_name = "Toggle Head-light"
+	actions_types = list(/datum/action/item_action/toggle_head_light)
 	w_class = ITEMSIZE_NORMAL
 	ear_protection = 1
 	drop_sound = 'sound/items/drop/helm.ogg'
@@ -76,7 +76,7 @@
 
 /obj/item/clothing/head/hardhat/firefighter/chief
 	name = "chief firefighter helmet"
-	desc = "A helmet with face mask specially designed for firefighting. This one is in the colors of the Chief Engineer. It's airtight and has a port for internals."
+	desc = "A helmet with face mask specially designed for firefighting. This one is in the colors of the " + JOB_CHIEF_ENGINEER + ". It's airtight and has a port for internals."
 	icon_state = "helmet_firefighter_ce"
 	max_heat_protection_temperature = FIRE_HELMET_MAX_HEAT_PROTECTION_TEMPERATURE + 10000
 

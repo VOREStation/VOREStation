@@ -42,20 +42,20 @@
 
 /obj/item/stack/tile/attackby(obj/item/W as obj, mob/user as mob)
 	if (W.has_tool_quality(TOOL_WELDER))
-		var/obj/item/weapon/weldingtool/WT = W.get_welder()
+		var/obj/item/weldingtool/WT = W.get_welder()
 
 		if(can_weld == FALSE)
-			to_chat("You can't reform these into their original components.")
+			to_chat(user, "You can't reform these into their original components.")
 			return
 
 		if(get_amount() < 4)
-			to_chat(user, "<span class='warning'>You need at least four tiles to do this.</span>")
+			to_chat(user, span_warning("You need at least four tiles to do this."))
 			return
 
 		if(WT.remove_fuel(0,user))
 			new welds_into(usr.loc)
 			usr.update_icon()
-			visible_message("<span class='notice'>\The [src] is shaped by [user.name] with the welding tool.</span>","You hear welding.")
+			visible_message(span_notice("\The [src] is shaped by [user.name] with the welding tool."),"You hear welding.")
 			var/obj/item/stack/tile/T = src
 			src = null
 			var/replace = (user.get_inactive_hand()==T)

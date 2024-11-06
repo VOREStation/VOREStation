@@ -1,4 +1,4 @@
-var/global/const/base_law_type = /datum/ai_laws/nanotrasen
+// var/global/const/base_law_type = /datum/ai_laws/nanotrasen //VOREstation edit: unused
 
 /datum/ai_law
 	var/law = ""
@@ -227,9 +227,9 @@ var/global/const/base_law_type = /datum/ai_laws/nanotrasen
 		if(law == zeroth_law_borg)
 			continue
 		if(law == zeroth_law)
-			to_chat(who, "<span class='danger'>[law.get_index()]. [law.law]</span>")
+			to_chat(who, span_info(span_red("[law.get_index()]. [law.law]")))
 		else
-			to_chat(who, "[law.get_index()]. [law.law]")
+			to_chat(who, span_infoplain("[law.get_index()]. [law.law]"))
 
 /********************
 *	Stating Laws	*

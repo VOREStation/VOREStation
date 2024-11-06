@@ -13,7 +13,7 @@
 	see_in_dark = 6
 	mob_size = MOB_SMALL //Foxes are not smaller than cats so bumping them up to small
 
-	faction = "fox"
+	faction = FACTION_FOX
 
 	response_help = "scritches"
 	response_disarm = "gently pushes aside"
@@ -24,11 +24,11 @@
 	maxbodytemp = 323		//Above 50 Degrees Celcius
 
 	meat_amount = 2
-	meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat/fox
+	meat_type = /obj/item/reagent_containers/food/snacks/meat/fox
 
 	say_list_type = /datum/say_list/fox
 	ai_holder_type = /datum/ai_holder/simple_mob/fox
-	holder_type = /obj/item/weapon/holder/fox
+	holder_type = /obj/item/holder/fox
 
 	var/turns_since_scan = 0
 	var/mob/flee_target
@@ -108,7 +108,7 @@
 
 /mob/living/simple_mob/animal/passive/fox/renault/verb/become_friends()
 	set name = "Become Friends"
-	set category = "IC"
+	set category = "IC.Game"
 	set src in view(1)
 
 	var/mob/living/L = usr
@@ -117,15 +117,15 @@
 
 	if(friend)
 		if(friend == usr)
-			to_chat(L, span("notice", "\The [src] is already your friend!"))
+			to_chat(L, span_notice("\The [src] is already your friend!"))
 			return
 		else
-			to_chat(L, span("warning", "\The [src] ignores you."))
+			to_chat(L, span_warning("\The [src] ignores you."))
 			return
 
 	friend = L
 	face_atom(L)
-	to_chat(L, span("notice", "\The [src] is now your friend!"))
+	to_chat(L, span_notice("\The [src] is now your friend!"))
 	visible_emote(pick("nips [friend].", "brushes against [friend].", "tugs on [friend].", "chrrrrs."))
 
 	if(has_AI())
@@ -167,7 +167,7 @@
 
 /mob/living/simple_mob/animal/passive/fox/fluff/verb/friend()
 	set name = "Become Friends"
-	set category = "IC"
+	set category = "IC.Game"
 	set src in view(1)
 
 	if(friend && usr == friend)
@@ -176,7 +176,7 @@
 		return
 
 	if (!(ishuman(usr) && befriend_job && usr.job == befriend_job))
-		to_chat(usr, "<span class='notice'>[src] ignores you.</span>")
+		to_chat(usr, span_notice("[src] ignores you."))
 		return
 
 	friend = usr
@@ -188,7 +188,7 @@
 //Captain fox
 /mob/living/simple_mob/animal/passive/fox/renault
 	name = "Renault"
-	desc = "Renault, the Site Manager's trustworthy fox. I wonder what it says?"
+	desc = "Renault, the " + JOB_SITE_MANAGER + "'s trustworthy fox. I wonder what it says?"
 	tt_desc = "Vulpes nobilis"
 	//befriend_job = "Site Manager" Sebbe edit: couldn't make this work, commenting out for now.
 
@@ -240,3 +240,6 @@
 	min_n2 = 0
 	max_n2 = 0
 	minbodytemp = 0
+
+/mob/living/simple_mob/animal/passive/fox/beastmode
+	movement_cooldown = 1

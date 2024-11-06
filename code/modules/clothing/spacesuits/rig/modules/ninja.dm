@@ -37,7 +37,7 @@
 
 	var/mob/living/carbon/human/H = holder.wearer
 
-	to_chat(H, span_blue("<b>You are now nearly invisible to normal detection.</b>"))
+	to_chat(H, span_boldnotice("You are now nearly invisible to normal detection."))
 	H.alpha = 5
 
 	anim(get_turf(H), H, 'icons/effects/effects.dmi', "electricity",null,20,null)
@@ -51,7 +51,7 @@
 
 	var/mob/living/carbon/human/H = holder.wearer
 
-	to_chat(H, "<span class='danger'>You are now visible.</span>")
+	to_chat(H, span_danger("You are now visible."))
 
 	anim(get_turf(H), H,'icons/mob/mob.dmi',,"uncloak",,H.dir)
 	anim(get_turf(H), H, 'icons/effects/effects.dmi', "electricity",null,20,null)
@@ -100,7 +100,7 @@
 	var/mob/living/carbon/human/H = holder.wearer
 
 	if(!istype(H.loc, /turf))
-		to_chat(H, "<span class='warning'>You cannot teleport out of your current location.</span>")
+		to_chat(H, span_warning("You cannot teleport out of your current location."))
 		return 0
 
 	var/turf/T
@@ -110,23 +110,23 @@
 		T = get_teleport_loc(get_turf(H), H, 6, 1, 1, 1)
 
 	if(!T)
-		to_chat(H, "<span class='warning'>No valid teleport target found.</span>")
+		to_chat(H, span_warning("No valid teleport target found."))
 		return 0
 
 	if(T.density)
-		to_chat(H, "<span class='warning'>You cannot teleport into solid walls.</span>")
+		to_chat(H, span_warning("You cannot teleport into solid walls."))
 		return 0
 
 	if(T.z in using_map.admin_levels)
-		to_chat(H, "<span class='warning'>You cannot use your teleporter on this Z-level.</span>")
+		to_chat(H, span_warning("You cannot use your teleporter on this Z-level."))
 		return 0
 
 	if(T.contains_dense_objects())
-		to_chat(H, "<span class='warning'>You cannot teleport to a location with solid objects.</span>")
+		to_chat(H, span_warning("You cannot teleport to a location with solid objects."))
 		return 0
 
 	if(T.z != H.z || get_dist(T, get_turf(H)) > world.view)
-		to_chat(H, "<span class='warning'>You cannot teleport to such a distant object.</span>")
+		to_chat(H, span_warning("You cannot teleport to such a distant object."))
 		return 0
 
 	if(!..()) return 0
@@ -135,7 +135,7 @@
 	H.forceMove(T)
 	phase_in(H,get_turf(H))
 
-	for(var/obj/item/weapon/grab/G in H.contents)
+	for(var/obj/item/grab/G in H.contents)
 		if(G.affecting)
 			phase_out(G.affecting,get_turf(G.affecting))
 			G.affecting.forceMove(locate(T.x+rand(-1,1),T.y+rand(-1,1),T.z))
@@ -154,7 +154,7 @@
 
 	engage_string = "Fabricate Net"
 
-	fabrication_type = /obj/item/weapon/energy_net
+	fabrication_type = /obj/item/energy_net
 	use_power_cost = 70
 
 /obj/item/rig_module/fabricator/energy_net/engage(atom/target)
@@ -209,7 +209,7 @@
 		engage(1)
 
 /obj/item/rig_module/self_destruct/engage(var/skip_check)
-	if(!skip_check && usr && tgui_alert(usr, "Are you sure you want to push that button?", "Self-destruct", list("No", "Yes")) == "No")
+	if(!skip_check && usr && tgui_alert(usr, "Are you sure you want to push that button?", "Self-destruct", list("No", "Yes")) != "Yes")
 		return
 	if(holder && holder.wearer)
 		smoke.set_up(10, 0, holder.loc)

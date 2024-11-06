@@ -10,8 +10,8 @@ var/savefile/Banlist
 
 	. = list()
 	var/appeal
-	if(config && config.banappeals)
-		appeal = "\nFor more information on your ban, or to appeal, head to <a href='[config.banappeals]'>[config.banappeals]</a>"
+	if(config && CONFIG_GET(string/banappeals))
+		appeal = "\nFor more information on your ban, or to appeal, head to <a href='[CONFIG_GET(string/banappeals)]'>[CONFIG_GET(string/banappeals)]</a>"
 	Banlist.cd = "/base"
 	if( "[ckey][id]" in Banlist.dir )
 		Banlist.cd = "[ckey][id]"
@@ -106,7 +106,7 @@ var/savefile/Banlist
 
 	Banlist.cd = "/base"
 	if ( Banlist.dir.Find("[ckey][computerid]") )
-		to_chat(usr, "<span class='filter_adminlog warning'>Ban already exists.</span>")
+		to_chat(usr, span_filter_adminlog(span_warning("Ban already exists.")))
 		return 0
 	else
 		Banlist.dir.Add("[ckey][computerid]")

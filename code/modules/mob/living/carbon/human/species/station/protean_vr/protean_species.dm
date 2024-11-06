@@ -4,7 +4,7 @@
 	name =             SPECIES_PROTEAN
 	name_plural =      "Proteans"
 	blurb =            "Sometimes very advanced civilizations will produce the ability to swap into manufactured, robotic bodies. And sometimes \
-						<i>VERY</i> advanced civilizations have the option of 'nanoswarm' bodies. Effectively a single robot body comprised \
+						" + span_italics("VERY") + " advanced civilizations have the option of 'nanoswarm' bodies. Effectively a single robot body comprised \
 						of millions of tiny nanites working in concert to maintain cohesion."
 	show_ssd =         "totally quiescent"
 	death_message =    "rapidly loses cohesion, dissolving into a cloud of gray dust..."
@@ -103,7 +103,8 @@
 		/mob/living/carbon/human/proc/shapeshifter_select_gender,
 		/mob/living/carbon/human/proc/shapeshifter_select_wings,
 		/mob/living/carbon/human/proc/shapeshifter_select_tail,
-		/mob/living/carbon/human/proc/shapeshifter_select_ears
+		/mob/living/carbon/human/proc/shapeshifter_select_ears,
+		/mob/living/carbon/human/proc/shapeshifter_select_secondary_ears,
 		)
 
 	var/global/list/abilities = list()
@@ -118,7 +119,7 @@
 			abilities += new path()
 
 /datum/species/protean/create_organs(var/mob/living/carbon/human/H)
-	var/obj/item/device/nif/saved_nif = H.nif
+	var/obj/item/nif/saved_nif = H.nif
 	if(saved_nif)
 		H.nif.unimplant(H) //Needs reference to owner to unimplant right.
 		H.nif.moveToNullspace()
@@ -155,7 +156,7 @@
 		if(!H) //Human could have been deleted in this amount of time. Observing does this, mannequins, etc.
 			return
 		if(!H.nif)
-			var/obj/item/device/nif/protean/new_nif = new()
+			var/obj/item/nif/protean/new_nif = new()
 			new_nif.quick_implant(H)
 		else
 			H.nif.durability = 25
@@ -178,7 +179,7 @@
 		H.ckey = H.temporary_form.ckey
 		QDEL_NULL(H.temporary_form)
 
-	to_chat(H, "<span class='warning'>You died as a Protean. Please sit out of the round for at least 60 minutes before respawning, to represent the time it would take to ship a new-you to the station.</span>")
+	to_chat(H, span_warning("You died as a Protean. Please sit out of the round for at least 60 minutes before respawning, to represent the time it would take to ship a new-you to the station."))
 
 	spawn(1)
 		if(H)
@@ -212,22 +213,32 @@
 /datum/species/protean/get_additional_examine_text(var/mob/living/carbon/human/H)
 	return ..() //Hmm, what could be done here?
 
-/datum/species/protean/Stat(var/mob/living/carbon/human/H)
+/datum/species/protean/update_misc_tabs(var/mob/living/carbon/human/H)
 	..()
-	if(statpanel("Protean"))
-		var/obj/item/organ/internal/nano/refactory/refactory = H.nano_get_refactory()
-		if(refactory && !(refactory.status & ORGAN_DEAD))
-			stat(null, "- -- --- Refactory Metal Storage --- -- -")
-			var/max = refactory.max_storage
-			for(var/material in refactory.materials)
-				var/amount = refactory.get_stored_material(material)
-				stat("[capitalize(material)]", "[amount]/[max]")
-		else
-			stat(null, "- -- --- REFACTORY ERROR! --- -- -")
+	var/list/L = list()
+	var/obj/item/organ/internal/nano/refactory/refactory = H.nano_get_refactory()
+	if(refactory && !(refactory.status & ORGAN_DEAD))
+		L[++L.len] = list("- -- --- Refactory Metal Storage --- -- -", null, null, null, null)
+		var/max = refactory.max_storage
+		for(var/material in refactory.materials)
+			var/amount = refactory.get_stored_material(material)
+			L[++L.len] = list("[capitalize(material)]: [amount]/[max]", null, null, null, null)
+	else
+		L[++L.len] = list("- -- --- REFACTORY ERROR! --- -- -", null, null, null, null)
 
-		stat(null, "- -- --- Abilities (Shift+LMB Examines) --- -- -")
-		for(var/obj/effect/protean_ability/A as anything in abilities)
-			stat("[A.ability_name]",A.atom_button_text())
+	L[++L.len] = list("- -- --- Abilities (Shift+LMB Examines) --- -- -", null, null, null, null)
+	for(var/obj/effect/protean_ability/A as anything in abilities)
+		var/client/C = H.client
+		var/img
+		if(C && istype(C)) //sanity checks
+			if(A.ability_name in C.misc_cache)
+				img = C.misc_cache[A.ability_name]
+			else
+				img = icon2html(A,C,sourceonly=TRUE)
+				C.misc_cache[A.ability_name] = img
+
+		L[++L.len] = list("[A.ability_name]", A.ability_name, img, A.atom_button_text(), REF(A))
+	H.misc_tabs["Protean"] = L
 
 // Various modifiers
 /datum/modifier/protean
@@ -263,8 +274,8 @@
 	name = "Protean Effect - M.Hydrogen"
 	desc = "You're affected by the presence of metallic hydrogen."
 
-	on_created_text = "<span class='notice'>You feel yourself accelerate, the metallic hydrogen increasing your speed temporarily.</span>"
-	on_expired_text = "<span class='notice'>Your refactory finishes consuming the metallic hydrogen, and you return to normal speed.</span>"
+	on_created_text = span_notice("You feel yourself accelerate, the metallic hydrogen increasing your speed temporarily.")
+	on_expired_text = span_notice("Your refactory finishes consuming the metallic hydrogen, and you return to normal speed.")
 
 	material_name = MAT_METALHYDROGEN
 
@@ -274,8 +285,8 @@
 	name = "Protean Effect - Uranium"
 	desc = "You're affected by the presence of uranium."
 
-	on_created_text = "<span class='notice'>You feel yourself become nearly impervious to physical attacks as uranium is incorporated in your nanites.</span>"
-	on_expired_text = "<span class='notice'>Your refactory finishes consuming the uranium, and you return to your normal nanites.</span>"
+	on_created_text = span_notice("You feel yourself become nearly impervious to physical attacks as uranium is incorporated in your nanites.")
+	on_expired_text = span_notice("Your refactory finishes consuming the uranium, and you return to your normal nanites.")
 
 	material_name = MAT_URANIUM
 
@@ -285,8 +296,8 @@
 	name = "Protean Effect - Gold"
 	desc = "You're affected by the presence of gold."
 
-	on_created_text = "<span class='notice'>You feel yourself become more reflective, able to resist heat and fire better for a time.</span>"
-	on_expired_text = "<span class='notice'>Your refactory finishes consuming the gold, and you return to your normal nanites.</span>"
+	on_created_text = span_notice("You feel yourself become more reflective, able to resist heat and fire better for a time.")
+	on_expired_text = span_notice("Your refactory finishes consuming the gold, and you return to your normal nanites.")
 
 	material_name = MAT_GOLD
 
@@ -296,8 +307,8 @@
 	name = "Protean Effect - Silver"
 	desc = "You're affected by the presence of silver."
 
-	on_created_text = "<span class='notice'>Your physical control is improved for a time, making it easier to hit targets, and avoid being hit.</span>"
-	on_expired_text = "<span class='notice'>Your refactory finishes consuming the silver, and your motor control returns to normal.</span>"
+	on_created_text = span_notice("Your physical control is improved for a time, making it easier to hit targets, and avoid being hit.")
+	on_expired_text = span_notice("Your refactory finishes consuming the silver, and your motor control returns to normal.")
 
 	material_name = MAT_SILVER
 
@@ -308,8 +319,8 @@
 	name = "Protean Effect - Steel"
 	desc = "You're affected by the presence of steel."
 
-	on_created_text = "<span class='notice'>You feel new nanites being produced from your stockpile of steel, healing you slowly.</span>"
-	on_expired_text = "<span class='notice'>Your steel supply has either run out, or is no longer needed, and your healing stops.</span>"
+	on_created_text = span_notice("You feel new nanites being produced from your stockpile of steel, healing you slowly.")
+	on_expired_text = span_notice("Your steel supply has either run out, or is no longer needed, and your healing stops.")
 
 	material_name = MAT_STEEL
 

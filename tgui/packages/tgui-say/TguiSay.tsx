@@ -1,4 +1,5 @@
-import { KEY } from 'common/keys';
+import { isEscape, KEY } from 'common/keys';
+import { clamp } from 'common/math';
 import { BooleanLike } from 'common/react';
 import { Component, createRef, RefObject } from 'react';
 import { dragStartHandler } from 'tgui/drag';
@@ -19,15 +20,24 @@ type ByondOpen = {
 
 type ByondProps = {
   maxLength: number;
+  minimumHeight: number;
   lightMode: BooleanLike;
 };
 
 type State = {
   buttonContent: string | number;
-  size: WINDOW_SIZES;
+  size: number;
 };
 
 const CHANNEL_REGEX = /^:\w\s|^,b\s/;
+
+const ROWS: Record<keyof typeof WINDOW_SIZES, number> = {
+  small: 1,
+  medium: 2,
+  large: 3,
+  max: 6,
+  width: 1, // not used
+} as const;
 
 export class TguiSay extends Component<{}, State> {
   private channelIterator: ChannelIterator;
@@ -35,6 +45,7 @@ export class TguiSay extends Component<{}, State> {
   private currentPrefix: keyof typeof RADIO_PREFIXES | null;
   private innerRef: RefObject<HTMLTextAreaElement>;
   private lightMode: boolean;
+  private minimumHeight: number;
   private maxLength: number;
   private messages: typeof byondMessages;
   state: State;
@@ -47,6 +58,7 @@ export class TguiSay extends Component<{}, State> {
     this.currentPrefix = null;
     this.innerRef = createRef();
     this.lightMode = false;
+    this.minimumHeight = 1;
     this.maxLength = 1024;
     this.messages = byondMessages;
     this.state = {
@@ -277,9 +289,10 @@ export class TguiSay extends Component<{}, State> {
         }
         break;
 
-      case KEY.Escape:
-        this.handleClose();
-        break;
+      default:
+        if (isEscape(event.key)) {
+          this.handleClose();
+        }
     }
   }
 
@@ -299,8 +312,10 @@ export class TguiSay extends Component<{}, State> {
   };
 
   handleProps = (data: ByondProps) => {
-    const { maxLength, lightMode } = data;
+    const { maxLength, minimumHeight, lightMode } = data;
     this.maxLength = maxLength;
+    this.minimumHeight = minimumHeight;
+    this.setSize();
     this.lightMode = !!lightMode;
   };
 
@@ -313,7 +328,7 @@ export class TguiSay extends Component<{}, State> {
   }
 
   setSize(length = 0) {
-    let newSize: WINDOW_SIZES;
+    let newSize: number;
 
     const currentValue = this.innerRef.current?.value;
 
@@ -326,6 +341,9 @@ export class TguiSay extends Component<{}, State> {
     } else {
       newSize = WINDOW_SIZES.small;
     }
+
+    newSize = clamp(newSize, this.minimumHeight * 20 + 10, WINDOW_SIZES.max);
+    console.log(newSize);
 
     if (this.state.size !== newSize) {
       this.setState({ size: newSize });
@@ -360,11 +378,14 @@ export class TguiSay extends Component<{}, State> {
               {this.state.buttonContent}
             </button>
             <textarea
+              autoCorrect="off"
               className={`textarea textarea-${theme}`}
               maxLength={this.maxLength}
               onInput={this.handleInput}
               onKeyDown={this.handleKeyDown}
               ref={this.innerRef}
+              spellCheck={false} // TODO: make preference
+              rows={ROWS[this.state.size] || 1}
             />
           </div>
           <Dragzone position="right" theme={theme} />

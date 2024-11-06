@@ -13,7 +13,7 @@
 	compatible_mobs = list(/mob/living/carbon/human) //which types of mobs are affected by the spell. NOTE: change at your own risk
 
 	// TODO: Update to new antagonist system.
-	var/list/protected_roles = list("Wizard","Changeling","Cultist") //which roles are immune to the spell
+	var/list/protected_roles = list(JOB_WIZARD,JOB_CHANGELING,JOB_CULTIST) //which roles are immune to the spell
 	var/msg_wait = 500 //how long in deciseconds it waits before telling that body doesn't feel right or mind swap robbed of a spell
 	amt_paralysis = 20 //how much the victim is paralysed for after the spell
 
@@ -41,11 +41,11 @@
 		//MIND TRANSFER BEGIN
 		if(caster.mind.special_verbs.len)//If the caster had any special verbs, remove them from the mob verb list.
 			for(var/V in caster.mind.special_verbs)//Since the caster is using an object spell system, this is mostly moot.
-				caster.verbs -= V//But a safety nontheless.
+				remove_verb(caster, V)//But a safety nontheless.
 
 		if(victim.mind.special_verbs.len)//Now remove all of the victim's verbs.
 			for(var/V in victim.mind.special_verbs)
-				victim.verbs -= V
+				remove_verb(victim, V)
 
 		var/mob/observer/dead/ghost = victim.ghostize(0)
 		ghost.spell_list += victim.spell_list//If they have spells, transfer them. Now we basically have a backup mob.
@@ -60,7 +60,7 @@
 
 		if(victim.mind.special_verbs.len)//To add all the special verbs for the original caster.
 			for(var/V in caster.mind.special_verbs)//Not too important but could come into play.
-				caster.verbs += V
+				add_verb(caster, V)
 
 		ghost.mind.transfer_to(caster)
 		caster.key = ghost.key	//have to transfer the key since the mind was not active
@@ -70,7 +70,7 @@
 
 		if(caster.mind.special_verbs.len)//If they had any special verbs, we add them here.
 			for(var/V in caster.mind.special_verbs)
-				caster.verbs += V
+				add_verb(caster, V)
 		//MIND TRANSFER END
 
 		//Target is handled in ..(), so we handle the caster here
@@ -78,4 +78,4 @@
 
 		//After a certain amount of time the victim gets a message about being in a different body.
 		spawn(msg_wait)
-			to_chat(caster, "<span class='danger'>You feel woozy and lightheaded. Your body doesn't seem like your own.</span>")
+			to_chat(caster, span_danger("You feel woozy and lightheaded. Your body doesn't seem like your own."))

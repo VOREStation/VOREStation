@@ -20,8 +20,8 @@
 	if(..())
 		return TRUE
 
-	var/obj/item/weapon/computer_hardware/hard_drive/HDD = computer.hard_drive
-	var/obj/item/weapon/computer_hardware/hard_drive/RHDD = computer.portable_drive
+	var/obj/item/computer_hardware/hard_drive/HDD = computer.hard_drive
+	var/obj/item/computer_hardware/hard_drive/RHDD = computer.portable_drive
 
 	switch(action)
 		if("PRG_openfile")
@@ -60,7 +60,7 @@
 			var/datum/computer_file/data/F = computer.find_file_by_uid(open_file)
 			if(!F || !istype(F))
 				return
-			if(F.do_not_edit && (tgui_alert(usr, "WARNING: This file is not compatible with editor. Editing it may result in permanently corrupted formatting or damaged data consistency. Edit anyway?", "Incompatible File", list("No", "Yes")) == "No"))
+			if(F.do_not_edit && (tgui_alert(usr, "WARNING: This file is not compatible with editor. Editing it may result in permanently corrupted formatting or damaged data consistency. Edit anyway?", "Incompatible File", list("No", "Yes")) != "Yes"))
 				return
 
 			var/oldtext = html_decode(F.stored_data)
@@ -150,8 +150,8 @@
 /datum/computer_file/program/filemanager/tgui_data(mob/user)
 	var/list/data = get_header_data()
 
-	var/obj/item/weapon/computer_hardware/hard_drive/HDD = computer.hard_drive
-	var/obj/item/weapon/computer_hardware/hard_drive/portable/RHDD = computer.portable_drive
+	var/obj/item/computer_hardware/hard_drive/HDD = computer.hard_drive
+	var/obj/item/computer_hardware/hard_drive/portable/RHDD = computer.portable_drive
 
 	data["error"] = null
 	if(error)

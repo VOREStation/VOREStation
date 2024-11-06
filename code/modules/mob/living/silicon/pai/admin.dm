@@ -1,7 +1,7 @@
 // Originally a debug verb, made it a proper adminverb for ~fun~
 /client/proc/makePAI(turf/t in view(), name as text, pai_key as null|text)
 	set name = "Make pAI"
-	set category = "Admin"
+	set category = "Admin.Events"
 
 	if(!check_rights(R_ADMIN|R_EVENT|R_DEBUG))
 		return
@@ -12,7 +12,7 @@
 		pai_key = C.key
 
 	log_and_message_admins("made a pAI with key=[pai_key] at ([t.x],[t.y],[t.z])")
-	var/obj/item/device/paicard/card = new(t)
+	var/obj/item/paicard/card = new(t)
 	var/mob/living/silicon/pai/pai = new(card)
 	pai.key = pai_key
 	card.setPersonality(pai)

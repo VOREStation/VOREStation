@@ -14,12 +14,12 @@
 	attack_message = "The tide tries to swallow you"
 	attack_message_living = ", and you feel your skin dissolve"
 	attack_message_synth = ", and your external plating dissolves"
-	faction = "nanomachines"
+	faction = FACTION_NANOMACHINES
 
 /datum/blob_type/grey_goo/on_emp(obj/structure/blob/B, severity)
 	B.adjust_integrity(-(20 / severity))
 
-/datum/blob_type/grey_goo/on_chunk_tick(obj/item/weapon/blobcore_chunk/B)
+/datum/blob_type/grey_goo/on_chunk_tick(obj/item/blobcore_chunk/B)
 	var/turf/T = get_turf(B)
 	for(var/mob/living/L in view(world.view, T))
 		if(L.stat != DEAD)

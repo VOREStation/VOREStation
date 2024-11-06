@@ -34,7 +34,7 @@
 	icon_dead = "carp_dead"
 	icon_gib = "carp_gib"
 
-	faction = "carp"
+	faction = FACTION_CARP
 	maxHealth = 25
 	health = 25
 	movement_cooldown = -2
@@ -54,7 +54,7 @@
 	organ_names = /decl/mob_organ_names/fish
 
 	meat_amount = 5
-	meat_type = /obj/item/weapon/reagent_containers/food/snacks/carpmeat
+	meat_type = /obj/item/reagent_containers/food/snacks/carpmeat
 
 	ai_holder_type = /datum/ai_holder/simple_mob/melee
 
@@ -65,7 +65,7 @@
 		var/mob/living/L = A
 		if(prob(knockdown_chance))
 			L.Weaken(3)
-			L.visible_message(span("danger", "\The [src] knocks down \the [L]!"))
+			L.visible_message(span_danger("\The [src] knocks down \the [L]!"))
 
 // Subtypes.
 
@@ -188,7 +188,7 @@
 
 // Called on death.
 /mob/living/simple_mob/animal/space/carp/holographic/proc/derez()
-	visible_message(span("notice", "\The [src] fades away!"))
+	visible_message(span_notice("\The [src] fades away!"))
 	qdel(src)
 
 /mob/living/simple_mob/animal/space/carp/holographic/gib()

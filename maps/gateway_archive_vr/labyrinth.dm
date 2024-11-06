@@ -133,7 +133,7 @@
 	name = "Banana Mortar"
 	icon = 'icons/mecha/mecha_equipment_vr.dmi'
 	icon_state = "mecha_bananamrtr"
-	projectile = /obj/item/weapon/bananapeel
+	projectile = /obj/item/bananapeel
 	fire_sound = 'sound/items/bikehorn.ogg'
 	projectiles = 15
 	missile_speed = 1.5
@@ -167,13 +167,13 @@
 			return 0
 
 		playsound(chassis, 'sound/items/AirHorn.ogg', 100, 1)
-		chassis.occupant_message(span_red("<font size='5'>HONK</font>"))
+		chassis.occupant_message(span_infoplain(span_red(span_giant("HONK"))))
 		for(var/mob/living/carbon/M in ohearers(6, chassis))
 			if(istype(M, /mob/living/carbon/human))
 				var/mob/living/carbon/human/H = M
 				if(istype(H.l_ear, /obj/item/clothing/ears/earmuffs) || istype(H.r_ear, /obj/item/clothing/ears/earmuffs))
 					continue
-			to_chat(M, span_red("<font size='7'>HONK</font>"))
+			to_chat(M, span_infoplain(span_red(span_massive("HONK"))))
 			M.sleeping = 0
 			M.stuttering += 20
 			M.ear_deaf += 30
@@ -195,7 +195,7 @@
 	corpsesuit = /obj/item/clothing/suit/storage/hooded/chaplain_hoodie
 	corpsegloves = /obj/item/clothing/gloves/black
 	corpsemask = /obj/item/clothing/mask/gas/clown_hat
-	corpsepocket1 = /obj/item/weapon/bikehorn
+	corpsepocket1 = /obj/item/bikehorn
 
 /obj/effect/landmark/mobcorpse/tunnelclown/sentinel
 	name = "dead clown sentinel"
@@ -205,7 +205,7 @@
 /mob/living/simple_mob/hostile/tunnelclown
 	name = "tunnel clown"
 	desc = "A clown driven to madness in the depths of the Honk Mother's Catacombs."
-	faction = "tunnelclown"
+	faction = FACTION_TUNNELCLOWN
 	icon = 'icons/mob/clowns_vr.dmi'
 	icon_state = "tunnelclown"
 	icon_living = "tunnelclown"
@@ -220,7 +220,7 @@
 //	speak_chance = 1
 	a_intent = "harm"
 	var/corpse = /obj/effect/landmark/mobcorpse/tunnelclown
-	var/weapon1 = /obj/item/weapon/twohanded/fireaxe
+	var/weapon1 = /obj/item/material/twohanded/fireaxe
 	stop_when_pulled = 0
 	maxHealth = 100
 	health = 100
@@ -247,13 +247,13 @@
 /mob/living/simple_mob/hostile/tunnelclown/sentinel
 	name = "tunnel clown sentinel"
 	desc = "A clown warrior tasked with guarding the Honk Mother's Catacombs."
-	faction = "tunnelclown"
+	faction = FACTION_TUNNELCLOWN
 	icon = 'icons/mob/clowns_vr.dmi'
 	icon_state = "sentinelclown"
 	icon_living = "sentinelclown"
 	icon_dead = "clown_dead"
 	corpse = /obj/effect/landmark/mobcorpse/tunnelclown/sentinel
-	weapon1 = /obj/item/weapon/material/twohanded/spear
+	weapon1 = /obj/item/material/twohanded/spear
 	maxHealth = 150
 	health = 150
 	melee_damage_lower = 15
@@ -271,7 +271,7 @@
 /mob/living/simple_mob/hostile/cluwne
 	name = "cluwne"
 	desc = "A mutated clown alleged to have been cursed by the Honk Mother and permanently banished to these catacombs for once being an unfunny shitter who brought grief instead of laughter."
-	faction = "tunnelclown"
+	faction = FACTION_TUNNELCLOWN
 	icon = 'icons/mob/clowns_vr.dmi'
 	icon_state = "cluwne"
 	icon_living = "cluwne"
@@ -320,7 +320,7 @@
 					prob(2);/mob/living/simple_mob/hostile/tunnelclown/sentinel,
 					prob(1);/mob/living/simple_mob/hostile/tunnelclown)
 
-/obj/item/weapon/paper/awaygate/labyrinth/calypso
+/obj/item/paper/awaygate/labyrinth/calypso
 	name = "copy of the Final Flight of Calypso"
 	info = {"<h3>THIS IS A COPY OF THE LOGBOOKS AS COPIED BY GREYSON MAXIMUS, CAPTAIN V.O.R.E. NANOTRASEN.</h3>
 			<p><b>//BEGIN//</b>
@@ -353,7 +353,7 @@
 			</p><p>HONK</p>
 			<b>//END//</b>"}
 
-/obj/item/weapon/paper/awaygate/labyrinth/research
+/obj/item/paper/awaygate/labyrinth/research
 	name = "research notes"
 	info = {"This must be the location of the alleged dig site mentioned in the Calypso's logs. These are the coordinates recovered from the wreck, and everything checks out.
 			My excavation team discovered two monoliths; one near the surface, and another at an underground shrine. I think this is it, but Dr. Madison hasn't come back with his team

@@ -62,7 +62,7 @@
 
 //TODO: Make inflating gloves a thing
 /*/obj/item/clothing/gloves/sterile/proc/Inflate(/mob/living/carbon/human/user)
-	user.visible_message("<b>\The [src]</b> expands!")
+	user.visible_message(span_infoplain(span_bold("\The [src]") + " expands!"))
 	qdel(src)*/
 
 /obj/item/clothing/gloves/sterile/latex
@@ -184,7 +184,7 @@
 	. = ..()
 
 	if(Adjacent(user))
-		. += "<span class='notice'>The current station time is [stationtime2text()].</span>"
+		. += span_notice("The current station time is [stationtime2text()].")
 
 /obj/item/clothing/gloves/watch/silver
 	name = "silver wristwatch"
@@ -202,30 +202,30 @@
 	description_fluff = "Hold ALT whilst left-clicking on the survival watch to toggle the status of its micro-beacon."
 	icon_state = "wristwatch_survival"
 
-	var/obj/item/device/gps/gps = null
+	var/obj/item/gps/gps = null
 
 /obj/item/clothing/gloves/watch/survival/examine(mob/user)
 	. = ..()
 
 	if(Adjacent(user) && src.loc == user)
-		. += "<span class='notice'>You are currently facing [dir2text(user.dir)]. The micro beacon is [gps.tracking ? "on" : "off"].</span>"
+		. += span_notice("You are currently facing [dir2text(user.dir)]. The micro beacon is [gps.tracking ? "on" : "off"].")
 		var/TB = src.loc.loc
 		if(istype(TB, /turf/))	//no point returning light level if we're not on a turf (might be *in* someone!)
 			var/turf/TL = TB
 			var/light_level = TL.get_lumcount()
 			if(light_level)
-				. += "<span class='notice'>Light Level: [TL.get_lumcount()]</span>"
+				. += span_notice("Light Level: [TL.get_lumcount()]")
 			else
-				. += "<span class='notice'>It's too dark to see the light level!</span>"
+				. += span_notice("It's too dark to see the light level!")
 		if(istype(TB, /turf/simulated))	//no point returning atmospheric data from unsimulated tiles (they don't track pressure anyway, only temperature)
 			var/turf/simulated/T = TB
 			var/datum/gas_mixture/env = T.return_air()
-			. += "<span class='notice'>Pressure: [env.return_pressure()]kPa / Temperature: [env.temperature]K </span>"
+			. += span_notice("Pressure: [env.return_pressure()]kPa / Temperature: [env.temperature]K ")
 
 /obj/item/clothing/gloves/watch/survival/New()
-	gps = new/obj/item/device/gps/watch(src)
+	gps = new/obj/item/gps/watch(src)
 
-/obj/item/device/gps/watch
+/obj/item/gps/watch
 	gps_tag = "SRV-WTCH"
 
 /obj/item/clothing/gloves/watch/survival/AltClick(mob/user)
@@ -233,4 +233,4 @@
 
 	if(Adjacent(user))
 		gps.tracking = !gps.tracking
-		to_chat(user,"<span class='notice'>You turn the micro beacon [gps.tracking ? "on" : "off"].</span>")
+		to_chat(user,span_notice("You turn the micro beacon [gps.tracking ? "on" : "off"]."))

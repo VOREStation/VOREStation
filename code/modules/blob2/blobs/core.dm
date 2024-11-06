@@ -108,7 +108,7 @@ var/list/blob_cores = list()
 
 /obj/structure/blob/core/Destroy()
 	var/turf/T = get_turf(src)
-	new /obj/item/weapon/blobcore_chunk(T, overmind.blob_type)
+	new /obj/item/blobcore_chunk(T, overmind.blob_type)
 
 	blob_cores -= src
 	if(overmind)

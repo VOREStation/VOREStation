@@ -3,7 +3,7 @@
 	if(!C || !user)
 		return 0
 
-	if(isliving(user) && istype(C, /obj/item/weapon))
+	if(isliving(user) && istype(C, /obj/item))
 		var/mob/living/L = user
 		if(L.a_intent != I_HELP)
 			attack_tile(C, L) // Be on help intent if you want to decon something.
@@ -38,17 +38,17 @@
 				if(!A)
 					A = locate(/turf/simulated/wall) in cardinalTurfs
 				if(!A)
-					to_chat(user, "<span class='warning'>There's nothing to attach the ceiling to!</span>")
+					to_chat(user, span_warning("There's nothing to attach the ceiling to!"))
 					return
 
 				if(R.use(1)) // Cost of roofing tiles is 1:1 with cost to place lattice and plating
 					T.ReplaceWithLattice()
 					T.ChangeTurf(/turf/simulated/floor, preserve_outdoors = TRUE)
 					playsound(src, 'sound/weapons/Genhit.ogg', 50, 1)
-					user.visible_message("<span class='notice'>[user] patches a hole in the ceiling.</span>", "<span class='notice'>You patch a hole in the ceiling.</span>")
+					user.visible_message(span_notice("[user] patches a hole in the ceiling."), span_notice("You patch a hole in the ceiling."))
 					expended_tile = TRUE
 			else
-				to_chat(user, "<span class='warning'>There aren't any holes in the ceiling to patch here.</span>")
+				to_chat(user, span_warning("There aren't any holes in the ceiling to patch here."))
 				return
 
 		// Create a ceiling to shield from the weather
@@ -59,17 +59,17 @@
 					if(expended_tile || R.use(1))
 						make_indoors()
 						playsound(src, 'sound/weapons/Genhit.ogg', 50, 1)
-						user.visible_message("<span class='notice'>[user] roofs a tile, shielding it from the elements.</span>", "<span class='notice'>You roof this tile, shielding it from the elements.</span>")
+						user.visible_message(span_notice("[user] roofs a tile, shielding it from the elements."), span_notice("You roof this tile, shielding it from the elements."))
 					break
 		return
 
 	// Floor has flooring set
 	if(!is_plating())
-		if(istype(C, /obj/item/weapon))
+		if(istype(C, /obj/item))
 			try_deconstruct_tile(C, user)
 			return
 		else if(istype(C, /obj/item/stack/cable_coil))
-			to_chat(user, "<span class='warning'>You must remove the [flooring.descriptor] first.</span>")
+			to_chat(user, span_warning("You must remove the [flooring.descriptor] first."))
 			return
 		else if(istype(C, /obj/item/stack/tile))
 			if(try_replace_tile(C, user))
@@ -78,7 +78,7 @@
 				if(!flooring.build_type && can_be_plated && !((flooring.flags & TURF_REMOVE_WRENCH) || (flooring.flags & TURF_REMOVE_CROWBAR) || (flooring.flags & TURF_REMOVE_SCREWDRIVER) || (flooring.flags & TURF_REMOVE_SHOVEL)))
 					for(var/obj/structure/P in contents)
 						if(istype(P, /obj/structure/flora))
-							to_chat(user, "<span class='warning'>The [P.name] is in the way, you'll have to get rid of it first.</span>")
+							to_chat(user, span_warning("The [P.name] is in the way, you'll have to get rid of it first."))
 							return
 					var/obj/item/stack/tile/floor/S = C
 					if (S.get_amount() < 1)
@@ -94,7 +94,7 @@
 		// Placing wires on plating
 		if(istype(C, /obj/item/stack/cable_coil))
 			if(broken || burnt)
-				to_chat(user, "<span class='warning'>This section is too damaged to support anything. Use a welder to fix the damage.</span>")
+				to_chat(user, span_warning("This section is too damaged to support anything. Use a welder to fix the damage."))
 				return
 			var/obj/item/stack/cable_coil/coil = C
 			coil.turf_place(src, user)
@@ -102,7 +102,7 @@
 		// Placing flooring on plating
 		else if(istype(C, /obj/item/stack))
 			if(broken || burnt)
-				to_chat(user, "<span class='warning'>This section is too damaged to support anything. Use a welder to fix the damage.</span>")
+				to_chat(user, span_warning("This section is too damaged to support anything. Use a welder to fix the damage."))
 				return
 			var/obj/item/stack/S = C
 			var/decl/flooring/use_flooring
@@ -117,7 +117,7 @@
 				return
 			// Do we have enough?
 			if(use_flooring.build_cost && S.get_amount() < use_flooring.build_cost)
-				to_chat(user, "<span class='warning'>You require at least [use_flooring.build_cost] [S.name] to complete the [use_flooring.descriptor].</span>")
+				to_chat(user, span_warning("You require at least [use_flooring.build_cost] [S.name] to complete the [use_flooring.descriptor]."))
 				return
 			// Stay still and focus...
 			if(use_flooring.build_time && !do_after(user, use_flooring.build_time))
@@ -130,28 +130,28 @@
 				return
 		// Plating repairs and removal
 		else if(C.has_tool_quality(TOOL_WELDER))
-			var/obj/item/weapon/weldingtool/welder = C.get_welder()
+			var/obj/item/weldingtool/welder = C.get_welder()
 			if(welder.isOn())
 				// Needs repairs
 				if(broken || burnt)
 					if(welder.remove_fuel(0,user))
-						to_chat(user, "<span class='notice'>You fix some dents on the broken plating.</span>")
+						to_chat(user, span_notice("You fix some dents on the broken plating."))
 						playsound(src, welder.usesound, 80, 1)
 						icon_state = "plating"
 						burnt = null
 						broken = null
 					else
-						to_chat(user, "<span class='warning'>You need more welding fuel to complete this task.</span>")
+						to_chat(user, span_warning("You need more welding fuel to complete this task."))
 				// Deconstructing plating
 				else
 					var/base_type = get_base_turf_by_area(src)
 					if(type == base_type || !base_type)
-						to_chat(user, "<span class='warning'>There's nothing under [src] to expose by cutting.</span>")
+						to_chat(user, span_warning("There's nothing under [src] to expose by cutting."))
 						return
 					if(!can_remove_plating(user))
 						return
 
-					user.visible_message("<span class='warning'>[user] begins cutting through [src].</span>", "<span class='warning'>You begin cutting through [src].</span>")
+					user.visible_message(span_warning("[user] begins cutting through [src]."), span_warning("You begin cutting through [src]."))
 					// This is slow because it's a potentially hostile action to just cut through places into space in the middle of the bar and such
 					// Presumably also the structural floor is thick?
 					if(do_after(user, 10 SECONDS, src, TRUE, exclusive = TASK_ALL_EXCLUSIVE))
@@ -159,16 +159,16 @@
 							return // Someone slapped down some flooring or cables or something
 						do_remove_plating(C, user, base_type)
 
-/turf/simulated/floor/proc/try_deconstruct_tile(obj/item/weapon/W as obj, mob/user as mob)
+/turf/simulated/floor/proc/try_deconstruct_tile(obj/item/W as obj, mob/user as mob)
 	if(W.has_tool_quality(TOOL_CROWBAR))
 		if(broken || burnt)
-			to_chat(user, "<span class='notice'>You remove the broken [flooring.descriptor].</span>")
+			to_chat(user, span_notice("You remove the broken [flooring.descriptor]."))
 			make_plating()
 		else if(flooring.flags & TURF_IS_FRAGILE)
-			to_chat(user, "<span class='danger'>You forcefully pry off the [flooring.descriptor], destroying them in the process.</span>")
+			to_chat(user, span_danger("You forcefully pry off the [flooring.descriptor], destroying them in the process."))
 			make_plating()
 		else if(flooring.flags & TURF_REMOVE_CROWBAR)
-			to_chat(user, "<span class='notice'>You lever off the [flooring.descriptor].</span>")
+			to_chat(user, span_notice("You lever off the [flooring.descriptor]."))
 			make_plating(1)
 		else
 			return 0
@@ -177,17 +177,17 @@
 	else if(W.has_tool_quality(TOOL_SCREWDRIVER) && (flooring.flags & TURF_REMOVE_SCREWDRIVER))
 		if(broken || burnt)
 			return 0
-		to_chat(user, "<span class='notice'>You unscrew and remove the [flooring.descriptor].</span>")
+		to_chat(user, span_notice("You unscrew and remove the [flooring.descriptor]."))
 		make_plating(1)
 		playsound(src, W.usesound, 80, 1)
 		return 1
 	else if(W.has_tool_quality(TOOL_WRENCH) && (flooring.flags & TURF_REMOVE_WRENCH))
-		to_chat(user, "<span class='notice'>You unwrench and remove the [flooring.descriptor].</span>")
+		to_chat(user, span_notice("You unwrench and remove the [flooring.descriptor]."))
 		make_plating(1)
 		playsound(src, W.usesound, 80, 1)
 		return 1
-	else if(istype(W, /obj/item/weapon/shovel) && (flooring.flags & TURF_REMOVE_SHOVEL))
-		to_chat(user, "<span class='notice'>You shovel off the [flooring.descriptor].</span>")
+	else if(istype(W, /obj/item/shovel) && (flooring.flags & TURF_REMOVE_SHOVEL))
+		to_chat(user, span_notice("You shovel off the [flooring.descriptor]."))
 		make_plating(1)
 		playsound(src, 'sound/items/Deconstruct.ogg', 80, 1)
 		return 1
@@ -196,7 +196,7 @@
 /turf/simulated/floor/proc/try_replace_tile(obj/item/stack/tile/T as obj, mob/user as mob)
 	if(T.type == flooring.build_type)
 		return
-	var/obj/item/weapon/W = user.is_holding_item_of_type(/obj/item/weapon)
+	var/obj/item/W = user.is_holding_item_of_type(/obj/item)
 	if(!istype(W))
 		return
 	if(!try_deconstruct_tile(W, user))
@@ -207,18 +207,18 @@
 
 /turf/simulated/floor/proc/can_remove_plating(mob/user)
 	if(!is_plating())
-		to_chat(user, "<span class='warning'>\The [src] can't be cut through!</span>")
+		to_chat(user, span_warning("\The [src] can't be cut through!"))
 		return FALSE
 	if(locate(/obj/structure) in contents)
-		to_chat(user, "<span class='warning'>\The [src] has structures that must be removed before cutting!</span>")
+		to_chat(user, span_warning("\The [src] has structures that must be removed before cutting!"))
 		return FALSE
 	return TRUE
 
-/turf/simulated/floor/proc/do_remove_plating(obj/item/weapon/W, mob/user, base_type)
+/turf/simulated/floor/proc/do_remove_plating(obj/item/W, mob/user, base_type)
 	if(W.has_tool_quality(TOOL_WELDER))
-		var/obj/item/weapon/weldingtool/WT = W.get_welder()
+		var/obj/item/weldingtool/WT = W.get_welder()
 		if(!WT.remove_fuel(5,user))
-			to_chat(user, "<span class='warning'>You don't have enough fuel in [WT] finish cutting through [src].</span>")
+			to_chat(user, span_warning("You don't have enough fuel in [WT] finish cutting through [src]."))
 			return
 		playsound(src, WT.usesound, 80, 1)
 

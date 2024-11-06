@@ -1,7 +1,7 @@
 /obj/machinery/computer/fusion_core_control
 	name = "\improper R-UST Mk. 8 core control"
 	light_color = COLOR_ORANGE
-	circuit = /obj/item/weapon/circuitboard/fusion_core_control
+	circuit = /obj/item/circuitboard/fusion_core_control
 
 	icon_keyboard = "tech_key"
 	icon_screen = "core_control"
@@ -23,7 +23,7 @@
 
 /obj/machinery/computer/fusion_core_control/attackby(var/obj/item/thing, var/mob/user)
 	..()
-	if(istype(thing, /obj/item/device/multitool))
+	if(istype(thing, /obj/item/multitool))
 		var/new_ident = sanitize_text(tgui_input_text(usr, "Enter a new ident tag.", "Core Control", monitor.core_tag))
 		if(new_ident && user.Adjacent(src))
 			monitor.core_tag = new_ident
@@ -57,22 +57,22 @@
 		cur_viewed_device = null
 
 	if(!id_tag)
-		to_chat(user, "<span class='warning'>This console has not been assigned an ident tag. Please contact your system administrator or conduct a manual update with a standard multitool.</span>")
+		to_chat(user, span_warning("This console has not been assigned an ident tag. Please contact your system administrator or conduct a manual update with a standard multitool."))
 		return
 
 	if(cur_viewed_device && (cur_viewed_device.id_tag != id_tag || get_dist(src, cur_viewed_device) > scan_range))
 		cur_viewed_device = null
 
-	var/dat = "<B>Core Control #[id_tag]</B><BR>"
+	var/dat = span_bold("Core Control #[id_tag]") + "<BR>"
 
 	if(cur_viewed_device)
 		dat += {"
 			<a href='?src=\ref[src];goto_scanlist=1'>Back to overview</a><hr>
-			Device ident '[cur_viewed_device.id_tag]' <span style='color: [cur_viewed_device.owned_field ? "green" : "red"]'>[cur_viewed_device.owned_field ? "Active" : "Inactive"].</span><br>
+			Device ident '[cur_viewed_device.id_tag]' [cur_viewed_device.owned_field ? span_green("Active") : span_red("Inactive")].<br>
 			<b>Power status:</b> [cur_viewed_device.avail()]/[cur_viewed_device.active_power_usage] W<br>
 			<hr>
-			<b>Field Status:</b> <span style='color: [cur_viewed_device.owned_field ? "red" : "green"]'><a href='?src=\ref[src];toggle_active=1'>[cur_viewed_device.owned_field ? "Online" : "Offline"].</a></span><br>
-			<b>Reactant Dump:</b> <a href='?src=\ref[src];syphon=1'><span style='color: [cur_viewed_device.owned_field ? "red" : "green"]'>[cur_viewed_device.reactant_dump ? "Active" : "Inactive"].</span></a><br>
+			<b>Field Status:</b> <a href='?src=\ref[src];toggle_active=1'>[cur_viewed_device.owned_field ? span_green("Online") : span_red("Offline")].</a><br>
+			<b>Reactant Dump:</b> <a href='?src=\ref[src];syphon=1'>[cur_viewed_device.reactant_dump ? span_gren("Active") : span_red("Inactive")].</a><br>
 			<hr>
 			<b>Field power density (W.m<sup>-3</sup>):</b><br>
 			<a href='?src=\ref[src];str=-1000'>----</a>
@@ -123,12 +123,12 @@
 				var/status
 				var/can_access = 1
 				if(!check_core_status(C))
-					status = "<span style='color: red'>Unresponsive</span>"
+					status = span_red("Unresponsive")
 					can_access = 0
 				else if(C.avail() < C.active_power_usage)
-					status = "<span style='color: orange'>Underpowered</span>"
+					status = span_orange("Underpowered")
 				else
-					status = "<span style='color: green'>Good</span>"
+					status = span_green("Good")
 
 				dat += {"
 					<tr>
@@ -138,7 +138,7 @@
 
 				if(!can_access)
 					dat += {"
-						<td><span style='color: red'>ERROR</span></td>
+						<td>" + span_red("ERROR") + "</td>
 					"}
 				else
 					dat += {"
@@ -149,7 +149,7 @@
 				"}
 
 		else
-			dat += "<span style='color: red'>No electromagnetic field generators connected.</span>"
+			dat += span_red("No electromagnetic field generators connected.")
 
 	var/datum/browser/popup = new(user, "fusion_control", name, 500, 400, src)
 	popup.set_content(dat)

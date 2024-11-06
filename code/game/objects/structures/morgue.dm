@@ -120,7 +120,7 @@
 
 
 /obj/structure/morgue/attackby(P as obj, mob/user as mob)
-	if (istype(P, /obj/item/weapon/pen))
+	if (istype(P, /obj/item/pen))
 		var/t = tgui_input_text(user, "What would you like the label to be?", text("[]", src.name), null)
 		if (user.get_active_hand() != P)
 			return
@@ -189,7 +189,7 @@
 	if (user != O)
 		for(var/mob/B in viewers(user, 3))
 			if ((B.client && !( B.blinded )))
-				to_chat(B, "<span class='warning'>\The [user] stuffs [O] into [src]!</span>")
+				to_chat(B, span_warning("\The [user] stuffs [O] into [src]!"))
 	return
 
 
@@ -220,7 +220,7 @@ GLOBAL_LIST_BOILERPLATE(all_crematoriums, /obj/structure/morgue/crematorium)
 
 /obj/structure/morgue/crematorium/attack_hand(mob/user as mob)
 	if (cremating)
-		to_chat(usr, "<span class='warning'>It's locked.</span>")
+		to_chat(usr, span_warning("It's locked."))
 		return
 	if ((src.connected) && (src.locked == 0))
 		for(var/atom/movable/A as mob|obj in src.connected.loc)
@@ -246,7 +246,7 @@ GLOBAL_LIST_BOILERPLATE(all_crematoriums, /obj/structure/morgue/crematorium)
 	update()
 
 /obj/structure/morgue/crematorium/attackby(P as obj, mob/user as mob)
-	if (istype(P, /obj/item/weapon/pen))
+	if (istype(P, /obj/item/pen))
 		var/t = tgui_input_text(user, "What would you like the label to be?", text("[]", src.name), null)
 		if (user.get_active_hand() != P)
 			return
@@ -284,16 +284,16 @@ GLOBAL_LIST_BOILERPLATE(all_crematoriums, /obj/structure/morgue/crematorium)
 
 	if(contents.len <= 0)
 		for (var/mob/M in viewers(src))
-			to_chat(M, "<span class='warning'>You hear a hollow crackle.</span>")
+			to_chat(M, span_warning("You hear a hollow crackle."))
 			return
 
 	else
-		if(!isemptylist(src.search_contents_for(/obj/item/weapon/disk/nuclear)))
+		if(!isemptylist(src.search_contents_for(/obj/item/disk/nuclear)))
 			to_chat(user, "You get the feeling that you shouldn't cremate one of the items in the cremator.")
 			return
 
 		for (var/mob/M in viewers(src))
-			to_chat(M, "<span class='warning'>You hear a roar as the crematorium activates.</span>")
+			to_chat(M, span_warning("You hear a roar as the crematorium activates."))
 
 		cremating = 1
 		locked = 1
@@ -348,4 +348,4 @@ GLOBAL_LIST_BOILERPLATE(all_crematoriums, /obj/structure/morgue/crematorium)
 				if (!C.cremating)
 					C.cremate(user)
 	else
-		to_chat(user, "<span class='warning'>Access denied.</span>")
+		to_chat(user, span_warning("Access denied."))

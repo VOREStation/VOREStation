@@ -1,10 +1,12 @@
 var/list/preferences_datums = list()
 
 /datum/preferences
-	//doohickeys for savefiles
+	/// The path to the general savefile for this datum
 	var/path
-	var/default_slot = 1				//Holder so it doesn't default to slot 1, rather the last one used
-	var/savefile_version = 0
+	/// Whether or not we allow saving/loading. Used for guests, if they're enabled
+	var/load_and_save = TRUE
+	/// Ensures that we always load the last used save, QOL
+	var/default_slot = 1
 
 	//non-preference stuff
 	var/warns = 0
@@ -127,7 +129,7 @@ var/list/preferences_datums = list()
 	// will probably not be able to do this for head and torso ;)
 	var/list/organ_data = list()
 	var/list/rlimb_data = list()
-	var/list/player_alt_titles = new()		// the default name of a job like "Medical Doctor"
+	var/list/player_alt_titles = new()		// the default name of a job like JOB_MEDICAL_DOCTOR
 
 	var/list/body_markings = list() // "name" = "#rgbcolor" //VOREStation Edit: "name" = list(BP_HEAD = list("on" = <enabled>, "color" = "#rgbcolor"), BP_TORSO = ...)
 
@@ -171,34 +173,64 @@ var/list/preferences_datums = list()
 	var/examine_text_mode = 0 // Just examine text, include usage (description_info), switch to examine panel.
 	var/multilingual_mode = 0 // Default behaviour, delimiter-key-space, delimiter-key-delimiter, off
 
+	// THIS IS NOT SAVED
+	// WE JUST HAVE NOWHERE ELSE TO STORE IT
+	var/list/action_button_screen_locs
+
 	var/list/volume_channels = list()
 
 	///If they are currently in the process of swapping slots, don't let them open 999 windows for it and get confused
 	var/selecting_slots = FALSE
 
+	/// The json savefile for this datum
+	var/datum/json_savefile/savefile
 
 /datum/preferences/New(client/C)
+	client = C
+
+	for(var/middleware_type in subtypesof(/datum/preference_middleware))
+		middleware += new middleware_type(src)
+
+	if(istype(C)) // IS_CLIENT_OR_MOCK
+		client_ckey = C.ckey
+		load_and_save = !IsGuestKey(C.key)
+		load_path(C.ckey)
+		if(load_and_save && !fexists(path))
+			try_savefile_type_migration()
+	else
+		CRASH("attempted to create a preferences datum without a client or mock!")
+	load_savefile()
+
+	// Legacy code
+	gear = list()
+	gear_list = list()
+	gear_slot = 1
+	// End legacy code
+
 	player_setup = new(src)
+
+	var/loaded_preferences_successfully = load_preferences()
+	if(loaded_preferences_successfully)
+		if(load_character())
+			return
+
+	// Didn't load a character, so let's randomize
 	set_biological_gender(pick(MALE, FEMALE))
 	real_name = random_name(identifying_gender,species)
 	b_type = RANDOM_BLOOD_TYPE
 
-	gear = list()
-	gear_list = list()
-	gear_slot = 1
+	if(client)
+		apply_all_client_preferences()
 
-	if(istype(C))
-		client = C
-		client_ckey = C.ckey
-		if(!IsGuestKey(C.key))
-			load_path(C.ckey)
-			if(load_preferences())
-				load_character()
-
+	if(!loaded_preferences_successfully)
+		save_preferences()
+	save_character() // Save random character
 
 /datum/preferences/Destroy()
-	. = ..()
 	QDEL_LIST_ASSOC_VAL(char_render_holders)
+	QDEL_NULL(middleware)
+	value_cache = null
+	return ..()
 
 /datum/preferences/proc/ZeroSkills(var/forced = 0)
 	for(var/V in SKILLS) for(var/datum/skill/S in SKILLS[V])
@@ -256,7 +288,7 @@ var/list/preferences_datums = list()
 	if(!user || !user.client)	return
 
 	if(!get_mob_by_key(client_ckey))
-		to_chat(user, "<span class='danger'>No mob exists for the given client!</span>")
+		to_chat(user, span_danger("No mob exists for the given client!"))
 		return
 
 	if(!char_render_holders)
@@ -344,10 +376,10 @@ var/list/preferences_datums = list()
 	if(!istype(user, /mob/new_player))	return
 
 	if(href_list["preference"] == "open_whitelist_forum")
-		if(config.forumurl)
-			user << link(config.forumurl)
+		if(CONFIG_GET(string/forumurl))
+			user << link(CONFIG_GET(string/forumurl))
 		else
-			to_chat(user, "<span class='danger'>The forum URL is not set in the server configuration.</span>")
+			to_chat(user, span_danger("The forum URL is not set in the server configuration."))
 			return
 	ShowChoices(usr)
 	return 1
@@ -357,8 +389,8 @@ var/list/preferences_datums = list()
 		return 1
 
 	if(href_list["save"])
-		save_preferences()
 		save_character()
+		save_preferences()
 	else if(href_list["reload"])
 		load_preferences()
 		load_character()
@@ -373,7 +405,7 @@ var/list/preferences_datums = list()
 			return 0
 		if("Yes" != tgui_alert(usr, "Are you completely sure that you want to reset this character slot?", "Reset current slot?", list("No", "Yes")))
 			return 0
-		load_character(SAVE_RESET)
+		reset_slot()
 		sanitize_preferences()
 	else if(href_list["copy"])
 		if(!IsGuestKey(usr.key))
@@ -402,6 +434,12 @@ var/list/preferences_datums = list()
 	// Ask the preferences datums to apply their own settings to the new mob
 	player_setup.copy_to_mob(character)
 
+	for(var/datum/preference/preference as anything in get_preferences_in_priority_order())
+		if(preference.savefile_identifier != PREFERENCE_CHARACTER)
+			continue
+
+		preference.apply_to_human(character, read_preference(preference.type))
+
 	// VOREStation Edit - Sync up all their organs and species one final time
 	character.force_update_organs()
 
@@ -418,28 +456,25 @@ var/list/preferences_datums = list()
 
 /datum/preferences/proc/open_load_dialog(mob/user)
 	if(selecting_slots)
-		to_chat(user, "<span class='warning'>You already have a slot selection dialog open!</span>")
+		to_chat(user, span_warning("You already have a slot selection dialog open!"))
 		return
-	var/savefile/S = new /savefile(path)
-	if(!S)
-		error("Somehow missing savefile path?! [path]")
+	if(!savefile)
 		return
 
-	var/name
-	var/nickname //vorestation edit - This set appends nicknames to the save slot
+	var/default
 	var/list/charlist = list()
-	var/default //VOREStation edit
-	for(var/i=1, i<= config.character_slots, i++)
-		S.cd = "/character[i]"
-		S["real_name"] >> name
-		S["nickname"] >> nickname //vorestation edit
+
+	for(var/i in 1 to CONFIG_GET(number/character_slots))
+		var/list/save_data = savefile.get_entry("character[i]", list())
+		var/name = save_data["real_name"]
+		var/nickname = save_data["nickname"]
 		if(!name)
 			name = "[i] - \[Unused Slot\]"
 		else if(i == default_slot)
 			name = "►[i] - [name]"
 		else
 			name = "[i] - [name]"
-		if (i == default_slot) //VOREStation edit
+		if(i == default_slot)
 			default = "[name][nickname ? " ([nickname])" : ""]"
 		charlist["[name][nickname ? " ([nickname])" : ""]"] = i
 
@@ -454,33 +489,34 @@ var/list/preferences_datums = list()
 		error("Player picked [choice] slot to load, but that wasn't one we sent.")
 		return
 
+	load_preferences()
 	load_character(slotnum)
 	attempt_vr(user.client?.prefs_vr,"load_vore","") //VOREStation Edit
 	sanitize_preferences()
+	save_preferences()
 	ShowChoices(user)
 
 /datum/preferences/proc/open_copy_dialog(mob/user)
 	if(selecting_slots)
-		to_chat(user, "<span class='warning'>You already have a slot selection dialog open!</span>")
+		to_chat(user, span_warning("You already have a slot selection dialog open!"))
 		return
-	var/savefile/S = new /savefile(path)
-	if(!S)
-		error("Somehow missing savefile path?! [path]")
+	if(!savefile)
 		return
 
-	var/name
-	var/nickname //vorestation edit - This set appends nicknames to the save slot
 	var/list/charlist = list()
-	for(var/i=1, i<= config.character_slots, i++)
-		S.cd = "/character[i]"
-		S["real_name"] >> name
-		S["nickname"] >> nickname //vorestation edit
+
+	for(var/i in 1 to CONFIG_GET(number/character_slots))
+		var/list/save_data = savefile.get_entry("character[i]", list())
+		var/name = save_data["real_name"]
+		var/nickname = save_data["nickname"]
+
 		if(!name)
 			name = "[i] - \[Unused Slot\]"
-		if(i == default_slot)
+		else if(i == default_slot)
 			name = "►[i] - [name]"
 		else
 			name = "[i] - [name]"
+
 		charlist["[name][nickname ? " ([nickname])" : ""]"] = i
 
 	selecting_slots = TRUE
@@ -494,7 +530,7 @@ var/list/preferences_datums = list()
 		error("Player picked [choice] slot to copy to, but that wasn't one we sent.")
 		return
 
-	if(tgui_alert(user, "Are you sure you want to override slot [slotnum], [name][nickname ? " ([nickname])" : ""]'s savedata?", "Confirm Override", list("No", "Yes")) == "Yes")
+	if(tgui_alert(user, "Are you sure you want to override slot [slotnum], [choice]'s savedata?", "Confirm Override", list("No", "Yes")) == "Yes")
 		overwrite_character(slotnum)
 		sanitize_preferences()
 		save_preferences()

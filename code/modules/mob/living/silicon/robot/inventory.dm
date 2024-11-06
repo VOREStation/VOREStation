@@ -18,10 +18,11 @@
 	set hidden = 1
 	toggle_module(module)
 
-/mob/living/silicon/robot/proc/uneq_active()
-	if(isnull(module_active))
+/mob/living/silicon/robot/proc/uneq_specific(obj/item/I)
+	if(!istype(I))
 		return
-	if(module_state_1 == module_active)
+
+	if(module_state_1 == I)
 		if(istype(module_state_1,/obj/item/borg/sight))
 			sight_mode &= ~module_state_1:sight_mode
 		if (client)
@@ -31,29 +32,45 @@
 		module_state_1:loc = module //So it can be used again later
 		module_state_1 = null
 		inv1.icon_state = "inv1"
-	else if(module_state_2 == module_active)
+	else if(module_state_2 == I)
 		if(istype(module_state_2,/obj/item/borg/sight))
 			sight_mode &= ~module_state_2:sight_mode
 		if (client)
 			client.screen -= module_state_2
 		contents -= module_state_2
 		module_active = null
-		module_state_2:loc = module
+		module_state_2:loc = module //So it can be used again later
 		module_state_2 = null
 		inv2.icon_state = "inv2"
-	else if(module_state_3 == module_active)
+	else if(module_state_3 == I)
 		if(istype(module_state_3,/obj/item/borg/sight))
 			sight_mode &= ~module_state_3:sight_mode
 		if (client)
 			client.screen -= module_state_3
 		contents -= module_state_3
 		module_active = null
-		module_state_3:loc = module
+		module_state_3:loc = module //So it can be used again later
 		module_state_3 = null
 		inv3.icon_state = "inv3"
+	else
+		return
+
+	for(var/datum/action/A as anything in I.actions)
+		A.Remove(src)
+
 	after_equip()
 	update_icon()
 	hud_used.update_robot_modules_display()
+
+/mob/living/silicon/robot/proc/uneq_active()
+	if(isnull(module_active))
+		return
+
+	var/obj/item/I = module_active
+	for(var/datum/action/A as anything in I.actions)
+		A.Remove(src)
+
+	uneq_specific(I)
 
 /mob/living/silicon/robot/proc/uneq_all()
 	module_active = null
@@ -64,6 +81,9 @@
 		if (client)
 			client.screen -= module_state_1
 		contents -= module_state_1
+		var/obj/item/I = module_state_1
+		for(var/datum/action/A as anything in I.actions)
+			A.Remove(src)
 		module_state_1:loc = module
 		module_state_1 = null
 		inv1.icon_state = "inv1"
@@ -72,6 +92,9 @@
 			sight_mode &= ~module_state_2:sight_mode
 		if (client)
 			client.screen -= module_state_2
+		var/obj/item/I = module_state_2
+		for(var/datum/action/A as anything in I.actions)
+			A.Remove(src)
 		contents -= module_state_2
 		module_state_2:loc = module
 		module_state_2 = null
@@ -81,12 +104,26 @@
 			sight_mode &= ~module_state_3:sight_mode
 		if (client)
 			client.screen -= module_state_3
+		var/obj/item/I = module_state_3
+		for(var/datum/action/A as anything in I.actions)
+			A.Remove(src)
 		contents -= module_state_3
 		module_state_3:loc = module
 		module_state_3 = null
 		inv3.icon_state = "inv3"
 	after_equip()
 	update_icon()
+
+// Just used for pretty display in TGUI
+/mob/living/silicon/robot/proc/get_slot_from_module(obj/item/I)
+	if(module_state_1 == I)
+		return 1
+	else if(module_state_2 == I)
+		return 2
+	else if(module_state_3 == I)
+		return 3
+	else
+		return 0
 
 /mob/living/silicon/robot/proc/activated(obj/item/O)
 	if(module_state_1 == O)
@@ -212,16 +249,16 @@
 	var/slot_num
 	if(slot_start == 0)
 		slot_num = 1
-		slot_start = 2
 	else
 		slot_num = slot_start + 1
-
-	while(slot_start != slot_num) //If we wrap around without finding any free slots, just give up.
+		if(slot_num > 3)
+			return
+	// Attempt to rotate through the slots until we're past slot 3, or find the next usable slot. Allows skipping empty slots, while still having an empty slot at end of rotation.
+	while(slot_num <= 3)
 		if(module_active(slot_num))
 			select_module(slot_num)
 			return
 		slot_num++
-		if(slot_num > 3) slot_num = 1 //Wrap around.
 
 	return
 
@@ -229,7 +266,7 @@
 	if(!(locate(O) in src.module.modules) && !(locate(O) in src.module.emag))
 		return
 	if(activated(O))
-		to_chat(src, "<span class='notice'>Already activated</span>")
+		to_chat(src, span_notice("Already activated"))
 		return
 	if(!module_state_1)
 		module_state_1 = O
@@ -253,29 +290,32 @@
 		if(istype(module_state_3,/obj/item/borg/sight))
 			sight_mode |= module_state_3:sight_mode
 	else
-		to_chat(src, "<span class='notice'>You need to disable a module first!</span>")
+		to_chat(src, span_notice("You need to disable a module first!"))
 		return
 	after_equip(O)
 
 /mob/living/silicon/robot/proc/after_equip(var/obj/item/O)
-	if(istype(O, /obj/item/device/gps))
-		var/obj/item/device/gps/tracker = O
+	if(istype(O, /obj/item/gps))
+		var/obj/item/gps/tracker = O
 		if(tracker.tracking)
 			tracker.tracking = FALSE
 			tracker.toggle_tracking()
 	if(sight_mode & BORGANOMALOUS)
-		var/obj/item/weapon/dogborg/pounce/pounce = has_upgrade_module(/obj/item/weapon/dogborg/pounce)
+		var/obj/item/dogborg/pounce/pounce = has_upgrade_module(/obj/item/dogborg/pounce)
 		if(pounce)
 			pounce.name = "bluespace pounce"
 			pounce.icon_state = "bluespace_pounce"
 			pounce.bluespace = TRUE
 	else
-		var/obj/item/weapon/dogborg/pounce/pounce = has_upgrade_module(/obj/item/weapon/dogborg/pounce)
+		var/obj/item/dogborg/pounce/pounce = has_upgrade_module(/obj/item/dogborg/pounce)
 		if(pounce)
 			pounce.name = initial(pounce.name)
 			pounce.icon_state = initial(pounce.icon_state)
 			pounce.desc = initial(pounce.desc)
 			pounce.bluespace = initial(pounce.bluespace)
+	if(O)
+		for(var/datum/action/A as anything in O.actions)
+			A.Grant(src)
 
 /mob/living/silicon/robot/put_in_hands(var/obj/item/W) // No hands.
 	W.forceMove(get_turf(src))

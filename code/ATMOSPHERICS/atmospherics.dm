@@ -35,8 +35,8 @@ Pipelines + Other Objects -> Pipe network
 	var/obj/machinery/atmospherics/node1
 	var/obj/machinery/atmospherics/node2
 
-/obj/machinery/atmospherics/New(loc, newdir)
-	..()
+/obj/machinery/atmospherics/Initialize(mapload, newdir)
+	. = ..()
 	if(!icon_manager)
 		icon_manager = new()
 	if(!isnull(newdir))
@@ -82,7 +82,7 @@ Pipelines + Other Objects -> Pipe network
 	return (src.connect_types & target.connect_types)
 
 /obj/machinery/atmospherics/attackby(atom/A, mob/user as mob)
-	if(istype(A, /obj/item/device/pipe_painter))
+	if(istype(A, /obj/item/pipe_painter))
 		return
 	..()
 

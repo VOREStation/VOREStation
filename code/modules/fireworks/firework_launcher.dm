@@ -6,8 +6,8 @@
 	density = TRUE
 	anchored = TRUE
 
-	circuit = /obj/item/weapon/circuitboard/firework_launcher
-	var/obj/item/weapon/firework_star/loaded_star
+	circuit = /obj/item/circuitboard/firework_launcher
+	var/obj/item/firework_star/loaded_star
 	var/last_launch
 	var/launch_cooldown = 5 MINUTES
 
@@ -21,7 +21,7 @@
 /obj/machinery/firework_launcher/RefreshParts()
 	launch_cooldown = 5 MINUTES
 	var/rating = 0
-	for(var/obj/item/weapon/stock_parts/micro_laser/laser in component_parts)
+	for(var/obj/item/stock_parts/micro_laser/laser in component_parts)
 		rating += laser.rating - 1
 	launch_cooldown = max(0, (launch_cooldown - ((rating*30) SECONDS)))			// For every part tier above 1 on the two lasers, reduce cooldown by 30 seconds. 1 minute cooldown on the tier 5 parts, 3 minutes on tier 3.
 
@@ -45,13 +45,13 @@
 		update_icon()
 		return
 
-	if(istype(O, /obj/item/weapon/firework_star))
+	if(istype(O, /obj/item/firework_star))
 		if(loaded_star)
-			to_chat(user, SPAN_NOTICE("\The [src] already has \a [loaded_star] inside, unload it first!"))
+			to_chat(user, span_notice("\The [src] already has \a [loaded_star] inside, unload it first!"))
 			return
 		if(user.unEquip(O, 0, src))
 			loaded_star = O
-			to_chat(user, "<span class='notice'>You insert the firework star into \the [src].</span>")
+			to_chat(user, span_notice("You insert the firework star into \the [src]."))
 			add_fingerprint(user)
 			update_icon()
 			return
@@ -67,7 +67,7 @@
 	if(!user || user.stat != 0)
 		return
 	if(!loaded_star)
-		to_chat(user, "<span class='notice'>There is no firework star loaded in \the [src].</span>")
+		to_chat(user, span_notice("There is no firework star loaded in \the [src]."))
 		return
 	else
 		loaded_star.forceMove(get_turf(src))
@@ -77,32 +77,32 @@
 
 /obj/machinery/firework_launcher/attack_hand(mob/user)				// Maybe this proc could be better as entirely its own proc, called from attack_hand, but also I don't really see the point
 	if(panel_open)
-		to_chat(user, "<span class='warning'>Close the panel first!</span>")
+		to_chat(user, span_warning("Close the panel first!"))
 		return
 
 	if(!loaded_star)
-		to_chat(user, "<span class='notice'>There is no firework star loaded in \the [src].</span>")
+		to_chat(user, span_notice("There is no firework star loaded in \the [src]."))
 		return
 
 	if((world.time - last_launch) <= launch_cooldown)
-		to_chat(user, "<span class='notice'>\The [src] is still re-priming for launch.</span>")
+		to_chat(user, span_notice("\The [src] is still re-priming for launch."))
 		return
 
 	if(!anchored)
-		to_chat(user, "<span class='warning'>\The [src] must be firmly secured to the ground before firework can be launched!</span>")
+		to_chat(user, span_warning("\The [src] must be firmly secured to the ground before firework can be launched!"))
 		return
 
 	var/datum/planet/P = get_planet()
 	if(!P || !(P.weather_holder))				// There are potential cases of being outside but not on planet. And checking whether planet has weather at all is more sanity thing than anything.
-		to_chat(user, "<span class='warning'>\The [src] beeps as its safeties seem to prevent launch in the current location.</span>")
+		to_chat(user, span_warning("\The [src] beeps as its safeties seem to prevent launch in the current location."))
 		return
 
 	var/datum/weather_holder/WH = P.weather_holder
-	if(WH.firework_override && istype(loaded_star, /obj/item/weapon/firework_star/weather))			// Enable weather-based events to not be ruined
-		to_chat(user, "<span class='warning'>\The [src] beeps as it seems some interference is preventing launch of this type of firework.</span>")
+	if(WH.firework_override && istype(loaded_star, /obj/item/firework_star/weather))			// Enable weather-based events to not be ruined
+		to_chat(user, span_warning("\The [src] beeps as it seems some interference is preventing launch of this type of firework."))
 		return
 
-	to_chat(user, "<span class='notice'>You launch the firework!</span>")
+	to_chat(user, span_notice("You launch the firework!"))
 	playsound(get_turf(src), 'sound/weapons/rpg.ogg', 75, 1)
 	loaded_star.trigger_firework(WH)
 	qdel(loaded_star)

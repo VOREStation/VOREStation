@@ -20,7 +20,6 @@
 @include meta.load-css('./atomic/text.scss');
 
 // Components
-@include meta.load-css('./components/BlockQuote.scss');
 @include meta.load-css('./components/Button.scss');
 @include meta.load-css('./components/ColorBox.scss');
 @include meta.load-css('./components/Dialog.scss');
@@ -32,13 +31,11 @@
 @include meta.load-css('./components/Input.scss');
 @include meta.load-css('./components/Knob.scss');
 @include meta.load-css('./components/LabeledList.scss');
-@include meta.load-css('./components/MenuBar.scss');
 @include meta.load-css('./components/Modal.scss');
 @include meta.load-css('./components/NanoMap.scss');
 @include meta.load-css('./components/NoticeBox.scss');
 @include meta.load-css('./components/NumberInput.scss');
 @include meta.load-css('./components/ProgressBar.scss');
-@include meta.load-css('./components/RoundGauge.scss');
 @include meta.load-css('./components/Section.scss');
 @include meta.load-css('./components/Slider.scss');
 @include meta.load-css('./components/Stack.scss');
@@ -48,6 +45,7 @@
 @include meta.load-css('./components/Tooltip.scss');
 
 // Interfaces
+@include meta.load-css('./interfaces/AutomatedTellerMachine.scss');
 @include meta.load-css('./interfaces/ListInput.scss');
 @include meta.load-css('./interfaces/InputModal.scss');
 @include meta.load-css('./interfaces/IntegratedCircuit.scss');
@@ -56,8 +54,12 @@
 @include meta.load-css('./interfaces/Changelog.scss');
 @include meta.load-css('./interfaces/CrewManifest.scss');
 @include meta.load-css('./interfaces/ExperimentConfigure.scss');
+@include meta.load-css('./interfaces/FishingMinigame.scss');
 @include meta.load-css('./interfaces/NuclearBomb.scss');
 @include meta.load-css('./interfaces/Paper.scss');
+@include meta.load-css('./interfaces/Pda.scss');
+@include meta.load-css('./interfaces/ResearchConsole.scss');
+@include meta.load-css('./interfaces/ResleevingConsole.scss');
 @include meta.load-css('./interfaces/Roulette.scss');
 @include meta.load-css('./interfaces/Safe.scss');
 @include meta.load-css('./interfaces/TachyonArray.scss');
@@ -78,7 +80,7 @@
 // NT Theme
 .Layout__content {
   background-image: url('../assets/bg-nanotrasen.svg');
-  background-size: 70%;
+  background-size: 70% 70%;
   background-position: center;
   background-repeat: no-repeat;
 }

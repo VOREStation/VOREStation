@@ -3,7 +3,7 @@
 
 /mob/living/simple_mob/slime/xenobio/proc/adjust_discipline(amount, silent)
 	if(amount > 0)
-		to_chat(src, span("warning", "You've been disciplined!"))
+		to_chat(src, span_warning("You've been disciplined!"))
 	if(has_AI())
 		var/datum/ai_holder/simple_mob/xenobio_slime/AI = ai_holder
 		AI.adjust_discipline(amount, silent)

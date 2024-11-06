@@ -25,6 +25,7 @@
 
 #define SIGN(x) ( (x)!=0 ? (x) / abs(x) : 0 )
 
+#define ROUND_UP(x) ( -round(-(x)))
 #define CEILING(x, y) ( -round(-(x) / (y)) * (y) )
 
 // round() acts like floor(x, 1) by default but can't handle other values
@@ -219,3 +220,9 @@
 #define ROUNDUPTOPOWEROFTWO(x) (2 ** -round(-log(2,x)))
 
 #define DEFAULT(a, b) (a? a : b)
+
+// sqrt, but if you give it a negative number, you get 0 instead of a runtime
+/proc/sqrtor0(num)
+	if(num < 0)
+		return 0
+	return sqrt(num)

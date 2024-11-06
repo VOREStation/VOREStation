@@ -68,7 +68,7 @@
 	if(!emagged)
 		emagged = 1
 		if(user)
-			to_chat(user, "<span class='notice'>The [src] buzzes and beeps.</span>")
+			to_chat(user, span_notice("The [src] buzzes and beeps."))
 			playsound(src, 'sound/machines/buzzbeep.ogg', 50, 0)
 		return 1
 
@@ -208,12 +208,12 @@
 		busy = 1
 		update_icons()
 		if(F.flooring)
-			visible_message("<span class='warning'>\The [src] begins to tear the floor tile from the floor!</span>")
+			visible_message(span_warning("\The [src] begins to tear the floor tile from the floor!"))
 			if(do_after(src, 50))
 				F.break_tile_to_plating()
 				addTiles(1)
 		else
-			visible_message("<span class='danger'>\The [src] begins to tear through the floor!</span>")
+			visible_message(span_danger("\The [src] begins to tear through the floor!"))
 			if(do_after(src, 150)) // Extra time because this can and will kill.
 				F.ReplaceWithLattice()
 				addTiles(1)
@@ -228,7 +228,7 @@
 			return
 		busy = 1
 		update_icons()
-		visible_message("<b>\The [src]</b> begins to repair the hole.")
+		visible_message(span_infoplain(span_bold("\The [src]") + " begins to repair the hole."))
 		if(do_after(src, 50))
 			if(A && (locate(/obj/structure/lattice, A) && building == 1 || !locate(/obj/structure/lattice, A) && building == 2)) // Make sure that it still needs repairs
 				var/obj/item/I
@@ -245,7 +245,7 @@
 		if(F.broken || F.burnt)
 			busy = 1
 			update_icons()
-			visible_message("<b>\The [src]</b> begins to remove the broken floor.")
+			visible_message(span_infoplain(span_bold("\The [src]") + " begins to remove the broken floor."))
 			if(do_after(src, 50, F))
 				if(F.broken || F.burnt)
 					F.make_plating()
@@ -255,7 +255,7 @@
 		else if(!F.flooring && amount)
 			busy = 1
 			update_icons()
-			visible_message("<b>\The [src]</b> begins to improve the floor.")
+			visible_message(span_infoplain(span_bold("\The [src]") + " begins to improve the floor."))
 			if(do_after(src, 50))
 				if(!F.flooring)
 					F.set_flooring(get_flooring_data(floor_build_type))
@@ -265,7 +265,7 @@
 			update_icons()
 	else if(istype(A, /obj/item/stack/tile/floor) && amount < maxAmount)
 		var/obj/item/stack/tile/floor/T = A
-		visible_message("<b>\The [src]</b> begins to collect tiles.")
+		visible_message(span_infoplain(span_bold("\The [src]") + " begins to collect tiles."))
 		busy = 1
 		update_icons()
 		if(do_after(src, 20))
@@ -279,7 +279,7 @@
 	else if(istype(A, /obj/item/stack/material) && amount + 4 <= maxAmount)
 		var/obj/item/stack/material/M = A
 		if(M.get_material_name() == MAT_STEEL)
-			visible_message("<b>\The [src]</b> begins to make tiles.")
+			visible_message(span_infoplain(span_bold("\The [src]") + " begins to make tiles."))
 			busy = 1
 			update_icons()
 			if(do_after(50))
@@ -289,13 +289,13 @@
 
 /mob/living/bot/floorbot/explode()
 	turn_off()
-	visible_message("<span class='danger'>\The [src] blows apart!</span>")
+	visible_message(span_danger("\The [src] blows apart!"))
 	playsound(src, "sparks", 50, 1)
 	var/turf/Tsec = get_turf(src)
 
-	var/obj/item/weapon/storage/toolbox/mechanical/N = new /obj/item/weapon/storage/toolbox/mechanical(Tsec)
+	var/obj/item/storage/toolbox/mechanical/N = new /obj/item/storage/toolbox/mechanical(Tsec)
 	N.contents = list()
-	new /obj/item/device/assembly/prox_sensor(Tsec)
+	new /obj/item/assembly/prox_sensor(Tsec)
 	if(prob(50))
 		new /obj/item/robot_parts/l_arm(Tsec)
 	new /obj/item/stack/tile/floor(Tsec, amount)
@@ -340,26 +340,26 @@
 
 /* Assembly */
 
-/obj/item/weapon/storage/toolbox/mechanical/attackby(var/obj/item/stack/tile/floor/T, mob/living/user as mob)
+/obj/item/storage/toolbox/mechanical/attackby(var/obj/item/stack/tile/floor/T, mob/living/user as mob)
 	if(!istype(T, /obj/item/stack/tile/floor))
 		..()
 		return
 	if(contents.len >= 1)
-		to_chat(user, "<span class='notice'>They wont fit in as there is already stuff inside.</span>")
+		to_chat(user, span_notice("They wont fit in as there is already stuff inside."))
 		return
 	if(user.s_active)
 		user.s_active.close(user)
 	if(T.use(10))
-		var/obj/item/weapon/toolbox_tiles/B = new /obj/item/weapon/toolbox_tiles
+		var/obj/item/toolbox_tiles/B = new /obj/item/toolbox_tiles
 		user.put_in_hands(B)
-		to_chat(user, "<span class='notice'>You add the tiles into the empty toolbox. They protrude from the top.</span>")
+		to_chat(user, span_notice("You add the tiles into the empty toolbox. They protrude from the top."))
 		user.drop_from_inventory(src)
 		qdel(src)
 	else
-		to_chat(user, "<span class='warning'>You need 10 floor tiles for a floorbot.</span>")
+		to_chat(user, span_warning("You need 10 floor tiles for a floorbot."))
 	return
 
-/obj/item/weapon/toolbox_tiles
+/obj/item/toolbox_tiles
 	desc = "It's a toolbox with tiles sticking out the top"
 	name = "tiles and toolbox"
 	icon = 'icons/obj/aibots.dmi'
@@ -371,17 +371,17 @@
 	w_class = ITEMSIZE_NORMAL
 	var/created_name = "Floorbot"
 
-/obj/item/weapon/toolbox_tiles/attackby(var/obj/item/W, mob/user as mob)
+/obj/item/toolbox_tiles/attackby(var/obj/item/W, mob/user as mob)
 	..()
 	if(isprox(W))
 		qdel(W)
-		var/obj/item/weapon/toolbox_tiles_sensor/B = new /obj/item/weapon/toolbox_tiles_sensor()
+		var/obj/item/toolbox_tiles_sensor/B = new /obj/item/toolbox_tiles_sensor()
 		B.created_name = created_name
 		user.put_in_hands(B)
-		to_chat(user, "<span class='notice'>You add the sensor to the toolbox and tiles!</span>")
+		to_chat(user, span_notice("You add the sensor to the toolbox and tiles!"))
 		user.drop_from_inventory(src)
 		qdel(src)
-	else if (istype(W, /obj/item/weapon/pen))
+	else if (istype(W, /obj/item/pen))
 		var/t = sanitizeSafe(tgui_input_text(user, "Enter new robot name", name, created_name, MAX_NAME_LEN), MAX_NAME_LEN)
 		if(!t)
 			return
@@ -389,7 +389,7 @@
 			return
 		created_name = t
 
-/obj/item/weapon/toolbox_tiles_sensor
+/obj/item/toolbox_tiles_sensor
 	desc = "It's a toolbox with tiles sticking out the top and a sensor attached"
 	name = "tiles, toolbox and sensor arrangement"
 	icon = 'icons/obj/aibots.dmi'
@@ -401,17 +401,17 @@
 	w_class = ITEMSIZE_NORMAL
 	var/created_name = "Floorbot"
 
-/obj/item/weapon/toolbox_tiles_sensor/attackby(var/obj/item/W, mob/user as mob)
+/obj/item/toolbox_tiles_sensor/attackby(var/obj/item/W, mob/user as mob)
 	..()
 	if(istype(W, /obj/item/robot_parts/l_arm) || istype(W, /obj/item/robot_parts/r_arm) || (istype(W, /obj/item/organ/external/arm) && ((W.name == "robotic right arm") || (W.name == "robotic left arm"))))
 		qdel(W)
 		var/turf/T = get_turf(user.loc)
 		var/mob/living/bot/floorbot/A = new /mob/living/bot/floorbot(T)
 		A.name = created_name
-		to_chat(user, "<span class='notice'>You add the robot arm to the odd looking toolbox assembly! Boop beep!</span>")
+		to_chat(user, span_notice("You add the robot arm to the odd looking toolbox assembly! Boop beep!"))
 		user.drop_from_inventory(src)
 		qdel(src)
-	else if(istype(W, /obj/item/weapon/pen))
+	else if(istype(W, /obj/item/pen))
 		var/t = sanitizeSafe(tgui_input_text(user, "Enter new robot name", name, created_name, MAX_NAME_LEN), MAX_NAME_LEN)
 		if(!t)
 			return

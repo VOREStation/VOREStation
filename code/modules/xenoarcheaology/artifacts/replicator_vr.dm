@@ -71,7 +71,7 @@
 	if(spawning_types.len && powered())
 		spawn_progress_time += world.time - last_process_time
 		if(spawn_progress_time > max_spawn_time)
-			src.visible_message("<span class='notice'>[icon2html(src,viewers(src))] [src] pings!</span>")
+			src.visible_message(span_notice("[icon2html(src,viewers(src))] [src] pings!"))
 
 			var/obj/source_material = pop(stored_materials)
 			var/spawn_type = pop(spawning_types)
@@ -88,8 +88,8 @@
 			//Did they use an item? If so, we're done here.
 
 			//Did they put a micro in it?
-			if(istype(source_material,/obj/item/weapon/holder/micro))
-				var/obj/item/weapon/holder/micro/micro_holder = source_material
+			if(istype(source_material,/obj/item/holder/micro))
+				var/obj/item/holder/micro/micro_holder = source_material
 				var/mob/mob_to_be_changed = micro_holder.held_mob
 				var/mob/living/M = mob_to_be_changed
 				//Start of mob code shamelessly ripped from mouseray
@@ -200,66 +200,66 @@
 				icon_state = "borgcharger0(old)"
 
 		else if(prob(5))
-			src.visible_message("<span class='notice'>[icon2html(src,viewers(src))] [src] [pick("clicks","whizzes","whirrs","whooshes","clanks","clongs","clonks","bangs")].</span>")
+			src.visible_message(span_notice("[icon2html(src,viewers(src))] [src] [pick("clicks","whizzes","whirrs","whooshes","clanks","clongs","clonks","bangs")]."))
 
 	last_process_time = world.time
 
 
-/obj/machinery/replicator/vore/attackby(obj/item/weapon/W as obj, mob/living/user as mob)
+/obj/machinery/replicator/vore/attackby(obj/item/W as obj, mob/living/user as mob)
 	if(!W.canremove || !user.canUnEquip(W) || W.possessed_voice || is_type_in_list(W,item_vore_blacklist)) //No armblades, no putting possessed items in it!
-		to_chat(user, "<span class='notice'>You cannot put \the [W] into the machine.</span>")
+		to_chat(user, span_notice("You cannot put \the [W] into the machine."))
 		return
-	if(istype(W, /obj/item/weapon/holder/micro)) //Are you putting a micro in it?
-		var/obj/item/weapon/holder/micro/micro_holder = W
+	if(istype(W, /obj/item/holder/micro)) //Are you putting a micro in it?
+		var/obj/item/holder/micro/micro_holder = W
 		var/mob/living/inserted_mob = micro_holder.held_mob //Get the actual mob.
 		if(!inserted_mob.allow_spontaneous_tf) //Do they allow TF?
-			to_chat(user, "<span class='notice'>You cannot put \the [W] into the machine. ((The prefs of the micro forbid this action.))</span>")
+			to_chat(user, span_notice("You cannot put \the [W] into the machine. ((The prefs of the micro forbid this action.))"))
 			return
 		if(inserted_mob.stat == DEAD) //Hey medical...
-			to_chat(user, "<span class='notice'>[W] is dead.</span>")
+			to_chat(user, span_notice("[W] is dead."))
 			return
 		if(inserted_mob.tf_mob_holder)
-			to_chat(user, "<span class='notice'>[W] must be in their original form.</span>")
+			to_chat(user, span_notice("[W] must be in their original form."))
 			return
 		if(inserted_mob.client)
 			var/response //Let's see if they are SURE they accept the fact they will be a clothing, plushie, or something else.
 			response = tgui_alert(inserted_mob, "Are you -sure- you want to be put in this machine?\n(This machine will turn you into one of the various types of mobs in the game.)", "WARNING: Are you sure you want to be put in the machine and transformed?", list("No", "Certain"))
 			if(response != "Certain") //If they don't agree, stop.
-				to_chat(user, "<span class='notice'>[W] stops you from placing them in the machine.</span>")
+				to_chat(user, span_notice("[W] stops you from placing them in the machine."))
 				return
 			else //If they /do/ agree, give them one last chance.
 				response = tgui_alert(inserted_mob, "This is the last warning: Are you absolutely certain you want to be transformed into a mob?", "WARNING: FINAL CHANCE!", list("No", "Certain"))
 				if(response != "Certain")
-					to_chat(user, "<span class='notice'>[W] stops you from placing them in the machine.</span>")
+					to_chat(user, span_notice("[W] stops you from placing them in the machine."))
 					return
 				if(istype(inserted_mob, /mob/living/voice) || W.loc == src) //Sanity.
 					return
 				log_and_message_admins("[user] has just placed [inserted_mob] into a mob transformation machine.", user)
 		else
-			to_chat(user, "<span class='notice'>You cannot put \the [W] into the machine. ((The micro must be connected to the server.))</span>")
+			to_chat(user, span_notice("You cannot put \the [W] into the machine. ((The micro must be connected to the server.))"))
 			return
-	else if(istype(W,/obj/item/weapon/grab)) //Is someone being shoved into the machine?
-		var/obj/item/weapon/grab/the_grab = W
+	else if(istype(W,/obj/item/grab)) //Is someone being shoved into the machine?
+		var/obj/item/grab/the_grab = W
 		var/mob/living/inserted_mob = the_grab.affecting //Get the mob that is grabbed.
 		if(!inserted_mob.allow_spontaneous_tf)
-			to_chat(user, "<span class='notice'>You cannot put \the [W] into the machine. ((The prefs of the micro forbid this action.))</span>")
+			to_chat(user, span_notice("You cannot put \the [W] into the machine. ((The prefs of the micro forbid this action.))"))
 			return
 		if(inserted_mob.stat == DEAD)
-			to_chat(user, "<span class='notice'>[W] is dead.</span>")
+			to_chat(user, span_notice("[W] is dead."))
 			return
 		if(inserted_mob.tf_mob_holder)
-			to_chat(user, "<span class='notice'>[W] must be in their original form.</span>")
+			to_chat(user, span_notice("[W] must be in their original form."))
 			return
 		if(inserted_mob.client)
 			var/response
 			response = tgui_alert(inserted_mob, "Are you -sure- you want to be put in this machine?\n(This machine will turn you into one of the various types of mobs in the game.)", "WARNING: Are you sure you want to be put in the machine and transformed?", list("No", "Certain"))
 			if(response != "Certain")
-				to_chat(user, "<span class='notice'>[W] stops you from placing them in the machine.</span>")
+				to_chat(user, span_notice("[W] stops you from placing them in the machine."))
 				return
 			else
 				response = tgui_alert(inserted_mob, "This is the last warning: Are you absolutely certain you want to be transformed into a mob?", "WARNING: FINAL CHANCE!", list("No", "Certain"))
 				if(response != "Certain")
-					to_chat(user, "<span class='notice'>[W] stops you from placing them in the machine.</span>")
+					to_chat(user, span_notice("[W] stops you from placing them in the machine."))
 					return
 				if(istype(inserted_mob, /mob/living/voice) || W.loc == src)
 					return
@@ -270,33 +270,33 @@
 				if(istype(inserted_mob, /mob/living/carbon/human)) //So, this WORKS. Works very well!
 					var/mob/living/carbon/human/inserted_human = inserted_mob
 					for(var/obj/item/I in inserted_mob)
-						if(istype(I, /obj/item/weapon/implant) || istype(I, /obj/item/device/nif))
+						if(istype(I, /obj/item/implant) || istype(I, /obj/item/nif))
 							continue
 						inserted_human.drop_from_inventory(I)
 				inserted_mob.loc = src
 				stored_materials.Add(inserted_mob)
-				src.visible_message("<span class='filter_notice'><b>\The [user]</b> inserts \the [inserted_mob] into \the [src].</span>")
+				src.visible_message(span_filter_notice(span_bold("\The [user]") + " inserts \the [inserted_mob] into \the [src]."))
 				return
 		else
-			to_chat(user, "<span class='notice'>You cannot put \the [W] into the machine. ((The micro must be connected to the server.))</span>")
+			to_chat(user, span_notice("You cannot put \the [W] into the machine. ((The micro must be connected to the server.))"))
 			return
-	else if(istype(W, /obj/item/weapon/holder/mouse)) //No you can't turn your army of mice into giant rats.
-		to_chat(user, "<span class='notice'>You cannot put \the [W] into the machine. The machine reads 'NOT ENOUGH BIOMASS'.</span>")
+	else if(istype(W, /obj/item/holder/mouse)) //No you can't turn your army of mice into giant rats.
+		to_chat(user, span_notice("You cannot put \the [W] into the machine. The machine reads 'NOT ENOUGH BIOMASS'."))
 		return
 	user.drop_item() //Put the micro on the floor (or drop the item)
-	if(istype(W, /obj/item/weapon/holder/micro)) //I hate this but it's the only way to get their stuff to drop.
-		var/obj/item/weapon/holder/micro/micro_holder = W
+	if(istype(W, /obj/item/holder/micro)) //I hate this but it's the only way to get their stuff to drop.
+		var/obj/item/holder/micro/micro_holder = W
 		var/mob/living/inserted_mob = micro_holder.held_mob //Get the actual mob.
 		if(istype(inserted_mob, /mob/living/carbon/human)) //Only humans have the drop_from_inventory proc.
 			var/mob/living/carbon/human/inserted_human = inserted_mob
 			for(var/obj/item/I in inserted_human) //Drop any remaining items! This only really seems to affect hands.
-				if(istype(I, /obj/item/weapon/implant) || istype(I, /obj/item/device/nif))
+				if(istype(I, /obj/item/implant) || istype(I, /obj/item/nif))
 					continue
 				inserted_human.drop_from_inventory(I)
 			//Now that we've dropped all the items they have, let's shove them back into the micro holder.
 	W.loc = src
 	stored_materials.Add(W)
-	src.visible_message("<span class='filter_notice'><b>\The [user]</b> inserts \the [W] into \the [src].</span>")
+	src.visible_message(span_filter_notice(span_bold("\The [user]") + " inserts \the [W] into \the [src]."))
 
 /obj/machinery/replicator/vore/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
 	var/list/data = ..()
@@ -313,9 +313,9 @@
 			if(key in created_mobs)
 				if(LAZYLEN(stored_materials) > LAZYLEN(spawning_types))
 					if(LAZYLEN(spawning_types))
-						visible_message("<span class='notice'>[icon2html(src,viewers(src))] a [pick("light","dial","display","meter","pad")] on [src]'s front [pick("blinks","flashes")] [pick("red","yellow","blue","orange","purple","green","white")].</span>")
+						visible_message(span_notice("[icon2html(src,viewers(src))] a [pick("light","dial","display","meter","pad")] on [src]'s front [pick("blinks","flashes")] [pick("red","yellow","blue","orange","purple","green","white")]."))
 					else
-						visible_message("<span class='notice'>[icon2html(src,viewers(src))] [src]'s front compartment slides shut.</span>")
+						visible_message(span_notice("[icon2html(src,viewers(src))] [src]'s front compartment slides shut."))
 					spawning_types.Add(created_mobs[key])
 					spawn_progress_time = 0
 					update_use_power(USE_POWER_ACTIVE)
@@ -376,13 +376,13 @@
 	/obj/item/clothing/shoes/flipflop,
 	/obj/item/clothing/shoes/boots/duty,
 	/obj/item/clothing/shoes/footwraps,
-	/obj/item/weapon/storage/smolebrickcase,
-	/obj/item/weapon/lipstick,
-	/obj/item/weapon/material/fishing_rod/modern,
-	/obj/item/weapon/inflatable_duck,
+	/obj/item/storage/smolebrickcase,
+	/obj/item/lipstick,
+	/obj/item/material/fishing_rod/modern,
+	/obj/item/inflatable_duck,
 	/obj/item/toy/syndicateballoon,
-	/obj/item/weapon/towel,
-	/obj/item/weapon/bedsheet/rainbowdouble
+	/obj/item/towel,
+	/obj/item/bedsheet/rainbowdouble
 	) 	// Currently: 3 gloves, 5 undersuits, 3 oversuits, 5 plushies, 5 headwear, 7 shoes, 7 misc. = 35
 		//Fishing hat was going to be added, but it was simply too powerful for this world.
 
@@ -424,7 +424,7 @@
 	if(spawning_types.len && powered())
 		spawn_progress_time += world.time - last_process_time
 		if(spawn_progress_time > max_spawn_time)
-			src.visible_message("<span class='notice'>[icon2html(src,viewers(src))] [src] pings!</span>")
+			src.visible_message(span_notice("[icon2html(src,viewers(src))] [src] pings!"))
 
 			var/obj/source_material = pop(stored_materials)
 			var/spawn_type = pop(spawning_types)
@@ -438,8 +438,8 @@
 						spawned_obj.desc += " It is made of [source_material]."
 					else
 						spawned_obj.desc = "It is made of [source_material]."
-			if(istype(source_material,/obj/item/weapon/holder/micro))
-				var/obj/item/weapon/holder/micro/micro_holder = source_material //Tells the machine that a micro is the material being used
+			if(istype(source_material,/obj/item/holder/micro))
+				var/obj/item/holder/micro/micro_holder = source_material //Tells the machine that a micro is the material being used
 				var/mob/mob_to_be_changed = micro_holder.held_mob //Get the mob.
 				var/mob/living/M = mob_to_be_changed
 				M.release_vore_contents(TRUE, TRUE) //Release their stomach contents. Don't spam the chat, either.
@@ -469,65 +469,65 @@
 				icon_state = "borgcharger0(old)"
 
 		else if(prob(5))
-			src.visible_message("<span class='notice'>[icon2html(src,viewers(src))] [src] [pick("clicks","whizzes","whirrs","whooshes","clanks","clongs","clonks","bangs")].</span>")
+			src.visible_message(span_notice("[icon2html(src,viewers(src))] [src] [pick("clicks","whizzes","whirrs","whooshes","clanks","clongs","clonks","bangs")]."))
 
 	last_process_time = world.time
 
-/obj/machinery/replicator/clothing/attackby(obj/item/weapon/W as obj, mob/living/user as mob)
+/obj/machinery/replicator/clothing/attackby(obj/item/W as obj, mob/living/user as mob)
 	if(!W.canremove || !user.canUnEquip(W) || W.possessed_voice || is_type_in_list(W,item_vore_blacklist)) //No armblades, no putting already possessed items in it!
-		to_chat(user, "<span class='notice'>You cannot put \the [W] into the machine.</span>")
+		to_chat(user, span_notice("You cannot put \the [W] into the machine."))
 		return
-	if(istype(W, /obj/item/weapon/holder/micro) || istype(W, /obj/item/weapon/holder/mouse)) //Are you putting a micro/mouse in it?
-		var/obj/item/weapon/holder/micro/micro_holder = W
+	if(istype(W, /obj/item/holder/micro) || istype(W, /obj/item/holder/mouse)) //Are you putting a micro/mouse in it?
+		var/obj/item/holder/micro/micro_holder = W
 		var/mob/living/inserted_mob = micro_holder.held_mob //Get the actual mob.
 		if(!inserted_mob.allow_spontaneous_tf) //Do they allow TF?
-			to_chat(user, "<span class='notice'>You cannot put \the [W] into the machine. ((The prefs of the micro forbid this action.))</span>")
+			to_chat(user, span_notice("You cannot put \the [W] into the machine. ((The prefs of the micro forbid this action.))"))
 			return
 		if(inserted_mob.stat == DEAD) //Hey medical...
-			to_chat(user, "<span class='notice'>[W] is dead.</span>")
+			to_chat(user, span_notice("[W] is dead."))
 			return
 		if(inserted_mob.tf_mob_holder) //No recursion!!!
-			to_chat(user, "<span class='notice'>[W] must be in their original form.</span>")
+			to_chat(user, span_notice("[W] must be in their original form."))
 			return
 		if(inserted_mob.client)
 			var/response //Let's see if they are SURE they accept the fact they will be a clothing, plushie, or something else.
 			response = tgui_alert(inserted_mob, "Are you -sure- you want to be put in this machine?\n(This machine can turn you into various clothing, footwear, plushies, and other miscellaneous objects. This means that more likely than not, you will be used as whatever object is used. Make certain your preferences align with this possibility.)", "WARNING: Are you sure you want to be put in the machine and transformed?", list("No", "Certain"))
 			if(response != "Certain") //If they don't agree, stop.
-				to_chat(user, "<span class='notice'>[W] stops you from placing them in the machine.</span>")
+				to_chat(user, span_notice("[W] stops you from placing them in the machine."))
 				return
 			else //If they /do/ agree, give them one last chance.
 				response = tgui_alert(inserted_mob, "This is the last warning: Are you absolutely certain you want to be transformed into an object and have the possibility of being used as such?", "WARNING: FINAL CHANCE!", list("No", "I accept the possibilities"))
 				if(response != "I accept the possibilities")
-					to_chat(user, "<span class='notice'>[W] stops you from placing them in the machine.</span>")
+					to_chat(user, span_notice("[W] stops you from placing them in the machine."))
 					return
 				if(istype(inserted_mob, /mob/living/voice) || W.loc == src) //This is a sanity check to keep them from entering it multiple times.
 					return
 				log_and_message_admins("[user] has just placed [inserted_mob] into an item transformation machine.", user)
 		else
-			to_chat(user, "<span class='notice'>You cannot put \the [W] into the machine. ((The micro must be connected to the server.))</span>")
+			to_chat(user, span_notice("You cannot put \the [W] into the machine. ((The micro must be connected to the server.))"))
 			return
-	else if(istype(W,/obj/item/weapon/grab)) //Is someone being shoved into the machine?
-		var/obj/item/weapon/grab/the_grab = W
+	else if(istype(W,/obj/item/grab)) //Is someone being shoved into the machine?
+		var/obj/item/grab/the_grab = W
 		var/mob/living/inserted_mob = the_grab.affecting //Get the mob that is grabbed.
 		if(!inserted_mob.allow_spontaneous_tf)
-			to_chat(user, "<span class='notice'>You cannot put \the [W] into the machine. ((The prefs of the micro forbid this action.))</span>")
+			to_chat(user, span_notice("You cannot put \the [W] into the machine. ((The prefs of the micro forbid this action.))"))
 			return
 		if(inserted_mob.stat == DEAD)
-			to_chat(user, "<span class='notice'>[W] is dead.</span>")
+			to_chat(user, span_notice("[W] is dead."))
 			return
 		if(inserted_mob.tf_mob_holder)
-			to_chat(user, "<span class='notice'>[W] must be in their original form.</span>")
+			to_chat(user, span_notice("[W] must be in their original form."))
 			return
 		if(inserted_mob.client)
 			var/response
 			response = tgui_alert(inserted_mob, "Are you -sure- you want to be put in this machine?\n(This machine can turn you into various clothing, footwear, plushies, and other miscellaneous objects. This means that more likely than not, you will be used as whatever object is used. Make certain your preferences align with this possibility.)", "WARNING: Are you sure you want to be put in the machine and transformed?", list("No", "Certain"))
 			if(response != "Certain")
-				to_chat(user, "<span class='notice'>[W] stops you from placing them in the machine.</span>")
+				to_chat(user, span_notice("[W] stops you from placing them in the machine."))
 				return
 			else
 				response = tgui_alert(inserted_mob, "This is the last warning: Are you absolutely certain you want to be transformed into an object and have the possibility of being used as such?", "WARNING: FINAL CHANCE!", list("No", "I accept the possibilities"))
 				if(response != "I accept the possibilities")
-					to_chat(user, "<span class='notice'>[W] stops you from placing them in the machine.</span>")
+					to_chat(user, span_notice("[W] stops you from placing them in the machine."))
 					return
 				if(istype(inserted_mob, /mob/living/voice) || W.loc == src)
 					return
@@ -538,31 +538,31 @@
 				if(istype(inserted_mob, /mob/living/carbon/human)) //So, this WORKS. Works very well!
 					var/mob/living/carbon/human/inserted_human = inserted_mob
 					for(var/obj/item/I in inserted_mob)
-						if(istype(I, /obj/item/weapon/implant) || istype(I, /obj/item/device/nif))
+						if(istype(I, /obj/item/implant) || istype(I, /obj/item/nif))
 							continue
 						inserted_human.drop_from_inventory(I)
 				inserted_mob.loc = src
 				stored_materials.Add(inserted_mob)
-				src.visible_message("<span class='filter_notice'><b>\The [user]</b> inserts \the [inserted_mob] into \the [src].</span>")
+				src.visible_message(span_filter_notice(span_bold("\The [user]") + " inserts \the [inserted_mob] into \the [src]."))
 				return
 		else
-			to_chat(user, "<span class='notice'>You cannot put \the [W] into the machine. ((They must be connected to the server.))</span>")
+			to_chat(user, span_notice("You cannot put \the [W] into the machine. ((They must be connected to the server.))"))
 			return
 
 	user.drop_item() //Put the micro on the floor (or drop the item)
-	if(istype(W, /obj/item/weapon/holder/micro)) //I hate this but it's the only way to get their stuff to drop.
-		var/obj/item/weapon/holder/micro/micro_holder = W
+	if(istype(W, /obj/item/holder/micro)) //I hate this but it's the only way to get their stuff to drop.
+		var/obj/item/holder/micro/micro_holder = W
 		var/mob/living/inserted_mob = micro_holder.held_mob //Get the actual mob.
 		if(istype(inserted_mob, /mob/living/carbon/human)) //Only humans have the drop_from_inventory proc.
 			var/mob/living/carbon/human/inserted_human = inserted_mob
 			for(var/obj/item/I in inserted_human) //Drop any remaining items! This only really seems to affect hands.
-				if(istype(I, /obj/item/weapon/implant) || istype(I, /obj/item/device/nif))
+				if(istype(I, /obj/item/implant) || istype(I, /obj/item/nif))
 					continue
 				inserted_human.drop_from_inventory(I)
 			//Now that we've dropped all the items they have, let's shove them back into the micro holder.
 	W.loc = src
 	stored_materials.Add(W)
-	src.visible_message("<span class='filter_notice'><b>\The [user]</b> inserts \the [W] into \the [src].</span>")
+	src.visible_message(span_filter_notice(span_bold("\The [user]") + " inserts \the [W] into \the [src]."))
 
 
 /obj/machinery/replicator/clothing/tgui_interact(mob/user, datum/tgui/ui) //This creates the menu.
@@ -586,9 +586,9 @@
 			if(key in created_items)
 				if(LAZYLEN(stored_materials) > LAZYLEN(spawning_types))
 					if(LAZYLEN(spawning_types))
-						visible_message("<span class='notice'>[icon2html(src,viewers(src))] a [pick("light","dial","display","meter","pad")] on [src]'s front [pick("blinks","flashes")] [pick("red","yellow","blue","orange","purple","green","white")].</span>")
+						visible_message(span_notice("[icon2html(src,viewers(src))] a [pick("light","dial","display","meter","pad")] on [src]'s front [pick("blinks","flashes")] [pick("red","yellow","blue","orange","purple","green","white")]."))
 					else
-						visible_message("<span class='notice'>[icon2html(src,viewers(src))] [src]'s front compartment slides shut.</span>")
+						visible_message(span_notice("[icon2html(src,viewers(src))] [src]'s front compartment slides shut."))
 					spawning_types.Add(created_items[key])
 					spawn_progress_time = 0
 					update_use_power(USE_POWER_ACTIVE)

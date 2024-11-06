@@ -19,22 +19,22 @@
 /datum/gear/head/beret/bsec_warden
 	display_name = "beret, navy (warden)"
 	path = /obj/item/clothing/head/beret/sec/navy/warden
-	allowed_roles = list("Head of Security","Warden")
+	allowed_roles = list(JOB_HEAD_OF_SECURITY,JOB_WARDEN)
 
 /datum/gear/head/beret/bsec_hos
 	display_name = "beret, navy (hos)"
 	path = /obj/item/clothing/head/beret/sec/navy/hos
-	allowed_roles = list("Head of Security")
+	allowed_roles = list(JOB_HEAD_OF_SECURITY)
 
 /datum/gear/head/beret/csec_warden
 	display_name = "beret, corporate (warden)"
 	path = /obj/item/clothing/head/beret/sec/corporate/warden
-	allowed_roles = list("Head of Security","Warden")
+	allowed_roles = list(JOB_HEAD_OF_SECURITY,JOB_WARDEN)
 
 /datum/gear/head/beret/csec_hos
 	display_name = "beret, corporate (hos)"
 	path = /obj/item/clothing/head/beret/sec/corporate/hos
-	allowed_roles = list("Head of Security")
+	allowed_roles = list(JOB_HEAD_OF_SECURITY)
 
 /datum/gear/head/beret/eng
 	display_name = "beret, engie-orange"
@@ -239,6 +239,10 @@
 	display_name = "rabbit ears"
 	path = /obj/item/clothing/head/rabbitears
 
+/datum/gear/head/rabbit/New()
+	..()
+	gear_tweaks += gear_tweak_free_color_choice
+
 /datum/gear/head/beanie
 	display_name = "beanie"
 	path = /obj/item/clothing/head/beanie
@@ -288,7 +292,7 @@
 	description = "Select from a range of welding masks (engineering crew/roboticists only)"
 	path = /obj/item/clothing/head/welding
 	cost = 2
-	allowed_roles = list("Chief Engineer","Engineer","Atmospheric Technician","Research Director","Roboticist")
+	allowed_roles = list(JOB_CHIEF_ENGINEER,JOB_ENGINEER,JOB_ATMOSPHERIC_TECHNICIAN,JOB_RESEARCH_DIRECTOR,JOB_ROBOTICIST)
 
 /datum/gear/head/welding/New()
 	..()
@@ -376,7 +380,7 @@
 /datum/gear/head/sec_hat_selector
 	display_name = "Security - Basic Headwear"
 	description = "Select from a range of hats available to all Security personnel."
-	allowed_roles = list("Head of Security", "Warden", "Detective", "Security Officer")
+	allowed_roles = list(JOB_HEAD_OF_SECURITY, JOB_WARDEN, JOB_DETECTIVE, JOB_SECURITY_OFFICER)
 	path = /obj/item/clothing/head/soft/sec/corp
 
 /datum/gear/head/sec_hat_selector/New()
@@ -394,7 +398,7 @@
 /datum/gear/head/med_hat_selector
 	display_name = "Medical - Basic Headwear"
 	description = "Select from a range of hats available to all Medical personnel."
-	allowed_roles = list("Chief Medical Officer","Medical Doctor","Chemist","Psychiatrist","Paramedic")
+	allowed_roles = list(JOB_CHIEF_MEDICAL_OFFICER,JOB_MEDICAL_DOCTOR,JOB_CHEMIST,JOB_PSYCHIATRIST,JOB_PARAMEDIC)
 	path = /obj/item/clothing/head/soft/med
 
 /datum/gear/head/med_hat_selector/New()
@@ -434,7 +438,7 @@
 	display_name = "pilot helmets selection"
 	description = "Your choice of four hard-wearing head-protecting helmets for pilots."
 	path = /obj/item/clothing/head/pilot_vr
-	allowed_roles = list("Pilot", "Talon Pilot")
+	allowed_roles = list(JOB_PILOT, JOB_TALON_PILOT)
 
 /datum/gear/head/pilot/New()
 	..()

@@ -7,24 +7,24 @@
 
 // This is another syndie-multitool, except this one detects when the AI and/or Security is peeping on the holder.
 
-/obj/item/device/multitool/ai_detector
+/obj/item/multitool/ai_detector
 	var/range_alert = 7			// Will turn red if the AI can observe its holder.
 	var/range_warning = 14		// Will turn yellow if the AI's eye is near the holder.
 	var/detect_state = PROXIMITY_NONE
 	origin_tech = list(TECH_MAGNET = 2, TECH_ENGINEERING = 2, TECH_ILLEGAL = 2)
 
-/obj/item/device/multitool/ai_detector/New()
+/obj/item/multitool/ai_detector/New()
 	// It's really really unlikely for the view range to change.  But why not be futureproof anyways?
 	range_alert = world.view
 	range_warning = world.view * 2
 	START_PROCESSING(SSobj, src)
 	..()
 
-/obj/item/device/multitool/ai_detector/Destroy()
+/obj/item/multitool/ai_detector/Destroy()
 	STOP_PROCESSING(SSobj, src)
 	return ..()
 
-/obj/item/device/multitool/ai_detector/process()
+/obj/item/multitool/ai_detector/process()
 	var/old_detect_state = detect_state
 	var/new_detect_state = detect_ai()
 	detect_state = new_detect_state
@@ -33,7 +33,7 @@
 	return
 
 // This also detects security using cameras.
-/obj/item/device/multitool/ai_detector/proc/detect_ai()
+/obj/item/multitool/ai_detector/proc/detect_ai()
 	var/mob/living/carrier = isliving(loc) ? loc : null
 
 	// First, let's check if any AIs are actively tracking them.
@@ -81,10 +81,10 @@
 	// If we reach this point, AI or sec isn't near us.
 	return PROXIMITY_NONE
 
-/obj/item/device/multitool/ai_detector/update_icon()
+/obj/item/multitool/ai_detector/update_icon()
 	icon_state = "[initial(icon_state)][detect_state]"
 
-/obj/item/device/multitool/ai_detector/proc/update_warning(var/old_state, var/new_state)
+/obj/item/multitool/ai_detector/proc/update_warning(var/old_state, var/new_state)
 	var/mob/living/carrier = isliving(loc) ? loc : null
 
 	// Now to warn our holder, if the state changes.
@@ -94,22 +94,22 @@
 	if(new_state != old_state)
 		switch(new_state)
 			if(PROXIMITY_OFF_CAMERANET)
-				to_chat(carrier, "<span class='notice'>[icon2html(src, carrier.client)] Now outside of camera network.</span>")
+				to_chat(carrier, span_notice("[icon2html(src, carrier.client)] Now outside of camera network."))
 				carrier << 'sound/machines/defib_failed.ogg'
 			if(PROXIMITY_NONE)
-				to_chat(carrier, "<span class='notice'>[icon2html(src, carrier.client)] Now within camera network, AI and cameras unfocused.</span>")
+				to_chat(carrier, span_notice("[icon2html(src, carrier.client)] Now within camera network, AI and cameras unfocused."))
 				carrier << 'sound/machines/defib_safetyOff.ogg'
 			if(PROXIMITY_NEAR)
-				to_chat(carrier, "<span class='warning'>[icon2html(src, carrier.client)] Warning: AI focus at nearby location.</span>")
+				to_chat(carrier, span_warning("[icon2html(src, carrier.client)] Warning: AI focus at nearby location."))
 				carrier << 'sound/machines/defib_SafetyOn.ogg'
 			if(PROXIMITY_ON_SCREEN)
-				to_chat(carrier, "<font size='3'><span class='danger'>[icon2html(src, carrier.client)] Alert: AI or camera focused at current location!</span></font>")
+				to_chat(carrier, span_danger(span_large("[icon2html(src, carrier.client)] Alert: AI or camera focused at current location!")))
 				carrier <<'sound/machines/defib_ready.ogg'
 			if(PROXIMITY_TRACKING)
-				to_chat(carrier, "<font size='3'><span class='danger'>[icon2html(src, carrier.client)] Danger: AI is actively tracking you!</span></font>")
+				to_chat(carrier, span_danger(span_large("[icon2html(src, carrier.client)] Danger: AI is actively tracking you!")))
 				carrier << 'sound/machines/defib_success.ogg'
 			if(PROXIMITY_TRACKING_FAIL)
-				to_chat(carrier, "<font size='3'><span class='danger'>[icon2html(src, carrier.client)] Danger: AI is attempting to actively track you, but you are outside of the camera network!</span></font>")
+				to_chat(carrier, span_danger(span_large("[icon2html(src, carrier.client)] Danger: AI is attempting to actively track you, but you are outside of the camera network!")))
 				carrier <<'sound/machines/defib_ready.ogg'
 
 

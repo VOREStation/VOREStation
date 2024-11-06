@@ -1,7 +1,7 @@
 /////////////////////////////////////////////
 //Guest pass ////////////////////////////////
 /////////////////////////////////////////////
-/obj/item/weapon/card/id/guest
+/obj/item/card/id/guest
 	name = "guest pass"
 	desc = "Allows temporary access to station areas."
 	icon_state = "guest"
@@ -13,64 +13,64 @@
 	var/expired = 0
 	var/reason = "NOT SPECIFIED"
 
-/obj/item/weapon/card/id/guest/update_icon()
+/obj/item/card/id/guest/update_icon()
 	return
 
-/obj/item/weapon/card/id/guest/GetAccess()
+/obj/item/card/id/guest/GetAccess()
 	if(world.time > expiration_time)
 		return access
 	else
 		return temp_access
 
-/obj/item/weapon/card/id/guest/examine(mob/user)
+/obj/item/card/id/guest/examine(mob/user)
 	. = ..()
 	if(world.time < expiration_time)
-		. += "<span class='notice'>This pass expires at [worldtime2stationtime(expiration_time)].</span>"
+		. += span_notice("This pass expires at [worldtime2stationtime(expiration_time)].")
 	else
-		. += "<span class='warning'>It expired at [worldtime2stationtime(expiration_time)].</span>"
+		. += span_warning("It expired at [worldtime2stationtime(expiration_time)].")
 
-/obj/item/weapon/card/id/guest/read()
+/obj/item/card/id/guest/read()
 	if(!Adjacent(usr))
 		return //Too far to read
 	if(world.time > expiration_time)
-		to_chat(usr, "<span class='notice'>This pass expired at [worldtime2stationtime(expiration_time)].</span>")
+		to_chat(usr, span_notice("This pass expired at [worldtime2stationtime(expiration_time)]."))
 	else
-		to_chat(usr, "<span class='notice'>This pass expires at [worldtime2stationtime(expiration_time)].</span>")
+		to_chat(usr, span_notice("This pass expires at [worldtime2stationtime(expiration_time)]."))
 
-	to_chat(usr, "<span class='notice'>It grants access to following areas:</span>")
+	to_chat(usr, span_notice("It grants access to following areas:"))
 	for (var/A in temp_access)
-		to_chat(usr, "<span class='notice'>[get_access_desc(A)].</span>")
-	to_chat(usr, "<span class='notice'>Issuing reason: [reason].</span>")
+		to_chat(usr, span_notice("[get_access_desc(A)]."))
+	to_chat(usr, span_notice("Issuing reason: [reason]."))
 	return
 
-/obj/item/weapon/card/id/guest/attack_self(mob/living/user as mob)
+/obj/item/card/id/guest/attack_self(mob/living/user as mob)
 	if(user.a_intent == I_HURT)
 		if(icon_state == "guest-invalid")
-			to_chat(user, "<span class='warning'>This guest pass is already deactivated!</span>")
+			to_chat(user, span_warning("This guest pass is already deactivated!"))
 			return
 
 		var/confirm = tgui_alert(usr, "Do you really want to deactivate this guest pass? (you can't reactivate it)", "Confirm Deactivation", list("Yes", "No"))
 		if(confirm == "Yes")
 			//rip guest pass </3
-			user.visible_message("<b>\The [user]</b> deactivates \the [src].")
+			user.visible_message(span_infoplain(span_bold("\The [user]") + "deactivates \the [src]."))
 			icon_state = "guest-invalid"
 			update_icon()
 			expiration_time = world.time
 			expired = 1
 	return ..()
 
-/obj/item/weapon/card/id/guest/Initialize()
+/obj/item/card/id/guest/Initialize()
 	. = ..()
 	START_PROCESSING(SSobj, src)
 	update_icon()
 
-/obj/item/weapon/card/id/guest/Destroy()
+/obj/item/card/id/guest/Destroy()
 	STOP_PROCESSING(SSobj, src)
 	return ..()
 
-/obj/item/weapon/card/id/guest/process()
+/obj/item/card/id/guest/process()
 	if(expired == 0 && world.time >= expiration_time)
-		visible_message("<span class='warning'>\The [src] flashes a few times before turning red.</span>")
+		visible_message(span_warning("\The [src] flashes a few times before turning red."))
 		icon_state = "guest-invalid"
 		update_icon()
 		expired = 1
@@ -90,9 +90,9 @@
 	icon_keyboard = null
 	icon_screen = "pass"
 	density = FALSE
-	circuit = /obj/item/weapon/circuitboard/guestpass
+	circuit = /obj/item/circuitboard/guestpass
 
-	var/obj/item/weapon/card/id/giver
+	var/obj/item/card/id/giver
 	var/list/accesses = list()
 	var/giv_name = "NOT SPECIFIED"
 	var/reason = "NOT SPECIFIED"
@@ -107,19 +107,19 @@
 
 
 /obj/machinery/computer/guestpass/attackby(obj/I, mob/user)
-	if(istype(I, /obj/item/weapon/card/id/guest))
-		to_chat(user, "<span class='warning'>The guest pass terminal denies to accept the guest pass.</span>")
+	if(istype(I, /obj/item/card/id/guest))
+		to_chat(user, span_warning("The guest pass terminal denies to accept the guest pass."))
 		return
-	if(istype(I, /obj/item/weapon/card/id))
+	if(istype(I, /obj/item/card/id))
 		if(stat & NOPOWER) //checking for power in here so crowbar and screwdriver and stuff still works.
-			to_chat(user, SPAN_WARNING("The terminal refuses your I.D as it is unpowered!"))
+			to_chat(user, span_warning("The terminal refuses your I.D as it is unpowered!"))
 			return
 		if(!giver && user.unEquip(I))
 			I.forceMove(src)
 			giver = I
 			SStgui.update_uis(src)
 		else if(giver)
-			to_chat(user, "<span class='warning'>There is already ID card inside.</span>")
+			to_chat(user, span_warning("There is already ID card inside."))
 		return
 	..()
 
@@ -134,7 +134,7 @@
 	if(!usr || usr.stat || usr.lying)	return
 
 	if(giver)
-		to_chat(usr, SPAN_NOTICE("You remove \the [giver] from \the [src]."))
+		to_chat(usr, span_notice("You remove \the [giver] from \the [src]."))
 		giver.loc = get_turf(src)
 		if(!usr.get_active_hand() && istype(usr,/mob/living/carbon/human))
 			usr.put_in_hands(giver)
@@ -143,7 +143,7 @@
 		giver = null
 		accesses.Cut()
 	else
-		to_chat(usr, SPAN_WARNING("There is nothing to remove from the console."))
+		to_chat(usr, span_warning("There is nothing to remove from the console."))
 	return
 
 /obj/machinery/computer/guestpass/attack_hand(var/mob/user as mob)
@@ -165,9 +165,9 @@
 	var/list/area_list = list()
 
 	data["access"] = null
-	if(giver && giver.access)
-		data["access"] = giver.access
-		for (var/A in giver.access)
+	if(giver && giver.GetAccess())
+		data["access"] = giver.GetAccess()
+		for (var/A in giver.GetAccess())
 			if(A in accesses)
 				area_list.Add(list(list("area" = A, "area_name" = get_access_desc(A), "on" = 1)))
 			else
@@ -206,16 +206,16 @@
 				if(dur > 0 && dur <= 360) //VOREStation Edit
 					duration = dur
 				else
-					to_chat(usr, "<span class='warning'>Invalid duration.</span>")
+					to_chat(usr, span_warning("Invalid duration."))
 		if("access")
 			var/A = text2num(params["access"])
 			if(A in accesses)
 				accesses.Remove(A)
 			else
-				if(A in giver.access)	//Let's make sure the ID card actually has the access.
+				if(A in giver.GetAccess())	//Let's make sure the ID card actually has the access.
 					accesses.Add(A)
 				else
-					to_chat(usr, "<span class='warning'>Invalid selection, please consult technical support if there are any issues.</span>")
+					to_chat(usr, span_warning("Invalid selection, please consult technical support if there are any issues."))
 					log_debug("[key_name_admin(usr)] tried selecting an invalid guest pass terminal option.")
 		if("id")
 			if(giver)
@@ -230,7 +230,7 @@
 				accesses.Cut()
 			else
 				var/obj/item/I = usr.get_active_hand()
-				if(istype(I, /obj/item/weapon/card/id) && usr.unEquip(I))
+				if(istype(I, /obj/item/card/id) && usr.unEquip(I))
 					I.loc = src
 					giver = I
 
@@ -240,7 +240,7 @@
 				dat += "[entry]<br><hr>"
 			//to_chat(usr, "Printing the log, standby...")
 			//sleep(50)
-			var/obj/item/weapon/paper/P = new/obj/item/weapon/paper( loc )
+			var/obj/item/paper/P = new/obj/item/paper( loc )
 			P.name = "activity log"
 			P.info = dat
 
@@ -256,14 +256,14 @@
 				entry += ". Expires at [worldtime2stationtime(world.time + duration*10*60)]."
 				internal_log.Add(entry)
 
-				var/obj/item/weapon/card/id/guest/pass = new(src.loc)
+				var/obj/item/card/id/guest/pass = new(src.loc)
 				pass.temp_access = accesses.Copy()
 				pass.registered_name = giv_name
 				pass.expiration_time = world.time + duration*10*60
 				pass.reason = reason
 				pass.name = "guest pass #[number]"
 			else
-				to_chat(usr, "<span class='warning'>Cannot issue pass without issuing ID.</span>")
+				to_chat(usr, span_warning("Cannot issue pass without issuing ID."))
 
 	add_fingerprint(usr)
 	return TRUE

@@ -43,11 +43,11 @@
 	if(isanimal(user))
 		var/mob/living/simple_mob/S = user
 		if(damage >= STRUCTURE_MIN_DAMAGE_THRESHOLD)
-			visible_message("<span class='danger'>\The [user] smashes into [src]!</span>")
+			visible_message(span_danger("\The [user] smashes into [src]!"))
 			playsound(src, S.attack_sound, 75, 1)
 			take_damage(damage)
 		else
-			visible_message("<b>\The [user]</b> bonks \the [src] harmlessly.")
+			visible_message(span_infoplain(span_bold("\The [user]") + " bonks \the [src] harmlessly."))
 	user.do_attack_animation(src)
 
 /obj/machinery/door/New()
@@ -120,7 +120,7 @@
 			return																		//VOREStation Edit: unable to open doors
 		else
 			bumpopen(M)
-	if(istype(AM, /obj/item/device/uav))
+	if(istype(AM, /obj/item/uav))
 		if(check_access(null))
 			open()
 		else
@@ -178,7 +178,7 @@
 	if (damage > 90)
 		destroy_hits--
 		if (destroy_hits <= 0)
-			visible_message("<span class='danger'>\The [src.name] disintegrates!</span>")
+			visible_message(span_danger("\The [src.name] disintegrates!"))
 			switch (Proj.damage_type)
 				if(BRUTE)
 					new /obj/item/stack/material/steel(src.loc, 2)
@@ -196,7 +196,7 @@
 /obj/machinery/door/hitby(AM as mob|obj, var/speed=5)
 
 	..()
-	visible_message("<span class='danger'>[src.name] was hit by [AM].</span>")
+	visible_message(span_danger("[src.name] was hit by [AM]."))
 	var/tforce = 0
 	if(ismob(AM))
 		tforce = 15 * (speed/5)
@@ -225,29 +225,29 @@
 			return					//VOREStation begin: Fireproofing
 		if(health < maxhealth && I.has_tool_quality(TOOL_WELDER))
 			if(!density)
-				to_chat(user, "<span class='warning'>\The [src] must be closed before you can repair it.</span>")
+				to_chat(user, span_warning("\The [src] must be closed before you can repair it."))
 				return
 
-			var/obj/item/weapon/weldingtool/welder = I.get_welder()
+			var/obj/item/weldingtool/welder = I.get_welder()
 			if(welder.remove_fuel(0,user))
-				to_chat(user, "<span class='notice'>You start to fix dents and repair \the [src].</span>")
+				to_chat(user, span_notice("You start to fix dents and repair \the [src]."))
 				playsound(src, welder.usesound, 50, 1)
 				var/repairtime = maxhealth - health //Since we're not using materials anymore... We'll just calculate how much damage there is to repair.
 				if(do_after(user, repairtime * welder.toolspeed) && welder && welder.isOn())
-					to_chat(user, "<span class='notice'>You finish repairing the damage to \the [src].</span>")
+					to_chat(user, span_notice("You finish repairing the damage to \the [src]."))
 					health = maxhealth
 					update_icon()
 			return
 		//psa to whoever coded this, there are plenty of objects that need to call attack() on doors without bludgeoning them.
-		if(src.density && istype(I, /obj/item/weapon) && user.a_intent == I_HURT && !istype(I, /obj/item/weapon/card))
-			var/obj/item/weapon/W = I
+		if(src.density && istype(I, /obj/item) && user.a_intent == I_HURT && !istype(I, /obj/item/card))
+			var/obj/item/W = I
 			user.setClickCooldown(user.get_attack_speed(W))
 			if(W.damtype == BRUTE || W.damtype == BURN)
 				user.do_attack_animation(src)
 				if(W.force < min_force)
-					user.visible_message("<span class='danger'>\The [user] hits \the [src] with \the [W] with no visible effect.</span>")
+					user.visible_message(span_danger("\The [user] hits \the [src] with \the [W] with no visible effect."))
 				else
-					user.visible_message("<span class='danger'>\The [user] forcefully strikes \the [src] with \the [W]!</span>")
+					user.visible_message(span_danger("\The [user] forcefully strikes \the [src] with \the [W]!"))
 					playsound(src, hitsound, 100, 1)
 					take_damage(W.force)
 			return

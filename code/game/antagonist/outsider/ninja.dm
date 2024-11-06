@@ -7,7 +7,7 @@ var/datum/antagonist/ninja/ninjas
 	role_text_plural = "Ninja"
 	bantype = "ninja"
 	landmark_id = "ninjastart"
-	welcome_text = "<span class='info'>You are an elite mercenary assassin of the Spider Clan. You have a variety of abilities at your disposal, thanks to your nano-enhanced cyber armor.</span>"
+	welcome_text = span_info("You are an elite mercenary assassin of the Spider Clan. You have a variety of abilities at your disposal, thanks to your nano-enhanced cyber armor.")
 	flags = ANTAG_OVERRIDE_JOB | ANTAG_CLEAR_EQUIPMENT | ANTAG_CHOOSE_NAME | ANTAG_RANDSPAWN | ANTAG_VOTABLE | ANTAG_SET_APPEARANCE
 	antaghud_indicator = "hudninja"
 
@@ -16,14 +16,14 @@ var/datum/antagonist/ninja/ninjas
 	hard_cap = 1
 	hard_cap_round = 3
 
-	id_type = /obj/item/weapon/card/id/syndicate
+	id_type = /obj/item/card/id/syndicate
 
 /datum/antagonist/ninja/New()
 	..()
 	ninjas = src
 
 /datum/antagonist/ninja/attempt_random_spawn()
-	if(config.ninjas_allowed) ..()
+	if(CONFIG_GET(flag/ninjas_allowed)) ..()
 
 /datum/antagonist/ninja/create_objectives(var/datum/mind/ninja)
 
@@ -85,8 +85,8 @@ var/datum/antagonist/ninja/ninjas
 	if(!..())
 		return 0
 	var/directive = generate_ninja_directive("heel")
-	player.store_memory("<B>Directive:</B> <span class='danger'>[directive]</span><br>")
-	to_chat(player, "<b>Remember your directive:</b> [directive].")
+	player.store_memory(span_bold("Directive:") + " " + span_danger("[directive]") + "<br>")
+	to_chat(player, span_bold("Remember your directive:") + " [directive].")
 
 /datum/antagonist/ninja/update_antag_mob(var/datum/mind/player)
 	..()
@@ -103,13 +103,13 @@ var/datum/antagonist/ninja/ninjas
 	if(!..())
 		return 0
 
-	var/obj/item/device/radio/R = new /obj/item/device/radio/headset(player)
+	var/obj/item/radio/R = new /obj/item/radio/headset(player)
 	player.equip_to_slot_or_del(R, slot_l_ear)
 	player.equip_to_slot_or_del(new /obj/item/clothing/under/color/black(player), slot_w_uniform)
-	player.equip_to_slot_or_del(new /obj/item/device/flashlight(player), slot_belt)
+	player.equip_to_slot_or_del(new /obj/item/flashlight(player), slot_belt)
 	create_id("Infiltrator", player)
 
-	var/obj/item/weapon/rig/light/ninja/ninjasuit = new(get_turf(player))
+	var/obj/item/rig/light/ninja/ninjasuit = new(get_turf(player))
 	ninjasuit.seal_delay = 0
 	player.put_in_hands(ninjasuit)
 	player.equip_to_slot_or_del(ninjasuit,slot_back)
@@ -117,8 +117,8 @@ var/datum/antagonist/ninja/ninjas
 		ninjasuit.toggle_seals(src,1)
 		ninjasuit.seal_delay = initial(ninjasuit.seal_delay)
 
-	if(istype(player.back,/obj/item/weapon/rig))
-		var/obj/item/weapon/rig/rig = player.back
+	if(istype(player.back,/obj/item/rig))
+		var/obj/item/rig/rig = player.back
 		if(rig.air_supply)
 			player.internal = rig.air_supply
 
@@ -126,7 +126,7 @@ var/datum/antagonist/ninja/ninjas
 		if(player.internal)
 			player.internals.icon_state = "internal1"
 		else
-			to_chat(player, "<span class='danger'>You forgot to turn on your internals! Quickly, toggle the valve!</span>")
+			to_chat(player, span_danger("You forgot to turn on your internals! Quickly, toggle the valve!"))
 
 /datum/antagonist/ninja/proc/generate_ninja_directive(side)
 	var/directive = "[side=="face"?"[using_map.company_name]":"A criminal syndicate"] is your employer. "//Let them know which side they're on.
@@ -161,7 +161,7 @@ var/datum/antagonist/ninja/ninjas
 			var/xenorace = pick(SPECIES_UNATHI, SPECIES_TAJ, SPECIES_SKRELL)
 			directive += "A group of [xenorace] radicals have been loyal supporters of the Spider Clan. Favor [xenorace] crew whenever possible."
 		if(15)
-			directive += "The Spider Clan has recently been accused of religious insensitivity. Attempt to speak with the Chaplain and prove these accusations false."
+			directive += "The Spider Clan has recently been accused of religious insensitivity. Attempt to speak with the " + JOB_CHAPLAIN + " and prove these accusations false."
 		if(16)
 			directive += "The Spider Clan has been bargaining with a competing prosthetics manufacturer. Try to shine [using_map.company_name] prosthetics in a bad light."
 		if(17)

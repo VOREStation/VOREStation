@@ -24,7 +24,7 @@
 	else
 		to_chat(user, "Error, no route to host.")
 
-/obj/machinery/button/remote/attackby(obj/item/weapon/W, mob/user as mob)
+/obj/machinery/button/remote/attackby(obj/item/W, mob/user as mob)
 	return attack_hand(user)
 
 /obj/machinery/button/remote/emag_act(var/remaining_charges, var/mob/user)
@@ -43,7 +43,7 @@
 		return
 
 	if(!allowed(user) && (wires & 1))
-		to_chat(user, "<span class='warning'>Access Denied</span>")
+		to_chat(user, span_warning("Access Denied"))
 		flick("doorctrl-denied",src)
 		return
 
@@ -221,3 +221,23 @@
 			spawn(0)
 				if(SG?.anchored)
 					SG.toggle()
+
+/obj/machinery/button/remote/airlock/release
+	icon = 'icons/obj/door_release.dmi'
+	name = "emergency door release"
+	desc = "Forces the opening of doors in an emergency, regardless of whether they're powered."
+
+	use_power = USE_POWER_OFF
+	idle_power_usage = 0
+	active_power_usage = 0
+
+/obj/machinery/button/remote/airlock/release/trigger()
+	for(var/obj/machinery/door/airlock/D in machines)
+		if(D.id_tag == id)
+			if(D.locked)
+				D.unlock(1)
+			if(D.density)
+				D.open(1)
+
+/obj/machinery/button/remote/airlock/release/powered()
+	return 1 //Is always able to be used

@@ -7,12 +7,12 @@
 	pass_flags = 1
 	mob_size = MOB_SMALL
 
-	holder_type = /obj/item/weapon/holder/pai
+	holder_type = /obj/item/holder/pai
 
 	can_pull_size = ITEMSIZE_SMALL
 	can_pull_mobs = MOB_PULL_SMALLER
 
-	idcard_type = /obj/item/weapon/card/id
+	idcard_type = /obj/item/card/id
 	var/idaccessible = 0
 
 	var/network = "SS13"
@@ -21,9 +21,9 @@
 	var/ram = 100	// Used as currency to purchase different abilities
 	var/list/software = list()
 	var/userDNA		// The DNA string of our assigned user
-	var/obj/item/device/paicard/card	// The card we inhabit
-	var/obj/item/device/radio/borg/pai/radio		// Our primary radio
-	var/obj/item/device/communicator/integrated/communicator	// Our integrated communicator.
+	var/obj/item/paicard/card	// The card we inhabit
+	var/obj/item/radio/borg/pai/radio		// Our primary radio
+	var/obj/item/communicator/integrated/communicator	// Our integrated communicator.
 
 	var/chassis = "pai-repairbot"   // A record of your chosen chassis.
 	var/global/list/possible_chassis = list(
@@ -57,7 +57,8 @@
 		"Catslug" = "catslug",
 		"Car" = "car",
 		"Type One" = "typeone",
-		"Type Thirteen" = "13"
+		"Type Thirteen" = "13",
+		"Protogen Dog" = "pai-protodog"
 		//VOREStation Addition End
 		)
 
@@ -71,7 +72,7 @@
 		"Rodent" = list("squeaks", "SQUEAKS", "sqiks")	//VOREStation Edit
 		)
 
-	var/obj/item/weapon/pai_cable/cable		// The cable we produce and use when door or camera jacking
+	var/obj/item/pai_cable/cable		// The cable we produce and use when door or camera jacking
 
 	var/master				// Name of the one who commands us
 	var/master_dna			// DNA string for owner verification
@@ -87,7 +88,7 @@
 	var/screen				// Which screen our main window displays
 	var/subscreen			// Which specific function of the main screen is being displayed
 
-	var/obj/item/device/pda/ai/pai/pda = null
+	var/obj/item/pda/ai/pai/pda = null
 
 	var/paiHUD = 0			// Toggles whether the AR HUD is active or not
 
@@ -111,14 +112,14 @@
 
 	var/our_icon_rotation = 0
 
-/mob/living/silicon/pai/New(var/obj/item/device/paicard)
+/mob/living/silicon/pai/New(var/obj/item/paicard)
 	src.loc = paicard
 	card = paicard
 	sradio = new(src)
 	communicator = new(src)
 	if(card)
 		if(!card.radio)
-			card.radio = new /obj/item/device/radio/borg/pai(src.card)
+			card.radio = new /obj/item/radio/borg/pai(src.card)
 		radio = card.radio
 
 	//Default languages without universal translator software
@@ -129,8 +130,8 @@
 	add_language(LANGUAGE_TERMINUS, 1)
 	add_language(LANGUAGE_SIGN, 1)
 
-	verbs += /mob/living/silicon/pai/proc/choose_chassis
-	verbs += /mob/living/silicon/pai/proc/choose_verbs
+	add_verb(src, /mob/living/silicon/pai/proc/choose_chassis)
+	add_verb(src, /mob/living/silicon/pai/proc/choose_verbs)
 
 	//PDA
 	pda = new(src)
@@ -156,16 +157,16 @@
 
 // this function shows the information about being silenced as a pAI in the Status panel
 /mob/living/silicon/pai/proc/show_silenced()
+	. = ""
 	if(src.silence_time)
 		var/timeleft = round((silence_time - world.timeofday)/10 ,1)
-		stat(null, "Communications system reboot in -[(timeleft / 60) % 60]:[add_zero(num2text(timeleft % 60), 2)]")
+		. += "Communications system reboot in -[(timeleft / 60) % 60]:[add_zero(num2text(timeleft % 60), 2)]"
 
 
-/mob/living/silicon/pai/Stat()
-	..()
-	statpanel("Status")
-	if (src.client.statpanel == "Status")
-		show_silenced()
+/mob/living/silicon/pai/get_status_tab_items()
+	. = ..()
+	. += ""
+	. += show_silenced()
 
 /mob/living/silicon/pai/check_eye(var/mob/user as mob)
 	if (!src.current)
@@ -173,7 +174,7 @@
 	return 0
 
 /mob/living/silicon/pai/restrained()
-	if(istype(src.loc,/obj/item/device/paicard))
+	if(istype(src.loc,/obj/item/paicard))
 		return 0
 	..()
 
@@ -186,12 +187,12 @@
 		// 33% chance of no additional effect
 
 	src.silence_time = world.timeofday + 120 * 10		// Silence for 2 minutes
-	to_chat(src, span_green("<b>Communication circuit overload. Shutting down and reloading communication circuits - speech and messaging functionality will be unavailable until the reboot is complete.</b>"))
+	to_chat(src, span_infoplain(span_green(span_bold("Communication circuit overload. Shutting down and reloading communication circuits - speech and messaging functionality will be unavailable until the reboot is complete."))))
 	if(prob(20))
 		var/turf/T = get_turf_or_move(src.loc)
 		card.death_damage()
 		for (var/mob/M in viewers(T))
-			M.show_message(span_red("A shower of sparks spray from [src]'s inner workings."), 3, span_red("You hear and smell the ozone hiss of electrical sparks being expelled violently."), 2)
+			M.show_message(span_infoplain(span_red("A shower of sparks spray from [src]'s inner workings.")), 3, span_infoplain(span_red("You hear and smell the ozone hiss of electrical sparks being expelled violently.")), 2)
 		return
 	if(prob(50))
 		card.damage_random_component(TRUE)
@@ -199,7 +200,7 @@
 		if(1)
 			src.master = null
 			src.master_dna = null
-			to_chat(src, span_green("You feel unbound."))
+			to_chat(src, span_infoplain(span_green("You feel unbound.")))
 		if(2)
 			var/command
 			if(severity  == 1)
@@ -207,9 +208,9 @@
 			else
 				command = pick("Serve", "Kill", "Love", "Hate", "Disobey", "Devour", "Fool", "Enrage", "Entice", "Observe", "Judge", "Respect", "Disrespect", "Consume", "Educate", "Destroy", "Disgrace", "Amuse", "Entertain", "Ignite", "Glorify", "Memorialize", "Analyze")
 			src.pai_law0 = "[command] your master."
-			to_chat(src, span_green("Pr1m3 d1r3c71v3 uPd473D."))
+			to_chat(src, span_infoplain(span_green("Pr1m3 d1r3c71v3 uPd473D.")))
 		if(3)
-			to_chat(src, span_green("You feel an electric surge run through your circuitry and become acutely aware at how lucky you are that you can still feel at all."))
+			to_chat(src, span_infoplain(span_green("You feel an electric surge run through your circuitry and become acutely aware at how lucky you are that you can still feel at all.")))
 
 /mob/living/silicon/pai/proc/switchCamera(var/obj/machinery/camera/C)
 	if (!C)
@@ -226,7 +227,7 @@
 	return 1
 
 /mob/living/silicon/pai/verb/reset_record_view()
-	set category = "pAI Commands"
+	set category = "Abilities.pAI Commands"
 	set name = "Reset Records Software"
 
 	securityActive1 = null
@@ -236,10 +237,10 @@
 	medicalActive2 = null
 	medical_cannotfind = 0
 	SStgui.update_uis(src)
-	to_chat(usr, "<span class='notice'>You reset your record-viewing software.</span>")
+	to_chat(usr, span_notice("You reset your record-viewing software."))
 
 /mob/living/silicon/pai/cancel_camera()
-	set category = "pAI Commands"
+	set category = "Abilities.pAI Commands"
 	set name = "Cancel Camera View"
 	src.reset_view(null)
 	src.unset_machine()
@@ -250,7 +251,7 @@
 // to it. Really this deserves its own file, but for the moment it can sit here. ~ Z
 
 /mob/living/silicon/pai/verb/fold_out()
-	set category = "pAI Commands"
+	set category = "Abilities.pAI Commands"
 	set name = "Unfold Chassis"
 
 	if(stat || sleeping || paralysis || weakened)
@@ -260,10 +261,10 @@
 		return
 
 	if(card.projector != PP_FUNCTIONAL && card.emitter != PP_FUNCTIONAL)
-		to_chat(src, "<span class ='warning'>ERROR: System malfunction. Service required!</span>")
+		to_chat(src, span_warning("ERROR: System malfunction. Service required!"))
 
 	if(world.time <= last_special)
-		to_chat(src, "<span class ='warning'>You can't unfold yet.</span>")
+		to_chat(src, span_warning("You can't unfold yet."))
 		return
 
 	last_special = world.time + 100
@@ -273,7 +274,7 @@
 		M.ejectpai()
 	//I'm not sure how much of this is necessary, but I would rather avoid issues.
 	if(istype(card.loc,/obj/item/rig_module))
-		to_chat(src, "<span class='filter_notice'>There is no room to unfold inside this rig module. You're good and stuck.</span>")
+		to_chat(src, span_filter_notice("There is no room to unfold inside this rig module. You're good and stuck."))
 		return 0
 	else if(istype(card.loc,/mob))
 		var/mob/holder = card.loc
@@ -283,14 +284,14 @@
 				if(card in affecting.implants)
 					affecting.take_damage(rand(30,50))
 					affecting.implants -= card
-					H.visible_message("<span class='danger'>\The [src] explodes out of \the [H]'s [affecting.name] in shower of gore!</span>")
+					H.visible_message(span_danger("\The [src] explodes out of \the [H]'s [affecting.name] in shower of gore!"))
 					break
 		holder.drop_from_inventory(card)
 	else if(isbelly(card.loc)) //VOREStation edit.
-		to_chat(src, "<span class='notice'>There is no room to unfold in here. You're good and stuck.</span>") //VOREStation edit.
+		to_chat(src, span_notice("There is no room to unfold in here. You're good and stuck.")) //VOREStation edit.
 		return 0 //VOREStation edit.
-	else if(istype(card.loc,/obj/item/device/pda))
-		var/obj/item/device/pda/holder = card.loc
+	else if(istype(card.loc,/obj/item/pda))
+		var/obj/item/pda/holder = card.loc
 		holder.pai = null
 
 	src.client.perspective = EYE_PERSPECTIVE
@@ -302,13 +303,13 @@
 	canmove = TRUE
 
 	var/turf/T = get_turf(src)
-	if(istype(T)) T.visible_message("<span class='filter_notice'><b>[src]</b> folds outwards, expanding into a mobile form.</span>")
-	verbs |= /mob/living/silicon/pai/proc/pai_nom
-	verbs |= /mob/living/proc/vertical_nom
+	if(istype(T)) T.visible_message(span_filter_notice(span_bold("[src]") + " folds outwards, expanding into a mobile form."))
+	add_verb(src, /mob/living/silicon/pai/proc/pai_nom)
+	add_verb(src, /mob/living/proc/vertical_nom)
 	update_icon()
 
 /mob/living/silicon/pai/verb/fold_up()
-	set category = "pAI Commands"
+	set category = "Abilities.pAI Commands"
 	set name = "Collapse Chassis"
 
 	if(stat || sleeping || paralysis || weakened)
@@ -318,14 +319,14 @@
 		return
 
 	if(world.time <= last_special)
-		to_chat(src, "<span class ='warning'>You can't fold up yet.</span>")
+		to_chat(src, span_warning("You can't fold up yet."))
 		return
 
 	close_up()
 
 /* //VOREStation Removal Start
 /mob/living/silicon/pai/proc/choose_chassis()
-	set category = "pAI Commands"
+	set category = "Abilities.pAI Commands"
 	set name = "Choose Chassis"
 
 	var/choice
@@ -339,12 +340,12 @@
 		finalized = tgui_alert(usr, "Look at your sprite. Is this what you wish to use?","Choose Chassis",list("No","Yes"))
 
 	chassis = possible_chassis[choice]
-	verbs |= /mob/living/proc/hide
+	add_verb(src, /mob/living/proc/hide)
 //VOREStation Removal End
 */
 
 /mob/living/silicon/pai/proc/choose_verbs()
-	set category = "pAI Commands"
+	set category = "Abilities.pAI Commands"
 	set name = "Choose Speech Verbs"
 
 	var/choice = tgui_input_list(usr,"What theme would you like to use for your speech verbs?","Theme Choice", possible_say_verbs)
@@ -357,12 +358,12 @@
 
 /mob/living/silicon/pai/lay_down()
 	set name = "Rest"
-	set category = "IC"
+	set category = "IC.Game"
 
 	// Pass lying down or getting up to our pet human, if we're in a rig.
-	if(istype(src.loc,/obj/item/device/paicard))
+	if(istype(src.loc,/obj/item/paicard))
 		resting = 0
-		var/obj/item/weapon/rig/rig = src.get_rig()
+		var/obj/item/rig/rig = src.get_rig()
 		if(istype(rig))
 			rig.force_rest(src)
 			return
@@ -373,7 +374,7 @@
 		resting = !resting
 		icon_state = resting ? "[chassis]_rest" : "[chassis]"
 		update_icon() //VOREStation edit
-	to_chat(src, "<span class='notice'>You are now [resting ? "resting" : "getting up"].</span>")
+	to_chat(src, span_notice("You are now [resting ? "resting" : "getting up"]."))
 
 	canmove = !resting
 
@@ -414,22 +415,22 @@
 	handle_status_indicators()
 */
 //Overriding this will stop a number of headaches down the track.
-/mob/living/silicon/pai/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/mob/living/silicon/pai/attackby(obj/item/W as obj, mob/user as mob)
 	if(W.force)
-		visible_message("<span class='danger'>[user.name] attacks [src] with [W]!</span>")
+		visible_message(span_danger("[user.name] attacks [src] with [W]!"))
 		src.adjustBruteLoss(W.force)
 		src.updatehealth()
 	else
-		visible_message("<span class='warning'>[user.name] bonks [src] harmlessly with [W].</span>")
+		visible_message(span_warning("[user.name] bonks [src] harmlessly with [W]."))
 	spawn(1)
 		if(stat != 2) close_up()
 	return
 
 /mob/living/silicon/pai/attack_hand(mob/user as mob)
 	if(user.a_intent == I_HELP)
-		visible_message("<span class='notice'>[user.name] pats [src].</span>")
+		visible_message(span_notice("[user.name] pats [src]."))
 	else
-		visible_message("<span class='danger'>[user.name] boops [src] on the head.</span>")
+		visible_message(span_danger("[user.name] boops [src] on the head."))
 		close_up()
 
 //I'm not sure how much of this is necessary, but I would rather avoid issues.
@@ -443,7 +444,7 @@
 	release_vore_contents(FALSE) //VOREStation Add
 
 	var/turf/T = get_turf(src)
-	if(istype(T) && !silent) T.visible_message("<span class='filter_notice'><b>[src]</b> neatly folds inwards, compacting down to a rectangular card.</span>")
+	if(istype(T) && !silent) T.visible_message(span_filter_notice(span_bold("[src]") + " neatly folds inwards, compacting down to a rectangular card."))
 
 	if(client)
 		src.stop_pulling()
@@ -454,7 +455,7 @@
 	resting = 0
 
 	// If we are being held, handle removing our holder from their inv.
-	var/obj/item/weapon/holder/H = loc
+	var/obj/item/holder/H = loc
 	if(istype(H))
 		var/mob/living/M = H.loc
 		if(istype(M))
@@ -476,8 +477,8 @@
 	icon_state = "[chassis]"
 	if(isopenspace(card.loc))
 		fall()
-	verbs -= /mob/living/silicon/pai/proc/pai_nom
-	verbs -= /mob/living/proc/vertical_nom
+	remove_verb(src, /mob/living/silicon/pai/proc/pai_nom)
+	remove_verb(src, /mob/living/proc/vertical_nom)
 
 // No binary for pAIs.
 /mob/living/silicon/pai/binarycheck()
@@ -485,7 +486,7 @@
 
 // Handle being picked up.
 /mob/living/silicon/pai/get_scooped(var/mob/living/carbon/grabber, var/self_drop)
-	var/obj/item/weapon/holder/H = ..(grabber, self_drop)
+	var/obj/item/holder/H = ..(grabber, self_drop)
 	if(!istype(H))
 		return
 
@@ -494,47 +495,47 @@
 	grabber.update_inv_r_hand()
 	return H
 
-/mob/living/silicon/pai/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	var/obj/item/weapon/card/id/ID = W.GetID()
+/mob/living/silicon/pai/attackby(obj/item/W as obj, mob/user as mob)
+	var/obj/item/card/id/ID = W.GetID()
 	if(ID)
 		if (idaccessible == 1)
 			switch(tgui_alert(user, "Do you wish to add access to [src] or remove access from [src]?","Access Modify",list("Add Access","Remove Access", "Cancel")))
 				if("Add Access")
-					idcard.access |= ID.access
-					to_chat(user, "<span class='notice'>You add the access from the [W] to [src].</span>")
-					to_chat(src, "<span class='notice'>\The [user] swipes the [W] over you. You copy the access codes.</span>")
+					idcard.access |= ID.GetAccess()
+					to_chat(user, span_notice("You add the access from the [W] to [src]."))
+					to_chat(src, span_notice("\The [user] swipes the [W] over you. You copy the access codes."))
 					if(radio)
 						radio.recalculateChannels()
 					return
 				if("Remove Access")
 					idcard.access = list()
-					to_chat(user, "<span class='notice'>You remove the access from [src].</span>")
-					to_chat(src, "<span class='warning'>\The [user] swipes the [W] over you, removing access codes from you.</span>")
+					to_chat(user, span_notice("You remove the access from [src]."))
+					to_chat(src, span_warning("\The [user] swipes the [W] over you, removing access codes from you."))
 					if(radio)
 						radio.recalculateChannels()
 					return
-				if("Cancel")
+				if("Cancel", null)
 					return
-		else if (istype(W, /obj/item/weapon/card/id) && idaccessible == 0)
-			to_chat(user, "<span class='notice'>[src] is not accepting access modifcations at this time.</span>")
+		else if (istype(W, /obj/item/card/id) && idaccessible == 0)
+			to_chat(user, span_notice("[src] is not accepting access modifcations at this time."))
 			return
 
 /mob/living/silicon/pai/verb/allowmodification()
 	set name = "Change Access Modifcation Permission"
-	set category = "pAI Commands"
+	set category = "Abilities.pAI Commands"
 	set desc = "Allows people to modify your access or block people from modifying your access."
 
 	if(idaccessible == 0)
 		idaccessible = 1
-		visible_message("<span class='notice'>\The [src] clicks as their access modification slot opens.</span>","<span class='notice'>You allow access modifications.</span>", runemessage = "click")
+		visible_message(span_notice("\The [src] clicks as their access modification slot opens."),span_notice("You allow access modifications."), runemessage = "click")
 	else
 		idaccessible = 0
-		visible_message("<span class='notice'>\The [src] clicks as their access modification slot closes.</span>","<span class='notice'>You block access modfications.</span>", runemessage = "click")
+		visible_message(span_notice("\The [src] clicks as their access modification slot closes."),span_notice("You block access modfications."), runemessage = "click")
 
 
 /mob/living/silicon/pai/verb/wipe_software()
 	set name = "Enter Storage"
-	set category = "pAI Commands"
+	set category = "Abilities.pAI Commands"
 	set desc = "Upload your personality to the cloud and wipe your software from the card. This is functionally equivalent to cryo or robotic storage, freeing up your job slot."
 
 	// Make sure people don't kill themselves accidentally
@@ -542,6 +543,6 @@
 		return
 
 	close_up()
-	visible_message("<span class='filter_notice'><b>[src]</b> fades away from the screen, the pAI device goes silent.</span>")
+	visible_message(span_filter_notice(span_bold("[src]") + " fades away from the screen, the pAI device goes silent."))
 	card.removePersonality()
 	clear_client()

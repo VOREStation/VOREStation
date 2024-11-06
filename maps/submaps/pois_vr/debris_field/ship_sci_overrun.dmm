@@ -38,7 +38,7 @@
 /area/submap/debrisfield/sci_overrun)
 "ai" = (
 /obj/structure/bed,
-/obj/item/weapon/bedsheet/blue,
+/obj/item/bedsheet/blue,
 /turf/simulated/floor/tiled/white/airless,
 /area/submap/debrisfield/sci_overrun)
 "aj" = (
@@ -66,7 +66,7 @@
 /turf/simulated/floor/tiled/white/airless,
 /area/submap/debrisfield/sci_overrun)
 "ap" = (
-/obj/item/weapon/reagent_containers/spray/plantbgone,
+/obj/item/reagent_containers/spray/plantbgone,
 /turf/simulated/floor/tiled/white/airless,
 /area/submap/debrisfield/sci_overrun)
 "aq" = (
@@ -82,7 +82,7 @@
 /turf/simulated/floor/tiled/white/airless,
 /area/submap/debrisfield/sci_overrun)
 "at" = (
-/obj/item/weapon/reagent_containers/spray/chemsprayer,
+/obj/item/reagent_containers/spray/chemsprayer,
 /turf/simulated/floor/tiled/white/airless,
 /area/submap/debrisfield/sci_overrun)
 "au" = (
@@ -98,7 +98,7 @@
 /area/submap/debrisfield/sci_overrun)
 "aw" = (
 /obj/structure/bed,
-/obj/item/weapon/bedsheet/green,
+/obj/item/bedsheet/green,
 /turf/simulated/floor/tiled/white/airless,
 /area/submap/debrisfield/sci_overrun)
 "ax" = (
@@ -126,16 +126,16 @@
 /area/submap/debrisfield/sci_overrun)
 "aB" = (
 /obj/structure/table/rack,
-/obj/item/weapon/shovel/spade,
-/obj/item/weapon/shovel/spade,
-/obj/item/weapon/material/minihoe,
-/obj/item/weapon/material/minihoe,
-/obj/item/weapon/material/knife/machete/hatchet,
-/obj/item/weapon/material/knife/machete/hatchet,
-/obj/item/weapon/reagent_containers/glass/bucket,
-/obj/item/weapon/reagent_containers/glass/bucket,
-/obj/item/device/analyzer/plant_analyzer,
-/obj/item/device/analyzer/plant_analyzer,
+/obj/item/shovel/spade,
+/obj/item/shovel/spade,
+/obj/item/material/minihoe,
+/obj/item/material/minihoe,
+/obj/item/material/knife/machete/hatchet,
+/obj/item/material/knife/machete/hatchet,
+/obj/item/reagent_containers/glass/bucket,
+/obj/item/reagent_containers/glass/bucket,
+/obj/item/analyzer/plant_analyzer,
+/obj/item/analyzer/plant_analyzer,
 /turf/simulated/floor/tiled/white/airless,
 /area/submap/debrisfield/sci_overrun)
 "aC" = (
@@ -185,7 +185,7 @@
 /area/submap/debrisfield/sci_overrun)
 "aK" = (
 /obj/structure/bed,
-/obj/item/weapon/bedsheet/rd,
+/obj/item/bedsheet/rd,
 /turf/simulated/floor/tiled/white/airless,
 /area/submap/debrisfield/sci_overrun)
 "aL" = (
@@ -205,7 +205,7 @@
 /turf/simulated/wall/thull,
 /area/submap/debrisfield/sci_overrun)
 "aN" = (
-/obj/item/weapon/gun/energy/temperature,
+/obj/item/gun/energy/temperature,
 /obj/structure/table/rack,
 /obj/structure/window/reinforced,
 /obj/structure/window/reinforced{
@@ -222,7 +222,7 @@
 /turf/simulated/floor/airless,
 /area/submap/debrisfield/sci_overrun)
 "aP" = (
-/obj/item/weapon/tool/prybar/red,
+/obj/item/tool/prybar/red,
 /turf/simulated/floor/airless,
 /area/submap/debrisfield/sci_overrun)
 "aQ" = (
@@ -261,7 +261,7 @@
 /turf/simulated/wall/thull,
 /area/submap/debrisfield/sci_overrun)
 "aX" = (
-/obj/item/weapon/gun/energy/decloner,
+/obj/item/gun/energy/decloner,
 /obj/structure/table/rack,
 /obj/structure/window/reinforced,
 /obj/structure/window/reinforced{
@@ -296,18 +296,18 @@
 /obj/item/stack/material/phoron{
 	amount = 10
 	},
-/obj/item/device/flashlight/pen,
+/obj/item/flashlight/pen,
 /turf/simulated/floor/tiled/white/airless,
 /area/submap/debrisfield/sci_overrun)
 "bd" = (
 /obj/structure/table/reinforced,
-/obj/item/weapon/paper_bin,
-/obj/item/weapon/pen/blue,
+/obj/item/paper_bin,
+/obj/item/pen/blue,
 /turf/simulated/floor/tiled/white/airless,
 /area/submap/debrisfield/sci_overrun)
 "be" = (
 /obj/structure/table/reinforced,
-/obj/item/weapon/folder/white,
+/obj/item/folder/white,
 /turf/simulated/floor/tiled/white/airless,
 /area/submap/debrisfield/sci_overrun)
 "bf" = (
@@ -319,8 +319,8 @@
 /turf/simulated/floor/tiled/white/airless,
 /area/submap/debrisfield/sci_overrun)
 "bh" = (
-/obj/item/device/slime_scanner,
-/obj/item/device/slime_scanner,
+/obj/item/slime_scanner,
+/obj/item/slime_scanner,
 /obj/structure/table/reinforced,
 /turf/simulated/floor/tiled/white/airless,
 /area/submap/debrisfield/sci_overrun)
@@ -332,7 +332,7 @@
 /obj/structure/window/reinforced{
 	dir = 8
 	},
-/obj/item/weapon/material/shard,
+/obj/item/material/shard,
 /obj/item/clothing/mask/breath,
 /turf/simulated/floor/tiled/white/airless,
 /area/submap/debrisfield/sci_overrun)
@@ -350,12 +350,12 @@
 /area/submap/debrisfield/sci_overrun)
 "bl" = (
 /obj/structure/table/reinforced,
-/obj/item/weapon/gun/energy/taser/xeno,
-/obj/item/weapon/melee/baton/slime/loaded,
+/obj/item/gun/energy/taser/xeno,
+/obj/item/melee/baton/slime/loaded,
 /turf/simulated/floor/tiled/white/airless,
 /area/submap/debrisfield/sci_overrun)
 "bm" = (
-/obj/item/weapon/airlock_electronics,
+/obj/item/airlock_electronics,
 /turf/simulated/floor/tiled/white/airless,
 /area/submap/debrisfield/sci_overrun)
 "bn" = (
@@ -363,7 +363,7 @@
 /turf/simulated/floor/tiled/white/airless,
 /area/submap/debrisfield/sci_overrun)
 "bo" = (
-/obj/item/weapon/material/shard,
+/obj/item/material/shard,
 /turf/simulated/floor/tiled/white/airless,
 /area/submap/debrisfield/sci_overrun)
 "bp" = (
@@ -377,14 +377,14 @@
 /area/submap/debrisfield/sci_overrun)
 "bq" = (
 /obj/structure/table/reinforced,
-/obj/item/weapon/reagent_containers/food/snacks/monkeycube,
-/obj/item/weapon/reagent_containers/food/snacks/monkeycube/farwacube,
-/obj/item/weapon/reagent_containers/food/snacks/monkeycube/neaeracube,
-/obj/item/weapon/reagent_containers/food/snacks/monkeycube/sarucube,
-/obj/item/weapon/reagent_containers/food/snacks/monkeycube/sobakacube,
-/obj/item/weapon/reagent_containers/food/snacks/monkeycube/sparracube,
-/obj/item/weapon/reagent_containers/food/snacks/monkeycube/stokcube,
-/obj/item/weapon/reagent_containers/food/snacks/monkeycube/wolpincube,
+/obj/item/reagent_containers/food/snacks/monkeycube,
+/obj/item/reagent_containers/food/snacks/monkeycube/farwacube,
+/obj/item/reagent_containers/food/snacks/monkeycube/neaeracube,
+/obj/item/reagent_containers/food/snacks/monkeycube/sarucube,
+/obj/item/reagent_containers/food/snacks/monkeycube/sobakacube,
+/obj/item/reagent_containers/food/snacks/monkeycube/sparracube,
+/obj/item/reagent_containers/food/snacks/monkeycube/stokcube,
+/obj/item/reagent_containers/food/snacks/monkeycube/wolpincube,
 /turf/simulated/floor/tiled/white/airless,
 /area/submap/debrisfield/sci_overrun)
 "br" = (

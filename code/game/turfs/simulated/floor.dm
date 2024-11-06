@@ -109,7 +109,7 @@
 /turf/simulated/floor/can_engrave()
 	return (!flooring || flooring.can_engrave)
 
-/turf/simulated/floor/rcd_values(mob/living/user, obj/item/weapon/rcd/the_rcd, passed_mode)
+/turf/simulated/floor/rcd_values(mob/living/user, obj/item/rcd/the_rcd, passed_mode)
 	switch(passed_mode)
 		if(RCD_FLOORWALL)
 			// A wall costs four sheets to build (two for the grider and two for finishing it).
@@ -147,10 +147,10 @@
 	return FALSE
 
 
-/turf/simulated/floor/rcd_act(mob/living/user, obj/item/weapon/rcd/the_rcd, passed_mode)
+/turf/simulated/floor/rcd_act(mob/living/user, obj/item/rcd/the_rcd, passed_mode)
 	switch(passed_mode)
 		if(RCD_FLOORWALL)
-			to_chat(user, span("notice", "You build a wall."))
+			to_chat(user, span_notice("You build a wall."))
 			ChangeTurf(/turf/simulated/wall)
 			var/turf/simulated/wall/T = get_turf(src) // Ref to the wall we just built.
 			// Apparently set_material(...) for walls requires refs to the material singletons and not strings.
@@ -162,18 +162,18 @@
 		if(RCD_AIRLOCK)
 			if(locate(/obj/machinery/door/airlock) in src)
 				return FALSE // No more airlock stacking.
-			to_chat(user, span("notice", "You build an airlock."))
+			to_chat(user, span_notice("You build an airlock."))
 			new the_rcd.airlock_type(src)
 			return TRUE
 		if(RCD_WINDOWGRILLE)
 			if(locate(/obj/structure/grille) in src)
 				return FALSE
-			to_chat(user, span("notice", "You construct the grille."))
+			to_chat(user, span_notice("You construct the grille."))
 			var/obj/structure/grille/G = new(src)
 			G.anchored = TRUE
 			return TRUE
 		if(RCD_DECONSTRUCT)
-			to_chat(user, span("notice", "You deconstruct \the [src]."))
+			to_chat(user, span_notice("You deconstruct \the [src]."))
 			ChangeTurf(get_base_turf_by_area(src), preserve_outdoors = TRUE)
 			return TRUE
 

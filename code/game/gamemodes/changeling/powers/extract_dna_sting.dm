@@ -24,20 +24,20 @@
 		return
 
 	if(!istype(T) || T.isSynthetic())
-		to_chat(src, "<span class='warning'>\The [T] is not compatible with our biology.</span>")
+		to_chat(src, span_warning("\The [T] is not compatible with our biology."))
 		return 0
 
 	if(T.species.flags & NO_SCAN)
-		to_chat(src, "<span class='warning'>We do not know how to parse this creature's DNA!</span>")
+		to_chat(src, span_warning("We do not know how to parse this creature's DNA!"))
 		return 0
 
 	if(HUSK in T.mutations)
-		to_chat(src, "<span class='warning'>This creature's DNA is ruined beyond useability!</span>")
+		to_chat(src, span_warning("This creature's DNA is ruined beyond useability!"))
 		return 0
 
 	add_attack_logs(src,T,"DNA extraction sting (changeling)")
 
-	var/saved_dna = T.dna.Clone() /// Prevent transforming bugginess. 
+	var/saved_dna = T.dna.Clone() /// Prevent transforming bugginess.
 	var/datum/absorbed_dna/newDNA = new(T.real_name, saved_dna, T.species.name, T.languages, T.identifying_gender, T.flavor_text, T.modifiers)
 	absorbDNA(newDNA)
 

@@ -1,7 +1,7 @@
 // This folder contains code that was originally ported from Apollo Station and then refactored/optimized/changed.
 
 // Tracks precooked food to stop deep fried baked grilled grilled grilled diona nymph cereal.
-/obj/item/weapon/reagent_containers/food/snacks
+/obj/item/reagent_containers/food/snacks
 	var/tmp/list/cooked = list()
 
 // Root type for cooking machines. See following files for specific implementations.
@@ -77,7 +77,7 @@
 			string += "-\a [CI.container.label(null, CI.combine_target)], [report_progress(CI)]</br>"
 		return string
 	else
-		to_chat(user, "<span class='notice>'It is empty.</span>")
+		to_chat(user, span_notice("It is empty."))
 
 /obj/machinery/appliance/proc/report_progress_tgui(datum/cooking_item/CI)
 	if(!CI || !CI.max_cookwork)
@@ -114,17 +114,17 @@
 	if (progress < 0.25)
 		return "It's barely started cooking."
 	if (progress < 0.75)
-		return "<span class='notice'>It's cooking away nicely.</span>"
+		return span_notice("It's cooking away nicely.")
 	if (progress < 1)
-		return "<span class='notice'><b>It's almost ready!</b></span>"
+		return span_boldnotice("It's almost ready!")
 
 	var/half_overcook = (CI.overcook_mult - 1)*0.5
 	if (progress < 1+half_overcook)
-		return "<span class='soghun'><b>It is done !</b></span>"
+		return span_soghun(span_bold("It is done!"))
 	if (progress < CI.overcook_mult)
-		return "<span class='warning'>It looks overcooked, get it out!</span>"
+		return span_warning("It looks overcooked, get it out!")
 	else
-		return "<span class='danger'>It is burning!</span>"
+		return span_danger("It is burning!")
 
 /obj/machinery/appliance/update_icon()
 	if (!stat && cooking_objs.len)
@@ -145,25 +145,25 @@
 		return
 
 	if (!user.IsAdvancedToolUser())
-		to_chat(user, "<span class='warning'>You lack the dexterity to do that!</span>")
+		to_chat(user, span_warning("You lack the dexterity to do that!"))
 		return
 
 	if (user.stat || user.restrained() || user.incapacitated())
 		return
 
 	if (!Adjacent(user) && !issilicon(user))
-		to_chat(user, "<span class='warning'>You can't reach [src] from here!</span>")
+		to_chat(user, span_warning("You can't reach [src] from here!"))
 		return
 
 	if (stat & POWEROFF)//Its turned off
 		stat &= ~POWEROFF
 		use_power = 1
-		user.visible_message("<span class='filter_notice'>[user] turns [src] on.</span>", "<span class='filter_notice'>You turn on [src].</span>")
+		user.visible_message(span_filter_notice("[user] turns [src] on."), span_filter_notice("You turn on [src]."))
 
 	else //Its on, turn it off
 		stat |= POWEROFF
 		use_power = 0
-		user.visible_message("<span class='filter_notice'>[user] turns [src] off.</span>", "<span class='filter_notice'>You turn off [src].</span>")
+		user.visible_message(span_filter_notice("[user] turns [src] off."), span_filter_notice("You turn off [src]."))
 		cooking = FALSE // Stop cooking here, too, just in case.
 
 	playsound(src, 'sound/machines/click.ogg', 40, 1)
@@ -181,14 +181,14 @@
 		return
 
 	if (!usr.IsAdvancedToolUser())
-		to_chat(usr, "<span class='filter_notice'>You lack the dexterity to do that!</span>")
+		to_chat(usr, span_filter_notice("You lack the dexterity to do that!"))
 		return
 
 	if (usr.stat || usr.restrained() || usr.incapacitated())
 		return
 
 	if (!Adjacent(usr) && !issilicon(usr))
-		to_chat(usr, "<span class='filter_notice'>You can't adjust the [src] from this distance, get closer!</span>")
+		to_chat(usr, span_filter_notice("You can't adjust the [src] from this distance, get closer!"))
 		return
 
 	if(output_options.len)
@@ -197,10 +197,10 @@
 			return
 		if(choice == "Default")
 			selected_option = null
-			to_chat(usr, "<span class='notice'>You decide not to make anything specific with \the [src].</span>")
+			to_chat(usr, span_notice("You decide not to make anything specific with \the [src]."))
 		else
 			selected_option = choice
-			to_chat(usr, "<span class='notice'>You prepare \the [src] to make \a [selected_option] with the next thing you put in. Try putting several ingredients in a container!</span>")
+			to_chat(usr, span_notice("You prepare \the [src] to make \a [selected_option] with the next thing you put in. Try putting several ingredients in a container!"))
 
 //Handles all validity checking and error messages for inserting things
 /obj/machinery/appliance/proc/can_insert(var/obj/item/I, var/mob/user)
@@ -210,22 +210,22 @@
 		return 0
 
 	// We are trying to cook a grabbed mob.
-	var/obj/item/weapon/grab/G = I
+	var/obj/item/grab/G = I
 	if(istype(G))
 
 		if(!can_cook_mobs)
-			to_chat(user, "<span class='warning'>That's not going to fit.</span>")
+			to_chat(user, span_warning("That's not going to fit."))
 			return 0
 
 		if(!isliving(G.affecting))
-			to_chat(user, "<span class='warning'>You can't cook that.</span>")
+			to_chat(user, span_warning("You can't cook that."))
 			return 0
 
 		return 2
 
 
 	if (!has_space(I))
-		to_chat(user, "<span class='warning'>There's no room in [src] for that!</span>")
+		to_chat(user, span_warning("There's no room in [src] for that!"))
 		return 0
 
 
@@ -233,20 +233,20 @@
 		return 1
 
 	// We're trying to cook something else. Check if it's valid.
-	var/obj/item/weapon/reagent_containers/food/snacks/check = I
+	var/obj/item/reagent_containers/food/snacks/check = I
 	if(istype(check) && islist(check.cooked) && (cook_type in check.cooked))
-		to_chat(user, "<span class='warning'>\The [check] has already been [cook_type].</span>")
+		to_chat(user, span_warning("\The [check] has already been [cook_type]."))
 		return 0
-	else if(istype(check, /obj/item/weapon/reagent_containers/glass))
-		to_chat(user, "<span class='warning'>That would probably break [src].</span>")
+	else if(istype(check, /obj/item/reagent_containers/glass))
+		to_chat(user, span_warning("That would probably break [src]."))
 		return 0
-	else if(istype(check, /obj/item/weapon/disk/nuclear))
-		to_chat(user, "<span class='warning'>You can't cook that.</span>")
+	else if(istype(check, /obj/item/disk/nuclear))
+		to_chat(user, span_warning("You can't cook that."))
 		return 0
-	else if(I.has_tool_quality(TOOL_CROWBAR) || I.has_tool_quality(TOOL_SCREWDRIVER) || istype(I, /obj/item/weapon/storage/part_replacer)) // You can't cook tools, dummy.
+	else if(I.has_tool_quality(TOOL_CROWBAR) || I.has_tool_quality(TOOL_SCREWDRIVER) || istype(I, /obj/item/storage/part_replacer)) // You can't cook tools, dummy.
 		return 0
-	else if(!istype(check) &&  !istype(check, /obj/item/weapon/holder))
-		to_chat(user, "<span class='warning'>That's not edible.</span>")
+	else if(!istype(check) &&  !istype(check, /obj/item/holder))
+		to_chat(user, span_warning("That's not edible."))
 		return 0
 
 	return 1
@@ -261,13 +261,13 @@
 
 /obj/machinery/appliance/attackby(var/obj/item/I, var/mob/user)
 	if(!cook_type || (stat & (BROKEN)))
-		to_chat(user, "<span class='warning'>\The [src] is not working.</span>")
+		to_chat(user, span_warning("\The [src] is not working."))
 		return FALSE
 
 	var/obj/item/ToCook = I
 
-	if(istype(I, /obj/item/weapon/gripper))
-		var/obj/item/weapon/gripper/GR = I
+	if(istype(I, /obj/item/gripper))
+		var/obj/item/gripper/GR = I
 		var/obj/item/Wrap = GR.wrapped
 		if(Wrap)
 			Wrap.loc = get_turf(src)
@@ -297,7 +297,7 @@
 			return
 
 		if(result == 2)
-			var/obj/item/weapon/grab/G = I
+			var/obj/item/grab/G = I
 			if (G && istype(G) && G.affecting)
 				cook_mob(G.affecting, user)
 				return
@@ -312,12 +312,12 @@
 		return
 
 	var/datum/cooking_item/CI = has_space(I)
-	if (istype(I, /obj/item/weapon/reagent_containers/cooking_container) && CI == 1)
-		var/obj/item/weapon/reagent_containers/cooking_container/CC = I
+	if (istype(I, /obj/item/reagent_containers/cooking_container) && CI == 1)
+		var/obj/item/reagent_containers/cooking_container/CC = I
 		CI = new /datum/cooking_item/(CC)
 		I.forceMove(src)
 		cooking_objs.Add(CI)
-		user.visible_message("<b>\The [user]</b> puts \the [I] into \the [src].")
+		user.visible_message(span_infoplain(span_bold("\The [user]") + " puts \the [I] into \the [src]."))
 		if (CC.check_contents() == 0)//If we're just putting an empty container in, then dont start any processing.
 			return TRUE
 	else
@@ -331,7 +331,7 @@
 		CI.combine_target = selected_option
 
 	// We can actually start cooking now.
-	user.visible_message("<b>\The [user]</b> puts \the [I] into \the [src].")
+	user.visible_message(span_infoplain(span_bold("\The [user]") + " puts \the [I] into \the [src]."))
 
 	get_cooking_work(CI)
 	cooking = TRUE
@@ -366,7 +366,7 @@
 
 //Just a helper to save code duplication in the above
 /obj/machinery/appliance/proc/cookwork_by_item(var/obj/item/I, var/datum/cooking_item/CI)
-	var/obj/item/weapon/reagent_containers/food/snacks/S = I
+	var/obj/item/reagent_containers/food/snacks/S = I
 	var/work = 0
 	if (istype(S))
 		if (S.reagents)
@@ -382,8 +382,8 @@
 					CI.max_oil += R.volume * 0.15
 
 
-	else if(istype(I, /obj/item/weapon/holder))
-		var/obj/item/weapon/holder/H = I
+	else if(istype(I, /obj/item/holder))
+		var/obj/item/holder/H = I
 		if (H.held_mob)
 			work += ((H.held_mob.mob_size * H.held_mob.size_multiplier) * (H.held_mob.mob_size * H.held_mob.size_multiplier) * 2)+2
 
@@ -411,7 +411,7 @@
 			eject(CI, null)
 
 	// Gotta hurt.
-	for(var/obj/item/weapon/holder/H in CI.container.contents)
+	for(var/obj/item/holder/H in CI.container.contents)
 		var/mob/living/M = H.held_mob
 		if(M)
 			M.apply_damage(rand(1,3) * (1/M.size_multiplier), mobdamagetype, pick(BP_ALL))
@@ -432,7 +432,7 @@
 
 /obj/machinery/appliance/proc/finish_cooking(var/datum/cooking_item/CI)
 
-	src.visible_message("<b>\The [src]</b> pings!")
+	src.visible_message(span_infoplain(span_bold("\The [src]") + " pings!"))
 	if(cooked_sound)
 		playsound(get_turf(src), cooked_sound, 50, 1)
 	//Check recipes first, a valid recipe overrides other options
@@ -462,7 +462,7 @@
 			results += TR
 
 
-		for(var/obj/item/weapon/reagent_containers/food/snacks/R as anything in results)
+		for(var/obj/item/reagent_containers/food/snacks/R as anything in results)
 			R.forceMove(C) //Move everything from the buffer back to the container
 			R.cooked |= cook_type
 
@@ -480,7 +480,7 @@
 			modify_cook(i, CI)
 
 	//Final step. Cook function just cooks batter for now.
-	for (var/obj/item/weapon/reagent_containers/food/snacks/S in CI.container)
+	for (var/obj/item/reagent_containers/food/snacks/S in CI.container)
 		S.cook()
 
 
@@ -499,10 +499,10 @@
 		reagents_determine_color = TRUE
 
 	for (var/obj/item/I in CI.container)
-		var/obj/item/weapon/reagent_containers/food/snacks/S
-		if (istype(I, /obj/item/weapon/holder))
+		var/obj/item/reagent_containers/food/snacks/S
+		if (istype(I, /obj/item/holder))
 			S = create_mob_food(I, CI)
-		else if (istype(I, /obj/item/weapon/reagent_containers/food/snacks))
+		else if (istype(I, /obj/item/reagent_containers/food/snacks))
 			S = I
 
 		if (!S)
@@ -531,7 +531,7 @@
 
 	CI.container.reagents.trans_to_holder(buffer, CI.container.reagents.total_volume)
 
-	var/obj/item/weapon/reagent_containers/food/snacks/result = new cook_path(CI.container)
+	var/obj/item/reagent_containers/food/snacks/result = new cook_path(CI.container)
 	buffer.trans_to_holder(result.reagents, buffer.total_volume) //trans_to doesn't handle food items well, so
 																 //just call trans_to_holder instead
 
@@ -568,10 +568,10 @@
 
 //Helper proc for standard modification cooking
 /obj/machinery/appliance/proc/modify_cook(var/obj/item/input, var/datum/cooking_item/CI)
-	var/obj/item/weapon/reagent_containers/food/snacks/result
-	if (istype(input, /obj/item/weapon/holder))
+	var/obj/item/reagent_containers/food/snacks/result
+	if (istype(input, /obj/item/holder))
 		result = create_mob_food(input, CI)
-	else if (istype(input, /obj/item/weapon/reagent_containers/food/snacks))
+	else if (istype(input, /obj/item/reagent_containers/food/snacks))
 		result = input
 	else
 		//Nonviable item
@@ -592,10 +592,10 @@
 	// You dun goofed.
 	CI.burned = 1
 	CI.container.clear()
-	new /obj/item/weapon/reagent_containers/food/snacks/badrecipe(CI.container)
+	new /obj/item/reagent_containers/food/snacks/badrecipe(CI.container)
 
 	// Produce nasty smoke.
-	visible_message("<span class='danger'>\The [src] vomits a gout of rancid smoke!</span>")
+	visible_message(span_danger("\The [src] vomits a gout of rancid smoke!"))
 	var/datum/effect/effect/system/smoke_spread/bad/burntfood/smoke = new /datum/effect/effect/system/smoke_spread/bad/burntfood
 	playsound(src, 'sound/effects/smoke.ogg', 20, 1)
 	smoke.attach(src)
@@ -652,8 +652,8 @@
 	if (user)
 		if(!user.put_in_hands(thing))
 			thing.forceMove(get_turf(src))
-	else if(istype(thing, /obj/item/weapon/reagent_containers/cooking_container))
-		var/obj/item/weapon/reagent_containers/cooking_container/cc = thing
+	else if(istype(thing, /obj/item/reagent_containers/cooking_container))
+		var/obj/item/reagent_containers/cooking_container/cc = thing
 		cc.do_empty()
 		delete = 0
 	else
@@ -666,21 +666,21 @@
 		CI.reset()//reset instead of deleting if the container is left inside
 
 	if(user)
-		user.visible_message("<span class='notice'>\The [user] remove \the [thing] from \the [src].</span>")
+		user.visible_message(span_notice("\The [user] remove \the [thing] from \the [src]."))
 	else
-		src.visible_message("<b>\The [src]</b> pings as it automatically ejects its contents!")
+		src.visible_message(span_infoplain(span_bold("\The [src]") + " pings as it automatically ejects its contents!"))
 		if(cooked_sound)
 			playsound(get_turf(src), cooked_sound, 50, 1)
 
 /obj/machinery/appliance/proc/cook_mob(var/mob/living/victim, var/mob/user)
 	return
 
-/obj/machinery/appliance/proc/change_product_strings(var/obj/item/weapon/reagent_containers/food/snacks/product, var/datum/cooking_item/CI)
+/obj/machinery/appliance/proc/change_product_strings(var/obj/item/reagent_containers/food/snacks/product, var/datum/cooking_item/CI)
 	product.name = "[cook_type] [product.name]"
 	product.desc = "[product.desc]\nIt has been [cook_type]."
 
 
-/obj/machinery/appliance/proc/change_product_appearance(var/obj/item/weapon/reagent_containers/food/snacks/product, var/datum/cooking_item/CI)
+/obj/machinery/appliance/proc/change_product_appearance(var/obj/item/reagent_containers/food/snacks/product, var/datum/cooking_item/CI)
 	if (!product.coating) //Coatings change colour through a new sprite
 		product.color = food_color
 	product.filling_color = food_color
@@ -712,7 +712,7 @@
 		src.composition_reagent_quantity = size_reagent
 
 //This function creates a food item which represents a dead mob
-/obj/machinery/appliance/proc/create_mob_food(var/obj/item/weapon/holder/H, var/datum/cooking_item/CI)
+/obj/machinery/appliance/proc/create_mob_food(var/obj/item/holder/H, var/datum/cooking_item/CI)
 	if (!istype(H) || !H.held_mob)
 		qdel(H)
 		return null
@@ -722,7 +722,7 @@
 
 	victim.calculate_composition()
 
-	var/obj/item/weapon/reagent_containers/food/snacks/variable/mob/result = new /obj/item/weapon/reagent_containers/food/snacks/variable/mob(CI.container)
+	var/obj/item/reagent_containers/food/snacks/variable/mob/result = new /obj/item/reagent_containers/food/snacks/variable/mob(CI.container)
 	result.w_class = victim.mob_size
 	result.reagents.add_reagent(victim.composition_reagent, victim.composition_reagent_quantity)
 
@@ -754,7 +754,7 @@
 	var/cookwork
 	var/overcook_mult = 3 // How long it takes to overcook. This is max_cookwork x overcook mult. If you're changing this, mind that at 3x, a max_cookwork of 30 becomes 90 ticks for the purpose of burning, and a max_cookwork of 4 only has 12 before burning!
 	var/result_type = 0
-	var/obj/item/weapon/reagent_containers/cooking_container/container = null
+	var/obj/item/reagent_containers/cooking_container/container = null
 	var/combine_target = null
 
 	//Result type is one of the following:
@@ -788,11 +788,11 @@
 	var/scan_rating = 0
 	var/cap_rating = 0
 
-	for(var/obj/item/weapon/stock_parts/P in src.component_parts)
-		if(istype(P, /obj/item/weapon/stock_parts/scanning_module))
+	for(var/obj/item/stock_parts/P in src.component_parts)
+		if(istype(P, /obj/item/stock_parts/scanning_module))
 			scan_rating += P.rating - 1 // Default parts shouldn't mess with stats
 			// to_world("RefreshParts returned scan rating of [scan_rating] during this step.") // Debug lines, uncomment if you need to test.
-		else if(istype(P, /obj/item/weapon/stock_parts/capacitor))
+		else if(istype(P, /obj/item/stock_parts/capacitor))
 			cap_rating += P.rating - 1 // Default parts shouldn't mess with stats
 			// to_world("RefreshParts returned cap rating of [cap_rating] during this step.") // Debug lines, uncomment if you need to test.
 
@@ -812,4 +812,4 @@
 		return
 
 	food_safety = !food_safety
-	to_chat(usr, "<span class = 'notice'>You flip \the [src]'s safe mode switch. Safe mode is now [food_safety ? "on" : "off"].</span>")
+	to_chat(usr, span_notice("You flip \the [src]'s safe mode switch. Safe mode is now [food_safety ? "on" : "off"]."))

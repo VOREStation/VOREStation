@@ -1,5 +1,7 @@
 // Areas.dm
 
+GLOBAL_LIST_EMPTY(areas_by_type)
+
 /area
 	var/fire = null
 	var/atmos = 1
@@ -37,7 +39,7 @@
 	var/static_environ = 0
 
 	var/music = null
-	var/has_gravity = 1
+	var/has_gravity = 1 // Don't check this var directly; use get_gravity() instead
 	var/secret_name = FALSE // This tells certain things that display areas' names that they shouldn't display this area's name.
 	var/obj/machinery/power/apc/apc = null
 	var/no_air = null
@@ -54,6 +56,11 @@
 	var/forbid_singulo = FALSE // If true singulo will not move in.
 	var/no_spoilers = FALSE // If true, makes it much more difficult to see what is inside an area with things like mesons.
 	var/soundproofed = FALSE // If true, blocks sounds from other areas and prevents hearers on other areas from hearing the sounds within.
+
+/area/New()
+	// Used by the maploader, this must be done in New, not init
+	GLOB.areas_by_type[type] = src
+	return ..()
 
 /area/Initialize()
 	. = ..()
@@ -382,7 +389,7 @@ var/list/mob/living/forced_ambiance_list = new
 	if(!L.lastarea)
 		L.lastarea = src
 	var/area/oldarea = L.lastarea
-	if((oldarea.has_gravity == 0) && (has_gravity == 1) && (L.m_intent == "run")) // Being ready when you change areas gives you a chance to avoid falling all together.
+	if((oldarea.get_gravity() == 0) && (get_gravity() == 1) && (L.m_intent == "run")) // Being ready when you change areas gives you a chance to avoid falling all together.
 		thunk(L)
 		L.update_floating( L.Check_Dense_Object() )
 
@@ -394,7 +401,7 @@ var/list/mob/living/forced_ambiance_list = new
 
 /area/proc/play_ambience(var/mob/living/L, initial = TRUE)
 	// Ambience goes down here -- make sure to list each area seperately for ease of adding things in later, thanks! Note: areas adjacent to each other should have the same sounds to prevent cutoff when possible.- LastyScratch
-	if(!(L && L.is_preference_enabled(/datum/client_preference/play_ambiance)))
+	if(!L?.read_preference(/datum/preference/toggle/play_ambience))
 		return
 
 	var/volume_mod = L.get_preference_volume_channel(VOLUME_CHANNEL_AMBIENCE)
@@ -427,10 +434,10 @@ var/list/mob/living/forced_ambiance_list = new
 	src.has_gravity = gravitystate
 
 	for(var/mob/M in src)
-		if(has_gravity)
+		if(get_gravity())
 			thunk(M)
 		M.update_floating( M.Check_Dense_Object() )
-		M.update_gravity(has_gravity)
+		M.update_gravity(get_gravity())
 
 /area/proc/thunk(mob)
 	if(istype(get_turf(mob), /turf/space)) // Can't fall onto nothing.
@@ -453,7 +460,7 @@ var/list/mob/living/forced_ambiance_list = new
 		else
 			H.AdjustStunned(3)
 			H.AdjustWeakened(3)
-		to_chat(mob, "<span class='notice'>The sudden appearance of gravity makes you fall to the floor!</span>")
+		to_chat(mob, span_notice("The sudden appearance of gravity makes you fall to the floor!"))
 		playsound(mob, "bodyfall", 50, 1)
 
 /area/proc/prison_break(break_lights = TRUE, open_doors = TRUE, open_blast_doors = TRUE)
@@ -471,17 +478,17 @@ var/list/mob/living/forced_ambiance_list = new
 			for(var/obj/machinery/door/blast/temp_blast in src)
 				temp_blast.open()
 
-/area/has_gravity()
+/area/get_gravity()
 	return has_gravity
 
-/area/space/has_gravity()
+/area/space/get_gravity()
 	return 0
 
-/proc/has_gravity(atom/AT, turf/T)
+/proc/get_gravity(atom/AT, turf/T)
 	if(!T)
 		T = get_turf(AT)
 	var/area/A = get_area(T)
-	if(A && A.has_gravity())
+	if(A && A.get_gravity())
 		return 1
 	return 0
 

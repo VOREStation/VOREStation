@@ -4,10 +4,10 @@
 	that armor designed to protect from blunt force will mitigate this function as well."
 	spell_power_desc = "Increases damage dealt."
 	cost = 50
-	obj_path = /obj/item/weapon/spell/projectile/force_missile
+	obj_path = /obj/item/spell/projectile/force_missile
 	category = OFFENSIVE_SPELLS
 
-/obj/item/weapon/spell/projectile/force_missile
+/obj/item/spell/projectile/force_missile
 	name = "force missile"
 	icon_state = "force_missile"
 	desc = "Make it rain!"

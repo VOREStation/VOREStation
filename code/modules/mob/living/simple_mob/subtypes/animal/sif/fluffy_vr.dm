@@ -30,7 +30,7 @@
 	maxbodytemp = 323		//Above 50 Degrees Celcius
 
 	meat_amount = 1
-	meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat
+	meat_type = /obj/item/reagent_containers/food/snacks/meat
 
 	say_list_type = /datum/say_list/fluffy_vr
 	ai_holder_type = /datum/ai_holder/simple_mob/passive

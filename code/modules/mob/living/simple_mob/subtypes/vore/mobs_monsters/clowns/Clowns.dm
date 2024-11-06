@@ -1,10 +1,10 @@
 /mob/living/simple_mob/clowns/
 	tt_desc = "E Homo sapiens corydon" //this is a clown
-	faction = "clown"
+	faction = FACTION_CLOWN
 	movement_sound = 'sound/effects/clownstep2.ogg'
 	attack_sound = 'sound/effects/Whipcrack.ogg'
 
-	faction = "clown"
+	faction = FACTION_CLOWN
 
 	maxHealth = 100
 	health = 100
@@ -18,7 +18,7 @@
 
 	ai_holder_type = /datum/ai_holder/simple_mob/melee/clowns
 
-	loot_list = list(/obj/item/weapon/bikehorn = 100)
+	loot_list = list(/obj/item/bikehorn = 100)
 
 	min_oxy = 0
 	max_oxy = 0

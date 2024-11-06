@@ -2,15 +2,15 @@
 	name = "Skills"
 	sort_order = 1
 
-/datum/category_item/player_setup_item/skills/load_character(var/savefile/S)
-	S["skills"]					>> pref.skills
-	S["used_skillpoints"]		>> pref.used_skillpoints
-	S["skill_specialization"]	>> pref.skill_specialization
+/datum/category_item/player_setup_item/skills/load_character(list/save_data)
+	pref.skills					= check_list_copy(save_data["skills"])
+	pref.used_skillpoints		= save_data["used_skillpoints"]
+	pref.skill_specialization	= save_data["skill_specialization"]
 
-/datum/category_item/player_setup_item/skills/save_character(var/savefile/S)
-	S["skills"]					<< pref.skills
-	S["used_skillpoints"]		<< pref.used_skillpoints
-	S["skill_specialization"]	<< pref.skill_specialization
+/datum/category_item/player_setup_item/skills/save_character(list/save_data)
+	save_data["skills"]					= check_list_copy(pref.skills)
+	save_data["used_skillpoints"]		= pref.used_skillpoints
+	save_data["skill_specialization"]	= pref.skill_specialization
 
 /datum/category_item/player_setup_item/skills/sanitize_character()
 	if(SKILLS == null)				setup_skills()
@@ -25,7 +25,7 @@
 
 /datum/category_item/player_setup_item/skills/content()
 	. = list()
-	. += "<b>Select your Skills</b><br>"
+	. += span_bold("Select your Skills") + "<br>"
 	. += "Current skill level: <b>[pref.GetSkillClass(pref.used_skillpoints)]</b> ([pref.used_skillpoints])<br>"
 	. += "<a href='?src=\ref[src];preconfigured=1'>Use preconfigured skillset</a><br>"
 	. += "<table>"
@@ -50,13 +50,13 @@
 
 /datum/category_item/player_setup_item/proc/skill_to_button(var/skill, var/level_name, var/current_level, var/selection_level)
 	if(current_level == selection_level)
-		return "<th><span class='linkOn'>[level_name]</span></th>"
+		return "<th>" + span_linkOn("[level_name]") + "</th>"
 	return "<th><a href='?src=\ref[src];setskill=\ref[skill];newvalue=[selection_level]'>[level_name]</a></th>"
 
 /datum/category_item/player_setup_item/skills/OnTopic(href, href_list, user)
 	if(href_list["skillinfo"])
 		var/datum/skill/S = locate(href_list["skillinfo"])
-		var/HTML = "<b>[S.name]</b><br>[S.desc]"
+		var/HTML = span_bold("[S.name]") + "<br>[S.desc]"
 		user << browse(HTML, "window=\ref[user]skillinfo")
 		return TOPIC_HANDLED
 

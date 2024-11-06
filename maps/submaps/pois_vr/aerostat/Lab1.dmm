@@ -58,7 +58,7 @@
 /area/submap/virgo2/Lab1)
 "k" = (
 /obj/structure/table/standard,
-/obj/item/weapon/storage/toolbox,
+/obj/item/storage/toolbox,
 /obj/random/tool,
 /turf/simulated/floor/tiled/steel_dirty,
 /area/submap/virgo2/Lab1)
@@ -98,7 +98,7 @@
 "q" = (
 /obj/structure/table/standard,
 /obj/random/toolbox,
-/obj/item/weapon/cell/super,
+/obj/item/cell/super,
 /turf/simulated/floor/tiled/steel_dirty,
 /area/submap/virgo2/Lab1)
 "r" = (
@@ -113,12 +113,12 @@
 /area/submap/virgo2/Lab1)
 "t" = (
 /obj/structure/bed,
-/obj/item/weapon/bedsheet,
+/obj/item/bedsheet,
 /turf/simulated/floor/tiled/steel_dirty,
 /area/submap/virgo2/Lab1)
 "u" = (
 /obj/machinery/power/apc{
-	cell_type = /obj/item/weapon/cell/hyper;
+	cell_type = /obj/item/cell/hyper;
 	dir = 8;
 	name = "Unknown APC";
 	operating = 0;
@@ -145,14 +145,14 @@
 /area/submap/virgo2/Lab1)
 "x" = (
 /obj/structure/table/standard,
-/obj/item/weapon/paper{
+/obj/item/paper{
 	desc = "Gladstone for the last fucking time, We have crowbars for a REASON. Stop breaking in through the goddamn windows! We big red shiny doors for god's sakes!"
 	},
 /turf/simulated/floor/tiled/steel_dirty,
 /area/submap/virgo2/Lab1)
 "y" = (
 /obj/structure/table/standard,
-/obj/item/device/flashlight/lamp,
+/obj/item/flashlight/lamp,
 /turf/simulated/floor/tiled/steel_dirty,
 /area/submap/virgo2/Lab1)
 "z" = (
@@ -171,7 +171,7 @@
 /area/submap/virgo2/Lab1)
 "C" = (
 /obj/structure/table/standard,
-/obj/item/weapon/storage/toolbox/mechanical,
+/obj/item/storage/toolbox/mechanical,
 /turf/simulated/floor/tiled/steel_dirty,
 /area/submap/virgo2/Lab1)
 "D" = (
@@ -182,7 +182,7 @@
 /area/submap/virgo2/Lab1)
 "E" = (
 /obj/structure/table/standard,
-/obj/item/device/multitool,
+/obj/item/multitool,
 /obj/item/clothing/glasses/welding,
 /turf/simulated/floor/tiled/steel_dirty,
 /area/submap/virgo2/Lab1)
@@ -207,7 +207,7 @@
 /turf/simulated/floor/tiled/steel_dirty,
 /area/submap/virgo2/Lab1)
 "I" = (
-/obj/item/weapon/cell/super,
+/obj/item/cell/super,
 /turf/simulated/floor/tiled/steel_dirty,
 /area/submap/virgo2/Lab1)
 "J" = (
@@ -230,7 +230,7 @@
 /turf/simulated/floor/tiled/steel_dirty,
 /area/submap/virgo2/Lab1)
 "M" = (
-/obj/item/weapon/storage/bag/circuits,
+/obj/item/storage/bag/circuits,
 /obj/structure/table/standard,
 /turf/simulated/floor/tiled/steel_dirty,
 /area/submap/virgo2/Lab1)

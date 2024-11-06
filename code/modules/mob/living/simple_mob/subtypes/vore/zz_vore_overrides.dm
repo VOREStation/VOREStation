@@ -112,6 +112,13 @@
 	icon_gib = "bear-gib"
 	vore_icons = SA_ICON_LIVING
 
+/mob/living/simple_mob/animal/space/bear/brown/beastmode
+	movement_cooldown = 2
+
+	melee_damage_lower = 5
+	melee_damage_upper = 15
+	attack_armor_pen = 0
+
 /mob/living/simple_mob/animal/space/carp
 	icon = 'icons/mob/vore.dmi'
 	vore_active = 1
@@ -158,7 +165,7 @@
 /* //VOREStation AI Temporary removal
 /mob/living/simple_mob/animal/passive/cat/PunchTarget()
 	if(istype(target_mob,/mob/living/simple_mob/animal/passive/mouse))
-		visible_message("<span class='warning'>\The [src] pounces on \the [target_mob]!]</span>")
+		visible_message(span_warning("\The [src] pounces on \the [target_mob]!]"))
 		target_mob.Stun(5)
 		return EatTarget()
 	else ..()
@@ -231,7 +238,7 @@
 // Override stuff for holodeck carp to make them not digest when set to safe!
 /mob/living/simple_mob/animal/space/carp/holographic/init_vore()
 	. = ..()
-	var/safe = (faction == "neutral")
+	var/safe = (faction == FACTION_NEUTRAL)
 	for(var/obj/belly/B as anything in vore_organs)
 		B.digest_mode = safe ? DM_HOLD : vore_default_mode
 
@@ -241,4 +248,4 @@
 		B.digest_mode = safe ? DM_HOLD : vore_default_mode
 
 /mob/living/simple_mob/animal/passive/mouse
-	faction = "mouse" //Giving mice a faction so certain mobs can get along with them.
+	faction = FACTION_MOUSE //Giving mice a faction so certain mobs can get along with them.

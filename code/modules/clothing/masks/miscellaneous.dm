@@ -320,8 +320,7 @@
 	w_class = ITEMSIZE_SMALL
 	body_parts_covered = FACE
 	icon_state = "papermask"
-	action_button_name = "Redraw Design"
-	action_button_is_hands_free = TRUE
+	actions_types = list(/datum/action/item_action/hands_free/redraw_design)
 	var/list/papermask_designs = list()
 
 /obj/item/clothing/mask/paper/Initialize(mapload)
@@ -374,8 +373,8 @@
 	if(src && choice && !user.incapacitated() && in_range(user,src))
 		icon_state = options[choice]
 		user.update_inv_wear_mask()
-		user.update_action_buttons()
-		to_chat(user, "<span class='notice'>Your paper mask now is now [choice].</span>")
+		user.update_mob_action_buttons()
+		to_chat(user, span_notice("Your paper mask now is now [choice]."))
 		return 1
 
 /obj/item/clothing/mask/emotions
@@ -384,8 +383,7 @@
 	w_class = ITEMSIZE_SMALL
 	body_parts_covered = FACE
 	icon_state = "joy"
-	action_button_name = "Redraw Design"
-	action_button_is_hands_free = TRUE
+	actions_types = list(/datum/action/item_action/hands_free/redraw_design)
 	var/static/list/joymask_designs = list()
 
 
@@ -410,8 +408,8 @@
 	if(src && choice && !user.incapacitated() && in_range(user,src))
 		icon_state = options[choice]
 		user.update_inv_wear_mask()
-		user.update_action_buttons()
-		to_chat(user, "<span class='notice'>Your [src] now displays a [choice] emotion.</span>")
+		user.update_mob_action_buttons()
+		to_chat(user, span_notice("Your [src] now displays a [choice] emotion."))
 		return 1
 
 /obj/item/clothing/mask/mouthwheat

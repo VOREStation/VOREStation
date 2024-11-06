@@ -31,7 +31,7 @@
 	icon = 'icons/mob/vore64x64.dmi'
 	vis_height = 64
 
-	faction = "snake"
+	faction = FACTION_SNAKE
 	maxHealth = 200
 	health = 200
 
@@ -39,7 +39,7 @@
 	melee_damage_upper = 12
 
 	meat_amount = 6
-	meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat
+	meat_type = /obj/item/reagent_containers/food/snacks/meat
 
 	response_help = "pats"
 	response_disarm = "tries to shove"

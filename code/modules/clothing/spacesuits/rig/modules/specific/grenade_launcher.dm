@@ -12,9 +12,9 @@
 	var/fire_distance = 10
 
 	charges = list(
-		list("flashbang",   "flashbang",   /obj/item/weapon/grenade/flashbang,  3),
-		list("smoke bomb",  "smoke bomb",  /obj/item/weapon/grenade/smokebomb,  3),
-		list("EMP grenade", "EMP grenade", /obj/item/weapon/grenade/empgrenade, 3),
+		list("flashbang",   "flashbang",   /obj/item/grenade/flashbang,  3),
+		list("smoke bomb",  "smoke bomb",  /obj/item/grenade/smokebomb,  3),
+		list("EMP grenade", "EMP grenade", /obj/item/grenade/empgrenade, 3),
 		)
 
 /obj/item/rig_module/grenade_launcher/accepts_item(var/obj/item/input_device, var/mob/living/user)
@@ -33,10 +33,10 @@
 		return 0
 
 	if(accepted_item.charges >= 5)
-		to_chat(user, "<span class='danger'>Another grenade of that type will not fit into the module.</span>")
+		to_chat(user, span_danger("Another grenade of that type will not fit into the module."))
 		return 0
 
-	to_chat(user, span_blue("<b>You slot \the [input_device] into the suit module.</b>"))
+	to_chat(user, span_boldnotice("You slot \the [input_device] into the suit module."))
 	user.drop_from_inventory(input_device)
 	qdel(input_device)
 	accepted_item.charges++
@@ -53,7 +53,7 @@
 	var/mob/living/carbon/human/H = holder.wearer
 
 	if(!charge_selected)
-		to_chat(H, "<span class='danger'>You have not selected a grenade type.</span>")
+		to_chat(H, span_danger("You have not selected a grenade type."))
 		return 0
 
 	var/datum/rig_charge/charge = charges[charge_selected]
@@ -62,12 +62,12 @@
 		return 0
 
 	if(charge.charges <= 0)
-		to_chat(H, "<span class='danger'>Insufficient grenades!</span>")
+		to_chat(H, span_danger("Insufficient grenades!"))
 		return 0
 
 	charge.charges--
-	var/obj/item/weapon/grenade/new_grenade = new charge.product_type(get_turf(H))
-	H.visible_message("<span class='danger'>[H] launches \a [new_grenade]!</span>")
+	var/obj/item/grenade/new_grenade = new charge.product_type(get_turf(H))
+	H.visible_message(span_danger("[H] launches \a [new_grenade]!"))
 	new_grenade.activate(H)
 	new_grenade.throw_at(target,fire_force,fire_distance)
 
@@ -81,7 +81,7 @@
 	fire_force = 15
 
 	charges = list(
-		list("smoke bomb",  "smoke bomb",  /obj/item/weapon/grenade/smokebomb,  6)
+		list("smoke bomb",  "smoke bomb",  /obj/item/grenade/smokebomb,  6)
 		)
 
 /obj/item/rig_module/grenade_launcher/flash
@@ -94,5 +94,5 @@
 	interface_desc = "Discharges loaded grenades against the wearer's location."
 
 	charges = list(
-		list("flashbang",   "flashbang",   /obj/item/weapon/grenade/flashbang,  3)
+		list("flashbang",   "flashbang",   /obj/item/grenade/flashbang,  3)
 		)

@@ -43,11 +43,11 @@
 			<A href='?src=\ref[src];setauthor=1'>Filter by Author: [author]</A><BR>
 			<A href='?src=\ref[src];search=1'>\[Start Search\]</A><BR>"}
 		if(1)
-			establish_old_db_connection()
+			establish_db_connection()
 			if(!dbcon_old.IsConnected())
-				dat += "<font color=red><b>ERROR</b>: Unable to contact External Archive. Please contact your system administrator for assistance.</font><BR>"
+				dat += span_red(span_bold("ERROR") + ": Unable to contact External Archive. Please contact your system administrator for assistance.") + "<BR>"
 			else if(!SQLquery)
-				dat += "<font color=red><b>ERROR</b>: Malformed search request. Please contact your system administrator for assistance.</font><BR>"
+				dat += span_red(span_bold("ERROR") + ": Malformed search request. Please contact your system administrator for assistance.") + "<BR>"
 			else
 				dat += {"<table>
 				<tr><td>AUTHOR</td><td>TITLE</td><td>CATEGORY</td><td>SS<sup>13</sup>BN</td></tr>"}
@@ -143,29 +143,29 @@
 
 	if(!base_genre_books || !base_genre_books.len)
 		base_genre_books = list(
-			/obj/item/weapon/book/custom_library/fiction,
-			/obj/item/weapon/book/custom_library/nonfiction,
-			/obj/item/weapon/book/custom_library/reference,
-			/obj/item/weapon/book/custom_library/religious,
-			/obj/item/weapon/book/bundle/custom_library/fiction,
-			/obj/item/weapon/book/bundle/custom_library/nonfiction,
-			/obj/item/weapon/book/bundle/custom_library/reference,
-			/obj/item/weapon/book/bundle/custom_library/religious
+			/obj/item/book/custom_library/fiction,
+			/obj/item/book/custom_library/nonfiction,
+			/obj/item/book/custom_library/reference,
+			/obj/item/book/custom_library/religious,
+			/obj/item/book/bundle/custom_library/fiction,
+			/obj/item/book/bundle/custom_library/nonfiction,
+			/obj/item/book/bundle/custom_library/reference,
+			/obj/item/book/bundle/custom_library/religious
 			)
 
 	if(!all_books || !all_books.len)
 		all_books = list()
 
-		for(var/path in subtypesof(/obj/item/weapon/book/codex/lore))
-			var/obj/item/weapon/book/C = new path(null)
+		for(var/path in subtypesof(/obj/item/book/codex/lore))
+			var/obj/item/book/C = new path(null)
 			all_books[C.name] = C
 
-		for(var/path in subtypesof(/obj/item/weapon/book/custom_library) - base_genre_books)
-			var/obj/item/weapon/book/B = new path(null)
+		for(var/path in subtypesof(/obj/item/book/custom_library) - base_genre_books)
+			var/obj/item/book/B = new path(null)
 			all_books[B.title] = B
 
-		for(var/path in subtypesof(/obj/item/weapon/book/bundle/custom_library) - base_genre_books)
-			var/obj/item/weapon/book/M = new path(null)
+		for(var/path in subtypesof(/obj/item/book/bundle/custom_library) - base_genre_books)
+			var/obj/item/book/M = new path(null)
 			all_books[M.title] = M
 
 /obj/machinery/librarycomp/attack_hand(var/mob/user as mob)
@@ -184,15 +184,15 @@
 			if(src.emagged)
 				dat += "<A href='?src=\ref[src];switchscreen=7'>7. Access the Forbidden Lore Vault</A><BR>"
 			if(src.arcanecheckout)
-				new /obj/item/weapon/book/tome(src.loc)
+				new /obj/item/book/tome(src.loc)
 				var/datum/gender/T = gender_datums[user.get_visible_gender()]
-				to_chat(user, "<span class='warning'>Your sanity barely endures the seconds spent in the vault's browsing window. The only thing to remind you of this when you stop browsing is a dusty old tome sitting on the desk. You don't really remember printing it.</span>")
-				user.visible_message("<b>\The [user]</b> stares at the blank screen for a few moments, [T.his] expression frozen in fear. When [T.he] finally awakens from it, [T.he] looks a lot older.", 2)
+				to_chat(user, span_warning("Your sanity barely endures the seconds spent in the vault's browsing window. The only thing to remind you of this when you stop browsing is a dusty old tome sitting on the desk. You don't really remember printing it."))
+				user.visible_message(span_infoplain(span_bold("\The [user]") + " stares at the blank screen for a few moments, [T.his] expression frozen in fear. When [T.he] finally awakens from it, [T.he] looks a lot older."), 2)
 				src.arcanecheckout = 0
 		if(1)
 			// Inventory
 			dat += "<H3>Inventory</H3><BR>"
-			for(var/obj/item/weapon/book/b in inventory)
+			for(var/obj/item/book/b in inventory)
 				dat += "[b.name] <A href='?src=\ref[src];delbook=\ref[b]'>(Delete)</A><BR>"
 			dat += "<A href='?src=\ref[src];switchscreen=0'>(Return to main menu)</A><BR>"
 		if(2)
@@ -207,7 +207,7 @@
 				//timedue *= 10
 				timedue /= 600
 				if(timedue <= 0)
-					timedue = "<font color=red><b>(OVERDUE)</b> [timedue]</font>"
+					timedue = span_red(span_bold("(OVERDUE)") + " [timedue]")
 				else
 					timedue = round(timedue)
 				dat += {"\"[b.bookname]\", Checked out to: [b.mobname]<BR>--- Taken: [timetaken] minutes ago, Due: in [timedue] minutes<BR>
@@ -228,13 +228,13 @@
 		if(4)
 			dat += "<h3>Internal Archive</h3>"
 			if(!all_books || !all_books.len)
-				dat +=	"<font color=red><b>ERROR</b> Something has gone seriously wrong. Contact System Administrator for more information.</font>"
+				dat +=	span_red(span_bold("ERROR") + " Something has gone seriously wrong. Contact System Administrator for more information.")
 			else
 				dat += {"<table>
 				<tr><td><A href='?src=\ref[src];sort=author>AUTHOR</A></td><td><A href='?src=\ref[src];sort=title>TITLE</A></td><td><A href='?src=\ref[src];sort=category>CATEGORY</A></td><td></td></tr>"}
 
 				for(var/name in all_books)
-					var/obj/item/weapon/book/masterbook = all_books[name]
+					var/obj/item/book/masterbook = all_books[name]
 					var/id = masterbook.type
 					var/author = masterbook.author
 					var/title = masterbook.name
@@ -244,7 +244,7 @@
 			dat += "<BR><A href='?src=\ref[src];switchscreen=0'>(Return to main menu)</A><BR>"
 		if(5)
 			//dat += "<H3>ERROR</H3>" //VOREStation Removal
-			//dat+= "<FONT color=red>Library Database is in Secure Management Mode.</FONT><BR>\ //VOREStation Removal
+			//dat+= span_red("Library Database is in Secure Management Mode.") + "<BR>\ //VOREStation Removal
 			//Contact a System Administrator for more information.<BR>" //VOREStation Removal
 			//VOREstation Edit Start
 			dat += "<H3>Upload a New Title</H3>"
@@ -253,9 +253,9 @@
 					scanner = S
 					break
 			if(!scanner)
-				dat += "<FONT color=red>No scanner found within wireless network range.</FONT><BR>"
+				dat += span_red("No scanner found within wireless network range.") + "<BR>"
 			else if(!scanner.cache)
-				dat += "<FONT color=red>No data found in scanner memory.</FONT><BR>"
+				dat += span_red("No data found in scanner memory.") + "<BR>"
 			else
 				dat += {"<TT>Data marked for upload...</TT><BR>
 				<TT>Title: </TT>[scanner.cache.name]<BR>"}
@@ -273,12 +273,12 @@
 			<A href='?src=\ref[src];switchscreen=0'>No.</A><BR>"}
 		if(8)
 			dat += "<h3>External Archive</h3>" //VOREStation Edit
-			establish_old_db_connection()
+			establish_db_connection()
 
-			//dat += "<h3><font color=red>Warning: System Administrator has slated this archive for removal. Personal uploads should be taken to the NT board of internal literature.</font></h3>" //VOREStation Removal
+			//dat += "<h3>" + span_red("arning: System Administrator has slated this archive for removal. Personal uploads should be taken to the NT board of internal literature.") + "</h3>" //VOREStation Removal
 
 			if(!dbcon_old.IsConnected())
-				dat += "<font color=red><b>ERROR</b>: Unable to contact External Archive. Please contact your system administrator for assistance.</font>"
+				dat += span_red(span_bold("ERROR") + ": Unable to contact External Archive. Please contact your system administrator for assistance.")
 			else
 				dat += {"<A href='?src=\ref[src];orderbyid=1'>(Order book by SS<sup>13</sup>BN)</A><BR><BR>
 				<table>
@@ -316,10 +316,10 @@
 		var/dat = "<HEAD><TITLE>Book Inventory Management</TITLE></HEAD><BODY>\n" // <META HTTP-EQUIV='Refresh' CONTENT='10'>
 
 		dat += "<h3>ADMINISTRATIVE MANAGEMENT</h3>"
-		establish_old_db_connection()
+		establish_db_connection()
 
 		if(!dbcon_old.IsConnected())
-			dat += "<font color=red><b>ERROR</b>: Unable to contact External Archive. Please contact your system administrator for assistance.</font>"
+			dat += span_red(span_bold("ERROR") + ": Unable to contact External Archive. Please contact your system administrator for assistance.")
 		else
 			dat += {"<A href='?src=\ref[src];orderbyid=1'>(Order book by SS<sup>13</sup>BN)</A><BR><BR>
 			<table>
@@ -346,9 +346,9 @@
 		src.emagged = 1
 		return 1
 
-/obj/machinery/librarycomp/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/weapon/barcodescanner))
-		var/obj/item/weapon/barcodescanner/scanner = W
+/obj/machinery/librarycomp/attackby(obj/item/W as obj, mob/user as mob)
+	if(istype(W, /obj/item/barcodescanner))
+		var/obj/item/barcodescanner/scanner = W
 		scanner.computer = src
 		to_chat(user, "[scanner]'s associated machine has been set to [src].")
 		for (var/mob/V in hearers(src))
@@ -378,14 +378,14 @@
 				screenstate = 5
 			if("6")
 				if(!bibledelay)
-					new /obj/item/weapon/storage/bible(src.loc)
+					new /obj/item/storage/bible(src.loc)
 					bibledelay = 1
 					spawn(60)
 						bibledelay = 0
 
 				else
 					for (var/mob/V in hearers(src))
-						V.show_message("<b>[src]</b>'s monitor flashes, \"Bible printer currently unavailable, please wait a moment.\"")
+						V.show_message(span_infoplain(span_bold("[src]") + "'s monitor flashes, \"Bible printer currently unavailable, please wait a moment.\""))
 
 			if("7")
 				screenstate = 7
@@ -416,7 +416,7 @@
 		var/datum/borrowbook/b = locate(href_list["checkin"])
 		checkouts.Remove(b)
 	if(href_list["delbook"])
-		var/obj/item/weapon/book/b = locate(href_list["delbook"])
+		var/obj/item/book/b = locate(href_list["delbook"])
 		inventory.Remove(b)
 	if(href_list["setauthor"])
 		var/newauthor = sanitize(tgui_input_text(usr, "Enter the author's name: "))
@@ -436,7 +436,7 @@
 					if(scanner.cache.unique)
 						tgui_alert_async(usr, "This book has been rejected from the database. Aborting!")
 					else
-						establish_old_db_connection()
+						establish_db_connection()
 						if(!dbcon_old.IsConnected())
 							tgui_alert_async(usr, "Connection to Archive has been severed. Aborting.")
 						else
@@ -460,12 +460,12 @@
 
 	if(href_list["targetid"])
 		var/sqlid = sanitizeSQL(href_list["targetid"])
-		establish_old_db_connection()
+		establish_db_connection()
 		if(!dbcon_old.IsConnected())
 			tgui_alert_async(usr, "Connection to Archive has been severed. Aborting.")
 		if(bibledelay)
 			for (var/mob/V in hearers(src))
-				V.show_message("<b>[src]</b>'s monitor flashes, \"Printer unavailable. Please allow a short time before attempting to print.\"")
+				V.show_message(span_infoplain(span_bold("[src]") + "'s monitor flashes, \"Printer unavailable. Please allow a short time before attempting to print.\""))
 		else
 			bibledelay = 1
 			spawn(6)
@@ -477,7 +477,7 @@
 				var/author = query.item[2]
 				var/title = query.item[3]
 				var/content = query.item[4]
-				var/obj/item/weapon/book/B = new(src.loc)
+				var/obj/item/book/B = new(src.loc)
 				B.name = "Book: [title]"
 				B.title = title
 				B.author = author
@@ -491,7 +491,7 @@
 		if(!check_rights(R_ADMIN))
 			return
 		var/sqlid = sanitizeSQL(href_list["delid"])
-		establish_old_db_connection()
+		establish_db_connection()
 		if(!dbcon_old.IsConnected())
 			tgui_alert_async(usr, "Connection to Archive has been severed. Aborting.")
 		else
@@ -509,7 +509,7 @@
 		sortby = href_list["sort"]
 	if(href_list["hardprint"])
 		var/newpath = href_list["hardprint"]
-		var/obj/item/weapon/book/NewBook = new newpath(get_turf(src))
+		var/obj/item/book/NewBook = new newpath(get_turf(src))
 		NewBook.name = "Book: [NewBook.name]"
 	src.add_fingerprint(usr)
 	src.updateUsrDialog()
@@ -525,10 +525,10 @@
 	icon_state = "bigscanner"
 	anchored = TRUE
 	density = TRUE
-	var/obj/item/weapon/book/cache		// Last scanned book
+	var/obj/item/book/cache		// Last scanned book
 
 /obj/machinery/libraryscanner/attackby(var/obj/O as obj, var/mob/user as mob)
-	if(istype(O, /obj/item/weapon/book))
+	if(istype(O, /obj/item/book))
 		user.drop_item()
 		O.loc = src
 
@@ -536,7 +536,7 @@
 	usr.set_machine(src)
 	var/dat = "<HEAD><TITLE>Scanner Control Interface</TITLE></HEAD><BODY>\n" // <META HTTP-EQUIV='Refresh' CONTENT='10'>
 	if(cache)
-		dat += "<FONT color=#005500>Data stored in memory.</FONT><BR>"
+		dat += span_darkgray("Data stored in memory.") + "<BR>"
 	else
 		dat += "No data stored in memory.<BR>"
 	dat += "<A href='?src=\ref[src];scan=1'>\[Scan\]</A>"
@@ -554,13 +554,13 @@
 		return
 
 	if(href_list["scan"])
-		for(var/obj/item/weapon/book/B in contents)
+		for(var/obj/item/book/B in contents)
 			cache = B
 			break
 	if(href_list["clear"])
 		cache = null
 	if(href_list["eject"])
-		for(var/obj/item/weapon/book/B in contents)
+		for(var/obj/item/book/B in contents)
 			B.loc = src.loc
 	src.add_fingerprint(usr)
 	src.updateUsrDialog()
@@ -579,15 +579,15 @@
 	density = TRUE
 
 /obj/machinery/bookbinder/attackby(var/obj/O as obj, var/mob/user as mob)
-	if(istype(O, /obj/item/weapon/paper) || istype(O, /obj/item/weapon/paper_bundle))
-		if(istype(O, /obj/item/weapon/paper))
+	if(istype(O, /obj/item/paper) || istype(O, /obj/item/paper_bundle))
+		if(istype(O, /obj/item/paper))
 			user.drop_item()
 			O.loc = src
 			user.visible_message("[user] loads some paper into [src].", "You load some paper into [src].")
 			src.visible_message("[src] begins to hum as it warms up its printing drums.")
 			sleep(rand(200,400))
 			src.visible_message("[src] whirs as it prints and binds a new book.")
-			var/obj/item/weapon/book/b = new(src.loc)
+			var/obj/item/book/b = new(src.loc)
 			b.dat = O:info
 			b.name = "Print Job #" + "[rand(100, 999)]"
 			b.icon_state = "book[rand(1,7)]"
@@ -599,11 +599,11 @@
 			src.visible_message("[src] begins to hum as it warms up its printing drums.")
 			sleep(rand(300,500))
 			src.visible_message("[src] whirs as it prints and binds a new book.")
-			var/obj/item/weapon/book/bundle/b = new(src.loc)
+			var/obj/item/book/bundle/b = new(src.loc)
 			b.pages = O:pages
-			for(var/obj/item/weapon/paper/P in O.contents)
+			for(var/obj/item/paper/P in O.contents)
 				P.forceMove(b)
-			for(var/obj/item/weapon/photo/P in O.contents)
+			for(var/obj/item/photo/P in O.contents)
 				P.forceMove(b)
 			b.name = "Print Job #" + "[rand(100, 999)]"
 			b.icon_state = "book[rand(1,7)]"

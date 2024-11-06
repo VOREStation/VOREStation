@@ -39,7 +39,7 @@
 	pixel_y = 0
 
 	meat_amount = 15 //Infinite meat!
-	meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat
+	meat_type = /obj/item/reagent_containers/food/snacks/meat
 
 	max_buckled_mobs = 1 //Yeehaw
 	can_buckle = TRUE
@@ -70,8 +70,8 @@
 	. = ..()
 	if(!riding_datum)
 		riding_datum = new /datum/riding/simple_mob(src)
-	verbs |= /mob/living/simple_mob/proc/animal_mount
-	verbs |= /mob/living/proc/toggle_rider_reins
+	add_verb(src, /mob/living/simple_mob/proc/animal_mount)
+	add_verb(src, /mob/living/proc/toggle_rider_reins)
 	movement_cooldown = 0
 
 /mob/living/simple_mob/vore/hippo/MouseDrop_T(mob/living/M, mob/living/user)

@@ -18,7 +18,7 @@
 
 /obj/tether_away_spawner/debrisfield/derelict
 	name = "debris field derelict random mob spawner"
-	faction = "derelict"
+	faction = FACTION_DERELICT
 	mobs_to_pick_from = list(
 		/mob/living/simple_mob/mechanical/corrupt_maint_drone = 2,
 		/mob/living/simple_mob/mechanical/infectionbot = 3,
@@ -27,14 +27,14 @@
 
 /obj/tether_away_spawner/debrisfield/derelict/corrupt_maint_swarm
 	name = "debris field derelict maint swarm"
-	faction = "derelict"
+	faction = FACTION_DERELICT
 	mobs_to_pick_from = list(
 		/mob/living/simple_mob/mechanical/corrupt_maint_drone = 4
 	)
 
 /obj/tether_away_spawner/debrisfield/derelict/mech_wizard
 	name = "debris field derelict wizard lol"
-	faction = "derelict"
+	faction = FACTION_DERELICT
 	mobs_to_pick_from = list(
 		/mob/living/simple_mob/mechanical/technomancer_golem = 2
 	)
@@ -127,12 +127,12 @@
 
 
 
-/obj/item/device/taperecorder/tourist
+/obj/item/taperecorder/tourist
 	name = "Body-Microphone"
 	desc = "A sort of liability device worn by security on luxury yachts. Records everything they say. Strange that the captain was wearing it."
-	mytape = /obj/item/device/tape/touristguard
+	mytape = /obj/item/rectape/touristguard
 
-/obj/item/device/tape/touristguard/New()
+/obj/item/rectape/touristguard/New()
 	storedinfo += "01:37  *sounds of metal creaking"
 	storedinfo += "01:55  *sounds of distant screaming!"
 	storedinfo += "01:37  *Sounds of hissing, both airlocks and spiders alike. Screaming continues."
@@ -150,7 +150,7 @@
 
 /obj/item/space_spider_egg/attack_self(mob/user as mob)
 	var/turf/drop_loc = user.loc
-	to_chat(user, SPAN_WARNING("The egg cracks open, splattering disgusting goop at your feet...\n \
+	to_chat(user, span_warning("The egg cracks open, splattering disgusting goop at your feet...\n \
 	Whatever life laid within shall never awaken, if it was even alive."))
 	new /obj/effect/decal/cleanable/spiderling_remains(drop_loc)
 	qdel(src)
@@ -187,7 +187,7 @@
 				prob(1);/obj/item/slime_extract/grey,
 				prob(1);/obj/item/slime_extract/rainbow)
 
-/obj/item/weapon/paper/robo_escape_pod
+/obj/item/paper/robo_escape_pod
 	name = "faded note"
 	info = {"<i>This paper is old and the shaky writing has faded, rendering it difficult to read.</i><br>\
 whichever poor bastard finds this pod<br>\
@@ -217,7 +217,7 @@ i just hope whatever happens, she finds the mercy we werent equipped to give her
 	ai_holder_type = /datum/ai_holder/simple_mob/merc/tanker_escort
 	say_list_type = /datum/say_list/merc/drone/tanker_escort
 	corpse = /obj/effect/landmark/mobcorpse/syndicatesoldier/drone/tanker
-	loot_list = list(/obj/item/poi/broken_drone_circuit/phoron_tanker = 100, /obj/item/weapon/material/knife/tacknife = 100)
+	loot_list = list(/obj/item/poi/broken_drone_circuit/phoron_tanker = 100, /obj/item/material/knife/tacknife = 100)
 	min_oxy = 0
 	max_oxy = 0
 	min_tox = 0
@@ -240,7 +240,7 @@ i just hope whatever happens, she finds the mercy we werent equipped to give her
 	say_list_type = /datum/say_list/merc/drone/tanker_escort
 	corpse = /obj/effect/landmark/mobcorpse/syndicatesoldier/drone/tanker
 	loot_list = list(/obj/item/poi/broken_drone_circuit/phoron_tanker = 100,
-	/obj/item/weapon/shield/energy = 100, /obj/item/weapon/melee/energy/sword/color = 20)
+	/obj/item/shield/energy = 100, /obj/item/melee/energy/sword/color = 20)
 	min_oxy = 0
 	max_oxy = 0
 	min_tox = 0
@@ -259,7 +259,7 @@ i just hope whatever happens, she finds the mercy we werent equipped to give her
 	ai_holder_type = /datum/ai_holder/simple_mob/merc/ranged/tanker_escort
 	say_list_type = /datum/say_list/merc/drone/tanker_escort
 	corpse = /obj/effect/landmark/mobcorpse/syndicatesoldier/drone/tanker
-	loot_list = list(/obj/item/poi/broken_drone_circuit/phoron_tanker = 100, /obj/item/weapon/gun/projectile/automatic/c20r = 100)
+	loot_list = list(/obj/item/poi/broken_drone_circuit/phoron_tanker = 100, /obj/item/gun/projectile/automatic/c20r = 100)
 	min_oxy = 0
 	max_oxy = 0
 	min_tox = 0

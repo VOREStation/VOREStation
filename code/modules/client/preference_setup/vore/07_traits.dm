@@ -107,47 +107,47 @@ var/global/list/valid_bloodreagents = list("default","iron","copper","phoron","s
 	name = "Traits"
 	sort_order = 7
 
-/datum/category_item/player_setup_item/vore/traits/load_character(var/savefile/S)
-	S["custom_species"]	>> pref.custom_species
-	S["custom_base"]	>> pref.custom_base
-	S["pos_traits"]		>> pref.pos_traits
-	S["neu_traits"]		>> pref.neu_traits
-	S["neg_traits"]		>> pref.neg_traits
-	S["blood_color"]	>> pref.blood_color
-	S["blood_reagents"]		>> pref.blood_reagents
+/datum/category_item/player_setup_item/vore/traits/load_character(list/save_data)
+	pref.custom_species			= save_data["custom_species"]
+	pref.custom_base			= save_data["custom_base"]
+	pref.pos_traits				= text2path_list(save_data["pos_traits"])
+	pref.neu_traits				= text2path_list(save_data["neu_traits"])
+	pref.neg_traits				= text2path_list(save_data["neg_traits"])
+	pref.blood_color			= save_data["blood_color"]
+	pref.blood_reagents			= save_data["blood_reagents"]
 
-	S["traits_cheating"]	>> pref.traits_cheating
-	S["max_traits"]		>> pref.max_traits
-	S["trait_points"]	>> pref.starting_trait_points
+	pref.traits_cheating		= save_data["traits_cheating"]
+	pref.max_traits				= save_data["max_traits"]
+	pref.starting_trait_points	= save_data["trait_points"]
 
-	S["custom_say"]		>> pref.custom_say
-	S["custom_whisper"]	>> pref.custom_whisper
-	S["custom_ask"]		>> pref.custom_ask
-	S["custom_exclaim"]	>> pref.custom_exclaim
+	pref.custom_say				= save_data["custom_say"]
+	pref.custom_whisper			= save_data["custom_whisper"]
+	pref.custom_ask				= save_data["custom_ask"]
+	pref.custom_exclaim			= save_data["custom_exclaim"]
 
-	S["custom_heat"]	>> pref.custom_heat
-	S["custom_cold"]	>> pref.custom_cold
+	pref.custom_heat			= check_list_copy(save_data["custom_heat"])
+	pref.custom_cold			= check_list_copy(save_data["custom_cold"])
 
-/datum/category_item/player_setup_item/vore/traits/save_character(var/savefile/S)
-	S["custom_species"]	<< pref.custom_species
-	S["custom_base"]	<< pref.custom_base
-	S["pos_traits"]		<< pref.pos_traits
-	S["neu_traits"]		<< pref.neu_traits
-	S["neg_traits"]		<< pref.neg_traits
-	S["blood_color"]	<< pref.blood_color
-	S["blood_reagents"]		<< pref.blood_reagents
+/datum/category_item/player_setup_item/vore/traits/save_character(list/save_data)
+	save_data["custom_species"]		= pref.custom_species
+	save_data["custom_base"]		= pref.custom_base
+	save_data["pos_traits"]			= check_list_copy(pref.pos_traits)
+	save_data["neu_traits"]			= check_list_copy(pref.neu_traits)
+	save_data["neg_traits"]			= check_list_copy(pref.neg_traits)
+	save_data["blood_color"]		= pref.blood_color
+	save_data["blood_reagents"]		= pref.blood_reagents
 
-	S["traits_cheating"]	<< pref.traits_cheating
-	S["max_traits"]		<< pref.max_traits
-	S["trait_points"]	<< pref.starting_trait_points
+	save_data["traits_cheating"]	= pref.traits_cheating
+	save_data["max_traits"]			= pref.max_traits
+	save_data["trait_points"]		= pref.starting_trait_points
 
-	S["custom_say"]		<< pref.custom_say
-	S["custom_whisper"]	<< pref.custom_whisper
-	S["custom_ask"]		<< pref.custom_ask
-	S["custom_exclaim"]	<< pref.custom_exclaim
+	save_data["custom_say"]			= pref.custom_say
+	save_data["custom_whisper"]		= pref.custom_whisper
+	save_data["custom_ask"]			= pref.custom_ask
+	save_data["custom_exclaim"]		= pref.custom_exclaim
 
-	S["custom_heat"]	<< pref.custom_heat
-	S["custom_cold"]	<< pref.custom_cold
+	save_data["custom_heat"]		= check_list_copy(pref.custom_heat)
+	save_data["custom_cold"]		= check_list_copy(pref.custom_cold)
 
 /datum/category_item/player_setup_item/vore/traits/sanitize_character()
 	if(!pref.pos_traits) pref.pos_traits = list()
@@ -186,13 +186,16 @@ var/global/list/valid_bloodreagents = list("default","iron","copper","phoron","s
 	//Neutral traits
 	for(var/datum/trait/path as anything in pref.neu_traits)
 		if(!(path in neutral_traits))
+			to_world_log("removing [path] for not being in neutral_traits")
 			pref.neu_traits -= path
 			continue
 		if(!(pref.species == SPECIES_CUSTOM) && !(path in everyone_traits_neutral))
+			to_world_log("removing [path] for not being a custom species")
 			pref.neu_traits -= path
 			continue
 		var/take_flags = initial(path.can_take)
 		if((pref.dirty_synth && !(take_flags & SYNTHETICS)) || (pref.gross_meatbag && !(take_flags & ORGANICS)))
+			to_world_log("removing [path] for being a dirty synth")
 			pref.neu_traits -= path
 	//Negative traits
 	for(var/datum/trait/path as anything in pref.neg_traits)
@@ -264,12 +267,12 @@ var/global/list/valid_bloodreagents = list("default","iron","copper","phoron","s
 		log_game("TRAITS [pref.client_ckey]/([character]) with: [english_traits]") //Terrible 'fake' key_name()... but they aren't in the same entity yet
 
 /datum/category_item/player_setup_item/vore/traits/content(var/mob/user)
-	. += "<b>Custom Species Name:</b> "
+	. += span_bold("Custom Species Name:") + " "
 	. += "<a href='?src=\ref[src];custom_species=1'>[pref.custom_species ? pref.custom_species : "-Input Name-"]</a><br>"
 
 	var/datum/species/selected_species = GLOB.all_species[pref.species]
 	if(selected_species.selects_bodytype)
-		. += "<b>Icon Base: </b> "
+		. += span_bold("Icon Base:") + " "
 		. += "<a href='?src=\ref[src];custom_base=1'>[pref.custom_base ? pref.custom_base : "Human"]</a><br>"
 
 	var/traits_left = pref.max_traits
@@ -281,10 +284,10 @@ var/global/list/valid_bloodreagents = list("default","iron","copper","phoron","s
 		points_left -= traits_costs[T]
 		if(T in pref.pos_traits)
 			traits_left--
-	. += "<b>Traits Left:</b> [traits_left]<br>"
-	. += "<b>Points Left:</b> [points_left]<br>"
+	. += span_bold("Traits Left:") + " [traits_left]<br>"
+	. += span_bold("Points Left:") + " [points_left]<br>"
 	if(points_left < 0 || traits_left < 0 || (!pref.custom_species && pref.species == SPECIES_CUSTOM))
-		. += "<span style='color:red;'><b>^ Fix things! ^</b></span><br>"
+		. += span_red(span_bold("^ Fix things! ^")) + "<br>"
 
 	. += "<a href='?src=\ref[src];add_trait=[POSITIVE_MODE]'>Positive Trait +</a><br>"
 	. += "<ul>"
@@ -307,34 +310,34 @@ var/global/list/valid_bloodreagents = list("default","iron","copper","phoron","s
 		. += "<li>- <a href='?src=\ref[src];clicked_neg_trait=[T]'>[trait.name] ([trait.cost])</a> [get_html_for_trait(trait, pref.neg_traits[T])]</li>"
 	. += "</ul>"
 
-	. += "<b>Blood Color: </b>" //People that want to use a certain species to have that species traits (xenochimera/promethean/spider) should be able to set their own blood color.
+	. += span_bold("Blood Color: ") //People that want to use a certain species to have that species traits (xenochimera/promethean/spider) should be able to set their own blood color.
 	. += "<a href='?src=\ref[src];blood_color=1'>Set Color <font color='[pref.blood_color]'>&#9899;</font></a>"
 	. += "<a href='?src=\ref[src];blood_reset=1'>R</a><br>"
-	. += "<b>Blood Reagent: </b>"	//Wanna be copper-based? Go ahead.
+	. += span_bold("Blood Reagent: ")	//Wanna be copper-based? Go ahead.
 	. += "<a href='?src=\ref[src];blood_reagents=1'>[pref.blood_reagents]</a><br>"
 	. += "<br>"
 
-	. += "<b>Custom Say: </b>"
+	. += span_bold("Custom Say: ")
 	. += "<a href='?src=\ref[src];custom_say=1'>Set Say Verb</a>"
 	. += "(<a href='?src=\ref[src];reset_say=1'>Reset</A>)"
 	. += "<br>"
-	. += "<b>Custom Whisper: </b>"
+	. += span_bold("Custom Whisper: ")
 	. += "<a href='?src=\ref[src];custom_whisper=1'>Set Whisper Verb</a>"
 	. += "(<a href='?src=\ref[src];reset_whisper=1'>Reset</A>)"
 	. += "<br>"
-	. += "<b>Custom Ask: </b>"
+	. += span_bold("Custom Ask: ")
 	. += "<a href='?src=\ref[src];custom_ask=1'>Set Ask Verb</a>"
 	. += "(<a href='?src=\ref[src];reset_ask=1'>Reset</A>)"
 	. += "<br>"
-	. += "<b>Custom Exclaim: </b>"
+	. += span_bold("Custom Exclaim: ")
 	. += "<a href='?src=\ref[src];custom_exclaim=1'>Set Exclaim Verb</a>"
 	. += "(<a href='?src=\ref[src];reset_exclaim=1'>Reset</A>)"
 	. += "<br>"
-	. += "<b>Custom Heat Discomfort: </b>"
+	. += span_bold("Custom Heat Discomfort: ")
 	. += "<a href='?src=\ref[src];custom_heat=1'>Set Heat Messages</a>"
 	. += "(<a href='?src=\ref[src];reset_heat=1'>Reset</A>)"
 	. += "<br>"
-	. += "<b>Custom Cold Discomfort: </b>"
+	. += span_bold("Custom Cold Discomfort: ")
 	. += "<a href='?src=\ref[src];custom_cold=1'>Set Cold Messages</a>"
 	. += "(<a href='?src=\ref[src];reset_cold=1'>Reset</A>)"
 	. += "<br>"
@@ -569,7 +572,7 @@ var/global/list/valid_bloodreagents = list("default","iron","copper","phoron","s
 			if(trait_choice in nicelist)
 				var/datum/trait/path = nicelist[trait_choice]
 				var/choice = tgui_alert(usr, "\[Cost:[initial(path.cost)]\] [initial(path.desc)]",initial(path.name), list("Take Trait","Go Back"))
-				if(choice != "Go Back")
+				if(choice == "Take Trait")
 					done = TRUE
 
 		if(!trait_choice)

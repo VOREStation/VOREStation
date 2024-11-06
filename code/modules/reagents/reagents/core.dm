@@ -23,9 +23,9 @@
 
 /datum/reagent/blood/get_data() // Just in case you have a reagent that handles data differently.
 	var/t = data.Copy()
-	if(t["virus2"])
-		var/list/v = t["virus2"]
-		t["virus2"] = v.Copy()
+	if(t["viruses"])
+		var/list/v = t["viruses"]
+		t["viruses"] = v.Copy()
 	return t
 
 /datum/reagent/blood/touch_turf(var/turf/simulated/T)
@@ -70,13 +70,16 @@
 	if(effective_dose > 15)
 		if(!is_vampire) //VOREStation Edit.
 			M.adjustToxLoss(removed) //VOREStation Edit.
-	if(data && data["virus2"])
-		var/list/vlist = data["virus2"]
+	if(data && data["viruses"])
+		var/list/vlist = data["viruses"]
 		if(vlist.len)
 			for(var/ID in vlist)
-				var/datum/disease2/disease/V = vlist[ID]
-				if(V.spreadtype == "Contact")
-					infect_virus2(M, V.getcopy())
+				if(!ID)
+					continue
+				var/datum/disease/D = ID
+				if((D.spread_flags & SPECIAL) || (D.spread_flags & NON_CONTAGIOUS))
+					continue
+				M.ContractDisease(D)
 
 /datum/reagent/blood/affect_touch(var/mob/living/carbon/M, var/alien, var/removed)
 	if(ishuman(M))
@@ -86,15 +89,59 @@
 	if(alien == IS_SLIME)
 		affect_ingest(M, alien, removed)
 		return
-	if(data && data["virus2"])
-		var/list/vlist = data["virus2"]
+	if(data && data["viruses"])
+		var/list/vlist = data["viruses"]
 		if(vlist.len)
 			for(var/ID in vlist)
-				var/datum/disease2/disease/V = vlist[ID]
-				if(V.spreadtype == "Contact")
-					infect_virus2(M, V.getcopy())
-	if(data && data["antibodies"])
-		M.antibodies |= data["antibodies"]
+				var/datum/disease/D = ID
+				if((D.spread_flags & SPECIAL) || (D.spread_flags & NON_CONTAGIOUS))
+					continue
+				M.ContractDisease(D)
+	if(data && data["resistances"])
+		M.resistances |= data["resistances"]
+
+/datum/reagent/blood/mix_data(newdata, newamount)
+	if(!data || !newdata)
+		return
+
+	if(data["viruses"] || newdata["viruses"])
+		var/list/mix1 = data["viruses"]
+		var/list/mix2 = newdata["viruses"]
+
+		var/list/to_mix = list()
+		var/list/preserve = list()
+
+		for(var/datum/disease/advance/AD in mix1)
+			to_mix += AD
+		for(var/datum/disease/advance/AD in mix2)
+			to_mix += AD
+
+		var/datum/disease/advance/mixed_AD = Advance_Mix(to_mix)
+
+		if(mixed_AD)
+			preserve += mixed_AD
+
+		for(var/datum/disease/D1 in mix1)
+			if(!istype(D1, /datum/disease/advance))
+				var/keep = TRUE
+				for(var/datum/disease/D2 in preserve)
+					if(D1.IsSame(D2))
+						keep = FALSE
+						break
+				if(keep)
+					preserve += D1
+
+		for(var/datum/disease/D1 in mix2)
+			if(!istype(D1, /datum/disease/advance))
+				var/keep = TRUE
+				for(var/datum/disease/D2 in preserve)
+					if(D1.IsSame(D2))
+						keep = FALSE
+						break
+				if(keep)
+					preserve += D1
+
+		data["viruses"] = preserve
 
 /datum/reagent/blood/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(alien == IS_SLIME)	//They don't have blood, so it seems weird that they would instantly 'process' the chemical like another species does.
@@ -190,19 +237,19 @@
 		var/removed_heat = between(0, volume * WATER_LATENT_HEAT, -environment.get_thermal_energy_change(min_temperature))
 		environment.add_thermal_energy(-removed_heat)
 		if (prob(5))
-			T.visible_message("<span class='warning'>The water sizzles as it lands on \the [T]!</span>")
+			T.visible_message(span_warning("The water sizzles as it lands on \the [T]!"))
 
 	else if(volume >= 10)
 		T.wet_floor(1)
 
 /datum/reagent/water/touch_obj(var/obj/O, var/amount)
 	..()
-	if(istype(O, /obj/item/weapon/reagent_containers/food/snacks/monkeycube))
-		var/obj/item/weapon/reagent_containers/food/snacks/monkeycube/cube = O
+	if(istype(O, /obj/item/reagent_containers/food/snacks/monkeycube))
+		var/obj/item/reagent_containers/food/snacks/monkeycube/cube = O
 		if(!cube.wrapped)
 			cube.Expand()
-	else if(istype(O, /obj/item/weapon/reagent_containers/food/snacks/cube))
-		var/obj/item/weapon/reagent_containers/food/snacks/cube/cube = O
+	else if(istype(O, /obj/item/reagent_containers/food/snacks/cube))
+		var/obj/item/reagent_containers/food/snacks/cube/cube = O
 		cube.Expand()
 	else
 		O.water_act(amount / 5)
@@ -214,7 +261,7 @@
 		if(istype(L, /mob/living/simple_mob/slime))
 			var/mob/living/simple_mob/slime/S = L
 			S.adjustToxLoss(15 * amount)
-			S.visible_message("<span class='warning'>[S]'s flesh sizzles where the water touches it!</span>", "<span class='danger'>Your flesh burns in the water!</span>")
+			S.visible_message(span_warning("[S]'s flesh sizzles where the water touches it!"), span_danger("Your flesh burns in the water!"))
 
 		// Then extinguish people on fire.
 		var/needed = max(0,L.fire_stacks) * 5
@@ -230,7 +277,7 @@
 					var/obj/item/clothing/mask/smokable/S = H.wear_mask
 					if(S.lit)
 						S.quench()
-						H.visible_message("<span class='notice'>[H]\'s [S.name] is put out.</span>")
+						H.visible_message(span_notice("[H]\'s [S.name] is put out."))
 
 /*  //VOREStation Edit Start. Stops slimes from dying from water. Fixes fuel affect_ingest, too.
 /datum/reagent/water/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
@@ -247,7 +294,7 @@
 
 /datum/reagent/water/affect_touch(var/mob/living/carbon/M, var/alien, var/removed)
 	if(alien == IS_SLIME && prob(10))
-		M.visible_message("<span class='warning'>[M]'s flesh sizzles where the water touches it!</span>", "<span class='danger'>Your flesh burns in the water!</span>")
+		M.visible_message(span_warning("[M]'s flesh sizzles where the water touches it!"), span_danger("Your flesh burns in the water!"))
 	..()
 */  //VOREStation Edit End.
 

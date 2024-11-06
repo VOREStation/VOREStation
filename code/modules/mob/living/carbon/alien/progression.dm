@@ -2,13 +2,13 @@
 
 	set name = "Evolve"
 	set desc = "Evolve into your adult form."
-	set category = "Abilities"
+	set category = "Abilities.General"
 
 	if(stat != CONSCIOUS)
 		return
 
 	if(!adult_form)
-		verbs -= /mob/living/carbon/alien/verb/evolve
+		remove_verb(src, /mob/living/carbon/alien/verb/evolve)
 		return
 
 	if(handcuffed || legcuffed)

@@ -112,18 +112,18 @@
 /obj/machinery/pipedispenser/attackby(var/obj/item/W as obj, var/mob/user as mob)
 	src.add_fingerprint(usr)
 	if (istype(W, /obj/item/pipe) || istype(W, /obj/item/pipe_meter))
-		to_chat(usr, "<span class='notice'>You put [W] back in [src].</span>")
+		to_chat(usr, span_notice("You put [W] back in [src]."))
 		user.drop_item()
 		qdel(W)
 		return
 	else if(W.has_tool_quality(TOOL_WRENCH))
 		if (unwrenched==0)
 			playsound(src, W.usesound, 50, 1)
-			to_chat(user, "<span class='notice'>You begin to unfasten \the [src] from the floor...</span>")
+			to_chat(user, span_notice("You begin to unfasten \the [src] from the floor..."))
 			if (do_after(user, 40 * W.toolspeed))
 				user.visible_message( \
-					"<span class='notice'>[user] unfastens \the [src].</span>", \
-					"<span class='notice'>You have unfastened \the [src]. Now it can be pulled somewhere else.</span>", \
+					span_notice("[user] unfastens \the [src]."), \
+					span_notice("You have unfastened \the [src]. Now it can be pulled somewhere else."), \
 					"You hear ratchet.")
 				src.anchored = FALSE
 				src.stat |= MAINT
@@ -132,11 +132,11 @@
 					usr << browse(null, "window=pipedispenser")
 		else /*if (unwrenched==1)*/
 			playsound(src, W.usesound, 50, 1)
-			to_chat(user, "<span class='notice'>You begin to fasten \the [src] to the floor...</span>")
+			to_chat(user, span_notice("You begin to fasten \the [src] to the floor..."))
 			if (do_after(user, 20 * W.toolspeed))
 				user.visible_message( \
-					"<span class='notice'>[user] fastens \the [src].</span>", \
-					"<span class='notice'>You have fastened \the [src]. Now it can dispense pipes.</span>", \
+					span_notice("[user] fastens \the [src]."), \
+					span_notice("You have fastened \the [src]. Now it can dispense pipes."), \
 					"You hear ratchet.")
 				src.anchored = TRUE
 				src.stat &= ~MAINT
@@ -165,7 +165,7 @@
 	if (pipe.anchored)
 		return
 
-	to_chat(usr, "<span class='notice'>You shove [pipe] back in [src].</span>")
+	to_chat(usr, span_notice("You shove [pipe] back in [src]."))
 	qdel(pipe)
 
 // adding a pipe dispensers that spawn unhooked from the ground

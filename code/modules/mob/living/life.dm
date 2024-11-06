@@ -39,17 +39,21 @@
 
 		if(client)
 			var/idle_limit = 10 MINUTES
-			if(client.inactivity >= idle_limit && !away_from_keyboard && src.is_preference_enabled(/datum/client_preference/auto_afk))	//if we're not already afk and we've been idle too long, and we have automarking enabled... then automark it
+			if(client.inactivity >= idle_limit && !away_from_keyboard && client.prefs?.read_preference(/datum/preference/toggle/auto_afk))	//if we're not already afk and we've been idle too long, and we have automarking enabled... then automark it
 				add_status_indicator("afk")
-				to_chat(src, "<span class='notice'>You have been idle for too long, and automatically marked as AFK.</span>")
+				to_chat(src, span_notice("You have been idle for too long, and automatically marked as AFK."))
 				away_from_keyboard = TRUE
 			else if(away_from_keyboard && client.inactivity < idle_limit && !manual_afk) //if we're afk but we do something AND we weren't manually flagged as afk, unmark it
 				remove_status_indicator("afk")
-				to_chat(src, "<span class='notice'>You have been automatically un-marked as AFK.</span>")
+				to_chat(src, span_notice("You have been automatically un-marked as AFK."))
 				away_from_keyboard = FALSE
 
 	//Chemicals in the body, this is moved over here so that blood can be added after death
 	handle_chemicals_in_body()
+
+	// Handle viruses - Dead or not!
+	if(LAZYLEN(viruses))
+		handle_diseases()
 
 	//Handle temperature/pressure differences between body and environment
 	if(environment)
@@ -64,18 +68,16 @@
 	//stuff in the stomach
 	//handle_stomach() //VOREStation Code
 
-	update_gravity(mob_has_gravity())
+	update_gravity(mob_get_gravity())
 
 	update_pulling()
 
-	for(var/obj/item/weapon/grab/G in src)
+	for(var/obj/item/grab/G in src)
 		G.process()
 
 	if(handle_regular_status_updates()) // Status & health update, are we dead or alive etc.
 		handle_disabilities() // eye, ear, brain damages
 		handle_statuses() //all special effects, stunned, weakened, jitteryness, hallucination, sleeping, etc
-
-	handle_actions()
 
 	update_canmove()
 
@@ -282,7 +284,7 @@
 	//Snowflake treatment of potential locations
 	else if(istype(loc,/obj/mecha)) //I imagine there's like displays and junk in there. Use the lights!
 		brightness = 1
-	else if(istype(loc,/obj/item/weapon/holder)) //Poor carried teshari and whatnot should adjust appropriately
+	else if(istype(loc,/obj/item/holder)) //Poor carried teshari and whatnot should adjust appropriately
 		var/turf/T = get_turf(src)
 		brightness = T.get_lumcount()
 

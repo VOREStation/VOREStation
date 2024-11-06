@@ -92,7 +92,7 @@
 /obj/structure/grille/attackby(obj/item/W as obj, mob/user as mob)
 	if(!istype(W))
 		return
-	if(istype(W, /obj/item/weapon/rcd)) // To stop us from hitting the grille when building windows, because grilles don't let parent handle it properly.
+	if(istype(W, /obj/item/rcd)) // To stop us from hitting the grille when building windows, because grilles don't let parent handle it properly.
 		return FALSE
 	else if(W.has_tool_quality(TOOL_WIRECUTTER))
 		if(!shock(user, 100))
@@ -103,8 +103,8 @@
 		if(!shock(user, 90))
 			playsound(src, W.usesound, 100, 1)
 			anchored = !anchored
-			user.visible_message("<span class='notice'>[user] [anchored ? "fastens" : "unfastens"] the grille.</span>", \
-								 "<span class='notice'>You have [anchored ? "fastened the grille to" : "unfastened the grille from"] the floor.</span>")
+			user.visible_message(span_notice("[user] [anchored ? "fastens" : "unfastens"] the grille."), \
+								 span_notice("You have [anchored ? "fastened the grille to" : "unfastened the grille from"] the floor."))
 			return
 
 	//window placing begin //TODO CONVERT PROPERLY TO MATERIAL DATUM
@@ -129,23 +129,23 @@
 					else
 						dir_to_set = 4
 			else
-				to_chat(user, "<span class='notice'>You can't reach.</span>")
+				to_chat(user, span_notice("You can't reach."))
 				return //Only works for cardinal direcitons, diagonals aren't supposed to work like this.
 		for(var/obj/structure/window/WINDOW in loc)
 			if(WINDOW.dir == dir_to_set)
-				to_chat(user, "<span class='notice'>There is already a window facing this way there.</span>")
+				to_chat(user, span_notice("There is already a window facing this way there."))
 				return
-		to_chat(user, "<span class='notice'>You start placing the window.</span>")
+		to_chat(user, span_notice("You start placing the window."))
 		if(do_after(user,20))
 			for(var/obj/structure/window/WINDOW in loc)
 				if(WINDOW.dir == dir_to_set)//checking this for a 2nd time to check if a window was made while we were waiting.
-					to_chat(user, "<span class='notice'>There is already a window facing this way there.</span>")
+					to_chat(user, span_notice("There is already a window facing this way there."))
 					return
 
 			var/wtype = ST.material.created_window
 			if (ST.use(1))
 				var/obj/structure/window/WD = new wtype(loc, dir_to_set, 1)
-				to_chat(user, "<span class='notice'>You place the [WD] on [src].</span>")
+				to_chat(user, span_notice("You place the [WD] on [src]."))
 				WD.update_icon()
 		return
 //window placing end
@@ -213,7 +213,7 @@
 	..()
 
 /obj/structure/grille/attack_generic(var/mob/user, var/damage, var/attack_verb)
-	visible_message("<span class='danger'>[user] [attack_verb] the [src]!</span>")
+	visible_message(span_danger("[user] [attack_verb] the [src]!"))
 	user.do_attack_animation(src)
 	health -= damage
 	spawn(1) healthcheck()
@@ -249,7 +249,7 @@
 	icon_state = "grillerustic-b"
 
 
-/obj/structure/grille/rcd_values(mob/living/user, obj/item/weapon/rcd/the_rcd, passed_mode)
+/obj/structure/grille/rcd_values(mob/living/user, obj/item/rcd/the_rcd, passed_mode)
 	switch(passed_mode)
 		if(RCD_WINDOWGRILLE)
 			// A full tile window costs 4 glass sheets.
@@ -267,16 +267,16 @@
 			)
 	return FALSE
 
-/obj/structure/grille/rcd_act(mob/living/user, obj/item/weapon/rcd/the_rcd, passed_mode)
+/obj/structure/grille/rcd_act(mob/living/user, obj/item/rcd/the_rcd, passed_mode)
 	switch(passed_mode)
 		if(RCD_DECONSTRUCT)
-			to_chat(user, span("notice", "You deconstruct \the [src]."))
+			to_chat(user, span_notice("You deconstruct \the [src]."))
 			qdel(src)
 			return TRUE
 		if(RCD_WINDOWGRILLE)
 			if(locate(/obj/structure/window) in loc)
 				return FALSE
-			to_chat(user, span("notice", "You construct a window."))
+			to_chat(user, span_notice("You construct a window."))
 			var/obj/structure/window/WD = new the_rcd.window_type(loc)
 			WD.anchored = TRUE
 			return TRUE
@@ -286,4 +286,3 @@
 	health -= damage
 	spawn(1) healthcheck()
 	return 1
-

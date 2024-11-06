@@ -19,7 +19,7 @@
 	var/duration = 30
 	if(src.mind.changeling.recursive_enhancement)
 		duration = duration + 10
-		to_chat(src, "<span class='notice'>They will be unable to cry out in fear for a little longer.</span>")
+		to_chat(src, span_notice("They will be unable to cry out in fear for a little longer."))
 	T.silent += duration
 	feedback_add_details("changeling_powers","SS")
 	return 1

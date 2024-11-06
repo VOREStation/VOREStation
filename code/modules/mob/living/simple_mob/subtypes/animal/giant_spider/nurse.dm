@@ -68,7 +68,7 @@
 				var/obj/effect/spider/eggcluster/eggs = new egg_type(O, src)
 				O.implants += eggs
 				eggs.faction = faction
-				to_chat(H, span("critical", "\The [src] injects something into your [O.name]!") ) // Oh god its laying eggs in me!
+				to_chat(H, span_critical("\The [src] injects something into your [O.name]!") ) // Oh god its laying eggs in me!
 
 // Webs target in a web if able to.
 /mob/living/simple_mob/animal/giant_spider/nurse/attack_target(atom/A)
@@ -95,28 +95,28 @@
 /mob/living/simple_mob/animal/giant_spider/nurse/proc/spin_cocoon(atom/movable/AM)
 	if(!istype(AM))
 		return FALSE // We can't cocoon walls sadly.
-	visible_message(span("notice", "\The [src] begins to secrete a sticky substance around \the [AM].") )
+	visible_message(span_notice("\The [src] begins to secrete a sticky substance around \the [AM].") )
 
 	// Get our AI to stay still.
 	set_AI_busy(TRUE)
 
 	if(!do_mob(src, AM, 5 SECONDS))
 		set_AI_busy(FALSE)
-		to_chat(src, span("warning", "You need to stay still to spin a web around \the [AM]."))
+		to_chat(src, span_warning("You need to stay still to spin a web around \the [AM]."))
 		return FALSE
 
 	set_AI_busy(FALSE)
 
 	if(!AM) // Make sure it didn't get deleted for whatever reason.
-		to_chat(src, span("warning", "Whatever you were spinning a web for, its no longer there..."))
+		to_chat(src, span_warning("Whatever you were spinning a web for, its no longer there..."))
 		return FALSE
 
 	if(!isturf(AM.loc))
-		to_chat(src, span("warning", "You can't spin \the [AM] in a web while it is inside \the [AM.loc]."))
+		to_chat(src, span_warning("You can't spin \the [AM] in a web while it is inside \the [AM.loc]."))
 		return FALSE
 
 	if(!Adjacent(AM))
-		to_chat(src, span("warning", "You need to be next to \the [AM] to spin it into a web."))
+		to_chat(src, span_warning("You need to be next to \the [AM] to spin it into a web."))
 		return FALSE
 
 	// Finally done with the checks.
@@ -126,8 +126,8 @@
 		if(istype(L, /mob/living/simple_mob/animal/giant_spider)) // Cannibalism is bad.
 			continue
 		fed++
-		visible_message(span("warning","\The [src] sticks a proboscis into \the [L], and sucks a viscous substance out."))
-		to_chat(src, span("notice", "You've fed upon \the [L], and can now lay [fed] cluster\s of eggs."))
+		visible_message(span_warning("\The [src] sticks a proboscis into \the [L], and sucks a viscous substance out."))
+		to_chat(src, span_notice("You've fed upon \the [L], and can now lay [fed] cluster\s of eggs."))
 		L.forceMove(C)
 		large_cocoon = TRUE
 		break
@@ -162,13 +162,13 @@
 	if(W)
 		return FALSE // Already got webs here.
 
-	visible_message(span("notice", "\The [src] begins to secrete a sticky substance.") )
+	visible_message(span_notice("\The [src] begins to secrete a sticky substance.") )
 	// Get our AI to stay still.
 	set_AI_busy(TRUE)
 
 	if(!do_mob(src, T, 5 SECONDS))
 		set_AI_busy(FALSE)
-		to_chat(src, span("warning", "You need to stay still to spin a web on \the [T]."))
+		to_chat(src, span_warning("You need to stay still to spin a web on \the [T]."))
 		return FALSE
 
 	W = locate() in T
@@ -194,7 +194,7 @@
 	if(E)
 		return FALSE // Already got eggs here.
 
-	visible_message(span("notice", "\The [src] begins to lay a cluster of eggs.") )
+	visible_message(span_notice("\The [src] begins to lay a cluster of eggs.") )
 	// Get our AI to stay still.
 	set_AI_busy(TRUE)
 	// Stop players from spamming eggs.
@@ -202,7 +202,7 @@
 
 	if(!do_mob(src, T, 5 SECONDS))
 		set_AI_busy(FALSE)
-		to_chat(src, span("warning", "You need to stay still to lay eggs on \the [T]."))
+		to_chat(src, span_warning("You need to stay still to lay eggs on \the [T]."))
 		return FALSE
 
 	E = locate() in T

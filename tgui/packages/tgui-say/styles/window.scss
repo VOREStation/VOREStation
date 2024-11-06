@@ -6,9 +6,15 @@
   display: flex;
   flex-direction: column;
   max-width: 360px;
-  height: 100%;
-  width: 100%;
   overflow: hidden;
+}
+
+// Remove with 516
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+  .window {
+    height: 100%;
+    width: 100%;
+  }
 }
 
 .window-lightMode {
@@ -26,4 +32,16 @@
 
 .window-70 {
   height: 70px;
+}
+
+.window-90 {
+  height: 90px;
+}
+
+.window-110 {
+  height: 110px;
+}
+
+.window-130 {
+  height: 130px;
 }

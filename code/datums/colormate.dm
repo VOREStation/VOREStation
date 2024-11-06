@@ -108,6 +108,16 @@
 			if("set_matrix_color")
 				color_matrix_last[params["color"]] = params["value"]
 				return TRUE
+			if("set_matrix_string")
+				if(params["value"])
+					var/list/colours = splittext(params["value"], ",")
+					if(colours.len > 12)
+						colours.Cut(13)
+					for(var/i = 1, i <= colours.len, i++)
+						var/number = text2num(colours[i])
+						if(isnum(number))
+							color_matrix_last[i] = clamp(number, -10, 10)
+				return TRUE
 			if("set_hue")
 				build_hue = clamp(text2num(params["buildhue"]), 0, 360)
 				return TRUE
@@ -142,7 +152,7 @@
 			color_to_use = color_matrix_hsv(build_hue, build_sat, build_val)
 			color_matrix_last = color_to_use
 	if(!color_to_use || !check_valid_color(color_to_use, user))
-		to_chat(user, SPAN_NOTICE("Invalid color."))
+		to_chat(user, span_notice("Invalid color."))
 		return FALSE
 	inserted.add_atom_colour(color_to_use, FIXED_COLOUR_PRIORITY)
 	playsound(src, 'sound/effects/spray3.ogg', 50, 1)

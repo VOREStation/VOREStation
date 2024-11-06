@@ -52,9 +52,9 @@
 		name = "[design] [material] [type]"
 		desc = "A [type], made of [material]. It's rather [design]."
 		customized = 1
-		to_chat(usr,"<span class='notice'>[src] has now been customized.</span>")
+		to_chat(usr,span_notice("[src] has now been customized."))
 	else
-		to_chat(usr,"<span class='notice'>[src] has already been customized!</span>")
+		to_chat(usr,span_notice("[src] has already been customized!"))
 
 /obj/item/clothing/accessory/collar
 	slot_flags = SLOT_TIE | SLOT_OCLOTHING
@@ -158,52 +158,68 @@
 	frequency = new_frequency
 	radio_connection = radio_controller.add_object(src, frequency, RADIO_CHAT)
 
-/obj/item/clothing/accessory/collar/shock/Topic(href, href_list)
-	if(usr.stat || usr.restrained())
+/obj/item/clothing/accessory/collar/shock/attack_self(mob/user as mob, flag1)
+	if(!ishuman(user))
 		return
-	if(((istype(usr, /mob/living/carbon/human) && ((!( ticker ) || (ticker && ticker.mode != "monkey")) && usr.contents.Find(src))) || (usr.contents.Find(master) || (in_range(src, usr) && istype(loc, /turf)))))
-		usr.set_machine(src)
-		if(href_list["freq"])
-			var/new_frequency = sanitize_frequency(frequency + text2num(href_list["freq"]))
-			set_frequency(new_frequency)
-		if(href_list["tag"])
-			var/str = copytext(reject_bad_text(tgui_input_text(usr,"Tag text?","Set tag","",MAX_NAME_LEN)),1,MAX_NAME_LEN)
-			if(!str || !length(str))
-				to_chat(usr,"<span class='notice'>[name]'s tag set to be blank.</span>")
+	tgui_interact(user)
+
+/obj/item/clothing/accessory/collar/shock/tgui_interact(mob/user, datum/tgui/ui, datum/tgui/parent_ui, custom_state)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "ShockCollar", name)
+		ui.open()
+
+/obj/item/clothing/accessory/collar/shock/tgui_static_data(mob/user)
+	var/list/data = ..()
+
+	data["freq_min"] = PUBLIC_LOW_FREQ
+	data["freq_max"] = PUBLIC_HIGH_FREQ
+
+	data["code_min"] = 0
+	data["code_max"] = 100
+
+	return data
+
+/obj/item/clothing/accessory/collar/shock/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
+	var/list/data = ..()
+
+	data["on"] = on
+	data["frequency"] = frequency
+	data["code"] = code
+
+	return data
+
+/obj/item/clothing/accessory/collar/shock/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
+	. = ..()
+	if(.)
+		return
+
+	switch(action)
+		if("freq")
+			var/new_freq = sanitize_frequency(params["freq"])
+			set_frequency(new_freq)
+			. = TRUE
+		if("code")
+			code = CLAMP(text2num(params["code"]), 1, 100)
+			. = TRUE
+		if("power")
+			on = !on
+			icon_state = "collar_shk[on]"
+			. = TRUE
+		if("tag")
+			var/sanitized = tgui_input_text(usr, "Tag text?", "Set Tag", "", MAX_NAME_LEN, encode = TRUE)
+			if(isnull(sanitized))
+				return
+
+			if(!length(sanitized))
+				to_chat(usr, span_notice("[src]'s tag set to blank."))
 				name = initial(name)
 				desc = initial(desc)
 			else
-				to_chat(usr,"<span class='notice'>You set the [name]'s tag to '[str]'.</span>")
-				name = initial(name) + " ([str])"
-				desc = initial(desc) + " The tag says \"[str]\"."
-		else
-			if(href_list["code"])
-				code += text2num(href_list["code"])
-				code = round(code)
-				code = min(100, code)
-				code = max(1, code)
-			else
-				if(href_list["power"])
-					on = !( on )
-					icon_state = "collar_shk[on]" // And apparently this works, too?!
-		if(!( master ))
-			if(istype(loc, /mob))
-				attack_self(loc)
-			else
-				for(var/mob/M in viewers(1, src))
-					if(M.client)
-						attack_self(M)
-		else
-			if(istype(master.loc, /mob))
-				attack_self(master.loc)
-			else
-				for(var/mob/M in viewers(1, master))
-					if(M.client)
-						attack_self(M)
-	else
-		usr << browse(null, "window=radio")
-		return
-	return
+				to_chat(usr, span_notice("[src]'s tag set to '[sanitized]'."))
+				name = initial(name) + " ([sanitized])"
+				desc = initial(desc) + " The tag says \"[sanitized]\"."
+			. = TRUE
 
 /obj/item/clothing/accessory/collar/shock/receive_signal(datum/signal/signal)
 	if(!signal || signal.encryption != code)
@@ -215,38 +231,11 @@
 			M = loc
 		if(ismob(loc.loc))
 			M = loc.loc // This is about as terse as I can make my solution to the whole 'collar won't work when attached as accessory' thing.
-		to_chat(M,"<span class='danger'>You feel a sharp shock!</span>")
+		to_chat(M,span_danger("You feel a sharp shock!"))
 		var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
 		s.set_up(3, 1, M)
 		s.start()
 		M.Weaken(10)
-	return
-
-/obj/item/clothing/accessory/collar/shock/attack_self(mob/user as mob, flag1)
-	if(!istype(user, /mob/living/carbon/human))
-		return
-	user.set_machine(src)
-	var/dat = {"<TT>
-			<A href='?src=\ref[src];power=1'>Turn [on ? "Off" : "On"]</A><BR>
-			<B>Frequency/Code</B> for collar:<BR>
-			Frequency:
-			<A href='byond://?src=\ref[src];freq=-10'>-</A>
-			<A href='byond://?src=\ref[src];freq=-2'>-</A> [format_frequency(frequency)]
-			<A href='byond://?src=\ref[src];freq=2'>+</A>
-			<A href='byond://?src=\ref[src];freq=10'>+</A><BR>
-
-			Code:
-			<A href='byond://?src=\ref[src];code=-5'>-</A>
-			<A href='byond://?src=\ref[src];code=-1'>-</A> [code]
-			<A href='byond://?src=\ref[src];code=1'>+</A>
-			<A href='byond://?src=\ref[src];code=5'>+</A><BR>
-
-			Tag:
-			<A href='?src=\ref[src];tag=1'>Set tag</A><BR>
-			</TT>"}
-	user << browse(dat, "window=radio")
-	onclose(user, "radio")
-	return
 
 /obj/item/clothing/accessory/collar/spike
 	name = "Spiked collar"
@@ -293,21 +282,21 @@
 
 /obj/item/clothing/accessory/collar/attack_self(mob/user as mob)
 	if(istype(src,/obj/item/clothing/accessory/collar/holo))
-		to_chat(user,"<span class='notice'>[name]'s interface is projected onto your hand.</span>")
+		to_chat(user,span_notice("[name]'s interface is projected onto your hand."))
 	else
 		if(writtenon)
-			to_chat(user,"<span class='notice'>You need a pen or a screwdriver to edit the tag on this collar.</span>")
+			to_chat(user,span_notice("You need a pen or a screwdriver to edit the tag on this collar."))
 			return
-		to_chat(user,"<span class='notice'>You adjust the [name]'s tag.</span>")
+		to_chat(user,span_notice("You adjust the [name]'s tag."))
 
 	var/str = copytext(reject_bad_text(tgui_input_text(user,"Tag text?","Set tag","",MAX_NAME_LEN)),1,MAX_NAME_LEN)
 
 	if(!str || !length(str))
-		to_chat(user,"<span class='notice'>[name]'s tag set to be blank.</span>")
+		to_chat(user,span_notice("[name]'s tag set to be blank."))
 		name = initial(name)
 		desc = initial(desc)
 	else
-		to_chat(user,"<span class='notice'>You set the [name]'s tag to '[str]'.</span>")
+		to_chat(user,span_notice("You set the [name]'s tag to '[str]'."))
 		initialize_tag(str)
 
 /obj/item/clothing/accessory/collar/proc/initialize_tag(var/tag)
@@ -323,15 +312,15 @@
 	if(istype(src,/obj/item/clothing/accessory/collar/holo))
 		return
 
-	if(istype(I,/obj/item/weapon/tool/screwdriver))
+	if(istype(I,/obj/item/tool/screwdriver))
 		update_collartag(user, I, "scratched out", "scratch out", "engraved")
 		return
 
-	if(istype(I,/obj/item/weapon/pen))
+	if(istype(I,/obj/item/pen))
 		update_collartag(user, I, "crossed out", "cross out", "written")
 		return
 
-	to_chat(user,"<span class='notice'>You need a pen or a screwdriver to edit the tag on this collar.</span>")
+	to_chat(user,span_notice("You need a pen or a screwdriver to edit the tag on this collar."))
 
 /obj/item/clothing/accessory/collar/proc/update_collartag(mob/user, obj/item/I, var/erasemethod, var/erasing, var/writemethod)
 	if(!(istype(user.get_active_hand(),I)) || !(istype(user.get_inactive_hand(),src)) || (user.stat))
@@ -341,19 +330,19 @@
 
 	if(!str || !length(str))
 		if(!writtenon)
-			to_chat(user,"<span class='notice'>You don't write anything.</span>")
+			to_chat(user,span_notice("You don't write anything."))
 		else
-			to_chat(user,"<span class='notice'>You [erasing] the words with the [I].</span>")
+			to_chat(user,span_notice("You [erasing] the words with the [I]."))
 			name = initial(name)
 			desc = initial(desc) + " The tag has had the words [erasemethod]."
 	else
 		if(!writtenon)
-			to_chat(user,"<span class='notice'>You write '[str]' on the tag with the [I].</span>")
+			to_chat(user,span_notice("You write '[str]' on the tag with the [I]."))
 			name = initial(name) + " ([str])"
 			desc = initial(desc) + " \"[str]\" has been [writemethod] on the tag."
 			writtenon = 1
 		else
-			to_chat(user,"<span class='notice'>You [erasing] the words on the tag with the [I], and write '[str]'.</span>")
+			to_chat(user,span_notice("You [erasing] the words on the tag with the [I], and write '[str]'."))
 			name = initial(name) + " ([str])"
 			desc = initial(desc) + " Something has been [erasemethod] on the tag, and it now has \"[str]\" [writemethod] on it."
 
@@ -370,85 +359,29 @@
 	var/target_size = 1
 	on = 1
 
-/obj/item/clothing/accessory/collar/shock/bluespace/Topic(href, href_list)
-	if(usr.stat || usr.restrained())
+/obj/item/clothing/accessory/collar/shock/bluespace/tgui_static_data(mob/user)
+	var/list/data = ..()
+	data["target_size_min"] = RESIZE_MINIMUM_DORMS
+	data["target_size_max"] = RESIZE_MAXIMUM_DORMS
+	return data
+
+/obj/item/clothing/accessory/collar/shock/bluespace/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
+	var/list/data = ..()
+	data["target_size"] = target_size
+	return data
+
+/obj/item/clothing/accessory/collar/shock/bluespace/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
+	. = ..()
+	if(.)
 		return
-	if(((istype(usr, /mob/living/carbon/human) && ((!( ticker ) || (ticker && ticker.mode != "monkey")) && usr.contents.Find(src))) || (usr.contents.Find(master) || (in_range(src, usr) && istype(loc, /turf)))))
-		usr.set_machine(src)
-		if(href_list["freq"])
-			var/new_frequency = sanitize_frequency(frequency + text2num(href_list["freq"]))
-			set_frequency(new_frequency)
-		if(href_list["tag"])
-			var/str = copytext(reject_bad_text(tgui_input_text(usr,"Tag text?","Set tag","",MAX_NAME_LEN)),1,MAX_NAME_LEN)
-			if(!str || !length(str))
-				to_chat(usr,"<span class='notice'>[name]'s tag set to be blank.</span>")
-				name = initial(name)
-				desc = initial(desc)
-			else
-				to_chat(usr,"<span class='notice'>You set the [name]'s tag to '[str]'.</span>")
-				name = initial(name) + " ([str])"
-				desc = initial(desc) + " The tag says \"[str]\"."
-		else
-			if(href_list["code"])
-				code += text2num(href_list["code"])
-				code = round(code)
-				code = min(100, code)
-				code = max(1, code)
-			else
-				if(href_list["size"])
-					var/size_select = tgui_input_number(usr, "Put the desired size (25-200%), (1-600%) in dormitory areas.", "Set Size", target_size * 100, 200, 25)
-					if(!size_select)
-						return //cancelled
-					target_size = clamp((size_select/100), RESIZE_MINIMUM_DORMS, RESIZE_MAXIMUM_DORMS)
-					to_chat(usr, "<span class='notice'>You set the size to [size_select]%</span>")
-					if(target_size < RESIZE_MINIMUM || target_size > RESIZE_MAXIMUM)
-						to_chat(usr, "<span class='notice'>Note: Resizing limited to 25-200% automatically while outside dormatory areas.</span>") //hint that we clamp it in resize
-		if(!( master ))
-			if(istype(loc, /mob))
-				attack_self(loc)
-			else
-				for(var/mob/M in viewers(1, src))
-					if(M.client)
-						attack_self(M)
-		else
-			if(istype(master.loc, /mob))
-				attack_self(master.loc)
-			else
-				for(var/mob/M in viewers(1, master))
-					if(M.client)
-						attack_self(M)
-	else
-		usr << browse(null, "window=radio")
-		return
-	return
 
-/obj/item/clothing/accessory/collar/shock/bluespace/attack_self(mob/user as mob, flag1)
-	if(!istype(user, /mob/living/carbon/human))
-		return
-	user.set_machine(src)
-	var/dat = {"<TT>
-			<B>Frequency/Code</B> for collar:<BR>
-			Frequency:
-			<A href='byond://?src=\ref[src];freq=-10'>-</A>
-			<A href='byond://?src=\ref[src];freq=-2'>-</A> [format_frequency(frequency)]
-			<A href='byond://?src=\ref[src];freq=2'>+</A>
-			<A href='byond://?src=\ref[src];freq=10'>+</A><BR>
-
-			Code:
-			<A href='byond://?src=\ref[src];code=-5'>-</A>
-			<A href='byond://?src=\ref[src];code=-1'>-</A> [code]
-			<A href='byond://?src=\ref[src];code=1'>+</A>
-			<A href='byond://?src=\ref[src];code=5'>+</A><BR>
-
-			Tag:
-			<A href='?src=\ref[src];tag=1'>Set tag</A><BR>
-
-			Size:
-			<A href='?src=\ref[src];size=100'>Set size</A><BR>
-			</TT>"}
-	user << browse(dat, "window=radio")
-	onclose(user, "radio")
-	return
+	switch(action)
+		if("size")
+			target_size = clamp((params["size"]/100), RESIZE_MINIMUM_DORMS, RESIZE_MAXIMUM_DORMS)
+			to_chat(usr, span_notice("You set the size to [target_size * 100]%"))
+			if(target_size < RESIZE_MINIMUM || target_size > RESIZE_MAXIMUM)
+				to_chat(usr, span_notice("Note: Resizing limited to 25-200% automatically while outside dormatory areas.")) //hint that we clamp it in resize
+			. = TRUE
 
 /obj/item/clothing/accessory/collar/shock/bluespace/receive_signal(datum/signal/signal)
 	if(!signal || signal.encryption != code)
@@ -463,29 +396,29 @@
 		var/mob/living/carbon/human/H = M
 		var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
 		if(!H.resizable)
-			H.visible_message("<span class='warning'>The space around [H] compresses for a moment but then nothing happens.</span>","<span class='notice'>The space around you distorts but nothing happens to you.</span>")
+			H.visible_message(span_warning("The space around [H] compresses for a moment but then nothing happens."),span_notice("The space around you distorts but nothing happens to you."))
 			return
 		if(H.size_multiplier != target_size)
 			if(!(world.time - last_activated > 10 SECONDS))
-				to_chat(M, "<span class ='warning'>\The [src] flickers. It seems to be recharging.</span>")
+				to_chat(M, span_warning("\The [src] flickers. It seems to be recharging."))
 				return
 			last_activated = world.time
 			original_size = H.size_multiplier
 			H.resize(target_size, ignore_prefs = FALSE)		//In case someone else tries to put it on you.
-			H.visible_message("<span class='warning'>The space around [H] distorts as they change size!</span>","<span class='notice'>The space around you distorts as you change size!</span>")
+			H.visible_message(span_warning("The space around [H] distorts as they change size!"),span_notice("The space around you distorts as you change size!"))
 			log_admin("Admin [key_name(M)]'s size was altered by a bluespace collar.")
 			s.set_up(3, 1, M)
 			s.start()
 		else if(H.size_multiplier == target_size)
 			if(original_size == null)
-				H.visible_message("<span class='warning'>The space around [H] twists and turns for a moment but then nothing happens.</span>","<span class='notice'>The space around you distorts but stay the same size.</span>")
+				H.visible_message(span_warning("The space around [H] twists and turns for a moment but then nothing happens."),span_notice("The space around you distorts but stay the same size."))
 				return
 			last_activated = world.time
 			H.resize(original_size, ignore_prefs = FALSE)
 			original_size = null
-			H.visible_message("<span class='warning'>The space around [H] distorts as they return to their original size!</span>","<span class='notice'>The space around you distorts as you return to your original size!</span>")
+			H.visible_message(span_warning("The space around [H] distorts as they return to their original size!"),span_notice("The space around you distorts as you return to your original size!"))
 			log_admin("Admin [key_name(M)]'s size was altered by a bluespace collar.")
-			to_chat(M, "<span class ='warning'>\The [src] flickers. It is now recharging and will be ready again in ten  seconds.</span>")
+			to_chat(M, span_warning("\The [src] flickers. It is now recharging and will be ready again in ten  seconds."))
 			s.set_up(3, 1, M)
 			s.start()
 	return
@@ -495,16 +428,16 @@
 
 /obj/item/clothing/accessory/collar/shock/bluespace/attackby(var/obj/item/component, mob/user as mob)
 	if (component.has_tool_quality(TOOL_WRENCH))
-		to_chat(user, "<span class='notice'>You crack the bluespace crystal [src].</span>")
+		to_chat(user, span_notice("You crack the bluespace crystal [src]."))
 		var/turf/T = get_turf(src)
 		new /obj/item/clothing/accessory/collar/shock/bluespace/malfunctioning(T)
 		user.drop_from_inventory(src)
 		qdel(src)
 		return
-	if (!istype(component,/obj/item/device/assembly/signaler))
+	if (!istype(component,/obj/item/assembly/signaler))
 		..()
 		return
-	to_chat(user, "<span class='notice'>You wire the signaler into the [src].</span>")
+	to_chat(user, span_notice("You wire the signaler into the [src]."))
 	user.drop_item()
 	qdel(component)
 	var/turf/T = get_turf(src)
@@ -526,75 +459,27 @@
 
 /obj/item/clothing/accessory/collar/shock/bluespace/modified/attackby(var/obj/item/component, mob/user as mob)
 	if (component.has_tool_quality(TOOL_WRENCH))
-		to_chat(user, "<span class='notice'>You crack the bluespace crystal [src], the attached signaler disconnects.</span>")
+		to_chat(user, span_notice("You crack the bluespace crystal [src], the attached signaler disconnects."))
 		var/turf/T = get_turf(src)
 		new /obj/item/clothing/accessory/collar/shock/bluespace/malfunctioning(T)
 		user.drop_from_inventory(src)
 		qdel(src)
 		return
-	if (!istype(component,/obj/item/device/assembly/signaler))
+	if (!istype(component,/obj/item/assembly/signaler))
 		..()
 		return
-	to_chat(user, "<span class='notice'>There is already a signaler wired to the [src].</span>")
+	to_chat(user, span_notice("There is already a signaler wired to the [src]."))
 	return
 
-/obj/item/clothing/accessory/collar/shock/bluespace/modified/attack_self(mob/user as mob, flag1)
-	if(!istype(user, /mob/living/carbon/human))
-		return
-	user.set_machine(src) //Doesn't need code or size options as the code now just defines the size.
-	var/dat = {"<TT>
-			<B>Frequency/Code</B> for collar:<BR>
-			Frequency:
-			<A href='byond://?src=\ref[src];freq=-10'>-</A>
-			<A href='byond://?src=\ref[src];freq=-2'>-</A> [format_frequency(frequency)]
-			<A href='byond://?src=\ref[src];freq=2'>+</A>
-			<A href='byond://?src=\ref[src];freq=10'>+</A><BR>
+/obj/item/clothing/accessory/collar/shock/bluespace/modified/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
+	var/list/data = ..()
+	data["target_size"] = "code"
+	return data
 
-			Tag:
-			<A href='?src=\ref[src];tag=1'>Set tag</A><BR>
-
-			The size control of the collar is determined by two times the value of the code it recieves, to a minimum of 26 (code 13).
-			</TT>"}
-	user << browse(dat, "window=radio")
-	onclose(user, "radio")
-	return
-
-/obj/item/clothing/accessory/collar/shock/bluespace/modified/Topic(href, href_list)
-	if(usr.stat || usr.restrained())
-		return
-	if(((istype(usr, /mob/living/carbon/human) && ((!( ticker ) || (ticker && ticker.mode != "monkey")) && usr.contents.Find(src))) || (usr.contents.Find(master) || (in_range(src, usr) && istype(loc, /turf)))))
-		usr.set_machine(src)
-		if(href_list["freq"])
-			var/new_frequency = sanitize_frequency(frequency + text2num(href_list["freq"]))
-			set_frequency(new_frequency)
-		if(href_list["tag"])
-			var/str = copytext(reject_bad_text(tgui_input_text(usr,"Tag text?","Set tag","",MAX_NAME_LEN)),1,MAX_NAME_LEN)
-			if(!str || !length(str))
-				to_chat(usr,"<span class='notice'>[name]'s tag set to be blank.</span>")
-				name = initial(name)
-				desc = initial(desc)
-			else
-				to_chat(usr,"<span class='notice'>You set the [name]'s tag to '[str]'.</span>")
-				name = initial(name) + " ([str])"
-				desc = initial(desc) + " The tag says \"[str]\"."
-		if(!( master ))
-			if(istype(loc, /mob))
-				attack_self(loc)
-			else
-				for(var/mob/M in viewers(1, src))
-					if(M.client)
-						attack_self(M)
-		else
-			if(istype(master.loc, /mob))
-				attack_self(master.loc)
-			else
-				for(var/mob/M in viewers(1, master))
-					if(M.client)
-						attack_self(M)
-	else
-		usr << browse(null, "window=radio")
-		return
-	return
+/obj/item/clothing/accessory/collar/shock/bluespace/modified/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
+	if(action == "size")
+		return // no modifying size
+	. = ..()
 
 /obj/item/clothing/accessory/collar/shock/bluespace/modified/receive_signal(datum/signal/signal)
 	if(!signal)
@@ -609,32 +494,32 @@
 		var/mob/living/carbon/human/H = M
 		var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
 		if(!H.resizable)
-			H.visible_message("<span class='warning'>The space around [H] compresses for a moment but then nothing happens.</span>","<span class='notice'>The space around you distorts but nothing happens to you.</span>")
+			H.visible_message(span_warning("The space around [H] compresses for a moment but then nothing happens."),span_notice("The space around you distorts but nothing happens to you."))
 			return
 		if (target_size < 0.26)
-			H.visible_message("<span class='warning'>The collar on [H] flickers, but fizzles out.</span>","<span class='notice'>Your collar flickers, but is not powerful enough to shrink you that small.</span>")
+			H.visible_message(span_warning("The collar on [H] flickers, but fizzles out."),span_notice("Your collar flickers, but is not powerful enough to shrink you that small."))
 			return
 		if(H.size_multiplier != target_size)
 			if(!(world.time - last_activated > 10 SECONDS))
-				to_chat(M, "<span class ='warning'>\The [src] flickers. It seems to be recharging.</span>")
+				to_chat(M, span_warning("\The [src] flickers. It seems to be recharging."))
 				return
 			last_activated = world.time
 			original_size = H.size_multiplier
 			H.resize(target_size, ignore_prefs = FALSE)		//In case someone else tries to put it on you.
-			H.visible_message("<span class='warning'>The space around [H] distorts as they change size!</span>","<span class='notice'>The space around you distorts as you change size!</span>")
+			H.visible_message(span_warning("The space around [H] distorts as they change size!"),span_notice("The space around you distorts as you change size!"))
 			log_admin("Admin [key_name(M)]'s size was altered by a bluespace collar.")
 			s.set_up(3, 1, M)
 			s.start()
 		else if(H.size_multiplier == target_size)
 			if(original_size == null)
-				H.visible_message("<span class='warning'>The space around [H] twists and turns for a moment but then nothing happens.</span>","<span class='notice'>The space around you distorts but stay the same size.</span>")
+				H.visible_message(span_warning("The space around [H] twists and turns for a moment but then nothing happens."),span_notice("The space around you distorts but stay the same size."))
 				return
 			last_activated = world.time
 			H.resize(original_size, ignore_prefs = FALSE)
 			original_size = null
-			H.visible_message("<span class='warning'>The space around [H] distorts as they return to their original size!</span>","<span class='notice'>The space around you distorts as you return to your original size!</span>")
+			H.visible_message(span_warning("The space around [H] distorts as they return to their original size!"),span_notice("The space around you distorts as you return to your original size!"))
 			log_admin("Admin [key_name(M)]'s size was altered by a bluespace collar.")
-			to_chat(M, "<span class ='warning'>\The [src] flickers. It is now recharging and will be ready again in ten  seconds.</span>")
+			to_chat(M, span_warning("\The [src] flickers. It is now recharging and will be ready again in ten  seconds."))
 			s.set_up(3, 1, M)
 			s.start()
 	return
@@ -652,82 +537,21 @@
 	var/currently_shrinking = 0
 
 /obj/item/clothing/accessory/collar/shock/bluespace/malfunctioning/attackby(var/obj/item/component, mob/user as mob)
-	if (!istype(component,/obj/item/device/assembly/signaler))
+	if (!istype(component,/obj/item/assembly/signaler))
 		..()
 		return
-	to_chat(user, "<span class='notice'>The signaler doesn't respond to the connection attempt [src].</span>")
+	to_chat(user, span_notice("The signaler doesn't respond to the connection attempt [src]."))
 	return
 
-/obj/item/clothing/accessory/collar/shock/bluespace/malfunctioning/attack_self(mob/user as mob, flag1)
-	if(!istype(user, /mob/living/carbon/human))
-		return
-	user.set_machine(src)
-	var/dat = {"<TT>
-			<B>Frequency/Code</B> for collar:<BR>
-			Frequency:
-			<A href='byond://?src=\ref[src];freq=-10'>-</A>
-			<A href='byond://?src=\ref[src];freq=-2'>-</A> [format_frequency(frequency)]
-			<A href='byond://?src=\ref[src];freq=2'>+</A>
-			<A href='byond://?src=\ref[src];freq=10'>+</A><BR>
+/obj/item/clothing/accessory/collar/shock/bluespace/malfunctioning/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
+	var/list/data = ..()
+	data["target_size"] = "locked"
+	return data
 
-			Code:
-			<A href='byond://?src=\ref[src];code=-5'>-</A>
-			<A href='byond://?src=\ref[src];code=-1'>-</A> [code]
-			<A href='byond://?src=\ref[src];code=1'>+</A>
-			<A href='byond://?src=\ref[src];code=5'>+</A><BR>
-
-			Tag:
-			<A href='?src=\ref[src];tag=1'>Set tag</A><BR>
-
-			Size:
-			Input Disabled!<BR>
-			</TT>"}
-	user << browse(dat, "window=radio")
-	onclose(user, "radio")
-	return
-
-/obj/item/clothing/accessory/collar/shock/bluespace/malfunctioning/Topic(href, href_list)
-	if(usr.stat || usr.restrained())
-		return
-	if(((istype(usr, /mob/living/carbon/human) && ((!( ticker ) || (ticker && ticker.mode != "monkey")) && usr.contents.Find(src))) || (usr.contents.Find(master) || (in_range(src, usr) && istype(loc, /turf)))))
-		usr.set_machine(src)
-		if(href_list["freq"])
-			var/new_frequency = sanitize_frequency(frequency + text2num(href_list["freq"]))
-			set_frequency(new_frequency)
-		if(href_list["tag"])
-			var/str = copytext(reject_bad_text(tgui_input_text(usr,"Tag text?","Set tag","",MAX_NAME_LEN)),1,MAX_NAME_LEN)
-			if(!str || !length(str))
-				to_chat(usr,"<span class='notice'>[name]'s tag set to be blank.</span>")
-				name = initial(name)
-				desc = initial(desc)
-			else
-				to_chat(usr,"<span class='notice'>You set the [name]'s tag to '[str]'.</span>")
-				name = initial(name) + " ([str])"
-				desc = initial(desc) + " The tag says \"[str]\"."
-		else
-			if(href_list["code"])
-				code += text2num(href_list["code"])
-				code = round(code)
-				code = min(100, code)
-				code = max(1, code)
-		if(!( master ))
-			if(istype(loc, /mob))
-				attack_self(loc)
-			else
-				for(var/mob/M in viewers(1, src))
-					if(M.client)
-						attack_self(M)
-		else
-			if(istype(master.loc, /mob))
-				attack_self(master.loc)
-			else
-				for(var/mob/M in viewers(1, master))
-					if(M.client)
-						attack_self(M)
-	else
-		usr << browse(null, "window=radio")
-		return
-	return
+/obj/item/clothing/accessory/collar/shock/bluespace/malfunctioning/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
+	if(action == "size")
+		return // no modifying size
+	. = ..()
 
 /obj/item/clothing/accessory/collar/shock/bluespace/malfunctioning/receive_signal(datum/signal/signal)
 	if(!signal)
@@ -742,34 +566,34 @@
 		var/mob/living/carbon/human/H = M
 		var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
 		if(!H.resizable)
-			H.visible_message("<span class='warning'>The space around [H] compresses for a moment but then nothing happens.</span>","<span class='notice'>The space around you distorts but nothing happens to you.</span>")
+			H.visible_message(span_warning("The space around [H] compresses for a moment but then nothing happens."),span_notice("The space around you distorts but nothing happens to you."))
 			return
 		if (target_size < 0.25)
-			H.visible_message("<span class='warning'>The collar on [H] flickers, but fizzles out.</span>","<span class='notice'>Your collar flickers, but is not powerful enough to shrink you that small.</span>")
+			H.visible_message(span_warning("The collar on [H] flickers, but fizzles out."),span_notice("Your collar flickers, but is not powerful enough to shrink you that small."))
 			return
 		if(currently_shrinking == 0)
 			if(!(world.time - last_activated > 10 SECONDS))
-				to_chat(M, "<span class ='warning'>\The [src] flickers. It seems to be recharging.</span>")
+				to_chat(M, span_warning("\The [src] flickers. It seems to be recharging."))
 				return
 			last_activated = world.time
 			original_size = H.size_multiplier
 			currently_shrinking = 1
 			H.resize(target_size, ignore_prefs = FALSE)		//In case someone else tries to put it on you.
-			H.visible_message("<span class='warning'>The space around [H] distorts as they change size!</span>","<span class='notice'>The space around you distorts as you change size!</span>")
+			H.visible_message(span_warning("The space around [H] distorts as they change size!"),span_notice("The space around you distorts as you change size!"))
 			log_admin("Admin [key_name(M)]'s size was altered by a bluespace collar.")
 			s.set_up(3, 1, M)
 			s.start()
 		else if(currently_shrinking == 1)
 			if(original_size == null)
-				H.visible_message("<span class='warning'>The space around [H] twists and turns for a moment but then nothing happens.</span>","<span class='notice'>The space around you distorts but stay the same size.</span>")
+				H.visible_message(span_warning("The space around [H] twists and turns for a moment but then nothing happens."),span_notice("The space around you distorts but stay the same size."))
 				return
 			last_activated = world.time
 			H.resize(original_size, ignore_prefs = FALSE)
 			original_size = null
 			currently_shrinking = 0
-			H.visible_message("<span class='warning'>The space around [H] distorts as they return to their original size!</span>","<span class='notice'>The space around you distorts as you return to your original size!</span>")
+			H.visible_message(span_warning("The space around [H] distorts as they return to their original size!"),span_notice("The space around you distorts as you return to your original size!"))
 			log_admin("Admin [key_name(M)]'s size was altered by a bluespace collar.")
-			to_chat(M, "<span class ='warning'>\The [src] flickers. It is now recharging and will be ready again in ten  seconds.</span>")
+			to_chat(M, span_warning("\The [src] flickers. It is now recharging and will be ready again in ten  seconds."))
 			s.set_up(3, 1, M)
 			s.start()
 	return
@@ -781,7 +605,7 @@
 	icon_state = "holster_machete"
 	slot = ACCESSORY_SLOT_WEAPON
 	concealed_holster = 0
-	can_hold = list(/obj/item/weapon/material/knife/machete, /obj/item/weapon/kinetic_crusher/machete)
+	can_hold = list(/obj/item/material/knife/machete, /obj/item/kinetic_crusher/machete)
 	//sound_in = 'sound/effects/holster/sheathin.ogg'
 	//sound_out = 'sound/effects/holster/sheathout.ogg'
 
@@ -890,7 +714,7 @@
 	desc = "The latest fashion innovations by the Nanotrasen Uniform & Fashion Department have provided the brilliant invention of slicing a regular cloak in half! All the ponce, half the cost!"
 	icon_state = "roughcloak"
 	item_state = "roughcloak"
-	action_button_name = "Adjust Cloak"
+	actions_types = list(/datum/action/item_action/adjust_cloak)
 
 /obj/item/clothing/accessory/poncho/roles/cloak/half/update_clothing_icon()
 	. = ..()
@@ -961,13 +785,13 @@
 
 /obj/item/clothing/accessory/poncho/roles/cloak/mantle/hop
 	name = "head of personnel mantle"
-	desc = "A shoulder mantle bearing the colors of the Head of Personnel's uniform, featuring the typical royal blue contrasted by authoritative red."
+	desc = "A shoulder mantle bearing the colors of the " + JOB_HEAD_OF_PERSONNEL + "'s uniform, featuring the typical royal blue contrasted by authoritative red."
 	icon_state = "hopmantle"
 	item_state = "hopmantle"
 
 /obj/item/clothing/accessory/poncho/roles/cloak/mantle/cap
 	name = "site manager mantle"
-	desc = "A shoulder mantle bearing the colors usually found on a Site Manager, a commanding blue with regal gold inlay."
+	desc = "A shoulder mantle bearing the colors usually found on a " + JOB_SITE_MANAGER + ", a commanding blue with regal gold inlay."
 	icon_state = "capmantle"
 	item_state = "capmantle"
 
@@ -1161,7 +985,7 @@
 	desc = "Aim for the Heart, Ramon."
 	icon_state = "neo_ranger"
 	item_state = "neo_ranger"
-	action_button_name = "Adjust Poncho"
+	actions_types = list(/datum/action/item_action/adjust_poncho)
 
 /obj/item/clothing/accessory/poncho/roles/neo_ranger/update_clothing_icon()
 	. = ..()
@@ -1181,3 +1005,41 @@
 		flags_inv = HIDEHOLSTER
 		to_chat(user, "You adjust your poncho.")
 	update_clothing_icon()
+
+/obj/item/clothing/accessory/belt
+	name = "Thin Belt"
+	desc = "A thin belt for holding your pants up."
+	icon = 'icons/inventory/accessory/item.dmi'
+	icon_override = 'icons/inventory/accessory/mob.dmi'
+	icon_state = "belt_thin"
+	item_state = "belt_thin"
+	slot_flags = SLOT_TIE | SLOT_BELT
+	slot = ACCESSORY_SLOT_DECOR
+
+/obj/item/clothing/accessory/belt/thick
+	name = "Thick Belt"
+	desc = "A thick belt for holding your pants up."
+	icon_state = "belt_thick"
+	item_state = "belt_thick"
+
+/obj/item/clothing/accessory/belt/strap
+	name = "Strap Belt"
+	desc = "A belt with no bucklet for holding your pants up."
+	icon_state = "belt_strap"
+	item_state = "belt_strap"
+
+/obj/item/clothing/accessory/belt/studded
+	name = "Studded Belt"
+	desc = "A studded belt for holding your pants up and looking cool."
+	icon_state = "belt_studded"
+	item_state = "belt_studded"
+
+/obj/item/clothing/accessory/bunny_tail
+	name = "Bunny Tail"
+	desc = "A little fluffy bunny tail to spice up your outfit."
+	icon = 'icons/inventory/accessory/item.dmi'
+	icon_override = 'icons/inventory/accessory/mob.dmi'
+	icon_state = "bunny_tail"
+	item_state = "bunny_tail"
+	slot_flags = SLOT_TIE | SLOT_BELT
+	slot = ACCESSORY_SLOT_DECOR

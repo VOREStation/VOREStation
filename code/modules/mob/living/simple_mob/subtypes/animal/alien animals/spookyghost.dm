@@ -22,7 +22,7 @@
 	hovering = TRUE
 	pass_flags = PASSTABLE
 
-	faction = "space ghost"
+	faction = FACTION_SPACE_GHOST
 	maxHealth = 50
 	health = 50
 	movement_cooldown = 0
@@ -71,7 +71,7 @@
 		"rad" = 100
 		)
 
-	loot_list = list(/obj/item/weapon/ore/diamond = 100, /obj/item/weapon/ectoplasm = 3)
+	loot_list = list(/obj/item/ore/diamond = 100, /obj/item/ectoplasm = 3)
 
 	speak_emote = list("rumbles")
 
@@ -134,7 +134,7 @@
 	hovering = TRUE
 	pass_flags = PASSTABLE
 
-	faction = "space ghost"
+	faction = FACTION_SPACE_GHOST
 	maxHealth = 5
 	health = 5
 	movement_cooldown = -1

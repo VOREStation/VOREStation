@@ -9,7 +9,7 @@
 	var/color = "#FFFFFF"	// The actual blob's color.
 	var/complementary_color = "#000000" //a color that's complementary to the normal blob color.  Blob mobs are colored in this.
 
-	var/faction = "blob"				// The blob's faction.
+	var/faction = FACTION_BLOB				// The blob's faction.
 
 	var/attack_message = "The blob attacks you" // Base message the mob gets when blob_act() gets called on them by the blob.  An exclaimation point is added to the end.
 	var/attack_message_living = null	// Appended to attack_message, if the target fails isSynthetic() check.
@@ -97,17 +97,17 @@
 	return
 
 // Blob core chunk process.
-/datum/blob_type/proc/on_chunk_tick(obj/item/weapon/blobcore_chunk/B)
+/datum/blob_type/proc/on_chunk_tick(obj/item/blobcore_chunk/B)
 	return
 
 // Blob core chunk use in-hand.
-/datum/blob_type/proc/on_chunk_use(obj/item/weapon/blobcore_chunk/B, mob/user)
+/datum/blob_type/proc/on_chunk_use(obj/item/blobcore_chunk/B, mob/user)
 	return
 
 // Proc that is unique to the blob type.
-/datum/blob_type/proc/chunk_unique(obj/item/weapon/blobcore_chunk/B, var/list/extra_args = null)
+/datum/blob_type/proc/chunk_unique(obj/item/blobcore_chunk/B, var/list/extra_args = null)
 	return
 
 // Set up the blob type for the chunk.
-/datum/blob_type/proc/chunk_setup(obj/item/weapon/blobcore_chunk/B)
+/datum/blob_type/proc/chunk_setup(obj/item/blobcore_chunk/B)
 	return

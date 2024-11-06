@@ -80,8 +80,8 @@
 					else
 						return
 				M.updatehealth()
-			src.occupant_message("You hit [target].")
-			src.visible_message(span_red("<b>[src.name] hits [target].</b>"))
+			src.occupant_message(span_attack("You hit [target]."))
+			src.visible_message(span_bolddanger("[src.name] hits [target]."))
 		else
 			step_away(M,src)
 			src.occupant_message("You push [target] out of the way.")
@@ -96,8 +96,8 @@
 		if(damtype == "brute")
 			for(var/target_type in src.destroyable_obj)
 				if(istype(target, target_type) && hascall(target, "attackby"))
-					src.occupant_message("You hit [target].")
-					src.visible_message(span_red("<b>[src.name] hits [target].</b>"))
+					src.occupant_message(span_attack("You hit [target]."))
+					src.visible_message(span_bolddanger("[src.name] hits [target]."))
 					if(!istype(target, /turf/simulated/wall))
 						target:attackby(src,src.occupant)
 					else
@@ -121,7 +121,7 @@
 /obj/mecha/micro/move_inside()
 	var/mob/living/carbon/C = usr
 	if (C.get_effective_size(TRUE) >= 0.5)
-		to_chat(C, "<span class='warning'>You can't fit in this suit!</span>")
+		to_chat(C, span_warning("You can't fit in this suit!"))
 		return
 	else
 		..()
@@ -129,7 +129,7 @@
 /obj/mecha/micro/move_inside_passenger()
 	var/mob/living/carbon/C = usr
 	if (C.get_effective_size(TRUE) >= 0.5)
-		to_chat(C, "<span class='warning'>You can't fit in this suit!</span>")
+		to_chat(C, span_warning("You can't fit in this suit!"))
 		return
 	else
 		..()

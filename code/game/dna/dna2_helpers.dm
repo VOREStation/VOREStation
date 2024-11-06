@@ -183,6 +183,11 @@
 			H.ear_style = null
 		else if((0 < ears) && (ears <= ear_styles_list.len))
 			H.ear_style = ear_styles_list[ear_styles_list[ears]]
+		var/ears_secondary = dna.GetUIValueRange(DNA_UI_EAR_SECONDARY_STYLE, ear_styles_list.len + 1) - 1
+		if(ears_secondary < 1)
+			H.ear_secondary_style = null
+		else if((0 < ears_secondary) && (ears_secondary <= ear_styles_list.len))
+			H.ear_secondary_style = ear_styles_list[ear_styles_list[ears_secondary]]
 
 		// Ear Color
 		H.r_ears  = dna.GetUIValueRange(DNA_UI_EARS_R,    255)
@@ -195,6 +200,15 @@
 		H.g_ears3 = dna.GetUIValueRange(DNA_UI_EARS3_G,   255)
 		H.b_ears3 = dna.GetUIValueRange(DNA_UI_EARS3_B,	  255)
 
+		LAZYINITLIST(H.ear_secondary_colors)
+		H.ear_secondary_colors.len = max(length(H.ear_secondary_colors), DNA_UI_EARS_SECONDARY_COLOR_CHANNEL_COUNT)
+		for(var/channel in 1 to DNA_UI_EARS_SECONDARY_COLOR_CHANNEL_COUNT)
+			var/offset = DNA_UI_EARS_SECONDARY_START + (channel - 1) * 3
+			H.ear_secondary_colors[channel] = rgb(
+				dna.GetUIValueRange(offset, 255),
+				dna.GetUIValueRange(offset + 1, 255),
+				dna.GetUIValueRange(offset + 2, 255),
+			)
 
 		//Tail
 		var/tail = dna.GetUIValueRange(DNA_UI_TAIL_STYLE, tail_styles_list.len + 1) - 1

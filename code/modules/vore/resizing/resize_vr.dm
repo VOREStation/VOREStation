@@ -12,7 +12,7 @@
 
 // Define holder_type on types we want to be scoop-able
 /mob/living/carbon/human
-	holder_type = /obj/item/weapon/holder/micro
+	holder_type = /obj/item/holder/micro
 
 // The reverse lookup of player_sizes_list, number to name.
 /proc/player_size_name(var/size_multiplier)
@@ -152,7 +152,7 @@
 
 /mob/living/proc/set_size()
 	set name = "Adjust Mass"
-	set category = "Abilities" //Seeing as prometheans have an IC reason to be changing mass.
+	set category = "Abilities.General" //Seeing as prometheans have an IC reason to be changing mass.
 
 	var/nagmessage = "Adjust your mass to be a size between 25 to 200% (or 1% to 600% in dormitories). (DO NOT ABUSE)"
 	var/default = size_multiplier * 100
@@ -166,7 +166,7 @@
 /*
 //Add the set_size() proc to usable verbs. By commenting this out, we can leave the proc and hand it to species that need it.
 /hook/living_new/proc/resize_setup(mob/living/H)
-	H.verbs += /mob/living/proc/set_size
+	add_verb(H, /mob/living/proc/set_size)
 	return 1
 */
 
@@ -190,10 +190,10 @@
 			return 0
 	if(size_diff >= 0.50 || mob_size < MOB_SMALL || size_diff >= get_effective_size() || ignore_size)
 		if(buckled)
-			to_chat(usr,"<span class='notice'>You have to unbuckle \the [src] before you pick them up.</span>")
+			to_chat(usr,span_notice("You have to unbuckle \the [src] before you pick them up."))
 			return 0
-		holder_type = /obj/item/weapon/holder/micro
-		var/obj/item/weapon/holder/m_holder = get_scooped(M, G)
+		holder_type = /obj/item/holder/micro
+		var/obj/item/holder/m_holder = get_scooped(M, G)
 		holder_type = holder_default
 		if (m_holder)
 			return 1
@@ -244,9 +244,9 @@
 				tmob_message = tail.msg_owner_stepunder
 
 		if(src_message)
-			to_chat(src, "<span class='filter_notice'>[STEP_TEXT_OWNER(src_message)]</span>")
+			to_chat(src, span_filter_notice("[STEP_TEXT_OWNER(src_message)]"))
 		if(tmob_message)
-			to_chat(tmob, "<span class='filter_notice'>[STEP_TEXT_PREY(tmob_message)]</span>")
+			to_chat(tmob, span_filter_notice("[STEP_TEXT_PREY(tmob_message)]"))
 		return TRUE
 	return FALSE
 
@@ -307,8 +307,8 @@
 		return FALSE
 
 	if(tmob.a_intent != I_HELP && prob(35))
-		to_chat(pred, "<span class='danger'>[prey] dodges out from under your foot!</span>")
-		to_chat(prey, "<span class='danger'>You narrowly avoid [pred]'s foot!</span>")
+		to_chat(pred, span_danger("[prey] dodges out from under your foot!"))
+		to_chat(prey, span_danger("You narrowly avoid [pred]'s foot!"))
 		return FALSE
 
 	now_pushing = 0
@@ -396,17 +396,17 @@
 				prey.drip(3)
 				add_attack_logs(pred, prey, "Crushed underfoot (walk, about [calculated_damage] damage)")
 
-	to_chat(pred, "<span class='danger'>[message_pred]</span>")
-	to_chat(prey, "<span class='danger'>[message_prey]</span>")
+	to_chat(pred, span_danger("[message_pred]"))
+	to_chat(prey, span_danger("[message_prey]"))
 	return TRUE
 
 /mob/living/verb/toggle_pickups()
 	set name = "Toggle Micro Pick-up"
 	set desc = "Toggles whether your help-intent action attempts to pick up the micro or pet/hug/help them. Does not disable participation in pick-up mechanics entirely, refer to Vore Panel preferences for that."
-	set category = "IC"
+	set category = "IC.Settings"
 
 	pickup_active = !pickup_active
-	to_chat(src, "<span class='filter_notice'>You will [pickup_active ? "now" : "no longer"] attempt to pick up mobs when clicking them with help intent.</span>")
+	to_chat(src, span_filter_notice("You will [pickup_active ? "now" : "no longer"] attempt to pick up mobs when clicking them with help intent."))
 
 #undef STEP_TEXT_OWNER
 #undef STEP_TEXT_PREY

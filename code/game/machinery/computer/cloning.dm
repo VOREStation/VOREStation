@@ -6,7 +6,7 @@
 	icon = 'icons/obj/computer.dmi'
 	icon_keyboard = "med_key"
 	icon_screen = "dna"
-	circuit = /obj/item/weapon/circuitboard/cloning
+	circuit = /obj/item/circuitboard/cloning
 	req_access = list(access_heads) //Only used for record deletion right now.
 	var/obj/machinery/dna_scannernew/scanner = null //Linked scanner. For scanning.
 	var/list/pods = null //Linked cloning pods.
@@ -15,7 +15,7 @@
 	var/menu = MENU_MAIN //Which menu screen to display
 	var/list/records = null
 	var/datum/dna2/record/active_record = null
-	var/obj/item/weapon/disk/data/diskette = null //Mostly so the geneticist can steal everything.
+	var/obj/item/disk/data/diskette = null //Mostly so the geneticist can steal everything.
 	var/loading = 0 // Nice loading text
 	var/autoprocess = 0
 	var/obj/machinery/clonepod/selected_pod
@@ -91,7 +91,7 @@
 			P.name = "[initial(P.name)] #[num++]"
 
 /obj/machinery/computer/cloning/attackby(obj/item/W as obj, mob/user as mob, params)
-	if(istype(W, /obj/item/weapon/disk/data)) //INSERT SOME DISKETTES
+	if(istype(W, /obj/item/disk/data)) //INSERT SOME DISKETTES
 		if(!diskette)
 			user.drop_item()
 			W.loc = src
@@ -99,14 +99,14 @@
 			to_chat(user, "You insert [W].")
 			SStgui.update_uis(src)
 			return
-	else if(istype(W, /obj/item/device/multitool))
-		var/obj/item/device/multitool/M = W
+	else if(istype(W, /obj/item/multitool))
+		var/obj/item/multitool/M = W
 		var/obj/machinery/clonepod/P = M.connecting
 		if(P && !(P in pods))
 			pods += P
 			P.connected = src
 			P.name = "[initial(P.name)] #[pods.len]"
-			to_chat(user, "<span class='notice'>You connect [P] to [src].</span>")
+			to_chat(user, span_notice("You connect [P] to [src]."))
 	else
 		return ..()
 
@@ -204,8 +204,8 @@
 	switch(tgui_modal_act(src, action, params))
 		if(TGUI_MODAL_ANSWER)
 			if(params["id"] == "del_rec" && active_record)
-				var/obj/item/weapon/card/id/C = usr.get_active_hand()
-				if(!istype(C) && !istype(C, /obj/item/device/pda))
+				var/obj/item/card/id/C = usr.get_active_hand()
+				if(!istype(C) && !istype(C, /obj/item/pda))
 					set_temp("ID not in hand.", "danger")
 					return
 				if(check_access(C))
@@ -247,7 +247,7 @@
 					qdel(active_record)
 					set_temp("Error: Record corrupt.", "danger")
 				else
-					var/obj/item/weapon/implant/health/H = null
+					var/obj/item/implant/health/H = null
 					if(active_record.implant)
 						H = locate(active_record.implant)
 					var/list/payload = list(
@@ -336,7 +336,7 @@
 						set_temp("Error: Not enough biomass.", "danger")
 					else if(pod.mess)
 						set_temp("Error: The cloning pod is malfunctioning.", "danger")
-					else if(!config.revival_cloning)
+					else if(!CONFIG_GET(flag/revival_cloning))
 						set_temp("Error: Unable to initiate cloning cycle.", "danger")
 					else
 						cloneresult = pod.growclone(C)
@@ -437,9 +437,9 @@
 			R.genetic_modifiers.Add(mod.type)
 
 	//Add an implant if needed
-	var/obj/item/weapon/implant/health/imp = locate(/obj/item/weapon/implant/health, subject)
+	var/obj/item/implant/health/imp = locate(/obj/item/implant/health, subject)
 	if (isnull(imp))
-		imp = new /obj/item/weapon/implant/health(subject)
+		imp = new /obj/item/implant/health(subject)
 		imp.implanted = subject
 		R.implant = "\ref[imp]"
 	//Update it if needed

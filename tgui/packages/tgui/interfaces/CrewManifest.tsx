@@ -1,9 +1,8 @@
 import { decodeHtmlEntities } from 'common/string';
-
-import { useBackend } from '../backend';
-import { Box, Section, Table } from '../components';
-import { COLORS } from '../constants';
-import { Window } from '../layouts';
+import { useBackend } from 'tgui/backend';
+import { COLORS } from 'tgui/constants';
+import { Window } from 'tgui/layouts';
+import { Box, Section, Table } from 'tgui-core/components';
 
 /*
  * Shared by the following templates (and used individually too)
@@ -40,43 +39,63 @@ export const CrewManifestContent = (props) => {
 
   const { manifest } = data;
 
+  if (manifest.length === 0) {
+    return <Box color="average">No Manifest Data</Box>;
+  }
+
+  let crew_count = manifest
+    .map((val) => val.elems.length)
+    .reduce((a, c) => a + c, 0);
+  if (!crew_count) {
+    return <Box color="average">No Crew Detected</Box>;
+  }
+
   return (
-    <Section title="Crew Manifest" noTopPadding>
-      {manifest.map(
-        (cat) =>
-          !!cat.elems.length && (
-            <Section
-              title={
-                <Box
-                  backgroundColor={COLORS.manifest[cat.cat.toLowerCase()]}
-                  m={-1}
-                  pt={1}
-                  pb={1}
-                >
-                  <Box ml={1} textAlign="center" fontSize={1.4}>
-                    {cat.cat}
-                  </Box>
-                </Box>
-              }
-              key={cat.cat}
-            >
-              <Table>
+    <Section>
+      <Table>
+        {manifest.map(
+          (department) =>
+            !!department.elems.length && (
+              <>
+                <Table.Row header>
+                  <Table.Cell colSpan={3} textAlign="center" fontSize={1.4}>
+                    <Box
+                      pt={1}
+                      pb={1}
+                      mb={-1.2}
+                      mt={2}
+                      backgroundColor={
+                        COLORS.manifest[department.cat.toLowerCase()]
+                      }
+                    >
+                      {department.cat}
+                    </Box>
+                    {/* This uses style={{ height }} to avoid being turned into REM and causing rounding errors */}
+                    <Box
+                      backgroundColor="blue"
+                      mt={1}
+                      style={{ height: '2px' }}
+                    >
+                      &nbsp;
+                    </Box>
+                  </Table.Cell>
+                </Table.Row>
                 <Table.Row header color="white">
                   <Table.Cell>Name</Table.Cell>
                   <Table.Cell>Rank</Table.Cell>
                   <Table.Cell>Active</Table.Cell>
                 </Table.Row>
-                {cat.elems.map((person) => (
+                {department.elems.map((person) => (
                   <Table.Row color="average" key={person.name + person.rank}>
                     <Table.Cell>{decodeHtmlEntities(person.name)}</Table.Cell>
                     <Table.Cell>{person.rank}</Table.Cell>
                     <Table.Cell>{person.active}</Table.Cell>
                   </Table.Row>
                 ))}
-              </Table>
-            </Section>
-          ),
-      )}
+              </>
+            ),
+        )}
+      </Table>
     </Section>
   );
 };

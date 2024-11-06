@@ -10,7 +10,7 @@
 	icon_living = "flytrap"
 	icon_state = "flytrap"
 	icon_rest = "flytrap"
-	faction = "plants"
+	faction = FACTION_PLANTS
 	harm_intent_damage = 0
 	melee_damage_lower = 0
 	melee_damage_upper = 0
@@ -91,7 +91,7 @@
 	icon_living = "pitcher"
 	icon_state = "pitcher"
 	icon_rest = "pitcher"
-	faction = "plants"
+	faction = FACTION_PLANTS
 	movement_cooldown = 0
 	harm_intent_damage = 0
 	melee_damage_lower = 0
@@ -164,7 +164,7 @@
 
 /mob/living/simple_mob/vore/pitcher/proc/tongue(atom/A)
 	var/obj/item/projectile/P = new /obj/item/projectile/beam/appendage(get_turf(src))
-	src.visible_message("<span class='danger'>\The [src] launches a green appendage at \the [A]!</span>")
+	src.visible_message(span_danger("\The [src] launches a green appendage at \the [A]!"))
 	playsound(src, "sound/effects/slime_squish.ogg", 50, 1)
 	P.launch_projectile(A, BP_TORSO, src)*/
 

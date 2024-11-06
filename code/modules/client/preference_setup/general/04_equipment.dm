@@ -6,23 +6,28 @@
 	name = "Clothing"
 	sort_order = 4
 
-/datum/category_item/player_setup_item/general/equipment/load_character(var/savefile/S)
-	S["all_underwear"] >> pref.all_underwear
-	S["all_underwear_metadata"] >> pref.all_underwear_metadata
-	S["backbag"]	>> pref.backbag
-	S["pdachoice"]	>> pref.pdachoice
-	S["communicator_visibility"]	>> pref.communicator_visibility
-	S["ringtone"]	>> pref.ringtone
-	S["shoe_hater"] >> pref.shoe_hater	//RS ADD
+/datum/category_item/player_setup_item/general/equipment/load_character(list/save_data)
+	pref.all_underwear				= check_list_copy(save_data["all_underwear"])
+	pref.all_underwear_metadata		= check_list_copy(save_data["all_underwear_metadata"])
+	for(var/i in pref.all_underwear_metadata)
+		pref.all_underwear_metadata[i] = path2text_list(pref.all_underwear_metadata[i])
+	pref.backbag					= save_data["backbag"]
+	pref.pdachoice					= save_data["pdachoice"]
+	pref.communicator_visibility	= save_data["communicator_visibility"]
+	pref.ringtone					= save_data["ringtone"]
+	pref.shoe_hater					= save_data["shoe_hater"]
 
-/datum/category_item/player_setup_item/general/equipment/save_character(var/savefile/S)
-	S["all_underwear"] << pref.all_underwear
-	S["all_underwear_metadata"] << pref.all_underwear_metadata
-	S["backbag"]	<< pref.backbag
-	S["pdachoice"]	<< pref.pdachoice
-	S["communicator_visibility"]	<< pref.communicator_visibility
-	S["ringtone"]	<< pref.ringtone
-	S["shoe_hater"] << pref.shoe_hater	//RS ADD
+/datum/category_item/player_setup_item/general/equipment/save_character(list/save_data)
+	save_data["all_underwear"]				= pref.all_underwear
+	var/list/underwear = list()
+	for(var/i in pref.all_underwear_metadata)
+		underwear[i] = check_list_copy(pref.all_underwear_metadata[i])
+	save_data["all_underwear_metadata"] 	= underwear
+	save_data["backbag"]					= pref.backbag
+	save_data["pdachoice"]					= pref.pdachoice
+	save_data["communicator_visibility"]	= pref.communicator_visibility
+	save_data["ringtone"]					= pref.ringtone
+	save_data["shoe_hater"] 				= pref.shoe_hater
 
 var/global/list/valid_ringtones = list(
 		"beep",
@@ -108,7 +113,7 @@ var/global/list/valid_ringtones = list(
 
 /datum/category_item/player_setup_item/general/equipment/content()
 	. = list()
-	. += "<b>Equipment:</b><br>"
+	. += span_bold("Equipment:") + "<br>"
 	for(var/datum/category_group/underwear/UWC in global_underwear.categories)
 		var/item_name = pref.all_underwear[UWC.name] ? pref.all_underwear[UWC.name] : "None"
 		. += "[UWC.name]: <a href='?src=\ref[src];change_underwear=[UWC.name]'><b>[item_name]</b></a>"

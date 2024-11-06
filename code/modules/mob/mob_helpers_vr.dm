@@ -1,15 +1,15 @@
 /mob/recalculate_vis()
 	. = ..()
 
+	if(!plane_holder || !vis_enabled)
+		return
+
 	if(stomach_vision && !(VIS_CH_STOMACH in vis_enabled))
 		plane_holder.set_vis(VIS_CH_STOMACH,TRUE)
 		vis_enabled += VIS_CH_STOMACH
 	else if(!stomach_vision && (VIS_CH_STOMACH in vis_enabled))
 		plane_holder.set_vis(VIS_CH_STOMACH,FALSE)
 		vis_enabled -= VIS_CH_STOMACH
-
-	if(!plane_holder || !vis_enabled)
-		return
 
 	if(vantag_hud)
 		if(!(VIS_CH_VANTAG in vis_enabled))
@@ -29,18 +29,15 @@
 
 	var/toggle
 	toggle = tgui_alert(src, "Would you like to see visible stomachs?", "Visible Tummy?", list("Yes", "No"))
+	if(!toggle)
+		return
 	if(toggle =="Yes")
 		stomach_vision = 1 //Simple! Easy!
-		if(!(VIS_CH_STOMACH in vis_enabled))
-			plane_holder.set_vis(VIS_CH_STOMACH,TRUE)
-			vis_enabled += VIS_CH_STOMACH
-		to_chat("You can now see stomachs!")
+		to_chat(src, "You can now see stomachs!")
 	else
 		stomach_vision = 0
-		if(VIS_CH_STOMACH in vis_enabled)
-			plane_holder.set_vis(VIS_CH_STOMACH,FALSE)
-			vis_enabled -= VIS_CH_STOMACH
-		to_chat("You will no longer see stomachs!")
+		to_chat(src, "You will no longer see stomachs!")
+	recalculate_vis()
 
 /* //Leaving this in as an example of 'how to properly enable a plane to hide/show itself' for future PRs.
 if(stomach_vision && !(VIS_CH_STOMACH in vis_enabled))

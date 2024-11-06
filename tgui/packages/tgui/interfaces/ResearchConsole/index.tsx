@@ -1,129 +1,188 @@
-import { useEffect, useState } from 'react';
+import { useBackend, useSharedState } from 'tgui/backend';
+import { Box, Button, Icon, Section, Stack, Tabs } from 'tgui/components';
+import { Window } from 'tgui/layouts';
+import { FitText } from 'tgui-core/components';
 
-import { useBackend, useSharedState } from '../../backend';
-import { Box, Button, Section, Tabs } from '../../components';
-import { Window } from '../../layouts';
-import { menus } from './constants';
-import { ResearchConsoleConstructor } from './ResearchConsoleConstructor';
-import { ResearchConsoleDestructiveAnalyzer } from './ResearchConsoleDestructiveAnalyzer';
-import { ResearchConsoleDisk } from './ResearchConsoleDisk';
-import { ResearchConsoleSettings } from './ResearchConsoleSettings';
-import { ResearchConsoleViewDesigns } from './ResearchConsoleViewDesigns';
-import { ResearchConsoleViewResearch } from './ResearchConsoleViewResearch';
-import { Data, mat } from './types';
+import { ConstructorEnum, Data, Tab } from './data';
+import { Constructor } from './pages/Constructor';
+import { DesignList } from './pages/DesignList';
+import { DestructiveAnalyzer } from './pages/DestructiveAnalyzer';
+import { LockScreen } from './pages/LockScreen';
+import { Misc } from './pages/Misc';
+import { ResearchList } from './pages/ResearchList';
 
 export const ResearchConsole = (props) => {
-  const { act, data } = useBackend<Data>();
-
-  const { busy_msg, locked, info, imprinter_designs, lathe_designs } = data;
-
-  const [menu, setMenu] = useSharedState<number>('rdmenu', 0);
-  const [protoTab, setProtoTab] = useSharedState<number>('protoTab', 0);
-  const [settingsTab, setSettingsTab] = useSharedState<number>(
-    'settingsTab',
-    0,
-  );
-  const [saveDialogTech, setSaveDialogTech] = useSharedState<boolean>(
-    'saveDialogTech',
-    false,
-  );
-  const [saveDialogDesign, setSaveDialogDesign] = useSharedState<boolean>(
-    'saveDialogData',
-    false,
-  );
-
-  const [matsStates, setMatsState] = useState<mat[]>({} as mat[]);
-
-  useEffect(() => {
-    setMatsState({} as mat[]);
-  }, [menu]);
-
-  let allTabsDisabled = false;
-  if (busy_msg || locked) {
-    allTabsDisabled = true;
-  }
-
-  const tab: React.JSX.Element[] = [];
-
-  tab[0] = (info && (
-    <ResearchConsoleConstructor
-      name="Protolathe"
-      linked={info.linked_lathe}
-      designs={lathe_designs}
-      protoTab={protoTab}
-      matsStates={matsStates}
-      onProtoTab={setProtoTab}
-      onMatsState={setMatsState}
-    />
-  )) || <Box />;
-
-  tab[1] = (info && (
-    <ResearchConsoleConstructor
-      name="Circuit Imprinter"
-      linked={info.linked_imprinter}
-      designs={imprinter_designs}
-      protoTab={protoTab}
-      matsStates={matsStates}
-      onProtoTab={setProtoTab}
-      onMatsState={setMatsState}
-    />
-  )) || <Box />;
-
-  tab[2] = (info && (
-    <ResearchConsoleDestructiveAnalyzer
-      name="Destructive Analyzer"
-      linked_destroy={info.linked_destroy}
-    />
-  )) || <Box />;
-
-  tab[3] = (info && (
-    <ResearchConsoleSettings
-      info={info}
-      settingsTab={settingsTab}
-      onSettingsTab={setSettingsTab}
-    />
-  )) || <Box />;
-
-  tab[4] = <ResearchConsoleViewResearch />;
-
-  tab[5] = <ResearchConsoleViewDesigns />;
-
-  tab[6] = (info && (
-    <ResearchConsoleDisk
-      saveDialogTech={saveDialogTech}
-      saveDialogDesign={saveDialogDesign}
-      onSaveDialogTech={setSaveDialogTech}
-      onSaveDialogDesign={setSaveDialogDesign}
-      d_disk={info.d_disk}
-      t_disk={info.t_disk}
-    />
-  )) || <Box />;
+  const { data } = useBackend<Data>();
 
   return (
     <Window width={850} height={630}>
-      <Window.Content scrollable>
-        <Tabs>
-          {menus.map((obj, i) => (
-            <Tabs.Tab
-              key={i}
-              icon={obj.icon}
-              selected={menu === i}
-              onClick={() => setMenu(i)}
-            >
-              {obj.name}
-            </Tabs.Tab>
-          ))}
-        </Tabs>
-        {(busy_msg && <Section title="Processing...">{busy_msg}</Section>) ||
-          (locked && (
-            <Section title="Console Locked">
-              <Button onClick={() => act('lock')} icon="lock-open">
-                Unlock
-              </Button>
-            </Section>
-          )) ||
-          tab[menu]}
+      <Window.Content>
+        {data.locked ? <LockScreen /> : <MainScreen />}
       </Window.Content>
     </Window>
   );
+};
+
+export const PaginationChevrons = (props: { target: string }) => {
+  const { act } = useBackend();
+  const { target } = props;
+
+  return (
+    <>
+      <Button icon="undo" onClick={() => act(target, { reset: true })} />
+      <Button
+        icon="chevron-left"
+        onClick={() => act(target, { reverse: -1 })}
+      />
+      <Button
+        icon="chevron-right"
+        onClick={() => act(target, { reverse: 1 })}
+      />
+    </>
+  );
+};
+
+const MainTabs = (props: {
+  tab: number;
+  setTab: (nextState: number) => void;
+}) => {
+  const { tab, setTab } = props;
+
+  return (
+    <Tabs fluid>
+      <Tabs.Tab
+        selected={tab === Tab.Protolathe}
+        onClick={() => setTab(Tab.Protolathe)}
+        icon="wrench"
+      >
+        Protolathe
+      </Tabs.Tab>
+      <Tabs.Tab
+        selected={tab === Tab.CircuitImprinter}
+        onClick={() => setTab(Tab.CircuitImprinter)}
+        icon="digital-tachograph"
+      >
+        Circuit Imprinter
+      </Tabs.Tab>
+      <Tabs.Tab
+        selected={tab === Tab.DestructiveAnalyzer}
+        onClick={() => setTab(Tab.DestructiveAnalyzer)}
+        icon="eraser"
+      >
+        Destructive Analyzer
+      </Tabs.Tab>
+      <Tabs.Tab
+        selected={tab === Tab.DesignList}
+        onClick={() => setTab(Tab.DesignList)}
+        icon="file"
+      >
+        Design List
+      </Tabs.Tab>
+      <Tabs.Tab
+        selected={tab === Tab.ResearchList}
+        onClick={() => setTab(Tab.ResearchList)}
+        icon="flask"
+      >
+        Research List
+      </Tabs.Tab>
+      <Tabs.Tab
+        selected={tab === Tab.Misc}
+        onClick={() => setTab(Tab.Misc)}
+        icon="cog"
+      >
+        Misc
+      </Tabs.Tab>
+    </Tabs>
+  );
+};
+
+const BusyPopup = (props) => {
+  const { data } = useBackend<Data>();
+  const { busy_msg } = data;
+
+  if (!busy_msg) {
+    return '';
+  }
+
+  return (
+    <Box
+      position="absolute"
+      top={4}
+      right={1}
+      height={5}
+      width={25}
+      textAlign="right"
+      backgroundColor="#2b2b2b"
+      pr={1}
+      style={{ borderRadius: '5px', zIndex: '2' }}
+    >
+      <Stack align="center" justify="flex-end" fill>
+        <Stack.Item grow textAlign="center">
+          <FitText maxWidth={245} maxFontSize={20}>
+            {busy_msg}
+          </FitText>
+        </Stack.Item>
+        <Stack.Item>
+          <Icon name="sync" spin ml={1} size={1.5} />
+        </Stack.Item>
+      </Stack>
+    </Box>
+  );
+};
+
+const MainScreen = (props) => {
+  const [tab, setTab] = useSharedState<Tab>('rdmenu', Tab.Protolathe);
+
+  return (
+    <Stack vertical fill>
+      <Stack.Item>
+        <MainTabs tab={tab} setTab={setTab} />
+      </Stack.Item>
+      <Stack.Item grow>
+        <BusyPopup />
+        <SubScreen tab={tab} />
+      </Stack.Item>
+    </Stack>
+  );
+};
+
+const SubScreen = (props: { tab: Tab }) => {
+  const { data } = useBackend<Data>();
+  const { tab } = props;
+
+  switch (tab) {
+    case Tab.DestructiveAnalyzer: {
+      return <DestructiveAnalyzer />;
+    }
+    case Tab.DesignList: {
+      return <DesignList />;
+    }
+    case Tab.ResearchList: {
+      return <ResearchList />;
+    }
+    case Tab.CircuitImprinter: {
+      return (
+        <Constructor
+          type={ConstructorEnum.CircuitImprinter}
+          designs={data.imprinter_designs}
+          linked_data={data.linked_imprinter}
+        />
+      );
+    }
+    case Tab.Protolathe: {
+      return (
+        <Constructor
+          type={ConstructorEnum.Protolathe}
+          designs={data.lathe_designs}
+          linked_data={data.linked_lathe}
+        />
+      );
+    }
+    case Tab.Misc: {
+      return <Misc />;
+    }
+    default: {
+      return <Section fill>Unrecognized tab: {tab}.</Section>;
+    }
+  }
 };

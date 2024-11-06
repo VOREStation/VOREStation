@@ -10,7 +10,7 @@ Slime cube lives here.
 
 /obj/item/slime_cube/attack_self(mob/user as mob)
 	if(!searching)
-		to_chat(user, "<span class='warning'>You stare at the slimy cube, watching as some activity occurs.</span>")
+		to_chat(user, span_warning("You stare at the slimy cube, watching as some activity occurs."))
 		request_player()
 
 /obj/item/slime_cube/proc/request_player()
@@ -31,19 +31,19 @@ Slime cube lives here.
 		searching = 0
 		var/turf/T = get_turf_or_move(src.loc)
 		for(var/mob/M in viewers(T))
-			M.show_message("<span class='warning'>The activity in the cube dies down. Maybe it will spark another time.</span>")
+			M.show_message(span_warning("The activity in the cube dies down. Maybe it will spark another time."))
 
 /obj/item/slime_cube/proc/transfer_personality(var/mob/candidate)
 	announce_ghost_joinleave(candidate, 0, "They are a promethean now.")
 	src.searching = 2
 	var/mob/living/carbon/human/S = new(get_turf(src))
 	S.client = candidate.client
-	to_chat(S., "<b>You are a promethean, brought into existence on [station_name()].</b>")
-	S.mind.assigned_role = "Promethean"
+	to_chat(S, span_infoplain(span_bold("You are a promethean, brought into existence on [station_name()].")))
+	S.mind.assigned_role = JOB_PROMETHEAN
 	S.set_species("Promethean")
 	S.shapeshifter_set_colour("#05FF9B")
 	for(var/mob/M in viewers(get_turf_or_move(loc)))
-		M.show_message("<span class='warning'>The monkey cube suddenly takes the shape of a humanoid!</span>")
+		M.show_message(span_warning("The monkey cube suddenly takes the shape of a humanoid!"))
 	var/newname = sanitize(tgui_input_text(S, "You are a Promethean. Would you like to change your name to something else?", "Name change"), MAX_NAME_LEN)
 	if(newname)
 		S.real_name = newname

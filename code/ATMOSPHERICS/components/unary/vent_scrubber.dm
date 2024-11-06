@@ -32,8 +32,8 @@
 	use_power = USE_POWER_IDLE
 	icon_state = "map_scrubber_on"
 
-/obj/machinery/atmospherics/unary/vent_scrubber/New()
-	..()
+/obj/machinery/atmospherics/unary/vent_scrubber/Initialize()
+	. = ..()
 	air_contents.volume = ATMOS_DEFAULT_VOLUME_FILTER
 
 	icon = null
@@ -269,26 +269,26 @@
 	if(old_stat != stat)
 		update_icon()
 
-/obj/machinery/atmospherics/unary/vent_scrubber/attackby(var/obj/item/weapon/W as obj, var/mob/user as mob)
+/obj/machinery/atmospherics/unary/vent_scrubber/attackby(var/obj/item/W as obj, var/mob/user as mob)
 	if (!W.has_tool_quality(TOOL_WRENCH))
 		return ..()
 	if (!(stat & NOPOWER) && use_power)
-		to_chat(user, "<span class='warning'>You cannot unwrench \the [src], turn it off first.</span>")
+		to_chat(user, span_warning("You cannot unwrench \the [src], turn it off first."))
 		return 1
 	var/turf/T = src.loc
 	if (node && node.level==1 && isturf(T) && !T.is_plating())
-		to_chat(user, "<span class='warning'>You must remove the plating first.</span>")
+		to_chat(user, span_warning("You must remove the plating first."))
 		return 1
 	if(!can_unwrench())
-		to_chat(user, "<span class='warning'>You cannot unwrench \the [src], it is too exerted due to internal pressure.</span>")
+		to_chat(user, span_warning("You cannot unwrench \the [src], it is too exerted due to internal pressure."))
 		add_fingerprint(user)
 		return 1
 	playsound(src, W.usesound, 50, 1)
-	to_chat(user, "<span class='notice'>You begin to unfasten \the [src]...</span>")
+	to_chat(user, span_notice("You begin to unfasten \the [src]..."))
 	if (do_after(user, 40 * W.toolspeed))
 		user.visible_message( \
-			"<b>\The [user]</b> unfastens \the [src].", \
-			"<span class='notice'>You have unfastened \the [src].</span>", \
+			span_infoplain(span_bold("\The [user]") + " unfastens \the [src]."), \
+			span_notice("You have unfastened \the [src]."), \
 			"You hear a ratchet.")
 		deconstruct()
 

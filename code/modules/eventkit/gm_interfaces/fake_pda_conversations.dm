@@ -5,7 +5,7 @@
 
 
 /client/proc/fake_pdaconvos()
-	set category = "EventKit"
+	set category = "Fun.Event Kit"
 	set name = "Manage PDA identities"
 	set desc = "Creates fake identities for use in setting up PDA props"
 
@@ -62,7 +62,7 @@
 /*
 Invoked by vv topic "fakepdapropconvo" in code\modules\admin\view_variables\topic.dm found in PDA vv dropdown.
 */
-/obj/item/device/pda/proc/createPropFakeConversation_admin(mob/M)
+/obj/item/pda/proc/createPropFakeConversation_admin(mob/M)
 	if(!M.client || !check_rights_for(M.client,R_FUN))
 		return
 
@@ -73,7 +73,7 @@ Invoked by vv topic "fakepdapropconvo" in code\modules\admin\view_variables\topi
 		return
 
 	var/choice = tgui_alert(M,"Use TGUI or dialogue boxes?", "TGUI?", list("TGUI", "Dialogue", "Cancel"))
-	if(choice == "Cancel") return
+	if(!choice || choice == "Cancel") return
 
 	var/datum/data/pda/app/messenger/ourPDA = find_program(/datum/data/pda/app/messenger)
 
@@ -88,7 +88,10 @@ Invoked by vv topic "fakepdapropconvo" in code\modules\admin\view_variables\topi
 			var/message = sanitize(tgui_input_text(M, "Input fake message. Leave empty to cancel. Can create up to 30 messages in a row",null),
 			MAX_MESSAGE_LEN)
 			if(!message) return
-			var/receipent = ((tgui_alert(M, "Received or Sent?", "Direction", list("Received", "Sent"))=="Sent") ? 1 : 0)
+			var/input = tgui_alert(M, "Received or Sent?", "Direction", list("Received", "Sent"))
+			if(!input)
+				return
+			var/receipent = ((input=="Sent") ? 1 : 0)
 			ourPDA.createFakeMessage(name,identity,job,receipent, message)
 
 	if(choice == "TGUI")

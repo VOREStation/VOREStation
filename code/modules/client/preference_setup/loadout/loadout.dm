@@ -45,19 +45,34 @@ var/list/gear_datums = list()
 	sort_order = 1
 	var/current_tab = "General"
 
-/datum/category_item/player_setup_item/loadout/load_character(var/savefile/S)
-	from_file(S["gear_list"], pref.gear_list)
-	from_file(S["gear_slot"], pref.gear_slot)
+/datum/category_item/player_setup_item/loadout/load_character(list/save_data)
+	pref.gear_list = list()
+	var/all_gear = check_list_copy(save_data["gear_list"])
+	for(var/i in all_gear)
+		var/list/entries = check_list_copy(all_gear["[i]"])
+		for(var/j in entries)
+			entries["[j]"] = path2text_list(entries["[j]"])
+		pref.gear_list["[i]"] = entries
+	pref.gear_slot = save_data["gear_slot"]
 	if(pref.gear_list!=null && pref.gear_slot!=null)
 		pref.gear = pref.gear_list["[pref.gear_slot]"]
 	else
-		from_file(S["gear"], pref.gear)
+		pref.gear = check_list_copy(save_data["gear"])
 		pref.gear_slot = 1
 
-/datum/category_item/player_setup_item/loadout/save_character(var/savefile/S)
+/datum/category_item/player_setup_item/loadout/save_character(list/save_data)
 	pref.gear_list["[pref.gear_slot]"] = pref.gear
-	to_file(S["gear_list"], pref.gear_list)
-	to_file(S["gear_slot"], pref.gear_slot)
+	var/list/all_gear = list()
+	var/worn_gear = check_list_copy(pref.gear_list)
+	for(var/i in worn_gear)
+		var/list/entries = check_list_copy(worn_gear["[i]"])
+		if(!length(entries))
+			entries = check_list_copy(worn_gear[i])
+		for(var/j in entries)
+			entries["[j]"] = check_list_copy(entries["[j]"])
+		all_gear["[i]"] = entries
+	save_data["gear_list"] = all_gear
+	save_data["gear_slot"] = pref.gear_slot
 
 /datum/category_item/player_setup_item/loadout/proc/valid_gear_choices(var/max_cost)
 	. = list()
@@ -65,10 +80,10 @@ var/list/gear_datums = list()
 	for(var/gear_name in gear_datums)
 		var/datum/gear/G = gear_datums[gear_name]
 
-		if(G.whitelisted && config.loadout_whitelist != LOADOUT_WHITELIST_OFF && pref.client) //VOREStation Edit.
-			if(config.loadout_whitelist == LOADOUT_WHITELIST_STRICT && G.whitelisted != pref.species)
+		if(G.whitelisted && CONFIG_GET(flag/loadout_whitelist) != LOADOUT_WHITELIST_OFF && pref.client) //VOREStation Edit.
+			if(CONFIG_GET(flag/loadout_whitelist) == LOADOUT_WHITELIST_STRICT && G.whitelisted != pref.species)
 				continue
-			if(config.loadout_whitelist == LOADOUT_WHITELIST_LAX && !is_alien_whitelisted(preference_mob(), GLOB.all_species[G.whitelisted]))
+			if(CONFIG_GET(flag/loadout_whitelist) == LOADOUT_WHITELIST_LAX && !is_alien_whitelisted(preference_mob(), GLOB.all_species[G.whitelisted]))
 				continue
 		if(max_cost && G.cost > max_cost)
 			continue
@@ -94,16 +109,16 @@ var/list/gear_datums = list()
 	var/total_cost = 0
 	for(var/gear_name in pref.gear)
 		if(!gear_datums[gear_name])
-			to_chat(preference_mob, "<span class='warning'>You cannot have more than one of the \the [gear_name]</span>")
+			to_chat(preference_mob, span_warning("You cannot have more than one of the \the [gear_name]"))
 			pref.gear -= gear_name
 		else if(!(gear_name in valid_gear_choices()))
-			to_chat(preference_mob, "<span class='warning'>You cannot take \the [gear_name] as you are not whitelisted for the species or item.</span>")		//Vorestation Edit
+			to_chat(preference_mob, span_warning("You cannot take \the [gear_name] as you are not whitelisted for the species or item."))		//Vorestation Edit
 			pref.gear -= gear_name
 		else
 			var/datum/gear/G = gear_datums[gear_name]
 			if(total_cost + G.cost > MAX_GEAR_COST)
 				pref.gear -= gear_name
-				to_chat(preference_mob, "<span class='warning'>You cannot afford to take \the [gear_name]</span>")
+				to_chat(preference_mob, span_warning("You cannot afford to take \the [gear_name]"))
 			else
 				total_cost += G.cost
 
@@ -141,7 +156,7 @@ var/list/gear_datums = list()
 				category_cost += G.cost
 
 		if(category == current_tab)
-			. += " <span class='linkOn'>[category] - [category_cost]</span> "
+			. += " " + span_linkOn("[category] - [category_cost]") + " "
 		else
 			if(category_cost)
 				. += " <a href='?src=\ref[src];select_category=[category]'><font color = '#E67300'>[category] - [category_cost]</font></a> "
@@ -221,14 +236,14 @@ var/list/gear_datums = list()
 		if(href_list["next_slot"])
 			//change the current slot number
 			pref.gear_slot = pref.gear_slot+1
-			if(pref.gear_slot>config.loadout_slots)
+			if(pref.gear_slot > CONFIG_GET(number/loadout_slots))
 				pref.gear_slot = 1
 		//If we're moving down a slot..
 		else if(href_list["prev_slot"])
 			//change current slot one down
 			pref.gear_slot = pref.gear_slot-1
 			if(pref.gear_slot<1)
-				pref.gear_slot = config.loadout_slots
+				pref.gear_slot = CONFIG_GET(number/loadout_slots)
 		// Set the currently selected gear to whatever's in the new slot
 		if(pref.gear_list["[pref.gear_slot]"])
 			pref.gear = pref.gear_list["[pref.gear_slot]"]

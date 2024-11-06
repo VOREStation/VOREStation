@@ -170,7 +170,7 @@
 		if("cut")
 			// if(!I.has_tool_quality(TOOL_WIRECUTTER) && !user.can_admin_interact())
 			if(!istype(I) || !I.has_tool_quality(TOOL_WIRECUTTER))
-				to_chat(user, "<span class='error'>You need wirecutters!</span>")
+				to_chat(user, span_warning("You need wirecutters!"))
 				return
 
 			playsound(holder, I.usesound, 20, 1)
@@ -181,7 +181,7 @@
 		if("pulse")
 			// if(!I.has_tool_quality(TOOL_MULTITOOL) && !user.can_admin_interact())
 			if(!istype(I) || !I.has_tool_quality(TOOL_MULTITOOL))
-				to_chat(user, "<span class='error'>You need a multitool!</span>")
+				to_chat(user, span_warning("You need a multitool!"))
 				return
 
 			playsound(holder, 'sound/weapons/empty.ogg', 20, 1)
@@ -201,15 +201,15 @@
 					user.put_in_hands(O)
 					return TRUE
 
-			if(!istype(I, /obj/item/device/assembly/signaler))
-				to_chat(user, "<span class='error'>You need a remote signaller!</span>")
+			if(!istype(I, /obj/item/assembly/signaler))
+				to_chat(user, span_warning("You need a remote signaller!"))
 				return
 
 			if(user.unEquip(I))
 				attach_assembly(color, I)
 				return TRUE
 			else
-				to_chat(user, "<span class='warning'>[I] is stuck to your hand!</span>")
+				to_chat(user, span_warning("[I] is stuck to your hand!"))
 
 /**
  * Proc called to determine if the user can see wire define information, such as "Contraband", "Door Bolts", etc.
@@ -224,7 +224,7 @@
 	// if(user.can_admin_interact())
 		// return TRUE
 	var/obj/item/I = user.get_active_hand()
-	if(istype(I, /obj/item/device/multitool/alien))
+	if(istype(I, /obj/item/multitool/alien))
 		return TRUE
 	return FALSE
 
@@ -400,7 +400,7 @@
  * Arugments:
  * * S - the attached signaler receiving the signal.
  */
-/datum/wires/proc/pulse_assembly(obj/item/device/assembly/signaler/S)
+/datum/wires/proc/pulse_assembly(obj/item/assembly/signaler/S)
 	for(var/color in assemblies)
 		if(S == assemblies[color])
 			pulse_color(color)
@@ -416,7 +416,7 @@
  * * color - the wire color.
  * * S - the signaler that a mob is trying to attach.
  */
-/datum/wires/proc/attach_assembly(color, obj/item/device/assembly/signaler/S)
+/datum/wires/proc/attach_assembly(color, obj/item/assembly/signaler/S)
 	if(S && istype(S) && !is_attached(color))
 		assemblies[color] = S
 		S.forceMove(holder)
@@ -432,7 +432,7 @@
  * * color - the wire color.
  */
 /datum/wires/proc/detach_assembly(color)
-	var/obj/item/device/assembly/signaler/S = get_attached(color)
+	var/obj/item/assembly/signaler/S = get_attached(color)
 	if(S && istype(S))
 		assemblies -= color
 		S.connected = null

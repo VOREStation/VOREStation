@@ -7,7 +7,7 @@
 	config_tag = "meme"
 	required_players = 3
 	required_players_secret = 10
-	restricted_jobs = list("AI", "Cyborg")
+	restricted_jobs = list(JOB_AI, JOB_CYBORG)
 	recommended_enemies = 2 // need at least a meme and a host
 	votable = 0 // temporarily disable this mode for voting
 	end_on_antag_death = 1
@@ -36,8 +36,8 @@
 	var/const/waittime_h = 1800 //upper bound on time before intercept arrives (in tenths of seconds)
 
 /datum/game_mode/meme/announce()
-	to_world("<B>The current game mode is - Meme!</B>")
-	to_world("<B>An unknown creature has infested the mind of a crew member. Find and destroy it by any means necessary.</B>")
+	to_world(span_world("The current game mode is - Meme!"))
+	to_world(span_world("An unknown creature has infested the mind of a crew member. Find and destroy it by any means necessary."))
 
 /datum/game_mode/meme/can_start()
 	if(!..())
@@ -66,8 +66,8 @@
 		// so that we can later know which host belongs to which meme
 		assigned_hosts[meme.key] = first_host
 
-		meme.assigned_role = "MODE" //So they aren't chosen for other jobs.
-		meme.special_role = "Meme"
+		meme.assigned_role = JOB_MODE //So they aren't chosen for other jobs.
+		meme.special_role = JOB_MEME
 
 	return 1
 
@@ -126,7 +126,7 @@
 
 /datum/game_mode/proc/greet_meme(var/datum/mind/meme, var/you_are=1)
 	if (you_are)
-		to_chat(meme.current, "<span class='danger'>You are a meme!</span>")
+		to_chat(meme.current, span_danger("You are a meme!"))
 	show_objectives(meme)
 	return
 

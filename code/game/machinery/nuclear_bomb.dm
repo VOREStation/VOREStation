@@ -16,7 +16,7 @@ var/bomb_set
 	var/code = ""
 	var/yes_code = 0.0
 	var/safety = 1.0
-	var/obj/item/weapon/disk/nuclear/auth = null
+	var/obj/item/disk/nuclear/auth = null
 	var/list/wires = list()
 	var/light_wire
 	var/safety_wire
@@ -54,7 +54,7 @@ var/bomb_set
 				attack_hand(M)
 	return
 
-/obj/machinery/nuclearbomb/attackby(obj/item/weapon/O as obj, mob/user as mob)
+/obj/machinery/nuclearbomb/attackby(obj/item/O as obj, mob/user as mob)
 	if(O.has_tool_quality(TOOL_SCREWDRIVER))
 		playsound(src, O.usesound, 50, 1)
 		add_fingerprint(user)
@@ -78,13 +78,13 @@ var/bomb_set
 			flick("nuclearbombc", src)
 
 		return
-	if(O.has_tool_quality(TOOL_WIRECUTTER) || istype(O, /obj/item/device/multitool))
+	if(O.has_tool_quality(TOOL_WIRECUTTER) || istype(O, /obj/item/multitool))
 		if(opened == 1)
 			nukehack_win(user)
 		return
 
 	if(extended)
-		if(istype(O, /obj/item/weapon/disk/nuclear))
+		if(istype(O, /obj/item/disk/nuclear))
 			usr.drop_item()
 			O.loc = src
 			auth = O
@@ -96,10 +96,10 @@ var/bomb_set
 			if(0)
 				if(O.has_tool_quality(TOOL_WELDER))
 
-					var/obj/item/weapon/weldingtool/WT = O.get_welder()
+					var/obj/item/weldingtool/WT = O.get_welder()
 					if(!WT.isOn()) return
 					if(WT.get_fuel() < 5) // uses up 5 fuel.
-						to_chat(user, "<span class='warning'>You need more fuel to complete this task.</span>")
+						to_chat(user, span_warning("You need more fuel to complete this task."))
 						return
 
 					user.visible_message("[user] starts cutting loose the anchoring bolt covers on [src].", "You start cutting loose the anchoring bolt covers with [O]...")
@@ -124,10 +124,10 @@ var/bomb_set
 			if(2)
 				if(O.has_tool_quality(TOOL_WELDER))
 
-					var/obj/item/weapon/weldingtool/WT = O.get_welder()
+					var/obj/item/weldingtool/WT = O.get_welder()
 					if(!WT.isOn()) return
 					if(WT.get_fuel() < 5) // uses up 5 fuel.
-						to_chat(user, "<span class='warning'>You need more fuel to complete this task.</span>")
+						to_chat(user, span_warning("You need more fuel to complete this task."))
 						return
 
 					user.visible_message("[user] starts cutting apart the anchoring system sealant on [src].", "You start cutting apart the anchoring system's sealant with [O]...")
@@ -165,7 +165,7 @@ var/bomb_set
 /obj/machinery/nuclearbomb/attack_hand(mob/user as mob)
 	if(extended)
 		if(!ishuman(user))
-			to_chat(user, "<span class='warning'>You don't have the dexterity to do this!</span>")
+			to_chat(user, span_warning("You don't have the dexterity to do this!"))
 			return 1
 
 		user.set_machine(src)
@@ -191,9 +191,9 @@ var/bomb_set
 	else if(deployable)
 		if(removal_stage < 5)
 			anchored = TRUE
-			visible_message("<span class='warning'>With a steely snap, bolts slide out of [src] and anchor it to the flooring!</span>")
+			visible_message(span_warning("With a steely snap, bolts slide out of [src] and anchor it to the flooring!"))
 		else
-			visible_message("<span class='warning'>\The [src] makes a highly unpleasant crunching noise. It looks like the anchoring bolts have been cut.</span>")
+			visible_message(span_warning("\The [src] makes a highly unpleasant crunching noise. It looks like the anchoring bolts have been cut."))
 		if(!lighthack)
 			flick("nuclearbombc", src)
 			icon_state = "nuclearbomb1"
@@ -218,14 +218,14 @@ var/bomb_set
 	if(!usr.canmove || usr.stat || usr.restrained())
 		return
 	if(!ishuman(usr))
-		to_chat(usr, "<span class='warning'>You don't have the dexterity to do this!</span>")
+		to_chat(usr, span_warning("You don't have the dexterity to do this!"))
 		return 1
 
 	if(deployable)
-		to_chat(usr, "<span class='warning'>You close several panels to make [src] undeployable.</span>")
+		to_chat(usr, span_warning("You close several panels to make [src] undeployable."))
 		deployable = 0
 	else
-		to_chat(usr, "<span class='warning'>You adjust some panels to make [src] deployable.</span>")
+		to_chat(usr, span_warning("You adjust some panels to make [src] deployable."))
 		deployable = 1
 	return
 
@@ -238,7 +238,7 @@ var/bomb_set
 		if(href_list["act"])
 			var/temp_wire = href_list["wire"]
 			if(href_list["act"] == "pulse")
-				if(!istype(usr.get_active_hand(), /obj/item/device/multitool))
+				if(!istype(usr.get_active_hand(), /obj/item/multitool))
 					to_chat(usr, "You need a multitool!")
 				else
 					if(wires[temp_wire])
@@ -254,12 +254,12 @@ var/bomb_set
 							safety = !safety
 							spawn(100) safety = !safety
 							if(safety == 1)
-								visible_message("<span class='notice'>The [src] quiets down.</span>")
+								visible_message(span_notice("The [src] quiets down."))
 								if(!lighthack)
 									if(icon_state == "nuclearbomb2")
 										icon_state = "nuclearbomb1"
 							else
-								visible_message("<span class='notice'>The [src] emits a quiet whirling noise!</span>")
+								visible_message(span_notice("The [src] emits a quiet whirling noise!"))
 			if(href_list["act"] == "wire")
 				var/obj/item/I = usr.get_active_hand()
 				if(!I.has_tool_quality(TOOL_WIRECUTTER))
@@ -285,7 +285,7 @@ var/bomb_set
 				auth = null
 			else
 				var/obj/item/I = usr.get_active_hand()
-				if(istype(I, /obj/item/weapon/disk/nuclear))
+				if(istype(I, /obj/item/disk/nuclear))
 					usr.drop_item()
 					I.loc = src
 					auth = I
@@ -314,7 +314,7 @@ var/bomb_set
 					if(timing == -1.0)
 						return
 					if(safety)
-						to_chat(usr, "<span class='warning'>The safety is still on.</span>")
+						to_chat(usr, span_warning("The safety is still on."))
 						return
 					timing = !(timing)
 					if(timing)
@@ -337,14 +337,14 @@ var/bomb_set
 
 					if(removal_stage == 5)
 						anchored = FALSE
-						visible_message("<span class='warning'>\The [src] makes a highly unpleasant crunching noise. It looks like the anchoring bolts have been cut.</span>")
+						visible_message(span_warning("\The [src] makes a highly unpleasant crunching noise. It looks like the anchoring bolts have been cut."))
 						return
 
 					anchored = !(anchored)
 					if(anchored)
-						visible_message("<span class='warning'>With a steely snap, bolts slide out of [src] and anchor it to the flooring.</span>")
+						visible_message(span_warning("With a steely snap, bolts slide out of [src] and anchor it to the flooring."))
 					else
-						visible_message("<span class='warning'>The anchoring bolts slide back into the depths of [src].</span>")
+						visible_message(span_warning("The anchoring bolts slide back into the depths of [src]."))
 
 		add_fingerprint(usr)
 		for(var/mob/M in viewers(1, src))
@@ -392,13 +392,13 @@ var/bomb_set
 		ticker.station_explosion_cinematic(off_station,null)
 		if(ticker.mode)
 			ticker.mode.explosion_in_progress = 0
-			to_world("<B>The station was destoyed by the nuclear blast!</B>")
+			to_world(span_boldannounce("The station was destoyed by the nuclear blast!"))
 
 			ticker.mode.station_was_nuked = (off_station<2)	//offstation==1 is a draw. the station becomes irradiated and needs to be evacuated.
 															//kinda shit but I couldn't  get permission to do what I wanted to do.
 
 			if(!ticker.mode.check_finished())//If the mode does not deal with the nuke going off so just reboot because everyone is stuck as is
-				to_world("<B>Resetting in 30 seconds!</B>")
+				to_world(span_boldannounce("Resetting in 30 seconds!"))
 
 				feedback_set_details("end_error","nuke - unhandled ending")
 
@@ -412,16 +412,16 @@ var/bomb_set
 
 #undef NUKERANGE
 
-/obj/item/weapon/disk/nuclear/New()
+/obj/item/disk/nuclear/New()
 	..()
 	nuke_disks |= src
 
-/obj/item/weapon/disk/nuclear/Destroy()
+/obj/item/disk/nuclear/Destroy()
 	if(!nuke_disks.len && blobstart.len > 0)
-		var/obj/D = new /obj/item/weapon/disk/nuclear(pick(blobstart))
+		var/obj/D = new /obj/item/disk/nuclear(pick(blobstart))
 		message_admins("[src], the last authentication disk, has been destroyed. Spawning [D] at ([D.x], [D.y], [D.z]).")
 		log_game("[src], the last authentication disk, has been destroyed. Spawning [D] at ([D.x], [D.y], [D.z]).")
 	..()
 
-/obj/item/weapon/disk/nuclear/touch_map_edge()
+/obj/item/disk/nuclear/touch_map_edge()
 	qdel(src)

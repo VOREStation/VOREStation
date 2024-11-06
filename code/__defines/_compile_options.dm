@@ -15,11 +15,16 @@
 // Movement Compile Options
 //#define CARDINAL_INPUT_ONLY // Uncomment to disable diagonal player movement (restore previous cardinal-moves-only behavior)
 
+// CI will override these as appropriate
+// #define MAP_TEST 0
+// #define AWAY_MISSION_TEST 0
+// #define UNIT_TEST 0
+
 // Comment/Uncomment this to turn off/on shuttle code debugging logs
 #define DEBUG_SHUTTLES
 
 // If we are doing the map test build, do not include the main maps, only the submaps.
-#if MAP_TEST
+#ifdef MAP_TEST
 	#define USING_MAP_DATUM /datum/map
 	#define MAP_OVERRIDE 1
 #endif
@@ -41,3 +46,6 @@
 #endif //ifdef GC_FAILURE_HARD_LOOKUP
 
 #endif //ifdef REFERENCE_TRACKING
+
+// Standard flags to use for browser-options
+#define DEFAULT_CLIENT_BROWSER_OPTIONS "byondstorage,find"

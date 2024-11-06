@@ -32,7 +32,7 @@
 
 	attacktext = list("mauled")
 
-	faction = "deathclaw"
+	faction = FACTION_DEATHCLAW
 
 	maxHealth = 200
 	health = 200
@@ -42,7 +42,7 @@
 	melee_damage_upper = 30
 
 	meat_amount = 8
-	meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat
+	meat_type = /obj/item/reagent_containers/food/snacks/meat
 
 	old_x = -16
 	old_y = 0
@@ -74,8 +74,8 @@
 	. = ..()
 	if(!riding_datum)
 		riding_datum = new /datum/riding/simple_mob(src)
-	verbs |= /mob/living/simple_mob/proc/animal_mount
-	verbs |= /mob/living/proc/toggle_rider_reins
+	add_verb(src, /mob/living/simple_mob/proc/animal_mount)
+	add_verb(src, /mob/living/proc/toggle_rider_reins)
 	movement_cooldown = 0
 
 /mob/living/simple_mob/vore/aggressive/deathclaw/MouseDrop_T(mob/living/M, mob/living/user)

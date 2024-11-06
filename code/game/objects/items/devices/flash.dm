@@ -1,6 +1,7 @@
-/obj/item/device/flash
+/obj/item/flash
 	name = "flash"
 	desc = "Used for blinding and disorienting."
+	icon = 'icons/obj/device.dmi'
 	icon_state = "flash"
 	item_state = "flashtool"
 	throwforce = 5
@@ -26,37 +27,40 @@
 
 	var/base_icon = "flash"
 
-	var/obj/item/weapon/cell/power_supply //What type of power cell this uses
+	var/obj/item/cell/power_supply //What type of power cell this uses
 	var/charge_cost = 30 //How much energy is needed to flash.
 	var/use_external_power = FALSE // Do we use charge from an external source?
 
-	var/cell_type = /obj/item/weapon/cell/device
+	var/cell_type = /obj/item/cell/device
 
-/obj/item/device/flash/Initialize()
+	pickup_sound = 'sound/items/pickup/device.ogg'
+	drop_sound = 'sound/items/drop/device.ogg'
+
+/obj/item/flash/Initialize()
 	. = ..()
 	power_supply = new cell_type(src)
 
-/obj/item/device/flash/attackby(var/obj/item/W, var/mob/user)
+/obj/item/flash/attackby(var/obj/item/W, var/mob/user)
 	if(W.has_tool_quality(TOOL_SCREWDRIVER) && broken)
 		if(repairing)
-			to_chat(user, "<span class='notice'>\The [src] is already being repaired!</span>")
+			to_chat(user, span_notice("\The [src] is already being repaired!"))
 			return
-		user.visible_message("<b>\The [user]</b> starts trying to repair \the [src]'s bulb.")
+		user.visible_message(span_infoplain(span_bold("\The [user]") + " starts trying to repair \the [src]'s bulb."))
 		repairing = TRUE
 		if(do_after(user, (40 SECONDS + rand(0, 20 SECONDS)) * W.toolspeed) && can_repair)
 			if(prob(30))
-				user.visible_message("<span class='notice'>\The [user] successfully repairs \the [src]!</span>")
+				user.visible_message(span_notice("\The [user] successfully repairs \the [src]!"))
 				broken = FALSE
 				update_icon()
 			playsound(src, W.usesound, 50, 1)
 		else
-			user.visible_message("<b>\The [user]</b> fails to repair \the [src].")
+			user.visible_message(span_infoplain(span_bold("\The [user]") + " fails to repair \the [src]."))
 		repairing = FALSE
 	else
 		..()
 
-/obj/item/device/flash/update_icon()
-	var/obj/item/weapon/cell/battery = power_supply
+/obj/item/flash/update_icon()
+	var/obj/item/cell/battery = power_supply
 
 	if(use_external_power)
 		battery = get_external_power_supply()
@@ -67,10 +71,10 @@
 		icon_state = "[base_icon]"
 	return
 
-/obj/item/device/flash/get_cell()
+/obj/item/flash/get_cell()
 	return power_supply
 
-/obj/item/device/flash/proc/get_external_power_supply()
+/obj/item/flash/proc/get_external_power_supply()
 	if(isrobot(src.loc))
 		var/mob/living/silicon/robot/R = src.loc
 		return R.cell
@@ -79,19 +83,19 @@
 		if(module.holder && module.holder.wearer)
 			var/mob/living/carbon/human/H = module.holder.wearer
 			if(istype(H) && H.get_rig())
-				var/obj/item/weapon/rig/suit = H.get_rig()
+				var/obj/item/rig/suit = H.get_rig()
 				if(istype(suit))
 					return suit.cell
 	return null
 
-/obj/item/device/flash/proc/clown_check(var/mob/user)
+/obj/item/flash/proc/clown_check(var/mob/user)
 	if(user && (CLUMSY in user.mutations) && prob(50))
-		to_chat(user, "<span class='warning'>\The [src] slips out of your hand.</span>")
+		to_chat(user, span_warning("\The [src] slips out of your hand."))
 		user.drop_item()
 		return 0
 	return 1
 
-/obj/item/device/flash/proc/flash_recharge()
+/obj/item/flash/proc/flash_recharge()
 	//Every ten seconds the flash doesn't get used, the times_used variable goes down by one, making the flash less likely to burn out,
 	// as well as being able to flash more before reaching max_flashes cap.
 	for(var/i=0, i < max_flashes, i++)
@@ -99,7 +103,7 @@
 			break
 
 		else if(use_external_power)
-			var/obj/item/weapon/cell/external = get_external_power_supply()
+			var/obj/item/cell/external = get_external_power_supply()
 			if(!external || !external.use(charge_cost)) //Take power from the borg or rig!
 				break
 
@@ -114,10 +118,10 @@
 	update_icon()
 
 // Returns true if the device can flash.
-/obj/item/device/flash/proc/check_capacitor(var/mob/user)
+/obj/item/flash/proc/check_capacitor(var/mob/user)
 	//spamming the flash before it's fully charged (60 seconds) increases the chance of it breaking
 	//It will never break on the first use.
-	var/obj/item/weapon/cell/battery = power_supply
+	var/obj/item/cell/battery = power_supply
 
 	if(use_external_power)
 		battery = get_external_power_supply()
@@ -127,7 +131,7 @@
 		if(prob( max(0, times_used - safe_flashes) * 2 + (times_used >= safe_flashes)) && can_break)	//if you use it 10 times in a minute it has a 30% chance to break.
 			broken = TRUE
 			if(user)
-				to_chat(user, "<span class='warning'>The bulb has burnt out!</span>")
+				to_chat(user, span_warning("The bulb has burnt out!"))
 			update_icon()
 			return FALSE
 		else
@@ -137,7 +141,7 @@
 	else if(!charge_only)	//can only use it 10 times a minute, unless it runs purely on charge.
 		if(user)
 			update_icon()
-			to_chat(user, "<span class='warning'><i>click</i></span>")
+			to_chat(user, span_warning(span_italics("click")))
 			playsound(src, 'sound/weapons/empty.ogg', 80, 1)
 		return FALSE
 	else if(battery && battery.checked_use(charge_cost + (round(charge_cost / 4) * max(0, times_used - max_flashes)))) // Using over your maximum flashes starts taking more charge per added flash.
@@ -146,7 +150,7 @@
 		return TRUE
 
 //attack_as_weapon
-/obj/item/device/flash/attack(mob/living/M, mob/living/user, var/target_zone)
+/obj/item/flash/attack(mob/living/M, mob/living/user, var/target_zone)
 	if(!user || !M)	return	//sanity
 
 	add_attack_logs(user,M,"Flashed (attempt) with [src]")
@@ -156,7 +160,7 @@
 
 	if(!clown_check(user))	return
 	if(broken)
-		to_chat(user, "<span class='warning'>\The [src] is broken.</span>")
+		to_chat(user, span_warning("\The [src] is broken."))
 		return
 
 	flash_recharge()
@@ -225,27 +229,27 @@
 		flick("flash2", src)
 		if(!issilicon(M))
 
-			user.visible_message("<span class='disarm'>[user] blinds [M] with the flash!</span>")
+			user.visible_message(span_disarm("[user] blinds [M] with the flash!"))
 		else
 
-			user.visible_message("<span class='notice'>[user] overloads [M]'s sensors with the flash!</span>")
+			user.visible_message(span_notice("[user] overloads [M]'s sensors with the flash!"))
 			M.Weaken(rand(5,10))
 	else
 
-		user.visible_message("<span class='notice'>[user] fails to blind [M] with the flash!</span>")
+		user.visible_message(span_notice("[user] fails to blind [M] with the flash!"))
 
 	return
 
 
 
 
-/obj/item/device/flash/attack_self(mob/living/carbon/user as mob, flag = 0, emp = 0)
+/obj/item/flash/attack_self(mob/living/carbon/user as mob, flag = 0, emp = 0)
 	if(!user || !clown_check(user)) 	return
 
 	user.setClickCooldown(user.get_attack_speed(src))
 
 	if(broken)
-		user.show_message("<span class='warning'>The [src.name] is broken</span>", 2)
+		user.show_message(span_warning("The [src.name] is broken"), 2)
 		return
 
 	flash_recharge()
@@ -274,7 +278,7 @@
 
 	return
 
-/obj/item/device/flash/emp_act(severity)
+/obj/item/flash/emp_act(severity)
 	if(broken)	return
 	flash_recharge()
 	if(!check_capacitor())
@@ -288,10 +292,10 @@
 			//C.Weaken(10)
 			C.flash_eyes()
 			for(var/mob/M in viewers(C, null))
-				M.show_message("<span class='disarm'>[C] is blinded by the flash!</span>")
+				M.show_message(span_disarm("[C] is blinded by the flash!"))
 	..()
 
-/obj/item/device/flash/synthetic
+/obj/item/flash/synthetic
 	name = "synthetic flash"
 	desc = "When a problem arises, SCIENCE is the solution."
 	icon_state = "sflash"
@@ -300,21 +304,21 @@
 	can_repair = FALSE
 
 //attack_as_weapon
-/obj/item/device/flash/synthetic/attack(mob/living/M, mob/living/user, var/target_zone)
+/obj/item/flash/synthetic/attack(mob/living/M, mob/living/user, var/target_zone)
 	..()
 	if(!broken)
 		broken = 1
-		to_chat(user, "<span class='warning'>The bulb has burnt out!</span>")
+		to_chat(user, span_warning("The bulb has burnt out!"))
 		update_icon()
 
-/obj/item/device/flash/synthetic/attack_self(mob/living/carbon/user as mob, flag = 0, emp = 0)
+/obj/item/flash/synthetic/attack_self(mob/living/carbon/user as mob, flag = 0, emp = 0)
 	..()
 	if(!broken)
 		broken = 1
-		to_chat(user, "<span class='warning'>The bulb has burnt out!</span>")
+		to_chat(user, span_warning("The bulb has burnt out!"))
 		update_icon()
 
-/obj/item/device/flash/robot
+/obj/item/flash/robot
 	name = "mounted flash"
 	can_break = FALSE
 	use_external_power = TRUE

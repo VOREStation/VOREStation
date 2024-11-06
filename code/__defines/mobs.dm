@@ -341,6 +341,7 @@
 #define SPECIES_REPLICANT		"Replicant"
 #define SPECIES_REPLICANT_ALPHA	"Alpha Replicant"
 #define SPECIES_REPLICANT_BETA	"Beta Replicant"
+#define SPECIES_REPLICANT_CREW	"Gamma Replicant"
 
 // Used to seperate simple animals by ""intelligence"".
 #define SA_PLANT	1

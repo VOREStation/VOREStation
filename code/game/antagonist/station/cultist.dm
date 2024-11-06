@@ -11,10 +11,10 @@ var/datum/antagonist/cultist/cult
 	role_text = "Cultist"
 	role_text_plural = "Cultists"
 	bantype = "cultist"
-	restricted_jobs = list("Chaplain")
+	restricted_jobs = list(JOB_CHAPLAIN)
 	avoid_silicons = TRUE
-	protected_jobs = list("Security Officer", "Warden", "Detective", "Internal Affairs Agent", "Head of Security", "Site Manager")
-	roundstart_restricted = list("Internal Affairs Agent", "Head of Security", "Site Manager")
+	protected_jobs = list(JOB_SECURITY_OFFICER, JOB_WARDEN, JOB_DETECTIVE, JOB_INTERNAL_AFFAIRS_AGENT, JOB_HEAD_OF_SECURITY, JOB_SITE_MANAGER)
+	roundstart_restricted = list(JOB_INTERNAL_AFFAIRS_AGENT, JOB_HEAD_OF_SECURITY, JOB_SITE_MANAGER)
 	role_type = BE_CULTIST
 	feedback_tag = "cult_objective"
 	antag_indicator = "cult"
@@ -63,7 +63,7 @@ var/datum/antagonist/cultist/cult
 	if(!..())
 		return 0
 
-	var/obj/item/weapon/paper/talisman/supply/T = new(get_turf(player))
+	var/obj/item/paper/talisman/supply/T = new(get_turf(player))
 	var/list/slots = list (
 		"backpack" = slot_in_backpack,
 		"left pocket" = slot_l_store,
@@ -75,7 +75,7 @@ var/datum/antagonist/cultist/cult
 		player.equip_to_slot(T, slot)
 		if(T.loc == player)
 			break
-	var/obj/item/weapon/storage/S = locate() in player.contents
+	var/obj/item/storage/S = locate() in player.contents
 	if(S && istype(S))
 		T.loc = S
 
@@ -98,13 +98,13 @@ var/datum/antagonist/cultist/cult
 		runerandom()
 
 	var/wordexp = "[cultwords[word]] is [word]..."
-	to_chat(cult_mob, "<span class='warning'>You remember one thing from the dark teachings of your master... [wordexp]</span>")
+	to_chat(cult_mob, span_warning("You remember one thing from the dark teachings of your master... [wordexp]"))
 	cult_mob.mind.store_memory("You remember that <B>[wordexp]</B>", 0, 0)
 
 /datum/antagonist/cultist/remove_antagonist(var/datum/mind/player, var/show_message, var/implanted)
 	if(!..())
 		return 0
-	to_chat(player.current, "<span class='danger'>An unfamiliar white light flashes through your mind, cleansing the taint of the dark-one and the memories of your time as his servant with it.</span>")
+	to_chat(player.current, span_danger("An unfamiliar white light flashes through your mind, cleansing the taint of the dark-one and the memories of your time as his servant with it."))
 	player.memory = ""
 	if(show_message)
 		player.current.visible_message("<FONT size = 3>[player.current] looks like they just reverted to their old faith!</FONT>")
@@ -124,7 +124,7 @@ var/datum/antagonist/cultist/cult
 /datum/antagonist/cultist/can_become_antag(var/datum/mind/player)
 	if(!..())
 		return 0
-	for(var/obj/item/weapon/implant/loyalty/L in player.current)
+	for(var/obj/item/implant/loyalty/L in player.current)
 		if(L && (L.imp_in == player.current))
 			return 0
 	return 1

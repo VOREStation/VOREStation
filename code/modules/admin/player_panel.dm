@@ -230,38 +230,38 @@
 					if(ishuman(M))
 						M_job = M.job
 					else if(isslime(M))
-						M_job = "slime"
+						M_job = JOB_SLIME
 					else if(issmall(M))
-						M_job = "Monkey"
+						M_job = JOB_MONKEY
 					else if(isalien(M))
-						M_job = "Alien"
+						M_job = JOB_ALIEN
 					else
-						M_job = "Carbon-based"
+						M_job = JOB_CARBON_BASED
 
 				else if(issilicon(M)) //silicon
 					if(isAI(M))
-						M_job = "AI"
+						M_job = JOB_AI
 					else if(ispAI(M))
-						M_job = "pAI"
+						M_job = JOB_PAI
 					else if(isrobot(M))
-						M_job = "Cyborg"
+						M_job = JOB_CYBORG
 					else
-						M_job = "Silicon-based"
+						M_job = JOB_SILICON_BASED
 
 				else if(isanimal(M)) //simple animals
 					if(iscorgi(M))
-						M_job = "Corgi"
+						M_job = JOB_CORGI
 					else
-						M_job = "Animal"
+						M_job = JOB_ANIMAL
 
 				else
-					M_job = "Living"
+					M_job = JOB_LIVING
 
 			else if(istype(M,/mob/new_player))
-				M_job = "New player"
+				M_job = JOB_NEW_PLAYER
 
 			else if(isobserver(M))
-				M_job = "Ghost"
+				M_job = JOB_GHOST
 
 			M_job = replacetext(M_job, "'", "")
 			M_job = replacetext(M_job, "\"", "")
@@ -387,7 +387,7 @@
 		var/dat = "<html><head><title>Round Status</title></head><body><h1><B>Round Status</B></h1>"
 		dat += "Current Game Mode: <B>[ticker.mode.name]</B><BR>"
 		dat += "Round Duration: <B>[roundduration2text()]</B><BR>"
-		dat += "<B>Emergency shuttle</B><BR>"
+		dat += span_bold("Emergency shuttle") + "<BR>"
 		if (!emergency_shuttle.online())
 			dat += "<a href='?src=\ref[src];[HrefToken()];call_shuttle=1'>Call Shuttle</a><br>"
 		else

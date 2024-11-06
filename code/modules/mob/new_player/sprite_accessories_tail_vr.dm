@@ -13,7 +13,7 @@
 	var/mob_offset_x = 0
 	var/mob_offset_y = 0
 	do_colouration = 0 //Set to 1 to enable coloration using the tail color.
-	species_allowed = list(SPECIES_HUMAN, SPECIES_SKRELL, SPECIES_UNATHI, SPECIES_TAJ, SPECIES_TESHARI, SPECIES_NEVREAN, SPECIES_AKULA, SPECIES_SERGAL, SPECIES_FENNEC, SPECIES_ZORREN_HIGH, SPECIES_VULPKANIN, SPECIES_XENOCHIMERA, SPECIES_XENOHYBRID, SPECIES_VASILISSAN, SPECIES_RAPALA, SPECIES_PROTEAN, SPECIES_ALRAUNE, SPECIES_WEREBEAST, SPECIES_SHADEKIN, SPECIES_SHADEKIN_CREW, SPECIES_ALTEVIAN, SPECIES_LLEILL) //This lets all races use
+	species_allowed = list(SPECIES_HUMAN, SPECIES_SKRELL, SPECIES_UNATHI, SPECIES_TAJ, SPECIES_TESHARI, SPECIES_NEVREAN, SPECIES_AKULA, SPECIES_SERGAL, SPECIES_FENNEC, SPECIES_ZORREN_HIGH, SPECIES_VULPKANIN, SPECIES_XENOCHIMERA, SPECIES_XENOHYBRID, SPECIES_VASILISSAN, SPECIES_RAPALA, SPECIES_PROTEAN, SPECIES_ALRAUNE, SPECIES_WEREBEAST, SPECIES_SHADEKIN, SPECIES_SHADEKIN_CREW, SPECIES_ALTEVIAN, SPECIES_LLEILL, SPECIES_HANNER) //This lets all races use
 
 	var/list/lower_layer_dirs = list(SOUTH)
 	var/icon_loaf = null
@@ -457,6 +457,34 @@
 	ani_state = "tigeralt_w"
 	extra_overlay_w = "tigeralt-tips_w"
 	extra_overlay2_w = "tigeralt-tips2_w"
+
+/datum/sprite_accessory/tail/twotiger
+	name = "tiger tail, double (vwag)"
+	desc = ""
+	icon_state = "twotiger"
+	extra_overlay = "twotiger-tips"
+	extra_overlay2 = "twotiger-tips2"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	ani_state = "twotiger_w"
+	extra_overlay_w = "twotiger-tips_w"
+	extra_overlay2_w = "twotiger-tips2_w"
+
+/datum/sprite_accessory/tail/twocat
+	name = "cat tail, double (vwag)"
+	desc = ""
+	icon_state = "twocat"
+	ani_state = "twocat_w"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/tail/threecat
+	name = "cat tail, triple (vwag)"
+	desc = ""
+	icon_state = "threecat"
+	ani_state = "threecat_w"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
 
 
 /datum/sprite_accessory/tail/vulp_new
@@ -1550,3 +1578,8 @@
 	extra_overlay2 = "chonksqrl-m2"
 
 //RS ADD END
+
+/datum/sprite_accessory/tail/kururak
+	name = "kururak tail"
+	desc = ""
+	icon_state = "kururak"

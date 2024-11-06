@@ -44,8 +44,8 @@
 	departmentType = RC_ASSIST|RC_SUPPLY
 
 /obj/machinery/requests_console/preset/janitor
-	name = "Janitor RC"
-	department = "Janitorial"
+	name = JOB_JANITOR + " RC"
+	department = JOB_JANITOR + "ial"
 	departmentType = RC_ASSIST
 
 /obj/machinery/requests_console/preset/bridge
@@ -57,26 +57,26 @@
 // Heads
 
 /obj/machinery/requests_console/preset/ce
-	name = "Chief Engineer RC"
-	department = "Chief Engineer's Desk"
+	name = JOB_CHIEF_ENGINEER + " RC"
+	department = JOB_CHIEF_ENGINEER + "'s Desk"
 	departmentType = RC_ASSIST|RC_INFO
 	announcementConsole = 1
 
 /obj/machinery/requests_console/preset/cmo
-	name = "Chief Medical Officer RC"
-	department = "Chief Medical Officer's Desk"
+	name = JOB_CHIEF_MEDICAL_OFFICER + " RC"
+	department = JOB_CHIEF_MEDICAL_OFFICER + "'s Desk"
 	departmentType = RC_ASSIST|RC_INFO
 	announcementConsole = 1
 
 /obj/machinery/requests_console/preset/hos
-	name = "Head of Security RC"
-	department = "Head of Security's Desk"
+	name = JOB_HEAD_OF_SECURITY + " RC"
+	department = JOB_HEAD_OF_SECURITY  + "'s Desk"
 	departmentType = RC_ASSIST|RC_INFO
 	announcementConsole = 1
 
 /obj/machinery/requests_console/preset/rd
-	name = "Research Director RC"
-	department = "Research Director's Desk"
+	name = JOB_RESEARCH_DIRECTOR + " RC"
+	department = JOB_RESEARCH_DIRECTOR +"'s Desk"
 	departmentType = RC_ASSIST|RC_INFO
 	announcementConsole = 1
 
@@ -87,6 +87,6 @@
 	announcementConsole = 1
 
 /obj/machinery/requests_console/preset/ai
-	name = "AI RC"
-	department = "AI"
+	name = JOB_AI + " RC"
+	department = JOB_AI
 	departmentType = RC_ASSIST|RC_INFO

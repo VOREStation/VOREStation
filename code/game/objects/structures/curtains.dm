@@ -16,7 +16,7 @@
 
 /obj/structure/curtain/bullet_act(obj/item/projectile/P, def_zone)
 	if(!P.nodamage)
-		visible_message("<span class='warning'>[P] tears [src] down!</span>")
+		visible_message(span_warning("[P] tears [src] down!"))
 		qdel(src)
 	else
 		..(P, def_zone)
@@ -40,9 +40,9 @@
 /obj/structure/curtain/attackby(obj/item/P, mob/user)
 	if(P.has_tool_quality(TOOL_WIRECUTTER))
 		playsound(src, P.usesound, 50, 1)
-		to_chat(user, "<span class='notice'>You start to cut the shower curtains.</span>")
+		to_chat(user, span_notice("You start to cut the shower curtains."))
 		if(do_after(user, 10))
-			to_chat(user, "<span class='notice'>You cut the shower curtains.</span>")
+			to_chat(user, span_notice("You cut the shower curtains."))
 			new /obj/item/stack/material/plastic(src.loc, 3)
 			qdel(src)
 		return

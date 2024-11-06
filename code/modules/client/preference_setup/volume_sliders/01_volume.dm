@@ -7,11 +7,11 @@
 	name = "General Volume"
 	sort_order = 1
 
-/datum/category_item/player_setup_item/volume_sliders/volume/load_preferences(var/savefile/S)
-	S["volume_channels"] >> pref.volume_channels
+/datum/category_item/player_setup_item/volume_sliders/volume/load_preferences(datum/json_savefile/savefile)
+	pref.volume_channels = savefile.get_entry("volume_channels")
 
-/datum/category_item/player_setup_item/volume_sliders/volume/save_preferences(var/savefile/S)
-	S["volume_channels"] << pref.volume_channels
+/datum/category_item/player_setup_item/volume_sliders/volume/save_preferences(datum/json_savefile/savefile)
+	savefile.set_entry("volume_channels", pref.volume_channels)
 
 /datum/category_item/player_setup_item/volume_sliders/volume/sanitize_preferences()
 	if(isnull(pref.volume_channels))
@@ -29,7 +29,7 @@
 			pref.volume_channels["[channel]"] = clamp(pref.volume_channels["[channel]"], 0, 2)
 
 /datum/category_item/player_setup_item/volume_sliders/volume/content(var/mob/user)
-	. += "<b>Volume Settings</b><br>"
+	. += span_bold("Volume Settings") + "<br>"
 	for(var/channel in pref.volume_channels)
 		. += "[channel]: <a href='?src=\ref[src];change_volume=[channel];'><b>[pref.volume_channels[channel] * 100]%</b></a><br>"
 	. += "<br>"
@@ -74,7 +74,7 @@
 /datum/volume_panel/tgui_data(mob/user)
 	if(!user.client || !user.client.prefs)
 		return list("error" = TRUE)
-	
+
 	var/list/data = ..()
 	data["volume_channels"] = user.client.prefs.volume_channels
 	return data
@@ -97,7 +97,7 @@
 
 /client/verb/volume_panel()
 	set name = "Volume Panel"
-	set category = "Preferences"
+	set category = "Preferences.Sounds"
 	set desc = "Allows you to adjust volume levels on the fly."
 
 	if(!volume_panel)

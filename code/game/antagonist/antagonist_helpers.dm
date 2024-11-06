@@ -8,7 +8,7 @@
 	if(!ignore_role)
 		if(player.assigned_role in restricted_jobs)
 			return FALSE
-		if(config.protect_roles_from_antagonist && (player.assigned_role in protected_jobs))
+		if(CONFIG_GET(flag/protect_roles_from_antagonist) && (player.assigned_role in protected_jobs))
 			return FALSE
 		if(avoid_silicons)
 			var/datum/job/J = SSjob.get_job(player.assigned_role)

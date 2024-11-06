@@ -8,39 +8,66 @@ env:
   BASENAME: "vorestation"
 
 jobs:
-  file_tests:
+
+  run_linters:
     name: Run Linters
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
+
     steps:
       - uses: actions/checkout@v4
-      - name: Ensure +x on CI directory
-        run: |
-          chmod -R +x ./tools/ci
-      - name: Install Tools
-        run: |
-          bash tools/ci/install_build_deps.sh
+      # Caches
       - name: Restore Yarn cache
-        if: "${{ contains(github.event.pull_request.labels.*.name, 'Type: TGUI Bundle') }}"
         uses: actions/cache@v4
         with:
           path: tgui/.yarn/cache
-          key: ${{ runner.os }}-yarn-${{ secrets.CACHE_PURGE_KEY }}-${{ hashFiles('tgui/yarn.lock') }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('tgui/yarn.lock') }}
           restore-keys: |
-            ${{ runner.os }}-build-${{ secrets.CACHE_PURGE_KEY }}-
-            ${{ runner.os }}-build-
-            ${{ runner.os }}-
-      - name: Run Tests
+            ${{ runner.os }}-yarn-
+      - name: Restore Node cache
+        uses: actions/cache@v4
+        with:
+          path: ~/.nvm
+          key: ${{ runner.os }}-node-${{ hashFiles('dependencies.sh') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+      - name: Restore Bootstrap cache
+        uses: actions/cache@v4
+        with:
+          path: tools/bootstrap/.cache
+          key: ${{ runner.os }}-bootstrap-${{ hashFiles('tools/requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-bootstrap-
+      - name: Restore Rust cache
+        uses: actions/cache@v4
+        with:
+          path: ~/.cargo
+          key: ${{ runner.os }}-rust-${{ hashFiles('tools/ci/ci_dependencies.sh')}}
+          restore-keys: |
+            ${{ runner.os }}-rust-
+      - name: Restore Cutter cache
+        uses: actions/cache@v4
+        with:
+          path: tools/icon_cutter/cache
+          key: ${{ runner.os }}-cutter-${{ hashFiles('dependencies.sh') }}
+      # End Caches
+      - name: Install Tools
         run: |
-          tools/ci/validate_files.sh
-          tools/ci/build_tgui.sh
+          pip3 install setuptools
+          bash tools/ci/install_node.sh
+          bash tools/ci/install_ripgrep.sh
+          tools/bootstrap/python -c ''
+      - name: Run Grep Checks
+        run: tools/ci/validate_files.sh
+      - name: Run TGUI Checks
+        run: tools/build/build --ci lint tgui-test
 
   dreamchecker:
     name: DreamChecker
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v4
 
-      - name: Cache SpacemanDMM
+      - name: Restore SpacemanDMM Cache
         uses: actions/cache@v4
         with:
           path: ~/SpacemanDMM
@@ -65,20 +92,20 @@ jobs:
   unit_tests:
     strategy:
       matrix:
-        map: ['tether', 'stellar_delight', 'groundbase']
+        map: ['USE_MAP_TETHER', 'USE_MAP_STELLARDELIGHT', 'USE_MAP_GROUNDBASE']
     # name: Integration Tests (${{ matrix.map }})
     name: Integration Tests
-    # needs: ['file_tests', 'dreamchecker']
-    runs-on: ubuntu-20.04
+    # needs: ['run_linters', 'dreamchecker']
+    runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v4
       - name: Ensure +x on CI directory
         run: |
           chmod -R +x ./tools/ci
-      - name: Setup Cache
+      - name: Restore BYOND Cache
         uses: actions/cache@v4
         with:
-          path: $HOME/BYOND
+          path: $HOME/byond
           key: ${{ runner.os }}-byond
       - name: Install RUST_G Dependencies
         run: |
@@ -86,41 +113,46 @@ jobs:
           sudo apt update || true
           sudo apt install zlib1g-dev:i386 libssl-dev:i386
           ldd librust_g.so
+          ldd libbapi_dmm_reader.so
+          ldd libverdigris.so
       - name: Unit Tests
         run: |
           tools/ci/install_byond.sh
           tools/ci/compile_and_run.sh
         env:
-          TEST_DEFINE: "UNIT_TEST"
-          TEST_FILE: "code/_unit_tests.dm"
-          MAP: ${{ matrix.map }}
-          REPLACE: true
+          EXTRA_ARGS: "-DUNIT_TEST -D${{ matrix.map }}"
           RUN: "1"
-      - name: Compile POIs
+
+  extra_map_tests:
+    name: Map Tests
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Ensure +x on CI directory
         run: |
-          tools/ci/install_byond.sh
-          tools/ci/compile_and_run.sh
+          chmod -R +x ./tools/ci
+      - name: Restore BYOND Cache
+        uses: actions/cache@v4
+        with:
+          path: $HOME/byond
+          key: ${{ runner.os }}-byond
+      - name: Install BYOND
+        run: tools/ci/install_byond.sh
+      - name: Compile POIs
+        run: tools/ci/compile_and_run.sh
         env:
-          TEST_DEFINE: "MAP_TEST"
-          TEST_FILE: "code/_map_tests.dm"
-          MAP: ${{ matrix.map }}
-          REPLACE: false
+          EXTRA_ARGS: "-DMAP_TEST"
           RUN: "0"
       - name: Compile away missions
-        run: |
-          tools/ci/install_byond.sh
-          tools/ci/compile_and_run.sh
+        run: tools/ci/compile_and_run.sh
         env:
-          TEST_DEFINE: "AWAY_MISSION_TEST"
-          TEST_FILE: "code/_away_mission_tests.dm"
-          MAP: ${{ matrix.map }}
-          REPLACE: false
+          EXTRA_ARGS: "-DAWAY_MISSION_TEST -DUSE_MAP_TETHER" # Only Tether has support for all away missions
           RUN: "0"
 
   tests_successful:
     name: Integration Tests
-    needs: ['file_tests', 'dreamchecker', 'unit_tests']
-    runs-on: ubuntu-20.04
+    needs: ['run_linters', 'dreamchecker', 'unit_tests', 'extra_map_tests']
+    runs-on: ubuntu-22.04
     steps:
       - name: Report Success
         run: |

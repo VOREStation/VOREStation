@@ -13,20 +13,20 @@
 		/obj/item/clothing/under/rank/chief_engineer/skirt,
 		/obj/item/clothing/head/hardhat/white,
 		/obj/item/clothing/shoes/brown,
-		/obj/item/weapon/cartridge/ce,
-		/obj/item/device/radio/headset/heads/ce,
-		/obj/item/device/radio/headset/heads/ce/alt,
+		/obj/item/cartridge/ce,
+		/obj/item/radio/headset/heads/ce,
+		/obj/item/radio/headset/heads/ce/alt,
 		/obj/item/clothing/suit/storage/hazardvest,
 		/obj/item/clothing/mask/gas,
-		/obj/item/weapon/tank/emergency/oxygen/engi,
+		/obj/item/tank/emergency/oxygen/engi,
 		/obj/item/taperoll/engineering,
 		/obj/item/clothing/suit/storage/hooded/wintercoat/engineering)
 
 /obj/structure/closet/secure_closet/engineering_chief_wardrobe/Initialize()
 	if(prob(50))
-		starts_with += /obj/item/weapon/storage/backpack/industrial
+		starts_with += /obj/item/storage/backpack/industrial
 	else
-		starts_with += /obj/item/weapon/storage/backpack/satchel/eng
+		starts_with += /obj/item/storage/backpack/satchel/eng
 	if(prob(50))
-		starts_with += /obj/item/weapon/storage/backpack/dufflebag/eng
+		starts_with += /obj/item/storage/backpack/dufflebag/eng
 	return ..()

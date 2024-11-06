@@ -17,7 +17,7 @@
 	icon_living = "startreader"
 	icon_dead = "startreader_dead"
 
-	faction = "space turtle"
+	faction = FACTION_SPACE_TURTLE
 	maxHealth = 1000
 	health = 1000
 	movement_cooldown = 10
@@ -115,7 +115,7 @@
 	if(L.weakened) //Don't stun people while they're already stunned! That's SILLY!
 		return
 	if(prob(15))
-		visible_message("<span class='danger'>\The [src] trips \the [L]!</span>!")
+		visible_message(span_danger("\The [src] trips \the [L]!"))
 		L.weakened += rand(1,10)
 
 /mob/living/simple_mob/vore/alienanimals/startreader/Life()
@@ -124,7 +124,7 @@
 		flip_cooldown = 0
 		flipped = FALSE
 		handle_flip()
-		visible_message("<span class='notice'>\The [src] rights itself!!!</span>")
+		visible_message(span_notice("\The [src] rights itself!!!"))
 		return
 	if(flip_cooldown)
 		flip_cooldown --

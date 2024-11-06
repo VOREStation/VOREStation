@@ -37,6 +37,7 @@
 		/mob/living/carbon/human/proc/shapeshifter_select_wings,
 		/mob/living/carbon/human/proc/shapeshifter_select_tail,
 		/mob/living/carbon/human/proc/shapeshifter_select_ears,
+		/mob/living/carbon/human/proc/shapeshifter_select_secondary_ears,
 		/mob/living/proc/set_size,
 		/mob/living/carbon/human/proc/regenerate,
 		/mob/living/carbon/human/proc/promethean_select_opaqueness,
@@ -53,7 +54,7 @@
 /mob/living/carbon/human/proc/shapeshifter_change_opacity()
 
 	set name = "Toggle Opacity"
-	set category = "Abilities"
+	set category = "Abilities.Shapeshifter"
 
 	if(stat || world.time < last_special)
 		return
@@ -81,13 +82,13 @@
 	// Move the mind
 	avatar.Sleeping(1)
 	src.mind.transfer_to(avatar)
-	to_chat(avatar, "<b>You have enterred Virtual Reality!\nAll normal gameplay rules still apply.\nWounds you suffer here won't persist when you leave VR, but some of the pain will.\nYou can leave VR at any time by using the \"Exit Virtual Reality\" verb in the Abilities tab, or by ghosting.</b>") //No more prommie VR thing, so removed tidbit about changing appearance
-	to_chat(avatar, "<span class='notice'> You black out for a moment, and wake to find yourself in a new body in virtual reality.</span>") // So this is what VR feels like?
+	to_chat(avatar, span_infoplain(span_bold("You have enterred Virtual Reality!\nAll normal gameplay rules still apply.\nWounds you suffer here won't persist when you leave VR, but some of the pain will.\nYou can leave VR at any time by using the \"Exit Virtual Reality\" verb in the Abilities tab, or by ghosting."))) //No more prommie VR thing, so removed tidbit about changing appearance
+	to_chat(avatar, span_notice(" You black out for a moment, and wake to find yourself in a new body in virtual reality.")) // So this is what VR feels like?
 
 // exit_vr is called on the vr mob, and puts the mind back into the original mob
 /mob/living/carbon/human/proc/exit_vr()
 	set name = "Exit Virtual Reality"
-	set category = "Abilities"
+	set category = "Abilities.VR"
 
 	if(!vr_holder)
 		return
@@ -103,13 +104,13 @@
 	// Move the mind back to the original mob
 //	vr_holder.Sleeping(1)
 	src.mind.transfer_to(vr_holder)
-	to_chat(vr_holder, "<span class='notice'>You black out for a moment, and wake to find yourself back in your own body.</span>")
+	to_chat(vr_holder, span_notice("You black out for a moment, and wake to find yourself back in your own body."))
 	// Two-thirds damage is transferred as agony for /humans
 	// Getting hurt in VR doesn't damage the physical body, but you still got hurt.
 	if(ishuman(vr_holder) && total_damage)
 		var/mob/living/carbon/human/V = vr_holder
 		V.stun_effect_act(0, total_damage*2/3, null)												// 200 damage leaves the user in paincrit for several seconds, agony reaches 0 after around 2m.
-		to_chat(vr_holder, "<span class='warning'>Pain from your time in VR lingers.</span>")		// 250 damage leaves the user unconscious for several seconds in addition to paincrit
+		to_chat(vr_holder, span_warning("Pain from your time in VR lingers."))		// 250 damage leaves the user unconscious for several seconds in addition to paincrit
 
 	// Maintain a link with the mob, but don't use teleop
 	vr_holder.vr_link = src

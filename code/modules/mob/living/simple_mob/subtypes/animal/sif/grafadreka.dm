@@ -3,8 +3,8 @@
 	desc = "Your wounds have been salved with Sivian sap."
 	mob_overlay_state = "cyan_sparkles"
 	stacks = MODIFIER_STACK_FORBID
-	on_created_text = "<span class = 'notice'>The glowing sap seethes and bubbles in your wounds, tingling and stinging.</span>"
-	on_expired_text = "<span class = 'notice'>The last of the sap in your wounds fizzles away.</span>"
+	on_created_text = span_notice("The glowing sap seethes and bubbles in your wounds, tingling and stinging.")
+	on_expired_text = span_notice("The last of the sap in your wounds fizzles away.")
 
 /datum/modifier/sifsap_salve/tick()
 
@@ -86,7 +86,7 @@ Field studies suggest analytical abilities on par with some species of cepholapo
 
 /decl/emote/audible/drake_howl/broadcast_emote_to(var/send_sound, var/mob/target, var/direction)
 	if((. = ..()))
-		to_chat(target, SPAN_NOTICE("You hear an eerie howl from somewhere to the [dir2text(direction)]."))
+		to_chat(target, span_notice("You hear an eerie howl from somewhere to the [dir2text(direction)]."))
 
 /mob/living/simple_mob/animal/sif/grafadreka/get_available_emotes()
 	. = global._default_mob_emotes.Copy()
@@ -103,7 +103,7 @@ Field studies suggest analytical abilities on par with some species of cepholapo
 
 /mob/living/simple_mob/animal/sif/grafadreka/verb/sit_down()
 	set name = "Sit Down"
-	set category = "IC"
+	set category = "IC.Grafadreka"
 
 	if(sitting)
 		resting = FALSE
@@ -112,7 +112,7 @@ Field studies suggest analytical abilities on par with some species of cepholapo
 		resting = TRUE
 		sitting = TRUE
 
-	to_chat(src, SPAN_NOTICE("You are now [sitting ? "sitting" : "getting up"]."))
+	to_chat(src, span_notice("You are now [sitting ? "sitting" : "getting up"]."))
 	update_canmove()
 	update_icon()
 
@@ -120,8 +120,8 @@ Field studies suggest analytical abilities on par with some species of cepholapo
 	name = "grafadreka"
 	desc = "A large, sleek snow drake with heavy claws, powerful jaws and many pale spines along its body."
 	player_msg = "You are a large Sivian pack predator in symbiosis with the local bioluminescent bacteria. You can eat glowing \
-	tree fruit to fuel your <b>ranged spitting attack</b> and <b>poisonous bite</b> (on <span class = 'danger'>harm intent</span>), as well as <b>healing saliva</b> \
-	(on <b><span class='green'>help intent</span></b>).<br>There are humans moving through your territory; whether you help them get home safely, or treat them as a snack, \
+	tree fruit to fuel your " + span_bold("ranged spitting attack") + " and " + span_bold("poisonous bite") + " (on " + span_danger("harm intent") + "), as well as " + span_bold("healing saliva") + "\
+	(on " + span_bold(span_green("help intent")) + ").<br>There are humans moving through your territory; whether you help them get home safely, or treat them as a snack, \
 	is up to you."
 	color = "#608894"
 	icon = 'icons/mob/drake_adult.dmi'
@@ -132,7 +132,7 @@ Field studies suggest analytical abilities on par with some species of cepholapo
 	icon_rest = "doggo_lying"
 	projectileverb = "spits"
 	friendly = list("headbutts", "grooms", "play-bites", "rubs against")
-	bitesize = 10 // chomp
+	bitesize = 10
 	gender = NEUTER
 
 	has_langs = list("Drake")
@@ -140,7 +140,7 @@ Field studies suggest analytical abilities on par with some species of cepholapo
 	see_in_dark = 8 // on par with Taj
 
 	tt_desc = "S tesca pabulator"
-	faction = "grafadreka"
+	faction = FACTION_GRAFADREKA
 
 	mob_size = MOB_LARGE
 	mob_bump_flag = SIMPLE_ANIMAL
@@ -262,17 +262,17 @@ var/global/list/wounds_being_tended_by_drakes = list()
 	if(istype(user, /mob/living/simple_mob/animal/sif/grafadreka) || isobserver(user))
 		var/datum/gender/G = gender_datums[get_visible_gender()]
 		if(stored_sap >= 20)
-			. += SPAN_NOTICE("[G.His] sap reserves are high.")
+			. += span_notice("[G.His] sap reserves are high.")
 		else if(stored_sap >= 10)
-			. += SPAN_WARNING("[G.His] sap reserves are running low.")
+			. += span_warning("[G.His] sap reserves are running low.")
 		else
-			. += SPAN_DANGER("[G.His] sap reserves are depleted.")
+			. += span_danger("[G.His] sap reserves are depleted.")
 
 /mob/living/simple_mob/animal/sif/grafadreka/can_projectile_attack(var/atom/A)
 	if(a_intent != I_HURT || world.time < next_spit)
 		return FALSE
 	if(!has_sap(2))
-		to_chat(src, SPAN_WARNING("You have no sap to spit!"))
+		to_chat(src, span_warning("You have no sap to spit!"))
 		return FALSE
 	return ..()
 
@@ -428,7 +428,7 @@ var/global/list/wounds_being_tended_by_drakes = list()
 		var/mob/living/friend = A
 		if(friend.stat == DEAD)
 			if(friend == src)
-				to_chat(src, SPAN_WARNING("\The [friend] is dead; tending their wounds is pointless."))
+				to_chat(src, span_warning("\The [friend] is dead; tending their wounds is pointless."))
 			else
 				return ..()
 			return TRUE
@@ -436,33 +436,33 @@ var/global/list/wounds_being_tended_by_drakes = list()
 		if(!can_tend_wounds(friend))
 			if(friend == src)
 				if(health == maxHealth)
-					to_chat(src, SPAN_WARNING("You are unwounded."))
+					to_chat(src, span_warning("You are unwounded."))
 				else
-					to_chat(src, SPAN_WARNING("You cannot tend any of your wounds."))
+					to_chat(src, span_warning("You cannot tend any of your wounds."))
 			else
 				if(friend.health == friend.maxHealth)
 					return ..()
-				to_chat(src, SPAN_WARNING("You cannot tend any of \the [friend]'s wounds."))
+				to_chat(src, span_warning("You cannot tend any of \the [friend]'s wounds."))
 			return TRUE
 
 		if(friend.has_modifier_of_type(/datum/modifier/sifsap_salve))
 			if(friend == src)
-				to_chat(src, SPAN_WARNING("You have already cleaned your wounds."))
+				to_chat(src, span_warning("You have already cleaned your wounds."))
 			else
 				return ..()
 			return TRUE
 
 		if(!has_sap(10))
 			if(friend == src)
-				to_chat(src, SPAN_WARNING("You don't have enough sap to clean your wounds."))
+				to_chat(src, span_warning("You don't have enough sap to clean your wounds."))
 			else
 				return ..()
 			return TRUE
 
 		if(friend == src)
-			visible_message(SPAN_NOTICE("\The [src] begins to drool a blue-glowing liquid, which they start slathering over their wounds."))
+			visible_message(span_notice("\The [src] begins to drool a blue-glowing liquid, which they start slathering over their wounds."))
 		else
-			visible_message(SPAN_NOTICE("\The [src] begins to drool a blue-glowing liquid, which they start slathering over \the [friend]'s wounds."))
+			visible_message(span_notice("\The [src] begins to drool a blue-glowing liquid, which they start slathering over \the [friend]'s wounds."))
 
 		playsound(src, 'sound/effects/ointment.ogg', 25)
 
@@ -479,9 +479,9 @@ var/global/list/wounds_being_tended_by_drakes = list()
 		set_AI_busy(FALSE)
 
 		if(friend == src)
-			visible_message(SPAN_NOTICE("\The [src] finishes licking at their wounds."))
+			visible_message(span_notice("\The [src] finishes licking at their wounds."))
 		else
-			visible_message(SPAN_NOTICE("\The [src] finishes licking at \the [friend]'s wounds."))
+			visible_message(span_notice("\The [src] finishes licking at \the [friend]'s wounds."))
 		playsound(src, 'sound/effects/ointment.ogg', 25)
 
 		// Sivian animals get a heal buff from the modifier, others just
@@ -526,11 +526,10 @@ var/global/list/wounds_being_tended_by_drakes = list()
 	else
 		remove_modifiers_of_type(/datum/modifier/ace)
 
-/mob/living/simple_mob/animal/sif/grafadreka/Stat()
+/mob/living/simple_mob/animal/sif/grafadreka/get_status_tab_items()
 	. = ..()
-	if(statpanel("Status"))
-		stat("Nutrition:", "[nutrition]/[max_nutrition]")
-		stat("Stored sap:", "[stored_sap]/[max_stored_sap]")
+	. += "Nutrition: [nutrition]/[max_nutrition]"
+	. += "Stored sap: [stored_sap]/[max_stored_sap]"
 
 /mob/living/simple_mob/animal/sif/grafadreka/proc/can_bite(var/mob/living/M)
 	return istype(M) && (M.lying || M.confused || M.incapacitated())
@@ -565,18 +564,18 @@ var/global/list/wounds_being_tended_by_drakes = list()
 /mob/living/simple_mob/animal/sif/grafadreka/verb/rally_pack()
 	set name = "Rally Pack"
 	set desc = "Tries to command your fellow pack members to follow you."
-	set category = "Abilities"
+	set category = "Abilities.Grafadreka"
 
 	if(!has_modifier_of_type(/datum/modifier/ace))
-		to_chat(src, SPAN_WARNING("You aren't the pack leader! Sit down!"))
+		to_chat(src, span_warning("You aren't the pack leader! Sit down!"))
 		return
 
-	audible_message("<b>\The [src]</b> barks loudly and rattles its neck spines.")
+	audible_message(span_infoplain(span_bold("\The [src]") + " barks loudly and rattles its neck spines."))
 	for(var/mob/living/simple_mob/animal/sif/grafadreka/drake in hearers(world.view * 3, src))
 		if(drake == src || drake.faction != faction)
 			continue
 		if(drake.client)
-			to_chat(drake, SPAN_NOTICE("<b>The pack leader wishes for you to follow them.</b>"))
+			to_chat(drake, span_boldnotice("The pack leader wishes for you to follow them."))
 		else if(drake.ai_holder)
 			drake.ai_holder.set_follow(src)
 

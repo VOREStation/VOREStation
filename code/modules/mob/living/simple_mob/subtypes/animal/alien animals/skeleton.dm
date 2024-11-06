@@ -23,7 +23,7 @@
 	icon_living = "skeleton"
 	icon_dead = "skeleton_dead"
 
-	faction = "space skeleton"
+	faction = FACTION_SPACE_SKELETON
 	maxHealth = 100
 	health = 100
 	movement_cooldown = 1
@@ -54,11 +54,11 @@
 	maxbodytemp = 900
 
 	loot_list = list(
-		/obj/item/weapon/bone = 25,
-		/obj/item/weapon/bone/skull = 25,
-		/obj/item/weapon/bone/ribs = 25,
-		/obj/item/weapon/bone/arm = 25,
-		/obj/item/weapon/bone/leg = 25
+		/obj/item/bone = 25,
+		/obj/item/bone/skull = 25,
+		/obj/item/bone/ribs = 25,
+		/obj/item/bone/arm = 25,
+		/obj/item/bone/leg = 25
 		)
 
 	speak_emote = list("rattles")

@@ -54,7 +54,7 @@
 				"rad" = 100)
 
 	can_be_antagged = TRUE
-	faction = "cult"
+	faction = FACTION_CULT
 
 	supernatural = TRUE
 
@@ -66,8 +66,8 @@
 	if(!path || !ispath(path))
 		return 0
 
-	//var/obj/item/weapon/spell/S = new path(src)
-	var/obj/item/weapon/spell/construct/S = new path(src)
+	//var/obj/item/spell/S = new path(src)
+	var/obj/item/spell/construct/S = new path(src)
 
 	//No hands needed for innate casts.
 	if(S.cast_methods & CAST_INNATE)
@@ -75,16 +75,16 @@
 			S.on_innate_cast(src)
 
 	if(l_hand && r_hand) //Make sure our hands aren't full.
-		if(istype(r_hand, /obj/item/weapon/spell)) //If they are full, perhaps we can still be useful.
-			var/obj/item/weapon/spell/r_spell = r_hand
+		if(istype(r_hand, /obj/item/spell)) //If they are full, perhaps we can still be useful.
+			var/obj/item/spell/r_spell = r_hand
 			if(r_spell.aspect == ASPECT_CHROMATIC) //Check if we can combine the new spell with one in our hands.
 				r_spell.on_combine_cast(S, src)
-		else if(istype(l_hand, /obj/item/weapon/spell))
-			var/obj/item/weapon/spell/l_spell = l_hand
+		else if(istype(l_hand, /obj/item/spell))
+			var/obj/item/spell/l_spell = l_hand
 			if(l_spell.aspect == ASPECT_CHROMATIC) //Check the other hand too.
 				l_spell.on_combine_cast(S, src)
 		else //Welp
-			to_chat(src, "<span class='warning'>You require a free manipulator to use this power.</span>")
+			to_chat(src, span_warning("You require a free manipulator to use this power."))
 			return 0
 
 	if(S.run_checks())
@@ -113,7 +113,7 @@
 */
 
 /mob/living/simple_mob/construct/death()
-	new /obj/item/weapon/ectoplasm (src.loc)
+	new /obj/item/ectoplasm (src.loc)
 	..(null,"collapses in a shattered heap.")
 	ghostize()
 	qdel(src)
@@ -126,9 +126,9 @@
 			var/repair_upper_bound = A.melee_damage_upper * -1
 			adjustBruteLoss(rand(repair_lower_bound, repair_upper_bound))
 			adjustFireLoss(rand(repair_lower_bound, repair_upper_bound))
-			user.visible_message("<b>\The [user]</b> mends some of \the [src]'s wounds.")
+			user.visible_message(span_infoplain(span_bold("\The [user]") + " mends some of \the [src]'s wounds."))
 		else
-			to_chat(user, "<span class='notice'>\The [src] is undamaged.</span>")
+			to_chat(user, span_notice("\The [src] is undamaged."))
 		return
 	return ..()
 
@@ -137,9 +137,9 @@
 	var/max = getMaxHealth()
 	if (health < max)
 		if (health >= max/2)
-			. += "<span class='warning'>It looks slightly dented.</span>"
+			. += span_warning("It looks slightly dented.")
 		else
-			. += "<span class='warning'><B>It looks severely dented!</B></span>"
+			. += span_boldwarning("It looks severely dented!")
 
 //Constructs levitate, can fall from a shuttle with no harm, and are piloted by either damned spirits or some otherworldly entity. Let 'em float in space.
 /mob/living/simple_mob/construct/Process_Spacemove()

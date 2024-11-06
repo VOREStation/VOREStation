@@ -6,6 +6,7 @@
 #define RADIATION_DAMAGE 0x20
 #define TOXIN_DAMAGE 0x40
 #define OXY_DAMAGE 0x80
+#define HUSKED_BODY 0x100
 
 /obj/machinery/medical_kiosk
 	name = "medical kiosk"
@@ -14,7 +15,7 @@
 	icon_state = "kiosk_off"
 	idle_power_usage = 5
 	active_power_usage = 200
-	circuit = /obj/item/weapon/circuitboard/medical_kiosk
+	circuit = /obj/item/circuitboard/medical_kiosk
 	anchored = TRUE
 	density = TRUE
 
@@ -39,9 +40,9 @@
 	. = ..()
 	if(istype(user) && Adjacent(user))
 		if(inoperable() || panel_open)
-			to_chat(user, "<span class='warning'>\The [src] seems to be nonfunctional...</span>")
+			to_chat(user, span_warning("\The [src] seems to be nonfunctional..."))
 		else if(active_user && active_user != user)
-			to_chat(user, "<span class='warning'>Another patient has begin using this machine. Please wait for them to finish, or their session to time out.</span>")
+			to_chat(user, span_warning("Another patient has begin using this machine. Please wait for them to finish, or their session to time out."))
 		else
 			start_using(user)
 
@@ -71,40 +72,40 @@
 	wake_lock(user)
 
 	// User requests service
-	user.visible_message("<b>[user]</b> wakes [src].", "You wake [src].")
+	user.visible_message(span_bold("[user]") + " wakes [src].", "You wake [src].")
 	var/choice = tgui_alert(user, "What service would you like?", "[src]", list("Health Scan", "Backup Scan", "Cancel"), timeout = 10 SECONDS)
 	if(!choice || choice == "Cancel" || !Adjacent(user) || inoperable() || panel_open)
 		suspend()
 		return
-	
+
 	// Service begins, delay
-	visible_message("<b>\The [src]</b> scans [user] thoroughly!")
+	visible_message(span_bold("\The [src]") + " scans [user] thoroughly!")
 	flick("kiosk_active", src)
 	if(!do_after(user, 10 SECONDS, src, exclusive = TASK_ALL_EXCLUSIVE) || inoperable())
 		suspend()
 		return
-	
+
 	// Service completes
 	switch(choice)
 		if("Health Scan")
 			var/health_report = tell_health_info(user)
-			to_chat(user, "<span class='notice'><b>Health report results:</b></span>"+health_report)
+			to_chat(user, span_boldnotice("Health report results:")+health_report)
 		if("Backup Scan")
 			if(!our_db)
-				to_chat(user, "<span class='notice'><b>Backup scan results:</b></span><br>DATABASE ERROR!")
+				to_chat(user, span_notice(span_bold("Backup scan results:")) + "<br>DATABASE ERROR!")
 			else
 				var/scan_report = do_backup_scan(user)
-				to_chat(user, "<span class='notice'><b>Backup scan results:</b></span>"+scan_report)
-	
+				to_chat(user, span_notice(span_bold("Backup scan results:"))+scan_report)
+
 	// Standby
 	suspend()
 
 /obj/machinery/medical_kiosk/proc/tell_health_info(mob/living/user)
 	if(!istype(user))
-		return "<br><span class='warning'>Unable to perform diagnosis on this type of life form.</span>"
+		return "<br>" + span_warning("Unable to perform diagnosis on this type of life form.")
 	if(user.isSynthetic())
-		return "<br><span class='warning'>Unable to perform diagnosis on synthetic life forms.</span>"
-	
+		return "<br>" + span_warning("Unable to perform diagnosis on synthetic life forms.")
+
 	var/problems = 0
 	for(var/obj/item/organ/external/E in user)
 		if(E.status & ORGAN_BROKEN)
@@ -119,13 +120,16 @@
 					problems |= INTERNAL_BLEEDING
 				else
 					problems |= EXTERNAL_BLEEDING
-	
+
 	for(var/obj/item/organ/internal/I in user)
 		if(I.status & (ORGAN_BROKEN|ORGAN_DEAD|ORGAN_DESTROYED))
 			problems |= SERIOUS_INTERNAL_DAMAGE
 		if(I.status & ORGAN_BLEEDING)
 			problems |= INTERNAL_BLEEDING
-	
+
+	if(HUSK in user.mutations)
+		problems |= HUSKED_BODY
+
 	if(user.getToxLoss() > 0)
 		problems |= TOXIN_DAMAGE
 	if(user.getOxyLoss() > 0)
@@ -134,48 +138,50 @@
 		problems |= RADIATION_DAMAGE
 	if(user.getFireLoss() > 40 || user.getBruteLoss() > 40)
 		problems |= SERIOUS_EXTERNAL_DAMAGE
-	
+
 	if(!problems)
 		if(user.getHalLoss() > 0)
-			return "<br><span class='warning'>Mild concussion detected - advising bed rest until patient feels well. No other anatomical issues detected.</span>"
+			return "<br>" + span_warning("Mild concussion detected - advising bed rest until patient feels well. No other anatomical issues detected.")
 		else
-			return "<br><span class='notice'>No anatomical issues detected.</span>"
-	
+			return "<br>" + span_notice("No anatomical issues detected.")
+
 	var/problem_text = ""
 	if(problems & BROKEN_BONES)
-		problem_text += "<br><span class='warning'>Broken bones detected - see a medical professional and move as little as possible.</span>"
+		problem_text += "<br>" + span_warning("Broken bones detected - see a medical professional and move as little as possible.")
 	if(problems & INTERNAL_BLEEDING)
-		problem_text += "<br><span class='danger'>Internal bleeding detected - seek medical attention, ASAP!</span>"
+		problem_text += "<br>" + span_danger("Internal bleeding detected - seek medical attention, ASAP!")
 	if(problems & EXTERNAL_BLEEDING)
-		problem_text += "<br><span class='warning'>External bleeding detected - advising pressure with cloth and bandaging.</span>"
+		problem_text += "<br>" + span_warning("External bleeding detected - advising pressure with cloth and bandaging.")
 	if(problems & SERIOUS_EXTERNAL_DAMAGE)
-		problem_text += "<br><span class='danger'>Severe anatomical damage detected - seek medical attention.</span>"
+		problem_text += "<br>" + span_danger("Severe anatomical damage detected - seek medical attention.")
 	if(problems & SERIOUS_INTERNAL_DAMAGE)
-		problem_text += "<br><span class='danger'>Severe internal damage detected - seek medical attention.</span>"
+		problem_text += "<br>" + span_danger("Severe internal damage detected - seek medical attention.")
 	if(problems & RADIATION_DAMAGE)
-		problem_text += "<br><span class='danger'>Exposure to ionizing radiation detected - seek medical attention.</span>"
+		problem_text += "<br>" + span_danger("Exposure to ionizing radiation detected - seek medical attention.")
 	if(problems & TOXIN_DAMAGE)
-		problem_text += "<br><span class='warning'>Exposure to toxic materials detected - induce vomiting if you have consumed anything recently.</span>"
+		problem_text += "<br>" + span_warning("Exposure to toxic materials detected - induce vomiting if you have consumed anything recently.")
 	if(problems & OXY_DAMAGE)
-		problem_text += "<br><span class='warning'>Blood/air perfusion level is below acceptable norms - use concentrated oxygen if necessary.</span>"
+		problem_text += "<br>" + span_warning("Blood/air perfusion level is below acceptable norms - use concentrated oxygen if necessary.")
+	if(problems & HUSKED_BODY)
+		problem_text += "<br>" + span_danger("Anatomical structure lost, resuscitation not possible!")
 
 	return problem_text
 
 /obj/machinery/medical_kiosk/proc/do_backup_scan(mob/living/carbon/human/user)
 	if(!istype(user))
-		return "<br><span class='warning'>Unable to perform full scan. Please see a medical professional.</span>"
+		return "<br>" + span_warning("Unable to perform full scan. Please see a medical professional.")
 	if(!user.mind)
-		return "<br><span class='warning'>Unable to perform full scan. Please see a medical professional.</span>"
-	
+		return "<br>" + span_warning("Unable to perform full scan. Please see a medical professional.")
+
 	var/nif = user.nif
 	if(nif)
 		persist_nif_data(user)
-	
+
 	our_db.m_backup(user.mind,nif,one_time = TRUE)
 	var/datum/transhuman/body_record/BR = new()
 	BR.init_from_mob(user, TRUE, TRUE, database_key = db_key)
 
-	return "<br><span class='notice'>Backup scan completed!</span><br><b>Note:</b> A backup implant is required for automated notifications to the appropriate department in case of incident."
+	return "<br>" + span_notice("Backup scan completed!") + "<br>" + span_bold("Note:") + " A backup implant is required for automated notifications to the appropriate department in case of incident."
 
 #undef BROKEN_BONES
 #undef INTERNAL_BLEEDING
@@ -185,3 +191,4 @@
 #undef RADIATION_DAMAGE
 #undef TOXIN_DAMAGE
 #undef OXY_DAMAGE
+#undef HUSKED_BODY

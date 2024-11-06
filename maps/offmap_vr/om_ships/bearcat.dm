@@ -1,5 +1,5 @@
 // Compile in the map for CI testing if we're testing compileability of all the maps
-#if MAP_TEST
+#ifdef MAP_TEST
 #include "bearcat.dmm"
 #endif
 
@@ -7,7 +7,7 @@
 /datum/map_template/om_ships/bearcat
 	name = "OM Ship - Bearcat (New Z)"
 	desc = "An old salvage ship, abandoned but seemingly intact."
-	mappath = 'bearcat.dmm'
+	mappath = "maps/offmap_vr/om_ships/bearcat.dmm"
 
 // The 'shuttle'
 /datum/shuttle/autodock/overmap/bearcat

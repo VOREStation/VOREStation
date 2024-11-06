@@ -25,12 +25,12 @@
 		if( istype(target, /obj/structure/reagent_dispensers) && get_dist(chassis,target) <= 1) //VOREStation Edit
 			var/obj/o = target
 			var/amount = o.reagents.trans_to_obj(src, 200)
-			occupant_message("<span class='notice'>[amount] units transferred into internal tank.</span>")
+			occupant_message(span_notice("[amount] units transferred into internal tank."))
 			playsound(src, 'sound/effects/refill.ogg', 50, 1, -6)
 			return
 
 		if (src.reagents.total_volume < 1)
-			occupant_message("<span class='warning'>\The [src] is empty.</span>")
+			occupant_message(span_warning("\The [src] is empty."))
 			return
 
 		playsound(src, 'sound/effects/extinguish.ogg', 75, 1, -3)

@@ -24,13 +24,13 @@ var/specops_shuttle_timeleft = 0
 	var/specops_shuttle_timereset = 0
 
 /proc/specops_return()
-	var/obj/item/device/radio/intercom/announcer = new /obj/item/device/radio/intercom(null)//We need a fake AI to announce some stuff below. Otherwise it will be wonky.
-	announcer.config(list("Response Team" = 0))
+	var/obj/item/radio/intercom/announcer = new /obj/item/radio/intercom(null)//We need a fake AI to announce some stuff below. Otherwise it will be wonky.
+	announcer.config(list(CHANNEL_RESPONSE_TEAM = 0))
 
 	var/message_tracker[] = list(0,1,2,3,5,10,30,45)//Create a a list with potential time values.
 	var/message = "\"THE SPECIAL OPERATIONS SHUTTLE IS PREPARING TO RETURN\""//Initial message shown.
 	if(announcer)
-		announcer.autosay(message, "A.L.I.C.E.", "Response Team")
+		announcer.autosay(message, "A.L.I.C.E.", CHANNEL_RESPONSE_TEAM)
 
 	while(specops_shuttle_time - world.timeofday > 0)
 		var/ticksleft = specops_shuttle_time - world.timeofday
@@ -46,7 +46,7 @@ var/specops_shuttle_timeleft = 0
 				message = "\"ALERT: [rounded_time_left] SECOND[(rounded_time_left!=1)?"S":""] REMAIN\""
 				if(rounded_time_left==0)
 					message = "\"ALERT: TAKEOFF\""
-				announcer.autosay(message, "A.L.I.C.E.", "Response Team")
+				announcer.autosay(message, "A.L.I.C.E.", CHANNEL_RESPONSE_TEAM)
 				message_tracker -= rounded_time_left//Remove the number from the list so it won't be called again next cycle.
 				//Should call all the numbers but lag could mean some issues. Oh well. Not much I can do about that.
 
@@ -88,7 +88,7 @@ var/specops_shuttle_timeleft = 0
 
 	for(var/turf/T in get_area_turfs(end_location) )
 		var/mob/M = locate(/mob) in T
-		to_chat(M, "<span class='notice'>You have arrived at [using_map.boss_name]. Operation has ended!</span>")
+		to_chat(M, span_notice("You have arrived at [using_map.boss_name]. Operation has ended!"))
 
 	specops_shuttle_at_station = 0
 
@@ -99,15 +99,15 @@ var/specops_shuttle_timeleft = 0
 
 /proc/specops_process()
 	var/area/centcom/specops/special_ops = locate()//Where is the specops area located?
-	var/obj/item/device/radio/intercom/announcer = new /obj/item/device/radio/intercom(null)//We need a fake AI to announce some stuff below. Otherwise it will be wonky.
-	announcer.config(list("Response Team" = 0))
+	var/obj/item/radio/intercom/announcer = new /obj/item/radio/intercom(null)//We need a fake AI to announce some stuff below. Otherwise it will be wonky.
+	announcer.config(list(CHANNEL_RESPONSE_TEAM = 0))
 
 	var/message_tracker[] = list(0,1,2,3,5,10,30,45)//Create a a list with potential time values.
 	var/message = "\"THE SPECIAL OPERATIONS SHUTTLE IS PREPARING FOR LAUNCH\""//Initial message shown.
 	if(announcer)
-		announcer.autosay(message, "A.L.I.C.E.", "Response Team")
+		announcer.autosay(message, "A.L.I.C.E.", CHANNEL_RESPONSE_TEAM)
 //		message = "ARMORED SQUAD TAKE YOUR POSITION ON GRAVITY LAUNCH PAD"
-//		announcer.autosay(message, "A.L.I.C.E.", "Response Team")
+//		announcer.autosay(message, "A.L.I.C.E.", CHANNEL_RESPONSE_TEAM)
 
 	while(specops_shuttle_time - world.timeofday > 0)
 		var/ticksleft = specops_shuttle_time - world.timeofday
@@ -123,7 +123,7 @@ var/specops_shuttle_timeleft = 0
 				message = "\"ALERT: [rounded_time_left] SECOND[(rounded_time_left!=1)?"S":""] REMAIN\""
 				if(rounded_time_left==0)
 					message = "\"ALERT: TAKEOFF\""
-				announcer.autosay(message, "A.L.I.C.E.", "Response Team")
+				announcer.autosay(message, "A.L.I.C.E.", CHANNEL_RESPONSE_TEAM)
 				message_tracker -= rounded_time_left//Remove the number from the list so it won't be called again next cycle.
 				//Should call all the numbers but lag could mean some issues. Oh well. Not much I can do about that.
 
@@ -136,7 +136,7 @@ var/specops_shuttle_timeleft = 0
 	if (specops_shuttle_moving_to_station || specops_shuttle_moving_to_centcom) return
 
 	if (!specops_can_move())
-		to_chat(usr, "<span class='warning'>The Special Operations shuttle is unable to leave.</span>")
+		to_chat(usr, span_warning("The Special Operations shuttle is unable to leave."))
 		return
 
 	//Begin Marauder launchpad.
@@ -231,7 +231,7 @@ var/specops_shuttle_timeleft = 0
 
 	for(var/turf/T in get_area_turfs(end_location) )
 		var/mob/M = locate(/mob) in T
-		to_chat(M, "<span class='notice'>You have arrived to [station_name()]. Commence operation!</span>")
+		to_chat(M, span_notice("You have arrived to [station_name()]. Commence operation!"))
 
 	for(var/obj/machinery/computer/specops_shuttle/S in machines)
 		S.specops_shuttle_timereset = world.time + SPECOPS_RETURN_DELAY
@@ -250,11 +250,11 @@ var/specops_shuttle_timeleft = 0
 	return attack_hand(user)
 
 /obj/machinery/computer/specops_shuttle/emag_act(var/remaining_charges, var/mob/user)
-	to_chat(user, "<span class='notice'>The electronic systems in this console are far too advanced for your primitive hacking peripherals.</span>")
+	to_chat(user, span_notice("The electronic systems in this console are far too advanced for your primitive hacking peripherals."))
 
 /obj/machinery/computer/specops_shuttle/attack_hand(var/mob/user as mob)
 	if(!allowed(user))
-		to_chat(user, "<span class='warning'>Access Denied.</span>")
+		to_chat(user, span_warning("Access Denied."))
 		return
 
 	if(..())
@@ -285,14 +285,14 @@ var/specops_shuttle_timeleft = 0
 		if(!specops_shuttle_at_station|| specops_shuttle_moving_to_station || specops_shuttle_moving_to_centcom) return
 
 		if (!specops_can_move())
-			to_chat(usr, "<span class='notice'>[using_map.boss_name] will not allow the Special Operations shuttle to return yet.</span>")
+			to_chat(usr, span_notice("[using_map.boss_name] will not allow the Special Operations shuttle to return yet."))
 			if(world.timeofday <= specops_shuttle_timereset)
 				if (((world.timeofday - specops_shuttle_timereset)/10) > 60)
-					to_chat(usr, "<span class='notice'>[-((world.timeofday - specops_shuttle_timereset)/10)/60] minutes remain!</span>")
-				to_chat(usr, "<span class='notice'>[-(world.timeofday - specops_shuttle_timereset)/10] seconds remain!</span>")
+					to_chat(usr, span_notice("[-((world.timeofday - specops_shuttle_timereset)/10)/60] minutes remain!"))
+				to_chat(usr, span_notice("[-(world.timeofday - specops_shuttle_timereset)/10] seconds remain!"))
 			return
 
-		to_chat(usr, "<span class='notice'>The Special Operations shuttle will arrive at [using_map.boss_name] in [(SPECOPS_MOVETIME/10)] seconds.</span>")
+		to_chat(usr, span_notice("The Special Operations shuttle will arrive at [using_map.boss_name] in [(SPECOPS_MOVETIME/10)] seconds."))
 
 		temp += "Shuttle departing.<BR><BR><A href='?src=\ref[src];mainmenu=1'>OK</A>"
 		updateUsrDialog()
@@ -306,10 +306,10 @@ var/specops_shuttle_timeleft = 0
 		if(specops_shuttle_at_station || specops_shuttle_moving_to_station || specops_shuttle_moving_to_centcom) return
 
 		if (!specops_can_move())
-			to_chat(usr, "<span class='warning'>The Special Operations shuttle is unable to leave.</span>")
+			to_chat(usr, span_warning("The Special Operations shuttle is unable to leave."))
 			return
 
-		to_chat(usr, "<span class='notice'>The Special Operations shuttle will arrive on [station_name()] in [(SPECOPS_MOVETIME/10)] seconds.</span>")
+		to_chat(usr, span_notice("The Special Operations shuttle will arrive on [station_name()] in [(SPECOPS_MOVETIME/10)] seconds."))
 
 		temp += "Shuttle departing.<BR><BR><A href='?src=\ref[src];mainmenu=1'>OK</A>"
 		updateUsrDialog()

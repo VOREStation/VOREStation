@@ -19,11 +19,11 @@
 	if(card.projector != PP_FUNCTIONAL && card.emitter != PP_FUNCTIONAL)
 		if(loc != card)
 			close_up()
-			to_chat(src, "<span class ='warning'>ERROR: System malfunction. Service required!</span>")
+			to_chat(src, span_warning("ERROR: System malfunction. Service required!"))
 	else if(card.projector  != PP_FUNCTIONAL|| card.emitter != PP_FUNCTIONAL)
 		if(prob(5))
 			close_up()
-			to_chat(src, "<span class ='warning'>ERROR: System malfunction. Service recommended!</span>")
+			to_chat(src, span_warning("ERROR: System malfunction. Service recommended!"))
 
 	handle_regular_hud_updates()
 	handle_vision()
@@ -38,7 +38,7 @@
 	if(health <= 0)
 		card.death_damage()
 		death(null,"fizzles out and clatters to the floor...")
-	else if(health < maxHealth && istype(src.loc , /obj/item/device/paicard))
+	else if(health < maxHealth && istype(src.loc , /obj/item/paicard))
 		adjustBruteLoss(-0.5)
 		adjustFireLoss(-0.5)
 

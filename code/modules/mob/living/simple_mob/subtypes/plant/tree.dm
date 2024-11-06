@@ -10,7 +10,7 @@
 
 	mob_class = MOB_CLASS_PLANT
 
-	faction = "plants"
+	faction = FACTION_PLANTS
 	maxHealth = 250
 	health = 250
 	poison_resist = 1.0
@@ -27,7 +27,7 @@
 
 	organ_names = /decl/mob_organ_names/tree
 
-	meat_type = /obj/item/weapon/reagent_containers/food/snacks/xenomeat
+	meat_type = /obj/item/reagent_containers/food/snacks/xenomeat
 	meat_amount = 2
 
 	pixel_x = -16
@@ -37,7 +37,7 @@
 		var/mob/living/L = A
 		if(prob(15))
 			L.Weaken(3)
-			L.visible_message(span("danger", "\The [src] knocks down \the [L]!"))
+			L.visible_message(span_danger("\The [src] knocks down \the [L]!"))
 
 /mob/living/simple_mob/animal/space/tree/death()
 	..(null,"is hacked into pieces!")

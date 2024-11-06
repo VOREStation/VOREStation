@@ -5,8 +5,8 @@
 	desc = "You are on fire! You will be harmed until the fire goes out or you extinguish it with water."
 	mob_overlay_state = "on_fire"
 
-	on_created_text = "<span class='danger'>You burst into flames!</span>"
-	on_expired_text = "<span class='warning'>The fire starts to fade.</span>"
+	on_created_text = span_danger("You burst into flames!")
+	on_expired_text = span_warning("The fire starts to fade.")
 	stacks = MODIFIER_STACK_ALLOWED // Multiple instances will hurt a lot.
 	var/damage_per_tick = 5
 

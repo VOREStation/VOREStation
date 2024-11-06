@@ -22,7 +22,7 @@
 	icon = 'icons/mob/vore64x32.dmi'
 	has_eye_glow = TRUE
 
-	faction = "corrupt"
+	faction = FACTION_CORRUPT
 
 	maxHealth = 200
 	health = 200
@@ -71,7 +71,7 @@
 	vore_stomach_name = "fuel processor"
 	vore_stomach_flavor = "You have ended up in the fuel processor of this corrupted machine. This place was definitely not designed with safety and comfort in mind. The heated and cramped surroundings oozing potent fluids all over your form, eager to do nothing less than breaking you apart to fuel its rampage for the next few days... hours... minutes? Oh dear..."
 
-	loot_list = list(/obj/item/borg/upgrade/basic/syndicate = 6, /obj/item/borg/upgrade/basic/vtec = 6, /obj/item/weapon/material/knife/ritual = 6, /obj/item/weapon/disk/nifsoft/compliance = 6)
+	loot_list = list(/obj/item/borg/upgrade/basic/syndicate = 6, /obj/item/borg/upgrade/basic/vtec = 6, /obj/item/material/knife/ritual = 6, /obj/item/disk/nifsoft/compliance = 6)
 
 	allow_mind_transfer = TRUE
 
@@ -113,8 +113,8 @@
 	. = ..()
 	if(!riding_datum)
 		riding_datum = new /datum/riding/simple_mob(src)
-	verbs |= /mob/living/simple_mob/proc/animal_mount
-	verbs |= /mob/living/proc/toggle_rider_reins
+	add_verb(src, /mob/living/simple_mob/proc/animal_mount)
+	add_verb(src, /mob/living/proc/toggle_rider_reins)
 	movement_cooldown = 0
 
 /mob/living/simple_mob/vore/aggressive/corrupthound/MouseDrop_T(mob/living/M, mob/living/user)
@@ -184,3 +184,48 @@
 /datum/ai_holder/simple_mob/melee/evasive/corrupthound
 	violent_breakthrough = TRUE
 	can_breakthrough = TRUE
+
+/mob/living/simple_mob/vore/aggressive/corrupthound/fire
+	icon_state = "badboi_fire"
+	icon_living = "badboi_fire"
+	icon_dead = "badboi_fire-dead"
+	icon_rest = "badboi_fire_rest"
+
+	maxHealth = 150
+	health = 150
+
+	ai_holder_type = /datum/ai_holder/simple_mob/ranged/aggressive
+
+	projectiletype = /obj/item/projectile/scatter/flamethrower
+	ranged_attack_delay = 2 SECONDS
+
+/mob/living/simple_mob/vore/aggressive/corrupthound/laser
+	icon_state = "badboi_laser"
+	icon_living = "badboi_laser"
+	icon_dead = "badboi_laser-dead"
+	icon_rest = "badboi_laser_rest"
+
+	maxHealth = 150
+	health = 150
+
+	ai_holder_type = /datum/ai_holder/simple_mob/ranged
+
+	ranged_attack_delay = 2 SECONDS
+	projectiletype = /obj/item/projectile/beam/midlaser
+	projectilesound = 'sound/weapons/Laser.ogg'
+	projectile_dispersion = 5
+	projectile_accuracy = -20
+
+/mob/living/simple_mob/vore/aggressive/corrupthound/fast
+	icon_state = "badboi_fast"
+	icon_living = "badboi_fast"
+	icon_dead = "badboi_fast-dead"
+	icon_rest = "badboi_fast_rest"
+
+	maxHealth = 100
+	health = 100
+
+	movement_cooldown = -1
+
+	melee_damage_lower = 7
+	melee_damage_upper = 15

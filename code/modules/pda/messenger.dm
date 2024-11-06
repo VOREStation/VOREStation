@@ -22,6 +22,7 @@
 	data["silent"] = notify_silent						// does the pda make noise when it receives a message?
 	data["toff"] = toff									// is the messenger function turned off?
 	data["active_conversation"] = active_conversation	// Which conversation are we following right now?
+	data["enable_message_embeds"] = user?.client?.prefs?.read_preference(/datum/preference/toggle/messenger_embeds)
 
 	has_back = active_conversation
 	if(active_conversation)
@@ -34,7 +35,7 @@
 	else
 		var/convopdas[0]
 		var/pdas[0]
-		for(var/obj/item/device/pda/P as anything in PDAs)
+		for(var/obj/item/pda/P as anything in PDAs)
 			var/datum/data/pda/app/messenger/PM = P.find_program(/datum/data/pda/app/messenger)
 
 			if(!P.owner || PM.toff || P == pda || PM.m_hidden)
@@ -84,7 +85,7 @@
 
 			active_conversation = null
 		if("Message")
-			var/obj/item/device/pda/P = locate(params["target"])
+			var/obj/item/pda/P = locate(params["target"])
 			create_message(usr, P)
 			if(params["target"] in conversations)            // Need to make sure the message went through, if not welp.
 				active_conversation = params["target"]
@@ -97,7 +98,7 @@
 			if(!params["target"] || !params["plugin"])
 				return
 
-			var/obj/item/device/pda/P = locate(params["target"])
+			var/obj/item/pda/P = locate(params["target"])
 			if(!P)
 				to_chat(usr, "PDA not found.")
 
@@ -116,13 +117,13 @@
 
 	switch(href_list["choice"])
 		if("Message")
-			var/obj/item/device/pda/P = locate(href_list["target"])
+			var/obj/item/pda/P = locate(href_list["target"])
 			create_message(usr, P)
 			if(href_list["target"] in conversations)            // Need to make sure the message went through, if not welp.
 				active_conversation = href_list["target"]
 
 
-/datum/data/pda/app/messenger/proc/create_message(var/mob/living/U, var/obj/item/device/pda/P)
+/datum/data/pda/app/messenger/proc/create_message(var/mob/living/U, var/obj/item/pda/P)
 	var/t = tgui_input_text(U, "Please enter message", name, null)
 	if(!t)
 		return
@@ -174,7 +175,7 @@
 			to_chat(U, "ERROR: Cannot reach recipient.")
 			return
 		useMS.send_pda_message("[P.owner]","[pda.owner]","[t]")
-		pda.investigate_log("<span class='game say'>PDA Message - <span class='name'>[U.key] - [pda.owner]</span> -> <span class='name'>[P.owner]</span>: <span class='message'>[t]</span></span>", "pda")
+		pda.investigate_log(span_game(span_say("PDA Message - " + span_name("[U.key] - [pda.owner]") + " -> " + span_name("[P.owner]") + ": " + span_message("[t]"))), "pda")
 
 		receive_message(list("sent" = 1, "owner" = "[P.owner]", "job" = "[P.ownjob]", "message" = "[t]", "target" = "\ref[P]"), "\ref[P]")
 		PM.receive_message(list("sent" = 0, "owner" = "[pda.owner]", "job" = "[pda.ownjob]", "message" = "[t]", "target" = "\ref[pda]"), "\ref[pda]")
@@ -183,7 +184,7 @@
 		log_pda("(PDA: [src.name]) sent \"[t]\" to [P.name]", usr)
 		to_chat(U, "[icon2html(pda,U.client)] <b>Sent message to [P.owner] ([P.ownjob]), </b>\"[t]\"")
 	else
-		to_chat(U, "<span class='notice'>ERROR: Messaging server is not responding.</span>")
+		to_chat(U, span_notice("ERROR: Messaging server is not responding."))
 
 /datum/data/pda/app/messenger/proc/available_pdas()
 	var/list/names = list()
@@ -194,7 +195,7 @@
 		to_chat(usr, "Turn on your receiver in order to send messages.")
 		return
 
-	for(var/obj/item/device/pda/P as anything in PDAs)
+	for(var/obj/item/pda/P as anything in PDAs)
 		var/datum/data/pda/app/messenger/PM = P.find_program(/datum/data/pda/app/messenger)
 
 		if(!P.owner || !PM || PM.hidden || P == pda || PM.toff)
@@ -222,13 +223,13 @@
 		var/owner = data["owner"]
 		var/job = data["job"]
 		var/message = data["message"]
-		notify("<b>Message from [owner] ([job]), </b>\"[message]\" (<a href='?src=\ref[src];choice=Message;target=[ref]'>Reply</a>)")
+		notify(span_bold("Message from [owner] ([job]), ") + "\"[message]\" (<a href='?src=\ref[src];choice=Message;target=[ref]'>Reply</a>)")
 
 /datum/data/pda/app/messenger/multicast
 /datum/data/pda/app/messenger/multicast/receive_message(list/data, ref)
 	. = ..()
 
-	var/obj/item/device/pda/multicaster/M = pda
+	var/obj/item/pda/multicaster/M = pda
 	if(!istype(M))
 		return
 
@@ -237,11 +238,11 @@
 	modified_message["target"] = "\ref[M]"
 
 	var/list/targets = list()
-	for(var/obj/item/device/pda/pda in PDAs)
+	for(var/obj/item/pda/pda in PDAs)
 		if(pda.cartridge && pda.owner && is_type_in_list(pda.cartridge, M.cartridges_to_send_to))
 			targets |= pda
 	if(targets.len)
-		for(var/obj/item/device/pda/target in targets)
+		for(var/obj/item/pda/target in targets)
 			var/datum/data/pda/app/messenger/P = target.find_program(/datum/data/pda/app/messenger)
 			if(P)
 				P.receive_message(modified_message, "\ref[M]")
@@ -249,7 +250,7 @@
 /*
 Generalized proc to handle GM fake prop messages, or future fake prop messages from mapping landmarks.
 We need a separate proc for this due to the "target" component and creation of a fake conversation entry.
-Invoked by /obj/item/device/pda/proc/createPropFakeConversation_admin(var/mob/M)
+Invoked by /obj/item/pda/proc/createPropFakeConversation_admin(var/mob/M)
 */
 /datum/data/pda/app/messenger/proc/createFakeMessage(fakeName, fakeRef, fakeJob, sent, message)
 	receive_message(list("sent" = sent, "owner" = "[fakeName]", "job" = "[fakeJob]", "message" = "[message]", "target" = "[fakeRef]"), fakeRef)

@@ -1,5 +1,6 @@
-/obj/item/device/slime_scanner
+/obj/item/slime_scanner
 	name = "slime scanner"
+	icon = 'icons/obj/device.dmi'
 	icon_state = "xenobio"
 	item_state = "xenobio"
 	origin_tech = list(TECH_BIO = 1)
@@ -8,10 +9,12 @@
 	throw_speed = 3
 	throw_range = 7
 	matter = list(MAT_STEEL = 30,MAT_GLASS = 20)
+	pickup_sound = 'sound/items/pickup/device.ogg'
+	drop_sound = 'sound/items/drop/device.ogg'
 
-/obj/item/device/slime_scanner/attack(mob/living/M as mob, mob/living/user as mob)
+/obj/item/slime_scanner/attack(mob/living/M as mob, mob/living/user as mob)
 	if(!istype(M, /mob/living/simple_mob/slime/xenobio))
-		to_chat(user, "<B>This device can only scan lab-grown slimes!</B>")
+		to_chat(user, span_infoplain(span_bold("This device can only scan lab-grown slimes!")))
 		return
 	var/mob/living/simple_mob/slime/xenobio/S = M
 	user.show_message("Slime scan results:<br>[S.slime_color] [S.is_adult ? "adult" : "baby"] slime<br>Health: [S.health]<br>Mutation Probability: [S.mutation_chance]")
@@ -23,17 +26,17 @@
 	user.show_message("Potental to mutate into [english_list(mutations)] colors.<br>Extract potential: [S.cores]<br>Nutrition: [S.nutrition]/[S.max_nutrition]")
 
 	if (S.nutrition < S.get_starve_nutrition())
-		user.show_message("<span class='alert'>Warning: Subject is starving!</span>")
+		user.show_message(span_warning("Warning: Subject is starving!"))
 	else if (S.nutrition < S.get_hunger_nutrition())
-		user.show_message("<span class='warning'>Warning: Subject is hungry.</span>")
+		user.show_message(span_warning("Warning: Subject is hungry."))
 	user.show_message("Electric change strength: [S.power_charge]")
 
 	if(S.has_AI())
 		var/datum/ai_holder/simple_mob/xenobio_slime/AI = S.ai_holder
 		if(AI.resentment)
-			user.show_message("<span class='warning'>Warning: Subject is harboring resentment.</span>")
+			user.show_message(span_warning("Warning: Subject is harboring resentment."))
 		if(AI.rabid)
-			user.show_message("<span class='danger'>Subject is enraged and extremely dangerous!</span>")
+			user.show_message(span_danger("Subject is enraged and extremely dangerous!"))
 	if(S.harmless)
 		user.show_message("Subject has been pacified.")
 	if(S.unity)

@@ -11,5 +11,5 @@
 	fire_force = 15
 
 	charges = list(
-		list("metalfoam",   "metalfoam",   /obj/item/weapon/grenade/chem_grenade/metalfoam,  5)
+		list("metalfoam",   "metalfoam",   /obj/item/grenade/chem_grenade/metalfoam,  5)
 		)

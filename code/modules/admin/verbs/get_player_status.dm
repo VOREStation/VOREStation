@@ -6,7 +6,7 @@
 /client/proc/getPlayerStatus()
 	set name = "Report Player Status"
 	set desc = "Get information on all active players in-game."
-	set category = "EventKit"
+	set category = "Fun.Event Kit"
 
 	if(!check_rights(R_FUN)) return
 
@@ -41,6 +41,6 @@
 
 
 	message += "#### Over all, there are [players] eligible players, of which [inactives] were hidden due to inactivity.  ####"
-	to_chat(usr, SPAN_NOTICE(message))
+	to_chat(usr, span_notice(message))
 
 #undef INACTIVITY_CAP

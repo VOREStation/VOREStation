@@ -31,7 +31,7 @@
 
 /obj/item/clothing/under/undersuit/sec/hos
 	name = "security command undersuit"
-	desc = "A reinforced undersuit, intended for wearing under a voidsuit or other EVA equipment. This one is specifically made for the Head of Security or equivalent, and has slight protective capabilities against simple melee attacks."
+	desc = "A reinforced undersuit, intended for wearing under a voidsuit or other EVA equipment. This one is specifically made for the " + JOB_HEAD_OF_SECURITY + " or equivalent, and has slight protective capabilities against simple melee attacks."
 	icon_state = "bodysuit_seccom"
 	item_state = "bodysuit_seccom"
 

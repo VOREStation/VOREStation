@@ -1,5 +1,5 @@
 /mob/living/silicon/ai/proc/show_laws_verb()
-	set category = "AI Commands"
+	set category = "AI.Commands"
 	set name = "Show Laws"
 	src.show_laws()
 
@@ -10,7 +10,7 @@
 		who = world
 	else
 		who = src
-		to_chat(who, "<span class='filter_notice'><b>Obey these laws:</b></span>")
+		to_chat(who, span_filter_notice(span_bold("Obey these laws:")))
 
 	src.laws_sanity_check()
 	src.laws.show_laws(who)
@@ -22,6 +22,6 @@
 			R.show_laws()
 
 /mob/living/silicon/ai/proc/ai_checklaws()
-	set category = "AI Commands"
+	set category = "AI.Commands"
 	set name = "State Laws"
 	subsystem_law_manager()

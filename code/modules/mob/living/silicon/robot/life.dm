@@ -10,7 +10,6 @@
 	//Status updates, death etc.
 	clamp_values()
 	handle_regular_status_updates()
-	handle_actions()
 	handle_instability()
 	// For some reason borg Life() doesn't call ..()
 	handle_modifiers()
@@ -83,7 +82,7 @@
 	//if(src.resting) // VOREStation edit. Our borgos would rather not.
 	//	Weaken(5)
 
-	if(health < config.health_threshold_dead && src.stat != 2) //die only once
+	if(health < CONFIG_GET(number/health_threshold_dead) && src.stat != 2) //die only once
 		death()
 
 	if (src.stat != 2) //Alive.
@@ -243,7 +242,7 @@
 					src.healths.icon_state = "health3"
 				else if(health >= 0)
 					src.healths.icon_state = "health4"
-				else if(health >= config.health_threshold_dead)
+				else if(health >= CONFIG_GET(number/health_threshold_dead))
 					src.healths.icon_state = "health5"
 				else
 					src.healths.icon_state = "health6"
@@ -329,7 +328,7 @@
 	if(client)
 		client.screen -= contents
 		for(var/obj/I in contents)
-			if(I && !(istype(I,/obj/item/weapon/cell) || istype(I,/obj/item/device/radio)  || istype(I,/obj/machinery/camera) || istype(I,/obj/item/device/mmi)))
+			if(I && !(istype(I,/obj/item/cell) || istype(I,/obj/item/radio)  || istype(I,/obj/machinery/camera) || istype(I,/obj/item/mmi)))
 				client.screen += I
 	if(module_state_1)
 		module_state_1:screen_loc = ui_inv1
@@ -344,7 +343,7 @@
 		killswitch_time --
 		if(killswitch_time <= 0)
 			if(src.client)
-				to_chat(src, "<span class='danger'>Killswitch Activated</span>")
+				to_chat(src, span_danger("Killswitch Activated"))
 			killswitch = 0
 			spawn(5)
 				gib()
@@ -355,7 +354,7 @@
 		weaponlock_time --
 		if(weaponlock_time <= 0)
 			if(src.client)
-				to_chat(src, "<span class='danger'>Weapon Lock Timed Out!</span>")
+				to_chat(src, span_danger("Weapon Lock Timed Out!"))
 			weapon_lock = 0
 			weaponlock_time = 120
 
@@ -376,7 +375,7 @@
 
 /mob/living/silicon/robot/handle_light()
 	if(lights_on)
-		set_light(integrated_light_power, 1, "#FFFFFF")
+		set_light(integrated_light_power, 1, robot_light_col)
 		return TRUE
 	else
 		. = ..()

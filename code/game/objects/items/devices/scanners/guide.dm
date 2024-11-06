@@ -1,26 +1,26 @@
-/obj/item/device/healthanalyzer/verb/toggle_guide()
+/obj/item/healthanalyzer/verb/toggle_guide()
 	set name = "Toggle Guidance"
 	set desc = "Toggles whether or not \the [src] will provide guidance and instruction in addition to scanning."
 	set category = "Object"
 	guide = !guide
-	to_chat(usr, "<span class='notice'>You toggle \the [src]'s guidance system [guide ? "on" : "off"].</span>")
+	to_chat(usr, span_notice("You toggle \the [src]'s guidance system [guide ? "on" : "off"]."))
 
 
-/obj/item/device/healthanalyzer/guide
+/obj/item/healthanalyzer/guide
 	name = "Instructional health analyzer"
 	desc = "A hand-held body scanner able to distinguish vital signs of the subject. It shows extra information to medical personnel!"
 	guide = TRUE
 	icon_state = "health-g"
 
-/obj/item/device/healthanalyzer/proc/guide(var/mob/living/carbon/human/M, mob/living/user)
+/obj/item/healthanalyzer/proc/guide(var/mob/living/carbon/human/M, mob/living/user)
 
-	var/obj/item/weapon/card/id/ourid = user?.GetIdCard()
+	var/obj/item/card/id/ourid = user?.GetIdCard()
 	if(!ourid)
 		return
-	if(access_change_ids in ourid.access)
+	if(access_change_ids in ourid.GetAccess())
 		playsound(src, 'sound/machines/defib_failed.ogg', 50, 0)
 		return
-	if(access_medical in ourid.access)
+	if(access_medical in ourid.GetAccess())
 		playsound(src, 'sound/effects/pop.ogg', 50, FALSE)
 	else
 		playsound(src, 'sound/machines/defib_failed.ogg', 50, 0)
@@ -72,40 +72,45 @@
 		bloodloss = TRUE
 
 	if(bleeding_external)
-		dat += "<b>Surface bleeding</b> - Bandage immediately or apply brute-damage fixing chemicals (i.e. Bicaridine) if no bandages available.<br>"
+		dat += span_bold("Surface bleeding") + " - Bandage immediately or apply brute-damage fixing chemicals (i.e. Bicaridine) if no bandages available.<br>"
 	if(bleeding_internal)
-		dat += "<b>Internal bleeding</b> - Commence internal vein repair surgery or apply clotting chemicals (i.e. Myelamine).<br>"
+		dat += span_bold("Internal bleeding") + " - Commence internal vein repair surgery or apply clotting chemicals (i.e. Myelamine).<br>"
 	if(M.getOxyLoss())
-		dat += "<b>Suffociation</b> - Give Dexalin or Dexalin Plus. Check for heart or lung damage.<br>"
+		dat += span_bold("Suffociation") + " - Give Dexalin or Dexalin Plus. Check for heart or lung damage.<br>"
 	if(infection)
-		dat += "<b>Infection</b> - Give Spaceacillin. If severe, use Corophizine or overdose on Spaceacillin and monitor until well.<br>"
+		dat += span_bold("Infection") + " - Give Spaceacillin. If severe, use Corophizine or overdose on Spaceacillin and monitor until well.<br>"
 	if(M.getBrainLoss() >= 1)
-		dat += "<b>Brain damage</b> - Commence brain repair surgery, apply Alkysine, or universal organ-repair chemicals. (i.e. Peridaxon).<br>"
+		dat += span_bold("Brain damage") + " - Commence brain repair surgery, apply Alkysine, or universal organ-repair chemicals. (i.e. Peridaxon).<br>"
 	if(M.radiation || M.accumulated_rads)
-		dat += "<b>Radiation</b> - Give Hyronalin or Arithrazine. Monitor for genetic damage.<br>"
+		dat += span_bold("Radiation") + " - Give Hyronalin or Arithrazine. Monitor for genetic damage.<br>"
 	if(organ)
-		dat += "<b>Organ damage</b> - Give Peridaxon. Perform full body scan for targeted organ repair surgery.<br>"
+		dat += span_bold("Organ damage") + " - Give Peridaxon. Perform full body scan for targeted organ repair surgery.<br>"
 	if(bloodloss)
-		dat += "<b>Low blood volume</b> - Commence blood transfusion via IV drip or provide blood-restorative chemicals (e.g.: Copper for zorren and skrell, iron for the rest)."
+		dat += span_bold("Low blood volume") + " - Commence blood transfusion via IV drip or provide blood-restorative chemicals (e.g.: Copper for zorren and skrell, iron for the rest)."
 	if(M.getToxLoss())
-		dat += "<b>Toxins</b> - Give Dylovene or Carthatoline. Vomitting is normal and helpful. Tends to be a symptom of larger issues, such as infection.<br>"
+		dat += span_bold("Toxins") + " - Give Dylovene or Carthatoline. Vomitting is normal and helpful. Tends to be a symptom of larger issues, such as infection.<br>"
 	if(M.getBruteLoss())
-		dat += "<b>Brute trauma</b> - Bandage wounded body part. Give Bicaridine or Vermicetol.<br>"
+		dat += span_bold("Brute trauma") + " - Bandage wounded body part. Give Bicaridine or Vermicetol.<br>"
 	if(M.getFireLoss())
-		dat += "<b>Surface burn</b> - Salve wounded body part in ointment. Give Kelotane or Dermaline. Check for infections.<br>"
+		dat += span_bold("Surface burn") + " - Salve wounded body part in ointment. Give Kelotane or Dermaline. Check for infections.<br>"
 	if(M.getCloneLoss())
-		dat += "<b>Genetic damage</b> - Utilize cryogenic pod with appropriate chemicals (i.e. Cryoxadone) and below 70 K, or give Rezadone.<br>"
+		dat += span_bold("Genetic damage") + " - Utilize cryogenic pod with appropriate chemicals (i.e. Cryoxadone) and below 70 K, or give Rezadone.<br>"
 	if(bone)
-		dat += "<b>Bone fracture</b> - Splint damaged area. Treat with bone repair surgery or Osteodaxon after treating brute damage.<br>"
-	if(M.virus2.len)
-		dat += "<b>Viral infection</b> - Proceed with virology pathogen curing procedures or apply antiviral chemicals (i.e. Corophizine).<br>"
+		dat += span_bold("Bone fracture") + " - Splint damaged area. Treat with bone repair surgery or Osteodaxon after treating brute damage.<br>"
+	if(M.viruses.len)
+		for(var/datum/disease/D in M.GetViruses())
+			if(D.visibility_flags & HIDDEN_SCANNER)
+				continue
+			else
+				dat += span_bold("Viral Infection") + " - Inform a Virologist or the Chief Medical Officer and administer antiviral chemicals such as Spaceacilin. Limit exposure to other personnel.<br>"
 	if(robotparts)
-		dat += "<b>Robotic body parts</b> - Should not be repaired by medical personnel, refer to robotics if damaged."
+		dat += span_bold("Robotic body parts") + " - Should not be repaired by medical personnel, refer to robotics if damaged."
 
 	var/peeb
 	if(dat)
-		peeb +="<span class='notice'><b>GUIDANCE SYSTEM BEGIN</b></span><br>"
+		peeb += span_boldnotice("GUIDANCE SYSTEM BEGIN")
+		peeb +="<br>"
 		peeb += dat
-		peeb += "<span class='notice'>For more detailed information about patient condition, use the stationary scanner in medbay.</span>"
+		peeb += span_notice("For more detailed information about patient condition, use the stationary scanner in medbay.")
 
 	user.show_message(peeb, 1)

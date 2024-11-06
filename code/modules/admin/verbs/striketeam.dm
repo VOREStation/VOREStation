@@ -2,7 +2,7 @@
 var/const/commandos_possible = 6 //if more Commandos are needed in the future
 
 /client/proc/strike_team()
-	set category = "Fun"
+	set category = "Fun.Event Kit"
 	set name = "Spawn Strike Team"
 	set desc = "Spawns a strike team if you want to run an admin event."
 
@@ -45,7 +45,7 @@ var/const/commandos_possible = 6 //if more Commandos are needed in the future
 	while(!choice)
 		choice = sanitize(tgui_input_text(src, "Please specify which mission the strike team shall undertake.", "Specify Mission", ""))
 		if(!choice)
-			if(tgui_alert(usr, "Error, no mission set. Do you want to exit the setup process?","Strike Team",list("Yes","No"))=="Yes")
+			if(tgui_alert(usr, "Error, no mission set. Do you want to exit the setup process?","Strike Team",list("Yes","No"))!="No")
 				return
 	consider_ert_load() //VOREStation Add
 

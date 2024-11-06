@@ -29,41 +29,41 @@
 	/obj/structure/closet/acloset,
 	/mob/living/simple_mob/mechanical/viscerator,
 	/mob/living/simple_mob/mechanical/hivebot,
-	/obj/item/device/analyzer,
-	/obj/item/device/camera,
-	/obj/item/device/flash,
-	/obj/item/device/flashlight,
-	/obj/item/device/healthanalyzer,
-	/obj/item/device/multitool,
-	/obj/item/device/paicard,
-	/obj/item/device/radio,
-	/obj/item/device/radio/headset,
-	/obj/item/device/radio/beacon,
-	/obj/item/weapon/autopsy_scanner,
-	/obj/item/weapon/bikehorn,
-	/obj/item/weapon/surgical/bonesetter,
-	/obj/item/weapon/material/knife/butch,
+	/obj/item/analyzer,
+	/obj/item/camera,
+	/obj/item/flash,
+	/obj/item/flashlight,
+	/obj/item/healthanalyzer,
+	/obj/item/multitool,
+	/obj/item/paicard,
+	/obj/item/radio,
+	/obj/item/radio/headset,
+	/obj/item/radio/beacon,
+	/obj/item/autopsy_scanner,
+	/obj/item/bikehorn,
+	/obj/item/surgical/bonesetter,
+	/obj/item/material/knife/butch,
 	/obj/item/clothing/suit/caution,
 	/obj/item/clothing/head/cone,
-	/obj/item/weapon/tool/crowbar,
-	/obj/item/weapon/clipboard,
-	/obj/item/weapon/cell,
-	/obj/item/weapon/surgical/circular_saw,
-	/obj/item/weapon/material/knife/machete/hatchet,
-	/obj/item/weapon/handcuffs,
-	/obj/item/weapon/surgical/hemostat,
-	/obj/item/weapon/material/knife,
-	/obj/item/weapon/flame/lighter,
-	/obj/item/weapon/light/bulb,
-	/obj/item/weapon/light/tube,
-	/obj/item/weapon/pickaxe,
-	/obj/item/weapon/shovel,
-	/obj/item/weapon/weldingtool,
-	/obj/item/weapon/tool/wirecutters,
-	/obj/item/weapon/tool/wrench,
-	/obj/item/weapon/tool/screwdriver,
-	/obj/item/weapon/grenade/chem_grenade/cleaner,
-	/obj/item/weapon/grenade/chem_grenade/metalfoam)
+	/obj/item/tool/crowbar,
+	/obj/item/clipboard,
+	/obj/item/cell,
+	/obj/item/surgical/circular_saw,
+	/obj/item/material/knife/machete/hatchet,
+	/obj/item/handcuffs,
+	/obj/item/surgical/hemostat,
+	/obj/item/material/knife,
+	/obj/item/flame/lighter,
+	/obj/item/light/bulb,
+	/obj/item/light/tube,
+	/obj/item/pickaxe,
+	/obj/item/shovel,
+	/obj/item/weldingtool,
+	/obj/item/tool/wirecutters,
+	/obj/item/tool/wrench,
+	/obj/item/tool/screwdriver,
+	/obj/item/grenade/chem_grenade/cleaner,
+	/obj/item/grenade/chem_grenade/metalfoam)
 
 //	/mob/living/simple_mob/mimic/crate,	// Vorestation edit //VORESTATION AI TEMPORARY REMOVAL, REPLACE BACK IN LIST WHEN FIXED
 	var/quantity = rand(5, 15)
@@ -98,19 +98,19 @@
 			"foreground" = colors[color],
 		)))
 
-	fail_message = "<span class='notice'>[bicon(src)] a [pick("loud","soft","sinister","eery","triumphant","depressing","cheerful","angry")] \
+	fail_message = span_notice("[icon2html(src,viewers(src))] a [pick("loud","soft","sinister","eery","triumphant","depressing","cheerful","angry")] \
 		[pick("horn","beep","bing","bleep","blat","honk","hrumph","ding")] sounds and a \
 		[pick("yellow","purple","green","blue","red","orange","white")] \
 		[pick("light","dial","meter","window","protrusion","knob","antenna","swirly thing")] \
 		[pick("swirls","flashes","whirrs","goes schwing","blinks","flickers","strobes","lights up")] on the \
 		[pick("front","side","top","bottom","rear","inside")] of [src]. A [pick("slot","funnel","chute","tube")] opens up in the \
-		[pick("front","side","top","bottom","rear","inside")].</span>"
+		[pick("front","side","top","bottom","rear","inside")].")
 
 /obj/machinery/replicator/process()
 	if(spawning_types.len && powered())
 		spawn_progress_time += world.time - last_process_time
 		if(spawn_progress_time > max_spawn_time)
-			src.visible_message("<span class='notice'>[icon2html(src,viewers(src))] [src] pings!</span>")
+			src.visible_message(span_notice("[icon2html(src,viewers(src))] [src] pings!"))
 
 			var/obj/source_material = pop(stored_materials)
 			var/spawn_type = pop(spawning_types)
@@ -133,7 +133,7 @@
 				icon_state = "borgcharger0(old)"
 
 		else if(prob(5))
-			src.visible_message("<span class='notice'>[icon2html(src,viewers(src))] [src] [pick("clicks","whizzes","whirrs","whooshes","clanks","clongs","clonks","bangs")].</span>")
+			src.visible_message(span_notice("[icon2html(src,viewers(src))] [src] [pick("clicks","whizzes","whirrs","whooshes","clanks","clongs","clonks","bangs")]."))
 
 	last_process_time = world.time
 
@@ -161,9 +161,9 @@
 			if(key in construction)
 				if(LAZYLEN(stored_materials) > LAZYLEN(spawning_types))
 					if(LAZYLEN(spawning_types))
-						visible_message("<span class='notice'>[icon2html(src,viewers(src))] a [pick("light","dial","display","meter","pad")] on [src]'s front [pick("blinks","flashes")] [pick("red","yellow","blue","orange","purple","green","white")].</span>")
+						visible_message(span_notice("[icon2html(src,viewers(src))] a [pick("light","dial","display","meter","pad")] on [src]'s front [pick("blinks","flashes")] [pick("red","yellow","blue","orange","purple","green","white")]."))
 					else
-						visible_message("<span class='notice'>[icon2html(src,viewers(src))] [src]'s front compartment slides shut.</span>")
+						visible_message(span_notice("[icon2html(src,viewers(src))] [src]'s front compartment slides shut."))
 					spawning_types.Add(construction[key])
 					spawn_progress_time = 0
 					update_use_power(USE_POWER_ACTIVE)
@@ -171,11 +171,11 @@
 				else
 					visible_message(fail_message)
 
-/obj/machinery/replicator/attackby(obj/item/weapon/W as obj, mob/living/user as mob)
+/obj/machinery/replicator/attackby(obj/item/W as obj, mob/living/user as mob)
 	if(!W.canremove || !user.canUnEquip(W)) //No armblades, no grabs. No other-thing-I-didn't-think-of.
-		to_chat(user, "<span class='notice'>You cannot put \the [W] into the machine.</span>")
+		to_chat(user, span_notice("You cannot put \the [W] into the machine."))
 		return
 	user.drop_item()
 	W.loc = src
 	stored_materials.Add(W)
-	src.visible_message("<span class='notice'><b>\The [user]</b> inserts \the [W] into \the [src].</span>")
+	src.visible_message(span_notice(span_bold("\The [user]") + " inserts \the [W] into \the [src]."))

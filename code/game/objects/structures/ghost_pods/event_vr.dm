@@ -78,8 +78,8 @@
 	var/choice
 	var/finalized = "No"
 
-	if(jobban_isbanned(M, "GhostRoles"))
-		to_chat(M, "<span class='warning'>You cannot inhabit this creature because you are banned from playing ghost roles.</span>")
+	if(jobban_isbanned(M, JOB_GHOSTROLES))
+		to_chat(M, span_warning("You cannot inhabit this creature because you are banned from playing ghost roles."))
 		reset_ghostpod()
 		return
 
@@ -87,10 +87,10 @@
 	if (not_has_ooc_text(M))
 		return
 
-	while(finalized == "No" && M.client)
+	while(finalized != "Yes" && M.client)
 		choice = tgui_input_list(M, "What type of predator do you want to play as?", "Maintpred Choice", possible_mobs)
 		if(!choice)	//We probably pushed the cancel button on the mob selection. Let's just put the ghost pod back in the list.
-			to_chat(M, "<span class='notice'>No mob selected, cancelling.</span>")
+			to_chat(M, span_notice("No mob selected, cancelling."))
 			reset_ghostpod()
 			return
 
@@ -108,13 +108,13 @@
 	//newPred.movement_cooldown = 0			// The "needless artificial speed cap" exists for a reason
 	if(M.mind)
 		M.mind.transfer_to(newPred)
-	to_chat(M, "<span class='notice'>You are <b>[newPred]</b>, somehow having gotten aboard the station in search of food. \
+	to_chat(M, span_notice("You are <b>[newPred]</b>, somehow having gotten aboard the station in search of food. \
 	You are wary of environment around you, but you do feel rather peckish. Stick around dark, secluded places to avoid danger or, \
-	if you are cute enough, try to make friends with this place's inhabitants.</span>")
-	to_chat(M, "<span class='critical'>Please be advised, this role is NOT AN ANTAGONIST.</span>")
-	to_chat(M, "<span class='warning'>You may be a spooky space monster, but your role is to facilitate spooky space monster roleplay, not to fight the station and kill people. You can of course eat and/or digest people as you like if OOC prefs align, but this should be done as part of roleplay. If you intend to fight the station and kill people and such, you need permission from the staff team. GENERALLY, this role should avoid well populated areas. You’re a weird spooky space monster, so the bar is probably not where you’d want to go if you intend to survive. Of course, you’re welcome to try to make friends and roleplay how you will in this regard, but something to keep in mind.</span>")
+	if you are cute enough, try to make friends with this place's inhabitants."))
+	to_chat(M, span_critical("Please be advised, this role is NOT AN ANTAGONIST."))
+	to_chat(M, span_warning("You may be a spooky space monster, but your role is to facilitate spooky space monster roleplay, not to fight the station and kill people. You can of course eat and/or digest people as you like if OOC prefs align, but this should be done as part of roleplay. If you intend to fight the station and kill people and such, you need permission from the staff team. GENERALLY, this role should avoid well populated areas. You’re a weird spooky space monster, so the bar is probably not where you’d want to go if you intend to survive. Of course, you’re welcome to try to make friends and roleplay how you will in this regard, but something to keep in mind."))
 	newPred.ckey = M.ckey
-	newPred.visible_message("<span class='warning'>[newPred] emerges from somewhere!</span>")
+	newPred.visible_message(span_warning("[newPred] emerges from somewhere!"))
 	log_and_message_admins("successfully entered \a [src] and became a [newPred].")
 	qdel(src)
 
@@ -144,17 +144,17 @@
 	var/mob/living/simple_mob/vore/morph/newMorph = new /mob/living/simple_mob/vore/morph(get_turf(src))
 	if(M.mind)
 		M.mind.transfer_to(newMorph)
-	to_chat(M, "<span class='notice'>You are a <b>Morph</b>, somehow having gotten aboard the station in your wandering. \
+	to_chat(M, span_notice("You are a <b>Morph</b>, somehow having gotten aboard the station in your wandering. \
 	You are wary of environment around you, but your primal hunger still calls for you to find prey. Seek a convincing disguise, \
-	using your amorphous form to traverse vents to find and consume weak prey.</span>")
-	to_chat(M, "<span class='notice'>You can use shift + click on objects to disguise yourself as them, but your strikes are nearly useless when you are disguised. \
+	using your amorphous form to traverse vents to find and consume weak prey."))
+	to_chat(M, span_notice("You can use shift + click on objects to disguise yourself as them, but your strikes are nearly useless when you are disguised. \
 	You can undisguise yourself by shift + clicking yourself, but disguise being switched, or turned on and off has a short cooldown. You can also ventcrawl, \
-	by using alt + click on the vent or scrubber.</span>")
-	to_chat(M, "<span class='critical'>Please be advised, this role is NOT AN ANTAGONIST.</span>")
-	to_chat(M, "<span class='warning'>You may be a spooky space monster, but your role is to facilitate spooky space monster roleplay, not to fight the station and kill people. You can of course eat and/or digest people as you like if OOC prefs align, but this should be done as part of roleplay. If you intend to fight the station and kill people and such, you need permission from the staff team. GENERALLY, this role should avoid well populated areas. You’re a weird spooky space monster, so the bar is probably not where you’d want to go if you intend to survive. Of course, you’re welcome to try to make friends and roleplay how you will in this regard, but something to keep in mind.</span>")
+	by using alt + click on the vent or scrubber."))
+	to_chat(M, span_critical("Please be advised, this role is NOT AN ANTAGONIST."))
+	to_chat(M, span_warning("You may be a spooky space monster, but your role is to facilitate spooky space monster roleplay, not to fight the station and kill people. You can of course eat and/or digest people as you like if OOC prefs align, but this should be done as part of roleplay. If you intend to fight the station and kill people and such, you need permission from the staff team. GENERALLY, this role should avoid well populated areas. You’re a weird spooky space monster, so the bar is probably not where you’d want to go if you intend to survive. Of course, you’re welcome to try to make friends and roleplay how you will in this regard, but something to keep in mind."))
 
 	newMorph.ckey = M.ckey
-	newMorph.visible_message("<span class='warning'>A morph appears to crawl out of somewhere.</span>")
+	newMorph.visible_message(span_warning("A morph appears to crawl out of somewhere."))
 	log_and_message_admins("successfully entered \a [src] and became a Morph.")
 	qdel(src)
 

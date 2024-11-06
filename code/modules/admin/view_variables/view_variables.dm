@@ -1,11 +1,11 @@
 /client/proc/debug_variables(datum/D in world)
-	set category = "Debug"
+	set category = "Debug.Investigate"
 	set name = "View Variables"
 	//set src in world
 	var/static/cookieoffset = rand(1, 9999) //to force cookies to reset after the round.
 
 	if(!usr.client || !usr.client.holder) //The usr vs src abuse in this proc is intentional and must not be changed
-		to_chat(usr, "<span class='danger'>You need to be an administrator to access this.</span>")
+		to_chat(usr, span_danger("You need to be an administrator to access this."))
 		return
 
 	if(!D)
@@ -40,7 +40,7 @@
 		var/sprite_text
 		if(sprite)
 			sprite_text = "<img src='vv[hash].png'></td><td>"
-		var/list/header = islist(D)? list("<b>/list</b>") : D.vv_get_header()
+		var/list/header = islist(D)? list(span_bold("/list")) : D.vv_get_header()
 
 		var/marked
 		if(holder && holder.marked_datum && holder.marked_datum == D)

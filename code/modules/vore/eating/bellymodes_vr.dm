@@ -59,7 +59,7 @@
 /////////////////////////// Make any noise ///////////////////////////
 	if(digestion_noise_chance && prob(digestion_noise_chance))
 		for(var/mob/M in contents)
-			if(M && M.is_preference_enabled(/datum/client_preference/digestion_noises))
+			if(M && M.check_sound_preference(/datum/preference/toggle/digestion_noises))
 				SEND_SOUND(M, prey_digest)
 		play_sound = pred_digest
 
@@ -68,7 +68,7 @@
 			updateVRPanels()
 		if(play_sound)
 			for(var/mob/M in hearers(VORE_SOUND_RANGE, get_turf(owner))) //so we don't fill the whole room with the sound effect
-				if(!M.is_preference_enabled(/datum/client_preference/digestion_noises))
+				if(!M.check_sound_preference(/datum/preference/toggle/digestion_noises))
 					continue
 				if(isturf(M.loc) || (M.loc != src)) //to avoid people on the inside getting the outside sounds and their direct sounds + built in sound pref check
 					if(fancy_vore)
@@ -95,7 +95,7 @@
 
 	if(play_sound)
 		for(var/mob/M in hearers(VORE_SOUND_RANGE, get_turf(owner))) //so we don't fill the whole room with the sound effect
-			if(!M.is_preference_enabled(/datum/client_preference/digestion_noises))
+			if(!M.check_sound_preference(/datum/preference/toggle/digestion_noises))
 				continue
 			if(isturf(M.loc) || (M.loc != src)) //to avoid people on the inside getting the outside sounds and their direct sounds + built in sound pref check
 				if(fancy_vore)
@@ -107,25 +107,12 @@
 	if(emote_active)
 		var/list/EL = emote_lists[digest_mode]
 		if((LAZYLEN(EL) || LAZYLEN(emote_lists[DM_HOLD_ABSORBED]) || (digest_mode == DM_DIGEST && LAZYLEN(emote_lists[DM_HOLD])) || (digest_mode == DM_SELECT && (LAZYLEN(emote_lists[DM_HOLD])||LAZYLEN(emote_lists[DM_DIGEST])||LAZYLEN(emote_lists[DM_ABSORB])) )) && next_emote <= world.time)
-			var/living_count = 0
-			var/absorbed_count = 0
-			for(var/mob/living/L in contents)
-				living_count++
-				if(L.absorbed)
-					absorbed_count++
 			next_emote = world.time + (emote_time SECONDS)
 			for(var/mob/living/M in contents)
 				if(M.absorbed)
 					EL = emote_lists[DM_HOLD_ABSORBED]
-
-					var/raw_message = pick(EL)
-					var/formatted_message
-					formatted_message = replacetext(raw_message, "%belly", lowertext(name))
-					formatted_message = replacetext(formatted_message, "%pred", owner)
-					formatted_message = replacetext(formatted_message, "%prey", M)
-					formatted_message = replacetext(formatted_message, "%countprey", absorbed_count)
-					if(formatted_message)
-						to_chat(M, "<span class='vnotice'>[formatted_message]</span>")
+					if(LAZYLEN(EL))
+						to_chat(M, span_vnotice(belly_format_string(EL, M, use_absorbed_count = TRUE)))
 				else
 					if (digest_mode == DM_SELECT)
 						var/datum/digest_mode/selective/DM_S = GLOB.digest_modes[DM_SELECT]
@@ -133,15 +120,8 @@
 					else if(digest_mode == DM_DIGEST && !M.digestable)
 						EL = emote_lists[DM_HOLD]					// Use Hold's emote list if we're indigestible
 
-					var/raw_message = pick(EL)
-					var/formatted_message
-					formatted_message = replacetext(raw_message, "%belly", lowertext(name))
-					formatted_message = replacetext(formatted_message, "%pred", owner)
-					formatted_message = replacetext(formatted_message, "%prey", M)
-					formatted_message = replacetext(formatted_message, "%countprey", living_count)
-					formatted_message = replacetext(formatted_message, "%count", contents.len)
-					if(formatted_message)
-						to_chat(M, "<span class='vnotice'>[formatted_message]</span>")
+					if(LAZYLEN(EL))
+						to_chat(M, span_vnotice(belly_format_string(EL, M)))
 
 	if(to_update)
 		updateVRPanels()
@@ -224,7 +204,7 @@
 /obj/belly/proc/prey_loop()
 	for(var/mob/living/M in contents)
 		//We don't bother executing any other code if the prey doesn't want to hear the noises.
-		if(!M.is_preference_enabled(/datum/client_preference/digestion_noises))
+		if(!M.check_sound_preference(/datum/preference/toggle/digestion_noises))
 			M.stop_sound_channel(CHANNEL_PREYLOOP) // sanity just in case, because byond is whack and you can't trust it
 			continue
 
@@ -240,14 +220,14 @@
 /obj/belly/proc/handle_digesting_item(obj/item/I)
 	var/did_an_item = FALSE
 	// We always contaminate IDs.
-	if(contaminates || istype(I, /obj/item/weapon/card/id))
+	if(contaminates || istype(I, /obj/item/card/id))
 		I.gurgle_contaminate(src, contamination_flavor, contamination_color)
 
 	switch(item_digest_mode)
 		if(IM_HOLD)
 			items_preserved |= I
 		if(IM_DIGEST_FOOD)
-			if(istype(I,/obj/item/weapon/reagent_containers/food) || istype(I, /obj/item/organ))
+			if(istype(I,/obj/item/reagent_containers/food) || istype(I, /obj/item/organ))
 				var/obj/item/organ/R = I
 				if(istype(R) && R.robotic >= ORGAN_ROBOT)
 					items_preserved |= I
@@ -260,32 +240,15 @@
 	return did_an_item
 
 /obj/belly/proc/handle_digestion_death(mob/living/M)
-	var/digest_alert_owner = pick(digest_messages_owner)
-	var/digest_alert_prey = pick(digest_messages_prey)
+	var/digest_alert_owner = span_vnotice(belly_format_string(digest_messages_owner, M))
+	var/digest_alert_prey = span_vnotice(belly_format_string(digest_messages_prey, M))
 	var/compensation = M.maxHealth / 5 //Dead body bonus.
 	if(ishuman(M))
 		compensation += M.getOxyLoss() //How much of the prey's damage was caused by passive crit oxyloss to compensate the lost nutrition.
 
-	var/living_count = 0
-	for(var/mob/living/L in contents)
-		living_count++
-
-	//Replace placeholder vars
-	digest_alert_owner = replacetext(digest_alert_owner, "%pred", owner)
-	digest_alert_owner = replacetext(digest_alert_owner, "%prey", M)
-	digest_alert_owner = replacetext(digest_alert_owner, "%belly", lowertext(name))
-	digest_alert_owner = replacetext(digest_alert_owner, "%countprey", living_count)
-	digest_alert_owner = replacetext(digest_alert_owner, "%count", contents.len)
-
-	digest_alert_prey = replacetext(digest_alert_prey, "%pred", owner)
-	digest_alert_prey = replacetext(digest_alert_prey, "%prey", M)
-	digest_alert_prey = replacetext(digest_alert_prey, "%belly", lowertext(name))
-	digest_alert_prey = replacetext(digest_alert_prey, "%countprey", living_count)
-	digest_alert_prey = replacetext(digest_alert_prey, "%count", contents.len)
-
 	//Send messages
-	to_chat(owner, "<span class='vnotice'>[digest_alert_owner]</span>")
-	to_chat(M, "<span class='vnotice'>[digest_alert_prey]</span>")
+	to_chat(owner, digest_alert_owner)
+	to_chat(M, digest_alert_prey)
 
 	if(M.ckey)
 		GLOB.prey_digested_roundstat++
@@ -317,8 +280,8 @@
 			if(L.tiredness <= 105)
 				L.tiredness = (L.tiredness + 6)
 			if(L.tiredness <= 90 && L.tiredness >= 75)
-				to_chat(L, "<span class='warning'>You are about to fall unconscious!</span>")
-				to_chat(owner, "<span class='warning'>[L] is about to fall unconscious!</span>")
+				to_chat(L, span_warning("You are about to fall unconscious!"))
+				to_chat(owner, span_warning("[L] is about to fall unconscious!"))
 		if(drainmode == DR_FAKE && istype(L,/mob/living/carbon/human)) //Slowly bring prey to the edge of sleep without crossing it
 			if(L.tiredness <= 93)
 				L.tiredness = (L.tiredness + 6)

@@ -62,10 +62,10 @@
 	/obj/effect))
 
 /mob/living/simple_mob/vore/morph/Initialize()
-	verbs += /mob/living/proc/ventcrawl
-	verbs += /mob/living/simple_mob/vore/morph/proc/take_over_prey
+	add_verb(src, /mob/living/proc/ventcrawl)
+	add_verb(src, /mob/living/simple_mob/vore/morph/proc/take_over_prey)
 	if(!istype(src, /mob/living/simple_mob/vore/morph/dominated_prey))
-		verbs += /mob/living/simple_mob/vore/morph/proc/morph_color
+		add_verb(src, /mob/living/simple_mob/vore/morph/proc/morph_color)
 
 	return ..()
 
@@ -80,7 +80,7 @@
 	if(morphed)
 		. = form.examine(user)
 		if(get_dist(user, src) <= 3 && !resting)
-			. += "<span class='warning'>[form] doesn't look quite right...</span>"
+			. += span_warning("[form] doesn't look quite right...")
 	else
 		. = ..()
 
@@ -93,22 +93,22 @@
 			if(istype(A) && allowed(A))
 				assume(A)
 		else
-			to_chat(src, "<span class='warning'>Your chameleon skin is still repairing itself!</span>")
+			to_chat(src, span_warning("Your chameleon skin is still repairing itself!"))
 	else
 		..()
 
 /mob/living/simple_mob/vore/morph/proc/assume(atom/movable/target)
 	var/mob/living/carbon/human/humantarget = target
-	if(istype(humantarget) && humantarget.resleeve_lock && ckey != humantarget.resleeve_lock)
-		to_chat(src, "<span class='warning'>[target] cannot be impersonated!</span>")
+	if(istype(humantarget) && !humantarget.allow_mimicry)
+		to_chat(src, span_warning("[target] cannot be impersonated!"))
 		return
 	if(morphed)
-		to_chat(src, "<span class='warning'>You must restore to your original form first!</span>")
+		to_chat(src, span_warning("You must restore to your original form first!"))
 		return
 	morphed = TRUE
 	form = target
 
-	visible_message("<span class='warning'>[src] suddenly twists and changes shape, becoming a copy of [target]!</span>")
+	visible_message(span_warning("[src] suddenly twists and changes shape, becoming a copy of [target]!"))
 	color = null
 	name = target.name
 	desc = target.desc
@@ -144,12 +144,12 @@
 
 /mob/living/simple_mob/vore/morph/proc/restore(var/silent = FALSE)
 	if(!morphed)
-		to_chat(src, "<span class='warning'>You're already in your normal form!</span>")
+		to_chat(src, span_warning("You're already in your normal form!"))
 		return
 	morphed = FALSE
 
 	if(!silent)
-		visible_message("<span class='warning'>[src] suddenly collapses in on itself, dissolving into a pile of flesh!</span>")
+		visible_message(span_warning("[src] suddenly collapses in on itself, dissolving into a pile of flesh!"))
 
 	form = null
 	name = initial(name)
@@ -189,7 +189,7 @@
 
 /mob/living/simple_mob/vore/morph/death(gibbed)
 	if(morphed)
-		visible_message("<span class='warning'>[src] twists and dissolves into a pile of flesh!</span>")
+		visible_message(span_warning("[src] twists and dissolves into a pile of flesh!"))
 		restore(TRUE)
 	..()
 
@@ -209,10 +209,10 @@
 		//Stolen from protean blobs, ambush noms from resting! Doesn't hide you any better, but makes noms sneakier.
 		if(resting)
 			plane = ABOVE_OBJ_PLANE
-			to_chat(src,"<span class='notice'>Your form settles in, appearing more 'normal'... laying in wait.</span>")
+			to_chat(src,span_notice("Your form settles in, appearing more 'normal'... laying in wait."))
 		else
 			plane = MOB_PLANE
-			to_chat(src,"<span class='notice'>Your form quivers back to life, allowing you to move again!</span>")
+			to_chat(src,span_notice("Your form quivers back to life, allowing you to move again!"))
 			if(can_be_drop_pred) //Toggleable in vore panel
 				var/list/potentials = living_mobs(0)
 				if(potentials.len)
@@ -221,7 +221,7 @@
 						if(target.buckled)
 							target.buckled.unbuckle_mob(target, force = TRUE)
 						target.forceMove(vore_selected)
-						to_chat(target,"<span class='vwarning'>\The [src] quickly engulfs you, [vore_selected.vore_verb]ing you into their [vore_selected.name]!</span>")
+						to_chat(target,span_vwarning("\The [src] quickly engulfs you, [vore_selected.vore_verb]ing you into their [vore_selected.name]!"))
 	else
 		..()
 
@@ -247,7 +247,7 @@
 
 /mob/living/simple_mob/vore/morph/proc/morph_color()
 	set name = "Pick Color"
-	set category = "Abilities"
+	set category = "Abilities.Settings"
 	set desc = "You can set your color!"
 	var/newcolor = input(usr, "Choose a color.", "", color) as color|null
 	if(newcolor)
@@ -257,10 +257,10 @@
 
 /mob/living/simple_mob/vore/morph/proc/take_over_prey()
 	set name = "Take Over Prey"
-	set category = "Abilities"
+	set category = "Abilities.Morph"
 	set desc = "Take command of your prey's body."
 	if(morphed)
-		to_chat(src, "<span class='warning'>You must restore to your original form first!</span>")
+		to_chat(src, span_warning("You must restore to your original form first!"))
 		return
 	var/list/possible_mobs = list()
 	for(var/obj/belly/B in src.vore_organs)
@@ -272,12 +272,9 @@
 		var/mob/living/L = tgui_input_list(src, "Select a mob to take over:", "Take Over Prey", possible_mobs)
 		if(!L)
 			return
-		// Adding a ishuman check here, since silicon mobs don't have a resleeve_lock from what I can tell.
-		if(ishuman(L))
-			var/mob/living/carbon/human/M = L
-			if(M.resleeve_lock && ckey != M.resleeve_lock)
-				to_chat(src, "<span class='warning'>\The [M] cannot be impersonated!</span>")
-				return
+		if(!L.allow_mimicry)
+			to_chat(src, span_warning("\The [L] cannot be impersonated!"))
+			return
 		if(tgui_alert(src, "You selected [L] to attempt to take over. Are you sure?", "Take Over Prey",list("No","Yes")) == "Yes")
 			log_admin("[key_name_admin(src)] offered [L] to swap bodies as a morph.")
 			if(tgui_alert(L, "\The [src] has elected to attempt to take over your body and control you. Is this something you will allow to happen?", "Allow Morph To Take Over",list("No","Yes")) == "Yes")
@@ -301,9 +298,9 @@
 					log_and_message_admins("[key_name_admin(src)] has swapped bodies with [key_name_admin(L)] as a morph at [get_area(src)] - [COORD(src)].")
 					new /mob/living/simple_mob/vore/morph/dominated_prey(L.vore_selected, L.ckey, src, L)
 				else
-					to_chat(src, "<span class='warning'>\The [L] declined your request for control.</span>")
+					to_chat(src, span_warning("\The [L] declined your request for control."))
 			else
-				to_chat(src, "<span class='warning'>\The [L] declined your request for control.</span>")
+				to_chat(src, span_warning("\The [L] declined your request for control."))
 
 /mob/living/simple_mob/vore/morph/dominated_prey
 	name = "subservient node"
@@ -329,7 +326,7 @@
 		prey_body.ckey = parent_morph.original_ckey
 		parent_morph.forceMove(src)
 		name = "[prey_body.name]"
-		to_chat(prey_body, "<span class='notice'>You have completely assumed the form of [prey_body]. Your form is now unable to change anymore until you restore control back to them. You can do this by 'ejecting' them from your [prey_body.vore_selected]. This will not actually release them from your body in this state, but instead return control to them, and restore you to your original form.</span>")
+		to_chat(prey_body, span_notice("You have completely assumed the form of [prey_body]. Your form is now unable to change anymore until you restore control back to them. You can do this by 'ejecting' them from your [prey_body.vore_selected]. This will not actually release them from your body in this state, but instead return control to them, and restore you to your original form."))
 	else
 		qdel(src)
 

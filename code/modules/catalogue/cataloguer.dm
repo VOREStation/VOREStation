@@ -12,7 +12,7 @@ GLOBAL_LIST_EMPTY(all_cataloguers)
 	the person with the scanner gets a visual box that shows where they are allowed to move to
 	without inturrupting the scan.
 */
-/obj/item/device/cataloguer
+/obj/item/cataloguer
 	name = "cataloguer"
 	desc = "A hand-held device, used for compiling information about an object by scanning it. Alt+click to highlight scannable objects around you."
 	description_info = "This is a special device used to obtain information about objects and entities in the environment. \
@@ -35,7 +35,7 @@ GLOBAL_LIST_EMPTY(all_cataloguers)
 	var/datum/weakref/partial_scanned = null // Weakref of the thing that was last scanned if inturrupted. Used to allow for partial scans to be resumed.
 	var/partial_scan_time = 0 // How much to make the next scan shorter.
 
-/obj/item/device/cataloguer/advanced
+/obj/item/cataloguer/advanced
 	name = "advanced cataloguer"
 	icon = 'icons/obj/device.dmi'
 	icon_state = "adv_cataloguer"
@@ -45,7 +45,7 @@ GLOBAL_LIST_EMPTY(all_cataloguers)
 	toolspeed = 0.8
 
 // Able to see all defined catalogue data regardless of if it was unlocked, intended for testing.
-/obj/item/device/cataloguer/debug
+/obj/item/cataloguer/debug
 	name = "omniscient cataloguer"
 	desc = "A hand-held cataloguer device that appears to be plated with gold. For some reason, it \
 	just seems to already know everything about narrowly defined pieces of knowledge one would find \
@@ -57,25 +57,25 @@ GLOBAL_LIST_EMPTY(all_cataloguers)
 	debug = TRUE
 
 
-/obj/item/device/cataloguer/Initialize()
+/obj/item/cataloguer/Initialize()
 	GLOB.all_cataloguers += src
 	return ..()
 
-/obj/item/device/cataloguer/Destroy()
+/obj/item/cataloguer/Destroy()
 	GLOB.all_cataloguers -= src
 	displayed_data = null
 	return ..()
 
-/obj/item/device/cataloguer/update_icon()
+/obj/item/cataloguer/update_icon()
 	if(busy)
 		icon_state = "[initial(icon_state)]_active"
 	else
 		icon_state = initial(icon_state)
 
-/obj/item/device/cataloguer/afterattack(atom/target, mob/user, proximity_flag)
+/obj/item/cataloguer/afterattack(atom/target, mob/user, proximity_flag)
 	// Things that invalidate the scan immediately.
 	if(busy)
-		to_chat(user, span("warning", "\The [src] is already scanning something."))
+		to_chat(user, span_warning("\The [src] is already scanning something."))
 		return
 
 	if(isturf(target) && (!target.can_catalogue()))
@@ -89,7 +89,7 @@ GLOBAL_LIST_EMPTY(all_cataloguers)
 		return
 
 	if(get_dist(target, user) > scan_range)
-		to_chat(user, span("warning", "You are too far away from \the [target] to catalogue it. Get closer."))
+		to_chat(user, span_warning("You are too far away from \the [target] to catalogue it. Get closer."))
 		return
 
 	// Get how long the delay will be.
@@ -97,9 +97,9 @@ GLOBAL_LIST_EMPTY(all_cataloguers)
 	if(partial_scanned)
 		if(partial_scanned.resolve() == target)
 			scan_delay -= partial_scan_time
-			to_chat(user, span("notice", "Resuming previous scan."))
+			to_chat(user, span_notice("Resuming previous scan."))
 		else
-			to_chat(user, span("warning", "Scanning new target. Previous scan buffer cleared."))
+			to_chat(user, span_warning("Scanning new target. Previous scan buffer cleared."))
 
 	// Start the special effects.
 	busy = TRUE
@@ -118,18 +118,18 @@ GLOBAL_LIST_EMPTY(all_cataloguers)
 	var/scan_start_time = world.time
 	if(do_after(user, scan_delay, target, ignore_movement = TRUE, max_distance = scan_range))
 		if(target.can_catalogue(user))
-			to_chat(user, span("notice", "You successfully scan \the [target] with \the [src]."))
+			to_chat(user, span_notice("You successfully scan \the [target] with \the [src]."))
 			playsound(src, 'sound/machines/ping.ogg', 50)
 			catalogue_object(target, user)
 		else
 			// In case someone else scans it first, or it died, etc.
-			to_chat(user, span("warning", "\The [target] is no longer valid to scan with \the [src]."))
+			to_chat(user, span_warning("\The [target] is no longer valid to scan with \the [src]."))
 			playsound(src, 'sound/machines/buzz-two.ogg', 50)
 
 		partial_scanned = null
 		partial_scan_time = 0
 	else
-		to_chat(user, span("warning", "You failed to finish scanning \the [target] with \the [src]."))
+		to_chat(user, span_warning("You failed to finish scanning \the [target] with \the [src]."))
 		playsound(src, 'sound/machines/buzz-two.ogg', 50)
 		color_box(box_segments, "#FF0000", 3)
 		partial_scanned = WEAKREF(target)
@@ -146,7 +146,7 @@ GLOBAL_LIST_EMPTY(all_cataloguers)
 		delete_box(box_segments, user.client)
 
 // Todo: Display scanned information, increment points, etc.
-/obj/item/device/cataloguer/proc/catalogue_object(atom/target, mob/living/user)
+/obj/item/cataloguer/proc/catalogue_object(atom/target, mob/living/user)
 	// Figure out who may have helped out.
 	var/list/contributers = list()
 	var/list/contributer_names = list()
@@ -175,30 +175,30 @@ GLOBAL_LIST_EMPTY(all_cataloguers)
 	// Give out points.
 	if(points_gained)
 		// First, to us.
-		to_chat(user, span("notice", "Gained [points_gained] points from this scan."))
+		to_chat(user, span_notice("Gained [points_gained] points from this scan."))
 		adjust_points(points_gained)
 
 		// Now to our friends, if any.
 		if(contributers.len)
 			for(var/mob/M in contributers)
 				var/list/things = M.GetAllContents(3) // Depth of two should reach into bags but just in case lets make it three.
-				var/obj/item/device/cataloguer/other_cataloguer = locate() in things // If someone has two or more scanners this only adds points to one.
+				var/obj/item/cataloguer/other_cataloguer = locate() in things // If someone has two or more scanners this only adds points to one.
 				if(other_cataloguer)
-					to_chat(M, span("notice", "Gained [points_gained] points from \the [user]'s scan of \the [target]."))
+					to_chat(M, span_notice("Gained [points_gained] points from \the [user]'s scan of \the [target]."))
 					other_cataloguer.adjust_points(points_gained)
-			to_chat(user, span("notice", "Shared discovery with [contributers.len] other contributer\s."))
+			to_chat(user, span_notice("Shared discovery with [contributers.len] other contributer\s."))
 
 
 
 
-/obj/item/device/cataloguer/AltClick(mob/user)
+/obj/item/cataloguer/AltClick(mob/user)
 	pulse_scan(user)
 
 // Gives everything capable of being scanned an outline for a brief moment.
 // Helps to avoid having to click a hundred things in a room for things that have an entry.
-/obj/item/device/cataloguer/proc/pulse_scan(mob/user)
+/obj/item/cataloguer/proc/pulse_scan(mob/user)
 	if(busy)
-		to_chat(user, span("warning", "\The [src] is busy doing something else."))
+		to_chat(user, span_warning("\The [src] is busy doing something else."))
 		return
 
 	busy = TRUE
@@ -215,7 +215,7 @@ GLOBAL_LIST_EMPTY(all_cataloguers)
 	var/filter = filter(type = "outline", size = 1, color = "#00FF00")
 	for(var/atom/A as anything in scannable_atoms)
 		A.filters += filter
-	to_chat(user, span("notice", "\The [src] is highlighting scannable objects in green, if any exist."))
+	to_chat(user, span_notice("\The [src] is highlighting scannable objects in green, if any exist."))
 
 	sleep(2 SECONDS)
 
@@ -231,17 +231,17 @@ GLOBAL_LIST_EMPTY(all_cataloguers)
 		playsound(src, 'sound/machines/ping.ogg', 50)
 	else
 		playsound(src, 'sound/machines/buzz-two.ogg', 50)
-	to_chat(user, span("notice", "\The [src] found [scannable_atoms.len] object\s that can be scanned."))
+	to_chat(user, span_notice("\The [src] found [scannable_atoms.len] object\s that can be scanned."))
 
 
 // Negative points are bad.
-/obj/item/device/cataloguer/proc/adjust_points(amount)
+/obj/item/cataloguer/proc/adjust_points(amount)
 	points_stored = max(0, points_stored += amount)
 
-/obj/item/device/cataloguer/attack_self(mob/living/user)
+/obj/item/cataloguer/attack_self(mob/living/user)
 	interact(user)
 
-/obj/item/device/cataloguer/interact(mob/user)
+/obj/item/cataloguer/interact(mob/user)
 	var/list/dat = list()
 	var/title = "Cataloguer Data Display"
 
@@ -258,7 +258,7 @@ GLOBAL_LIST_EMPTY(all_cataloguers)
 			dat += "<a href='?src=\ref[src];debug_unlock=\ref[displayed_data]'>\[(DEBUG) Force Discovery\]</a>"
 		dat += "<hr>"
 
-		dat += "<i>[displayed_data.desc]</i>"
+		dat += span_italics("[displayed_data.desc]")
 		if(LAZYLEN(displayed_data.cataloguers))
 			dat += "Cataloguers : <b>[english_list(displayed_data.cataloguers)]</b>."
 		else
@@ -271,7 +271,7 @@ GLOBAL_LIST_EMPTY(all_cataloguers)
 			var/list/group_dat = list()
 			var/show_group = FALSE
 
-			group_dat += "<b>[group.name]</b>"
+			group_dat += span_bold("[group.name]")
 			for(var/datum/category_item/catalogue/item as anything in group.items)
 				if(item.visible || debug)
 					group_dat += "<a href='?src=\ref[src];show_data=\ref[item]'>[item.name]</a>"
@@ -285,7 +285,7 @@ GLOBAL_LIST_EMPTY(all_cataloguers)
 	popup.open()
 	add_fingerprint(user)
 
-/obj/item/device/cataloguer/Topic(href, href_list)
+/obj/item/cataloguer/Topic(href, href_list)
 	if(..())
 		usr << browse(null, "window=cataloguer_display")
 		return 0
@@ -307,31 +307,31 @@ GLOBAL_LIST_EMPTY(all_cataloguers)
 	interact(usr) // So it refreshes the window.
 	return 1
 
-/obj/item/device/cataloguer/attackby(obj/item/weapon/W, mob/user)
-	if(istype(W, /obj/item/weapon/card/id) && !busy)
+/obj/item/cataloguer/attackby(obj/item/W, mob/user)
+	if(istype(W, /obj/item/card/id) && !busy)
 		busy = TRUE
-		var/obj/item/weapon/card/id/ID = W
+		var/obj/item/card/id/ID = W
 		if(points_stored)
 			ID.survey_points += points_stored
 			points_stored = 0
-			to_chat(user, "<span class='notice'>You swipe the id over \the [src].</span>")
+			to_chat(user, span_notice("You swipe the id over \the [src]."))
 		else
-			to_chat(user, "<span class='notice'>\The [src] has no points available.</span>")
+			to_chat(user, span_notice("\The [src] has no points available."))
 		busy = FALSE
 	return ..()
 
-/obj/item/device/cataloguer/compact
+/obj/item/cataloguer/compact
 	name = "compact cataloguer"
 	desc = "A compact hand-held device, used for compiling information about an object by scanning it. \
 	Alt+click to highlight scannable objects around you."
 	icon = 'icons/obj/device_vr.dmi'
 	icon_state = "compact"
-	action_button_name = "Toggle Cataloguer"
+	actions_types = list(/datum/action/item_action/toggle_cataloguer)
 	var/deployed = TRUE
 	scan_range = 1
 	toolspeed = 1.2
 
-/obj/item/device/cataloguer/compact/pathfinder
+/obj/item/cataloguer/compact/pathfinder
 	name = "pathfinder's cataloguer"
 	desc = "A compact hand-held device, used for compiling information about an object by scanning it. \
 	Alt+click to highlight scannable objects around you."
@@ -340,44 +340,44 @@ GLOBAL_LIST_EMPTY(all_cataloguers)
 	scan_range = 3
 	toolspeed = 1
 
-/obj/item/device/cataloguer/compact/update_icon()
+/obj/item/cataloguer/compact/update_icon()
 	if(busy)
 		icon_state = "[initial(icon_state)]_s"
 	else
 		icon_state = initial(icon_state)
 
-/obj/item/device/cataloguer/compact/ui_action_click()
+/obj/item/cataloguer/compact/ui_action_click(mob/user, actiontype)
 	toggle()
 
-/obj/item/device/cataloguer/compact/verb/toggle()
+/obj/item/cataloguer/compact/verb/toggle()
 	set name = "Toggle Cataloguer"
 	set category = "Object"
 
 	if(busy)
-		to_chat(usr, span("warning", "\The [src] is currently scanning something."))
+		to_chat(usr, span_warning("\The [src] is currently scanning something."))
 		return
 	deployed = !(deployed)
 	if(deployed)
 		w_class = ITEMSIZE_NORMAL
 		icon_state = "[initial(icon_state)]"
-		to_chat(usr, span("notice", "You flick open \the [src]."))
+		to_chat(usr, span_notice("You flick open \the [src]."))
 	else
 		w_class = ITEMSIZE_SMALL
 		icon_state = "[initial(icon_state)]_closed"
-		to_chat(usr, span("notice", "You close \the [src]."))
+		to_chat(usr, span_notice("You close \the [src]."))
 
 	if (ismob(usr))
 		var/mob/M = usr
-		M.update_action_buttons()
+		M.update_mob_action_buttons()
 
-/obj/item/device/cataloguer/compact/afterattack(atom/target, mob/user, proximity_flag)
+/obj/item/cataloguer/compact/afterattack(atom/target, mob/user, proximity_flag)
 	if(!deployed)
-		to_chat(user, span("warning", "\The [src] is closed."))
+		to_chat(user, span_warning("\The [src] is closed."))
 		return
 	return ..()
 
-/obj/item/device/cataloguer/compact/pulse_scan(mob/user)
+/obj/item/cataloguer/compact/pulse_scan(mob/user)
 	if(!deployed)
-		to_chat(user, span("warning", "\The [src] is closed."))
+		to_chat(user, span_warning("\The [src] is closed."))
 		return
 	return ..()

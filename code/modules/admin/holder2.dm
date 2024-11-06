@@ -37,12 +37,14 @@ var/list/admin_datums = list()
 		owner = C
 		owner.holder = src
 		owner.add_admin_verbs()	//TODO
+		owner.init_verbs() //re-initialize the verb list
 		GLOB.admins |= C
 
 /datum/admins/proc/disassociate()
 	if(owner)
 		GLOB.admins -= owner
 		owner.remove_admin_verbs()
+		owner.init_verbs() //re-initialize the verb list
 		owner.deadmin_holder = owner.holder
 		owner.holder = null
 
@@ -82,7 +84,7 @@ NOTE: It checks usr by default. Supply the "user" argument if you wish to check 
 		return FALSE
 	if(!C.holder)
 		if(show_msg)
-			to_chat(C, "<span class='filter_adminlog warning'>Error: You are not an admin.</span>")
+			to_chat(C, span_filter_adminlog(span_warning("Error: You are not an admin.")))
 		return FALSE
 
 	if(rights_required)
@@ -90,7 +92,7 @@ NOTE: It checks usr by default. Supply the "user" argument if you wish to check 
 			return TRUE
 		else
 			if(show_msg)
-				to_chat(C, "<span class='filter_adminlog warning'>Error: You do not have sufficient rights to do that. You require one of the following flags:[rights2text(rights_required," ")].</span>")
+				to_chat(C, span_filter_adminlog(span_warning("Error: You do not have sufficient rights to do that. You require one of the following flags:[rights2text(rights_required," ")].")))
 			return FALSE
 	else
 		return TRUE
@@ -104,7 +106,7 @@ NOTE: It checks usr by default. Supply the "user" argument if you wish to check 
 			if(usr.client.holder.rights != other.holder.rights)
 				if( (usr.client.holder.rights & other.holder.rights) == other.holder.rights )
 					return 1	//we have all the rights they have and more
-		to_chat(usr, "<span class='filter_adminlog warning'>Error: Cannot proceed. They have more or equal rights to us.</span>")
+		to_chat(usr, span_filter_adminlog(span_warning("Error: Cannot proceed. They have more or equal rights to us.")))
 	return 0
 
 /client/proc/mark_datum(datum/D)
@@ -116,7 +118,7 @@ NOTE: It checks usr by default. Supply the "user" argument if you wish to check 
 	vv_update_display(D, "marked", VV_MSG_MARKED)
 
 /client/proc/mark_datum_mapview(datum/D as mob|obj|turf|area in view(view))
-	set category = "Debug"
+	set category = "Debug.Game"
 	set name = "Mark Object"
 	mark_datum(D)
 

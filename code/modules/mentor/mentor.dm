@@ -36,17 +36,17 @@ var/list/mentor_verbs_default = list(
 
 /client/proc/add_mentor_verbs()
 	if(mentorholder)
-		verbs += mentor_verbs_default
+		add_verb(src, mentor_verbs_default)
 
 /client/proc/remove_mentor_verbs()
 	if(mentorholder)
-		verbs -= mentor_verbs_default
+		remove_verb(src, mentor_verbs_default)
 
 /client/proc/make_mentor()
-	set category = "Special Verbs"
+	set category = "Admin.Secrets"
 	set name = "Make Mentor"
 	if(!holder)
-		to_chat(src, "<span class='pm warning'>Error: Only administrators may use this command.</span>")
+		to_chat(src, span_admin_pm_warning("Error: Only administrators may use this command."))
 		return
 	var/list/client/targets[0]
 	for(var/client/T in GLOB.clients)
@@ -56,20 +56,20 @@ var/list/mentor_verbs_default = list(
 		return
 	var/client/C = targets[target]
 	if(has_mentor_powers(C) || C.deadmin_holder) // If an admin is deadminned you could mentor them and that will cause fuckery if they readmin
-		to_chat(src, "<span class='pm warning'>Error: They already have mentor powers.</span>")
+		to_chat(src, span_admin_pm_warning("Error: They already have mentor powers."))
 		return
 	var/datum/mentor/M = new /datum/mentor(C.ckey)
 	M.associate(C)
-	to_chat(C, "<span class='pm notice'>You have been granted mentorship.</span>")
-	to_chat(src, "<span class='pm notice'>You have made [C] a mentor.</span>")
+	to_chat(C, span_admin_pm_notice("You have been granted mentorship."))
+	to_chat(src, span_admin_pm_notice("You have made [C] a mentor."))
 	log_admin("[key_name(src)] made [key_name(C)] a mentor.")
 	feedback_add_details("admin_verb","Make Mentor") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/unmake_mentor()
-	set category = "Special Verbs"
+	set category = "Admin.Secrets"
 	set name = "Unmake Mentor"
 	if(!holder)
-		to_chat(src, "<span class='pm warning'>Error: Only administrators may use this command.</span>")
+		to_chat(src, span_admin_pm_warning("Error: Only administrators may use this command."))
 		return
 	var/list/client/targets[0]
 	for(var/client/T in GLOB.mentors)
@@ -79,13 +79,13 @@ var/list/mentor_verbs_default = list(
 		return
 	var/client/C = targets[target]
 	C.mentorholder.disassociate()
-	to_chat(C, "<span class='pm warning'>Your mentorship has been revoked.</span>")
-	to_chat(src, "<span class='pm notice'>You have revoked [C]'s mentorship.</span>")
+	to_chat(C, span_admin_pm_warning("Your mentorship has been revoked."))
+	to_chat(src, span_admin_pm_notice("You have revoked [C]'s mentorship."))
 	log_admin("[key_name(src)] revoked [key_name(C)]'s mentorship.")
 	feedback_add_details("admin_verb","Unmake Mentor") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/cmd_mentor_say(msg as text)
-	set category = "Admin"
+	set category = "Admin.Chat"
 	set name ="Mentorsay"
 
 	//check rights
@@ -99,9 +99,9 @@ var/list/mentor_verbs_default = list(
 	log_admin("Mentorsay: [key_name(src)]: [msg]")
 
 	for(var/client/C in GLOB.mentors)
-		to_chat(C, create_text_tag("mentor", "MENTOR:", C) + " <span class='mentor_channel'><span class='name'>[src]</span>: <span class='message'>[msg]</span></span>")
+		to_chat(C, create_text_tag("mentor", "MENTOR:", C) + " " + span_mentor_channel(span_name("[src]") + ": " + span_message("[msg]")))
 	for(var/client/C in GLOB.admins)
-		to_chat(C, create_text_tag("mentor", "MENTOR:", C) + " <span class='mentor_channel'><span class='name'>[src]</span>: <span class='message'>[msg]</span></span>")
+		to_chat(C, create_text_tag("mentor", "MENTOR:", C) + " " + span_mentor_channel(span_name("[src]") + ": " + span_message("[msg]")))
 
 /proc/mentor_commands(href, href_list, client/C)
 	if(href_list["mhelp"])
@@ -126,7 +126,7 @@ var/list/mentor_verbs_default = list(
 	mentor_commands(href, href_list, usr)
 
 /client/proc/cmd_dementor()
-	set category = "Admin"
+	set category = "Admin.Misc"
 	set name = "De-mentor"
 
 	if(tgui_alert(usr, "Confirm self-dementor for the round? You can't re-mentor yourself without someone promoting you.","Dementor",list("Yes","No")) == "Yes")
@@ -134,7 +134,7 @@ var/list/mentor_verbs_default = list(
 
 /client/proc/cmd_mhelp_reply(whom)
 	if(prefs.muted & MUTE_ADMINHELP)
-		to_chat(src, "<span class='pm warning'>Error: Mentor-PM: You are unable to use admin PM-s (muted).</span>")
+		to_chat(src, span_admin_pm_warning("Error: Mentor-PM: You are unable to use admin PM-s (muted)."))
 		return
 	var/client/C
 	if(istext(whom))
@@ -143,16 +143,16 @@ var/list/mentor_verbs_default = list(
 		C = whom
 	if(!C)
 		if(has_mentor_powers(src))
-			to_chat(src, "<span class='pm warning'>Error: Mentor-PM: Client not found.</span>")
+			to_chat(src, span_admin_pm_warning("Error: Mentor-PM: Client not found."))
 		return
 
 	var/datum/mentor_help/MH = C.current_mentorhelp
 
 	if(MH)
-		message_mentors("<span class='mentor_channel'>[src] has started replying to [C]'s mentor help.</span>")
+		message_mentors(span_mentor_channel("[src] has started replying to [C]'s mentor help."))
 	var/msg = tgui_input_text(src,"Message:", "Private message to [C]", multiline = TRUE)
 	if (!msg)
-		message_mentors("<span class='mentor_channel'>[src] has cancelled their reply to [C]'s mentor help.</span>")
+		message_mentors(span_mentor_channel("[src] has cancelled their reply to [C]'s mentor help."))
 		return
 	cmd_mentor_pm(whom, msg, MH)
 
@@ -167,10 +167,15 @@ var/list/mentor_verbs_default = list(
 	set name = "Request help"
 	set hidden = 1
 
-	var/mhelp = tgui_alert(usr, "Select the help you need.","Request for Help",list("Adminhelp","Mentorhelp")) == "Mentorhelp"
-	var/msg = tgui_input_text(usr, "Input your request for help.", "Request for Help", multiline = TRUE)
+	var/mhelp = tgui_alert(usr, "Select the help you need.","Request for Help",list("Adminhelp","Mentorhelp"))
+	if(!mhelp)
+		return
 
-	if (mhelp)
+	var/msg = tgui_input_text(usr, "Input your request for help.", "Request for Help ([mhelp])", multiline = TRUE)
+	if(!msg)
+		return
+
+	if (mhelp == "Mentorhelp")
 		mentorhelp(msg)
 		return
 
@@ -183,13 +188,13 @@ var/list/mentor_verbs_default = list(
 	set hidden = 1
 
 	if(prefs.muted & MUTE_ADMINHELP)
-		to_chat(src, "<span class='pm warning'>Error: Mentor-PM: You are unable to use admin PM-s (muted).</span>")
+		to_chat(src, span_mentor_pm_warning("Error: Mentor-PM: You are unable to use mentor PM-s (muted)."))
 		return
 
 	//Not a mentor and no open ticket
 	if(!has_mentor_powers(src) && !current_mentorhelp)
-		to_chat(src, "<span class='pm warning'>You can no longer reply to this ticket, please open another one by using the Mentorhelp verb if need be.</span>")
-		to_chat(src, "<span class='pm notice'>Message: [msg]</span>")
+		to_chat(src, span_mentor_pm_warning("You can no longer reply to this ticket, please open another one by using the Mentorhelp verb if need be."))
+		to_chat(src, span_mentor_pm_notice("Message: [msg]"))
 		return
 
 	var/client/recipient
@@ -208,12 +213,12 @@ var/list/mentor_verbs_default = list(
 			return
 
 		if(prefs.muted & MUTE_ADMINHELP)
-			to_chat(src, "<span class='pm warning'>Error: Mentor-PM: You are unable to use admin PM-s (muted).</span>")
+			to_chat(src, span_mentor_pm_warning("Error: Mentor-PM: You are unable to use mentor PM-s (muted)."))
 			return
 
 		if(!recipient)
 			if(has_mentor_powers(src))
-				to_chat(src, "<span class='pm warning'>Error:Mentor-PM: Client not found.</span>")
+				to_chat(src, span_mentor_pm_warning("Error:Mentor-PM: Client not found."))
 				to_chat(src, msg)
 			else
 				log_admin("Mentorhelp: [key_name(src)]: [msg]")
@@ -222,8 +227,8 @@ var/list/mentor_verbs_default = list(
 
 	//Has mentor powers but the recipient no longer has an open ticket
 	if(has_mentor_powers(src) && !recipient.current_mentorhelp)
-		to_chat(src, "<span class='pm warning'>You can no longer reply to this ticket.</span>")
-		to_chat(src, "<span class='pm notice'>Message: [msg]</span>")
+		to_chat(src, span_mentor_pm_warning("You can no longer reply to this ticket."))
+		to_chat(src, span_mentor_pm_notice("Message: [msg]"))
 		return
 
 	if (src.handle_spam_prevention(msg,MUTE_ADMINHELP))
@@ -233,7 +238,7 @@ var/list/mentor_verbs_default = list(
 	if(!msg)
 		return
 
-	var/interaction_message = "<span class='pm notice'>Mentor-PM from-<b>[src]</b> to-<b>[recipient]</b>: [msg]</span>"
+	var/interaction_message = span_mentor_pm_notice("Mentor-PM from-<b>[src]</b> to-<b>[recipient]</b>: [msg]")
 
 	if (recipient.current_mentorhelp && !has_mentor_powers(recipient))
 		recipient.current_mentorhelp.AddInteraction(interaction_message)
@@ -247,12 +252,12 @@ var/list/mentor_verbs_default = list(
 		if (src.current_mentorhelp)
 			src.current_mentorhelp.AddInteraction(interaction_message)
 
-	to_chat(recipient, "<i><span class='mentor'>Mentor-PM from-<b><a href='?mentorhelp_msg=\ref[src]'>[src]</a></b>: [msg]</span></i>")
-	to_chat(src, "<i><span class='mentor'>Mentor-PM to-<b>[recipient]</b>: [msg]</span></i>")
+	to_chat(recipient, span_mentor(span_italics("Mentor-PM from-<b><a href='?mentorhelp_msg=\ref[src]'>[src]</a></b>: [msg]")))
+	to_chat(src, span_mentor(span_italics("Mentor-PM to-<b>[recipient]</b>: [msg]")))
 
 	log_admin("[key_name(src)]->[key_name(recipient)]: [msg]")
 
-	if(recipient.is_preference_enabled(/datum/client_preference/play_mentorhelp_ping))
+	if(recipient.prefs?.read_preference(/datum/preference/toggle/play_mentorhelp_ping))
 		recipient << 'sound/effects/mentorhelp.mp3'
 
 	for(var/client/C in GLOB.mentors)

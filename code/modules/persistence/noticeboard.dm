@@ -15,7 +15,7 @@
 
 	// Grab any mapped notices.
 	notices = list()
-	for(var/obj/item/weapon/paper/note in get_turf(src))
+	for(var/obj/item/paper/note in get_turf(src))
 		note.forceMove(src)
 		LAZYADD(notices, note)
 		if(LAZYLEN(notices) >= max_notices)
@@ -76,23 +76,23 @@
 					return
 		return
 	else if(I.has_tool_quality(TOOL_WRENCH))
-		visible_message("<span class='warning'>[user] begins dismantling [src].</span>")
+		visible_message(span_warning("[user] begins dismantling [src]."))
 		playsound(loc, 'sound/items/Ratchet.ogg', 50, 1)
 		if(do_after(user, 50, src))
-			visible_message("<span class='danger'>[user] has dismantled [src]!</span>")
+			visible_message(span_danger("[user] has dismantled [src]!"))
 			dismantle()
 		return
-	else if(istype(I, /obj/item/weapon/paper) || istype(I, /obj/item/weapon/photo))
-		if(jobban_isbanned(user, "Graffiti"))
-			to_chat(user, "<span class='warning'>You are banned from leaving persistent information across rounds.</span>")
+	else if(istype(I, /obj/item/paper) || istype(I, /obj/item/photo))
+		if(jobban_isbanned(user, JOB_GRAFFITI))
+			to_chat(user, span_warning("You are banned from leaving persistent information across rounds."))
 		else
 			if(LAZYLEN(notices) < max_notices && user.unEquip(I, src))
 				add_fingerprint(user)
 				add_paper(I)
-				to_chat(user, "<span class='notice'>You pin [I] to [src].</span>")
+				to_chat(user, span_notice("You pin [I] to [src]."))
 				SSpersistence.track_value(I, /datum/persistent/paper)
 			else
-				to_chat(user, "<span class='warning'>You hesitate, certain [I] will not be seen among the many others already attached to \the [src].</span>")
+				to_chat(user, span_warning("You hesitate, certain [I] will not be seen among the many others already attached to \the [src]."))
 		return
 	return ..()
 
@@ -119,8 +119,8 @@
 	var/list/tgui_notices = list()
 	for(var/obj/item/I in src.notices)
 		tgui_notices.Add(list(list(
-			"ispaper" = istype(I, /obj/item/weapon/paper),
-			"isphoto" = istype(I, /obj/item/weapon/photo),
+			"ispaper" = istype(I, /obj/item/paper),
+			"isphoto" = istype(I, /obj/item/photo),
 			"name" = I.name,
 			"ref" = "\ref[I]",
 		)))
@@ -133,13 +133,13 @@
 
 	switch(action)
 		if("read")
-			var/obj/item/weapon/paper/P = locate(params["ref"])
+			var/obj/item/paper/P = locate(params["ref"])
 			if(P && P.loc == src)
 				P.show_content(usr)
 			. = TRUE
 
 		if("look")
-			var/obj/item/weapon/photo/P = locate(params["ref"])
+			var/obj/item/photo/P = locate(params["ref"])
 			if(P && P.loc == src)
 				P.show(usr)
 			. = TRUE
@@ -161,12 +161,12 @@
 			if((P && P.loc == src)) //if the paper's on the board
 				var/mob/living/M = usr
 				if(istype(M))
-					var/obj/item/weapon/pen/E = M.get_type_in_hands(/obj/item/weapon/pen)
+					var/obj/item/pen/E = M.get_type_in_hands(/obj/item/pen)
 					if(E)
 						add_fingerprint(M)
 						P.attackby(E, usr)
 					else
-						to_chat(M, "<span class='notice'>You'll need something to write with!</span>")
+						to_chat(M, span_notice("You'll need something to write with!"))
 						. = TRUE
 
 /obj/structure/noticeboard/anomaly
@@ -174,37 +174,37 @@
 	icon_state = "nboard05"
 
 /obj/structure/noticeboard/anomaly/New()
-	var/obj/item/weapon/paper/P = new()
+	var/obj/item/paper/P = new()
 	P.name = "Memo RE: proper analysis procedure"
 	P.info = "<br>We keep test dummies in pens here for a reason, so standard procedure should be to activate newfound alien artifacts and place the two in close proximity. Promising items I might even approve monkey testing on."
-	P.stamped = list(/obj/item/weapon/stamp/rd)
+	P.stamped = list(/obj/item/stamp/rd)
 	P.add_overlay("paper_stamped_rd")
 	contents += P
 
 	P = new()
 	P.name = "Memo RE: materials gathering"
 	P.info = "Corasang,<br>the hands-on approach to gathering our samples may very well be slow at times, but it's safer than allowing the blundering miners to roll willy-nilly over our dig sites in their mechs, destroying everything in the process. And don't forget the escavation tools on your way out there!<br>- R.W"
-	P.stamped = list(/obj/item/weapon/stamp/rd)
+	P.stamped = list(/obj/item/stamp/rd)
 	P.add_overlay("paper_stamped_rd")
 	contents += P
 
 	P = new()
 	P.name = "Memo RE: ethical quandaries"
 	P.info = "Darion-<br><br>I don't care what his rank is, our business is that of science and knowledge - questions of moral application do not come into this. Sure, so there are those who would employ the energy-wave particles my modified device has managed to abscond for their own personal gain, but I can hardly see the practical benefits of some of these artifacts our benefactors left behind. Ward--"
-	P.stamped = list(/obj/item/weapon/stamp/rd)
+	P.stamped = list(/obj/item/stamp/rd)
 	P.add_overlay("paper_stamped_rd")
 	contents += P
 
 	P = new()
 	P.name = "READ ME! Before you people destroy any more samples"
 	P.info = "how many times do i have to tell you people, these xeno-arch samples are del-i-cate, and should be handled so! careful application of a focussed, concentrated heat or some corrosive liquids should clear away the extraneous carbon matter, while application of an energy beam will most decidedly destroy it entirely - like someone did to the chemical dispenser! W, <b>the one who signs your paychecks</b>"
-	P.stamped = list(/obj/item/weapon/stamp/rd)
+	P.stamped = list(/obj/item/stamp/rd)
 	P.add_overlay("paper_stamped_rd")
 	contents += P
 
 	P = new()
 	P.name = "Reminder regarding the anomalous material suits"
 	P.info = "Do you people think the anomaly suits are cheap to come by? I'm about a hair trigger away from instituting a log book for the damn things. Only wear them if you're going out for a dig, and for god's sake don't go tramping around in them unless you're field testing something, R"
-	P.stamped = list(/obj/item/weapon/stamp/rd)
+	P.stamped = list(/obj/item/stamp/rd)
 	P.add_overlay("paper_stamped_rd")
 	contents += P

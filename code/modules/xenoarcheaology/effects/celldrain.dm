@@ -16,16 +16,16 @@
 	for(var/atom/movable/AM in range(effectrange, turf))
 		if(isliving(AM))
 			var/mob/living/L = AM
-			var/obj/item/weapon/cell/C = L.get_cell()
+			var/obj/item/cell/C = L.get_cell()
 
 			if(C)
 				if(issilicon(L) && ((last_message + (1 MINUTE)) < world.time))
 					messaged_robots = TRUE
-					to_chat(L, SPAN_WARNING("SYSTEM ALERT: Energy drain detected!"))
+					to_chat(L, span_warning("SYSTEM ALERT: Energy drain detected!"))
 				C.charge = min(C.maxcharge, C.charge - amount)
 			continue
 
-		var/obj/item/weapon/cell/C = AM.get_cell()
+		var/obj/item/cell/C = AM.get_cell()
 		if(C)
 			C.charge = min(C.maxcharge, C.charge - amount)
 

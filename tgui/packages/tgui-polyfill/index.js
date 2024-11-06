@@ -11,5 +11,6 @@ import 'core-js/es';
 import 'core-js/web/immediate';
 import 'core-js/web/queue-microtask';
 import 'core-js/web/timers';
+import 'core-js/full/url';
 import 'regenerator-runtime/runtime';
 import 'unfetch/polyfill';

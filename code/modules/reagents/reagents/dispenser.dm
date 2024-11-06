@@ -196,20 +196,20 @@
 
 /datum/reagent/ethanol/touch_obj(var/obj/O)
 	..()
-	if(istype(O, /obj/item/weapon/paper))
-		var/obj/item/weapon/paper/paperaffected = O
+	if(istype(O, /obj/item/paper))
+		var/obj/item/paper/paperaffected = O
 		paperaffected.clearpaper()
 		to_chat(usr, "The solution dissolves the ink on the paper.")
 		return
-	if(istype(O, /obj/item/weapon/book))
+	if(istype(O, /obj/item/book))
 		if(volume < 5)
 			return
-		if(istype(O, /obj/item/weapon/book/tome))
-			to_chat(usr, "<span class='notice'>The solution does nothing. Whatever this is, it isn't normal ink.</span>")
+		if(istype(O, /obj/item/book/tome))
+			to_chat(usr, span_notice("The solution does nothing. Whatever this is, it isn't normal ink."))
 			return
-		var/obj/item/weapon/book/affectedbook = O
+		var/obj/item/book/affectedbook = O
 		affectedbook.dat = null
-		to_chat(usr, "<span class='notice'>The solution dissolves the ink on the book.</span>")
+		to_chat(usr, span_notice("The solution dissolves the ink on the book."))
 	return
 
 /datum/reagent/fluorine
@@ -319,20 +319,7 @@
 
 /datum/reagent/radium/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(issmall(M)) removed *= 2
-	M.apply_effect(10 * removed, IRRADIATE, 0) // Radium may increase your chances to cure a disease
-	if(M.virus2.len)
-		for(var/ID in M.virus2)
-			var/datum/disease2/disease/V = M.virus2[ID]
-			if(prob(5))
-				M.antibodies |= V.antigen
-				if(prob(50))
-					M.apply_effect(50, IRRADIATE, check_protection = 0) // curing it that way may kill you instead
-					var/absorbed = 0
-					var/obj/item/organ/internal/diona/nutrients/rad_organ = locate() in M.internal_organs
-					if(rad_organ && !rad_organ.is_broken())
-						absorbed = 1
-					if(!absorbed)
-						M.adjustToxLoss(100)
+	M.apply_effect(10 * removed, IRRADIATE, 0)
 
 /datum/reagent/radium/touch_turf(var/turf/T)
 	..()
@@ -364,11 +351,11 @@
 		var/mob/living/carbon/human/H = M
 		if(H.head)
 			if(H.head.unacidable)
-				to_chat(H, "<span class='danger'>Your [H.head] protects you from the acid.</span>")
+				to_chat(H, span_danger("Your [H.head] protects you from the acid."))
 				remove_self(volume)
 				return
 			else if(removed > meltdose)
-				to_chat(H, "<span class='danger'>Your [H.head] melts away!</span>")
+				to_chat(H, span_danger("Your [H.head] melts away!"))
 				qdel(H.head)
 				H.update_inv_head(1)
 				H.update_hair(1)
@@ -378,11 +365,11 @@
 
 		if(H.wear_mask)
 			if(H.wear_mask.unacidable)
-				to_chat(H, "<span class='danger'>Your [H.wear_mask] protects you from the acid.</span>")
+				to_chat(H, span_danger("Your [H.wear_mask] protects you from the acid."))
 				remove_self(volume)
 				return
 			else if(removed > meltdose)
-				to_chat(H, "<span class='danger'>Your [H.wear_mask] melts away!</span>")
+				to_chat(H, span_danger("Your [H.wear_mask] melts away!"))
 				qdel(H.wear_mask)
 				H.update_inv_wear_mask(1)
 				H.update_hair(1)
@@ -392,10 +379,10 @@
 
 		if(H.glasses)
 			if(H.glasses.unacidable)
-				to_chat(H, "<span class='danger'>Your [H.glasses] partially protect you from the acid!</span>")
+				to_chat(H, span_danger("Your [H.glasses] partially protect you from the acid!"))
 				removed /= 2
 			else if(removed > meltdose)
-				to_chat(H, "<span class='danger'>Your [H.glasses] melt away!</span>")
+				to_chat(H, span_danger("Your [H.glasses] melt away!"))
 				qdel(H.glasses)
 				H.update_inv_glasses(1)
 				removed -= meltdose / 2
@@ -427,7 +414,7 @@
 		var/obj/effect/decal/cleanable/molten_item/I = new/obj/effect/decal/cleanable/molten_item(O.loc)
 		I.desc = "Looks like this was \an [O] some time ago."
 		for(var/mob/M in viewers(5, O))
-			to_chat(M, "<span class='warning'>\The [O] melts.</span>")
+			to_chat(M, span_warning("\The [O] melts."))
 		qdel(O)
 		remove_self(meltdose) // 10 units of acid will not melt EVERYTHING on the tile
 

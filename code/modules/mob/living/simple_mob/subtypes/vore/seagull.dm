@@ -18,7 +18,7 @@
 	icon_rest = "seagull"
 	icon = 'icons/mob/vore.dmi'
 
-	faction = "seagull"
+	faction = FACTION_SEAGULL
 	maxHealth = 25
 	health = 25
 
@@ -27,7 +27,7 @@
 	response_harm = "hits"
 
 	meat_amount = 2
-	meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat/chicken
+	meat_type = /obj/item/reagent_containers/food/snacks/meat/chicken
 
 	harm_intent_damage = 3
 	melee_damage_lower = 4

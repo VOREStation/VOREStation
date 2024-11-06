@@ -1,4 +1,4 @@
-/obj/item/weapon/disk/botany
+/obj/item/disk/botany
 	name = "flora data disk"
 	desc = "A small disk used for carrying data on plant genetics."
 	icon = 'icons/obj/hydroponics_machines.dmi'
@@ -8,29 +8,29 @@
 	var/list/genes = list()
 	var/genesource = "unknown"
 
-/obj/item/weapon/disk/botany/New()
+/obj/item/disk/botany/New()
 	..()
 	pixel_x = rand(-5,5)
 	pixel_y = rand(-5,5)
 
-/obj/item/weapon/disk/botany/attack_self(var/mob/user as mob)
+/obj/item/disk/botany/attack_self(var/mob/user as mob)
 	if(genes.len)
 		var/choice = tgui_alert(user, "Are you sure you want to wipe the disk?", "Xenobotany Data", list("No", "Yes"))
 		if(src && user && genes && choice && choice == "Yes" && user.Adjacent(get_turf(src)))
-			to_chat(user, "<span class='filter_notice'>You wipe the disk data.</span>")
+			to_chat(user, span_filter_notice("You wipe the disk data."))
 			name = initial(name)
 			desc = initial(name)
 			genes = list()
 			genesource = "unknown"
 
-/obj/item/weapon/storage/box/botanydisk
+/obj/item/storage/box/botanydisk
 	name = "flora disk box"
 	desc = "A box of flora data disks, apparently."
 
-/obj/item/weapon/storage/box/botanydisk/New()
+/obj/item/storage/box/botanydisk/New()
 	..()
 	for(var/i = 0;i<7;i++)
-		new /obj/item/weapon/disk/botany(src)
+		new /obj/item/disk/botany(src)
 
 /obj/machinery/botany
 	icon = 'icons/obj/hydroponics_machines_vr.dmi' //VOREStation Edit
@@ -40,7 +40,7 @@
 	use_power = USE_POWER_IDLE
 
 	var/obj/item/seeds/seed // Currently loaded seed packet.
-	var/obj/item/weapon/disk/botany/loaded_disk //Currently loaded data disk.
+	var/obj/item/disk/botany/loaded_disk //Currently loaded data disk.
 
 	var/open = 0
 	var/active = 0
@@ -68,61 +68,61 @@
 	active = 0
 	if(failed_task)
 		failed_task = 0
-		visible_message("<span class='filter_notice'>[icon2html(src,viewers(src))] [src] pings unhappily, flashing a red warning light.</span>")
+		visible_message(span_filter_notice("[icon2html(src,viewers(src))] [src] pings unhappily, flashing a red warning light."))
 	else
-		visible_message("<span class='filter_notice'>[icon2html(src,viewers(src))] [src] pings happily.</span>")
+		visible_message(span_filter_notice("[icon2html(src,viewers(src))] [src] pings happily."))
 
 	if(eject_disk)
 		eject_disk = 0
 		if(loaded_disk)
 			loaded_disk.loc = get_turf(src)
-			visible_message("<span class='filter_notice'>[icon2html(src,viewers(src))] [src] beeps and spits out [loaded_disk].</span>")
+			visible_message(span_filter_notice("[icon2html(src,viewers(src))] [src] beeps and spits out [loaded_disk]."))
 			loaded_disk = null
 
-/obj/machinery/botany/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/machinery/botany/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W,/obj/item/seeds))
 		if(seed)
-			to_chat(user, "<span class='filter_notice'>There is already a seed loaded.</span>")
+			to_chat(user, span_filter_notice("There is already a seed loaded."))
 			return
 		var/obj/item/seeds/S =W
 		if(S.seed && S.seed.get_trait(TRAIT_IMMUTABLE) > 0)
-			to_chat(user, "<span class='filter_notice'>That seed is not compatible with our genetics technology.</span>")
+			to_chat(user, span_filter_notice("That seed is not compatible with our genetics technology."))
 		else
 			user.drop_from_inventory(W)
 			W.loc = src
 			seed = W
-			to_chat(user, "<span class='filter_notice'>You load [W] into [src].</span>")
+			to_chat(user, span_filter_notice("You load [W] into [src]."))
 		return
 
 	if(default_deconstruction_screwdriver(user, W))
 		return
 	if(W.has_tool_quality(TOOL_WRENCH))
 		playsound(src, W.usesound, 100, 1)
-		to_chat(user, "<span class='notice'>You [anchored ? "un" : ""]secure \the [src].</span>")
+		to_chat(user, span_notice("You [anchored ? "un" : ""]secure \the [src]."))
 		anchored = !anchored
 		return
 //	if(default_deconstruction_crowbar(user, W))	//No circuit boards to give.
 //		return
-	if(istype(W,/obj/item/weapon/disk/botany))
+	if(istype(W,/obj/item/disk/botany))
 		if(loaded_disk)
-			to_chat(user, "<span class='filter_notice'>There is already a data disk loaded.</span>")
+			to_chat(user, span_filter_notice("There is already a data disk loaded."))
 			return
 		else
-			var/obj/item/weapon/disk/botany/B = W
+			var/obj/item/disk/botany/B = W
 
 			if(B.genes && B.genes.len)
 				if(!disk_needs_genes)
-					to_chat(user, "<span class='filter_notice'>That disk already has gene data loaded.</span>")
+					to_chat(user, span_filter_notice("That disk already has gene data loaded."))
 					return
 			else
 				if(disk_needs_genes)
-					to_chat(user, "<span class='filter_notice'>That disk does not have any gene data loaded.</span>")
+					to_chat(user, span_filter_notice("That disk does not have any gene data loaded."))
 					return
 
 			user.drop_from_inventory(W)
 			W.loc = src
 			loaded_disk = W
-			to_chat(user, "<span class='filter_notice'>You load [W] into [src].</span>")
+			to_chat(user, span_filter_notice("You load [W] into [src]."))
 
 		return
 	..()

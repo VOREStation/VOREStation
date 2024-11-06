@@ -8,9 +8,9 @@
 	frozen = -1
 
 /obj/machinery/portable_atmospherics/hydroponics/soil/attackby(var/obj/item/O as obj, var/mob/user as mob)
-	if(istype(O,/obj/item/weapon/tank))
+	if(istype(O,/obj/item/tank))
 		return
-	if(istype(O,/obj/item/weapon/shovel))
+	if(istype(O,/obj/item/shovel))
 		if(!seed)
 			var/choice= tgui_alert(user, "Do you want to destroy the growplot?", "Destroy growplot?" , list("Yes", "No"))
 			if(!choice||choice=="No")
@@ -19,7 +19,7 @@
 			if(do_after(user, 5 SECONDS, exclusive = TASK_USER_EXCLUSIVE))
 				qdel(src)
 		else
-			to_chat(user, "<span class='notice'>There is something growing here.</span>")
+			to_chat(user, span_notice("There is something growing here."))
 	else
 		return ..()
 
@@ -33,14 +33,14 @@
 	return 1
 
 /obj/machinery/portable_atmospherics/hydroponics/soil/attackby(obj/item/O, mob/user)
-	if(istype(O, /obj/item/weapon/shovel) && user.a_intent == I_HURT)
-		user.visible_message(SPAN_NOTICE("\The [user] begins filling in \the [src]."))
+	if(istype(O, /obj/item/shovel) && user.a_intent == I_HURT)
+		user.visible_message(span_notice("\The [user] begins filling in \the [src]."))
 		if(do_after(user, 3 SECONDS) && !QDELETED(src))
-			user.visible_message(SPAN_NOTICE("\The [user] fills in \the [src]."))
+			user.visible_message(span_notice("\The [user] fills in \the [src]."))
 			qdel(src)
 		return
 	. = ..()
-	
+
 
 // Holder for vine plants.
 // Icons for plants are generated as overlays, so setting it to invisible wouldn't work.

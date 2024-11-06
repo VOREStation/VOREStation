@@ -4,11 +4,11 @@
 	robotic, reforms bones, patches internal bleeding, and restores missing blood."
 	spell_power_desc = "Healing amount increased."
 	cost = 100
-	obj_path = /obj/item/weapon/spell/mend_organs
+	obj_path = /obj/item/spell/mend_organs
 	ability_icon_state = "tech_mendwounds"
 	category = SUPPORT_SPELLS
 
-/obj/item/weapon/spell/mend_organs
+/obj/item/spell/mend_organs
 	name = "great mend wounds"
 	desc = "A walking medbay is now you!"
 	icon_state = "mend_wounds"
@@ -16,7 +16,7 @@
 	aspect = ASPECT_BIOMED
 	light_color = "#FF5C5C"
 
-/obj/item/weapon/spell/mend_organs/on_melee_cast(atom/hit_atom, mob/living/user, def_zone)
+/obj/item/spell/mend_organs/on_melee_cast(atom/hit_atom, mob/living/user, def_zone)
 	if(isliving(hit_atom))
 		var/mob/living/L = hit_atom
 		var/heal_power = calculate_spell_power(40)
@@ -44,7 +44,7 @@
 
 			for(var/obj/item/organ/E in H.bad_external_organs) // Fix bones
 				var/obj/item/organ/external/affected = E
-				if((affected.damage < affected.min_broken_damage * config.organ_health_multiplier) && (affected.status & ORGAN_BROKEN))
+				if((affected.damage < affected.min_broken_damage * CONFIG_GET(number/organ_health_multiplier)) && (affected.status & ORGAN_BROKEN))
 					affected.status &= ~ORGAN_BROKEN
 
 				for(var/datum/wound/W in affected.wounds) // Fix IB

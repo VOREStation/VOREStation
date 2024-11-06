@@ -16,7 +16,7 @@ SUBSYSTEM_DEF(media_tracks)
 	return ..()
 
 /datum/controller/subsystem/media_tracks/proc/load_tracks()
-	for(var/filename in config.jukebox_track_files)
+	for(var/filename in CONFIG_GET(str_list/jukebox_track_files))
 		report_progress("Loading jukebox track: [filename]")
 
 		if(!fexists(filename))
@@ -99,11 +99,11 @@ SUBSYSTEM_DEF(media_tracks)
 	if(islist(json))
 		for(var/song in json)
 			if(!islist(song))
-				to_chat(C, "<span class='warning'>Song appears to be malformed.</span>")
+				to_chat(C, span_warning("Song appears to be malformed."))
 				continue
 			var/list/songdata = song
 			if(!songdata["url"] || !songdata["title"] || !songdata["duration"])
-				to_chat(C, "<span class='warning'>URL, Title, or Duration was missing from a song. Skipping.</span>")
+				to_chat(C, span_warning("URL, Title, or Duration was missing from a song. Skipping."))
 				continue
 			var/datum/track/T = new(songdata["url"], songdata["title"], songdata["duration"], songdata["artist"], songdata["genre"], songdata["secret"], songdata["lobby"])
 			all_tracks += T
@@ -130,7 +130,7 @@ SUBSYSTEM_DEF(media_tracks)
 		return
 
 	var/secret = tgui_alert(C, "Optional: Mark track as secret?", "Track Secret", list("Yes", "Cancel", "No"))
-	if(secret == "Cancel")
+	if(!secret || secret == "Cancel")
 		return
 	else if(secret == "Yes")
 		secret = TRUE
@@ -138,7 +138,7 @@ SUBSYSTEM_DEF(media_tracks)
 		secret = FALSE
 
 	var/lobby = tgui_alert(C, "Optional: Mark track as lobby music?", "Track Lobby", list("Yes", "Cancel", "No"))
-	if(lobby == "Cancel")
+	if(!lobby || lobby == "Cancel")
 		return
 	else if(secret == "Yes")
 		secret = TRUE
@@ -172,7 +172,7 @@ SUBSYSTEM_DEF(media_tracks)
 			sort_tracks()
 			return
 
-	to_chat(C, "<span class='warning>Couldn't find a track matching the specified parameters.</span>")
+	to_chat(C, span_warning("Couldn't find a track matching the specified parameters."))
 
 /datum/controller/subsystem/media_tracks/proc/add_track(var/mob/user, var/new_url, var/new_title, var/new_duration, var/new_artist, var/new_genre, var/new_secret, var/new_lobby)
 	if(!check_rights(R_DEBUG|R_FUN))

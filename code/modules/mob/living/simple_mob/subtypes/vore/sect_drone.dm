@@ -33,7 +33,7 @@
 	vore_eyes = TRUE
 	custom_eye_color = "#00FFFF"
 
-	faction = "insects"
+	faction = FACTION_INSECTS
 	maxHealth = 90
 	health = 90
 	see_in_dark = 8
@@ -50,7 +50,7 @@
 	vore_icons = SA_ICON_LIVING
 
 	meat_amount = 4
-	meat_type = /obj/item/weapon/reagent_containers/food/snacks/xenomeat/spidermeat
+	meat_type = /obj/item/reagent_containers/food/snacks/xenomeat/spidermeat
 
 	//Beeg bug don't give a fuck about atmos. Something something, phoron mutation.
 	min_oxy = 0
@@ -88,12 +88,12 @@
 
 /mob/living/simple_mob/vore/sect_drone/Login()
 	. = ..()
-	verbs |= /mob/living/simple_mob/vore/sect_drone/proc/set_abdomen_color
+	add_verb(src,  /mob/living/simple_mob/vore/sect_drone/proc/set_abdomen_color)
 
 /mob/living/simple_mob/vore/sect_drone/proc/set_abdomen_color()
 	set name = "Set Glow Color"
 	set desc = "Customize your eyes and abdomen glow color."
-	set category = "Abilities"
+	set category = "Abilities.Sect Drone"
 
 	var/new_color = input(src, "Please select color.", "Glow Color", custom_eye_color) as color|null
 	if(new_color)

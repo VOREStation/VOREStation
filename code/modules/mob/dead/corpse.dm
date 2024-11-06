@@ -31,6 +31,9 @@
 	var/list/random_species_list = list(SPECIES_HUMAN,SPECIES_TAJ,SPECIES_UNATHI,SPECIES_SKRELL)
 	var/list/tail_type = null
 	var/list/ear_type = null
+	/// list(name of ear, color of ear, color of ear, ...).
+	/// Color is optional, each position after the name is a color channel from 1 to n.
+	var/list/ear_secondary_type
 	var/list/wing_type = null
 	var/corpsesynthtype = 0			// 0 for organic, 1 for drone, 2 for posibrain
 	var/corpsesynthbrand = "Unbranded"
@@ -85,6 +88,12 @@
 						M.g_ears3 = color_rgb_list[2]
 						M.b_ears3 = color_rgb_list[3]
 			M.update_hair()
+	// handle secondary ears
+	if(length(ear_secondary_type) && (ear_secondary_type[1] in global.ear_styles_list))
+		M.ear_secondary_style = global.ear_styles_list[ear_secondary_type[1]]
+		if(length(ear_secondary_type) > 1)
+			M.ear_secondary_colors = ear_secondary_type.Copy(2, min(length(GLOB.fancy_sprite_accessory_color_channel_names), length(ear_secondary_type)) + 1)
+
 	if(wing_type && wing_type.len)
 		if(wing_type[1] in wing_styles_list)
 			M.wing_style = wing_styles_list[wing_type[1]]
@@ -136,7 +145,7 @@
 	if(src.corpseback)
 		M.equip_to_slot_or_del(new src.corpseback(M), slot_back)
 	if(src.corpseid == 1)
-		var/obj/item/weapon/card/id/W = new(M)
+		var/obj/item/card/id/W = new(M)
 		W.name = "[M.real_name]'s ID Card"
 		var/datum/job/jobdatum
 		for(var/jobtype in typesof(/datum/job))
@@ -173,13 +182,13 @@
 	corpsesuit = /obj/item/clothing/suit/armor/vest
 	corpseshoes = /obj/item/clothing/shoes/boots/swat
 	corpsegloves = /obj/item/clothing/gloves/swat
-	corpseradio = /obj/item/device/radio/headset
+	corpseradio = /obj/item/radio/headset
 	corpsemask = /obj/item/clothing/mask/gas
 	corpsehelmet = /obj/item/clothing/head/helmet/swat
-	corpseback = /obj/item/weapon/storage/backpack
+	corpseback = /obj/item/storage/backpack
 	corpseid = 1
 	corpseidjob = "Operative"
-	corpseidaccess = "Syndicate"
+	corpseidaccess = JOB_SYNDICATE
 
 /obj/effect/landmark/mobcorpse/solarpeacekeeper
 	name = "Mercenary"
@@ -187,13 +196,13 @@
 	corpsesuit = /obj/item/clothing/suit/armor/pcarrier/blue/sol
 	corpseshoes = /obj/item/clothing/shoes/boots/swat
 	corpsegloves = /obj/item/clothing/gloves/swat
-	corpseradio = /obj/item/device/radio/headset
+	corpseradio = /obj/item/radio/headset
 	corpsemask = /obj/item/clothing/mask/gas
 	corpsehelmet = /obj/item/clothing/head/helmet/swat
-	corpseback = /obj/item/weapon/storage/backpack
+	corpseback = /obj/item/storage/backpack
 	corpseid = 1
 	corpseidjob = "Peacekeeper"
-	corpseidaccess = "Syndicate"
+	corpseidaccess = JOB_SYNDICATE
 
 /obj/effect/landmark/mobcorpse/syndicatecommando
 	name = "Mercenary Commando"
@@ -201,28 +210,28 @@
 	corpsesuit = /obj/item/clothing/suit/space/void/merc
 	corpseshoes = /obj/item/clothing/shoes/boots/swat
 	corpsegloves = /obj/item/clothing/gloves/swat
-	corpseradio = /obj/item/device/radio/headset
+	corpseradio = /obj/item/radio/headset
 	corpsemask = /obj/item/clothing/mask/gas/syndicate
 	corpsehelmet = /obj/item/clothing/head/helmet/space/void/merc
-	corpseback = /obj/item/weapon/tank/jetpack/oxygen
-	corpsepocket1 = /obj/item/weapon/tank/emergency/oxygen
+	corpseback = /obj/item/tank/jetpack/oxygen
+	corpsepocket1 = /obj/item/tank/emergency/oxygen
 	corpseid = 1
 	corpseidjob = "Operative"
-	corpseidaccess = "Syndicate"
+	corpseidaccess = JOB_SYNDICATE
 
 
 
 /obj/effect/landmark/mobcorpse/clown
-	name = "Clown"
+	name = JOB_CLOWN
 	corpseuniform = /obj/item/clothing/under/rank/clown
 	corpseshoes = /obj/item/clothing/shoes/clown_shoes
-	corpseradio = /obj/item/device/radio/headset
+	corpseradio = /obj/item/radio/headset
 	corpsemask = /obj/item/clothing/mask/gas/clown_hat
-	corpsepocket1 = /obj/item/weapon/bikehorn
-	corpseback = /obj/item/weapon/storage/backpack/clown
+	corpsepocket1 = /obj/item/bikehorn
+	corpseback = /obj/item/storage/backpack/clown
 	corpseid = 1
-	corpseidjob = "Clown"
-	corpseidaccess = "Clown"
+	corpseidjob = JOB_CLOWN
+	corpseidaccess = JOB_CLOWN
 
 
 

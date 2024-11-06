@@ -222,10 +222,10 @@
 /area/redgate/structure/powered)
 "cV" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/paper_bin{
+/obj/item/paper_bin{
 	pixel_y = 4
 	},
-/obj/item/weapon/pen{
+/obj/item/pen{
 	pixel_y = 4
 	},
 /turf/simulated/floor/carpet/bcarpet,
@@ -329,20 +329,20 @@
 /area/redgate/structure/powered)
 "do" = (
 /obj/structure/mopbucket,
-/obj/item/weapon/reagent_containers/glass/bucket,
-/obj/item/weapon/mop,
+/obj/item/reagent_containers/glass/bucket,
+/obj/item/mop,
 /turf/simulated/floor/plating,
 /area/redgate/structure/powered)
 "dp" = (
 /obj/structure/table/steel,
-/obj/item/weapon/reagent_containers/spray/cleaner,
-/obj/item/weapon/reagent_containers/spray/cleaner,
-/obj/item/weapon/grenade/chem_grenade/cleaner,
-/obj/item/weapon/grenade/chem_grenade/cleaner,
-/obj/item/weapon/grenade/chem_grenade/cleaner,
-/obj/item/weapon/grenade/chem_grenade/cleaner,
-/obj/item/weapon/reagent_containers/spray/cleaner,
-/obj/item/weapon/reagent_containers/spray/cleaner,
+/obj/item/reagent_containers/spray/cleaner,
+/obj/item/reagent_containers/spray/cleaner,
+/obj/item/grenade/chem_grenade/cleaner,
+/obj/item/grenade/chem_grenade/cleaner,
+/obj/item/grenade/chem_grenade/cleaner,
+/obj/item/grenade/chem_grenade/cleaner,
+/obj/item/reagent_containers/spray/cleaner,
+/obj/item/reagent_containers/spray/cleaner,
 /obj/machinery/light/small{
 	dir = 4
 	},
@@ -362,11 +362,11 @@
 /area/redgate/structure/powered)
 "dv" = (
 /obj/structure/table/steel,
-/obj/item/weapon/storage/box/lights/mixed,
-/obj/item/weapon/storage/box/lights/mixed,
-/obj/item/weapon/storage/box/lights/mixed,
-/obj/item/weapon/storage/box/lights/mixed,
-/obj/item/weapon/storage/laundry_basket,
+/obj/item/storage/box/lights/mixed,
+/obj/item/storage/box/lights/mixed,
+/obj/item/storage/box/lights/mixed,
+/obj/item/storage/box/lights/mixed,
+/obj/item/storage/laundry_basket,
 /turf/simulated/floor/plating,
 /area/redgate/structure/powered)
 "dA" = (
@@ -412,10 +412,10 @@
 /area/redgate/structure/powered)
 "dE" = (
 /obj/structure/table/marble,
-/obj/item/weapon/book/manual/barman_recipes,
-/obj/item/weapon/reagent_containers/food/drinks/flask/vacuumflask,
-/obj/item/weapon/reagent_containers/glass/rag,
-/obj/item/weapon/reagent_containers/glass/rag,
+/obj/item/book/manual/barman_recipes,
+/obj/item/reagent_containers/food/drinks/flask/vacuumflask,
+/obj/item/reagent_containers/glass/rag,
+/obj/item/reagent_containers/glass/rag,
 /obj/machinery/light{
 	dir = 4
 	},
@@ -426,10 +426,10 @@
 /obj/effect/floor_decal/corner/grey/diagonal{
 	dir = 4
 	},
-/obj/item/weapon/reagent_containers/food/condiment/enzyme{
+/obj/item/reagent_containers/food/condiment/enzyme{
 	layer = 5
 	},
-/obj/item/weapon/reagent_containers/dropper,
+/obj/item/reagent_containers/dropper,
 /obj/structure/sign/poster,
 /turf/unsimulated/floor/steel{
 	icon_state = "white"
@@ -449,22 +449,22 @@
 /area/redgate/structure/powered)
 "dL" = (
 /obj/structure/closet/crate/freezer,
-/obj/item/weapon/storage/box/monkeycubes,
-/obj/item/weapon/storage/box/monkeycubes/neaeracubes,
-/obj/item/weapon/storage/box/monkeycubes/sarucubes,
-/obj/item/weapon/storage/box/monkeycubes/sobakacubes,
-/obj/item/weapon/storage/box/monkeycubes/sparracubes,
-/obj/item/weapon/storage/box/monkeycubes/stokcubes,
-/obj/item/weapon/storage/box/monkeycubes/wolpincubes,
-/obj/item/weapon/storage/box/donkpockets{
+/obj/item/storage/box/monkeycubes,
+/obj/item/storage/box/monkeycubes/neaeracubes,
+/obj/item/storage/box/monkeycubes/sarucubes,
+/obj/item/storage/box/monkeycubes/sobakacubes,
+/obj/item/storage/box/monkeycubes/sparracubes,
+/obj/item/storage/box/monkeycubes/stokcubes,
+/obj/item/storage/box/monkeycubes/wolpincubes,
+/obj/item/storage/box/donkpockets{
 	pixel_x = 3;
 	pixel_y = 3
 	},
-/obj/item/weapon/storage/box/donkpockets{
+/obj/item/storage/box/donkpockets{
 	pixel_x = 3;
 	pixel_y = 3
 	},
-/obj/item/weapon/storage/box/donkpockets{
+/obj/item/storage/box/donkpockets{
 	pixel_x = 3;
 	pixel_y = 3
 	},
@@ -490,7 +490,7 @@
 /area/redgate/wilds)
 "dR" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/reagent_containers/food/snacks/grilledcheese,
+/obj/item/reagent_containers/food/snacks/grilledcheese,
 /turf/unsimulated/floor/steel{
 	icon = 'icons/turf/floors_vr.dmi';
 	icon_state = "wood"
@@ -529,7 +529,7 @@
 /area/redgate/structure/powered)
 "ea" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/reagent_containers/food/snacks/roastbeef,
+/obj/item/reagent_containers/food/snacks/roastbeef,
 /turf/unsimulated/floor/steel{
 	icon = 'icons/turf/floors_vr.dmi';
 	icon_state = "wood"
@@ -573,10 +573,10 @@
 /area/redgate/structure/powered)
 "eh" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/reagent_containers/food/condiment/small/saltshaker{
+/obj/item/reagent_containers/food/condiment/small/saltshaker{
 	pixel_x = -3
 	},
-/obj/item/weapon/reagent_containers/food/condiment/small/peppermill{
+/obj/item/reagent_containers/food/condiment/small/peppermill{
 	pixel_x = 3
 	},
 /turf/unsimulated/floor/steel{
@@ -589,8 +589,8 @@
 /obj/effect/floor_decal/corner/grey/diagonal{
 	dir = 4
 	},
-/obj/item/weapon/material/knife/butch,
-/obj/item/weapon/reagent_containers/glass/beaker{
+/obj/item/material/knife/butch,
+/obj/item/reagent_containers/glass/beaker{
 	pixel_x = 5
 	},
 /turf/unsimulated/floor/steel{
@@ -613,10 +613,10 @@
 /obj/structure/table/standard{
 	name = "plastic table frame"
 	},
-/obj/item/weapon/material/knife,
-/obj/item/weapon/material/minihoe,
-/obj/item/weapon/reagent_containers/glass/bucket,
-/obj/item/weapon/reagent_containers/glass/bucket,
+/obj/item/material/knife,
+/obj/item/material/minihoe,
+/obj/item/reagent_containers/glass/bucket,
+/obj/item/reagent_containers/glass/bucket,
 /turf/unsimulated/floor/steel,
 /area/redgate/structure/powered)
 "el" = (
@@ -679,7 +679,7 @@
 /turf/unsimulated/floor/steel,
 /area/redgate/structure/powered)
 "ev" = (
-/obj/item/weapon/stool/padded,
+/obj/item/stool/padded,
 /obj/effect/floor_decal/spline/plain{
 	dir = 8
 	},
@@ -687,10 +687,10 @@
 /area/redgate/structure/powered)
 "ew" = (
 /obj/structure/table/marble,
-/obj/item/weapon/reagent_containers/food/condiment/small/saltshaker{
+/obj/item/reagent_containers/food/condiment/small/saltshaker{
 	pixel_x = -3
 	},
-/obj/item/weapon/reagent_containers/food/condiment/small/peppermill{
+/obj/item/reagent_containers/food/condiment/small/peppermill{
 	pixel_x = 3
 	},
 /turf/simulated/floor/lino,
@@ -704,7 +704,7 @@
 /obj/effect/floor_decal/corner/grey/diagonal{
 	dir = 4
 	},
-/obj/item/weapon/book/manual/chef_recipes,
+/obj/item/book/manual/chef_recipes,
 /turf/unsimulated/floor/steel{
 	icon_state = "white"
 	},
@@ -718,7 +718,7 @@
 /area/redgate/structure/powered)
 "eE" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/reagent_containers/food/snacks/meatballsoup,
+/obj/item/reagent_containers/food/snacks/meatballsoup,
 /turf/unsimulated/floor/steel{
 	icon = 'icons/turf/floors_vr.dmi';
 	icon_state = "wood"
@@ -732,7 +732,7 @@
 /obj/effect/floor_decal/corner/grey/diagonal{
 	dir = 4
 	},
-/obj/item/weapon/material/kitchen/rollingpin,
+/obj/item/material/kitchen/rollingpin,
 /turf/unsimulated/floor/steel{
 	icon_state = "white"
 	},
@@ -743,7 +743,7 @@
 /area/redgate/structure/powered)
 "eN" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/reagent_containers/food/snacks/meatsteak,
+/obj/item/reagent_containers/food/snacks/meatsteak,
 /turf/unsimulated/floor/steel{
 	icon = 'icons/turf/floors_vr.dmi';
 	icon_state = "wood"
@@ -751,7 +751,7 @@
 /area/redgate/structure/powered)
 "eO" = (
 /obj/structure/table/marble,
-/obj/item/weapon/reagent_containers/glass/rag,
+/obj/item/reagent_containers/glass/rag,
 /turf/simulated/floor/lino,
 /area/redgate/structure/powered)
 "eP" = (
@@ -804,15 +804,15 @@
 /obj/effect/floor_decal/corner/grey/diagonal,
 /obj/structure/closet/chefcloset,
 /obj/item/glass_jar,
-/obj/item/device/retail_scanner/civilian,
-/obj/item/weapon/soap/nanotrasen,
-/obj/item/device/destTagger{
+/obj/item/retail_scanner/civilian,
+/obj/item/soap/nanotrasen,
+/obj/item/destTagger{
 	pixel_x = 4;
 	pixel_y = 3
 	},
-/obj/item/weapon/packageWrap,
-/obj/item/weapon/packageWrap,
-/obj/item/weapon/packageWrap,
+/obj/item/packageWrap,
+/obj/item/packageWrap,
+/obj/item/packageWrap,
 /turf/simulated/floor/tiled/white,
 /area/redgate/structure/powered)
 "eW" = (
@@ -935,10 +935,10 @@
 	dir = 4
 	},
 /obj/structure/table/marble,
-/obj/item/weapon/reagent_containers/food/condiment/small/peppermill{
+/obj/item/reagent_containers/food/condiment/small/peppermill{
 	pixel_x = 3
 	},
-/obj/item/weapon/reagent_containers/food/condiment/small/saltshaker{
+/obj/item/reagent_containers/food/condiment/small/saltshaker{
 	pixel_x = -3
 	},
 /obj/structure/extinguisher_cabinet{

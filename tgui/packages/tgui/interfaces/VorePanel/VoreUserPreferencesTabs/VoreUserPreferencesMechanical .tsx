@@ -118,6 +118,9 @@ export const VoreUserPreferencesMechanical = (props: {
         <Flex.Item basis="32%" grow={1}>
           <VoreUserPreferenceItem spec={preferences.eating_privacy_global} />
         </Flex.Item>
+        <Flex.Item basis="32%" grow={1}>
+          <VoreUserPreferenceItem spec={preferences.allow_mimicry} />
+        </Flex.Item>
       </Flex>
     </Section>
   );

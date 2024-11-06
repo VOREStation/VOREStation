@@ -83,7 +83,7 @@
 	has_suit.add_overlay(get_inv_overlay())
 
 	if(user)
-		to_chat(user, "<span class='notice'>You attach \the [src] to \the [has_suit].</span>")
+		to_chat(user, span_notice("You attach \the [src] to \the [has_suit]."))
 		add_fingerprint(user)
 
 /obj/item/clothing/accessory/proc/on_removed(var/mob/user)
@@ -536,6 +536,14 @@
 	slot_flags = SLOT_TIE
 	slot = ACCESSORY_SLOT_DECOR
 
+/obj/item/clothing/accessory/wristband_spiked
+	name = "wristband (spiked)"
+	desc = "A black wristband with short spikes around it."
+	icon = 'icons/inventory/accessory/item.dmi'
+	icon_state = "wristband_spiked"
+	w_class = ITEMSIZE_TINY
+	slot_flags = SLOT_TIE
+	slot = ACCESSORY_SLOT_DECOR
 
 //Gaiter scarves
 /obj/item/clothing/accessory/gaiter
@@ -549,7 +557,7 @@
 	item_flags = FLEXIBLEMATERIAL
 	var/breath_masked = FALSE
 	var/obj/item/clothing/mask/breath/breathmask
-	action_button_name = "Pull On Gaiter"
+	actions_types = list(/datum/action/item_action/pull_on_gaiter)
 
 /obj/item/clothing/accessory/gaiter/update_clothing_icon()
 	. = ..()
@@ -559,7 +567,7 @@
 
 /obj/item/clothing/accessory/gaiter/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/clothing/mask/breath))
-		to_chat(user, SPAN_NOTICE("You tuck [I] behind [src]."))
+		to_chat(user, span_notice("You tuck [I] behind [src]."))
 		breathmask = I
 		breath_masked = TRUE
 		user.drop_from_inventory(I, drop_location())
@@ -570,7 +578,7 @@
 /obj/item/clothing/accessory/gaiter/AltClick(mob/user)
 	. = ..()
 	if(breath_masked && breathmask)
-		to_chat(user, SPAN_NOTICE("You pull [breathmask] out from behind [src], and it drops to your feet."))
+		to_chat(user, span_notice("You pull [breathmask] out from behind [src], and it drops to your feet."))
 		breathmask.forceMove(drop_location())
 		breathmask = null
 		breath_masked = FALSE
@@ -590,7 +598,7 @@
 		body_parts_covered &= ~FACE
 		if(breath_masked)
 			item_flags &= ~AIRTIGHT
-	to_chat(user, SPAN_NOTICE(gaiterstring))
+	to_chat(user, span_notice(gaiterstring))
 	qdel(mob_overlay) // we're gonna need to refresh these
 	update_clothing_icon()	//so our mob-overlays update
 

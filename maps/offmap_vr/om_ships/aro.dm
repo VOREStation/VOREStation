@@ -1,5 +1,5 @@
 // Compile in the map for CI testing if we're testing compileability of all the maps
-#if MAP_TEST
+#ifdef MAP_TEST
 #include "aro.dmm"
 #endif
 
@@ -7,7 +7,7 @@
 /datum/map_template/om_ships/aro
 	name = "OM Ship - Aronai (New Z)"
 	desc = "It's Aronai! As a spaceship."
-	mappath = 'aro.dmm'
+	mappath = "maps/offmap_vr/om_ships/aro.dmm"
 
 // The shuttle's area(s)
 /area/ship/aro

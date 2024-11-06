@@ -2,37 +2,37 @@
 	. = ..()
 
 	if (src.stat == DEAD)
-		. += "<span class='deadsay'>It appears to be powered-down.</span>"
+		. += span_deadsay("It appears to be powered-down.")
 	else
 		if (src.getBruteLoss())
 			if (src.getBruteLoss() < 30)
-				. += "<span class='warning'>It looks slightly dented.</span>"
+				. += span_warning("It looks slightly dented.")
 			else
-				. += "<span class='warning'><B>It looks severely dented!</B></span>"
+				. += span_boldwarning("It looks severely dented!")
 		if (src.getFireLoss())
 			if (src.getFireLoss() < 30)
-				. += "<span class='warning'>It looks slightly charred.</span>"
+				. += span_warning("It looks slightly charred.")
 			else
-				. += "<span class='warning'><B>Its casing is melted and heat-warped!</B></span>"
+				. += span_boldwarning("Its casing is melted and heat-warped!")
 		if (src.getOxyLoss() && (aiRestorePowerRoutine != 0 && !APU_power))
 			if (src.getOxyLoss() > 175)
-				. += "<span class='warning'><B>It seems to be running on backup power. Its display is blinking a \"BACKUP POWER CRITICAL\" warning.</B></span>"
+				. += span_boldwarning("It seems to be running on backup power. Its display is blinking a \"BACKUP POWER CRITICAL\" warning.")
 			else if(src.getOxyLoss() > 100)
-				. += "<span class='warning'><B>It seems to be running on backup power. Its display is blinking a \"BACKUP POWER LOW\" warning.</B></span>"
+				. += span_boldwarning("It seems to be running on backup power. Its display is blinking a \"BACKUP POWER LOW\" warning.")
 			else
-				. += "<span class='warning'>It seems to be running on backup power.</span>"
+				. += span_warning("It seems to be running on backup power.")
 
 		if (src.stat == UNCONSCIOUS)
-			. += "<span class='warning'>It is non-responsive and displaying the text: \"RUNTIME: Sensory Overload, stack 26/3\".</span>"
+			. += span_warning("It is non-responsive and displaying the text: \"RUNTIME: Sensory Overload, stack 26/3\".")
 
 		if(deployed_shell)
 			. += "The wireless networking light is blinking."
 
-	. += "*---------*"
-	
+	. += ""
+
 	if(hardware && (hardware.owner == src))
 		. += hardware.get_examine_desc()
-	
+
 	user.showLaws(src)
 
 /mob/proc/showLaws(var/mob/living/silicon/S)

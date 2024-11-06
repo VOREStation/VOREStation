@@ -1,5 +1,5 @@
 //RD 'gun'
-/obj/item/weapon/bluespace_harpoon
+/obj/item/bluespace_harpoon
 	name = "bluespace harpoon"
 	desc = "For climbing on bluespace mountains!"
 
@@ -17,91 +17,91 @@
 	var/firable = TRUE
 	var/transforming = 0
 	var/failure_chance = 15 // This can become negative with part tiers above 3, which helps offset penalties
-	var/obj/item/weapon/stock_parts/scanning_module/scanmod
+	var/obj/item/stock_parts/scanning_module/scanmod
 	var/dropnoms_active = TRUE
 
-/obj/item/weapon/bluespace_harpoon/Initialize()
+/obj/item/bluespace_harpoon/Initialize()
 	. = ..()
 	scanmod = new(src)
 	update_fail_chance()
 
-/obj/item/weapon/bluespace_harpoon/examine(var/mob/user)
+/obj/item/bluespace_harpoon/examine(var/mob/user)
 	. = ..()
 	. += "It is currently in [mode ? "transmitting" : "receiving"] mode."
 	. += "Spatial rearrangement is [dropnoms_active ? "active" : "inactive"]."
 	if(Adjacent(user))
 		. += "It has [scanmod ? scanmod : "no scanner module"] installed."
 
-/obj/item/weapon/bluespace_harpoon/proc/update_fail_chance()
+/obj/item/bluespace_harpoon/proc/update_fail_chance()
 	if(scanmod)
 		failure_chance = initial(failure_chance) - (scanmod.rating * 5)
 	else
 		failure_chance = 75 // You can't even use it if there's no scanmod, but why not.
 
-/obj/item/weapon/bluespace_harpoon/attackby(var/obj/item/I, var/mob/living/user)
+/obj/item/bluespace_harpoon/attackby(var/obj/item/I, var/mob/living/user)
 	if(!istype(user))
 		return
 
 	if(I.has_tool_quality(TOOL_SCREWDRIVER))
 		if(!scanmod)
-			to_chat(user, "<span class='warning'>There's no scanner module installed!</span>")
+			to_chat(user, span_warning("There's no scanner module installed!"))
 			return
 		var/turf/T = get_turf(src)
-		to_chat(user, "<span class='notice'>You remove [scanmod] from [src].</span>")
+		to_chat(user, span_notice("You remove [scanmod] from [src]."))
 		playsound(src, I.usesound, 75, 1)
 		scanmod.forceMove(T)
 		scanmod = null
 		update_fail_chance()
-	else if(istype(I, /obj/item/weapon/stock_parts/scanning_module))
+	else if(istype(I, /obj/item/stock_parts/scanning_module))
 		if(scanmod)
-			to_chat(user, "<span class='warning'>There's already [scanmod] installed! Remove it first.</span>")
+			to_chat(user, span_warning("There's already [scanmod] installed! Remove it first."))
 			return
 		user.remove_from_mob(I)
 		I.forceMove(src)
 		scanmod = I
-		to_chat(user, "<span class='notice'>You install [scanmod] into [src].</span>")
+		to_chat(user, span_notice("You install [scanmod] into [src]."))
 		update_fail_chance()
 	else
 		return ..()
 
-/obj/item/weapon/bluespace_harpoon/afterattack(atom/A, mob/user as mob)
+/obj/item/bluespace_harpoon/afterattack(atom/A, mob/user as mob)
 	if(!user || !A || isstorage(A))
 		return
 	if(!scanmod)
-		to_chat(user,"<span class = 'warning'>The scanning module has been removed from [src]!</span>")
+		to_chat(user,span_warning("The scanning module has been removed from [src]!"))
 		return
 	if(transforming)
-		to_chat(user,"<span class = 'warning'>You can't fire while \the [src] transforming!</span>")
+		to_chat(user,span_warning("You can't fire while \the [src] transforming!"))
 		return
 	if(!firable)
-		to_chat(user,"<span class = 'warning'>\The [src] is recharging...</span>")
+		to_chat(user,span_warning("\The [src] is recharging..."))
 		return
 	if(is_jammed(A) || is_jammed(user))
 		firable = FALSE
 		VARSET_IN(src, firable, TRUE, 30 SECONDS)
-		to_chat(user,"<span class = 'warning'>\The [src] shot fizzles due to interference!</span>")
+		to_chat(user,span_warning("\The [src] shot fizzles due to interference!"))
 		playsound(src, 'sound/weapons/wave.ogg', 60, 1)
 		return
 	var/turf/T = get_turf(A)
 	if(!T || (T.check_density(ignore_mobs = TRUE) && mode == 1))
-		to_chat(user,"<span class = 'warning'>That's a little too solid to harpoon into!</span>")
+		to_chat(user,span_warning("That's a little too solid to harpoon into!"))
 		return
 	var/turf/ownturf = get_turf(src)
 	if(ownturf.z != T.z || get_dist(T,ownturf) > world.view)
-		to_chat(user, "<span class='warning'>The target is out of range!</span>")
+		to_chat(user, span_warning("The target is out of range!"))
 		return
 	if(get_area(A).flags & BLUE_SHIELDED)
-		to_chat(user, "<span class='warning'>The target area protected by bluespace shielding!</span>")
+		to_chat(user, span_warning("The target area protected by bluespace shielding!"))
 		return
 	if(!(A in view(user, world.view)))
-		to_chat(user, "<span class='warning'>Harpoon fails to lock on the obstructed target!</span>")
+		to_chat(user, span_warning("Harpoon fails to lock on the obstructed target!"))
 		return
 
 	firable = FALSE
 	VARSET_IN(src, firable, TRUE, 30 SECONDS)
 	playsound(src, 'sound/weapons/wave.ogg', 60, 1)
 
-	user.visible_message("<span class='warning'>[user] fires \the [src]!</span>","<span class='warning'>You fire \the [src]!</span>")
+	user.visible_message(span_warning("[user] fires \the [src]!"),span_warning("You fire \the [src]!"))
 
 	var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
 	s.set_up(4, 1, A)
@@ -144,8 +144,8 @@
 							if(prey != user && prey.can_be_drop_prey)
 								prey.forceMove(belly_dest)
 								vore_happened = TRUE
-								to_chat(prey, "<span class='vdanger'>[living_user] materializes around you, as you end up in their [belly_dest]!</span>")
-								to_chat(living_user, "<span class='vnotice'>You materialize around [prey] as they end up in your [belly_dest]!</span>")
+								to_chat(prey, span_vdanger("[living_user] materializes around you, as you end up in their [belly_dest]!"))
+								to_chat(living_user, span_vnotice("You materialize around [prey] as they end up in your [belly_dest]!"))
 				if(can_dropnom && !vore_happened && living_user.can_be_drop_prey)
 					var/mob/living/pred
 					for(var/mob/living/potential_pred in ToTurf)
@@ -159,8 +159,8 @@
 							belly_dest = pick(pred.vore_organs)
 						if(belly_dest)
 							living_user.forceMove(belly_dest)
-							to_chat(pred, "<span class='vnotice'>[living_user] materializes inside you as they end up in your [belly_dest]!</span>")
-							to_chat(living_user, "<span class='vdanger'>You materialize inside [pred] as you end up in their [belly_dest]!</span>")
+							to_chat(pred, span_vnotice("[living_user] materializes inside you as they end up in your [belly_dest]!"))
+							to_chat(living_user, span_vdanger("You materialize inside [pred] as you end up in their [belly_dest]!"))
 
 	else
 		for(var/obj/O in FromTurf)
@@ -185,8 +185,8 @@
 						belly_dest = pick(living_user.vore_organs)
 					if(belly_dest)
 						M.forceMove(belly_dest)
-						to_chat(living_user, "<span class='vnotice'>[M] materializes inside you as they end up in your [belly_dest]!</span>")
-						to_chat(M, "<span class='vdanger'>You materialize inside [living_user] as you end up in their [belly_dest]!</span>")
+						to_chat(living_user, span_vnotice("[M] materializes inside you as they end up in your [belly_dest]!"))
+						to_chat(M, span_vdanger("You materialize inside [living_user] as you end up in their [belly_dest]!"))
 				else if(can_dropnom && living_user.can_be_drop_prey && M.can_be_drop_pred && !user_vored)
 					var/obj/belly/belly_dest
 					if(M.vore_selected)
@@ -196,14 +196,14 @@
 					if(belly_dest)
 						living_user.forceMove(belly_dest)
 						user_vored = TRUE
-						to_chat(living_user, "<span class='vdanger'>[M] materializes around you, as you end up in their [belly_dest]!</span>")
-						to_chat(M, "<span class='vnotice'>You materialize around [living_user] as they end up in your [belly_dest]!</span>")
+						to_chat(living_user, span_vdanger("[M] materializes around you, as you end up in their [belly_dest]!"))
+						to_chat(M, span_vnotice("You materialize around [living_user] as they end up in your [belly_dest]!"))
 
 
-/obj/item/weapon/bluespace_harpoon/attack_self(mob/living/user as mob)
+/obj/item/bluespace_harpoon/attack_self(mob/living/user as mob)
 	return chande_fire_mode(user)
 
-/obj/item/weapon/bluespace_harpoon/verb/chande_fire_mode(mob/user as mob)
+/obj/item/bluespace_harpoon/verb/chande_fire_mode(mob/user as mob)
 	set name = "Change Fire Mode"
 	set category = "Object"
 	set src in range(0)
@@ -211,18 +211,18 @@
 	if(transforming) return
 	mode = !mode
 	transforming = 1
-	to_chat(user,"<span class = 'info'>You change \the [src]'s mode to [mode ? "transmiting" : "receiving"].</span>")
+	to_chat(user,span_info("You change \the [src]'s mode to [mode ? "transmiting" : "receiving"]."))
 	update_icon()
 
-/obj/item/weapon/bluespace_harpoon/verb/chande_dropnom_mode(mob/user as mob)
+/obj/item/bluespace_harpoon/verb/chande_dropnom_mode(mob/user as mob)
 	set name = "Toggle Spatial Rearrangement"
 	set category = "Object"
 	set src in range(0)
 
 	dropnoms_active = !dropnoms_active
-	to_chat(user,"<span class = 'info'>You switch \the [src]'s spatial rearrangement [dropnoms_active ? "on" : "off"]. (Telenoms [dropnoms_active ? "enabled" : "disabled"])</span>")
+	to_chat(user,span_info("You switch \the [src]'s spatial rearrangement [dropnoms_active ? "on" : "off"]. (Telenoms [dropnoms_active ? "enabled" : "disabled"])"))
 
-/obj/item/weapon/bluespace_harpoon/update_icon()
+/obj/item/bluespace_harpoon/update_icon()
 	if(transforming)
 		switch(mode)
 			if(0)

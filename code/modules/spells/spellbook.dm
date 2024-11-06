@@ -1,4 +1,4 @@
-/obj/item/weapon/spellbook
+/obj/item/spellbook
 	name = "spell book"
 	desc = "The legendary book of spells of the wizard."
 	icon = 'icons/obj/library.dmi'
@@ -11,11 +11,11 @@
 	var/max_uses = 5
 	var/op = 1
 
-/obj/item/weapon/spellbook/attack_self(mob/user = usr)
+/obj/item/spellbook/attack_self(mob/user = usr)
 	if(!user)
 		return
 	if((user.mind && !wizards.is_antagonist(user.mind)))
-		to_chat(usr, "<span class='warning'>You stare at the book but cannot make sense of the markings!</span>")
+		to_chat(usr, span_warning("You stare at the book but cannot make sense of the markings!"))
 		return
 
 	user.set_machine(src)
@@ -82,7 +82,7 @@
 	onclose(user, "radio")
 	return
 
-/obj/item/weapon/spellbook/Topic(href, href_list)
+/obj/item/spellbook/Topic(href, href_list)
 	..()
 	var/mob/living/carbon/human/H = usr
 
@@ -91,7 +91,7 @@
 	if(!istype(H, /mob/living/carbon/human))
 		return 1
 
-	if(H.mind.special_role == "apprentice")
+	if(H.mind.special_role == JOB_APPRENTICE)
 		temp = "If you got caught sneaking a peak from your teacher's spellbook, you'd likely be expelled from the Wizard Academy. Better not."
 		return
 
@@ -204,12 +204,12 @@
 //							temp = "You have learned curse of the horseman."
 						if("mentalfocus")
 							feedback_add_details("wizard_spell_learned","MF") //please do not change the abbreviation to keep data processing consistent. Add a unique id to any new spells
-							new /obj/item/weapon/gun/energy/staff/focus(get_turf(H))
+							new /obj/item/gun/energy/staff/focus(get_turf(H))
 							temp = "An artefact that channels the will of the user into destructive bolts of force."
 							max_uses--
 						if("soulstone")
 							feedback_add_details("wizard_spell_learned","SS") //please do not change the abbreviation to keep data processing consistent. Add a unique id to any new spells
-							new /obj/item/weapon/storage/belt/soulstone/full(get_turf(H))
+							new /obj/item/storage/belt/soulstone/full(get_turf(H))
 							H.add_spell(new/spell/aoe_turf/conjure/construct)
 							temp = "You have purchased a belt full of soulstones and have learned the artificer spell."
 							max_uses--
@@ -223,13 +223,13 @@
 							max_uses--
 						if("scrying")
 							feedback_add_details("wizard_spell_learned","SO") //please do not change the abbreviation to keep data processing consistent. Add a unique id to any new spells
-							new /obj/item/weapon/scrying(get_turf(H))
+							new /obj/item/scrying(get_turf(H))
 							if (!(XRAY in H.mutations))
 								H.mutations.Add(XRAY)
 								H.sight |= (SEE_MOBS|SEE_OBJS|SEE_TURFS)
 								H.see_in_dark = 8
 								H.see_invisible = SEE_INVISIBLE_LEVEL_TWO
-								to_chat(H, "<span class='notice'>The walls suddenly disappear.</span>")
+								to_chat(H, span_notice("The walls suddenly disappear."))
 							temp = "You have purchased a scrying orb, and gained x-ray vision."
 							max_uses--
 		else
@@ -241,7 +241,7 @@
 
 //Single Use Spellbooks//
 
-/obj/item/weapon/spellbook/oneuse
+/obj/item/spellbook/oneuse
 	var/spell = /spell/targeted/projectile/magic_missile //just a placeholder to avoid runtimes if someone spawned the generic
 	var/spellname = "sandbox"
 	var/used = 0
@@ -250,105 +250,105 @@
 	max_uses = 1
 	desc = "This template spellbook was never meant for the eyes of man..."
 
-/obj/item/weapon/spellbook/oneuse/New()
+/obj/item/spellbook/oneuse/New()
 	..()
 	name += spellname
 
-/obj/item/weapon/spellbook/oneuse/attack_self(mob/user as mob)
+/obj/item/spellbook/oneuse/attack_self(mob/user as mob)
 	var/spell/S = new spell(user)
 	for(var/spell/knownspell in user.spell_list)
 		if(knownspell.type == S.type)
 			if(user.mind)
 				// TODO: Update to new antagonist system.
-				if(user.mind.special_role == "apprentice" || user.mind.special_role == "Wizard")
-					to_chat(user, "<span class='notice'>You're already far more versed in this spell than this flimsy how-to book can provide.</span>")
+				if(user.mind.special_role == JOB_APPRENTICE || user.mind.special_role == JOB_WIZARD)
+					to_chat(user, span_notice("You're already far more versed in this spell than this flimsy how-to book can provide."))
 				else
-					to_chat(user, "<span class='notice'>You've already read this one.</span>")
+					to_chat(user, span_notice("You've already read this one."))
 			return
 	if(used)
 		recoil(user)
 	else
 		user.add_spell(S)
-		to_chat(user, "<span class='notice'>you rapidly read through the arcane book. Suddenly you realize you understand [spellname]!</span>")
+		to_chat(user, span_notice("you rapidly read through the arcane book. Suddenly you realize you understand [spellname]!"))
 		user.attack_log += text("\[[time_stamp()]\] [span_orange("[user.real_name] ([user.ckey]) learned the spell [spellname] ([S]).")]")
 		onlearned(user)
 
-/obj/item/weapon/spellbook/oneuse/proc/recoil(mob/user as mob)
-	user.visible_message("<span class='warning'>[src] glows in a black light!</span>")
+/obj/item/spellbook/oneuse/proc/recoil(mob/user as mob)
+	user.visible_message(span_warning("[src] glows in a black light!"))
 
-/obj/item/weapon/spellbook/oneuse/proc/onlearned(mob/user as mob)
+/obj/item/spellbook/oneuse/proc/onlearned(mob/user as mob)
 	used = 1
-	user.visible_message("<span class='caution'>[src] glows dark for a second!</span>")
+	user.visible_message(span_warning("[src] glows dark for a second!"))
 
-/obj/item/weapon/spellbook/oneuse/attackby()
+/obj/item/spellbook/oneuse/attackby()
 	return
 
-/obj/item/weapon/spellbook/oneuse/fireball
+/obj/item/spellbook/oneuse/fireball
 	spell = /spell/targeted/projectile/dumbfire/fireball
 	spellname = "fireball"
 	icon_state ="bookfireball"
 	desc = "This book feels warm to the touch."
 
-/obj/item/weapon/spellbook/oneuse/fireball/recoil(mob/user as mob)
+/obj/item/spellbook/oneuse/fireball/recoil(mob/user as mob)
 	..()
 	explosion(user.loc, -1, 0, 2, 3, 0)
 	qdel(src)
 
-/obj/item/weapon/spellbook/oneuse/smoke
+/obj/item/spellbook/oneuse/smoke
 	spell = /spell/aoe_turf/smoke
 	spellname = "smoke"
 	icon_state ="booksmoke"
 	desc = "This book is overflowing with the dank arts."
 
-/obj/item/weapon/spellbook/oneuse/smoke/recoil(mob/living/user as mob)
+/obj/item/spellbook/oneuse/smoke/recoil(mob/living/user as mob)
 	..()
-	to_chat(user, "<span class='caution'>Your stomach rumbles...</span>")
+	to_chat(user, span_warning("Your stomach rumbles..."))
 	if(user.nutrition)
 		user.adjust_nutrition(-200)
 
-/obj/item/weapon/spellbook/oneuse/blind
+/obj/item/spellbook/oneuse/blind
 	spell = /spell/targeted/genetic/blind
 	spellname = "blind"
 	icon_state ="bookblind"
 	desc = "This book looks blurry, no matter how you look at it."
 
-/obj/item/weapon/spellbook/oneuse/blind/recoil(mob/user as mob)
+/obj/item/spellbook/oneuse/blind/recoil(mob/user as mob)
 	..()
-	to_chat(user, "<span class='warning'>You go blind!</span>")
+	to_chat(user, span_warning("You go blind!"))
 	user.Blind(10)
 
-/obj/item/weapon/spellbook/oneuse/mindswap
+/obj/item/spellbook/oneuse/mindswap
 	spell = /spell/targeted/mind_transfer
 	spellname = "mindswap"
 	icon_state ="bookmindswap"
 	desc = "This book's cover is pristine, though its pages look ragged and torn."
 	var/mob/stored_swap = null //Used in used book recoils to store an identity for mindswaps
 
-/obj/item/weapon/spellbook/oneuse/mindswap/onlearned()
+/obj/item/spellbook/oneuse/mindswap/onlearned()
 	spellname = pick("fireball","smoke","blind","forcewall","knock","horses","charge")
 	icon_state = "book[spellname]"
 	name = "spellbook of [spellname]" //Note, desc doesn't change by design
 	..()
 
-/obj/item/weapon/spellbook/oneuse/mindswap/recoil(mob/user as mob)
+/obj/item/spellbook/oneuse/mindswap/recoil(mob/user as mob)
 	..()
 	if(stored_swap in dead_mob_list)
 		stored_swap = null
 	if(!stored_swap)
 		stored_swap = user
-		to_chat(user, "<span class='warning'>For a moment you feel like you don't even know who you are anymore.</span>")
+		to_chat(user, span_warning("For a moment you feel like you don't even know who you are anymore."))
 		return
 	if(stored_swap == user)
-		to_chat(user, "<span class='notice'>You stare at the book some more, but there doesn't seem to be anything else to learn...</span>")
+		to_chat(user, span_notice("You stare at the book some more, but there doesn't seem to be anything else to learn..."))
 		return
 
 	if(user.mind.special_verbs.len)
 		for(var/V in user.mind.special_verbs)
-			user.verbs -= V
+			remove_verb(user, V)
 
 	if(stored_swap.mind.special_verbs.len)
 		for(var/V in stored_swap.mind.special_verbs)
-			stored_swap.verbs -= V
+			remove_verb(stored_swap, V)
 
 	var/mob/observer/dead/ghost = stored_swap.ghostize(0)
 	ghost.spell_list = stored_swap.spell_list
@@ -358,7 +358,7 @@
 
 	if(stored_swap.mind.special_verbs.len)
 		for(var/V in user.mind.special_verbs)
-			user.verbs += V
+			add_verb(user, V)
 
 	ghost.mind.transfer_to(user)
 	user.key = ghost.key
@@ -366,44 +366,44 @@
 
 	if(user.mind.special_verbs.len)
 		for(var/V in user.mind.special_verbs)
-			user.verbs += V
+			add_verb(user, V)
 
-	to_chat(stored_swap, "<span class='warning'>You're suddenly somewhere else... and someone else?!</span>")
-	to_chat(user, "<span class='warning'>Suddenly you're staring at [src] again... where are you, who are you?!</span>")
+	to_chat(stored_swap, span_warning("You're suddenly somewhere else... and someone else?!"))
+	to_chat(user, span_warning("Suddenly you're staring at [src] again... where are you, who are you?!"))
 	stored_swap = null
 
-/obj/item/weapon/spellbook/oneuse/forcewall
+/obj/item/spellbook/oneuse/forcewall
 	spell = /spell/aoe_turf/conjure/forcewall
 	spellname = "forcewall"
 	icon_state ="bookforcewall"
 	desc = "This book has a dedication to mimes everywhere inside the front cover."
 
-/obj/item/weapon/spellbook/oneuse/forcewall/recoil(mob/user as mob)
+/obj/item/spellbook/oneuse/forcewall/recoil(mob/user as mob)
 	..()
-	to_chat(user, "<span class='warning'>You suddenly feel very solid!</span>")
+	to_chat(user, span_warning("You suddenly feel very solid!"))
 	var/obj/structure/closet/statue/S = new /obj/structure/closet/statue(user.loc, user)
 	S.timer = 30
 	user.drop_item()
 
 
-/obj/item/weapon/spellbook/oneuse/knock
+/obj/item/spellbook/oneuse/knock
 	spell = /spell/aoe_turf/knock
 	spellname = "knock"
 	icon_state ="bookknock"
 	desc = "This book is hard to hold closed properly."
 
-/obj/item/weapon/spellbook/oneuse/knock/recoil(mob/user as mob)
+/obj/item/spellbook/oneuse/knock/recoil(mob/user as mob)
 	..()
-	to_chat(user, "<span class='warning'>You're knocked down!</span>")
+	to_chat(user, span_warning("You're knocked down!"))
 	user.Weaken(20)
 
-/obj/item/weapon/spellbook/oneuse/horsemask
+/obj/item/spellbook/oneuse/horsemask
 	spell = /spell/targeted/equip_item/horsemask
 	spellname = "horses"
 	icon_state ="bookhorses"
 	desc = "This book is more horse than your mind has room for."
 
-/obj/item/weapon/spellbook/oneuse/horsemask/recoil(mob/living/carbon/user as mob)
+/obj/item/spellbook/oneuse/horsemask/recoil(mob/living/carbon/user as mob)
 	if(istype(user, /mob/living/carbon/human))
 		to_chat(user, "<font size='15' color='red'><b>HOR-SIE HAS RISEN</b></font>")
 		var/obj/item/clothing/mask/horsehead/magichead = new /obj/item/clothing/mask/horsehead
@@ -414,15 +414,15 @@
 		user.equip_to_slot_if_possible(magichead, slot_wear_mask, 1, 1)
 		qdel(src)
 	else
-		to_chat(user, "<span class='notice'>I say thee neigh</span>")
+		to_chat(user, span_notice("I say thee neigh"))
 
-/obj/item/weapon/spellbook/oneuse/charge
+/obj/item/spellbook/oneuse/charge
 	spell = /spell/aoe_turf/charge
 	spellname = "charging"
 	icon_state ="bookcharge"
 	desc = "This book is made of 100% post-consumer wizard."
 
-/obj/item/weapon/spellbook/oneuse/charge/recoil(mob/user as mob)
+/obj/item/spellbook/oneuse/charge/recoil(mob/user as mob)
 	..()
-	to_chat(user, "<span class='warning'>[src] suddenly feels very warm!</span>")
+	to_chat(user, span_warning("[src] suddenly feels very warm!"))
 	empulse(src, 1, 1, 1, 1)

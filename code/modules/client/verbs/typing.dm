@@ -7,7 +7,7 @@
 	src << output('html/typing_indicator.html', "commandbar_spy")
 
 /client/proc/handle_commandbar_typing(href_list)
-	if(!is_preference_enabled(/datum/client_preference/show_typing_indicator))
+	if(!prefs?.read_preference(/datum/preference/toggle/show_typing_indicator))
 		return
 
 	if(length(href_list["verb"]) < 1 || !(lowertext(href_list["verb"]) in IC_VERBS) || text2num(href_list["argument_length"]) < 1)
@@ -31,10 +31,10 @@
 
 /** Sets the mob as "thinking" - with indicator and the TRAIT_THINKING_IN_CHARACTER trait */
 /client/proc/start_thinking(channel)
-	if(!is_preference_enabled(/datum/client_preference/show_typing_indicator))
+	if(!prefs?.read_preference(/datum/preference/toggle/show_typing_indicator))
 		return FALSE
 	if(channel == "Whis" || channel == "Subtle" || channel == "whisper" || channel == "subtle")
-		if(!is_preference_enabled(/datum/client_preference/show_typing_indicator_subtle))
+		if(!prefs?.read_preference(/datum/preference/toggle/show_typing_indicator_subtle))
 			return FALSE
 	ADD_TRAIT(mob, TRAIT_THINKING_IN_CHARACTER, CURRENTLY_TYPING_TRAIT)
 	mob.create_thinking_indicator()
@@ -50,10 +50,10 @@
 /client/proc/start_typing(channel)
 	var/mob/client_mob = mob
 	client_mob.remove_thinking_indicator()
-	if(!is_preference_enabled(/datum/client_preference/show_typing_indicator) || !HAS_TRAIT(client_mob, TRAIT_THINKING_IN_CHARACTER))
+	if(!prefs?.read_preference(/datum/preference/toggle/show_typing_indicator) || !HAS_TRAIT(client_mob, TRAIT_THINKING_IN_CHARACTER))
 		return FALSE
 	if(channel == "Whis" || channel == "Subtle" || channel == "whisper" || channel == "subtle")
-		if(!is_preference_enabled(/datum/client_preference/show_typing_indicator_subtle))
+		if(!prefs?.read_preference(/datum/preference/toggle/show_typing_indicator_subtle))
 			return FALSE
 	client_mob.create_typing_indicator()
 	addtimer(CALLBACK(src, PROC_REF(stop_typing), channel), 5 SECONDS, TIMER_UNIQUE | TIMER_OVERRIDE | TIMER_STOPPABLE)
@@ -67,10 +67,10 @@
 		return FALSE
 	var/mob/client_mob = mob
 	client_mob.remove_typing_indicator()
-	if(!is_preference_enabled(/datum/client_preference/show_typing_indicator) || !HAS_TRAIT(client_mob, TRAIT_THINKING_IN_CHARACTER))
+	if(!prefs?.read_preference(/datum/preference/toggle/show_typing_indicator) || !HAS_TRAIT(client_mob, TRAIT_THINKING_IN_CHARACTER))
 		return FALSE
 	if(channel == "Whis" || channel == "Subtle" || channel == "whisper" || channel == "subtle")
-		if(!is_preference_enabled(/datum/client_preference/show_typing_indicator_subtle))
+		if(!prefs?.read_preference(/datum/preference/toggle/show_typing_indicator_subtle))
 			return FALSE
 	client_mob.create_thinking_indicator()
 

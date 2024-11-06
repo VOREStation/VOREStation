@@ -238,8 +238,8 @@ var/global/list/Holiday = list() //Holidays are lists now, so we can have more t
 
 //Allows GA and GM to set the Holiday variable
 /client/proc/Set_Holiday()
-	set name = ".Set Holiday"
-	set category = "Fun"
+	set name = "Set Holiday"
+	set category = "Fun.Event Kit"
 	set desc = "Force-set the Holiday variable to make the game think it's a certain day."
 	if(!check_rights(R_SERVER))	return
 
@@ -255,7 +255,7 @@ var/global/list/Holiday = list() //Holidays are lists now, so we can have more t
 	world.update_status()
 	Holiday_Game_Start()
 
-	message_admins("<span class='notice'>ADMIN: Event: [key_name(src)] force-set Holiday to \"[Holiday]\"</span>")
+	message_admins(span_notice("ADMIN: Event: [key_name(src)] force-set Holiday to \"[Holiday]\""))
 	log_admin("[key_name(src)] force-set Holiday to \"[Holiday]\"")
 
 
@@ -268,11 +268,11 @@ var/global/list/Holiday = list() //Holidays are lists now, so we can have more t
 			holidays.Add(p)
 			holiday_blurbs.Add("[Holiday[p]]")
 		var/holidays_string = english_list(holidays, nothing_text = "nothing", and_text = " and ", comma_text = ", ", final_comma_text = "" )
-		to_world(span_blue("and..."))
-		to_world("<h4>Happy [holidays_string] Everybody!</h4>")
+		to_world(span_filter_system(span_blue("and...")))
+		to_world(span_filter_system("<h4>Happy [holidays_string] Everybody!</h4>"))
 		if(holiday_blurbs.len != 0)
 			for(var/blurb in holiday_blurbs)
-				to_world(span_blue("<div align='center'>[blurb]</div>"))
+				to_world(span_filter_system(span_blue("<div align='center'>[blurb]</div>")))
 		switch(Holiday)			//special holidays
 			if("Easter")
 				//do easter stuff
@@ -294,16 +294,16 @@ var/global/list/Holiday = list() //Holidays are lists now, so we can have more t
 			var/turf/simulated/floor/F = Floorlist[rand(1,Floorlist.len)]
 			Floorlist = null
 			var/obj/structure/closet/C = locate(/obj/structure/closet) in F
-			var/obj/item/weapon/reagent_containers/food/snacks/chocolateegg/wrapped/Egg
+			var/obj/item/reagent_containers/food/snacks/chocolateegg/wrapped/Egg
 			if( C )			Egg = new(C)
 			else			Egg = new(F)
 */
 /*			var/list/obj/containers = list()
-			for(var/obj/item/weapon/storage/S in world)
+			for(var/obj/item/storage/S in world)
 				if(isNotStationLevel(S.z))	continue
 				containers += S
 
-			message_admins("<span class='notice'>DEBUG: Event: Egg spawned at [Egg.loc] ([Egg.x],[Egg.y],[Egg.z])</span>")*/
+			message_admins(span_notice("DEBUG: Event: Egg spawned at [Egg.loc] ([Egg.x],[Egg.y],[Egg.z])"))*/
 		if("End of the World")
 			if(prob(eventchance))	GameOver()
 

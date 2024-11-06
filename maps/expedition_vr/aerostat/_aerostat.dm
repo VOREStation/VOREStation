@@ -119,7 +119,7 @@
 
 /obj/tether_away_spawner/aerostat_inside
 	name = "Aerostat Indoors Spawner"
-	faction = "aerostat_inside"
+	faction = FACTION_AEROSTAT_INSIDE
 	atmos_comp = TRUE
 	prob_spawn = 100
 	prob_fall = 50
@@ -133,7 +133,7 @@
 
 /obj/tether_away_spawner/aerostat_surface
 	name = "Aerostat Surface Spawner"
-	faction = "aerostat_surface"
+	faction = FACTION_AEROSTAT_SURFACE
 	atmos_comp = TRUE
 	prob_spawn = 100
 	prob_fall = 30

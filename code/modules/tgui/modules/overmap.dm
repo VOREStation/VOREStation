@@ -2,6 +2,7 @@
 	var/obj/effect/overmap/visitable/ship/linked
 	var/list/viewers
 	var/extra_view = 0
+	var/map_view_used = FALSE
 
 /datum/tgui_module/ship/New()
 	. = ..()
@@ -17,6 +18,24 @@
 				unlook(M)
 	. = ..()
 
+/datum/tgui_module/ship/tgui_interact(mob/user, datum/tgui/ui, datum/tgui/parent_ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		if(linked)
+			user.client.register_map_obj(linked.cam_screen)
+			for(var/plane in linked.cam_plane_masters)
+				user.client.register_map_obj(plane)
+			user.client.register_map_obj(linked.cam_background)
+			linked.update_screen()
+
+		ui = new(user, src, tgui_id, name, parent_ui)
+		ui.open()
+
+/datum/tgui_module/ship/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
+	var/list/data = ..()
+	data["mapRef"] = linked?.map_name
+	return data
+
 /datum/tgui_module/ship/tgui_status(mob/user)
 	. = ..()
 	if(. > STATUS_DISABLED)
@@ -29,6 +48,9 @@
 	. = ..()
 	user.unset_machine()
 	unlook(user)
+
+	// Unregister map objects
+	user.client?.clear_map(linked?.map_name)
 
 /datum/tgui_module/ship/proc/sync_linked()
 	var/obj/effect/overmap/visitable/ship/sector = get_overmap_sector(get_z(tgui_host()))
@@ -56,13 +78,17 @@
 		user.reset_view(linked)
 	user.set_viewsize(world.view + extra_view)
 	user.AddComponent(/datum/component/recursive_move)
-	RegisterSignal(user, COMSIG_OBSERVER_MOVED, /datum/tgui_module/ship/proc/unlook)
+	if(!map_view_used)
+		RegisterSignal(user, COMSIG_OBSERVER_MOVED, /datum/tgui_module/ship/proc/unlook)
+		map_view_used = TRUE
 	LAZYDISTINCTADD(viewers, WEAKREF(user))
 
 /datum/tgui_module/ship/proc/unlook(var/mob/user)
 	user.reset_view()
 	user.set_viewsize() // reset to default
-	UnregisterSignal(user, COMSIG_OBSERVER_MOVED)
+	if(map_view_used)
+		UnregisterSignal(user, COMSIG_OBSERVER_MOVED)
+		map_view_used = FALSE
 	LAZYREMOVE(viewers, WEAKREF(user))
 
 /datum/tgui_module/ship/proc/viewing_overmap(mob/user)
@@ -90,7 +116,7 @@
 
 		// NTOS Path
 		if(!sync_linked())
-			to_chat(user, "<span class='warning'>You don't appear to be on a spaceship...</span>")
+			to_chat(user, span_warning("You don't appear to be on a spaceship..."))
 			if(ui)
 				ui.close(can_be_suspended = FALSE)
 			if(ntos)
@@ -314,7 +340,7 @@
 				sec_name = "Sector #[known_sectors.len]"
 			R.fields["name"] = sec_name
 			if(sec_name in known_sectors)
-				to_chat(usr, "<span class='warning'>Sector with that name already exists, please input a different name.</span>")
+				to_chat(usr, span_warning("Sector with that name already exists, please input a different name."))
 				return TRUE
 			switch(params["add"])
 				if("current")

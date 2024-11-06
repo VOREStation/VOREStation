@@ -29,7 +29,7 @@
 
 /obj/item/clothing/head/collectable/chef
 	name = "collectable chef's hat"
-	desc = "A rare Chef's Hat meant for hat collectors!"
+	desc = "A rare " + JOB_CHEF + "'s Hat meant for hat collectors!"
 	icon_state = "chefhat"
 
 /obj/item/clothing/head/collectable/paper

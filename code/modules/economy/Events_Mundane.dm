@@ -29,7 +29,7 @@
 	"New bowling lane that shoots mini-meteors at bowlers very popular.",\
 	"[pick("Unathi","Spacer")] gets tattoo of "+using_map.starsys_name+" on chest '[pick("[using_map.boss_short]","star","starship","asteroid")] tickles most'.",\
 	"Skrell marries computer; wedding attended by 100 modems.",\
-	"Chef reports successfully using harmonica as cheese grater.",\
+	JOB_CHEF + " reports successfully using harmonica as cheese grater.",\
 	"[using_map.company_name] invents handkerchief that says 'Bless you' after sneeze.",\
 	"Clone accused of posing for other clones's school photo.",\
 	"Clone accused of stealing other clones's employee of the month award.",\

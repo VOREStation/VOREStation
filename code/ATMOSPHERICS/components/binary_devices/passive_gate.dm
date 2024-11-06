@@ -27,10 +27,12 @@
 	var/id = null
 	var/datum/radio_frequency/radio_connection
 
-/obj/machinery/atmospherics/binary/passive_gate/New()
-	..()
+/obj/machinery/atmospherics/binary/passive_gate/Initialize()
+	. = ..()
 	air1.volume = ATMOS_DEFAULT_VOLUME_PUMP * 2.5
 	air2.volume = ATMOS_DEFAULT_VOLUME_PUMP * 2.5
+	if(frequency)
+		set_frequency(frequency)
 
 /obj/machinery/atmospherics/binary/passive_gate/Destroy()
 	unregister_radio(src, frequency)
@@ -169,11 +171,6 @@
 
 	return 1
 
-/obj/machinery/atmospherics/binary/passive_gate/Initialize()
-	. = ..()
-	if(frequency)
-		set_frequency(frequency)
-
 /obj/machinery/atmospherics/binary/passive_gate/receive_signal(datum/signal/signal)
 	if(!signal.data["tag"] || (signal.data["tag"] != id) || (signal.data["sigtype"]!="command"))
 		return 0
@@ -208,7 +205,7 @@
 		return
 	add_fingerprint(usr)
 	if(!allowed(user))
-		to_chat(user, "<span class='warning'>Access denied.</span>")
+		to_chat(user, span_warning("Access denied."))
 		return
 	tgui_interact(user)
 
@@ -278,22 +275,22 @@
 	update_icon()
 	add_fingerprint(usr)
 
-/obj/machinery/atmospherics/binary/passive_gate/attackby(var/obj/item/weapon/W as obj, var/mob/user as mob)
+/obj/machinery/atmospherics/binary/passive_gate/attackby(var/obj/item/W as obj, var/mob/user as mob)
 	if (!W.has_tool_quality(TOOL_WRENCH))
 		return ..()
 	if (unlocked)
-		to_chat(user, "<span class='warning'>You cannot unwrench \the [src], turn it off first.</span>")
+		to_chat(user, span_warning("You cannot unwrench \the [src], turn it off first."))
 		return 1
 	if(!can_unwrench())
-		to_chat(user, "<span class='warning'>You cannot unwrench \the [src], it too exerted due to internal pressure.</span>")
+		to_chat(user, span_warning("You cannot unwrench \the [src], it too exerted due to internal pressure."))
 		add_fingerprint(user)
 		return 1
 	playsound(src, W.usesound, 50, 1)
-	to_chat(user, "<span class='notice'>You begin to unfasten \the [src]...</span>")
+	to_chat(user, span_notice("You begin to unfasten \the [src]..."))
 	if (do_after(user, 40 * W.toolspeed))
 		user.visible_message( \
-			"<b>\The [user]</b> unfastens \the [src].", \
-			"<span class='notice'>You have unfastened \the [src].</span>", \
+			span_infoplain(span_bold("\The [user]") + " unfastens \the [src]."), \
+			span_notice("You have unfastened \the [src]."), \
 			"You hear ratchet.")
 		deconstruct()
 

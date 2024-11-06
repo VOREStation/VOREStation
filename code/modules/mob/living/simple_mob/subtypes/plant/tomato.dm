@@ -8,7 +8,7 @@
 
 	mob_class = MOB_CLASS_PLANT
 
-	faction = "plants"
+	faction = FACTION_PLANTS
 	maxHealth = 15
 	health = 15
 	poison_resist = 1.0
@@ -26,7 +26,7 @@
 
 	ai_holder_type = /datum/ai_holder/simple_mob/melee
 
-	meat_type = /obj/item/weapon/reagent_containers/food/snacks/tomatomeat
+	meat_type = /obj/item/reagent_containers/food/snacks/tomatomeat
 	meat_amount = 4
 
 /decl/mob_organ_names/tomato

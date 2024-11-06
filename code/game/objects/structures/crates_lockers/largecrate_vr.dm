@@ -2,7 +2,7 @@
 	name = "Bird crate"
 	desc = "You hear chirping and cawing inside the crate. It sounds like there are a lot of birds in there..."
 
-/obj/structure/largecrate/birds/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/structure/largecrate/birds/attackby(obj/item/W as obj, mob/user as mob)
 	if(W.has_tool_quality(TOOL_CROWBAR))
 		new /obj/item/stack/material/wood(src)
 		new /mob/living/simple_mob/animal/passive/bird(src)
@@ -29,9 +29,9 @@
 		var/turf/T = get_turf(src)
 		for(var/atom/movable/AM in contents)
 			if(AM.simulated) AM.forceMove(T)
-		user.visible_message("<span class='notice'>[user] pries \the [src] open.</span>", \
-							 "<span class='notice'>You pry open \the [src].</span>", \
-							 "<span class='notice'>You hear splitting wood.</span>")
+		user.visible_message(span_notice("[user] pries \the [src] open."), \
+							 span_notice("You pry open \the [src]."), \
+							 span_notice("You hear splitting wood."))
 		qdel(src)
 	else
 		return attack_hand(user)

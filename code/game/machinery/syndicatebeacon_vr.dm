@@ -25,14 +25,14 @@
 			updateUsrDialog()
 			return
 		var/mob/M = locate(href_list["traitormob"])
-		if(M.mind.tcrystals > 0 || jobban_isbanned(M, "Syndicate"))
+		if(M.mind.tcrystals > 0 || jobban_isbanned(M, JOB_SYNDICATE))
 			temptext = "<i>We have no need for you at this time. Have a pleasant day.</i><br>"
 			updateUsrDialog()
 			return
 		charges -= 1
 		if(istype(M, /mob/living/carbon/human))
 			var/mob/living/carbon/human/N = M
-			to_chat(N, "<B>Access granted, here are the supplies!</B>")
+			to_chat(N, span_infoplain(span_bold("Access granted, here are the supplies!")))
 			traitors.spawn_uplink(N)
 			N.mind.tcrystals = DEFAULT_TELECRYSTAL_AMOUNT
 			N.mind.accept_tcrystals = 1

@@ -19,7 +19,7 @@
 	bellied = prey
 	prey.forceMove(src)
 	visible_message("[src] entirely engulfs [prey] in hardlight holograms!")
-	to_chat(usr, "<span class='vnotice'>You completely engulf [prey] in hardlight holograms!</span>") //Can't be part of the above, because the above is from the hologram.
+	to_chat(usr, span_vnotice("You completely engulf [prey] in hardlight holograms!")) //Can't be part of the above, because the above is from the hologram.
 
 	desc = "[initial(desc)] It seems to have hardlight mode enabled and someone inside."
 	pass_flags = 0
@@ -41,12 +41,12 @@
 
 /mob/living/silicon/ai/verb/holo_nom()
 	set name = "Hardlight Nom"
-	set category = "AI Commands"
+	set category = "AI.Vore"
 	set desc = "Wrap up a person in hardlight holograms."
 
 	// Wrong state
 	if (!eyeobj || !holo)
-		to_chat(usr, "<span class='vwarning'>You can only use this when holo-projecting!</span>")
+		to_chat(usr, span_vwarning("You can only use this when holo-projecting!"))
 		return
 
 	//Holopads have this 'masters' list where the keys are AI names and the values are the hologram effects
@@ -68,11 +68,11 @@
 		return //Probably cancelled
 
 	if(!istype(prey))
-		to_chat(usr, "<span class='vwarning'>Invalid mob choice!</span>")
+		to_chat(usr, span_vwarning("Invalid mob choice!"))
 		return
 
 	hologram.visible_message("[hologram] starts engulfing [prey] in hardlight holograms!")
-	to_chat(src, "<span class='vnotice'>You begin engulfing [prey] in hardlight holograms.</span>") //Can't be part of the above, because the above is from the hologram.
+	to_chat(src, span_vnotice("You begin engulfing [prey] in hardlight holograms.")) //Can't be part of the above, because the above is from the hologram.
 	if(do_after(user=eyeobj,delay=50,target=prey,needhand=0) && holo && hologram && !hologram.bellied) //Didn't move and still projecting and effect exists and no other bellied people
 		hologram.get_prey(prey)
 
@@ -80,7 +80,7 @@
 //I basically have to do this, you know?
 /mob/living/silicon/ai/examinate(atom/A as mob|obj|turf in view(eyeobj))
 	set name = "Examine"
-	set category = "IC"
+	set category = "IC.Game"
 
 	A.examine(src)
 */
@@ -99,4 +99,17 @@
 			. += "[flavor_text]"
 
 		if(master.ooc_notes)
-			. += "<span class = 'deptradio'>OOC Notes:</span> <a href='?src=\ref[master];ooc_notes=1'>\[View\]</a> - <a href='?src=\ref[master];print_ooc_notes_to_chat=1'>\[Print\]</a>"
+			. += span_deptradio("OOC Notes:") + "<a href='?src=\ref[master];ooc_notes=1'>\[View\]</a> - <a href='?src=\ref[master];print_ooc_notes_to_chat=1'>\[Print\]</a>"
+
+// Allow dissipating ai holograms by attacking them
+/obj/effect/overlay/aiholo/attack_hand(mob/living/user)
+	if(user.a_intent == I_HURT)
+		to_chat(user, span_attack("You dissipate [src]."))
+		master?.holo?.clear_holo(master)
+	return ..()
+
+/obj/effect/overlay/aiholo/attackby(obj/item/I, mob/user)
+	if(user.a_intent == I_HURT)
+		to_chat(user, span_attack("You dissipate [src] with [I]."))
+		master?.holo?.clear_holo(master)
+	return ..()

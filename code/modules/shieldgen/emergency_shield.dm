@@ -24,7 +24,7 @@
 
 /obj/machinery/shield/proc/check_failure()
 	if (src.health <= 0)
-		visible_message("<b>\The [src]</b> dissipates!")
+		visible_message(span_boldnotice("\The [src]") + " dissipates!")
 		qdel(src)
 		return
 
@@ -39,7 +39,7 @@
 	update_nearby_tiles()
 	..()
 
-/obj/machinery/shield/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/machinery/shield/attackby(obj/item/W as obj, mob/user as mob)
 	if(!istype(W)) return
 
 	//Calculate damage
@@ -93,7 +93,7 @@
 
 /obj/machinery/shield/hitby(AM as mob|obj)
 	//Let everyone know we've been hit!
-	visible_message("<span class='danger'>\The [src] was hit by [AM].</span>")
+	visible_message(span_danger("\The [src] was hit by [AM]."))
 
 	//Super realistic, resource-intensive, real-time damage calculations.
 	var/tforce = 0
@@ -279,7 +279,7 @@
 		update_icon()
 		return 1
 
-/obj/machinery/shieldgen/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/machinery/shieldgen/attackby(obj/item/W as obj, mob/user as mob)
 	if(W.has_tool_quality(TOOL_SCREWDRIVER))
 		playsound(src, W.usesound, 100, 1)
 		if(is_open)
@@ -291,13 +291,13 @@
 
 	else if(istype(W, /obj/item/stack/cable_coil) && malfunction && is_open)
 		var/obj/item/stack/cable_coil/coil = W
-		to_chat(user, "<span class='notice'>You begin to replace the wires.</span>")
+		to_chat(user, span_notice("You begin to replace the wires."))
 		//if(do_after(user, min(60, round( ((getMaxHealth()/health)*10)+(malfunction*10) ))) //Take longer to repair heavier damage
 		if(do_after(user, 30))
 			if (coil.use(1))
 				health = max_health
 				malfunction = 0
-				to_chat(user, "<span class='notice'>You repair the [src]!</span>")
+				to_chat(user, span_notice("You repair the [src]!"))
 				update_icon()
 
 	else if(W.has_tool_quality(TOOL_WRENCH))
@@ -318,7 +318,7 @@
 			anchored = TRUE
 
 
-	else if(istype(W, /obj/item/weapon/card/id) || istype(W, /obj/item/device/pda))
+	else if(istype(W, /obj/item/card/id) || istype(W, /obj/item/pda))
 		if(src.allowed(user))
 			src.locked = !src.locked
 			to_chat(user, "The controls are now [src.locked ? "locked." : "unlocked."]")

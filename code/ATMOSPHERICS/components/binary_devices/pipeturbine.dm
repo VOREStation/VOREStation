@@ -81,11 +81,11 @@
 	if (kin_energy > 1000000)
 		add_overlay(image('icons/obj/pipeturbine.dmi', "hi-turb"))
 
-/obj/machinery/atmospherics/pipeturbine/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/machinery/atmospherics/pipeturbine/attackby(obj/item/W as obj, mob/user as mob)
 	if(W.has_tool_quality(TOOL_WRENCH))
 		anchored = !anchored
 		playsound(src, W.usesound, 50, 1)
-		to_chat(user, "<span class='notice'>You [anchored ? "secure" : "unsecure"] the bolts holding \the [src] to the floor.</span>")
+		to_chat(user, span_notice("You [anchored ? "secure" : "unsecure"] the bolts holding \the [src] to the floor."))
 
 		if(anchored)
 			if(dir & (NORTH|SOUTH))
@@ -255,12 +255,12 @@
 	turbine.kin_energy -= power_generated
 	add_avail(power_generated)
 
-/obj/machinery/power/turbinemotor/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/machinery/power/turbinemotor/attackby(obj/item/W as obj, mob/user as mob)
 	if(W.has_tool_quality(TOOL_WRENCH))
 		anchored = !anchored
 		playsound(src, W.usesound, 50, 1)
 		turbine = null
-		to_chat(user, "<span class='notice'>You [anchored ? "secure" : "unsecure"] the bolts holding \the [src] to the floor.</span>")
+		to_chat(user, span_notice("You [anchored ? "secure" : "unsecure"] the bolts holding \the [src] to the floor."))
 		updateConnection()
 	else
 		..()

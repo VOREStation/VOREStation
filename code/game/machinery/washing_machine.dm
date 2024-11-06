@@ -8,7 +8,7 @@
 	clicksound = "button"
 	clickvol = 40
 
-	circuit = /obj/item/weapon/circuitboard/washing
+	circuit = /obj/item/circuitboard/washing
 	var/state = 1
 	//1 = empty, open door
 	//2 = empty, closed door
@@ -98,7 +98,7 @@
 		add_overlay("panel")
 	//VOREStation Edit End
 
-/obj/machinery/washing_machine/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/machinery/washing_machine/attackby(obj/item/W as obj, mob/user as mob)
 	if(state == 2 && washing.len < 1)
 		if(default_deconstruction_screwdriver(user, W))
 			return
@@ -108,8 +108,8 @@
 			return
 	/*if(W.has_tool_quality(TOOL_SCREWDRIVER))
 		panel = !panel
-		to_chat(user, "<span class='notice'>You [panel ? "open" : "close"] the [src]'s maintenance panel</span>")*/
-	if(istype(W,/obj/item/weapon/pen/crayon) || istype(W,/obj/item/weapon/stamp))
+		to_chat(user, span_notice("You [panel ? "open" : "close"] the [src]'s maintenance panel"))*/
+	if(istype(W,/obj/item/pen/crayon) || istype(W,/obj/item/stamp))
 		if(state in list(	1, 3, 6))
 			if(!crayon)
 				user.drop_item()
@@ -119,9 +119,9 @@
 				..()
 		else
 			..()
-	else if(istype(W,/obj/item/weapon/grab))
+	else if(istype(W,/obj/item/grab))
 		if((state == 1) && hacked)
-			var/obj/item/weapon/grab/G = W
+			var/obj/item/grab/G = W
 			if(ishuman(G.assailant) && iscorgi(G.affecting))
 				G.affecting.loc = src
 				qdel(G)
@@ -130,10 +130,10 @@
 			..()
 
 	else if(is_type_in_list(W, disallowed_types))
-		to_chat(user, "<span class='warning'>You can't fit \the [W] inside.</span>")
+		to_chat(user, span_warning("You can't fit \the [W] inside."))
 		return
 
-	else if(istype(W, /obj/item/clothing) || istype(W, /obj/item/weapon/bedsheet) || istype(W, /obj/item/stack/hairlesshide))
+	else if(istype(W, /obj/item/clothing) || istype(W, /obj/item/bedsheet) || istype(W, /obj/item/stack/hairlesshide))
 		if(washing.len < 5)
 			if(state in list(1, 3))
 				user.drop_item()
@@ -141,9 +141,9 @@
 				washing += W
 				state = 3
 			else
-				to_chat(user, "<span class='notice'>You can't put the item in right now.</span>")
+				to_chat(user, span_notice("You can't put the item in right now."))
 		else
-			to_chat(user, "<span class='notice'>The washing machine is full.</span>")
+			to_chat(user, span_notice("The washing machine is full."))
 	else
 		..()
 	update_icon()
@@ -167,7 +167,7 @@
 			washing.Cut()
 			state = 1
 		if(5)
-			to_chat(user, "<span class='warning'>The [src] is busy.</span>")
+			to_chat(user, span_warning("The [src] is busy."))
 		if(6)
 			state = 7
 		if(7)

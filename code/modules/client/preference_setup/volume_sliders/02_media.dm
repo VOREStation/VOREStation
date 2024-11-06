@@ -6,28 +6,28 @@
 	name = "Media"
 	sort_order = 2
 
-/datum/category_item/player_setup_item/volume_sliders/media/load_preferences(var/savefile/S)
-	S["media_volume"]	>> pref.media_volume
-	S["media_player"]	>> pref.media_player
+/datum/category_item/player_setup_item/volume_sliders/media/load_preferences(datum/json_savefile/savefile)
+	pref.media_volume = savefile.get_entry("media_volume")
+	pref.media_player = savefile.get_entry("media_player")
 
-/datum/category_item/player_setup_item/volume_sliders/media/save_preferences(var/savefile/S)
-	S["media_volume"]	<< pref.media_volume
-	S["media_player"]	<< pref.media_player
+/datum/category_item/player_setup_item/volume_sliders/media/save_preferences(datum/json_savefile/savefile)
+	savefile.set_entry("media_volume", pref.media_volume)
+	savefile.set_entry("media_player", pref.media_player)
 
 /datum/category_item/player_setup_item/volume_sliders/media/sanitize_preferences()
 	pref.media_volume = isnum(pref.media_volume) ? CLAMP(pref.media_volume, 0, 1) : initial(pref.media_volume)
 	pref.media_player = sanitize_inlist(pref.media_player, list(0, 1, 2), initial(pref.media_player))
 
 /datum/category_item/player_setup_item/volume_sliders/media/content(var/mob/user)
-	. += "<b>Jukebox Volume:</b>"
+	. += span_bold("Jukebox Volume:")
 	. += "<a href='?src=\ref[src];change_media_volume=1'><b>[round(pref.media_volume * 100)]%</b></a><br>"
-	. += "<b>Media Player Type:</b> Depending on you operating system, one of these might work better. "
+	. += span_bold("Media Player Type:") + " Depending on you operating system, one of these might work better. "
 	. += "Use HTML5 if it works for you. If neither HTML5 nor WMP work, you'll have to fall back to using VLC, "
 	. += "but this requires you have the VLC client installed on your comptuer."
 	. += "Try the others if you want but you'll probably just get no music.<br>"
-	. += (pref.media_player == 2) ? "<span class='linkOn'><b>HTML5</b></span> " : "<a href='?src=\ref[src];set_media_player=2'>HTML5</a> "
-	. += (pref.media_player == 1) ? "<span class='linkOn'><b>WMP</b></span> " : "<a href='?src=\ref[src];set_media_player=1'>WMP</a> "
-	. += (pref.media_player == 0) ? "<span class='linkOn'><b>VLC</b></span> " : "<a href='?src=\ref[src];set_media_player=0'>VLC</a> "
+	. += (pref.media_player == 2) ? (span_linkOn(span_bold("HTML5")) + " ") : "<a href='?src=\ref[src];set_media_player=2'>HTML5</a> "
+	. += (pref.media_player == 1) ? (span_linkOn(span_bold("WMP")) + " ") : "<a href='?src=\ref[src];set_media_player=1'>WMP</a> "
+	. += (pref.media_player == 0) ? (span_linkOn(span_bold("VLC")) + " ") : "<a href='?src=\ref[src];set_media_player=0'>VLC</a> "
 	. += "<br>"
 
 /datum/category_item/player_setup_item/volume_sliders/media/OnTopic(var/href, var/list/href_list, var/mob/user)

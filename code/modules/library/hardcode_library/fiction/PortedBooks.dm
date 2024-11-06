@@ -7,7 +7,7 @@ Category: Fiction
 
 /// The Tale of the Rainbow Cat by Miyahara Koichiro, translated by Emily Balistrieri.
 
-/obj/item/weapon/book/bundle/custom_library/fiction/taleoftherainbowcat
+/obj/item/book/bundle/custom_library/fiction/taleoftherainbowcat
 	name = "The Tale of the Rainbow Cat"
 	desc = "A hardbound book titled \"The Tale of the Rainbow Cat\" by Miyahara Koichiro."
 	description_info = "This book is titled \"The Tale of the Rainbow Cat\" by Miyahara Koichiro. There is a blurb on the back: <br>\<br>\
@@ -46,39 +46,39 @@ Category: Fiction
 
 					<body>
 					<p>
-					Once upon a time there was a cat, but he wasnít the kind of cat youíre thinking of. He was from the land of the fairies and his fur was completely unexpected colors. For starters, his nose was <i>violet</i>. His eyes were <i>indigo</i>, his ears were <i>sky blue</i>, his front paws were <i>green</i>, his body was <i>yellow</i>, his back paws were <i>orange</i>, and his tail was <i>red</i>. So he was a mysterious cat of seven colors arranged just like a rainbow.
+					Once upon a time there was a cat, but he wasnÔøΩt the kind of cat youÔøΩre thinking of. He was from the land of the fairies and his fur was completely unexpected colors. For starters, his nose was <i>violet</i>. His eyes were <i>indigo</i>, his ears were <i>sky blue</i>, his front paws were <i>green</i>, his body was <i>yellow</i>, his back paws were <i>orange</i>, and his tail was <i>red</i>. So he was a mysterious cat of seven colors arranged just like a rainbow.
 					<br><br>
 					That rainbow cat went on all sorts of strange adventures. The following story is one of them.
 					<br><br>
 					One day while the rainbow cat was sunbathing, he was suddenly vexed by boredom. That is to say, peace reigned in the land of the fairies, so nothing much was going on.
 					<br><br>
-					<i>Itís not good for my health to spend all my time idling about as if I havenít got a care in the world,</i> he thought. <i>Perhaps I should head out and go on an adventure.</i>
+					<i>ItÔøΩs not good for my health to spend all my time idling about as if I havenÔøΩt got a care in the world,</i> he thought. <i>Perhaps I should head out and go on an adventure.</i>
 					<br><br>
 					So he put a note up on his door: "Dear Mr. Post Man, I will be gone for two or three days, so if any packages or letters come, please throw them down the chimney."
 					<br><br>
 					Then he packed a small bag, hung it on his tail, and wobbled off to the border of the land of the fairies. When he arrived, a thick cloud billowed up.
 					<br><br>
-					"Well, maybe Iíll drop by the cloud peopleís place," he chattered to himself, climbing up the cloud embankment.
+					"Well, maybe IÔøΩll drop by the cloud peopleÔøΩs place," he chattered to himself, climbing up the cloud embankment.
 					<br><br>
-					The people who lived in cloud country were quite pleasant folks. They didnít do any work, in particular, but just because they were lazy didnít mean that they didnít find the world interesting. They all lived in splendid palaces, of which the ones you couldnít see from Earth were far more beautiful than the ones you could.
+					The people who lived in cloud country were quite pleasant folks. They didnÔøΩt do any work, in particular, but just because they were lazy didnÔøΩt mean that they didnÔøΩt find the world interesting. They all lived in splendid palaces, of which the ones you couldnÔøΩt see from Earth were far more beautiful than the ones you could.
 					<br><br>
-					The people of the cloud country sometimes drove pearly gray carriages or went sailing in lightweight boats. They lived in the sky, so the only person they had to fear was Sir Thunder. Itís quite understandable given that he was quick to anger -- he would make the sky rumble with his stomping and go around knocking down their houses.
+					The people of the cloud country sometimes drove pearly gray carriages or went sailing in lightweight boats. They lived in the sky, so the only person they had to fear was Sir Thunder. ItÔøΩs quite understandable given that he was quick to anger -- he would make the sky rumble with his stomping and go around knocking down their houses.
 					<br><br>
 					The people of the cloud country were very happy to have the rainbow cat visit and greeted him politely.
 					<br><br>
-					"Youíve come at a great time," they said. "Weíre having a big celebration at the Wind Godís house. His eldest son, North Wind is taking the daughter of the King of the Magic Isle as his wife."
+					"YouÔøΩve come at a great time," they said. "WeÔøΩre having a big celebration at the Wind GodÔøΩs house. His eldest son, North Wind is taking the daughter of the King of the Magic Isle as his wife."
 					<br><br>
 					The rainbow cat, having thought just such a thing might happen, was prepared with various goods in the bag on his tail.
 					<br><br>
 					It was a truly magnificent wedding.
 					<br><br>
-					Everyone came. Even Comet showed up. You wouldnít see Comet unless it was a very fine banquet indeed.
+					Everyone came. Even Comet showed up. You wouldnÔøΩt see Comet unless it was a very fine banquet indeed.
 					<br><br>
-					And Aurora came in the most indescribably beautiful garments of light. Of course, the brideís parents, the King of Magic Isle and his Pearl Oyster Queen, were in attendance.
+					And Aurora came in the most indescribably beautiful garments of light. Of course, the brideÔøΩs parents, the King of Magic Isle and his Pearl Oyster Queen, were in attendance.
 					<br><br>
-					A feast was served and everyone was in a lively mood, having interesting conversations and drinking, when all of the sudden a swallow flew in. According to him, the giant Sir Thunder was rushing towards them at a tremendous speed. Apparently, when Trade Wind was hurrying by, he had tripped over sleeping Sir Thunderís toes and Sir Thunder was furious.
+					A feast was served and everyone was in a lively mood, having interesting conversations and drinking, when all of the sudden a swallow flew in. According to him, the giant Sir Thunder was rushing towards them at a tremendous speed. Apparently, when Trade Wind was hurrying by, he had tripped over sleeping Sir ThunderÔøΩs toes and Sir Thunder was furious.
 					<br><br>
-					"Whatíll we do?" everyone wondered at once, their faces pale. "The celebration will be ruined!"
+					"WhatÔøΩll we do?" everyone wondered at once, their faces pale. "The celebration will be ruined!"
 					<br><br>
 					All the guests and the master of the house began to scatter in a panic.
 					<br><br>
@@ -88,9 +88,9 @@ Category: Fiction
 					<br><br>
 					A moment later, he came back out.
 					<br><br>
-					"Iíll find a way to keep Sir Thunder from coming here," said the cat. "So please continue the celebration as you were. Iíll go to him and see what I can do."
+					"IÔøΩll find a way to keep Sir Thunder from coming here," said the cat. "So please continue the celebration as you were. IÔøΩll go to him and see what I can do."
 					<br><br>
-					Everyone was surprised at how brave and composed the rainbow cat was, but it sounded like their celebration wouldnít be intruded upon partway through, so they were happy to gather and see off the cat as he raced towards the far-off rumblings of Sir Thunder.
+					Everyone was surprised at how brave and composed the rainbow cat was, but it sounded like their celebration wouldnÔøΩt be intruded upon partway through, so they were happy to gather and see off the cat as he raced towards the far-off rumblings of Sir Thunder.
 					</p>
 					</body>
 					</html>
@@ -111,21 +111,21 @@ Category: Fiction
 					<br><br>
 					"Hey, who are you and what are you doing here?" he shouted.
 					<br><br>
-					"Me? Iím the famed magician Mewpuu," replied the rainbow cat in a voice made to sound serious and important. "Take a look at my bag, here. There are magic seeds inside. Mr. Thunder, Iíve known about you for a while now. Youíre quite famous."
+					"Me? IÔøΩm the famed magician Mewpuu," replied the rainbow cat in a voice made to sound serious and important. "Take a look at my bag, here. There are magic seeds inside. Mr. Thunder, IÔøΩve known about you for a while now. YouÔøΩre quite famous."
 					<br><br>
 					Hearing this Sir Thunder felt a bit proud, but his foot was sore, so he was soon angry again.
 					<br><br>
-					"Hrmph! I donít think too highly of magicians. What can you do, anyways?"
+					"Hrmph! I donÔøΩt think too highly of magicians. What can you do, anyways?"
 					<br><br>
 					"I can read your mind."
 					<br><br>
-					"Oh? Is that so? Then try to guess what Iím thinking right now."
+					"Oh? Is that so? Then try to guess what IÔøΩm thinking right now."
 					<br><br>
-					"A simple matter. Youíre angry because your foot hurts and you want to catch the fellow who kicked your blister, right?"
+					"A simple matter. YouÔøΩre angry because your foot hurts and you want to catch the fellow who kicked your blister, right?"
 					<br><br>
 					The rainbow cat had heard all that from the swallow. Sir Thunder was flabbergasted.
 					<br><br>
-					"Wow, thatís right. Will you teach me your magic?"
+					"Wow, thatÔøΩs right. Will you teach me your magic?"
 					<br><br>
 					"Sure I will. But first I must test your potential. Have a seat."
 					<br><br>
@@ -133,35 +133,35 @@ Category: Fiction
 					<br><br>
 					"Now then, try to tell me what I am thinking right now," said the cat.
 					<br><br>
-					Sir Thunder the giant looked blankly at the catís face. He was not very bright.
+					Sir Thunder the giant looked blankly at the catÔøΩs face. He was not very bright.
 					<br><br>
 					"You must be thinking that I look pretty foolish sitting here."
 					<br><br>
 					"Excellent. Astonishing! You have more than enough talent to begin the training. You may be my brightest disciple yet."
 					<br><br>
-					"Then maybe Iíll try one more time." Sir Thunder now thought himself terribly sharp.
+					"Then maybe IÔøΩll try one more time." Sir Thunder now thought himself terribly sharp.
 					<br><br>
-					"Very well. Try to guess what Iím thinking."
+					"Very well. Try to guess what IÔøΩm thinking."
 					<br><br>
-					Sir Thunder tried to look wise and peered at the catís face with his small, goofy eyes.
+					Sir Thunder tried to look wise and peered at the catÔøΩs face with his small, goofy eyes.
 					<br><br>
 					"Beef steak and onions," he announced abruptly.
 					<br><br>
-					"Brilliant!" the cat feigned surprise and purposely lost his footing to land on his rump. "Youíre exactly right. But how did you know?"
+					"Brilliant!" the cat feigned surprise and purposely lost his footing to land on his rump. "YouÔøΩre exactly right. But how did you know?"
 					<br><br>
 					"Oh, how do you say...? I guess it just came to me," replied Sir Thunder.
 					<br><br>
 					The cat assumed a serious air. "We must cultivate that fine talent of yours!"
 					<br><br>
-					"How do we cultivate it?" asked Sir Thunder. He thought being able to read peopleís minds was quite fun.
+					"How do we cultivate it?" asked Sir Thunder. He thought being able to read peopleÔøΩs minds was quite fun.
 					<br><br>
-					"Itís a cinch," said the cat, finally telling a blatant lie now that he thought he had the giant where he wanted him. "Go home and sleep for two or three hours. Then have some cake and sleep another two or three hours. Then, when you wake up, drink one cup of hot tea. But you have to be as still as possible or it wonít work. If you do all that, by tomorrow morning youíll be reading peopleís minds like itís nothing."
+					"ItÔøΩs a cinch," said the cat, finally telling a blatant lie now that he thought he had the giant where he wanted him. "Go home and sleep for two or three hours. Then have some cake and sleep another two or three hours. Then, when you wake up, drink one cup of hot tea. But you have to be as still as possible or it wonÔøΩt work. If you do all that, by tomorrow morning youÔøΩll be reading peopleÔøΩs minds like itÔøΩs nothing."
 					<br><br>
-					Sir Thunder wanted to go running straight home, but of course, he couldnít forget his manners. "Thanks a lot. But Master Mewpuu, what can I offer you in return for teaching me this?"
+					Sir Thunder wanted to go running straight home, but of course, he couldnÔøΩt forget his manners. "Thanks a lot. But Master Mewpuu, what can I offer you in return for teaching me this?"
 					<br><br>
-					The rainbow cat thought a moment and said, "Iíd like a tiny bit of lightning. Please give me just a smidge."
+					The rainbow cat thought a moment and said, "IÔøΩd like a tiny bit of lightning. Please give me just a smidge."
 					<br><br>
-					Sir Thunder the giant put his hand in his pocket and said, "No problem. If thatís all, I have a bundle of it right here, so please take this. When you need it, just undo the string and the lightning will come out in a most amusing way."
+					Sir Thunder the giant put his hand in his pocket and said, "No problem. If thatÔøΩs all, I have a bundle of it right here, so please take this. When you need it, just undo the string and the lightning will come out in a most amusing way."
 					<br><br>
 					"Thank you very much."
 					<br><br>
@@ -179,7 +179,7 @@ Category: Fiction
 
 /// Woody's Got Wood by Unknown. Literally just a meme entry, a memory of a different time.
 
-/obj/item/weapon/book/custom_library/fiction/woodysgotwood
+/obj/item/book/custom_library/fiction/woodysgotwood
 	name = "Woody's Got Wood"
 	desc = "A barely held together book titled \"Woody's Got Wood\". There doesn't seem to be an author listed."
 	description_info = "This worn book is titled \"Woody's Got Wood\" and has no author visibly listed. Just holding it gives you a sense this is from a different time."
@@ -213,7 +213,7 @@ Category: Fiction
 
 ///Song from Arcadia: My True Love Hath My Heart by Sir Philip Sidney.
 
-/obj/item/weapon/book/custom_library/fiction/truelovehathmyheart
+/obj/item/book/custom_library/fiction/truelovehathmyheart
 	name = "My True Love Hath My Heart"
 	desc = "A hardbound book titled \"Song from Arcadia: My True Love Hath My Heart\" by Sir Philip Sidney."
 	description_info = "This book is titled \"Song from Arcadia: My True Love Hath My Heart\" by Sir Philip Sidney. It appears to be a short poem."
@@ -257,7 +257,7 @@ Category: Fiction
 
 /// An Irish Airman Forsees His Death by W.B. Yeats.
 
-/obj/item/weapon/book/custom_library/fiction/irishairmanforseesdeath
+/obj/item/book/custom_library/fiction/irishairmanforseesdeath
 	name = "An Irish Airman Forsees His Death"
 	desc = "A hardbound book titled \"An Irish Airman Forsees His Death\" by W.B. Yeats."
 	description_info = "This book is titled \"An Irish Airman Forsees His Death\" by W.B. Yeats. It is a poem from the point of view of an aircraft pilot in Earth's First World War."
@@ -285,7 +285,7 @@ Category: Fiction
 				Those that I fight I do not hate<br>
 				Those that I guard I do not love;<br>
 				My country is Kiltartan Cross,<br>
-				My countrymen Kiltartanís poor,<br>
+				My countrymen KiltartanÔøΩs poor,<br>
 				No likely end could bring them loss<br>
 				Or leave them happier than before.<br>
 				Nor law, nor duty bade me fight,<br>
@@ -303,7 +303,7 @@ Category: Fiction
 
 /// Poems by Wilfred Owen, renamed to "Poems for a Rainy Day: A Collection of Poetry by Wilfred Owen".
 
-/obj/item/weapon/book/bundle/custom_library/fiction/poemsforarainyday
+/obj/item/book/bundle/custom_library/fiction/poemsforarainyday
 	name = "Poems for a Rainy Day"
 	desc = "A hardbound book titled \"Poems for a Rainy Day\" by Wilfred Owen."
 	description_info = "This book is titled \"Poems for a Rainy Day\" by Wilfred Owen. It's a collection of three poems by an old Earth poet by the name of Wilfred Owen."
@@ -417,7 +417,7 @@ Category: Fiction
 					Gas! GAS! Quick, boys! -- An ecstasy of fumbling<br>
 					Fitting the clumsy helmets just in time,<br>
 					But someone still was yelling out and stumbling<br>
-					And floundíring like a man in fire or lime.--<br>
+					And floundÔøΩring like a man in fire or lime.--<br>
 					Dim through the misty panes and thick green light,<br>
 					As under a green sea, I saw him drowning.<br><br>
 					In all my dreams before my helpless sight,<br>
@@ -425,7 +425,7 @@ Category: Fiction
 					If in some smothering dreams, you too could pace<br>
 					Behind the wagon that we flung him in,<br>
 					And watch the white eyes writhing in his face,<br>
-					His hanging face, like a devilís sick of sin;<br>
+					His hanging face, like a devilÔøΩs sick of sin;<br>
 					If you could hear, at every jolt, the blood<br>
 					Come gargling from the froth-corrupted lungs,<br>
 					Obscene as cancer, bitter as the cud<br>
@@ -441,7 +441,7 @@ Category: Fiction
 
 ///Silence by Samara McCollough.
 
-/obj/item/weapon/book/bundle/custom_library/fiction/silence
+/obj/item/book/bundle/custom_library/fiction/silence
 	name = "Silence"
 	desc = "A hardbound book titled \"Silence\" by Samara McCollough."
 	description_info = "This book is titled \"Silence\" by Samara McCollough. It appears to be an excerpt from a longer novel."
@@ -490,7 +490,7 @@ Category: Fiction
 
 ///My Rock by Roman Pilduski
 
-/obj/item/weapon/book/custom_library/fiction/myrock
+/obj/item/book/custom_library/fiction/myrock
 
 	name = "My Rock"
 	desc = "A hardbound book titled \"My Rock\" by Roman Pilduski."
@@ -531,7 +531,7 @@ Category: Fiction
 
 /// Ghost Ship by Ogawa Mimei
 
-/obj/item/weapon/book/bundle/custom_library/fiction/ghostship
+/obj/item/book/bundle/custom_library/fiction/ghostship
 
 	name = "Ghost Ship"
 	desc = "A hardbound book titled \"Ghost Ship\" by Ogawa Mimei."
@@ -612,13 +612,13 @@ Category: Fiction
 					</head>
 					<body>
 					<div class="border">
-					"I wonder where they might be taking shelter from the storm. There is no where else to go in this wide, wide ocean. They must have sunk...îù<br><br>
+					"I wonder where they might be taking shelter from the storm. There is no where else to go in this wide, wide ocean. They must have sunk...ÔøΩÔøΩ<br><br>
 					The first fisherman had started to worry as the stormy night turned to complete darkness. Whenever he looked out, the waves of the ocean were winding into the skies above. He could see no sign of a boat. The first fisherman had been abandoned on the small, deserted island. He stood on the rocks of the shore and waited a full day for his friends to return. But perhaps because the winds from yesterday had made the ocean rough, the sun that day went down without any sign of the boat he had been waiting for.<br><br>
 					Three days passed. The first fisherman had started to grow weak. Finally, after standing on the beach looking intently out over the ocean for three days, the boat carrying his friends cut through the waves and sailed towards the beach. It felt like a thousand years since he had seen them last. He could see that the second fisherman and the third fisherman were fine and moving about on the boat.<br><br>
 					"Hey!" the first fisherman called out over the water, raising both of his hands high in the air. When he did, it looked like they too had thrown their hands in the air and called back. Only he couldn't hear their voices. Just then as the setting sun illuminated the tips of the waves, the two fishermen on the boat came into sight, red in the face.<br><br>
 					"Ahh, here's a sight for sore eyes, my two friends! They made it back alive," said the first fisherman, warm tears of joy swelling in his eyes. Before long the boat was nearly on the sand.<br><br>
 					"Hey!" the first fisherman called out, his hand in the air. He thought the other to fishermen would respond, but just as the pair were about to turn to the side and bring their boat in, they disappeared like a puff of smoke. The first fisherman was shocked.<br><br>
-					"A ghost ship!î
+					"A ghost ship!ÔøΩ
 					</div><br>
 					<center><font style="Courier New">III</font></center>
 					</body>
@@ -634,8 +634,8 @@ Category: Fiction
 					<body>
 					<div class="border">
 					The first fisherman lost all hope, threw himself down on the sand and began to cry. His imagination was running wild, and his nightmares ran through the night. When he awoke the next morning his eyes were blood-shot and his heart was pounding. It was just past midday. The first fisherman raised his head and looked out over the sea only to spot the same boat in the distance. But it was the same as yesterday, a ghost ship, that had come to the island. For a moment he was relieved, and happiness danced in his chest, but in the next instant his body shook with fear.<br><br>
-					"Damn it. Are they trying to kill me?î said the first fisherman, as he started to lose his mind. The boat cut through the waves and came in closer and closer to the island. The first fisherman pulled out his pistol, aimed at the boat and pulled the trigger. But this time the boat wasn't a ghost, and it didn't disappear. Once the boat was docked at the beach, the two other fishermen scrambled up onto land.<br><br>
-					"Have you gone completely mad?îù yelled one, which was enough to snap the first fisherman back to reality.<br><br>
+					"Damn it. Are they trying to kill me?ÔøΩ said the first fisherman, as he started to lose his mind. The boat cut through the waves and came in closer and closer to the island. The first fisherman pulled out his pistol, aimed at the boat and pulled the trigger. But this time the boat wasn't a ghost, and it didn't disappear. Once the boat was docked at the beach, the two other fishermen scrambled up onto land.<br><br>
+					"Have you gone completely mad?ÔøΩÔøΩ yelled one, which was enough to snap the first fisherman back to reality.<br><br>
 					The first fisherman had gone completely mad. That night the winds had caused the boat to be pushed back against a nearby island. Once the waves had died down, the two fishermen went back to the island to rescue their friend. The two fishermen got their crazy friend back on the boat and returned to the mainland. The pair cared for their weakened friend, and through their care he was able to lose his madness and returned to how he used to be. And from there the three friends went on to be even better friends for a very long time. This story is still told in the harbors to the north where the head of that deserted island still pokes up from between those blue black waves.
 					</div><br>
 					<center><font style="Courier New">IV</font></center>
@@ -645,7 +645,7 @@ Category: Fiction
 
 ///The Metal Glen by Jawn Mancer
 
-/obj/item/weapon/book/bundle/custom_library/fiction/metalglen
+/obj/item/book/bundle/custom_library/fiction/metalglen
 
 	name = "The Metal Glen"
 	desc = "A hardbound book titled \"The Metal Glen\" by Jawn Mancer."
@@ -763,7 +763,7 @@ Category: Fiction
 
 /// RA - Issue 142 by Jawn Mancer
 
-/obj/item/weapon/book/bundle/custom_library/fiction/raissue142
+/obj/item/book/bundle/custom_library/fiction/raissue142
 
 	name = "RA - Issue 142"
 	desc = "A hardbound book titled \"RA - Issue 142\" by Jawn Mancer."
@@ -897,7 +897,7 @@ Category: Fiction
 
 /// RA - Issue 147 by Jawn Mancer
 
-/obj/item/weapon/book/bundle/custom_library/fiction/raissue147
+/obj/item/book/bundle/custom_library/fiction/raissue147
 
 	name = "RA - Issue 147"
 	desc = "A hardbound book titled \"RA - Issue 147\" by Jawn Mancer."
@@ -1069,7 +1069,7 @@ Category: Fiction
 
 ///Serenity by Hold Hill (Cold Mountain). Renamed and reauthored to match original writer.
 
-/obj/item/weapon/book/bundle/custom_library/fiction/coldmountain
+/obj/item/book/bundle/custom_library/fiction/coldmountain
 
 	name = "Cold Mountain"
 	desc = "A hardbound book titled \"Cold Mountain\" by Han Shan."
@@ -1177,7 +1177,7 @@ Category: Fiction
 
 /// Tha' Story o' tha' Blacksmith an' tha' Kingly Bloke by Haggis MacDougall
 
-/obj/item/weapon/book/custom_library/fiction/blacksmithandkinglybloke
+/obj/item/book/custom_library/fiction/blacksmithandkinglybloke
 
 	name = "Tha' Story o' tha' Blacksmith an' tha' Kingly Bloke"
 	desc = "A hardbound book titled \"Tha' Story o' tha' Blacksmith an' tha' Kingly Bloke\" by Haggis MacDougall."
@@ -1216,7 +1216,7 @@ Category: Fiction
 
 ///Stars and Sometimes Falling Ones by Henry Clement Fandango
 
-/obj/item/weapon/book/custom_library/fiction/starsandsometimesfallingones
+/obj/item/book/custom_library/fiction/starsandsometimesfallingones
 
 	name = "Stars and Sometimes Falling Ones"
 	desc = "A hardbound book titled \"Stars and Sometimes Falling Ones\" by Henry Clement Fandango."

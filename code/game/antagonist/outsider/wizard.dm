@@ -5,8 +5,8 @@ var/datum/antagonist/wizard/wizards
 	role_type = BE_WIZARD
 	role_text = "Space Wizard"
 	role_text_plural = "Space Wizards"
-	bantype = "wizard"
-	landmark_id = "wizard"
+	bantype = JOB_WIZARD
+	landmark_id = JOB_WIZARD
 	welcome_text = "You will find a list of available spells in your spell book. Choose your magic arsenal carefully.<br>In your pockets you will find a teleport scroll. Use it as needed."
 	flags = ANTAG_OVERRIDE_JOB | ANTAG_CLEAR_EQUIPMENT | ANTAG_CHOOSE_NAME | ANTAG_VOTABLE | ANTAG_SET_APPEARANCE
 	antaghud_indicator = "hudwizard"
@@ -66,7 +66,7 @@ var/datum/antagonist/wizard/wizards
 
 /datum/antagonist/wizard/update_antag_mob(var/datum/mind/wizard)
 	..()
-	wizard.store_memory("<B>Remember:</B> do not forget to prepare your spells.")
+	wizard.store_memory(span_bold("Remember:") + " do not forget to prepare your spells.")
 	wizard.current.real_name = "[pick(wizard_first)] [pick(wizard_second)]"
 	wizard.current.name = wizard.current.real_name
 
@@ -75,19 +75,19 @@ var/datum/antagonist/wizard/wizards
 	if(!..())
 		return 0
 
-	wizard_mob.equip_to_slot_or_del(new /obj/item/device/radio/headset(wizard_mob), slot_l_ear)
+	wizard_mob.equip_to_slot_or_del(new /obj/item/radio/headset(wizard_mob), slot_l_ear)
 	wizard_mob.equip_to_slot_or_del(new /obj/item/clothing/under/color/lightpurple(wizard_mob), slot_w_uniform)
 	wizard_mob.equip_to_slot_or_del(new /obj/item/clothing/shoes/sandal(wizard_mob), slot_shoes)
 	wizard_mob.equip_to_slot_or_del(new /obj/item/clothing/suit/wizrobe(wizard_mob), slot_wear_suit)
 	wizard_mob.equip_to_slot_or_del(new /obj/item/clothing/head/wizard(wizard_mob), slot_head)
-	if(wizard_mob.backbag == 2) wizard_mob.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack(wizard_mob), slot_back)
-	if(wizard_mob.backbag == 3) wizard_mob.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel/norm(wizard_mob), slot_back)
-	if(wizard_mob.backbag == 4) wizard_mob.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/satchel(wizard_mob), slot_back)
-	if(wizard_mob.backbag == 5) wizard_mob.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/messenger(wizard_mob), slot_back)
-	if(wizard_mob.backbag == 6) wizard_mob.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/sport(wizard_mob), slot_back)
-	wizard_mob.equip_to_slot_or_del(new /obj/item/weapon/storage/box(wizard_mob), slot_in_backpack)
-	wizard_mob.equip_to_slot_or_del(new /obj/item/weapon/teleportation_scroll(wizard_mob), slot_r_store)
-	wizard_mob.equip_to_slot_or_del(new /obj/item/weapon/spellbook(wizard_mob), slot_r_hand)
+	if(wizard_mob.backbag == 2) wizard_mob.equip_to_slot_or_del(new /obj/item/storage/backpack(wizard_mob), slot_back)
+	if(wizard_mob.backbag == 3) wizard_mob.equip_to_slot_or_del(new /obj/item/storage/backpack/satchel/norm(wizard_mob), slot_back)
+	if(wizard_mob.backbag == 4) wizard_mob.equip_to_slot_or_del(new /obj/item/storage/backpack/satchel(wizard_mob), slot_back)
+	if(wizard_mob.backbag == 5) wizard_mob.equip_to_slot_or_del(new /obj/item/storage/backpack/messenger(wizard_mob), slot_back)
+	if(wizard_mob.backbag == 6) wizard_mob.equip_to_slot_or_del(new /obj/item/storage/backpack/sport(wizard_mob), slot_back)
+	wizard_mob.equip_to_slot_or_del(new /obj/item/storage/box(wizard_mob), slot_in_backpack)
+	wizard_mob.equip_to_slot_or_del(new /obj/item/teleportation_scroll(wizard_mob), slot_r_store)
+	wizard_mob.equip_to_slot_or_del(new /obj/item/spellbook(wizard_mob), slot_r_hand)
 	return 1
 
 /datum/antagonist/wizard/check_victory()
@@ -99,7 +99,7 @@ var/datum/antagonist/wizard/wizards
 		break
 	if(!survivor)
 		feedback_set_details("round_end_result","loss - wizard killed")
-		to_world("<span class='danger'><font size = 3>The [(current_antagonists.len>1)?"[role_text_plural] have":"[role_text] has"] been killed by the crew!</font></span>")
+		to_world(span_boldannounce(span_large("The [(current_antagonists.len>1)?"[role_text_plural] have":"[role_text] has"] been killed by the crew!")))
 
 //To batch-remove wizard spells. Linked to mind.dm.
 /mob/proc/spellremove()
@@ -122,12 +122,12 @@ Made a proc so this is not repeated 14 (or more) times.*/
 // Humans can wear clothes.
 /mob/living/carbon/human/wearing_wiz_garb()
 	if(!is_wiz_garb(src.wear_suit))
-		to_chat(src, "<span class='warning'>I don't feel strong enough without my robe.</span>")
+		to_chat(src, span_warning("I don't feel strong enough without my robe."))
 		return 0
 	if(!is_wiz_garb(src.shoes))
-		to_chat(src, "<span class='warning'>I don't feel strong enough without my sandals.</span>")
+		to_chat(src, span_warning("I don't feel strong enough without my sandals."))
 		return 0
 	if(!is_wiz_garb(src.head))
-		to_chat(src, "<span class='warning'>I don't feel strong enough without my hat.</span>")
+		to_chat(src, span_warning("I don't feel strong enough without my hat."))
 		return 0
 	return 1

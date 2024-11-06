@@ -6,7 +6,7 @@
 	var/energy_based					// Sees if the modifier is based on something electronic based.
 	var/energy_cost						// How much the modifier uses per action/special effect blocked. For base values.
 	var/damage_cost						// How much energy is used when numbers are involed. For values, such as taking damage. Ex: (Damage*damage_cost)
-	var/obj/item/weapon/cell/energy_source = null	// The source of the above.
+	var/obj/item/cell/energy_source = null	// The source of the above.
 
 	// RESISTANCES CODE. Variable to enable external damage resistance modifiers. This is not unlike armor.
 	// 0 = immune || < 0 = heals || 1 = full damage || >1 = increased damage.
@@ -50,8 +50,8 @@
 	name = "underwater stealth"
 	desc = "You are currently underwater, rendering it more difficult to see you and enabling you to move quicker, thanks to your aquatic nature."
 
-	on_created_text = "<span class='warning'>You sink under the water.</span>"
-	on_expired_text = "<span class='notice'>You come out from the water.</span>"
+	on_created_text = span_warning("You sink under the water.")
+	on_expired_text = span_notice("You come out from the water.")
 
 	stacks = MODIFIER_STACK_FORBID
 
@@ -92,8 +92,8 @@
 	name = "Shield Projection"
 	desc = "You are currently protected by a shield, rendering nigh impossible to hit you through conventional means."
 
-	on_created_text = "<span class='notice'>Your shield generator buzzes on.</span>"
-	on_expired_text = "<span class='warning'>Your shield generator buzzes off.</span>"
+	on_created_text = span_notice("Your shield generator buzzes on.")
+	on_expired_text = span_warning("Your shield generator buzzes off.")
 	stacks = MODIFIER_STACK_FORBID //No stacking shields. If you put one one your belt and backpack it won't work.
 
 	icon_override = 1
@@ -129,7 +129,7 @@
 	effective_fire_resistance = 1
 	disable_duration_percent = 1 //THIS CAN ALSO BE USED! Don't be too afraid to use this one, but use it sparingly!
 */
-	var/obj/item/device/personal_shield_generator/shield_generator //This is the shield generator you're wearing!
+	var/obj/item/personal_shield_generator/shield_generator //This is the shield generator you're wearing!
 
 
 /datum/modifier/shield_projection/on_applied()
@@ -141,11 +141,11 @@
 /datum/modifier/shield_projection/check_if_valid() //Let's check to make sure you got the stuff and set the vars. Don't need to modify this for any subtypes!
 	if(ishuman(holder)) //Only humans can use this! Other things later down the line might use the same stuff this does, but the shield generator is human only!
 		var/mob/living/carbon/human/H = holder
-		if(istype(H.get_equipped_item(slot_back), /obj/item/device/personal_shield_generator))
+		if(istype(H.get_equipped_item(slot_back), /obj/item/personal_shield_generator))
 			shield_generator = H.get_equipped_item(slot_back) //Sets the var on the modifier that the shield gen is their back shield gen.
-		else if(istype(H.get_equipped_item(slot_belt), /obj/item/device/personal_shield_generator))
+		else if(istype(H.get_equipped_item(slot_belt), /obj/item/personal_shield_generator))
 			shield_generator = H.get_equipped_item(slot_belt) //No need for other checks. If they got hit by this, they just turned it on.
-		else if(istype(H.get_equipped_item(slot_s_store), /obj/item/device/personal_shield_generator) ) //Rigsuits.
+		else if(istype(H.get_equipped_item(slot_s_store), /obj/item/personal_shield_generator) ) //Rigsuits.
 			shield_generator = H.get_equipped_item(slot_s_store)
 		else
 			expire(silent = TRUE)
@@ -277,8 +277,8 @@
 	effective_clone_resistance = 1
 
 /datum/modifier/shield_projection/admin // Adminbus.
-	on_created_text = "<span class='notice'>Your shield generator activates and you feel the power of the tesla buzzing around you.</span>"
-	on_expired_text = "<span class='warning'>Your shield generator deactivates, leaving you feeling weak and vulnerable.</span>"
+	on_created_text = span_notice("Your shield generator activates and you feel the power of the tesla buzzing around you.")
+	on_expired_text = span_warning("Your shield generator deactivates, leaving you feeling weak and vulnerable.")
 	siemens_coefficient = 0
 	disable_duration_percent = 0
 	min_damage_resistance = 0

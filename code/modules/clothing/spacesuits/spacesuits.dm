@@ -27,7 +27,7 @@
 	var/obj/machinery/camera/camera
 	var/list/camera_networks
 
-	action_button_name = "Toggle Helmet Light"
+	actions_types = list(/datum/action/item_action/toggle_helmet_light)
 	light_overlay = "helmet_light"
 	light_range = 4
 
@@ -76,7 +76,7 @@
 	flags = PHORONGUARD
 	item_flags = THICKMATERIAL
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS|HANDS
-	allowed = list(/obj/item/device/flashlight,/obj/item/weapon/tank/emergency/oxygen,/obj/item/device/suit_cooling_unit)
+	allowed = list(/obj/item/flashlight,/obj/item/tank/emergency/oxygen,/obj/item/suit_cooling_unit)
 	slowdown = 1.5
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 100, rad = 50)
 	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT|HIDETAIL|HIDETIE|HIDEHOLSTER

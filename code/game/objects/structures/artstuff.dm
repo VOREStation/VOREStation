@@ -21,7 +21,7 @@
 		painting = canvas
 		canvas.forceMove(get_turf(src))
 		canvas.layer = layer+0.1
-		user.visible_message("<span class='notice'>[user] puts \the [canvas] on \the [src].</span>","<span class='notice'>You place \the [canvas] on \the [src].</span>")
+		user.visible_message(span_notice("[user] puts \the [canvas] on \the [src]."),span_notice("You place \the [canvas] on \the [src]."))
 	else
 		return ..()
 
@@ -103,7 +103,7 @@
 /obj/item/canvas/attackby(obj/item/I, mob/living/user, params)
 	if(istype(I, /obj/item/paint_palette))
 		var/choice = tgui_alert(user, "Adjusting the base color of this canvas will replace ALL pixels with the selected color. Are you sure?", "Confirm Color Fill", list("Yes", "No"))
-		if(choice == "No")
+		if(choice != "Yes")
 			return
 		var/basecolor = input(user, "Select a base color for the canvas:", "Base Color", canvas_color) as null|color
 		if(basecolor && Adjacent(user) && user.get_active_hand() == I)
@@ -198,11 +198,11 @@
 	if(istype(I, /obj/item/paint_brush))
 		var/obj/item/paint_brush/P = I
 		return P.selected_color
-	else if(istype(I, /obj/item/weapon/pen/crayon))
-		var/obj/item/weapon/pen/crayon/crayon = I
+	else if(istype(I, /obj/item/pen/crayon))
+		var/obj/item/pen/crayon/crayon = I
 		return crayon.colour
-	else if(istype(I, /obj/item/weapon/pen))
-		var/obj/item/weapon/pen/P = I
+	else if(istype(I, /obj/item/pen))
+		var/obj/item/pen/P = I
 		switch(P.colour)
 			if("black")
 				return "#000000"
@@ -211,7 +211,7 @@
 			if("red")
 				return "#ff0000"
 		return P.colour
-	else if(istype(I, /obj/item/weapon/soap) || istype(I, /obj/item/weapon/reagent_containers/glass/rag))
+	else if(istype(I, /obj/item/soap) || istype(I, /obj/item/reagent_containers/glass/rag))
 		return canvas_color
 
 /obj/item/canvas/proc/try_rename(mob/user)
@@ -303,7 +303,7 @@
 	icon = 'icons/obj/artstuff.dmi'
 	icon_state = "palette"
 
-/obj/item/paint_palette/attackby(obj/item/weapon/W, mob/user)
+/obj/item/paint_palette/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/paint_brush))
 		var/obj/item/paint_brush/P = W
 		var/newcolor = input(user, "Select a new paint color:", "Paint Palette", P.selected_color) as null|color
@@ -351,7 +351,7 @@
 	desc_with_canvas = "A masterpiece hand-picked by the librarian, supposedly."
 	persistence_id = "library"
 	req_one_access = list(access_library)
-	curator = "Librarian"
+	curator = JOB_LIBRARIAN
 
 /obj/structure/sign/painting/chapel_secure
 	name = "\improper Religious Painting Exhibit mounting"
@@ -359,7 +359,7 @@
 	desc_with_canvas = "A masterpiece hand-picked by the chaplain, supposedly."
 	persistence_id = "chapel"
 	req_one_access = list(access_chapel_office)
-	curator = "Chaplain"
+	curator = JOB_CHAPLAIN
 
 /obj/structure/sign/painting/library_private // keep your smut away from prying eyes, or non-librarians at least
 	name = "\improper Private Painting Exhibit mounting"
@@ -367,7 +367,7 @@
 	desc_with_canvas = "A painting hung away from lesser minds."
 	persistence_id = "library_private"
 	req_one_access = list(access_library)
-	curator = "Librarian"
+	curator = JOB_LIBRARIAN
 
 /obj/structure/sign/painting/away_areas // for very hard-to-get-to areas
 	name = "\improper Remote Painting Exhibit mounting"
@@ -392,7 +392,7 @@
 /obj/structure/sign/painting/attackby(obj/item/I, mob/user, params)
 	if(!current_canvas && istype(I, /obj/item/canvas))
 		frame_canvas(user, I)
-	else if(current_canvas && current_canvas.painting_name == initial(current_canvas.painting_name) && istype(I,/obj/item/weapon/pen))
+	else if(current_canvas && current_canvas.painting_name == initial(current_canvas.painting_name) && istype(I,/obj/item/pen))
 		try_rename(user)
 	else if(current_canvas && I.has_tool_quality(TOOL_WIRECUTTER))
 		unframe_canvas(user)
@@ -402,40 +402,40 @@
 /obj/structure/sign/painting/examine(mob/user)
 	. = ..()
 	if(persistence_id)
-		. += "<span class='notice'>Any painting placed here will be archived at the end of the shift.</span>"
+		. += span_notice("Any painting placed here will be archived at the end of the shift.")
 
 	if(current_canvas)
 		current_canvas.tgui_interact(user)
-		. += "<span class='notice'>Use wirecutters to remove the painting.</span>"
-		. += "<span class='notice'>Paintings hung here are curated based on interest. The more often someone EXAMINEs the painting, the longer it will stay in rotation.</span>"
+		. += span_notice("Use wirecutters to remove the painting.")
+		. += span_notice("Paintings hung here are curated based on interest. The more often someone EXAMINEs the painting, the longer it will stay in rotation.")
 		// Painting loaded and persistent frame, give a hint about removal safety
 		if(persistence_id)
 			if(loaded)
-				. += "<span class='warning'>Don't worry, the currently framed painting has already been entered into the archives and can be safely removed. It will still be used on future shifts.</span>"
+				. += span_warning("Don't worry, the currently framed painting has already been entered into the archives and can be safely removed. It will still be used on future shifts.")
 				back_of_the_line(user)
 			else
-				. += "<span class='warning'>This painting has not been entered into the archives yet. Removing it will prevent that from happening.</span>"
+				. += span_warning("This painting has not been entered into the archives yet. Removing it will prevent that from happening.")
 
 /obj/structure/sign/painting/proc/frame_canvas(mob/user,obj/item/canvas/new_canvas)
 	if(!allowed(user))
-		to_chat(user, "<span class='notice'>Access lock prevents you from putting a painting into this frame. Ask [curator] for help!</span>")
+		to_chat(user, span_notice("Access lock prevents you from putting a painting into this frame. Ask [curator] for help!"))
 		return
 	if(user.drop_from_inventory(new_canvas, src))
 		current_canvas = new_canvas
 		if(!current_canvas.finalized)
 			current_canvas.finalize(user)
-		to_chat(user,"<span class='notice'>You frame [current_canvas].</span>")
+		to_chat(user,span_notice("You frame [current_canvas]."))
 		update_appearance()
 
 /obj/structure/sign/painting/proc/unframe_canvas(mob/living/user)
 	if(!allowed(user))
-		to_chat(user, "<span class='notice'>Access lock prevents you from removing paintings from this frame. Ask [curator] ((or admins)) for help!</span>")
+		to_chat(user, span_notice("Access lock prevents you from removing paintings from this frame. Ask [curator] ((or admins)) for help!"))
 		return
 	if(current_canvas)
 		current_canvas.forceMove(drop_location())
 		current_canvas = null
 		loaded = FALSE
-		to_chat(user, "<span class='notice'>You remove the painting from the frame.</span>")
+		to_chat(user, span_notice("You remove the painting from the frame."))
 		update_appearance()
 
 /obj/structure/sign/painting/proc/try_rename(mob/user)
@@ -550,7 +550,7 @@
 		Author's Name: [author_name]. \n \
 		Author's CKey: [author_ckey]"))
 		if(tgui_alert(usr, "Check your chat log (if filtering for notices, check where you don't) for painting details.",
-		"Is this the painting you want?", list("Yes", "No")) == "No")
+		"Is this the painting you want?", list("Yes", "No")) != "Yes")
 			return 0
 		if(!fexists("data/persistent/paintings/[persistence_id]/[painting["md5"]].png"))
 			to_chat(usr, span_warning("Chosen painting could not be loaded! Incident was logged, but no action taken at this time"))
@@ -589,7 +589,7 @@
 
 		if(tgui_alert(usr, "No painting list ID was given. You may obtain such by debugging SSPersistence and checking the all_paintings entry. \
 		If you do not wish to do that, you may request a list to be generated of painting titles. This might be resource intensive. \
-		Proceed? It will likely have over 500 entries", "Generate list?", list("Proceed!", "Cancel")) == "Cancel")
+		Proceed? It will likely have over 500 entries", "Generate list?", list("Proceed!", "Cancel")) != "Proceed!")
 			return
 
 		log_debug("[usr] generated list of paintings from SSPersistence")
@@ -649,7 +649,7 @@
 			SSpersistence.all_paintings.Remove(list(entry))
 			SSpersistence.all_paintings.Add(list(entry))
 			art_appreciators += user.ckey
-			to_chat(user, "<span class='notice'>Showing interest in this painting renews its position in the curator database.</span>")
+			to_chat(user, span_notice("Showing interest in this painting renews its position in the curator database."))
 
 /obj/structure/sign/painting/vv_get_dropdown()
 	. = ..()
@@ -662,7 +662,7 @@
 			return
 		var/mob/user = usr
 		if(!persistence_id || !current_canvas)
-			to_chat(user,"<span class='warning'>This is not a persistent painting.</span>")
+			to_chat(user,span_warning("This is not a persistent painting."))
 			return
 		var/md5 = md5(lowertext(current_canvas.get_data_string()))
 		var/author = current_canvas.author_ckey
@@ -679,4 +679,4 @@
 				QDEL_NULL(P.current_canvas)
 				P.update_appearance()
 		loaded = FALSE
-		log_and_message_admins("<span class='notice'>[key_name_admin(user)] has deleted persistent painting made by [author].</span>")
+		log_and_message_admins(span_notice("[key_name_admin(user)] has deleted persistent painting made by [author]."))

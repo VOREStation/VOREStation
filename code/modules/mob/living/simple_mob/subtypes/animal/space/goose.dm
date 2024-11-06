@@ -6,7 +6,7 @@
 	icon_living = "goose"
 	icon_dead = "goose_dead"
 
-	faction = "geese"
+	faction = FACTION_GEESE
 
 	maxHealth = 30
 	health = 30
@@ -25,7 +25,7 @@
 
 	has_langs = list(LANGUAGE_ANIMAL)
 
-	meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat/chicken
+	meat_type = /obj/item/reagent_containers/food/snacks/meat/chicken
 	meat_amount = 3
 
 /datum/say_list/goose
@@ -42,7 +42,7 @@
 /mob/living/simple_mob/animal/space/goose/verb/berserk()
 	set name = "Berserk"
 	set desc = "Enrage and become vastly stronger for a period of time, however you will be weaker afterwards."
-	set category = "Abilities"
+	set category = "Abilities.Goose"
 
 	add_modifier(/datum/modifier/berserk, 30 SECONDS)
 

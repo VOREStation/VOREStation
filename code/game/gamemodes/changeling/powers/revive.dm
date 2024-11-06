@@ -9,7 +9,7 @@
 		return 0
 
 	if(changeling.max_geneticpoints < 0) //Absorbed by another ling
-		to_chat(src, "<span class='danger'>You have no genomes, not even your own, and cannot revive.</span>")
+		to_chat(src, span_danger("You have no genomes, not even your own, and cannot revive."))
 		return 0
 
 	if(src.stat == DEAD)
@@ -46,7 +46,7 @@
 		BITSET(H.hud_updateflag, LIFE_HUD)
 
 		if(H.handcuffed)
-			var/obj/item/weapon/W = H.handcuffed
+			var/obj/item/W = H.handcuffed
 			H.handcuffed = null
 			if(H.buckled && H.buckled.buckle_require_restraints)
 				H.buckled.unbuckle_mob()
@@ -58,7 +58,7 @@
 			if(W)
 				W.layer = initial(W.layer)
 		if(H.legcuffed)
-			var/obj/item/weapon/W = H.legcuffed
+			var/obj/item/W = H.legcuffed
 			H.legcuffed = null
 			H.update_inv_legcuffed()
 			if(H.client)
@@ -75,14 +75,14 @@
 
 	C.halloss = 0
 	C.shock_stage = 0 //Pain
-	to_chat(C, "<span class='notice'>We have regenerated.</span>")
+	to_chat(C, span_notice("We have regenerated."))
 	C.update_canmove()
 	C.mind.changeling.purchased_powers -= C
 	feedback_add_details("changeling_powers","CR")
 	C.set_stat(CONSCIOUS)
 	C.forbid_seeing_deadchat = FALSE
 	C.timeofdeath = null
-	verbs.Remove(/mob/proc/changeling_revive)
+	remove_verb(src, /mob/proc/changeling_revive)
 	// re-add our changeling powers
 	C.make_changeling()
 

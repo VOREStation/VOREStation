@@ -81,23 +81,23 @@
 /obj/structure/construction/update_icon()
 	icon_state = "[base_icon][stage]"
 
-/obj/structure/construction/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/structure/construction/attackby(obj/item/W as obj, mob/user as mob)
 	add_fingerprint(user)
 	if(W.has_tool_quality(TOOL_WELDER))
 		if(stage == FRAME_UNFASTENED)
-			var/obj/item/weapon/weldingtool/WT = W.get_welder()
+			var/obj/item/weldingtool/WT = W.get_welder()
 			if(!WT.remove_fuel(0, user))
-				to_chat(user, "<span class='warning'>\The [src] must be on to complete this task.</span>")
+				to_chat(user, span_warning("\The [src] must be on to complete this task."))
 				return
 			playsound(src, WT.usesound, 50, 1)
 			user.visible_message( \
-				"<span class='warning'>\The [user] begins deconstructing \the [src].</span>", \
-				"<span class='notice'>You start deconstructing \the [src].</span>")
+				span_warning("\The [user] begins deconstructing \the [src]."), \
+				span_notice("You start deconstructing \the [src]."))
 			if(do_after(user, 20 * WT.toolspeed, target = src) && WT.isOn())
 				new /obj/item/stack/material/steel(get_turf(src), 2)
 				user.visible_message( \
-					"<span class='warning'>\The [user] has deconstructed \the [src].</span>", \
-					"<span class='notice'>You deconstruct \the [src].</span>")
+					span_warning("\The [user] has deconstructed \the [src]."), \
+					span_notice("You deconstruct \the [src]."))
 				playsound(src, 'sound/items/Deconstruct.ogg', 75, 1)
 				qdel(src)
 		else if (stage == FRAME_FASTENED)

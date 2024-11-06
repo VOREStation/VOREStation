@@ -7,7 +7,7 @@
 	icon_keyboard = "security_key"
 	icon_screen = "cameras"
 	light_color = "#a91515"
-	circuit = /obj/item/weapon/circuitboard/security
+	circuit = /obj/item/circuitboard/security
 
 	var/mapping = 0//For the overview file, interesting bit of code.
 	var/list/network = list()
@@ -46,7 +46,7 @@
 
 /obj/machinery/computer/security/attack_ai(mob/user)
 	if(isAI(user))
-		to_chat(user, "<span class='notice'>You realise its kind of stupid to access a camera console when you have the entire camera network at your metaphorical fingertips</span>")
+		to_chat(user, span_notice("You realise its kind of stupid to access a camera console when you have the entire camera network at your metaphorical fingertips"))
 		return
 	attack_hand(user)
 
@@ -78,10 +78,10 @@ GLOBAL_LIST_EMPTY(entertainment_screens)
 	light_color = "#FFEEDB"
 	light_range_on = 2
 	network = list(NETWORK_THUNDER)
-	circuit = /obj/item/weapon/circuitboard/security/telescreen/entertainment
+	circuit = /obj/item/circuitboard/security/telescreen/entertainment
 	camera_datum_type = /datum/tgui_module/camera/bigscreen
 
-	var/obj/item/device/radio/radio = null
+	var/obj/item/radio/radio = null
 	var/obj/effect/overlay/vis/pinboard
 	var/datum/weakref/showing
 
@@ -133,7 +133,7 @@ GLOBAL_LIST_EMPTY(entertainment_screens)
 	if(modifiers["alt"])
 		if(isliving(usr) && Adjacent(usr) && !usr.incapacitated())
 			toggle()
-			visible_message("<b>[usr]</b> toggles [src] [enabled ? "on" : "off"].","You toggle [src] [enabled ? "on" : "off"].", runemessage = "click")
+			visible_message(span_infoplain(span_bold("[usr]") + " toggles [src] [enabled ? "on" : "off"]."),span_info("You toggle [src] [enabled ? "on" : "off"]."), runemessage = "click")
 	else
 		attack_hand(usr)
 
@@ -173,7 +173,7 @@ GLOBAL_LIST_EMPTY(entertainment_screens)
 	icon_state = "television"
 	icon_keyboard = null
 	icon_screen = "detective_tv"
-	circuit = /obj/item/weapon/circuitboard/security/tv
+	circuit = /obj/item/circuitboard/security/tv
 	light_color = "#3848B3"
 	light_power_on = 0.5
 
@@ -183,7 +183,7 @@ GLOBAL_LIST_EMPTY(entertainment_screens)
 	icon_keyboard = "mining_key"
 	icon_screen = "mining"
 	network = list("Mining Outpost")
-	circuit = /obj/item/weapon/circuitboard/security/mining
+	circuit = /obj/item/circuitboard/security/mining
 	light_color = "#F9BBFC"
 
 /obj/machinery/computer/security/engineering
@@ -191,7 +191,7 @@ GLOBAL_LIST_EMPTY(entertainment_screens)
 	desc = "Used to monitor fires and breaches."
 	icon_keyboard = "power_key"
 	icon_screen = "engie_cams"
-	circuit = /obj/item/weapon/circuitboard/security/engineering
+	circuit = /obj/item/circuitboard/security/engineering
 	light_color = "#FAC54B"
 
 /obj/machinery/computer/security/engineering/get_default_networks()

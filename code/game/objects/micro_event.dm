@@ -13,9 +13,11 @@
 			if(tgui_alert(user, "Should this portal shrink people who are over the limit, or grow people who are under the limit?", "Change portal size settings", list("Shrink","Grow")) == "Shrink")
 				shrinking = TRUE
 				our_message = "What should the size limit be? Anyone over this limit will be shrunk to this size. (1 = 100%, etc)"
-			else
+			else if (our_message == "Grow")
 				shrinking = FALSE
 				our_message = "What should the size limit be? Anyone under this limit will be grown to this size. (1 = 100%, etc)"
+			else
+				return ..()
 
 			size_limit = tgui_input_number(user, our_message, "Pick a Size", 1, round_value=FALSE)
 
@@ -72,7 +74,7 @@
 	. = ..()
 
 	var/ourtime = (((start_time + time_til_open) - world.time) / 600)
-	. += "<span class ='notice'>It will open in [ourtime] minutes!</span>"
+	. += span_notice("It will open in [ourtime] minutes!")
 
 /obj/structure/timer_door/Initialize()
 	START_PROCESSING(SSobj, src)
@@ -81,7 +83,7 @@
 
 /obj/structure/timer_door/Destroy()
 	STOP_PROCESSING(SSobj, src)
-	visible_message("<span class = 'danger'>\The [src] opens up!</span>")
+	visible_message(span_danger("\The [src] opens up!"))
 	playsound(src, 'sound/effects/bang.ogg', 75, 1)
 	return ..()
 

@@ -1,33 +1,35 @@
-/obj/item/device/emergency_beacon
+/obj/item/emergency_beacon
 	name = "personal emergency beacon"
 	desc = "The hardy PersonaL Emergency Beacon, or PLEB, is a simple device that, once activated, sends out a wideband distress signal that can punch through almost all forms of interference. They are commonly issued to miners and remote exploration teams who may find themselves in need of means to call for assistance whilst being out of conventional communications range."
 	icon = 'icons/obj/device_vr.dmi'
 	icon_state = "e_beacon_off"
 	var/beacon_active = FALSE
 	var/list/levels_for_distress
-	var/obj/item/device/gps/gps = null
+	var/obj/item/gps/gps = null
+	pickup_sound = 'sound/items/pickup/device.ogg'
+	drop_sound = 'sound/items/drop/device.ogg'
 
-/obj/item/device/emergency_beacon/New()
-	gps = new/obj/item/device/gps/emergency_beacon(src)
+/obj/item/emergency_beacon/New()
+	gps = new/obj/item/gps/emergency_beacon(src)
 
-/obj/item/device/gps/emergency_beacon
+/obj/item/gps/emergency_beacon
 	gps_tag = "EMERGENCY BEACON"
 
-/obj/item/device/emergency_beacon/attack_self(mob/user)
+/obj/item/emergency_beacon/attack_self(mob/user)
 	var/T = user.loc
 	if(!beacon_active)
 		if(!isturf(T))
-			to_chat(user,"<span class='warning'>You cannot activate the beacon when you are not on a turf!</span>")
+			to_chat(user,span_warning("You cannot activate the beacon when you are not on a turf!"))
 			return
 		else if(isnonsolidturf(T))
-			to_chat(user,"<span class='warning'>You cannot activate the beacon when you are not on sufficiently solid ground!</span>")
+			to_chat(user,span_warning("You cannot activate the beacon when you are not on sufficiently solid ground!"))
 			return
 		else
 			var/answer = tgui_alert(user, "Would you like to activate this personal emergency beacon?","\The [src]", list("Yes", "No"))
-			if(answer == "No")
+			if(answer != "Yes")
 				return
 			else if(do_after(user, (3 SECONDS)))	//short delay, so they can still abort if they want to
-				user.visible_message("<span class='warning'>[user] activates \the [src]!</span>","<span class='warning'>You activate \the [src], spiking it into the ground!</span>")
+				user.visible_message(span_warning("[user] activates \the [src]!"),span_warning("You activate \the [src], spiking it into the ground!"))
 				beacon_active = TRUE
 				icon_state = "e_beacon_active"
 				user.drop_item()
@@ -46,14 +48,14 @@
 	else
 		to_chat(user,"\The [src] is already active, or is otherwise malfunctioning. There's nothing you can do but wait. And possibly pray.")
 
-/obj/item/device/emergency_beacon/attack_hand(mob/user)
+/obj/item/emergency_beacon/attack_hand(mob/user)
 	if(beacon_active)
-		to_chat(user,"<span class='warning'>The beacon is already active and cannot be moved!</span>")
+		to_chat(user,span_warning("The beacon is already active and cannot be moved!"))
 		return
 
 	. = ..()
 
-/obj/item/device/emergency_beacon/attackby(obj/item/weapon/W, mob/user)
+/obj/item/emergency_beacon/attackby(obj/item/W, mob/user)
 	if(W.is_wrench() && beacon_active)
 		gps.tracking = FALSE
 		user.visible_message("[user] disassembles \the [src].")

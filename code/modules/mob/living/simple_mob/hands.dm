@@ -132,7 +132,7 @@
 			display_name = tool
 		else
 			display_name = "object"
-		to_chat(src, "<span class='danger'>Your [hand_form] are not fit for use of \the [display_name].</span>")
+		to_chat(src, span_danger("Your [hand_form] are not fit for use of \the [display_name]."))
 	return humanoid_hands
 
 /mob/living/simple_mob/is_holding_item_of_type(typepath)

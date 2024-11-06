@@ -350,7 +350,7 @@ Recharging stations are available in robotics, the dormitory bathrooms, and the 
 
 /obj/screen/alert/locked
 	name = "Locked Down"
-	desc = "Unit has been remotely locked down. Usage of a Robotics Control Console like the one in the Research Director's \
+	desc = "Unit has been remotely locked down. Usage of a Robotics Control Console like the one in the " + JOB_RESEARCH_DIRECTOR + "'s \
 office by your AI master or any qualified human may resolve this matter. Robotics may provide further assistance if necessary."
 	icon_state = "locked"
 	no_underlay = TRUE
@@ -468,7 +468,7 @@ so as to remain in compliance with the most up-to-date laws."
 		return
 	var/paramslist = params2list(params)
 	if(paramslist["shift"]) // screen objects don't do the normal Click() stuff so we'll cheat
-		to_chat(usr,"<span class='boldnotice'>[name]</span> - <span class='info'>[desc]</span>")
+		to_chat(usr,span_boldnotice(name) + " - " + span_info(desc))
 		return
 	if(master)
 		return usr.client.Click(master, location, control, params)

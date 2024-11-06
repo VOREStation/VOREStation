@@ -40,10 +40,10 @@
 /obj/item/clothing/mask/breath,
 /obj/item/clothing/mask/breath,
 /obj/item/clothing/mask/breath,
-/obj/item/weapon/tank/emergency/oxygen/engi,
-/obj/item/weapon/tank/emergency/oxygen/engi,
-/obj/item/weapon/tank/emergency/oxygen/engi,
-/obj/item/weapon/tank/emergency/oxygen/engi,
+/obj/item/tank/emergency/oxygen/engi,
+/obj/item/tank/emergency/oxygen/engi,
+/obj/item/tank/emergency/oxygen/engi,
+/obj/item/tank/emergency/oxygen/engi,
 /obj/item/clothing/suit/space/emergency,
 /obj/item/clothing/suit/space/emergency,
 /obj/item/clothing/suit/space/emergency,
@@ -86,7 +86,7 @@
 /obj/structure/bed/alien{
 	icon = 'icons/obj/abductor_vr.dmi'
 	},
-/obj/item/weapon/bedsheet/blue,
+/obj/item/bedsheet/blue,
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/blue_fo)
 "an" = (
@@ -227,7 +227,7 @@
 /area/shuttle/blue_fo)
 "aF" = (
 /obj/effect/map_effect/perma_light/brighter,
-/obj/item/device/perfect_tele_beacon/stationary{
+/obj/item/perfect_tele_beacon/stationary{
 	icon_state = "beacon";
 	tele_name = "Hybrid Shuttle";
 	tele_network = "hybridshuttle"
@@ -402,11 +402,11 @@
 	dir = 1
 	},
 /obj/structure/table/alien/blue,
-/obj/item/device/perfect_tele/alien/bluefo{
+/obj/item/perfect_tele/alien/bluefo{
 	pixel_x = 6;
 	pixel_y = 3
 	},
-/obj/item/device/perfect_tele/alien/bluefo{
+/obj/item/perfect_tele/alien/bluefo{
 	pixel_x = -6;
 	pixel_y = 3
 	},
@@ -463,11 +463,11 @@
 /area/shuttle/blue_fo)
 "bg" = (
 /obj/structure/table/alien/blue,
-/obj/item/device/perfect_tele/alien/bluefo{
+/obj/item/perfect_tele/alien/bluefo{
 	pixel_x = -6;
 	pixel_y = 3
 	},
-/obj/item/device/perfect_tele/alien/bluefo{
+/obj/item/perfect_tele/alien/bluefo{
 	pixel_x = 6;
 	pixel_y = 3
 	},

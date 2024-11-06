@@ -1,4 +1,4 @@
-/obj/item/weapon/card/id/keycard
+/obj/item/card/id/keycard
 	name = "keycard"
 	desc = "Allows access to certain doors."
 	icon_state = "keycard-red"
@@ -6,20 +6,20 @@
 	light_color = "#0099ff"
 	access = list(801)
 
-/obj/item/weapon/card/id/keycard/update_icon()
+/obj/item/card/id/keycard/update_icon()
 	return
 
-/obj/item/weapon/card/id/keycard/read()
-	to_chat(usr, "<span class='notice'>It is a red keycard, it must unlock something.</span>")
+/obj/item/card/id/keycard/read()
+	to_chat(usr, span_notice("It is a red keycard, it must unlock something."))
 
-/obj/item/weapon/card/id/keycard/attack_self(mob/living/user as mob)
+/obj/item/card/id/keycard/attack_self(mob/living/user as mob)
 	return
 
-/obj/item/weapon/card/id/keycard/blue
+/obj/item/card/id/keycard/blue
 	icon_state = "keycard-blue"
 	access = list(802)
 
-/obj/item/weapon/card/id/keycard/green
+/obj/item/card/id/keycard/green
 	icon_state = "keycard-green"
 	access = list(803)
 
@@ -45,9 +45,9 @@
 		crystal = 1
 		user.drop_item()
 		qdel(W)
-		to_chat(usr, "<span class='notice'>You insert the crystal into the receptacle.</span>")
+		to_chat(usr, span_notice("You insert the crystal into the receptacle."))
 	else
-		to_chat(usr, "<span class='notice'>There isn't a slot for that.</span>")
+		to_chat(usr, span_notice("There isn't a slot for that."))
 
 /obj/machinery/crystalexperimenter
 	name = "crystal experimenter"
@@ -114,4 +114,3 @@
 	light_power = 1
 	light_color = "#ffffff"
 	light_on = TRUE
-

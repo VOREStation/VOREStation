@@ -142,7 +142,7 @@
 		if(target.buckled || target.lying)
 			return zone
 		// if your target is being grabbed aggressively by someone you cannot miss either
-		for(var/obj/item/weapon/grab/G in target.grabbed_by)
+		for(var/obj/item/grab/G in target.grabbed_by)
 			if(G.state >= GRAB_AGGRESSIVE)
 				return zone
 
@@ -213,7 +213,7 @@
 			//if(2,4,6,15)	newletter="[uppertext(newletter)]"
 			if(2,4,6,9)	newletter="[uppertext(newletter)]"
 			if(7)	newletter+="'"
-			//if(9,10)	newletter="<b>[newletter]</b>"
+			//if(9,10)	newletter=span_bold("[newletter]")
 			//if(11,12)	newletter="<big>[newletter]</big>"
 			//if(13)	newletter="<small>[newletter]</small>"
 		newphrase+="[newletter]";counter-=1
@@ -409,7 +409,7 @@ var/list/intents = list(I_HELP,I_DISARM,I_GRAB,I_HURT)
 		return // Can't talk in deadchat if you can't see it.
 
 	for(var/mob/M in player_list)
-		if(M.client && ((!istype(M, /mob/new_player) && M.stat == DEAD) || (M.client.holder && M.client.holder.rights && M.is_preference_enabled(/datum/client_preference/holder/show_staff_dsay))) && M.is_preference_enabled(/datum/client_preference/show_dsay))
+		if(M.client && ((!istype(M, /mob/new_player) && M.stat == DEAD) || (M.client.holder && M.client.holder.rights && M.client?.prefs?.read_preference(/datum/preference/toggle/holder/show_staff_dsay))) && M.client?.prefs?.read_preference(/datum/preference/toggle/show_dsay))
 			var/follow
 			var/lname
 			if(M.forbid_seeing_deadchat && !M.client.holder)
@@ -434,12 +434,12 @@ var/list/intents = list(I_HELP,I_DISARM,I_GRAB,I_HURT)
 						lname = "[keyname] ([name])"
 					else										// Everyone else (dead people who didn't ghost yet, etc.)
 						lname = name
-				lname = "<span class='name'>[lname]</span> "
-			to_chat(M, "<span class='deadsay'>" + create_text_tag("dead", "DEAD:", M.client) + " [lname][follow][message]</span>")
+				lname = span_name("[lname]") + " "
+			to_chat(M, span_deadsay("" + create_text_tag("dead", "DEAD:", M.client) + " [lname][follow][message]"))
 
 /proc/say_dead_object(var/message, var/obj/subject = null)
 	for(var/mob/M in player_list)
-		if(M.client && ((!istype(M, /mob/new_player) && M.stat == DEAD) || (M.client.holder && M.client.holder.rights && M.is_preference_enabled(/datum/client_preference/holder/show_staff_dsay))) && M.is_preference_enabled(/datum/client_preference/show_dsay))
+		if(M.client && ((!istype(M, /mob/new_player) && M.stat == DEAD) || (M.client.holder && M.client.holder.rights && M.client?.prefs?.read_preference(/datum/preference/toggle/holder/show_staff_dsay))) && M.client?.prefs?.read_preference(/datum/preference/toggle/show_dsay))
 			var/follow
 			var/lname = "Game Master"
 			if(M.forbid_seeing_deadchat && !M.client.holder)
@@ -448,8 +448,8 @@ var/list/intents = list(I_HELP,I_DISARM,I_GRAB,I_HURT)
 			if(subject)
 				lname = "[subject.name] ([subject.x],[subject.y],[subject.z])"
 
-			lname = "<span class='name'>[lname]</span> "
-			to_chat(M, "<span class='deadsay'>" + create_text_tag("event_dead", "EVENT:", M.client) + " [lname][follow][message]</span>")
+			lname = span_name("[lname]") + " "
+			to_chat(M, span_deadsay("" + create_text_tag("event_dead", "EVENT:", M.client) + " [lname][follow][message]"))
 
 //Announces that a ghost has joined/left, mainly for use with wizards
 /proc/announce_ghost_joinleave(O, var/joined_ghosts = 1, var/message = "")
@@ -482,9 +482,9 @@ var/list/intents = list(I_HELP,I_DISARM,I_GRAB,I_HURT)
 		if(!name)
 			name = (C.holder && C.holder.fakekey) ? C.holder.fakekey : C.key
 		if(joined_ghosts)
-			say_dead_direct("The ghost of <span class='name'>[name]</span> now [pick("skulks","lurks","prowls","creeps","stalks")] among the dead. [message]")
+			say_dead_direct("The ghost of " + span_name("[name]") + " now [pick("skulks","lurks","prowls","creeps","stalks")] among the dead. [message]")
 		else
-			say_dead_direct("<span class='name'>[name]</span> no longer [pick("skulks","lurks","prowls","creeps","stalks")] in the realm of the dead. [message]")
+			say_dead_direct(span_name("[name]") + " no longer [pick("skulks","lurks","prowls","creeps","stalks")] in the realm of the dead. [message]")
 
 /mob/proc/switch_to_camera(var/obj/machinery/camera/C)
 	if (!C.can_use() || stat || (get_dist(C, src) > 1 || machine != src || blinded || !canmove))
@@ -528,24 +528,24 @@ var/list/intents = list(I_HELP,I_DISARM,I_GRAB,I_HURT)
 		return SAFE_PERP
 
 	//Agent cards lower threatlevel.
-	var/obj/item/weapon/card/id/id = GetIdCard()
-	if(id && istype(id, /obj/item/weapon/card/id/syndicate))
+	var/obj/item/card/id/id = GetIdCard()
+	if(id && istype(id, /obj/item/card/id/syndicate))
 		threatcount -= 2
 	// A proper	CentCom id is hard currency.
-	else if(id && istype(id, /obj/item/weapon/card/id/centcom))
+	else if(id && istype(id, /obj/item/card/id/centcom))
 		return SAFE_PERP
 
 	if(check_access && !access_obj.allowed(src))
 		threatcount += 4
 
 	if(auth_weapons && !access_obj.allowed(src))
-		if(istype(l_hand, /obj/item/weapon/gun) || istype(l_hand, /obj/item/weapon/melee))
+		if(istype(l_hand, /obj/item/gun) || istype(l_hand, /obj/item/melee))
 			threatcount += 4
 
-		if(istype(r_hand, /obj/item/weapon/gun) || istype(r_hand, /obj/item/weapon/melee))
+		if(istype(r_hand, /obj/item/gun) || istype(r_hand, /obj/item/melee))
 			threatcount += 4
 
-		if(istype(belt, /obj/item/weapon/gun) || istype(belt, /obj/item/weapon/melee))
+		if(istype(belt, /obj/item/gun) || istype(belt, /obj/item/melee))
 			threatcount += 2
 
 		if(species.name != SPECIES_HUMAN)

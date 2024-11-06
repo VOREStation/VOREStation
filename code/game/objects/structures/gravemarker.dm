@@ -50,7 +50,7 @@
 		return !density
 	return TRUE
 
-/obj/structure/gravemarker/attackby(obj/item/weapon/W, mob/user as mob)
+/obj/structure/gravemarker/attackby(obj/item/W, mob/user as mob)
 	if(W.has_tool_quality(TOOL_SCREWDRIVER))
 		var/carving_1 = sanitizeSafe(tgui_input_text(user, "Who is \the [src.name] for?", "Gravestone Naming", null, MAX_NAME_LEN), MAX_NAME_LEN)
 		if(carving_1)
@@ -87,11 +87,11 @@
 /obj/structure/gravemarker/ex_act(severity)
 	switch(severity)
 		if(1.0)
-			visible_message("<span class='danger'>\The [src] is blown apart!</span>")
+			visible_message(span_danger("\The [src] is blown apart!"))
 			qdel(src)
 			return
 		if(2.0)
-			visible_message("<span class='danger'>\The [src] is blown apart!</span>")
+			visible_message(span_danger("\The [src] is blown apart!"))
 			if(prob(50))
 				dismantle()
 			else
@@ -101,7 +101,7 @@
 /obj/structure/gravemarker/proc/damage(var/damage)
 	health -= damage
 	if(health <= 0)
-		visible_message("<span class='danger'>\The [src] falls apart!</span>")
+		visible_message(span_danger("\The [src] falls apart!"))
 		dismantle()
 
 /obj/structure/gravemarker/proc/dismantle()
@@ -122,7 +122,7 @@
 		return
 	if(usr.stat || usr.restrained())
 		return
-	if(ismouse(usr) || (isobserver(usr) && !config.ghost_interaction))
+	if(ismouse(usr) || (isobserver(usr) && !CONFIG_GET(flag/ghost_interaction)))
 		return
 
 	src.set_dir(turn(src.dir, 270))
@@ -141,7 +141,7 @@
 		return
 	if(usr.stat || usr.restrained())
 		return
-	if(ismouse(usr) || (isobserver(usr) && !config.ghost_interaction))
+	if(ismouse(usr) || (isobserver(usr) && !CONFIG_GET(flag/ghost_interaction)))
 		return
 
 	src.set_dir(turn(src.dir, 90))

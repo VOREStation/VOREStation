@@ -25,7 +25,7 @@
 	universal_understand = TRUE
 	can_be_antagged = TRUE
 
-	holder_type = /obj/item/weapon/holder/borer
+	holder_type = /obj/item/holder/borer
 	ai_holder_type = null // This is player-controlled, always.
 
 	var/mob/living/carbon/human/host = null		// The humanoid host for the brain worm.
@@ -57,8 +57,8 @@
 /mob/living/simple_mob/animal/borer/Initialize()
 	add_language("Cortical Link")
 
-	verbs += /mob/living/proc/ventcrawl
-	verbs += /mob/living/proc/hide
+	add_verb(src, /mob/living/proc/ventcrawl)
+	add_verb(src, /mob/living/proc/hide)
 
 	true_name = "[pick("Primary","Secondary","Tertiary","Quaternary")] [rand(1000,9999)]"
 
@@ -73,13 +73,13 @@
 		if(host.reagents.has_reagent("sugar") && !docile)
 			var/message = "You feel the soporific flow of sugar in your host's blood, lulling you into docility."
 			var/target = controlling ? host : src
-			to_chat(target, span("warning", message))
+			to_chat(target, span_warning(message))
 			docile = TRUE
 
 		else if(docile)
 			var/message = "You shake off your lethargy as the sugar leaves your host's blood."
 			var/target = controlling ? host : src
-			to_chat(target, span("notice", message))
+			to_chat(target, span_notice(message))
 			docile = FALSE
 
 		// Chem regen.
@@ -89,7 +89,7 @@
 		// Control stuff.
 		if(controlling)
 			if(docile)
-				to_chat(host, span("warning", "You are feeling far too docile to continue controlling your host..."))
+				to_chat(host, span_warning("You are feeling far too docile to continue controlling your host..."))
 				host.release_control()
 				return
 
@@ -99,15 +99,9 @@
 			if(prob(host.brainloss/20))
 				host.say("*[pick(list("blink","blink_r","choke","aflap","drool","twitch","twitch_v","gasp"))]")
 
-/mob/living/simple_mob/animal/borer/Stat()
-	..()
-	if(client.statpanel == "Status")
-		statpanel("Status")
-		if(emergency_shuttle)
-			var/eta_status = emergency_shuttle.get_status_panel_eta()
-			if(eta_status)
-				stat(null, eta_status)
-		stat("Chemicals", chemicals)
+/mob/living/simple_mob/animal/borer/get_status_tab_items()
+	. = ..()
+	. += "Chemicals: [chemicals]"
 
 /mob/living/simple_mob/animal/borer/proc/detatch()
 	if(!host || !controlling)
@@ -122,9 +116,9 @@
 	controlling = FALSE
 
 	host.remove_language("Cortical Link")
-	host.verbs -= /mob/living/carbon/proc/release_control
-	host.verbs -= /mob/living/carbon/proc/punish_host
-	host.verbs -= /mob/living/carbon/proc/spawn_larvae
+	remove_verb(host, /mob/living/carbon/proc/release_control)
+	remove_verb(host, /mob/living/carbon/proc/punish_host)
+	remove_verb(host, /mob/living/carbon/proc/spawn_larvae)
 
 	if(host_brain)
 		// these are here so bans and multikey warnings are not triggered on the wrong people when ckey is changed.
@@ -201,10 +195,10 @@
 	ckey = candidate.ckey
 
 	if(mind)
-		mind.assigned_role = "Cortical Borer"
-		mind.special_role = "Cortical Borer"
+		mind.assigned_role = JOB_CORTICAL_BORER
+		mind.special_role = JOB_CORTICAL_BORER
 
-	to_chat(src, span("notice", "You are a cortical borer! You are a brain slug that worms its way \
+	to_chat(src, span_notice("You are a cortical borer! You are a brain slug that worms its way \
 	into the head of its victim. Use stealth, persuasion and your powers of mind control to keep you, \
 	your host and your eventual spawn safe and warm."))
 	to_chat(src, "You can speak to your victim with <b>say</b>, to other borers with <b>say :x</b>, and use your Abilities tab to access powers.")
@@ -226,7 +220,7 @@
 		return
 
 	if(client && client.prefs.muted & MUTE_IC)
-		to_chat(src, span("danger", "You cannot speak in IC (muted)."))
+		to_chat(src, span_danger("You cannot speak in IC (muted)."))
 		return
 
 	if(copytext(message, 1, 2) == "*")
@@ -240,7 +234,7 @@
 
 	if(!host)
 		if(chemicals >= 30)
-			to_chat(src, span("alien", "..You emit a psionic pulse with an encoded message.."))
+			to_chat(src, span_alien("..You emit a psionic pulse with an encoded message.."))
 			var/list/nearby_mobs = list()
 			for(var/mob/living/LM in view(src, 1 + round(6 * (chemicals / max_chemicals))))
 				if(LM == src)
@@ -255,9 +249,9 @@
 				message_admins("[src.ckey]/([src]) tried to force [speaker] to say: [message]")
 				speaker.say("[message]")
 				return
-			to_chat(src, span("alien", "..But nothing heard it.."))
+			to_chat(src, span_alien("..But nothing heard it.."))
 		else
-			to_chat(src, span("warning", "You have no host to speak to."))
+			to_chat(src, span_warning("You have no host to speak to."))
 		return //No host, no audible speech.
 
 	to_chat(src, "You drop words into [host]'s mind: \"[message]\"")
@@ -266,7 +260,7 @@
 	for(var/mob/M in player_list)
 		if(istype(M, /mob/new_player))
 			continue
-		else if(M.stat == DEAD && M.is_preference_enabled(/datum/client_preference/ghost_ears))
+		else if(M.stat == DEAD && M.client?.prefs?.read_preference(/datum/preference/toggle/ghost_ears))
 			to_chat(M, "[src.true_name] whispers to [host], \"[message]\"")
 
 

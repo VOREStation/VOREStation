@@ -10,7 +10,7 @@
 		if(status[1] == HUMAN_EATING_NO_MOUTH)
 			to_chat(src, "Where do you intend to put [food]? You don't have a mouth!")
 		else if(status[1] == HUMAN_EATING_BLOCKED_MOUTH)
-			to_chat(src, "<span class='warning'>\The [status[2]] is in the way!</span>")
+			to_chat(src, span_warning("\The [status[2]] is in the way!"))
 	return 0
 
 /mob/living/carbon/human/can_force_feed(var/feeder, var/food, var/feedback = 1)
@@ -21,7 +21,7 @@
 		if(status[1] == HUMAN_EATING_NO_MOUTH)
 			to_chat(feeder, "Where do you intend to put [food]? \The [src] doesn't have a mouth!")
 		else if(status[1] == HUMAN_EATING_BLOCKED_MOUTH)
-			to_chat(feeder, "<span class='warning'>\The [status[2]] is in the way!</span>")
+			to_chat(feeder, span_warning("\The [status[2]] is in the way!"))
 	return 0
 
 /mob/living/carbon/human/proc/can_eat_status()
@@ -58,23 +58,23 @@
 /mob/living/carbon/human/break_cloak()
 	if(mind && mind.changeling) //Changeling visible camo
 		mind.changeling.cloaked = 0
-	if(istype(back, /obj/item/weapon/rig)) //Ninja cloak
-		var/obj/item/weapon/rig/suit = back
+	if(istype(back, /obj/item/rig)) //Ninja cloak
+		var/obj/item/rig/suit = back
 		for(var/obj/item/rig_module/stealth_field/cloaker in suit.installed_modules)
 			if(cloaker.active)
 				cloaker.deactivate()
-	for(var/obj/item/weapon/deadringer/dr in src)
+	for(var/obj/item/deadringer/dr in src)
 		dr.uncloak()
 
 /mob/living/carbon/human/is_cloaked()
 	if(mind && mind.changeling && mind.changeling.cloaked) // Ling camo.
 		return TRUE
-	else if(istype(back, /obj/item/weapon/rig)) //Ninja cloak
-		var/obj/item/weapon/rig/suit = back
+	else if(istype(back, /obj/item/rig)) //Ninja cloak
+		var/obj/item/rig/suit = back
 		for(var/obj/item/rig_module/stealth_field/cloaker in suit.installed_modules)
 			if(cloaker.active)
 				return TRUE
-	for(var/obj/item/weapon/deadringer/dr in src)
+	for(var/obj/item/deadringer/dr in src)
 		if(dr.timer > 20)
 			return TRUE
 	return ..()
@@ -136,11 +136,11 @@
 	if(B) // Incase we lost our brain for some reason, like if we got decapped.
 		if(istype(B, /obj/item/organ/internal/mmi_holder))
 			var/obj/item/organ/internal/mmi_holder/mmi_holder = B
-			if(istype(mmi_holder.stored_mmi, /obj/item/device/mmi/digital/posibrain))
+			if(istype(mmi_holder.stored_mmi, /obj/item/mmi/digital/posibrain))
 				return FBP_POSI
-			else if(istype(mmi_holder.stored_mmi, /obj/item/device/mmi/digital/robot))
+			else if(istype(mmi_holder.stored_mmi, /obj/item/mmi/digital/robot))
 				return FBP_DRONE
-			else if(istype(mmi_holder.stored_mmi, /obj/item/device/mmi)) // This needs to come last because inheritence.
+			else if(istype(mmi_holder.stored_mmi, /obj/item/mmi)) // This needs to come last because inheritence.
 				return FBP_CYBORG
 
 	return FBP_NONE
@@ -172,11 +172,7 @@
 	var/list/compiled_vis = list()
 
 	if(CE_DARKSIGHT in chem_effects) //Putting this near the beginning so it can be overwritten by equipment
-		plane_holder.set_vis(VIS_FULLBRIGHT,TRUE)
 		compiled_vis += VIS_FULLBRIGHT
-	else
-		plane_holder.set_vis(VIS_FULLBRIGHT,FALSE)
-		compiled_vis -= VIS_FULLBRIGHT
 
 	for(var/slot in slots)
 		var/obj/item/clothing/O = get_equipped_item(slot) //Change this type if you move the vision stuff to item or something.
@@ -184,7 +180,7 @@
 			compiled_vis |= O.enables_planes
 
 	//Check to see if we have a rig (ugh, blame rigs, desnowflake this)
-	var/obj/item/weapon/rig/rig = get_rig()
+	var/obj/item/rig/rig = get_rig()
 	if(istype(rig) && rig.visor)
 		if(!rig.helmet || (head && rig.helmet == head))
 			if(rig.visor && rig.visor.vision && rig.visor.active && rig.visor.vision.glasses)
@@ -200,12 +196,8 @@
 	//VOREStation Add End
 
 	//Vore Stomach addition start. This goes here.
-	if(stomach_vision && !(VIS_CH_STOMACH in vis_enabled))
-		plane_holder.set_vis(VIS_CH_STOMACH,TRUE)
+	if(stomach_vision)
 		compiled_vis += VIS_CH_STOMACH
-	else if(!stomach_vision && (VIS_CH_STOMACH in vis_enabled))
-		plane_holder.set_vis(VIS_CH_STOMACH,FALSE)
-		compiled_vis -= VIS_CH_STOMACH
 	//Vore Stomach addition end
 
 	if(!compiled_vis.len && !vis_enabled.len)
@@ -226,7 +218,7 @@
 		vis_enabled -= vis
 
 /mob/living/carbon/human/get_restraining_bolt()
-	var/obj/item/weapon/implant/restrainingbolt/RB
+	var/obj/item/implant/restrainingbolt/RB
 
 	for(var/obj/item/organ/external/EX in organs)
 		RB = locate() in EX

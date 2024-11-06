@@ -36,6 +36,8 @@
 		////////////////
 		//ADMIN THINGS//
 		////////////////
+	/// hides the byond verb panel as we use our own custom version
+	show_verb_panel = FALSE
 	///Contains admin info. Null if client is not an admin.
 	var/datum/admins/holder = null
 	var/datum/admins/deadmin_holder = null
@@ -104,6 +106,11 @@
 	var/last_asset_job = 0
 	var/last_completed_asset_job = 0
 
+	///Last ping of the client
+	var/lastping = 0
+	///Average ping of the client
+	var/avgping = 0
+
  	///world.time they connected
 	var/connection_time
  	///world.realtime they connected
@@ -113,6 +120,23 @@
 
 	// Runechat messages
 	var/list/seen_messages
+	/// our current tab
+	var/stat_tab
+
+	/// list of all tabs
+	var/list/panel_tabs = list()
+	/// list of tabs containing spells and abilities
+	var/list/spell_tabs = list()
+	/// list of misc tabs from mob
+	var/list/misc_tabs = list()
+	///A lazy list of atoms we've examined in the last RECENT_EXAMINE_MAX_WINDOW (default 2) seconds, so that we will call [/atom/proc/examine_more] instead of [/atom/proc/examine] on them when examining
+	var/list/recent_examines
+	///Our object window datum. It stores info about and handles behavior for the object tab
+	var/datum/object_window_info/obj_window
+
+	var/list/misc_cache = list()
+
+	var/atom/examine_icon //Holder for examine icon, useful for statpanel
 
 	//Hide top bars
 	var/fullscreen = FALSE
@@ -147,3 +171,6 @@
 	var/last_move_dir_pressed = NONE
 
 	#endif
+
+	/// If this client has been fully initialized or not
+	var/fully_created = FALSE

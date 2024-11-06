@@ -30,9 +30,9 @@
 	return
 
 
-/obj/effect/decal/mecha_wreckage/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/effect/decal/mecha_wreckage/attackby(obj/item/W as obj, mob/user as mob)
 	if(W.has_tool_quality(TOOL_WELDER))
-		var/obj/item/weapon/weldingtool/WT = W.get_welder()
+		var/obj/item/weldingtool/WT = W.get_welder()
 		if(salvage_num <= 0)
 			to_chat(user, "You don't see anything that can be cut with [W].")
 			return
@@ -47,7 +47,7 @@
 			else
 				to_chat(user, "You failed to salvage anything valuable from [src].")
 		else
-			to_chat(user, "<span class='notice'>You need more welding fuel to complete this task.</span>")
+			to_chat(user, span_notice("You need more welding fuel to complete this task."))
 			return
 	if(W.has_tool_quality(TOOL_WIRECUTTER))
 		if(salvage_num <= 0)

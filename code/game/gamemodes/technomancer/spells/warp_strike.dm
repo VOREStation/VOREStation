@@ -2,11 +2,11 @@
 	name = "Warp Strike"
 	desc = "Teleports you next to your target, and attacks them with whatever is in your off-hand, spell or object."
 	cost = 100
-	obj_path = /obj/item/weapon/spell/warp_strike
+	obj_path = /obj/item/spell/warp_strike
 	ability_icon_state = "tech_warpstrike"
 	category = OFFENSIVE_SPELLS
 
-/obj/item/weapon/spell/warp_strike
+/obj/item/spell/warp_strike
 	name = "warp strike"
 	desc = "The answer to the problem of bringing a knife to a gun fight."
 	icon_state = "warp_strike"
@@ -14,13 +14,13 @@
 	aspect = ASPECT_TELE
 	var/datum/effect/effect/system/spark_spread/sparks
 
-/obj/item/weapon/spell/warp_strike/New()
+/obj/item/spell/warp_strike/New()
 	..()
 	sparks = new /datum/effect/effect/system/spark_spread()
 	sparks.set_up(5, 0, src)
 	sparks.attach(loc)
 
-/obj/item/weapon/spell/warp_strike/on_ranged_cast(atom/hit_atom, mob/user)
+/obj/item/spell/warp_strike/on_ranged_cast(atom/hit_atom, mob/user)
 	var/turf/T = get_turf(hit_atom)
 	if(T)
 		if(!within_range(T))
@@ -57,18 +57,18 @@
 		var/obj/item/I = user.get_inactive_hand()
 		// List of items we don't want used, for balance reasons or to avoid infinite loops.
 		var/list/blacklisted_items = list(
-			/obj/item/weapon/gun,
-			/obj/item/weapon/spell/warp_strike,
-			/obj/item/weapon/spell/targeting_matrix
+			/obj/item/gun,
+			/obj/item/spell/warp_strike,
+			/obj/item/spell/targeting_matrix
 			)
 		if(I)
 
 			if(is_path_in_list(I.type, blacklisted_items))
-				to_chat(user, "<span class='danger'>You can't use \the [I] while warping!</span>")
+				to_chat(user, span_danger("You can't use \the [I] while warping!"))
 				return
 
-			if(istype(I, /obj/item/weapon))
-				var/obj/item/weapon/W = I
+			if(istype(I, /obj/item))
+				var/obj/item/W = I
 				W.attack(chosen_target, user)
 				W.afterattack(chosen_target, user)
 			else
@@ -77,4 +77,3 @@
 		else
 			chosen_target.attack_hand(user)
 		add_attack_logs(user,chosen_target,"Warp striked")
-

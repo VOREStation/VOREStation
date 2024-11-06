@@ -92,7 +92,7 @@
 			var/atom/toplevelholder = target
 			while(!istype(toplevelholder.loc, /turf))
 				toplevelholder = toplevelholder.loc
-			toplevelholder.visible_message("<span class='filter_notice'>[span_red("[icon2html(toplevelholder, viewers(toplevelholder))] [toplevelholder] [display_msg]")]</span>")
+			toplevelholder.visible_message(span_filter_notice("[span_red("[icon2html(toplevelholder, viewers(toplevelholder))] [toplevelholder] [display_msg]")]"))
 
 /datum/artifact_effect/proc/DoEffectTouch(var/mob/user)
 /datum/artifact_effect/proc/DoEffectAura(var/atom/holder)
@@ -164,8 +164,8 @@
 	var/protected = 0
 
 	//anomaly suits give best protection, but excavation suits are almost as good
-	if(istype(H.back,/obj/item/weapon/rig/hazmat))
-		var/obj/item/weapon/rig/hazmat/rig = H.back
+	if(istype(H.back,/obj/item/rig/hazmat))
+		var/obj/item/rig/hazmat/rig = H.back
 		if(rig.suit_is_deployed() && !rig.offline)
 			protected += 1
 

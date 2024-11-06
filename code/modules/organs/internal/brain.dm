@@ -33,7 +33,7 @@ GLOBAL_LIST_BOILERPLATE(all_brain_organs, /obj/item/organ/internal/brain)
 	if(!owner || owner.stat == DEAD)
 		defib_timer = max(--defib_timer, 0)
 	else
-		defib_timer = min(++defib_timer, (config.defib_timer MINUTES) / 20)		// Time vars measure things in ticks. Life tick happens every ~2 seconds, therefore dividing by 20
+		defib_timer = min(++defib_timer, (CONFIG_GET(number/defib_timer) MINUTES) / 20)		// Time vars measure things in ticks. Life tick happens every ~2 seconds, therefore dividing by 20
 
 /obj/item/organ/internal/brain/proc/can_assist()
 	return can_assist
@@ -80,8 +80,8 @@ GLOBAL_LIST_BOILERPLATE(all_brain_organs, /obj/item/organ/internal/brain)
 
 /obj/item/organ/internal/brain/New()
 	..()
-	health = config.default_brain_health
-	defib_timer = (config.defib_timer MINUTES) / 20				// Time vars measure things in ticks. Life tick happens every ~2 seconds, therefore dividing by 20
+	health = CONFIG_GET(number/default_brain_health)
+	defib_timer = (CONFIG_GET(number/defib_timer) MINUTES) / 20				// Time vars measure things in ticks. Life tick happens every ~2 seconds, therefore dividing by 20
 	spawn(5)
 		if(brainmob)
 			butcherable = FALSE
@@ -117,7 +117,7 @@ GLOBAL_LIST_BOILERPLATE(all_brain_organs, /obj/item/organ/internal/brain)
 
 	brainmob.languages = H.languages
 
-	to_chat(brainmob, "<span class='notice'>You feel slightly disoriented. That's normal when you're just \a [initial(src.name)].</span>")
+	to_chat(brainmob, span_notice("You feel slightly disoriented. That's normal when you're just \a [initial(src.name)]."))
 	callHook("debrain", list(brainmob))
 
 /obj/item/organ/internal/brain/examine(mob/user) // -- TLE
@@ -295,9 +295,9 @@ GLOBAL_LIST_BOILERPLATE(all_brain_organs, /obj/item/organ/internal/brain)
 /decl/chemical_reaction/instant/promethean_brain_revival/on_reaction(var/datum/reagents/holder)
 	var/obj/item/organ/internal/brain/slime/brain = holder.my_atom
 	if(brain.reviveBody())
-		brain.visible_message("<span class='notice'>[brain] bubbles, surrounding itself with a rapidly expanding mass of slime!</span>")
+		brain.visible_message(span_notice("[brain] bubbles, surrounding itself with a rapidly expanding mass of slime!"))
 	else
-		brain.visible_message("<span class='warning'>[brain] shifts strangely, but falls still.</span>")
+		brain.visible_message(span_warning("[brain] shifts strangely, but falls still."))
 
 /obj/item/organ/internal/brain/golem
 	name = "chem"

@@ -6,7 +6,7 @@
 			if(istype(recharging_atom) && !QDELETED(recharging_atom) && recharging_atom.loc == src)
 				recharging_atom.dropInto(loc)
 				user.put_in_hands(recharging_atom)
-				user.visible_message("<b>\The [user]</b> pops \the [recharging_atom] out of \the [src]'s recharging port.")
+				user.visible_message(span_infoplain(span_bold("\The [user]") + " pops \the [recharging_atom] out of \the [src]'s recharging port."))
 			recharging = null
 			return TRUE
 
@@ -17,17 +17,17 @@
 
 /mob/living/silicon/robot/platform/attackby(obj/item/W, mob/user)
 
-	if(istype(W, /obj/item/weapon/cell) && !opened)
+	if(istype(W, /obj/item/cell) && !opened)
 		if(recharging)
-			to_chat(user, SPAN_WARNING("\The [src] already has \a [recharging.resolve()] inserted into its recharging port."))
+			to_chat(user, span_warning("\The [src] already has \a [recharging.resolve()] inserted into its recharging port."))
 		else if(user.unEquip(W))
 			W.forceMove(src)
 			recharging = WEAKREF(W)
 			recharge_complete = FALSE
-			user.visible_message("<b>\The [user]</b> slots \the [W] into \the [src]'s recharging port.")
+			user.visible_message(span_infoplain(span_bold("\The [user]") + " slots \the [W] into \the [src]'s recharging port."))
 		return TRUE
 
-	if(istype(W, /obj/item/device/floor_painter))
+	if(istype(W, /obj/item/floor_painter))
 		return FALSE // Paint sprayer wil call try_paint() in afterattack()
 
 	. = ..()
@@ -42,7 +42,7 @@
 		return ..()
 
 	if(jobban_isbanned(user, "Robot"))
-		to_chat(user, SPAN_WARNING("You are banned from synthetic roles and cannot take control of \the [src]."))
+		to_chat(user, span_warning("You are banned from synthetic roles and cannot take control of \the [src]."))
 		return
 
 	// Boilerplate from drone fabs, unsure if there's a shared proc to use instead.
@@ -70,7 +70,7 @@
 
 /mob/living/silicon/robot/platform/proc/welcome_client()
 	if(client)
-		to_chat(src, SPAN_NOTICE("<b>You are a think-tank</b>, a kind of flexible and adaptive drone intelligence installed into an armoured platform. Your programming compels you to be friendly and helpful wherever possible."))
+		to_chat(src, span_notice(span_bold("You are a think-tank") + ", a kind of flexible and adaptive drone intelligence installed into an armoured platform. Your programming compels you to be friendly and helpful wherever possible."))
 	SetSleeping(0)
 	SetWeakened(0)
 	SetParalysis(0)

@@ -4,7 +4,7 @@
 	..()
 
 /mob/living/verb/customsay()
-	set category = "IC"
+	set category = "IC.Settings"
 	set name = "Customize Speech Verbs"
 	set desc = "Customize the text which appears when you type- e.g. 'says', 'asks', 'exclaims'."
 
@@ -25,7 +25,7 @@
 /mob/living/verb/set_metainfo()
 	set name = "Set OOC Metainfo"
 	set desc = "Sets OOC notes about yourself or your RP preferences or status."
-	set category = "OOC"
+	set category = "OOC.Game Settings"
 
 	if(usr != src)
 		return
@@ -33,7 +33,7 @@
 	if(new_metadata && CanUseTopic(usr))
 		ooc_notes = new_metadata
 		client.prefs.metadata = new_metadata
-		to_chat(usr, "<span class='filter_notice'>OOC notes updated. Don't forget to save!</span>")
+		to_chat(usr, span_filter_notice("OOC notes updated. Don't forget to save!"))
 		log_admin("[key_name(usr)] updated their OOC notes mid-round.")
 		ooc_notes_window(usr)
 		set_metainfo_likes(FALSE)
@@ -46,7 +46,7 @@
 	if(new_metadata && CanUseTopic(usr))
 		ooc_notes = new_metadata
 		client.prefs.metadata = new_metadata
-		to_chat(usr, "<span class='filter_notice'>OOC notes updated. Don't forget to save!</span>")
+		to_chat(usr, span_filter_notice("OOC notes updated. Don't forget to save!"))
 		log_admin("[key_name(usr)] updated their OOC notes mid-round.")
 		ooc_notes_window(usr)
 
@@ -59,7 +59,7 @@
 			new_metadata = ""
 		ooc_notes_likes = new_metadata
 		client.prefs.metadata_likes = new_metadata
-		to_chat(usr, "<span class='filter_notice'>OOC note likes have been updated. Don't forget to save!</span>")
+		to_chat(usr, span_filter_notice("OOC note likes have been updated. Don't forget to save!"))
 		log_admin("[key_name(usr)] updated their OOC note likes mid-round.")
 		if(reopen)
 			ooc_notes_window(usr)
@@ -73,7 +73,7 @@
 			new_metadata = ""
 		ooc_notes_dislikes = new_metadata
 		client.prefs.metadata_dislikes = new_metadata
-		to_chat(usr, "<span class='filter_notice'>OOC note dislikes have been updated. Don't forget to save!</span>")
+		to_chat(usr, span_filter_notice("OOC note dislikes have been updated. Don't forget to save!"))
 		log_admin("[key_name(usr)] updated their OOC note dislikes mid-round.")
 		if(reopen)
 			ooc_notes_window(usr)
@@ -82,10 +82,10 @@
 	if(usr != src)
 		return
 	if(client.prefs.real_name != real_name)
-		to_chat(usr, "<span class='danger'>Your selected character slot name is not the same as your character's name. Aborting save. Please select [real_name]'s character slot in character setup before saving.</span>")
+		to_chat(usr, span_danger("Your selected character slot name is not the same as your character's name. Aborting save. Please select [real_name]'s character slot in character setup before saving."))
 		return
 	if(client.prefs.save_character())
-		to_chat(usr, "<span class='filter_notice'>Character preferences saved.</span>")
+		to_chat(usr, span_filter_notice("Character preferences saved."))
 
 /mob/living/proc/print_ooc_notes_to_chat()
 	if(!ooc_notes)
@@ -95,29 +95,29 @@
 		msg += "<br><br><b>LIKES</b><br><br>[ooc_notes_likes]"
 	if(ooc_notes_dislikes)
 		msg += "<br><br><b>DISLIKES</b><br><br>[ooc_notes_dislikes]"
-	to_chat(usr, "<span class='chatexport'>[src]'s Metainfo:<br>[msg]</span>")
+	to_chat(usr, span_chatexport("[src]'s Metainfo:<br>[msg]"))
 
 /mob/living/verb/set_custom_link()
 	set name = "Set Custom Link"
 	set desc = "Set a custom link to show up with your examine text."
-	set category = "IC"
+	set category = "IC.Settings"
 
 	if(usr != src)
 		return
 	var/new_link = strip_html_simple(tgui_input_text(usr, "Enter a link to add on to your examine text! This should be a related image link/gallery, or things like your F-list. This is not the place for memes.", "Custom Link" , html_decode(custom_link), max_length = 100, encode = TRUE,  prevent_enter = TRUE))
 	if(new_link && CanUseTopic(usr))
 		if(length(new_link) > 100)
-			to_chat(usr, "<span class = 'warning'>Your entry is too long, it must be 100 characters or less.</span>")
+			to_chat(usr, span_warning("Your entry is too long, it must be 100 characters or less."))
 			return
 
 		custom_link = new_link
-		to_chat(usr, "<span class = 'notice'>Link set: [custom_link]</span>")
+		to_chat(usr, span_notice("Link set: [custom_link]"))
 		log_admin("[usr]/[usr.ckey] set their custom link to [custom_link]")
 
 /mob/living/verb/set_voice_freq()
 	set name = "Set Voice Frequency"
 	set desc = "Sets your voice frequency to be higher or lower pitched!"
-	set category = "OOC"
+	set category = "OOC.Game Settings"
 
 	var/list/preset_voice_freqs = list("high" = MAX_VOICE_FREQ, "middle-high" = 56250, "middle" = 425000, "middle-low"= 28750, "low" = MIN_VOICE_FREQ, "custom" = 1, "random" = 0)
 	var/choice = tgui_input_list(src, "What would you like to set your voice frequency to?", "Voice Frequency", preset_voice_freqs)
@@ -138,7 +138,7 @@
 /mob/living/verb/set_voice_type()
 	set name = "Set Voice Type"
 	set desc = "Sets your voice style!"
-	set category = "OOC"
+	set category = "OOC.Game Settings"
 
 	var/list/possible_voice_types = list(
 		"beep-boop",

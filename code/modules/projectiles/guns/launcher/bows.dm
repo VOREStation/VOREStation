@@ -1,4 +1,4 @@
-/obj/item/weapon/arrow/standard
+/obj/item/arrow/standard
 	name = "arrow"
 	desc = "It's got a tip for you - get the point?"
 	icon = 'icons/obj/guns/projectile/bows.dmi'
@@ -9,7 +9,7 @@
 	sharp = TRUE
 	edge = FALSE
 
-/obj/item/weapon/arrow/energy
+/obj/item/arrow/energy
 	name = "hardlight arrow"
 	desc = "An arrow made out of energy! Classic?"
 	icon = 'icons/obj/guns/projectile/bows.dmi'
@@ -22,17 +22,17 @@
 	embed_chance = 0 // it fizzles!
 	catchable = FALSE // oh god
 
-/obj/item/weapon/arrow/energy/throw_impact(atom/hit_atom)
+/obj/item/arrow/energy/throw_impact(atom/hit_atom)
 	. = ..()
 	qdel(src)
 
-/obj/item/weapon/arrow/energy/equipped()
+/obj/item/arrow/energy/equipped()
 	if(isliving(loc))
 		var/mob/living/L = loc
 		L.drop_from_inventory(src)
 	qdel(src) // noh
 
-/obj/item/weapon/gun/launcher/crossbow/bow
+/obj/item/gun/launcher/crossbow/bow
 	name = "shortbow"
 	desc = "A common shortbow, capable of firing arrows at high speed towards a target. Useful for hunting while keeping quiet."
 	icon = 'icons/obj/guns/projectile/bows.dmi'
@@ -47,67 +47,67 @@
 	release_speed = 15
 	var/drawn = FALSE
 
-/obj/item/weapon/gun/launcher/crossbow/bow/update_release_force(obj/item/projectile)
+/obj/item/gun/launcher/crossbow/bow/update_release_force(obj/item/projectile)
 	return 0
 
-/obj/item/weapon/gun/launcher/crossbow/bow/proc/unload(mob/user)
-	var/obj/item/weapon/arrow/A = bolt
+/obj/item/gun/launcher/crossbow/bow/proc/unload(mob/user)
+	var/obj/item/arrow/A = bolt
 	bolt = null
 	drawn = FALSE
 	A.forceMove(get_turf(user))
 	user.put_in_hands(A)
 	update_icon()
 
-/obj/item/weapon/gun/launcher/crossbow/bow/consume_next_projectile(mob/user)
+/obj/item/gun/launcher/crossbow/bow/consume_next_projectile(mob/user)
 	if(!drawn)
-		to_chat(user, "<span class='warning'>\The [src] is not drawn back!</span>")
+		to_chat(user, span_warning("\The [src] is not drawn back!"))
 		return null
 	return bolt
 
-/obj/item/weapon/gun/launcher/crossbow/bow/handle_post_fire(mob/user, atom/target)
+/obj/item/gun/launcher/crossbow/bow/handle_post_fire(mob/user, atom/target)
 	bolt = null
 	drawn = FALSE
 	update_icon()
 	..()
 
-/obj/item/weapon/gun/launcher/crossbow/bow/attack_hand(mob/living/user)
+/obj/item/gun/launcher/crossbow/bow/attack_hand(mob/living/user)
 	if(loc == user && bolt && !drawn)
-		user.visible_message("<b>[user]</b> removes [bolt] from [src].","You remove [bolt] from [src].")
+		user.visible_message(span_infoplain(span_bold("[user]") + " removes [bolt] from [src]."),span_infoplain("You remove [bolt] from [src]."))
 		unload(user)
 	else
 		return ..()
 
-/obj/item/weapon/gun/launcher/crossbow/bow/attack_self(mob/living/user)
+/obj/item/gun/launcher/crossbow/bow/attack_self(mob/living/user)
 	if(drawn)
-		user.visible_message("<b>[user]</b> relaxes the tension on [src]'s string.","You relax the tension on [src]'s string.")
+		user.visible_message(span_infoplain(span_bold("[user]") + " relaxes the tension on [src]'s string."),span_infoplain("You relax the tension on [src]'s string."))
 		drawn = FALSE
 		update_icon()
 	else
 		draw(user)
 
-/obj/item/weapon/gun/launcher/crossbow/bow/draw(var/mob/user)
+/obj/item/gun/launcher/crossbow/bow/draw(var/mob/user)
 	if(!bolt)
-		to_chat(user, "You don't have anything nocked to [src].")
+		to_chat(user, span_infoplain("You don't have anything nocked to [src]."))
 		return
 
 	if(user.restrained())
 		return
 
 	current_user = user
-	user.visible_message("<b>[user]</b> begins to draw back the string of [src].","<span class='notice'>You begin to draw back the string of [src].</span>")
+	user.visible_message(span_infoplain(span_bold("[user]") + " begins to draw back the string of [src]."),span_notice("You begin to draw back the string of [src]."))
 	if(do_after(user, 25, src, exclusive = TASK_ALL_EXCLUSIVE))
 		drawn = TRUE
-		user.visible_message("<b>[user]</b> draws the string on [src] back fully!", "You draw the string on [src] back fully!")
+		user.visible_message(span_infoplain(span_bold("[user]") + "draws the string on [src] back fully!"), span_infoplain("You draw the string on [src] back fully!"))
 	update_icon()
 
-/obj/item/weapon/gun/launcher/crossbow/bow/attackby(obj/item/W as obj, mob/user)
-	if(!bolt && istype(W,/obj/item/weapon/arrow/standard))
+/obj/item/gun/launcher/crossbow/bow/attackby(obj/item/W as obj, mob/user)
+	if(!bolt && istype(W,/obj/item/arrow/standard))
 		user.drop_from_inventory(W, src)
 		bolt = W
-		user.visible_message("[user] slides [bolt] into [src].","You slide [bolt] into [src].")
+		user.visible_message(span_infoplain("[user] slides [bolt] into [src]."),span_infoplain("You slide [bolt] into [src]."))
 		update_icon()
 
-/obj/item/weapon/gun/launcher/crossbow/bow/update_icon()
+/obj/item/gun/launcher/crossbow/bow/update_icon()
 	if(drawn)
 		icon_state = "[initial(icon_state)]_firing"
 	else if(bolt)
@@ -117,24 +117,24 @@
 
 
 
-/obj/item/weapon/gun/launcher/crossbow/bow/hardlight
+/obj/item/gun/launcher/crossbow/bow/hardlight
 	name = "hardlight bow"
 	icon_state = "bow_hardlight"
 	item_state = "bow_hardlight"
 	desc = "An energy bow, capable of producing arrows from an internal power supply."
 
-/obj/item/weapon/gun/launcher/crossbow/bow/hardlight/unload(mob/user)
+/obj/item/gun/launcher/crossbow/bow/hardlight/unload(mob/user)
 	qdel_null(bolt)
 	update_icon()
 
-/obj/item/weapon/gun/launcher/crossbow/bow/hardlight/attack_self(mob/living/user)
+/obj/item/gun/launcher/crossbow/bow/hardlight/attack_self(mob/living/user)
 	if(drawn)
-		user.visible_message("<b>[user]</b> relaxes the tension on [src]'s string.","You relax the tension on [src]'s string.")
+		user.visible_message(span_infoplain(span_bold("[user]") + " relaxes the tension on [src]'s string."),span_infoplain("You relax the tension on [src]'s string."))
 		drawn = FALSE
 		update_icon()
 	else if(!bolt)
-		user.visible_message("<b>[user]</b> fabricates a new hardlight projectile with [src].","You fabricate a new hardlight projectile with [src].")
-		bolt = new /obj/item/weapon/arrow/energy(src)
+		user.visible_message(span_infoplain(span_bold("[user]") + " fabricates a new hardlight projectile with [src]."),span_infoplain("You fabricate a new hardlight projectile with [src]."))
+		bolt = new /obj/item/arrow/energy(src)
 		update_icon()
 	else
 		draw(user)

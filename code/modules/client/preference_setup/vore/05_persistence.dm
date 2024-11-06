@@ -7,19 +7,19 @@
 	name = "Persistence"
 	sort_order = 5
 
-/datum/category_item/player_setup_item/vore/persistence/load_character(var/savefile/S)
-	S["persistence_settings"]		>> pref.persistence_settings
+/datum/category_item/player_setup_item/vore/persistence/load_character(list/save_data)
+	pref.persistence_settings = save_data["persistence_settings"]
 	sanitize_character() // Don't let new characters start off with nulls
 
-/datum/category_item/player_setup_item/vore/persistence/save_character(var/savefile/S)
-	S["persistence_settings"]		<< pref.persistence_settings
+/datum/category_item/player_setup_item/vore/persistence/save_character(list/save_data)
+	save_data["persistence_settings"] = pref.persistence_settings
 
 /datum/category_item/player_setup_item/vore/persistence/sanitize_character()
 	pref.persistence_settings		= sanitize_integer(pref.persistence_settings, 0, (1<<(PERSIST_COUNT+1)-1), initial(pref.persistence_settings))
 
 /datum/category_item/player_setup_item/vore/persistence/content(var/mob/user)
 	. = list()
-	. += "<b>Round-to-Round Persistence</b><br>"
+	. += span_bold("Round-to-Round Persistence") + "<br>"
 	. += "<table>"
 
 	. += "<tr><td title=\"Set spawn location based on where you cryo'd out.\">Save Spawn Location: </td>"
@@ -47,9 +47,9 @@
 
 /datum/category_item/player_setup_item/vore/persistence/proc/make_yesno(var/bit)
 	if(pref.persistence_settings & bit)
-		return "<td><span class='linkOn'><b>Yes</b></span></td> <td><a href='?src=\ref[src];toggle_off=[bit]'>No</a></td>"
+		return "<td>" + span_linkOn(span_bold("Yes")) + "</td> <td><a href='?src=\ref[src];toggle_off=[bit]'>No</a></td>"
 	else
-		return "<td><a href='?src=\ref[src];toggle_on=[bit]'>Yes</a></td> <td><span class='linkOn'><b>No</b></span></td>"
+		return "<td><a href='?src=\ref[src];toggle_on=[bit]'>Yes</a></td> <td>" + span_linkOn(span_bold("No")) + "</td>"
 
 /datum/category_item/player_setup_item/vore/persistence/OnTopic(var/href, var/list/href_list, var/mob/user)
 	if(href_list["toggle_on"])

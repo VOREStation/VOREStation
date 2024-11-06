@@ -15,9 +15,9 @@
 /datum/surgery_step/slime/cut_flesh
 	surgery_name = "Cut Flesh"
 	allowed_tools = list(
-	/obj/item/weapon/surgical/scalpel = 100,		\
-	/obj/item/weapon/material/knife = 75,	\
-	/obj/item/weapon/material/shard = 50, 		\
+	/obj/item/surgical/scalpel = 100,		\
+	/obj/item/material/knife = 75,	\
+	/obj/item/material/shard = 50, 		\
 	)
 
 	min_duration = 30
@@ -31,22 +31,22 @@
 	"You start cutting through [target]'s flesh with \the [tool].")
 
 /datum/surgery_step/slime/cut_flesh/end_step(mob/living/user, mob/living/simple_mob/slime/target, target_zone, obj/item/tool)
-	user.visible_message("<span class='notice'>[user] cuts through [target]'s flesh with \the [tool].</span>",	\
-	"<span class='notice'>You cut through [target]'s flesh with \the [tool], revealing its silky innards.</span>")
+	user.visible_message(span_notice("[user] cuts through [target]'s flesh with \the [tool]."),	\
+	span_notice("You cut through [target]'s flesh with \the [tool], revealing its silky innards."))
 	target.core_removal_stage = 1
 
 /datum/surgery_step/slime/cut_flesh/fail_step(mob/living/user, mob/living/simple_mob/slime/target, target_zone, obj/item/tool)
-	user.visible_message("<span class='danger'>[user]'s hand slips, tearing [target]'s flesh with \the [tool]!</span>", \
-	"<span class='danger'>Your hand slips, tearing [target]'s flesh with \the [tool]!</span>")
+	user.visible_message(span_danger("[user]'s hand slips, tearing [target]'s flesh with \the [tool]!"), \
+	span_danger("Your hand slips, tearing [target]'s flesh with \the [tool]!"))
 
 
 
 /datum/surgery_step/slime/cut_innards
 	surgery_name = "Cut Innards"
 	allowed_tools = list(
-	/obj/item/weapon/surgical/scalpel = 100,		\
-	/obj/item/weapon/material/knife = 75,	\
-	/obj/item/weapon/material/shard = 50, 		\
+	/obj/item/surgical/scalpel = 100,		\
+	/obj/item/material/knife = 75,	\
+	/obj/item/material/shard = 50, 		\
 	)
 
 	min_duration = 30
@@ -60,21 +60,21 @@
 	"You start cutting [target]'s silky innards apart with \the [tool].")
 
 /datum/surgery_step/slime/cut_innards/end_step(mob/living/user, mob/living/simple_mob/slime/target, target_zone, obj/item/tool)
-	user.visible_message("<span class='notice'>[user] cuts [target]'s innards apart with \the [tool], exposing the cores.</span>",	\
-	"<span class='notice'>You cut [target]'s innards apart with \the [tool], exposing the cores.</span>")
+	user.visible_message(span_notice("[user] cuts [target]'s innards apart with \the [tool], exposing the cores."),	\
+	span_notice("You cut [target]'s innards apart with \the [tool], exposing the cores."))
 	target.core_removal_stage = 2
 
 /datum/surgery_step/slime/cut_innards/fail_step(mob/living/user, mob/living/simple_mob/slime/target, target_zone, obj/item/tool)
-	user.visible_message("<span class='danger'>[user]'s hand slips, tearing [target]'s innards with \the [tool]!</span>", \
-	"<span class='danger'>Your hand slips, tearing [target]'s innards with \the [tool]!</span>")
+	user.visible_message(span_danger("[user]'s hand slips, tearing [target]'s innards with \the [tool]!"), \
+	span_danger("Your hand slips, tearing [target]'s innards with \the [tool]!"))
 
 
 
 /datum/surgery_step/slime/saw_core
 	surgery_name = "Remove Core"
 	allowed_tools = list(
-	/obj/item/weapon/surgical/circular_saw = 100, \
-	/obj/item/weapon/material/knife/machete/hatchet = 75
+	/obj/item/surgical/circular_saw = 100, \
+	/obj/item/material/knife/machete/hatchet = 75
 	)
 
 	min_duration = 50
@@ -89,8 +89,8 @@
 
 /datum/surgery_step/slime/saw_core/end_step(mob/living/user, mob/living/simple_mob/slime/target, target_zone, obj/item/tool)
 	target.cores--
-	user.visible_message("<span class='notice'>[user] cuts out one of [target]'s cores with \the [tool].</span>",,	\
-	"<span class='notice'>You cut out one of [target]'s cores with \the [tool]. [target.cores] cores left.</span>")
+	user.visible_message(span_notice("[user] cuts out one of [target]'s cores with \the [tool]."),,	\
+	span_notice("You cut out one of [target]'s cores with \the [tool]. [target.cores] cores left."))
 
 	if(target.cores >= 0)
 		new target.coretype(target.loc)
@@ -100,5 +100,5 @@
 
 /datum/surgery_step/slime/saw_core/fail_step(mob/living/user, mob/living/simple_mob/slime/target, target_zone, obj/item/tool)
 	var/datum/gender/T = gender_datums[user.get_visible_gender()]
-	user.visible_message("<span class='danger'>[user]'s hand slips, causing [T.him] to miss the core!</span>", \
-	"<span class='danger'>Your hand slips, causing you to miss the core!</span>")
+	user.visible_message(span_danger("[user]'s hand slips, causing [T.him] to miss the core!"), \
+	span_danger("Your hand slips, causing you to miss the core!"))

@@ -6,7 +6,7 @@
 	icon_living = "goat"
 	icon_dead = "goat_dead"
 
-	faction = "goat"
+	faction = FACTION_GOAT
 
 	health = 40
 	maxHealth = 40
@@ -23,7 +23,7 @@
 	ai_holder_type = /datum/ai_holder/simple_mob/retaliate
 
 	meat_amount = 6
-	meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat
+	meat_type = /obj/item/reagent_containers/food/snacks/meat
 
 	var/datum/reagents/udder = null
 
@@ -61,9 +61,9 @@
 			SV.die_off(1)
 
 /mob/living/simple_mob/animal/goat/attackby(var/obj/item/O as obj, var/mob/user as mob)
-	var/obj/item/weapon/reagent_containers/glass/G = O
+	var/obj/item/reagent_containers/glass/G = O
 	if(stat == CONSCIOUS && istype(G) && G.is_open_container())
-		user.visible_message("<span class='notice'>[user] milks [src] using \the [O].</span>")
+		user.visible_message(span_notice("[user] milks [src] using \the [O]."))
 		var/transfered = udder.trans_id_to(G, "milk", rand(5,10))
 		if(G.reagents.total_volume >= G.volume)
 			to_chat(user, span_red("The [O] is full."))
@@ -78,4 +78,4 @@
 	emote_see = list("shakes its head", "stamps a foot", "glares around")
 
 	// say_got_target doesn't seem to handle emotes, but keeping this here in case someone wants to make it work
-//	say_got_target = list("<span class='warning'>[src] gets an evil-looking gleam in their eye.</span>")
+//	say_got_target = list(span_warning("[src] gets an evil-looking gleam in their eye."))

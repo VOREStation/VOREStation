@@ -8,7 +8,7 @@
 	icon_living = "devil"
 	icon_state = "devil"
 	icon_rest = "devil"
-	faction = "devil"
+	faction = FACTION_DEVIL
 	old_x = -16
 	old_y = 0
 	default_pixel_x = -16
@@ -71,9 +71,9 @@
 	vore_pounce_cooldown = world.time + 1 SECONDS // don't attempt another pounce for a while
 	if(prob(successrate)) // pounce success!
 		M.Weaken(5)
-		M.visible_message("<span class='danger'>\The [src] pounces on \the [M]!</span>!")
+		M.visible_message(span_danger("\The [src] pounces on \the [M]!"))
 	else // pounce misses!
-		M.visible_message("<span class='danger'>\The [src] attempts to pounce \the [M] but misses!</span>!")
+		M.visible_message(span_danger("\The [src] attempts to pounce \the [M] but misses!"))
 		playsound(src, 'sound/weapons/punchmiss.ogg', 25, 1, -1)
 
 	if(will_eat(M) && (!M.canmove || vore_standing_too)) //if they're edible then eat them too
@@ -264,4 +264,3 @@
 	else if(!stand_ground)
 		ai_log("engage_target() : Target ([target]) too far away. Exiting.", AI_LOG_DEBUG)
 		set_stance(STANCE_APPROACH)
-

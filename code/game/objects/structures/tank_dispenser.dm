@@ -22,9 +22,9 @@
 /obj/structure/dispenser/Initialize()
 	. = ..()
 	for(var/i in 1 to oxygentanks)
-		new /obj/item/weapon/tank/oxygen(src)
+		new /obj/item/tank/oxygen(src)
 	for(var/i in 1 to phorontanks)
-		new /obj/item/weapon/tank/phoron(src)
+		new /obj/item/tank/phoron(src)
 	update_icon()
 
 /obj/structure/dispenser/update_icon()
@@ -63,37 +63,37 @@
 
 /obj/structure/dispenser/attackby(obj/item/I, mob/user)
 	var/full
-	if(istype(I, /obj/item/weapon/tank/oxygen) || istype(I, /obj/item/weapon/tank/air) || istype(I, /obj/item/weapon/tank/anesthetic))
+	if(istype(I, /obj/item/tank/oxygen) || istype(I, /obj/item/tank/air) || istype(I, /obj/item/tank/anesthetic))
 		if(oxygentanks < TANK_DISPENSER_CAPACITY)
 			oxygentanks++
 		else
 			full = TRUE
-	else if(istype(I, /obj/item/weapon/tank/phoron))
+	else if(istype(I, /obj/item/tank/phoron))
 		if(phorontanks < TANK_DISPENSER_CAPACITY)
 			phorontanks++
 		else
 			full = TRUE
 	else if(I.has_tool_quality(TOOL_WRENCH))
 		if(anchored)
-			to_chat(user, "<span class='notice'>You lean down and unwrench [src].</span>")
+			to_chat(user, span_notice("You lean down and unwrench [src]."))
 			anchored = FALSE
 		else
-			to_chat(user, "<span class='notice'>You wrench [src] into place.</span>")
+			to_chat(user, span_notice("You wrench [src] into place."))
 			anchored = TRUE
 		return
 	else if(user.a_intent != I_HURT)
-		to_chat(user, "<span class='notice'>[I] does not fit into [src].</span>")
+		to_chat(user, span_notice("[I] does not fit into [src]."))
 		return
 	else
 		return ..()
 
 	if(full)
-		to_chat(user, "<span class='notice'>[src] can't hold any more of [I].</span>")
+		to_chat(user, span_notice("[src] can't hold any more of [I]."))
 		return
 
 	if(!user.unEquip(I, target = src))
 		return
-	to_chat(user, "<span class='notice'>You put [I] in [src].</span>")
+	to_chat(user, span_notice("You put [I] in [src]."))
 	update_icon()
 
 #undef TANK_DISPENSER_CAPACITY
@@ -103,16 +103,16 @@
 		return
 	switch(action)
 		if("plasma")
-			var/obj/item/weapon/tank/phoron/tank = locate() in src
+			var/obj/item/tank/phoron/tank = locate() in src
 			if(tank && Adjacent(usr))
 				usr.put_in_hands(tank)
 				phorontanks--
 			. = TRUE
 			playsound(src, 'sound/items/drop/gascan.ogg', 100, 1, 1)
 		if("oxygen")
-			var/obj/item/weapon/tank/tank = null
-			for(var/obj/item/weapon/tank/T in src)
-				if(istype(T, /obj/item/weapon/tank/oxygen) || istype(T, /obj/item/weapon/tank/air) || istype(T, /obj/item/weapon/tank/anesthetic))
+			var/obj/item/tank/tank = null
+			for(var/obj/item/tank/T in src)
+				if(istype(T, /obj/item/tank/oxygen) || istype(T, /obj/item/tank/air) || istype(T, /obj/item/tank/anesthetic))
 					tank = T
 					break
 			if(tank && Adjacent(usr))

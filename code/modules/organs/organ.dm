@@ -127,7 +127,7 @@ var/list/organ_cache = list()
 				if(owner.meat_type)
 					meat_type = owner.meat_type
 				else
-					meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat
+					meat_type = /obj/item/reagent_containers/food/snacks/meat
 
 /obj/item/organ/proc/set_dna(var/datum/dna/new_dna)
 	if(new_dna)
@@ -158,7 +158,7 @@ var/list/organ_cache = list()
 	if(status & ORGAN_DEAD)
 		return
 	// Don't process if we're in a freezer, an MMI or a stasis bag.or a freezer or something I dunno
-	if(istype(loc,/obj/item/device/mmi))
+	if(istype(loc,/obj/item/mmi))
 		return
 	if(preserved)
 		return
@@ -179,7 +179,7 @@ var/list/organ_cache = list()
 		if(B && prob(40) && !isbelly(loc)) //VOREStation Edit
 			reagents.remove_reagent("blood",0.1)
 			blood_splatter(src,B,1)
-		if(config.organs_decay && decays) damage += rand(1,3)
+		if(CONFIG_GET(flag/organs_decay) && decays) damage += rand(1,3)
 		if(damage >= max_damage)
 			damage = max_damage
 		adjust_germ_level(rand(2,6))
@@ -197,7 +197,7 @@ var/list/organ_cache = list()
 /obj/item/organ/examine(mob/user)
 	. = ..()
 	if(status & ORGAN_DEAD)
-		. += "<span class='notice'>Decay appears to have set in.</span>"
+		. += span_notice("Decay appears to have set in.")
 
 //A little wonky: internal organs stop calling this (they return early in process) when dead, but external ones cause further damage when dead
 /obj/item/organ/proc/handle_germ_effects()
@@ -398,7 +398,11 @@ var/list/organ_cache = list()
 		rejecting = null
 
 	if(istype(owner))
-		var/datum/reagent/blood/organ_blood = locate(/datum/reagent/blood) in reagents.reagent_list
+		// VOREstation edit begin - Posibrains don't have blood reagents, so they crash this
+		var/datum/reagent/blood/organ_blood = null
+		if(reagents)
+			organ_blood = locate(/datum/reagent/blood) in reagents.reagent_list
+		// VOREstation edit end
 		if(!organ_blood || !organ_blood.data["blood_DNA"])
 			owner.vessel.trans_to(src, 5, 1, 1)
 
@@ -418,7 +422,11 @@ var/list/organ_cache = list()
 
 	if(!istype(target)) return
 
-	var/datum/reagent/blood/transplant_blood = locate(/datum/reagent/blood) in reagents.reagent_list
+	// VOREstation edit begin - Posibrains don't have blood reagents, so they crash this
+	var/datum/reagent/blood/transplant_blood = null
+	if(reagents)
+		transplant_blood = locate(/datum/reagent/blood) in reagents.reagent_list
+	// VOREstation edit end
 	transplant_data = list()
 	if(!transplant_blood)
 		transplant_data["species"] =    target?.species.name
@@ -443,12 +451,12 @@ var/list/organ_cache = list()
 	if(robotic >= ORGAN_ROBOT)
 		return
 
-	to_chat(user, "<span class='notice'>You take an experimental bite out of \the [src].</span>")
+	to_chat(user, span_notice("You take an experimental bite out of \the [src]."))
 	var/datum/reagent/blood/B = locate(/datum/reagent/blood) in reagents.reagent_list
 	blood_splatter(src,B,1)
 
 	user.drop_from_inventory(src)
-	var/obj/item/weapon/reagent_containers/food/snacks/organ/O = new(get_turf(src))
+	var/obj/item/reagent_containers/food/snacks/organ/O = new(get_turf(src))
 	O.name = name
 	O.icon = icon
 	O.icon_state = icon_state
@@ -470,7 +478,7 @@ var/list/organ_cache = list()
 		bitten(user)
 		return
 
-/obj/item/organ/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/item/organ/attackby(obj/item/W as obj, mob/user as mob)
 	if(can_butcher(W, user))
 		butcher(W, user)
 		return
@@ -495,17 +503,17 @@ var/list/organ_cache = list()
 
 /obj/item/organ/proc/butcher(var/obj/item/O, var/mob/living/user, var/atom/newtarget)
 	if(robotic >= ORGAN_ROBOT)
-		user?.visible_message("<span class='notice'>[user] disassembles \the [src].</span>")
+		user?.visible_message(span_notice("[user] disassembles \the [src]."))
 
 	else
-		user?.visible_message("<span class='notice'>[user] butchers \the [src].</span>")
+		user?.visible_message(span_notice("[user] butchers \the [src]."))
 
 	if(!newtarget)
 		newtarget = get_turf(src)
 
 	var/obj/item/newmeat = new meat_type(newtarget)
 
-	if(istype(newmeat, /obj/item/weapon/reagent_containers/food/snacks/meat))
+	if(istype(newmeat, /obj/item/reagent_containers/food/snacks/meat))
 		newmeat.name = "[src.name] [newmeat.name]"	// "liver meat" "heart meat", etc.
 
 	qdel(src)
@@ -540,11 +548,11 @@ var/list/organ_cache = list()
 
 	if(!removed && organ_verbs && check_verb_compatability())
 		for(var/verb_path in organ_verbs)
-			owner.verbs |= verb_path
+			add_verb(owner, verb_path)
 	else if(organ_verbs)
 		for(var/verb_path in organ_verbs)
 			if(!(verb_path in save_verbs))
-				owner.verbs -= verb_path
+				remove_verb(owner, verb_path)
 	return
 
 /obj/item/organ/proc/handle_organ_proc_special()	// Called when processed.

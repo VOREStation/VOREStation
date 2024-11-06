@@ -9,7 +9,7 @@
 
 	makes_dirt = FALSE	// No more dirt from Beepsky
 
-	var/obj/item/weapon/card/id/botcard = null
+	var/obj/item/card/id/botcard = null
 	var/list/botcard_access = list()
 	var/on = 1
 	var/open = 0
@@ -17,7 +17,7 @@
 	var/emagged = 0
 	var/light_strength = 3
 	var/busy = 0
-	var/obj/item/device/paicard/paicard = null
+	var/obj/item/paicard/paicard = null
 	var/obj/access_scanner = null
 	var/list/req_access = list()
 	var/list/req_one_access = list()
@@ -49,7 +49,7 @@
 
 	//default_language = GLOB.all_languages[LANGUAGE_GALCOM] //VOREstation edit: moved to Init
 
-	botcard = new /obj/item/weapon/card/id(src)
+	botcard = new /obj/item/card/id(src)
 	botcard.access = botcard_access.Copy()
 
 	access_scanner = new /obj(src)
@@ -115,23 +115,23 @@
 	if(O.GetID())
 		if(access_scanner.allowed(user) && !open)
 			locked = !locked
-			to_chat(user, "<span class='notice'>Controls are now [locked ? "locked." : "unlocked."]</span>")
+			to_chat(user, span_notice("Controls are now [locked ? "locked." : "unlocked."]"))
 			attack_hand(user)
 			if(emagged)
-				to_chat(user, "<span class='warning'>ERROR! SYSTEMS COMPROMISED!</span>")
+				to_chat(user, span_warning("ERROR! SYSTEMS COMPROMISED!"))
 		else
 			if(open)
-				to_chat(user, "<span class='warning'>Please close the access panel before locking it.</span>")
+				to_chat(user, span_warning("Please close the access panel before locking it."))
 			else
-				to_chat(user, "<span class='warning'>Access denied.</span>")
+				to_chat(user, span_warning("Access denied."))
 		return
 	else if(O.has_tool_quality(TOOL_SCREWDRIVER))
 		if(!locked)
 			open = !open
-			to_chat(user, "<span class='notice'>Maintenance panel is now [open ? "opened" : "closed"].</span>")
+			to_chat(user, span_notice("Maintenance panel is now [open ? "opened" : "closed"]."))
 			playsound(src, O.usesound, 50, 1)
 		else
-			to_chat(user, "<span class='notice'>You need to unlock the controls first.</span>")
+			to_chat(user, span_notice("You need to unlock the controls first."))
 		return
 	else if(O.has_tool_quality(TOOL_WELDER))
 		if(health < getMaxHealth())
@@ -145,21 +145,21 @@
 				else
 					fireloss = fireloss - 10
 				updatehealth()
-				user.visible_message("<span class='notice'>[user] repairs [src].</span>","<span class='notice'>You repair [src].</span>")
+				user.visible_message(span_notice("[user] repairs [src]."),span_notice("You repair [src]."))
 				playsound(src, O.usesound, 50, 1)
 			else
-				to_chat(user, "<span class='notice'>Unable to repair with the maintenance panel closed.</span>")
+				to_chat(user, span_notice("Unable to repair with the maintenance panel closed."))
 		else
-			to_chat(user, "<span class='notice'>[src] does not need a repair.</span>")
+			to_chat(user, span_notice("[src] does not need a repair."))
 		return
-	else if(istype(O, /obj/item/device/assembly/prox_sensor) && emagged)
+	else if(istype(O, /obj/item/assembly/prox_sensor) && emagged)
 		if(open)
-			to_chat(user, "<span class='notice'>You repair the bot's systems.</span>")
+			to_chat(user, span_notice("You repair the bot's systems."))
 			emagged = 0
 			qdel(O)
 		else
-			to_chat(user, "<span class='notice'>Unable to repair with the maintenance panel closed.</span>")
-	else if(istype(O, /obj/item/device/paicard))
+			to_chat(user, span_notice("Unable to repair with the maintenance panel closed."))
+	else if(istype(O, /obj/item/paicard))
 		if(open)
 			insertpai(user, O)
 			to_chat(user, span_notice("You slot the card into \the [initial(src.name)]."))
@@ -415,7 +415,7 @@
 
 // Returns the surrounding cardinal turfs with open links
 // Including through doors openable with the ID
-/turf/proc/CardinalTurfsWithAccess(var/obj/item/weapon/card/id/ID)
+/turf/proc/CardinalTurfsWithAccess(var/obj/item/card/id/ID)
 	var/L[] = new()
 
 	//	for(var/turf/simulated/t in oview(src,1))
@@ -429,7 +429,7 @@
 
 
 // Similar to above but not restricted to just cardinal directions.
-/turf/proc/TurfsWithAccess(var/obj/item/weapon/card/id/ID)
+/turf/proc/TurfsWithAccess(var/obj/item/card/id/ID)
 	var/L[] = new()
 
 	for(var/d in alldirs)
@@ -442,7 +442,7 @@
 
 // Returns true if a link between A and B is blocked
 // Movement through doors allowed if ID has access
-/proc/LinkBlockedWithAccess(turf/A, turf/B, obj/item/weapon/card/id/ID)
+/proc/LinkBlockedWithAccess(turf/A, turf/B, obj/item/card/id/ID)
 
 	if(A == null || B == null) return 1
 	var/adir = get_dir(A,B)
@@ -471,7 +471,7 @@
 
 // Returns true if direction is blocked from loc
 // Checks doors against access with given ID
-/proc/DirBlockedWithAccess(turf/loc,var/dir,var/obj/item/weapon/card/id/ID)
+/proc/DirBlockedWithAccess(turf/loc,var/dir,var/obj/item/card/id/ID)
 	for(var/obj/structure/window/D in loc)
 		if(!D.density)			continue
 		if(D.dir == SOUTHWEST)	return 1
@@ -501,7 +501,7 @@
 	canmove = on
 	return canmove
 
-/mob/living/bot/proc/insertpai(mob/user, obj/item/device/paicard/card)
+/mob/living/bot/proc/insertpai(mob/user, obj/item/paicard/card)
 	//var/obj/item/paicard/card = I
 	var/mob/living/silicon/pai/AI = card.pai
 	if(paicard)
@@ -524,8 +524,8 @@
 	ooc_notes_likes = AI.ooc_notes_likes
 	ooc_notes_dislikes = AI.ooc_notes_dislikes
 	to_chat(src, span_notice("You feel a tingle in your circuits as your systems interface with \the [initial(src.name)]."))
-	if(AI.idcard.access)
-		botcard.access	|= AI.idcard.access
+	if(AI.idcard.GetAccess())
+		botcard.access	|= AI.idcard.GetAccess()
 
 /mob/living/bot/proc/ejectpai(mob/user)
 	if(paicard)
@@ -562,13 +562,13 @@
 /mob/living/bot/Login()
 	no_vore = FALSE // ROBOT VORE
 	init_vore() // ROBOT VORE
-	verbs |= /mob/proc/insidePanel
+	add_verb(src, /mob/proc/insidePanel)
 
 	return ..()
 
 /mob/living/bot/Logout()
 	release_vore_contents()
-	verbs -= /mob/proc/insidePanel
+	remove_verb(src, /mob/proc/insidePanel)
 	no_vore = TRUE
 	devourable = FALSE
 	feeding = FALSE

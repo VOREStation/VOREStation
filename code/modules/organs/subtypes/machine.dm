@@ -16,7 +16,7 @@
 	// This is very ghetto way of rebooting an IPC. TODO better way.
 	if(owner && owner.stat == DEAD)
 		owner.set_stat(CONSCIOUS)
-		owner.visible_message("<span class='danger'>\The [owner] twitches visibly!</span>")
+		owner.visible_message(span_danger("\The [owner] twitches visibly!"))
 
 /obj/item/organ/internal/cell/emp_act(severity)
 	..()
@@ -35,8 +35,8 @@
 	organ_tag = O_BRAIN
 	parent_organ = BP_HEAD
 	vital = 1
-	var/brain_type = /obj/item/device/mmi
-	var/obj/item/device/mmi/stored_mmi
+	var/brain_type = /obj/item/mmi
+	var/obj/item/mmi/stored_mmi
 	robotic = ORGAN_ASSISTED
 	butcherable = FALSE
 
@@ -89,7 +89,7 @@
 		owner.set_stat(CONSCIOUS)
 		dead_mob_list -= owner
 		living_mob_list |= owner
-		owner.visible_message("<span class='danger'>\The [owner] twitches visibly!</span>")
+		owner.visible_message(span_danger("\The [owner] twitches visibly!"))
 
 /obj/item/organ/internal/mmi_holder/removed(var/mob/living/user)
 
@@ -111,7 +111,7 @@
 
 /obj/item/organ/internal/mmi_holder/posibrain
 	name = "positronic brain interface"
-	brain_type = /obj/item/device/mmi/digital/posibrain
+	brain_type = /obj/item/mmi/digital/posibrain
 	robotic = ORGAN_ROBOT
 
 /obj/item/organ/internal/mmi_holder/posibrain/update_from_mmi()
@@ -123,7 +123,7 @@
 
 /obj/item/organ/internal/mmi_holder/robot
 	name = "digital brain interface"
-	brain_type = /obj/item/device/mmi/digital/robot
+	brain_type = /obj/item/mmi/digital/robot
 	robotic = ORGAN_ROBOT
 
 /obj/item/organ/internal/mmi_holder/robot/update_from_mmi()

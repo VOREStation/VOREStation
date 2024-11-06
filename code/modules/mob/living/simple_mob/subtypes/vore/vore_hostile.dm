@@ -22,7 +22,7 @@
 	icon_rest = "abyss_lurker"
 	vis_height = 64
 
-	faction = "macrobacteria"
+	faction = FACTION_MACROBACTERIA
 	maxHealth = 600
 	health = 600
 	movement_cooldown = 3
@@ -32,7 +32,7 @@
 	melee_damage_upper = 1
 
 	meat_amount = 5
-	meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat
+	meat_type = /obj/item/reagent_containers/food/snacks/meat
 	catalogue_data = list(/datum/category_item/catalogue/fauna/abyss_lurker)
 
 	see_in_dark = 8
@@ -129,7 +129,7 @@
 	icon_rest = "filter"
 	vis_height = 64
 
-	faction = "macrobacteria"
+	faction = FACTION_MACROBACTERIA
 	maxHealth = 600
 	health = 600
 
@@ -139,7 +139,7 @@
 
 	movement_cooldown = 1
 	meat_amount = 5
-	meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat
+	meat_type = /obj/item/reagent_containers/food/snacks/meat
 	catalogue_data = list(/datum/category_item/catalogue/fauna/leaper)
 
 	see_in_dark = 8
@@ -214,8 +214,8 @@
 		return FALSE
 
 	set_AI_busy(TRUE)
-	visible_message(span("warning","\The [src]'s eyes flash ominously!"))
-	to_chat(L, span("danger","\The [src] focuses on you!"))
+	visible_message(span_warning("\The [src]'s eyes flash ominously!"))
+	to_chat(L, span_danger("\The [src] focuses on you!"))
 	// Telegraph, since getting stunned suddenly feels bad.
 	do_windup_animation(A, leap_warmup)
 	sleep(leap_warmup) // For the telegraphing.
@@ -226,7 +226,7 @@
 
 	// Do the actual leap.
 	status_flags |= LEAPING // Lets us pass over everything.
-	visible_message(span("critical","\The [src] leaps at \the [L]!"))
+	visible_message(span_critical("\The [src] leaps at \the [L]!"))
 	throw_at(get_step(L, get_turf(src)), special_attack_max_range+1, 1, src)
 	playsound(src, leap_sound, 75, 1)
 
@@ -257,7 +257,7 @@
 	icon_rest = "cube"
 	vis_height = 64
 
-	faction = "macrobacteria"
+	faction = FACTION_MACROBACTERIA
 	maxHealth = 500
 	health = 500
 

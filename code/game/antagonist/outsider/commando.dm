@@ -7,7 +7,7 @@ var/datum/antagonist/deathsquad/mercenary/commandos
 	role_text_plural = "Commandos"
 	welcome_text = "You are in the employ of a criminal syndicate hostile to corporate interests."
 	antag_sound = 'sound/effects/antag_notice/deathsquid_alert.ogg'
-	id_type = /obj/item/weapon/card/id/centcom/ERT
+	id_type = /obj/item/card/id/centcom/ERT
 
 	hard_cap = 4
 	hard_cap_round = 8
@@ -22,15 +22,15 @@ var/datum/antagonist/deathsquad/mercenary/commandos
 /datum/antagonist/deathsquad/mercenary/equip(var/mob/living/carbon/human/player)
 
 	player.equip_to_slot_or_del(new /obj/item/clothing/under/syndicate(player), slot_w_uniform)
-	player.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/silenced(player), slot_belt)
+	player.equip_to_slot_or_del(new /obj/item/gun/projectile/silenced(player), slot_belt)
 	player.equip_to_slot_or_del(new /obj/item/clothing/shoes/boots/swat(player), slot_shoes)
 	player.equip_to_slot_or_del(new /obj/item/clothing/gloves/swat(player), slot_gloves)
 	player.equip_to_slot_or_del(new /obj/item/clothing/glasses/thermal(player), slot_glasses)
 	player.equip_to_slot_or_del(new /obj/item/clothing/mask/gas/syndicate(player), slot_wear_mask)
-	player.equip_to_slot_or_del(new /obj/item/weapon/storage/box(player), slot_in_backpack)
+	player.equip_to_slot_or_del(new /obj/item/storage/box(player), slot_in_backpack)
 	player.equip_to_slot_or_del(new /obj/item/ammo_magazine/clip/c45(player), slot_in_backpack)
-	player.equip_to_slot_or_del(new /obj/item/weapon/rig/merc(player), slot_back)
-	player.equip_to_slot_or_del(new /obj/item/weapon/gun/energy/pulse_rifle(player), slot_r_hand)
+	player.equip_to_slot_or_del(new /obj/item/rig/merc(player), slot_back)
+	player.equip_to_slot_or_del(new /obj/item/gun/energy/pulse_rifle(player), slot_r_hand)
 
 	create_id("Commando", player)
 	create_radio(SYND_FREQ, player)

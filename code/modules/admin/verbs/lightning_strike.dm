@@ -1,14 +1,14 @@
 /client/proc/admin_lightning_strike()
 	set name = "Lightning Strike"
 	set desc = "Causes lightning to strike on your tile. This can be made to hurt things on or nearby it severely."
-	set category = "Fun"
+	set category = "Fun.Do Not"
 
 	if(!check_rights(R_FUN))
 		return
 
 	var/result = tgui_alert(src, "Really strike your tile with lightning?", "Confirm Badmin" , list("No", "Yes (Cosmetic)", "Yes (Real)"))
 
-	if(result == "No")
+	if(!result || result == "No")
 		return
 	var/fake_lightning = result == "Yes (Cosmetic)"
 
@@ -65,7 +65,7 @@
 	var/sound = get_sfx("thunder")
 	for(var/mob/M in player_list)
 		if( (P && (M.z in P.expected_z_levels)) || M.z == T.z)
-			if(M.is_preference_enabled(/datum/client_preference/weather_sounds))
+			if(M.check_sound_preference(/datum/preference/toggle/weather_sounds))
 				M.playsound_local(get_turf(M), soundin = sound, vol = 70, vary = FALSE, is_global = TRUE)
 
 	if(cosmetic) // Everything beyond here involves potentially damaging things. If we don't want to do that, stop now.
@@ -93,7 +93,7 @@
 			if(iscarbon(L))
 				var/mob/living/carbon/C = L
 				C.ear_deaf += 10
-			to_chat(L, span("danger", "Lightning struck nearby, and the thunderclap is deafening!"))
+			to_chat(L, span_danger("Lightning struck nearby, and the thunderclap is deafening!"))
 
 #undef LIGHTNING_REDIRECT_RANGE
 #undef LIGHTNING_ZAP_RANGE

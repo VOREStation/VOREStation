@@ -4,11 +4,11 @@
 	it does not bounce to you.  The lighting prefers to bounce to people with the least resistance to electricity.  It will \
 	strike up to four targets, including yourself if conditions allow it to occur.  Lightning functions cannot miss due to distance."
 	cost = 150
-	obj_path = /obj/item/weapon/spell/projectile/chain_lightning
+	obj_path = /obj/item/spell/projectile/chain_lightning
 	ability_icon_state = "tech_chain_lightning"
 	category = OFFENSIVE_SPELLS
 
-/obj/item/weapon/spell/projectile/chain_lightning
+/obj/item/spell/projectile/chain_lightning
 	name = "chain lightning"
 	icon_state = "chain_lightning"
 	desc = "Fun for the whole security team!  Just don't kill yourself in the process.."
@@ -69,12 +69,9 @@
 
 		if(new_target)
 			var/turf/curloc = get_turf(target_mob)
-			curloc.visible_message("<span class='danger'>\The [src] bounces to \the [new_target]!</span>")
+			curloc.visible_message(span_danger("\The [src] bounces to \the [new_target]!"))
 			redirect(new_target.x, new_target.y, curloc, firer)
 			bounces--
 
 			return 0
 	return 1
-
-
-

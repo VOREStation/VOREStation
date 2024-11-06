@@ -11,8 +11,8 @@
 	icon_screen = "security"
 	light_color = "#a91515"
 	req_one_access = list(access_security, access_forensics_lockers, access_lawyer)
-	circuit = /obj/item/weapon/circuitboard/secure_data
-	var/obj/item/weapon/card/id/scan = null
+	circuit = /obj/item/circuitboard/secure_data
+	var/obj/item/card/id/scan = null
 	var/authenticated = null
 	var/rank = null
 	var/screen = null
@@ -74,7 +74,7 @@
 	return
 
 /obj/machinery/computer/secure_data/attackby(var/obj/item/O, var/mob/user)
-	if(istype(O, /obj/item/weapon/card/id) && !scan && user.unEquip(O))
+	if(istype(O, /obj/item/card/id) && !scan && user.unEquip(O))
 		O.loc = src
 		scan = O
 		to_chat(user, "You insert \the [O].")
@@ -209,7 +209,7 @@
 				scan = null
 			else
 				var/obj/item/I = usr.get_active_hand()
-				if(istype(I, /obj/item/weapon/card/id))
+				if(istype(I, /obj/item/card/id))
 					usr.drop_item()
 					I.forceMove(src)
 					scan = I
@@ -221,7 +221,7 @@
 					rank = scan.assignment
 			else if(login_type == LOGIN_TYPE_AI && isAI(usr))
 				authenticated = usr.name
-				rank = "AI"
+				rank = JOB_AI
 			else if(login_type == LOGIN_TYPE_ROBOT && isrobot(usr))
 				authenticated = usr.name
 				var/mob/living/silicon/robot/R = usr
@@ -421,8 +421,8 @@
   * Called when the print timer finishes
   */
 /obj/machinery/computer/secure_data/proc/print_finish()
-	var/obj/item/weapon/paper/P = new(loc)
-	P.info = "<center><b>Security Record</b></center><br>"
+	var/obj/item/paper/P = new(loc)
+	P.info = "<center>" + span_bold("Security Record") + "</center><br>"
 	if(istype(active1, /datum/data/record) && data_core.general.Find(active1))
 		P.info += {"Name: [active1.fields["name"]] ID: [active1.fields["id"]]
 		<br>\nSex: [active1.fields["sex"]]
@@ -432,7 +432,7 @@
 		<br>\nPhysical Status: [active1.fields["p_stat"]]
 		<br>\nMental Status: [active1.fields["m_stat"]]<br>"}
 	else
-		P.info += "<b>General Record Lost!</b><br>"
+		P.info += span_bold("General Record Lost!") + "<br>"
 	if(istype(active2, /datum/data/record) && data_core.security.Find(active2))
 		P.info += {"<br>\n<center><b>Security Data</b></center>
 		<br>\nCriminal Status: [active2.fields["criminal"]]<br>\n
@@ -447,7 +447,7 @@
 		for(var/c in active2.fields["comments"])
 			P.info += "[c["header"]]<br>[c["text"]]<br>"
 	else
-		P.info += "<b>Security Record Lost!</b><br>"
+		P.info += span_bold("Security Record Lost!") + "<br>"
 	P.info += "</tt>"
 	P.name = "paper - 'Security Record: [active1.fields["name"]]'"
 	printing = FALSE
@@ -470,12 +470,12 @@
 	return !src.authenticated || user.stat || user.restrained() || (!in_range(src, user) && (!istype(user, /mob/living/silicon)))
 
 /obj/machinery/computer/secure_data/proc/get_photo(var/mob/user)
-	if(istype(user.get_active_hand(), /obj/item/weapon/photo))
-		var/obj/item/weapon/photo/photo = user.get_active_hand()
+	if(istype(user.get_active_hand(), /obj/item/photo))
+		var/obj/item/photo/photo = user.get_active_hand()
 		return photo.img
 	if(istype(user, /mob/living/silicon))
 		var/mob/living/silicon/tempAI = usr
-		var/obj/item/weapon/photo/selection = tempAI.GetPicture()
+		var/obj/item/photo/selection = tempAI.GetPicture()
 		if (selection)
 			return selection.img
 

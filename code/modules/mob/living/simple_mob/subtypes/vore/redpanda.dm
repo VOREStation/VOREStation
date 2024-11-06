@@ -9,12 +9,12 @@
 	icon_rest = "wah_rest"
 	icon = 'icons/mob/vore.dmi'
 
-	faction = "redpanda" //stop naming stuff vaguely
+	faction = FACTION_REDPANDA //stop naming stuff vaguely
 	maxHealth = 30
 	health = 30
 
 	meat_amount = 2
-	meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat
+	meat_type = /obj/item/reagent_containers/food/snacks/meat
 
 	response_help = "pats"
 	response_disarm = "gently pushes aside"

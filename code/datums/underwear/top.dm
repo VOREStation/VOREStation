@@ -78,6 +78,10 @@
 	name = "Binder"
 	icon_state = "binder_s"
 
+/datum/category_item/underwear/top/binder_hyper
+	name = "HYPER Binder"
+	icon_state = "hyper_binder"
+
 /datum/category_item/underwear/top/straplessbinder
 	name = "Binder Strapless"
 	icon_state = "straplessbinder_s"

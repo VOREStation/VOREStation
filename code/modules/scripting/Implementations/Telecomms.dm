@@ -201,7 +201,7 @@
 	if(interpreter.GetVar("$source") in S.stored_names)
 		setname = interpreter.GetVar("$source")
 	else
-		setname = "<i>[interpreter.GetVar("$source")]</i>"
+		setname = span_italics("[interpreter.GetVar("$source")]")
 
 	if(signal.data["name"] != setname)
 		signal.data["realname"] = setname
@@ -231,7 +231,7 @@
 
 	var/datum/signal/newsign = new
 	var/obj/machinery/telecomms/server/S = data["server"]
-	var/obj/item/device/radio/hradio = S.server_radio
+	var/obj/item/radio/hradio = S.server_radio
 
 	if(!hradio)
 		error("[src] has no radio.")
@@ -255,7 +255,7 @@
 	if(source in S.stored_names)
 		newsign.data["name"] = source
 	else
-		newsign.data["name"] = "<i>[html_encode(uppertext(source))]</i>"
+		newsign.data["name"] = span_italics("[html_encode(uppertext(source))]")
 	newsign.data["realname"] = newsign.data["name"]
 	newsign.data["job"] = job
 	newsign.data["compression"] = 0

@@ -16,14 +16,14 @@
 "e" = (
 /obj/structure/railing,
 /obj/structure/table/woodentable,
-/obj/item/weapon/reagent_containers/food/snacks/chips,
+/obj/item/reagent_containers/food/snacks/chips,
 /turf/template_noop,
 /area/submap/Mechpt)
 "f" = (
 /obj/structure/railing,
 /obj/structure/table/woodentable,
-/obj/item/weapon/cell/high,
-/obj/item/weapon/cell/high,
+/obj/item/cell/high,
+/obj/item/cell/high,
 /turf/template_noop,
 /area/submap/Mechpt)
 "g" = (
@@ -34,8 +34,8 @@
 "h" = (
 /obj/structure/railing,
 /obj/structure/table/woodentable,
-/obj/item/weapon/spacecash/c10,
-/obj/item/weapon/spacecash/c10,
+/obj/item/spacecash/c10,
+/obj/item/spacecash/c10,
 /turf/template_noop,
 /area/submap/Mechpt)
 "i" = (
@@ -96,7 +96,7 @@
 	dir = 1
 	},
 /obj/structure/table/woodentable,
-/obj/item/weapon/spacecash/c50,
+/obj/item/spacecash/c50,
 /turf/template_noop,
 /area/submap/Mechpt)
 "u" = (
@@ -104,8 +104,8 @@
 	dir = 1
 	},
 /obj/structure/table/woodentable,
-/obj/item/weapon/cell/high,
-/obj/item/weapon/cell/device/weapon,
+/obj/item/cell/high,
+/obj/item/cell/device/weapon,
 /turf/template_noop,
 /area/submap/Mechpt)
 "v" = (
@@ -113,7 +113,7 @@
 	dir = 1
 	},
 /obj/structure/table/woodentable,
-/obj/item/weapon/reagent_containers/food/drinks/bottle/small/beer,
+/obj/item/reagent_containers/food/drinks/bottle/small/beer,
 /turf/template_noop,
 /area/submap/Mechpt)
 

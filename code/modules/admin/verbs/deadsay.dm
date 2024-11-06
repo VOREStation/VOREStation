@@ -1,5 +1,5 @@
 /client/proc/dsay(msg as text)
-	set category = "Special Verbs"
+	set category = "Admin.Chat"
 	set name = "Dsay" //Gave this shit a shorter name so you only have to time out "dsay" rather than "dead say" to use it --NeoFite
 	set hidden = 1
 	if(!src.holder)
@@ -8,11 +8,11 @@
 	if(!src.mob)
 		return
 	if(prefs.muted & MUTE_DEADCHAT)
-		to_chat(src, "<span class='warning'>You cannot send DSAY messages (muted).</span>")
+		to_chat(src, span_warning("You cannot send DSAY messages (muted)."))
 		return
 
-	if(!is_preference_enabled(/datum/client_preference/show_dsay))
-		to_chat(src, "<span class='warning'>You have deadchat muted.</span>")
+	if(!prefs?.read_preference(/datum/preference/toggle/show_dsay))
+		to_chat(src, span_warning("You have deadchat muted."))
 		return
 
 	var/stafftype = uppertext(holder.rank)
@@ -23,6 +23,6 @@
 	if (!msg)
 		return
 
-	say_dead_direct("<span class='name'>[stafftype]([src.holder.fakekey ? src.holder.fakekey : src.key])</span> says, <span class='message'>\"[msg]\"</span>")
+	say_dead_direct(span_name("[stafftype]([src.holder.fakekey ? src.holder.fakekey : src.key])") + " says, " + span_message("\"[msg]\""))
 
 	feedback_add_details("admin_verb","D") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!

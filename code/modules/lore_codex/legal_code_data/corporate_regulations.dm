@@ -4,7 +4,7 @@
 	or otherwise on-board a NanoTrasen installation, which if you are reading this, you likely are at one.  Corporate Regulations, \
 	commonly shortened to Corp Regs by employees, is common throughout NanoTrasen's other holdings.  Offenses against Corp Regs can \
 	range from things like littering, to disrespecting a Head of Staff, to failing to follow a valid order from a superior.  \
-	All NanoTrasen employees must follow these regulations, no one is above them, not even the Station Director.  \
+	All NanoTrasen employees must follow these regulations, no one is above them, not even the " + JOB_SITE_MANAGER + ".  \
 	The only exception for this is Asset Protection."
 	children = list(
 		/datum/lore/codex/page/corporate_punishments,
@@ -79,14 +79,14 @@
 	Brig time may also be used for repeat offenders.</li><br>\
 	<li><b>Write-ups to Central Command</b> may be recommended or mandated for specific offenses.  Internal Affairs is to ensure that this is \
 	adhered to, and assist if needed.</li><br>\
-	<li><b>Reassignments</b> as a form of punishment may be done by the Station Director, with consent from both the offender and the offender's \
+	<li><b>Reassignments</b> as a form of punishment may be done by the " + JOB_SITE_MANAGER + ", with consent from both the offender and the offender's \
 	Superior, if one exists.  Generally the new role for the offender is usually considered something menial or related to their offense, for example: \
-	Janitor, Miner, Cook, Gardener.  This punishment can be especially fitting for certain violations such as someone who made graffiti being reassigned to janitorial duties.</li><br>\
-	<li><b>Demotions</b> may be done by the offender's Superior, at their discretion.  The Station Director may also do this, \
+	" + JOB_JANITOR + ", Miner, Cook, " + JOB_ALT_GARDENER + ".  This punishment can be especially fitting for certain violations such as someone who made graffiti being reassigned to janitorial duties.</li><br>\
+	<li><b>Demotions</b> may be done by the offender's Superior, at their discretion.  The " + JOB_SITE_MANAGER + " may also do this, \
 	however the Director is recommended to defer to the offender's direct Superior if one exists.</li><br>\
-	<li><b>Terminations of employment</b> from NanoTrasen can only be issued by the Station Director.  This is the most severe corporate punishment available. \
+	<li><b>Terminations of employment</b> from NanoTrasen can only be issued by the " + JOB_SITE_MANAGER + ".  This is the most severe corporate punishment available. \
 	It should be noted that visitors and other non-employees cannot be terminated, obviously.  Central Command must be informed of the termination, if one is applied.</li>\
-	<li><b>Hold until Transfer</b> is an option reserved for the Station Director only for repeat offenders, for serious violations of Regulations, or it the offender poses a \
+	<li><b>Hold until Transfer</b> is an option reserved for the " + JOB_SITE_MANAGER + " only for repeat offenders, for serious violations of Regulations, or it the offender poses a \
 	credible threat to the station or crew.</li>\
 	</ul>"
 
@@ -151,7 +151,7 @@
 	suggested_punishments = "50 thaler fine. Demotion at discretion of Superior."
 	suggested_fine = 50
 	notes = "For this charge to apply, the order must be lawful, reasonable, and the person being ordered to do it must have been able to do so.  \
-	This includes orders from someone who is not necessarily the direct superior of the offender, but has authority in that context, for instance the Chief Engineer \
+	This includes orders from someone who is not necessarily the direct superior of the offender, but has authority in that context, for instance the " + JOB_CHIEF_ENGINEER + " \
 	giving an order about engineering matters."
 
 /datum/lore/codex/page/law/littering
@@ -188,7 +188,7 @@
 	suggested_punishments = "Fine of up to 200 thaler, or brig time extention up to 20 minutes. Demotion at discretion of Superior."
 	suggested_fine = 200
 	suggested_brig_time = 20 MINUTES
-	notes = "If this disputed, an Internal Affairs Agent (if available) is to be the impartial mediator."
+	notes = "If this disputed, an " + JOB_INTERNAL_AFFAIRS_AGENT + " (if available) is to be the impartial mediator."
 
 /datum/lore/codex/page/law/control_contraband
 	name = "Possession of a Controlled Item (Contraband)"
@@ -251,7 +251,7 @@
 /datum/lore/codex/page/law/i_am_the_law/add_content()
 	name = "Exceeding Official Powers"
 	definition = "Acting beyond what is allowed by Corporate Regulations  or Standard Operating Procedure, generally as a member of Command or Security."
-	suggested_punishments = "Demotion or termination at discretion of Station Admin.  Send notice to Central Command if a Head of Staff or Station Director had exceeded their powers."
+	suggested_punishments = "Demotion or termination at discretion of Station Admin.  Send notice to Central Command if a Head of Staff or " + JOB_SITE_MANAGER + " had exceeded their powers."
 	notes = "The difference between this and [quick_link("Abuse of Office")] is that generally this charge is for instances of someone using their position to go beyond their \
 	assigned role, or generally acting 'above the regulations'."
 	mandated = TRUE
@@ -260,7 +260,7 @@
 /datum/lore/codex/page/law/abuse_of_office/add_content()
 	name = "Abuse of Office"
 	definition = "Doing illegal, immoral, or otherwise disallowed actions, in an official capacity, placing their own interests ahead of the interests of the Company."
-	suggested_punishments = "Demotion.  Termination at discretion of Station Admin.  Send notice to Central Command if a Head of Staff or Station Director had abused their office."
+	suggested_punishments = "Demotion.  Termination at discretion of Station Admin.  Send notice to Central Command if a Head of Staff or " + JOB_SITE_MANAGER + " had abused their office."
 	notes = "The difference between this and [quick_link("Exceeding Official Powers")] is that this charge is for instances of someone using their authority to adversely \
 	affect another crewmember or visitor unlawfully by using their authority, or otherwise empowering themselves for their own personal gain."
 	mandated = TRUE
@@ -273,41 +273,41 @@
 	notes = "Visitors boarding the station with restricted items must leave the item outside the station (e.g. vessel), or surrender it to the Security team.  \
 	A list of restricted items are provided inside this book.\
 	<br><br>\
-	Roles authorized to handle a weapon by default include; Station Director, Head of Personnel, Head of Security, Security Officers, Detectives, and anyone possessing \
+	Roles authorized to handle a weapon by default include; " + JOB_SITE_MANAGER + ", " + JOB_HEAD_OF_PERSONNEL + ", " + JOB_HEAD_OF_SECURITY + ", Security Officers, Detectives, and anyone possessing \
 	a valid weapon permit."
 
 /datum/lore/codex/page/law/breaking_sop_major
 	name = "Breaking Standard Operation Procedure (Major)"
 	definition = "Actively and willfully disregarding the station's Standard Operating Procedures, where the probable effects includes death or destruction."
-	suggested_punishments = "30 minutes to 1 hour of Brig time.  Demotion left to discretion of Superior, but strongly suggested.  Termination at discretion of Station Director."
+	suggested_punishments = "30 minutes to 1 hour of Brig time.  Demotion left to discretion of Superior, but strongly suggested.  Termination at discretion of " + JOB_SITE_MANAGER + "."
 	suggested_brig_time = 1 HOUR
 	notes = "This includes non-compliance to orders from Emergency Responders, entering breached areas without proper EVA gear."
 
 /datum/lore/codex/page/law/neglect_of_duty
 	name = "Neglect of Duty"
 	definition = "To fail to meet satisfactory work standards."
-	suggested_punishments = "Demotion at discretion of Superior.  Termination at discretion of Station Director."
+	suggested_punishments = "Demotion at discretion of Superior.  Termination at discretion of " + JOB_SITE_MANAGER + "."
 	notes = "This includes accidents, refusing or failing to work, or simply not providing a reasonable amount of productivity, when the offender is capable of work.  This charge \
 	is meant to be applied only by Command staff to their subordinates, and not from individual Security Officers."
 
 /datum/lore/codex/page/law/deception
 	name = "Deception"
 	definition = "To lie in an official report."
-	suggested_punishments = "Demotion.  Termination at discretion of Station Director.  Notify Central Command."
+	suggested_punishments = "Demotion.  Termination at discretion of " + JOB_SITE_MANAGER + ".  Notify Central Command."
 	notes = "This includes lying or withholding information to your superior in a report or lying to the crew about a situation."
 	mandated = TRUE
 
 /datum/lore/codex/page/law/wrongful_dismissal
 	name = "Wrongful Dismissal"
 	definition = "To demote, dismiss, terminate, or otherwise reduce a crewmember's rank for no valid, or a knowingly false reason."
-	suggested_punishments = "Demotion.  Termination at discretion of Station Director.  Notify Central Command."
-	notes = "An Internal Affairs Agent is required to do an investigation in order to conclude if this has occurred or not.  Security cannot \
+	suggested_punishments = "Demotion.  Termination at discretion of " + JOB_SITE_MANAGER + ".  Notify Central Command."
+	notes = "An " + JOB_INTERNAL_AFFAIRS_AGENT + " is required to do an investigation in order to conclude if this has occurred or not.  Security cannot \
 	give this charge out on their own."
 	mandated = TRUE
 
 /datum/lore/codex/page/law/abuse_of_confiscated_equipment
 	name = "Abuse of Confiscated Equipment"
 	definition = "To take and use equipment confiscated as evidence or contraband, generally as a member of Security or Command."
-	suggested_punishments = "Demotion of the user.  Termination at discretion of Station Director.  Return confiscated equipment to evidence storage."
+	suggested_punishments = "Demotion of the user.  Termination at discretion of " + JOB_SITE_MANAGER +".  Return confiscated equipment to evidence storage."
 	notes = "Security shouldn't be using evidence for anything but evidence, and should never use contraband.  This is meant for people misusing evidence for personal use.  Evidence stolen \
 	in order to cover up a crime would fall under Theft or Tampering with Evidence."

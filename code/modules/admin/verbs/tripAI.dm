@@ -1,5 +1,5 @@
 /client/proc/triple_ai()
-	set category = "Fun"
+	set category = "Fun.Event Kit"
 	set name = "Create AI Triumvirate"
 
 	if(ticker.current_state > GAME_STATE_PREGAME)
@@ -7,7 +7,7 @@
 		return
 
 	if(job_master && ticker)
-		var/datum/job/job = job_master.GetJob("AI")
+		var/datum/job/job = job_master.GetJob(JOB_AI)
 		if(!job)
 			to_chat(usr, "Unable to locate the AI job")
 			return

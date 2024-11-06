@@ -34,14 +34,14 @@
 //		sd_SetLuminosity(0)
 
 //Don't want to render prison breaks impossible
-/obj/machinery/flasher/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/machinery/flasher/attackby(obj/item/W as obj, mob/user as mob)
 	if(W.has_tool_quality(TOOL_WIRECUTTER))
 		add_fingerprint(user)
 		disable = !disable
 		if(disable)
-			user.visible_message("<span class='warning'>[user] has disconnected the [src]'s flashbulb!</span>", "<span class='warning'>You disconnect the [src]'s flashbulb!</span>")
+			user.visible_message(span_warning("[user] has disconnected the [src]'s flashbulb!"), span_warning("You disconnect the [src]'s flashbulb!"))
 		if(!disable)
-			user.visible_message("<span class='warning'>[user] has connected the [src]'s flashbulb!</span>", "<span class='warning'>You connect the [src]'s flashbulb!</span>")
+			user.visible_message(span_warning("[user] has connected the [src]'s flashbulb!"), span_warning("You connect the [src]'s flashbulb!"))
 
 //Let the AI trigger them directly.
 /obj/machinery/flasher/attack_ai()
@@ -106,18 +106,18 @@
 		if(M.m_intent != "walk")
 			flash()
 
-/obj/machinery/flasher/portable/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/machinery/flasher/portable/attackby(obj/item/W as obj, mob/user as mob)
 	if(W.has_tool_quality(TOOL_WRENCH))
 		add_fingerprint(user)
 		anchored = !anchored
 
 		if(!anchored)
-			user.show_message(text("<span class='warning'>[src] can now be moved.</span>"))
+			user.show_message(span_warning("[src] can now be moved."))
 			cut_overlays()
 			unsense_proximity(callback = /atom/proc/HasProximity)
 
 		else if(anchored)
-			user.show_message(text("<span class='warning'>[src] is now secured.</span>"))
+			user.show_message(span_warning("[src] is now secured."))
 			add_overlay("[base_state]-s")
 			sense_proximity(callback = /atom/proc/HasProximity)
 

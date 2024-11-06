@@ -15,7 +15,7 @@
 	icon_rest = "woof_rest"
 	icon = 'icons/mob/vore.dmi'
 
-	faction = "dog"
+	faction = FACTION_DOG
 	maxHealth = 600
 	health = 600
 	movement_cooldown = -1
@@ -57,8 +57,8 @@
 /mob/living/simple_mob/vore/woof/New()
 	..()
 
-	verbs += /mob/living/proc/ventcrawl
-	verbs += /mob/living/proc/hide
+	add_verb(src, /mob/living/proc/ventcrawl)
+	add_verb(src, /mob/living/proc/hide)
 
 /datum/say_list/softdog
 	speak = list("Woof~", "Woof!", "Yip!", "Yap!", "Yip~", "Yap~", "Awoooooo~", "Awoo!", "AwooooooooooOOOOOOoOooOoooOoOOoooo!")
@@ -172,7 +172,7 @@
 	icon_rest = "cass_rest"
 	ic_revivable = 0
 
-	faction = "theatre"
+	faction = FACTION_THEATRE
 	gender = PLURAL
 	ai_holder_type = /datum/ai_holder/simple_mob/woof/cass
 
@@ -201,7 +201,7 @@
 		var/mob/living/L = A
 		if(prob(knockdown_chance))
 			L.Weaken(3)
-			L.visible_message(span("danger", "\The [src] pounces on \the [L]!"))
+			L.visible_message(span_danger("\The [src] pounces on \the [L]!"))
 
 /mob/living/simple_mob/vore/woof/hostile/melee
 
@@ -279,25 +279,25 @@
 /mob/living/simple_mob/vore/woof/hostile/aweful/death()
 	. = ..()
 	if(killswitch)
-		visible_message("<span class='notice'>\The [src] evaporates into nothing...</span>")
+		visible_message(span_notice("\The [src] evaporates into nothing..."))
 		qdel(src)
 		return
 	var/thismany = rand(0,3)
 	var/list/possiblewoofs = list(/mob/living/simple_mob/vore/woof/hostile/aweful/melee, /mob/living/simple_mob/vore/woof/hostile/aweful/ranged)
 	if(thismany == 0)
-		visible_message("<span class='notice'>\The [src] evaporates into nothing...</span>")
+		visible_message(span_notice("\The [src] evaporates into nothing..."))
 	if(thismany >= 1)
 		var/thiswoof = pick(possiblewoofs)
 		new thiswoof(loc, src)
-		visible_message("<span class='warning'>Another [src] appears!</span>")
+		visible_message(span_warning("Another [src] appears!"))
 	if(thismany >= 2)
 		var/thiswoof = pick(possiblewoofs)
 		new thiswoof(loc, src)
-		visible_message("<span class='warning'>Another [src] appears!</span>")
+		visible_message(span_warning("Another [src] appears!"))
 	if(thismany >= 3)
 		var/thiswoof = pick(possiblewoofs)
 		new thiswoof(loc, src)
-		visible_message("<span class='warning'>Another [src] appears!</span>")
+		visible_message(span_warning("Another [src] appears!"))
 	qdel(src)
 
 /mob/living/simple_mob/vore/woof/hostile/aweful/melee

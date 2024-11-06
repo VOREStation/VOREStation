@@ -27,7 +27,7 @@
 	if (nref)
 		ref = nref
 	// If a client exists, but they have disabled fancy windowing, disable it!
-	if(user && user.client && !user.client.is_preference_enabled(/datum/client_preference/browser_style))
+	if(!user?.client?.prefs?.read_preference(/datum/preference/toggle/browser_style))
 		return
 	add_stylesheet("common", 'html/browser/common.css') // this CSS sheet is common to all UIs
 
@@ -113,7 +113,7 @@
 /datum/browser/proc/open(var/use_onclose = 1)
 	if(isnull(window_id))	//null check because this can potentially nuke goonchat
 		WARNING("Browser [title] tried to open with a null ID")
-		to_chat(user, "<span class='userdanger'>The [title] browser you tried to open failed a sanity check! Please report this on github!</span>")
+		to_chat(user, span_userdanger("The [title] browser you tried to open failed a sanity check! Please report this on github!"))
 		return
 	var/window_size = ""
 	if (width && height)

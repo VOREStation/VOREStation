@@ -24,7 +24,7 @@
 	victim.electrocute_act(10, src, 1, def_zone)
 	victim.stun_effect_act(0, 40, BP_TORSO, src)
 
-/datum/blob_type/energized_jelly/on_chunk_tick(obj/item/weapon/blobcore_chunk/B)
+/datum/blob_type/energized_jelly/on_chunk_tick(obj/item/blobcore_chunk/B)
 	for(var/mob/living/L in oview(world.view, get_turf(B)))
 		var/mob/living/carrier = B.get_carrier()
 
@@ -33,7 +33,7 @@
 
 		var/obj/item/projectile/P = new spore_projectile(get_turf(B))
 
-		carrier.visible_message("<span class='danger'>\The [B] discharges energy toward \the [L]!</span>")
+		carrier.visible_message(span_danger("\The [B] discharges energy toward \the [L]!"))
 		P.launch_projectile(L, BP_TORSO, carrier)
 
 	return

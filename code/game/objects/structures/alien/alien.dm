@@ -35,7 +35,7 @@
 
 /obj/structure/alien/hitby(AM as mob|obj)
 	..()
-	visible_message("<span class='danger'>\The [src] was hit by \the [AM].</span>")
+	visible_message(span_danger("\The [src] was hit by \the [AM]."))
 	var/tforce = 0
 	if(ismob(AM))
 		tforce = 10
@@ -48,20 +48,20 @@
 	return
 
 /obj/structure/alien/attack_generic(var/mob/user, var/damage, var/attack_verb)
-	visible_message("<span class='danger'>[user] [attack_verb] the [src]!</span>")
+	visible_message(span_danger("[user] [attack_verb] the [src]!"))
 	playsound(src, 'sound/effects/attackblob.ogg', 100, 1)
 	user.do_attack_animation(src)
 	health -= damage
 	healthcheck()
 	return
 
-/obj/structure/alien/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/structure/alien/attackby(obj/item/W as obj, mob/user as mob)
 
 	user.setClickCooldown(user.get_attack_speed(W))
 	var/aforce = W.force
 	health = max(0, health - aforce)
 	playsound(src, 'sound/effects/attackblob.ogg', 100, 1)
-	visible_message("<span class='danger'>[user] attacks the [src]!</span>")
+	visible_message(span_danger("[user] attacks the [src]!"))
 	healthcheck()
 	..()
 	return
@@ -69,7 +69,7 @@
 /obj/structure/alien/attack_hand()
 	usr.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 	if (HULK in usr.mutations)
-		visible_message("<span class='warning'>[usr] destroys the [name]!</span>")
+		visible_message(span_warning("[usr] destroys the [name]!"))
 		health = 0
 	else
 
@@ -77,11 +77,18 @@
 		if(istype(usr,/mob/living/carbon))
 			var/mob/living/carbon/M = usr
 			if(locate(/obj/item/organ/internal/xenos/hivenode) in M.internal_organs)
-				visible_message ("<span class='warning'>[usr] strokes the [name] and it melts away!</span>", 1)
+				visible_message (span_warning("[usr] strokes the [name] and it melts away!"), 1)
 				health = 0
 				healthcheck()
 				return
-		visible_message("<span class='warning'>[usr] claws at the [name]!</span>")
+			if(locate(/obj/item/organ/internal/xenos/resinspinner/replicant) in M.internal_organs)
+				if(!do_after(M, 3 SECONDS))
+					return
+				visible_message (span_warning("[usr] strokes the [name] and it melts away!"), 1)
+				health = 0
+				healthcheck()
+				return
+		visible_message(span_warning("[usr] claws at the [name]!"))
 		health -= rand(5,10)
 	healthcheck()
 	return

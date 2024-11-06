@@ -124,12 +124,12 @@
 			var/z = params["z"]
 
 			if(!name)
-				to_chat(usr, "<span class='warning'>Name cannot be empty.</span>")
+				to_chat(usr, span_warning("Name cannot be empty."))
 				return FALSE
 
 			var/turf/T = locate(x, y, z)
 			if(!T)
-				to_chat(usr, "<span class='warning'>Those coordinates are outside the boundaries of the map.</span>")
+				to_chat(usr, span_warning("Those coordinates are outside the boundaries of the map."))
 				return FALSE
 
 			for(var/i = 0, i < amount, i++)
@@ -180,7 +180,7 @@
 						M.size_multiplier = size_mul
 						M.update_icon()
 					else
-						to_chat(usr, "<span class='warning'>Size Multiplier not applied: ([size_mul]) is not a valid input.</span>")
+						to_chat(usr, span_warning("Size Multiplier not applied: ([size_mul]) is not a valid input."))
 
 					M.forceMove(T)
 
@@ -193,7 +193,7 @@
 	qdel(src)
 
 /client/proc/eventkit_open_mob_spawner()
-	set category = "EventKit"
+	set category = "Fun.Event Kit"
 	set name = "Open Mob Spawner"
 	set desc = "Opens an advanced version of the mob spawner."
 

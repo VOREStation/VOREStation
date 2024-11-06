@@ -24,9 +24,12 @@
 
 	level = 1
 
-/obj/machinery/atmospherics/unary/outlet_injector/New()
-	..()
+/obj/machinery/atmospherics/unary/outlet_injector/Initialize()
+	. = ..()
+
 	air_contents.volume = ATMOS_DEFAULT_VOLUME_PUMP + 500	//Give it a small reservoir for injecting. Also allows it to have a higher flow rate limit than vent pumps, to differentiate injectors a bit more.
+	if(frequency)
+		set_frequency(frequency)
 
 /obj/machinery/atmospherics/unary/outlet_injector/Destroy()
 	unregister_radio(src, frequency)
@@ -122,11 +125,6 @@
 
 	return 1
 
-/obj/machinery/atmospherics/unary/outlet_injector/Initialize()
-	. = ..()
-	if(frequency)
-		set_frequency(frequency)
-
 /obj/machinery/atmospherics/unary/outlet_injector/receive_signal(datum/signal/signal)
 	if(!signal.data["tag"] || (signal.data["tag"] != id) || (signal.data["sigtype"]!="command"))
 		return 0
@@ -158,20 +156,20 @@
 	update_underlays()
 
 /obj/machinery/atmospherics/unary/outlet_injector/attack_hand(mob/user as mob)
-	to_chat(user, "<span class='notice'>You toggle \the [src].</span>")
+	to_chat(user, span_notice("You toggle \the [src]."))
 	injecting = !injecting
 	update_use_power(injecting ? USE_POWER_IDLE : USE_POWER_OFF)
 	update_icon()
 
-/obj/machinery/atmospherics/unary/outlet_injector/attackby(var/obj/item/weapon/W as obj, var/mob/user as mob)
+/obj/machinery/atmospherics/unary/outlet_injector/attackby(var/obj/item/W as obj, var/mob/user as mob)
 	if (!W.has_tool_quality(TOOL_WRENCH))
 		return ..()
 
 	playsound(src, W.usesound, 50, 1)
-	to_chat(user, "<span class='notice'>You begin to unfasten \the [src]...</span>")
+	to_chat(user, span_notice("You begin to unfasten \the [src]..."))
 	if (do_after(user, 40 * W.toolspeed))
 		user.visible_message( \
-			"<b>\The [user]</b> unfastens \the [src].", \
-			"<span class='notice'>You have unfastened \the [src].</span>", \
+			span_infoplain(span_bold("\The [user]") + " unfastens \the [src]."), \
+			span_notice("You have unfastened \the [src]."), \
 			"You hear a ratchet.")
 		deconstruct()
