@@ -53,7 +53,7 @@ GLOBAL_LIST_INIT(custom_species_bases, new) // Species that can be used for a Cu
 var/datum/category_collection/underwear/global_underwear = new()
 
 	//Customizables
-var/global/list/headsetlist = list("Standard","Bowman","Earbud")
+GLOBAL_LIST_INIT(headsetlist, list("Standard","Bowman","Earbud"))
 var/global/list/backbaglist = list("Nothing", "Backpack", "Satchel", "Satchel Alt", "Messenger Bag", "Sports Bag", "Strapless Satchel")
 var/global/list/pdachoicelist = list("Default", "Slim", "Old", "Rugged", "Holographic", "Wrist-Bound","Slider", "Vintage")
 var/global/list/exclude_jobs = list(/datum/job/ai,/datum/job/cyborg)
