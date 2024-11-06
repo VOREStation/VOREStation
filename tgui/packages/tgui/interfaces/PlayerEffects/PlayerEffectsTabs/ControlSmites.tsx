@@ -66,6 +66,9 @@ export const ControlSmites = (props) => {
       <Button fluid onClick={() => act('mob_tf')}>
         Mob Transformation
       </Button>
+      <Button fluid onClick={() => act('item_tf')}>
+        Object Transformation
+      </Button>
     </Section>
   );
 };

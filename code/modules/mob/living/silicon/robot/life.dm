@@ -375,7 +375,7 @@
 
 /mob/living/silicon/robot/handle_light()
 	if(lights_on)
-		set_light(integrated_light_power, 1, "#FFFFFF")
+		set_light(integrated_light_power, 1, robot_light_col)
 		return TRUE
 	else
 		. = ..()

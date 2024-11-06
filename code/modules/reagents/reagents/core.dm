@@ -23,9 +23,9 @@
 
 /datum/reagent/blood/get_data() // Just in case you have a reagent that handles data differently.
 	var/t = data.Copy()
-	if(t["virus2"])
-		var/list/v = t["virus2"]
-		t["virus2"] = v.Copy()
+	if(t["viruses"])
+		var/list/v = t["viruses"]
+		t["viruses"] = v.Copy()
 	return t
 
 /datum/reagent/blood/touch_turf(var/turf/simulated/T)
@@ -70,13 +70,16 @@
 	if(effective_dose > 15)
 		if(!is_vampire) //VOREStation Edit.
 			M.adjustToxLoss(removed) //VOREStation Edit.
-	if(data && data["virus2"])
-		var/list/vlist = data["virus2"]
+	if(data && data["viruses"])
+		var/list/vlist = data["viruses"]
 		if(vlist.len)
 			for(var/ID in vlist)
-				var/datum/disease2/disease/V = vlist[ID]
-				if(V.spreadtype == "Contact")
-					infect_virus2(M, V.getcopy())
+				if(!ID)
+					continue
+				var/datum/disease/D = ID
+				if((D.spread_flags & SPECIAL) || (D.spread_flags & NON_CONTAGIOUS))
+					continue
+				M.ContractDisease(D)
 
 /datum/reagent/blood/affect_touch(var/mob/living/carbon/M, var/alien, var/removed)
 	if(ishuman(M))
@@ -86,15 +89,59 @@
 	if(alien == IS_SLIME)
 		affect_ingest(M, alien, removed)
 		return
-	if(data && data["virus2"])
-		var/list/vlist = data["virus2"]
+	if(data && data["viruses"])
+		var/list/vlist = data["viruses"]
 		if(vlist.len)
 			for(var/ID in vlist)
-				var/datum/disease2/disease/V = vlist[ID]
-				if(V.spreadtype == "Contact")
-					infect_virus2(M, V.getcopy())
-	if(data && data["antibodies"])
-		M.antibodies |= data["antibodies"]
+				var/datum/disease/D = ID
+				if((D.spread_flags & SPECIAL) || (D.spread_flags & NON_CONTAGIOUS))
+					continue
+				M.ContractDisease(D)
+	if(data && data["resistances"])
+		M.resistances |= data["resistances"]
+
+/datum/reagent/blood/mix_data(newdata, newamount)
+	if(!data || !newdata)
+		return
+
+	if(data["viruses"] || newdata["viruses"])
+		var/list/mix1 = data["viruses"]
+		var/list/mix2 = newdata["viruses"]
+
+		var/list/to_mix = list()
+		var/list/preserve = list()
+
+		for(var/datum/disease/advance/AD in mix1)
+			to_mix += AD
+		for(var/datum/disease/advance/AD in mix2)
+			to_mix += AD
+
+		var/datum/disease/advance/mixed_AD = Advance_Mix(to_mix)
+
+		if(mixed_AD)
+			preserve += mixed_AD
+
+		for(var/datum/disease/D1 in mix1)
+			if(!istype(D1, /datum/disease/advance))
+				var/keep = TRUE
+				for(var/datum/disease/D2 in preserve)
+					if(D1.IsSame(D2))
+						keep = FALSE
+						break
+				if(keep)
+					preserve += D1
+
+		for(var/datum/disease/D1 in mix2)
+			if(!istype(D1, /datum/disease/advance))
+				var/keep = TRUE
+				for(var/datum/disease/D2 in preserve)
+					if(D1.IsSame(D2))
+						keep = FALSE
+						break
+				if(keep)
+					preserve += D1
+
+		data["viruses"] = preserve
 
 /datum/reagent/blood/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(alien == IS_SLIME)	//They don't have blood, so it seems weird that they would instantly 'process' the chemical like another species does.

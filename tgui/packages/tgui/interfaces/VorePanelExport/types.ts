@@ -4,7 +4,7 @@ export type Data = {
   db_version: string;
   db_repo: string;
   mob_name: string;
-  bellies: Belly[];
+  bellies?: Belly[];
 };
 
 export type Belly = {

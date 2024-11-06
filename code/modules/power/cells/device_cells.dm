@@ -10,15 +10,14 @@
 	force = 0
 	throw_speed = 5
 	throw_range = 7
+	charge = 480
 	maxcharge = 480
 	charge_amount = 5
 	matter = list(MAT_STEEL = 350, MAT_GLASS = 50)
 	preserve_item = 1
 
-/obj/item/cell/device/empty/Initialize()
-	. = ..()
+/obj/item/cell/device/empty
 	charge = 0
-	update_icon()
 
 /*
  * Crap Device
@@ -29,16 +28,15 @@
 	description_fluff = "You can't top the rust top." //TOTALLY TRADEMARK INFRINGEMENT
 	origin_tech = list(TECH_POWER = 0)
 	icon_state = "device_crap"
+	charge = 240
 	maxcharge = 240
 	matter = list(MAT_STEEL = 350, MAT_GLASS = 30)
 
 /obj/item/cell/device/crap/update_icon() //No visible charge indicator
 	return
 
-/obj/item/cell/device/crap/empty/Initialize()
-	. = ..()
+/obj/item/cell/device/crap/empty
 	charge = 0
-	update_icon()
 
 /*
  * Hyper Device
@@ -47,13 +45,12 @@
 	name = "hyper device power cell"
 	desc = "A small power cell designed to power handheld devices. Has a better charge than a standard device cell."
 	icon_state = "hype_device_cell"
+	charge = 600
 	maxcharge = 600
 	matter = list(MAT_STEEL = 400, MAT_GLASS = 60)
 
-/obj/item/cell/device/hyper/empty/Initialize()
-	. = ..()
+/obj/item/cell/device/hyper/empty
 	charge = 0
-	update_icon()
 
 /*
  * EMP Proof Device
@@ -65,10 +62,8 @@
 	matter = list(MAT_STEEL = 400, MAT_GLASS = 60)
 	emp_proof = TRUE
 
-/obj/item/cell/device/empproof/empty/Initialize()
-	. = ..()
+/obj/item/cell/device/empproof/empty
 	charge = 0
-	update_icon()
 
 /*
  * Weapon
@@ -77,13 +72,12 @@
 	name = "weapon power cell"
 	desc = "A small power cell designed to power handheld weaponry."
 	icon_state = "weapon_cell"
+	charge = 2400
 	maxcharge = 2400
 	charge_amount = 20
 
-/obj/item/cell/device/weapon/empty/Initialize()
-	. = ..()
+/obj/item/cell/device/weapon/empty
 	charge = 0
-	update_icon()
 
 /*
  * EMP Proof Weapon
@@ -95,10 +89,8 @@
 	matter = list(MAT_STEEL = 400, MAT_GLASS = 60)
 	emp_proof = TRUE
 
-/obj/item/cell/device/weapon/empproof/empty/Initialize()
-	. = ..()
+/obj/item/cell/device/weapon/empproof/empty
 	charge = 0
-	update_icon()
 
 /*
  * Self-charging Weapon
@@ -139,7 +131,7 @@
 	value = CATALOGUER_REWARD_EASY
 
 /obj/item/cell/device/weapon/recharge/alien
-	name = "void cell"
+	name = "void cell (device)"
 	desc = "An alien technology that produces energy seemingly out of nowhere. Its small, cylinderal shape means it might be able to be used with human technology, perhaps?"
 	catalogue_data = list(/datum/category_item/catalogue/anomalous/precursor_a/alien_void_cell)
 	icon = 'icons/obj/abductor.dmi'
@@ -147,6 +139,24 @@
 	charge_amount = 120 // 5%.
 	charge_delay = 50 // Every five seconds, bit faster than the default.
 	origin_tech = list(TECH_POWER = 8, TECH_ENGINEERING = 6)
+	var/swaps_to = /obj/item/cell/void
+	standard_overlays = FALSE
 
 /obj/item/cell/device/weapon/recharge/alien/update_icon()
 	return // No overlays please.
+
+/obj/item/cell/device/weapon/recharge/alien/attack_self(var/mob/user)
+	user.remove_from_mob(src)
+	to_chat(user, span_notice("You swap [src] to 'machinery cell' mode."))
+	var/obj/item/cell/newcell = new swaps_to(null)
+	user.put_in_active_hand(newcell)
+	var/percentage = charge/maxcharge
+	newcell.charge = newcell.maxcharge * percentage
+	newcell.persist_storable = persist_storable
+	qdel(src)
+
+// Bloo friendlier hybrid tech
+/obj/item/cell/device/weapon/recharge/alien/hybrid
+	icon = 'icons/obj/power_vr.dmi'
+	icon_state = "cellb"
+	swaps_to = /obj/item/cell/void/hybrid

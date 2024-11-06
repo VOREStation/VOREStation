@@ -37,6 +37,7 @@
 		/mob/living/carbon/human/proc/shapeshifter_select_wings,
 		/mob/living/carbon/human/proc/shapeshifter_select_tail,
 		/mob/living/carbon/human/proc/shapeshifter_select_ears,
+		/mob/living/carbon/human/proc/shapeshifter_select_secondary_ears,
 		/mob/living/proc/set_size,
 		/mob/living/carbon/human/proc/regenerate,
 		/mob/living/carbon/human/proc/promethean_select_opaqueness,
@@ -53,7 +54,7 @@
 /mob/living/carbon/human/proc/shapeshifter_change_opacity()
 
 	set name = "Toggle Opacity"
-	set category = "Abilities"
+	set category = "Abilities.Shapeshifter"
 
 	if(stat || world.time < last_special)
 		return
@@ -87,7 +88,7 @@
 // exit_vr is called on the vr mob, and puts the mind back into the original mob
 /mob/living/carbon/human/proc/exit_vr()
 	set name = "Exit Virtual Reality"
-	set category = "Abilities"
+	set category = "Abilities.VR"
 
 	if(!vr_holder)
 		return

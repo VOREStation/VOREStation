@@ -1,6 +1,6 @@
 /client/proc/hide_most_verbs()//Allows you to keep some functionality while hiding some verbs
 	set name = "Adminverbs - Hide Most"
-	set category = "Admin"
+	set category = "Admin.Misc"
 
 	remove_verb(src, list(/client/proc/hide_most_verbs, admin_verbs_hideable))
 	add_verb(src, /client/proc/show_verbs)
@@ -11,7 +11,7 @@
 
 /client/proc/hide_verbs()
 	set name = "Adminverbs - Hide All"
-	set category = "Admin"
+	set category = "Admin.Misc"
 
 	remove_admin_verbs()
 	add_verb(src, /client/proc/show_verbs)
@@ -22,7 +22,7 @@
 
 /client/proc/show_verbs()
 	set name = "Adminverbs - Show"
-	set category = "Admin"
+	set category = "Admin.Misc"
 
 	remove_verb(src, /client/proc/show_verbs)
 	add_admin_verbs()
@@ -98,7 +98,7 @@
 
 /client/proc/player_panel()
 	set name = "Player Panel"
-	set category = "Admin"
+	set category = "Admin.Game"
 	if(holder)
 		holder.player_panel_old()
 	feedback_add_details("admin_verb","PP") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
@@ -106,7 +106,7 @@
 
 /client/proc/player_panel_new()
 	set name = "Player Panel New"
-	set category = "Admin"
+	set category = "Admin.Game"
 	if(holder)
 		holder.player_panel_new()
 	feedback_add_details("admin_verb","PPN") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
@@ -114,7 +114,7 @@
 
 /client/proc/check_antagonists()
 	set name = "Check Antagonists"
-	set category = "Admin"
+	set category = "Admin.Investigate"
 	if(holder)
 		holder.check_antagonists()
 		log_admin("[key_name(usr)] checked antagonists.")	//for tsar~
@@ -123,7 +123,7 @@
 
 /client/proc/jobbans()
 	set name = "Display Job bans"
-	set category = "Admin"
+	set category = "Admin.Investigate"
 	if(holder)
 		if(CONFIG_GET(flag/ban_legacy_system))
 			holder.Jobbans()
@@ -134,7 +134,7 @@
 
 /client/proc/unban_panel()
 	set name = "Unban Panel"
-	set category = "Admin"
+	set category = "Admin.Game"
 	if(holder)
 		if(CONFIG_GET(flag/ban_legacy_system))
 			holder.unbanpanel()
@@ -153,14 +153,14 @@
 
 /client/proc/secrets()
 	set name = "Secrets"
-	set category = "Admin"
+	set category = "Admin.Secrets"
 	if (holder)
 		holder.Secrets()
 	feedback_add_details("admin_verb","S") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	return
 
 /client/proc/colorooc()
-	set category = "Fun"
+	set category = "Admin.Misc"
 	set name = "OOC Text Color"
 	if(!holder)	return
 	var/response = tgui_alert(src, "Please choose a distinct color that is easy to read and doesn't mix with all the other chat and radio frequency colors.", "Change own OOC color", list("Pick new color", "Reset to default", "Cancel"))
@@ -193,7 +193,7 @@
 	GLOB.stealthminID["[ckey]"] = "@[num2text(num)]"
 
 /client/proc/stealth()
-	set category = "Admin"
+	set category = "Admin.Game"
 	set name = "Stealth Mode"
 	if(holder)
 		if(holder.fakekey)
@@ -256,7 +256,7 @@
 #undef AUTOBANTIME
 
 /client/proc/drop_bomb() // Some admin dickery that can probably be done better -- TLE
-	set category = "Special Verbs.Fun"
+	set category = "Fun.Do Not"
 	set name = "Drop Bomb"
 	set desc = "Cause an explosion of varying strength at your location."
 
@@ -283,39 +283,8 @@
 	message_admins(span_blue("[ckey] creating an admin explosion at [epicenter.loc]."))
 	feedback_add_details("admin_verb","DB") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/client/proc/give_disease2(mob/T as mob in mob_list) // -- Giacom
-	set category = "Fun"
-	set name = "Give Disease"
-	set desc = "Gives a Disease to a mob."
-
-	var/datum/disease2/disease/D = new /datum/disease2/disease()
-
-	var/severity = 1
-	var/greater = tgui_input_list(usr, "Is this a lesser, greater, or badmin disease?", "Give Disease", list("Lesser", "Greater", "Badmin"))
-	switch(greater)
-		if ("Lesser") severity = 1
-		if ("Greater") severity = 2
-		if ("Badmin") severity = 99
-
-	D.makerandom(severity)
-	D.infectionchance = tgui_input_number(usr, "How virulent is this disease? (1-100)", "Give Disease", D.infectionchance, 100, 1)
-
-	if(istype(T,/mob/living/carbon/human))
-		var/mob/living/carbon/human/H = T
-		if (H.species)
-			D.affected_species = list(H.species.get_bodytype())
-			if(H.species.primitive_form)
-				D.affected_species |= H.species.primitive_form
-			if(H.species.greater_form)
-				D.affected_species |= H.species.greater_form
-	infect_virus2(T,D,1)
-
-	feedback_add_details("admin_verb","GD2") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-	log_admin("[key_name(usr)] gave [key_name(T)] a [greater] disease2 with infection chance [D.infectionchance].")
-	message_admins(span_blue("[key_name_admin(usr)] gave [key_name(T)] a [greater] disease2 with infection chance [D.infectionchance]."), 1)
-
 /client/proc/admin_give_modifier(var/mob/living/L)
-	set category = "Debug"
+	set category = "Debug.Game"
 	set name = "Give Modifier"
 	set desc = "Makes a mob weaker or stronger by adding a specific modifier to them."
 	set popup_menu = FALSE //VOREStation Edit - Declutter.
@@ -339,7 +308,7 @@
 	log_and_message_admins("has given [key_name(L)] the modifer [new_modifier_type], with a duration of [duration ? "[duration / 600] minutes" : "forever"].")
 
 /client/proc/make_sound(var/obj/O in world) // -- TLE
-	set category = "Special Verbs.Events"
+	set category = "Fun.Sounds"
 	set name = "Make Sound"
 	set desc = "Display a message to everyone who can hear the target"
 	if(O)
@@ -354,13 +323,13 @@
 
 /client/proc/togglebuildmodeself()
 	set name = "Toggle Build Mode Self"
-	set category = "Special Verbs.Events"
+	set category = "Debug.Events"
 	if(src.mob)
 		togglebuildmode(src.mob)
 	feedback_add_details("admin_verb","TBMS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/object_talk(var/msg as text) // -- TLE
-	set category = "Special Verbs.Events"
+	set category = "Fun.Narrate"
 	set name = "oSay"
 	set desc = "Display a message to everyone who can hear the target"
 	if(mob.control_object)
@@ -371,7 +340,7 @@
 	feedback_add_details("admin_verb","OT") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/kill_air() // -- TLE
-	set category = "Debug"
+	set category = "Debug.Dangerous"
 	set name = "Kill Air"
 	set desc = "Toggle Air Processing"
 	SSair.can_fire = !SSair.can_fire
@@ -382,7 +351,7 @@
 
 /client/proc/readmin_self()
 	set name = "Re-Admin self"
-	set category = "Admin"
+	set category = "Admin.Misc"
 
 	if(deadmin_holder)
 		deadmin_holder.reassociate()
@@ -393,7 +362,7 @@
 
 /client/proc/deadmin_self()
 	set name = "De-admin self"
-	set category = "Admin"
+	set category = "Admin.Misc"
 
 	if(holder)
 		if(tgui_alert(usr, "Confirm self-deadmin for the round? You can't re-admin yourself without someone promoting you.","Deadmin",list("Yes","No")) == "Yes")
@@ -406,7 +375,7 @@
 
 /client/proc/toggle_log_hrefs()
 	set name = "Toggle href logging"
-	set category = "Server"
+	set category = "Server.Config"
 	if(!holder)	return
 	if(config)
 		CONFIG_SET(flag/log_hrefs, !CONFIG_GET(flag/log_hrefs))
@@ -414,13 +383,13 @@
 
 /client/proc/check_ai_laws()
 	set name = "Check AI Laws"
-	set category = "Admin.Game"
+	set category = "Admin.Silicon"
 	if(holder)
 		src.holder.output_ai_laws()
 
 /client/proc/rename_silicon()
 	set name = "Rename Silicon"
-	set category = "Admin"
+	set category = "Admin.Silicon"
 
 	if(!check_rights(R_ADMIN|R_FUN|R_EVENT)) return
 
@@ -435,7 +404,7 @@
 
 /client/proc/manage_silicon_laws()
 	set name = "Manage Silicon Laws"
-	set category = "Admin"
+	set category = "Admin.Silicon"
 
 	if(!check_rights(R_ADMIN|R_EVENT)) return
 
@@ -462,7 +431,7 @@
 
 /client/proc/shuttle_panel()
 	set name = "Shuttle Control Panel"
-	set category = "Admin"
+	set category = "Admin.Events"
 
 	if(!check_rights(R_ADMIN | R_EVENT))
 		return
@@ -476,7 +445,7 @@
 
 /client/proc/mod_panel()
 	set name = "Moderator Panel"
-	set category = "Admin"
+	set category = "Admin.Moderation"
 /*	if(holder)
 		holder.mod_panel()*/
 //	feedback_add_details("admin_verb","MP") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
@@ -484,14 +453,14 @@
 
 /client/proc/playernotes()
 	set name = "Show Player Info"
-	set category = "Admin"
+	set category = "Admin.Moderation"
 	if(holder)
 		holder.PlayerNotes()
 	return
 
 /client/proc/free_slot()
 	set name = "Free Job Slot"
-	set category = "Admin"
+	set category = "Admin.Game"
 	if(holder)
 		var/list/jobs = list()
 		for (var/datum/job/J in job_master.occupations)
@@ -508,7 +477,7 @@
 
 /client/proc/toggleghostwriters()
 	set name = "Toggle ghost writers"
-	set category = "Server"
+	set category = "Server.Game"
 	if(!holder)	return
 	if(config)
 		CONFIG_SET(flag/cult_ghostwriter, !CONFIG_GET(flag/cult_ghostwriter))
@@ -516,14 +485,14 @@
 
 /client/proc/toggledrones()
 	set name = "Toggle maintenance drones"
-	set category = "Server"
+	set category = "Server.Game"
 	if(!holder)	return
 	if(config)
 		CONFIG_SET(flag/allow_drone_spawn, !CONFIG_GET(flag/allow_drone_spawn))
 		message_admins("Admin [key_name_admin(usr)] has [CONFIG_GET(flag/allow_drone_spawn) ? "en" : "dis"]abled maintenance drones.", 1)
 
 /client/proc/man_up(mob/T as mob in mob_list)
-	set category = "Fun"
+	set category = "Fun.Do Not"
 	set name = "Man Up"
 	set desc = "Tells mob to man up and deal with it."
 	set popup_menu = FALSE //VOREStation Edit - Declutter.
@@ -537,7 +506,7 @@
 	message_admins(span_blue("[key_name_admin(usr)] told [key_name(T)] to man up and deal with it."), 1)
 
 /client/proc/global_man_up()
-	set category = "Fun"
+	set category = "Fun.Do Not"
 	set name = "Man Up Global"
 	set desc = "Tells everyone to man up and deal with it."
 
@@ -551,7 +520,7 @@
 	message_admins(span_blue("[key_name_admin(usr)] told everyone to man up and deal with it."), 1)
 
 /client/proc/give_spell(mob/T as mob in mob_list) // -- Urist
-	set category = "Fun"
+	set category = "Fun.Event Kit"
 	set name = "Give Spell"
 	set desc = "Gives a spell to a mob."
 	var/spell/S = tgui_input_list(usr, "Choose the spell to give to that guy", "ABRAKADABRA", spells)
@@ -563,6 +532,6 @@
 
 /client/proc/debugstatpanel()
 	set name = "Debug Stat Panel"
-	set category = "Debug"
+	set category = "Debug.Misc"
 
 	src.stat_panel.send_message("create_debug")

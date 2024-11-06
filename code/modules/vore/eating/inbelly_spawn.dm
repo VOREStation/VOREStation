@@ -1,5 +1,5 @@
 /mob/observer/dead/verb/spawn_in_belly()
-	set category = "Ghost"
+	set category = "Ghost.Join"
 	set name = "Spawn In Belly"
 	set desc = "Spawn in someone's belly."
 

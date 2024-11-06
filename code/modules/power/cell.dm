@@ -18,7 +18,7 @@
 	var/emp_proof = FALSE
 	var/static/cell_uid = 1		// Unique ID of this power cell. Used to reduce bunch of uglier code in nanoUI.
 	var/c_uid
-	var/charge = 0	// note %age conveted to actual charge in New
+	var/charge = 1000	// maximum charge on spawn
 	var/maxcharge = 1000
 	var/rigged = 0		// true if rigged to explode
 	var/minor_fault = 0 //If not 100% reliable, it will build up faults.
@@ -27,6 +27,7 @@
 	var/last_use = 0 // A tracker for use in self-charging
 	var/connector_type = "standard" //What connector sprite to use when in a cell charger, null if no connectors
 	var/charge_delay = 0 // How long it takes for the cell to start recharging after last use
+	var/robot_durability = 50
 	matter = list(MAT_STEEL = 700, MAT_GLASS = 50)
 	drop_sound = 'sound/items/drop/component.ogg'
 	pickup_sound = 'sound/items/pickup/component.ogg'
@@ -35,10 +36,9 @@
 	var/standard_overlays = TRUE
 	var/last_overlay_state = null // Used to optimize update_icon() calls.
 
-/obj/item/cell/New()
-	..()
+/obj/item/cell/Initialize()
+	. = ..()
 	c_uid = cell_uid++
-	charge = maxcharge
 	update_icon()
 	if(self_recharge)
 		START_PROCESSING(SSobj, src)

@@ -244,7 +244,6 @@
 		/obj/item/flashlight,
 		/obj/item/cell/device,
 		/obj/item/extinguisher/mini,
-		/obj/item/antibody_scanner, // VOREstation edit start
 		/obj/item/sleevemate,
 		/obj/item/mass_spectrometer,
 		/obj/item/surgical,

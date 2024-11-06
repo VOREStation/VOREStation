@@ -21,8 +21,9 @@
 	my_mob = M
 
 /obj/screen/plane_master/augmented/Destroy()
+	entopic_users -= my_mob
 	my_mob = null
-	return ..()
+	. = ..()
 
 /obj/screen/plane_master/augmented/set_visibility(var/want = FALSE)
 	. = ..()

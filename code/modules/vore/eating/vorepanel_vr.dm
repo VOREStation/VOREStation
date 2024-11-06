@@ -22,7 +22,7 @@ var/global/list/belly_colorable_only_fullscreens = list("a_synth_flesh_mono",
 
 /mob/proc/insidePanel()
 	set name = "Vore Panel"
-	set category = "IC"
+	set category = "IC.Vore"
 
 	if(SSticker.current_state == GAME_STATE_INIT)
 		return
@@ -415,7 +415,9 @@ var/global/list/belly_colorable_only_fullscreens = list("a_synth_flesh_mono",
 			host.vore_selected = NB
 			unsaved_changes = TRUE
 			return TRUE
-
+		if("importpanel")
+			import_belly(host)
+			return TRUE
 		if("bellypick")
 			host.vore_selected = locate(params["bellypick"])
 			return TRUE

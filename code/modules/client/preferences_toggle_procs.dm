@@ -1,7 +1,7 @@
 //Toggles for preferences, normal clients
 /client/verb/toggle_be_special(role in be_special_flags)
 	set name = "Toggle Special Role Candidacy"
-	set category = "Preferences"
+	set category = "Preferences.Character"
 	set desc = "Toggles which special roles you would like to be a candidate for, during events."
 
 	var/role_flag = be_special_flags[role]
@@ -16,7 +16,7 @@
 
 /client/verb/toggle_chat_timestamps()
 	set name = "Toggle Chat Timestamps"
-	set category = "Preferences"
+	set category = "Preferences.Chat"
 	set desc = "Toggles whether or not messages in chat will display timestamps. Enabling this will not add timestamps to messages that have already been sent."
 
 	prefs.chat_timestamp = !prefs.chat_timestamp	//There is no preference datum for tgui input lock, nor for any TGUI prefs.
@@ -27,7 +27,7 @@
 // Not attached to a pref datum because those are strict binary toggles
 /client/verb/toggle_examine_mode()
 	set name = "Toggle Examine Mode"
-	set category = "Preferences"
+	set category = "Preferences.Game"
 	set desc = "Toggle the additional behaviour of examining things."
 
 	prefs.examine_text_mode++
@@ -44,7 +44,7 @@
 
 /client/verb/toggle_multilingual_mode()
 	set name = "Toggle Multilingual Mode"
-	set category = "Preferences"
+	set category = "Preferences.Character"
 	set desc = "Toggle the behaviour of multilingual speech parsing."
 
 	prefs.multilingual_mode++
