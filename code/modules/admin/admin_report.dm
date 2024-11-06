@@ -91,7 +91,7 @@ world/New()
 
 // display only the reports that haven't been handled
 /client/proc/display_admin_reports()
-	set category = "Admin"
+	set category = "Admin.Moderation"
 	set name = "Display Admin Reports"
 	if(!src.holder) return
 
@@ -119,7 +119,7 @@ world/New()
 
 
 /client/proc/Report(mob/M as mob in world)
-	set category = "Admin"
+	set category = "Admin.Moderation"
 	if(!src.holder)
 		return
 

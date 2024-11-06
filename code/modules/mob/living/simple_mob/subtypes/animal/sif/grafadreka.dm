@@ -103,7 +103,7 @@ Field studies suggest analytical abilities on par with some species of cepholapo
 
 /mob/living/simple_mob/animal/sif/grafadreka/verb/sit_down()
 	set name = "Sit Down"
-	set category = "IC"
+	set category = "IC.Grafadreka"
 
 	if(sitting)
 		resting = FALSE
@@ -132,7 +132,7 @@ Field studies suggest analytical abilities on par with some species of cepholapo
 	icon_rest = "doggo_lying"
 	projectileverb = "spits"
 	friendly = list("headbutts", "grooms", "play-bites", "rubs against")
-	bitesize = 10 // chomp
+	bitesize = 10
 	gender = NEUTER
 
 	has_langs = list("Drake")
@@ -564,7 +564,7 @@ var/global/list/wounds_being_tended_by_drakes = list()
 /mob/living/simple_mob/animal/sif/grafadreka/verb/rally_pack()
 	set name = "Rally Pack"
 	set desc = "Tries to command your fellow pack members to follow you."
-	set category = "Abilities"
+	set category = "Abilities.Grafadreka"
 
 	if(!has_modifier_of_type(/datum/modifier/ace))
 		to_chat(src, span_warning("You aren't the pack leader! Sit down!"))

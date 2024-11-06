@@ -339,6 +339,32 @@
 				M.forceMove(new_mob)
 				new_mob.tf_mob_holder = M
 
+		if("item_tf")
+			var/mob/living/M = target
+
+			if(!istype(M))
+				return
+
+			if(!M.ckey)
+				return
+
+			var/obj/item/spawning = user.client.get_path_from_partial_text()
+
+			to_chat(user,span_warning("spawning is: [spawning]"))
+
+			if(!ispath(spawning, /obj/item/))
+				to_chat(user,span_warning("Can only spawn items."))
+				return
+
+			var/obj/item/spawned_obj = new spawning(M.loc)
+			var/obj/item/original_name = spawned_obj.name
+			spawned_obj.inhabit_item(M, original_name, M)
+			var/mob/living/possessed_voice = spawned_obj.possessed_voice
+			spawned_obj.trash_eatable = M.devourable
+			spawned_obj.unacidable = !M.digestable
+			M.forceMove(possessed_voice)
+
+
 		////////MEDICAL//////////////
 
 		if("appendicitis")

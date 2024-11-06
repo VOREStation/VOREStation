@@ -1,40 +1,149 @@
-import { toFixed } from 'common/math';
 import { capitalize } from 'common/string';
 import { useState } from 'react';
 import { useBackend } from 'tgui/backend';
 import {
-  Box,
   Button,
-  Collapsible,
   Divider,
-  Dropdown,
   Flex,
   Icon,
   Image,
   Input,
   Section,
-  Slider,
   Stack,
+  Tabs,
 } from 'tgui/components';
 
 import { NoSpriteWarning } from '../components';
+import {
+  ACTUATOR,
+  ARMOUR,
+  CAMERA,
+  COMMS,
+  DIAGNOSIS,
+  POWERCELL,
+  RADIO,
+} from '../constants';
 import { prepareSearch } from '../functions';
-import { Cell, Component, InstalledCell, Target } from '../types';
+import { Cell, Comp, Component, InstalledCell, Lookup, Target } from '../types';
+import { BadminTab, CellCommp, CompTab } from './ModifyRobotComponentTabs';
 
 export const ModifyRobotComponent = (props: {
   target: Target;
   cell: InstalledCell;
   cells: Record<string, Cell>;
+  cams: Record<string, Comp>;
+  rads: Record<string, Comp>;
+  acts: Record<string, Comp>;
+  diags: Record<string, Comp>;
+  comms: Record<string, Comp>;
+  arms: Record<string, Comp>;
+  gear: Record<string, string>;
 }) => {
-  const { act } = useBackend();
-  const { target, cell, cells } = props;
+  const { target, cell, cells, cams, rads, acts, diags, comms, arms, gear } =
+    props;
   const [searchComponentReplaceText, setSearchComponentReplaceText] =
     useState<string>('');
   const [searchComponentRemoveText, setSearchComponentRemoveText] =
     useState<string>('');
   const [selectedCell, setSelectedCell] = useState<string>(cell.name || '');
+  const [selectedCam, setSelectedCam] = useState<string>(gear[CAMERA] || '');
+  const [selectedRad, setSelectedRad] = useState<string>(gear[RADIO] || '');
+  const [selectedAct, setSelectedAct] = useState<string>(gear[ACTUATOR] || '');
+  const [selectedDiag, setSelectedDiag] = useState<string>(
+    gear[DIAGNOSIS] || '',
+  );
+  const [selectedComm, setSelectedComm] = useState<string>(gear[COMMS] || '');
+  const [selectedArm, setSelectedArm] = useState<string>(gear[ARMOUR] || '');
+  const [tab, setTab] = useState<number>(0);
   const cell_options = Object.keys(cells) as Array<string>;
+  const cam_options = Object.keys(cams) as Array<string>;
+  const rad_options = Object.keys(rads) as Array<string>;
+  const act_options = Object.keys(acts) as Array<string>;
+  const diag_options = Object.keys(diags) as Array<string>;
+  const comm_options = Object.keys(comms) as Array<string>;
+  const arm_options = Object.keys(arms) as Array<string>;
 
+  const tabs: React.JSX.Element[] = [];
+
+  tabs[0] = (
+    <CellCommp
+      cell={cell}
+      selectedCell={selectedCell}
+      cell_options={cell_options}
+      onSelectedCell={setSelectedCell}
+      cells={cells}
+    />
+  );
+  tabs[1] = (
+    <CompTab
+      selectedAct={selectedAct}
+      act_options={act_options}
+      onSelectedAct={setSelectedAct}
+      acts={acts}
+      selectedRad={selectedRad}
+      rad_options={rad_options}
+      onSelectedRad={setSelectedRad}
+      rads={rads}
+      selectedDiag={selectedDiag}
+      diag_options={diag_options}
+      onSelectedDiag={setSelectedDiag}
+      diags={diags}
+      selectedCam={selectedCam}
+      cam_options={cam_options}
+      onSelectedCam={setSelectedCam}
+      cams={cams}
+      selectedComm={selectedComm}
+      comm_options={comm_options}
+      onSelectedComm={setSelectedComm}
+      comms={comms}
+      selectedArm={selectedArm}
+      arm_options={arm_options}
+      onSelectedArm={setSelectedArm}
+      arms={arms}
+    />
+  );
+  tabs[2] = <BadminTab target={target} />;
+
+  const componentLookup: Lookup[] = [];
+
+  componentLookup[ACTUATOR] = {
+    path: acts[selectedAct]?.path,
+    selected: selectedAct,
+    active: gear[ACTUATOR] || undefined,
+  };
+  componentLookup[RADIO] = {
+    path: rads[selectedRad]?.path,
+    selected: selectedRad,
+    active: gear[RADIO] || undefined,
+  };
+  componentLookup[POWERCELL] = {
+    path: cells[selectedCell]?.path,
+    selected: selectedCell,
+    active: cell.name || undefined,
+  };
+  componentLookup[CAMERA] = {
+    path: cams[selectedCam]?.path,
+    selected: selectedCam,
+    active: gear[CAMERA] || undefined,
+  };
+
+  componentLookup[DIAGNOSIS] = {
+    path: diags[selectedDiag]?.path,
+    selected: selectedDiag,
+    active: gear[DIAGNOSIS] || undefined,
+  };
+
+  componentLookup[COMMS] = {
+    path: comms[selectedComm]?.path,
+    selected: selectedComm,
+    active: gear[COMMS] || undefined,
+  };
+
+  componentLookup[ARMOUR] = {
+    path: arms[selectedArm]?.path,
+    selected: selectedArm,
+    active: gear[ARMOUR] || undefined,
+  };
   return (
     <>
       {!target.active && <NoSpriteWarning name={target.name} />}
@@ -48,13 +157,11 @@ export const ModifyRobotComponent = (props: {
             action="add_component"
             buttonColor="green"
             buttonIcon="arrows-spin"
-            celltype={cells[selectedCell]?.path}
-            selected_cell={selectedCell}
-            cell={cell.name || undefined}
+            componentLookup={componentLookup}
           />
         </Flex.Item>
-        <Flex.Item width="30%">
-          <Stack vertical>
+        <Flex.Item width="30%" fill>
+          <Stack vertical fill>
             <Stack.Item>
               <Image
                 src={'data:image/jpeg;base64, ' + target.side_alt}
@@ -67,106 +174,19 @@ export const ModifyRobotComponent = (props: {
               />
             </Stack.Item>
             <Stack.Item>
-              <Section title="Power cell">
-                Current cell:{' '}
-                {cell.name ? (
-                  capitalize(cell.name)
-                ) : (
-                  <Box inline color="red">
-                    No cell installed!
-                  </Box>
-                )}
-                <Slider
-                  stepPixelSize={5}
-                  format={(value) => toFixed(value, 2)}
-                  disabled={!cell.charge}
-                  minValue={0}
-                  maxValue={100}
-                  value={((cell.charge || 0) / (cell.maxcharge || 1)) * 100}
-                  onChange={(e, value) =>
-                    act('adjust_cell_charge', {
-                      charge: (value / 100) * (cell.maxcharge || 0),
-                    })
-                  }
-                >
-                  <Flex>
-                    <Flex.Item>Current charge</Flex.Item>
-                    <Flex.Item grow />
-                    <Flex.Item>{cell.charge}</Flex.Item>
-                  </Flex>
-                </Slider>
-                <Dropdown
-                  width="100%"
-                  selected={selectedCell}
-                  options={cell_options}
-                  onSelected={setSelectedCell}
-                />
-                <Stack vertical>
-                  <Stack.Item>
-                    Charge State: {cells[selectedCell]?.charge} /{' '}
-                    {cells[selectedCell]?.max_charge}
-                  </Stack.Item>
-                  <Stack.Item>
-                    Charge Rate: {cells[selectedCell]?.charge_amount}
-                  </Stack.Item>
-                  <Stack.Item>
-                    Self Charge:{' '}
-                    {cells[selectedCell]?.self_charge ? 'Yes' : 'No'}
-                  </Stack.Item>
-                </Stack>
-              </Section>
-              <Section scrollable fill>
-                <Collapsible title="Badmin">
-                  {target.components.map((component, i) => {
-                    return (
-                      <Collapsible title={capitalize(component.name)} key={i}>
-                        <Slider
-                          color="red"
-                          disabled={component.installed !== 1}
-                          minValue={0}
-                          maxValue={component.max_damage * 5 || 0}
-                          value={component.brute_damage || 0}
-                          onChange={(e, value) =>
-                            act('adjust_brute', {
-                              component: component.ref,
-                              damage: value,
-                            })
-                          }
-                        >
-                          <Flex>
-                            <Flex.Item>Brute damage</Flex.Item>
-                            <Flex.Item grow />
-                            <Flex.Item>{component.brute_damage}</Flex.Item>
-                          </Flex>
-                        </Slider>
-                        <Slider
-                          color="orange"
-                          key={i}
-                          disabled={component.installed !== 1}
-                          minValue={0}
-                          maxValue={component.max_damage * 5 || 0}
-                          value={component.electronics_damage || 0}
-                          onChange={(e, value) =>
-                            act('adjust_electronics', {
-                              component: component.ref,
-                              damage: value,
-                            })
-                          }
-                        >
-                          <Flex>
-                            <Flex.Item>Electronics damage</Flex.Item>
-                            <Flex.Item grow />
-                            <Flex.Item>
-                              {component.electronics_damage}
-                            </Flex.Item>
-                          </Flex>
-                        </Slider>
-                      </Collapsible>
-                    );
-                  })}
-                </Collapsible>
-              </Section>
+              <Tabs>
+                <Tabs.Tab selected={tab === 0} onClick={() => setTab(0)}>
+                  Power Cell
+                </Tabs.Tab>
+                <Tabs.Tab selected={tab === 1} onClick={() => setTab(1)}>
+                  Components
+                </Tabs.Tab>
+                <Tabs.Tab selected={tab === 2} onClick={() => setTab(2)}>
+                  Badmin
+                </Tabs.Tab>
+              </Tabs>
             </Stack.Item>
+            {tabs[tab]}
           </Stack>
         </Flex.Item>
         <Flex.Item width="35%" fill>
@@ -193,9 +213,7 @@ const ComponentSection = (props: {
   action: string;
   buttonColor: string;
   buttonIcon: string;
-  celltype?: string;
-  selected_cell?: string;
-  cell?: string;
+  componentLookup?: Lookup[];
 }) => {
   const { act } = useBackend();
   const {
@@ -206,9 +224,7 @@ const ComponentSection = (props: {
     action,
     buttonColor,
     buttonIcon,
-    celltype,
-    selected_cell,
-    cell,
+    componentLookup = [],
   } = props;
   return (
     <Section title={title} fill scrollable>
@@ -229,15 +245,20 @@ const ComponentSection = (props: {
                 tooltip={getComponentTooltip(
                   component,
                   action,
-                  selected_cell,
-                  cell,
+                  componentLookup[component.name]?.selected,
+                  componentLookup[component.name]?.active,
                 )}
                 color={getComponentColor(component, action)}
-                disabled={checkDisabled(component, action, selected_cell, cell)}
+                disabled={checkDisabled(
+                  component,
+                  action,
+                  componentLookup[component.name]?.selected,
+                  componentLookup[component.name]?.active,
+                )}
                 onClick={() =>
                   act(action, {
                     component: component.ref,
-                    cell: celltype,
+                    new_part: componentLookup[component.name]?.path,
                   })
                 }
               >
@@ -259,6 +280,16 @@ const ComponentSection = (props: {
                       </Flex.Item>
                     </Flex>
                   </Stack.Item>
+                  {action === 'add_component' && (
+                    <Flex>
+                      <Flex.Item>Idle Power: {component.idle_usage}</Flex.Item>
+                      <Flex.Item grow />
+                      <Flex.Item>
+                        Active Power: {component.active_usage}
+                      </Flex.Item>
+                    </Flex>
+                  )}
+                  <Stack.Item />
                   <Stack.Item>
                     {action === 'add_component' &&
                       'Brute Damage: ' + component.brute_damage}
@@ -279,19 +310,14 @@ const ComponentSection = (props: {
 function checkDisabled(
   component: Component,
   action: string,
-  selected_cell: string | undefined,
-  cell: string | undefined,
+  selected: string | undefined,
+  active: string | undefined,
 ): boolean {
   switch (action) {
     case 'rem_component':
       return !component.exists;
     case 'add_component':
-      if (
-        selected_cell &&
-        cell &&
-        component.name === 'power cell' &&
-        selected_cell !== cell
-      ) {
+      if (selected && active && selected !== active) {
         return false;
       }
       return (
@@ -307,8 +333,8 @@ function checkDisabled(
 function getComponentTooltip(
   component: Component,
   action: string,
-  selected_cell: string | undefined,
-  cell: string | undefined,
+  selected: string | undefined,
+  active: string | undefined,
 ): string {
   switch (action) {
     case 'add_component':
@@ -322,7 +348,7 @@ function getComponentTooltip(
       ) {
         return 'Component destroyed!';
       }
-      if (checkDisabled(component, action, selected_cell, cell)) {
+      if (checkDisabled(component, action, selected, active)) {
         return 'Disabled due to fully intact component!';
       }
       return '';

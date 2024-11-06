@@ -1,5 +1,5 @@
 /client/proc/air_report()
-	set category = "Debug"
+	set category = "Debug.Investigate"
 	set name = "Show Air Report"
 
 	if(!master_controller || !air_master)
@@ -42,7 +42,7 @@
 	usr << browse(output,"window=airreport")
 
 /client/proc/fix_next_move()
-	set category = "Debug"
+	set category = "Debug.Game"
 	set name = "Unfreeze Everyone"
 	var/largest_move_time = 0
 	var/largest_click_time = 0
@@ -73,7 +73,7 @@
 	return
 
 /client/proc/radio_report()
-	set category = "Debug"
+	set category = "Debug.Game"
 	set name = "Radio report"
 
 	var/output = "<b>Radio Report</b><hr>"
@@ -100,7 +100,7 @@
 
 /client/proc/reload_admins()
 	set name = "Reload Admins"
-	set category = "Debug"
+	set category = "Debug.Server"
 
 	if(!check_rights(R_SERVER))	return
 
@@ -110,7 +110,7 @@
 
 /client/proc/reload_eventMs()
 	set name = "Reload Event Managers"
-	set category = "Debug"
+	set category = "Debug.Server"
 
 	if(!check_rights(R_SERVER)) return
 
@@ -121,7 +121,7 @@
 //todo:
 /client/proc/jump_to_dead_group()
 	set name = "Jump to dead group"
-	set category = "Debug"
+	set category = "Debug.Game"
 		/*
 	if(!holder)
 		to_chat(src, "Only administrators may use this command.")
@@ -143,7 +143,7 @@
 /client/proc/kill_airgroup()
 	set name = "Kill Local Airgroup"
 	set desc = "Use this to allow manual manupliation of atmospherics."
-	set category = "Debug"
+	set category = "Debug.Dangerous"
 	/*
 	if(!holder)
 		to_chat(src, "Only administrators may use this command.")
@@ -166,7 +166,7 @@
 /client/proc/print_jobban_old()
 	set name = "Print Jobban Log"
 	set desc = "This spams all the active jobban entries for the current round to standard output."
-	set category = "Debug"
+	set category = "Debug.Investigate"
 
 	to_chat(usr, span_bold("Jobbans active in this round."))
 	for(var/t in jobban_keylist)
@@ -175,7 +175,7 @@
 /client/proc/print_jobban_old_filter()
 	set name = "Search Jobban Log"
 	set desc = "This searches all the active jobban entries for the current round and outputs the results to standard output."
-	set category = "Debug"
+	set category = "Debug.Investigate"
 
 	var/job_filter = tgui_input_text(usr, "Contains what?","Job Filter")
 	if(!job_filter)

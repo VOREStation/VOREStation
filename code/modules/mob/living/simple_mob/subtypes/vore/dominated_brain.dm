@@ -172,7 +172,7 @@
 
 //Welcome to the adapted borer code.
 /mob/proc/dominate_predator()
-	set category = "Abilities"
+	set category = "Abilities.Vore"
 	set name = "Dominate Predator"
 	set desc = "Connect to and dominate the brain of your predator."
 
@@ -271,7 +271,7 @@
 		qdel(prey)
 
 /mob/proc/release_predator()
-	set category = "Abilities"
+	set category = "Abilities.Vore"
 	set name = "Restore Control"
 	set desc = "Release control of your predator's body."
 
@@ -289,7 +289,7 @@
 	remove_verb(src, /mob/proc/release_predator)
 
 /mob/living/dominated_brain/proc/resist_control()
-	set category = "Abilities"
+	set category = "Abilities.Vore"
 	set name = "Resist Control"
 	set desc = "Attempt to resist control."
 	if(pred_body.ckey == pred_ckey)
@@ -308,7 +308,7 @@
 		to_chat(src, span_warning("\The [pred_body] is already dominated, and cannot be controlled at this time."))
 
 /mob/living/proc/dominate_prey()
-	set category = "Abilities"
+	set category = "Abilities.Vore"
 	set name = "Dominate Prey"
 	set desc = "Connect to and dominate the brain of your prey."
 
@@ -378,7 +378,7 @@
 	to_chat(M, span_warning("Your mind is gathered into \the [src], becoming part of them..."))
 
 /mob/living/dominated_brain/proc/cease_this_foolishness()
-	set category = "Abilities"
+	set category = "Abilities.Vore"
 	set name = "Return to Body"
 	set desc = "If your body is inside of your predator still, attempts to re-insert yourself into it."
 
@@ -405,7 +405,7 @@
 		remove_verb(src, /mob/living/dominated_brain/proc/cease_this_foolishness)
 
 /mob/living/proc/lend_prey_control()
-	set category = "Abilities"
+	set category = "Abilities.Vore"
 	set name = "Give Prey Control"
 	set desc = "Allow prey control of your body."
 

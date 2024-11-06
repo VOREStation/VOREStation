@@ -168,8 +168,9 @@ using metal and glass, it uses glass and reagents (usually sulphuric acid).
 	return
 
 /obj/machinery/r_n_d/circuit_imprinter/proc/removeFromQueue(var/index)
-	queue.Cut(index, index + 1)
-	return
+	if(queue.len >= index)
+		queue.Cut(index, index + 1)
+		return
 
 /obj/machinery/r_n_d/circuit_imprinter/proc/canBuild(var/datum/design/D)
 	for(var/M in D.materials)

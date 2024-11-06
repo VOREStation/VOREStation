@@ -1,13 +1,13 @@
 /mob/verb/up()
 	set name = "Move Upwards"
-	set category = "IC"
+	set category = "IC.Game"
 
 	if(zMove(UP))
 		to_chat(src, span_notice("You move upwards."))
 
 /mob/verb/down()
 	set name = "Move Down"
-	set category = "IC"
+	set category = "IC.Game"
 
 	if(zMove(DOWN))
 		to_chat(src, span_notice("You move down."))
