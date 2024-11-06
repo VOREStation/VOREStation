@@ -74,7 +74,7 @@ var/global/list/valid_ringtones = list(
 			pref.all_underwear -= underwear_category_name
 
 	// TODO - Looks like this is duplicating the work of sanitize_character() if so, remove
-	if(pref.headset > headsetlist.len || pref.headset < 1)
+	if(pref.headset > GLOB.headsetlist.len || pref.headset < 1)
 		pref.headset = 1 //Same as above
 	character.headset = pref.headset
 
