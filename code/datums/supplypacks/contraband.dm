@@ -97,15 +97,7 @@
 					/obj/item/clothing/glasses/thermal/syndi,
 					/obj/item/ammo_magazine/m45/ap,
 					/obj/item/material/knife/tacknife/combatknife,
-					/obj/item/multitool/hacktool
-					),
-			list( //the hacker,
-					/obj/item/weapon/gun/projectile/silenced,
-					/obj/item/weapon/gun/energy/ionrifle/pistol,
-					/obj/item/clothing/glasses/thermal/syndi,
-					/obj/item/ammo_magazine/m45/ap,
-					/obj/item/weapon/material/knife/tacknife/combatknife,
-					/obj/item/device/multitool/hacktool
+					/obj/item/multitool/hacktool/modified
 					),
 			list( //the professional,
 					/obj/item/gun/projectile/silenced,
