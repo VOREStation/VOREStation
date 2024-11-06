@@ -24,6 +24,8 @@
 	var/trigger_message	=	"The contraband scanner has been tripped!"
 	var/trigger_sound	=	'sound/machines/airalarm.ogg'	//sound that plays when we're set off
 
+	var/list/contraband = list(/obj/item/melee,/obj/item/gun,/obj/item/material)
+
 /obj/machinery/contraband_scanner/Crossed(mob/living/M as mob)
 	if(M.is_incorporeal())
 		return
@@ -32,11 +34,11 @@
 		if(last_trigger > world.time - cooldown)
 			return
 		for(var/obj/O in M.contents)
-			if(O.type in typesof(/obj/item/melee,/obj/item/gun,/obj/item/material))
+			if(is_type_in_list(O,contraband))
 				contraband_count++
 			if(deep_scan)
 				for(var/obj/O2 in O.contents)	//one layer deep is fine for now I think
-					if(O2.type in typesof(/obj/item/melee,/obj/item/gun,/obj/item/material))
+					if(is_type_in_list(O2,contraband))
 						contraband_count++
 		if(contraband_count && last_trigger < world.time - cooldown)
 			visible_message(span_danger(trigger_message))
