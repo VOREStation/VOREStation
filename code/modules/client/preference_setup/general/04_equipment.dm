@@ -158,7 +158,7 @@ var/global/list/valid_ringtones = list(
 
 /datum/category_item/player_setup_item/general/equipment/OnTopic(var/href,var/list/href_list, var/mob/user)
 	if(href_list["change_headset"])
-		var/new_headset = tgui_input_list(user, "Choose your character's style of headset:", "Character Preference", headsetlist, headsetlist[pref.headset])
+		var/new_headset = tgui_input_list(user, "Choose your character's style of headset:", "Character Preference", GLOB.headsetlist, GLOB.headsetlist[pref.headset])
 		if(!isnull(new_headset) && CanUseTopic(user))
 			pref.headset = GLOB.headsetlist.Find(new_headset)
 			return TOPIC_REFRESH_UPDATE_PREVIEW
