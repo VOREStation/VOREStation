@@ -82,6 +82,11 @@
 	src.forceMove(S)
 	has_suit.add_overlay(get_inv_overlay())
 
+	has_suit.force += force
+	if(istype(S,/obj/item/clothing/gloves))
+		var/obj/item/clothing/gloves/has_gloves = S
+		has_gloves.punch_force += force
+
 	if(user)
 		to_chat(user, span_notice("You attach \the [src] to \the [has_suit]."))
 		add_fingerprint(user)
@@ -90,6 +95,10 @@
 	if(!has_suit)
 		return
 	has_suit.cut_overlay(get_inv_overlay())
+	has_suit.force = initial(has_suit.force)
+	if(istype(has_suit,/obj/item/clothing/gloves))
+		var/obj/item/clothing/gloves/has_gloves = has_suit
+		has_gloves.punch_force = initial(has_gloves.punch_force)
 	has_suit = null
 	if(user)
 		usr.put_in_hands(src)

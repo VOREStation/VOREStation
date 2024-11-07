@@ -5126,7 +5126,7 @@
 /area/redgate/fantasy/house)
 "FQ" = (
 /obj/structure/table/woodentable,
-/obj/item/clothing/gloves/knuckledusters,
+/obj/item/clothing/accessory/knuckledusters,
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/house)
 "FS" = (

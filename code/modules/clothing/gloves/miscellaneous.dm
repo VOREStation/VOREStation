@@ -121,21 +121,6 @@
 	heat_protection = HANDS
 	max_heat_protection_temperature = GLOVES_MAX_HEAT_PROTECTION_TEMPERATURE
 
-/obj/item/clothing/gloves/knuckledusters
-	name = "knuckle dusters"
-	desc = "A pair of brass knuckles. Generally used to enhance the user's punches."
-	icon_state = "knuckledusters"
-	matter = list(MAT_STEEL = 500)
-	attack_verb = list("punched", "beaten", "struck")
-	flags = THICKMATERIAL	// Stops rings from increasing hit strength
-	siemens_coefficient = 1
-	fingerprint_chance = 100
-	overgloves = 1
-	force = 5
-	punch_force = 5
-	drop_sound = 'sound/items/drop/metalboots.ogg'
-	pickup_sound = 'sound/items/pickup/toolbox.ogg'
-
 /obj/item/clothing/gloves/ranger
 	var/glovecolor = "white"
 	name = "ranger gloves"

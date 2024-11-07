@@ -65,8 +65,7 @@
 	var/light_glove_d = rand(2, 4)
 	var/no_glove_d = rand(4, 6)
 	var/list/forbidden_gloves = list(
-			/obj/item/clothing/gloves/sterile,
-			/obj/item/clothing/gloves/knuckledusters
+			/obj/item/clothing/gloves/sterile
 		)
 
 	if(src == user.l_hand)

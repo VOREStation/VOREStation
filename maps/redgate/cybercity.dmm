@@ -9085,7 +9085,7 @@
 /turf/simulated/floor/tiled/white,
 /area/redgate/city/supermarket)
 "lXc" = (
-/obj/item/clothing/gloves/knuckledusters,
+/obj/item/clothing/accessory/knuckledusters,
 /turf/simulated/floor/wood/alt/tile,
 /area/redgate/city/fightclub)
 "lXi" = (

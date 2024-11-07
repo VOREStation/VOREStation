@@ -2137,6 +2137,7 @@
 #include "code\modules\clothing\accessories\badges_vr.dm"
 #include "code\modules\clothing\accessories\clothing.dm"
 #include "code\modules\clothing\accessories\clothing_vr.dm"
+#include "code\modules\clothing\accessories\hands.dm"
 #include "code\modules\clothing\accessories\holster.dm"
 #include "code\modules\clothing\accessories\holster_vr.dm"
 #include "code\modules\clothing\accessories\lockets.dm"
