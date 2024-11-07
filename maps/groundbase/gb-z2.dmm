@@ -312,11 +312,6 @@
 /area/groundbase/level2/nw)
 "aH" = (
 /obj/structure/table/glass,
-/obj/item/antibody_scanner,
-/obj/item/antibody_scanner{
-	pixel_x = 2;
-	pixel_y = 2
-	},
 /turf/simulated/floor/tiled/white,
 /area/medical/virology)
 "aI" = (
@@ -3839,12 +3834,7 @@
 	},
 /turf/simulated/floor/outdoors/sidewalk/slab,
 /area/groundbase/level2/nw)
-"kb" = (
-/obj/machinery/disease2/diseaseanalyser,
-/turf/simulated/floor/tiled/white,
-/area/medical/virology)
 "kc" = (
-/obj/machinery/disease2/incubator,
 /obj/structure/reagent_dispensers/virusfood{
 	pixel_y = 27
 	},
@@ -4980,9 +4970,7 @@
 /turf/simulated/floor/tiled,
 /area/groundbase/science/hall)
 "nx" = (
-/obj/machinery/computer/diseasesplicer{
-	dir = 1
-	},
+/obj/machinery/computer/pandemic,
 /turf/simulated/floor/tiled/white,
 /area/medical/virology)
 "ny" = (
@@ -7017,10 +7005,15 @@
 /turf/simulated/floor/tiled/eris/cafe,
 /area/groundbase/civilian/kitchen)
 "tk" = (
-/obj/machinery/disease2/isolator,
 /obj/machinery/light{
 	dir = 1
 	},
+/obj/structure/closet/crate/medical,
+/obj/item/reagent_containers/glass/bottle/culture/cold{
+	pixel_x = -5;
+	pixel_y = 5
+	},
+/obj/item/reagent_containers/glass/bottle/culture/flu,
 /turf/simulated/floor/tiled/white,
 /area/medical/virology)
 "tm" = (
@@ -9340,7 +9333,6 @@
 "Ag" = (
 /obj/structure/table/glass,
 /obj/item/book/manual/virology,
-/obj/item/antibody_scanner,
 /obj/item/reagent_containers/glass/beaker,
 /obj/item/paper_bin,
 /obj/item/folder/white,
@@ -18184,10 +18176,6 @@
 /area/rnd/xenobiology)
 "Zc" = (
 /obj/structure/closet/secure_closet/personal/patient,
-/turf/simulated/floor/tiled/white,
-/area/medical/virology)
-"Zd" = (
-/obj/machinery/computer/centrifuge,
 /turf/simulated/floor/tiled/white,
 /area/medical/virology)
 "Ze" = (
@@ -36335,8 +36323,8 @@ QA
 pe
 lj
 RW
-Zd
-kb
+cG
+cG
 aZ
 mb
 pe
@@ -36477,7 +36465,7 @@ pe
 pe
 tk
 OH
-cG
+nx
 Qr
 cG
 xf
@@ -36622,7 +36610,7 @@ OH
 aH
 bC
 cG
-nx
+cG
 pe
 fk
 UH

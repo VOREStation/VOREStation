@@ -237,7 +237,7 @@
 	random_species = TRUE
 
 /obj/effect/landmark/corpse/miner
-	corpseradio = /obj/item/radio/headset/headset_cargo
+	corpseradio = /obj/item/radio/headset/miner
 	corpseuniform = /obj/item/clothing/under/rank/miner
 	corpsegloves = /obj/item/clothing/gloves/black
 	corpseback = /obj/item/storage/backpack/industrial

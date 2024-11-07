@@ -47,6 +47,7 @@ var/list/preferences_datums = list()
 	var/spawnpoint = "Arrivals Shuttle" //where this character will spawn (0-2).
 	var/b_type = "A+"					//blood type (not-chooseable)
 	var/blood_reagents = "default"		//blood restoration reagents
+	var/headset = 1						//headset type
 	var/backbag = 2						//backpack type
 	var/pdachoice = 1					//PDA type
 	var/shoe_hater = FALSE				//RS ADD - if true, will spawn with no shoes

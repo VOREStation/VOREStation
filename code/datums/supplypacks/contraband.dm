@@ -97,7 +97,7 @@
 					/obj/item/clothing/glasses/thermal/syndi,
 					/obj/item/ammo_magazine/m45/ap,
 					/obj/item/material/knife/tacknife/combatknife,
-					/obj/item/multitool/hacktool
+					/obj/item/multitool/hacktool/modified
 					),
 			list( //the professional,
 					/obj/item/gun/projectile/silenced,
