@@ -285,11 +285,11 @@
 		var/obj/effect/overmap/visitable/ship/landable/SL = AM //Phew
 		var/datum/shuttle/autodock/multi/shuttle = SSshuttles.shuttles[SL.shuttle]
 		if(!istype(shuttle) || !shuttle.cloaked) //Not a multishuttle (the only kind that can cloak) or not cloaked
-			atc.msg(message)
+			GLOB.atc.msg(message)
 
 	//For ships, it's safe to assume they're big enough to not be sneaky
 	else if(istype(AM, /obj/effect/overmap/visitable/ship))
-		atc.msg(message)
+		GLOB.atc.msg(message)
 
 /obj/effect/overmap/visitable/sector/virgo3b/get_space_zlevels()
 	return list(Z_LEVEL_SPACE_ROCKS)

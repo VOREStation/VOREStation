@@ -39,7 +39,7 @@
 
 /datum/tgui_module/communications/New(host)
 	. = ..()
-	ATC = atc
+	ATC = GLOB.atc
 	crew_announcement = new()
 	crew_announcement.newscast = TRUE
 

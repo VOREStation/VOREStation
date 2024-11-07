@@ -5,7 +5,7 @@
 #define MIN_MSG_DELAY 3
 #define MAX_MSG_DELAY 6
 
-var/datum/lore/atc_controller/atc = new/datum/lore/atc_controller
+GLOBAL_DATUM_INIT(atc, /datum/lore/atc_controller, new /datum/lore/atc_controller)
 
 /datum/lore/atc_controller
 	var/delay_min = 45 MINUTES			//How long between ATC traffic, minimum
@@ -32,10 +32,14 @@ var/datum/lore/atc_controller/atc = new/datum/lore/atc_controller
 	engchannel = "[rand(800,849)].[rand(1,9)]"
 	secchannel = "[rand(850,899)].[rand(1,9)]"
 	sdfchannel = "[rand(900,999)].[rand(1,9)]"
-	spawn(450 SECONDS) //Lots of lag at the start of a shift. Yes, the following lines *have* to be indented or they're not delayed by the spawn properly.
-		msg("New shift beginning, resuming traffic control. This shift's Colony Frequencies are as follows: Emergency Responders: [ertchannel]. Medical: [medchannel]. Engineering: [engchannel]. Security: [secchannel]. System Defense: [sdfchannel].")
-		next_message = world.time + initial_delay
-		process()
+
+	//Lots of lag at the start of a shift. Yes, the following lines *have* to be indented or they're not delayed by the spawn properly.
+	addtimer(CALLBACK(src, PROC_REF(post_shift_start_callback)), 450 SECONDS)
+
+/datum/lore/atc_controller/proc/post_shift_start_callback()
+	msg("New shift beginning, resuming traffic control. This shift's Colony Frequencies are as follows: Emergency Responders: [ertchannel]. Medical: [medchannel]. Engineering: [engchannel]. Security: [secchannel]. System Defense: [sdfchannel].")
+	next_message = world.time + initial_delay
+	process()
 
 /datum/lore/atc_controller/process()
 	if(world.time >= next_message)
@@ -45,14 +49,13 @@ var/datum/lore/atc_controller/atc = new/datum/lore/atc_controller
 			next_message = world.time + rand(delay_min,delay_max)
 			random_convo()
 
-	spawn(1 MINUTE) //We don't really need high-accuracy here.
-		process()
+	addtimer(CALLBACK(src, PROC_REF(process)), 1 MINUTE) //We don't really need high-accuracy here.
 
-/datum/lore/atc_controller/proc/msg(var/message,var/sender)
+/datum/lore/atc_controller/proc/msg(message, sender)
 	ASSERT(message)
 	global_announcer.autosay("[message]", sender ? sender : "[using_map.dock_name] Control")
 
-/datum/lore/atc_controller/proc/reroute_traffic(var/yes = 1)
+/datum/lore/atc_controller/proc/reroute_traffic(yes = TRUE)
 	if(yes)
 		if(!squelched)
 			msg("Rerouting traffic away from [using_map.station_name].")
@@ -62,10 +65,9 @@ var/datum/lore/atc_controller/atc = new/datum/lore/atc_controller
 			msg("Resuming normal traffic routing around [using_map.station_name].")
 		squelched = 0
 
-/datum/lore/atc_controller/proc/shift_ending(var/evac = 0)
+/datum/lore/atc_controller/proc/shift_ending(evac = FALSE)
 	msg("[using_map.shuttle_name], this is [using_map.dock_name] Control, you are cleared to complete routine transfer from [using_map.station_name] to [using_map.dock_name].")
-	sleep(rand(MIN_MSG_DELAY,MAX_MSG_DELAY) SECONDS)
-	msg("[using_map.shuttle_name] departing [using_map.dock_name] for [using_map.station_name] on routine transfer route. Estimated time to arrival: ten minutes.","[using_map.shuttle_name]")
+	addtimer(CALLBACK(src, PROC_REF(msg), "[using_map.shuttle_name] departing [using_map.dock_name] for [using_map.station_name] on routine transfer route. Estimated time to arrival: ten minutes.", "[using_map.shuttle_name]"), rand(MIN_MSG_DELAY,MAX_MSG_DELAY) SECONDS)
 
 /datum/lore/atc_controller/proc/random_convo()
 	var/one = pick(loremaster.organizations) //These will pick an index, not an instance
@@ -239,14 +241,12 @@ var/datum/lore/atc_controller/atc = new/datum/lore/atc_controller
 		if("policeshipcombat")
 			var/battlestatus = pick("requesting reinforcements.","we need backup! Now!","holding steady.","we're holding our own for now.","we have them on the run.","they're trying to make a run for it!","we have them right where we want them.","we're badly outgunned!","we have them outgunned.","we're outnumbered here!","we have them outnumbered.","this'll be a cakewalk.",10;"notify their next of kin.")
 			msg("[using_map.starsys_name] Defense Control, this is [combined_second_name], engaging [combined_first_name] [pick("near route","in sector")] [rand(1,100)], [battlestatus]","[secondprefix] [secondshipname]")
-			sleep(rand(MIN_MSG_DELAY,MAX_MSG_DELAY) SECONDS)
-			msg("[using_map.starsys_name] Defense Control copies, [combined_second_name]. Keep us updated.","[using_map.starsys_name] Defense Control")
+			addtimer(CALLBACK(src, PROC_REF(msg), "[using_map.starsys_name] Defense Control copies, [combined_second_name]. Keep us updated.","[using_map.starsys_name] Defense Control"), rand(MIN_MSG_DELAY,MAX_MSG_DELAY) SECONDS)
 		//SDF event: patrol update
 		if("sdfpatrolupdate")
 			var/statusupdate = pick("nothing unusual so far","nothing of note","everything looks clear so far","ran off some [pick("pirates","marauders")] near route [pick(1,100)], [pick("no","minor")] damage sustained, continuing patrol","situation normal, no suspicious activity yet","minor incident on route [pick(1,100)]","Code 7-X [pick("on route","in sector")] [pick(1,100)], situation is under control","seeing a lot of traffic on route [pick(1,100)]","caught a couple of smugglers [pick("on route","in sector")] [pick(1,100)]","sustained some damage in a skirmish just now, we're heading back for repairs")
 			msg("[using_map.starsys_name] Defense Control, this is [combined_first_name] reporting in, [statusupdate], over.","[prefix] [shipname]")
-			sleep(rand(MIN_MSG_DELAY,MAX_MSG_DELAY) SECONDS)
-			msg("[using_map.starsys_name] Defense Control copies, [combined_first_name]. Keep us updated, out.","[using_map.starsys_name] Defense Control")
+			addtimer(CALLBACK(src, PROC_REF(msg), "[using_map.starsys_name] Defense Control copies, [combined_first_name]. Keep us updated, out.","[using_map.starsys_name] Defense Control"), rand(MIN_MSG_DELAY,MAX_MSG_DELAY) SECONDS)
 		//SDF event: end patrol
 		if("sdfendingpatrol")
 			var/appreciation = pick("Copy","Understood","Affirmative","10-4","Roger that")
@@ -304,8 +304,7 @@ var/datum/lore/atc_controller/atc = new/datum/lore/atc_controller
 		if("hostiledetected")
 			var/orders = pick("Engage on sight","Engage with caution","Engage with extreme prejudice","Engage at will","Search and destroy","Bring them in alive, if possible","Interdict and detain","Keep your eyes peeled","Bring them in, dead or alive","Stay alert")
 			msg("This is [using_map.starsys_name] Defense Control to all SDF assets. Priority update follows.","[using_map.starsys_name] Defense Control")
-			sleep(rand(MIN_MSG_DELAY,MAX_MSG_DELAY) SECONDS)
-			msg("Be on the lookout for [combined_first_name], last sighted [pick("near route","in sector","near sector")] [rand(1,100)]. [orders]. DefCon, out.","[using_map.starsys_name] Defense Control")
+			addtimer(CALLBACK(src, PROC_REF(msg), "Be on the lookout for [combined_first_name], last sighted [pick("near route","in sector","near sector")] [rand(1,100)]. [orders]. DefCon, out.","[using_map.starsys_name] Defense Control"), rand(MIN_MSG_DELAY,MAX_MSG_DELAY) SECONDS)
 		//Ship event: distress call, under attack
 		if("distress")
 			var/state = pick(66;"calm",34;"panic")
@@ -330,8 +329,7 @@ var/datum/lore/atc_controller/atc = new/datum/lore/atc_controller
 		if("traveladvisory")
 			var/flightwarning = pick("Solar flare activity is spiking and expected to cause issues along main flight lanes [rand(1,33)], [rand(34,67)], and [rand(68,100)]","Pirate activity is on the rise, stay close to System Defense vessels","We're seeing a rise in illegal salvage operations, please report any unusual activity to the nearest SDF vessel via channel [sdfchannel]","Vox Marauder activity is higher than usual, report any unusual activity to the nearest System Defense vessel","A quarantined [pick("fleet","convoy")] is passing through the system along route [rand(1,100)], please observe minimum safe distance","A prison [pick("fleet","convoy")] is passing through the system along route [rand(1,100)], please observe minimum safe distance","Traffic volume is higher than normal, expect processing delays","Anomalous bluespace activity detected [pick("along route [rand(1,100)]","in sector [rand(1,100)]")], exercise caution","Smugglers have been particularly active lately, expect increased security scans","Depots are currently experiencing a fuel shortage, expect delays and higher rates","Asteroid mining has displaced debris dangerously close to main flight lanes on route [rand(1,100)], watch for potential impactors","[pick("Pirate","Vox Marauder")] and System Defense forces are currently engaged in skirmishes throughout the system, please steer clear of any active combat zones","A [pick("fuel tanker","cargo liner","passenger liner","freighter","transport ship","mining barge","salvage trawler")] has collided with [pick("a fuel tanker","a cargo liner","a passenger liner","a freighter","a transport ship","a mining barge","a salvage trawler","a meteoroid","a cluster of space debris","an asteroid","an ice-rich comet")] near route [rand(1,100)], watch for debris and do not impede emergency service vessels","A [pick("fuel tanker","cargo liner","passenger liner","freighter","transport ship","mining barge","salvage trawler")] on route [rand(1,100)] has experienced total engine failure. Emergency response teams are en route, please observe minimum safe distances and do not impede emergency service vessels","Transit routes have been recalculated to adjust for planetary drift. Please synch your astronav computers as soon as possible to avoid delays and difficulties","[pick("Bounty hunters","System Defense officers","Mercenaries")] are currently searching for a wanted fugitive, report any sightings of suspicious activity to System Defense via channel [sdfchannel]","Mercenary contractors are currently conducting aggressive [pick("piracy","marauder")] suppression operations",10;"It's space [pick("carp","shark")] breeding season. [pick("Stars","Skies","Gods","God","Goddess","Fates")] have mercy on you all")
 			msg("This is [using_map.dock_name] Control to all vessels in the [using_map.starsys_name] system. Priority travel advisory follows.")
-			sleep(rand(MIN_MSG_DELAY,MAX_MSG_DELAY) SECONDS)
-			msg("[flightwarning]. Control out.")
+			addtimer(CALLBACK(src, PROC_REF(msg), "[flightwarning]. Control out."), rand(MIN_MSG_DELAY,MAX_MSG_DELAY) SECONDS)
 		//Control event: warning to a specific vessel
 		if("pathwarning")
 			var/navhazard = pick("a pocket of intense radiation","a pocket of unstable gas","a debris field","a secure installation","an active combat zone","a quarantined ship","a quarantined installation","a quarantined sector","a live-fire SDF training exercise","an ongoing Search & Rescue operation","a hazardous derelict","an intense electrical storm","an intense ion storm","a shoal of space carp","a pack of space sharks","an asteroid infested with gnat hives","a protected space ray habitat","a region with anomalous bluespace activity","a rogue comet")
@@ -346,8 +344,7 @@ var/datum/lore/atc_controller/atc = new/datum/lore/atc_controller
 		if("report_to_dock")
 			var/situation_type = pick("medical","security","engineering","animal control")
 			msg("This is [using_map.dock_name] Control. Would a free [situation_type] team please report to [landing_zone] immediately. This is not a drill.")
-			sleep(rand(MIN_MSG_DELAY,MAX_MSG_DELAY)*10 SECONDS)
-			msg("Repeat, any free [situation_type] team, report to [landing_zone] immediately. This is +not+ a drill.")
+			addtimer(CALLBACK(src, PROC_REF(msg), "Repeat, any free [situation_type] team, report to [landing_zone] immediately. This is +not+ a drill."), rand(MIN_MSG_DELAY,MAX_MSG_DELAY) * 10 SECONDS)
 		//Ship event: docking request (generic)
 		if("dockingrequestgeneric")
 			var/request_type = pick(100;"generic",50;"delayed",80;"supply",30;"repair",30;"medical",30;"security")
@@ -356,8 +353,7 @@ var/datum/lore/atc_controller/atc = new/datum/lore/atc_controller
 			switch(request_type)
 				if("generic")
 					msg("[callname], this is [combined_first_name], [pick("stopping by","passing through")] on our way to [destname], requesting permission to [landing_short].","[prefix] [shipname]")
-					sleep(rand(MIN_MSG_DELAY,MAX_MSG_DELAY) SECONDS)
-					msg("[combined_first_name], this is [using_map.dock_name] Control. Permission granted, proceed to [landing_zone]. Follow the green lights on your way in.")
+					addtimer(CALLBACK(src, PROC_REF(msg), "[combined_first_name], this is [using_map.dock_name] Control. Permission granted, proceed to [landing_zone]. Follow the green lights on your way in."), rand(MIN_MSG_DELAY,MAX_MSG_DELAY) SECONDS)
 				if("delayed")
 					var/reason = pick(
 							"we don't have any free [landing_type]s right now, please [pick("stand by for a couple of minutes","hold for a few minutes")]",
@@ -377,8 +373,7 @@ var/datum/lore/atc_controller/atc = new/datum/lore/atc_controller
 					var/low_thing = pick("ammunition","munitions","clean water","food","spare parts","medical supplies","reaction mass","gas","hydrogen fuel","phoron fuel","fuel",10;"tea",10;"coffee",10;"soda",10;"pizza",10;"beer",10;"booze",10;"vodka",10;"snacks") //low chance of a less serious shortage
 					appreciation = pick("Much appreciated","Many thanks","Understood","You're a lifesaver","We owe you one","I owe you one","Perfect, thank you")
 					msg("[callname], this is [combined_first_name]. We're [preintensifier][intensifier] low on [low_thing]. Requesting permission to [landing_short] for resupply.","[prefix] [shipname]")
-					sleep(rand(MIN_MSG_DELAY,MAX_MSG_DELAY) SECONDS)
-					msg("[combined_first_name], this is [using_map.dock_name] Control. Permission granted, proceed to [landing_zone]. Follow the green lights on your way in.")
+					addtimer(CALLBACK(src, PROC_REF(msg), "[combined_first_name], this is [using_map.dock_name] Control. Permission granted, proceed to [landing_zone]. Follow the green lights on your way in."), rand(MIN_MSG_DELAY,MAX_MSG_DELAY) SECONDS)
 				if("repair")
 					var/damagestate = pick("We've experienced some hull damage","We're suffering minor system malfunctions","We're having some [pick("weird","strange","odd","unusual")] technical issues","We're overdue maintenance","We have several minor space debris impacts","We've got some battle damage here","Our reactor output is fluctuating","We're hearing some weird noises from the [pick("engines","pipes","ducting","HVAC")]","We just got caught in a solar flare","We had a close call with an asteroid","We have a [pick("minor","mild","major","serious")] [pick("fuel","water","oxygen","gas")] leak","We have depressurized compartments","We have a hull breach","One of our [pick("hydraulic","pneumatic")] systems has depressurized","Our [pick("life support","water recycling system","navcomp","shield generator","reaction control system","auto-repair system","repair drone controller","artificial gravity generator","environmental control system","master control system")] is [pick("failing","acting up","on the fritz","shorting out","glitching out","freaking out","malfunctioning")]")
 					appreciation = pick("Much appreciated","Many thanks","Understood","You're a lifesaver","We owe you one","I owe you one","Perfect, thank you")
@@ -436,12 +431,10 @@ var/datum/lore/atc_controller/atc = new/datum/lore/atc_controller
 			var/takeoff = pick("depart","launch")
 			var/denialreason = pick("Security is requesting a full cargo inspection","Your ship has been impounded for multiple [pick("security","safety")] violations","Your ship is currently under quarantine lockdown","We have reason to believe there's an issue with your papers","Security personnel are currently searching for a fugitive and have ordered all outbound ships remain grounded until further notice")
 			msg("[callname], this is [combined_first_name], requesting permission to [takeoff] from [landing_zone].","[prefix] [shipname]")
-			sleep(rand(MIN_MSG_DELAY,MAX_MSG_DELAY) SECONDS)
-			msg("Negative [combined_first_name], request denied. [denialreason].")
+			addtimer(CALLBACK(src, PROC_REF(msg), "Negative [combined_first_name], request denied. [denialreason]."), rand(MIN_MSG_DELAY,MAX_MSG_DELAY) SECONDS)
 		if("slogan")
 			msg("The following is a sponsored message from [name].","Facility PA")
-			sleep(5 SECONDS)
-			msg("[slogan]","Facility PA")
+			addtimer(CALLBACK(src, PROC_REF(msg), "[slogan]","Facility PA"), 5 SECONDS)
 		else //time for generic message
 			msg("[callname], this is [combined_first_name] on [mission] [pick(mission_noun)] to [destname], requesting [request].","[prefix] [shipname]")
 			sleep(rand(MIN_MSG_DELAY,MAX_MSG_DELAY) SECONDS)

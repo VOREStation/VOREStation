@@ -100,7 +100,7 @@ var/global/datum/emergency_shuttle_controller/emergency_shuttle = new
 		if(istype(A, /area/hallway))
 			A.readyalert()
 
-	atc.reroute_traffic(yes = 1)
+	GLOB.atc.reroute_traffic(yes = 1)
 
 //calls the shuttle for a routine crew transfer
 /datum/emergency_shuttle_controller/proc/call_transfer()
@@ -116,7 +116,7 @@ var/global/datum/emergency_shuttle_controller/emergency_shuttle = new
 	var/estimated_time = round(estimate_arrival_time()/60,1)
 
 	priority_announcement.Announce(replacetext(replacetext(using_map.shuttle_called_message, "%dock_name%", "[using_map.dock_name]"),  "%ETA%", "[estimated_time] minute\s"), "Transfer System", 'sound/AI/tramcalled.ogg') //VOREStation Edit - TTS
-	atc.shift_ending()
+	GLOB.atc.shift_ending()
 
 //recalls the shuttle
 /datum/emergency_shuttle_controller/proc/recall()
