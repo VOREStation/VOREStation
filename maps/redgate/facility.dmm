@@ -4467,7 +4467,7 @@
 /turf/simulated/floor/tiled/white,
 /area/redgate/facility/cell2)
 "gmR" = (
-/obj/machinery/smartfridge/virology,
+/obj/structure/prop/machine/disease_analyser,
 /turf/simulated/floor/tiled/white,
 /area/redgate/facility/sw)
 "gmU" = (
@@ -4909,13 +4909,6 @@
 /obj/random/forgotten_tram,
 /turf/simulated/floor/tiled/white,
 /area/redgate/facility/nw)
-"gQm" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/structure/closet/l3closet/virology,
-/turf/simulated/floor/tiled/white,
-/area/redgate/facility/sw)
 "gQy" = (
 /obj/effect/floor_decal/corner/black/border{
 	dir = 4
@@ -11644,9 +11637,7 @@
 /turf/simulated/floor/tiled/white,
 /area/redgate/facility/cell15)
 "qsU" = (
-/obj/structure/reagent_dispensers/virusfood{
-	pixel_y = 29
-	},
+/obj/structure/prop/machine/centrifuge,
 /turf/simulated/floor/tiled/white,
 /area/redgate/facility/sw)
 "qtt" = (
@@ -19781,7 +19772,7 @@ pLg
 fPE
 mzU
 aOv
-gQm
+xRG
 vrp
 oWf
 aOv
