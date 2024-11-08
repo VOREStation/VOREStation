@@ -16,8 +16,8 @@
 	icon = 'icons/inventory/hands/item.dmi'
 	drop_sound = 'sound/items/drop/ring.ogg'
 	pickup_sound = 'sound/items/pickup/ring.ogg'
-	force = 2
-	punch_force = 2
+	force = 7	//base punch strength is 5
+	punch_force = 2	//added to base punch strength when added as a glove accessory
 	siemens_coefficient = 1
 
 /////////////////////////////////////////

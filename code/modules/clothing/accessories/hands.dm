@@ -7,8 +7,8 @@
 	matter = list(MAT_STEEL = 500)
 	attack_verb = list("punched", "beaten", "struck")
 	siemens_coefficient = 1
-	punch_force = 5
-	force = 5
+	force = 10	//base punch strength is 5
+	punch_force = 5	//added to base punch strength when added as a glove accessory
 	icon = 'icons/inventory/hands/item.dmi'
 	item_icons = list(
 		slot_l_hand_str = 'icons/mob/items/lefthand_gloves.dmi',

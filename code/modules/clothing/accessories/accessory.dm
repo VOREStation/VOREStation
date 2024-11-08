@@ -87,7 +87,7 @@
 	has_suit.force += force
 	if(istype(S,/obj/item/clothing/gloves))
 		var/obj/item/clothing/gloves/has_gloves = S
-		has_gloves.punch_force += force
+		has_gloves.punch_force = has_gloves.punch_force + punch_force
 
 	if(user)
 		to_chat(user, span_notice("You attach \the [src] to \the [has_suit]."))
