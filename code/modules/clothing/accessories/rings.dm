@@ -17,6 +17,7 @@
 	drop_sound = 'sound/items/drop/ring.ogg'
 	pickup_sound = 'sound/items/pickup/ring.ogg'
 	force = 2
+	punch_force = 2
 	siemens_coefficient = 1
 
 /////////////////////////////////////////

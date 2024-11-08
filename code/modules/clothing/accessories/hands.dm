@@ -7,7 +7,12 @@
 	matter = list(MAT_STEEL = 500)
 	attack_verb = list("punched", "beaten", "struck")
 	siemens_coefficient = 1
+	punch_force = 5
 	force = 5
 	icon = 'icons/inventory/hands/item.dmi'
+	item_icons = list(
+		slot_l_hand_str = 'icons/mob/items/lefthand_gloves.dmi',
+		slot_r_hand_str = 'icons/mob/items/righthand_gloves.dmi',
+		)
 	drop_sound = 'sound/items/drop/metalboots.ogg'
 	pickup_sound = 'sound/items/pickup/toolbox.ogg'

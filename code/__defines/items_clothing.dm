@@ -40,7 +40,7 @@
 #define ACCESSORY_SLOT_ARMOR_M  0x8000
 #define ACCESSORY_SLOT_HELM_C   0x10000 //24 bit - higher than 0x80000 will overflow
 
-#define ACCESSORY_SLOT_RING		0x20000	//rings
+#define ACCESSORY_SLOT_RING		0x20000	//rings, knuckledusters
 #define ACCESSORY_SLOT_WRIST	0x40000	//wristwatches, wrist PDA maybe?
 
 // Bitmasks for the /obj/item/var/flags_inv variable. These determine when a piece of clothing hides another, i.e. a helmet hiding glasses.
