@@ -1615,7 +1615,7 @@
 		/obj/item/clothing/head/soft/purple = 5,
 		/obj/item/clothing/head/beret/purple = 5,
 		/obj/item/clothing/head/headband/maid = 5,
-		/obj/item/radio/headset/headset_service = 5,
+		/obj/item/radio/headset/service = 5,
 		/obj/item/clothing/under/rank/janitor = 5,
 		/obj/item/clothing/under/dress/maid/janitor = 5,
 		/obj/item/clothing/suit/storage/hooded/wintercoat/janitor = 5,

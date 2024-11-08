@@ -23,7 +23,9 @@
 
 	starts_with = list(
 		/obj/item/clothing/head/that = 2,
-		/obj/item/radio/headset/headset_service = 2,
+		/obj/item/radio/headset/service = 2,
+		/obj/item/radio/headset/alt/service = 2,
+		/obj/item/radio/headset/earbud/service = 2,
 		/obj/item/clothing/head/pin/flower,
 		/obj/item/clothing/head/pin/flower/pink,
 		/obj/item/clothing/head/pin/flower/yellow,
@@ -51,7 +53,9 @@
 	starts_with = list(
 		/obj/item/clothing/under/sundress,
 		/obj/item/clothing/under/waiter = 2,
-		/obj/item/radio/headset/headset_service = 2,
+		/obj/item/radio/headset/service = 2,
+		/obj/item/radio/headset/alt/service = 2,
+		/obj/item/radio/headset/earbud/service = 2,
 		/obj/item/storage/box/mousetraps = 2,
 		/obj/item/clothing/under/rank/chef,
 		/obj/item/clothing/head/chefhat,
@@ -69,7 +73,9 @@
 	starts_with = list(
 		/obj/item/clothing/under/rank/janitor,
 		/obj/item/clothing/under/dress/maid/janitor,
-		/obj/item/radio/headset/headset_service,
+		/obj/item/radio/headset/service,
+		/obj/item/radio/headset/alt/service,
+		/obj/item/radio/headset/earbud/service,
 		/obj/item/cartridge/janitor,
 		/obj/item/clothing/suit/storage/hooded/wintercoat/janitor,
 		/obj/item/clothing/gloves/black,

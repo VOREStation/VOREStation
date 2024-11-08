@@ -118,7 +118,7 @@
 			/obj/item/storage/backpack/industrial,
 			/obj/item/storage/backpack/satchel/eng,
 			/obj/item/clothing/suit/storage/hooded/wintercoat/miner,
-			/obj/item/radio/headset/headset_cargo,
+			/obj/item/radio/headset/miner,
 			/obj/item/clothing/under/rank/miner,
 			/obj/item/clothing/gloves/black,
 			/obj/item/clothing/shoes/black,
@@ -187,7 +187,7 @@
 	contains = list (
 					/obj/item/storage/backpack/parachute,
 					/obj/item/radio/headset/pilot,
-					/obj/item/radio/headset/pilot/alt,
+					/obj/item/radio/headset/alt/pilot,
 					/obj/item/clothing/mask/gas/half,
 					/obj/item/flashlight/glowstick,
 					/obj/item/stack/marker_beacon/thirty,

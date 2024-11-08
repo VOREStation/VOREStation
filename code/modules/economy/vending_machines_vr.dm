@@ -343,7 +343,7 @@
 					/obj/item/storage/box/syndie_kit/chameleon = 1,
 					/obj/item/clothing/mask/bandana = 1,
 					/obj/item/clothing/glasses/sunglasses = 1,
-					/obj/item/radio/headset/syndicate/alt = 1,
+					/obj/item/radio/headset/syndicate = 1,
 					/obj/item/pda = 1,
 					/obj/item/communicator = 1,
 					/obj/item/tape_roll = 2,

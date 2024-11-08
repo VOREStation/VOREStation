@@ -54,6 +54,7 @@
 	var/list/all_underwear = list()
 	var/list/all_underwear_metadata = list()
 	var/list/hide_underwear = list()
+	var/headset = 1		//Which headset type the player has chosen.
 	var/backbag = 2		//Which backpack type the player has chosen.
 	var/pdachoice = 1	//Which PDA type the player has chosen.
 
