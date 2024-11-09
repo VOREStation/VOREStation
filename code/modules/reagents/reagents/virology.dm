@@ -20,7 +20,7 @@
 /datum/reagent/mutagen/mutagenvirusfood
 	name = "Mutagenic agar"
 	id = "mutagenvirusfood"
-	description = "mutates blood"
+	description = "Mutates viruses when mixed in blood. This one seems rather alright."
 	color = "#A3C00F"
 
 /datum/reagent/mutagen/mutagenvirusfood/sugar
@@ -32,16 +32,16 @@
 /datum/reagent/medicine/adranol/adranolvirusfood
 	name = "Virus rations"
 	id = "adranolvirusfood"
-	description = "mutates blood"
+	description = "Mutates viruses when mixed in blood. This one seems rather weak."
 	color = "#D18AA5"
 
-/datum/reagent/phoron_dust/phoronvirusfood
+/datum/reagent/toxin/phoron/phoronvirusfood
 	name = "Phoronic virus food"
 	id = "phoronvirusfood"
-	description = "mutates blood"
+	description = "Mutates viruses when mixed in blood. This one seems to be the strongest."
 	color = "#A69DA9"
 
-/datum/reagent/phoron_dust/phoronvirusfood/weak
-	name = "Weakened phoronic virus food"
+/datum/reagent/toxin/phoron/phoronvirusfood/weak
+	name = "Weakened phoronic virus food. This one seems to have been weakened, but still strong."
 	id = "weakphoronvirusfood"
 	color = "#CEC3C6"
