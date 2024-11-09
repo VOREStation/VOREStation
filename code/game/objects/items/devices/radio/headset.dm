@@ -572,21 +572,25 @@
 
 /obj/item/radio/headset/syndicate
 	origin_tech = list(TECH_ILLEGAL = 3)
+	icon_state = "syndie_headset"
 	syndie = 1
 	ks1type = /obj/item/encryptionkey/syndicate
 
 /obj/item/radio/headset/alt/syndicate
 	origin_tech = list(TECH_ILLEGAL = 3)
+	icon_state = "syndie_headset_alt"
 	syndie = 1
 	ks1type = /obj/item/encryptionkey/syndicate
 
 /obj/item/radio/headset/earbud/syndicate
 	origin_tech = list(TECH_ILLEGAL = 3)
+	icon_state = "syndie_earbud"
 	syndie = 1
 	ks1type = /obj/item/encryptionkey/syndicate
 
 /obj/item/radio/headset/raider
 	origin_tech = list(TECH_ILLEGAL = 2)
+	icon_state = "syndie_headset"
 	syndie = 1
 	ks1type = /obj/item/encryptionkey/raider
 
