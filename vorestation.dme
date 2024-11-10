@@ -2137,6 +2137,7 @@
 #include "code\modules\client\preferences\migrations\13_preferences.dm"
 #include "code\modules\client\preferences\migrations\14_nifs.dm"
 #include "code\modules\client\preferences\migrations\15_nif_path.dm"
+#include "code\modules\client\preferences\types\character\antagonism\01_basic.dm"
 #include "code\modules\client\preferences\types\character\general\01_basic.dm"
 #include "code\modules\client\preferences\types\game\admin.dm"
 #include "code\modules\client\preferences\types\game\auto_fit_viewport.dm"

@@ -126,8 +126,6 @@ var/list/preferences_datums = list()
 
 	var/economic_status = "Average"
 
-	var/uplinklocation = "PDA"
-
 	// OOC Metadata:
 	var/metadata = ""
 	var/metadata_likes = ""
