@@ -11,11 +11,6 @@
 	repick_laws()
 
 	// Forces synths to select an icon relevant to their module
-	if(!icon_selected)
-		icon_selection_tries = SSrobot_sprites.get_module_sprites_len(modtype, src) + 1
-		choose_icon(icon_selection_tries)
-
-		if(sprite_datum && module)
-			sprite_datum.do_equipment_glamour(module)
+	pick_module()
 
 	plane_holder.set_vis(VIS_AUGMENTED, TRUE)

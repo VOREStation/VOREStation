@@ -31,8 +31,7 @@
 //Icon stuff
 
 	var/datum/robot_sprite/sprite_datum 				// Sprite datum, holding all our sprite data
-	var/icon_selected = 1								// If icon selection has been completed yet
-	var/icon_selection_tries = 0						// Remaining attempts to select icon before a selection is forced
+	var/icon_selected = 0								// If icon selection has been completed yet
 	var/list/sprite_extra_customization = list()
 	var/rest_style = "Default"
 	var/notransform
@@ -336,46 +335,17 @@
 	return module_sprites
 */
 /mob/living/silicon/robot/proc/pick_module()
+	if(icon_selected)
+		return
 	if(module)
-		return
-	var/list/modules = list()
-	//VOREStatation Edit Start: shell restrictions
-	if(shell)
-		if(restrict_modules_to.len > 0)
-			modules.Add(restrict_modules_to)
-		else
-			modules.Add(shell_module_types)
-	else
-		if(restrict_modules_to.len > 0)
-			modules.Add(restrict_modules_to)
-		else
-			modules.Add(robot_module_types)
-			if(crisis || security_level == SEC_LEVEL_RED || crisis_override)
-				to_chat(src, span_red("Crisis mode active. Combat module available."))
-				modules |= emergency_module_types
-			for(var/module_name in whitelisted_module_types)
-				if(is_borg_whitelisted(src, module_name))
-					modules |= module_name
-	//VOREStatation Edit End: shell restrictions
-	modtype = tgui_input_list(usr, "Please, select a module!", "Robot module", modules)
+		var/list/module_sprites = SSrobot_sprites.get_module_sprites(module, src)
+		if(module_sprites.len == 1 || !client)
+			sprite_datum = module_sprites[1]
+			return
+	new/datum/tgui_module/robot_ui_module(src)
+	if(sprite_datum && module)
+		sprite_datum.do_equipment_glamour(module)
 
-	if(module)
-		return
-	if(!(modtype in robot_modules))
-		return
-	if(!is_borg_whitelisted(src, modtype))
-		return
-
-	var/module_type = robot_modules[modtype]
-	transform_with_anim()	//VOREStation edit: sprite animation
-	new module_type(src)
-
-	hands.icon_state = get_hud_module_icon()
-	feedback_inc("cyborg_[lowertext(modtype)]",1)
-	updatename()
-	hud_used.update_robot_modules_display()
-	notify_ai(ROBOT_NOTIFICATION_NEW_MODULE, module.name)
-	robotact?.update_static_data_for_all_viewers()
 
 /mob/living/silicon/robot/proc/update_braintype()
 	if(istype(mmi, /obj/item/mmi/digital/posibrain))
@@ -796,6 +766,7 @@
 		notify_ai(ROBOT_NOTIFICATION_MODULE_RESET, module.name)
 	module.Reset(src)
 	qdel(module)
+	icon_selected = 0
 	module = null
 	updatename("Default")
 	has_recoloured = FALSE
@@ -1087,60 +1058,6 @@
 		W.attack_self(src)
 
 	return
-
-/mob/living/silicon/robot/proc/choose_icon(var/triesleft)
-	var/robot_species = null
-	if(!SSrobot_sprites)
-		to_chat(src, "Robot Sprites have not been initialized yet. How are you choosing a sprite? Harass a coder.")
-		return
-
-	var/list/module_sprites = SSrobot_sprites.get_module_sprites(modtype, src)
-	if(!module_sprites || !module_sprites.len)
-		to_chat(src, "Your module appears to have no sprite options. Harass a coder.")
-		return
-
-	icon_selected = 0
-	icon_selection_tries = triesleft
-	if(module_sprites.len == 1 || !client)
-		if(!(sprite_datum in module_sprites))
-			sprite_datum = module_sprites[1]
-	else
-		var/selection = tgui_input_list(src, "Select an icon! [triesleft ? "You have [triesleft] more chance\s." : "This is your last try."]", "Robot Icon", module_sprites)
-		if(selection)
-			sprite_datum = selection
-		else
-			sprite_datum = module_sprites[1]
-		if(!istype(src,/mob/living/silicon/robot/drone))
-			robot_species = sprite_datum.name
-		if(notransform)
-			to_chat(src, "Your current transformation has not finished yet!")
-			choose_icon(icon_selection_tries)
-			return
-		else
-			transform_with_anim()
-
-	var/tempheight = vis_height
-	update_icon()
-	// This is bad but I dunno other way to 'reset' our resize offset based on vis_height changes other than resizing to normal and back.
-	if(tempheight != vis_height)
-		var/tempsize = size_multiplier
-		resize(1)
-		resize(tempsize)
-
-
-	if (module_sprites.len > 1 && triesleft >= 1 && client)
-		icon_selection_tries--
-		var/choice = tgui_alert(usr, "Look at your icon - is this what you want?", "Icon Choice", list("Yes","No"))
-		if(choice == "No")
-			choose_icon(icon_selection_tries)
-			return
-
-	icon_selected = 1
-	icon_selection_tries = 0
-	sprite_type = robot_species
-	if(hands)
-		update_hud()
-	to_chat(src, span_filter_notice("Your icon has been set. You now require a module reset to change it."))
 
 /mob/living/silicon/robot/proc/set_default_module_icon()
 	if(!SSrobot_sprites)
