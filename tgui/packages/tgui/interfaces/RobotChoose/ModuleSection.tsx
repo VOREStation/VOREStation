@@ -31,7 +31,7 @@ export const ModuleSection = (props: {
       </Stack.Item>
       <Stack.Item>
         <Stack vertical fill>
-          {filtered &&
+          {!!filtered &&
             filtered.map((filter) => (
               <SelectorElement
                 key={filter}

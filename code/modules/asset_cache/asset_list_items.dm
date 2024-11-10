@@ -437,6 +437,37 @@
 		Insert("bottle-[i]", 'icons/obj/chemical.dmi', "bottle-[i]")
 
 
+// Robot UI sprites
+/datum/asset/spritesheet/robot_icons
+	name = "robot_icons"
+
+/datum/asset/spritesheet/robot_icons/create_spritesheets()
+	for(var/datum/robot_sprite/S as anything in typesof(/datum/robot_sprite))
+		if(!S.name)
+			continue
+		to_world("[S.name]]")
+		var/icon/I_S = icon(S.sprite_icon, S.sprite_icon_state, SOUTH)
+		var/icon/I_N = icon(S.sprite_icon, S.sprite_icon_state, NORTH)
+		var/icon/I_W = icon(S.sprite_icon, S.sprite_icon_state, WEST)
+		var/icon/I_E = icon(S.sprite_icon, S.sprite_icon_state, EAST)
+		var/icon/I_SE = icon(S.sprite_icon, "[S.sprite_icon_state]-eyes", SOUTH)
+		if(I_SE)
+			I_S.Blend(I_SE, ICON_OVERLAY)
+		var/icon/I_NE = icon(S.sprite_icon, "[S.sprite_icon_state]-eyes", NORTH)
+		if(I_NE)
+			I_N.Blend(I_NE, ICON_OVERLAY)
+		var/icon/I_WE = icon(S.sprite_icon, "[S.sprite_icon_state]-eyes", WEST)
+		if(I_WE)
+			I_W.Blend(I_WE, ICON_OVERLAY)
+		var/icon/I_EE = icon(S.sprite_icon, "[S.sprite_icon_state]-eyes", EAST)
+		if(I_EE)
+			I_E.Blend(I_EE, ICON_OVERLAY)
+		Insert(S.module_type + S.name + "_S", I_S)
+		Insert(S.module_type + S.name + "_N", I_N)
+		Insert(S.module_type + S.name + "_W", I_W)
+		Insert(S.module_type + S.name + "_E", I_E)
+
+
 //Cloning pod sprites for UIs
 /datum/asset/simple/cloning
 	assets = list(

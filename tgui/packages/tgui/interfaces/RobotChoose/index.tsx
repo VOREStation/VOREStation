@@ -1,13 +1,14 @@
 import { useBackend } from 'tgui/backend';
 import { Window } from 'tgui/layouts';
-import { Button, Stack } from 'tgui-core/components';
+import { Stack } from 'tgui-core/components';
 
+import { IconSection } from './IconSection';
 import { ModuleSection } from './ModuleSection';
 import { SpriteSection } from './SpriteSection';
 import { Data } from './types';
 
 export const RobotChoose = (props) => {
-  const { act, data } = useBackend<Data>();
+  const { data } = useBackend<Data>();
 
   const {
     possible_modules,
@@ -31,14 +32,7 @@ export const RobotChoose = (props) => {
             sortable={possible_sprites}
             selected={sprite_datum}
           />
-          <Stack.Item>
-            <Button
-              disabled={!selected_module || !sprite_datum}
-              onClick={() => act('confirm')}
-            >
-              Confirm
-            </Button>
-          </Stack.Item>
+          <IconSection module={selected_module} sprite={sprite_datum} />
         </Stack>
       </Window.Content>
     </Window>

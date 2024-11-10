@@ -63,7 +63,7 @@ export const SpriteSection = (props: {
       </Stack.Item>
       <Stack.Item>
         <Stack vertical>
-          {filtered &&
+          {!!filtered &&
             filtered.map((filter) => (
               <SelectorElement
                 key={filter.sprite}

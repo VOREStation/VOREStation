@@ -8,6 +8,10 @@
 /datum/tgui_module/robot_ui_module/tgui_state(mob/user)
 	return GLOB.tgui_self_state
 
+
+/datum/tgui_module/robot_ui_module/ui_assets(mob/user)
+	. += get_asset_datum(/datum/asset/spritesheet/robot_icons)
+
 /datum/tgui_module/robot_ui_module/tgui_static_data()
 	var/list/data = ..()
 

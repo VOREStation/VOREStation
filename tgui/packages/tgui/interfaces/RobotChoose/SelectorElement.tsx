@@ -23,7 +23,6 @@ export const SelectorElement = (props: {
             <>
               <Flex.Item grow />
               <Flex.Item>
-                {' '}
                 <Icon name="utensils" />
               </Flex.Item>
             </>
