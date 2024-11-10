@@ -4,18 +4,14 @@
 
 /datum/category_item/player_setup_item/player_global/ui/load_preferences(datum/json_savefile/savefile)
 	pref.ooccolor			= savefile.get_entry("ooccolor")
-	pref.chat_timestamp		= savefile.get_entry("chat_timestamp")
 
 /datum/category_item/player_setup_item/player_global/ui/save_preferences(datum/json_savefile/savefile)
 	savefile.set_entry("ooccolor",			pref.ooccolor)
-	savefile.set_entry("chat_timestamp",	pref.chat_timestamp)
 
 /datum/category_item/player_setup_item/player_global/ui/sanitize_preferences()
 	pref.ooccolor			= sanitize_hexcolor(pref.ooccolor, initial(pref.ooccolor))
-	pref.chat_timestamp		= sanitize_integer(pref.chat_timestamp, 0, 1, initial(pref.chat_timestamp))
 
 /datum/category_item/player_setup_item/player_global/ui/content(var/mob/user)
-	. += span_bold("Chat Timestamps:") + " <a href='?src=\ref[src];chat_timestamps=1'><b>[(pref.chat_timestamp) ? "Enabled" : "Disabled (default)"]</b></a><br>"
 	if(can_select_ooc_color(user))
 		. += span_bold("OOC Color:")
 		if(pref.ooccolor == initial(pref.ooccolor))
@@ -29,10 +25,6 @@
 		if(new_ooccolor && can_select_ooc_color(user) && CanUseTopic(user))
 			pref.ooccolor = new_ooccolor
 			return TOPIC_REFRESH
-
-	else if(href_list["chat_timestamps"])
-		pref.chat_timestamp = !pref.chat_timestamp
-		return TOPIC_REFRESH
 
 	else if(href_list["reset"])
 		switch(href_list["reset"])
