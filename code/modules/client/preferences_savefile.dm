@@ -105,6 +105,22 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 		CRASH("Attempted to load savefile without first loading a path!")
 	savefile = new /datum/json_savefile(load_and_save ? path : null)
 
+// General preferences, have to be preloaded
+/datum/preferences/proc/load_early_prefs()
+	default_slot	= savefile.get_entry("default_slot", default_slot)
+	lastnews		= savefile.get_entry("lastnews", lastnews)
+	lastlorenews	= savefile.get_entry("lastlorenews", lastlorenews)
+
+/datum/preferences/proc/sanitize_early_prefs()
+	default_slot 	= sanitize_integer(default_slot, 1, CONFIG_GET(number/character_slots), initial(default_slot))
+	lastnews		= sanitize_text(lastnews, initial(lastnews))
+	lastlorenews	= sanitize_text(lastlorenews, initial(lastlorenews))
+
+/datum/preferences/proc/save_early_prefs()
+	savefile.set_entry("default_slot",	default_slot)
+	savefile.set_entry("lastnews",		lastnews)
+	savefile.set_entry("lastlorenews",	lastlorenews)
+
 /datum/preferences/proc/load_preferences()
 	if(!savefile)
 		stack_trace("Attempted to load the preferences of [client] without a savefile; did you forget to call load_savefile?")
@@ -122,6 +138,9 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 		return FALSE
 
 	apply_all_client_preferences()
+
+	load_early_prefs()
+	sanitize_early_prefs()
 
 	//try to fix any outdated data if necessary
 	if(needs_update >= 0)
@@ -177,6 +196,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 		if(preference_type in value_cache)
 			write_preference(preference, preference.pref_serialize(value_cache[preference_type]))
 
+	save_early_prefs()
 	savefile.save()
 
 	return TRUE
