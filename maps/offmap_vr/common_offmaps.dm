@@ -226,6 +226,29 @@
 
 //////////////////////////////////////////////////////////////////////////////////////
 
+#ifdef AWAY_MISSION_TEST
+#include "../redgate/falls/falls.dmm"
+#include "../redgate/abandonedisland.dmm"
+#include "../redgate/cybercity.dmm"
+#include "../redgate/darkadventure.dmm"
+#include "../redgate/eggnogtown.dmm"
+#include "../redgate/eggnogtownunderground.dmm"
+#include "../redgate/facility.dmm"
+#include "../redgate/fantasy_dungeon.dmm"
+#include "../redgate/fantasy.dmm"
+#include "../redgate/hotsprings.dmm"
+#include "../redgate/innland.dmm"
+#include "../redgate/islands_underwater.dmm"
+#include "../redgate/islands.dmm"
+#include "../redgate/jungle_underground.dmm"
+#include "../redgate/jungle.dmm"
+#include "../redgate/laserdome.dmm"
+#include "../redgate/stardog.dmm"
+#include "../redgate/teppiranch.dmm"
+#include "../redgate/train_upper.dmm"
+#include "../redgate/train.dmm"
+#endif
+
 /datum/map_template/common_lateload/redgate
 	name = "Redgate Submap"
 	desc = "Please do not use this."

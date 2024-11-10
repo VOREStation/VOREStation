@@ -18,6 +18,9 @@
 
 	var/locked = FALSE	//has the door been locked?
 	var/lock_id = null	//does the door have an associated key?
+	var/lock_type = "simple"	//string matched to "pick_type" on /obj/item/lockpick
+	var/can_pick = TRUE	//can it be picked/bypassed?
+	var/lock_difficulty = 1	//multiplier to picking/bypassing time
 	var/keysound = 'sound/items/toolbelt_equip.ogg'
 
 /obj/structure/simple_door/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)

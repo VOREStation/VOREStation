@@ -556,9 +556,9 @@
  * This one is a bit more fancy than others. Anything in the contents (PLEASE LIMIT TO ONE THING)
  * will show up inside it! Also if you map in an item on it, it will grab that at mapload and start
  * in the 'closed, full of fluid' state, so you can put a body on it or whatever.
- * 
+ *
  * As an aghost you can also dragdrop something into it (you have to be ghosted next to it)
- * 
+ *
  * Possible 'state' options for change_state(state) are:
  * open: Open, no fluid or anything. At the end the contents are ejected.
  * closed: Closed, full of liquid
@@ -582,7 +582,7 @@
 /obj/structure/prop/machine/nt_pod/Initialize(mapload)
 	// Our non-map-preview state
 	icon_state = "nt_pod"
-	
+
 	// Alpha mask to make sure things don't sneak out
 	var/obj/effect/overlay/vis/mask = new
 	mask.icon = icon
@@ -607,7 +607,7 @@
 	// Save old settings
 	contents_vis_flags = AM.vis_flags
 	contents_original_pixel_y = AM.pixel_y
-	
+
 	// Arrange
 	AM.add_filter("podmask", 1, alpha_mask_filter(render_source = "nt_podmask[REF(src)]", flags = MASK_INVERSE))
 	AM.pixel_y = 12
@@ -616,7 +616,7 @@
 	if(ismob(AM))
 		var/mob/M = AM
 		buckle_mob(M, TRUE, FALSE)
-	
+
 	// TRAP THEM
 	change_state("closed")
 
@@ -639,7 +639,7 @@
 		return
 	if(!user.client?.holder)
 		return
-	
+
 	AM.forceMove(src)
 
 /obj/structure/prop/machine/nt_pod/change_state(state)
@@ -648,17 +648,17 @@
 		if("open")
 			cut_overlay("nt_pod_top_on")
 			cut_overlay("nt_pod_under")
-			
+
 			// Fluid drains
 			fluid.icon_state = "nothing"
 			flick("nt_pod_emptying", fluid) // 8ds
 			sleep(8)
-			
+
 			// Door opens
 			door.icon_state = "nothing"
 			flick("nt_pod_opening", door) // 9ds
 			sleep(9)
-			
+
 			// GET OUT
 			outside.layer = BELOW_MOB_LAYER
 			if(contents.len)
@@ -670,7 +670,7 @@
 			cut_overlay("nt_pod_top_on")
 			add_overlay("nt_pod_top_on")
 			add_overlay("nt_pod_under")
-			
+
 			// Door closes
 			door.icon_state = "nt_pod_glass"
 			flick("nt_pod_closing", door) // 9ds
@@ -684,3 +684,89 @@
 			add_overlay("nt_pod_panel")
 		if("panel_closed")
 			cut_overlay("nt_pod_panel")
+
+// Old Virology stuff
+
+/obj/structure/prop/machine/centrifuge
+	name = "centrifuge"
+	desc = "Used to separate things with different weight. Spin 'em round, round, right round."
+	icon = 'icons/obj/virology_vr.dmi'
+	icon_state = "centrifuge"
+	var/on = FALSE
+
+/obj/structure/prop/machine/centrifuge/attack_hand(mob/user as mob)
+	..()
+
+	if(!on)
+		on = TRUE
+		user.visible_message("\The [user] turns on \the [src].")
+		icon_state = "centrifuge_moving"
+	else
+		on = FALSE
+		user.visible_message("\The [user] turns off \the [src].")
+		icon_state = "centrifuge"
+
+	update_icon()
+
+/obj/structure/prop/machine/incubator
+	name = "incubator"
+	desc = "Encourages the growth of diseases. This model comes with a dispenser system and a small radiation generator."
+	icon = 'icons/obj/virology_vr.dmi'
+	icon_state = "incubator"
+	var/on = FALSE
+
+/obj/structure/prop/machine/incubator/attack_hand(mob/user as mob)
+	..()
+
+	if(!on)
+		on = TRUE
+		user.visible_message("\The [user] turns on \the [src].")
+		icon_state = "incubator_on"
+	else
+		on = FALSE
+		user.visible_message("\The [user] turns off \the [src].")
+		icon_state = "incubator"
+
+	update_icon()
+
+/obj/structure/prop/machine/disease_analyser
+	name = "disease analyser"
+	desc = "Analyzes diseases to find out information about them!"
+	icon = 'icons/obj/virology_vr.dmi'
+	icon_state = "analyser"
+	var/on = FALSE
+
+/obj/structure/prop/machine/disease_analyser/attack_hand(mob/user as mob)
+	..()
+
+	if(!on)
+		on = TRUE
+		user.visible_message("\The [user] turns on \the [src].")
+		icon_state = "analyser_"
+	else
+		on = FALSE
+		user.visible_message("\The [user] turns off \the [src].")
+		icon_state = "analyser"
+
+	update_icon()
+
+/obj/structure/prop/machine/isolator
+	name = "disease isolator"
+	desc = "Used to isolate and identify diseases, allowing for comparison with a remote database."
+	icon = 'icons/obj/virology_vr.dmi'
+	icon_state = "isolator_in"
+	var/on = FALSE
+
+/obj/structure/prop/machine/isolator/attack_hand(mob/user as mob)
+	..()
+
+	if(!on)
+		on = TRUE
+		user.visible_message("\The [user] turns on \the [src].")
+		icon_state = "isolator_"
+	else
+		on = FALSE
+		user.visible_message("\The [user] turns off \the [src].")
+		icon_state = "isolator_in"
+
+	update_icon()
