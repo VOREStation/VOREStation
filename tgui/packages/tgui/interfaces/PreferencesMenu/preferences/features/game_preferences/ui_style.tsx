@@ -52,6 +52,7 @@ const UIStyleInput = (
       clipSelectedText={false}
       onSelected={props.handleSetValue}
       width="100%"
+      menuWidth="20rem"
       options={sortChoices(Object.entries(choices)).map(
         ([dataValue, label]) => {
           return {
