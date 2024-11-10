@@ -73,6 +73,7 @@ var/global/list/robot_modules = list(
 		R.radio.recalculateChannels()
 
 	R.set_default_module_icon()
+	R.pick_module()
 	if(!R.client)
 		R.icon_selected = FALSE			// It wasnt a player selecting icon? Let them do it later!
 
