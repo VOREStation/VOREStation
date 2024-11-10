@@ -11,18 +11,6 @@
 		PH.set_ao(VIS_OBJS, value)
 		PH.set_ao(VIS_MOBS, value)
 
-/datum/preference/toggle/mob_tooltips
-	category = PREFERENCE_CATEGORY_GAME_PREFERENCES
-	savefile_key = "MOB_TOOLTIPS"
-	default_value = TRUE
-	savefile_identifier = PREFERENCE_PLAYER
-
-/datum/preference/toggle/inv_tooltips
-	category = PREFERENCE_CATEGORY_GAME_PREFERENCES
-	savefile_key = "INV_TOOLTIPS"
-	default_value = TRUE
-	savefile_identifier = PREFERENCE_PLAYER
-
 /datum/preference/toggle/attack_icons
 	category = PREFERENCE_CATEGORY_GAME_PREFERENCES
 	savefile_key = "ATTACK_ICONS"
