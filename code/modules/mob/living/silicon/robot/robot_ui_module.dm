@@ -15,8 +15,8 @@
 
 	var/list/modules = list()
 	if(R.module)
-		modules = list(R.module)
-		selected_module = R.module
+		modules = list(R.modtype)
+		selected_module = R.modtype
 	else
 		if(LAZYLEN(R.restrict_modules_to) > 0)
 			modules.Add(R.restrict_modules_to)
@@ -55,8 +55,11 @@
 			to_chat(R, span_warning("Your module appears to have no sprite options. Harass a coder."))
 			selected_module = null
 			return
+		var/list/available_sprites = list()
+		for(var/datum/robot_sprite/S in module_sprites)
+			available_sprites += list(list("sprite" = S.name, "belly" = S.has_vore_belly_sprites))
 
-		data["possible_sprites"] = module_sprites
+		data["possible_sprites"] = available_sprites
 		if(sprite_datum)
 			data["sprite_datum"] = sprite_datum
 
@@ -79,6 +82,9 @@
 			if(!is_borg_whitelisted(R, new_module))
 				return
 			selected_module = new_module
+			var/list/module_sprites = SSrobot_sprites.get_module_sprites(selected_module, R)
+			if(!R.sprite_datum in module_sprites)
+				sprite_datum = null
 			. = TRUE
 		if("pick_icon")
 			var/sprite = params["value"]
