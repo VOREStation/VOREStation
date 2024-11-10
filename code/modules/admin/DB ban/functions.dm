@@ -250,7 +250,7 @@
 
 
 /client/proc/DB_ban_panel()
-	set category = "Admin"
+	set category = "Admin.Moderation"
 	set name = "Banning Panel"
 	set desc = "Edit admin permissions"
 

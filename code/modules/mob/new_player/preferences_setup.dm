@@ -29,6 +29,7 @@
 			all_underwear[WRC.name] = WRI.name
 
 
+	headset = rand(1,3)
 	backbag = rand(1,6)
 	pdachoice = rand(1,7)
 	age = rand(current_species.min_age, current_species.max_age)

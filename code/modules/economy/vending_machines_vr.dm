@@ -1,41 +1,3 @@
-//Tweaked existing vendors
-/obj/machinery/vending/hydroseeds/New()
-	products += list(/obj/item/seeds/shrinkshroom = 3,/obj/item/seeds/megashroom = 3)
-	..()
-
-/obj/machinery/vending/security/New()
-	products += list(/obj/item/gun/energy/taser = 8,/obj/item/gun/energy/stunrevolver = 4,
-					/obj/item/reagent_containers/spray/pepper = 6,/obj/item/taperoll/police = 6,
-					/obj/item/clothing/glasses/omnihud/sec = 6)
-	contraband += list(/obj/item/implanter/compliance = 1)
-	..()
-
-/obj/machinery/vending/tool/New()
-	products += list(/obj/item/reagent_containers/spray/windowsealant = 5)
-	..()
-
-/obj/machinery/vending/engivend/New()
-	products += list(/obj/item/clothing/glasses/omnihud/eng = 6)
-	contraband += list(/obj/item/rms = 5)
-	..()
-
-/obj/machinery/vending/medical/New()
-	products += list(/obj/item/storage/box/khcrystal = 4,/obj/item/backup_implanter = 3,
-					/obj/item/clothing/glasses/omnihud/med = 4, /obj/item/glasses_kit = 1,  /obj/item/storage/quickdraw/syringe_case = 4)
-	..()
-
-/obj/machinery/vending/wallmed1/New()
-	products += list(/obj/item/bodybag/cryobag = 2)
-	..()
-
-/obj/machinery/vending/wallmed2/New()
-	products += list(/obj/item/bodybag/cryobag = 3)
-	..()
-
-/obj/machinery/vending/wallmed1/public/New()
-	products += list(/obj/item/bodybag/cryobag = 4)
-	..()
-
 // Food Machines (for event/away maps)
 
 //I want this not just as part of the zoo. ;v
@@ -343,7 +305,7 @@
 					/obj/item/storage/box/syndie_kit/chameleon = 1,
 					/obj/item/clothing/mask/bandana = 1,
 					/obj/item/clothing/glasses/sunglasses = 1,
-					/obj/item/radio/headset/syndicate/alt = 1,
+					/obj/item/radio/headset/syndicate = 1,
 					/obj/item/pda = 1,
 					/obj/item/communicator = 1,
 					/obj/item/tape_roll = 2,

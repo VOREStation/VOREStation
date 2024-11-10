@@ -1,5 +1,5 @@
 /mob/living/simple_mob/animal/borer/verb/release_host()
-	set category = "Abilities"
+	set category = "Abilities.Borer"
 	set name = "Release Host"
 	set desc = "Slither out of your host."
 
@@ -39,7 +39,7 @@
 		leave_host()
 
 /mob/living/simple_mob/animal/borer/verb/infest()
-	set category = "Abilities"
+	set category = "Abilities.Borer"
 	set name = "Infest"
 	set desc = "Infest a suitable humanoid host."
 
@@ -127,7 +127,7 @@
 
 /*
 /mob/living/simple_mob/animal/borer/verb/devour_brain()
-	set category = "Abilities"
+	set category = "Abilities.Borer"
 	set name = "Devour Brain"
 	set desc = "Take permanent control of a dead host."
 
@@ -200,7 +200,7 @@
 		H.lastKnownIP = s2h_ip
 
 /mob/living/simple_mob/animal/borer/verb/secrete_chemicals()
-	set category = "Abilities"
+	set category = "Abilities.Borer"
 	set name = "Secrete Chemicals"
 	set desc = "Push some chemicals into your host's bloodstream."
 
@@ -228,7 +228,7 @@
 	chemicals -= 50
 
 /mob/living/simple_mob/animal/borer/verb/dominate_victim()
-	set category = "Abilities"
+	set category = "Abilities.Borer"
 	set name = "Paralyze Victim"
 	set desc = "Freeze the limbs of a potential host with supernatural fear."
 
@@ -268,7 +268,7 @@
 	used_dominate = world.time
 
 /mob/living/simple_mob/animal/borer/verb/bond_brain()
-	set category = "Abilities"
+	set category = "Abilities.Borer"
 	set name = "Assume Control"
 	set desc = "Fully connect to the brain of your host."
 
@@ -339,7 +339,7 @@
 			return
 
 /mob/living/carbon/human/proc/jumpstart()
-	set category = "Abilities"
+	set category = "Abilities.Borer"
 	set name = "Revive Host"
 	set desc = "Send a jolt of electricity through your host, reviving them."
 

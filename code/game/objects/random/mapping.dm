@@ -223,8 +223,8 @@
 
 /obj/random/sfr/item_to_spawn()
 	return pick(prob(25);/obj/item/radio/headset/heads/captain/sfr,
-				prob(25);/obj/item/radio/headset/headset_cargo/alt,
-				prob(25);/obj/item/radio/headset/headset_com/alt,
+				prob(25);/obj/item/radio/headset/alt/cargo,
+				prob(25);/obj/item/radio/headset/alt/headset_com,
 				prob(25);/obj/item/radio/headset)
 
 // Mining Goodies

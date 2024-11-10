@@ -2,7 +2,7 @@
 
 	set name = "Evolve"
 	set desc = "Evolve into your adult form."
-	set category = "Abilities"
+	set category = "Abilities.General"
 
 	if(stat != CONSCIOUS)
 		return

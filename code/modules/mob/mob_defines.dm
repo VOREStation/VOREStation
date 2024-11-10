@@ -239,3 +239,6 @@
 	var/list/list/misc_tabs = list()
 
 	var/list/datum/action/actions
+
+	var/list/viruses
+	var/list/resistances

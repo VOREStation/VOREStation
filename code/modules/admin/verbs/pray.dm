@@ -1,5 +1,5 @@
 /mob/verb/pray()
-	set category = "IC"
+	set category = "IC.Game"
 	set name = "Pray"
 
 	if(say_disabled)	//This is here to try to identify lag problems

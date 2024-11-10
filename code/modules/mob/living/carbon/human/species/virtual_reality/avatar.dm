@@ -54,7 +54,7 @@
 /mob/living/carbon/human/proc/shapeshifter_change_opacity()
 
 	set name = "Toggle Opacity"
-	set category = "Abilities"
+	set category = "Abilities.Shapeshifter"
 
 	if(stat || world.time < last_special)
 		return
@@ -88,7 +88,7 @@
 // exit_vr is called on the vr mob, and puts the mind back into the original mob
 /mob/living/carbon/human/proc/exit_vr()
 	set name = "Exit Virtual Reality"
-	set category = "Abilities"
+	set category = "Abilities.VR"
 
 	if(!vr_holder)
 		return

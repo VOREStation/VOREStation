@@ -10,7 +10,7 @@
 /client/verb/toggle_hardsuit_mode()
 	set name = "Toggle Hardsuit Activation Mode"
 	set desc = "Switch between hardsuit activation modes."
-	set category = "OOC"
+	set category = "OOC.Game Settings"
 
 	hardsuit_click_mode++
 	if(hardsuit_click_mode > MAX_HARDSUIT_CLICK_MODE)

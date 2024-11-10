@@ -30,6 +30,7 @@
 			list(/obj/item/melee/classic_baton, 6) = 3,
 			list(/obj/item/rig/industrial, 6) = 3,
 			list(/obj/item/multitool/hacktool, 5) = 3,
+			list(/obj/item/multitool/hacktool/modified, 4) = 4,
 			list(/obj/item/toy/katana, 1) = 2,
 			list(/obj/item/clothing/head/kitty, 1) = 2,
 			list(pick(subtypesof(/obj/item/soap)), 1) = 2,
@@ -41,7 +42,7 @@
 			list(/obj/item/toy/syndicateballoon, 3) = 2,
 			list(/obj/item/clothing/suit/ianshirt, 3) = 2,
 			list(/obj/item/clothing/head/bearpelt, 4) = 2,
-			//list(/obj/item/archaeological_find, 3) = 2, //ChompREMOVE - causes runtimes
+			//list(/obj/item/archaeological_find, 3) = 2, // Removed, causes runtimes
 			list(pick(subtypesof(/obj/item/toy/mecha)), 4) = 2,
 			list(pick(subtypesof(/obj/item/toy/figure)), 4) = 2,
 			list(pick(subtypesof(/obj/item/toy/plushie)), 4) = 2,

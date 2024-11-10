@@ -6,6 +6,12 @@
 	health = getMaxHealth() - (getBruteLoss() + getFireLoss())
 	return
 
+/mob/living/silicon/robot/getMaxHealth()
+	. = ..()
+	for(var/V in components)
+		var/datum/robot_component/C = components[V]
+		. += C.max_damage - initial(C.max_damage)
+
 /mob/living/silicon/robot/getBruteLoss()
 	var/amount = 0
 	for(var/V in components)
