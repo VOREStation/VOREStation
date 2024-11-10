@@ -15,7 +15,6 @@ var/list/preferences_datums = list()
 	var/last_id
 
 	//game-preferences
-	var/ooccolor = "#010000"			//Whatever this is set to acts as 'reset' color and is thus unusable as an actual custom color
 	var/be_special = 0					//Special role selection
 
 	//character preferences
