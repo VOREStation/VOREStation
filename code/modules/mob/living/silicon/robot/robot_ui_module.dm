@@ -83,7 +83,7 @@
 				return
 			selected_module = new_module
 			var/list/module_sprites = SSrobot_sprites.get_module_sprites(selected_module, R)
-			if(!R.sprite_datum in module_sprites)
+			if(!sprite_datum in module_sprites)
 				sprite_datum = null
 			. = TRUE
 		if("pick_icon")
