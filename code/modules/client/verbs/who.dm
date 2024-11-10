@@ -1,6 +1,6 @@
 /client/verb/who()
 	set name = "Who"
-	set category = "OOC"
+	set category = "OOC.Resources"
 
 	var/msg = span_bold("Current Players:") + "\n"
 

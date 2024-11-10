@@ -7207,6 +7207,12 @@
 /obj/structure/closet/crate/bin{
 	anchored = 1
 	},
+/obj/machinery/button/remote/airlock/release{
+	pixel_y = -22;
+	pixel_x = 6;
+	dir = 1;
+	id = "dorm4"
+	},
 /turf/simulated/floor/carpet,
 /area/stellardelight/deck1/dorms/dorm4)
 "oB" = (
@@ -7544,6 +7550,12 @@
 	},
 /obj/structure/closet/crate/bin{
 	anchored = 1
+	},
+/obj/machinery/button/remote/airlock/release{
+	pixel_y = -22;
+	pixel_x = -8;
+	dir = 1;
+	id = "dorm6"
 	},
 /turf/simulated/floor/carpet/purcarpet,
 /area/stellardelight/deck1/dorms/dorm6)
@@ -8799,6 +8811,11 @@
 /obj/structure/closet/crate/bin{
 	anchored = 1
 	},
+/obj/machinery/button/remote/airlock/release{
+	pixel_y = 24;
+	pixel_x = -7;
+	id = "dorm8"
+	},
 /turf/simulated/floor/carpet,
 /area/stellardelight/deck1/dorms/dorm8)
 "rX" = (
@@ -8897,7 +8914,6 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/stellardelight/deck1/starboard)
 "sf" = (
-/obj/machinery/disease2/isolator,
 /obj/machinery/light/floortube{
 	dir = 8;
 	pixel_x = -6
@@ -8907,6 +8923,12 @@
 	dir = 8;
 	pixel_x = -24
 	},
+/obj/structure/closet/crate/medical,
+/obj/item/reagent_containers/glass/bottle/culture/cold{
+	pixel_x = -5;
+	pixel_y = 5
+	},
+/obj/item/reagent_containers/glass/bottle/culture/flu,
 /turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/medical/virology)
 "sg" = (
@@ -10985,9 +11007,6 @@
 /turf/simulated/floor,
 /area/maintenance/stellardelight/deck1/portaft)
 "wR" = (
-/obj/machinery/computer/diseasesplicer{
-	dir = 1
-	},
 /turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/medical/virology)
 "wS" = (
@@ -13386,7 +13405,6 @@
 /turf/simulated/wall/bay/black,
 /area/chapel/main)
 "BV" = (
-/obj/machinery/disease2/incubator,
 /obj/structure/reagent_dispensers/virusfood{
 	pixel_y = 27
 	},
@@ -13717,7 +13735,6 @@
 "CJ" = (
 /obj/structure/table/glass,
 /obj/item/book/manual/virology,
-/obj/item/antibody_scanner,
 /obj/item/reagent_containers/glass/beaker,
 /obj/item/paper_bin,
 /obj/item/folder/white,
@@ -15308,11 +15325,11 @@
 /turf/simulated/floor/tiled/steel_ridged,
 /area/prison/cell_block)
 "Gn" = (
-/obj/machinery/disease2/diseaseanalyser,
 /obj/machinery/light/floortube{
 	dir = 8;
 	pixel_x = -6
 	},
+/obj/machinery/computer/pandemic,
 /turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/medical/virology)
 "Go" = (
@@ -16041,6 +16058,11 @@
 	},
 /obj/structure/closet/crate/bin{
 	anchored = 1
+	},
+/obj/machinery/button/remote/airlock/release{
+	pixel_y = 24;
+	pixel_x = 7;
+	id = "dorm1"
 	},
 /turf/simulated/floor/carpet,
 /area/stellardelight/deck1/dorms/dorm1)
@@ -21133,6 +21155,12 @@
 /obj/structure/closet/crate/bin{
 	anchored = 1
 	},
+/obj/machinery/button/remote/airlock/release{
+	pixel_y = -22;
+	pixel_x = 6;
+	dir = 1;
+	id = "dorm3"
+	},
 /turf/simulated/floor/carpet/purcarpet,
 /area/stellardelight/deck1/dorms/dorm3)
 "SQ" = (
@@ -22405,7 +22433,6 @@
 /turf/simulated/floor/wood,
 /area/library)
 "Vq" = (
-/obj/machinery/computer/centrifuge,
 /obj/machinery/embedded_controller/radio/airlock/access_controller{
 	dir = 4;
 	id_tag = "virology_airlock_control";
@@ -22474,6 +22501,11 @@
 	},
 /obj/structure/closet/crate/bin{
 	anchored = 1
+	},
+/obj/machinery/button/remote/airlock/release{
+	pixel_y = 24;
+	pixel_x = -7;
+	id = "dorm7"
 	},
 /turf/simulated/floor/carpet/purcarpet,
 /area/stellardelight/deck1/dorms/dorm7)
@@ -22759,6 +22791,11 @@
 	},
 /obj/structure/closet/crate/bin{
 	anchored = 1
+	},
+/obj/machinery/button/remote/airlock/release{
+	pixel_y = 24;
+	pixel_x = 7;
+	id = "dorm2"
 	},
 /turf/simulated/floor/carpet/purcarpet,
 /area/stellardelight/deck1/dorms/dorm2)
@@ -23884,6 +23921,12 @@
 	},
 /obj/structure/closet/crate/bin{
 	anchored = 1
+	},
+/obj/machinery/button/remote/airlock/release{
+	pixel_y = -22;
+	pixel_x = -8;
+	dir = 1;
+	id = "dorm5"
 	},
 /turf/simulated/floor/carpet,
 /area/stellardelight/deck1/dorms/dorm5)

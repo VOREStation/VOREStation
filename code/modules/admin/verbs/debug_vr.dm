@@ -1,5 +1,5 @@
 /datum/admins/proc/quick_nif()
-	set category = "Fun"
+	set category = "Fun.Add Nif"
 	set name = "Quick NIF"
 	set desc = "Spawns a NIF into someone in quick-implant mode."
 

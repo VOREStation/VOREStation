@@ -19,7 +19,7 @@ var/global/list/image/splatter_cache=list()
 	blood_DNA = list()
 	var/basecolor="#A10808" // Color when wet.
 	var/synthblood = 0
-	var/list/datum/disease2/disease/virus2 = list()
+	var/list/datum/disease/viruses = list()
 	var/amount = 5
 	generic_filth = TRUE
 	persistent = FALSE
@@ -112,6 +112,10 @@ var/global/list/image/splatter_cache=list()
 		var/obj/structure/bed/chair/wheelchair/W = perp.buckled
 		W.bloodiness = 4
 
+	if(viruses)
+		for(var/datum/disease/D in viruses)
+			perp.ContractDisease(D)
+
 	amount--
 
 /obj/effect/decal/cleanable/blood/proc/dry()
@@ -124,6 +128,11 @@ var/global/list/image/splatter_cache=list()
 	..()
 	if (amount && istype(user))
 		add_fingerprint(user)
+
+		if(viruses)
+			for(var/datum/disease/D in viruses)
+				user.ContractDisease(D)
+
 		if (user.gloves)
 			return
 		var/taken = rand(1,amount)
@@ -242,7 +251,7 @@ var/global/list/image/splatter_cache=list()
 	icon_state = "mucus"
 	random_icon_states = list("mucus")
 
-	var/list/datum/disease2/disease/virus2 = list()
+	var/list/datum/disease/viruses = list()
 	var/dry = 0 // Keeps the lag down
 
 /obj/effect/decal/cleanable/mucus/Initialize()
@@ -252,11 +261,20 @@ var/global/list/image/splatter_cache=list()
 //This version should be used for admin spawns and pre-mapped virus vectors (e.g. in PoIs), this version does not dry
 /obj/effect/decal/cleanable/mucus/mapped/Initialize()
 	. = ..()
-	virus2 |= new /datum/disease2/disease
-	virus2[1].makerandom()
+	viruses |= new /datum/disease/advance
 
 /obj/effect/decal/cleanable/mucus/mapped/Destroy()
-	virus2.Cut()
+	viruses.Cut()
 	return ..()
+
+/obj/effect/decal/cleanable/mucus/Crossed(mob/living/carbon/human/perp)
+	if(viruses)
+		for(var/datum/disease/D in viruses)
+			perp.ContractDisease(D)
+
+/obj/effect/decal/cleanable/vomit/Crossed(mob/living/carbon/human/perp)
+	if(viruses)
+		for(var/datum/disease/D in viruses)
+			perp.ContractDisease(D)
 
 #undef DRYING_TIME

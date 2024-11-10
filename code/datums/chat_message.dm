@@ -94,6 +94,7 @@ var/list/runechat_image_cache = list()
   * * lifespan - The lifespan of the message in deciseconds
   */
 /datum/chatmessage/proc/generate_image(text, atom/target, mob/owner, list/extra_classes, lifespan)
+	set waitfor = FALSE
 
 	if(!target || !owner)
 		qdel(src)
@@ -231,7 +232,7 @@ var/list/runechat_image_cache = list()
 		return
 	ending_life = TRUE
 	animate(message, alpha = 0, time = fadetime, flags = ANIMATION_PARALLEL)
-	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(qdel), src), fadetime, TIMER_DELETE_ME, TIMER_UNIQUE)
+	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(qdel), src), fadetime, TIMER_DELETE_ME)
 
 /**
   * Creates a message overlay at a defined location for a given speaker

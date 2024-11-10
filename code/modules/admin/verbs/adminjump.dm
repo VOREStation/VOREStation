@@ -7,7 +7,7 @@
 /client/proc/Jump(areaname as null|anything in return_sorted_areas())
 	set name = "Jump to Area"
 	set desc = "Area to jump to"
-	set category = "Admin"
+	set category = "Admin.Game"
 	if(!check_rights(R_ADMIN|R_MOD|R_DEBUG|R_EVENT))
 		return
 
@@ -33,7 +33,7 @@
 
 /client/proc/jumptoturf(var/turf/T in world)
 	set name = "Jump to Turf"
-	set category = "Admin"
+	set category = "Admin.Game"
 	if(!check_rights(R_ADMIN|R_MOD|R_DEBUG|R_EVENT))
 		return
 	if(CONFIG_GET(flag/allow_admin_jump))
@@ -48,7 +48,7 @@
 
 /// Verb wrapper around do_jumptomob()
 /client/proc/jumptomob(mob as null|anything in mob_list)
-	set category = "Admin"
+	set category = "Admin.Game"
 	set name = "Jump to Mob"
 	set popup_menu = FALSE //VOREStation Edit - Declutter.
 
@@ -80,7 +80,7 @@
 		to_chat(A, span_filter_adminlog("This mob is not located in the game world."))
 
 /client/proc/jumptocoord(tx as num, ty as num, tz as num)
-	set category = "Admin"
+	set category = "Admin.Game"
 	set name = "Jump to Coordinate"
 
 	if(!check_rights(R_ADMIN|R_MOD|R_DEBUG|R_EVENT))
@@ -102,7 +102,7 @@
 		tgui_alert_async(usr, "Admin jumping disabled")
 
 /client/proc/jumptokey()
-	set category = "Admin"
+	set category = "Admin.Game"
 	set name = "Jump to Key"
 
 	if(!check_rights(R_ADMIN|R_MOD|R_DEBUG|R_EVENT))
@@ -125,7 +125,7 @@
 		tgui_alert_async(usr, "Admin jumping disabled")
 
 /client/proc/Getmob(mob/living/M as null|anything in mob_list)	//VOREStation Edit
-	set category = "Admin"
+	set category = "Admin.Game"
 	set name = "Get Mob"
 	set desc = "Mob to teleport"
 	set popup_menu = TRUE	//VOREStation Edit
@@ -148,7 +148,7 @@
 		tgui_alert_async(usr, "Admin jumping disabled")
 
 /client/proc/Getkey()
-	set category = "Admin"
+	set category = "Admin.Game"
 	set name = "Get Key"
 	set desc = "Key to teleport"
 
@@ -178,7 +178,7 @@
 		tgui_alert_async(usr, "Admin jumping disabled")
 
 /client/proc/sendmob()
-	set category = "Admin"
+	set category = "Admin.Game"
 	set name = "Send Mob"
 	if(!check_rights(R_ADMIN|R_MOD|R_DEBUG|R_EVENT))
 		return
@@ -202,7 +202,7 @@
 		tgui_alert_async(usr, "Admin jumping disabled")
 
 /client/proc/cmd_admin_move_atom(var/atom/movable/AM, tx as num, ty as num, tz as num)
-	set category = "Admin"
+	set category = "Admin.Game"
 	set name = "Move Atom to Coordinate"
 
 	if(!check_rights(R_ADMIN|R_DEBUG|R_EVENT))

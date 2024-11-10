@@ -141,6 +141,7 @@
 /area/submap/cave/qShuttle)
 "au" = (
 /obj/structure/closet/crate/secure/loot,
+/obj/item/reagent_containers/glass/bottle/culture/cold,
 /turf/simulated/shuttle/floor{
 	icon_state = "floor_yellow"
 	},
@@ -332,7 +333,8 @@
 	},
 /area/submap/cave/qShuttle)
 "aV" = (
-/obj/item/virusdish/random,
+/obj/structure/closet/crate/secure/loot,
+/obj/item/reagent_containers/glass/bottle/culture/flu,
 /turf/simulated/shuttle/floor{
 	icon_state = "floor_yellow"
 	},
@@ -472,9 +474,6 @@
 	name = "Virus Samples - FRAGILE";
 	opened = 1
 	},
-/obj/item/virusdish/random,
-/obj/item/virusdish/random,
-/obj/item/virusdish/random,
 /turf/simulated/shuttle/floor{
 	icon_state = "floor_yellow"
 	},
@@ -1311,7 +1310,7 @@ ab
 ad
 au
 aF
-aV
+aA
 bj
 bv
 bE
@@ -1363,7 +1362,7 @@ aa
 aa
 ab
 ad
-au
+aV
 aH
 aW
 bk
@@ -1394,7 +1393,7 @@ ad
 ad
 aX
 aA
-aV
+aA
 ad
 ad
 ad

@@ -6594,10 +6594,10 @@
 /obj/item/radio/headset/syndicate,
 /obj/item/radio/headset/syndicate,
 /obj/item/radio/headset/syndicate,
-/obj/item/radio/headset/syndicate/alt,
-/obj/item/radio/headset/syndicate/alt,
-/obj/item/radio/headset/syndicate/alt,
-/obj/item/radio/headset/syndicate/alt,
+/obj/item/radio/headset/alt/syndicate,
+/obj/item/radio/headset/alt/syndicate,
+/obj/item/radio/headset/alt/syndicate,
+/obj/item/radio/headset/alt/syndicate,
 /obj/effect/floor_decal/techfloor{
 	dir = 10
 	},

@@ -33,7 +33,7 @@
 
 
 /datum/admins/proc/call_supply_drop()
-	set category = "Fun"
+	set category = "Fun.Drop Pod"
 	set desc = "Call an immediate supply drop on your location."
 	set name = "Call Supply Drop"
 

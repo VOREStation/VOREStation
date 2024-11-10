@@ -18,7 +18,7 @@
 	feedback_add_details("admin_verb","DEVR") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/cmd_admin_prison(mob/M as mob in mob_list)
-	set category = "Admin"
+	set category = "Admin.Game"
 	set name = "Prison"
 	if(!holder)
 		return
@@ -46,7 +46,7 @@
 
 //Allows staff to determine who the newer players are.
 /client/proc/cmd_check_new_players()
-	set category = "Admin"
+	set category = "Admin.Investigate"
 	set name = "Check new Players"
 	if(!holder)
 		return
@@ -80,7 +80,7 @@
 		to_chat(src, "No matches for that age range found.")
 
 /client/proc/cmd_admin_subtle_message(mob/M as mob in mob_list)
-	set category = "Special Verbs"
+	set category = "Admin"
 	set name = "Subtle Message"
 
 	if(!ismob(M))	return
@@ -107,7 +107,7 @@
 	feedback_add_details("admin_verb","SMS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/cmd_admin_world_narrate() // Allows administrators to fluff events a little easier -- TLE
-	set category = "Special Verbs"
+	set category = "Fun.Narrate"
 	set name = "Global Narrate"
 
 	if (!holder)
@@ -128,7 +128,7 @@
 	feedback_add_details("admin_verb","GLN") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/cmd_admin_direct_narrate(var/mob/M)	// Targetted narrate -- TLE
-	set category = "Special Verbs"
+	set category = "Fun.Narrate"
 	set name = "Direct Narrate"
 
 	if(!holder)
@@ -155,7 +155,7 @@
 	feedback_add_details("admin_verb","DIRN") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/cmd_admin_godmode(mob/M as mob in mob_list)
-	set category = "Special Verbs"
+	set category = "Admin.Game"
 	set name = "Godmode"
 
 	if(!holder)
@@ -225,7 +225,7 @@
 	feedback_add_details("admin_verb","MUTE") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/cmd_admin_add_random_ai_law()
-	set category = "Fun"
+	set category = "Fun.Silicon"
 	set name = "Add Random AI Law"
 
 	if(!holder)
@@ -276,7 +276,7 @@ Ccomp's first proc.
 
 
 /client/proc/allow_character_respawn()
-	set category = "Special Verbs"
+	set category = "Admin.Game"
 	set name = "Allow player to respawn"
 	set desc = "Let a player bypass the wait to respawn or allow them to re-enter their corpse."
 
@@ -313,7 +313,7 @@ Ccomp's first proc.
 
 
 /client/proc/toggle_antagHUD_use()
-	set category = "Server"
+	set category = "Server.Game"
 	set name = "Toggle antagHUD usage"
 	set desc = "Toggles antagHUD usage for observers"
 
@@ -348,7 +348,7 @@ Ccomp's first proc.
 
 
 /client/proc/toggle_antagHUD_restrictions()
-	set category = "Server"
+	set category = "Server.Game"
 	set name = "Toggle antagHUD Restrictions"
 	set desc = "Restricts players that have used antagHUD from being able to join this round."
 
@@ -381,7 +381,7 @@ Works kind of like entering the game with a new character. Character receives a 
 Traitors and the like can also be revived with the previous role mostly intact.
 /N */
 /client/proc/respawn_character()
-	set category = "Special Verbs"
+	set category = "Fun.Event Kit"
 	set name = "Spawn Character"
 	set desc = "(Re)Spawn a client's loaded character."
 
@@ -594,7 +594,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	return new_character
 
 /client/proc/cmd_admin_add_freeform_ai_law()
-	set category = "Fun"
+	set category = "Fun.Silicon"
 	set name = "Add Custom AI law"
 
 	if(!holder)
@@ -623,7 +623,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	feedback_add_details("admin_verb","IONC") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/cmd_admin_rejuvenate(mob/living/M as mob in mob_list)
-	set category = "Special Verbs"
+	set category = "Admin.Game"
 	set name = "Rejuvenate"
 
 	if(!holder)
@@ -646,7 +646,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	feedback_add_details("admin_verb","REJU") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/cmd_admin_create_centcom_report()
-	set category = "Special Verbs"
+	set category = "Fun.Event Kit"
 	set name = "Create Command Report"
 
 	if(!holder)
@@ -674,7 +674,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	feedback_add_details("admin_verb","CCR") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/cmd_admin_delete(atom/O as obj|mob|turf in _validate_atom(O)) // I don't understand precisely how this fixes the string matching against a substring, but it does - Ater
-	set category = "Admin"
+	set category = "Admin.Game"
 	set name = "Delete"
 
 	if (!holder)
@@ -683,7 +683,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	admin_delete(O)
 
 /client/proc/cmd_admin_list_open_jobs()
-	set category = "Admin"
+	set category = "Admin.Investigate"
 	set name = "List free slots"
 
 	if (!holder)
@@ -695,7 +695,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	feedback_add_details("admin_verb","LFS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/cmd_admin_explosion(atom/O as obj|mob|turf in world)
-	set category = "Special Verbs"
+	set category = "Fun.Do Not"
 	set name = "Explosion"
 
 	if(!check_rights(R_DEBUG|R_FUN))	return //VOREStation Edit
@@ -723,7 +723,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		return
 
 /client/proc/cmd_admin_emp(atom/O as obj|mob|turf in world)
-	set category = "Special Verbs"
+	set category = "Fun.Do Not"
 	set name = "EM Pulse"
 
 	if(!check_rights(R_DEBUG|R_FUN))	return //VOREStation Edit
@@ -749,7 +749,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		return
 
 /client/proc/cmd_admin_gib(mob/M as mob in mob_list)
-	set category = "Special Verbs"
+	set category = "Fun.Do Not"
 	set name = "Gib"
 
 	if(!check_rights(R_ADMIN|R_FUN))	return //VOREStation Edit
@@ -771,7 +771,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 
 /client/proc/cmd_admin_gib_self()
 	set name = "Gibself"
-	set category = "Fun"
+	set category = "Fun.Do Not"
 
 	if(!holder)
 		return
@@ -791,7 +791,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 /*
 /client/proc/cmd_manual_ban()
 	set name = "Manual Ban"
-	set category = "Special Verbs"
+	set category = "Admin.Moderation"
 	if(!authenticated || !holder)
 		to_chat(src, "Only administrators may use this command.")
 		return
@@ -851,7 +851,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	return
 
 /client/proc/cmd_admin_check_contents(mob/living/M as mob in mob_list)
-	set category = "Special Verbs"
+	set category = "Admin.Investigate"
 	set name = "Check Contents"
 	set popup_menu = FALSE //VOREStation Edit - Declutter.
 
@@ -865,7 +865,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 
 /* This proc is DEFERRED. Does not do anything.
 /client/proc/cmd_admin_remove_phoron()
-	set category = "Debug"
+	set category = "Debug.Game"
 	set name = "Stabilize Atmos."
 	if(!holder)
 		to_chat(src, "Only administrators may use this command.")
@@ -895,7 +895,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 */
 
 /client/proc/toggle_view_range()
-	set category = "Special Verbs"
+	set category = "Admin.Game"
 	set name = "Change View Range"
 	set desc = "switches between 1x and custom views"
 
@@ -915,7 +915,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	feedback_add_details("admin_verb","CVRA") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/admin_call_shuttle()
-	set category = "Admin"
+	set category = "Admin.Events"
 	set name = "Call Shuttle"
 
 	if ((!( ticker ) || !emergency_shuttle.location()))
@@ -947,7 +947,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	return
 
 /client/proc/admin_cancel_shuttle()
-	set category = "Admin"
+	set category = "Admin.Events"
 	set name = "Cancel Shuttle"
 
 	if(!check_rights(R_ADMIN))	return //VOREStation Edit
@@ -965,7 +965,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	return
 
 /client/proc/admin_deny_shuttle()
-	set category = "Admin"
+	set category = "Admin.Events"
 	set name = "Toggle Deny Shuttle"
 
 	if (!ticker)
@@ -979,7 +979,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	message_admins("[key_name_admin(usr)] has [emergency_shuttle.deny_shuttle ? "denied" : "allowed"] the shuttle to be called.")
 
 /client/proc/cmd_admin_attack_log(mob/M as mob in mob_list)
-	set category = "Special Verbs"
+	set category = "Admin.Logs"
 	set name = "Attack Log"
 
 	to_chat(usr, span_red(span_bold("Attack Log for [mob]")))
@@ -989,7 +989,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 
 
 /client/proc/everyone_random()
-	set category = "Fun"
+	set category = "Fun.Do Not"
 	set name = "Make Everyone Random"
 	set desc = "Make everyone have a random appearance. You can only use this before rounds!"
 
@@ -1023,7 +1023,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 
 
 /client/proc/toggle_random_events()
-	set category = "Server"
+	set category = "Server.Game"
 	set name = "Toggle random events on/off"
 	set desc = "Toggles random events such as meteors, black holes, blob (but not space dust) on/off"
 
@@ -1041,7 +1041,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 
 /client/proc/despawn_player(var/mob/M in living_mob_list)
 	set name = "Cryo Player"
-	set category = "Admin"
+	set category = "Admin.Game"
 	set desc = "Removes a player from the round as if they'd cryo'd."
 	set popup_menu = FALSE
 
@@ -1104,7 +1104,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 /client/proc/cmd_admin_droppod_spawn(var/object as text)
 	set name = "Drop Pod Atom"
 	set desc = "Spawn a new atom/movable in a drop pod where you are."
-	set category = "Fun"
+	set category = "Fun.Drop Pod"
 
 	if(!check_rights(R_SPAWN))
 		return
@@ -1146,7 +1146,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 /client/proc/cmd_admin_droppod_deploy()
 	set name = "Drop Pod Deploy"
 	set desc = "Drop an existing mob where you are in a drop pod."
-	set category = "Fun"
+	set category = "Fun.Drop Pod"
 
 	if(!check_rights(R_SPAWN))
 		return
