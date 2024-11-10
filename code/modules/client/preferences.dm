@@ -17,9 +17,6 @@ var/list/preferences_datums = list()
 	//game-preferences
 	var/ooccolor = "#010000"			//Whatever this is set to acts as 'reset' color and is thus unusable as an actual custom color
 	var/be_special = 0					//Special role selection
-	var/UI_style = "Midnight"
-	var/UI_style_color = "#ffffff"
-	var/UI_style_alpha = 255
 	var/tooltipstyle = "Midnight"		//Style for popup tooltips
 	var/ambience_freq = 5				// How often we're playing repeating ambience to a client.
 	var/ambience_chance = 35			// What's the % chance we'll play ambience (in conjunction with the above frequency)

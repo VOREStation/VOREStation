@@ -508,8 +508,8 @@ GLOBAL_LIST_INIT(preference_entries_by_key, init_preference_entries_by_key())
 	if(should_generate_icons)
 		var/list/icons = list()
 
-		// for(var/choice in choices) // TODO: Pref spritesheet asset
-		// 	icons[choice] = get_spritesheet_key(choice)
+		for(var/choice in choices)
+			icons[choice] = get_spritesheet_key(choice)
 
 		data["icons"] = icons
 

@@ -3,9 +3,6 @@
 	sort_order = 1
 
 /datum/category_item/player_setup_item/player_global/ui/load_preferences(datum/json_savefile/savefile)
-	pref.UI_style			= savefile.get_entry("UI_style")
-	pref.UI_style_color		= savefile.get_entry("UI_style_color")
-	pref.UI_style_alpha		= savefile.get_entry("UI_style_alpha")
 	pref.ooccolor			= savefile.get_entry("ooccolor")
 	pref.tooltipstyle		= savefile.get_entry("tooltipstyle")
 	pref.ambience_freq		= savefile.get_entry("ambience_freq")
@@ -13,9 +10,6 @@
 	pref.chat_timestamp		= savefile.get_entry("chat_timestamp")
 
 /datum/category_item/player_setup_item/player_global/ui/save_preferences(datum/json_savefile/savefile)
-	savefile.set_entry("UI_style",			pref.UI_style)
-	savefile.set_entry("UI_style_color",	pref.UI_style_color)
-	savefile.set_entry("UI_style_alpha",	pref.UI_style_alpha)
 	savefile.set_entry("ooccolor",			pref.ooccolor)
 	savefile.set_entry("tooltipstyle",		pref.tooltipstyle)
 	savefile.set_entry("ambience_freq",		pref.ambience_freq)
@@ -23,9 +17,6 @@
 	savefile.set_entry("chat_timestamp",	pref.chat_timestamp)
 
 /datum/category_item/player_setup_item/player_global/ui/sanitize_preferences()
-	pref.UI_style			= sanitize_inlist(pref.UI_style, all_ui_styles, initial(pref.UI_style))
-	pref.UI_style_color		= sanitize_hexcolor(pref.UI_style_color, initial(pref.UI_style_color))
-	pref.UI_style_alpha		= sanitize_integer(pref.UI_style_alpha, 0, 255, initial(pref.UI_style_alpha))
 	pref.ooccolor			= sanitize_hexcolor(pref.ooccolor, initial(pref.ooccolor))
 	pref.tooltipstyle		= sanitize_inlist(pref.tooltipstyle, all_tooltip_styles, initial(pref.tooltipstyle))
 	pref.ambience_freq		= sanitize_integer(pref.ambience_freq, 0, 60, initial(pref.ambience_freq)) // No more than once per hour.
@@ -33,10 +24,6 @@
 	pref.chat_timestamp		= sanitize_integer(pref.chat_timestamp, 0, 1, initial(pref.chat_timestamp))
 
 /datum/category_item/player_setup_item/player_global/ui/content(var/mob/user)
-	. = span_bold("UI Style:") + " <a href='byond://?src=\ref[src];select_style=1'><b>[pref.UI_style]</b></a><br>"
-	. += span_bold("Custom UI") + " (recommended for White UI):<br>"
-	. += "-Color: <a href='?src=\ref[src];select_color=1'><b>[pref.UI_style_color]</b></a> [color_square(hex = pref.UI_style_color)] <a href='?src=\ref[src];reset=ui'>reset</a><br>"
-	. += "-Alpha(transparency): <a href='?src=\ref[src];select_alpha=1'><b>[pref.UI_style_alpha]</b></a> <a href='?src=\ref[src];reset=alpha'>reset</a><br>"
 	. += span_bold("Tooltip Style:") + " <a href='?src=\ref[src];select_tooltip_style=1'><b>[pref.tooltipstyle]</b></a><br>"
 	. += span_bold("Random Ambience Frequency:") + " <a href='?src=\ref[src];select_ambience_freq=1'><b>[pref.ambience_freq]</b></a><br>"
 	. += span_bold("Ambience Chance:") + " <a href='?src=\ref[src];select_ambience_chance=1'><b>[pref.ambience_chance]</b></a><br>"
@@ -49,25 +36,7 @@
 			. += "<a href='byond://?src=\ref[src];select_ooc_color=1'><b>[pref.ooccolor]</b></a> [color_square(hex = pref.ooccolor)]<a href='byond://?src=\ref[src];reset=ooc'>reset</a><br>"
 
 /datum/category_item/player_setup_item/player_global/ui/OnTopic(var/href,var/list/href_list, var/mob/user)
-	if(href_list["select_style"])
-		var/UI_style_new = tgui_input_list(user, "Choose UI style.", "Character Preference", all_ui_styles, pref.UI_style)
-		if(!UI_style_new || !CanUseTopic(user)) return TOPIC_NOACTION
-		pref.UI_style = UI_style_new
-		return TOPIC_REFRESH
-
-	else if(href_list["select_color"])
-		var/UI_style_color_new = input(user, "Choose UI color, dark colors are not recommended!", "Global Preference", pref.UI_style_color) as color|null
-		if(isnull(UI_style_color_new) || !CanUseTopic(user)) return TOPIC_NOACTION
-		pref.UI_style_color = UI_style_color_new
-		return TOPIC_REFRESH
-
-	else if(href_list["select_alpha"])
-		var/UI_style_alpha_new = tgui_input_number(user, "Select UI alpha (transparency) level, between 50 and 255.", "Global Preference", pref.UI_style_alpha, 255, 50)
-		if(isnull(UI_style_alpha_new) || (UI_style_alpha_new < 50 || UI_style_alpha_new > 255) || !CanUseTopic(user)) return TOPIC_NOACTION
-		pref.UI_style_alpha = UI_style_alpha_new
-		return TOPIC_REFRESH
-
-	else if(href_list["select_ooc_color"])
+	if(href_list["select_ooc_color"])
 		var/new_ooccolor = input(user, "Choose OOC color:", "Global Preference") as color|null
 		if(new_ooccolor && can_select_ooc_color(user) && CanUseTopic(user))
 			pref.ooccolor = new_ooccolor
@@ -99,10 +68,6 @@
 
 	else if(href_list["reset"])
 		switch(href_list["reset"])
-			if("ui")
-				pref.UI_style_color = initial(pref.UI_style_color)
-			if("alpha")
-				pref.UI_style_alpha = initial(pref.UI_style_alpha)
 			if("ooc")
 				pref.ooccolor = initial(pref.ooccolor)
 		return TOPIC_REFRESH

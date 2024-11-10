@@ -2149,6 +2149,7 @@
 #include "code\modules\client\preferences\types\game\runechat.dm"
 #include "code\modules\client\preferences\types\game\sound.dm"
 #include "code\modules\client\preferences\types\game\ui.dm"
+#include "code\modules\client\preferences\types\game\ui_style.dm"
 #include "code\modules\client\verbs\advanced_who.dm"
 #include "code\modules\client\verbs\character_directory.dm"
 #include "code\modules\client\verbs\ignore.dm"
