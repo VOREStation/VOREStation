@@ -341,11 +341,9 @@
 		var/list/module_sprites = SSrobot_sprites.get_module_sprites(module, src)
 		if(module_sprites.len == 1 || !client)
 			sprite_datum = module_sprites[1]
+			sprite_datum.do_equipment_glamour(module)
 			return
 	new/datum/tgui_module/robot_ui_module(src)
-	if(sprite_datum && module)
-		sprite_datum.do_equipment_glamour(module)
-
 
 /mob/living/silicon/robot/proc/update_braintype()
 	if(istype(mmi, /obj/item/mmi/digital/posibrain))

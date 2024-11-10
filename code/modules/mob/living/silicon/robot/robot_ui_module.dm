@@ -90,6 +90,7 @@
 			R.hud_used.update_robot_modules_display()
 			R.notify_ai(ROBOT_NOTIFICATION_NEW_MODULE, R.module.name)
 			R.robotact?.update_static_data_for_all_viewers()
+			R.sprite_datum = sprite_datum
 			if(!istype(R,/mob/living/silicon/robot/drone))
 				R.sprite_type = sprite_datum.name
 			R.transform_with_anim()
@@ -102,5 +103,6 @@
 				R.resize(tempsize)
 			if(R.hands)
 				R.update_hud()
+			R.sprite_datum.do_equipment_glamour(module)
 			to_chat(R, span_filter_notice("Your icon has been set. You now require a module reset to change it."))
 			tgui_close()
