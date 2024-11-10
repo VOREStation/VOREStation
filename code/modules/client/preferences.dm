@@ -18,8 +18,6 @@ var/list/preferences_datums = list()
 	var/ooccolor = "#010000"			//Whatever this is set to acts as 'reset' color and is thus unusable as an actual custom color
 	var/be_special = 0					//Special role selection
 
-	var/chat_timestamp = FALSE
-
 	//character preferences
 	var/real_name						//our character's name
 	var/be_random_name = 0				//whether we are a random name every round
