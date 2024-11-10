@@ -2,4 +2,4 @@
 	name = "chat"
 
 /datum/asset/spritesheet/chat/create_spritesheets()
-	InsertAll("", text_tag_icons) //Chomp - OOC, LOOC ect icons
+	InsertAll("", text_tag_icons) // OOC, LOOC ect icons
