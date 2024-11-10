@@ -63,6 +63,10 @@
 	data["health"] = R.health
 	data["max_health"] = R.getMaxHealth()
 	data["light_color"] = R.robot_light_col
+	if(R.emagged)
+		data["theme"] = "syndicate"
+	else if (R.ui_theme)
+		data["theme"] = R.ui_theme
 
 	data["weapon_lock"] = R.weapon_lock
 

@@ -31,6 +31,10 @@
 				if(is_borg_whitelisted(R, module_name))
 					modules |= module_name
 	data["possible_modules"] = modules
+	if(R.emagged)
+		data["theme"] = "syndicate"
+	else if (R.ui_theme)
+		data["theme"] = R.ui_theme
 
 	return data
 
@@ -40,6 +44,7 @@
 	var/mob/living/silicon/robot/R = host
 
 	if(selected_module)
+		data["selected_module"]  = selected_module
 		if(!SSrobot_sprites)
 			to_chat(R, span_warning("Robot Sprites have not been initialized yet. How are you choosing a sprite? Harass a coder."))
 			selected_module = null
@@ -52,6 +57,8 @@
 			return
 
 		data["possible_sprites"] = module_sprites
+		if(sprite_datum)
+			data["sprite_datum"] = sprite_datum
 
 	return data
 
@@ -78,13 +85,16 @@
 			if(!sprite)
 				return
 			var/list/module_sprites = SSrobot_sprites.get_module_sprites(selected_module, R)
-			sprite_datum = module_sprites[sprite]
+			for(var/datum/robot_sprite/S in module_sprites)
+				if(S.name == sprite)
+					sprite_datum = S
+					break
 			. = TRUE
 		if("confirm")
 			R.icon_selected = 1
 			var/module_type = robot_modules[selected_module]
+			R.modtype = selected_module
 			R.module = new module_type(R)
-			R.hands.icon_state = R.get_hud_module_icon()
 			feedback_inc("cyborg_[lowertext(selected_module)]",1)
 			R.updatename()
 			R.hud_used.update_robot_modules_display()
@@ -103,6 +113,6 @@
 				R.resize(tempsize)
 			if(R.hands)
 				R.update_hud()
-			R.sprite_datum.do_equipment_glamour(module)
+			R.sprite_datum.do_equipment_glamour(R.module)
 			to_chat(R, span_filter_notice("Your icon has been set. You now require a module reset to change it."))
-			tgui_close()
+			close_ui()

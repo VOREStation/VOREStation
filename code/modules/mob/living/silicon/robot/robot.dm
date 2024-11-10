@@ -46,6 +46,8 @@
 	var/shown_robot_modules = 0 //Used to determine whether they have the module menu shown or not
 	var/obj/screen/robot_modules_background
 
+	var/ui_theme
+
 //3 Modules can be activated at any one time.
 	var/obj/item/robot_module/module = null
 	var/module_active = null
@@ -343,7 +345,8 @@
 			sprite_datum = module_sprites[1]
 			sprite_datum.do_equipment_glamour(module)
 			return
-	new/datum/tgui_module/robot_ui_module(src)
+	var/datum/tgui_module/robot_ui_module/ui = new(src)
+	ui.tgui_interact(src)
 
 /mob/living/silicon/robot/proc/update_braintype()
 	if(istype(mmi, /obj/item/mmi/digital/posibrain))
