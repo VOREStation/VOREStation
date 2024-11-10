@@ -6,4 +6,4 @@ export type Data = {
   sprite_datum?: string;
 };
 
-export type spriteOption = { sprite: string; belly: boolean };
+export type spriteOption = { sprite: string; belly: boolean; type: string };

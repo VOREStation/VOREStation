@@ -15,7 +15,6 @@ export const SelectorElement = (props: {
       <Button
         fluid
         selected={option === selected}
-        color={option === selected ? 'green' : undefined}
         onClick={() => act(action, { value: option })}
       >
         <Flex>

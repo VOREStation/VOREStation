@@ -57,7 +57,12 @@
 			return
 		var/list/available_sprites = list()
 		for(var/datum/robot_sprite/S in module_sprites)
-			available_sprites += list(list("sprite" = S.name, "belly" = S.has_vore_belly_sprites))
+			var/model_type = "def"
+			if(istype(S, /datum/robot_sprite/dogborg))
+				model_type = "wide"
+			if(istype(S, /datum/robot_sprite/dogborg/tall))
+				model_type = "tall"
+			available_sprites += list(list("sprite" = S.name, "belly" = S.has_vore_belly_sprites, "type" = model_type))
 
 		data["possible_sprites"] = available_sprites
 		if(sprite_datum)

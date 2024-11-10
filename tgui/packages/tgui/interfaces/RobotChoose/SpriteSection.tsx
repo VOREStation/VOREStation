@@ -1,26 +1,58 @@
-import { createSearch } from 'common/string';
 import { useState } from 'react';
-import { Input, Section, Stack } from 'tgui-core/components';
+import { Button, Input, Section, Stack } from 'tgui-core/components';
 
+import { robotSpriteSearcher } from './functions';
 import { SelectorElement } from './SelectorElement';
 import { spriteOption } from './types';
 
 export const SpriteSection = (props: {
   title: string;
-  sortable?: { sprite: string; belly: boolean }[];
+  sortable?: spriteOption[];
   selected?: string;
 }) => {
   const { title, sortable, selected } = props;
 
   const [searchText, setSearchText] = useState<string>('');
+  const [includeDefault, setIncludeDefault] = useState<boolean>(true);
+  const [includeDog, setInclideDog] = useState<boolean>(true);
+  const [includeTall, setIncludeTall] = useState<boolean>(true);
 
-  const searcher = createSearch(searchText, (element: spriteOption) => {
-    return element.sprite;
-  });
-
-  const filtered = sortable?.filter(searcher);
+  const filtered = robotSpriteSearcher(
+    searchText,
+    includeDefault,
+    includeDog,
+    includeTall,
+    sortable,
+  );
   return (
-    <Section title={title} fill scrollable width="30%">
+    <Section
+      title={title}
+      fill
+      scrollable
+      width="30%"
+      buttons={
+        <>
+          <Button.Checkbox
+            checked={includeDefault}
+            onClick={() => setIncludeDefault(!includeDefault)}
+          >
+            Def
+          </Button.Checkbox>
+          <Button.Checkbox
+            checked={includeDog}
+            onClick={() => setInclideDog(!includeDog)}
+          >
+            Wide
+          </Button.Checkbox>
+          <Button.Checkbox
+            checked={includeTall}
+            onClick={() => setIncludeTall(!includeTall)}
+          >
+            Tall
+          </Button.Checkbox>
+        </>
+      }
+    >
       <Stack.Item mb={'10px'}>
         <Input
           fluid
