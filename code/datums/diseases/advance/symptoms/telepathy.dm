@@ -26,11 +26,11 @@ Bonus
 /datum/symptom/telepathy/Start(datum/disease/advance/A)
 	var/mob/living/carbon/human/H = A.affected_mob
 	H.dna.SetSEState(REMOTETALKBLOCK, 1)
-	domutcheck(H, null, TRUE)
+	domutcheck(H, null, MUTCHK_FORCED)
 	to_chat(H, span_notice("Your mind expands..."))
 
 /datum/symptom/telepathy/End(datum/disease/advance/A)
 	var/mob/living/carbon/human/H = A.affected_mob
 	H.dna.SetSEState(REMOTETALKBLOCK, 0)
-	domutcheck(H, null, TRUE)
+	domutcheck(H, null, MUTCHK_FORCED)
 	to_chat(H, span_notice("Everything feels... Normal."))

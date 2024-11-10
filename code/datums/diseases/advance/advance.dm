@@ -354,26 +354,28 @@ GLOBAL_LIST_INIT(advance_cures, list(
 
 		var/new_name = tgui_input_text(usr, "Name your new disease.", "New Name")
 		if(!new_name)
-			return
+			return FALSE
 		D.AssignName(new_name)
 		D.Refresh()
 
 		for(var/datum/disease/advance/AD in active_diseases)
 			AD.Refresh()
 
-		for(var/thing in shuffle(human_mob_list))
-			H = thing
-			if(H.stat == DEAD)
-				continue
-			if(!H.HasDisease(D))
-				H.ForceContractDisease(D)
-				break
+		H = tgui_input_list(usr, "Choose infectee", human_mob_list)
+
+		if(isnull(H))
+			return FALSE
+
+		if(!H.HasDisease(D))
+			H.ForceContractDisease(D)
 
 		var/list/name_symptoms = list()
 		for(var/datum/symptom/S in D.symptoms)
 			name_symptoms += S.name
 		message_admins("[key_name_admin(usr)] has triggered a custom virus outbreak of [D.name]! It has these symptoms: [english_list(name_symptoms)]")
 		log_admin("[key_name_admin(usr)] infected [key_name_admin(H)] with [D.name]. It has these symptoms: [english_list(name_symptoms)]")
+
+		return TRUE
 
 /datum/disease/advance/proc/totalStageSpeed()
 	var/total_stage_speed = 0
