@@ -13,9 +13,9 @@ export const SpriteSection = (props: {
   const { title, sortable, selected } = props;
 
   const [searchText, setSearchText] = useState<string>('');
-  const [includeDefault, setIncludeDefault] = useState<boolean>(true);
-  const [includeDog, setInclideDog] = useState<boolean>(true);
-  const [includeTall, setIncludeTall] = useState<boolean>(true);
+  const [includeDefault, setIncludeDefault] = useState<boolean>(false);
+  const [includeDog, setInclideDog] = useState<boolean>(false);
+  const [includeTall, setIncludeTall] = useState<boolean>(false);
 
   const filtered = robotSpriteSearcher(
     searchText,
