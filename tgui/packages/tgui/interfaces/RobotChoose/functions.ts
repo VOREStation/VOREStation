@@ -15,6 +15,9 @@ export function robotSpriteSearcher(
     searchText,
     (sprite: spriteOption) => sprite.sprite,
   );
+  if (!sprites) {
+    return [];
+  }
   let subtypes: string[] = [];
   if (includeDefault) {
     subtypes.push('def');
@@ -24,9 +27,6 @@ export function robotSpriteSearcher(
   }
   if (includeTall) {
     subtypes.push('tall');
-  }
-  if (!sprites) {
-    return [];
   }
   return flow([
     (sprites: spriteOption[]) => {
