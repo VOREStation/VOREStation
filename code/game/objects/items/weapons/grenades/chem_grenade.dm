@@ -32,7 +32,7 @@
 		if(detonator)
 //				detonator.loc=src.loc
 			detonator.detached()
-			usr.put_in_hands(detonator)
+			user.put_in_hands(detonator)
 			detonator=null
 			det_time = null
 			stage=0

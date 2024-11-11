@@ -152,7 +152,7 @@
 /datum/eventkit/modify_robot/tgui_state(mob/user)
 	return GLOB.tgui_admin_state
 
-/datum/eventkit/modify_robot/tgui_act(action, params)
+/datum/eventkit/modify_robot/tgui_act(action, params, datum/tgui/ui)
 	. = ..()
 	if(.)
 		return
@@ -292,12 +292,12 @@
 			var/new_upgrade = text2path(params["upgrade"])
 			if(new_upgrade == /obj/item/borg/upgrade/utility/reset)
 				var/obj/item/borg/upgrade/utility/reset/rmodul = new_upgrade
-				if(tgui_alert(usr, "Are you sure that you want to install [initial(rmodul.name)] and reset the robot's module?","Confirm",list("Yes","No"))!="Yes")
+				if(tgui_alert(ui.user, "Are you sure that you want to install [initial(rmodul.name)] and reset the robot's module?","Confirm",list("Yes","No"))!="Yes")
 					return FALSE
 			var/obj/item/borg/upgrade/U = new new_upgrade(null)
 			if(new_upgrade == /obj/item/borg/upgrade/utility/rename)
 				var/obj/item/borg/upgrade/utility/rename/UN = U
-				var/new_name = sanitizeSafe(tgui_input_text(usr, "Enter new robot name", "Robot Reclassification", UN.heldname, MAX_NAME_LEN), MAX_NAME_LEN)
+				var/new_name = sanitizeSafe(tgui_input_text(ui.user, "Enter new robot name", "Robot Reclassification", UN.heldname, MAX_NAME_LEN), MAX_NAME_LEN)
 				if(new_name)
 					UN.heldname = new_name
 				U = UN
@@ -487,7 +487,7 @@
 				target.lawsync()
 			return TRUE
 		if("change_supplied_law_position")
-			var/new_position = tgui_input_number(usr, "Enter new supplied law position between 1 and [MAX_SUPPLIED_LAW_NUMBER], inclusive. Inherent laws at the same index as a supplied law will not be stated.", "Law Position", supplied_law_position, MAX_SUPPLIED_LAW_NUMBER, 1)
+			var/new_position = tgui_input_number(ui.user, "Enter new supplied law position between 1 and [MAX_SUPPLIED_LAW_NUMBER], inclusive. Inherent laws at the same index as a supplied law will not be stated.", "Law Position", supplied_law_position, MAX_SUPPLIED_LAW_NUMBER, 1)
 			if(isnum(new_position))
 				supplied_law_position = CLAMP(new_position, 1, MAX_SUPPLIED_LAW_NUMBER)
 				target.lawsync()
@@ -495,7 +495,7 @@
 		if("edit_law")
 			var/datum/ai_law/AL = locate(params["edit_law"]) in target.laws.all_laws()
 			if(AL)
-				var/new_law = sanitize(tgui_input_text(usr, "Enter new law. Leaving the field blank will cancel the edit.", "Edit Law", AL.law))
+				var/new_law = sanitize(tgui_input_text(ui.user, "Enter new law. Leaving the field blank will cancel the edit.", "Edit Law", AL.law))
 				if(new_law && new_law != AL.law)
 					AL.law = new_law
 					target.lawsync()
@@ -528,8 +528,8 @@
 				for(var/mob/living/silicon/robot/R in AI.connected_robots)
 					to_chat(R, span_danger("Law Notice"))
 					R.laws.show_laws(R)
-			if(usr != target)
-				to_chat(usr, span_notice("Laws displayed."))
+			if(ui.user != target)
+				to_chat(ui.user, span_notice("Laws displayed."))
 			return TRUE
 		if("select_ai")
 			selected_ai = locate(params["new_ai"])

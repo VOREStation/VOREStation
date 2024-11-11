@@ -92,7 +92,7 @@
 		if(container.reagents.total_volume < container.volume)
 			var/container_name = container.name
 			if(rimplant.reagents.trans_to(container, amount = rimplant.transfer_amount))
-				user.visible_message(span_notice("[usr] [pick(rimplant.emote_descriptor)] into \the [container_name]."),
+				user.visible_message(span_notice("[user] [pick(rimplant.emote_descriptor)] into \the [container_name]."),
 									span_notice("You [pick(rimplant.self_emote_descriptor)] some [rimplant.reagent_name] into \the [container_name]."))
 				if(prob(5))
 					src.visible_message(span_notice("[src] [pick(rimplant.random_emote)].")) // M-mlem.

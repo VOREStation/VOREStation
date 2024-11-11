@@ -61,11 +61,11 @@
 		ui = new(user, src, "TelecommsMachineBrowser", name)
 		ui.open()
 
-/obj/machinery/computer/telecomms/monitor/tgui_act(action, params)
+/obj/machinery/computer/telecomms/monitor/tgui_act(action, params, datum/tgui/ui)
 	if(..())
 		return TRUE
 
-	add_fingerprint(usr)
+	add_fingerprint(ui.user)
 
 	switch(action)
 		if("view")
@@ -100,9 +100,9 @@
 			. = TRUE
 
 		if("network")
-			var/newnet = tgui_input_text(usr, "Which network do you want to view?", "Comm Monitor", network, 15)
+			var/newnet = tgui_input_text(ui.user, "Which network do you want to view?", "Comm Monitor", network, 15)
 			newnet = sanitize(newnet,15) //Honestly, I'd be amazed if someone managed to do HTML in 15 chars.
-			if(newnet && ((usr in range(1, src) || issilicon(usr))))
+			if(newnet && ((ui.user in range(1, src) || issilicon(ui.user))))
 				if(length(newnet) > 15)
 					set_temp("FAILED: NETWORK TAG STRING TOO LENGTHY", "bad")
 					return TRUE

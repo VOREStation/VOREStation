@@ -135,7 +135,7 @@
 		ui = new(user, src, "Biogenerator", name)
 		ui.open()
 
-/obj/machinery/biogenerator/tgui_act(action, params)
+/obj/machinery/biogenerator/tgui_act(action, params, datum/tgui/ui)
 	if(..())
 		return
 
@@ -166,11 +166,11 @@
 					return
 				var/cost = round(br.cost / build_eff)
 				if(cost > points)
-					to_chat(usr, span_danger("Insufficient biomass."))
+					to_chat(ui.user, span_danger("Insufficient biomass."))
 					return
 				var/amt_to_actually_dispense = round(min(beaker.reagents.get_free_space(), br.reagent_amt))
 				if(amt_to_actually_dispense <= 0)
-					to_chat(usr, span_danger("The loaded beaker is full!"))
+					to_chat(ui.user, span_danger("The loaded beaker is full!"))
 					return
 				points -= (cost * (amt_to_actually_dispense / br.reagent_amt))
 				beaker.reagents.add_reagent(br.reagent_id, amt_to_actually_dispense)
@@ -179,7 +179,7 @@
 
 			var/cost = round(bi.cost / build_eff)
 			if(cost > points)
-				to_chat(usr, span_danger("Insufficient biomass."))
+				to_chat(ui.user, span_danger("Insufficient biomass."))
 				return
 
 			points -= cost

@@ -420,7 +420,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 /proc/select_active_ai(var/mob/user)
 	var/list/ais = active_ais()
 	if(ais.len)
-		if(user)	. = tgui_input_list(usr, "AI signals detected:", "AI selection", ais)
+		if(user)	. = tgui_input_list(user, "AI signals detected:", "AI selection", ais)
 		else		. = pick(ais)
 	return .
 

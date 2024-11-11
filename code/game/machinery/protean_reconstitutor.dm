@@ -135,7 +135,7 @@
 
 	if(W.has_tool_quality(TOOL_WRENCH))
 		if(protean_brain || protean_orchestrator || protean_refactory)
-			var/choice = tgui_input_list(usr, "What component would you like to remove?", "Remove Component", list(protean_brain,protean_orchestrator,protean_refactory))
+			var/choice = tgui_input_list(user, "What component would you like to remove?", "Remove Component", list(protean_brain,protean_orchestrator,protean_refactory))
 			if(!choice) return
 
 			if(choice == protean_brain)
