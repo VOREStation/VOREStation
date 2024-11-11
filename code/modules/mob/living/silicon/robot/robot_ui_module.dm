@@ -113,9 +113,13 @@
 			if(!is_borg_whitelisted(R, new_module))
 				return
 			selected_module = new_module
+			var/new_datum
 			var/list/module_sprites = SSrobot_sprites.get_module_sprites(selected_module, R)
-			if(!(sprite_datum in module_sprites))
-				sprite_datum = null
+			for(var/datum/robot_sprite/S in module_sprites)
+				if(S.name == sprite_datum.name)
+					new_datum = S
+					break
+			sprite_datum = new_datum
 			. = TRUE
 		if("pick_icon")
 			var/sprite = params["value"]
