@@ -1,17 +1,16 @@
 // The Gun //
 /obj/item/gun/projectile/cell_loaded/combat
 	name = "cell-loaded revolver"
-	desc = "Variety is the spice of life! The KHI-102b 'Nanotech Selectable-Fire Weapon', or NSFW for short, is an unholy hybrid of an ammo-driven  \
+	desc = "Variety is the spice of life! The Hephaestus 102b 'Nanotech Selectable-Fire Weapon', or NSFW for short, is an unholy hybrid of an ammo-driven  \
 	energy weapon that allows the user to mix and match their own fire modes. Up to four combinations of \
 	energy beams can be configured at once. Ammo not included."
-	catalogue_data = list(/datum/category_item/catalogue/information/organization/khi)
 
-	description_fluff = "The Kitsuhana 'Nanotech Selectable Fire Weapon' allows one to customize their loadout in the field, or before deploying, to achieve various results in a weapon they are already familiar with wielding."
+	description_fluff = "The Hephaestus 'Nanotech Selectable Fire Weapon' allows one to customize their loadout in the field, or before deploying, to achieve various results in a weapon they are already familiar with wielding."
 	allowed_magazines = list(/obj/item/ammo_magazine/cell_mag/combat)
 
 /obj/item/gun/projectile/cell_loaded/combat/prototype
 	name = "prototype cell-loaded revolver"
-	desc = "Variety is the spice of life! A prototype based on KHI-102b 'Nanotech Selectable-Fire Weapon', or NSFW for short, is an unholy hybrid of an ammo-driven  \
+	desc = "Variety is the spice of life! A prototype based on Hephaestus 102b 'Nanotech Selectable-Fire Weapon', or NSFW for short, is an unholy hybrid of an ammo-driven  \
 	energy weapon that allows the user to mix and match their own fire modes. Up to two combinations of \
 	energy beams can be configured at once. Ammo not included."
 
@@ -29,7 +28,6 @@
 	icon_state = "nsfw_mag"
 	max_ammo = 4
 	x_offset = 4
-	catalogue_data = list(/datum/category_item/catalogue/information/organization/khi)
 	description_info = "This magazine holds NSFW microbatteries to power the NSFW handgun. Up to three can be loaded at once, and each provides four shots of their respective energy type. Loading multiple of the same type will provide additional shots of that type. The batteries can be recharged in a normal recharger."
 	ammo_type = /obj/item/ammo_casing/microbattery/combat
 
@@ -58,7 +56,7 @@
 		new path(src)
 
 /obj/item/storage/secure/briefcase/nsfw_pack_hos
-	name = "\improper KHI-102b \'NSFW\' gun kit"
+	name = "\improper Hephaestus 102b \'NSFW\' gun kit"
 	desc = "A storage case for a multi-purpose handgun. Variety hour!"
 	w_class = ITEMSIZE_NORMAL
 	max_w_class = ITEMSIZE_NORMAL

@@ -184,7 +184,76 @@
 			"Morning Swan",
 			"Black Cat",
 			"Challenger",
-			"Savage Chicken"
+			"Savage Chicken",
+			"Homestead",
+			"Peacekeeper",
+			"Eminent Domain",
+			"Clear Sky",
+			"Midnight Light",
+			"Daedalus",
+			"Redline",
+			"Wild Dog",
+			"Black Eagle",
+			"Three of a Kind",
+			"Bonaventure",
+			"Go West",
+			"Once Upon A Time",
+			"Bygones Be",
+			"Just Capital",
+			"Delight",
+			"Valdez",
+			"Pioneer",
+			"Antilles",
+			"Explorer",
+			"Number Crunch",
+			"Until Dawn",
+			"Pistols at Dawn",
+			"Right Side",
+			"Merchant Prince",
+			"Merchant Princess",
+			"Merchant King",
+			"Merchant Queen",
+			"Merchant's Pride",
+			"Trade Law",
+			"Onward",
+			"Wanderer",
+			"Rocky Start",
+			"Downtown",
+			"Risk Reward",
+			"Culture Shock",
+			"Ambition",
+			"Vigor",
+			"Vigilant",
+			"Courageous",
+			"Profit Vanguard",
+			"Free Market",
+			"Market Speculation",
+			"Banker's Dozen",
+			"Adventure",
+			"Profiteer",
+			"Wrong Side",
+			"Final Notice",
+			"Tax Man",
+			"Ferryman",
+			"Hangman",
+			"Cattlecar",
+			"Runtime Error",
+			"For Sale, Cheap",
+			"Starfarer",
+			"Drifter",
+			"Windward",
+			"Hostile Takeover",
+			"Tax Loop",
+			"Fortune's Fancy",
+			"Fortuna",
+			"Inside Outside",
+			"Galley",
+			"Constellation",
+			"Dromedarii",
+			"Golden Hand",
+			"White Company",
+			"Haggler",
+			"Rendezvous"
 			)
 	var/list/destination_names = list()	//Names of static holdings that the organization's ships visit regularly.
 
@@ -198,8 +267,9 @@
 
 /datum/lore/organization/New()
 	..()
+
 	if(autogenerate_destination_names) // Lets pad out the destination names.
-		var/i = rand(15, 30) //significantly increased from original values due to the greater length of rounds on YW
+		var/i = rand(20, 30) //significantly increased from original values due to the greater length of rounds
 
 		//known planets and exoplanets, plus fictional ones
 		var/list/planets = list(
@@ -372,6 +442,9 @@
 			"NAS Zeus orbiting Virgo-Prime",
 			"NIB Posideon in Alpha Centauri",
 			"NTB Anur on Virgo-Prime",
+			"NSB Adephagia in Virgo-Erigone",
+			"NSB Rascal's Pass in Virgo-Erigone",
+			"NRV |Stellar Delight| in Virgo-Erigone",
 			"a phoron refinery in Vilous",
 			"a dockyard orbiting Virgo-Prime",
 			"an asteroid orbiting Virgo 3",
@@ -697,7 +770,7 @@
 			"Corona",
 			"Binary"
 			)
-	destination_names = list()
+	//destination_names = list()
 
 /datum/lore/organization/tsc/bishop
 	name = "Bishop Cybernetics"
@@ -943,7 +1016,7 @@
 			"Galaxius Mons",
 			"Hellas Planitia"
 			)
-	destination_names = list()
+	//destination_names = list()
 
 /datum/lore/organization/tsc/ftu
 	name = "Free Trade Union"
@@ -1406,7 +1479,7 @@
 			"Wulf Aeronautics, the Commonwealth's favorite shipwrights.",
 			"Wulf Aeronautics, building tomorrow's ships today."
 			)
-	ship_prefixes = list("WATV" = "a transport", "WARV" = "a repair", "WAV" = "a general operations")
+	ship_prefixes = list("WAFV" = "a freight", "WARV" = "a repair", "WAV" = "a general operations", "WALV" = "a logistics")
 	destination_names = list(
 			"Wulf Aeronautics HQ",
 			"a Wulf Aeronautics supply depot",
@@ -1636,75 +1709,18 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 // Other
-/datum/lore/organization/other/kitsuhana	//sorry KHI, but you're not a coherent stellar government, and you're definitely not a TSC. you get to go in the Others pool. //makes sense to me!
-	name = "Kitsuhana Heavy Industries"
-	short_name = ""	//whitespace haaaack
-	desc = "A large post-scarcity amalgamation of races, Kitsuhana is no longer a company but rather a loose association of 'members' \
-			who only share the KHI name and their ideals in common. Kitsuhana accepts interviews to join their ranks, and though they have no \
-			formal structure with regards to government or law, the concept of 'consent' drives most of the large decision making. Kitsuhanans \
-			pride themselves on their ability to avoid consequence, essentially preferring to live care-free lives. Their post-scarcity allows \
-			them to rebuild, regrow, and replenish almost any lost asset or resource nearly instantly. It leads to many of the Kitsuhana \
-			'members' treating everything with frivolity and lends them a care-free demeanor."
-	history = "Originally a heavy industrial equipment and space mining company. During a forced evacuation of their homeworld, \
-			they were the only organization with enough ship capacity to relocate any significant portion of the population, starting with \
-			their own employees. After the resulting slowship travel to nearby starsystems, most of the population decided to keep the moniker \
-			of the company name. Over the years, Kitsuhana developed into a post-scarcity anarchy where virtually nothing has consequences and \
-			Kitsuhana 'members' can live their lives as they see fit, often in isolation."
-	work = "utopian anarchy"
-	headquarters = "Kitsuhana Prime"
-	motto = "Do what you want. We know we will."
-
-	//Culture ship names!
-	ship_prefixes = list("KHI" = "personal") //Everybody's out for themselves, yanno.
-	ship_names = list(
-			"Nervous Energy",
-			"Prosthetic Conscience",
-			"Revisionist",
-			"Trade Surplus",
-			"Flexible Demeanour",
-			"Just Read The Instructions",
-			"Limiting Factor",
-			"Cargo Cult",
-			"Gunboat Diplomat",
-			"A Ship With A View",
-			"Cantankerous",
-			"I Thought He Was With You",
-			"Never Talk To Strangers",
-			"Sacrificial Victim",
-			"Unwitting Accomplice",
-			"Bad For Business",
-			"Just Testing",
-			"Size Isn't Everything",
-			"Yawning Angel",
-			"Liveware Problem",
-			"Very Little Gravitas Indeed",
-			"Zero Gravitas",
-			"Gravitas Free Zone",
-			"Absolutely No You-Know-What"
-			)
-	destination_names = list(
-			"Kitsuhana Prime",
-			"Kitsuhana Beta",
-			"Kitsuhana Gamma",
-			"the Kitsuhana Forge",
-			"a Kitsuhanan's home",
-			"a Kitsuhana ringworld in Pleis Ceti V",
-			"a Kitsuhana ringworld in Lund VI",
-			"a Kitsuhana ringworld in Dais IX",
-			"a Kitsuhana ringworld in Leibert II-b"
-			)
-
 /datum/lore/organization/other/independent
 	name = "Independent Pilots Association"
 	short_name = "" //using the same whitespace hack as USDF
 	acronym = "IPA"
-	desc = "Though less common now than they were in the decades before the Sol Economic Organization took power, independent traders remain an important part of the galactic economy, owing in no small part to protective tariffs established by the Free Trade Union in the late twenty-second century. Further out on the frontier, independent pilots are often the only people keeping freight and supplies moving.\
+	desc = "Though less common now than they were in the decades before the Sol Economic Organization took power, independent pilots and traders remain an important part of the galactic economy, owing in no small part to protective tariffs established by the Free Trade Union in the late twenty-second century. Further out on the frontier, independent pilots are often the only people keeping freight and vital supplies moving.\
 	<br><br> \
 	Independent ships use a wide variety of names, many of which are as unusual and eclectic as their crews."
 	history = ""
 	work = "everything under the sun"
 	headquarters = "N/A"
 	motto = "N/A"
+	autogenerate_destination_names = TRUE //force random dest generation
 
 	ship_prefixes = list("ISV" = "a general", "IEV" = "a prospecting", "IEC" = "a prospecting", "IFV" = "a bulk freight", "ITV" = "a passenger transport", "ITC" = "a just-in-time delivery", "IPV" = "a patrol", "IHV" = "a bounty hunting", "ICC" = "an escort", "IMV" = "a mining")
 	flight_types = list(
@@ -1715,8 +1731,10 @@
 			"assignment",
 			"contract"
 			)
-	destination_names = list() //we have no hqs or facilities of our own
 	//ship names: blank, because we use the universal list
+	//ship_names = list()
+	//destination_names = list("PLACEHOLDER!!!","DEBUG?!")
+
 
 //SPACE LAW
 /datum/lore/organization/other/sysdef
@@ -1742,19 +1760,25 @@
 
 	org_type = "system defense"
 	ship_prefixes = list ("SDB" = "a patrol", "SDF" = "a patrol", "SDV" = "a patrol", "SDB" = "an escort", "SDF" = "an escort", "SDV" = "an escort", "SAR" = "a search and rescue", "SDT" = "a logistics", "SDT" = "a resupply", "SDJ" = "a prisoner transport") //b = boat, f = fleet (generic), v = vessel, t = tender
-	//ship names: weapons
+	//ship names: weapons, particularly medieval and renaissance melee and pre-gunpowder ranged weapons
 	ship_names = list(
 			"Sword",
 			"Saber",
 			"Cutlass",
+			"Scimitar",
 			"Broadsword",
 			"Katar",
 			"Shamshir",
+			"Flyssa",
+			"Kaskara",
+			"Khopesh",
+			"Tachi",
 			"Shashka",
 			"Epee",
 			"Estoc",
 			"Longsword",
 			"Katana",
+			"Odachi",
 			"Baselard",
 			"Gladius",
 			"Kukri",
@@ -1764,6 +1788,16 @@
 			"Machete",
 			"Axe",
 			"Tomahawk",
+			"Labrys",
+			"Masakari",
+			"Parashu",
+			"Sagaris",
+			"Francisca",
+			"Stiletto",
+			"Tanto",
+			"Pugio",
+			"Cinquedea",
+			"Katar",
 			"Dirk",
 			"Dagger",
 			"Maul",
@@ -1784,7 +1818,9 @@
 			"Glaive",
 			"Halberd",
 			"Scythe",
-			"Spear"
+			"Spear",
+			"Guisarme",
+			"Billhook"
 			)
 	destination_names = list(
 			"the outer system",
@@ -1842,163 +1878,21 @@
 
 	org_type = "smuggler"
 	ship_prefixes = list ("suspected smuggler" = "an illegal smuggling", "possible smuggler" = "an illegal smuggling") //as assigned by control, second part shouldn't even come up
-	//blank out our shipnames for redesignation
-	ship_names = list(
-			"Morally Bankrupt",
-			"Bucket of Bolts",
-			"Wallet Inspector",
-			"Laughing Stock",
-			"Wayward Son",
-			"Wide Load",
-			"No Refunds",
-			"Ugly Stick",
-			"Poetic Justice",
-			"Foreign Object",
-			"Why Me",
-			"Last Straw",
-			"Designated Driver",
-			"Slapped Together",
-			"Lowest Bidder",
-			"Harsh Language",
-			"Public Servant",
-			"Class Act",
-			"Deviant Citizen",
-			"Diminishing Returns",
-			"Calculated Risk",
-			"Logistical Nightmare",
-			"Gross Negligence",
-			"Holier Than Thou",
-			"Open Wide",
-			"Red Dread",
-			"Missing Link",
-			"Duct Taped",
-			"Robber Baron",
-			"Affront to Nature",
-			"Total Loss",
-			"Depth Perception",
-			"This Way",
-			"Mysterious Rash",
-			"Jolly Roger",
-			"Victim of Circumstance",
-			"Product of Society",
-			"Under Evaluation",
-			"Flying Coffin",
-			"Gilded Cage",
-			"Disgruntled Worker",
-			"Of Sound Mind",
-			"Ivory Tower",
-			"Bastard Son",
-			"Scarlet Tentacle",
-			"Down In Front",
-			"Learning Experience",
-			"Desperate Pauper",
-			"Born Lucky",
-			"Base Instincts",
-			"Check Please",
-			"Infinite Loop",
-			"Lazy Morning",
-			"Runtime Error",
-			"Pointless Platitude",
-			"Grey Matter",
-			"Conscientious Objector",
-			"Unexplained Itch",
-			"Out of Control",
-			"Unexpected Obstacle",
-			"Toxic Behavior",
-			"Controlled Explosion",
-			"Happy Camper",
-			"Unfortunate Ending",
-			"Criminally Insane",
-			"Not Guilty",
-			"Double Jeopardy",
-			"Perfect Pitch",
-			"Dark Forecast",
-			"Apologies in Advance",
-			"Reduced To This",
-			"Surprise Encounter",
-			"Meat Locker",
-			"Cardiac Arrest",
-			"Piece of Junk",
-			"Bottom Line",
-			"With Abandon",
-			"Unsound Methods",
-			"Beast of Burden",
-			"Red Claw",
-			"No Laughing Matter",
-			"Nothing Personal",
-			"Great Experiment",
-			"Looks Like Trouble",
-			"Turning Point",
-			"Murderous Intent",
-			"If Looks Could Kill",
-			"Liquid Courage",
-			"Attention Seeker",
-			"Juvenile Delinquent",
-			"Mystery Meat",
-			"Slippery Slope",
-			"Empty Gesture",
-			"Annoying Pest",
-			"Killing Implement",
-			"Blunt Object",
-			"Blockade Runner",
-			"Innocent Bystander",
-			"Lacking Purpose",
-			"Beyond Salvation",
-			"This Too Shall Pass",
-			"Guilty Pleasure",
-			"Exploratory Surgery",
-			"Inelegant Solution",
-			"Under New Ownership",
-			"Festering Wound",
-			"Red Smile",
-			"Mysterious Stranger",
-			"Process of Elimination",
-			"Prone to Hysteria",
-			"Star Beggar",
-			"Dream Shatterer",
-			"Do The Math",
-			"Big Boy",
-			"Teacher's Pet",
-			"Hell's Bells",
-			"Critical Mass",
-			"Star Wench",
-			"Double Standard",
-			"Blind Fury",
-			"Carrion Eater",
-			"Pound of Flesh",
-			"Short Fuse",
-			"Road Agent",
-			"Deceiving Looks",
-			"An Arrow in Flight",
-			"Gun-to-Head",
-			"Petty Theft",
-			"Grand Larceny",
-			"Pop Up",
-			"A Promise Kept",
-			"Frag Machine",
-			"Unrepentant Camper",
-			"Impersonal Space",
-			"Fallen Pillar",
-			"Motion Tabled",
-			"Outrageous Fortune",
-			"Pyrrhic and Proud",
-			"Wiggling Bait",
-			"Shoot for Loot",
-			"Tone Deaf Siren",
-			"The Worst Thing",
-			"Violence-Liker",
-			"Illegal Repercussions",
-			"Shameless Plagiarist",
-			"Dove & Crow",
-			"Barnacle Jim",
-			"Charles in Charge",
-			"Strange Aeons",
-			"Red Queen"
+
+	ship_names = list()
+
+/datum/lore/organization/other/smugglers/New()
+	..()
+	var/i = 20 //give us twenty random names
+	var/list/first_word = list(
+			"Smuggler","Safety","Scanner","Season","Secret","Section","Seeker","Server","Seller","Sequence","Shadow","Solar","Software","Smoker","Southwest","Spectrum","Spirit","Sponsor","Stainless","Stable","Study","Subject","Student","Surface","Symbol","Supreme","Surprise","Syntax","Sterling","Statement"
 			)
-	/*
-	destination_names = list(
+	var/list/nato_phonetic = list(
+			"Alfa","Bravo","Charlie","Delta","Echo","Foxtrot","Golf","Hotel","India","Juliet","Kilo","Lima","Mike","November","Oscar","Papa","Quebec","Romeo","Sierra","Tango","Uniform","Victor","Whiskey","Xray","Yankee","Zulu"
 			)
-	*/
+	while(i)
+		ship_names.Add("[pick(first_word)] [rand(1,99)]-[pick(nato_phonetic)]")
+		i--
 
 /datum/lore/organization/other/pirates
 	name = "Pirates"
@@ -2006,7 +1900,7 @@
 	acronym = "IPG"
 	desc = "Where there's prey, predators are sure to follow. In space, the prey are civilian merchants, and the predators are opportunistic pirates. This is about where the analogy breaks down, but the basic concept remains the same; civilian ships are usually full of valuable goods or important people, which can be sold on black markets or ransomed back for a healthy sum. Pirates seek to seize the assets of others to get rich, rather than make an honest thaler themselves.\
 	<br><br>\
-	In contrast to the colorful Ue-Katish and sneaky Vox, common pirates tend to be rough, practical, and brutally efficient in their work. System Defense units practice rapid response drills, and in most systems it's only a matter of minutes before The Law arrives unless the pirate is able to isolate their target and prevent them from sending a distress signal.\
+	Common pirates tend to be rough, practical, and brutally efficient in their work. System Defense units practice rapid response drills, and in most systems it's only a matter of minutes before The Law arrives unless the pirate is able to isolate their target and prevent them from sending a distress signal.\
 	<br><br>\
 	Complicating matters is the infrequent use of privateers by various minor colonial governments, mercenaries turning to piracy during hard times, and illegal salvage operations."
 	history = ""
@@ -2019,163 +1913,24 @@
 
 	org_type = "pirate"
 	ship_prefixes = list ("known pirate" = "a piracy", "suspected pirate" = "a piracy", "rogue privateer" = "a piracy", "Cartel enforcer" = "a piracy", "known outlaw" = "a piracy", "bandit" = "a piracy", "roving corsair" = "a piracy", "illegal salvager" = "an illegal salvage", "rogue mercenary" = "a mercenary") //as assigned by control, second part shouldn't even come up, but it exists to avoid hiccups/weirdness just in case
-	ship_names = list(
-			"Morally Bankrupt",
-			"Bucket of Bolts",
-			"Wallet Inspector",
-			"Laughing Stock",
-			"Wayward Son",
-			"Wide Load",
-			"No Refunds",
-			"Ugly Stick",
-			"Poetic Justice",
-			"Foreign Object",
-			"Why Me",
-			"Last Straw",
-			"Designated Driver",
-			"Slapped Together",
-			"Lowest Bidder",
-			"Harsh Language",
-			"Public Servant",
-			"Class Act",
-			"Deviant Citizen",
-			"Diminishing Returns",
-			"Calculated Risk",
-			"Logistical Nightmare",
-			"Gross Negligence",
-			"Holier Than Thou",
-			"Open Wide",
-			"Red Dread",
-			"Missing Link",
-			"Duct Taped",
-			"Robber Baron",
-			"Affront to Nature",
-			"Total Loss",
-			"Depth Perception",
-			"This Way",
-			"Mysterious Rash",
-			"Jolly Roger",
-			"Victim of Circumstance",
-			"Product of Society",
-			"Under Evaluation",
-			"Flying Coffin",
-			"Gilded Cage",
-			"Disgruntled Worker",
-			"Of Sound Mind",
-			"Ivory Tower",
-			"Bastard Son",
-			"Scarlet Tentacle",
-			"Down In Front",
-			"Learning Experience",
-			"Desperate Pauper",
-			"Born Lucky",
-			"Base Instincts",
-			"Check Please",
-			"Infinite Loop",
-			"Lazy Morning",
-			"Runtime Error",
-			"Pointless Platitude",
-			"Grey Matter",
-			"Conscientious Objector",
-			"Unexplained Itch",
-			"Out of Control",
-			"Unexpected Obstacle",
-			"Toxic Behavior",
-			"Controlled Explosion",
-			"Happy Camper",
-			"Unfortunate Ending",
-			"Criminally Insane",
-			"Not Guilty",
-			"Double Jeopardy",
-			"Perfect Pitch",
-			"Dark Forecast",
-			"Apologies in Advance",
-			"Reduced To This",
-			"Surprise Encounter",
-			"Meat Locker",
-			"Cardiac Arrest",
-			"Piece of Junk",
-			"Bottom Line",
-			"With Abandon",
-			"Unsound Methods",
-			"Beast of Burden",
-			"Red Claw",
-			"No Laughing Matter",
-			"Nothing Personal",
-			"Great Experiment",
-			"Looks Like Trouble",
-			"Turning Point",
-			"Murderous Intent",
-			"If Looks Could Kill",
-			"Liquid Courage",
-			"Attention Seeker",
-			"Juvenile Delinquent",
-			"Mystery Meat",
-			"Slippery Slope",
-			"Empty Gesture",
-			"Annoying Pest",
-			"Killing Implement",
-			"Blunt Object",
-			"Blockade Runner",
-			"Innocent Bystander",
-			"Lacking Purpose",
-			"Beyond Salvation",
-			"This Too Shall Pass",
-			"Guilty Pleasure",
-			"Exploratory Surgery",
-			"Inelegant Solution",
-			"Under New Ownership",
-			"Festering Wound",
-			"Red Smile",
-			"Mysterious Stranger",
-			"Process of Elimination",
-			"Prone to Hysteria",
-			"Star Beggar",
-			"Dream Shatterer",
-			"Do The Math",
-			"Big Boy",
-			"Teacher's Pet",
-			"Hell's Bells",
-			"Critical Mass",
-			"Star Wench",
-			"Double Standard",
-			"Blind Fury",
-			"Carrion Eater",
-			"Pound of Flesh",
-			"Short Fuse",
-			"Road Agent",
-			"Deceiving Looks",
-			"An Arrow in Flight",
-			"Gun-to-Head",
-			"Petty Theft",
-			"Grand Larceny",
-			"Pop Up",
-			"A Promise Kept",
-			"Frag Machine",
-			"Unrepentant Camper",
-			"Impersonal Space",
-			"Fallen Pillar",
-			"Motion Tabled",
-			"Outrageous Fortune",
-			"Pyrrhic and Proud",
-			"Wiggling Bait",
-			"Shoot for Loot",
-			"Tone Deaf Siren",
-			"The Worst Thing",
-			"Violence-Liker",
-			"Illegal Repercussions",
-			"Shameless Plagiarist",
-			"Dove & Crow",
-			"Barnacle Jim",
-			"Charles in Charge",
-			"Strange Aeons",
-			"Red Queen"
-			)
-	/*
-	destination_names = list(
-			)
-	*/
 
+	ship_names = list()
+
+/datum/lore/organization/other/pirates/New()
+	..()
+	var/i = 20 //give us twenty random names
+	var/list/first_word = list(
+			"Bandit","Backup","Baker","Balance","Bandwidth","Banker","Banner","Bargain","Baseball","Basket","Bathroom","Berlin","Beyond","Bidder","Bishop","Bookmark","Border","Boston","Bracelet","Brazil","Breakfast","Brian","Broadband","Brochure","Broken","Broker","Brother","Buddy","Budget","Bureau","Business"
+			)
+	var/list/nato_phonetic = list(
+			"Alfa","Bravo","Charlie","Delta","Echo","Foxtrot","Golf","Hotel","India","Juliet","Kilo","Lima","Mike","November","Oscar","Papa","Quebec","Romeo","Sierra","Tango","Uniform","Victor","Whiskey","Xray","Yankee","Zulu"
+			)
+	while(i)
+		ship_names.Add("[pick(first_word)] [rand(1,99)]-[pick(nato_phonetic)]")
+		i--
+
+/*
+//Commenting out the Ue-Katish and Vox Marauders for now, to dial down the implications of rampant piracy
 /datum/lore/organization/other/uekatish
 	name = "Ue-Katish Pirates"
 	short_name = ""
@@ -2293,7 +2048,7 @@
 	while(i)
 		ship_names.Add("[pick(letters)]-[pick(numbers)]")
 		i--
-
+*/
 //////////////////////////////////////////////////////////////////////////////////
 
 // Governments
