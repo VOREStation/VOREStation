@@ -177,19 +177,21 @@
 	if(!is_admin())
 		return FALSE
 
-	var/datum/disease/D = tgui_input_list(usr, "Choose virus", "Viruses", subtypesof(/datum/disease), subtypesof(/datum/disease))
-	var/mob/living/carbon/human/H = null
+	var/disease = tgui_input_list(usr, "Choose virus", "Viruses", subtypesof(/datum/disease), subtypesof(/datum/disease))
+	var/mob/living/carbon/human/H = tgui_input_list(usr, "Choose infectee", human_mob_list)
 
-	if(isnull(D))
+	var/datum/disease/D = new disease
+
+	if(isnull(D) || isnull(H))
 		return FALSE
 
-	for(var/thing in shuffle(human_mob_list))
-		H = thing
-		if(H.stat == DEAD)
-			continue
-		if(!H.HasDisease(D))
-			H.ForceContractDisease(D)
-			break
+	if(H.stat == DEAD)
+		return FALSE
 
-	message_admins("[key_name_admin(usr)] has triggered a virus outbreak of [D.name]! Affected mob: [key_name_admin(H)]")
-	log_admin("[key_name_admin(usr)] infected [key_name_admin(H)] with [D.name]")
+	if(!H.HasDisease(D))
+		H.ForceContractDisease(D)
+
+		message_admins("[key_name_admin(usr)] has triggered a virus outbreak of [D.name]! Affected mob: [key_name_admin(H)]")
+		log_admin("[key_name_admin(usr)] infected [key_name_admin(H)] with [D.name]")
+
+		return TRUE
