@@ -747,7 +747,7 @@
 		else if(!src.module && U.require_module)
 			to_chat(usr, span_filter_notice("The borg must choose a module before it can be upgraded!"))
 		else if(user == src) //RS edit: No self-upgrading.
-			to_chat(user, span_filter_notice("You lack the reach to be able to upgrade yourself."))
+			to_chat(usr, span_warning("You lack the reach to be able to upgrade yourself."))
 		else if(U.locked)
 			to_chat(usr, span_filter_notice("The upgrade is locked and cannot be used yet!"))
 		else
