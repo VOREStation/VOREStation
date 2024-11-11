@@ -15,35 +15,12 @@ var/list/preferences_datums = list()
 	var/last_id
 
 	//game-preferences
-	var/lastchangelog = ""				//Saved changlog filesize to detect if there was a change
-	var/ooccolor = "#010000"			//Whatever this is set to acts as 'reset' color and is thus unusable as an actual custom color
 	var/be_special = 0					//Special role selection
-	var/UI_style = "Midnight"
-	var/UI_style_color = "#ffffff"
-	var/UI_style_alpha = 255
-	var/tooltipstyle = "Midnight"		//Style for popup tooltips
-	var/client_fps = 40
-	var/ambience_freq = 5				// How often we're playing repeating ambience to a client.
-	var/ambience_chance = 35			// What's the % chance we'll play ambience (in conjunction with the above frequency)
-
-	var/tgui_fancy = TRUE
-	var/tgui_lock = FALSE
-	var/tgui_input_mode = FALSE			// All the Input Boxes (Text,Number,List,Alert)
-	var/tgui_large_buttons = TRUE
-	var/tgui_swapped_buttons = FALSE
-	var/obfuscate_key = FALSE
-	var/obfuscate_job = FALSE
-	var/chat_timestamp = FALSE
 
 	//character preferences
 	var/real_name						//our character's name
 	var/be_random_name = 0				//whether we are a random name every round
 	var/nickname						//our character's nickname
-	var/age = 30						//age of character
-	var/bday_month = 0					//Birthday month
-	var/bday_day = 0					//Birthday day
-	var/last_birthday_notification = 0	//The last year we were notified about our birthday
-	var/bday_announce = FALSE			//Public announcement for birthdays
 	var/spawnpoint = "Arrivals Shuttle" //where this character will spawn (0-2).
 	var/b_type = "A+"					//blood type (not-chooseable)
 	var/blood_reagents = "default"		//blood restoration reagents
@@ -126,6 +103,11 @@ var/list/preferences_datums = list()
 	var/skill_specialization = null
 	var/list/skills = list() // skills can range from 0 to 3
 
+	//character preferences
+	var/slot_randomized //keeps track of round-to-round randomization of the character slot, prevents overwriting
+
+	var/list/randomise = list()
+
 	// maps each organ to either null(intact), "cyborg" or "amputated"
 	// will probably not be able to do this for head and torso ;)
 	var/list/organ_data = list()
@@ -148,13 +130,10 @@ var/list/preferences_datums = list()
 
 	var/economic_status = "Average"
 
-	var/uplinklocation = "PDA"
-
 	// OOC Metadata:
 	var/metadata = ""
 	var/metadata_likes = ""
 	var/metadata_dislikes = ""
-	var/list/ignored_players = list()
 
 	var/client/client = null
 	var/client_ckey = null
@@ -261,7 +240,7 @@ var/list/preferences_datums = list()
 					used_skillpoints += 6 * multiplier
 
 /datum/preferences/proc/GetSkillClass(points)
-	return CalculateSkillClass(points, age)
+	return CalculateSkillClass(points, read_preference(/datum/preference/numeric/human/age))
 
 /proc/CalculateSkillClass(points, age)
 	if(points <= 0) return "Unconfigured"

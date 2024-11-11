@@ -960,3 +960,10 @@ var/global/list/json_cache = list()
 				return_list += bit
 
 	return return_list
+
+/// Turns an associative list into a flat list of keys
+/proc/assoc_to_keys(list/input)
+	var/list/keys = list()
+	for(var/key in input)
+		UNTYPED_LIST_ADD(keys, key)
+	return keys
