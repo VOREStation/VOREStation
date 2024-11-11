@@ -443,7 +443,7 @@
 
 /datum/asset/spritesheet/robot_icons/create_spritesheets()
 	for(var/datum/robot_sprite/S as anything in typesof(/datum/robot_sprite))
-		if(!S.name)
+		if(!S.name || !S.module_type)
 			continue
 		var/icon/I_S = icon(S.sprite_icon, S.sprite_icon_state, SOUTH)
 		var/icon/I_N = icon(S.sprite_icon, S.sprite_icon_state, NORTH)
