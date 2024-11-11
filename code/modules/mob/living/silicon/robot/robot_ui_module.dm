@@ -48,6 +48,7 @@
 	var/list/data = ..()
 
 	var/mob/living/silicon/robot/R = host
+	var/datum/asset/spritesheet/robot_icons/spritesheet = get_asset_datum(/datum/asset/spritesheet/robot_icons)
 
 	if(selected_module)
 		data["selected_module"]  = selected_module
@@ -72,9 +73,10 @@
 
 		data["possible_sprites"] = available_sprites
 		data["sprite_datum"] = sprite_datum
-		data["asset"] = null
+		data["sprite_datum_class"] = null
 		if(sprite_datum)
-			data["asset"] = sanitize_css_class_name("[sprite_datum.type]")
+			data["sprite_datum_class"] = sanitize_css_class_name("[sprite_datum.type]")
+			data["sprite_datum_size"] = spritesheet.icon_size_id(data["sprite_datum_class"] + "S") // just get the south icon's size, the rest will be the same
 
 	return data
 

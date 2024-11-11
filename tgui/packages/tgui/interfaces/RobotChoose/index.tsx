@@ -16,7 +16,8 @@ export const RobotChoose = (props) => {
     selected_module,
     sprite_datum,
     theme,
-    asset,
+    sprite_datum_class,
+    sprite_datum_size,
   } = data;
 
   return (
@@ -33,7 +34,7 @@ export const RobotChoose = (props) => {
             sortable={possible_sprites}
             selected={sprite_datum}
           />
-          <IconSection sprite={asset} />
+          <IconSection sprite={sprite_datum_class} size={sprite_datum_size} />
         </Stack>
       </Window.Content>
     </Window>

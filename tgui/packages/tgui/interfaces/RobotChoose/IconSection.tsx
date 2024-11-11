@@ -1,10 +1,13 @@
-import { resolveAsset } from 'tgui/assets';
 import { useBackend } from 'tgui/backend';
-import { Button, Image, Section, Stack } from 'tgui-core/components';
+import { Box, Button, Section, Stack } from 'tgui-core/components';
+import { classes } from 'tgui-core/react';
 
-export const IconSection = (props: { sprite?: string | null }) => {
+export const IconSection = (props: {
+  sprite?: string | null;
+  size?: string;
+}) => {
   const { act } = useBackend();
-  const { sprite } = props;
+  const { sprite, size } = props;
 
   return (
     <Section
@@ -18,39 +21,19 @@ export const IconSection = (props: { sprite?: string | null }) => {
         </Button>
       }
     >
-      {!!sprite && (
+      {!!sprite && !!size && (
         <>
           <Stack.Item>
-            <Image
-              src={resolveAsset(sprite + '_N')}
-              style={{
-                width: '100%',
-              }}
-            />
+            <Box className={classes([size, sprite + 'N'])} />
           </Stack.Item>
           <Stack.Item>
-            <Image
-              src={resolveAsset(sprite + '_S')}
-              style={{
-                width: '100%',
-              }}
-            />
+            <Box className={classes([size, sprite + 'S'])} />
           </Stack.Item>
           <Stack.Item>
-            <Image
-              src={resolveAsset(sprite + '_W')}
-              style={{
-                width: '100%',
-              }}
-            />
+            <Box className={classes([size, sprite + 'W'])} />
           </Stack.Item>
           <Stack.Item>
-            <Image
-              src={resolveAsset(sprite + '_E')}
-              style={{
-                width: '100%',
-              }}
-            />
+            <Box className={classes([size, sprite + 'E'])} />
           </Stack.Item>
         </>
       )}
