@@ -1,6 +1,7 @@
 export type Data = {
   possible_modules: string[];
   possible_sprites?: spriteOption[];
+  currentName: string;
   theme?: string;
   selected_module?: string;
   sprite_datum?: string | null;

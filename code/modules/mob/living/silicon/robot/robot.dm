@@ -407,15 +407,12 @@
 		to_chat(usr, "You can't pick another custom name. [isshell(src) ? "" : "Go ask for a name change."]")
 		return 0
 
-	spawn(0)
-		var/newname
-		newname = sanitizeSafe(tgui_input_text(src,"You are a robot. Enter a name, or leave blank for the default name.", "Name change","", MAX_NAME_LEN), MAX_NAME_LEN)
-		if (newname)
-			custom_name = newname
-			sprite_name = newname
+	var/newname = sanitizeSafe(tgui_input_text(src,"You are a robot. Enter a name, or leave blank for the default name.", "Name change","", MAX_NAME_LEN), MAX_NAME_LEN)
+	if (newname)
+		custom_name = newname
+		sprite_name = newname
 
-		updatename()
-		update_icon()
+	updatename()
 
 /mob/living/silicon/robot/verb/extra_customization()
 	set name = "Customize Appearance"

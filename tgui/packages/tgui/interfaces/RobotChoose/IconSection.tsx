@@ -1,13 +1,14 @@
 import { useBackend } from 'tgui/backend';
-import { Box, Button, Flex, Section, Stack } from 'tgui-core/components';
+import { Box, Button, Flex, Input, Section, Stack } from 'tgui-core/components';
 import { classes } from 'tgui-core/react';
 
 export const IconSection = (props: {
+  currentName: string;
   sprite?: string | null;
   size?: string | null;
 }) => {
   const { act } = useBackend();
-  const { sprite, size } = props;
+  const { currentName, sprite, size } = props;
 
   return (
     <Section
@@ -21,6 +22,14 @@ export const IconSection = (props: {
         </Button>
       }
     >
+      <Stack.Item>
+        <Input
+          fluid
+          value={currentName}
+          onChange={(e, value) => act('rename', { value })}
+          maxLength={52}
+        />
+      </Stack.Item>
       {!!sprite && !!size && (
         <>
           <Stack.Item>

@@ -3,6 +3,7 @@
 	name = "Robot Module Configurator"
 	tgui_id = "RobotChoose"
 	var/selected_module
+	var/newName
 	var/datum/robot_sprite/sprite_datum
 
 /datum/tgui_module/robot_ui_module/tgui_state(mob/user)
@@ -49,6 +50,8 @@
 
 	var/mob/living/silicon/robot/R = host
 	var/datum/asset/spritesheet/robot_icons/spritesheet = get_asset_datum(/datum/asset/spritesheet/robot_icons)
+
+	data["currentName"] = newName ? newName : R.name
 
 	if(selected_module)
 		data["selected_module"]  = selected_module
@@ -112,7 +115,15 @@
 					sprite_datum = S
 					break
 			. = TRUE
+		if("rename")
+			var/name = params["value"]
+			if(name)
+				newName = sanitizeSafe(name, MAX_NAME_LEN)
 		if("confirm")
+			if(!R.custom_name)
+				if (newName)
+					R.custom_name = newName
+					R.sprite_name = newName
 			R.icon_selected = 1
 			var/module_type = robot_modules[selected_module]
 			R.modtype = selected_module
