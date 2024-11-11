@@ -2,6 +2,7 @@ export type Data = {
   possible_modules: string[];
   possible_sprites?: spriteOption[];
   currentName: string;
+  isDefaultName: boolean;
   theme?: string;
   selected_module?: string;
   sprite_datum?: string | null;

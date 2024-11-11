@@ -7,7 +7,7 @@ import { spriteOption } from './types';
 export function robotSpriteSearcher(
   searchText: string,
   includeDefault: boolean,
-  includeDog: boolean,
+  includeWide: boolean,
   includeTall: boolean,
   sprites?: spriteOption[],
 ): spriteOption[] {
@@ -19,7 +19,7 @@ export function robotSpriteSearcher(
   if (includeDefault) {
     subtypes.push('def');
   }
-  if (includeDog) {
+  if (includeWide) {
     subtypes.push('wide');
   }
   if (includeTall) {

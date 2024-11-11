@@ -14,13 +14,13 @@ export const SpriteSection = (props: {
 
   const [searchText, setSearchText] = useState<string>('');
   const [includeDefault, setIncludeDefault] = useState<boolean>(false);
-  const [includeDog, setInclideDog] = useState<boolean>(false);
+  const [includeWide, setInclideDog] = useState<boolean>(false);
   const [includeTall, setIncludeTall] = useState<boolean>(false);
 
   const filtered = robotSpriteSearcher(
     searchText,
     includeDefault,
-    includeDog,
+    includeWide,
     includeTall,
     sortable,
   );
@@ -39,8 +39,8 @@ export const SpriteSection = (props: {
             Def
           </Button.Checkbox>
           <Button.Checkbox
-            checked={includeDog}
-            onClick={() => setInclideDog(!includeDog)}
+            checked={includeWide}
+            onClick={() => setInclideDog(!includeWide)}
           >
             Wide
           </Button.Checkbox>

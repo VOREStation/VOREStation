@@ -19,7 +19,7 @@ export const SelectorElement = (props: {
       >
         <Flex>
           <Flex.Item>{option}</Flex.Item>
-          {belly && (
+          {!!belly && (
             <>
               <Flex.Item grow />
               <Flex.Item>

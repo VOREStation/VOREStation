@@ -63,6 +63,7 @@
 	var/datum/asset/spritesheet/robot_icons/spritesheet = get_asset_datum(/datum/asset/spritesheet/robot_icons)
 
 	data["currentName"] = newName ? newName : R.name
+	data["isDefaultName"] = !newName
 
 	if(selected_module)
 		data["selected_module"]  = selected_module
