@@ -5,7 +5,7 @@
 /obj/item/clothing/accessory/choker //A colorable, tagless choker
 	name = "plain choker"
 	slot_flags = SLOT_TIE | SLOT_OCLOTHING
-	desc = "A simple, plain choker. Or maybe it's a collar? Use in-hand to customize it."
+	desc = "A simple, plain choker. Or maybe it's a collar?"
 	icon = 'icons/inventory/accessory/item_vr.dmi'
 	icon_override = 'icons/inventory/accessory/mob_vr.dmi'
 	icon_state = "choker_cst"
@@ -43,18 +43,6 @@
 
 /obj/item/clothing/accessory/choker/dropped()
 	icon_override = icon_previous_override
-
-/obj/item/clothing/accessory/choker/attack_self(mob/user as mob)
-	if(!customized)
-		var/design = tgui_input_list(user,"Descriptor?","Pick descriptor","Descriptor", list("plain","simple","ornate","elegant","opulent"))
-		var/material = tgui_input_list(user,"Material?","Pick material","Material", list("leather","velvet","lace","fabric","latex","plastic","metal","chain","silver","gold","platinum","steel","bead","ruby","sapphire","emerald","diamond"))
-		var/type = tgui_input_list(user,"Type?","Pick type","Type", list("choker","collar","necklace"))
-		name = "[design] [material] [type]"
-		desc = "A [type], made of [material]. It's rather [design]."
-		customized = 1
-		to_chat(usr,span_notice("[src] has now been customized."))
-	else
-		to_chat(usr,span_notice("[src] has already been customized!"))
 
 /obj/item/clothing/accessory/collar
 	slot_flags = SLOT_TIE | SLOT_OCLOTHING

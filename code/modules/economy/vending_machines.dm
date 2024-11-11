@@ -415,7 +415,12 @@
 					/obj/item/stack/medical/advanced/ointment = 6,
 					/obj/item/stack/medical/splint = 4,
 					/obj/item/storage/pill_bottle/carbon = 2,
-					/obj/item/clothing/mask/chewable/candy/lolli = 15)
+					/obj/item/clothing/mask/chewable/candy/lolli = 15,
+					/obj/item/storage/box/khcrystal = 4,
+					/obj/item/backup_implanter = 3,
+					/obj/item/clothing/glasses/omnihud/med = 4,
+					/obj/item/glasses_kit = 1,
+					/obj/item/storage/quickdraw/syringe_case = 4)
 	contraband = list(/obj/item/reagent_containers/pill/tox = 3,
 					/obj/item/reagent_containers/pill/stox = 4,
 					/obj/item/reagent_containers/pill/antitox = 6)
@@ -448,7 +453,8 @@
 	products = list(/obj/item/stack/medical/bruise_pack = 2,
 				/obj/item/stack/medical/ointment = 2,
 				/obj/item/reagent_containers/hypospray/autoinjector = 4,
-				/obj/item/healthanalyzer = 1)
+				/obj/item/healthanalyzer = 1,
+				/obj/item/bodybag/cryobag = 2)
 	contraband = list(/obj/item/reagent_containers/syringe/antitoxin = 4,
 				/obj/item/reagent_containers/syringe/antiviral = 4,
 				/obj/item/reagent_containers/pill/tox = 1)
@@ -467,14 +473,19 @@
 				/obj/item/reagent_containers/syringe/antitoxin = 3,
 				/obj/item/stack/medical/bruise_pack = 3,
 				/obj/item/stack/medical/ointment =3,
-				/obj/item/healthanalyzer = 3)
+				/obj/item/healthanalyzer = 3,
+				/obj/item/bodybag/cryobag = 3)
 	contraband = list(/obj/item/reagent_containers/pill/tox = 3)
 	req_log_access = access_cmo
 	has_logs = 1
 	can_rotate = 0
 
 /obj/machinery/vending/wallmed1/public
-	products = list(/obj/item/stack/medical/bruise_pack = 8,/obj/item/stack/medical/ointment = 8,/obj/item/reagent_containers/hypospray/autoinjector = 16,/obj/item/healthanalyzer = 4)
+	products = list(/obj/item/stack/medical/bruise_pack = 8,
+					/obj/item/stack/medical/ointment = 8,
+					/obj/item/reagent_containers/hypospray/autoinjector = 16,
+					/obj/item/healthanalyzer = 4,
+					/obj/item/bodybag/cryobag = 4)
 
 /obj/machinery/vending/security
 	name = "SecTech"
@@ -488,9 +499,15 @@
 					/obj/item/flash = 5,
 					/obj/item/reagent_containers/food/snacks/donut/plain = 6,
 					/obj/item/reagent_containers/food/snacks/donut/plain/jelly = 6,
-					/obj/item/storage/box/evidence = 6)
+					/obj/item/storage/box/evidence = 6,
+					/obj/item/gun/energy/taser = 8,
+					/obj/item/gun/energy/stunrevolver = 4,
+					/obj/item/reagent_containers/spray/pepper = 6,
+					/obj/item/taperoll/police = 6,
+					/obj/item/clothing/glasses/omnihud/sec = 6)
 	contraband = list(/obj/item/clothing/glasses/sunglasses = 2,
-					/obj/item/storage/box/donut = 2)
+					/obj/item/storage/box/donut = 2,
+					/obj/item/implanter/compliance = 1)
 	req_log_access = access_armory
 	has_logs = 1
 
@@ -553,7 +570,9 @@
 					/obj/item/seeds/pumpkinseed = 3,
 					/obj/item/seeds/cherryseed = 3,
 					/obj/item/seeds/plastiseed = 3,
-					/obj/item/seeds/riceseed = 3)
+					/obj/item/seeds/riceseed = 3,
+					/obj/item/seeds/shrinkshroom = 3,
+					/obj/item/seeds/megashroom = 3)
 	contraband = list(/obj/item/seeds/amanitamycelium = 2,
 					/obj/item/seeds/glowshroom = 2,
 					/obj/item/seeds/libertymycelium = 2,
@@ -652,7 +671,8 @@
 					/obj/item/flashlight/glowstick/red = 3,
 					/obj/item/flashlight/glowstick/blue = 3,
 					/obj/item/flashlight/glowstick/orange =3,
-					/obj/item/flashlight/glowstick/yellow = 3)
+					/obj/item/flashlight/glowstick/yellow = 3,
+					/obj/item/reagent_containers/spray/windowsealant = 5)
 	contraband = list(/obj/item/weldingtool/hugetank = 2,
 					/obj/item/clothing/gloves/fyellow = 2)
 	premium = list(/obj/item/clothing/gloves/heavy_engineer = 1) //VOREStation Edit - yellow gloves are common in engineering, let's make "premium" actually mean something
@@ -695,8 +715,10 @@
 					/obj/item/circuitboard/body_scanner,
 					/obj/item/circuitboard/medical_kiosk,
 					/obj/item/circuitboard/sleeper,
-					/obj/item/circuitboard/dna_analyzer)
-	contraband = list(/obj/item/cell/potato = 3)
+					/obj/item/circuitboard/dna_analyzer,
+					/obj/item/clothing/glasses/omnihud/eng = 6)
+	contraband = list(/obj/item/cell/potato = 3,
+						/obj/item/rms = 5)
 	premium = list(/obj/item/storage/belt/utility = 3)
 	product_records = list()
 	req_log_access = access_ce

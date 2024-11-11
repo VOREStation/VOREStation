@@ -3641,10 +3641,8 @@
 /turf/simulated/floor/water/digestive_enzymes,
 /area/redgate/city/waterworks)
 "eSM" = (
-/obj/machinery/disease2/incubator,
-/obj/machinery/light{
-	dir = 1
-	},
+/obj/structure/table/standard,
+/obj/item/book/manual/virology,
 /turf/simulated/floor/tiled/white,
 /area/redgate/city/science)
 "eTR" = (
@@ -11034,6 +11032,13 @@
 /obj/structure/undies_wardrobe,
 /turf/simulated/floor/tiled/freezer,
 /area/redgate/city/laundry)
+"ozN" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/structure/prop/machine/disease_analyser,
+/turf/simulated/floor/tiled/white,
+/area/redgate/city/science)
 "ozW" = (
 /obj/machinery/light{
 	dir = 1
@@ -14361,8 +14366,8 @@
 /turf/simulated/floor/tiled/neutral,
 /area/redgate/city/house10)
 "sLw" = (
-/obj/machinery/computer/centrifuge,
 /obj/machinery/light,
+/obj/machinery/computer/pandemic,
 /turf/simulated/floor/tiled/white,
 /area/redgate/city/science)
 "sLB" = (
@@ -17015,7 +17020,7 @@
 /turf/simulated/floor/tiled/eris/dark/gray_platform,
 /area/redgate/city/engine)
 "wgN" = (
-/obj/machinery/disease2/diseaseanalyser,
+/obj/structure/prop/machine/centrifuge,
 /turf/simulated/floor/tiled/white,
 /area/redgate/city/science)
 "wgO" = (
@@ -17388,7 +17393,10 @@
 /turf/simulated/floor/tiled/steel_dirty,
 /area/redgate/city/dodgypharmacy)
 "wIw" = (
-/obj/machinery/computer/diseasesplicer,
+/obj/structure/reagent_dispensers/virusfood{
+	pixel_y = 29
+	},
+/obj/structure/prop/machine/incubator,
 /turf/simulated/floor/tiled/white,
 /area/redgate/city/science)
 "wIy" = (
@@ -23051,10 +23059,10 @@ lyJ
 jNE
 kfL
 rdM
+ozN
+fpI
+fpI
 eSM
-fpI
-fpI
-uEa
 rdM
 btI
 kWt
