@@ -7,8 +7,8 @@ import { spriteOption } from './types';
 
 export const SpriteSection = (props: {
   title: string;
+  selected?: string | null;
   sortable?: spriteOption[];
-  selected?: string;
 }) => {
   const { title, sortable, selected } = props;
 

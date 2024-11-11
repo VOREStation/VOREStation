@@ -71,8 +71,10 @@
 			available_sprites += list(list("sprite" = S.name, "belly" = S.has_vore_belly_sprites, "type" = model_type))
 
 		data["possible_sprites"] = available_sprites
+		data["sprite_datum"] = sprite_datum
+		data["asset"] = null
 		if(sprite_datum)
-			data["sprite_datum"] = sprite_datum
+			data["asset"] = sanitize_css_class_name("[sprite_datum.type]")
 
 	return data
 

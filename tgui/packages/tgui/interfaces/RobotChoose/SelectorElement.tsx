@@ -4,7 +4,7 @@ import { Button, Flex, Icon, Stack } from 'tgui-core/components';
 export const SelectorElement = (props: {
   option: string;
   action: string;
-  selected?: string;
+  selected?: string | null;
   belly?: boolean;
 }) => {
   const { act } = useBackend();

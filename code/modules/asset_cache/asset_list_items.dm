@@ -443,7 +443,7 @@
 
 /datum/asset/spritesheet/robot_icons/create_spritesheets()
 	for(var/datum/robot_sprite/S as anything in typesof(/datum/robot_sprite))
-		if(!S.name || !S.module_type)
+		if(!S.name)
 			continue
 		var/icon/I_S = icon(S.sprite_icon, S.sprite_icon_state, SOUTH)
 		var/icon/I_N = icon(S.sprite_icon, S.sprite_icon_state, NORTH)
@@ -461,10 +461,11 @@
 		var/icon/I_EE = icon(S.sprite_icon, "[S.sprite_icon_state]-eyes", EAST)
 		if(I_EE)
 			I_E.Blend(I_EE, ICON_OVERLAY)
-		Insert(S.module_type + S.name + "_S", I_S)
-		Insert(S.module_type + S.name + "_N", I_N)
-		Insert(S.module_type + S.name + "_W", I_W)
-		Insert(S.module_type + S.name + "_E", I_E)
+		var/imgid = sanitize_css_class_name("[S.type]")
+		Insert(imgid + "_S", I_S)
+		Insert(imgid + "_N", I_N)
+		Insert(imgid + "_W", I_W)
+		Insert(imgid + "_E", I_E)
 
 
 //Cloning pod sprites for UIs
