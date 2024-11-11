@@ -17,7 +17,7 @@
 
 /datum/tgui_module/robot_ui_module/tgui_interact(mob/user, datum/tgui/ui, datum/tgui/parent_ui)
 	. = ..()
-	if(isrobot(user))
+	if(isrobot(user) && ui)
 		var/mob/living/silicon/robot/R = user
 		R.selecting_module = TRUE
 
@@ -130,6 +130,7 @@
 			var/name = params["value"]
 			if(name)
 				newName = sanitizeSafe(name, MAX_NAME_LEN)
+			. = TRUE
 		if("confirm")
 			if(!R.custom_name)
 				if (newName)
@@ -160,3 +161,4 @@
 			R.sprite_datum.do_equipment_glamour(R.module)
 			to_chat(R, span_filter_notice("Your icon has been set. You now require a module reset to change it."))
 			close_ui()
+			. = TRUE
