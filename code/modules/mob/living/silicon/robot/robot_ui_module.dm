@@ -74,6 +74,7 @@
 		data["possible_sprites"] = available_sprites
 		data["sprite_datum"] = sprite_datum
 		data["sprite_datum_class"] = null
+		data["sprite_datum_size"] = null
 		if(sprite_datum)
 			data["sprite_datum_class"] = sanitize_css_class_name("[sprite_datum.type]")
 			data["sprite_datum_size"] = spritesheet.icon_size_id(data["sprite_datum_class"] + "S") // just get the south icon's size, the rest will be the same

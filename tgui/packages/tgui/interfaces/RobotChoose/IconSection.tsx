@@ -1,10 +1,10 @@
 import { useBackend } from 'tgui/backend';
-import { Box, Button, Section, Stack } from 'tgui-core/components';
+import { Box, Button, Flex, Section, Stack } from 'tgui-core/components';
 import { classes } from 'tgui-core/react';
 
 export const IconSection = (props: {
   sprite?: string | null;
-  size?: string;
+  size?: string | null;
 }) => {
   const { act } = useBackend();
   const { sprite, size } = props;
@@ -24,16 +24,40 @@ export const IconSection = (props: {
       {!!sprite && !!size && (
         <>
           <Stack.Item>
-            <Box className={classes([size, sprite + 'N'])} />
+            <Flex>
+              <Flex.Item grow />
+              <Flex.Item>
+                <Box className={classes([size, sprite + 'N'])} />
+              </Flex.Item>
+              <Flex.Item grow />
+            </Flex>
           </Stack.Item>
           <Stack.Item>
-            <Box className={classes([size, sprite + 'S'])} />
+            <Flex>
+              <Flex.Item grow />
+              <Flex.Item>
+                <Box className={classes([size, sprite + 'S'])} />
+              </Flex.Item>
+              <Flex.Item grow />
+            </Flex>
           </Stack.Item>
           <Stack.Item>
-            <Box className={classes([size, sprite + 'W'])} />
+            <Flex>
+              <Flex.Item grow />
+              <Flex.Item>
+                <Box className={classes([size, sprite + 'W'])} />
+              </Flex.Item>
+              <Flex.Item grow />
+            </Flex>
           </Stack.Item>
           <Stack.Item>
-            <Box className={classes([size, sprite + 'E'])} />
+            <Flex>
+              <Flex.Item grow />
+              <Flex.Item>
+                <Box className={classes([size, sprite + 'E'])} />
+              </Flex.Item>
+              <Flex.Item grow />
+            </Flex>
           </Stack.Item>
         </>
       )}
