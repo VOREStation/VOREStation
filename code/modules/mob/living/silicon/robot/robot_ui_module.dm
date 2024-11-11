@@ -141,7 +141,7 @@
 				if (newName)
 					R.custom_name = newName
 					R.sprite_name = newName
-			R.icon_selected = 1
+			R.icon_selected = TRUE
 			var/module_type = robot_modules[selected_module]
 			R.modtype = selected_module
 			R.module = new module_type(R)

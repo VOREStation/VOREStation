@@ -31,7 +31,7 @@
 //Icon stuff
 
 	var/datum/robot_sprite/sprite_datum 				// Sprite datum, holding all our sprite data
-	var/icon_selected = 0								// If icon selection has been completed yet
+	var/icon_selected = FALSE								// If icon selection has been completed yet
 	var/list/sprite_extra_customization = list()
 	var/rest_style = "Default"
 	var/notransform
@@ -766,7 +766,7 @@
 		notify_ai(ROBOT_NOTIFICATION_MODULE_RESET, module.name)
 	module.Reset(src)
 	qdel(module)
-	icon_selected = 0
+	icon_selected = FALSE
 	module = null
 	updatename("Default")
 	has_recoloured = FALSE
