@@ -54,10 +54,8 @@ export type Target = {
   crisis_override: BooleanLike;
   active_restrictions: string[];
   possible_restrictions: string[];
-  front: string | undefined;
-  side: string | undefined;
-  side_alt: string | undefined;
-  back: string | undefined;
+  sprite: string | undefined;
+  sprite_size: string | undefined;
   modules: Module[];
   whitelisted_upgrades: Upgrade[];
   blacklisted_upgrades: Upgrade[];
@@ -80,7 +78,8 @@ export type Upgrade = {
 
 export type Source = {
   model: string;
-  front: string;
+  sprite: string | undefined;
+  sprite_size: string | undefined;
   modules: Module[];
 } | null;
 
