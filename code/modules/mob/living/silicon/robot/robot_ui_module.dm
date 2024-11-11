@@ -9,6 +9,17 @@
 /datum/tgui_module/robot_ui_module/tgui_state(mob/user)
 	return GLOB.tgui_self_state
 
+/datum/tgui_module/robot_ui_module/tgui_close(mob/user)
+	. = ..()
+	if(isrobot(user))
+		var/mob/living/silicon/robot/R = user
+		R.selecting_module = FALSE
+
+/datum/tgui_module/robot_ui_module/tgui_interact(mob/user, datum/tgui/ui, datum/tgui/parent_ui)
+	. = ..()
+	if(isrobot(user))
+		var/mob/living/silicon/robot/R = user
+		R.selecting_module = TRUE
 
 /datum/tgui_module/robot_ui_module/ui_assets(mob/user)
 	return list(

@@ -47,6 +47,7 @@
 	var/obj/screen/robot_modules_background
 
 	var/ui_theme
+	var/selecting_module = FALSE
 
 //3 Modules can be activated at any one time.
 	var/obj/item/robot_module/module = null
@@ -345,8 +346,9 @@
 			sprite_datum = module_sprites[1]
 			sprite_datum.do_equipment_glamour(module)
 			return
-	var/datum/tgui_module/robot_ui_module/ui = new(src)
-	ui.tgui_interact(src)
+	if(!selecting_module)
+		var/datum/tgui_module/robot_ui_module/ui = new(src)
+		ui.tgui_interact(src)
 
 /mob/living/silicon/robot/proc/update_braintype()
 	if(istype(mmi, /obj/item/mmi/digital/posibrain))
