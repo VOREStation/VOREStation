@@ -110,6 +110,7 @@
 		/mob/living/carbon/human/proc/shapeshifter_select_wings,
 		/mob/living/carbon/human/proc/shapeshifter_select_tail,
 		/mob/living/carbon/human/proc/shapeshifter_select_ears,
+		/mob/living/carbon/human/proc/shapeshifter_select_secondary_ears,
 		/mob/living/proc/flying_toggle,
 		/mob/living/proc/flying_vore_toggle,
 		/mob/living/proc/start_wings_hovering,
@@ -259,7 +260,6 @@
 	if((H.getActualBruteLoss() + H.getActualFireLoss()) > H.maxHealth*0.5 && isturf(H.loc)) //So, only if we're not a blob (we're in nullspace) or in someone (or a locker, really, but whatever)
 		return ..() //Any instakill shot runtimes since there are no organs after this. No point to not skip these checks, going to nullspace anyway.
 
-/*CHOMP Station removal start
 	var/obj/item/organ/internal/nano/refactory/refactory = locate() in H.internal_organs
 	if(refactory && !(refactory.status & ORGAN_DEAD))
 
@@ -280,7 +280,6 @@
 			H.add_modifier(/datum/modifier/protean/silver, origin = refactory)
 
 	return ..()
-CHOMP Station removal end*/
 
 /datum/species/protean/get_additional_examine_text(var/mob/living/carbon/human/H)
 	return ..() //Hmm, what could be done here?
@@ -342,7 +341,6 @@ CHOMP Station removal end*/
 	if(!refactory.use_stored_material(material_name,material_use))
 		expire()
 
-/*CHOMP Removal start
 /datum/modifier/protean/mhydrogen
 	name = "Protean Effect - M.Hydrogen"
 	desc = "You're affected by the presence of metallic hydrogen."
@@ -387,7 +385,6 @@ CHOMP Station removal end*/
 
 	accuracy = 30
 	evasion = 30
-CHOMP Removal end*/
 
 /datum/modifier/protean/steel
 	name = "Protean Effect - Steel"
@@ -434,7 +431,7 @@ CHOMP Removal end*/
 	owner = 1
 	if(new_name)
 		name += " ([new_name])"
-		validstring += "[time2text(world.timeofday, "Month") +" "+ num2text(text2num(time2text(world.timeofday, "YYYY"))+544)]" //YW EDIT
+		validstring += "[time2text(world.timeofday, "Month") +" "+ num2text(text2num(time2text(world.timeofday, "YYYY"))+300)]"
 		registring += "[new_name]"
 
 /obj/item/clothing/accessory/permit/nanotech/examine(mob/user)
