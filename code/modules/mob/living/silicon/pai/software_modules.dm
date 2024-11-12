@@ -50,7 +50,7 @@
 	return data
 
 /datum/pai_software/directives/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
-	var/mob/living/silicon/pai/P = usr
+	var/mob/living/silicon/pai/P = ui.user
 	if(!istype(P))
 		return TRUE
 	if(..())
@@ -160,7 +160,7 @@
 
 /datum/pai_software/med_records/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
 	. = ..()
-	var/mob/living/silicon/pai/P = usr
+	var/mob/living/silicon/pai/P = ui.user
 	if(!istype(P))
 		return
 
@@ -216,7 +216,7 @@
 
 /datum/pai_software/sec_records/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
 	. = ..()
-	var/mob/living/silicon/pai/P = usr
+	var/mob/living/silicon/pai/P = ui.user
 	if(!istype(P))
 		return
 
@@ -267,7 +267,7 @@
 	return data
 
 /datum/pai_software/door_jack/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
-	var/mob/living/silicon/pai/P = usr
+	var/mob/living/silicon/pai/P = ui.user
 	if(!istype(P) || ..())
 		return TRUE
 
@@ -482,7 +482,7 @@
 	if(..())
 		return TRUE
 
-	var/mob/living/silicon/pai/user = usr
+	var/mob/living/silicon/pai/user = ui.user
 	if(istype(user))
 		var/obj/item/radio/integrated/signal/R = user.sradio
 

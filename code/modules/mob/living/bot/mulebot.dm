@@ -82,43 +82,43 @@
 	data["safety"] = safety
 	return data
 
-/mob/living/bot/mulebot/tgui_act(action, params)
+/mob/living/bot/mulebot/tgui_act(action, params, datum/tgui/ui)
 	if(..())
 		return TRUE
 
-	add_fingerprint(usr)
+	add_fingerprint(ui.user)
 	switch(action)
 		if("power")
 			if(on)
 				turn_off()
 			else
 				turn_on()
-			visible_message("[usr] switches [on ? "on" : "off"] [src].")
+			visible_message("[ui.user] switches [on ? "on" : "off"] [src].")
 			. = TRUE
 
 		if("stop")
-			obeyCommand("Stop")
+			obeyCommand(ui.user, "Stop")
 			. = TRUE
 
 		if("go")
-			obeyCommand("GoTD")
+			obeyCommand(ui.user, "GoTD")
 			. = TRUE
 
 		if("home")
-			obeyCommand("Home")
+			obeyCommand(ui.user, "Home")
 			. = TRUE
 
 		if("destination")
-			obeyCommand("SetD")
+			obeyCommand(ui.user, "SetD")
 			. = TRUE
 
 		if("sethome")
 			var/new_dest
 			var/list/beaconlist = GetBeaconList()
 			if(beaconlist.len)
-				new_dest = tgui_input_list(usr, "Select new home tag", "Mulebot [suffix ? "([suffix])" : ""]", beaconlist)
+				new_dest = tgui_input_list(ui.user, "Select new home tag", "Mulebot [suffix ? "([suffix])" : ""]", beaconlist)
 			else
-				tgui_alert_async(usr, "No destination beacons available.")
+				tgui_alert_async(ui.user, "No destination beacons available.")
 			if(new_dest)
 				home = get_turf(beaconlist[new_dest])
 				homeName = new_dest
@@ -144,7 +144,7 @@
 	..()
 	update_icons()
 
-/mob/living/bot/mulebot/proc/obeyCommand(var/command)
+/mob/living/bot/mulebot/proc/obeyCommand(mob/user, var/command)
 	switch(command)
 		if("Home")
 			resetTarget()
@@ -154,9 +154,9 @@
 			var/new_dest
 			var/list/beaconlist = GetBeaconList()
 			if(beaconlist.len)
-				new_dest = tgui_input_list(usr, "Select new destination tag", "Mulebot [suffix ? "([suffix])" : ""]", beaconlist)
+				new_dest = tgui_input_list(user, "Select new destination tag", "Mulebot [suffix ? "([suffix])" : ""]", beaconlist)
 			else
-				tgui_alert_async(usr, "No destination beacons available.")
+				tgui_alert_async(user, "No destination beacons available.")
 			if(new_dest)
 				resetTarget()
 				target = get_turf(beaconlist[new_dest])

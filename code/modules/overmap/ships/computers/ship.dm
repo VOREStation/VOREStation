@@ -55,11 +55,11 @@ somewhere on that shuttle. Subtypes of these can be then used to perform ship ov
 		return TRUE
 	switch(action)
 		if("sync")
-			sync_linked(usr)
+			sync_linked(ui.user)
 			return TRUE
 		if("close")
-			unlook(usr)
-			usr.unset_machine()
+			unlook(ui.user)
+			ui.user.unset_machine()
 			return TRUE
 	return FALSE
 

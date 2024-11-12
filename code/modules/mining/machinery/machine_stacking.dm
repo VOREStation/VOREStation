@@ -49,7 +49,7 @@
 	data["stackingAmt"] = machine.stack_amt
 	return data
 
-/obj/machinery/mineral/stacking_unit_console/tgui_act(action, list/params)
+/obj/machinery/mineral/stacking_unit_console/tgui_act(action, list/params, datum/tgui/ui)
 	if(..())
 		return TRUE
 
@@ -66,7 +66,7 @@
 				machine.stack_storage[stack] = 0
 			. = TRUE
 
-	add_fingerprint(usr)
+	add_fingerprint(ui.user)
 
 /**********************Mineral stacking unit**************************/
 

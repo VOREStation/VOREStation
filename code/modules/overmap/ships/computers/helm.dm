@@ -173,33 +173,33 @@ GLOBAL_LIST_EMPTY(all_waypoints)
 	switch(action)
 		if("update_camera_view")
 			if(TIMER_COOLDOWN_RUNNING(src, COOLDOWN_SHIP_REFRESH))
-				to_chat(usr, span_warning("You cannot refresh the map so often."))
+				to_chat(ui.user, span_warning("You cannot refresh the map so often."))
 				return
 			update_map()
 			TIMER_COOLDOWN_START(src, COOLDOWN_SHIP_REFRESH, 5 SECONDS)
 			. = TRUE
 		if("add")
 			var/datum/computer_file/data/waypoint/R = new()
-			var/sec_name = tgui_input_text(usr, "Input navigation entry name", "New navigation entry", "Sector #[known_sectors.len]", MAX_NAME_LEN)
+			var/sec_name = tgui_input_text(ui.user, "Input navigation entry name", "New navigation entry", "Sector #[known_sectors.len]", MAX_NAME_LEN)
 			sec_name = sanitize(sec_name,MAX_NAME_LEN)
-			if(tgui_status(usr, state) != STATUS_INTERACTIVE)
+			if(tgui_status(ui.user, state) != STATUS_INTERACTIVE)
 				return FALSE
 			if(!sec_name)
 				sec_name = "Sector #[known_sectors.len]"
 			R.fields["name"] = sec_name
 			if(sec_name in known_sectors)
-				to_chat(usr, span_warning("Sector with that name already exists, please input a different name."))
+				to_chat(ui.user, span_warning("Sector with that name already exists, please input a different name."))
 				return TRUE
 			switch(params["add"])
 				if("current")
 					R.fields["x"] = linked.x
 					R.fields["y"] = linked.y
 				if("new")
-					var/newx = tgui_input_number(usr, "Input new entry x coordinate", "Coordinate input", linked.x, world.maxx, 1)
-					if(tgui_status(usr, state) != STATUS_INTERACTIVE)
+					var/newx = tgui_input_number(ui.user, "Input new entry x coordinate", "Coordinate input", linked.x, world.maxx, 1)
+					if(tgui_status(ui.user, state) != STATUS_INTERACTIVE)
 						return TRUE
-					var/newy = tgui_input_number(usr, "Input new entry y coordinate", "Coordinate input", linked.y, world.maxy, 1)
-					if(tgui_status(usr, state) != STATUS_INTERACTIVE)
+					var/newy = tgui_input_number(ui.user, "Input new entry y coordinate", "Coordinate input", linked.y, world.maxy, 1)
+					if(tgui_status(ui.user, state) != STATUS_INTERACTIVE)
 						return FALSE
 					R.fields["x"] = CLAMP(newx, 1, world.maxx)
 					R.fields["y"] = CLAMP(newy, 1, world.maxy)
@@ -215,15 +215,15 @@ GLOBAL_LIST_EMPTY(all_waypoints)
 
 		if("setcoord")
 			if(params["setx"])
-				var/newx = tgui_input_number(usr, "Input new destiniation x coordinate", "Coordinate input", dx, world.maxx, 1)
-				if(tgui_status(usr, state) != STATUS_INTERACTIVE)
+				var/newx = tgui_input_number(ui.user, "Input new destiniation x coordinate", "Coordinate input", dx, world.maxx, 1)
+				if(tgui_status(ui.user, state) != STATUS_INTERACTIVE)
 					return
 				if(newx)
 					dx = CLAMP(newx, 1, world.maxx)
 
 			if(params["sety"])
-				var/newy = tgui_input_number(usr, "Input new destiniation y coordinate", "Coordinate input", dy, world.maxy, 1)
-				if(tgui_status(usr, state) != STATUS_INTERACTIVE)
+				var/newy = tgui_input_number(ui.user, "Input new destiniation y coordinate", "Coordinate input", dy, world.maxy, 1)
+				if(tgui_status(ui.user, state) != STATUS_INTERACTIVE)
 					return
 				if(newy)
 					dy = CLAMP(newy, 1, world.maxy)
@@ -240,22 +240,22 @@ GLOBAL_LIST_EMPTY(all_waypoints)
 			. = TRUE
 
 		if("speedlimit")
-			var/newlimit = tgui_input_number(usr, "Input new speed limit for autopilot (0 to brake)", "Autopilot speed limit", speedlimit*1000, 100000, round_value = FALSE)
+			var/newlimit = tgui_input_number(ui.user, "Input new speed limit for autopilot (0 to brake)", "Autopilot speed limit", speedlimit*1000, 100000, round_value = FALSE)
 			if(newlimit)
 				speedlimit = CLAMP(newlimit/1000, 0, 100)
 			. = TRUE
 
 		if("accellimit")
-			var/newlimit = tgui_input_number(usr, "Input new acceleration limit", "Acceleration limit", accellimit*1000, round_value = FALSE)
+			var/newlimit = tgui_input_number(ui.user, "Input new acceleration limit", "Acceleration limit", accellimit*1000, round_value = FALSE)
 			if(newlimit)
 				accellimit = max(newlimit/1000, 0)
 			. = TRUE
 
 		if("move")
 			var/ndir = text2num(params["dir"])
-			if(prob(usr.skill_fail_chance(/datum/skill/pilot, 50, linked.skill_needed, factor = 1)))
+			if(prob(ui.user.skill_fail_chance(/datum/skill/pilot, 50, linked.skill_needed, factor = 1)))
 				ndir = turn(ndir,pick(90,-90))
-			linked.relaymove(usr, ndir, accellimit)
+			linked.relaymove(ui.user, ndir, accellimit)
 			. = TRUE
 
 		if("brake")
@@ -275,11 +275,11 @@ GLOBAL_LIST_EMPTY(all_waypoints)
 			. = TRUE
 
 		if("manual")
-			viewing_overmap(usr) ? unlook(usr) : look(usr)
+			viewing_overmap(ui.user) ? unlook(ui.user) : look(ui.user)
 			. = TRUE
 
-	add_fingerprint(usr)
-	if(. && !issilicon(usr))
+	add_fingerprint(ui.user)
+	if(. && !issilicon(ui.user))
 		playsound(src, "terminal_type", 50, 1)
 
 
