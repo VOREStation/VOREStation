@@ -70,7 +70,7 @@
 
 /mob/living/carbon/human/Destroy()
 	human_mob_list -= src
-	/* //Chomp REMOVE - this is done on mob/living/Destroy
+	/* //REMOVE - this is done on mob/living/Destroy
 	for(var/organ in organs)
 		qdel(organ)
 	*/
@@ -947,7 +947,7 @@
 
 /mob/living/carbon/human/proc/remotesay()
 	set name = "Project mind"
-	set category = "Superpower"
+	set category = "Abilities.Superpower"
 
 	if(stat!=CONSCIOUS)
 		reset_view(0)
@@ -976,7 +976,7 @@
 
 /mob/living/carbon/human/proc/remoteobserve()
 	set name = "Remote View"
-	set category = "Superpower"
+	set category = "Abilities.Superpower"
 
 	if(stat!=CONSCIOUS)
 		remoteview_target = null
@@ -1061,10 +1061,6 @@
 			dna.ResetUIFrom(src)
 			sync_organ_dna()
 	// end vorestation addition
-
-	for (var/ID in virus2)
-		var/datum/disease2/disease/V = virus2[ID]
-		V.cure(src)
 
 	losebreath = 0
 
@@ -1339,7 +1335,7 @@
 		return 0
 
 /mob/living/carbon/human/proc/bloody_doodle()
-	set category = "IC"
+	set category = "IC.Game"
 	set name = "Write in blood"
 	set desc = "Use blood on your hands to write a short message on the floor or a wall, murder mystery style."
 
@@ -1648,7 +1644,7 @@
 /mob/living/carbon/human/verb/pull_punches()
 	set name = "Pull Punches"
 	set desc = "Try not to hurt them."
-	set category = "IC"
+	set category = "IC.Game"
 
 	if(stat) return
 	pulling_punches = !pulling_punches

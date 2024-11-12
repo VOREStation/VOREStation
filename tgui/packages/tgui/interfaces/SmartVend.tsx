@@ -1,8 +1,18 @@
-import { map } from 'common/collections';
 import { BooleanLike } from 'common/react';
+import { createSearch } from 'common/string';
+import { useState } from 'react';
 
 import { useBackend } from '../backend';
-import { Box, Button, NoticeBox, Section, Table } from '../components';
+import {
+  Box,
+  Button,
+  Dropdown,
+  Flex,
+  Input,
+  NoticeBox,
+  Section,
+  Table,
+} from '../components';
 import { Window } from '../layouts';
 
 type Data = {
@@ -14,13 +24,33 @@ type Data = {
 
 type content = { name: string; index: number; amount: number };
 
+const sortTypes = {
+  Alphabetical: (a: content, b: content) => a.name > b.name,
+  'By amount': (a: content, b: content) => -(a.amount - b.amount),
+};
+
 export const SmartVend = (props) => {
-  const { act, config, data } = useBackend<Data>();
+  const { config, data } = useBackend<Data>();
+  const [searchText, setSearchText] = useState('');
+  const [sortOrder, setSortOrder] = useState('Alphabetical');
+  const [descending, setDescending] = useState(false);
+
+  function handleSearchText(value: string) {
+    setSearchText(value);
+  }
+
+  function handleSortOrder(value: string) {
+    setSortOrder(value);
+  }
+
+  function handleDescending(value: boolean) {
+    setDescending(value);
+  }
 
   const { secure, locked, contents } = data;
 
   return (
-    <Window width={500} height={550}>
+    <Window width={640} height={550}>
       <Window.Content scrollable>
         <Section title="Storage">
           {(secure && locked === -1 && (
@@ -39,95 +69,191 @@ export const SmartVend = (props) => {
           {(contents.length === 0 && (
             <NoticeBox>Unfortunately, this {config.title} is empty.</NoticeBox>
           )) || (
-            <Table>
-              <Table.Row header>
-                <Table.Cell collapsing>Item</Table.Cell>
-                <Table.Cell collapsing textAlign="center">
-                  Amount
-                </Table.Cell>
-                <Table.Cell collapsing textAlign="center">
-                  Dispense
-                </Table.Cell>
-              </Table.Row>
-              {map(contents, (value: content, key) => (
-                <Table.Row key={key}>
-                  <Table.Cell collapsing>{value.name}</Table.Cell>
-                  <Table.Cell collapsing textAlign="center">
-                    {value.amount} in stock
-                  </Table.Cell>
-                  <Table.Cell collapsing>
-                    <Button
-                      disabled={value.amount < 1}
-                      onClick={() =>
-                        act('Release', {
-                          index: value.index,
-                          amount: 1,
-                        })
-                      }
-                    >
-                      1
-                    </Button>
-                    <Button
-                      disabled={value.amount < 5}
-                      onClick={() =>
-                        act('Release', {
-                          index: value.index,
-                          amount: 5,
-                        })
-                      }
-                    >
-                      5
-                    </Button>
-                    <Button
-                      disabled={value.amount < 25}
-                      onClick={() =>
-                        act('Release', {
-                          index: value.index,
-                          amount: 25,
-                        })
-                      }
-                    >
-                      25
-                    </Button>
-                    <Button
-                      disabled={value.amount < 50}
-                      onClick={() =>
-                        act('Release', {
-                          index: value.index,
-                          amount: 50,
-                        })
-                      }
-                    >
-                      50
-                    </Button>
-                    <Button
-                      disabled={value.amount < 1}
-                      onClick={() =>
-                        act('Release', {
-                          index: value.index,
-                        })
-                      }
-                    >
-                      Custom
-                    </Button>
-                    <Button
-                      disabled={value.amount < 1}
-                      onClick={() =>
-                        act('Release', {
-                          index: value.index,
-                          amount: value.amount,
-                        })
-                      }
-                    >
-                      All
-                    </Button>
-                  </Table.Cell>
-                </Table.Row>
-              ))}
-            </Table>
+            <>
+              <SheetSearch
+                searchText={searchText}
+                sortOrder={sortOrder}
+                descending={descending}
+                onSearchText={handleSearchText}
+                onSortOrder={handleSortOrder}
+                onDescending={handleDescending}
+              />
+              <SheetItems
+                searchText={searchText}
+                sortOrder={sortOrder}
+                descending={descending}
+                contents={contents}
+              />
+            </>
           )}
         </Section>
       </Window.Content>
     </Window>
+  );
+};
+
+const SheetSearch = (props: {
+  searchText: string;
+  sortOrder: string;
+  descending: boolean;
+  onSearchText: Function;
+  onSortOrder: Function;
+  onDescending: Function;
+}) => {
+  const {
+    searchText,
+    sortOrder,
+    descending,
+    onSearchText,
+    onSortOrder,
+    onDescending,
+  } = props;
+  return (
+    <Box mb="0.5rem">
+      <Flex width="100%">
+        <Flex.Item grow="1" mr="0.5rem">
+          <Input
+            placeholder="Search by item name.."
+            value={searchText}
+            width="100%"
+            onInput={(_e, value) => onSearchText(value)}
+          />
+        </Flex.Item>
+        <Flex.Item basis="30%">
+          <Dropdown
+            autoScroll={false}
+            selected={sortOrder}
+            options={Object.keys(sortTypes)}
+            width="100%"
+            lineHeight="19px"
+            onSelected={(v) => onSortOrder(v)}
+          />
+        </Flex.Item>
+        <Flex.Item>
+          <Button
+            icon={descending ? 'arrow-down' : 'arrow-up'}
+            height="19px"
+            tooltip={descending ? 'Descending order' : 'Ascending order'}
+            tooltipPosition="bottom-end"
+            ml="0.5rem"
+            onClick={() => onDescending(!descending)}
+          />
+        </Flex.Item>
+      </Flex>
+    </Box>
+  );
+};
+
+const SheetItems = (props: {
+  searchText: string;
+  sortOrder: string;
+  descending: boolean;
+  contents: content[];
+}) => {
+  const { act } = useBackend();
+
+  const { searchText, sortOrder, descending, contents } = props;
+
+  const searcher = createSearch(searchText, (item: content) => {
+    return item.name;
+  });
+
+  let allItems = contents.filter(searcher).sort(sortTypes[sortOrder]);
+  if (descending) {
+    allItems = allItems.reverse();
+  }
+
+  return (
+    <Table style={{ tableLayout: 'fixed', width: '100%' }}>
+      <Table.Row header>
+        <Table.Cell collapsing>Item</Table.Cell>
+        <Table.Cell collapsing textAlign="center">
+          Amount
+        </Table.Cell>
+        <Table.Cell collapsing textAlign="center">
+          Dispense
+        </Table.Cell>
+      </Table.Row>
+      {allItems.map((value, key) => (
+        <Table.Row key={key}>
+          <Table.Cell
+            collapsing
+            style={{ overflow: 'hidden', textOverflow: 'ellipsis' }}
+          >
+            {value.name}
+          </Table.Cell>
+          <Table.Cell collapsing textAlign="center">
+            {value.amount} in stock
+          </Table.Cell>
+          <Table.Cell collapsing>
+            <Button
+              disabled={value.amount < 1}
+              onClick={() =>
+                act('Release', {
+                  index: value.index,
+                  amount: 1,
+                })
+              }
+            >
+              1
+            </Button>
+            <Button
+              disabled={value.amount < 5}
+              onClick={() =>
+                act('Release', {
+                  index: value.index,
+                  amount: 5,
+                })
+              }
+            >
+              5
+            </Button>
+            <Button
+              disabled={value.amount < 25}
+              onClick={() =>
+                act('Release', {
+                  index: value.index,
+                  amount: 25,
+                })
+              }
+            >
+              25
+            </Button>
+            <Button
+              disabled={value.amount < 50}
+              onClick={() =>
+                act('Release', {
+                  index: value.index,
+                  amount: 50,
+                })
+              }
+            >
+              50
+            </Button>
+            <Button
+              disabled={value.amount < 1}
+              onClick={() =>
+                act('Release', {
+                  index: value.index,
+                })
+              }
+            >
+              Custom
+            </Button>
+            <Button
+              disabled={value.amount < 1}
+              onClick={() =>
+                act('Release', {
+                  index: value.index,
+                  amount: value.amount,
+                })
+              }
+            >
+              All
+            </Button>
+          </Table.Cell>
+        </Table.Row>
+      ))}
+    </Table>
   );
 };

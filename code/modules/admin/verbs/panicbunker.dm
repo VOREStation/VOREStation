@@ -1,5 +1,5 @@
 /client/proc/panicbunker()
-	set category = "Server"
+	set category = "Server.Config"
 	set name = "Toggle Panic Bunker"
 
 	if(!check_rights(R_ADMIN))
@@ -17,7 +17,7 @@
 	feedback_add_details("admin_verb","PANIC") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/paranoia_logging()
-	set category = "Server"
+	set category = "Server.Config"
 	set name = "New Player Warnings"
 
 	if(!check_rights(R_ADMIN))
@@ -31,7 +31,7 @@
 	feedback_add_details("admin_verb","PARLOG") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/ip_reputation()
-	set category = "Server"
+	set category = "Server.Config"
 	set name = "Toggle IP Rep Checks"
 
 	if(!check_rights(R_ADMIN))

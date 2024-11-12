@@ -118,7 +118,7 @@ NOTE: It checks usr by default. Supply the "user" argument if you wish to check 
 	vv_update_display(D, "marked", VV_MSG_MARKED)
 
 /client/proc/mark_datum_mapview(datum/D as mob|obj|turf|area in view(view))
-	set category = "Debug"
+	set category = "Debug.Game"
 	set name = "Mark Object"
 	mark_datum(D)
 

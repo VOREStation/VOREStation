@@ -419,10 +419,10 @@
 /obj/item/radio/headset/syndicate,
 /obj/item/radio/headset/syndicate,
 /obj/item/radio/headset/syndicate,
-/obj/item/radio/headset/syndicate/alt,
-/obj/item/radio/headset/syndicate/alt,
-/obj/item/radio/headset/syndicate/alt,
-/obj/item/radio/headset/syndicate/alt,
+/obj/item/radio/headset/alt/syndicate,
+/obj/item/radio/headset/alt/syndicate,
+/obj/item/radio/headset/alt/syndicate,
+/obj/item/radio/headset/alt/syndicate,
 /turf/unsimulated/floor{
 	icon_state = "lino"
 	},

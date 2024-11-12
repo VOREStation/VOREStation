@@ -221,3 +221,23 @@
 			spawn(0)
 				if(SG?.anchored)
 					SG.toggle()
+
+/obj/machinery/button/remote/airlock/release
+	icon = 'icons/obj/door_release.dmi'
+	name = "emergency door release"
+	desc = "Forces the opening of doors in an emergency, regardless of whether they're powered."
+
+	use_power = USE_POWER_OFF
+	idle_power_usage = 0
+	active_power_usage = 0
+
+/obj/machinery/button/remote/airlock/release/trigger()
+	for(var/obj/machinery/door/airlock/D in machines)
+		if(D.id_tag == id)
+			if(D.locked)
+				D.unlock(1)
+			if(D.density)
+				D.open(1)
+
+/obj/machinery/button/remote/airlock/release/powered()
+	return 1 //Is always able to be used

@@ -10,7 +10,7 @@
 
 
 /datum/admins/proc/setup_supermatter()
-	set category = "Debug"
+	set category = "Debug.Game"
 	set name = "Setup Supermatter"
 	set desc = "Allows you to start the Supermatter engine."
 

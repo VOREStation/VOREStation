@@ -5,7 +5,7 @@ var/can_call_traders = 1
 
 /client/proc/trader_ship()
 	set name = "Dispatch Beruang Trader Ship"
-	set category = "Special Verbs"
+	set category = "Fun.Event Kit"
 	set desc = "Invite players to join the Beruang."
 
 	if(!holder)
@@ -36,7 +36,7 @@ var/can_call_traders = 1
 /client/verb/JoinTraders()
 
 	set name = "Join Trader Visit"
-	set category = "IC"
+	set category = "IC.Event"
 
 	if(!MayRespawn(1))
 		to_chat(usr, span_warning("You cannot join the traders."))

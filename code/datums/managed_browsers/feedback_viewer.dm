@@ -2,7 +2,7 @@
 	var/datum/managed_browser/feedback_viewer/feedback_viewer = null
 
 /datum/admins/proc/view_feedback()
-	set category = "Admin"
+	set category = "Admin.Misc"
 	set name = "View Feedback"
 	set desc = "Open the Feedback Viewer"
 

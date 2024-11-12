@@ -246,10 +246,19 @@ var/const/CE_STABLE_THRESHOLD = 0.5
 
 	//set reagent data
 	B.data["donor"] = src
-	if (!B.data["virus2"])
-		B.data["virus2"] = list()
-	B.data["virus2"] |= virus_copylist(src.virus2)
-	B.data["antibodies"] = src.antibodies
+	if(!B.data["viruses"])
+		B.data["viruses"] = list()
+
+	for(var/datum/disease/D in GetViruses())
+		if(D.spread_flags & SPECIAL)
+			continue
+		B.data["viruses"] |= D.Copy()
+
+	if(!B.data["resistances"])
+		B.data["resistances"] = list()
+
+	if(B.data["resistances"])
+		B.data["resistances"] |= GetResistances()
 	B.data["blood_DNA"] = copytext(src.dna.unique_enzymes,1,0)
 	B.data["blood_type"] = copytext(src.dna.b_type,1,0)
 
@@ -282,10 +291,14 @@ var/const/CE_STABLE_THRESHOLD = 0.5
 /mob/living/carbon/proc/inject_blood(var/datum/reagent/blood/injected, var/amount)
 	if (!injected || !istype(injected))
 		return
-	var/list/sniffles = virus_copylist(injected.data["virus2"])
+	var/list/sniffles = injected.data["viruses"]
 	for(var/ID in sniffles)
-		var/datum/disease2/disease/sniffle = sniffles[ID]
-		infect_virus2(src,sniffle,1)
+		var/datum/disease/D = ID
+		if((D.spread_flags & SPECIAL) || (D.spread_flags & NON_CONTAGIOUS)) // You can't put non-contagius diseases in blood, but just in case
+			continue
+		ContractDisease(D)
+	if (injected.data["resistances"] && prob(5))
+		antibodies |= injected.data["resistances"]
 	if (injected.data["antibodies"] && prob(5))
 		antibodies |= injected.data["antibodies"]
 	var/list/chems = list()
@@ -426,8 +439,8 @@ var/const/CE_STABLE_THRESHOLD = 0.5
 			B.blood_DNA[source.data["blood_DNA"]] = "O+"
 
 	// Update virus information.
-	if(source.data["virus2"])
-		B.virus2 = virus_copylist(source.data["virus2"])
+	if(source.data["viruses"])
+		B.viruses = source.data["viruses"]
 
 	B.fluorescent  = 0
 	B.invisibility = 0

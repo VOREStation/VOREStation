@@ -19,8 +19,11 @@
 	uniform = /obj/item/clothing/under/color/white
 
 /decl/hierarchy/outfit/job/service
-	l_ear = /obj/item/radio/headset/headset_service
 	hierarchy_type = /decl/hierarchy/outfit/job/service
+
+	headset = /obj/item/radio/headset/service
+	headset_alt = /obj/item/radio/headset/alt/service
+	headset_earbud = /obj/item/radio/headset/earbud/service
 
 /decl/hierarchy/outfit/job/service/bartender
 	name = OUTFIT_JOB_NAME(JOB_BARTENDER)
@@ -91,7 +94,6 @@
 
 /decl/hierarchy/outfit/job/internal_affairs_agent
 	name = OUTFIT_JOB_NAME("Internal affairs agent")
-	l_ear = /obj/item/radio/headset/ia
 	uniform = /obj/item/clothing/under/rank/internalaffairs
 	suit = /obj/item/clothing/suit/storage/toggle/internalaffairs
 	shoes = /obj/item/clothing/shoes/brown
@@ -99,6 +101,10 @@
 	l_hand = /obj/item/clipboard
 	id_type = /obj/item/card/id/civilian/internal_affairs
 	pda_type = /obj/item/pda/lawyer
+
+	headset = /obj/item/radio/headset/ia
+	headset_alt = /obj/item/radio/headset/alt/ia
+	headset_earbud = /obj/item/radio/headset/earbud/ia
 
 /decl/hierarchy/outfit/job/chaplain
 	name = OUTFIT_JOB_NAME(JOB_CHAPLAIN)
@@ -114,10 +120,13 @@
 	mask = /obj/item/clothing/mask/gas/explorer
 	suit = /obj/item/clothing/suit/storage/hooded/explorer
 	gloves = /obj/item/clothing/gloves/black
-	l_ear = /obj/item/radio/headset
 	id_slot = slot_wear_id
 	id_type = /obj/item/card/id/exploration					//VOREStation Edit
 	pda_slot = slot_belt
 	pda_type = /obj/item/pda/cargo // Brown looks more rugged
 	r_pocket = /obj/item/gps/explorer
 	id_pda_assignment = JOB_EXPLORER
+
+	headset = /obj/item/radio/headset
+	headset_alt = /obj/item/radio/headset/alt
+	headset_earbud = /obj/item/radio/headset/earbud

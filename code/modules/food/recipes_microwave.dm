@@ -508,14 +508,6 @@ I said no!
 	)
 	result = /obj/item/reagent_containers/food/snacks/icecreamsandwich
 
-// Fuck Science!
-/datum/recipe/ruinedvirusdish
-	items = list(
-		/obj/item/virusdish
-	)
-	result = /obj/item/ruinedvirusdish
-
-
 /datum/recipe/onionsoup
 	fruit = list("onion" = 1)
 	reagents = list("water" = 10)

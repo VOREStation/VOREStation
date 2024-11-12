@@ -27,7 +27,7 @@
 /client/proc/add_mob_for_narration(E as obj|mob|turf in orange(world.view))
 	set name = "Narrate Entity (Add ref)"
 	set desc = "Saves a reference of target mob to be called when narrating."
-	set category = "Fun"
+	set category = "Fun.Narrate"
 
 	if(!check_rights(R_FUN)) return
 
@@ -77,7 +77,7 @@
 /client/proc/remove_mob_for_narration()
 	set name = "Narrate Entity (Remove ref)"
 	set desc = "Remove mobs you're no longer narrating from your list for easier work."
-	set category = "Fun"
+	set category = "Fun.Narrate"
 
 	if(!check_rights(R_FUN)) return
 
@@ -107,7 +107,7 @@
 /client/proc/narrate_mob()
 	set name = "Narrate Entity (Interface)"
 	set desc = "Send either a visible or audiable message through your chosen entities using an interface"
-	set category = "Fun"
+	set category = "Fun.Narrate"
 
 	if(!check_rights(R_FUN)) return
 
@@ -138,7 +138,7 @@
 /client/proc/narrate_mob_args(name as text, mode as text, message as text)
 	set name = "Narrate Entity"
 	set desc = "Narrate entities using positional arguments. Name should be as saved in ref list, mode should be Speak or Emote, follow with message"
-	set category = "Fun"
+	set category = "Fun.Narrate"
 
 
 

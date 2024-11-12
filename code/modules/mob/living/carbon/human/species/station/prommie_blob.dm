@@ -235,7 +235,7 @@
 /mob/living/simple_mob/slime/promethean/proc/prommie_blobform()
 	set name = "Toggle Blobform"
 	set desc = "Switch between amorphous and humanoid forms."
-	set category = "Abilities"
+	set category = "Abilities.Promethean"
 	set hidden = FALSE
 
 	var/atom/movable/to_locate = src
@@ -253,7 +253,7 @@
 /mob/living/simple_mob/slime/promethean/proc/toggle_expand()
 	set name = "Toggle Width"
 	set desc = "Switch between smole and lorge."
-	set category = "Abilities"
+	set category = "Abilities.Promethean"
 	set hidden = FALSE
 
 	if(stat || world.time < last_special)
@@ -273,7 +273,7 @@
 /mob/living/simple_mob/slime/promethean/proc/toggle_shine()
 	set name = "Toggle Shine"
 	set desc = "Shine on you crazy diamond."
-	set category = "Abilities"
+	set category = "Abilities.Promethean"
 	set hidden = FALSE
 
 	if(stat || world.time < last_special)
@@ -293,7 +293,7 @@
 /mob/living/simple_mob/slime/promethean/proc/prommie_select_colour()
 
 	set name = "Select Body Colour"
-	set category = "Abilities"
+	set category = "Abilities.Promethean"
 
 	if(stat || world.time < last_special)
 		return

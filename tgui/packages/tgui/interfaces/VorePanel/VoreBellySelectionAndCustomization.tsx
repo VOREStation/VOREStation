@@ -1,7 +1,8 @@
 import { BooleanLike } from 'common/react';
+import { Stack } from 'tgui-core/components';
 
 import { useBackend } from '../../backend';
-import { Box, Divider, Flex, Icon, Section, Tabs } from '../../components';
+import { Box, Divider, Icon, Section, Tabs } from '../../components';
 import { digestModeToColor } from './constants';
 import { bellyData, hostMob, selectedData } from './types';
 import { VoreSelectedBelly } from './VoreSelectedBelly';
@@ -17,8 +18,8 @@ export const VoreBellySelectionAndCustomization = (props: {
   const { our_bellies, selected, show_pictures, host_mobtype } = props;
 
   return (
-    <Flex height="83%">
-      <Flex.Item shrink basis="30%">
+    <Stack fill>
+      <Stack.Item shrink basis="30%">
         <Section title="My Bellies" scrollable fill>
           <Tabs vertical>
             <Tabs.Tab onClick={() => act('newbelly')}>
@@ -54,8 +55,8 @@ export const VoreBellySelectionAndCustomization = (props: {
             ))}
           </Tabs>
         </Section>
-      </Flex.Item>
-      <Flex.Item grow>
+      </Stack.Item>
+      <Stack.Item grow>
         {selected && (
           <Section title={selected.belly_name} fill scrollable>
             <VoreSelectedBelly
@@ -65,7 +66,7 @@ export const VoreBellySelectionAndCustomization = (props: {
             />
           </Section>
         )}
-      </Flex.Item>
-    </Flex>
+      </Stack.Item>
+    </Stack>
   );
 };

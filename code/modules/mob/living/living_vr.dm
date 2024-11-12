@@ -4,7 +4,7 @@
 	..()
 
 /mob/living/verb/customsay()
-	set category = "IC"
+	set category = "IC.Settings"
 	set name = "Customize Speech Verbs"
 	set desc = "Customize the text which appears when you type- e.g. 'says', 'asks', 'exclaims'."
 
@@ -25,7 +25,7 @@
 /mob/living/verb/set_metainfo()
 	set name = "Set OOC Metainfo"
 	set desc = "Sets OOC notes about yourself or your RP preferences or status."
-	set category = "OOC"
+	set category = "OOC.Game Settings"
 
 	if(usr != src)
 		return
@@ -100,7 +100,7 @@
 /mob/living/verb/set_custom_link()
 	set name = "Set Custom Link"
 	set desc = "Set a custom link to show up with your examine text."
-	set category = "IC"
+	set category = "IC.Settings"
 
 	if(usr != src)
 		return
@@ -117,7 +117,7 @@
 /mob/living/verb/set_voice_freq()
 	set name = "Set Voice Frequency"
 	set desc = "Sets your voice frequency to be higher or lower pitched!"
-	set category = "OOC"
+	set category = "OOC.Game Settings"
 
 	var/list/preset_voice_freqs = list("high" = MAX_VOICE_FREQ, "middle-high" = 56250, "middle" = 425000, "middle-low"= 28750, "low" = MIN_VOICE_FREQ, "custom" = 1, "random" = 0)
 	var/choice = tgui_input_list(src, "What would you like to set your voice frequency to?", "Voice Frequency", preset_voice_freqs)
@@ -138,7 +138,7 @@
 /mob/living/verb/set_voice_type()
 	set name = "Set Voice Type"
 	set desc = "Sets your voice style!"
-	set category = "OOC"
+	set category = "OOC.Game Settings"
 
 	var/list/possible_voice_types = get_talk_sound()
 	var/choice = tgui_input_list(usr, "Which set of sounds would you like to use for your character's speech sounds?", "Voice Sounds", possible_voice_types)
