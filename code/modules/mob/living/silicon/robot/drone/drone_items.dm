@@ -188,6 +188,7 @@
 		/obj/item/disk/nifsoft/compliance,
 		/obj/item/handcuffs,
 		/obj/item/toy,
+		/obj/item/petrifier,
 		/obj/item/dice,
 		/obj/item/casino_platinum_chip,
 		/obj/item/spacecasinocash

@@ -4,7 +4,6 @@
 
 /mob/verb/me_verb_subtle(message as message) //This would normally go in say.dm
 	set name = "Subtle"
-	set category = "IC.Subtle"
 	set desc = "Emote to nearby people (and your pred/prey)"
 	set hidden = 1
 
@@ -27,7 +26,6 @@
 
 /mob/verb/me_verb_subtle_custom(message as message) // Literally same as above but with mode_selection set to true
 	set name = "Subtle (Custom)"
-	set category = "IC.Subtle"
 	set desc = "Emote to nearby people, with ability to choose which specific portion of people you wish to target."
 
 	if(say_disabled)	//This is here to try to identify lag problems
@@ -260,7 +258,6 @@
 ///// PSAY /////
 
 /mob/verb/psay(message as text)
-	set category = "IC.Subtle"
 	set name = "Psay"
 	set desc = "Talk to people affected by complete absorbed or dominate predator/prey."
 
@@ -358,7 +355,6 @@
 ///// PME /////
 
 /mob/verb/pme(message as message)
-	set category = "IC.Subtle"
 	set name = "Pme"
 	set desc = "Emote to people affected by complete absorbed or dominate predator/prey."
 
@@ -454,7 +450,6 @@
 		M.me_verb(message)
 
 /mob/living/verb/player_narrate(message as message)
-	set category = "IC.Chat"
 	set name = "Narrate (Player)"
 	set desc = "Narrate an action or event! An alternative to emoting, for when your emote shouldn't start with your name!"
 
