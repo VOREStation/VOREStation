@@ -1,5 +1,5 @@
 // Allows the usage of old style chat inputs even with TG Say enabled
-/mob/verb/say_verb_ch()
+/mob/verb/say_verb_old()
 	set name = "Say Old"
 	set category = "IC.Chat"
 
@@ -11,7 +11,7 @@
 	if(message)
 		say_verb(message)
 
-/mob/verb/me_verb_ch()
+/mob/verb/me_verb_old()
 	set name = "Me Old"
 	set category = "IC.Chat"
 	set desc = "Emote to nearby people (and your pred/prey)"
@@ -24,7 +24,7 @@
 	if(message)
 		me_verb(message)
 
-/mob/verb/whisper_ch()
+/mob/verb/whisper_old()
 	set name = "Whisper Old"
 	set category = "IC.Subtle"
 
@@ -34,7 +34,7 @@
 		whisper(message)
 
 
-/mob/verb/me_verb_subtle_ch()
+/mob/verb/me_verb_subtle_old()
 	set name = "Subtle Old"
 	set category = "IC.Subtle"
 	set desc = "Emote to nearby people (and your pred/prey)"
@@ -44,7 +44,7 @@
 	if(message)
 		me_verb_subtle(message)
 
-/mob/verb/me_verb_subtle_custom_ch()
+/mob/verb/me_verb_subtle_custom_old()
 	set name = "Subtle (Custom) Old"
 	set category = "IC.Subtle"
 	set desc = "Emote to nearby people, with ability to choose which specific portion of people you wish to target."
@@ -54,7 +54,7 @@
 	if(message)
 		me_verb_subtle_custom(message)
 
-/mob/verb/psay_ch()
+/mob/verb/psay_old()
 	set name = "Psay Old"
 	set category = "IC.Subtle"
 
@@ -63,7 +63,7 @@
 	if(message)
 		psay(message)
 
-/mob/verb/pme_ch()
+/mob/verb/pme_old()
 	set name = "Pme Old"
 	set category = "IC.Subtle"
 
