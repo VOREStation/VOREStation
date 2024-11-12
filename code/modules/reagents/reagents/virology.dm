@@ -42,6 +42,7 @@
 	color = "#A69DA9"
 
 /datum/reagent/toxin/phoron/phoronvirusfood/weak
-	name = "Weakened phoronic virus food. This one seems to have been weakened, but still strong."
+	name = "Weakened phoronic virus food"
 	id = "weakphoronvirusfood"
+	description = "Mutates viruses when mixed in blood. This one seems to have been weakened, but still strong."
 	color = "#CEC3C6"
