@@ -74,19 +74,19 @@
 		humanform = H
 		updatehealth()
 		refactory = locate() in humanform.internal_organs
-		add_verb(src,/mob/living/proc/usehardsuit) //CHOMPEdit TGPanel
-		add_verb(src,/mob/living/simple_mob/protean_blob/proc/nano_partswap) //CHOMPEdit TGPanel
-		add_verb(src,/mob/living/simple_mob/protean_blob/proc/nano_regenerate) //CHOMPEdit TGPanel
-		add_verb(src,/mob/living/simple_mob/protean_blob/proc/nano_metalnom) //CHOMPEdit TGPanel
-		add_verb(src,/mob/living/simple_mob/protean_blob/proc/nano_blobform) //CHOMPEdit TGPanel
-		add_verb(src,/mob/living/simple_mob/protean_blob/proc/nano_rig_transform) //CHOMPEdit TGPanel
-		add_verb(src,/mob/living/simple_mob/protean_blob/proc/appearance_switch) //CHOMPEdit TGPanel
-		add_verb(src,/mob/living/simple_mob/protean_blob/proc/nano_latch) //CHOMPEdit TGPanel
-		remove_verb(src,/mob/living/simple_mob/proc/nutrition_heal) //CHOMPEdit TGPanel
+		add_verb(src,/mob/living/proc/usehardsuit)
+		add_verb(src,/mob/living/simple_mob/protean_blob/proc/nano_partswap)
+		add_verb(src,/mob/living/simple_mob/protean_blob/proc/nano_regenerate)
+		add_verb(src,/mob/living/simple_mob/protean_blob/proc/nano_metalnom)
+		add_verb(src,/mob/living/simple_mob/protean_blob/proc/nano_blobform)
+		add_verb(src,/mob/living/simple_mob/protean_blob/proc/nano_rig_transform)
+		add_verb(src,/mob/living/simple_mob/protean_blob/proc/appearance_switch)
+		add_verb(src,/mob/living/simple_mob/protean_blob/proc/nano_latch)
+		remove_verb(src,/mob/living/simple_mob/proc/nutrition_heal)
 	else
 		update_icon()
-	add_verb(src,/mob/living/simple_mob/proc/animal_mount) //CHOMPEdit TGPanel
-	add_verb(src,/mob/living/proc/toggle_rider_reins) //CHOMPEdit TGPanel
+	add_verb(src,/mob/living/simple_mob/proc/animal_mount)
+	add_verb(src,/mob/living/proc/toggle_rider_reins)
 
 //Hidden verbs for macro hotkeying
 /mob/living/simple_mob/protean_blob/proc/nano_partswap()
@@ -378,39 +378,6 @@
 	else
 		..()
 
-
-/*	Don't need this block anymore since our Prots have hands
-/mob/living/simple_mob/protean_blob/attack_target(var/atom/A)
-	if(refactory && istype(A,/obj/item/stack/material))
-		var/obj/item/stack/material/S = A
-		var/substance = S.material.name
-		var allowed = FALSE
-		for(var/material in PROTEAN_EDIBLE_MATERIALS)
-			if(material == substance) allowed = TRUE
-		if(!allowed)
-			return
-		if(refactory.add_stored_material(S.material.name,1*S.perunit) && S.use(1))
-			visible_message(span_infoplain(span_bold("[name]") + " gloms over some of \the [S], absorbing it."))
-	else if(isitem(A) && a_intent == "grab") //CHOMP Add all this block, down to I.forceMove.
-		var/obj/item/I = A
-		if(!vore_selected)
-			to_chat(src,span_warning("You either don't have a belly selected, or don't have a belly!"))
-			return FALSE
-		if(is_type_in_list(I,item_vore_blacklist) || I.anchored)
-			to_chat(src, span_warning("You can't eat this."))
-			return
-
-		if(is_type_in_list(I,edible_trash) | adminbus_trash)
-			if(I.hidden_uplink)
-				to_chat(src, span_warning("You really should not be eating this."))
-				message_admins("[key_name(src)] has attempted to ingest an uplink item. ([src ? "<a href='?_src_=holder;adminplayerobservecoodjump=1;X=[src.x];Y=[src.y];Z=[src.z]'>JMP</a>" : "null"])")
-				return
-		visible_message(span_infoplain(span_bold("[name]") + " stretches itself over the [I], engulfing it whole!"))
-		I.forceMove(vore_selected)
-	else
-		return ..()
-*/
-
 /mob/living/simple_mob/protean_blob/attackby(var/obj/item/O, var/mob/user)
 	if(refactory && istype(O,/obj/item/stack/material))
 		var/obj/item/stack/material/S = O
@@ -487,6 +454,8 @@
 		//Put our owner in it (don't transfer var/mind)
 		blob.ckey = ckey
 		blob.ooc_notes = ooc_notes
+		blob.ooc_notes_likes = ooc_notes_likes
+		blob.ooc_notes_dislikes = ooc_notes_dislikes
 		temporary_form = blob
 		var/obj/item/radio/R = null
 		if(isradio(l_ear))
@@ -497,8 +466,7 @@
 			blob.mob_radio = R
 			R.forceMove(blob)
 		if(wear_id)
-			blob.myid = wear_id
-			wear_id.forceMove(blob)
+			blob.myid = wear_id.GetID()
 
 		//Mail them to nullspace
 		moveToNullspace()
@@ -584,7 +552,6 @@
 			blob.mob_radio.forceMove(src)
 			blob.mob_radio = null
 		if(blob.myid)
-			blob.myid.forceMove(src)
 			blob.myid = null
 
 		//Play the animation
@@ -614,6 +581,8 @@
 		//Put our owner in it (don't transfer var/mind)
 		ckey = blob.ckey
 		ooc_notes = blob.ooc_notes // Lets give the protean any updated notes from blob form.
+		ooc_notes_likes = blob.ooc_notes_likes
+		ooc_notes_dislikes = blob.ooc_notes_dislikes
 		temporary_form = null
 
 		//Transfer vore organs

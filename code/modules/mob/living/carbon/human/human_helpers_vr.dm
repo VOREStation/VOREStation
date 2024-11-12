@@ -249,7 +249,7 @@ var/static/icon/ingame_hud_med_vr = icon('icons/mob/hud_med_vr.dmi')
 	weight_gain		= character.weight_gain
 	weight_loss		= character.weight_loss
 	fuzzy				= character.fuzzy
-	offset_override	= character.offset_override //CHOMPEdit
+	offset_override	= character.offset_override
 	voice_freq		= character.voice_freq
 	if (species && character.species)
 		species.micro_size_mod = character.species.micro_size_mod

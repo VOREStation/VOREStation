@@ -556,7 +556,7 @@ var/list/preferences_datums = list()
 	blood color
 	*/
 	if (copy_name)
-		if(CONFIG_GET(flag/humans_need_surnames)) // CHOMPEdit
+		if(CONFIG_GET(flag/humans_need_surnames))
 			var/firstspace = findtext(real_name, " ")
 			var/name_length = length(real_name)
 			if(!firstspace)	//we need a surname
@@ -717,7 +717,7 @@ var/list/preferences_datums = list()
 	character.weight_gain		= weight_gain
 	character.weight_loss		= weight_loss
 	character.fuzzy				= fuzzy
-	character.offset_override	= offset_override //CHOMPEdit
+	character.offset_override	= offset_override
 	character.voice_freq		= voice_freq
 	character.resize(size_multiplier, animate = FALSE, ignore_prefs = TRUE)
 
