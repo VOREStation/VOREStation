@@ -23,7 +23,7 @@
 #define SUIT_STORE_LAYER		20		//Suit storage-slot item
 #define BACK_LAYER				21		//Back-slot item
 #define HAIR_LAYER				22		//The human's hair
-#define HAIR_ACCESSORY_LAYER	23		//VOREStation edit. Simply move this up a number if things are added.
+#define HAIR_ACCESSORY_LAYER	23		//Simply move this up a number if things are added.
 #define EARS_LAYER				24		//Both ear-slot items (combined image)
 #define EYES_LAYER				25		//Mob's eyes (used for glowing eyes)
 #define FACEMASK_LAYER			26		//Mask-slot item
