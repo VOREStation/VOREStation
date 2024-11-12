@@ -2201,7 +2201,6 @@
 #include "code\modules\clothing\spacesuits\rig\rig_wiring.dm"
 #include "code\modules\clothing\spacesuits\rig\modules\modules.dm"
 #include "code\modules\clothing\spacesuits\rig\modules\protean.dm"
-#include "code\modules\clothing\spacesuits\rig\modules\protean.dm"
 #include "code\modules\clothing\spacesuits\rig\modules\specific\ai_container.dm"
 #include "code\modules\clothing\spacesuits\rig\modules\specific\chem_dispenser.dm"
 #include "code\modules\clothing\spacesuits\rig\modules\specific\cleaner_launcher.dm"
