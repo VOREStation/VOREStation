@@ -1239,6 +1239,13 @@
     ckeywhitelist = list("satinisle")
     character_name = list("Parriz Tavakdavi")
 
+/datum/gear/fluff/dark_tarot
+    path = /obj/item/deck/dark_tarot
+    display_name = "dark rose tarot deck"
+    ckeywhitelist = list("satinisle")
+    character_name = list("Millie Orlen")
+
+
 //  T CKEYS
 /datum/gear/fluff/ascian_medal
 	path = /obj/item/clothing/accessory/medal/silver/unity/tabiranth
