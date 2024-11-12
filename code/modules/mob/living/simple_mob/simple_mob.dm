@@ -387,3 +387,6 @@
 	else
 		to_chat(usr, "You stop sensing creatures beyond the walls.")
 		sight -= SEE_MOBS
+
+/mob/living/simple_mob/proc/character_directory_species()
+	return "simplemob"
