@@ -82,7 +82,6 @@
 		add_verb(src,/mob/living/simple_mob/protean_blob/proc/nano_rig_transform)
 		add_verb(src,/mob/living/simple_mob/protean_blob/proc/appearance_switch)
 		add_verb(src,/mob/living/simple_mob/protean_blob/proc/nano_latch)
-		remove_verb(src,/mob/living/simple_mob/proc/nutrition_heal)
 	else
 		update_icon()
 	add_verb(src,/mob/living/simple_mob/proc/animal_mount)
