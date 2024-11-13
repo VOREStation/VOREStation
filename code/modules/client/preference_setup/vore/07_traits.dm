@@ -63,6 +63,9 @@ var/global/list/valid_bloodreagents = list("default","iron","copper","phoron","s
 					. += link + (trait_prefs[identifier] ? "Enabled" : "Disabled")
 				if (2) //TRAIT_PREF_TYPE_COLOR
 					. += " " + color_square(hex = trait_prefs[identifier]) + link + "Change"
+				if (3) //TRAIT_PREF_TYPE_STRING
+					var/string = trait_prefs[identifier]
+					. += link + (length(string) > 0 ? string : "\[Empty\]")
 			. += "</a></li>"
 	. += "</ul>"
 	if (altered)
@@ -101,6 +104,9 @@ var/global/list/valid_bloodreagents = list("default","iron","copper","phoron","s
 			var/new_color = input(user, "Choose the color for this trait preference:", "Trait Preference", trait_prefs[preference]) as color|null
 			if (new_color)
 				trait_prefs[preference] = new_color
+		if (3) //TRAIT_PREF_TYPE_STRING
+			var/new_string = instance.apply_sanitization_to_string(preference, tgui_input_text(user, "What should the new value be?", instance.has_preferences[preference][2], trait_prefs[preference], MAX_NAME_LEN))
+			trait_prefs[preference] = new_string
 
 // Definition of the stuff for Ears
 /datum/category_item/player_setup_item/vore/traits
