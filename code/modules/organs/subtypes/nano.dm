@@ -87,7 +87,7 @@
 /obj/item/organ/internal/nano/orchestrator
 	name = "orchestrator module"
 	desc = "A small computer, designed for highly parallel workloads."
-	icon = 'modular_chomp/icons/mob/species/protean/protean.dmi'
+	icon = 'icons/mob/species/protean/protean.dmi'
 	icon_state = "orchestrator"
 	organ_tag = O_ORCH
 	parent_organ = BP_TORSO
@@ -107,7 +107,7 @@
 /obj/item/organ/internal/nano/refactory
 	name = "refactory module"
 	desc = "A miniature metal processing unit and nanite factory."
-	icon = 'modular_chomp/icons/mob/species/protean/protean.dmi'
+	icon = 'icons/mob/species/protean/protean.dmi'
 	icon_state = "refactory"
 	organ_tag = O_FACT
 	parent_organ = BP_TORSO
@@ -163,7 +163,7 @@
 /obj/item/organ/internal/mmi_holder/posibrain/nano
 	name = "protean posibrain"
 	desc = "A more advanced version of the standard posibrain, typically found in protean bodies."
-	icon = 'modular_chomp/icons/mob/species/protean/protean.dmi'
+	icon = 'icons/mob/species/protean/protean.dmi'
 	icon_state = "posi"
 	parent_organ = BP_TORSO
 
@@ -192,7 +192,7 @@
 /obj/item/mmi/digital/posibrain/nano
 	name = "protean posibrain"
 	desc = "A more advanced version of the standard posibrain, typically found in protean bodies."
-	icon = 'modular_chomp/icons/mob/species/protean/protean.dmi'
+	icon = 'icons/mob/species/protean/protean.dmi'
 	icon_state = "posi"
 
 /obj/item/mmi/digital/posibrain/nano/Initialize()
@@ -228,5 +228,5 @@
 /obj/item/protean_reboot
 	name = "Protean Reboot Programmer"
 	desc = "A small, highly specialized programmer used to form the basis of a Protean swarm. A necessary component in reconstituting a Protean who has lost total body cohesion."
-	icon = 'modular_chomp/icons/mob/species/protean/protean.dmi'
+	icon = 'icons/mob/species/protean/protean.dmi'
 	icon_state = "reboot"

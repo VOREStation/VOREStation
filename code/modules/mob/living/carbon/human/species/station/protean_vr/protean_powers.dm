@@ -381,25 +381,25 @@
 	if(temporary_form)
 		caller = temporary_form
 	var/list/icon_choices = list(
-			"Primary" = image(icon = 'modular_chomp/icons/mob/species/protean/protean.dmi', icon_state = "primary"),
-			"Highlight" = image(icon = 'modular_chomp/icons/mob/species/protean/protean.dmi', icon_state = "highlight"),
-			"puddle1" = image(icon = 'modular_chomp/icons/mob/species/protean/protean_powers.dmi', icon_state = "blob"),
-			"puddle0" = image(icon = 'modular_chomp/icons/mob/species/protean/protean.dmi', icon_state = "puddle"),
-			"catslug" = image(icon = 'modular_chomp/icons/mob/species/protean/protean.dmi', icon_state = "catslug"),
-			"cat" = image(icon = 'modular_chomp/icons/mob/species/protean/protean.dmi', icon_state = "cat"),
-			"mouse" = image(icon = 'modular_chomp/icons/mob/species/protean/protean.dmi', icon_state = "mouse"),
-			"rabbit" = image(icon = 'modular_chomp/icons/mob/species/protean/protean.dmi', icon_state = "rabbit"),
-			"bear" = image(icon = 'modular_chomp/icons/mob/species/protean/protean.dmi', icon_state = "bear"),
-			"fen" = image(icon = 'modular_chomp/icons/mob/species/protean/protean.dmi', icon_state = "fen"),
-			"fox" = image(icon = 'modular_chomp/icons/mob/species/protean/protean.dmi', icon_state = "fox"),
-			"raptor" = image(icon = 'modular_chomp/icons/mob/species/protean/protean.dmi', icon_state = "raptor"),
-			"rat" = image(icon = 'modular_chomp/icons/mob/species/protean/protean64x32.dmi', icon_state = "rat", pixel_x = -16),
-			"lizard" = image(icon = 'modular_chomp/icons/mob/species/protean/protean64x32.dmi', icon_state = "lizard", pixel_x = -16),
-			"wolf" = image(icon = 'modular_chomp/icons/mob/species/protean/protean64x32.dmi', icon_state = "wolf", pixel_x = -16),
+			"Primary" = image(icon = 'icons/mob/species/protean/protean.dmi', icon_state = "primary"),
+			"Highlight" = image(icon = 'icons/mob/species/protean/protean.dmi', icon_state = "highlight"),
+			"puddle1" = image(icon = 'icons/mob/species/protean/protean_powers.dmi', icon_state = "blob"),
+			"puddle0" = image(icon = 'icons/mob/species/protean/protean.dmi', icon_state = "puddle"),
+			"catslug" = image(icon = 'icons/mob/species/protean/protean.dmi', icon_state = "catslug"),
+			"cat" = image(icon = 'icons/mob/species/protean/protean.dmi', icon_state = "cat"),
+			"mouse" = image(icon = 'icons/mob/species/protean/protean.dmi', icon_state = "mouse"),
+			"rabbit" = image(icon = 'icons/mob/species/protean/protean.dmi', icon_state = "rabbit"),
+			"bear" = image(icon = 'icons/mob/species/protean/protean.dmi', icon_state = "bear"),
+			"fen" = image(icon = 'icons/mob/species/protean/protean.dmi', icon_state = "fen"),
+			"fox" = image(icon = 'icons/mob/species/protean/protean.dmi', icon_state = "fox"),
+			"raptor" = image(icon = 'icons/mob/species/protean/protean.dmi', icon_state = "raptor"),
+			"rat" = image(icon = 'icons/mob/species/protean/protean64x32.dmi', icon_state = "rat", pixel_x = -16),
+			"lizard" = image(icon = 'icons/mob/species/protean/protean64x32.dmi', icon_state = "lizard", pixel_x = -16),
+			"wolf" = image(icon = 'icons/mob/species/protean/protean64x32.dmi', icon_state = "wolf", pixel_x = -16),
 			//"drake" = image(icon = 'modular_chomp/icons/mob/species/protean/protean64x64.dmi', icon_state = "drake", pixel_x = -16),
-			"teppi" = image(icon = 'modular_chomp/icons/mob/species/protean/protean64x64.dmi', icon_state = "teppi", pixel_x = -16),
-			"panther" = image(icon = 'modular_chomp/icons/mob/species/protean/protean64x64.dmi', icon_state = "panther", pixel_x = -16),
-			"robodrgn" = image(icon = 'modular_chomp/icons/mob/species/protean/protean128x64.dmi', icon_state = "robodrgn", pixel_x = -48),
+			"teppi" = image(icon = 'icons/mob/species/protean/protean64x64.dmi', icon_state = "teppi", pixel_x = -16),
+			"panther" = image(icon = 'icons/mob/species/protean/protean64x64.dmi', icon_state = "panther", pixel_x = -16),
+			"robodrgn" = image(icon = 'icons/mob/species/protean/protean128x64.dmi', icon_state = "robodrgn", pixel_x = -48),
 			"Dragon" = image(icon = 'icons/mob/bigdragon_small.dmi', icon_state = "dragon_small")
 			)
 	var/blobstyle = show_radial_menu(caller, caller, icon_choices, require_near = TRUE, tooltips = FALSE)
@@ -622,7 +622,7 @@
 /obj/effect/protean_ability
 	name = "Activate"
 	desc = ""
-	icon = 'modular_chomp/icons/mob/species/protean/protean_powers.dmi'
+	icon = 'icons/mob/species/protean/protean_powers.dmi'
 	var/ability_name
 	var/to_call
 
@@ -723,7 +723,7 @@
 /obj/effect/protean_ability/chest_transparency
 	ability_name = "body transparency toggle (All but head)"
 	desc = "Makes everything but your head transparent!"
-	icon = 'modular_chomp/icons/obj/slimeborg/slimecore.dmi'
+	icon = 'icons/obj/slimeborg/slimecore.dmi'
 	icon_state = "core"
 	to_call = /mob/living/carbon/human/proc/chest_transparency_toggle
 
@@ -743,6 +743,6 @@
 /obj/effect/protean_ability/transparency_for_entire_body
 	ability_name = "Toggle Transparency"
 	desc = "transparency toggle for your entire body"
-	icon = 'modular_chomp/icons/obj/slimeborg/slimecore.dmi'
+	icon = 'icons/obj/slimeborg/slimecore.dmi'
 	icon_state = "core"
 	to_call = /mob/living/carbon/human/proc/transparency_toggle

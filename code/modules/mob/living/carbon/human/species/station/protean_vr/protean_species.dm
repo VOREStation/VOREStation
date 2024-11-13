@@ -246,7 +246,7 @@
 	var/mob/temp = H
 	if(H.temporary_form)
 		temp = H.temporary_form
-	playsound(temp, 'modular_chomp/sound/voice/borg_deathsound.ogg', 50, 1)
+	playsound(temp, 'sound/voice/borg_deathsound.ogg', 50, 1)
 	temp.visible_message(span_bold("[temp.name]") + " shudders and retreats inwards, coalescing into a single core componant!")
 	to_chat(temp, span_warning("You've died as a Protean! While dead, you will be locked to your core RIG control module until you can be repaired. Instructions to your revival can be found in the Examine tab when examining your module."))
 	if(H.temporary_form)
@@ -421,7 +421,7 @@
 /obj/item/clothing/accessory/permit/nanotech
 	name = "\improper P.A.N. card"
 	desc = "This is a 'Permit for Advanced Nanotechnology' card. It allows the owner to possess and operate advanced nanotechnology on NanoTrasen property. It must be renewed on a monthly basis."
-	icon = 'modular_chomp/icons/mob/species/protean/protean.dmi'
+	icon = 'icons/mob/species/protean/protean.dmi'
 	icon_state = "permit_pan"
 
 	var/validstring = "VALID THROUGH END OF: "
