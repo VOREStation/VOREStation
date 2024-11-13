@@ -42,7 +42,7 @@ var/list/talk_sound_map = rlist(
 		return talk_sound_map[1]
 	return talk_sound_map[2][voice_sound]
 
-proc/rlist(var/list/keys,var/list/values) //short for reversible list generator
+/proc/rlist(var/list/keys,var/list/values) //short for reversible list generator
 	var/list/rlist = list(list(),list(),FALSE,0)
 	var/i = 0
 	for(i = 1, i <= LAZYLEN(keys), i++)
