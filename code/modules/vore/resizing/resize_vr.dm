@@ -68,7 +68,7 @@
 
 /atom/movable/proc/has_large_resize_bounds()
 	var/area/A = get_area(src) //Get the atom's area to check for size limit.
-	return !A.limit_mob_size
+	return A ? !A.limit_mob_size : FALSE
 
 /proc/is_extreme_size(size)
 	return (size < RESIZE_MINIMUM || size > RESIZE_MAXIMUM)
