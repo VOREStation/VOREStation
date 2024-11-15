@@ -24,7 +24,6 @@
 	melee_damage_lower = 5
 	melee_damage_upper = 5
 	attacktext = list("slashed")
-	see_in_dark = 10
 
 	min_oxy = 0
 	max_oxy = 0
@@ -74,6 +73,7 @@
 		humanform = H
 		updatehealth()
 		refactory = locate() in humanform.internal_organs
+		add_verb(src,/mob/living/proc/ventcrawl)
 		add_verb(src,/mob/living/proc/usehardsuit)
 		add_verb(src,/mob/living/simple_mob/protean_blob/proc/nano_partswap)
 		add_verb(src,/mob/living/simple_mob/protean_blob/proc/nano_regenerate)

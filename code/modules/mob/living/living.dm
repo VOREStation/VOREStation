@@ -613,6 +613,11 @@
 			L += D.wrapped
 			if(istype(D.wrapped, /obj/item/storage)) //this should never happen
 				L += get_contents(D.wrapped)
+
+		for(var/obj/item/rig/R in src.contents)	//Check rigsuit storage for items
+			if(R.rig_storage)
+				L += get_contents(R.rig_storage)
+
 		return L
 
 /mob/living/proc/check_contents_for(A)

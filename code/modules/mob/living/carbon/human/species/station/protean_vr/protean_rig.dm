@@ -28,6 +28,7 @@
 	//ai_interface_path = "RIGSuit_protean"
 	var/sealed = 0
 	var/assimilated_rig
+	var/can_assimilate_rig = FALSE
 
 /obj/item/rig/protean/relaymove(mob/user, var/direction)
 	if(user.stat || user.stunned)
@@ -491,6 +492,9 @@
 
 //Effectively a round about way of letting a Protean wear other rigs.
 /obj/item/rig/protean/proc/AssimilateRig(mob/user, var/obj/item/rig/R)
+	if(!can_assimilate_rig)
+		to_chat(user, span_warning("You can not place a rig into \the [src]"))
+		return
 	if(!R || assimilated_rig)
 		return
 	if(istype(R, /obj/item/rig/protean))
