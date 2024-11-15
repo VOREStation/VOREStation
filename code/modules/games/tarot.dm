@@ -80,8 +80,7 @@
 			P.back_icon = "dark_back_tarot"
 			cards += P
 
-/obj/item/deck/dark_tarot/shuffle()
-	var/mob/living/user = usr
+/obj/item/deck/dark_tarot/shuffle(mob/user)
 	if (cooldown < world.time - 10)
 		var/list/newcards = list()
 		while(cards.len)
