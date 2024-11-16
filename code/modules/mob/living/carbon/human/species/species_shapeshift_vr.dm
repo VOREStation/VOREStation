@@ -58,7 +58,7 @@
 
 /mob/living/carbon/human/proc/shapeshifter_select_secondary_ears()
 	set name = "Select Secondary Ears"
-	set category = "Abilities"
+	set category = "Abilities.Shapeshift"
 
 	if(stat || world.time < last_special)
 		return

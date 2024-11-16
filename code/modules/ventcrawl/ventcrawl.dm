@@ -12,7 +12,8 @@ var/list/ventcrawl_machinery = list(
 	/obj/machinery/camera,
 	/obj/belly,
 	/obj/screen,
-	/atom/movable/emissive_blocker
+	/atom/movable/emissive_blocker,
+	/obj/item/rig/protean
 	)
 	//VOREStation Edit : added /obj/belly, to this list, CI is complaining about this in his indentation check. Added mob_headset for those with radios so there's no weirdness.
 	//mob/living/simple_mob/borer, //VORESTATION AI TEMPORARY REMOVAL REPLACE BACK IN LIST WHEN RESOLVED //VOREStation Edit
@@ -105,6 +106,29 @@ var/list/ventcrawl_machinery = list(
 			to_chat(src, span_warning("You can't carry \the [A] while ventcrawling!"))
 			return FALSE
 	return TRUE
+
+/mob/living/simple_mob/protean_blob/ventcrawl_carry()
+	for(var/atom/A in contents)
+		if(!is_allowed_vent_crawl_item(A))
+			to_chat(src, span_warning("You can't carry \the [A] while ventcrawling!"))
+			return FALSE
+	if(humanform)
+		for(var/atom/B in humanform.get_contents())
+			if(!is_allowed_vent_crawl_item(B))
+				to_chat(src, span_warning("You can't carry \the [B] while ventcrawling!"))
+				return FALSE
+	return TRUE
+
+/mob/living/simple_mob/protean_blob/is_allowed_vent_crawl_item(var/obj/item/carried_item)
+	if((carried_item in humanform.organs) || (carried_item in humanform.internal_organs))
+		return TRUE
+	if(istype(carried_item, /obj/item/clothing/under))
+		return TRUE //Allow jumpsuits only
+	if(istype(carried_item, /obj/item))
+		var/obj/item/I = carried_item
+		if(I.w_class <= ITEMSIZE_SMALL)
+			return TRUE //Allow them to carry items that fit in pockets
+	return ..()
 
 /mob/living/AltClickOn(var/atom/A)
 	if(is_type_in_list(A,ventcrawl_machinery))

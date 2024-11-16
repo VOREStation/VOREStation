@@ -40,7 +40,6 @@
 	max_age = 200
 	oxy_mod = 0
 	//radiation_mod = 0	//Can't be assed with fandangling rad protections while blob formed/suited
-	darksight = 10
 	siemens_coefficient = 2
 	brute_mod =        0.8
 	burn_mod =        1.5

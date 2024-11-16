@@ -15,7 +15,6 @@
 	harm_intent_damage = 3
 	melee_damage_lower = 5
 	melee_damage_upper = 5
-	see_in_dark = 10
 	player_msg = "You're a little squisher! Your cuteness level has increased tenfold."
 	heat_damage_per_tick = 20 // Hot and cold are bad, but cold is AS bad for prommies as it is for slimes.
 	cold_damage_per_tick = 20
