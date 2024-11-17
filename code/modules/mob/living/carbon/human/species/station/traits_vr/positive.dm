@@ -121,6 +121,7 @@
 	name = "Winged Flight"
 	desc = "Allows you to fly by using your wings. Don't forget to bring them!"
 	cost = 0
+	custom_only = FALSE
 	has_preferences = list("flight_vore" = list(TRAIT_PREF_TYPE_BOOLEAN, "Flight Vore enabled on spawn", TRAIT_VAREDIT_TARGET_MOB, FALSE))
 
 /datum/trait/positive/winged_flight/apply(var/datum/species/S,var/mob/living/carbon/human/H)
