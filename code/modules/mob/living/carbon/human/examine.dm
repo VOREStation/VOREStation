@@ -107,12 +107,10 @@
 	if(w_uniform && !(skip_gear & EXAMINE_SKIPJUMPSUIT) && w_uniform.show_examine)
 		//Ties
 		var/tie_msg
-		var/tie_msg_warn
 		if(istype(w_uniform,/obj/item/clothing/under) && !(skip_gear & EXAMINE_SKIPTIE))
 			var/obj/item/clothing/under/U = w_uniform
 			if(LAZYLEN(U.accessories))
 				tie_msg += ". Attached to it is"
-				tie_msg_warn += "! Attached to it is"
 				var/list/accessory_descs = list()
 				if(skip_gear & EXAMINE_SKIPHOLSTER)
 					for(var/obj/item/clothing/accessory/A in U.accessories)
@@ -139,12 +137,10 @@
 	//suit/armour
 	if(wear_suit)
 		var/tie_msg
-		var/tie_msg_warn
 		if(istype(wear_suit,/obj/item/clothing/suit))
 			var/obj/item/clothing/suit/U = wear_suit
 			if(LAZYLEN(U.accessories))
 				tie_msg += ". Attached to it is"
-				tie_msg_warn += "! Attached to it is"
 				var/list/accessory_descs = list()
 				for(var/accessory in U.accessories)
 					accessory_descs += "<a href='?src=\ref[src];lookitem_desc_only=\ref[accessory]'>\a [accessory]</a>"
@@ -185,10 +181,21 @@
 
 	//gloves
 	if(gloves && !(skip_gear & EXAMINE_SKIPGLOVES) && gloves.show_examine)
+		var/gloves_acc_msg
+		if(istype(gloves,/obj/item/clothing/gloves))
+			var/obj/item/clothing/gloves/G = gloves
+			if(LAZYLEN(G.accessories))
+				gloves_acc_msg += ". Attached to it is"
+				var/list/accessory_descs = list()
+				for(var/obj/item/clothing/accessory/A in G.accessories)
+					accessory_descs += "<a href='?src=\ref[src];lookitem_desc_only=\ref[A]'>\a [A]</a>"
+
+				gloves_acc_msg += " [lowertext(english_list(accessory_descs))]."
 		if(gloves.blood_DNA)
-			msg += span_warning("[T.He] [T.has] [icon2html(gloves,user.client)] [gloves.gender==PLURAL?"some":"a"] [(gloves.blood_color != "#030303") ? "blood" : "oil"]-stained <a href='?src=\ref[src];lookitem_desc_only=\ref[gloves]'>[gloves.name]</a> on [T.his] hands!")
+			msg += span_warning("[T.He] [T.has] [icon2html(gloves,user.client)] [gloves.gender==PLURAL?"some":"a"] [(gloves.blood_color != "#030303") ? "blood" : "oil"]-stained <a href='?src=\ref[src];lookitem_desc_only=\ref[gloves]'>[gloves.name]</a> on [T.his] hands![gloves_acc_msg]")
 		else
-			msg += "[T.He] [T.has] [icon2html(gloves,user.client)] <a href='?src=\ref[src];lookitem_desc_only=\ref[gloves]'>\a [gloves]</a> on [T.his] hands."
+			msg += "[T.He] [T.has] [icon2html(gloves,user.client)] <a href='?src=\ref[src];lookitem_desc_only=\ref[gloves]'>\a [gloves]</a> on [T.his] hands.[gloves_acc_msg]"
+
 	else if(blood_DNA && !(skip_body & EXAMINE_SKIPHANDS))
 		msg += span_warning("[T.He] [T.has] [(hand_blood_color != SYNTH_BLOOD_COLOUR) ? "blood" : "oil"]-stained hands!")
 

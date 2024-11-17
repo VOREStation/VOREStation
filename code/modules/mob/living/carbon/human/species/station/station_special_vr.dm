@@ -384,6 +384,8 @@
 	silk_reserve = 500
 	silk_max_reserve = 1000
 
+	climb_mult = 0.75
+
 /datum/species/spider/handle_environment_special(var/mob/living/carbon/human/H)
 	if(H.stat == DEAD) // If they're dead they won't need anything.
 		return
