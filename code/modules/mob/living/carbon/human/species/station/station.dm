@@ -242,6 +242,8 @@
 	reagent_tag = IS_TAJARA
 	allergens = ALLERGEN_STIMULANT
 
+	climb_mult = 0.75
+
 	move_trail = /obj/effect/decal/cleanable/blood/tracks/paw
 
 	heat_discomfort_level = 292
