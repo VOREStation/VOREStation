@@ -694,6 +694,12 @@
 	ckeywhitelist = list("john.wayne9392")
 	character_name = list("Harmony Pretchl")
 
+/datum/gear/fluff/vox_dylo_pills
+	path = /obj/item/storage/pill_bottle/dylovene
+	display_name = "Dylovene pill bottle"
+	ckeywhitelist = list("jparker890")
+	character_name = list("Krey-Timinine")
+
 /datum/gear/fluff/koyo_box
 	path = /obj/item/storage/box/fluff/koyoakimomi
 	display_name = "Koyo's Box"
