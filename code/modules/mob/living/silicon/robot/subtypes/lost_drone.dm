@@ -9,6 +9,7 @@
 	icon_selected = FALSE
 	restrict_modules_to = list("Lost")
 	var/law_retries = 5
+	ui_theme = "malfunction"
 
 /mob/living/silicon/robot/lost/init()
 	aiCamera = new/obj/item/camera/siliconcam/robot_camera(src)
