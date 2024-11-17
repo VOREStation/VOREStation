@@ -150,17 +150,17 @@
 			custom_name = new_name
 			sprite_name = new_name
 
-/mob/living/silicon/robot/proc/apply_module(var/datum/robot_sprite/sprite_datum, var/selected_module)
+/mob/living/silicon/robot/proc/apply_module(var/datum/robot_sprite/new_datum, var/new_module)
 	icon_selected = TRUE
-	var/module_type = robot_modules[selected_module]
-	modtype = selected_module
+	var/module_type = robot_modules[new_module]
+	modtype = new_module
 	module = new module_type(src)
-	feedback_inc("cyborg_[lowertext(selected_module)]",1)
+	feedback_inc("cyborg_[lowertext(new_module)]",1)
 	updatename()
 	hud_used.update_robot_modules_display()
 	notify_ai(ROBOT_NOTIFICATION_NEW_MODULE, module.name)
 	robotact?.update_static_data_for_all_viewers()
-	sprite_datum = sprite_datum
+	sprite_datum = new_datum
 	if(!istype(src,/mob/living/silicon/robot/drone))
 		sprite_type = sprite_datum.name
 
