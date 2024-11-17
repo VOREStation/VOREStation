@@ -326,6 +326,13 @@
 	drop_sound = 'sound/items/drop/gloves.ogg'
 	pickup_sound = 'sound/items/pickup/gloves.ogg'
 
+	valid_accessory_slots = (\
+		ACCESSORY_SLOT_RING\
+		|ACCESSORY_SLOT_WRIST)
+	restricted_accessory_slots = (\
+		ACCESSORY_SLOT_RING\
+		|ACCESSORY_SLOT_WRIST)
+
 /obj/item/clothing/proc/set_clothing_index()
 	return
 
@@ -421,8 +428,6 @@
 	..()
 	if(special_attack_type && ispath(special_attack_type))
 		special_attack = new special_attack_type
-
-
 
 /////////////////////////////////////////////////////////////////////
 //Rings

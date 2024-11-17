@@ -271,7 +271,7 @@
 
 //  C CKEYS
 /datum/gear/fluff/cappy_watch
-	path = /obj/item/clothing/accessory/watch
+	path = /obj/item/clothing/accessory/watch/custom
 	display_name = "Cappy's Pocket Watch"
 	ckeywhitelist = list("cappycat")
 	character_name = list("Cappy Fuzzlyfeathers")
@@ -528,7 +528,7 @@
 	character_name = list("Elizabeth Bayou")
 
 /datum/gear/fluff/mercury_vopal_ring
-	path = /obj/item/clothing/gloves/ring/material/void_opal/fluff/mercury
+	path = /obj/item/clothing/accessory/ring/material/void_opal/fluff/mercury
 	display_name = "Mercury's Mate Ring"
 	ckeywhitelist = list("haloren")
 	character_name = list("Mercury")

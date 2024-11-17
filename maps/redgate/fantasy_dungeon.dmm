@@ -209,7 +209,7 @@
 /turf/simulated/floor/concrete,
 /area/redgate/fantasy/castle)
 "ez" = (
-/obj/item/clothing/gloves/ring/material/gold,
+/obj/item/clothing/accessory/ring/material/gold,
 /turf/simulated/mineral/floor/ignore_cavegen/cave,
 /area/redgate/fantasy/caves)
 "eP" = (
