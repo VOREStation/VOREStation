@@ -74,7 +74,7 @@
 	starts_with = list(/obj/item/tool/prybar/red,/obj/item/clothing/glasses/goggles,/obj/item/reagent_containers/hypospray/autoinjector,/obj/item/stack/medical/bruise_pack,/obj/item/flashlight/glowstick,/obj/item/reagent_containers/food/snacks/candy/proteinbar,/obj/item/clothing/mask/breath,/obj/item/tank/emergency/oxygen/engi)
 	},
 /obj/item/storage/box/survival/space,
-/obj/item/clothing/gloves/watch/survival,
+/obj/item/clothing/accessory/watch/survival,
 /obj/item/emergency_beacon,
 /obj/item/extinguisher/mini,
 /obj/item/radio{
