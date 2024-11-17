@@ -19,6 +19,13 @@
 		var/obj/mecha/mech = loc
 		return mech.relaymove(src,direction)
 
+	var/swim_modifier = 1
+	var/climb_modifier = 1
+	if(istype(src,/mob/living/carbon/human))
+		var/mob/living/carbon/human/MS = src
+		swim_modifier = MS.species.swim_mult
+		climb_modifier = MS.species.climb_mult
+
 	if(!can_ztravel())
 		to_chat(src, span_warning("You lack means of travel in that direction."))
 		return
@@ -49,7 +56,7 @@
 	if(direction == DOWN)
 		var/turf/simulated/floor/water/deep/ocean/diving/sink = start
 		if(istype(sink) && !destination.density)
-			var/pull_up_time = max(3 SECONDS + (src.movement_delay() * 10), 1)
+			var/pull_up_time = max((3 SECONDS + (src.movement_delay() * 10) * swim_modifier), 1)
 			to_chat(src, span_notice("You start diving underwater..."))
 			src.audible_message(span_notice("[src] begins to dive under the water."), runemessage = "splish splosh")
 			if(do_after(src, pull_up_time))
@@ -75,7 +82,7 @@
 			var/turf/simulated/floor/water/deep/ocean/diving/surface = destination
 
 			if(lattice)
-				var/pull_up_time = max(5 SECONDS + (src.movement_delay() * 10), 1)
+				var/pull_up_time = max((5 SECONDS + (src.movement_delay() * 10) * climb_modifier), 1)
 				to_chat(src, span_notice("You grab \the [lattice] and start pulling yourself upward..."))
 				src.audible_message(span_notice("[src] begins climbing up \the [lattice]."), runemessage = "clank clang")
 				if(do_after(src, pull_up_time))
@@ -85,7 +92,7 @@
 					return 0
 
 			else if(istype(surface))
-				var/pull_up_time = max(5 SECONDS + (src.movement_delay() * 10), 1)
+				var/pull_up_time = max((5 SECONDS + (src.movement_delay() * 10) * swim_modifier), 1)
 				to_chat(src, span_notice("You start swimming upwards..."))
 				src.audible_message(span_notice("[src] begins to swim towards the surface."), runemessage = "splish splosh")
 				if(do_after(src, pull_up_time))
@@ -95,7 +102,7 @@
 					return 0
 
 			else if(catwalk?.hatch_open)
-				var/pull_up_time = max(5 SECONDS + (src.movement_delay() * 10), 1)
+				var/pull_up_time = max((5 SECONDS + (src.movement_delay() * 10) * climb_modifier), 1)
 				to_chat(src, span_notice("You grab the edge of \the [catwalk] and start pulling yourself upward..."))
 				var/old_dest = destination
 				destination = get_step(destination, dir) // mob's dir

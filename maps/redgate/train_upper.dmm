@@ -3121,8 +3121,8 @@
 /obj/structure/closet/cabinet,
 /obj/item/clothing/under/suit_jacket,
 /obj/item/clothing/shoes/dress,
-/obj/item/clothing/gloves/ring/wedding,
-/obj/item/clothing/gloves/ring/wedding,
+/obj/item/clothing/accessory/ring/wedding,
+/obj/item/clothing/accessory/ring/wedding,
 /obj/item/clothing/accessory/bowtie/black,
 /turf/simulated/floor/wood,
 /area/redgate/train/dorm6)

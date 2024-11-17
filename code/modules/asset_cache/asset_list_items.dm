@@ -437,6 +437,45 @@
 		Insert("bottle-[i]", 'icons/obj/chemical.dmi', "bottle-[i]")
 
 
+// Robot UI sprites
+/datum/asset/spritesheet/robot_icons
+	name = "robot_icons"
+
+/datum/asset/spritesheet/robot_icons/create_spritesheets()
+	for(var/datum/robot_sprite/S as anything in typesof(/datum/robot_sprite))
+		if(!S.name || !S.sprite_icon_state) // snowflake out those customs... they suck
+			continue
+		var/icon/I_N = icon(S.sprite_icon, S.sprite_icon_state, NORTH)
+		var/icon/I_S = icon(S.sprite_icon, S.sprite_icon_state, SOUTH)
+		var/icon/I_W = icon(S.sprite_icon, S.sprite_icon_state, WEST)
+		var/icon/I_E = icon(S.sprite_icon, S.sprite_icon_state, EAST)
+		if(S.has_eye_sprites)
+			var/icon/I_NE = icon(S.sprite_icon, "[S.sprite_icon_state]-eyes", NORTH)
+			if(I_NE)
+				I_N.Blend(I_NE, ICON_OVERLAY)
+		if(S.has_eye_sprites)
+			var/icon/I_SE = icon(S.sprite_icon, "[S.sprite_icon_state]-eyes", SOUTH)
+			if(I_SE)
+				I_S.Blend(I_SE, ICON_OVERLAY)
+		if(S.has_eye_sprites)
+			var/icon/I_WE = icon(S.sprite_icon, "[S.sprite_icon_state]-eyes", WEST)
+			if(I_WE)
+				I_W.Blend(I_WE, ICON_OVERLAY)
+		if(S.has_eye_sprites)
+			var/icon/I_EE = icon(S.sprite_icon, "[S.sprite_icon_state]-eyes", EAST)
+			if(I_EE)
+				I_E.Blend(I_EE, ICON_OVERLAY)
+		var/imgid = sanitize_css_class_name("[S.type]")
+		I_N.Scale(120, 120)
+		I_S.Scale(120, 120)
+		I_W.Scale(120, 120)
+		I_E.Scale(120, 120)
+		Insert(imgid + "N", I_N)
+		Insert(imgid + "S", I_S)
+		Insert(imgid + "W", I_W)
+		Insert(imgid + "E", I_E)
+
+
 //Cloning pod sprites for UIs
 /datum/asset/simple/cloning
 	assets = list(
