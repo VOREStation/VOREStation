@@ -26,6 +26,8 @@
 /obj/machinery/appliance/cooker/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
 	var/list/data = ..()
 
+	data["on"] = !(stat & POWEROFF)
+	data["safety"] = food_safety
 	data["temperature"] = round(temperature - T0C, 0.1)
 	data["optimalTemp"] = round(optimal_temp - T0C, 0.1)
 	data["temperatureEnough"] = temperature >= min_temp
@@ -56,6 +58,12 @@
 		return TRUE
 
 	switch(action)
+		if("toggle_power")
+			attempt_toggle_power(usr)
+			return TRUE
+		if("toggle_safety")
+			toggle_safety()
+			return TRUE
 		if("slot")
 			var/slot = params["slot"]
 			var/obj/item/I = usr.get_active_hand()
