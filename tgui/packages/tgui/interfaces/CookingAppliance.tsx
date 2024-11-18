@@ -14,6 +14,8 @@ import { Window } from '../layouts';
 type Data = {
   on: BooleanLike;
   safety: BooleanLike;
+  selected_option: string | null;
+  show_selected_option: BooleanLike;
   temperature: number;
   optimalTemp: number;
   temperatureEnough: BooleanLike;
@@ -33,6 +35,8 @@ export const CookingAppliance = (props) => {
   const {
     on,
     safety,
+    selected_option,
+    show_selected_option,
     temperature,
     optimalTemp,
     temperatureEnough,
@@ -67,6 +71,18 @@ export const CookingAppliance = (props) => {
                 {safety ? 'On' : 'Off'}
               </Button>
             </LabeledList.Item>
+            {!!show_selected_option && (
+              <LabeledList.Item label="Selected Output">
+                <Button
+                  icon="pencil"
+                  fluid
+                  onClick={() => act('change_output')}
+                  tooltip="Change Output"
+                >
+                  {selected_option || 'Default'}
+                </Button>
+              </LabeledList.Item>
+            )}
             <LabeledList.Item label="Temperature">
               <ProgressBar
                 color={temperatureEnough ? 'good' : 'blue'}
