@@ -25,7 +25,7 @@
 	icon = 'icons/inventory/accessory/item.dmi'
 	icon_state = "bracelet"
 	w_class = ITEMSIZE_TINY
-	slot_flags = SLOT_GLOVES
+	slot_flags = SLOT_GLOVES | SLOT_TIE
 	slot = ACCESSORY_SLOT_WRIST
 
 /obj/item/clothing/accessory/bracelet/friendship
@@ -102,7 +102,7 @@
 	icon = 'icons/inventory/accessory/item.dmi'
 	icon_state = "wristband"
 	w_class = ITEMSIZE_TINY
-	slot_flags = SLOT_GLOVES
+	slot_flags = SLOT_GLOVES  | SLOT_TIE
 	slot = ACCESSORY_SLOT_WRIST
 
 /obj/item/clothing/accessory/wristband/spiked
