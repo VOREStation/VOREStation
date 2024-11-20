@@ -106,7 +106,7 @@ GLOBAL_LIST_INIT(diseases, subtypesof(/datum/disease))
 	if((spread_flags & SPECIAL || spread_flags & NON_CONTAGIOUS || spread_flags & BLOOD) && !force_spread)
 		return
 
-	if(affected_mob.bloodstr.has_reagent("spaceacilin") || (affected_mob.nutrition > 300 && prob(affected_mob.nutrition/50)))
+	if(affected_mob.bloodstr.has_reagent("spaceacillin") || (affected_mob.nutrition > 300 && prob(affected_mob.nutrition/50)))
 		return
 
 	var/spread_range = 1
