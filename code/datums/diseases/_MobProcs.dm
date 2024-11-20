@@ -80,7 +80,7 @@
 	if(prob(15/D.permeability_mod))
 		return
 
-	if(nutrition > 300 && prob(nutrition/10))
+	if(nutrition > 300 && prob(nutrition/50))
 		return
 
 	var/list/zone_weights = list(

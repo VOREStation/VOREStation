@@ -16,6 +16,7 @@ GLOBAL_LIST_INIT(advance_cures, list(
 	spread_text = "Unknown"
 	viable_mobtypes = list(/mob/living/carbon/human)
 
+	var/s_processing = FALSE
 	var/list/symptoms = list()
 	var/id = ""
 
@@ -36,7 +37,7 @@ GLOBAL_LIST_INIT(advance_cures, list(
 	return
 
 /datum/disease/advance/Destroy()
-	if(processing)
+	if(s_processing)
 		for(var/datum/symptom/S in symptoms)
 			S.End(src)
 	return ..()
@@ -46,8 +47,8 @@ GLOBAL_LIST_INIT(advance_cures, list(
 		return FALSE
 	if(symptoms && length(symptoms))
 
-		if(!processing)
-			processing = TRUE
+		if(!s_processing)
+			s_processing = TRUE
 			for(var/datum/symptom/S in symptoms)
 				S.Start(src)
 
