@@ -561,8 +561,8 @@
 		ourmob.reset_view(null)
 
 		if(ourmob.ckey)
-			ourmob.client?.stats_vr?.tick_counter("stats_times_released")
-			owner.client?.stats_vr?.tick_counter("stats_released_prey")
+			ourmob.client?.stats_vr?.tick_counter("stats_times_released", owner.read_preference(/datum/preference/toggle/vore_stats) || !owner.ckey)
+			owner.client?.stats_vr?.tick_counter("stats_released_prey", ourmob.read_preference(/datum/preference/toggle/vore_stats))
 
 	if(!owner.ckey && escape_stun)
 		owner.Weaken(escape_stun)
@@ -590,8 +590,8 @@
 		M.updateVRPanel()
 
 	if(prey.ckey)
-		prey.client?.stats_vr?.tick_counter("stats_times_eaten")
-		owner.client?.stats_vr?.tick_counter("stats_eaten_prey")
+		prey.client?.stats_vr?.tick_counter("stats_times_eaten", owner.read_preference(/datum/preference/toggle/vore_stats) || !owner.ckey)
+		owner.client?.stats_vr?.tick_counter("stats_eaten_prey", prey.read_preference(/datum/preference/toggle/vore_stats))
 
 		GLOB.prey_eaten_roundstat++
 		if(owner.mind)
@@ -607,8 +607,8 @@
 
 	// Stats
 	if(M.ckey)
-		M.client?.stats_vr?.tick_counter("stats_times_digested")
-		owner.client?.stats_vr?.tick_counter("stats_digested_prey")
+		M.client?.stats_vr?.tick_counter("stats_times_digested", owner.read_preference(/datum/preference/toggle/vore_stats) || !owner.ckey)
+		owner.client?.stats_vr?.tick_counter("stats_digested_prey", M.read_preference(/datum/preference/toggle/vore_stats))
 
 	// If digested prey is also a pred... anyone inside their bellies gets moved up.
 	if(is_vore_predator(M))
@@ -660,8 +660,8 @@
 		handle_absorb_langs(M, owner)
 		GLOB.prey_absorbed_roundstat++
 
-		M.client?.stats_vr?.tick_counter("stats_times_absorbed")
-		owner.client?.stats_vr?.tick_counter("stats_absorbed_prey")
+		M.client?.stats_vr?.tick_counter("stats_times_absorbed", owner.read_preference(/datum/preference/toggle/vore_stats) || !owner.ckey)
+		owner.client?.stats_vr?.tick_counter("stats_absorbed_prey", M.read_preference(/datum/preference/toggle/vore_stats))
 
 	to_chat(M, span_vnotice("[belly_format_string(absorb_messages_prey, M, use_absorbed_count = TRUE)]"))
 	to_chat(owner, span_vnotice("[belly_format_string(absorb_messages_owner, M, use_absorbed_count = TRUE)]"))

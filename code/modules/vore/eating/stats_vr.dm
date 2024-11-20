@@ -30,9 +30,9 @@
 		load_stats()
 
 // Helpers
-/// Usage: mob.client?.stats_vr?.tick_counter("stats_times_eaten")
-/datum/vore_stats/proc/tick_counter(name)
-	if(!client.prefs.read_preference(/datum/preference/toggle/vore_stats))
+/// Usage: mob.client?.stats_vr?.tick_counter("stats_times_eaten", other.read_preference(/datum/preference/toggle/vore_stats))
+/datum/vore_stats/proc/tick_counter(name, other_consents = FALSE)
+	if(!client.prefs.read_preference(/datum/preference/toggle/vore_stats) || !other_consents)
 		return // drop all input when vore stats toggle is off
 
 	switch(name)
