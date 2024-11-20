@@ -1,9 +1,15 @@
 // Phase shifting procs (and related procs)
 /mob/living/simple_mob/shadekin/proc/phase_shift()
 	var/turf/T = get_turf(src)
+	var/area/A = T.loc	//RS Port #658
 	if(!T.CanPass(src,T) || loc != T)
 		to_chat(src,span_warning("You can't use that here!"))
 		return FALSE
+	//RS Port #658 Start
+	if(!client?.holder && A.block_phase_shift)
+		to_chat(src,span_warning("You can't use that here!"))
+		return FALSE
+	//RS Port #658 End
 
 	forceMove(T)
 	var/original_canmove = canmove
@@ -17,6 +23,36 @@
 	canmove = FALSE
 
 	//Shifting in
+	if(ability_flags & AB_PHASE_SHIFTED)
+		phase_in(original_canmove)
+	//Shifting out
+	else
+		phase_out(original_canmove)
+
+/mob/living/simple_mob/shadekin/proc/phase_out(var/original_canmove)
+	ability_flags |= AB_PHASE_SHIFTED
+	mouse_opacity = 0
+	custom_emote(1,"phases out!")
+	real_name = name
+	name = "Something"
+
+	for(var/obj/belly/B as anything in vore_organs)
+		B.escapable = FALSE
+
+	cut_overlays()
+	flick("tp_out",src)
+	sleep(5)
+	invisibility = INVISIBILITY_LEVEL_TWO
+	see_invisible = INVISIBILITY_LEVEL_TWO
+	update_icon()
+	alpha = 127
+
+	canmove = original_canmove
+	incorporeal_move = TRUE
+	density = FALSE
+	force_max_speed = TRUE
+
+/mob/living/simple_mob/shadekin/proc/phase_in(var/original_canmove)
 	if(ability_flags & AB_PHASE_SHIFTED)
 		ability_flags &= ~AB_PHASE_SHIFTED
 		mouse_opacity = 1
@@ -66,30 +102,6 @@
 					L.broken()
 			else
 				L.flicker(10)
-
-	//Shifting out
-	else
-		ability_flags |= AB_PHASE_SHIFTED
-		mouse_opacity = 0
-		custom_emote(1,"phases out!")
-		real_name = name
-		name = "Something"
-
-		for(var/obj/belly/B as anything in vore_organs)
-			B.escapable = FALSE
-
-		cut_overlays()
-		flick("tp_out",src)
-		sleep(5)
-		invisibility = INVISIBILITY_LEVEL_TWO
-		see_invisible = INVISIBILITY_LEVEL_TWO
-		update_icon()
-		alpha = 127
-
-		canmove = original_canmove
-		incorporeal_move = TRUE
-		density = FALSE
-		force_max_speed = TRUE
 
 /mob/living/simple_mob/shadekin/UnarmedAttack()
 	if(ability_flags & AB_PHASE_SHIFTED)

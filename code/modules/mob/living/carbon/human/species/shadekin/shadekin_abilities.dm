@@ -31,6 +31,13 @@
 	set desc = "Shift yourself out of alignment with realspace to travel quickly to different areas."
 	set category = "Abilities.Shadekin"
 
+	//RS Port #658 Start
+	var/area/A = get_area(src)
+	if(!client?.holder && A.block_phase_shift)
+		to_chat(src, span_warning("You can't do that here!"))
+		return
+	//RS Port #658 End
+
 	var/ability_cost = 100
 
 	var/darkness = 1
@@ -89,6 +96,40 @@
 
 	//Shifting in
 	if(ability_flags & AB_PHASE_SHIFTED)
+		phase_in(original_canmove)
+	//Shifting out
+	else
+		phase_out(original_canmove)
+
+/mob/living/carbon/human/proc/phase_out(var/original_canmove)
+	ability_flags |= AB_PHASE_SHIFTED
+	ability_flags |= AB_PHASE_SHIFTING
+	mouse_opacity = 0
+	custom_emote(1,"phases out!")
+	name = get_visible_name()
+
+	for(var/obj/belly/B as anything in vore_organs)
+		B.escapable = FALSE
+
+	var/obj/effect/temp_visual/shadekin/phase_out/phaseanim = new /obj/effect/temp_visual/shadekin/phase_out(src.loc)
+	phaseanim.dir = dir
+	alpha = 0
+	add_modifier(/datum/modifier/shadekin_phase_vision)
+	sleep(5)
+	invisibility = INVISIBILITY_LEVEL_TWO
+	see_invisible = INVISIBILITY_LEVEL_TWO
+	//cut_overlays()
+	update_icon()
+	alpha = 127
+
+	canmove = original_canmove
+	incorporeal_move = TRUE
+	density = FALSE
+	force_max_speed = TRUE
+	ability_flags &= ~AB_PHASE_SHIFTING
+
+/mob/living/carbon/human/proc/phase_in(var/original_canmove)
+	if(ability_flags & AB_PHASE_SHIFTED)
 		ability_flags &= ~AB_PHASE_SHIFTED
 		ability_flags |= AB_PHASE_SHIFTING
 		mouse_opacity = 1
@@ -137,33 +178,6 @@
 					L.broken()
 			else
 				L.flicker(10)
-	//Shifting out
-	else
-		ability_flags |= AB_PHASE_SHIFTED
-		ability_flags |= AB_PHASE_SHIFTING
-		mouse_opacity = 0
-		custom_emote(1,"phases out!")
-		name = get_visible_name()
-
-		for(var/obj/belly/B as anything in vore_organs)
-			B.escapable = FALSE
-
-		var/obj/effect/temp_visual/shadekin/phase_out/phaseanim = new /obj/effect/temp_visual/shadekin/phase_out(src.loc)
-		phaseanim.dir = dir
-		alpha = 0
-		add_modifier(/datum/modifier/shadekin_phase_vision)
-		sleep(5)
-		invisibility = INVISIBILITY_LEVEL_TWO
-		see_invisible = INVISIBILITY_LEVEL_TWO
-		//cut_overlays()
-		update_icon()
-		alpha = 127
-
-		canmove = original_canmove
-		incorporeal_move = TRUE
-		density = FALSE
-		force_max_speed = TRUE
-		ability_flags &= ~AB_PHASE_SHIFTING
 
 /datum/modifier/shadekin_phase_vision
 	name = "Shadekin Phase Vision"
