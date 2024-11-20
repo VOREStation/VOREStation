@@ -175,7 +175,7 @@
 	set src in oview(1)
 
 	if(!flippable)
-		to_chat(usr,"\The [src] can't face the other direction.")
+		to_chat(usr,span_notice("\The [src] can't face the other direction."))
 		return
 
 	if(!usr || !isturf(usr.loc))
