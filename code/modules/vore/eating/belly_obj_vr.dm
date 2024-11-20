@@ -560,6 +560,10 @@
 		var/mob/ourmob = M
 		ourmob.reset_view(null)
 
+		if(ourmob.ckey)
+			ourmob.client?.stats_vr?.tick_counter("stats_times_released")
+			owner.client?.stats_vr?.tick_counter("stats_released_prey")
+
 	if(!owner.ckey && escape_stun)
 		owner.Weaken(escape_stun)
 
@@ -586,6 +590,9 @@
 		M.updateVRPanel()
 
 	if(prey.ckey)
+		prey.client?.stats_vr?.tick_counter("stats_times_eaten")
+		owner.client?.stats_vr?.tick_counter("stats_eaten_prey")
+
 		GLOB.prey_eaten_roundstat++
 		if(owner.mind)
 			owner.mind.vore_prey_eaten++
@@ -597,6 +604,11 @@
 /obj/belly/proc/digestion_death(mob/living/M)
 	digested_prey_count++
 	add_attack_logs(owner, M, "Digested in [lowertext(name)]")
+
+	// Stats
+	if(M.ckey)
+		M.client?.stats_vr?.tick_counter("stats_times_digested")
+		owner.client?.stats_vr?.tick_counter("stats_digested_prey")
 
 	// If digested prey is also a pred... anyone inside their bellies gets moved up.
 	if(is_vore_predator(M))
@@ -647,6 +659,9 @@
 	if(M.ckey)
 		handle_absorb_langs(M, owner)
 		GLOB.prey_absorbed_roundstat++
+
+		M.client?.stats_vr?.tick_counter("stats_times_absorbed")
+		owner.client?.stats_vr?.tick_counter("stats_absorbed_prey")
 
 	to_chat(M, span_vnotice("[belly_format_string(absorb_messages_prey, M, use_absorbed_count = TRUE)]"))
 	to_chat(owner, span_vnotice("[belly_format_string(absorb_messages_owner, M, use_absorbed_count = TRUE)]"))

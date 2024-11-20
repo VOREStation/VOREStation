@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Stack } from 'tgui-core/components';
+import { Section, Stack } from 'tgui-core/components';
 
 import { useBackend } from '../../backend';
 import { Button, Flex, Icon, NoticeBox, Tabs } from '../../components';
@@ -7,6 +7,7 @@ import { Window } from '../../layouts';
 import { Data } from './types';
 import { VoreBellySelectionAndCustomization } from './VoreBellySelectionAndCustomization';
 import { VoreInsidePanel } from './VoreInsidePanel';
+import { VoreStats } from './VoreStats';
 import { VoreUserPreferences } from './VoreUserPreferences';
 
 /**
@@ -18,8 +19,15 @@ import { VoreUserPreferences } from './VoreUserPreferences';
 export const VorePanel = (props) => {
   const { act, data } = useBackend<Data>();
 
-  const { inside, our_bellies, selected, prefs, show_pictures, host_mobtype } =
-    data;
+  const {
+    inside,
+    our_bellies,
+    selected,
+    prefs,
+    show_pictures,
+    host_mobtype,
+    stats,
+  } = data;
 
   const [tabIndex, setTabIndex] = useState(0);
 
@@ -35,6 +43,11 @@ export const VorePanel = (props) => {
   );
 
   tabs[1] = <VoreUserPreferences prefs={prefs} show_pictures={show_pictures} />;
+  tabs[2] = stats ? (
+    <VoreStats stats={stats} />
+  ) : (
+    <Section fill>Disabled by preference.</Section>
+  );
 
   return (
     <Window width={890} height={660} theme="abstract">
@@ -84,6 +97,12 @@ export const VorePanel = (props) => {
               >
                 Preferences
                 <Icon name="user-cog" ml={0.5} />
+              </Tabs.Tab>
+              <Tabs.Tab
+                selected={tabIndex === 2}
+                onClick={() => setTabIndex(2)}
+              >
+                Stats <Icon name="chart-pie" ml={0.5} />
               </Tabs.Tab>
             </Tabs>
           </Stack.Item>

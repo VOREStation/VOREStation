@@ -15,7 +15,11 @@ export const VoreInsidePanel = (props: {
     inside;
 
   if (!belly_name) {
-    return <Section title="Inside">You aren&apos;t inside anyone.</Section>;
+    return (
+      <Section fill title="Inside">
+        You aren&apos;t inside anyone.
+      </Section>
+    );
   }
 
   return (

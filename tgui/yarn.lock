@@ -7126,6 +7126,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-google-charts@npm:^5.2.1":
+  version: 5.2.1
+  resolution: "react-google-charts@npm:5.2.1"
+  peerDependencies:
+    react: ">=16.3.0"
+    react-dom: ">=16.3.0"
+  checksum: 10c0/de9e4a685a7f0db37a2b89fc91e88a702b56819d59f1f2a9f02b8fa94604964cf1e7f59223332220548ebfd04f5e27e3a4b8f4a8842c87f5d5634eb23da1ff2a
+  languageName: node
+  linkType: hard
+
 "react-is@npm:^16.13.1":
   version: 16.13.1
   resolution: "react-is@npm:16.13.1"
@@ -8353,6 +8363,7 @@ __metadata:
     marked: "npm:^4.3.0"
     react: "npm:^18.2.0"
     react-dom: "npm:^18.2.0"
+    react-google-charts: "npm:^5.2.1"
     react-popper: "npm:^2.3.0"
     tgui-core: "npm:^1.2.0"
     tgui-dev-server: "workspace:*"

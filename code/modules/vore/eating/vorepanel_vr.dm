@@ -361,6 +361,11 @@ var/global/list/belly_colorable_only_fullscreens = list("a_synth_flesh_mono",
 		"allow_mimicry" = host.allow_mimicry,
 	)
 
+	data["stats"] = null
+	if(host?.client?.prefs?.read_preference(/datum/preference/toggle/vore_stats))
+		var/datum/vore_stats/VS = host.client.stats_vr
+		data["stats"] = VS.tgui_data(user)
+
 	return data
 
 /datum/vore_look/tgui_act(action, params)

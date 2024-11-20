@@ -96,3 +96,10 @@ export const BrowserDevTools: FeatureToggle = {
     'When enabled, you can right click -> inspect to open Microsoft Edge dev tools. BYOND 516+ Only.',
   component: CheckboxInput,
 };
+
+export const EnableVoreStats: FeatureToggle = {
+  name: 'Enable Vore Stat Tracking',
+  category: 'VORE',
+  description: 'When enabled, some statistics about vore are tracked.',
+  component: CheckboxInput,
+};

@@ -93,3 +93,9 @@
 		winset(client, null, "browser-options=[DEFAULT_CLIENT_BROWSER_OPTIONS],devtools")
 	else
 		winset(client, null, "browser-options=[DEFAULT_CLIENT_BROWSER_OPTIONS]")
+
+/datum/preference/toggle/vore_stats
+	category = PREFERENCE_CATEGORY_GAME_PREFERENCES
+	savefile_key = "EnableVoreStats"
+	default_value = TRUE
+	savefile_identifier = PREFERENCE_PLAYER

@@ -16,6 +16,7 @@ export type Data = {
     resize_cost: number;
   };
   vore_words: Record<string, string[]>;
+  stats: Stats | null;
 };
 
 export type hostMob = {
@@ -215,4 +216,16 @@ export type preferenceData = {
   content: { enabled: string; disabled: string };
   fluid?: boolean;
   back_color?: { enabled: string; disabled: string };
+};
+
+export type Stats = {
+  enabled: BooleanLike;
+  stats_times_eaten: number;
+  stats_eaten_prey: number;
+  stats_times_digested: number;
+  stats_digested_prey: number;
+  stats_times_absorbed: number;
+  stats_absorbed_prey: number;
+  stats_times_released: number;
+  stats_released_prey: number;
 };
