@@ -83,53 +83,30 @@
 		to_chat(src,span_warning("You can't use that here!"))
 		return FALSE
 
-	forceMove(T)
-	var/original_canmove = canmove
-	SetStunned(0)
-	SetWeakened(0)
-	if(buckled)
-		buckled.unbuckle_mob()
-	if(pulledby)
-		pulledby.stop_pulling()
-	stop_pulling()
-	canmove = FALSE
-
 	//Shifting in
 	if(ability_flags & AB_PHASE_SHIFTED)
-		phase_in(original_canmove)
+		phase_in(T)
 	//Shifting out
 	else
-		phase_out(original_canmove)
+		phase_out(T)
 
-/mob/living/carbon/human/proc/phase_out(var/original_canmove)
-	ability_flags |= AB_PHASE_SHIFTED
-	ability_flags |= AB_PHASE_SHIFTING
-	mouse_opacity = 0
-	custom_emote(1,"phases out!")
-	name = get_visible_name()
 
-	for(var/obj/belly/B as anything in vore_organs)
-		B.escapable = FALSE
-
-	var/obj/effect/temp_visual/shadekin/phase_out/phaseanim = new /obj/effect/temp_visual/shadekin/phase_out(src.loc)
-	phaseanim.dir = dir
-	alpha = 0
-	add_modifier(/datum/modifier/shadekin_phase_vision)
-	sleep(5)
-	invisibility = INVISIBILITY_LEVEL_TWO
-	see_invisible = INVISIBILITY_LEVEL_TWO
-	//cut_overlays()
-	update_icon()
-	alpha = 127
-
-	canmove = original_canmove
-	incorporeal_move = TRUE
-	density = FALSE
-	force_max_speed = TRUE
-	ability_flags &= ~AB_PHASE_SHIFTING
-
-/mob/living/carbon/human/proc/phase_in(var/original_canmove)
+/mob/living/carbon/human/proc/phase_in(var/turf/T)
 	if(ability_flags & AB_PHASE_SHIFTED)
+
+		// pre-change
+		forceMove(T)
+		var/original_canmove = canmove
+		SetStunned(0)
+		SetWeakened(0)
+		if(buckled)
+			buckled.unbuckle_mob()
+		if(pulledby)
+			pulledby.stop_pulling()
+		stop_pulling()
+
+		// change
+		canmove = FALSE
 		ability_flags &= ~AB_PHASE_SHIFTED
 		ability_flags |= AB_PHASE_SHIFTING
 		mouse_opacity = 1
@@ -178,6 +155,47 @@
 					L.broken()
 			else
 				L.flicker(10)
+
+/mob/living/carbon/human/proc/phase_out(var/turf/T)
+	if(!(ability_flags & AB_PHASE_SHIFTED))
+		// pre-change
+		forceMove(T)
+		var/original_canmove = canmove
+		SetStunned(0)
+		SetWeakened(0)
+		if(buckled)
+			buckled.unbuckle_mob()
+		if(pulledby)
+			pulledby.stop_pulling()
+		stop_pulling()
+		canmove = FALSE
+
+		// change
+		ability_flags |= AB_PHASE_SHIFTED
+		ability_flags |= AB_PHASE_SHIFTING
+		mouse_opacity = 0
+		custom_emote(1,"phases out!")
+		name = get_visible_name()
+
+		for(var/obj/belly/B as anything in vore_organs)
+			B.escapable = FALSE
+
+		var/obj/effect/temp_visual/shadekin/phase_out/phaseanim = new /obj/effect/temp_visual/shadekin/phase_out(src.loc)
+		phaseanim.dir = dir
+		alpha = 0
+		add_modifier(/datum/modifier/shadekin_phase_vision)
+		sleep(5)
+		invisibility = INVISIBILITY_LEVEL_TWO
+		see_invisible = INVISIBILITY_LEVEL_TWO
+		//cut_overlays()
+		update_icon()
+		alpha = 127
+
+		canmove = original_canmove
+		incorporeal_move = TRUE
+		density = FALSE
+		force_max_speed = TRUE
+		ability_flags &= ~AB_PHASE_SHIFTING
 
 /datum/modifier/shadekin_phase_vision
 	name = "Shadekin Phase Vision"

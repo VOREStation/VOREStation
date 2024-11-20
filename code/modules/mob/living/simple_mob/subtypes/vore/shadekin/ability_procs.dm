@@ -11,49 +11,29 @@
 		return FALSE
 	//RS Port #658 End
 
-	forceMove(T)
-	var/original_canmove = canmove
-	SetStunned(0)
-	SetWeakened(0)
-	if(buckled)
-		buckled.unbuckle_mob()
-	if(pulledby)
-		pulledby.stop_pulling()
-	stop_pulling()
-	canmove = FALSE
-
 	//Shifting in
 	if(ability_flags & AB_PHASE_SHIFTED)
-		phase_in(original_canmove)
+		phase_in(T)
 	//Shifting out
 	else
-		phase_out(original_canmove)
+		phase_out(T)
 
-/mob/living/simple_mob/shadekin/proc/phase_out(var/original_canmove)
-	ability_flags |= AB_PHASE_SHIFTED
-	mouse_opacity = 0
-	custom_emote(1,"phases out!")
-	real_name = name
-	name = "Something"
-
-	for(var/obj/belly/B as anything in vore_organs)
-		B.escapable = FALSE
-
-	cut_overlays()
-	flick("tp_out",src)
-	sleep(5)
-	invisibility = INVISIBILITY_LEVEL_TWO
-	see_invisible = INVISIBILITY_LEVEL_TWO
-	update_icon()
-	alpha = 127
-
-	canmove = original_canmove
-	incorporeal_move = TRUE
-	density = FALSE
-	force_max_speed = TRUE
-
-/mob/living/simple_mob/shadekin/proc/phase_in(var/original_canmove)
+/mob/living/simple_mob/shadekin/proc/phase_in(var/turf/T)
 	if(ability_flags & AB_PHASE_SHIFTED)
+
+		// pre-change
+		forceMove(T)
+		var/original_canmove = canmove
+		SetStunned(0)
+		SetWeakened(0)
+		if(buckled)
+			buckled.unbuckle_mob()
+		if(pulledby)
+			pulledby.stop_pulling()
+		stop_pulling()
+		canmove = FALSE
+
+		// change
 		ability_flags &= ~AB_PHASE_SHIFTED
 		mouse_opacity = 1
 		name = real_name
@@ -102,6 +82,44 @@
 					L.broken()
 			else
 				L.flicker(10)
+
+/mob/living/simple_mob/shadekin/proc/phase_out(var/turf/T)
+	if(!(ability_flags & AB_PHASE_SHIFTED))
+
+		// pre-change
+		forceMove(T)
+		var/original_canmove = canmove
+		SetStunned(0)
+		SetWeakened(0)
+		if(buckled)
+			buckled.unbuckle_mob()
+		if(pulledby)
+			pulledby.stop_pulling()
+		stop_pulling()
+		canmove = FALSE
+
+		// change
+		ability_flags |= AB_PHASE_SHIFTED
+		mouse_opacity = 0
+		custom_emote(1,"phases out!")
+		real_name = name
+		name = "Something"
+
+		for(var/obj/belly/B as anything in vore_organs)
+			B.escapable = FALSE
+
+		cut_overlays()
+		flick("tp_out",src)
+		sleep(5)
+		invisibility = INVISIBILITY_LEVEL_TWO
+		see_invisible = INVISIBILITY_LEVEL_TWO
+		update_icon()
+		alpha = 127
+
+		canmove = original_canmove
+		incorporeal_move = TRUE
+		density = FALSE
+		force_max_speed = TRUE
 
 /mob/living/simple_mob/shadekin/UnarmedAttack()
 	if(ability_flags & AB_PHASE_SHIFTED)

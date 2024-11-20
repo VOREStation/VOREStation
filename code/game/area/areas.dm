@@ -567,9 +567,9 @@ GLOBAL_DATUM(spoiler_obfuscation_image, /image)
 	if(isanimal(ourmob))
 		var/mob/living/simple_mob/shadekin/SK = ourmob
 		if(SK.ability_flags & AB_PHASE_SHIFTED)
-			SK.phase_in(SK.canmove)
+			SK.phase_in(SK.loc)
 	if(ishuman(ourmob))
 		var/mob/living/carbon/human/SK = ourmob
 		if(SK.ability_flags & AB_PHASE_SHIFTED)
-			SK.phase_in(SK.canmove)
+			SK.phase_in(SK.loc)
 // RS Port #658 End
