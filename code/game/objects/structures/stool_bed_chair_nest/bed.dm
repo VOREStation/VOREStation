@@ -21,6 +21,7 @@
 	var/datum/material/padding_material
 	var/base_icon = "bed"
 	var/applies_material_colour = 1
+	var/flippable = TRUE
 
 /obj/structure/bed/New(var/newloc, var/new_material, var/new_padding_material)
 	..(newloc)
@@ -168,6 +169,30 @@
 	if(padding_material)
 		padding_material.place_sheet(get_turf(src), 1)
 
+/obj/structure/bed/verb/turn_around()
+	set name = "Turn Around"
+	set category = "Object"
+	set src in oview(1)
+
+	if(!flippable)
+		to_chat(usr,"\The [src] can't face the other direction.")
+		return
+
+	if(!usr || !isturf(usr.loc))
+		return
+	if(usr.stat || usr.restrained())
+		return
+	if(ismouse(usr) || (isobserver(usr) && !CONFIG_GET(flag/ghost_interaction)))
+		return
+	if(dir == 2)
+		src.set_dir(1)
+	else if(dir == 1)
+		src.set_dir(2)
+	else if(dir == 4)
+		src.set_dir(8)
+	else if(dir == 8)
+		src.set_dir(4)
+
 /obj/structure/bed/psych
 	name = "psychiatrist's couch"
 	desc = "For prime comfort during psychiatric evaluations."
@@ -208,6 +233,7 @@
 	surgery_odds = 50 //VOREStation Edit
 	var/bedtype = /obj/structure/bed/roller
 	var/rollertype = /obj/item/roller
+	flippable = FALSE
 
 /obj/structure/bed/roller/adv
 	name = "advanced roller bed"
@@ -347,6 +373,7 @@
 	catalogue_data = list(/datum/category_item/catalogue/anomalous/precursor_a/alien_bed)
 	icon = 'icons/obj/abductor.dmi'
 	icon_state = "bed"
+	flippable = FALSE
 
 /obj/structure/bed/alien/update_icon()
 	return // Doesn't care about material or anything else.
