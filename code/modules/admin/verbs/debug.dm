@@ -678,7 +678,8 @@
 	var/datum/planet/planet = tgui_input_list(usr, "Which planet do you want to modify time on?", "Change Time", SSplanets.planets)
 	if(istype(planet))
 		var/datum/time/current_time_datum = planet.current_time
-		var/new_hour = tgui_input_number(usr, "What hour do you want to change to?", "Change Time", text2num(current_time_datum.show_time("hh")))
+		var/planet_hours = max(round(current_time_datum.seconds_in_day / 36000) - 1, 0)
+		var/new_hour = tgui_input_number(usr, "What hour do you want to change to?", "Change Time", text2num(current_time_datum.show_time("hh")), planet_hours)
 		if(!isnull(new_hour))
 			var/new_minute = tgui_input_number(usr, "What minute do you want to change to?", "Change Time", text2num(current_time_datum.show_time("mm")), 59)
 			if(!isnull(new_minute))
