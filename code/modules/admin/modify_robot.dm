@@ -212,6 +212,8 @@
 			source.module.modules.Remove(add_item)
 			source.module.contents.Remove(add_item)
 			if(istype(add_item, /obj/item/card/id))
+				if(target.idcard)
+					qdel(target.idcard)
 				target.idcard = add_item
 			target.module.modules.Add(add_item)
 			target.module.contents.Add(add_item)
