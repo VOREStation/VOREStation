@@ -105,7 +105,7 @@
 					if(S.can_use(material_needs[path]))
 						return TRUE
 					else
-						to_chat(user, span_notice("You do not have enough [path] to continue repairs."))
+						to_chat(user, span_notice("You do not have enough [I] to continue repairs."))
 				else
 					return TRUE
 
