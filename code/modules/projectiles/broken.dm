@@ -98,17 +98,18 @@
 
 /obj/item/broken_gun/proc/can_repair_with(obj/item/I, mob/user)
 	for(var/path in material_needs)
-		if(ispath(path) && istype(I, path))
-			if(material_needs[path] > 0)
-				if(istype(I, /obj/item/stack))
-					var/obj/item/stack/S = I
-					if(S.can_use(material_needs[path]))
-						return TRUE
-					else
-						to_chat(user, span_notice("You do not have enough [I] to continue repairs."))
-				else
-					return TRUE
-
+		if(!ispath(path) || !istype(I, path))
+			continue
+		if(material_needs[path] <= 0)
+			continue
+		if(istype(I, /obj/item/stack))
+			var/obj/item/stack/S = I
+			if(S.can_use(material_needs[path]))
+				return TRUE
+			else
+				to_chat(user, span_notice("You do not have enough [I] to continue repairs."))
+		else
+			return TRUE
 	return FALSE
 
 /obj/item/broken_gun/proc/repair_with(obj/item/I, mob/user)
