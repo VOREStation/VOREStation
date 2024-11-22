@@ -185,8 +185,11 @@
 		if("select_source")
 			if(source)
 				qdel(source)
-			source = new /mob/living/silicon/robot(null)
 			var/module_type = robot_modules[params["new_source"]]
+			if(ispath(module_type, /obj/item/robot_module/robot/syndicate))
+				source = new /mob/living/silicon/robot/syndicate(null)
+			else
+				source = new /mob/living/silicon/robot(null)
 			source.modtype = params["new_source"]
 			var/obj/item/robot_module/robot/robot_type = new module_type(source)
 			source.sprite_datum = pick(SSrobot_sprites.get_module_sprites(source.modtype, source))
