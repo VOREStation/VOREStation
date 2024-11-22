@@ -206,11 +206,11 @@
 			var/obj/item/add_item = locate(params["module"])
 			if(!add_item)
 				return TRUE
-			if(istype(add_item, /obj/item/card/id))
-				source.idcard = add_item
 			source.module.emag.Remove(add_item)
 			source.module.modules.Remove(add_item)
 			source.module.contents.Remove(add_item)
+			if(istype(add_item, /obj/item/card/id))
+				target.idcard = add_item
 			target.module.modules.Add(add_item)
 			target.module.contents.Add(add_item)
 			spawn(0)
