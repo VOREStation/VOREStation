@@ -263,7 +263,7 @@
 			return TRUE
 		if("rem_module")
 			var/obj/item/rem_item = locate(params["module"])
-			if(istype(rem_item, /obj/item/card/id))
+			if(istype(rem_item, /obj/item/card/id) && target.idcard == rem_item)
 				target.idcard = new /obj/item/card/id/synthetic(target)
 			target.uneq_all()
 			target.hud_used?.update_robot_modules_display(TRUE)
