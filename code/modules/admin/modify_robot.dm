@@ -263,6 +263,8 @@
 			return TRUE
 		if("rem_module")
 			var/obj/item/rem_item = locate(params["module"])
+			if(istype(rem_item, /obj/item/card/id))
+				target.idcard = new /obj/item/card/id/synthetic(target)
 			target.uneq_all()
 			target.hud_used?.update_robot_modules_display(TRUE)
 			target.module.emag.Remove(rem_item)
