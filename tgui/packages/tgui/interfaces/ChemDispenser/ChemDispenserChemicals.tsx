@@ -14,7 +14,8 @@ export const ChemDispenserChemicals = (props) => {
   return (
     <Section
       title={data.glass ? 'Drink Dispenser' : 'Chemical Dispenser'}
-      flexGrow
+      fill
+      scrollable
       buttons={<RecordingBlinker />}
     >
       <Flex direction="row" wrap="wrap" height="100%" align="flex-start">
