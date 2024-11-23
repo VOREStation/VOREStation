@@ -117,9 +117,9 @@
 
     return null
 
-/datum/vote/proc/announce(start_text, var/time = vote_time/10)
+/datum/vote/proc/announce(start_text, var/time = vote_time)
     to_chat(world, span_lightpurple("Type <b>vote</b> or click <a href='?src=\ref[src];[HrefToken()];vote=open'>here</a> to place your vote. \
-        You have [time] seconds to vote."))
+        You have [time/10] seconds to vote."))
     world << sound('sound/ambience/alarm4.ogg', repeat = 0, wait = 0, volume = 50, channel = 3)
 
 /datum/vote/Topic(href, list/href_list)
