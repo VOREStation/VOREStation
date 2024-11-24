@@ -219,6 +219,11 @@
 	..()
 	SStgui.update_uis(src)
 
+/obj/machinery/microwave/tgui_status(mob/user)
+	if(user == paicard?.pai)
+		return STATUS_INTERACTIVE
+	. = ..()
+
 /obj/machinery/microwave/tgui_state(mob/user)
 	return GLOB.tgui_physical_state
 

@@ -291,6 +291,16 @@
 		if(I_GRAB)
 			pai_nom(A)
 
+// Allow card inhabited machines to be interacted with
+// This has to override ClickOn because of storage depth nonsense with how pAIs are in cards in machines
+/mob/living/silicon/pai/ClickOn(var/atom/A, var/params)
+	if(istype(A, /obj/machinery))
+		var/obj/machinery/M = A
+		if(M.paicard == card)
+			M.attack_ai(src)
+			return
+	return ..()
+
 /mob/living/silicon/pai/proc/hug(var/mob/living/silicon/pai/H, var/mob/living/target)
 
 	var/t_him = "them"
