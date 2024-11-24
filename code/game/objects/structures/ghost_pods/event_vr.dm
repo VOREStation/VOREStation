@@ -214,10 +214,18 @@
 
 	var/picked_ckey = M.ckey
 	var/picked_slot = M.client.prefs.default_slot
+
+	if(!is_alien_whitelisted(M, GLOB.all_species[M.client.prefs.species]))
+		to_chat(M, span_warning("You cannot spawn as a species you are not whitelisted for!"))
+		reset_ghostpod()
+		return
+
 	var/mob/living/carbon/human/new_character = new(src.loc)
 	if(!new_character)
 		to_chat(src, "Something went wrong and spawning failed.")
+		reset_ghostpod()
 		return
+
 	M.client.prefs.copy_to(new_character)
 	if(new_character.dna)
 		new_character.dna.ResetUIFrom(new_character)
