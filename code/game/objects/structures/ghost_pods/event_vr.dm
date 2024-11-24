@@ -172,3 +172,82 @@
 	..()
 	if(!(src in active_ghost_pods))
 		active_ghost_pods += src
+
+/obj/structure/ghost_pod/ghost_activated/maint_straggler
+	name = "strange maintenance hole"
+	desc = "This is my hole! It was made for me!"
+	icon = 'icons/effects/effects.dmi'
+	icon_state = "tunnel_hole"
+	icon_state_opened = "tunnel_hole"
+	density = FALSE
+	ghost_query_type = /datum/ghost_query/maints_pred
+	anchored = TRUE
+	invisibility = INVISIBILITY_OBSERVER
+	spawn_active = TRUE
+
+/obj/structure/ghost_pod/ghost_activated/maint_straggler/attack_ghost(var/mob/observer/dead/user)
+	if(jobban_isbanned(user, JOB_GHOSTROLES))
+		to_chat(user, span_warning("You cannot inhabit this creature because you are banned from playing ghost roles."))
+		return
+
+	//No OOC notes
+	if (not_has_ooc_text(user))
+		return
+
+	if(used)
+		to_chat(user, span_warning("Another spirit appears to have gotten to \the [src] before you.  Sorry."))
+		return
+
+	var/choice = tgui_alert(user, "Using this pod will spawn you as your currently loaded character slot in a pseudo-Visitor role. Are you sure you wish to continue?", "Straggler Pod", list("Yes", "No"))
+
+	if(!choice || choice == "No")
+		return
+
+	else if(used)
+		to_chat(user, span_warning("Another spirit appears to have gotten to \the [src] before you.  Sorry."))
+		return
+
+	create_occupant(user)
+
+/obj/structure/ghost_pod/ghost_activated/maint_straggler/create_occupant(var/mob/M)
+	..()
+
+	var/picked_ckey = M.ckey
+	var/picked_slot = M.client.prefs.default_slot
+	var/mob/living/carbon/human/new_character = new(src.loc)
+	if(!new_character)
+		to_chat(src, "Something went wrong and spawning failed.")
+		return
+	M.client.prefs.copy_to(new_character)
+	if(new_character.dna)
+		new_character.dna.ResetUIFrom(new_character)
+		new_character.sync_organ_dna()
+	new_character.key = M.key
+	if(new_character.mind)
+		new_character.mind.loaded_from_ckey = picked_ckey
+		new_character.mind.loaded_from_slot = picked_slot
+
+	job_master.EquipRank(new_character, JOB_ALT_VISITOR, 1)
+
+	for(var/lang in new_character.client.prefs.alternate_languages)
+		var/datum/language/chosen_language = GLOB.all_languages[lang]
+		if(chosen_language)
+			if(is_lang_whitelisted(src,chosen_language) || (new_character.species && (chosen_language.name in new_character.species.secondary_langs)))
+				new_character.add_language(lang)
+
+	new_character.regenerate_icons()
+
+	new_character.update_transform()
+
+	to_chat(new_character, span_notice("You are a <b>Maintenance Straggler</b>, a loose end... you have no special advantages compared to the rest of the crew, so be cautious! You will spawn with an ID that claims you are a Visitor along with any loadout items a Visitor would be allowed to spawn with, but do not expect any of it to get you very far..."))
+	to_chat(new_character, span_critical("Please be advised, this role is NOT AN ANTAGONIST."))
+	to_chat(new_character, span_notice("Whoever or whatever your chosen character slot is, your role is to facilitate roleplay focused around that character, and under no circumstances should you even <b>attempt</b> to fight the station and kill people. You can of course eat and/or digest people as you like if OOC prefs align, but this should be done as part of roleplay. If you intend to fight the station and kill people and such, you need permission from the staff team. As a straggler, you should probably avoid well-populated areas or else you may be treated as a trespasser and get in trouble with security! Of course, you’re welcome to try to make friends and roleplay how you will in this regard, but something to keep in mind."))
+
+	new_character.visible_message(span_warning("[new_character] appears to crawl out of somewhere."))
+	log_and_message_admins("successfully entered \a [src] and became their loaded character.")
+	qdel(src)
+
+/obj/structure/ghost_pod/ghost_activated/maint_straggler/Initialize()
+	..()
+	if(!(src in active_ghost_pods))
+		active_ghost_pods += src
