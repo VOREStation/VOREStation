@@ -165,7 +165,7 @@
 
 	alt_titles = list(JOB_ALT_XENOZOOLOGIST = /datum/alt_title/xenozoologist, JOB_ALT_XENOANTHROPOLOGIST = /datum/alt_title/xenoanthropologist)
 
- Xenibiologist Alt Titles
+// Xenobiologist Alt Titles
 /datum/alt_title/xenobot
 	title = JOB_XENOBOTANIST
 	title_blurb = "A " + JOB_XENOBOTANIST + " grows and cares for a variety of abnormal, custom made, and frequently dangerous plant life. When the products of these plants \
