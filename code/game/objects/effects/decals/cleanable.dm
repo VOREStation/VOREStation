@@ -12,7 +12,6 @@ generic_filth = TRUE means when the decal is saved, it will be switched out for 
 	var/generic_filth = FALSE
 	var/age = 0
 	var/list/random_icon_states = list()
-	var/obj/effect/decal/jan_hud/jan_icon = null
 
 /obj/effect/decal/cleanable/Initialize(var/mapload, var/_age)
 	if(!isnull(_age))
@@ -21,12 +20,11 @@ generic_filth = TRUE means when the decal is saved, it will be switched out for 
 		src.icon_state = pick(src.random_icon_states)
 	if(!mapload || !CONFIG_GET(flag/persistence_ignore_mapload))
 		SSpersistence.track_value(src, /datum/persistent/filth)
-	jan_icon = new/obj/effect/decal/jan_hud(src.loc)
 	. = ..()
+	update_icon()
 
 /obj/effect/decal/cleanable/Destroy()
 	SSpersistence.forget_value(src, /datum/persistent/filth)
-	QDEL_NULL(jan_icon)
 	. = ..()
 
 /obj/effect/decal/cleanable/clean_blood(var/ignore = 0)
@@ -40,13 +38,27 @@ generic_filth = TRUE means when the decal is saved, it will be switched out for 
 		src.icon_state = pick(src.random_icon_states)
 	..()
 
-/obj/effect/decal/jan_hud
-	plane = PLANE_JANHUD
-	layer = BELOW_MOB_LAYER
-	vis_flags = VIS_HIDE
-	persist_storable = FALSE
-	icon = 'icons/mob/hud.dmi'
-	mouse_opacity = 0
 
-/obj/effect/decal/jan_hud/Initialize()
-	src.icon_state = "janhud[rand(1,9)]"
+/obj/effect/decal/cleanable/update_icon()
+	// Overrides should not inheret from this, and instead replace it entirely to match this in some form.
+	// add_janitor_hud_overlay() does not pre-cut overlays, so cut_overlays() must be called first.
+	// This is so it may be used with update_icon() overrides that use overlays, while adding the janitor overlay at the end.
+	cut_overlays()
+	add_janitor_hud_overlay()
+
+
+/obj/effect/decal/cleanable/proc/add_janitor_hud_overlay()
+	// This was original a seperate object that followed the grime, it got stuck in everything you can imagine!
+	// It also likely doubled the memory use of every cleanable decal on station...
+	var/image/hud = image('icons/mob/hud.dmi', src, "janhud[rand(1,9)]")
+	hud.appearance_flags = (RESET_COLOR|PIXEL_SCALE|KEEP_APART)
+	hud.plane = PLANE_JANHUD
+	hud.layer = BELOW_MOB_LAYER
+	hud.mouse_opacity = 0
+	//HUD VARIANT: Allows the hud to show up with it's normal alpha, even if the 'dirty thing' it's attached to has a low alpha (ex: dirt)
+	/*
+	hud.appearance_flags = RESET_ALPHA
+	hud.alpha = 255
+	*/
+	//HUD VARIANT end
+	add_overlay(hud)
