@@ -33,7 +33,7 @@ Bonus
 	return
 
 /datum/symptom/heal/proc/Heal(mob/living/M, datum/disease/advance/A)
-	var/get_damage = (sqrtor0(20+A.totalStageSpeed())*(1+rand()))
+	var/get_damage = max(0, (sqrtor0(20+A.totalStageSpeed())*(1+rand())))
 	M.adjustToxLoss(-get_damage)
 	return TRUE
 
