@@ -33,7 +33,7 @@ BONUS
 	var/obj/item/organ/external/head/head_organ = H.get_organ(BP_HEAD)
 	if(!istype(head_organ))
 		return
-	to_chat(H, span_warning("[pick("Your scal itches.", "Your skin feels flakey.")]"))
+	to_chat(H, span_warning("[pick("Your scalp itches.", "Your skin feels flakey.")]"))
 
 	switch(A.stage)
 		if(3, 4)
