@@ -250,7 +250,7 @@ var/const/CE_STABLE_THRESHOLD = 0.5
 		B.data["viruses"] = list()
 
 	for(var/datum/disease/D in GetViruses())
-		if(D.spread_flags & SPECIAL || D.spread_flags & NON_CONTAGIOUS)
+		if(D.spread_flags & SPECIAL)
 			continue
 		B.data["viruses"] |= D.Copy()
 

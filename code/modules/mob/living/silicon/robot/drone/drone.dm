@@ -203,9 +203,6 @@ var/list/mob_hat_cache = list()
 	can_pick_shell = FALSE
 	update_icon()
 
-/mob/living/silicon/robot/drone/choose_icon()
-	return
-
 /mob/living/silicon/robot/drone/pick_module()
 	return
 

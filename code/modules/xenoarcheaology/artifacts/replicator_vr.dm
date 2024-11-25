@@ -347,7 +347,7 @@
 	var/list/created_items = list()
 	var/list/tgui_vore_selection = list()
 	var/list/viable_items = list(
-	/obj/item/clothing/gloves/ring,
+	/obj/item/clothing/accessory/ring,
 	/obj/item/clothing/gloves/evening,
 	/obj/item/clothing/gloves/black,
 	/obj/item/clothing/under/swimsuit/black,

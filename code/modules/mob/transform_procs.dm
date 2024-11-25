@@ -190,7 +190,6 @@
 		O.custom_speech_bubble = B.custom_speech_bubble
 
 	callHook("borgify", list(O))
-	O.namepick()
 
 	spawn(0)	// Mobs still instantly del themselves, thus we need to spawn or O will never be returned
 		qdel(src)

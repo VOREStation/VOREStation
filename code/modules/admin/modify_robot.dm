@@ -43,9 +43,16 @@
 		qdel(source)
 	. = ..()
 
+/datum/eventkit/modify_robot/ui_assets(mob/user)
+	return list(
+		get_asset_datum(/datum/asset/spritesheet/robot_icons)
+	)
+
 /datum/eventkit/modify_robot/tgui_data(mob/user)
 	. = list()
 	// Target section for general data
+	var/datum/asset/spritesheet/robot_icons/spritesheet = get_asset_datum(/datum/asset/spritesheet/robot_icons)
+
 	if(target)
 		.["target"] = list()
 		.["target"]["name"] = target.name
@@ -62,10 +69,8 @@
 		// Target section for options once a module has been selected
 		if(target.module)
 			.["target"]["active"] = target.icon_selected
-			.["target"]["front"] = icon2base64(get_flat_icon(target,dir=SOUTH,no_anim=TRUE))
-			.["target"]["side"] = icon2base64(get_flat_icon(target,dir=WEST,no_anim=TRUE))
-			.["target"]["side_alt"] = icon2base64(get_flat_icon(target,dir=EAST,no_anim=TRUE))
-			.["target"]["back"] = icon2base64(get_flat_icon(target,dir=NORTH,no_anim=TRUE))
+			.["target"]["sprite"] = sanitize_css_class_name("[target.sprite_datum.type]")
+			.["target"]["sprite_size"] = spritesheet.icon_size_id(.["target"]["sprite"] + "S")
 			.["target"]["modules"] = get_target_items(user)
 			var/list/module_options = list()
 			for(var/module in robot_modules)
@@ -110,7 +115,7 @@
 			.["access_options"] = access_options
 			// Section for source data for the module we might want to salvage
 			if(source)
-				.["source"] += get_module_source(user)
+				.["source"] += get_module_source(user, spritesheet)
 	var/list/all_robots = list()
 	for(var/mob/living/silicon/robot/R in silicon_mob_list)
 		if(!R.loc)
@@ -573,10 +578,11 @@
 		target_items += list(list("name" = item.name, "ref" = "\ref[item]", "icon" = icon2html(item, user, sourceonly=TRUE), "desc" = item.desc))
 	return target_items
 
-/datum/eventkit/modify_robot/proc/get_module_source(var/mob/user)
+/datum/eventkit/modify_robot/proc/get_module_source(var/mob/user, var/datum/asset/spritesheet/robot_icons/spritesheet)
 	var/list/source_list = list()
 	source_list["model"] = source.module
-	source_list["front"] = icon2base64(get_flat_icon(source,dir=SOUTH,no_anim=TRUE))
+	source_list["sprite"] = sanitize_css_class_name("[source.sprite_datum.type]")
+	source_list["sprite_size"] = spritesheet.icon_size_id(source_list["sprite"] + "S")
 	var/list/source_items = list()
 	for(var/obj/item in (source.module.modules | source.module.emag))
 		var/exists

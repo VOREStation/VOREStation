@@ -597,7 +597,7 @@
 			user << browse("<HTML><HEAD><TITLE>[name]</TITLE></HEAD><BODY>[info_links][stamps]</BODY></HTML>", "window=[name]")
 		return
 
-	else if(istype(P, /obj/item/stamp) || istype(P, /obj/item/clothing/gloves/ring/seal))
+	else if(istype(P, /obj/item/stamp) || istype(P, /obj/item/clothing/accessory/ring/seal))
 		if(istype(P, /obj/item/stamp))
 			var/obj/item/stamp/the_stamp = P
 			if(the_stamp.stamptext)
@@ -605,7 +605,7 @@
 			else
 				stamps += (stamps=="" ? "<HR>" : "<BR>") + span_italics("This paper has been stamped with the [the_stamp.name].")
 		else
-			var/obj/item/clothing/gloves/ring/seal/the_stamp = P
+			var/obj/item/clothing/accessory/ring/seal/the_stamp = P
 			if(the_stamp.stamptext)
 				stamps += (stamps=="" ? "<HR>" : "<BR>") + span_italics("[the_stamp.stamptext]")
 			else
