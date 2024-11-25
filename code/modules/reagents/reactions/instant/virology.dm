@@ -40,6 +40,13 @@
 	required_reagents = list("inaprovaline" = 1, "mutagenvirusfood" = 1)
 	result_amount = 2
 
+/decl/chemical_reaction/instant/virus_food_size
+	name = "sizeoxadone virus food"
+	id = "sizeoxadonevirusfood"
+	result = "sizevirusfood"
+	required_reagents = list("sizeoxadone" = 1, "phoronvirusfood" = 1)
+	result_amount = 2
+
 /decl/chemical_reaction/instant/mix_virus
 	name = "Mix Virus"
 	id = "mixvirus"
@@ -48,12 +55,22 @@
 	var/level_min = 0
 	var/level_max = 2
 
+/decl/chemical_reaction/instant/mix_virus/picky
+	var/list/datum/symptom/symptoms
+
 /decl/chemical_reaction/instant/mix_virus/on_reaction(datum/reagents/holder)
 	var/datum/reagent/blood/B = locate(/datum/reagent/blood) in holder.reagent_list
 	if(B && B.data)
 		var/datum/disease/advance/D = locate(/datum/disease/advance) in B.data["viruses"]
 		if(D)
 			D.Evolve(level_min, level_max)
+
+/decl/chemical_reaction/instant/mix_virus/picky/on_reaction(datum/reagents/holder)
+	var/datum/reagent/blood/B = locate(/datum/reagent/blood) in holder.reagent_list
+	if(B && B.data)
+		var/datum/disease/advance/D = locate(/datum/disease/advance) in B.data["viruses"]
+		if(D)
+			D.PickyEvolve(symptoms)
 
 /decl/chemical_reaction/instant/mix_virus/mix_virus_2
 	name = "Mix Virus 2"
@@ -110,6 +127,16 @@
 	required_reagents = list("adranolvirusfood" = 1)
 	level_min = 1
 	level_max = 1
+
+/decl/chemical_reaction/instant/mix_virus/picky/size
+	name = "Mix Virus Size"
+	id = "mixvirussize"
+	required_reagents = list("sizevirusfood" = 1)
+	symptoms = list(
+		/datum/symptom/macrophage,
+		/datum/symptom/size,
+		/datum/symptom/size/grow
+	)
 
 /decl/chemical_reaction/instant/mix_virus/rem_virus
 	name = "Devolve Virus"

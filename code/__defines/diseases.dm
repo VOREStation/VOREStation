@@ -18,7 +18,6 @@
 #define CONTACT_GENERAL	(1<<5)
 #define AIRBORNE		(1<<6)
 
-
 //Severity Defines
 #define NONTHREAT	"No threat"
 #define MINOR		"Minor"

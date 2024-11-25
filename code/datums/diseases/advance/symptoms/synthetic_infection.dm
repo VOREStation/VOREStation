@@ -1,7 +1,7 @@
 /*
 //////////////////////////////////////
 
-Sneezing
+Synthetic Infection
 
 	Slightly hidden.
 	Increases resistance.
@@ -23,7 +23,6 @@ Bonus
     transmittable = 1
     level = 5
     severity = 3
-    id = "synthetic_infection"
 
 /datum/symptom/infect_synthetics/Start(datum/disease/advance/A)
 	A.infect_synthetics = TRUE

@@ -46,3 +46,9 @@
 	id = "weakphoronvirusfood"
 	description = "Mutates viruses when mixed in blood. This one seems to have been weakened, but still strong."
 	color = "#CEC3C6"
+
+/datum/reagent/toxin/phoron/phoronvirusfood/sizevirusfood
+	name = "Sizeoxadone virus food"
+	id = "sizevirusfood"
+	description = "Mutates virus when mixed in blood. This is a strange size mix..."
+	color = "#88AFDD"

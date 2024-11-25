@@ -130,7 +130,7 @@ Bonus
 	Very high level.
 
 Bonus
-	Heals brain damage, treats radiation.
+	Heals clone damage, treats radiation.
 
 //////////////////////////////////////
 */
@@ -145,6 +145,6 @@ Bonus
 
 /datum/symptom/heal/dna/Heal(var/mob/living/carbon/M, var/datum/disease/advance/A)
 	var/amt_healed = (sqrtor0(20+A.totalStageSpeed()*(3+rand())))-(sqrtor0(16+A.totalStealth()*rand()))
-	M.adjustBrainLoss(-amt_healed)
+	M.apply_damage(-amt_healed, CLONE)
 	M.radiation = max(M.radiation - 3, 0)
 	return TRUE

@@ -16,7 +16,7 @@ BONUS
 //////////////////////////////////////
 */
 
-/datum/symptom/mlem
+/datum/symptom/spyndrome
 	name = "Spyndrome"
 	stealth = 2
 	resistance = 0
@@ -26,7 +26,7 @@ BONUS
 	severity = 1
 	var/list/directions = list(2,4,1,8,2,4,1,8,2,4,1,8,2,4,1,8,2,4,1,8)
 
-/datum/symptom/mlem/Activate(var/datum/disease/advance/A)
+/datum/symptom/spyndrome/Activate(var/datum/disease/advance/A)
 	..()
 
 	if(prob(SYMPTOM_ACTIVATION_PROB))
