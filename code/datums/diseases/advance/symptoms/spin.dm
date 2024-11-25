@@ -24,7 +24,6 @@ BONUS
 	transmittable = 1
 	level = 1
 	severity = 1
-	var/list/directions = list(2,4,1,8,2,4,1,8,2,4,1,8,2,4,1,8,2,4,1,8)
 
 /datum/symptom/spyndrome/Activate(var/datum/disease/advance/A)
 	..()
@@ -34,7 +33,5 @@ BONUS
 			to_chat(viewers(A.affected_mob), span_warning("[A.affected_mob.name] struggles violently against their restraints!"))
 		else
 			to_chat(viewers(A.affected_mob), span_warning("[A.affected_mob.name] spins around violently!"))
-			for(var/D in directions)
-				A.affected_mob.dir = D
-			A.affected_mob.dir = pick(2,4,1,8)
+			A.affected_mob.emote("spin")
 	return

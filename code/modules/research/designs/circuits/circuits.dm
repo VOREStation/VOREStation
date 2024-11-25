@@ -126,7 +126,7 @@ CIRCUITS BELOW
 /datum/design/circuit/pandemic
 	name = "PanD.E.M.I.C 2200"
 	id = "pandemic"
-	req_tech = list(TECH_DATA = 2, TECH_BIO 2)
+	req_tech = list(TECH_DATA = 2, TECH_BIO = 2)
 	build_path = /obj/item/circuitboard/pandemic
 	sort_string = "FAGAJ"
 
