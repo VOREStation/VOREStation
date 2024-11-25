@@ -134,6 +134,9 @@
 	if(!resizable && !ignore_prefs)
 		return 1
 	. = ..()
+	if(!ishuman(temporary_form) && isliving(temporary_form))
+		var/mob/living/temp_form = temporary_form
+		temp_form.resize(new_size, animate, uncapped, ignore_prefs, aura_animation)
 	if(LAZYLEN(hud_list) && has_huds)
 		var/new_y_offset = vis_height * (size_multiplier - 1)
 		for(var/index = 1 to hud_list.len)
