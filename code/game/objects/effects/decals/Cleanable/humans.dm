@@ -192,7 +192,7 @@ var/global/list/image/splatter_cache=list()
 	density = FALSE
 	anchored = TRUE
 	icon = 'icons/effects/blood.dmi'
-	icon_state = "gibbl5"
+	icon_state = "gib1"
 	random_icon_states = list("gib1", "gib2", "gib3", "gib5", "gib6")
 	var/fleshcolor = "#FFFFFF"
 
