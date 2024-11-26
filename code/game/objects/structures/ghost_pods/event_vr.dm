@@ -185,26 +185,20 @@
 	invisibility = INVISIBILITY_OBSERVER
 	spawn_active = TRUE
 
+//override the standard attack_ghost proc for custom messages
 /obj/structure/ghost_pod/ghost_activated/maint_straggler/attack_ghost(var/mob/observer/dead/user)
 	if(jobban_isbanned(user, JOB_GHOSTROLES))
-		to_chat(user, span_warning("You cannot inhabit this creature because you are banned from playing ghost roles."))
+		to_chat(user, span_warning("You cannot use this spawnpoint because you are banned from playing ghost roles."))
 		return
 
 	//No OOC notes
 	if (not_has_ooc_text(user))
+		to_chat(user, span_warning("You must have OOC notes configured for your current character slot to use this spawnpoint."))
 		return
 
-	if(used)
-		to_chat(user, span_warning("Another spirit appears to have gotten to \the [src] before you.  Sorry."))
-		return
-
-	var/choice = tgui_alert(user, "Using this pod will spawn you as your currently loaded character slot in a pseudo-Visitor role. Are you sure you wish to continue?", "Straggler Pod", list("Yes", "No"))
+	var/choice = tgui_alert(user, "Using this spawner will spawn you as your currently loaded character slot in a pseudo-Visitor role. Are you absolutely sure you wish to continue?", "Maint Straggler Spawner", list("Yes", "No"))
 
 	if(!choice || choice == "No")
-		return
-
-	else if(used)
-		to_chat(user, span_warning("Another spirit appears to have gotten to \the [src] before you.  Sorry."))
 		return
 
 	create_occupant(user)
@@ -222,18 +216,16 @@
 
 	var/mob/living/carbon/human/new_character = new(src.loc)
 	if(!new_character)
-		to_chat(src, "Something went wrong and spawning failed.")
+		to_chat(src, "Something went wrong and spawning failed. Please check your character slot doesn't have any obvious errors, then either try again or send an adminhelp!")
 		reset_ghostpod()
 		return
 
 	M.client.prefs.copy_to(new_character)
-	if(new_character.dna)
-		new_character.dna.ResetUIFrom(new_character)
-		new_character.sync_organ_dna()
+	new_character.dna.ResetUIFrom(new_character)
+	new_character.sync_organ_dna()
 	new_character.key = M.key
-	if(new_character.mind)
-		new_character.mind.loaded_from_ckey = picked_ckey
-		new_character.mind.loaded_from_slot = picked_slot
+	new_character.mind.loaded_from_ckey = picked_ckey
+	new_character.mind.loaded_from_slot = picked_slot
 
 	job_master.EquipRank(new_character, JOB_ALT_VISITOR, 1)
 
@@ -247,12 +239,12 @@
 
 	new_character.update_transform()
 
-	to_chat(new_character, span_notice("You are a <b>Maintenance Straggler</b>, a loose end... you have no special advantages compared to the rest of the crew, so be cautious! You will spawn with an ID that claims you are a Visitor along with any loadout items a Visitor would be allowed to spawn with, but do not expect any of it to get you very far..."))
+	to_chat(new_character, span_notice("You are a <b>Maintenance Straggler</b>, a loose end... you have no special advantages compared to the rest of the crew, so be cautious! You will spawn with an ID that claims you are a Visitor along with any loadout items a Visitor would be allowed to spawn with, and anything you can find in maintenance, but do not expect any of it to get you very far!"))
 	to_chat(new_character, span_critical("Please be advised, this role is NOT AN ANTAGONIST."))
-	to_chat(new_character, span_notice("Whoever or whatever your chosen character slot is, your role is to facilitate roleplay focused around that character, and under no circumstances should you even <b>attempt</b> to fight the station and kill people. You can of course eat and/or digest people as you like if OOC prefs align, but this should be done as part of roleplay. If you intend to fight the station and kill people and such, you need permission from the staff team. As a straggler, you should probably avoid well-populated areas or else you may be treated as a trespasser and get in trouble with security! Of course, you’re welcome to try to make friends and roleplay how you will in this regard, but something to keep in mind."))
+	to_chat(new_character, span_notice("Whoever or whatever your chosen character slot is, your role is to facilitate roleplay focused around that character, and under no circumstances should you even <b>attempt</b> to fight the station and kill people, especially unprovoked. Vorish shenanigans are the exception here, so long as preferences are respected, but this should be done as part of roleplay. As a straggler, you should probably avoid well-populated areas or else you may be treated as a trespasser and get in trouble with security! Of course, you’re welcome to try to make friends and roleplay how you will in this regard, but something to keep in mind."))
 
 	new_character.visible_message(span_warning("[new_character] appears to crawl out of somewhere."))
-	log_and_message_admins("successfully entered \a [src] and became their loaded character.")
+	log_and_message_admins("[new_character.ckey] successfully used a Maintenance Straggler spawnpoint and became their loaded character, [new_character.real_name].")
 	qdel(src)
 
 /obj/structure/ghost_pod/ghost_activated/maint_straggler/Initialize()
