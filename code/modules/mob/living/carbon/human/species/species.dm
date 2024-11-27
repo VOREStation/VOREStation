@@ -212,6 +212,9 @@
 	var/can_space_freemove = FALSE							// Can we freely move in space?
 	var/can_zero_g_move	= FALSE								// What about just in zero-g non-space?
 
+	var/swim_mult = 1										//multiplier to our z-movement rate for swimming
+	var/climb_mult = 1										//multiplier to our z-movement rate for lattices/catwalks
+
 	var/item_slowdown_mod = 1								// How affected by item slowdown the species is.
 	var/primitive_form										// Lesser form, if any (ie. monkey for humans)
 	var/greater_form										// Greater form, if any, ie. human for monkeys.

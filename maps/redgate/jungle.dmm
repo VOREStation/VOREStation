@@ -1732,7 +1732,7 @@
 	key_id = "gold";
 	name = "gold key"
 	},
-/obj/item/spellbook/oneuse/knock,
+/obj/random/fantasy_item,
 /obj/random/fantasy_item,
 /turf/simulated/floor/tiled/yellow,
 /area/redgate/jungle/temple)

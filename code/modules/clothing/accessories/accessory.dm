@@ -12,6 +12,8 @@
 	var/image/inv_overlay = null				// Overlay used when attached to clothing.
 	var/image/mob_overlay = null
 	var/overlay_state = null
+	var/punch_force	= 0							// added melee damage
+	var/punch_damtype = BRUTE					// added melee damage type
 	var/concealed_holster = 0
 	var/mob/living/carbon/human/wearer = null 	// To check if the wearer changes, so species spritesheets change properly.
 	var/list/on_rolled = list()					// Used when jumpsuit sleevels are rolled ("rolled" entry) or it's rolled down ("down"). Set to "none" to hide in those states.
@@ -82,6 +84,11 @@
 	src.forceMove(S)
 	has_suit.add_overlay(get_inv_overlay())
 
+	has_suit.force += force
+	if(istype(S,/obj/item/clothing/gloves))
+		var/obj/item/clothing/gloves/has_gloves = S
+		has_gloves.punch_force = has_gloves.punch_force + punch_force
+
 	if(user)
 		to_chat(user, span_notice("You attach \the [src] to \the [has_suit]."))
 		add_fingerprint(user)
@@ -90,6 +97,10 @@
 	if(!has_suit)
 		return
 	has_suit.cut_overlay(get_inv_overlay())
+	has_suit.force = initial(has_suit.force)
+	if(istype(has_suit,/obj/item/clothing/gloves))
+		var/obj/item/clothing/gloves/has_gloves = has_suit
+		has_gloves.punch_force = initial(has_gloves.punch_force)
 	has_suit = null
 	if(user)
 		usr.put_in_hands(src)
@@ -376,85 +387,6 @@
 	icon_state = "tesh_neckscarf"
 	species_restricted = list(SPECIES_TESHARI)
 
-//bracelets
-
-/obj/item/clothing/accessory/bracelet
-	name = "bracelet"
-	desc = "A simple silver bracelet with a clasp."
-	icon = 'icons/inventory/accessory/item.dmi'
-	icon_state = "bracelet"
-	w_class = ITEMSIZE_TINY
-	slot_flags = SLOT_TIE
-	slot = ACCESSORY_SLOT_DECOR
-
-/obj/item/clothing/accessory/bracelet/friendship
-	name = "friendship bracelet"
-	desc = "A beautiful friendship bracelet in all the colors of the rainbow."
-	icon_state = "friendbracelet"
-
-/obj/item/clothing/accessory/bracelet/friendship/verb/dedicate_bracelet()
-	set name = "Dedicate Bracelet"
-	set category = "Object"
-	set desc = "Dedicate your friendship bracelet to a special someone."
-	var/mob/M = usr
-	if(!M.mind)
-		return 0
-
-	var/input = sanitizeSafe(input(usr, "Who do you want to dedicate the bracelet to?", ,""), MAX_NAME_LEN)
-
-	if(src && input && !M.stat && in_range(M,src))
-		desc = "A beautiful friendship bracelet in all the colors of the rainbow. It's dedicated to [input]."
-		to_chat(M, "You dedicate the bracelet to [input], remembering the times you've had together.")
-		return 1
-
-
-/obj/item/clothing/accessory/bracelet/material
-	icon_state = "materialbracelet"
-
-/obj/item/clothing/accessory/bracelet/material/New(var/newloc, var/new_material)
-	..(newloc)
-	if(!new_material)
-		new_material = MAT_STEEL
-	material = get_material_by_name(new_material)
-	if(!istype(material))
-		qdel(src)
-		return
-	name = "[material.display_name] bracelet"
-	desc = "A bracelet made from [material.display_name]."
-	color = material.icon_colour
-
-/obj/item/clothing/accessory/bracelet/material/get_material()
-	return material
-
-/obj/item/clothing/accessory/bracelet/material/wood/New(var/newloc)
-	..(newloc, "wood")
-
-/obj/item/clothing/accessory/bracelet/material/plastic/New(var/newloc)
-	..(newloc, "plastic")
-
-/obj/item/clothing/accessory/bracelet/material/iron/New(var/newloc)
-	..(newloc, "iron")
-
-/obj/item/clothing/accessory/bracelet/material/steel/New(var/newloc)
-	..(newloc, "steel")
-
-/obj/item/clothing/accessory/bracelet/material/silver/New(var/newloc)
-	..(newloc, "silver")
-
-/obj/item/clothing/accessory/bracelet/material/gold/New(var/newloc)
-	..(newloc, "gold")
-
-/obj/item/clothing/accessory/bracelet/material/platinum/New(var/newloc)
-	..(newloc, "platinum")
-
-/obj/item/clothing/accessory/bracelet/material/phoron/New(var/newloc)
-	..(newloc, "phoron")
-
-/obj/item/clothing/accessory/bracelet/material/glass/New(var/newloc)
-	..(newloc, "glass")
-
-	..()
-
 /obj/item/clothing/accessory/halfcape
 	name = "half cape"
 	desc = "A tasteful half-cape, suitible for European nobles and retro anime protagonists."
@@ -472,78 +404,6 @@
 	desc = "A plain, unadorned sash."
 	icon_state = "sash"
 	slot = ACCESSORY_SLOT_OVER
-
-/obj/item/clothing/accessory/wristband
-	name = "wristband"
-	desc = "A simple plastic wristband."
-	icon = 'icons/inventory/accessory/item.dmi'
-	icon_state = "wristband"
-	w_class = ITEMSIZE_TINY
-	slot_flags = SLOT_TIE
-	slot = ACCESSORY_SLOT_DECOR
-
-/obj/item/clothing/accessory/wristbandcollection
-	name = "wristband collection"
-	desc = "A mix of colourable plastic wristbands."
-	icon = 'icons/inventory/accessory/item.dmi'
-	icon_state = "wristband_collection"
-	w_class = ITEMSIZE_TINY
-	slot_flags = SLOT_TIE
-	slot = ACCESSORY_SLOT_DECOR
-
-/obj/item/clothing/accessory/wristbandcollection/pink
-	name = "wristband collection"
-	desc = "A mix of colourable plastic wristbands."
-	icon = 'icons/inventory/accessory/item.dmi'
-	icon_state = "wristband_collection2"
-	w_class = ITEMSIZE_TINY
-	slot_flags = SLOT_TIE
-	slot = ACCESSORY_SLOT_DECOR
-
-/obj/item/clothing/accessory/wristbandcollection/les
-	name = "wristband collection"
-	desc = "A mix of colourable plastic wristbands."
-	icon = 'icons/inventory/accessory/item.dmi'
-	icon_state = "wristband_collection3"
-	w_class = ITEMSIZE_TINY
-	slot_flags = SLOT_TIE
-	slot = ACCESSORY_SLOT_DECOR
-
-/obj/item/clothing/accessory/wristbandcollection/trans
-	name = "wristband collection"
-	desc = "A mix of colourable plastic wristbands."
-	icon = 'icons/inventory/accessory/item.dmi'
-	icon_state = "wristband_collection4"
-	w_class = ITEMSIZE_TINY
-	slot_flags = SLOT_TIE
-	slot = ACCESSORY_SLOT_DECOR
-
-/obj/item/clothing/accessory/wristbandcollection/bi
-	name = "wristband collection"
-	desc = "A mix of colourable plastic wristbands."
-	icon = 'icons/inventory/accessory/item.dmi'
-	icon_state = "wristband_collection5"
-	w_class = ITEMSIZE_TINY
-	slot_flags = SLOT_TIE
-	slot = ACCESSORY_SLOT_DECOR
-
-/obj/item/clothing/accessory/wristbandcollection/ace
-	name = "wristband collection"
-	desc = "A mix of colourable plastic wristbands."
-	icon = 'icons/inventory/accessory/item.dmi'
-	icon_state = "wristband_collection6"
-	w_class = ITEMSIZE_TINY
-	slot_flags = SLOT_TIE
-	slot = ACCESSORY_SLOT_DECOR
-
-/obj/item/clothing/accessory/wristband_spiked
-	name = "wristband (spiked)"
-	desc = "A black wristband with short spikes around it."
-	icon = 'icons/inventory/accessory/item.dmi'
-	icon_state = "wristband_spiked"
-	w_class = ITEMSIZE_TINY
-	slot_flags = SLOT_TIE
-	slot = ACCESSORY_SLOT_DECOR
 
 //Gaiter scarves
 /obj/item/clothing/accessory/gaiter

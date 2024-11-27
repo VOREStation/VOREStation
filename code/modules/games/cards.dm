@@ -211,8 +211,8 @@
 
 	..()
 
-/obj/item/deck/attack_self()
-	shuffle()
+/obj/item/deck/attack_self(mob/user)
+	shuffle(user)
 
 
 /obj/item/deck/verb/verb_shuffle()
@@ -220,10 +220,9 @@
 	set name = "Shuffle"
 	set desc = "Shuffle the cards in the deck."
 	set src in view(1)
-	shuffle()
+	shuffle(usr)
 
-/obj/item/deck/proc/shuffle()
-	var/mob/living/user = usr
+/obj/item/deck/proc/shuffle(mob/user)
 	if (cooldown < world.time - 10) // 15 ticks cooldown
 		var/list/newcards = list()
 		while(cards.len)

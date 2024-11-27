@@ -788,7 +788,6 @@
 	id = "EngineEmitterPortWest2";
 	name = "Engine Room Blast Doors";
 	pixel_x = 25;
-	req_access = null;
 	req_one_access = list(11,24)
 	},
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
@@ -2468,6 +2467,12 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/door/firedoor/glass,
+/obj/machinery/door/blast/shutters{
+	dir = 2;
+	id = "cargo_shutter";
+	layer = 3.3;
+	name = "Cargo Shutters"
+	},
 /turf/simulated/floor/tiled,
 /area/quartermaster/office)
 "aer" = (
@@ -8016,7 +8021,6 @@
 /obj/machinery/door/airlock/multi_tile/glass{
 	dir = 2;
 	name = "Gateway/EVA Prep Room";
-	req_access = null;
 	req_one_access = list(18,19,43,67)
 	},
 /turf/simulated/floor/tiled/steel_ridged,
@@ -8588,6 +8592,12 @@
 /obj/structure/grille,
 /obj/structure/window/reinforced/full,
 /obj/structure/disposalpipe/segment,
+/obj/machinery/door/blast/shutters{
+	dir = 2;
+	id = "cargo_shutter";
+	layer = 3.3;
+	name = "Cargo Shutters"
+	},
 /turf/simulated/floor/plating,
 /area/quartermaster/office)
 "avz" = (
@@ -12706,8 +12716,7 @@
 /obj/structure/plasticflaps,
 /obj/machinery/conveyor{
 	dir = 8;
-	id = "miningops";
-	movedir = null
+	id = "miningops"
 	},
 /turf/simulated/floor/plating,
 /area/quartermaster/belterdock/refinery)
@@ -14869,6 +14878,19 @@
 	fancy_shuttle_tag = "secbus"
 	},
 /area/shuttle/securiship/engines)
+"cbX" = (
+/obj/machinery/door/firedoor/glass,
+/obj/machinery/door/firedoor/glass,
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/obj/machinery/door/blast/shutters{
+	dir = 2;
+	id = "cargo_shutter";
+	layer = 3.3;
+	name = "Cargo Shutters"
+	},
+/turf/simulated/floor/plating,
+/area/quartermaster/office)
 "cbY" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 4
@@ -20522,6 +20544,12 @@
 /obj/structure/window/reinforced/full,
 /obj/machinery/door/firedoor/glass,
 /obj/structure/disposalpipe/segment,
+/obj/machinery/door/blast/shutters{
+	dir = 2;
+	id = "cargo_shutter";
+	layer = 3.3;
+	name = "Cargo Shutters"
+	},
 /turf/simulated/floor/plating,
 /area/quartermaster/office)
 "hUm" = (
@@ -27351,8 +27379,7 @@
 "pty" = (
 /obj/machinery/conveyor{
 	dir = 8;
-	id = "miningops";
-	movedir = null
+	id = "miningops"
 	},
 /turf/simulated/floor/plating,
 /area/quartermaster/belterdock/refinery)
@@ -29631,8 +29658,7 @@
 	dir = 4;
 	id = "medivac blast";
 	name = "window blast shields";
-	pixel_y = 1;
-	req_access = null
+	pixel_y = 1
 	},
 /turf/simulated/floor/tiled,
 /area/shuttle/medivac/cockpit)
@@ -29926,8 +29952,7 @@
 /obj/machinery/mineral/input,
 /obj/machinery/conveyor{
 	dir = 8;
-	id = "miningops";
-	movedir = null
+	id = "miningops"
 	},
 /turf/simulated/floor/plating,
 /area/quartermaster/belterdock/refinery)
@@ -30435,7 +30460,14 @@
 /obj/machinery/requests_console{
 	department = "Cargo Bay";
 	departmentType = 2;
-	pixel_y = 32
+	pixel_y = 32;
+	pixel_x = -6
+	},
+/obj/machinery/button/remote/blast_door{
+	id = "cargo_shutter";
+	name = "Cargo Shutter Control";
+	pixel_x = 10;
+	pixel_y = 24
 	},
 /turf/simulated/floor/tiled,
 /area/quartermaster/office)
@@ -30943,8 +30975,7 @@
 /obj/machinery/mineral/output,
 /obj/machinery/conveyor{
 	dir = 8;
-	id = "miningops";
-	movedir = null
+	id = "miningops"
 	},
 /turf/simulated/floor/plating,
 /area/quartermaster/belterdock/refinery)
@@ -31985,8 +32016,7 @@
 	frequency = 1380;
 	id_tag = "securiship_bay";
 	pixel_x = 24;
-	pixel_y = -26;
-	req_one_access = null
+	pixel_y = -26
 	},
 /turf/simulated/floor/tiled,
 /area/tether/station/dock_two)
@@ -34459,6 +34489,12 @@
 /obj/machinery/door/firedoor/glass,
 /obj/structure/grille,
 /obj/structure/window/reinforced/full,
+/obj/machinery/door/blast/shutters{
+	dir = 2;
+	id = "cargo_shutter";
+	layer = 3.3;
+	name = "Cargo Shutters"
+	},
 /turf/simulated/floor/plating,
 /area/quartermaster/office)
 
@@ -44910,7 +44946,7 @@ oWu
 qkG
 mkL
 iDA
-yjH
+cbX
 tnC
 tWj
 jhJ
