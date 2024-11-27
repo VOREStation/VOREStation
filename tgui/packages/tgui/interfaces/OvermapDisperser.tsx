@@ -21,7 +21,6 @@ type Data = {
   range: number;
   next_shot: number;
   nopower: BooleanLike;
-  skill: BooleanLike;
   chargeload: string | null;
 };
 

@@ -678,9 +678,9 @@
 			if(!visual && forbiddenAreas[NT.loc.type])
 				return ROOM_ERR_FORBIDDEN
 			// We ask ZAS to determine if its airtight.  Thats what matters anyway right?
-			if(air_master.air_blocked(T, NT))
+			if(SSair.air_blocked(T, NT))
 				// Okay thats the edge of the room
-				if(get_area_type(NT.loc) == AREA_SPACE && air_master.air_blocked(NT, NT))
+				if(get_area_type(NT.loc) == AREA_SPACE && SSair.air_blocked(NT, NT))
 					found += NT // So we include walls/doors not already in any area
 				continue
 			if (istype(NT, /turf/space))
@@ -835,9 +835,9 @@
 				if(!get_new_area_type(NT.loc) == 1) //The contains somewhere that is NOT a buildable area.
 					return 3 //NOT A BUILDABLE AREA
 
-				if(air_master.air_blocked(T, NT)) //Is the room airtight?
+				if(SSair.air_blocked(T, NT)) //Is the room airtight?
 					// Okay thats the edge of the room
-					if(get_new_area_type(NT.loc) == 1 && air_master.air_blocked(NT, NT))
+					if(get_new_area_type(NT.loc) == 1 && SSair.air_blocked(NT, NT))
 						found += NT // So we include walls/doors not already in any area
 					continue
 				if (istype(NT, /turf/space))

@@ -10,7 +10,8 @@ Coughing
 	Low Level.
 
 BONUS
-	Will force the affected mob to drop small items!
+	Will force the affected mob to drop small items.
+	Small spread if not wearing a mask
 
 //////////////////////////////////////
 */
@@ -36,4 +37,6 @@ BONUS
 				var/obj/item/I = M.get_active_hand()
 				if(I && I.w_class == ITEMSIZE_SMALL)
 					M.drop_item()
+				if(!M.wear_mask) // Small spread if not wearing a mask
+					A.spread(2)
 	return
