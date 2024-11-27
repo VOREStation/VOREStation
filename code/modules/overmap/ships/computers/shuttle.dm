@@ -34,9 +34,6 @@
 		to_chat(ui.user, span_warning("Unable to establish link with the shuttle."))
 		return TRUE
 
-	if(ismob(ui.user))
-		shuttle.operator_skill = ui.user.get_skill_value(/datum/skill/pilot)
-
 	switch(action)
 		if("pick")
 			var/list/possible_d = shuttle.get_possible_destinations()

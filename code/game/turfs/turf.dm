@@ -182,9 +182,6 @@
 
 //There's a lot of QDELETED() calls here if someone can figure out how to optimize this but not runtime when something gets deleted by a Bump/CanPass/Cross call, lemme know or go ahead and fix this mess - kevinz000
 /turf/Enter(atom/movable/mover, atom/oldloc)
-	if(movement_disabled && usr.ckey != movement_disabled_exception)
-		to_chat(usr, span_warning("Movement is admin-disabled.")) //This is to identify lag problems
-		return
 	// Do not call ..()
 	// Byond's default turf/Enter() doesn't have the behaviour we want with Bump()
 	// By default byond will call Bump() on the first dense object in contents

@@ -9083,7 +9083,7 @@
 /turf/simulated/floor/tiled/white,
 /area/redgate/city/supermarket)
 "lXc" = (
-/obj/item/clothing/gloves/knuckledusters,
+/obj/item/clothing/accessory/knuckledusters,
 /turf/simulated/floor/wood/alt/tile,
 /area/redgate/city/fightclub)
 "lXi" = (
@@ -9484,7 +9484,7 @@
 /obj/structure/closet/wardrobe,
 /obj/random/maintenance/cargo,
 /obj/item/clothing/glasses/goggles,
-/obj/item/clothing/gloves/ring/material/plastic,
+/obj/item/clothing/accessory/ring/material/plastic,
 /obj/item/clothing/under/cuttop/red,
 /turf/simulated/floor/wood,
 /area/redgate/city/apartments)

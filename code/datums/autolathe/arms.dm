@@ -443,7 +443,7 @@
 
 /datum/category_item/autolathe/arms/knuckledusters
 	name = "knuckle dusters"
-	path =/obj/item/clothing/gloves/knuckledusters
+	path =/obj/item/clothing/accessory/knuckledusters
 	hidden = 1
 
 /datum/category_item/autolathe/arms/tacknife

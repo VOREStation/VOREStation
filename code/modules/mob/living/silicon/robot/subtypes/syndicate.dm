@@ -8,6 +8,7 @@
 	idcard_type = /obj/item/card/id/syndicate
 	icon_selected = FALSE
 	restrict_modules_to = list("Protector", "Mechanist", "Combat Medic")
+	ui_theme = "syndicate"
 
 /mob/living/silicon/robot/syndicate/init()
 	aiCamera = new/obj/item/camera/siliconcam/robot_camera(src)
