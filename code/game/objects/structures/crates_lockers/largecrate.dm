@@ -127,6 +127,10 @@
 	name = "chicken crate"
 	starts_with = list(/mob/living/simple_mob/animal/passive/chick = 5)
 
+/obj/structure/largecrate/animal/chick
+	name = "turkey crate"
+	starts_with = list(/mob/living/simple_mob/vore/turkey)
+
 /obj/structure/largecrate/animal/catslug
 	name = "catslug carrier"
 	starts_with = list(/mob/living/simple_mob/vore/alienanimals/catslug)
