@@ -80,7 +80,7 @@
 	if(prob(15/D.permeability_mod))
 		return
 
-	if(nutrition > 300 && prob(nutrition/10))
+	if(nutrition > 300 && prob(nutrition/50))
 		return
 
 	var/list/zone_weights = list(
@@ -178,14 +178,11 @@
 		return FALSE
 
 	var/disease = tgui_input_list(usr, "Choose virus", "Viruses", subtypesof(/datum/disease), subtypesof(/datum/disease))
-	var/mob/living/carbon/human/H = tgui_input_list(usr, "Choose infectee", human_mob_list)
+	var/mob/living/carbon/human/H = tgui_input_list(usr, "Choose infectee", "Characters", human_mob_list)
 
 	var/datum/disease/D = new disease
 
 	if(isnull(D) || isnull(H))
-		return FALSE
-
-	if(H.stat == DEAD)
 		return FALSE
 
 	if(!H.HasDisease(D))

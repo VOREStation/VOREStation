@@ -71,6 +71,7 @@
 
 /obj/item/storage/firstaid/surgery
 	can_hold = list(
+		/obj/item/surgical/bone_clamp,
 		/obj/item/surgical/bonesetter,
 		/obj/item/surgical/cautery,
 		/obj/item/surgical/circular_saw,

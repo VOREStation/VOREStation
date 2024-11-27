@@ -116,7 +116,7 @@ var/list/overminds = list()
 	if(client)
 		if(message)
 			client.handle_spam_prevention(MUTE_IC)
-			if((client.prefs.muted & MUTE_IC) || say_disabled)
+			if((client.prefs.muted & MUTE_IC))
 				to_chat(src, span_warning("You cannot speak in IC (Muted)."))
 				return
 

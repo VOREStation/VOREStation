@@ -830,9 +830,9 @@
 			if (!isturf(NT) || (NT in found) || (NT in pending))
 				continue
 			// We ask ZAS to determine if its airtight.  Thats what matters anyway right?
-			if(air_master.air_blocked(T, NT))
+			if(SSair.air_blocked(T, NT))
 				// Okay thats the edge of the room
-				if(get_area_type_buildmode(NT.loc) == AREA_SPACE && air_master.air_blocked(NT, NT))
+				if(get_area_type_buildmode(NT.loc) == AREA_SPACE && SSair.air_blocked(NT, NT))
 					found += NT // So we include walls/doors not already in any area
 				continue
 			if (istype(NT, /turf/space))
