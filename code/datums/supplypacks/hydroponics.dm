@@ -95,6 +95,13 @@
 	containername = "Chicken crate"
 	access = access_hydroponics
 
+/datum/supply_pack/hydro/turkey
+	name = "Turkey crate"
+	cost = 25
+	containertype = /obj/structure/largecrate/animal/turkey
+	containername = "Turkey crate"
+	access = access_hydroponics
+
 /datum/supply_pack/hydro/seeds
 	name = "Seeds crate"
 	contains = list(
