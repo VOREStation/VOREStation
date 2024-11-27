@@ -58,7 +58,7 @@
 
 /datum/gear/gloves/fingerless
 	display_name = "fingerless gloves"
-	description = "A pair of gloves that don't actually cover the fingers. Available in classic black or recolourable white."
+	description = "A pair of gloves that don't actually cover the fingers. Available in classic black or recolourable white, with or without cutouts."
 	path = /obj/item/clothing/gloves/fingerless
 
 /datum/gear/gloves/fingerless/New()
@@ -66,7 +66,8 @@
 	var/list/selector_uniforms = list(
 		"black"=/obj/item/clothing/gloves/fingerless,
 		"black, alt" =/obj/item/clothing/gloves/fingerless/alt,
-		"recolourable white"=/obj/item/clothing/gloves/fingerless_recolourable
+		"recolourable white"=/obj/item/clothing/gloves/fingerless_recolourable,
+		"recolourable, alt"=/obj/item/clothing/gloves/fingerless_recolourable/alt
 	)
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(selector_uniforms))
 	gear_tweaks += gear_tweak_free_color_choice
