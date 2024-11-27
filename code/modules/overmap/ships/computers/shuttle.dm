@@ -34,10 +34,6 @@
 		to_chat(usr, span_warning("Unable to establish link with the shuttle."))
 		return TRUE
 
-	if(ismob(usr))
-		var/mob/user = usr
-		shuttle.operator_skill = user.get_skill_value(/datum/skill/pilot)
-
 	switch(action)
 		if("pick")
 			var/list/possible_d = shuttle.get_possible_destinations()
