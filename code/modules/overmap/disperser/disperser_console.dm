@@ -6,9 +6,6 @@
 	icon_state = "computer"
 	circuit = /obj/item/circuitboard/disperser
 
-	core_skill = /datum/skill/pilot
-	var/skill_offset = SKILL_ADEPT - 1 //After which skill level it starts to matter. -1, because we have to index from zero
-
 	icon_keyboard = "rd_key"
 	icon_screen = "teleport"
 
@@ -151,7 +148,6 @@
 		data["range"] = range
 		data["next_shot"] = round(get_next_shot_seconds())
 		data["nopower"] = !data["faillink"] && (!front.powered() || !middle.powered() || !back.powered())
-		data["skill"] = user.get_skill_value(core_skill) > skill_offset
 
 		var/charge = "UNKNOWN ERROR"
 		if(get_charge_type() == OVERMAP_WEAKNESS_NONE)
@@ -184,7 +180,7 @@
 			. = TRUE
 
 		if("skill_calibration")
-			for(var/i = 1 to min(caldigit, usr.get_skill_value(core_skill) - skill_offset))
+			for(var/i = 1 to 2)
 				calibration[i] = calexpected[i]
 			. = TRUE
 

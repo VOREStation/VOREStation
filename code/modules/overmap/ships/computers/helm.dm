@@ -20,7 +20,6 @@ GLOBAL_LIST_EMPTY(all_waypoints)
 	icon_screen = "helm"
 	light_color = "#7faaff"
 	circuit = /obj/item/circuitboard/helm
-	core_skill = /datum/skill/pilot
 	var/autopilot = 0
 	var/autopilot_disabled = TRUE
 	var/list/known_sectors = list()
@@ -77,13 +76,10 @@ GLOBAL_LIST_EMPTY(all_waypoints)
 			// All other cases, move toward direction
 			else if(speed + acceleration <= speedlimit)
 				linked.accelerate(direction, accellimit)
-		linked.operator_skill = null//if this is on you can't dodge meteors
 		return
 
 /obj/machinery/computer/ship/helm/relaymove(var/mob/user, direction)
 	if(viewing_overmap(user) && linked)
-		if(prob(user.skill_fail_chance(/datum/skill/pilot, 50, linked.skill_needed, factor = 1)))
-			direction = turn(direction,pick(90,-90))
 		linked.relaymove(user, direction, accellimit)
 		return 1
 
@@ -253,8 +249,6 @@ GLOBAL_LIST_EMPTY(all_waypoints)
 
 		if("move")
 			var/ndir = text2num(params["dir"])
-			if(prob(usr.skill_fail_chance(/datum/skill/pilot, 50, linked.skill_needed, factor = 1)))
-				ndir = turn(ndir,pick(90,-90))
 			linked.relaymove(usr, ndir, accellimit)
 			. = TRUE
 
