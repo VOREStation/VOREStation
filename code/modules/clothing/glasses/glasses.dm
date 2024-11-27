@@ -422,6 +422,7 @@ BLIND     // can't see anything
 	icon_state = "blindfold"
 	item_state_slots = list(slot_r_hand_str = "blindfold", slot_l_hand_str = "blindfold")
 	flash_protection = FLASH_PROTECTION_MAJOR
+	body_parts_covered = EYES
 	tint = BLIND
 	drop_sound = 'sound/items/drop/gloves.ogg'
 	pickup_sound = 'sound/items/pickup/gloves.ogg'
@@ -436,6 +437,7 @@ BLIND     // can't see anything
 	desc = "A thin blindfold to help protect sensitive eyes while still allowing some sight"
 	icon_state = "blindfoldwhite"
 	flash_protection = FLASH_PROTECTION_MODERATE //not as thick, only offers some protection
+	body_parts_covered = EYES
 	tint = TINT_HEAVY
 
 /obj/item/clothing/glasses/sunglasses/blindfold/tape
@@ -445,6 +447,7 @@ BLIND     // can't see anything
 	icon_state = "tape_cross"
 	item_state_slots = list(slot_r_hand_str = null, slot_l_hand_str = null)
 	w_class = ITEMSIZE_TINY
+	body_parts_covered = EYES
 
 /obj/item/clothing/glasses/sunglasses/prescription
 	name = "prescription sunglasses"

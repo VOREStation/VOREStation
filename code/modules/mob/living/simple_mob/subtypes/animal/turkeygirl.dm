@@ -82,9 +82,9 @@
 
 	if(nutrition >= max_nutrition)
 		if(user == src)
-			to_chat(src, "<span class='notice'>You're too full to eat another bite.</span>")
+			to_chat(src, span_notice("You're too full to eat another bite."))
 			return
-		to_chat(user, "<span class='notice'>\The [src] seems too full to eat.</span>")
+		to_chat(user, span_notice("\The [src] seems too full to eat."))
 		return
 
 	user.setClickCooldown(user.get_attack_speed(O))
@@ -94,8 +94,8 @@
 	O.bitecount ++
 	O.On_Consume(src)
 	if(O)
-		to_chat(user, "<span class='notice'>\The [src] takes a bite of \the [O].</span>")
+		to_chat(user, span_notice("\The [src] takes a bite of \the [O]."))
 		if(user != src)
-			to_chat(src, "<span class='notice'>\The [user] feeds \the [O] to you.</span>")
+			to_chat(src, span_notice("\The [user] feeds \the [O] to you."))
 	playsound(src, 'sound/items/eatfood.ogg', 75, 1)
 	update_icon()
