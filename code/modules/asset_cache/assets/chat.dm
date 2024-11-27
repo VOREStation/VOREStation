@@ -2,5 +2,4 @@
 	name = "chat"
 
 /datum/asset/spritesheet/chat/create_spritesheets()
-	//honk
-	//This function has to be overridden otherwise it will generate runtimes
+	InsertAll("", text_tag_icons) // OOC, LOOC ect icons

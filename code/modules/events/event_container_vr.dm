@@ -108,6 +108,7 @@
 		new /datum/event_meta(EVENT_LEVEL_MAJOR, "Blob",				/datum/event/blob, 					10,		list(ASSIGNMENT_ENGINEER = 60), 1),
 		new /datum/event_meta(EVENT_LEVEL_MAJOR, "Meteor Wave",			/datum/event/meteor_wave,			30,		list(ASSIGNMENT_ENGINEER = 15),	1),
 		new /datum/event_meta(EVENT_LEVEL_MAJOR, "Supply Demand",		/datum/event/supply_demand,			0,		list(ASSIGNMENT_ANY = 5, ASSIGNMENT_SCIENCE = 15, ASSIGNMENT_GARDENER = 10, ASSIGNMENT_ENGINEER = 10, ASSIGNMENT_MEDICAL = 15), 1),
+		new /datum/event_meta(EVENT_LEVEL_MODERATE, "Disease Outbreak",	/datum/event/disease_outbreak,		-30,	list(ASSIGNMENT_MEDICAL = 30, ASSIGNMENT_ANY = 1), 	1, min_jobs = list(ASSIGNMENT_MEDICAL = 2)),
 	))
 
 #undef ASSIGNMENT_ANY
