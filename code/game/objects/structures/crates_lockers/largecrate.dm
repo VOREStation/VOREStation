@@ -127,7 +127,7 @@
 	name = "chicken crate"
 	starts_with = list(/mob/living/simple_mob/animal/passive/chick = 5)
 
-/obj/structure/largecrate/animal/chick
+/obj/structure/largecrate/animal/turkey
 	name = "turkey crate"
 	starts_with = list(/mob/living/simple_mob/vore/turkey)
 
