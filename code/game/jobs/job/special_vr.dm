@@ -108,3 +108,24 @@
 		return list(access_maint_tunnels, access_entertainment, access_tomfoolery, access_mime)
 	else
 		return list(access_entertainment, access_tomfoolery, access_mime)
+
+/obj/item/card/id/civilian/straggler
+	assignment = "NO DATA"
+	rank = JOB_MAINT_STRAGGLER
+
+/datum/job/maint_straggler
+	title = JOB_MAINT_STRAGGLER
+	departments = list(DEPARTMENT_CIVILIAN)
+	faction = FACTION_NONE
+	total_positions = 1
+	spawn_positions = 1
+	supervisors = "nobody save your own common sense and good judgement"
+	selection_color = "#515151"
+	economic_modifier = 0
+	job_description = "An Outsider is exactly that."
+	whitelist_only = 1
+	latejoin_only = 0
+	requestable = FALSE
+	outfit_type = /decl/hierarchy/outfit/maint_straggler
+	access = list(access_maint_tunnels)
+	minimal_access = list(access_maint_tunnels)

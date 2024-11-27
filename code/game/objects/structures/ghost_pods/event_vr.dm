@@ -227,7 +227,7 @@
 	new_character.mind.loaded_from_ckey = picked_ckey
 	new_character.mind.loaded_from_slot = picked_slot
 
-	job_master.EquipRank(new_character, JOB_ALT_VISITOR, 1)
+	job_master.EquipRank(new_character, JOB_MAINT_STRAGGLER, 1)
 
 	for(var/lang in new_character.client.prefs.alternate_languages)
 		var/datum/language/chosen_language = GLOB.all_languages[lang]

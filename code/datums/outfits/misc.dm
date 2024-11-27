@@ -58,3 +58,10 @@
 	name = "Zaddat Suit"
 	suit = /obj/item/clothing/suit/space/void/zaddat/
 	mask = /obj/item/clothing/mask/gas/zaddat
+
+/decl/hierarchy/outfit/maint_straggler
+	name = "Maintenance Straggler Outfit"
+	id_slot = slot_wear_id
+	id_type = /obj/item/card/id/civilian/straggler
+	pda_slot = slot_r_store
+	id_pda_assignment = "NO DATA"

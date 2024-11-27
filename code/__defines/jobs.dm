@@ -420,3 +420,4 @@
 #define JOB_XENOMORPH "Xenomorph"
 #define JOB_BORER "Borer"
 #define JOB_EMERGENCY_RESPONSE_TEAM "Emergency Response Team"
+#define JOB_MAINT_STRAGGLER "Maintenance Straggler"
