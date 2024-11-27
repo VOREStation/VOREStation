@@ -63,5 +63,6 @@
 	name = "Maintenance Straggler Outfit"
 	id_slot = slot_wear_id
 	id_type = /obj/item/card/id/civilian/straggler
-	pda_slot = slot_r_store
+	pda_slot = slot_belt
+	pda_type = /obj/item/pda
 	id_pda_assignment = "NO DATA"
