@@ -11,15 +11,15 @@ THAT STUPID GAME KIT
 	return src.attack_hand(user)
 
 /obj/item/game_kit/MouseDrop(mob/user as mob)
-	if (user == usr && !usr.restrained() && !usr.stat && (usr.contents.Find(src) || in_range(src, usr)))
-		if (usr.hand)
-			if (!usr.l_hand)
+	if (user == usr && !user.restrained() && !user.stat && (user.contents.Find(src) || in_range(src, user)))
+		if (user.hand)
+			if (!user.l_hand)
 				spawn (0)
-					src.attack_hand(usr, 1, 1)
+					src.attack_hand(user, 1, 1)
 		else
-			if (!usr.r_hand)
+			if (!user.r_hand)
 				spawn (0)
-					src.attack_hand(usr, 0, 1)
+					src.attack_hand(user, 0, 1)
 
 /obj/item/game_kit/proc/update()
 	var/dat = text("<CENTER><B>Game Board</B></CENTER><BR><a href='?src=\ref[];mode=hia'>[]</a> <a href='?src=\ref[];mode=remove'>remove</a><HR><table width= 256  border= 0  height= 256  cellspacing= 0  cellpadding= 0 >", src, (src.selected ? text("Selected: []", src.selected) : "Nothing Selected"), src)

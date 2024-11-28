@@ -89,12 +89,10 @@
 			shutdown_computer()
 			return TRUE
 		if("PC_minimize")
-			var/mob/user = usr
-			minimize_program(user)
+			minimize_program(ui.user)
 		if("PC_killprogram")
 			var/prog = params["name"]
 			var/datum/computer_file/program/P = null
-			var/mob/user = usr
 			if(hard_drive)
 				P = hard_drive.find_file_by_name(prog)
 
@@ -102,7 +100,7 @@
 				return
 
 			P.kill_program(1)
-			to_chat(user, span_notice("Program [P.filename].[P.filetype] with PID [rand(100,999)] has been killed."))
+			to_chat(ui.user, span_notice("Program [P.filename].[P.filetype] with PID [rand(100,999)] has been killed."))
 			return TRUE
 		if("PC_runprogram")
 			return run_program(params["name"])
@@ -115,7 +113,7 @@
 			var/param = params["name"]
 			switch(param)
 				if("ID")
-					proc_eject_id(usr)
+					proc_eject_id(ui.user)
 					return TRUE
 		else
 			return

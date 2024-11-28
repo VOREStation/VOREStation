@@ -148,7 +148,7 @@
 
 /obj/structure/bed/chair/wheelchair/attack_hand(mob/living/user as mob)
 	if (pulling)
-		MouseDrop(usr)
+		MouseDrop(user)
 	else
 		if(has_buckled_mobs())
 			for(var/A in buckled_mobs)
@@ -169,7 +169,7 @@
 			user.set_dir(get_dir(user, src))
 			to_chat(user, "You grip \the [name]'s handles.")
 		else
-			to_chat(usr, "You let go of \the [name]'s handles.")
+			to_chat(user, "You let go of \the [name]'s handles.")
 			pulling.pulledby = null
 			pulling = null
 		return
@@ -228,7 +228,7 @@
 /obj/structure/bed/chair/wheelchair/buckle_mob(mob/M as mob, mob/user as mob)
 	if(M == pulling)
 		pulling = null
-		usr.pulledby = null
+		user.pulledby = null
 	..()
 
 /obj/structure/bed/chair/wheelchair/MouseDrop(over_object, src_location, over_location)

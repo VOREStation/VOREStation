@@ -32,7 +32,7 @@ GLOBAL_LIST_EMPTY(shutoff_valves)
 	return src.attack_hand(user)
 
 /obj/machinery/atmospherics/valve/shutoff/attack_hand(var/mob/user)
-	src.add_fingerprint(usr)
+	src.add_fingerprint(user)
 	update_icon(1)
 	close_on_leaks = !close_on_leaks
 	to_chat(user, "You [close_on_leaks ? "enable" : "disable"] the automatic shutoff circuit.")

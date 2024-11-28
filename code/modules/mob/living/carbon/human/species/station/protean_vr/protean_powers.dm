@@ -306,7 +306,7 @@
 		to_chat(src,span_warning("You must be awake and standing to perform this action!"))
 		return
 
-	var/new_species = tgui_input_list(usr, "Please select a species to emulate.", "Shapeshifter Body", list(species?.vanity_base_fit)|species?.get_valid_shapeshifter_forms())
+	var/new_species = tgui_input_list(src, "Please select a species to emulate.", "Shapeshifter Body", list(species?.vanity_base_fit)|species?.get_valid_shapeshifter_forms())
 	if(new_species)
 		species?.base_species = new_species // Really though you better have a species
 		regenerate_icons() //Expensive, but we need to recrunch all the icons we're wearing

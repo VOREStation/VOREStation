@@ -197,7 +197,7 @@
 	switch(action)
 		if("buy")
 			var/datum/uplink_item/UI = (locate(params["ref"]) in uplink.items)
-			UI.buy(src, usr)
+			UI.buy(src, ui.user)
 			return TRUE
 		if("lock")
 			toggle()

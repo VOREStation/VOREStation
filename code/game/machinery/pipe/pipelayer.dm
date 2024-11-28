@@ -82,7 +82,7 @@
 	if(default_part_replacement(user, W))
 		return
 	if (!panel_open && W.has_tool_quality(TOOL_WRENCH))
-		P_type_t = tgui_input_list(usr, "Choose pipe type", "Pipe type", Pipes)
+		P_type_t = tgui_input_list(user, "Choose pipe type", "Pipe type", Pipes)
 		P_type = Pipes[P_type_t]
 		user.visible_message(span_notice("[user] has set \the [src] to manufacture [P_type_t]."), span_notice("You set \the [src] to manufacture [P_type_t]."))
 		return

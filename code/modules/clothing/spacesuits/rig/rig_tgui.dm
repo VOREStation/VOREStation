@@ -11,7 +11,7 @@
 /obj/item/rig/tgui_interact(mob/user, datum/tgui/ui, datum/tgui/parent_ui, datum/tgui_state/custom_state)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, (loc != usr ? ai_interface_path : interface_path), interface_title)
+		ui = new(user, src, (loc != user ? ai_interface_path : interface_path), interface_title)
 		ui.open()
 	if(custom_state)
 		ui.set_state(custom_state)
@@ -120,19 +120,19 @@
 /*
  * tgui_act() is the TGUI equivelent of Topic(). It's responsible for all of the "actions" you can take in the UI.
  */
-/obj/item/rig/tgui_act(action, params)
+/obj/item/rig/tgui_act(action, params, datum/tgui/ui)
 	// This parent call is very important, as it's responsible for invoking tgui_status and checking our state's rules.
 	if(..())
 		return TRUE
 
-	add_fingerprint(usr)
+	add_fingerprint(ui.user)
 
 	switch(action)
 		if("toggle_seals")
-			toggle_seals(usr)
+			toggle_seals(ui.user)
 			. = TRUE
 		if("toggle_cooling")
-			toggle_cooling(usr) // cooling toggles have its own to_chats, tbf
+			toggle_cooling(ui.user) // cooling toggles have its own to_chats, tbf
 			. = TRUE
 		if("toggle_ai_control")
 			ai_override_enabled = !ai_override_enabled
@@ -142,9 +142,9 @@
 			locked = !locked
 			. = TRUE
 		if("toggle_piece")
-			if(ishuman(usr) && (usr.stat || usr.stunned || usr.lying))
+			if(ishuman(ui.user) && (ui.user.stat || ui.user.stunned || ui.user.lying))
 				return FALSE
-			toggle_piece(params["piece"], usr)
+			toggle_piece(params["piece"], ui.user)
 			. = TRUE
 		if("interact_module")
 			var/module_index = text2num(params["module"])
@@ -168,5 +168,5 @@
 						module.charge_selected = params["charge_type"]
 						. = TRUE
 		if("tank_settings")
-			air_supply?.attack_self(usr)
+			air_supply?.attack_self(ui.user)
 			. = TRUE

@@ -31,6 +31,13 @@
 	set desc = "Shift yourself out of alignment with realspace to travel quickly to different areas."
 	set category = "Abilities.Shadekin"
 
+	//RS Port #658 Start
+	var/area/A = get_area(src)
+	if(!client?.holder && A.block_phase_shift)
+		to_chat(src, span_warning("You can't do that here!"))
+		return
+	//RS Port #658 End
+
 	var/ability_cost = 100
 
 	var/darkness = 1
@@ -76,19 +83,30 @@
 		to_chat(src,span_warning("You can't use that here!"))
 		return FALSE
 
-	forceMove(T)
-	var/original_canmove = canmove
-	SetStunned(0)
-	SetWeakened(0)
-	if(buckled)
-		buckled.unbuckle_mob()
-	if(pulledby)
-		pulledby.stop_pulling()
-	stop_pulling()
-	canmove = FALSE
-
 	//Shifting in
 	if(ability_flags & AB_PHASE_SHIFTED)
+		phase_in(T)
+	//Shifting out
+	else
+		phase_out(T)
+
+
+/mob/living/carbon/human/proc/phase_in(var/turf/T)
+	if(ability_flags & AB_PHASE_SHIFTED)
+
+		// pre-change
+		forceMove(T)
+		var/original_canmove = canmove
+		SetStunned(0)
+		SetWeakened(0)
+		if(buckled)
+			buckled.unbuckle_mob()
+		if(pulledby)
+			pulledby.stop_pulling()
+		stop_pulling()
+
+		// change
+		canmove = FALSE
 		ability_flags &= ~AB_PHASE_SHIFTED
 		ability_flags |= AB_PHASE_SHIFTING
 		mouse_opacity = 1
@@ -137,8 +155,22 @@
 					L.broken()
 			else
 				L.flicker(10)
-	//Shifting out
-	else
+
+/mob/living/carbon/human/proc/phase_out(var/turf/T)
+	if(!(ability_flags & AB_PHASE_SHIFTED))
+		// pre-change
+		forceMove(T)
+		var/original_canmove = canmove
+		SetStunned(0)
+		SetWeakened(0)
+		if(buckled)
+			buckled.unbuckle_mob()
+		if(pulledby)
+			pulledby.stop_pulling()
+		stop_pulling()
+		canmove = FALSE
+
+		// change
 		ability_flags |= AB_PHASE_SHIFTED
 		ability_flags |= AB_PHASE_SHIFTING
 		mouse_opacity = 0

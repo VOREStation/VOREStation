@@ -11,14 +11,14 @@
 	/*var/spawn_chance = rand(1,100)
 	switch(spawn_chance)
 		if(0 to 49)
-			new /obj/random/gun/guarenteed(usr.loc)
-			to_chat(usr, "You got a thing!")
+			new /obj/random/gun/guarenteed(user.loc)
+			to_chat(user, "You got a thing!")
 		if(50 to 99)
-			new /obj/item/bikehorn/rubberducky(usr.loc)
-			new /obj/item/bikehorn(usr.loc)
-			to_chat(usr, "You got two things!")
+			new /obj/item/bikehorn/rubberducky(user.loc)
+			new /obj/item/bikehorn(user.loc)
+			to_chat(user, "You got two things!")
 		if(100)
-			to_chat(usr, "The box contained nothing!")
+			to_chat(user, "The box contained nothing!")
 			return
 	*/
 	var/loot = pick(/obj/effect/landmark/costume,
@@ -95,7 +95,7 @@
 		qdel(loot)
 		loot = new_I // swap it
 	//VOREstation edit end
-	new loot(usr.loc)
+	new loot(user.loc)
 	to_chat(user, "You unwrap the package.")
 	qdel(src)
 
