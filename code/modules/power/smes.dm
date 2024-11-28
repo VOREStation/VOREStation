@@ -338,12 +338,12 @@ GLOBAL_LIST_EMPTY(smeses)
 				to_chat(user, span_filter_notice(span_notice("You begin to cut the cables...")))
 				playsound(src, 'sound/items/Deconstruct.ogg', 50, 1)
 				if(do_after(user, 50 * W.toolspeed))
-					if (prob(50) && electrocute_mob(usr, term.powernet, term))
+					if (prob(50) && electrocute_mob(user, term.powernet, term))
 						var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
 						s.set_up(5, 1, src)
 						s.start()
 						building_terminal = FALSE
-						if(usr.stunned)
+						if(user.stunned)
 							return FALSE
 					new /obj/item/stack/cable_coil(loc,10)
 					user.visible_message(\

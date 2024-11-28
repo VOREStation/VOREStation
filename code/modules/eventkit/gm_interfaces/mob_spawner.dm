@@ -31,9 +31,9 @@
 /datum/eventkit/mob_spawner/tgui_static_data(mob/user)
 	var/list/data = list()
 
-	data["initial_x"] = usr.x;
-	data["initial_y"] = usr.y;
-	data["initial_z"] = usr.z;
+	data["initial_x"] = user.x;
+	data["initial_y"] = user.y;
+	data["initial_z"] = user.z;
 
 
 	return data
@@ -43,9 +43,9 @@
 
 	data["loc_lock"] = loc_lock
 	if(loc_lock)
-		data["loc_x"] = usr.x
-		data["loc_y"] = usr.y
-		data["loc_z"] = usr.z
+		data["loc_x"] = user.x
+		data["loc_y"] = user.y
+		data["loc_z"] = user.z
 
 	data["use_custom_ai"] = use_custom_ai
 	if(new_path)
@@ -81,16 +81,16 @@
 
 	return data
 
-/datum/eventkit/mob_spawner/tgui_act(action, list/params)
+/datum/eventkit/mob_spawner/tgui_act(action, list/params, datum/tgui/ui)
 	. = ..()
 	if(.)
 		return
-	if(!check_rights_for(usr.client, R_SPAWN))
+	if(!check_rights_for(ui.user.client, R_SPAWN))
 		return
 	switch(action)
 		if("select_path")
 			var/list/choices = typesof(/mob)
-			var/newPath = tgui_input_list(usr, "Please select the new path of the mob you want to spawn.", items = choices)
+			var/newPath = tgui_input_list(ui.user, "Please select the new path of the mob you want to spawn.", items = choices)
 
 			path = newPath
 			new_path = TRUE
@@ -99,20 +99,20 @@
 			use_custom_ai = !use_custom_ai
 			return TRUE
 		if("set_faction")
-			faction = sanitize(tgui_input_text(usr, "Please input your mobs' faction", "Faction", (faction ? faction : "neutral")))
+			faction = sanitize(tgui_input_text(ui.user, "Please input your mobs' faction", "Faction", (faction ? faction : "neutral")))
 			return TRUE
 		if("set_intent")
-			intent = tgui_input_list(usr, "Please select preferred intent", "Select Intent", list(I_HELP, I_HURT), (intent ? intent : I_HELP))
+			intent = tgui_input_list(ui.user, "Please select preferred intent", "Select Intent", list(I_HELP, I_HURT), (intent ? intent : I_HELP))
 			return TRUE
 		if("set_ai_path")
-			ai_type = tgui_input_list(usr, "Select AI path. Not all subtypes are compatible!", "AI type", \
+			ai_type = tgui_input_list(ui.user, "Select AI path. Not all subtypes are compatible!", "AI type", \
 			typesof(/datum/ai_holder/), (ai_type ? ai_type : /datum/ai_holder/simple_mob/inert))
 			return TRUE
 		if("loc_lock")
 			loc_lock = !loc_lock
 			return TRUE
 		if("start_spawn")
-			var/confirm = tgui_alert(usr, "Are you sure that you want to start spawning your custom mobs?", "Confirmation", list("Yes", "Cancel"))
+			var/confirm = tgui_alert(ui.user, "Are you sure that you want to start spawning your custom mobs?", "Confirmation", list("Yes", "Cancel"))
 
 			if(confirm != "Yes")
 				return FALSE
@@ -124,12 +124,12 @@
 			var/z = params["z"]
 
 			if(!name)
-				to_chat(usr, span_warning("Name cannot be empty."))
+				to_chat(ui.user, span_warning("Name cannot be empty."))
 				return FALSE
 
 			var/turf/T = locate(x, y, z)
 			if(!T)
-				to_chat(usr, span_warning("Those coordinates are outside the boundaries of the map."))
+				to_chat(ui.user, span_warning("Those coordinates are outside the boundaries of the map."))
 				return FALSE
 
 			for(var/i = 0, i < amount, i++)
@@ -137,7 +137,7 @@
 					var/turf/TU = get_turf(locate(x, y, z))
 					TU.ChangeTurf(path)
 				else
-					var/mob/M = new path(usr.loc)
+					var/mob/M = new path(ui.user.loc)
 
 					M.name = sanitize(name)
 					M.desc = sanitize(params["desc"])
@@ -161,7 +161,7 @@
 							L.initialize_ai_holder()
 							L.AdjustSleeping(-100)
 						else
-							to_chat(usr, span_notice("You can only set AI for subtypes of mob/living!"))
+							to_chat(ui.user, span_notice("You can only set AI for subtypes of mob/living!"))
 
 
 
@@ -180,7 +180,7 @@
 						M.size_multiplier = size_mul
 						M.update_icon()
 					else
-						to_chat(usr, span_warning("Size Multiplier not applied: ([size_mul]) is not a valid input."))
+						to_chat(ui.user, span_warning("Size Multiplier not applied: ([size_mul]) is not a valid input."))
 
 					M.forceMove(T)
 

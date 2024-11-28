@@ -269,20 +269,20 @@
 	if(..())
 		return TRUE
 
-	usr.set_machine(src)
-	add_fingerprint(usr)
+	ui.user.set_machine(src)
+	add_fingerprint(ui.user)
 
 	. = TRUE
 	switch(action)
 		if("power")
-			if(!access_scanner.allowed(usr))
+			if(!access_scanner.allowed(ui.user))
 				return FALSE
 			if(on)
 				turn_off()
 			else
 				turn_on()
 
-	if(locked && !issilicon(usr))
+	if(locked && !issilicon(ui.user))
 		return TRUE
 
 	switch(action)
@@ -538,7 +538,7 @@
 		var/t = sanitizeSafe(tgui_input_text(user, "Enter new robot name", name, created_name, MAX_NAME_LEN), MAX_NAME_LEN)
 		if(!t)
 			return
-		if(!in_range(src, usr) && loc != usr)
+		if(!in_range(src, user) && loc != user)
 			return
 		created_name = t
 	else

@@ -51,7 +51,7 @@
 
 	return list("scrubbers" = working)
 
-/obj/machinery/computer/area_atmos/tgui_act(action, params)
+/obj/machinery/computer/area_atmos/tgui_act(action, params, datum/tgui/ui)
 	if(..())
 		return TRUE
 
@@ -75,7 +75,7 @@
 			scanscrubbers()
 			. = TRUE
 
-	add_fingerprint(usr)
+	add_fingerprint(ui.user)
 
 /obj/machinery/computer/area_atmos/proc/toggle_all(on)
 	for(var/id in connectedscrubbers)

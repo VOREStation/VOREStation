@@ -35,10 +35,10 @@
 
 /obj/machinery/floorlayer/attackby(var/obj/item/W as obj, var/mob/user as mob)
 	if(W.has_tool_quality(TOOL_WRENCH))
-		var/m = tgui_input_list(usr, "Choose work mode", "Mode", mode)
+		var/m = tgui_input_list(user, "Choose work mode", "Mode", mode)
 		mode[m] = !mode[m]
 		var/O = mode[m]
-		user.visible_message(span_notice("[usr] has set \the [src] [m] mode [!O?"off":"on"]."), span_notice("You set \the [src] [m] mode [!O?"off":"on"]."))
+		user.visible_message(span_notice("[user] has set \the [src] [m] mode [!O?"off":"on"]."), span_notice("You set \the [src] [m] mode [!O?"off":"on"]."))
 		return
 
 	if(istype(W, /obj/item/stack/tile))
@@ -51,7 +51,7 @@
 		if(!length(contents))
 			to_chat(user, span_notice("\The [src] is empty."))
 		else
-			var/obj/item/stack/tile/E = tgui_input_list(usr, "Choose remove tile type.", "Tiles", contents)
+			var/obj/item/stack/tile/E = tgui_input_list(user, "Choose remove tile type.", "Tiles", contents)
 			if(E)
 				to_chat(user, span_notice("You remove the [E] from \the [src]."))
 				E.loc = src.loc
@@ -59,7 +59,7 @@
 		return
 
 	if(W.has_tool_quality(TOOL_SCREWDRIVER))
-		T = tgui_input_list(usr, "Choose tile type.", "Tiles", contents)
+		T = tgui_input_list(user, "Choose tile type.", "Tiles", contents)
 		return
 	..()
 

@@ -88,8 +88,8 @@
 
 	switch(action)
 		if("viewing")
-			if(usr && !isAI(usr))
-				viewing_overmap(usr) ? unlook(usr) : look(usr)
+			if(ui.user && !isAI(ui.user))
+				viewing_overmap(ui.user) ? unlook(ui.user) : look(ui.user)
 			. = TRUE
 
 		if("link")
@@ -99,15 +99,15 @@
 		if("scan")
 			var/obj/effect/overmap/O = locate(params["scan"])
 			if(istype(O) && !QDELETED(O) && (O in view(7,linked)))
-				new/obj/item/paper/(get_turf(src), O.get_scan_data(usr), "paper (Sensor Scan - [O])")
+				new/obj/item/paper/(get_turf(src), O.get_scan_data(ui.user), "paper (Sensor Scan - [O])")
 				playsound(src, "sound/machines/printer.ogg", 30, 1)
 			. = TRUE
 
 	if(sensors)
 		switch(action)
 			if("range")
-				var/nrange = tgui_input_number(usr, "Set new sensors range", "Sensor range", sensors.range, world.view, round_value = FALSE )
-				if(tgui_status(usr, state) != STATUS_INTERACTIVE)
+				var/nrange = tgui_input_number(ui.user, "Set new sensors range", "Sensor range", sensors.range, world.view, round_value = FALSE )
+				if(tgui_status(ui.user, state) != STATUS_INTERACTIVE)
 					return FALSE
 				if(nrange)
 					sensors.set_range(CLAMP(nrange, 1, world.view))
@@ -116,7 +116,7 @@
 				sensors.toggle()
 				. = TRUE
 
-	if(. && !issilicon(usr))
+	if(. && !issilicon(ui.user))
 		playsound(src, "terminal_type", 50, 1)
 
 /obj/machinery/computer/ship/sensors/process()

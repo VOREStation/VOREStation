@@ -61,13 +61,13 @@
 
 	switch(action)
 		if("make_copy")
-			addtimer(CALLBACK(src, PROC_REF(copy_operation), usr), 0)
+			addtimer(CALLBACK(src, PROC_REF(copy_operation), ui.user), 0)
 			. = TRUE
 		if("remove")
 			if(copyitem)
-				copyitem.loc = usr.loc
-				usr.put_in_hands(copyitem)
-				to_chat(usr, span_notice("You take \the [copyitem] out of \the [src]."))
+				copyitem.loc = ui.user.loc
+				ui.user.put_in_hands(copyitem)
+				to_chat(ui.user, span_notice("You take \the [copyitem] out of \the [src]."))
 				copyitem = null
 			else if(has_buckled_mobs())
 				to_chat(buckled_mobs[1], span_notice("You feel a slight pressure on your ass.")) // It can't eject your asscheeks, but it'll try.
@@ -76,13 +76,13 @@
 			copies = clamp(text2num(params["num_copies"]), 1, maxcopies)
 			. = TRUE
 		if("ai_photo")
-			if(!issilicon(usr))
+			if(!issilicon(ui.user))
 				return
 			if(stat & (BROKEN|NOPOWER))
 				return
 
 			if(toner >= 5)
-				var/mob/living/silicon/tempAI = usr
+				var/mob/living/silicon/tempAI = ui.user
 				var/obj/item/camera/siliconcam/camera = tempAI.aiCamera
 
 				if(!camera)
@@ -376,7 +376,7 @@
 		if(M.item_is_in_hands(C))
 			continue
 		if((C.body_parts_covered & LOWER_TORSO) && !istype(C,/obj/item/clothing/under/permit))
-			to_chat(usr, span_warning("One needs to not be wearing pants to photocopy one's ass..."))
+			to_chat(M, span_warning("One needs to not be wearing pants to photocopy one's ass..."))
 			return FALSE
 	return TRUE
 

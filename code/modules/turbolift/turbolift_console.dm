@@ -174,7 +174,7 @@
 
 	return data
 
-/obj/structure/lift/panel/tgui_act(action, params)
+/obj/structure/lift/panel/tgui_act(action, params, datum/tgui/ui)
 	if(..())
 		return TRUE
 
@@ -193,7 +193,7 @@
 			lift.emergency_stop()
 
 	if(.)
-		pressed(usr)
+		pressed(ui.user)
 
 /obj/structure/lift/panel/update_icon()
 	if(lift.fire_mode)

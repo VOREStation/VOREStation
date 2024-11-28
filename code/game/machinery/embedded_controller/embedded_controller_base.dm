@@ -30,14 +30,14 @@
 	. = ..()
 	// stack_trace("WARNING: Embedded controller [src] ([type]) had Topic() called unexpectedly. Please report this.") // statpanel means that topic can always be called for clicking
 
-/obj/machinery/embedded_controller/tgui_act(action, params)
+/obj/machinery/embedded_controller/tgui_act(action, params, datum/tgui/ui)
 	if(..())
 		return TRUE
 	if(LAZYLEN(valid_actions))
 		if(action in valid_actions)
 			program.receive_user_command(action)
-	if(usr)
-		add_fingerprint(usr)
+	if(ui.user)
+		add_fingerprint(ui.user)
 
 /obj/machinery/embedded_controller/process()
 	if(program)

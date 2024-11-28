@@ -72,10 +72,10 @@
 		update_icon()
 		return
 	else
-		to_chat(usr, span_warning("You kick the display case."))
+		to_chat(user, span_warning("You kick the display case."))
 		for(var/mob/O in oviewers())
 			if ((O.client && !( O.blinded )))
-				to_chat(O, span_warning("[usr] kicks the display case."))
+				to_chat(O, span_warning("[user] kicks the display case."))
 		src.health -= 2
 		healthcheck()
 		return

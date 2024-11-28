@@ -39,11 +39,11 @@
 /datum/eventkit/player_effects/tgui_state(mob/user)
 	return GLOB.tgui_admin_state
 
-/datum/eventkit/player_effects/tgui_act(action)
+/datum/eventkit/player_effects/tgui_act(action, list/params, datum/tgui/ui)
 	. = ..()
 	if(.)
 		return
-	if(!check_rights_for(usr.client, R_SPAWN))
+	if(!check_rights_for(ui.user.client, R_SPAWN))
 		return
 
 	log_and_message_admins("[key_name(user)] used player effect: [action] on [target.ckey] playing [target.name]")
@@ -66,7 +66,7 @@
 				to_chat(user,"[target] didn't have any breakable legs, sorry.")
 
 		if("bluespace_artillery")
-			bluespace_artillery(target,usr)
+			bluespace_artillery(target, ui.user)
 
 		if("spont_combustion")
 			var/mob/living/carbon/human/Tar = target
@@ -137,14 +137,14 @@
 				"Orange Eyes (Light)" = /mob/living/simple_mob/shadekin/orange/white,
 				"Orange Eyes (Brown)" = /mob/living/simple_mob/shadekin/orange/brown,
 				"Rivyr (Unique)" = /mob/living/simple_mob/shadekin/blue/rivyr)
-			var/kin_type = tgui_input_list(usr, "Select the type of shadekin for [target] nomf","Shadekin Type Choice", kin_types)
+			var/kin_type = tgui_input_list(ui.user, "Select the type of shadekin for [target] nomf","Shadekin Type Choice", kin_types)
 			if(!kin_type || !target)
 				return
 
 
 			kin_type = kin_types[kin_type]
 
-			var/myself = tgui_alert(usr, "Control the shadekin yourself or delete pred and prey after?","Control Shadekin?",list("Control","Cancel","Delete"))
+			var/myself = tgui_alert(ui.user, "Control the shadekin yourself or delete pred and prey after?","Control Shadekin?",list("Control","Cancel","Delete"))
 			if(!myself || myself == "Cancel" || !target)
 				return
 
@@ -187,13 +187,13 @@
 
 
 		if("redspace_abduct")
-			redspace_abduction(target, usr)
+			redspace_abduction(target, ui.user)
 
 		if("autosave")
-			fake_autosave(target, usr)
+			fake_autosave(target, ui.user)
 
 		if("autosave2")
-			fake_autosave(target, usr, TRUE)
+			fake_autosave(target, ui.user, TRUE)
 
 		if("adspam")
 			if(target.client)
@@ -718,7 +718,7 @@
 			if(where == "To Me")
 				user.client.Getmob(target)
 			if(where == "To Mob")
-				var/mob/selection = tgui_input_list(usr, "Select a mob to jump [target] to:", "Jump to mob", mob_list)
+				var/mob/selection = tgui_input_list(ui.user, "Select a mob to jump [target] to:", "Jump to mob", mob_list)
 				target.on_mob_jump()
 				target.forceMove(get_turf(selection))
 				log_admin("[key_name(user)] jumped [target] to [selection]")
@@ -765,22 +765,22 @@
 
 		if("ai")
 			if(!istype(target, /mob/living))
-				to_chat(usr, span_notice("This can only be used on instances of type /mob/living"))
+				to_chat(ui.user, span_notice("This can only be used on instances of type /mob/living"))
 				return
 			var/mob/living/L = target
 			if(L.client || L.teleop)
-				to_chat(usr, span_warning("This cannot be used on player mobs!"))
+				to_chat(ui.user, span_warning("This cannot be used on player mobs!"))
 				return
 
 			if(L.ai_holder)	//Cleaning up the original ai
 				var/ai_holder_old = L.ai_holder
 				L.ai_holder = null
 				qdel(ai_holder_old)	//Only way I could make #TESTING - Unable to be GC'd to stop. del() logs show it works.
-			L.ai_holder_type = tgui_input_list(usr, "Choose AI holder", "AI Type", typesof(/datum/ai_holder/))
+			L.ai_holder_type = tgui_input_list(ui.user, "Choose AI holder", "AI Type", typesof(/datum/ai_holder/))
 			L.initialize_ai_holder()
-			L.faction = sanitize(tgui_input_text(usr, "Please input AI faction", "AI faction", "neutral"))
-			L.a_intent = tgui_input_list(usr, "Please choose AI intent", "AI intent", list(I_HURT, I_HELP))
-			if(tgui_alert(usr, "Make mob wake up? This is needed for carbon mobs.", "Wake mob?", list("Yes", "No")) == "Yes")
+			L.faction = sanitize(tgui_input_text(ui.user, "Please input AI faction", "AI faction", "neutral"))
+			L.a_intent = tgui_input_list(ui.user, "Please choose AI intent", "AI intent", list(I_HURT, I_HELP))
+			if(tgui_alert(ui.user, "Make mob wake up? This is needed for carbon mobs.", "Wake mob?", list("Yes", "No")) == "Yes")
 				L.AdjustSleeping(-100)
 
 		if("cloaking")

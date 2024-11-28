@@ -66,7 +66,7 @@ export const AppearanceChangerEars = (props) => {
   const { ear_style, ear_styles } = data;
 
   return (
-    <Stack vertical>
+    <Stack vertical fill>
       <Stack.Item grow={1}>
         <Section title="Ears" fill scrollable>
           <Button
