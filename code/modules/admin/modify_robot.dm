@@ -185,8 +185,11 @@
 		if("select_source")
 			if(source)
 				qdel(source)
-			source = new /mob/living/silicon/robot(null)
 			var/module_type = robot_modules[params["new_source"]]
+			if(ispath(module_type, /obj/item/robot_module/robot/syndicate))
+				source = new /mob/living/silicon/robot/syndicate(null)
+			else
+				source = new /mob/living/silicon/robot(null)
 			source.modtype = params["new_source"]
 			var/obj/item/robot_module/robot/robot_type = new module_type(source)
 			source.sprite_datum = pick(SSrobot_sprites.get_module_sprites(source.modtype, source))
@@ -203,9 +206,15 @@
 			var/obj/item/add_item = locate(params["module"])
 			if(!add_item)
 				return TRUE
+			if(istype(add_item, /obj/item/card/id))
+				source.idcard = null
 			source.module.emag.Remove(add_item)
 			source.module.modules.Remove(add_item)
 			source.module.contents.Remove(add_item)
+			if(istype(add_item, /obj/item/card/id))
+				if(target.idcard)
+					qdel(target.idcard)
+				target.idcard = add_item
 			target.module.modules.Add(add_item)
 			target.module.contents.Add(add_item)
 			spawn(0)
@@ -254,6 +263,8 @@
 			return TRUE
 		if("rem_module")
 			var/obj/item/rem_item = locate(params["module"])
+			if(target.idcard == rem_item)
+				target.idcard = new /obj/item/card/id/synthetic(target)
 			target.uneq_all()
 			target.hud_used?.update_robot_modules_display(TRUE)
 			target.module.emag.Remove(rem_item)
