@@ -2,7 +2,7 @@ GLOBAL_LIST_EMPTY(archive_diseases)
 
 GLOBAL_LIST_INIT(advance_cures, list(
 	"sodiumchloride", "sugar", "orangejuice",
-	"spaceacilin", "glucose", "ethanol",
+	"spaceacillin", "glucose", "ethanol",
 	"dyloteane", "impedrezene", "hepanephrodaxon",
 	"gold", "silver"
 ))
@@ -16,6 +16,7 @@ GLOBAL_LIST_INIT(advance_cures, list(
 	spread_text = "Unknown"
 	viable_mobtypes = list(/mob/living/carbon/human)
 
+	var/s_processing = FALSE
 	var/list/symptoms = list()
 	var/id = ""
 
@@ -36,7 +37,7 @@ GLOBAL_LIST_INIT(advance_cures, list(
 	return
 
 /datum/disease/advance/Destroy()
-	if(processing)
+	if(s_processing)
 		for(var/datum/symptom/S in symptoms)
 			S.End(src)
 	return ..()
@@ -46,8 +47,8 @@ GLOBAL_LIST_INIT(advance_cures, list(
 		return FALSE
 	if(symptoms && length(symptoms))
 
-		if(!processing)
-			processing = TRUE
+		if(!s_processing)
+			s_processing = TRUE
 			for(var/datum/symptom/S in symptoms)
 				S.Start(src)
 
@@ -361,7 +362,7 @@ GLOBAL_LIST_INIT(advance_cures, list(
 		for(var/datum/disease/advance/AD in active_diseases)
 			AD.Refresh()
 
-		H = tgui_input_list(usr, "Choose infectee", human_mob_list)
+		H = tgui_input_list(usr, "Choose infectee", "Infectees", human_mob_list)
 
 		if(isnull(H))
 			return FALSE

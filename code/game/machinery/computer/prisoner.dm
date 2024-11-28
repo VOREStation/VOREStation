@@ -66,7 +66,7 @@
 	return list("locked" = !screen, "chemImplants" = chemImplants, "trackImplants" = trackImplants)
 
 
-/obj/machinery/computer/prisoner/tgui_act(action, list/params)
+/obj/machinery/computer/prisoner/tgui_act(action, list/params, datum/tgui/ui)
 	if(..())
 		return TRUE
 	switch(action)
@@ -76,17 +76,17 @@
 				I.activate(clamp(params["val"], 0, 10))
 			. = TRUE
 		if("lock")
-			if(allowed(usr))
+			if(allowed(ui.user))
 				screen = !screen
 			else
-				to_chat(usr, "Unauthorized Access.")
+				to_chat(ui.user, "Unauthorized Access.")
 			. = TRUE
 		if("warn")
-			var/warning = sanitize(tgui_input_text(usr, "Message:", "Enter your message here!", ""))
+			var/warning = sanitize(tgui_input_text(ui.user, "Message:", "Enter your message here!", ""))
 			if(!warning)
 				return
 			var/obj/item/implant/I = locate(params["imp"])
 			if(I && I.imp_in)
 				to_chat(I.imp_in, span_notice("You hear a voice in your head saying: '[warning]'"))
 			. = TRUE
-	add_fingerprint(usr)
+	add_fingerprint(ui.user)

@@ -86,7 +86,7 @@
 				turn_on()
 			. = TRUE
 
-	if(locked && !issilicon(usr))
+	if(locked && !issilicon(ui.user))
 		return
 
 	switch(action)

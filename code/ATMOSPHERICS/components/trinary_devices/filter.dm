@@ -182,7 +182,7 @@
 
 	return data
 
-/obj/machinery/atmospherics/trinary/atmos_filter/tgui_act(action, params)
+/obj/machinery/atmospherics/trinary/atmos_filter/tgui_act(action, params, datum/tgui/ui)
 	if(..())
 		return TRUE
 
@@ -216,7 +216,7 @@
 				if(4)//removing N2O
 					filtered_out += "nitrous_oxide"
 
-	add_fingerprint(usr)
+	add_fingerprint(ui.user)
 	update_icon()
 
 //

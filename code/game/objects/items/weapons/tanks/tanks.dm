@@ -141,12 +141,12 @@ var/list/global/tank_gauge_cache = list()
 
 				var/obj/item/assembly_holder/assy = src.proxyassembly.assembly
 				if(assy.a_left && assy.a_right)
-					assy.dropInto(usr.loc)
+					assy.dropInto(user.loc)
 					assy.master = null
 					src.proxyassembly.assembly = null
 				else
 					if(!src.proxyassembly.assembly.a_left)
-						assy.a_right.dropInto(usr.loc)
+						assy.a_right.dropInto(user.loc)
 						assy.a_right.holder = null
 						assy.a_right = null
 						src.proxyassembly.assembly = null
@@ -257,7 +257,7 @@ var/list/global/tank_gauge_cache = list()
 
 	return data
 
-/obj/item/tank/tgui_act(action, params)
+/obj/item/tank/tgui_act(action, params, datum/tgui/ui)
 	if(..())
 		return TRUE
 	switch(action)
@@ -278,10 +278,10 @@ var/list/global/tank_gauge_cache = list()
 			if(.)
 				distribute_pressure = clamp(round(pressure), 0, TANK_MAX_RELEASE_PRESSURE)
 		if("toggle")
-			toggle_valve(usr)
+			toggle_valve(ui.user)
 			. = TRUE
 
-	add_fingerprint(usr)
+	add_fingerprint(ui.user)
 
 /obj/item/tank/proc/toggle_valve(var/mob/user)
 	if(istype(loc,/mob/living/carbon))

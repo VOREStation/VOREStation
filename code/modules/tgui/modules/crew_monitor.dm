@@ -11,18 +11,18 @@
 	if(..())
 		return TRUE
 
-	if(action && !issilicon(usr))
+	if(action && !issilicon(ui.user))
 		playsound(tgui_host(), "terminal_type", 50, 1)
 
-	var/turf/T = get_turf(usr)
+	var/turf/T = get_turf(ui.user)
 	if(!T || !(T.z in using_map.player_levels))
-		to_chat(usr, span_boldwarning("Unable to establish a connection") + ": You're too far away from the station!")
+		to_chat(ui.user, span_boldwarning("Unable to establish a connection") + ": You're too far away from the station!")
 		return FALSE
 
 	switch(action)
 		if("track")
-			if(isAI(usr))
-				var/mob/living/silicon/ai/AI = usr
+			if(isAI(ui.user))
+				var/mob/living/silicon/ai/AI = ui.user
 				var/mob/living/carbon/human/H = locate(params["track"]) in mob_list
 				if(hassensorlevel(H, SUIT_SENSOR_TRACKING))
 					AI.ai_actual_track(H)

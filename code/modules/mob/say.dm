@@ -17,6 +17,8 @@
 	set name = "Say"
 	set category = "IC.Chat"
 	set hidden = 1
+	set instant = TRUE
+
 	//VOREStation Addition Start
 	if(forced_psay)
 		psay(message)
@@ -24,7 +26,10 @@
 	//VOREStation Addition End
 
 	client?.stop_thinking()
-	usr.say(message)
+	//queue this message because verbs are scheduled to process after SendMaps in the tick and speech is pretty expensive when it happens.
+	//by queuing this for next tick the mc can compensate for its cost instead of having speech delay the start of the next tick
+	if(message)
+		QUEUE_OR_CALL_VERB_FOR(VERB_CALLBACK(src, TYPE_PROC_REF(/mob, say), message), SSspeech_controller)
 
 /mob/verb/me_verb(message as message)
 	set name = "Me"
@@ -32,9 +37,6 @@
 	set desc = "Emote to nearby people (and your pred/prey)"
 	set hidden = 1
 
-	if(say_disabled)	//This is here to try to identify lag problems
-		to_chat(usr, span_red("Speech is currently admin-disabled."))
-		return
 	//VOREStation Addition Start
 	if(forced_psay)
 		pme(message)
@@ -56,10 +58,6 @@
 		usr.emote(message)
 
 /mob/proc/say_dead(var/message)
-	if(say_disabled)	//This is here to try to identify lag problems
-		to_chat(usr, span_danger("Speech is currently admin-disabled."))
-		return
-
 	if(!client)
 		return // Clientless mobs shouldn't be trying to talk in deadchat.
 

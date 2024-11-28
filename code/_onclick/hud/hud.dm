@@ -396,7 +396,7 @@ var/list/global_huds = list(
 	set hidden = 1
 
 	if(!hud_used)
-		to_chat(usr, span_warning("This mob type does not use a HUD."))
+		to_chat(src, span_warning("This mob type does not use a HUD."))
 		return FALSE
 	if(!client)
 		return FALSE

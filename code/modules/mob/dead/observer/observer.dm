@@ -187,6 +187,27 @@ Works together with spawning an observer, noted above.
 
 	handle_regular_hud_updates()
 	handle_vision()
+	check_area()	//RS Port #658
+
+//RS Port #658 Start
+/mob/observer/dead/proc/check_area()
+	if(client?.holder)
+		return
+	if(!isturf(loc))
+		return
+	var/area/A = get_area(src)
+	if(A.block_ghosts)
+		to_chat(src, span_warning("Ghosts can't enter this location."))
+		return_to_spawn()
+
+/mob/observer/dead/proc/return_to_spawn()
+	if(following)
+		stop_following()
+	var/obj/O = locate("landmark*Observer-Start")
+	if(istype(O))
+		to_chat(src, span_notice("Now teleporting."))
+		forceMove(O.loc)
+//RS Port #658 End
 
 /mob/proc/ghostize(var/can_reenter_corpse = 1)
 	if(key)
@@ -429,6 +450,14 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 			stop_following()
 		return
 
+	//RS Port #658 Start
+	var/area/A = get_area(destination)
+	if(A.block_ghosts)
+		to_chat(src,span_warning("Sorry, that area does not allow ghosts."))
+		if(following)
+			stop_following()
+		return
+	//RS Port #658 End
 	return ..()
 
 /mob/observer/dead/Move(atom/newloc, direct = 0, movetime)

@@ -84,11 +84,11 @@
 	if(..())
 		return TRUE
 
-	add_fingerprint(usr)
+	add_fingerprint(ui.user)
 
 	switch(action)
 		if("power")
-			if(!access_scanner.allowed(usr))
+			if(!access_scanner.allowed(ui.user))
 				return FALSE
 			if(on)
 				turn_off()
@@ -413,7 +413,7 @@
 		t = sanitize(t, MAX_NAME_LEN)
 		if(!t)
 			return
-		if(!in_range(src, usr) && loc != usr)
+		if(!in_range(src, user) && loc != user)
 			return
 
 		created_name = t

@@ -282,11 +282,11 @@ var/obj/screen/robot_inventory
 		//r.client.screen += robot_inventory	//"store" icon
 
 		if(!r.module)
-			to_chat(usr, span_danger("No module selected"))
+			to_chat(r, span_danger("No module selected"))
 			return
 
 		if(!r.module.modules)
-			to_chat(usr, span_danger("Selected module has no modules to select"))
+			to_chat(r, span_danger("Selected module has no modules to select"))
 			return
 
 		if(!r.robot_modules_background)

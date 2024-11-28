@@ -86,7 +86,7 @@
 			active_conversation = null
 		if("Message")
 			var/obj/item/pda/P = locate(params["target"])
-			create_message(usr, P)
+			create_message(ui.user, P)
 			if(params["target"] in conversations)            // Need to make sure the message went through, if not welp.
 				active_conversation = params["target"]
 		if("Select Conversation")
@@ -100,12 +100,12 @@
 
 			var/obj/item/pda/P = locate(params["target"])
 			if(!P)
-				to_chat(usr, "PDA not found.")
+				to_chat(ui.user, "PDA not found.")
 
 			var/datum/data/pda/messenger_plugin/plugin = locate(params["plugin"])
 			if(plugin && (plugin in pda.cartridge.messenger_plugins))
 				plugin.messenger = src
-				plugin.user_act(usr, P)
+				plugin.user_act(ui.user, P)
 		if("Back")
 			active_conversation = null
 
@@ -142,7 +142,7 @@
 	if(last_text && world.time < last_text + 5)
 		return
 
-	if(!pda.can_use(usr))
+	if(!pda.can_use(U))
 		return
 
 	last_text = world.time
@@ -181,7 +181,7 @@
 		PM.receive_message(list("sent" = 0, "owner" = "[pda.owner]", "job" = "[pda.ownjob]", "message" = "[t]", "target" = "\ref[pda]"), "\ref[pda]")
 
 		SStgui.update_user_uis(U, P) // Update the sending user's PDA UI so that they can see the new message
-		log_pda("(PDA: [src.name]) sent \"[t]\" to [P.name]", usr)
+		log_pda("(PDA: [src.name]) sent \"[t]\" to [P.name]", U)
 		to_chat(U, "[icon2html(pda,U.client)] <b>Sent message to [P.owner] ([P.ownjob]), </b>\"[t]\"")
 	else
 		to_chat(U, span_notice("ERROR: Messaging server is not responding."))

@@ -27,7 +27,7 @@
 				toggle_sensors(user)
 			return
 		if("internals")
-			visible_message(span_danger("\The [usr] is trying to set \the [src]'s internals!"))
+			visible_message(span_danger("\The [user] is trying to set \the [src]'s internals!"))
 			if(do_after(user,HUMAN_STRIP_DELAY,src))
 				toggle_internals(user)
 			return
@@ -38,7 +38,7 @@
 			var/obj/item/clothing/accessory/A = suit.accessories[1]
 			if(!istype(A))
 				return
-			visible_message(span_danger("\The [usr] is trying to remove \the [src]'s [A.name]!"))
+			visible_message(span_danger("\The [user] is trying to remove \the [src]'s [A.name]!"))
 
 			if(!do_after(user,HUMAN_STRIP_DELAY,src))
 				return
