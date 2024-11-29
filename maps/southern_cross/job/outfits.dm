@@ -54,9 +54,9 @@ Keep outfits simple. Spawn with basic uniforms and minimal gear. Gear instead go
 	id_pda_assignment = JOB_PILOT
 	flags = OUTFIT_HAS_BACKPACK|OUTFIT_COMPREHENSIVE_SURVIVAL
 
-	headset = /obj/item/radio/headset/pilot/alt
-	headset_alt = /obj/item/radio/headset/pilot/alt
-	headset_earbud = /obj/item/radio/headset/pilot/alt
+	headset = /obj/item/radio/headset/alt/pilot
+	headset_alt = /obj/item/radio/headset/alt/pilot
+	headset_earbud = /obj/item/radio/headset/alt/pilot
 
 /decl/hierarchy/outfit/job/medical/sar
 	name = OUTFIT_JOB_NAME("Field Medic") //VOREStation Edit
