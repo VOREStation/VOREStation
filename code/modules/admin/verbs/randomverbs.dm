@@ -662,12 +662,14 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	//New message handling
 	post_comm_message(customname, replacetext(input, "\n", "<br/>"))
 
-	switch(tgui_alert(usr, "Should this be announced to the general population?","Show world?",list("Yes","No")))
-		if("Yes")
-			command_announcement.Announce(input, customname, new_sound = 'sound/AI/commandreport.ogg', msg_sanitized = 1);
-		if("No")
-			to_world(span_red("New [using_map.company_name] Update available at all communication consoles."))
-			world << sound('sound/AI/commandreport.ogg')
+	var/input = tgui_alert(usr, "Should this be announced to the general population?","Show world?",list("Yes","No"))
+	if(!input)
+		return
+	if(input == "Yes")
+		command_announcement.Announce(input, customname, new_sound = 'sound/AI/commandreport.ogg', msg_sanitized = 1);
+	if(input == "No")
+		to_world(span_red("New [using_map.company_name] Update available at all communication consoles."))
+		world << sound('sound/AI/commandreport.ogg')
 
 	log_admin("[key_name(src)] has created a command report: [input]")
 	message_admins("[key_name_admin(src)] has created a command report", 1)
