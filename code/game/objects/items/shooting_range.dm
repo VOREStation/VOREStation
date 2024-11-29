@@ -37,7 +37,7 @@
 		var/obj/item/weldingtool/WT = W.get_welder()
 		if(WT.remove_fuel(0, user))
 			cut_overlays()
-			to_chat(usr, "You slice off [src]'s uneven chunks of aluminum and scorch marks.")
+			to_chat(user, "You slice off [src]'s uneven chunks of aluminum and scorch marks.")
 			return
 
 

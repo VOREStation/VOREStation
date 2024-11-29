@@ -135,14 +135,14 @@
 		ui = new(user, src, "Biogenerator", name)
 		ui.open()
 
-/obj/machinery/biogenerator/tgui_act(action, params)
+/obj/machinery/biogenerator/tgui_act(action, params, datum/tgui/ui)
 	if(..())
 		return
 
 	. = TRUE
 	switch(action)
 		if("activate")
-			INVOKE_ASYNC(src, PROC_REF(activate))
+			INVOKE_ASYNC(src, PROC_REF(activate), ui.user)
 			return TRUE
 		if("detach")
 			if(beaker)
@@ -166,11 +166,11 @@
 					return
 				var/cost = round(br.cost / build_eff)
 				if(cost > points)
-					to_chat(usr, span_danger("Insufficient biomass."))
+					to_chat(ui.user, span_danger("Insufficient biomass."))
 					return
 				var/amt_to_actually_dispense = round(min(beaker.reagents.get_free_space(), br.reagent_amt))
 				if(amt_to_actually_dispense <= 0)
-					to_chat(usr, span_danger("The loaded beaker is full!"))
+					to_chat(ui.user, span_danger("The loaded beaker is full!"))
 					return
 				points -= (cost * (amt_to_actually_dispense / br.reagent_amt))
 				beaker.reagents.add_reagent(br.reagent_id, amt_to_actually_dispense)
@@ -179,7 +179,7 @@
 
 			var/cost = round(bi.cost / build_eff)
 			if(cost > points)
-				to_chat(usr, span_danger("Insufficient biomass."))
+				to_chat(ui.user, span_danger("Insufficient biomass."))
 				return
 
 			points -= cost
@@ -263,13 +263,13 @@
 		return
 	tgui_interact(user)
 
-/obj/machinery/biogenerator/proc/activate()
-	if(usr.stat)
+/obj/machinery/biogenerator/proc/activate(mob/user)
+	if(user.stat)
 		return
 	if(stat) //NOPOWER etc
 		return
 	if(processing)
-		to_chat(usr, span_notice("The biogenerator is in the process of working."))
+		to_chat(user, span_notice("The biogenerator is in the process of working."))
 		return
 	var/S = 0
 	for(var/obj/item/reagent_containers/food/snacks/grown/I in contents)
@@ -289,7 +289,7 @@
 		playsound(src, 'sound/machines/biogenerator_end.ogg', 40, 1)
 		update_icon()
 	else
-		to_chat(usr, span_warning("Error: No growns inside. Please insert growns."))
+		to_chat(user, span_warning("Error: No growns inside. Please insert growns."))
 	return
 
 /obj/machinery/biogenerator/RefreshParts()

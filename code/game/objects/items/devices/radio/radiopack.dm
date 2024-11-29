@@ -64,7 +64,7 @@
 	if(!slot_check())
 		to_chat(user, span_warning("You need to equip [src] before taking out [handset]."))
 	else
-		if(!usr.put_in_hands(handset)) //Detach the handset into the user's hands
+		if(!user.put_in_hands(handset)) //Detach the handset into the user's hands
 			to_chat(user, span_warning("You need a free hand to hold the handset!"))
 		update_icon() //success
 

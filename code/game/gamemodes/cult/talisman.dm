@@ -14,7 +14,7 @@
 			if("armor")
 				call(/obj/effect/rune/proc/armor)()
 			if("emp")
-				call(/obj/effect/rune/proc/emp)(usr.loc,3)
+				call(/obj/effect/rune/proc/emp)(user.loc,3)
 			if("conceal")
 				call(/obj/effect/rune/proc/obscure)(2)
 			if("revealrunes")

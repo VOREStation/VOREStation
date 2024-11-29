@@ -90,7 +90,7 @@
  */
 /datum/proc/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
 	SHOULD_CALL_PARENT(TRUE)
-	SEND_SIGNAL(src, COMSIG_UI_ACT, usr, action)
+	SEND_SIGNAL(src, COMSIG_UI_ACT, ui.user, action)
 	// If UI is not interactive or usr calling Topic is not the UI user, bail.
 	if(!ui || ui.status != STATUS_INTERACTIVE)
 		return TRUE

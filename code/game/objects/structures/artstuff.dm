@@ -128,14 +128,13 @@
 	. = ..()
 	tgui_interact(user)
 
-/obj/item/canvas/tgui_act(action, params)
+/obj/item/canvas/tgui_act(action, params, datum/tgui/ui)
 	. = ..()
 	if(. || finalized)
 		return
-	var/mob/user = usr
 	switch(action)
 		if("paint")
-			var/obj/item/I = user.get_active_hand()
+			var/obj/item/I = ui.user.get_active_hand()
 			var/color = get_paint_tool_color(I)
 			if(!color)
 				return FALSE
@@ -148,7 +147,7 @@
 		if("finalize")
 			. = TRUE
 			if(!finalized)
-				finalize(user)
+				finalize(ui.user)
 
 /obj/item/canvas/proc/finalize(mob/user)
 	finalized = TRUE

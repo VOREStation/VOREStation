@@ -57,7 +57,7 @@
 	visible_message("\the [user] turns \the [src] [toggle ? "on" : "off"].")
 	update_power()
 	if(!toggle)
-		var/msg = "[usr.client.key] ([usr]) has turned [src] off, at [x],[y],[z]."
+		var/msg = "[user.client.key] ([user]) has turned [src] off, at [x],[y],[z]."
 		message_admins(msg)
 		log_game(msg)
 

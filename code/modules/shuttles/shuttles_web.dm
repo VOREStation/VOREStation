@@ -290,7 +290,7 @@
 
 	return data
 
-/obj/machinery/computer/shuttle_control/web/tgui_act(action, list/params)
+/obj/machinery/computer/shuttle_control/web/tgui_act(action, list/params, datum/tgui/ui)
 	if(..())
 		return TRUE
 
@@ -300,22 +300,22 @@
 		return
 
 	if(WS.moving_status != SHUTTLE_IDLE)
-		to_chat(usr, span_blue("[WS.visible_name] is busy moving."))
+		to_chat(ui.user, span_blue("[WS.visible_name] is busy moving."))
 		return
 
 	switch(action)
 		if("rename_command")
-			WS.rename_shuttle(usr)
+			WS.rename_shuttle(ui.user)
 
 		if("dock_command")
 			if(WS.autopilot)
-				to_chat(usr, span_warning("The autopilot must be disabled before you can control the vessel manually."))
+				to_chat(ui.user, span_warning("The autopilot must be disabled before you can control the vessel manually."))
 				return
 			WS.dock()
 
 		if("undock_command")
 			if(WS.autopilot)
-				to_chat(usr, span_warning("The autopilot must be disabled before you can control the vessel manually."))
+				to_chat(ui.user, span_warning("The autopilot must be disabled before you can control the vessel manually."))
 				return
 			WS.undock()
 
@@ -324,20 +324,20 @@
 				return
 			WS.cloaked = !WS.cloaked
 			if(WS.cloaked)
-				to_chat(usr, span_danger("Ship stealth systems have been activated. The station will not be warned of our arrival."))
+				to_chat(ui.user, span_danger("Ship stealth systems have been activated. The station will not be warned of our arrival."))
 			else
-				to_chat(usr, span_danger("Ship stealth systems have been deactivated. The station will be warned of our arrival."))
+				to_chat(ui.user, span_danger("Ship stealth systems have been deactivated. The station will be warned of our arrival."))
 
 		if("toggle_autopilot")
 			WS.adjust_autopilot(!WS.autopilot)
 
 		if("traverse")
 			if(WS.autopilot)
-				to_chat(usr, span_warning("The autopilot must be disabled before you can control the vessel manually."))
+				to_chat(ui.user, span_warning("The autopilot must be disabled before you can control the vessel manually."))
 				return
 
 			if((WS.last_move + WS.cooldown) > world.time)
-				to_chat(usr, span_red("The ship's drive is inoperable while the engines are charging."))
+				to_chat(ui.user, span_red("The ship's drive is inoperable while the engines are charging."))
 				return
 
 			var/index = text2num(params["traverse"])
@@ -346,7 +346,7 @@
 				message_admins("ERROR: Shuttle computer was asked to traverse a nonexistant route.")
 				return
 
-			if(!check_docking(WS))
+			if(!check_docking(, ui.user, WS))
 				return TRUE
 
 			var/datum/shuttle_destination/target_destination = new_route.get_other_side(WS.web_master.current_destination)
@@ -355,11 +355,11 @@
 				return
 
 			WS.next_location = target_destination.my_landmark
-			if(!can_move(WS, usr))
+			if(!can_move(WS, ui.user))
 				return
 
 			WS.web_master.future_destination = target_destination
-			to_chat(usr, span_notice("[WS.visible_name] flight computer received command."))
+			to_chat(ui.user, span_notice("[WS.visible_name] flight computer received command."))
 			WS.web_master.reset_autopath() // Deviating from the path will almost certainly confuse the autopilot, so lets just reset its memory.
 
 			var/travel_time = new_route.travel_time * WS.flight_time_modifier
@@ -370,15 +370,15 @@
 				WS.short_jump(target_destination.my_landmark)
 
 //check if we're undocked, give option to force launch
-/obj/machinery/computer/shuttle_control/web/proc/check_docking(datum/shuttle/autodock/MS)
+/obj/machinery/computer/shuttle_control/web/proc/check_docking(mob/user, datum/shuttle/autodock/MS)
 	if(MS.skip_docking_checks() || MS.check_undocked())
 		return 1
 
-	var/choice = tgui_alert(usr, "The shuttle is currently docked! Please undock before continuing.","Error",list("Cancel","Force Launch"))
+	var/choice = tgui_alert(user, "The shuttle is currently docked! Please undock before continuing.","Error",list("Cancel","Force Launch"))
 	if(!choice || choice == "Cancel")
 		return 0
 
-	choice = tgui_alert(usr, "Forcing a shuttle launch while docked may result in severe injury, death and/or damage to property. Are you sure you wish to continue?", "Force Launch", list("Force Launch", "Cancel"))
+	choice = tgui_alert(user, "Forcing a shuttle launch while docked may result in severe injury, death and/or damage to property. Are you sure you wish to continue?", "Force Launch", list("Force Launch", "Cancel"))
 	if(choice || choice == "Cancel")
 		return 0
 

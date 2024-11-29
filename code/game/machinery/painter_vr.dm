@@ -106,17 +106,16 @@
 
 /obj/machinery/gear_painter/AltClick(mob/user)
 	. = ..()
-	drop_item()
+	drop_item(user)
 
-/obj/machinery/gear_painter/proc/drop_item()
+/obj/machinery/gear_painter/proc/drop_item(var/mob/user)
 	if(!oview(1,src))
 		return
 	if(!inserted)
 		return
-	to_chat(usr, span_notice("You remove [inserted] from [src]"))
+	to_chat(user, span_notice("You remove [inserted] from [src]"))
 	inserted.forceMove(drop_location())
-	var/mob/living/user = usr
-	if(istype(user))
+	if(isliving(user))
 		user.put_in_hands(inserted)
 	inserted = null
 	update_icon()
@@ -155,11 +154,11 @@
 		.["item"] = list()
 		.["item"]["name"] = inserted.name
 		.["item"]["sprite"] = icon2base64(get_flat_icon(inserted,dir=SOUTH,no_anim=TRUE))
-		.["item"]["preview"] = icon2base64(build_preview())
+		.["item"]["preview"] = icon2base64(build_preview(user))
 	else
 		.["item"] = null
 
-/obj/machinery/gear_painter/tgui_act(action, params)
+/obj/machinery/gear_painter/tgui_act(action, params, datum/tgui/ui)
 	. = ..()
 	if(.)
 		return
@@ -169,17 +168,17 @@
 				active_mode = text2num(params["mode"])
 				return TRUE
 			if("choose_color")
-				var/chosen_color = input(usr, "Choose a color: ", "ColorMate colour picking", activecolor) as color|null
+				var/chosen_color = input(ui.user, "Choose a color: ", "ColorMate colour picking", activecolor) as color|null
 				if(chosen_color)
 					activecolor = chosen_color
 				return TRUE
 			if("paint")
-				do_paint(usr)
+				do_paint(ui.user)
 				temp = "Painted Successfully!"
 				return TRUE
 			if("drop")
 				temp = ""
-				drop_item()
+				drop_item(ui.user)
 				return TRUE
 			if("clear")
 				inserted.remove_atom_colour(FIXED_COLOUR_PRIORITY)
@@ -242,7 +241,7 @@
 
 
 /// Produces the preview image of the item, used in the UI, the way the color is not stacking is a sin.
-/obj/machinery/gear_painter/proc/build_preview()
+/obj/machinery/gear_painter/proc/build_preview(mob/user)
 	if(inserted) //sanity
 		var/list/cm
 		switch(active_mode)
@@ -261,17 +260,17 @@
 					text2num(color_matrix_last[11]),
 					text2num(color_matrix_last[12]),
 				)
-				if(!check_valid_color(cm, usr))
+				if(!check_valid_color(cm, user))
 					return get_flat_icon(inserted, dir=SOUTH, no_anim=TRUE)
 
 			if(COLORMATE_TINT)
-				if(!check_valid_color(activecolor, usr))
+				if(!check_valid_color(activecolor, user))
 					return get_flat_icon(inserted, dir=SOUTH, no_anim=TRUE)
 
 			if(COLORMATE_HSV)
 				cm = color_matrix_hsv(build_hue, build_sat, build_val)
 				color_matrix_last = cm
-				if(!check_valid_color(cm, usr))
+				if(!check_valid_color(cm, user))
 					return get_flat_icon(inserted, dir=SOUTH, no_anim=TRUE)
 
 		var/cur_color = inserted.color

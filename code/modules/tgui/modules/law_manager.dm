@@ -45,69 +45,69 @@
 			return TRUE
 
 		if("add_zeroth_law")
-			if(zeroth_law && is_admin(usr) && !owner.laws.zeroth_law)
+			if(zeroth_law && is_admin(ui.user) && !owner.laws.zeroth_law)
 				owner.set_zeroth_law(zeroth_law)
 			return TRUE
 
 		if("add_ion_law")
-			if(ion_law && is_malf(usr))
+			if(ion_law && is_malf(ui.user))
 				owner.add_ion_law(ion_law)
 			return TRUE
 
 		if("add_inherent_law")
-			if(inherent_law && is_malf(usr))
+			if(inherent_law && is_malf(ui.user))
 				owner.add_inherent_law(inherent_law)
 			return TRUE
 
 		if("add_supplied_law")
-			if(supplied_law && supplied_law_position >= 1 && MIN_SUPPLIED_LAW_NUMBER <= MAX_SUPPLIED_LAW_NUMBER && is_malf(usr))
+			if(supplied_law && supplied_law_position >= 1 && MIN_SUPPLIED_LAW_NUMBER <= MAX_SUPPLIED_LAW_NUMBER && is_malf(ui.user))
 				owner.add_supplied_law(supplied_law_position, supplied_law)
 			return TRUE
 
 		if("change_zeroth_law")
 			var/new_law = sanitize(params["val"])
-			if(new_law && new_law != zeroth_law && can_still_topic(usr, state))
+			if(new_law && new_law != zeroth_law && can_still_topic(ui.user, state))
 				zeroth_law = new_law
 			return TRUE
 
 		if("change_ion_law")
 			var/new_law = sanitize(params["val"])
-			if(new_law && new_law != ion_law && can_still_topic(usr, state))
+			if(new_law && new_law != ion_law && can_still_topic(ui.user, state))
 				ion_law = new_law
 			return TRUE
 
 		if("change_inherent_law")
 			var/new_law = sanitize(params["val"])
-			if(new_law && new_law != inherent_law && can_still_topic(usr, state))
+			if(new_law && new_law != inherent_law && can_still_topic(ui.user, state))
 				inherent_law = new_law
 			return TRUE
 
 		if("change_supplied_law")
 			var/new_law = sanitize(params["val"])
-			if(new_law && new_law != supplied_law && can_still_topic(usr, state))
+			if(new_law && new_law != supplied_law && can_still_topic(ui.user, state))
 				supplied_law = new_law
 			return TRUE
 
 		if("change_supplied_law_position")
-			var/new_position = tgui_input_number(usr, "Enter new supplied law position between 1 and [MAX_SUPPLIED_LAW_NUMBER], inclusive. Inherent laws at the same index as a supplied law will not be stated.", "Law Position", supplied_law_position, MAX_SUPPLIED_LAW_NUMBER, 1)
-			if(isnum(new_position) && can_still_topic(usr, state))
+			var/new_position = tgui_input_number(ui.user, "Enter new supplied law position between 1 and [MAX_SUPPLIED_LAW_NUMBER], inclusive. Inherent laws at the same index as a supplied law will not be stated.", "Law Position", supplied_law_position, MAX_SUPPLIED_LAW_NUMBER, 1)
+			if(isnum(new_position) && can_still_topic(ui.user, state))
 				supplied_law_position = CLAMP(new_position, 1, MAX_SUPPLIED_LAW_NUMBER)
 			return TRUE
 
 		if("edit_law")
-			if(is_malf(usr))
+			if(is_malf(ui.user))
 				var/datum/ai_law/AL = locate(params["edit_law"]) in owner.laws.all_laws()
 				if(AL)
-					var/new_law = sanitize(tgui_input_text(usr, "Enter new law. Leaving the field blank will cancel the edit.", "Edit Law", AL.law))
-					if(new_law && new_law != AL.law && is_malf(usr) && can_still_topic(usr, state))
+					var/new_law = sanitize(tgui_input_text(ui.user, "Enter new law. Leaving the field blank will cancel the edit.", "Edit Law", AL.law))
+					if(new_law && new_law != AL.law && is_malf(ui.user) && can_still_topic(ui.user, state))
 						log_and_message_admins("has changed a law of [owner] from '[AL.law]' to '[new_law]'")
 						AL.law = new_law
 				return TRUE
 
 		if("delete_law")
-			if(is_malf(usr))
+			if(is_malf(ui.user))
 				var/datum/ai_law/AL = locate(params["delete_law"]) in owner.laws.all_laws()
-				if(AL && is_malf(usr))
+				if(AL && is_malf(ui.user))
 					owner.delete_law(AL)
 			return TRUE
 
@@ -116,14 +116,14 @@
 			return TRUE
 
 		if("state_law_set")
-			var/datum/ai_laws/ALs = locate(params["state_law_set"]) in (is_admin(usr) ? admin_laws : player_laws)
+			var/datum/ai_laws/ALs = locate(params["state_law_set"]) in (is_admin(ui.user) ? admin_laws : player_laws)
 			if(ALs)
 				owner.statelaws(ALs)
 			return TRUE
 
 		if("transfer_laws")
-			if(is_malf(usr))
-				var/datum/ai_laws/ALs = locate(params["transfer_laws"]) in (is_admin(usr) ? admin_laws : player_laws)
+			if(is_malf(ui.user))
+				var/datum/ai_laws/ALs = locate(params["transfer_laws"]) in (is_admin(ui.user) ? admin_laws : player_laws)
 				if(ALs)
 					log_and_message_admins("has transfered the [ALs.name] laws to [owner].")
 					ALs.sync(owner, 0)
@@ -137,8 +137,8 @@
 				for(var/mob/living/silicon/robot/R in AI.connected_robots)
 					to_chat(R, span_danger("Law Notice"))
 					R.laws.show_laws(R)
-			if(usr != owner)
-				to_chat(usr, span_notice("Laws displayed."))
+			if(ui.user != owner)
+				to_chat(ui.user, span_notice("Laws displayed."))
 			return TRUE
 
 /datum/tgui_module/law_manager/tgui_interact(mob/user, datum/tgui/ui)

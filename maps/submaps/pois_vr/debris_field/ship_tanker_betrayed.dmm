@@ -10,11 +10,7 @@
 /obj/machinery/atmospherics/pipe/simple/visible{
 	dir = 6
 	},
-/turf/simulated/floor/plating/external{
-	nitrogen = 0;
-	oxygen = 0;
-	temperature = 2.7
-	},
+/turf/simulated/floor/airless,
 /area/submap/debrisfield/phoron_tanker)
 "ar" = (
 /obj/structure/window/reinforced{
@@ -29,11 +25,7 @@
 /area/space)
 "aF" = (
 /mob/living/simple_mob/humanoid/merc/melee/sword/drone/tanker_escort,
-/turf/simulated/floor/plating/external{
-	nitrogen = 0;
-	oxygen = 0;
-	temperature = 2.7
-	},
+/turf/simulated/floor/airless,
 /area/submap/debrisfield/phoron_tanker)
 "ck" = (
 /obj/machinery/atmospherics/pipe/simple/visible,
@@ -93,12 +85,7 @@
 "ht" = (
 /obj/item/stack/cable_coil,
 /mob/living/simple_mob/humanoid/merc/melee/drone/tanker_escort,
-/turf/simulated/mineral/floor/ignore_mapgen/cave{
-	name = "asteroid";
-	nitrogen = 0;
-	oxygen = 0;
-	temperature = 2.7
-	},
+/turf/simulated/mineral/floor/vacuum,
 /area/submap/debrisfield/phoron_tanker)
 "hx" = (
 /obj/effect/decal/cleanable/blood/oil,
@@ -108,21 +95,13 @@
 /area/submap/debrisfield/phoron_tanker)
 "ik" = (
 /obj/structure/meteorite,
-/turf/simulated/floor/plating/external{
-	nitrogen = 0;
-	oxygen = 0;
-	temperature = 2.7
-	},
+/turf/simulated/floor/airless,
 /area/submap/debrisfield/phoron_tanker)
 "iD" = (
 /obj/machinery/atmospherics/pipe/simple/visible{
 	dir = 10
 	},
-/turf/simulated/floor/plating/external{
-	nitrogen = 0;
-	oxygen = 0;
-	temperature = 2.7
-	},
+/turf/simulated/floor/airless,
 /area/submap/debrisfield/phoron_tanker)
 "jx" = (
 /turf/simulated/floor/tiled/techfloor,
@@ -175,11 +154,7 @@
 /obj/machinery/atmospherics/pipe/tank/phoron/full{
 	dir = 4
 	},
-/turf/simulated/floor/plating/external{
-	nitrogen = 0;
-	oxygen = 0;
-	temperature = 2.7
-	},
+/turf/simulated/floor/airless,
 /area/submap/debrisfield/phoron_tanker)
 "mP" = (
 /obj/item/card/id/event/altcard/centcom,
@@ -204,12 +179,7 @@
 /turf/space,
 /area/space)
 "ou" = (
-/turf/simulated/mineral/floor/ignore_mapgen/cave{
-	name = "asteroid";
-	nitrogen = 0;
-	oxygen = 0;
-	temperature = 2.7
-	},
+/turf/simulated/mineral/floor/vacuum,
 /area/submap/debrisfield/phoron_tanker)
 "ox" = (
 /obj/machinery/door/window{
@@ -249,11 +219,7 @@
 /obj/machinery/light/small/emergency/flicker{
 	dir = 8
 	},
-/turf/simulated/floor/plating/external{
-	nitrogen = 0;
-	oxygen = 0;
-	temperature = 2.7
-	},
+/turf/simulated/floor/airless,
 /area/submap/debrisfield/phoron_tanker)
 "rt" = (
 /obj/structure/lattice,
@@ -262,20 +228,11 @@
 /area/submap/debrisfield/phoron_tanker)
 "sU" = (
 /obj/item/broken_device,
-/turf/simulated/floor/plating/external{
-	nitrogen = 0;
-	oxygen = 0;
-	temperature = 2.7
-	},
+/turf/simulated/floor/airless,
 /area/submap/debrisfield/phoron_tanker)
 "sY" = (
 /obj/item/reagent_containers/food/snacks/meat,
-/turf/simulated/mineral/floor/ignore_mapgen/cave{
-	name = "asteroid";
-	nitrogen = 0;
-	oxygen = 0;
-	temperature = 2.7
-	},
+/turf/simulated/mineral/floor/vacuum,
 /area/submap/debrisfield/phoron_tanker)
 "ta" = (
 /obj/structure/meteorite,
@@ -290,11 +247,7 @@
 /area/submap/debrisfield/phoron_tanker)
 "tw" = (
 /obj/machinery/atmospherics/pipe/simple/visible,
-/turf/simulated/floor/plating/external{
-	nitrogen = 0;
-	oxygen = 0;
-	temperature = 2.7
-	},
+/turf/simulated/floor/airless,
 /area/submap/debrisfield/phoron_tanker)
 "uo" = (
 /obj/structure/lattice,
@@ -303,12 +256,7 @@
 /area/submap/debrisfield/phoron_tanker)
 "uF" = (
 /obj/effect/decal/cleanable/blood/oil,
-/turf/simulated/mineral/floor/ignore_mapgen/cave{
-	name = "asteroid";
-	nitrogen = 0;
-	oxygen = 0;
-	temperature = 2.7
-	},
+/turf/simulated/mineral/floor/vacuum,
 /area/submap/debrisfield/phoron_tanker)
 "uL" = (
 /obj/tether_away_spawner/debrisfield/carp,
@@ -318,11 +266,7 @@
 /obj/machinery/atmospherics/pipe/manifold/visible{
 	dir = 8
 	},
-/turf/simulated/floor/plating/external{
-	nitrogen = 0;
-	oxygen = 0;
-	temperature = 2.7
-	},
+/turf/simulated/floor/airless,
 /area/submap/debrisfield/phoron_tanker)
 "vs" = (
 /obj/machinery/atmospherics/pipe/simple/visible{
@@ -376,11 +320,7 @@
 /obj/machinery/atmospherics/pipe/manifold/visible{
 	dir = 4
 	},
-/turf/simulated/floor/plating/external{
-	nitrogen = 0;
-	oxygen = 0;
-	temperature = 2.7
-	},
+/turf/simulated/floor/airless,
 /area/submap/debrisfield/phoron_tanker)
 "zZ" = (
 /obj/structure/curtain/black,
@@ -426,11 +366,7 @@
 /obj/machinery/atmospherics/pipe/manifold/visible{
 	dir = 8
 	},
-/turf/simulated/floor/plating/external{
-	nitrogen = 0;
-	oxygen = 0;
-	temperature = 2.7
-	},
+/turf/simulated/floor/airless,
 /area/submap/debrisfield/phoron_tanker)
 "Ex" = (
 /obj/machinery/atmospherics/pipe/simple/visible{
@@ -452,11 +388,7 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/submap/debrisfield/phoron_tanker)
 "Fl" = (
-/turf/simulated/floor/plating/external{
-	nitrogen = 0;
-	oxygen = 0;
-	temperature = 2.7
-	},
+/turf/simulated/floor/airless,
 /area/submap/debrisfield/phoron_tanker)
 "Fv" = (
 /obj/structure/lattice,
@@ -484,11 +416,7 @@
 /obj/machinery/light/small/emergency/flicker{
 	dir = 4
 	},
-/turf/simulated/floor/plating/external{
-	nitrogen = 0;
-	oxygen = 0;
-	temperature = 2.7
-	},
+/turf/simulated/floor/airless,
 /area/submap/debrisfield/phoron_tanker)
 "Hk" = (
 /obj/structure/toilet{
@@ -515,12 +443,7 @@
 /area/submap/debrisfield/phoron_tanker)
 "JD" = (
 /obj/effect/map_effect/perma_light,
-/turf/simulated/mineral/floor/ignore_mapgen/cave{
-	name = "asteroid";
-	nitrogen = 0;
-	oxygen = 0;
-	temperature = 2.7
-	},
+/turf/simulated/mineral/floor/vacuum,
 /area/submap/debrisfield/phoron_tanker)
 "JG" = (
 /obj/machinery/computer/shuttle,
@@ -606,22 +529,13 @@
 /area/submap/debrisfield/phoron_tanker)
 "TL" = (
 /obj/effect/decal/cleanable/blood/oil/streak,
-/turf/simulated/mineral/floor/ignore_mapgen/cave{
-	name = "asteroid";
-	nitrogen = 0;
-	oxygen = 0;
-	temperature = 2.7
-	},
+/turf/simulated/mineral/floor/vacuum,
 /area/submap/debrisfield/phoron_tanker)
 "Uh" = (
 /obj/machinery/atmospherics/pipe/tank/phoron/full{
 	dir = 8
 	},
-/turf/simulated/floor/plating/external{
-	nitrogen = 0;
-	oxygen = 0;
-	temperature = 2.7
-	},
+/turf/simulated/floor/airless,
 /area/submap/debrisfield/phoron_tanker)
 "Vl" = (
 /obj/effect/map_effect/perma_light,
@@ -647,12 +561,7 @@
 /area/submap/debrisfield/phoron_tanker)
 "XW" = (
 /obj/item/stack/material/steel,
-/turf/simulated/mineral/floor/ignore_mapgen/cave{
-	name = "asteroid";
-	nitrogen = 0;
-	oxygen = 0;
-	temperature = 2.7
-	},
+/turf/simulated/mineral/floor/vacuum,
 /area/submap/debrisfield/phoron_tanker)
 "Yp" = (
 /obj/effect/decal/cleanable/blood/oil/streak,

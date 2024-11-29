@@ -78,13 +78,13 @@
 					if(anchored)
 						activate()
 					else
-						to_chat(usr, span_warning("You are unable to activate [src] until it is properly secured on the ground."))
+						to_chat(ui.user, span_warning("You are unable to activate [src] until it is properly secured on the ground."))
 			else
 				deactivate()
 			return TRUE
 
 		if("lock")
-			if(allowed(usr))
+			if(allowed(ui.user))
 				locked = !locked
 				return TRUE
 

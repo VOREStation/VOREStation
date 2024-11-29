@@ -82,26 +82,26 @@
 		part.strength = strength
 		part.update_icon()
 
-/obj/machinery/particle_accelerator/control_box/proc/add_strength(var/s)
+/obj/machinery/particle_accelerator/control_box/proc/add_strength(mob/user, var/s)
 	if(assembled)
 		strength++
 		if(strength > strength_upper_limit)
 			strength = strength_upper_limit
 		else
-			message_admins("PA Control Computer increased to [strength] by [key_name(usr, usr.client)][ADMIN_QUE(usr)] in [ADMIN_COORDJMP(src)]",0,1)
-			log_game("PACCEL([x],[y],[z]) [key_name(usr)] increased to [strength]")
-			investigate_log("increased to <font color='red'>[strength]</font> by [usr.key]","singulo")
+			message_admins("PA Control Computer increased to [strength] by [key_name(user, user.client)][ADMIN_QUE(user)] in [ADMIN_COORDJMP(src)]",0,1)
+			log_game("PACCEL([x],[y],[z]) [key_name(user)] increased to [strength]")
+			investigate_log("increased to <font color='red'>[strength]</font> by [user.key]","singulo")
 		strength_change()
 
-/obj/machinery/particle_accelerator/control_box/proc/remove_strength(var/s)
+/obj/machinery/particle_accelerator/control_box/proc/remove_strength(mob/user, var/s)
 	if(assembled)
 		strength--
 		if(strength < 0)
 			strength = 0
 		else
-			message_admins("PA Control Computer decreased to [strength] by [key_name(usr, usr.client)][ADMIN_QUE(usr)] in [ADMIN_COORDJMP(src)]",0,1)
-			log_game("PACCEL([x],[y],[z]) [key_name(usr)] decreased to [strength]")
-			investigate_log("decreased to <font color='green'>[strength]</font> by [usr.key]","singulo")
+			message_admins("PA Control Computer decreased to [strength] by [key_name(user, user.client)][ADMIN_QUE(user)] in [ADMIN_COORDJMP(src)]",0,1)
+			log_game("PACCEL([x],[y],[z]) [key_name(user)] decreased to [strength]")
+			investigate_log("decreased to <font color='green'>[strength]</font> by [user.key]","singulo")
 		strength_change()
 
 /obj/machinery/particle_accelerator/control_box/power_change()
@@ -118,7 +118,7 @@
 		//a part is missing!
 		if( length(connected_parts) < 6 )
 			log_game("PACCEL([x],[y],[z]) Failed due to missing parts.")
-			investigate_log("lost a connected part; It <font color='red'>powered down</font>.","singulo")
+			investigate_log("lost a connected part; It " + span_red("powered down") + ".","singulo")
 			toggle_power()
 			return
 		//emit some particles
@@ -181,11 +181,11 @@
 	return 0
 
 
-/obj/machinery/particle_accelerator/control_box/proc/toggle_power()
+/obj/machinery/particle_accelerator/control_box/proc/toggle_power(mob/user)
 	active = !active
-	investigate_log("turned [active?"<font color='red'>ON</font>":"<font color='green'>OFF</font>"] by [usr ? usr.key : "outside forces"]","singulo")
-	message_admins("PA Control Computer turned [active ?"ON":"OFF"] by [usr ? key_name(usr, usr.client) : "outside forces"][ADMIN_QUE(usr)] in [ADMIN_COORDJMP(src)]",0,1)
-	log_game("PACCEL([x],[y],[z]) [usr ? key_name(usr, usr.client) : "outside forces"] turned [active?"ON":"OFF"].")
+	investigate_log("turned [active?"<font color='red'>ON</font>":"<font color='green'>OFF</font>"] by [user ? user.key : "outside forces"]","singulo")
+	message_admins("PA Control Computer turned [active ?"ON":"OFF"] by [user ? key_name(user, user.client) : "outside forces"][ADMIN_QUE(user)] in [ADMIN_COORDJMP(src)]",0,1)
+	log_game("PACCEL([x],[y],[z]) [user ? key_name(user, user.client) : "outside forces"] turned [active?"ON":"OFF"].")
 	if(active)
 		update_use_power(USE_POWER_ACTIVE)
 		for(var/obj/structure/particle_accelerator/part in connected_parts)
@@ -226,7 +226,7 @@
 	data["strength"] = strength
 	return data
 
-/obj/machinery/particle_accelerator/control_box/tgui_act(action, params)
+/obj/machinery/particle_accelerator/control_box/tgui_act(action, params, datum/tgui/ui)
 	if(..())
 		return
 
@@ -234,7 +234,7 @@
 		if("power")
 			if(wires.is_cut(WIRE_POWER))
 				return
-			toggle_power()
+			toggle_power(ui.user)
 			. = TRUE
 		if("scan")
 			part_scan()
@@ -242,12 +242,12 @@
 		if("add_strength")
 			if(wires.is_cut(WIRE_PARTICLE_STRENGTH))
 				return
-			add_strength()
+			add_strength(ui.user)
 			. = TRUE
 		if("remove_strength")
 			if(wires.is_cut(WIRE_PARTICLE_STRENGTH))
 				return
-			remove_strength()
+			remove_strength(ui.user)
 			. = TRUE
 
 	update_icon()

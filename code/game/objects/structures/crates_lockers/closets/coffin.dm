@@ -100,7 +100,7 @@
 			return
 		if(W.loc != user) // This should stop mounted modules ending up outside the module.
 			return
-		usr.drop_item()
+		user.drop_item()
 		if(W)
 			W.forceMove(src.loc)
 	else

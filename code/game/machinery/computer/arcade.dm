@@ -159,7 +159,7 @@
 
 				sleep(10)
 				enemy_hp -= attackamt
-				arcade_action()
+				arcade_action(ui.user)
 
 			if("heal")
 				blocked = 1
@@ -173,7 +173,7 @@
 				player_mp -= pointamt
 				player_hp += healamt
 				blocked = 1
-				arcade_action()
+				arcade_action(ui.user)
 
 			if("charge")
 				blocked = 1
@@ -185,7 +185,7 @@
 					turtle--
 
 				sleep(10)
-				arcade_action()
+				arcade_action(ui.user)
 
 
 	if(action == "newgame") //Reset everything
@@ -201,10 +201,10 @@
 			randomize_characters()
 			emagged = 0
 
-	add_fingerprint(usr)
+	add_fingerprint(ui.user)
 	return TRUE
 
-/obj/machinery/computer/arcade/battle/proc/arcade_action()
+/obj/machinery/computer/arcade/battle/proc/arcade_action(var/mob/user)
 	if ((enemy_mp <= 0) || (enemy_hp <= 0))
 		if(!gameover)
 			gameover = 1
@@ -215,8 +215,8 @@
 				feedback_inc("arcade_win_emagged")
 				new /obj/effect/spawner/newbomb/timer/syndicate(src.loc)
 				new /obj/item/clothing/head/collectable/petehat(src.loc)
-				message_admins("[key_name_admin(usr)] has outbombed Cuban Pete and been awarded a bomb.")
-				log_game("[key_name_admin(usr)] has outbombed Cuban Pete and been awarded a bomb.")
+				message_admins("[key_name_admin(user)] has outbombed Cuban Pete and been awarded a bomb.")
+				log_game("[key_name_admin(user)] has outbombed Cuban Pete and been awarded a bomb.")
 				randomize_characters()
 				emagged = 0
 			else if(!contents.len)
@@ -245,7 +245,7 @@
 			temp = "You have been drained! GAME OVER"
 			if(emagged)
 				feedback_inc("arcade_loss_mana_emagged")
-				usr.gib()
+				user.gib()
 			else
 				feedback_inc("arcade_loss_mana_normal")
 
@@ -267,7 +267,7 @@
 		playsound(src, 'sound/arcade/lose.ogg', 50, 1, extrarange = -3, falloff = 0.1, ignore_walls = FALSE)
 		if(emagged)
 			feedback_inc("arcade_loss_hp_emagged")
-			usr.gib()
+			user.gib()
 		else
 			feedback_inc("arcade_loss_hp_normal")
 
@@ -367,12 +367,12 @@
 		"You have made it to Orion! Congratulations! Your crew is one of the few to start a new foothold for mankind!"
 		)
 
-/obj/machinery/computer/arcade/orion_trail/proc/newgame()
+/obj/machinery/computer/arcade/orion_trail/proc/newgame(var/mob/user)
 	// Set names of settlers in crew
 	settlers = list()
 	for(var/i = 1; i <= 3; i++)
 		add_crewmember()
-	add_crewmember("[usr]")
+	add_crewmember("[user]")
 	// Re-set items to defaults
 	engine = 1
 	hull = 1
@@ -466,7 +466,7 @@
 	if (href_list["continue"]) //Continue your travels
 		if(gameStatus == ORION_STATUS_NORMAL && !event && turns != 7)
 			if(turns >= ORION_TRAIL_WINTURN)
-				win()
+				win(usr)
 			else
 				food -= (alive+traitors_aboard)*2
 				fuel -= 5
@@ -535,7 +535,7 @@
 	else if(href_list["newgame"]) //Reset everything
 		if(gameStatus == ORION_STATUS_START)
 			playsound(src, 'sound/arcade/Ori_begin.ogg', 50, 1, extrarange = -3, falloff = 0.1, ignore_walls = FALSE)
-			newgame()
+			newgame(usr)
 	else if(href_list["menu"]) //back to the main menu
 		if(gameStatus == ORION_STATUS_GAMEOVER)
 			gameStatus = ORION_STATUS_START
@@ -1006,14 +1006,14 @@
 	return removed
 
 
-/obj/machinery/computer/arcade/orion_trail/proc/win()
+/obj/machinery/computer/arcade/orion_trail/proc/win(var/mob/user)
 	gameStatus = ORION_STATUS_START
 	src.visible_message("\The [src] plays a triumpant tune, stating 'CONGRATULATIONS, YOU HAVE MADE IT TO ORION.'")
 	playsound(src, 'sound/arcade/Ori_win.ogg', 50, 1, extrarange = -3, falloff = 0.1, ignore_walls = FALSE)
 	if(emagged)
 		new /obj/item/orion_ship(src.loc)
-		message_admins("[key_name_admin(usr)] made it to Orion on an emagged machine and got an explosive toy ship.")
-		log_game("[key_name(usr)] made it to Orion on an emagged machine and got an explosive toy ship.")
+		message_admins("[key_name_admin(user)] made it to Orion on an emagged machine and got an explosive toy ship.")
+		log_game("[key_name(user)] made it to Orion on an emagged machine and got an explosive toy ship.")
 	else
 		prizevend()
 	emagged = 0
@@ -1025,7 +1025,7 @@
 		to_chat(user, span_notice("You override the cheat code menu and skip to Cheat #[rand(1, 50)]: Realism Mode."))
 		name = "The Orion Trail: Realism Edition"
 		desc = "Learn how our ancestors got to Orion, and try not to die in the process!"
-		newgame()
+		newgame(user)
 		emagged = 1
 		return 1
 
@@ -1049,8 +1049,8 @@
 	if(active)
 		return
 
-	message_admins("[key_name_admin(usr)] primed an explosive Orion ship for detonation.")
-	log_game("[key_name(usr)] primed an explosive Orion ship for detonation.")
+	message_admins("[key_name_admin(user)] primed an explosive Orion ship for detonation.")
+	log_game("[key_name(user)] primed an explosive Orion ship for detonation.")
 
 	to_chat(user, span_warning("You flip the switch on the underside of [src]."))
 	active = 1
@@ -1112,10 +1112,10 @@
 		var/paid = 0
 		var/obj/item/card/id/W = I.GetID()
 		if(W) //for IDs and PDAs and wallets with IDs
-			paid = pay_with_card(W,I)
+			paid = pay_with_card(W, I, user)
 		else if(istype(I, /obj/item/spacecash/ewallet))
 			var/obj/item/spacecash/ewallet/C = I
-			paid = pay_with_ewallet(C)
+			paid = pay_with_ewallet(C, user)
 		else if(istype(I, /obj/item/spacecash))
 			var/obj/item/spacecash/C = I
 			paid = pay_with_cash(C, user)
@@ -1132,16 +1132,16 @@
 
 			// This is not a status display message, since it's something the character
 			// themselves is meant to see BEFORE putting the money in
-			to_chat(usr, "[icon2html(cashmoney,user.client)] " + span_warning("That is not enough money."))
+			to_chat(user, "[icon2html(cashmoney,user.client)] " + span_warning("That is not enough money."))
 			return 0
 
 		if(istype(cashmoney, /obj/item/spacecash))
 
-			visible_message(span_info("\The [usr] inserts some cash into \the [src]."))
+			visible_message(span_info("\The [user] inserts some cash into \the [src]."))
 			cashmoney.worth -= gameprice
 
 			if(cashmoney.worth <= 0)
-				usr.drop_from_inventory(cashmoney)
+				user.drop_from_inventory(cashmoney)
 				qdel(cashmoney)
 			else
 				cashmoney.update_icon()
@@ -1155,9 +1155,9 @@
 
 
 ///// Ewallet
-/obj/machinery/computer/arcade/clawmachine/proc/pay_with_ewallet(var/obj/item/spacecash/ewallet/wallet)
+/obj/machinery/computer/arcade/clawmachine/proc/pay_with_ewallet(var/obj/item/spacecash/ewallet/wallet, var/mob/user)
 	if(!emagged)
-		visible_message(span_info("\The [usr] swipes \the [wallet] through \the [src]."))
+		visible_message(span_info("\The [user] swipes \the [wallet] through \the [src]."))
 		playsound(src, 'sound/machines/id_swipe.ogg', 50, 1)
 		if(gameprice > wallet.worth)
 			visible_message(span_info("Insufficient funds."))
@@ -1168,14 +1168,14 @@
 			return 1
 	if(emagged)
 		playsound(src, 'sound/arcade/steal.ogg', 50, 1, extrarange = -3, falloff = 0.1, ignore_walls = FALSE)
-		to_chat(usr, span_info("It doesn't seem to accept that! Seem you'll need to swipe a valid ID."))
+		to_chat(user, span_info("It doesn't seem to accept that! Seem you'll need to swipe a valid ID."))
 
 ///// ID
-/obj/machinery/computer/arcade/clawmachine/proc/pay_with_card(var/obj/item/card/id/I, var/obj/item/ID_container)
+/obj/machinery/computer/arcade/clawmachine/proc/pay_with_card(var/obj/item/card/id/I, var/obj/item/ID_container, var/mob/user)
 	if(I==ID_container || ID_container == null)
-		visible_message(span_info("\The [usr] swipes \the [I] through \the [src]."))
+		visible_message(span_info("\The [user] swipes \the [I] through \the [src]."))
 	else
-		visible_message(span_info("\The [usr] swipes \the [ID_container] through \the [src]."))
+		visible_message(span_info("\The [user] swipes \the [ID_container] through \the [src]."))
 	playsound(src, 'sound/machines/id_swipe.ogg', 50, 1)
 	var/datum/money_account/customer_account = get_account(I.associated_account_number)
 	if(!customer_account)
@@ -1189,7 +1189,7 @@
 	// Have the customer punch in the PIN before checking if there's enough money. Prevents people from figuring out acct is
 	// empty at high security levels
 	if(customer_account.security_level != 0) //If card requires pin authentication (ie seclevel 1 or 2)
-		var/attempt_pin = tgui_input_number(usr, "Enter pin code", "Vendor transaction")
+		var/attempt_pin = tgui_input_number(user, "Enter pin code", "Vendor transaction")
 		customer_account = attempt_account_access(I.associated_account_number, attempt_pin, 2)
 
 		if(!customer_account)
@@ -1268,7 +1268,7 @@
 
 	return data
 
-/obj/machinery/computer/arcade/clawmachine/tgui_act(action, params)
+/obj/machinery/computer/arcade/clawmachine/tgui_act(action, params, datum/tgui/ui)
 	if(..())
 		return
 
@@ -1289,9 +1289,9 @@
 
 	if(action == "pointless" && wintick >= 10)
 		instructions = "Insert 1 thaler or swipe a card to play!"
-		clawvend()
+		clawvend(ui.user)
 
-/obj/machinery/computer/arcade/clawmachine/proc/clawvend() /// True to a real claw machine, it's NEARLY impossible to win.
+/obj/machinery/computer/arcade/clawmachine/proc/clawvend(var/mob/user) /// True to a real claw machine, it's NEARLY impossible to win.
 	winprob += 1 /// Yeah.
 
 	if(prob(winprob)) /// YEAH.
@@ -1304,7 +1304,7 @@
 			winscreen = "You won...?"
 			var/obj/item/grenade/G = new /obj/item/grenade/explosive(get_turf(src)) /// YEAAAAAAAAAAAAAAAAAAH!!!!!!!!!!
 			G.activate()
-			G.throw_at(get_turf(usr),10,10) /// Play stupid games, win stupid prizes.
+			G.throw_at(get_turf(user),10,10) /// Play stupid games, win stupid prizes.
 
 		playsound(src, 'sound/arcade/Ori_win.ogg', 50, 1, extrarange = -3, falloff = 0.1, ignore_walls = FALSE)
 		winprob = 0
