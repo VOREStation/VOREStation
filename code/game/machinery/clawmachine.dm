@@ -158,7 +158,7 @@
 	cashmoney.update_icon()
 
 	if(cashmoney.worth <= 0)
-		usr.drop_from_inventory(cashmoney)
+		user.drop_from_inventory(cashmoney)
 		qdel(cashmoney)
 		cashmoney.update_icon()
 

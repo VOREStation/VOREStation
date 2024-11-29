@@ -87,15 +87,15 @@
 	switch(action)
 		if("red_switch")
 			red_switch = !red_switch
-			to_chat(usr, span_notice("You flip the red switch [red_switch ? "on" : "off"]."))
+			to_chat(ui.user, span_notice("You flip the red switch [red_switch ? "on" : "off"]."))
 			. = TRUE
 		if("green_switch")
 			green_switch = !green_switch
-			to_chat(usr, span_notice("You flip the green switch [green_switch ? "on" : "off"]."))
+			to_chat(ui.user, span_notice("You flip the green switch [green_switch ? "on" : "off"]."))
 			. = TRUE
 		if("blue_switch")
 			blue_switch = !blue_switch
-			to_chat(usr, span_notice("You flip the blue switch [blue_switch ? "on" : "off"]."))
+			to_chat(ui.user, span_notice("You flip the blue switch [blue_switch ? "on" : "off"]."))
 			. = TRUE
 
 /mob/living/bot/cleanbot/edCLN/emag_act(var/remaining_uses, var/mob/user)
@@ -124,7 +124,7 @@
 		var/t = sanitizeSafe(tgui_input_text(user, "Enter new robot name", name, created_name, MAX_NAME_LEN), MAX_NAME_LEN)
 		if(!t)
 			return
-		if(!in_range(src, usr) && src.loc != usr)
+		if(!in_range(src, user) && src.loc != user)
 			return
 		created_name = t
 		return

@@ -34,8 +34,10 @@ Bonus
 				M.emote("sniff")
 			else
 				M.emote("sneeze")
-				A.spread(5)
-				if(prob(30))
+				if(!M.wear_mask) // Spread only if they're not covering their face
+					A.spread(5)
+
+				if(prob(30) && !M.wear_mask) // Same for mucus
 					var/obj/effect/decal/cleanable/mucus/icky = new(get_turf(M))
 					icky.viruses |= A.Copy()
 

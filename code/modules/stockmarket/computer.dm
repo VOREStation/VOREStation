@@ -49,7 +49,7 @@
 	if(..())
 		return TRUE
 
-	add_fingerprint(usr)
+	add_fingerprint(ui.user)
 
 	switch(action)
 		if ("logout")
@@ -58,12 +58,12 @@
 		if("stocks_buy")
 			var/datum/stock/S = locate(params["share"]) in GLOB.stockExchange.stocks
 			if (S)
-				buy_some_shares(S, usr)
+				buy_some_shares(S, ui.user)
 
 		if("stocks_sell")
 			var/datum/stock/S = locate(params["share"]) in GLOB.stockExchange.stocks
 			if (S)
-				sell_some_shares(S, usr)
+				sell_some_shares(S, ui.user)
 
 		if("stocks_check")
 			screen = "logs"
@@ -82,7 +82,7 @@
 			if (S)
 				//current_stock = S
 				//screen = "graph"
-				S.displayValues(usr)
+				S.displayValues(ui.user)
 
 		if("stocks_backbutton")
 			current_stock = null

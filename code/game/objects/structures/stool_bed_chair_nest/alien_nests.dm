@@ -7,6 +7,7 @@
 	icon_state = "nest"
 	var/health = 100
 	unacidable = TRUE
+	flippable = FALSE
 
 /obj/structure/bed/nest/update_icon()
 	return
@@ -42,7 +43,7 @@
 #undef NEST_RESIST_TIME
 
 /obj/structure/bed/nest/user_buckle_mob(mob/M as mob, mob/user as mob)
-	if ( !ismob(M) || (get_dist(src, user) > 1) || (M.loc != src.loc) || user.restrained() || usr.stat || M.buckled || istype(user, /mob/living/silicon/pai) )
+	if ( !ismob(M) || (get_dist(src, user) > 1) || (M.loc != src.loc) || user.restrained() || user.stat || M.buckled || istype(user, /mob/living/silicon/pai) )
 		return
 
 	unbuckle_mob()
@@ -56,7 +57,7 @@
 	if(istype(xenos) && !(locate(/obj/item/organ/internal/xenos/hivenode) in xenos.internal_organs))
 		return
 
-	if(M == usr)
+	if(M == user)
 		return
 	else
 		M.visible_message(\

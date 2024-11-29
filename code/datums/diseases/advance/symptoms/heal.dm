@@ -33,7 +33,7 @@ Bonus
 	return
 
 /datum/symptom/heal/proc/Heal(mob/living/M, datum/disease/advance/A)
-	var/get_damage = (sqrtor0(20+A.totalStageSpeed())*(1+rand()))
+	var/get_damage = max(0, (sqrtor0(20+A.totalStageSpeed())*(1+rand())))
 	M.adjustToxLoss(-get_damage)
 	return TRUE
 
@@ -144,7 +144,7 @@ Bonus
 	level = 5
 
 /datum/symptom/heal/dna/Heal(var/mob/living/carbon/M, var/datum/disease/advance/A)
-	var/amt_healed = (sqrtor0(20+A.totalStageSpeed()*(3+rand())))-(sqrtor0(16+A.totalStealth()*rand()))
-	M.apply_damage(-amt_healed, CLONE)
+	var/amt_healed = max(0, (sqrtor0(20+A.totalStageSpeed()*(3+rand())))-(sqrtor0(16+A.totalStealth()*rand())))
+	M.adjustBrainLoss(-amt_healed)
 	M.radiation = max(M.radiation - 3, 0)
 	return TRUE

@@ -26,7 +26,7 @@
 /datum/computer_file/program/chatclient/New()
 	username = "DefaultUser[rand(100, 999)]"
 
-/datum/computer_file/program/chatclient/tgui_act(action, params)
+/datum/computer_file/program/chatclient/tgui_act(action, params, datum/tgui/ui)
 	if(..())
 		return
 
@@ -47,8 +47,7 @@
 					return TRUE
 
 			channel.add_message(message, username)
-			// var/mob/living/user = usr
-			// user.log_talk(message, LOG_CHAT, tag="as [username] to channel [channel.title]")
+			// ui.user.log_talk(message, LOG_CHAT, tag="as [username] to channel [channel.title]")
 			return TRUE
 		if("PRG_joinchannel")
 			var/new_target = text2num(params["id"])
@@ -85,8 +84,7 @@
 				if(channel)
 					channel.remove_client(src) // We shouldn't be in channel's user list, but just in case...
 				return TRUE
-			var/mob/living/user = usr
-			if(can_run(user, TRUE, access_network))
+			if(isliving(ui.user) && can_run(ui.user, TRUE, access_network))
 				for(var/datum/ntnet_conversation/chan as anything in ntnet_global.chat_channels)
 					chan.remove_client(src)
 				netadmin_mode = TRUE

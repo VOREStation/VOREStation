@@ -130,16 +130,16 @@
 		data["allNetworks"] |= C.network
 	return data
 
-/datum/tgui_module/camera/tgui_act(action, params)
+/datum/tgui_module/camera/tgui_act(action, params, datum/tgui/ui)
 	if(..())
 		return TRUE
 
-	if(action && !issilicon(usr))
+	if(action && !issilicon(ui.user))
 		playsound(tgui_host(), "terminal_type", 50, 1)
 
 	if(action == "switch_camera")
 		var/c_tag = params["name"]
-		var/list/cameras = get_available_cameras(usr)
+		var/list/cameras = get_available_cameras(ui.user)
 		var/obj/machinery/camera/C = cameras["[ckey(c_tag)]"]
 		if(active_camera)
 			UnregisterSignal(active_camera, COMSIG_OBSERVER_MOVED)
@@ -159,7 +159,7 @@
 			var/obj/machinery/camera/target
 			var/best_dist = INFINITY
 
-			var/list/possible_cameras = get_available_cameras(usr)
+			var/list/possible_cameras = get_available_cameras(ui.user)
 			for(var/obj/machinery/camera/C in get_area(T))
 				if(!possible_cameras["[ckey(C.c_tag)]"])
 					continue

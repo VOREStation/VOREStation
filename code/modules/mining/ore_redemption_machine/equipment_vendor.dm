@@ -257,7 +257,7 @@
 		ui.set_autoupdate(FALSE)
 
 
-/obj/machinery/mineral/equipment_vendor/tgui_act(action, params)
+/obj/machinery/mineral/equipment_vendor/tgui_act(action, params, datum/tgui/ui)
 	if(..())
 		return
 
@@ -266,7 +266,7 @@
 		if("logoff")
 			if(!inserted_id)
 				return
-			usr.put_in_hands(inserted_id)
+			ui.user.put_in_hands(inserted_id)
 			inserted_id = null
 		if("purchase")
 			if(!inserted_id)
@@ -279,7 +279,7 @@
 				return
 			var/datum/data/mining_equipment/prize = prize_list[category][name]
 			if(prize.cost > get_points(inserted_id)) // shouldn't be able to access this since the button is greyed out, but..
-				to_chat(usr, span_danger("You have insufficient points."))
+				to_chat(ui.user, span_danger("You have insufficient points."))
 				flick(icon_deny, src) //VOREStation Add
 				return
 

@@ -58,17 +58,17 @@
 	switch(action)
 		if("slot")
 			var/slot = params["slot"]
-			var/obj/item/I = usr.get_active_hand()
+			var/obj/item/I = ui.user.get_active_hand()
 			if(slot <= LAZYLEN(cooking_objs)) // Inserting
 				var/datum/cooking_item/CI = cooking_objs[slot]
 
 				if(istype(I) && can_insert(I)) // Why do hard work when we can just make them smack us?
-					attackby(I, usr)
+					attackby(I, ui.user)
 				else if(istype(CI))
-					eject(CI, usr)
+					eject(CI, ui.user)
 				return TRUE
 			if(istype(I)) // Why do hard work when we can just make them smack us?
-				attackby(I, usr)
+				attackby(I, ui.user)
 			return TRUE
 
 /obj/machinery/appliance/cooker/examine(var/mob/user)

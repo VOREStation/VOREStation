@@ -68,7 +68,7 @@ Code is pretty much ripped verbatim from nano modules, but with un-needed stuff 
 	if(istype(host))
 		. += host.get_header_data()
 
-/datum/tgui_module/tgui_act(action, params)
+/datum/tgui_module/tgui_act(action, params, datum/tgui/ui)
 	if(..())
 		return TRUE
 
@@ -81,7 +81,7 @@ Code is pretty much ripped verbatim from nano modules, but with un-needed stuff 
 			host.shutdown_computer()
 			return TRUE
 		if(action == "PC_minimize")
-			host.minimize_program(usr)
+			host.minimize_program(ui.user)
 			return TRUE
 
 // Just a nice little default interact in case the subtypes don't need any special behavior here

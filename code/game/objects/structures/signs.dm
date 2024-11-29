@@ -37,7 +37,7 @@
 
 /obj/item/sign/attackby(obj/item/tool as obj, mob/user as mob)	//construction
 	if(tool.has_tool_quality(TOOL_SCREWDRIVER) && isturf(user.loc))
-		var/direction = tgui_input_list(usr, "In which direction?", "Select direction.", list("North", "East", "South", "West", "Cancel"))
+		var/direction = tgui_input_list(user, "In which direction?", "Select direction.", list("North", "East", "South", "West", "Cancel"))
 		if(direction == "Cancel") return
 		var/target_type = original_type || /obj/structure/sign
 		var/obj/structure/sign/S = new target_type(user.loc)

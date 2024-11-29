@@ -197,14 +197,14 @@
 	else
 		average_field_strength = 0
 
-/obj/machinery/shield_gen/tgui_act(action, params)
+/obj/machinery/shield_gen/tgui_act(action, params, datum/tgui/ui)
 	if(..())
 		return TRUE
 
 	switch(action)
 		if("toggle")
 			if (!active && !anchored)
-				to_chat(usr, span_red("The [src] needs to be firmly secured to the floor first."))
+				to_chat(ui.user, span_red("The [src] needs to be firmly secured to the floor first."))
 				return
 			toggle()
 			. = TRUE

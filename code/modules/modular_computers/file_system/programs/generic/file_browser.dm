@@ -30,7 +30,7 @@
 		if("PRG_newtextfile")
 			if(!HDD)
 				return
-			var/newname = sanitize(tgui_input_text(usr, "Enter file name or leave blank to cancel:", "File rename"))
+			var/newname = sanitize(tgui_input_text(ui.user, "Enter file name or leave blank to cancel:", "File rename"))
 			if(!newname)
 				return
 			if(HDD.find_file_by_name(newname))
@@ -60,13 +60,13 @@
 			var/datum/computer_file/data/F = computer.find_file_by_uid(open_file)
 			if(!F || !istype(F))
 				return
-			if(F.do_not_edit && (tgui_alert(usr, "WARNING: This file is not compatible with editor. Editing it may result in permanently corrupted formatting or damaged data consistency. Edit anyway?", "Incompatible File", list("No", "Yes")) != "Yes"))
+			if(F.do_not_edit && (tgui_alert(ui.user, "WARNING: This file is not compatible with editor. Editing it may result in permanently corrupted formatting or damaged data consistency. Edit anyway?", "Incompatible File", list("No", "Yes")) != "Yes"))
 				return
 
 			var/oldtext = html_decode(F.stored_data)
 			oldtext = replacetext(oldtext, "\[br\]", "\n")
 
-			var/newtext = sanitize(replacetext(tgui_input_text(usr, "Editing file [F.filename].[F.filetype]. You may use most tags used in paper formatting:", "Text Editor", oldtext, MAX_TEXTFILE_LENGTH, TRUE, prevent_enter = TRUE), "\n", "\[br\]"), MAX_TEXTFILE_LENGTH)
+			var/newtext = sanitize(replacetext(tgui_input_text(ui.user, "Editing file [F.filename].[F.filetype]. You may use most tags used in paper formatting:", "Text Editor", oldtext, MAX_TEXTFILE_LENGTH, TRUE, prevent_enter = TRUE), "\n", "\[br\]"), MAX_TEXTFILE_LENGTH)
 			if(!newtext)
 				return
 

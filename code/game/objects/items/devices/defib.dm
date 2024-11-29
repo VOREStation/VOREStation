@@ -132,7 +132,7 @@
 	if(!slot_check())
 		to_chat(user, span_warning("You need to equip [src] before taking out [paddles]."))
 	else
-		if(!usr.put_in_hands(paddles)) //Detach the paddles into the user's hands
+		if(!user.put_in_hands(paddles)) //Detach the paddles into the user's hands
 			to_chat(user, span_warning("You need a free hand to hold the paddles!"))
 		update_icon() //success
 

@@ -16,7 +16,7 @@
 /obj/item/reagent_containers/food/snacks/carpmeat,
 /obj/item/reagent_containers/food/snacks/carpmeat,
 /obj/item/reagent_containers/food/snacks/carpmeat,
-/turf/simulated/floor/wood,
+/turf/simulated/floor/wood/airless,
 /area/submap/debrisfield/foodstand)
 "f" = (
 /obj/structure/table/woodentable,
@@ -24,19 +24,19 @@
 /obj/item/reagent_containers/food/condiment/ketchup,
 /obj/item/reagent_containers/food/condiment/hotsauce,
 /obj/item/reagent_containers/food/condiment/soysauce,
-/turf/simulated/floor/wood,
+/turf/simulated/floor/wood/airless,
 /area/submap/debrisfield/foodstand)
 "g" = (
 /obj/structure/table/woodentable,
 /obj/machinery/microwave,
-/turf/simulated/floor/wood,
+/turf/simulated/floor/wood/airless,
 /area/submap/debrisfield/foodstand)
 "h" = (
 /obj/structure/simple_door/wood,
-/turf/simulated/floor/wood,
+/turf/simulated/floor/wood/airless,
 /area/submap/debrisfield/foodstand)
 "i" = (
-/turf/simulated/floor/wood,
+/turf/simulated/floor/wood/airless,
 /area/submap/debrisfield/foodstand)
 "j" = (
 /obj/structure/closet/crate/freezer,
@@ -47,23 +47,23 @@
 /obj/item/reagent_containers/food/snacks/hotdog,
 /obj/item/reagent_containers/food/snacks/cheeseburrito,
 /obj/item/reagent_containers/food/snacks/cheeseburrito,
-/turf/simulated/floor/wood,
+/turf/simulated/floor/wood/airless,
 /area/submap/debrisfield/foodstand)
 "k" = (
 /obj/structure/table/woodentable,
 /obj/machinery/cash_register{
 	dir = 1
 	},
-/turf/simulated/floor/wood,
+/turf/simulated/floor/wood/airless,
 /area/submap/debrisfield/foodstand)
 "l" = (
 /obj/structure/table/woodentable,
 /obj/item/reagent_containers/food/snacks/taco,
-/turf/simulated/floor/wood,
+/turf/simulated/floor/wood/airless,
 /area/submap/debrisfield/foodstand)
 "m" = (
 /obj/structure/table/woodentable,
-/turf/simulated/floor/wood,
+/turf/simulated/floor/wood/airless,
 /area/submap/debrisfield/foodstand)
 
 (1,1,1) = {"

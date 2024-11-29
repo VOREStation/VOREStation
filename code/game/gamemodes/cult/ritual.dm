@@ -315,8 +315,7 @@ var/global/list/rnwords = list("ire","ego","nahlizet","certum","veri","jatkaa","
 
 
 /obj/item/book/tome/attack_self(mob/living/user as mob)
-	usr = user
-	if(!usr.canmove || usr.stat || usr.restrained())
+	if(!user.canmove || user.stat || user.restrained())
 		return
 
 	if(!cultwords["travel"])
@@ -337,11 +336,11 @@ var/global/list/rnwords = list("ire","ego","nahlizet","certum","veri","jatkaa","
 				if("Cancel", null)
 					return
 				if("Read it")
-					if(usr.get_active_hand() != src)
+					if(user.get_active_hand() != src)
 						return
 					user << browse("[tomedat]", "window=Arcane Tome")
 					return
-		if(usr.get_active_hand() != src)
+		if(user.get_active_hand() != src)
 			return
 
 		var/list/dictionary = list (
@@ -386,7 +385,7 @@ var/global/list/rnwords = list("ire","ego","nahlizet","certum","veri","jatkaa","
 
 		var/chosen_rune = null
 
-		if(usr)
+		if(user)
 			chosen_rune = input ("Choose a rune to scribe.") in scribewords
 			if (!chosen_rune)
 				return
@@ -398,7 +397,7 @@ var/global/list/rnwords = list("ire","ego","nahlizet","certum","veri","jatkaa","
 			if (chosen_rune == "teleport other")
 				dictionary[chosen_rune] += input ("Choose a destination word") in english
 
-		if(usr.get_active_hand() != src)
+		if(user.get_active_hand() != src)
 			return
 
 		for (var/mob/V in viewers(src))
@@ -408,7 +407,7 @@ var/global/list/rnwords = list("ire","ego","nahlizet","certum","veri","jatkaa","
 		if(do_after(user, 50))
 			var/area/A = get_area(user)
 			log_and_message_admins("created \an [chosen_rune] rune at \the [A.name] - [user.loc.x]-[user.loc.y]-[user.loc.z].")
-			if(usr.get_active_hand() != src)
+			if(user.get_active_hand() != src)
 				return
 			var/mob/living/carbon/human/H = user
 			var/obj/effect/rune/R = new /obj/effect/rune(user.loc)
@@ -439,7 +438,7 @@ var/global/list/rnwords = list("ire","ego","nahlizet","certum","veri","jatkaa","
 	w_class = ITEMSIZE_SMALL
 	var/cultistsonly = 1
 /obj/item/book/tome/imbued/attack_self(mob/user as mob)
-	if(src.cultistsonly && !iscultist(usr))
+	if(src.cultistsonly && !iscultist(user))
 		return
 	if(!cultwords["travel"])
 		runerandom()
@@ -448,7 +447,7 @@ var/global/list/rnwords = list("ire","ego","nahlizet","certum","veri","jatkaa","
 		if (!istype(user.loc,/turf))
 			to_chat(user, span_notice("You do not have enough space to write a proper rune."))
 		var/list/runes = list("teleport", "itemport", "tome", "armor", "convert", "tear in reality", "emp", "drain", "seer", "raise", "obscure", "reveal", "astral journey", "manifest", "imbue talisman", "sacrifice", "wall", "freedom", "cultsummon", "deafen", "blind", "bloodboil", "communicate", "stun")
-		r = input(usr, "Choose a rune to scribe", "Rune Scribing") in runes // Remains input() for extreme blocking
+		r = input(user, "Choose a rune to scribe", "Rune Scribing") in runes // Remains input() for extreme blocking
 		var/obj/effect/rune/R = new /obj/effect/rune
 		if(istype(user, /mob/living/carbon/human))
 			var/mob/living/carbon/human/H = user
@@ -460,8 +459,8 @@ var/global/list/rnwords = list("ire","ego","nahlizet","certum","veri","jatkaa","
 			if("teleport")
 				var/list/words = list("ire", "ego", "nahlizet", "certum", "veri", "jatkaa", "balaq", "mgar", "karazet", "geeri")
 				var/beacon
-				if(usr)
-					beacon = input(usr, "Select the last rune", "Rune Scribing") in words // Remains input() for extreme blocking
+				if(user)
+					beacon = input(user, "Select the last rune", "Rune Scribing") in words // Remains input() for extreme blocking
 				R.word1=cultwords["travel"]
 				R.word2=cultwords["self"]
 				R.word3=beacon
@@ -470,8 +469,8 @@ var/global/list/rnwords = list("ire","ego","nahlizet","certum","veri","jatkaa","
 			if("itemport")
 				var/list/words = list("ire", "ego", "nahlizet", "certum", "veri", "jatkaa", "balaq", "mgar", "karazet", "geeri")
 				var/beacon
-				if(usr)
-					beacon = input(usr, "Select the last rune", "Rune Scribing") in words // Remains input() for extreme blocking
+				if(user)
+					beacon = input(user, "Select the last rune", "Rune Scribing") in words // Remains input() for extreme blocking
 				R.word1=cultwords["travel"]
 				R.word2=cultwords["other"]
 				R.word3=beacon

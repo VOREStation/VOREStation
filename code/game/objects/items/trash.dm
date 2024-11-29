@@ -115,6 +115,12 @@
 	drop_sound = 'sound/items/drop/food.ogg'
 	pickup_sound = 'sound/items/pickup/food.ogg'
 
+/obj/item/trash/turkeybones
+	name = "turkey bones"
+	icon_state	= "turkeybones"
+	drop_sound = 'sound/items/drop/food.ogg'
+	pickup_sound = 'sound/items/pickup/food.ogg'
+
 /obj/item/trash/pistachios
 	name = "pistachios packet"
 	icon_state = "pistachios_pack"

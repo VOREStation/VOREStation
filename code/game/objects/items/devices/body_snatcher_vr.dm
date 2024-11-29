@@ -17,38 +17,38 @@
 	flags |= NOBLUDGEON //So borgs don't spark.
 
 /obj/item/bodysnatcher/attack(mob/living/M, mob/living/user)
-	usr.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
+	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 	if(ishuman(M) || issilicon(M)) //Allows body swapping with humans, synths, and pAI's/borgs since they all have a mind.
-		if(usr == M)
+		if(user == M)
 			to_chat(user,span_warning(" A message pops up on the LED display, informing you that you that the mind transfer to yourself was successful... Wait, did that even do anything?"))
 			return
 
 		if(!M.mind) //Do they have a mind?
-			to_chat(usr,span_warning("A warning pops up on the device, informing you that [M] appears braindead."))
+			to_chat(user,span_warning("A warning pops up on the device, informing you that [M] appears braindead."))
 			return
 
 		if(!M.allow_mind_transfer)
-			to_chat(usr,span_danger("The target's mind is too complex to be affected!"))
+			to_chat(user,span_danger("The target's mind is too complex to be affected!"))
 			return
 
 		if(ishuman(M))
 			var/mob/living/carbon/human/H = M
-			if(H.resleeve_lock && usr.ckey != H.resleeve_lock)
+			if(H.resleeve_lock && user.ckey != H.resleeve_lock)
 				to_chat(src, span_danger("[H] cannot be impersonated!"))
 				return
 
 		if(M.stat == DEAD) //Are they dead?
-			to_chat(usr,span_warning("A warning pops up on the device, informing you that [M] is dead, and, as such, the mind transfer can not be done."))
+			to_chat(user,span_warning("A warning pops up on the device, informing you that [M] is dead, and, as such, the mind transfer can not be done."))
 			return
 
-		var/choice = tgui_alert(usr,"This will swap your mind with the target's mind. This will result in them controlling your body, and you controlling their body. Continue?","Confirmation",list("Continue","Cancel"))
-		if(choice == "Continue" && usr.get_active_hand() == src && usr.Adjacent(M))
+		var/choice = tgui_alert(user,"This will swap your mind with the target's mind. This will result in them controlling your body, and you controlling their body. Continue?","Confirmation",list("Continue","Cancel"))
+		if(choice == "Continue" && user.get_active_hand() == src && user.Adjacent(M))
 
-			usr.visible_message(span_warning("[usr] pushes the device up their forehead and [M]'s head, the device beginning to let out a series of light beeps!"),span_notice("You begin swap minds with [M]!"))
-			if(do_after(usr,35 SECONDS,M))
-				if(usr.mind && M.mind && M.stat != DEAD && usr.stat != DEAD)
-					log_and_message_admins("[usr.ckey] used a Bodysnatcher to swap bodies with [M.ckey]")
-					to_chat(usr,span_notice("Your minds have been swapped! Have a nice day."))
+			user.visible_message(span_warning("[user] pushes the device up their forehead and [M]'s head, the device beginning to let out a series of light beeps!"),span_notice("You begin swap minds with [M]!"))
+			if(do_after(user,35 SECONDS,M))
+				if(user.mind && M.mind && M.stat != DEAD && user.stat != DEAD)
+					log_and_message_admins("[user.ckey] used a Bodysnatcher to swap bodies with [M.ckey]")
+					to_chat(user,span_notice("Your minds have been swapped! Have a nice day."))
 					var/datum/mind/user_mind = user.mind
 					var/datum/mind/prey_mind = M.mind
 					var/target_ooc_notes = M.ooc_notes
@@ -58,8 +58,8 @@
 					var/user_likes = user.ooc_notes_likes
 					var/user_dislikes = user.ooc_notes_dislikes
 					M.ghostize()
-					usr.ghostize()
-					usr.mind = null
+					user.ghostize()
+					user.mind = null
 					M.mind = null
 					user_mind.current = null
 					prey_mind.current = null
@@ -73,9 +73,9 @@
 					user.ooc_notes = target_ooc_notes
 					user.ooc_notes_likes = target_likes
 					user.ooc_notes_dislikes = target_dislikes
-					usr.sleeping = 10 //Device knocks out both the user and the target.
-					usr.eye_blurry = 30 //Blurry vision while they both get used to their new body's vision
-					usr.slurring = 50 //And let's also have them slurring while they attempt to get used to using their new body.
+					user.sleeping = 10 //Device knocks out both the user and the target.
+					user.eye_blurry = 30 //Blurry vision while they both get used to their new body's vision
+					user.slurring = 50 //And let's also have them slurring while they attempt to get used to using their new body.
 					if(ishuman(M)) //Let's not have the AI slurring, even though its downright hilarious.
 						M.sleeping = 10
 						M.eye_blurry = 30

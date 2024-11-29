@@ -136,19 +136,19 @@
 		data["timeout"] = CLAMP01((timeout - (world.time - start_time) - 1 SECONDS) / (timeout - 1 SECONDS))
 	return data
 
-/datum/tgui_input_number/tgui_act(action, list/params)
+/datum/tgui_input_number/tgui_act(action, list/params, datum/tgui/ui)
 	. = ..()
 	if (.)
 		return
 	switch(action)
 		if("submit")
 			if(!isnum(params["entry"]))
-				CRASH("A non number was input into tgui input number by [usr]")
+				CRASH("A non number was input into tgui input number by [ui.user]")
 			var/choice = round_value ? round(params["entry"]) : params["entry"]
 			if(choice > max_value)
-				CRASH("A number greater than the max value was input into tgui input number by [usr]")
+				CRASH("A number greater than the max value was input into tgui input number by [ui.user]")
 			if(choice < min_value)
-				CRASH("A number less than the min value was input into tgui input number by [usr]")
+				CRASH("A number less than the min value was input into tgui input number by [ui.user]")
 			set_entry(choice)
 			closed = TRUE
 			SStgui.close_uis(src)

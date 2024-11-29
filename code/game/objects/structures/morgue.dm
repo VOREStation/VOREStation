@@ -124,7 +124,7 @@
 		var/t = tgui_input_text(user, "What would you like the label to be?", text("[]", src.name), null)
 		if (user.get_active_hand() != P)
 			return
-		if ((!in_range(src, usr) && src.loc != user))
+		if ((!in_range(src, user) && src.loc != user))
 			return
 		t = sanitizeSafe(t, MAX_NAME_LEN)
 		if (t)
@@ -220,7 +220,7 @@ GLOBAL_LIST_BOILERPLATE(all_crematoriums, /obj/structure/morgue/crematorium)
 
 /obj/structure/morgue/crematorium/attack_hand(mob/user as mob)
 	if (cremating)
-		to_chat(usr, span_warning("It's locked."))
+		to_chat(user, span_warning("It's locked."))
 		return
 	if ((src.connected) && (src.locked == 0))
 		for(var/atom/movable/A as mob|obj in src.connected.loc)
@@ -250,7 +250,7 @@ GLOBAL_LIST_BOILERPLATE(all_crematoriums, /obj/structure/morgue/crematorium)
 		var/t = tgui_input_text(user, "What would you like the label to be?", text("[]", src.name), null)
 		if (user.get_active_hand() != P)
 			return
-		if ((!in_range(src, usr) > 1 && src.loc != user))
+		if ((!in_range(src, user) > 1 && src.loc != user))
 			return
 		t = sanitizeSafe(t, MAX_NAME_LEN)
 		if (t)

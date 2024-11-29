@@ -261,14 +261,14 @@ GLOBAL_LIST_EMPTY(gravity_generators)
 
 	return data
 
-/obj/machinery/gravity_generator/main/tgui_act(action, params)
+/obj/machinery/gravity_generator/main/tgui_act(action, params, datum/tgui/ui)
 	if((..()))
 		return TRUE
 
 	switch(action)
 		if("gentoggle")
 			breaker = !breaker
-			investigate_log("was toggled [breaker ? "<font color='green'>ON</font>" : "<font color='red'>OFF</font>"] by [key_name(usr)].", "gravity")
+			investigate_log("was toggled [breaker ? "<font color='green'>ON</font>" : "<font color='red'>OFF</font>"] by [key_name(ui.user)].", "gravity")
 			set_power()
 			return TOPIC_REFRESH
 

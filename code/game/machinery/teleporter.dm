@@ -65,8 +65,8 @@
 			L = locate("landmark*[C.data]") // use old stype
 
 		if(istype(L, /obj/effect/landmark/) && istype(L.loc, /turf))
-			to_chat(usr, "You insert the coordinates into the machine.")
-			to_chat(usr, "A message flashes across the screen, reminding the user that the nuclear authentication disk is not transportable via insecure means.")
+			to_chat(user, "You insert the coordinates into the machine.")
+			to_chat(user, "A message flashes across the screen, reminding the user that the nuclear authentication disk is not transportable via insecure means.")
 			user.drop_item()
 			qdel(I)
 
@@ -86,7 +86,7 @@
 				teleport_control.locked = L
 				one_time_use = 1
 
-			add_fingerprint(usr)
+			add_fingerprint(user)
 	else
 		..()
 
