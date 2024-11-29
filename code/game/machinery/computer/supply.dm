@@ -179,7 +179,7 @@
 	data["categories"] = all_supply_groups
 	return data
 
-/obj/machinery/computer/supplycomp/tgui_act(action, params)
+/obj/machinery/computer/supplycomp/tgui_act(action, params, datum/tgui/ui)
 	if(..())
 		return TRUE
 	if(!SSsupply)
@@ -221,29 +221,29 @@
 				visible_message(span_warning("[src]'s monitor flashes, \"[reqtime - world.time] seconds remaining until another requisition form may be printed.\""))
 				return FALSE
 
-			var/amount = clamp(tgui_input_number(usr, "How many crates? (0 to 20)", null, null, 20, 0), 0, 20)
+			var/amount = clamp(tgui_input_number(ui.user, "How many crates? (0 to 20)", null, null, 20, 0), 0, 20)
 			if(!amount)
 				return FALSE
 
 			var/timeout = world.time + 600
-			var/reason = sanitize(tgui_input_text(usr, "Reason:","Why do you require this item?",""))
+			var/reason = sanitize(tgui_input_text(ui.user, "Reason:","Why do you require this item?",""))
 			if(world.time > timeout)
-				to_chat(usr, span_warning("Error. Request timed out."))
+				to_chat(ui.user, span_warning("Error. Request timed out."))
 				return FALSE
 			if(!reason)
 				return FALSE
 
 			for(var/i in 1 to amount)
-				SSsupply.create_order(S, usr, reason)
+				SSsupply.create_order(S, ui.user, reason)
 
 			var/idname = "*None Provided*"
 			var/idrank = "*None Provided*"
-			if(ishuman(usr))
-				var/mob/living/carbon/human/H = usr
+			if(ishuman(ui.user))
+				var/mob/living/carbon/human/H = ui.user
 				idname = H.get_authentification_name()
 				idrank = H.get_assignment()
-			else if(issilicon(usr))
-				idname = usr.real_name
+			else if(issilicon(ui.user))
+				idname = ui.user.real_name
 				idrank = "Stationbound synthetic"
 
 			var/obj/item/paper/reqform = new /obj/item/paper(loc)
@@ -280,23 +280,23 @@
 				return FALSE
 
 			var/timeout = world.time + 600
-			var/reason = sanitize(tgui_input_text(usr, "Reason:","Why do you require this item?",""))
+			var/reason = sanitize(tgui_input_text(ui.user, "Reason:","Why do you require this item?",""))
 			if(world.time > timeout)
-				to_chat(usr, span_warning("Error. Request timed out."))
+				to_chat(ui.user, span_warning("Error. Request timed out."))
 				return FALSE
 			if(!reason)
 				return FALSE
 
-			SSsupply.create_order(S, usr, reason)
+			SSsupply.create_order(S, ui.user, reason)
 
 			var/idname = "*None Provided*"
 			var/idrank = "*None Provided*"
-			if(ishuman(usr))
-				var/mob/living/carbon/human/H = usr
+			if(ishuman(ui.user))
+				var/mob/living/carbon/human/H = ui.user
 				idname = H.get_authentification_name()
 				idrank = H.get_assignment()
-			else if(issilicon(usr))
-				idname = usr.real_name
+			else if(issilicon(ui.user))
+				idname = ui.user.real_name
 				idrank = "Stationbound synthetic"
 
 			var/obj/item/paper/reqform = new /obj/item/paper(loc)
@@ -323,7 +323,7 @@
 				return FALSE
 			if(!(authorization & SUP_ACCEPT_ORDERS))
 				return FALSE
-			var/new_val = sanitize(tgui_input_text(usr, params["edit"], "Enter the new value for this field:", params["default"]))
+			var/new_val = sanitize(tgui_input_text(ui.user, params["edit"], "Enter the new value for this field:", params["default"]))
 			if(!new_val)
 				return FALSE
 
@@ -362,7 +362,7 @@
 				return FALSE
 			if(!(authorization & SUP_ACCEPT_ORDERS))
 				return FALSE
-			SSsupply.approve_order(O, usr)
+			SSsupply.approve_order(O, ui.user)
 			. = TRUE
 		if("deny_order")
 			var/datum/supply_order/O = locate(params["ref"])
@@ -370,7 +370,7 @@
 				return FALSE
 			if(!(authorization & SUP_ACCEPT_ORDERS))
 				return FALSE
-			SSsupply.deny_order(O, usr)
+			SSsupply.deny_order(O, ui.user)
 			. = TRUE
 		if("delete_order")
 			var/datum/supply_order/O = locate(params["ref"])
@@ -378,12 +378,12 @@
 				return FALSE
 			if(!(authorization & SUP_ACCEPT_ORDERS))
 				return FALSE
-			SSsupply.delete_order(O, usr)
+			SSsupply.delete_order(O, ui.user)
 			. = TRUE
 		if("clear_all_requests")
 			if(!(authorization & SUP_ACCEPT_ORDERS))
 				return FALSE
-			SSsupply.deny_all_pending(usr)
+			SSsupply.deny_all_pending(ui.user)
 			. = TRUE
 		// Exports
 		if("export_edit_field")
@@ -394,11 +394,11 @@
 			if(!(authorization & SUP_ACCEPT_ORDERS))
 				return FALSE
 			var/list/L = E.contents[params["index"]]
-			var/field = tgui_alert(usr, "Select which field to edit", "Field Choice", list("Name", "Quantity", "Value"))
+			var/field = tgui_alert(ui.user, "Select which field to edit", "Field Choice", list("Name", "Quantity", "Value"))
 			if(!field)
 				return FALSE
 
-			var/new_val = sanitize(tgui_input_text(usr, field, "Enter the new value for this field:", L[lowertext(field)]))
+			var/new_val = sanitize(tgui_input_text(ui.user, field, "Enter the new value for this field:", L[lowertext(field)]))
 			if(!new_val)
 				return
 
@@ -432,7 +432,7 @@
 				return FALSE
 			if(!(authorization & SUP_ACCEPT_ORDERS))
 				return FALSE
-			SSsupply.add_export_item(E, usr)
+			SSsupply.add_export_item(E, ui.user)
 			. = TRUE
 		if("export_edit")
 			var/datum/exported_crate/E = locate(params["ref"])
@@ -441,7 +441,7 @@
 				return FALSE
 			if(!(authorization & SUP_ACCEPT_ORDERS))
 				return FALSE
-			var/new_val = sanitize(tgui_input_text(usr, params["edit"], "Enter the new value for this field:", params["default"]))
+			var/new_val = sanitize(tgui_input_text(ui.user, params["edit"], "Enter the new value for this field:", params["default"]))
 			if(!new_val)
 				return
 
@@ -461,20 +461,20 @@
 				return FALSE
 			if(!(authorization & SUP_ACCEPT_ORDERS))
 				return FALSE
-			SSsupply.delete_export(E, usr)
+			SSsupply.delete_export(E, ui.user)
 			. = TRUE
 		if("send_shuttle")
 			switch(params["mode"])
 				if("send_away")
 					if (shuttle.forbidden_atoms_check())
-						to_chat(usr, span_warning("For safety reasons the automated supply shuttle cannot transport live organisms, classified nuclear weaponry or homing beacons."))
+						to_chat(ui.user, span_warning("For safety reasons the automated supply shuttle cannot transport live organisms, classified nuclear weaponry or homing beacons."))
 					else
 						shuttle.launch(src)
-						to_chat(usr, span_notice("Initiating launch sequence."))
+						to_chat(ui.user, span_notice("Initiating launch sequence."))
 
 				if("send_to_station")
 					shuttle.launch(src)
-					to_chat(usr, span_notice("The supply shuttle has been called and will arrive in approximately [round(SSsupply.movetime/600,1)] minutes."))
+					to_chat(ui.user, span_notice("The supply shuttle has been called and will arrive in approximately [round(SSsupply.movetime/600,1)] minutes."))
 
 				if("cancel_shuttle")
 					shuttle.cancel_launch(src)
@@ -483,7 +483,7 @@
 					shuttle.force_launch(src)
 			. = TRUE
 
-	add_fingerprint(usr)
+	add_fingerprint(ui.user)
 
 /obj/machinery/computer/supplycomp/proc/post_signal(var/command)
 	var/datum/radio_frequency/frequency = radio_controller.return_frequency(1435)

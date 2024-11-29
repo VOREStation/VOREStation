@@ -39,7 +39,7 @@
 	if(istype(user, /mob/living/silicon))
 		return attack_hand(user)
 	else // trying to unlock the interface
-		if(allowed(usr))
+		if(allowed(user))
 			locked = !locked
 			to_chat(user, "You [ locked ? "lock" : "unlock"] the device.")
 			if(locked)
@@ -48,7 +48,7 @@
 					user << browse(null, "window=ai_slipper")
 			else
 				if(user.machine==src)
-					attack_hand(usr)
+					attack_hand(user)
 		else
 			to_chat(user, span_warning("Access denied."))
 			return

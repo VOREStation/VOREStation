@@ -101,7 +101,7 @@
 /obj/item/dnainjector/attack(mob/M as mob, mob/user as mob)
 	if (!istype(M, /mob))
 		return
-	if (!usr.IsAdvancedToolUser())
+	if (!user.IsAdvancedToolUser())
 		return
 	if(inuse)
 		return 0

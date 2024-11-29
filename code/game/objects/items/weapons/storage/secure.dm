@@ -52,7 +52,7 @@
 		if (istype(W, /obj/item/multitool) && (src.open == 1)&& (!src.l_hacking))
 			user.show_message(span_notice("Now attempting to reset internal memory, please hold."), 1)
 			src.l_hacking = 1
-			if (do_after(usr, 100))
+			if (do_after(user, 100))
 				if (prob(40))
 					src.l_setshort = 1
 					src.l_set = 0
@@ -84,7 +84,7 @@
 	if (isliving(user) && Adjacent(user) && (src.locked == 1))
 		to_chat(user, span_warning("[src] is locked and cannot be opened!"))
 	else if (isliving(user) && Adjacent(user) && (!src.locked))
-		src.open(usr)
+		src.open(user)
 	else
 		for(var/mob/M in range(1))
 			if (M.s_active == src)
@@ -110,7 +110,7 @@
 	data["l_set"] = l_set
 	return data
 
-/obj/item/storage/secure/tgui_act(action, params)
+/obj/item/storage/secure/tgui_act(action, params, datum/tgui/ui)
 	if(..())
 		return TRUE
 	switch (action)
@@ -132,12 +132,12 @@
 					src.locked = 1
 					cut_overlays()
 					src.code = null
-					src.close(usr)
+					src.close(ui.user)
 				else
 					src.code += text("[]", digit)
 					if (length(src.code) > 5)
 						src.code = "ERROR"
-	src.add_fingerprint(usr)
+	src.add_fingerprint(ui.user)
 	. = TRUE
 	return
 
@@ -172,7 +172,7 @@
 	if ((src.loc == user) && (src.locked == 1))
 		to_chat(user, span_warning("[src] is locked and cannot be opened!"))
 	else if ((src.loc == user) && (!src.locked))
-		src.open(usr)
+		src.open(user)
 	else
 		..()
 		for(var/mob/M in range(1))

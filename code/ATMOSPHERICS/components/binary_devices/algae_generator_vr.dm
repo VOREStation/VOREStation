@@ -206,10 +206,10 @@
 
 	return data
 
-/obj/machinery/atmospherics/binary/algae_farm/tgui_act(action, params)
+/obj/machinery/atmospherics/binary/algae_farm/tgui_act(action, params, datum/tgui/ui)
 	if(..())
 		return TRUE
-	add_fingerprint(usr)
+	add_fingerprint(ui.user)
 
 	switch(action)
 		if("toggle")

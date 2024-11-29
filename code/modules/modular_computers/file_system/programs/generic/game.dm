@@ -105,7 +105,7 @@
 /**
  * This is tgui's replacement for Topic(). It handles any user input from the UI.
  */
-/datum/computer_file/program/game/tgui_act(action, list/params)
+/datum/computer_file/program/game/tgui_act(action, list/params, datum/tgui/ui)
 	if(..()) // Always call parent in tgui_act, it handles making sure the user is allowed to interact with the UI.
 		return TRUE
 
@@ -158,20 +158,20 @@
 			return TRUE
 		if("Dispense_Tickets")
 			if(!printer)
-				to_chat(usr, span_notice("Hardware error: A printer is required to redeem tickets."))
+				to_chat(ui.user, span_notice("Hardware error: A printer is required to redeem tickets."))
 				return
 			if(printer.stored_paper <= 0)
-				to_chat(usr, span_notice("Hardware error: Printer is out of paper."))
+				to_chat(ui.user, span_notice("Hardware error: Printer is out of paper."))
 				return
 			else
 				computer.visible_message(span_infoplain(span_bold("\The [computer]") + " prints out paper."))
 				if(ticket_count >= 1)
 					new /obj/item/stack/arcadeticket((get_turf(computer)), 1)
-					to_chat(usr, span_notice("[src] dispenses a ticket!"))
+					to_chat(ui.user, span_notice("[src] dispenses a ticket!"))
 					ticket_count -= 1
 					printer.stored_paper -= 1
 				else
-					to_chat(usr, span_notice("You don't have any stored tickets!"))
+					to_chat(ui.user, span_notice("You don't have any stored tickets!"))
 				return TRUE
 		if("Start_Game")
 			game_active = TRUE

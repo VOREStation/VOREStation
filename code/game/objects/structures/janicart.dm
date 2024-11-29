@@ -151,7 +151,7 @@ GLOBAL_LIST_BOILERPLATE(all_janitorial_carts, /obj/structure/janitorialcart)
 		return 1
 
 	else if (istype(I, /obj/item/reagent_containers/glass/bucket) && mybucket)
-		I.afterattack(mybucket, usr, 1)
+		I.afterattack(mybucket, user, 1)
 		update_icon()
 		return 1
 
@@ -189,12 +189,12 @@ GLOBAL_LIST_BOILERPLATE(all_janitorial_carts, /obj/structure/janitorialcart)
 //Altclick the cart with a reagent container to pour things into the bucket without putting the bottle in trash
 /obj/structure/janitorialcart/AltClick(mob/living/user)
 	if(user.incapacitated() || !Adjacent(user))	return
-	var/obj/I = usr.get_active_hand()
+	var/obj/I = user.get_active_hand()
 	if(istype(I, /obj/item/mop))
 		equip_janicart_item(user, I)
 	else if(istype(I, /obj/item/reagent_containers) && mybucket)
 		var/obj/item/reagent_containers/C = I
-		C.afterattack(mybucket, usr, 1)
+		C.afterattack(mybucket, user, 1)
 		update_icon()
 
 
@@ -226,62 +226,62 @@ GLOBAL_LIST_BOILERPLATE(all_janitorial_carts, /obj/structure/janitorialcart)
 	if(..())
 		return TRUE
 
-	var/obj/item/I = usr.get_active_hand()
+	var/obj/item/I = ui.user.get_active_hand()
 
 	switch(action)
 		if("bag")
 			if(mybag)
-				usr.put_in_hands(mybag)
-				to_chat(usr, span_notice("You take [mybag] from [src]."))
+				ui.user.put_in_hands(mybag)
+				to_chat(ui.user, span_notice("You take [mybag] from [src]."))
 				mybag = null
 				nullTguiIcon("mybag")
 			else if(is_type_in_typecache(I, equippable_item_whitelist))
-				equip_janicart_item(usr, I)
+				equip_janicart_item(ui.user, I)
 		if("mop")
 			if(mymop)
-				usr.put_in_hands(mymop)
-				to_chat(usr, span_notice("You take [mymop] from [src]."))
+				ui.user.put_in_hands(mymop)
+				to_chat(ui.user, span_notice("You take [mymop] from [src]."))
 				mymop = null
 				nullTguiIcon("mymop")
 			else if(is_type_in_typecache(I, equippable_item_whitelist))
-				equip_janicart_item(usr, I)
+				equip_janicart_item(ui.user, I)
 		if("spray")
 			if(myspray)
-				usr.put_in_hands(myspray)
-				to_chat(usr, span_notice("You take [myspray] from [src]."))
+				ui.user.put_in_hands(myspray)
+				to_chat(ui.user, span_notice("You take [myspray] from [src]."))
 				myspray = null
 				nullTguiIcon("myspray")
 			else if(is_type_in_typecache(I, equippable_item_whitelist))
-				equip_janicart_item(usr, I)
+				equip_janicart_item(ui.user, I)
 		if("replacer")
 			if(myreplacer)
-				usr.put_in_hands(myreplacer)
-				to_chat(usr, span_notice("You take [myreplacer] from [src]."))
+				ui.user.put_in_hands(myreplacer)
+				to_chat(ui.user, span_notice("You take [myreplacer] from [src]."))
 				myreplacer = null
 				nullTguiIcon("myreplacer")
 			else if(is_type_in_typecache(I, equippable_item_whitelist))
-				equip_janicart_item(usr, I)
+				equip_janicart_item(ui.user, I)
 		if("sign")
 			if(istype(I, /obj/item/clothing/suit/caution) && signs < 4)
-				equip_janicart_item(usr, I)
+				equip_janicart_item(ui.user, I)
 			else if(signs)
 				var/obj/item/clothing/suit/caution/sign = locate() in src
 				if(sign)
-					usr.put_in_hands(sign)
-					to_chat(usr, span_notice("You take \a [sign] from [src]."))
+					ui.user.put_in_hands(sign)
+					to_chat(ui.user, span_notice("You take \a [sign] from [src]."))
 					signs--
 					if(!signs)
 						nullTguiIcon("signs")
 			else
-				to_chat(usr, span_notice("[src] doesn't have any signs left."))
+				to_chat(ui.user, span_notice("[src] doesn't have any signs left."))
 		if("bucket")
 			if(mybucket)
-				mybucket.forceMove(get_turf(usr))
-				to_chat(usr, span_notice("You unmount [mybucket] from [src]."))
+				mybucket.forceMove(get_turf(ui.user))
+				to_chat(ui.user, span_notice("You unmount [mybucket] from [src]."))
 				mybucket = null
 				nullTguiIcon("mybucket")
 			else
-				to_chat(usr, span_notice("((Drag and drop a mop bucket onto [src] to equip it.))"))
+				to_chat(ui.user, span_notice("((Drag and drop a mop bucket onto [src] to equip it.))"))
 				return FALSE
 		else
 			return FALSE

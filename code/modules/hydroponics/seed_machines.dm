@@ -175,8 +175,8 @@
 	if(..())
 		return TRUE
 
-	usr.set_machine(src)
-	add_fingerprint(usr)
+	ui.user.set_machine(src)
+	add_fingerprint(ui.user)
 
 	switch(action)
 		if("eject_packet")

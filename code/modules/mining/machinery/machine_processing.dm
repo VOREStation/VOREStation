@@ -90,17 +90,17 @@
 
 	return data
 
-/obj/machinery/mineral/processing_unit_console/tgui_act(action, list/params)
+/obj/machinery/mineral/processing_unit_console/tgui_act(action, list/params, datum/tgui/ui)
 	if(..())
 		return TRUE
 
-	add_fingerprint(usr)
+	add_fingerprint(ui.user)
 	switch(action)
 		if("toggleSmelting")
 			var/ore = params["ore"]
 			var/new_setting = params["set"]
 			if(new_setting == null)
-				new_setting = tgui_input_list(usr, "What setting do you wish to use for processing [ore]]?", "Process Setting", list("Smelting","Compressing","Alloying","Nothing"))
+				new_setting = tgui_input_list(ui.user, "What setting do you wish to use for processing [ore]]?", "Process Setting", list("Smelting","Compressing","Alloying","Nothing"))
 				if(!new_setting)
 					return
 				switch(new_setting)
@@ -119,7 +119,7 @@
 		if("logoff")
 			if(!inserted_id)
 				return
-			usr.put_in_hands(inserted_id)
+			ui.user.put_in_hands(inserted_id)
 			inserted_id = null
 			. = TRUE
 		if("claim")
@@ -128,16 +128,16 @@
 					inserted_id.mining_points += machine.points
 					machine.points = 0
 				else
-					to_chat(usr, span_warning("Required access not found."))
+					to_chat(ui.user, span_warning("Required access not found."))
 			. = TRUE
 		if("insert")
-			var/obj/item/card/id/I = usr.get_active_hand()
+			var/obj/item/card/id/I = ui.user.get_active_hand()
 			if(istype(I))
-				usr.drop_item()
+				ui.user.drop_item()
 				I.forceMove(src)
 				inserted_id = I
 			else
-				to_chat(usr, span_warning("No valid ID."))
+				to_chat(ui.user, span_warning("No valid ID."))
 			. = TRUE
 		if("speed_toggle")
 			machine.toggle_speed()

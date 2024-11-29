@@ -93,7 +93,7 @@ log transactions
 
 		var/obj/item/card/id/idcard = I
 		if(!held_card)
-			usr.drop_item()
+			user.drop_item()
 			idcard.loc = src
 			held_card = idcard
 			if(authenticated_account && held_card.associated_account_number != authenticated_account.account_number)
@@ -187,20 +187,20 @@ log transactions
 		// This is also a logout
 		if("insert_card")
 			if(held_card)
-				release_held_id(usr)
+				release_held_id(ui.user)
 			else
 				if(emagged > 0)
-					to_chat(usr, span_boldwarning("[icon2html(src, usr.client)] The ATM card reader rejected your ID because this machine has been sabotaged!"))
+					to_chat(ui.user, span_boldwarning("[icon2html(src, ui.user.client)] The ATM card reader rejected your ID because this machine has been sabotaged!"))
 				else
-					var/obj/item/I = usr.get_active_hand()
+					var/obj/item/I = ui.user.get_active_hand()
 					if(istype(I, /obj/item/card/id))
-						usr.drop_item(src)
+						ui.user.drop_item(src)
 						held_card = I
 			. = TRUE
 
 		if("logout")
 			if(held_card)
-				release_held_id(usr)
+				release_held_id(ui.user)
 			authenticated_account = null
 			. = TRUE
 
@@ -294,7 +294,7 @@ log transactions
 
 			// check if they have low security enabled
 			if(!tried_account_num)
-				scan_user(usr)
+				scan_user(ui.user)
 			else
 				authenticated_account = attempt_account_access(tried_account_num, tried_pin, held_card && held_card.associated_account_number == tried_account_num ? 2 : 1)
 
@@ -317,11 +317,11 @@ log transactions
 							T.time = stationtime2text()
 							failed_account.transaction_log.Add(T)
 					else
-						to_chat(usr, span_warning("[icon2html(src, usr.client)] Incorrect pin/account combination entered, [max_pin_attempts - number_incorrect_tries] attempts remaining."))
+						to_chat(ui.user, span_warning("[icon2html(src, ui.user.client)] Incorrect pin/account combination entered, [max_pin_attempts - number_incorrect_tries] attempts remaining."))
 						previous_account_number = tried_account_num
 						playsound(src, 'sound/machines/buzz-sigh.ogg', 50, 1)
 				else
-					to_chat(usr, span_warning("[icon2html(src, usr.client)] incorrect pin/account combination entered."))
+					to_chat(ui.user, span_warning("[icon2html(src, ui.user.client)] incorrect pin/account combination entered."))
 					number_incorrect_tries = 0
 			else
 				playsound(src, 'sound/machines/twobeep.ogg', 50, 1)
@@ -337,7 +337,7 @@ log transactions
 				T.time = stationtime2text()
 				authenticated_account.transaction_log.Add(T)
 
-				to_chat(usr, span_notice("[icon2html(src, usr.client)] Access granted. Welcome user '[authenticated_account.owner_name].'"))
+				to_chat(ui.user, span_notice("[icon2html(src, ui.user.client)] Access granted. Welcome user '[authenticated_account.owner_name].'"))
 
 			previous_account_number = tried_account_num
 			. = TRUE
@@ -348,12 +348,12 @@ log transactions
 			var/transfer_amount = text2num(params["funds_amount"])
 			transfer_amount = round(transfer_amount, 0.01)
 			if(transfer_amount <= 0)
-				tgui_alert_async(usr, "That is not a valid amount.")
+				tgui_alert_async(ui.user, "That is not a valid amount.")
 			else if(transfer_amount <= authenticated_account.money)
 				var/target_account_number = text2num(params["target_acc_number"])
 				var/transfer_purpose = params["purpose"]
 				if(charge_to_account(target_account_number, authenticated_account.owner_name, transfer_purpose, machine_id, transfer_amount))
-					to_chat(usr, "[icon2html(src, usr.client)]" + span_info("Funds transfer successful."))
+					to_chat(ui.user, "[icon2html(src, ui.user.client)]" + span_info("Funds transfer successful."))
 					authenticated_account.money -= transfer_amount
 
 					//create an entry in the account transaction log
@@ -366,17 +366,17 @@ log transactions
 					T.amount = "([transfer_amount])"
 					authenticated_account.transaction_log.Add(T)
 				else
-					to_chat(usr, "[icon2html(src, usr.client)]" + span_warning("Funds transfer failed."))
+					to_chat(ui.user, "[icon2html(src, ui.user.client)]" + span_warning("Funds transfer failed."))
 
 			else
-				to_chat(usr, "[icon2html(src, usr.client)]" + span_warning("You don't have enough funds to do that!"))
+				to_chat(ui.user, "[icon2html(src, ui.user.client)]" + span_warning("You don't have enough funds to do that!"))
 			. = TRUE
 
 		if("e_withdrawal")
 			var/amount = max(text2num(params["funds_amount"]),0)
 			amount = round(amount, 0.01)
 			if(amount <= 0)
-				tgui_alert_async(usr, "That is not a valid amount.")
+				tgui_alert_async(ui.user, "That is not a valid amount.")
 				return
 
 			if(!authenticated_account)
@@ -389,7 +389,7 @@ log transactions
 				authenticated_account.money -= amount
 
 				//	spawn_money(amount,src.loc)
-				spawn_ewallet(amount,src.loc,usr)
+				spawn_ewallet(amount,src.loc,ui.user)
 
 				//create an entry in the account transaction log
 				var/datum/transaction/T = new()
@@ -401,14 +401,14 @@ log transactions
 				T.time = stationtime2text()
 				authenticated_account.transaction_log.Add(T)
 			else
-				to_chat(usr, "[icon2html(src, usr.client)]" + span_warning("You don't have enough funds to do that!"))
+				to_chat(ui.user, "[icon2html(src, ui.user.client)]" + span_warning("You don't have enough funds to do that!"))
 			. = TRUE
 
 		if("withdrawal")
 			var/amount = max(text2num(params["funds_amount"]),0)
 			amount = round(amount, 0.01)
 			if(amount <= 0)
-				tgui_alert_async(usr, "That is not a valid amount.")
+				tgui_alert_async(ui.user, "That is not a valid amount.")
 				return
 
 			if(!authenticated_account)
@@ -420,7 +420,7 @@ log transactions
 				//remove the money
 				authenticated_account.money -= amount
 
-				spawn_money(amount,src.loc,usr)
+				spawn_money(amount,src.loc,ui.user)
 
 				//create an entry in the account transaction log
 				var/datum/transaction/T = new()
@@ -432,7 +432,7 @@ log transactions
 				T.time = stationtime2text()
 				authenticated_account.transaction_log.Add(T)
 			else
-				to_chat(usr, "[icon2html(src, usr.client)]" + span_warning("You don't have enough funds to do that!"))
+				to_chat(ui.user, "[icon2html(src, ui.user.client)]" + span_warning("You don't have enough funds to do that!"))
 			. = TRUE
 
 	if(.)

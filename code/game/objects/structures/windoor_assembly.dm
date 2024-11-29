@@ -187,12 +187,12 @@
 			//Crowbar to complete the assembly, Step 7 complete.
 			else if(W.has_tool_quality(TOOL_CROWBAR))
 				if(!src.electronics)
-					to_chat(usr,span_warning("The assembly is missing electronics."))
+					to_chat(user,span_warning("The assembly is missing electronics."))
 					return
 				if(src.electronics && istype(src.electronics, /obj/item/circuitboard/broken))
-					to_chat(usr,span_warning("The assembly has broken airlock electronics."))
+					to_chat(user,span_warning("The assembly has broken airlock electronics."))
 					return
-				usr << browse(null, "window=windoor_access") //Not sure what this actually does... -Ner
+				user << browse(null, "window=windoor_access") //Not sure what this actually does... -Ner
 				playsound(src, W.usesound, 100, 1)
 				user.visible_message("[user] pries the windoor into the frame.", "You start prying the windoor into the frame.")
 

@@ -28,7 +28,7 @@
 	if (user.stat)
 		return
 	if (!user.IsAdvancedToolUser())
-		to_chat(usr, span_warning("You don't have the dexterity to do this!"))
+		to_chat(user, span_warning("You don't have the dexterity to do this!"))
 		return
 
 	analyze_gases(src, user)

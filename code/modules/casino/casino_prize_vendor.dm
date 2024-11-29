@@ -198,7 +198,7 @@
 /obj/machinery/casino_prize_dispenser/attackby(obj/item/W as obj, mob/user as mob)
 	if(currently_vending)
 		if(istype(W, /obj/item/spacecasinocash))
-			to_chat(usr, span_warning("Please select prize on display with sufficient amount of chips."))
+			to_chat(user, span_warning("Please select prize on display with sufficient amount of chips."))
 		else
 			SStgui.update_uis(src)
 			return // don't smack that machine with your 2 chips
@@ -211,15 +211,15 @@
 /obj/machinery/casino_prize_dispenser/proc/pay_with_chips(var/obj/item/spacecasinocash/cashmoney, mob/user, var/price)
 	//"cashmoney_:[cashmoney] user:[user] currently_vending:[currently_vending]"
 	if(price > cashmoney.worth)
-		to_chat(usr, "[icon2html(cashmoney, user.client)] " + span_warning("That is not enough chips."))
+		to_chat(user, "[icon2html(cashmoney, user.client)] " + span_warning("That is not enough chips."))
 		return 0
 
 	if(istype(cashmoney, /obj/item/spacecasinocash))
-		visible_message(span_info("\The [usr] inserts some chips into \the [src]."))
+		visible_message(span_info("\The [user] inserts some chips into \the [src]."))
 		cashmoney.worth -= price
 
 		if(cashmoney.worth <= 0)
-			usr.drop_from_inventory(cashmoney)
+			user.drop_from_inventory(cashmoney)
 			qdel(cashmoney)
 		else
 			cashmoney.update_icon()
@@ -249,10 +249,10 @@
 		ui = new(user, src, "CasinoPrizeDispenser", name)
 		ui.open()
 
-/obj/machinery/casino_prize_dispenser/tgui_act(action, params)
+/obj/machinery/casino_prize_dispenser/tgui_act(action, params, datum/tgui/ui)
 	if(stat & (BROKEN|NOPOWER))
 		return
-	if(usr.stat || usr.restrained())
+	if(ui.user.stat || ui.user.restrained())
 		return
 	if(..())
 		return TRUE
@@ -283,36 +283,36 @@
 				if("event")
 					restriction_check = category_event
 				else
-					to_chat(usr, span_warning("Prize checkout error has occurred, purchase cancelled."))
+					to_chat(ui.user, span_warning("Prize checkout error has occurred, purchase cancelled."))
 					return FALSE
 
 			if(restriction_check < 1)
-				to_chat(usr, span_warning("[name] is restricted, this prize can't be bought."))
+				to_chat(ui.user, span_warning("[name] is restricted, this prize can't be bought."))
 				return FALSE
 			if(restriction_check > 1)
 				item_given = TRUE
 
 			if(price <= 0 && item_given == TRUE)
-				vend(bi, usr)
+				vend(bi, ui.user)
 				return TRUE
 
 			currently_vending = bi
 
-			if(istype(usr.get_active_hand(), /obj/item/spacecasinocash))
-				var/obj/item/spacecasinocash/cash = usr.get_active_hand()
-				paid = pay_with_chips(cash, usr, price)
+			if(istype(ui.user.get_active_hand(), /obj/item/spacecasinocash))
+				var/obj/item/spacecasinocash/cash = ui.user.get_active_hand()
+				paid = pay_with_chips(cash, ui.user, price)
 			else
-				to_chat(usr, span_warning("Payment failure: Improper payment method, please provide chips."))
+				to_chat(ui.user, span_warning("Payment failure: Improper payment method, please provide chips."))
 				return TRUE // we set this because they shouldn't even be able to get this far, and we want the UI to update.
 			if(paid)
 				if(item_given == TRUE)
-					vend(bi, usr)
+					vend(bi, ui.user)
 
 				speak("Thank you for your purchase, your [bi] has been logged.")
-				do_logging(currently_vending, usr, bi)
+				do_logging(currently_vending, ui.user, bi)
 				. = TRUE
 			else
-				to_chat(usr, span_warning("Payment failure: unable to process payment."))
+				to_chat(ui.user, span_warning("Payment failure: unable to process payment."))
 
 /obj/machinery/casino_prize_dispenser/proc/vend(datum/data/casino_prize/bi, mob/user)
 	SStgui.update_uis(src)

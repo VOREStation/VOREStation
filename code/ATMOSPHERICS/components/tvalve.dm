@@ -161,7 +161,7 @@
 	return
 
 /obj/machinery/atmospherics/tvalve/attack_hand(mob/user as mob)
-	src.add_fingerprint(usr)
+	src.add_fingerprint(user)
 	update_icon(1)
 	sleep(10)
 	if (src.state)

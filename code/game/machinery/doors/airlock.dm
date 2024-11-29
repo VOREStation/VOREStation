@@ -660,7 +660,7 @@ About the new airlock wires panel:
 
 
 /obj/machinery/door/airlock/bumpopen(mob/living/user as mob) //Airlocks now zap you when you 'bump' them open when they're electrified. --NeoFite
-	if(!issilicon(usr))
+	if(!issilicon(user))
 		if(src.isElectrified())
 			if(!src.justzap)
 				if(src.shock(user, 100))
@@ -984,7 +984,7 @@ About the new airlock wires panel:
 	return ..()
 
 /obj/machinery/door/airlock/attack_hand(mob/user as mob)
-	if(!istype(usr, /mob/living/silicon))
+	if(!istype(user, /mob/living/silicon))
 		if(src.isElectrified())
 			if(src.shock(user, 100))
 				return
@@ -1046,10 +1046,10 @@ About the new airlock wires panel:
 	src.hold_open = user
 	src.attack_hand(user)
 
-/obj/machinery/door/airlock/tgui_act(action, params)
+/obj/machinery/door/airlock/tgui_act(action, params, datum/tgui/ui)
 	if(..())
 		return TRUE
-	if(!user_allowed(usr))
+	if(!user_allowed(ui.user))
 		return TRUE
 
 	switch(action)
@@ -1058,14 +1058,14 @@ About the new airlock wires panel:
 				loseMainPower()
 				update_icon()
 			else
-				to_chat(usr, span_warning("Main power is already offline."))
+				to_chat(ui.user, span_warning("Main power is already offline."))
 			. = TRUE
 		if("disrupt-backup")
 			if(!backup_power_lost_until)
 				loseBackupPower()
 				update_icon()
 			else
-				to_chat(usr, span_warning("Backup power is already offline."))
+				to_chat(ui.user, span_warning("Backup power is already offline."))
 			. = TRUE
 		if("shock-restore")
 			electrify(0, 1)
@@ -1080,14 +1080,14 @@ About the new airlock wires panel:
 			set_idscan(aiDisabledIdScanner, 1)
 			. = TRUE
 		// if("emergency-toggle")
-		// 	toggle_emergency(usr)
+		// 	toggle_emergency(ui.user)
 		// 	. = TRUE
 		if("bolt-toggle")
-			toggle_bolt(usr)
+			toggle_bolt(ui.user)
 			. = TRUE
 		if("light-toggle")
 			if(wires.is_cut(WIRE_BOLT_LIGHT))
-				to_chat(usr, "The bolt lights wire is cut - The door bolt lights are permanently disabled.")
+				to_chat(ui.user, "The bolt lights wire is cut - The door bolt lights are permanently disabled.")
 				return
 			lights = !lights
 			update_icon()
@@ -1097,12 +1097,12 @@ About the new airlock wires panel:
 			. = TRUE
 		if("speed-toggle")
 			if(wires.is_cut(WIRE_SPEED))
-				to_chat(usr, "The timing wire is cut - Cannot alter timing.")
+				to_chat(ui.user, "The timing wire is cut - Cannot alter timing.")
 				return
 			normalspeed = !normalspeed
 			. = TRUE
 		if("open-close")
-			user_toggle_open(usr)
+			user_toggle_open(ui.user)
 			. = TRUE
 
 	update_icon()
@@ -1158,7 +1158,7 @@ About the new airlock wires panel:
 
 /obj/machinery/door/airlock/attackby(obj/item/C, mob/user as mob)
 	//to_world("airlock attackby src [src] obj [C] mob [user]")
-	if(!istype(usr, /mob/living/silicon))
+	if(!istype(user, /mob/living/silicon))
 		if(src.isElectrified())
 			if(src.shock(user, 75))
 				return
@@ -1189,7 +1189,7 @@ About the new airlock wires panel:
 	else if(C.has_tool_quality(TOOL_SCREWDRIVER))
 		if (src.p_open)
 			if (stat & BROKEN)
-				to_chat(usr, span_warning("The panel is broken and cannot be closed."))
+				to_chat(user, span_warning("The panel is broken and cannot be closed."))
 			else
 				src.p_open = FALSE
 				playsound(src, C.usesound, 50, 1)

@@ -33,7 +33,7 @@
 				else
 					switch(text2num(params["option"]))
 						if(1)		// Configure pAI device
-							pda.pai.attack_self(usr)
+							pda.pai.attack_self(ui.user)
 						if(2)		// Eject pAI device
 							var/turf/T = get_turf_or_move(pda.loc)
 							if(T)
@@ -72,105 +72,105 @@
 		return TRUE
 	switch(action)
 		if("Edit")
-			var/n = tgui_input_text(usr, "Please enter message", name, notehtml, multiline = TRUE, prevent_enter = TRUE)
-			if(pda.loc == usr)
+			var/n = tgui_input_text(ui.user, "Please enter message", name, notehtml, multiline = TRUE, prevent_enter = TRUE)
+			if(pda.loc == ui.user)
 				note = adminscrub(n)
 				notehtml = html_decode(note)
 				note = replacetext(note, "\n", "<br>")
 			else
-				pda.close(usr)
+				pda.close(ui.user)
 			return TRUE
 		if("Titleset")
-			var/n = tgui_input_text(usr, "Please enter title", name, notetitle, multiline = FALSE)
-			if(pda.loc == usr)
+			var/n = tgui_input_text(ui.user, "Please enter title", name, notetitle, multiline = FALSE)
+			if(pda.loc == ui.user)
 				notetitle = adminscrub(n)
 			else
-				pda.close(usr)
+				pda.close(ui.user)
 			return TRUE
 		if("Print")
-			if(pda.loc == usr)
-				printnote()
+			if(pda.loc == ui.user)
+				printnote(ui.user)
 			else
-				pda.close(usr)
+				pda.close(ui.user)
 			return TRUE
 		// dumb way to do this, but i don't know how to easily parse this without a lot of silly code outside the switch!
 		if("Note1")
-			if(pda.loc == usr)
+			if(pda.loc == ui.user)
 				changetonote(1)
 			else
-				pda.close(usr)
+				pda.close(ui.user)
 			return TRUE
 		if("Note2")
-			if(pda.loc == usr)
+			if(pda.loc == ui.user)
 				changetonote(2)
 			else
-				pda.close(usr)
+				pda.close(ui.user)
 			return TRUE
 		if("Note3")
-			if(pda.loc == usr)
+			if(pda.loc == ui.user)
 				changetonote(3)
 			else
-				pda.close(usr)
+				pda.close(ui.user)
 			return TRUE
 		if("Note4")
-			if(pda.loc == usr)
+			if(pda.loc == ui.user)
 				changetonote(4)
 			else
-				pda.close(usr)
+				pda.close(ui.user)
 			return TRUE
 		if("Note5")
-			if(pda.loc == usr)
+			if(pda.loc == ui.user)
 				changetonote(5)
 			else
-				pda.close(usr)
+				pda.close(ui.user)
 			return TRUE
 		if("Note6")
-			if(pda.loc == usr)
+			if(pda.loc == ui.user)
 				changetonote(6)
 			else
-				pda.close(usr)
+				pda.close(ui.user)
 			return TRUE
 		if("Note7")
-			if(pda.loc == usr)
+			if(pda.loc == ui.user)
 				changetonote(7)
 			else
-				pda.close(usr)
+				pda.close(ui.user)
 			return TRUE
 		if("Note8")
-			if(pda.loc == usr)
+			if(pda.loc == ui.user)
 				changetonote(8)
 			else
-				pda.close(usr)
+				pda.close(ui.user)
 			return TRUE
 		if("Note9")
-			if(pda.loc == usr)
+			if(pda.loc == ui.user)
 				changetonote(9)
 			else
-				pda.close(usr)
+				pda.close(ui.user)
 			return TRUE
 		if("Note10")
-			if(pda.loc == usr)
+			if(pda.loc == ui.user)
 				changetonote(10)
 			else
-				pda.close(usr)
+				pda.close(ui.user)
 			return TRUE
 		if("Note11")
-			if(pda.loc == usr)
+			if(pda.loc == ui.user)
 				changetonote(11)
 			else
-				pda.close(usr)
+				pda.close(ui.user)
 			return TRUE
 		if("Note12")
-			if(pda.loc == usr)
+			if(pda.loc == ui.user)
 				changetonote(12)
 			else
-				pda.close(usr)
+				pda.close(ui.user)
 			return TRUE
 
-/datum/data/pda/app/notekeeper/proc/printnote()
+/datum/data/pda/app/notekeeper/proc/printnote(mob/user)
 	// get active hand of person holding PDA, and print the page to the paper in it
-	if(istype( usr, /mob/living/carbon/human ))
-		var/mob/living/carbon/human/H = usr
+	if(istype( user, /mob/living/carbon/human ))
+		var/mob/living/carbon/human/H = user
 		var/obj/item/I = H.get_active_hand()
 		if(istype(I,/obj/item/paper))
 			var/obj/item/paper/P = I
@@ -178,12 +178,12 @@
 				var/titlenote = "Note [alphabet_uppercase[currentnote]]"
 				if(!isnull(notetitle) && notetitle != "")
 					titlenote = notetitle
-				to_chat(usr, span_notice("Successfully printed [titlenote]!"))
+				to_chat(user, span_notice("Successfully printed [titlenote]!"))
 				P.set_content( pencode2html(note), titlenote)
 			else
-				to_chat(usr, span_notice("You can only print to empty paper!"))
+				to_chat(user, span_notice("You can only print to empty paper!"))
 		else
-			to_chat(usr, span_notice("You must be holding paper for the pda to print to!"))
+			to_chat(user, span_notice("You must be holding paper for the pda to print to!"))
 
 
 /datum/data/pda/app/notekeeper/proc/changetonote(var/noteindex)

@@ -294,8 +294,8 @@ GLOBAL_LIST_EMPTY(vending_products)
  * Takes payment for whatever is the currently_vending item. Returns 1 if
  * successful, 0 if failed.
  */
-/obj/machinery/vending/proc/pay_with_ewallet(var/obj/item/spacecash/ewallet/wallet)
-	visible_message(span_info("\The [usr] swipes \the [wallet] through \the [src]."))
+/obj/machinery/vending/proc/pay_with_ewallet(var/obj/item/spacecash/ewallet/wallet, mob/user)
+	visible_message(span_info("\The [user] swipes \the [wallet] through \the [src]."))
 	playsound(src, 'sound/machines/id_swipe.ogg', 50, 1)
 	if(currently_vending.price > wallet.worth)
 		to_chat(usr, span_warning("Insufficient funds on chargecard."))
@@ -327,7 +327,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 	// Have the customer punch in the PIN before checking if there's enough money. Prevents people from figuring out acct is
 	// empty at high security levels
 	if(customer_account.security_level != 0) //If card requires pin authentication (ie seclevel 1 or 2)
-		var/attempt_pin = tgui_input_number(usr, "Enter pin code", "Vendor transaction")
+		var/attempt_pin = tgui_input_number(M, "Enter pin code", "Vendor transaction")
 		customer_account = attempt_account_access(I.associated_account_number, attempt_pin, 2)
 
 		if(!customer_account)
@@ -472,10 +472,10 @@ GLOBAL_LIST_EMPTY(vending_products)
 
 	return data
 
-/obj/machinery/vending/tgui_act(action, params)
+/obj/machinery/vending/tgui_act(action, params, datum/tgui/ui)
 	if(stat & (BROKEN|NOPOWER))
 		return
-	if(usr.stat || usr.restrained())
+	if(ui.user.stat || ui.user.restrained())
 		return
 	if(..())
 		return TRUE
@@ -483,32 +483,32 @@ GLOBAL_LIST_EMPTY(vending_products)
 	. = TRUE
 	switch(action)
 		if("remove_coin")
-			if(issilicon(usr))
+			if(issilicon(ui.user))
 				return FALSE
 
 			if(!coin)
-				to_chat(usr, span_filter_notice("There is no coin in this machine."))
+				to_chat(ui.user, span_filter_notice("There is no coin in this machine."))
 				return
 
 			coin.forceMove(src.loc)
-			if(!usr.get_active_hand())
-				usr.put_in_hands(coin)
+			if(!ui.user.get_active_hand())
+				ui.user.put_in_hands(coin)
 
-			to_chat(usr, span_notice("You remove \the [coin] from \the [src]."))
+			to_chat(ui.user, span_notice("You remove \the [coin] from \the [src]."))
 			coin = null
 			categories &= ~CAT_COIN
 			return TRUE
 		if("vend")
 			if(!vend_ready)
-				to_chat(usr, span_warning("[src] is busy!"))
+				to_chat(ui.user, span_warning("[src] is busy!"))
 				return
-			if(!allowed(usr) && !emagged && scan_id)
-				to_chat(usr, span_warning("Access denied."))	//Unless emagged of course
+			if(!allowed(ui.user) && !emagged && scan_id)
+				to_chat(ui.user, span_warning("Access denied."))	//Unless emagged of course
 				flick("[icon_state]-deny",src)
 				playsound(src, 'sound/machines/deniedbeep.ogg', 50, 0)
 				return
 			if(panel_open)
-				to_chat(usr, span_warning("[src] cannot dispense products while its service panel is open!"))
+				to_chat(ui.user, span_warning("[src] cannot dispense products while its service panel is open!"))
 				return
 
 			var/key = text2num(params["vend"])
@@ -518,27 +518,27 @@ GLOBAL_LIST_EMPTY(vending_products)
 			if(!(R.category & categories))
 				return
 
-			if(!can_buy(R, usr))
+			if(!can_buy(R, ui.user))
 				return
 
 			if(R.price <= 0)
-				vend(R, usr)
-				add_fingerprint(usr)
+				vend(R, ui.user)
+				add_fingerprint(ui.user)
 				return TRUE
 
-			if(issilicon(usr)) //If the item is not free, provide feedback if a synth is trying to buy something.
-				to_chat(usr, span_danger("Lawed unit recognized.  Lawed units cannot complete this transaction.  Purchase canceled."))
+			if(issilicon(ui.user)) //If the item is not free, provide feedback if a synth is trying to buy something.
+				to_chat(ui.user, span_danger("Lawed unit recognized.  Lawed units cannot complete this transaction.  Purchase canceled."))
 				return
-			if(!ishuman(usr))
+			if(!ishuman(ui.user))
 				return
 
 			vend_ready = FALSE // From this point onwards, vendor is locked to performing this transaction only, until it is resolved.
 
-			var/mob/living/carbon/human/H = usr
+			var/mob/living/carbon/human/H = ui.user
 			var/obj/item/card/id/C = H.GetIdCard()
 
 			if(!vendor_account || vendor_account.suspended)
-				to_chat(usr, span_filter_notice("Vendor account offline. Unable to process transaction."))
+				to_chat(ui.user, span_filter_notice("Vendor account offline. Unable to process transaction."))
 				flick("[icon_state]-deny",src)
 				vend_ready = TRUE
 				return
@@ -547,27 +547,27 @@ GLOBAL_LIST_EMPTY(vending_products)
 
 			var/paid = FALSE
 
-			if(istype(usr.get_active_hand(), /obj/item/spacecash))
-				var/obj/item/spacecash/cash = usr.get_active_hand()
-				paid = pay_with_cash(cash, usr)
-			else if(istype(usr.get_active_hand(), /obj/item/spacecash/ewallet))
-				var/obj/item/spacecash/ewallet/wallet = usr.get_active_hand()
-				paid = pay_with_ewallet(wallet)
+			if(istype(ui.user.get_active_hand(), /obj/item/spacecash))
+				var/obj/item/spacecash/cash = ui.user.get_active_hand()
+				paid = pay_with_cash(cash, ui.user)
+			else if(istype(ui.user.get_active_hand(), /obj/item/spacecash/ewallet))
+				var/obj/item/spacecash/ewallet/wallet = ui.user.get_active_hand()
+				paid = pay_with_ewallet(wallet, ui.user)
 			else if(istype(C, /obj/item/card))
-				paid = pay_with_card(C, usr)
-			/*else if(usr.can_advanced_admin_interact())
-				to_chat(usr, span_notice("Vending object due to admin interaction."))
+				paid = pay_with_card(C, ui.user)
+			/*else if(ui.user.can_advanced_admin_interact())
+				to_chat(ui.user, span_notice("Vending object due to admin interaction."))
 				paid = TRUE*/
 			else
-				to_chat(usr, span_warning("Payment failure: you have no ID or other method of payment."))
+				to_chat(ui.user, span_warning("Payment failure: you have no ID or other method of payment."))
 				vend_ready = TRUE
 				flick("[icon_state]-deny",src)
 				return TRUE // we set this because they shouldn't even be able to get this far, and we want the UI to update.
 			if(paid)
-				vend(currently_vending, usr) // vend will handle vend_ready
+				vend(currently_vending, ui.user) // vend will handle vend_ready
 				. = TRUE
 			else
-				to_chat(usr, span_warning("Payment failure: unable to process payment."))
+				to_chat(ui.user, span_warning("Payment failure: unable to process payment."))
 				vend_ready = TRUE
 
 		if("togglevoice")
