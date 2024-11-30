@@ -1216,6 +1216,7 @@
 #include "code\game\objects\effects\explosion_particles.dm"
 #include "code\game\objects\effects\gibs.dm"
 #include "code\game\objects\effects\glowshroom.dm"
+#include "code\game\objects\effects\info.dm"
 #include "code\game\objects\effects\item_pickup_ghost.dm"
 #include "code\game\objects\effects\job_start_landmarks.dm"
 #include "code\game\objects\effects\landmarks.dm"

@@ -43,6 +43,11 @@
 	var/combine_first = FALSE // If TRUE, this appliance will do combination cooking before checking recipes
 	var/food_safety = FALSE	//RS ADD - If true, the appliance automatically ejects food instead of burning it
 
+	var/static/radial_eject = image(icon = 'icons/mob/radial.dmi', icon_state = "radial_eject")
+	var/static/radial_power = image(icon = 'icons/mob/radial.dmi', icon_state = "radial_power")
+	var/static/radial_safety = image(icon = 'icons/mob/radial.dmi', icon_state = "radial_safety")
+	var/static/radial_output = image(icon = 'icons/mob/radial.dmi', icon_state = "radial_change_output")
+
 /obj/machinery/appliance/Initialize()
 	. = ..()
 
@@ -611,8 +616,31 @@
 	if(..())
 		return
 
-	if(cooking_objs.len)
-		removal_menu(user)
+	interact(user)
+
+/obj/machinery/appliance/interact(mob/user)
+	var/list/options = list(
+		"power" = radial_power,
+		"safety" = radial_safety,
+	)
+
+	if(LAZYLEN(cooking_objs))
+		options["remove"] = radial_eject
+
+	if(LAZYLEN(output_options))
+		options["select_output"] = radial_output
+
+	var/choice = show_radial_menu(user, src, options, require_near = !issilicon(user))
+
+	switch(choice)
+		if("power")
+			toggle_power()
+		if("safety")
+			toggle_safety()
+		if("remove")
+			removal_menu(user)
+		if("select_output")
+			choose_output()
 
 /obj/machinery/appliance/proc/removal_menu(var/mob/user)
 	if (can_remove_items(user))
