@@ -53,8 +53,8 @@
 			return
 
 		if(WT.remove_fuel(0,user))
-			new welds_into(usr.loc)
-			usr.update_icon()
+			new welds_into(user.loc)
+			user.update_icon()
 			visible_message(span_notice("\The [src] is shaped by [user.name] with the welding tool."),"You hear welding.")
 			var/obj/item/stack/tile/T = src
 			src = null

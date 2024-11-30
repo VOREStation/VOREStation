@@ -12,7 +12,7 @@
 	var/insistinga = 0
 
 /obj/machinery/wish_granter/attack_hand(var/mob/living/carbon/human/user as mob)
-	usr.set_machine(src)
+	user.set_machine(src)
 
 	if(chargesa <= 0)
 		to_chat(user, span_infoplain("The Wish Granter lies silent."))
@@ -32,7 +32,7 @@
 	else
 		chargesa--
 		insistinga = 0
-		var/wish = tgui_input_list(usr, "You want...","Wish", list("Power","Wealth","Immortality","To Kill","Peace"))
+		var/wish = tgui_input_list(user, "You want...","Wish", list("Power","Wealth","Immortality","To Kill","Peace"))
 		switch(wish)
 			if("Power")
 				to_chat(user, span_boldwarning("Your wish is granted, but at a terrible cost..."))

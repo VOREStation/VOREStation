@@ -58,7 +58,7 @@
 	if(..())
 		return TRUE
 
-	add_fingerprint(usr)
+	add_fingerprint(ui.user)
 
 	switch(action)
 		if("scan")

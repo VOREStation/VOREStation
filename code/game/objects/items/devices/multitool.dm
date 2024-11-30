@@ -33,7 +33,7 @@
 	tool_qualities = list(TOOL_MULTITOOL)
 
 /obj/item/multitool/attack_self(mob/living/user)
-	var/choice = tgui_alert(usr, "What do you want to do with \the [src]?", "Multitool Menu", list("Switch Mode", "Clear Buffers", "Cancel"))
+	var/choice = tgui_alert(user, "What do you want to do with \the [src]?", "Multitool Menu", list("Switch Mode", "Clear Buffers", "Cancel"))
 	switch(choice)
 		if("Clear Buffers")
 			to_chat(user,span_notice("You clear \the [src]'s memory."))

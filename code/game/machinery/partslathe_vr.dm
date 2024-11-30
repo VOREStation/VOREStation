@@ -297,7 +297,7 @@
 	if(..())
 		return TRUE
 
-	add_fingerprint(usr)
+	add_fingerprint(ui.user)
 	switch(action)
 		// Queue management can be done even while busy
 		if("queue")
@@ -331,7 +331,7 @@
 			return TRUE
 
 	if(busy)
-		to_chat(usr, span_notice("[src] is busy. Please wait for completion of previous operation."))
+		to_chat(ui.user, span_notice("[src] is busy. Please wait for completion of previous operation."))
 		return
 
 	switch(action)

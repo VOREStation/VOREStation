@@ -66,7 +66,7 @@
 
 	switch(action)
 		if("print")
-			print_report(usr)
+			print_report(ui.user)
 			return TRUE
 		if("close")
 			last_seed = null

@@ -787,7 +787,7 @@
 	var/open = 0
 	storage_slots = 1
 	can_hold = list(
-		/obj/item/clothing/gloves/ring,
+		/obj/item/clothing/accessory/ring,
 		/obj/item/coin,
 		/obj/item/clothing/accessory/medal
 		)
@@ -801,7 +801,7 @@
 
 		if(contents.len >= 1)
 			var/contained_image = null
-			if(istype(contents[1],  /obj/item/clothing/gloves/ring))
+			if(istype(contents[1],  /obj/item/clothing/accessory/ring))
 				contained_image = "ring_trinket"
 			else if(istype(contents[1], /obj/item/coin))
 				contained_image = "coin_trinket"

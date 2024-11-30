@@ -40,9 +40,9 @@
 			to_chat(user, span_warning("You need to set a destination first!"))
 
 	else if(istype(W, /obj/item/pen))
-		switch(tgui_alert(usr, "What would you like to alter?","Select Alteration",list("Title","Description","Cancel")))
+		switch(tgui_alert(user, "What would you like to alter?","Select Alteration",list("Title","Description","Cancel")))
 			if("Title")
-				var/str = sanitizeSafe(tgui_input_text(usr,"Label text?","Set label","", MAX_NAME_LEN), MAX_NAME_LEN)
+				var/str = sanitizeSafe(tgui_input_text(user,"Label text?","Set label","", MAX_NAME_LEN), MAX_NAME_LEN)
 				if(!str || !length(str))
 					to_chat(user, span_warning(" Invalid text."))
 					return
@@ -57,7 +57,7 @@
 				else
 					nameset = 1
 			if("Description")
-				var/str = sanitize(tgui_input_text(usr,"Label text?","Set label",""))
+				var/str = sanitize(tgui_input_text(user,"Label text?","Set label",""))
 				if(!str || !length(str))
 					to_chat(user, span_red("Invalid text."))
 					return
@@ -151,9 +151,9 @@
 			to_chat(user, span_warning("You need to set a destination first!"))
 
 	else if(istype(W, /obj/item/pen))
-		switch(tgui_alert(usr, "What would you like to alter?","Select Alteration",list("Title","Description","Cancel")))
+		switch(tgui_alert(user, "What would you like to alter?","Select Alteration",list("Title","Description","Cancel")))
 			if("Title")
-				var/str = sanitizeSafe(tgui_input_text(usr,"Label text?","Set label","", MAX_NAME_LEN), MAX_NAME_LEN)
+				var/str = sanitizeSafe(tgui_input_text(user,"Label text?","Set label","", MAX_NAME_LEN), MAX_NAME_LEN)
 				if(!str || !length(str))
 					to_chat(user, span_warning(" Invalid text."))
 					return
@@ -169,7 +169,7 @@
 					nameset = 1
 
 			if("Description")
-				var/str = sanitize(tgui_input_text(usr,"Label text?","Set label",""))
+				var/str = sanitize(tgui_input_text(user,"Label text?","Set label",""))
 				if(!str || !length(str))
 					to_chat(user, span_red("Invalid text."))
 					return
@@ -268,9 +268,9 @@
 			if(i > 5)
 				P.icon_state = "deliverycrate5"
 				P.name = "huge parcel"
-			P.add_fingerprint(usr)
-			O.add_fingerprint(usr)
-			src.add_fingerprint(usr)
+			P.add_fingerprint(user)
+			O.add_fingerprint(user)
+			src.add_fingerprint(user)
 			src.amount -= 1
 			user.visible_message("\The [user] wraps \a [target] with \a [src].",\
 			span_notice("You wrap \the [target], leaving [amount] units of paper on \the [src]."),\
@@ -374,10 +374,10 @@
 /obj/item/destTagger/attack_self(mob/user as mob)
 	tgui_interact(user)
 
-/obj/item/destTagger/tgui_act(action, params)
+/obj/item/destTagger/tgui_act(action, params, datum/tgui/ui)
 	if(..())
 		return TRUE
-	add_fingerprint(usr)
+	add_fingerprint(ui.user)
 	switch(action)
 		if("set_tag")
 			var/new_tag = params["tag"]

@@ -45,11 +45,11 @@
 		if("switch_uav")
 			var/obj/item/uav/U = locate(params["switch_uav"]) //This is a \ref to the UAV itself
 			if(!istype(U))
-				to_chat(usr,span_warning("Something is blocking the connection to that UAV. In-person investigation is required."))
+				to_chat(ui.user,span_warning("Something is blocking the connection to that UAV. In-person investigation is required."))
 				return FALSE
 
 			if(!get_signal_to(U))
-				to_chat(usr,span_warning("The screen freezes for a moment, before returning to the UAV selection menu. It's not able to connect to that UAV."))
+				to_chat(ui.user,span_warning("The screen freezes for a moment, before returning to the UAV selection menu. It's not able to connect to that UAV."))
 				return FALSE
 
 			set_current(U)
@@ -70,10 +70,10 @@
 			if(!current_uav)
 				return FALSE
 
-			if(current_uav.check_eye(usr) < 0)
-				to_chat(usr,span_warning("The screen freezes for a moment, before returning to the UAV selection menu. It's not able to connect to that UAV."))
+			if(current_uav.check_eye(ui.user) < 0)
+				to_chat(ui.user,span_warning("The screen freezes for a moment, before returning to the UAV selection menu. It's not able to connect to that UAV."))
 			else
-				viewing_uav(usr) ? unlook(usr) : look(usr)
+				viewing_uav(ui.user) ? unlook(ui.user) : look(ui.user)
 			return TRUE
 
 		if("power_uav")

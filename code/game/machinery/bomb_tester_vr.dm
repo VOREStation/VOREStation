@@ -149,26 +149,26 @@
 					text_mode = "tank transfer valve detonation"
 				if(MODE_CANISTER)
 					text_mode = "canister-assisted single gas tank detonation"
-			to_chat(usr, span_notice("[src] set to simulate a [text_mode]."))
+			to_chat(ui.user, span_notice("[src] set to simulate a [text_mode]."))
 			return TRUE
 
 		if("add_tank")
-			if(istype(usr.get_active_hand(), /obj/item/tank))
-				var/obj/item/tank/T = usr.get_active_hand()
+			if(istype(ui.user.get_active_hand(), /obj/item/tank))
+				var/obj/item/tank/T = ui.user.get_active_hand()
 				var/slot = params["slot"]
 				if(slot == 1 && !tank1)
 					tank1 = T
 				else if(slot == 2 && !tank2)
 					tank2 = T
 				else
-					to_chat(usr, span_warning("Slot [slot] is full."))
+					to_chat(ui.user, span_warning("Slot [slot] is full."))
 					return
 
-				usr.drop_item(T)
+				ui.user.drop_item(T)
 				T.forceMove(src)
 				return TRUE
 			else
-				to_chat(usr, span_warning("You must be wielding a tank to insert it!"))
+				to_chat(ui.user, span_warning("You must be wielding a tank to insert it!"))
 
 		if("remove_tank")
 			var/obj/item/tank/T = locate(params["ref"]) in list(tank1, tank2)

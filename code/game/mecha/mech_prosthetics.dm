@@ -105,13 +105,13 @@
 
 	. = TRUE
 
-	add_fingerprint(usr)
-	usr.set_machine(src)
+	add_fingerprint(ui.user)
+	ui.user.set_machine(src)
 
 	switch(action)
 		if("species")
-			var/new_species = tgui_input_list(usr, "Select a new species", "Prosfab Species Selection", species_types)
-			if(new_species && tgui_status(usr, state) == STATUS_INTERACTIVE)
+			var/new_species = tgui_input_list(ui.user, "Select a new species", "Prosfab Species Selection", species_types)
+			if(new_species && tgui_status(ui.user, state) == STATUS_INTERACTIVE)
 				species = new_species
 			return
 		if("manufacturer")
@@ -124,8 +124,8 @@
 					continue
 				new_manufacturers += A
 
-			var/new_manufacturer = tgui_input_list(usr, "Select a new manufacturer", "Prosfab Species Selection", new_manufacturers)
-			if(new_manufacturer && tgui_status(usr, state) == STATUS_INTERACTIVE)
+			var/new_manufacturer = tgui_input_list(ui.user, "Select a new manufacturer", "Prosfab Species Selection", new_manufacturers)
+			if(new_manufacturer && tgui_status(ui.user, state) == STATUS_INTERACTIVE)
 				manufacturer = new_manufacturer
 			return
 	return FALSE

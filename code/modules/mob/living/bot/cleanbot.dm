@@ -201,8 +201,8 @@
 /mob/living/bot/cleanbot/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
 	if(..())
 		return TRUE
-	usr.set_machine(src)
-	add_fingerprint(usr)
+	ui.user.set_machine(src)
+	add_fingerprint(ui.user)
 	switch(action)
 		if("start")
 			if(on)
@@ -222,11 +222,11 @@
 			. = TRUE
 		if("wet_floors")
 			wet_floors = !wet_floors
-			to_chat(usr, span_notice("You twiddle the screw."))
+			to_chat(ui.user, span_notice("You twiddle the screw."))
 			. = TRUE
 		if("spray_blood")
 			spray_blood = !spray_blood
-			to_chat(usr, span_notice("You press the weird button."))
+			to_chat(ui.user, span_notice("You press the weird button."))
 			. = TRUE
 
 /mob/living/bot/cleanbot/emag_act(var/remaining_uses, var/mob/user)
@@ -272,6 +272,6 @@
 		var/t = sanitizeSafe(tgui_input_text(user, "Enter new robot name", name, created_name, MAX_NAME_LEN), MAX_NAME_LEN)
 		if(!t)
 			return
-		if(!in_range(src, usr) && src.loc != usr)
+		if(!in_range(src, user) && src.loc != user)
 			return
 		created_name = t

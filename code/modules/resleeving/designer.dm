@@ -216,20 +216,20 @@
 
 	return data
 
-/obj/machinery/computer/transhuman/designer/tgui_act(action, params)
+/obj/machinery/computer/transhuman/designer/tgui_act(action, params, datum/tgui/ui)
 	if(..())
 		return TRUE
 
 	switch(action)
 		if("debug_load_my_body")
-			active_br = new /datum/transhuman/body_record(usr, FALSE, FALSE)
+			active_br = new /datum/transhuman/body_record(ui.user, FALSE, FALSE)
 			update_preview_icon()
 			menu = MENU_SPECIFICRECORD
 
 		if("view_brec")
 			var/datum/transhuman/body_record/BR = locate(params["view_brec"])
 			if(BR && istype(BR.mydna))
-				if(allowed(usr) || BR.ckey == usr.ckey)
+				if(allowed(ui.user) || BR.ckey == ui.user.ckey)
 					active_br = new /datum/transhuman/body_record(BR) // Load a COPY!
 					update_preview_icon()
 					menu = MENU_SPECIFICRECORD
@@ -282,9 +282,9 @@
 			temp = ""
 
 		if("href_conversion")
-			PrefHrefMiddleware(params, usr)
+			PrefHrefMiddleware(params, ui.user)
 
-	add_fingerprint(usr)
+	add_fingerprint(ui.user)
 	return 1 // Return 1 to refresh UI
 
 //

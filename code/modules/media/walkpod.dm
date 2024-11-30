@@ -216,7 +216,7 @@
 			return TRUE
 		if("play")
 			if(current_track == null)
-				to_chat(usr, "No track selected.")
+				to_chat(ui.user, "No track selected.")
 			else
 				StartPlaying()
 			return TRUE

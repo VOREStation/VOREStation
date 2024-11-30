@@ -179,7 +179,7 @@
 	custommessage 	= "This is a test, please ignore."
 	customjob 		= "Admin"
 
-/obj/machinery/computer/message_monitor/tgui_act(action, params)
+/obj/machinery/computer/message_monitor/tgui_act(action, params, datum/tgui/ui)
 	if(..())
 		return TRUE
 
@@ -202,7 +202,7 @@
 		//Find a server
 		if("find")
 			if(message_servers && message_servers.len > 1)
-				linkedServer = tgui_input_list(usr,"Please select a server.", "Select a server.", message_servers)
+				linkedServer = tgui_input_list(ui.user,"Please select a server.", "Select a server.", message_servers)
 				set_temp("NOTICE: Server selected.", "alert")
 			else if(message_servers && message_servers.len > 0)
 				linkedServer = message_servers[1]
@@ -211,13 +211,13 @@
 				temp = noserver
 		//Hack the Console to get the password
 		if("hack")
-			if((istype(usr, /mob/living/silicon/ai) || istype(usr, /mob/living/silicon/robot)) && (usr.mind.special_role && usr.mind.original == usr))
+			if((istype(ui.user, /mob/living/silicon/ai) || istype(ui.user, /mob/living/silicon/robot)) && (ui.user.mind.special_role && ui.user.mind.original == ui.user))
 				hacking = 1
 				update_icon()
 				//Time it takes to bruteforce is dependant on the password length.
 				spawn(100*length(linkedServer.decryptkey))
-					if(src && linkedServer && usr)
-						BruteForce(usr)
+					if(src && linkedServer && ui.user)
+						BruteForce(ui.user)
 
 	if(!auth)
 		return
@@ -243,10 +243,10 @@
 			. = TRUE
 		//Change the password - KEY REQUIRED
 		if("pass")
-			var/dkey = trim(tgui_input_text(usr, "Please enter the current decryption key."))
+			var/dkey = trim(tgui_input_text(ui.user, "Please enter the current decryption key."))
 			if(dkey && dkey != "")
 				if(linkedServer.decryptkey == dkey)
-					var/newkey = trim(tgui_input_text(usr,"Please enter the new key (3 - 16 characters max):",null,null,16))
+					var/newkey = trim(tgui_input_text(ui.user,"Please enter the new key (3 - 16 characters max):",null,null,16))
 					if(length(newkey) <= 3)
 						set_temp("NOTICE: Decryption key too short!", "average")
 					else if(length(newkey) > 16)
@@ -325,7 +325,7 @@
 			. = TRUE
 
 		if("addtoken")
-			linkedServer.spamfilter += tgui_input_text(usr,"Enter text you want to be filtered out","Token creation")
+			linkedServer.spamfilter += tgui_input_text(ui.user,"Enter text you want to be filtered out","Token creation")
 			. = TRUE
 
 		if("deltoken")

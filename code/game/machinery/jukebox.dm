@@ -152,7 +152,7 @@
 
 /obj/machinery/media/jukebox/interact(mob/user)
 	if(inoperable())
-		to_chat(usr, "\The [src] doesn't appear to function.")
+		to_chat(user, "\The [src] doesn't appear to function.")
 		return
 	tgui_interact(user)
 
@@ -235,17 +235,17 @@
 				spawn(15)
 					explode()
 			else if(current_track == null)
-				to_chat(usr, "No track selected.")
+				to_chat(ui.user, "No track selected.")
 			else
 				StartPlaying()
 			return TRUE
 		if("add_new_track")
-			SSmedia_tracks.add_track(usr, params["url"], params["title"], text2num(params["duration"]) * 10, params["artist"], params["genre"], text2num(params["secret"]), text2num(params["lobby"]))
+			SSmedia_tracks.add_track(ui.user, params["url"], params["title"], text2num(params["duration"]) * 10, params["artist"], params["genre"], text2num(params["secret"]), text2num(params["lobby"]))
 		if("remove_new_track")
 			var/datum/track/track_to_remove = locate(params["ref"]) in getTracksList()
 			if(track_to_remove == current_track && playing)
 				StopPlaying()
-			SSmedia_tracks.remove_track(usr, track_to_remove)
+			SSmedia_tracks.remove_track(ui.user, track_to_remove)
 
 /obj/machinery/media/jukebox/attack_ai(mob/user as mob)
 	return src.attack_hand(user)

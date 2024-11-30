@@ -449,17 +449,17 @@
 
 	return data
 
-/obj/machinery/computer/scan_consolenew/tgui_act(action, params)
+/obj/machinery/computer/scan_consolenew/tgui_act(action, params, datum/tgui/ui)
 	if(..())
 		return TRUE
-	if(!istype(usr.loc, /turf))
+	if(!istype(ui.user.loc, /turf))
 		return TRUE
 	if(!src || !src.connected)
 		return TRUE
 	if(irradiating) // Make sure that it isn't already irradiating someone...
 		return TRUE
 
-	add_fingerprint(usr)
+	add_fingerprint(ui.user)
 
 	if(tgui_act_modal(action, params))
 		return TRUE

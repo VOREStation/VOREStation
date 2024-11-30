@@ -183,7 +183,7 @@
 	if(..())
 		return TRUE
 
-	add_fingerprint(usr)
+	add_fingerprint(ui.user)
 
 	switch(action)
 		if("build")
@@ -209,15 +209,15 @@
 				return
 
 			if(!debug)
-				if(!Adjacent(usr))
-					to_chat(usr, span_notice("You are too far away from \the [src]."))
+				if(!Adjacent(ui.user))
+					to_chat(ui.user, span_notice("You are too far away from \the [src]."))
 				if(metal - cost < 0)
-					to_chat(usr, span_warning("You need [cost] metal to build that!."))
+					to_chat(ui.user, span_warning("You need [cost] metal to build that!."))
 					return 1
 				metal -= cost
 			var/obj/item/built = new build_type(get_turf(loc))
-			usr.put_in_hands(built)
-			to_chat(usr, span_notice("[capitalize(built.name)] printed."))
+			ui.user.put_in_hands(built)
+			to_chat(ui.user, span_notice("[capitalize(built.name)] printed."))
 			playsound(src, 'sound/items/jaws_pry.ogg', 50, TRUE)
 			return TRUE
 

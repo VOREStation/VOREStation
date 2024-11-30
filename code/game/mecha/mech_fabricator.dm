@@ -536,14 +536,14 @@
 
 	return data
 
-/obj/machinery/mecha_part_fabricator/tgui_act(action, var/list/params)
+/obj/machinery/mecha_part_fabricator/tgui_act(action, list/params, datum/tgui/ui)
 	if(..())
 		return TRUE
 
 	. = TRUE
 
-	add_fingerprint(usr)
-	usr.set_machine(src)
+	add_fingerprint(ui.user)
+	ui.user.set_machine(src)
 
 	switch(action)
 		if("sync_rnd")

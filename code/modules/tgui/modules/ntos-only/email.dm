@@ -228,11 +228,10 @@
 	return 1
 
 
-/datum/tgui_module/email_client/tgui_act(action, params)
+/datum/tgui_module/email_client/tgui_act(action, params, datum/tgui/ui)
 	if(..())
 		return TRUE
 
-	var/mob/living/user = usr
 	check_for_new_messages(1)		// Any actual interaction (button pressing) is considered as acknowledging received message, for the purpose of notification icons.
 
 	switch(action)
@@ -279,7 +278,7 @@
 			var/oldtext = html_decode(msg_body)
 			oldtext = replacetext(oldtext, "\[editorbr\]", "\n")
 
-			var/newtext = sanitize(replacetext(tgui_input_text(usr, "Enter your message. You may use most tags from paper formatting", "Message Editor", oldtext, 20000, TRUE, prevent_enter = TRUE), "\n", "\[editorbr\]"), 20000)
+			var/newtext = sanitize(replacetext(tgui_input_text(ui.user, "Enter your message. You may use most tags from paper formatting", "Message Editor", oldtext, 20000, TRUE, prevent_enter = TRUE), "\n", "\[editorbr\]"), 20000)
 			if(newtext)
 				msg_body = newtext
 			return 1
@@ -362,13 +361,13 @@
 			return 1
 
 		if("changepassword")
-			var/oldpassword = sanitize(tgui_input_text(user,"Please enter your old password:", "Password Change", null, 100), 100)
+			var/oldpassword = sanitize(tgui_input_text(ui.user,"Please enter your old password:", "Password Change", null, 100), 100)
 			if(!oldpassword)
 				return 1
-			var/newpassword1 = sanitize(tgui_input_text(user,"Please enter your new password:", "Password Change", null, 100), 100)
+			var/newpassword1 = sanitize(tgui_input_text(ui.user,"Please enter your new password:", "Password Change", null, 100), 100)
 			if(!newpassword1)
 				return 1
-			var/newpassword2 = sanitize(tgui_input_text(user,"Please re-enter your new password:", "Password Change", null, 100), 100)
+			var/newpassword2 = sanitize(tgui_input_text(ui.user,"Please re-enter your new password:", "Password Change", null, 100), 100)
 			if(!newpassword2)
 				return 1
 
@@ -399,7 +398,7 @@
 				error = "Error exporting file. Are you using a functional and NTOS-compliant device?"
 				return 1
 
-			var/filename = sanitize(tgui_input_text(user,"Please specify file name:", "Message export", null, 100), 100)
+			var/filename = sanitize(tgui_input_text(ui.user,"Please specify file name:", "Message export", null, 100), 100)
 			if(!filename)
 				return 1
 
@@ -427,7 +426,7 @@
 				if(CF.unsendable)
 					continue
 				filenames.Add(CF.filename)
-			var/picked_file = tgui_input_list(user, "Please pick a file to send as attachment (max 32GQ)", "Select Attachment", filenames)
+			var/picked_file = tgui_input_list(ui.user, "Please pick a file to send as attachment (max 32GQ)", "Select Attachment", filenames)
 
 			if(!picked_file)
 				return 1

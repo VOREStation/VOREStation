@@ -208,6 +208,7 @@ var/global/list/robot_modules = list(
 	src.modules += new /obj/item/flash/robot(src)
 	src.modules += new /obj/item/extinguisher(src)
 	src.modules += new /obj/item/tool/crowbar/cyborg(src)
+	src.modules += new /obj/item/gripper/scene(src)
 
 /obj/item/robot_module/robot/standard
 	name = "standard robot module"

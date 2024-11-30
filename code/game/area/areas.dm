@@ -56,6 +56,8 @@ GLOBAL_LIST_EMPTY(areas_by_type)
 	var/forbid_singulo = FALSE // If true singulo will not move in.
 	var/no_spoilers = FALSE // If true, makes it much more difficult to see what is inside an area with things like mesons.
 	var/soundproofed = FALSE // If true, blocks sounds from other areas and prevents hearers on other areas from hearing the sounds within.
+	var/block_phase_shift = FALSE //Stops phase shifted mobs from entering // RS Port #658
+	var/block_ghosts = FALSE	//Stops ghosts from entering //RS Port #658
 
 /area/New()
 	// Used by the maploader, this must be done in New, not init
@@ -398,6 +400,7 @@ var/list/mob/living/forced_ambiance_list = new
 	play_ambience(L, initial = TRUE)
 	if(no_spoilers)
 		L.disable_spoiler_vision()
+	check_phase_shift(M)	//RS Port #658
 
 /area/proc/play_ambience(var/mob/living/L, initial = TRUE)
 	// Ambience goes down here -- make sure to list each area seperately for ease of adding things in later, thanks! Note: areas adjacent to each other should have the same sounds to prevent cutoff when possible.- LastyScratch
@@ -554,3 +557,19 @@ GLOBAL_DATUM(spoiler_obfuscation_image, /image)
 		add_overlay(GLOB.spoiler_obfuscation_image)
 	else
 		cut_overlay(GLOB.spoiler_obfuscation_image)
+
+// RS Port #658 Start
+/area/proc/check_phase_shift(var/mob/ourmob)
+	if(!block_phase_shift || !ourmob.incorporeal_move)
+		return
+	if(!isliving(ourmob))
+		return
+	if(isanimal(ourmob))
+		var/mob/living/simple_mob/shadekin/SK = ourmob
+		if(SK.ability_flags & AB_PHASE_SHIFTED)
+			SK.phase_in(SK.loc)
+	if(ishuman(ourmob))
+		var/mob/living/carbon/human/SK = ourmob
+		if(SK.ability_flags & AB_PHASE_SHIFTED)
+			SK.phase_in(SK.loc)
+// RS Port #658 End

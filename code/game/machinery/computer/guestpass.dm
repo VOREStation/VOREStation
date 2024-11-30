@@ -49,7 +49,7 @@
 			to_chat(user, span_warning("This guest pass is already deactivated!"))
 			return
 
-		var/confirm = tgui_alert(usr, "Do you really want to deactivate this guest pass? (you can't reactivate it)", "Confirm Deactivation", list("Yes", "No"))
+		var/confirm = tgui_alert(user, "Do you really want to deactivate this guest pass? (you can't reactivate it)", "Confirm Deactivation", list("Yes", "No"))
 		if(confirm == "Yes")
 			//rip guest pass </3
 			user.visible_message(span_infoplain(span_bold("\The [user]") + "deactivates \the [src]."))
@@ -193,20 +193,20 @@
 			mode = params["mode"]
 
 		if("giv_name")
-			var/nam = sanitizeName(tgui_input_text(usr, "Person pass is issued to", "Name", giv_name))
+			var/nam = sanitizeName(tgui_input_text(ui.user, "Person pass is issued to", "Name", giv_name))
 			if(nam)
 				giv_name = nam
 		if("reason")
-			var/reas = sanitize(tgui_input_text(usr, "Reason why pass is issued", "Reason", reason))
+			var/reas = sanitize(tgui_input_text(ui.user, "Reason why pass is issued", "Reason", reason))
 			if(reas)
 				reason = reas
 		if("duration")
-			var/dur = tgui_input_number(usr, "Duration (in minutes) during which pass is valid (up to 360 minutes).", "Duration", null, 360, 0)
+			var/dur = tgui_input_number(ui.user, "Duration (in minutes) during which pass is valid (up to 360 minutes).", "Duration", null, 360, 0)
 			if(dur)
 				if(dur > 0 && dur <= 360) //VOREStation Edit
 					duration = dur
 				else
-					to_chat(usr, span_warning("Invalid duration."))
+					to_chat(ui.user, span_warning("Invalid duration."))
 		if("access")
 			var/A = text2num(params["access"])
 			if(A in accesses)
@@ -215,22 +215,22 @@
 				if(A in giver.GetAccess())	//Let's make sure the ID card actually has the access.
 					accesses.Add(A)
 				else
-					to_chat(usr, span_warning("Invalid selection, please consult technical support if there are any issues."))
-					log_debug("[key_name_admin(usr)] tried selecting an invalid guest pass terminal option.")
+					to_chat(ui.user, span_warning("Invalid selection, please consult technical support if there are any issues."))
+					log_debug("[key_name_admin(ui.user)] tried selecting an invalid guest pass terminal option.")
 		if("id")
 			if(giver)
-				if(ishuman(usr))
-					giver.loc = usr.loc
-					if(!usr.get_active_hand())
-						usr.put_in_hands(giver)
+				if(ishuman(ui.user))
+					giver.loc = ui.user.loc
+					if(!ui.user.get_active_hand())
+						ui.user.put_in_hands(giver)
 					giver = null
 				else
 					giver.loc = src.loc
 					giver = null
 				accesses.Cut()
 			else
-				var/obj/item/I = usr.get_active_hand()
-				if(istype(I, /obj/item/card/id) && usr.unEquip(I))
+				var/obj/item/I = ui.user.get_active_hand()
+				if(istype(I, /obj/item/card/id) && ui.user.unEquip(I))
 					I.loc = src
 					giver = I
 
@@ -238,7 +238,7 @@
 			var/dat = "<h3>Activity log of guest pass terminal #[uid]</h3><br>"
 			for (var/entry in internal_log)
 				dat += "[entry]<br><hr>"
-			//to_chat(usr, "Printing the log, standby...")
+			//to_chat(ui.user, "Printing the log, standby...")
 			//sleep(50)
 			var/obj/item/paper/P = new/obj/item/paper( loc )
 			P.name = "activity log"
@@ -263,7 +263,7 @@
 				pass.reason = reason
 				pass.name = "guest pass #[number]"
 			else
-				to_chat(usr, span_warning("Cannot issue pass without issuing ID."))
+				to_chat(ui.user, span_warning("Cannot issue pass without issuing ID."))
 
-	add_fingerprint(usr)
+	add_fingerprint(ui.user)
 	return TRUE

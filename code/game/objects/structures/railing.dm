@@ -206,7 +206,7 @@
 		playsound(src, W.usesound, 50, 1)
 		if(do_after(user, 20, src))
 			user.visible_message(span_infoplain(span_bold("\The [user]") + " dismantles \the [src]."), span_notice("You dismantle \the [src]."))
-			new /obj/item/stack/material/steel(get_turf(usr), 2)
+			new /obj/item/stack/material/steel(get_turf(user), 2)
 			qdel(src)
 			return
 
@@ -285,7 +285,7 @@
 	if(!can_climb(user))
 		return
 
-	usr.visible_message(span_warning("[user] starts climbing onto \the [src]!"))
+	user.visible_message(span_warning("[user] starts climbing onto \the [src]!"))
 	LAZYDISTINCTADD(climbers, user)
 
 	if(!do_after(user,(issmall(user) ? 20 : 34)))
@@ -297,11 +297,11 @@
 		return
 
 	if(get_turf(user) == get_turf(src))
-		usr.forceMove(get_step(src, src.dir))
+		user.forceMove(get_step(src, src.dir))
 	else
-		usr.forceMove(get_turf(src))
+		user.forceMove(get_turf(src))
 
-	usr.visible_message(span_warning("[user] climbed over \the [src]!"))
+	user.visible_message(span_warning("[user] climbed over \the [src]!"))
 	if(!anchored)	take_damage(maxhealth) // Fatboy
 	LAZYREMOVE(climbers, user)
 

@@ -80,19 +80,19 @@
 			if(W.has_tool_quality(TOOL_SCREWDRIVER))
 				playsound(src, W.usesound, 50, 1)
 
-				var/input = sanitize(tgui_input_text(usr, "Which networks would you like to connect this camera to? Separate networks with a comma. No Spaces!\nFor example: "+using_map.station_short+",Security,Secret ", "Set Network", camera_network ? camera_network : NETWORK_DEFAULT))
+				var/input = sanitize(tgui_input_text(user, "Which networks would you like to connect this camera to? Separate networks with a comma. No Spaces!\nFor example: "+using_map.station_short+",Security,Secret ", "Set Network", camera_network ? camera_network : NETWORK_DEFAULT))
 				if(!input)
-					to_chat(usr, "No input found please hang up and try your call again.")
+					to_chat(user, "No input found please hang up and try your call again.")
 					return
 
 				var/list/tempnetwork = splittext(input, ",")
 				if(tempnetwork.len < 1)
-					to_chat(usr, "No network found please hang up and try your call again.")
+					to_chat(user, "No network found please hang up and try your call again.")
 					return
 
 				var/area/camera_area = get_area(src)
 				var/temptag = "[sanitize(camera_area.name)] ([rand(1, 999)])"
-				input = sanitizeSafe(tgui_input_text(usr, "How would you like to name the camera?", "Set Camera Name", camera_name ? camera_name : temptag), MAX_NAME_LEN)
+				input = sanitizeSafe(tgui_input_text(user, "How would you like to name the camera?", "Set Camera Name", camera_name ? camera_name : temptag), MAX_NAME_LEN)
 
 				state = 4
 				var/obj/machinery/camera/C = new(src.loc)
