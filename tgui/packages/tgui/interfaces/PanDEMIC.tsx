@@ -185,7 +185,10 @@ const StrainInformationSection = ({
       </Section>
 
       {selectedStrain && selectedStrain.symptoms.length > 0 && (
-        <StrainSymptomsSection strain={selectedStrain} />
+        <>
+          <StrainSymptomsSection strain={selectedStrain} />
+          <TotalStats strain={selectedStrain} />
+        </>
       )}
     </Flex.Item>
   );
@@ -217,6 +220,39 @@ const StrainSymptomsSection = ({ strain }: { strain: Strain }) => {
         </Table>
       </Section>
     </Flex.Item>
+  );
+};
+
+const TotalStats = ({ strain }: { strain: Strain }) => {
+  const symptoms = strain.symptoms;
+
+  const TotalStats = symptoms.reduce(
+    (totals, symptom) => ({
+      stealth: totals.stealth + symptom.stealth,
+      resistance: totals.resistance + symptom.resistance,
+      stageSpeed: totals.stageSpeed + symptom.stageSpeed,
+      transmissibility: totals.transmissibility + symptom.transmissibility,
+    }),
+    { stealth: 0, resistance: 0, stageSpeed: 0, transmissibility: 0 },
+  );
+
+  return (
+    <Section title="Total">
+      <Table>
+        <Table.Row header>
+          <Table.Cell>Stealth</Table.Cell>
+          <Table.Cell>Resistance</Table.Cell>
+          <Table.Cell>Stage Speed</Table.Cell>
+          <Table.Cell>Transmissibility</Table.Cell>
+        </Table.Row>
+        <Table.Row>
+          <Table.Cell>{TotalStats.stealth}</Table.Cell>
+          <Table.Cell>{TotalStats.resistance}</Table.Cell>
+          <Table.Cell>{TotalStats.stageSpeed}</Table.Cell>
+          <Table.Cell>{TotalStats.transmissibility}</Table.Cell>
+        </Table.Row>
+      </Table>
+    </Section>
   );
 };
 
