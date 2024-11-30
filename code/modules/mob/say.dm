@@ -3,7 +3,6 @@
 
 /mob/verb/whisper(message as text)
 	set name = "Whisper"
-	set category = "IC.Subtle"
 	set hidden = 1
 	//VOREStation Addition Start
 	if(forced_psay)
@@ -15,7 +14,6 @@
 
 /mob/verb/say_verb(message as text)
 	set name = "Say"
-	set category = "IC.Chat"
 	set hidden = 1
 	set instant = TRUE
 
@@ -33,7 +31,6 @@
 
 /mob/verb/me_verb(message as message)
 	set name = "Me"
-	set category = "IC.Chat"
 	set desc = "Emote to nearby people (and your pred/prey)"
 	set hidden = 1
 
@@ -110,7 +107,19 @@
 	if(speaking.flags & NONVERBAL)
 		if(sdisabilities & BLIND || blinded)
 			return FALSE
-		if(!other || !(other in view(src)))
+		if(!other)
+			return FALSE
+		// Fixes seeing non-verbal languages while being held
+		if(istype(other.loc, /obj/item/holder))
+			if(istype(src.loc, /obj/item/holder))
+				if(!(other.loc in view(src.loc.loc)))
+					return FALSE
+			else if(!(other.loc in view(src)))
+				return FALSE
+		else if(istype(src.loc, /obj/item/holder))
+			if((!other) in view(src.loc.loc))
+				return FALSE
+		else if((!other) in view(src))
 			return FALSE
 
 	//Language check.

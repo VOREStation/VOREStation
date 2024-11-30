@@ -4,7 +4,6 @@
 
 /mob/verb/me_verb_subtle(message as message) //This would normally go in say.dm
 	set name = "Subtle"
-	set category = "IC.Subtle"
 	set desc = "Emote to nearby people (and your pred/prey)"
 	set hidden = 1
 
@@ -24,7 +23,6 @@
 
 /mob/verb/me_verb_subtle_custom(message as message) // Literally same as above but with mode_selection set to true
 	set name = "Subtle (Custom)"
-	set category = "IC.Subtle"
 	set desc = "Emote to nearby people, with ability to choose which specific portion of people you wish to target."
 
 	if(forced_psay)
@@ -197,7 +195,7 @@
 				continue
 			if(src.client && M && !(get_z(src) == get_z(M)))
 				message = span_multizsay("[message]")
-			if(isobserver(M) && (!M.client?.prefs?.read_preference(/datum/preference/toggle/ghost_see_whisubtle) || \
+			if(isobserver(M) && (!(M.client?.prefs?.read_preference(/datum/preference/toggle/ghost_see_whisubtle) || (isbelly(M.loc) && src == M.loc:owner)) || \
 			!client?.prefs?.read_preference(/datum/preference/toggle/whisubtle_vis) && !M.client?.holder))
 				spawn(0)
 					M.show_message(undisplayed_message, 2)
@@ -254,7 +252,6 @@
 ///// PSAY /////
 
 /mob/verb/psay(message as text)
-	set category = "IC.Subtle"
 	set name = "Psay"
 	set desc = "Talk to people affected by complete absorbed or dominate predator/prey."
 
@@ -352,7 +349,6 @@
 ///// PME /////
 
 /mob/verb/pme(message as message)
-	set category = "IC.Subtle"
 	set name = "Pme"
 	set desc = "Emote to people affected by complete absorbed or dominate predator/prey."
 
@@ -448,7 +444,6 @@
 		M.me_verb(message)
 
 /mob/living/verb/player_narrate(message as message)
-	set category = "IC.Chat"
 	set name = "Narrate (Player)"
 	set desc = "Narrate an action or event! An alternative to emoting, for when your emote shouldn't start with your name!"
 
