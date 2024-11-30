@@ -57,52 +57,6 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 		cut_overlay(I)
 		overlays_standing[cache_index] = null
 
-// These are used as the layers for the icons, as well as indexes in a list that holds onto them.
-// Technically the layers used are all -100+layer to make them FLOAT_LAYER overlays.
-//Human Overlays Indexes/////////
-#define MUTATIONS_LAYER			1		//Mutations like fat, and lasereyes
-#define SKIN_LAYER				2		//Skin things added by a call on species
-#define BLOOD_LAYER				3		//Bloodied hands/feet/anything else
-#define MOB_DAM_LAYER			4		//Injury overlay sprites like open wounds
-#define SURGERY_LAYER			5		//Overlays for open surgical sites
-#define UNDERWEAR_LAYER  		6		//Underwear/bras/etc
-#define TAIL_LOWER_LAYER		7		//Tail as viewed from the south
-#define WING_LOWER_LAYER		8		//Wings as viewed from the south
-#define SHOES_LAYER_ALT			9		//Shoe-slot item (when set to be under uniform via verb)
-#define UNIFORM_LAYER			10		//Uniform-slot item
-#define ID_LAYER				11		//ID-slot item
-#define SHOES_LAYER				12		//Shoe-slot item
-#define GLOVES_LAYER			13		//Glove-slot item
-#define BELT_LAYER				14		//Belt-slot item
-#define SUIT_LAYER				15		//Suit-slot item
-#define TAIL_UPPER_LAYER		16		//Some species have tails to render (As viewed from the N, E, or W)
-#define GLASSES_LAYER			17		//Eye-slot item
-#define BELT_LAYER_ALT			18		//Belt-slot item (when set to be above suit via verb)
-#define SUIT_STORE_LAYER		19		//Suit storage-slot item
-#define BACK_LAYER				20		//Back-slot item
-#define HAIR_LAYER				21		//The human's hair
-#define HAIR_ACCESSORY_LAYER	22		//VOREStation edit. Simply move this up a number if things are added.
-#define EARS_LAYER				23		//Both ear-slot items (combined image)
-#define EYES_LAYER				24		//Mob's eyes (used for glowing eyes)
-#define FACEMASK_LAYER			25		//Mask-slot item
-#define GLASSES_LAYER_ALT		26		//So some glasses can appear on top of hair and things
-#define HEAD_LAYER				27		//Head-slot item
-#define HANDCUFF_LAYER			28		//Handcuffs, if the human is handcuffed, in a secret inv slot
-#define LEGCUFF_LAYER			29		//Same as handcuffs, for legcuffs
-#define L_HAND_LAYER			30		//Left-hand item
-#define R_HAND_LAYER			31		//Right-hand item
-#define WING_LAYER				32		//Wings or protrusions over the suit.
-#define TAIL_UPPER_LAYER_ALT	33		//Modified tail-sprite layer. Tend to be larger.
-#define MODIFIER_EFFECTS_LAYER	34		//Effects drawn by modifiers
-#define FIRE_LAYER				35		//'Mob on fire' overlay layer
-// # define MOB_WATER_LAYER			36		//'Mob submerged' overlay layer // Moved to global defines
-#define TARGETED_LAYER			37		//'Aimed at' overlay layer
-#define VORE_BELLY_LAYER		38
-#define VORE_TAIL_LAYER			39
-
-#define TOTAL_LAYERS			39		//VOREStation edit. <---- KEEP THIS UPDATED, should always equal the highest number here, used to initialize a list.
-//////////////////////////////////
-
 /mob/living/carbon/human
 	var/list/overlays_standing[TOTAL_LAYERS]
 	var/previous_damage_appearance // store what the body last looked like, so we only have to update it if something changed
@@ -244,6 +198,8 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 /mob/living/carbon/human/update_icons_body()
 	if(QDESTROYING(src))
 		return
+
+	remove_layer(BODYPARTS_LAYER)
 
 	var/husk_color_mod = rgb(96,88,80)
 	var/hulk_color_mod = rgb(48,224,40)
@@ -427,6 +383,13 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 
 	//END CACHED ICON GENERATION.
 	stand_icon.Blend(base_icon,ICON_OVERLAY)
+
+	var/image/body = image(stand_icon)
+	if (body)
+		body.layer = BODY_LAYER + BODYPARTS_LAYER
+		overlays_standing[BODYPARTS_LAYER] = body
+		apply_layer(BODYPARTS_LAYER)
+
 	icon = stand_icon
 
 	//tail

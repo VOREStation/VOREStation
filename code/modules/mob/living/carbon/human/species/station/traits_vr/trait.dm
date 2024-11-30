@@ -75,4 +75,14 @@
 			return TRUE
 		if(TRAIT_PREF_TYPE_COLOR) //color
 			return "#ffffff"
+		if(TRAIT_PREF_TYPE_STRING) //string
+			return ""
 	return
+
+/datum/trait/proc/apply_sanitization_to_string(var/pref, var/input)
+	if (has_preferences[pref][1] != TRAIT_PREF_TYPE_STRING || length(input) <= 0)
+		return default_value_for_pref(pref)
+	input = sanitizeSafe(input, MAX_NAME_LEN)
+	if (length(input) <= 0)
+		return default_value_for_pref(pref)
+	return input
