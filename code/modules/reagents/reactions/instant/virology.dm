@@ -135,7 +135,8 @@
 	symptoms = list(
 		/datum/symptom/macrophage,
 		/datum/symptom/size,
-		/datum/symptom/size/grow
+		/datum/symptom/size/grow,
+		/datum/symptom/size/shrink
 	)
 
 /decl/chemical_reaction/instant/mix_virus/rem_virus
