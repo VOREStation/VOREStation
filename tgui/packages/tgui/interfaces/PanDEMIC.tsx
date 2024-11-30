@@ -237,7 +237,7 @@ const TotalStats = ({ strain }: { strain: Strain }) => {
   );
 
   return (
-    <Section title="Total">
+    <Section title="Total Stats">
       <Table>
         <Table.Row header>
           <Table.Cell>Stealth</Table.Cell>
