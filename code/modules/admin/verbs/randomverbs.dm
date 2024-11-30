@@ -662,10 +662,10 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	//New message handling
 	post_comm_message(customname, replacetext(input, "\n", "<br/>"))
 
-	var/input = tgui_alert(usr, "Should this be announced to the general population?","Show world?",list("Yes","No"))
-	if(!input)
+	var/confirm = tgui_alert(usr, "Should this be announced to the general population?","Show world?",list("Yes","No"))
+	if(!confirm)
 		return
-	if(input == "Yes")
+	if(confirm == "Yes")
 		command_announcement.Announce(input, customname, new_sound = 'sound/AI/commandreport.ogg', msg_sanitized = 1);
 	else
 		to_world(span_red("New [using_map.company_name] Update available at all communication consoles."))
