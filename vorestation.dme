@@ -2043,6 +2043,7 @@
 #include "code\modules\client\preferences_tgui.dm"
 #include "code\modules\client\preferences_toggle_procs.dm"
 #include "code\modules\client\preferences_vr.dm"
+#include "code\modules\client\record_updater.dm"
 #include "code\modules\client\spam_prevention.dm"
 #include "code\modules\client\stored_item.dm"
 #include "code\modules\client\ui_style.dm"
