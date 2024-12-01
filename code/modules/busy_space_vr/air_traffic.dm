@@ -99,10 +99,12 @@ var/datum/lore/atc_controller/atc = new/datum/lore/atc_controller
 	//to_world("DEBUG OUTPUT 3: Chose [chatter_type]")
 	//DEBUG BLOCK ENDS
 
-	var/combined_first_name = "[prefix] [firstid] |[shipname]|"
-	var/comm_first_name = "[comm_first_name]"
+	var/combined_first_name = "[prefix] [firstid] |[shipname]|"	//formal traffic control identifier for use in messages
+	var/short_first_name = "[prefix] |[shipname]|"	//special variant for certain events
+	var/comm_first_name = "[owner] [shipname]"	//corpname + shipname for speaker identity in log
 	var/combined_second_name = "[secondprefix] [secondid] |[secondshipname]|"
-	var/comm_second_name = "[secondowner] [shipname]"
+	var/comm_second_name = "[secondowner] [secondshipname]"
+	var/short_second_name = "[secondprefix] |[secondshipname]|"
 
 	var/mission_noun = pick(source.flight_types)		//pull from a list of owner-specific flight ops, to allow an extra dash of flavor
 	if(source.complex_tasks)				//if our source has the complex_tasks flag, regenerate with a two-stage assignment
@@ -137,7 +139,7 @@ var/datum/lore/atc_controller/atc = new/datum/lore/atc_controller
 		chatter_type = "policeflee"
 	else if(org_type == "smuggler" && org_type2 == "system defense") //ditto, if an SDF ship catches them
 		chatter_type = "policeshipflee"
-	else if((org_type == "smuggler" || org_type == "pirate") && org_type2 == "system defense") //if we roll this combo instead, time for the SDF to do their fucking job
+	else if((org_type == "smuggler" || org_type == "pirate") && (org_type2 == "system defense" || org_type2 == "military")) //if we roll this combo instead, time for the SDF or Mercs to do their fucking jobs
 		chatter_type = "policeshipcombat"
 	else if((org_type == "smuggler" || org_type == "pirate") && org_type2 != "system defense") //but if we roll THIS combo, time to alert the SDF to get off their asses
 		chatter_type = "hostiledetected"
@@ -190,7 +192,7 @@ var/datum/lore/atc_controller/atc = new/datum/lore/atc_controller
 		//mayday call
 		if("emerg")
 			var/problem = pick("We have hull breaches on multiple decks","We have unknown hostile life forms on board","Our primary drive is failing","We have [pick("asteroids","space debris")] impacting the hull","We're experiencing a total loss of engine power","We have hostile ships closing fast","There's smoke [pick("in the cockpit","on the bridge")]","We have unidentified boarders","Our reaction control system is malfunctioning and we're losing stability","Our life support [pick("is failing","has failed")]")
-			msg("+Mayday, mayday, mayday!+ [combined_first_name], declaring an emergency! [problem]!","[comm_first_name]")
+			msg("+[pick("Mayday, mayday, mayday!","Mayday, mayday!","Mayday! Mayday!")]+ [combined_first_name], declaring an emergency! [problem]!","[comm_first_name]")
 			sleep(rand(MIN_MSG_DELAY,MAX_MSG_DELAY) SECONDS)
 			msg("[combined_first_name], [callname]. Switch to emergency responder channel [ertchannel].")
 			sleep(rand(MIN_MSG_DELAY,MAX_MSG_DELAY) SECONDS)
@@ -311,7 +313,7 @@ var/datum/lore/atc_controller/atc = new/datum/lore/atc_controller
 			var/orders = pick("Engage on sight","Engage with caution","Engage with extreme prejudice","Engage at will","Search and destroy","Bring them in alive, if possible","Interdict and detain","Keep your eyes peeled","Bring them in, dead or alive","Stay alert")
 			msg("This is [using_map.starsys_name] Defense Control to all SDF assets. Priority update follows.","[using_map.starsys_name] Defense Control")
 			sleep(rand(MIN_MSG_DELAY,MAX_MSG_DELAY) SECONDS)
-			msg("Be on the lookout for [combined_first_name], last sighted [pick("near route","in sector","near sector")] [rand(1,100)]. [orders]. DefCon, out.","[using_map.starsys_name] Defense Control")
+			msg("Be on the lookout for [short_first_name], last sighted [pick("near route","in sector","near sector")] [rand(1,100)]. [orders]. DefCon, out.","[using_map.starsys_name] Defense Control")
 		//Ship event: distress call, under attack
 		if("distress")
 			var/state = pick(66;"calm",34;"panic")
@@ -334,7 +336,7 @@ var/datum/lore/atc_controller/atc = new/datum/lore/atc_controller
 					msg("[pick("Copy that","Understood")] [using_map.starsys_name] Defense Control, switching now!","[comm_first_name]")
 		//Control event: travel advisory
 		if("traveladvisory")
-			var/flightwarning = pick("Solar flare activity is spiking and expected to cause issues along main flight lanes [rand(1,33)], [rand(34,67)], and [rand(68,100)]","Pirate activity is on the rise, stay close to System Defense vessels","We're seeing a rise in illegal salvage operations, please report any unusual activity to the nearest SDF vessel via channel [sdfchannel]","A quarantined [pick("fleet","convoy")] is passing through the system along route [rand(1,100)], please observe minimum safe distance","A prison [pick("fleet","convoy")] is passing through the system along route [rand(1,100)], please observe minimum safe distance","Traffic volume is higher than normal, expect processing delays","Anomalous bluespace activity detected [pick("along route [rand(1,100)]","in sector [rand(1,100)]")], exercise caution","Smugglers have been particularly active lately, expect increased security scans","Depots are currently experiencing a fuel shortage, expect delays and higher rates","Asteroid mining has displaced debris dangerously close to main flight lanes on route [rand(1,100)], watch for potential impactors","A [pick("fuel tanker","cargo liner","passenger liner","freighter","transport ship","mining barge","salvage trawler")] has collided with [pick("a fuel tanker","a cargo liner","a passenger liner","a freighter","a transport ship","a mining barge","a salvage trawler","a meteoroid","a cluster of space debris","an asteroid","an ice-rich comet")] near route [rand(1,100)], watch for debris and do not impede emergency service vessels","A [pick("fuel tanker","cargo liner","passenger liner","freighter","transport ship","mining barge","salvage trawler")] on route [rand(1,100)] has experienced total engine failure. Emergency response teams are en route, please observe minimum safe distances and do not impede emergency service vessels","Transit routes have been recalculated to adjust for planetary drift. Please synch your astronav computers as soon as possible to avoid delays and difficulties","[pick("Bounty hunters","System Defense officers","Mercenaries")] are currently searching for a wanted fugitive, report any sightings of suspicious activity to System Defense via channel [sdfchannel]",10;"It's space [pick("carp","shark")] breeding season. [pick("Stars","Skies","Gods","God","Goddess","Fates")] have mercy on you all","We're reading [pick("void","drive","sensor")] echoes that are consistent with illegal cloaking devices")
+			var/flightwarning = pick("Solar flare activity is spiking and expected to cause issues along main flight lanes [rand(1,33)], [rand(34,67)], and [rand(68,100)]","Pirate activity is on the rise, stay close to System Defense vessels","We're seeing a rise in illegal salvage operations, please report any unusual activity to the nearest SDF vessel via channel [sdfchannel]","A quarantined [pick("fleet","convoy")] is passing through the system along route [rand(1,100)], please observe minimum safe distance","A prison [pick("fleet","convoy")] is passing through the system along route [rand(1,100)], please observe minimum safe distance","Traffic volume is higher than normal, expect processing delays","Anomalous bluespace activity detected [pick("along route [rand(1,100)]","in sector [rand(1,100)]")], exercise caution","Smugglers have been particularly active lately, expect increased security scans","Depots are currently experiencing a fuel shortage, expect delays and higher rates","Asteroid mining has displaced debris dangerously close to main flight lanes on route [rand(1,100)], watch for potential impactors","A [pick("fuel tanker","cargo liner","passenger liner","freighter","transport ship","mining barge","salvage trawler")] has collided with [pick("a fuel tanker","a cargo liner","a passenger liner","a freighter","a transport ship","a mining barge","a salvage trawler","a meteoroid","a cluster of space debris","an asteroid","an ice-rich comet")] near route [rand(1,100)], watch for debris and do not impede emergency service vessels","A [pick("fuel tanker","cargo liner","passenger liner","freighter","transport ship","mining barge","salvage trawler")] on route [rand(1,100)] has experienced total engine failure. Emergency response teams are en route, please observe minimum safe distances and do not impede emergency service vessels","Transit routes have been recalculated to adjust for planetary drift. Please synch your astronav computers as soon as possible to avoid delays and difficulties","[pick("Bounty hunters","System Defense officers","Mercenaries")] are currently searching for a wanted fugitive, report any sightings of suspicious activity to System Defense via channel [sdfchannel]",10;"It's space [pick("carp","shark")] breeding season. [pick("Stars","Skies","Gods","God","Goddess","Fates")] have mercy on you all","We're reading [pick("void","drive","sensor")] echoes that are consistent with illegal cloaking devices, be alert for suspicious activity in your sector")
 			msg("[callname], all vessels in the [using_map.starsys_name] system. Priority travel advisory follows.")
 			sleep(rand(MIN_MSG_DELAY,MAX_MSG_DELAY) SECONDS)
 			msg("[flightwarning]. Control out.")
@@ -342,14 +344,14 @@ var/datum/lore/atc_controller/atc = new/datum/lore/atc_controller
 		if("pathwarning")
 			var/navhazard = pick("a pocket of intense radiation","a pocket of unstable gas","a debris field","a secure installation","an active combat zone","a quarantined ship","a quarantined installation","a quarantined sector","a live-fire SDF training exercise","an ongoing Search & Rescue operation","a hazardous derelict","an intense electrical storm","an intense ion storm","a shoal of space carp","a pack of space sharks","an asteroid infested with gnat hives","a protected space ray habitat","a region with anomalous bluespace activity","a rogue comet")
 			var/confirm = pick("Understood","Roger that","Affirmative","Our bad","Thanks for the heads up")
-			msg("[combined_first_name], [callname], your [pick("ship","vessel","starship")] is approaching [navhazard], observe minimum safe distance and adjust your heading appropriately.")
+			msg("[combined_first_name], [callname]. Your [pick("ship","vessel","starship")] is approaching [navhazard], observe minimum safe distance and adjust your heading appropriately.")
 			sleep(rand(MIN_MSG_DELAY,MAX_MSG_DELAY) SECONDS)
 			msg("[confirm] [callname], adjusting course.","[comm_first_name]")
 			sleep(rand(MIN_MSG_DELAY,MAX_MSG_DELAY) SECONDS)
 			msg("Your compliance is appreciated, [combined_first_name].")
 		//Control event: personnel report to dock
 		if("report_to_dock")
-			var/situation_type = pick("medical","security","engineering","animal control")
+			var/situation_type = pick("medical","security","engineering","animal control","hazmat")
 			msg("This is [using_map.dock_name] Tower. Would a free [situation_type] team please report to [landing_zone] immediately. This is not a drill.")
 			sleep(rand(MIN_MSG_DELAY,MAX_MSG_DELAY)*10 SECONDS)
 			msg("Repeat, any free [situation_type] team, report to [landing_zone] immediately. This is +not+ a drill.")

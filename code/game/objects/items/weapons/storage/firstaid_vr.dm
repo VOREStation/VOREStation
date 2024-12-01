@@ -234,8 +234,8 @@
 	starts_with = list(/obj/item/reagent_containers/pill/healing_nanites = 14)
 
 /obj/item/storage/pill_bottle/sleevingcure
-	name = "pill bottle (Kitsuhanan Cure)"
-	desc = "A rare cure provided by KHI that helps counteract negative side effects of using imperfect resleeving machinery."
+	name = "pill bottle (Vey-Med Cure)"
+	desc = "A rare cure provided by Vey-Medical that helps counteract negative side effects of using imperfect resleeving machinery."
 	starts_with = list(/obj/item/reagent_containers/pill/sleevingcure = 7)
 
 /obj/item/storage/pill_bottle/sleevingcure/full
@@ -249,7 +249,7 @@
 	can_hold = list(/obj/item/reagent_containers/pill)
 
 /obj/item/storage/mrebag/pill/sleevingcure
-	name = "vacuum-sealed pill (Kitsuhanan Cure)"
+	name = "vacuum-sealed pill (Vey-Med Cure)"
 	desc = "A small vacuum-sealed package containing a singular pill. For emergencies only."
 	starts_with = list(/obj/item/reagent_containers/pill/sleevingcure)
 

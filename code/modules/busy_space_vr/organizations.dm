@@ -114,6 +114,7 @@
 			"Andiamo",
 			"Aurora",
 			"Phoenix",
+			"Wayward Phoenix",
 			"Lucky",
 			"Raven",
 			"Valkyrie",
@@ -208,8 +209,15 @@
 			"Monte Carlo",
 			"Dead Man's Hand",
 			"Icebreaker",
+			"Megalith",
+			"Picasso",
 			"Spirit of Alliance",
 			"Surrounded By Idiots",
+			"Honk If You Can Read This",
+			"Sufficient Velocity",
+			"Credible Deniability",
+			"Crucible",
+			"Tunguska",
 			"Instrument of Violence",
 			"Entropic Whisper",
 			"Cash and Prizes",
@@ -237,6 +245,7 @@
 			"Full House",
 			"Wild Card",
 			"Bonaventure",
+			"Nothing Ventured",
 			"Go West",
 			"Once Upon A Time",
 			"Bygones Be",
@@ -294,9 +303,15 @@
 			"Golden Hand",
 			"White Company",
 			"Haggler",
-			"Rendezvous"
+			"Rendezvous",
+			"Two For Flinching",
+			"Uninvited Guest",
+			"Iconoclast",
+			"Bluespace Tourist"
 			)
-	var/list/destination_names = list()	//Names of static holdings that the organization's ships visit regularly.
+	var/list/added_ship_names = list()	//List of ship names to add to the above, rather than wholesale replacing
+	var/list/destination_names = list()	//Names of static holdings that the organization's ships visit
+	var/append_ship_names = FALSE
 
 	var/org_type = "neutral"		//Valid options are "neutral", "corporate", "government", "system defense", "military, "smuggler", & "pirate"
 	var/autogenerate_destination_names = TRUE //Pad the destination lists with some extra random ones? see the proc below for info on that
@@ -305,6 +320,9 @@
 
 /datum/lore/organization/New()
 	..()
+
+	if(append_ship_names)
+		ship_names.Add(added_ship_names)
 
 	if(autogenerate_destination_names) // Lets pad out the destination names.
 		var/i = rand(20, 30) //significantly increased from original values due to the greater length of rounds
@@ -369,7 +387,7 @@
 			/* other */
 			"Vazzend","Thoth","Jahan's Post","Silk","New Singapore",
 			"Stove","Viola","Isavau's Gamble","Samsara",
-			"Vounna","Relan","Whythe","Exalt's Light",
+			"Vounna","Relan","Whythe","Exalt's Light","Van Zandt",
 			/* generic territories */
 			"deep space",
 			"Commonwealth space",
@@ -523,7 +541,8 @@
 			)
 	ship_prefixes = list("HCV" = "a general operations", "HTV" = "a freight", "HLV" = "a munitions resupply", "HDV" = "an asset protection", "HDV" = "a preemptive deployment")
 	//War God Theme, updated
-	ship_names = list(
+	append_ship_names = TRUE
+	added_ship_names = list(
 			"Anhur",
 			"Bast",
 			"Horus",
@@ -633,7 +652,8 @@
 			)
 	ship_prefixes = list("VMV" = "a general operations", "VTV" = "a transportation", "VHV" = "a medical resupply", "VSV" = "a research", "VRV" = "an emergency medical support")
 	// Diona names, mostly
-	ship_names = list(
+	append_ship_names = TRUE
+	added_ship_names = list(
 			"Wind That Stirs The Waves",
 			"Sustained Note Of Metal",
 			"Bright Flash Reflecting Off Glass",
@@ -689,7 +709,8 @@
 			)
 	ship_prefixes = list("ZHV" = "a general operations", "ZTV" = "a transportation", "ZMV" = "a medical resupply", "ZRV" = "a medical research")
 	//ship names: a selection of famous physicians who advanced the cause of medicine
-	ship_names = list(
+	append_ship_names = TRUE
+	added_ship_names = list(
 			"Averroes",
 			"Avicenna",
 			"Banting",
@@ -774,7 +795,8 @@
 			"Ward-Takahashi Electronics - keeping you in touch with the galaxy."
 			)
 	ship_prefixes = list("WTV" = "a general operations", "WTFV" = "a freight", "WTGV" = "a transport", "WTDV" = "an asset protection")
-	ship_names = list(
+	append_ship_names = TRUE
+	added_ship_names = list(
 			"Comet",
 			"Meteor",
 			"Heliosphere",
@@ -838,7 +860,8 @@
 			)
 	ship_prefixes = list("BCV" = "a general operations", "BCTV" = "a transportation", "BCSV" = "a research exchange")
 	//famous mechanical engineers
-	ship_names = list(
+	append_ship_names = TRUE
+	added_ship_names = list(
 			"Al-Jazari",
 			"Al-Muradi",
 			"Al-Zarqali",
@@ -921,7 +944,8 @@
 	*/
 	ship_prefixes = list("MCV" = "a general operations", "MTV" = "a freight", "MDV" = "a market protection", "MSV" = "an outreach")
 	//periodic elements; something 'unusual' for the posibrain TSC without being full on 'quirky' culture ship names (much as I love them, they're done to death)
-	ship_names = list(
+	append_ship_names = TRUE
+	added_ship_names = list(
 			"Hydrogen",
 			"Helium",
 			"Lithium",
@@ -1016,7 +1040,8 @@
 			)
 	ship_prefixes = list("XMV" = "a general operations", "XTV" = "a hauling", "XFV" = "a bulk transport", "XIV" = "a resupply")
 	//martian mountains
-	ship_names = list(
+	append_ship_names = TRUE
+	added_ship_names = list(
 			"Olympus Mons",
 			"Ascraeus Mons",
 			"Arsia Mons",
@@ -1077,7 +1102,8 @@
 			)
 	ship_prefixes = list("FTV" = "a general operations", "FTRP" = "a trade protection", "FTRR" = "a piracy suppression", "FTLV" = "a logistical support", "FTTV" = "a mercantile", "FTDV" = "a market establishment")
 	//famous merchants and traders, taken from Civ6's Great Merchants, plus the TSC's founder
-	ship_names = list(
+	append_ship_names = TRUE
+	added_ship_names = list(
 			"Isaac Adler",
 			"Colaeus",
 			"Marcus Licinius Crassus",
@@ -1126,7 +1152,8 @@
 			)
 	ship_prefixes = list("TTV" = "a general operations", "TTV" = "a transport", "TTV" = "a luxury transit", "TTV" = "a priority transit", "TTV" = "a secure data courier")
 	//ship names: big rivers
-	ship_names = list (
+	append_ship_names = TRUE
+	added_ship_names = list (
 			"Nile",
 			"Kagera",
 			"Nyabarongo",
@@ -1202,7 +1229,8 @@
 			)
 	ship_prefixes = list("GMV" = "a general operations", "GMT" = "a transport", "GMR" = "a resourcing", "GMS" = "a surveying", "GMH" = "a bulk transit")
 	//rocks
-	ship_names = list(
+	append_ship_names = TRUE
+	added_ship_names = list(
 			"Adakite",
 			"Andesite",
 			"Basalt",
@@ -1268,7 +1296,8 @@
 			)
 	ship_prefixes = list("AARV" = "a general operations", "AARE" = "a resource extraction", "AARG" = "a gas transport", "AART" = "a transport")
 	//weather systems/patterns
-	ship_names = list (
+	append_ship_names = TRUE
+	added_ship_names = list (
 			"Cloud",
 			"Nimbus",
 			"Fog",
@@ -1323,7 +1352,8 @@
 			)
 	ship_prefixes = list("FPV" = "a general operations", "FPH" = "a transport", "FPC" = "an energy relay", "FPT" = "a fuel transport")
 	//famous electrical engineers
-	ship_names = list (
+	append_ship_names = TRUE
+	added_ship_names = list (
 			"Erlang",
 			"Blumlein",
 			"Taylor",
@@ -1424,6 +1454,8 @@
 			"Kite",
 			"Hawk",
 			"Falcon",
+			"Hummingbird",
+			"Toucan",
 			"Caracara"
 			)
 	destination_names = list(
@@ -1626,7 +1658,8 @@
 			)
 	ship_prefixes = list("CSV" = "a salvage", "CRV" = "a recovery", "CTV" = "a transport", "CSV" = "a shipbreaking", "CHV" = "a towing")
 	//mostly-original, maybe some references, and more than a few puns
-	ship_names = list(
+	append_ship_names = TRUE
+	added_ship_names = list(
 			"Road Hog",
 			"Mine, Not Yours",
 			"Legal Salvage",
@@ -1658,6 +1691,7 @@
 			"T-Wrecks",
 			"Dust Bunny",
 			"No Gears No Glory",
+			"Two Drink Minimum",
 			"Three Drinks In",
 			"The Almighty Janitor",
 			"Wreckless Endangerment",
@@ -1701,40 +1735,44 @@
 	ship_prefixes = list("CGV" = "a general operations", "CGT" = "a transport", "CGT" = "a delivery", "CGH" = "a medical")
 	//edgy mythological critters!
 	ship_names = list(
-			"Dragon",
-			"Chimera",
-			"Titan",
-			"Hekatonchires",
-			"Gorgon",
-			"Scylla",
-			"Minotaur",
+			"Bandersnatch",
 			"Banshee",
 			"Basilisk",
 			"Black Dog",
 			"Centaur",
 			"Cerberus",
 			"Charybdis",
+			"Chimera",
 			"Cyclops",
 			"Cynocephalus",
 			"Demon",
 			"Daemon",
+			"Dragon",
 			"Echidna",
+			"Ghoul",
 			"Goblin",
 			"Golem",
+			"Gorgon",
 			"Griffin",
+			"Hekatonchires",
 			"Hobgoblin",
 			"Hydra",
 			"Imp",
 			"Ladon",
+			"Loup-Garou",
 			"Manticore",
 			"Medusa",
+			"Minotaur",
+			"Naga",
 			"Nosferatu",
 			"Ogre",
 			"Pegasus",
 			"Sasquatch",
+			"Scylla",
 			"Shade",
 			"Siren",
 			"Sphinx",
+			"Titan",
 			"Typhon",
 			"Valkyrie",
 			"Vampir",
@@ -1919,7 +1957,7 @@
 
 /datum/lore/organization/other/smugglers/New()
 	..()
-	var/i = 20 //give us twenty random names
+	var/i = 20 //give us twenty random names. for smugglers, I grabbed a bunch of two-syllable s-words, in keeping with NATO reporting names. I figured a fixed name list didn't make very much sense.
 	var/list/first_word = list(
 			"Smuggler","Safety","Scanner","Season","Secret","Section","Seeker","Server","Seller","Sequence","Shadow","Solar","Software","Smoker","Southwest","Spectrum","Spirit","Sponsor","Stainless","Stable","Study","Subject","Student","Surface","Symbol","Supreme","Surprise","Syntax","Sterling","Statement"
 			)
@@ -1952,9 +1990,9 @@
 
 /datum/lore/organization/other/pirates/New()
 	..()
-	var/i = 20 //give us twenty random names
+	var/i = 20 //give us twenty random names. as for smugglers, so for pirates. in this case I went with two-syllable b-words.
 	var/list/first_word = list(
-			"Bandit","Backup","Baker","Balance","Bandwidth","Banker","Banner","Bargain","Baseball","Basket","Bathroom","Berlin","Beyond","Bidder","Bishop","Bookmark","Border","Boston","Bracelet","Brazil","Breakfast","Brian","Broadband","Brochure","Broken","Broker","Brother","Buddy","Budget","Bureau","Business"
+			"Bandit","Bogey","Backup","Baker","Balance","Bandwidth","Banker","Banner","Bargain","Baseball","Basket","Bathroom","Berlin","Beyond","Bidder","Bishop","Bookmark","Border","Boston","Bracelet","Brazil","Breakfast","Brian","Broadband","Brochure","Broken","Broker","Brother","Buddy","Budget","Bureau","Business"
 			)
 	var/list/nato_phonetic = list(
 			"Alfa","Bravo","Charlie","Delta","Echo","Foxtrot","Golf","Hotel","India","Juliet","Kilo","Lima","Mike","November","Oscar","Papa","Quebec","Romeo","Sierra","Tango","Uniform","Victor","Whiskey","Xray","Yankee","Zulu"
@@ -2223,7 +2261,11 @@
 			"Posadism Gang",
 			"Accelerationism Doesn't Work In A Vaccuum",
 			"Don't Shoot, We're Unarmed I Think",
+			"Sir, It's One Of Ours",
 			"The Big Stick For Speaking Softly",
+			"Per Our Last E-Mail",
+			"A Slight Weight Discrepancy",
+			"I Think It's An Asteroid",
 			"Bull Moose",
 			"Engels Needs Some Love Too",
 			"The Icepick",
@@ -2316,6 +2358,7 @@
 			"A Thousand Cultures",
 			"There Is a Character Limit?",
 			"Slave Galley I",
+			"The Memes of Production",
 			"The Unconquered CCXXII"
 			)
 	destination_names = list(

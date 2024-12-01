@@ -1,6 +1,6 @@
 /obj/item/paicard/sleevecard
 	name = "sleevecard"
-	desc = "This KHI-upgraded pAI module has enough capacity to run a whole mind of human-level intelligence."
+	desc = "This upgraded pAI module has enough capacity to run a whole mind of human-level intelligence."
 	catalogue_data = list(/datum/category_item/catalogue/technology/resleeving)
 	origin_tech = list(TECH_DATA = 2)
 	show_messages = 0

@@ -79,9 +79,9 @@
 		M.heal_organ_damage(8 * removed * chem_effective, 0)
 
 /datum/reagent/sleevingcure
-	name = "Kitsuhanan Cure"
+	name = "Resleeving Sickness Cure"
 	id = "sleevingcure"
-	description = "A rare cure provided by KHI that helps counteract negative side effects of using imperfect resleeving machinery."
+	description = "A rare cure provided by Vey-Med that helps counteract negative side effects of using imperfect resleeving machinery."
 	taste_description = "chocolate peanut butter"
 	taste_mult = 2
 	reagent_state = LIQUID

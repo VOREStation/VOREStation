@@ -42,7 +42,7 @@
 
 // The Pack //
 /obj/item/storage/secure/briefcase/nsfw_pack
-	name = "\improper KHI-102b \'NSFW\' gun kit"
+	name = "\improper Hephaestus 102b \'NSFW\' gun kit"
 	desc = "A storage case for a multi-purpose handgun. Variety hour!"
 	w_class = ITEMSIZE_NORMAL
 	max_w_class = ITEMSIZE_NORMAL
