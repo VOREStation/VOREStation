@@ -24,12 +24,21 @@ export const SecurityRecordsViewSecurity = (props) => {
           <LabeledList.Item key={i} label={field.field}>
             <Box preserveWhitespace>
               {field.value}
-              <Button
-                icon="pen"
-                ml="0.5rem"
-                mb={'initial'}
-                onClick={() => doEdit(field)}
-              />
+              {!!field.edit &&
+                (field.edit === 'notes' ? (
+                  <Button
+                    icon="pen"
+                    ml="1rem"
+                    onClick={() => act('edit_notes')}
+                  />
+                ) : (
+                  <Button
+                    icon="pen"
+                    ml="0.5rem"
+                    mb={'initial'}
+                    onClick={() => doEdit(field)}
+                  />
+                ))}
             </Box>
           </LabeledList.Item>
         ))}
