@@ -376,13 +376,13 @@
 
 	generate_data(user)
 
-	if(can_change(user, APPEARANCE_RACE))
+	if(can_change(owner, APPEARANCE_RACE))
 		var/species[0]
 		for(var/specimen in valid_species)
 			species[++species.len] =  list("specimen" = specimen)
 		data["species"] = species
 
-	if(can_change(user, APPEARANCE_HAIR))
+	if(can_change(owner, APPEARANCE_HAIR))
 		var/hair_styles[0]
 		for(var/hair_style in valid_hairstyles)
 			hair_styles[++hair_styles.len] = list("hairstyle" = hair_style)
@@ -393,7 +393,7 @@
 		data["wing_styles"] = valid_wingstyles
 		// VOREStation Add End
 
-	if(can_change(user, APPEARANCE_FACIAL_HAIR))
+	if(can_change(owner, APPEARANCE_FACIAL_HAIR))
 		var/facial_hair_styles[0]
 		for(var/facial_hair_style in valid_facial_hairstyles)
 			facial_hair_styles[++facial_hair_styles.len] = list("facialhairstyle" = facial_hair_style)
