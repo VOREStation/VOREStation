@@ -117,14 +117,14 @@
 				return 1
 		if("skin_tone")
 			if(can_change_skin_tone(target))
-				var/new_s_tone = tgui_input_number(target, "Choose your character's skin-tone:\n(Light 1 - 220 Dark)", "Skin Tone", -target.s_tone + 35, 220, 1)
+				var/new_s_tone = tgui_input_number(ui.user, "Choose your character's skin-tone:\n(Light 1 - 220 Dark)", "Skin Tone", -target.s_tone + 35, 220, 1)
 				if(isnum(new_s_tone) && can_still_topic(target, state))
 					new_s_tone = 35 - max(min( round(new_s_tone), 220),1)
 					changed_hook(APPEARANCECHANGER_CHANGED_SKINTONE)
 					return target.change_skin_tone(new_s_tone)
 		if("skin_color")
 			if(can_change_skin_color(target))
-				var/new_skin = input(target, "Choose your character's skin colour: ", "Skin Color", rgb(target.r_skin, target.g_skin, target.b_skin)) as color|null
+				var/new_skin = input(ui.user, "Choose your character's skin colour: ", "Skin Color", rgb(target.r_skin, target.g_skin, target.b_skin)) as color|null
 				if(new_skin && can_still_topic(target, state))
 					var/r_skin = hex2num(copytext(new_skin, 2, 4))
 					var/g_skin = hex2num(copytext(new_skin, 4, 6))
@@ -141,7 +141,7 @@
 					return 1
 		if("hair_color")
 			if(can_change(target, APPEARANCE_HAIR_COLOR))
-				var/new_hair = input(target, "Please select hair color.", "Hair Color", rgb(target.r_hair, target.g_hair, target.b_hair)) as color|null
+				var/new_hair = input(ui.user, "Please select hair color.", "Hair Color", rgb(target.r_hair, target.g_hair, target.b_hair)) as color|null
 				if(new_hair && can_still_topic(target, state))
 					var/r_hair = hex2num(copytext(new_hair, 2, 4))
 					var/g_hair = hex2num(copytext(new_hair, 4, 6))
@@ -158,7 +158,7 @@
 					return 1
 		if("facial_hair_color")
 			if(can_change(target, APPEARANCE_FACIAL_HAIR_COLOR))
-				var/new_facial = input(target, "Please select facial hair color.", "Facial Hair Color", rgb(target.r_facial, target.g_facial, target.b_facial)) as color|null
+				var/new_facial = input(ui.user, "Please select facial hair color.", "Facial Hair Color", rgb(target.r_facial, target.g_facial, target.b_facial)) as color|null
 				if(new_facial && can_still_topic(target, state))
 					var/r_facial = hex2num(copytext(new_facial, 2, 4))
 					var/g_facial = hex2num(copytext(new_facial, 4, 6))
@@ -169,7 +169,7 @@
 						return 1
 		if("eye_color")
 			if(can_change(target, APPEARANCE_EYE_COLOR))
-				var/new_eyes = input(target, "Please select eye color.", "Eye Color", rgb(target.r_eyes, target.g_eyes, target.b_eyes)) as color|null
+				var/new_eyes = input(ui.user, "Please select eye color.", "Eye Color", rgb(target.r_eyes, target.g_eyes, target.b_eyes)) as color|null
 				if(new_eyes && can_still_topic(target, state))
 					var/r_eyes = hex2num(copytext(new_eyes, 2, 4))
 					var/g_eyes = hex2num(copytext(new_eyes, 4, 6))
@@ -209,7 +209,7 @@
 				return TRUE
 		if("ears_color")
 			if(can_change(target, APPEARANCE_HAIR_COLOR))
-				var/new_hair = input(target, "Please select ear color.", "Ear Color", rgb(target.r_ears, target.g_ears, target.b_ears)) as color|null
+				var/new_hair = input(ui.user, "Please select ear color.", "Ear Color", rgb(target.r_ears, target.g_ears, target.b_ears)) as color|null
 				if(new_hair && can_still_topic(target, state))
 					target.r_ears = hex2num(copytext(new_hair, 2, 4))
 					target.g_ears = hex2num(copytext(new_hair, 4, 6))
@@ -220,7 +220,7 @@
 					return 1
 		if("ears2_color")
 			if(can_change(target, APPEARANCE_HAIR_COLOR))
-				var/new_hair = input(target, "Please select secondary ear color.", "2nd Ear Color", rgb(target.r_ears2, target.g_ears2, target.b_ears2)) as color|null
+				var/new_hair = input(ui.user, "Please select secondary ear color.", "2nd Ear Color", rgb(target.r_ears2, target.g_ears2, target.b_ears2)) as color|null
 				if(new_hair && can_still_topic(target, state))
 					target.r_ears2 = hex2num(copytext(new_hair, 2, 4))
 					target.g_ears2 = hex2num(copytext(new_hair, 4, 6))
@@ -235,7 +235,7 @@
 				if(channel > length(target.ear_secondary_colors))
 					return TRUE
 				var/existing = LAZYACCESS(target.ear_secondary_colors, channel) || "#ffffff"
-				var/new_color = input(target, "Please select ear color.", "2nd Ear Color", existing) as color|null
+				var/new_color = input(ui.user, "Please select ear color.", "2nd Ear Color", existing) as color|null
 				if(new_color && can_still_topic(target, state))
 					target.ear_secondary_colors[channel] = new_color
 					update_dna(target)
@@ -256,7 +256,7 @@
 				return TRUE
 		if("tail_color")
 			if(can_change(target, APPEARANCE_HAIR_COLOR))
-				var/new_hair = input(target, "Please select tail color.", "Tail Color", rgb(target.r_tail, target.g_tail, target.b_tail)) as color|null
+				var/new_hair = input(ui.user, "Please select tail color.", "Tail Color", rgb(target.r_tail, target.g_tail, target.b_tail)) as color|null
 				if(new_hair && can_still_topic(target, state))
 					target.r_tail = hex2num(copytext(new_hair, 2, 4))
 					target.g_tail = hex2num(copytext(new_hair, 4, 6))
@@ -267,7 +267,7 @@
 					return 1
 		if("tail2_color")
 			if(can_change(target, APPEARANCE_HAIR_COLOR))
-				var/new_hair = input(target, "Please select secondary tail color.", "2nd Tail Color", rgb(target.r_tail2, target.g_tail2, target.b_tail2)) as color|null
+				var/new_hair = input(ui.user, "Please select secondary tail color.", "2nd Tail Color", rgb(target.r_tail2, target.g_tail2, target.b_tail2)) as color|null
 				if(new_hair && can_still_topic(target, state))
 					target.r_tail2 = hex2num(copytext(new_hair, 2, 4))
 					target.g_tail2 = hex2num(copytext(new_hair, 4, 6))
@@ -290,7 +290,7 @@
 				return TRUE
 		if("wing_color")
 			if(can_change(target, APPEARANCE_HAIR_COLOR))
-				var/new_hair = input(target, "Please select wing color.", "Wing Color", rgb(target.r_wing, target.g_wing, target.b_wing)) as color|null
+				var/new_hair = input(ui.user, "Please select wing color.", "Wing Color", rgb(target.r_wing, target.g_wing, target.b_wing)) as color|null
 				if(new_hair && can_still_topic(target, state))
 					target.r_wing = hex2num(copytext(new_hair, 2, 4))
 					target.g_wing = hex2num(copytext(new_hair, 4, 6))
@@ -301,7 +301,7 @@
 					return 1
 		if("wing2_color")
 			if(can_change(target, APPEARANCE_HAIR_COLOR))
-				var/new_hair = input(target, "Please select secondary wing color.", "2nd Wing Color", rgb(target.r_wing2, target.g_wing2, target.b_wing2)) as color|null
+				var/new_hair = input(ui.user, "Please select secondary wing color.", "2nd Wing Color", rgb(target.r_wing2, target.g_wing2, target.b_wing2)) as color|null
 				if(new_hair && can_still_topic(target, state))
 					target.r_wing2 = hex2num(copytext(new_hair, 2, 4))
 					target.g_wing2 = hex2num(copytext(new_hair, 4, 6))
@@ -323,7 +323,7 @@
 								return TRUE
 					if (1) //add
 						var/list/usable_markings = markings.Copy() ^ body_marking_styles_list.Copy()
-						var/new_marking = tgui_input_list(target, "Choose a body marking:", "New Body Marking", usable_markings)
+						var/new_marking = tgui_input_list(ui.user, "Choose a body marking:", "New Body Marking", usable_markings)
 						if(new_marking && can_still_topic(target, state))
 							var/datum/sprite_accessory/marking/mark_datum = body_marking_styles_list[new_marking]
 							if (target.add_marking(mark_datum))
@@ -339,7 +339,7 @@
 							return TRUE
 					if (4) //color
 						var/current = markings[name_marking] ? markings[name_marking] : "#000000"
-						var/marking_color = input(target, "Please select marking color", "Marking color", current) as color|null
+						var/marking_color = input(ui.user, "Please select marking color", "Marking color", current) as color|null
 						if(marking_color && can_still_topic(target, state))
 							var/datum/sprite_accessory/marking/mark_datum = body_marking_styles_list[name_marking]
 							if (target.change_marking_color(mark_datum, marking_color))
