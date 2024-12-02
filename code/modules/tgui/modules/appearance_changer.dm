@@ -66,8 +66,8 @@
 
 /datum/tgui_module/appearance_changer/tgui_close()
 	. = ..()
-	owner = null
 	UnregisterSignal(owner, COMSIG_OBSERVER_MOVED)
+	owner = null
 
 /datum/tgui_module/appearance_changer/Destroy()
 	last_camera_turf = null
