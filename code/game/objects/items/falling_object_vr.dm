@@ -1,5 +1,5 @@
 /obj/effect/falling_effect
-	name = "you should not see this"
+	name = DEVELOPER_WARNING_NAME
 	desc = "no data"
 	invisibility = 101
 	anchored = TRUE
