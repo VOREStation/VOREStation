@@ -19,8 +19,10 @@ export const AppearanceChangerColors = (props) => {
     ears2_color,
     tail_color,
     tail2_color,
+    tail3_color,
     wing_color,
     wing2_color,
+    wing3_color,
   } = data;
 
   return (
@@ -86,6 +88,12 @@ export const AppearanceChangerColors = (props) => {
             </Button>
           </Box>
           <Box>
+            <ColorBox color={tail3_color} mr={1} />
+            <Button onClick={() => act('tail3_color')}>
+              Change Tertiary Tail Color
+            </Button>
+          </Box>
+          <Box>
             <ColorBox color={wing_color} mr={1} />
             <Button onClick={() => act('wing_color')}>Change Wing Color</Button>
           </Box>
@@ -93,6 +101,12 @@ export const AppearanceChangerColors = (props) => {
             <ColorBox color={wing2_color} mr={1} />
             <Button onClick={() => act('wing2_color')}>
               Change Secondary Wing Color
+            </Button>
+          </Box>
+          <Box>
+            <ColorBox color={wing3_color} mr={1} />
+            <Button onClick={() => act('wing3_color')}>
+              Change Tertiary Wing Color
             </Button>
           </Box>
         </>
