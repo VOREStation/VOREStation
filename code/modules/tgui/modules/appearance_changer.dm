@@ -616,9 +616,9 @@
 // VOREStation Add End
 
 /datum/tgui_module/appearance_changer/mirror
-	name = "SalonPro Nano-Mirror&trade;"
+	name = "SalonPro Nano-Mirror&trade"
 	flags = APPEARANCE_ALL_HAIR
 	customize_usr = TRUE
 
 /datum/tgui_module/appearance_changer/mirror/coskit
-	name = "SalonPro Porta-Makeover Deluxe&trade;"
+	name = "SalonPro Porta-Makeover Deluxe&trade"
