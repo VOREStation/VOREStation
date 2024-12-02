@@ -292,7 +292,7 @@
 					prob(3);/obj/item/cracker,
 					prob(3);/obj/item/material/butterfly,
 					prob(3);/obj/item/material/butterfly/switchblade,
-					prob(3);/obj/item/clothing/gloves/knuckledusters,
+					prob(3);/obj/item/clothing/accessory/knuckledusters,
 					prob(3);/obj/item/clothing/gloves/heavy_engineer,
 					prob(3);/obj/item/reagent_containers/syringe/drugs,
 					prob(2);/obj/item/implanter/sizecontrol,

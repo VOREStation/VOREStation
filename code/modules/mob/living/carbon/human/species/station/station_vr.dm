@@ -110,6 +110,7 @@
 
 	water_breather = TRUE
 	water_movement = -4 //Negates shallow. Halves deep.
+	swim_mult = 0.5
 
 	flesh_color = "#AFA59E"
 	base_color = "#777777"

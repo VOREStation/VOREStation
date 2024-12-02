@@ -78,12 +78,12 @@
 				return
 			else
 				// insert cell
-				var/obj/item/cell/C = usr.get_active_hand()
+				var/obj/item/cell/C = user.get_active_hand()
 				if(istype(C))
 					user.drop_item()
 					cell = C
 					C.loc = src
-					C.add_fingerprint(usr)
+					C.add_fingerprint(user)
 
 					user.visible_message(span_notice("[user] inserts a power cell into [src]."), span_notice("You insert the power cell into [src]."))
 					power_change()
@@ -140,7 +140,7 @@
 
 	return data
 
-/obj/machinery/space_heater/tgui_act(action, params)
+/obj/machinery/space_heater/tgui_act(action, params, datum/tgui/ui)
 	if(..())
 		return TRUE
 
@@ -154,11 +154,11 @@
 			. = TRUE
 
 		if("cellremove")
-			if(cell && !usr.get_active_hand())
-				usr.visible_message(span_notice("[usr] removes [cell] from [src]."), span_notice("You remove [cell] from [src]."))
+			if(cell && !ui.user.get_active_hand())
+				ui.user.visible_message(span_notice("[ui.user] removes [cell] from [src]."), span_notice("You remove [cell] from [src]."))
 				cell.update_icon()
-				usr.put_in_hands(cell)
-				cell.add_fingerprint(usr)
+				ui.user.put_in_hands(cell)
+				cell.add_fingerprint(ui.user)
 				cell = null
 				power_change()
 				. = TRUE
@@ -166,14 +166,14 @@
 
 		if("cellinstall")
 			if(!cell)
-				var/obj/item/cell/C = usr.get_active_hand()
+				var/obj/item/cell/C = ui.user.get_active_hand()
 				if(istype(C))
-					usr.drop_item()
+					ui.user.drop_item()
 					cell = C
 					C.loc = src
-					C.add_fingerprint(usr)
+					C.add_fingerprint(ui.user)
 					power_change()
-					usr.visible_message(span_notice("[usr] inserts \the [C] into \the [src]."), span_notice("You insert \the [C] into \the [src]."))
+					ui.user.visible_message(span_notice("[ui.user] inserts \the [C] into \the [src]."), span_notice("You insert \the [C] into \the [src]."))
 				. = TRUE
 
 /obj/machinery/space_heater/process()

@@ -28,7 +28,7 @@
 				var/obj/machinery/alarm/alarm = locate(params["alarm"]) in (monitored_alarms.len ? monitored_alarms : machines)
 				if(alarm)
 					var/datum/tgui_state/TS = generate_state(alarm)
-					alarm.tgui_interact(usr, parent_ui = ui_ref, state = TS)
+					alarm.tgui_interact(ui.user, parent_ui = ui_ref, state = TS)
 			return 1
 		if("setZLevel")
 			ui.set_map_z_level(params["mapZLevel"])

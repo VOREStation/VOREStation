@@ -34,3 +34,5 @@
 /obj/effect/decal/cleanable/chemcoating/update_icon()
 	..()
 	color = reagents.get_color()
+	cut_overlays()
+	add_janitor_hud_overlay()

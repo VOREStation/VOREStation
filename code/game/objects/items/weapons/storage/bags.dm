@@ -141,7 +141,7 @@
 		to_chat(user, span_notice("\the [src] is too full to possibly fit anything else inside of it."))
 		return
 
-	if (istype(W, /obj/item/ore))
+	if (istype(W, /obj/item/ore) && !istype(W, /obj/item/ore/slag))
 		var/obj/item/ore/ore = W
 		stored_ore[ore.material]++
 		current_capacity++
@@ -178,6 +178,8 @@
 		if(current_pickup >= max_pickup)
 			max_pickup_reached = 1
 			break
+		if(istype(O, /obj/item/ore/slag))
+			continue
 		var/obj/item/ore/ore = O
 		stored_ore[ore.material]++
 		current_capacity++

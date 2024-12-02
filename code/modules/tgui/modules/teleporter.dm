@@ -20,7 +20,7 @@
 /datum/tgui_module/teleport_control/tgui_act(action, params, datum/tgui/ui, datum/tgui_state/state)
 	if(..())
 		return TRUE
-	
+
 	switch(action)
 		if("select_target")
 			var/list/L = list()
@@ -59,10 +59,10 @@
 						areaindex[tmpname] = 1
 					L[tmpname] = I
 
-			var/desc = tgui_input_list(usr, "Please select a location to lock in.", "Locking Menu", L)
+			var/desc = tgui_input_list(ui.user, "Please select a location to lock in.", "Locking Menu", L)
 			if(!desc)
 				return FALSE
-			if(tgui_status(usr, state) != STATUS_INTERACTIVE)
+			if(tgui_status(ui.user, state) != STATUS_INTERACTIVE)
 				return FALSE
 
 			locked = L[desc]
@@ -76,10 +76,10 @@
 		if("toggle_on")
 			if(!station)
 				return FALSE
-			
+
 			if(station.engaged)
 				station.disengage()
 			else
 				station.engage()
-			
+
 			return TRUE

@@ -357,7 +357,7 @@ GLOBAL_LIST_EMPTY(suit_cycler_typecache)
 
 	return data
 
-/obj/machinery/suit_cycler/tgui_act(action, params)
+/obj/machinery/suit_cycler/tgui_act(action, params, datum/tgui/ui)
 	if(..())
 		return TRUE
 
@@ -409,20 +409,20 @@ GLOBAL_LIST_EMPTY(suit_cycler_typecache)
 			. = TRUE
 
 		if("lock")
-			if(allowed(usr))
+			if(allowed(ui.user))
 				locked = !locked
-				to_chat(usr, "You [locked ? "" : "un"]lock \the [src].")
+				to_chat(ui.user, "You [locked ? "" : "un"]lock \the [src].")
 			else
-				to_chat(usr, span_danger("Access denied."))
+				to_chat(ui.user, span_danger("Access denied."))
 			. = TRUE
 
 		if("eject_guy")
-			eject_occupant(usr)
+			eject_occupant(ui.user)
 			. = TRUE
 
 		if("uv")
 			if(safeties && occupant)
-				to_chat(usr, span_danger("The cycler has detected an occupant. Please remove the occupant before commencing the decontamination cycle."))
+				to_chat(ui.user, span_danger("The cycler has detected an occupant. Please remove the occupant before commencing the decontamination cycle."))
 				return
 
 			active = 1

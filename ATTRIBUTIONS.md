@@ -80,3 +80,9 @@
 **Creator:** VerySoft (https://github.com/TS-Rogue-Star/Rogue-Star/pull/435)<br>
 **URL:** [Website](https://rogue-star.net/)<br>
 **License:** Permission granting in writing for use by Virgo and Chomp with proper attribution
+<br>
+**File:** `icons/mob/turkey.dmi`
+**Title:** Turkey<br>
+**Creator:** VerySoft (https://github.com/TS-Rogue-Star/Rogue-Star/pull/669)<br>
+**URL:** [Website](https://rogue-star.net/)<br>
+**License:** Permission granted in writing for use by Virgo and Chomp with proper attribution

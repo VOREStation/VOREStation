@@ -9,6 +9,7 @@
 	icon_selected = FALSE
 	can_be_antagged = FALSE
 	restrict_modules_to = list("Gravekeeper")
+	ui_theme = "malfunction"
 
 /mob/living/silicon/robot/gravekeeper/init()
 	aiCamera = new/obj/item/camera/siliconcam/robot_camera(src)

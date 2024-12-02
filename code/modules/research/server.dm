@@ -219,7 +219,7 @@
 	if(..())
 		return TRUE
 
-	add_fingerprint(usr)
+	add_fingerprint(ui.user)
 	switch(action)
 		if("toggle_upload", "toggle_download")
 			var/obj/machinery/r_n_d/server/S = locate(params["server"])
@@ -248,7 +248,7 @@
 			var/obj/machinery/r_n_d/server/target = locate(params["server"])
 			if(!istype(target))
 				return FALSE
-			var/choice = tgui_alert(usr, "Technology Data Rest", "Are you sure you want to reset this technology to its default data? Data lost cannot be recovered.", list("Continue", "Cancel"))
+			var/choice = tgui_alert(ui.user, "Technology Data Rest", "Are you sure you want to reset this technology to its default data? Data lost cannot be recovered.", list("Continue", "Cancel"))
 			if(choice == "Continue")
 				for(var/datum/tech/T in target.files.known_tech)
 					if(T.id == params["tech"])
@@ -261,7 +261,7 @@
 			var/obj/machinery/r_n_d/server/target = locate(params["server"])
 			if(!istype(target))
 				return FALSE
-			var/choice = tgui_alert(usr, "Design Data Deletion", "Are you sure you want to delete this design? If you still have the prerequisites for the design, it'll reset to its base reliability. Data lost cannot be recovered.", list("Continue", "Cancel"))
+			var/choice = tgui_alert(ui.user, "Design Data Deletion", "Are you sure you want to delete this design? If you still have the prerequisites for the design, it'll reset to its base reliability. Data lost cannot be recovered.", list("Continue", "Cancel"))
 			if(choice == "Continue")
 				for(var/datum/design/D in target.files.known_designs)
 					if(D.id == params["design"])
@@ -273,8 +273,8 @@
 		if("transfer_data")
 			if(!badmin)
 				// no href exploits, you've been r e p o r t e d
-				log_admin("Warning: [key_name(usr)] attempted to transfer R&D data from [params["server"]] to [params["target"]] via href exploit with [src] [COORD(src)]")
-				message_admins("Warning: [ADMIN_FULLMONTY(usr)] attempted to transfer R&D data from [params["server"]] to [params["target"]] via href exploit with [src] [ADMIN_COORDJMP(src)]")
+				log_admin("Warning: [key_name(ui.user)] attempted to transfer R&D data from [params["server"]] to [params["target"]] via href exploit with [src] [COORD(src)]")
+				message_admins("Warning: [ADMIN_FULLMONTY(ui.user)] attempted to transfer R&D data from [params["server"]] to [params["target"]] via href exploit with [src] [ADMIN_COORDJMP(src)]")
 				return FALSE
 			var/obj/machinery/r_n_d/server/from = locate(params["server"])
 			if(!istype(from))

@@ -340,7 +340,7 @@
 			C.pixel_y += load_offset_y
 		C.layer = layer + 0.1
 
-	if(ismob(C))
+	if(ismob(C) && user)
 		user_buckle_mob(C, user)
 
 	return 1

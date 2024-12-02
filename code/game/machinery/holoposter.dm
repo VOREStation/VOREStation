@@ -85,7 +85,7 @@ GLOBAL_LIST_EMPTY(holoposters)
 		return
 	if (W.has_tool_quality(TOOL_MULTITOOL))
 		playsound(src, 'sound/items/penclick.ogg', 60, 1)
-		icon_state = tgui_input_list(usr, "Available Posters", "Holographic Poster", postertypes + "random")
+		icon_state = tgui_input_list(user, "Available Posters", "Holographic Poster", postertypes + "random")
 		if(!Adjacent(user))
 			return
 		if(icon_state == "random")

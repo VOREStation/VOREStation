@@ -121,9 +121,9 @@
 	if(istype(G))	// handle grabbed mob
 		if(ismob(G.affecting))
 			var/mob/GM = G.affecting
-			for (var/mob/V in viewers(usr))
-				V.show_message("[usr] starts putting [GM.name] into the disposal.", 3)
-			if(do_after(usr, 20))
+			for (var/mob/V in viewers(user))
+				V.show_message("[user] starts putting [GM.name] into the disposal.", 3)
+			if(do_after(user, 20))
 				if (GM.client)
 					GM.client.perspective = EYE_PERSPECTIVE
 					GM.client.eye = src
@@ -169,13 +169,13 @@
 	src.add_fingerprint(user)
 	var/target_loc = target.loc
 	var/msg
-	for (var/mob/V in viewers(usr))
+	for (var/mob/V in viewers(user))
 		if(target == user && !user.stat && !user.weakened && !user.stunned && !user.paralysis)
-			V.show_message("[usr] starts climbing into the disposal.", 3)
+			V.show_message("[user] starts climbing into the disposal.", 3)
 		if(target != user && !user.restrained() && !user.stat && !user.weakened && !user.stunned && !user.paralysis)
 			if(target.anchored) return
-			V.show_message("[usr] starts stuffing [target.name] into the disposal.", 3)
-	if(!do_after(usr, 20))
+			V.show_message("[user] starts stuffing [target.name] into the disposal.", 3)
+	if(!do_after(user, 20))
 		return
 	if(target_loc != target.loc)
 		return
@@ -265,18 +265,18 @@
 	if(..())
 		return
 
-	if(usr.loc == src)
-		to_chat(usr, span_warning("You cannot reach the controls from inside."))
+	if(ui.user.loc == src)
+		to_chat(ui.user, span_warning("You cannot reach the controls from inside."))
 		return TRUE
 
 	if(mode==-1 && action != "eject") // If the mode is -1, only allow ejection
-		to_chat(usr, span_warning("The disposal units power is disabled."))
+		to_chat(ui.user, span_warning("The disposal units power is disabled."))
 		return
 
 	if(stat & BROKEN)
 		return
 
-	add_fingerprint(usr)
+	add_fingerprint(ui.user)
 
 	if(flushing)
 		return

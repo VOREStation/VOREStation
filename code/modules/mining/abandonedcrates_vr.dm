@@ -30,6 +30,7 @@
 			list(/obj/item/melee/classic_baton, 6) = 3,
 			list(/obj/item/rig/industrial, 6) = 3,
 			list(/obj/item/multitool/hacktool, 5) = 3,
+			list(/obj/item/multitool/hacktool/modified, 4) = 4,
 			list(/obj/item/toy/katana, 1) = 2,
 			list(/obj/item/clothing/head/kitty, 1) = 2,
 			list(pick(subtypesof(/obj/item/soap)), 1) = 2,

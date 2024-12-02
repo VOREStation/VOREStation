@@ -39,6 +39,23 @@ LINEN BINS
 		return
 	..()
 
+/obj/item/bedsheet/verb/turn_around()
+	set name = "Turn Around"
+	set category = "Object"
+	set src in oview(1)
+
+	if(!usr || !isturf(usr.loc))
+		return
+	if(usr.stat || usr.restrained())
+		return
+	if(ismouse(usr) || (isobserver(usr) && !CONFIG_GET(flag/ghost_interaction)))
+		return
+
+	if(dir >= 2)
+		src.set_dir(1)
+	else
+		src.set_dir(2)
+
 /obj/item/bedsheet/blue
 	icon_state = "sheetblue"
 

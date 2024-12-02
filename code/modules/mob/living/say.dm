@@ -149,7 +149,7 @@ var/list/channel_to_radio_key = new
 	if(client)
 		if(message)
 			client.handle_spam_prevention(MUTE_IC)
-			if((client.prefs.muted & MUTE_IC) || say_disabled)
+			if((client.prefs.muted & MUTE_IC))
 				to_chat(src, span_warning("You cannot speak in IC (Muted)."))
 				return
 
@@ -371,7 +371,7 @@ var/list/channel_to_radio_key = new
 			if(M && src) //If we still exist, when the spawn processes
 				//VOREStation Add - Ghosts don't hear whispers
 				if(whispering && isobserver(M) && (!M.client?.prefs?.read_preference(/datum/preference/toggle/ghost_see_whisubtle) || \
-				(!client?.prefs?.read_preference(/datum/preference/toggle/whisubtle_vis)  && !M.client?.holder)))
+				(!(client?.prefs?.read_preference(/datum/preference/toggle/whisubtle_vis) || (isbelly(M.loc) && src == M.loc:owner))  && !M.client?.holder)))
 					M.show_message(span_game(span_say(span_name(src.name) + " [w_not_heard].")), 2)
 					return
 				//VOREStation Add End
@@ -432,7 +432,7 @@ var/list/channel_to_radio_key = new
 /mob/living/proc/say_signlang(var/message, var/verb="gestures", var/verb_understood="gestures", var/datum/language/language, var/type = 1)
 	var/turf/T = get_turf(src)
 	//We're in something, gesture to people inside the same thing
-	if(loc != T)
+	if(loc != T && !istype(loc, /obj/item/holder)) // Partially fixes sign language while being held.
 		for(var/mob/M in loc)
 			M.hear_signlang(message, verb, verb_understood, language, src, type)
 

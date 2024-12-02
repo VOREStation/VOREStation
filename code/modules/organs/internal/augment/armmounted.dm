@@ -62,6 +62,10 @@
 	icon_state = "augment_box"
 
 	w_class = ITEMSIZE_SMALL
+	// Needs to be redefined here, or the switch statement beneath with no default case can never change target limb... Also prevents putting it in your shoulder when it's a hand implant.
+	organ_tag = O_AUG_R_HAND
+	parent_organ = BP_R_HAND
+	target_slot = slot_r_hand
 
 	integrated_object_type = /obj/item/portable_scanner
 

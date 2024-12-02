@@ -576,7 +576,7 @@
 				apply_image_decorations = TRUE
 			if(prob(25))
 				apply_material_decorations = FALSE
-			new_item = new /obj/item/clothing/gloves/ring/material(src.loc)
+			new_item = new /obj/item/clothing/accessory/ring/material(src.loc)
 			item_type = new_item.name
 
 		if(ARCHAEO_CLUB)

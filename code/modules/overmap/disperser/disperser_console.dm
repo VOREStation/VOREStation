@@ -6,9 +6,6 @@
 	icon_state = "computer"
 	circuit = /obj/item/circuitboard/disperser
 
-	core_skill = /datum/skill/pilot
-	var/skill_offset = SKILL_ADEPT - 1 //After which skill level it starts to matter. -1, because we have to index from zero
-
 	icon_keyboard = "rd_key"
 	icon_screen = "teleport"
 
@@ -151,7 +148,6 @@
 		data["range"] = range
 		data["next_shot"] = round(get_next_shot_seconds())
 		data["nopower"] = !data["faillink"] && (!front.powered() || !middle.powered() || !back.powered())
-		data["skill"] = user.get_skill_value(core_skill) > skill_offset
 
 		var/charge = "UNKNOWN ERROR"
 		if(get_charge_type() == OVERMAP_WEAKNESS_NONE)
@@ -177,34 +173,34 @@
 			. = TRUE
 
 		if("calibration")
-			var/input = tgui_input_number(usr, "0-9", "disperser calibration", 0, 9, 0)
+			var/input = tgui_input_number(ui.user, "0-9", "disperser calibration", 0, 9, 0)
 			if(!isnull(input)) //can be zero so we explicitly check for null
 				var/calnum = sanitize_integer(text2num(params["calibration"]), 0, caldigit)//sanitiiiiize
 				calibration[calnum + 1] = sanitize_integer(input, 0, 9, 0)//must add 1 because js indexes from 0
 			. = TRUE
 
 		if("skill_calibration")
-			for(var/i = 1 to min(caldigit, usr.get_skill_value(core_skill) - skill_offset))
+			for(var/i = 1 to 2)
 				calibration[i] = calexpected[i]
 			. = TRUE
 
 		if("strength")
-			var/input = tgui_input_number(usr, "1-5", "disperser strength", 1, 5, 1)
-			if(input && tgui_status(usr, state) == STATUS_INTERACTIVE)
+			var/input = tgui_input_number(ui.user, "1-5", "disperser strength", 1, 5, 1)
+			if(input && tgui_status(ui.user, state) == STATUS_INTERACTIVE)
 				strength = sanitize_integer(input, 1, 5, 1)
 				middle.update_idle_power_usage(strength * range * 100)
 			. = TRUE
 
 		if("range")
-			var/input = tgui_input_number(usr, "1-5", "disperser radius", 1, 5, 1)
-			if(input && tgui_status(usr, state) == STATUS_INTERACTIVE)
+			var/input = tgui_input_number(ui.user, "1-5", "disperser radius", 1, 5, 1)
+			if(input && tgui_status(ui.user, state) == STATUS_INTERACTIVE)
 				range = sanitize_integer(input, 1, 5, 1)
 				middle.update_idle_power_usage(strength * range * 100)
 			. = TRUE
 
 		if("fire")
-			fire(usr)
+			fire(ui.user)
 			. = TRUE
 
-	if(. && !issilicon(usr))
+	if(. && !issilicon(ui.user))
 		playsound(src, "terminal_type", 50, 1)

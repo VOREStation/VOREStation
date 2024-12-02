@@ -25,9 +25,9 @@
 		if (integrity < 100)               								//Damaged, let's repair!
 			if (T.use(1))
 				integrity = between(0, integrity + rand(10,20), 100)
-				to_chat(usr, "You apply the Nanopaste to [src], repairing some of the damage.")
+				to_chat(user, "You apply the Nanopaste to [src], repairing some of the damage.")
 		else
-			to_chat(usr, "This machine is already in perfect condition.")
+			to_chat(user, "This machine is already in perfect condition.")
 		return
 
 
@@ -210,15 +210,15 @@
 	data["change_freq"] = change_frequency
 	return data
 
-/obj/machinery/telecomms/bus/Options_Act(action, params)
+/obj/machinery/telecomms/bus/Options_Act(action, params, datum/tgui/ui)
 	if(..())
 		return TRUE
 
 	switch(action)
 		if("change_freq")
 			. = TRUE
-			var/newfreq = input(usr, "Specify a new frequency for new signals to change to. Enter null to turn off frequency changing. Decimals assigned automatically.", src, network) as null|num
-			if(canAccess(usr))
+			var/newfreq = input(ui.user, "Specify a new frequency for new signals to change to. Enter null to turn off frequency changing. Decimals assigned automatically.", src, network) as null|num
+			if(canAccess(ui.user))
 				if(newfreq)
 					if(findtext(num2text(newfreq), "."))
 						newfreq *= 10 // shift the decimal one place
@@ -274,11 +274,11 @@
 			overmap_range = clamp(new_range, overmap_range_min, overmap_range_max)
 			update_idle_power_usage(initial(idle_power_usage)**(overmap_range+1))
 
-/obj/machinery/telecomms/tgui_act(action, params)
+/obj/machinery/telecomms/tgui_act(action, params, datum/tgui/ui)
 	if(..())
 		return TRUE
 
-	var/obj/item/multitool/P = get_multitool(usr)
+	var/obj/item/multitool/P = get_multitool(ui.user)
 
 	switch(action)
 		if("toggle")
@@ -288,16 +288,16 @@
 			. = TRUE
 
 		if("id")
-			var/newid = copytext(reject_bad_text(tgui_input_text(usr, "Specify the new ID for this machine", src, id)),1,MAX_MESSAGE_LEN)
-			if(newid && canAccess(usr))
+			var/newid = copytext(reject_bad_text(tgui_input_text(ui.user, "Specify the new ID for this machine", src, id)),1,MAX_MESSAGE_LEN)
+			if(newid && canAccess(ui.user))
 				id = newid
 				set_temp("-% New ID assigned: \"[id]\" %-", "average")
 				. = TRUE
 
 		if("network")
-			var/newnet = tgui_input_text(usr, "Specify the new network for this machine. This will break all current links.", src, network)
+			var/newnet = tgui_input_text(ui.user, "Specify the new network for this machine. This will break all current links.", src, network)
 			newnet = sanitize(newnet,15)
-			if(newnet && canAccess(usr))
+			if(newnet && canAccess(ui.user))
 
 				if(length(newnet) > 15)
 					set_temp("-% Too many characters in new network tag %-", "average")
@@ -313,8 +313,8 @@
 
 
 		if("freq")
-			var/newfreq = tgui_input_number(usr, "Specify a new frequency to filter (GHz). Decimals assigned automatically.", src, max_value=9999)
-			if(newfreq && canAccess(usr))
+			var/newfreq = tgui_input_number(ui.user, "Specify a new frequency to filter (GHz). Decimals assigned automatically.", src, max_value=9999)
+			if(newfreq && canAccess(ui.user))
 				if(findtext(num2text(newfreq), "."))
 					newfreq *= 10 // shift the decimal one place
 				if(!(newfreq in freq_listening) && newfreq < 10000)
@@ -372,7 +372,7 @@
 	if(Options_Act(action, params))
 		. = TRUE
 
-	add_fingerprint(usr)
+	add_fingerprint(ui.user)
 
 /obj/machinery/telecomms/proc/canAccess(var/mob/user)
 	if(issilicon(user) || in_range(user, src))

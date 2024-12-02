@@ -3246,10 +3246,6 @@
 /obj/item/bone,
 /turf/simulated/floor/grass,
 /area/redgate/facility/cell27)
-"eFo" = (
-/obj/machinery/computer/centrifuge,
-/turf/simulated/floor/tiled/white,
-/area/redgate/facility/cell20)
 "eGK" = (
 /turf/simulated/wall/tgmc/whitewall,
 /area/redgate/facility/cell27)
@@ -4471,7 +4467,7 @@
 /turf/simulated/floor/tiled/white,
 /area/redgate/facility/cell2)
 "gmR" = (
-/obj/machinery/computer/centrifuge,
+/obj/structure/prop/machine/disease_analyser,
 /turf/simulated/floor/tiled/white,
 /area/redgate/facility/sw)
 "gmU" = (
@@ -4913,13 +4909,6 @@
 /obj/random/forgotten_tram,
 /turf/simulated/floor/tiled/white,
 /area/redgate/facility/nw)
-"gQm" = (
-/obj/machinery/disease2/isolator,
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/simulated/floor/tiled/white,
-/area/redgate/facility/sw)
 "gQy" = (
 /obj/effect/floor_decal/corner/black/border{
 	dir = 4
@@ -11648,7 +11637,7 @@
 /turf/simulated/floor/tiled/white,
 /area/redgate/facility/cell15)
 "qsU" = (
-/obj/machinery/disease2/diseaseanalyser,
+/obj/structure/prop/machine/centrifuge,
 /turf/simulated/floor/tiled/white,
 /area/redgate/facility/sw)
 "qtt" = (
@@ -11908,7 +11897,7 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/redgate/facility/cell9)
 "qMo" = (
-/obj/machinery/disease2/incubator,
+/obj/structure/closet/l3closet/virology,
 /turf/simulated/floor/tiled/white,
 /area/redgate/facility/sw)
 "qNh" = (
@@ -11950,10 +11939,10 @@
 /turf/simulated/floor/tiled/white,
 /area/redgate/facility/sw)
 "qQL" = (
-/obj/machinery/computer/diseasesplicer,
 /obj/machinery/light{
 	dir = 1
 	},
+/obj/machinery/computer/pandemic,
 /turf/simulated/floor/tiled/white,
 /area/redgate/facility/sw)
 "qQY" = (
@@ -14775,12 +14764,7 @@
 "uMq" = (
 /obj/structure/closet/walllocker_double/science/east,
 /obj/item/book/manual/virology,
-/obj/item/antibody_scanner,
-/obj/item/antibody_scanner,
 /obj/item/reagent_containers/glass/beaker,
-/obj/item/virusdish/random,
-/obj/item/virusdish/random,
-/obj/item/virusdish/random,
 /turf/simulated/floor/tiled/white,
 /area/redgate/facility/sw)
 "uNl" = (
@@ -19788,7 +19772,7 @@ pLg
 fPE
 mzU
 aOv
-gQm
+xRG
 vrp
 oWf
 aOv
@@ -30193,7 +30177,7 @@ aKz
 ehw
 lnw
 sCO
-eFo
+ehw
 hgj
 hgj
 hgj

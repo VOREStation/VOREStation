@@ -26,11 +26,15 @@
 /obj/machinery/appliance/cooker/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
 	var/list/data = ..()
 
+	data["on"] = !(stat & POWEROFF)
+	data["safety"] = food_safety
 	data["temperature"] = round(temperature - T0C, 0.1)
 	data["optimalTemp"] = round(optimal_temp - T0C, 0.1)
 	data["temperatureEnough"] = temperature >= min_temp
 	data["efficiency"] = round(get_efficiency(), 0.1)
 	data["containersRemovable"] = can_remove_items(user, show_warning = FALSE)
+	data["selected_option"] = selected_option
+	data["show_selected_option"] = LAZYLEN(output_options)
 
 	var/list/our_contents = list()
 	for(var/i in 1 to max_contents)
@@ -56,19 +60,28 @@
 		return TRUE
 
 	switch(action)
+		if("toggle_power")
+			attempt_toggle_power(usr)
+			return TRUE
+		if("toggle_safety")
+			toggle_safety()
+			return TRUE
+		if("change_output")
+			choose_output()
+			return TRUE
 		if("slot")
 			var/slot = params["slot"]
-			var/obj/item/I = usr.get_active_hand()
+			var/obj/item/I = ui.user.get_active_hand()
 			if(slot <= LAZYLEN(cooking_objs)) // Inserting
 				var/datum/cooking_item/CI = cooking_objs[slot]
 
 				if(istype(I) && can_insert(I)) // Why do hard work when we can just make them smack us?
-					attackby(I, usr)
+					attackby(I, ui.user)
 				else if(istype(CI))
-					eject(CI, usr)
+					eject(CI, ui.user)
 				return TRUE
 			if(istype(I)) // Why do hard work when we can just make them smack us?
-				attackby(I, usr)
+				attackby(I, ui.user)
 			return TRUE
 
 /obj/machinery/appliance/cooker/examine(var/mob/user)

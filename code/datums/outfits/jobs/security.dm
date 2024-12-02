@@ -1,21 +1,28 @@
 /decl/hierarchy/outfit/job/security
 	hierarchy_type = /decl/hierarchy/outfit/job/security
 	glasses = /obj/item/clothing/glasses/sunglasses/sechud
-	l_ear = /obj/item/radio/headset/headset_sec
 	gloves = /obj/item/clothing/gloves/black
 	shoes = /obj/item/clothing/shoes/boots/jackboots
+
 	backpack = /obj/item/storage/backpack/security
 	satchel_one = /obj/item/storage/backpack/satchel/sec
 	backpack_contents = list(/obj/item/handcuffs = 1)
 	messenger_bag = /obj/item/storage/backpack/messenger/sec
 	sports_bag = /obj/item/storage/backpack/sport/sec
 
+	headset = /obj/item/radio/headset/headset_sec
+	headset_alt = /obj/item/radio/headset/alt/headset_sec
+	headset_earbud = /obj/item/radio/headset/earbud/headset_sec
+
 /decl/hierarchy/outfit/job/security/hos
 	name = OUTFIT_JOB_NAME(JOB_HEAD_OF_SECURITY)
-	l_ear = /obj/item/radio/headset/heads/hos
 	uniform = /obj/item/clothing/under/rank/head_of_security
 	id_type = /obj/item/card/id/security/head
 	pda_type = /obj/item/pda/heads/hos
+
+	headset = /obj/item/radio/headset/heads/hos
+	headset_alt = /obj/item/radio/headset/alt/heads/hos
+	headset_earbud = /obj/item/radio/headset/earbud/heads/hos
 
 /decl/hierarchy/outfit/job/security/warden
 	name = OUTFIT_JOB_NAME(JOB_WARDEN)

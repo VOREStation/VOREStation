@@ -58,12 +58,6 @@
 	item_cost = 20
 	path = /obj/item/pen/blade/fountain
 
-/datum/uplink_item/item/stealthy_weapons/angrybuzzer
-	name = "Morphium Shock Ring"
-	desc = "An enigmatic ring used to create powerful electric shocks when punching. Can be used as a brute-force method of defibrillation."
-	item_cost = 40
-	path = /obj/item/clothing/gloves/ring/buzzer
-
 /datum/uplink_item/item/stealthy_weapons/huntingtrap
 	name = "Camonetted Beartraps"
 	desc = "A box of unique beartraps which will partially cloak when deployed, allowing for more effective hunting."

@@ -3,7 +3,6 @@
 
 /mob/verb/whisper(message as text)
 	set name = "Whisper"
-	set category = "IC.Subtle"
 	set hidden = 1
 	//VOREStation Addition Start
 	if(forced_psay)
@@ -15,8 +14,9 @@
 
 /mob/verb/say_verb(message as text)
 	set name = "Say"
-	set category = "IC.Chat"
 	set hidden = 1
+	set instant = TRUE
+
 	//VOREStation Addition Start
 	if(forced_psay)
 		psay(message)
@@ -24,17 +24,16 @@
 	//VOREStation Addition End
 
 	client?.stop_thinking()
-	usr.say(message)
+	//queue this message because verbs are scheduled to process after SendMaps in the tick and speech is pretty expensive when it happens.
+	//by queuing this for next tick the mc can compensate for its cost instead of having speech delay the start of the next tick
+	if(message)
+		QUEUE_OR_CALL_VERB_FOR(VERB_CALLBACK(src, TYPE_PROC_REF(/mob, say), message), SSspeech_controller)
 
 /mob/verb/me_verb(message as message)
 	set name = "Me"
-	set category = "IC.Chat"
 	set desc = "Emote to nearby people (and your pred/prey)"
 	set hidden = 1
 
-	if(say_disabled)	//This is here to try to identify lag problems
-		to_chat(usr, span_red("Speech is currently admin-disabled."))
-		return
 	//VOREStation Addition Start
 	if(forced_psay)
 		pme(message)
@@ -56,10 +55,6 @@
 		usr.emote(message)
 
 /mob/proc/say_dead(var/message)
-	if(say_disabled)	//This is here to try to identify lag problems
-		to_chat(usr, span_danger("Speech is currently admin-disabled."))
-		return
-
 	if(!client)
 		return // Clientless mobs shouldn't be trying to talk in deadchat.
 
@@ -112,7 +107,19 @@
 	if(speaking.flags & NONVERBAL)
 		if(sdisabilities & BLIND || blinded)
 			return FALSE
-		if(!other || !(other in view(src)))
+		if(!other)
+			return FALSE
+		// Fixes seeing non-verbal languages while being held
+		if(istype(other.loc, /obj/item/holder))
+			if(istype(src.loc, /obj/item/holder))
+				if(!(other.loc in view(src.loc.loc)))
+					return FALSE
+			else if(!(other.loc in view(src)))
+				return FALSE
+		else if(istype(src.loc, /obj/item/holder))
+			if((!other) in view(src.loc.loc))
+				return FALSE
+		else if((!other) in view(src))
 			return FALSE
 
 	//Language check.

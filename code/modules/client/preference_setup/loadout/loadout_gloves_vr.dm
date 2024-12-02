@@ -1,10 +1,10 @@
 /datum/gear/gloves/goldring
 	display_name = "wedding ring, gold"
-	path = /obj/item/clothing/gloves/ring/wedding
+	path = /obj/item/clothing/accessory/ring/wedding
 
 /datum/gear/gloves/silverring
 	display_name = "wedding ring, silver"
-	path = /obj/item/clothing/gloves/ring/wedding/silver
+	path = /obj/item/clothing/accessory/ring/wedding/silver
 
 /datum/gear/gloves/colored
 	display_name = "gloves, colorable"

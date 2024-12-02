@@ -579,7 +579,7 @@
 			'sound/vore/digest12.ogg')
 		playsound(src, churnsound, vol = 100, vary = 1, falloff = 0.1, ignore_walls = TRUE, preference = /datum/preference/toggle/digestion_noises)
 	//If the timing is right, and there are items to be touched
-	if(air_master.current_cycle%3==1 && length(touchable_items))
+	if(SSair.current_cycle%3==1 && length(touchable_items))
 
 		//Burn all the mobs or add them to the exclusion list
 		for(var/mob/living/T in (touchable_items))

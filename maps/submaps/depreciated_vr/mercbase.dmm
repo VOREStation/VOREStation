@@ -419,10 +419,10 @@
 /obj/item/radio/headset/syndicate,
 /obj/item/radio/headset/syndicate,
 /obj/item/radio/headset/syndicate,
-/obj/item/radio/headset/syndicate/alt,
-/obj/item/radio/headset/syndicate/alt,
-/obj/item/radio/headset/syndicate/alt,
-/obj/item/radio/headset/syndicate/alt,
+/obj/item/radio/headset/alt/syndicate,
+/obj/item/radio/headset/alt/syndicate,
+/obj/item/radio/headset/alt/syndicate,
+/obj/item/radio/headset/alt/syndicate,
 /turf/unsimulated/floor{
 	icon_state = "lino"
 	},
@@ -2463,11 +2463,11 @@
 	},
 /area/antag/antag_base)
 "dM" = (
-/obj/item/clothing/gloves/knuckledusters,
-/obj/item/clothing/gloves/knuckledusters,
-/obj/item/clothing/gloves/knuckledusters,
-/obj/item/clothing/gloves/knuckledusters,
-/obj/item/clothing/gloves/knuckledusters,
+/obj/item/clothing/accessory/knuckledusters,
+/obj/item/clothing/accessory/knuckledusters,
+/obj/item/clothing/accessory/knuckledusters,
+/obj/item/clothing/accessory/knuckledusters,
+/obj/item/clothing/accessory/knuckledusters,
 /obj/structure/table/steel,
 /obj/effect/floor_decal/borderfloorblack{
 	dir = 6

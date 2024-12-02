@@ -11,8 +11,9 @@
 		/obj/item/clothing/suit/storage/hooded/wintercoat/cargo,
 		/obj/item/clothing/shoes/boots/winter/supply,
 		/obj/item/clothing/shoes/black,
-		/obj/item/radio/headset/headset_cargo,
-		/obj/item/radio/headset/headset_cargo/alt,
+		/obj/item/radio/headset/cargo,
+		/obj/item/radio/headset/alt/cargo,
+		/obj/item/radio/headset/earbud/cargo,
 		/obj/item/clothing/gloves/black,
 		/obj/item/clothing/gloves/fingerless,
 		/obj/item/clothing/head/soft)
@@ -37,8 +38,9 @@
 		/obj/item/clothing/under/rank/cargo/jeans,
 		/obj/item/clothing/under/rank/cargo/jeans/female,
 		/obj/item/clothing/shoes/brown,
-		/obj/item/radio/headset/headset_qm, //VOREStation Edit,
-		/obj/item/radio/headset/headset_qm/alt, //VOREStation Edit,
+		/obj/item/radio/headset/qm,
+		/obj/item/radio/headset/alt/qm,
+		/obj/item/radio/headset/earbud/qm,
 		/obj/item/clothing/under/rank/neo_qm,
 		/obj/item/clothing/under/rank/neo_qm_skirt,
 		/obj/item/clothing/under/rank/neo_qm_jacket,
@@ -73,7 +75,7 @@
 	closet_appearance = /decl/closet_appearance/secure_closet/mining
 
 	starts_with = list(
-		/obj/item/radio/headset/headset_mine,
+		/obj/item/radio/headset/miner,
 		/obj/item/clothing/under/rank/miner,
 		/obj/item/clothing/gloves/black,
 		/obj/item/clothing/shoes/black,

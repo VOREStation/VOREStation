@@ -31,7 +31,6 @@
 	from the pod is not a crewmember."))
 	R.ckey = M.ckey
 	visible_message(span_warning("As \the [src] opens, the eyes of the robot flicker as it is activated."))
-	R.namepick()
 	log_and_message_admins("successfully opened \a [src] and got a Lost Drone.")
 	..()
 
@@ -57,7 +56,6 @@
 	definiton of 'your gravesite' is where your pod is."))
 	R.ckey = M.ckey
 	visible_message(span_warning("As \the [src] opens, the eyes of the robot flicker as it is activated."))
-	R.namepick()
 	..()
 
 /obj/structure/ghost_pod/ghost_activated/swarm_drone

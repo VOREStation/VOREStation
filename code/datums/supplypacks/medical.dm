@@ -112,7 +112,7 @@
 	contains = list(
 			/obj/item/storage/belt/medical = 3,
 			/obj/item/clothing/glasses/hud/health = 3,
-			/obj/item/radio/headset/headset_med/alt = 3,
+			/obj/item/radio/headset/alt/headset_med = 3,
 			/obj/item/clothing/suit/storage/hooded/wintercoat/medical = 3
 			)
 	cost = 10

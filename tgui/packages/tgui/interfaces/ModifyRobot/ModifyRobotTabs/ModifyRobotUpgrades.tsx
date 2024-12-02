@@ -2,14 +2,15 @@ import { capitalize } from 'common/string';
 import { useState } from 'react';
 import { useBackend } from 'tgui/backend';
 import {
+  Box,
   Button,
   Divider,
   Flex,
-  Image,
   Input,
   Section,
   Stack,
 } from 'tgui/components';
+import { classes } from 'tgui-core/react';
 
 import { NoSpriteWarning } from '../components';
 import { install2col } from '../constants';
@@ -45,15 +46,15 @@ export const ModifyRobotUpgrades = (props: { target: Target }) => {
           />
         </Flex.Item>
         <Flex.Item width="40%">
-          <Image
-            src={'data:image/jpeg;base64, ' + target.side}
-            style={{
-              display: 'block',
-              marginLeft: 'auto',
-              marginRight: 'auto',
-              width: '200px',
-            }}
-          />
+          <Flex>
+            <Flex.Item grow />
+            <Flex.Item>
+              <Box
+                className={classes([target.sprite_size, target.sprite + 'W'])}
+              />
+            </Flex.Item>
+            <Flex.Item grow />
+          </Flex>
         </Flex.Item>
         <Flex.Item width="30%" fill>
           <UpgradeSection

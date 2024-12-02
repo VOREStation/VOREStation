@@ -14,8 +14,8 @@ export const ChemDispenser = (props) => {
     <Window width={680} height={540}>
       <Window.Content>
         <Stack vertical fill>
-          <Stack.Item>
-            <Stack>
+          <Stack.Item grow>
+            <Stack fill>
               <Stack.Item grow>
                 <Stack vertical fill>
                   <Stack.Item>
@@ -31,7 +31,7 @@ export const ChemDispenser = (props) => {
               </Stack.Item>
             </Stack>
           </Stack.Item>
-          <Stack.Item grow>
+          <Stack.Item basis="25%">
             <ChemDispenserBeaker />
           </Stack.Item>
         </Stack>

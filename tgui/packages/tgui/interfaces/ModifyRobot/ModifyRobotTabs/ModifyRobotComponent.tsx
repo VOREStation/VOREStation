@@ -2,16 +2,17 @@ import { capitalize } from 'common/string';
 import { useState } from 'react';
 import { useBackend } from 'tgui/backend';
 import {
+  Box,
   Button,
   Divider,
   Flex,
   Icon,
-  Image,
   Input,
   Section,
   Stack,
   Tabs,
 } from 'tgui/components';
+import { classes } from 'tgui-core/react';
 
 import { NoSpriteWarning } from '../components';
 import {
@@ -163,15 +164,18 @@ export const ModifyRobotComponent = (props: {
         <Flex.Item width="30%" fill>
           <Stack vertical fill>
             <Stack.Item>
-              <Image
-                src={'data:image/jpeg;base64, ' + target.side_alt}
-                style={{
-                  display: 'block',
-                  marginLeft: 'auto',
-                  marginRight: 'auto',
-                  width: '200px',
-                }}
-              />
+              <Flex>
+                <Flex.Item grow />
+                <Flex.Item>
+                  <Box
+                    className={classes([
+                      target.sprite_size,
+                      target.sprite + 'E',
+                    ])}
+                  />
+                </Flex.Item>
+                <Flex.Item grow />
+              </Flex>
             </Stack.Item>
             <Stack.Item>
               <Tabs>

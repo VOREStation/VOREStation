@@ -118,7 +118,7 @@
 			/obj/item/storage/backpack/industrial,
 			/obj/item/storage/backpack/satchel/eng,
 			/obj/item/clothing/suit/storage/hooded/wintercoat/miner,
-			/obj/item/radio/headset/headset_cargo,
+			/obj/item/radio/headset/miner,
 			/obj/item/clothing/under/rank/miner,
 			/obj/item/clothing/gloves/black,
 			/obj/item/clothing/shoes/black,
@@ -175,7 +175,7 @@
 					/obj/item/material/knife/tacknife/survival,
 					/obj/item/material/knife/machete,
 			 		/obj/item/clothing/accessory/holster/machete,
-					/obj/item/clothing/gloves/watch/survival
+					/obj/item/clothing/accessory/watch/survival
 					)
 	cost=25
 	containertype = /obj/structure/closet/crate/secure/xion
@@ -187,7 +187,7 @@
 	contains = list (
 					/obj/item/storage/backpack/parachute,
 					/obj/item/radio/headset/pilot,
-					/obj/item/radio/headset/pilot/alt,
+					/obj/item/radio/headset/alt/pilot,
 					/obj/item/clothing/mask/gas/half,
 					/obj/item/flashlight/glowstick,
 					/obj/item/stack/marker_beacon/thirty,
@@ -200,7 +200,7 @@
 					/obj/item/clothing/head/pilot_vr,
 					/obj/item/clothing/under/rank/pilot1,
 					/obj/item/gun/energy/gun/protector/pilotgun/locked,
-					/obj/item/clothing/gloves/watch/survival
+					/obj/item/clothing/accessory/watch/survival
 					)
 	cost=20
 	containertype = /obj/structure/closet/crate/secure/xion
@@ -236,7 +236,7 @@
 			 		/obj/item/clothing/accessory/holster/machete,
 					/obj/item/storage/box/explorerkeys,
 					/obj/item/mapping_unit,
-					/obj/item/clothing/gloves/watch/survival
+					/obj/item/clothing/accessory/watch/survival
 					)
 	cost = 75
 	containertype = /obj/structure/closet/crate/secure/xion

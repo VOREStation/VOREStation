@@ -41,7 +41,7 @@
 /obj/structure/flora/grass/green{
 	pixel_x = -8
 	},
-/obj/item/clothing/gloves/ring/material/gold,
+/obj/item/clothing/accessory/ring/material/gold,
 /obj/item/clothing/ears/earring/stud/gold,
 /obj/item/gun/projectile/deagle/gold{
 	pixel_x = -11;

@@ -179,13 +179,13 @@ var/list/adminfaxes = list()	//cache for faxes that have been sent to admins
 		if("scan")
 			if(scan)
 				scan.forceMove(loc)
-				if(ishuman(usr) && !usr.get_active_hand())
-					usr.put_in_hands(scan)
+				if(ishuman(ui.user) && !ui.user.get_active_hand())
+					ui.user.put_in_hands(scan)
 				scan = null
 			else
-				var/obj/item/I = usr.get_active_hand()
+				var/obj/item/I = ui.user.get_active_hand()
 				if(istype(I, /obj/item/card/id))
-					usr.drop_item()
+					ui.user.drop_item()
 					I.forceMove(src)
 					scan = I
 			return TRUE
@@ -195,30 +195,30 @@ var/list/adminfaxes = list()	//cache for faxes that have been sent to admins
 				if(check_access(scan))
 					authenticated = scan.registered_name
 					rank = scan.assignment
-			else if(login_type == LOGIN_TYPE_AI && isAI(usr))
-				authenticated = usr.name
+			else if(login_type == LOGIN_TYPE_AI && isAI(ui.user))
+				authenticated = ui.user.name
 				rank = JOB_AI
-			else if(login_type == LOGIN_TYPE_ROBOT && isrobot(usr))
-				authenticated = usr.name
-				var/mob/living/silicon/robot/R = usr
+			else if(login_type == LOGIN_TYPE_ROBOT && isrobot(ui.user))
+				authenticated = ui.user.name
+				var/mob/living/silicon/robot/R = ui.user
 				rank = "[R.modtype] [R.braintype]"
 			return TRUE
 		if("logout")
 			if(scan)
 				scan.forceMove(loc)
-				if(ishuman(usr) && !usr.get_active_hand())
-					usr.put_in_hands(scan)
+				if(ishuman(ui.user) && !ui.user.get_active_hand())
+					ui.user.put_in_hands(scan)
 				scan = null
 			authenticated = null
 			return TRUE
 		if("remove")
 			if(copyitem)
-				if(get_dist(usr, src) >= 2)
-					to_chat(usr, "\The [copyitem] is too far away for you to remove it.")
+				if(get_dist(ui.user, src) >= 2)
+					to_chat(ui.user, "\The [copyitem] is too far away for you to remove it.")
 					return
 				copyitem.forceMove(loc)
-				usr.put_in_hands(copyitem)
-				to_chat(usr, span_notice("You take \the [copyitem] out of \the [src]."))
+				ui.user.put_in_hands(copyitem)
+				to_chat(ui.user, span_notice("You take \the [copyitem] out of \the [src]."))
 				copyitem = null
 		if("send_automated_staff_request")
 			request_roles()
@@ -229,7 +229,7 @@ var/list/adminfaxes = list()	//cache for faxes that have been sent to admins
 	switch(action)
 		if("rename")
 			if(copyitem)
-				var/new_name = tgui_input_text(usr, "Enter new paper title", "This will show up in the preview for staff chat on discord when sending \
+				var/new_name = tgui_input_text(ui.user, "Enter new paper title", "This will show up in the preview for staff chat on discord when sending \
 				to central.", copyitem.name, MAX_NAME_LEN)
 				if(!new_name)
 					return
@@ -237,9 +237,9 @@ var/list/adminfaxes = list()	//cache for faxes that have been sent to admins
 		if("send")
 			if(copyitem)
 				if (destination in admin_departments)
-					if(check_if_default_title_and_rename())
+					if(check_if_default_title_and_rename(ui.user))
 						return
-					send_admin_fax(usr, destination)
+					send_admin_fax(ui.user, destination)
 				else
 					sendfax(destination)
 
@@ -249,14 +249,14 @@ var/list/adminfaxes = list()	//cache for faxes that have been sent to admins
 
 		if("dept")
 			var/lastdestination = destination
-			destination = tgui_input_list(usr, "Which department?", "Choose a department", (alldepartments + admin_departments))
+			destination = tgui_input_list(ui.user, "Which department?", "Choose a department", (alldepartments + admin_departments))
 			if(!destination)
 				destination = lastdestination
 
 	return TRUE
 
 
-/obj/machinery/photocopier/faxmachine/proc/check_if_default_title_and_rename()
+/obj/machinery/photocopier/faxmachine/proc/check_if_default_title_and_rename(mob/user)
 /*
 Returns TRUE only on "Cancel" or invalid newname, else returns null/false
 Extracted to its own procedure for easier logic handling with paper bundles.
@@ -276,13 +276,13 @@ Extracted to its own procedure for easier logic handling with paper bundles.
 	else if(copyitem.name != initial(copyitem.name))
 		return FALSE
 
-	var/choice = tgui_alert(usr, "[question_text] improve response time from staff when sending to discord. \
+	var/choice = tgui_alert(user, "[question_text] improve response time from staff when sending to discord. \
 	Renaming it changes its preview in staff chat.", \
 	"Default name detected", list("Change Title","Continue", "Cancel"))
 	if(!choice || choice == "Cancel")
 		return TRUE
 	else if(choice == "Change Title")
-		var/new_name = tgui_input_text(usr, "Enter new fax title", "This will show up in the preview for staff chat on discord when sending \
+		var/new_name = tgui_input_text(user, "Enter new fax title", "This will show up in the preview for staff chat on discord when sending \
 		to central.", copyitem.name, MAX_NAME_LEN)
 		if(!new_name)
 			return TRUE
@@ -295,9 +295,9 @@ Extracted to its own procedure for easier logic handling with paper bundles.
 		O.forceMove(src)
 		scan = O
 	else if(O.has_tool_quality(TOOL_MULTITOOL) && panel_open)
-		var/input = sanitize(tgui_input_text(usr, "What Department ID would you like to give this fax machine?", "Multitool-Fax Machine Interface", department))
+		var/input = sanitize(tgui_input_text(user, "What Department ID would you like to give this fax machine?", "Multitool-Fax Machine Interface", department))
 		if(!input)
-			to_chat(usr, "No input found. Please hang up and try your call again.")
+			to_chat(user, "No input found. Please hang up and try your call again.")
 			return
 		department = input
 		if( !(("[department]" in alldepartments) || ("[department]" in admin_departments)) && !(department == "Unknown"))

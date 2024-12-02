@@ -6594,10 +6594,10 @@
 /obj/item/radio/headset/syndicate,
 /obj/item/radio/headset/syndicate,
 /obj/item/radio/headset/syndicate,
-/obj/item/radio/headset/syndicate/alt,
-/obj/item/radio/headset/syndicate/alt,
-/obj/item/radio/headset/syndicate/alt,
-/obj/item/radio/headset/syndicate/alt,
+/obj/item/radio/headset/alt/syndicate,
+/obj/item/radio/headset/alt/syndicate,
+/obj/item/radio/headset/alt/syndicate,
+/obj/item/radio/headset/alt/syndicate,
 /obj/effect/floor_decal/techfloor{
 	dir = 10
 	},
@@ -9996,8 +9996,8 @@
 /obj/machinery/recharger/wallcharger{
 	pixel_y = 20
 	},
-/obj/item/clothing/gloves/knuckledusters,
-/obj/item/clothing/gloves/knuckledusters,
+/obj/item/clothing/accessory/knuckledusters,
+/obj/item/clothing/accessory/knuckledusters,
 /obj/item/flash,
 /obj/item/flash,
 /obj/item/laser_pointer/upgraded,

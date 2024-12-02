@@ -263,7 +263,7 @@
 				prob(6);/obj/item/material/butterflyblade,
 				prob(6);/obj/item/material/butterflyhandle,
 				prob(2);/obj/item/material/butterfly/switchblade,
-				prob(2);/obj/item/clothing/gloves/knuckledusters,
+				prob(2);/obj/item/clothing/accessory/knuckledusters,
 				prob(1);/obj/item/material/knife/tacknife,
 				prob(1);/obj/item/clothing/suit/storage/vest/heavy/merc,
 				prob(1);/obj/item/beartrap,

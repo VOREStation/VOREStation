@@ -131,6 +131,16 @@
 	reagents.add_reagent("spidertoxin",6)
 	reagents.remove_reagent("pacid",6)
 
+/obj/item/reagent_containers/food/snacks/rawturkey
+	name = "raw turkey"
+	desc = "Naked and hollow."
+	icon_state = "rawturkey"
+	bitesize = 2.5
+
+/obj/item/reagent_containers/food/snacks/rawturkey/Initialize()
+	. = ..()
+	reagents.add_reagent("protein", 10)
+
 /obj/item/reagent_containers/food/snacks/meat/fox
 	name = "foxmeat"
 	desc = "The fox doesn't say a goddamn thing, now."

@@ -292,11 +292,14 @@
 	if(!istype(C, /mob/living/carbon/human))
 		return 0
 
+	. = ..(C)
+
+	if(!.)
+		return
+
 	if(ismob(C))
 		buckle_mob(C)
 		C.alpha = 0
-
-	return ..()
 
 /obj/vehicle/train/rover/engine/unload(var/mob/user, var/direction)
 	var/mob/living/carbon/human/C = load

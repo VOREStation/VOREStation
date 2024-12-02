@@ -32,6 +32,12 @@
 
 	ai_holder_type = /datum/ai_holder/simple_mob/melee
 
+/mob/living/simple_mob/vore/aggressive/macrophage/proc/deathcheck()
+	if(locate(/mob/living/carbon/human) in vore_selected)
+		addtimer(CALLBACK(src, TYPE_PROC_REF(/mob/living/simple_mob/vore/aggressive/macrophage, deathcheck)), 3000)
+	else
+		dust()
+
 /mob/living/simple_mob/vore/aggressive/macrophage/green
 	icon_state = "macrophage-2"
 
@@ -47,7 +53,7 @@
 	contamination_color = "green"
 	vore_verb = "absorb"
 	escapable = TRUE
-	escapable = 5
+	escapable = 20
 	desc = "In an attempt to get away from the giant virus, it's oversized envelope proteins dragged you right past it's matrix, encapsulating you deep inside it's capsid... The strange walls kneading and keeping you tight along within it's nucleoprotein."
 	belly_fullscreen = "VBO_gematically_angular"
 	belly_fullscreen_color = "#87d8d8"

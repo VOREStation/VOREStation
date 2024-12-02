@@ -3,7 +3,7 @@ var/global/list/ashtray_cache = list()
 /obj/item/material/ashtray
 	name = "ashtray"
 	icon = 'icons/obj/objects.dmi'
-	icon_state = "blank"
+	icon_state = "ashtray"
 	randpixel = 5
 	force_divisor = 0.1
 	thrown_force_divisor = 0.1
@@ -16,6 +16,7 @@ var/global/list/ashtray_cache = list()
 	if(!material)
 		qdel(src)
 		return
+	icon_state = "blank"
 	max_butts = round(material.hardness/5) //This is arbitrary but whatever.
 	randpixel_xy()
 	update_icon()

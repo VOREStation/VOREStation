@@ -1209,7 +1209,7 @@
 /obj/random/mouseray,
 /obj/random/cash/huge,
 /obj/item/clothing/ears/earring/dangle/diamond,
-/obj/item/clothing/gloves/ring/material/diamond,
+/obj/item/clothing/accessory/ring/material/diamond,
 /obj/structure/closet/grave/dirthole,
 /obj/random/coin,
 /turf/simulated/floor/outdoors/dirt{

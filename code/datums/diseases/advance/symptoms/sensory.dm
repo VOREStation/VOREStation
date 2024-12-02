@@ -30,14 +30,14 @@ Bonus
 		var/mob/living/M = A.affected_mob
 
 		if(A.stage >= 3)
-			M.slurring = min(0, M.slurring-4)
-			M.druggy = min(0, M.druggy-4)
+			M.slurring = max(0, M.slurring-4)
+			M.druggy = max(0, M.druggy-4)
 			M.reagents.remove_reagent("ethanol", 3)
 		if(A.stage >= 4)
-			M.drowsyness = min(0, M.drowsyness-4)
+			M.drowsyness = max(0, M.drowsyness-4)
 			if(M.reagents.has_reagent("bliss"))
 				M.reagents.del_reagent("bliss")
-			M.hallucination = min(0, M.hallucination-4)
+			M.hallucination = max(0, M.hallucination-4)
 		if(A.stage >= 5)
 			if(M.reagents.get_reagent_amount("alkysine") < 10)
 				M.reagents.add_reagent("alkysine", 5)

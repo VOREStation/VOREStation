@@ -271,7 +271,7 @@
 
 //  C CKEYS
 /datum/gear/fluff/cappy_watch
-	path = /obj/item/clothing/accessory/watch
+	path = /obj/item/clothing/accessory/watch/custom
 	display_name = "Cappy's Pocket Watch"
 	ckeywhitelist = list("cappycat")
 	character_name = list("Cappy Fuzzlyfeathers")
@@ -528,7 +528,7 @@
 	character_name = list("Elizabeth Bayou")
 
 /datum/gear/fluff/mercury_vopal_ring
-	path = /obj/item/clothing/gloves/ring/material/void_opal/fluff/mercury
+	path = /obj/item/clothing/accessory/ring/material/void_opal/fluff/mercury
 	display_name = "Mercury's Mate Ring"
 	ckeywhitelist = list("haloren")
 	character_name = list("Mercury")
@@ -693,6 +693,12 @@
 	display_name = "Harmony's Modkit 2"
 	ckeywhitelist = list("john.wayne9392")
 	character_name = list("Harmony Pretchl")
+
+/datum/gear/fluff/vox_dylo_pills
+	path = /obj/item/storage/pill_bottle/dylovene
+	display_name = "Dylovene pill bottle"
+	ckeywhitelist = list("jparker890")
+	character_name = list("Krey-Timinine")
 
 /datum/gear/fluff/koyo_box
 	path = /obj/item/storage/box/fluff/koyoakimomi
@@ -1238,6 +1244,13 @@
     slot = slot_wear_suit
     ckeywhitelist = list("satinisle")
     character_name = list("Parriz Tavakdavi")
+
+/datum/gear/fluff/dark_tarot
+    path = /obj/item/deck/dark_tarot
+    display_name = "dark rose tarot deck"
+    ckeywhitelist = list("satinisle")
+    character_name = list("Millie Orlen")
+
 
 //  T CKEYS
 /datum/gear/fluff/ascian_medal

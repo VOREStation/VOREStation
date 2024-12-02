@@ -49,7 +49,6 @@
 // Skills
 //
 /obj/machinery/computer/ship
-	var/core_skill = /datum/skill/devices //The skill used for skill checks for this machine (mostly so subtypes can use different skills).
 	var/ai_control = TRUE	//VOREStation Edit
 
 //

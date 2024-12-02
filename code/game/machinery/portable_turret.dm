@@ -443,7 +443,7 @@
 /obj/machinery/porta_turret/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
 	if(..())
 		return TRUE
-	if(isLocked(usr))
+	if(isLocked(ui.user))
 		return TRUE
 	. = TRUE
 
@@ -1094,7 +1094,7 @@
 		var/t = sanitizeSafe(tgui_input_text(user, "Enter new turret name", name, finish_name, MAX_NAME_LEN), MAX_NAME_LEN)
 		if(!t)
 			return
-		if(!in_range(src, usr) && loc != usr)
+		if(!in_range(src, user) && loc != user)
 			return
 
 		finish_name = t

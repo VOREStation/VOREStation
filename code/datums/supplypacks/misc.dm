@@ -80,6 +80,7 @@
 			/obj/item/toy/plushie/slimeplushie,
 			/obj/item/toy/plushie/box,
 			/obj/item/toy/plushie/borgplushie,
+			/obj/item/toy/plushie/borgplushie/drake/eng,
 			/obj/item/toy/plushie/borgplushie/medihound,
 			/obj/item/toy/plushie/borgplushie/scrubpuppy,
 			/obj/item/toy/plushie/foxbear,

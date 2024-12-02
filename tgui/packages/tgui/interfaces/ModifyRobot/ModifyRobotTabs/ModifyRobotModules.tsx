@@ -13,6 +13,7 @@ import {
   Section,
   Stack,
 } from 'tgui/components';
+import { classes } from 'tgui-core/react';
 
 import { NoSpriteWarning } from '../components';
 import { prepareSearch } from '../functions';
@@ -47,7 +48,8 @@ export const ModifyRobotModules = (props: {
             />
             {!!source && (
               <SelectionField
-                previewImage={source.front}
+                previewImage={source.sprite}
+                previewImageSize={source.sprite_size}
                 searchText={searchSourceText}
                 onSearchText={setSearchSourceText}
                 action="add_module"
@@ -106,7 +108,8 @@ export const ModifyRobotModules = (props: {
             </Button.Confirm>
             <Divider />
             <SelectionField
-              previewImage={target.front}
+              previewImage={target.sprite}
+              previewImageSize={target.sprite_size}
               searchText={searchModuleText}
               onSearchText={setSearchModulText}
               action="rem_module"
@@ -123,6 +126,7 @@ export const ModifyRobotModules = (props: {
 
 const SelectionField = (props: {
   previewImage: string | undefined;
+  previewImageSize: string | undefined;
   searchText: string;
   onSearchText: Function;
   action: string;
@@ -133,6 +137,7 @@ const SelectionField = (props: {
   const { act } = useBackend();
   const {
     previewImage,
+    previewImageSize,
     searchText,
     onSearchText,
     action,
@@ -144,15 +149,13 @@ const SelectionField = (props: {
   return (
     <>
       <Divider />
-      <Image
-        src={'data:image/jpeg;base64, ' + previewImage}
-        style={{
-          display: 'block',
-          marginLeft: 'auto',
-          marginRight: 'auto',
-          height: '200px',
-        }}
-      />
+      <Flex>
+        <Flex.Item grow />
+        <Flex.Item>
+          <Box className={classes([previewImageSize, previewImage + 'S'])} />
+        </Flex.Item>
+        <Flex.Item grow />
+      </Flex>
       <Divider />
       <Input
         fluid

@@ -63,7 +63,7 @@
 			var/value = params["value"]
 
 			for(var/datum/preference_middleware/preference_middleware as anything in middleware)
-				if(preference_middleware.pre_set_preference(usr, requested_preference_key, value))
+				if(preference_middleware.pre_set_preference(ui.user, requested_preference_key, value))
 					return TRUE
 
 			var/datum/preference/requested_preference = GLOB.preference_entries_by_key[requested_preference_key]
@@ -82,7 +82,7 @@
 	for(var/datum/preference_middleware/preference_middleware as anything in middleware)
 		var/delegation = preference_middleware.action_delegations[action]
 		if(!isnull(delegation))
-			return call(preference_middleware, delegation)(params, usr)
+			return call(preference_middleware, delegation)(params, ui.user)
 
 	return FALSE
 

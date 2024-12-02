@@ -3,9 +3,6 @@
 	set name = "OOC"
 	set category = "OOC.Chat"
 
-	if(say_disabled)	//This is here to try to identify lag problems
-		to_chat(usr, span_warning("Speech is currently admin-disabled."))
-		return
 
 	if(!mob)	return
 	if(IsGuestKey(key))
@@ -85,10 +82,6 @@
 	set name = "LOOC"
 	set desc = "Local OOC, seen only by those in view."
 	set category = "OOC.Chat"
-
-	if(say_disabled)	//This is here to try to identify lag problems
-		to_chat(usr, span_danger("Speech is currently admin-disabled."))
-		return
 
 	if(!mob)
 		return

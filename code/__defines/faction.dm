@@ -105,6 +105,7 @@
 #define FACTION_SWARMER "swarmer"
 #define FACTION_TEPPI "teppi"
 #define FACTION_TUNNELCLOWN "tunnelclown"
+#define FACTION_TURKEY "turkey"
 #define FACTION_WILD_ANIMAL "wild animal"
 #define FACTION_WOLFGIRL "wolfgirl"
 #define FACTION_WOLFTAUR "wolftaur"

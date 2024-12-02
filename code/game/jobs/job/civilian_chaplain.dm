@@ -7,6 +7,7 @@
 	faction = FACTION_STATION
 	total_positions = 1
 	spawn_positions = 1
+	pto_type = PTO_CIVILIAN
 	supervisors = "the " + JOB_HEAD_OF_PERSONNEL
 	selection_color = "#515151"
 	access = list(access_morgue, access_chapel_office, access_crematorium, access_maint_tunnels)
@@ -14,12 +15,33 @@
 
 	outfit_type = /decl/hierarchy/outfit/job/chaplain
 	job_description = "The " + JOB_CHAPLAIN + " ministers to the spiritual needs of the crew."
-	alt_titles = list(JOB_ALT_COUNSELOR = /datum/alt_title/counselor)
+	alt_titles = list(JOB_ALT_MISSIONARY = /datum/alt_title/missionary, JOB_ALT_PREACHER = /datum/alt_title/preacher, JOB_ALT_PRIEST = /datum/alt_title/priest,
+							JOB_ALT_NUN = /datum/alt_title/nun, JOB_ALT_MONK = /datum/alt_title/monk, JOB_ALT_COUNSELOR = /datum/alt_title/counselor,
+						JOB_ALT_GURU = /datum/alt_title/guru)
 
 // Chaplain Alt Titles
 /datum/alt_title/counselor
 	title = JOB_ALT_COUNSELOR
 	title_blurb = "The " + JOB_ALT_COUNSELOR + " attends to the emotional needs of the crew, without a specific medicinal or spiritual focus."
+
+/datum/alt_title/guru
+	title = JOB_ALT_GURU
+	title_blurb = "The " + JOB_ALT_GURU + " primarily tries to offer spiritual guidance to those who come seeking it."
+
+/datum/alt_title/missionary
+	title = JOB_ALT_MISSIONARY
+
+/datum/alt_title/preacher
+	title = JOB_ALT_PREACHER
+
+/datum/alt_title/priest
+	title = JOB_ALT_PRIEST
+
+/datum/alt_title/nun
+	title = JOB_ALT_NUN
+
+/datum/alt_title/monk
+	title = JOB_ALT_MONK
 
 /datum/job/chaplain/equip(var/mob/living/carbon/human/H, var/alt_title, var/ask_questions = TRUE)
 	. = ..()

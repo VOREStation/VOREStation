@@ -49,7 +49,7 @@
 	if(!evaluate_ghost_join(user))
 		return ..()
 
-	tgui_alert_async(usr, "Would you like to become [src]? It is bound to [revivedby].", "Become Mob", list("Yes","No"), CALLBACK(src, PROC_REF(reply_ghost_join)), 20 SECONDS)
+	tgui_alert_async(user, "Would you like to become [src]? It is bound to [revivedby].", "Become Mob", list("Yes","No"), CALLBACK(src, PROC_REF(reply_ghost_join)), 20 SECONDS)
 
 /// A reply to an async alert request was received
 /mob/living/simple_mob/proc/reply_ghost_join(response)

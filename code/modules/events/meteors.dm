@@ -127,10 +127,8 @@
 	. = ..()
 	if(!victim)
 		return
-	var/skill = victim.get_helm_skill()
 	var/speed = victim.get_speed()
-	if(skill >= SKILL_PROF)
-		. = round(. * 0.5)
+	. = round(. * 0.5)
 	if(victim.is_still()) //Standing still means less shit flies your way
 		. = round(. * 0.1)
 	if(speed < SHIP_SPEED_SLOW) //Slow and steady
@@ -140,10 +138,4 @@
 
 	//Smol ship evasion
 	if(victim.vessel_size < SHIP_SIZE_LARGE && speed < SHIP_SPEED_FAST)
-		var/skill_needed = SKILL_PROF
-		if(speed < SHIP_SPEED_SLOW)
-			skill_needed = SKILL_ADEPT
-		if(victim.vessel_size < SHIP_SIZE_SMALL)
-			skill_needed = skill_needed - 1
-		if(skill >= max(skill_needed, victim.skill_needed))
-			. = round(. * 0.5)
+		. = round(. * 0.5)

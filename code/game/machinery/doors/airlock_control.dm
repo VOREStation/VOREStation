@@ -261,7 +261,7 @@
 	..()
 
 /obj/machinery/access_button/attack_hand(mob/user)
-	add_fingerprint(usr)
+	add_fingerprint(user)
 	if(!allowed(user))
 		to_chat(user, span_warning("Access Denied"))
 

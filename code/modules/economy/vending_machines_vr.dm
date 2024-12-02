@@ -1,41 +1,3 @@
-//Tweaked existing vendors
-/obj/machinery/vending/hydroseeds/New()
-	products += list(/obj/item/seeds/shrinkshroom = 3,/obj/item/seeds/megashroom = 3)
-	..()
-
-/obj/machinery/vending/security/New()
-	products += list(/obj/item/gun/energy/taser = 8,/obj/item/gun/energy/stunrevolver = 4,
-					/obj/item/reagent_containers/spray/pepper = 6,/obj/item/taperoll/police = 6,
-					/obj/item/clothing/glasses/omnihud/sec = 6)
-	contraband += list(/obj/item/implanter/compliance = 1)
-	..()
-
-/obj/machinery/vending/tool/New()
-	products += list(/obj/item/reagent_containers/spray/windowsealant = 5)
-	..()
-
-/obj/machinery/vending/engivend/New()
-	products += list(/obj/item/clothing/glasses/omnihud/eng = 6)
-	contraband += list(/obj/item/rms = 5)
-	..()
-
-/obj/machinery/vending/medical/New()
-	products += list(/obj/item/storage/box/khcrystal = 4,/obj/item/backup_implanter = 3,
-					/obj/item/clothing/glasses/omnihud/med = 4, /obj/item/glasses_kit = 1,  /obj/item/storage/quickdraw/syringe_case = 4)
-	..()
-
-/obj/machinery/vending/wallmed1/New()
-	products += list(/obj/item/bodybag/cryobag = 2)
-	..()
-
-/obj/machinery/vending/wallmed2/New()
-	products += list(/obj/item/bodybag/cryobag = 3)
-	..()
-
-/obj/machinery/vending/wallmed1/public/New()
-	products += list(/obj/item/bodybag/cryobag = 4)
-	..()
-
 // Food Machines (for event/away maps)
 
 //I want this not just as part of the zoo. ;v
@@ -343,7 +305,7 @@
 					/obj/item/storage/box/syndie_kit/chameleon = 1,
 					/obj/item/clothing/mask/bandana = 1,
 					/obj/item/clothing/glasses/sunglasses = 1,
-					/obj/item/radio/headset/syndicate/alt = 1,
+					/obj/item/radio/headset/syndicate = 1,
 					/obj/item/pda = 1,
 					/obj/item/communicator = 1,
 					/obj/item/tape_roll = 2,
@@ -519,7 +481,7 @@
 					/obj/item/clothing/under/color/yellow = 5,
 					/obj/item/clothing/shoes/black = 20,
 					/obj/item/clothing/shoes/white = 20,
-					/obj/item/clothing/gloves/watch = 20
+					/obj/item/clothing/accessory/watch = 20
 					)
 	prices = list()
 
@@ -614,13 +576,13 @@
 					/obj/item/clothing/accessory/wcoat/swvest/blue = 5,
 					/obj/item/clothing/accessory/wcoat/swvest/red = 5,
 					/obj/item/clothing/accessory/wristband = 5,
-					/obj/item/clothing/accessory/wristbandcollection = 5,
-					/obj/item/clothing/accessory/wristbandcollection/pink = 5,
-					/obj/item/clothing/accessory/wristbandcollection/les = 5,
-					/obj/item/clothing/accessory/wristbandcollection/bi = 5,
-					/obj/item/clothing/accessory/wristbandcollection/trans = 5,
-					/obj/item/clothing/accessory/wristbandcollection/ace = 5,
-					/obj/item/clothing/accessory/wristband_spiked = 5,
+					/obj/item/clothing/accessory/wristband/collection = 5,
+					/obj/item/clothing/accessory/wristband/collection/pink = 5,
+					/obj/item/clothing/accessory/wristband/collection/les = 5,
+					/obj/item/clothing/accessory/wristband/collection/bi = 5,
+					/obj/item/clothing/accessory/wristband/collection/trans = 5,
+					/obj/item/clothing/accessory/wristband/collection/ace = 5,
+					/obj/item/clothing/accessory/wristband/spiked = 5,
 					/obj/item/clothing/accessory/belt = 5,
 					/obj/item/clothing/accessory/belt/thick = 5,
 					/obj/item/clothing/accessory/belt/strap = 5,
@@ -636,13 +598,13 @@
 					/obj/item/clothing/ears/earmuffs/headphones = 5,
 					/obj/item/clothing/ears/earring/stud = 5,
 					/obj/item/clothing/ears/earring/dangle = 5,
-					/obj/item/clothing/gloves/ring/mariner = 5,
-					/obj/item/clothing/gloves/ring/engagement = 5,
-					/obj/item/clothing/gloves/ring/seal/signet = 5,
-					/obj/item/clothing/gloves/ring/seal/mason = 5,
-					/obj/item/clothing/gloves/ring/material/plastic = 5,
-					/obj/item/clothing/gloves/ring/material/steel = 5,
-					/obj/item/clothing/gloves/ring/material/gold = 5,
+					/obj/item/clothing/accessory/ring/mariner = 5,
+					/obj/item/clothing/accessory/ring/engagement = 5,
+					/obj/item/clothing/accessory/ring/seal/signet = 5,
+					/obj/item/clothing/accessory/ring/seal/mason = 5,
+					/obj/item/clothing/accessory/ring/material/plastic = 5,
+					/obj/item/clothing/accessory/ring/material/steel = 5,
+					/obj/item/clothing/accessory/ring/material/gold = 5,
 					/obj/item/clothing/glasses/eyepatch = 5,
 					/obj/item/clothing/glasses/gglasses = 5,
 					/obj/item/clothing/glasses/regular/hipster = 5,
@@ -670,9 +632,9 @@
 					/obj/item/clothing/accessory/pride/lesbian = 5,
 					/obj/item/clothing/accessory/pride/intersex = 5,
 					/obj/item/clothing/accessory/pride/vore = 5,
-					/obj/item/clothing/gloves/watch = 5,
-					/obj/item/clothing/gloves/watch/silver = 5,
-					/obj/item/clothing/gloves/watch/gold = 5
+					/obj/item/clothing/accessory/watch = 5,
+					/obj/item/clothing/accessory/watch/silver = 5,
+					/obj/item/clothing/accessory/watch/gold = 5
 					)
 	prices = list(/obj/item/clothing/accessory = 50,
 					/obj/item/clothing/accessory/armband/med/color = 50,
@@ -759,13 +721,13 @@
 					/obj/item/clothing/accessory/wcoat/swvest/blue = 50,
 					/obj/item/clothing/accessory/wcoat/swvest/red = 50,
 					/obj/item/clothing/accessory/wristband = 10,
-					/obj/item/clothing/accessory/wristbandcollection = 30,
-					/obj/item/clothing/accessory/wristbandcollection/pink = 30,
-					/obj/item/clothing/accessory/wristbandcollection/les = 30,
-					/obj/item/clothing/accessory/wristbandcollection/bi = 30,
-					/obj/item/clothing/accessory/wristbandcollection/trans = 30,
-					/obj/item/clothing/accessory/wristbandcollection/ace = 30,
-					/obj/item/clothing/accessory/wristband_spiked = 20,
+					/obj/item/clothing/accessory/wristband/collection = 30,
+					/obj/item/clothing/accessory/wristband/collection/pink = 30,
+					/obj/item/clothing/accessory/wristband/collection/les = 30,
+					/obj/item/clothing/accessory/wristband/collection/bi = 30,
+					/obj/item/clothing/accessory/wristband/collection/trans = 30,
+					/obj/item/clothing/accessory/wristband/collection/ace = 30,
+					/obj/item/clothing/accessory/wristband/spiked = 20,
 					/obj/item/clothing/accessory/belt = 50,
 					/obj/item/clothing/accessory/belt/thick = 50,
 					/obj/item/clothing/accessory/belt/strap = 50,
@@ -781,13 +743,13 @@
 					/obj/item/clothing/ears/earmuffs/headphones = 50,
 					/obj/item/clothing/ears/earring/stud = 50,
 					/obj/item/clothing/ears/earring/dangle = 50,
-					/obj/item/clothing/gloves/ring/mariner = 50,
-					/obj/item/clothing/gloves/ring/engagement = 50,
-					/obj/item/clothing/gloves/ring/seal/signet = 50,
-					/obj/item/clothing/gloves/ring/seal/mason = 50,
-					/obj/item/clothing/gloves/ring/material/plastic = 50,
-					/obj/item/clothing/gloves/ring/material/steel = 50,
-					/obj/item/clothing/gloves/ring/material/gold = 100,
+					/obj/item/clothing/accessory/ring/mariner = 50,
+					/obj/item/clothing/accessory/ring/engagement = 50,
+					/obj/item/clothing/accessory/ring/seal/signet = 50,
+					/obj/item/clothing/accessory/ring/seal/mason = 50,
+					/obj/item/clothing/accessory/ring/material/plastic = 50,
+					/obj/item/clothing/accessory/ring/material/steel = 50,
+					/obj/item/clothing/accessory/ring/material/gold = 100,
 					/obj/item/clothing/glasses/eyepatch = 50,
 					/obj/item/clothing/glasses/gglasses = 50,
 					/obj/item/clothing/glasses/regular/hipster = 50,
@@ -811,9 +773,9 @@
 					/obj/item/clothing/accessory/pride/lesbian = 50,
 					/obj/item/clothing/accessory/pride/intersex = 50,
 					/obj/item/clothing/accessory/pride/vore = 50,
-					/obj/item/clothing/gloves/watch = 50,
-					/obj/item/clothing/gloves/watch/silver = 100,
-					/obj/item/clothing/gloves/watch/gold = 200
+					/obj/item/clothing/accessory/watch = 50,
+					/obj/item/clothing/accessory/watch/silver = 100,
+					/obj/item/clothing/accessory/watch/gold = 200
 					)
 	premium = list(/obj/item/bedsheet/rainbow = 1)
 	contraband = list(/obj/item/clothing/mask/gas/clown_hat = 1,
@@ -2001,13 +1963,13 @@
 					/obj/item/clothing/ears/earmuffs/headphones = 5,
 					/obj/item/clothing/ears/earring/stud = 5,
 					/obj/item/clothing/ears/earring/dangle = 5,
-					/obj/item/clothing/gloves/ring/mariner = 5,
-					/obj/item/clothing/gloves/ring/engagement = 5,
-					/obj/item/clothing/gloves/ring/seal/signet = 5,
-					/obj/item/clothing/gloves/ring/seal/mason = 5,
-					/obj/item/clothing/gloves/ring/material/plastic = 5,
-					/obj/item/clothing/gloves/ring/material/steel = 5,
-					/obj/item/clothing/gloves/ring/material/gold = 5,
+					/obj/item/clothing/accessory/ring/mariner = 5,
+					/obj/item/clothing/accessory/ring/engagement = 5,
+					/obj/item/clothing/accessory/ring/seal/signet = 5,
+					/obj/item/clothing/accessory/ring/seal/mason = 5,
+					/obj/item/clothing/accessory/ring/material/plastic = 5,
+					/obj/item/clothing/accessory/ring/material/steel = 5,
+					/obj/item/clothing/accessory/ring/material/gold = 5,
 					/obj/item/clothing/glasses/eyepatch = 5,
 					/obj/item/clothing/glasses/gglasses = 5,
 					/obj/item/clothing/glasses/regular/hipster = 5,

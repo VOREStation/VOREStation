@@ -53,7 +53,7 @@
 /obj/item/storage/firstaid/toxin,
 /obj/item/storage/firstaid/o2,
 /obj/item/storage/box/survival/space,
-/obj/item/clothing/gloves/watch/survival,
+/obj/item/clothing/accessory/watch/survival,
 /obj/item/emergency_beacon,
 /obj/item/healthanalyzer,
 /obj/item/storage/pill_bottle/dice_nerd,

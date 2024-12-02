@@ -254,11 +254,11 @@
 				var/no_los
 				var/turf/last_turf = origin_turf
 				for(var/turf/target_turf in getline(origin_turf,neighbor))
-					if(air_master.air_blocked(last_turf, target_turf))
+					if(SSair.air_blocked(last_turf, target_turf))
 						no_los = 1
 						break
 					last_turf = target_turf
-				if(!no_los && air_master.air_blocked(origin_turf, neighbor))
+				if(!no_los && SSair.air_blocked(origin_turf, neighbor))
 					no_los = 1
 				if(no_los)
 					closed_turfs |= neighbor

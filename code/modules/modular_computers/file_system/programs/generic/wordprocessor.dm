@@ -74,11 +74,11 @@
 
 	switch(action)
 		if("PRG_txtrpeview")
-			show_browser(usr,"<HTML><HEAD><TITLE>[open_file]</TITLE></HEAD>[pencode2html(loaded_data)]</BODY></HTML>", "window=[open_file]")
+			show_browser(ui.user,"<HTML><HEAD><TITLE>[open_file]</TITLE></HEAD>[pencode2html(loaded_data)]</BODY></HTML>", "window=[open_file]")
 			return TRUE
 
 		if("PRG_taghelp")
-			to_chat(usr, span_notice("The hologram of a googly-eyed paper clip helpfully tells you:"))
+			to_chat(ui.user, span_notice("The hologram of a googly-eyed paper clip helpfully tells you:"))
 			var/help = {"
 			\[br\] : Creates a linebreak.
 			\[center\] - \[/center\] : Centers the text.
@@ -104,7 +104,7 @@
 			\[redlogo\] - Inserts red NT logo image.
 			\[sglogo\] - Inserts Solgov insignia image."}
 
-			to_chat(usr, help)
+			to_chat(ui.user, help)
 			return TRUE
 
 		if("PRG_closebrowser")
@@ -121,7 +121,7 @@
 
 		if("PRG_openfile")
 			if(is_edited)
-				if(tgui_alert(usr, "Would you like to save your changes first?","Save Changes",list("Yes","No")) == "Yes")
+				if(tgui_alert(ui.user, "Would you like to save your changes first?","Save Changes",list("Yes","No")) == "Yes")
 					save_file(open_file)
 			browsing = 0
 			if(!open_file(params["PRG_openfile"]))
@@ -130,10 +130,10 @@
 
 		if("PRG_newfile")
 			if(is_edited)
-				if(tgui_alert(usr, "Would you like to save your changes first?","Save Changes",list("Yes","No")) == "Yes")
+				if(tgui_alert(ui.user, "Would you like to save your changes first?","Save Changes",list("Yes","No")) == "Yes")
 					save_file(open_file)
 
-			var/newname = sanitize(tgui_input_text(usr, "Enter file name:", "New File"))
+			var/newname = sanitize(tgui_input_text(ui.user, "Enter file name:", "New File"))
 			if(!newname)
 				return TRUE
 			var/datum/computer_file/data/F = create_file(newname)
@@ -146,7 +146,7 @@
 			return TRUE
 
 		if("PRG_saveasfile")
-			var/newname = sanitize(tgui_input_text(usr, "Enter file name:", "Save As"))
+			var/newname = sanitize(tgui_input_text(ui.user, "Enter file name:", "Save As"))
 			if(!newname)
 				return TRUE
 			var/datum/computer_file/data/F = create_file(newname, loaded_data)
@@ -158,7 +158,7 @@
 
 		if("PRG_savefile")
 			if(!open_file)
-				open_file = sanitize(tgui_input_text(usr, "Enter file name:", "Save As"))
+				open_file = sanitize(tgui_input_text(ui.user, "Enter file name:", "Save As"))
 				if(!open_file)
 					return 0
 			if(!save_file(open_file))
@@ -169,7 +169,7 @@
 			var/oldtext = html_decode(loaded_data)
 			oldtext = replacetext(oldtext, "\[br\]", "\n")
 
-			var/newtext = sanitize(replacetext(tgui_input_text(usr, "Editing file '[open_file]'. You may use most tags used in paper formatting:", "Text Editor", oldtext, MAX_TEXTFILE_LENGTH, TRUE, prevent_enter = TRUE), "\n", "\[br\]"), MAX_TEXTFILE_LENGTH)
+			var/newtext = sanitize(replacetext(tgui_input_text(ui.user, "Editing file '[open_file]'. You may use most tags used in paper formatting:", "Text Editor", oldtext, MAX_TEXTFILE_LENGTH, TRUE, prevent_enter = TRUE), "\n", "\[br\]"), MAX_TEXTFILE_LENGTH)
 			if(!newtext)
 				return
 			loaded_data = newtext

@@ -28,10 +28,10 @@
 	disrupt()
 	..()
 
-/obj/item/chameleon/attack_self()
-	toggle()
+/obj/item/chameleon/attack_self(mob/user)
+	toggle(user)
 
-/obj/item/chameleon/afterattack(atom/target, mob/user , proximity)
+/obj/item/chameleon/afterattack(atom/target, mob/user, proximity)
 	if(!proximity) return
 	if(!active_dummy)
 		if(istype(target,/obj/item) && !istype(target, /obj/item/disk/nuclear))
@@ -42,30 +42,32 @@
 			saved_icon_state = target.icon_state
 			saved_overlays = target.overlays
 
-/obj/item/chameleon/proc/toggle()
+/obj/item/chameleon/proc/toggle(mob/user)
 	if(!can_use || !saved_item) return
 	if(active_dummy)
 		eject_all()
 		playsound(src, 'sound/effects/pop.ogg', 100, 1, -6)
 		qdel(active_dummy)
 		active_dummy = null
-		to_chat(usr, span_notice("You deactivate the [src]."))
+		to_chat(user, span_notice("You deactivate the [src]."))
 		var/obj/effect/overlay/T = new /obj/effect/overlay(get_turf(src))
 		T.icon = 'icons/effects/effects.dmi'
 		flick("emppulse",T)
-		spawn(8) qdel(T)
+		addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(qdel), T), 0.8 SECONDS, TIMER_DELETE_ME)
 	else
 		playsound(src, 'sound/effects/pop.ogg', 100, 1, -6)
 		var/obj/O = new saved_item(src)
 		if(!O) return
-		var/obj/effect/dummy/chameleon/C = new /obj/effect/dummy/chameleon(usr.loc)
-		C.activate(O, usr, saved_icon, saved_icon_state, saved_overlays, src)
+		if(istype(user.loc, /obj/item/holder)) // This doesn't go well...
+			return
+		var/obj/effect/dummy/chameleon/C = new /obj/effect/dummy/chameleon(user.loc)
+		C.activate(O, user, saved_icon, saved_icon_state, saved_overlays, src)
 		qdel(O)
-		to_chat(usr, span_notice("You activate the [src]."))
+		to_chat(user, span_notice("You activate the [src]."))
 		var/obj/effect/overlay/T = new/obj/effect/overlay(get_turf(src))
 		T.icon = 'icons/effects/effects.dmi'
 		flick("emppulse",T)
-		spawn(8) qdel(T)
+		addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(qdel), T), 0.8 SECONDS, TIMER_DELETE_ME)
 
 /obj/item/chameleon/proc/disrupt(var/delete_dummy = 1)
 	if(active_dummy)
@@ -78,7 +80,10 @@
 			qdel(active_dummy)
 		active_dummy = null
 		can_use = 0
-		spawn(50) can_use = 1
+		addtimer(CALLBACK(src, PROC_REF(allow_use)), 5 SECONDS, TIMER_DELETE_ME)
+
+/obj/item/chameleon/proc/allow_use()
+	can_use = 1
 
 /obj/item/chameleon/proc/eject_all()
 	for(var/atom/movable/A in active_dummy)
@@ -127,6 +132,9 @@
 	..()
 	master.disrupt()
 
+/obj/effect/dummy/chameleon/proc/allow_move()
+	can_move = 1
+
 /obj/effect/dummy/chameleon/relaymove(var/mob/user, direction)
 	if(istype(loc, /turf/space)) return //No magical space movement!
 
@@ -134,15 +142,15 @@
 		can_move = 0
 		switch(user.bodytemperature)
 			if(300 to INFINITY)
-				spawn(10) can_move = 1
+				addtimer(CALLBACK(src, PROC_REF(allow_move)), 1 SECOND, TIMER_DELETE_ME)
 			if(295 to 300)
-				spawn(13) can_move = 1
+				addtimer(CALLBACK(src, PROC_REF(allow_move)), 1.3 SECONDS, TIMER_DELETE_ME)
 			if(280 to 295)
-				spawn(16) can_move = 1
+				addtimer(CALLBACK(src, PROC_REF(allow_move)), 1.6 SECONDS, TIMER_DELETE_ME)
 			if(260 to 280)
-				spawn(20) can_move = 1
+				addtimer(CALLBACK(src, PROC_REF(allow_move)), 2 SECONDS, TIMER_DELETE_ME)
 			else
-				spawn(25) can_move = 1
+				addtimer(CALLBACK(src, PROC_REF(allow_move)), 2.5 SECONDS, TIMER_DELETE_ME)
 		step(src, direction)
 	return
 

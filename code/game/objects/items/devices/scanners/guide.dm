@@ -102,7 +102,7 @@
 			if(D.visibility_flags & HIDDEN_SCANNER)
 				continue
 			else
-				dat += span_bold("Viral Infection") + " - Inform a Virologist or the Chief Medical Officer and administer antiviral chemicals such as Spaceacilin. Limit exposure to other personnel.<br>"
+				dat += span_bold("Viral Infection") + " - Inform a Virologist or the Chief Medical Officer and administer antiviral chemicals such as Spaceacillin. Limit exposure to other personnel.<br>"
 	if(robotparts)
 		dat += span_bold("Robotic body parts") + " - Should not be repaired by medical personnel, refer to robotics if damaged."
 

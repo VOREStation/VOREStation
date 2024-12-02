@@ -590,7 +590,6 @@
 	master_tag = "xenobio_airlock_control";
 	name = "Xenobiology Access Button";
 	pixel_y = -32;
-	req_access = null;
 	req_one_access = list(47,55)
 	},
 /obj/machinery/door/airlock/angled_bay/standard/color{
@@ -3323,6 +3322,10 @@
 /obj/machinery/recharger,
 /turf/simulated/floor/tiled/techfloor,
 /area/rnd/workshop)
+"gv" = (
+/mob/living/simple_mob/animal/passive/mouse/jerboa/leggy,
+/turf/simulated/floor/tiled/eris/steel/cargo,
+/area/stellardelight/deck1/miningequipment)
 "gw" = (
 /obj/structure/closet/crate,
 /obj/random/maintenance,
@@ -3807,7 +3810,6 @@
 	master_tag = "xenobio_airlock_control";
 	name = "Xenobiology Access Button";
 	pixel_y = 32;
-	req_access = null;
 	req_one_access = list(47,55)
 	},
 /obj/machinery/door/airlock/angled_bay/standard/color{
@@ -4507,7 +4509,6 @@
 	dir = 4;
 	door_color = "#ffffff";
 	name = "maintenance access";
-	req_one_access = null;
 	stripe_color = "#5a19a8"
 	},
 /turf/simulated/floor/tiled/steel_ridged,
@@ -4747,8 +4748,7 @@
 /obj/machinery/button/crematorium{
 	id = "crematorium";
 	pixel_x = 25;
-	req_access = list();
-	req_one_access = null
+	req_access = list()
 	},
 /turf/simulated/floor/tiled/dark,
 /area/chapel/chapel_morgue)
@@ -4980,8 +4980,7 @@
 /obj/machinery/button/remote/blast_door{
 	id = "librarywindowlockdown";
 	name = "Window Lockdown";
-	pixel_y = 25;
-	req_access = null
+	pixel_y = 25
 	},
 /turf/simulated/floor/carpet,
 /area/library)
@@ -5791,8 +5790,12 @@
 /turf/simulated/floor/tiled/dark,
 /area/security/lobby)
 "lC" = (
-/obj/item/bedsheet/bluedouble,
-/obj/structure/bed/double/padded,
+/obj/item/bedsheet/bluedouble{
+	dir = 1
+	},
+/obj/structure/bed/double/padded{
+	dir = 1
+	},
 /obj/structure/curtain/black,
 /turf/simulated/floor/carpet,
 /area/stellardelight/deck1/dorms/dorm8)
@@ -6503,7 +6506,6 @@
 	dir = 8;
 	door_color = "#333333";
 	name = "Away Mission Meeting Room";
-	req_one_access = null;
 	stripe_color = "#5a19a8"
 	},
 /turf/simulated/floor/tiled/steel_ridged,
@@ -9910,7 +9912,6 @@
 /obj/machinery/door/airlock/angled_bay/standard/glass{
 	door_color = "#8c1d11";
 	name = "Brig";
-	req_access = null;
 	req_one_access = list(38,63);
 	stripe_color = "#d27428"
 	},
@@ -10494,7 +10495,6 @@
 	name = "EVA Shutter";
 	pixel_x = -5;
 	pixel_y = 24;
-	req_access = null;
 	req_one_access = list(18,19,43,67)
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -11712,7 +11712,6 @@
 	dir = 4;
 	door_color = "#ffffff";
 	name = "maintenance access";
-	req_one_access = null;
 	stripe_color = "#5a19a8"
 	},
 /turf/simulated/floor/tiled/steel_ridged,
@@ -12874,8 +12873,12 @@
 /turf/simulated/floor/tiled/steel_grid,
 /area/assembly/robotics)
 "AP" = (
-/obj/item/bedsheet/bluedouble,
-/obj/structure/bed/double/padded,
+/obj/item/bedsheet/bluedouble{
+	dir = 1
+	},
+/obj/structure/bed/double/padded{
+	dir = 1
+	},
 /obj/structure/curtain/black,
 /turf/simulated/floor/carpet,
 /area/stellardelight/deck1/dorms/dorm5)
@@ -13243,7 +13246,6 @@
 	dir = 4;
 	door_color = "#333333";
 	name = "Shuttle Bay";
-	req_one_access = null;
 	stripe_color = "#5a19a8"
 	},
 /turf/simulated/floor/tiled/steel_ridged,
@@ -15639,7 +15641,6 @@
 	door_color = "#a6753d";
 	name = "Shuttle Bay";
 	req_access = list(31);
-	req_one_access = null;
 	stripe_color = "#3b2b1a"
 	},
 /turf/simulated/floor/tiled/steel_ridged,
@@ -17497,7 +17498,6 @@
 /obj/machinery/door/airlock/angled_bay/standard/glass{
 	door_color = "#8c1d11";
 	name = "Brig";
-	req_access = null;
 	req_one_access = list(38,63);
 	stripe_color = "#d27428"
 	},
@@ -17961,7 +17961,6 @@
 	dir = 4;
 	door_color = "#a88860";
 	name = "Mining Shuttle";
-	req_access = null;
 	req_one_access = list(31,5);
 	stripe_color = "#69461a"
 	},
@@ -18065,7 +18064,6 @@
 	door_color = "#2e2e2e";
 	fill_color = "#2e2e2e";
 	name = "Chapel Morgue";
-	req_access = null;
 	stripe_color = "#deaf43"
 	},
 /turf/simulated/floor/tiled/steel_ridged,
@@ -18373,7 +18371,6 @@
 	door_color = "#8c1d11";
 	name = "maintenance access";
 	req_access = list(4);
-	req_one_access = null;
 	stripe_color = "#8c1d11"
 	},
 /obj/structure/cable/pink{
@@ -21290,8 +21287,12 @@
 /turf/simulated/floor,
 /area/maintenance/stellardelight/deck1/exploration)
 "Tc" = (
-/obj/item/bedsheet/orangedouble,
-/obj/structure/bed/double/padded,
+/obj/item/bedsheet/orangedouble{
+	dir = 1
+	},
+/obj/structure/bed/double/padded{
+	dir = 1
+	},
 /obj/structure/curtain/black,
 /turf/simulated/floor/carpet/purcarpet,
 /area/stellardelight/deck1/dorms/dorm7)
@@ -21421,7 +21422,6 @@
 /obj/machinery/door/airlock/angled_bay/standard/glass{
 	door_color = "#ffffff";
 	name = "Xenobiology";
-	req_access = null;
 	req_one_access = list(47,55);
 	stripe_color = "#5a19a8"
 	},
@@ -21619,8 +21619,12 @@
 /turf/simulated/floor/tiled/dark,
 /area/security/armoury)
 "TN" = (
-/obj/item/bedsheet/orangedouble,
-/obj/structure/bed/double/padded,
+/obj/item/bedsheet/orangedouble{
+	dir = 1
+	},
+/obj/structure/bed/double/padded{
+	dir = 1
+	},
 /obj/structure/curtain/black,
 /turf/simulated/floor/carpet/purcarpet,
 /area/stellardelight/deck1/dorms/dorm6)
@@ -33765,7 +33769,7 @@ pV
 xf
 aT
 MG
-vC
+gv
 vi
 xf
 ww

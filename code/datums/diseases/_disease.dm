@@ -91,7 +91,7 @@ GLOBAL_LIST_INIT(diseases, subtypesof(/datum/disease))
 
 	var/cures_found = 0
 	for(var/C_id in cures)
-		if(affected_mob.reagents.has_reagent(C_id))
+		if(affected_mob.bloodstr.has_reagent(C_id) || affected_mob.ingested.has_reagent(C_id))
 			cures_found++
 
 	if(needs_all_cures && cures_found < length(cures))
@@ -106,7 +106,7 @@ GLOBAL_LIST_INIT(diseases, subtypesof(/datum/disease))
 	if((spread_flags & SPECIAL || spread_flags & NON_CONTAGIOUS || spread_flags & BLOOD) && !force_spread)
 		return
 
-	if(affected_mob.reagents.has_reagent("spaceacilin") || (affected_mob.nutrition > 300 && prob(affected_mob.nutrition/10)))
+	if(affected_mob.bloodstr.has_reagent("spaceacillin") || (affected_mob.nutrition > 300 && prob(affected_mob.nutrition/50)))
 		return
 
 	var/spread_range = 1

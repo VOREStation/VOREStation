@@ -198,7 +198,7 @@
 	name = "Phi's Personal Items"
 	has_items = list(
 		/obj/item/clothing/accessory/medal/bronze_heart,
-		/obj/item/clothing/gloves/ring/seal/signet/fluff/phi)
+		/obj/item/clothing/accessory/ring/seal/signet/fluff/phi)
 
 // Tabiranth: Ascian
 /obj/item/grenade/spawnergrenade/spirit

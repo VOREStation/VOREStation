@@ -120,45 +120,45 @@
 		data["occupied"] = FALSE
 	return data
 
-/obj/machinery/suit_storage_unit/tgui_act(action, params) //I fucking HATE this proc
+/obj/machinery/suit_storage_unit/tgui_act(action, params, datum/tgui/ui) //I fucking HATE this proc
 	if(..() || isUV || isbroken)
 		return TRUE
 
 	switch(action)
 		if("door")
-			toggle_open(usr)
+			toggle_open(ui.user)
 			. = TRUE
 		if("dispense")
 			switch(params["item"])
 				if("helmet")
-					dispense_helmet(usr)
+					dispense_helmet(ui.user)
 				if("mask")
-					dispense_mask(usr)
+					dispense_mask(ui.user)
 				if("suit")
-					dispense_suit(usr)
+					dispense_suit(ui.user)
 			. = TRUE
 		if("uv")
-			start_UV(usr)
+			start_UV(ui.user)
 			. = TRUE
 		if("lock")
-			toggle_lock(usr)
+			toggle_lock(ui.user)
 			. = TRUE
 		if("eject_guy")
-			eject_occupant(usr)
+			eject_occupant(ui.user)
 			. = TRUE
 
 	// Panel Open stuff
 	if(!. && panelopen)
 		switch(action)
 			if("toggleUV")
-				toggleUV(usr)
+				toggleUV(ui.user)
 				. = TRUE
 			if("togglesafeties")
-				togglesafeties(usr)
+				togglesafeties(ui.user)
 				. = TRUE
 
 	update_icon()
-	add_fingerprint(usr)
+	add_fingerprint(ui.user)
 
 
 /obj/machinery/suit_storage_unit/proc/toggleUV(mob/user as mob)

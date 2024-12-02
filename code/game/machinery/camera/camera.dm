@@ -254,19 +254,19 @@
 	if (!(src.status))
 		if(user)
 			visible_message(span_notice(" [user] has deactivated [src]!"))
+			add_hiddenprint(user)
 		else
 			visible_message(span_notice(" [src] clicks and shuts down. "))
 		playsound(src, 'sound/items/Wirecutter.ogg', 100, 1)
 		icon_state = "[initial(icon_state)]1"
-		add_hiddenprint(user)
 	else
 		if(user)
 			visible_message(span_notice(" [user] has reactivated [src]!"))
+			add_hiddenprint(user)
 		else
 			visible_message(span_notice(" [src] clicks and reactivates itself. "))
 		playsound(src, 'sound/items/Wirecutter.ogg', 100, 1)
 		icon_state = initial(icon_state)
-		add_hiddenprint(user)
 
 /obj/machinery/camera/take_damage(var/force, var/message)
 	//prob(25) gives an average of 3-4 hits

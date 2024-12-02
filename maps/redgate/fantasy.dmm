@@ -550,7 +550,7 @@
 /area/redgate/fantasy/butcher)
 "dw" = (
 /obj/structure/table/woodentable,
-/obj/item/clothing/gloves/ring/material/silver,
+/obj/item/clothing/accessory/ring/material/silver,
 /obj/structure/window/basic{
 	dir = 4
 	},
@@ -2067,7 +2067,7 @@
 /area/redgate/fantasy/redgate)
 "mW" = (
 /obj/structure/table/woodentable,
-/obj/item/clothing/gloves/ring/material/diamond,
+/obj/item/clothing/accessory/ring/material/diamond,
 /obj/structure/window/basic{
 	dir = 4
 	},
@@ -2507,7 +2507,7 @@
 /area/redgate/fantasy/grocery)
 "pq" = (
 /obj/structure/table/woodentable,
-/obj/item/clothing/gloves/ring/material/gold,
+/obj/item/clothing/accessory/ring/material/gold,
 /obj/structure/window/basic{
 	dir = 4
 	},
@@ -2906,7 +2906,7 @@
 /area/redgate/fantasy/church)
 "rO" = (
 /obj/structure/table/woodentable,
-/obj/item/clothing/gloves/ring/material/wood,
+/obj/item/clothing/accessory/ring/material/wood,
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/jewler)
 "rP" = (
@@ -3465,7 +3465,7 @@
 /area/redgate/fantasy/butcher)
 "vl" = (
 /obj/structure/table/rack/shelf/wood,
-/obj/item/clothing/gloves/ring/material/silver,
+/obj/item/clothing/accessory/ring/material/silver,
 /obj/machinery/light/small/torch{
 	dir = 8
 	},
@@ -3489,7 +3489,7 @@
 /area/redgate/fantasy/castle)
 "vp" = (
 /obj/structure/table/woodentable,
-/obj/item/clothing/gloves/ring/material/void_opal,
+/obj/item/clothing/accessory/ring/material/void_opal,
 /obj/structure/window/basic{
 	dir = 4
 	},
@@ -5126,7 +5126,7 @@
 /area/redgate/fantasy/house)
 "FQ" = (
 /obj/structure/table/woodentable,
-/obj/item/clothing/gloves/knuckledusters,
+/obj/item/clothing/accessory/knuckledusters,
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/house)
 "FS" = (
@@ -7836,7 +7836,7 @@
 /area/redgate/fantasy/butcher)
 "WW" = (
 /obj/structure/table/rack/shelf/wood,
-/obj/item/clothing/gloves/ring/material/gold,
+/obj/item/clothing/accessory/ring/material/gold,
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/jewler)
 "WZ" = (
@@ -8255,7 +8255,7 @@
 /area/redgate/fantasy/bard)
 "ZP" = (
 /obj/structure/table/woodentable,
-/obj/item/clothing/gloves/ring/material/iron,
+/obj/item/clothing/accessory/ring/material/iron,
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/jewler)
 "ZS" = (
