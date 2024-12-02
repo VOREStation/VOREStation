@@ -97,7 +97,7 @@
 			if(can_change(target, APPEARANCE_RACE) && (params["race"] in valid_species))
 				if(target.change_species(params["race"]))
 					if(params["race"] == "Custom Species")
-						target.custom_species = sanitize(tgui_input_text(target, "Input custom species name:",
+						target.custom_species = sanitize(tgui_input_text(ui.user, "Input custom species name:",
 							"Custom Species Name", null, MAX_NAME_LEN), MAX_NAME_LEN)
 					cut_data()
 					generate_data(target)
