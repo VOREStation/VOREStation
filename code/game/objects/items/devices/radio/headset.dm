@@ -466,6 +466,7 @@
 /obj/item/radio/headset/alt/ert
 	name = "emergency response team bowman headset"
 	icon_state = "com_headset_alt"
+	centComm = 1
 	ks2type = /obj/item/encryptionkey/ert
 
 /obj/item/radio/headset/ia
@@ -505,7 +506,7 @@
 /obj/item/radio/headset/alt/nanotrasen
 	name = "\improper NT bowman headset"
 	icon_state = "nt_headset_alt"
-	cenComm = 1
+	centComm = 1
 	ks2type = /obj/item/encryptionkey/ert
 
 /obj/item/radio/headset/pathfinder
