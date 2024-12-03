@@ -64,12 +64,9 @@
 	whitelist = species_whitelist
 	blacklist = species_blacklist
 
-/datum/tgui_module/appearance_changer/tgui_close()
-	. = ..()
+/datum/tgui_module/appearance_changer/Destroy()
 	UnregisterSignal(owner, COMSIG_OBSERVER_MOVED)
 	owner = null
-
-/datum/tgui_module/appearance_changer/Destroy()
 	last_camera_turf = null
 	qdel(cam_screen)
 	QDEL_LIST(cam_plane_masters)
@@ -190,7 +187,7 @@
 				owner.ear_secondary_style = instance
 				if(!islist(owner.ear_secondary_colors))
 					owner.ear_secondary_colors = list()
-				if(length(owner.ear_secondary_colors) < instance.get_color_channel_count())
+				if(instance && length(owner.ear_secondary_colors) < instance.get_color_channel_count())
 					owner.ear_secondary_colors.len = instance.get_color_channel_count()
 				owner.update_hair()
 				update_dna(owner)
@@ -362,8 +359,6 @@
 	if(customize_usr)
 		if(!ishuman(user))
 			return TRUE
-		if(owner && owner != user)
-			close_ui()
 		owner = user
 
 	if(!owner || !owner.species)

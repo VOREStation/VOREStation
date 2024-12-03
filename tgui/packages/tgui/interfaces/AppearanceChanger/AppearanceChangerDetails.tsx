@@ -23,6 +23,7 @@ export const AppearanceChangerColors = (props) => {
     wing_color,
     wing2_color,
     wing3_color,
+    ear_secondary_colors,
   } = data;
 
   return (
@@ -69,13 +70,17 @@ export const AppearanceChangerColors = (props) => {
             </Button>
           </Box>
           {data.ear_secondary_colors.map((color, index) => (
-            <Button
-              key={`${index}`}
-              onClick={() => act('ears_secondary_color', { channel: index })}
-            >
-              Change Secondary Ears Color (
-              {SPRITE_ACCESSORY_COLOR_CHANNEL_NAMES.at(index)})
-            </Button>
+            <Box key={index}>
+              <ColorBox color={color} mr={1} />
+              <Button
+                onClick={() =>
+                  act('ears_secondary_color', { channel: index + 1 })
+                }
+              >
+                Change Secondary Ears Color (
+                {SPRITE_ACCESSORY_COLOR_CHANNEL_NAMES[index]})
+              </Button>
+            </Box>
           ))}
           <Box>
             <ColorBox color={tail_color} mr={1} />
