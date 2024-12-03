@@ -67,7 +67,12 @@
 		icon_state = "cup_brown"
 
 	if(R.cup_name)
-		name = R.cup_name
+		var/prefix = " "
+		for(var/datum/reagent/S in reagents.reagent_list)
+			if(S.cup_prefix)
+				var/current_prefix = prefix
+				prefix = "[current_prefix][S.cup_prefix] "
+		name = "cup of[prefix][R.cup_name]"
 	else
 		name = "Cup of.. what?"
 

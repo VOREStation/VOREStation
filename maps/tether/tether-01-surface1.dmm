@@ -17639,6 +17639,14 @@
 /obj/machinery/alarm{
 	pixel_y = 22
 	},
+/obj/structure/closet/walllocker_double/kitchen/east,
+/obj/item/reagent_containers/food/drinks/glass2/square,
+/obj/item/reagent_containers/food/drinks/glass2/square,
+/obj/item/reagent_containers/food/drinks/glass2/square,
+/obj/item/storage/box/glasses/coffeecup,
+/obj/item/storage/box/glasses/coffeecup,
+/obj/item/storage/box/glasses/coffeecup,
+/obj/item/storage/box/glasses/coffeecup,
 /turf/simulated/floor/tiled,
 /area/crew_quarters/visitor_dining)
 "aEb" = (
@@ -18425,23 +18433,15 @@
 /area/crew_quarters/visitor_dining)
 "aFC" = (
 /obj/structure/table/marble,
-/obj/item/reagent_containers/food/drinks/glass2/square{
-	pixel_x = 8;
-	pixel_y = 8
-	},
-/obj/item/reagent_containers/food/drinks/glass2/square{
-	pixel_x = 8;
-	pixel_y = 8
-	},
-/obj/item/reagent_containers/food/drinks/glass2/square{
-	pixel_x = 8;
-	pixel_y = 8
-	},
 /obj/machinery/floor_light/prebuilt{
 	on = 1
 	},
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 8
+	},
+/obj/machinery/chemical_dispenser/bar_syrup/full{
+	dir = 8;
+	pixel_x = 8
 	},
 /turf/simulated/floor/tiled,
 /area/crew_quarters/visitor_dining)
@@ -19024,7 +19024,8 @@
 "aGy" = (
 /obj/structure/table/marble,
 /obj/machinery/chemical_dispenser/bar_coffee/full{
-	dir = 8
+	dir = 8;
+	pixel_x = 1
 	},
 /obj/machinery/floor_light/prebuilt{
 	on = 1

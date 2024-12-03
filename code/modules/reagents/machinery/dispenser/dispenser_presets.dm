@@ -85,7 +85,8 @@
 			/obj/item/reagent_containers/chem_disp_cartridge/lime,
 			/obj/item/reagent_containers/chem_disp_cartridge/watermelon,
 			/obj/item/reagent_containers/chem_disp_cartridge/lemon,
-			/obj/item/reagent_containers/chem_disp_cartridge/grapesoda
+			/obj/item/reagent_containers/chem_disp_cartridge/grapesoda,
+			/obj/item/reagent_containers/chem_disp_cartridge/pineapple
 		)
 
 /obj/machinery/chemical_dispenser/bar_alc
@@ -130,11 +131,14 @@
 /obj/machinery/chemical_dispenser/bar_coffee/full
 	spawn_cartridges = list(
 			/obj/item/reagent_containers/chem_disp_cartridge/coffee,
+			/obj/item/reagent_containers/chem_disp_cartridge/drip_coffee,
 			/obj/item/reagent_containers/chem_disp_cartridge/cafe_latte,
 			/obj/item/reagent_containers/chem_disp_cartridge/soy_latte,
 			/obj/item/reagent_containers/chem_disp_cartridge/hot_coco,
 			/obj/item/reagent_containers/chem_disp_cartridge/milk,
 			/obj/item/reagent_containers/chem_disp_cartridge/cream,
+			/obj/item/reagent_containers/chem_disp_cartridge/milk_foam,
+			/obj/item/reagent_containers/chem_disp_cartridge/water,
 			/obj/item/reagent_containers/chem_disp_cartridge/sugar,
 			/obj/item/reagent_containers/chem_disp_cartridge/tea,
 			/obj/item/reagent_containers/chem_disp_cartridge/ice,
@@ -147,4 +151,31 @@
 			/obj/item/reagent_containers/chem_disp_cartridge/decaf,
 			/obj/item/reagent_containers/chem_disp_cartridge/chaitea,
 			/obj/item/reagent_containers/chem_disp_cartridge/decafchai
+		)
+
+/obj/machinery/chemical_dispenser/bar_syrup
+	name = "syrup dispenser"
+	desc = "Allow your customers to test your patience to the extremes."
+	icon_state = "syrup_dispenser"
+	ui_title = "Syrup Dispenser"
+	accept_drinking = 1
+
+/obj/machinery/chemical_dispenser/bar_syrup/full
+	spawn_cartridges = list(
+			/obj/item/reagent_containers/chem_disp_cartridge/syrup_pumpkin,
+			/obj/item/reagent_containers/chem_disp_cartridge/syrup_caramel,
+			/obj/item/reagent_containers/chem_disp_cartridge/syrup_scaramel,
+			/obj/item/reagent_containers/chem_disp_cartridge/syrup_irish,
+			/obj/item/reagent_containers/chem_disp_cartridge/syrup_almond,
+			/obj/item/reagent_containers/chem_disp_cartridge/syrup_cinnamon,
+			/obj/item/reagent_containers/chem_disp_cartridge/syrup_pistachio,
+			/obj/item/reagent_containers/chem_disp_cartridge/syrup_vanilla,
+			/obj/item/reagent_containers/chem_disp_cartridge/syrup_toffee,
+			/obj/item/reagent_containers/chem_disp_cartridge/syrup_cherry,
+			/obj/item/reagent_containers/chem_disp_cartridge/grenadine,
+			/obj/item/reagent_containers/chem_disp_cartridge/syrup_butterscotch,
+			/obj/item/reagent_containers/chem_disp_cartridge/syrup_chocolate,
+			/obj/item/reagent_containers/chem_disp_cartridge/syrup_wchocolate,
+			/obj/item/reagent_containers/chem_disp_cartridge/syrup_strawberry,
+			/obj/item/reagent_containers/chem_disp_cartridge/syrup_coconut
 		)
