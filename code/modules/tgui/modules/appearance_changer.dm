@@ -28,7 +28,7 @@
 	var/list/markings = null
 
 /datum/tgui_module/appearance_changer/New(
-		var/host,
+		host,
 		mob/living/carbon/human/H,
 		check_species_whitelist = 1,
 		list/species_whitelist = list(),
@@ -57,6 +57,7 @@
 	local_skybox.screen_loc = "[map_name]:CENTER,CENTER"
 	cam_plane_masters += local_skybox
 
+	owner = H
 	cam_background = new
 	cam_background.assigned_map = map_name
 	cam_background.del_on_map_removal = FALSE
@@ -356,7 +357,7 @@
 	return FALSE
 
 /datum/tgui_module/appearance_changer/tgui_interact(mob/user, datum/tgui/ui = null, datum/tgui/parent_ui = null, datum/tgui_state/custom_state)
-	if(customize_usr)
+	if(customize_usr && !owner)
 		if(!ishuman(user))
 			return TRUE
 		owner = user
