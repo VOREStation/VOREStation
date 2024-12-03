@@ -493,6 +493,8 @@
 /obj/item/radio/headset/alt/centcom
 	name = "centcom bowman headset"
 	icon_state = "com_headset_alt"
+	centComm = 1
+	ks2type = /obj/item/encryptionkey/ert
 
 /obj/item/radio/headset/nanotrasen
 	name = "\improper NT radio headset"
@@ -503,6 +505,8 @@
 /obj/item/radio/headset/alt/nanotrasen
 	name = "\improper NT bowman headset"
 	icon_state = "nt_headset_alt"
+	cenComm = 1
+	ks2type = /obj/item/encryptionkey/ert
 
 /obj/item/radio/headset/pathfinder
 	name = "pathfinder's headset"
@@ -513,6 +517,8 @@
 /obj/item/radio/headset/alt/pathfinder
 	name = "pathfinder's bowman headset"
 	icon_state = "exp_headset_alt"
+	adhoc_fallback = TRUE
+	ks2type = /obj/item/encryptionkey/pathfinder
 
 /obj/item/radio/headset/pilot
 	name = "pilot's headset"
@@ -522,6 +528,7 @@
 /obj/item/radio/headset/alt/pilot
 	name = "pilot's bowman headset"
 	icon_state = "pilot_headset_alt"
+	adhoc_fallback = TRUE
 
 /obj/item/radio/headset/explorer
 	name = "away team member's headset"
@@ -532,6 +539,8 @@
 /obj/item/radio/headset/alt/explorer
 	name = "away team's bowman headset"
 	icon_state = "exp_headset_alt"
+	adhoc_fallback = TRUE
+	ks2type = /obj/item/encryptionkey/explorer
 
 /obj/item/radio/headset/sar
 	name = "search and rescue headset"
