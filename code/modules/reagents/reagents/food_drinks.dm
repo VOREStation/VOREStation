@@ -2931,6 +2931,22 @@
 
 	allergen_type = ALLERGEN_SUGARS|ALLERGEN_FRUIT
 
+/datum/reagent/drink/syrup/ginger
+	name = "ginger syrup"
+	id = "syrup_ginger"
+	description = "A sugary syrup that tastes of ginger."
+	taste_description = "ginger"
+	color = "#d09740"
+	cup_prefix = "ginger"
+
+/datum/reagent/drink/syrup/gingerbread
+	name = "gingerbread syrup"
+	id = "syrup_gingerbread"
+	description = "A sugary syrup that tastes of gingerbread."
+	taste_description = "gingerbread"
+	color = "#b6790f"
+	cup_prefix = "gingerbread"
+
 /* Alcohol */
 
 // Basic

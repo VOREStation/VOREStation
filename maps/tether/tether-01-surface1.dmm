@@ -17646,7 +17646,9 @@
 /obj/item/storage/box/glasses/coffeecup,
 /obj/item/storage/box/glasses/coffeecup,
 /obj/item/storage/box/glasses/coffeecup,
-/obj/item/storage/box/glasses/coffeecup,
+/obj/item/storage/box/glasses/coffeecup_tall,
+/obj/item/storage/box/glasses/coffeecup_grande,
+/obj/item/storage/box/glasses/coffeecup_venti,
 /turf/simulated/floor/tiled,
 /area/crew_quarters/visitor_dining)
 "aEb" = (
