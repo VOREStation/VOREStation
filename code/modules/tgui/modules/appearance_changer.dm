@@ -70,10 +70,10 @@
 	if(owner == user || !customize_usr)
 		UnregisterSignal(owner, COMSIG_OBSERVER_MOVED)
 		owner = null
+		last_camera_turf = null
 		close_ui()
 
 /datum/tgui_module/appearance_changer/Destroy()
-	last_camera_turf = null
 	qdel(cam_screen)
 	QDEL_LIST(cam_plane_masters)
 	qdel(cam_background)
