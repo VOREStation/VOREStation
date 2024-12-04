@@ -13,9 +13,8 @@
 //////// Abductor Areas ////////
 /area/unknown
 	requires_power = 0
-	flags = RAD_SHIELDED
+	flags = RAD_SHIELDED | AREA_ALLOW_LARGE_SIZE
 	icon_state = "red2"
-	limit_mob_size = FALSE
 
 /area/unknown/dorm1
 	name = "Unknown Dorm 1"

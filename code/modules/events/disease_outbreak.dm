@@ -44,7 +44,7 @@ GLOBAL_LIST_EMPTY(current_pending_diseases)
 				continue
 			if(!(A.z in using_map.station_levels))
 				continue
-			if(A.flags & RAD_SHIELDED)
+			if(A.flag_check(RAD_SHIELDED))
 				continue
 			if(isbelly(G.loc))
 				continue

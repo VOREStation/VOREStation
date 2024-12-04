@@ -366,7 +366,7 @@ GLOBAL_LIST_BOILERPLATE(all_singularities, /obj/singularity)
 
 	// VOREStation Edit Start
 	var/area/A = get_area(T)
-	if(A.forbid_singulo) //No going to dorms
+	if(A.flag_check(AREA_FORBID_SINGULO)) //No going to dorms
 		return 0
 	// VOREStation Edit End
 

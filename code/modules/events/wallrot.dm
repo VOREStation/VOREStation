@@ -12,7 +12,7 @@
 		if(istype(candidate, /turf/simulated/wall))
 			center = candidate
 			var/area/A = get_area(candidate)
-			if(!A.forbid_events)
+			if(!A.flag_check(AREA_FORBID_EVENTS))
 				return 1
 	return 0
 

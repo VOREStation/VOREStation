@@ -107,7 +107,7 @@ This allows for events that have their announcement happen after the end itself.
 	var/list/area/grand_list_of_areas = get_all_existing_areas_of_types(specific_areas)
 	. = list()
 	for(var/area/A as anything in shuffle(grand_list_of_areas))
-		if(A.forbid_events)
+		if(A.flag_check(AREA_FORBID_EVENTS))
 			continue
 		if(!(A.z in get_location_z_levels()))
 			continue

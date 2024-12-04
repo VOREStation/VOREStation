@@ -159,7 +159,7 @@
 	if(!istype(H))
 		return 1
 	var/area/A = get_area(H)
-	if(A.forbid_events)
+	if(A.flag_check(AREA_FORBID_EVENTS))
 		return 0
 	var/protected = 0
 

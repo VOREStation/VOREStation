@@ -62,13 +62,13 @@
 
 /atom/movable/proc/size_range_check(size_select)		//both objects and mobs needs to have that
 	var/area/A = get_area(src) //Get the atom's area to check for size limit.
-	if((A?.limit_mob_size && (size_select > 200 || size_select < 25)) || (size_select > 600 || size_select <1))
+	if((!A?.flag_check(AREA_ALLOW_LARGE_SIZE) && (size_select > 200 || size_select < 25)) || (size_select > 600 || size_select <1))
 		return FALSE
 	return TRUE
 
 /atom/movable/proc/has_large_resize_bounds()
 	var/area/A = get_area(src) //Get the atom's area to check for size limit.
-	return !A.limit_mob_size
+	return A.flag_check(AREA_ALLOW_LARGE_SIZE)
 
 /proc/is_extreme_size(size)
 	return (size < RESIZE_MINIMUM || size > RESIZE_MAXIMUM)
