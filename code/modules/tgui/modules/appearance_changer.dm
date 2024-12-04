@@ -73,8 +73,6 @@
 		close_ui()
 
 /datum/tgui_module/appearance_changer/Destroy()
-	UnregisterSignal(owner, COMSIG_OBSERVER_MOVED)
-	owner = null
 	last_camera_turf = null
 	qdel(cam_screen)
 	QDEL_LIST(cam_plane_masters)
