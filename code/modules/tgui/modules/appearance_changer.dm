@@ -68,10 +68,10 @@
 /datum/tgui_module/appearance_changer/tgui_close(mob/user)
 	. = ..()
 	if(owner == user || !customize_usr)
+		close_ui()
 		UnregisterSignal(owner, COMSIG_OBSERVER_MOVED)
 		owner = null
 		last_camera_turf = null
-		close_ui()
 
 /datum/tgui_module/appearance_changer/Destroy()
 	qdel(cam_screen)
