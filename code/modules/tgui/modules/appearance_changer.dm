@@ -72,12 +72,12 @@
 		UnregisterSignal(owner, COMSIG_OBSERVER_MOVED)
 		owner = null
 		last_camera_turf = null
+		cut_data()
 
 /datum/tgui_module/appearance_changer/Destroy()
 	qdel(cam_screen)
 	QDEL_LIST(cam_plane_masters)
 	qdel(cam_background)
-	cut_data()
 	return ..()
 
 /datum/tgui_module/appearance_changer/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
