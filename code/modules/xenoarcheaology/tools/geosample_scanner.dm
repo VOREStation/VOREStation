@@ -64,7 +64,7 @@
 		to_chat(user, span_warning("You can't do that while [src] is scanning!"))
 	else
 		if(istype(I, /obj/item/stack/nanopaste))
-			var/choice = tgui_alert(usr, "What do you want to do with the nanopaste?","Radiometric Scanner",list("Scan nanopaste","Fix seal integrity"))
+			var/choice = tgui_alert(user, "What do you want to do with the nanopaste?","Radiometric Scanner",list("Scan nanopaste","Fix seal integrity"))
 			if(!choice)
 				return
 			if(choice == "Fix seal integrity")
@@ -77,7 +77,7 @@
 			var/obj/item/reagent_containers/glass/G = I
 			if(!G.is_open_container())
 				return
-			var/choice = tgui_alert(usr, "What do you want to do with the container?","Radiometric Scanner",list("Add coolant","Empty coolant","Scan container"))
+			var/choice = tgui_alert(user, "What do you want to do with the container?","Radiometric Scanner",list("Add coolant","Empty coolant","Scan container"))
 			if(!choice)
 				return
 			if(choice == "Add coolant")
@@ -164,7 +164,7 @@
 	if(..())
 		return TRUE
 
-	add_fingerprint(usr)
+	add_fingerprint(ui.user)
 	switch(action)
 		if("scanItem")
 			if(scanning)
@@ -175,11 +175,11 @@
 						scanner_progress = 0
 						scanning = 1
 						t_left_radspike = pick(5,10,15)
-						to_chat(usr, span_notice("Scan initiated."))
+						to_chat(ui.user, span_notice("Scan initiated."))
 					else
-						to_chat(usr, span_warning("Could not initiate scan, seal requires replacing."))
+						to_chat(ui.user, span_warning("Could not initiate scan, seal requires replacing."))
 				else
-					to_chat(usr, span_warning("Insert an item to scan."))
+					to_chat(ui.user, span_warning("Insert an item to scan."))
 			return TRUE
 
 		if("maserWavelength")

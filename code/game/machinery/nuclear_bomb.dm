@@ -85,7 +85,7 @@ var/bomb_set
 
 	if(extended)
 		if(istype(O, /obj/item/disk/nuclear))
-			usr.drop_item()
+			user.drop_item()
 			O.loc = src
 			auth = O
 			add_fingerprint(user)

@@ -5,7 +5,7 @@
 	var/gyro_tag = ""
 	var/scan_range = 25
 
-/datum/tgui_module/gyrotron_control/tgui_act(action, params)
+/datum/tgui_module/gyrotron_control/tgui_act(action, params, datum/tgui/ui)
 	if(..())
 		return TRUE
 
@@ -18,13 +18,13 @@
 
 	switch(action)
 		if("set_tag")
-			var/new_ident = sanitize_text(tgui_input_text(usr, "Enter a new ident tag.", "Gyrotron Control", gyro_tag))
+			var/new_ident = sanitize_text(tgui_input_text(ui.user, "Enter a new ident tag.", "Gyrotron Control", gyro_tag))
 			if(new_ident)
 				gyro_tag = new_ident
 			return TRUE
 
 		if("toggle_active")
-			G.activate(usr)
+			G.activate(ui.user)
 			return TRUE
 
 		if("set_str")

@@ -146,11 +146,11 @@
 	if(..())
 		return TRUE
 
-	usr.set_machine(src)
-	add_fingerprint(usr)
+	ui.user.set_machine(src)
+	add_fingerprint(ui.user)
 
 	if(busy)
-		to_chat(usr, span_notice("The autolathe is busy. Please wait for completion of previous operation."))
+		to_chat(ui.user, span_notice("The autolathe is busy. Please wait for completion of previous operation."))
 		return
 	switch(action)
 		if("make")
@@ -176,8 +176,8 @@
 					if(!isnull(materials.get_material_amount(material)) && materials.get_material_amount(material) < round(making.resources[material] * coeff))
 						max_sheets = 0
 				//Build list of multipliers for sheets.
-				multiplier = tgui_input_number(usr, "How many do you want to print? (0-[max_sheets])", null, null, max_sheets, 0)
-				if(!multiplier || multiplier <= 0 || (multiplier != round(multiplier)) || multiplier > max_sheets || tgui_status(usr, state) != STATUS_INTERACTIVE)
+				multiplier = tgui_input_number(ui.user, "How many do you want to print? (0-[max_sheets])", null, null, max_sheets, 0)
+				if(!multiplier || multiplier <= 0 || (multiplier != round(multiplier)) || multiplier > max_sheets || tgui_status(ui.user, state) != STATUS_INTERACTIVE)
 					return FALSE
 
 			//Check if we still have the materials.

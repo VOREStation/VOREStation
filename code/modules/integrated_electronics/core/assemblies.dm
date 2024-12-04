@@ -97,17 +97,17 @@
 	switch(action)
 		// Actual assembly actions
 		if("rename")
-			rename(usr)
+			rename(ui.user)
 			return TRUE
 
 		if("remove_cell")
 			if(!battery)
-				to_chat(usr, span_warning("There's no power cell to remove from \the [src]."))
+				to_chat(ui.user, span_warning("There's no power cell to remove from \the [src]."))
 				return FALSE
 			var/turf/T = get_turf(src)
 			battery.forceMove(T)
 			playsound(T, 'sound/items/Crowbar.ogg', 50, 1)
-			to_chat(usr, span_notice("You pull \the [battery] out of \the [src]'s power supplier."))
+			to_chat(ui.user, span_notice("You pull \the [battery] out of \the [src]'s power supplier."))
 			battery = null
 			return TRUE
 
@@ -158,14 +158,14 @@
 			var/obj/item/integrated_circuit/C = locate(params["ref"]) in contents
 			if(!istype(C))
 				return
-			C.tgui_interact(usr, null, ui)
+			C.tgui_interact(ui.user, null, ui)
 			return TRUE
 
 		if("remove_circuit")
 			var/obj/item/integrated_circuit/C = locate(params["ref"]) in contents
 			if(!istype(C))
 				return
-			C.remove(usr)
+			C.remove(ui.user)
 			return TRUE
 
 	return FALSE

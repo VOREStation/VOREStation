@@ -82,27 +82,27 @@
 		return FALSE
 	return TRUE
 
-/obj/machinery/computer/shuttle_control/tgui_act(action, list/params)
+/obj/machinery/computer/shuttle_control/tgui_act(action, list/params, datum/tgui/ui)
 	if(..())
 		return TRUE
 	if(skip_act)
 		return
 
-	add_fingerprint(usr)
+	add_fingerprint(ui.user)
 
 	var/datum/shuttle/autodock/shuttle = SSshuttles.shuttles[shuttle_tag]
 	if(!istype(shuttle))
-		to_chat(usr, span_warning("Unable to establish link with the shuttle."))
+		to_chat(ui.user, span_warning("Unable to establish link with the shuttle."))
 		return TRUE
 
 	switch(action)
 		if("move")
-			if(can_move(shuttle, usr))
+			if(can_move(shuttle, ui.user))
 				shuttle.launch(src)
 			return TRUE
 
 		if("force")
-			if(can_move(shuttle, usr))
+			if(can_move(shuttle, ui.user))
 				shuttle.force_launch(src)
 			return TRUE
 
@@ -111,7 +111,7 @@
 			return TRUE
 
 		if("set_codes")
-			var/newcode = tgui_input_text(usr, "Input new docking codes", "Docking codes", shuttle.docking_codes, MAX_NAME_LEN)
+			var/newcode = tgui_input_text(ui.user, "Input new docking codes", "Docking codes", shuttle.docking_codes, MAX_NAME_LEN)
 			newcode = sanitize(newcode,MAX_NAME_LEN)
 			if(newcode && !..())
 				shuttle.set_docking_codes(uppertext(newcode))

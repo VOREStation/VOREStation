@@ -106,7 +106,7 @@
 			if(downloading || !loaded_article)
 				return
 
-			var/savename = sanitize(tgui_input_text(usr, "Enter file name or leave blank to cancel:", "Save article", loaded_article.filename))
+			var/savename = sanitize(tgui_input_text(ui.user, "Enter file name or leave blank to cancel:", "Save article", loaded_article.filename))
 			if(!savename)
 				return TRUE
 			var/obj/item/computer_hardware/hard_drive/HDD = computer.hard_drive

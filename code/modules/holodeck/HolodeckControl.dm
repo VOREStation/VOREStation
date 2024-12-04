@@ -137,7 +137,7 @@
 			return TRUE
 
 		if("AIoverride")
-			if(!issilicon(usr))
+			if(!issilicon(ui.user))
 				return
 
 			if(safety_disabled && emagged)
@@ -146,18 +146,18 @@
 			safety_disabled = !safety_disabled
 			update_projections()
 			if(safety_disabled)
-				message_admins("[key_name_admin(usr)] overrode the holodeck's safeties")
-				log_game("[key_name(usr)] overrided the holodeck's safeties")
+				message_admins("[key_name_admin(ui.user)] overrode the holodeck's safeties")
+				log_game("[key_name(ui.user)] overrided the holodeck's safeties")
 			else
-				message_admins("[key_name_admin(usr)] restored the holodeck's safeties")
-				log_game("[key_name(usr)] restored the holodeck's safeties")
+				message_admins("[key_name_admin(ui.user)] restored the holodeck's safeties")
+				log_game("[key_name(ui.user)] restored the holodeck's safeties")
 			return TRUE
 
 		if("gravity")
 			toggleGravity(linkedholodeck)
 			return TRUE
 
-	add_fingerprint(usr)
+	add_fingerprint(ui.user)
 
 /obj/machinery/computer/HolodeckControl/emag_act(var/remaining_charges, var/mob/user as mob)
 	playsound(src, 'sound/effects/sparks4.ogg', 75, 1)
@@ -168,7 +168,7 @@
 		update_projections()
 		to_chat(user, span_notice("You vastly increase projector power and override the safety and security protocols."))
 		to_chat(user, "Warning.  Automatic shutoff and derezing protocols have been corrupted.  Please call [using_map.company_name] maintenance and do not use the simulator.")
-		log_game("[key_name(usr)] emagged the Holodeck Control Computer")
+		log_game("[key_name(user)] emagged the Holodeck Control Computer")
 		return 1
 	return
 

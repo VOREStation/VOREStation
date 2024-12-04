@@ -206,7 +206,6 @@
 				ui.close()
 				return 1
 			if("PC_minimize")
-				var/mob/user = usr
 				if(!computer.active_program)
 					return
 
@@ -217,8 +216,8 @@
 				computer.update_icon()
 				ui.close()
 
-				if(user && istype(user))
-					computer.tgui_interact(user) // Re-open the UI on this computer. It should show the main screen now.
+				if(ui.user && istype(ui.user))
+					computer.tgui_interact(ui.user) // Re-open the UI on this computer. It should show the main screen now.
 
 
 

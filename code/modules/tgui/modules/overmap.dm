@@ -149,7 +149,7 @@
 
 	return data
 
-/datum/tgui_module/ship/nav/tgui_act(action, params)
+/datum/tgui_module/ship/nav/tgui_act(action, params, datum/tgui/ui)
 	if(..())
 		return TRUE
 
@@ -157,7 +157,7 @@
 		return FALSE
 
 	if(action == "viewing")
-		viewing_overmap(usr) ? unlook(usr) : look(usr)
+		viewing_overmap(ui.user) ? unlook(ui.user) : look(ui.user)
 		return TRUE
 
 /datum/tgui_module/ship/nav/ntos
@@ -326,7 +326,7 @@
 	return data
 
 // Beware ye eyes. This holds all of the ACTIONS from helm, engine, and sensor control all at once.
-/datum/tgui_module/ship/fullmonty/tgui_act(action, params)
+/datum/tgui_module/ship/fullmonty/tgui_act(action, params, datum/tgui/ui)
 	if(..())
 		return TRUE
 
@@ -334,21 +334,21 @@
 		/* HELM */
 		if("add")
 			var/datum/computer_file/data/waypoint/R = new()
-			var/sec_name = tgui_input_text(usr, "Input navigation entry name", "New navigation entry", "Sector #[known_sectors.len]", MAX_NAME_LEN)
+			var/sec_name = tgui_input_text(ui.user, "Input navigation entry name", "New navigation entry", "Sector #[known_sectors.len]", MAX_NAME_LEN)
 			sec_name = sanitize(sec_name,MAX_NAME_LEN)
 			if(!sec_name)
 				sec_name = "Sector #[known_sectors.len]"
 			R.fields["name"] = sec_name
 			if(sec_name in known_sectors)
-				to_chat(usr, span_warning("Sector with that name already exists, please input a different name."))
+				to_chat(ui.user, span_warning("Sector with that name already exists, please input a different name."))
 				return TRUE
 			switch(params["add"])
 				if("current")
 					R.fields["x"] = linked.x
 					R.fields["y"] = linked.y
 				if("new")
-					var/newx = tgui_input_number(usr, "Input new entry x coordinate", "Coordinate input", linked.x, world.maxx, 1)
-					var/newy = tgui_input_number(usr, "Input new entry y coordinate", "Coordinate input", linked.y, world.maxy, 1)
+					var/newx = tgui_input_number(ui.user, "Input new entry x coordinate", "Coordinate input", linked.x, world.maxx, 1)
+					var/newy = tgui_input_number(ui.user, "Input new entry y coordinate", "Coordinate input", linked.y, world.maxy, 1)
 					R.fields["x"] = CLAMP(newx, 1, world.maxx)
 					R.fields["y"] = CLAMP(newy, 1, world.maxy)
 			known_sectors[sec_name] = R
@@ -363,12 +363,12 @@
 
 		if("setcoord")
 			if(params["setx"])
-				var/newx = tgui_input_number(usr, "Input new destiniation x coordinate", "Coordinate input", dx, world.maxx, 1)
+				var/newx = tgui_input_number(ui.user, "Input new destiniation x coordinate", "Coordinate input", dx, world.maxx, 1)
 				if(newx)
 					dx = CLAMP(newx, 1, world.maxx)
 
 			if(params["sety"])
-				var/newy = tgui_input_number(usr, "Input new destiniation y coordinate", "Coordinate input", dy, world.maxy, 1)
+				var/newy = tgui_input_number(ui.user, "Input new destiniation y coordinate", "Coordinate input", dy, world.maxy, 1)
 				if(newy)
 					dy = CLAMP(newy, 1, world.maxy)
 			. = TRUE
@@ -384,13 +384,13 @@
 			. = TRUE
 
 		if("speedlimit")
-			var/newlimit = tgui_input_number(usr, "Input new speed limit for autopilot (0 to brake)", "Autopilot speed limit", speedlimit*1000, 100000)
+			var/newlimit = tgui_input_number(ui.user, "Input new speed limit for autopilot (0 to brake)", "Autopilot speed limit", speedlimit*1000, 100000)
 			if(newlimit)
 				speedlimit = CLAMP(newlimit/1000, 0, 100)
 			. = TRUE
 
 		if("accellimit")
-			var/newlimit = tgui_input_number(usr, "Input new acceleration limit", "Acceleration limit", accellimit*1000)
+			var/newlimit = tgui_input_number(ui.user, "Input new acceleration limit", "Acceleration limit", accellimit*1000)
 			if(newlimit)
 				accellimit = max(newlimit/1000, 0)
 			. = TRUE
@@ -398,7 +398,7 @@
 		if("move")
 			var/ndir = text2num(params["dir"])
 			ndir = turn(ndir,pick(90,-90))
-			linked.relaymove(usr, ndir, accellimit)
+			linked.relaymove(ui.user, ndir, accellimit)
 			. = TRUE
 
 		if("brake")
@@ -418,7 +418,7 @@
 			. = TRUE
 
 		if("manual")
-			viewing_overmap(usr) ? unlook(usr) : look(usr)
+			viewing_overmap(ui.user) ? unlook(ui.user) : look(ui.user)
 			. = TRUE
 		/* END HELM */
 		/* ENGINES */
@@ -430,7 +430,7 @@
 			. = TRUE
 
 		if("set_global_limit")
-			var/newlim = tgui_input_number(usr, "Input new thrust limit (0..100%)", "Thrust limit", linked.thrust_limit*100, 100, 0)
+			var/newlim = tgui_input_number(ui.user, "Input new thrust limit (0..100%)", "Thrust limit", linked.thrust_limit*100, 100, 0)
 			linked.thrust_limit = clamp(newlim/100, 0, 1)
 			for(var/datum/ship_engine/E in linked.engines)
 				E.set_thrust_limit(linked.thrust_limit)
@@ -444,7 +444,7 @@
 
 		if("set_limit")
 			var/datum/ship_engine/E = locate(params["engine"])
-			var/newlim = tgui_input_number(usr, "Input new thrust limit (0..100)", "Thrust limit", E.get_thrust_limit(), 100, 0)
+			var/newlim = tgui_input_number(ui.user, "Input new thrust limit (0..100)", "Thrust limit", E.get_thrust_limit(), 100, 0)
 			var/limit = clamp(newlim/100, 0, 1)
 			if(istype(E))
 				E.set_thrust_limit(limit)
@@ -465,7 +465,7 @@
 		/* END ENGINES */
 		/* SENSORS */
 		if("range")
-			var/nrange = tgui_input_number(usr, "Set new sensors range", "Sensor range", sensors.range, world.view, round_value = FALSE)
+			var/nrange = tgui_input_number(ui.user, "Set new sensors range", "Sensor range", sensors.range, world.view, round_value = FALSE)
 			if(nrange)
 				sensors.set_range(CLAMP(nrange, 1, world.view))
 			. = TRUE
@@ -473,8 +473,8 @@
 			sensors.toggle()
 			. = TRUE
 		if("viewing")
-			if(usr && !isAI(usr))
-				viewing_overmap(usr) ? unlook(usr) : look(usr)
+			if(ui.user && !isAI(ui.user))
+				viewing_overmap(ui.user) ? unlook(ui.user) : look(ui.user)
 			. = TRUE
 		/* END SENSORS */
 

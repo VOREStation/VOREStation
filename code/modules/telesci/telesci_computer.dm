@@ -160,11 +160,11 @@
 
 		if("send")
 			sending = 1
-			teleport(usr)
+			teleport(ui.user)
 
 		if("receive")
 			sending = 0
-			teleport(usr)
+			teleport(ui.user)
 
 		if("recal")
 			recalibrate()

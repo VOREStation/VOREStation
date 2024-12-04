@@ -79,7 +79,6 @@
 		if(direction == UP)
 			var/obj/structure/lattice/lattice = locate() in destination.contents
 			var/obj/structure/catwalk/catwalk = locate() in destination.contents
-			var/turf/simulated/floor/water/deep/ocean/diving/surface = destination
 
 			if(lattice)
 				var/pull_up_time = max((5 SECONDS + (src.movement_delay() * 10) * climb_modifier), 1)
@@ -91,7 +90,7 @@
 					to_chat(src, span_warning("You gave up on pulling yourself up."))
 					return 0
 
-			else if(istype(surface))
+			else if(istype(destination, /turf/simulated/floor/water/deep/ocean/diving))
 				var/pull_up_time = max((5 SECONDS + (src.movement_delay() * 10) * swim_modifier), 1)
 				to_chat(src, span_notice("You start swimming upwards..."))
 				src.audible_message(span_notice("[src] begins to swim towards the surface."), runemessage = "splish splosh")
@@ -115,6 +114,12 @@
 				else
 					to_chat(src, span_warning("You gave up on pulling yourself up."))
 					return 0
+
+			//RS Port #661 Start, Prevents noclipping
+			else if(!istype(destination, /turf/simulated/open))
+				to_chat(src, span_warning("Something solid above stops you from passing."))
+				return 0
+			//RS Port #661 End
 
 			else if(isliving(src)) //VOREStation Edit Start. Are they a mob, and are they currently flying??
 				var/mob/living/H = src

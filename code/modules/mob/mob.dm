@@ -126,6 +126,17 @@
 /atom/proc/drain_power(var/drain_check,var/surge, var/amount = 0)
 	return -1
 
+ // used for petrification machines
+/atom/proc/get_ultimate_mob()
+	var/mob/ultimate_mob
+	var/atom/to_check = loc
+	var/n = 0
+	while (to_check && !isturf(to_check) && n++ < 16)
+		if (ismob(to_check))
+			ultimate_mob = to_check
+			to_check = to_check.loc
+	return ultimate_mob
+
 // Show a message to all mobs and objects in earshot of this one
 // This would be for audible actions by the src mob
 // message is the message output to anyone who can hear.

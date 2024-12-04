@@ -107,7 +107,7 @@
 	new painting_decal(F, painting_dir, painting_colour)
 
 /obj/item/floor_painter/attack_self(var/mob/user)
-	var/choice = tgui_alert(usr, "Do you wish to change the decal type, paint direction, or paint colour?", "Modify What?", list("Decal","Direction","Colour","Cancel"))
+	var/choice = tgui_alert(user, "Do you wish to change the decal type, paint direction, or paint colour?", "Modify What?", list("Decal","Direction","Colour","Cancel"))
 	if(choice == "Cancel")
 		return
 	else if(choice == "Decal")

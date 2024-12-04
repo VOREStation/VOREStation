@@ -565,7 +565,7 @@ GLOBAL_LIST_EMPTY(apcs)
 		if(do_after(user, 20))
 			if(C.get_amount() >= 10 && !terminal && opened && has_electronics != APC_HAS_ELECTRONICS_SECURED)
 				var/obj/structure/cable/N = T.get_cable_node()
-				if(prob(50) && electrocute_mob(usr, N, N))
+				if(prob(50) && electrocute_mob(user, N, N))
 					var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
 					s.set_up(5, 1, src)
 					s.start()
@@ -587,11 +587,11 @@ GLOBAL_LIST_EMPTY(apcs)
 		playsound(src, 'sound/items/Deconstruct.ogg', 50, 1)
 		if(do_after(user, 50 * W.toolspeed))
 			if(terminal && opened && has_electronics != APC_HAS_ELECTRONICS_SECURED)
-				if(prob(50) && electrocute_mob(usr, terminal.powernet, terminal))
+				if(prob(50) && electrocute_mob(user, terminal.powernet, terminal))
 					var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
 					s.set_up(5, 1, src)
 					s.start()
-					if(usr.stunned)
+					if(user.stunned)
 						return
 				new /obj/item/stack/cable_coil(loc,10)
 				to_chat(user, span_notice("You cut the cables and dismantle the power terminal."))
@@ -914,18 +914,18 @@ GLOBAL_LIST_EMPTY(apcs)
 		return 0
 	return 1
 
-/obj/machinery/power/apc/tgui_act(action, params)
-	if(..() || !can_use(usr, TRUE))
+/obj/machinery/power/apc/tgui_act(action, params, datum/tgui/ui)
+	if(..() || !can_use(ui.user, TRUE))
 		return TRUE
 
 	// There's a handful of cases where we want to allow users to bypass the `locked` variable.
 	// If can_admin_interact() wasn't only defined on observers, this could just be part of a single-line
 	// conditional.
 	var/locked_exception = FALSE
-	if(issilicon(usr) || action == "nightshift")
+	if(issilicon(ui.user) || action == "nightshift")
 		locked_exception = TRUE
-	if(isobserver(usr))
-		var/mob/observer/dead/D = usr
+	if(isobserver(ui.user))
+		var/mob/observer/dead/D = ui.user
 		if(D.can_admin_interact())
 			locked_exception = TRUE
 
@@ -937,7 +937,7 @@ GLOBAL_LIST_EMPTY(apcs)
 		if("lock")
 			if(locked_exception) // Yay code reuse
 				if(emagged || (stat & (BROKEN|MAINT)))
-					to_chat(usr, "The APC does not respond to the command.")
+					to_chat(ui.user, "The APC does not respond to the command.")
 					return
 				locked = !locked
 				update_icon()
@@ -947,7 +947,7 @@ GLOBAL_LIST_EMPTY(apcs)
 			toggle_breaker()
 		if("nightshift")
 			if(last_nightshift_switch > world.time - 10 SECONDS) // don't spam...
-				to_chat(usr, span_warning("[src]'s night lighting circuit breaker is still cycling!"))
+				to_chat(ui.user, span_warning("[src]'s night lighting circuit breaker is still cycling!"))
 				return 0
 			last_nightshift_switch = world.time
 			nightshift_setting = params["nightshift"]

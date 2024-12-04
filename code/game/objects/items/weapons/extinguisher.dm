@@ -99,7 +99,7 @@
 
 	if (!safety)
 		if (src.reagents.total_volume < 1)
-			to_chat(usr, span_notice("\The [src] is empty."))
+			to_chat(user, span_notice("\The [src] is empty."))
 			return
 
 		if (world.time < src.last_use + 20)
@@ -136,7 +136,7 @@
 				W.set_color()
 				W.set_up(my_target)
 
-		if((istype(usr.loc, /turf/space)) || (usr.lastarea.get_gravity() == 0))
+		if((istype(user.loc, /turf/space)) || (user.lastarea.get_gravity() == 0))
 			user.inertia_dir = get_dir(target, user)
 			step(user, user.inertia_dir)
 	else

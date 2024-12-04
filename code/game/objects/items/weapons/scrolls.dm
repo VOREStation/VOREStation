@@ -16,7 +16,7 @@
 
 /obj/item/teleportation_scroll/attack_self(mob/user as mob)
 	if((user.mind && !wizards.is_antagonist(user.mind)))
-		to_chat(usr, span_warning("You stare at the scroll but cannot make sense of the markings!"))
+		to_chat(user, span_warning("You stare at the scroll but cannot make sense of the markings!"))
 		return
 
 	user.set_machine(src)

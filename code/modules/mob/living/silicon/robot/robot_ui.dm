@@ -108,7 +108,7 @@
 
 	return data
 
-/datum/tgui_module/robot_ui/tgui_act(action, params)
+/datum/tgui_module/robot_ui/tgui_act(action, params, datum/tgui/ui)
 	. = ..()
 	if(.)
 		return
@@ -130,13 +130,13 @@
 			if(istype(C))
 				C.toggled = !C.toggled
 				if(C.toggled)
-					to_chat(usr, span_notice("You enable [C]."))
+					to_chat(ui.user, span_notice("You enable [C]."))
 				else
-					to_chat(usr, span_warning("You disable [C]."))
+					to_chat(ui.user, span_warning("You disable [C]."))
 			. = TRUE
 		if("toggle_module")
 			if(R.weapon_lock)
-				to_chat(usr, span_danger("Error: Modules locked."))
+				to_chat(ui.user, span_danger("Error: Modules locked."))
 				return
 			var/obj/item/module = locate(params["ref"])
 			if(istype(module))

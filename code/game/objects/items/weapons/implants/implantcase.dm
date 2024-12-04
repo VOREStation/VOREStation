@@ -24,7 +24,7 @@
 		var/t = tgui_input_text(user, "What would you like the label to be?", text("[]", src.name), null, MAX_NAME_LEN)
 		if (user.get_active_hand() != I)
 			return
-		if((!in_range(src, usr) && src.loc != user))
+		if((!in_range(src, user) && src.loc != user))
 			return
 		t = sanitizeSafe(t, MAX_NAME_LEN)
 		if(t)
