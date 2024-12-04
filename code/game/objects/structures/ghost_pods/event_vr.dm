@@ -216,7 +216,7 @@
 
 	var/mob/living/carbon/human/new_character = new(src.loc)
 	if(!new_character)
-		to_chat(src, "Something went wrong and spawning failed. Please check your character slot doesn't have any obvious errors, then either try again or send an adminhelp!")
+		to_chat(M, span_warning("Something went wrong and spawning failed. Please check your character slot doesn't have any obvious errors, then either try again or send an adminhelp!"))
 		reset_ghostpod()
 		return
 	log_and_message_admins("successfully used a Maintenance Lurker spawnpoint and became their loaded character.")
