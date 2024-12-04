@@ -164,7 +164,7 @@
 
 	return data
 
-/obj/machinery/atmospherics/omni/mixer/tgui_act(action, params)
+/obj/machinery/atmospherics/omni/mixer/tgui_act(action, params, datum/tgui/ui)
 	if(..())
 		return TRUE
 
@@ -184,7 +184,7 @@
 			. = TRUE
 			if(!configuring || use_power)
 				return
-			var/new_flow_rate = tgui_input_number(usr,"Enter new flow rate limit (0-[max_flow_rate]L/s)","Flow Rate Control",set_flow_rate,max_flow_rate,0)
+			var/new_flow_rate = tgui_input_number(ui.user,"Enter new flow rate limit (0-[max_flow_rate]L/s)","Flow Rate Control",set_flow_rate,max_flow_rate,0)
 			set_flow_rate = between(0, new_flow_rate, max_flow_rate)
 		if("switch_mode")
 			. = TRUE
@@ -195,7 +195,7 @@
 			. = TRUE
 			if(!configuring || use_power)
 				return
-			change_concentration(dir_flag(params["dir"]))
+			change_concentration(dir_flag(params["dir"]), ui.user)
 		if("switch_conlock")
 			. = TRUE
 			if(!configuring || use_power)
@@ -244,7 +244,7 @@
 	update_ports()
 	rebuild_mixing_inputs()
 
-/obj/machinery/atmospherics/omni/mixer/proc/change_concentration(var/port = NORTH)
+/obj/machinery/atmospherics/omni/mixer/proc/change_concentration(var/port = NORTH, mob/user)
 	tag_north_con = null
 	tag_south_con = null
 	tag_east_con = null
@@ -266,7 +266,7 @@
 	if(non_locked < 1)
 		return
 
-	var/new_con = (tgui_input_number(usr,"Enter a new concentration (0-[round(remain_con * 100, 0.5)])%","Concentration control", min(remain_con, old_con)*100, round(remain_con * 100, 0.5), 0)) / 100
+	var/new_con = (tgui_input_number(user,"Enter a new concentration (0-[round(remain_con * 100, 0.5)])%","Concentration control", min(remain_con, old_con)*100, round(remain_con * 100, 0.5), 0)) / 100
 
 	//cap it between 0 and the max remaining concentration
 	new_con = between(0, new_con, remain_con)

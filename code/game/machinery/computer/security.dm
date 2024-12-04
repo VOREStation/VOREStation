@@ -185,7 +185,7 @@
 	data["modal"] = tgui_modal_data(src)
 	return data
 
-/obj/machinery/computer/secure_data/tgui_act(action, params)
+/obj/machinery/computer/secure_data/tgui_act(action, params, datum/tgui/ui)
 	if(..())
 		return TRUE
 
@@ -204,13 +204,13 @@
 		if("scan")
 			if(scan)
 				scan.forceMove(loc)
-				if(ishuman(usr) && !usr.get_active_hand())
-					usr.put_in_hands(scan)
+				if(ishuman(ui.user) && !ui.user.get_active_hand())
+					ui.user.put_in_hands(scan)
 				scan = null
 			else
-				var/obj/item/I = usr.get_active_hand()
+				var/obj/item/I = ui.user.get_active_hand()
 				if(istype(I, /obj/item/card/id))
-					usr.drop_item()
+					ui.user.drop_item()
 					I.forceMove(src)
 					scan = I
 		if("login")
@@ -219,12 +219,12 @@
 				if(check_access(scan))
 					authenticated = scan.registered_name
 					rank = scan.assignment
-			else if(login_type == LOGIN_TYPE_AI && isAI(usr))
-				authenticated = usr.name
+			else if(login_type == LOGIN_TYPE_AI && isAI(ui.user))
+				authenticated = ui.user.name
 				rank = JOB_AI
-			else if(login_type == LOGIN_TYPE_ROBOT && isrobot(usr))
-				authenticated = usr.name
-				var/mob/living/silicon/robot/R = usr
+			else if(login_type == LOGIN_TYPE_ROBOT && isrobot(ui.user))
+				authenticated = ui.user.name
+				var/mob/living/silicon/robot/R = ui.user
 				rank = "[R.modtype] [R.braintype]"
 			if(authenticated)
 				active1 = null
@@ -242,8 +242,8 @@
 			if("logout")
 				if(scan)
 					scan.forceMove(loc)
-					if(ishuman(usr) && !usr.get_active_hand())
-						usr.put_in_hands(scan)
+					if(ishuman(ui.user) && !ui.user.get_active_hand())
+						ui.user.put_in_hands(scan)
 					scan = null
 				authenticated = null
 				screen = null
@@ -270,6 +270,16 @@
 					qdel(active1)
 				if(active2)
 					qdel(active2)
+			if("sync_r")
+				if(active2)
+					set_temp(client_update_record(src,usr))
+			if("edit_notes")
+				// The modal input in tgui is busted for this sadly...
+				var/new_notes = strip_html_simple(tgui_input_text(usr,"Enter new information here.","Character Preference", html_decode(active2.fields["notes"]), MAX_RECORD_LENGTH, TRUE, prevent_enter = TRUE), MAX_RECORD_LENGTH)
+				if(usr.Adjacent(src))
+					if(new_notes != "" || tgui_alert(usr, "Are you sure you want to delete the current record's notes?", "Confirm Delete", list("Delete", "No")) == "Delete")
+						if(usr.Adjacent(src))
+							active2.fields["notes"] = new_notes
 			if("d_rec")
 				var/datum/data/record/general_record = locate(params["d_rec"] || "")
 				if(!data_core.general.Find(general_record))
@@ -338,12 +348,12 @@
 					SStgui.update_uis(src)
 					addtimer(CALLBACK(src, PROC_REF(print_finish)), 5 SECONDS)
 			if("photo_front")
-				var/icon/photo = get_photo(usr)
+				var/icon/photo = get_photo(ui.user)
 				if(photo && active1)
 					active1.fields["photo_front"] = photo
 					active1.fields["photo-south"] = "'data:image/png;base64,[icon2base64(photo)]'"
 			if("photo_side")
-				var/icon/photo = get_photo(usr)
+				var/icon/photo = get_photo(ui.user)
 				if(photo && active1)
 					active1.fields["photo_side"] = photo
 					active1.fields["photo-west"] = "'data:image/png;base64,[icon2base64(photo)]'"
@@ -474,7 +484,7 @@
 		var/obj/item/photo/photo = user.get_active_hand()
 		return photo.img
 	if(istype(user, /mob/living/silicon))
-		var/mob/living/silicon/tempAI = usr
+		var/mob/living/silicon/tempAI = user
 		var/obj/item/photo/selection = tempAI.GetPicture()
 		if (selection)
 			return selection.img

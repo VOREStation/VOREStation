@@ -158,35 +158,35 @@
 			if(modify)
 				data_core.manifest_modify(modify.registered_name, modify.assignment, modify.rank)
 				modify.name = "[modify.registered_name]'s ID Card ([modify.assignment])"
-				if(ishuman(usr))
+				if(ishuman(ui.user))
 					modify.forceMove(get_turf(src))
-					if(!usr.get_active_hand())
-						usr.put_in_hands(modify)
+					if(!ui.user.get_active_hand())
+						ui.user.put_in_hands(modify)
 					modify = null
 				else
 					modify.forceMove(get_turf(src))
 					modify = null
 			else
-				var/obj/item/I = usr.get_active_hand()
-				if(istype(I, /obj/item/card/id) && usr.unEquip(I))
+				var/obj/item/I = ui.user.get_active_hand()
+				if(istype(I, /obj/item/card/id) && ui.user.unEquip(I))
 					I.forceMove(src)
 					modify = I
 			. = TRUE
 
 		if("scan")
 			if(scan)
-				if(ishuman(usr))
+				if(ishuman(ui.user))
 					scan.forceMove(get_turf(src))
-					if(!usr.get_active_hand())
-						usr.put_in_hands(scan)
+					if(!ui.user.get_active_hand())
+						ui.user.put_in_hands(scan)
 					scan = null
 				else
 					scan.forceMove(get_turf(src))
 					scan = null
 			else
-				var/obj/item/I = usr.get_active_hand()
+				var/obj/item/I = ui.user.get_active_hand()
 				if(istype(I, /obj/item/card/id))
-					usr.drop_item()
+					ui.user.drop_item()
 					I.forceMove(src)
 					scan = I
 			. = TRUE
@@ -205,7 +205,7 @@
 			if(is_authenticated() && modify)
 				var/t1 = params["assign_target"]
 				if(t1 == "Custom")
-					var/temp_t = sanitize(tgui_input_text(usr, "Enter a custom job assignment.","Assignment"), 45)
+					var/temp_t = sanitize(tgui_input_text(ui.user, "Enter a custom job assignment.","Assignment"), 45)
 					//let custom jobs function as an impromptu alt title, mainly for sechuds
 					if(temp_t && modify)
 						modify.assignment = temp_t
@@ -216,7 +216,7 @@
 					else
 						var/datum/job/jobdatum = SSjob.get_job(t1)
 						if(!jobdatum)
-							to_chat(usr, span_warning("No log exists for this job: [t1]"))
+							to_chat(ui.user, span_warning("No log exists for this job: [t1]"))
 							return
 						access = jobdatum.get_access()
 

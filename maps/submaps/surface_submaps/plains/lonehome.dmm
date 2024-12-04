@@ -32,7 +32,7 @@
 "kT" = (/obj/machinery/light/small{dir = 1},/obj/structure/bed/padded,/obj/item/book/custom_library/fiction/truelovehathmyheart,/obj/item/bedsheet/clown,/turf/simulated/floor/wood,/area/submap/lonehome)
 "kU" = (/obj/item/chainsaw,/obj/item/storage/box/lights/mixed,/obj/item/extinguisher,/obj/item/storage/toolbox/mechanical,/obj/structure/table/rack,/turf/simulated/floor,/area/submap/lonehome)
 "ld" = (/obj/machinery/power/port_gen/pacman,/obj/effect/decal/cleanable/dirt,/turf/simulated/floor,/area/submap/lonehome)
-"lz" = (/obj/item/reagent_containers/glass/rag,/obj/item/clothing/gloves/ring/engagement,/obj/structure/table/wooden_reinforced,/turf/simulated/floor/wood,/area/submap/lonehome)
+"lz" = (/obj/item/reagent_containers/glass/rag,/obj/item/clothing/accessory/ring/engagement,/obj/structure/table/wooden_reinforced,/turf/simulated/floor/wood,/area/submap/lonehome)
 "lB" = (/obj/machinery/button/windowtint{id = "h_kitchen"},/obj/item/trash/plate,/obj/structure/table/sifwooden_reinforced,/obj/structure/window/reinforced/polarized{dir = 4; id = "h_kitchen"},/turf/simulated/floor/wood,/area/submap/lonehome)
 "lJ" = (/obj/item/tape,/obj/structure/table/wooden_reinforced,/turf/simulated/floor/wood,/area/submap/lonehome)
 "lS" = (/obj/item/organ/internal/liver,/obj/random/trash,/turf/simulated/floor,/area/submap/lonehome)

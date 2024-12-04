@@ -60,8 +60,8 @@
 				ntnet_global.setting_disabled = FALSE
 				return TRUE
 
-			var/response = tgui_alert(usr, "Really disable NTNet wireless? If your computer is connected wirelessly you won't be able to turn it back on! This will affect all connected wireless devices.", "NTNet shutdown", list("Yes", "No"))
-			if(response == "Yes" && tgui_status(usr, state) == STATUS_INTERACTIVE)
+			var/response = tgui_alert(ui.user, "Really disable NTNet wireless? If your computer is connected wirelessly you won't be able to turn it back on! This will affect all connected wireless devices.", "NTNet shutdown", list("Yes", "No"))
+			if(response == "Yes" && tgui_status(ui.user, state) == STATUS_INTERACTIVE)
 				ntnet_global.setting_disabled = TRUE
 			return TRUE
 		if("purgelogs")
@@ -81,14 +81,14 @@
 		if("ban_nid")
 			if(!ntnet_global)
 				return
-			var/nid = tgui_input_number(usr,"Enter NID of device which you want to block from the network:", "Enter NID")
-			if(nid && tgui_status(usr, state) == STATUS_INTERACTIVE)
+			var/nid = tgui_input_number(ui.user,"Enter NID of device which you want to block from the network:", "Enter NID")
+			if(nid && tgui_status(ui.user, state) == STATUS_INTERACTIVE)
 				ntnet_global.banned_nids |= nid
 			return TRUE
 		if("unban_nid")
 			if(!ntnet_global)
 				return
-			var/nid = tgui_input_number(usr,"Enter NID of device which you want to unblock from the network:", "Enter NID")
-			if(nid && tgui_status(usr, state) == STATUS_INTERACTIVE)
+			var/nid = tgui_input_number(ui.user,"Enter NID of device which you want to unblock from the network:", "Enter NID")
+			if(nid && tgui_status(ui.user, state) == STATUS_INTERACTIVE)
 				ntnet_global.banned_nids -= nid
 			return TRUE

@@ -137,7 +137,7 @@
 			var/multiplier = text2num(params["multiplier"])
 			if(!multiplier || (multiplier <= 0)) //href exploit protection
 				return
-			produce_recipe(R, multiplier, usr)
+			produce_recipe(R, multiplier, ui.user)
 			return TRUE
 
 /obj/item/stack/proc/is_valid_recipe(datum/stack_recipe/R, list/recipe_list)
@@ -402,7 +402,7 @@
 
 /obj/item/stack/attack_hand(mob/user as mob)
 	if (user.get_inactive_hand() == src)
-		var/N = tgui_input_number(usr, "How many stacks of [src] would you like to split off?  There are currently [amount].", "Split stacks", 1, amount, 1)
+		var/N = tgui_input_number(user, "How many stacks of [src] would you like to split off?  There are currently [amount].", "Split stacks", 1, amount, 1)
 		if(N != round(N))
 			to_chat(user, span_warning("You cannot separate a non-whole number of stacks!"))
 			return
@@ -413,8 +413,8 @@
 				src.add_fingerprint(user)
 				F.add_fingerprint(user)
 				spawn(0)
-					if (src && usr.machine==src)
-						src.interact(usr)
+					if (src && user.machine==src)
+						src.interact(user)
 	else
 		..()
 	return
@@ -425,10 +425,10 @@
 		src.transfer_to(S)
 
 		spawn(0) //give the stacks a chance to delete themselves if necessary
-			if (S && usr.machine==S)
-				S.interact(usr)
-			if (src && usr.machine==src)
-				src.interact(usr)
+			if (S && user.machine==S)
+				S.interact(user)
+			if (src && user.machine==src)
+				src.interact(user)
 	else
 		return ..()
 

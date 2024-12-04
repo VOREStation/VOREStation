@@ -4,7 +4,7 @@
 
 	var/core_tag = ""
 
-/datum/tgui_module/rustcore_monitor/tgui_act(action, params)
+/datum/tgui_module/rustcore_monitor/tgui_act(action, params, datum/tgui/ui)
 	if(..())
 		return TRUE
 
@@ -25,7 +25,7 @@
 			return TRUE
 
 		if("set_tag")
-			var/new_ident = sanitize_text(tgui_input_text(usr, "Enter a new ident tag.", "Core Control", core_tag))
+			var/new_ident = sanitize_text(tgui_input_text(ui.user, "Enter a new ident tag.", "Core Control", core_tag))
 			if(new_ident)
 				core_tag = new_ident
 			return TRUE

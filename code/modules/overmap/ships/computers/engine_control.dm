@@ -62,8 +62,8 @@
 			. = TRUE
 
 		if("set_global_limit")
-			var/newlim = tgui_input_number(usr, "Input new thrust limit (0..100%)", "Thrust limit", linked.thrust_limit*100, 100, 0, round_value = FALSE)
-			if(tgui_status(usr, state) != STATUS_INTERACTIVE)
+			var/newlim = tgui_input_number(ui.user, "Input new thrust limit (0..100%)", "Thrust limit", linked.thrust_limit*100, 100, 0, round_value = FALSE)
+			if(tgui_status(ui.user, state) != STATUS_INTERACTIVE)
 				return FALSE
 			linked.thrust_limit = clamp(newlim/100, 0, 1)
 			for(var/datum/ship_engine/E in linked.engines)
@@ -78,8 +78,8 @@
 
 		if("set_limit")
 			var/datum/ship_engine/E = locate(params["engine"])
-			var/newlim = tgui_input_number(usr, "Input new thrust limit (0..100)", "Thrust limit", E.get_thrust_limit(), 100, 0, round_value = FALSE)
-			if(tgui_status(usr, state) != STATUS_INTERACTIVE)
+			var/newlim = tgui_input_number(ui.user, "Input new thrust limit (0..100)", "Thrust limit", E.get_thrust_limit(), 100, 0, round_value = FALSE)
+			if(tgui_status(ui.user, state) != STATUS_INTERACTIVE)
 				return FALSE
 			var/limit = clamp(newlim/100, 0, 1)
 			if(istype(E))
@@ -99,5 +99,5 @@
 				E.toggle()
 			. = TRUE
 
-	if(. && !issilicon(usr))
+	if(. && !issilicon(ui.user))
 		playsound(src, "terminal_type", 50, 1)

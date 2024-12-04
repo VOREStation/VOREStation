@@ -90,7 +90,7 @@
 		return
 
 	if(panel_open)
-		to_chat(usr, span_boldnotice("Close the maintenance panel first."))
+		to_chat(user, span_boldnotice("Close the maintenance panel first."))
 		return
 
 	tgui_interact(user)
@@ -139,8 +139,8 @@
 
 	return data
 
-/obj/machinery/atmospherics/unary/cryo_cell/tgui_act(action, params)
-	if(..() || usr == occupant)
+/obj/machinery/atmospherics/unary/cryo_cell/tgui_act(action, params, datum/tgui/ui)
+	if(..() || ui.user == occupant)
 		return TRUE
 
 	. = TRUE
@@ -157,13 +157,13 @@
 				beaker = null
 				update_icon()
 		if("ejectOccupant")
-			if(!occupant || isslime(usr) || ispAI(usr))
+			if(!occupant || isslime(ui.user) || ispAI(ui.user))
 				return 0 // don't update UIs attached to this object
 			go_out()
 		else
 			return FALSE
 
-	add_fingerprint(usr)
+	add_fingerprint(ui.user)
 
 /obj/machinery/atmospherics/unary/cryo_cell/attackby(var/obj/item/G as obj, var/mob/user as mob)
 	if(istype(G, /obj/item/reagent_containers/glass))

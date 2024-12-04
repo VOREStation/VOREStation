@@ -39,15 +39,15 @@
 		if("adminobserve")
 			var/datum/shuttle/S = locate(params["ref"])
 			if(istype(S))
-				var/client/C = usr.client
-				if(!isobserver(usr))
+				var/client/C = ui.user.client
+				if(!isobserver(ui.user))
 					C.admin_ghost()
 				spawn(2)
 					C.jumptoturf(get_turf(S.current_location))
 			else if(istype(S, /obj/effect/overmap/visitable))
 				var/obj/effect/overmap/visitable/V = S
-				var/client/C = usr.client
-				if(!isobserver(usr))
+				var/client/C = ui.user.client
+				if(!isobserver(ui.user))
 					C.admin_ghost()
 				spawn(2)
 					var/atom/target
@@ -68,34 +68,34 @@
 			var/datum/shuttle/S = locate(params["ref"])
 			if(istype(S, /datum/shuttle/autodock/multi))
 				var/datum/shuttle/autodock/multi/shuttle = S
-				var/dest_key = tgui_input_list(usr, "Choose shuttle destination", "Shuttle Destination", shuttle.get_destinations())
+				var/dest_key = tgui_input_list(ui.user, "Choose shuttle destination", "Shuttle Destination", shuttle.get_destinations())
 				if(dest_key)
-					shuttle.set_destination(dest_key, usr)
+					shuttle.set_destination(dest_key, ui.user)
 					shuttle.launch(src)
 			else if(istype(S, /datum/shuttle/autodock/overmap))
 				var/datum/shuttle/autodock/overmap/shuttle = S
 				var/list/possible_d = shuttle.get_possible_destinations()
 				var/D
 				if(!LAZYLEN(possible_d))
-					to_chat(usr, span_warning("There are no possible destinations for [shuttle] ([shuttle.type])"))
+					to_chat(ui.user, span_warning("There are no possible destinations for [shuttle] ([shuttle.type])"))
 					return FALSE
-				D = tgui_input_list(usr, "Choose shuttle destination", "Shuttle Destination", possible_d)
+				D = tgui_input_list(ui.user, "Choose shuttle destination", "Shuttle Destination", possible_d)
 				if(D)
 					shuttle.set_destination(possible_d[D])
 					shuttle.launch()
 			else if(istype(S, /datum/shuttle/autodock))
 				var/datum/shuttle/autodock/shuttle = S
-				if(tgui_alert(usr, "Are you sure you want to launch [shuttle]?", "Launching Shuttle", list("Yes", "No")) == "Yes")
+				if(tgui_alert(ui.user, "Are you sure you want to launch [shuttle]?", "Launching Shuttle", list("Yes", "No")) == "Yes")
 					shuttle.launch(src)
 			else
-				to_chat(usr, span_notice("The shuttle control panel isn't quite sure how to move [S] ([S?.type])."))
+				to_chat(ui.user, span_notice("The shuttle control panel isn't quite sure how to move [S] ([S?.type])."))
 				return FALSE
-			to_chat(usr, span_notice("Launching shuttle [S]."))
+			to_chat(ui.user, span_notice("Launching shuttle [S]."))
 			return TRUE
 		if("overmap_control")
 			var/obj/effect/overmap/visitable/ship/V = locate(params["ref"])
 			if(istype(V))
 				var/datum/tgui_module/ship/fullmonty/F = new(src, V)
-				F.tgui_interact(usr, null, ui)
+				F.tgui_interact(ui.user, null, ui)
 
 			return TRUE

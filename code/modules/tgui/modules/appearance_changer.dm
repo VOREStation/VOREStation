@@ -88,99 +88,99 @@
 
 	var/mob/living/carbon/human/target = owner
 	if(customize_usr)
-		if(!ishuman(usr))
+		if(!ishuman(ui.user))
 			return TRUE
-		target = usr
+		target = ui.user
 
 	switch(action)
 		if("race")
-			if(can_change(APPEARANCE_RACE) && (params["race"] in valid_species))
+			if(can_change(target, APPEARANCE_RACE) && (params["race"] in valid_species))
 				if(target.change_species(params["race"]))
 					if(params["race"] == "Custom Species")
-						target.custom_species = sanitize(tgui_input_text(usr, "Input custom species name:",
+						target.custom_species = sanitize(tgui_input_text(target, "Input custom species name:",
 							"Custom Species Name", null, MAX_NAME_LEN), MAX_NAME_LEN)
 					cut_data()
-					generate_data(usr)
+					generate_data(target)
 					changed_hook(APPEARANCECHANGER_CHANGED_RACE)
 					return 1
 		if("gender")
-			if(can_change(APPEARANCE_GENDER) && (params["gender"] in get_genders()))
+			if(can_change(target, APPEARANCE_GENDER) && (params["gender"] in get_genders(target)))
 				if(target.change_gender(params["gender"]))
 					cut_data()
-					generate_data(usr)
+					generate_data(target)
 					changed_hook(APPEARANCECHANGER_CHANGED_GENDER)
 					return 1
 		if("gender_id")
-			if(can_change(APPEARANCE_GENDER) && (params["gender_id"] in all_genders_define_list))
+			if(can_change(target, APPEARANCE_GENDER) && (params["gender_id"] in all_genders_define_list))
 				target.identifying_gender = params["gender_id"]
 				changed_hook(APPEARANCECHANGER_CHANGED_GENDER_ID)
 				return 1
 		if("skin_tone")
-			if(can_change_skin_tone())
-				var/new_s_tone = tgui_input_number(usr, "Choose your character's skin-tone:\n(Light 1 - 220 Dark)", "Skin Tone", -target.s_tone + 35, 220, 1)
-				if(isnum(new_s_tone) && can_still_topic(usr, state))
+			if(can_change_skin_tone(target))
+				var/new_s_tone = tgui_input_number(target, "Choose your character's skin-tone:\n(Light 1 - 220 Dark)", "Skin Tone", -target.s_tone + 35, 220, 1)
+				if(isnum(new_s_tone) && can_still_topic(target, state))
 					new_s_tone = 35 - max(min( round(new_s_tone), 220),1)
 					changed_hook(APPEARANCECHANGER_CHANGED_SKINTONE)
 					return target.change_skin_tone(new_s_tone)
 		if("skin_color")
-			if(can_change_skin_color())
-				var/new_skin = input(usr, "Choose your character's skin colour: ", "Skin Color", rgb(target.r_skin, target.g_skin, target.b_skin)) as color|null
-				if(new_skin && can_still_topic(usr, state))
+			if(can_change_skin_color(target))
+				var/new_skin = input(target, "Choose your character's skin colour: ", "Skin Color", rgb(target.r_skin, target.g_skin, target.b_skin)) as color|null
+				if(new_skin && can_still_topic(target, state))
 					var/r_skin = hex2num(copytext(new_skin, 2, 4))
 					var/g_skin = hex2num(copytext(new_skin, 4, 6))
 					var/b_skin = hex2num(copytext(new_skin, 6, 8))
 					if(target.change_skin_color(r_skin, g_skin, b_skin))
-						update_dna()
+						update_dna(target)
 						changed_hook(APPEARANCECHANGER_CHANGED_SKINCOLOR)
 						return 1
 		if("hair")
-			if(can_change(APPEARANCE_HAIR) && (params["hair"] in valid_hairstyles))
+			if(can_change(target, APPEARANCE_HAIR) && (params["hair"] in valid_hairstyles))
 				if(target.change_hair(params["hair"]))
-					update_dna()
+					update_dna(target)
 					changed_hook(APPEARANCECHANGER_CHANGED_HAIRSTYLE)
 					return 1
 		if("hair_color")
-			if(can_change(APPEARANCE_HAIR_COLOR))
-				var/new_hair = input(usr, "Please select hair color.", "Hair Color", rgb(target.r_hair, target.g_hair, target.b_hair)) as color|null
-				if(new_hair && can_still_topic(usr, state))
+			if(can_change(target, APPEARANCE_HAIR_COLOR))
+				var/new_hair = input(target, "Please select hair color.", "Hair Color", rgb(target.r_hair, target.g_hair, target.b_hair)) as color|null
+				if(new_hair && can_still_topic(target, state))
 					var/r_hair = hex2num(copytext(new_hair, 2, 4))
 					var/g_hair = hex2num(copytext(new_hair, 4, 6))
 					var/b_hair = hex2num(copytext(new_hair, 6, 8))
 					if(target.change_hair_color(r_hair, g_hair, b_hair))
-						update_dna()
+						update_dna(target)
 						changed_hook(APPEARANCECHANGER_CHANGED_HAIRCOLOR)
 						return 1
 		if("facial_hair")
-			if(can_change(APPEARANCE_FACIAL_HAIR) && (params["facial_hair"] in valid_facial_hairstyles))
+			if(can_change(target, APPEARANCE_FACIAL_HAIR) && (params["facial_hair"] in valid_facial_hairstyles))
 				if(target.change_facial_hair(params["facial_hair"]))
-					update_dna()
+					update_dna(target)
 					changed_hook(APPEARANCECHANGER_CHANGED_F_HAIRSTYLE)
 					return 1
 		if("facial_hair_color")
-			if(can_change(APPEARANCE_FACIAL_HAIR_COLOR))
-				var/new_facial = input(usr, "Please select facial hair color.", "Facial Hair Color", rgb(target.r_facial, target.g_facial, target.b_facial)) as color|null
-				if(new_facial && can_still_topic(usr, state))
+			if(can_change(target, APPEARANCE_FACIAL_HAIR_COLOR))
+				var/new_facial = input(target, "Please select facial hair color.", "Facial Hair Color", rgb(target.r_facial, target.g_facial, target.b_facial)) as color|null
+				if(new_facial && can_still_topic(target, state))
 					var/r_facial = hex2num(copytext(new_facial, 2, 4))
 					var/g_facial = hex2num(copytext(new_facial, 4, 6))
 					var/b_facial = hex2num(copytext(new_facial, 6, 8))
 					if(target.change_facial_hair_color(r_facial, g_facial, b_facial))
-						update_dna()
+						update_dna(target)
 						changed_hook(APPEARANCECHANGER_CHANGED_F_HAIRCOLOR)
 						return 1
 		if("eye_color")
-			if(can_change(APPEARANCE_EYE_COLOR))
-				var/new_eyes = input(usr, "Please select eye color.", "Eye Color", rgb(target.r_eyes, target.g_eyes, target.b_eyes)) as color|null
-				if(new_eyes && can_still_topic(usr, state))
+			if(can_change(target, APPEARANCE_EYE_COLOR))
+				var/new_eyes = input(target, "Please select eye color.", "Eye Color", rgb(target.r_eyes, target.g_eyes, target.b_eyes)) as color|null
+				if(new_eyes && can_still_topic(target, state))
 					var/r_eyes = hex2num(copytext(new_eyes, 2, 4))
 					var/g_eyes = hex2num(copytext(new_eyes, 4, 6))
 					var/b_eyes = hex2num(copytext(new_eyes, 6, 8))
 					if(target.change_eye_color(r_eyes, g_eyes, b_eyes))
-						update_dna()
+						update_dna(target)
 						changed_hook(APPEARANCECHANGER_CHANGED_EYES)
 						return 1
 		// VOREStation Add - Ears/Tails/Wings/Markings
 		if("ear")
-			if(can_change(APPEARANCE_ALL_HAIR))
+			if(can_change(target, APPEARANCE_ALL_HAIR))
 				var/datum/sprite_accessory/ears/instance = locate(params["ref"])
 				if(params["clear"])
 					instance = null
@@ -188,11 +188,11 @@
 					return FALSE
 				target.ear_style = instance
 				target.update_hair()
-				update_dna()
+				update_dna(target)
 				changed_hook(APPEARANCECHANGER_CHANGED_HAIRSTYLE)
 				return TRUE
 		if("ear_secondary")
-			if(can_change(APPEARANCE_ALL_HAIR))
+			if(can_change(target, APPEARANCE_ALL_HAIR))
 				var/datum/sprite_accessory/ears/instance = locate(params["ref"])
 				if(params["clear"])
 					instance = null
@@ -204,46 +204,46 @@
 				if(length(target.ear_secondary_colors) < instance.get_color_channel_count())
 					target.ear_secondary_colors.len = instance.get_color_channel_count()
 				target.update_hair()
-				update_dna()
+				update_dna(target)
 				changed_hook(APPEARANCECHANGER_CHANGED_HAIRSTYLE)
 				return TRUE
 		if("ears_color")
-			if(can_change(APPEARANCE_HAIR_COLOR))
-				var/new_hair = input(usr, "Please select ear color.", "Ear Color", rgb(target.r_ears, target.g_ears, target.b_ears)) as color|null
-				if(new_hair && can_still_topic(usr, state))
+			if(can_change(target, APPEARANCE_HAIR_COLOR))
+				var/new_hair = input(target, "Please select ear color.", "Ear Color", rgb(target.r_ears, target.g_ears, target.b_ears)) as color|null
+				if(new_hair && can_still_topic(target, state))
 					target.r_ears = hex2num(copytext(new_hair, 2, 4))
 					target.g_ears = hex2num(copytext(new_hair, 4, 6))
 					target.b_ears = hex2num(copytext(new_hair, 6, 8))
-					update_dna()
+					update_dna(target)
 					target.update_hair()
 					changed_hook(APPEARANCECHANGER_CHANGED_HAIRCOLOR)
 					return 1
 		if("ears2_color")
-			if(can_change(APPEARANCE_HAIR_COLOR))
-				var/new_hair = input(usr, "Please select secondary ear color.", "2nd Ear Color", rgb(target.r_ears2, target.g_ears2, target.b_ears2)) as color|null
-				if(new_hair && can_still_topic(usr, state))
+			if(can_change(target, APPEARANCE_HAIR_COLOR))
+				var/new_hair = input(target, "Please select secondary ear color.", "2nd Ear Color", rgb(target.r_ears2, target.g_ears2, target.b_ears2)) as color|null
+				if(new_hair && can_still_topic(target, state))
 					target.r_ears2 = hex2num(copytext(new_hair, 2, 4))
 					target.g_ears2 = hex2num(copytext(new_hair, 4, 6))
 					target.b_ears2 = hex2num(copytext(new_hair, 6, 8))
-					update_dna()
+					update_dna(target)
 					target.update_hair()
 					changed_hook(APPEARANCECHANGER_CHANGED_HAIRCOLOR)
 					return 1
 		if("ears_secondary_color")
-			if(can_change(APPEARANCE_HAIR_COLOR))
+			if(can_change(target, APPEARANCE_HAIR_COLOR))
 				var/channel = params["channel"]
 				if(channel > length(target.ear_secondary_colors))
 					return TRUE
 				var/existing = LAZYACCESS(target.ear_secondary_colors, channel) || "#ffffff"
-				var/new_color = input(usr, "Please select ear color.", "2nd Ear Color", existing) as color|null
-				if(new_color && can_still_topic(usr, state))
+				var/new_color = input(target, "Please select ear color.", "2nd Ear Color", existing) as color|null
+				if(new_color && can_still_topic(target, state))
 					target.ear_secondary_colors[channel] = new_color
-					update_dna()
+					update_dna(target)
 					target.update_hair()
 					changed_hook(APPEARANCECHANGER_CHANGED_HAIRCOLOR)
 					return TRUE
 		if("tail")
-			if(can_change(APPEARANCE_ALL_HAIR))
+			if(can_change(target, APPEARANCE_ALL_HAIR))
 				var/datum/sprite_accessory/tail/instance = locate(params["ref"])
 				if(params["clear"])
 					instance = null
@@ -251,33 +251,33 @@
 					return FALSE
 				target.tail_style = instance
 				target.update_tail_showing()
-				update_dna()
+				update_dna(target)
 				changed_hook(APPEARANCECHANGER_CHANGED_HAIRSTYLE)
 				return TRUE
 		if("tail_color")
-			if(can_change(APPEARANCE_HAIR_COLOR))
-				var/new_hair = input(usr, "Please select tail color.", "Tail Color", rgb(target.r_tail, target.g_tail, target.b_tail)) as color|null
-				if(new_hair && can_still_topic(usr, state))
+			if(can_change(target, APPEARANCE_HAIR_COLOR))
+				var/new_hair = input(target, "Please select tail color.", "Tail Color", rgb(target.r_tail, target.g_tail, target.b_tail)) as color|null
+				if(new_hair && can_still_topic(target, state))
 					target.r_tail = hex2num(copytext(new_hair, 2, 4))
 					target.g_tail = hex2num(copytext(new_hair, 4, 6))
 					target.b_tail = hex2num(copytext(new_hair, 6, 8))
-					update_dna()
+					update_dna(target)
 					target.update_tail_showing()
 					changed_hook(APPEARANCECHANGER_CHANGED_HAIRCOLOR)
 					return 1
 		if("tail2_color")
-			if(can_change(APPEARANCE_HAIR_COLOR))
-				var/new_hair = input(usr, "Please select secondary tail color.", "2nd Tail Color", rgb(target.r_tail2, target.g_tail2, target.b_tail2)) as color|null
-				if(new_hair && can_still_topic(usr, state))
+			if(can_change(target, APPEARANCE_HAIR_COLOR))
+				var/new_hair = input(target, "Please select secondary tail color.", "2nd Tail Color", rgb(target.r_tail2, target.g_tail2, target.b_tail2)) as color|null
+				if(new_hair && can_still_topic(target, state))
 					target.r_tail2 = hex2num(copytext(new_hair, 2, 4))
 					target.g_tail2 = hex2num(copytext(new_hair, 4, 6))
 					target.b_tail2 = hex2num(copytext(new_hair, 6, 8))
-					update_dna()
+					update_dna(target)
 					target.update_tail_showing()
 					changed_hook(APPEARANCECHANGER_CHANGED_HAIRCOLOR)
 					return 1
 		if("wing")
-			if(can_change(APPEARANCE_ALL_HAIR))
+			if(can_change(target, APPEARANCE_ALL_HAIR))
 				var/datum/sprite_accessory/wing/instance = locate(params["ref"])
 				if(params["clear"])
 					instance = null
@@ -285,33 +285,33 @@
 					return FALSE
 				target.wing_style = instance
 				target.update_wing_showing()
-				update_dna()
+				update_dna(target)
 				changed_hook(APPEARANCECHANGER_CHANGED_HAIRSTYLE)
 				return TRUE
 		if("wing_color")
-			if(can_change(APPEARANCE_HAIR_COLOR))
-				var/new_hair = input(usr, "Please select wing color.", "Wing Color", rgb(target.r_wing, target.g_wing, target.b_wing)) as color|null
-				if(new_hair && can_still_topic(usr, state))
+			if(can_change(target, APPEARANCE_HAIR_COLOR))
+				var/new_hair = input(target, "Please select wing color.", "Wing Color", rgb(target.r_wing, target.g_wing, target.b_wing)) as color|null
+				if(new_hair && can_still_topic(target, state))
 					target.r_wing = hex2num(copytext(new_hair, 2, 4))
 					target.g_wing = hex2num(copytext(new_hair, 4, 6))
 					target.b_wing = hex2num(copytext(new_hair, 6, 8))
-					update_dna()
+					update_dna(target)
 					target.update_wing_showing()
 					changed_hook(APPEARANCECHANGER_CHANGED_HAIRCOLOR)
 					return 1
 		if("wing2_color")
-			if(can_change(APPEARANCE_HAIR_COLOR))
-				var/new_hair = input(usr, "Please select secondary wing color.", "2nd Wing Color", rgb(target.r_wing2, target.g_wing2, target.b_wing2)) as color|null
-				if(new_hair && can_still_topic(usr, state))
+			if(can_change(target, APPEARANCE_HAIR_COLOR))
+				var/new_hair = input(target, "Please select secondary wing color.", "2nd Wing Color", rgb(target.r_wing2, target.g_wing2, target.b_wing2)) as color|null
+				if(new_hair && can_still_topic(target, state))
 					target.r_wing2 = hex2num(copytext(new_hair, 2, 4))
 					target.g_wing2 = hex2num(copytext(new_hair, 4, 6))
 					target.b_wing2 = hex2num(copytext(new_hair, 6, 8))
-					update_dna()
+					update_dna(target)
 					target.update_wing_showing()
 					changed_hook(APPEARANCECHANGER_CHANGED_HAIRCOLOR)
 					return 1
 		if("marking")
-			if(can_change(APPEARANCE_ALL_HAIR))
+			if(can_change(target, APPEARANCE_ALL_HAIR))
 				var/todo = params["todo"]
 				var/name_marking = params["name"]
 				switch (todo)
@@ -323,8 +323,8 @@
 								return TRUE
 					if (1) //add
 						var/list/usable_markings = markings.Copy() ^ body_marking_styles_list.Copy()
-						var/new_marking = tgui_input_list(usr, "Choose a body marking:", "New Body Marking", usable_markings)
-						if(new_marking && can_still_topic(usr, state))
+						var/new_marking = tgui_input_list(target, "Choose a body marking:", "New Body Marking", usable_markings)
+						if(new_marking && can_still_topic(target, state))
 							var/datum/sprite_accessory/marking/mark_datum = body_marking_styles_list[new_marking]
 							if (target.add_marking(mark_datum))
 								changed_hook(APPEARANCECHANGER_CHANGED_HAIRSTYLE)
@@ -339,8 +339,8 @@
 							return TRUE
 					if (4) //color
 						var/current = markings[name_marking] ? markings[name_marking] : "#000000"
-						var/marking_color = input(usr, "Please select marking color", "Marking color", current) as color|null
-						if(marking_color && can_still_topic(usr, state))
+						var/marking_color = input(target, "Please select marking color", "Marking color", current) as color|null
+						if(marking_color && can_still_topic(target, state))
 							var/datum/sprite_accessory/marking/mark_datum = body_marking_styles_list[name_marking]
 							if (target.change_marking_color(mark_datum, marking_color))
 								return TRUE
@@ -374,15 +374,15 @@
 /datum/tgui_module/appearance_changer/tgui_static_data(mob/user)
 	var/list/data = ..()
 
-	generate_data(usr)
+	generate_data(user)
 
-	if(can_change(APPEARANCE_RACE))
+	if(can_change(user, APPEARANCE_RACE))
 		var/species[0]
 		for(var/specimen in valid_species)
 			species[++species.len] =  list("specimen" = specimen)
 		data["species"] = species
 
-	if(can_change(APPEARANCE_HAIR))
+	if(can_change(user, APPEARANCE_HAIR))
 		var/hair_styles[0]
 		for(var/hair_style in valid_hairstyles)
 			hair_styles[++hair_styles.len] = list("hairstyle" = hair_style)
@@ -393,7 +393,7 @@
 		data["wing_styles"] = valid_wingstyles
 		// VOREStation Add End
 
-	if(can_change(APPEARANCE_FACIAL_HAIR))
+	if(can_change(user, APPEARANCE_FACIAL_HAIR))
 		var/facial_hair_styles[0]
 		for(var/facial_hair_style in valid_facial_hairstyles)
 			facial_hair_styles[++facial_hair_styles.len] = list("facialhairstyle" = facial_hair_style)
@@ -408,20 +408,20 @@
 
 	var/mob/living/carbon/human/target = owner
 	if(customize_usr)
-		if(!ishuman(usr))
+		if(!ishuman(ui.user))
 			return TRUE
-		target = usr
+		target = ui.user
 
 	data["name"] = target.name
 	data["specimen"] = target.species.name
 	data["gender"] = target.gender
 	data["gender_id"] = target.identifying_gender
-	data["change_race"] = can_change(APPEARANCE_RACE)
+	data["change_race"] = can_change(target, APPEARANCE_RACE)
 
-	data["change_gender"] = can_change(APPEARANCE_GENDER)
+	data["change_gender"] = can_change(target, APPEARANCE_GENDER)
 	if(data["change_gender"])
 		var/genders[0]
-		for(var/gender in get_genders())
+		for(var/gender in get_genders(target))
 			genders[++genders.len] =  list("gender_name" = gender2text(gender), "gender_key" = gender)
 		data["genders"] = genders
 		var/id_genders[0]
@@ -429,7 +429,7 @@
 			id_genders[++id_genders.len] =  list("gender_name" = gender2text(gender), "gender_key" = gender)
 		data["id_genders"] = id_genders
 
-	data["change_hair"] = can_change(APPEARANCE_HAIR)
+	data["change_hair"] = can_change(target, APPEARANCE_HAIR)
 	if(data["change_hair"])
 		data["hair_style"] = target.h_style
 
@@ -445,20 +445,20 @@
 		data["markings"] = markings_data
 		// VOREStation Add End
 
-	data["change_facial_hair"] = can_change(APPEARANCE_FACIAL_HAIR)
+	data["change_facial_hair"] = can_change(target, APPEARANCE_FACIAL_HAIR)
 	if(data["change_facial_hair"])
 		data["facial_hair_style"] = target.f_style
 
-	data["change_skin_tone"] = can_change_skin_tone()
-	data["change_skin_color"] = can_change_skin_color()
+	data["change_skin_tone"] = can_change_skin_tone(target)
+	data["change_skin_color"] = can_change_skin_color(target)
 	if(data["change_skin_color"])
 		data["skin_color"] = rgb(target.r_skin, target.g_skin, target.b_skin)
 
-	data["change_eye_color"] = can_change(APPEARANCE_EYE_COLOR)
+	data["change_eye_color"] = can_change(target, APPEARANCE_EYE_COLOR)
 	if(data["change_eye_color"])
 		data["eye_color"] = rgb(target.r_eyes, target.g_eyes, target.b_eyes)
 
-	data["change_hair_color"] = can_change(APPEARANCE_HAIR_COLOR)
+	data["change_hair_color"] = can_change(target, APPEARANCE_HAIR_COLOR)
 	if(data["change_hair_color"])
 		data["hair_color"] = rgb(target.r_hair, target.g_hair, target.b_hair)
 		// VOREStation Add - Ears/Tails/Wings
@@ -476,7 +476,7 @@
 		data["wing2_color"] = rgb(target.r_wing2, target.g_wing2, target.b_wing2)
 		// VOREStation Add End
 
-	data["change_facial_hair_color"] = can_change(APPEARANCE_FACIAL_HAIR_COLOR)
+	data["change_facial_hair_color"] = can_change(target, APPEARANCE_FACIAL_HAIR_COLOR)
 	if(data["change_facial_hair_color"])
 		data["facial_hair_color"] = rgb(target.r_facial, target.g_facial, target.b_facial)
 	return data
@@ -512,42 +512,30 @@
 	local_skybox.set_position("CENTER", "CENTER", (world.maxx>>1) - newturf.x, (world.maxy>>1) - newturf.y)
 	*/
 
-/datum/tgui_module/appearance_changer/proc/update_dna()
-	var/mob/living/carbon/human/target = owner
-	if(customize_usr)
-		if(!ishuman(usr))
-			return TRUE
-		target = usr
+/datum/tgui_module/appearance_changer/proc/update_dna(mob/target)
+	if(customize_usr && !ishuman(target))
+		return TRUE
+	var/mob/living/carbon/human/H = target
+	if(H && (flags & APPEARANCE_UPDATE_DNA))
+		H.update_dna()
 
-	if(target && (flags & APPEARANCE_UPDATE_DNA))
-		target.update_dna()
+/datum/tgui_module/appearance_changer/proc/can_change(mob/target, var/flag)
+	if(customize_usr && !ishuman(target))
+		return TRUE
+	var/mob/living/carbon/human/H = target
+	return H && (flags & flag)
 
-/datum/tgui_module/appearance_changer/proc/can_change(var/flag)
-	var/mob/living/carbon/human/target = owner
-	if(customize_usr)
-		if(!ishuman(usr))
-			return TRUE
-		target = usr
+/datum/tgui_module/appearance_changer/proc/can_change_skin_tone(mob/target)
+	if(customize_usr && !ishuman(target))
+		return TRUE
+	var/mob/living/carbon/human/H = target
+	return H && (flags & APPEARANCE_SKIN) && H.species.appearance_flags & HAS_SKIN_TONE
 
-	return target && (flags & flag)
-
-/datum/tgui_module/appearance_changer/proc/can_change_skin_tone()
-	var/mob/living/carbon/human/target = owner
-	if(customize_usr)
-		if(!ishuman(usr))
-			return TRUE
-		target = usr
-
-	return target && (flags & APPEARANCE_SKIN) && target.species.appearance_flags & HAS_SKIN_TONE
-
-/datum/tgui_module/appearance_changer/proc/can_change_skin_color()
-	var/mob/living/carbon/human/target = owner
-	if(customize_usr)
-		if(!ishuman(usr))
-			return TRUE
-		target = usr
-
-	return target && (flags & APPEARANCE_SKIN) && target.species.appearance_flags & HAS_SKIN_COLOR
+/datum/tgui_module/appearance_changer/proc/can_change_skin_color(mob/target)
+	if(customize_usr && !ishuman(target))
+		return TRUE
+	var/mob/living/carbon/human/H = target
+	return H && (flags & APPEARANCE_SKIN) && H.species.appearance_flags & HAS_SKIN_COLOR
 
 /datum/tgui_module/appearance_changer/proc/cut_data()
 	// Making the assumption that the available species remain constant
@@ -610,15 +598,13 @@
 				)))
 	// VOREStation Add End
 
-/datum/tgui_module/appearance_changer/proc/get_genders()
-	var/mob/living/carbon/human/target = owner
-	if(customize_usr)
-		if(!ishuman(usr))
-			return TRUE
-		target = usr
-	var/datum/species/S = target.species
+/datum/tgui_module/appearance_changer/proc/get_genders(mob/target)
+	if(customize_usr && !ishuman(target))
+		return TRUE
+	var/mob/living/carbon/human/H = target
+	var/datum/species/S = H.species
 	var/list/possible_genders = S.genders
-	if(!target.internal_organs_by_name["cell"])
+	if(!H.internal_organs_by_name["cell"])
 		return possible_genders
 	possible_genders = possible_genders.Copy()
 	possible_genders |= NEUTER

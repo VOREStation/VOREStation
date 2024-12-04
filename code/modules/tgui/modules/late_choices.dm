@@ -105,31 +105,33 @@
 
 	return data
 
-/datum/tgui_module/late_choices/tgui_act(action, params)
+/datum/tgui_module/late_choices/tgui_act(action, params, datum/tgui/ui)
 	. = ..()
 	if(.)
 		return
 
-	var/mob/new_player/user = usr
+	if(!isnewplayer(ui.user))
+		return
+	var/mob/new_player/new_user = ui.user
 
 	switch(action)
 		if("join")
 			var/job = params["job"]
 
 			if(!CONFIG_GET(flag/enter_allowed))
-				to_chat(user, span_notice("There is an administrative lock on entering the game!"))
+				to_chat(new_user, span_notice("There is an administrative lock on entering the game!"))
 				return
 			else if(ticker && ticker.mode && ticker.mode.explosion_in_progress)
-				to_chat(user, span_danger("The station is currently exploding. Joining would go poorly."))
+				to_chat(new_user, span_danger("The station is currently exploding. Joining would go poorly."))
 				return
 
-			var/datum/species/S = GLOB.all_species[user.client.prefs.species]
-			if(!is_alien_whitelisted(user, S))
-				tgui_alert(user, "You are currently not whitelisted to play [user.client.prefs.species].")
+			var/datum/species/S = GLOB.all_species[new_user.client.prefs.species]
+			if(!is_alien_whitelisted(new_user, S))
+				tgui_alert(new_user, "You are currently not whitelisted to play [new_user.client.prefs.species].")
 				return 0
 
 			if(!(S.spawn_flags & SPECIES_CAN_JOIN))
-				tgui_alert_async(user,"Your current species, [user.client.prefs.species], is not available for play on the station.")
+				tgui_alert_async(new_user,"Your current species, [new_user.client.prefs.species], is not available for play on the station.")
 				return 0
 
-			user.AttemptLateSpawn(job, user.client.prefs.spawnpoint)
+			new_user.AttemptLateSpawn(job, new_user.client.prefs.spawnpoint)

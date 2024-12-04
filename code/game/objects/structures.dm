@@ -104,7 +104,7 @@
 	if (!can_climb(user))
 		return
 
-	usr.visible_message(span_warning("[user] starts climbing onto \the [src]!"))
+	user.visible_message(span_warning("[user] starts climbing onto \the [src]!"))
 	LAZYDISTINCTADD(climbers, user)
 
 	if(!do_after(user,(issmall(user) ? climb_delay * 0.6 : climb_delay)))
@@ -115,10 +115,10 @@
 		LAZYREMOVE(climbers, user)
 		return
 
-	usr.forceMove(climb_to(user))
+	user.forceMove(climb_to(user))
 
 	if (get_turf(user) == get_turf(src))
-		usr.visible_message(span_warning("[user] climbs onto \the [src]!"))
+		user.visible_message(span_warning("[user] climbs onto \the [src]!"))
 	LAZYREMOVE(climbers, user)
 
 /obj/structure/proc/climb_to(var/mob/living/user)

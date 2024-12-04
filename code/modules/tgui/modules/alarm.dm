@@ -96,13 +96,13 @@
 
 	return all_alarms
 
-/datum/tgui_module/alarm_monitor/tgui_act(action, params)
+/datum/tgui_module/alarm_monitor/tgui_act(action, params, datum/tgui/ui)
 	if(..())
 		return TRUE
-	
+
 	// Camera stuff is AI only.
 	// If you're not an AI, this is a read-only UI.
-	if(!isAI(usr))
+	if(!isAI(ui.user))
 		return
 
 	switch(action)
@@ -111,7 +111,7 @@
 			if(!C)
 				return
 
-			usr.switch_to_camera(C)
+			ui.user.switch_to_camera(C)
 			return 1
 
 /datum/tgui_module/alarm_monitor/tgui_data(mob/user)
