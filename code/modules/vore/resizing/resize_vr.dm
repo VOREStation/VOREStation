@@ -62,7 +62,8 @@
 
 /atom/movable/proc/size_range_check(size_select)		//both objects and mobs needs to have that
 	var/area/A = get_area(src) //Get the atom's area to check for size limit.
-	if((!A?.flag_check(AREA_ALLOW_LARGE_SIZE) && (size_select > 200 || size_select < 25)) || (size_select > 600 || size_select <1))
+	size_select = size_select / 100
+	if((!A?.flag_check(AREA_ALLOW_LARGE_SIZE) && (size_select > RESIZE_MAXIMUM || size_select < RESIZE_MINIMUM)) || (size_select > RESIZE_MAXIMUM_DORMS || size_select < RESIZE_MINIMUM_DORMS))
 		return FALSE
 	return TRUE
 
