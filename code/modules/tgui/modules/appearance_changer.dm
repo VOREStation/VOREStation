@@ -65,6 +65,13 @@
 	whitelist = species_whitelist
 	blacklist = species_blacklist
 
+/datum/tgui_module/appearance_changer/tgui_close(mob/user)
+	. = ..()
+	if(owner == user)
+		UnregisterSignal(owner, COMSIG_OBSERVER_MOVED)
+		owner = null
+		close_ui()
+
 /datum/tgui_module/appearance_changer/Destroy()
 	UnregisterSignal(owner, COMSIG_OBSERVER_MOVED)
 	owner = null

@@ -11,7 +11,7 @@
 	var/glass = 1
 	var/datum/tgui_module/appearance_changer/mirror/M
 
-/obj/structure/mirror/Initialize(mapload, var/dir, var/building = 0, mob/user as mob)
+/obj/structure/mirror/Initialize(mapload, var/dir, var/building = 0)
 	M = new(src, null)
 	if(building)
 		glass = 0
@@ -24,12 +24,18 @@
 	QDEL_NULL(M)
 	. = ..()
 
-/obj/structure/mirror/attack_hand(mob/user as mob)
+/obj/structure/mirror/attack_hand(mob/user)
 	if(!glass) return
 	if(shattered)	return
 
-	if(ishuman(user))
-		M.tgui_interact(user)
+	M.tgui_interact(user)
+
+/obj/structure/mirror/attack_ai(mob/user)
+	if(!glass) return
+	if(shattered)	return
+	if(!Adjacent(user)) return
+
+	M.tgui_interact(user)
 
 /obj/structure/mirror/proc/shatter()
 	if(!glass) return

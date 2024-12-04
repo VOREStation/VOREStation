@@ -92,6 +92,13 @@
 		toggle_open(user)
 	return 0
 
+/turf/simulated/wall/attack_ai(var/mob/user)
+	if(!Adjacent(user))
+		return
+	if(!isrobot((user)))
+		return
+	var/rotting = (locate(/obj/effect/overlay/wallrot) in src)
+	try_touch(user, rotting)
 
 /turf/simulated/wall/attack_hand(var/mob/user)
 
