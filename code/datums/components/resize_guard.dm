@@ -13,7 +13,7 @@
 
 /datum/component/resize_guard/proc/check_resize()
 	var/area/A = get_area(parent)
-	if(!A?.flag_check(AREA_ALLOW_LARGE_SIZE))
+	if(A?.flag_check(AREA_ALLOW_LARGE_SIZE))
 		return
 	var/mob/living/L = parent
 	L.resize(L.size_multiplier, ignore_prefs = TRUE)
