@@ -187,6 +187,10 @@
 	spawn_reagent = "syrup_ginger"
 /obj/item/reagent_containers/chem_disp_cartridge/syrup_gingerbread
 	spawn_reagent = "syrup_gingerbread"
+/obj/item/reagent_containers/chem_disp_cartridge/syrup_peppermint
+	spawn_reagent = "syrup_peppermint"
+/obj/item/reagent_containers/chem_disp_cartridge/syrup_birthday
+	spawn_reagent = "syrup_birthday"
 
 // ERT
 /obj/item/reagent_containers/chem_disp_cartridge/inaprov

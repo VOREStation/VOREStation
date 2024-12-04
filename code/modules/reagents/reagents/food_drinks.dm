@@ -2947,6 +2947,22 @@
 	color = "#b6790f"
 	cup_prefix = "gingerbread"
 
+/datum/reagent/drink/syrup/peppermint
+	name = "peppermint syrup"
+	id = "syrup_peppermint"
+	description = "A sugary syrup that tastes of peppermint."
+	taste_description = "peppermint"
+	color = "#9ce06e"
+	cup_prefix = "peppermint"
+
+/datum/reagent/drink/syrup/birthday_cake
+	name = "birthday cake syrup"
+	id = "syrup_birthday"
+	description = "A sugary syrup that tastes of an overload of sweetness."
+	taste_description = "far too much sugar"
+	color = "#ff00e6"
+	cup_prefix = "birthday cake"
+
 /* Alcohol */
 
 // Basic

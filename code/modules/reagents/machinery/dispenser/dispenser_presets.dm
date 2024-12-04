@@ -179,5 +179,7 @@
 			/obj/item/reagent_containers/chem_disp_cartridge/syrup_strawberry,
 			/obj/item/reagent_containers/chem_disp_cartridge/syrup_coconut,
 			/obj/item/reagent_containers/chem_disp_cartridge/syrup_ginger,
-			/obj/item/reagent_containers/chem_disp_cartridge/syrup_gingerbread
+			/obj/item/reagent_containers/chem_disp_cartridge/syrup_gingerbread,
+			/obj/item/reagent_containers/chem_disp_cartridge/syrup_peppermint,
+			/obj/item/reagent_containers/chem_disp_cartridge/syrup_birthday
 		)
