@@ -67,7 +67,7 @@
 
 /datum/tgui_module/appearance_changer/tgui_close(mob/user)
 	. = ..()
-	if(owner == user)
+	if(owner == user || !customize_usr)
 		UnregisterSignal(owner, COMSIG_OBSERVER_MOVED)
 		owner = null
 		close_ui()
