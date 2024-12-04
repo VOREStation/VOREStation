@@ -109,13 +109,13 @@
 	else
 		return list(access_entertainment, access_tomfoolery, access_mime)
 
-/obj/item/card/id/civilian/straggler
+/obj/item/card/id/civilian/lurker
 	desc = "A rather old and scuffed-looking ID. It seems legit, but something also seems very off somehow. Say, what's the issue/expiry date..?"
 	assignment = "NO DATA"
-	rank = JOB_MAINT_STRAGGLER
+	rank = JOB_MAINT_LURKER
 
-/datum/job/maint_straggler
-	title = JOB_MAINT_STRAGGLER
+/datum/job/maint_lurker
+	title = JOB_MAINT_LURKER
 	departments = list(DEPARTMENT_CIVILIAN)
 	faction = FACTION_STATION
 	total_positions = -1
@@ -123,10 +123,10 @@
 	supervisors = "nobody save your own common sense and good judgement, though Security may get upset if you're not careful"
 	selection_color = "#515151"
 	account_allowed = FALSE	//let's not give the game away by creating accounts that someone might stumble across
-	job_description = "You are a maintenance straggler! You shouldn't be able to see this description anyway! Go prank the CMO or eat the RD's hat or something instead of looking at this."
+	job_description = "You are a maintenance lurker! You shouldn't be able to see this description anyway! Go prank the CMO or eat the RD's hat or something instead of looking at this."
 	whitelist_only = 1
 	latejoin_only = 1
 	requestable = FALSE
-	outfit_type = /decl/hierarchy/outfit/maint_straggler
+	outfit_type = /decl/hierarchy/outfit/maint_lurker
 	access = list(access_maint_tunnels)
 	minimal_access = list(access_maint_tunnels)

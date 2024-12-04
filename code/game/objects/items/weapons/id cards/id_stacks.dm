@@ -339,6 +339,6 @@
 
 //Special
 
-/obj/item/card/id/civilian/straggler
+/obj/item/card/id/civilian/lurker
 	name = "Outdated ID"
 	initial_sprite_stack = list("base-stamp", "stamp-silhouette", "top-olive", "digested")
