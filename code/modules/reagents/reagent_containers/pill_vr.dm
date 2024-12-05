@@ -139,7 +139,7 @@
 
 /obj/item/reagent_containers/pill/sleevingcure
 	name = "Resleeving Sickness Cure (1u)"
-	desc = "A rare cure provided by that helps counteract negative side effects of using imperfect resleeving machinery."
+	desc = "A rare cure provided by Vey-Med that helps counteract negative side effects of using imperfect resleeving machinery."
 	icon_state = "pill3"
 
 /obj/item/reagent_containers/pill/sleevingcure/Initialize()
