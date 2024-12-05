@@ -142,6 +142,12 @@
 		return TRUE
 	return FALSE
 
+/mob/living/silicon/robot/proc/is_type_in_modules(var/type, var/list/modules)
+	for(var/module in modules)
+		if(istype(module, type))
+			return TRUE
+	return FALSE
+
 //Helper procs for cyborg modules on the UI.
 //These are hackish but they help clean up code elsewhere.
 
