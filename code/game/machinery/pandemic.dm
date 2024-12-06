@@ -146,8 +146,8 @@
 				atom_say("Unable to synthesize requested antibody.")
 				return
 
-			var/obj/item/reagent_containers/glass/bottle/B = create_culture(vaccine_name, "vaccine", 200)
-			B.reagents.add_reagent("vaccine", 15, list(vaccine_type))
+			var/obj/item/reagent_containers/glass/bottle/B = create_culture(vaccine_name, REAGENT_ID_VACCINE, 200)
+			B.reagents.add_reagent(REAGENT_ID_VACCINE, 15, list(vaccine_type))
 		if("eject_beaker")
 			eject_beaker()
 			update_tgui_static_data(ui.user)

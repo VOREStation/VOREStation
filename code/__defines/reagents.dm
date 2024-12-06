@@ -149,6 +149,23 @@
 #define REAGENT_ID_LEAD "lead"
 
 
+// Virology
+#define REAGENT_VACCINE "Vaccine"
+#define REAGENT_ID_VACCINE "vaccine"
+#define REAGENT_MUTAGENVIRUSFOOD "Mutagenic agar"
+#define REAGENT_ID_MUTAGENVIRUSFOOD "mutagenvirusfood"
+#define REAGENT_SUGARVIRUSFOOD "Sucrose agar"
+#define REAGENT_ID_SUGARVIRUSFOOD "sugarvirusfood"
+#define REAGENT_ADRANOLVIRUSFOOD "Virus rations"
+#define REAGENT_ID_ADRANOLVIRUSFOOD "adranolvirusfood"
+#define REAGENT_PHORONVIRUSFOOD "Phoronic virus food"
+#define REAGENT_ID_PHORONVIRUSFOOD "phoronvirusfood"
+#define REAGENT_WEAKPHORONVIRUSFOOD "Weakened phoronic virus food"
+#define REAGENT_ID_WEAKPHORONVIRUSFOOD "weakphoronvirusfood"
+#define REAGENT_SIZEVIRUSFOOD "Sizeoxadone virus food"
+#define REAGENT_ID_SIZEVIRUSFOOD "sizevirusfood"
+
+
 // Food and Drinks
 #define REAGENT_MEATCOLONY "A colony of meat cells"
 #define REAGENT_ID_MEATCOLONY "meatcolony"
