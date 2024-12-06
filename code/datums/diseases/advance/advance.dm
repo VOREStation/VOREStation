@@ -3,8 +3,8 @@ GLOBAL_LIST_EMPTY(archive_diseases)
 GLOBAL_LIST_INIT(advance_cures, list(
 	REAGENT_ID_SODIUMCHLORIDE, REAGENT_ID_SUGAR, "orangejuice",
 	"spaceacillin", "glucose", REAGENT_ID_ETHANOL,
-	"dyloteane", "impedrezene", "hepanephrodaxon",
-	"gold", "silver"
+	"leporazine", "impedrezene", "hepanephrodaxon",
+	"silver", "gold"
 ))
 
 /datum/disease/advance
@@ -233,6 +233,13 @@ GLOBAL_LIST_INIT(advance_cures, list(
 	var/s = safepick(GenerateSymptoms(min_level, max_level, 1))
 	if(s)
 		AddSymptom(s)
+		Refresh(1)
+	return
+
+/datum/disease/advance/proc/PickyEvolve(var/list/datum/symptom/D)
+	var/s = safepick(D)
+	if(s)
+		AddSymptom(new s)
 		Refresh(1)
 	return
 

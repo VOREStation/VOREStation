@@ -801,7 +801,7 @@
 		apply_danger_level(0)
 	update_icon()
 
-/obj/machinery/alarm/attackby(obj/item/W as obj, mob/user as mob)
+/obj/machinery/alarm/attackby(obj/item/W as obj, mob/user)
 	add_fingerprint(user)
 	if(alarm_deconstruction_screwdriver(user, W))
 		return
@@ -809,10 +809,10 @@
 		return
 
 	if(istype(W, /obj/item/card/id) || istype(W, /obj/item/pda))// trying to unlock the interface with an ID card
-		togglelock()
+		togglelock(user)
 	return ..()
 
-/obj/machinery/alarm/verb/togglelock(mob/user as mob)
+/obj/machinery/alarm/proc/togglelock(mob/user)
 	if(stat & (NOPOWER|BROKEN))
 		to_chat(user, "It does nothing.")
 		return
@@ -824,9 +824,9 @@
 			to_chat(user, span_warning("Access denied."))
 		return
 
-/obj/machinery/alarm/AltClick()
+/obj/machinery/alarm/AltClick(mob/user)
 	..()
-	togglelock()
+	togglelock(user)
 
 /obj/machinery/alarm/power_change()
 	..()

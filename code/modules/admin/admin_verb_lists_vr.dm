@@ -196,7 +196,8 @@ var/list/admin_verbs_spawn = list(
 	/client/proc/create_gm_message,
 	/client/proc/remove_gm_message,
 	/client/proc/AdminCreateVirus,
-	/client/proc/ReleaseVirus
+	/client/proc/ReleaseVirus,
+	/client/proc/spawn_reagent
 	)
 
 var/list/admin_verbs_server = list(
@@ -283,7 +284,8 @@ var/list/admin_verbs_debug = list(
 	/client/proc/admin_give_modifier,
 	/client/proc/simple_DPS,
 	/datum/admins/proc/view_feedback,
-	/client/proc/stop_sounds
+	/client/proc/stop_sounds,
+	/client/proc/spawn_reagent
 	)
 
 var/list/admin_verbs_paranoid_debug = list(

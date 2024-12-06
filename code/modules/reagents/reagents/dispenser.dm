@@ -86,6 +86,7 @@
 	taste_description = "pure alcohol"
 	reagent_state = LIQUID
 	color = "#404030"
+	cup_prefix = "alcoholic"
 
 	ingest_met = REM * 2
 

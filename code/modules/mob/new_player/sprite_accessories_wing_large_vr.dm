@@ -2,7 +2,7 @@
 
 
 /datum/sprite_accessory/wing/large
-	name = "You should not see this..."
+	name = DEVELOPER_WARNING_NAME
 	icon = 'icons/mob/vore/wings96_vr.dmi'
 	wing_offset = 32
 

@@ -1,6 +1,7 @@
 /obj/machinery/computer/pandemic
 	name = "PanD.E.M.I.C 2200"
 	desc = "Used to work with viruses."
+	circuit = /obj/item/circuitboard/pandemic
 	density = TRUE
 	anchored = TRUE
 	icon = 'icons/obj/pandemic.dmi'
@@ -325,7 +326,7 @@
 		printing = 1
 		var/obj/item/paper/P = new /obj/item/paper(loc)
 		visible_message(span_notice("[src] rattles and prints out a sheet of paper."))
-		// playsound(loc, 'sound/goonstation/machines/printer_dotmatrix.ogg', 50, 1)
+		playsound(loc, 'sound/machines/printer.ogg', 50, 1)
 
 		P.info = "<U><font size=\"4\"><B><center> Releasing Virus </B></center></font></U>"
 		P.info += "<HR>"

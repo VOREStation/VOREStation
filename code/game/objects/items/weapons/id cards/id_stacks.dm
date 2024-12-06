@@ -336,3 +336,9 @@
 /obj/item/card/id/syndicate/officer
 	name = "Syndicate Officer ID"
 	initial_sprite_stack = list("base-stamp-dark", "top-syndicate", "stamp-s", "pips-gold", "stripe-gold")
+
+//Special
+
+/obj/item/card/id/civilian/lurker
+	name = "Outdated ID"
+	initial_sprite_stack = list("base-stamp", "stamp-silhouette", "top-olive", "digested")

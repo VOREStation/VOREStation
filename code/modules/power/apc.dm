@@ -685,7 +685,7 @@ GLOBAL_LIST_EMPTY(apcs)
 
 // attack with hand - remove cell (if cover open) or interact with the APC
 
-/obj/machinery/power/apc/verb/togglelock(mob/user as mob)
+/obj/machinery/power/apc/proc/togglelock(mob/user)
 	if(emagged)
 		to_chat(user, "The panel is unresponsive.")
 	else if(opened)
@@ -873,7 +873,7 @@ GLOBAL_LIST_EMPTY(apcs)
 //			to_world("[area.power_equip]")
 	area.power_change()
 
-/obj/machinery/power/apc/proc/can_use(mob/user as mob, var/loud = 0) //used by attack_hand() and Topic()
+/obj/machinery/power/apc/proc/can_use(mob/user, var/loud = 0) //used by attack_hand() and Topic()
 	if(!user.client)
 		return 0
 	if(isobserver(user) && is_admin(user)) //This is to allow nanoUI interaction by ghost admins.

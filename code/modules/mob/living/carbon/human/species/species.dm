@@ -225,6 +225,8 @@
 	var/rarity_value = 1									// Relative rarity/collector value for this species.
 	var/economic_modifier = 2								// How much money this species makes
 
+	var/vanity_base_fit 									//when shapeshifting using vanity_copy_to, this allows you to have add something so they can go back to their original species fit
+
 	var/vore_belly_default_variant = "H"
 
 	// Determines the organs that the species spawns with and

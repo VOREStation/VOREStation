@@ -343,6 +343,8 @@
 	if(module)
 		var/list/module_sprites = SSrobot_sprites.get_module_sprites(module, src)
 		if(module_sprites.len == 1 || !client)
+			if(!module_sprites.len)
+				return
 			sprite_datum = module_sprites[1]
 			sprite_datum.do_equipment_glamour(module)
 			return

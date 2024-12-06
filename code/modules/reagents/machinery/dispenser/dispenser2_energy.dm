@@ -47,7 +47,7 @@
 /obj/machinery/chemical_dispenser/bar_soft
 	dispense_reagents = list(
 		REAGENT_ID_WATER, "ice", "coffee", "cream", "tea", "icetea", "cola", "spacemountainwind", "dr_gibb", "space_up", "tonic",
-		"sodawater", "lemonjuice", "lemon_lime", REAGENT_ID_SUGAR, "orangejuice", "limejuice", "watermelonjuice", "thirteenloko", "grapesoda"
+		"sodawater", "lemonjuice", "lemon_lime", REAGENT_ID_SUGAR, "orangejuice", "limejuice", "watermelonjuice", "thirteenloko", "grapesoda", "pineapplejuice"
 		)
 
 /obj/machinery/chemical_dispenser/bar_alc
@@ -58,6 +58,13 @@
 
 /obj/machinery/chemical_dispenser/bar_coffee
 	dispense_reagents = list(
-		"coffee", "cafe_latte", "soy_latte", "hot_coco", "milk", "cream", "tea", "ice",
-		"orangejuice", "lemonjuice", "limejuice", "berryjuice", "mint", "decaf", "greentea"
+		"coffee", "cafe_latte", "soy_latte", "hot_coco", "milk", "cream", "tea", "ice", "water",
+		"orangejuice", "lemonjuice", "limejuice", "berryjuice", "mint", "decaf", "greentea", "milk_foam", "drip_coffee"
+		)
+
+/obj/machinery/chemical_dispenser/bar_syrup
+	dispense_reagents = list(
+		"syrup_pumpkin", "syrup_caramel", "syrup_salted_caramel", "syrup_irish", "syrup_almond", "syrup_cinnamon", "syrup_pistachio",
+		"syrup_vanilla", "syrup_toffee", "grenadine", "syrup_cherry", "syrup_butterscotch", "syrup_chocolate", "syrup_white_chocolate", "syrup_strawberry",
+		"syrup_coconut", "syrup_ginger", "syrup_gingerbread", "syrup_peppermint", "syrup_birthday"
 		)

@@ -6,7 +6,7 @@ Necrotizing Fasciitis (AKA Flesh-Eating Disease)
 	Very very noticable.
 	Lowers resistance tremendously.
 	No changes to stage speed.
-	Decreases transmittablity temrendously.
+	Decreases transmittablity tremendously.
 	Fatal Level.
 
 Bonus

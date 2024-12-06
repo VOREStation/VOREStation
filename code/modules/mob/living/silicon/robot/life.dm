@@ -157,7 +157,7 @@
 	var/seejanhud = src.sight_mode & BORGJAN
 
 	var/area/A = get_area(src)
-	if(A?.no_spoilers)
+	if(A?.flag_check(AREA_NO_SPOILERS))
 		disable_spoiler_vision()
 
 	if (src.stat == DEAD || (XRAY in mutations) || (src.sight_mode & BORGXRAY))
