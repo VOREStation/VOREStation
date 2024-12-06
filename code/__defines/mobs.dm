@@ -328,6 +328,7 @@
 #define SPECIES_XENO_HUNTER		"Xenomorph Hunter"
 #define SPECIES_XENO_SENTINEL	"Xenomorph Sentinel"
 #define SPECIES_XENO_QUEEN		"Xenomorph Queen"
+#define SPECIES_XENOMORPH_HYBRID 	"Xenomorph Hybrid"
 
 // Misc species. Mostly unused but might as well be complete.
 #define SPECIES_SHADOW			"Shadow"

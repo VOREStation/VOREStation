@@ -58,7 +58,7 @@
 
 /mob/living/carbon/human/proc/shapeshifter_select_secondary_ears()
 	set name = "Select Secondary Ears"
-	set category = "Abilities"
+	set category = "Abilities.Shapeshift"
 
 	if(stat || world.time < last_special)
 		return
@@ -78,12 +78,13 @@
 	ear_secondary_style = ear_styles_list[pretty_ear_styles[new_ear_style]]
 
 	// Handle color picks
-	var/list/new_colors = list()
-	for(var/channel in 1 to ear_secondary_style.get_color_channel_count())
-		var/channel_name = GLOB.fancy_sprite_accessory_color_channel_names[channel]
-		var/default = LAZYACCESS(ear_secondary_colors, channel) || "#ffffff"
-		var/new_color = input(usr, "Pick [channel_name]", "Ear Color ([channel_name])", default) as color | null
-		new_colors += new_color || default
+	if(ear_secondary_style)
+		var/list/new_colors = list()
+		for(var/channel in 1 to ear_secondary_style.get_color_channel_count())
+			var/channel_name = GLOB.fancy_sprite_accessory_color_channel_names[channel]
+			var/default = LAZYACCESS(ear_secondary_colors, channel) || "#ffffff"
+			var/new_color = input(usr, "Pick [channel_name]", "Ear Color ([channel_name])", default) as color | null
+			new_colors += new_color || default
 
 	update_hair()
 
