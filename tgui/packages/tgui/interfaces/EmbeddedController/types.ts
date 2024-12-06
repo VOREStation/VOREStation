@@ -44,7 +44,7 @@ export type AirlockConsoleAdvancedData = {
   purge: BooleanLike;
   secure: BooleanLike;
   internalTemplateName: string;
-};
+} & PanelOpenData;
 
 export type AirlockConsoleSimpleData = {
   chamber_pressure: number;
@@ -52,7 +52,7 @@ export type AirlockConsoleSimpleData = {
   interior_status: status;
   processing: BooleanLike;
   internalTemplateName: string;
-};
+} & PanelOpenData;
 
 export type AirlockConsolePhoronData = {
   chamber_pressure: number;
@@ -68,7 +68,7 @@ export type DoorAccessConsoleData = {
   interior_status: status;
   processing: BooleanLike;
   internalTemplateName: string;
-};
+} & PanelOpenData;
 
 export type EscapePodConsoleData = {
   docking_status: string;
@@ -80,3 +80,11 @@ export type EscapePodConsoleData = {
 };
 
 export type status = { state: string; lock: string };
+
+export type PanelOpenData = {
+  panel_open: BooleanLike;
+  tags: Record<string, string> | null;
+  frequency: number;
+  min_freq: number;
+  max_freq: number;
+};

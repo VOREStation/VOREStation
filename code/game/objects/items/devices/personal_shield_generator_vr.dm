@@ -539,7 +539,7 @@
 //Misc belts. Admin-spawn only atm.
 
 /obj/item/personal_shield_generator/belt/adminbus
-	desc = "You should not see this. You REALLY should not see this. If you do, you have either been blessed or are about to be the target of some sick prank."
+	desc = DEVELOPER_WARNING_NAME + " You REALLY should not see this. If you do, you have either been blessed or are about to be the target of some sick prank."
 	modifier_type = /datum/modifier/shield_projection/admin
 	generator_hit_cost = 0
 	generator_active_cost = 0

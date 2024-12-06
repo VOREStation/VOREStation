@@ -59,6 +59,8 @@
 	say_list_type = /datum/say_list/corrupthound
 	ai_holder_type = /datum/ai_holder/simple_mob/melee/evasive/corrupthound
 
+	has_langs = list(LANGUAGE_GALCOM, LANGUAGE_EAL) //Robots speak in beep, yes?
+
 	max_buckled_mobs = 1 //Yeehaw
 	can_buckle = TRUE
 	buckle_movable = TRUE

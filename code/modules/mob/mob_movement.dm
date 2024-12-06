@@ -358,13 +358,13 @@
 				return
 			//RS Port #658 Start
 			if(!holder)
-				if(isliving(mob) && A.block_phase_shift)
+				if(isliving(mob) && A.flag_check(AREA_BLOCK_PHASE_SHIFT))
 					to_chat(mob, span_warning("Something blocks you from entering this location while phased out."))
 					return
-				if(isobserver(mob) && A.block_ghosts)
+				if(isobserver(mob) && A.flag_check(AREA_BLOCK_GHOSTS))
 					to_chat(mob, span_warning("Ghosts can't enter this location."))
 					var/area/our_area = mobloc.loc
-					if(our_area.block_ghosts)
+					if(our_area.flag_check(AREA_BLOCK_GHOSTS))
 						var/mob/observer/dead/D = mob
 						D.return_to_spawn()
 					return

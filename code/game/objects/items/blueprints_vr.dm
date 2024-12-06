@@ -145,7 +145,7 @@
 		if(in_use)
 			return
 		var/area/A = get_area(usr)
-		if(A.flags & BLUE_SHIELDED)
+		if(A.flag_check(BLUE_SHIELDED))
 			to_chat(usr, span_warning("You cannot edit restricted areas."))
 			return
 		in_use = TRUE
@@ -156,7 +156,7 @@
 			return
 		in_use = TRUE
 		var/area/A = create_area_whole(usr, src)
-		if(A && (A.flags & BLUE_SHIELDED))
+		if(A?.flag_check(BLUE_SHIELDED))
 			to_chat(usr, span_warning("You cannot edit restricted areas."))
 			in_use = FALSE
 			return
@@ -485,7 +485,7 @@
 		var/area/place = get_area(turfs[i])
 		if(blacklisted_areas[place.type])
 			continue
-		if(!place.requires_power || (place.flags & BLUE_SHIELDED))
+		if(!place.requires_power || (place.flag_check(BLUE_SHIELDED)))
 			continue // No expanding powerless rooms etc
 		areas[place.name] = place
 
@@ -587,7 +587,7 @@
 				continue
 		if(!BUILDABLE_AREA_TYPES[place.type]) //TODOTODOTODO
 			can_make_new_area = 0
-		if(!place.requires_power || (place.flags & BLUE_SHIELDED))
+		if(!place.requires_power || (place.flag_check(BLUE_SHIELDED)))
 			continue // No expanding powerless rooms etc
 		areas[place.name] = place
 

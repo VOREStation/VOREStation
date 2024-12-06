@@ -350,8 +350,8 @@
 	title_blurb = "A " + JOB_ALT_COMEDIAN + " will focus on making people laugh with the power of wit! Telling jokes, stand-up comedy, you are here to make others smile!"
 
 /datum/alt_title/tragedian
-	title = JOB_ALT_ARTIST
-	title_blurb = "A " + JOB_ALT_ARTIST + " will focus on making people think about life and world around them! Life is a tragedy, and who's better to convey its emotions than you?"
+	title = JOB_ALT_TRAGEDIAN
+	title_blurb = "A " + JOB_ALT_TRAGEDIAN + " will focus on making people think about life and world around them! Life is a tragedy, and who's better to convey its emotions than you?"
 
 /datum/alt_title/artist
 	title = JOB_ALT_ARTIST

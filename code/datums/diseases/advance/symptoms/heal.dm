@@ -130,7 +130,7 @@ Bonus
 	Very high level.
 
 Bonus
-	Heals brain damage, treats radiation.
+	Heals clone damage, treats radiation.
 
 //////////////////////////////////////
 */

@@ -100,6 +100,11 @@
 	// Action button
 	actions_types = list(/datum/action/item_action/hardsuit_interface)
 
+	// Protean
+	var/protean = 0
+	var/obj/item/storage/backpack/rig_storage
+	permeability_coefficient = 0  //Protect the squishies, after all this shit should be waterproof.
+
 /obj/item/rig/New()
 	..()
 
@@ -538,7 +543,8 @@
 			offline = 0
 			if(istype(wearer) && !wearer.wearing_rig)
 				wearer.wearing_rig = src
-			slowdown = initial(slowdown)
+			if(!istype(src,/obj/item/rig/protean))	// Stupid snowflake protean special check for rig assimilation code
+				slowdown = initial(slowdown)
 
 	if(offline)
 		if(offline == 1)
@@ -914,14 +920,23 @@
 	wearer.lay_down()
 	to_chat(user, span_notice("\The [wearer] is now [wearer.resting ? "resting" : "getting up"]."))
 
-/obj/item/rig/proc/forced_move(var/direction, var/mob/user)
+/obj/item/rig/proc/forced_move(var/direction, var/mob/user, var/ai_moving = TRUE)
 
 	// Why is all this shit in client/Move()? Who knows?
 	if(world.time < wearer_move_delay)
 		return
 
-	if(!wearer || !wearer.loc || !ai_can_move_suit(user, check_user_module = 1))
+	if(!wearer || !wearer.loc) // Removed some stuff for protean living hardsuit
 		return
+
+// Added this for protean living hardsuit
+	wearer_move_delay = world.time + 2
+	if(ai_moving)
+		if(!ai_can_move_suit(user, check_user_module = 1))
+			return
+		// AIs are a bit slower than regular and ignore move intent.
+		// Moved this to where it's relevant
+		wearer_move_delay = world.time + ai_controlled_move_delay
 
 	//This is sota the goto stop mobs from moving var
 	if(wearer.transforming || !wearer.canmove)
@@ -953,9 +968,6 @@
 		to_chat(src, span_notice("Your host is pinned to a wall by [wearer.pinned[1]]!"))
 		return 0
 
-	// AIs are a bit slower than regular and ignore move intent.
-	wearer_move_delay = world.time + ai_controlled_move_delay
-
 	if(istype(wearer.buckled, /obj/vehicle))
 		//manually set move_delay for vehicles so we don't inherit any mob movement penalties
 		//specific vehicle move delays are set in code\modules\vehicles\vehicle.dm
@@ -980,7 +992,10 @@
 			wearer_move_delay += 2
 			return wearer.buckled.relaymove(wearer,direction)
 
-	cell.use(200) //Arbitrary, TODO
+	var/power_cost = 200
+	if(!ai_moving)
+		power_cost = 20
+	cell.use(power_cost) //Arbitrary, TODO
 	wearer.Move(get_step(get_turf(wearer),direction),direction)
 
 // This returns the rig if you are contained inside one, but not if you are wearing it

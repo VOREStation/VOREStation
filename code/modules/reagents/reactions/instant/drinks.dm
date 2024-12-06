@@ -82,6 +82,90 @@
 	required_reagents = list("ice" = 1, "coffee" = 2)
 	result_amount = 3
 
+/decl/chemical_reaction/instant/drinks/icecoffee/alt
+	name = "Iced Drip Coffee"
+	id = "icecoffee"
+	result = "icecoffee"
+	required_reagents = list("ice" = 1, "drip_coffee" = 2)
+	result_amount = 3
+
+/decl/chemical_reaction/instant/drinks/blackeye
+	name = "Black Eye Coffee"
+	id = "black_eye"
+	result = "black_eye"
+	required_reagents = list("drip_coffee" = 1, "coffee" = 1)
+	result_amount = 1
+
+/decl/chemical_reaction/instant/drinks/americano
+	name = "Americano"
+	id = "americano"
+	result = "americano"
+	required_reagents = list("water" = 1, "long_black" = 2)
+	result_amount = 3
+
+/decl/chemical_reaction/instant/drinks/long_black
+	name = "Long Black Coffee"
+	id = "long_black"
+	result = "long_black"
+	required_reagents = list("water" = 1, "coffee" = 1)
+	result_amount = 2
+
+/decl/chemical_reaction/instant/drinks/macchiato
+	name = "Macchiato"
+	id = "macchiato"
+	result = "macchiato"
+	required_reagents = list("milk" = 1, "coffee" = 2)
+	result_amount = 3
+
+/decl/chemical_reaction/instant/drinks/cortado
+	name = "Cortado"
+	id = "cortado"
+	result = "cortado"
+	required_reagents = list("macchiato" = 3, "milk_foam" = 1) // 2 coffee, 1 milk, 1 milk foam
+	result_amount = 4
+
+/decl/chemical_reaction/instant/drinks/breve
+	name = "Breve"
+	id = "breve"
+	result = "breve"
+	required_reagents = list("cortado" = 4, "cream" = 1) // 2 coffee, 1 milk, 1 milk foam, 1 cream
+	result_amount = 5
+
+/decl/chemical_reaction/instant/drinks/cappuccino
+	name = "Cappuccino"
+	id = "cappuccino"
+	result = "cappuccino"
+	required_reagents = list("milk" = 1, "milk_foam" = 1, "cortado" = 4) // 2 coffee, 2 milk, 2 milk foam
+	result_amount = 6
+
+/decl/chemical_reaction/instant/drinks/flat_white
+	name = "Flat White Coffee"
+	id = "flat_white"
+	result = "flat_white"
+	required_reagents = list("milk" = 2, "drip_coffee" = 1) // 2 drip coffee, 4 milk I'M SORRY THAT ITS DRIP COFFEE, otherwise it just gets in the way of all other reactions
+	result_amount = 3
+
+/decl/chemical_reaction/instant/drinks/mocha
+	name = "Mocha"
+	id = "mocha"
+	result = "mocha"
+	required_reagents = list("milk" = 1, "cream" = 1, "milk_foam" = 1, "hot_coco" = 2, "breve" = 5) // 2 coffee, 2 milk, 2 cream, 2 milk foam and 2 hot coco
+	result_amount = 10
+
+/decl/chemical_reaction/instant/drinks/mocha/alt //incase they use cream before milk
+	name = "Mocha"
+	id = "mocha"
+	result = "mocha"
+	required_reagents = list("cream" = 2, "hot_coco" = 2, "cappuccino" = 6) // 2 coffee, 2 milk, 2 cream, 2 milk foam and 2 hot coco
+	result_amount = 10
+
+/decl/chemical_reaction/instant/drinks/vienna
+	name = "Vienna"
+	id = "vienna"
+	result = "vienna"
+	required_reagents = list("cream" = 2, "coffee" = 1)
+	result_amount = 3
+
 /decl/chemical_reaction/instant/drinks/nuka_cola
 	name = "Nuclear Cola"
 	id = "nuka_cola"
@@ -499,7 +583,7 @@
 	name = "Cafe Latte"
 	id = "cafe_latte"
 	result = "cafe_latte"
-	required_reagents = list("coffee" = 1, "milk" = 1)
+	required_reagents = list("flat_white" = 1, "milk" = 1)
 	result_amount = 2
 
 /decl/chemical_reaction/instant/drinks/acidspit
