@@ -328,6 +328,7 @@
 #define SPECIES_XENO_HUNTER		"Xenomorph Hunter"
 #define SPECIES_XENO_SENTINEL	"Xenomorph Sentinel"
 #define SPECIES_XENO_QUEEN		"Xenomorph Queen"
+#define SPECIES_XENOMORPH_HYBRID 	"Xenomorph Hybrid"
 
 // Misc species. Mostly unused but might as well be complete.
 #define SPECIES_SHADOW			"Shadow"
@@ -456,3 +457,6 @@
 #define VISIBLE_GENDER_FORCE_PLURAL 1		// Used by get_visible_gender to return PLURAL
 #define VISIBLE_GENDER_FORCE_IDENTIFYING 2	// Used by get_visible_gender to return the mob's identifying gender
 #define VISIBLE_GENDER_FORCE_BIOLOGICAL 3	// Used by get_visible_gender to return the mob's biological gender
+
+// Default name for accesories
+#define DEVELOPER_WARNING_NAME "you should not see this..."

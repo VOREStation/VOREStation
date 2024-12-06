@@ -174,7 +174,7 @@
 
 	overwrite_hostility = 1
 
-	mob_faction = "malf_drone"
+	mob_faction = FACTION_MALF_DRONE
 	mob_returns_home = 1
 	mob_wander = 1
 	mob_wander_distance = 5
@@ -203,7 +203,7 @@
 
 	overwrite_hostility = 1
 
-	mob_faction = "malf_drone"
+	mob_faction = FACTION_MALF_DRONE
 	mob_returns_home = 1
 	mob_wander = 1
 	mob_wander_distance = 5
@@ -220,7 +220,7 @@
 	desc = "This is a random hivebot."
 	icon_state = "robot"
 
-	mob_faction = "hivebot"
+	mob_faction = FACTION_HIVEBOT
 
 /obj/random/mob/robotic/hivebot/item_to_spawn()
 	return pick(prob(10);/mob/living/simple_mob/mechanical/hivebot,
@@ -292,7 +292,7 @@
 	desc = "This is a random PoI mercenary."
 	icon_state = "humanoid"
 
-	mob_faction = "syndicate"
+	mob_faction = FACTION_SYNDICATE
 	mob_returns_home = 1
 	mob_wander_distance = 7	// People like to wander, and these people probably have a lot of stuff to guard.
 

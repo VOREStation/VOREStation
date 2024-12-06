@@ -9,6 +9,8 @@
 	/// The display name for the TGUI window. For example, given the var is "APC"...
 	/// When the TGUI window is opened, "wires" will be appended to it's title, and it would become "APC wires".
 	var/proper_name = "Unknown"
+	/// The template to use for TGUI.
+	var/tgui_template = "Wires"
 	/// The total number of wires that our holder atom has.
 	var/wire_count = NONE
 	/// A list of all wires. For a list of valid wires defines that can go here, see `code/__DEFINES/wires.dm`
@@ -92,7 +94,7 @@
 /datum/wires/tgui_interact(mob/user, datum/tgui/ui = null)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, "Wires", "[proper_name] wires")
+		ui = new(user, src, tgui_template, "[proper_name] wires")
 		ui.open()
 
 /datum/wires/tgui_state(mob/user)
