@@ -8,7 +8,7 @@
 /obj/item/reagent_containers/food/drinks/glass2/fitnessflask/proteanshake/Initialize()
 	. = ..()
 	cut_overlays()
-	reagents.add_reagent("liquid_protean", 50)
+	reagents.add_reagent(REAGENT_ID_LIQUIDPROTEAN, 50)
 	reagents.add_reagent(REAGENT_ID_NUTRIMENT, 50)
 
 /obj/item/reagent_containers/food/drinks/glass2/fitnessflask/proteanshake/update_icon()

@@ -210,4 +210,4 @@
 
 /turf/simulated/floor/water/contaminated/pump_reagents(var/datum/reagents/R, var/volume)
 	. = ..()
-	R.add_reagent("vatstabilizer", round(volume / 2, 0.1))
+	R.add_reagent(REAGENT_ID_VATSTABILIZER, round(volume / 2, 0.1))

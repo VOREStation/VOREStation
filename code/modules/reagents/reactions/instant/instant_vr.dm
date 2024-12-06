@@ -106,9 +106,9 @@
 	required_reagents = list("cola" = 1, "mint" = 1)
 
 /decl/chemical_reaction/instant/firefightingfoam //TODO: Make it so we can add this to the foam tanks to refill them
-    name = "Firefighting Foam"
+    name = REAGENT_FIREFOAM
     id = "firefighting foam"
-    result = "firefoam"
+    result = REAGENT_ID_FIREFOAM
     required_reagents = list(REAGENT_ID_WATER = 1)
     catalysts = list(REAGENT_ID_FLUORINE = 10)
     result_amount = 1
@@ -116,9 +116,9 @@
 /decl/chemical_reaction/instant/firefightingfoamqol //Please don't abuse this and make us remove it. Seriously.
     name = "Firefighting Foam EZ"
     id = "firefighting foam ez"
-    result = "firefoam"
+    result = REAGENT_ID_FIREFOAM
     required_reagents = list(REAGENT_ID_WATER = 1)
-    catalysts = list("firefoam" = 5)
+    catalysts = list(REAGENT_ID_FIREFOAM = 5)
     inhibitors = list(REAGENT_ID_FLUORINE = 0.01)
     result_amount = 1
 
@@ -152,7 +152,7 @@
 	name = "Vermicetol"
 	id = "vermicetol"
 	result = "vermicetol"
-	required_reagents = list("bicaridine" = 2, "shockchem" = 1, REAGENT_ID_PHORON = 0.1)
+	required_reagents = list("bicaridine" = 2, REAGENT_ID_SHOCKCHEM = 1, REAGENT_ID_PHORON = 0.1)
 	catalysts = list(REAGENT_ID_PHORON = 5)
 	result_amount = 3
 
@@ -202,8 +202,8 @@
 //SLIME-RELATED BELOW HERE///////
 ///////////////////////////////
 /decl/chemical_reaction/instant/slimeify
-	name = "Advanced Mutation Toxin"
+	name = REAGENT_ADVMUTATIONTOXIN
 	id = "advmutationtoxin2"
-	result = "advmutationtoxin"
+	result = REAGENT_ID_ADVMUTATIONTOXIN
 	required_reagents = list(REAGENT_ID_PHORON = 15, "slimejelly" = 15, "mutationtoxin" = 15) //In case a xenobiologist wants to become a fully fledged slime person.
 	result_amount = 1

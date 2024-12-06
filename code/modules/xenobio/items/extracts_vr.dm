@@ -1408,7 +1408,7 @@
 /decl/chemical_reaction/instant/slime/ruby_brute_juice
 	name = "Slime Brute Juice"
 	id = "m_ruby_brute_juice"
-	result = "berserkmed"
+	result = REAGENT_ID_BERSERKMED
 	required_reagents = list(REAGENT_ID_WATER = 5)
 	result_amount = 30
 	required = /obj/item/slime_extract/ruby

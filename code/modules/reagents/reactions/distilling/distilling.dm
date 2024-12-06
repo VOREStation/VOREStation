@@ -155,7 +155,7 @@
 /decl/chemical_reaction/distilling/berserkjuice
 	name = "Distilling Brute Juice"
 	id = "distill_brutejuice"
-	result = "berserkmed"
+	result = REAGENT_ID_BERSERKMED
 	required_reagents = list("biomass" = 1, "hyperzine" = 3, "synaptizine" = 2, REAGENT_ID_PHORON = 1)
 	result_amount = 3
 
@@ -173,7 +173,7 @@
 /decl/chemical_reaction/distilling/cryogel
 	name = "Distilling Cryogellatin"
 	id = "distill_cryoslurry"
-	result = "cryoslurry"
+	result = REAGENT_ID_CRYOSLURRY
 	required_reagents = list("frostoil" = 7, "enzyme" = 3, "plasticide" = 3, "foaming_agent" = 2)
 	inhibitors = list(REAGENT_ID_WATER = 5)
 	result_amount = 1

@@ -191,7 +191,7 @@
 			desc = "An odd slice, despite the grease and cherries oozing off the top, it smells delicious."
 			nutriment_desc = list("The desire to consume" = 10) // You won't even taste the poison.
 			reagents.add_reagent("neurotoxic_protein", 2)
-			reagents.add_reagent("shockchem", 2)
+			reagents.add_reagent(REAGENT_ID_SHOCKCHEM, 2)
 			reagents.add_reagent("amatoxin", 2)
 			reagents.add_reagent("carpotoxin", 2)
 			reagents.add_reagent(REAGENT_ID_SPIDERTOXIN, 2)

@@ -155,7 +155,7 @@
 /obj/item/reagent_containers/food/snacks/meat/grubmeat/Initialize()
 	. = ..()
 	reagents.add_reagent("protein", 1)
-	reagents.add_reagent("shockchem", 6)
+	reagents.add_reagent(REAGENT_ID_SHOCKCHEM, 6)
 	bitesize = 6
 
 /obj/item/reagent_containers/food/snacks/meat/worm

@@ -155,7 +155,7 @@
 
 /obj/structure/reagent_dispensers/foam/Initialize()
 	. = ..()
-	reagents.add_reagent("firefoam",1000)
+	reagents.add_reagent(REAGENT_ID_FIREFOAM,1000)
 
 //Helium3
 /obj/structure/reagent_dispensers/he3

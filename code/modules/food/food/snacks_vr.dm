@@ -193,7 +193,7 @@
 /obj/item/reagent_containers/food/snacks/pillbug/Initialize()
 	. = ..()
 	reagents.add_reagent("protein", 3)
-	reagents.add_reagent("shockchem", 6)
+	reagents.add_reagent(REAGENT_ID_SHOCKCHEM, 6)
 	bitesize = 6
 
 /obj/item/reagent_containers/food/snacks/pillbugempty
@@ -235,7 +235,7 @@
 /obj/item/reagent_containers/food/snacks/makaroni/Initialize()
 	. = ..()
 	reagents.add_reagent("protein", 1)
-	reagents.add_reagent("shockchem", 6)
+	reagents.add_reagent(REAGENT_ID_SHOCKCHEM, 6)
 	bitesize = 7
 
 /obj/item/reagent_containers/food/snacks/lobster

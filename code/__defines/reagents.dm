@@ -86,7 +86,7 @@
 #define XENO_CHEM_HEAL "heal"
 
 
-// Drugs and Chemical reactions
+// VR reagents
 #define REAGENT_SIZEOXADONE "Sizeoxadone"
 #define REAGENT_ID_SIZEOXADONE "sizeoxadone"
 #define REAGENT_MACROCILLIN "Macrocillin"
@@ -138,6 +138,15 @@
 #define REAGENT_ID_QERRQUEM "qerr_quem"
 
 
+// Modifiers
+#define REAGENT_BERSERKMED "brute juice"
+#define REAGENT_ID_BERSERKMED "berserkmed"
+#define REAGENT_CRYOSLURRY "cryogenic slurry"
+#define REAGENT_ID_CRYOSLURRY "cryoslurry"
+#define REAGENT_VATSTABILIZER "clone growth inhibitor"
+#define REAGENT_ID_VATSTABILIZER "vatstabilizer"
+
+
 // Toxins
 #define REAGENT_PACID "Polytrinic acid"
 #define REAGENT_ID_PACID "pacid"
@@ -164,6 +173,19 @@
 #define REAGENT_ID_WEAKPHORONVIRUSFOOD "weakphoronvirusfood"
 #define REAGENT_SIZEVIRUSFOOD "Sizeoxadone virus food"
 #define REAGENT_ID_SIZEVIRUSFOOD "sizevirusfood"
+
+
+// Misc reagents
+#define REAGENT_ADVMUTATIONTOXIN "Advanced Mutation Toxin"
+#define REAGENT_ID_ADVMUTATIONTOXIN "advmutationtoxin"
+#define REAGENT_NIFREPAIRNANITES "Programmed Nanomachines"
+#define REAGENT_ID_NIFREPAIRNANITES "nifrepairnanites"
+#define REAGENT_FIREFOAM "Firefighting Foam"
+#define REAGENT_ID_FIREFOAM "firefoam"
+#define REAGENT_LIQUIDPROTEAN "Liquid protean"
+#define REAGENT_ID_LIQUIDPROTEAN "liquid_protean"
+#define REAGENT_SHOCKCHEM "200 V"
+#define REAGENT_ID_SHOCKCHEM "shockchem"
 
 
 // Food and Drinks
@@ -352,6 +374,8 @@
 
 
 
+
+Files left: food_drinks.dm, medicine.dm, medicine_vr.dm, other.dm, toxins.dm
 includes: .dm
 excludes: reagents.dm,ores.dm,materials.dm,mre.dm
 

@@ -4,7 +4,7 @@
 	name = "Grub protein drink"
 	id = REAGENT_ID_GRUBSHAKE
 	result = REAGENT_ID_GRUBSHAKE
-	required_reagents = list("shockchem" = 5, REAGENT_ID_WATER = 25)
+	required_reagents = list(REAGENT_ID_SHOCKCHEM = 5, REAGENT_ID_WATER = 25)
 	result_amount = 30
 
 /decl/chemical_reaction/instant/drinks/deathbell
