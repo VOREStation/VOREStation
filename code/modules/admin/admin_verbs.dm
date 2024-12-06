@@ -535,3 +535,18 @@
 	set category = "Debug.Misc"
 
 	src.stat_panel.send_message("create_debug")
+
+/client/proc/spawn_reagent()
+	set name = "Spawn Reagent"
+	set category = "Debug.Game"
+
+	if(!check_rights(R_ADMIN|R_EVENT))	return
+	var/datum/reagent/R = tgui_input_list(usr, "Select a reagent to spawn", "Reagent Spawner", subtypesof(/datum/reagent))
+	if(!R)
+		return
+
+	var/obj/item/reagent_containers/glass/bottle/B = new(usr.loc)
+
+	B.icon_state = "bottle-1"
+	B.reagents.add_reagent(R.id, 60)
+	B.name = "[B.name] of [R.name]"
