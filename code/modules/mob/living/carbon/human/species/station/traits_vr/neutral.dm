@@ -173,7 +173,7 @@
 	H.trait_injection_reagents += REAGENT_ID_MICROCILLIN		// get small
 	H.trait_injection_reagents += REAGENT_ID_MACROCILLIN		// get BIG
 	H.trait_injection_reagents += REAGENT_ID_NORMALCILLIN	// normal
-	H.trait_injection_reagents += "numbenzyme"		// no feelings
+	H.trait_injection_reagents += REAGENT_ID_NUMBENZYME		// no feelings
 	H.trait_injection_reagents += REAGENT_ID_ANDROROVIR 		// -> MALE
 	H.trait_injection_reagents += REAGENT_ID_GYNOROVIR 		// -> FEMALE
 	H.trait_injection_reagents += REAGENT_ID_ANDROGYNOROVIR 	// -> PLURAL

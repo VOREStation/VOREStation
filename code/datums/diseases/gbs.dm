@@ -4,7 +4,7 @@
 	spread_text = "On contact"
 	spread_flags = CONTACT_GENERAL
 	cure_text = "Adranol & Sulfur"
-	cures = list("adranol", "sulfur")
+	cures = list(REAGENT_ID_ADRANOL, "sulfur")
 	cure_chance = 15
 	agent = "Gravitokinetic Bipotential SADS+"
 	viable_mobtypes = list(/mob/living/carbon/human)

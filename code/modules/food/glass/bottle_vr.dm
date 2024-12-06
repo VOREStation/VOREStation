@@ -10,7 +10,7 @@
 	desc = "A small bottle. Vermicetol is an powerful analgesic medication and can be used to treat blunt trauma."
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "bottle-4"
-	prefill = list("vermicetol" = 60)
+	prefill = list(REAGENT_ID_VERMICETOL = 60)
 
 /obj/item/reagent_containers/glass/bottle/keloderm
 	name = "keloderm bottle"

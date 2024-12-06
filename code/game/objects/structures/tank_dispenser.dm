@@ -57,7 +57,7 @@
 /obj/structure/dispenser/tgui_data(mob/user)
 	var/list/data = list()
 	data["oxygen"] = oxygentanks
-	data["plasma"] = phorontanks
+	data["phoron"] = phorontanks
 
 	return data
 
@@ -102,7 +102,7 @@
 	if(..())
 		return
 	switch(action)
-		if("plasma")
+		if("phoron")
 			var/obj/item/tank/phoron/tank = locate() in src
 			if(tank && Adjacent(ui.user))
 				ui.user.put_in_hands(tank)

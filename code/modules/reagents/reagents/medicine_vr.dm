@@ -1,6 +1,6 @@
 /datum/reagent/adranol
-	name = "Adranol"
-	id = "adranol"
+	name = REAGENT_ADRANOL
+	id = REAGENT_ID_ADRANOL
 	description = "A mild sedative that calms the nerves and relaxes the patient."
 	taste_description = "milk"
 	reagent_state = LIQUID
@@ -18,8 +18,8 @@
 		M.make_jittery(min(-25*removed,0))
 
 /datum/reagent/numbing_enzyme
-	name = "Numbing Enzyme"
-	id = "numbenzyme"
+	name = REAGENT_NUMBENZYME
+	id = REAGENT_ID_NUMBENZYME
 	description = "Some sort of organic painkiller."
 	taste_description = "sourness"
 	reagent_state = LIQUID
@@ -61,8 +61,8 @@
 			H.stuttering += 20
 
 /datum/reagent/vermicetol
-	name = "Vermicetol"
-	id = "vermicetol"
+	name = REAGENT_VERMICETOL
+	id = REAGENT_ID_VERMICETOL
 	description = "A potent chemical that treats physical damage at an exceptional rate."
 	taste_description = "sparkles"
 	taste_mult = 3
@@ -79,8 +79,8 @@
 		M.heal_organ_damage(8 * removed * chem_effective, 0)
 
 /datum/reagent/sleevingcure
-	name = "Kitsuhanan Cure"
-	id = "sleevingcure"
+	name = REAGENT_SLEEVINGCURE
+	id = REAGENT_ID_SLEEVINGCURE
 	description = "A rare cure provided by KHI that helps counteract negative side effects of using imperfect resleeving machinery."
 	taste_description = "chocolate peanut butter"
 	taste_mult = 2
@@ -96,8 +96,8 @@
 
 
 /datum/reagent/prussian_blue //We don't have iodine, so prussian blue we go.
-	name = "Prussian Blue"
-	id = "prussian_blue"
+	name = REAGENT_PRUSSIANBLUE
+	id = REAGENT_ID_PRUSSIANBLUE
 	description = "Prussian Blue is an medication used to temporarily pause the effects of radiation poisoning to allow for treatment. Does not treat radiation sickness on its own."
 	taste_description = "salt"
 	reagent_state = SOLID
@@ -113,8 +113,8 @@
 		M.adjustToxLoss(-10 * removed)
 
 /datum/reagent/lipozilase // The anti-nutriment that rapidly removes weight.
-	name = "Lipozilase"
-	id = "lipozilase"
+	name = REAGENT_LIPOZILASE
+	id = REAGENT_ID_LIPOZILASE
 	description = "A chemical compound that causes a dangerously powerful fat-burning reaction."
 	taste_description = "blandness"
 	reagent_state = LIQUID
@@ -127,8 +127,8 @@
 		M.weight -= 0.3
 
 /datum/reagent/lipostipo // The drug that rapidly increases weight.
-	name = "Lipostipo"
-	id = "lipostipo"
+	name = REAGENT_LIPOSTIPO
+	id = REAGENT_ID_LIPOSTIPO
 	description = "A chemical compound that causes a dangerously powerful fat-adding reaction."
 	taste_description = "blubber"
 	reagent_state = LIQUID
@@ -141,8 +141,8 @@
 		M.weight += 0.3
 
 /datum/reagent/polymorph
-	name = "Transforitine"
-	id = "polymorph"
+	name = REAGENT_POLYMORPH
+	id = REAGENT_ID_POLYMORPH
 	description = "A chemical that instantly transforms the consumer into another creature."
 	taste_description = "luck"
 	reagent_state = LIQUID
@@ -315,8 +315,8 @@
 	return new_mob
 
 /datum/reagent/glamour
-	name = "Glamour"
-	id = "glamour"
+	name = REAGENT_GLAMOUR
+	id = REAGENT_ID_GLAMOUR
 	description = "This material is from somewhere else, just being near produces changes."
 	taste_description = "change"
 	reagent_state = LIQUID

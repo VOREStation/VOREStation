@@ -142,38 +142,38 @@
 ///////////////////////////////////////////////////////////////////////////////////
 /// Other Drugs
 /decl/chemical_reaction/instant/adranol
-	name = "Adranol"
-	id = "adranol"
-	result = "adranol"
+	name = REAGENT_ADRANOL
+	id = REAGENT_ID_ADRANOL
+	result = REAGENT_ID_ADRANOL
 	required_reagents = list("milk" = 2, REAGENT_ID_HYDROGEN = 1, REAGENT_ID_POTASSIUM = 1)
 	result_amount = 3
 
 /decl/chemical_reaction/instant/vermicetol
-	name = "Vermicetol"
-	id = "vermicetol"
-	result = "vermicetol"
+	name = REAGENT_VERMICETOL
+	id = REAGENT_ID_VERMICETOL
+	result = REAGENT_ID_VERMICETOL
 	required_reagents = list("bicaridine" = 2, REAGENT_ID_SHOCKCHEM = 1, REAGENT_ID_PHORON = 0.1)
 	catalysts = list(REAGENT_ID_PHORON = 5)
 	result_amount = 3
 
 /decl/chemical_reaction/instant/prussian_blue
-	name = "Prussian Blue"
-	id = "prussian_blue"
-	result = "prussian_blue"
+	name = REAGENT_PRUSSIANBLUE
+	id = REAGENT_ID_PRUSSIANBLUE
+	result = REAGENT_ID_PRUSSIANBLUE
 	required_reagents = list(REAGENT_ID_CARBON = 3, REAGENT_ID_IRON = 1, REAGENT_ID_NITROGEN = 3)
 	result_amount = 7
 
 /decl/chemical_reaction/instant/lipozilase
-	name = "Lipozilase"
-	id = "Lipozilase"
-	result = "lipozilase"
+	name = REAGENT_LIPOZILASE
+	id = REAGENT_ID_LIPOZILASE
+	result = REAGENT_ID_LIPOZILASE
 	required_reagents = list("lipozine" = 1, "diethylamine" = 1)
 	result_amount = 2
 
 /decl/chemical_reaction/instant/lipostipo
-	name = "Lipostipo"
-	id = "Lipostipo"
-	result = "lipostipo"
+	name = REAGENT_LIPOSTIPO
+	id = REAGENT_ID_LIPOSTIPO
+	result = REAGENT_ID_LIPOSTIPO
 	required_reagents = list("lipozine" = 1, REAGENT_ID_NUTRIMENT = 1, REAGENT_ID_FLUORINE = 1)
 	result_amount = 3
 

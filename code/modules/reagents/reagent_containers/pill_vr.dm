@@ -124,7 +124,7 @@
 
 /obj/item/reagent_containers/pill/vermicetol/Initialize()
 	. = ..()
-	reagents.add_reagent("vermicetol", 15)
+	reagents.add_reagent(REAGENT_ID_VERMICETOL, 15)
 	color = reagents.get_color()
 
 /obj/item/reagent_containers/pill/healing_nanites
@@ -144,7 +144,7 @@
 
 /obj/item/reagent_containers/pill/sleevingcure/Initialize()
 	. = ..()
-	reagents.add_reagent("sleevingcure", 1)
+	reagents.add_reagent(REAGENT_ID_SLEEVINGCURE, 1)
 	color = reagents.get_color()
 
 /obj/item/reagent_containers/pill/airlock

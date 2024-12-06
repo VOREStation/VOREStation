@@ -307,7 +307,7 @@
 			return
 		//VOREStation Addition end: shadekin
 
-		if(reagents.has_reagent("prussian_blue")) //Prussian Blue temporarily stops radiation effects.
+		if(reagents.has_reagent(REAGENT_ID_PRUSSIANBLUE)) //Prussian Blue temporarily stops radiation effects.
 			return
 
 		var/damage = 0
@@ -452,7 +452,7 @@
 	// Begin long-term radiation effects
 	// Loss of taste occurs at 100 (2Gy) and is handled in taste.dm
 	// These are all done one after another, so duplication is not required. Someone at 400rads will have the 100&400 effects.
-	if(!radiation && accumulated_rads >= 100  && !reagents.has_reagent("prussian_blue")) //Let's not hit them with long term effects when they're actively being hit with rads.
+	if(!radiation && accumulated_rads >= 100  && !reagents.has_reagent(REAGENT_ID_PRUSSIANBLUE)) //Let's not hit them with long term effects when they're actively being hit with rads.
 		if(!isSynthetic())
 			I = internal_organs_by_name[O_EYES]
 			if(I) //Eye stuff

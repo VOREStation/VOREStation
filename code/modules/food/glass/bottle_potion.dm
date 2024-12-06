@@ -10,7 +10,7 @@
 /obj/item/reagent_containers/glass/bottle/potion/greater_healing
 	name = "greater healing potion"
 	desc = "A small green bottle containing some thick red liquid that claims to rapidly heal injuries."
-	prefill = list("vermicetol" = 30)
+	prefill = list(REAGENT_ID_VERMICETOL = 30)
 
 /obj/item/reagent_containers/glass/bottle/potion/fire_resist
 	name = "fire resistance potion"
@@ -110,12 +110,12 @@
 /obj/item/reagent_containers/glass/bottle/potion/truepolymorph
 	name = "polymorph potion"
 	desc = "A small green bottle containing some strange purple liquid that claims to transform the drinker."
-	prefill = list("polymorph" = 1)
+	prefill = list(REAGENT_ID_POLYMORPH = 1)
 
 /obj/item/reagent_containers/glass/bottle/potion/glamour
 	name = "glamour potion"
 	desc = "A small white potion, the perfectly white liquid inside moves in an almost gaseous manner, yet appears to produce reflections perfectly."
-	prefill = list("glamour" = 1)
+	prefill = list(REAGENT_ID_GLAMOUR = 1)
 
 //Failed potions
 
@@ -147,7 +147,7 @@
 /obj/item/reagent_containers/glass/bottle/potion/lipostipo
 	name = "thick potion"
 	desc = "A small green bottle containing some thick viscous liquid."
-	prefill = list("lipostipo" = 30)
+	prefill = list(REAGENT_ID_LIPOSTIPO = 30)
 
 /obj/item/reagent_containers/glass/bottle/potion/phoron
 	name = "volatile potion"

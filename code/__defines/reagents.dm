@@ -158,6 +158,27 @@
 #define REAGENT_ID_LEAD "lead"
 
 
+// Medicines
+#define REAGENT_ADRANOL "Adranol"
+#define REAGENT_ID_ADRANOL "adranol"
+#define REAGENT_NUMBENZYME "Numbing Enzyme"
+#define REAGENT_ID_NUMBENZYME "numbenzyme"
+#define REAGENT_VERMICETOL "Vermicetol"
+#define REAGENT_ID_VERMICETOL "vermicetol"
+#define REAGENT_SLEEVINGCURE "Kitsuhanan Cure"
+#define REAGENT_ID_SLEEVINGCURE "sleevingcure"
+#define REAGENT_PRUSSIANBLUE "Prussian Blue"
+#define REAGENT_ID_PRUSSIANBLUE "prussian_blue"
+#define REAGENT_LIPOZILASE "Lipozilase"
+#define REAGENT_ID_LIPOZILASE "lipozilase"
+#define REAGENT_LIPOSTIPO "Lipostipo"
+#define REAGENT_ID_LIPOSTIPO "lipostipo"
+#define REAGENT_POLYMORPH "Transforitine"
+#define REAGENT_ID_POLYMORPH "polymorph"
+#define REAGENT_GLAMOUR "Glamour"
+#define REAGENT_ID_GLAMOUR "glamour"
+
+
 // Virology
 #define REAGENT_VACCINE "Vaccine"
 #define REAGENT_ID_VACCINE "vaccine"
@@ -375,7 +396,7 @@
 
 
 
-Files left: food_drinks.dm, medicine.dm, medicine_vr.dm, other.dm, toxins.dm
+Files left: food_drinks.dm, medicine.dm, other.dm, toxins.dm
 includes: .dm
 excludes: reagents.dm,ores.dm,materials.dm,mre.dm
 
@@ -409,277 +430,3 @@ excludes: reagents.dm,ores.dm,materials.dm,mre.dm
 #define REAGENT_ID_URANIUM "uranium"
 #define REAGENT_ID_PLATINUM "platinum"
 #define REAGENT_ID_CALCIUMCARBONATE "calciumcarbonate"
-
-todos
-defective_nanites
-coco
-mold
-left4zed
-	var/list/produceable_chemicals = list("inaprovaline","anti_toxin","alkysine","bicaridine","tramadol","kelotane","leporazine",REAGENT_ID_IRON,REAGENT_ID_PHORON,"condensedcapsaicin_v","frostoil")
-	var/randomized_reagent = REAGENT_ID_IRON	// The reagent chosen at random to be produced, if there's no one piloting the worm.
-	var/passive_reagent = "paracetamol"	// Reagent passively produced by the leech. Should usually be a painkiller.
-
-
-
-
-
-	xenoChemList += "inaprovaline"
-	xenoChemList += "bicaridine"
-	xenoChemList += "dylovene"
-	xenoChemList += "dexalinp"
-	xenoChemList += "tricordrazine"
-	xenoChemList += "cryoxadone"
-	xenoChemList += "clonexadone"
-	xenoChemList += "paracetamol"
-	xenoChemList += "tramadol"
-	xenoChemList += "oxycodone"
-	xenoChemList += "ryetalyn"
-	xenoChemList += "hyperzine"
-	xenoChemList += "ethylredoxrazine"
-	xenoChemList += "hyronalin"
-	xenoChemList += "arithrazine"
-	xenoChemList += "spaceacillin"
-	xenoChemList += "sterilizine"
-	xenoChemList += "leporazine"
-	xenoChemList += "methylphenidate"
-	xenoChemList += "citalopram"
-	xenoChemList += "paroxetine"
-	xenoChemList += "macrocillin"
-	xenoChemList += "microcillin"
-	xenoChemList += "normalcillin"
-	xenoChemList += "sizeoxadone"
-	xenoChemList += "ickypak"
-	xenoChemList += "unsorbitol"
-	xenoChemList += "toxin"
-	xenoChemList += "carpotoxin"
-	xenoChemList += "potassium_chloride"
-	xenoChemList += "potassium_chlorophoride"
-	xenoChemList += "zombiepowder"
-	xenoChemList += "fertilizer"
-	xenoChemList += "eznutrient"
-	xenoChemList += "left4zed"
-	xenoChemList += "robustharvest"
-	xenoChemList += "plantbgone"
-	xenoChemList += "serotrotium"
-	xenoChemList += "nicotine"
-	xenoChemList += "uranium"
-	xenoChemList += "silver"
-	xenoChemList += "gold"
-	xenoChemList += "adrenaline"
-	xenoChemList += "holywater"
-	xenoChemList += "ammonia"
-	xenoChemList += "diethylamine"
-	xenoChemList += "fluorosurfactant"
-	xenoChemList += "foaming_agent"
-	xenoChemList += "thermite"
-	xenoChemList += "cleaner"
-	xenoChemList += "lube"
-	xenoChemList += "glycerol"
-	xenoChemList += "coolant"
-	xenoChemList += "luminol"
-	xenoChemList += "cornoil"
-	xenoChemList += "lipozine"
-	xenoChemList += "sodiumchloride"
-	xenoChemList += "frostoil"
-	xenoChemList += "capsaicin"
-	xenoChemList += "condensedcapsaicin"
-	xenoChemList += "neurotoxin"
-
-
-supermatter
-mydrogen
-silicon
-
-deuterium
-tritium
-helium-3
-boron
-			"adminordrazine",
-			REAGENT_ID_NUTRIMENT,
-			"macrocillin",
-			"microcillin",
-			"normalcillin",
-			"magicdust"
-	kitchen_tag = "lime"
-	chems = list(REAGENT_ID_NUTRIMENT = list(1,20), "limejuice" = list(10,20))
-
-/datum/seed/citrus/New()
-	..()
-	set_trait(TRAIT_HARVEST_REPEAT,1)
-	set_trait(TRAIT_JUICY,1)
-	set_trait(TRAIT_MATURATION,6)
-	set_trait(TRAIT_PRODUCTION,6)
-	set_trait(TRAIT_YIELD,4)
-	set_trait(TRAIT_POTENCY,15)
-	set_trait(TRAIT_PRODUCT_ICON,"treefruit")
-	set_trait(TRAIT_PRODUCT_COLOUR,"#3AF026")
-	set_trait(TRAIT_PLANT_ICON,"tree")
-	set_trait(TRAIT_FLESH_COLOUR,"#3AF026")
-
-/datum/seed/citrus/lemon
-	name = "lemon"
-	seed_name = "lemon"
-	display_name = "lemon trees"
-	kitchen_tag = "lemon"
-	chems = list(REAGENT_ID_NUTRIMENT = list(1,20), "lemonjuice" = list(10,20))
-
-/datum/seed/citrus/lemon/New()
-	..()
-	set_trait(TRAIT_PRODUCES_POWER,1)
-	set_trait(TRAIT_PRODUCT_ICON,"lemon")
-	set_trait(TRAIT_PRODUCT_COLOUR,"#F0E226")
-	set_trait(TRAIT_FLESH_COLOUR,"#F0E226")
-	set_trait(TRAIT_IDEAL_LIGHT, 6)
-
-/datum/seed/citrus/orange
-	name = "orange"
-	seed_name = "orange"
-	display_name = "orange trees"
-	kitchen_tag = "orange"
-	chems = list(REAGENT_ID_NUTRIMENT = list(1,20), "orangejuice" = list(10,20))
- list("zombiepowder" = list(1,10),"condensedcapsaicin""imidazoline" = list(3,5), "carrotjuice" = list(10,20))
-	chemreact = list(	REAGENT_ID_NUTRIMENT = list(XENO_CHEM_NUTRI = 0.5),
-						"radium" = list(XENO_CHEM_TOXIC = 0.3, XENO_CHEM_MUT = 1),
-						"mutagen" = list(XENO_CHEM_NUTRI = 0.4, XENO_CHEM_MUT = 2),
-						"water" = list(XENO_CHEM_NUTRI = -0.1),
-						"milk" = list(XENO_CHEM_NUTRI = 0.3),
-						"sacid" = list(XENO_CHEM_TOXIC = 1),
-						"pacid" = list(XENO_CHEM_TOXIC = 2),
-						"chlorine" = list(XENO_CHEM_TOXIC = 0.5),
-						"ammonia" = list(XENO_CHEM_TOXIC = 0.5),
-						"sodawater" = list(XENO_CHEM_TOXIC = 0.1, XENO_CHEM_NUTRI = -0.1),
-						"beer" = list(XENO_CHEM_NUTRI = 0.6),
-						"diethylamine" = list(XENO_CHEM_NUTRI = 0.9),
-						"sugar" = list(XENO_CHEM_TOXIC = 0.4, XENO_CHEM_NUTRI = 0.2),
-						"eznutrient" = list(XENO_CHEM_NUTRI = 0.8),
-						"cryoxadone" = list(XENO_CHEM_TOXIC = 0.4),
-						"flourine" = list(XENO_CHEM_TOXIC = 0.1),
-						"robustharvest" = list(XENO_CHEM_NUTRI = 1.5),
-						"glucose" = list(XENO_CHEM_NUTRI = 0.5),
-						"blood" = list(XENO_CHEM_NUTRI = 0.75, XENO_CHEM_TOXIC = 0.05, XENO_CHEM_MUT = 0.45),
-						"fuel" = list(XENO_CHEM_TOXIC = 0.4),
-						"toxin" = list(XENO_CHEM_TOXIC = 0.5),
-						"carpotoxin" = list(XENO_CHEM_TOXIC = 1, XENO_CHEM_MUT = 1.5),
-						REAGENT_ID_PHORON = list(XENO_CHEM_TOXIC = 1.5, XENO_CHEM_MUT = 0.03),
-						"virusfood" = list(XENO_CHEM_NUTRI = 1.5, XENO_CHEM_MUT = 0.32),
-						"cyanide" = list(XENO_CHEM_TOXIC = 3.5),
-						"slimejelly" = list(XENO_CHEM_NUTRI = 0.5),
-						"amutationtoxin" = list(XENO_CHEM_TOXIC = 0.1, XENO_CHEM_HEAL = 1.5, XENO_CHEM_MUT = 3),
-						"mutationtoxin" = list(XENO_CHEM_TOXIC = 0.1, XENO_CHEM_HEAL = 1, XENO_CHEM_MUT = 1.5),
-						"gold" = list(XENO_CHEM_HEAL = 0.3, XENO_CHEM_NUTRI = 0.7, XENO_CHEM_MUT = 0.3),
-						"uranium" = list(XENO_CHEM_HEAL = 0.3, XENO_CHEM_TOXIC = 0.7, XENO_CHEM_MUT = 1.2),
-						"glycerol" = list(XENO_CHEM_NUTRI = 0.6),
-						"woodpulp" = list(XENO_CHEM_HEAL = 0.1, XENO_CHEM_NUTRI = 0.7),
-						"docilitytoxin" = list(XENO_CHEM_NUTRI = 0.3)	)
-re.id == "protein" || re.id == "glucose" || re.id == "fishbait")
-liquid_protean
-peanutoil
-cornoil
-durianpaste
-		if(reagents.has_reagent("sugar") || reagents.has_reagent("cherryjelly") || reagents.has_reagent("honey") || reagents.has_reagent("berryjuice"))
-			descriptors |= "sweet"
-		if(reagents.has_reagent("anti_toxin"))
-			descriptors |= "astringent"
-		if(reagents.has_reagent("frostoil"))
-			descriptors |= "numbing"
-		if(reagents.has_reagent(REAGENT_ID_NUTRIMENT))
-			descriptors |= "nutritious"
-		if(reagents.has_reagent("condensedcapsaicin") || reagents.has_reagent("capsaicin"))
-			descriptors |= "spicy"
-		if(reagents.has_reagent("coco"))
-			descriptors |= "bitter"
-		if(reagents.has_reagent("orangejuice") || reagents.has_reagent("lemonjuice") || reagents.has_reagent("limejuice"))
-			descriptors |= "sweet-sour"
-		if(reagents.has_reagent("radium") || reagents.has_reagent("uranium"))
-			descriptors |= "radioactive"
-		if(reagents.has_reagent("amatoxin") || reagents.has_reagent("toxin"))
-			descriptors |= "poisonous"
-		if(reagents.has_reagent("psilocybin") || reagents.has_reagent("bliss") || reagents.has_reagent("earthsblood"))
-			descriptors |= "hallucinogenic"
-		if(reagents.has_reagent("bicaridine") || reagents.has_reagent("earthsblood"))
-			descriptors |= "medicinal"
-		if(reagents.has_reagent("gold") || reagents.has_reagent("earthsblood"))
-			descriptors |= "shiny"
-		if(reagents.has_reagent("lube"))
-			descriptors |= "slippery"
-		if(reagents.has_reagent("pacid") || reagents.has_reagent("sacid"))
-			descriptors |= "acidic"
-
-	var/static/list/toxic_reagents = list(
-		"anti_toxin" =     -2,
-		"toxin" =           2,
-		REAGENT_ID_FLUORINE =        2.5,
-		"chlorine" =        1.5,
-		"sacid" =           1.5,
-		"pacid" =           3,
-		"plantbgone" =      3,
-		"cryoxadone" =     -3,
-		"radium" =          2
-		)
-	var/static/list/nutrient_reagents = list(
-		"milk" =            0.1,
-		"beer" =            0.25,
-		"phosphorus" =      0.1,
-		"sugar" =           0.1,
-		"sodawater" =       0.1,
-		"ammonia" =         1,
-		"diethylamine" =    2,
-		REAGENT_ID_NUTRIMENT =       1,
-		"adminordrazine" =  1,
-		"eznutrient" =      1,
-		"robustharvest" =   1,
-		"left4zed" =        1
-		)
-	var/static/list/weedkiller_reagents = list(
-		REAGENT_ID_FLUORINE =       -4,
-		"chlorine" =       -3,
-		"phosphorus" =     -2,
-		"sugar" =           2,
-		"sacid" =          -2,
-		"pacid" =          -4,
-		"plantbgone" =     -8,
-		"adminordrazine" = -5
-		)
-	var/static/list/pestkiller_reagents = list(
-		"sugar" =           2,
-		"diethylamine" =   -2,
-		"adminordrazine" = -5
-		)
-	var/static/list/water_reagents = list(
-		"water" =           1,
-		"adminordrazine" =  1,
-		"milk" =            0.9,
-		"beer" =            0.7,
-		REAGENT_ID_FLUORINE =       -0.5,
-		"chlorine" =       -0.5,
-		"phosphorus" =     -0.5,
-		"water" =           1,
-		"sodawater" =       1,
-		)
-
-	// Beneficial reagents also have values for modifying health, yield_mod and mut_mod (in that order).
-	var/static/list/beneficial_reagents = list(
-		"beer" =           list( -0.05, 0,   0  ),
-		REAGENT_ID_FLUORINE =       list( -2,    0,   0  ),
-		"chlorine" =       list( -1,    0,   0  ),
-		"phosphorus" =     list( -0.75, 0,   0  ),
-		"sodawater" =      list(  0.1,  0,   0  ),
-		"sacid" =          list( -1,    0,   0  ),
-		"pacid" =          list( -2,    0,   0  ),
-		"plantbgone" =     list( -2,    0,   0.2),
-		"cryoxadone" =     list(  3,    0,   0  ),
-		"ammonia" =        list(  0.5,  0,   0  ),
-		"diethylamine" =   list(  1,    0,   0  ),
-		REAGENT_ID_NUTRIMENT =      list(  0.5,  0.1, 0  ),
-		"radium" =         list( -1.5,  0,   0.2),
-		"adminordrazine" = list(  1,    1,   1  ),
-		"robustharvest" =  list(  0,    0.2, 0  ),
-		"left4zed" =       list(  0,    0,   0.2)
-		)
-
-	// Mutagen list specifies minimum value for the mutation to take place, rather
-	// than a bound as the lists above specify.
-	var/static/list/mutagenic_reagents = list(
-		"radium" =  8,
-		"mutagen" = 15
-		)

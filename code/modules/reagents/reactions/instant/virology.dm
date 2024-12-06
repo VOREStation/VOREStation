@@ -9,7 +9,7 @@
 	name = REAGENT_ADRANOLVIRUSFOOD
 	id = REAGENT_ID_ADRANOLVIRUSFOOD
 	result = REAGENT_ID_ADRANOLVIRUSFOOD
-	required_reagents = list("adranol" = 1, "virusfood" = 1)
+	required_reagents = list(REAGENT_ID_ADRANOL = 1, "virusfood" = 1)
 	result_amount = 1
 
 /decl/chemical_reaction/instant/virus_food_phoron
@@ -23,7 +23,7 @@
 	name = REAGENT_WEAKPHORONVIRUSFOOD
 	id = REAGENT_ID_WEAKPHORONVIRUSFOOD
 	result = REAGENT_ID_WEAKPHORONVIRUSFOOD
-	required_reagents = list("adranol" = 1, REAGENT_ID_PHORONVIRUSFOOD = 1)
+	required_reagents = list(REAGENT_ID_ADRANOL = 1, REAGENT_ID_PHORONVIRUSFOOD = 1)
 	result_amount = 2
 
 /decl/chemical_reaction/instant/virus_food_mutagen_sugar
@@ -142,7 +142,7 @@
 /decl/chemical_reaction/instant/mix_virus/rem_virus
 	name = "Devolve Virus"
 	id = "remvirus"
-	required_reagents = list("adranol" = 1)
+	required_reagents = list(REAGENT_ID_ADRANOL = 1)
 	catalysts = list(REAGENT_ID_BLOOD = 1)
 
 /decl/chemical_reaction/instant/mix_virus/rem_virus/on_reaction(var/datum/reagents/holder)
