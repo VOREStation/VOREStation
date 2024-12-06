@@ -121,7 +121,7 @@
 
 
 /area/submap/debrisfield/luxury_boat
-	secret_name = 0
+	flags = RAD_SHIELDED | AREA_FORBID_EVENTS
 
 /area/submap/debrisfield/luxury_boat/bridge
 	name = "Captain's Quarters"
@@ -212,7 +212,7 @@
 	name = "POI - Destroyed Mining Outpost"
 
 /area/submap/debrisfield/tinyshuttle
-	secret_name = 0
+	flags = RAD_SHIELDED | AREA_FORBID_EVENTS
 
 /area/submap/debrisfield/tinyshuttle/crew
 	name = "Crew Bay"

@@ -40,7 +40,6 @@ GLOBAL_LIST_EMPTY(areas_by_type)
 
 	var/music = null
 	var/has_gravity = 1 // Don't check this var directly; use get_gravity() instead
-	var/secret_name = FALSE // This tells certain things that display areas' names that they shouldn't display this area's name.
 	var/obj/machinery/power/apc/apc = null
 	var/no_air = null
 //	var/list/lights				// list of all lights on this area
@@ -52,12 +51,6 @@ GLOBAL_LIST_EMPTY(areas_by_type)
 	var/list/forced_ambience = null
 	var/sound_env = STANDARD_STATION
 	var/turf/base_turf //The base turf type of the area, which can be used to override the z-level's base turf
-	var/forbid_events = FALSE // If true, random events will not start inside this area.
-	var/forbid_singulo = FALSE // If true singulo will not move in.
-	var/no_spoilers = FALSE // If true, makes it much more difficult to see what is inside an area with things like mesons.
-	var/soundproofed = FALSE // If true, blocks sounds from other areas and prevents hearers on other areas from hearing the sounds within.
-	var/block_phase_shift = FALSE //Stops phase shifted mobs from entering // RS Port #658
-	var/block_ghosts = FALSE	//Stops ghosts from entering //RS Port #658
 
 /area/New()
 	// Used by the maploader, this must be done in New, not init
@@ -76,7 +69,7 @@ GLOBAL_LIST_EMPTY(areas_by_type)
 		power_equip = 0
 		power_environ = 0
 	power_change()		// all machines set to current power level, also updates lighting icon
-	if(no_spoilers)
+	if(flag_check(AREA_NO_SPOILERS))
 		set_spoiler_obfuscation(TRUE)
 
 // Changes the area of T to A. Do not do this manually.
@@ -398,7 +391,7 @@ var/list/mob/living/forced_ambiance_list = new
 	L.lastarea = src
 	L.lastareachange = world.time
 	play_ambience(L, initial = TRUE)
-	if(no_spoilers)
+	if(flag_check(AREA_NO_SPOILERS))
 		L.disable_spoiler_vision()
 	check_phase_shift(M)	//RS Port #658
 
@@ -542,7 +535,7 @@ var/list/ghostteleportlocs = list()
 	return 1
 
 /area/proc/get_name()
-	if(secret_name)
+	if(flag_check(AREA_SECRET_NAME))
 		return "Unknown Area"
 	return name
 
@@ -558,9 +551,14 @@ GLOBAL_DATUM(spoiler_obfuscation_image, /image)
 	else
 		cut_overlay(GLOB.spoiler_obfuscation_image)
 
+/area/proc/flag_check(var/flag, var/match_all = FALSE)
+    if(match_all)
+        return (flags & flag) == flag
+    return flags & flag
+
 // RS Port #658 Start
 /area/proc/check_phase_shift(var/mob/ourmob)
-	if(!block_phase_shift || !ourmob.incorporeal_move)
+	if(!flag_check(AREA_BLOCK_PHASE_SHIFT) || !ourmob.incorporeal_move)
 		return
 	if(!isliving(ourmob))
 		return

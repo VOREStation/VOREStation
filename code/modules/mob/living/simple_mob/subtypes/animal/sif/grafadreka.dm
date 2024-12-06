@@ -135,7 +135,7 @@ Field studies suggest analytical abilities on par with some species of cepholapo
 	bitesize = 10
 	gender = NEUTER
 
-	has_langs = list("Drake")
+	has_langs = list(LANNGUAGE_DRAKE)
 
 	see_in_dark = 8 // on par with Taj
 
