@@ -15,9 +15,10 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 //Nanotech Implant Foundation
 /obj/item/nif
 	name = "nanite implant framework"
-	desc = "A somewhat diminished knockoff of a Morpheus nano working surface, in a box. Can print new \
+	desc = "A mass-production model of a KHI nano working surface, in a box. Can print new \
 	implants inside living hosts on the fly based on software uploads. Must be surgically \
-	implanted in the head to work. May eventually wear out and break."
+	implanted in the head to work, and requires periodical maintenance. Warning: this device \
+	is extremely sensitive to electromagnetic pulse waves."
 
 	icon = 'icons/obj/device_alt.dmi'
 	icon_state = "nif_0"
@@ -625,14 +626,14 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 	starting_software = null
 
 /obj/item/nif/authentic
-	name = "\improper Morpheus NIF"
-	desc = "An actual Morpheus working surface, in a box. From a society slightly less afraid \
-	of self-replicating nanotechnology. Basically just a high-endurance NIF."
+	name = "\improper KHI NIF"
+	desc = "An actual KHI working surface, in a box. These are the high-end models, usually only available to big spenders and those with serious contacts. \
+	Despite the all the marketing speak, they're really just a high-endurance NIF when it comes down to it."
 	durability = 1000
 
 /obj/item/nif/bioadap
 	name = "bioadaptive NIF"
-	desc = "A NIF that goes out of it's way to accomidate strange body types. \
+	desc = "A NIF that goes out of it's way to accomodate strange body types. \
 	Will function in species where it normally wouldn't."
 	durability = 75
 	bioadap = TRUE

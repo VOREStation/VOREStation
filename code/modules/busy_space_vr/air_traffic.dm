@@ -104,7 +104,7 @@ var/datum/lore/atc_controller/atc = new/datum/lore/atc_controller
 	var/comm_first_name = "[owner] [shipname]"	//corpname + shipname for speaker identity in log
 	var/combined_second_name = "[secondprefix] [secondid] |[secondshipname]|"
 	var/comm_second_name = "[secondowner] [secondshipname]"
-	var/short_second_name = "[secondprefix] |[secondshipname]|"
+	//var/short_second_name = "[secondprefix] |[secondshipname]|"	//not actually used for now
 
 	var/mission_noun = pick(source.flight_types)		//pull from a list of owner-specific flight ops, to allow an extra dash of flavor
 	if(source.complex_tasks)				//if our source has the complex_tasks flag, regenerate with a two-stage assignment

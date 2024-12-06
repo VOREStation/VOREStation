@@ -1822,6 +1822,51 @@
 			"a Chimera research lab"
 			)
 
+/datum/lore/organization/tsc/kitsuhana	//reassigned category
+	name = "Kitsuhana Heavy Industries"
+	short_name = "KHI"
+	desc = "Data pending replacement, please stand by!"
+	history = "Data pending replacement, please stand by!"
+	work = "data pending"
+	headquarters = "Kitsuhana Prime"
+	motto = "Data pending."
+
+	org_type = "neutral"	//in lieu of coming up with mottos, for now
+	//Culture ship names!
+	ship_prefixes = list("KHT" = "transport", "KHI" = "general operations")
+	append_ship_names = TRUE
+	added_ship_names = list(
+			"Nervous Energy",
+			"Prosthetic Conscience",
+			"Revisionist",
+			"Trade Surplus",
+			"Flexible Demeanour",
+			"Just Read The Instructions",
+			"Limiting Factor",
+			"Cargo Cult",
+			"Gunboat Diplomat",
+			"A Ship With A View",
+			"Cantankerous",
+			"I Thought He Was With You",
+			"Never Talk To Strangers",
+			"Sacrificial Victim",
+			"Unwitting Accomplice",
+			"Bad For Business",
+			"Just Testing",
+			"Size Isn't Everything",
+			"Yawning Angel",
+			"Liveware Problem",
+			"Very Little Gravitas Indeed",
+			"Zero Gravitas",
+			"Gravitas Free Zone",
+			"Absolutely No You-Know-What"
+			)
+	destination_names = list(
+			"the Kitsuhana Forge",
+			"a KHI supply depot",
+			"a KHI industrial complex"
+			)
+
 //////////////////////////////////////////////////////////////////////////////////
 
 // Other

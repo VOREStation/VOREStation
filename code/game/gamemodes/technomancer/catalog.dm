@@ -51,7 +51,7 @@ var/list/all_technomancer_assistance = subtypesof(/datum/technomancer/assistance
 //VOREStation Add
 /obj/item/technomancer_catalog/universal
 	name = "universal catalog"
-	desc = "A catalog to be used with the Morpheus 'Universal Core', shamelessly \
+	desc = "A catalog to be used with the 'Universal Core', its contents shamelessly \
 	copied by an unknown designer from some group of 'technomancers' or another.<br>\
 	The back of the book has " + span_italics("'Export Edition'") + " stamped on it."
 	budget = 700
