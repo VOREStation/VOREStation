@@ -312,7 +312,7 @@
 	name = "illicit injector"
 	desc = "A refined version of the standard autoinjector, allowing greater capacity. \
 	This one contains various illicit drugs, held inside a hypospray to make smuggling easier."
-	filled_reagents = list("bliss" = 15)
+	filled_reagents = list(REAGENT_ID_BLISS = 15)
 
 /obj/item/reagent_containers/hypospray/autoinjector/biginjector/cryptobiolin
 	name = "cryptobiolin injector"
@@ -339,7 +339,7 @@
 	desc = "A refined version of the standard autoinjector, allowing greater capacity. \
 	This has psilocybin inside, which is a strong psychotropic derived from certain species of mushroom. \
 	This autoinjector likely was made by criminal elements to avoid detection from casual inspection."
-	filled_reagents = list("psilocybin" = 15)
+	filled_reagents = list(REAGENT_ID_PSILOCYBIN = 15)
 
 /obj/item/reagent_containers/hypospray/autoinjector/biginjector/mutagen
 	name = "unstable mutagen injector"

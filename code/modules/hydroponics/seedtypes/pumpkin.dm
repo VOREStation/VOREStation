@@ -3,7 +3,7 @@
 	seed_name = "pumpkin"
 	display_name = "pumpkin vine"
 	kitchen_tag = "pumpkin"
-	chems = list("nutriment" = list(1,6))
+	chems = list(REAGENT_ID_NUTRIMENT = list(1,6))
 
 /datum/seed/pumpkin/New()
 	..()

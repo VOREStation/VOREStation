@@ -30,7 +30,7 @@
 	name = "sucrose agar"
 	id = "sugarvirusfood"
 	result = "sugarvirusfood"
-	required_reagents = list("sugar" = 1, "mutagenvirusfood" = 1)
+	required_reagents = list(REAGENT_ID_SUGAR = 1, "mutagenvirusfood" = 1)
 	result_amount = 2
 
 /decl/chemical_reaction/instant/virus_food_mutagen_inaprovaline
@@ -44,7 +44,7 @@
 	name = "Mix Virus"
 	id = "mixvirus"
 	required_reagents = list("virusfood" = 1)
-	catalysts = list("blood" = 1)
+	catalysts = list(REAGENT_ID_BLOOD = 1)
 	var/level_min = 0
 	var/level_max = 2
 
@@ -115,7 +115,7 @@
 	name = "Devolve Virus"
 	id = "remvirus"
 	required_reagents = list("adranol" = 1)
-	catalysts = list("blood" = 1)
+	catalysts = list(REAGENT_ID_BLOOD = 1)
 
 /decl/chemical_reaction/instant/mix_virus/rem_virus/on_reaction(var/datum/reagents/holder)
 	var/datum/reagent/blood/B = locate(/datum/reagent/blood) in holder.reagent_list
@@ -127,7 +127,7 @@
 /decl/chemical_reaction/instant/antibodies
 	name = "Antibodies"
 	id = "antibodiesmix"
-	result = "antibodies"
+	result = REAGENT_ID_ANTIBODIES
 	required_reagents = list("vaccine")
 	catalysts = list("inaprovaline" = 0.1)
 	result_amount = 0.5

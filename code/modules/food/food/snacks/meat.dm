@@ -80,7 +80,7 @@
 
 /obj/item/reagent_containers/food/snacks/hugemushroomslice/Initialize()
 	. = ..()
-	reagents.add_reagent("psilocybin", 3)
+	reagents.add_reagent(REAGENT_ID_PSILOCYBIN, 3)
 
 /obj/item/reagent_containers/food/snacks/tomatomeat
 	name = "tomato slice"
@@ -116,7 +116,7 @@
 /obj/item/reagent_containers/food/snacks/xenomeat/Initialize()
 	. = ..()
 	reagents.add_reagent("protein", 6)
-	reagents.add_reagent("pacid",6)
+	reagents.add_reagent(REAGENT_ID_PACID,6)
 
 /obj/item/reagent_containers/food/snacks/xenomeat/spidermeat // Substitute for recipes requiring xeno meat.
 	name = "insect meat"
@@ -128,8 +128,8 @@
 
 /obj/item/reagent_containers/food/snacks/xenomeat/spidermeat/Initialize()
 	. = ..()
-	reagents.add_reagent("spidertoxin",6)
-	reagents.remove_reagent("pacid",6)
+	reagents.add_reagent(REAGENT_ID_SPIDERTOXIN,6)
+	reagents.remove_reagent(REAGENT_ID_PACID,6)
 
 /obj/item/reagent_containers/food/snacks/rawturkey
 	name = "raw turkey"

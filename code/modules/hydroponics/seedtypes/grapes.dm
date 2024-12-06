@@ -5,7 +5,7 @@
 	display_name = "grapevines"
 	kitchen_tag = "grapes"
 	mutants = list("greengrapes")
-	chems = list("nutriment" = list(1,10), "sugar" = list(1,5), "grapejuice" = list(10,10))
+	chems = list(REAGENT_ID_NUTRIMENT = list(1,10), REAGENT_ID_SUGAR = list(1,5), "grapejuice" = list(10,10))
 
 /datum/seed/grapes/New()
 	..()
@@ -26,7 +26,7 @@
 	seed_name = "green grape"
 	display_name = "green grapevines"
 	mutants = null
-	chems = list("nutriment" = list(1,10), "kelotane" = list(3,5), "grapejuice" = list(10,10))
+	chems = list(REAGENT_ID_NUTRIMENT = list(1,10), "kelotane" = list(3,5), "grapejuice" = list(10,10))
 
 /datum/seed/grapes/green/New()
 	..()

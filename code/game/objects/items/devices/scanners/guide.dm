@@ -67,7 +67,7 @@
 		if(org.damage >= 1 && !istype(org, /obj/item/organ/internal/brain))
 			organ = TRUE
 
-	var/blood_volume = M.vessel.get_reagent_amount("blood")
+	var/blood_volume = M.vessel.get_reagent_amount(REAGENT_ID_BLOOD)
 	if(blood_volume <= M.species.blood_volume*M.species.blood_level_safe)
 		bloodloss = TRUE
 

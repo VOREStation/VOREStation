@@ -206,7 +206,7 @@
 
 /obj/item/reagent_containers/pill/methylphenidate/Initialize()
 	. = ..()
-	reagents.add_reagent("methylphenidate", 15)
+	reagents.add_reagent(REAGENT_ID_METHYLPHENIDATE, 15)
 	color = reagents.get_color()
 
 /obj/item/reagent_containers/pill/citalopram
@@ -216,7 +216,7 @@
 
 /obj/item/reagent_containers/pill/citalopram/Initialize()
 	. = ..()
-	reagents.add_reagent("citalopram", 15)
+	reagents.add_reagent(REAGENT_ID_CITALOPRAM, 15)
 	color = reagents.get_color()
 
 /obj/item/reagent_containers/pill/dexalin
@@ -296,7 +296,7 @@
 
 /obj/item/reagent_containers/pill/carbon/Initialize()
 	. = ..()
-	reagents.add_reagent("carbon", 30) //VOREStation Edit
+	reagents.add_reagent(REAGENT_ID_CARBON, 30) //VOREStation Edit
 	color = reagents.get_color()
 
 /obj/item/reagent_containers/pill/iron
@@ -306,7 +306,7 @@
 
 /obj/item/reagent_containers/pill/iron/Initialize()
 	. = ..()
-	reagents.add_reagent("iron", 30) //VOREStation Edit
+	reagents.add_reagent(REAGENT_ID_IRON, 30) //VOREStation Edit
 	color = reagents.get_color()
 
 /obj/item/reagent_containers/pill/copper
@@ -316,7 +316,7 @@
 
 /obj/item/reagent_containers/pill/copper/Initialize()
 	. = ..()
-	reagents.add_reagent("copper", 30)
+	reagents.add_reagent(REAGENT_ID_COPPER, 30)
 	color = reagents.get_color()
 
 //Not-quite-medicine
@@ -327,8 +327,8 @@
 
 /obj/item/reagent_containers/pill/happy/Initialize()
 	. = ..()
-	reagents.add_reagent("bliss", 15)
-	reagents.add_reagent("sugar", 15)
+	reagents.add_reagent(REAGENT_ID_BLISS, 15)
+	reagents.add_reagent(REAGENT_ID_SUGAR, 15)
 	color = reagents.get_color()
 
 /obj/item/reagent_containers/pill/zoom

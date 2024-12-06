@@ -53,7 +53,7 @@
 /obj/item/reagent_containers/food/snacks/Initialize()
 	. = ..()
 	if(nutriment_amt)
-		reagents.add_reagent("nutriment",(nutriment_amt*2),nutriment_desc)
+		reagents.add_reagent(REAGENT_ID_NUTRIMENT,(nutriment_amt*2),nutriment_desc)
 
 //Placeholder for effect that trigger on eating that aren't tied to reagents.
 /obj/item/reagent_containers/food/snacks/proc/On_Consume(var/mob/living/M)
@@ -116,7 +116,7 @@
 		var/swallow_whole = FALSE
 		var/obj/belly/belly_target				// These are surprise tools that will help us later
 
-		var/fullness = M.nutrition + (M.reagents.get_reagent_amount("nutriment") * 25)
+		var/fullness = M.nutrition + (M.reagents.get_reagent_amount(REAGENT_ID_NUTRIMENT) * 25)
 		if(M == user)								//If you're eating it yourself
 			if(istype(M,/mob/living/carbon/human))
 				var/mob/living/carbon/human/H = M
@@ -460,7 +460,7 @@
 
 /obj/item/reagent_containers/food/snacks/candy/donor/Initialize()
 	. = ..()
-	reagents.add_reagent("sugar", 3)
+	reagents.add_reagent(REAGENT_ID_SUGAR, 3)
 
 /obj/item/reagent_containers/food/snacks/candy_corn
 	name = "candy corn"
@@ -475,7 +475,7 @@
 
 /obj/item/reagent_containers/food/snacks/candy_corn/Initialize()
 	. = ..()
-	reagents.add_reagent("sugar", 2)
+	reagents.add_reagent(REAGENT_ID_SUGAR, 2)
 
 /obj/item/reagent_containers/food/snacks/chocolatebar //not a vending item
 	name = "Chocolate Bar"
@@ -489,7 +489,7 @@
 
 /obj/item/reagent_containers/food/snacks/chocolatebar/Initialize()
 	. = ..()
-	reagents.add_reagent("sugar", 2)
+	reagents.add_reagent(REAGENT_ID_SUGAR, 2)
 	reagents.add_reagent("coco", 2)
 
 /obj/item/reagent_containers/food/snacks/chocolatepiece
@@ -527,7 +527,7 @@
 
 /obj/item/reagent_containers/food/snacks/chocolateegg/Initialize()
 	. = ..()
-	reagents.add_reagent("sugar", 2)
+	reagents.add_reagent(REAGENT_ID_SUGAR, 2)
 	reagents.add_reagent("coco", 2)
 
 /obj/item/reagent_containers/food/snacks/donut
@@ -548,7 +548,7 @@
 	desc = "A plain ol' donut."
 /obj/item/reagent_containers/food/snacks/donut/plain/Initialize()
 	. = ..()
-	reagents.add_reagent("nutriment", 3, nutriment_desc)
+	reagents.add_reagent(REAGENT_ID_NUTRIMENT, 3, nutriment_desc)
 
 /obj/item/reagent_containers/food/snacks/donut/plain/jelly
 	name = "plain jelly donut"
@@ -556,7 +556,7 @@
 	desc = "At least this one has jelly!"
 /obj/item/reagent_containers/food/snacks/donut/plain/jelly/Initialize()
 	. = ..()
-	reagents.add_reagent("nutriment", 3, nutriment_desc)
+	reagents.add_reagent(REAGENT_ID_NUTRIMENT, 3, nutriment_desc)
 	reagents.add_reagent("berryjuice", 5)
 
 /obj/item/reagent_containers/food/snacks/donut/pink
@@ -566,7 +566,7 @@
 	overlay_state = "donut_pink_inbox"
 /obj/item/reagent_containers/food/snacks/donut/pink/Initialize()
 	. = ..()
-	reagents.add_reagent("nutriment", 3, nutriment_desc)
+	reagents.add_reagent(REAGENT_ID_NUTRIMENT, 3, nutriment_desc)
 
 /obj/item/reagent_containers/food/snacks/donut/pink/jelly
 	name = "pink frosted jelly donut"
@@ -574,7 +574,7 @@
 	desc = "This one has pink frosting and a jelly filling!"
 /obj/item/reagent_containers/food/snacks/donut/pink/jelly/Initialize()
 	. = ..()
-	reagents.add_reagent("nutriment", 3, nutriment_desc)
+	reagents.add_reagent(REAGENT_ID_NUTRIMENT, 3, nutriment_desc)
 	reagents.add_reagent("berryjuice", 5)
 
 /obj/item/reagent_containers/food/snacks/donut/purple
@@ -584,7 +584,7 @@
 	overlay_state = "donut_purple_inbox"
 /obj/item/reagent_containers/food/snacks/donut/purple/Initialize()
 	. = ..()
-	reagents.add_reagent("nutriment", 3, nutriment_desc)
+	reagents.add_reagent(REAGENT_ID_NUTRIMENT, 3, nutriment_desc)
 
 /obj/item/reagent_containers/food/snacks/donut/purple/jelly
 	name = "purple frosted jelly donut"
@@ -592,7 +592,7 @@
 	desc = "This one has purple frosting and a jelly filling!"
 /obj/item/reagent_containers/food/snacks/donut/purple/jelly/Initialize()
 	. = ..()
-	reagents.add_reagent("nutriment", 3, nutriment_desc)
+	reagents.add_reagent(REAGENT_ID_NUTRIMENT, 3, nutriment_desc)
 	reagents.add_reagent("berryjuice", 5)
 
 /obj/item/reagent_containers/food/snacks/donut/green
@@ -602,7 +602,7 @@
 	overlay_state = "donut_green_inbox"
 /obj/item/reagent_containers/food/snacks/donut/green/Initialize()
 	. = ..()
-	reagents.add_reagent("nutriment", 3, nutriment_desc)
+	reagents.add_reagent(REAGENT_ID_NUTRIMENT, 3, nutriment_desc)
 
 /obj/item/reagent_containers/food/snacks/donut/green/jelly
 	name = "green frosted jelly donut"
@@ -610,7 +610,7 @@
 	desc = "This one has green frosting and a jelly filling!"
 /obj/item/reagent_containers/food/snacks/donut/green/jelly/Initialize()
 	. = ..()
-	reagents.add_reagent("nutriment", 3, nutriment_desc)
+	reagents.add_reagent(REAGENT_ID_NUTRIMENT, 3, nutriment_desc)
 	reagents.add_reagent("berryjuice", 5)
 
 /obj/item/reagent_containers/food/snacks/donut/beige
@@ -620,7 +620,7 @@
 	overlay_state = "donut_beige_inbox"
 /obj/item/reagent_containers/food/snacks/donut/beige/Initialize()
 	. = ..()
-	reagents.add_reagent("nutriment", 3, nutriment_desc)
+	reagents.add_reagent(REAGENT_ID_NUTRIMENT, 3, nutriment_desc)
 
 /obj/item/reagent_containers/food/snacks/donut/beige/jelly
 	name = "beige frosted jelly donut"
@@ -628,7 +628,7 @@
 	desc = "This one has beige frosting and a jelly filling!"
 /obj/item/reagent_containers/food/snacks/donut/beige/jelly/Initialize()
 	. = ..()
-	reagents.add_reagent("nutriment", 3, nutriment_desc)
+	reagents.add_reagent(REAGENT_ID_NUTRIMENT, 3, nutriment_desc)
 	reagents.add_reagent("berryjuice", 5)
 
 /obj/item/reagent_containers/food/snacks/donut/choc
@@ -638,7 +638,7 @@
 	overlay_state = "donut_choc_inbox"
 /obj/item/reagent_containers/food/snacks/donut/choc/Initialize()
 	. = ..()
-	reagents.add_reagent("nutriment", 3, nutriment_desc)
+	reagents.add_reagent(REAGENT_ID_NUTRIMENT, 3, nutriment_desc)
 	reagents.add_reagent("chocolate", 5)
 
 /obj/item/reagent_containers/food/snacks/donut/choc/jelly
@@ -647,7 +647,7 @@
 	desc = "This one has chocolate frosting and a jelly filling!"
 /obj/item/reagent_containers/food/snacks/donut/choc/jelly/Initialize()
 	. = ..()
-	reagents.add_reagent("nutriment", 3, nutriment_desc)
+	reagents.add_reagent(REAGENT_ID_NUTRIMENT, 3, nutriment_desc)
 	reagents.add_reagent("berryjuice", 5)
 	reagents.add_reagent("chocolate", 5)
 
@@ -658,7 +658,7 @@
 	overlay_state = "donut_blue_inbox"
 /obj/item/reagent_containers/food/snacks/donut/blue/Initialize()
 	. = ..()
-	reagents.add_reagent("nutriment", 3, nutriment_desc)
+	reagents.add_reagent(REAGENT_ID_NUTRIMENT, 3, nutriment_desc)
 
 /obj/item/reagent_containers/food/snacks/donut/blue/jelly
 	name = "blue frosted jelly donut"
@@ -666,7 +666,7 @@
 	desc = "This one has blue frosting and a jelly filling!"
 /obj/item/reagent_containers/food/snacks/donut/blue/jelly/Initialize()
 	. = ..()
-	reagents.add_reagent("nutriment", 3, nutriment_desc)
+	reagents.add_reagent(REAGENT_ID_NUTRIMENT, 3, nutriment_desc)
 	reagents.add_reagent("berryjuice", 5)
 
 /obj/item/reagent_containers/food/snacks/donut/yellow
@@ -676,7 +676,7 @@
 	overlay_state = "donut_yellow_inbox"
 /obj/item/reagent_containers/food/snacks/donut/yellow/Initialize()
 	. = ..()
-	reagents.add_reagent("nutriment", 3, nutriment_desc)
+	reagents.add_reagent(REAGENT_ID_NUTRIMENT, 3, nutriment_desc)
 
 /obj/item/reagent_containers/food/snacks/donut/yellow/jelly
 	name = "yellow frosted jelly donut"
@@ -684,7 +684,7 @@
 	desc = "This one has yellow frosting and a jelly filling!"
 /obj/item/reagent_containers/food/snacks/donut/yellow/jelly/Initialize()
 	. = ..()
-	reagents.add_reagent("nutriment", 3, nutriment_desc)
+	reagents.add_reagent(REAGENT_ID_NUTRIMENT, 3, nutriment_desc)
 	reagents.add_reagent("berryjuice", 5)
 
 /obj/item/reagent_containers/food/snacks/donut/olive
@@ -694,7 +694,7 @@
 	overlay_state = "donut_olive_inbox"
 /obj/item/reagent_containers/food/snacks/donut/olive/Initialize()
 	. = ..()
-	reagents.add_reagent("nutriment", 3, nutriment_desc)
+	reagents.add_reagent(REAGENT_ID_NUTRIMENT, 3, nutriment_desc)
 
 /obj/item/reagent_containers/food/snacks/donut/olive/jelly
 	name = "olive frosted jelly donut"
@@ -702,7 +702,7 @@
 	desc = "This one has olive frosting and a jelly filling!"
 /obj/item/reagent_containers/food/snacks/donut/olive/jelly/Initialize()
 	. = ..()
-	reagents.add_reagent("nutriment", 3, nutriment_desc)
+	reagents.add_reagent(REAGENT_ID_NUTRIMENT, 3, nutriment_desc)
 	reagents.add_reagent("berryjuice", 5)
 
 /obj/item/reagent_containers/food/snacks/donut/homer
@@ -712,7 +712,7 @@
 	overlay_state = "donut_homer_inbox"
 /obj/item/reagent_containers/food/snacks/donut/homer/Initialize()
 	. = ..()
-	reagents.add_reagent("nutriment", 3, nutriment_desc)
+	reagents.add_reagent(REAGENT_ID_NUTRIMENT, 3, nutriment_desc)
 	reagents.add_reagent("sprinkles", 1)
 
 /obj/item/reagent_containers/food/snacks/donut/homer/jelly
@@ -721,7 +721,7 @@
 	desc = "It's a d'ohnut with jelly filling!"
 /obj/item/reagent_containers/food/snacks/donut/homer/jelly/Initialize()
 	. = ..()
-	reagents.add_reagent("nutriment", 3, nutriment_desc)
+	reagents.add_reagent(REAGENT_ID_NUTRIMENT, 3, nutriment_desc)
 	reagents.add_reagent("sprinkles", 1)
 	reagents.add_reagent("berryjuice", 5)
 
@@ -732,7 +732,7 @@
 	overlay_state = "donut_choc_sprinkles_inbox"
 /obj/item/reagent_containers/food/snacks/donut/choc_sprinkles/Initialize()
 	. = ..()
-	reagents.add_reagent("nutriment", 3, nutriment_desc)
+	reagents.add_reagent(REAGENT_ID_NUTRIMENT, 3, nutriment_desc)
 	reagents.add_reagent("sprinkles", 1)
 	reagents.add_reagent("chocolate", 1)
 
@@ -742,7 +742,7 @@
 	desc = "Pretty sure this is the most sugar you can pack into a donut."
 /obj/item/reagent_containers/food/snacks/donut/choc_sprinkles/jelly/Initialize()
 	. = ..()
-	reagents.add_reagent("nutriment", 3, nutriment_desc)
+	reagents.add_reagent(REAGENT_ID_NUTRIMENT, 3, nutriment_desc)
 	reagents.add_reagent("sprinkles", 1)
 	reagents.add_reagent("berryjuice", 5)
 	reagents.add_reagent("chocolate", 1)
@@ -763,7 +763,7 @@
 	overlay_state = "donut_laugh_inbox"
 /obj/item/reagent_containers/food/snacks/donut/laugh/Initialize()
 	. = ..()
-	reagents.add_reagent("nutriment", 3, nutriment_desc)
+	reagents.add_reagent(REAGENT_ID_NUTRIMENT, 3, nutriment_desc)
 
 /obj/item/reagent_containers/food/snacks/donut/laugh/jelly
 	name = "laugh jelly donut"
@@ -771,7 +771,7 @@
 	desc = "Try not to be jelly."
 /obj/item/reagent_containers/food/snacks/donut/laugh/jelly/Initialize()
 	. = ..()
-	reagents.add_reagent("nutriment", 3, nutriment_desc)
+	reagents.add_reagent(REAGENT_ID_NUTRIMENT, 3, nutriment_desc)
 	reagents.add_reagent("berryjuice", 5)
 
 
@@ -789,7 +789,7 @@
 	reagents.add_reagent("sprinkles", 1)
 	switch(rand(1,10))
 		if(1)
-			reagents.add_reagent("nutriment", 3, nutriment_desc)
+			reagents.add_reagent(REAGENT_ID_NUTRIMENT, 3, nutriment_desc)
 		if(2)
 			reagents.add_reagent("capsaicin", 3)
 		if(3)
@@ -909,7 +909,7 @@
 /obj/item/reagent_containers/food/snacks/friedegg/Initialize()
 	. = ..()
 	reagents.add_reagent("protein", 3)
-	reagents.add_reagent("sodiumchloride", 1)
+	reagents.add_reagent(REAGENT_ID_SODIUMCHLORIDE, 1)
 	reagents.add_reagent("blackpepper", 1)
 
 /obj/item/reagent_containers/food/snacks/boiledegg
@@ -1016,7 +1016,7 @@
 /obj/item/reagent_containers/food/snacks/crab_legs/Initialize()
 	. = ..()
 	reagents.add_reagent("seafood", 6)
-	reagents.add_reagent("sodiumchloride", 1)
+	reagents.add_reagent(REAGENT_ID_SODIUMCHLORIDE, 1)
 
 /obj/item/reagent_containers/food/snacks/fishfingers
 	name = "Fish Fingers"
@@ -1054,7 +1054,7 @@
 
 /obj/item/reagent_containers/food/snacks/mushroomslice/Initialize()
 	. = ..()
-	reagents.add_reagent("psilocybin", 3)
+	reagents.add_reagent(REAGENT_ID_PSILOCYBIN, 3)
 
 /obj/item/reagent_containers/food/snacks/tomatomeat
 	name = "tomato slice"
@@ -1090,7 +1090,7 @@
 /obj/item/reagent_containers/food/snacks/xenomeat/Initialize()
 	. = ..()
 	reagents.add_reagent("protein", 6)
-	reagents.add_reagent("pacid",6)
+	reagents.add_reagent(REAGENT_ID_PACID,6)
 
 /obj/item/reagent_containers/food/snacks/xenomeat/spidermeat // Substitute for recipes requiring xeno meat.
 	name = "spider meat"
@@ -1102,8 +1102,8 @@
 
 /obj/item/reagent_containers/food/snacks/xenomeat/spidermeat/Initialize()
 	. = ..()
-	reagents.add_reagent("spidertoxin",6)
-	reagents.remove_reagent("pacid",6)
+	reagents.add_reagent(REAGENT_ID_SPIDERTOXIN,6)
+	reagents.remove_reagent(REAGENT_ID_PACID,6)
 
 /obj/item/reagent_containers/food/snacks/meatball
 	name = "meatball"
@@ -1212,7 +1212,7 @@
 	icon_state = "dankpocket"
 	nutriment_amt = 2
 	nutriment_desc = list("heartiness" = 1, "dough" = 2)
-	heated_reagents = list("bliss" = 5)
+	heated_reagents = list(REAGENT_ID_BLISS = 5)
 
 /obj/item/reagent_containers/food/snacks/donkpocket/sinpocket
 	name = "\improper Sin-pocket"
@@ -1518,7 +1518,7 @@
 /obj/item/reagent_containers/food/snacks/amanita_pie/Initialize()
 	. = ..()
 	reagents.add_reagent("amatoxin", 3)
-	reagents.add_reagent("psilocybin", 1)
+	reagents.add_reagent(REAGENT_ID_PSILOCYBIN, 1)
 
 /obj/item/reagent_containers/food/snacks/plump_pie
 	name = "plump pie"
@@ -1535,7 +1535,7 @@
 	if(prob(10))
 		name = "exceptional plump pie"
 		desc = "Microwave is taken by a fey mood! It has cooked an exceptional plump pie!"
-		reagents.add_reagent("nutriment", 8, nutriment_desc)
+		reagents.add_reagent(REAGENT_ID_NUTRIMENT, 8, nutriment_desc)
 		reagents.add_reagent("tricordrazine", 5)
 
 /obj/item/reagent_containers/food/snacks/xemeatpie
@@ -1752,7 +1752,7 @@
 /obj/item/reagent_containers/food/snacks/blackpudding/Initialize()
 	. = ..()
 	reagents.add_reagent("protein", 2)
-	reagents.add_reagent("blood", 5)
+	reagents.add_reagent(REAGENT_ID_BLOOD, 5)
 
 /obj/item/reagent_containers/food/snacks/soydope
 	name = "Soy Dope"
@@ -1786,7 +1786,7 @@
 /obj/item/reagent_containers/food/snacks/badrecipe/Initialize()
 	. = ..()
 	reagents.add_reagent("toxin", 1)
-	reagents.add_reagent("carbon", 3)
+	reagents.add_reagent(REAGENT_ID_CARBON, 3)
 
 /obj/item/reagent_containers/food/snacks/meatsteak
 	name = "Meat steak"
@@ -1800,7 +1800,7 @@
 /obj/item/reagent_containers/food/snacks/meatsteak/Initialize()
 	. = ..()
 	reagents.add_reagent("protein", 4)
-	reagents.add_reagent("sodiumchloride", 1)
+	reagents.add_reagent(REAGENT_ID_SODIUMCHLORIDE, 1)
 	reagents.add_reagent("blackpepper", 1)
 
 /obj/item/reagent_containers/food/snacks/spacylibertyduff
@@ -1816,7 +1816,7 @@
 
 /obj/item/reagent_containers/food/snacks/spacylibertyduff/Initialize()
 	. = ..()
-	reagents.add_reagent("psilocybin", 6)
+	reagents.add_reagent(REAGENT_ID_PSILOCYBIN, 6)
 
 /obj/item/reagent_containers/food/snacks/amanitajelly
 	name = "Amanita Jelly"
@@ -1832,7 +1832,7 @@
 /obj/item/reagent_containers/food/snacks/amanitajelly/Initialize()
 	. = ..()
 	reagents.add_reagent("amatoxin", 6)
-	reagents.add_reagent("psilocybin", 3)
+	reagents.add_reagent(REAGENT_ID_PSILOCYBIN, 3)
 
 /obj/item/reagent_containers/food/snacks/poppypretzel
 	name = "Poppy pretzel"
@@ -1895,7 +1895,7 @@
 	Expand()
 
 /obj/item/reagent_containers/food/snacks/monkeycube/on_reagent_change()
-	if(reagents.has_reagent("water"))
+	if(reagents.has_reagent(REAGENT_ID_WATER))
 		Expand()
 
 /obj/item/reagent_containers/food/snacks/monkeycube/wrapped
@@ -1981,7 +1981,7 @@
 	reagents.add_reagent("protein", 10)
 	reagents.add_reagent("banana", 5)
 	reagents.add_reagent("blackpepper", 1)
-	reagents.add_reagent("sodiumchloride", 1)
+	reagents.add_reagent(REAGENT_ID_SODIUMCHLORIDE, 1)
 
 /obj/item/reagent_containers/food/snacks/baguette
 	name = "Baguette"
@@ -1996,7 +1996,7 @@
 /obj/item/reagent_containers/food/snacks/baguette/Initialize()
 	. = ..()
 	reagents.add_reagent("blackpepper", 1)
-	reagents.add_reagent("sodiumchloride", 1)
+	reagents.add_reagent(REAGENT_ID_SODIUMCHLORIDE, 1)
 
 /obj/item/reagent_containers/food/snacks/fishandchips
 	name = "Fish and Chips"
@@ -2025,7 +2025,7 @@
 
 /obj/item/reagent_containers/food/snacks/rofflewaffles/Initialize()
 	. = ..()
-	reagents.add_reagent("psilocybin", 8)
+	reagents.add_reagent(REAGENT_ID_PSILOCYBIN, 8)
 
 /obj/item/reagent_containers/food/snacks/jelliedtoast
 	name = "Jellied Toast"
@@ -2290,7 +2290,7 @@
 /obj/item/reagent_containers/food/snacks/toastedsandwich/Initialize()
 	. = ..()
 	reagents.add_reagent("protein", 3)
-	reagents.add_reagent("carbon", 2)
+	reagents.add_reagent(REAGENT_ID_CARBON, 2)
 
 /obj/item/reagent_containers/food/snacks/grilledcheese
 	name = "Grilled Cheese Sandwich"
@@ -2358,7 +2358,7 @@
 	if(prob(10))
 		name = "exceptional plump helmet biscuit"
 		desc = "Microwave is taken by a fey mood! It has cooked an exceptional plump helmet biscuit!"
-		reagents.add_reagent("nutriment", 3, nutriment_desc)
+		reagents.add_reagent(REAGENT_ID_NUTRIMENT, 3, nutriment_desc)
 
 /obj/item/reagent_containers/food/snacks/chawanmushi
 	name = "chawanmushi"
@@ -2431,7 +2431,7 @@
 /obj/item/reagent_containers/food/snacks/meatballsoup/Initialize()
 	. = ..()
 	reagents.add_reagent("protein", 8)
-	reagents.add_reagent("water", 5)
+	reagents.add_reagent(REAGENT_ID_WATER, 5)
 
 /obj/item/reagent_containers/food/snacks/slimesoup
 	name = "slime soup"
@@ -2444,7 +2444,7 @@
 /obj/item/reagent_containers/food/snacks/slimesoup/Initialize()
 	. = ..()
 	reagents.add_reagent("slimejelly", 5)
-	reagents.add_reagent("water", 10)
+	reagents.add_reagent(REAGENT_ID_WATER, 10)
 
 /obj/item/reagent_containers/food/snacks/bloodsoup
 	name = "Tomato soup"
@@ -2458,8 +2458,8 @@
 /obj/item/reagent_containers/food/snacks/bloodsoup/Initialize()
 	. = ..()
 	reagents.add_reagent("protein", 2)
-	reagents.add_reagent("blood", 10)
-	reagents.add_reagent("water", 5)
+	reagents.add_reagent(REAGENT_ID_BLOOD, 10)
+	reagents.add_reagent(REAGENT_ID_WATER, 5)
 
 /obj/item/reagent_containers/food/snacks/clownstears
 	name = JOB_CLOWN + "'s Tears"
@@ -2475,7 +2475,7 @@
 /obj/item/reagent_containers/food/snacks/clownstears/Initialize()
 	. = ..()
 	reagents.add_reagent("banana", 5)
-	reagents.add_reagent("water", 10)
+	reagents.add_reagent(REAGENT_ID_WATER, 10)
 
 /obj/item/reagent_containers/food/snacks/vegetablesoup
 	name = "Vegetable soup"
@@ -2490,7 +2490,7 @@
 
 /obj/item/reagent_containers/food/snacks/vegetablesoup/Initialize()
 	. = ..()
-	reagents.add_reagent("vegetable_soup", 10)
+	reagents.add_reagent(REAGENT_ID_VEGETABLESOUP, 10)
 
 /obj/item/reagent_containers/food/snacks/nettlesoup
 	name = "Nettle soup"
@@ -2506,7 +2506,7 @@
 
 /obj/item/reagent_containers/food/snacks/nettlesoup/Initialize()
 	. = ..()
-	reagents.add_reagent("water", 5)
+	reagents.add_reagent(REAGENT_ID_WATER, 5)
 	reagents.add_reagent("tricordrazine", 5)
 
 /obj/item/reagent_containers/food/snacks/mysterysoup
@@ -2526,37 +2526,37 @@
 	var/mysteryselect = pick(1,2,3,4,5,6,7,8,9,10)
 	switch(mysteryselect)
 		if(1)
-			reagents.add_reagent("nutriment", 6, nutriment_desc)
+			reagents.add_reagent(REAGENT_ID_NUTRIMENT, 6, nutriment_desc)
 			reagents.add_reagent("capsaicin", 3)
 			reagents.add_reagent("tomatojuice", 2)
 		if(2)
-			reagents.add_reagent("nutriment", 6, nutriment_desc)
+			reagents.add_reagent(REAGENT_ID_NUTRIMENT, 6, nutriment_desc)
 			reagents.add_reagent("frostoil", 3)
 			reagents.add_reagent("tomatojuice", 2)
 		if(3)
-			reagents.add_reagent("nutriment", 5, nutriment_desc)
-			reagents.add_reagent("water", 5)
+			reagents.add_reagent(REAGENT_ID_NUTRIMENT, 5, nutriment_desc)
+			reagents.add_reagent(REAGENT_ID_WATER, 5)
 			reagents.add_reagent("tricordrazine", 5)
 		if(4)
-			reagents.add_reagent("nutriment", 5, nutriment_desc)
-			reagents.add_reagent("water", 10)
+			reagents.add_reagent(REAGENT_ID_NUTRIMENT, 5, nutriment_desc)
+			reagents.add_reagent(REAGENT_ID_WATER, 10)
 		if(5)
-			reagents.add_reagent("nutriment", 2, nutriment_desc)
+			reagents.add_reagent(REAGENT_ID_NUTRIMENT, 2, nutriment_desc)
 			reagents.add_reagent("banana", 10)
 		if(6)
-			reagents.add_reagent("nutriment", 6, nutriment_desc)
-			reagents.add_reagent("blood", 10)
+			reagents.add_reagent(REAGENT_ID_NUTRIMENT, 6, nutriment_desc)
+			reagents.add_reagent(REAGENT_ID_BLOOD, 10)
 		if(7)
 			reagents.add_reagent("slimejelly", 10)
-			reagents.add_reagent("water", 10)
+			reagents.add_reagent(REAGENT_ID_WATER, 10)
 		if(8)
-			reagents.add_reagent("carbon", 10)
+			reagents.add_reagent(REAGENT_ID_CARBON, 10)
 			reagents.add_reagent("toxin", 10)
 		if(9)
-			reagents.add_reagent("nutriment", 5, nutriment_desc)
+			reagents.add_reagent(REAGENT_ID_NUTRIMENT, 5, nutriment_desc)
 			reagents.add_reagent("tomatojuice", 10)
 		if(10)
-			reagents.add_reagent("nutriment", 6, nutriment_desc)
+			reagents.add_reagent(REAGENT_ID_NUTRIMENT, 6, nutriment_desc)
 			reagents.add_reagent("tomatojuice", 5)
 			reagents.add_reagent("imidazoline", 5)
 
@@ -2572,10 +2572,10 @@
 
 /obj/item/reagent_containers/food/snacks/wishsoup/Initialize()
 	. = ..()
-	reagents.add_reagent("water", 10)
+	reagents.add_reagent(REAGENT_ID_WATER, 10)
 	if(prob(25))
 		src.desc = "A wish come true!"
-		reagents.add_reagent("nutriment", 8, list("something good" = 8))
+		reagents.add_reagent(REAGENT_ID_NUTRIMENT, 8, list("something good" = 8))
 
 /obj/item/reagent_containers/food/snacks/tomatosoup
 	name = "Tomato Soup"
@@ -2589,7 +2589,7 @@
 
 /obj/item/reagent_containers/food/snacks/tomatosoup/Initialize()
 	. = ..()
-	reagents.add_reagent("tomato_soup", 10)
+	reagents.add_reagent(REAGENT_ID_TOMATOSOUP, 10)
 
 /obj/item/reagent_containers/food/snacks/mushroomsoup
 	name = "chantrelle soup"
@@ -2603,7 +2603,7 @@
 
 /obj/item/reagent_containers/food/snacks/mushroomsoup/Initialize()
 	. = ..()
-	reagents.add_reagent("mushroom_soup", 10)
+	reagents.add_reagent(REAGENT_ID_MUSHROOMSOUP, 10)
 
 /obj/item/reagent_containers/food/snacks/beetsoup
 	name = "beet soup"
@@ -2618,7 +2618,7 @@
 /obj/item/reagent_containers/food/snacks/beetsoup/Initialize()
 	. = ..()
 	name = pick(list("borsch","bortsch","borstch","borsh","borshch","borscht"))
-	reagents.add_reagent("beet_soup", 10)
+	reagents.add_reagent(REAGENT_ID_BEETSOUP, 10)
 
 /obj/item/reagent_containers/food/snacks/soup/onion
 	name = "onion soup"
@@ -2632,7 +2632,7 @@
 
 /obj/item/reagent_containers/food/snacks/soup/onion/Initialize()
 	. = ..()
-	reagents.add_reagent("onion_soup", 10)
+	reagents.add_reagent(REAGENT_ID_ONIONSOUP, 10)
 
 /obj/item/reagent_containers/food/snacks/chickennoodlesoup
 	name = "chicken noodle soup"
@@ -2644,7 +2644,7 @@
 
 /obj/item/reagent_containers/food/snacks/chickennoodlesoup/Initialize()
 	. = ..()
-	reagents.add_reagent("chicken_noodle_soup", 10)
+	reagents.add_reagent(REAGENT_ID_CHICKENNOODLESOUP, 10)
 
 /obj/item/reagent_containers/food/snacks/stew
 	name = "Stew"
@@ -2664,7 +2664,7 @@
 	reagents.add_reagent("protein", 4)
 	reagents.add_reagent("tomatojuice", 5)
 	reagents.add_reagent("imidazoline", 5)
-	reagents.add_reagent("water", 5)
+	reagents.add_reagent(REAGENT_ID_WATER, 5)
 
 /obj/item/reagent_containers/food/snacks/bearstew
 	name = "bear stew"
@@ -2684,7 +2684,7 @@
 	reagents.add_reagent("hyperzine", 5)
 	reagents.add_reagent("tomatojuice", 5)
 	reagents.add_reagent("imidazoline", 5)
-	reagents.add_reagent("water", 5)
+	reagents.add_reagent(REAGENT_ID_WATER, 5)
 
 
 /obj/item/reagent_containers/food/snacks/hotchili
@@ -3435,7 +3435,7 @@
 /obj/item/reagent_containers/food/snacks/sliceable/cosmicbrownies/Initialize()
 	. = ..()
 	reagents.add_reagent("protein", 2)
-	reagents.add_reagent("ambrosia_extract", 2)
+	reagents.add_reagent(REAGENT_ID_AMBROSIAEXTRACT, 2)
 	reagents.add_reagent("bicaridine", 1)
 	reagents.add_reagent("kelotane", 1)
 	reagents.add_reagent("toxin", 1)
@@ -3503,7 +3503,7 @@
 
 /obj/item/reagent_containers/food/snacks/sliceable/buchedenoel/Initialize()
 	. = ..()
-	reagents.add_reagent("sugar", 9)
+	reagents.add_reagent(REAGENT_ID_SUGAR, 9)
 	reagents.add_reagent("coco", 5)
 
 /obj/item/reagent_containers/food/snacks/bucheslice
@@ -3531,7 +3531,7 @@
 /obj/item/reagent_containers/food/snacks/sliceable/turkey/Initialize()
 	. = ..()
 	reagents.add_reagent("blackpepper", 1)
-	reagents.add_reagent("sodiumchloride", 1)
+	reagents.add_reagent(REAGENT_ID_SODIUMCHLORIDE, 1)
 	reagents.add_reagent("cookingoil", 1)
 
 /obj/item/reagent_containers/food/snacks/turkeyslice
@@ -3561,7 +3561,7 @@
 /obj/item/reagent_containers/food/snacks/sliceable/turkey/Initialize()
 	. = ..()
 	reagents.add_reagent("blackpepper", 1)
-	reagents.add_reagent("sodiumchloride", 1)
+	reagents.add_reagent(REAGENT_ID_SODIUMCHLORIDE, 1)
 	reagents.add_reagent("cookingoil", 1)
 
 /obj/item/reagent_containers/food/snacks/sliceable/turkey/on_slice_extra()
@@ -4039,7 +4039,7 @@
 
 /obj/item/reagent_containers/food/snacks/dionaroast/Initialize()
 	. = ..()
-	reagents.add_reagent("radium", 2)
+	reagents.add_reagent(REAGENT_ID_RADIUM, 2)
 
 /obj/item/reagent_containers/food/snacks/dough
 	name = "dough"
@@ -4281,7 +4281,7 @@
 
 	reagents.add_reagent("oxycodone", 1)
 	reagents.add_reagent("sifsap", 5)
-	reagents.add_reagent("bliss", 5)
+	reagents.add_reagent(REAGENT_ID_BLISS, 5)
 
 /obj/item/reagent_containers/food/snacks/bellefritter
 	name = "frostbelle fritters"
@@ -4295,7 +4295,7 @@
 /obj/item/reagent_containers/food/snacks/bellefritter/Initialize()
 	. = ..()
 	reagents.add_reagent("batter", 10)
-	reagents.add_reagent("sugar", 5)
+	reagents.add_reagent(REAGENT_ID_SUGAR, 5)
 
 /obj/item/reagent_containers/food/snacks/roastedsunflower
 	name = "sunflower seeds"
@@ -4333,7 +4333,7 @@
 
 /obj/item/reagent_containers/food/snacks/liquidfood/Initialize()
 	. = ..()
-	reagents.add_reagent("iron", 3)
+	reagents.add_reagent(REAGENT_ID_IRON, 3)
 
 /obj/item/reagent_containers/food/snacks/liquidprotein
 	name = "\improper LiquidProtein Ration"
@@ -4349,7 +4349,7 @@
 /obj/item/reagent_containers/food/snacks/liquidprotein/Initialize()
 	. = ..()
 	reagents.add_reagent("protein", 30)
-	reagents.add_reagent("iron", 3)
+	reagents.add_reagent(REAGENT_ID_IRON, 3)
 
 /obj/item/reagent_containers/food/snacks/liquidvitamin
 	name = "\improper VitaPaste Ration"
@@ -4368,7 +4368,7 @@
 	reagents.add_reagent("tricordrazine", 5)
 	reagents.add_reagent("paracetamol", 5)
 	reagents.add_reagent("enzyme", 1)
-	reagents.add_reagent("iron", 3)
+	reagents.add_reagent(REAGENT_ID_IRON, 3)
 
 /obj/item/reagent_containers/food/snacks/meatcube
 	name = "cubed meat"
@@ -4564,7 +4564,7 @@
 	icon_state = "rosesalad"
 	filling_color = "#FF3867"
 	nutriment_amt = 10
-	nutriment_desc = list("bittersweet" = 10, "iron" = 5)
+	nutriment_desc = list("bittersweet" = 10, REAGENT_ID_IRON = 5)
 	bitesize = 4
 
 /obj/item/reagent_containers/food/snacks/rosesalad/Initialize()
@@ -4919,7 +4919,7 @@
 //	composition_reagent = "slimejelly"
 
 /mob/living/carbon/alien/diona
-	composition_reagent = "nutriment"//Dionae are plants, so eating them doesn't give animal protein
+	composition_reagent = REAGENT_ID_NUTRIMENT//Dionae are plants, so eating them doesn't give animal protein
 
 /mob/living/simple_mob/slime
 	composition_reagent = "slimejelly"
@@ -5009,7 +5009,7 @@
 /obj/item/reagent_containers/food/snacks/funnelcake/Initialize()
 	. = ..()
 	reagents.add_reagent("batter", 10)
-	reagents.add_reagent("sugar", 5)
+	reagents.add_reagent(REAGENT_ID_SUGAR, 5)
 
 /obj/item/reagent_containers/food/snacks/spreads
 	name = "nutri-spread"
@@ -5031,7 +5031,7 @@
 /obj/item/reagent_containers/food/snacks/spreads/Initialize()
 	. = ..()
 	reagents.add_reagent("triglyceride", 20)
-	reagents.add_reagent("sodiumchloride",1)
+	reagents.add_reagent(REAGENT_ID_SODIUMCHLORIDE,1)
 
 /obj/item/reagent_containers/food/snacks/rawcutlet/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W,/obj/item/material/knife))
@@ -6190,7 +6190,7 @@
 
 /obj/item/reagent_containers/food/snacks/candy/Initialize()
 	. = ..()
-	reagents.add_reagent("sugar", 3)
+	reagents.add_reagent(REAGENT_ID_SUGAR, 3)
 
 /obj/item/reagent_containers/food/snacks/namagashi
 	name = "\improper Ryo-kucha Namagashi"
@@ -6206,7 +6206,7 @@
 
 /obj/item/reagent_containers/food/snacks/namagashi/Initialize()
 	. = ..()
-	reagents.add_reagent("sugar", 2)
+	reagents.add_reagent(REAGENT_ID_SUGAR, 2)
 
 /obj/item/reagent_containers/food/snacks/candy/proteinbar
 	name = "\improper SwoleMAX protein bar"
@@ -6222,7 +6222,7 @@
 /obj/item/reagent_containers/food/snacks/candy/proteinbar/Initialize()
 	. = ..()
 	reagents.add_reagent("protein", 4)
-	reagents.add_reagent("sugar", 4)
+	reagents.add_reagent(REAGENT_ID_SUGAR, 4)
 
 /obj/item/reagent_containers/food/snacks/candy/gummy
 	name = "\improper AlliCo Gummies"
@@ -6237,7 +6237,7 @@
 
 /obj/item/reagent_containers/food/snacks/candy/gummy/Initialize()
 	. = ..()
-	reagents.add_reagent("sugar", 5)
+	reagents.add_reagent(REAGENT_ID_SUGAR, 5)
 
 /obj/item/reagent_containers/food/snacks/cookiesnack
 	name = "Carps Ahoy! miniature cookies"
@@ -6259,12 +6259,12 @@
 	icon_state = "fruitbar"
 	trash = /obj/item/trash/candy/fruitbar
 	nutriment_amt = 13
-	nutriment_desc = list("apricot" = 2, "sugar" = 2, "dates" = 2, "cranberry" = 2, "apple" = 2)
+	nutriment_desc = list("apricot" = 2, REAGENT_ID_SUGAR = 2, "dates" = 2, "cranberry" = 2, "apple" = 2)
 	bitesize = 6
 
 /obj/item/reagent_containers/food/snacks/fruitbar/Initialize()
 	. = ..()
-	reagents.add_reagent("sugar", 4)
+	reagents.add_reagent(REAGENT_ID_SUGAR, 4)
 
 /////////////////////////////////////////////////////////////////////////////
 //////////////////////////////Candy Bars (1-10)//////////////////////////////
@@ -6285,7 +6285,7 @@
 
 /obj/item/reagent_containers/food/snacks/cb01/Initialize()
 	. = ..()
-	reagents.add_reagent("sugar", 1)
+	reagents.add_reagent(REAGENT_ID_SUGAR, 1)
 
 /obj/item/reagent_containers/food/snacks/cb02
 	name = "\improper Hundred-Thousand Thaler Bar"
@@ -6302,7 +6302,7 @@
 
 /obj/item/reagent_containers/food/snacks/cb02/Initialize()
 	. = ..()
-	reagents.add_reagent("sugar", 1)
+	reagents.add_reagent(REAGENT_ID_SUGAR, 1)
 
 /obj/item/reagent_containers/food/snacks/cb03
 	name = "\improper Aerostat Bar"
@@ -6319,7 +6319,7 @@
 
 /obj/item/reagent_containers/food/snacks/cb03/Initialize()
 	. = ..()
-	reagents.add_reagent("sugar", 1)
+	reagents.add_reagent(REAGENT_ID_SUGAR, 1)
 
 /obj/item/reagent_containers/food/snacks/cb04
 	name = "\improper Lars' Saltlakris"
@@ -6336,7 +6336,7 @@
 
 /obj/item/reagent_containers/food/snacks/cb04/Initialize()
 	. = ..()
-	reagents.add_reagent("sugar", 1)
+	reagents.add_reagent(REAGENT_ID_SUGAR, 1)
 
 /obj/item/reagent_containers/food/snacks/cb05
 	name = "\improper Andromeda Bar"
@@ -6353,7 +6353,7 @@
 
 /obj/item/reagent_containers/food/snacks/cb05/Initialize()
 	. = ..()
-	reagents.add_reagent("sugar", 3)
+	reagents.add_reagent(REAGENT_ID_SUGAR, 3)
 
 /obj/item/reagent_containers/food/snacks/cb06
 	name = "\improper Mocha Crunch"
@@ -6370,7 +6370,7 @@
 
 /obj/item/reagent_containers/food/snacks/cb06/Initialize()
 	. = ..()
-	reagents.add_reagent("sugar", 1)
+	reagents.add_reagent(REAGENT_ID_SUGAR, 1)
 	reagents.add_reagent("coffee", 1)
 
 /obj/item/reagent_containers/food/snacks/cb07
@@ -6388,7 +6388,7 @@
 
 /obj/item/reagent_containers/food/snacks/cb07/Initialize()
 	. = ..()
-	reagents.add_reagent("sugar", 1)
+	reagents.add_reagent(REAGENT_ID_SUGAR, 1)
 
 /obj/item/reagent_containers/food/snacks/cb08
 	name = "\improper Cronk Bar"
@@ -6405,7 +6405,7 @@
 
 /obj/item/reagent_containers/food/snacks/cb08/Initialize()
 	. = ..()
-	reagents.add_reagent("sugar", 2)
+	reagents.add_reagent(REAGENT_ID_SUGAR, 2)
 
 /obj/item/reagent_containers/food/snacks/cb09
 	name = "\improper Kaju Mamma! Bar"
@@ -6422,7 +6422,7 @@
 
 /obj/item/reagent_containers/food/snacks/cb09/Initialize()
 	. = ..()
-	reagents.add_reagent("sugar", 1)
+	reagents.add_reagent(REAGENT_ID_SUGAR, 1)
 	reagents.add_reagent("milk", 1)
 	reagents.add_reagent("peanutoil", 1)
 
@@ -6441,7 +6441,7 @@
 
 /obj/item/reagent_containers/food/snacks/cb10/Initialize()
 	. = ..()
-	reagents.add_reagent("sugar", 1)
+	reagents.add_reagent(REAGENT_ID_SUGAR, 1)
 	reagents.add_reagent("protein", 1)
 	reagents.add_reagent("peanutoil", 1)
 
@@ -6664,7 +6664,7 @@
 //
 ///obj/item/reagent_containers/food/snacks/spacetwinkie/Initialize()
 //	. = ..()
-//	reagents.add_reagent("sugar", 4)
+//	reagents.add_reagent(REAGENT_ID_SUGAR, 4)
 
 /obj/item/reagent_containers/food/snacks/cheesiehonkers
 	name = "Cheesie Honkers"
@@ -6936,12 +6936,12 @@
 /obj/item/reagent_containers/food/snacks/old/Initialize()
 	.=..()
 	reagents.add_reagent(pick(list(
-				"fuel",
+				REAGENT_ID_FUEL,
 				"amatoxin",
 				"carpotoxin",
 				"zombiepowder",
 				"cryptobiolin",
-				"psilocybin")), 5)
+				REAGENT_ID_PSILOCYBIN)), 5)
 	reagents.add_reagent("salmonella", 5)
 
 /obj/item/reagent_containers/food/snacks/old/pizza
@@ -6997,7 +6997,7 @@
 /obj/item/reagent_containers/food/snacks/canned/beef/Initialize()
 	.=..()
 	reagents.add_reagent("protein", 4)
-	reagents.add_reagent("sodiumchloride", 2)
+	reagents.add_reagent(REAGENT_ID_SODIUMCHLORIDE, 2)
 
 /obj/item/reagent_containers/food/snacks/canned/beans
 	name = "baked beans"
@@ -7027,7 +7027,7 @@
 
 /obj/item/reagent_containers/food/snacks/canned/tomato/Initialize()
 	.=..()
-	reagents.add_reagent("tomato_soup", 12)
+	reagents.add_reagent(REAGENT_ID_TOMATOSOUP, 12)
 
 /obj/item/reagent_containers/food/snacks/canned/spinach
 	name = "spinach"
@@ -7044,7 +7044,7 @@
 	.=..()
 	reagents.add_reagent("adrenaline", 4)
 	reagents.add_reagent("hyperzine", 4)
-	reagents.add_reagent("iron", 4)
+	reagents.add_reagent(REAGENT_ID_IRON, 4)
 
 //////////////////////////////Advanced Canned Food//////////////////////////////
 
@@ -7092,7 +7092,7 @@
 /obj/item/reagent_containers/food/snacks/canned/maps/Initialize()
 	. = ..()
 	reagents.add_reagent("protein", 6)
-	reagents.add_reagent("sodiumchloride", 2)
+	reagents.add_reagent(REAGENT_ID_SODIUMCHLORIDE, 2)
 
 /obj/item/reagent_containers/food/snacks/canned/appleberry
 	name = "\improper Appleberry Bits"
@@ -7108,7 +7108,7 @@
 /obj/item/reagent_containers/food/snacks/canned/appleberry/Initialize()
 	. = ..()
 	reagents.add_reagent("milk", 8)
-	reagents.add_reagent("sugar", 5)
+	reagents.add_reagent(REAGENT_ID_SUGAR, 5)
 
 /obj/item/reagent_containers/food/snacks/canned/ntbeans
 	name = "baked beans"
@@ -7137,7 +7137,7 @@
 	filling_color = "#caa3c9"
 	center_of_mass = list("x"=15, "y"=9)
 	bitesize = 2
-	var/brainmeat = "brain_protein"
+	var/brainmeat = REAGENT_ID_BRAINPROTEIN
 
 /obj/item/reagent_containers/food/snacks/canned/brainzsnax/Initialize()
 	. = ..()
@@ -7155,7 +7155,7 @@
 	filling_color = "#a6898d"
 	center_of_mass = list("x"=15, "y"=9)
 	bitesize = 2
-	brainmeat = "red_brain_protein"
+	brainmeat = REAGENT_ID_REDBRAINPROTEIN
 
 //////////////Packaged Food - break open and eat//////////////
 
@@ -7221,7 +7221,7 @@
 
 /obj/item/reagent_containers/food/snacks/packaged/spacetwinkie/Initialize()
 	. = ..()
-	reagents.add_reagent("sugar", 4)
+	reagents.add_reagent(REAGENT_ID_SUGAR, 4)
 
 /obj/item/reagent_containers/food/snacks/packaged/genration
 	name = "generic ration"
@@ -7277,7 +7277,7 @@
 
 /obj/item/reagent_containers/food/snacks/packaged/sweetration/Initialize()
 	. = ..()
-	reagents.add_reagent("sugar", 6)
+	reagents.add_reagent(REAGENT_ID_SUGAR, 6)
 
 /obj/item/reagent_containers/food/snacks/packaged/vendburger
 	name = "packaged burger"
@@ -7290,7 +7290,7 @@
 
 /obj/item/reagent_containers/food/snacks/packaged/vendburger/Initialize()
 	. = ..()
-	reagents.add_reagent("sodiumchloride", 1)
+	reagents.add_reagent(REAGENT_ID_SODIUMCHLORIDE, 1)
 
 /obj/item/reagent_containers/food/snacks/packaged/vendhotdog
 	name = "packaged hotdog"
@@ -7303,7 +7303,7 @@
 
 /obj/item/reagent_containers/food/snacks/packaged/vendhotdog/Initialize()
 	. = ..()
-	reagents.add_reagent("sodiumchloride", 1)
+	reagents.add_reagent(REAGENT_ID_SODIUMCHLORIDE, 1)
 
 /obj/item/reagent_containers/food/snacks/packaged/vendburrito
 	name = "packaged burrito"
@@ -7316,4 +7316,4 @@
 
 /obj/item/reagent_containers/food/snacks/packaged/vendburrito/Initialize()
 	. = ..()
-	reagents.add_reagent("sodiumchloride", 1)
+	reagents.add_reagent(REAGENT_ID_SODIUMCHLORIDE, 1)

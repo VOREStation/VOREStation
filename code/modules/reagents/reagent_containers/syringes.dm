@@ -106,7 +106,7 @@
 				return
 
 			if(ismob(target))//Blood!
-				if(reagents.has_reagent("blood"))
+				if(reagents.has_reagent(REAGENT_ID_BLOOD))
 					to_chat(user, span_notice("There is already a blood sample in this syringe."))
 					return
 
@@ -368,7 +368,7 @@
 
 /obj/item/reagent_containers/syringe/drugs/Initialize()
 	. = ..()
-	reagents.add_reagent("bliss",  5)
+	reagents.add_reagent(REAGENT_ID_BLISS,  5)
 	reagents.add_reagent("mindbreaker",  5)
 	reagents.add_reagent("cryptobiolin", 5)
 	//mode = SYRINGE_INJECT //VOREStation Edit - Starts capped

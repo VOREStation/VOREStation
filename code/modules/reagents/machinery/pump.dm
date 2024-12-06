@@ -190,7 +190,7 @@
 
 /turf/simulated/floor/water/pump_reagents(var/datum/reagents/R, var/volume)
 	. = ..()
-	R.add_reagent("water", round(volume, 0.1))
+	R.add_reagent(REAGENT_ID_WATER, round(volume, 0.1))
 
 	var/datum/gas_mixture/air = return_air() // v
 	if(air.temperature <= T0C) // Uses the current air temp, instead of the turf starting temp
@@ -202,11 +202,11 @@
 
 /turf/simulated/floor/water/pool/pump_reagents(var/datum/reagents/R, var/volume)
 	. = ..()
-	R.add_reagent("chlorine", round(volume / 10, 0.1))
+	R.add_reagent(REAGENT_ID_CHLORINE, round(volume / 10, 0.1))
 
 /turf/simulated/floor/water/deep/pool/pump_reagents(var/datum/reagents/R, var/volume)
 	. = ..()
-	R.add_reagent("chlorine", round(volume / 10, 0.1))
+	R.add_reagent(REAGENT_ID_CHLORINE, round(volume / 10, 0.1))
 
 /turf/simulated/floor/water/contaminated/pump_reagents(var/datum/reagents/R, var/volume)
 	. = ..()

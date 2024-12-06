@@ -423,7 +423,7 @@
 	icon_state = "sp_moon"
 	bitesize = 1
 	nutriment_amt = 2
-	nutriment_desc = list("sugar" = 2)
+	nutriment_desc = list(REAGENT_ID_SUGAR = 2)
 	drop_sound = 'sound/items/drop/basketball.ogg'
 
 /obj/item/reagent_containers/food/snacks/snackplanet/virgo3b

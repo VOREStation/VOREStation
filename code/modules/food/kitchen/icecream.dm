@@ -30,9 +30,9 @@
 		if(ICECREAM_BLUE)
 			return list("milk", "ice", "singulo")
 		if(CONE_WAFFLE)
-			return list("flour", "sugar")
+			return list("flour", REAGENT_ID_SUGAR)
 		if(CONE_CHOC)
-			return list("flour", "sugar", "coco")
+			return list("flour", REAGENT_ID_SUGAR, "coco")
 		else
 			return list("milk", "ice")
 
@@ -58,7 +58,7 @@
 		product_types.Add(5)
 	reagents.add_reagent("milk", 5)
 	reagents.add_reagent("flour", 5)
-	reagents.add_reagent("sugar", 5)
+	reagents.add_reagent(REAGENT_ID_SUGAR, 5)
 	reagents.add_reagent("ice", 5)
 
 /obj/machinery/icecream_vat/attack_hand(mob/user as mob)
@@ -98,7 +98,7 @@
 			//	if(beaker)
 			//		beaker.reagents.trans_to(I, 10)
 				if(I.reagents.total_volume < 10)
-					I.reagents.add_reagent("sugar", 10 - I.reagents.total_volume)
+					I.reagents.add_reagent(REAGENT_ID_SUGAR, 10 - I.reagents.total_volume)
 			else
 				to_chat(user, span_warning("There is not enough icecream left!"))
 		else
@@ -179,7 +179,7 @@
 
 /obj/item/reagent_containers/food/snacks/icecream/New()
 	create_reagents(20)
-	reagents.add_reagent("nutriment", 5)
+	reagents.add_reagent(REAGENT_ID_NUTRIMENT, 5)
 
 /obj/item/reagent_containers/food/snacks/icecream/proc/add_ice_cream(var/flavour_name)
 	name = "[flavour_name] icecream"

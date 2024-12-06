@@ -4,7 +4,7 @@
 	seed_name = "white wabback"
 	seed_noun = "nodes"
 	display_name = "white wabback"
-	chems = list("nutriment" = list(1,10), "protein" = list(1,5), "enzyme" = list(0,3))
+	chems = list(REAGENT_ID_NUTRIMENT = list(1,10), "protein" = list(1,5), "enzyme" = list(0,3))
 	kitchen_tag = "wabback"
 	mutants = list("blackwabback","wildwabback")
 	has_item_product = /obj/item/stack/material/cloth
@@ -31,7 +31,7 @@
 	seed_name = "black wabback"
 	display_name = "black wabback"
 	mutants = null
-	chems = list("nutriment" = list(1,3), "protein" = list(1,10), "serotrotium_v" = list(0,1))
+	chems = list(REAGENT_ID_NUTRIMENT = list(1,3), "protein" = list(1,10), "serotrotium_v" = list(0,1))
 
 /datum/seed/wabback/vine/New()
 	..()
@@ -44,7 +44,7 @@
 	display_name = "wild wabback"
 	mutants = list("whitewabback")
 	has_item_product = null
-	chems = list("nutriment" = list(1,15), "protein" = list(0,2), "enzyme" = list(0,1))
+	chems = list(REAGENT_ID_NUTRIMENT = list(1,15), "protein" = list(0,2), "enzyme" = list(0,1))
 
 /datum/seed/wabback/wild/New()
 	..()

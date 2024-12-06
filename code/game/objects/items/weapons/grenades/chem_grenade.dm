@@ -213,9 +213,9 @@
 	var/obj/item/reagent_containers/glass/beaker/B1 = new(src)
 	var/obj/item/reagent_containers/glass/beaker/B2 = new(src)
 
-	B1.reagents.add_reagent("aluminum", 30)
+	B1.reagents.add_reagent(REAGENT_ID_ALUMINIUM, 30)
 	B2.reagents.add_reagent("foaming_agent", 10)
-	B2.reagents.add_reagent("pacid", 10)
+	B2.reagents.add_reagent(REAGENT_ID_PACID, 10)
 
 	detonator = new/obj/item/assembly_holder/timer_igniter(src)
 
@@ -235,11 +235,11 @@
 	var/obj/item/reagent_containers/glass/beaker/B1 = new(src)
 	var/obj/item/reagent_containers/glass/beaker/B2 = new(src)
 
-	B1.reagents.add_reagent("aluminum", 15)
-	B1.reagents.add_reagent("fuel",20)
+	B1.reagents.add_reagent(REAGENT_ID_ALUMINIUM, 15)
+	B1.reagents.add_reagent(REAGENT_ID_FUEL,20)
 	B2.reagents.add_reagent(REAGENT_ID_PHORON, 15)
-	B2.reagents.add_reagent("sacid", 15)
-	B1.reagents.add_reagent("fuel",20)
+	B2.reagents.add_reagent(REAGENT_ID_SACID, 15)
+	B1.reagents.add_reagent(REAGENT_ID_FUEL,20)
 
 	detonator = new/obj/item/assembly_holder/timer_igniter(src)
 
@@ -259,9 +259,9 @@
 	var/obj/item/reagent_containers/glass/beaker/B2 = new(src)
 
 	B1.reagents.add_reagent("plantbgone", 25)
-	B1.reagents.add_reagent("potassium", 25)
-	B2.reagents.add_reagent("phosphorus", 25)
-	B2.reagents.add_reagent("sugar", 25)
+	B1.reagents.add_reagent(REAGENT_ID_POTASSIUM, 25)
+	B2.reagents.add_reagent(REAGENT_ID_PHOSPHORUS, 25)
+	B2.reagents.add_reagent(REAGENT_ID_SUGAR, 25)
 
 	detonator = new/obj/item/assembly_holder/timer_igniter(src)
 
@@ -283,7 +283,7 @@
 	var/obj/item/reagent_containers/glass/beaker/B2 = new(src)
 
 	B1.reagents.add_reagent("fluorosurfactant", 40)
-	B2.reagents.add_reagent("water", 40)
+	B2.reagents.add_reagent(REAGENT_ID_WATER, 40)
 	B2.reagents.add_reagent("cleaner", 10)
 
 	detonator = new/obj/item/assembly_holder/timer_igniter(src)
@@ -304,10 +304,10 @@
 	var/obj/item/reagent_containers/glass/beaker/large/B1 = new(src)
 	var/obj/item/reagent_containers/glass/beaker/large/B2 = new(src)
 
-	B1.reagents.add_reagent("phosphorus", 40)
-	B1.reagents.add_reagent("potassium", 40)
+	B1.reagents.add_reagent(REAGENT_ID_PHOSPHORUS, 40)
+	B1.reagents.add_reagent(REAGENT_ID_POTASSIUM, 40)
 	B1.reagents.add_reagent("condensedcapsaicin", 40)
-	B2.reagents.add_reagent("sugar", 40)
+	B2.reagents.add_reagent(REAGENT_ID_SUGAR, 40)
 	B2.reagents.add_reagent("condensedcapsaicin", 80)
 
 	detonator = new/obj/item/assembly_holder/timer_igniter(src)

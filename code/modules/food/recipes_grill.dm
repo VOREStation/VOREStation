@@ -186,7 +186,7 @@
 /datum/recipe/superbiteburger
 	appliance = GRILL
 	fruit = list("tomato" = 1)
-	reagents = list("sodiumchloride" = 5, "blackpepper" = 5)
+	reagents = list(REAGENT_ID_SODIUMCHLORIDE = 5, "blackpepper" = 5)
 	items = list(
 		/obj/item/reagent_containers/food/snacks/bigbiteburger,
 		/obj/item/reagent_containers/food/snacks/dough,
@@ -247,17 +247,17 @@
 
 /datum/recipe/omurice/heart
 	appliance = GRILL
-	reagents = list("rice" = 5, "ketchup" = 5, "sugar" = 5, "egg" = 3)
+	reagents = list("rice" = 5, "ketchup" = 5, REAGENT_ID_SUGAR = 5, "egg" = 3)
 	result = /obj/item/reagent_containers/food/snacks/omurice/heart
 
 /datum/recipe/omurice/face
 	appliance = GRILL
-	reagents = list("rice" = 5, "ketchup" = 5, "sodiumchloride" = 1, "egg" = 3)
+	reagents = list("rice" = 5, "ketchup" = 5, REAGENT_ID_SODIUMCHLORIDE = 1, "egg" = 3)
 	result = /obj/item/reagent_containers/food/snacks/omurice/face
 
 /datum/recipe/meatsteak
 	appliance = GRILL
-	reagents = list("sodiumchloride" = 1, "blackpepper" = 1)
+	reagents = list(REAGENT_ID_SODIUMCHLORIDE = 1, "blackpepper" = 1)
 	items = list(/obj/item/reagent_containers/food/snacks/meat)
 	result = /obj/item/reagent_containers/food/snacks/meatsteak
 

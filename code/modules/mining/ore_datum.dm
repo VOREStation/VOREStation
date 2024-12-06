@@ -39,7 +39,7 @@
 
 /ore/hematite
 	name = ORE_HEMATITE
-	display_name = "hematite"
+	display_name = ORE_HEMATITE
 	smelts_to = MAT_IRON
 	alloy = 1
 	result_amount = 5
@@ -62,7 +62,7 @@
 
 /ore/glass
 	name = ORE_SAND
-	display_name = "sand"
+	display_name = ORE_SAND
 	smelts_to = MAT_GLASS
 	alloy = 1
 	compresses_to = "sandstone"
@@ -113,7 +113,7 @@
 
 /ore/diamond
 	name = ORE_DIAMOND
-	display_name = "diamond"
+	display_name = ORE_DIAMOND
 	alloy = 1
 	compresses_to = MAT_DIAMOND
 	result_amount = 5
@@ -178,7 +178,7 @@
 /*
 /ore/copper
 	name = ORE_COPPER
-	display_name = "copper"
+	display_name = ORE_COPPER
 	smelts_to = MAT_COPPER
 	alloy = 1
 	result_amount = 5
@@ -189,7 +189,7 @@
 
 /ore/tin
 	name = ORE_TIN
-	display_name = "tin"
+	display_name = ORE_TIN
 	smelts_to = MAT_TIN
 	alloy = 1
 	result_amount = 5
@@ -208,7 +208,7 @@
 
 /ore/bauxite
 	name = ORE_BAUXITE
-	display_name = "bauxite"
+	display_name = ORE_BAUXITE
 	smelts_to = MAT_ALUMINIUM
 	result_amount = 5
 	spread_chance = 25
@@ -218,7 +218,7 @@
 */
 /ore/rutile
 	name = ORE_RUTILE
-	display_name = "rutile"
+	display_name = ORE_RUTILE
 	smelts_to = MAT_TITANIUM
 	result_amount = 5
 	spread_chance = 12

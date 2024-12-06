@@ -41,7 +41,7 @@
 
 /obj/item/reagent_containers/food/drinks/cans/waterbottle/Initialize()
 	. = ..()
-	reagents.add_reagent("water", 30)
+	reagents.add_reagent(REAGENT_ID_WATER, 30)
 
 /obj/item/reagent_containers/food/drinks/cans/space_mountain_wind
 	name = "\improper Space Mountain Wind"
@@ -278,8 +278,8 @@
 
 /obj/item/reagent_containers/food/drinks/cans/terra_cola/Initialize()
 	. = ..()
-	reagents.add_reagent("water", 25)
-	reagents.add_reagent("iron", 5)
+	reagents.add_reagent(REAGENT_ID_WATER, 25)
+	reagents.add_reagent(REAGENT_ID_IRON, 5)
 
 /////////////////////////MISC VENDOR DRINKS/////////////////////////
 
@@ -365,7 +365,7 @@
 
 /obj/item/reagent_containers/food/drinks/cans/bepis/Initialize()
 	. = ..()
-	reagents.add_reagent("bepis", 30)
+	reagents.add_reagent(REAGENT_ID_BEPIS, 30)
 
 /obj/item/reagent_containers/food/drinks/cans/astrodew
 	name = "\improper Astro Dew Spring Water"
@@ -376,7 +376,7 @@
 
 /obj/item/reagent_containers/food/drinks/cans/astrodew/Initialize()
 	. = ..()
-	reagents.add_reagent("water", 30)
+	reagents.add_reagent(REAGENT_ID_WATER, 30)
 
 /obj/item/reagent_containers/food/drinks/cans/icecoffee
 	name = "\improper Café Del Consumir"
@@ -403,7 +403,7 @@
 
 /obj/item/reagent_containers/food/drinks/cans/buzz/Initialize()
 	. = ..()
-	reagents.add_reagent("buzz_fuzz", 30)
+	reagents.add_reagent(REAGENT_ID_BUZZFUZZ, 30)
 
 /obj/item/reagent_containers/food/drinks/cans/shambler
 	name = "\improper Shambler's Juice"
@@ -414,7 +414,7 @@
 
 /obj/item/reagent_containers/food/drinks/cans/shambler/Initialize()
 	. = ..()
-	reagents.add_reagent("shamblers", 30)
+	reagents.add_reagent(REAGENT_ID_SHAMBLERS, 30)
 
 /obj/item/reagent_containers/food/drinks/cans/cranberry
 	name = "\improper Sprited Cranberry"
@@ -425,7 +425,7 @@
 
 /obj/item/reagent_containers/food/drinks/cans/cranberry/Initialize()
 	. = ..()
-	reagents.add_reagent("sprited_cranberry", 30)
+	reagents.add_reagent(REAGENT_ID_SPRITEDCRANBERRY, 30)
 
 /////////////////////////CANNED BOOZE DRINKS/////////////////////////
 
@@ -460,7 +460,7 @@
 
 /obj/item/reagent_containers/food/drinks/cans/nukie_peach/Initialize()
 	. = ..()
-	reagents.add_reagent("nukie_peach", 60)
+	reagents.add_reagent(REAGENT_ID_NUKIEPEACH, 60)
 
 /obj/item/reagent_containers/food/drinks/cans/nukie_pear
 	name = "\improper Nukies - Great Pear"
@@ -471,7 +471,7 @@
 
 /obj/item/reagent_containers/food/drinks/cans/nukie_pear/Initialize()
 	. = ..()
-	reagents.add_reagent("nukie_pear", 60)
+	reagents.add_reagent(REAGENT_ID_NUKIEPEAR, 60)
 
 /obj/item/reagent_containers/food/drinks/cans/nukie_cherry
 	name = "\improper Nukies - Popping Cherry"
@@ -482,7 +482,7 @@
 
 /obj/item/reagent_containers/food/drinks/cans/nukie_cherry/Initialize()
 	. = ..()
-	reagents.add_reagent("nukie_cherry", 60)
+	reagents.add_reagent(REAGENT_ID_NUKIECHERRY, 60)
 
 /obj/item/reagent_containers/food/drinks/cans/nukie_melon
 	name = "\improper Nukies - Melon Squirter"
@@ -493,7 +493,7 @@
 
 /obj/item/reagent_containers/food/drinks/cans/nukie_melon/Initialize()
 	. = ..()
-	reagents.add_reagent("nukie_melon", 60)
+	reagents.add_reagent(REAGENT_ID_NUKIEMELON, 60)
 
 /obj/item/reagent_containers/food/drinks/cans/nukie_banana
 	name = "\improper Nukies - Bursting Banana"
@@ -504,7 +504,7 @@
 
 /obj/item/reagent_containers/food/drinks/cans/nukie_banana/Initialize()
 	. = ..()
-	reagents.add_reagent("nukie_banana", 60)
+	reagents.add_reagent(REAGENT_ID_NUKIEBANANA, 60)
 
 /obj/item/reagent_containers/food/drinks/cans/nukie_rose
 	name = "\improper Nukies - Insatiable Rose"
@@ -515,7 +515,7 @@
 
 /obj/item/reagent_containers/food/drinks/cans/nukie_rose/Initialize()
 	. = ..()
-	reagents.add_reagent("nukie_rose", 60)
+	reagents.add_reagent(REAGENT_ID_NUKIEROSE, 60)
 
 /obj/item/reagent_containers/food/drinks/cans/nukie_lemon
 	name = "\improper Nukies - Citrus Got Real"
@@ -526,7 +526,7 @@
 
 /obj/item/reagent_containers/food/drinks/cans/nukie_lemon/Initialize()
 	. = ..()
-	reagents.add_reagent("nukie_lemon", 60)
+	reagents.add_reagent(REAGENT_ID_NUKIELEMON, 60)
 
 /obj/item/reagent_containers/food/drinks/cans/nukie_fruit
 	name = "\improper Nukies - Swelling Fruit"
@@ -537,7 +537,7 @@
 
 /obj/item/reagent_containers/food/drinks/cans/nukie_fruit/Initialize()
 	. = ..()
-	reagents.add_reagent("nukie_fruit", 60)
+	reagents.add_reagent(REAGENT_ID_NUKIEFRUIT, 60)
 
 /obj/item/reagent_containers/food/drinks/cans/nukie_special
 	name = "\improper Nukies - Limited Edition"
@@ -548,7 +548,7 @@
 
 /obj/item/reagent_containers/food/drinks/cans/nukie_special/Initialize()
 	. = ..()
-	reagents.add_reagent("nukie_special", 60)
+	reagents.add_reagent(REAGENT_ID_NUKIESPECIAL, 60)
 
 /////////////////////////MEGA NUKIES/////////////////////////
 //Rare loot energy drinks with special properties, for the funnies.
@@ -562,7 +562,7 @@
 
 /obj/item/reagent_containers/food/drinks/cans/nukie_mega_sight/Initialize()
 	. = ..()
-	reagents.add_reagent("nukie_mega_sight", 60)
+	reagents.add_reagent(REAGENT_ID_NUKIEMEGASIGHT, 60)
 
 /obj/item/reagent_containers/food/drinks/cans/nukie_mega_heart
 	name = "\improper Nukies Mega - Juice Pumper"
@@ -573,7 +573,7 @@
 
 /obj/item/reagent_containers/food/drinks/cans/nukie_mega_heart/Initialize()
 	. = ..()
-	reagents.add_reagent("nukie_mega_heart", 60)
+	reagents.add_reagent(REAGENT_ID_NUKIEMEGAHEART, 60)
 
 /obj/item/reagent_containers/food/drinks/cans/nukie_mega_sleep
 	name = "\improper Nukies Nega - Vibrating Nights"
@@ -584,7 +584,7 @@
 
 /obj/item/reagent_containers/food/drinks/cans/nukie_mega_sleep/Initialize()
 	. = ..()
-	reagents.add_reagent("nukie_mega_sleep", 60)
+	reagents.add_reagent(REAGENT_ID_NUKIEMEGASLEEP, 60)
 
 /obj/item/reagent_containers/food/drinks/cans/nukie_mega_shock
 	name = "\improper Nukies Mega - Jolt Railer"
@@ -595,7 +595,7 @@
 
 /obj/item/reagent_containers/food/drinks/cans/nukie_mega_shock/Initialize()
 	. = ..()
-	reagents.add_reagent("nukie_mega_shock", 60)
+	reagents.add_reagent(REAGENT_ID_NUKIEMEGASHOCK, 60)
 
 /obj/item/reagent_containers/food/drinks/cans/nukie_mega_fast
 	name = "\improper Nukies Mega - Rapid Rager"
@@ -606,7 +606,7 @@
 
 /obj/item/reagent_containers/food/drinks/cans/nukie_mega_fast/Initialize()
 	. = ..()
-	reagents.add_reagent("nukie_mega_fast", 60)
+	reagents.add_reagent(REAGENT_ID_NUKIEMEGAFAST, 60)
 
 /obj/item/reagent_containers/food/drinks/cans/nukie_mega_high
 	name = "\improper Nukies Mega - Diamond Sky"
@@ -617,7 +617,7 @@
 
 /obj/item/reagent_containers/food/drinks/cans/nukie_mega_high/Initialize()
 	. = ..()
-	reagents.add_reagent("nukie_mega_high", 60)
+	reagents.add_reagent(REAGENT_ID_NUKIEMEGAHIGH, 60)
 
 /obj/item/reagent_containers/food/drinks/cans/nukie_mega_shrink
 	name = "\improper Nukies Mega - Shrinking Flower"
@@ -628,7 +628,7 @@
 
 /obj/item/reagent_containers/food/drinks/cans/nukie_mega_shrink/Initialize()
 	. = ..()
-	reagents.add_reagent("nukie_mega_shrink", 60)
+	reagents.add_reagent(REAGENT_ID_NUKIEMEGASHRINK, 60)
 
 /obj/item/reagent_containers/food/drinks/cans/nukie_mega_grow
 	name = "\improper Nukies Mega - Growing Geyser"
@@ -639,4 +639,4 @@
 
 /obj/item/reagent_containers/food/drinks/cans/nukie_mega_grow/Initialize()
 	. = ..()
-	reagents.add_reagent("nukie_mega_growth", 60)
+	reagents.add_reagent(REAGENT_ID_NUKIEMEGAGROWTH, 60)

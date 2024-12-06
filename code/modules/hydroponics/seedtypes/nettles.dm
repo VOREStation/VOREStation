@@ -4,7 +4,7 @@
 	seed_name = "nettle"
 	display_name = "nettles"
 	mutants = list("deathnettle")
-	chems = list("nutriment" = list(1,50), "sacid" = list(0,1))
+	chems = list(REAGENT_ID_NUTRIMENT = list(1,50), REAGENT_ID_SACID = list(0,1))
 	kitchen_tag = "nettle"
 
 /datum/seed/nettle/New()
@@ -25,7 +25,7 @@
 	display_name = "death nettles"
 	kitchen_tag = "deathnettle"
 	mutants = null
-	chems = list("nutriment" = list(1,50), "pacid" = list(0,1))
+	chems = list(REAGENT_ID_NUTRIMENT = list(1,50), REAGENT_ID_PACID = list(0,1))
 
 /datum/seed/nettle/death/New()
 	..()

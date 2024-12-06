@@ -190,7 +190,7 @@
 				var/obj/effect/effect/water/splash = new(T)
 				splash.create_reagents(15)
 				splash.reagents.add_reagent("stomacid", 5)
-				splash.reagents.add_reagent("blood", 10,list("blood_colour" = "#ec4940"))
+				splash.reagents.add_reagent(REAGENT_ID_BLOOD, 10,list("blood_colour" = "#ec4940"))
 				splash.set_color()
 
 				splash.set_up(F, 2, 3)

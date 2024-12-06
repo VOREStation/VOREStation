@@ -2,49 +2,49 @@
 	name = "Coffee"
 	id = "coffee"
 	result = "coffee"
-	required_reagents = list("water" = 5, "coffeepowder" = 1)
+	required_reagents = list(REAGENT_ID_WATER = 5, "coffeepowder" = 1)
 	result_amount = 5
 
 /decl/chemical_reaction/instant/drinks/tea
 	name = "Black tea"
 	id = "tea"
 	result = "tea"
-	required_reagents = list("water" = 5, "teapowder" = 1)
+	required_reagents = list(REAGENT_ID_WATER = 5, "teapowder" = 1)
 	result_amount = 5
 
 /decl/chemical_reaction/instant/drinks/hot_coco
 	name = "Hot Coco"
 	id = "hot_coco"
 	result = "hot_coco"
-	required_reagents = list("water" = 5, "coco" = 1)
+	required_reagents = list(REAGENT_ID_WATER = 5, "coco" = 1)
 	result_amount = 5
 
 /decl/chemical_reaction/instant/drinks/grapejuice
 	name = "Grape Juice"
 	id = "grapejuice"
 	result = "grapejuice"
-	required_reagents = list("water" = 3, "instantgrape" = 1)
+	required_reagents = list(REAGENT_ID_WATER = 3, "instantgrape" = 1)
 	result_amount = 3
 
 /decl/chemical_reaction/instant/drinks/orangejuice
 	name = "Orange Juice"
 	id = "orangejuice"
 	result = "orangejuice"
-	required_reagents = list("water" = 3, "instantorange" = 1)
+	required_reagents = list(REAGENT_ID_WATER = 3, "instantorange" = 1)
 	result_amount = 3
 
 /decl/chemical_reaction/instant/drinks/watermelonjuice
 	name = "Watermelon Juice"
 	id = "watermelonjuice"
 	result = "watermelonjuice"
-	required_reagents = list("water" = 3, "instantwatermelon" = 1)
+	required_reagents = list(REAGENT_ID_WATER = 3, "instantwatermelon" = 1)
 	result_amount = 3
 
 /decl/chemical_reaction/instant/drinks/applejuice
 	name = "Apple Juice"
 	id = "applejuice"
 	result = "applejuice"
-	required_reagents = list("water" = 3, "instantapple" = 1)
+	required_reagents = list(REAGENT_ID_WATER = 3, "instantapple" = 1)
 	result_amount = 3
 
 /decl/chemical_reaction/instant/drinks/goldschlager
@@ -93,7 +93,7 @@
 	name = "Moonshine"
 	id = "moonshine"
 	result = "moonshine"
-	required_reagents = list("nutriment" = 10)
+	required_reagents = list(REAGENT_ID_NUTRIMENT = 10)
 	catalysts = list("enzyme" = 5)
 	result_amount = 10
 
@@ -174,7 +174,7 @@
 	name = "Kahlua"
 	id = "kahlua"
 	result = "kahlua"
-	required_reagents = list("coffee" = 5, "sugar" = 5)
+	required_reagents = list("coffee" = 5, REAGENT_ID_SUGAR = 5)
 	catalysts = list("enzyme" = 5)
 	result_amount = 5
 
@@ -274,7 +274,7 @@
 	name = "Beepksy Smash"
 	id = "beepksysmash"
 	result = "beepskysmash"
-	required_reagents = list("limejuice" = 1, "whiskey" = 1, "iron" = 1)
+	required_reagents = list("limejuice" = 1, "whiskey" = 1, REAGENT_ID_IRON = 1)
 	result_amount = 2
 
 /decl/chemical_reaction/instant/drinks/doctor_delight
@@ -302,7 +302,7 @@
 	name = "Hooch"
 	id = "hooch"
 	result = "hooch"
-	required_reagents = list ("sugar" = 1, "ethanol" = 2, "fuel" = 1)
+	required_reagents = list (REAGENT_ID_SUGAR = 1, REAGENT_ID_ETHANOL = 2, REAGENT_ID_FUEL = 1)
 	result_amount = 3
 
 /decl/chemical_reaction/instant/drinks/irish_coffee
@@ -400,7 +400,7 @@
 	name = "Singulo"
 	id = "singulo"
 	result = "singulo"
-	required_reagents = list("vodka" = 5, "radium" = 1, "redwine" = 5)
+	required_reagents = list("vodka" = 5, REAGENT_ID_RADIUM = 1, "redwine" = 5)
 	result_amount = 10
 
 /decl/chemical_reaction/instant/drinks/alliescocktail
@@ -414,7 +414,7 @@
 	name = "Demons Blood"
 	id = "demonsblood"
 	result = "demonsblood"
-	required_reagents = list("rum" = 3, "spacemountainwind" = 1, "blood" = 1, "dr_gibb" = 1)
+	required_reagents = list("rum" = 3, "spacemountainwind" = 1, REAGENT_ID_BLOOD = 1, "dr_gibb" = 1)
 	result_amount = 6
 
 /decl/chemical_reaction/instant/drinks/booger
@@ -456,14 +456,14 @@
 	name = "Red Mead"
 	id = "red_mead"
 	result = "red_mead"
-	required_reagents = list("blood" = 1, "mead" = 1)
+	required_reagents = list(REAGENT_ID_BLOOD = 1, "mead" = 1)
 	result_amount = 2
 
 /decl/chemical_reaction/instant/drinks/mead
 	name = "Mead"
 	id = "mead"
 	result = "mead"
-	required_reagents = list("sugar" = 1, "water" = 1)
+	required_reagents = list(REAGENT_ID_SUGAR = 1, REAGENT_ID_WATER = 1)
 	catalysts = list("enzyme" = 5)
 	result_amount = 2
 
@@ -485,7 +485,7 @@
 	name = "Grog"
 	id = "grog"
 	result = "grog"
-	required_reagents = list("rum" = 1, "water" = 1)
+	required_reagents = list("rum" = 1, REAGENT_ID_WATER = 1)
 	result_amount = 2
 
 /decl/chemical_reaction/instant/drinks/soy_latte
@@ -506,14 +506,14 @@
 	name = "Acid Spit"
 	id = "acidspit"
 	result = "acidspit"
-	required_reagents = list("sacid" = 1, "redwine" = 5)
+	required_reagents = list(REAGENT_ID_SACID = 1, "redwine" = 5)
 	result_amount = 6
 
 /decl/chemical_reaction/instant/drinks/amasec
 	name = "Amasec"
 	id = "amasec"
 	result = "amasec"
-	required_reagents = list("iron" = 1, "redwine" = 5, "vodka" = 5)
+	required_reagents = list(REAGENT_ID_IRON = 1, "redwine" = 5, "vodka" = 5)
 	result_amount = 10
 
 /decl/chemical_reaction/instant/drinks/changelingsting
@@ -541,7 +541,7 @@
 	name = "Snow White"
 	id = "snowwhite"
 	result = "snowwhite"
-	required_reagents = list("pineapplejuice" = 1, "rum" = 1, "lemon_lime" = 1, "egg" = 1, "kahlua" = 1, "sugar" = 1) //VoreStation Edit
+	required_reagents = list("pineapplejuice" = 1, "rum" = 1, "lemon_lime" = 1, "egg" = 1, "kahlua" = 1, REAGENT_ID_SUGAR = 1) //VoreStation Edit
 	result_amount = 2
 
 /decl/chemical_reaction/instant/drinks/irishcarbomb
@@ -569,28 +569,28 @@
 	name = "Devils Kiss"
 	id = "devilskiss"
 	result = "devilskiss"
-	required_reagents = list("blood" = 1, "kahlua" = 1, "rum" = 1)
+	required_reagents = list(REAGENT_ID_BLOOD = 1, "kahlua" = 1, "rum" = 1)
 	result_amount = 3
 
 /decl/chemical_reaction/instant/drinks/hippiesdelight
 	name = "Hippies Delight"
 	id = "hippiesdelight"
 	result = "hippiesdelight"
-	required_reagents = list("psilocybin" = 1, "gargleblaster" = 1)
+	required_reagents = list(REAGENT_ID_PSILOCYBIN = 1, "gargleblaster" = 1)
 	result_amount = 2
 
 /decl/chemical_reaction/instant/drinks/bananahonk
 	name = "Banana Honk"
 	id = "bananahonk"
 	result = "bananahonk"
-	required_reagents = list("banana" = 1, "cream" = 1, "sugar" = 1)
+	required_reagents = list("banana" = 1, "cream" = 1, REAGENT_ID_SUGAR = 1)
 	result_amount = 3
 
 /decl/chemical_reaction/instant/drinks/silencer
 	name = "Silencer"
 	id = "silencer"
 	result = "silencer"
-	required_reagents = list("nothing" = 1, "cream" = 1, "sugar" = 1)
+	required_reagents = list("nothing" = 1, "cream" = 1, REAGENT_ID_SUGAR = 1)
 	result_amount = 3
 
 /decl/chemical_reaction/instant/drinks/driestmartini
@@ -604,21 +604,21 @@
 	name = "Lemonade"
 	id = "lemonade"
 	result = "lemonade"
-	required_reagents = list("lemonjuice" = 1, "sugar" = 1, "water" = 1)
+	required_reagents = list("lemonjuice" = 1, REAGENT_ID_SUGAR = 1, REAGENT_ID_WATER = 1)
 	result_amount = 3
 
 /decl/chemical_reaction/instant/drinks/melonade
 	name = "Melonade"
 	id = "melonade"
 	result = "melonade"
-	required_reagents = list("watermelonjuice" = 1, "sugar" = 1, "sodawater" = 1)
+	required_reagents = list("watermelonjuice" = 1, REAGENT_ID_SUGAR = 1, "sodawater" = 1)
 	result_amount = 3
 
 /decl/chemical_reaction/instant/drinks/appleade
 	name = "Appleade"
 	id = "appleade"
 	result = "appleade"
-	required_reagents = list("applejuice" = 1, "sugar" = 1, "sodawater" = 1)
+	required_reagents = list("applejuice" = 1, REAGENT_ID_SUGAR = 1, "sodawater" = 1)
 	result_amount = 3
 
 /decl/chemical_reaction/instant/drinks/pineappleade
@@ -647,7 +647,7 @@
 	name = "Berry Cordial"
 	id = "berrycordial"
 	result = "berrycordial"
-	required_reagents = list("berryjuice" = 4, "sugar" = 1, "lemonjuice" = 1)
+	required_reagents = list("berryjuice" = 4, REAGENT_ID_SUGAR = 1, "lemonjuice" = 1)
 	result_amount = 5
 
 /decl/chemical_reaction/instant/drinks/tropicalfizz
@@ -655,7 +655,7 @@
 	id = "tropicalfizz"
 	result = "tropicalfizz"
 	required_reagents = list("sodawater" = 6, "berryjuice" = 1, "mint" = 1, "limejuice" = 1, "lemonjuice" = 1, "pineapplejuice" = 1)
-	inhibitors = list("sugar" = 1)
+	inhibitors = list(REAGENT_ID_SUGAR = 1)
 	result_amount = 8
 
 /decl/chemical_reaction/instant/drinks/melonspritzer
@@ -670,14 +670,14 @@
 	id = "fauxfizz"
 	result = "fauxfizz"
 	required_reagents = list("sodawater" = 2, "berryjuice" = 1, "applejuice" = 1, "limejuice" = 1, "honey" = 1)
-	inhibitors = list("sugar" = 1)
+	inhibitors = list(REAGENT_ID_SUGAR = 1)
 	result_amount = 6
 
 /decl/chemical_reaction/instant/drinks/firepunch
 	name = "Fire Punch"
 	id = "firepunch"
 	result = "firepunch"
-	required_reagents = list("sugar" = 1, "rum" = 2)
+	required_reagents = list(REAGENT_ID_SUGAR = 1, "rum" = 2)
 	result_amount = 3
 
 /decl/chemical_reaction/instant/drinks/kiraspecial
@@ -838,7 +838,7 @@
 	name = "Tamagozake"
 	id = "tamagozake"
 	result = "tamagozake"
-	required_reagents = list("sake" = 10, "sugar" = 5, "egg" = 3)
+	required_reagents = list("sake" = 10, REAGENT_ID_SUGAR = 5, "egg" = 3)
 	result_amount = 15
 
 /decl/chemical_reaction/instant/drinks/ginzamary
@@ -908,14 +908,14 @@
 	name = "Debugger"
 	id = "debugger"
 	result = "debugger"
-	required_reagents = list("fuel" = 1, "sugar" = 2, "cookingoil" = 2)
+	required_reagents = list(REAGENT_ID_FUEL = 1, REAGENT_ID_SUGAR = 2, "cookingoil" = 2)
 	result_amount = 5
 
 /decl/chemical_reaction/instant/drinks/spacersbrew
 	name = "Spacer's Brew"
 	id = "spacersbrew"
 	result = "spacersbrew"
-	required_reagents = list("brownstar" = 4, "ethanol" = 1)
+	required_reagents = list("brownstar" = 4, REAGENT_ID_ETHANOL = 1)
 	result_amount = 5
 
 /decl/chemical_reaction/instant/drinks/binmanbliss
@@ -966,7 +966,7 @@
 	name = "Love Potion"
 	id = "lovepotion"
 	result = "lovepotion"
-	required_reagents = list("cream" = 1, "berryjuice" = 1, "sugar" = 1)
+	required_reagents = list("cream" = 1, "berryjuice" = 1, REAGENT_ID_SUGAR = 1)
 	result_amount = 3
 
 /decl/chemical_reaction/instant/drinks/morningafter
@@ -1001,7 +1001,7 @@
 	name = "Vox's Delight"
 	id = "voxdelight"
 	result = "voxdelight"
-	required_reagents = list(REAGENT_ID_PHORON = 3, "fuel" = 1, "water" = 1)
+	required_reagents = list(REAGENT_ID_PHORON = 3, REAGENT_ID_FUEL = 1, REAGENT_ID_WATER = 1)
 	result_amount = 4
 
 /decl/chemical_reaction/instant/drinks/screamingviking
@@ -1029,14 +1029,14 @@
 	name = "Robustin"
 	id = "robustin"
 	result = "robustin"
-	required_reagents = list("antifreeze" = 1, REAGENT_ID_PHORON = 1, "fuel" = 1, "vodka" = 1)
+	required_reagents = list("antifreeze" = 1, REAGENT_ID_PHORON = 1, REAGENT_ID_FUEL = 1, "vodka" = 1)
 	result_amount = 4
 
 /decl/chemical_reaction/instant/drinks/virginsip
 	name = "Virgin Sip"
 	id = "virginsip"
 	result = "virginsip"
-	required_reagents = list("driestmartini" = 1, "water" = 1)
+	required_reagents = list("driestmartini" = 1, REAGENT_ID_WATER = 1)
 	result_amount = 2
 
 /decl/chemical_reaction/instant/drinks/chocoshake
@@ -1092,28 +1092,28 @@
 	name = "Old Fashioned"
 	id = "oldfashioned"
 	result = "oldfashioned"
-	required_reagents = list("whiskey" = 3, "bitters" = 1, "sugar" = 1)
+	required_reagents = list("whiskey" = 3, "bitters" = 1, REAGENT_ID_SUGAR = 1)
 	result_amount = 5
 
 /decl/chemical_reaction/instant/drinks/whiskeysour
 	name = "Whiskey Sour"
 	id = "whiskeysour"
 	result = "whiskeysour"
-	required_reagents = list("whiskey" = 2, "lemonjuice" = 1, "sugar" = 1)
+	required_reagents = list("whiskey" = 2, "lemonjuice" = 1, REAGENT_ID_SUGAR = 1)
 	result_amount = 4
 
 /decl/chemical_reaction/instant/drinks/daiquiri
 	name = "Daiquiri"
 	id = "daiquiri"
 	result = "daiquiri"
-	required_reagents = list("rum" = 3, "limejuice" = 2, "sugar" = 1)
+	required_reagents = list("rum" = 3, "limejuice" = 2, REAGENT_ID_SUGAR = 1)
 	result_amount = 6
 
 /decl/chemical_reaction/instant/drinks/mintjulep
 	name = "Mint Julep"
 	id = "mintjulep"
 	result = "mintjulep"
-	required_reagents = list("whiskey" = 2, "water" = 1, "mint" = 1)
+	required_reagents = list("whiskey" = 2, REAGENT_ID_WATER = 1, "mint" = 1)
 	result_amount = 4
 
 /decl/chemical_reaction/instant/drinks/paloma
@@ -1134,14 +1134,14 @@
 	name = "Mojito"
 	id = "virginmojito"
 	result = "virginmojito"
-	required_reagents = list("sodawater" = 3, "limejuice" = 1, "mint" = 1, "sugar" = 1)
+	required_reagents = list("sodawater" = 3, "limejuice" = 1, "mint" = 1, REAGENT_ID_SUGAR = 1)
 	result_amount = 5
 
 /decl/chemical_reaction/instant/drinks/piscosour
 	name = "Pisco Sour"
 	id = "piscosour"
 	result = "piscosour"
-	required_reagents = list("winebrandy" = 1, "lemonjuice" = 1, "sugar" = 1)
+	required_reagents = list("winebrandy" = 1, "lemonjuice" = 1, REAGENT_ID_SUGAR = 1)
 	result_amount = 3
 
 /decl/chemical_reaction/instant/drinks/coldfront
@@ -1162,7 +1162,7 @@
 	name = "Godka"
 	id = "godka"
 	result = "godka"
-	required_reagents = list("vodka" = 1, "holywater" = 1, "ethanol" = 1, "carthatoline" = 1)
+	required_reagents = list("vodka" = 1, "holywater" = 1, REAGENT_ID_ETHANOL = 1, "carthatoline" = 1)
 	catalysts = list("enzyme" = 5, "holywater" = 5)
 	result_amount = 1
 
@@ -1234,14 +1234,14 @@
 	name = "Eggnog"
 	id = "eggnog"
 	result = "eggnog"
-	required_reagents = list("milk" = 5, "cream" = 5, "sugar" = 5, "egg" = 3)
+	required_reagents = list("milk" = 5, "cream" = 5, REAGENT_ID_SUGAR = 5, "egg" = 3)
 	result_amount = 15
 
 /decl/chemical_reaction/instant/drinks/nuclearwaste_radium
 	name = "Nuclear Waste"
 	id = "nuclearwasterad"
 	result = "nuclearwaste"
-	required_reagents = list("oilslick" = 1, "radium" = 1, "limejuice" = 1)
+	required_reagents = list("oilslick" = 1, REAGENT_ID_RADIUM = 1, "limejuice" = 1)
 	result_amount = 2
 
 /decl/chemical_reaction/instant/drinks/nuclearwaste_uranium
@@ -1255,7 +1255,7 @@
 	name = "Soda Oil"
 	id = "sodaoil"
 	result = "sodaoil"
-	required_reagents = list("cookingoil" = 4, "sodawater" = 1, "carbon" = 1, "tricordrazine" = 1)
+	required_reagents = list("cookingoil" = 4, "sodawater" = 1, REAGENT_ID_CARBON = 1, "tricordrazine" = 1)
 	result_amount = 6
 
 /decl/chemical_reaction/instant/drinks/fusionnaire

@@ -390,7 +390,7 @@
 									"calvatia", "gigantea", "clitopilis", "prumulus", "entoloma", "abortivum",
 									"suillus", "tuber", "aestivum", "volvacea", "delica", "russula", "rozites")
 
-		possible_prefixes |= list("butter", "shad", "sugar", "june", "wild", "rigus", "curry", "hard", "soft", "dark", "brick", "stone", "red", "brown",
+		possible_prefixes |= list("butter", "shad", REAGENT_ID_SUGAR, "june", "wild", "rigus", "curry", "hard", "soft", "dark", "brick", "stone", "red", "brown",
 								"black", "white", "paper", "slippery", "honey", "bitter")
 		prefix = pick(possible_prefixes)
 
@@ -455,7 +455,7 @@
 
 	chems = list()
 	if(prob(80))
-		chems["nutriment"] = list(rand(1,10),rand(10,20))
+		chems[REAGENT_ID_NUTRIMENT] = list(rand(1,10),rand(10,20))
 
 	var/additional_chems = rand(0,5)
 
@@ -463,10 +463,10 @@
 		// VOREStation Edit Start: Modified exclusion list
 		var/list/banned_chems = list(
 			"adminordrazine",
-			"nutriment",
-			"macrocillin",
-			"microcillin",
-			"normalcillin",
+			REAGENT_ID_NUTRIMENT,
+			REAGENT_ID_MACROCILLIN,
+			REAGENT_ID_MICROCILLIN,
+			REAGENT_ID_NORMALCILLIN,
 			"magicdust"
 			)
 		// VOREStation Edit End: Modified exclusion list

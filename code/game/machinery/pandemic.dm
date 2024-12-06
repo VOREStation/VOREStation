@@ -119,7 +119,7 @@
 				return
 			var/obj/item/reagent_containers/glass/bottle/B = create_culture(name)
 			B.desc = "A small bottle. Contains [D.agent] culture in synthblood medium."
-			B.reagents.add_reagent("blood", 20, list("viruses" = list(D)))
+			B.reagents.add_reagent(REAGENT_ID_BLOOD, 20, list("viruses" = list(D)))
 		if("clone_vaccine")
 			if(wait)
 				atom_say("The replicator is not ready yet.")

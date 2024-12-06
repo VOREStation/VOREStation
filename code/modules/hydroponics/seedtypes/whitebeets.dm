@@ -3,7 +3,7 @@
 	seed_name = "white-beet"
 	display_name = "white-beets"
 	kitchen_tag = "whitebeet"
-	chems = list("nutriment" = list(0,20), "sugar" = list(1,5))
+	chems = list(REAGENT_ID_NUTRIMENT = list(0,20), REAGENT_ID_SUGAR = list(1,5))
 
 /datum/seed/whitebeets/New()
 	..()

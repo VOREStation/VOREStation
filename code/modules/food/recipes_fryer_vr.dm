@@ -1,6 +1,6 @@
 /datum/recipe/generalschicken
 	appliance = FRYER
-	reagents = list("capsaicin" = 2, "sugar" = 2, "batter" = 10)
+	reagents = list("capsaicin" = 2, REAGENT_ID_SUGAR = 2, "batter" = 10)
 	items = list(
 		/obj/item/reagent_containers/food/snacks/meat,
 		/obj/item/reagent_containers/food/snacks/meat
@@ -30,7 +30,7 @@
 
 /datum/recipe/locust
 	appliance = FRYER
-	reagents = list("sodiumchloride" = 1)
+	reagents = list(REAGENT_ID_SODIUMCHLORIDE = 1)
 	items = list(
 		/obj/item/reagent_containers/food/snacks/locust
 	)

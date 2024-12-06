@@ -3,7 +3,7 @@
 	requires = list(
 		"rutile" = 1,
 		"platinum" = 1,
-		"carbon" = 2,
+		REAGENT_ID_CARBON = 2,
 		)
 	product_mod = 0.3
 	product = /obj/item/stack/material/plastitanium
@@ -23,7 +23,7 @@
 		"rutile" = 1,
 		"sand" = 2,
 		"platinum" = 1,
-		"carbon" = 2,
+		REAGENT_ID_CARBON = 2,
 		)
 	product_mod = 1
 	product = /obj/item/stack/material/glass/plastitanium

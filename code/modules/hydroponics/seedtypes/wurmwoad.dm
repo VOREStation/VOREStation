@@ -4,7 +4,7 @@
 	name = "wurmwoad"
 	seed_name = "wurmwoad"
 	display_name = "wurmwoad growth"
-	chems = list("nutriment" = list(1,10), "spacespice" = list(5,15))
+	chems = list(REAGENT_ID_NUTRIMENT = list(1,10), "spacespice" = list(5,15))
 	kitchen_tag = "wurmwoad"
 
 /datum/seed/wurmwoad/New()

@@ -108,7 +108,7 @@
 
 /obj/structure/reagent_dispensers/watertank/Initialize()
 	. = ..()
-	reagents.add_reagent("water", 1000)
+	reagents.add_reagent(REAGENT_ID_WATER, 1000)
 
 /obj/structure/reagent_dispensers/watertank/high
 	name = "high-capacity water tank"
@@ -117,7 +117,7 @@
 
 /obj/structure/reagent_dispensers/watertank/high/Initialize()
 	. = ..()
-	reagents.add_reagent("water", 4000)
+	reagents.add_reagent(REAGENT_ID_WATER, 4000)
 
 /obj/structure/reagent_dispensers/watertank/barrel
 	name = "water barrel"
@@ -128,14 +128,14 @@
 /obj/structure/reagent_dispensers/fueltank
 	name = "fuel tank"
 	desc = "A fuel tank."
-	icon_state = "fuel"
+	icon_state = REAGENT_ID_FUEL
 	amount_per_transfer_from_this = 10
 	var/modded = 0
 	var/obj/item/assembly_holder/rig = null
 
 /obj/structure/reagent_dispensers/fueltank/Initialize()
 	. = ..()
-	reagents.add_reagent("fuel",1000)
+	reagents.add_reagent(REAGENT_ID_FUEL,1000)
 
 /obj/structure/reagent_dispensers/fueltank/high
 	name = "high-capacity fuel tank"
@@ -144,7 +144,7 @@
 
 /obj/structure/reagent_dispensers/fueltank/high/Initialize()
 	. = ..()
-	reagents.add_reagent("fuel",4000)
+	reagents.add_reagent(REAGENT_ID_FUEL,4000)
 
 //Foam
 /obj/structure/reagent_dispensers/foam
@@ -293,7 +293,7 @@
 		return
 
 	amount = min(amount, reagents.total_volume)
-	reagents.remove_reagent("fuel",amount)
+	reagents.remove_reagent(REAGENT_ID_FUEL,amount)
 	new /obj/effect/decal/cleanable/liquid_fuel(src.loc, amount,1)
 
 /obj/structure/reagent_dispensers/peppertank
@@ -333,7 +333,7 @@
 
 /obj/structure/reagent_dispensers/acid/Initialize()
 	. = ..()
-	reagents.add_reagent("sacid", 1000)
+	reagents.add_reagent(REAGENT_ID_SACID, 1000)
 
 /obj/structure/reagent_dispensers/water_cooler
 	name = "Water-Cooler"
@@ -356,7 +356,7 @@
 /obj/structure/reagent_dispensers/water_cooler/Initialize()
 	. = ..()
 	if(bottle)
-		reagents.add_reagent("water",2000)
+		reagents.add_reagent(REAGENT_ID_WATER,2000)
 	update_icon()
 
 /obj/structure/reagent_dispensers/water_cooler/examine(mob/user)
@@ -550,4 +550,4 @@
 
 /obj/structure/reagent_dispensers/bloodbarrel/Initialize()
 	. = ..()
-	reagents.add_reagent("blood", 1000, list("donor"=null,"viruses"=null,"blood_DNA"=null,"blood_type"="O-","resistances"=null,"trace_chem"=null))
+	reagents.add_reagent(REAGENT_ID_BLOOD, 1000, list("donor"=null,"viruses"=null,"blood_DNA"=null,"blood_type"="O-","resistances"=null,"trace_chem"=null))

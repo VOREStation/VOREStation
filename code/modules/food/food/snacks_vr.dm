@@ -38,7 +38,7 @@
 /obj/item/reagent_containers/food/snacks/goulash/Initialize()
 	. = ..()
 	reagents.add_reagent("protein", 3) //For meaty things.
-	reagents.add_reagent("water", 5)
+	reagents.add_reagent(REAGENT_ID_WATER, 5)
 
 
 /obj/item/reagent_containers/food/snacks/donerkebab
@@ -79,7 +79,7 @@
 
 /obj/item/reagent_containers/food/snacks/reishicup/Initialize()
 	. = ..()
-	reagents.add_reagent("psilocybin", 3)
+	reagents.add_reagent(REAGENT_ID_PSILOCYBIN, 3)
 	bitesize = 6
 
 /obj/item/storage/box/wings //This is kinda like the donut box.
@@ -134,7 +134,7 @@
 /obj/item/reagent_containers/food/snacks/hotandsoursoup/Initialize()
 	. = ..()
 	bitesize = 2
-	reagents.add_reagent("hot_n_sour_soup", 10)
+	reagents.add_reagent(REAGENT_ID_HOTNSOURSOUP, 10)
 
 /obj/item/reagent_containers/food/snacks/kitsuneudon
 	name = "kitsune udon"
@@ -178,7 +178,7 @@
 /obj/item/reagent_containers/food/snacks/bugball/Initialize()
 	. = ..()
 	reagents.add_reagent("protein", 1)
-	reagents.add_reagent("carbon", 5)
+	reagents.add_reagent(REAGENT_ID_CARBON, 5)
 	bitesize = 7
 
 /obj/item/reagent_containers/food/snacks/pillbug
@@ -207,7 +207,7 @@
 /obj/item/reagent_containers/food/snacks/pillbug/Initialize()
 	. = ..()
 	reagents.add_reagent("protein", 1)
-	reagents.add_reagent("carbon", 5)
+	reagents.add_reagent(REAGENT_ID_CARBON, 5)
 	bitesize = 3
 
 /obj/item/reagent_containers/food/snacks/mammi
@@ -263,7 +263,7 @@
 	bitesize = 5
 	reagents.add_reagent("protein", 20)
 	reagents.add_reagent("tricordrazine", 5)
-	reagents.add_reagent("iron", 5)
+	reagents.add_reagent(REAGENT_ID_IRON, 5)
 
 /obj/item/reagent_containers/food/snacks/cuttlefish
 	name = "raw cuttlefish"
@@ -343,7 +343,7 @@
 /obj/item/reagent_containers/food/snacks/sliceable/monkfishremains/Initialize()
 	. = ..()
 	bitesize = 0.01 //impossible to eat
-	reagents.add_reagent("carbon", 5)
+	reagents.add_reagent(REAGENT_ID_CARBON, 5)
 
 /obj/item/reagent_containers/food/snacks/sliceable/sharkchunk
 	name = "chunk of shark meat"
@@ -472,14 +472,14 @@
 	qdel(src)
 
 /obj/item/reagent_containers/food/snacks/cube/on_reagent_change()
-	if(reagents.has_reagent("water"))
+	if(reagents.has_reagent(REAGENT_ID_WATER))
 		Expand()
 
 /obj/item/reagent_containers/food/snacks/cube/protein
 
 /obj/item/reagent_containers/food/snacks/cube/protein/Initialize()
 	. = ..()
-	reagents.add_reagent("meatcolony", 5)
+	reagents.add_reagent(REAGENT_ID_MEATCOLONY, 5)
 
 /obj/item/reagent_containers/food/snacks/proteinslab
 	name = "Protein slab"
@@ -502,7 +502,7 @@
 
 /obj/item/reagent_containers/food/snacks/cube/nutriment/Initialize()
 	. = ..()
-	reagents.add_reagent("plantcolony", 5)
+	reagents.add_reagent(REAGENT_ID_PLANTCOLONY, 5)
 
 /obj/item/reagent_containers/food/snacks/nutrimentslab
 	name = "Nutriment slab"
@@ -561,7 +561,7 @@
 
 /obj/item/reagent_containers/food/snacks/nachos/Initialize()
 	. = ..()
-	reagents.add_reagent("nutriment", 1)
+	reagents.add_reagent(REAGENT_ID_NUTRIMENT, 1)
 	bitesize = 1
 
 /obj/item/reagent_containers/food/snacks/cheesenachos
@@ -573,7 +573,7 @@
 
 /obj/item/reagent_containers/food/snacks/cheesenachos/Initialize()
 	. = ..()
-	reagents.add_reagent("nutriment", 5)
+	reagents.add_reagent(REAGENT_ID_NUTRIMENT, 5)
 	reagents.add_reagent("protein", 2)
 	bitesize = 2
 
@@ -590,7 +590,7 @@
 
 /obj/item/reagent_containers/food/snacks/milosoup/Initialize()
 	. = ..()
-	reagents.add_reagent("water", 5)
+	reagents.add_reagent(REAGENT_ID_WATER, 5)
 
 /obj/item/reagent_containers/food/snacks/onionsoup
 	name = "Onion Soup"
@@ -604,7 +604,7 @@
 
 /obj/item/reagent_containers/food/snacks/onionsoup/Initialize()
 	. = ..()
-	reagents.add_reagent("onion_soup", 10)
+	reagents.add_reagent(REAGENT_ID_ONIONSOUP, 10)
 
 //Fennec foods
 /obj/item/storage/box/wings/bucket
@@ -691,7 +691,7 @@
 
 /obj/item/reagent_containers/food/snacks/scorpion_cooked/Initialize()
 	. = ..()
-	reagents.add_reagent("nutriment", 2)
+	reagents.add_reagent(REAGENT_ID_NUTRIMENT, 2)
 	reagents.add_reagent("protein", 4)
 	bitesize = 4
 
@@ -736,7 +736,7 @@
 
 /obj/item/reagent_containers/food/snacks/honey_candy/Initialize()
 	. = ..()
-	reagents.add_reagent("sugar", 2)
+	reagents.add_reagent(REAGENT_ID_SUGAR, 2)
 	bitesize = 2
 
 /obj/item/reagent_containers/food/snacks/locust
@@ -981,28 +981,28 @@
 	w_class = ITEMSIZE_TINY
 	nutriment_amt = 1
 	bitesize = 2
-	nutriment_desc = list("sugar" = 5, "berry" = 2)
+	nutriment_desc = list(REAGENT_ID_SUGAR = 5, "berry" = 2)
 
 
 /obj/item/reagent_containers/food/snacks/winegum/orange
 	icon_state = "winegum_orange"
-	nutriment_desc = list("sugar" = 5, "orange" = 2)
+	nutriment_desc = list(REAGENT_ID_SUGAR = 5, "orange" = 2)
 
 /obj/item/reagent_containers/food/snacks/winegum/black
 	icon_state = "winegum_black"
-	nutriment_desc = list("sugar" = 5, "berry" = 2)
+	nutriment_desc = list(REAGENT_ID_SUGAR = 5, "berry" = 2)
 
 /obj/item/reagent_containers/food/snacks/winegum/green
 	icon_state = "winegum_green"
-	nutriment_desc = list("sugar" = 5, "lime" = 2)
+	nutriment_desc = list(REAGENT_ID_SUGAR = 5, "lime" = 2)
 
 /obj/item/reagent_containers/food/snacks/winegum/yellow
 	icon_state = "winegum_yellow"
-	nutriment_desc = list("sugar" = 5, "lemon" = 2)
+	nutriment_desc = list(REAGENT_ID_SUGAR = 5, "lemon" = 2)
 
 /obj/item/reagent_containers/food/snacks/winegum/white
 	icon_state = "winegum_white"
-	nutriment_desc = list("sugar" = 5, "pineapplejuice" = 2)
+	nutriment_desc = list(REAGENT_ID_SUGAR = 5, "pineapplejuice" = 2)
 
 /obj/item/storage/box/winegum //This is kinda like the donut box.
 	name = "Desatti Wine Gums"
@@ -1044,7 +1044,7 @@
 	w_class = ITEMSIZE_TINY
 	nutriment_amt = 1
 	bitesize = 2
-	nutriment_desc = list("sugar" = 5)
+	nutriment_desc = list(REAGENT_ID_SUGAR = 5)
 	var/list/color_options = list("saucer_pink","saucer_blue","saucer_orange","saucer_green","saucer_yellow")
 
 /obj/item/reagent_containers/food/snacks/saucer/Initialize()
@@ -1149,7 +1149,7 @@
 	w_class = ITEMSIZE_TINY
 	nutriment_amt = 1
 	bitesize = 2
-	nutriment_desc = list("sugar" = 5, "banana" = 3)
+	nutriment_desc = list(REAGENT_ID_SUGAR = 5, "banana" = 3)
 
 /obj/item/reagent_containers/food/snacks/foam_shrimp
 	name = "Foam Shrimp"
@@ -1159,7 +1159,7 @@
 	w_class = ITEMSIZE_TINY
 	nutriment_amt = 1
 	bitesize = 2
-	nutriment_desc = list("sugar" = 5, "strawberry" = 3)
+	nutriment_desc = list(REAGENT_ID_SUGAR = 5, "strawberry" = 3)
 
 /obj/item/storage/box/shrimpsandbananas //This is kinda like the donut box.
 	name = "Shrimps and Bananas"
@@ -1184,7 +1184,7 @@
 	w_class = ITEMSIZE_TINY
 	nutriment_amt = 1
 	bitesize = 2
-	nutriment_desc = list("sugar" = 5, "rhubarb" = 2, "custard" = 2)
+	nutriment_desc = list(REAGENT_ID_SUGAR = 5, "rhubarb" = 2, "custard" = 2)
 	var/list/color_options = list("rhubarbcustard_1","rhubarbcustard_2")
 
 /obj/item/reagent_containers/food/snacks/rhubarbcustard/Initialize()

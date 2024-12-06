@@ -6,7 +6,7 @@
 	display_name = "pineapple"
 	kitchen_tag = "pineapple"
 	mutants = list("spineapple")
-	chems = list("nutriment" = list(1,5), "pineapplejuice" = list(1, 20))
+	chems = list(REAGENT_ID_NUTRIMENT = list(1,5), "pineapplejuice" = list(1, 20))
 
 /datum/seed/pineapple/New()
 	..()
@@ -30,7 +30,7 @@
 	seed_name = "spineapple"
 	display_name = "spineapple"
 	kitchen_tag = "spineapple"
-	chems = list("nutriment" = list(1,5), "enzyme" = list(1,5), "pineapplejuice" = list(1, 20))
+	chems = list(REAGENT_ID_NUTRIMENT = list(1,5), "enzyme" = list(1,5), "pineapplejuice" = list(1, 20))
 
 /datum/seed/spineapple/New()
 	..()

@@ -147,7 +147,7 @@
 	desc = "A small bottle. Contains a small amount of Polytrinic Acid"
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "bottle-4"
-	prefill = list("pacid" = 60)
+	prefill = list(REAGENT_ID_PACID = 60)
 
 /obj/item/reagent_containers/glass/bottle/adminordrazine
 	name = "adminordrazine bottle"

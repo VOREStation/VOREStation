@@ -552,7 +552,7 @@
 				qdel(H.held_mob)
 		qdel(O)
 	src.reagents.clear_reagents()
-	ffuu.reagents.add_reagent("carbon", amount)
+	ffuu.reagents.add_reagent(REAGENT_ID_CARBON, amount)
 	ffuu.reagents.add_reagent("toxin", amount/10)
 	return ffuu
 

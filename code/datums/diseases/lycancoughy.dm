@@ -5,7 +5,7 @@
 	spread_text = "On contact"
 	spread_flags = CONTACT_GENERAL
 	cure_text = "Ethanol"
-	cures = list("ethanol")
+	cures = list(REAGENT_ID_ETHANOL)
 	agent = "Excess Snuggles"
 	viable_mobtypes = list(/mob/living/carbon/human, /mob/living/carbon/human/monkey)
 	desc = "If left untreated subject will regurgitate... puppies."

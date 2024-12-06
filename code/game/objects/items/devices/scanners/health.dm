@@ -359,7 +359,7 @@
 
 		// Blood level
 		if(M:vessel)
-			var/blood_volume = H.vessel.get_reagent_amount("blood")
+			var/blood_volume = H.vessel.get_reagent_amount(REAGENT_ID_BLOOD)
 			var/blood_percent =  round((blood_volume / H.species.blood_volume)*100)
 			var/blood_type = H.dna.b_type
 			var/blood_reagent = H.species.blood_reagents

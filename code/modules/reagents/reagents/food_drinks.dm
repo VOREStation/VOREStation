@@ -1,8 +1,8 @@
 /* Food */
 
 /datum/reagent/nutriment
-	name = "Nutriment"
-	id = "nutriment"
+	name = REAGENT_NUTRIMENT
+	id = REAGENT_ID_NUTRIMENT
 	description = "All the vitamins, minerals, and carbohydrates the body needs in pure form."
 	taste_mult = 4
 	reagent_state = SOLID
@@ -642,8 +642,8 @@
 /* Non-food stuff like condiments */
 
 /datum/reagent/sodiumchloride
-	name = "Table Salt"
-	id = "sodiumchloride"
+	name = REAGENT_SODIUMCHLORIDE
+	id = REAGENT_ID_SODIUMCHLORIDE
 	description = "A salt made of sodium chloride. Commonly used to season food."
 	taste_description = "salt"
 	reagent_state = SOLID
@@ -2412,13 +2412,13 @@
 	..()
 	if(alien == IS_DIONA)
 		return
-	M.bloodstr.add_reagent("radium", 0.3)
+	M.bloodstr.add_reagent(REAGENT_ID_RADIUM, 0.3)
 
 /datum/reagent/drink/nuclearwaste/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
 	..()
 	if(alien == IS_DIONA)
 		return
-	M.ingested.add_reagent("radium", 0.25)
+	M.ingested.add_reagent(REAGENT_ID_RADIUM, 0.25)
 
 /datum/reagent/drink/sodaoil //Mixed with normal drinks to make a 'potable' version for Prometheans if mixed 1-1. Dilution is key.
 	name = "Soda Oil"

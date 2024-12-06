@@ -5,7 +5,7 @@
 	display_name = "apple tree"
 	kitchen_tag = "apple"
 	mutants = list("poisonapple","goldapple")
-	chems = list("nutriment" = list(1,10),"applejuice" = list(10,20))
+	chems = list(REAGENT_ID_NUTRIMENT = list(1,10),"applejuice" = list(10,20))
 
 /datum/seed/apple/New()
 	..()
@@ -31,7 +31,7 @@
 	display_name = "gold apple tree"
 	kitchen_tag = "goldapple"
 	mutants = null
-	chems = list("nutriment" = list(1,10), "gold" = list(1,5))
+	chems = list(REAGENT_ID_NUTRIMENT = list(1,10), "gold" = list(1,5))
 
 /datum/seed/apple/gold/New()
 	..()
@@ -46,7 +46,7 @@
 	seed_name = "sivian pod"
 	display_name = "sivian pod"
 	kitchen_tag = "apple"
-	chems = list("nutriment" = list(1,5),"sifsap" = list(10,20))
+	chems = list(REAGENT_ID_NUTRIMENT = list(1,5),"sifsap" = list(10,20))
 
 /datum/seed/apple/sif/New()
 	..()

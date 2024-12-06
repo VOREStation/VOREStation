@@ -4,7 +4,7 @@
 	seed_name = "lettuce"
 	display_name = "lettuce"
 	kitchen_tag = "lettuce"
-	chems = list("nutriment" = list(1,15))
+	chems = list(REAGENT_ID_NUTRIMENT = list(1,15))
 
 /datum/seed/lettuce/New()
 	..()
@@ -26,7 +26,7 @@
 	seed_name = "glacial lettuce"
 	display_name = "glacial lettuce"
 	kitchen_tag = "icelettuce"
-	chems = list("nutriment" = list(1,5), "paracetamol" = list(0,2))
+	chems = list(REAGENT_ID_NUTRIMENT = list(1,5), "paracetamol" = list(0,2))
 
 /datum/seed/lettuce/ice/New()
 	..()

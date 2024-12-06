@@ -1,7 +1,7 @@
 // Chaos cake
 
 /datum/recipe/chaoscake_layerone
-	reagents = list("flour" = 30,"milk" = 20, "sugar" = 10, "egg" = 9)
+	reagents = list("flour" = 30,"milk" = 20, REAGENT_ID_SUGAR = 10, "egg" = 9)
 	fruit = list("poisonberries" = 2, "cherries" =  2)
 	items = list(
 			/obj/item/reagent_containers/food/snacks/meat/,
@@ -12,7 +12,7 @@
 	result = /obj/structure/chaoscake
 
 /datum/recipe/chaoscake_layertwo
-	reagents = list("flour" = 30, "milk" = 20, "sugar" = 10, "egg" = 9, )
+	reagents = list("flour" = 30, "milk" = 20, REAGENT_ID_SUGAR = 10, "egg" = 9, )
 	fruit = list("vanilla" =  2, "banana" = 2)
 	items = list(
 			/obj/item/reagent_containers/food/snacks/dough,
@@ -23,7 +23,7 @@
 	result = /obj/item/chaoscake_layer
 
 /datum/recipe/chaoscake_layerthree
-	reagents = list("flour" = 25, "milk" = 15, "sugar" = 10, "egg" = 6, "deathbell" = 10)
+	reagents = list("flour" = 25, "milk" = 15, REAGENT_ID_SUGAR = 10, "egg" = 6, "deathbell" = 10)
 	fruit = list("grapes" = 3)
 	items = list(
 			/obj/item/reagent_containers/food/snacks/dough,
@@ -33,7 +33,7 @@
 	result = /obj/item/chaoscake_layer/three
 
 /datum/recipe/chaoscake_layerfour
-	reagents = list("flour" = 25, "milk" = 15, "sugar" = 10, "egg" = 6, "milkshake" = 30)
+	reagents = list("flour" = 25, "milk" = 15, REAGENT_ID_SUGAR = 10, "egg" = 6, "milkshake" = 30)
 	fruit = list("rice" = 3)
 	items = list(
 			/obj/item/reagent_containers/food/snacks/dough,
@@ -43,13 +43,13 @@
 	result = /obj/item/chaoscake_layer/four
 
 /datum/recipe/chaoscake_layerfive
-	reagents = list("flour" = 20, "milk" = 10, "sugar" = 10, "egg" = 6, "blood" = 30)
+	reagents = list("flour" = 20, "milk" = 10, REAGENT_ID_SUGAR = 10, "egg" = 6, REAGENT_ID_BLOOD = 30)
 	fruit = list("tomato" = 2)
 	items = list() //supposed to be made with lobster, still has to be ported.
 	result = /obj/item/chaoscake_layer/five
 
 /datum/recipe/chaoscake_layersix
-	reagents = list("flour" = 20, "milk" = 10, "sugar" = 10, "egg" = 6, "sprinkles" = 5)
+	reagents = list("flour" = 20, "milk" = 10, REAGENT_ID_SUGAR = 10, "egg" = 6, "sprinkles" = 5)
 	fruit = list("apple" = 2)
 	items = list(
 			/obj/item/reagent_containers/food/snacks/dough,
@@ -62,7 +62,7 @@
 	result = /obj/item/chaoscake_layer/six
 
 /datum/recipe/chaoscake_layerseven
-	reagents = list("flour" = 15, "milk" = 10, "sugar" = 5, "egg" = 3, "devilskiss" = 20)
+	reagents = list("flour" = 15, "milk" = 10, REAGENT_ID_SUGAR = 5, "egg" = 3, "devilskiss" = 20)
 	fruit = list("potato" = 1)
 	items = list(
 			/obj/item/reagent_containers/food/snacks/dough,
@@ -72,7 +72,7 @@
 	result = /obj/item/chaoscake_layer/seven
 
 /datum/recipe/chaoscake_layereight
-	reagents = list("flour" = 15, "milk" = 10, "sugar" = 5, "egg" = 3, "cream" = 20)
+	reagents = list("flour" = 15, "milk" = 10, REAGENT_ID_SUGAR = 5, "egg" = 3, "cream" = 20)
 	fruit = list("lemon" = 1)
 	items = list(
 			/obj/item/reagent_containers/food/snacks/dough,
@@ -82,7 +82,7 @@
 	result = /obj/item/chaoscake_layer/eight
 
 /datum/recipe/chaoscake_layernine
-	reagents = list("water" = 10, "blood" = 10)
+	reagents = list(REAGENT_ID_WATER = 10, REAGENT_ID_BLOOD = 10)
 	fruit = list("goldapple" = 1)
 	items = list()
 	result = /obj/item/chaoscake_layer/nine
@@ -194,24 +194,24 @@
 			reagents.add_reagent("shockchem", 2)
 			reagents.add_reagent("amatoxin", 2)
 			reagents.add_reagent("carpotoxin", 2)
-			reagents.add_reagent("spidertoxin", 2)
+			reagents.add_reagent(REAGENT_ID_SPIDERTOXIN, 2)
 			bitesize = 7
 		if(2)
 			name = "Slice Of Evil" //A bad trip
 			desc = "A mysterious slice, coated in purple frosting that smells like grapes."
 			nutriment_desc = list("The desire to show off an party" = 10)
 			reagents.add_reagent("stoxin", 2)
-			reagents.add_reagent("bliss", 10)
+			reagents.add_reagent(REAGENT_ID_BLISS, 10)
 			reagents.add_reagent("serotrotium", 4)
 			reagents.add_reagent("cryptobiolin", 8)
 			reagents.add_reagent("mindbreaker", 10)
-			reagents.add_reagent("psilocybin", 10)
+			reagents.add_reagent(REAGENT_ID_PSILOCYBIN, 10)
 			bitesize = 30 //even a single bite won't make you escape fate.
 		if(3)
 			name = "Slice Of Evil" //acidic
 			desc = "A menacing slice, smelling clearly of copper, blood clots float on top."
 			nutriment_desc = list("Infernal Rage" = 10)
-			reagents.add_reagent("blood", 20)
+			reagents.add_reagent(REAGENT_ID_BLOOD, 20)
 			reagents.add_reagent("stomacid", 10)
 			reagents.add_reagent("mutagen", 4)
 			reagents.add_reagent("thirteenloko", 20)

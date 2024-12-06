@@ -2,7 +2,7 @@
 	name = "Hot Ramen"
 	id = "hot_ramen"
 	result = "hot_ramen"
-	required_reagents = list("water" = 1, "dry_ramen" = 3)
+	required_reagents = list(REAGENT_ID_WATER = 1, "dry_ramen" = 3)
 	result_amount = 3
 
 /decl/chemical_reaction/instant/food/hell_ramen
@@ -30,7 +30,7 @@
 	name = "Chocolate Bar"
 	id = "chocolate_bar"
 	result = null
-	required_reagents = list("soymilk" = 2, "coco" = 2, "sugar" = 2)
+	required_reagents = list("soymilk" = 2, "coco" = 2, REAGENT_ID_SUGAR = 2)
 	catalysts = list("enzyme" = 5)
 	result_amount = 1
 
@@ -44,7 +44,7 @@
 	name = "Chocolate Bar"
 	id = "chocolate_bar"
 	result = null
-	required_reagents = list("milk" = 2, "coco" = 2, "sugar" = 2)
+	required_reagents = list("milk" = 2, "coco" = 2, REAGENT_ID_SUGAR = 2)
 	catalysts = list("enzyme" = 5)
 	result_amount = 1
 
@@ -67,7 +67,7 @@
 	id = "cookingoilpeanut"
 	result = "cookingoil"
 	required_reagents = list("peanutoil" = 10)
-	inhibitors = list("sugar" = 1, "sodiumchloride" = 1)
+	inhibitors = list(REAGENT_ID_SUGAR = 1, REAGENT_ID_SODIUMCHLORIDE = 1)
 	catalysts = list("enzyme" = 5)
 	result_amount = 10
 
@@ -75,28 +75,28 @@
 	name = "Soy Sauce"
 	id = "soysauce"
 	result = "soysauce"
-	required_reagents = list("soymilk" = 4, "sacid" = 1)
+	required_reagents = list("soymilk" = 4, REAGENT_ID_SACID = 1)
 	result_amount = 5
 
 /decl/chemical_reaction/instant/food/ketchup
 	name = "Ketchup"
 	id = "ketchup"
 	result = "ketchup"
-	required_reagents = list("tomatojuice" = 2, "water" = 1, "sugar" = 1)
+	required_reagents = list("tomatojuice" = 2, REAGENT_ID_WATER = 1, REAGENT_ID_SUGAR = 1)
 	result_amount = 4
 
 /decl/chemical_reaction/instant/food/barbecue
 	name = "Barbeque Sauce"
 	id = "barbecue"
 	result = "barbecue"
-	required_reagents = list("tomatojuice" = 2, "applejuice" = 1, "sugar" = 1, "spacespice" = 1)
+	required_reagents = list("tomatojuice" = 2, "applejuice" = 1, REAGENT_ID_SUGAR = 1, "spacespice" = 1)
 	result_amount = 4
 
 /decl/chemical_reaction/instant/food/peanutbutter
 	name = "Peanut Butter"
 	id = "peanutbutter"
 	result = "peanutbutter"
-	required_reagents = list("peanutoil" = 2, "sugar" = 1, "sodiumchloride" = 1)
+	required_reagents = list("peanutoil" = 2, REAGENT_ID_SUGAR = 1, REAGENT_ID_SODIUMCHLORIDE = 1)
 	catalysts = list("enzyme" = 5)
 	result_amount = 3
 
@@ -104,7 +104,7 @@
 	name = "mayonnaise"
 	id = "mayo"
 	result = "mayo"
-	required_reagents = list("egg" = 9, "cookingoil" = 5, "lemonjuice" = 5, "sodiumchloride" = 1)
+	required_reagents = list("egg" = 9, "cookingoil" = 5, "lemonjuice" = 5, REAGENT_ID_SODIUMCHLORIDE = 1)
 	result_amount = 15
 
 /decl/chemical_reaction/instant/food/cheesewheel
@@ -140,7 +140,7 @@
 	id = "dough"
 	result = null
 	required_reagents = list("egg" = 3, "flour" = 10)
-	inhibitors = list("water" = 1, "beer" = 1, "sugar" = 1) //To prevent it messing with batter recipes
+	inhibitors = list(REAGENT_ID_WATER = 1, "beer" = 1, REAGENT_ID_SUGAR = 1) //To prevent it messing with batter recipes
 	result_amount = 1
 
 /decl/chemical_reaction/instant/food/dough/on_reaction(var/datum/reagents/holder, var/created_volume)
@@ -153,7 +153,7 @@
 	name = "Syntiflesh"
 	id = "syntiflesh"
 	result = null
-	required_reagents = list("blood" = 5, "clonexadone" = 5)
+	required_reagents = list(REAGENT_ID_BLOOD = 5, "clonexadone" = 5)
 	result_amount = 1
 
 /decl/chemical_reaction/instant/food/syntiflesh/on_reaction(var/datum/reagents/holder, var/created_volume)
@@ -172,35 +172,35 @@
 	name = "Batter"
 	id = "batter"
 	result = "batter"
-	required_reagents = list("egg" = 3, "flour" = 10, "water" = 5, "sodiumchloride" = 2)
+	required_reagents = list("egg" = 3, "flour" = 10, REAGENT_ID_WATER = 5, REAGENT_ID_SODIUMCHLORIDE = 2)
 	result_amount = 20
 
 /decl/chemical_reaction/instant/food/coating/beerbatter
 	name = "Beer Batter"
 	id = "beerbatter"
 	result = "beerbatter"
-	required_reagents = list("egg" = 3, "flour" = 10, "beer" = 5, "sodiumchloride" = 2)
+	required_reagents = list("egg" = 3, "flour" = 10, "beer" = 5, REAGENT_ID_SODIUMCHLORIDE = 2)
 	result_amount = 20
 
 /decl/chemical_reaction/instant/food/browniemix
 	name = "Brownie Mix"
 	id = "browniemix"
 	result = "browniemix"
-	required_reagents = list("flour" = 5, "coco" = 5, "sugar" = 5)
+	required_reagents = list("flour" = 5, "coco" = 5, REAGENT_ID_SUGAR = 5)
 	result_amount = 15
 
 /decl/chemical_reaction/instant/food/cakebatter
 	name = "Cake Batter"
 	id = "cakebatter"
 	result = "cakebatter"
-	required_reagents = list("flour" = 15, "milk" = 10, "sugar" = 15, "egg" = 3)
+	required_reagents = list("flour" = 15, "milk" = 10, REAGENT_ID_SUGAR = 15, "egg" = 3)
 	result_amount = 60
 
 /decl/chemical_reaction/instant/food/butter
 	name = "Butter"
 	id = "butter"
 	result = null
-	required_reagents = list("cream" = 20, "sodiumchloride" = 1)
+	required_reagents = list("cream" = 20, REAGENT_ID_SODIUMCHLORIDE = 1)
 	result_amount = 1
 
 /decl/chemical_reaction/instant/food/butter/on_reaction(var/datum/reagents/holder, var/created_volume)

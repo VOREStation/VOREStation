@@ -4,8 +4,8 @@
 */
 
 /datum/reagent/drugs
-	name = "generic drugs"
-	id = "drugs"
+	name = REAGENT_DRUGS
+	id = REAGENT_ID_DRUGS
 	description = "Some generic drugs."
 	taste_description = "a bad investment"
 	taste_mult = 1.2 /// The overwhelming flavor of a good(?) time!
@@ -40,8 +40,8 @@
 		prob_proc = TRUE
 
 /datum/reagent/drugs/bliss /// Replaces Space Drugs.
-	name = "Bliss"
-	id = "bliss"
+	name = REAGENT_BLISS
+	id = REAGENT_ID_BLISS
 	description = "Known for providing a euphoric high, this psychoactive drug is often used recreationally."
 	taste_description = "unpleasant bitterness"
 	taste_mult = 0.4
@@ -80,8 +80,8 @@
 	..()
 
 /datum/reagent/drugs/ambrosia_extract
-	name = "Ambrosia extract"
-	id = "ambrosia_extract"
+	name = REAGENT_AMBROSIAEXTRACT
+	id = REAGENT_ID_AMBROSIAEXTRACT
 	description = "The extract from the plant family ambrosia, responsible for the more \"recreational\" effects."
 	taste_description = "a strong-tasting plant"
 	color = "#358f49"
@@ -120,8 +120,8 @@
 		prob_proc = FALSE
 
 /datum/reagent/drugs/psilocybin
-	name = "Psilocybin"
-	id = "psilocybin"
+	name = REAGENT_PSILOCYBIN
+	id = REAGENT_ID_PSILOCYBIN
 	description = "A strong psycotropic derived from certain species of mushroom."
 	taste_description = "mushroom"
 	color = "#E700E7"
@@ -172,8 +172,8 @@
 			prob_proc = FALSE
 
 /datum/reagent/drugs/talum_quem
-	name = "Talum-quem"
-	id = "talum_quem"
+	name = REAGENT_TALUMQUEM
+	id = REAGENT_ID_TALUMQUEM
 	description = " A very carefully tailored hallucinogen, for use of the Talum-Katish."
 	taste_description = "bubblegum"
 	taste_mult = 1.6
@@ -202,8 +202,8 @@
 		prob_proc = FALSE
 
 /datum/reagent/drugs/nicotine
-	name = "Nicotine"
-	id = "nicotine"
+	name = REAGENT_NICOTINE
+	id = REAGENT_ID_NICOTINE
 	description = "A highly addictive stimulant extracted from the tobacco plant."
 	taste_description = "sour staleness"
 	color = "#181818"
@@ -215,8 +215,8 @@
 /// Psychiatric drugs use similar mechanics and will go under "drugs".  /////
 *////////////////////////////////////////////////////////////////////////////
 /datum/reagent/drugs/methylphenidate
-	name = "Methylphenidate"
-	id = "methylphenidate"
+	name = REAGENT_METHYLPHENIDATE
+	id = REAGENT_ID_METHYLPHENIDATE
 	description = "Improves the ability to concentrate."
 	taste_description = "mild grape" ///Referencing real life oral solutions for these meds.
 	color = "#BF80BF"
@@ -224,8 +224,8 @@
 	sober_message_list = list("It becomes harder to focus...", "You feel distractible.")
 
 /datum/reagent/drugs/citalopram
-	name = "Citalopram"
-	id = "citalopram"
+	name = REAGENT_CITALOPRAM
+	id = REAGENT_ID_CITALOPRAM
 	description = "Stabilizes the mind a little."
 	taste_description = "mild peppermint"
 	color = "#FF80FF"
@@ -238,8 +238,8 @@
 	M.fear = max((M.fear - 3),0)
 
 /datum/reagent/drugs/paroxetine
-	name = "Paroxetine"
-	id = "paroxetine"
+	name = REAGENT_PAROXETINE
+	id = REAGENT_ID_PAROXETINE
 	description = "Stabilizes the mind greatly, but has a chance of adverse effects."
 	taste_description = "mild oranges"
 	color = "#FF80BF"
@@ -256,8 +256,8 @@
 		prob_proc = FALSE
 
 /datum/reagent/drugs/qerr_quem
-	name = "Qerr-quem"
-	id = "qerr_quem"
+	name = REAGENT_QERRQUEM
+	id = REAGENT_ID_QERRQUEM
 	description = "A potent sedative and anti-anxiety medication, made for the Qerr-Katish."
 	taste_description = "mint"
 	color = "#e6efe3"

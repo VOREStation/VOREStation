@@ -3,7 +3,7 @@
 	max_stages = 3
 	spread_text = "Airborne"
 	cure_text = "Spaceacillin"
-	cures = list("spaceacillin", "chicken_soup")
+	cures = list("spaceacillin", REAGENT_ID_CHICKENSOUP)
 	needs_all_cures = FALSE
 	cure_chance = 10
 	agent = "H13N1 flu virion"

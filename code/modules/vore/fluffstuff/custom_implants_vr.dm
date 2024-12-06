@@ -468,7 +468,7 @@
 
 /obj/item/reagent_containers/food/snacks/chocolateegg/roiz/New()
 	..()
-	reagents.add_reagent("sugar", 6)
+	reagents.add_reagent(REAGENT_ID_SUGAR, 6)
 	reagents.add_reagent("coco", 6)
 	reagents.add_reagent("milk", 2)
 	bitesize = 2

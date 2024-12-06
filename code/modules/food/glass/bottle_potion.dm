@@ -45,7 +45,7 @@
 /obj/item/reagent_containers/glass/bottle/potion/lightness
 	name = "feather weight potion"
 	desc = "A small green bottle containing some mysterious liquid that claims to make you feel lighter."
-	prefill = list("ickypak" = 30)
+	prefill = list(REAGENT_ID_ICKYPAK = 30)
 
 /obj/item/reagent_containers/glass/bottle/potion/SOP
 	name = "standard operating potion"
@@ -55,12 +55,12 @@
 /obj/item/reagent_containers/glass/bottle/potion/shrink
 	name = "diminution potion"
 	desc = "A small green bottle containing some swirling cyan liquid that claims to reduce the drinkers stature."
-	prefill = list("microcillin" = 1)
+	prefill = list(REAGENT_ID_MICROCILLIN = 1)
 
 /obj/item/reagent_containers/glass/bottle/potion/growth
 	name = "fire giant potion"
 	desc = "A small green bottle containing some bubbling yellow liquid that claims to turn the drinker into a fire giant."
-	prefill = list("macrocillin" = 1, "capsaicin" = 5)
+	prefill = list(REAGENT_ID_MACROCILLIN = 1, "capsaicin" = 5)
 
 /obj/item/reagent_containers/glass/bottle/potion/pain
 	name = "grit potion"
@@ -70,12 +70,12 @@
 /obj/item/reagent_containers/glass/bottle/potion/faerie
 	name = "faerie dance potion"
 	desc = "A small green bottle containing some swishing pink liquid that claims to help you open your mind."
-	prefill = list("psilocybin" = 30)
+	prefill = list(REAGENT_ID_PSILOCYBIN = 30)
 
 /obj/item/reagent_containers/glass/bottle/potion/relaxation
 	name = "relaxation potion"
 	desc = "A small green bottle containing some still green liquid that claims to make everything feel just fine, really."
-	prefill = list("ambrosia_extract" = 30)
+	prefill = list(REAGENT_ID_AMBROSIAEXTRACT = 30)
 
 /obj/item/reagent_containers/glass/bottle/potion/speed
 	name = "blinding speed potion"
@@ -90,12 +90,12 @@
 /obj/item/reagent_containers/glass/bottle/potion/girljuice
 	name = "girl transformation potion"
 	desc = "A small green bottle containing some pretty pink liquid that claims to turn the drinker into a woman."
-	prefill = list("gynorovir" = 1)
+	prefill = list(REAGENT_ID_GYNOROVIR = 1)
 
 /obj/item/reagent_containers/glass/bottle/potion/boyjuice
 	name = "boy transformation potion"
 	desc = "A small green bottle containing some strong blue liquid that claims to turn the drinker into a man."
-	prefill = list("androrovir" = 1)
+	prefill = list(REAGENT_ID_ANDROROVIR = 1)
 
 /obj/item/reagent_containers/glass/bottle/potion/badpolymorph
 	name = "unstable polymorph potion"
@@ -122,17 +122,17 @@
 /obj/item/reagent_containers/glass/bottle/potion/plain
 	name = "plain potion"
 	desc = "A small green bottle containing some plain transparent liquid."
-	prefill = list("water" = 30)
+	prefill = list(REAGENT_ID_WATER = 30)
 
 /obj/item/reagent_containers/glass/bottle/potion/ethanol
 	name = "thin potion"
 	desc = "A small green bottle containing some thin transparent liquid with a solvent scent."
-	prefill = list("ethanol" = 30)
+	prefill = list(REAGENT_ID_ETHANOL = 30)
 
 /obj/item/reagent_containers/glass/bottle/potion/sugar
 	name = "sweet potion"
 	desc = "A small green bottle containing some white translucent liquid with a sweet scent."
-	prefill = list("sugar" = 30)
+	prefill = list(REAGENT_ID_SUGAR = 30)
 
 /obj/item/reagent_containers/glass/bottle/potion/capsaicin
 	name = "warm potion"

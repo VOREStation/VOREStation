@@ -5,7 +5,7 @@
 	display_name = "tobacco"
 	kitchen_tag = "tobacco"
 	mutants = list("stimbush")
-	chems = list("nutriment" = list(1,15), "nicotine" = list(1,20))
+	chems = list(REAGENT_ID_NUTRIMENT = list(1,15), REAGENT_ID_NICOTINE = list(1,20))
 
 /datum/seed/tobacco/New()
 	..()
@@ -23,7 +23,7 @@
 	name = "stimbush"
 	seed_name = "stim-bush"
 	display_name = "stim-bush"
-	chems = list("nutriment" = list(1,10), "hyperzine" = list(1,10), "synaptizine" = list(1,5))
+	chems = list(REAGENT_ID_NUTRIMENT = list(1,10), "hyperzine" = list(1,10), "synaptizine" = list(1,5))
 
 /datum/seed/tobacco/stimbush/New()
 	..()

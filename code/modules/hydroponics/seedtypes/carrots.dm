@@ -3,7 +3,7 @@
 	seed_name = "carrot"
 	display_name = "carrots"
 	kitchen_tag = "carrot"
-	chems = list("nutriment" = list(1,20), "imidazoline" = list(3,5), "carrotjuice" = list(10,20))
+	chems = list(REAGENT_ID_NUTRIMENT = list(1,20), "imidazoline" = list(3,5), "carrotjuice" = list(10,20))
 
 /datum/seed/carrots/New()
 	..()

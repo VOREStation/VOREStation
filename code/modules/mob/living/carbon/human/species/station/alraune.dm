@@ -338,7 +338,7 @@
 	name = "fruit gland"
 	desc = "A bulbous gourd-like structure."
 	organ_tag = A_FRUIT
-	var/generated_reagents = list("sugar" = 2) //This actually allows them. This could be anything, but sugar seems most fitting.
+	var/generated_reagents = list(REAGENT_ID_SUGAR = 2) //This actually allows them. This could be anything, but sugar seems most fitting.
 	var/usable_volume = 250 //Five fruit.
 	var/transfer_amount = 50
 	var/empty_message = list("Your have no fruit on you.", "You have a distinct lack of fruit..")

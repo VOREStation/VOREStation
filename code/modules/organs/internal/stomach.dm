@@ -47,7 +47,7 @@
 
 /obj/item/organ/internal/stomach/xeno
 	color = "#555555"
-	acidtype = "pacid"
+	acidtype = REAGENT_ID_PACID
 
 /obj/item/organ/internal/stomach/machine
 	name = "reagent cycler"
@@ -56,7 +56,7 @@
 
 	robotic = ORGAN_ROBOT
 
-	acidtype = "sacid"
+	acidtype = REAGENT_ID_SACID
 
 	organ_verbs = list(/mob/living/carbon/human/proc/reagent_purge) //VOREStation Add
 

@@ -53,7 +53,7 @@
 	name = "Distilling Biomass"
 	id = "distill_biomass"
 	result = "biomass"
-	required_reagents = list("blood" = 1, "sugar" = 1, REAGENT_ID_PHORON = 0.5)
+	required_reagents = list(REAGENT_ID_BLOOD = 1, REAGENT_ID_SUGAR = 1, REAGENT_ID_PHORON = 0.5)
 	result_amount = 1 // 40 units per sheet, requires actually using the machine, and having blood to spare.
 
 	temp_range = list(T20C + 80, T20C + 130)
@@ -118,8 +118,8 @@
 /decl/chemical_reaction/distilling/synthplas
 	name = "Distilling Synthplas"
 	id = "distill_synthplas"
-	result = "synthblood_dilute"
-	required_reagents = list("protein" = 2, "antibodies" = 1, "bicaridine" = 1)
+	result = REAGENT_ID_SYNTHBLOOD_DILUTE
+	required_reagents = list("protein" = 2, REAGENT_ID_ANTIBODIES = 1, "bicaridine" = 1)
 	result_amount = 3
 
 	reaction_rate = HALF_LIFE(15)
@@ -131,7 +131,7 @@
 	name = "Distilling Beer"
 	id = "distill_beer"
 	result = "beer"
-	required_reagents = list("nutriment" = 1, "water" = 1, "sugar" = 1)
+	required_reagents = list(REAGENT_ID_NUTRIMENT = 1, REAGENT_ID_WATER = 1, REAGENT_ID_SUGAR = 1)
 	result_amount = 2
 
 	reaction_rate = HALF_LIFE(30)
@@ -142,8 +142,8 @@
 	name = "Distilling Ale"
 	id = "distill_ale"
 	result = "ale"
-	required_reagents = list("nutriment" = 1, "beer" = 1)
-	inhibitors = list("water" = 1)
+	required_reagents = list(REAGENT_ID_NUTRIMENT = 1, "beer" = 1)
+	inhibitors = list(REAGENT_ID_WATER = 1)
 	result_amount = 2
 
 	reaction_rate = HALF_LIFE(30)
@@ -175,7 +175,7 @@
 	id = "distill_cryoslurry"
 	result = "cryoslurry"
 	required_reagents = list("frostoil" = 7, "enzyme" = 3, "plasticide" = 3, "foaming_agent" = 2)
-	inhibitors = list("water" = 5)
+	inhibitors = list(REAGENT_ID_WATER = 5)
 	result_amount = 1
 
 	temp_range = list(0, 15)

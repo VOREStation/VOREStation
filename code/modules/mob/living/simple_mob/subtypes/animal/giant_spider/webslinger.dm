@@ -34,7 +34,7 @@
 	melee_damage_lower = 8
 	melee_damage_upper = 15
 	poison_per_bite = 2
-	poison_type = "psilocybin"
+	poison_type = REAGENT_ID_PSILOCYBIN
 	player_msg = "You can fire a ranged attack by clicking on an enemy or tile at a distance."
 	ai_holder_type = /datum/ai_holder/simple_mob/ranged
 

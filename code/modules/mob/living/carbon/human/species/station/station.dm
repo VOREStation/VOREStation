@@ -318,7 +318,7 @@
 	flash_mod = 1.2
 	chemOD_mod = 0.9
 
-	blood_reagents = "copper"
+	blood_reagents = REAGENT_ID_COPPER
 	bloodloss_rate = 1.5
 
 	ambiguous_genders = TRUE

@@ -52,7 +52,7 @@
 				var/list/data = list()
 				if(reagent_data.len > 1 && potency > 0)
 					rtotal += round(potency/reagent_data[2])
-				if(rid == "nutriment")
+				if(rid == REAGENT_ID_NUTRIMENT)
 					data[seed.seed_name] = max(1,rtotal)
 
 				reagents.add_reagent(rid,max(1,rtotal),data)
@@ -70,13 +70,13 @@
 		desc = SSplants.product_descs["[seed.uid]"]
 	else
 		var/list/descriptors = list()
-		if(reagents.has_reagent("sugar") || reagents.has_reagent("cherryjelly") || reagents.has_reagent("honey") || reagents.has_reagent("berryjuice"))
+		if(reagents.has_reagent(REAGENT_ID_SUGAR) || reagents.has_reagent("cherryjelly") || reagents.has_reagent("honey") || reagents.has_reagent("berryjuice"))
 			descriptors |= "sweet"
 		if(reagents.has_reagent("anti_toxin"))
 			descriptors |= "astringent"
 		if(reagents.has_reagent("frostoil"))
 			descriptors |= "numbing"
-		if(reagents.has_reagent("nutriment"))
+		if(reagents.has_reagent(REAGENT_ID_NUTRIMENT))
 			descriptors |= "nutritious"
 		if(reagents.has_reagent("condensedcapsaicin") || reagents.has_reagent("capsaicin"))
 			descriptors |= "spicy"
@@ -84,11 +84,11 @@
 			descriptors |= "bitter"
 		if(reagents.has_reagent("orangejuice") || reagents.has_reagent("lemonjuice") || reagents.has_reagent("limejuice"))
 			descriptors |= "sweet-sour"
-		if(reagents.has_reagent("radium") || reagents.has_reagent("uranium"))
+		if(reagents.has_reagent(REAGENT_ID_RADIUM) || reagents.has_reagent("uranium"))
 			descriptors |= "radioactive"
 		if(reagents.has_reagent("amatoxin") || reagents.has_reagent("toxin"))
 			descriptors |= "poisonous"
-		if(reagents.has_reagent("psilocybin") || reagents.has_reagent("bliss") || reagents.has_reagent("earthsblood"))
+		if(reagents.has_reagent(REAGENT_ID_PSILOCYBIN) || reagents.has_reagent(REAGENT_ID_BLISS) || reagents.has_reagent("earthsblood"))
 			descriptors |= "hallucinogenic"
 		if(reagents.has_reagent("bicaridine") || reagents.has_reagent("earthsblood"))
 			descriptors |= "medicinal"
@@ -96,7 +96,7 @@
 			descriptors |= "shiny"
 		if(reagents.has_reagent("lube"))
 			descriptors |= "slippery"
-		if(reagents.has_reagent("pacid") || reagents.has_reagent("sacid"))
+		if(reagents.has_reagent(REAGENT_ID_PACID) || reagents.has_reagent(REAGENT_ID_SACID))
 			descriptors |= "acidic"
 		if(seed.get_trait(TRAIT_JUICY))
 			descriptors |= "juicy"

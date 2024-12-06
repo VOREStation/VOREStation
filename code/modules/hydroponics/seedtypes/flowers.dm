@@ -4,7 +4,7 @@
 	seed_name = "harebell"
 	display_name = "harebells"
 	kitchen_tag = "harebell"
-	chems = list("nutriment" = list(1,20))
+	chems = list(REAGENT_ID_NUTRIMENT = list(1,20))
 
 /datum/seed/flower/New()
 	..()
@@ -22,7 +22,7 @@
 	seed_name = "poppy"
 	display_name = "poppies"
 	kitchen_tag = "poppy"
-	chems = list("nutriment" = list(1,20), "bicaridine" = list(1,10))
+	chems = list(REAGENT_ID_NUTRIMENT = list(1,20), "bicaridine" = list(1,10))
 
 /datum/seed/flower/poppy/New()
 	..()
@@ -58,7 +58,7 @@
 	seed_name = "lavender"
 	display_name = "lavender"
 	kitchen_tag = "lavender"
-	chems = list("nutriment" = list(1,20), "bicaridine" = list(1,10))
+	chems = list(REAGENT_ID_NUTRIMENT = list(1,20), "bicaridine" = list(1,10))
 
 /datum/seed/flower/lavender/New()
 	..()
@@ -79,7 +79,7 @@
 	display_name = "rose"
 	kitchen_tag = "rose"
 	mutants = list("bloodrose")
-	chems = list("nutriment" = list(1,5), "stoxin" = list(0,2))
+	chems = list(REAGENT_ID_NUTRIMENT = list(1,5), "stoxin" = list(0,2))
 
 /datum/seed/flower/rose/New()
 	..()
@@ -99,7 +99,7 @@
 	name = "bloodrose"
 	display_name = "bleeding rose"
 	mutants = null
-	chems = list("nutriment" = list(1,5), "stoxin" = list(1,5), "blood" = list(0,2))
+	chems = list(REAGENT_ID_NUTRIMENT = list(1,5), "stoxin" = list(1,5), REAGENT_ID_BLOOD = list(0,2))
 
 /datum/seed/flower/rose/blood/New()
 	..()

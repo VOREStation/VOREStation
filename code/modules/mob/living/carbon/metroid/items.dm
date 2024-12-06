@@ -358,7 +358,7 @@
 
 /obj/item/reagent_containers/food/snacks/egg/slime/Initialize()
 	. = ..()
-	reagents.add_reagent("nutriment", 4)
+	reagents.add_reagent(REAGENT_ID_NUTRIMENT, 4)
 	reagents.add_reagent("slimejelly", 1)
 	addtimer(CALLBACK(src, ./proc/Grow), rand(120 SECONDS, 150 SECONDS))
 

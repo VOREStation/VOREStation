@@ -3,7 +3,7 @@
 	seed_name = "vanilla"
 	display_name = "vanilla"
 	kitchen_tag = "vanilla"
-	chems = list("nutriment" = list(1,10), "vanilla" = list(2,8), "sugar" = list(1, 4))
+	chems = list(REAGENT_ID_NUTRIMENT = list(1,10), "vanilla" = list(2,8), REAGENT_ID_SUGAR = list(1, 4))
 
 /datum/seed/vanilla/New()
 	..()

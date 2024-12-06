@@ -9,7 +9,7 @@
 	. = ..()
 	cut_overlays()
 	reagents.add_reagent("liquid_protean", 50)
-	reagents.add_reagent("nutriment", 50)
+	reagents.add_reagent(REAGENT_ID_NUTRIMENT, 50)
 
 /obj/item/reagent_containers/food/drinks/glass2/fitnessflask/proteanshake/update_icon()
 	return

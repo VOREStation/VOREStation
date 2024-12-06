@@ -26,7 +26,7 @@
 			continue
 
 		if(floor.density)
-			if(!isnull(seed.chems["pacid"]))
+			if(!isnull(seed.chems[REAGENT_ID_PACID]))
 				spawn(rand(5,25)) floor.ex_act(3)
 			continue
 

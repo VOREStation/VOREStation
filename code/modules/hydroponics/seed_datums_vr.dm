@@ -7,7 +7,7 @@
 	display_name = "Shrinking mushroom trees"
 	mutants = list("megam")
 	kitchen_tag = "microm"
-	chems = list("microcillin" = list(1,20))
+	chems = list(REAGENT_ID_MICROCILLIN = list(1,20))
 
 /datum/seed/size/New()
 	..()
@@ -27,7 +27,7 @@
 	display_name = "Mega mushroom trees"
 	mutants = list("microm")
 	kitchen_tag = "megam"
-	chems = list("macrocillin" = list(1,20))
+	chems = list(REAGENT_ID_MACROCILLIN = list(1,20))
 
 /datum/seed/size/megam/New()
 	..()

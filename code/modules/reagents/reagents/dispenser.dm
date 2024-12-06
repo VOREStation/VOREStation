@@ -1,6 +1,6 @@
 /datum/reagent/aluminum
-	name = "Aluminum"
-	id = "aluminum"
+	name = REAGENT_ALUMINIUM
+	id = REAGENT_ID_ALUMINIUM
 	description = "A silvery white and ductile member of the boron group of chemical elements."
 	taste_description = "metal"
 	taste_mult = 1.1
@@ -8,8 +8,8 @@
 	color = "#A8A8A8"
 
 /datum/reagent/calcium
-	name = "Calcium"
-	id = "calcium"
+	name = REAGENT_CALCIUM
+	id = REAGENT_ID_CALCIUM
 	description = "A chemical element, the building block of bones."
 	taste_description = "metallic chalk" // Apparently, calcium tastes like calcium.
 	taste_mult = 1.3
@@ -29,8 +29,8 @@
 //VOREStation Edit End
 
 /datum/reagent/carbon
-	name = "Carbon"
-	id = "carbon"
+	name = REAGENT_CARBON
+	id = REAGENT_ID_CARBON
 	description = "A chemical element, the building block of life."
 	taste_description = "sour chalk"
 	taste_mult = 1.5
@@ -59,8 +59,8 @@
 			dirtoverlay.alpha = min(dirtoverlay.alpha + volume * 30, 255)
 
 /datum/reagent/chlorine
-	name = "Chlorine"
-	id = "chlorine"
+	name = REAGENT_CHLORINE
+	id = REAGENT_ID_CHLORINE
 	description = "A chemical element with a characteristic odour."
 	taste_description = "pool water"
 	reagent_state = GAS
@@ -73,15 +73,15 @@
 	M.take_organ_damage(1*REM, 0)
 
 /datum/reagent/copper
-	name = "Copper"
-	id = "copper"
+	name = REAGENT_COPPER
+	id = REAGENT_ID_COPPER
 	description = "A highly ductile metal."
 	taste_description = "pennies"
 	color = "#6E3B08"
 
 /datum/reagent/ethanol
-	name = "Ethanol" //Parent class for all alcoholic reagents.
-	id = "ethanol"
+	name = REAGENT_ETHANOL //Parent class for all alcoholic reagents.
+	id = REAGENT_ID_ETHANOL
 	description = "A well-known alcohol with a variety of applications."
 	taste_description = "pure alcohol"
 	reagent_state = LIQUID
@@ -98,7 +98,7 @@
 	var/targ_temp = 310
 	var/halluci = 0
 
-	glass_name = "ethanol"
+	glass_name = REAGENT_ID_ETHANOL
 	glass_desc = "A well-known alcohol with a variety of applications."
 	allergen_factor = 1	//simulates mixed drinks containing less of the allergen, as they have only a single actual reagent unlike food
 
@@ -213,8 +213,8 @@
 	return
 
 /datum/reagent/fluorine
-	name = "Fluorine"
-	id = "fluorine"
+	name = REAGENT_FLUORINE
+	id = REAGENT_ID_FLUORINE
 	description = "A highly-reactive chemical element."
 	taste_description = "acid"
 	reagent_state = GAS
@@ -227,24 +227,24 @@
 	M.adjustToxLoss(removed)
 
 /datum/reagent/hydrogen
-	name = "Hydrogen"
-	id = "hydrogen"
+	name = REAGENT_HYDROGEN
+	id = REAGENT_ID_HYDROGEN
 	description = "A colorless, odorless, nonmetallic, tasteless, highly combustible diatomic gas."
 	taste_mult = 0 //no taste
 	reagent_state = GAS
 	color = "#808080"
 
 /datum/reagent/iron
-	name = "Iron"
-	id = "iron"
+	name = REAGENT_IRON
+	id = REAGENT_ID_IRON
 	description = "Pure iron is a metal."
 	taste_description = "metal"
 	reagent_state = SOLID
 	color = "#353535"
 
 /datum/reagent/lithium
-	name = "Lithium"
-	id = "lithium"
+	name = REAGENT_LITHIUM
+	id = REAGENT_ID_LITHIUM
 	description = "A chemical element, used as antidepressant."
 	taste_description = "metal"
 	reagent_state = SOLID
@@ -258,8 +258,8 @@
 			M.emote(pick("twitch", "drool", "moan"))
 
 /datum/reagent/mercury
-	name = "Mercury"
-	id = "mercury"
+	name = REAGENT_MERCURY
+	id = REAGENT_ID_MERCURY
 	description = "A chemical element."
 	taste_mult = 0 //mercury apparently is tasteless. IDK
 	reagent_state = LIQUID
@@ -294,24 +294,24 @@
 		M.adjustToxLoss(removed * 3)
 
 /datum/reagent/phosphorus
-	name = "Phosphorus"
-	id = "phosphorus"
+	name = REAGENT_PHOSPHORUS
+	id = REAGENT_ID_PHOSPHORUS
 	description = "A chemical element, the backbone of biological energy carriers."
 	taste_description = "vinegar"
 	reagent_state = SOLID
 	color = "#832828"
 
 /datum/reagent/potassium
-	name = "Potassium"
-	id = "potassium"
+	name = REAGENT_POTASSIUM
+	id = REAGENT_ID_POTASSIUM
 	description = "A soft, low-melting solid that can easily be cut with a knife. Reacts violently with water."
 	taste_description = "sweetness" //potassium is bitter in higher doses but sweet in lower ones.
 	reagent_state = SOLID
 	color = "#A0A0A0"
 
 /datum/reagent/radium
-	name = "Radium"
-	id = "radium"
+	name = REAGENT_RADIUM
+	id = REAGENT_ID_RADIUM
 	description = "Radium is an alkaline earth metal. It is extremely radioactive."
 	taste_mult = 0	//Apparently radium is tasteless
 	reagent_state = SOLID
@@ -331,8 +331,8 @@
 			return
 
 /datum/reagent/acid
-	name = "Sulphuric acid"
-	id = "sacid"
+	name = REAGENT_SACID
+	id = REAGENT_ID_SACID
 	description = "A very corrosive mineral acid with the molecular formula H2SO4."
 	taste_description = "acid"
 	reagent_state = LIQUID
@@ -419,31 +419,31 @@
 		remove_self(meltdose) // 10 units of acid will not melt EVERYTHING on the tile
 
 /datum/reagent/silicon
-	name = "Silicon"
-	id = "silicon"
+	name = REAGENT_SILICON
+	id = REAGENT_ID_SILICON
 	description = "A tetravalent metalloid, silicon is less reactive than its chemical analog carbon."
 	taste_mult = 0
 	reagent_state = SOLID
 	color = "#A8A8A8"
 
 /datum/reagent/sodium
-	name = "Sodium"
-	id = "sodium"
+	name = REAGENT_SODIUM
+	id = REAGENT_ID_SODIUM
 	description = "A chemical element, readily reacts with water."
 	taste_description = "salty metal"
 	reagent_state = SOLID
 	color = "#808080"
 
 /datum/reagent/sugar
-	name = "Sugar"
-	id = "sugar"
+	name = REAGENT_SUGAR
+	id = REAGENT_ID_SUGAR
 	description = "The organic compound commonly known as table sugar and sometimes called saccharose. This white, odorless, crystalline powder has a pleasing, sweet taste."
 	taste_description = "sugar"
 	taste_mult = 1.8
 	reagent_state = SOLID
 	color = "#FFFFFF"
 
-	glass_name = "sugar"
+	glass_name = REAGENT_ID_SUGAR
 	glass_desc = "The organic compound commonly known as table sugar and sometimes called saccharose. This white, odorless, crystalline powder has a pleasing, sweet taste."
 	glass_icon = DRINK_ICON_NOISY
 
@@ -469,16 +469,16 @@
 			M.drowsyness = max(M.drowsyness, 60)
 
 /datum/reagent/sulfur
-	name = "Sulfur"
-	id = "sulfur"
+	name = REAGENT_SULFUR
+	id = REAGENT_ID_SULFUR
 	description = "A chemical element with a pungent smell."
 	taste_description = "old eggs"
 	reagent_state = SOLID
 	color = "#BF8C00"
 
 /datum/reagent/tungsten
-	name = "Tungsten"
-	id = "tungsten"
+	name = REAGENT_TUNGSTEN
+	id = REAGENT_ID_TUNGSTEN
 	description = "A chemical element, and a strong oxidising agent."
 	taste_description = "metal"
 	taste_mult = 0 //no taste

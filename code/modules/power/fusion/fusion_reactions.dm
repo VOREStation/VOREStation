@@ -67,7 +67,7 @@ var/list/fusion_reactions
 
 /decl/fusion_reaction/deuterium_lithium
 	p_react = "deuterium"
-	s_react = "lithium"
+	s_react = REAGENT_ID_LITHIUM
 	energy_consumption = 2
 	energy_production = 0
 	radiation = 3
@@ -82,7 +82,7 @@ var/list/fusion_reactions
 	energy_production = 0
 	instability = 5
 	radiation = 5
-	products = list("silicon"= 1)
+	products = list(REAGENT_ID_SILICON= 1)
 
 /decl/fusion_reaction/iron_iron
 	p_react = REAGENT_ID_IRON

@@ -135,7 +135,7 @@
 	update_icon()
 	SSplants.add_plant(src)
 	//Some plants eat through plating.
-	if(islist(seed.chems) && !isnull(seed.chems["pacid"]))
+	if(islist(seed.chems) && !isnull(seed.chems[REAGENT_ID_PACID]))
 		var/turf/T = get_turf(src)
 		T.ex_act(prob(80) ? 3 : 2)
 

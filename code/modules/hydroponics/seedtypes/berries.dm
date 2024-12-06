@@ -5,7 +5,7 @@
 	display_name = "berry bush"
 	kitchen_tag = "berries"
 	mutants = list("glowberries","poisonberries")
-	chems = list("nutriment" = list(1,10), "berryjuice" = list(10,10))
+	chems = list(REAGENT_ID_NUTRIMENT = list(1,10), "berryjuice" = list(10,10))
 
 /datum/seed/berry/New()
 	..()
@@ -26,7 +26,7 @@
 	seed_name = "glowberry"
 	display_name = "glowberry bush"
 	mutants = null
-	chems = list("nutriment" = list(1,10), "uranium" = list(3,5))
+	chems = list(REAGENT_ID_NUTRIMENT = list(1,10), "uranium" = list(3,5))
 
 /datum/seed/berry/glow/New()
 	..()
@@ -47,7 +47,7 @@
 	kitchen_tag = "poisonberries"
 	display_name = "poison berry bush"
 	mutants = list("deathberries")
-	chems = list("nutriment" = list(1), "toxin" = list(3,5), "poisonberryjuice" = list(10,5))
+	chems = list(REAGENT_ID_NUTRIMENT = list(1), "toxin" = list(3,5), "poisonberryjuice" = list(10,5))
 
 /datum/seed/berry/poison/New()
 	..()
@@ -60,7 +60,7 @@
 	seed_name = "death berry"
 	display_name = "death berry bush"
 	mutants = null
-	chems = list("nutriment" = list(1), "toxin" = list(3,3), "lexorin" = list(1,5))
+	chems = list(REAGENT_ID_NUTRIMENT = list(1), "toxin" = list(3,3), "lexorin" = list(1,5))
 
 /datum/seed/berry/poison/death/New()
 	..()

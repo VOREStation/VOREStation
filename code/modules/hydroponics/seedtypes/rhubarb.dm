@@ -3,7 +3,7 @@
 	seed_name = "rhubarb"
 	display_name = "rhubarb"
 	kitchen_tag = "rhubarb"
-	chems = list("nutriment" = list(1,15))
+	chems = list(REAGENT_ID_NUTRIMENT = list(1,15))
 
 /datum/seed/rhubarb/New()
 	..()

@@ -4,7 +4,7 @@
 	display_name = "grass"
 	kitchen_tag = "grass"
 	mutants = list("carpet")
-	chems = list("nutriment" = list(1,20))
+	chems = list(REAGENT_ID_NUTRIMENT = list(1,20))
 
 /datum/seed/grass/New()
 	..()

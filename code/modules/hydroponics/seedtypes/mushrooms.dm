@@ -5,7 +5,7 @@
 	seed_noun = "spores"
 	display_name = "chanterelle mushrooms"
 	mutants = list("reishi","amanita","plumphelmet")
-	chems = list("nutriment" = list(1,25))
+	chems = list(REAGENT_ID_NUTRIMENT = list(1,25))
 	splat_type = /obj/effect/plant
 	kitchen_tag = "mushroom"
 
@@ -44,7 +44,7 @@
 	seed_name = "plump helmet"
 	display_name = "plump helmet mushrooms"
 	mutants = list("walkingmushroom","towercap")
-	chems = list("nutriment" = list(2,10))
+	chems = list(REAGENT_ID_NUTRIMENT = list(2,10))
 	kitchen_tag = "plumphelmet"
 
 /datum/seed/mushroom/plump/New()
@@ -62,7 +62,7 @@
 	seed_name = "reishi"
 	display_name = "reishi"
 	mutants = list("libertycap","glowshroom")
-	chems = list("nutriment" = list(1,50), "psilocybin" = list(3,5))
+	chems = list(REAGENT_ID_NUTRIMENT = list(1,50), REAGENT_ID_PSILOCYBIN = list(3,5))
 
 /datum/seed/mushroom/hallucinogenic/New()
 	..()
@@ -80,7 +80,7 @@
 	seed_name = "liberty cap"
 	display_name = "liberty cap mushrooms"
 	mutants = null
-	chems = list("nutriment" = list(1), "stoxin" = list(3,3), "bliss" = list(1,25))
+	chems = list(REAGENT_ID_NUTRIMENT = list(1), "stoxin" = list(3,3), REAGENT_ID_BLISS = list(1,25))
 
 /datum/seed/mushroom/hallucinogenic/strong/New()
 	..()
@@ -96,7 +96,7 @@
 	seed_name = "fly amanita"
 	display_name = "fly amanita mushrooms"
 	mutants = list("destroyingangel","plastic")
-	chems = list("nutriment" = list(1), "amatoxin" = list(3,3), "psilocybin" = list(1,25))
+	chems = list(REAGENT_ID_NUTRIMENT = list(1), "amatoxin" = list(3,3), REAGENT_ID_PSILOCYBIN = list(1,25))
 
 /datum/seed/mushroom/poison/New()
 	..()
@@ -114,7 +114,7 @@
 	seed_name = "destroying angel"
 	display_name = "destroying angel mushrooms"
 	mutants = null
-	chems = list("nutriment" = list(1,50), "amatoxin" = list(13,3), "psilocybin" = list(1,25))
+	chems = list(REAGENT_ID_NUTRIMENT = list(1,50), "amatoxin" = list(13,3), REAGENT_ID_PSILOCYBIN = list(1,25))
 
 /datum/seed/mushroom/poison/death/New()
 	..()
@@ -159,7 +159,7 @@
 	seed_name = "glowshroom"
 	display_name = "glowshrooms"
 	mutants = null
-	chems = list("radium" = list(1,20))
+	chems = list(REAGENT_ID_RADIUM = list(1,20))
 
 /datum/seed/mushroom/glowshroom/New()
 	..()

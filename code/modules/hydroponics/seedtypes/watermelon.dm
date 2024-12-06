@@ -3,7 +3,7 @@
 	seed_name = "watermelon"
 	display_name = "watermelon vine"
 	kitchen_tag = "watermelon"
-	chems = list("nutriment" = list(1,6), "watermelonjuice" = list(10,6))
+	chems = list(REAGENT_ID_NUTRIMENT = list(1,6), "watermelonjuice" = list(10,6))
 
 /datum/seed/watermelon/New()
 	..()

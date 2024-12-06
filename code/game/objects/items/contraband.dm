@@ -17,11 +17,11 @@
 
 /obj/item/reagent_containers/glass/beaker/vial/random
 	flags = 0
-	var/list/random_reagent_list = list(list("water" = 15) = 1, list("cleaner" = 15) = 1)
+	var/list/random_reagent_list = list(list(REAGENT_ID_WATER = 15) = 1, list("cleaner" = 15) = 1)
 
 /obj/item/reagent_containers/glass/beaker/vial/random/toxin
 	random_reagent_list = list(
-		list("mindbreaker" = 10, "bliss" = 20)	= 3,
+		list("mindbreaker" = 10, REAGENT_ID_BLISS = 20)	= 3,
 		list("carpotoxin" = 15)							= 2,
 		list("impedrezene" = 15)						= 2,
 		list("zombiepowder" = 10)						= 1)

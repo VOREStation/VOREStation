@@ -104,12 +104,12 @@
 /obj/item/clothing/mask/chewable/tobacco/cheap
 	name = "chewing tobacco"
 	desc = "A chewy wad of tobacco. Cut in long strands and treated with syrup so it tastes less like an ash-tray when you stuff it into your face."
-	filling = list("nicotine" = 2)
+	filling = list(REAGENT_ID_NICOTINE = 2)
 
 /obj/item/clothing/mask/chewable/tobacco/fine
 	name = "deluxe chewing tobacco"
 	desc = "A chewy wad of fine tobacco. Cut in long strands and treated with syrup so it doesn't taste like an ash-tray when you stuff it into your face."
-	filling = list("nicotine" = 3)
+	filling = list(REAGENT_ID_NICOTINE = 3)
 
 /obj/item/clothing/mask/chewable/tobacco/nico
 	name = "nicotine gum"
@@ -120,7 +120,7 @@
 
 /obj/item/clothing/mask/chewable/tobacco/nico/Initialize()
 	. = ..()
-	reagents.add_reagent("nicotine", 2)
+	reagents.add_reagent(REAGENT_ID_NICOTINE, 2)
 	color = reagents.get_color()
 
 /obj/item/storage/chewables
@@ -215,7 +215,7 @@
 	slot_flags = SLOT_EARS | SLOT_MASK
 	chem_volume = 50
 	chewtime = 300
-	filling = list("sugar" = 2)
+	filling = list(REAGENT_ID_SUGAR = 2)
 
 /obj/item/clothing/mask/chewable/candy/gum
 	name = "chewing gum"
@@ -287,7 +287,7 @@
 	desc = "A chocolate-coated biscuit stick."
 	icon_state = "pockystick"
 	item_state = "pocky"
-	filling = list("sugar" = 2, "chocolate" = 5)
+	filling = list(REAGENT_ID_SUGAR = 2, "chocolate" = 5)
 	type_butt = null
 
 /obj/item/clothing/mask/chewable/candy/pocky/process()

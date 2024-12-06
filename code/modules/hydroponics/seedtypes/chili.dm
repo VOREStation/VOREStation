@@ -4,7 +4,7 @@
 	seed_name = "chili"
 	display_name = "chili plants"
 	kitchen_tag = "chili"
-	chems = list("capsaicin" = list(3,5), "nutriment" = list(1,25))
+	chems = list("capsaicin" = list(3,5), REAGENT_ID_NUTRIMENT = list(1,25))
 	mutants = list("icechili", "ghostchili")
 
 /datum/seed/chili/New()
@@ -26,7 +26,7 @@
 	display_name = "ice-pepper plants"
 	kitchen_tag = "icechili"
 	mutants = null
-	chems = list("frostoil" = list(3,5), "nutriment" = list(1,50))
+	chems = list("frostoil" = list(3,5), REAGENT_ID_NUTRIMENT = list(1,50))
 
 /datum/seed/chili/ice/New()
 	..()
@@ -40,8 +40,8 @@
 	display_name = "ghost chili plants"
 	kitchen_tag = "ghostchili"
 	mutants = null
-	chems = list("condensedcapsaicin" = list (3,10), "nutriment" = list (1,25))
-	
+	chems = list("condensedcapsaicin" = list (3,10), REAGENT_ID_NUTRIMENT = list (1,25))
+
 /datum/seed/chili/ghost/New()
 	..()
 	set_trait(TRAIT_MATURATION,6)

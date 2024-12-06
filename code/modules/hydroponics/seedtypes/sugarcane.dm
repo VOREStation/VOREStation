@@ -3,7 +3,7 @@
 	seed_name = "sugarcane"
 	display_name = "sugarcanes"
 	kitchen_tag = "sugarcanes"
-	chems = list("sugar" = list(4,5))
+	chems = list(REAGENT_ID_SUGAR = list(4,5))
 
 /datum/seed/sugarcane/New()
 	..()

@@ -383,7 +383,7 @@
 	name = "Diethylamine"
 	id = "diethylamine"
 	description = "A secondary amine, mildly corrosive."
-	taste_description = "iron"
+	taste_description = REAGENT_ID_IRON
 	reagent_state = LIQUID
 	color = "#604030"
 
@@ -576,10 +576,10 @@
 		var/datum/reagent/blood/coolant = H.get_blood(H.vessel)
 
 		if(coolant)
-			H.vessel.add_reagent("blood", removed, coolant.data)
+			H.vessel.add_reagent(REAGENT_ID_BLOOD, removed, coolant.data)
 
 		else
-			H.vessel.add_reagent("blood", removed)
+			H.vessel.add_reagent(REAGENT_ID_BLOOD, removed)
 			H.fixblood()
 
 	else

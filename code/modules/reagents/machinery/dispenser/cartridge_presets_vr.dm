@@ -6,7 +6,7 @@
 	mutagen			spawn_reagent = "mutagen"
 
 	//Biochem
-	nutriment		spawn_reagent = "nutriment"
+	nutriment		spawn_reagent = REAGENT_ID_NUTRIMENT
 	protein			spawn_reagent = "protein"
 
 	//Special Ops

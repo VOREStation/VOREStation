@@ -150,7 +150,7 @@
 		list("antitoxins",    "anti_toxin",    0, 80),
 		list("nutrients",     "glucose",     0, 80),
 		list("hyronalin",     "hyronalin",     0, 80),
-		list("radium",        "radium",        0, 80)
+		list(REAGENT_ID_RADIUM,        REAGENT_ID_RADIUM,        0, 80)
 		)
 
 	var/max_reagent_volume = 80 //Used when refilling.
@@ -170,7 +170,7 @@
 		list("clotting agent", "myelamine",    0, 30),
 		list("peridaxon",     "peridaxon",     0, 30),
 		list("hyronalin",     "hyronalin",     0, 30),
-		list("radium",        "radium",        0, 30)
+		list(REAGENT_ID_RADIUM,        REAGENT_ID_RADIUM,        0, 30)
 		)
 
 /obj/item/rig_module/chem_dispenser/accepts_item(var/obj/item/input_item, var/mob/living/user)
@@ -286,7 +286,7 @@
 		list("antitoxins",    "anti_toxin",    0, 80),
 		list("nutrients",     "glucose",     0, 80),
 		list("hyronalin",     "hyronalin",     0, 80),
-		list("radium",        "radium",        0, 80),
+		list(REAGENT_ID_RADIUM,        REAGENT_ID_RADIUM,        0, 80),
 		list("clotting agent", "myelamine", 0, 80)
 		)
 

@@ -42,10 +42,10 @@
 
 	user.setClickCooldown(4)
 
-	if(reagents.has_reagent("sacid"))
+	if(reagents.has_reagent(REAGENT_ID_SACID))
 		message_admins("[key_name_admin(user)] fired sulphuric acid from \a [src].")
 		log_game("[key_name(user)] fired sulphuric acid from \a [src].")
-	if(reagents.has_reagent("pacid"))
+	if(reagents.has_reagent(REAGENT_ID_PACID))
 		message_admins("[key_name_admin(user)] fired Polyacid from \a [src].")
 		log_game("[key_name(user)] fired Polyacid from \a [src].")
 	if(reagents.has_reagent("lube"))
@@ -160,7 +160,7 @@
 
 /obj/item/reagent_containers/spray/waterflower/Initialize()
 	. = ..()
-	reagents.add_reagent("water", 10)
+	reagents.add_reagent(REAGENT_ID_WATER, 10)
 
 /obj/item/reagent_containers/spray/chemsprayer
 	name = "chem sprayer"

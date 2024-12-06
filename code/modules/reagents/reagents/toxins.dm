@@ -466,8 +466,8 @@
 	affect_blood(M, alien, removed * 0.7)
 
 /datum/reagent/acid/polyacid
-	name = "Polytrinic acid"
-	id = "pacid"
+	name = REAGENT_PACID
+	id = REAGENT_ID_PACID
 	description = "Polytrinic acid is a an extremely corrosive chemical substance."
 	taste_description = "acid"
 	reagent_state = LIQUID

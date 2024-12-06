@@ -1,8 +1,8 @@
 /datum/reagent/blood
-	data = new/list("donor" = null, "viruses" = null, "species" = SPECIES_HUMAN, "blood_DNA" = null, "blood_type" = null, "blood_colour" = "#A10808", "resistances" = null, "trace_chem" = null, "antibodies" = list())
-	name = "Blood"
-	id = "blood"
-	taste_description = "iron"
+	data = new/list("donor" = null, "viruses" = null, "species" = SPECIES_HUMAN, "blood_DNA" = null, "blood_type" = null, "blood_colour" = "#A10808", "resistances" = null, "trace_chem" = null, REAGENT_ID_ANTIBODIES = list())
+	name = REAGENT_BLOOD
+	id = REAGENT_ID_BLOOD
+	taste_description = REAGENT_ID_IRON
 	taste_mult = 1.3
 	reagent_state = LIQUID
 	metabolism = REM * 5
@@ -168,8 +168,8 @@
 	remove_self(volume)
 
 /datum/reagent/blood/synthblood
-	name = "synthetic blood"
-	id = "synthblood"
+	name = REAGENT_SYNTHBLOOD
+	id = REAGENT_ID_SYNTHBLOOD
 	color = "#999966"
 	volume_mod = 2
 
@@ -182,24 +182,24 @@
 	return
 
 /datum/reagent/blood/synthblood/dilute
-	name = "synthetic plasma"
-	id = "synthblood_dilute"
+	name = REAGENT_SYNTHBLOOD_DILUTE
+	id = REAGENT_ID_SYNTHBLOOD_DILUTE
 	color = "#cacaaf"
 	volume_mod = 1.2
 
 // pure concentrated antibodies
 /datum/reagent/antibodies
-	data = list("antibodies"=list())
-	name = "Antibodies"
+	data = list(REAGENT_ID_ANTIBODIES=list())
+	name = REAGENT_ANTIBODIES
 	taste_description = "slime"
-	id = "antibodies"
+	id = REAGENT_ID_ANTIBODIES
 	reagent_state = LIQUID
 	color = "#0050F0"
 	mrate_static = TRUE
 
 /datum/reagent/antibodies/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(src.data)
-		M.antibodies |= src.data["antibodies"]
+		M.antibodies |= src.data[REAGENT_ID_ANTIBODIES]
 	..()
 
 #define WATER_LATENT_HEAT 19000 // How much heat is removed when applied to a hot turf, in J/unit (19000 makes 120 u of water roughly equivalent to 4L)
@@ -301,8 +301,8 @@
 #undef WATER_LATENT_HEAT
 
 /datum/reagent/fuel
-	name = "Welding fuel"
-	id = "fuel"
+	name = REAGENT_FUEL
+	id = REAGENT_ID_FUEL
 	description = "Required for welders. Flamable."
 	taste_description = "gross metal"
 	reagent_state = LIQUID

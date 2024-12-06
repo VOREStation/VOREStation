@@ -509,7 +509,7 @@
 	slime_color = "green"
 	coretype = /obj/item/slime_extract/green
 	glow_toggle = TRUE
-	reagent_injected = "radium"
+	reagent_injected = REAGENT_ID_RADIUM
 	var/rads = 25
 
 	description_info = "This slime will irradiate anything nearby passively, and will inject radium on attack.  \

@@ -57,70 +57,70 @@
 	var/static/list/toxic_reagents = list(
 		"anti_toxin" =     -2,
 		"toxin" =           2,
-		"fluorine" =        2.5,
-		"chlorine" =        1.5,
-		"sacid" =           1.5,
-		"pacid" =           3,
+		REAGENT_ID_FLUORINE =        2.5,
+		REAGENT_ID_CHLORINE =        1.5,
+		REAGENT_ID_SACID =           1.5,
+		REAGENT_ID_PACID =           3,
 		"plantbgone" =      3,
 		"cryoxadone" =     -3,
-		"radium" =          2
+		REAGENT_ID_RADIUM =          2
 		)
 	var/static/list/nutrient_reagents = list(
 		"milk" =            0.1,
 		"beer" =            0.25,
-		"phosphorus" =      0.1,
-		"sugar" =           0.1,
+		REAGENT_ID_PHOSPHORUS =      0.1,
+		REAGENT_ID_SUGAR =           0.1,
 		"sodawater" =       0.1,
 		"ammonia" =         1,
 		"diethylamine" =    2,
-		"nutriment" =       1,
+		REAGENT_ID_NUTRIMENT =       1,
 		"adminordrazine" =  1,
 		"eznutrient" =      1,
 		"robustharvest" =   1,
 		"left4zed" =        1
 		)
 	var/static/list/weedkiller_reagents = list(
-		"fluorine" =       -4,
-		"chlorine" =       -3,
-		"phosphorus" =     -2,
-		"sugar" =           2,
-		"sacid" =          -2,
-		"pacid" =          -4,
+		REAGENT_ID_FLUORINE =       -4,
+		REAGENT_ID_CHLORINE =       -3,
+		REAGENT_ID_PHOSPHORUS =     -2,
+		REAGENT_ID_SUGAR =           2,
+		REAGENT_ID_SACID =          -2,
+		REAGENT_ID_PACID =          -4,
 		"plantbgone" =     -8,
 		"adminordrazine" = -5
 		)
 	var/static/list/pestkiller_reagents = list(
-		"sugar" =           2,
+		REAGENT_ID_SUGAR =           2,
 		"diethylamine" =   -2,
 		"adminordrazine" = -5
 		)
 	var/static/list/water_reagents = list(
-		"water" =           1,
+		REAGENT_ID_WATER =           1,
 		"adminordrazine" =  1,
 		"milk" =            0.9,
 		"beer" =            0.7,
-		"fluorine" =       -0.5,
-		"chlorine" =       -0.5,
-		"phosphorus" =     -0.5,
-		"water" =           1,
+		REAGENT_ID_FLUORINE =       -0.5,
+		REAGENT_ID_CHLORINE =       -0.5,
+		REAGENT_ID_PHOSPHORUS =     -0.5,
+		REAGENT_ID_WATER =           1,
 		"sodawater" =       1,
 		)
 
 	// Beneficial reagents also have values for modifying health, yield_mod and mut_mod (in that order).
 	var/static/list/beneficial_reagents = list(
 		"beer" =           list( -0.05, 0,   0  ),
-		"fluorine" =       list( -2,    0,   0  ),
-		"chlorine" =       list( -1,    0,   0  ),
-		"phosphorus" =     list( -0.75, 0,   0  ),
+		REAGENT_ID_FLUORINE =       list( -2,    0,   0  ),
+		REAGENT_ID_CHLORINE =       list( -1,    0,   0  ),
+		REAGENT_ID_PHOSPHORUS =     list( -0.75, 0,   0  ),
 		"sodawater" =      list(  0.1,  0,   0  ),
-		"sacid" =          list( -1,    0,   0  ),
-		"pacid" =          list( -2,    0,   0  ),
+		REAGENT_ID_SACID =          list( -1,    0,   0  ),
+		REAGENT_ID_PACID =          list( -2,    0,   0  ),
 		"plantbgone" =     list( -2,    0,   0.2),
 		"cryoxadone" =     list(  3,    0,   0  ),
 		"ammonia" =        list(  0.5,  0,   0  ),
 		"diethylamine" =   list(  1,    0,   0  ),
-		"nutriment" =      list(  0.5,  0.1, 0  ),
-		"radium" =         list( -1.5,  0,   0.2),
+		REAGENT_ID_NUTRIMENT =      list(  0.5,  0.1, 0  ),
+		REAGENT_ID_RADIUM =         list( -1.5,  0,   0.2),
 		"adminordrazine" = list(  1,    1,   1  ),
 		"robustharvest" =  list(  0,    0.2, 0  ),
 		"left4zed" =       list(  0,    0,   0.2)
@@ -129,7 +129,7 @@
 	// Mutagen list specifies minimum value for the mutation to take place, rather
 	// than a bound as the lists above specify.
 	var/static/list/mutagenic_reagents = list(
-		"radium" =  8,
+		REAGENT_ID_RADIUM =  8,
 		"mutagen" = 15
 		)
 

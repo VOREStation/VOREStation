@@ -1,8 +1,8 @@
 GLOBAL_LIST_EMPTY(archive_diseases)
 
 GLOBAL_LIST_INIT(advance_cures, list(
-	"sodiumchloride", "sugar", "orangejuice",
-	"spaceacillin", "glucose", "ethanol",
+	REAGENT_ID_SODIUMCHLORIDE, REAGENT_ID_SUGAR, "orangejuice",
+	"spaceacillin", "glucose", REAGENT_ID_ETHANOL,
 	"dyloteane", "impedrezene", "hepanephrodaxon",
 	"gold", "silver"
 ))

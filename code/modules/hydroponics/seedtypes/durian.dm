@@ -4,7 +4,7 @@
 	seed_noun = "pits"
 	display_name = "durian"
 	kitchen_tag = "durian"
-	chems = list("nutriment" = list(1,5), "durianpaste" = list(1, 20))
+	chems = list(REAGENT_ID_NUTRIMENT = list(1,5), "durianpaste" = list(1, 20))
 
 /datum/seed/durian/New()
 	..()

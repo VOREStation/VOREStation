@@ -35,17 +35,17 @@ var/const/CE_STABLE_THRESHOLD = 0.5
 		return
 
 	if(!amt)
-		vessel.add_reagent("blood",species.blood_volume)
+		vessel.add_reagent(REAGENT_ID_BLOOD,species.blood_volume)
 	else
-		vessel.add_reagent("blood", clamp(amt, 1, species.blood_volume))
+		vessel.add_reagent(REAGENT_ID_BLOOD, clamp(amt, 1, species.blood_volume))
 
 
 //Resets blood data
 /mob/living/carbon/human/proc/fixblood()
 	for(var/datum/reagent/blood/B in vessel.reagent_list)
-		if(B.id == "blood")
+		if(B.id == REAGENT_ID_BLOOD)
 			B.data = list(	"donor"=src,"viruses"=null,"species"=species.name,"blood_DNA"=dna.unique_enzymes,"blood_colour"= species.get_blood_colour(src),"blood_type"=dna.b_type,	\
-							"resistances"=null,"trace_chem"=null, "virus2" = null, "antibodies" = list(), "blood_name" = species.get_blood_name(src))
+							"resistances"=null,"trace_chem"=null, "virus2" = null, REAGENT_ID_ANTIBODIES = list(), "blood_name" = species.get_blood_name(src))
 
 			if(isSynthetic())
 				B.data["species"] = "synthetic"
@@ -63,7 +63,7 @@ var/const/CE_STABLE_THRESHOLD = 0.5
 
 	if(stat != DEAD && bodytemperature >= 170)	//Dead or cryosleep people do not pump the blood.
 
-		var/blood_volume_raw = vessel.get_reagent_amount("blood")
+		var/blood_volume_raw = vessel.get_reagent_amount(REAGENT_ID_BLOOD)
 		var/blood_volume = round((blood_volume_raw/species.blood_volume)*100) // Percentage.
 
 		//Blood regeneration if there is some space
@@ -222,14 +222,14 @@ var/const/CE_STABLE_THRESHOLD = 0.5
 	if(!amt)
 		return 0
 
-	var/current_blood = vessel.get_reagent_amount("blood")
+	var/current_blood = vessel.get_reagent_amount(REAGENT_ID_BLOOD)
 	if(current_blood < BLOOD_MINIMUM_STOP_PROCESS)
 		return 0 //We stop processing under 3 units of blood because apparently weird shit can make it overflowrandomly.
 
 	if(amt > current_blood)
 		amt = current_blood - 2	// Bit of a safety net; it's impossible to add blood if there's not blood already in the vessel.
 
-	return vessel.remove_reagent("blood",amt)
+	return vessel.remove_reagent(REAGENT_ID_BLOOD,amt)
 
 /****************************************************
 				BLOOD TRANSFERS
@@ -281,7 +281,7 @@ var/const/CE_STABLE_THRESHOLD = 0.5
 	if(!should_have_organ(O_HEART))
 		return null
 
-	if(vessel.get_reagent_amount("blood") < max(amount, BLOOD_MINIMUM_STOP_PROCESS))
+	if(vessel.get_reagent_amount(REAGENT_ID_BLOOD) < max(amount, BLOOD_MINIMUM_STOP_PROCESS))
 		return null
 
 	. = ..()
@@ -299,8 +299,8 @@ var/const/CE_STABLE_THRESHOLD = 0.5
 		ContractDisease(D)
 	if (injected.data["resistances"] && prob(5))
 		antibodies |= injected.data["resistances"]
-	if (injected.data["antibodies"] && prob(5))
-		antibodies |= injected.data["antibodies"]
+	if (injected.data[REAGENT_ID_ANTIBODIES] && prob(5))
+		antibodies |= injected.data[REAGENT_ID_ANTIBODIES]
 	var/list/chems = list()
 	chems = params2list(injected.data["trace_chem"])
 	for(var/C in chems)
@@ -311,7 +311,7 @@ var/const/CE_STABLE_THRESHOLD = 0.5
 /mob/living/carbon/human/inject_blood(var/datum/reagent/blood/injected, var/amount)
 
 	if(!should_have_organ(O_HEART))
-		reagents.add_reagent("blood", amount, injected.data)
+		reagents.add_reagent(REAGENT_ID_BLOOD, amount, injected.data)
 		reagents.update_total()
 		return
 
@@ -329,7 +329,7 @@ var/const/CE_STABLE_THRESHOLD = 0.5
 			log_debug("Failed to re-initialize blood datums on [src]!")
 			return
 		if(vessel.total_volume < species.blood_volume)
-			vessel.add_reagent("blood", species.blood_volume - vessel.total_volume)
+			vessel.add_reagent(REAGENT_ID_BLOOD, species.blood_volume - vessel.total_volume)
 		else if(vessel.total_volume > species.blood_volume)
 			vessel.maximum_volume = species.blood_volume
 		fixblood()
@@ -343,7 +343,7 @@ var/const/CE_STABLE_THRESHOLD = 0.5
 		reagents.add_reagent("toxin",amount * 0.5)
 		reagents.update_total()
 	else
-		vessel.add_reagent("blood", amount, injected.data)
+		vessel.add_reagent(REAGENT_ID_BLOOD, amount, injected.data)
 		vessel.update_total()
 	..()
 

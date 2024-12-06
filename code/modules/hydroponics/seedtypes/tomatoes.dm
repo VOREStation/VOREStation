@@ -4,7 +4,7 @@
 	seed_name = "tomato"
 	display_name = "tomato plant"
 	mutants = list("bluetomato","bloodtomato")
-	chems = list("nutriment" = list(1,10), "tomatojuice" = list(10,10))
+	chems = list(REAGENT_ID_NUTRIMENT = list(1,10), "tomatojuice" = list(10,10))
 	kitchen_tag = "tomato"
 
 /datum/seed/tomato/New()
@@ -27,7 +27,7 @@
 	seed_name = "blood tomato"
 	display_name = "blood tomato plant"
 	mutants = list("killertomato")
-	chems = list("nutriment" = list(1,10), "blood" = list(1,5))
+	chems = list(REAGENT_ID_NUTRIMENT = list(1,10), REAGENT_ID_BLOOD = list(1,5))
 	splat_type = /obj/effect/decal/cleanable/blood/splatter
 
 /datum/seed/tomato/blood/New()
@@ -53,7 +53,7 @@
 	seed_name = "blue tomato"
 	display_name = "blue tomato plant"
 	mutants = list("bluespacetomato")
-	chems = list("nutriment" = list(1,20), "lube" = list(1,5))
+	chems = list(REAGENT_ID_NUTRIMENT = list(1,20), "lube" = list(1,5))
 
 /datum/seed/tomato/blue/New()
 	..()
@@ -65,7 +65,7 @@
 	seed_name = "bluespace tomato"
 	display_name = "bluespace tomato plant"
 	mutants = null
-	chems = list("nutriment" = list(1,20), "singulo" = list(10,5))
+	chems = list(REAGENT_ID_NUTRIMENT = list(1,20), "singulo" = list(10,5))
 
 /datum/seed/tomato/blue/teleport/New()
 	..()

@@ -234,7 +234,7 @@
 		if(ishuman(occupant) && !(NO_BLOOD in occupant.species.flags) && occupant.vessel)
 			occupantData["pulse"] = occupant.get_pulse(GETPULSE_TOOL)
 			occupantData["hasBlood"] = 1
-			var/blood_volume = round(occupant.vessel.get_reagent_amount("blood"))
+			var/blood_volume = round(occupant.vessel.get_reagent_amount(REAGENT_ID_BLOOD))
 			occupantData["bloodLevel"] = blood_volume
 			occupantData["bloodMax"] = occupant.species.blood_volume
 			occupantData["bloodPercent"] = round(100*(blood_volume/occupant.species.blood_volume), 0.01) //copy pasta ends here

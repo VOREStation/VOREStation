@@ -5,7 +5,7 @@
 	display_name = "eggplants"
 	kitchen_tag = "eggplant"
 	mutants = list("egg-plant")
-	chems = list("nutriment" = list(1,10))
+	chems = list(REAGENT_ID_NUTRIMENT = list(1,10))
 
 /datum/seed/eggplant/New()
 	..()
@@ -27,5 +27,5 @@
 	display_name = "egg-plants"
 	kitchen_tag = "egg-plant"
 	mutants = null
-	chems = list("nutriment" = list(1,5), "egg" = list(3,12))
+	chems = list(REAGENT_ID_NUTRIMENT = list(1,5), "egg" = list(3,12))
 	has_item_product = /obj/item/reagent_containers/food/snacks/egg/purple

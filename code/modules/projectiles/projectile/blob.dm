@@ -53,7 +53,7 @@
 /obj/item/projectile/energy/blob/acid
 	damage_type = BURN
 	check_armour = "bio"
-	my_chems = list("sacid", "mold")
+	my_chems = list(REAGENT_ID_SACID, "mold")
 
 /obj/item/projectile/energy/blob/acid/splattering
 	splatter = TRUE
@@ -61,7 +61,7 @@
 /obj/item/projectile/energy/blob/combustible
 	splatter = TRUE
 	flammability = 0.25
-	my_chems = list("fuel", "mold")
+	my_chems = list(REAGENT_ID_FUEL, "mold")
 
 /obj/item/projectile/energy/blob/freezing
 	my_chems = list("frostoil")

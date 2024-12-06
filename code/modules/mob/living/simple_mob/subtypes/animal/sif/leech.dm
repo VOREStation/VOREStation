@@ -198,7 +198,7 @@
 				chemicals -= 50
 
 			if(host.getOxyLoss() >= 30 && chemicals > 50)
-				host.reagents.add_reagent("iron", 10)
+				host.reagents.add_reagent(REAGENT_ID_IRON, 10)
 				chemicals -= 40
 
 			if(host.getBrainLoss() >= 10 && chemicals > 100)

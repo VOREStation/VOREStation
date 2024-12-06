@@ -3,7 +3,7 @@
 	seed_name = "jurl'mah"
 	display_name = "jurl'mah reeds"
 	kitchen_tag = "jurlmah"
-	chems = list("serotrotium" = list(1,5),"nutriment" = list(1,5))
+	chems = list("serotrotium" = list(1,5),REAGENT_ID_NUTRIMENT = list(1,5))
 
 /datum/seed/jurlmah/New()
 	..()

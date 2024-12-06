@@ -3,7 +3,7 @@
 	seed_name = "onion"
 	display_name = "onions"
 	kitchen_tag = "onion"
-	chems = list("nutriment" = list(1,10))
+	chems = list(REAGENT_ID_NUTRIMENT = list(1,10))
 
 /datum/seed/onion/New()
 	..()

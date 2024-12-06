@@ -797,7 +797,7 @@
 	name = "Combat Triage Belly"
 	desc = "A mounted sleeper that stabilizes patients and can inject reagents in the borg's reserves. This one is for more extreme combat scenarios."
 	icon_state = "sleepersyndiemed"
-	injection_chems = list("healing_nanites", "hyperzine", "tramadol", "oxycodone", "spaceacillin", "peridaxon", "osteodaxon", "myelamine", "synthblood")
+	injection_chems = list("healing_nanites", "hyperzine", "tramadol", "oxycodone", "spaceacillin", "peridaxon", "osteodaxon", "myelamine", REAGENT_ID_SYNTHBLOOD)
 	digest_multiplier = 2
 
 /obj/item/dogborg/sleeper/K9/syndie

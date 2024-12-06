@@ -3,7 +3,7 @@
 	seed_name = "cacao"
 	display_name = "cacao tree"
 	kitchen_tag = "cocoa"
-	chems = list("nutriment" = list(1,10), "coco" = list(4,5))
+	chems = list(REAGENT_ID_NUTRIMENT = list(1,10), "coco" = list(4,5))
 
 /datum/seed/cocoa/New()
 	..()

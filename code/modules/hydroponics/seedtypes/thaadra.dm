@@ -3,7 +3,7 @@
 	seed_name = "thaa'dra"
 	display_name = "thaa'dra lichen"
 	kitchen_tag = "thaadra"
-	chems = list("frostoil" = list(1,5),"nutriment" = list(1,5))
+	chems = list("frostoil" = list(1,5),REAGENT_ID_NUTRIMENT = list(1,5))
 
 /datum/seed/thaadra/New()
 	..()

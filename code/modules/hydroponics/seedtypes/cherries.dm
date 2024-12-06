@@ -4,7 +4,7 @@
 	seed_noun = "pits"
 	display_name = "cherry tree"
 	kitchen_tag = "cherries"
-	chems = list("nutriment" = list(1,15), "sugar" = list(1,15), "cherryjelly" = list(10,15))
+	chems = list(REAGENT_ID_NUTRIMENT = list(1,15), REAGENT_ID_SUGAR = list(1,15), "cherryjelly" = list(10,15))
 
 /datum/seed/cherries/New()
 	..()

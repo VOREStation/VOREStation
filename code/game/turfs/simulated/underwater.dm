@@ -14,7 +14,7 @@
 
 	depth = 10 // Higher numbers indicates deeper water, 10 is unused right now, but may be useful for adding effects in the future.
 
-	reagent_type = "water"
+	reagent_type = REAGENT_ID_WATER
 
 /turf/simulated/floor/water/underwater/return_air_for_internal_lifeform(var/mob/living/L)
 	if(L.can_breathe_water()) // For squid.

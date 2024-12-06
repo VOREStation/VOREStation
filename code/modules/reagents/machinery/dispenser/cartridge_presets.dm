@@ -6,53 +6,53 @@
 
 // Multiple
 /obj/item/reagent_containers/chem_disp_cartridge/water
-	spawn_reagent = "water"
+	spawn_reagent = REAGENT_ID_WATER
 /obj/item/reagent_containers/chem_disp_cartridge/sugar
-	spawn_reagent = "sugar"
+	spawn_reagent = REAGENT_ID_SUGAR
 
 // Chemistry
 /obj/item/reagent_containers/chem_disp_cartridge/hydrogen
-	spawn_reagent = "hydrogen"
+	spawn_reagent = REAGENT_ID_HYDROGEN
 /obj/item/reagent_containers/chem_disp_cartridge/lithium
-	spawn_reagent = "lithium"
+	spawn_reagent = REAGENT_ID_LITHIUM
 /obj/item/reagent_containers/chem_disp_cartridge/carbon
-	spawn_reagent = "carbon"
+	spawn_reagent = REAGENT_ID_CARBON
 /obj/item/reagent_containers/chem_disp_cartridge/nitrogen
 	spawn_reagent = REAGENT_ID_NITROGEN
 /obj/item/reagent_containers/chem_disp_cartridge/oxygen
 	spawn_reagent = REAGENT_ID_OXYGEN
 /obj/item/reagent_containers/chem_disp_cartridge/fluorine
-	spawn_reagent = "fluorine"
+	spawn_reagent = REAGENT_ID_FLUORINE
 /obj/item/reagent_containers/chem_disp_cartridge/sodium
-	spawn_reagent = "sodium"
+	spawn_reagent = REAGENT_ID_SODIUM
 /obj/item/reagent_containers/chem_disp_cartridge/aluminum
-	spawn_reagent = "aluminum"
+	spawn_reagent = REAGENT_ID_ALUMINIUM
 /obj/item/reagent_containers/chem_disp_cartridge/silicon
-	spawn_reagent = "silicon"
+	spawn_reagent = REAGENT_ID_SILICON
 /obj/item/reagent_containers/chem_disp_cartridge/phosphorus
-	spawn_reagent = "phosphorus"
+	spawn_reagent = REAGENT_ID_PHOSPHORUS
 /obj/item/reagent_containers/chem_disp_cartridge/sulfur
-	spawn_reagent = "sulfur"
+	spawn_reagent = REAGENT_ID_SULFUR
 /obj/item/reagent_containers/chem_disp_cartridge/chlorine
-	spawn_reagent = "chlorine"
+	spawn_reagent = REAGENT_ID_CHLORINE
 /obj/item/reagent_containers/chem_disp_cartridge/potassium
-	spawn_reagent = "potassium"
+	spawn_reagent = REAGENT_ID_POTASSIUM
 /obj/item/reagent_containers/chem_disp_cartridge/iron
-	spawn_reagent = "iron"
+	spawn_reagent = REAGENT_ID_IRON
 /obj/item/reagent_containers/chem_disp_cartridge/copper
-	spawn_reagent = "copper"
+	spawn_reagent = REAGENT_ID_COPPER
 /obj/item/reagent_containers/chem_disp_cartridge/mercury
-	spawn_reagent = "mercury"
+	spawn_reagent = REAGENT_ID_MERCURY
 /obj/item/reagent_containers/chem_disp_cartridge/radium
-	spawn_reagent = "radium"
+	spawn_reagent = REAGENT_ID_RADIUM
 /obj/item/reagent_containers/chem_disp_cartridge/ethanol
-	spawn_reagent = "ethanol"
+	spawn_reagent = REAGENT_ID_ETHANOL
 /obj/item/reagent_containers/chem_disp_cartridge/sacid
-	spawn_reagent = "sacid"
+	spawn_reagent = REAGENT_ID_SACID
 /obj/item/reagent_containers/chem_disp_cartridge/tungsten
-	spawn_reagent = "tungsten"
+	spawn_reagent = REAGENT_ID_TUNGSTEN
 /obj/item/reagent_containers/chem_disp_cartridge/calcium
-	spawn_reagent = "calcium"
+	spawn_reagent = REAGENT_ID_CALCIUM
 
 // Bar, alcoholic
 /obj/item/reagent_containers/chem_disp_cartridge/beer

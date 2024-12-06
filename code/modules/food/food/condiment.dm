@@ -91,7 +91,7 @@
 				desc = "Leaves the tongue numb in its passage."
 				icon_state = "coldsauce"
 				center_of_mass = list("x"=16, "y"=6)
-			if("sodiumchloride")
+			if(REAGENT_ID_SODIUMCHLORIDE)
 				name = "Salt Shaker"
 				desc = "Salt. From space oceans, presumably."
 				icon_state = "saltshaker"
@@ -106,7 +106,7 @@
 				desc = "A delicious oil used in cooking. General purpose."
 				icon_state = "oliveoil"
 				center_of_mass = list("x"=16, "y"=6)
-			if("sugar")
+			if(REAGENT_ID_SUGAR)
 				name = "Sugar"
 				desc = "Tastey space sugar!"
 				center_of_mass = list("x"=16, "y"=6)
@@ -166,7 +166,7 @@
 
 /obj/item/reagent_containers/food/condiment/sugar/Initialize()
 	. = ..()
-	reagents.add_reagent("sugar", 50)
+	reagents.add_reagent(REAGENT_ID_SUGAR, 50)
 
 /obj/item/reagent_containers/food/condiment/ketchup/Initialize()
 	. = ..()
@@ -237,7 +237,7 @@
 
 /obj/item/reagent_containers/food/condiment/small/saltshaker/Initialize()
 	. = ..()
-	reagents.add_reagent("sodiumchloride", 20)
+	reagents.add_reagent(REAGENT_ID_SODIUMCHLORIDE, 20)
 
 /obj/item/reagent_containers/food/condiment/small/peppermill //Keeping name here to save map based headaches
 	name = "pepper shaker"
@@ -260,13 +260,13 @@
 	reagents.add_reagent("blackpepper", 30)
 
 /obj/item/reagent_containers/food/condiment/small/sugar
-	name = "sugar"
+	name = REAGENT_ID_SUGAR
 	desc = "Sweetness in a bottle"
 	icon_state = "sugarsmall"
 
 /obj/item/reagent_containers/food/condiment/small/sugar/Initialize()
 	. = ..()
-	reagents.add_reagent("sugar", 20)
+	reagents.add_reagent(REAGENT_ID_SUGAR, 20)
 
 //MRE condiments and drinks.
 
@@ -284,7 +284,7 @@
 
 /obj/item/reagent_containers/food/condiment/small/packet/salt/Initialize()
 	. = ..()
-	reagents.add_reagent("sodiumchloride", 5)
+	reagents.add_reagent(REAGENT_ID_SODIUMCHLORIDE, 5)
 
 /obj/item/reagent_containers/food/condiment/small/packet/pepper
 	name = "pepper packet"
@@ -302,7 +302,7 @@
 
 /obj/item/reagent_containers/food/condiment/small/packet/sugar/Initialize()
 	. = ..()
-	reagents.add_reagent("sugar", 5)
+	reagents.add_reagent(REAGENT_ID_SUGAR, 5)
 
 /obj/item/reagent_containers/food/condiment/small/packet/jelly
 	name = "jelly packet"
@@ -495,7 +495,7 @@
 /obj/item/reagent_containers/food/condiment/carton/sugar
 	name = "sugar carton"
 	desc = "A big carton of sugar. Sweet!"
-	icon_state = "sugar"
+	icon_state = REAGENT_ID_SUGAR
 	volume = 120
 	center_of_mass = list("x"=16, "y"=8)
 
@@ -505,7 +505,7 @@
 
 /obj/item/reagent_containers/food/condiment/carton/sugar/Initialize()
 	. = ..()
-	reagents.add_reagent("sugar", 100)
+	reagents.add_reagent(REAGENT_ID_SUGAR, 100)
 
 /obj/item/reagent_containers/food/condiment/carton/sugar/rustic
 	name = "sugar sack"
@@ -534,7 +534,7 @@
 
 /obj/item/reagent_containers/food/condiment/small/packet/protein_powder/Initialize()
 	. = ..()
-	reagents.add_reagent("protein_powder", 5)
+	reagents.add_reagent(REAGENT_ID_PROTEINPOWDER, 5)
 
 /obj/item/reagent_containers/food/condiment/small/packet/protein_powder/vanilla
 	name = "vanilla protein powder packet"
@@ -543,7 +543,7 @@
 
 /obj/item/reagent_containers/food/condiment/small/packet/protein_powder/vanilla/Initialize()
 	. = ..()
-	reagents.add_reagent("vanilla_protein_powder", 5)
+	reagents.add_reagent(REAGENT_ID_VANILLAPROTEINPOWDER, 5)
 
 /obj/item/reagent_containers/food/condiment/small/packet/protein_powder/banana
 	name = "banana protein powder packet"
@@ -552,7 +552,7 @@
 
 /obj/item/reagent_containers/food/condiment/small/packet/protein_powder/banana/Initialize()
 	. = ..()
-	reagents.add_reagent("banana_protein_powder", 5)
+	reagents.add_reagent(REAGENT_ID_BANANAPROTEINPOWDER, 5)
 
 /obj/item/reagent_containers/food/condiment/small/packet/protein_powder/chocolate
 	name = "chocolate protein powder packet"
@@ -561,7 +561,7 @@
 
 /obj/item/reagent_containers/food/condiment/small/packet/protein_powder/chocolate/Initialize()
 	. = ..()
-	reagents.add_reagent("chocolate_protein_powder", 5)
+	reagents.add_reagent(REAGENT_ID_CHOCOLATEPROTEINPOWDER, 5)
 
 /obj/item/reagent_containers/food/condiment/small/packet/protein_powder/strawberry
 	name = "strawberry protein powder packet"
@@ -570,4 +570,4 @@
 
 /obj/item/reagent_containers/food/condiment/small/packet/protein_powder/strawberry/Initialize()
 	. = ..()
-	reagents.add_reagent("strawberry_protein_powder", 5)
+	reagents.add_reagent(REAGENT_ID_STRAWBERRYPROTEINPOWDER, 5)

@@ -260,7 +260,7 @@ var/global/list/robot_modules = list(
 
 	var/obj/item/reagent_containers/spray/PS = new /obj/item/reagent_containers/spray(src)
 	src.emag += PS
-	PS.reagents.add_reagent("pacid", 250)
+	PS.reagents.add_reagent(REAGENT_ID_PACID, 250)
 	PS.name = "Polyacid spray"
 
 	var/datum/matter_synth/medicine = new /datum/matter_synth/medicine(10000)
@@ -296,7 +296,7 @@ var/global/list/robot_modules = list(
 
 	var/obj/item/reagent_containers/spray/PS = locate() in src.emag
 	if(PS)
-		PS.reagents.add_reagent("pacid", 2 * amount)
+		PS.reagents.add_reagent(REAGENT_ID_PACID, 2 * amount)
 
 	..()
 
@@ -319,7 +319,7 @@ var/global/list/robot_modules = list(
 	src.modules += new /obj/item/inflatable_dispenser/robot(src)
 	var/obj/item/reagent_containers/spray/PS = new /obj/item/reagent_containers/spray(src)
 	src.emag += PS
-	PS.reagents.add_reagent("pacid", 250)
+	PS.reagents.add_reagent(REAGENT_ID_PACID, 250)
 	PS.name = "Polyacid spray"
 
 	var/datum/matter_synth/medicine = new /datum/matter_synth/medicine(15000)
@@ -355,7 +355,7 @@ var/global/list/robot_modules = list(
 
 	var/obj/item/reagent_containers/spray/PS = locate() in src.emag
 	if(PS)
-		PS.reagents.add_reagent("pacid", 2 * amount)
+		PS.reagents.add_reagent(REAGENT_ID_PACID, 2 * amount)
 
 	..()
 
