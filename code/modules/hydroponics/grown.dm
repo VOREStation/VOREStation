@@ -92,7 +92,7 @@
 			descriptors |= "hallucinogenic"
 		if(reagents.has_reagent("bicaridine") || reagents.has_reagent("earthsblood"))
 			descriptors |= "medicinal"
-		if(reagents.has_reagent("gold") || reagents.has_reagent("earthsblood"))
+		if(reagents.has_reagent(REAGENT_ID_GOLD) || reagents.has_reagent("earthsblood"))
 			descriptors |= "shiny"
 		if(reagents.has_reagent("lube"))
 			descriptors |= "slippery"

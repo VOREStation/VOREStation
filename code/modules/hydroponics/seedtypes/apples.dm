@@ -31,7 +31,7 @@
 	display_name = "gold apple tree"
 	kitchen_tag = "goldapple"
 	mutants = null
-	chems = list(REAGENT_ID_NUTRIMENT = list(1,10), "gold" = list(1,5))
+	chems = list(REAGENT_ID_NUTRIMENT = list(1,10), REAGENT_ID_GOLD = list(1,5))
 
 /datum/seed/apple/gold/New()
 	..()

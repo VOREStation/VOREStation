@@ -154,7 +154,7 @@
 	desc = "A small bottle. Contains the liquid essence of the gods."
 	icon = 'icons/obj/drinks.dmi'
 	icon_state = "holyflask"
-	prefill = list("adminordrazine" = 60)
+	prefill = list(REAGENT_ID_ADMINORDRAZINE = 60)
 
 /obj/item/reagent_containers/glass/bottle/capsaicin
 	name = "capsaicin bottle"

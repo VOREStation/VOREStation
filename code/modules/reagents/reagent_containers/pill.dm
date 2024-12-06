@@ -156,7 +156,7 @@
 
 /obj/item/reagent_containers/pill/adminordrazine/Initialize()
 	. = ..()
-	reagents.add_reagent("adminordrazine", 5)
+	reagents.add_reagent(REAGENT_ID_ADMINORDRAZINE, 5)
 
 
 /obj/item/reagent_containers/pill/stox

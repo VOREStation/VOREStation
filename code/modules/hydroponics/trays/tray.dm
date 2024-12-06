@@ -74,7 +74,7 @@
 		"ammonia" =         1,
 		"diethylamine" =    2,
 		REAGENT_ID_NUTRIMENT =       1,
-		"adminordrazine" =  1,
+		REAGENT_ID_ADMINORDRAZINE =  1,
 		"eznutrient" =      1,
 		"robustharvest" =   1,
 		"left4zed" =        1
@@ -87,16 +87,16 @@
 		REAGENT_ID_SACID =          -2,
 		REAGENT_ID_PACID =          -4,
 		"plantbgone" =     -8,
-		"adminordrazine" = -5
+		REAGENT_ID_ADMINORDRAZINE = -5
 		)
 	var/static/list/pestkiller_reagents = list(
 		REAGENT_ID_SUGAR =           2,
 		"diethylamine" =   -2,
-		"adminordrazine" = -5
+		REAGENT_ID_ADMINORDRAZINE = -5
 		)
 	var/static/list/water_reagents = list(
 		REAGENT_ID_WATER =           1,
-		"adminordrazine" =  1,
+		REAGENT_ID_ADMINORDRAZINE =  1,
 		"milk" =            0.9,
 		"beer" =            0.7,
 		REAGENT_ID_FLUORINE =       -0.5,
@@ -121,7 +121,7 @@
 		"diethylamine" =   list(  1,    0,   0  ),
 		REAGENT_ID_NUTRIMENT =      list(  0.5,  0.1, 0  ),
 		REAGENT_ID_RADIUM =         list( -1.5,  0,   0.2),
-		"adminordrazine" = list(  1,    1,   1  ),
+		REAGENT_ID_ADMINORDRAZINE = list(  1,    1,   1  ),
 		"robustharvest" =  list(  0,    0.2, 0  ),
 		"left4zed" =       list(  0,    0,   0.2)
 		)

@@ -1,8 +1,8 @@
 /* Paint and crayons */
 
 /datum/reagent/crayon_dust
-	name = "Crayon dust"
-	id = "crayon_dust"
+	name = REAGENT_CRAYONDUST
+	id = REAGENT_ID_CRAYONDUST
 	description = "Intensely coloured powder obtained by grinding crayons."
 	taste_description = "powdered wax"
 	reagent_state = LIQUID
@@ -10,48 +10,48 @@
 	overdose = 5
 
 /datum/reagent/crayon_dust/red
-	name = "Red crayon dust"
-	id = "crayon_dust_red"
+	name = REAGENT_CRAYONDUSTRED
+	id = REAGENT_ID_CRAYONDUSTRED
 	color = "#FE191A"
 
 /datum/reagent/crayon_dust/orange
-	name = "Orange crayon dust"
-	id = "crayon_dust_orange"
+	name = REAGENT_CRAYONDUSTORANGE
+	id = REAGENT_ID_CRAYONDUSTORANGE
 	color = "#FFBE4F"
 
 /datum/reagent/crayon_dust/yellow
-	name = "Yellow crayon dust"
-	id = "crayon_dust_yellow"
+	name = REAGENT_CRAYONDUSTYELLOW
+	id = REAGENT_ID_CRAYONDUSTYELLOW
 	color = "#FDFE7D"
 
 /datum/reagent/crayon_dust/green
-	name = "Green crayon dust"
-	id = "crayon_dust_green"
+	name = REAGENT_CRAYONDUSTGREEN
+	id = REAGENT_ID_CRAYONDUSTGREEN
 	color = "#18A31A"
 
 /datum/reagent/crayon_dust/blue
-	name = "Blue crayon dust"
-	id = "crayon_dust_blue"
+	name = REAGENT_CRAYONDUSTBLUE
+	id = REAGENT_ID_CRAYONDUSTBLUE
 	color = "#247CFF"
 
 /datum/reagent/crayon_dust/purple
-	name = "Purple crayon dust"
-	id = "crayon_dust_purple"
+	name = REAGENT_CRAYONDUSTPURPLE
+	id = REAGENT_ID_CRAYONDUSTPURPLE
 	color = "#CC0099"
 
 /datum/reagent/crayon_dust/grey //Mime
-	name = "Grey crayon dust"
-	id = "crayon_dust_grey"
+	name = REAGENT_CRAYONDUSTGREY
+	id = REAGENT_ID_CRAYONDUSTGREY
 	color = "#808080"
 
 /datum/reagent/crayon_dust/brown //Rainbow
-	name = "Brown crayon dust"
-	id = "crayon_dust_brown"
+	name = REAGENT_CRAYONDUSTBROWN
+	id = REAGENT_ID_CRAYONDUSTBROWN
 	color = "#846F35"
 
 /datum/reagent/marker_ink
-	name = "Marker ink"
-	id = "marker_ink"
+	name = REAGENT_MARKERINK
+	id = REAGENT_ID_MARKERINK
 	description = "Intensely coloured ink used in markers."
 	taste_description = "extremely bitter"
 	reagent_state = LIQUID
@@ -59,53 +59,53 @@
 	overdose = 5
 
 /datum/reagent/marker_ink/black
-	name = "Black marker ink"
-	id = "marker_ink_black"
+	name = REAGENT_MARKERINKBLACK
+	id = REAGENT_ID_MARKERINKBLACK
 	color = "#000000"
 
 /datum/reagent/marker_ink/red
-	name = "Red marker ink"
-	id = "marker_ink_red"
+	name = REAGENT_MARKERINKRED
+	id = REAGENT_ID_MARKERINKRED
 	color = "#FE191A"
 
 /datum/reagent/marker_ink/orange
-	name = "Orange marker ink"
-	id = "marker_ink_orange"
+	name = REAGENT_MARKERINKORANGE
+	id = REAGENT_ID_MARKERINKORANGE
 	color = "#FFBE4F"
 
 /datum/reagent/marker_ink/yellow
-	name = "Yellow marker ink"
-	id = "marker_ink_yellow"
+	name = REAGENT_MARKERINKYELLOW
+	id = REAGENT_ID_MARKERINKYELLOW
 	color = "#FDFE7D"
 
 /datum/reagent/marker_ink/green
-	name = "Green marker ink"
-	id = "marker_ink_green"
+	name = REAGENT_MARKERINKGREEN
+	id = REAGENT_ID_MARKERINKGREEN
 	color = "#18A31A"
 
 /datum/reagent/marker_ink/blue
-	name = "Blue marker ink"
-	id = "marker_ink_blue"
+	name = REAGENT_MARKERINKBLUE
+	id = REAGENT_ID_MARKERINKBLUE
 	color = "#247CFF"
 
 /datum/reagent/marker_ink/purple
-	name = "Purple marker ink"
-	id = "marker_ink_purple"
+	name = REAGENT_MARKERINKPURPLE
+	id = REAGENT_ID_MARKERINKPURPLE
 	color = "#CC0099"
 
 /datum/reagent/marker_ink/grey //Mime
-	name = "Grey marker ink"
-	id = "marker_ink_grey"
+	name = REAGENT_MARKERINKGREY
+	id = REAGENT_ID_MARKERINKGREY
 	color = "#808080"
 
 /datum/reagent/marker_ink/brown //Rainbow
-	name = "Brown marker ink"
-	id = "marker_ink_brown"
+	name = REAGENT_MARKERINKBROWN
+	id = REAGENT_ID_MARKERINKBROWN
 	color = "#846F35"
 
 /datum/reagent/paint
-	name = "Paint"
-	id = "paint"
+	name = REAGENT_PAINT
+	id = REAGENT_ID_PAINT
 	description = "This paint will stick to almost any object."
 	taste_description = "chalk"
 	reagent_state = LIQUID
@@ -164,8 +164,8 @@
 /* Things that didn't fit anywhere else */
 
 /datum/reagent/adminordrazine //An OP chemical for admins
-	name = "Adminordrazine"
-	id = "adminordrazine"
+	name = REAGENT_ADMINORDRAZINE
+	id = REAGENT_ID_ADMINORDRAZINE
 	description = "It's magic. We don't have to explain it."
 	taste_description = "bwoink"
 	reagent_state = LIQUID
@@ -232,24 +232,24 @@
 						O.wounds -= W
 
 /datum/reagent/gold
-	name = "Gold"
-	id = "gold"
+	name = REAGENT_GOLD
+	id = REAGENT_ID_GOLD
 	description = "Gold is a dense, soft, shiny metal and the most malleable and ductile metal known."
 	taste_description = "metal"
 	reagent_state = SOLID
 	color = "#F7C430"
 
 /datum/reagent/silver
-	name = "Silver"
-	id = "silver"
+	name = REAGENT_SILVER
+	id = REAGENT_ID_SILVER
 	description = "A soft, white, lustrous transition metal, it has the highest electrical conductivity of any element and the highest thermal conductivity of any metal."
 	taste_description = "metal"
 	reagent_state = SOLID
 	color = "#D0D0D0"
 
 /datum/reagent/platinum
-	name = "Platinum"
-	id = "platinum"
+	name = REAGENT_PLATINUM
+	id = REAGENT_ID_PLATINUM
 	description = "Platinum is a dense, malleable, ductile, highly unreactive, precious, gray-white transition metal.  It is very resistant to corrosion."
 	taste_description = "metal"
 	reagent_state = SOLID

@@ -157,22 +157,22 @@
 /decl/chemical_reaction/instant/metamorphic/silver
 	name = "Morph into Silver"
 	id = "morph_silver"
-	required_reagents = list("metamorphic" = REAGENTS_PER_SHEET, "silver" = REAGENTS_PER_SHEET)
-	result = "silver"
+	required_reagents = list("metamorphic" = REAGENTS_PER_SHEET, REAGENT_ID_SILVER = REAGENTS_PER_SHEET)
+	result = REAGENT_ID_SILVER
 
 
 /decl/chemical_reaction/instant/metamorphic/gold
 	name = "Morph into Gold"
 	id = "morph_gold"
-	required_reagents = list("metamorphic" = REAGENTS_PER_SHEET, "gold" = REAGENTS_PER_SHEET)
-	result = "gold"
+	required_reagents = list("metamorphic" = REAGENTS_PER_SHEET, REAGENT_ID_GOLD = REAGENTS_PER_SHEET)
+	result = REAGENT_ID_GOLD
 
 
 /decl/chemical_reaction/instant/metamorphic/platinum
 	name = "Morph into Platinum"
 	id = "morph_platinum"
-	required_reagents = list("metamorphic" = REAGENTS_PER_SHEET, "platinum" = REAGENTS_PER_SHEET)
-	result = "platinum"
+	required_reagents = list("metamorphic" = REAGENTS_PER_SHEET, REAGENT_ID_PLATINUM = REAGENTS_PER_SHEET)
+	result = REAGENT_ID_PLATINUM
 
 
 /decl/chemical_reaction/instant/metamorphic/uranium
@@ -236,7 +236,7 @@
 /decl/chemical_reaction/instant/binding/plasteel // Two parts 'steel', one part platnium matches the smelter alloy recipe.
 	name = "Bind into Plasteel"
 	id = "bind_plasteel"
-	required_reagents = list("binding" = REAGENTS_PER_SHEET, "steel" = REAGENTS_PER_SHEET * 2, "platinum" = REAGENTS_PER_SHEET)
+	required_reagents = list("binding" = REAGENTS_PER_SHEET, "steel" = REAGENTS_PER_SHEET * 2, REAGENT_ID_PLATINUM = REAGENTS_PER_SHEET)
 	result = "plasteel"
 
 /datum/reagent/plasteel
@@ -406,7 +406,7 @@
 /decl/chemical_reaction/instant/slime/gold_gold
 	name = "Slime Gold"
 	id = "m_gold"
-	result = "gold"
+	result = REAGENT_ID_GOLD
 	required_reagents = list(REAGENT_ID_PHORON = 5)
 	result_amount = 5
 	required = /obj/item/slime_extract/gold
@@ -425,7 +425,7 @@
 /decl/chemical_reaction/instant/slime/silver_silver
 	name = "Slime Silver"
 	id = "m_silver"
-	result = "silver"
+	result = REAGENT_ID_SILVER
 	required_reagents = list(REAGENT_ID_PHORON = 5)
 	result_amount = 5
 	required = /obj/item/slime_extract/silver

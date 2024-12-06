@@ -575,21 +575,21 @@
 /decl/chemical_reaction/instant/solidification/silver
 	name = "Solid Silver"
 	id = "solidsilver"
-	required_reagents = list("frostoil" = 5, "silver" = REAGENTS_PER_SHEET)
+	required_reagents = list("frostoil" = 5, REAGENT_ID_SILVER = REAGENTS_PER_SHEET)
 	sheet_to_give = /obj/item/stack/material/silver
 
 
 /decl/chemical_reaction/instant/solidification/gold
 	name = "Solid Gold"
 	id = "solidgold"
-	required_reagents = list("frostoil" = 5, "gold" = REAGENTS_PER_SHEET)
+	required_reagents = list("frostoil" = 5, REAGENT_ID_GOLD = REAGENTS_PER_SHEET)
 	sheet_to_give = /obj/item/stack/material/gold
 
 
 /decl/chemical_reaction/instant/solidification/platinum
 	name = "Solid Platinum"
 	id = "solidplatinum"
-	required_reagents = list("frostoil" = 5, "platinum" = REAGENTS_PER_SHEET)
+	required_reagents = list("frostoil" = 5, REAGENT_ID_PLATINUM = REAGENTS_PER_SHEET)
 	sheet_to_give = /obj/item/stack/material/platinum
 
 
@@ -898,8 +898,8 @@
 /decl/chemical_reaction/instant/red_paint
 	name = "Red paint"
 	id = "red_paint"
-	result = "paint"
-	required_reagents = list("plasticide" = 1, REAGENT_ID_WATER = 3, "marker_ink_red" = 1)
+	result = REAGENT_ID_PAINT
+	required_reagents = list("plasticide" = 1, REAGENT_ID_WATER = 3, REAGENT_ID_MARKERINKRED = 1)
 	result_amount = 5
 
 /decl/chemical_reaction/instant/red_paint/send_data()
@@ -908,8 +908,8 @@
 /decl/chemical_reaction/instant/orange_paint
 	name = "Orange paint"
 	id = "orange_paint"
-	result = "paint"
-	required_reagents = list("plasticide" = 1, REAGENT_ID_WATER = 3, "marker_ink_orange" = 1)
+	result = REAGENT_ID_PAINT
+	required_reagents = list("plasticide" = 1, REAGENT_ID_WATER = 3, REAGENT_ID_MARKERINKORANGE = 1)
 	result_amount = 5
 
 /decl/chemical_reaction/instant/orange_paint/send_data()
@@ -918,8 +918,8 @@
 /decl/chemical_reaction/instant/yellow_paint
 	name = "Yellow paint"
 	id = "yellow_paint"
-	result = "paint"
-	required_reagents = list("plasticide" = 1, REAGENT_ID_WATER = 3, "marker_ink_yellow" = 1)
+	result = REAGENT_ID_PAINT
+	required_reagents = list("plasticide" = 1, REAGENT_ID_WATER = 3, REAGENT_ID_MARKERINKYELLOW = 1)
 	result_amount = 5
 
 /decl/chemical_reaction/instant/yellow_paint/send_data()
@@ -928,8 +928,8 @@
 /decl/chemical_reaction/instant/green_paint
 	name = "Green paint"
 	id = "green_paint"
-	result = "paint"
-	required_reagents = list("plasticide" = 1, REAGENT_ID_WATER = 3, "marker_ink_green" = 1)
+	result = REAGENT_ID_PAINT
+	required_reagents = list("plasticide" = 1, REAGENT_ID_WATER = 3, REAGENT_ID_MARKERINKGREEN = 1)
 	result_amount = 5
 
 /decl/chemical_reaction/instant/green_paint/send_data()
@@ -938,8 +938,8 @@
 /decl/chemical_reaction/instant/blue_paint
 	name = "Blue paint"
 	id = "blue_paint"
-	result = "paint"
-	required_reagents = list("plasticide" = 1, REAGENT_ID_WATER = 3, "marker_ink_blue" = 1)
+	result = REAGENT_ID_PAINT
+	required_reagents = list("plasticide" = 1, REAGENT_ID_WATER = 3, REAGENT_ID_MARKERINKBLUE = 1)
 	result_amount = 5
 
 /decl/chemical_reaction/instant/blue_paint/send_data()
@@ -948,8 +948,8 @@
 /decl/chemical_reaction/instant/purple_paint
 	name = "Purple paint"
 	id = "purple_paint"
-	result = "paint"
-	required_reagents = list("plasticide" = 1, REAGENT_ID_WATER = 3, "marker_ink_purple" = 1)
+	result = REAGENT_ID_PAINT
+	required_reagents = list("plasticide" = 1, REAGENT_ID_WATER = 3, REAGENT_ID_MARKERINKPURPLE = 1)
 	result_amount = 5
 
 /decl/chemical_reaction/instant/purple_paint/send_data()
@@ -958,8 +958,8 @@
 /decl/chemical_reaction/instant/grey_paint //mime
 	name = "Grey paint"
 	id = "grey_paint"
-	result = "paint"
-	required_reagents = list("plasticide" = 1, REAGENT_ID_WATER = 3, "marker_ink_grey" = 1)
+	result = REAGENT_ID_PAINT
+	required_reagents = list("plasticide" = 1, REAGENT_ID_WATER = 3, REAGENT_ID_MARKERINKGREY = 1)
 	result_amount = 5
 
 /decl/chemical_reaction/instant/grey_paint/send_data()
@@ -968,8 +968,8 @@
 /decl/chemical_reaction/instant/brown_paint
 	name = "Brown paint"
 	id = "brown_paint"
-	result = "paint"
-	required_reagents = list("plasticide" = 1, REAGENT_ID_WATER = 3, "marker_ink_brown" = 1)
+	result = REAGENT_ID_PAINT
+	required_reagents = list("plasticide" = 1, REAGENT_ID_WATER = 3, REAGENT_ID_MARKERINKBROWN = 1)
 	result_amount = 5
 
 /decl/chemical_reaction/instant/brown_paint/send_data()
@@ -978,7 +978,7 @@
 /decl/chemical_reaction/instant/blood_paint
 	name = "Blood paint"
 	id = "blood_paint"
-	result = "paint"
+	result = REAGENT_ID_PAINT
 	required_reagents = list("plasticide" = 1, REAGENT_ID_WATER = 3, REAGENT_ID_BLOOD = 2)
 	result_amount = 5
 
@@ -991,7 +991,7 @@
 /decl/chemical_reaction/instant/milk_paint
 	name = "Milk paint"
 	id = "milk_paint"
-	result = "paint"
+	result = REAGENT_ID_PAINT
 	required_reagents = list("plasticide" = 1, REAGENT_ID_WATER = 3, "milk" = 5)
 	result_amount = 5
 
@@ -1001,7 +1001,7 @@
 /decl/chemical_reaction/instant/orange_juice_paint
 	name = "Orange juice paint"
 	id = "orange_juice_paint"
-	result = "paint"
+	result = REAGENT_ID_PAINT
 	required_reagents = list("plasticide" = 1, REAGENT_ID_WATER = 3, "orangejuice" = 5)
 	result_amount = 5
 
@@ -1011,7 +1011,7 @@
 /decl/chemical_reaction/instant/tomato_juice_paint
 	name = "Tomato juice paint"
 	id = "tomato_juice_paint"
-	result = "paint"
+	result = REAGENT_ID_PAINT
 	required_reagents = list("plasticide" = 1, REAGENT_ID_WATER = 3, "tomatojuice" = 5)
 	result_amount = 5
 
@@ -1021,7 +1021,7 @@
 /decl/chemical_reaction/instant/lime_juice_paint
 	name = "Lime juice paint"
 	id = "lime_juice_paint"
-	result = "paint"
+	result = REAGENT_ID_PAINT
 	required_reagents = list("plasticide" = 1, REAGENT_ID_WATER = 3, "limejuice" = 5)
 	result_amount = 5
 
@@ -1031,7 +1031,7 @@
 /decl/chemical_reaction/instant/carrot_juice_paint
 	name = "Carrot juice paint"
 	id = "carrot_juice_paint"
-	result = "paint"
+	result = REAGENT_ID_PAINT
 	required_reagents = list("plasticide" = 1, REAGENT_ID_WATER = 3, "carrotjuice" = 5)
 	result_amount = 5
 
@@ -1041,7 +1041,7 @@
 /decl/chemical_reaction/instant/berry_juice_paint
 	name = "Berry juice paint"
 	id = "berry_juice_paint"
-	result = "paint"
+	result = REAGENT_ID_PAINT
 	required_reagents = list("plasticide" = 1, REAGENT_ID_WATER = 3, "berryjuice" = 5)
 	result_amount = 5
 
@@ -1051,7 +1051,7 @@
 /decl/chemical_reaction/instant/grape_juice_paint
 	name = "Grape juice paint"
 	id = "grape_juice_paint"
-	result = "paint"
+	result = REAGENT_ID_PAINT
 	required_reagents = list("plasticide" = 1, REAGENT_ID_WATER = 3, "grapejuice" = 5)
 	result_amount = 5
 
@@ -1061,7 +1061,7 @@
 /decl/chemical_reaction/instant/poisonberry_juice_paint
 	name = "Poison berry juice paint"
 	id = "poisonberry_juice_paint"
-	result = "paint"
+	result = REAGENT_ID_PAINT
 	required_reagents = list("plasticide" = 1, REAGENT_ID_WATER = 3, "poisonberryjuice" = 5)
 	result_amount = 5
 
@@ -1071,7 +1071,7 @@
 /decl/chemical_reaction/instant/watermelon_juice_paint
 	name = "Watermelon juice paint"
 	id = "watermelon_juice_paint"
-	result = "paint"
+	result = REAGENT_ID_PAINT
 	required_reagents = list("plasticide" = 1, REAGENT_ID_WATER = 3, "watermelonjuice" = 5)
 	result_amount = 5
 
@@ -1081,7 +1081,7 @@
 /decl/chemical_reaction/instant/lemon_juice_paint
 	name = "Lemon juice paint"
 	id = "lemon_juice_paint"
-	result = "paint"
+	result = REAGENT_ID_PAINT
 	required_reagents = list("plasticide" = 1, REAGENT_ID_WATER = 3, "lemonjuice" = 5)
 	result_amount = 5
 
@@ -1091,7 +1091,7 @@
 /decl/chemical_reaction/instant/banana_juice_paint
 	name = "Banana juice paint"
 	id = "banana_juice_paint"
-	result = "paint"
+	result = REAGENT_ID_PAINT
 	required_reagents = list("plasticide" = 1, REAGENT_ID_WATER = 3, "banana" = 5)
 	result_amount = 5
 
@@ -1101,7 +1101,7 @@
 /decl/chemical_reaction/instant/potato_juice_paint
 	name = "Potato juice paint"
 	id = "potato_juice_paint"
-	result = "paint"
+	result = REAGENT_ID_PAINT
 	required_reagents = list("plasticide" = 1, REAGENT_ID_WATER = 3, "potatojuice" = 5)
 	result_amount = 5
 
@@ -1111,7 +1111,7 @@
 /decl/chemical_reaction/instant/carbon_paint
 	name = "Carbon paint"
 	id = "carbon_paint"
-	result = "paint"
+	result = REAGENT_ID_PAINT
 	required_reagents = list("plasticide" = 1, REAGENT_ID_WATER = 3, REAGENT_ID_CARBON = 1)
 	result_amount = 5
 
@@ -1121,7 +1121,7 @@
 /decl/chemical_reaction/instant/aluminum_paint
 	name = "Aluminum paint"
 	id = "aluminum_paint"
-	result = "paint"
+	result = REAGENT_ID_PAINT
 	required_reagents = list("plasticide" = 1, REAGENT_ID_WATER = 3, REAGENT_ID_ALUMINIUM = 1)
 	result_amount = 5
 

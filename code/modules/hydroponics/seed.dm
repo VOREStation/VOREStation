@@ -462,7 +462,7 @@
 	if(additional_chems)
 		// VOREStation Edit Start: Modified exclusion list
 		var/list/banned_chems = list(
-			"adminordrazine",
+			REAGENT_ID_ADMINORDRAZINE,
 			REAGENT_ID_NUTRIMENT,
 			REAGENT_ID_MACROCILLIN,
 			REAGENT_ID_MICROCILLIN,

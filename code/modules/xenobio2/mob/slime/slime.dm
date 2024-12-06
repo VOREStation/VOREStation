@@ -74,7 +74,7 @@ Slime definitions, Life and New live here.
 						"slimejelly" = list(XENO_CHEM_NUTRI = 0.5),
 						"amutationtoxin" = list(XENO_CHEM_TOXIC = 0.1, XENO_CHEM_HEAL = 1.5, XENO_CHEM_MUT = 3),
 						"mutationtoxin" = list(XENO_CHEM_TOXIC = 0.1, XENO_CHEM_HEAL = 1, XENO_CHEM_MUT = 1.5),
-						"gold" = list(XENO_CHEM_HEAL = 0.3, XENO_CHEM_NUTRI = 0.7, XENO_CHEM_MUT = 0.3),
+						REAGENT_ID_GOLD = list(XENO_CHEM_HEAL = 0.3, XENO_CHEM_NUTRI = 0.7, XENO_CHEM_MUT = 0.3),
 						"uranium" = list(XENO_CHEM_HEAL = 0.3, XENO_CHEM_TOXIC = 0.7, XENO_CHEM_MUT = 1.2),
 						"glycerol" = list(XENO_CHEM_NUTRI = 0.6),
 						"woodpulp" = list(XENO_CHEM_HEAL = 0.1, XENO_CHEM_NUTRI = 0.7),

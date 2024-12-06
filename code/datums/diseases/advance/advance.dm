@@ -4,7 +4,7 @@ GLOBAL_LIST_INIT(advance_cures, list(
 	REAGENT_ID_SODIUMCHLORIDE, REAGENT_ID_SUGAR, "orangejuice",
 	"spaceacillin", "glucose", REAGENT_ID_ETHANOL,
 	"leporazine", "impedrezene", "hepanephrodaxon",
-	"silver", "gold"
+	REAGENT_ID_SILVER, REAGENT_ID_GOLD
 ))
 
 /datum/disease/advance

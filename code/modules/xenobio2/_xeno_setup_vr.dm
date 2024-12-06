@@ -39,8 +39,8 @@
 	xenoChemList += "serotrotium"
 	xenoChemList += REAGENT_ID_NICOTINE
 	xenoChemList += "uranium"
-	xenoChemList += "silver"
-	xenoChemList += "gold"
+	xenoChemList += REAGENT_ID_SILVER
+	xenoChemList += REAGENT_ID_GOLD
 	xenoChemList += "adrenaline"
 	xenoChemList += "holywater"
 	xenoChemList += "ammonia"

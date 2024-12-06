@@ -51,14 +51,14 @@
 	name = "Goldschlager"
 	id = "goldschlager"
 	result = "goldschlager"
-	required_reagents = list("vodka" = 10, "gold" = 1)
+	required_reagents = list("vodka" = 10, REAGENT_ID_GOLD = 1)
 	result_amount = 10
 
 /decl/chemical_reaction/instant/drinks/patron
 	name = "Patron"
 	id = "patron"
 	result = "patron"
-	required_reagents = list("tequilla" = 10, "silver" = 1)
+	required_reagents = list("tequilla" = 10, REAGENT_ID_SILVER = 1)
 	result_amount = 10
 
 /decl/chemical_reaction/instant/drinks/bilk
@@ -1254,7 +1254,7 @@
 	name = "Angel Ichor"
 	id = "holywine"
 	result = "holywine"
-	required_reagents = list("grapejuice" = 5, "gold" = 5)
+	required_reagents = list("grapejuice" = 5, REAGENT_ID_GOLD = 5)
 	catalysts = list("holywater" = 5)
 	result_amount = 10
 

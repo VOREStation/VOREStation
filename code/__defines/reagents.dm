@@ -207,6 +207,83 @@
 #define REAGENT_ID_LIQUIDPROTEAN "liquid_protean"
 #define REAGENT_SHOCKCHEM "200 V"
 #define REAGENT_ID_SHOCKCHEM "shockchem"
+#define REAGENT_CRAYONDUST "Crayon dust"
+#define REAGENT_ID_CRAYONDUST "crayon_dust"
+#define REAGENT_CRAYONDUSTRED "Red crayon dust"
+#define REAGENT_ID_CRAYONDUSTRED "crayon_dust_red"
+#define REAGENT_CRAYONDUSTORANGE "Orange crayon dust"
+#define REAGENT_ID_CRAYONDUSTORANGE "crayon_dust_orange"
+#define REAGENT_CRAYONDUSTYELLOW "Yellow crayon dust"
+#define REAGENT_ID_CRAYONDUSTYELLOW "crayon_dust_yellow"
+#define REAGENT_CRAYONDUSTGREEN "Green crayon dust"
+#define REAGENT_ID_CRAYONDUSTGREEN "crayon_dust_green"
+#define REAGENT_CRAYONDUSTBLUE "Blue crayon dust"
+#define REAGENT_ID_CRAYONDUSTBLUE "crayon_dust_blue"
+#define REAGENT_CRAYONDUSTPURPLE "Purple crayon dust"
+#define REAGENT_ID_CRAYONDUSTPURPLE "crayon_dust_purple"
+#define REAGENT_CRAYONDUSTGREY "Grey crayon dust"
+#define REAGENT_ID_CRAYONDUSTGREY "crayon_dust_grey"
+#define REAGENT_CRAYONDUSTBROWN "Brown crayon dust"
+#define REAGENT_ID_CRAYONDUSTBROWN "crayon_dust_brown"
+#define REAGENT_MARKERINK "Marker ink"
+#define REAGENT_ID_MARKERINK "marker_ink"
+#define REAGENT_MARKERINKBLACK "Black marker ink"
+#define REAGENT_ID_MARKERINKBLACK "marker_ink_black"
+#define REAGENT_MARKERINKRED "Red marker ink"
+#define REAGENT_ID_MARKERINKRED "marker_ink_red"
+#define REAGENT_MARKERINKORANGE "Orange marker ink"
+#define REAGENT_ID_MARKERINKORANGE "marker_ink_orange"
+#define REAGENT_MARKERINKYELLOW "Yellow marker ink"
+#define REAGENT_ID_MARKERINKYELLOW "marker_ink_yellow"
+#define REAGENT_MARKERINKGREEN "Green marker ink"
+#define REAGENT_ID_MARKERINKGREEN "marker_ink_green"
+#define REAGENT_MARKERINKBLUE "Blue marker ink"
+#define REAGENT_ID_MARKERINKBLUE "marker_ink_blue"
+#define REAGENT_MARKERINKPURPLE "Purple marker ink"
+#define REAGENT_ID_MARKERINKPURPLE "marker_ink_purple"
+#define REAGENT_MARKERINKGREY "Grey marker ink"
+#define REAGENT_ID_MARKERINKGREY "marker_ink_grey"
+#define REAGENT_MARKERINKBROWN "Brown marker ink"
+#define REAGENT_ID_MARKERINKBROWN "marker_ink_brown"
+#define REAGENT_PAINT "Paint"
+#define REAGENT_ID_PAINT "paint"
+#define REAGENT_GOLD "Gold"
+#define REAGENT_ID_GOLD "gold"
+#define REAGENT_SILVER "Silver"
+#define REAGENT_ID_SILVER "silver"
+#define REAGENT_PLATINUM "Platinum"
+#define REAGENT_ID_PLATINUM "platinum"
+
+
+
+
+
+
+
+#define REAGENT_SLIMEJELLY "Slimejelly"
+#define REAGENT_ID_SLIMEJELLY "slimejelly"
+
+
+#define REAGENT_ID_SILICATE "silicate"
+#define REAGENT_ID_URANIUM "uranium"
+#define REAGENT_ID_PLATINUM "platinum"
+#define REAGENT_ID_CALCIUMCARBONATE "calciumcarbonate"
+
+
+#define REAGENT_
+#define REAGENT_ID_
+#define REAGENT_
+#define REAGENT_ID_
+#define REAGENT_
+#define REAGENT_ID_
+#define REAGENT_
+#define REAGENT_ID_
+#define REAGENT_
+#define REAGENT_ID_
+
+// Admin chems
+#define REAGENT_ADMINORDRAZINE "Adminordrazine"
+#define REAGENT_ID_ADMINORDRAZINE "adminordrazine"
 
 
 // Food and Drinks
@@ -400,33 +477,4 @@ Files left: food_drinks.dm, medicine.dm, other.dm, toxins.dm
 includes: .dm
 excludes: reagents.dm,ores.dm,materials.dm,mre.dm
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#define REAGENT_SILVER "Silver"
-#define REAGENT_ID_SILVER "silver"
-#define REAGENT_GOLD "Gold"
-#define REAGENT_ID_GOLD "gold"
-#define REAGENT_SLIMEJELLY "Slimejelly"
-#define REAGENT_ID_SLIMEJELLY "slimejelly"
-
-
-#define REAGENT_ID_SILICATE "silicate"
-#define REAGENT_ID_URANIUM "uranium"
-#define REAGENT_ID_PLATINUM "platinum"
-#define REAGENT_ID_CALCIUMCARBONATE "calciumcarbonate"
+	id = "lemon_juice_paint"
