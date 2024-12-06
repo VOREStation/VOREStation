@@ -6,7 +6,7 @@
 ////////////////////////////
 */
 /datum/sprite_accessory/tail
-	name = "You should not see this..."
+	name = DEVELOPER_WARNING_NAME
 	icon = 'icons/mob/vore/tails_vr.dmi'
 	var/offset_x = 0
 	var/offset_y = 0
@@ -1439,7 +1439,7 @@
 
 //LONG TAILS ARE NOT TAUR BUTTS >:O
 /datum/sprite_accessory/tail/longtail
-	name = "You should not see this..."
+	name = DEVELOPER_WARNING_NAME
 	icon = 'icons/mob/vore/taurs_vr.dmi'
 	offset_x = -16
 	do_colouration = 1 // Yes color, using tail color

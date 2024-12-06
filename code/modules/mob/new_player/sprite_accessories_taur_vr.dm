@@ -9,7 +9,7 @@
 // Taur sprites are now a subtype of tail since they are mutually exclusive anyway.
 
 /datum/sprite_accessory/tail/taur
-	name = "You should not see this..."
+	name = DEVELOPER_WARNING_NAME
 	icon = 'icons/mob/vore/taurs_vr.dmi'
 	do_colouration = 1 // Yes color, using tail color
 	color_blend_mode = ICON_MULTIPLY  // The sprites for taurs are designed for ICON_MULTIPLY
@@ -888,7 +888,7 @@
 	suit_sprites = 'icons/mob/taursuits_noodle_vr.dmi'
 	clip_mask_state = "taur_clip_mask_noodle"
 	icon_sprite_tag = "noodle"
-/* CHOMPEdit - removed as a sprite accessory of the same name already exists for us, and having this here stops it from registering as a sprite accessory.
+
 /datum/sprite_accessory/tail/taur/sect_drone
 	name = "Sect Drone (Taur)"
 	icon_state = "sect_drone"
@@ -909,7 +909,7 @@
 
 	msg_owner_grab_fail = "You step down onto %prey, squishing them and forcing them down to the ground!"
 	msg_prey_grab_fail = "%owner steps down and squishes you with their leg, forcing you down to the ground!"
-*/
+
 /datum/sprite_accessory/tail/taur/sect_drone/fat
 	name = "Fat Sect Drone (Taur)"
 	icon_state = "fat_sect_drone"

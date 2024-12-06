@@ -689,6 +689,7 @@
 					/obj/item/multitool = 4,
 					/obj/item/cell/high = 10,
 					/obj/item/airlock_electronics = 10,
+					/obj/item/circuitboard/airlock_cycling = 20,
 					/obj/item/module/power_control = 10,
 					/obj/item/circuitboard/airalarm = 10,
 					/obj/item/circuitboard/firealarm = 10,

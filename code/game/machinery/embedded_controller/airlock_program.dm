@@ -414,6 +414,55 @@ send an additional command to open the door again.
 	if(doorCommand)
 		signalDoor(doorTag, doorCommand)
 
+/datum/embedded_program/airlock/proc/get_all_tags()
+	return list(
+		"id_tag" = id_tag,
+		"tag_exterior_door" = tag_exterior_door,
+		"tag_interior_door" = tag_interior_door,
+		"tag_airpump" = tag_airpump,
+		"tag_chamber_sensor" = tag_chamber_sensor,
+		"tag_exterior_sensor" = tag_exterior_sensor,
+		"tag_interior_sensor" = tag_interior_sensor,
+		"tag_airlock_mech_sensor" = tag_airlock_mech_sensor,
+		"tag_shuttle_mech_sensor" = tag_shuttle_mech_sensor
+	)
+
+/datum/embedded_program/airlock/proc/get_tag(tag_name)
+	switch(tag_name)
+		if("id_tag") . = id_tag
+		if("tag_exterior_door") . = tag_exterior_door
+		if("tag_interior_door") . = tag_interior_door
+		if("tag_airpump") . = tag_airpump
+		if("tag_chamber_sensor") . = tag_chamber_sensor
+		if("tag_exterior_sensor") . = tag_exterior_sensor
+		if("tag_interior_sensor") . = tag_interior_sensor
+		if("tag_airlock_mech_sensor") . = tag_airlock_mech_sensor
+		if("tag_shuttle_mech_sensor") . = tag_shuttle_mech_sensor
+
+/datum/embedded_program/airlock/proc/set_tag(tag_name, new_tag)
+	switch(tag_name)
+		if("id_tag")
+			id_tag = new_tag
+		if("tag_exterior_door")
+			tag_exterior_door = new_tag
+			signalDoor(tag_exterior_door, "update")
+		if("tag_interior_door")
+			tag_interior_door = new_tag
+			signalDoor(tag_interior_door, "update")
+		if("tag_airpump")
+			tag_airpump = new_tag
+		if("tag_chamber_sensor")
+			tag_chamber_sensor = new_tag
+		if("tag_exterior_sensor")
+			tag_exterior_sensor = new_tag
+		if("tag_interior_sensor")
+			tag_interior_sensor = new_tag
+		if("tag_airlock_mech_sensor")
+			tag_airlock_mech_sensor = new_tag
+		if("tag_shuttle_mech_sensor")
+			tag_shuttle_mech_sensor = new_tag
+
+
 #undef SKIPCYCLE_MARGIN
 #undef MIN_TARGET_PRESSURE
 

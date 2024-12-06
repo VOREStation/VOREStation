@@ -575,13 +575,13 @@
 // No, this isn't a character creation option, but... I guess in the future it could be, if anyone wants that?
 
 /datum/sprite_accessory/hair_accessory
-	name = "You should not see this..."
+	name = DEVELOPER_WARNING_NAME
 	icon = 'icons/mob/vore/hair_accessories_vr.dmi'
 	do_colouration = 0 // Set to 1 to blend (ICON_ADD) hair color
 
 	var/ignores_lighting = 0 // Whether or not this hair accessory will ignore lighting and glow in the dark.
 	color_blend_mode = ICON_ADD // Only appliciable if do_coloration = 1
-	var/desc = "You should not see this..."
+	var/desc = DEVELOPER_WARNING_NAME
 
 /datum/sprite_accessory/hair_accessory/verie_hair_glow
 	name = "veries hair glow"

@@ -33,6 +33,7 @@
 	var/cup_name = null
 	var/cup_desc = null
 	var/cup_center_of_mass = null
+	var/cup_prefix = null
 
 	var/color = "#000000"
 	var/color_weight = 1

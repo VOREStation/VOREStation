@@ -123,6 +123,13 @@ CIRCUITS BELOW
 	build_path = /obj/item/circuitboard/crew
 	sort_string = "FAGAI"
 
+/datum/design/circuit/pandemic
+	name = "PanD.E.M.I.C 2200"
+	id = "pandemic"
+	req_tech = list(TECH_DATA = 2, TECH_BIO = 2)
+	build_path = /obj/item/circuitboard/pandemic
+	sort_string = "FAGAJ"
+
 /datum/design/circuit/teleconsole
 	name = "teleporter control console"
 	id = "teleconsole"
