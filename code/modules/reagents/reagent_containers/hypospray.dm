@@ -369,7 +369,7 @@
 	The injector stores a slurry of highly advanced and specialized nanomachines that \
 	are unfortunately malfunctioning, making them unsafe to use inside of a living body. \
 	Because of the Five Points, these nanites cannot self-replicate."
-	filled_reagents = list("defective_nanites" = 15)
+	filled_reagents = list(REAGENT_ID_DEFECTIVENANITES = 15)
 
 /obj/item/reagent_containers/hypospray/autoinjector/biginjector/contaminated
 	name = "contaminated injector"

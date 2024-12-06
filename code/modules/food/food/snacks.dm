@@ -4640,7 +4640,7 @@
 
 /obj/item/reagent_containers/food/snacks/wormsickly/Initialize()
 	. = ..()
-	reagents.add_reagent("fishbait", 9)
+	reagents.add_reagent(REAGENT_ID_FISHBAIT, 9)
 	reagents.add_reagent("protein",  3)
 
 /obj/item/reagent_containers/food/snacks/worm
@@ -4654,7 +4654,7 @@
 
 /obj/item/reagent_containers/food/snacks/worm/Initialize()
 	. = ..()
-	reagents.add_reagent("fishbait", 15)
+	reagents.add_reagent(REAGENT_ID_FISHBAIT, 15)
 	reagents.add_reagent("protein",   5)
 
 /obj/item/reagent_containers/food/snacks/wormdeluxe
@@ -4668,7 +4668,7 @@
 
 /obj/item/reagent_containers/food/snacks/wormdeluxe/Initialize()
 	. = ..()
-	reagents.add_reagent("fishbait", 30)
+	reagents.add_reagent(REAGENT_ID_FISHBAIT, 30)
 	reagents.add_reagent("protein",  10)
 
 /obj/item/reagent_containers/food/snacks/siffruit
@@ -4749,7 +4749,7 @@
 /obj/item/reagent_containers/food/snacks/bageleverything/Initialize()
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_PHORON, 5)
-	reagents.add_reagent("defective_nanites", 5)
+	reagents.add_reagent(REAGENT_ID_DEFECTIVENANITES, 5)
 
 /obj/item/reagent_containers/food/snacks/bageltwo
 	name = "two bagels"
@@ -6827,7 +6827,7 @@
 	description_fluff = "A form of fermented shark that originated on Earth as far back as the 17th century. Modern Hakarl is made from vat-made fermented shark and is distributed across the galaxy as a delicacy. However, few are able to stand the smell or taste of the meat."
 	filling_color = "#916E36"
 	center_of_mass = list("x"=15, "y"=9)
-	nutriment_desc = list("fish" = 2, "salt" = 2, "ammonia" = 1)
+	nutriment_desc = list("fish" = 2, "salt" = 2, REAGENT_ID_AMMONIA = 1)
 	nutriment_amt = 4
 	bitesize = 1
 
@@ -7042,7 +7042,7 @@
 
 /obj/item/reagent_containers/food/snacks/canned/spinach/Initialize()
 	.=..()
-	reagents.add_reagent("adrenaline", 4)
+	reagents.add_reagent(REAGENT_ID_ADRENALINE, 4)
 	reagents.add_reagent("hyperzine", 4)
 	reagents.add_reagent(REAGENT_ID_IRON, 4)
 

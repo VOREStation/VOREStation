@@ -84,7 +84,7 @@
 			descriptors |= "bitter"
 		if(reagents.has_reagent("orangejuice") || reagents.has_reagent("lemonjuice") || reagents.has_reagent("limejuice"))
 			descriptors |= "sweet-sour"
-		if(reagents.has_reagent(REAGENT_ID_RADIUM) || reagents.has_reagent("uranium"))
+		if(reagents.has_reagent(REAGENT_ID_RADIUM) || reagents.has_reagent(REAGENT_ID_URANIUM))
 			descriptors |= "radioactive"
 		if(reagents.has_reagent("amatoxin") || reagents.has_reagent("toxin"))
 			descriptors |= "poisonous"
@@ -94,7 +94,7 @@
 			descriptors |= "medicinal"
 		if(reagents.has_reagent(REAGENT_ID_GOLD) || reagents.has_reagent("earthsblood"))
 			descriptors |= "shiny"
-		if(reagents.has_reagent("lube"))
+		if(reagents.has_reagent(REAGENT_ID_LUBE))
 			descriptors |= "slippery"
 		if(reagents.has_reagent(REAGENT_ID_PACID) || reagents.has_reagent(REAGENT_ID_SACID))
 			descriptors |= "acidic"
@@ -196,7 +196,7 @@
 
 			if(seed.chems)
 
-				if(W.sharp && W.edge && !isnull(seed.chems["woodpulp"]))
+				if(W.sharp && W.edge && !isnull(seed.chems[REAGENT_ID_WOODPULP]))
 					user.show_message(span_notice("You make planks out of \the [src]!"), 1)
 					playsound(src, 'sound/effects/woodcutting.ogg', 50, 1)
 					var/flesh_colour = seed.get_trait(TRAIT_FLESH_COLOUR)

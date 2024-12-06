@@ -25,7 +25,7 @@
 	display_name = "carpet"
 	kitchen_tag = "carpet"
 	mutants = null
-	chems = list("liquidcarpet" = list(5,10))
+	chems = list(REAGENT_ID_LIQUIDCARPET = list(5,10))
 
 /datum/seed/grass/carpet/New()
 	..()

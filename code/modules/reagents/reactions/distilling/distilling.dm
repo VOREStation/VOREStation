@@ -52,7 +52,7 @@
 /decl/chemical_reaction/distilling/biomass
 	name = "Distilling Biomass"
 	id = "distill_biomass"
-	result = "biomass"
+	result = REAGENT_ID_BIOMASS
 	required_reagents = list(REAGENT_ID_BLOOD = 1, REAGENT_ID_SUGAR = 1, REAGENT_ID_PHORON = 0.5)
 	result_amount = 1 // 40 units per sheet, requires actually using the machine, and having blood to spare.
 
@@ -64,7 +64,7 @@
 	name = "Distilling Inaprovalaze"
 	id = "distill_inaprovalaze"
 	result = "inaprovalaze"
-	required_reagents = list("inaprovaline" = 2, "foaming_agent" = 1)
+	required_reagents = list("inaprovaline" = 2, REAGENT_ID_FOAMINGAGENT = 1)
 	result_amount = 2
 
 	reaction_rate = HALF_LIFE(10)
@@ -75,7 +75,7 @@
 	name = "Distilling Bicaridaze"
 	id = "distill_bicaridaze"
 	result = "bicaridaze"
-	required_reagents = list("bicaridine" = 2, "foaming_agent" = 1)
+	required_reagents = list("bicaridine" = 2, REAGENT_ID_FOAMINGAGENT = 1)
 	result_amount = 2
 
 	reaction_rate = HALF_LIFE(10)
@@ -86,7 +86,7 @@
 	name = "Distilling Dermalaze"
 	id = "distill_dermalaze"
 	result = "dermalaze"
-	required_reagents = list("dermaline" = 2, "foaming_agent" = 1)
+	required_reagents = list("dermaline" = 2, REAGENT_ID_FOAMINGAGENT = 1)
 	result_amount = 2
 
 	reaction_rate = HALF_LIFE(10)
@@ -97,7 +97,7 @@
 	name = "Distilling Spacomycaze"
 	id = "distill_spacomycaze"
 	result = "spacomycaze"
-	required_reagents = list("paracetamol" = 1, "spaceacillin" = 1, "foaming_agent" = 1)
+	required_reagents = list("paracetamol" = 1, "spaceacillin" = 1, REAGENT_ID_FOAMINGAGENT = 1)
 	result_amount = 2
 
 	reaction_rate = HALF_LIFE(10)
@@ -108,7 +108,7 @@
 	name = "Distilling Tricorlidaze"
 	id = "distill_tricorlidaze"
 	result = "tricorlidaze"
-	required_reagents = list("tricordrazine" = 1, "sterilizine" = 1, "foaming_agent" = 1)
+	required_reagents = list("tricordrazine" = 1, "sterilizine" = 1, REAGENT_ID_FOAMINGAGENT = 1)
 	result_amount = 2
 
 	reaction_rate = HALF_LIFE(10)
@@ -156,7 +156,7 @@
 	name = "Distilling Brute Juice"
 	id = "distill_brutejuice"
 	result = REAGENT_ID_BERSERKMED
-	required_reagents = list("biomass" = 1, "hyperzine" = 3, "synaptizine" = 2, REAGENT_ID_PHORON = 1)
+	required_reagents = list(REAGENT_ID_BIOMASS = 1, "hyperzine" = 3, "synaptizine" = 2, REAGENT_ID_PHORON = 1)
 	result_amount = 3
 
 	temp_range = list(T0C + 600, T0C + 700)
@@ -174,7 +174,7 @@
 	name = "Distilling Cryogellatin"
 	id = "distill_cryoslurry"
 	result = REAGENT_ID_CRYOSLURRY
-	required_reagents = list("frostoil" = 7, "enzyme" = 3, "plasticide" = 3, "foaming_agent" = 2)
+	required_reagents = list("frostoil" = 7, "enzyme" = 3, "plasticide" = 3, REAGENT_ID_FOAMINGAGENT = 2)
 	inhibitors = list(REAGENT_ID_WATER = 5)
 	result_amount = 1
 

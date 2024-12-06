@@ -48,7 +48,7 @@
 	if(reagents.has_reagent(REAGENT_ID_PACID))
 		message_admins("[key_name_admin(user)] fired Polyacid from \a [src].")
 		log_game("[key_name(user)] fired Polyacid from \a [src].")
-	if(reagents.has_reagent("lube"))
+	if(reagents.has_reagent(REAGENT_ID_LUBE))
 		message_admins("[key_name_admin(user)] fired Space lube from \a [src].")
 		log_game("[key_name(user)] fired Space lube from \a [src].")
 	return
@@ -106,7 +106,7 @@
 
 /obj/item/reagent_containers/spray/cleaner/Initialize()
 	. = ..()
-	reagents.add_reagent("cleaner", volume)
+	reagents.add_reagent(REAGENT_ID_CLEANER, volume)
 
 /obj/item/reagent_containers/spray/sterilizine
 	name = "sterilizine"

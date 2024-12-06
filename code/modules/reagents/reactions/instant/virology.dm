@@ -89,7 +89,7 @@
 /decl/chemical_reaction/instant/mix_virus/mix_virus_4
 	name = "Mix Virus 4"
 	id = "mixvirus4"
-	required_reagents = list("uranium" = 1)
+	required_reagents = list(REAGENT_ID_URANIUM = 1)
 	level_min = 5
 	level_max = 6
 

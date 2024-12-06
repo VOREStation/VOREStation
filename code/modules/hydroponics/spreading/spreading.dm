@@ -198,7 +198,7 @@
 	if(growth>2 && growth == max_growth)
 		plane = ABOVE_PLANE
 		set_opacity(1)
-		if(!isnull(seed.chems["woodpulp"]))
+		if(!isnull(seed.chems[REAGENT_ID_WOODPULP]))
 			density = TRUE
 	else
 		reset_plane_and_layer()

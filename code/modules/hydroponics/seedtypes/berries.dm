@@ -26,7 +26,7 @@
 	seed_name = "glowberry"
 	display_name = "glowberry bush"
 	mutants = null
-	chems = list(REAGENT_ID_NUTRIMENT = list(1,10), "uranium" = list(3,5))
+	chems = list(REAGENT_ID_NUTRIMENT = list(1,10), REAGENT_ID_URANIUM = list(3,5))
 
 /datum/seed/berry/glow/New()
 	..()

@@ -112,7 +112,7 @@
 	desc = "A small bottle."
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "bottle-1"
-	prefill = list("ammonia" = 60)
+	prefill = list(REAGENT_ID_AMMONIA = 60)
 
 /obj/item/reagent_containers/glass/bottle/eznutrient
 	name = "\improper EZ NUtrient bottle"
@@ -140,7 +140,7 @@
 	desc = "A small bottle."
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "bottle-4"
-	prefill = list("diethylamine" = 60)
+	prefill = list(REAGENT_ID_DIETHYLAMINE = 60)
 
 /obj/item/reagent_containers/glass/bottle/pacid
 	name = "polytrinic acid bottle"
@@ -175,4 +175,4 @@
 	desc = "A bottle of raw biomass! Gross!"
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "bottle-3"
-	prefill = list("biomass" = 60)
+	prefill = list(REAGENT_ID_BIOMASS = 60)

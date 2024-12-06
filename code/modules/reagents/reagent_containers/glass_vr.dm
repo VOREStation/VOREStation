@@ -80,7 +80,7 @@
 /obj/item/reagent_containers/glass/beaker/vial/supermatter
 	name = "vial (supermatter)"
 	desc = "A glass vial containing the extremely dangerous results of grinding a shard of supermatter down to a fine powder."
-	prefill = list("supermatter" = 5)
+	prefill = list(REAGENT_ID_SUPERMATTER = 5)
 
 /obj/item/reagent_containers/glass/beaker/measuring_cup
 	name = "measuring cup"

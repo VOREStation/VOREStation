@@ -8,7 +8,7 @@
 /obj/item/reagent_containers/glass/replenishing/Initialize()
 	. = ..()
 	START_PROCESSING(SSobj, src)
-	spawning_id = pick(REAGENT_ID_BLOOD,"holywater","lube","stoxin",REAGENT_ID_ETHANOL,"ice","glycerol",REAGENT_ID_FUEL,"cleaner")
+	spawning_id = pick(REAGENT_ID_BLOOD,REAGENT_ID_HOLYWATER,REAGENT_ID_LUBE,"stoxin",REAGENT_ID_ETHANOL,"ice",REAGENT_ID_GLYCEROL,REAGENT_ID_FUEL,REAGENT_ID_CLEANER)
 
 /obj/item/reagent_containers/glass/replenishing/process()
 	reagents.add_reagent(spawning_id, 0.3)

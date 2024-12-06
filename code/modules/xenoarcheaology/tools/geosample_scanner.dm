@@ -56,7 +56,7 @@
 	coolant_reagents_purity["dermaline"] = 0.7
 	coolant_reagents_purity["hyperzine"] = 0.8
 	coolant_reagents_purity["cryoxadone"] = 0.9
-	coolant_reagents_purity["coolant"] = 1
+	coolant_reagents_purity[REAGENT_ID_COOLANT] = 1
 	coolant_reagents_purity[REAGENT_ID_ADMINORDRAZINE] = 2
 
 /obj/machinery/radiocarbon_spectrometer/attackby(var/obj/I as obj, var/mob/user as mob)

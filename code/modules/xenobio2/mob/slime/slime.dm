@@ -54,10 +54,10 @@ Slime definitions, Life and New live here.
 						REAGENT_ID_SACID = list(XENO_CHEM_TOXIC = 1),
 						REAGENT_ID_PACID = list(XENO_CHEM_TOXIC = 2),
 						REAGENT_ID_CHLORINE = list(XENO_CHEM_TOXIC = 0.5),
-						"ammonia" = list(XENO_CHEM_TOXIC = 0.5),
+						REAGENT_ID_AMMONIA = list(XENO_CHEM_TOXIC = 0.5),
 						"sodawater" = list(XENO_CHEM_TOXIC = 0.1, XENO_CHEM_NUTRI = -0.1),
 						"beer" = list(XENO_CHEM_NUTRI = 0.6),
-						"diethylamine" = list(XENO_CHEM_NUTRI = 0.9),
+						REAGENT_ID_DIETHYLAMINE = list(XENO_CHEM_NUTRI = 0.9),
 						REAGENT_ID_SUGAR = list(XENO_CHEM_TOXIC = 0.4, XENO_CHEM_NUTRI = 0.2),
 						"eznutrient" = list(XENO_CHEM_NUTRI = 0.8),
 						"cryoxadone" = list(XENO_CHEM_TOXIC = 0.4),
@@ -75,9 +75,9 @@ Slime definitions, Life and New live here.
 						"amutationtoxin" = list(XENO_CHEM_TOXIC = 0.1, XENO_CHEM_HEAL = 1.5, XENO_CHEM_MUT = 3),
 						"mutationtoxin" = list(XENO_CHEM_TOXIC = 0.1, XENO_CHEM_HEAL = 1, XENO_CHEM_MUT = 1.5),
 						REAGENT_ID_GOLD = list(XENO_CHEM_HEAL = 0.3, XENO_CHEM_NUTRI = 0.7, XENO_CHEM_MUT = 0.3),
-						"uranium" = list(XENO_CHEM_HEAL = 0.3, XENO_CHEM_TOXIC = 0.7, XENO_CHEM_MUT = 1.2),
-						"glycerol" = list(XENO_CHEM_NUTRI = 0.6),
-						"woodpulp" = list(XENO_CHEM_HEAL = 0.1, XENO_CHEM_NUTRI = 0.7),
+						REAGENT_ID_URANIUM = list(XENO_CHEM_HEAL = 0.3, XENO_CHEM_TOXIC = 0.7, XENO_CHEM_MUT = 1.2),
+						REAGENT_ID_GLYCEROL = list(XENO_CHEM_NUTRI = 0.6),
+						REAGENT_ID_WOODPULP = list(XENO_CHEM_HEAL = 0.1, XENO_CHEM_NUTRI = 0.7),
 						"docilitytoxin" = list(XENO_CHEM_NUTRI = 0.3)	)
 
 /mob/living/simple_mob/xeno/slime/New()

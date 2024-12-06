@@ -173,7 +173,7 @@
 
 /obj/item/watertank/janitor/Initialize()
 	. = ..()
-	reagents.add_reagent("cleaner", 500)
+	reagents.add_reagent(REAGENT_ID_CLEANER, 500)
 
 /obj/item/watertank/janitor/make_noz()
 	return new /obj/item/reagent_containers/spray/mister/janitor(src)

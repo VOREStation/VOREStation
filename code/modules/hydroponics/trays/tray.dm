@@ -71,8 +71,8 @@
 		REAGENT_ID_PHOSPHORUS =      0.1,
 		REAGENT_ID_SUGAR =           0.1,
 		"sodawater" =       0.1,
-		"ammonia" =         1,
-		"diethylamine" =    2,
+		REAGENT_ID_AMMONIA =         1,
+		REAGENT_ID_DIETHYLAMINE =    2,
 		REAGENT_ID_NUTRIMENT =       1,
 		REAGENT_ID_ADMINORDRAZINE =  1,
 		"eznutrient" =      1,
@@ -91,7 +91,7 @@
 		)
 	var/static/list/pestkiller_reagents = list(
 		REAGENT_ID_SUGAR =           2,
-		"diethylamine" =   -2,
+		REAGENT_ID_DIETHYLAMINE =   -2,
 		REAGENT_ID_ADMINORDRAZINE = -5
 		)
 	var/static/list/water_reagents = list(
@@ -117,8 +117,8 @@
 		REAGENT_ID_PACID =          list( -2,    0,   0  ),
 		"plantbgone" =     list( -2,    0,   0.2),
 		"cryoxadone" =     list(  3,    0,   0  ),
-		"ammonia" =        list(  0.5,  0,   0  ),
-		"diethylamine" =   list(  1,    0,   0  ),
+		REAGENT_ID_AMMONIA =        list(  0.5,  0,   0  ),
+		REAGENT_ID_DIETHYLAMINE =   list(  1,    0,   0  ),
 		REAGENT_ID_NUTRIMENT =      list(  0.5,  0.1, 0  ),
 		REAGENT_ID_RADIUM =         list( -1.5,  0,   0.2),
 		REAGENT_ID_ADMINORDRAZINE = list(  1,    1,   1  ),

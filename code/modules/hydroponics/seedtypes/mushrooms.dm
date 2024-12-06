@@ -130,7 +130,7 @@
 	name = "towercap"
 	seed_name = "tower cap"
 	display_name = "tower caps"
-	chems = list("woodpulp" = list(10,1))
+	chems = list(REAGENT_ID_WOODPULP = list(10,1))
 	mutants = list("redcap")
 	has_item_product = /obj/item/stack/material/log
 
@@ -146,7 +146,7 @@
 	name = "redcap"
 	seed_name = "red cap"
 	display_name = "red caps"
-	chems = list("woodpulp" = list(10,1), "tannin" = list(1,10))
+	chems = list(REAGENT_ID_WOODPULP = list(10,1), "tannin" = list(1,10))
 	mutants = null
 	has_item_product = null
 

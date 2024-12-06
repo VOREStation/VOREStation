@@ -308,7 +308,7 @@
 
 /obj/item/reagent_containers/food/drinks/bottle/holywater/Initialize()
 	. = ..()
-	reagents.add_reagent("holywater", 100)
+	reagents.add_reagent(REAGENT_ID_HOLYWATER, 100)
 
 /obj/item/reagent_containers/food/drinks/bottle/vermouth
 	name = "Goldeneye Vermouth"

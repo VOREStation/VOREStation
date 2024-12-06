@@ -299,10 +299,10 @@
 			if(W.reagents.has_reagent(REAGENT_ID_HYDROGEN, 1) || W.reagents.has_reagent(REAGENT_ID_WATER, 1))
 				if(my_effect.trigger == TRIGGER_WATER)
 					my_effect.ToggleActivate()
-			else if(W.reagents.has_reagent(REAGENT_ID_SACID, 1) || W.reagents.has_reagent(REAGENT_ID_PACID, 1) || W.reagents.has_reagent("diethylamine", 1))
+			else if(W.reagents.has_reagent(REAGENT_ID_SACID, 1) || W.reagents.has_reagent(REAGENT_ID_PACID, 1) || W.reagents.has_reagent(REAGENT_ID_DIETHYLAMINE, 1))
 				if(my_effect.trigger == TRIGGER_ACID)
 					my_effect.ToggleActivate()
-			else if(W.reagents.has_reagent(REAGENT_ID_PHORON, 1) || W.reagents.has_reagent("thermite", 1))
+			else if(W.reagents.has_reagent(REAGENT_ID_PHORON, 1) || W.reagents.has_reagent(REAGENT_ID_THERMITE, 1))
 				if(my_effect.trigger == TRIGGER_VOLATILE)
 					my_effect.ToggleActivate()
 			else if(W.reagents.has_reagent("toxin", 1) || W.reagents.has_reagent("cyanide", 1) || W.reagents.has_reagent("amatoxin", 1) || W.reagents.has_reagent("neurotoxin", 1))
@@ -328,8 +328,8 @@
 	var/datum/reagent/Touching = args[2]
 
 	var/list/water = list(REAGENT_ID_HYDROGEN, REAGENT_ID_WATER)
-	var/list/acid = list(REAGENT_ID_SACID, REAGENT_ID_PACID, "diethylamine")
-	var/list/volatile = list(REAGENT_ID_PHORON,"thermite")
+	var/list/acid = list(REAGENT_ID_SACID, REAGENT_ID_PACID, REAGENT_ID_DIETHYLAMINE)
+	var/list/volatile = list(REAGENT_ID_PHORON,REAGENT_ID_THERMITE)
 	var/list/toxic = list("toxin","cyanide","amatoxin","neurotoxin")
 
 	for(var/datum/artifact_effect/my_effect in my_effects)

@@ -37,10 +37,13 @@
 #define MAT_GRAPHITE		"graphite"
 #define MAT_LEATHER			"leather"
 #define MAT_CHITIN			"chitin"
+#define MAT_ALIENCHITIN		"alien chitin"
+#define MAT_ALIENCLAW		"alien claw"
 #define MAT_CLOTH			"cloth"
 #define MAT_FUR				"fur"
 #define MAT_SYNCLOTH		"syncloth"
 #define MAT_FIBERS			"fibers"
+#define MAT_WOOL				"wool"
 #define MAT_COPPER			"copper"
 #define MAT_QUARTZ			"quartz"
 #define MAT_TIN				"tin"
@@ -61,6 +64,8 @@
 #define MAT_CULT			"cult"
 #define MAT_ALIENALLOY		"alienalloy"
 #define MAT_COMPOSITE		"composite"
+#define MAT_BIOMASS			"biomass"
+#define MAT_WEEDEXTRACT		"weed extract"
 
 
 #define DEFAULT_TABLE_MATERIAL MAT_PLASTIC

@@ -45,33 +45,33 @@ var/list/fusion_reactions
 
 // Basic power production reactions.
 /decl/fusion_reaction/deuterium_deuterium
-	p_react = "deuterium"
-	s_react = "deuterium"
+	p_react = REAGENT_ID_DEUTERIUM
+	s_react = REAGENT_ID_DEUTERIUM
 	energy_consumption = 1
 	energy_production = 2
 // Advanced production reactions (todo)
 
 /decl/fusion_reaction/deuterium_helium
-	p_react = "deuterium"
-	s_react = "helium-3"
+	p_react = REAGENT_ID_DEUTERIUM
+	s_react = REAGENT_ID_HELIUM3
 	energy_consumption = 1
 	energy_production = 5
 
 /decl/fusion_reaction/deuterium_tritium
-	p_react = "deuterium"
-	s_react = "tritium"
+	p_react = REAGENT_ID_DEUTERIUM
+	s_react = REAGENT_ID_SLIMEJELLY
 	energy_consumption = 1
 	energy_production = 1
-	products = list("helium-3" = 1)
+	products = list(REAGENT_ID_HELIUM3 = 1)
 	instability = 0.5
 
 /decl/fusion_reaction/deuterium_lithium
-	p_react = "deuterium"
+	p_react = REAGENT_ID_DEUTERIUM
 	s_react = REAGENT_ID_LITHIUM
 	energy_consumption = 2
 	energy_production = 0
 	radiation = 3
-	products = list("tritium"= 1)
+	products = list(REAGENT_ID_SLIMEJELLY= 1)
 	instability = 1
 
 // Unideal/material production reactions
@@ -104,7 +104,7 @@ var/list/fusion_reactions
 
 // VERY UNIDEAL REACTIONS.
 /decl/fusion_reaction/phoron_supermatter
-	p_react = "supermatter"
+	p_react = REAGENT_ID_SUPERMATTER
 	s_react = REAGENT_ID_PHORON
 	energy_consumption = 0
 	energy_production = 5
@@ -131,7 +131,7 @@ var/list/fusion_reactions
 				H.hallucination += rand(100,150)
 
 	for(var/obj/machinery/fusion_fuel_injector/I in range(world.view, origin))
-		if(I.cur_assembly && I.cur_assembly.fuel_type == "supermatter")
+		if(I.cur_assembly && I.cur_assembly.fuel_type == REAGENT_ID_SUPERMATTER)
 			explosion(get_turf(I), 1, 2, 3)
 			spawn(5)
 				if(I && I.loc)
@@ -144,7 +144,7 @@ var/list/fusion_reactions
 
 // High end reactions.
 /decl/fusion_reaction/boron_hydrogen
-	p_react = "boron"
+	p_react = REAGENT_ID_BORON11
 	s_react = REAGENT_ID_HYDROGEN
 	minimum_energy_level = FUSION_HEAT_CAP * 0.5
 	energy_consumption = 3

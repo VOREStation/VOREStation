@@ -772,11 +772,11 @@
 	icon_state = "donkpocket_ascended"
 	nutriment_amt = 5
 	nutriment_desc = list("burning fires of radioactive hell" = 20)
-	heated_reagents = list("supermatter" = 1)
+	heated_reagents = list(REAGENT_ID_SUPERMATTER = 1)
 
 /obj/item/reagent_containers/food/snacks/donkpocket/ascended/Initialize()
 	. = ..()
-	reagents.add_reagent("uranium", 3)
+	reagents.add_reagent(REAGENT_ID_URANIUM, 3)
 	reagents.add_reagent("thermite_v", 3)
 
 // Altevian Foobs

@@ -170,7 +170,7 @@
 	name = "Nuclear Cola"
 	id = "nuka_cola"
 	result = "nuka_cola"
-	required_reagents = list("uranium" = 1, "cola" = 5)
+	required_reagents = list(REAGENT_ID_URANIUM = 1, "cola" = 5)
 	result_amount = 5
 
 /decl/chemical_reaction/instant/drinks/moonshine
@@ -407,7 +407,7 @@
 	name = "Atomic Bomb"
 	id = "atomicbomb"
 	result = "atomicbomb"
-	required_reagents = list("b52" = 10, "uranium" = 1)
+	required_reagents = list("b52" = 10, REAGENT_ID_URANIUM = 1)
 	result_amount = 10
 
 /decl/chemical_reaction/instant/drinks/margarita
@@ -428,7 +428,7 @@
 	name = "Three Mile Island Iced Tea"
 	id = "threemileisland"
 	result = "threemileisland"
-	required_reagents = list("longislandicedtea" = 10, "uranium" = 1)
+	required_reagents = list("longislandicedtea" = 10, REAGENT_ID_URANIUM = 1)
 	result_amount = 10
 
 /decl/chemical_reaction/instant/drinks/whiskeysoda
@@ -456,7 +456,7 @@
 	name = "Manhattan Project"
 	id = "manhattan_proj"
 	result = "manhattan_proj"
-	required_reagents = list("manhattan" = 10, "uranium" = 1)
+	required_reagents = list("manhattan" = 10, REAGENT_ID_URANIUM = 1)
 	result_amount = 10
 
 /decl/chemical_reaction/instant/drinks/vodka_tonic
@@ -1078,7 +1078,7 @@
 	name = "Ent's Draught"
 	id = "entdraught"
 	result = "entdraught"
-	required_reagents = list("tonic" = 1, "holywater" = 1, "honey" = 1)
+	required_reagents = list("tonic" = 1, REAGENT_ID_HOLYWATER = 1, "honey" = 1)
 	result_amount = 3
 
 /decl/chemical_reaction/instant/drinks/voxdelight
@@ -1239,15 +1239,15 @@
 	name = "Gods Sake"
 	id = "godsake"
 	result = "godsake"
-	required_reagents = list("sake" = 2, "holywater" = 1)
+	required_reagents = list("sake" = 2, REAGENT_ID_HOLYWATER = 1)
 	result_amount = 3
 
 /decl/chemical_reaction/instant/drinks/godka //Why you would put this in your body, I don't know.
 	name = "Godka"
 	id = "godka"
 	result = "godka"
-	required_reagents = list("vodka" = 1, "holywater" = 1, REAGENT_ID_ETHANOL = 1, "carthatoline" = 1)
-	catalysts = list("enzyme" = 5, "holywater" = 5)
+	required_reagents = list("vodka" = 1, REAGENT_ID_HOLYWATER = 1, REAGENT_ID_ETHANOL = 1, "carthatoline" = 1)
+	catalysts = list("enzyme" = 5, REAGENT_ID_HOLYWATER = 5)
 	result_amount = 1
 
 /decl/chemical_reaction/instant/drinks/holywine
@@ -1255,7 +1255,7 @@
 	id = "holywine"
 	result = "holywine"
 	required_reagents = list("grapejuice" = 5, REAGENT_ID_GOLD = 5)
-	catalysts = list("holywater" = 5)
+	catalysts = list(REAGENT_ID_HOLYWATER = 5)
 	result_amount = 10
 
 /decl/chemical_reaction/instant/drinks/holy_mary
@@ -1332,7 +1332,7 @@
 	name = "Nuclear Waste"
 	id = "nuclearwasteuran"
 	result = "nuclearwaste"
-	required_reagents = list("oilslick" = 2, "uranium" = 1)
+	required_reagents = list("oilslick" = 2, REAGENT_ID_URANIUM = 1)
 	result_amount = 3
 
 /decl/chemical_reaction/instant/drinks/sodaoil

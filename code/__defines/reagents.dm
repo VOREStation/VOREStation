@@ -253,33 +253,80 @@
 #define REAGENT_ID_SILVER "silver"
 #define REAGENT_PLATINUM "Platinum"
 #define REAGENT_ID_PLATINUM "platinum"
-
-
-
-
-
-
-
-#define REAGENT_SLIMEJELLY "Slimejelly"
-#define REAGENT_ID_SLIMEJELLY "slimejelly"
-
-
-#define REAGENT_ID_SILICATE "silicate"
+#define REAGENT_URANIUM "Uranium"
 #define REAGENT_ID_URANIUM "uranium"
-#define REAGENT_ID_PLATINUM "platinum"
-#define REAGENT_ID_CALCIUMCARBONATE "calciumcarbonate"
+#define REAGENT_DEUTERIUM "Deuterium"
+#define REAGENT_ID_DEUTERIUM "deuterium"
+#define REAGENT_TRITIUM "Tritium"
+#define REAGENT_ID_TRITIUM "tritium"
+#define REAGENT_LITHIUM6 "Lithium-6"
+#define REAGENT_ID_LITHIUM6 "lithium6"
+#define REAGENT_HELIUM3 "Helium-3"
+#define REAGENT_ID_HELIUM3 "helium3"
+#define REAGENT_BORON11 "Boron-11"
+#define REAGENT_ID_BORON11 "boron11"
+#define REAGENT_SUPERMATTER "Supermatter"
+#define REAGENT_ID_SUPERMATTER "supermatter"
+#define REAGENT_ADRENALINE "Adrenaline"
+#define REAGENT_ID_ADRENALINE "adrenaline"
+#define REAGENT_HOLYWATER "Holy Water"
+#define REAGENT_ID_HOLYWATER "holywater"
+#define REAGENT_AMMONIA "Ammonia"
+#define REAGENT_ID_AMMONIA "ammonia"
+#define REAGENT_DIETHYLAMINE "Diethylamine"
+#define REAGENT_ID_DIETHYLAMINE "diethylamine"
+#define REAGENT_FLUOROSURFACTANT "Fluorosurfactant"
+#define REAGENT_ID_FLUOROSURFACTANT "fluorosurfactant"
+#define REAGENT_FOAMINGAGENT "Foaming agent"
+#define REAGENT_ID_FOAMINGAGENT "foaming_agent"
+#define REAGENT_THERMITE "Thermite"
+#define REAGENT_ID_THERMITE "thermite"
+#define REAGENT_CLEANER "Space cleaner"
+#define REAGENT_ID_CLEANER "cleaner"
+#define REAGENT_LUBE "Space Lube"
+#define REAGENT_ID_LUBE "lube"
+#define REAGENT_SILICATE "Silicate"
+#define REAGENT_ID_SILICATE "silicate"
+#define REAGENT_GLYCEROL "Glycerol"
+#define REAGENT_ID_GLYCEROL "glycerol"
+#define REAGENT_NITROGLYCERIN "Nitroglycerin"
+#define REAGENT_ID_NITROGLYCERIN "nitroglycerin"
+#define REAGENT_COOLANT "Coolant"
+#define REAGENT_ID_COOLANT "coolant"
+#define REAGENT_GLUE "Ultra Glue"
+#define REAGENT_ID_GLUE "glue"
+#define REAGENT_WOODPULP "Wood Pulp"
+#define REAGENT_ID_WOODPULP "woodpulp"
+#define REAGENT_LUMINOL "Luminol"
+#define REAGENT_ID_LUMINOL "luminol"
+#define REAGENT_BIOMASS "Biomass"
+#define REAGENT_ID_BIOMASS "biomass"
+#define REAGENT_MINERALIZEDFLUID "Mineral-Rich Fluid"
+#define REAGENT_ID_MINERALIZEDFLUID "mineralizedfluid"
+#define REAGENT_DEFECTIVENANITES "Defective Nanites"
+#define REAGENT_ID_DEFECTIVENANITES "defective_nanites"
+#define REAGENT_FISHBAIT "Fish Bait"
+#define REAGENT_ID_FISHBAIT "fishbait"
+#define REAGENT_LIQUIDCARPET "Liquid Carpet"
+#define REAGENT_ID_LIQUIDCARPET "liquidcarpet"
+#define REAGENT_LIQUIDCARPETB "Liquid Black Carpet"
+#define REAGENT_ID_LIQUIDCARPETB "liquidcarpetb"
+#define REAGENT_LIQUIDCARPETBLU "Liquid Blue Carpet"
+#define REAGENT_ID_LIQUIDCARPETBLU "liquidcarpetblu"
+#define REAGENT_LIQUIDCARPETTUR "Liquid Turquoise Carpet"
+#define REAGENT_ID_LIQUIDCARPETTUR "liquidcarpettur"
+#define REAGENT_LIQUIDCARPETSBLU "Liquid Silver Blue Carpet"
+#define REAGENT_ID_LIQUIDCARPETSBLU "liquidcarpetsblu"
+#define REAGENT_LIQUIDCARPETC "Liquid Clown Carpet"
+#define REAGENT_ID_LIQUIDCARPETC "liquidcarpetc"
+#define REAGENT_LIQUIDCARPETP "Liquid Purple Carpet"
+#define REAGENT_ID_LIQUIDCARPETP "liquidcarpetp"
+#define REAGENT_LIQUIDCARPETO "Liquid Orange Carpet"
+#define REAGENT_ID_LIQUIDCARPETO "liquidcarpeto"
+#define REAGENT_ESSENTIALOIL "Essential Oils"
+#define REAGENT_ID_ESSENTIALOIL "essential_oil"
 
 
-#define REAGENT_
-#define REAGENT_ID_
-#define REAGENT_
-#define REAGENT_ID_
-#define REAGENT_
-#define REAGENT_ID_
-#define REAGENT_
-#define REAGENT_ID_
-#define REAGENT_
-#define REAGENT_ID_
 
 // Admin chems
 #define REAGENT_ADMINORDRAZINE "Adminordrazine"
@@ -473,7 +520,17 @@
 
 
 
-Files left: food_drinks.dm, medicine.dm, other.dm, toxins.dm
+
+#define REAGENT_SLIMEJELLY "Slimejelly"
+#define REAGENT_ID_SLIMEJELLY "slimejelly"
+
+
+#define REAGENT_ID_CALCIUMCARBONATE "calciumcarbonate"
+
+
+
+
+Files left: food_drinks.dm, medicine.dm, toxins.dm
 includes: .dm
 excludes: reagents.dm,ores.dm,materials.dm,mre.dm
 

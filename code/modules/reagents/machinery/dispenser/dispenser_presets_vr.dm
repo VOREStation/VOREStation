@@ -2,7 +2,7 @@
 	name = "xenoflora chem dispenser"
 	ui_title = "Xenoflora Chemical Dispenser"
 	dispense_reagents = list(
-		REAGENT_ID_WATER, REAGENT_ID_SUGAR, REAGENT_ID_ETHANOL, REAGENT_ID_RADIUM, "ammonia", "diethylamine", "plantbgone", "mutagen", REAGENT_ID_CALCIUM
+		REAGENT_ID_WATER, REAGENT_ID_SUGAR, REAGENT_ID_ETHANOL, REAGENT_ID_RADIUM, REAGENT_ID_AMMONIA, REAGENT_ID_DIETHYLAMINE, "plantbgone", "mutagen", REAGENT_ID_CALCIUM
 		)
 
 /obj/machinery/chemical_dispenser/xenoflora/full

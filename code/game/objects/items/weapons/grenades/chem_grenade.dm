@@ -214,7 +214,7 @@
 	var/obj/item/reagent_containers/glass/beaker/B2 = new(src)
 
 	B1.reagents.add_reagent(REAGENT_ID_ALUMINIUM, 30)
-	B2.reagents.add_reagent("foaming_agent", 10)
+	B2.reagents.add_reagent(REAGENT_ID_FOAMINGAGENT, 10)
 	B2.reagents.add_reagent(REAGENT_ID_PACID, 10)
 
 	detonator = new/obj/item/assembly_holder/timer_igniter(src)
@@ -282,9 +282,9 @@
 	var/obj/item/reagent_containers/glass/beaker/B1 = new(src)
 	var/obj/item/reagent_containers/glass/beaker/B2 = new(src)
 
-	B1.reagents.add_reagent("fluorosurfactant", 40)
+	B1.reagents.add_reagent(REAGENT_ID_FLUOROSURFACTANT, 40)
 	B2.reagents.add_reagent(REAGENT_ID_WATER, 40)
-	B2.reagents.add_reagent("cleaner", 10)
+	B2.reagents.add_reagent(REAGENT_ID_CLEANER, 10)
 
 	detonator = new/obj/item/assembly_holder/timer_igniter(src)
 

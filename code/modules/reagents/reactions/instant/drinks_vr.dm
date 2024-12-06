@@ -130,7 +130,7 @@
 	name = REAGENT_GLOWINGAPPLETINI
 	id = REAGENT_ID_GLOWINGAPPLETINI
 	result = REAGENT_ID_GLOWINGAPPLETINI
-	required_reagents = list(REAGENT_ID_APPLETINIT = 5, "uranium" = 1)
+	required_reagents = list(REAGENT_ID_APPLETINIT = 5, REAGENT_ID_URANIUM = 1)
 	result_amount = 6
 
 /decl/chemical_reaction/instant/drinks/scsatw
@@ -244,5 +244,5 @@
 	name = REAGENT_MANAGERSUMMONER
 	id = REAGENT_ID_MANAGERSUMMONER
 	result = REAGENT_ID_MANAGERSUMMONER
-	required_reagents = list("margarita" = 1, "redwine" = 1, "essential_oil" = 1)
+	required_reagents = list("margarita" = 1, "redwine" = 1, REAGENT_ID_ESSENTIALOIL = 1)
 	result_amount = 3

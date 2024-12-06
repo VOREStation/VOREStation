@@ -185,7 +185,7 @@
 
 /turf/simulated/floor/lava/pump_reagents(var/datum/reagents/R, var/volume)
 	. = ..()
-	R.add_reagent("mineralizedfluid", round(volume / 2, 0.1))
+	R.add_reagent(REAGENT_ID_MINERALIZEDFLUID, round(volume / 2, 0.1))
 
 
 /turf/simulated/floor/water/pump_reagents(var/datum/reagents/R, var/volume)

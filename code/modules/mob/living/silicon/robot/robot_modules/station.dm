@@ -519,7 +519,7 @@ var/global/list/robot_modules = list(
 	src.modules += new /obj/item/borg/sight/janitor(src)
 	var/obj/item/reagent_containers/spray/LS = new /obj/item/reagent_containers/spray(src)
 	src.emag += LS
-	LS.reagents.add_reagent("lube", 250)
+	LS.reagents.add_reagent(REAGENT_ID_LUBE, 250)
 	LS.name = "Lube spray"
 
 	//Starts empty. Can only recharge with recycled material.
@@ -568,7 +568,7 @@ var/global/list/robot_modules = list(
 
 	var/obj/item/reagent_containers/spray/LS = locate() in src.emag
 	if(LS)
-		LS.reagents.add_reagent("lube", 2 * amount)
+		LS.reagents.add_reagent(REAGENT_ID_LUBE, 2 * amount)
 
 /obj/item/robot_module/robot/clerical
 	name = "service robot module"

@@ -17,7 +17,7 @@
 
 /obj/item/reagent_containers/glass/beaker/vial/random
 	flags = 0
-	var/list/random_reagent_list = list(list(REAGENT_ID_WATER = 15) = 1, list("cleaner" = 15) = 1)
+	var/list/random_reagent_list = list(list(REAGENT_ID_WATER = 15) = 1, list(REAGENT_ID_CLEANER = 15) = 1)
 
 /obj/item/reagent_containers/glass/beaker/vial/random/toxin
 	random_reagent_list = list(

@@ -166,7 +166,7 @@
 
 /obj/structure/reagent_dispenser/he3/Initialize()
 	..()
-	reagents.add_reagent("helium3",1000)
+	reagents.add_reagent(REAGENT_ID_HELIUM3,1000)
 
 /*
  * Misc

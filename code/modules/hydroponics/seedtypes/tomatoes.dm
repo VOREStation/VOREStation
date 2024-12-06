@@ -53,7 +53,7 @@
 	seed_name = "blue tomato"
 	display_name = "blue tomato plant"
 	mutants = list("bluespacetomato")
-	chems = list(REAGENT_ID_NUTRIMENT = list(1,20), "lube" = list(1,5))
+	chems = list(REAGENT_ID_NUTRIMENT = list(1,20), REAGENT_ID_LUBE = list(1,5))
 
 /datum/seed/tomato/blue/New()
 	..()

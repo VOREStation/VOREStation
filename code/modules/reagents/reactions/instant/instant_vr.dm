@@ -14,7 +14,7 @@
 	id = REAGENT_ID_MACROCILLIN
 	result = REAGENT_ID_MACROCILLIN
 	// POLARISTODO requires_heating = 1
-	required_reagents = list(REAGENT_ID_SIZEOXADONE = 20, "diethylamine" = 20)
+	required_reagents = list(REAGENT_ID_SIZEOXADONE = 20, REAGENT_ID_DIETHYLAMINE = 20)
 	result_amount = 1
 
 /decl/chemical_reaction/instant/microcillin
@@ -53,7 +53,7 @@
 	name = REAGENT_AMORPHOROVIR
 	id = REAGENT_ID_AMORPHOROVIR
 	result = REAGENT_ID_AMORPHOROVIR
-	required_reagents = list("cryptobiolin" = 30, "biomass" = 30, "hyperzine" = 20)
+	required_reagents = list("cryptobiolin" = 30, REAGENT_ID_BIOMASS = 30, "hyperzine" = 20)
 	catalysts = list(REAGENT_ID_PHORON = 5)
 	result_amount = 1
 
@@ -129,7 +129,7 @@
 	name = REAGENT_ICKYPAK
 	id = REAGENT_ID_ICKYPAK
 	result = REAGENT_ID_ICKYPAK
-	required_reagents = list("hyperzine" = 4, "fluorosurfactant" = 1)
+	required_reagents = list("hyperzine" = 4, REAGENT_ID_FLUOROSURFACTANT = 1)
 	result_amount = 5
 
 /decl/chemical_reaction/instant/unsorbitol
@@ -167,7 +167,7 @@
 	name = REAGENT_LIPOZILASE
 	id = REAGENT_ID_LIPOZILASE
 	result = REAGENT_ID_LIPOZILASE
-	required_reagents = list("lipozine" = 1, "diethylamine" = 1)
+	required_reagents = list("lipozine" = 1, REAGENT_ID_DIETHYLAMINE = 1)
 	result_amount = 2
 
 /decl/chemical_reaction/instant/lipostipo

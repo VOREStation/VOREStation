@@ -178,8 +178,8 @@
 /decl/chemical_reaction/instant/metamorphic/uranium
 	name = "Morph into Uranium"
 	id = "morph_uranium"
-	required_reagents = list("metamorphic" = REAGENTS_PER_SHEET, "uranium" = REAGENTS_PER_SHEET)
-	result = "uranium"
+	required_reagents = list("metamorphic" = REAGENTS_PER_SHEET, REAGENT_ID_URANIUM = REAGENTS_PER_SHEET)
+	result = REAGENT_ID_URANIUM
 
 
 /decl/chemical_reaction/instant/metamorphic/phoron
@@ -605,7 +605,7 @@
 /decl/chemical_reaction/instant/slime/green_uranium
 	name = "Slime Uranium"
 	id = "m_uranium"
-	result = "uranium"
+	result = REAGENT_ID_URANIUM
 	required_reagents = list(REAGENT_ID_PHORON = 5)
 	result_amount = 5
 	required = /obj/item/slime_extract/green
