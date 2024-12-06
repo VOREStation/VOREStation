@@ -235,7 +235,7 @@
 	. = ..()
 	reagents.add_reagent("fuel", 500)
 	reagents.add_reagent("cryptobiolin", 500)
-	reagents.add_reagent("phoron", 500)
+	reagents.add_reagent(REAGENT_ID_PHORON, 500)
 	reagents.add_reagent("condensedcapsaicin", 500)
 
 /obj/item/watertank/op/make_noz()

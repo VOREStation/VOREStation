@@ -16,7 +16,7 @@
 	name = "phoronic virus food"
 	id = "phoronvirusfood"
 	result = "phoronvirusfood"
-	required_reagents = list("phoron" = 1, "virusfood" = 1)
+	required_reagents = list(REAGENT_ID_PHORON = 1, "virusfood" = 1)
 	result_amount = 1
 
 /decl/chemical_reaction/instant/virus_food_phoron_adranol
@@ -65,7 +65,7 @@
 /decl/chemical_reaction/instant/mix_virus/mix_virus_3
 	name = "Mix Virus 3"
 	id = "mixvirus3"
-	required_reagents = list("phoron" = 1)
+	required_reagents = list(REAGENT_ID_PHORON = 1)
 	level_min = 4
 	level_max = 6
 

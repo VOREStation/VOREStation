@@ -242,25 +242,25 @@
 	SSradiation.radiate(src, round(material.radioactivity/3))
 
 /obj/structure/simple_door/iron/Initialize(mapload,var/material_name)
-	..(mapload, material_name || "iron")
+	..(mapload, material_name || MAT_IRON)
 
 /obj/structure/simple_door/silver/Initialize(mapload,var/material_name)
-	..(mapload, material_name || "silver")
+	..(mapload, material_name || MAT_SILVER)
 
 /obj/structure/simple_door/gold/Initialize(mapload,var/material_name)
-	..(mapload, material_name || "gold")
+	..(mapload, material_name || MAT_GOLD)
 
 /obj/structure/simple_door/uranium/Initialize(mapload,var/material_name)
-	..(mapload, material_name || "uranium")
+	..(mapload, material_name || MAT_URANIUM)
 
 /obj/structure/simple_door/sandstone/Initialize(mapload,var/material_name)
-	..(mapload, material_name || "sandstone")
+	..(mapload, material_name || MAT_SANDSTONE)
 
 /obj/structure/simple_door/phoron/Initialize(mapload,var/material_name)
-	..(mapload, material_name || "phoron")
+	..(mapload, material_name || MAT_PHORON)
 
 /obj/structure/simple_door/diamond/Initialize(mapload,var/material_name)
-	..(mapload, material_name || "diamond")
+	..(mapload, material_name || MAT_DIAMOND)
 
 /obj/structure/simple_door/wood/Initialize(mapload,var/material_name)
 	..(mapload, material_name || MAT_WOOD)
@@ -273,10 +273,10 @@
 	..(mapload, material_name || MAT_SIFWOOD)
 
 /obj/structure/simple_door/resin/Initialize(mapload,var/material_name)
-	..(mapload, material_name || "resin")
+	..(mapload, material_name || MAT_RESIN)
 
 /obj/structure/simple_door/cult/Initialize(mapload,var/material_name)
-	..(mapload, material_name || "cult")
+	..(mapload, material_name || MAT_CULT)
 
 /obj/structure/simple_door/cult/TryToSwitchState(atom/user)
 	if(isliving(user))

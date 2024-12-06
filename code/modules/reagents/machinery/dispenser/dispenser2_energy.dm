@@ -29,7 +29,7 @@
 
 /obj/machinery/chemical_dispenser
 	dispense_reagents = list(
-		"hydrogen", "lithium", "carbon", "nitrogen", "oxygen", "fluorine", "sodium",
+		"hydrogen", "lithium", "carbon", REAGENT_ID_NITROGEN, REAGENT_ID_OXYGEN, "fluorine", "sodium",
 		"aluminum", "silicon", "phosphorus", "sulfur", "chlorine", "potassium", "iron",
 		"copper", "mercury", "radium", "water", "ethanol", "sugar", "sacid", "tungsten",
 		"calcium"

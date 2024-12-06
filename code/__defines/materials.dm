@@ -57,6 +57,10 @@
 #define MAT_CONCRETE		"concrete"
 #define MAT_PLASTEELREBAR	"plasteel rebar"
 #define MAT_GRASS			"grass"
+#define MAT_RESIN			"resin"
+#define MAT_CULT			"cult"
+#define MAT_ALIENALLOY		"alienalloy"
+#define MAT_COMPOSITE		"composite"
 
 
 #define DEFAULT_TABLE_MATERIAL MAT_PLASTIC

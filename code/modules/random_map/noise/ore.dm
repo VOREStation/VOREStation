@@ -59,7 +59,7 @@
 				T.resources["uranium"] =  rand(RESOURCE_LOW_MIN,  RESOURCE_LOW_MAX)
 				T.resources["marble"] =   rand(RESOURCE_LOW_MIN, RESOURCE_MID_MAX)
 				T.resources["diamond"] =  0
-				T.resources["phoron"] =   0
+				T.resources[ORE_PHORON] =   0
 				T.resources["platinum"] =   0
 				T.resources["mhydrogen"] = 0
 				T.resources["verdantium"] = 0
@@ -67,7 +67,7 @@
 				//T.resources["copper"] =   rand(RESOURCE_MID_MIN, RESOURCE_HIGH_MAX)
 				//T.resources["tin"] =      rand(RESOURCE_LOW_MIN, RESOURCE_MID_MAX)
 				//T.resources["bauxite"] =  rand(RESOURCE_LOW_MIN, RESOURCE_LOW_MAX)
-				T.resources["rutile"] =   0
+				T.resources[ORE_RUTILE] =   0
 				//T.resources["void opal"] = 0
 				//T.resources["quartz"] = 0
 				//T.resources["painite"] = 0
@@ -75,7 +75,7 @@
 				T.resources["gold"] =     rand(RESOURCE_MID_MIN,  RESOURCE_MID_MAX)
 				T.resources["silver"] =   rand(RESOURCE_MID_MIN,  RESOURCE_MID_MAX)
 				T.resources["uranium"] =  rand(RESOURCE_MID_MIN,  RESOURCE_MID_MAX)
-				T.resources["phoron"] =   rand(RESOURCE_MID_MIN,  RESOURCE_MID_MAX)
+				T.resources[ORE_PHORON] =   rand(RESOURCE_MID_MIN,  RESOURCE_MID_MAX)
 				T.resources["platinum"] =   rand(RESOURCE_MID_MIN,  RESOURCE_MID_MAX)
 				T.resources["verdantium"] = rand(RESOURCE_LOW_MIN, RESOURCE_LOW_MAX)
 				T.resources["lead"] =     rand(RESOURCE_LOW_MIN, RESOURCE_MID_MAX)
@@ -86,7 +86,7 @@
 				//T.resources["copper"] =   0
 				//T.resources["tin"] =      rand(RESOURCE_MID_MIN, RESOURCE_MID_MAX)
 				//T.resources["bauxite"] =  0
-				T.resources["rutile"] =   0
+				T.resources[ORE_RUTILE] =   0
 				//T.resources["void opal"] = 0
 				//T.resources["quartz"] = 0
 				//T.resources["painite"] = 0
@@ -94,7 +94,7 @@
 				T.resources["uranium"] =  rand(RESOURCE_LOW_MIN,  RESOURCE_LOW_MAX)
 				T.resources["diamond"] =  rand(RESOURCE_LOW_MIN,  RESOURCE_LOW_MAX)
 				T.resources["verdantium"] = rand(RESOURCE_LOW_MIN, RESOURCE_MID_MAX)
-				T.resources["phoron"] =   rand(RESOURCE_HIGH_MIN, RESOURCE_HIGH_MAX)
+				T.resources[ORE_PHORON] =   rand(RESOURCE_HIGH_MIN, RESOURCE_HIGH_MAX)
 				T.resources["platinum"] =   rand(RESOURCE_HIGH_MIN, RESOURCE_HIGH_MAX)
 				T.resources["mhydrogen"] = rand(RESOURCE_MID_MIN,  RESOURCE_MID_MAX)
 				T.resources["marble"] =   rand(RESOURCE_MID_MIN, RESOURCE_HIGH_MAX)
@@ -105,7 +105,7 @@
 				//T.resources["copper"] =   0
 				//T.resources["tin"] =      0
 				//T.resources["bauxite"] =  0
-				T.resources["rutile"] =   0
+				T.resources[ORE_RUTILE] =   0
 				//T.resources["void opal"] = 0
 				//T.resources["quartz"] = 0
 				//T.resources["painite"] = 0

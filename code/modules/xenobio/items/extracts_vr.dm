@@ -80,7 +80,7 @@
 	name = "Slime Spawn"
 	id = "m_grey_spawn"
 	result = null
-	required_reagents = list("phoron" = 5)
+	required_reagents = list(REAGENT_ID_PHORON = 5)
 	result_amount = 1
 	required = /obj/item/slime_extract/grey
 
@@ -128,7 +128,7 @@
 	name = "Slime Basic Construction Materials"
 	id = "m_metal_basic"
 	result = null
-	required_reagents = list("phoron" = 5)
+	required_reagents = list(REAGENT_ID_PHORON = 5)
 	result_amount = 1
 	required = /obj/item/slime_extract/metal
 
@@ -194,7 +194,7 @@
 	name = "Slime Frost Oil"
 	id = "m_blue_frostoil"
 	result = "frostoil"
-	required_reagents = list("phoron" = 5)
+	required_reagents = list(REAGENT_ID_PHORON = 5)
 	result_amount = 30
 	required = /obj/item/slime_extract/blue
 
@@ -268,7 +268,7 @@
 /decl/chemical_reaction/instant/slime/purple_steroid
 	name = "Slime Steroid"
 	id = "m_purple_steroid"
-	required_reagents = list("phoron" = 5)
+	required_reagents = list(REAGENT_ID_PHORON = 5)
 	result_amount = 1
 	required = /obj/item/slime_extract/purple
 
@@ -327,7 +327,7 @@
 /decl/chemical_reaction/instant/slime/orange_fire
 	name = "Slime Fire"
 	id = "m_orange_fire"
-	required_reagents = list("phoron" = 5)
+	required_reagents = list(REAGENT_ID_PHORON = 5)
 	result_amount = 1
 	required = /obj/item/slime_extract/orange
 
@@ -342,8 +342,8 @@
 				return
 
 			for(var/turf/simulated/target_turf in view(2, T))
-				target_turf.assume_gas("volatile_fuel", 33, 1500+T0C)
-				target_turf.assume_gas("oxygen", 66, 1500+T0C)
+				target_turf.assume_gas(GAS_VOLATILE_FUEL, 33, 1500+T0C)
+				target_turf.assume_gas(GAS_O2, 66, 1500+T0C)
 				spawn(0)
 					target_turf.hotspot_expose(1500+T0C, 400)
 
@@ -448,7 +448,7 @@
 /decl/chemical_reaction/instant/slime/yellow_lightning
 	name = "Slime Lightning"
 	id = "m_yellow_lightning"
-	required_reagents = list("phoron" = 5)
+	required_reagents = list(REAGENT_ID_PHORON = 5)
 	result_amount = 1
 	required = /obj/item/slime_extract/yellow
 
@@ -518,7 +518,7 @@
 /decl/chemical_reaction/instant/slime/gold_random_mobs
 	name = "Slime Random Mobs"
 	id = "m_gold_random_mobs"
-	required_reagents = list("phoron" = 5)
+	required_reagents = list(REAGENT_ID_PHORON = 5)
 	result_amount = 1
 	required = /obj/item/slime_extract/gold
 
@@ -602,7 +602,7 @@
 /decl/chemical_reaction/instant/slime/silver_materials_basic
 	name = "Slime Basic Science Materials"
 	id = "m_silver_basic"
-	required_reagents = list("phoron" = 5)
+	required_reagents = list(REAGENT_ID_PHORON = 5)
 	result_amount = 1
 	required = /obj/item/slime_extract/silver
 
@@ -676,7 +676,7 @@
 /decl/chemical_reaction/instant/slime/dark_purple_phoron
 	name = "Slime Phoron"
 	id = "m_darkpurple_phoron"
-	result = "phoron"
+	result = REAGENT_ID_PHORON
 	required_reagents = list("water" = 5)
 	result_amount = 30
 	required = /obj/item/slime_extract/dark_purple
@@ -705,7 +705,7 @@
 /decl/chemical_reaction/instant/slime/dark_blue_cold_snap
 	name = "Slime Cold Snap"
 	id = "m_darkblue_coldsnap"
-	required_reagents = list("phoron" = 5)
+	required_reagents = list(REAGENT_ID_PHORON = 5)
 	result_amount = 1
 	required = /obj/item/slime_extract/dark_blue
 
@@ -834,7 +834,7 @@
 /decl/chemical_reaction/instant/slime/red_mutation
 	name = "Slime Mutation"
 	id = "m_red_mutation"
-	required_reagents = list("phoron" = 5)
+	required_reagents = list(REAGENT_ID_PHORON = 5)
 	result_amount = 1
 	required = /obj/item/slime_extract/red
 
@@ -913,7 +913,7 @@
 /decl/chemical_reaction/instant/slime/green_radpulse
 	name = "Slime Radiation Pulse"
 	id = "m_green_radpulse"
-	required_reagents = list("phoron" = 5)
+	required_reagents = list(REAGENT_ID_PHORON = 5)
 	result_amount = 1
 	required = /obj/item/slime_extract/green
 
@@ -975,7 +975,7 @@
 	name = "Slime Bone Med"
 	id = "m_pink_bone_fixer"
 	result = "slime_bone_fixer"
-	required_reagents = list("phoron" = 5)
+	required_reagents = list(REAGENT_ID_PHORON = 5)
 	result_amount = 30
 	required = /obj/item/slime_extract/pink
 
@@ -1033,7 +1033,7 @@
 	name = "Slime Fuel"
 	id = "m_oil_fuel"
 	result = "fuel"
-	required_reagents = list("phoron" = 5)
+	required_reagents = list(REAGENT_ID_PHORON = 5)
 	result_amount = 30
 	required = /obj/item/slime_extract/oil
 
@@ -1101,7 +1101,7 @@
 /decl/chemical_reaction/instant/slime/bluespace_crystals
 	name = "Slime Bluespace Crystals"
 	id = "m_bs_crystals"
-	required_reagents = list("phoron" = 5)
+	required_reagents = list(REAGENT_ID_PHORON = 5)
 	result_amount = 1
 	required = /obj/item/slime_extract/bluespace
 
@@ -1175,7 +1175,7 @@
 /decl/chemical_reaction/instant/slime/cerulean_enhancer
 	name = "Slime Enhancer"
 	id = "m_cerulean_enhancer"
-	required_reagents = list("phoron" = 5)
+	required_reagents = list(REAGENT_ID_PHORON = 5)
 	result_amount = 1
 	required = /obj/item/slime_extract/cerulean
 
@@ -1235,7 +1235,7 @@
 /decl/chemical_reaction/instant/slime/amber_slimefood
 	name = "Slime Feeding"
 	id = "m_amber_slime_food"
-	required_reagents = list("phoron" = 5)
+	required_reagents = list(REAGENT_ID_PHORON = 5)
 	result_amount = 1
 	required = /obj/item/slime_extract/amber
 
@@ -1304,7 +1304,7 @@
 /decl/chemical_reaction/instant/slime/sapphire_promethean
 	name = "Slime Promethean"
 	id = "m_sapphire_promethean"
-	required_reagents = list("phoron" = 5)
+	required_reagents = list(REAGENT_ID_PHORON = 5)
 	result_amount = 1
 	required = /obj/item/slime_extract/sapphire
 
@@ -1365,7 +1365,7 @@
 /decl/chemical_reaction/instant/slime/ruby_swole
 	name = "Slime Strength"
 	id = "m_ruby_strength"
-	required_reagents = list("phoron" = 5)
+	required_reagents = list(REAGENT_ID_PHORON = 5)
 	result_amount = 1
 	required = /obj/item/slime_extract/ruby
 
@@ -1454,7 +1454,7 @@
 /decl/chemical_reaction/instant/slime/emerald_agility
 	name = "Slime Agility"
 	id = "m_emerald_agility"
-	required_reagents = list("phoron" = 5)
+	required_reagents = list(REAGENT_ID_PHORON = 5)
 	result_amount = 1
 	required = /obj/item/slime_extract/emerald
 
@@ -1542,7 +1542,7 @@
 /decl/chemical_reaction/instant/slime/light_pink_friendship
 	name = "Slime Friendship"
 	id = "m_lightpink_friendship"
-	required_reagents = list("phoron" = 5)
+	required_reagents = list(REAGENT_ID_PHORON = 5)
 	result_amount = 1
 	required = /obj/item/slime_extract/light_pink
 
@@ -1602,7 +1602,7 @@
 /decl/chemical_reaction/instant/slime/rainbow_random_slime
 	name = "Slime Random Slime"
 	id = "m_rainow_random_slime"
-	required_reagents = list("phoron" = 5)
+	required_reagents = list(REAGENT_ID_PHORON = 5)
 	result_amount = 1
 	required = /obj/item/slime_extract/rainbow
 

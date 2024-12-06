@@ -133,9 +133,9 @@
 
 	// Environment tolerance/life processes vars.
 	var/reagent_tag											//Used for metabolizing reagents.
-	var/breath_type = "oxygen"								// Non-oxygen gas breathed, if any.
-	var/poison_type = "phoron"								// Poisonous air.
-	var/exhale_type = "carbon_dioxide"						// Exhaled gas type.
+	var/breath_type = GAS_O2								// Non-oxygen gas breathed, if any.
+	var/poison_type = GAS_PHORON								// Poisonous air.
+	var/exhale_type = GAS_CO2								// Exhaled gas type.
 	var/water_breather = FALSE
 	var/bad_swimmer = FALSE
 

@@ -122,7 +122,7 @@
 	name = "Hostile Blob Revival"
 	id = "blob_revival"
 	result = null
-	required_reagents = list("phoron" = 60)
+	required_reagents = list(REAGENT_ID_PHORON = 60)
 	result_amount = 1
 
 /decl/chemical_reaction/instant/blob_reconstitution/can_happen(var/datum/reagents/holder)

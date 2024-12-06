@@ -76,8 +76,8 @@ var/list/fusion_reactions
 
 // Unideal/material production reactions
 /decl/fusion_reaction/oxygen_oxygen
-	p_react = "oxygen"
-	s_react = "oxygen"
+	p_react = REAGENT_ID_OXYGEN
+	s_react = REAGENT_ID_OXYGEN
 	energy_consumption = 10
 	energy_production = 0
 	instability = 5
@@ -85,17 +85,17 @@ var/list/fusion_reactions
 	products = list("silicon"= 1)
 
 /decl/fusion_reaction/iron_iron
-	p_react = "iron"
-	s_react = "iron"
-	products = list("silver" = 1, "gold" = 1, "platinum" = 1) // Not realistic but w/e
+	p_react = REAGENT_ID_IRON
+	s_react = REAGENT_ID_IRON
+	products = list(REAGENT_ID_SILVER = 1, REAGENT_ID_GOLD = 1, REAGENT_ID_PLATINUM = 1) // Not realistic but w/e
 	energy_consumption = 10
 	energy_production = 0
 	instability = 2
 	minimum_reaction_temperature = 10000
 
 /decl/fusion_reaction/phoron_hydrogen
-	p_react = "hydrogen"
-	s_react = "phoron"
+	p_react = REAGENT_ID_HYDROGEN
+	s_react = REAGENT_ID_PHORON
 	energy_consumption = 10
 	energy_production = 0
 	instability = 5
@@ -105,7 +105,7 @@ var/list/fusion_reactions
 // VERY UNIDEAL REACTIONS.
 /decl/fusion_reaction/phoron_supermatter
 	p_react = "supermatter"
-	s_react = "phoron"
+	s_react = REAGENT_ID_PHORON
 	energy_consumption = 0
 	energy_production = 5
 	radiation = 20
@@ -145,7 +145,7 @@ var/list/fusion_reactions
 // High end reactions.
 /decl/fusion_reaction/boron_hydrogen
 	p_react = "boron"
-	s_react = "hydrogen"
+	s_react = REAGENT_ID_HYDROGEN
 	minimum_energy_level = FUSION_HEAT_CAP * 0.5
 	energy_consumption = 3
 	energy_production = 15
@@ -153,8 +153,8 @@ var/list/fusion_reactions
 	instability = 3
 
 /decl/fusion_reaction/hydrogen_hydrogen
-	p_react = "hydrogen"
-	s_react = "hydrogen"
+	p_react = REAGENT_ID_HYDROGEN
+	s_react = REAGENT_ID_HYDROGEN
 	minimum_energy_level = FUSION_HEAT_CAP * 0.75
 	energy_consumption = 0
 	energy_production = 20

@@ -271,13 +271,13 @@
 	if(loaded) //Safety.
 		if(istype(loaded, /obj/item/fuel_assembly))
 			var/obj/item/fuel_assembly/rod = loaded
-			if(rod.fuel_type == "composite" || rod.fuel_type == "deuterium") //Safety check for rods spawned in without a fueltype.
+			if(rod.fuel_type == MAT_COMPOSITE || rod.fuel_type == MAT_DEUTERIUM) //Safety check for rods spawned in without a fueltype.
 				projectile_type = /obj/item/projectile/bullet/magnetic/fuelrod
-			else if(rod.fuel_type == "tritium")
+			else if(rod.fuel_type == MAT_TRITIUM)
 				projectile_type = /obj/item/projectile/bullet/magnetic/fuelrod/tritium
-			else if(rod.fuel_type == "phoron")
+			else if(rod.fuel_type == MAT_PHORON)
 				projectile_type = /obj/item/projectile/bullet/magnetic/fuelrod/phoron
-			else if(rod.fuel_type == "supermatter")
+			else if(rod.fuel_type == MAT_SUPERMATTER)
 				projectile_type = /obj/item/projectile/bullet/magnetic/fuelrod/supermatter
 				visible_message(span_danger("The barrel of \the [src] glows a blinding white!"))
 				spawn(5)

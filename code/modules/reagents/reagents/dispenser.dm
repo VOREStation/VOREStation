@@ -274,16 +274,16 @@
 		M.adjustBrainLoss(0.5 * removed)
 
 /datum/reagent/nitrogen
-	name = "Nitrogen"
-	id = "nitrogen"
+	name = REAGENT_NITROGEN
+	id = REAGENT_ID_NITROGEN
 	description = "A colorless, odorless, tasteless gas."
 	taste_mult = 0 //no taste
 	reagent_state = GAS
 	color = "#808080"
 
 /datum/reagent/oxygen
-	name = "Oxygen"
-	id = "oxygen"
+	name = REAGENT_OXYGEN
+	id = REAGENT_ID_OXYGEN
 	description = "A colorless, odorless gas."
 	taste_mult = 0
 	reagent_state = GAS

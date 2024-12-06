@@ -302,7 +302,7 @@
 			else if(W.reagents.has_reagent("sacid", 1) || W.reagents.has_reagent("pacid", 1) || W.reagents.has_reagent("diethylamine", 1))
 				if(my_effect.trigger == TRIGGER_ACID)
 					my_effect.ToggleActivate()
-			else if(W.reagents.has_reagent("phoron", 1) || W.reagents.has_reagent("thermite", 1))
+			else if(W.reagents.has_reagent(REAGENT_ID_PHORON, 1) || W.reagents.has_reagent("thermite", 1))
 				if(my_effect.trigger == TRIGGER_VOLATILE)
 					my_effect.ToggleActivate()
 			else if(W.reagents.has_reagent("toxin", 1) || W.reagents.has_reagent("cyanide", 1) || W.reagents.has_reagent("amatoxin", 1) || W.reagents.has_reagent("neurotoxin", 1))
@@ -329,7 +329,7 @@
 
 	var/list/water = list("hydrogen", "water")
 	var/list/acid = list("sacid", "pacid", "diethylamine")
-	var/list/volatile = list("phoron","thermite")
+	var/list/volatile = list(REAGENT_ID_PHORON,"thermite")
 	var/list/toxic = list("toxin","cyanide","amatoxin","neurotoxin")
 
 	for(var/datum/artifact_effect/my_effect in my_effects)
@@ -387,13 +387,13 @@
 		else if(env.temperature > 375)
 			trigger_hot = 1
 
-		if(env.gas["phoron"] >= 10)
+		if(env.gas[GAS_PHORON] >= 10)
 			trigger_phoron = 1
-		if(env.gas["oxygen"] >= 10)
+		if(env.gas[GAS_O2] >= 10)
 			trigger_oxy = 1
-		if(env.gas["carbon_dioxide"] >= 10)
+		if(env.gas[GAS_CO2] >= 10)
 			trigger_co2 = 1
-		if(env.gas["nitrogen"] >= 10)
+		if(env.gas[GAS_N2] >= 10)
 			trigger_nitro = 1
 
 	for(var/datum/artifact_effect/my_effect in my_effects)

@@ -53,7 +53,7 @@
 	name = "Distilling Biomass"
 	id = "distill_biomass"
 	result = "biomass"
-	required_reagents = list("blood" = 1, "sugar" = 1, "phoron" = 0.5)
+	required_reagents = list("blood" = 1, "sugar" = 1, REAGENT_ID_PHORON = 0.5)
 	result_amount = 1 // 40 units per sheet, requires actually using the machine, and having blood to spare.
 
 	temp_range = list(T20C + 80, T20C + 130)
@@ -156,7 +156,7 @@
 	name = "Distilling Brute Juice"
 	id = "distill_brutejuice"
 	result = "berserkmed"
-	required_reagents = list("biomass" = 1, "hyperzine" = 3, "synaptizine" = 2, "phoron" = 1)
+	required_reagents = list("biomass" = 1, "hyperzine" = 3, "synaptizine" = 2, REAGENT_ID_PHORON = 1)
 	result_amount = 3
 
 	temp_range = list(T0C + 600, T0C + 700)
@@ -209,7 +209,7 @@
 	required_reagents = list("lichpowder" = 1, "cryoxadone" = 1, "carthatoline" = 1)
 	result_amount = 2
 
-	catalysts = list("phoron" = 5)
+	catalysts = list(REAGENT_ID_PHORON = 5)
 
 	reaction_rate = HALF_LIFE(20)
 

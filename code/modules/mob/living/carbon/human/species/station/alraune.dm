@@ -18,9 +18,9 @@
 	selects_bodytype = SELECTS_BODYTYPE_CUSTOM //VOREStation edit
 
 	body_temperature = T20C
-	breath_type = "oxygen"
-	poison_type = "phoron"
-	exhale_type = "oxygen"
+	breath_type = GAS_O2
+	poison_type = GAS_PHORON
+	exhale_type = GAS_O2
 	water_breather = TRUE  //eh, why not? Aquatic plants are a thing.
 
 	// Heat and cold resistances are 20 degrees broader on the level 1 range, level 2 is default, level 3 is much weaker, halfway between L2 and normal L3.
@@ -169,7 +169,7 @@
 	var/failed_inhale = 0
 	var/failed_exhale = 0
 
-	inhaling = breath.gas["carbon_dioxide"]
+	inhaling = breath.gas[GAS_CO2]
 	poison = breath.gas[poison_type]
 	exhaling = breath.gas[exhale_type]
 
@@ -193,7 +193,7 @@
 		H.clear_alert("oxy")
 
 	inhaled_gas_used = inhaling/6
-	breath.adjust_gas("carbon_dioxide", -inhaled_gas_used, update = 0) //update afterwards
+	breath.adjust_gas(GAS_CO2, -inhaled_gas_used, update = 0) //update afterwards
 	breath.adjust_gas_temp(exhale_type, inhaled_gas_used, H.bodytemperature, update = 0) //update afterwards
 
 	//Now we handle CO2.

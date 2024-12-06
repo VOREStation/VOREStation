@@ -74,10 +74,10 @@
 			I.digitize()
 
 	//Give breathing equipment if needed
-	if(current_project.breath_type != "oxygen")
+	if(current_project.breath_type != GAS_O2)
 		H.equip_to_slot_or_del(new /obj/item/clothing/mask/breath(H), slot_wear_mask)
 		var/obj/item/tank/tankpath
-		if(current_project.breath_type == "phoron")
+		if(current_project.breath_type == GAS_PHORON)
 			tankpath = /obj/item/tank/vox
 		else
 			tankpath = text2path("/obj/item/tank/" + current_project.breath_type)

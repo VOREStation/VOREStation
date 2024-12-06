@@ -18,9 +18,9 @@
 /obj/item/reagent_containers/chem_disp_cartridge/carbon
 	spawn_reagent = "carbon"
 /obj/item/reagent_containers/chem_disp_cartridge/nitrogen
-	spawn_reagent = "nitrogen"
+	spawn_reagent = REAGENT_ID_NITROGEN
 /obj/item/reagent_containers/chem_disp_cartridge/oxygen
-	spawn_reagent = "oxygen"
+	spawn_reagent = REAGENT_ID_OXYGEN
 /obj/item/reagent_containers/chem_disp_cartridge/fluorine
 	spawn_reagent = "fluorine"
 /obj/item/reagent_containers/chem_disp_cartridge/sodium

@@ -5,8 +5,8 @@
 	name = "sizeoxadone"
 	id = "sizeoxadone"
 	result = "sizeoxadone"
-	required_reagents = list("clonexadone" = 1, "tramadol" = 3, "phoron" = 1)
-	catalysts = list("phoron" = 5)
+	required_reagents = list("clonexadone" = 1, "tramadol" = 3, REAGENT_ID_PHORON = 1)
+	catalysts = list(REAGENT_ID_PHORON = 5)
 	result_amount = 5
 
 /decl/chemical_reaction/instant/macrocillin
@@ -54,7 +54,7 @@
 	id = "amorphorovir"
 	result = "amorphorovir"
 	required_reagents = list("cryptobiolin" = 30, "biomass" = 30, "hyperzine" = 20)
-	catalysts = list("phoron" = 5)
+	catalysts = list(REAGENT_ID_PHORON = 5)
 	result_amount = 1
 
 /decl/chemical_reaction/instant/androrovir
@@ -152,15 +152,15 @@
 	name = "Vermicetol"
 	id = "vermicetol"
 	result = "vermicetol"
-	required_reagents = list("bicaridine" = 2, "shockchem" = 1, "phoron" = 0.1)
-	catalysts = list("phoron" = 5)
+	required_reagents = list("bicaridine" = 2, "shockchem" = 1, REAGENT_ID_PHORON = 0.1)
+	catalysts = list(REAGENT_ID_PHORON = 5)
 	result_amount = 3
 
 /decl/chemical_reaction/instant/prussian_blue
 	name = "Prussian Blue"
 	id = "prussian_blue"
 	result = "prussian_blue"
-	required_reagents = list("carbon" = 3, "iron" = 1, "nitrogen" = 3)
+	required_reagents = list("carbon" = 3, "iron" = 1, REAGENT_ID_NITROGEN = 3)
 	result_amount = 7
 
 /decl/chemical_reaction/instant/lipozilase
@@ -205,5 +205,5 @@
 	name = "Advanced Mutation Toxin"
 	id = "advmutationtoxin2"
 	result = "advmutationtoxin"
-	required_reagents = list("phoron" = 15, "slimejelly" = 15, "mutationtoxin" = 15) //In case a xenobiologist wants to become a fully fledged slime person.
+	required_reagents = list(REAGENT_ID_PHORON = 15, "slimejelly" = 15, "mutationtoxin" = 15) //In case a xenobiologist wants to become a fully fledged slime person.
 	result_amount = 1

@@ -7,7 +7,7 @@
 
 	var/percent_depleted = 1
 	var/list/rod_quantities = list()
-	var/fuel_type = "composite"
+	var/fuel_type = MAT_COMPOSITE
 	var/fuel_colour
 	var/radioactivity = 0
 	var/const/initial_amount = 3000000
@@ -54,13 +54,13 @@
 
 // Mapper shorthand.
 /obj/item/fuel_assembly/deuterium/New(var/newloc)
-	..(newloc, "deuterium")
+	..(newloc, MAT_DEUTERIUM)
 
 /obj/item/fuel_assembly/tritium/New(var/newloc)
-	..(newloc, "tritium")
+	..(newloc, MAT_TRITIUM)
 
 /obj/item/fuel_assembly/phoron/New(var/newloc)
-	..(newloc, "phoron")
+	..(newloc, MAT_PHORON)
 
 /obj/item/fuel_assembly/supermatter/New(var/newloc)
-	..(newloc, "supermatter")
+	..(newloc, MAT_SUPERMATTER)

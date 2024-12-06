@@ -109,9 +109,9 @@
 	if(!istype(T))
 		return
 	..()
-	T.assume_gas("phoron", CEILING(volume/2, 1), T20C)
+	T.assume_gas(GAS_PHORON, CEILING(volume/2, 1), T20C)
 	for(var/turf/simulated/floor/target_tile in range(0,T))
-		target_tile.assume_gas("phoron", volume/2, 400+T0C)
+		target_tile.assume_gas(GAS_PHORON, volume/2, 400+T0C)
 		spawn (0) target_tile.hotspot_expose(700, 400)
 	remove_self(volume)
 
@@ -125,22 +125,22 @@
 				M.IgniteMob()
 
 /datum/reagent/toxin/lead
-	name = "lead"
-	id = "lead"
+	name = REAGENT_LEAD
+	id = REAGENT_ID_LEAD
 	description = "Elemental Lead."
 	color = "#273956"
 	strength = 4
 
 /datum/reagent/toxin/spidertoxin
-	name = "Spidertoxin"
-	id = "spidertoxin"
+	name = REAGENT_SPIDERTOXIN
+	id = REAGENT_ID_SPIDERTOXIN
 	description = "A liquifying toxin produced by giant spiders."
 	color = "#2CE893"
 	strength = 5
 
 /datum/reagent/toxin/phoron
-	name = "Phoron"
-	id = "phoron"
+	name = REAGEMT_PHORON
+	id = REAGENT_ID_PHORON
 	description = "Phoron in its liquid form."
 	taste_mult = 1.5
 	reagent_state = LIQUID
@@ -175,7 +175,7 @@
 	..()
 	if(!istype(T))
 		return
-	T.assume_gas("volatile_fuel", amount, T20C)
+	T.assume_gas(GAS_VOLATILE_FUEL, amount, T20C)
 	remove_self(amount)
 
 /datum/reagent/toxin/cyanide //Fast and Lethal

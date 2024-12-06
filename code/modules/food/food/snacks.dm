@@ -797,7 +797,7 @@
 		if(4)
 			reagents.add_reagent("sprinkles", 3)
 		if(5)
-			reagents.add_reagent("phoron", 3)
+			reagents.add_reagent(REAGENT_ID_PHORON, 3)
 		if(6)
 			reagents.add_reagent("coco", 3)
 		if(7)
@@ -4748,7 +4748,7 @@
 
 /obj/item/reagent_containers/food/snacks/bageleverything/Initialize()
 	. = ..()
-	reagents.add_reagent("phoron", 5)
+	reagents.add_reagent(REAGENT_ID_PHORON, 5)
 	reagents.add_reagent("defective_nanites", 5)
 
 /obj/item/reagent_containers/food/snacks/bageltwo

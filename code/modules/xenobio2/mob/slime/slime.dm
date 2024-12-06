@@ -68,7 +68,7 @@ Slime definitions, Life and New live here.
 						"fuel" = list("toxic" = 0.4),
 						"toxin" = list("toxic" = 0.5),
 						"carpotoxin" = list("toxic" = 1, "mut" = 1.5),
-						"phoron" = list("toxic" = 1.5, "mut" = 0.03),
+						REAGENT_ID_PHORON = list("toxic" = 1.5, "mut" = 0.03),
 						"virusfood" = list("nutr" = 1.5, "mut" = 0.32),
 						"cyanide" = list("toxic" = 3.5),
 						"slimejelly" = list("nutr" = 0.5),

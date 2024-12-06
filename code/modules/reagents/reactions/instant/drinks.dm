@@ -267,7 +267,7 @@
 	name = "Toxins Special"
 	id = "phoronspecial"
 	result = "phoronspecial"
-	required_reagents = list("rum" = 2, "vermouth" = 2, "phoron" = 2)
+	required_reagents = list("rum" = 2, "vermouth" = 2, REAGENT_ID_PHORON = 2)
 	result_amount = 6
 
 /decl/chemical_reaction/instant/drinks/beepsky_smash
@@ -1001,7 +1001,7 @@
 	name = "Vox's Delight"
 	id = "voxdelight"
 	result = "voxdelight"
-	required_reagents = list("phoron" = 3, "fuel" = 1, "water" = 1)
+	required_reagents = list(REAGENT_ID_PHORON = 3, "fuel" = 1, "water" = 1)
 	result_amount = 4
 
 /decl/chemical_reaction/instant/drinks/screamingviking
@@ -1029,7 +1029,7 @@
 	name = "Robustin"
 	id = "robustin"
 	result = "robustin"
-	required_reagents = list("antifreeze" = 1, "phoron" = 1, "fuel" = 1, "vodka" = 1)
+	required_reagents = list("antifreeze" = 1, REAGENT_ID_PHORON = 1, "fuel" = 1, "vodka" = 1)
 	result_amount = 4
 
 /decl/chemical_reaction/instant/drinks/virginsip

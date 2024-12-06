@@ -152,5 +152,4 @@
 /obj/item/reagent_containers/glass/bottle/potion/phoron
 	name = "volatile potion"
 	desc = "A small green bottle containing some volatile purple liquid."
-	prefill = list("phoron" = 10)
-
+	prefill = list(REAGENT_ID_PHORON = 10)

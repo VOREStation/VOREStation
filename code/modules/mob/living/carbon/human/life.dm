@@ -609,13 +609,13 @@
 	if(species.breath_type)
 		breath_type = species.breath_type
 	else
-		breath_type = "oxygen"
+		breath_type = GAS_O2
 	inhaling = breath.gas[breath_type]
 
 	if(species.poison_type)
 		poison_type = species.poison_type
 	else
-		poison_type = "phoron"
+		poison_type = GAS_PHORON
 	poison = breath.gas[poison_type]
 
 	if(species.exhale_type)
@@ -640,17 +640,17 @@
 		failed_inhale = 1
 
 		switch(breath_type)
-			if("oxygen")
+			if(GAS_O2)
 				throw_alert("oxy", /obj/screen/alert/not_enough_oxy)
-			if("phoron")
+			if(GAS_PHORON)
 				throw_alert("oxy", /obj/screen/alert/not_enough_tox)
-			if("nitrogen")
+			if(GAS_N2)
 				throw_alert("oxy", /obj/screen/alert/not_enough_nitro)
-			if("carbon_dioxide")
+			if(GAS_CO2)
 				throw_alert("oxy", /obj/screen/alert/not_enough_co2)
-			if("volatile_fuel")
+			if(GAS_VOLATILE_FUEL)
 				throw_alert("oxy", /obj/screen/alert/not_enough_fuel)
-			if("nitrous_oxide")
+			if(GAS_N2O)
 				throw_alert("oxy", /obj/screen/alert/not_enough_n2o)
 
 	else
@@ -702,8 +702,8 @@
 		clear_alert("tox_in_air")
 
 	// If there's some other shit in the air lets deal with it here.
-	if(breath.gas["nitrous_oxide"])
-		var/SA_pp = (breath.gas["nitrous_oxide"] / breath.total_moles) * breath_pressure
+	if(breath.gas[GAS_N2O])
+		var/SA_pp = (breath.gas[GAS_N2O] / breath.total_moles) * breath_pressure
 
 		// Enough to make us paralysed for a bit
 		if(SA_pp > SA_para_min)
@@ -719,7 +719,7 @@
 		else if(SA_pp > 0.15)
 			if(prob(20))
 				spawn(0) emote(pick("giggle", "laugh"))
-		breath.adjust_gas("nitrous_oxide", -breath.gas["nitrous_oxide"]/6, update = 0) //update after
+		breath.adjust_gas(GAS_N2O, -breath.gas[GAS_N2O]/6, update = 0) //update after
 
 	// Were we able to breathe?
 	if (failed_inhale || failed_exhale)

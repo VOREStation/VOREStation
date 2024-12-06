@@ -46,7 +46,7 @@
 	name = "Unsweetened Tea"
 	id = "unsweettea"
 	result = "unsweettea"
-	required_reagents = list("sweettea" = 3, "phoron" = 1)
+	required_reagents = list("sweettea" = 3, REAGENT_ID_PHORON = 1)
 	result_amount = 2
 
 /decl/chemical_reaction/instant/drinks/galacticpanic
@@ -152,7 +152,7 @@
 	name = "Redspace Flush"
 	id = "redspaceflush"
 	result = "redspaceflush"
-	required_reagents = list("rum" = 2, "whiskey" = 2, "blood" =1, "phoron" =1)
+	required_reagents = list("rum" = 2, "whiskey" = 2, "blood" =1, REAGENT_ID_PHORON =1)
 	result_amount = 6
 
 /decl/chemical_reaction/instant/drinks/graveyard

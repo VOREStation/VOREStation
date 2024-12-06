@@ -1,5 +1,5 @@
 /datum/material/phoron
-	name = "phoron"
+	name = MAT_PHORON
 	stack_type = /obj/item/stack/material/phoron
 	ignition_point = PHORON_MINIMUM_BURN_TEMPERATURE
 	icon_base = "stone"
@@ -24,7 +24,7 @@
 	for(var/turf/simulated/floor/target_tile in range(2,T))
 		var/phoronToDeduce = (temperature/30) * effect_multiplier
 		totalPhoron += phoronToDeduce
-		target_tile.assume_gas("phoron", phoronToDeduce, 200+T0C)
+		target_tile.assume_gas(GAS_PHORON, phoronToDeduce, 200+T0C)
 		spawn (0)
 			target_tile.hotspot_expose(temperature, 400)
 	return round(totalPhoron/100)
@@ -165,5 +165,3 @@
 	supply_conversion_value = 13
 	icon_base = "stone"
 	table_icon_base = "stone"
-
-

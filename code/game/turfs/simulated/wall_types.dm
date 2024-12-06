@@ -47,59 +47,59 @@
 	icon_state = "cult"
 
 /turf/simulated/wall/iron/Initialize(mapload)
-	. = ..(mapload, "iron")
+	. = ..(mapload, MAT_IRON)
 /turf/simulated/wall/uranium/Initialize(mapload)
-	. = ..(mapload, "uranium")
+	. = ..(mapload, MAT_URANIUM)
 /turf/simulated/wall/diamond/Initialize(mapload)
-	. = ..(mapload, "diamond")
+	. = ..(mapload, MAT_DIAMOND)
 /turf/simulated/wall/gold/Initialize(mapload)
-	. = ..(mapload, "gold")
+	. = ..(mapload, MAT_GOLD)
 /turf/simulated/wall/silver/Initialize(mapload)
-	. = ..(mapload, "silver")
+	. = ..(mapload, MAT_SILVER)
 /turf/simulated/wall/lead/Initialize(mapload)
-	. = ..(mapload, "lead")
+	. = ..(mapload, MAT_LEAD)
 /turf/simulated/wall/r_lead/Initialize(mapload)
-	. = ..(mapload, "lead", "lead")
+	. = ..(mapload, MAT_LEAD, MAT_LEAD)
 /turf/simulated/wall/phoron/Initialize(mapload)
-	. = ..(mapload, "phoron")
+	. = ..(mapload, MAT_PHORON)
 /turf/simulated/wall/sandstone/Initialize(mapload)
-	. = ..(mapload, "sandstone")
+	. = ..(mapload, MAT_SANDSTONE)
 /turf/simulated/wall/ironphoron/Initialize(mapload)
-	. = ..(mapload, "iron","phoron")
+	. = ..(mapload, MAT_IRON,MAT_PHORON)
 /turf/simulated/wall/golddiamond/Initialize(mapload)
-	. = ..(mapload, "gold","diamond")
+	. = ..(mapload, MAT_GOLD,MAT_DIAMOND)
 /turf/simulated/wall/silvergold/Initialize(mapload)
-	. = ..(mapload, "silver","gold")
+	. = ..(mapload, MAT_SILVER,MAT_GOLD)
 /turf/simulated/wall/sandstonediamond/Initialize(mapload)
-	. = ..(mapload, "sandstone","diamond")
+	. = ..(mapload, MAT_SANDSTONE,MAT_DIAMOND)
 /turf/simulated/wall/snowbrick/Initialize(mapload)
-	. = ..(mapload, "packed snow")
+	. = ..(mapload, MAT_SNOWBRICK)
 
 /turf/simulated/wall/resin/Initialize(mapload)
-	. = ..(mapload, "resin",null,"resin")
+	. = ..(mapload, MAT_RESIN,null,MAT_RESIN)
 
 /turf/simulated/wall/concrete
 	icon_state = "brick"
 
 /turf/simulated/wall/concrete/Initialize(mapload)
-	. = ..(mapload, "concrete") //3strong
+	. = ..(mapload, MAT_CONCRETE) //3strong
 
 /turf/simulated/wall/r_concrete
 	icon_state = "rbrick"
 
 /turf/simulated/wall/r_concrete/Initialize(mapload)
-	. = ..(mapload, "concrete","plasteel rebar") //3strong
+	. = ..(mapload, MAT_CONCRETE,MAT_PLASTEELREBAR) //3strong
 
 // Kind of wondering if this is going to bite me in the butt.
 /turf/simulated/wall/skipjack/Initialize(mapload)
-	. = ..(mapload, "alienalloy")
+	. = ..(mapload, MAT_ALIENALLOY)
 /turf/simulated/wall/skipjack/attackby()
 	return
 /turf/simulated/wall/titanium/Initialize(mapload)
-	. = ..(mapload, "titanium")
+	. = ..(mapload, MAT_TITANIUM)
 
 /turf/simulated/wall/durasteel/Initialize(mapload)
-	. = ..(mapload, "durasteel", "durasteel")
+	. = ..(mapload, MAT_DURASTEEL, MAT_DURASTEEL)
 
 /turf/simulated/wall/wood/Initialize(mapload)
 	. = ..(mapload,  MAT_WOOD)

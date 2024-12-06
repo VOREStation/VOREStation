@@ -237,7 +237,7 @@
 
 	B1.reagents.add_reagent("aluminum", 15)
 	B1.reagents.add_reagent("fuel",20)
-	B2.reagents.add_reagent("phoron", 15)
+	B2.reagents.add_reagent(REAGENT_ID_PHORON, 15)
 	B2.reagents.add_reagent("sacid", 15)
 	B1.reagents.add_reagent("fuel",20)
 

@@ -60,7 +60,7 @@ var/global/list/xenoChemList = list("mutationtoxin",
 						"lexorin",
 						"pacid",
 						"cyanide",
-						"phoron",
+						REAGENT_ID_PHORON,
 						"plasticide",
 						"amatoxin",
 						"carbon",
@@ -212,5 +212,3 @@ var/global/list/xenoChemList = list("mutationtoxin",
 	var/genetype	//Label for specifying what gene is used.
 	var/list/values	//What's going to be put into specific traits
 	var/list/chems
-
-

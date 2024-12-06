@@ -169,7 +169,7 @@
 /obj/item/reagent_containers/food/snacks/meat/worm/Initialize()
 	. = ..()
 	reagents.add_reagent("protein", 6)
-	reagents.add_reagent("phoron", 3)
+	reagents.add_reagent(REAGENT_ID_PHORON, 3)
 	reagents.add_reagent("myelamine", 3)
 	src.bitesize = 3
 

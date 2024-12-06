@@ -205,15 +205,15 @@
 #define WATER_LATENT_HEAT 19000 // How much heat is removed when applied to a hot turf, in J/unit (19000 makes 120 u of water roughly equivalent to 4L)
 
 /datum/reagent/water
-	name = "Water"
-	id = "water"
-	taste_description = "water"
+	name = REAGENT_WATER
+	id = REAGENT_ID_WATER
+	taste_description = REAGENT_ID_WATER
 	description = "A ubiquitous chemical substance that is composed of hydrogen and oxygen."
 	reagent_state = LIQUID
 	color = "#0064C877"
 	metabolism = REM * 10
 
-	glass_name = "water"
+	glass_name = REAGENT_ID_WATER
 	glass_desc = "The father of all refreshments."
 
 /datum/reagent/water/touch_turf(var/turf/simulated/T)

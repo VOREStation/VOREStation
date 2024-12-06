@@ -2,12 +2,12 @@ var/global/list/responsive_carriers = list(
 	"carbon",
 	"potassium",
 	"hydrogen",
-	"nitrogen",
+	REAGENT_ID_NITROGEN,
 	"mercury",
 	"iron",
 	"chlorine",
 	"phosphorus",
-	"phoron")
+	REAGENT_ID_PHORON)
 
 var/global/list/finds_as_strings = list(
 	"Trace organic cells",
@@ -27,12 +27,12 @@ var/global/list/finds_as_strings = list(
 		if(ARCHAEO_COIN, ARCHAEO_KNIFE, ARCHAEO_TOOL, ARCHAEO_METAL, ARCHAEO_CLAYMORE, ARCHAEO_RODS, ARCHAEO_KATANA, ARCHAEO_LASER, ARCHAEO_GUN)
 			return "iron"
 		if(ARCHAEO_CRYSTAL, ARCHAEO_SHARD, ARCHAEO_SOULSTONE)
-			return "nitrogen"
+			return REAGENT_ID_NITROGEN
 		if(ARCHAEO_CULTBLADE, ARCHAEO_TELEBEACON, ARCHAEO_CULTROBES, ARCHAEO_STOCKPARTS)
 			return "potassium"
 		if(ARCHAEO_FOSSIL, ARCHAEO_SHELL, ARCHAEO_PLANT, ARCHAEO_REMAINS_HUMANOID, ARCHAEO_REMAINS_ROBOT, ARCHAEO_REMAINS_XENO, ARCHAEO_GASMASK)
 			return "carbon"
-	return "phoron"
+	return REAGENT_ID_PHORON
 
 /proc/get_random_digsite_type()
 	return pick(100;DIGSITE_GARDEN, 95;DIGSITE_ANIMAL, 90;DIGSITE_HOUSE, 85;DIGSITE_TECHNICAL,  85;DIGSITE_MIDDEN, 80;DIGSITE_TEMPLE, 75;DIGSITE_WAR)
