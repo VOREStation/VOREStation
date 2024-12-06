@@ -19,7 +19,7 @@ Keep outfits simple. Spawn with basic uniforms and minimal gear. Gear instead go
 	backpack_contents = list(/obj/item/clothing/accessory/permit/gun/planetside = 1)
 
 	headset = /obj/item/radio/headset/explorer
-	headset_alt = /obj/item/radio/headset/explorer
+	headset_alt = /obj/item/radio/headset/alt/explorer
 	headset_earbud = /obj/item/radio/headset/explorer
 
 /decl/hierarchy/outfit/job/explorer2/post_equip(mob/living/carbon/human/H)
@@ -54,9 +54,9 @@ Keep outfits simple. Spawn with basic uniforms and minimal gear. Gear instead go
 	id_pda_assignment = JOB_PILOT
 	flags = OUTFIT_HAS_BACKPACK|OUTFIT_COMPREHENSIVE_SURVIVAL
 
-	headset = /obj/item/radio/headset/alt/pilot
+	headset = /obj/item/radio/headset/pilot
 	headset_alt = /obj/item/radio/headset/alt/pilot
-	headset_earbud = /obj/item/radio/headset/alt/pilot
+	headset_earbud = /obj/item/radio/headset/pilot
 
 /decl/hierarchy/outfit/job/medical/sar
 	name = OUTFIT_JOB_NAME("Field Medic") //VOREStation Edit
@@ -72,5 +72,5 @@ Keep outfits simple. Spawn with basic uniforms and minimal gear. Gear instead go
 	flags = OUTFIT_HAS_BACKPACK|OUTFIT_EXTENDED_SURVIVAL|OUTFIT_COMPREHENSIVE_SURVIVAL
 
 	headset = /obj/item/radio/headset/sar
-	headset_alt = /obj/item/radio/headset/sar
+	headset_alt = /obj/item/radio/headset/alt/sar
 	headset_earbud = /obj/item/radio/headset/sar
