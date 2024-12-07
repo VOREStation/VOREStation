@@ -338,7 +338,7 @@
 
 /obj/item/reagent_containers/syringe/inaprovaline/Initialize()
 	. = ..()
-	reagents.add_reagent("inaprovaline", 15)
+	reagents.add_reagent(REAGENT_ID_INAPROVALINE, 15)
 	//mode = SYRINGE_INJECT //VOREStation Edit - Starts capped
 	//update_icon()
 
@@ -348,7 +348,7 @@
 
 /obj/item/reagent_containers/syringe/antitoxin/Initialize()
 	. = ..()
-	reagents.add_reagent("anti_toxin", 15)
+	reagents.add_reagent(REAGENT_ID_ANTITOXIN, 15)
 	//mode = SYRINGE_INJECT //VOREStation Edit - Starts capped
 	//update_icon()
 
@@ -358,7 +358,7 @@
 
 /obj/item/reagent_containers/syringe/antiviral/Initialize()
 	. = ..()
-	reagents.add_reagent("spaceacillin", 15)
+	reagents.add_reagent(REAGENT_ID_SPACEACILLIN, 15)
 	//mode = SYRINGE_INJECT //VOREStation Edit - Starts capped
 	//update_icon()
 
@@ -387,7 +387,7 @@
 /obj/item/reagent_containers/syringe/steroid/Initialize()
 	..()
 	//reagents.add_reagent(REAGENT_ID_ADRENALINE,5) //VOREStation Edit - No thanks.
-	reagents.add_reagent("hyperzine",10)
+	reagents.add_reagent(REAGENT_ID_HYPERZINE,10)
 
 /obj/item/reagent_containers/syringe/proc/dirty(var/mob/living/carbon/human/target, var/obj/item/organ/external/eo)
 	if(!ishuman(loc))

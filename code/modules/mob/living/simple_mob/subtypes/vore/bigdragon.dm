@@ -1007,7 +1007,7 @@ I think I covered everything.
 				//Alternatively bully a coder (me) to make a unique digest_mode for mob healbellies that prevents death, or something.
 				if(istype(A, /mob/living/carbon/human))
 					var/mob/living/carbon/human/P = L
-					var/list/to_inject = list("myelamine","osteodaxon","spaceacillin","peridaxon", REAGENT_ID_IRON, "hyronalin")
+					var/list/to_inject = list(REAGENT_ID_MYELAMINE,REAGENT_ID_OSTEODAXON,REAGENT_ID_SPACEACILLIN,REAGENT_ID_PERIDAXON, REAGENT_ID_IRON, REAGENT_ID_HYRONALIN)
 					//Lets not OD them...
 					for(var/RG in to_inject)
 						if(!P.reagents.has_reagent(RG))

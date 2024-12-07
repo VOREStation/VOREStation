@@ -448,7 +448,7 @@
 /obj/item/reagent_containers/food/snacks/aesirsalad/Initialize()
 	. = ..()
 	reagents.add_reagent("doctorsdelight", 8)
-	reagents.add_reagent("tricordrazine", 8)
+	reagents.add_reagent(REAGENT_ID_TRICORDRAZINE, 8)
 
 /obj/item/reagent_containers/food/snacks/candy/donor
 	name = "Donor Candy"
@@ -807,7 +807,7 @@
 		if(9)
 			reagents.add_reagent("berryjuice", 3)
 		if(10)
-			reagents.add_reagent("tricordrazine", 3)
+			reagents.add_reagent(REAGENT_ID_TRICORDRAZINE, 3)
 
 /obj/item/reagent_containers/food/snacks/donut/plain/jelly/poisonberry
 	filling_color = "#ED1169"
@@ -1077,7 +1077,7 @@
 /obj/item/reagent_containers/food/snacks/bearmeat/Initialize()
 	. = ..()
 	reagents.add_reagent("protein", 12)
-	reagents.add_reagent("hyperzine", 5)
+	reagents.add_reagent(REAGENT_ID_HYPERZINE, 5)
 
 /obj/item/reagent_containers/food/snacks/xenomeat
 	name = "xenomeat"
@@ -1139,7 +1139,7 @@
 	nutriment_amt = 2
 	nutriment_desc = list("heartiness" = 1, "dough" = 2)
 	var/warm = FALSE
-	var/list/heated_reagents = list("tricordrazine" = 5)
+	var/list/heated_reagents = list(REAGENT_ID_TRICORDRAZINE = 5)
 
 /obj/item/reagent_containers/food/snacks/donkpocket/Initialize()
 	. = ..()
@@ -1218,7 +1218,7 @@
 	name = "\improper Sin-pocket"
 	desc = "The food of choice for the veteran. Do <B>NOT</B> overconsume."
 	filling_color = "#6D6D00"
-	heated_reagents = list("doctorsdelight" = 5, "hyperzine" = 0.75, "synaptizine" = 0.25)
+	heated_reagents = list("doctorsdelight" = 5, REAGENT_ID_HYPERZINE = 0.75, REAGENT_ID_SYNAPTIZINE = 0.25)
 	var/has_been_heated = 0
 
 /obj/item/reagent_containers/food/snacks/donkpocket/sinpocket/attack_self(mob/user)
@@ -1244,7 +1244,7 @@
 /obj/item/reagent_containers/food/snacks/brainburger/Initialize()
 	. = ..()
 	reagents.add_reagent("protein", 6)
-	reagents.add_reagent("alkysine", 6)
+	reagents.add_reagent(REAGENT_ID_ALKYSINE, 6)
 
 /obj/item/reagent_containers/food/snacks/ghostburger
 	name = "Ghost Burger"
@@ -1536,7 +1536,7 @@
 		name = "exceptional plump pie"
 		desc = "Microwave is taken by a fey mood! It has cooked an exceptional plump pie!"
 		reagents.add_reagent(REAGENT_ID_NUTRIMENT, 8, nutriment_desc)
-		reagents.add_reagent("tricordrazine", 5)
+		reagents.add_reagent(REAGENT_ID_TRICORDRAZINE, 5)
 
 /obj/item/reagent_containers/food/snacks/xemeatpie
 	name = "Xeno-pie"
@@ -1706,7 +1706,7 @@
 
 /obj/item/reagent_containers/food/snacks/carrotfries/Initialize()
 	. = ..()
-	reagents.add_reagent("imidazoline", 3)
+	reagents.add_reagent(REAGENT_ID_IMIDAZOLINE, 3)
 
 
 /obj/item/reagent_containers/food/snacks/cheesyfries
@@ -2507,7 +2507,7 @@
 /obj/item/reagent_containers/food/snacks/nettlesoup/Initialize()
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_WATER, 5)
-	reagents.add_reagent("tricordrazine", 5)
+	reagents.add_reagent(REAGENT_ID_TRICORDRAZINE, 5)
 
 /obj/item/reagent_containers/food/snacks/mysterysoup
 	name = "Mystery soup"
@@ -2536,7 +2536,7 @@
 		if(3)
 			reagents.add_reagent(REAGENT_ID_NUTRIMENT, 5, nutriment_desc)
 			reagents.add_reagent(REAGENT_ID_WATER, 5)
-			reagents.add_reagent("tricordrazine", 5)
+			reagents.add_reagent(REAGENT_ID_TRICORDRAZINE, 5)
 		if(4)
 			reagents.add_reagent(REAGENT_ID_NUTRIMENT, 5, nutriment_desc)
 			reagents.add_reagent(REAGENT_ID_WATER, 10)
@@ -2558,7 +2558,7 @@
 		if(10)
 			reagents.add_reagent(REAGENT_ID_NUTRIMENT, 6, nutriment_desc)
 			reagents.add_reagent("tomatojuice", 5)
-			reagents.add_reagent("imidazoline", 5)
+			reagents.add_reagent(REAGENT_ID_IMIDAZOLINE, 5)
 
 /obj/item/reagent_containers/food/snacks/wishsoup
 	name = "Wish Soup"
@@ -2663,7 +2663,7 @@
 	. = ..()
 	reagents.add_reagent("protein", 4)
 	reagents.add_reagent("tomatojuice", 5)
-	reagents.add_reagent("imidazoline", 5)
+	reagents.add_reagent(REAGENT_ID_IMIDAZOLINE, 5)
 	reagents.add_reagent(REAGENT_ID_WATER, 5)
 
 /obj/item/reagent_containers/food/snacks/bearstew
@@ -2681,9 +2681,9 @@
 /obj/item/reagent_containers/food/snacks/bearstew/Initialize()
 	. = ..()
 	reagents.add_reagent("protein", 4)
-	reagents.add_reagent("hyperzine", 5)
+	reagents.add_reagent(REAGENT_ID_HYPERZINE, 5)
 	reagents.add_reagent("tomatojuice", 5)
-	reagents.add_reagent("imidazoline", 5)
+	reagents.add_reagent(REAGENT_ID_IMIDAZOLINE, 5)
 	reagents.add_reagent(REAGENT_ID_WATER, 5)
 
 
@@ -2742,7 +2742,7 @@
 	reagents.add_reagent("protein", 3)
 	reagents.add_reagent("capsaicin", 3)
 	reagents.add_reagent("tomatojuice", 2)
-	reagents.add_reagent("hyperzine", 5)
+	reagents.add_reagent(REAGENT_ID_HYPERZINE, 5)
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////Sliceable/////////////////////////////////////////////////
@@ -2950,7 +2950,7 @@
 
 /obj/item/reagent_containers/food/snacks/sliceable/carrotcake/Initialize()
 	. = ..()
-	reagents.add_reagent("imidazoline", 10)
+	reagents.add_reagent(REAGENT_ID_IMIDAZOLINE, 10)
 
 /obj/item/reagent_containers/food/snacks/slice/carrotcake
 	name = "Carrot Cake slice"
@@ -2980,7 +2980,7 @@
 /obj/item/reagent_containers/food/snacks/sliceable/braincake/Initialize()
 	. = ..()
 	reagents.add_reagent("protein", 25)
-	reagents.add_reagent("alkysine", 10)
+	reagents.add_reagent(REAGENT_ID_ALKYSINE, 10)
 
 /obj/item/reagent_containers/food/snacks/slice/braincake
 	name = "Brain Cake slice"
@@ -3436,8 +3436,8 @@
 	. = ..()
 	reagents.add_reagent("protein", 2)
 	reagents.add_reagent(REAGENT_ID_AMBROSIAEXTRACT, 2)
-	reagents.add_reagent("bicaridine", 1)
-	reagents.add_reagent("kelotane", 1)
+	reagents.add_reagent(REAGENT_ID_BICARIDINE, 1)
+	reagents.add_reagent(REAGENT_ID_KELOTANE, 1)
 	reagents.add_reagent(REAGENT_ID_TOXIN, 1)
 
 /obj/item/reagent_containers/food/snacks/cosmicbrowniesslice
@@ -3776,7 +3776,7 @@
 	. = ..()
 	reagents.add_reagent("protein", 5)
 	reagents.add_reagent("tomatojuice", 6)
-	reagents.add_reagent("imidazoline", 12)
+	reagents.add_reagent(REAGENT_ID_IMIDAZOLINE, 12)
 
 /obj/item/reagent_containers/food/snacks/slice/vegetablepizza
 	name = "Vegetable pizza slice"
@@ -4279,7 +4279,7 @@
 	. = ..()
 	set_light(1, 1, "#5dadcf")
 
-	reagents.add_reagent("oxycodone", 1)
+	reagents.add_reagent(REAGENT_ID_OXYCODONE, 1)
 	reagents.add_reagent(REAGENT_ID_SIFSAP, 5)
 	reagents.add_reagent(REAGENT_ID_BLISS, 5)
 
@@ -4365,8 +4365,8 @@
 /obj/item/reagent_containers/food/snacks/liquidvitamin/Initialize()
 	. = ..()
 	reagents.add_reagent("flour", 20)
-	reagents.add_reagent("tricordrazine", 5)
-	reagents.add_reagent("paracetamol", 5)
+	reagents.add_reagent(REAGENT_ID_TRICORDRAZINE, 5)
+	reagents.add_reagent(REAGENT_ID_PARACETAMOL, 5)
 	reagents.add_reagent("enzyme", 1)
 	reagents.add_reagent(REAGENT_ID_IRON, 3)
 
@@ -7043,7 +7043,7 @@
 /obj/item/reagent_containers/food/snacks/canned/spinach/Initialize()
 	.=..()
 	reagents.add_reagent(REAGENT_ID_ADRENALINE, 4)
-	reagents.add_reagent("hyperzine", 4)
+	reagents.add_reagent(REAGENT_ID_HYPERZINE, 4)
 	reagents.add_reagent(REAGENT_ID_IRON, 4)
 
 //////////////////////////////Advanced Canned Food//////////////////////////////

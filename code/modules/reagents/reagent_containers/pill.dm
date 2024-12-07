@@ -120,13 +120,13 @@
 
 //Pills
 /obj/item/reagent_containers/pill/antitox
-	name = "Dylovene (30u)" //VOREStation Edit
+	name = REAGENT_ANTITOXIN + " (30u)" //VOREStation Edit
 	desc = "Neutralizes many common toxins."
 	icon_state = "pill1"
 
 /obj/item/reagent_containers/pill/antitox/Initialize()
 	. = ..()
-	reagents.add_reagent("anti_toxin", 30) //VOREStation Edit
+	reagents.add_reagent(REAGENT_ID_ANTITOXIN, 30) //VOREStation Edit
 	color = reagents.get_color()
 
 /obj/item/reagent_containers/pill/tox
@@ -150,7 +150,7 @@
 
 
 /obj/item/reagent_containers/pill/adminordrazine
-	name = "Adminordrazine pill"
+	name = REAGENT_ADMINORDRAZINE + " pill"
 	desc = "It's magic. We don't have to explain it."
 	icon_state = "pillA"
 
@@ -160,7 +160,7 @@
 
 
 /obj/item/reagent_containers/pill/stox
-	name = "Soporific (15u)"
+	name = REAGENT_STOXIN + " (15u)"
 	desc = "Commonly used to treat insomnia."
 	icon_state = "pill2"
 
@@ -170,37 +170,37 @@
 	color = reagents.get_color()
 
 /obj/item/reagent_containers/pill/kelotane
-	name = "Kelotane (20u)" //VOREStation Edit
+	name = REAGENT_KELOTANE + " (20u)" //VOREStation Edit
 	desc = "Used to treat burns."
 	icon_state = "pill3"
 
 /obj/item/reagent_containers/pill/kelotane/Initialize()
 	. = ..()
-	reagents.add_reagent("kelotane", 20) //VOREStation Edit
+	reagents.add_reagent(REAGENT_ID_KELOTANE, 20) //VOREStation Edit
 	color = reagents.get_color()
 
 /obj/item/reagent_containers/pill/paracetamol
-	name = "Paracetamol (15u)"
-	desc = "Paracetamol! A painkiller for the ages. Chewables!"
+	name = REAGENT_PARACETAMOL + " (15u)"
+	desc = REAGENT_PARACETAMOL + "! A painkiller for the ages. Chewables!"
 	icon_state = "pill3"
 
 /obj/item/reagent_containers/pill/paracetamol/Initialize()
 	. = ..()
-	reagents.add_reagent("paracetamol", 15)
+	reagents.add_reagent(REAGENT_ID_PARACETAMOL, 15)
 	color = reagents.get_color()
 
 /obj/item/reagent_containers/pill/tramadol
-	name = "Tramadol (15u)"
+	name = REAGENT_TRAMADOL + " (15u)"
 	desc = "A simple painkiller."
 	icon_state = "pill3"
 
 /obj/item/reagent_containers/pill/tramadol/Initialize()
 	. = ..()
-	reagents.add_reagent("tramadol", 15)
+	reagents.add_reagent(REAGENT_ID_TRAMADOL, 15)
 	color = reagents.get_color()
 
 /obj/item/reagent_containers/pill/methylphenidate
-	name = "Methylphenidate (15u)"
+	name = REAGENT_METHYLPHENIDATE + " (15u)"
 	desc = "Improves the ability to concentrate."
 	icon_state = "pill2"
 
@@ -210,7 +210,7 @@
 	color = reagents.get_color()
 
 /obj/item/reagent_containers/pill/citalopram
-	name = "Citalopram (15u)"
+	name = REAGENT_CITALOPRAM + " (15u)"
 	desc = "Mild anti-depressant."
 	icon_state = "pill4"
 
@@ -220,77 +220,77 @@
 	color = reagents.get_color()
 
 /obj/item/reagent_containers/pill/dexalin
-	name = "Dexalin (7.5u)" //VOREstation Edit
+	name = REAGENT_DEXALIN + " (7.5u)" //VOREstation Edit
 	desc = "Used to treat oxygen deprivation."
 	icon_state = "pill1"
 
 /obj/item/reagent_containers/pill/dexalin/Initialize()
 	. = ..()
-	reagents.add_reagent("dexalin", 7.5) //VOREStation Edit
+	reagents.add_reagent(REAGENT_ID_DEXALIN, 7.5) //VOREStation Edit
 	color = reagents.get_color()
 
 /obj/item/reagent_containers/pill/dexalin_plus
-	name = "Dexalin Plus (15u)"
+	name = REAGENT_DEXALINP + " (15u)"
 	desc = "Used to treat extreme oxygen deprivation."
 	icon_state = "pill2"
 
 /obj/item/reagent_containers/pill/dexalin_plus/Initialize()
 	. = ..()
-	reagents.add_reagent("dexalinp", 15)
+	reagents.add_reagent(REAGENT_ID_DEXALINP, 15)
 	color = reagents.get_color()
 
 /obj/item/reagent_containers/pill/dermaline
-	name = "Dermaline (15u)"
+	name = REAGENT_DERMALINE + " (15u)"
 	desc = "Used to treat burn wounds."
 	icon_state = "pill2"
 
 /obj/item/reagent_containers/pill/dermaline/Initialize()
 	. = ..()
-	reagents.add_reagent("dermaline", 15)
+	reagents.add_reagent(REAGENT_ID_DERMALINE, 15)
 	color = reagents.get_color()
 
 /obj/item/reagent_containers/pill/dylovene
-	name = "Dylovene (15u)"
+	name = REAGENT_ANTITOXIN + " (15u)"
 	desc = "A broad-spectrum anti-toxin."
 	icon_state = "pill1"
 
 /obj/item/reagent_containers/pill/dylovene/Initialize()
 	. = ..()
-	reagents.add_reagent("anti_toxin", 15)
+	reagents.add_reagent(REAGENT_ID_ANTITOXIN, 15)
 	color = reagents.get_color()
 
 /obj/item/reagent_containers/pill/inaprovaline
-	name = "Inaprovaline (30u)"
+	name = REAGENT_INAPROVALINE + " (30u)"
 	desc = "Used to stabilize patients."
 	icon_state = "pill2"
 
 /obj/item/reagent_containers/pill/inaprovaline/Initialize()
 	. = ..()
-	reagents.add_reagent("inaprovaline", 30)
+	reagents.add_reagent(REAGENT_ID_INAPROVALINE, 30)
 	color = reagents.get_color()
 
 /obj/item/reagent_containers/pill/bicaridine
-	name = "Bicaridine (20u)"
+	name = REAGENT_BICARIDINE + " (20u)"
 	desc = "Used to treat physical injuries."
 	icon_state = "pill2"
 
 /obj/item/reagent_containers/pill/bicaridine/Initialize()
 	. = ..()
-	reagents.add_reagent("bicaridine", 20)
+	reagents.add_reagent(REAGENT_ID_BICARIDINE, 20)
 	color = reagents.get_color()
 
 /obj/item/reagent_containers/pill/spaceacillin
-	name = "Spaceacillin (15u)" //VOREStation Edit
+	name = REAGENT_SPACEACILLIN + " (15u)" //VOREStation Edit
 	desc = "A theta-lactam antibiotic. Effective against many diseases likely to be encountered in space."
 	icon_state = "pill3"
 
 /obj/item/reagent_containers/pill/spaceacillin/Initialize()
 	. = ..()
-	reagents.add_reagent("spaceacillin", 15)
+	reagents.add_reagent(REAGENT_ID_SPACEACILLIN, 15)
 	color = reagents.get_color()
 
 /obj/item/reagent_containers/pill/carbon
-	name = "Carbon (30u)" //VOREStation Edit
+	name = REAGENT_CARBON + " (30u)" //VOREStation Edit
 	desc = "Used to neutralise chemicals in the stomach."
 	icon_state = "pill3"
 
@@ -300,7 +300,7 @@
 	color = reagents.get_color()
 
 /obj/item/reagent_containers/pill/iron
-	name = "Iron (30u)" //VOREStation Edit
+	name = REAGENT_IRON + " (30u)" //VOREStation Edit
 	desc = "Used to aid in blood regeneration after bleeding for red-blooded crew."
 	icon_state = "pill1"
 
@@ -310,7 +310,7 @@
 	color = reagents.get_color()
 
 /obj/item/reagent_containers/pill/copper
-	name = "Copper (30u)"
+	name = REAGENT_COPPER + " (30u)"
 	desc = "Used to aid in blood regeneration after bleeding for blue-blooded crew."
 	icon_state = "pill1"
 

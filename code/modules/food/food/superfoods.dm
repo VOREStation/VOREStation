@@ -215,29 +215,29 @@
 			reagents.add_reagent(REAGENT_ID_STOMACID, 10)
 			reagents.add_reagent(REAGENT_ID_MUTAGEN, 4)
 			reagents.add_reagent("thirteenloko", 20)
-			reagents.add_reagent("hyperzine", 10)
+			reagents.add_reagent(REAGENT_ID_HYPERZINE, 10)
 			bitesize = 30
 		if(4)
 			name = "Slice Of Good" //anti-tox
 			desc = "A colourful slice, smelling of pear and coated in delicious cream."
 			nutriment_desc = list("Hapiness" = 10)
-			reagents.add_reagent("anti_toxin", 2)
-			reagents.add_reagent("tricordrazine", 2)
+			reagents.add_reagent(REAGENT_ID_ANTITOXIN, 2)
+			reagents.add_reagent(REAGENT_ID_TRICORDRAZINE, 2)
 			bitesize = 3
 		if(5)
 			name = "Slice Of Good" //anti-oxy
 			desc = "A light slice, it's pretty to look at and smells of vanilla."
 			nutriment_desc = list("Freedom" = 10)
-			reagents.add_reagent("dexalinp", 2)
-			reagents.add_reagent("tricordrazine", 2)
+			reagents.add_reagent(REAGENT_ID_DEXALINP, 2)
+			reagents.add_reagent(REAGENT_ID_TRICORDRAZINE, 2)
 			bitesize = 3
 		if(6)
 			name = "Slice Of Good" //anti-burn/brute
 			desc = "A hearty slice, it smells of chocolate and strawberries."
 			nutriment_desc = list("Love" = 10)
-			reagents.add_reagent("bicaridine", 2)
-			reagents.add_reagent("tricordrazine", 2)
-			reagents.add_reagent("kelotane", 2)
+			reagents.add_reagent(REAGENT_ID_BICARIDINE, 2)
+			reagents.add_reagent(REAGENT_ID_TRICORDRAZINE, 2)
+			reagents.add_reagent(REAGENT_ID_KELOTANE, 2)
 			bitesize = 4
 
 /obj/structure/chaoscake/attackby(var/obj/item/W, var/mob/living/user)

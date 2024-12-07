@@ -103,7 +103,7 @@
 /obj/item/reagent_containers/food/snacks/bearmeat/Initialize()
 	. = ..()
 	reagents.add_reagent("protein", 12)
-	reagents.add_reagent("hyperzine", 5)
+	reagents.add_reagent(REAGENT_ID_HYPERZINE, 5)
 
 /obj/item/reagent_containers/food/snacks/xenomeat
 	name = "xenomeat"
@@ -170,7 +170,7 @@
 	. = ..()
 	reagents.add_reagent("protein", 6)
 	reagents.add_reagent(REAGENT_ID_PHORON, 3)
-	reagents.add_reagent("myelamine", 3)
+	reagents.add_reagent(REAGENT_ID_MYELAMINE, 3)
 	src.bitesize = 3
 
 /obj/item/reagent_containers/food/snacks/meat/worm/attackby(obj/item/W as obj, mob/user as mob)

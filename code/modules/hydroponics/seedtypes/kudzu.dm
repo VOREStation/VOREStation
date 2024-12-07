@@ -3,7 +3,7 @@
 	seed_name = "kudzu"
 	display_name = "kudzu vines"
 	kitchen_tag = "kudzu"
-	chems = list(REAGENT_ID_NUTRIMENT = list(1,50), "anti_toxin" = list(1,25))
+	chems = list(REAGENT_ID_NUTRIMENT = list(1,50), REAGENT_ID_ANTITOXIN = list(1,25))
 
 /datum/seed/kudzu/New()
 	..()

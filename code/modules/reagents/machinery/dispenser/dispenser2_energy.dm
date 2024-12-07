@@ -37,11 +37,11 @@
 
 /obj/machinery/chemical_dispenser/ert
 	dispense_reagents = list(
-		"inaprovaline", "ryetalyn", "paracetamol", "tramadol", "oxycodone", "sterilizine", "leporazine",
-		"kelotane", "dermaline", "dexalin", "dexalinp", "tricordrazine", "anti_toxin", "synaptizine",
-		"hyronalin", "arithrazine", "alkysine", "imidazoline", "peridaxon", "bicaridine", "hyperzine",
-		"rezadone", "spaceacillin", "ethylredoxrazine", REAGENT_ID_STOXIN, REAGENT_ID_CHLORALHYDRATE, "cryoxadone",
-		"clonexadone"
+		REAGENT_ID_INAPROVALINE, REAGENT_ID_RYETALYN, REAGENT_ID_PARACETAMOL, REAGENT_ID_TRAMADOL, REAGENT_ID_OXYCODONE, REAGENT_ID_STERILIZINE, REAGENT_ID_LEPORAZINE,
+		REAGENT_ID_KELOTANE, REAGENT_ID_DERMALINE, REAGENT_ID_DEXALIN, REAGENT_ID_DEXALINP, REAGENT_ID_TRICORDRAZINE, REAGENT_ID_ANTITOXIN, REAGENT_ID_SYNAPTIZINE,
+		REAGENT_ID_HYRONALIN, REAGENT_ID_ARITHRAZINE, REAGENT_ID_ALKYSINE, REAGENT_ID_IMIDAZOLINE, REAGENT_ID_PERIDAXON, REAGENT_ID_BICARIDINE, REAGENT_ID_HYPERZINE,
+		REAGENT_ID_REZADONE, REAGENT_ID_SPACEACILLIN, REAGENT_ID_ETHYLREDOXRAZINE, REAGENT_ID_STOXIN, REAGENT_ID_CHLORALHYDRATE, REAGENT_ID_CRYOXADONE,
+		REAGENT_ID_CLONEXADONE
 		)
 
 /obj/machinery/chemical_dispenser/bar_soft

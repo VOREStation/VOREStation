@@ -72,7 +72,7 @@
 		var/list/descriptors = list()
 		if(reagents.has_reagent(REAGENT_ID_SUGAR) || reagents.has_reagent("cherryjelly") || reagents.has_reagent("honey") || reagents.has_reagent("berryjuice"))
 			descriptors |= "sweet"
-		if(reagents.has_reagent("anti_toxin"))
+		if(reagents.has_reagent(REAGENT_ID_ANTITOXIN))
 			descriptors |= "astringent"
 		if(reagents.has_reagent("frostoil"))
 			descriptors |= "numbing"
@@ -88,11 +88,11 @@
 			descriptors |= "radioactive"
 		if(reagents.has_reagent(REAGENT_ID_AMATOXIN) || reagents.has_reagent(REAGENT_ID_TOXIN))
 			descriptors |= "poisonous"
-		if(reagents.has_reagent(REAGENT_ID_PSILOCYBIN) || reagents.has_reagent(REAGENT_ID_BLISS) || reagents.has_reagent("earthsblood"))
+		if(reagents.has_reagent(REAGENT_ID_PSILOCYBIN) || reagents.has_reagent(REAGENT_ID_BLISS) || reagents.has_reagent(REAGENT_ID_EARTHSBLOOD))
 			descriptors |= "hallucinogenic"
-		if(reagents.has_reagent("bicaridine") || reagents.has_reagent("earthsblood"))
+		if(reagents.has_reagent(REAGENT_ID_BICARIDINE) || reagents.has_reagent(REAGENT_ID_EARTHSBLOOD))
 			descriptors |= "medicinal"
-		if(reagents.has_reagent(REAGENT_ID_GOLD) || reagents.has_reagent("earthsblood"))
+		if(reagents.has_reagent(REAGENT_ID_GOLD) || reagents.has_reagent(REAGENT_ID_EARTHSBLOOD))
 			descriptors |= "shiny"
 		if(reagents.has_reagent(REAGENT_ID_LUBE))
 			descriptors |= "slippery"

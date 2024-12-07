@@ -23,7 +23,7 @@
 	name = "stimbush"
 	seed_name = "stim-bush"
 	display_name = "stim-bush"
-	chems = list(REAGENT_ID_NUTRIMENT = list(1,10), "hyperzine" = list(1,10), "synaptizine" = list(1,5))
+	chems = list(REAGENT_ID_NUTRIMENT = list(1,10), REAGENT_ID_HYPERZINE = list(1,10), REAGENT_ID_SYNAPTIZINE = list(1,5))
 
 /datum/seed/tobacco/stimbush/New()
 	..()

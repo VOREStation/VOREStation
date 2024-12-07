@@ -1396,7 +1396,7 @@
 	desc = "A small bottle of finely ground poppyseed and mixed dried berries."
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "bottle3"
-	prefill = list("bicaridine" = 30, REAGENT_ID_NUTRIMENT = 30)
+	prefill = list(REAGENT_ID_BICARIDINE = 30, REAGENT_ID_NUTRIMENT = 30)
 
 /obj/item/clothing/accessory/storage/ritualharness/fluff/antoinette/Initialize()
 	. = ..()

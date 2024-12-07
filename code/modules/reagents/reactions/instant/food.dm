@@ -153,7 +153,7 @@
 	name = "Syntiflesh"
 	id = "syntiflesh"
 	result = null
-	required_reagents = list(REAGENT_ID_BLOOD = 5, "clonexadone" = 5)
+	required_reagents = list(REAGENT_ID_BLOOD = 5, REAGENT_ID_CLONEXADONE = 5)
 	result_amount = 1
 
 /decl/chemical_reaction/instant/food/syntiflesh/on_reaction(var/datum/reagents/holder, var/created_volume)

@@ -205,7 +205,7 @@
 	..()
 	reagents.add_reagent(REAGENT_ID_NICOTINE, 5)
 	reagents.add_reagent(REAGENT_ID_WATER, 10)
-	reagents.add_reagent("menthol", 5)
+	reagents.add_reagent(REAGENT_ID_MENTHOL, 5)
 
 /obj/item/reagent_containers/ecig_cartridge/watermelon
 	name = "watermelon flavour cartridge"

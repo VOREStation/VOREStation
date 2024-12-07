@@ -3,51 +3,51 @@
 
 /obj/item/reagent_containers/glass/beaker/vial/bicaridine
 	name = "vial (bicaridine)"
-	prefill = list("bicaridine" = 30)
+	prefill = list(REAGENT_ID_BICARIDINE = 30)
 
 /obj/item/reagent_containers/glass/beaker/vial/dylovene
 	name = "vial (dylovene)"
-	prefill = list("dylovene" = 30)
+	prefill = list(REAGENT_ID_ANTITOXIN = 30)
 
 /obj/item/reagent_containers/glass/beaker/vial/dermaline
 	name = "vial (dermaline)"
-	prefill = list("dermaline" = 30)
+	prefill = list(REAGENT_ID_DERMALINE = 30)
 
 /obj/item/reagent_containers/glass/beaker/vial/kelotane
 	name = "vial (kelotane)"
-	prefill = list("kelotane" = 30)
+	prefill = list(REAGENT_ID_KELOTANE = 30)
 
 /obj/item/reagent_containers/glass/beaker/vial/inaprovaline
 	name = "vial (inaprovaline)"
-	prefill = list("inaprovaline" = 30)
+	prefill = list(REAGENT_ID_INAPROVALINE = 30)
 
 /obj/item/reagent_containers/glass/beaker/vial/dexalin
 	name = "vial (dexalin)"
-	prefill = list("dexalin" = 30)
+	prefill = list(REAGENT_ID_DEXALIN = 30)
 
 /obj/item/reagent_containers/glass/beaker/vial/dexalinplus
 	name = "vial (dexalinp)"
-	prefill = list("dexalinp" = 30)
+	prefill = list(REAGENT_ID_DEXALINP = 30)
 
 /obj/item/reagent_containers/glass/beaker/vial/tricordrazine
 	name = "vial (tricordrazine)"
-	prefill = list("tricordrazine" = 30)
+	prefill = list(REAGENT_ID_TRICORDRAZINE = 30)
 
 /obj/item/reagent_containers/glass/beaker/vial/alkysine
 	name = "vial (alkysine)"
-	prefill = list("alkysine" = 30)
+	prefill = list(REAGENT_ID_ALKYSINE = 30)
 
 /obj/item/reagent_containers/glass/beaker/vial/imidazoline
 	name = "vial (imidazoline)"
-	prefill = list("imidazoline" = 30)
+	prefill = list(REAGENT_ID_IMIDAZOLINE = 30)
 
 /obj/item/reagent_containers/glass/beaker/vial/peridaxon
 	name = "vial (peridaxon)"
-	prefill = list("peridaxon" = 30)
+	prefill = list(REAGENT_ID_PERIDAXON = 30)
 
 /obj/item/reagent_containers/glass/beaker/vial/hyronalin
 	name = "vial (hyronalin)"
-	prefill = list("hyronalin" = 30)
+	prefill = list(REAGENT_ID_HYRONALIN = 30)
 
 /obj/item/reagent_containers/glass/beaker/vial/amorphorovir
 	name = "vial (" + REAGENT_ID_AMORPHOROVIR + ")"

@@ -31,7 +31,7 @@
 		if(!istype(blood))
 			blood = new(T)
 			blood.reagents.add_reagent(REAGENT_ID_BLOOD, 10,list("blood_colour" = color))
-			blood.reagents.add_reagent("tricorlidaze", 5)
+			blood.reagents.add_reagent(REAGENT_ID_TRICORLIDAZE, 5)
 			blood.update_icon()
 
 	return

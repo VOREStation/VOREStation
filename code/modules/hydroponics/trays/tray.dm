@@ -55,14 +55,14 @@
 	// Reagent information for process(), consider moving this to a controller along
 	// with cycle information under 'mechanical concerns' at some point.
 	var/static/list/toxic_reagents = list(
-		"anti_toxin" =     -2,
+		REAGENT_ID_ANTITOXIN =     -2,
 		REAGENT_ID_TOXIN =           2,
 		REAGENT_ID_FLUORINE =        2.5,
 		REAGENT_ID_CHLORINE =        1.5,
 		REAGENT_ID_SACID =           1.5,
 		REAGENT_ID_PACID =           3,
 		REAGENT_ID_PLANTBGONE =      3,
-		"cryoxadone" =     -3,
+		REAGENT_ID_CRYOXADONE =     -3,
 		REAGENT_ID_RADIUM =          2
 		)
 	var/static/list/nutrient_reagents = list(
@@ -116,7 +116,7 @@
 		REAGENT_ID_SACID =          list( -1,    0,   0  ),
 		REAGENT_ID_PACID =          list( -2,    0,   0  ),
 		REAGENT_ID_PLANTBGONE =     list( -2,    0,   0.2),
-		"cryoxadone" =     list(  3,    0,   0  ),
+		REAGENT_ID_CRYOXADONE =     list(  3,    0,   0  ),
 		REAGENT_ID_AMMONIA =        list(  0.5,  0,   0  ),
 		REAGENT_ID_DIETHYLAMINE =   list(  1,    0,   0  ),
 		REAGENT_ID_NUTRIMENT =      list(  0.5,  0.1, 0  ),

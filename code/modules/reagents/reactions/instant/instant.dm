@@ -4,54 +4,54 @@
 /* Common reactions */
 
 /decl/chemical_reaction/instant/inaprovaline
-	name = "Inaprovaline"
-	id = "inaprovaline"
-	result = "inaprovaline"
+	name = REAGENT_INAPROVALINE
+	id = REAGENT_ID_INAPROVALINE
+	result = REAGENT_ID_INAPROVALINE
 	required_reagents = list(REAGENT_ID_OXYGEN = 1, REAGENT_ID_CARBON = 1, REAGENT_ID_SUGAR = 1)
 	result_amount = 3
 
 /decl/chemical_reaction/instant/dylovene
-	name = "Dylovene"
-	id = "anti_toxin"
-	result = "anti_toxin"
+	name = REAGENT_ANTITOXIN
+	id = REAGENT_ID_ANTITOXIN
+	result = REAGENT_ID_ANTITOXIN
 	required_reagents = list(REAGENT_ID_SILICON = 1, REAGENT_ID_POTASSIUM = 1, REAGENT_ID_NITROGEN = 1)
 	result_amount = 3
 
 /decl/chemical_reaction/instant/carthatoline
-	name = "Carthatoline"
-	id = "carthatoline"
-	result = "carthatoline"
-	required_reagents = list("anti_toxin" = 1, REAGENT_ID_CARBON = 2, REAGENT_ID_PHORON = 0.1)
+	name = REAGENT_CARTHATOLINE
+	id = REAGENT_ID_CARTHATOLINE
+	result = REAGENT_ID_CARTHATOLINE
+	required_reagents = list(REAGENT_ID_ANTITOXIN = 1, REAGENT_ID_CARBON = 2, REAGENT_ID_PHORON = 0.1)
 	catalysts = list(REAGENT_ID_PHORON = 1)
 	result_amount = 2
 
 /decl/chemical_reaction/instant/paracetamol
-	name = "Paracetamol"
-	id = "paracetamol"
-	result = "paracetamol"
-	required_reagents = list("inaprovaline" = 1, REAGENT_ID_NITROGEN = 1, REAGENT_ID_WATER = 1)
+	name = REAGENT_PARACETAMOL
+	id = REAGENT_ID_PARACETAMOL
+	result = REAGENT_ID_PARACETAMOL
+	required_reagents = list(REAGENT_ID_INAPROVALINE = 1, REAGENT_ID_NITROGEN = 1, REAGENT_ID_WATER = 1)
 	result_amount = 2
 
 /decl/chemical_reaction/instant/tramadol
-	name = "Tramadol"
-	id = "tramadol"
-	result = "tramadol"
-	required_reagents = list("paracetamol" = 1, REAGENT_ID_ETHANOL = 1, REAGENT_ID_OXYGEN = 1)
+	name = REAGENT_TRAMADOL
+	id = REAGENT_ID_TRAMADOL
+	result = REAGENT_ID_TRAMADOL
+	required_reagents = list(REAGENT_ID_PARACETAMOL = 1, REAGENT_ID_ETHANOL = 1, REAGENT_ID_OXYGEN = 1)
 	result_amount = 3
 
 /decl/chemical_reaction/instant/oxycodone
-	name = "Oxycodone"
-	id = "oxycodone"
-	result = "oxycodone"
-	required_reagents = list(REAGENT_ID_ETHANOL = 1, "tramadol" = 1)
+	name = REAGENT_OXYCODONE
+	id = REAGENT_ID_OXYCODONE
+	result = REAGENT_ID_OXYCODONE
+	required_reagents = list(REAGENT_ID_ETHANOL = 1, REAGENT_ID_TRAMADOL = 1)
 	catalysts = list(REAGENT_ID_PHORON = 5)
 	result_amount = 1
 
 /decl/chemical_reaction/instant/sterilizine
-	name = "Sterilizine"
-	id = "sterilizine"
-	result = "sterilizine"
-	required_reagents = list(REAGENT_ID_ETHANOL = 1, "anti_toxin" = 1, REAGENT_ID_CHLORINE = 1)
+	name = REAGENT_STERILIZINE
+	id = REAGENT_ID_STERILIZINE
+	result = REAGENT_ID_STERILIZINE
+	required_reagents = list(REAGENT_ID_ETHANOL = 1, REAGENT_ID_ANTITOXIN = 1, REAGENT_ID_CHLORINE = 1)
 	result_amount = 3
 
 /decl/chemical_reaction/instant/silicate
@@ -104,24 +104,24 @@
 	result_amount = 3
 
 /decl/chemical_reaction/instant/synaptizine
-	name = "Synaptizine"
-	id = "synaptizine"
-	result = "synaptizine"
+	name = REAGENT_SYNAPTIZINE
+	id = REAGENT_ID_SYNAPTIZINE
+	result = REAGENT_ID_SYNAPTIZINE
 	required_reagents = list(REAGENT_ID_SUGAR = 1, REAGENT_ID_LITHIUM = 1, REAGENT_ID_WATER = 1)
 	result_amount = 3
 
 /decl/chemical_reaction/instant/hyronalin
-	name = "Hyronalin"
-	id = "hyronalin"
-	result = "hyronalin"
-	required_reagents = list(REAGENT_ID_RADIUM = 1, "anti_toxin" = 1)
+	name = REAGENT_HYRONALIN
+	id = REAGENT_ID_HYRONALIN
+	result = REAGENT_ID_HYRONALIN
+	required_reagents = list(REAGENT_ID_RADIUM = 1, REAGENT_ID_ANTITOXIN = 1)
 	result_amount = 2
 
 /decl/chemical_reaction/instant/arithrazine
-	name = "Arithrazine"
-	id = "arithrazine"
-	result = "arithrazine"
-	required_reagents = list("hyronalin" = 1, REAGENT_ID_HYDROGEN = 1)
+	name = REAGENT_ARITHRAZINE
+	id = REAGENT_ID_ARITHRAZINE
+	result = REAGENT_ID_ARITHRAZINE
+	required_reagents = list(REAGENT_ID_HYRONALIN = 1, REAGENT_ID_HYDROGEN = 1)
 	result_amount = 2
 
 /decl/chemical_reaction/instant/impedrezene
@@ -132,64 +132,64 @@
 	result_amount = 2
 
 /decl/chemical_reaction/instant/kelotane
-	name = "Kelotane"
-	id = "kelotane"
-	result = "kelotane"
+	name = REAGENT_KELOTANE
+	id = REAGENT_ID_KELOTANE
+	result = REAGENT_ID_KELOTANE
 	required_reagents = list(REAGENT_ID_SILICON = 1, REAGENT_ID_CARBON = 1)
 	result_amount = 2
 	log_is_important = 1
 
 /decl/chemical_reaction/instant/peridaxon
-	name = "Peridaxon"
-	id = "peridaxon"
-	result = "peridaxon"
-	required_reagents = list("bicaridine" = 2, "clonexadone" = 2)
+	name = REAGENT_PERIDAXON
+	id = REAGENT_ID_PERIDAXON
+	result = REAGENT_ID_PERIDAXON
+	required_reagents = list(REAGENT_ID_BICARIDINE = 2, REAGENT_ID_CLONEXADONE = 2)
 	catalysts = list(REAGENT_ID_PHORON = 5)
 	result_amount = 2
 
 /decl/chemical_reaction/instant/osteodaxon
-	name = "Osteodaxon"
-	id = "osteodaxon"
-	result = "osteodaxon"
-	required_reagents = list("bicaridine" = 2, REAGENT_ID_PHORON = 0.1, REAGENT_ID_CARPOTOXIN = 1)
+	name = REAGENT_OSTEODAXON
+	id = REAGENT_ID_OSTEODAXON
+	result = REAGENT_ID_OSTEODAXON
+	required_reagents = list(REAGENT_ID_BICARIDINE = 2, REAGENT_ID_PHORON = 0.1, REAGENT_ID_CARPOTOXIN = 1)
 	catalysts = list(REAGENT_ID_PHORON = 5)
-	inhibitors = list("clonexadone" = 1) // Messes with cryox
+	inhibitors = list(REAGENT_ID_CLONEXADONE = 1) // Messes with cryox
 	result_amount = 2
 
 /decl/chemical_reaction/instant/respirodaxon
-	name = "Respirodaxon"
-	id = "respirodaxon"
-	result = "respirodaxon"
-	required_reagents = list("dexalinp" = 2, REAGENT_ID_BIOMASS = 2, REAGENT_ID_PHORON = 1)
+	name = REAGENT_RESPIRODAXON
+	id = REAGENT_ID_HYRONALIN
+	result = REAGENT_ID_HYRONALIN
+	required_reagents = list(REAGENT_ID_DEXALINP = 2, REAGENT_ID_BIOMASS = 2, REAGENT_ID_PHORON = 1)
 	catalysts = list(REAGENT_ID_PHORON = 5)
-	inhibitors = list("dexalin" = 1)
+	inhibitors = list(REAGENT_ID_DEXALIN = 1)
 	result_amount = 2
 
 /decl/chemical_reaction/instant/gastirodaxon
-	name = "Gastirodaxon"
-	id = "gastirodaxon"
-	result = "gastirodaxon"
-	required_reagents = list("carthatoline" = 1, REAGENT_ID_BIOMASS = 2, REAGENT_ID_TUNGSTEN = 2)
+	name = REAGENT_GASTIRODAXON
+	id = REAGENT_ID_GASTIRODAXON
+	result = REAGENT_ID_GASTIRODAXON
+	required_reagents = list(REAGENT_ID_CARTHATOLINE = 1, REAGENT_ID_BIOMASS = 2, REAGENT_ID_TUNGSTEN = 2)
 	catalysts = list(REAGENT_ID_PHORON = 5)
 	inhibitors = list(REAGENT_ID_LITHIUM = 1)
 	result_amount = 3
 
 /decl/chemical_reaction/instant/hepanephrodaxon
-	name = "Hepanephrodaxon"
-	id = "hepanephrodaxon"
-	result = "hepanephrodaxon"
-	required_reagents = list("carthatoline" = 2, REAGENT_ID_BIOMASS = 2, REAGENT_ID_LITHIUM = 1)
+	name = REAGENT_HEPANEPHRODAXON
+	id = REAGENT_ID_HEPANEPHRODAXON
+	result = REAGENT_ID_HEPANEPHRODAXON
+	required_reagents = list(REAGENT_ID_CARTHATOLINE = 2, REAGENT_ID_BIOMASS = 2, REAGENT_ID_LITHIUM = 1)
 	catalysts = list(REAGENT_ID_PHORON = 5)
 	inhibitors = list(REAGENT_ID_TUNGSTEN = 1)
 	result_amount = 2
 
 /decl/chemical_reaction/instant/cordradaxon
-	name = "Cordradaxon"
-	id = "cordradaxon"
-	result = "cordradaxon"
-	required_reagents = list(REAGENT_ID_POTASSIUMCHLOROPHORIDE = 1, REAGENT_ID_BIOMASS = 2, "bicaridine" = 2)
+	name = REAGENT_CORDRADAXON
+	id = REAGENT_ID_CORDRADAXON
+	result = REAGENT_ID_CORDRADAXON
+	required_reagents = list(REAGENT_ID_POTASSIUMCHLOROPHORIDE = 1, REAGENT_ID_BIOMASS = 2, REAGENT_ID_BICARIDINE = 2)
 	catalysts = list(REAGENT_ID_PHORON = 5)
-	inhibitors = list("clonexadone" = 1)
+	inhibitors = list(REAGENT_ID_CLONEXADONE = 1)
 	result_amount = 2
 
 /decl/chemical_reaction/instant/virus_food
@@ -200,9 +200,9 @@
 	result_amount = 5
 
 /decl/chemical_reaction/instant/leporazine
-	name = "Leporazine"
-	id = "leporazine"
-	result = "leporazine"
+	name = REAGENT_LEPORAZINE
+	id = REAGENT_ID_LEPORAZINE
+	result = REAGENT_ID_LEPORAZINE
 	required_reagents = list(REAGENT_ID_SILICON = 1, REAGENT_ID_COPPER = 1)
 	catalysts = list(REAGENT_ID_PHORON = 5)
 	result_amount = 2
@@ -215,61 +215,61 @@
 	result_amount = 3
 
 /decl/chemical_reaction/instant/tricordrazine
-	name = "Tricordrazine"
-	id = "tricordrazine"
-	result = "tricordrazine"
-	required_reagents = list("inaprovaline" = 1, "anti_toxin" = 1)
+	name = REAGENT_TRICORDRAZINE
+	id = REAGENT_ID_TRICORDRAZINE
+	result = REAGENT_ID_TRICORDRAZINE
+	required_reagents = list(REAGENT_ID_INAPROVALINE = 1, REAGENT_ID_ANTITOXIN = 1)
 	result_amount = 2
 
 /decl/chemical_reaction/instant/alkysine
-	name = "Alkysine"
-	id = "alkysine"
-	result = "alkysine"
-	required_reagents = list(REAGENT_ID_CHLORINE = 1, REAGENT_ID_NITROGEN = 1, "anti_toxin" = 1)
+	name = REAGENT_ALKYSINE
+	id = REAGENT_ID_ALKYSINE
+	result = REAGENT_ID_ALKYSINE
+	required_reagents = list(REAGENT_ID_CHLORINE = 1, REAGENT_ID_NITROGEN = 1, REAGENT_ID_ANTITOXIN = 1)
 	result_amount = 2
 
 /decl/chemical_reaction/instant/dexalin
-	name = "Dexalin"
-	id = "dexalin"
-	result = "dexalin"
+	name = REAGENT_DEXALIN
+	id = REAGENT_ID_DEXALIN
+	result = REAGENT_ID_DEXALIN
 	required_reagents = list(REAGENT_ID_OXYGEN = 2, REAGENT_ID_PHORON = 0.1)
 	catalysts = list(REAGENT_ID_PHORON = 1)
 	inhibitors = list(REAGENT_ID_WATER = 1) // Messes with cryox
 	result_amount = 1
 
 /decl/chemical_reaction/instant/dermaline
-	name = "Dermaline"
-	id = "dermaline"
-	result = "dermaline"
-	required_reagents = list(REAGENT_ID_OXYGEN = 1, REAGENT_ID_PHOSPHORUS = 1, "kelotane" = 1)
+	name = REAGENT_DERMALINE
+	id = REAGENT_ID_DERMALINE
+	result = REAGENT_ID_DERMALINE
+	required_reagents = list(REAGENT_ID_OXYGEN = 1, REAGENT_ID_PHOSPHORUS = 1, REAGENT_ID_KELOTANE = 1)
 	result_amount = 3
 
 /decl/chemical_reaction/instant/dexalinp
-	name = "Dexalin Plus"
-	id = "dexalinp"
-	result = "dexalinp"
-	required_reagents = list("dexalin" = 1, REAGENT_ID_CARBON = 1, REAGENT_ID_IRON = 1)
+	name = REAGENT_DEXALINP
+	id = REAGENT_ID_DEXALINP
+	result = REAGENT_ID_DEXALINP
+	required_reagents = list(REAGENT_ID_DEXALIN = 1, REAGENT_ID_CARBON = 1, REAGENT_ID_IRON = 1)
 	result_amount = 3
 
 /decl/chemical_reaction/instant/bicaridine
-	name = "Bicaridine"
-	id = "bicaridine"
-	result = "bicaridine"
-	required_reagents = list("inaprovaline" = 1, REAGENT_ID_CARBON = 1)
+	name = REAGENT_BICARIDINE
+	id = REAGENT_ID_BICARIDINE
+	result = REAGENT_ID_BICARIDINE
+	required_reagents = list(REAGENT_ID_INAPROVALINE = 1, REAGENT_ID_CARBON = 1)
 	inhibitors = list(REAGENT_ID_SUGAR = 1) // Messes up with inaprovaline
 	result_amount = 2
 
 /decl/chemical_reaction/instant/myelamine
-	name = "Myelamine"
-	id = "myelamine"
-	result = "myelamine"
-	required_reagents = list("bicaridine" = 1, REAGENT_ID_IRON = 2, REAGENT_ID_SPIDERTOXIN = 1)
+	name = REAGENT_MYELAMINE
+	id = REAGENT_ID_MYELAMINE
+	result = REAGENT_ID_MYELAMINE
+	required_reagents = list(REAGENT_ID_BICARIDINE = 1, REAGENT_ID_IRON = 2, REAGENT_ID_SPIDERTOXIN = 1)
 	result_amount = 2
 
 /decl/chemical_reaction/instant/hyperzine
-	name = "Hyperzine"
-	id = "hyperzine"
-	result = "hyperzine"
+	name = REAGENT_HYPERZINE
+	id = REAGENT_ID_HYPERZINE
+	result = REAGENT_ID_HYPERZINE
 	required_reagents = list(REAGENT_ID_SUGAR = 1, REAGENT_ID_PHOSPHORUS = 1, REAGENT_ID_SULFUR = 1)
 	result_amount = 3
 
@@ -282,76 +282,76 @@
 	result_amount = 2
 
 /decl/chemical_reaction/instant/ryetalyn
-	name = "Ryetalyn"
-	id = "ryetalyn"
-	result = "ryetalyn"
-	required_reagents = list("arithrazine" = 1, REAGENT_ID_CARBON = 1)
+	name = REAGENT_RYETALYN
+	id = REAGENT_ID_RYETALYN
+	result = REAGENT_ID_RYETALYN
+	required_reagents = list(REAGENT_ID_ARITHRAZINE = 1, REAGENT_ID_CARBON = 1)
 	result_amount = 2
 
 /decl/chemical_reaction/instant/cryoxadone
-	name = "Cryoxadone"
-	id = "cryoxadone"
-	result = "cryoxadone"
-	required_reagents = list("dexalin" = 1, REAGENT_ID_WATER = 1, REAGENT_ID_OXYGEN = 1)
+	name = REAGENT_CRYOXADONE
+	id = REAGENT_ID_CRYOXADONE
+	result = REAGENT_ID_CRYOXADONE
+	required_reagents = list(REAGENT_ID_DEXALIN = 1, REAGENT_ID_WATER = 1, REAGENT_ID_OXYGEN = 1)
 	result_amount = 3
 
 /decl/chemical_reaction/instant/clonexadone
-	name = "Clonexadone"
-	id = "clonexadone"
-	result = "clonexadone"
-	required_reagents = list("cryoxadone" = 1, REAGENT_ID_SODIUM = 1, REAGENT_ID_PHORON = 0.1)
+	name = REAGENT_CLONEXADONE
+	id = REAGENT_ID_CLONEXADONE
+	result = REAGENT_ID_CLONEXADONE
+	required_reagents = list(REAGENT_ID_CRYOXADONE = 1, REAGENT_ID_SODIUM = 1, REAGENT_ID_PHORON = 0.1)
 	catalysts = list(REAGENT_ID_PHORON = 5)
 	result_amount = 2
 
 /decl/chemical_reaction/instant/mortiferin
-	name = "Mortiferin"
-	id = "mortiferin"
-	result = "mortiferin"
-	required_reagents = list(REAGENT_ID_CRYPTOBIOLIN = 1, "clonexadone" = 1, "corophizine" = 1)
+	name = REAGENT_MORTIFERIN
+	id = REAGENT_ID_MORTIFERIN
+	result = REAGENT_ID_MORTIFERIN
+	required_reagents = list(REAGENT_ID_CRYPTOBIOLIN = 1, REAGENT_ID_CLONEXADONE = 1, REAGENT_ID_COROPHIZINE = 1)
 	result_amount = 2
 	catalysts = list(REAGENT_ID_PHORON = 5)
 
 /decl/chemical_reaction/instant/spaceacillin
-	name = "Spaceacillin"
-	id = "spaceacillin"
-	result = "spaceacillin"
-	required_reagents = list(REAGENT_ID_CRYPTOBIOLIN = 1, "inaprovaline" = 1)
+	name = REAGENT_SPACEACILLIN
+	id = REAGENT_ID_SPACEACILLIN
+	result = REAGENT_ID_SPACEACILLIN
+	required_reagents = list(REAGENT_ID_CRYPTOBIOLIN = 1, REAGENT_ID_INAPROVALINE = 1)
 	result_amount = 2
 
 /decl/chemical_reaction/instant/corophizine
-	name = "Corophizine"
-	id = "corophizine"
-	result = "corophizine"
-	required_reagents = list("spaceacillin" = 1, REAGENT_ID_CARBON = 1, REAGENT_ID_PHORON = 0.1)
+	name = REAGENT_COROPHIZINE
+	id = REAGENT_ID_COROPHIZINE
+	result = REAGENT_ID_COROPHIZINE
+	required_reagents = list(REAGENT_ID_SPACEACILLIN = 1, REAGENT_ID_CARBON = 1, REAGENT_ID_PHORON = 0.1)
 	catalysts = list(REAGENT_ID_PHORON = 5)
 	result_amount = 2
 
 /decl/chemical_reaction/instant/immunosuprizine
-	name = "Immunosuprizine"
-	id = "immunosuprizine"
-	result = "immunosuprizine"
-	required_reagents = list("corophizine" = 1, REAGENT_ID_TUNGSTEN = 1, REAGENT_ID_SACID = 1)
+	name = REAGENT_IMMUNOSUPRIZINE
+	id = REAGENT_ID_IMMUNOSUPRIZINE
+	result = REAGENT_ID_IMMUNOSUPRIZINE
+	required_reagents = list(REAGENT_ID_COROPHIZINE = 1, REAGENT_ID_TUNGSTEN = 1, REAGENT_ID_SACID = 1)
 	catalysts = list(REAGENT_ID_PHORON = 5)
 	result_amount = 2
 
 /decl/chemical_reaction/instant/imidazoline
-	name = "imidazoline"
-	id = "imidazoline"
-	result = "imidazoline"
-	required_reagents = list(REAGENT_ID_CARBON = 1, REAGENT_ID_HYDROGEN = 1, "anti_toxin" = 1)
+	name = REAGENT_ID_IMIDAZOLINE
+	id = REAGENT_ID_IMIDAZOLINE
+	result = REAGENT_ID_IMIDAZOLINE
+	required_reagents = list(REAGENT_ID_CARBON = 1, REAGENT_ID_HYDROGEN = 1, REAGENT_ID_ANTITOXIN = 1)
 	result_amount = 2
 
 /decl/chemical_reaction/instant/ethylredoxrazine
-	name = "Ethylredoxrazine"
-	id = "ethylredoxrazine"
-	result = "ethylredoxrazine"
-	required_reagents = list(REAGENT_ID_OXYGEN = 1, "anti_toxin" = 1, REAGENT_ID_CARBON = 1)
+	name = REAGENT_ETHYLREDOXRAZINE
+	id = REAGENT_ID_ETHYLREDOXRAZINE
+	result = REAGENT_ID_ETHYLREDOXRAZINE
+	required_reagents = list(REAGENT_ID_OXYGEN = 1, REAGENT_ID_ANTITOXIN = 1, REAGENT_ID_CARBON = 1)
 	result_amount = 3
 
 /decl/chemical_reaction/instant/calciumcarbonate
 	name = "Calcium Carbonate"
-	id = "calciumcarbonate"
-	result = "calciumcarbonate"
+	id = REAGENT_ID_CALCIUMCARBONATE
+	result = REAGENT_ID_CALCIUMCARBONATE
 	required_reagents = list(REAGENT_ID_OXYGEN = 3, REAGENT_ID_CALCIUM = 1, REAGENT_ID_CARBON = 1)
 	result_amount = 2
 
@@ -404,7 +404,7 @@
 	name = REAGENT_MINDBREAKER
 	id = REAGENT_ID_MINDBREAKER
 	result = REAGENT_ID_MINDBREAKER
-	required_reagents = list(REAGENT_ID_SILICON = 1, REAGENT_ID_HYDROGEN = 1, "anti_toxin" = 1)
+	required_reagents = list(REAGENT_ID_SILICON = 1, REAGENT_ID_HYDROGEN = 1, REAGENT_ID_ANTITOXIN = 1)
 	result_amount = 3
 
 /decl/chemical_reaction/instant/lipozine
@@ -502,9 +502,9 @@
 	log_is_important = 1
 
 /decl/chemical_reaction/instant/rezadone
-	name = "Rezadone"
-	id = "rezadone"
-	result = "rezadone"
+	name = REAGENT_REZADONE
+	id = REAGENT_ID_REZADONE
+	result = REAGENT_ID_REZADONE
 	required_reagents = list(REAGENT_ID_CARPOTOXIN = 1, REAGENT_ID_CRYPTOBIOLIN = 1, REAGENT_ID_COPPER = 1)
 	result_amount = 3
 
@@ -533,7 +533,7 @@
 	name = REAGENT_PAROXETINE
 	id = REAGENT_ID_PAROXETINE
 	result = REAGENT_ID_PAROXETINE
-	required_reagents = list(REAGENT_ID_MINDBREAKER = 1, REAGENT_ID_OXYGEN = 1, "inaprovaline" = 1)
+	required_reagents = list(REAGENT_ID_MINDBREAKER = 1, REAGENT_ID_OXYGEN = 1, REAGENT_ID_INAPROVALINE = 1)
 	result_amount = 3
 
 /decl/chemical_reaction/instant/neurotoxin
@@ -1205,10 +1205,10 @@
 	result_amount = 4
 
 /decl/chemical_reaction/instant/malish_qualem
-	name = "Malish-Qualem"
-	id = "malish-qualem"
-	result = "malish-qualem"
-	required_reagents = list("immunosuprizine" = 1, REAGENT_ID_QERRQUEM = 1, "inaprovaline" = 1)
+	name = REAGENT_MALISHQUALEM
+	id = REAGENT_ID_MALISHQUALEM
+	result = REAGENT_ID_MALISHQUALEM
+	required_reagents = list(REAGENT_ID_IMMUNOSUPRIZINE = 1, REAGENT_ID_QERRQUEM = 1, REAGENT_ID_INAPROVALINE = 1)
 	catalysts = list(REAGENT_ID_PHORON = 5)
 	result_amount = 2
 
@@ -1226,7 +1226,7 @@
 	name = "Neutralize Toxic Proteins"
 	id = "neurotoxic_protein_neutral"
 	result = "protein"
-	required_reagents = list("anti_toxin" = 1, REAGENT_ID_NEUROTOXIC_PROTEIN = 2)
+	required_reagents = list(REAGENT_ID_ANTITOXIN = 1, REAGENT_ID_NEUROTOXIC_PROTEIN = 2)
 	result_amount = 2
 
 /decl/chemical_reaction/instant/neutralize_carpotoxin

@@ -260,8 +260,8 @@
 	if (M.getCloneLoss())
 		dat += span_warning("Subject appears to have been imperfectly cloned.")
 		dat += "<br>"
-//	if (M.reagents && M.reagents.get_reagent_amount("inaprovaline"))
-//		user.show_message(span_notice("Bloodstream Analysis located [M.reagents:get_reagent_amount("inaprovaline")] units of rejuvenation chemicals."))
+//	if (M.reagents && M.reagents.get_reagent_amount(REAGENT_ID_INAPROVALINE))
+//		user.show_message(span_notice("Bloodstream Analysis located [M.reagents:get_reagent_amount(REAGENT_ID_INAPROVALINE)] units of rejuvenation chemicals."))
 	if (M.has_brain_worms())
 		dat += span_warning("Subject suffering from aberrant brain activity. Recommend further scanning.")
 		dat += "<br>"

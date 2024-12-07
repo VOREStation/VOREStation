@@ -5,7 +5,7 @@
 	name = REAGENT_SIZEOXADONE
 	id = REAGENT_ID_SIZEOXADONE
 	result = REAGENT_ID_SIZEOXADONE
-	required_reagents = list("clonexadone" = 1, "tramadol" = 3, REAGENT_ID_PHORON = 1)
+	required_reagents = list(REAGENT_ID_CLONEXADONE = 1, REAGENT_ID_TRAMADOL = 3, REAGENT_ID_PHORON = 1)
 	catalysts = list(REAGENT_ID_PHORON = 5)
 	result_amount = 5
 
@@ -30,7 +30,7 @@
 	id = REAGENT_ID_NORMALCILLIN
 	result = REAGENT_ID_NORMALCILLIN
 	// POLARISTODO requires_heating = 1
-	required_reagents = list(REAGENT_ID_SIZEOXADONE = 20, "leporazine" = 20)
+	required_reagents = list(REAGENT_ID_SIZEOXADONE = 20, REAGENT_ID_LEPORAZINE = 20)
 	result_amount = 1
 
 /decl/chemical_reaction/instant/dontcrossthebeams
@@ -53,7 +53,7 @@
 	name = REAGENT_AMORPHOROVIR
 	id = REAGENT_ID_AMORPHOROVIR
 	result = REAGENT_ID_AMORPHOROVIR
-	required_reagents = list(REAGENT_ID_CRYPTOBIOLIN = 30, REAGENT_ID_BIOMASS = 30, "hyperzine" = 20)
+	required_reagents = list(REAGENT_ID_CRYPTOBIOLIN = 30, REAGENT_ID_BIOMASS = 30, REAGENT_ID_HYPERZINE = 20)
 	catalysts = list(REAGENT_ID_PHORON = 5)
 	result_amount = 1
 
@@ -61,21 +61,21 @@
 	name = REAGENT_ANDROROVIR
 	id = REAGENT_ID_ANDROROVIR
 	result = REAGENT_ID_ANDROROVIR
-	required_reagents = list(REAGENT_ID_AMORPHOROVIR = 1, "bicaridine" = 20, REAGENT_ID_IRON = 20, REAGENT_ID_ETHANOL = 20)
+	required_reagents = list(REAGENT_ID_AMORPHOROVIR = 1, REAGENT_ID_BICARIDINE = 20, REAGENT_ID_IRON = 20, REAGENT_ID_ETHANOL = 20)
 	result_amount = 1
 
 /decl/chemical_reaction/instant/gynorovir
 	name = REAGENT_GYNOROVIR
 	id = REAGENT_ID_GYNOROVIR
 	result = REAGENT_ID_GYNOROVIR
-	required_reagents = list(REAGENT_ID_AMORPHOROVIR = 1, "inaprovaline" = 20, REAGENT_ID_SILICON = 20, REAGENT_ID_SUGAR = 20)
+	required_reagents = list(REAGENT_ID_AMORPHOROVIR = 1, REAGENT_ID_INAPROVALINE = 20, REAGENT_ID_SILICON = 20, REAGENT_ID_SUGAR = 20)
 	result_amount = 1
 
 /decl/chemical_reaction/instant/androgynorovir
 	name = REAGENT_ANDROGYNOROVIR
 	id = REAGENT_ID_ANDROGYNOROVIR
 	result = REAGENT_ID_ANDROGYNOROVIR
-	required_reagents = list(REAGENT_ID_AMORPHOROVIR = 1, "anti_toxin" = 20, REAGENT_ID_FLUORINE = 20, REAGENT_ID_TUNGSTEN = 20)
+	required_reagents = list(REAGENT_ID_AMORPHOROVIR = 1, REAGENT_ID_ANTITOXIN = 20, REAGENT_ID_FLUORINE = 20, REAGENT_ID_TUNGSTEN = 20)
 	result_amount = 1
 
 /decl/chemical_reaction/instant/androrovir_bootleg
@@ -129,7 +129,7 @@
 	name = REAGENT_ICKYPAK
 	id = REAGENT_ID_ICKYPAK
 	result = REAGENT_ID_ICKYPAK
-	required_reagents = list("hyperzine" = 4, REAGENT_ID_FLUOROSURFACTANT = 1)
+	required_reagents = list(REAGENT_ID_HYPERZINE = 4, REAGENT_ID_FLUOROSURFACTANT = 1)
 	result_amount = 5
 
 /decl/chemical_reaction/instant/unsorbitol
@@ -152,7 +152,7 @@
 	name = REAGENT_VERMICETOL
 	id = REAGENT_ID_VERMICETOL
 	result = REAGENT_ID_VERMICETOL
-	required_reagents = list("bicaridine" = 2, REAGENT_ID_SHOCKCHEM = 1, REAGENT_ID_PHORON = 0.1)
+	required_reagents = list(REAGENT_ID_BICARIDINE = 2, REAGENT_ID_SHOCKCHEM = 1, REAGENT_ID_PHORON = 0.1)
 	catalysts = list(REAGENT_ID_PHORON = 5)
 	result_amount = 3
 

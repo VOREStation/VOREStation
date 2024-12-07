@@ -1504,7 +1504,7 @@
 /decl/chemical_reaction/instant/slime/emerald_hyperzine
 	name = "Slime Hyperzine"
 	id = "m_emerald_hyperzine"
-	result = "hyperzine"
+	result = REAGENT_ID_HYPERZINE
 	required_reagents = list(REAGENT_ID_WATER = 5)
 	result_amount = 30
 	required = /obj/item/slime_extract/emerald

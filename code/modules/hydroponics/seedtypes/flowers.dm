@@ -22,7 +22,7 @@
 	seed_name = "poppy"
 	display_name = "poppies"
 	kitchen_tag = "poppy"
-	chems = list(REAGENT_ID_NUTRIMENT = list(1,20), "bicaridine" = list(1,10))
+	chems = list(REAGENT_ID_NUTRIMENT = list(1,20), REAGENT_ID_BICARIDINE = list(1,10))
 
 /datum/seed/flower/poppy/New()
 	..()
@@ -58,7 +58,7 @@
 	seed_name = "lavender"
 	display_name = "lavender"
 	kitchen_tag = "lavender"
-	chems = list(REAGENT_ID_NUTRIMENT = list(1,20), "bicaridine" = list(1,10))
+	chems = list(REAGENT_ID_NUTRIMENT = list(1,20), REAGENT_ID_BICARIDINE = list(1,10))
 
 /datum/seed/flower/lavender/New()
 	..()

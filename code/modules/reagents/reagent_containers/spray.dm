@@ -109,12 +109,12 @@
 	reagents.add_reagent(REAGENT_ID_CLEANER, volume)
 
 /obj/item/reagent_containers/spray/sterilizine
-	name = "sterilizine"
+	name = REAGENT_ID_STERILIZINE
 	desc = "Great for hiding incriminating bloodstains and sterilizing scalpels."
 
 /obj/item/reagent_containers/spray/sterilizine/Initialize()
 	. = ..()
-	reagents.add_reagent("sterilizine", volume)
+	reagents.add_reagent(REAGENT_ID_STERILIZINE, volume)
 
 /obj/item/reagent_containers/spray/pepper
 	name = "pepperspray"

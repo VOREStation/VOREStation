@@ -11,7 +11,7 @@
 
 	//Special Ops
 	biomass			spawn_reagent = REAGENT_ID_BIOMASS
-	carthatoline	spawn_reagent = "carthatoline"
-	corophizine		spawn_reagent = "corophizine"
-	myelamine		spawn_reagent = "myelamine"
-	osteodaxon		spawn_reagent = "osteodaxon"
+	carthatoline	spawn_reagent = REAGENT_ID_CARTHATOLINE
+	corophizine		spawn_reagent = REAGENT_ID_COROPHIZINE
+	myelamine		spawn_reagent = REAGENT_ID_MYELAMINE
+	osteodaxon		spawn_reagent = REAGENT_ID_OSTEODAXON

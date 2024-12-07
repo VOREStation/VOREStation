@@ -99,7 +99,7 @@
 	name = REAGENT_SLIMEJELLY
 	id = "m_jelly"
 	result = REAGENT_ID_SLIMEJELLY
-	required_reagents = list("peridaxon" = 5)
+	required_reagents = list(REAGENT_ID_PERIDAXON = 5)
 	result_amount = 15
 	required = /obj/item/slime_extract/grey
 

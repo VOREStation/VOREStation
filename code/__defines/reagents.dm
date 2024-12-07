@@ -166,40 +166,100 @@
 #define REAGENT_ID_POLYMORPH "polymorph"
 #define REAGENT_GLAMOUR "Glamour"
 #define REAGENT_ID_GLAMOUR "glamour"
-
-
-
-
-#define REAGENT_
-#define REAGENT_ID_
-#define REAGENT_
-#define REAGENT_ID_
-#define REAGENT_
-#define REAGENT_ID_
-#define REAGENT_
-#define REAGENT_ID_
-#define REAGENT_
-#define REAGENT_ID_
-#define REAGENT_
-#define REAGENT_ID_
-#define REAGENT_
-#define REAGENT_ID_
-#define REAGENT_
-#define REAGENT_ID_
-#define REAGENT_
-#define REAGENT_ID_
-#define REAGENT_
-#define REAGENT_ID_
-#define REAGENT_
-#define REAGENT_ID_
-
-
+#define REAGENT_INAPROVALINE "Inaprovaline"
+#define REAGENT_ID_INAPROVALINE "inaprovaline"
+#define REAGENT_INAPROVALAZE "Inaprovalaze"
+#define REAGENT_ID_INAPROVALAZE "inaprovalaze"
+#define REAGENT_BICARIDINE "Bicaridine"
+#define REAGENT_ID_BICARIDINE "bicaridine"
+#define REAGENT_BICARIDAZE "Bicaridaze"
+#define REAGENT_ID_BICARIDAZE "bicaridaze"
+#define REAGENT_CALCIUMCARBONATE "calcium carbonate"
 #define REAGENT_ID_CALCIUMCARBONATE "calciumcarbonate"
-
-
-
-
-
+#define REAGENT_KELOTANE "Kelotane"
+#define REAGENT_ID_KELOTANE "kelotane"
+#define REAGENT_DERMALINE "Dermaline"
+#define REAGENT_ID_DERMALINE "dermaline"
+#define REAGENT_DERMALAZE "Dermalaze"
+#define REAGENT_ID_DERMALAZE "dermalaze"
+#define REAGENT_ANTITOXIN "Dylovene"
+#define REAGENT_ID_ANTITOXIN "anti_toxin"
+#define REAGENT_CARTHATOLINE "Carthatoline"
+#define REAGENT_ID_CARTHATOLINE "carthatoline"
+#define REAGENT_DEXALIN "Dexalin"
+#define REAGENT_ID_DEXALIN "dexalin"
+#define REAGENT_DEXALINP "Dexalin Plus"
+#define REAGENT_ID_DEXALINP "dexalinp"
+#define REAGENT_TRICORDRAZINE "Tricordrazine"
+#define REAGENT_ID_TRICORDRAZINE "tricordrazine"
+#define REAGENT_TRICORLIDAZE "Tricorlidaze"
+#define REAGENT_ID_TRICORLIDAZE "tricorlidaze"
+#define REAGENT_CRYOXADONE "Cryoxadone"
+#define REAGENT_ID_CRYOXADONE "cryoxadone"
+#define REAGENT_CLONEXADONE "Clonexadone"
+#define REAGENT_ID_CLONEXADONE "clonexadone"
+#define REAGENT_MORTIFERIN "Mortiferin"
+#define REAGENT_ID_MORTIFERIN "mortiferin"
+#define REAGENT_NECROXADONE "Necroxadone"
+#define REAGENT_ID_NECROXADONE "necroxadone"
+#define REAGENT_PARACETAMOL "Paracetamol"
+#define REAGENT_ID_PARACETAMOL "paracetamol"
+#define REAGENT_TRAMADOL "Tramadol"
+#define REAGENT_ID_TRAMADOL "tramadol"
+#define REAGENT_OXYCODONE "Oxycodone"
+#define REAGENT_ID_OXYCODONE "oxycodone"
+#define REAGENT_SYNAPTIZINE "Synaptizine"
+#define REAGENT_ID_SYNAPTIZINE "synaptizine"
+#define REAGENT_HYPERZINE "Hyperzine"
+#define REAGENT_ID_HYPERZINE "hyperzine"
+#define REAGENT_ALKYSINE "Alkysine"
+#define REAGENT_ID_ALKYSINE "alkysine"
+#define REAGENT_IMIDAZOLINE "Imidazoline"
+#define REAGENT_ID_IMIDAZOLINE "imidazoline"
+#define REAGENT_PERIDAXON "Peridaxon"
+#define REAGENT_ID_PERIDAXON "peridaxon"
+#define REAGENT_OSTEODAXON "Osteodaxon"
+#define REAGENT_ID_OSTEODAXON "osteodaxon"
+#define REAGENT_MYELAMINE "Myelamine"
+#define REAGENT_ID_MYELAMINE "myelamine"
+#define REAGENT_RESPIRODAXON "Respirodaxon"
+#define REAGENT_ID_RESPIRODAXON "respirodaxon
+#define REAGENT_GASTIRODAXON "Gastirodaxon"
+#define REAGENT_ID_GASTIRODAXON "gastirodaxon"
+#define REAGENT_HEPANEPHRODAXON "Hepanephrodaxon"
+#define REAGENT_ID_HEPANEPHRODAXON "hepanephrodaxon"
+#define REAGENT_CORDRADAXON "Cordradaxon"
+#define REAGENT_ID_CORDRADAXON "cordradaxon"
+#define REAGENT_IMMUNOSUPRIZINE "Immunosuprizine"
+#define REAGENT_ID_IMMUNOSUPRIZINE "immunosuprizine"
+#define REAGENT_MALISHQUALEM "Malish-Qualem"
+#define REAGENT_ID_MALISHQUALEM "malish-qualem"
+#define REAGENT_RYETALYN "Ryetalyn"
+#define REAGENT_ID_RYETALYN "ryetalyn"
+#define REAGENT_ETHYLREDOXRAZINE "Ethylredoxrazine"
+#define REAGENT_ID_ETHYLREDOXRAZINE "ethylredoxrazine"
+#define REAGENT_HYRONALIN "Hyronalin"
+#define REAGENT_ID_HYRONALIN "hyronalin"
+#define REAGENT_ARITHRAZINE "Arithrazine"
+#define REAGENT_ID_ARITHRAZINE "arithrazine"
+#define REAGENT_SPACEACILLIN "Spaceacillin"
+#define REAGENT_ID_SPACEACILLIN "spaceacillin"
+#define REAGENT_COROPHIZINE "Corophizine"
+#define REAGENT_ID_COROPHIZINE "corophizine"
+#define REAGENT_SPACOMYCAZE "Spacomycaze"
+#define REAGENT_ID_SPACOMYCAZE "spacomycaze"
+#define REAGENT_STERILIZINE "Sterilizine"
+#define REAGENT_ID_STERILIZINE "sterilizine"
+#define REAGENT_LEPORAZINE "Leporazine"
+#define REAGENT_ID_LEPORAZINE "leporazine"
+#define REAGENT_REZADONE "Rezadone"
+#define REAGENT_ID_REZADONE "rezadone"
+#define REAGENT_HEALINGNANITES "Restorative Nanites"
+#define REAGENT_ID_HEALINGNANITES "healing_nanites"
+#define REAGENT_MENTHOL "Menthol"
+#define REAGENT_ID_MENTHOL "menthol"
+#define REAGENT_EARTHSBLOOD "Earthsblood"
+#define REAGENT_ID_EARTHSBLOOD "earthsblood"
 
 
 // Virology
@@ -510,6 +570,37 @@
 
 
 
+
+
+#define REAGENT_PROTEIN "Protein"
+#define REAGENT_ID_PROTEIN "protein"
+#define REAGENT_
+#define REAGENT_ID_
+#define REAGENT_
+#define REAGENT_ID_
+#define REAGENT_
+#define REAGENT_ID_
+#define REAGENT_
+#define REAGENT_ID_
+#define REAGENT_
+#define REAGENT_ID_
+#define REAGENT_
+#define REAGENT_ID_
+#define REAGENT_
+#define REAGENT_ID_
+#define REAGENT_
+#define REAGENT_ID_
+#define REAGENT_
+#define REAGENT_ID_
+#define REAGENT_
+#define REAGENT_ID_
+
+
+
+
+
+
+
 // Toxins
 #define REAGENT_TOXIN "Toxin"
 #define REAGENT_ID_TOXIN "toxin"
@@ -593,11 +684,11 @@
 #define REAGENT_ID_MUTATIONTOXIN "mutationtoxin"
 #define REAGENT_DOCILITYTOXIN "Docility Toxin"
 #define REAGENT_ID_DOCILITYTOXIN "docilitytoxin"
-#define REAGENT_SHREDDINGNANITES REAGENT_RESTORATIVENANITES
+#define REAGENT_SHREDDINGNANITES REAGENT_HEALINGNANITES
 #define REAGENT_ID_SHREDDINGNANITES "shredding_nanites"
-#define REAGENT_IRRADIATEDNANITES REAGENT_RESTORATIVENANITES
+#define REAGENT_IRRADIATEDNANITES REAGENT_HEALINGNANITES
 #define REAGENT_ID_IRRADIATEDNANITES "irradiated_nanites"
-#define REAGENT_NEUROPHAGENANITES REAGENT_RESTORATIVENANITES
+#define REAGENT_NEUROPHAGENANITES REAGENT_HEALINGNANITES
 #define REAGENT_ID_NEUROPHAGENANITES "neurophage_nanites"
 #define REAGENT_SALMONELLA "Salmonella"
 #define REAGENT_ID_SALMONELLA "salmonella"
@@ -608,7 +699,7 @@
 
 
 
-Files left: food_drinks.dm, medicine.dm
+Files left: food_drinks.dm,
 includes: .dm
 excludes: reagents.dm,ores.dm,materials.dm,mre.dm
 

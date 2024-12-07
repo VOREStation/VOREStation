@@ -94,7 +94,7 @@
 	circuit = /obj/item/circuitboard/sleeper
 	var/mob/living/carbon/human/occupant = null
 	var/list/available_chemicals = list()
-	var/list/base_chemicals = list("inaprovaline" = "Inaprovaline", "paracetamol" = "Paracetamol", "anti_toxin" = "Dylovene", "dexalin" = "Dexalin")
+	var/list/base_chemicals = list(REAGENT_ID_INAPROVALINE = REAGENT_INAPROVALINE, REAGENT_ID_PARACETAMOL = REAGENT_PARACETAMOL, REAGENT_ID_ANTITOXIN = REAGENT_ANTITOXIN, REAGENT_ID_DEXALIN = REAGENT_DEXALIN)
 	var/amounts = list(5, 10)
 	var/obj/item/reagent_containers/glass/beaker = null
 	var/filtering = 0
@@ -149,18 +149,18 @@
 
 		if(man_rating >= 4) // Alien tech.
 			var/reag_ID = pickweight(list(
-				"healing_nanites" = 10,
+				REAGENT_ID_HEALINGNANITES = 10,
 				REAGENT_ID_SHREDDINGNANITES = 5,
 				REAGENT_ID_IRRADIATEDNANITES = 5,
 				REAGENT_ID_NEUROPHAGENANITES = 2)
 				)
 			new_chemicals[reag_ID] = "Nanite"
 		if(man_rating >= 3) // Anomalous tech.
-			new_chemicals["immunosuprizine"] = "Immunosuprizine"
+			new_chemicals[REAGENT_ID_IMMUNOSUPRIZINE] = REAGENT_IMMUNOSUPRIZINE
 		if(man_rating >= 2) // Tier 3.
-			new_chemicals["spaceacillin"] = "Spaceacillin"
+			new_chemicals[REAGENT_ID_SPACEACILLIN] = REAGENT_SPACEACILLIN
 		if(man_rating >= 1) // Tier 2.
-			new_chemicals["leporazine"] = "Leporazine"
+			new_chemicals[REAGENT_ID_LEPORAZINE] = REAGENT_LEPORAZINE
 
 		if(new_chemicals.len)
 			available_chemicals += new_chemicals

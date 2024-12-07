@@ -3,7 +3,7 @@
 	seed_name = "vale"
 	display_name = "vale bush"
 	kitchen_tag = "vale"
-	chems = list("paracetamol" = list(1,5),"dexalin" = list(1,2),REAGENT_ID_NUTRIMENT= list(1,5))
+	chems = list(REAGENT_ID_PARACETAMOL = list(1,5),REAGENT_ID_DEXALIN = list(1,2),REAGENT_ID_NUTRIMENT= list(1,5))
 
 /datum/seed/vale/New()
 	..()

@@ -60,7 +60,7 @@ Slime definitions, Life and New live here.
 						REAGENT_ID_DIETHYLAMINE = list(XENO_CHEM_NUTRI = 0.9),
 						REAGENT_ID_SUGAR = list(XENO_CHEM_TOXIC = 0.4, XENO_CHEM_NUTRI = 0.2),
 						REAGENT_ID_EZNUTRIENT = list(XENO_CHEM_NUTRI = 0.8),
-						"cryoxadone" = list(XENO_CHEM_TOXIC = 0.4),
+						REAGENT_ID_CRYOXADONE = list(XENO_CHEM_TOXIC = 0.4),
 						"flourine" = list(XENO_CHEM_TOXIC = 0.1),
 						REAGENT_ID_ROBUSTHARVEST = list(XENO_CHEM_NUTRI = 1.5),
 						"glucose" = list(XENO_CHEM_NUTRI = 0.5),

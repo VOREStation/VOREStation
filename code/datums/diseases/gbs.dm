@@ -42,8 +42,8 @@
 	stage_prob = 5
 	spread_text = "Non-contagious"
 	spread_flags = NON_CONTAGIOUS
-	cure_text = "Cryoxadone"
-	cures = list("cryoxadone")
+	cure_text = REAGENT_CRYOXADONE
+	cures = list(REAGENT_ID_CRYOXADONE)
 	cure_chance = 10
 	agent = "gibbis"
 	disease_flags = CURABLE

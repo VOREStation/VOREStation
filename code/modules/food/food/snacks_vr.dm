@@ -262,7 +262,7 @@
 	. = ..()
 	bitesize = 5
 	reagents.add_reagent("protein", 20)
-	reagents.add_reagent("tricordrazine", 5)
+	reagents.add_reagent(REAGENT_ID_TRICORDRAZINE, 5)
 	reagents.add_reagent(REAGENT_ID_IRON, 5)
 
 /obj/item/reagent_containers/food/snacks/cuttlefish

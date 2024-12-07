@@ -194,60 +194,60 @@
 
 // ERT
 /obj/item/reagent_containers/chem_disp_cartridge/inaprov
-	spawn_reagent = "inaprovaline"
+	spawn_reagent = REAGENT_ID_INAPROVALINE
 /obj/item/reagent_containers/chem_disp_cartridge/ryetalyn
-	spawn_reagent = "ryetalyn"
+	spawn_reagent = REAGENT_ID_RYETALYN
 /obj/item/reagent_containers/chem_disp_cartridge/paracetamol
-	spawn_reagent = "paracetamol"
+	spawn_reagent = REAGENT_ID_PARACETAMOL
 /obj/item/reagent_containers/chem_disp_cartridge/tramadol
-	spawn_reagent = "tramadol"
+	spawn_reagent = REAGENT_ID_TRAMADOL
 /obj/item/reagent_containers/chem_disp_cartridge/oxycodone
-	spawn_reagent = "oxycodone"
+	spawn_reagent = REAGENT_ID_OXYCODONE
 /obj/item/reagent_containers/chem_disp_cartridge/sterilizine
-	spawn_reagent = "sterilizine"
+	spawn_reagent = REAGENT_ID_STERILIZINE
 /obj/item/reagent_containers/chem_disp_cartridge/leporazine
-	spawn_reagent = "leporazine"
+	spawn_reagent = REAGENT_ID_LEPORAZINE
 /obj/item/reagent_containers/chem_disp_cartridge/kelotane
-	spawn_reagent = "kelotane"
+	spawn_reagent = REAGENT_ID_KELOTANE
 /obj/item/reagent_containers/chem_disp_cartridge/dermaline
-	spawn_reagent = "dermaline"
+	spawn_reagent = REAGENT_ID_DERMALINE
 /obj/item/reagent_containers/chem_disp_cartridge/dexalin
-	spawn_reagent = "dexalin"
+	spawn_reagent = REAGENT_ID_DEXALIN
 /obj/item/reagent_containers/chem_disp_cartridge/dexalin/small
 	volume = CARTRIDGE_VOLUME_SMALL // For the medicine cartridge crate, so it's not too easy to get large amounts of dexalin
 /obj/item/reagent_containers/chem_disp_cartridge/dexalin_p
-	spawn_reagent = "dexalinp"
+	spawn_reagent = REAGENT_ID_DEXALINP
 /obj/item/reagent_containers/chem_disp_cartridge/tricord
-	spawn_reagent = "tricordrazine"
+	spawn_reagent = REAGENT_ID_TRICORDRAZINE
 /obj/item/reagent_containers/chem_disp_cartridge/dylovene
-	spawn_reagent = "anti_toxin"
+	spawn_reagent = REAGENT_ID_ANTITOXIN
 /obj/item/reagent_containers/chem_disp_cartridge/synaptizine
-	spawn_reagent = "synaptizine"
+	spawn_reagent = REAGENT_ID_SYNAPTIZINE
 /obj/item/reagent_containers/chem_disp_cartridge/hyronalin
-	spawn_reagent = "hyronalin"
+	spawn_reagent = REAGENT_ID_HYRONALIN
 /obj/item/reagent_containers/chem_disp_cartridge/arithrazine
-	spawn_reagent = "arithrazine"
+	spawn_reagent = REAGENT_ID_ARITHRAZINE
 /obj/item/reagent_containers/chem_disp_cartridge/alkysine
-	spawn_reagent = "alkysine"
+	spawn_reagent = REAGENT_ID_ALKYSINE
 /obj/item/reagent_containers/chem_disp_cartridge/imidazoline
-	spawn_reagent = "imidazoline"
+	spawn_reagent = REAGENT_ID_IMIDAZOLINE
 /obj/item/reagent_containers/chem_disp_cartridge/peridaxon
-	spawn_reagent = "peridaxon"
+	spawn_reagent = REAGENT_ID_PERIDAXON
 /obj/item/reagent_containers/chem_disp_cartridge/bicaridine
-	spawn_reagent = "bicaridine"
+	spawn_reagent = REAGENT_ID_BICARIDINE
 /obj/item/reagent_containers/chem_disp_cartridge/hyperzine
-	spawn_reagent = "hyperzine"
+	spawn_reagent = REAGENT_ID_HYPERZINE
 /obj/item/reagent_containers/chem_disp_cartridge/rezadone
-	spawn_reagent = "rezadone"
+	spawn_reagent = REAGENT_ID_REZADONE
 /obj/item/reagent_containers/chem_disp_cartridge/spaceacillin
-	spawn_reagent = "spaceacillin"
+	spawn_reagent = REAGENT_ID_SPACEACILLIN
 /obj/item/reagent_containers/chem_disp_cartridge/ethylredox
-	spawn_reagent = "ethylredoxrazine"
+	spawn_reagent = REAGENT_ID_ETHYLREDOXRAZINE
 /obj/item/reagent_containers/chem_disp_cartridge/sleeptox
 	spawn_reagent = REAGENT_ID_STOXIN
 /obj/item/reagent_containers/chem_disp_cartridge/chloral
 	spawn_reagent = REAGENT_ID_CHLORALHYDRATE
 /obj/item/reagent_containers/chem_disp_cartridge/cryoxadone
-	spawn_reagent = "cryoxadone"
+	spawn_reagent = REAGENT_ID_CRYOXADONE
 /obj/item/reagent_containers/chem_disp_cartridge/clonexadone
-	spawn_reagent = "clonexadone"
+	spawn_reagent = REAGENT_ID_CLONEXADONE

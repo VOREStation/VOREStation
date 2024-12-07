@@ -26,7 +26,7 @@
 	seed_name = "green grape"
 	display_name = "green grapevines"
 	mutants = null
-	chems = list(REAGENT_ID_NUTRIMENT = list(1,10), "kelotane" = list(3,5), "grapejuice" = list(10,10))
+	chems = list(REAGENT_ID_NUTRIMENT = list(1,10), REAGENT_ID_KELOTANE = list(3,5), "grapejuice" = list(10,10))
 
 /datum/seed/grapes/green/New()
 	..()

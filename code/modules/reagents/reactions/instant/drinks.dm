@@ -365,7 +365,7 @@
 	name = "The Doctor's Delight"
 	id = "doctordelight"
 	result = "doctorsdelight"
-	required_reagents = list("limejuice" = 1, "tomatojuice" = 1, "orangejuice" = 1, "cream" = 2, "tricordrazine" = 1)
+	required_reagents = list("limejuice" = 1, "tomatojuice" = 1, "orangejuice" = 1, "cream" = 2, REAGENT_ID_TRICORDRAZINE = 1)
 	result_amount = 6
 
 /decl/chemical_reaction/instant/drinks/irish_cream
@@ -1246,7 +1246,7 @@
 	name = "Godka"
 	id = "godka"
 	result = "godka"
-	required_reagents = list("vodka" = 1, REAGENT_ID_HOLYWATER = 1, REAGENT_ID_ETHANOL = 1, "carthatoline" = 1)
+	required_reagents = list("vodka" = 1, REAGENT_ID_HOLYWATER = 1, REAGENT_ID_ETHANOL = 1, REAGENT_ID_CARTHATOLINE = 1)
 	catalysts = list("enzyme" = 5, REAGENT_ID_HOLYWATER = 5)
 	result_amount = 1
 
@@ -1339,7 +1339,7 @@
 	name = "Soda Oil"
 	id = "sodaoil"
 	result = "sodaoil"
-	required_reagents = list("cookingoil" = 4, "sodawater" = 1, REAGENT_ID_CARBON = 1, "tricordrazine" = 1)
+	required_reagents = list("cookingoil" = 4, "sodawater" = 1, REAGENT_ID_CARBON = 1, REAGENT_ID_TRICORDRAZINE = 1)
 	result_amount = 6
 
 /decl/chemical_reaction/instant/drinks/fusionnaire

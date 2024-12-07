@@ -142,7 +142,7 @@
 	name = "Allied Blob Revival"
 	id = "blob_friend"
 	result = null
-	required_reagents = list(REAGENT_ID_HYDROPHORON = 40, "peridaxon" = 20, REAGENT_ID_MUTAGEN = 20)
+	required_reagents = list(REAGENT_ID_HYDROPHORON = 40, REAGENT_ID_PERIDAXON = 20, REAGENT_ID_MUTAGEN = 20)
 	result_amount = 1
 
 /decl/chemical_reaction/instant/blob_reconstitution/domination/on_reaction(var/datum/reagents/holder)

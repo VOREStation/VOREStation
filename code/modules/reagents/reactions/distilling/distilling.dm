@@ -63,8 +63,8 @@
 /decl/chemical_reaction/distilling/inaprovalaze
 	name = "Distilling Inaprovalaze"
 	id = "distill_inaprovalaze"
-	result = "inaprovalaze"
-	required_reagents = list("inaprovaline" = 2, REAGENT_ID_FOAMINGAGENT = 1)
+	result = REAGENT_ID_INAPROVALAZE
+	required_reagents = list(REAGENT_ID_INAPROVALINE = 2, REAGENT_ID_FOAMINGAGENT = 1)
 	result_amount = 2
 
 	reaction_rate = HALF_LIFE(10)
@@ -74,8 +74,8 @@
 /decl/chemical_reaction/distilling/bicaridaze
 	name = "Distilling Bicaridaze"
 	id = "distill_bicaridaze"
-	result = "bicaridaze"
-	required_reagents = list("bicaridine" = 2, REAGENT_ID_FOAMINGAGENT = 1)
+	result = REAGENT_ID_BICARIDAZE
+	required_reagents = list(REAGENT_ID_BICARIDINE = 2, REAGENT_ID_FOAMINGAGENT = 1)
 	result_amount = 2
 
 	reaction_rate = HALF_LIFE(10)
@@ -85,8 +85,8 @@
 /decl/chemical_reaction/distilling/dermalaze
 	name = "Distilling Dermalaze"
 	id = "distill_dermalaze"
-	result = "dermalaze"
-	required_reagents = list("dermaline" = 2, REAGENT_ID_FOAMINGAGENT = 1)
+	result = REAGENT_ID_DERMALAZE
+	required_reagents = list(REAGENT_ID_DERMALINE = 2, REAGENT_ID_FOAMINGAGENT = 1)
 	result_amount = 2
 
 	reaction_rate = HALF_LIFE(10)
@@ -96,8 +96,8 @@
 /decl/chemical_reaction/distilling/spacomycaze
 	name = "Distilling Spacomycaze"
 	id = "distill_spacomycaze"
-	result = "spacomycaze"
-	required_reagents = list("paracetamol" = 1, "spaceacillin" = 1, REAGENT_ID_FOAMINGAGENT = 1)
+	result = REAGENT_ID_SPACOMYCAZE
+	required_reagents = list(REAGENT_ID_PARACETAMOL = 1, REAGENT_ID_SPACEACILLIN = 1, REAGENT_ID_FOAMINGAGENT = 1)
 	result_amount = 2
 
 	reaction_rate = HALF_LIFE(10)
@@ -107,8 +107,8 @@
 /decl/chemical_reaction/distilling/tricorlidaze
 	name = "Distilling Tricorlidaze"
 	id = "distill_tricorlidaze"
-	result = "tricorlidaze"
-	required_reagents = list("tricordrazine" = 1, "sterilizine" = 1, REAGENT_ID_FOAMINGAGENT = 1)
+	result = REAGENT_ID_TRICORLIDAZE
+	required_reagents = list(REAGENT_ID_TRICORDRAZINE = 1, REAGENT_ID_STERILIZINE = 1, REAGENT_ID_FOAMINGAGENT = 1)
 	result_amount = 2
 
 	reaction_rate = HALF_LIFE(10)
@@ -119,7 +119,7 @@
 	name = "Distilling Synthplas"
 	id = "distill_synthplas"
 	result = REAGENT_ID_SYNTHBLOOD_DILUTE
-	required_reagents = list("protein" = 2, REAGENT_ID_ANTIBODIES = 1, "bicaridine" = 1)
+	required_reagents = list("protein" = 2, REAGENT_ID_ANTIBODIES = 1, REAGENT_ID_BICARIDINE = 1)
 	result_amount = 3
 
 	reaction_rate = HALF_LIFE(15)
@@ -156,7 +156,7 @@
 	name = "Distilling Brute Juice"
 	id = "distill_brutejuice"
 	result = REAGENT_ID_BERSERKMED
-	required_reagents = list(REAGENT_ID_BIOMASS = 1, "hyperzine" = 3, "synaptizine" = 2, REAGENT_ID_PHORON = 1)
+	required_reagents = list(REAGENT_ID_BIOMASS = 1, REAGENT_ID_HYPERZINE = 3, REAGENT_ID_SYNAPTIZINE = 2, REAGENT_ID_PHORON = 1)
 	result_amount = 3
 
 	temp_range = list(T0C + 600, T0C + 700)
@@ -195,7 +195,7 @@
 	name = "Distilling Lichpowder"
 	id = "distill_lichpowder"
 	result = REAGENT_ID_LICHPOWDER
-	required_reagents = list(REAGENT_ID_ZOMBIEPOWDER = 2, "leporazine" = 1)
+	required_reagents = list(REAGENT_ID_ZOMBIEPOWDER = 2, REAGENT_ID_LEPORAZINE = 1)
 	result_amount = 2
 
 	reaction_rate = HALF_LIFE(8)
@@ -205,8 +205,8 @@
 /decl/chemical_reaction/distilling/necroxadone
 	name = "Distilling Necroxadone"
 	id = "distill_necroxadone"
-	result = "necroxadone"
-	required_reagents = list(REAGENT_ID_LICHPOWDER = 1, "cryoxadone" = 1, "carthatoline" = 1)
+	result = REAGENT_ID_NECROXADONE
+	required_reagents = list(REAGENT_ID_LICHPOWDER = 1, REAGENT_ID_CRYOXADONE = 1, REAGENT_ID_CARTHATOLINE = 1)
 	result_amount = 2
 
 	catalysts = list(REAGENT_ID_PHORON = 5)

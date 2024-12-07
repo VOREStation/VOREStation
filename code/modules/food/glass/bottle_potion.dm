@@ -3,7 +3,7 @@
 	desc = "A small green bottle containing some red liquid that claims to heal injuries."
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "bottle-5"
-	prefill = list("bicaridine" = 30)
+	prefill = list(REAGENT_ID_BICARIDINE = 30)
 
 /obj/item/reagent_containers/glass/bottle/potion/healing
 
@@ -15,32 +15,32 @@
 /obj/item/reagent_containers/glass/bottle/potion/fire_resist
 	name = "fire resistance potion"
 	desc = "A small green bottle containing some orange liquid that claims to protect the drinker from fire."
-	prefill = list("dermaline" = 15, "kelotane" = 15)
+	prefill = list(REAGENT_ID_DERMALINE = 15, REAGENT_ID_KELOTANE = 15)
 
 /obj/item/reagent_containers/glass/bottle/potion/antidote
 	name = "antidote potion"
 	desc = "A small green bottle containing some green liquid that claims to cure poisoning."
-	prefill = list("anti_toxin" = 30)
+	prefill = list(REAGENT_ID_ANTITOXIN = 30)
 
 /obj/item/reagent_containers/glass/bottle/potion/water
 	name = "water breathing potion"
 	desc = "A small green bottle containing some blue liquid that claims to allow the drinker to breathe under water."
-	prefill = list("dexalinp" = 30)
+	prefill = list(REAGENT_ID_DEXALINP = 30)
 
 /obj/item/reagent_containers/glass/bottle/potion/regeneration
 	name = "regeneration potion"
 	desc = "A small green bottle containing some purple liquid that claims to regenerate severe wounds."
-	prefill = list("peridaxon" = 30)
+	prefill = list(REAGENT_ID_PERIDAXON = 30)
 
 /obj/item/reagent_containers/glass/bottle/potion/panacea
 	name = "panacea potion"
 	desc = "A small green bottle containing some white liquid that claims to cure all ailments."
-	prefill = list("spaceacillin" = 30)
+	prefill = list(REAGENT_ID_SPACEACILLIN = 30)
 
 /obj/item/reagent_containers/glass/bottle/potion/magic
 	name = "magic resistence potion"
 	desc = "A small green bottle containing some dark green liquid that claims to cure magical effects."
-	prefill = list("hyronalin" = 30)
+	prefill = list(REAGENT_ID_HYRONALIN = 30)
 
 /obj/item/reagent_containers/glass/bottle/potion/lightness
 	name = "feather weight potion"
@@ -50,7 +50,7 @@
 /obj/item/reagent_containers/glass/bottle/potion/SOP
 	name = "standard operating potion"
 	desc = "A small green bottle containing some yellow liquid that claims to be important."
-	prefill = list("myelamine" = 30)
+	prefill = list(REAGENT_ID_MYELAMINE = 30)
 
 /obj/item/reagent_containers/glass/bottle/potion/shrink
 	name = "diminution potion"
@@ -65,7 +65,7 @@
 /obj/item/reagent_containers/glass/bottle/potion/pain
 	name = "grit potion"
 	desc = "A small green bottle containing some thin purple liquid that claims to power through even the most perilous injuries."
-	prefill = list("tramadol" = 30)
+	prefill = list(REAGENT_ID_TRAMADOL = 30)
 
 /obj/item/reagent_containers/glass/bottle/potion/faerie
 	name = "faerie dance potion"
@@ -80,12 +80,12 @@
 /obj/item/reagent_containers/glass/bottle/potion/speed
 	name = "blinding speed potion"
 	desc = "A small green bottle containing some bubbling orange liquid that claims to make you move at incredible speeds."
-	prefill = list("hyperzine" = 30)
+	prefill = list(REAGENT_ID_HYPERZINE = 30)
 
 /obj/item/reagent_containers/glass/bottle/potion/attractiveness
 	name = "love potion"
 	desc = "A small green bottle containing some light mint coloured liquid that claims to make you more attractive to potential partners."
-	prefill = list("menthol" = 30)
+	prefill = list(REAGENT_ID_MENTHOL = 30)
 
 /obj/item/reagent_containers/glass/bottle/potion/girljuice
 	name = "girl transformation potion"
@@ -105,7 +105,7 @@
 /obj/item/reagent_containers/glass/bottle/potion/bonerepair
 	name = "mending potion"
 	desc = "A small green bottle containing some pale blue liquid that claims to fix that which is broken."
-	prefill = list("osteodaxon" = 1)
+	prefill = list(REAGENT_ID_OSTEODAXON = 1)
 
 /obj/item/reagent_containers/glass/bottle/potion/truepolymorph
 	name = "polymorph potion"

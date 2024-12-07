@@ -37,7 +37,7 @@
 	name = REAGENT_SUGARVIRUSFOOD
 	id = "inaprovalinevirusfood"
 	result = REAGENT_ID_SUGARVIRUSFOOD
-	required_reagents = list("inaprovaline" = 1, REAGENT_ID_MUTAGENVIRUSFOOD = 1)
+	required_reagents = list(REAGENT_ID_INAPROVALINE = 1, REAGENT_ID_MUTAGENVIRUSFOOD = 1)
 	result_amount = 2
 
 /decl/chemical_reaction/instant/virus_food_size
@@ -157,5 +157,5 @@
 	id = "antibodiesmix"
 	result = REAGENT_ID_ANTIBODIES
 	required_reagents = list(REAGENT_ID_VACCINE)
-	catalysts = list("inaprovaline" = 0.1)
+	catalysts = list(REAGENT_ID_INAPROVALINE = 0.1)
 	result_amount = 0.5
