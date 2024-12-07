@@ -56,12 +56,12 @@
 	// with cycle information under 'mechanical concerns' at some point.
 	var/static/list/toxic_reagents = list(
 		"anti_toxin" =     -2,
-		"toxin" =           2,
+		REAGENT_ID_TOXIN =           2,
 		REAGENT_ID_FLUORINE =        2.5,
 		REAGENT_ID_CHLORINE =        1.5,
 		REAGENT_ID_SACID =           1.5,
 		REAGENT_ID_PACID =           3,
-		"plantbgone" =      3,
+		REAGENT_ID_PLANTBGONE =      3,
 		"cryoxadone" =     -3,
 		REAGENT_ID_RADIUM =          2
 		)
@@ -75,9 +75,9 @@
 		REAGENT_ID_DIETHYLAMINE =    2,
 		REAGENT_ID_NUTRIMENT =       1,
 		REAGENT_ID_ADMINORDRAZINE =  1,
-		"eznutrient" =      1,
-		"robustharvest" =   1,
-		"left4zed" =        1
+		REAGENT_ID_EZNUTRIENT =      1,
+		REAGENT_ID_ROBUSTHARVEST =   1,
+		REAGENT_ID_LEFT4ZED =        1
 		)
 	var/static/list/weedkiller_reagents = list(
 		REAGENT_ID_FLUORINE =       -4,
@@ -86,7 +86,7 @@
 		REAGENT_ID_SUGAR =           2,
 		REAGENT_ID_SACID =          -2,
 		REAGENT_ID_PACID =          -4,
-		"plantbgone" =     -8,
+		REAGENT_ID_PLANTBGONE =     -8,
 		REAGENT_ID_ADMINORDRAZINE = -5
 		)
 	var/static/list/pestkiller_reagents = list(
@@ -115,22 +115,22 @@
 		"sodawater" =      list(  0.1,  0,   0  ),
 		REAGENT_ID_SACID =          list( -1,    0,   0  ),
 		REAGENT_ID_PACID =          list( -2,    0,   0  ),
-		"plantbgone" =     list( -2,    0,   0.2),
+		REAGENT_ID_PLANTBGONE =     list( -2,    0,   0.2),
 		"cryoxadone" =     list(  3,    0,   0  ),
 		REAGENT_ID_AMMONIA =        list(  0.5,  0,   0  ),
 		REAGENT_ID_DIETHYLAMINE =   list(  1,    0,   0  ),
 		REAGENT_ID_NUTRIMENT =      list(  0.5,  0.1, 0  ),
 		REAGENT_ID_RADIUM =         list( -1.5,  0,   0.2),
 		REAGENT_ID_ADMINORDRAZINE = list(  1,    1,   1  ),
-		"robustharvest" =  list(  0,    0.2, 0  ),
-		"left4zed" =       list(  0,    0,   0.2)
+		REAGENT_ID_ROBUSTHARVEST =  list(  0,    0.2, 0  ),
+		REAGENT_ID_LEFT4ZED =       list(  0,    0,   0.2)
 		)
 
 	// Mutagen list specifies minimum value for the mutation to take place, rather
 	// than a bound as the lists above specify.
 	var/static/list/mutagenic_reagents = list(
 		REAGENT_ID_RADIUM =  8,
-		"mutagen" = 15
+		REAGENT_ID_MUTAGEN = 15
 		)
 
 /obj/machinery/portable_atmospherics/hydroponics/AltClick(var/mob/living/user)

@@ -136,7 +136,7 @@
 
 /obj/item/reagent_containers/pill/tox/Initialize()
 	. = ..()
-	reagents.add_reagent("toxin", 50)
+	reagents.add_reagent(REAGENT_ID_TOXIN, 50)
 	color = reagents.get_color()
 
 /obj/item/reagent_containers/pill/cyanide
@@ -146,7 +146,7 @@
 
 /obj/item/reagent_containers/pill/cyanide/Initialize()
 	. = ..()
-	reagents.add_reagent("cyanide", 50)
+	reagents.add_reagent(REAGENT_ID_CYANIDE, 50)
 
 
 /obj/item/reagent_containers/pill/adminordrazine
@@ -166,7 +166,7 @@
 
 /obj/item/reagent_containers/pill/stox/Initialize()
 	. = ..()
-	reagents.add_reagent("stoxin", 15)
+	reagents.add_reagent(REAGENT_ID_STOXIN, 15)
 	color = reagents.get_color()
 
 /obj/item/reagent_containers/pill/kelotane
@@ -339,9 +339,9 @@
 /obj/item/reagent_containers/pill/zoom/Initialize()
 	. = ..()
 	if(prob(50))						//VOREStation edit begin: Zoom pill adjustments
-		reagents.add_reagent("mold", 2)	//Chance to be more dangerous
-	reagents.add_reagent("expired_medicine", 5)
-	reagents.add_reagent("stimm", 5)	//VOREStation edit end: Zoom pill adjustments
+		reagents.add_reagent(REAGENT_ID_MOLD, 2)	//Chance to be more dangerous
+	reagents.add_reagent(REAGENT_ID_EXPIREDMEDICINE, 5)
+	reagents.add_reagent(REAGENT_ID_STIMM, 5)	//VOREStation edit end: Zoom pill adjustments
 	color = reagents.get_color()
 
 /obj/item/reagent_containers/pill/diet

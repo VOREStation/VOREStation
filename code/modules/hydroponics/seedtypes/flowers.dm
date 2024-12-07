@@ -79,7 +79,7 @@
 	display_name = "rose"
 	kitchen_tag = "rose"
 	mutants = list("bloodrose")
-	chems = list(REAGENT_ID_NUTRIMENT = list(1,5), "stoxin" = list(0,2))
+	chems = list(REAGENT_ID_NUTRIMENT = list(1,5), REAGENT_ID_STOXIN = list(0,2))
 
 /datum/seed/flower/rose/New()
 	..()
@@ -99,7 +99,7 @@
 	name = "bloodrose"
 	display_name = "bleeding rose"
 	mutants = null
-	chems = list(REAGENT_ID_NUTRIMENT = list(1,5), "stoxin" = list(1,5), REAGENT_ID_BLOOD = list(0,2))
+	chems = list(REAGENT_ID_NUTRIMENT = list(1,5), REAGENT_ID_STOXIN = list(1,5), REAGENT_ID_BLOOD = list(0,2))
 
 /datum/seed/flower/rose/blood/New()
 	..()

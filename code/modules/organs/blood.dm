@@ -340,7 +340,7 @@ var/const/CE_STABLE_THRESHOLD = 0.5
 
 
 	if(blood_incompatible(injected.data["blood_type"],our.data["blood_type"],injected.data["species"],our.data["species"]) )
-		reagents.add_reagent("toxin",amount * 0.5)
+		reagents.add_reagent(REAGENT_ID_TOXIN,amount * 0.5)
 		reagents.update_total()
 	else
 		vessel.add_reagent(REAGENT_ID_BLOOD, amount, injected.data)

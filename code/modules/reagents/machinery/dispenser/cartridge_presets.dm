@@ -244,9 +244,9 @@
 /obj/item/reagent_containers/chem_disp_cartridge/ethylredox
 	spawn_reagent = "ethylredoxrazine"
 /obj/item/reagent_containers/chem_disp_cartridge/sleeptox
-	spawn_reagent = "stoxin"
+	spawn_reagent = REAGENT_ID_STOXIN
 /obj/item/reagent_containers/chem_disp_cartridge/chloral
-	spawn_reagent = "chloralhydrate"
+	spawn_reagent = REAGENT_ID_CHLORALHYDRATE
 /obj/item/reagent_containers/chem_disp_cartridge/cryoxadone
 	spawn_reagent = "cryoxadone"
 /obj/item/reagent_containers/chem_disp_cartridge/clonexadone

@@ -198,7 +198,7 @@
 
 /datum/recipe/slimeburger
 	appliance = GRILL
-	reagents = list("slimejelly" = 5)
+	reagents = list(REAGENT_ID_SLIMEJELLY = 5)
 	items = list(
 		/obj/item/reagent_containers/food/snacks/bun
 	)

@@ -4622,7 +4622,7 @@
 	..()
 	if(alien == IS_DIONA)
 		return
-	M.reagents.add_reagent("slimejelly", 0.25)
+	M.reagents.add_reagent(REAGENT_ID_SLIMEJELLY, 0.25)
 
 /datum/reagent/ethanol/cloverclub
 	name = "Clover Club"

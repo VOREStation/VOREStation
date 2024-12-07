@@ -1155,7 +1155,7 @@
 	name = "Named Bullet"
 	id = "slimeshot"
 	result = "slimeshot"
-	required_reagents = list("slimejelly" = 4, "vodka" = 1)
+	required_reagents = list(REAGENT_ID_SLIMEJELLY = 4, "vodka" = 1)
 	result_amount = 5
 
 /decl/chemical_reaction/instant/drinks/negroni

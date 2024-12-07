@@ -2,8 +2,8 @@
 	//Xenoflora
 	ammonia			spawn_reagent = REAGENT_ID_AMMONIA
 	diethylamine	spawn_reagent = REAGENT_ID_DIETHYLAMINE
-	plantbgone		spawn_reagent = "plantbgone"
-	mutagen			spawn_reagent = "mutagen"
+	plantbgone		spawn_reagent = REAGENT_ID_PLANTBGONE
+	mutagen			spawn_reagent = REAGENT_ID_MUTAGEN
 
 	//Biochem
 	nutriment		spawn_reagent = REAGENT_ID_NUTRIMENT

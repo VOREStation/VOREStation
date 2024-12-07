@@ -8,7 +8,7 @@
 	color = "#CC23FF"
 	slime_color = "purple"
 	coretype = /obj/item/slime_extract/purple
-	reagent_injected = "toxin"
+	reagent_injected = REAGENT_ID_TOXIN
 
 	description_info = "This slime spreads a toxin when it attacks.  A biosuit or other thick armor can protect from the toxic attack."
 	player_msg = "You <b>inject a harmful toxin</b> when attacking."

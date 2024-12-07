@@ -31,7 +31,7 @@
 	seed_name = "black wabback"
 	display_name = "black wabback"
 	mutants = null
-	chems = list(REAGENT_ID_NUTRIMENT = list(1,3), "protein" = list(1,10), "serotrotium_v" = list(0,1))
+	chems = list(REAGENT_ID_NUTRIMENT = list(1,3), "protein" = list(1,10), REAGENT_ID_SEROTROTIUMV = list(0,1))
 
 /datum/seed/wabback/vine/New()
 	..()

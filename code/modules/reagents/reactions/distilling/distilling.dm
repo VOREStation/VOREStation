@@ -174,7 +174,7 @@
 	name = "Distilling Cryogellatin"
 	id = "distill_cryoslurry"
 	result = REAGENT_ID_CRYOSLURRY
-	required_reagents = list("frostoil" = 7, "enzyme" = 3, "plasticide" = 3, REAGENT_ID_FOAMINGAGENT = 2)
+	required_reagents = list("frostoil" = 7, "enzyme" = 3, REAGENT_ID_PLASTICIDE = 3, REAGENT_ID_FOAMINGAGENT = 2)
 	inhibitors = list(REAGENT_ID_WATER = 5)
 	result_amount = 1
 
@@ -194,8 +194,8 @@
 /decl/chemical_reaction/distilling/lichpowder
 	name = "Distilling Lichpowder"
 	id = "distill_lichpowder"
-	result = "lichpowder"
-	required_reagents = list("zombiepowder" = 2, "leporazine" = 1)
+	result = REAGENT_ID_LICHPOWDER
+	required_reagents = list(REAGENT_ID_ZOMBIEPOWDER = 2, "leporazine" = 1)
 	result_amount = 2
 
 	reaction_rate = HALF_LIFE(8)
@@ -206,7 +206,7 @@
 	name = "Distilling Necroxadone"
 	id = "distill_necroxadone"
 	result = "necroxadone"
-	required_reagents = list("lichpowder" = 1, "cryoxadone" = 1, "carthatoline" = 1)
+	required_reagents = list(REAGENT_ID_LICHPOWDER = 1, "cryoxadone" = 1, "carthatoline" = 1)
 	result_amount = 2
 
 	catalysts = list(REAGENT_ID_PHORON = 5)

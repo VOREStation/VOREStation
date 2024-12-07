@@ -100,7 +100,7 @@
 /obj/item/reagent_containers/glass/bottle/potion/badpolymorph
 	name = "unstable polymorph potion"
 	desc = "A small green bottle containing some uncomfortably green liquid that claims to transform the drinker wildly."
-	prefill = list("mutagen" = 30)
+	prefill = list(REAGENT_ID_MUTAGEN = 30)
 
 /obj/item/reagent_containers/glass/bottle/potion/bonerepair
 	name = "mending potion"
@@ -142,7 +142,7 @@
 /obj/item/reagent_containers/glass/bottle/potion/soporific
 	name = "still potion"
 	desc = "A small green bottle containing some calm blue liquid."
-	prefill = list("stoxin" = 30)
+	prefill = list(REAGENT_ID_STOXIN = 30)
 
 /obj/item/reagent_containers/glass/bottle/potion/lipostipo
 	name = "thick potion"

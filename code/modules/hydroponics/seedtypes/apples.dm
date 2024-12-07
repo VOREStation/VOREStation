@@ -23,7 +23,7 @@
 /datum/seed/apple/poison
 	name = "poisonapple"
 	mutants = null
-	chems = list("cyanide" = list(1,5))
+	chems = list(REAGENT_ID_CYANIDE = list(1,5))
 
 /datum/seed/apple/gold
 	name = "goldapple"
@@ -46,7 +46,7 @@
 	seed_name = "sivian pod"
 	display_name = "sivian pod"
 	kitchen_tag = "apple"
-	chems = list(REAGENT_ID_NUTRIMENT = list(1,5),"sifsap" = list(10,20))
+	chems = list(REAGENT_ID_NUTRIMENT = list(1,5),REAGENT_ID_SIFSAP = list(10,20))
 
 /datum/seed/apple/sif/New()
 	..()

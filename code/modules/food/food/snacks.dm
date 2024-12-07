@@ -801,7 +801,7 @@
 		if(6)
 			reagents.add_reagent("coco", 3)
 		if(7)
-			reagents.add_reagent("slimejelly", 3)
+			reagents.add_reagent(REAGENT_ID_SLIMEJELLY, 3)
 		if(8)
 			reagents.add_reagent("banana", 3)
 		if(9)
@@ -821,7 +821,7 @@
 
 /obj/item/reagent_containers/food/snacks/donut/plain/jelly/slimejelly/Initialize()
 	. = ..()
-	reagents.add_reagent("slimejelly", 5)
+	reagents.add_reagent(REAGENT_ID_SLIMEJELLY, 5)
 
 /obj/item/reagent_containers/food/snacks/donut/plain/jelly/cherryjelly
 	filling_color = "#ED1169"
@@ -934,7 +934,7 @@
 /obj/item/reagent_containers/food/snacks/organ/Initialize()
 	. = ..()
 	reagents.add_reagent("protein", rand(3,5))
-	reagents.add_reagent("toxin", rand(1,3))
+	reagents.add_reagent(REAGENT_ID_TOXIN, rand(1,3))
 
 /obj/item/reagent_containers/food/snacks/tofu
 	name = "Tofu"
@@ -974,7 +974,7 @@
 	center_of_mass = list("x"=17, "y"=13)
 	bitesize = 6
 
-	var/toxin_type = "carpotoxin"
+	var/toxin_type = REAGENT_ID_CARPOTOXIN
 	var/toxin_amount = 3
 
 /obj/item/reagent_containers/food/snacks/carpmeat/Initialize()
@@ -994,7 +994,7 @@
 
 /obj/item/reagent_containers/food/snacks/carpmeat/ray
 	desc = "A fillet of space ray meat."
-	toxin_type = "stoxin"
+	toxin_type = REAGENT_ID_STOXIN
 
 /obj/item/reagent_containers/food/snacks/carpmeat/gnat
 	desc = "A paltry sample of space-gnat meat. It looks pretty stringy and unpleasant, honestly."
@@ -1517,7 +1517,7 @@
 
 /obj/item/reagent_containers/food/snacks/amanita_pie/Initialize()
 	. = ..()
-	reagents.add_reagent("amatoxin", 3)
+	reagents.add_reagent(REAGENT_ID_AMATOXIN, 3)
 	reagents.add_reagent(REAGENT_ID_PSILOCYBIN, 1)
 
 /obj/item/reagent_containers/food/snacks/plump_pie
@@ -1785,7 +1785,7 @@
 
 /obj/item/reagent_containers/food/snacks/badrecipe/Initialize()
 	. = ..()
-	reagents.add_reagent("toxin", 1)
+	reagents.add_reagent(REAGENT_ID_TOXIN, 1)
 	reagents.add_reagent(REAGENT_ID_CARBON, 3)
 
 /obj/item/reagent_containers/food/snacks/meatsteak
@@ -1831,7 +1831,7 @@
 
 /obj/item/reagent_containers/food/snacks/amanitajelly/Initialize()
 	. = ..()
-	reagents.add_reagent("amatoxin", 6)
+	reagents.add_reagent(REAGENT_ID_AMATOXIN, 6)
 	reagents.add_reagent(REAGENT_ID_PSILOCYBIN, 3)
 
 /obj/item/reagent_containers/food/snacks/poppypretzel
@@ -2043,7 +2043,7 @@
 
 /obj/item/reagent_containers/food/snacks/jelliedtoast/slime/Initialize()
 	. = ..()
-	reagents.add_reagent("slimejelly", 5)
+	reagents.add_reagent(REAGENT_ID_SLIMEJELLY, 5)
 
 /obj/item/reagent_containers/food/snacks/honeytoast
 	name = "Honeyed Toast"
@@ -2077,7 +2077,7 @@
 
 /obj/item/reagent_containers/food/snacks/jellyburger/slime/Initialize()
 	. = ..()
-	reagents.add_reagent("slimejelly", 5)
+	reagents.add_reagent(REAGENT_ID_SLIMEJELLY, 5)
 
 /obj/item/reagent_containers/food/snacks/jellyburger/cherry/Initialize()
 	. = ..()
@@ -2317,7 +2317,7 @@
 
 /obj/item/reagent_containers/food/snacks/jellysandwich/slime/Initialize()
 	. = ..()
-	reagents.add_reagent("slimejelly", 5)
+	reagents.add_reagent(REAGENT_ID_SLIMEJELLY, 5)
 
 /obj/item/reagent_containers/food/snacks/jellysandwich/cherry/Initialize()
 	. = ..()
@@ -2341,7 +2341,7 @@
 
 /obj/item/reagent_containers/food/snacks/boiledslimecore/Initialize()
 	. = ..()
-	reagents.add_reagent("slimejelly", 5)
+	reagents.add_reagent(REAGENT_ID_SLIMEJELLY, 5)
 
 /obj/item/reagent_containers/food/snacks/plumphelmetbiscuit
 	name = "plump helmet biscuit"
@@ -2443,7 +2443,7 @@
 
 /obj/item/reagent_containers/food/snacks/slimesoup/Initialize()
 	. = ..()
-	reagents.add_reagent("slimejelly", 5)
+	reagents.add_reagent(REAGENT_ID_SLIMEJELLY, 5)
 	reagents.add_reagent(REAGENT_ID_WATER, 10)
 
 /obj/item/reagent_containers/food/snacks/bloodsoup
@@ -2547,11 +2547,11 @@
 			reagents.add_reagent(REAGENT_ID_NUTRIMENT, 6, nutriment_desc)
 			reagents.add_reagent(REAGENT_ID_BLOOD, 10)
 		if(7)
-			reagents.add_reagent("slimejelly", 10)
+			reagents.add_reagent(REAGENT_ID_SLIMEJELLY, 10)
 			reagents.add_reagent(REAGENT_ID_WATER, 10)
 		if(8)
 			reagents.add_reagent(REAGENT_ID_CARBON, 10)
-			reagents.add_reagent("toxin", 10)
+			reagents.add_reagent(REAGENT_ID_TOXIN, 10)
 		if(9)
 			reagents.add_reagent(REAGENT_ID_NUTRIMENT, 5, nutriment_desc)
 			reagents.add_reagent("tomatojuice", 10)
@@ -3438,7 +3438,7 @@
 	reagents.add_reagent(REAGENT_ID_AMBROSIAEXTRACT, 2)
 	reagents.add_reagent("bicaridine", 1)
 	reagents.add_reagent("kelotane", 1)
-	reagents.add_reagent("toxin", 1)
+	reagents.add_reagent(REAGENT_ID_TOXIN, 1)
 
 /obj/item/reagent_containers/food/snacks/cosmicbrowniesslice
 	name = "cosmic brownie"
@@ -3824,7 +3824,7 @@
 	. = ..()
 	reagents.add_reagent("protein", 5)
 	reagents.add_reagent("tomatojuice", 6)
-	reagents.add_reagent("mold", 8)
+	reagents.add_reagent(REAGENT_ID_MOLD, 8)
 
 /obj/item/reagent_containers/food/snacks/slice/oldpizza
 	name = "moldy pizza slice"
@@ -4219,7 +4219,7 @@
 //
 ///obj/item/reagent_containers/food/snacks/hotdog/old/Initialize()
 //	. = ..()
-//	reagents.add_reagent("mold", 6)
+//	reagents.add_reagent(REAGENT_ID_MOLD, 6)
 
 /obj/item/reagent_containers/food/snacks/flatbread
 	name = "flatbread"
@@ -4280,7 +4280,7 @@
 	set_light(1, 1, "#5dadcf")
 
 	reagents.add_reagent("oxycodone", 1)
-	reagents.add_reagent("sifsap", 5)
+	reagents.add_reagent(REAGENT_ID_SIFSAP, 5)
 	reagents.add_reagent(REAGENT_ID_BLISS, 5)
 
 /obj/item/reagent_containers/food/snacks/bellefritter
@@ -4569,7 +4569,7 @@
 
 /obj/item/reagent_containers/food/snacks/rosesalad/Initialize()
 	. = ..()
-	reagents.add_reagent("stoxin", 2)
+	reagents.add_reagent(REAGENT_ID_STOXIN, 2)
 
 /obj/item/reagent_containers/food/snacks/eggbowl
 	name = "egg bowl"
@@ -4682,7 +4682,7 @@
 
 /obj/item/reagent_containers/food/snacks/siffruit/Initialize()
 	. = ..()
-	reagents.add_reagent("sifsap", 2)
+	reagents.add_reagent(REAGENT_ID_SIFSAP, 2)
 
 /obj/item/reagent_containers/food/snacks/siffruit/afterattack(obj/O as obj, mob/user as mob, proximity)
 	if(istype(O,/obj/machinery/microwave))
@@ -4916,13 +4916,13 @@
 	var/composition_reagent_quantity
 
 ///mob/living/simple_mob/adultslime	//The literal only thing in the game that uses this is commented out, so I comment out this too
-//	composition_reagent = "slimejelly"
+//	composition_reagent = REAGENT_ID_SLIMEJELLY
 
 /mob/living/carbon/alien/diona
 	composition_reagent = REAGENT_ID_NUTRIMENT//Dionae are plants, so eating them doesn't give animal protein
 
 /mob/living/simple_mob/slime
-	composition_reagent = "slimejelly"
+	composition_reagent = REAGENT_ID_SLIMEJELLY
 	allow_mind_transfer = TRUE
 
 /mob/living/simple_mob
@@ -6929,7 +6929,7 @@
 	name = "master old-food"
 	desc = "they're all inedible and potentially dangerous items"
 	center_of_mass = list ("x"=15, "y"=9)
-	nutriment_desc = list("rot" = 5, "mold" = 5)
+	nutriment_desc = list("rot" = 5, REAGENT_ID_MOLD = 5)
 	nutriment_amt = 10
 	bitesize = 3
 	filling_color = "#336b42"
@@ -6937,12 +6937,12 @@
 	.=..()
 	reagents.add_reagent(pick(list(
 				REAGENT_ID_FUEL,
-				"amatoxin",
-				"carpotoxin",
-				"zombiepowder",
-				"cryptobiolin",
+				REAGENT_ID_AMATOXIN,
+				REAGENT_ID_CARPOTOXIN,
+				REAGENT_ID_ZOMBIEPOWDER,
+				REAGENT_ID_CRYPTOBIOLIN,
 				REAGENT_ID_PSILOCYBIN)), 5)
-	reagents.add_reagent("salmonella", 5)
+	reagents.add_reagent(REAGENT_ID_SALMONELLA, 5)
 
 /obj/item/reagent_containers/food/snacks/old/pizza
 	name = "\improper Pizza!"
@@ -7077,7 +7077,7 @@
 /obj/item/reagent_containers/food/snacks/canned/caviar/true/Initialize()
 	. = ..()
 	reagents.add_reagent("seafood", 4)
-	reagents.add_reagent("carpotoxin", 1)
+	reagents.add_reagent(REAGENT_ID_CARPOTOXIN, 1)
 
 /obj/item/reagent_containers/food/snacks/canned/maps
 	name = "\improper MAPS"

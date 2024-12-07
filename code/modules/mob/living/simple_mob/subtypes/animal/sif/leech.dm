@@ -49,7 +49,7 @@
 	var/list/bodypart_targets = list(BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_TORSO,BP_GROIN,BP_HEAD)
 	var/infest_target = BP_TORSO	// The currently chosen bodypart to infest.
 	var/mob/living/carbon/host		// Our humble host.
-	var/list/produceable_chemicals = list("inaprovaline","anti_toxin","alkysine","bicaridine","tramadol","kelotane","leporazine",REAGENT_ID_IRON,REAGENT_ID_PHORON,"condensedcapsaicin_v","frostoil")
+	var/list/produceable_chemicals = list("inaprovaline","anti_toxin","alkysine","bicaridine","tramadol","kelotane","leporazine",REAGENT_ID_IRON,REAGENT_ID_PHORON,REAGENT_ID_CONDENSEDCAPSAICINV,"frostoil")
 	var/randomized_reagent = REAGENT_ID_IRON	// The reagent chosen at random to be produced, if there's no one piloting the worm.
 	var/passive_reagent = "paracetamol"	// Reagent passively produced by the leech. Should usually be a painkiller.
 

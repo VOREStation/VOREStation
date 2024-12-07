@@ -369,14 +369,14 @@
 /obj/item/reagent_containers/syringe/drugs/Initialize()
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_BLISS,  5)
-	reagents.add_reagent("mindbreaker",  5)
-	reagents.add_reagent("cryptobiolin", 5)
+	reagents.add_reagent(REAGENT_ID_MINDBREAKER,  5)
+	reagents.add_reagent(REAGENT_ID_CRYPTOBIOLIN, 5)
 	//mode = SYRINGE_INJECT //VOREStation Edit - Starts capped
 	//update_icon()
 
 /obj/item/reagent_containers/syringe/ld50_syringe/choral/Initialize()
 	. = ..()
-	reagents.add_reagent("chloralhydrate", 50)
+	reagents.add_reagent(REAGENT_ID_CHLORALHYDRATE, 50)
 	mode = SYRINGE_INJECT
 	update_icon()
 

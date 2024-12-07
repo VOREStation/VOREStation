@@ -29,7 +29,7 @@
 /obj/item/slime_extract/New()
 	..()
 	create_reagents(5)
-//	reagents.add_reagent("slimejelly", 30)
+//	reagents.add_reagent(REAGENT_ID_SLIMEJELLY, 30)
 
 /obj/item/slime_extract/grey
 	name = "grey slime extract"
@@ -359,7 +359,7 @@
 /obj/item/reagent_containers/food/snacks/egg/slime/Initialize()
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_NUTRIMENT, 4)
-	reagents.add_reagent("slimejelly", 1)
+	reagents.add_reagent(REAGENT_ID_SLIMEJELLY, 1)
 	addtimer(CALLBACK(src, ./proc/Grow), rand(120 SECONDS, 150 SECONDS))
 
 /obj/item/reagent_containers/food/snacks/egg/slime/proc/Grow()

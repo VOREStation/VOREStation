@@ -96,9 +96,9 @@
 	..()
 
 /decl/chemical_reaction/instant/slime/grey_slimejelly
-	name = "Slime Jelly"
+	name = REAGENT_SLIMEJELLY
 	id = "m_jelly"
-	result = "slimejelly"
+	result = REAGENT_ID_SLIMEJELLY
 	required_reagents = list("peridaxon" = 5)
 	result_amount = 15
 	required = /obj/item/slime_extract/grey

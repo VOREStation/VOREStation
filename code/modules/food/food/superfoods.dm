@@ -190,21 +190,21 @@
 			name = "Slice Of Evil" //Pretty damn poisonous, takes a lot of work to make safe for consumption, useful for medical.
 			desc = "An odd slice, despite the grease and cherries oozing off the top, it smells delicious."
 			nutriment_desc = list("The desire to consume" = 10) // You won't even taste the poison.
-			reagents.add_reagent("neurotoxic_protein", 2)
+			reagents.add_reagent(REAGENT_ID_NEUROTOXIC_PROTEIN, 2)
 			reagents.add_reagent(REAGENT_ID_SHOCKCHEM, 2)
-			reagents.add_reagent("amatoxin", 2)
-			reagents.add_reagent("carpotoxin", 2)
+			reagents.add_reagent(REAGENT_ID_AMATOXIN, 2)
+			reagents.add_reagent(REAGENT_ID_CARPOTOXIN, 2)
 			reagents.add_reagent(REAGENT_ID_SPIDERTOXIN, 2)
 			bitesize = 7
 		if(2)
 			name = "Slice Of Evil" //A bad trip
 			desc = "A mysterious slice, coated in purple frosting that smells like grapes."
 			nutriment_desc = list("The desire to show off an party" = 10)
-			reagents.add_reagent("stoxin", 2)
+			reagents.add_reagent(REAGENT_ID_STOXIN, 2)
 			reagents.add_reagent(REAGENT_ID_BLISS, 10)
-			reagents.add_reagent("serotrotium", 4)
-			reagents.add_reagent("cryptobiolin", 8)
-			reagents.add_reagent("mindbreaker", 10)
+			reagents.add_reagent(REAGENT_ID_SEROTROTIUM, 4)
+			reagents.add_reagent(REAGENT_ID_CRYPTOBIOLIN, 8)
+			reagents.add_reagent(REAGENT_ID_MINDBREAKER, 10)
 			reagents.add_reagent(REAGENT_ID_PSILOCYBIN, 10)
 			bitesize = 30 //even a single bite won't make you escape fate.
 		if(3)
@@ -212,8 +212,8 @@
 			desc = "A menacing slice, smelling clearly of copper, blood clots float on top."
 			nutriment_desc = list("Infernal Rage" = 10)
 			reagents.add_reagent(REAGENT_ID_BLOOD, 20)
-			reagents.add_reagent("stomacid", 10)
-			reagents.add_reagent("mutagen", 4)
+			reagents.add_reagent(REAGENT_ID_STOMACID, 10)
+			reagents.add_reagent(REAGENT_ID_MUTAGEN, 4)
 			reagents.add_reagent("thirteenloko", 20)
 			reagents.add_reagent("hyperzine", 10)
 			bitesize = 30

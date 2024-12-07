@@ -6,7 +6,7 @@
 
 	unacidable = TRUE	// Don't melt when holding your acid, dangit.
 
-	var/acidtype = "stomacid"	// Incase you want some stomach organ with, say, polyacid instead, or sulphuric.
+	var/acidtype = REAGENT_ID_STOMACID	// Incase you want some stomach organ with, say, polyacid instead, or sulphuric.
 	var/max_acid_volume = 30
 
 	var/deadly_hold = TRUE	// Does the stomach do damage to mobs eaten by its owner? Xenos should probably have this FALSE.

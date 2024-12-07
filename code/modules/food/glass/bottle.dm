@@ -70,28 +70,28 @@
 	desc = "A small bottle of toxins. Do not drink, it is poisonous."
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "bottle-3"
-	prefill = list("toxin" = 60)
+	prefill = list(REAGENT_ID_TOXIN = 60)
 
 /obj/item/reagent_containers/glass/bottle/cyanide
 	name = "cyanide bottle"
 	desc = "A small bottle of cyanide. Bitter almonds?"
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "bottle-3"
-	prefill = list("cyanide" = 30) //volume changed to match chloral
+	prefill = list(REAGENT_ID_CYANIDE = 30) //volume changed to match chloral
 
 /obj/item/reagent_containers/glass/bottle/stoxin
 	name = "soporific bottle"
 	desc = "A small bottle of soporific. Just the fumes make you sleepy."
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "bottle-3"
-	prefill = list("stoxin" = 60)
+	prefill = list(REAGENT_ID_STOXIN = 60)
 
 /obj/item/reagent_containers/glass/bottle/chloralhydrate
 	name = "chloral hydrate bottle"
 	desc = "A small bottle of Choral Hydrate. Mickey's Favorite!"
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "bottle-3"
-	prefill = list("chloralhydrate" = 30) //Intentionally low since it is so strong. Still enough to knock someone out.
+	prefill = list(REAGENT_ID_CHLORALHYDRATE = 30) //Intentionally low since it is so strong. Still enough to knock someone out.
 
 /obj/item/reagent_containers/glass/bottle/antitoxin
 	name = "dylovene bottle"
@@ -105,7 +105,7 @@
 	desc = "A small bottle of unstable mutagen. Randomly changes the DNA structure of whoever comes in contact."
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "bottle-1"
-	prefill = list("mutagen" = 60)
+	prefill = list(REAGENT_ID_MUTAGEN = 60)
 
 /obj/item/reagent_containers/glass/bottle/ammonia
 	name = "ammonia bottle"
@@ -119,21 +119,21 @@
 	desc = "A small bottle."
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "bottle-4"
-	prefill = list("eznutrient" = 60)
+	prefill = list(REAGENT_ID_EZNUTRIENT = 60)
 
 /obj/item/reagent_containers/glass/bottle/left4zed
 	name = "\improper Left-4-Zed bottle"
 	desc = "A small bottle."
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "bottle-4"
-	prefill = list("left4zed" = 60)
+	prefill = list(REAGENT_ID_LEFT4ZED = 60)
 
 /obj/item/reagent_containers/glass/bottle/robustharvest
 	name = "\improper Robust Harvest"
 	desc = "A small bottle."
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "bottle-4"
-	prefill = list("robustharvest" = 60)
+	prefill = list(REAGENT_ID_ROBUSTHARVEST = 60)
 
 /obj/item/reagent_containers/glass/bottle/diethylamine
 	name = "diethylamine bottle"

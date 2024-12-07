@@ -3,7 +3,7 @@
 	seed_name = "gelthi"
 	display_name = "gelthi plant"
 	kitchen_tag = "gelthi"
-	chems = list("stoxin" = list(1,5),"capsaicin" = list(1,5),REAGENT_ID_NUTRIMENT = list(1,5))
+	chems = list(REAGENT_ID_STOXIN = list(1,5),"capsaicin" = list(1,5),REAGENT_ID_NUTRIMENT = list(1,5))
 
 /datum/seed/gelthi/New()
 	..()

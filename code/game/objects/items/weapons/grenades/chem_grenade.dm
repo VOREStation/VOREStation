@@ -258,7 +258,7 @@
 	var/obj/item/reagent_containers/glass/beaker/B1 = new(src)
 	var/obj/item/reagent_containers/glass/beaker/B2 = new(src)
 
-	B1.reagents.add_reagent("plantbgone", 25)
+	B1.reagents.add_reagent(REAGENT_ID_PLANTBGONE, 25)
 	B1.reagents.add_reagent(REAGENT_ID_POTASSIUM, 25)
 	B2.reagents.add_reagent(REAGENT_ID_PHOSPHORUS, 25)
 	B2.reagents.add_reagent(REAGENT_ID_SUGAR, 25)

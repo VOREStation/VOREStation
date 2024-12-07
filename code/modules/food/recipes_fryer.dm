@@ -143,7 +143,7 @@
 	result = /obj/item/reagent_containers/food/snacks/donut/plain/jelly/poisonberry
 
 /datum/recipe/jellydonut/slime // Subtypes of jellydonut, appliance inheritance applies.
-	reagents = list("slimejelly" = 5, REAGENT_ID_SUGAR = 5)
+	reagents = list(REAGENT_ID_SLIMEJELLY = 5, REAGENT_ID_SUGAR = 5)
 	result = /obj/item/reagent_containers/food/snacks/donut/plain/jelly/slimejelly
 
 /datum/recipe/jellydonut/cherry // Subtypes of jellydonut, appliance inheritance applies.

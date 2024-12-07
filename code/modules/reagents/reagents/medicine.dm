@@ -267,7 +267,7 @@
 	else if(alien != IS_DIONA)
 		M.adjustOxyLoss(-15 * removed * M.species.chem_strength_heal)
 
-	holder.remove_reagent("lexorin", 8 * removed) //VOREStation Edit
+	holder.remove_reagent(REAGENT_ID_LEXORIN, 8 * removed) //VOREStation Edit
 
 /datum/reagent/dexalinp
 	name = "Dexalin Plus"
@@ -292,7 +292,7 @@
 	else if(alien != IS_DIONA)
 		M.adjustOxyLoss(-150 * removed * M.species.chem_strength_heal)
 
-	holder.remove_reagent("lexorin", 3 * removed)
+	holder.remove_reagent(REAGENT_ID_LEXORIN, 3 * removed)
 
 /datum/reagent/tricordrazine
 	name = "Tricordrazine"
@@ -584,7 +584,7 @@
 	M.AdjustParalysis(-1)
 	M.AdjustStunned(-1)
 	M.AdjustWeakened(-1)
-	holder.remove_reagent("mindbreaker", 5)
+	holder.remove_reagent(REAGENT_ID_MINDBREAKER, 5)
 	M.hallucination = max(0, M.hallucination - 10)
 	M.adjustToxLoss(10 * removed * chem_effective) // It used to be incredibly deadly due to an oversight. Not anymore!
 	M.add_chemical_effect(CE_PAINKILLER, 20 * chem_effective * M.species.chem_strength_pain)

@@ -177,7 +177,7 @@
 	H.trait_injection_reagents += REAGENT_ID_ANDROROVIR 		// -> MALE
 	H.trait_injection_reagents += REAGENT_ID_GYNOROVIR 		// -> FEMALE
 	H.trait_injection_reagents += REAGENT_ID_ANDROGYNOROVIR 	// -> PLURAL
-	H.trait_injection_reagents += "stoxin"			// night night chem
+	H.trait_injection_reagents += REAGENT_ID_STOXIN			// night night chem
 	H.trait_injection_reagents += REAGENT_ID_RAINBOWTOXIN 	// Funny flashing lights.
 	H.trait_injection_reagents += REAGENT_ID_PARALYSISTOXIN 	// Paralysis!
 	H.trait_injection_reagents += REAGENT_ID_PAINENZYME		// Pain INCREASER

@@ -48,21 +48,21 @@
 #define MINOR_MALEABLE 	1
 #define MIN_MALEABLE	0
 
-var/global/list/xenoChemList = list("mutationtoxin",
+var/global/list/xenoChemList = list(REAGENT_ID_MUTATIONTOXIN,
 						REAGENT_ID_PSILOCYBIN,
-						"mindbreaker",
-						"impedrezene",
-						"cryptobiolin",
+						REAGENT_ID_MINDBREAKER,
+						REAGENT_ID_IMPEDREZENE,
+						REAGENT_ID_CRYPTOBIOLIN,
 						REAGENT_ID_BLISS,
-						"chloralhydrate",
-						"stoxin",
-						"mutagen",
-						"lexorin",
+						REAGENT_ID_CHLORALHYDRATE,
+						REAGENT_ID_STOXIN,
+						REAGENT_ID_MUTAGEN,
+						REAGENT_ID_LEXORIN,
 						REAGENT_ID_PACID,
-						"cyanide",
+						REAGENT_ID_CYANIDE,
 						REAGENT_ID_PHORON,
-						"plasticide",
-						"amatoxin",
+						REAGENT_ID_PLASTICIDE,
+						REAGENT_ID_AMATOXIN,
 						REAGENT_ID_CARBON,
 						REAGENT_ID_RADIUM,
 						REAGENT_ID_SACID,
@@ -76,8 +76,8 @@ var/global/list/xenoChemList = list("mutationtoxin",
 						"imidazoline",
 						"peridaxon",
 						"rezadone",
-						"mutationtoxin",
-						"docilitytoxin")
+						REAGENT_ID_MUTATIONTOXIN,
+						REAGENT_ID_MUTATIONTOXIN)
 
 /datum/xeno/traits
 	var/list/traits = list()

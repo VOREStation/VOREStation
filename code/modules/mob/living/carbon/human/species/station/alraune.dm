@@ -221,7 +221,7 @@
 	if(toxins_pp > safe_toxins_max)
 		var/ratio = (poison/safe_toxins_max) * 10
 		if(H.reagents)
-			H.reagents.add_reagent("toxin", CLAMP(ratio, MIN_TOXIN_DAMAGE, MAX_TOXIN_DAMAGE))
+			H.reagents.add_reagent(REAGENT_ID_TOXIN, CLAMP(ratio, MIN_TOXIN_DAMAGE, MAX_TOXIN_DAMAGE))
 			breath.adjust_gas(poison_type, -poison/6, update = 0) //update after
 		H.throw_alert("tox_in_air", /obj/screen/alert/tox_in_air)
 	else

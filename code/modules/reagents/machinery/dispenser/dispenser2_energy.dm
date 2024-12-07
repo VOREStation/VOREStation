@@ -40,7 +40,7 @@
 		"inaprovaline", "ryetalyn", "paracetamol", "tramadol", "oxycodone", "sterilizine", "leporazine",
 		"kelotane", "dermaline", "dexalin", "dexalinp", "tricordrazine", "anti_toxin", "synaptizine",
 		"hyronalin", "arithrazine", "alkysine", "imidazoline", "peridaxon", "bicaridine", "hyperzine",
-		"rezadone", "spaceacillin", "ethylredoxrazine", "stoxin", "chloralhydrate", "cryoxadone",
+		"rezadone", "spaceacillin", "ethylredoxrazine", REAGENT_ID_STOXIN, REAGENT_ID_CHLORALHYDRATE, "cryoxadone",
 		"clonexadone"
 		)
 

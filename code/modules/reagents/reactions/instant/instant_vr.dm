@@ -53,7 +53,7 @@
 	name = REAGENT_AMORPHOROVIR
 	id = REAGENT_ID_AMORPHOROVIR
 	result = REAGENT_ID_AMORPHOROVIR
-	required_reagents = list("cryptobiolin" = 30, REAGENT_ID_BIOMASS = 30, "hyperzine" = 20)
+	required_reagents = list(REAGENT_ID_CRYPTOBIOLIN = 30, REAGENT_ID_BIOMASS = 30, "hyperzine" = 20)
 	catalysts = list(REAGENT_ID_PHORON = 5)
 	result_amount = 1
 
@@ -136,7 +136,7 @@
 	name = REAGENT_UNSORBITOL
 	id = REAGENT_ID_UNSORBITOL
 	result = REAGENT_ID_UNSORBITOL
-	required_reagents = list("mutagen" = 3, "lipozine" = 2)
+	required_reagents = list(REAGENT_ID_MUTAGEN = 3, "lipozine" = 2)
 	result_amount = 5
 
 ///////////////////////////////////////////////////////////////////////////////////
@@ -205,5 +205,5 @@
 	name = REAGENT_ADVMUTATIONTOXIN
 	id = "advmutationtoxin2"
 	result = REAGENT_ID_ADVMUTATIONTOXIN
-	required_reagents = list(REAGENT_ID_PHORON = 15, "slimejelly" = 15, "mutationtoxin" = 15) //In case a xenobiologist wants to become a fully fledged slime person.
+	required_reagents = list(REAGENT_ID_PHORON = 15, REAGENT_ID_SLIMEJELLY = 15, REAGENT_ID_MUTATIONTOXIN = 15) //In case a xenobiologist wants to become a fully fledged slime person.
 	result_amount = 1

@@ -38,7 +38,7 @@
 	display_name = "ambrosia infernus"
 	kitchen_tag = "ambrosiainfernus"
 	mutants = null
-	chems = list(REAGENT_ID_NUTRIMENT = list(1,3), "oxycodone" = list(1,8), "impedrezene" = list(1,10), "mindbreaker" = list(1,10), REAGENT_ID_AMBROSIAEXTRACT = list(1,10))
+	chems = list(REAGENT_ID_NUTRIMENT = list(1,3), "oxycodone" = list(1,8), REAGENT_ID_IMPEDREZENE = list(1,10), REAGENT_ID_MINDBREAKER = list(1,10), REAGENT_ID_AMBROSIAEXTRACT = list(1,10))
 
 /datum/seed/ambrosia/infernus/New()
 	..()

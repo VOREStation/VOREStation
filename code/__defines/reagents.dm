@@ -147,17 +147,6 @@
 #define REAGENT_ID_VATSTABILIZER "vatstabilizer"
 
 
-// Toxins
-#define REAGENT_PACID "Polytrinic acid"
-#define REAGENT_ID_PACID "pacid"
-#define REAGEMT_PHORON "Phoron"
-#define REAGENT_ID_PHORON "phoron"
-#define REAGENT_SPIDERTOXIN "Spidertoxin"
-#define REAGENT_ID_SPIDERTOXIN "spidertoxin"
-#define REAGENT_LEAD "Lead"
-#define REAGENT_ID_LEAD "lead"
-
-
 // Medicines
 #define REAGENT_ADRANOL "Adranol"
 #define REAGENT_ID_ADRANOL "adranol"
@@ -177,6 +166,40 @@
 #define REAGENT_ID_POLYMORPH "polymorph"
 #define REAGENT_GLAMOUR "Glamour"
 #define REAGENT_ID_GLAMOUR "glamour"
+
+
+
+
+#define REAGENT_
+#define REAGENT_ID_
+#define REAGENT_
+#define REAGENT_ID_
+#define REAGENT_
+#define REAGENT_ID_
+#define REAGENT_
+#define REAGENT_ID_
+#define REAGENT_
+#define REAGENT_ID_
+#define REAGENT_
+#define REAGENT_ID_
+#define REAGENT_
+#define REAGENT_ID_
+#define REAGENT_
+#define REAGENT_ID_
+#define REAGENT_
+#define REAGENT_ID_
+#define REAGENT_
+#define REAGENT_ID_
+#define REAGENT_
+#define REAGENT_ID_
+
+
+#define REAGENT_ID_CALCIUMCARBONATE "calciumcarbonate"
+
+
+
+
+
 
 
 // Virology
@@ -325,7 +348,6 @@
 #define REAGENT_ID_LIQUIDCARPETO "liquidcarpeto"
 #define REAGENT_ESSENTIALOIL "Essential Oils"
 #define REAGENT_ID_ESSENTIALOIL "essential_oil"
-
 
 
 // Admin chems
@@ -488,49 +510,105 @@
 
 
 
-
-
-
-
-#define REAGENT_
-#define REAGENT_ID_
-#define REAGENT_
-#define REAGENT_ID_
-#define REAGENT_
-#define REAGENT_ID_
-#define REAGENT_
-#define REAGENT_ID_
-#define REAGENT_
-#define REAGENT_ID_
-#define REAGENT_
-#define REAGENT_ID_
-#define REAGENT_
-#define REAGENT_ID_
-#define REAGENT_
-#define REAGENT_ID_
-#define REAGENT_
-#define REAGENT_ID_
-#define REAGENT_
-#define REAGENT_ID_
-#define REAGENT_
-#define REAGENT_ID_
-
-
-
-
-
-
-
-#define REAGENT_SLIMEJELLY "Slimejelly"
+// Toxins
+#define REAGENT_TOXIN "Toxin"
+#define REAGENT_ID_TOXIN "toxin"
+#define REAGENT_PACID "Polytrinic acid"
+#define REAGENT_ID_PACID "pacid"
+#define REAGEMT_PHORON "Phoron"
+#define REAGENT_ID_PHORON "phoron"
+#define REAGENT_SPIDERTOXIN "Spidertoxin"
+#define REAGENT_ID_SPIDERTOXIN "spidertoxin"
+#define REAGENT_LEAD "Lead"
+#define REAGENT_ID_LEAD "lead"
+#define REAGENT_PLASTICIDE "Plasticide"
+#define REAGENT_ID_PLASTICIDE "plasticide"
+#define REAGENT_AMATOXIN "Amatoxin"
+#define REAGENT_ID_AMATOXIN "amatoxin"
+#define REAGENT_CARPOTOXIN "Carpotoxin"
+#define REAGENT_ID_CARPOTOXIN "carpotoxin"
+#define REAGENT_NEUROTOXIC_PROTEIN "toxic protein"
+#define REAGENT_ID_NEUROTOXIC_PROTEIN "neurotoxic_protein"
+#define REAGENT_HYDROPHORON "Hydrophoron"
+#define REAGENT_ID_HYDROPHORON "hydrophoron"
+#define REAGENT_CYANIDE "Cyanide"
+#define REAGENT_ID_CYANIDE "cyanide"
+#define REAGENT_MOLD "Mold"
+#define REAGENT_ID_MOLD "mold"
+#define REAGENT_EXPIREDMEDICINE "Expired Medicine"
+#define REAGENT_ID_EXPIREDMEDICINE "expired_medicine"
+#define REAGENT_STIMM "Stimm"
+#define REAGENT_ID_STIMM "stimm"
+#define REAGENT_POTASSIUMCHLORIDE "Potassium Chloride"
+#define REAGENT_ID_POTASSIUMCHLORIDE "potassium_chloride"
+#define REAGENT_POTASSIUMCHLOROPHORIDE "Potassium Chlorophoride"
+#define REAGENT_ID_POTASSIUMCHLOROPHORIDE "potassium_chlorophoride"
+#define REAGENT_ZOMBIEPOWDER "Zombie Powder"
+#define REAGENT_ID_ZOMBIEPOWDER "zombiepowder"
+#define REAGENT_LICHPOWDER "Lich Powder"
+#define REAGENT_ID_LICHPOWDER "lichpowder"
+#define REAGENT_FERTILIZER "Fertilizer"
+#define REAGENT_ID_FERTILIZER "fertilizer"
+#define REAGENT_EZNUTRIENT "EZ Nutrient"
+#define REAGENT_ID_EZNUTRIENT "eznutrient"
+#define REAGENT_LEFT4ZED "Left-4-Zed"
+#define REAGENT_ID_LEFT4ZED "left4zed"
+#define REAGENT_ROBUSTHARVEST "Robust Harvest"
+#define REAGENT_ID_ROBUSTHARVEST "robustharvest"
+#define REAGENT_TANNIN "Tannin"
+#define REAGENT_ID_TANNIN "tannin"
+#define REAGENT_PLANTBGONE "Plant-B-Gone"
+#define REAGENT_ID_PLANTBGONE "plantbgone"
+#define REAGENT_SIFSAP "Sivian Sap"
+#define REAGENT_ID_SIFSAP "sifsap"
+#define REAGENT_STOMACID "Digestive acid"
+#define REAGENT_ID_STOMACID "stomacid"
+#define REAGENT_THERMITEV "Pyrotoxin"
+#define REAGENT_ID_THERMITEV "thermite_v"
+#define REAGENT_CONDENSEDCAPSAICINV "Irritant toxin"
+#define REAGENT_ID_CONDENSEDCAPSAICINV "condensedcapsaicin_v"
+#define REAGENT_LEXORIN "Lexorin"
+#define REAGENT_ID_LEXORIN "lexorin"
+#define REAGENT_MUTAGEN "Unstable mutagen"
+#define REAGENT_ID_MUTAGEN "mutagen"
+#define REAGENT_SLIMEJELLY "Slime Jelly"
 #define REAGENT_ID_SLIMEJELLY "slimejelly"
+#define REAGENT_STOXIN "Soporific"
+#define REAGENT_ID_STOXIN "stoxin"
+#define REAGENT_CHLORALHYDRATE "Chloral Hydrate"
+#define REAGENT_ID_CHLORALHYDRATE "chloralhydrate"
+#define REAGENT_BEER2 REAGENT_BEER
+#define REAGENT_ID_BEER2 "beer2"
+#define REAGENT_SEROTROTIUM "Serotrotium"
+#define REAGENT_ID_SEROTROTIUM "serotrotium"
+#define REAGENT_SEROTROTIUMV "Serotropic venom"
+#define REAGENT_ID_SEROTROTIUMV "serotrotium_v"
+#define REAGENT_CRYPTOBIOLIN "Cryptobiolin"
+#define REAGENT_ID_CRYPTOBIOLIN "cryptobiolin"
+#define REAGENT_IMPEDREZENE "Impedrezene"
+#define REAGENT_ID_IMPEDREZENE "impedrezene"
+#define REAGENT_MINDBREAKER "Mindbreaker Toxin"
+#define REAGENT_ID_MINDBREAKER "mindbreaker"
+#define REAGENT_MUTATIONTOXIN "Mutation Toxin"
+#define REAGENT_ID_MUTATIONTOXIN "mutationtoxin"
+#define REAGENT_DOCILITYTOXIN "Docility Toxin"
+#define REAGENT_ID_DOCILITYTOXIN "docilitytoxin"
+#define REAGENT_SHREDDINGNANITES REAGENT_RESTORATIVENANITES
+#define REAGENT_ID_SHREDDINGNANITES "shredding_nanites"
+#define REAGENT_IRRADIATEDNANITES REAGENT_RESTORATIVENANITES
+#define REAGENT_ID_IRRADIATEDNANITES "irradiated_nanites"
+#define REAGENT_NEUROPHAGENANITES REAGENT_RESTORATIVENANITES
+#define REAGENT_ID_NEUROPHAGENANITES "neurophage_nanites"
+#define REAGENT_SALMONELLA "Salmonella"
+#define REAGENT_ID_SALMONELLA "salmonella"
 
 
-#define REAGENT_ID_CALCIUMCARBONATE "calciumcarbonate"
 
 
 
 
-Files left: food_drinks.dm, medicine.dm, toxins.dm
+
+Files left: food_drinks.dm, medicine.dm
 includes: .dm
 excludes: reagents.dm,ores.dm,materials.dm,mre.dm
 

@@ -36,7 +36,7 @@
 	var/treatment_fire = "tricordrazine"
 	var/treatment_tox = "tricordrazine"
 	var/treatment_virus = "spaceacillin"
-	var/treatment_emag = "toxin"
+	var/treatment_emag = REAGENT_ID_TOXIN
 	var/declare_treatment = 0 //When attempting to treat a patient, should it notify everyone wearing medhuds?
 
 	// Are we tipped over?

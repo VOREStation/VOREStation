@@ -234,7 +234,7 @@
 /obj/item/watertank/op/Initialize()
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_FUEL, 500)
-	reagents.add_reagent("cryptobiolin", 500)
+	reagents.add_reagent(REAGENT_ID_CRYPTOBIOLIN, 500)
 	reagents.add_reagent(REAGENT_ID_PHORON, 500)
 	reagents.add_reagent("condensedcapsaicin", 500)
 

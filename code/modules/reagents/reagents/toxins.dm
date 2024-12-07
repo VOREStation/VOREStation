@@ -1,8 +1,8 @@
 /* Toxins, poisons, venoms */
 
 /datum/reagent/toxin
-	name = "toxin"
-	id = "toxin"
+	name = REAGENT_TOXIN
+	id = REAGENT_ID_TOXIN
 	description = "A toxic chemical."
 	taste_description = "bitterness"
 	taste_mult = 1.2
@@ -29,8 +29,8 @@
 	affect_blood(M, alien, removed * 0.2)
 
 /datum/reagent/toxin/plasticide
-	name = "Plasticide"
-	id = "plasticide"
+	name = REAGENT_PLASTICIDE
+	id = REAGENT_ID_PLASTICIDE
 	description = "Liquid plastic, do not eat."
 	taste_description = "plastic"
 	reagent_state = LIQUID
@@ -38,8 +38,8 @@
 	strength = 5
 
 /datum/reagent/toxin/amatoxin
-	name = "Amatoxin"
-	id = "amatoxin"
+	name = REAGENT_AMATOXIN
+	id = REAGENT_ID_AMATOXIN
 	description = "A powerful poison derived from certain species of mushroom."
 	taste_description = "mushroom"
 	reagent_state = LIQUID
@@ -52,8 +52,8 @@
 		M.adjustToxLoss(max_dose * strength * removed / (max_dose * 0.2))
 
 /datum/reagent/toxin/carpotoxin
-	name = "Carpotoxin"
-	id = "carpotoxin"
+	name = REAGENT_CARPOTOXIN
+	id = REAGENT_ID_CARPOTOXIN
 	description = "A deadly neurotoxin produced by the dreaded space carp."
 	taste_description = "fish"
 	reagent_state = LIQUID
@@ -65,8 +65,8 @@
 	M.adjustBrainLoss(strength / 4 * removed)
 
 /datum/reagent/toxin/neurotoxic_protein
-	name = "toxic protein"
-	id = "neurotoxic_protein"
+	name = REAGENT_NEUROTOXIC_PROTEIN
+	id = REAGENT_ID_NEUROTOXIC_PROTEIN
 	description = "A weak neurotoxic chemical."
 	taste_description = "fish"
 	reagent_state = LIQUID
@@ -89,8 +89,8 @@
 //R-UST port
 // Produced during deuterium synthesis. Super poisonous, SUPER flammable (doesn't need oxygen to burn).
 /datum/reagent/toxin/hydrophoron
-	name = "Hydrophoron"
-	id = "hydrophoron"
+	name = REAGENT_HYDROPHORON
+	id = REAGENT_ID_HYDROPHORON
 	description = "An exceptionally flammable molecule formed from deuterium synthesis."
 	strength = 80
 	var/fire_mult = 30
@@ -179,8 +179,8 @@
 	remove_self(amount)
 
 /datum/reagent/toxin/cyanide //Fast and Lethal
-	name = "Cyanide"
-	id = "cyanide"
+	name = REAGENT_CYANIDE
+	id = REAGENT_ID_CYANIDE
 	description = "A highly toxic chemical."
 	taste_description = "almond"
 	taste_mult = 0.6
@@ -195,8 +195,8 @@
 	M.Sleeping(1)
 
 /datum/reagent/toxin/mold
-	name = "Mold"
-	id = "mold"
+	name = REAGENT_MOLD
+	id = REAGENT_ID_MOLD
 	description = "A mold is a fungus that causes biodegradation of natural materials. This variant contains mycotoxins, and is dangerous to humans."
 	taste_description = "mold"
 	reagent_state = SOLID
@@ -208,8 +208,8 @@
 		M.vomit()
 
 /datum/reagent/toxin/expired_medicine
-	name = "Expired Medicine"
-	id = "expired_medicine"
+	name = REAGENT_EXPIREDMEDICINE
+	id = REAGENT_ID_EXPIREDMEDICINE
 	description = "Some form of liquid medicine that is well beyond its shelf date. Administering it now would cause illness."
 	taste_description = "bitterness"
 	reagent_state = LIQUID
@@ -226,8 +226,8 @@
 
 
 /datum/reagent/toxin/stimm	//Homemade Hyperzine
-	name = "Stimm"
-	id = "stimm"
+	name = REAGENT_STIMM
+	id = REAGENT_ID_STIMM
 	description = "A homemade stimulant with some serious side-effects."
 	taste_description = "sweetness"
 	taste_mult = 1.8
@@ -257,8 +257,8 @@
 		to_chat(M, span_warning("Huh... Is this what a heart attack feels like?"))
 
 /datum/reagent/toxin/potassium_chloride
-	name = "Potassium Chloride"
-	id = "potassium_chloride"
+	name = REAGENT_POTASSIUMCHLORIDE
+	id = REAGENT_ID_POTASSIUMCHLORIDE
 	description = "A delicious salt that stops the heart when injected into cardiac muscle."
 	taste_description = "salt"
 	reagent_state = SOLID
@@ -283,8 +283,8 @@
 			H.Weaken(10)
 
 /datum/reagent/toxin/potassium_chlorophoride
-	name = "Potassium Chlorophoride"
-	id = "potassium_chlorophoride"
+	name = REAGENT_POTASSIUMCHLOROPHORIDE
+	id = REAGENT_ID_POTASSIUMCHLOROPHORIDE
 	description = "A specific chemical based on Potassium Chloride to stop the heart for surgery. Not safe to eat!"
 	taste_description = "salt"
 	reagent_state = SOLID
@@ -306,8 +306,8 @@
 		M.adjustFireLoss(removed * 3)
 
 /datum/reagent/toxin/zombiepowder
-	name = "Zombie Powder"
-	id = "zombiepowder"
+	name = REAGENT_ZOMBIEPOWDER
+	id = REAGENT_ID_ZOMBIEPOWDER
 	description = "A strong neurotoxin that puts the subject into a death-like state."
 	taste_description = "numbness"
 	reagent_state = SOLID
@@ -333,8 +333,8 @@
 	return ..()
 
 /datum/reagent/toxin/lichpowder
-	name = "Lich Powder"
-	id = "lichpowder"
+	name = REAGENT_LICHPOWDER
+	id = REAGENT_ID_LICHPOWDER
 	description = "A stablized nerve agent that puts the subject into a strange state of un-death."
 	reagent_state = SOLID
 	color = "#666666"
@@ -362,8 +362,8 @@
 	return ..()
 
 /datum/reagent/toxin/fertilizer //Reagents used for plant fertilizers.
-	name = "fertilizer"
-	id = "fertilizer"
+	name = REAGENT_FERTILIZER
+	id = REAGENT_ID_FERTILIZER
 	description = "A chemical mix good for growing plants with."
 	taste_description = "plant food"
 	taste_mult = 0.5
@@ -372,20 +372,20 @@
 	color = "#664330"
 
 /datum/reagent/toxin/fertilizer/eznutrient
-	name = "EZ Nutrient"
-	id = "eznutrient"
+	name = REAGENT_EZNUTRIENT
+	id = REAGENT_ID_EZNUTRIENT
 
 /datum/reagent/toxin/fertilizer/left4zed
-	name = "Left-4-Zed"
-	id = "left4zed"
+	name = REAGENT_LEFT4ZED
+	id = REAGENT_ID_LEFT4ZED
 
 /datum/reagent/toxin/fertilizer/robustharvest
-	name = "Robust Harvest"
-	id = "robustharvest"
+	name = REAGENT_ROBUSTHARVEST
+	id = REAGENT_ID_ROBUSTHARVEST
 
 /datum/reagent/toxin/fertilizer/tannin
-	name = "tannin"
-	id = "tannin"
+	name = REAGENT_TANNIN
+	id = REAGENT_ID_TANNIN
 	description = "A chemical found in some plants as a natural pesticide. It may also aid in regulating growth."
 	taste_description = "puckering"
 	taste_mult = 1.2
@@ -401,8 +401,8 @@
 	..()
 
 /datum/reagent/toxin/plantbgone
-	name = "Plant-B-Gone"
-	id = "plantbgone"
+	name = REAGENT_PLANTBGONE
+	id = REAGENT_ID_PLANTBGONE
 	description = "A harmful toxic mixture to kill plantlife. Do not ingest!"
 	taste_mult = 1
 	reagent_state = LIQUID
@@ -436,8 +436,8 @@
 		M.adjustToxLoss(50 * removed)
 
 /datum/reagent/toxin/sifslurry
-	name = "Sivian Sap"
-	id = "sifsap"
+	name = REAGENT_SIFSAP
+	id = REAGENT_ID_SIFSAP
 	description = "A natural slurry comprised of fluorescent bacteria native to Sif, in the Vir system."
 	taste_description = "sour"
 	reagent_state = LIQUID
@@ -476,8 +476,8 @@
 	meltdose = 4
 
 /datum/reagent/acid/digestive
-	name = "Digestive acid"
-	id = "stomacid"
+	name = REAGENT_STOMACID
+	id = REAGENT_ID_STOMACID
 	description = "Some form of digestive slurry."
 	taste_description = "vomit"
 	reagent_state = LIQUID
@@ -486,8 +486,8 @@
 	meltdose = 30
 
 /datum/reagent/thermite/venom
-	name = "Pyrotoxin"
-	id = "thermite_v"
+	name = REAGENT_THERMITEV
+	id = REAGENT_ID_THERMITEV
 	description = "A biologically produced compound capable of melting steel or other metals, similarly to thermite."
 	taste_description = "sweet chalk"
 	reagent_state = SOLID
@@ -508,8 +508,8 @@
 		to_chat(M, span_critical("Some of your veins rupture, the exposed blood igniting!"))
 
 /datum/reagent/condensedcapsaicin/venom
-	name = "Irritant toxin"
-	id = "condensedcapsaicin_v"
+	name = REAGENT_CONDENSEDCAPSAICINV
+	id = REAGENT_ID_CONDENSEDCAPSAICINV
 	description = "A biological agent that acts similarly to pepperspray. This compound seems to be particularly cruel, however, capable of permeating the barriers of blood vessels."
 	taste_description = "fire"
 	color = "#B31008"
@@ -530,8 +530,8 @@
 		M.eye_blurry = max(M.eye_blurry, 10)
 
 /datum/reagent/lexorin
-	name = "Lexorin"
-	id = "lexorin"
+	name = REAGENT_LEXORIN
+	id = REAGENT_ID_LEXORIN
 	description = "Lexorin temporarily stops respiration. Causes tissue damage."
 	taste_description = "acid"
 	reagent_state = LIQUID
@@ -558,8 +558,8 @@
 			M.AdjustLosebreath(1)
 
 /datum/reagent/mutagen
-	name = "Unstable mutagen"
-	id = "mutagen"
+	name = REAGENT_MUTAGEN
+	id = REAGENT_ID_MUTAGEN
 	description = "Might cause unpredictable mutations. Keep away from children."
 	taste_description = "slime"
 	taste_mult = 0.9
@@ -627,8 +627,8 @@
 	M.apply_effect(10 * removed, IRRADIATE, 0)
 
 /datum/reagent/slimejelly
-	name = "Slime Jelly"
-	id = "slimejelly"
+	name = REAGENT_SLIMEJELLY
+	id = REAGENT_ID_SLIMEJELLY
 	description = "A gooey semi-liquid produced from one of the deadliest lifeforms in existence. SO REAL."
 	taste_description = "slime"
 	taste_mult = 1.3
@@ -652,8 +652,8 @@
 			M.heal_organ_damage(25 * removed, 0)
 
 /datum/reagent/soporific
-	name = "Soporific"
-	id = "stoxin"
+	name = REAGENT_STOXIN
+	id = REAGENT_ID_STOXIN
 	description = "An effective hypnotic used to treat insomnia."
 	taste_description = "bitterness"
 	reagent_state = LIQUID
@@ -699,8 +699,8 @@
 		M.drowsyness = max(M.drowsyness, 60)
 
 /datum/reagent/chloralhydrate
-	name = "Chloral Hydrate"
-	id = "chloralhydrate"
+	name = REAGENT_CHLORALHYDRATE
+	id = REAGENT_ID_CHLORALHYDRATE
 	description = "A powerful sedative."
 	taste_description = "bitterness"
 	reagent_state = SOLID
@@ -750,8 +750,8 @@
 	M.adjustOxyLoss(removed * overdose_mod)
 
 /datum/reagent/chloralhydrate/beer2 //disguised as normal beer for use by emagged brobots
-	name = "Beer"
-	id = "beer2"
+	name = REAGENT_BEER2
+	id = REAGENT_ID_BEER2
 	description = "An alcoholic beverage made from malted grains, hops, yeast, and water. The fermentation appears to be incomplete." //If the players manage to analyze this, they deserve to know something is wrong.
 	taste_description = "beer"
 	reagent_state = LIQUID
@@ -763,8 +763,8 @@
 /* Drugs */
 
 /datum/reagent/serotrotium
-	name = "Serotrotium"
-	id = "serotrotium"
+	name = REAGENT_SEROTROTIUM
+	id = REAGENT_ID_SEROTROTIUM
 	description = "A chemical compound that promotes concentrated production of the serotonin neurotransmitter in humans."
 	taste_description = "bitterness"
 	reagent_state = LIQUID
@@ -780,8 +780,8 @@
 	return
 
 /datum/reagent/serotrotium/venom
-	name = "Serotropic venom"
-	id = "serotrotium_v"
+	name = REAGENT_SEROTROTIUMV
+	id = REAGENT_ID_SEROTROTIUMV
 	description = "A chemical compound that promotes concentrated production of the serotonin neurotransmitter in humans. This appears to be a biologically produced form, resulting in a specifically toxic nature."
 	taste_description = "chalky bitterness"
 	filtered_organs = list(O_SPLEEN)
@@ -796,8 +796,8 @@
 	return ..()
 
 /datum/reagent/cryptobiolin
-	name = "Cryptobiolin"
-	id = "cryptobiolin"
+	name = REAGENT_CRYPTOBIOLIN
+	id = REAGENT_ID_CRYPTOBIOLIN
 	description = "Cryptobiolin causes confusion and dizzyness."
 	taste_description = "sourness"
 	reagent_state = LIQUID
@@ -820,8 +820,8 @@
 	M.Confuse(drug_strength * 5)
 
 /datum/reagent/impedrezene
-	name = "Impedrezene"
-	id = "impedrezene"
+	name = REAGENT_IMPEDREZENE
+	id = REAGENT_ID_IMPEDREZENE
 	description = "Impedrezene is a narcotic that impedes one's ability by slowing down the higher brain cell functions."
 	taste_description = "numbness"
 	reagent_state = LIQUID
@@ -841,8 +841,8 @@
 		M.emote("drool")
 
 /datum/reagent/mindbreaker
-	name = "Mindbreaker Toxin"
-	id = "mindbreaker"
+	name = REAGENT_MINDBREAKER
+	id = REAGENT_ID_MINDBREAKER
 	description = "A powerful hallucinogen, it can cause fatal effects in users."
 	taste_description = "sourness"
 	reagent_state = LIQUID
@@ -867,8 +867,8 @@
 /* Transformations */
 
 /datum/reagent/slimetoxin
-	name = "Mutation Toxin"
-	id = "mutationtoxin"
+	name = REAGENT_MUTATIONTOXIN
+	id = REAGENT_ID_MUTATIONTOXIN
 	description = "A corruptive toxin produced by slimes."
 	taste_description = "sludge"
 	reagent_state = LIQUID
@@ -897,8 +897,8 @@
 	M.apply_effect(16 * removed, IRRADIATE, 0)
 
 /datum/reagent/aslimetoxin
-	name = "Docility Toxin"
-	id = "docilitytoxin"
+	name = REAGENT_DOCILITYTOXIN
+	id = REAGENT_ID_DOCILITYTOXIN
 	description = "A corruptive toxin produced by slimes."
 	taste_description = "sludge"
 	reagent_state = LIQUID
@@ -932,8 +932,8 @@
  */
 
 /datum/reagent/shredding_nanites
-	name = "Restorative Nanites"
-	id = "shredding_nanites"
+	name = REAGENT_SHREDDINGNANITES
+	id = REAGENT_ID_SHREDDINGNANITES
 	description = "Miniature medical robots that swiftly restore bodily damage. These ones seem to be malfunctioning."
 	taste_description = "metal"
 	reagent_state = SOLID
@@ -946,8 +946,8 @@
 	M.adjustOxyLoss(4 * removed)
 
 /datum/reagent/irradiated_nanites
-	name = "Restorative Nanites"
-	id = "irradiated_nanites"
+	name = REAGENT_IRRADIATEDNANITES
+	id = REAGENT_ID_IRRADIATEDNANITES
 	description = "Miniature medical robots that swiftly restore bodily damage. These ones seem to be malfunctioning."
 	taste_description = "metal"
 	reagent_state = SOLID
@@ -960,8 +960,8 @@
 	M.radiation = max(M.radiation + 5 * removed, 0)	// Irradiate you. Because it's inside you.
 
 /datum/reagent/neurophage_nanites
-	name = "Restorative Nanites"
-	id = "neurophage_nanites"
+	name = REAGENT_NEUROPHAGENANITES
+	id = REAGENT_ID_NEUROPHAGENANITES
 	description = "Miniature medical robots that swiftly restore bodily damage. These ones seem to be completely hostile."
 	taste_description = "metal"
 	reagent_state = SOLID
@@ -975,8 +975,8 @@
 	M.adjustBruteLoss(2 * removed)
 
 /datum/reagent/salmonella
-	name = "Salmonella"
-	id = "salmonella"
+	name = REAGENT_SALMONELLA
+	id = REAGENT_ID_SALMONELLA
 	description = "A nasty bacteria found in spoiled food."
 	reagent_state = LIQUID
 	color = "#1E4600"

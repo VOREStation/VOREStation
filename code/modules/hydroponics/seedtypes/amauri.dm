@@ -3,7 +3,7 @@
 	seed_name = "amauri"
 	display_name = "amauri plant"
 	kitchen_tag = "amauri"
-	chems = list("zombiepowder" = list(1,10),"condensedcapsaicin" = list(1,5),REAGENT_ID_NUTRIMENT = list(1,5))
+	chems = list(REAGENT_ID_ZOMBIEPOWDER = list(1,10),"condensedcapsaicin" = list(1,5),REAGENT_ID_NUTRIMENT = list(1,5))
 
 /datum/seed/amauri/New()
 	..()

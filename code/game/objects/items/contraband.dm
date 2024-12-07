@@ -21,10 +21,10 @@
 
 /obj/item/reagent_containers/glass/beaker/vial/random/toxin
 	random_reagent_list = list(
-		list("mindbreaker" = 10, REAGENT_ID_BLISS = 20)	= 3,
-		list("carpotoxin" = 15)							= 2,
-		list("impedrezene" = 15)						= 2,
-		list("zombiepowder" = 10)						= 1)
+		list(REAGENT_ID_MINDBREAKER = 10, REAGENT_ID_BLISS = 20)	= 3,
+		list(REAGENT_ID_CARPOTOXIN = 15)							= 2,
+		list(REAGENT_ID_IMPEDREZENE = 15)						= 2,
+		list(REAGENT_ID_ZOMBIEPOWDER = 10)						= 1)
 
 /obj/item/reagent_containers/glass/beaker/vial/random/Initialize()
 	. = ..()

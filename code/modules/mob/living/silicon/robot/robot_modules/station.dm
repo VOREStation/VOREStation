@@ -634,7 +634,7 @@ var/global/list/robot_modules = list(
 	var/datum/reagents/R = new/datum/reagents(50)
 	PB.reagents = R
 	R.my_atom = PB
-	R.add_reagent("beer2", 50)
+	R.add_reagent(REAGENT_ID_BEER2, 50)
 	PB.name = "Auntie Hong's Final Sip"
 	PB.desc = "A bottle of very special mix of alcohol and poison. Some may argue that there's alcohol to die for, but Auntie Hong took it to next level."
 
@@ -645,7 +645,7 @@ var/global/list/robot_modules = list(
 /obj/item/robot_module/robot/clerical/butler/respawn_consumable(var/mob/living/silicon/robot/R, var/amount)
 	var/obj/item/reagent_containers/food/drinks/bottle/small/beer/PB = locate() in src.emag
 	if(PB)
-		PB.reagents.add_reagent("beer2", 2 * amount)
+		PB.reagents.add_reagent(REAGENT_ID_BEER2, 2 * amount)
 
 /obj/item/robot_module/robot/clerical/general
 	name = "clerical robot module"

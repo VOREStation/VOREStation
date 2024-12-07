@@ -2,7 +2,7 @@
 	name = REAGENT_MUTAGENVIRUSFOOD
 	id = REAGENT_ID_MUTAGENVIRUSFOOD
 	result = REAGENT_ID_MUTAGENVIRUSFOOD
-	required_reagents = list("mutagen" = 1, "virusfood" = 1)
+	required_reagents = list(REAGENT_ID_MUTAGEN = 1, "virusfood" = 1)
 	result_amount = 1
 
 /decl/chemical_reaction/instant/virus_food_adranol
@@ -75,7 +75,7 @@
 /decl/chemical_reaction/instant/mix_virus/mix_virus_2
 	name = "Mix Virus 2"
 	id = "mixvirus2"
-	required_reagents = list("mutagen" = 1)
+	required_reagents = list(REAGENT_ID_MUTAGEN = 1)
 	level_min = 2
 	level_max = 4
 

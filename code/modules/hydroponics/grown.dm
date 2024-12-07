@@ -86,7 +86,7 @@
 			descriptors |= "sweet-sour"
 		if(reagents.has_reagent(REAGENT_ID_RADIUM) || reagents.has_reagent(REAGENT_ID_URANIUM))
 			descriptors |= "radioactive"
-		if(reagents.has_reagent("amatoxin") || reagents.has_reagent("toxin"))
+		if(reagents.has_reagent(REAGENT_ID_AMATOXIN) || reagents.has_reagent(REAGENT_ID_TOXIN))
 			descriptors |= "poisonous"
 		if(reagents.has_reagent(REAGENT_ID_PSILOCYBIN) || reagents.has_reagent(REAGENT_ID_BLISS) || reagents.has_reagent("earthsblood"))
 			descriptors |= "hallucinogenic"

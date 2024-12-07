@@ -1143,8 +1143,8 @@ datum
 				var/target_name
 				New(var/text,var/joba)
 					..()
-					var/list/items = list("Sulphuric acid", REAGENT_PACID, REAGENT_LUBE, "Unstable mutagen",\
-					 "Leporazine", "Cryptobiolin", "Lexorin ",\
+					var/list/items = list("Sulphuric acid", REAGENT_PACID, REAGENT_LUBE, REAGENT_MUTAGEN,\
+					 "Leporazine", REAGENT_CRYPTOBIOLIN, REAGENT_LEXORIN,\
 					  "Kelotane", "Dexalin", "Tricordrazine")
 					target_name = pick(items)
 					switch(target_name)
@@ -1154,13 +1154,13 @@ datum
 							steal_target = /datum/reagent/pacid
 						if(REAGENT_LUBE)
 							steal_target = /datum/reagent/lube
-						if("Unstable mutagen")
+						if(REAGENT_MUTAGEN)
 							steal_target = /datum/reagent/mutagen
 						if("Leporazine")
 							steal_target = /datum/reagent/leporazine
-						if("Cryptobiolin")
+						if(REAGENT_CRYPTOBIOLIN)
 							steal_target =/datum/reagent/cryptobiolin
-						if("Lexorin")
+						if(REAGENT_LEXORIN)
 							steal_target = /datum/reagent/lexorin
 						if("Kelotane")
 							steal_target = /datum/reagent/kelotane

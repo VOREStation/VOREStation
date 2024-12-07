@@ -777,7 +777,7 @@
 /obj/item/reagent_containers/food/snacks/donkpocket/ascended/Initialize()
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_URANIUM, 3)
-	reagents.add_reagent("thermite_v", 3)
+	reagents.add_reagent(REAGENT_ID_THERMITEV, 3)
 
 // Altevian Foobs
 

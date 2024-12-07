@@ -243,7 +243,7 @@
 
 /datum/recipe/amanita_pie
 	appliance = OVEN
-	reagents = list("amatoxin" = 5)
+	reagents = list(REAGENT_ID_AMATOXIN = 5)
 	items = list(/obj/item/reagent_containers/food/snacks/sliceable/flatdough)
 	result = /obj/item/reagent_containers/food/snacks/amanita_pie
 

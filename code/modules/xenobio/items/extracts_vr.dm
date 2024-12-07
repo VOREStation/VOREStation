@@ -105,9 +105,9 @@
 
 
 /decl/chemical_reaction/instant/slime/grey_slimejelly
-	name = "Slime Jelly"
+	name = REAGENT_SLIMEJELLY
 	id = "m_grey_jelly"
-	result = "slimejelly"
+	result = REAGENT_ID_SLIMEJELLY
 	required_reagents = list(REAGENT_ID_WATER = 5)
 	result_amount = 30
 	required = /obj/item/slime_extract/grey
@@ -170,7 +170,7 @@
 /decl/chemical_reaction/instant/slime/metal_materials_steel
 	name = "Slime Weird Construction Materials"
 	id = "m_metal_steel"
-	required_reagents = list("slimejelly" = 5)
+	required_reagents = list(REAGENT_ID_SLIMEJELLY = 5)
 	result_amount = 1
 	required = /obj/item/slime_extract/metal
 
@@ -248,7 +248,7 @@
 	name = "Slime Cryotoxin"
 	id = "m_blue_cryotoxin"
 	result = "cryotoxin"
-	required_reagents = list("slimejelly" = 5)
+	required_reagents = list(REAGENT_ID_SLIMEJELLY = 5)
 	result_amount = 30
 	required = /obj/item/slime_extract/blue
 
@@ -304,7 +304,7 @@
 /decl/chemical_reaction/instant/slime/purple_fertility
 	name = "Slime Fetility"
 	id = "m_purple_fertility"
-	required_reagents = list("slimejelly" = 5)
+	required_reagents = list(REAGENT_ID_SLIMEJELLY = 5)
 	result_amount = 1
 	required = /obj/item/slime_extract/purple
 
@@ -428,8 +428,8 @@
 /decl/chemical_reaction/instant/slime/orange_pyrotoxin
 	name = "Slime Pyrotoxin"
 	id = "m_orange_pyrotoxin"
-	result = "thermite_v"
-	required_reagents = list("slimejelly" = 5)
+	result = REAGENT_ID_THERMITEV
+	required_reagents = list(REAGENT_ID_SLIMEJELLY = 5)
 	result_amount = 30
 	required = /obj/item/slime_extract/orange
 
@@ -495,7 +495,7 @@
 /decl/chemical_reaction/instant/slime/yellow_battery
 	name = "Slime Cell"
 	id = "m_yellow_cell"
-	required_reagents = list("slimejelly" = 5)
+	required_reagents = list(REAGENT_ID_SLIMEJELLY = 5)
 	result_amount = 1
 	required = /obj/item/slime_extract/yellow
 
@@ -579,7 +579,7 @@
 /decl/chemical_reaction/instant/slime/gold_materials_gold
 	name = "Slime Gold"
 	id = "m_gold_gold"
-	required_reagents = list("slimejelly" = 5)
+	required_reagents = list(REAGENT_ID_SLIMEJELLY = 5)
 	result_amount = 1
 	required = /obj/item/slime_extract/gold
 
@@ -654,7 +654,7 @@
 /decl/chemical_reaction/instant/slime/silver_materials_silver
 	name = "Slime Silver"
 	id = "m_silver_silver"
-	required_reagents = list("slimejelly" = 5)
+	required_reagents = list(REAGENT_ID_SLIMEJELLY = 5)
 	result_amount = 1
 	required = /obj/item/slime_extract/silver
 
@@ -686,7 +686,7 @@
 	name = "Slime Blood"
 	id = "m_darkpurple_blood"
 	result = REAGENT_ID_BLOOD
-	required_reagents = list("slimejelly" = 5)
+	required_reagents = list(REAGENT_ID_SLIMEJELLY = 5)
 	result_amount = 30
 	required = /obj/item/slime_extract/dark_purple
 
@@ -810,7 +810,7 @@
 /decl/chemical_reaction/instant/slime/dark_blue_death
 	name = "Slime Death"
 	id = "m_darkblue_death"
-	required_reagents = list("slimejelly" = 5)
+	required_reagents = list(REAGENT_ID_SLIMEJELLY = 5)
 	result_amount = 1
 	required = /obj/item/slime_extract/dark_blue
 
@@ -890,7 +890,7 @@
 /decl/chemical_reaction/instant/slime/red_ferality
 	name = "Slime Ferality"
 	id = "m_red_ferality"
-	required_reagents = list("slimejelly" = 5)
+	required_reagents = list(REAGENT_ID_SLIMEJELLY = 5)
 	result_amount = 1
 	required = /obj/item/slime_extract/red
 
@@ -951,7 +951,7 @@
 /decl/chemical_reaction/instant/slime/green_uranium
 	name = "Slime Uranium"
 	id = "m_green_uranium"
-	required_reagents = list("slimejelly" = 5)
+	required_reagents = list(REAGENT_ID_SLIMEJELLY = 5)
 	result_amount = 1
 	required = /obj/item/slime_extract/green
 
@@ -1001,7 +1001,7 @@
 /decl/chemical_reaction/instant/slime/pink_heal_pulse
 	name = "Slime Heal Pulse"
 	id = "m_pink_heal_pulse"
-	required_reagents = list("slimejelly" = 5)
+	required_reagents = list(REAGENT_ID_SLIMEJELLY = 5)
 	result_amount = 1
 	required = /obj/item/slime_extract/pink
 
@@ -1063,7 +1063,7 @@
 /decl/chemical_reaction/instant/slime/oil_explosion
 	name = "Slime Explosion"
 	id = "m_oil_boom"
-	required_reagents = list("slimejelly" = 5)
+	required_reagents = list(REAGENT_ID_SLIMEJELLY = 5)
 	result_amount = 1
 	required = /obj/item/slime_extract/oil
 
@@ -1151,7 +1151,7 @@
 /decl/chemical_reaction/instant/slime/bluespace_teleporter
 	name = "Slime Bluespace Teleporter"
 	id = "m_bs_teleporter"
-	required_reagents = list("slimejelly" = 5)
+	required_reagents = list(REAGENT_ID_SLIMEJELLY = 5)
 	result_amount = 1
 	required = /obj/item/slime_extract/bluespace
 
@@ -1211,7 +1211,7 @@
 /decl/chemical_reaction/instant/slime/cerulean_random_potion
 	name = "Slime Random Potion"
 	id = "m_cerulean_random_potion"
-	required_reagents = list("slimejelly" = 5)
+	required_reagents = list(REAGENT_ID_SLIMEJELLY = 5)
 	result_amount = 1
 	required = /obj/item/slime_extract/cerulean
 
@@ -1284,7 +1284,7 @@
 	name = "Slime Goop"
 	id = "m_amber_goop"
 	result = "slime_goop"
-	required_reagents = list("slimejelly" = 5)
+	required_reagents = list(REAGENT_ID_SLIMEJELLY = 5)
 	result_amount = 30
 	required = /obj/item/slime_extract/amber
 
@@ -1316,7 +1316,7 @@
 /decl/chemical_reaction/instant/slime/sapphire_mutation
 	name = "Slime Mutation Toxins"
 	id = "m_sapphire_mutation_tox"
-	result = "mutationtoxin"
+	result = REAGENT_ID_MUTATIONTOXIN
 	required_reagents = list(REAGENT_ID_BLOOD = 5)
 	result_amount = 30
 	required = /obj/item/slime_extract/sapphire
@@ -1343,7 +1343,7 @@
 /decl/chemical_reaction/instant/slime/sapphire_sapience
 	name = "Slime Sapience"
 	id = "m_sapphire_sapience"
-	required_reagents = list("slimejelly" = 5)
+	required_reagents = list(REAGENT_ID_SLIMEJELLY = 5)
 	result_amount = 1
 	required = /obj/item/slime_extract/sapphire
 
@@ -1417,7 +1417,7 @@
 /decl/chemical_reaction/instant/slime/ruby_push
 	name = "Slime Push"
 	id = "m_ruby_push"
-	required_reagents = list("slimejelly" = 5)
+	required_reagents = list(REAGENT_ID_SLIMEJELLY = 5)
 	result_amount = 1
 	required = /obj/item/slime_extract/ruby
 
@@ -1513,7 +1513,7 @@
 /decl/chemical_reaction/instant/slime/emerald_hell
 	name = "Slime Hell"
 	id = "m_emerald_hell"
-	required_reagents = list("slimejelly" = 5)
+	required_reagents = list(REAGENT_ID_SLIMEJELLY = 5)
 	result_amount = 1
 	required = /obj/item/slime_extract/emerald
 
@@ -1578,7 +1578,7 @@
 /decl/chemical_reaction/instant/slime/light_pink_obedience
 	name = "Slime Obedience"
 	id = "m_lightpink_obedience"
-	required_reagents = list("slimejelly" = 5)
+	required_reagents = list(REAGENT_ID_SLIMEJELLY = 5)
 	result_amount = 1
 	required = /obj/item/slime_extract/light_pink
 
@@ -1652,7 +1652,7 @@
 /decl/chemical_reaction/instant/slime/rainbow_unity
 	name = "Slime Unity"
 	id = "m_rainbow_unity"
-	required_reagents = list("slimejelly" = 5)
+	required_reagents = list(REAGENT_ID_SLIMEJELLY = 5)
 	result_amount = 1
 	required = /obj/item/slime_extract/rainbow
 

@@ -174,13 +174,13 @@ I said no!
 	result = /obj/item/reagent_containers/food/snacks/spacylibertyduff
 
 /datum/recipe/amanitajelly
-	reagents = list(REAGENT_ID_WATER = 5, "vodka" = 5, "amatoxin" = 5)
+	reagents = list(REAGENT_ID_WATER = 5, "vodka" = 5, REAGENT_ID_AMATOXIN = 5)
 	result = /obj/item/reagent_containers/food/snacks/amanitajelly
 
 /datum/recipe/amanitajelly/make_food(var/obj/container as obj)
 	. = ..(container)
 	for(var/obj/item/reagent_containers/food/snacks/amanitajelly/being_cooked in .)
-		being_cooked.reagents.del_reagent("amatoxin")
+		being_cooked.reagents.del_reagent(REAGENT_ID_AMATOXIN)
 
 /datum/recipe/meatballsoup
 	fruit = list("carrot" = 1, "potato" = 1)
@@ -269,7 +269,7 @@ I said no!
 	result = /obj/item/reagent_containers/food/snacks/stew
 
 /datum/recipe/slimetoast
-	reagents = list("slimejelly" = 5)
+	reagents = list(REAGENT_ID_SLIMEJELLY = 5)
 	items = list(
 		/obj/item/reagent_containers/food/snacks/slice/bread,
 	)
@@ -360,7 +360,7 @@ I said no!
 	result = /obj/item/reagent_containers/food/snacks/twobread
 
 /datum/recipe/slimesandwich
-	reagents = list("slimejelly" = 5)
+	reagents = list(REAGENT_ID_SLIMEJELLY = 5)
 	items = list(
 		/obj/item/reagent_containers/food/snacks/slice/bread,
 		/obj/item/reagent_containers/food/snacks/slice/bread,
@@ -380,7 +380,7 @@ I said no!
 	result = /obj/item/reagent_containers/food/snacks/bloodsoup
 
 /datum/recipe/slimesoup
-	reagents = list(REAGENT_ID_WATER = 10, "slimejelly" = 5)
+	reagents = list(REAGENT_ID_WATER = 10, REAGENT_ID_SLIMEJELLY = 5)
 	items = list()
 	result = /obj/item/reagent_containers/food/snacks/slimesoup
 
@@ -484,7 +484,7 @@ I said no!
 /datum/recipe/validsalad/make_food(var/obj/container as obj)
 	. = ..(container)
 	for (var/obj/item/reagent_containers/food/snacks/validsalad/being_cooked in .)
-		being_cooked.reagents.del_reagent("toxin")
+		being_cooked.reagents.del_reagent(REAGENT_ID_TOXIN)
 
 /datum/recipe/stuffing
 	reagents = list(REAGENT_ID_WATER = 5, REAGENT_ID_SODIUMCHLORIDE = 1, "blackpepper" = 1)

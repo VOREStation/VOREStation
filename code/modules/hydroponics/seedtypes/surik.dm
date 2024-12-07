@@ -3,7 +3,7 @@
 	seed_name = "surik"
 	display_name = "surik vine"
 	kitchen_tag = "surik"
-	chems = list("impedrezene" = list(1,3),"synaptizine" = list(1,2),REAGENT_ID_NUTRIMENT = list(1,5))
+	chems = list(REAGENT_ID_IMPEDREZENE = list(1,3),"synaptizine" = list(1,2),REAGENT_ID_NUTRIMENT = list(1,5))
 
 /datum/seed/surik/New()
 	..()

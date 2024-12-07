@@ -50,9 +50,9 @@
 
 // Chemistry lists.
 var/list/tachycardics  = list("coffee", "inaprovaline", "hyperzine", REAGENT_ID_NITROGLYCERIN, "thirteenloko", REAGENT_ID_NICOTINE) // Increase heart rate.
-var/list/bradycardics  = list("neurotoxin", "cryoxadone", "clonexadone", REAGENT_ID_BLISS, "stoxin", REAGENT_ID_AMBROSIAEXTRACT)   // Decrease heart rate.
-var/list/heartstopper  = list("potassium_chlorophoride", "zombiepowder") // This stops the heart.
-var/list/cheartstopper = list("potassium_chloride")                       // This stops the heart when overdose is met. -- c = conditional
+var/list/bradycardics  = list("neurotoxin", "cryoxadone", "clonexadone", REAGENT_ID_BLISS, REAGENT_ID_STOXIN, REAGENT_ID_AMBROSIAEXTRACT)   // Decrease heart rate.
+var/list/heartstopper  = list(REAGENT_ID_POTASSIUMCHLOROPHORIDE, REAGENT_ID_ZOMBIEPOWDER) // This stops the heart.
+var/list/cheartstopper = list(REAGENT_ID_POTASSIUMCHLORIDE)                       // This stops the heart when overdose is met. -- c = conditional
 
 #define MAX_PILL_SPRITE 24 //max icon state of the pill sprites
 #define MAX_BOTTLE_SPRITE 4 //max icon state of the pill sprites

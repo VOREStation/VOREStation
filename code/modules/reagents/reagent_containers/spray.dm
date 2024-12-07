@@ -198,7 +198,7 @@
 	return
 
 /obj/item/reagent_containers/spray/plantbgone
-	name = "Plant-B-Gone"
+	name = REAGENT_PLANTBGONE
 	desc = "Kills those pesky weeds!"
 	icon = 'icons/obj/hydroponics_machines.dmi'
 	icon_state = "plantbgone"
@@ -207,7 +207,7 @@
 
 /obj/item/reagent_containers/spray/plantbgone/Initialize()
 	. = ..()
-	reagents.add_reagent("plantbgone", 100)
+	reagents.add_reagent(REAGENT_ID_PLANTBGONE, 100)
 
 /obj/item/reagent_containers/spray/chemsprayer/hosed
 	name = "hose nozzle"

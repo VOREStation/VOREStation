@@ -553,7 +553,7 @@
 		qdel(O)
 	src.reagents.clear_reagents()
 	ffuu.reagents.add_reagent(REAGENT_ID_CARBON, amount)
-	ffuu.reagents.add_reagent("toxin", amount/10)
+	ffuu.reagents.add_reagent(REAGENT_ID_TOXIN, amount/10)
 	return ffuu
 
 /obj/machinery/microwave/verb/Eject()
