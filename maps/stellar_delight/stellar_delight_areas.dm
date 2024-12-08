@@ -125,13 +125,7 @@
 /area/stellardelight/deck1/dorms
 	name = "Dormitory"
 	sound_env = SMALL_SOFTFLOOR
-	flags = RAD_SHIELDED| BLUE_SHIELDED |AREA_FLAG_IS_NOT_PERSISTENT
-	soundproofed = TRUE
-	limit_mob_size = FALSE
-	block_suit_sensors = TRUE
-	block_tracking = TRUE
-	forbid_events = TRUE
-	forbid_singulo = TRUE
+	flags = RAD_SHIELDED| BLUE_SHIELDED | AREA_FLAG_IS_NOT_PERSISTENT | AREA_FORBID_EVENTS | AREA_FORBID_SINGULO | AREA_SOUNDPROOF | AREA_ALLOW_LARGE_SIZE | AREA_BLOCK_SUIT_SENSORS | AREA_BLOCK_TRACKING
 
 /area/stellardelight/deck1/dorms/dorm1
 	name = "Dormitory One"
@@ -274,21 +268,16 @@
 
 /area/stellardelight/deck3/transitgateway
 	name = "Transit Gateway"
-	forbid_events = TRUE
-	forbid_singulo = TRUE
+	flags = AREA_FORBID_EVENTS | AREA_FORBID_SINGULO
+
 /area/stellardelight/deck3/cryo
 	name = "Cryogenic Storage"
-	forbid_events = TRUE
-	forbid_singulo = TRUE
+	flags = AREA_FORBID_EVENTS | AREA_FORBID_SINGULO
 
 /area/stellardelight/deck3/readingroom
 	name = "Reading Rooms"
 	sound_env = SMALL_SOFTFLOOR
-	flags = RAD_SHIELDED| BLUE_SHIELDED |AREA_FLAG_IS_NOT_PERSISTENT
-	soundproofed = TRUE
-	block_suit_sensors = TRUE
-	block_tracking = TRUE
-	forbid_events = TRUE
+	flags = RAD_SHIELDED| BLUE_SHIELDED | AREA_FLAG_IS_NOT_PERSISTENT | AREA_FORBID_EVENTS | AREA_SOUNDPROOF | AREA_BLOCK_SUIT_SENSORS | AREA_BLOCK_TRACKING
 
 /area/stellardelight/deck3/portdock
 	name = "Port Dock"

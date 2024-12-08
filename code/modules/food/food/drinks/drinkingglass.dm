@@ -67,7 +67,12 @@
 		icon_state = "cup_brown"
 
 	if(R.cup_name)
-		name = R.cup_name
+		var/prefix = " "
+		for(var/datum/reagent/S in reagents.reagent_list)
+			if(S.cup_prefix)
+				var/current_prefix = prefix
+				prefix = "[current_prefix][S.cup_prefix] "
+		name = "cup of[prefix][R.cup_name]"
 	else
 		name = "Cup of.. what?"
 
@@ -161,3 +166,147 @@
 	reagents.add_reagent("iron", 10)
 	reagents.add_reagent("protein", 15)
 	reagents.add_reagent("water", 45)
+
+
+////////////////Fancy coffee cups
+
+/obj/item/reagent_containers/food/drinks/tall
+	name = "tall cup"
+	desc = "A larger coffee cup."
+	icon_state = "tall_cup_empty"
+	amount_per_transfer_from_this = 5
+	volume = 40
+	center_of_mass = list("x"=16, "y"=16)
+
+/obj/item/reagent_containers/food/drinks/tall/on_reagent_change()
+	if (!length(reagents?.reagent_list))
+		icon_state = "tall_cup_empty"
+		name = "tall cup"
+		desc = "A larger coffee cup."
+		center_of_mass = list("x"=16, "y"=16)
+		return
+	var/datum/reagent/R = reagents.get_master_reagent()
+
+	if(R.cup_icon_state)
+		icon_state = "tall_[R.cup_icon_state]"
+	else
+		icon_state = "tall_cup_brown"
+
+	if(R.cup_name)
+		var/prefix = " "
+		for(var/datum/reagent/S in reagents.reagent_list)
+			if(S.cup_prefix)
+				var/current_prefix = prefix
+				prefix = "[current_prefix][S.cup_prefix] "
+		name = "tall[prefix][R.cup_name]"
+	else
+		name = "tall.. what?"
+
+	if(R.cup_desc)
+		desc = R.cup_desc
+	else
+		desc = "You can't really tell what this is."
+
+	if(R.cup_center_of_mass)
+		center_of_mass = R.cup_center_of_mass
+	else
+		center_of_mass = list("x"=16, "y"=16)
+
+	if(R.price_tag)
+		price_tag = R.price_tag
+	else
+		price_tag = null
+
+/obj/item/reagent_containers/food/drinks/grande
+	name = "grande cup"
+	desc = "A much taller coffee cup for people who really need their coffee."
+	icon_state = "grande_cup_empty"
+	amount_per_transfer_from_this = 5
+	volume = 50
+	center_of_mass = list("x"=16, "y"=16)
+
+/obj/item/reagent_containers/food/drinks/grande/on_reagent_change()
+	if (!length(reagents?.reagent_list))
+		icon_state = "grande_cup_empty"
+		name = "grande cup"
+		desc = "A much taller coffee cup for people who really need their coffee."
+		center_of_mass = list("x"=16, "y"=16)
+		return
+	var/datum/reagent/R = reagents.get_master_reagent()
+
+	if(R.cup_icon_state)
+		icon_state = "grande_[R.cup_icon_state]"
+	else
+		icon_state = "grande_cup_brown"
+
+	if(R.cup_name)
+		var/prefix = " "
+		for(var/datum/reagent/S in reagents.reagent_list)
+			if(S.cup_prefix)
+				var/current_prefix = prefix
+				prefix = "[current_prefix][S.cup_prefix] "
+		name = "grande[prefix][R.cup_name]"
+	else
+		name = "grande.. what?"
+
+	if(R.cup_desc)
+		desc = R.cup_desc
+	else
+		desc = "You can't really tell what this is."
+
+	if(R.cup_center_of_mass)
+		center_of_mass = R.cup_center_of_mass
+	else
+		center_of_mass = list("x"=16, "y"=16)
+
+	if(R.price_tag)
+		price_tag = R.price_tag
+	else
+		price_tag = null
+
+/obj/item/reagent_containers/food/drinks/venti
+	name = "venti cup"
+	desc = "A huge coffee cup for people who literally cannot function without it."
+	icon_state = "venti_cup_empty"
+	amount_per_transfer_from_this = 5
+	volume = 60
+	center_of_mass = list("x"=16, "y"=16)
+
+/obj/item/reagent_containers/food/drinks/venti/on_reagent_change()
+	if (!length(reagents?.reagent_list))
+		icon_state = "venti_cup_empty"
+		name = "venti cup"
+		desc = "A huge coffee cup for people who literally cannot function without it."
+		center_of_mass = list("x"=16, "y"=16)
+		return
+	var/datum/reagent/R = reagents.get_master_reagent()
+
+	if(R.cup_icon_state)
+		icon_state = "venti_[R.cup_icon_state]"
+	else
+		icon_state = "venti_cup_brown"
+
+	if(R.cup_name)
+		var/prefix = " "
+		for(var/datum/reagent/S in reagents.reagent_list)
+			if(S.cup_prefix)
+				var/current_prefix = prefix
+				prefix = "[current_prefix][S.cup_prefix] "
+		name = "venti[prefix][R.cup_name]"
+	else
+		name = "venti.. what?"
+
+	if(R.cup_desc)
+		desc = R.cup_desc
+	else
+		desc = "You can't really tell what this is."
+
+	if(R.cup_center_of_mass)
+		center_of_mass = R.cup_center_of_mass
+	else
+		center_of_mass = list("x"=16, "y"=16)
+
+	if(R.price_tag)
+		price_tag = R.price_tag
+	else
+		price_tag = null

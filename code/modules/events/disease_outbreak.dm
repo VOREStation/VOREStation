@@ -3,7 +3,8 @@ GLOBAL_LIST_EMPTY(current_pending_diseases)
 	var/datum/disease/chosen_disease
 	var/list/disease_blacklist = list(
 		/datum/disease/advance,
-		/datum/disease/food_poisoning
+		/datum/disease/food_poisoning,
+		/datum/disease/gbs // Terrible. It's only in the code to scare people.
 	)
 	var/static/list/transmissable_symptoms = list()
 	var/static/list/diseases_minor = list()
@@ -44,7 +45,7 @@ GLOBAL_LIST_EMPTY(current_pending_diseases)
 				continue
 			if(!(A.z in using_map.station_levels))
 				continue
-			if(A.flags & RAD_SHIELDED)
+			if(A.flag_check(RAD_SHIELDED))
 				continue
 			if(isbelly(G.loc))
 				continue

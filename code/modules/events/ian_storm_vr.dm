@@ -17,7 +17,7 @@
 			if(!(T.z in using_map.station_levels))
 				continue
 			var/area/A = get_area(T)
-			if(A.flags & RAD_SHIELDED || A.flags & BLUE_SHIELDED)
+			if(A.flag_check(RAD_SHIELDED | BLUE_SHIELDED))
 				continue
 			place_ian(T)
 

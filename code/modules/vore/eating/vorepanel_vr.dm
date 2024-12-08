@@ -891,6 +891,9 @@ var/global/list/belly_colorable_only_fullscreens = list("a_synth_flesh_mono",
 			if(!istype(H))
 				return
 
+			if(!H.allow_spontaneous_tf)
+				return
+
 			var/datum/tgui_module/appearance_changer/vore/V = new(host, H)
 			V.tgui_interact(user)
 			return TRUE

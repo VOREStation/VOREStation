@@ -290,7 +290,6 @@ GLOBAL_DATUM_INIT(catalogue_data, /datum/category_collection/catalogue, new)
 	full set of prosthetic limbs."
 	value = CATALOGUER_REWARD_TRIVIAL
 
-
 /datum/category_item/catalogue/information
 
 // For these we can piggyback off of the lore datums that are already defined and used in some places.

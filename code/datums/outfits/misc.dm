@@ -64,3 +64,15 @@
 	name = "Zaddat Suit"
 	suit = /obj/item/clothing/suit/space/void/zaddat/
 	mask = /obj/item/clothing/mask/gas/zaddat
+
+/decl/hierarchy/outfit/maint_lurker
+	name = "Maintenance Lurker Outfit"
+	id_slot = slot_wear_id
+	id_type = /obj/item/card/id/civilian/lurker
+	pda_slot = slot_belt
+	pda_type = /obj/item/pda
+	id_pda_assignment = "NO DATA"
+
+	headset = /obj/item/radio/headset
+	headset_alt = /obj/item/radio/headset/alt
+	headset_earbud = /obj/item/radio/headset/earbud

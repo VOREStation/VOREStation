@@ -1563,7 +1563,6 @@
 	pixel_y = 12
 	},
 /obj/structure/table/woodentable,
-/obj/item/hand_labeler,
 /obj/machinery/alarm/angled,
 /obj/machinery/status_display{
 	pixel_x = -32
@@ -9920,19 +9919,11 @@
 	icon_state = "0-2"
 	},
 /obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/drinks/glass2/square{
-	pixel_x = 8;
-	pixel_y = 8
-	},
-/obj/item/reagent_containers/food/drinks/glass2/square{
-	pixel_x = 8;
-	pixel_y = 8
-	},
-/obj/item/reagent_containers/food/drinks/glass2/square{
-	pixel_x = 8;
-	pixel_y = 8
-	},
 /obj/item/reagent_containers/glass/rag,
+/obj/machinery/chemical_dispenser/bar_syrup/full{
+	pixel_y = 11;
+	pixel_x = -1
+	},
 /turf/simulated/floor/lino,
 /area/stellardelight/deck3/cafe)
 "JJ" = (
@@ -11408,6 +11399,13 @@
 	dir = 1
 	},
 /obj/machinery/door/window{
+	req_one_access = list(25)
+	},
+/obj/machinery/button/remote/blast_door{
+	desc = "A remote control-switch for shutters.";
+	id = "cafe";
+	name = "Cafe Shutters";
+	pixel_y = 28;
 	req_one_access = list(25)
 	},
 /turf/simulated/floor/lino,
@@ -14112,13 +14110,18 @@
 /turf/simulated/floor,
 /area/maintenance/stellardelight/deck3/aftstarroom)
 "Yp" = (
-/obj/machinery/button/remote/blast_door{
-	desc = "A remote control-switch for shutters.";
-	id = "cafe";
-	name = "Cafe Shutters";
-	pixel_y = 28;
-	req_one_access = list(25)
-	},
+/obj/structure/closet/walllocker_double/kitchen/north,
+/obj/item/reagent_containers/food/drinks/glass2/square,
+/obj/item/reagent_containers/food/drinks/glass2/square,
+/obj/item/reagent_containers/food/drinks/glass2/square,
+/obj/item/reagent_containers/food/drinks/glass2/square,
+/obj/item/hand_labeler,
+/obj/item/storage/box/glasses/coffeecup,
+/obj/item/storage/box/glasses/coffeecup,
+/obj/item/storage/box/glasses/coffeecup,
+/obj/item/storage/box/glasses/coffeecup_tall,
+/obj/item/storage/box/glasses/coffeecup_grande,
+/obj/item/storage/box/glasses/coffeecup_venti,
 /turf/simulated/floor/lino,
 /area/stellardelight/deck3/cafe)
 "Ys" = (

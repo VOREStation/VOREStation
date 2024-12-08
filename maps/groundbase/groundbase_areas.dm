@@ -359,18 +359,21 @@
 	icon_state = "grewhisqu"
 	ambience = AMBIENCE_FOREBODING
 	lightswitch = 0
+
 /area/groundbase/civilian/arrivals
 	name = "Arrivals"
 	lightswitch = 1
-	forbid_events = TRUE
-	forbid_singulo = TRUE
+	flags = AREA_FORBID_EVENTS | AREA_FORBID_SINGULO
+
 /area/groundbase/civilian/toolstorage
 	name = "Tool Storage"
 	lightswitch = 1
+
 /area/groundbase/civilian/bar
 	name = "Bar"
 	sound_env = LARGE_ENCLOSED
 	lightswitch = 1
+
 /area/groundbase/civilian/bar/upper
 	name = "Bar Balcony"
 	base_turf = /turf/simulated/open/virgo3c
@@ -379,14 +382,17 @@
 	name = "Cafe"
 	sound_env = SMALL_SOFTFLOOR
 	lightswitch = 1
+
 /area/groundbase/civilian/hydroponics
 	name = "Hydroponics"
 	lightswitch = 1
+
 /area/groundbase/civilian/hydroponics/out
 	name = "Hydroponics Animal Pen"
 /area/groundbase/civilian/kitchen
 	name = "Kitchen"
 	lightswitch = 1
+
 /area/groundbase/civilian/kitchen/freezer
 	name = "Kitchen Freezer"
 /area/groundbase/civilian/kitchen/backroom
@@ -420,14 +426,15 @@
 	sound_env = SMALL_SOFTFLOOR
 /area/groundbase/civilian/mensrestroom
 	name = "Men's Restroom"
+	flags = AREA_FORBID_EVENTS
 	sound_env = SOUND_ENVIRONMENT_BATHROOM
 	lightswitch = 1
-	forbid_events = TRUE
+
 /area/groundbase/civilian/womensrestroom
 	name = "Women's Restroom"
+	flags = AREA_FORBID_EVENTS
 	sound_env = SOUND_ENVIRONMENT_BATHROOM
 	lightswitch = 1
-	forbid_events = TRUE
 
 /area/groundbase/civilian/entrepreneur
 	name = "\improper Shared Office"
@@ -456,13 +463,7 @@
 	holomap_color = HOLOMAP_AREACOLOR_DORMS
 	icon_state = "grawhisqu"
 	ambience = AMBIENCE_GENERIC
-	flags = RAD_SHIELDED| BLUE_SHIELDED |AREA_FLAG_IS_NOT_PERSISTENT
-	soundproofed = TRUE
-	limit_mob_size = FALSE
-	block_suit_sensors = TRUE
-	block_tracking = TRUE
-	forbid_events = TRUE
-	forbid_singulo = TRUE
+	flags = RAD_SHIELDED | BLUE_SHIELDED | AREA_FLAG_IS_NOT_PERSISTENT | AREA_FORBID_EVENTS | AREA_FORBID_SINGULO | AREA_SOUNDPROOF | AREA_ALLOW_LARGE_SIZE | AREA_BLOCK_SUIT_SENSORS | AREA_BLOCK_TRACKING
 
 /area/groundbase/dorms/bathroom
 	name = "Dormitory Bathroom"

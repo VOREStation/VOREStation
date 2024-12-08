@@ -83,6 +83,7 @@
 		H.b_skin = 0
 		H.dna.ResetUIFrom(H)
 
+		H.allow_spontaneous_tf = TRUE // Allows vore customization of synthmorphs
 		H.real_name = "Synthmorph #[rand(100,999)]"
 		H.name = H.real_name
 		H.dir = 2

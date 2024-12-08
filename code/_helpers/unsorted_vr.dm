@@ -19,7 +19,7 @@
 		if(vent.welded)
 			continue
 		var/area/A = get_area(vent)
-		if(A.forbid_events)
+		if(A.flag_check(AREA_FORBID_EVENTS))
 			continue
 		vent_list += vent
 	if(!vent_list.len)

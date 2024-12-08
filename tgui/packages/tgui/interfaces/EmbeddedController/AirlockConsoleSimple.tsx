@@ -1,6 +1,7 @@
 import { useBackend } from '../../backend';
 import { Box, Button, Section } from '../../components';
 import { StandardControls, StatusDisplay } from './EmbeddedControllerHelpers';
+import { PanelOpen } from './PanelOpen';
 import { AirlockConsoleSimpleData } from './types';
 
 /**
@@ -12,8 +13,13 @@ import { AirlockConsoleSimpleData } from './types';
 export const AirlockConsoleSimple = (props) => {
   const { act, data } = useBackend<AirlockConsoleSimpleData>();
 
-  const { exterior_status, chamber_pressure, processing, interior_status } =
-    data;
+  const {
+    exterior_status,
+    chamber_pressure,
+    processing,
+    interior_status,
+    panel_open,
+  } = data;
 
   const status_range = { interior_status, exterior_status };
 
@@ -37,19 +43,23 @@ export const AirlockConsoleSimple = (props) => {
   return (
     <>
       <StatusDisplay bars={bars} />
-      <Section title="Controls">
-        <StandardControls status_range={status_range} />
-        <Box>
-          <Button
-            disabled={!processing}
-            icon="ban"
-            color="bad"
-            onClick={() => act('abort')}
-          >
-            Abort
-          </Button>
-        </Box>
-      </Section>
+      {panel_open ? (
+        <PanelOpen />
+      ) : (
+        <Section title="Controls">
+          <StandardControls status_range={status_range} />
+          <Box>
+            <Button
+              disabled={!processing}
+              icon="ban"
+              color="bad"
+              onClick={() => act('abort')}
+            >
+              Abort
+            </Button>
+          </Box>
+        </Section>
+      )}
     </>
   );
 };

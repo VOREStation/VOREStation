@@ -1,9 +1,6 @@
 /area
 	var/enter_message
 	var/exit_message
-	var/limit_mob_size = TRUE //If mob size is limited in the area.
-	var/block_suit_sensors = FALSE //If suit sensors are blocked in the area.
-	var/block_tracking = FALSE //If camera tracking is blocked in the area.
 	var/turf/ceiling_type
 
 	// Size of the area in open turfs, only calculated for indoors areas.
@@ -71,5 +68,5 @@
 		power_equip = 0
 		power_environ = 0
 	power_change()		// all machines set to current power level, also updates lighting icon
-	if(no_spoilers)
+	if(flag_check(AREA_NO_SPOILERS))
 		set_spoiler_obfuscation(TRUE)
