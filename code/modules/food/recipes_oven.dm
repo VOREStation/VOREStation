@@ -402,7 +402,7 @@
 
 /datum/recipe/mushroompizza
 	appliance = OVEN
-	fruit = list("mushroom" = 5, PLANT_TOMATO = 1)
+	fruit = list(PLANT_MUSHROOMS = 5, PLANT_TOMATO = 1)
 	items = list(
 		/obj/item/reagent_containers/food/snacks/sliceable/flatdough,
 		/obj/item/reagent_containers/food/snacks/cheesewedge

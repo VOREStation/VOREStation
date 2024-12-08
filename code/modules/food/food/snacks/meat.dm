@@ -75,7 +75,7 @@
 	filling_color = "#E0D7C5"
 	center_of_mass = list("x"=17, "y"=16)
 	nutriment_amt = 3
-	nutriment_desc = list("raw" = 2, "mushroom" = 2)
+	nutriment_desc = list("raw" = 2, PLANT_MUSHROOMS = 2)
 	bitesize = 6
 
 /obj/item/reagent_containers/food/snacks/hugemushroomslice/Initialize()

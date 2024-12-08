@@ -263,7 +263,7 @@ I said no!
 	result_quantity = 2
 
 /datum/recipe/stew
-	fruit = list(PLANT_POTATO = 1, PLANT_TOMATO = 1, PLANT_CARROT = 1, PLANT_EGGPLANT = 1, "mushroom" = 1)
+	fruit = list(PLANT_POTATO = 1, PLANT_TOMATO = 1, PLANT_CARROT = 1, PLANT_EGGPLANT = 1, PLANT_MUSHROOMS = 1)
 	reagents = list(REAGENT_ID_WATER = 10)
 	items = list(/obj/item/reagent_containers/food/snacks/meat)
 	result = /obj/item/reagent_containers/food/snacks/stew
@@ -431,13 +431,13 @@ I said no!
 	result_quantity = 2
 
 /datum/recipe/mushroomsoup
-	fruit = list("mushroom" = 1)
+	fruit = list(PLANT_MUSHROOMS = 1)
 	reagents = list(REAGENT_ID_WATER = 5, REAGENT_ID_MILK = 5)
 	reagent_mix = RECIPE_REAGENT_REPLACE
 	result = /obj/item/reagent_containers/food/snacks/mushroomsoup
 
 /datum/recipe/chawanmushi
-	fruit = list("mushroom" = 1)
+	fruit = list(PLANT_MUSHROOMS = 1)
 	reagents = list(REAGENT_ID_WATER = 5, REAGENT_ID_SOYSAUCE = 5, REAGENT_ID_EGG = 6)
 	result = /obj/item/reagent_containers/food/snacks/chawanmushi
 
@@ -785,14 +785,14 @@ I said no!
 	result = /obj/item/reagent_containers/food/snacks/bearchili
 
 /datum/recipe/bearstew
-	fruit = list(PLANT_POTATO = 1, PLANT_TOMATO = 1, PLANT_CARROT = 1, PLANT_EGGPLANT = 1, "mushroom" = 1)
+	fruit = list(PLANT_POTATO = 1, PLANT_TOMATO = 1, PLANT_CARROT = 1, PLANT_EGGPLANT = 1, PLANT_MUSHROOMS = 1)
 	reagents = list(REAGENT_ID_WATER = 10)
 	items = list(/obj/item/reagent_containers/food/snacks/bearmeat)
 	reagent_mix = RECIPE_REAGENT_REPLACE //Simplify end product
 	result = /obj/item/reagent_containers/food/snacks/bearstew
 
 /datum/recipe/bibimbap
-	fruit = list(PLANT_CARROT = 1, PLANT_CABBAGE = 1, "mushroom" = 1)
+	fruit = list(PLANT_CARROT = 1, PLANT_CABBAGE = 1, PLANT_MUSHROOMS = 1)
 	reagents = list(REAGENT_ID_RICE = 5, REAGENT_ID_SPACESPICE = 2)
 	items = list(
 		/obj/item/reagent_containers/food/snacks/egg,
@@ -834,7 +834,7 @@ I said no!
 
 /datum/recipe/risotto
 	reagents = list(REAGENT_ID_REDWINE = 5, REAGENT_ID_RICE = 10, REAGENT_ID_SPACESPICE = 1)
-	fruit = list("mushroom" = 1)
+	fruit = list(PLANT_MUSHROOMS = 1)
 	reagent_mix = RECIPE_REAGENT_REPLACE //Get that rice and wine outta here
 	result = /obj/item/reagent_containers/food/snacks/risotto
 

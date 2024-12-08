@@ -84,16 +84,51 @@
 #define PLANT_BLACKWABBACK "blackwabback"
 #define PLANT_WILDWABBACK "wildwabback"
 #define PLANT_SIFLETTUCE "siflettuce"
-#define PLANT_EGGPLANT "egg-plant"
+#define PLANT_EGG_PLANT "egg-plant"
 #define PLANT_PINEAPPLE "pineapple"
 #define PLANT_BLOODROSE "bloodrose"
 #define PLANT_GNOMES "gnomes"
 #define PLANT_SIFBULB "sifbulb"
 #define PLANT_WURMWOAD "wurmwoad"
 #define PLANT_MICROM "microm"
-
-
-
-
-
 #define PLANT_MEGAM "megam"
+
+GLOBAL_LIST_INIT(acceptable_fruit_types, list(
+											PLANT_AMBROSIA,
+											PLANT_APPLE,
+											PLANT_BANANA,
+											PLANT_BERRIES,
+											PLANT_CABBAGE,
+											PLANT_CARROT,
+											PLANT_CELERY,
+											PLANT_CHERRY,
+											PLANT_CHILI,
+											PLANT_COCOA,
+											PLANT_CORN,
+											PLANT_DURIAN,
+											PLANT_EGGPLANT,
+											PLANT_GRAPES,
+											PLANT_GREENGRAPES,
+											PLANT_HAREBELLS,
+											PLANT_LAVENDER,
+											PLANT_LEMON,
+											PLANT_LETTUCE,
+											PLANT_LIME,
+											PLANT_ONION,
+											PLANT_ORANGE,
+											PLANT_PEANUT,
+											PLANT_POPPIES,
+											PLANT_POTATO,
+											PLANT_PUMPKIN,
+											PLANT_RICE,
+											PLANT_ROSE,
+											PLANT_ROSE,
+											PLANT_SOYBEAN,
+											PLANT_SPINEAPPLE,
+											PLANT_SUGARCANE,
+											PLANT_SUNFLOWERS,
+											PLANT_TOMATO,
+											PLANT_VANILLA,
+											PLANT_WATERMELON,
+											PLANT_WHEAT,
+											PLANT_WHITEBEET))

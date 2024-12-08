@@ -334,7 +334,7 @@
 	icon_state = "big_veggie_slice"
 
 /datum/recipe/theonepizza
-	fruit = list(PLANT_TOMATO = 5, "mushroom" = 5, PLANT_EGGPLANT = 1, PLANT_CARROT = 1, PLANT_CORN = 1)
+	fruit = list(PLANT_TOMATO = 5, PLANT_MUSHROOMS = 5, PLANT_EGGPLANT = 1, PLANT_CARROT = 1, PLANT_CORN = 1)
 	items = list(
 		/obj/item/reagent_containers/food/snacks/sliceable/flatdough,
 		/obj/item/reagent_containers/food/snacks/sliceable/flatdough,

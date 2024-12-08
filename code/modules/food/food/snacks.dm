@@ -1049,7 +1049,7 @@
 	filling_color = "#E0D7C5"
 	center_of_mass = list("x"=17, "y"=16)
 	nutriment_amt = 3
-	nutriment_desc = list("raw" = 2, "mushroom" = 2)
+	nutriment_desc = list("raw" = 2, PLANT_MUSHROOMS = 2)
 	bitesize = 6
 
 /obj/item/reagent_containers/food/snacks/mushroomslice/Initialize()
@@ -1512,7 +1512,7 @@
 	filling_color = "#FFCCCC"
 	center_of_mass = list("x"=17, "y"=9)
 	nutriment_amt = 5
-	nutriment_desc = list("sweetness" = 3, "mushroom" = 3, "pie" = 2)
+	nutriment_desc = list("sweetness" = 3, PLANT_MUSHROOMS = 3, "pie" = 2)
 	bitesize = 3
 
 /obj/item/reagent_containers/food/snacks/amanita_pie/Initialize()
@@ -1527,7 +1527,7 @@
 	filling_color = "#B8279B"
 	center_of_mass = list("x"=17, "y"=9)
 	nutriment_amt = 8
-	nutriment_desc = list("heartiness" = 2, "mushroom" = 3, "pie" = 3)
+	nutriment_desc = list("heartiness" = 2, PLANT_MUSHROOMS = 3, "pie" = 3)
 	bitesize = 2
 
 /obj/item/reagent_containers/food/snacks/plump_pie/Initialize()
@@ -1811,7 +1811,7 @@
 	filling_color = "#42B873"
 	center_of_mass = list("x"=16, "y"=8)
 	nutriment_amt = 6
-	nutriment_desc = list("mushroom" = 6)
+	nutriment_desc = list(PLANT_MUSHROOMS = 6)
 	bitesize = 3
 
 /obj/item/reagent_containers/food/snacks/spacylibertyduff/Initialize()
@@ -1826,7 +1826,7 @@
 	filling_color = "#ED0758"
 	center_of_mass = list("x"=16, "y"=5)
 	nutriment_amt = 6
-	nutriment_desc = list("jelly" = 3, "mushroom" = 3)
+	nutriment_desc = list("jelly" = 3, PLANT_MUSHROOMS = 3)
 	bitesize = 3
 
 /obj/item/reagent_containers/food/snacks/amanitajelly/Initialize()
@@ -2350,7 +2350,7 @@
 	filling_color = "#CFB4C4"
 	center_of_mass = list("x"=16, "y"=13)
 	nutriment_amt = 5
-	nutriment_desc = list("mushroom" = 4)
+	nutriment_desc = list(PLANT_MUSHROOMS = 4)
 	bitesize = 2
 
 /obj/item/reagent_containers/food/snacks/plumphelmetbiscuit/Initialize()
@@ -2653,7 +2653,7 @@
 	filling_color = "#9E673A"
 	center_of_mass = list("x"=16, "y"=5)
 	nutriment_amt = 6
-	nutriment_desc = list(PLANT_TOMATO = 2, PLANT_POTATO = 2, PLANT_CARROT = 2, PLANT_EGGPLANT = 2, "mushroom" = 2)
+	nutriment_desc = list(PLANT_TOMATO = 2, PLANT_POTATO = 2, PLANT_CARROT = 2, PLANT_EGGPLANT = 2, PLANT_MUSHROOMS = 2)
 	drop_sound = 'sound/items/drop/shovel.ogg'
 	pickup_sound = 'sound/items/pickup/shovel.ogg'
 	bitesize = 10
@@ -3741,7 +3741,7 @@
 	slice_path = /obj/item/reagent_containers/food/snacks/slice/mushroompizza
 	slices_num = 6
 	center_of_mass = list("x"=16, "y"=11)
-	nutriment_desc = list("pizza crust" = 10, PLANT_TOMATO = 10, REAGENT_ID_CHEESE = 5, "mushroom" = 10)
+	nutriment_desc = list("pizza crust" = 10, PLANT_TOMATO = 10, REAGENT_ID_CHEESE = 5, PLANT_MUSHROOMS = 10)
 	nutriment_amt = 35
 	bitesize = 2
 
@@ -4405,7 +4405,7 @@
 	filling_color = "#A66829"
 	center_of_mass = list("x"=15, "y"=12)
 	nutriment_amt = 10
-	nutriment_desc = list("mushroom" = 5, "salt" = 5)
+	nutriment_desc = list(PLANT_MUSHROOMS = 5, "salt" = 5)
 	bitesize = 3
 
 /obj/item/reagent_containers/food/snacks/unajerky
@@ -6503,7 +6503,7 @@
 	filling_color = "#A66829"
 	center_of_mass = list("x"=15, "y"=12)
 	nutriment_amt = 10
-	nutriment_desc = list("mushroom" = 5, "salt" = 5)
+	nutriment_desc = list(PLANT_MUSHROOMS = 5, "salt" = 5)
 	bitesize = 3
 
 /obj/item/reagent_containers/food/snacks/sosjerky

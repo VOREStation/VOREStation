@@ -7,7 +7,7 @@
 	mutants = list(PLANT_REISHI,PLANT_AMANITA,PLANT_PLUMPHELMET)
 	chems = list(REAGENT_ID_NUTRIMENT = list(1,25))
 	splat_type = /obj/effect/plant
-	kitchen_tag = "mushroom"
+	kitchen_tag = PLANT_MUSHROOMS
 
 /datum/seed/mushroom/New()
 	..()

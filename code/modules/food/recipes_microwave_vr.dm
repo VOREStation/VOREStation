@@ -53,7 +53,7 @@
 	result = /obj/item/reagent_containers/food/snacks/reishicup
 
 /datum/recipe/hotandsoursoup
-	fruit = list(PLANT_CABBAGE = 1, "mushroom" = 1)
+	fruit = list(PLANT_CABBAGE = 1, PLANT_MUSHROOMS = 1)
 	reagents = list(REAGENT_ID_SODIUMCHLORIDE = 2, REAGENT_ID_BLACKPEPPER = 2, REAGENT_ID_WATER = 10)
 	items = list(
 		/obj/item/reagent_containers/food/snacks/tofu

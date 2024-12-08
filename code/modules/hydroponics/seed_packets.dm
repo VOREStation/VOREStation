@@ -332,7 +332,7 @@ GLOBAL_LIST_BOILERPLATE(all_seed_packs, /obj/item/seeds)
 	seed_type = PLANT_SIFLETTUCE
 
 /obj/item/seeds/eggyplant
-	seed_type = PLANT_EGGPLANT
+	seed_type = PLANT_EGG_PLANT
 
 /obj/item/seeds/pineapple
 	seed_type = PLANT_PINEAPPLE
