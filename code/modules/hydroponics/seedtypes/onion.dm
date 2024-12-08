@@ -1,8 +1,8 @@
 /datum/seed/onion
-	name = "onion"
-	seed_name = "onion"
+	name = PLANT_ONION
+	seed_name = PLANT_ONION
 	display_name = "onions"
-	kitchen_tag = "onion"
+	kitchen_tag = PLANT_ONION
 	chems = list(REAGENT_ID_NUTRIMENT = list(1,10))
 
 /datum/seed/onion/New()

@@ -256,7 +256,7 @@
 	icon_state = "lobster_cooked"
 	trash = /obj/item/trash/plate
 	nutriment_amt = 20
-	nutriment_desc = list("lemon" = 2, "lobster" = 5, "salad" = 2)
+	nutriment_desc = list(PLANT_LEMON = 2, "lobster" = 5, "salad" = 2)
 
 /obj/item/reagent_containers/food/snacks/lobstercooked/Initialize()
 	. = ..()
@@ -639,7 +639,7 @@
 	icon = 'icons/obj/food_vr.dmi'
 	icon_state = "grub_pink"
 	nutriment_amt = 5
-	nutriment_desc = list("cherry" = 4, "goo" = 1)
+	nutriment_desc = list(PLANT_CHERRY = 4, "goo" = 1)
 
 /obj/item/reagent_containers/food/snacks/grub_pink/Initialize()
 	. = ..()
@@ -953,7 +953,7 @@
 	icon_state = "jaffacake"
 	nutriment_amt = 1
 	bitesize = 2
-	nutriment_desc = list(REAGENT_ID_CHOCOLATE = 2, "orange" = 4, "cake" = 3)
+	nutriment_desc = list(REAGENT_ID_CHOCOLATE = 2, PLANT_ORANGE = 4, "cake" = 3)
 
 /obj/item/reagent_containers/food/snacks/bourbon/Initialize()
 	. = ..()
@@ -986,7 +986,7 @@
 
 /obj/item/reagent_containers/food/snacks/winegum/orange
 	icon_state = "winegum_orange"
-	nutriment_desc = list(REAGENT_ID_SUGAR = 5, "orange" = 2)
+	nutriment_desc = list(REAGENT_ID_SUGAR = 5, PLANT_ORANGE = 2)
 
 /obj/item/reagent_containers/food/snacks/winegum/black
 	icon_state = "winegum_black"
@@ -994,11 +994,11 @@
 
 /obj/item/reagent_containers/food/snacks/winegum/green
 	icon_state = "winegum_green"
-	nutriment_desc = list(REAGENT_ID_SUGAR = 5, "lime" = 2)
+	nutriment_desc = list(REAGENT_ID_SUGAR = 5, PLANT_LIME = 2)
 
 /obj/item/reagent_containers/food/snacks/winegum/yellow
 	icon_state = "winegum_yellow"
-	nutriment_desc = list(REAGENT_ID_SUGAR = 5, "lemon" = 2)
+	nutriment_desc = list(REAGENT_ID_SUGAR = 5, PLANT_LEMON = 2)
 
 /obj/item/reagent_containers/food/snacks/winegum/white
 	icon_state = "winegum_white"
@@ -1030,7 +1030,7 @@
 	package_trash = /obj/item/trash/pasty
 	package_open_state = "pasty_open"
 	nutriment_amt = 4
-	nutriment_desc = list("pastry" = 5, "meat" = 5, "onion" = 2, "potato" = 3)
+	nutriment_desc = list("pastry" = 5, "meat" = 5, PLANT_ONION = 2, PLANT_POTATO = 3)
 
 /obj/item/reagent_containers/food/snacks/packaged/pasty/Initialize()
 	. = ..()
@@ -1184,7 +1184,7 @@
 	w_class = ITEMSIZE_TINY
 	nutriment_amt = 1
 	bitesize = 2
-	nutriment_desc = list(REAGENT_ID_SUGAR = 5, "rhubarb" = 2, "custard" = 2)
+	nutriment_desc = list(REAGENT_ID_SUGAR = 5, PLANT_ROSE = 2, "custard" = 2)
 	var/list/color_options = list("rhubarbcustard_1","rhubarbcustard_2")
 
 /obj/item/reagent_containers/food/snacks/rhubarbcustard/Initialize()

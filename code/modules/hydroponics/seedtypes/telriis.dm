@@ -1,8 +1,8 @@
 /datum/seed/telriis
-	name = "telriis"
-	seed_name = "telriis"
+	name = PLANT_TELRIIS
+	seed_name = PLANT_TELRIIS
 	display_name = "telriis grass"
-	kitchen_tag = "telriis"
+	kitchen_tag = PLANT_TELRIIS
 	chems = list(REAGENT_ID_PWINE = list(1,5), REAGENT_ID_NUTRIMENT = list(1,6))
 
 /datum/seed/telriis/New()

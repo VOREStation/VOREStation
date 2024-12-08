@@ -1,7 +1,7 @@
 /obj/item/stack/material/plastic
-	name = "plastic"
+	name = MAT_PLASTIC
 	icon_state = "sheet-plastic"
-	default_type = "plastic"
+	default_type = MAT_PLASTIC
 	no_variants = FALSE
 
 /obj/item/stack/material/cardboard

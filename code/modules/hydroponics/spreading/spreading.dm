@@ -1,4 +1,4 @@
-#define DEFAULT_SEED "glowshroom"
+#define DEFAULT_SEED PLANT_GLOWSHROOM
 #define VINE_GROWTH_STAGES 5
 
 /proc/spacevine_infestation(var/potency_min=70, var/potency_max=100, var/maturation_min=5, var/maturation_max=15)

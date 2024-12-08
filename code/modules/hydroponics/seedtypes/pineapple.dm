@@ -1,11 +1,11 @@
 //pineapple and variants
 
 /datum/seed/pineapple
-	name = "pineapple"
-	seed_name = "pineapple"
-	display_name = "pineapple"
-	kitchen_tag = "pineapple"
-	mutants = list("spineapple")
+	name = PLANT_PINEAPPLE
+	seed_name = PLANT_PINEAPPLE
+	display_name = PLANT_PINEAPPLE
+	kitchen_tag = PLANT_PINEAPPLE
+	mutants = list(PLANT_SPINEAPPLE)
 	chems = list(REAGENT_ID_NUTRIMENT = list(1,5), REAGENT_ID_PINEAPPLEJUICE = list(1, 20))
 
 /datum/seed/pineapple/New()
@@ -26,10 +26,10 @@
 //A pineapple that stings and produces enzymes.
 
 /datum/seed/spineapple
-	name = "spineapple"
-	seed_name = "spineapple"
-	display_name = "spineapple"
-	kitchen_tag = "spineapple"
+	name = PLANT_SPINEAPPLE
+	seed_name = PLANT_SPINEAPPLE
+	display_name = PLANT_SPINEAPPLE
+	kitchen_tag = PLANT_SPINEAPPLE
 	chems = list(REAGENT_ID_NUTRIMENT = list(1,5), REAGENT_ID_ENZYME = list(1,5), REAGENT_ID_PINEAPPLEJUICE = list(1, 20))
 
 /datum/seed/spineapple/New()

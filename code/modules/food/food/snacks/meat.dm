@@ -89,7 +89,7 @@
 	filling_color = "#DB0000"
 	center_of_mass = list("x"=17, "y"=16)
 	nutriment_amt = 3
-	nutriment_desc = list("raw" = 2, "tomato" = 3)
+	nutriment_desc = list("raw" = 2, PLANT_TOMATO = 3)
 	bitesize = 6
 
 /obj/item/reagent_containers/food/snacks/bearmeat

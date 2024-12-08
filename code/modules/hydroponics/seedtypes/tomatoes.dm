@@ -1,11 +1,11 @@
 //Tomatoes/variants.
 /datum/seed/tomato
-	name = "tomato"
-	seed_name = "tomato"
+	name = PLANT_TOMATO
+	seed_name = PLANT_TOMATO
 	display_name = "tomato plant"
-	mutants = list("bluetomato","bloodtomato")
+	mutants = list(PLANT_BLUETOMATO,PLANT_BLOODTOMATO)
 	chems = list(REAGENT_ID_NUTRIMENT = list(1,10), REAGENT_ID_TOMATOJUICE = list(10,10))
-	kitchen_tag = "tomato"
+	kitchen_tag = PLANT_TOMATO
 
 /datum/seed/tomato/New()
 	..()
@@ -23,10 +23,10 @@
 	set_trait(TRAIT_NUTRIENT_CONSUMPTION, 0.25)
 
 /datum/seed/tomato/blood
-	name = "bloodtomato"
+	name = PLANT_BLOODTOMATO
 	seed_name = "blood tomato"
 	display_name = "blood tomato plant"
-	mutants = list("killertomato")
+	mutants = list(PLANT_KILLERTOMATO)
 	chems = list(REAGENT_ID_NUTRIMENT = list(1,10), REAGENT_ID_BLOOD = list(1,5))
 	splat_type = /obj/effect/decal/cleanable/blood/splatter
 
@@ -36,7 +36,7 @@
 	set_trait(TRAIT_PRODUCT_COLOUR,"#FF0000")
 
 /datum/seed/tomato/killer
-	name = "killertomato"
+	name = PLANT_KILLERTOMATO
 	seed_name = "killer tomato"
 	display_name = "killer tomato plant"
 	mutants = null
@@ -49,10 +49,10 @@
 	set_trait(TRAIT_PRODUCT_COLOUR,"#A86747")
 
 /datum/seed/tomato/blue
-	name = "bluetomato"
+	name = PLANT_BLUETOMATO
 	seed_name = "blue tomato"
 	display_name = "blue tomato plant"
-	mutants = list("bluespacetomato")
+	mutants = list(PLANT_BLUESPACETOMATO)
 	chems = list(REAGENT_ID_NUTRIMENT = list(1,20), REAGENT_ID_LUBE = list(1,5))
 
 /datum/seed/tomato/blue/New()
@@ -61,7 +61,7 @@
 	set_trait(TRAIT_PLANT_COLOUR,"#070AAD")
 
 /datum/seed/tomato/blue/teleport
-	name = "bluespacetomato"
+	name = PLANT_BLUESPACETOMATO
 	seed_name = "bluespace tomato"
 	display_name = "bluespace tomato plant"
 	mutants = null

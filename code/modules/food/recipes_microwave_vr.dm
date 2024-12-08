@@ -11,7 +11,7 @@
 // All of this shit needs to be gone through and reorganized into different recipes per machine - Rykka 7/16/2020
 
 /datum/recipe/sushi
-	fruit = list("cabbage" = 1)
+	fruit = list(PLANT_CABBAGE = 1)
 	reagents = list(REAGENT_ID_RICE = 20)
 	items = list(
 		/obj/item/reagent_containers/food/snacks/meat,
@@ -21,7 +21,7 @@
 	result = /obj/item/reagent_containers/food/snacks/sliceable/sushi
 
 /datum/recipe/goulash
-	fruit = list("tomato" = 1)
+	fruit = list(PLANT_TOMATO = 1)
 	items = list(
 		/obj/item/reagent_containers/food/snacks/cutlet,
 		/obj/item/reagent_containers/food/snacks/spagetti
@@ -29,7 +29,7 @@
 	result = /obj/item/reagent_containers/food/snacks/goulash
 
 /datum/recipe/donerkebab
-	fruit = list("tomato" = 1, "cabbage" = 1)
+	fruit = list(PLANT_TOMATO = 1, PLANT_CABBAGE = 1)
 	reagents = list(REAGENT_ID_SODIUMCHLORIDE = 1)
 	items = list(
 		/obj/item/reagent_containers/food/snacks/meatsteak,
@@ -39,7 +39,7 @@
 
 
 /datum/recipe/roastbeef
-	fruit = list("carrot" = 2, "potato" = 2)
+	fruit = list(PLANT_CARROT = 2, PLANT_POTATO = 2)
 	items = list(
 		/obj/item/reagent_containers/food/snacks/meat
 	)
@@ -53,7 +53,7 @@
 	result = /obj/item/reagent_containers/food/snacks/reishicup
 
 /datum/recipe/hotandsoursoup
-	fruit = list("cabbage" = 1, "mushroom" = 1)
+	fruit = list(PLANT_CABBAGE = 1, "mushroom" = 1)
 	reagents = list(REAGENT_ID_SODIUMCHLORIDE = 2, REAGENT_ID_BLACKPEPPER = 2, REAGENT_ID_WATER = 10)
 	items = list(
 		/obj/item/reagent_containers/food/snacks/tofu
@@ -76,7 +76,7 @@
 	result = /obj/item/reagent_containers/food/snacks/bugball
 
 /datum/recipe/mammi
-	fruit = list("orange" = 1)
+	fruit = list(PLANT_ORANGE = 1)
 	reagents = list(REAGENT_ID_WATER = 10, REAGENT_ID_FLOUR = 10, REAGENT_ID_MILK = 5, REAGENT_ID_SODIUMCHLORIDE = 1)
 	result = /obj/item/reagent_containers/food/snacks/mammi
 
@@ -91,7 +91,7 @@
 	result = /obj/item/reagent_containers/food/snacks/makaroni
 
 /datum/recipe/carpsushi
-	fruit = list("cabbage" = 1)
+	fruit = list(PLANT_CABBAGE = 1)
 	reagents = list(REAGENT_ID_RICE = 20)
 	items = list(
 		/obj/item/reagent_containers/food/snacks/carpmeat,
@@ -101,7 +101,7 @@
 	result = /obj/item/reagent_containers/food/snacks/sliceable/sushi
 
 /datum/recipe/lobster
-	fruit = list("lemon" = 1, "lettuce" = 1)
+	fruit = list(PLANT_LEMON = 1, PLANT_LETTUCE = 1)
 	items = list(
 		/obj/item/reagent_containers/food/snacks/lobster
 	)
@@ -114,7 +114,7 @@
 	result = /obj/item/reagent_containers/food/snacks/cuttlefishcooked
 
 /datum/recipe/monkfish
-	fruit = list("chili" = 1, "onion" = 1)
+	fruit = list(PLANT_CHILI = 1, PLANT_ONION = 1)
 	items = list(
 		/obj/item/reagent_containers/food/snacks/monkfishfillet
 	)
@@ -129,7 +129,7 @@
 
 /datum/recipe/sharkdip
 	reagents = list(REAGENT_ID_SODIUMCHLORIDE = 1)
-	fruit = list("chili" = 1)
+	fruit = list(PLANT_CHILI = 1)
 	items = list(
 		/obj/item/reagent_containers/food/snacks/carpmeat/fish/sharkmeat
 	)
@@ -137,7 +137,7 @@
 
 /datum/recipe/sharkcubes
 	reagents = list(REAGENT_ID_SOYSAUCE = 5, REAGENT_ID_SODIUMCHLORIDE = 1)
-	fruit = list("potato" = 1)
+	fruit = list(PLANT_POTATO = 1)
 	items = list(
 		/obj/item/reagent_containers/food/snacks/carpmeat/fish/sharkmeat
 	)
@@ -151,7 +151,7 @@
 	result = /obj/item/storage/box/wings/tray
 
 /datum/recipe/bucket
-	fruit = list("durian" = 1)
+	fruit = list(PLANT_DURIAN = 1)
 	items = list(
 		/obj/item/reagent_containers/food/snacks/meat,
 		/obj/item/reagent_containers/food/snacks/meat,
@@ -168,14 +168,14 @@
 	result = /obj/item/reagent_containers/food/snacks/grub_pink
 
 /datum/recipe/grub_blue
-	fruit = list("berries" = 1)
+	fruit = list(PLANT_BERRIES = 1)
 	items = list(
 		/obj/item/reagent_containers/food/snacks/grub
 	)
 	result = /obj/item/reagent_containers/food/snacks/grub_blue
 
 /datum/recipe/grub_purple
-	fruit = list("grapes" = 1)
+	fruit = list(PLANT_GRAPES = 1)
 	items = list(
 		/obj/item/reagent_containers/food/snacks/grub
 	)

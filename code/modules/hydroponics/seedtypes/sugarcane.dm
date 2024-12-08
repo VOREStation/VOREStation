@@ -1,6 +1,6 @@
 /datum/seed/sugarcane
-	name = "sugarcane"
-	seed_name = "sugarcane"
+	name = PLANT_SUGARCANE
+	seed_name = PLANT_SUGARCANE
 	display_name = "sugarcanes"
 	kitchen_tag = "sugarcanes"
 	chems = list(REAGENT_ID_SUGAR = list(4,5))

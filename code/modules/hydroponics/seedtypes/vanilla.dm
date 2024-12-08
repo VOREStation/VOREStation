@@ -1,8 +1,8 @@
 /datum/seed/vanilla
-	name = "vanilla"
-	seed_name = "vanilla"
-	display_name = "vanilla"
-	kitchen_tag = "vanilla"
+	name = PLANT_VANILLA
+	seed_name = PLANT_VANILLA
+	display_name = PLANT_VANILLA
+	kitchen_tag = PLANT_VANILLA
 	chems = list(REAGENT_ID_NUTRIMENT = list(1,10), REAGENT_ID_VANILLA = list(2,8), REAGENT_ID_SUGAR = list(1, 4))
 
 /datum/seed/vanilla/New()

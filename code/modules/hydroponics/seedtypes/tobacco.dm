@@ -1,9 +1,9 @@
 //Tobacco/varieties.
 /datum/seed/tobacco
-	name = "tobacco"
-	seed_name = "tobacco"
-	display_name = "tobacco"
-	kitchen_tag = "tobacco"
+	name = PLANT_TOBACCO
+	seed_name = PLANT_TOBACCO
+	display_name = PLANT_TOBACCO
+	kitchen_tag = PLANT_TOBACCO
 	mutants = list("stimbush")
 	chems = list(REAGENT_ID_NUTRIMENT = list(1,15), REAGENT_ID_NICOTINE = list(1,20))
 

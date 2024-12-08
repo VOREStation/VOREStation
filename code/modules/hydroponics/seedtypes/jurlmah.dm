@@ -1,8 +1,8 @@
 /datum/seed/jurlmah
-	name = "jurlmah"
+	name = PLANT_JURLMAH
 	seed_name = "jurl'mah"
 	display_name = "jurl'mah reeds"
-	kitchen_tag = "jurlmah"
+	kitchen_tag = PLANT_JURLMAH
 	chems = list(REAGENT_ID_SEROTROTIUM = list(1,5),REAGENT_ID_NUTRIMENT = list(1,5))
 
 /datum/seed/jurlmah/New()

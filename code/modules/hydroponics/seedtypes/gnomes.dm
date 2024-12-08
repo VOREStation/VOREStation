@@ -1,8 +1,8 @@
 // Gnomes
 /datum/seed/gnomes
-	name = "gnomes"
-	seed_name = "gnomes"
-	display_name = "gnomes"
+	name = PLANT_GNOMES
+	seed_name = PLANT_GNOMES
+	display_name = PLANT_GNOMES
 	force_layer = 3
 	chems = list(REAGENT_ID_MAGICDUST = list(5,20))
 

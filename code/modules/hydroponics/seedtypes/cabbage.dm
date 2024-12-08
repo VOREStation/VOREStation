@@ -1,8 +1,8 @@
 /datum/seed/cabbage
-	name = "cabbage"
-	seed_name = "cabbage"
+	name = PLANT_CABBAGE
+	seed_name = PLANT_CABBAGE
 	display_name = "cabbages"
-	kitchen_tag = "cabbage"
+	kitchen_tag = PLANT_CABBAGE
 	chems = list(REAGENT_ID_NUTRIMENT = list(1,10))
 
 /datum/seed/cabbage/New()

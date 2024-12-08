@@ -17,7 +17,7 @@
 	attack_verb = list("whipped", "battered", "slapped", "fished", "hooked")
 	hitsound = 'sound/weapons/punchmiss.ogg'
 	applies_material_colour = TRUE
-	default_material = "wood"
+	default_material = MAT_WOOD
 	can_dull = FALSE
 	var/strung = TRUE
 	var/line_break = TRUE
@@ -116,7 +116,7 @@
 	item_state = "fishing_rod"
 	reach = 4
 	attackspeed = 2 SECONDS
-	default_material = "titanium"
+	default_material = MAT_TITANIUM
 
 	toolspeed = 0.75
 
@@ -126,6 +126,6 @@
 /obj/item/material/fishing_rod/modern/cheap //A rod sold by the fishing vendor. Done so that the rod sold by mining reward vendors doesn't loose its value.
 	name = "cheap fishing rod"
 	desc = "Mass produced, but somewhat reliable."
-	default_material = "plastic"
+	default_material = MAT_PLASTIC
 
 	toolspeed = 0.9

@@ -185,7 +185,7 @@
 
 /datum/recipe/superbiteburger
 	appliance = GRILL
-	fruit = list("tomato" = 1)
+	fruit = list(PLANT_TOMATO = 1)
 	reagents = list(REAGENT_ID_SODIUMCHLORIDE = 5, REAGENT_ID_BLACKPEPPER = 5)
 	items = list(
 		/obj/item/reagent_containers/food/snacks/bigbiteburger,
@@ -281,7 +281,7 @@
 		/obj/item/reagent_containers/food/snacks/carpmeat
 	)
 	reagents = list(REAGENT_ID_SPACESPICE = 1)
-	fruit = list("lettuce" = 1, "lime" = 1)
+	fruit = list(PLANT_LETTUCE = 1, PLANT_LIME = 1)
 	result = /obj/item/reagent_containers/food/snacks/sliceable/grilled_carp
 
 /datum/recipe/grilledcheese

@@ -1063,7 +1063,7 @@
 	filling_color = "#DB0000"
 	center_of_mass = list("x"=17, "y"=16)
 	nutriment_amt = 3
-	nutriment_desc = list("raw" = 2, "tomato" = 3)
+	nutriment_desc = list("raw" = 2, PLANT_TOMATO = 3)
 	bitesize = 6
 
 /obj/item/reagent_containers/food/snacks/bearmeat
@@ -1454,7 +1454,7 @@
 	filling_color = "#4D2F5E"
 	center_of_mass = list("x"=16, "y"=11)
 	nutriment_amt = 6
-	nutriment_desc = list(REAGENT_ID_CHEESE = 3, "eggplant" = 3)
+	nutriment_desc = list(REAGENT_ID_CHEESE = 3, PLANT_EGGPLANT = 3)
 	bitesize = 2
 
 /obj/item/reagent_containers/food/snacks/soylentgreen
@@ -1701,7 +1701,7 @@
 	filling_color = "#FAA005"
 	center_of_mass = list("x"=16, "y"=11)
 	nutriment_amt = 3
-	nutriment_desc = list("carrot" = 3, "salt" = 1)
+	nutriment_desc = list(PLANT_CARROT = 3, "salt" = 1)
 	bitesize = 2
 
 /obj/item/reagent_containers/food/snacks/carrotfries/Initialize()
@@ -1959,7 +1959,7 @@
 	filling_color = "#A36A1F"
 	center_of_mass = list("x"=16, "y"=13)
 	nutriment_amt = 2
-	nutriment_desc = list("tortilla" = 3, "corn" = 3)
+	nutriment_desc = list("tortilla" = 3, PLANT_CORN = 3)
 	bitesize = 4
 
 /obj/item/reagent_containers/food/snacks/enchiladas/Initialize()
@@ -2090,7 +2090,7 @@
 	trash = /obj/item/trash/plate
 	center_of_mass = list("x"=16, "y"=10)
 	nutriment_amt = 8
-	nutriment_desc = list("soy" = 4, "tomato" = 4)
+	nutriment_desc = list("soy" = 4, PLANT_TOMATO = 4)
 	bitesize = 2
 
 /obj/item/reagent_containers/food/snacks/boiledspagetti
@@ -2149,7 +2149,7 @@
 	filling_color = "#DE4545"
 	center_of_mass = list("x"=16, "y"=10)
 	nutriment_amt = 6
-	nutriment_desc = list("tomato" = 3, "noodles" = 3)
+	nutriment_desc = list(PLANT_TOMATO = 3, "noodles" = 3)
 	bitesize = 4
 
 /obj/item/reagent_containers/food/snacks/pastatomato/Initialize()
@@ -2207,7 +2207,7 @@
 	filling_color = "#F21873"
 	center_of_mass = list("x"=15, "y"=13)
 	nutriment_amt = 3
-	nutriment_desc = list("apple" = 3, "caramel" = 3, "sweetness" = 2)
+	nutriment_desc = list(PLANT_APPLE = 3, "caramel" = 3, "sweetness" = 2)
 	bitesize = 3
 
 /obj/item/reagent_containers/food/snacks/candiedapple
@@ -2218,7 +2218,7 @@
 	filling_color = "#F21873"
 	center_of_mass = list("x"=15, "y"=13)
 	nutriment_amt = 3
-	nutriment_desc = list("apple" = 3, "sweetness" = 2)
+	nutriment_desc = list(PLANT_APPLE = 3, "sweetness" = 2)
 	bitesize = 3
 
 /obj/item/reagent_containers/food/snacks/applepie
@@ -2228,7 +2228,7 @@
 	filling_color = "#E0EDC5"
 	center_of_mass = list("x"=16, "y"=13)
 	nutriment_amt = 4
-	nutriment_desc = list("sweetness" = 2, "apple" = 2, "pie" = 2)
+	nutriment_desc = list("sweetness" = 2, PLANT_APPLE = 2, "pie" = 2)
 	bitesize = 3
 
 /obj/item/reagent_containers/food/snacks/cherrypie
@@ -2238,7 +2238,7 @@
 	filling_color = "#FF525A"
 	center_of_mass = list("x"=16, "y"=11)
 	nutriment_amt = 4
-	nutriment_desc = list("sweetness" = 2, "cherry" = 2, "pie" = 2)
+	nutriment_desc = list("sweetness" = 2, PLANT_CHERRY = 2, "pie" = 2)
 	bitesize = 3
 
 /obj/item/reagent_containers/food/snacks/twobread
@@ -2381,7 +2381,7 @@
 	filling_color = "#76B87F"
 	center_of_mass = list("x"=17, "y"=11)
 	nutriment_amt = 8
-	nutriment_desc = list("salad" = 2, "tomato" = 2, "carrot" = 2, "apple" = 2)
+	nutriment_desc = list("salad" = 2, PLANT_TOMATO = 2, PLANT_CARROT = 2, PLANT_APPLE = 2)
 	bitesize = 3
 
 /obj/item/reagent_containers/food/snacks/validsalad
@@ -2407,7 +2407,7 @@
 	filling_color = "#FFFF00"
 	center_of_mass = list("x"=16, "y"=18)
 	nutriment_amt = 8
-	nutriment_desc = list("apple" = 8)
+	nutriment_desc = list(PLANT_APPLE = 8)
 	bitesize = 3
 
 /obj/item/reagent_containers/food/snacks/appletart/Initialize()
@@ -2484,7 +2484,7 @@
 	trash = /obj/item/trash/snack_bowl
 	filling_color = "#AFC4B5"
 	center_of_mass = list("x"=16, "y"=8)
-	nutriment_desc = list("carrot" = 2, "corn" = 2, "eggplant" = 2, "potato" = 2)
+	nutriment_desc = list(PLANT_CARROT = 2, PLANT_CORN = 2, PLANT_EGGPLANT = 2, PLANT_POTATO = 2)
 	bitesize = 5
 	eating_sound = 'sound/items/drink.ogg'
 
@@ -2500,7 +2500,7 @@
 	filling_color = "#AFC4B5"
 	center_of_mass = list("x"=16, "y"=7)
 	nutriment_amt = 8
-	nutriment_desc = list("salad" = 4, REAGENT_ID_EGG = 2, "potato" = 2)
+	nutriment_desc = list("salad" = 4, REAGENT_ID_EGG = 2, PLANT_POTATO = 2)
 	bitesize = 5
 	eating_sound = 'sound/items/drink.ogg'
 
@@ -2653,7 +2653,7 @@
 	filling_color = "#9E673A"
 	center_of_mass = list("x"=16, "y"=5)
 	nutriment_amt = 6
-	nutriment_desc = list("tomato" = 2, "potato" = 2, "carrot" = 2, "eggplant" = 2, "mushroom" = 2)
+	nutriment_desc = list(PLANT_TOMATO = 2, PLANT_POTATO = 2, PLANT_CARROT = 2, PLANT_EGGPLANT = 2, "mushroom" = 2)
 	drop_sound = 'sound/items/drop/shovel.ogg'
 	pickup_sound = 'sound/items/pickup/shovel.ogg'
 	bitesize = 10
@@ -2944,7 +2944,7 @@
 	slices_num = 5
 	filling_color = "#FFD675"
 	center_of_mass = list("x"=16, "y"=10)
-	nutriment_desc = list("cake" = 10, "sweetness" = 10, "carrot" = 15)
+	nutriment_desc = list("cake" = 10, "sweetness" = 10, PLANT_CARROT = 15)
 	nutriment_amt = 25
 	bitesize = 2
 
@@ -3085,7 +3085,7 @@
 	slices_num = 5
 	filling_color = "#FADA8E"
 	center_of_mass = list("x"=16, "y"=10)
-	nutriment_desc = list("cake" = 10, "sweetness" = 10, "orange" = 15)
+	nutriment_desc = list("cake" = 10, "sweetness" = 10, PLANT_ORANGE = 15)
 	nutriment_amt = 20
 
 /obj/item/reagent_containers/food/snacks/slice/orangecake
@@ -3109,7 +3109,7 @@
 	slices_num = 5
 	filling_color = "#CBFA8E"
 	center_of_mass = list("x"=16, "y"=10)
-	nutriment_desc = list("cake" = 10, "sweetness" = 10, "lime" = 15)
+	nutriment_desc = list("cake" = 10, "sweetness" = 10, PLANT_LIME = 15)
 	nutriment_amt = 20
 
 /obj/item/reagent_containers/food/snacks/slice/limecake
@@ -3133,7 +3133,7 @@
 	slices_num = 5
 	filling_color = "#FAFA8E"
 	center_of_mass = list("x"=16, "y"=10)
-	nutriment_desc = list("cake" = 10, "sweetness" = 10, "lemon" = 15)
+	nutriment_desc = list("cake" = 10, "sweetness" = 10, PLANT_LEMON = 15)
 	nutriment_amt = 20
 
 
@@ -3255,7 +3255,7 @@
 	slices_num = 5
 	filling_color = "#EBF5B8"
 	center_of_mass = list("x"=16, "y"=10)
-	nutriment_desc = list("cake" = 10, "sweetness" = 10, "apple" = 15)
+	nutriment_desc = list("cake" = 10, "sweetness" = 10, PLANT_APPLE = 15)
 	nutriment_amt = 15
 
 /obj/item/reagent_containers/food/snacks/slice/applecake
@@ -3279,7 +3279,7 @@
 	slices_num = 5
 	filling_color = "#F5B951"
 	center_of_mass = list("x"=16, "y"=10)
-	nutriment_desc = list("pie" = 5, REAGENT_ID_CREAM = 5, "pumpkin" = 5)
+	nutriment_desc = list("pie" = 5, REAGENT_ID_CREAM = 5, PLANT_PUMPKIN = 5)
 	nutriment_amt = 15
 
 /obj/item/reagent_containers/food/snacks/slice/pumpkinpie
@@ -3331,7 +3331,7 @@
 	slices_num = 5
 	filling_color = "#F5B951"
 	nutriment_amt = 16
-	nutriment_desc = list("lime" = 12, "graham crackers" = 4)
+	nutriment_desc = list(PLANT_LIME = 12, "graham crackers" = 4)
 	center_of_mass = list("x"=16, "y"=10)
 
 /obj/item/reagent_containers/food/snacks/sliceable/keylimepie/Initialize()
@@ -3345,7 +3345,7 @@
 	trash = /obj/item/trash/plate
 	filling_color = "#F5B951"
 	bitesize = 3
-	nutriment_desc = list("lime" = 1)
+	nutriment_desc = list(PLANT_LIME = 1)
 	center_of_mass = list("x"=16, "y"=12)
 
 /obj/item/reagent_containers/food/snacks/keylimepieslice/filled
@@ -3463,7 +3463,7 @@
 	icon = 'icons/obj/food.dmi'
 	icon_state = "lasagna"
 	nutriment_amt = 5
-	nutriment_desc = list("tomato" = 4, "meat" = 2)
+	nutriment_desc = list(PLANT_TOMATO = 4, "meat" = 2)
 
 /obj/item/reagent_containers/food/snacks/lasagna/Initialize()
 	. = ..()
@@ -3656,7 +3656,7 @@
 	slice_path = /obj/item/reagent_containers/food/snacks/slice/margherita
 	slices_num = 6
 	center_of_mass = list("x"=16, "y"=11)
-	nutriment_desc = list("pizza crust" = 10, "tomato" = 10, REAGENT_ID_CHEESE = 15)
+	nutriment_desc = list("pizza crust" = 10, PLANT_TOMATO = 10, REAGENT_ID_CHEESE = 15)
 	nutriment_amt = 35
 	bitesize = 2
 
@@ -3684,7 +3684,7 @@
 	slice_path = /obj/item/reagent_containers/food/snacks/pineappleslice
 	slices_num = 6
 	center_of_mass = list("x"=16, "y"=11)
-	nutriment_desc = list("pizza crust" = 10, "tomato" = 10, "ham" = 10)
+	nutriment_desc = list("pizza crust" = 10, PLANT_TOMATO = 10, "ham" = 10)
 	nutriment_amt = 30
 	bitesize = 2
 
@@ -3703,7 +3703,7 @@
 	center_of_mass = list("x"=18, "y"=13)
 
 /obj/item/reagent_containers/food/snacks/pineappleslice/filled
-	nutriment_desc = list("pizza crust" = 5, "tomato" = 5)
+	nutriment_desc = list("pizza crust" = 5, PLANT_TOMATO = 5)
 	nutriment_amt = 5
 
 /obj/item/reagent_containers/food/snacks/sliceable/pizza/meatpizza
@@ -3713,7 +3713,7 @@
 	slice_path = /obj/item/reagent_containers/food/snacks/slice/meatpizza
 	slices_num = 6
 	center_of_mass = list("x"=16, "y"=11)
-	nutriment_desc = list("pizza crust" = 10, "tomato" = 10, REAGENT_ID_CHEESE = 15, "meat" = 10)
+	nutriment_desc = list("pizza crust" = 10, PLANT_TOMATO = 10, REAGENT_ID_CHEESE = 15, "meat" = 10)
 	nutriment_amt = 10
 	bitesize = 2
 
@@ -3741,7 +3741,7 @@
 	slice_path = /obj/item/reagent_containers/food/snacks/slice/mushroompizza
 	slices_num = 6
 	center_of_mass = list("x"=16, "y"=11)
-	nutriment_desc = list("pizza crust" = 10, "tomato" = 10, REAGENT_ID_CHEESE = 5, "mushroom" = 10)
+	nutriment_desc = list("pizza crust" = 10, PLANT_TOMATO = 10, REAGENT_ID_CHEESE = 5, "mushroom" = 10)
 	nutriment_amt = 35
 	bitesize = 2
 
@@ -3768,7 +3768,7 @@
 	slice_path = /obj/item/reagent_containers/food/snacks/slice/vegetablepizza
 	slices_num = 6
 	center_of_mass = list("x"=16, "y"=11)
-	nutriment_desc = list("pizza crust" = 10, "tomato" = 10, REAGENT_ID_CHEESE = 5, "eggplant" = 5, "carrot" = 5, "corn" = 5)
+	nutriment_desc = list("pizza crust" = 10, PLANT_TOMATO = 10, REAGENT_ID_CHEESE = 5, PLANT_EGGPLANT = 5, PLANT_CARROT = 5, PLANT_CORN = 5)
 	nutriment_amt = 25
 	bitesize = 2
 
@@ -4233,11 +4233,11 @@
 
 // potato + knife = raw sticks
 /obj/item/reagent_containers/food/snacks/grown/attackby(obj/item/W, mob/user)
-	if(seed && seed.kitchen_tag && seed.kitchen_tag == "potato" && istype(W,/obj/item/material/knife))
+	if(seed && seed.kitchen_tag && seed.kitchen_tag == PLANT_POTATO && istype(W,/obj/item/material/knife))
 		new /obj/item/reagent_containers/food/snacks/rawsticks(get_turf(src))
 		to_chat(user, span_notice("You cut the potato."))
 		qdel(src)
-	else if(seed && seed.kitchen_tag && seed.kitchen_tag == "sunflower" && istype(W,/obj/item/material/knife))
+	else if(seed && seed.kitchen_tag && seed.kitchen_tag == PLANT_SUNFLOWERS && istype(W,/obj/item/material/knife))
 		new /obj/item/reagent_containers/food/snacks/rawsunflower(get_turf(src))
 		to_chat(user, span_notice("You remove the seeds from the flower, slightly damaging them."))
 		qdel(src)
@@ -4497,7 +4497,7 @@
 	filling_color = "#E0CF9B"
 	center_of_mass = list("x"=17, "y"=4)
 	nutriment_amt = 6
-	nutriment_desc = list("sweetness" = 2, "muffin" = 2, "berries" = 2)
+	nutriment_desc = list("sweetness" = 2, "muffin" = 2, PLANT_BERRIES = 2)
 	bitesize = 2
 
 /obj/item/reagent_containers/food/snacks/berrymuffin/berry/Initialize()
@@ -4515,7 +4515,7 @@
 	filling_color = "#799ACE"
 	center_of_mass = list("x"=17, "y"=4)
 	nutriment_amt = 6
-	nutriment_desc = list("spookiness" = 4, "muffin" = 1, "berries" = 1)
+	nutriment_desc = list("spookiness" = 4, "muffin" = 1, PLANT_BERRIES = 1)
 	bitesize = 2
 
 /obj/item/reagent_containers/food/snacks/ghostmuffin/berry/Initialize()
@@ -4533,7 +4533,7 @@
 	filling_color = "#799ACE"
 	center_of_mass = list("x"=17, "y"=16)
 	nutriment_amt = 8
-	nutriment_desc = list(REAGENT_ID_EGG = 4, "chili" = 4)
+	nutriment_desc = list(REAGENT_ID_EGG = 4, PLANT_CHILI = 4)
 	bitesize = 2
 
 /obj/item/reagent_containers/food/snacks/devilledegg/Initialize()
@@ -6259,7 +6259,7 @@
 	icon_state = "fruitbar"
 	trash = /obj/item/trash/candy/fruitbar
 	nutriment_amt = 13
-	nutriment_desc = list("apricot" = 2, REAGENT_ID_SUGAR = 2, "dates" = 2, "cranberry" = 2, "apple" = 2)
+	nutriment_desc = list("apricot" = 2, REAGENT_ID_SUGAR = 2, "dates" = 2, "cranberry" = 2, PLANT_APPLE = 2)
 	bitesize = 6
 
 /obj/item/reagent_containers/food/snacks/fruitbar/Initialize()
@@ -6718,7 +6718,7 @@
 	trash = /obj/item/trash/saturno
 	filling_color = "#dca319"
 	center_of_mass = list("x"=15, "y"=9)
-	nutriment_desc = list("salt" = 4, "peanut" = 2,  "wood?" = 1)
+	nutriment_desc = list("salt" = 4, PLANT_PEANUT = 2,  "wood?" = 1)
 	nutriment_amt = 5
 	bitesize = 2
 
@@ -6754,7 +6754,7 @@
 	trash = /obj/item/trash/mars
 	filling_color = "#d2c63f"
 	center_of_mass = list("x"=15, "y"=9)
-	nutriment_desc = list("eggs" = 4, "potato" = 4, REAGENT_ID_MUSTARD = 2)
+	nutriment_desc = list("eggs" = 4, PLANT_POTATO = 4, REAGENT_ID_MUSTARD = 2)
 	nutriment_amt = 8
 	bitesize = 2
 
@@ -7102,7 +7102,7 @@
 	canned_open_state = "appleberry-open"
 	filling_color = "#FFFFFF"
 	center_of_mass = list("x"=15, "y"=9)
-	nutriment_desc = list("apple" = 1, "sweetness" = 1)
+	nutriment_desc = list(PLANT_APPLE = 1, "sweetness" = 1)
 	bitesize = 2
 
 /obj/item/reagent_containers/food/snacks/canned/appleberry/Initialize()

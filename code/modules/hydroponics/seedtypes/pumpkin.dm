@@ -1,8 +1,8 @@
 /datum/seed/pumpkin
-	name = "pumpkin"
-	seed_name = "pumpkin"
+	name = PLANT_PUMPKIN
+	seed_name = PLANT_PUMPKIN
 	display_name = "pumpkin vine"
-	kitchen_tag = "pumpkin"
+	kitchen_tag = PLANT_PUMPKIN
 	chems = list(REAGENT_ID_NUTRIMENT = list(1,6))
 
 /datum/seed/pumpkin/New()

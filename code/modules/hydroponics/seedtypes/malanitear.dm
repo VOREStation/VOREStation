@@ -1,8 +1,8 @@
 /datum/seed/mtear
-	name = "mtear"
+	name = PLANT_MTEAR
 	seed_name = "Malani's tear"
 	display_name = "Malani's tear leaves"
-	kitchen_tag = "mtear"
+	kitchen_tag = PLANT_MTEAR
 	chems = list(REAGENT_ID_HONEY = list(1,10), REAGENT_ID_KELOTANE = list(3,5))
 
 /datum/seed/mtear/New()

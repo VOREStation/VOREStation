@@ -1,10 +1,10 @@
 //Grapes/varieties
 /datum/seed/grapes
-	name = "grapes"
+	name = PLANT_GRAPES
 	seed_name = "grape"
 	display_name = "grapevines"
-	kitchen_tag = "grapes"
-	mutants = list("greengrapes")
+	kitchen_tag = PLANT_GRAPES
+	mutants = list(PLANT_GREENGRAPES)
 	chems = list(REAGENT_ID_NUTRIMENT = list(1,10), REAGENT_ID_SUGAR = list(1,5), REAGENT_ID_GRAPEJUICE = list(10,10))
 
 /datum/seed/grapes/New()
@@ -22,7 +22,7 @@
 	set_trait(TRAIT_NUTRIENT_CONSUMPTION, 0.15)
 
 /datum/seed/grapes/green
-	name = "greengrapes"
+	name = PLANT_GREENGRAPES
 	seed_name = "green grape"
 	display_name = "green grapevines"
 	mutants = null

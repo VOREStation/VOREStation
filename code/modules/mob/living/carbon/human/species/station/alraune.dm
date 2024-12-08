@@ -348,7 +348,7 @@
 	var/self_verb_descriptor = list("grab", "snatch", "pick")
 	var/short_emote_descriptor = list("picks", "grabs")
 	var/self_emote_descriptor = list("grab", "pick", "snatch")
-	var/fruit_type = "apple"
+	var/fruit_type = PLANT_APPLE
 	var/mob/living/organ_owner = null
 	var/gen_cost = 0.5
 

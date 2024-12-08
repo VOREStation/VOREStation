@@ -380,7 +380,7 @@
 	if(seed)
 		previous_plant = seed.display_name
 		seed = null
-	seed = SSplants.seeds[pick(list("reishi","nettle","amanita","mushrooms","plumphelmet","towercap","harebells","weeds"))]
+	seed = SSplants.seeds[pick(list(PLANT_REISHI,PLANT_NETTLE,PLANT_AMANITA,PLANT_MUSHROOMS,PLANT_PLUMPHELMET,PLANT_TOWERCAP,PLANT_HAREBELLS,PLANT_WEEDS))]
 	if(!seed) return //Weed does not exist, someone fucked up.
 
 	dead = 0

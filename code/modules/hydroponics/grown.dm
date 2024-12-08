@@ -188,7 +188,7 @@
 
 		if(W.sharp)
 
-			if(seed.kitchen_tag == "pumpkin") // Ugggh these checks are awful.
+			if(seed.kitchen_tag == PLANT_PUMPKIN) // Ugggh these checks are awful.
 				user.show_message(span_notice("You carve a face into [src]!"), 1)
 				new /obj/item/clothing/head/pumpkinhead (user.loc)
 				qdel(src)
@@ -214,13 +214,13 @@
 					qdel(src)
 					return
 
-				if(seed.kitchen_tag == "sunflower")
+				if(seed.kitchen_tag == PLANT_SUNFLOWERS)
 					new /obj/item/reagent_containers/food/snacks/rawsunflower(get_turf(src))
 					to_chat(user, span_notice("You remove the seeds from the flower, slightly damaging them."))
 					qdel(src)
 					return
 
-				if(seed.kitchen_tag == "potato" || !isnull(seed.chems["potato"]))
+				if(seed.kitchen_tag == PLANT_POTATO || !isnull(seed.chems[REAGENT_ID_POTATOJUICE]))
 					to_chat(user, span_filter_notice("You slice \the [src] into sticks."))
 					new /obj/item/reagent_containers/food/snacks/rawsticks(get_turf(src))
 					qdel(src)
@@ -289,7 +289,7 @@
 		if(src) qdel(src)
 		return
 
-	if(seed.kitchen_tag == "grass")
+	if(seed.kitchen_tag == PLANT_GRASS)
 		user.show_message(span_notice("You make a grass tile out of \the [src]!"), 1)
 		var/flesh_colour = seed.get_trait(TRAIT_FLESH_COLOUR)
 		if(!flesh_colour) flesh_colour = seed.get_trait(TRAIT_PRODUCT_COLOUR)
@@ -306,7 +306,7 @@
 		qdel(src)
 		return
 
-	if(seed.kitchen_tag == "carpet")
+	if(seed.kitchen_tag == PLANT_CARPET)
 		user.show_message(span_notice("You shape some carpet squares out of \the [src] fibers!"), 1)
 		for(var/i=0,i<2,i++)
 			var/obj/item/stack/tile/carpet/G = new (user.loc)
@@ -330,13 +330,13 @@
 	/*
 	if(seed.kitchen_tag)
 		switch(seed.kitchen_tag)
-			if("shand")
+			if(PLANT_SHAND)
 				var/obj/item/stack/medical/bruise_pack/tajaran/poultice = new /obj/item/stack/medical/bruise_pack/tajaran(user.loc)
 				poultice.heal_brute = potency
 				to_chat(user, span_notice("You mash the leaves into a poultice."))
 				qdel(src)
 				return
-			if("mtear")
+			if(PLANT_MTEAR)
 				var/obj/item/stack/medical/ointment/tajaran/poultice = new /obj/item/stack/medical/ointment/tajaran(user.loc)
 				poultice.heal_burn = potency
 				to_chat(user, span_notice("You mash the petals into a poultice."))
@@ -362,10 +362,10 @@
 // Predefined types for placing on the map.
 
 /obj/item/reagent_containers/food/snacks/grown/mushroom/libertycap
-	plantname = "libertycap"
+	plantname = PLANT_LIBERTYCAP
 
 /obj/item/reagent_containers/food/snacks/grown/ambrosiavulgaris
-	plantname = "ambrosia"
+	plantname = PLANT_AMBROSIA
 
 /obj/item/reagent_containers/food/snacks/fruit_slice
 	name = "fruit slice"

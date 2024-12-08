@@ -1,8 +1,8 @@
 /datum/seed/vale
-	name = "vale"
-	seed_name = "vale"
+	name = PLANT_VALE
+	seed_name = PLANT_VALE
 	display_name = "vale bush"
-	kitchen_tag = "vale"
+	kitchen_tag = PLANT_VALE
 	chems = list(REAGENT_ID_PARACETAMOL = list(1,5),REAGENT_ID_DEXALIN = list(1,2),REAGENT_ID_NUTRIMENT= list(1,5))
 
 /datum/seed/vale/New()

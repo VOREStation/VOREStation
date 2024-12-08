@@ -1,8 +1,8 @@
 /datum/seed/wheat
-	name = "wheat"
-	seed_name = "wheat"
+	name = PLANT_WHEAT
+	seed_name = PLANT_WHEAT
 	display_name = "wheat stalks"
-	kitchen_tag = "wheat"
+	kitchen_tag = PLANT_WHEAT
 	chems = list(REAGENT_ID_NUTRIMENT = list(1,25), REAGENT_ID_FLOUR = list(10,30))
 
 /datum/seed/wheat/New()

@@ -1,12 +1,12 @@
 //Wabback / varieties.
 /datum/seed/wabback
-	name = "whitewabback"
+	name = PLANT_WHITEWABBACK
 	seed_name = "white wabback"
 	seed_noun = "nodes"
 	display_name = "white wabback"
 	chems = list(REAGENT_ID_NUTRIMENT = list(1,10), REAGENT_ID_PROTEIN = list(1,5), REAGENT_ID_ENZYME = list(0,3))
 	kitchen_tag = "wabback"
-	mutants = list("blackwabback","wildwabback")
+	mutants = list(PLANT_BLACKWABBACK,PLANT_WILDWABBACK)
 	has_item_product = /obj/item/stack/material/cloth
 
 /datum/seed/wabback/New()
@@ -27,7 +27,7 @@
 	set_trait(TRAIT_SPREAD,1)
 
 /datum/seed/wabback/vine
-	name = "blackwabback"
+	name = PLANT_BLACKWABBACK
 	seed_name = "black wabback"
 	display_name = "black wabback"
 	mutants = null
@@ -39,10 +39,10 @@
 	set_trait(TRAIT_CARNIVOROUS,2)
 
 /datum/seed/wabback/wild
-	name = "wildwabback"
+	name = PLANT_WILDWABBACK
 	seed_name = "wild wabback"
 	display_name = "wild wabback"
-	mutants = list("whitewabback")
+	mutants = list(PLANT_WHITEWABBACK)
 	has_item_product = null
 	chems = list(REAGENT_ID_NUTRIMENT = list(1,15), REAGENT_ID_PROTEIN = list(0,2), REAGENT_ID_ENZYME = list(0,1))
 

@@ -1,5 +1,5 @@
 /datum/material/plastic
-	name = "plastic"
+	name = MAT_PLASTIC
 	stack_type = /obj/item/stack/material/plastic
 	flags = MATERIAL_BRITTLE
 	icon_base = "solid"

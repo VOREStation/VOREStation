@@ -1,11 +1,11 @@
 // Wurmwoad, the Space Spice maker. Totally is actually, 100% literal worms.
 
 /datum/seed/wurmwoad
-	name = "wurmwoad"
-	seed_name = "wurmwoad"
+	name = PLANT_WURMWOAD
+	seed_name = PLANT_WURMWOAD
 	display_name = "wurmwoad growth"
 	chems = list(REAGENT_ID_NUTRIMENT = list(1,10), REAGENT_ID_SPACESPICE = list(5,15))
-	kitchen_tag = "wurmwoad"
+	kitchen_tag = PLANT_WURMWOAD
 
 /datum/seed/wurmwoad/New()
 	..()

@@ -3,7 +3,7 @@
 		return 0
 
 	//This is a terrible hack and I should be ashamed.
-	var/datum/seed/diona = SSplants.seeds["diona"]
+	var/datum/seed/diona = SSplants.seeds[PLANT_DIONA]
 	if(!diona)
 		return 0
 

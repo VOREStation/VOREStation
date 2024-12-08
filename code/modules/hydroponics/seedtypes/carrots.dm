@@ -1,8 +1,8 @@
 /datum/seed/carrots
-	name = "carrot"
-	seed_name = "carrot"
+	name = PLANT_CARROT
+	seed_name = PLANT_CARROT
 	display_name = "carrots"
-	kitchen_tag = "carrot"
+	kitchen_tag = PLANT_CARROT
 	chems = list(REAGENT_ID_NUTRIMENT = list(1,20), REAGENT_ID_IMIDAZOLINE = list(3,5), REAGENT_ID_CARROTJUICE = list(10,20))
 
 /datum/seed/carrots/New()

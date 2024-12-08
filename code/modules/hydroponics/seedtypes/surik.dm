@@ -1,8 +1,8 @@
 /datum/seed/surik
-	name = "surik"
-	seed_name = "surik"
+	name = PLANT_SURIK
+	seed_name = PLANT_SURIK
 	display_name = "surik vine"
-	kitchen_tag = "surik"
+	kitchen_tag = PLANT_SURIK
 	chems = list(REAGENT_ID_IMPEDREZENE = list(1,3),REAGENT_ID_SYNAPTIZINE = list(1,2),REAGENT_ID_NUTRIMENT = list(1,5))
 
 /datum/seed/surik/New()

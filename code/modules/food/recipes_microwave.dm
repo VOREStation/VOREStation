@@ -35,7 +35,7 @@ I said no!
 	result = /obj/item/reagent_containers/food/snacks/boiledegg
 
 /datum/recipe/devilledegg
-	fruit = list("chili" = 1)
+	fruit = list(PLANT_CHILI = 1)
 	reagents = list(REAGENT_ID_SODIUMCHLORIDE = 2, REAGENT_ID_MAYO = 5)
 	items = list(
 		/obj/item/reagent_containers/food/snacks/egg,
@@ -76,7 +76,7 @@ I said no!
 	result_quantity = 2
 
 /datum/recipe/eggplantparm
-	fruit = list("eggplant" = 1)
+	fruit = list(PLANT_EGGPLANT = 1)
 	items = list(
 		/obj/item/reagent_containers/food/snacks/cheesewedge,
 		/obj/item/reagent_containers/food/snacks/cheesewedge
@@ -99,14 +99,14 @@ I said no!
 	result = /obj/item/reagent_containers/food/snacks/soylentgreen
 
 /datum/recipe/berryclafoutis
-	fruit = list("berries" = 1)
+	fruit = list(PLANT_BERRIES = 1)
 	items = list(
 		/obj/item/reagent_containers/food/snacks/sliceable/flatdough
 	)
 	result = /obj/item/reagent_containers/food/snacks/berryclafoutis/berry
 
 /datum/recipe/poisonberryclafoutis
-	fruit = list("poisonberries" = 1)
+	fruit = list(PLANT_POISONBERRIES = 1)
 	items = list(
 		/obj/item/reagent_containers/food/snacks/sliceable/flatdough
 	)
@@ -120,7 +120,7 @@ I said no!
 	result = /obj/item/reagent_containers/food/snacks/wingfangchu
 
 /datum/recipe/loadedbakedpotato
-	fruit = list("potato" = 1)
+	fruit = list(PLANT_POTATO = 1)
 	items = list(/obj/item/reagent_containers/food/snacks/cheesewedge)
 	result = /obj/item/reagent_containers/food/snacks/loadedbakedpotato
 
@@ -153,7 +153,7 @@ I said no!
 	result = /obj/item/reagent_containers/food/snacks/blackpudding
 
 /datum/recipe/popcorn
-	fruit = list("corn" = 1)
+	fruit = list(PLANT_CORN = 1)
 	result = /obj/item/reagent_containers/food/snacks/popcorn
 
 /datum/recipe/fortunecookie
@@ -183,18 +183,18 @@ I said no!
 		being_cooked.reagents.del_reagent(REAGENT_ID_AMATOXIN)
 
 /datum/recipe/meatballsoup
-	fruit = list("carrot" = 1, "potato" = 1)
+	fruit = list(PLANT_CARROT = 1, PLANT_POTATO = 1)
 	reagents = list(REAGENT_ID_WATER = 10)
 	items = list(/obj/item/reagent_containers/food/snacks/meatball)
 	result = /obj/item/reagent_containers/food/snacks/meatballsoup
 
 /datum/recipe/vegetablesoup
-	fruit = list("carrot" = 1, "potato" = 1, "corn" = 1, "eggplant" = 1)
+	fruit = list(PLANT_CARROT = 1, PLANT_POTATO = 1, PLANT_CORN = 1, PLANT_EGGPLANT = 1)
 	reagents = list(REAGENT_ID_WATER = 10)
 	result = /obj/item/reagent_containers/food/snacks/vegetablesoup
 
 /datum/recipe/nettlesoup
-	fruit = list("nettle" = 1, "potato" = 1)
+	fruit = list(PLANT_NETTLE = 1, PLANT_POTATO = 1)
 	reagents = list(REAGENT_ID_WATER = 10, REAGENT_ID_EGG = 3)
 	result = /obj/item/reagent_containers/food/snacks/nettlesoup
 
@@ -203,12 +203,12 @@ I said no!
 	result= /obj/item/reagent_containers/food/snacks/wishsoup
 
 /datum/recipe/hotchili
-	fruit = list("chili" = 1, "tomato" = 1)
+	fruit = list(PLANT_CHILI = 1, PLANT_TOMATO = 1)
 	items = list(/obj/item/reagent_containers/food/snacks/meat)
 	result = /obj/item/reagent_containers/food/snacks/hotchili
 
 /datum/recipe/coldchili
-	fruit = list("icechili" = 1, "tomato" = 1)
+	fruit = list(PLANT_ICECHILI = 1, PLANT_TOMATO = 1)
 	items = list(/obj/item/reagent_containers/food/snacks/meat)
 	result = /obj/item/reagent_containers/food/snacks/coldchili
 
@@ -245,11 +245,11 @@ I said no!
 		/obj/item/reagent_containers/food/snacks/bacon,
 		/obj/item/reagent_containers/food/snacks/cheesewedge
 	)
-	fruit = list("tomato" = 1, "lettuce" = 1)
+	fruit = list(PLANT_TOMATO = 1, PLANT_LETTUCE = 1)
 	result = /obj/item/reagent_containers/food/snacks/clubsandwich
 
 /datum/recipe/tomatosoup
-	fruit = list("tomato" = 2)
+	fruit = list(PLANT_TOMATO = 2)
 	reagents = list(REAGENT_ID_WATER = 10)
 	result = /obj/item/reagent_containers/food/snacks/tomatosoup
 
@@ -263,7 +263,7 @@ I said no!
 	result_quantity = 2
 
 /datum/recipe/stew
-	fruit = list("potato" = 1, "tomato" = 1, "carrot" = 1, "eggplant" = 1, "mushroom" = 1)
+	fruit = list(PLANT_POTATO = 1, PLANT_TOMATO = 1, PLANT_CARROT = 1, PLANT_EGGPLANT = 1, "mushroom" = 1)
 	reagents = list(REAGENT_ID_WATER = 10)
 	items = list(/obj/item/reagent_containers/food/snacks/meat)
 	result = /obj/item/reagent_containers/food/snacks/stew
@@ -293,7 +293,7 @@ I said no!
 	result = /obj/item/reagent_containers/food/snacks/milosoup
 
 /datum/recipe/stewedsoymeat
-	fruit = list("carrot" = 1, "tomato" = 1)
+	fruit = list(PLANT_CARROT = 1, PLANT_TOMATO = 1)
 	items = list(
 		/obj/item/reagent_containers/food/snacks/soydope,
 		/obj/item/reagent_containers/food/snacks/soydope
@@ -316,7 +316,7 @@ I said no!
 	result = /obj/item/reagent_containers/food/snacks/ricepudding
 
 /datum/recipe/pastatomato
-	fruit = list("tomato" = 2)
+	fruit = list(PLANT_TOMATO = 2)
 	reagents = list(REAGENT_ID_WATER = 5)
 	items = list(/obj/item/reagent_containers/food/snacks/spagetti)
 	result = /obj/item/reagent_containers/food/snacks/pastatomato
@@ -342,12 +342,12 @@ I said no!
 	result = /obj/item/reagent_containers/food/snacks/spesslaw
 
 /datum/recipe/candiedapple
-	fruit = list("apple" = 1)
+	fruit = list(PLANT_APPLE = 1)
 	reagents = list(REAGENT_ID_WATER = 5, REAGENT_ID_SUGAR = 5) //Makes sense seeing as how it's just syrup on the exterior
 	result = /obj/item/reagent_containers/food/snacks/candiedapple
 
 /datum/recipe/caramelapple
-	fruit = list("apple" = 1)
+	fruit = list(PLANT_APPLE = 1)
 	reagents = list(REAGENT_ID_MILK = 5, REAGENT_ID_SUGAR = 5) //Since caramel can be made with milk I thought this was appropriate
 	result = /obj/item/reagent_containers/food/snacks/caramelapple
 
@@ -407,7 +407,7 @@ I said no!
 	result_quantity = 2
 
 /datum/recipe/kudzudonburi
-	fruit = list("kudzu" = 1)
+	fruit = list(PLANT_KUDZU = 1)
 	reagents = list(REAGENT_ID_RICE = 10)
 	items = list(
 		/obj/item/reagent_containers/food/snacks/carpmeat
@@ -425,7 +425,7 @@ I said no!
 	result = /obj/item/reagent_containers/food/snacks/mysterysoup
 
 /datum/recipe/plumphelmetbiscuit
-	fruit = list("plumphelmet" = 1)
+	fruit = list(PLANT_PLUMPHELMET = 1)
 	reagents = list(REAGENT_ID_WATER = 5, REAGENT_ID_FLOUR = 5)
 	result = /obj/item/reagent_containers/food/snacks/plumphelmetbiscuit
 	result_quantity = 2
@@ -442,12 +442,12 @@ I said no!
 	result = /obj/item/reagent_containers/food/snacks/chawanmushi
 
 /datum/recipe/beetsoup
-	fruit = list("whitebeet" = 1, "cabbage" = 1)
+	fruit = list(PLANT_WHITEBEET = 1, PLANT_CABBAGE = 1)
 	reagents = list(REAGENT_ID_WATER = 10)
 	result = /obj/item/reagent_containers/food/snacks/beetsoup
 
 /datum/recipe/tossedsalad
-	fruit = list("lettuce" = 2, "tomato" = 1, "carrot" = 1, "apple" = 1)
+	fruit = list(PLANT_LETTUCE = 2, PLANT_TOMATO = 1, PLANT_CARROT = 1, PLANT_APPLE = 1)
 	result = /obj/item/reagent_containers/food/snacks/tossedsalad
 
 /datum/recipe/flowersalad
@@ -458,23 +458,23 @@ I said no!
 	result = /obj/item/reagent_containers/food/snacks/flowerchildsalad
 
 /datum/recipe/rosesalad
-	fruit = list("harebell" = 1, "rose" = 1)
+	fruit = list("harebell" = 1, PLANT_ROSE = 1)
 	items = list(
 		/obj/item/reagent_containers/food/snacks/roastedsunflower
 	)
 	result = /obj/item/reagent_containers/food/snacks/rosesalad
 
 /datum/recipe/aesirsalad
-	fruit = list("goldapple" = 1, "ambrosiadeus" = 1)
+	fruit = list(PLANT_GOLDAPPLE = 1, PLANT_AMBROSIADEUS = 1)
 	result = /obj/item/reagent_containers/food/snacks/aesirsalad
 
 /datum/recipe/validsalad
-	fruit = list("potato" = 1, "ambrosia" = 3)
+	fruit = list(PLANT_POTATO = 1, PLANT_AMBROSIA = 3)
 	items = list(/obj/item/reagent_containers/food/snacks/meatball)
 	result = /obj/item/reagent_containers/food/snacks/validsalad
 
 /datum/recipe/dankpocket
-	fruit = list("ambrosia" = 2)
+	fruit = list(PLANT_AMBROSIA = 2)
 	items = list(
 		/obj/item/reagent_containers/food/snacks/meatball,
 		/obj/item/reagent_containers/food/snacks/doughslice
@@ -498,7 +498,7 @@ I said no!
 	items = list(
 		/obj/item/reagent_containers/food/snacks/spreads
 	)
-	fruit = list("potato" = 1)
+	fruit = list(PLANT_POTATO = 1)
 	result = /obj/item/reagent_containers/food/snacks/mashedpotato
 
 /datum/recipe/icecreamsandwich
@@ -509,7 +509,7 @@ I said no!
 	result = /obj/item/reagent_containers/food/snacks/icecreamsandwich
 
 /datum/recipe/onionsoup
-	fruit = list("onion" = 1)
+	fruit = list(PLANT_ONION = 1)
 	reagents = list(REAGENT_ID_WATER = 10)
 	result = /obj/item/reagent_containers/food/snacks/soup/onion
 
@@ -563,19 +563,19 @@ I said no!
 	result_quantity = 2
 
 /datum/recipe/roastedpeanuts
-	fruit = list("peanut" = 2)
+	fruit = list(PLANT_PEANUT = 2)
 	reagents = list(REAGENT_ID_SODIUMCHLORIDE = 2, REAGENT_ID_COOKINGOIL = 1)
 	result = /obj/item/reagent_containers/food/snacks/roastedpeanuts
 	result_quantity = 2
 
 /datum/recipe/roastedpeanutscorn
-	fruit = list("peanut" = 2)
+	fruit = list(PLANT_PEANUT = 2)
 	reagents = list(REAGENT_ID_SODIUMCHLORIDE = 2, REAGENT_ID_CORNOIL = 1)
 	result = /obj/item/reagent_containers/food/snacks/roastedpeanuts
 	result_quantity = 2
 
 /datum/recipe/roastedpeanutspeanut
-	fruit = list("peanut" = 2)
+	fruit = list(PLANT_PEANUT = 2)
 	reagents = list(REAGENT_ID_SODIUMCHLORIDE = 2, REAGENT_ID_PEANUTOIL = 1)
 	result = /obj/item/reagent_containers/food/snacks/roastedpeanuts
 	result_quantity = 2
@@ -617,7 +617,7 @@ I said no!
 	items = list(
 		/obj/item/reagent_containers/food/snacks/dough
 	)
-	fruit = list("berries" = 1)
+	fruit = list(PLANT_BERRIES = 1)
 	result = /obj/item/reagent_containers/food/snacks/berrymuffin/berry
 	result_quantity = 2
 
@@ -626,7 +626,7 @@ I said no!
 	items = list(
 		/obj/item/reagent_containers/food/snacks/dough
 	)
-	fruit = list("poisonberries" = 1)
+	fruit = list(PLANT_POISONBERRIES = 1)
 	result = /obj/item/reagent_containers/food/snacks/berrymuffin/poison
 	result_quantity = 2
 
@@ -636,7 +636,7 @@ I said no!
 		/obj/item/reagent_containers/food/snacks/dough,
 		/obj/item/ectoplasm
 	)
-	fruit = list("berries" = 1)
+	fruit = list(PLANT_BERRIES = 1)
 	result = /obj/item/reagent_containers/food/snacks/ghostmuffin/berry
 	result_quantity = 2
 
@@ -646,7 +646,7 @@ I said no!
 		/obj/item/reagent_containers/food/snacks/dough,
 		/obj/item/ectoplasm
 	)
-	fruit = list("poisonberries" = 1)
+	fruit = list(PLANT_POISONBERRIES = 1)
 	result = /obj/item/reagent_containers/food/snacks/ghostmuffin/poison
 	result_quantity = 2
 
@@ -655,11 +655,11 @@ I said no!
 	items = list(
 		/obj/item/reagent_containers/food/snacks/friedegg
 	)
-	fruit = list("cabbage" = 1)
+	fruit = list(PLANT_CABBAGE = 1)
 	result = /obj/item/reagent_containers/food/snacks/eggroll
 
 /datum/recipe/fruitsalad
-	fruit = list("orange" = 1, "apple" = 1, "grapes" = 1, "watermelon" = 1)
+	fruit = list(PLANT_ORANGE = 1, PLANT_APPLE = 1, PLANT_GRAPES = 1, PLANT_WATERMELON = 1)
 	result = /obj/item/reagent_containers/food/snacks/fruitsalad
 
 /datum/recipe/eggbowl
@@ -674,7 +674,7 @@ I said no!
 	result = /obj/item/reagent_containers/food/snacks/porkbowl
 
 /datum/recipe/cubannachos
-	fruit = list("chili" = 1)
+	fruit = list(PLANT_CHILI = 1)
 	reagents = list(REAGENT_ID_KETCHUP = 5)
 	items = list(
 		/obj/item/reagent_containers/food/snacks/tortilla
@@ -682,7 +682,7 @@ I said no!
 	result = /obj/item/reagent_containers/food/snacks/cubannachos
 
 /datum/recipe/curryrice
-	fruit = list("chili" = 1)
+	fruit = list(PLANT_CHILI = 1)
 	reagents = list(REAGENT_ID_RICE = 10)
 	result = /obj/item/reagent_containers/food/snacks/curryrice
 
@@ -764,7 +764,7 @@ I said no!
 
 /datum/recipe/greencurry
 	reagents = list(REAGENT_ID_CREAM = 5, REAGENT_ID_SPACESPICE = 2, REAGENT_ID_RICE = 5)
-	fruit = list("chili" = 1)
+	fruit = list(PLANT_CHILI = 1)
 	items = list(
 		/obj/item/reagent_containers/food/snacks/tofu,
 		/obj/item/reagent_containers/food/snacks/tofu
@@ -774,25 +774,25 @@ I said no!
 
 /datum/recipe/yellowcurry
 	reagents = list(REAGENT_ID_CREAM = 5, REAGENT_ID_SPACESPICE = 2, REAGENT_ID_RICE = 5)
-	fruit = list("peanut" = 2, "potato" = 1)
+	fruit = list(PLANT_PEANUT = 2, PLANT_POTATO = 1)
 	reagent_mix = RECIPE_REAGENT_REPLACE //Simplify end product
 	result = /obj/item/reagent_containers/food/snacks/yellowcurry
 
 /datum/recipe/bearchili
-	fruit = list("chili" = 1, "tomato" = 1)
+	fruit = list(PLANT_CHILI = 1, PLANT_TOMATO = 1)
 	items = list(/obj/item/reagent_containers/food/snacks/bearmeat)
 	reagent_mix = RECIPE_REAGENT_REPLACE //Simplify end product
 	result = /obj/item/reagent_containers/food/snacks/bearchili
 
 /datum/recipe/bearstew
-	fruit = list("potato" = 1, "tomato" = 1, "carrot" = 1, "eggplant" = 1, "mushroom" = 1)
+	fruit = list(PLANT_POTATO = 1, PLANT_TOMATO = 1, PLANT_CARROT = 1, PLANT_EGGPLANT = 1, "mushroom" = 1)
 	reagents = list(REAGENT_ID_WATER = 10)
 	items = list(/obj/item/reagent_containers/food/snacks/bearmeat)
 	reagent_mix = RECIPE_REAGENT_REPLACE //Simplify end product
 	result = /obj/item/reagent_containers/food/snacks/bearstew
 
 /datum/recipe/bibimbap
-	fruit = list("carrot" = 1, "cabbage" = 1, "mushroom" = 1)
+	fruit = list(PLANT_CARROT = 1, PLANT_CABBAGE = 1, "mushroom" = 1)
 	reagents = list(REAGENT_ID_RICE = 5, REAGENT_ID_SPACESPICE = 2)
 	items = list(
 		/obj/item/reagent_containers/food/snacks/egg,
@@ -803,13 +803,13 @@ I said no!
 
 /datum/recipe/friedrice
 	reagents = list(REAGENT_ID_WATER = 5, REAGENT_ID_RICE = 10, REAGENT_ID_SOYSAUCE = 5)
-	fruit = list("carrot" = 1, "cabbage" = 1)
+	fruit = list(PLANT_CARROT = 1, PLANT_CABBAGE = 1)
 	reagent_mix = RECIPE_REAGENT_REPLACE //Simplify end product
 	result = /obj/item/reagent_containers/food/snacks/friedrice
 
 /datum/recipe/lomein
 	reagents = list(REAGENT_ID_WATER = 5, REAGENT_ID_SOYSAUCE = 5)
-	fruit = list("carrot" = 1, "cabbage" = 1)
+	fruit = list(PLANT_CARROT = 1, PLANT_CABBAGE = 1)
 	items = list(
 		/obj/item/reagent_containers/food/snacks/spagetti
 	)
@@ -817,7 +817,7 @@ I said no!
 	result = /obj/item/reagent_containers/food/snacks/lomein
 
 /datum/recipe/chickennoodlesoup
-	fruit = list("carrot" = 1)
+	fruit = list(PLANT_CARROT = 1)
 	reagents = list(REAGENT_ID_WATER = 10)
 	items = list( /obj/item/reagent_containers/food/snacks/spagetti, /obj/item/reagent_containers/food/snacks/rawcutlet)
 	reagent_mix = RECIPE_REAGENT_REPLACE //Simplify end product
@@ -888,13 +888,13 @@ I said no!
 	result = /obj/item/reagent_containers/food/snacks/chipplate/nachos
 
 /datum/recipe/salsa
-	fruit = list("chili" = 1, "tomato" = 1, "lime" = 1)
+	fruit = list(PLANT_CHILI = 1, PLANT_TOMATO = 1, PLANT_LIME = 1)
 	reagents = list(REAGENT_ID_SPACESPICE = 1, REAGENT_ID_BLACKPEPPER = 1,REAGENT_ID_SODIUMCHLORIDE = 1)
 	result = /obj/item/reagent_containers/food/snacks/dip/salsa
 	reagent_mix = RECIPE_REAGENT_REPLACE //Ingredients are mixed together.
 
 /datum/recipe/guac
-	fruit = list("chili" = 1, "lime" = 1)
+	fruit = list(PLANT_CHILI = 1, PLANT_LIME = 1)
 	reagents = list(REAGENT_ID_SPACESPICE = 1, REAGENT_ID_BLACKPEPPER = 1,REAGENT_ID_SODIUMCHLORIDE = 1)
 	items = list(
 		/obj/item/reagent_containers/food/snacks/tofu
@@ -903,7 +903,7 @@ I said no!
 	reagent_mix = RECIPE_REAGENT_REPLACE //Ingredients are mixed together.
 
 /datum/recipe/cheesesauce
-	fruit = list("chili" = 1, "tomato" = 1)
+	fruit = list(PLANT_CHILI = 1, PLANT_TOMATO = 1)
 	reagents = list(REAGENT_ID_SPACESPICE = 1, REAGENT_ID_BLACKPEPPER = 1,REAGENT_ID_SODIUMCHLORIDE = 1)
 	items = list(
 		/obj/item/reagent_containers/food/snacks/cheesewedge
@@ -937,7 +937,7 @@ I said no!
 	result = /obj/item/reagent_containers/food/snacks/burrito_cheese
 
 /datum/recipe/burrito_cheese_spicy
-	fruit = list("chili" = 2, "soybeans" = 1)
+	fruit = list(PLANT_CHILI = 2, "soybeans" = 1)
 	items = list(
 		/obj/item/reagent_containers/food/snacks/tortilla,
 		/obj/item/reagent_containers/food/snacks/cheesewedge,
@@ -946,7 +946,7 @@ I said no!
 	result = /obj/item/reagent_containers/food/snacks/burrito_cheese_spicy
 
 /datum/recipe/burrito_hell
-	fruit = list("soybeans" = 1, "chili" = 10)
+	fruit = list("soybeans" = 1, PLANT_CHILI = 10)
 	reagents = list(REAGENT_ID_SPACESPICE = 1)
 	items = list(
 		/obj/item/reagent_containers/food/snacks/tortilla,
@@ -976,7 +976,7 @@ I said no!
 	result = /obj/item/reagent_containers/food/snacks/cheeseburrito
 
 /datum/recipe/fuegoburrito
-	fruit = list("soybeans" = 1, "chili" = 2)
+	fruit = list("soybeans" = 1, PLANT_CHILI = 2)
 	items = list(
 		/obj/item/reagent_containers/food/snacks/tortilla
 	)
@@ -1053,7 +1053,7 @@ I said no!
 		/obj/item/reagent_containers/food/snacks/meatball,
 		/obj/item/reagent_containers/food/snacks/cheesewedge
 	)
-	fruit = list("cabbage" = 1)
+	fruit = list(PLANT_CABBAGE = 1)
 	result = /obj/item/reagent_containers/food/snacks/stuffed_meatball
 	result_quantity = 2
 
@@ -1090,7 +1090,7 @@ I said no!
 	result = /obj/item/reagent_containers/food/snacks/nt_muffin
 
 /datum/recipe/fish_taco
-	fruit = list("chili" = 1, "lemon" = 1)
+	fruit = list(PLANT_CHILI = 1, PLANT_LEMON = 1)
 	items = list(
 		/obj/item/reagent_containers/food/snacks/carpmeat,
 		/obj/item/reagent_containers/food/snacks/tortilla
@@ -1098,7 +1098,7 @@ I said no!
 	result = /obj/item/reagent_containers/food/snacks/fish_taco
 
 /datum/recipe/blt
-	fruit = list("tomato" = 1, "lettuce" = 1)
+	fruit = list(PLANT_TOMATO = 1, PLANT_LETTUCE = 1)
 	items = list(
 		/obj/item/reagent_containers/food/snacks/slice/bread,
 		/obj/item/reagent_containers/food/snacks/slice/bread,

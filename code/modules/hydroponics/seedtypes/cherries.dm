@@ -1,6 +1,6 @@
 /datum/seed/cherries
-	name = "cherry"
-	seed_name = "cherry"
+	name = PLANT_CHERRY
+	seed_name = PLANT_CHERRY
 	seed_noun = "pits"
 	display_name = "cherry tree"
 	kitchen_tag = "cherries"

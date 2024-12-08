@@ -15,7 +15,7 @@
 
 /datum/recipe/jpoppers
 	appliance = FRYER
-	fruit = list("chili" = 1)
+	fruit = list(PLANT_CHILI = 1)
 	coating = /datum/reagent/nutriment/coating/batter
 	result = /obj/item/reagent_containers/food/snacks/jalapeno_poppers
 	result_quantity = 2
@@ -40,7 +40,7 @@
 /datum/recipe/onionrings
 	appliance = FRYER
 	coating = /datum/reagent/nutriment/coating/batter
-	fruit = list("onion" = 1)
+	fruit = list(PLANT_ONION = 1)
 	result = /obj/item/reagent_containers/food/snacks/onionrings
 	result_quantity = 2
 
@@ -48,7 +48,7 @@
 //====================
 /datum/recipe/cubancarp
 	appliance = FRYER
-	fruit = list("chili" = 1)
+	fruit = list(PLANT_CHILI = 1)
 	items = list(
 		/obj/item/reagent_containers/food/snacks/dough,
 		/obj/item/reagent_containers/food/snacks/carpmeat
@@ -92,7 +92,7 @@
 
 /datum/recipe/friedmushroom
 	appliance = FRYER
-	fruit = list("plumphelmet" = 1)
+	fruit = list(PLANT_PLUMPHELMET = 1)
 	coating = /datum/reagent/nutriment/coating/beerbatter
 	reagent_mix = RECIPE_REAGENT_REPLACE //Simplify end product
 	result = /obj/item/reagent_containers/food/snacks/friedmushroom
@@ -110,7 +110,7 @@
 	items = list(
 		/obj/item/reagent_containers/food/snacks/sausage
 	)
-	fruit = list("corn" = 1)
+	fruit = list(PLANT_CORN = 1)
 	coating = /datum/reagent/nutriment/coating/batter
 	result = /obj/item/reagent_containers/food/snacks/corn_dog
 
@@ -177,7 +177,7 @@
 
 /datum/recipe/pisanggoreng
 	appliance = FRYER
-	fruit = list("banana" = 2)
+	fruit = list(PLANT_BANANA = 2)
 	reagent_mix = RECIPE_REAGENT_REPLACE //Simplify end product
 	result = /obj/item/reagent_containers/food/snacks/pisanggoreng
 	coating = /datum/reagent/nutriment/coating/batter
