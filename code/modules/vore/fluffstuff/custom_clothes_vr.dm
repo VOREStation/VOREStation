@@ -817,22 +817,6 @@
 		if(H.head == src)
 			H.update_inv_head()
 
-/obj/item/rig/light/hacker/fluff/aronai
-	name = "KHI-99-AAR suit module"
-	suit_type = "nano"
-	desc = "A thin collapsable spacesuit for synths from Kitsuhana Heavy Industries."
-	airtight = 1 //Not because it should be airtight but because suit coolers don't work w/o it.
-	armor = list(melee = 25, bullet = 15, laser = 15, energy = 60, bomb = 30, bio = 70, rad = 100)
-	air_type = null //No O2 tank, why would it have one?
-
-	cell_type =  /obj/item/cell/hyper
-	req_access = list(access_medical)
-
-	initial_modules = list(
-		/obj/item/rig_module/maneuvering_jets,
-		/obj/item/rig_module/teleporter
-		)
-
 //Viveret:Keturah
 /obj/item/clothing/under/dress/maid
 	name = "Maid Outfit"
@@ -921,43 +905,43 @@
 	icon_state = "khi_uniform"
 
 /obj/item/clothing/under/rank/khi/cmd //Command version
-	name = "KHI command suit"
+	name = "sleek command suit"
 	desc = "A sleek, neocorporate style uniform. An extra-comfortable command one, at that."
 	icon_state = "khi_uniform_cmd"
 	armor = list(melee = 0, bullet = 0, laser = 0, energy = 0, bomb = 0, bio = 0, rad = 0)
 
 /obj/item/clothing/under/rank/khi/sec //Security version
-	name = "KHI security suit"
+	name = "sleek security suit"
 	desc = "A sleek, neocorporate style uniform. This one has angry red security stripes. Keepin' the peace in style."
 	icon_state = "khi_uniform_sec"
 	armor = list(melee = 10, bullet = 0, laser = 0, energy = 0, bomb = 0, bio = 0, rad = 0)
 
 /obj/item/clothing/under/rank/khi/med //Medical version
-	name = "KHI medical suit"
+	name = "sleek medical suit"
 	desc = "A sleek, neocorporate style uniform. The medical version. Why not just get a new body, anyway?"
 	icon_state = "khi_uniform_med"
 	armor = list(melee = 0, bullet = 0, laser = 0, energy = 0, bomb = 0, bio = 10, rad = 0)
 
 /obj/item/clothing/under/rank/khi/eng //Engineering version
-	name = "KHI engineering suit"
-	desc = "A sleek, neocorporate style uniform. One fit for an engineer, by the looks of it. Building the future, one disaster at a time."
+	name = "sleek engineering suit"
+	desc = "A sleek, neocorporate style uniform. One fit for an engineer, by the looks of it."
 	icon_state = "khi_uniform_eng"
 	armor = list(melee = 0, bullet = 0, laser = 0, energy = 0, bomb = 0, bio = 0, rad = 10)
 
 /obj/item/clothing/under/rank/khi/sci //Science version
-	name = "KHI science suit"
-	desc = "A sleek, neocorporate style uniform. For performing science in, based on the color! Only SCIENCE can save us now."
+	name = "sleek science suit"
+	desc = "A sleek, neocorporate style uniform. For performing science in, based on the color!"
 	icon_state = "khi_uniform_sci"
 	armor = list(melee = 0, bullet = 0, laser = 0, energy = 0, bomb = 10, bio = 0, rad = 0)
 
 /obj/item/clothing/under/rank/khi/crg //Cargo version
-	name = "KHI cargo suit"
+	name = "sleek cargo suit"
 	desc = "A sleek, neocorporate style uniform. Looks like it's in supply and cargo division colors. Heavy industry means heavy lifting, after all."
 	icon_state = "khi_uniform_crg"
 	armor = list(melee = 0, bullet = 0, laser = 0, energy = 0, bomb = 0, bio = 0, rad = 0)
 
 /obj/item/clothing/under/rank/khi/civ //Science version
-	name = "KHI civilian suit"
+	name = "sleek civilian suit"
 	desc = "A sleek, neocorporate style uniform. Snazzy silver trim marks this is as the general civilian branch. Smells like paperwork and bureaucracy."
 	icon_state = "khi_uniform_civ"
 	armor = list(melee = 0, bullet = 0, laser = 0, energy = 0, bomb = 0, bio = 0, rad = 0)

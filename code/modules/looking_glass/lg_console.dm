@@ -1,6 +1,6 @@
 /obj/machinery/computer/looking_glass
 	name = "looking glass control"
-	desc = "Controls the looking glass displays in this room. Provided courtesy of Morpheus."
+	desc = "Controls the looking glass displays in this room. Provided courtesy of NT's Advanced Spatial Imaging Division."
 
 	icon_keyboard = "tech_key"
 	icon_screen = "holocontrol"

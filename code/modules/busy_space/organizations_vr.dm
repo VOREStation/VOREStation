@@ -611,60 +611,6 @@
 						"the USDF Naval Academy on Earth",
 						"Fort Rain on Tal")
 
-/datum/lore/organization/gov/kitsuhana
-	name = "Kitsuhana Heavy Industries"
-	short_name = "Kitsuhana"
-	desc = "A large post-scarcity amalgamation of races, Kitsuhana is no longer a company but rather a loose association of 'members' \
-			who only share the KHI name and their ideals in common. Kitsuhana accepts interviews to join their ranks, and though they have no \
-			formal structure with regards to government or law, the concept of 'consent' drives most of the large decision making. Kitsuhanans \
-			pride themselves on their ability to avoid consequence, essentially preferring to live care-free lives. Their post-scarcity allows \
-			them to rebuild, regrow, and replenish almost any lost asset or resource nearly instantly. It leads to many of the Kitsuhana \
-			'members' treating everything with frivolity and lends them a care-free demeanor."
-	history = "Originally a heavy industrial equipment and space mining company. During a forced evacuation of their homeworld, \
-			they were they only organization with enough ship capacity to relocate any significant portion of the population, starting with \
-			their own employees. After the resulting slowship travel to nearby starsystems, most of the population decided to keep the moniker \
-			of the company name. Over the years, Kitsuhana developed into a post-scarcity anarchy where virtually nothing has consequences and \
-			Kitsuhana 'members' can live their lives as they see fit, often in isolation."
-	work = "utopian anarchy"
-	headquarters = "Kitsuhana Prime"
-	motto = "Do what you want. We know we will."
-
-	//Culture ship names!
-	ship_prefixes = list("KHI" = "personal") //Everybody's out for themselves, yanno.
-	ship_names = list("Nervous Energy",
-						"Prosthetic Conscience",
-						"Revisionist",
-						"Trade Surplus",
-						"Flexible Demeanour",
-						"Just Read The Instructions",
-						"Limiting Factor",
-						"Cargo Cult",
-						"Gunboat Diplomat",
-						"A Ship With A View",
-						"Cantankerous",
-						"I Thought He Was With You",
-						"Never Talk To Strangers",
-						"Sacrificial Victim",
-						"Unwitting Accomplice",
-						"Bad For Business",
-						"Just Testing",
-						"Size Isn't Everything",
-						"Yawning Angel",
-						"Liveware Problem",
-						"Very Little Gravitas Indeed",
-						"Zero Gravitas",
-						"Gravitas Free Zone",
-						"Absolutely No You-Know-What")
-	destination_names = list("Kitsuhana Prime",
-						"Kitsuhana Beta",
-						"Kitsuhana Gamma",
-						"the Kitsuhana Forge",
-						"a Kitsuhanan's home",
-						"a Kitsuhana ringworld in Pleis Ceti V",
-						"a Kitsuhana ringworld in Lund VI",
-						"a Kitsuhana ringworld in Dais IX",
-						"a Kitsuhana ringworld in Leibert II-b")
-
 /datum/lore/organization/gov/ares
 	name = "Ares Confederation"
 	short_name = "ArCon"
@@ -739,21 +685,21 @@
 						"New Berlin on Nov-Ferrum",
 						"a settlement needing our help",
 						"Forward Base Sigma-Alpha in ArCon space")
-						
+
 /datum/lore/organization/gov/elysian
-	name = "The Elysian Colonies"				
+	name = "The Elysian Colonies"
 	short_name = "Demi-Monde"
-	acronym = "ECS"			
+	acronym = "ECS"
 	desc = "The Elysian Colonies, located spinwards from the Commonwealth, are a disunited bunch of \
 				vanity states, utopia projects and personal autocracies, whose only unifying characteristic is \
 				a general disregard of 'normal' social conventions of Humanity as well as their inherent desire \
 				to keep to their ways, in which cases they do sometimes unite to fight off an outside threat. \
 				The Elysian Colonies are one of the few places where true slavery is not only accepted, but sadly also \
-				rather commonplace if you go to the wrong worlds. Not that they don't internally have at least a dozen would-be liberators."			
-	history = ""			
-	work = "fracturous vanity colonies"				
-	headquarters = ""		
-	motto = ""				
+				rather commonplace if you go to the wrong worlds. Not that they don't internally have at least a dozen would-be liberators."
+	history = ""
+	work = "fracturous vanity colonies"
+	headquarters = ""
+	motto = ""
 
 	ship_prefixes = list("ECS" = "military", "ECS" = "Transport", "ECS" = "Special Transport", "ECS" = "Diplomat")	//The Special Transport is SLAAAAVES.
 	ship_names = list("Bring Me Wine!",
@@ -779,7 +725,7 @@
 					"There Is a Character Limit?",
 					"Slave Galley I",
 					"The Unconquered CCXXII"
-		
+
 		)
 	destination_names = list("Cygnus",
 									"The Ultra Dome of Brutal Kill Death",
@@ -793,22 +739,22 @@
 									"a liberation intervention",
 									"a nav bouy within Cygnus Space",
 									"a Elysian only refuel outpost",
-									"to a killer party the Fredperor is holding right now")	
-				
-				
+									"to a killer party the Fredperor is holding right now")
+
+
 /datum/lore/organization/gov/fyrds
-	name = "Unitary Alliance of Salthan Fyrds"				
-	short_name = "Fyrds"			
-	acronym = "SMS"			
+	name = "Unitary Alliance of Salthan Fyrds"
+	short_name = "Fyrds"
+	acronym = "SMS"
 	desc = "Born out of neglect, the Salthan Fyrds are cast-off colonies of the Commonwealth after giving up on \
 				pacifying the wartorn region and fighting off the stray Unathi Raiders after the Hegemony War. \
 				In the end they self-organized into military pacts and have formed a militaristic society, in which \
 				every person, be it organic or robot, is a soldier for the continued cause in serving as aegis against \
-				another Unathi Incursion. They are very no-nonsense."				
-	history = ""			
-	work = "human stratocracy"				
-	headquarters = "The Pact,Myria"		
-	motto = ""				
+				another Unathi Incursion. They are very no-nonsense."
+	history = ""
+	work = "human stratocracy"
+	headquarters = "The Pact,Myria"
+	motto = ""
 
 	ship_prefixes = list("SMS" = "Military")	 // The Salthans don't do anything else.
 	ship_names = list("Yi Sun-sin",
@@ -836,4 +782,4 @@
 									"Base Epsilon-Epsilon",
 									"Base Xray-Beta",
 									"Base Gamma-Delta",
-									"Base Yotta-Epsilon")	
+									"Base Yotta-Epsilon")

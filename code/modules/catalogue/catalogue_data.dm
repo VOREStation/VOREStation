@@ -351,10 +351,6 @@ GLOBAL_DATUM_INIT(catalogue_data, /datum/category_collection/catalogue, new)
 	name = "TSC - Major Bill's Transportation"
 	datum_to_copy = /datum/lore/organization/tsc/mbt
 
-/datum/category_item/catalogue/information/organization/khi
-	name = "TSC - Kitsuhana Heavy Industries"
-	datum_to_copy = /datum/lore/organization/tsc/kitsuhana
-
 /datum/category_item/catalogue/information/organization/commonwealth //VS EDIT 1
 	name = "Government - Commonwealth of Sol-Procyon" //VS EDIT 2
 	datum_to_copy = /datum/lore/organization/gov/commonwealth //VS EDIT 3

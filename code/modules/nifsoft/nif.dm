@@ -15,7 +15,7 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 //Nanotech Implant Foundation
 /obj/item/nif
 	name = "nanite implant framework"
-	desc = "A mass-production model of a KHI nano working surface, in a box. Can print new \
+	desc = "A mass-production model of a nano working surface, in a box. Can print new \
 	implants inside living hosts on the fly based on software uploads. Must be surgically \
 	implanted in the head to work, and requires periodical maintenance. Warning: this device \
 	is extremely sensitive to electromagnetic pulse waves."
@@ -626,8 +626,8 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 	starting_software = null
 
 /obj/item/nif/authentic
-	name = "\improper KHI NIF"
-	desc = "An actual KHI working surface, in a box. These are the high-end models, usually only available to big spenders and those with serious contacts. \
+	name = "luxury NIF"
+	desc = "An actual nano working surface, in a box. These are the high-end models, usually only available to big spenders and those with serious contacts. \
 	Despite the all the marketing speak, they're really just a high-endurance NIF when it comes down to it."
 	durability = 1000
 
