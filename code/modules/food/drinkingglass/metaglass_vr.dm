@@ -241,5 +241,5 @@
 	glass_icon_file = 'icons/obj/drinks_vr.dmi'
 
 /datum/reagent/ethanol/manager_summoner
-	glass_icon_state = "manager_summoner"
+	glass_icon_state = REAGENT_ID_MANAGERSUMMONER
 	glass_icon_file = 'icons/obj/drinks_vr.dmi'

@@ -59,7 +59,7 @@
 	special_attack_cooldown = 6 SECONDS
 	ai_holder_type = /datum/ai_holder/simple_mob/intentional/giant_spider_broodmother
 	poison_per_bite = 2
-	poison_type = "cyanide"
+	poison_type = REAGENT_ID_CYANIDE
 
 	loot_list = list(/obj/item/royal_spider_egg = 100)
 

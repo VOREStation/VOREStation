@@ -1,5 +1,5 @@
 /obj/item/stack/material/chitin
-	name = "chitin"
+	name = MAT_CHITIN
 	desc = "The by-product of mob grinding."
 	icon_state = "chitin"
 	default_type = MAT_CHITIN
@@ -11,7 +11,7 @@
 
 //don't see anywhere else to put these, maybe together they could be used to make the xenos suit?
 /obj/item/stack/xenochitin
-	name = "alien chitin"
+	name = MAT_ALIENCHITIN
 	desc = "A piece of the hide of a terrible creature."
 	singular_name = "alien chitin piece"
 	icon = 'icons/mob/alien.dmi'
@@ -19,13 +19,13 @@
 	stacktype = "hide-chitin"
 
 /obj/item/xenos_claw
-	name = "alien claw"
+	name = MAT_ALIENCLAW
 	desc = "The claw of a terrible creature."
 	icon = 'icons/mob/alien.dmi'
 	icon_state = "claw"
 
 /obj/item/weed_extract
-	name = "weed extract"
+	name = MAT_WEEDEXTRACT
 	desc = "A piece of slimy, purplish weed."
 	icon = 'icons/mob/alien.dmi'
 	icon_state = "weed_extract"
@@ -33,10 +33,10 @@
 /////FUR AND WOOL MATERIALS/////
 
 /datum/material/fur
-	name = "fur"
+	name = MAT_FUR
 	icon_colour = "#fff2d3"
 	stack_origin_tech = list(TECH_MATERIAL = 2)
-	display_name = "fur"
+	display_name = MAT_FUR
 	icon_base = "sheet-fabric"
 	stack_type = /obj/item/stack/material/fur
 	sheet_collective_name = "pile"
@@ -53,8 +53,8 @@
 	hardness = 5
 
 /datum/material/fur/wool
-	name = "wool"
-	display_name = "wool"
+	name = MAT_WOOL
+	display_name = MAT_WOOL
 	stack_type = /obj/item/stack/material/fur/wool
 
 /datum/material/fur/generate_recipes()
@@ -94,7 +94,7 @@
 		new /datum/stack_recipe("blindfold", /obj/item/clothing/glasses/sunglasses/blindfold/whiteblindfold/craftable, 2, time = 5 SECONDS, pass_stack_color = TRUE, recycle_material = "[name]")
 	)
 /obj/item/stack/material/fur
-	name = "fur"
+	name = MAT_FUR
 	icon_state = "sheet-fabric"
 	default_type = MAT_FUR
 	strict_color_stacking = TRUE
@@ -106,8 +106,8 @@
 	apply_colour = TRUE
 
 /obj/item/stack/material/fur/wool
-	name = "wool"
-	default_type = "wool"
+	name = MAT_WOOL
+	default_type = MAT_WOOL
 
 /obj/item/clothing/suit/storage/duster/craftable
 	name = "handmade duster"

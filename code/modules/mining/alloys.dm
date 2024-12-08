@@ -9,22 +9,22 @@
 	var/metaltag
 
 /datum/alloy/durasteel
-	metaltag = "durasteel"
+	metaltag = MAT_DURASTEEL
 	requires = list(
-		"diamond" = 1,
-		"platinum" = 1,
-		"carbon" = 2,
-		"hematite" = 2
+		ORE_DIAMOND = 1,
+		ORE_PLATINUM = 1,
+		ORE_CARBON = 2,
+		ORE_HEMATITE = 2
 		)
 	product_mod = 0.3
 	product = /obj/item/stack/material/durasteel
 
 /datum/alloy/plasteel
-	metaltag = "plasteel"
+	metaltag = MAT_PLASTEEL
 	requires = list(
-		"platinum" = 1,
-		"carbon" = 2,
-		"hematite" = 2
+		ORE_PLATINUM = 1,
+		ORE_CARBON = 2,
+		ORE_HEMATITE = 2
 		)
 	product_mod = 0.3
 	product = /obj/item/stack/material/plasteel
@@ -32,24 +32,24 @@
 /datum/alloy/steel
 	metaltag = MAT_STEEL
 	requires = list(
-		"carbon" = 1,
-		"hematite" = 1
+		ORE_CARBON = 1,
+		ORE_HEMATITE = 1
 		)
 	product = /obj/item/stack/material/steel
 
 /datum/alloy/borosilicate
-	metaltag = "borosilicate glass"
+	metaltag = MAT_PGLASS
 	requires = list(
-		"platinum" = 1,
-		"sand" = 2
+		ORE_PLATINUM = 1,
+		ORE_SAND = 2
 		)
 	product = /obj/item/stack/material/glass/phoronglass
 /*
 /datum/alloy/bronze
-	metaltag = "bronze"
+	metaltag = MAT_BRONZE
 	requires = list(
-		"copper" = 2,
-		"tin" = 1
+		ORE_COPPER = 2,
+		ORE_TIN = 1
 		)
 	product = /obj/item/stack/material/bronze
 */

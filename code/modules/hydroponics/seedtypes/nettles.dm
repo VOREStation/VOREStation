@@ -1,11 +1,11 @@
 // Nettles/variants.
 /datum/seed/nettle
-	name = "nettle"
-	seed_name = "nettle"
+	name = PLANT_NETTLE
+	seed_name = PLANT_NETTLE
 	display_name = "nettles"
-	mutants = list("deathnettle")
-	chems = list("nutriment" = list(1,50), "sacid" = list(0,1))
-	kitchen_tag = "nettle"
+	mutants = list(PLANT_DEATHNETTLE)
+	chems = list(REAGENT_ID_NUTRIMENT = list(1,50), REAGENT_ID_SACID = list(0,1))
+	kitchen_tag = PLANT_NETTLE
 
 /datum/seed/nettle/New()
 	..()
@@ -20,12 +20,12 @@
 	set_trait(TRAIT_PRODUCT_COLOUR,"#728A54")
 
 /datum/seed/nettle/death
-	name = "deathnettle"
+	name = PLANT_DEATHNETTLE
 	seed_name = "death nettle"
 	display_name = "death nettles"
-	kitchen_tag = "deathnettle"
+	kitchen_tag = PLANT_DEATHNETTLE
 	mutants = null
-	chems = list("nutriment" = list(1,50), "pacid" = list(0,1))
+	chems = list(REAGENT_ID_NUTRIMENT = list(1,50), REAGENT_ID_PACID = list(0,1))
 
 /datum/seed/nettle/death/New()
 	..()

@@ -122,7 +122,7 @@
 					var/g_skin = hex2num(copytext(new_skin, 4, 6))
 					var/b_skin = hex2num(copytext(new_skin, 6, 8))
 					if(owner.change_skin_color(r_skin, g_skin, b_skin))
-						update_dna(ui.user, owner)
+						update_dna(owner)
 						changed_hook(APPEARANCECHANGER_CHANGED_SKINCOLOR)
 						return 1
 		if("hair")

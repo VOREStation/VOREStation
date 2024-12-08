@@ -158,7 +158,7 @@
 	if(!can_print(choice, possible_list[choice][2]))
 		return
 
-	container.reagents.remove_reagent("biomass", possible_list[choice][2])
+	container.reagents.remove_reagent(REAGENT_ID_BIOMASS, possible_list[choice][2])
 
 	update_use_power(USE_POWER_ACTIVE)
 	printing = 1
@@ -204,7 +204,7 @@
 	var/biomass_count = 0
 	if(container && container.reagents)
 		for(var/datum/reagent/R in container.reagents.reagent_list)
-			if(R.id == "biomass")
+			if(R.id == REAGENT_ID_BIOMASS)
 				biomass_count += R.volume
 
 	return biomass_count
@@ -297,7 +297,7 @@
 		var/datum/reagent/blood/injected = locate() in S.reagents.reagent_list //Grab some blood
 		if(injected && injected.data)
 			loaded_dna = injected.data
-			S.reagents.remove_reagent("blood", injected.volume)
+			S.reagents.remove_reagent(REAGENT_ID_BLOOD, injected.volume)
 			to_chat(user, span_info("You scan the blood sample into the bioprinter."))
 		return
 	else if(istype(W,/obj/item/reagent_containers/glass))

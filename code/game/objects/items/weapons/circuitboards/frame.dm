@@ -85,7 +85,7 @@
 	name = T_BOARD("electrochromic button")
 	build_path = /obj/machinery/button/windowtint
 	board_type = new /datum/frame/frame_types/button
-	matter = list(MAT_STEEL = 50, "glass" = 50)
+	matter = list(MAT_STEEL = 50, MAT_GLASS = 50)
 
 //Computer
 

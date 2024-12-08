@@ -3,8 +3,8 @@
  */
 
 /datum/reagent/modapplying
-	name = "brute juice"
-	id = "berserkmed"
+	name = REAGENT_BERSERKMED
+	id = REAGENT_ID_BERSERKMED
 	description = "A liquid that is capable of causing a prolonged state of heightened aggression and durability."
 	taste_description = "metal"
 	reagent_state = LIQUID
@@ -21,8 +21,8 @@
 	M.add_modifier(modifier_to_add, modifier_duration, suppress_failure = TRUE)
 
 /datum/reagent/modapplying/cryofluid
-	name = "cryogenic slurry"
-	id = "cryoslurry"
+	name = REAGENT_CRYOSLURRY
+	id = REAGENT_ID_CRYOSLURRY
 	description = "An incredibly strange liquid that rapidly absorbs thermal energy from materials it contacts."
 	taste_description = "siberian hellscape"
 	color = "#4CDBDB"
@@ -61,8 +61,8 @@
 	return
 
 /datum/reagent/modapplying/vatstabilizer
-	name = "clone growth inhibitor"
-	id = "vatstabilizer"
+	name = REAGENT_VATSTABILIZER
+	id = REAGENT_ID_VATSTABILIZER
 	description = "A compound produced by NanoTrasen using a secret blend of phoron and toxins to stop the rampant growth of a clone beyond intended states."
 	taste_description = "sour glue"
 	color = "#060501"

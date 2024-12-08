@@ -1,7 +1,7 @@
 /datum/seed/weeds
-	name = "weeds"
+	name = PLANT_WEEDS
 	seed_name = "weed"
-	display_name = "weeds"
+	display_name = PLANT_WEEDS
 
 /datum/seed/weeds/New()
 	..()

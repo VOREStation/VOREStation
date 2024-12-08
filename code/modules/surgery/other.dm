@@ -133,7 +133,7 @@
 		return 0
 
 	var/obj/item/reagent_containers/container = tool
-	if(!container.reagents.has_reagent("peridaxon"))
+	if(!container.reagents.has_reagent(REAGENT_ID_PERIDAXON))
 		return 0
 
 	if(!hasorgans(target))

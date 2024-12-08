@@ -123,7 +123,7 @@
 				else if(mode == 1)
 					mode = 2
 					nif.notify("Medichines unable to repair all damage. Perform manual repairs.",TRUE)
-		
+
 		if(mode == 2 && HP_percent < -0.4) //lets inform someone who might be able to help us that we got toasted and roasted
 			nif.notify("User Status: CRITICAL. Notifying medical!",TRUE)
 			mode = 3 //this does nothing except stop it from repeating over and over and over and over and over and over and over
@@ -186,7 +186,7 @@
 /datum/nifsoft/spare_breath/proc/resp_breath()
 	if(!active) return null
 	var/datum/gas_mixture/breath = new(BREATH_VOLUME)
-	breath.adjust_gas("oxygen", BREATH_MOLES)
+	breath.adjust_gas(GAS_O2, BREATH_MOLES)
 	breath.temperature = T20C
 	return breath
 

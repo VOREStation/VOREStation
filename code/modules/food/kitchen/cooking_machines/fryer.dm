@@ -45,7 +45,7 @@
 	if(prob(20))
 		// Sometimes the fryer will start with much less than full oil, significantly impacting efficiency until filled
 		variance = rand()*0.5
-	oil.add_reagent("cookingoil", optimal_oil*(1 - variance))
+	oil.add_reagent(REAGENT_ID_COOKINGOIL, optimal_oil*(1 - variance))
 
 /obj/machinery/appliance/cooker/fryer/Destroy()
 	QDEL_NULL(fry_loop)

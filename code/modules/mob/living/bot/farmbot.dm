@@ -223,7 +223,7 @@
 				if(do_after(src, 30, A))
 
 					visible_message(span_notice("[src] fertilizes \the [A]."))
-					T.reagents.add_reagent("ammonia", 10)
+					T.reagents.add_reagent(REAGENT_ID_AMMONIA, 10)
 
 		busy = 0
 		action = ""

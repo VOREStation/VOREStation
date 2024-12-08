@@ -18,7 +18,7 @@
 
 	reach = 2
 
-	default_material = "cloth"
+	default_material = MAT_CLOTH
 
 	var/list/accepted_mobs = list(/mob/living/simple_mob/animal/passive/fish)
 
@@ -125,7 +125,7 @@
 
 	reach = 1
 
-	default_material = "cloth"
+	default_material = MAT_CLOTH
 
 	accepted_mobs = list(/mob/living/simple_mob/animal/sif/glitterfly, /mob/living/carbon/human)
 

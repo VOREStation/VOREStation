@@ -1,10 +1,10 @@
 //Flowers/varieties
 /datum/seed/flower
-	name = "harebells"
+	name = PLANT_HAREBELLS
 	seed_name = "harebell"
-	display_name = "harebells"
+	display_name = PLANT_HAREBELLS
 	kitchen_tag = "harebell"
-	chems = list("nutriment" = list(1,20))
+	chems = list(REAGENT_ID_NUTRIMENT = list(1,20))
 
 /datum/seed/flower/New()
 	..()
@@ -18,11 +18,11 @@
 	set_trait(TRAIT_NUTRIENT_CONSUMPTION, 0.15)
 
 /datum/seed/flower/poppy
-	name = "poppies"
+	name = PLANT_POPPIES
 	seed_name = "poppy"
-	display_name = "poppies"
+	display_name = PLANT_POPPIES
 	kitchen_tag = "poppy"
-	chems = list("nutriment" = list(1,20), "bicaridine" = list(1,10))
+	chems = list(REAGENT_ID_NUTRIMENT = list(1,20), REAGENT_ID_BICARIDINE = list(1,10))
 
 /datum/seed/flower/poppy/New()
 	..()
@@ -38,10 +38,10 @@
 	set_trait(TRAIT_NUTRIENT_CONSUMPTION, 0.15)
 
 /datum/seed/flower/sunflower
-	name = "sunflowers"
-	seed_name = "sunflower"
-	display_name = "sunflowers"
-	kitchen_tag = "sunflower"
+	name = PLANT_SUNFLOWERS
+	seed_name = PLANT_SUNFLOWERS
+	display_name = PLANT_SUNFLOWERS
+	kitchen_tag = PLANT_SUNFLOWERS
 
 /datum/seed/flower/sunflower/New()
 	..()
@@ -54,11 +54,11 @@
 	set_trait(TRAIT_NUTRIENT_CONSUMPTION, 0.15)
 
 /datum/seed/flower/lavender
-	name = "lavender"
-	seed_name = "lavender"
-	display_name = "lavender"
-	kitchen_tag = "lavender"
-	chems = list("nutriment" = list(1,20), "bicaridine" = list(1,10))
+	name = PLANT_LAVENDER
+	seed_name = PLANT_LAVENDER
+	display_name = PLANT_LAVENDER
+	kitchen_tag = PLANT_LAVENDER
+	chems = list(REAGENT_ID_NUTRIMENT = list(1,20), REAGENT_ID_BICARIDINE = list(1,10))
 
 /datum/seed/flower/lavender/New()
 	..()
@@ -74,12 +74,12 @@
 	set_trait(TRAIT_WATER_CONSUMPTION, 0.5)
 
 /datum/seed/flower/rose
-	name = "rose"
-	seed_name = "rose"
-	display_name = "rose"
-	kitchen_tag = "rose"
-	mutants = list("bloodrose")
-	chems = list("nutriment" = list(1,5), "stoxin" = list(0,2))
+	name = PLANT_ROSE
+	seed_name = PLANT_ROSE
+	display_name = PLANT_ROSE
+	kitchen_tag = PLANT_ROSE
+	mutants = list(PLANT_BLOODROSE)
+	chems = list(REAGENT_ID_NUTRIMENT = list(1,5), REAGENT_ID_STOXIN = list(0,2))
 
 /datum/seed/flower/rose/New()
 	..()
@@ -96,10 +96,10 @@
 	set_trait(TRAIT_STINGS,1)
 
 /datum/seed/flower/rose/blood
-	name = "bloodrose"
+	name = PLANT_BLOODROSE
 	display_name = "bleeding rose"
 	mutants = null
-	chems = list("nutriment" = list(1,5), "stoxin" = list(1,5), "blood" = list(0,2))
+	chems = list(REAGENT_ID_NUTRIMENT = list(1,5), REAGENT_ID_STOXIN = list(1,5), REAGENT_ID_BLOOD = list(0,2))
 
 /datum/seed/flower/rose/blood/New()
 	..()

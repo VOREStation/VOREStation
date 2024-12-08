@@ -458,17 +458,17 @@
 	var/total_moles = environment.total_moles
 
 	if(total_moles)
-		var/o2_level = environment.gas["oxygen"]/total_moles
-		var/n2_level = environment.gas["nitrogen"]/total_moles
-		var/co2_level = environment.gas["carbon_dioxide"]/total_moles
-		var/phoron_level = environment.gas["phoron"]/total_moles
+		var/o2_level = environment.gas[GAS_O2]/total_moles
+		var/n2_level = environment.gas[GAS_N2]/total_moles
+		var/co2_level = environment.gas[GAS_CO2]/total_moles
+		var/phoron_level = environment.gas[GAS_PHORON]/total_moles
 		var/unknown_level =  1-(o2_level+n2_level+co2_level+phoron_level)
 		aircontents = list(\
 			"pressure" = "[round(pressure,0.1)]",\
-			"nitrogen" = "[round(n2_level*100,0.1)]",\
-			"oxygen" = "[round(o2_level*100,0.1)]",\
-			"carbon_dioxide" = "[round(co2_level*100,0.1)]",\
-			"phoron" = "[round(phoron_level*100,0.01)]",\
+			GAS_N2 = "[round(n2_level*100,0.1)]",\
+			GAS_O2 = "[round(o2_level*100,0.1)]",\
+			GAS_CO2 = "[round(co2_level*100,0.1)]",\
+			GAS_PHORON = "[round(phoron_level*100,0.01)]",\
 			"other" = "[round(unknown_level, 0.01)]",\
 			"temp" = "[round(environment.temperature-T0C,0.1)]",\
 			"reading" = TRUE\

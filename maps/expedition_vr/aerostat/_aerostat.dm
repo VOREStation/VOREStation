@@ -48,67 +48,67 @@
 				continue
 			if(!priority_process) sleep(-1)
 			T.resources = list()
-			T.resources["sand"] = rand(3,5)
-			T.resources["carbon"] = rand(3,5)
+			T.resources[ORE_SAND] = rand(3,5)
+			T.resources[ORE_CARBON] = rand(3,5)
 
 			var/current_cell = map[get_map_cell(x,y)]
 			if(current_cell < rare_val)      // Surface metals.
-				T.resources["hematite"] = rand(RESOURCE_HIGH_MIN, RESOURCE_HIGH_MAX)
-				T.resources["gold"] =     rand(RESOURCE_LOW_MIN,  RESOURCE_LOW_MAX)
-				T.resources["silver"] =   rand(RESOURCE_LOW_MIN,  RESOURCE_LOW_MAX)
-				T.resources["uranium"] =  rand(RESOURCE_LOW_MIN,  RESOURCE_LOW_MAX)
-				T.resources["marble"] =   rand(RESOURCE_LOW_MIN, RESOURCE_MID_MAX)
-				T.resources["diamond"] =  0
-				T.resources["phoron"] =   0
-				T.resources["platinum"] =   0
-				T.resources["mhydrogen"] = 0
-				T.resources["verdantium"] = 0
-				T.resources["lead"]     = 0
-				//T.resources["copper"] =   rand(RESOURCE_MID_MIN, RESOURCE_HIGH_MAX)
-				//T.resources["tin"] =      rand(RESOURCE_LOW_MIN, RESOURCE_MID_MAX)
-				//T.resources["bauxite"] =  rand(RESOURCE_LOW_MIN, RESOURCE_LOW_MAX)
-				T.resources["rutile"] =   rand(RESOURCE_LOW_MIN, RESOURCE_LOW_MAX)
-				//T.resources["void opal"] = 0
-				//T.resources["quartz"] = 0
-				//T.resources["painite"] = 0
+				T.resources[ORE_HEMATITE] = rand(RESOURCE_HIGH_MIN, RESOURCE_HIGH_MAX)
+				T.resources[ORE_GOLD] =     rand(RESOURCE_LOW_MIN,  RESOURCE_LOW_MAX)
+				T.resources[ORE_SILVER] =   rand(RESOURCE_LOW_MIN,  RESOURCE_LOW_MAX)
+				T.resources[ORE_URANIUM] =  rand(RESOURCE_LOW_MIN,  RESOURCE_LOW_MAX)
+				T.resources[ORE_MARBLE] =   rand(RESOURCE_LOW_MIN, RESOURCE_MID_MAX)
+				T.resources[ORE_DIAMOND] =  0
+				T.resources[ORE_PHORON] =   0
+				T.resources[ORE_PLATINUM] =   0
+				T.resources[ORE_MHYDROGEN] = 0
+				T.resources[ORE_VERDANTIUM] = 0
+				T.resources[ORE_LEAD]     = 0
+				//T.resources[ORE_COPPER] =   rand(RESOURCE_MID_MIN, RESOURCE_HIGH_MAX)
+				//T.resources[ORE_TIN] =      rand(RESOURCE_LOW_MIN, RESOURCE_MID_MAX)
+				//T.resources[ORE_BAUXITE] =  rand(RESOURCE_LOW_MIN, RESOURCE_LOW_MAX)
+				T.resources[ORE_RUTILE] =   rand(RESOURCE_LOW_MIN, RESOURCE_LOW_MAX)
+				//T.resources[ORE_VOPAL] = 0
+				//T.resources[ORE_QUARTZ] = 0
+				//T.resources[ORE_PAINITE] = 0
 			else if(current_cell < deep_val) // Rare metals.
-				T.resources["gold"] =     rand(RESOURCE_MID_MIN,  RESOURCE_MID_MAX)
-				T.resources["silver"] =   rand(RESOURCE_MID_MIN,  RESOURCE_MID_MAX)
-				T.resources["uranium"] =  rand(RESOURCE_MID_MIN,  RESOURCE_MID_MAX)
-				T.resources["phoron"] =   rand(RESOURCE_MID_MIN,  RESOURCE_MID_MAX)
-				T.resources["platinum"] =   rand(RESOURCE_MID_MIN,  RESOURCE_MID_MAX)
-				T.resources["verdantium"] = rand(RESOURCE_LOW_MIN, RESOURCE_LOW_MAX)
-				T.resources["lead"] =     rand(RESOURCE_LOW_MIN, RESOURCE_MID_MAX)
-				T.resources["mhydrogen"] = 0
-				T.resources["diamond"] =  0
-				T.resources["hematite"] = 0
-				T.resources["marble"] =   0
-				//T.resources["copper"] =   0
-				//T.resources["tin"] =      rand(RESOURCE_MID_MIN, RESOURCE_MID_MAX)
-				//T.resources["bauxite"] =  0
-				T.resources["rutile"] =   rand(RESOURCE_MID_MIN, RESOURCE_MID_MAX)
-				//T.resources["void opal"] = 0
-				//T.resources["quartz"] = 0
-				//T.resources["painite"] = 0
+				T.resources[ORE_GOLD] =     rand(RESOURCE_MID_MIN,  RESOURCE_MID_MAX)
+				T.resources[ORE_SILVER] =   rand(RESOURCE_MID_MIN,  RESOURCE_MID_MAX)
+				T.resources[ORE_URANIUM] =  rand(RESOURCE_MID_MIN,  RESOURCE_MID_MAX)
+				T.resources[ORE_PHORON] =   rand(RESOURCE_MID_MIN,  RESOURCE_MID_MAX)
+				T.resources[ORE_PLATINUM] =   rand(RESOURCE_MID_MIN,  RESOURCE_MID_MAX)
+				T.resources[ORE_VERDANTIUM] = rand(RESOURCE_LOW_MIN, RESOURCE_LOW_MAX)
+				T.resources[ORE_LEAD] =     rand(RESOURCE_LOW_MIN, RESOURCE_MID_MAX)
+				T.resources[ORE_MHYDROGEN] = 0
+				T.resources[ORE_DIAMOND] =  0
+				T.resources[ORE_HEMATITE] = 0
+				T.resources[ORE_MARBLE] =   0
+				//T.resources[ORE_COPPER] =   0
+				//T.resources[ORE_TIN] =      rand(RESOURCE_MID_MIN, RESOURCE_MID_MAX)
+				//T.resources[ORE_BAUXITE] =  0
+				T.resources[ORE_RUTILE] =   rand(RESOURCE_MID_MIN, RESOURCE_MID_MAX)
+				//T.resources[ORE_VOPAL] = 0
+				//T.resources[ORE_QUARTZ] = 0
+				//T.resources[ORE_PAINITE] = 0
 			else                             // Deep metals.
-				T.resources["uranium"] =  rand(RESOURCE_LOW_MIN,  RESOURCE_LOW_MAX)
-				T.resources["diamond"] =  rand(RESOURCE_LOW_MIN,  RESOURCE_LOW_MAX)
-				T.resources["verdantium"] = rand(RESOURCE_LOW_MIN, RESOURCE_MID_MAX)
-				T.resources["phoron"] =   rand(RESOURCE_HIGH_MIN, RESOURCE_HIGH_MAX)
-				T.resources["platinum"] =   rand(RESOURCE_HIGH_MIN, RESOURCE_HIGH_MAX)
-				T.resources["mhydrogen"] = rand(RESOURCE_MID_MIN,  RESOURCE_MID_MAX)
-				T.resources["marble"] =   rand(RESOURCE_MID_MIN, RESOURCE_HIGH_MAX)
-				T.resources["lead"] =     rand(RESOURCE_LOW_MIN, RESOURCE_HIGH_MAX)
-				T.resources["hematite"] = 0
-				T.resources["gold"] =     0
-				T.resources["silver"] =   0
-				//T.resources["copper"] =   0
-				//T.resources["tin"] =      0
-				//T.resources["bauxite"] =  0
-				T.resources["rutile"] =   rand(RESOURCE_HIGH_MIN, RESOURCE_HIGH_MAX)
-				//T.resources["void opal"] = 0
-				//T.resources["quartz"] = 0
-				//T.resources["painite"] = 0
+				T.resources[ORE_URANIUM] =  rand(RESOURCE_LOW_MIN,  RESOURCE_LOW_MAX)
+				T.resources[ORE_DIAMOND] =  rand(RESOURCE_LOW_MIN,  RESOURCE_LOW_MAX)
+				T.resources[ORE_VERDANTIUM] = rand(RESOURCE_LOW_MIN, RESOURCE_MID_MAX)
+				T.resources[ORE_PHORON] =   rand(RESOURCE_HIGH_MIN, RESOURCE_HIGH_MAX)
+				T.resources[ORE_PLATINUM] =   rand(RESOURCE_HIGH_MIN, RESOURCE_HIGH_MAX)
+				T.resources[ORE_MHYDROGEN] = rand(RESOURCE_MID_MIN,  RESOURCE_MID_MAX)
+				T.resources[ORE_MARBLE] =   rand(RESOURCE_MID_MIN, RESOURCE_HIGH_MAX)
+				T.resources[ORE_LEAD] =     rand(RESOURCE_LOW_MIN, RESOURCE_HIGH_MAX)
+				T.resources[ORE_HEMATITE] = 0
+				T.resources[ORE_GOLD] =     0
+				T.resources[ORE_SILVER] =   0
+				//T.resources[ORE_COPPER] =   0
+				//T.resources[ORE_TIN] =      0
+				//T.resources[ORE_BAUXITE] =  0
+				T.resources[ORE_RUTILE] =   rand(RESOURCE_HIGH_MIN, RESOURCE_HIGH_MAX)
+				//T.resources[ORE_VOPAL] = 0
+				//T.resources[ORE_QUARTZ] = 0
+				//T.resources[ORE_PAINITE] = 0
 	return
 
 // -- Objs -- //
@@ -215,7 +215,7 @@ VIRGO2_TURF_CREATE(/turf/simulated/mineral)
 	if(mineral)
 		return
 
-	var/mineral_name = pickweight(list("marble" = 5, "uranium" = 5, "platinum" = 5, "hematite" = 5, "carbon" = 5, "diamond" = 5, "gold" = 5, "silver" = 5, "lead" = 5, "verdantium" = 5, "rutile" = 20))
+	var/mineral_name = pickweight(list(ORE_MARBLE = 5, ORE_URANIUM = 5, ORE_PLATINUM = 5, ORE_HEMATITE = 5, ORE_CARBON = 5, ORE_DIAMOND = 5, ORE_GOLD = 5, ORE_SILVER = 5, ORE_LEAD = 5, ORE_VERDANTIUM = 5, ORE_RUTILE = 20))
 
 	if(mineral_name && (mineral_name in GLOB.ore_data))
 		mineral = GLOB.ore_data[mineral_name]

@@ -20,7 +20,7 @@
 	START_PROCESSING(SSobj, src)
 
 /turf/proc/clean_deploy(atom/source)
-	if(source.reagents.has_reagent("water", 1))
+	if(source.reagents.has_reagent(REAGENT_ID_WATER, 1))
 		clean_blood()
 		if(istype(src, /turf/simulated))
 			var/turf/simulated/T = src

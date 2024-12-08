@@ -289,7 +289,7 @@
 							set_temp("Error: Not enough [MAT_STEEL] in SynthFab.", "danger")
 							active_br = null
 							return
-						else if(spod.stored_material["glass"] < spod.body_cost)
+						else if(spod.stored_material[MAT_GLASS] < spod.body_cost)
 							set_temp("Error: Not enough glass in SynthFab.", "danger")
 							active_br = null
 							return

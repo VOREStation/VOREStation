@@ -96,7 +96,7 @@
 		if(istype(O, /obj/item/reagent_containers/food/snacks/grown))
 			var/obj/item/reagent_containers/food/snacks/grown/G = O
 
-			if(G.seed && G.seed.kitchen_tag == "berries")
+			if(G.seed && G.seed.kitchen_tag == PLANT_BERRIES)
 				return TRUE
 			return FALSE
 

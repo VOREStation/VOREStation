@@ -4,7 +4,7 @@
 			var/remove_volume = volume* 0.1 //10% of what the bloodpack can hold.
 			var/reagent_to_remove = reagents.get_master_reagent_id()
 			switch(reagents.get_master_reagent_id())
-				if("blood")
+				if(REAGENT_ID_BLOOD)
 					user.show_message(span_warning("You sink your fangs into \the [src] and suck the blood out of it!"))
 					user.visible_message(span_red("[user] sinks their fangs into \the [src] and drains it!"))
 					user.adjust_nutrition(remove_volume*5)

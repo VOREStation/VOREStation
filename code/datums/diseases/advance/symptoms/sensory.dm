@@ -32,15 +32,15 @@ Bonus
 		if(A.stage >= 3)
 			M.slurring = max(0, M.slurring-4)
 			M.druggy = max(0, M.druggy-4)
-			M.reagents.remove_reagent("ethanol", 3)
+			M.reagents.remove_reagent(REAGENT_ID_ETHANOL, 3)
 		if(A.stage >= 4)
 			M.drowsyness = max(0, M.drowsyness-4)
-			if(M.reagents.has_reagent("bliss"))
-				M.reagents.del_reagent("bliss")
+			if(M.reagents.has_reagent(REAGENT_ID_BLISS))
+				M.reagents.del_reagent(REAGENT_ID_BLISS)
 			M.hallucination = max(0, M.hallucination-4)
 		if(A.stage >= 5)
-			if(M.reagents.get_reagent_amount("alkysine") < 10)
-				M.reagents.add_reagent("alkysine", 5)
+			if(M.reagents.get_reagent_amount(REAGENT_ID_ALKYSINE) < 10)
+				M.reagents.add_reagent(REAGENT_ID_ALKYSINE, 5)
 
 /datum/symptom/sensory_restoration
 	name = "Sensory Restoration"
@@ -56,8 +56,8 @@ Bonus
 		var/mob/living/M = A.affected_mob
 		switch(A.stage)
 			if(4, 5)
-				if(M.reagents.get_reagent_amount("imidazoline") < 10)
-					M.reagents.add_reagent("imidazoline", 5)
+				if(M.reagents.get_reagent_amount(REAGENT_ID_IMIDAZOLINE) < 10)
+					M.reagents.add_reagent(REAGENT_ID_IMIDAZOLINE, 5)
 			else
 				if(prob(SYMPTOM_ACTIVATION_PROB))
 					to_chat(M, span_notice(pick("Your eyes feel great.","You feel like your eyes can focus more clearly.", "You don't feel the need to blink.")))

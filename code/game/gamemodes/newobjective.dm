@@ -1143,30 +1143,30 @@ datum
 				var/target_name
 				New(var/text,var/joba)
 					..()
-					var/list/items = list("Sulphuric acid", "Polytrinic acid", "Space Lube", "Unstable mutagen",\
-					 "Leporazine", "Cryptobiolin", "Lexorin ",\
-					  "Kelotane", "Dexalin", "Tricordrazine")
+					var/list/items = list(REAGENT_SACID, REAGENT_PACID, REAGENT_LUBE, REAGENT_MUTAGEN,\
+					 REAGENT_LEPORAZINE, REAGENT_CRYPTOBIOLIN, REAGENT_LEXORIN,\
+					  REAGENT_KELOTANE, REAGENT_DEXALIN, REAGENT_TRICORDRAZINE)
 					target_name = pick(items)
 					switch(target_name)
-						if("Sulphuric acid")
+						if(REAGENT_SACID)
 							steal_target = /datum/reagent/acid
-						if("Polytrinic acid")
+						if(REAGENT_PACID)
 							steal_target = /datum/reagent/pacid
-						if("Space Lube")
+						if(REAGENT_LUBE)
 							steal_target = /datum/reagent/lube
-						if("Unstable mutagen")
+						if(REAGENT_MUTAGEN)
 							steal_target = /datum/reagent/mutagen
-						if("Leporazine")
+						if(REAGENT_LEPORAZINE)
 							steal_target = /datum/reagent/leporazine
-						if("Cryptobiolin")
+						if(REAGENT_CRYPTOBIOLIN)
 							steal_target =/datum/reagent/cryptobiolin
-						if("Lexorin")
+						if(REAGENT_LEXORIN)
 							steal_target = /datum/reagent/lexorin
-						if("Kelotane")
+						if(REAGENT_KELOTANE)
 							steal_target = /datum/reagent/kelotane
-						if("Dexalin")
+						if(REAGENT_DEXALIN)
 							steal_target = /datum/reagent/dexalin
-						if("Tricordrazine")
+						if(REAGENT_TRICORDRAZINE)
 							steal_target = /datum/reagent/tricordrazine
 
 					explanation_text = "Steal a container filled with [target_name]."

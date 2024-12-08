@@ -70,7 +70,7 @@
 /mob/living/simple_mob/animal/borer/handle_special()
 	if(host && !stat && !host.stat)
 		// Handle docility.
-		if(host.reagents.has_reagent("sugar") && !docile)
+		if(host.reagents.has_reagent(REAGENT_ID_SUGAR) && !docile)
 			var/message = "You feel the soporific flow of sugar in your host's blood, lulling you into docility."
 			var/target = controlling ? host : src
 			to_chat(target, span_warning(message))

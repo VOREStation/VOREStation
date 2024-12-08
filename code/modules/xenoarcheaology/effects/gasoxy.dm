@@ -11,11 +11,11 @@
 	if(holder)
 		var/turf/holder_loc = holder.loc
 		if(istype(holder_loc))
-			holder_loc.assume_gas("oxygen", rand(2, 15))
+			holder_loc.assume_gas(GAS_O2, rand(2, 15))
 
 /datum/artifact_effect/gasoxy/DoEffectAura()
 	var/atom/holder = get_master_holder()
 	if(holder)
 		var/turf/holder_loc = holder.loc
 		if(istype(holder_loc))
-			holder_loc.assume_gas("oxygen", pick(0, 0, 0.1, rand()))
+			holder_loc.assume_gas(GAS_O2, pick(0, 0, 0.1, rand()))

@@ -170,17 +170,17 @@
 /datum/trait/neutral/venom_bite/apply(var/datum/species/S,var/mob/living/carbon/human/H)
 	..()
 	add_verb(H, /mob/living/proc/injection)
-	H.trait_injection_reagents += "microcillin"		// get small
-	H.trait_injection_reagents += "macrocillin"		// get BIG
-	H.trait_injection_reagents += "normalcillin"	// normal
-	H.trait_injection_reagents += "numbenzyme"		// no feelings
-	H.trait_injection_reagents += "androrovir" 		// -> MALE
-	H.trait_injection_reagents += "gynorovir" 		// -> FEMALE
-	H.trait_injection_reagents += "androgynorovir" 	// -> PLURAL
-	H.trait_injection_reagents += "stoxin"			// night night chem
-	H.trait_injection_reagents += "rainbowtoxin" 	// Funny flashing lights.
-	H.trait_injection_reagents += "paralysistoxin" 	// Paralysis!
-	H.trait_injection_reagents += "painenzyme"		// Pain INCREASER
+	H.trait_injection_reagents += REAGENT_ID_MICROCILLIN		// get small
+	H.trait_injection_reagents += REAGENT_ID_MACROCILLIN		// get BIG
+	H.trait_injection_reagents += REAGENT_ID_NORMALCILLIN	// normal
+	H.trait_injection_reagents += REAGENT_ID_NUMBENZYME		// no feelings
+	H.trait_injection_reagents += REAGENT_ID_ANDROROVIR 		// -> MALE
+	H.trait_injection_reagents += REAGENT_ID_GYNOROVIR 		// -> FEMALE
+	H.trait_injection_reagents += REAGENT_ID_ANDROGYNOROVIR 	// -> PLURAL
+	H.trait_injection_reagents += REAGENT_ID_STOXIN			// night night chem
+	H.trait_injection_reagents += REAGENT_ID_RAINBOWTOXIN 	// Funny flashing lights.
+	H.trait_injection_reagents += REAGENT_ID_PARALYSISTOXIN 	// Paralysis!
+	H.trait_injection_reagents += REAGENT_ID_PAINENZYME		// Pain INCREASER
 
 /datum/trait/neutral/long_vore
 	name = "Long Predatorial Reach"

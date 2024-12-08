@@ -94,7 +94,7 @@
 					icon_state = "2"
 					new /obj/item/stack/cable_coil(loc, 5)
 
-			if(istype(P, /obj/item/stack/material) && P.get_material_name() == "rglass")
+			if(istype(P, /obj/item/stack/material) && P.get_material_name() == MAT_RGLASS)
 				var/obj/item/stack/RG = P
 				if (RG.get_amount() < 2)
 					to_chat(user, span_warning("You need two sheets of glass to put in the glass panel."))

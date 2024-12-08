@@ -13,14 +13,14 @@
 	interface_desc = "Dispenses loaded chemicals directly into the wearer's bloodstream."
 
 	charges = list(
-		list("tricordrazine", "tricordrazine", 0, 80),
-		list("tramadol",      "tramadol",      0, 80),
-		list("dexalin plus",  "dexalinp",      0, 80),
-		list("antibiotics",   "spaceacillin",  0, 80),
-		list("antitoxins",    "anti_toxin",    0, 80),
-		list("nutrients",     "glucose",     0, 80),
-		list("hyronalin",     "hyronalin",     0, 80),
-		list("radium",        "radium",        0, 80)
+		list(REAGENT_ID_TRICORDRAZINE, REAGENT_ID_TRICORDRAZINE, 0, 80),
+		list(REAGENT_ID_TRAMADOL,      REAGENT_ID_TRAMADOL,      0, 80),
+		list("dexalin plus",  REAGENT_ID_DEXALINP,      0, 80),
+		list("antibiotics",   REAGENT_ID_SPACEACILLIN,  0, 80),
+		list("antitoxins",    REAGENT_ID_ANTITOXIN,    0, 80),
+		list("nutrients",     REAGENT_ID_GLUCOSE,     0, 80),
+		list(REAGENT_ID_HYRONALIN,     REAGENT_ID_HYRONALIN,     0, 80),
+		list(REAGENT_ID_RADIUM,        REAGENT_ID_RADIUM,        0, 80)
 		)
 
 	var/max_reagent_volume = 80 //Used when refilling.
@@ -30,17 +30,17 @@
 
 	//Want more? Go refill. Gives the ninja another reason to have to show their face.
 	charges = list(
-		list("tricordrazine", "tricordrazine", 0, 30),
-		list("tramadol",      "tramadol",      0, 30),
-		list("dexalin plus",  "dexalinp",      0, 30),
-		list("antibiotics",   "spaceacillin",  0, 30),
-		list("antitoxins",    "anti_toxin",    0, 60),
-		list("nutrients",     "glucose",       0, 80),
-		list("bicaridine",	  "bicaridine",    0, 30),
-		list("clotting agent", "myelamine",    0, 30),
-		list("peridaxon",     "peridaxon",     0, 30),
-		list("hyronalin",     "hyronalin",     0, 30),
-		list("radium",        "radium",        0, 30)
+		list(REAGENT_ID_TRICORDRAZINE, REAGENT_ID_TRICORDRAZINE, 0, 30),
+		list(REAGENT_ID_TRAMADOL,      REAGENT_ID_TRAMADOL,      0, 30),
+		list("dexalin plus",  REAGENT_ID_DEXALINP,      0, 30),
+		list("antibiotics",   REAGENT_ID_SPACEACILLIN,  0, 30),
+		list("antitoxins",    REAGENT_ID_ANTITOXIN,    0, 60),
+		list("nutrients",     REAGENT_ID_GLUCOSE,       0, 80),
+		list(REAGENT_ID_BICARIDINE,	  REAGENT_ID_BICARIDINE,    0, 30),
+		list("clotting agent", REAGENT_ID_MYELAMINE,    0, 30),
+		list(REAGENT_ID_PERIDAXON,     REAGENT_ID_PERIDAXON,     0, 30),
+		list(REAGENT_ID_HYRONALIN,     REAGENT_ID_HYRONALIN,     0, 30),
+		list(REAGENT_ID_RADIUM,        REAGENT_ID_RADIUM,        0, 30)
 		)
 
 /obj/item/rig_module/chem_dispenser/accepts_item(var/obj/item/input_item, var/mob/living/user)
@@ -124,11 +124,11 @@
 	desc = "A complex web of tubing and needles suitable for hardsuit use."
 
 	charges = list(
-		list("synaptizine",   "synaptizine",   0, 30),
-		list("hyperzine",     "hyperzine",     0, 30),
-		list("oxycodone",     "oxycodone",     0, 30),
-		list("nutrients",     "glucose",     0, 80),
-		list("clotting agent", "myelamine", 0, 80)
+		list(REAGENT_ID_SYNAPTIZINE,   REAGENT_ID_SYNAPTIZINE,   0, 30),
+		list(REAGENT_ID_HYPERZINE,     REAGENT_ID_HYPERZINE,     0, 30),
+		list(REAGENT_ID_OXYCODONE,     REAGENT_ID_OXYCODONE,     0, 30),
+		list("nutrients",     REAGENT_ID_GLUCOSE,     0, 80),
+		list("clotting agent", REAGENT_ID_MYELAMINE, 0, 80)
 		)
 
 	interface_name = "combat chem dispenser"
@@ -149,26 +149,26 @@
 /obj/item/rig_module/chem_dispenser/injector/advanced
 
 	charges = list(
-		list("tricordrazine", "tricordrazine", 0, 80),
-		list("tramadol",      "tramadol",      0, 80),
-		list("dexalin plus",  "dexalinp",      0, 80),
-		list("antibiotics",   "spaceacillin",  0, 80),
-		list("antitoxins",    "anti_toxin",    0, 80),
-		list("nutrients",     "glucose",     0, 80),
-		list("hyronalin",     "hyronalin",     0, 80),
-		list("radium",        "radium",        0, 80),
-		list("clotting agent", "myelamine", 0, 80)
+		list(REAGENT_ID_TRICORDRAZINE, REAGENT_ID_TRICORDRAZINE, 0, 80),
+		list(REAGENT_ID_TRAMADOL,      REAGENT_ID_TRAMADOL,      0, 80),
+		list("dexalin plus",  REAGENT_ID_DEXALINP,      0, 80),
+		list("antibiotics",   REAGENT_ID_SPACEACILLIN,  0, 80),
+		list("antitoxins",    REAGENT_ID_ANTITOXIN,    0, 80),
+		list("nutrients",     REAGENT_ID_GLUCOSE,     0, 80),
+		list(REAGENT_ID_HYRONALIN,     REAGENT_ID_HYRONALIN,     0, 80),
+		list(REAGENT_ID_RADIUM,        REAGENT_ID_RADIUM,        0, 80),
+		list("clotting agent", REAGENT_ID_MYELAMINE, 0, 80)
 		)
 
 /obj/item/rig_module/chem_dispenser/injector/advanced/empty
 	charges = list(
-		list("tricordrazine", "tricordrazine", 0, 0),
-		list("tramadol",      "tramadol",      0, 0),
-		list("dexalin plus",  "dexalinp",      0, 0),
-		list("antibiotics",   "spaceacillin",  0, 0),
-		list("antitoxins",    "anti_toxin",    0, 0),
-		list("nutrients",     "glucose",     0, 0),
-		list("hyronalin",     "hyronalin",     0, 0),
-		list("radium",        "radium",        0, 0),
-		list("clotting agent", "myelamine", 0, 0)
+		list(REAGENT_ID_TRICORDRAZINE, REAGENT_ID_TRICORDRAZINE, 0, 0),
+		list(REAGENT_ID_TRAMADOL,      REAGENT_ID_TRAMADOL,      0, 0),
+		list("dexalin plus",  REAGENT_ID_DEXALINP,      0, 0),
+		list("antibiotics",   REAGENT_ID_SPACEACILLIN,  0, 0),
+		list("antitoxins",    REAGENT_ID_ANTITOXIN,    0, 0),
+		list("nutrients",     REAGENT_ID_GLUCOSE,     0, 0),
+		list(REAGENT_ID_HYRONALIN,     REAGENT_ID_HYRONALIN,     0, 0),
+		list(REAGENT_ID_RADIUM,        REAGENT_ID_RADIUM,        0, 0),
+		list("clotting agent", REAGENT_ID_MYELAMINE, 0, 0)
 		)

@@ -42,13 +42,13 @@
 
 	user.setClickCooldown(4)
 
-	if(reagents.has_reagent("sacid"))
+	if(reagents.has_reagent(REAGENT_ID_SACID))
 		message_admins("[key_name_admin(user)] fired sulphuric acid from \a [src].")
 		log_game("[key_name(user)] fired sulphuric acid from \a [src].")
-	if(reagents.has_reagent("pacid"))
+	if(reagents.has_reagent(REAGENT_ID_PACID))
 		message_admins("[key_name_admin(user)] fired Polyacid from \a [src].")
 		log_game("[key_name(user)] fired Polyacid from \a [src].")
-	if(reagents.has_reagent("lube"))
+	if(reagents.has_reagent(REAGENT_ID_LUBE))
 		message_admins("[key_name_admin(user)] fired Space lube from \a [src].")
 		log_game("[key_name(user)] fired Space lube from \a [src].")
 	return
@@ -106,15 +106,15 @@
 
 /obj/item/reagent_containers/spray/cleaner/Initialize()
 	. = ..()
-	reagents.add_reagent("cleaner", volume)
+	reagents.add_reagent(REAGENT_ID_CLEANER, volume)
 
 /obj/item/reagent_containers/spray/sterilizine
-	name = "sterilizine"
+	name = REAGENT_ID_STERILIZINE
 	desc = "Great for hiding incriminating bloodstains and sterilizing scalpels."
 
 /obj/item/reagent_containers/spray/sterilizine/Initialize()
 	. = ..()
-	reagents.add_reagent("sterilizine", volume)
+	reagents.add_reagent(REAGENT_ID_STERILIZINE, volume)
 
 /obj/item/reagent_containers/spray/pepper
 	name = "pepperspray"
@@ -129,7 +129,7 @@
 
 /obj/item/reagent_containers/spray/pepper/Initialize()
 	. = ..()
-	reagents.add_reagent("condensedcapsaicin", 40)
+	reagents.add_reagent(REAGENT_ID_CONDENSEDCAPSAICIN, 40)
 
 /obj/item/reagent_containers/spray/pepper/examine(mob/user)
 	. = ..()
@@ -160,7 +160,7 @@
 
 /obj/item/reagent_containers/spray/waterflower/Initialize()
 	. = ..()
-	reagents.add_reagent("water", 10)
+	reagents.add_reagent(REAGENT_ID_WATER, 10)
 
 /obj/item/reagent_containers/spray/chemsprayer
 	name = "chem sprayer"
@@ -198,7 +198,7 @@
 	return
 
 /obj/item/reagent_containers/spray/plantbgone
-	name = "Plant-B-Gone"
+	name = REAGENT_PLANTBGONE
 	desc = "Kills those pesky weeds!"
 	icon = 'icons/obj/hydroponics_machines.dmi'
 	icon_state = "plantbgone"
@@ -207,7 +207,7 @@
 
 /obj/item/reagent_containers/spray/plantbgone/Initialize()
 	. = ..()
-	reagents.add_reagent("plantbgone", 100)
+	reagents.add_reagent(REAGENT_ID_PLANTBGONE, 100)
 
 /obj/item/reagent_containers/spray/chemsprayer/hosed
 	name = "hose nozzle"

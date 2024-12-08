@@ -1,6 +1,6 @@
 //R-UST port
 /datum/material/supermatter
-	name = "supermatter"
+	name = MAT_SUPERMATTER
 	icon_colour = "#FFFF00"
 	stack_type = /obj/item/stack/material/supermatter
 	shard_type = SHARD_SHARD

@@ -24,7 +24,7 @@
 
 	poison_chance = 15
 	poison_per_bite = 2
-	poison_type = "psilocybin"
+	poison_type = REAGENT_ID_PSILOCYBIN
 
 	ai_holder_type = /datum/ai_holder/simple_mob/ranged/electric_spider
 

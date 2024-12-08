@@ -3,8 +3,8 @@
 	max_stages = 3
 	spread_text = "Airborne"
 	spread_flags = AIRBORNE
-	cure_text = "Rest & Spaceacillin"
-	cures = list("spaceacillin", "chicken_soup")
+	cure_text = "Rest & " + REAGENT_SPACEACILLIN
+	cures = list(REAGENT_ID_SPACEACILLIN, REAGENT_ID_CHICKENSOUP)
 	needs_all_cures = FALSE
 	agent = "XY-rhinovirus"
 	viable_mobtypes = list(/mob/living/carbon/human, /mob/living/carbon/human/monkey)

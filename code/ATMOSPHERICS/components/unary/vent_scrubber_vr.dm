@@ -1,2 +1,2 @@
 /obj/machinery/atmospherics/unary/vent_scrubber
-	scrubbing_gas = list("carbon_dioxide", "phoron")
+	scrubbing_gas = list(GAS_CO2, GAS_PHORON)

@@ -43,7 +43,7 @@
 
 	poison_chance = 30
 	poison_per_bite = 0.5
-	poison_type = "phoron"
+	poison_type = REAGENT_ID_PHORON
 
 	tame_items = list(
 	/obj/item/tank/phoron = 20,

@@ -15,7 +15,7 @@
 	. = ..()
 	reagents = new/datum/reagents(max_water)
 	reagents.my_atom = src
-	reagents.add_reagent("firefoam", max_water) //VOREStation Edit
+	reagents.add_reagent(REAGENT_ID_FIREFOAM, max_water) //VOREStation Edit
 
 /obj/item/mecha_parts/mecha_equipment/tool/extinguisher/action(atom/target) //copypasted from extinguisher. TODO: Rewrite from scratch.
 	if(!action_checks(target) || get_dist(chassis, target)>3) return

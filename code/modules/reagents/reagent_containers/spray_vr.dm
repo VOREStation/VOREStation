@@ -9,4 +9,4 @@
 
 /obj/item/reagent_containers/spray/windowsealant/New()
 	..()
-	reagents.add_reagent("silicate", 80)
+	reagents.add_reagent(REAGENT_ID_SILICATE, 80)

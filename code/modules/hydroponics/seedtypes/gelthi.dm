@@ -1,9 +1,9 @@
 /datum/seed/gelthi
-	name = "gelthi"
-	seed_name = "gelthi"
+	name = PLANT_GELTHI
+	seed_name = PLANT_GELTHI
 	display_name = "gelthi plant"
-	kitchen_tag = "gelthi"
-	chems = list("stoxin" = list(1,5),"capsaicin" = list(1,5),"nutriment" = list(1,5))
+	kitchen_tag = PLANT_GELTHI
+	chems = list(REAGENT_ID_STOXIN = list(1,5),REAGENT_ID_CAPSAICIN = list(1,5),REAGENT_ID_NUTRIMENT = list(1,5))
 
 /datum/seed/gelthi/New()
 	..()

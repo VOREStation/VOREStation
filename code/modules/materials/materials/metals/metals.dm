@@ -4,7 +4,7 @@
 
 // Very rare alloy that is reflective, should be used sparingly.
 /datum/material/durasteel
-	name = "durasteel"
+	name = MAT_DURASTEEL
 	stack_type = /obj/item/stack/material/durasteel
 	integrity = 600
 	melting_point = 7000
@@ -41,7 +41,7 @@
 	)
 
 /datum/material/iron
-	name = "iron"
+	name = MAT_IRON
 	stack_type = /obj/item/stack/material/iron
 	icon_colour = "#5C5454"
 	weight = 22
@@ -61,7 +61,7 @@
 	supply_conversion_value = 2
 
 /datum/material/gold
-	name = "gold"
+	name = MAT_GOLD
 	stack_type = /obj/item/stack/material/gold
 	icon_colour = "#EDD12F"
 	weight = 24
@@ -73,7 +73,7 @@
 	supply_conversion_value = 2
 
 /datum/material/silver
-	name = "silver"
+	name = MAT_SILVER
 	stack_type = /obj/item/stack/material/silver
 	icon_colour = "#D1E6E3"
 	weight = 22
@@ -85,7 +85,7 @@
 	supply_conversion_value = 2
 
 /datum/material/platinum
-	name = "platinum"
+	name = MAT_PLATINUM
 	stack_type = /obj/item/stack/material/platinum
 	icon_colour = "#9999FF"
 	weight = 27
@@ -96,7 +96,7 @@
 	supply_conversion_value = 5
 
 /datum/material/uranium
-	name = "uranium"
+	name = MAT_URANIUM
 	stack_type = /obj/item/stack/material/uranium
 	radioactivity = 12
 	icon_base = "stone"
@@ -108,7 +108,7 @@
 	supply_conversion_value = 2
 
 /datum/material/mhydrogen
-	name = "mhydrogen"
+	name = MAT_METALHYDROGEN
 	stack_type = /obj/item/stack/material/mhydrogen
 	icon_colour = "#E6C5DE"
 	stack_origin_tech = list(TECH_MATERIAL = 6, TECH_POWER = 6, TECH_MAGNET = 5)
@@ -117,7 +117,7 @@
 	supply_conversion_value = 6
 
 /datum/material/deuterium
-	name = "deuterium"
+	name = MAT_DEUTERIUM
 	stack_type = /obj/item/stack/material/deuterium
 	icon_colour = "#999999"
 	stack_origin_tech = list(TECH_MATERIAL = 3)
@@ -127,7 +127,7 @@
 	conductive = 0
 
 /datum/material/tritium
-	name = "tritium"
+	name = MAT_TRITIUM
 	stack_type = /obj/item/stack/material/tritium
 	icon_colour = "#777777"
 	stack_origin_tech = list(TECH_MATERIAL = 5)
@@ -137,7 +137,7 @@
 	conductive = 0
 
 /datum/material/osmium
-	name = "osmium"
+	name = MAT_OSMIUM
 	stack_type = /obj/item/stack/material/osmium
 	icon_colour = "#9999FF"
 	stack_origin_tech = list(TECH_MATERIAL = 5)
@@ -164,7 +164,7 @@
 	stack_origin_tech = list(TECH_MATERIAL = 2, TECH_MAGNET = 2)
 
 /datum/material/bronze
-	name = "bronze"
+	name = MAT_BRONZE
 	stack_type = /obj/item/stack/material/bronze
 	icon_colour = "#EDD12F"
 	icon_base = "solid"
@@ -174,9 +174,9 @@
 	protectiveness = 9 // 33%
 
 /datum/material/tin
-	name = "tin"
-	display_name = "tin"
-	use_name = "tin"
+	name = MAT_TIN
+	display_name = MAT_TIN
+	use_name = MAT_TIN
 	stack_type = /obj/item/stack/material/tin
 	icon_colour = "#b2afaf"
 	sheet_singular_name = "ingot"
@@ -186,9 +186,9 @@
 	weight = 13
 
 /datum/material/copper
-	name = "copper"
-	display_name = "copper"
-	use_name = "copper"
+	name = MAT_COPPER
+	display_name = MAT_COPPER
+	use_name = MAT_COPPER
 	stack_type = /obj/item/stack/material/copper
 	conductivity = 52
 	icon_colour = "#af633e"
@@ -199,9 +199,9 @@
 	hardness = 50
 
 /datum/material/aluminium
-	name = "aluminium"
-	display_name = "aluminium"
-	use_name = "aluminium"
+	name = MAT_ALUMINIUM
+	display_name = MAT_ALUMINIUM
+	use_name = MAT_ALUMINIUM
 	icon_colour = "#e5e2d0"
 	stack_type = /obj/item/stack/material/aluminium
 	sheet_singular_name = "ingot"

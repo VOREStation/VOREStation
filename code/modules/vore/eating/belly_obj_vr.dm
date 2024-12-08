@@ -626,7 +626,7 @@
 		var/mob/living/carbon/human/Pred = owner
 		if(ishuman(M))
 			var/mob/living/carbon/human/Prey = M
-			Prey.bloodstr.del_reagent("numbenzyme")
+			Prey.bloodstr.del_reagent(REAGENT_ID_NUMBENZYME)
 			Prey.bloodstr.trans_to_holder(Pred.bloodstr, Prey.bloodstr.total_volume, 0.5, TRUE) // Copy=TRUE because we're deleted anyway
 			Prey.ingested.trans_to_holder(Pred.bloodstr, Prey.ingested.total_volume, 0.5, TRUE) // Therefore don't bother spending cpu
 			Prey.touching.trans_to_holder(Pred.bloodstr, Prey.touching.total_volume, 0.5, TRUE) // On updating the prey's reagents

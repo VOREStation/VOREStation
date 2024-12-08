@@ -1,5 +1,5 @@
 /datum/material/diona
-	name = "biomass"
+	name = MAT_BIOMASS
 	icon_colour = null
 	stack_type = null
 	integrity = 600

@@ -1,9 +1,9 @@
 /datum/seed/corn
-	name = "corn"
-	seed_name = "corn"
+	name = PLANT_CORN
+	seed_name = PLANT_CORN
 	display_name = "ears of corn"
-	kitchen_tag = "corn"
-	chems = list("nutriment" = list(1,10), "cornoil" = list(3,15))
+	kitchen_tag = PLANT_CORN
+	chems = list(REAGENT_ID_NUTRIMENT = list(1,10), REAGENT_ID_CORNOIL = list(3,15))
 	trash_type = /obj/item/corncob
 
 /datum/seed/corn/New()

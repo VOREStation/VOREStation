@@ -92,7 +92,7 @@ GLOBAL_LIST_EMPTY(entertainment_screens)
 
 	var/static/icon/mask = icon('icons/obj/entertainment_monitor.dmi', "mask")
 
-	add_overlay("glass")
+	add_overlay(MAT_GLASS)
 
 	pinboard = new()
 	pinboard.icon = icon

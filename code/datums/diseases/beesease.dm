@@ -4,8 +4,8 @@
 	max_stages = 4
 	spread_text = "On contact"
 	spread_flags = CONTACT_GENERAL
-	cure_text = "Sugar"
-	cures = list("sugar")
+	cure_text = REAGENT_SUGAR
+	cures = list(REAGENT_ID_SUGAR)
 	agent = "Apidae Infection"
 	viable_mobtypes = list(/mob/living/carbon/human, /mob/living/carbon/human/monkey)
 	desc = "If left untreated, subject will regurgitate bees."

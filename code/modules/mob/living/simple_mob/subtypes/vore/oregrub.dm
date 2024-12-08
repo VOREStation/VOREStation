@@ -52,7 +52,7 @@
 	say_list_type = /datum/say_list/oregrub
 
 	var/poison_per_bite = 2.5
-	var/poison_type = "thermite_v" //burn baby burn
+	var/poison_type = REAGENT_ID_THERMITEV //burn baby burn
 	var/poison_chance = 50
 
 	var/min_ore = 4

@@ -44,7 +44,7 @@ List of things solar grubs should be able to do:
 	say_list_type = /datum/say_list/solargrub
 
 	var/poison_per_bite = 5 //grubs cause a shock when they bite someone
-	var/poison_type = "shockchem"
+	var/poison_type = REAGENT_ID_SHOCKCHEM
 	var/poison_chance = 50
 	var/datum/powernet/PN            // Our powernet
 	var/obj/structure/cable/attached        // the attached cable

@@ -27,7 +27,7 @@
 					if(desired_turf) // This shouldn't fail but...
 						var/obj/effect/effect/water/W = new /obj/effect/effect/water(get_turf(T))
 						W.create_reagents(60)
-						W.reagents.add_reagent(id = "water", amount = 60, data = null, safety = 0)
+						W.reagents.add_reagent(id = REAGENT_ID_WATER, amount = 60, data = null, safety = 0)
 						W.set_color()
 						W.set_up(desired_turf)
 						flick(initial(icon_state),W) // Otherwise pooling causes the animation to stay stuck at the end.
@@ -40,5 +40,5 @@
 			else
 				add_attack_logs(user,hit_atom,"Wetted the floor with [src] at [T.x],[T.y],[T.z]")
 		else if(hit_atom.reagents && !ismob(hit_atom))		//TODO: Something for the scepter
-			hit_atom.reagents.add_reagent(id = "water", amount = 60, data = null, safety = 0)
+			hit_atom.reagents.add_reagent(id = REAGENT_ID_WATER, amount = 60, data = null, safety = 0)
 		adjust_instability(5)

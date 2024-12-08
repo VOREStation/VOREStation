@@ -13,7 +13,7 @@
 	. = ..()
 	diseases += new /datum/disease/advance/cold
 	data["viruses"] = diseases
-	reagents.add_reagent("blood", 10, data)
+	reagents.add_reagent(REAGENT_ID_BLOOD, 10, data)
 
 /obj/item/reagent_containers/glass/bottle/culture/flu
 	name = "flu virus culture"
@@ -23,4 +23,4 @@
 	. = ..()
 	diseases += new /datum/disease/advance/flu
 	data["viruses"] = diseases
-	reagents.add_reagent("blood", 10, data)
+	reagents.add_reagent(REAGENT_ID_BLOOD, 10, data)

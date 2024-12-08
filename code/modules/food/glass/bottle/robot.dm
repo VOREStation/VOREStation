@@ -12,8 +12,8 @@
 	desc = "A small bottle. Contains inaprovaline - used to stabilize patients."
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "bottle-4"
-	reagent = "inaprovaline"
-	prefill = list("inaprovaline" = 60)
+	reagent = REAGENT_ID_INAPROVALINE
+	prefill = list(REAGENT_ID_INAPROVALINE = 60)
 
 
 /obj/item/reagent_containers/glass/bottle/robot/antitoxin
@@ -21,5 +21,5 @@
 	desc = "A small bottle of Anti-toxins. Counters poisons, and repairs damage, a wonder drug."
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "bottle-4"
-	reagent = "anti_toxin"
-	prefill = list("anti_toxin" = 60)
+	reagent = REAGENT_ID_ANTITOXIN
+	prefill = list(REAGENT_ID_ANTITOXIN = 60)

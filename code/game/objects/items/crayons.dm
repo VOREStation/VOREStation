@@ -115,7 +115,7 @@
 	if(M == user)
 		to_chat(user, "You take a bite of the crayon and swallow it.")
 		user.nutrition += 1
-		user.reagents.add_reagent("crayon_dust",min(5,uses)/3)
+		user.reagents.add_reagent(REAGENT_ID_CRAYONDUST,min(5,uses)/3)
 		if(uses)
 			uses -= 5
 			if(uses <= 0)
@@ -201,7 +201,7 @@
 	if(M == user)
 		to_chat(user, "You take a bite of the marker and swallow it.")
 		user.nutrition += 1
-		user.reagents.add_reagent("marker_ink",6)
+		user.reagents.add_reagent(REAGENT_ID_MARKERINK,6)
 		if(uses)
 			uses -= 5
 			if(uses <= 0)

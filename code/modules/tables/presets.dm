@@ -20,7 +20,7 @@
 	color = "#CCCCCC"
 
 /obj/structure/table/marble/New()
-	material = get_material_by_name("marble")
+	material = get_material_by_name(MAT_MARBLE)
 	..()
 
 /obj/structure/table/reinforced
@@ -46,7 +46,7 @@
 	color = "#824B28"
 
 /obj/structure/table/wooden_reinforced/New()
-	material = get_material_by_name("wood")
+	material = get_material_by_name(MAT_WOOD)
 	reinforced = get_material_by_name(MAT_STEEL)
 	..()
 
@@ -55,7 +55,7 @@
 	color = "#824B28"
 
 /obj/structure/table/woodentable/New()
-	material = get_material_by_name("wood")
+	material = get_material_by_name(MAT_WOOD)
 	..()
 
 /obj/structure/table/sifwoodentable
@@ -63,7 +63,7 @@
 	color = "#824B28"
 
 /obj/structure/table/sifwoodentable/New()
-	material = get_material_by_name("alien wood")
+	material = get_material_by_name(MAT_SIFWOOD)
 	..()
 
 /obj/structure/table/sifwooden_reinforced
@@ -71,7 +71,7 @@
 	color = "#824B28"
 
 /obj/structure/table/sifwooden_reinforced/New()
-	material = get_material_by_name("alien wood")
+	material = get_material_by_name(MAT_SIFWOOD)
 	reinforced = get_material_by_name(MAT_STEEL)
 	..()
 
@@ -80,14 +80,14 @@
 	color = "#42291a"
 
 /obj/structure/table/hardwoodtable/Initialize(mapload)
-	material = get_material_by_name("hardwood")
+	material = get_material_by_name(MAT_HARDWOOD)
 	return ..()
 
 /obj/structure/table/gamblingtable
 	icon_state = "gamble_preview"
 
 /obj/structure/table/gamblingtable/New()
-	material = get_material_by_name("wood")
+	material = get_material_by_name(MAT_WOOD)
 	carpeted = 1
 	..()
 
@@ -97,7 +97,7 @@
 	alpha = 77 // 0.3 * 255
 
 /obj/structure/table/glass/New()
-	material = get_material_by_name("glass")
+	material = get_material_by_name(MAT_GLASS)
 	..()
 
 /obj/structure/table/borosilicate
@@ -106,7 +106,7 @@
 	alpha = 77
 
 /obj/structure/table/borosilicate/New()
-	material = get_material_by_name("borosilicate glass")
+	material = get_material_by_name(MAT_PGLASS)
 	..()
 
 /obj/structure/table/holotable
@@ -164,7 +164,7 @@
 	color = "#CCCCCC"
 
 /obj/structure/table/bench/marble/New()
-	material = get_material_by_name("marble")
+	material = get_material_by_name(MAT_MARBLE)
 	..()
 /*
 /obj/structure/table/bench/reinforced
@@ -190,7 +190,7 @@
 	color = "#824B28"
 
 /obj/structure/table/bench/wooden_reinforced/New()
-	material = get_material_by_name("wood")
+	material = get_material_by_name(MAT_WOOD)
 	reinforced = get_material_by_name(MAT_STEEL)
 	..()
 */
@@ -199,7 +199,7 @@
 	color = "#824B28"
 
 /obj/structure/table/bench/wooden/New()
-	material = get_material_by_name("wood")
+	material = get_material_by_name(MAT_WOOD)
 	..()
 
 /obj/structure/table/bench/sifwooden
@@ -207,7 +207,7 @@
 	color = "#824B28"
 
 /obj/structure/table/bench/sifwooden/New()
-	material = get_material_by_name("alien wood")
+	material = get_material_by_name(MAT_SIFWOOD)
 	..()
 
 /obj/structure/table/bench/sifwooden/padded
@@ -228,7 +228,7 @@
 	alpha = 77 // 0.3 * 255
 
 /obj/structure/table/bench/glass/New()
-	material = get_material_by_name("glass")
+	material = get_material_by_name(MAT_GLASS)
 	..()
 
 /*

@@ -1,5 +1,5 @@
 /obj/item/stack/material/leather
-	name = "leather"
+	name = MAT_LEATHER
 	desc = "The by-product of mob grinding."
 	icon_state = "sheet-leather"
 	default_type = MAT_LEATHER
@@ -10,10 +10,10 @@
 	pickup_sound = 'sound/items/pickup/leather.ogg'
 
 /obj/item/stack/material/cloth
-	name = "cloth"
+	name = MAT_CLOTH
 	desc = "Individual fibers woven into a cloth."
 	icon_state = "sheet-cloth"
-	default_type = "cloth"
+	default_type = MAT_CLOTH
 	no_variants = FALSE
 	pass_color = TRUE
 	strict_color_stacking = TRUE

@@ -158,7 +158,7 @@
 	icon = 'icons/mob/snake_vr.dmi'
 	icon_state = "snack_yellow"
 	nutriment_amt = 1
-	nutriment_desc = list("sugar" = 1)
+	nutriment_desc = list(REAGENT_ID_SUGAR = 1)
 
 /obj/item/reagent_containers/food/snacks/snakesnack/Initialize()
 	. = ..()
@@ -166,7 +166,7 @@
 		snack_colour = pick( list("yellow","green","pink","blue") )
 	icon_state = "snack_[snack_colour]"
 	desc = "A little mouse treat made of coloured sugar. Noodle loves these! This one is [snack_colour]."
-	reagents.add_reagent("sugar", 2)
+	reagents.add_reagent(REAGENT_ID_SUGAR, 2)
 
 /obj/item/storage/box/snakesnackbox
 	name = "box of Snake Snax"

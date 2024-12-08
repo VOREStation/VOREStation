@@ -154,7 +154,7 @@
 	amount_per_transfer_from_this = 5
 	volume = 5
 	filled = 1
-	filled_reagents = list("inaprovaline" = 5)
+	filled_reagents = list(REAGENT_ID_INAPROVALINE = 5)
 	preserve_item = 0
 	hyposound = 'sound/effects/hypospray.ogg'
 
@@ -194,18 +194,18 @@
 /obj/item/reagent_containers/hypospray/autoinjector/detox
 	name = "autoinjector (antitox)"
 	icon_state = "green"
-	filled_reagents = list("anti_toxin" = 5)
+	filled_reagents = list(REAGENT_ID_ANTITOXIN = 5)
 
 //Special autoinjectors, while having potent chems like the 15u ones, the chems are usually potent enough that 5u is enough
 /obj/item/reagent_containers/hypospray/autoinjector/bonemed
 	name = "bone repair injector"
 	desc = "A rapid and safe way to administer small amounts of drugs by untrained or trained personnel. This one excels at treating damage to bones."
-	filled_reagents = list("osteodaxon" = 5)
+	filled_reagents = list(REAGENT_ID_OSTEODAXON = 5)
 
 /obj/item/reagent_containers/hypospray/autoinjector/clonemed
 	name = "clone injector"
 	desc = "A rapid and safe way to administer small amounts of drugs by untrained or trained personnel. This one excels at treating genetic damage."
-	filled_reagents = list("rezadone" = 5)
+	filled_reagents = list(REAGENT_ID_REZADONE = 5)
 
 // These have a 15u capacity, somewhat higher tech level, and generally more useful chems, but are otherwise the same as the regular autoinjectors.
 /obj/item/reagent_containers/hypospray/autoinjector/biginjector
@@ -215,7 +215,7 @@
 	amount_per_transfer_from_this = 15
 	volume = 15
 	origin_tech = list(TECH_BIO = 4)
-	filled_reagents = list("inaprovaline" = 15)
+	filled_reagents = list(REAGENT_ID_INAPROVALINE = 15)
 
 /obj/item/reagent_containers/hypospray/autoinjector/biginjector/empty //for the autolathe
 	name = "large autoinjector"
@@ -226,134 +226,134 @@
 	name = "trauma hypo"
 	desc = "A refined version of the standard autoinjector, allowing greater capacity.  This one is made to be used on victims of \
 	moderate blunt trauma."
-	filled_reagents = list("bicaridine" = 15)
+	filled_reagents = list(REAGENT_ID_BICARIDINE = 15)
 
 /obj/item/reagent_containers/hypospray/autoinjector/biginjector/burn
 	name = "burn hypo"
 	desc = "A refined version of the standard autoinjector, allowing greater capacity.  This one is made to be used on burn victims, \
 	featuring an optimized chemical mixture to allow for rapid healing."
-	filled_reagents = list("kelotane" = 7.5, "dermaline" = 7.5)
+	filled_reagents = list(REAGENT_ID_KELOTANE = 7.5, REAGENT_ID_DERMALINE = 7.5)
 
 /obj/item/reagent_containers/hypospray/autoinjector/biginjector/toxin
 	name = "toxin hypo"
 	desc = "A refined version of the standard autoinjector, allowing greater capacity.  This one is made to counteract toxins."
-	filled_reagents = list("anti_toxin" = 15)
+	filled_reagents = list(REAGENT_ID_ANTITOXIN = 15)
 
 /obj/item/reagent_containers/hypospray/autoinjector/biginjector/oxy
 	name = "oxy hypo"
 	desc = "A refined version of the standard autoinjector, allowing greater capacity.  This one is made to counteract oxygen \
 	deprivation."
-	filled_reagents = list("dexalinp" = 10, "tricordrazine" = 5)
+	filled_reagents = list(REAGENT_ID_DEXALINP = 10, REAGENT_ID_TRICORDRAZINE = 5)
 
 /obj/item/reagent_containers/hypospray/autoinjector/biginjector/purity
 	name = "purity hypo"
 	desc = "A refined version of the standard autoinjector, allowing greater capacity.  This variant excels at \
 	resolving viruses, infections, radiation, and genetic maladies."
-	filled_reagents = list("spaceacillin" = 4, "arithrazine" = 5, "prussian_blue" = 5, "ryetalyn" = 1)
+	filled_reagents = list(REAGENT_ID_SPACEACILLIN = 4, REAGENT_ID_ARITHRAZINE = 5, REAGENT_ID_PRUSSIANBLUE = 5, REAGENT_ID_RYETALYN = 1)
 
 /obj/item/reagent_containers/hypospray/autoinjector/biginjector/pain
 	name = "pain hypo"
 	desc = "A refined version of the standard autoinjector, allowing greater capacity.  This one contains potent painkillers."
-	filled_reagents = list("tramadol" = 15)
+	filled_reagents = list(REAGENT_ID_TRAMADOL = 15)
 
 /obj/item/reagent_containers/hypospray/autoinjector/biginjector/organ
 	name = "organ hypo"
 	desc = "A refined version of the standard autoinjector, allowing greater capacity.  Organ damage is resolved by this variant."
-	filled_reagents = list("alkysine" = 3, "imidazoline" = 2, "peridaxon" = 10)
+	filled_reagents = list(REAGENT_ID_ALKYSINE = 3, REAGENT_ID_IMIDAZOLINE = 2, REAGENT_ID_PERIDAXON = 10)
 
 /obj/item/reagent_containers/hypospray/autoinjector/biginjector/combat
 	name = "combat hypo"
 	desc = "A refined version of the standard autoinjector, allowing greater capacity.  This is a more dangerous and potentially \
 	addictive hypo compared to others, as it contains a potent cocktail of various chemicals to optimize the recipient's combat \
 	ability."
-	filled_reagents = list("bicaridine" = 3, "kelotane" = 1.5, "dermaline" = 1.5, "oxycodone" = 3, "hyperzine" = 3, "tricordrazine" = 3)
+	filled_reagents = list(REAGENT_ID_BICARIDINE = 3, REAGENT_ID_KELOTANE = 1.5, REAGENT_ID_DERMALINE = 1.5, REAGENT_ID_OXYCODONE = 3, REAGENT_ID_HYPERZINE = 3, REAGENT_ID_TRICORDRAZINE = 3)
 
 /obj/item/reagent_containers/hypospray/autoinjector/biginjector/clotting
 	name = "clotting agent"
 	desc = "A refined version of the standard autoinjector, allowing greater capacity. This variant excels at treating bleeding wounds and internal bleeding."
-	filled_reagents = list("inaprovaline" = 5, "myelamine" = 10)
+	filled_reagents = list(REAGENT_ID_INAPROVALINE = 5, REAGENT_ID_MYELAMINE = 10)
 
 /obj/item/reagent_containers/hypospray/autoinjector/biginjector/glucose
 	name = "glucose hypo"
 	desc = "A hypoinjector filled with glucose, used for critically malnourished patients and voidsuited workers."
-	filled_reagents = list("glucose" = 15)
+	filled_reagents = list(REAGENT_ID_GLUCOSE = 15)
 
 /obj/item/reagent_containers/hypospray/autoinjector/biginjector/stimm
 	name = "stimm injector"
 	desc = "A refined version of the standard autoinjector, allowing greater capacity. \
 	This one is filled with a home-made stimulant, with some serious side-effects."
-	filled_reagents = list("stimm" = 10) // More than 10u will OD.
+	filled_reagents = list(REAGENT_ID_STIMM = 10) // More than 10u will OD.
 
 /obj/item/reagent_containers/hypospray/autoinjector/biginjector/expired
 	name = "expired injector"
 	desc = "A refined version of the standard autoinjector, allowing greater capacity. \
 	This one has had its contents expire a long time ago, using it now will probably make someone sick, or worse."
-	filled_reagents = list("expired_medicine" = 15)
+	filled_reagents = list(REAGENT_ID_EXPIREDMEDICINE = 15)
 
 /obj/item/reagent_containers/hypospray/autoinjector/biginjector/soporific
 	name = "soporific injector"
 	desc = "A refined version of the standard autoinjector, allowing greater capacity. \
 	This one is sometimes used by orderlies, as it has soporifics, which make someone tired and fall asleep."
-	filled_reagents = list("stoxin" = 15)
+	filled_reagents = list(REAGENT_ID_STOXIN = 15)
 
 /obj/item/reagent_containers/hypospray/autoinjector/biginjector/cyanide
 	name = "cyanide injector"
 	desc = "A refined version of the standard autoinjector, allowing greater capacity. \
 	This one contains cyanide, a lethal poison. It being inside a medical autoinjector has certain unsettling implications."
-	filled_reagents = list("cyanide" = 15)
+	filled_reagents = list(REAGENT_ID_CYANIDE = 15)
 
 /obj/item/reagent_containers/hypospray/autoinjector/biginjector/serotrotium
 	name = "serotrotium injector"
 	desc = "A refined version of the standard autoinjector, allowing greater capacity. \
 	This one is filled with serotrotium, which causes concentrated production of the serotonin neurotransmitter in humans."
-	filled_reagents = list("serotrotium" = 15)
+	filled_reagents = list(REAGENT_ID_SEROTROTIUM = 15)
 
 /obj/item/reagent_containers/hypospray/autoinjector/biginjector/bliss
 	name = "illicit injector"
 	desc = "A refined version of the standard autoinjector, allowing greater capacity. \
 	This one contains various illicit drugs, held inside a hypospray to make smuggling easier."
-	filled_reagents = list("bliss" = 15)
+	filled_reagents = list(REAGENT_ID_BLISS = 15)
 
 /obj/item/reagent_containers/hypospray/autoinjector/biginjector/cryptobiolin
 	name = "cryptobiolin injector"
 	desc = "A refined version of the standard autoinjector, allowing greater capacity. \
 	This one contains cryptobiolin, which causes confusion."
-	filled_reagents = list("cryptobiolin" = 15)
+	filled_reagents = list(REAGENT_ID_CRYPTOBIOLIN = 15)
 
 /obj/item/reagent_containers/hypospray/autoinjector/biginjector/impedrezene
 	name = "impedrezene injector"
 	desc = "A refined version of the standard autoinjector, allowing greater capacity. \
 	This one has impedrezene inside, a narcotic that impairs higher brain functioning. \
 	This autoinjector is almost certainly created illegitimately."
-	filled_reagents = list("impedrezene" = 15)
+	filled_reagents = list(REAGENT_ID_IMPEDREZENE = 15)
 
 /obj/item/reagent_containers/hypospray/autoinjector/biginjector/mindbreaker
 	name = "mindbreaker injector"
 	desc = "A refined version of the standard autoinjector, allowing greater capacity. \
 	This one stores the dangerous hallucinogen called 'Mindbreaker', likely put in place \
 	by illicit groups hoping to hide their product."
-	filled_reagents = list("mindbreaker" = 15)
+	filled_reagents = list(REAGENT_ID_MINDBREAKER = 15)
 
 /obj/item/reagent_containers/hypospray/autoinjector/biginjector/psilocybin
 	name = "psilocybin injector"
 	desc = "A refined version of the standard autoinjector, allowing greater capacity. \
 	This has psilocybin inside, which is a strong psychotropic derived from certain species of mushroom. \
 	This autoinjector likely was made by criminal elements to avoid detection from casual inspection."
-	filled_reagents = list("psilocybin" = 15)
+	filled_reagents = list(REAGENT_ID_PSILOCYBIN = 15)
 
 /obj/item/reagent_containers/hypospray/autoinjector/biginjector/mutagen
 	name = "unstable mutagen injector"
 	desc = "A refined version of the standard autoinjector, allowing greater capacity. \
 	This contains unstable mutagen, which makes using this a very bad idea. It will either \
 	ruin your genetic health, turn you into a Five Points violation, or both!"
-	filled_reagents = list("mutagen" = 15)
+	filled_reagents = list(REAGENT_ID_MUTAGEN = 15)
 
 /obj/item/reagent_containers/hypospray/autoinjector/biginjector/lexorin
 	name = "lexorin injector"
 	desc = "A refined version of the standard autoinjector, allowing greater capacity. \
 	This contains lexorin, a dangerous toxin that stops respiration, and has been \
 	implicated in several high-profile assassinations in the past."
-	filled_reagents = list("lexorin" = 15)
+	filled_reagents = list(REAGENT_ID_LEXORIN = 15)
 
 /obj/item/reagent_containers/hypospray/autoinjector/biginjector/healing_nanites
 	name = "medical nanite injector"
@@ -361,7 +361,7 @@
 	The injector stores a slurry of highly advanced and specialized nanomachines designed \
 	to restore bodily health from within. The nanomachines are short-lived but degrade \
 	harmlessly, and cannot self-replicate in order to remain Five Points compliant."
-	filled_reagents = list("healing_nanites" = 15)
+	filled_reagents = list(REAGENT_ID_HEALINGNANITES = 15)
 
 /obj/item/reagent_containers/hypospray/autoinjector/biginjector/defective_nanites
 	name = "defective nanite injector"
@@ -369,14 +369,14 @@
 	The injector stores a slurry of highly advanced and specialized nanomachines that \
 	are unfortunately malfunctioning, making them unsafe to use inside of a living body. \
 	Because of the Five Points, these nanites cannot self-replicate."
-	filled_reagents = list("defective_nanites" = 15)
+	filled_reagents = list(REAGENT_ID_DEFECTIVENANITES = 15)
 
 /obj/item/reagent_containers/hypospray/autoinjector/biginjector/contaminated
 	name = "contaminated injector"
 	desc = "A refined version of the standard autoinjector, allowing greater capacity. \
 	The hypospray contains a viral agent inside, as well as a liquid substance that encourages \
 	the growth of the virus inside."
-	filled_reagents = list("virusfood" = 15)
+	filled_reagents = list(REAGENT_ID_VIRUSFOOD = 15)
 
 /obj/item/reagent_containers/hypospray/autoinjector/biginjector/contaminated/do_injection(mob/living/carbon/human/H, mob/living/user)
 	. = ..()

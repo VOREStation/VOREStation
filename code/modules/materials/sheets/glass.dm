@@ -10,24 +10,24 @@
 /obj/item/stack/material/glass/reinforced
 	name = "reinforced glass"
 	icon_state = "sheet-rtransparent"
-	default_type = "rglass"
+	default_type = MAT_RGLASS
 	no_variants = FALSE
 	apply_colour = TRUE
 
 /obj/item/stack/material/glass/phoronglass
-	name = "borosilicate glass"
+	name = MAT_PGLASS
 	desc = "This sheet is special platinum-glass alloy designed to withstand large temperatures"
 	singular_name = "borosilicate glass sheet"
 	icon_state = "sheet-transparent"
-	default_type = "borosilicate glass"
+	default_type = MAT_PGLASS
 	no_variants = FALSE
 	apply_colour = TRUE
 
 /obj/item/stack/material/glass/phoronrglass
-	name = "reinforced borosilicate glass"
+	name = MAT_RPGLASS
 	desc = "This sheet is special platinum-glass alloy designed to withstand large temperatures. It is reinforced with few rods."
 	singular_name = "reinforced borosilicate glass sheet"
 	icon_state = "sheet-rtransparent"
-	default_type = "reinforced borosilicate glass"
+	default_type = MAT_RPGLASS
 	no_variants = FALSE
 	apply_colour = TRUE

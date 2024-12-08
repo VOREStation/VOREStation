@@ -1,11 +1,11 @@
 //Tobacco/varieties.
 /datum/seed/tobacco
-	name = "tobacco"
-	seed_name = "tobacco"
-	display_name = "tobacco"
-	kitchen_tag = "tobacco"
+	name = PLANT_TOBACCO
+	seed_name = PLANT_TOBACCO
+	display_name = PLANT_TOBACCO
+	kitchen_tag = PLANT_TOBACCO
 	mutants = list("stimbush")
-	chems = list("nutriment" = list(1,15), "nicotine" = list(1,20))
+	chems = list(REAGENT_ID_NUTRIMENT = list(1,15), REAGENT_ID_NICOTINE = list(1,20))
 
 /datum/seed/tobacco/New()
 	..()
@@ -23,7 +23,7 @@
 	name = "stimbush"
 	seed_name = "stim-bush"
 	display_name = "stim-bush"
-	chems = list("nutriment" = list(1,10), "hyperzine" = list(1,10), "synaptizine" = list(1,5))
+	chems = list(REAGENT_ID_NUTRIMENT = list(1,10), REAGENT_ID_HYPERZINE = list(1,10), REAGENT_ID_SYNAPTIZINE = list(1,5))
 
 /datum/seed/tobacco/stimbush/New()
 	..()

@@ -75,7 +75,7 @@
 	if(ismob(target) && proximity_flag)
 		// Clicked protean blob
 		if(istype(target, /mob/living/simple_mob/protean_blob))
-			sipp_mob(target, user, "liquid_protean")
+			sipp_mob(target, user, REAGENT_ID_LIQUIDPROTEAN)
 			return
 		// Clicked humanoid
 		else if(ishuman(target))
@@ -83,14 +83,14 @@
 			var/speciesname = H.species?.name
 			switch(speciesname)
 				if(SPECIES_PROTEAN)
-					sipp_mob(target, user, "liquid_protean")
+					sipp_mob(target, user, REAGENT_ID_LIQUIDPROTEAN)
 					return
 				if(SPECIES_PROMETHEAN)
-					sipp_mob(target, user, "nutriment")
+					sipp_mob(target, user, REAGENT_ID_NUTRIMENT)
 					return
 	return ..()
 
-/obj/item/glass_extra/straw/proc/sipp_mob(mob/living/victim, mob/user, reagent_type = "nutriment")
+/obj/item/glass_extra/straw/proc/sipp_mob(mob/living/victim, mob/user, reagent_type = REAGENT_ID_NUTRIMENT)
 	if(victim.health <= 0)
 		to_chat(user, span_warning("There's not enough of [victim] left to sip on!"))
 		return

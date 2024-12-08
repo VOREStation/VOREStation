@@ -1,9 +1,9 @@
 /datum/seed/watermelon
-	name = "watermelon"
-	seed_name = "watermelon"
+	name = PLANT_WATERMELON
+	seed_name = PLANT_WATERMELON
 	display_name = "watermelon vine"
-	kitchen_tag = "watermelon"
-	chems = list("nutriment" = list(1,6), "watermelonjuice" = list(10,6))
+	kitchen_tag = PLANT_WATERMELON
+	chems = list(REAGENT_ID_NUTRIMENT = list(1,6), REAGENT_ID_WATERMELONJUICE = list(10,6))
 
 /datum/seed/watermelon/New()
 	..()

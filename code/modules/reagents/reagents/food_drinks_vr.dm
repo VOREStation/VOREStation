@@ -2,8 +2,8 @@
 	nutriment_factor = 10
 
 /datum/reagent/toxin/meatcolony
-	name = "A colony of meat cells"
-	id = "meatcolony"
+	name = REAGENT_MEATCOLONY
+	id = REAGENT_ID_MEATCOLONY
 	description = "Specialised cells designed to produce a large amount of meat once activated, whilst manufacturers have managed to stop these cells from taking over the body when ingested, it's still poisonous."
 	taste_description = "a fibrous mess"
 	reagent_state = LIQUID
@@ -11,8 +11,8 @@
 	strength = 10
 
 /datum/reagent/toxin/plantcolony
-	name = "A colony of plant cells"
-	id = "plantcolony"
+	name = REAGENT_PLANTCOLONY
+	id = REAGENT_ID_PLANTCOLONY
 	description = "Specialised cells designed to produce a large amount of nutriment once activated, whilst manufacturers have managed to stop these cells from taking over the body when ingested, it's still poisonous."
 	taste_description = "a fibrous mess"
 	reagent_state = LIQUID
@@ -20,8 +20,8 @@
 	strength = 10
 
 /datum/reagent/nutriment/grubshake
-	name = "Grub shake"
-	id = "grubshake"
+	name = REAGENT_GRUBSHAKE
+	id = REAGENT_ID_GRUBSHAKE
 	description = "An odd fluid made from grub guts, supposedly filling."
 	taste_description = "sparkles"
 	taste_mult = 1.3
@@ -32,8 +32,8 @@
 	M.adjust_nutrition(-20 * removed)
 
 /datum/reagent/ethanol/burnout
-	name = "Burnout"
-	id = "burnout"
+	name = REAGENT_BURNOUT
+	id = REAGENT_ID_BURNOUT
 	description = "A bubbling orange alcoholic fluid that radiates a large amount of heat."
 	taste_description = "powerful alcoholic inferno"
 	color = "#cc5500"
@@ -42,7 +42,7 @@
 	adj_temp = 10
 	targ_temp = 380
 
-	glass_name = "Burnout"
+	glass_name = REAGENT_BURNOUT
 	glass_desc = "A swirling brew of fluids that leaves even the glass itself hot to the touch."
 
 /datum/reagent/ethanol/burnout/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
@@ -67,8 +67,8 @@
 					M.visible_message(span_warning("[M] [pick("dry heaves!","coughs!","splutters!")]"), pick(span_danger("You feel like your insides are burning!"), span_danger("You feel like your insides are on fire!"), span_danger("You feel like your belly is full of lava!")))
 
 /datum/reagent/ethanol/monstertamer
-	name = "Monster Tamer"
-	id = "monstertamer"
+	name = REAGENT_MONSTERTAMER
+	id = REAGENT_ID_MONSTERTAMER
 	description = "A questionably-delicious blend of a carnivore's favorite food and a potent neural depressant."
 	taste_description = "the gross yet satisfying combination of chewing on a raw steak while downing a shot of whiskey"
 	strength = 50
@@ -77,7 +77,7 @@
 	var/alt_nutriment_factor = 5 //half as much as protein since it's half protein.
 	//using a new variable instead of nutriment_factor so we can call ..() without that adding nutrition for us without taking factors for protein into account
 
-	glass_name = "Monster Tamer"
+	glass_name = REAGENT_MONSTERTAMER
 	glass_desc = "This looks like a vaguely-alcoholic slurry of meat. Gross."
 
 /datum/reagent/ethanol/monstertamer/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
@@ -115,63 +115,63 @@
 			M.adjust_nutrition(alt_nutriment_factor * removed)
 
 /datum/reagent/ethanol/pink_russian
-	name = "Pink Russian"
-	id = "pinkrussian"
+	name = REAGENT_PINKRUSSIAN
+	id = REAGENT_ID_PINKRUSSIAN
 	description = "Like a White Russian but with 100% more pink!"
 	taste_description = "strawberry icecream, with a coffee kick"
 	color = "#d789bd"
 	strength = 15
 
-	glass_name = "Pink Russian"
+	glass_name = REAGENT_PINKRUSSIAN
 	glass_desc = "A very pink drink, yet with strong sense of power to it."
 
 /datum/reagent/ethanol/originalsin
-	name = "Original Sin"
-	id = "originalsin"
+	name = REAGENT_ORIGINALSIN
+	id = REAGENT_ID_ORIGINALSIN
 	description = "Angel Ichor, entirely transformed by one drop of apple juice"
 	taste_description = "the apple Eve gave to Adam"
 	color = "#99CC35"
 	strength = 17
 
-	glass_name = "Original Sin"
+	glass_name = REAGENT_ORIGINALSIN
 	glass_desc = "A drink so fine, you may just risk eternal damnation!"
 
 /datum/reagent/ethanol/newyorksour
-	name = "New York Sour"
-	id = "newyorksour"
+	name = REAGENT_NEWYORKSOUR
+	id = REAGENT_ID_NEWYORKSOUR
 	description = "Whiskey sour, with a layer of wine and egg white."
 	taste_description = "refreshing lemoned whiskey, smoothed with wine"
 	color = "#FFBF3C"
 	strength = 17
 
-	glass_name = "New York Sour"
+	glass_name = REAGENT_NEWYORKSOUR
 	glass_desc = "A carefully poured three layered drink"
 
 /datum/reagent/ethanol/windgarita
-	name = "WND-Garita"
-	id = "windgarita"
+	name = REAGENT_WINDGARITA
+	id = REAGENT_ID_WINDGARITA
 	description = "A highly questionable combination of margarita and Space Mountain Wind"
 	taste_description = "like sin, and some tequilia"
 	color = "#90D93D"
 	strength = 15
 
-	glass_name = "WND-Garita"
+	glass_name = REAGENT_WINDGARITA
 	glass_desc = "Who the hell comes up with these drinks?!"
 
 /datum/reagent/ethanol/mudslide
-	name = "Mudslide"
-	id = "mudslide"
+	name = REAGENT_MUDSLIDE
+	id = REAGENT_ID_MUDSLIDE
 	description = "Vodka, Kahlua and Irish Cream together at last."
 	taste_description = "a mocha milkshake, with a splash of vodka."
 	color = "#8B6338"
 	strength = 13
 
-	glass_name = "Mudslide"
+	glass_name = REAGENT_MUDSLIDE
 	glass_desc = "A richly coloured drink, comes with a chocolate garnish!"
 
 /datum/reagent/ethanol/galacticpanic
-	name = "Galactic Panic Attack"
-	id = "galacticpanic"
+	name = REAGENT_GALACTICPANIC
+	id = REAGENT_ID_GALACTICPANIC
 	description = "The absolute worst thing you could ever put in your body."
 	taste_description = "an entire galaxy collasping in on itself"
 	strength = 10
@@ -180,7 +180,7 @@
 	var/adj_dizzy = 10
 	color = "#d3785d"
 
-	glass_name = "Galactic Panic Attack"
+	glass_name = REAGENT_GALACTICPANIC
 	glass_desc = "Looking into this is like staring at the stars."
 
 /datum/reagent/ethanol/galacticpanic/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
@@ -197,30 +197,30 @@
 			M.slurring = max(M.slurring, 30)
 
 /datum/reagent/ethanol/bulldog
-	name = "Space Bulldog"
-	id = "bulldog"
+	name = REAGENT_BULLDOG
+	id = REAGENT_ID_BULLDOG
 	description = "An inventive kahlua recipe."
 	taste_description = "fizzy, creamy, soda and coffee hell"
 	strength = 30
 	color = "#d3785d"
 
-	glass_name = "Space Bulldog"
+	glass_name = REAGENT_BULLDOG
 	glass_desc = "It looks like someone poured cola in a cup of coffee."
 
 /datum/reagent/ethanol/sbagliato
-	name = "Negroni Sbagliato"
-	id = "sbagliato"
+	name = REAGENT_SBAGLIATO
+	id = REAGENT_ID_SBAGLIATO
 	description = "A drink invented because a bartender was too drunk."
 	taste_description = "sweet bubbly wine and vermouth"
 	strength = 30
 	color = "#d3785d"
 
-	glass_name = "Negroni Sbagliato"
+	glass_name = REAGENT_SBAGLIATO
 	glass_desc = "Bubbles constantly pop up to the surface with a quiet fizz."
 
 /datum/reagent/ethanol/italiancrisis
-	name = "Italian Crisis"
-	id = "italiancrisis"
+	name = REAGENT_ITALIANCRISIS
+	id = REAGENT_ID_ITALIANCRISIS
 	description = "This drink was concocted by a madwoman, causing the Italian Crisis of 2123."
 	taste_description = "cola, fruit, fizz, coffee, and cream swirled together in an old boot"
 	strength = 20
@@ -229,34 +229,34 @@
 	var/adj_dizzy = 0
 	color = "#d3785d"
 
-	glass_name = "Italian Crisis"
+	glass_name = REAGENT_ITALIANCRISIS
 	glass_desc = "This drink looks like it was a mistake."
 
 /datum/reagent/ethanol/sugarrush
-	name = "Sweet Rush"
-	id = "sugarrush"
+	name = REAGENT_SUGARRUSH
+	id = REAGENT_ID_SUGARRUSH
 	description = "A favorite drink amongst poor bartenders living in Neo Detroit."
 	taste_description = "sweet bubblegum vodka"
 	strength = 30
 	color = "#d3785d"
 
-	glass_name = "Sweet Rush"
+	glass_name = REAGENT_SUGARRUSH
 	glass_desc = "This looks like it might rot your teeth out."
 
 /datum/reagent/ethanol/lotus
-	name = "Lotus"
-	id = "lotus"
+	name = REAGENT_LOTUS
+	id = REAGENT_ID_LOTUS
 	description = "The result of making one mistake after another and trying to cover it up with sugar."
 	taste_description = "rich, sweet fruit and even more sugar"
 	strength = 25
 	color = "#d3785d"
 
-	glass_name = "Lotus"
+	glass_name = REAGENT_LOTUS
 	glass_desc = "A promotional drink for a movie that only ever played in Neo Detroit theatres."
 
 /datum/reagent/ethanol/shroomjuice
-	name = "Dumb Shroom Juice"
-	id = "shroomjuice"
+	name = REAGENT_SHROOMJUICE
+	id = REAGENT_ID_SHROOMJUICE
 	description = "The mushroom farmer didn't sort through their stock very well."
 	taste_description = "sweet and sour citrus with a savory kick"
 	strength = 100
@@ -265,19 +265,19 @@
 	var/adj_dizzy = 30
 	color = "#d3785d"
 
-	glass_name = "Dumb Shroom Juice"
+	glass_name = REAGENT_SHROOMJUICE
 	glass_desc = "Touch fuzzy, get dizzy."
 
 /datum/reagent/ethanol/russianroulette
-	name = "Russian Roulette"
-	id = "russianroulette"
+	name = REAGENT_RUSSIANROULETTE
+	id = REAGENT_ID_RUSSIANROULETTE
 	description = "The perfect drink for wagering your liver on a game of cards."
 	taste_description = "coffee, vodka, cream, and a hot metal slug"
 	strength = 30
 	var/adj_dizzy = 30
 	color = "#d3785d"
 
-	glass_name = "Russian Roulette"
+	glass_name = REAGENT_RUSSIANROULETTE
 	glass_desc = "A favorite drink amongst the Pan-Slavic speaking community."
 
 /datum/reagent/ethanol/russianroulette/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
@@ -287,8 +287,8 @@
 		M.Stun(2)
 
 /datum/reagent/ethanol/lovemaker
-	name = "The Love Maker"
-	id = "lovemaker"
+	name = REAGENT_LOVEMAKER
+	id = REAGENT_ID_LOVEMAKER
 	description = "A drink said to help one find true love."
 	taste_description = "sweet fruit and honey"
 	strength = 30
@@ -299,35 +299,35 @@
 	targ_temp = 360
 	color = "#d3785d"
 
-	glass_name = "The Love Maker"
+	glass_name = REAGENT_LOVEMAKER
 	glass_desc = "A drink said to help one find the perfect fuck."
 
 /datum/reagent/ethanol/honeyshot
-	name = "Honey Shot"
-	id = "honeyshot"
+	name = REAGENT_HONEYSHOT
+	id = REAGENT_ID_HONEYSHOT
 	description = "The perfect drink for bees."
 	taste_description = "sweet tart grenadine flavored with honey"
 	strength = 40
 	var/adj_dizzy = 10
 	color = "#d3785d"
 
-	glass_name = "Honey shot"
+	glass_name = REAGENT_HONEYSHOT
 	glass_desc = "A glass of golden liquid."
 
 /datum/reagent/ethanol/appletini
-	name = "Appletini"
-	id = "appletini"
+	name = REAGENT_APPLETINI
+	id = REAGENT_ID_APPLETINIT
 	description = "A classic cocktail using every grandma's favorite fruit."
 	taste_description = "green sour apple with a hint of alcohol"
 	strength = 45
 	color = "#d3785d"
 
-	glass_name = "Appletini"
+	glass_name = REAGENT_APPLETINI
 	glass_desc = "The perfect fruit cocktail for a fancy night at the bar."
 
 /datum/reagent/ethanol/glowingappletini
-	name = "Glowing Appletini"
-	id = "glowingappletini"
+	name = REAGENT_GLOWINGAPPLETINI
+	id = REAGENT_ID_GLOWINGAPPLETINI
 	description = "A new nuclear take on a pre-modern classic!"
 	taste_description = "overwhelmingly sour apples powered by a nuclear fission reactor"
 	strength = 30
@@ -335,12 +335,12 @@
 	var/adj_dizzy = 20
 	color = "#d3785d"
 
-	glass_name = "Glowing Appletini"
+	glass_name = REAGENT_GLOWINGAPPLETINI
 	glass_desc = "The atomic option to fruity cocktails."
 
 /datum/reagent/ethanol/scsatw
-	name = "Slow Comfortable Screw Against the Wall"
-	id = "scsatw"
+	name = REAGENT_SCSATW
+	id = REAGENT_ID_SCSATW
 	description = "The screwdriver's bigger cousin."
 	taste_description = "smooth, savory booze and tangy orange juice"
 	strength = 30
@@ -349,22 +349,22 @@
 	var/adj_dizzy = 0
 	color = "#d3785d"
 
-	glass_name = "Slow Comfortable Screw Against the Wall"
+	glass_name = REAGENT_SCSATW
 	glass_desc = "The best accessory to daydrinking."
 
 /datum/reagent/drink/choccymilk
-	name = "Choccy Milk"
-	id = "choccymilk"
+	name = REAGENT_CHOCCYMILK
+	id = REAGENT_ID_CHOCCYMILK
 	description = "Coco and milk, a timeless classic."
 	taste_description = "sophisticated bittersweet chocolate mixed with silky, creamy, whole milk"
 	color = "#d3785d"
 
-	glass_name = "Choccy Milk"
+	glass_name = REAGENT_CHOCCYMILK
 	glass_desc = "The most iconic duo in the galaxy, chocolate, and milk."
 
 /datum/reagent/ethanol/redspaceflush
-	name = "Red Space Flush"
-	id = "redspaceflush"
+	name = REAGENT_REDSPACEFLUSH
+	id = REAGENT_ID_REDSPACEFLUSH
 	description = "A drink made by imbueing the essence of redspace into the spirits."
 	taste_description = "whiskey and rum strung out through a hellish dimensional rift"
 	strength = 30
@@ -372,66 +372,66 @@
 	var/adj_dizzy = 10
 	color = "#d3785d"
 
-	glass_name = "Redspace Flush"
+	glass_name = REAGENT_REDSPACEFLUSH
 	glass_desc = "A drink imbued with the very essence of Redspace."
 
 /datum/reagent/drink/graveyard
-	name = "Graveyard"
-	id = "graveyard"
+	name = REAGENT_GRAVEYARD
+	id = REAGENT_ID_GRAVEYARD
 	description = "The result of taking a cup and filling it with all the drinks at the fountain."
 	taste_description = "sugar and fizz"
 	color = "#d3785d"
 
-	glass_name = "Graveyard"
+	glass_name = REAGENT_GRAVEYARD
 	glass_desc = "Hahaha softdrink machine go pshshhhhh..."
 
 /datum/reagent/ethanol/bigbeer
-	name = "Giant Beer"
-	id = "bigbeer"
+	name = REAGENT_BIGBEER
+	id = REAGENT_ID_BIGBEER
 	description = "Bars in Neo Detroit started to sell this drink when the city put mandatory drink limits in 2289."
 	taste_description = "beer, but bigger"
 	strength = 40
 	color = "#d3785d"
 
-	glass_name = "Giant Beer"
+	glass_name = REAGENT_BIGBEER
 	glass_desc = "The Neo Detroit beer and ale cocktail, perfect for your average drunk."
 
 /datum/reagent/ethanol/manager_summoner
-	name = "Manager Summoner"
-	id = "manager_summoner"
+	name = REAGENT_MANAGERSUMMONER
+	id = REAGENT_ID_MANAGERSUMMONER
 	description = "A horrifying cocktail for those who desperately want feel above their peers."
 	taste_description = "bitter and sweet, with a hint of superiority"
 	strength = 30
 	color = "#c9716b"
 
-	glass_name = "Manager Summoner"
+	glass_name = REAGENT_MANAGERSUMMONER
 	glass_desc = "The dreaded red juice of those who insist on taking advantage of minor positions of power to make the lives of bar staff unbearable."
 
 /datum/reagent/drink/sweettea
-	name = "Sweet Tea"
-	id = "sweettea"
+	name = REAGENT_SWEETTEA
+	id = REAGENT_ID_SWEETTEA
 	description = "Tea that is sweetened with some form of sweetener."
 	taste_description = "tea that is sweet"
 	color = "#d3785d"
 
-	glass_name = "Sweet Tea"
+	glass_name = REAGENT_SWEETTEA
 	glass_desc = "A southern classic. Southern what? You know, southern."
 
 /datum/reagent/ethanol/unsweettea
-	name = "Unsweetened Tea"
-	id = "unsweettea"
+	name = REAGENT_UNSWEETTEA
+	id = REAGENT_ID_UNSWEETTEA
 	description = "A sick experiment to take the sweetness out of tea after sugar has been added resulted in this."
 	taste_description = "bland, slightly bitter, discount black tea"
 	strength = 80
 	druggy = 10
 	color = "#d3785d"
 
-	glass_name = "Unsweetened Tea"
+	glass_name = REAGENT_UNSWEETTEA
 	glass_desc = "A drink with all the calories of sweet tea, but with none of the satisfaction. Slightly psychoactive."
 
 /datum/reagent/ethanol/hairoftherat
-	name = "Hair of the Rat"
-	id = "hairoftherat"
+	name = REAGENT_HAIROFTHERAT
+	id = REAGENT_ID_HAIROFTHERAT
 	description = "A meatier version of the monster tamer, complete with extra meat."
 	taste_description = "meat, whiskey, ground meat, and more meat"
 	strength = 45
@@ -440,7 +440,7 @@
 	var/alt_nutriment_factor = 5 //half as much as protein since it's half protein.
 	//using a new variable instead of nutriment_factor so we can call ..() without that adding nutrition for us without taking factors for protein into account
 
-	glass_name = "Hair of the Rat"
+	glass_name = REAGENT_HAIROFTHERAT
 	glass_desc = "The alcoholic equivalent of saying your burger isn't cooked rare enough."
 
 /datum/reagent/ethanol/hairoftherat/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
@@ -480,8 +480,8 @@
 //////////////////////Bepis Drinks (04/29/2021)//////////////////////
 
 /datum/reagent/drink/soda/bepis_cola
-	name = "Bepis"
-	id = "bepis"
+	name = REAGENT_BEPIS
+	id = REAGENT_ID_BEPIS
 	description = "A weird cola-like beverage."
 	taste_description = "bepsi"
 	reagent_state = LIQUID
@@ -489,13 +489,13 @@
 	adj_drowsy = -3
 	adj_temp = -5
 
-	glass_name = "Bepis Cola"
+	glass_name = REAGENT_BEPIS
 	glass_desc = "A glass of weird cola beverage."
 	glass_special = list(DRINK_FIZZ)
 
 /datum/reagent/drink/soda/buzz_fuzz
-	name = "Buzz Fuzz"
-	id = "buzz_fuzz"
+	name = REAGENT_BUZZFUZZ
+	id = REAGENT_ID_BUZZFUZZ
 	description = "A delicious frontier beverage that's simply a Hive of Flavour!"
 	taste_description = "carbonated honey and pollen"
 	reagent_state = LIQUID
@@ -503,13 +503,13 @@
 	adj_drowsy = -3
 	adj_temp = -5
 
-	glass_name = "Buzz Fuzz"
+	glass_name = REAGENT_BUZZFUZZ
 	glass_desc = "A glass that's stinging with flavour."
 	glass_special = list(DRINK_FIZZ)
 
 /datum/reagent/drink/soda/sprited_cranberry
-	name = "Sprited Cranberry"
-	id = "sprited_cranberry"
+	name = REAGENT_SPRITEDCRANBERRY
+	id = REAGENT_ID_SPRITEDCRANBERRY
 	description = "A winter spiced cranberry drink. Perfect for year-round consumption."
 	taste_description = "sweet spiced cranberry"
 	reagent_state = LIQUID
@@ -517,13 +517,13 @@
 	adj_drowsy = -3
 	adj_temp = -5
 
-	glass_name = "Sprited Cranberry"
+	glass_name = REAGENT_SPRITEDCRANBERRY
 	glass_desc = "A glass of sprited cranberry"
 	glass_special = list(DRINK_FIZZ)
 
 /datum/reagent/drink/soda/shamblers
-	name = "Shambler's Juice"
-	id = "shamblers"
+	name = REAGENT_SHAMBLERS
+	id = REAGENT_ID_SHAMBLERS
 	description = "A strange off-brand beverage that's bursting with flavor."
 	taste_description = "carbonated metallic soda"
 	reagent_state = LIQUID
@@ -531,15 +531,15 @@
 	adj_drowsy = -3
 	adj_temp = -5
 
-	glass_name = "Shambler's Juice"
+	glass_name = REAGENT_SHAMBLERS
 	glass_desc = "A glass of something shambly"
 	glass_special = list(DRINK_FIZZ)
 
 ////////////////START BrainzSnax Reagents////////////////
 
 /datum/reagent/nutriment/protein/brainzsnax
-	name = "grey matter"
-	id = "brain_protein"
+	name = REAGENT_BRAINPROTEIN
+	id = REAGENT_ID_BRAINPROTEIN
 	taste_description = "fatty, mushy meat and allspice"
 	color = "#caa3c9"
 
@@ -560,150 +560,150 @@
 				log_and_message_admins("is no longer feral.", H)
 
 /datum/reagent/nutriment/protein/brainzsnax/red
-	id = "red_brain_protein"
+	id = REAGENT_ID_REDBRAINPROTEIN
 	taste_description = "fatty, mushy meat and cheap tomato sauce"
 	color = "#a6898d"
 
 ////////////////END BrainzSnax Reagents////////////////
 
 /datum/reagent/nutriment/protein_powder
-	name = "Protein Powder"
-	id = "protein_powder"
+	name = REAGENT_PROTEINPOWDER
+	id = REAGENT_ID_PROTEINPOWDER
 	description = "Pure, powdered protein commonly used as a meal supplement."
 	taste_description = "powdery protein"
 	color = "#f4e6dd"
 
 /datum/reagent/nutriment/protein_shake
-	name = "Protein Shake"
-	id = "protein_shake"
+	name = REAGENT_PROTEINSHAKE
+	id = REAGENT_ID_PROTEINSHAKE
 	description = "A mixture of water and protein commonly used as a meal supplement."
 	taste_description = "pure protein"
 	color = "#ebd8cb"
 
 /datum/reagent/nutriment/protein_powder/vanilla
-	name = "Vanilla Protein Powder"
-	id = "vanilla_protein_powder"
+	name = REAGENT_VANILLAPROTEINPOWDER
+	id = REAGENT_ID_VANILLAPROTEINPOWDER
 	description = "Pure, powdered protein commonly used as a meal supplement. This one has added vanilla flavoring."
 	taste_description = "powdery vanilla"
 	color = "#fff7d2"
 
 /datum/reagent/nutriment/protein_shake/vanilla
-	name = "Vanilla Protein Shake"
-	id = "vanilla_protein_shake"
+	name = REAGENT_VANILLAPROTEINSHAKE
+	id = REAGENT_ID_VANILLAPROTEINSHAKER
 	description = "A mixture of water and protein commonly used as a meal supplement. This one has added vanilla flavoring."
 	taste_description = "vanilla"
 	color = "#faefbc"
 
 /datum/reagent/nutriment/protein_powder/banana
-	name = "Banana Protein Powder"
-	id = "banana_protein_powder"
+	name = REAGENT_BANANAPROTEINPOWDER
+	id = REAGENT_ID_BANANAPROTEINPOWDER
 	description = "Pure, powdered protein commonly used as a meal supplement. This one has added banana flavoring."
 	taste_description = "powdery banana"
 	color = "#faefbc"
 
 /datum/reagent/nutriment/protein_shake/banana
-	name = "Banana Protein Powder"
-	id = "banana_protein_shake"
+	name = REAGENT_BANANAPROTEINSHAKE
+	id = REAGENT_ID_BANANAPROTEINSHAKE
 	description = "A mixture of water and protein commonly used as a meal supplement. This one has added banana flavoring."
 	taste_description = "banana"
 	color = "#e6daa1"
 
 /datum/reagent/nutriment/protein_powder/chocolate
-	name = "Chocolate Protein Powder"
-	id = "chocolate_protein_powder"
+	name = REAGENT_CHOCOLATEPROTEINPOWDER
+	id = REAGENT_ID_CHOCOLATEPROTEINPOWDER
 	description = "Pure, powdered protein commonly used as a meal supplement. This one has added chocolate flavoring."
 	taste_description = "powdery chocolate"
 	color = "#865b3e"
 
 /datum/reagent/nutriment/protein_shake/chocolate
-	name = "Chocolate Protein Shake"
-	id = "chocolate_protein_shake"
+	name = REAGENT_CHOCOLATEPROTEINSHAKE
+	id = REAGENT_ID_CHOCOLATEPROTEINSHAKE
 	description = "A mixture of water and protein commonly used as a meal supplement. This one has added chocolate flavoring."
 	taste_description = "chocolate"
 	color = "#644730"
 
 /datum/reagent/nutriment/protein_powder/strawberry
-	name = "Strawberry Protein Powder"
-	id = "strawberry_protein_powder"
+	name = REAGENT_STRAWBERRYPROTEINPOWDER
+	id = REAGENT_ID_STRAWBERRYPROTEINPOWDER
 	description = "Pure, powdered protein commonly used as a meal supplement. This one has added strawberry flavoring."
 	taste_description = "powdery strawberry"
 	color = "#eba1a1"
 
 /datum/reagent/nutriment/protein_shake/strawberry
-	name = "Strawberry Protein Shake"
-	id = "strawberry_protein_shake"
+	name = REAGENT_STRAWBERRYPROTEINSHAKE
+	id = REAGENT_ID_STRAWBERRYPROTEINSHAKE
 	description = "A mixture of water and protein commonly used as a meal supplement. This one has added strawberry flavoring."
 	taste_description = "strawberry"
 	color = "#e28585"
 
 //SOUPS. Don't use the base soup reagent.
 /datum/reagent/drink/soup
-	name = "Soup"
-	id = "generic_soup"
+	name = REAGENT_SOUP
+	id = REAGENT_ID_SOUP
 	description = "An indistinct soupy mass of nominal goodness, but questionable flavour."
 	taste_description = "upsettingly bland soup"
 	color = "#9a9a9a"
 	nutrition = 30	//same as base nutriment
 
 /datum/reagent/drink/soup/tomato
-	name = "Tomato Soup"
-	id = "tomato_soup"
+	name = REAGENT_TOMATOSOUP
+	id = REAGENT_ID_TOMATOSOUP
 	description = "A thick and creamy tomato soup. Delicious! Definitely not ketchup."
 	taste_description = "rich, creamy tomato"
 	color = "#e4612d"
 	allergen_type = ALLERGEN_FRUIT //tomatoes are fruit, etc. etc.
 
 /datum/reagent/drink/soup/mushroom
-	name = "Cream of Mushroom Soup"
-	id = "mushroom_soup"
+	name = REAGENT_MUSHROOMSOUP
+	id = REAGENT_ID_MUSHROOMSOUP
 	description = "A rich, earthy mushroom soup."
 	taste_description = "earthy mushrooms"
 	color = "#a59a83"
 	allergen_type = ALLERGEN_FUNGI //shrooms!
 
 /datum/reagent/drink/soup/chicken
-	name = "Cream of Chicken Soup"
-	id = "chicken_soup"
+	name = REAGENT_CHICKENSOUP
+	id = REAGENT_ID_CHICKENSOUP
 	description = "A fairly thick, warming chicken-based soup."
 	taste_description = "savoury chicken goodness"
 	color = "#d4c574"
 	allergen_type = ALLERGEN_MEAT //plain ol' chimken
 
 /datum/reagent/drink/soup/chicken_noodle
-	name = "Chicken Noodle Soup"
-	id = "chicken_noodle_soup"
+	name = REAGENT_CHICKENNOODLESOUP
+	id = REAGENT_ID_CHICKENNOODLESOUP
 	description = "A thin chicken broth with added noodles. If you're lucky there might be some chunks of chicken and veggies in there! Maybe."
 	taste_description = "savoury chicken-noodle goodness"
 	color = "#a27a41"
 	allergen_type = ALLERGEN_MEAT|ALLERGEN_GRAINS|ALLERGEN_VEGETABLE //chicken + grain-based noodles + veggie chunks
 
 /datum/reagent/drink/soup/onion
-	name = "Onion Soup"
-	id = "onion_soup"
+	name = REAGENT_ONIONSOUP
+	id = REAGENT_ID_ONIONSOUP
 	description = "A humble staple of humanity throughout the centuries."
 	taste_description = "caramelized onions"
 	color = "#5d3918"
 	allergen_type = ALLERGEN_VEGETABLE //onions are veg, right?
 
 /datum/reagent/drink/soup/vegetable
-	name = "Vegetable Soup"
-	id = "vegetable_soup"
+	name = REAGENT_VEGETABLESOUP
+	id = REAGENT_ID_VEGETABLESOUP
 	description = "A mix of various kinds of tasty vegetables, in soup format!"
 	taste_description = "mixed vegetables"
 	color = "#824005"
 	allergen_type = ALLERGEN_VEGETABLE //mixed veg
 
 /datum/reagent/drink/soup/beet
-	name = "Beet Soup"
-	id = "beet_soup"
+	name = REAGENT_BEETSOUP
+	id = REAGENT_ID_BEETSOUP
 	description = "A hearty mix of tomatoes and beets, with a meat stock base."
 	taste_description = "sour tomatoes and some killer beets"
 	color = "#471b1c"
 	allergen_type = ALLERGEN_MEAT|ALLERGEN_FRUIT|ALLERGEN_VEGETABLE //meat stock, tomatoes, and beets
 
 /datum/reagent/drink/soup/hot_and_sour
-	name = "Hot & Sour Soup"
-	id = "hot_n_sour_soup"
+	name = REAGENT_HOTNSOURSOUP
+	id = REAGENT_ID_HOTNSOURSOUP
 	description = "A spicy tofu-based soup."
 	taste_description = "spicy, sour tofu"
 	color = "#5f1b06"
@@ -713,8 +713,8 @@
 
 /datum/reagent/drink/coffee/nukie
 
-	name = "Nukie"
-	id = "nukie"
+	name = REAGENT_NUKIE
+	id = REAGENT_ID_NUKIE
 	description = "An extremely concentrated caffinated drink."
 	color = "#102838"
 	adj_temp = 0
@@ -722,70 +722,70 @@
 	adj_drowsy = -5
 	adj_sleepy = -10
 
-	glass_name = "nukie"
+	glass_name = REAGENT_ID_NUKIE
 	glass_desc = "A drink to perk you up and refresh you!"
 	overdose = 30
 
 	taste_description = "flavourless energy"
 
 /datum/reagent/drink/coffee/nukie/peach
-	name = "Nukie Peach"
-	id = "nukie_peach"
+	name = REAGENT_NUKIEPEACH
+	id = REAGENT_ID_NUKIEPEACH
 	color = "#ffc76e"
 	taste_description = "battery acid with a hint of artificial peach"
 
 /datum/reagent/drink/coffee/nukie/pear
-	name = "Nukie Pear"
-	id = "nukie_pear"
+	name = REAGENT_NUKIEPEAR
+	id = REAGENT_ID_NUKIEPEAR
 	color = "#d4c03d"
 	taste_description = "electrostimulation with a hint of artificial pear"
 
 /datum/reagent/drink/coffee/nukie/cherry
-	name = "Nukie Cherry"
-	id = "nukie_cherry"
+	name = REAGENT_NUKIECHERRY
+	id = REAGENT_ID_NUKIECHERRY
 	color = "#b00707"
 	taste_description = "the rapid acceleration of tooth decay with a hint of artificial cherry"
 
 /datum/reagent/drink/coffee/nukie/melon
-	name = "Nukie Melon"
-	id = "nukie_melon"
+	name = REAGENT_NUKIEMELON
+	id = REAGENT_ID_NUKIEMELON
 	color = "#00bf06"
 	taste_description = "something is crawling under your skin with a hint of artificial melon"
 
 /datum/reagent/drink/coffee/nukie/banana
-	name = "Nukie Banana"
-	id = "nukie_banana"
+	name = REAGENT_NUKIEBANANA
+	id = REAGENT_ID_NUKIEBANANA
 	color = "#ffee00"
 	taste_description = "imminent cardiac arrest with a hint of something that doesn't really taste like banana at all but is clearly intending to be banana"
 
 /datum/reagent/drink/coffee/nukie/rose
-	name = "Nukie Rose"
-	id = "nukie_rose"
+	name = REAGENT_NUKIEROSE
+	id = REAGENT_ID_NUKIEROSE
 	color = "#ff7df4"
 	taste_description = "paint stripper, space cleaner and some sort of cheap perfume"
 
 /datum/reagent/drink/coffee/nukie/lemon
-	name = "Nukie Lemon"
-	id = "nukie_lemon"
+	name = REAGENT_NUKIELEMON
+	id = REAGENT_ID_NUKIELEMON
 	color = "#c3ff00"
 	taste_description = "something that once resembled lemon mixed thoroughly with literal toxic waste"
 
 /datum/reagent/drink/coffee/nukie/fruit
-	name = "Nukie Fruit"
-	id = "nukie_fruit"
+	name = REAGENT_NUKIEFRUIT
+	id = REAGENT_ID_NUKIEFRUIT
 	color = "#b300ff"
 	taste_description = "the colour purple"
 
 /datum/reagent/drink/coffee/nukie/special
-	name = "Nukie Limited Edition"
-	id = "nukie_special"
+	name = REAGENT_NUKIESPECIAL
+	id = REAGENT_ID_NUKIESPECIAL
 	color = "#ffffff"
 	taste_description = "sitting in your college dorm one week before your exams start, staring at a screen without anything particularly interesting on, knowing that you should really be studying, but you can put it off for another day right? Plus your friends are gonna be getting on soon and there's an event starting that you need to prep for"
 
 /datum/reagent/drink/coffee/nukie/mega
 
-	name = "Mega Nukie"
-	id = "nukie_mega"
+	name = REAGENT_NUKIEMEGA
+	id = REAGENT_ID_NUKIEMEGA
 	description = "An extremely dangerously concentrated caffinated drink."
 	color = "#102838"
 	adj_temp = 0
@@ -793,15 +793,15 @@
 	adj_drowsy = -5
 	adj_sleepy = -10
 
-	glass_name = "nukie"
+	glass_name = REAGENT_ID_NUKIE
 	glass_desc = "A drink that might just explode your heart!"
 	overdose = 5
 
 	taste_description = "flavourless energy"
 
 /datum/reagent/drink/coffee/nukie/mega/sight
-	name = "Nukie Mega Plum"
-	id = "nukie_mega_sight"
+	name = REAGENT_NUKIEMEGASIGHT
+	id = REAGENT_ID_NUKIEMEGASIGHT
 	color = "#f4fc03"
 	taste_description = "seeing beyond the margins of this world"
 
@@ -819,8 +819,8 @@
 	M.add_chemical_effect(CE_DARKSIGHT, 1)
 
 /datum/reagent/drink/coffee/nukie/mega/heart //Heals you pretty damn well but damages your heart
-	name = "Nukie Mega Juice"
-	id = "nukie_mega_heart"
+	name = REAGENT_NUKIEMEGAHEART
+	id = REAGENT_ID_NUKIEMEGAHEART
 	color = "#fc03e7"
 	taste_description = "the end is rapidly approaching, yet remains forever far"
 
@@ -840,8 +840,8 @@
 	..()
 
 /datum/reagent/drink/coffee/nukie/mega/nega //Makes you both jittery and sleepy
-	name = "Nukie Nega"
-	id = "nukie_mega_sleep"
+	name = REAGENT_NUKIEMEGASLEEP
+	id = REAGENT_ID_NUKIEMEGASLEEP
 	color = "#00dded"
 	taste_description = "the void encompassing you"
 	adj_drowsy = 0
@@ -854,8 +854,8 @@
 	..()
 
 /datum/reagent/drink/coffee/nukie/mega/shock //Rapidly fills you up and even repairs your NIF, unless you don't have one in which case you'll be confused.
-	name = "Nukie Mega Shock"
-	id = "nukie_mega_shock"
+	name = REAGENT_NUKIEMEGASHOCK
+	id = REAGENT_ID_NUKIEMEGASHOCK
 	color = "#ede500"
 	taste_description = "a thousand volts running down your spine"
 
@@ -875,8 +875,8 @@
 
 
 /datum/reagent/drink/coffee/nukie/mega/fast //Like hyperzine, but instead of overdosing, it occassionally burns you
-	name = "Nukie Mega Rapid"
-	id = "nukie_mega_fast"
+	name = REAGENT_NUKIEMEGAFAST
+	id = REAGENT_ID_NUKIEMEGAFAST
 	color = "#000000"
 	taste_description = "more, more, now, quick, get yourself some more, don't stop"
 
@@ -888,8 +888,8 @@
 	M.add_chemical_effect(CE_SPEEDBOOST, 1)
 
 /datum/reagent/drink/coffee/nukie/mega/high //Simultaneously makes you high and hungry
-	name = "Nukie Mega Sky"
-	id = "nukie_mega_high"
+	name = REAGENT_NUKIEMEGAHIGH
+	id = REAGENT_ID_NUKIEMEGAHIGH
 	color = "#fafafa"
 	taste_description = "moreishness, you could really go for a proper snack right now"
 
@@ -931,8 +931,8 @@
 			M.emote(pick("twitch", "giggle"))
 
 /datum/reagent/drink/coffee/nukie/mega/shrink //Basically microcillin but for ingesting
-	name = "Nukie Mega Shrink"
-	id = "nukie_mega_shrink"
+	name = REAGENT_NUKIEMEGASHRINK
+	id = REAGENT_ID_NUKIEMEGASHRINK
 	color = "#15ff00"
 	taste_description = "a plastic bag floating gently on the breeze"
 
@@ -941,8 +941,8 @@
 	M.resize((M.size_multiplier - 0.01), uncapped = M.has_large_resize_bounds(), aura_animation = FALSE)
 
 /datum/reagent/drink/coffee/nukie/mega/grow //Basically macrocillin but for ingesting
-	name = "Nukie Mega Growth"
-	id = "nukie_mega_growth"
+	name = REAGENT_NUKIEMEGAGROWTH
+	id = REAGENT_ID_NUKIEMEGAGROWTH
 	color = "#90ed87"
 	taste_description = "absurd hugeness"
 

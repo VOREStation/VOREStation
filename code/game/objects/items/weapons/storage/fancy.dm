@@ -50,7 +50,7 @@
 /obj/item/storage/fancy/egg_box
 	icon = 'icons/obj/food.dmi'
 	icon_state = "eggbox"
-	icon_type = "egg"
+	icon_type = REAGENT_ID_EGG
 	name = "egg box"
 	center_of_mass = list("x" = 16,"y" = 7)
 	storage_slots = 12

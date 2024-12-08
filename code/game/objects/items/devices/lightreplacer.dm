@@ -66,7 +66,7 @@
 		. += "It has [uses] lights remaining."
 
 /obj/item/lightreplacer/attackby(obj/item/W, mob/user)
-	if(istype(W, /obj/item/stack/material) && W.get_material_name() == "glass" || istype(W, /obj/item/stack/material/cyborg/glass))
+	if(istype(W, /obj/item/stack/material) && W.get_material_name() == MAT_GLASS || istype(W, /obj/item/stack/material/cyborg/glass))
 		var/obj/item/stack/G = W
 		if(uses >= max_uses)
 			to_chat(user, span_warning("[src.name] is full."))

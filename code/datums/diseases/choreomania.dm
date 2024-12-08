@@ -2,8 +2,8 @@
 	name = "Choreomania"
 	max_stages = 3
 	spread_text = "Airborne"
-	cure_text = "Adranol"
-	cures = list("adranol")
+	cure_text = REAGENT_ADRANOL
+	cures = list(REAGENT_ID_ADRANOL)
 	cure_chance = 10
 	agent = "TAP-DAnC3"
 	viable_mobtypes = list(/mob/living/carbon/human)

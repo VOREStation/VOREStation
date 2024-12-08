@@ -83,277 +83,283 @@ GLOBAL_LIST_BOILERPLATE(all_seed_packs, /obj/item/seeds)
 	. = ..()
 
 /obj/item/seeds/replicapod
-	seed_type = "diona"
+	seed_type = PLANT_DIONA
 
 /obj/item/seeds/chiliseed
-	seed_type = "chili"
+	seed_type = PLANT_CHILI
 
 /obj/item/seeds/ghostchiliseed
-	seed_type = "ghostchili"
+	seed_type = PLANT_GHOSTCHILI
 
 /obj/item/seeds/plastiseed
-	seed_type = "plastic"
+	seed_type = PLANT_PLASTIC
 
 /obj/item/seeds/grapeseed
-	seed_type = "grapes"
+	seed_type = PLANT_GRAPES
 
 /obj/item/seeds/greengrapeseed
-	seed_type = "greengrapes"
+	seed_type = PLANT_GREENGRAPES
 
 /obj/item/seeds/peanutseed
-	seed_type = "peanut"
+	seed_type = PLANT_PEANUT
 
 /obj/item/seeds/cabbageseed
-	seed_type = "cabbage"
+	seed_type = PLANT_CABBAGE
 
 /obj/item/seeds/shandseed
-	seed_type = "shand"
+	seed_type = PLANT_SHAND
 
 /obj/item/seeds/mtearseed
-	seed_type = "mtear"
+	seed_type = PLANT_MTEAR
 
 /obj/item/seeds/berryseed
-	seed_type = "berries"
+	seed_type = PLANT_BERRIES
 
 /obj/item/seeds/glowberryseed
-	seed_type = "glowberries"
+	seed_type = PLANT_GLOWBERRIES
 
 /obj/item/seeds/peppercornseed
-	seed_type = "peppercorns"
+	seed_type = PLANT_PEPPERCORNS
 
 /obj/item/seeds/bananaseed
-	seed_type = "banana"
+	seed_type = PLANT_BANANA
 
 /obj/item/seeds/eggplantseed
-	seed_type = "eggplant"
+	seed_type = PLANT_EGGPLANT
 
 /obj/item/seeds/bloodtomatoseed
-	seed_type = "bloodtomato"
+	seed_type = PLANT_BLOODTOMATO
 
 /obj/item/seeds/tomatoseed
-	seed_type = "tomato"
+	seed_type = PLANT_TOMATO
 
 /obj/item/seeds/killertomatoseed
-	seed_type = "killertomato"
+	seed_type = PLANT_KILLERTOMATO
 
 /obj/item/seeds/bluetomatoseed
-	seed_type = "bluetomato"
+	seed_type = PLANT_BLUETOMATO
 
 /obj/item/seeds/bluespacetomatoseed
-	seed_type = "bluespacetomato"
+	seed_type = PLANT_BLUESPACETOMATO
 
 /obj/item/seeds/cornseed
-	seed_type = "corn"
+	seed_type = PLANT_CORN
 
 /obj/item/seeds/poppyseed
-	seed_type = "poppies"
+	seed_type = PLANT_POPPIES
 
 /obj/item/seeds/potatoseed
-	seed_type = "potato"
+	seed_type = PLANT_POTATO
 
 /obj/item/seeds/icepepperseed
-	seed_type = "icechili"
+	seed_type = PLANT_ICECHILI
 
 /obj/item/seeds/soyaseed
-	seed_type = "soybean"
+	seed_type = PLANT_SOYBEAN
 
 /obj/item/seeds/wheatseed
-	seed_type = "wheat"
+	seed_type = PLANT_WHEAT
 
 /obj/item/seeds/riceseed
-	seed_type = "rice"
+	seed_type = PLANT_RICE
 
 /obj/item/seeds/carrotseed
-	seed_type = "carrot"
+	seed_type = PLANT_CARROT
 
 /obj/item/seeds/reishimycelium
-	seed_type = "reishi"
+	seed_type = PLANT_REISHI
 
 /obj/item/seeds/amanitamycelium
-	seed_type = "amanita"
+	seed_type = PLANT_AMANITA
 
 /obj/item/seeds/angelmycelium
-	seed_type = "destroyingangel"
+	seed_type = PLANT_DESTROYINGANGEL
 
 /obj/item/seeds/libertymycelium
-	seed_type = "libertycap"
+	seed_type = PLANT_LIBERTYCAP
 
 /obj/item/seeds/chantermycelium
-	seed_type = "mushrooms"
+	seed_type = PLANT_MUSHROOMS
 
 /obj/item/seeds/towermycelium
-	seed_type = "towercap"
+	seed_type = PLANT_TOWERCAP
 
 /obj/item/seeds/redtowermycelium
-	seed_type = "redcap"
+	seed_type = PLANT_REDCAP
 
 /obj/item/seeds/glowshroom
-	seed_type = "glowshroom"
+	seed_type = PLANT_GLOWSHROOM
 
 /obj/item/seeds/plumpmycelium
-	seed_type = "plumphelmet"
+	seed_type = PLANT_PLUMPHELMET
 
 /obj/item/seeds/plastellmycelium
-	seed_type = "plastic"
+	seed_type = PLANT_PLASTIC
 
 /obj/item/seeds/sporemycelium
-	seed_type = "sporeshroom"
+	seed_type = PLANT_SPORESHROOM
 
 /obj/item/seeds/nettleseed
-	seed_type = "nettle"
+	seed_type = PLANT_NETTLE
 
 /obj/item/seeds/deathnettleseed
-	seed_type = "deathnettle"
+	seed_type = PLANT_DEATHNETTLE
 
 /obj/item/seeds/weeds
-	seed_type = "weeds"
+	seed_type = PLANT_WEEDS
 
 /obj/item/seeds/harebell
-	seed_type = "harebells"
+	seed_type = PLANT_HAREBELLS
 
 /obj/item/seeds/sunflowerseed
-	seed_type = "sunflowers"
+	seed_type = PLANT_SUNFLOWERS
 
 /obj/item/seeds/lavenderseed
-	seed_type = "lavender"
+	seed_type = PLANT_LAVENDER
 
 /obj/item/seeds/brownmold
-	seed_type = "mold"
+	seed_type = PLANT_MOLD
 
 /obj/item/seeds/appleseed
-	seed_type = "apple"
+	seed_type = PLANT_APPLE
 
 /obj/item/seeds/poisonedappleseed
-	seed_type = "poisonapple"
+	seed_type = PLANT_POISONAPPLE
 
 /obj/item/seeds/goldappleseed
-	seed_type = "goldapple"
+	seed_type = PLANT_GOLDAPPLE
 
 /obj/item/seeds/ambrosiavulgarisseed
-	seed_type = "ambrosia"
+	seed_type = PLANT_AMBROSIA
 
 /obj/item/seeds/ambrosiadeusseed
-	seed_type = "ambrosiadeus"
+	seed_type = PLANT_AMBROSIADEUS
 
 /obj/item/seeds/ambrosiagaiaseed
-	seed_type = "ambrosiagaia"
+	seed_type = PLANT_AMBROSIAGAIA
 
 /obj/item/seeds/ambrosiainfernusseed
-	seed_type = "ambrosiainfernus"
+	seed_type = PLANT_AMBROSIAINFERNUS
 
 /obj/item/seeds/whitebeetseed
-	seed_type = "whitebeet"
+	seed_type = PLANT_WHITEBEET
 
 /obj/item/seeds/sugarcaneseed
-	seed_type = "sugarcane"
+	seed_type = PLANT_SUGARCANE
 
 /obj/item/seeds/watermelonseed
-	seed_type = "watermelon"
+	seed_type = PLANT_WATERMELON
 
 /obj/item/seeds/pumpkinseed
-	seed_type = "pumpkin"
+	seed_type = PLANT_PUMPKIN
 
 /obj/item/seeds/limeseed
-	seed_type = "lime"
+	seed_type = PLANT_LIME
 
 /obj/item/seeds/lemonseed
-	seed_type = "lemon"
+	seed_type = PLANT_LEMON
 
 /obj/item/seeds/onionseed
-	seed_type = "onion"
+	seed_type = PLANT_ONION
 
 /obj/item/seeds/orangeseed
-	seed_type = "orange"
+	seed_type = PLANT_ORANGE
 
 /obj/item/seeds/poisonberryseed
-	seed_type = "poisonberries"
+	seed_type = PLANT_POISONBERRIES
 
 /obj/item/seeds/deathberryseed
-	seed_type = "deathberries"
+	seed_type = PLANT_DEATHBERRIES
 
 /obj/item/seeds/grassseed
-	seed_type = "grass"
+	seed_type = PLANT_GRASS
 
 /obj/item/seeds/carpetseed
-	seed_type = "carpet"
+	seed_type = PLANT_CARPET
 
 /obj/item/seeds/cocoapodseed
-	seed_type = "cocoa"
+	seed_type = PLANT_COCOA
 
 /obj/item/seeds/cherryseed
-	seed_type = "cherry"
+	seed_type = PLANT_CHERRY
 
 /obj/item/seeds/tobaccoseed
-	seed_type = "tobacco"
+	seed_type = PLANT_TOBACCO
 
 /obj/item/seeds/kudzuseed
-	seed_type = "kudzu"
+	seed_type = PLANT_KUDZU
 
 /obj/item/seeds/jurlmah
-	seed_type = "jurlmah"
+	seed_type = PLANT_JURLMAH
 
 /obj/item/seeds/amauri
-	seed_type = "amauri"
+	seed_type = PLANT_AMAURI
 
 /obj/item/seeds/gelthi
-	seed_type = "gelthi"
+	seed_type = PLANT_GELTHI
 
 /obj/item/seeds/vale
-	seed_type = "vale"
+	seed_type = PLANT_VALE
 
 /obj/item/seeds/surik
-	seed_type = "surik"
+	seed_type = PLANT_SURIK
 
 /obj/item/seeds/telriis
-	seed_type = "telriis"
+	seed_type = PLANT_TELRIIS
 
 /obj/item/seeds/thaadra
-	seed_type = "thaadra"
+	seed_type = PLANT_THAADRA
 
 /obj/item/seeds/celery
-	seed_type = "celery"
+	seed_type = PLANT_CELERY
 
 /obj/item/seeds/rhubarb
-	seed_type = "rhubarb"
+	seed_type = PLANT_ROSE
 
 /obj/item/seeds/wabback
-	seed_type = "whitewabback"
+	seed_type = PLANT_WHITEWABBACK
 
 /obj/item/seeds/blackwabback
-	seed_type = "blackwabback"
+	seed_type = PLANT_BLACKWABBACK
 
 /obj/item/seeds/wildwabback
-	seed_type = "wildwabback"
+	seed_type = PLANT_WILDWABBACK
 
 /obj/item/seeds/lettuce
-	seed_type = "lettuce"
+	seed_type = PLANT_LETTUCE
 
 /obj/item/seeds/siflettuce
-	seed_type = "siflettuce"
+	seed_type = PLANT_SIFLETTUCE
 
 /obj/item/seeds/eggyplant
-	seed_type = "egg-plant"
+	seed_type = PLANT_EGG_PLANT
 
 /obj/item/seeds/pineapple
-	seed_type = "pineapple"
+	seed_type = PLANT_PINEAPPLE
 
 /obj/item/seeds/durian
-	seed_type = "durian"
+	seed_type = PLANT_DURIAN
 
 /obj/item/seeds/vanilla
-	seed_type = "vanilla"
+	seed_type = PLANT_VANILLA
 
 /obj/item/seeds/rose
-	seed_type = "rose"
+	seed_type = PLANT_ROSE
 
 /obj/item/seeds/rose/blood
-	seed_type = "bloodrose"
+	seed_type = PLANT_BLOODROSE
 
 /obj/item/seeds/gnomes
-	seed_type = "gnomes"
+	seed_type = PLANT_GNOMES
 
 /obj/item/seeds/sifbulb
-	seed_type = "sifbulb"
+	seed_type = PLANT_SIFBULB
 
 /obj/item/seeds/wurmwoad
-	seed_type = "wurmwoad"
+	seed_type = PLANT_WURMWOAD
+
+/obj/item/seeds/shrinkshroom
+	seed_type = PLANT_MICROM
+
+/obj/item/seeds/megashroom
+	seed_type = PLANT_MEGAM

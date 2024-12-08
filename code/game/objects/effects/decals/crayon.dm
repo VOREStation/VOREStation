@@ -41,4 +41,3 @@
 
 	add_janitor_hud_overlay()
 	return
-// CHOMPEdit End

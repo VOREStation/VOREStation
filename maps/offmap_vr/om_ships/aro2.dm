@@ -50,7 +50,7 @@
 	description_info = "Surfluid is KHI's main method of production, using swarms of nanites to process raw materials into finished products at the cost of immense amounts of energy."
 	color = "#222222"
 	outdoors = OUTDOORS_NO
-	reagent_type = "liquid_protean"
+	reagent_type = REAGENT_ID_LIQUIDPROTEAN
 
 // The 'ship'
 /obj/effect/overmap/visitable/ship/aro2

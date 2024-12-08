@@ -195,8 +195,8 @@
 			occupant.adjustBrainLoss(-(CEILING(0.5*heal_rate, 1)))
 
 			//So clones don't die of oxyloss in a running pod.
-			if(occupant.reagents.get_reagent_amount("inaprovaline") < 30)
-				occupant.reagents.add_reagent("inaprovaline", 60)
+			if(occupant.reagents.get_reagent_amount(REAGENT_ID_INAPROVALINE) < 30)
+				occupant.reagents.add_reagent(REAGENT_ID_INAPROVALINE, 60)
 			occupant.Sleeping(30)
 			//Also heal some oxyloss ourselves because inaprovaline is so bad at preventing it!!
 			occupant.adjustOxyLoss(-4)
@@ -350,7 +350,7 @@
 	if(LAZYLEN(containers))
 		for(var/obj/item/reagent_containers/glass/G in containers)
 			for(var/datum/reagent/R in G.reagents.reagent_list)
-				if(R.id == "biomass")
+				if(R.id == REAGENT_ID_BIOMASS)
 					biomass_count += R.volume
 
 	return biomass_count
@@ -362,7 +362,7 @@
 		for(var/obj/item/reagent_containers/glass/G in containers)
 			if(to_remove < amount)	//If we have what we need, we can stop. Checked every time we switch beakers
 				for(var/datum/reagent/R in G.reagents.reagent_list)
-					if(R.id == "biomass")		// Finds Biomass
+					if(R.id == REAGENT_ID_BIOMASS)		// Finds Biomass
 						var/need_remove = max(0, amount - to_remove)	//Figures out how much biomass is in this container
 						if(R.volume >= need_remove)						//If we have more than enough in this beaker, only take what we need
 							R.remove_self(need_remove)

@@ -29,7 +29,7 @@ var/global/list/cached_icons = list()
 /obj/item/reagent_containers/glass/paint/Initialize()
 	.=..()
 	if(paint_type)
-		reagents.add_reagent("paint", volume, paint_type)
+		reagents.add_reagent(REAGENT_ID_PAINT, volume, paint_type)
 
 /obj/item/reagent_containers/glass/paint/red
 	icon_state = "paint_red"

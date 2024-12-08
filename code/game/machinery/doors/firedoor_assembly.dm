@@ -83,7 +83,7 @@
 				return
 		else
 			to_chat(user, span_notice("You need more welding fuel."))
-	else if(istype(C, /obj/item/stack/material) && C.get_material_name() == "rglass" && !glass)
+	else if(istype(C, /obj/item/stack/material) && C.get_material_name() == MAT_RGLASS && !glass)
 		var/obj/item/stack/S = C
 		if (S.get_amount() >= 1)
 			playsound(src, 'sound/items/Crowbar.ogg', 100, 1)

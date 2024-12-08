@@ -1,9 +1,9 @@
 /datum/seed/citrus
-	name = "lime"
-	seed_name = "lime"
+	name = PLANT_LIME
+	seed_name = PLANT_LIME
 	display_name = "lime trees"
-	kitchen_tag = "lime"
-	chems = list("nutriment" = list(1,20), "limejuice" = list(10,20))
+	kitchen_tag = PLANT_LIME
+	chems = list(REAGENT_ID_NUTRIMENT = list(1,20), REAGENT_ID_LIMEJUICE = list(10,20))
 
 /datum/seed/citrus/New()
 	..()
@@ -19,11 +19,11 @@
 	set_trait(TRAIT_FLESH_COLOUR,"#3AF026")
 
 /datum/seed/citrus/lemon
-	name = "lemon"
-	seed_name = "lemon"
+	name = PLANT_LEMON
+	seed_name = PLANT_LEMON
 	display_name = "lemon trees"
-	kitchen_tag = "lemon"
-	chems = list("nutriment" = list(1,20), "lemonjuice" = list(10,20))
+	kitchen_tag = PLANT_LEMON
+	chems = list(REAGENT_ID_NUTRIMENT = list(1,20), REAGENT_ID_LEMONJUICE = list(10,20))
 
 /datum/seed/citrus/lemon/New()
 	..()
@@ -34,11 +34,11 @@
 	set_trait(TRAIT_IDEAL_LIGHT, 6)
 
 /datum/seed/citrus/orange
-	name = "orange"
-	seed_name = "orange"
+	name = PLANT_ORANGE
+	seed_name = PLANT_ORANGE
 	display_name = "orange trees"
-	kitchen_tag = "orange"
-	chems = list("nutriment" = list(1,20), "orangejuice" = list(10,20))
+	kitchen_tag = PLANT_ORANGE
+	chems = list(REAGENT_ID_NUTRIMENT = list(1,20), REAGENT_ID_ORANGEJUICE = list(10,20))
 
 /datum/seed/citrus/orange/New()
 	..()

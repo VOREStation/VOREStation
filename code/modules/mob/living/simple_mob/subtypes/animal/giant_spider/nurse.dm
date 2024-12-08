@@ -38,7 +38,7 @@
 	melee_damage_lower = 5	// Doesn't do a lot of damage, since the goal is to make more spiders with egg attacks.
 	melee_damage_upper = 10
 	poison_per_bite = 5
-	poison_type = "stoxin"
+	poison_type = REAGENT_ID_STOXIN
 
 	player_msg = "You can spin webs on an adjacent tile, or cocoon an object by clicking on it.<br>\
 	You can also cocoon a dying or dead entity by clicking on them, and you will gain charges for egg-laying.<br>\

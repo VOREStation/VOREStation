@@ -4,7 +4,7 @@
 	seed_name = "alien weed"
 	display_name = "alien weeds"
 	force_layer = 3
-	chems = list("phoron" = list(1,3))
+	chems = list(REAGENT_ID_PHORON = list(1,3))
 
 /datum/seed/xenomorph/New()
 	..()

@@ -1437,7 +1437,7 @@
 	water_state = "enzyme_shallow"
 	under_state = "flesh_floor"
 
-	reagent_type = "Sulphuric acid"	//why not
+	reagent_type = REAGENT_ID_SACID //why not
 	outdoors = FALSE
 	var/mob/living/simple_mob/vore/overmap/stardog/linked_mob
 	var/mobstuff = TRUE		//if false, we don't care about dogs, and that's terrible

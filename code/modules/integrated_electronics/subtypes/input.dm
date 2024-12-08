@@ -741,10 +741,10 @@
 	outputs = list(
 		"pressure"       = IC_PINTYPE_NUMBER,
 		"temperature" = IC_PINTYPE_NUMBER,
-		"oxygen"         = IC_PINTYPE_NUMBER,
-		"nitrogen"          = IC_PINTYPE_NUMBER,
+		GAS_O2         = IC_PINTYPE_NUMBER,
+		GAS_N2          = IC_PINTYPE_NUMBER,
 		"carbon dioxide"           = IC_PINTYPE_NUMBER,
-		"phoron"           = IC_PINTYPE_NUMBER,
+		GAS_PHORON           = IC_PINTYPE_NUMBER,
 		"other"           = IC_PINTYPE_NUMBER
 	)
 	activators = list("scan" = IC_PINTYPE_PULSE_IN, "on scanned" = IC_PINTYPE_PULSE_OUT)
@@ -762,10 +762,10 @@
 	var/total_moles = environment.total_moles
 
 	if (total_moles)
-		var/o2_level = environment.gas["oxygen"]/total_moles
-		var/n2_level = environment.gas["nitrogen"]/total_moles
-		var/co2_level = environment.gas["carbon_dioxide"]/total_moles
-		var/phoron_level = environment.gas["phoron"]/total_moles
+		var/o2_level = environment.gas[GAS_O2]/total_moles
+		var/n2_level = environment.gas[GAS_N2]/total_moles
+		var/co2_level = environment.gas[GAS_CO2]/total_moles
+		var/phoron_level = environment.gas[GAS_PHORON]/total_moles
 		var/unknown_level =  1-(o2_level+n2_level+co2_level+phoron_level)
 		set_pin_data(IC_OUTPUT, 1, pressure)
 		set_pin_data(IC_OUTPUT, 2, round(environment.temperature-T0C,0.1))
@@ -851,7 +851,7 @@
 	complexity = 3
 	inputs = list()
 	outputs = list(
-		"oxygen"       = IC_PINTYPE_NUMBER
+		GAS_O2       = IC_PINTYPE_NUMBER
 	)
 	activators = list("scan" = IC_PINTYPE_PULSE_IN, "on scanned" = IC_PINTYPE_PULSE_OUT)
 	spawn_flags = IC_SPAWN_RESEARCH
@@ -867,7 +867,7 @@
 	var/total_moles = environment.total_moles
 
 	if (total_moles)
-		var/o2_level = environment.gas["oxygen"]/total_moles
+		var/o2_level = environment.gas[GAS_O2]/total_moles
 		set_pin_data(IC_OUTPUT, 1, round(o2_level*100,0.1))
 	else
 		set_pin_data(IC_OUTPUT, 1, 0)
@@ -897,7 +897,7 @@
 	var/total_moles = environment.total_moles
 
 	if (total_moles)
-		var/co2_level = environment.gas["carbon_dioxide"]/total_moles
+		var/co2_level = environment.gas[GAS_CO2]/total_moles
 		set_pin_data(IC_OUTPUT, 1, round(co2_level*100,0.1))
 	else
 		set_pin_data(IC_OUTPUT, 1, 0)
@@ -911,7 +911,7 @@
 	complexity = 3
 	inputs = list()
 	outputs = list(
-		"nitrogen"       = IC_PINTYPE_NUMBER
+		GAS_N2       = IC_PINTYPE_NUMBER
 	)
 	activators = list("scan" = IC_PINTYPE_PULSE_IN, "on scanned" = IC_PINTYPE_PULSE_OUT)
 	spawn_flags = IC_SPAWN_RESEARCH
@@ -927,7 +927,7 @@
 	var/total_moles = environment.total_moles
 
 	if (total_moles)
-		var/n2_level = environment.gas["nitrogen"]/total_moles
+		var/n2_level = environment.gas[GAS_N2]/total_moles
 		set_pin_data(IC_OUTPUT, 1, round(n2_level*100,0.1))
 	else
 		set_pin_data(IC_OUTPUT, 1, 0)
@@ -941,7 +941,7 @@
 	complexity = 3
 	inputs = list()
 	outputs = list(
-		"phoron"       = IC_PINTYPE_NUMBER
+		GAS_PHORON       = IC_PINTYPE_NUMBER
 	)
 	activators = list("scan" = IC_PINTYPE_PULSE_IN, "on scanned" = IC_PINTYPE_PULSE_OUT)
 	spawn_flags = IC_SPAWN_RESEARCH
@@ -957,7 +957,7 @@
 	var/total_moles = environment.total_moles
 
 	if (total_moles)
-		var/phoron_level = environment.gas["phoron"]/total_moles
+		var/phoron_level = environment.gas[GAS_PHORON]/total_moles
 		set_pin_data(IC_OUTPUT, 1, round(phoron_level*100,0.1))
 	else
 		set_pin_data(IC_OUTPUT, 1, 0)

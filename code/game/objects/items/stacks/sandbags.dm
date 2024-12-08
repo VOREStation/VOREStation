@@ -19,7 +19,7 @@
 
 	pass_color = TRUE
 
-	var/bag_material = "cloth"
+	var/bag_material = MAT_CLOTH
 
 /obj/item/stack/sandbags/cyborg
 	name = "sandbag synthesizer"
@@ -130,7 +130,7 @@ var/global/list/datum/stack_recipe/sandbag_recipes = list( \
 
 	pass_color = TRUE
 
-	var/bag_material = "cloth"
+	var/bag_material = MAT_CLOTH
 
 /obj/item/stack/emptysandbag/Initialize(var/ml, var/amt, var/bag_mat)
 	. = ..(ml, amt)

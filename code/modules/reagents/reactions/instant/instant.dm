@@ -4,550 +4,550 @@
 /* Common reactions */
 
 /decl/chemical_reaction/instant/inaprovaline
-	name = "Inaprovaline"
-	id = "inaprovaline"
-	result = "inaprovaline"
-	required_reagents = list("oxygen" = 1, "carbon" = 1, "sugar" = 1)
+	name = REAGENT_INAPROVALINE
+	id = REAGENT_ID_INAPROVALINE
+	result = REAGENT_ID_INAPROVALINE
+	required_reagents = list(REAGENT_ID_OXYGEN = 1, REAGENT_ID_CARBON = 1, REAGENT_ID_SUGAR = 1)
 	result_amount = 3
 
 /decl/chemical_reaction/instant/dylovene
-	name = "Dylovene"
-	id = "anti_toxin"
-	result = "anti_toxin"
-	required_reagents = list("silicon" = 1, "potassium" = 1, "nitrogen" = 1)
+	name = REAGENT_ANTITOXIN
+	id = REAGENT_ID_ANTITOXIN
+	result = REAGENT_ID_ANTITOXIN
+	required_reagents = list(REAGENT_ID_SILICON = 1, REAGENT_ID_POTASSIUM = 1, REAGENT_ID_NITROGEN = 1)
 	result_amount = 3
 
 /decl/chemical_reaction/instant/carthatoline
-	name = "Carthatoline"
-	id = "carthatoline"
-	result = "carthatoline"
-	required_reagents = list("anti_toxin" = 1, "carbon" = 2, "phoron" = 0.1)
-	catalysts = list("phoron" = 1)
+	name = REAGENT_CARTHATOLINE
+	id = REAGENT_ID_CARTHATOLINE
+	result = REAGENT_ID_CARTHATOLINE
+	required_reagents = list(REAGENT_ID_ANTITOXIN = 1, REAGENT_ID_CARBON = 2, REAGENT_ID_PHORON = 0.1)
+	catalysts = list(REAGENT_ID_PHORON = 1)
 	result_amount = 2
 
 /decl/chemical_reaction/instant/paracetamol
-	name = "Paracetamol"
-	id = "paracetamol"
-	result = "paracetamol"
-	required_reagents = list("inaprovaline" = 1, "nitrogen" = 1, "water" = 1)
+	name = REAGENT_PARACETAMOL
+	id = REAGENT_ID_PARACETAMOL
+	result = REAGENT_ID_PARACETAMOL
+	required_reagents = list(REAGENT_ID_INAPROVALINE = 1, REAGENT_ID_NITROGEN = 1, REAGENT_ID_WATER = 1)
 	result_amount = 2
 
 /decl/chemical_reaction/instant/tramadol
-	name = "Tramadol"
-	id = "tramadol"
-	result = "tramadol"
-	required_reagents = list("paracetamol" = 1, "ethanol" = 1, "oxygen" = 1)
+	name = REAGENT_TRAMADOL
+	id = REAGENT_ID_TRAMADOL
+	result = REAGENT_ID_TRAMADOL
+	required_reagents = list(REAGENT_ID_PARACETAMOL = 1, REAGENT_ID_ETHANOL = 1, REAGENT_ID_OXYGEN = 1)
 	result_amount = 3
 
 /decl/chemical_reaction/instant/oxycodone
-	name = "Oxycodone"
-	id = "oxycodone"
-	result = "oxycodone"
-	required_reagents = list("ethanol" = 1, "tramadol" = 1)
-	catalysts = list("phoron" = 5)
+	name = REAGENT_OXYCODONE
+	id = REAGENT_ID_OXYCODONE
+	result = REAGENT_ID_OXYCODONE
+	required_reagents = list(REAGENT_ID_ETHANOL = 1, REAGENT_ID_TRAMADOL = 1)
+	catalysts = list(REAGENT_ID_PHORON = 5)
 	result_amount = 1
 
 /decl/chemical_reaction/instant/sterilizine
-	name = "Sterilizine"
-	id = "sterilizine"
-	result = "sterilizine"
-	required_reagents = list("ethanol" = 1, "anti_toxin" = 1, "chlorine" = 1)
+	name = REAGENT_STERILIZINE
+	id = REAGENT_ID_STERILIZINE
+	result = REAGENT_ID_STERILIZINE
+	required_reagents = list(REAGENT_ID_ETHANOL = 1, REAGENT_ID_ANTITOXIN = 1, REAGENT_ID_CHLORINE = 1)
 	result_amount = 3
 
 /decl/chemical_reaction/instant/silicate
-	name = "Silicate"
-	id = "silicate"
-	result = "silicate"
-	required_reagents = list("aluminum" = 1, "silicon" = 1, "oxygen" = 1)
+	name = REAGENT_SILICATE
+	id = REAGENT_ID_SILICATE
+	result = REAGENT_ID_SILICATE
+	required_reagents = list(REAGENT_ID_ALUMINIUM = 1, REAGENT_ID_SILICON = 1, REAGENT_ID_OXYGEN = 1)
 	result_amount = 3
 
 /decl/chemical_reaction/instant/mutagen
-	name = "Unstable mutagen"
-	id = "mutagen"
-	result = "mutagen"
-	required_reagents = list("radium" = 1, "phosphorus" = 1, "chlorine" = 1)
+	name = REAGENT_MUTAGEN
+	id = REAGENT_ID_MUTAGEN
+	result = REAGENT_ID_MUTAGEN
+	required_reagents = list(REAGENT_ID_RADIUM = 1, REAGENT_ID_PHOSPHORUS = 1, REAGENT_ID_CHLORINE = 1)
 	result_amount = 3
 
 /decl/chemical_reaction/instant/water
-	name = "Water"
-	id = "water"
-	result = "water"
-	required_reagents = list("oxygen" = 1, "hydrogen" = 2)
+	name = REAGENT_WATER
+	id = REAGENT_ID_WATER
+	result = REAGENT_ID_WATER
+	required_reagents = list(REAGENT_ID_OXYGEN = 1, REAGENT_ID_HYDROGEN = 2)
 	result_amount = 1
 
 /decl/chemical_reaction/instant/thermite
-	name = "Thermite"
-	id = "thermite"
-	result = "thermite"
-	required_reagents = list("aluminum" = 1, "iron" = 1, "oxygen" = 1)
+	name = REAGENT_THERMITE
+	id = REAGENT_ID_THERMITE
+	result = REAGENT_ID_THERMITE
+	required_reagents = list(REAGENT_ID_ALUMINIUM = 1, REAGENT_ID_IRON = 1, REAGENT_ID_OXYGEN = 1)
 	result_amount = 3
 
 /decl/chemical_reaction/instant/bliss
-	name = "Bliss"
-	id = "bliss"
-	result = "bliss"
-	required_reagents = list("mercury" = 1, "sugar" = 1, "lithium" = 1)
+	name = REAGENT_BLISS
+	id = REAGENT_ID_BLISS
+	result = REAGENT_ID_BLISS
+	required_reagents = list(REAGENT_ID_MERCURY = 1, REAGENT_ID_SUGAR = 1, REAGENT_ID_LITHIUM = 1)
 	result_amount = 3
 
 /decl/chemical_reaction/instant/lube
-	name = "Space Lube"
-	id = "lube"
-	result = "lube"
-	required_reagents = list("water" = 1, "silicon" = 1, "oxygen" = 1)
+	name = REAGENT_LUBE
+	id = REAGENT_ID_LUBE
+	result = REAGENT_ID_LUBE
+	required_reagents = list(REAGENT_ID_WATER = 1, REAGENT_ID_SILICON = 1, REAGENT_ID_OXYGEN = 1)
 	result_amount = 4
 
 /decl/chemical_reaction/instant/pacid
-	name = "Polytrinic acid"
-	id = "pacid"
-	result = "pacid"
-	required_reagents = list("sacid" = 1, "chlorine" = 1, "potassium" = 1)
+	name = REAGENT_PACID
+	id = REAGENT_ID_PACID
+	result = REAGENT_ID_PACID
+	required_reagents = list(REAGENT_ID_SACID = 1, REAGENT_ID_CHLORINE = 1, REAGENT_ID_POTASSIUM = 1)
 	result_amount = 3
 
 /decl/chemical_reaction/instant/synaptizine
-	name = "Synaptizine"
-	id = "synaptizine"
-	result = "synaptizine"
-	required_reagents = list("sugar" = 1, "lithium" = 1, "water" = 1)
+	name = REAGENT_SYNAPTIZINE
+	id = REAGENT_ID_SYNAPTIZINE
+	result = REAGENT_ID_SYNAPTIZINE
+	required_reagents = list(REAGENT_ID_SUGAR = 1, REAGENT_ID_LITHIUM = 1, REAGENT_ID_WATER = 1)
 	result_amount = 3
 
 /decl/chemical_reaction/instant/hyronalin
-	name = "Hyronalin"
-	id = "hyronalin"
-	result = "hyronalin"
-	required_reagents = list("radium" = 1, "anti_toxin" = 1)
+	name = REAGENT_HYRONALIN
+	id = REAGENT_ID_HYRONALIN
+	result = REAGENT_ID_HYRONALIN
+	required_reagents = list(REAGENT_ID_RADIUM = 1, REAGENT_ID_ANTITOXIN = 1)
 	result_amount = 2
 
 /decl/chemical_reaction/instant/arithrazine
-	name = "Arithrazine"
-	id = "arithrazine"
-	result = "arithrazine"
-	required_reagents = list("hyronalin" = 1, "hydrogen" = 1)
+	name = REAGENT_ARITHRAZINE
+	id = REAGENT_ID_ARITHRAZINE
+	result = REAGENT_ID_ARITHRAZINE
+	required_reagents = list(REAGENT_ID_HYRONALIN = 1, REAGENT_ID_HYDROGEN = 1)
 	result_amount = 2
 
 /decl/chemical_reaction/instant/impedrezene
-	name = "Impedrezene"
-	id = "impedrezene"
-	result = "impedrezene"
-	required_reagents = list("mercury" = 1, "oxygen" = 1, "sugar" = 1)
+	name = REAGENT_IMPEDREZENE
+	id = REAGENT_ID_IMPEDREZENE
+	result = REAGENT_ID_IMPEDREZENE
+	required_reagents = list(REAGENT_ID_MERCURY = 1, REAGENT_ID_OXYGEN = 1, REAGENT_ID_SUGAR = 1)
 	result_amount = 2
 
 /decl/chemical_reaction/instant/kelotane
-	name = "Kelotane"
-	id = "kelotane"
-	result = "kelotane"
-	required_reagents = list("silicon" = 1, "carbon" = 1)
+	name = REAGENT_KELOTANE
+	id = REAGENT_ID_KELOTANE
+	result = REAGENT_ID_KELOTANE
+	required_reagents = list(REAGENT_ID_SILICON = 1, REAGENT_ID_CARBON = 1)
 	result_amount = 2
 	log_is_important = 1
 
 /decl/chemical_reaction/instant/peridaxon
-	name = "Peridaxon"
-	id = "peridaxon"
-	result = "peridaxon"
-	required_reagents = list("bicaridine" = 2, "clonexadone" = 2)
-	catalysts = list("phoron" = 5)
+	name = REAGENT_PERIDAXON
+	id = REAGENT_ID_PERIDAXON
+	result = REAGENT_ID_PERIDAXON
+	required_reagents = list(REAGENT_ID_BICARIDINE = 2, REAGENT_ID_CLONEXADONE = 2)
+	catalysts = list(REAGENT_ID_PHORON = 5)
 	result_amount = 2
 
 /decl/chemical_reaction/instant/osteodaxon
-	name = "Osteodaxon"
-	id = "osteodaxon"
-	result = "osteodaxon"
-	required_reagents = list("bicaridine" = 2, "phoron" = 0.1, "carpotoxin" = 1)
-	catalysts = list("phoron" = 5)
-	inhibitors = list("clonexadone" = 1) // Messes with cryox
+	name = REAGENT_OSTEODAXON
+	id = REAGENT_ID_OSTEODAXON
+	result = REAGENT_ID_OSTEODAXON
+	required_reagents = list(REAGENT_ID_BICARIDINE = 2, REAGENT_ID_PHORON = 0.1, REAGENT_ID_CARPOTOXIN = 1)
+	catalysts = list(REAGENT_ID_PHORON = 5)
+	inhibitors = list(REAGENT_ID_CLONEXADONE = 1) // Messes with cryox
 	result_amount = 2
 
 /decl/chemical_reaction/instant/respirodaxon
-	name = "Respirodaxon"
-	id = "respirodaxon"
-	result = "respirodaxon"
-	required_reagents = list("dexalinp" = 2, "biomass" = 2, "phoron" = 1)
-	catalysts = list("phoron" = 5)
-	inhibitors = list("dexalin" = 1)
+	name = REAGENT_RESPIRODAXON
+	id = REAGENT_ID_HYRONALIN
+	result = REAGENT_ID_HYRONALIN
+	required_reagents = list(REAGENT_ID_DEXALINP = 2, REAGENT_ID_BIOMASS = 2, REAGENT_ID_PHORON = 1)
+	catalysts = list(REAGENT_ID_PHORON = 5)
+	inhibitors = list(REAGENT_ID_DEXALIN = 1)
 	result_amount = 2
 
 /decl/chemical_reaction/instant/gastirodaxon
-	name = "Gastirodaxon"
-	id = "gastirodaxon"
-	result = "gastirodaxon"
-	required_reagents = list("carthatoline" = 1, "biomass" = 2, "tungsten" = 2)
-	catalysts = list("phoron" = 5)
-	inhibitors = list("lithium" = 1)
+	name = REAGENT_GASTIRODAXON
+	id = REAGENT_ID_GASTIRODAXON
+	result = REAGENT_ID_GASTIRODAXON
+	required_reagents = list(REAGENT_ID_CARTHATOLINE = 1, REAGENT_ID_BIOMASS = 2, REAGENT_ID_TUNGSTEN = 2)
+	catalysts = list(REAGENT_ID_PHORON = 5)
+	inhibitors = list(REAGENT_ID_LITHIUM = 1)
 	result_amount = 3
 
 /decl/chemical_reaction/instant/hepanephrodaxon
-	name = "Hepanephrodaxon"
-	id = "hepanephrodaxon"
-	result = "hepanephrodaxon"
-	required_reagents = list("carthatoline" = 2, "biomass" = 2, "lithium" = 1)
-	catalysts = list("phoron" = 5)
-	inhibitors = list("tungsten" = 1)
+	name = REAGENT_HEPANEPHRODAXON
+	id = REAGENT_ID_HEPANEPHRODAXON
+	result = REAGENT_ID_HEPANEPHRODAXON
+	required_reagents = list(REAGENT_ID_CARTHATOLINE = 2, REAGENT_ID_BIOMASS = 2, REAGENT_ID_LITHIUM = 1)
+	catalysts = list(REAGENT_ID_PHORON = 5)
+	inhibitors = list(REAGENT_ID_TUNGSTEN = 1)
 	result_amount = 2
 
 /decl/chemical_reaction/instant/cordradaxon
-	name = "Cordradaxon"
-	id = "cordradaxon"
-	result = "cordradaxon"
-	required_reagents = list("potassium_chlorophoride" = 1, "biomass" = 2, "bicaridine" = 2)
-	catalysts = list("phoron" = 5)
-	inhibitors = list("clonexadone" = 1)
+	name = REAGENT_CORDRADAXON
+	id = REAGENT_ID_CORDRADAXON
+	result = REAGENT_ID_CORDRADAXON
+	required_reagents = list(REAGENT_ID_POTASSIUMCHLOROPHORIDE = 1, REAGENT_ID_BIOMASS = 2, REAGENT_ID_BICARIDINE = 2)
+	catalysts = list(REAGENT_ID_PHORON = 5)
+	inhibitors = list(REAGENT_ID_CLONEXADONE = 1)
 	result_amount = 2
 
 /decl/chemical_reaction/instant/virus_food
-	name = "Virus Food"
-	id = "virusfood"
-	result = "virusfood"
-	required_reagents = list("water" = 1, "milk" = 1)
+	name = REAGENT_VIRUSFOOD
+	id = REAGENT_ID_VIRUSFOOD
+	result = REAGENT_ID_VIRUSFOOD
+	required_reagents = list(REAGENT_ID_WATER = 1, REAGENT_ID_MILK = 1)
 	result_amount = 5
 
 /decl/chemical_reaction/instant/leporazine
-	name = "Leporazine"
-	id = "leporazine"
-	result = "leporazine"
-	required_reagents = list("silicon" = 1, "copper" = 1)
-	catalysts = list("phoron" = 5)
+	name = REAGENT_LEPORAZINE
+	id = REAGENT_ID_LEPORAZINE
+	result = REAGENT_ID_LEPORAZINE
+	required_reagents = list(REAGENT_ID_SILICON = 1, REAGENT_ID_COPPER = 1)
+	catalysts = list(REAGENT_ID_PHORON = 5)
 	result_amount = 2
 
 /decl/chemical_reaction/instant/cryptobiolin
-	name = "Cryptobiolin"
-	id = "cryptobiolin"
-	result = "cryptobiolin"
-	required_reagents = list("potassium" = 1, "oxygen" = 1, "sugar" = 1)
+	name = REAGENT_CRYPTOBIOLIN
+	id = REAGENT_ID_CRYPTOBIOLIN
+	result = REAGENT_ID_CRYPTOBIOLIN
+	required_reagents = list(REAGENT_ID_POTASSIUM = 1, REAGENT_ID_OXYGEN = 1, REAGENT_ID_SUGAR = 1)
 	result_amount = 3
 
 /decl/chemical_reaction/instant/tricordrazine
-	name = "Tricordrazine"
-	id = "tricordrazine"
-	result = "tricordrazine"
-	required_reagents = list("inaprovaline" = 1, "anti_toxin" = 1)
+	name = REAGENT_TRICORDRAZINE
+	id = REAGENT_ID_TRICORDRAZINE
+	result = REAGENT_ID_TRICORDRAZINE
+	required_reagents = list(REAGENT_ID_INAPROVALINE = 1, REAGENT_ID_ANTITOXIN = 1)
 	result_amount = 2
 
 /decl/chemical_reaction/instant/alkysine
-	name = "Alkysine"
-	id = "alkysine"
-	result = "alkysine"
-	required_reagents = list("chlorine" = 1, "nitrogen" = 1, "anti_toxin" = 1)
+	name = REAGENT_ALKYSINE
+	id = REAGENT_ID_ALKYSINE
+	result = REAGENT_ID_ALKYSINE
+	required_reagents = list(REAGENT_ID_CHLORINE = 1, REAGENT_ID_NITROGEN = 1, REAGENT_ID_ANTITOXIN = 1)
 	result_amount = 2
 
 /decl/chemical_reaction/instant/dexalin
-	name = "Dexalin"
-	id = "dexalin"
-	result = "dexalin"
-	required_reagents = list("oxygen" = 2, "phoron" = 0.1)
-	catalysts = list("phoron" = 1)
-	inhibitors = list("water" = 1) // Messes with cryox
+	name = REAGENT_DEXALIN
+	id = REAGENT_ID_DEXALIN
+	result = REAGENT_ID_DEXALIN
+	required_reagents = list(REAGENT_ID_OXYGEN = 2, REAGENT_ID_PHORON = 0.1)
+	catalysts = list(REAGENT_ID_PHORON = 1)
+	inhibitors = list(REAGENT_ID_WATER = 1) // Messes with cryox
 	result_amount = 1
 
 /decl/chemical_reaction/instant/dermaline
-	name = "Dermaline"
-	id = "dermaline"
-	result = "dermaline"
-	required_reagents = list("oxygen" = 1, "phosphorus" = 1, "kelotane" = 1)
+	name = REAGENT_DERMALINE
+	id = REAGENT_ID_DERMALINE
+	result = REAGENT_ID_DERMALINE
+	required_reagents = list(REAGENT_ID_OXYGEN = 1, REAGENT_ID_PHOSPHORUS = 1, REAGENT_ID_KELOTANE = 1)
 	result_amount = 3
 
 /decl/chemical_reaction/instant/dexalinp
-	name = "Dexalin Plus"
-	id = "dexalinp"
-	result = "dexalinp"
-	required_reagents = list("dexalin" = 1, "carbon" = 1, "iron" = 1)
+	name = REAGENT_DEXALINP
+	id = REAGENT_ID_DEXALINP
+	result = REAGENT_ID_DEXALINP
+	required_reagents = list(REAGENT_ID_DEXALIN = 1, REAGENT_ID_CARBON = 1, REAGENT_ID_IRON = 1)
 	result_amount = 3
 
 /decl/chemical_reaction/instant/bicaridine
-	name = "Bicaridine"
-	id = "bicaridine"
-	result = "bicaridine"
-	required_reagents = list("inaprovaline" = 1, "carbon" = 1)
-	inhibitors = list("sugar" = 1) // Messes up with inaprovaline
+	name = REAGENT_BICARIDINE
+	id = REAGENT_ID_BICARIDINE
+	result = REAGENT_ID_BICARIDINE
+	required_reagents = list(REAGENT_ID_INAPROVALINE = 1, REAGENT_ID_CARBON = 1)
+	inhibitors = list(REAGENT_ID_SUGAR = 1) // Messes up with inaprovaline
 	result_amount = 2
 
 /decl/chemical_reaction/instant/myelamine
-	name = "Myelamine"
-	id = "myelamine"
-	result = "myelamine"
-	required_reagents = list("bicaridine" = 1, "iron" = 2, "spidertoxin" = 1)
+	name = REAGENT_MYELAMINE
+	id = REAGENT_ID_MYELAMINE
+	result = REAGENT_ID_MYELAMINE
+	required_reagents = list(REAGENT_ID_BICARIDINE = 1, REAGENT_ID_IRON = 2, REAGENT_ID_SPIDERTOXIN = 1)
 	result_amount = 2
 
 /decl/chemical_reaction/instant/hyperzine
-	name = "Hyperzine"
-	id = "hyperzine"
-	result = "hyperzine"
-	required_reagents = list("sugar" = 1, "phosphorus" = 1, "sulfur" = 1)
+	name = REAGENT_HYPERZINE
+	id = REAGENT_ID_HYPERZINE
+	result = REAGENT_ID_HYPERZINE
+	required_reagents = list(REAGENT_ID_SUGAR = 1, REAGENT_ID_PHOSPHORUS = 1, REAGENT_ID_SULFUR = 1)
 	result_amount = 3
 
 /decl/chemical_reaction/instant/stimm
-	name = "Stimm"
-	id = "stimm"
-	result = "stimm"
-	required_reagents = list("left4zed" = 1, "fuel" = 1)
-	catalysts = list("fuel" = 5)
+	name = REAGENT_STIMM
+	id = REAGENT_ID_STIMM
+	result = REAGENT_ID_STIMM
+	required_reagents = list(REAGENT_ID_LEFT4ZED = 1, REAGENT_ID_FUEL = 1)
+	catalysts = list(REAGENT_ID_FUEL = 5)
 	result_amount = 2
 
 /decl/chemical_reaction/instant/ryetalyn
-	name = "Ryetalyn"
-	id = "ryetalyn"
-	result = "ryetalyn"
-	required_reagents = list("arithrazine" = 1, "carbon" = 1)
+	name = REAGENT_RYETALYN
+	id = REAGENT_ID_RYETALYN
+	result = REAGENT_ID_RYETALYN
+	required_reagents = list(REAGENT_ID_ARITHRAZINE = 1, REAGENT_ID_CARBON = 1)
 	result_amount = 2
 
 /decl/chemical_reaction/instant/cryoxadone
-	name = "Cryoxadone"
-	id = "cryoxadone"
-	result = "cryoxadone"
-	required_reagents = list("dexalin" = 1, "water" = 1, "oxygen" = 1)
+	name = REAGENT_CRYOXADONE
+	id = REAGENT_ID_CRYOXADONE
+	result = REAGENT_ID_CRYOXADONE
+	required_reagents = list(REAGENT_ID_DEXALIN = 1, REAGENT_ID_WATER = 1, REAGENT_ID_OXYGEN = 1)
 	result_amount = 3
 
 /decl/chemical_reaction/instant/clonexadone
-	name = "Clonexadone"
-	id = "clonexadone"
-	result = "clonexadone"
-	required_reagents = list("cryoxadone" = 1, "sodium" = 1, "phoron" = 0.1)
-	catalysts = list("phoron" = 5)
+	name = REAGENT_CLONEXADONE
+	id = REAGENT_ID_CLONEXADONE
+	result = REAGENT_ID_CLONEXADONE
+	required_reagents = list(REAGENT_ID_CRYOXADONE = 1, REAGENT_ID_SODIUM = 1, REAGENT_ID_PHORON = 0.1)
+	catalysts = list(REAGENT_ID_PHORON = 5)
 	result_amount = 2
 
 /decl/chemical_reaction/instant/mortiferin
-	name = "Mortiferin"
-	id = "mortiferin"
-	result = "mortiferin"
-	required_reagents = list("cryptobiolin" = 1, "clonexadone" = 1, "corophizine" = 1)
+	name = REAGENT_MORTIFERIN
+	id = REAGENT_ID_MORTIFERIN
+	result = REAGENT_ID_MORTIFERIN
+	required_reagents = list(REAGENT_ID_CRYPTOBIOLIN = 1, REAGENT_ID_CLONEXADONE = 1, REAGENT_ID_COROPHIZINE = 1)
 	result_amount = 2
-	catalysts = list("phoron" = 5)
+	catalysts = list(REAGENT_ID_PHORON = 5)
 
 /decl/chemical_reaction/instant/spaceacillin
-	name = "Spaceacillin"
-	id = "spaceacillin"
-	result = "spaceacillin"
-	required_reagents = list("cryptobiolin" = 1, "inaprovaline" = 1)
+	name = REAGENT_SPACEACILLIN
+	id = REAGENT_ID_SPACEACILLIN
+	result = REAGENT_ID_SPACEACILLIN
+	required_reagents = list(REAGENT_ID_CRYPTOBIOLIN = 1, REAGENT_ID_INAPROVALINE = 1)
 	result_amount = 2
 
 /decl/chemical_reaction/instant/corophizine
-	name = "Corophizine"
-	id = "corophizine"
-	result = "corophizine"
-	required_reagents = list("spaceacillin" = 1, "carbon" = 1, "phoron" = 0.1)
-	catalysts = list("phoron" = 5)
+	name = REAGENT_COROPHIZINE
+	id = REAGENT_ID_COROPHIZINE
+	result = REAGENT_ID_COROPHIZINE
+	required_reagents = list(REAGENT_ID_SPACEACILLIN = 1, REAGENT_ID_CARBON = 1, REAGENT_ID_PHORON = 0.1)
+	catalysts = list(REAGENT_ID_PHORON = 5)
 	result_amount = 2
 
 /decl/chemical_reaction/instant/immunosuprizine
-	name = "Immunosuprizine"
-	id = "immunosuprizine"
-	result = "immunosuprizine"
-	required_reagents = list("corophizine" = 1, "tungsten" = 1, "sacid" = 1)
-	catalysts = list("phoron" = 5)
+	name = REAGENT_IMMUNOSUPRIZINE
+	id = REAGENT_ID_IMMUNOSUPRIZINE
+	result = REAGENT_ID_IMMUNOSUPRIZINE
+	required_reagents = list(REAGENT_ID_COROPHIZINE = 1, REAGENT_ID_TUNGSTEN = 1, REAGENT_ID_SACID = 1)
+	catalysts = list(REAGENT_ID_PHORON = 5)
 	result_amount = 2
 
 /decl/chemical_reaction/instant/imidazoline
-	name = "imidazoline"
-	id = "imidazoline"
-	result = "imidazoline"
-	required_reagents = list("carbon" = 1, "hydrogen" = 1, "anti_toxin" = 1)
+	name = REAGENT_ID_IMIDAZOLINE
+	id = REAGENT_ID_IMIDAZOLINE
+	result = REAGENT_ID_IMIDAZOLINE
+	required_reagents = list(REAGENT_ID_CARBON = 1, REAGENT_ID_HYDROGEN = 1, REAGENT_ID_ANTITOXIN = 1)
 	result_amount = 2
 
 /decl/chemical_reaction/instant/ethylredoxrazine
-	name = "Ethylredoxrazine"
-	id = "ethylredoxrazine"
-	result = "ethylredoxrazine"
-	required_reagents = list("oxygen" = 1, "anti_toxin" = 1, "carbon" = 1)
+	name = REAGENT_ETHYLREDOXRAZINE
+	id = REAGENT_ID_ETHYLREDOXRAZINE
+	result = REAGENT_ID_ETHYLREDOXRAZINE
+	required_reagents = list(REAGENT_ID_OXYGEN = 1, REAGENT_ID_ANTITOXIN = 1, REAGENT_ID_CARBON = 1)
 	result_amount = 3
 
 /decl/chemical_reaction/instant/calciumcarbonate
 	name = "Calcium Carbonate"
-	id = "calciumcarbonate"
-	result = "calciumcarbonate"
-	required_reagents = list("oxygen" = 3, "calcium" = 1, "carbon" = 1)
+	id = REAGENT_ID_CALCIUMCARBONATE
+	result = REAGENT_ID_CALCIUMCARBONATE
+	required_reagents = list(REAGENT_ID_OXYGEN = 3, REAGENT_ID_CALCIUM = 1, REAGENT_ID_CARBON = 1)
 	result_amount = 2
 
 /decl/chemical_reaction/instant/soporific
-	name = "Soporific"
-	id = "stoxin"
-	result = "stoxin"
-	required_reagents = list("chloralhydrate" = 1, "sugar" = 4)
-	inhibitors = list("phosphorus") // Messes with the smoke
+	name = REAGENT_STOXIN
+	id = REAGENT_ID_STOXIN
+	result = REAGENT_ID_STOXIN
+	required_reagents = list(REAGENT_ID_CHLORALHYDRATE = 1, REAGENT_ID_SUGAR = 4)
+	inhibitors = list(REAGENT_ID_PHOSPHORUS) // Messes with the smoke
 	result_amount = 5
 
 /decl/chemical_reaction/instant/chloralhydrate
-	name = "Chloral Hydrate"
-	id = "chloralhydrate"
-	result = "chloralhydrate"
-	required_reagents = list("ethanol" = 1, "chlorine" = 3, "water" = 1)
+	name = REAGENT_CHLORALHYDRATE
+	id = REAGENT_ID_CHLORALHYDRATE
+	result = REAGENT_ID_CHLORALHYDRATE
+	required_reagents = list(REAGENT_ID_ETHANOL = 1, REAGENT_ID_CHLORINE = 3, REAGENT_ID_WATER = 1)
 	result_amount = 1
 
 /decl/chemical_reaction/instant/potassium_chloride
-	name = "Potassium Chloride"
-	id = "potassium_chloride"
-	result = "potassium_chloride"
-	required_reagents = list("sodiumchloride" = 1, "potassium" = 1)
+	name = REAGENT_POTASSIUMCHLORIDE
+	id = REAGENT_ID_POTASSIUMCHLORIDE
+	result = REAGENT_ID_POTASSIUMCHLORIDE
+	required_reagents = list(REAGENT_ID_SODIUMCHLORIDE = 1, REAGENT_ID_POTASSIUM = 1)
 	result_amount = 2
 
 /decl/chemical_reaction/instant/potassium_chlorophoride
-	name = "Potassium Chlorophoride"
-	id = "potassium_chlorophoride"
-	result = "potassium_chlorophoride"
-	required_reagents = list("potassium_chloride" = 1, "phoron" = 1, "chloralhydrate" = 1)
+	name = REAGENT_POTASSIUMCHLOROPHORIDE
+	id = REAGENT_ID_POTASSIUMCHLOROPHORIDE
+	result = REAGENT_ID_POTASSIUMCHLOROPHORIDE
+	required_reagents = list(REAGENT_ID_POTASSIUMCHLORIDE = 1, REAGENT_ID_PHORON = 1, REAGENT_ID_CHLORALHYDRATE = 1)
 	result_amount = 4
 
 /decl/chemical_reaction/instant/zombiepowder
-	name = "Zombie Powder"
-	id = "zombiepowder"
-	result = "zombiepowder"
-	required_reagents = list("carpotoxin" = 5, "stoxin" = 5, "copper" = 5)
+	name = REAGENT_ZOMBIEPOWDER
+	id = REAGENT_ID_ZOMBIEPOWDER
+	result = REAGENT_ID_ZOMBIEPOWDER
+	required_reagents = list(REAGENT_ID_CARPOTOXIN = 5, REAGENT_ID_STOXIN = 5, REAGENT_ID_COPPER = 5)
 	result_amount = 2
 
 /decl/chemical_reaction/instant/carpotoxin
-	name = "Carpotoxin"
-	id = "carpotoxin"
-	result = "carpotoxin"
-	required_reagents = list("spidertoxin" = 2, "biomass" = 1, "sifsap" = 2)
-	catalysts = list("sifsap" = 10)
-	inhibitors = list("radium" = 1)
+	name = REAGENT_CARPOTOXIN
+	id = REAGENT_ID_CARPOTOXIN
+	result = REAGENT_ID_CARPOTOXIN
+	required_reagents = list(REAGENT_ID_SPIDERTOXIN = 2, REAGENT_ID_BIOMASS = 1, REAGENT_ID_SIFSAP = 2)
+	catalysts = list(REAGENT_ID_SIFSAP = 10)
+	inhibitors = list(REAGENT_ID_RADIUM = 1)
 	result_amount = 2
 
 /decl/chemical_reaction/instant/mindbreaker
-	name = "Mindbreaker Toxin"
-	id = "mindbreaker"
-	result = "mindbreaker"
-	required_reagents = list("silicon" = 1, "hydrogen" = 1, "anti_toxin" = 1)
+	name = REAGENT_MINDBREAKER
+	id = REAGENT_ID_MINDBREAKER
+	result = REAGENT_ID_MINDBREAKER
+	required_reagents = list(REAGENT_ID_SILICON = 1, REAGENT_ID_HYDROGEN = 1, REAGENT_ID_ANTITOXIN = 1)
 	result_amount = 3
 
 /decl/chemical_reaction/instant/lipozine
-	name = "Lipozine"
-	id = "Lipozine"
-	result = "lipozine"
-	required_reagents = list("sodiumchloride" = 1, "ethanol" = 1, "radium" = 1)
+	name = REAGENT_LIPOZINE
+	id = REAGENT_ID_LIPOZINE
+	result = REAGENT_ID_LIPOZINE
+	required_reagents = list(REAGENT_ID_SODIUMCHLORIDE = 1, REAGENT_ID_ETHANOL = 1, REAGENT_ID_RADIUM = 1)
 	result_amount = 3
 
 /decl/chemical_reaction/instant/surfactant
 	name = "Foam surfactant"
 	id = "foam surfactant"
-	result = "fluorosurfactant"
-	required_reagents = list("fluorine" = 2, "carbon" = 2, "sacid" = 1)
+	result = REAGENT_ID_FLUOROSURFACTANT
+	required_reagents = list(REAGENT_ID_FLUORINE = 2, REAGENT_ID_CARBON = 2, REAGENT_ID_SACID = 1)
 	result_amount = 5
 
 /decl/chemical_reaction/instant/ammonia
-	name = "Ammonia"
-	id = "ammonia"
-	result = "ammonia"
-	required_reagents = list("hydrogen" = 3, "nitrogen" = 1)
-	inhibitors = list("phoron" = 1) // Messes with lexorin
+	name = REAGENT_AMMONIA
+	id = REAGENT_ID_AMMONIA
+	result = REAGENT_ID_AMMONIA
+	required_reagents = list(REAGENT_ID_HYDROGEN = 3, REAGENT_ID_NITROGEN = 1)
+	inhibitors = list(REAGENT_ID_PHORON = 1) // Messes with lexorin
 	result_amount = 3
 
 /decl/chemical_reaction/instant/diethylamine
-	name = "Diethylamine"
-	id = "diethylamine"
-	result = "diethylamine"
-	required_reagents = list ("ammonia" = 1, "ethanol" = 1)
+	name = REAGENT_DIETHYLAMINE
+	id = REAGENT_ID_DIETHYLAMINE
+	result = REAGENT_ID_DIETHYLAMINE
+	required_reagents = list (REAGENT_ID_AMMONIA = 1, REAGENT_ID_ETHANOL = 1)
 	result_amount = 2
 
 /decl/chemical_reaction/instant/left4zed
 	name = "Left4Zed"
-	id = "left4zed"
-	result = "left4zed"
-	required_reagents = list ("diethylamine" = 2, "mutagen" = 1)
+	id = REAGENT_ID_LEFT4ZED
+	result = REAGENT_ID_LEFT4ZED
+	required_reagents = list (REAGENT_ID_DIETHYLAMINE = 2, REAGENT_ID_MUTAGEN = 1)
 	result_amount = 3
 
 /decl/chemical_reaction/instant/robustharvest
 	name = "RobustHarvest"
-	id = "robustharvest"
-	result = "robustharvest"
-	required_reagents = list ("ammonia" = 1, "calcium" = 1, "neurotoxic_protein" = 1)
+	id = REAGENT_ID_ROBUSTHARVEST
+	result = REAGENT_ID_ROBUSTHARVEST
+	required_reagents = list (REAGENT_ID_AMMONIA = 1, REAGENT_ID_CALCIUM = 1, REAGENT_ID_NEUROTOXIC_PROTEIN = 1)
 	result_amount = 3
 
 /decl/chemical_reaction/instant/space_cleaner
-	name = "Space cleaner"
-	id = "cleaner"
-	result = "cleaner"
-	required_reagents = list("ammonia" = 1, "water" = 1)
+	name = REAGENT_CLEANER
+	id = REAGENT_ID_CLEANER
+	result = REAGENT_ID_CLEANER
+	required_reagents = list(REAGENT_ID_AMMONIA = 1, REAGENT_ID_WATER = 1)
 	result_amount = 2
 
 /decl/chemical_reaction/instant/plantbgone
-	name = "Plant-B-Gone"
-	id = "plantbgone"
-	result = "plantbgone"
-	required_reagents = list("toxin" = 1, "water" = 4)
+	name = REAGENT_PLANTBGONE
+	id = REAGENT_ID_PLANTBGONE
+	result = REAGENT_ID_PLANTBGONE
+	required_reagents = list(REAGENT_ID_TOXIN = 1, REAGENT_ID_WATER = 4)
 	result_amount = 5
 
 /decl/chemical_reaction/instant/foaming_agent
 	name = "Foaming Agent"
-	id = "foaming_agent"
-	result = "foaming_agent"
-	required_reagents = list("lithium" = 1, "hydrogen" = 1)
+	id = REAGENT_ID_FOAMINGAGENT
+	result = REAGENT_ID_FOAMINGAGENT
+	required_reagents = list(REAGENT_ID_LITHIUM = 1, REAGENT_ID_HYDROGEN = 1)
 	result_amount = 1
 
 /decl/chemical_reaction/instant/glycerol
-	name = "Glycerol"
-	id = "glycerol"
-	result = "glycerol"
-	required_reagents = list("cornoil" = 3, "sacid" = 1)
+	name = REAGENT_GLYCEROL
+	id = REAGENT_ID_GLYCEROL
+	result = REAGENT_ID_GLYCEROL
+	required_reagents = list(REAGENT_ID_CORNOIL = 3, REAGENT_ID_SACID = 1)
 	result_amount = 1
 
 /decl/chemical_reaction/instant/sodiumchloride
 	name = "Sodium Chloride"
-	id = "sodiumchloride"
-	result = "sodiumchloride"
-	required_reagents = list("sodium" = 1, "chlorine" = 1)
+	id = REAGENT_ID_SODIUMCHLORIDE
+	result = REAGENT_ID_SODIUMCHLORIDE
+	required_reagents = list(REAGENT_ID_SODIUM = 1, REAGENT_ID_CHLORINE = 1)
 	result_amount = 2
 
 /decl/chemical_reaction/instant/condensedcapsaicin
-	name = "Condensed Capsaicin"
-	id = "condensedcapsaicin"
-	result = "condensedcapsaicin"
-	required_reagents = list("capsaicin" = 2)
-	catalysts = list("phoron" = 5)
+	name = REAGENT_CONDENSEDCAPSAICIN
+	id = REAGENT_ID_CONDENSEDCAPSAICIN
+	result = REAGENT_ID_CONDENSEDCAPSAICIN
+	required_reagents = list(REAGENT_ID_CAPSAICIN = 2)
+	catalysts = list(REAGENT_ID_PHORON = 5)
 	result_amount = 1
 
 /decl/chemical_reaction/instant/coolant
-	name = "Coolant"
-	id = "coolant"
-	result = "coolant"
-	required_reagents = list("tungsten" = 1, "oxygen" = 1, "water" = 1)
+	name = REAGENT_COOLANT
+	id = REAGENT_ID_COOLANT
+	result = REAGENT_ID_COOLANT
+	required_reagents = list(REAGENT_ID_TUNGSTEN = 1, REAGENT_ID_OXYGEN = 1, REAGENT_ID_WATER = 1)
 	result_amount = 3
 	log_is_important = 1
 
 /decl/chemical_reaction/instant/rezadone
-	name = "Rezadone"
-	id = "rezadone"
-	result = "rezadone"
-	required_reagents = list("carpotoxin" = 1, "cryptobiolin" = 1, "copper" = 1)
+	name = REAGENT_REZADONE
+	id = REAGENT_ID_REZADONE
+	result = REAGENT_ID_REZADONE
+	required_reagents = list(REAGENT_ID_CARPOTOXIN = 1, REAGENT_ID_CRYPTOBIOLIN = 1, REAGENT_ID_COPPER = 1)
 	result_amount = 3
 
 /decl/chemical_reaction/instant/lexorin
-	name = "Lexorin"
-	id = "lexorin"
-	result = "lexorin"
-	required_reagents = list("phoron" = 1, "hydrogen" = 1, "nitrogen" = 1)
+	name = REAGENT_LEXORIN
+	id = REAGENT_ID_LEXORIN
+	result = REAGENT_ID_LEXORIN
+	required_reagents = list(REAGENT_ID_PHORON = 1, REAGENT_ID_HYDROGEN = 1, REAGENT_ID_NITROGEN = 1)
 	result_amount = 3
 
 /decl/chemical_reaction/instant/methylphenidate
-	name = "Methylphenidate"
-	id = "methylphenidate"
-	result = "methylphenidate"
-	required_reagents = list("mindbreaker" = 1, "hydrogen" = 1)
+	name = REAGENT_METHYLPHENIDATE
+	id = REAGENT_ID_METHYLPHENIDATE
+	result = REAGENT_ID_METHYLPHENIDATE
+	required_reagents = list(REAGENT_ID_MINDBREAKER = 1, REAGENT_ID_HYDROGEN = 1)
 	result_amount = 3
 
 /decl/chemical_reaction/instant/citalopram
-	name = "Citalopram"
-	id = "citalopram"
-	result = "citalopram"
-	required_reagents = list("mindbreaker" = 1, "carbon" = 1)
+	name = REAGENT_CITALOPRAM
+	id = REAGENT_ID_CITALOPRAM
+	result = REAGENT_ID_CITALOPRAM
+	required_reagents = list(REAGENT_ID_MINDBREAKER = 1, REAGENT_ID_CARBON = 1)
 	result_amount = 3
 
 /decl/chemical_reaction/instant/paroxetine
-	name = "Paroxetine"
-	id = "paroxetine"
-	result = "paroxetine"
-	required_reagents = list("mindbreaker" = 1, "oxygen" = 1, "inaprovaline" = 1)
+	name = REAGENT_PAROXETINE
+	id = REAGENT_ID_PAROXETINE
+	result = REAGENT_ID_PAROXETINE
+	required_reagents = list(REAGENT_ID_MINDBREAKER = 1, REAGENT_ID_OXYGEN = 1, REAGENT_ID_INAPROVALINE = 1)
 	result_amount = 3
 
 /decl/chemical_reaction/instant/neurotoxin
-	name = "Neurotoxin"
-	id = "neurotoxin"
-	result = "neurotoxin"
-	required_reagents = list("gargleblaster" = 1, "stoxin" = 1)
+	name = REAGENT_NEUROTOXIN
+	id = REAGENT_ID_NEUROTOXIN
+	result = REAGENT_ID_NEUROTOXIN
+	required_reagents = list(REAGENT_ID_GARGLEBLASTER = 1, REAGENT_ID_STOXIN = 1)
 	result_amount = 2
 
 /decl/chemical_reaction/instant/luminol
-	name = "Luminol"
-	id = "luminol"
-	result = "luminol"
-	required_reagents = list("hydrogen" = 2, "carbon" = 2, "ammonia" = 2)
+	name = REAGENT_LUMINOL
+	id = REAGENT_ID_LUMINOL
+	result = REAGENT_ID_LUMINOL
+	required_reagents = list(REAGENT_ID_HYDROGEN = 2, REAGENT_ID_CARBON = 2, REAGENT_ID_AMMONIA = 2)
 	result_amount = 6
 
 /* Solidification */
@@ -556,7 +556,7 @@
 	name = "Solid Iron"
 	id = "solidiron"
 	result = null
-	required_reagents = list("frostoil" = 5, "iron" = REAGENTS_PER_SHEET)
+	required_reagents = list(REAGENT_ID_FROSTOIL = 5, REAGENT_ID_IRON = REAGENTS_PER_SHEET)
 	result_amount = 1
 	var/sheet_to_give = /obj/item/stack/material/iron
 
@@ -568,42 +568,42 @@
 /decl/chemical_reaction/instant/solidification/phoron
 	name = "Solid Phoron"
 	id = "solidphoron"
-	required_reagents = list("frostoil" = 5, "phoron" = REAGENTS_PER_SHEET)
+	required_reagents = list(REAGENT_ID_FROSTOIL = 5, REAGENT_ID_PHORON = REAGENTS_PER_SHEET)
 	sheet_to_give = /obj/item/stack/material/phoron
 
 
 /decl/chemical_reaction/instant/solidification/silver
 	name = "Solid Silver"
 	id = "solidsilver"
-	required_reagents = list("frostoil" = 5, "silver" = REAGENTS_PER_SHEET)
+	required_reagents = list(REAGENT_ID_FROSTOIL = 5, REAGENT_ID_SILVER = REAGENTS_PER_SHEET)
 	sheet_to_give = /obj/item/stack/material/silver
 
 
 /decl/chemical_reaction/instant/solidification/gold
 	name = "Solid Gold"
 	id = "solidgold"
-	required_reagents = list("frostoil" = 5, "gold" = REAGENTS_PER_SHEET)
+	required_reagents = list(REAGENT_ID_FROSTOIL = 5, REAGENT_ID_GOLD = REAGENTS_PER_SHEET)
 	sheet_to_give = /obj/item/stack/material/gold
 
 
 /decl/chemical_reaction/instant/solidification/platinum
 	name = "Solid Platinum"
 	id = "solidplatinum"
-	required_reagents = list("frostoil" = 5, "platinum" = REAGENTS_PER_SHEET)
+	required_reagents = list(REAGENT_ID_FROSTOIL = 5, REAGENT_ID_PLATINUM = REAGENTS_PER_SHEET)
 	sheet_to_give = /obj/item/stack/material/platinum
 
 
 /decl/chemical_reaction/instant/solidification/uranium
 	name = "Solid Uranium"
 	id = "soliduranium"
-	required_reagents = list("frostoil" = 5, "uranium" = REAGENTS_PER_SHEET)
+	required_reagents = list(REAGENT_ID_FROSTOIL = 5, REAGENT_ID_URANIUM = REAGENTS_PER_SHEET)
 	sheet_to_give = /obj/item/stack/material/uranium
 
 
 /decl/chemical_reaction/instant/solidification/hydrogen
 	name = "Solid Hydrogen"
 	id = "solidhydrogen"
-	required_reagents = list("frostoil" = 100, "hydrogen" = REAGENTS_PER_SHEET)
+	required_reagents = list(REAGENT_ID_FROSTOIL = 100, REAGENT_ID_HYDROGEN = REAGENTS_PER_SHEET)
 	sheet_to_give = /obj/item/stack/material/mhydrogen
 
 
@@ -611,14 +611,14 @@
 /decl/chemical_reaction/instant/solidification/steel
 	name = "Solid Steel"
 	id = "solidsteel"
-	required_reagents = list("frostoil" = 5, "steel" = REAGENTS_PER_SHEET)
+	required_reagents = list(REAGENT_ID_FROSTOIL = 5, REAGENT_ID_STEEL = REAGENTS_PER_SHEET)
 	sheet_to_give = /obj/item/stack/material/steel
 
 
 /decl/chemical_reaction/instant/solidification/plasteel
 	name = "Solid Plasteel"
 	id = "solidplasteel"
-	required_reagents = list("frostoil" = 10, "plasteel" = REAGENTS_PER_SHEET)
+	required_reagents = list(REAGENT_ID_FROSTOIL = 10, REAGENT_ID_PLASTEEL = REAGENTS_PER_SHEET)
 	sheet_to_give = /obj/item/stack/material/plasteel
 
 
@@ -626,7 +626,7 @@
 	name = "Plastic"
 	id = "solidplastic"
 	result = null
-	required_reagents = list("pacid" = 1, "plasticide" = 2)
+	required_reagents = list(REAGENT_ID_PACID = 1, REAGENT_ID_PLASTICIDE = 2)
 	result_amount = 1
 
 /decl/chemical_reaction/instant/plastication/on_reaction(var/datum/reagents/holder, var/created_volume)
@@ -639,7 +639,7 @@
 	name = "Carpet"
 	id = "redcarpet"
 	result = null
-	required_reagents = list("liquidcarpet" = 2, "plasticide" = 1)
+	required_reagents = list(REAGENT_ID_LIQUIDCARPET = 2, REAGENT_ID_PLASTICIDE = 1)
 	result_amount = 2
 	var/carpet_type = /obj/item/stack/tile/carpet
 
@@ -650,49 +650,49 @@
 /decl/chemical_reaction/instant/carpetify/bcarpet
 	name = "Black Carpet"
 	id = "blackcarpet"
-	required_reagents = list("liquidcarpetb" = 2, "plasticide" = 1)
+	required_reagents = list(REAGENT_ID_LIQUIDCARPETB = 2, REAGENT_ID_PLASTICIDE = 1)
 	carpet_type = /obj/item/stack/tile/carpet/bcarpet
 
 /decl/chemical_reaction/instant/carpetify/blucarpet
 	name = "Blue Carpet"
 	id = "bluecarpet"
-	required_reagents = list ("liquidcarpetblu" = 2, "plasticide" = 1)
+	required_reagents = list (REAGENT_ID_LIQUIDCARPETBLU = 2, REAGENT_ID_PLASTICIDE = 1)
 	carpet_type = /obj/item/stack/tile/carpet/blucarpet
 
 /decl/chemical_reaction/instant/carpetify/turcarpet
 	name = "Turquise Carpet"
 	id = "turcarpet"
-	required_reagents = list("liquidcarpettur" = 2, "plasticide" = 1)
+	required_reagents = list(REAGENT_ID_LIQUIDCARPETTUR = 2, REAGENT_ID_PLASTICIDE = 1)
 	carpet_type = /obj/item/stack/tile/carpet/turcarpet
 
 /decl/chemical_reaction/instant/carpetify/sblucarpet
 	name = "Silver Blue Carpet"
 	id = "sblucarpet"
-	required_reagents = list("liquidcarpetsblu" = 2, "plasticide" = 1)
+	required_reagents = list(REAGENT_ID_LIQUIDCARPETSBLU = 2, REAGENT_ID_PLASTICIDE = 1)
 	carpet_type = /obj/item/stack/tile/carpet/sblucarpet
 
 /decl/chemical_reaction/instant/carpetify/clowncarpet
 	name = "Clown Carpet"
 	id = "clowncarpet"
-	required_reagents = list("liquidcarpetc" = 2, "plasticide" = 1)
+	required_reagents = list(REAGENT_ID_LIQUIDCARPETC = 2, REAGENT_ID_PLASTICIDE = 1)
 	carpet_type = /obj/item/stack/tile/carpet/gaycarpet
 
 /decl/chemical_reaction/instant/carpetify/pcarpet
 	name = "Purple Carpet"
 	id = "Purplecarpet"
-	required_reagents = list("liquidcarpetp" = 2, "plasticide" = 1)
+	required_reagents = list(REAGENT_ID_LIQUIDCARPETP = 2, REAGENT_ID_PLASTICIDE = 1)
 	carpet_type = /obj/item/stack/tile/carpet/purcarpet
 
 /decl/chemical_reaction/instant/carpetify/ocarpet
 	name = "Orange Carpet"
 	id = "orangecarpet"
-	required_reagents = list("liquidcarpeto" = 2, "plasticide" = 1)
+	required_reagents = list(REAGENT_ID_LIQUIDCARPETO = 2, REAGENT_ID_PLASTICIDE = 1)
 	carpet_type = /obj/item/stack/tile/carpet/oracarpet
 
 /decl/chemical_reaction/instant/concrete
 	name = "Concrete"
 	id = "concretereagent"
-	required_reagents = list("calcium" = 2, "silicate" = 2, "water" = 2)
+	required_reagents = list(REAGENT_ID_CALCIUM = 2, REAGENT_ID_SILICATE = 2, REAGENT_ID_WATER = 2)
 	result_amount = 1
 
 /decl/chemical_reaction/instant/concrete/on_reaction(var/datum/reagents/holder, var/created_volume)
@@ -705,7 +705,7 @@
 	name = "Explosion"
 	id = "explosion_potassium"
 	result = null
-	required_reagents = list("water" = 1, "potassium" = 1)
+	required_reagents = list(REAGENT_ID_WATER = 1, REAGENT_ID_POTASSIUM = 1)
 	result_amount = 2
 	mix_message = null
 
@@ -729,7 +729,7 @@
 	name = "Flash powder"
 	id = "flash_powder"
 	result = null
-	required_reagents = list("aluminum" = 1, "potassium" = 1, "sulfur" = 1 )
+	required_reagents = list(REAGENT_ID_ALUMINIUM = 1, REAGENT_ID_POTASSIUM = 1, REAGENT_ID_SULFUR = 1 )
 	result_amount = null
 
 /decl/chemical_reaction/instant/flash_powder/on_reaction(var/datum/reagents/holder, var/created_volume)
@@ -759,7 +759,7 @@
 	name = "EMP Pulse"
 	id = "emp_pulse"
 	result = null
-	required_reagents = list("uranium" = 1, "iron" = 1) // Yes, laugh, it's the best recipe I could think of that makes a little bit of sense
+	required_reagents = list(REAGENT_ID_URANIUM = 1, REAGENT_ID_IRON = 1) // Yes, laugh, it's the best recipe I could think of that makes a little bit of sense
 	result_amount = 2
 
 /decl/chemical_reaction/instant/emp_pulse/on_reaction(var/datum/reagents/holder, var/created_volume)
@@ -774,10 +774,10 @@
 	return
 
 /decl/chemical_reaction/instant/nitroglycerin
-	name = "Nitroglycerin"
-	id = "nitroglycerin"
-	result = "nitroglycerin"
-	required_reagents = list("glycerol" = 1, "pacid" = 1, "sacid" = 1)
+	name = REAGENT_NITROGLYCERIN
+	id = REAGENT_ID_NITROGLYCERIN
+	result = REAGENT_ID_NITROGLYCERIN
+	required_reagents = list(REAGENT_ID_GLYCEROL = 1, REAGENT_ID_PACID = 1, REAGENT_ID_SACID = 1)
 	result_amount = 2
 	log_is_important = 1
 
@@ -802,13 +802,13 @@
 	name = "Napalm"
 	id = "napalm"
 	result = null
-	required_reagents = list("aluminum" = 1, "phoron" = 1, "sacid" = 1 )
+	required_reagents = list(REAGENT_ID_ALUMINIUM = 1, REAGENT_ID_PHORON = 1, REAGENT_ID_SACID = 1 )
 	result_amount = 1
 
 /decl/chemical_reaction/instant/napalm/on_reaction(var/datum/reagents/holder, var/created_volume)
 	var/turf/location = get_turf(holder.my_atom.loc)
 	for(var/turf/simulated/floor/target_tile in range(0,location))
-		target_tile.assume_gas("volatile_fuel", created_volume, 400+T0C)
+		target_tile.assume_gas(GAS_VOLATILE_FUEL, created_volume, 400+T0C)
 		spawn (0) target_tile.hotspot_expose(700, 400)
 	holder.del_reagent("napalm")
 	return
@@ -817,7 +817,7 @@
 	name = "Chemsmoke"
 	id = "chemsmoke"
 	result = null
-	required_reagents = list("potassium" = 1, "sugar" = 1, "phosphorus" = 1)
+	required_reagents = list(REAGENT_ID_POTASSIUM = 1, REAGENT_ID_SUGAR = 1, REAGENT_ID_PHOSPHORUS = 1)
 	result_amount = 0.4
 
 /decl/chemical_reaction/instant/chemsmoke/on_reaction(var/datum/reagents/holder, var/created_volume)
@@ -838,7 +838,7 @@
 	name = "Foam"
 	id = "foam"
 	result = null
-	required_reagents = list("fluorosurfactant" = 1, "water" = 1)
+	required_reagents = list(REAGENT_ID_FLUOROSURFACTANT = 1, REAGENT_ID_WATER = 1)
 	result_amount = 2
 	mix_message = "The solution violently bubbles!"
 
@@ -861,7 +861,7 @@
 	name = "Metal Foam"
 	id = "metalfoam"
 	result = null
-	required_reagents = list("aluminum" = 3, "foaming_agent" = 1, "pacid" = 1)
+	required_reagents = list(REAGENT_ID_ALUMINIUM = 3, REAGENT_ID_FOAMINGAGENT = 1, REAGENT_ID_PACID = 1)
 	result_amount = 5
 
 /decl/chemical_reaction/instant/metalfoam/on_reaction(var/datum/reagents/holder, var/created_volume)
@@ -879,7 +879,7 @@
 	name = "Iron Foam"
 	id = "ironlfoam"
 	result = null
-	required_reagents = list("iron" = 3, "foaming_agent" = 1, "pacid" = 1)
+	required_reagents = list(REAGENT_ID_IRON = 3, REAGENT_ID_FOAMINGAGENT = 1, REAGENT_ID_PACID = 1)
 	result_amount = 5
 
 /decl/chemical_reaction/instant/ironfoam/on_reaction(var/datum/reagents/holder, var/created_volume)
@@ -898,8 +898,8 @@
 /decl/chemical_reaction/instant/red_paint
 	name = "Red paint"
 	id = "red_paint"
-	result = "paint"
-	required_reagents = list("plasticide" = 1, "water" = 3, "marker_ink_red" = 1)
+	result = REAGENT_ID_PAINT
+	required_reagents = list(REAGENT_ID_PLASTICIDE = 1, REAGENT_ID_WATER = 3, REAGENT_ID_MARKERINKRED = 1)
 	result_amount = 5
 
 /decl/chemical_reaction/instant/red_paint/send_data()
@@ -908,8 +908,8 @@
 /decl/chemical_reaction/instant/orange_paint
 	name = "Orange paint"
 	id = "orange_paint"
-	result = "paint"
-	required_reagents = list("plasticide" = 1, "water" = 3, "marker_ink_orange" = 1)
+	result = REAGENT_ID_PAINT
+	required_reagents = list(REAGENT_ID_PLASTICIDE = 1, REAGENT_ID_WATER = 3, REAGENT_ID_MARKERINKORANGE = 1)
 	result_amount = 5
 
 /decl/chemical_reaction/instant/orange_paint/send_data()
@@ -918,8 +918,8 @@
 /decl/chemical_reaction/instant/yellow_paint
 	name = "Yellow paint"
 	id = "yellow_paint"
-	result = "paint"
-	required_reagents = list("plasticide" = 1, "water" = 3, "marker_ink_yellow" = 1)
+	result = REAGENT_ID_PAINT
+	required_reagents = list(REAGENT_ID_PLASTICIDE = 1, REAGENT_ID_WATER = 3, REAGENT_ID_MARKERINKYELLOW = 1)
 	result_amount = 5
 
 /decl/chemical_reaction/instant/yellow_paint/send_data()
@@ -928,8 +928,8 @@
 /decl/chemical_reaction/instant/green_paint
 	name = "Green paint"
 	id = "green_paint"
-	result = "paint"
-	required_reagents = list("plasticide" = 1, "water" = 3, "marker_ink_green" = 1)
+	result = REAGENT_ID_PAINT
+	required_reagents = list(REAGENT_ID_PLASTICIDE = 1, REAGENT_ID_WATER = 3, REAGENT_ID_MARKERINKGREEN = 1)
 	result_amount = 5
 
 /decl/chemical_reaction/instant/green_paint/send_data()
@@ -938,8 +938,8 @@
 /decl/chemical_reaction/instant/blue_paint
 	name = "Blue paint"
 	id = "blue_paint"
-	result = "paint"
-	required_reagents = list("plasticide" = 1, "water" = 3, "marker_ink_blue" = 1)
+	result = REAGENT_ID_PAINT
+	required_reagents = list(REAGENT_ID_PLASTICIDE = 1, REAGENT_ID_WATER = 3, REAGENT_ID_MARKERINKBLUE = 1)
 	result_amount = 5
 
 /decl/chemical_reaction/instant/blue_paint/send_data()
@@ -948,8 +948,8 @@
 /decl/chemical_reaction/instant/purple_paint
 	name = "Purple paint"
 	id = "purple_paint"
-	result = "paint"
-	required_reagents = list("plasticide" = 1, "water" = 3, "marker_ink_purple" = 1)
+	result = REAGENT_ID_PAINT
+	required_reagents = list(REAGENT_ID_PLASTICIDE = 1, REAGENT_ID_WATER = 3, REAGENT_ID_MARKERINKPURPLE = 1)
 	result_amount = 5
 
 /decl/chemical_reaction/instant/purple_paint/send_data()
@@ -958,8 +958,8 @@
 /decl/chemical_reaction/instant/grey_paint //mime
 	name = "Grey paint"
 	id = "grey_paint"
-	result = "paint"
-	required_reagents = list("plasticide" = 1, "water" = 3, "marker_ink_grey" = 1)
+	result = REAGENT_ID_PAINT
+	required_reagents = list(REAGENT_ID_PLASTICIDE = 1, REAGENT_ID_WATER = 3, REAGENT_ID_MARKERINKGREY = 1)
 	result_amount = 5
 
 /decl/chemical_reaction/instant/grey_paint/send_data()
@@ -968,8 +968,8 @@
 /decl/chemical_reaction/instant/brown_paint
 	name = "Brown paint"
 	id = "brown_paint"
-	result = "paint"
-	required_reagents = list("plasticide" = 1, "water" = 3, "marker_ink_brown" = 1)
+	result = REAGENT_ID_PAINT
+	required_reagents = list(REAGENT_ID_PLASTICIDE = 1, REAGENT_ID_WATER = 3, REAGENT_ID_MARKERINKBROWN = 1)
 	result_amount = 5
 
 /decl/chemical_reaction/instant/brown_paint/send_data()
@@ -978,12 +978,12 @@
 /decl/chemical_reaction/instant/blood_paint
 	name = "Blood paint"
 	id = "blood_paint"
-	result = "paint"
-	required_reagents = list("plasticide" = 1, "water" = 3, "blood" = 2)
+	result = REAGENT_ID_PAINT
+	required_reagents = list(REAGENT_ID_PLASTICIDE = 1, REAGENT_ID_WATER = 3, REAGENT_ID_BLOOD = 2)
 	result_amount = 5
 
 /decl/chemical_reaction/instant/blood_paint/send_data(var/datum/reagents/T)
-	var/t = T.get_data("blood")
+	var/t = T.get_data(REAGENT_ID_BLOOD)
 	if(t && t["blood_colour"])
 		return t["blood_colour"]
 	return "#FE191A" // Probably red
@@ -991,8 +991,8 @@
 /decl/chemical_reaction/instant/milk_paint
 	name = "Milk paint"
 	id = "milk_paint"
-	result = "paint"
-	required_reagents = list("plasticide" = 1, "water" = 3, "milk" = 5)
+	result = REAGENT_ID_PAINT
+	required_reagents = list(REAGENT_ID_PLASTICIDE = 1, REAGENT_ID_WATER = 3, REAGENT_ID_MILK = 5)
 	result_amount = 5
 
 /decl/chemical_reaction/instant/milk_paint/send_data()
@@ -1001,8 +1001,8 @@
 /decl/chemical_reaction/instant/orange_juice_paint
 	name = "Orange juice paint"
 	id = "orange_juice_paint"
-	result = "paint"
-	required_reagents = list("plasticide" = 1, "water" = 3, "orangejuice" = 5)
+	result = REAGENT_ID_PAINT
+	required_reagents = list(REAGENT_ID_PLASTICIDE = 1, REAGENT_ID_WATER = 3, REAGENT_ID_ORANGEJUICE = 5)
 	result_amount = 5
 
 /decl/chemical_reaction/instant/orange_juice_paint/send_data()
@@ -1011,8 +1011,8 @@
 /decl/chemical_reaction/instant/tomato_juice_paint
 	name = "Tomato juice paint"
 	id = "tomato_juice_paint"
-	result = "paint"
-	required_reagents = list("plasticide" = 1, "water" = 3, "tomatojuice" = 5)
+	result = REAGENT_ID_PAINT
+	required_reagents = list(REAGENT_ID_PLASTICIDE = 1, REAGENT_ID_WATER = 3, REAGENT_ID_TOMATOJUICE = 5)
 	result_amount = 5
 
 /decl/chemical_reaction/instant/tomato_juice_paint/send_data()
@@ -1021,8 +1021,8 @@
 /decl/chemical_reaction/instant/lime_juice_paint
 	name = "Lime juice paint"
 	id = "lime_juice_paint"
-	result = "paint"
-	required_reagents = list("plasticide" = 1, "water" = 3, "limejuice" = 5)
+	result = REAGENT_ID_PAINT
+	required_reagents = list(REAGENT_ID_PLASTICIDE = 1, REAGENT_ID_WATER = 3, REAGENT_ID_LIMEJUICE = 5)
 	result_amount = 5
 
 /decl/chemical_reaction/instant/lime_juice_paint/send_data()
@@ -1031,8 +1031,8 @@
 /decl/chemical_reaction/instant/carrot_juice_paint
 	name = "Carrot juice paint"
 	id = "carrot_juice_paint"
-	result = "paint"
-	required_reagents = list("plasticide" = 1, "water" = 3, "carrotjuice" = 5)
+	result = REAGENT_ID_PAINT
+	required_reagents = list(REAGENT_ID_PLASTICIDE = 1, REAGENT_ID_WATER = 3, REAGENT_ID_CARROTJUICE = 5)
 	result_amount = 5
 
 /decl/chemical_reaction/instant/carrot_juice_paint/send_data()
@@ -1041,8 +1041,8 @@
 /decl/chemical_reaction/instant/berry_juice_paint
 	name = "Berry juice paint"
 	id = "berry_juice_paint"
-	result = "paint"
-	required_reagents = list("plasticide" = 1, "water" = 3, "berryjuice" = 5)
+	result = REAGENT_ID_PAINT
+	required_reagents = list(REAGENT_ID_PLASTICIDE = 1, REAGENT_ID_WATER = 3, REAGENT_ID_BERRYJUICE = 5)
 	result_amount = 5
 
 /decl/chemical_reaction/instant/berry_juice_paint/send_data()
@@ -1051,8 +1051,8 @@
 /decl/chemical_reaction/instant/grape_juice_paint
 	name = "Grape juice paint"
 	id = "grape_juice_paint"
-	result = "paint"
-	required_reagents = list("plasticide" = 1, "water" = 3, "grapejuice" = 5)
+	result = REAGENT_ID_PAINT
+	required_reagents = list(REAGENT_ID_PLASTICIDE = 1, REAGENT_ID_WATER = 3, REAGENT_ID_GRAPEJUICE = 5)
 	result_amount = 5
 
 /decl/chemical_reaction/instant/grape_juice_paint/send_data()
@@ -1061,8 +1061,8 @@
 /decl/chemical_reaction/instant/poisonberry_juice_paint
 	name = "Poison berry juice paint"
 	id = "poisonberry_juice_paint"
-	result = "paint"
-	required_reagents = list("plasticide" = 1, "water" = 3, "poisonberryjuice" = 5)
+	result = REAGENT_ID_PAINT
+	required_reagents = list(REAGENT_ID_PLASTICIDE = 1, REAGENT_ID_WATER = 3, REAGENT_ID_POISONBERRYJUICE = 5)
 	result_amount = 5
 
 /decl/chemical_reaction/instant/poisonberry_juice_paint/send_data()
@@ -1071,8 +1071,8 @@
 /decl/chemical_reaction/instant/watermelon_juice_paint
 	name = "Watermelon juice paint"
 	id = "watermelon_juice_paint"
-	result = "paint"
-	required_reagents = list("plasticide" = 1, "water" = 3, "watermelonjuice" = 5)
+	result = REAGENT_ID_PAINT
+	required_reagents = list(REAGENT_ID_PLASTICIDE = 1, REAGENT_ID_WATER = 3, REAGENT_ID_WATERMELONJUICE = 5)
 	result_amount = 5
 
 /decl/chemical_reaction/instant/watermelon_juice_paint/send_data()
@@ -1081,8 +1081,8 @@
 /decl/chemical_reaction/instant/lemon_juice_paint
 	name = "Lemon juice paint"
 	id = "lemon_juice_paint"
-	result = "paint"
-	required_reagents = list("plasticide" = 1, "water" = 3, "lemonjuice" = 5)
+	result = REAGENT_ID_PAINT
+	required_reagents = list(REAGENT_ID_PLASTICIDE = 1, REAGENT_ID_WATER = 3, REAGENT_ID_LEMONJUICE = 5)
 	result_amount = 5
 
 /decl/chemical_reaction/instant/lemon_juice_paint/send_data()
@@ -1091,8 +1091,8 @@
 /decl/chemical_reaction/instant/banana_juice_paint
 	name = "Banana juice paint"
 	id = "banana_juice_paint"
-	result = "paint"
-	required_reagents = list("plasticide" = 1, "water" = 3, "banana" = 5)
+	result = REAGENT_ID_PAINT
+	required_reagents = list(REAGENT_ID_PLASTICIDE = 1, REAGENT_ID_WATER = 3, REAGENT_ID_BANANA = 5)
 	result_amount = 5
 
 /decl/chemical_reaction/instant/banana_juice_paint/send_data()
@@ -1101,8 +1101,8 @@
 /decl/chemical_reaction/instant/potato_juice_paint
 	name = "Potato juice paint"
 	id = "potato_juice_paint"
-	result = "paint"
-	required_reagents = list("plasticide" = 1, "water" = 3, "potatojuice" = 5)
+	result = REAGENT_ID_PAINT
+	required_reagents = list(REAGENT_ID_PLASTICIDE = 1, REAGENT_ID_WATER = 3, REAGENT_ID_POTATOJUICE = 5)
 	result_amount = 5
 
 /decl/chemical_reaction/instant/potato_juice_paint/send_data()
@@ -1111,8 +1111,8 @@
 /decl/chemical_reaction/instant/carbon_paint
 	name = "Carbon paint"
 	id = "carbon_paint"
-	result = "paint"
-	required_reagents = list("plasticide" = 1, "water" = 3, "carbon" = 1)
+	result = REAGENT_ID_PAINT
+	required_reagents = list(REAGENT_ID_PLASTICIDE = 1, REAGENT_ID_WATER = 3, REAGENT_ID_CARBON = 1)
 	result_amount = 5
 
 /decl/chemical_reaction/instant/carbon_paint/send_data()
@@ -1121,8 +1121,8 @@
 /decl/chemical_reaction/instant/aluminum_paint
 	name = "Aluminum paint"
 	id = "aluminum_paint"
-	result = "paint"
-	required_reagents = list("plasticide" = 1, "water" = 3, "aluminum" = 1)
+	result = REAGENT_ID_PAINT
+	required_reagents = list(REAGENT_ID_PLASTICIDE = 1, REAGENT_ID_WATER = 3, REAGENT_ID_ALUMINIUM = 1)
 	result_amount = 5
 
 /decl/chemical_reaction/instant/aluminum_paint/send_data()
@@ -1132,92 +1132,92 @@
 /decl/chemical_reaction/instant/carpetdye
 	name = "Black Carpet Dyeing"
 	id = "carpetdyeblack"
-	result = "liquidcarpetb"
-	required_reagents = list("liquidcarpet" = 5, "carbon" = 1)
+	result = REAGENT_ID_LIQUIDCARPETB
+	required_reagents = list(REAGENT_ID_LIQUIDCARPET = 5, REAGENT_ID_CARBON = 1)
 	result_amount = 5
 
 /decl/chemical_reaction/instant/carpetdye/blue
 	name = "Blue Carpet Dyeing"
 	id = "carpetdyeblue"
-	result = "liquidcarpetblu"
-	required_reagents = list("liquidcarpet" = 5, "frostoil" = 1)
+	result = REAGENT_ID_LIQUIDCARPETBLU
+	required_reagents = list(REAGENT_ID_LIQUIDCARPET = 5, REAGENT_ID_FROSTOIL = 1)
 
 /decl/chemical_reaction/instant/carpetdye/tur
 	name = "Turqouise Carpet Dyeing"
 	id = "carpetdyetur"
-	result = "liquidcarpettur"
-	required_reagents = list("liquidcarpet" = 5, "water" = 1)
+	result = REAGENT_ID_LIQUIDCARPETTUR
+	required_reagents = list(REAGENT_ID_LIQUIDCARPET = 5, REAGENT_ID_WATER = 1)
 
 /decl/chemical_reaction/instant/carpetdye/sblu
 	name = "Silver Blue Carpet Dyeing"
 	id = "carpetdyesblu"
-	result = "liquidcarpetsblu"
-	required_reagents = list("liquidcarpet" = 5, "ice" = 1)
+	result = REAGENT_ID_LIQUIDCARPETSBLU
+	required_reagents = list(REAGENT_ID_LIQUIDCARPET = 5, REAGENT_ID_ICE = 1)
 
 /decl/chemical_reaction/instant/carpetdye/clown
 	name = "Clown Carpet Dyeing"
 	id = "carpetdyeclown"
-	result = "liquidcarpetc"
-	required_reagents = list("liquidcarpet" = 5, "banana" = 1)
+	result = REAGENT_ID_LIQUIDCARPETC
+	required_reagents = list(REAGENT_ID_LIQUIDCARPET = 5, REAGENT_ID_BANANA = 1)
 
 /decl/chemical_reaction/instant/carpetdye/purple
 	name = "Purple Carpet Dyeing"
 	id = "carpetdyepurple"
-	result = "liquidcarpetp"
-	required_reagents = list("liquidcarpet" = 5, "berryjuice" = 1)
+	result = REAGENT_ID_LIQUIDCARPETP
+	required_reagents = list(REAGENT_ID_LIQUIDCARPET = 5, REAGENT_ID_BERRYJUICE = 1)
 
 /decl/chemical_reaction/instant/carpetdye/orange
 	name = "Orange Carpet Dyeing"
 	id = "carpetdyeorange"
-	result = "liquidcarpeto"
-	required_reagents = list("liquidcarpet" = 5, "orangejuice" = 1)
+	result = REAGENT_ID_LIQUIDCARPETO
+	required_reagents = list(REAGENT_ID_LIQUIDCARPET = 5, REAGENT_ID_ORANGEJUICE = 1)
 
 
 //R-UST Port
 /decl/chemical_reaction/instant/hydrophoron
-	name = "Hydrophoron"
-	id = "hydrophoron"
-	result = "hydrophoron"
-	required_reagents = list("hydrogen" = 1, "phoron" = 1)
-	inhibitors = list("nitrogen" = 1) //So it doesn't mess with lexorin
+	name = REAGENT_HYDROPHORON
+	id = REAGENT_ID_HYDROPHORON
+	result = REAGENT_ID_HYDROPHORON
+	required_reagents = list(REAGENT_ID_HYDROGEN = 1, REAGENT_ID_PHORON = 1)
+	inhibitors = list(REAGENT_ID_NITROGEN = 1) //So it doesn't mess with lexorin
 	result_amount = 2
 
 /decl/chemical_reaction/instant/deuterium
-	name = "Deuterium"
-	id = "deuterium"
-	result = "deuterium"
-	required_reagents = list("hydrophoron" = 1, "water" = 2)
+	name = REAGENT_DEUTERIUM
+	id = REAGENT_ID_DEUTERIUM
+	result = REAGENT_ID_DEUTERIUM
+	required_reagents = list(REAGENT_ID_HYDROPHORON = 1, REAGENT_ID_WATER = 2)
 	result_amount = 3
 
 //Skrellian crap.
 /decl/chemical_reaction/instant/talum_quem
-	name = "Talum-quem"
-	id = "talum_quem"
-	result = "talum_quem"
-	required_reagents = list("bliss" = 2, "sugar" = 1, "amatoxin" = 1)
+	name = REAGENT_TALUMQUEM
+	id = REAGENT_ID_TALUMQUEM
+	result = REAGENT_ID_TALUMQUEM
+	required_reagents = list(REAGENT_ID_BLISS = 2, REAGENT_ID_SUGAR = 1, REAGENT_ID_AMATOXIN = 1)
 	result_amount = 4
 
 /decl/chemical_reaction/instant/qerr_quem
-	name = "Qerr-quem"
-	id = "qerr_quem"
-	result = "qerr_quem"
-	required_reagents = list("nicotine" = 1, "carbon" = 1, "sugar" = 2)
+	name = REAGENT_QERRQUEM
+	id = REAGENT_ID_QERRQUEM
+	result = REAGENT_ID_QERRQUEM
+	required_reagents = list(REAGENT_ID_NICOTINE = 1, REAGENT_ID_CARBON = 1, REAGENT_ID_SUGAR = 2)
 	result_amount = 4
 
 /decl/chemical_reaction/instant/malish_qualem
-	name = "Malish-Qualem"
-	id = "malish-qualem"
-	result = "malish-qualem"
-	required_reagents = list("immunosuprizine" = 1, "qerr_quem" = 1, "inaprovaline" = 1)
-	catalysts = list("phoron" = 5)
+	name = REAGENT_MALISHQUALEM
+	id = REAGENT_ID_MALISHQUALEM
+	result = REAGENT_ID_MALISHQUALEM
+	required_reagents = list(REAGENT_ID_IMMUNOSUPRIZINE = 1, REAGENT_ID_QERRQUEM = 1, REAGENT_ID_INAPROVALINE = 1)
+	catalysts = list(REAGENT_ID_PHORON = 5)
 	result_amount = 2
 
 // Biomass, for cloning and bioprinters
 /decl/chemical_reaction/instant/biomass
-	name = "Biomass"
-	id = "biomass"
-	result = "biomass"
-	required_reagents = list("protein" = 1, "sugar" = 1, "phoron" = 1)
+	name = REAGENT_BIOMASS
+	id = REAGENT_ID_BIOMASS
+	result = REAGENT_ID_BIOMASS
+	required_reagents = list(REAGENT_ID_PROTEIN = 1, REAGENT_ID_SUGAR = 1, REAGENT_ID_PHORON = 1)
 	result_amount = 1	// Roughly 20u per phoron sheet
 
 // Neutralization.
@@ -1225,20 +1225,20 @@
 /decl/chemical_reaction/instant/neutralize_neurotoxic_protein
 	name = "Neutralize Toxic Proteins"
 	id = "neurotoxic_protein_neutral"
-	result = "protein"
-	required_reagents = list("anti_toxin" = 1, "neurotoxic_protein" = 2)
+	result = REAGENT_ID_PROTEIN
+	required_reagents = list(REAGENT_ID_ANTITOXIN = 1, REAGENT_ID_NEUROTOXIC_PROTEIN = 2)
 	result_amount = 2
 
 /decl/chemical_reaction/instant/neutralize_carpotoxin
 	name = "Neutralize Carpotoxin"
 	id = "carpotoxin_neutral"
-	result = "protein"
-	required_reagents = list("enzyme" = 1, "carpotoxin" = 1, "sifsap" = 1)
+	result = REAGENT_ID_PROTEIN
+	required_reagents = list(REAGENT_ID_ENZYME = 1, REAGENT_ID_CARPOTOXIN = 1, REAGENT_ID_SIFSAP = 1)
 	result_amount = 1
 
 /decl/chemical_reaction/instant/neutralize_spidertoxin
 	name = "Neutralize Spidertoxin"
 	id = "spidertoxin_neutral"
-	result = "protein"
-	required_reagents = list("enzyme" = 1, "spidertoxin" = 1, "sifsap" = 1)
+	result = REAGENT_ID_PROTEIN
+	required_reagents = list(REAGENT_ID_ENZYME = 1, REAGENT_ID_SPIDERTOXIN = 1, REAGENT_ID_SIFSAP = 1)
 	result_amount = 1

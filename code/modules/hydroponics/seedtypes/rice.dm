@@ -1,9 +1,9 @@
 /datum/seed/rice
-	name = "rice"
-	seed_name = "rice"
+	name = PLANT_RICE
+	seed_name = PLANT_RICE
 	display_name = "rice stalks"
-	kitchen_tag = "rice"
-	chems = list("nutriment" = list(1,25), "rice" = list(10,15))
+	kitchen_tag = PLANT_RICE
+	chems = list(REAGENT_ID_NUTRIMENT = list(1,25), REAGENT_ID_RICE = list(10,15))
 
 /datum/seed/rice/New()
 	..()

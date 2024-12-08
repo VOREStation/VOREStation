@@ -46,7 +46,7 @@
 		env.add_thermal_energy(-10 * 1000)
 
 /datum/blob_type/cryogenic_goo/on_chunk_tick(obj/item/blobcore_chunk/B)
-	B.reagents.add_reagent("cryoslurry", 0.5)
+	B.reagents.add_reagent(REAGENT_ID_CRYOSLURRY, 0.5)
 
 	var/turf/simulated/T = get_turf(B)
 	if(!istype(T))

@@ -14,18 +14,18 @@
 
 	depth = 10 // Higher numbers indicates deeper water, 10 is unused right now, but may be useful for adding effects in the future.
 
-	reagent_type = "water"
+	reagent_type = REAGENT_ID_WATER
 
 /turf/simulated/floor/water/underwater/return_air_for_internal_lifeform(var/mob/living/L)
 	if(L.can_breathe_water()) // For squid.
 		var/datum/gas_mixture/water_breath = new()
 		var/datum/gas_mixture/above_air = return_air()
 		var/amount = 300
-		water_breath.adjust_gas("oxygen", amount) // Assuming water breathes just extract the oxygen directly from the water.
+		water_breath.adjust_gas(GAS_O2, amount) // Assuming water breathes just extract the oxygen directly from the water.
 		water_breath.temperature = above_air.temperature
 		return water_breath
 	else
-		var/gasid = "carbon_dioxide"
+		var/gasid = GAS_CO2
 		if(ishuman(L))
 			var/mob/living/carbon/human/H = L
 			if(H.species && H.species.exhale_type)

@@ -47,7 +47,7 @@
 
 	var/poison_chance = 100
 	var/poison_per_bite = 10
-	var/poison_type = "expired_medicine"
+	var/poison_type = REAGENT_ID_EXPIREDMEDICINE
 
 /datum/say_list/disbot
 	speak = list("ATTEMPTING TO CONTACT A.R.K, ATTEMPT 1e26+3","DIRT SAMPLE COLLECTED, DIRT QUOTA 124871/155 CONFIRMED.")

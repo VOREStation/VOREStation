@@ -38,7 +38,7 @@
 	melee_damage_lower = 10
 	melee_damage_upper = 10
 	poison_chance = 30
-	poison_type = "cryptobiolin"
+	poison_type = REAGENT_ID_CRYPTOBIOLIN
 	poison_per_bite = 1
 
 	player_msg = "You have an imperfect, but automatic stealth. If you attack something while 'hidden', then \

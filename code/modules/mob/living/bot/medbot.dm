@@ -31,12 +31,12 @@
 	var/injection_amount = 15 //How much reagent do we inject at a time?
 	var/heal_threshold = 10 //Start healing when they have this much damage in a category
 	var/use_beaker = 0 //Use reagents in beaker instead of default treatment agents.
-	var/treatment_brute = "tricordrazine"
-	var/treatment_oxy = "tricordrazine"
-	var/treatment_fire = "tricordrazine"
-	var/treatment_tox = "tricordrazine"
-	var/treatment_virus = "spaceacillin"
-	var/treatment_emag = "toxin"
+	var/treatment_brute = REAGENT_ID_TRICORDRAZINE
+	var/treatment_oxy = REAGENT_ID_TRICORDRAZINE
+	var/treatment_fire = REAGENT_ID_TRICORDRAZINE
+	var/treatment_tox = REAGENT_ID_TRICORDRAZINE
+	var/treatment_virus = REAGENT_ID_SPACEACILLIN
+	var/treatment_emag = REAGENT_ID_TOXIN
 	var/declare_treatment = 0 //When attempting to treat a patient, should it notify everyone wearing medhuds?
 
 	// Are we tipped over?
@@ -52,10 +52,10 @@
 	name = "\improper Mysterious Medibot"
 	desc = "International Medibot of mystery."
 	skin = "bezerk"
-	treatment_brute		= "bicaridine"
-	treatment_fire		= "dermaline"
-	treatment_oxy		= "dexalin"
-	treatment_tox		= "anti_toxin"
+	treatment_brute		= REAGENT_ID_BICARIDINE
+	treatment_fire		= REAGENT_ID_DERMALINE
+	treatment_oxy		= REAGENT_ID_DEXALIN
+	treatment_tox		= REAGENT_ID_ANTITOXIN
 
 /mob/living/bot/medbot/handleIdle()
 	if(is_tipped) // Don't handle idle things if we're incapacitated!

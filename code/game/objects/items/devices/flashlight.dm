@@ -149,8 +149,8 @@
 				if(M.getBrainLoss() > 15)
 					to_chat(user, span_notice("There's visible lag between left and right pupils' reactions."))
 
-				var/list/pinpoint = list("oxycodone"=1,"tramadol"=5)
-				var/list/dilating = list("bliss"=5,"ambrosia_extract"=5,"mindbreaker"=1)
+				var/list/pinpoint = list(REAGENT_ID_OXYCODONE=1,REAGENT_ID_TRAMADOL=5)
+				var/list/dilating = list(REAGENT_ID_BLISS=5,REAGENT_ID_AMBROSIAEXTRACT=5,REAGENT_ID_MINDBREAKER=1)
 				if(M.reagents.has_any_reagent(pinpoint) || H.ingested.has_any_reagent(pinpoint))
 					to_chat(user, span_notice("\The [M]'s pupils are already pinpoint and cannot narrow any more."))
 				else if(M.reagents.has_any_reagent(dilating) || H.ingested.has_any_reagent(dilating))

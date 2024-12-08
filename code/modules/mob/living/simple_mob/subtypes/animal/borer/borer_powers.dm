@@ -218,7 +218,7 @@
 	if(chemicals < 50)
 		to_chat(src,  span_warning("You don't have enough chemicals!"))
 
-	var/chem = tgui_input_list(usr, "Select a chemical to secrete.", "Chemicals", list("alkysine","bicaridine","hyperzine","tramadol"))
+	var/chem = tgui_input_list(usr, "Select a chemical to secrete.", "Chemicals", list(REAGENT_ID_ALKYSINE,REAGENT_ID_BICARIDINE,REAGENT_ID_HYPERZINE,REAGENT_ID_TRAMADOL))
 
 	if(!chem || chemicals < 50 || !host || controlling || !src || stat) //Sanity check.
 		return

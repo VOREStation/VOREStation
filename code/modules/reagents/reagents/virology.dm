@@ -1,6 +1,6 @@
 /datum/reagent/vaccine
-	name = "Vaccine"
-	id = "vaccine"
+	name = REAGENT_VACCINE
+	id = REAGENT_ID_VACCINE
 	color = "#C81040"
 	taste_description = "antibodies"
 
@@ -18,37 +18,37 @@
 		data |= newdatalist.Copy()
 
 /datum/reagent/mutagen/mutagenvirusfood
-	name = "Mutagenic agar"
-	id = "mutagenvirusfood"
+	name = REAGENT_MUTAGENVIRUSFOOD
+	id = REAGENT_ID_MUTAGENVIRUSFOOD
 	description = "Mutates viruses when mixed in blood. This one seems rather alright."
 	color = "#A3C00F"
 
 /datum/reagent/mutagen/mutagenvirusfood/sugar
-	name = "Sucrose agar"
-	id = "sugarvirusfood"
+	name = REAGENT_SUGARVIRUSFOOD
+	id = REAGENT_ID_SUGARVIRUSFOOD
 	color = "#41B0C0"
 	taste_mult = 1.5
 
 /datum/reagent/medicine/adranol/adranolvirusfood
-	name = "Virus rations"
-	id = "adranolvirusfood"
+	name = REAGENT_ADRANOLVIRUSFOOD
+	id = REAGENT_ID_ADRANOLVIRUSFOOD
 	description = "Mutates viruses when mixed in blood. This one seems rather weak."
 	color = "#D18AA5"
 
 /datum/reagent/toxin/phoron/phoronvirusfood
-	name = "Phoronic virus food"
-	id = "phoronvirusfood"
+	name = REAGENT_ADRANOLVIRUSFOOD
+	id = REAGENT_ID_PHORONVIRUSFOOD
 	description = "Mutates viruses when mixed in blood. This one seems to be the strongest."
 	color = "#A69DA9"
 
 /datum/reagent/toxin/phoron/phoronvirusfood/weak
-	name = "Weakened phoronic virus food"
-	id = "weakphoronvirusfood"
+	name = REAGENT_WEAKPHORONVIRUSFOOD
+	id = REAGENT_ID_WEAKPHORONVIRUSFOOD
 	description = "Mutates viruses when mixed in blood. This one seems to have been weakened, but still strong."
 	color = "#CEC3C6"
 
 /datum/reagent/toxin/phoron/phoronvirusfood/sizevirusfood
-	name = "Sizeoxadone virus food"
-	id = "sizevirusfood"
+	name = REAGENT_SIZEVIRUSFOOD
+	id = REAGENT_ID_SIZEVIRUSFOOD
 	description = "Mutates virus when mixed in blood. This is a strange size mix..."
 	color = "#88AFDD"

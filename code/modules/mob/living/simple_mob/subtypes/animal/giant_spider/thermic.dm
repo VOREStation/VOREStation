@@ -35,4 +35,4 @@
 
 	poison_chance = 30
 	poison_per_bite = 1
-	poison_type = "thermite_v"
+	poison_type = REAGENT_ID_THERMITEV

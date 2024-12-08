@@ -1,5 +1,5 @@
 /datum/material/cult
-	name = "cult"
+	name = MAT_CULT
 	display_name = "disturbing stone"
 	icon_base = "cult"
 	table_icon_base = "stone"
@@ -11,13 +11,13 @@
 	conductive = 0
 
 /datum/material/cult/place_dismantled_girder(var/turf/target)
-	new /obj/structure/girder/cult(target, "cult")
+	new /obj/structure/girder/cult(target, MAT_CULT)
 
 /datum/material/cult/place_dismantled_product(var/turf/target)
 	new /obj/effect/decal/cleanable/blood(target)
 
 /datum/material/cult/reinf
-	name = "cult2"
+	name = MAT_CULT2
 	display_name = "human remains"
 
 /datum/material/cult/reinf/place_dismantled_product(var/turf/target)

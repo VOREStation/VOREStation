@@ -27,7 +27,7 @@
 	melee_damage_upper = 25
 
 	poison_per_bite = 3
-	poison_type = "chloralhydrate"
+	poison_type = REAGENT_ID_CHLORALHYDRATE
 
 	movement_cooldown = 2
 

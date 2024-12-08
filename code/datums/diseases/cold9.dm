@@ -4,8 +4,8 @@
 	max_stages = 3
 	spread_text = "On contact"
 	spread_flags = CONTACT_GENERAL
-	cure_text = "Spaceacillin"
-	cures = list("spaceacillin")
+	cure_text = REAGENT_SPACEACILLIN
+	cures = list(REAGENT_ID_SPACEACILLIN)
 	agent = "ICE9-rhinovirus"
 	viable_mobtypes = list(/mob/living/carbon/human)
 	desc = "If left untreated the subject will slow, as if partly frozen."

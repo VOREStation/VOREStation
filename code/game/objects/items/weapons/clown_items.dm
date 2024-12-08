@@ -23,7 +23,7 @@
 	wet()
 
 /obj/item/soap/proc/wet()
-	reagents.add_reagent("cleaner", 5)
+	reagents.add_reagent(REAGENT_ID_CLEANER, 5)
 
 /obj/item/soap/Crossed(atom/movable/AM as mob|obj)
 	if(AM.is_incorporeal())

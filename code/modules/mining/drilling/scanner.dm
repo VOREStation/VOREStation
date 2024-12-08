@@ -41,13 +41,13 @@
 			var/ore_type
 
 			switch(metal)
-				if("sand", "carbon", "marble", /*"quartz"*/)	ore_type = "surface minerals"
-				if("hematite", /*"tin", "copper", "bauxite",*/ "lead")	ore_type = "industrial metals"
-				if("gold", "silver", "rutile")					ore_type = "precious metals"
-				if("diamond", /*"painite"*/)	ore_type = "precious gems"
-				if("uranium")									ore_type = "nuclear fuel"
-				if("phoron", "platinum", "mhydrogen")				ore_type = "exotic matter"
-				if("verdantium", /*"void opal"*/)				ore_type = "anomalous matter"
+				if(ORE_SAND, ORE_CARBON, ORE_MARBLE, /*ORE_QUARTZ*/)	ore_type = "surface minerals"
+				if(ORE_HEMATITE, /*ORE_TIN, ORE_COPPER, ORE_BAUXITE,*/ ORE_LEAD)	ore_type = "industrial metals"
+				if(ORE_GOLD, ORE_SILVER, ORE_RUTILE)					ore_type = "precious metals"
+				if(ORE_DIAMOND, /*ORE_PAINITE*/)	ore_type = "precious gems"
+				if(ORE_URANIUM)									ore_type = "nuclear fuel"
+				if(ORE_PHORON, ORE_PLATINUM, ORE_MHYDROGEN)				ore_type = "exotic matter"
+				if(ORE_VERDANTIUM, /*ORE_VOPAL*/)				ore_type = "anomalous matter"
 
 			if(ore_type) metals[ore_type] += T.resources[metal]
 

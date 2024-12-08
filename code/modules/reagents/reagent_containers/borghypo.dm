@@ -14,25 +14,25 @@
 	var/recharge_time = 5 //Time it takes for shots to recharge (in seconds)
 	var/bypass_protection = FALSE // If true, can inject through things like spacesuits and armor.
 
-	var/list/reagent_ids = list("tricordrazine", "inaprovaline", "anti_toxin", "tramadol", "dexalin" ,"spaceacillin")
+	var/list/reagent_ids = list(REAGENT_ID_TRICORDRAZINE, REAGENT_ID_INAPROVALINE, REAGENT_ID_ANTITOXIN, REAGENT_ID_TRAMADOL, REAGENT_ID_DEXALIN ,REAGENT_ID_SPACEACILLIN)
 	var/list/reagent_volumes = list()
 	var/list/reagent_names = list()
 
 /obj/item/reagent_containers/borghypo/surgeon
-	reagent_ids = list("inaprovaline", "dexalin", "tricordrazine", "spaceacillin", "oxycodone")
+	reagent_ids = list(REAGENT_ID_INAPROVALINE, REAGENT_ID_DEXALIN, REAGENT_ID_TRICORDRAZINE, REAGENT_ID_SPACEACILLIN, REAGENT_ID_OXYCODONE)
 
 /obj/item/reagent_containers/borghypo/crisis
-	reagent_ids = list("inaprovaline", "bicaridine", "kelotane", "anti_toxin", "dexalin", "tricordrazine", "spaceacillin", "tramadol")
+	reagent_ids = list(REAGENT_ID_INAPROVALINE, REAGENT_ID_BICARIDINE, REAGENT_ID_KELOTANE, REAGENT_ID_ANTITOXIN, REAGENT_ID_DEXALIN, REAGENT_ID_TRICORDRAZINE, REAGENT_ID_SPACEACILLIN, REAGENT_ID_TRAMADOL)
 
 /obj/item/reagent_containers/borghypo/lost
-	reagent_ids = list("tricordrazine", "bicaridine", "dexalin", "anti_toxin", "tramadol", "spaceacillin")
+	reagent_ids = list(REAGENT_ID_TRICORDRAZINE, REAGENT_ID_BICARIDINE, REAGENT_ID_DEXALIN, REAGENT_ID_ANTITOXIN, REAGENT_ID_TRAMADOL, REAGENT_ID_SPACEACILLIN)
 
 /obj/item/reagent_containers/borghypo/merc
 	name = "advanced cyborg hypospray"
 	desc = "An advanced nanite and chemical synthesizer and injection system, designed for heavy-duty medical equipment.  This type is capable of safely bypassing \
 	thick materials that other hyposprays would struggle with."
 	bypass_protection = TRUE // Because mercs tend to be in spacesuits.
-	reagent_ids = list("healing_nanites", "hyperzine", "tramadol", "oxycodone", "spaceacillin", "peridaxon", "osteodaxon", "myelamine", "synthblood")
+	reagent_ids = list(REAGENT_ID_HEALINGNANITES, REAGENT_ID_HYPERZINE, REAGENT_ID_TRAMADOL, REAGENT_ID_OXYCODONE, REAGENT_ID_SPACEACILLIN, REAGENT_ID_PERIDAXON, REAGENT_ID_OSTEODAXON, REAGENT_ID_MYELAMINE, REAGENT_ID_SYNTHBLOOD)
 
 /obj/item/reagent_containers/borghypo/Initialize()
 	. = ..()
@@ -132,49 +132,49 @@
 	recharge_time = 3
 	volume = 60
 	possible_transfer_amounts = list(5, 10, 20, 30)
-	reagent_ids = list("ale",
-		"beer",
-		"berryjuice",
-		"bitters",
-		"cider",
-		"coffee",
-		"cognac",
-		"cola",
-		"cream",
-		"dr_gibb",
-		"egg",
-		"gin",
-		"gingerale",
-		"hot_coco",
-		"ice",
-		"icetea",
-		"kahlua",
-		"lemonjuice",
-		"lemon_lime",
-		"limejuice",
-		"mead",
-		"milk",
-		"mint",
-		"orangejuice",
-		"redwine",
-		"rum",
-		"sake",
-		"sodawater",
-		"soymilk",
-		"space_up",
-		"spacemountainwind",
-		"spacespice",
-		"specialwhiskey",
-		"sugar",
-		"tea",
-		"tequilla",
-		"tomatojuice",
-		"tonic",
-		"vermouth",
-		"vodka",
-		"water",
-		"watermelonjuice",
-		"whiskey")
+	reagent_ids = list(REAGENT_ID_ALE,
+		REAGENT_ID_BEER,
+		REAGENT_ID_BERRYJUICE,
+		REAGENT_ID_BITTERS,
+		REAGENT_ID_CIDER,
+		REAGENT_ID_COFFEE,
+		REAGENT_ID_COGNAC,
+		REAGENT_ID_COLA,
+		REAGENT_ID_CREAM,
+		REAGENT_ID_DRGIBB,
+		REAGENT_ID_EGG,
+		REAGENT_ID_GIN,
+		REAGENT_ID_GINGERALE,
+		REAGENT_ID_HOTCOCO,
+		REAGENT_ID_ICE,
+		REAGENT_ID_ICETEA,
+		REAGENT_ID_KAHLUA,
+		REAGENT_ID_LEMONJUICE,
+		REAGENT_ID_LEMONLIME,
+		REAGENT_ID_LIMEJUICE,
+		REAGENT_ID_MEAD,
+		REAGENT_ID_MILK,
+		REAGENT_ID_MINT,
+		REAGENT_ID_ORANGEJUICE,
+		REAGENT_ID_REDWINE,
+		REAGENT_ID_RUM,
+		REAGENT_ID_SAKE,
+		REAGENT_ID_SODAWATER,
+		REAGENT_ID_SOYMILK,
+		REAGENT_ID_SPACEUP,
+		REAGENT_ID_SPACEMOUNTAINWIND,
+		REAGENT_ID_SPACESPICE,
+		REAGENT_ID_SPECIALWHISKEY,
+		REAGENT_ID_SUGAR,
+		REAGENT_ID_TEA,
+		REAGENT_ID_TEQUILLA,
+		REAGENT_ID_TOMATOJUICE,
+		REAGENT_ID_TONIC,
+		REAGENT_ID_VERMOUTH,
+		REAGENT_ID_VODKA,
+		REAGENT_ID_WATER,
+		REAGENT_ID_WATERMELONJUICE,
+		REAGENT_ID_WHISKEY)
 
 /obj/item/reagent_containers/borghypo/service/attack(var/mob/M, var/mob/user)
 	return

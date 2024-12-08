@@ -276,9 +276,9 @@
 	var/list/reagents_data = list()
 	for(var/datum/reagent/R in reagents.reagent_list)
 		var/display_name = R.name
-		if(R.id == "capsaicin")
+		if(R.id == REAGENT_ID_CAPSAICIN)
 			display_name = "Hotsauce"
-		if(R.id == "frostoil")
+		if(R.id == REAGENT_ID_FROSTOIL)
 			display_name = "Coldsauce"
 		UNTYPED_LIST_ADD(reagents_data, list(
 			"name" = display_name,
@@ -552,8 +552,8 @@
 				qdel(H.held_mob)
 		qdel(O)
 	src.reagents.clear_reagents()
-	ffuu.reagents.add_reagent("carbon", amount)
-	ffuu.reagents.add_reagent("toxin", amount/10)
+	ffuu.reagents.add_reagent(REAGENT_ID_CARBON, amount)
+	ffuu.reagents.add_reagent(REAGENT_ID_TOXIN, amount/10)
 	return ffuu
 
 /obj/machinery/microwave/verb/Eject()

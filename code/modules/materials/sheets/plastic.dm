@@ -1,13 +1,13 @@
 /obj/item/stack/material/plastic
-	name = "plastic"
+	name = MAT_PLASTIC
 	icon_state = "sheet-plastic"
-	default_type = "plastic"
+	default_type = MAT_PLASTIC
 	no_variants = FALSE
 
 /obj/item/stack/material/cardboard
-	name = "cardboard"
+	name = MAT_CARDBOARD
 	icon_state = "sheet-card"
-	default_type = "cardboard"
+	default_type = MAT_CARDBOARD
 	no_variants = FALSE
 	pass_color = TRUE
 	strict_color_stacking = TRUE

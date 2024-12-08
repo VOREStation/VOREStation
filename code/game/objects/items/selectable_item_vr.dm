@@ -43,6 +43,6 @@
 	desc = "A pre-arranged home chemistry kit. This one is for rather specific set of gender-altering chemicals."
 	preface_string = "This kit can be used to create a vial of a gender-altering chemical, but there's only enough material for one."
 	preface_title = "Gender Chemistry Kit"
-	item_options = list("Androrovir" = /obj/item/reagent_containers/glass/beaker/vial/androrovir,
-						"Gynorovir" = /obj/item/reagent_containers/glass/beaker/vial/gynorovir,
-						"Androgynorovir" = /obj/item/reagent_containers/glass/beaker/vial/androgynorovir)
+	item_options = list(REAGENT_ANDROROVIR = /obj/item/reagent_containers/glass/beaker/vial/androrovir,
+						REAGENT_GYNOROVIR = /obj/item/reagent_containers/glass/beaker/vial/gynorovir,
+						REAGENT_ANDROGYNOROVIR = /obj/item/reagent_containers/glass/beaker/vial/androgynorovir)

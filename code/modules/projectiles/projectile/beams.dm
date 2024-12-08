@@ -510,8 +510,8 @@
 		if(M.health < M.maxHealth)
 			var/obj/effect/overlay/pulse = new /obj/effect/overlay(get_turf(M))
 			pulse.icon = 'icons/effects/effects.dmi'
-			pulse.icon_state = "heal"
-			pulse.name = "heal"
+			pulse.icon_state = XENO_CHEM_HEAL
+			pulse.name = XENO_CHEM_HEAL
 			pulse.anchored = TRUE
 			spawn(20)
 				qdel(pulse)

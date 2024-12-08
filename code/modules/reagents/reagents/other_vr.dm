@@ -1,6 +1,6 @@
 /datum/reagent/advmutationtoxin
-	name = "Advanced Mutation Toxin"
-	id = "advmutationtoxin"
+	name = REAGENT_ADVMUTATIONTOXIN
+	id = REAGENT_ID_ADVMUTATIONTOXIN
 	description = "A corruptive toxin produced by slimes. Turns the subject of the chemical into a Promethean."
 	reagent_state = LIQUID
 	color = "#13BC5E"
@@ -31,8 +31,8 @@
 					torso.implants += BI
 
 /datum/reagent/nif_repair_nanites
-	name = "Programmed Nanomachines"
-	id = "nifrepairnanites"
+	name = REAGENT_NIFREPAIRNANITES
+	id = REAGENT_ID_NIFREPAIRNANITES
 	description = "A thick grey slurry of NIF repair nanomachines."
 	taste_description = "metallic"
 	reagent_state = LIQUID
@@ -50,8 +50,8 @@
 			nif.repair(removed)
 
 /datum/reagent/firefighting_foam
-	name = "Firefighting Foam"
-	id = "firefoam"
+	name = REAGENT_FIREFOAM
+	id = REAGENT_ID_FIREFOAM
 	description = "A historical fire suppressant. Originally believed to simply displace oxygen to starve fires, it actually interferes with the combustion reaction itself. Vastly superior to the cheap water-based extinguishers found on most NT vessels."
 	reagent_state = LIQUID
 	color = "#A6FAFF"
@@ -95,8 +95,8 @@
 	M.ExtinguishMob()
 
 /datum/reagent/liquid_protean
-	name = "Liquid protean"
-	id = "liquid_protean"
+	name = REAGENT_LIQUIDPROTEAN
+	id = REAGENT_ID_LIQUIDPROTEAN
 	description = "This seems to be a small portion of a Protean creature, still slightly wiggling."
 	taste_description = "wiggly peanutbutter"
 	reagent_state = LIQUID
@@ -124,8 +124,8 @@
 
 //Special toxins for solargrubs
 /datum/reagent/grubshock
-	name = "200 V" //in other words a painful shock
-	id = "shockchem"
+	name = REAGENT_SHOCKCHEM //in other words a painful shock
+	id = REAGENT_ID_SHOCKCHEM
 	description = "A liquid that quickly dissapates to deliver a painful shock."
 	reagent_state = LIQUID
 	color = "#E4EC2F"

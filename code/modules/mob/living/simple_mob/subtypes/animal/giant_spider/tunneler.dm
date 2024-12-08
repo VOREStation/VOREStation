@@ -40,7 +40,7 @@
 
 	poison_chance = 15
 	poison_per_bite = 3
-	poison_type = "serotrotium_v"
+	poison_type = REAGENT_ID_SEROTROTIUMV
 
 //	ai_holder_type = /datum/ai_holder/simple_mob/melee/tunneler
 

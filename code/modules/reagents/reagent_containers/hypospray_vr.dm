@@ -1,22 +1,22 @@
 /obj/item/reagent_containers/hypospray/autoinjector/burn
 	name = "autoinjector (burn)"
 	icon_state = "purple"
-	filled_reagents = list("dermaline" = 3.5, "leporazine" = 1.5)
+	filled_reagents = list(REAGENT_ID_DERMALINE = 3.5, REAGENT_ID_LEPORAZINE = 1.5)
 
 /obj/item/reagent_containers/hypospray/autoinjector/trauma
 	name = "autoinjector (trauma)"
 	icon_state = "black"
-	filled_reagents = list("bicaridine" = 4, "tramadol" = 1)
+	filled_reagents = list(REAGENT_ID_BICARIDINE = 4, REAGENT_ID_TRAMADOL = 1)
 
 /obj/item/reagent_containers/hypospray/autoinjector/oxy
 	name = "autoinjector (oxy)"
 	icon_state = "blue"
-	filled_reagents = list("dexalinp" = 5)
+	filled_reagents = list(REAGENT_ID_DEXALINP = 5)
 
 /obj/item/reagent_containers/hypospray/autoinjector/rad
 	name = "autoinjector (rad)"
 	icon_state = "black"
-	filled_reagents = list("hyronalin" = 5)
+	filled_reagents = list(REAGENT_ID_HYRONALIN = 5)
 
 /obj/item/storage/box/traumainjectors
 	name = "box of emergency injectors"

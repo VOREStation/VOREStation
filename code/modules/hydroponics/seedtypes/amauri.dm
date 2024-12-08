@@ -1,9 +1,9 @@
 /datum/seed/amauri
-	name = "amauri"
-	seed_name = "amauri"
+	name = PLANT_AMAURI
+	seed_name = PLANT_AMAURI
 	display_name = "amauri plant"
-	kitchen_tag = "amauri"
-	chems = list("zombiepowder" = list(1,10),"condensedcapsaicin" = list(1,5),"nutriment" = list(1,5))
+	kitchen_tag = PLANT_AMAURI
+	chems = list(REAGENT_ID_ZOMBIEPOWDER = list(1,10),REAGENT_ID_CONDENSEDCAPSAICIN = list(1,5),REAGENT_ID_NUTRIMENT = list(1,5))
 
 /datum/seed/amauri/New()
 	..()
