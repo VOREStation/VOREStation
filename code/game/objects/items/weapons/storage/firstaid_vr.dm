@@ -236,7 +236,7 @@
 
 /obj/item/storage/pill_bottle/sleevingcure
 	name = "pill bottle (" + REAGENT_SLEEVINGCURE + ")"
-	desc = "A rare cure provided by KHI that helps counteract negative side effects of using imperfect resleeving machinery."
+	desc = "A rare cure provided by Vey-Medical that helps counteract negative side effects of using imperfect resleeving machinery."
 	starts_with = list(/obj/item/reagent_containers/pill/sleevingcure = 7)
 
 /obj/item/storage/pill_bottle/sleevingcure/full

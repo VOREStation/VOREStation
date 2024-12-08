@@ -9,36 +9,36 @@
 	//set category = "Abilities.Protean"
 	set hidden = 1
 
-	var/mob/living/caller = src
+	var/mob/living/protie = src
 	if(temporary_form)
-		caller = temporary_form
-	if(nano_dead_check(caller))
-		to_chat(caller, span_warning("You need to be repaired first before you can act!"))
+		protie = temporary_form
+	if(nano_dead_check(protie))
+		to_chat(protie, span_warning("You need to be repaired first before you can act!"))
 		return
 	if(stat)
-		to_chat(caller,span_warning("You must be awake and standing to perform this action!"))
+		to_chat(protie,span_warning("You must be awake and standing to perform this action!"))
 		return
 
-	if(!isturf(caller.loc))
-		to_chat(caller,span_warning("You need more space to perform this action!"))
+	if(!isturf(protie.loc))
+		to_chat(protie,span_warning("You need more space to perform this action!"))
 		return
 
 	var/obj/item/organ/internal/nano/refactory/refactory = nano_get_refactory()
 	//Missing the organ that does this
 	if(!istype(refactory))
-		to_chat(caller,span_warning("You don't have a working refactory module!"))
+		to_chat(protie,span_warning("You don't have a working refactory module!"))
 		return
 
-	var/choice = tgui_input_list(caller,"Pick the bodypart to change:", "Refactor - One Bodypart", species.has_limbs)
+	var/choice = tgui_input_list(protie,"Pick the bodypart to change:", "Refactor - One Bodypart", species.has_limbs)
 	if(!choice)
 		return
 
 	//Organ is missing, needs restoring
 	if(!organs_by_name[choice] || istype(organs_by_name[choice], /obj/item/organ/external/stump)) //allows limb stumps to regenerate like removed limbs.
 		if(refactory.get_stored_material(MAT_STEEL) < PER_LIMB_STEEL_COST)
-			to_chat(caller,span_warning("You're missing that limb, and need to store at least [PER_LIMB_STEEL_COST] steel to regenerate it."))
+			to_chat(protie,span_warning("You're missing that limb, and need to store at least [PER_LIMB_STEEL_COST] steel to regenerate it."))
 			return
-		var/regen = tgui_alert(caller,"That limb is missing, do you want to regenerate it in exchange for [PER_LIMB_STEEL_COST] steel?","Regenerate limb?",list("Yes","No"))
+		var/regen = tgui_alert(protie,"That limb is missing, do you want to regenerate it in exchange for [PER_LIMB_STEEL_COST] steel?","Regenerate limb?",list("Yes","No"))
 		if(regen != "Yes")
 			return
 		if(!refactory.use_stored_material(MAT_STEEL,PER_LIMB_STEEL_COST))
@@ -77,7 +77,7 @@
 		usable_manufacturers[company] = M
 	if(!usable_manufacturers.len)
 		return
-	var/manu_choice = tgui_input_list(caller, "Which manufacturer do you wish to mimic for this limb?", "Manufacturer for [choice]", usable_manufacturers)
+	var/manu_choice = tgui_input_list(protie, "Which manufacturer do you wish to mimic for this limb?", "Manufacturer for [choice]", usable_manufacturers)
 
 	if(!manu_choice)
 		return //Changed mind
@@ -94,10 +94,10 @@
 	set desc = "Fully repair yourself or reload your appearance from whatever character slot you have loaded."
 	//set category = "Abilities.Protean"
 	set hidden = 1
-	var/mob/living/caller = src
+	var/mob/living/protie = src
 	if(temporary_form)
-		caller = temporary_form
-	var/input = tgui_alert(caller,{"Do you want to rebuild or reassemble yourself?
+		protie = temporary_form
+	var/input = tgui_alert(protie,{"Do you want to rebuild or reassemble yourself?
 	Rebuilding will cost 10,000 steel and will rebuild all of your limbs as well as repair all damage over a 40s period.
 	Reassembling costs no steel and will copy the appearance data of your currently loaded save slot."},"Reassembly",list("Rebuild","Reassemble","Cancel"))
 	if(input == "Cancel" || !input)
@@ -105,36 +105,36 @@
 	if(input == "Rebuild")
 		var/obj/item/organ/internal/nano/refactory/refactory = nano_get_refactory()
 		if(refactory.get_stored_material(MAT_STEEL) >= 10000)
-			to_chat(caller, span_notify("You begin to rebuild. You will need to remain still."))
-			if(do_after(caller, 400,exclusive = TASK_ALL_EXCLUSIVE))
+			to_chat(protie, span_notify("You begin to rebuild. You will need to remain still."))
+			if(do_after(protie, 400,exclusive = TASK_ALL_EXCLUSIVE))
 				if(species?:OurRig)	//Unsafe, but we should only ever be using this with a Protean
 					species?:OurRig?:make_alive(src,1)	//Re-using this proc
 					refactory.use_stored_material(MAT_STEEL,refactory.get_stored_material(MAT_STEEL))	//Use all of our steel
 				else
-					to_chat(caller, span_userdanger("Somehow, you are missing your protean rig. You are unable to rebuild without one."))
+					to_chat(protie, span_userdanger("Somehow, you are missing your protean rig. You are unable to rebuild without one."))
 		else
-			to_chat(caller, span_warning("You do not have enough steel stored for this operation."))
+			to_chat(protie, span_warning("You do not have enough steel stored for this operation."))
 	else
-		input = tgui_alert(caller,{"Include Flavourtext?"},"Reassembly",list("Yes","No","Cancel"))
+		input = tgui_alert(protie,{"Include Flavourtext?"},"Reassembly",list("Yes","No","Cancel"))
 		if(input == "Cancel" || !input)
 			return
 		var/flavour = 0
 		if(input == "Yes")
 			flavour = 1
-		input = tgui_alert(caller,{"Include OOC notes?"},"Reassembly",list("Yes","No","Cancel"))
+		input = tgui_alert(protie,{"Include OOC notes?"},"Reassembly",list("Yes","No","Cancel"))
 		if(input == "Cancel" || !input)
 			return
 		var/oocnotes = 0
 		if(input == "Yes")
 			oocnotes = 1
-		to_chat(caller, span_notify("You begin to reassemble. You will need to remain still."))
-		caller.visible_message(span_notify("[caller] rapidly contorts and shifts!"), span_danger("You begin to reassemble."))
-		if(do_after(caller, 40,exclusive = TASK_ALL_EXCLUSIVE))
-			if(caller.client.prefs)	//Make sure we didn't d/c
+		to_chat(protie, span_notify("You begin to reassemble. You will need to remain still."))
+		protie.visible_message(span_notify("[protie] rapidly contorts and shifts!"), span_danger("You begin to reassemble."))
+		if(do_after(protie, 40,exclusive = TASK_ALL_EXCLUSIVE))
+			if(protie.client.prefs)	//Make sure we didn't d/c
 				var/obj/item/rig/protean/Rig = species?:OurRig
-				caller.client.prefs.vanity_copy_to(src, FALSE, flavour, oocnotes, TRUE)
+				protie.client.prefs.vanity_copy_to(src, FALSE, flavour, oocnotes, TRUE)
 				species?:OurRig = Rig	//Get a reference to our Rig and put it back after reassembling
-				caller.visible_message(span_notify("[caller] adopts a new form!"), span_danger("You have reassembled."))
+				protie.visible_message(span_notify("[protie] adopts a new form!"), span_danger("You have reassembled."))
 
 
 /mob/living/carbon/human/proc/nano_copy_body()
@@ -142,13 +142,13 @@
 	set desc = "If you are aggressively grabbing someone, with their consent, you can turn into a copy of them. (Without their name)."
 	//set category = "Abilities.Protean"
 	set hidden = 1
-	var/mob/living/caller = src
+	var/mob/living/protie = src
 	if(temporary_form)
-		caller = temporary_form
+		protie = temporary_form
 
 	var/grabbing_but_not_enough
 	var/mob/living/carbon/human/victim = null
-	for(var/obj/item/grab/G in caller)
+	for(var/obj/item/grab/G in protie)
 		if(G.state < GRAB_AGGRESSIVE)
 			grabbing_but_not_enough = TRUE
 			return
@@ -156,25 +156,25 @@
 			victim = G.affecting
 	if (!victim)
 		if (grabbing_but_not_enough)
-			to_chat(caller, span_warning("You need a better grip to do that!"))
+			to_chat(protie, span_warning("You need a better grip to do that!"))
 		else
-			to_chat(caller, span_notice("You need to be aggressively grabbing someone before you can copy their form."))
+			to_chat(protie, span_notice("You need to be aggressively grabbing someone before you can copy their form."))
 		return
 	if (!istype(victim))
-		to_chat(caller, span_warning("You can only perform this on human mobs!"))
+		to_chat(protie, span_warning("You can only perform this on human mobs!"))
 		return
 	if (!victim.client)
-		to_chat(caller, span_notice("The person you try this on must have a client!"))
+		to_chat(protie, span_notice("The person you try this on must have a client!"))
 		return
 
 
-	to_chat(caller, span_notice("Waiting for other person's consent."))
+	to_chat(protie, span_notice("Waiting for other person's consent."))
 	var/consent = tgui_alert(victim, "Allow [src] to copy what you look like?", "Consent", list("Yes", "No"))
 	if (consent != "Yes")
-		to_chat(caller, span_notice("They declined your request."))
+		to_chat(protie, span_notice("They declined your request."))
 		return
 
-	var/input = tgui_alert(caller,{"Copy [victim]'s flavourtext?"},"Copy Form",list("Yes","No","Cancel"))
+	var/input = tgui_alert(protie,{"Copy [victim]'s flavourtext?"},"Copy Form",list("Yes","No","Cancel"))
 	if(input == "Cancel" || !input)
 		return
 	var/flavour = 0
@@ -182,28 +182,28 @@
 		flavour = 1
 
 	var/checking = FALSE
-	for(var/obj/item/grab/G in caller)
+	for(var/obj/item/grab/G in protie)
 		if(G.affecting == victim && G.state >= GRAB_AGGRESSIVE)
 			checking = TRUE
 	if (!checking)
-		to_chat(caller, span_warning("You lost your grip on [victim]!"))
+		to_chat(protie, span_warning("You lost your grip on [victim]!"))
 		return
 
-	to_chat(caller, span_notify("You begin to reassemble into [victim]. You will need to remain still."))
-	caller.visible_message(span_notify("[caller] rapidly contorts and shifts!"), span_danger("You begin to reassemble into [victim]."))
-	if(do_after(caller, 40,exclusive = TASK_ALL_EXCLUSIVE))
+	to_chat(protie, span_notify("You begin to reassemble into [victim]. You will need to remain still."))
+	protie.visible_message(span_notify("[protie] rapidly contorts and shifts!"), span_danger("You begin to reassemble into [victim]."))
+	if(do_after(protie, 40,exclusive = TASK_ALL_EXCLUSIVE))
 		checking = FALSE
-		for(var/obj/item/grab/G in caller)
+		for(var/obj/item/grab/G in protie)
 			if(G.affecting == victim && G.state >= GRAB_AGGRESSIVE)
 				checking = TRUE
 		if (!checking)
-			to_chat(caller, span_warning("You lost your grip on [victim]!"))
+			to_chat(protie, span_warning("You lost your grip on [victim]!"))
 			return
-		if(caller.client)	//Make sure we didn't d/c
+		if(protie.client)	//Make sure we didn't d/c
 			var/obj/item/rig/protean/Rig = species?:OurRig
 			transform_into_other_human(victim, FALSE, flavour, TRUE)
 			species?:OurRig = Rig	//Get a reference to our Rig and put it back after reassembling
-			caller.visible_message(span_notify("[caller] adopts the form of [victim]!"), span_danger("You have reassembled into [victim]."))
+			protie.visible_message(span_notify("[protie] adopts the form of [victim]!"), span_danger("You have reassembled into [victim]."))
 
 ////
 //  Storing metal
@@ -214,22 +214,22 @@
 	//set category = "Abilities.Protean"
 	set hidden = 1
 
-	var/mob/living/caller = src
+	var/mob/living/protie = src
 	if(temporary_form)
-		caller = temporary_form
-	if(nano_dead_check(caller))
-		to_chat(caller, span_warning("You need to be repaired first before you can act!"))
+		protie = temporary_form
+	if(nano_dead_check(protie))
+		to_chat(protie, span_warning("You need to be repaired first before you can act!"))
 		return
 
 	var/obj/item/organ/internal/nano/refactory/refactory = nano_get_refactory()
 	//Missing the organ that does this
 	if(!istype(refactory))
-		to_chat(caller,span_warning("You don't have a working refactory module!"))
+		to_chat(protie,span_warning("You don't have a working refactory module!"))
 		return
 
-	var/held = caller.get_active_hand()
+	var/held = protie.get_active_hand()
 	if(!istype(held,/obj/item/stack/material))
-		to_chat(caller,span_warning("You aren't holding a stack of materials in your active hand!"))
+		to_chat(protie,span_warning("You aren't holding a stack of materials in your active hand!"))
 		return
 
 	var/obj/item/stack/material/matstack = held
@@ -238,23 +238,23 @@
 	for(var/material in PROTEAN_EDIBLE_MATERIALS)
 		if(material == substance) allowed = 1
 	if(!allowed)
-		to_chat(caller,span_warning("You can't process [substance]!"))
+		to_chat(protie,span_warning("You can't process [substance]!"))
 		return
 
-	var/howmuch = tgui_input_number(caller,"How much do you want to store? (0-[matstack.get_amount()])","Select amount",null,matstack.get_amount())
-	if(!howmuch || matstack != caller.get_active_hand() || howmuch > matstack.get_amount())
+	var/howmuch = tgui_input_number(protie,"How much do you want to store? (0-[matstack.get_amount()])","Select amount",null,matstack.get_amount())
+	if(!howmuch || matstack != protie.get_active_hand() || howmuch > matstack.get_amount())
 		return //Quietly fail
 
 	var/actually_added = refactory.add_stored_material(substance,howmuch*matstack.perunit)
 	matstack.use(CEILING((actually_added/matstack.perunit), 1))
 	if(actually_added && actually_added < howmuch)
-		to_chat(caller,span_warning("Your refactory module is now full, so only [actually_added] units were stored."))
-		visible_message(span_notice("[caller] nibbles some of the [substance] right off the stack!"))
+		to_chat(protie,span_warning("Your refactory module is now full, so only [actually_added] units were stored."))
+		visible_message(span_notice("[protie] nibbles some of the [substance] right off the stack!"))
 	else if(actually_added)
-		to_chat(caller,span_notice("You store [actually_added] units of [substance]."))
-		visible_message(span_notice("[caller] devours some of the [substance] right off the stack!"))
+		to_chat(protie,span_notice("You store [actually_added] units of [substance]."))
+		visible_message(span_notice("[protie] devours some of the [substance] right off the stack!"))
 	else
-		to_chat(caller,span_notice("You're completely capped out on [substance]!"))
+		to_chat(protie,span_notice("You're completely capped out on [substance]!"))
 
 ////
 //  Blob Form
@@ -320,14 +320,14 @@
 	//set category = "Abilities.Protean"
 	set hidden = 1
 
-	var/mob/living/caller = src
+	var/mob/living/protie = src
 	if(temporary_form)
-		caller = temporary_form
+		protie = temporary_form
 	if(nano_dead_check(src))
-		to_chat(caller, span_warning("You need to be repaired first before you can act!"))
+		to_chat(protie, span_warning("You need to be repaired first before you can act!"))
 		return
-	to_chat(caller, span_notice("You rapidly condense into your module."))
-	if(forced || do_after(caller,20,exclusive = TASK_ALL_EXCLUSIVE))
+	to_chat(protie, span_notice("You rapidly condense into your module."))
+	if(forced || do_after(protie,20,exclusive = TASK_ALL_EXCLUSIVE))
 		if(!temporary_form)	//If you're human, force you into blob form before rig'ing
 			nano_blobform(forced)
 		spawn(2)
@@ -369,7 +369,7 @@
 				to_chat(temporary_form, span_warning("Somehow, your RIG got disconnected from your species. This may have been caused by an admin heal. A new one has been created for you, contact a coder."))
 				new /obj/item/rig/protean(src,src)
 	else
-		to_chat(caller, span_warning("You must remain still to condense!"))
+		to_chat(protie, span_warning("You must remain still to condense!"))
 
 /mob/living/carbon/human/proc/appearance_switch()
 	set name = "Switch Blob Appearance"
@@ -377,9 +377,9 @@
 	//set category = "Abilities.Protean"
 	set hidden = 1
 	var/datum/species/protean/S = src.species
-	var/mob/living/caller = src
+	var/mob/living/protie = src
 	if(temporary_form)
-		caller = temporary_form
+		protie = temporary_form
 	var/list/icon_choices = list(
 			"Primary" = image(icon = 'icons/mob/species/protean/protean.dmi', icon_state = "primary"),
 			"Highlight" = image(icon = 'icons/mob/species/protean/protean.dmi', icon_state = "highlight"),
@@ -408,16 +408,16 @@
 			"robodrgn" = image(icon = 'icons/mob/species/protean/protean128x64.dmi', icon_state = "robodrgn", pixel_x = -48),
 			"Dragon" = image(icon = 'icons/mob/bigdragon_small.dmi', icon_state = "dragon_small")*/
 			)
-	var/blobstyle = show_radial_menu(caller, caller, icon_choices, require_near = TRUE, tooltips = FALSE)
-	if(!blobstyle || QDELETED(caller) || caller.incapacitated())
+	var/blobstyle = show_radial_menu(protie, protie, icon_choices, require_near = TRUE, tooltips = FALSE)
+	if(!blobstyle || QDELETED(protie) || protie.incapacitated())
 		return FALSE
 	switch(blobstyle)
 		if("Dragon")	//Fuck it, we ball
 			var/list/options = list("Underbelly","Body","Ears","Mane","Horns","Eyes")
 			for(var/option in options)
 				LAZYSET(options, option, image('icons/effects/bigdragon_labels.dmi', option))
-			var/choice = show_radial_menu(caller, caller, options, radius = 60)
-			if(!choice || QDELETED(caller) || caller.incapacitated())
+			var/choice = show_radial_menu(protie, protie, options, radius = 60)
+			if(!choice || QDELETED(protie) || protie.incapacitated())
 				return FALSE
 			. = TRUE
 			var/list/underbelly_styles = list(
@@ -453,8 +453,8 @@
 					for(var/option in options)
 						var/image/I = image('icons/mob/vore128x64.dmi', option, dir = 4, pixel_x = -48)
 						LAZYSET(options, option, I)
-					choice = show_radial_menu(caller, caller, options, radius = 90)
-					if(!choice || QDELETED(caller) || caller.incapacitated())
+					choice = show_radial_menu(protie, protie, options, radius = 90)
+					if(!choice || QDELETED(protie) || protie.incapacitated())
 						return 0
 					var/new_color = input("Pick underbelly color:","Underbelly Color", S.dragon_overlays[1]) as null|color
 					if(!new_color)
@@ -466,8 +466,8 @@
 					for(var/option in options)
 						var/image/I = image('icons/mob/vore128x64.dmi', option, dir = 4, pixel_x = -48)
 						LAZYSET(options, option, I)
-					choice = show_radial_menu(caller, caller, options, radius = 90)
-					if(!choice || QDELETED(caller) || caller.incapacitated())
+					choice = show_radial_menu(protie, protie, options, radius = 90)
+					if(!choice || QDELETED(protie) || protie.incapacitated())
 						return 0
 					var/new_color = input("Pick body color:","Body Color", S.dragon_overlays[2]) as null|color
 					if(!new_color)
@@ -479,8 +479,8 @@
 					for(var/option in options)
 						var/image/I = image('icons/mob/vore128x64.dmi', option, dir = 4, pixel_x = -76, pixel_y = -50)
 						LAZYSET(options, option, I)
-					choice = show_radial_menu(caller, caller, options, radius = 90)
-					if(!choice || QDELETED(caller) || caller.incapacitated())
+					choice = show_radial_menu(protie, protie, options, radius = 90)
+					if(!choice || QDELETED(protie) || protie.incapacitated())
 						return 0
 					var/new_color = input("Pick ear color:","Ear Color", S.dragon_overlays[3]) as null|color
 					if(!new_color)
@@ -492,8 +492,8 @@
 					for(var/option in options)
 						var/image/I = image('icons/mob/vore128x64.dmi', option, dir = 4, pixel_x = -76, pixel_y = -50)
 						LAZYSET(options, option, I)
-					choice = show_radial_menu(caller, caller, options, radius = 90)
-					if(!choice || QDELETED(caller) || caller.incapacitated())
+					choice = show_radial_menu(protie, protie, options, radius = 90)
+					if(!choice || QDELETED(protie) || protie.incapacitated())
 						return 0
 					var/new_color = input("Pick mane color:","Mane Color", S.dragon_overlays[4]) as null|color
 					if(!new_color)
@@ -505,8 +505,8 @@
 					for(var/option in options)
 						var/image/I = image('icons/mob/vore128x64.dmi', option, dir = 4, pixel_x = -86, pixel_y = -50)
 						LAZYSET(options, option, I)
-					choice = show_radial_menu(caller, caller, options, radius = 90)
-					if(!choice || QDELETED(caller) || caller.incapacitated())
+					choice = show_radial_menu(protie, protie, options, radius = 90)
+					if(!choice || QDELETED(protie) || protie.incapacitated())
 						return 0
 					var/new_color = input("Pick horn color:","Horn Color", S.dragon_overlays[5]) as null|color
 					if(!new_color)
@@ -518,8 +518,8 @@
 					for(var/option in options)
 						var/image/I = image('icons/mob/vore128x64.dmi', option, dir = 2, pixel_x = -48, pixel_y = -50)
 						LAZYSET(options, option, I)
-					choice = show_radial_menu(caller, caller, options, radius = 90)
-					if(!choice || QDELETED(caller) || caller.incapacitated())
+					choice = show_radial_menu(protie, protie, options, radius = 90)
+					if(!choice || QDELETED(protie) || protie.incapacitated())
 						return 0
 					var/new_color = input("Pick eye color:","Eye Color", S.dragon_overlays[6]) as null|color
 					if(!new_color)
@@ -551,35 +551,35 @@
 	set desc = "Allows a protean to forcibly latch or unlatch from a host."
 	//set category = "Abilities.Protean"
 	set hidden = 1
-	var/mob/living/caller = src
+	var/mob/living/protie = src
 	var/mob/living/carbon/human/target
 	var/datum/species/protean/S = src.species
 	if(nano_dead_check(src))
 		return
 	if(temporary_form)
-		caller = temporary_form
-		if(caller.loc == S.OurRig)
+		protie = temporary_form
+		if(protie.loc == S.OurRig)
 			target = S.OurRig.wearer
 			if(target)
 				target.drop_from_inventory(S.OurRig)
-				to_chat(caller, span_notice("You detach from your host."))
+				to_chat(protie, span_notice("You detach from your host."))
 			else
-				to_chat(caller, span_warning("You aren't being worn, dummy."))
+				to_chat(protie, span_warning("You aren't being worn, dummy."))
 			return
-	var/obj/held_item = caller.get_active_hand()
+	var/obj/held_item = protie.get_active_hand()
 	if(istype(held_item,/obj/item/grab))
 		var/obj/item/grab/G = held_item
 		if(istype(G.affecting, /mob/living/carbon/human))
 			target = G.affecting
 			if(istype(target.species, /datum/species/protean))
-				to_chat(caller, span_danger("You can't latch onto a fellow Protean!"))
+				to_chat(protie, span_danger("You can't latch onto a fellow Protean!"))
 				return
-			if(G.loc == caller && G.state >= GRAB_AGGRESSIVE)
-				caller.visible_message(span_warning("[caller] is attempting to latch onto [target]!"), span_danger("You attempt to latch onto [target]!"))
-				if(do_after(caller, 50, target,exclusive = TASK_ALL_EXCLUSIVE))
-					if(G.loc == caller && G.state >= GRAB_AGGRESSIVE)
+			if(G.loc == protie && G.state >= GRAB_AGGRESSIVE)
+				protie.visible_message(span_warning("[protie] is attempting to latch onto [target]!"), span_danger("You attempt to latch onto [target]!"))
+				if(do_after(protie, 50, target,exclusive = TASK_ALL_EXCLUSIVE))
+					if(G.loc == protie && G.state >= GRAB_AGGRESSIVE)
 						target.drop_from_inventory(target.back)
-						caller.visible_message(span_danger("[caller] latched onto [target]!"), span_danger("You latch yourself onto [target]!"))
+						protie.visible_message(span_danger("[protie] latched onto [target]!"), span_danger("You latch yourself onto [target]!"))
 						target.Weaken(3)
 						nano_rig_transform(1)
 						spawn(5)	//Have to give time for the above proc to resolve
@@ -589,11 +589,11 @@
 						spawn(1)	//Same here :(
 						S.OurRig.wearer = target
 			else
-				to_chat(caller, span_warning("You need a more aggressive grab to do this!"))
+				to_chat(protie, span_warning("You need a more aggressive grab to do this!"))
 		else
-			to_chat(caller, span_warning("You can only latch onto humanoid mobs!"))
+			to_chat(protie, span_warning("You can only latch onto humanoid mobs!"))
 	else
-		to_chat(caller, span_warning("You need to be grabbing a humanoid mob aggressively to latch onto them."))
+		to_chat(protie, span_warning("You need to be grabbing a humanoid mob aggressively to latch onto them."))
 
 /// /// /// A helper to reuse
 /mob/living/proc/nano_get_refactory(obj/item/organ/internal/nano/refactory/R)
@@ -612,7 +612,7 @@
 	return ..(locate(/obj/item/organ/internal/nano/refactory) in internal_organs)
 
 //I hate this whole bit but I want proteans to be able to "die" and still be "alive" in their blob as a suit
-/mob/living/carbon/human/proc/nano_dead_check(var/mob/living/caller)
+/mob/living/carbon/human/proc/nano_dead_check(var/mob/living/protie)
 	if(istype(src.species, /datum/species/protean))
 		var/datum/species/protean/S = src.species
 		if(S.pseudodead)

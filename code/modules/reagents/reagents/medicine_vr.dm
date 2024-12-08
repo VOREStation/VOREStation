@@ -81,7 +81,7 @@
 /datum/reagent/sleevingcure
 	name = REAGENT_SLEEVINGCURE
 	id = REAGENT_ID_SLEEVINGCURE
-	description = "A rare cure provided by KHI that helps counteract negative side effects of using imperfect resleeving machinery."
+	description = "A rare medication provided by Vey-Med that helps counteract negative side effects of using imperfect resleeving machinery."
 	taste_description = "chocolate peanut butter"
 	taste_mult = 2
 	reagent_state = LIQUID
@@ -98,7 +98,7 @@
 /datum/reagent/prussian_blue //We don't have iodine, so prussian blue we go.
 	name = REAGENT_PRUSSIANBLUE
 	id = REAGENT_ID_PRUSSIANBLUE
-	description = "Prussian Blue is an medication used to temporarily pause the effects of radiation poisoning to allow for treatment. Does not treat radiation sickness on its own."
+	description = "Prussian Blue is a medication used to temporarily pause the effects of radiation poisoning to allow for treatment. Does not treat radiation sickness on its own."
 	taste_description = "salt"
 	reagent_state = SOLID
 	color = "#003153" //Blue!
