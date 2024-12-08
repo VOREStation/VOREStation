@@ -26,7 +26,7 @@
 	)
 
 /datum/material/snowbrick //only slightly stronger than snow, used to make igloos mostly
-	name = "packed snow"
+	name = MAT_SNOWBRICK
 	flags = MATERIAL_BRITTLE
 	stack_type = /obj/item/stack/material/snowbrick
 	icon_base = "stone"

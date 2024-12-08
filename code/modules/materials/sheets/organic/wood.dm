@@ -20,7 +20,7 @@
 	description_info = "Rich, lustrous hardwood, imported from offworld at moderate expense. Mostly used for luxurious furniture, and not very good for weapons or other structures."
 
 /obj/item/stack/material/log
-	name = "log"
+	name = MAT_LOG
 	icon_state = "sheet-log"
 	default_type = MAT_LOG
 	no_variants = FALSE
@@ -33,13 +33,13 @@
 	pickup_sound = 'sound/items/pickup/wooden.ogg'
 
 /obj/item/stack/material/log/sif
-	name = "alien log"
+	name = MAT_SIFLOG
 	default_type = MAT_SIFLOG
 	color = "#0099cc"
 	plank_type = /obj/item/stack/material/wood/sif
 
 /obj/item/stack/material/log/hard
-	name = "hardwood log"
+	name = MAT_HARDLOG
 	default_type = MAT_HARDLOG
 	color = "#6f432a"
 	plank_type = /obj/item/stack/material/wood/hard

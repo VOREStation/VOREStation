@@ -6,7 +6,7 @@
 	throwforce = 7
 	attack_verb = list("smashed", "beaten", "slammed", "smacked", "struck", "battered", "bonked")
 	hitsound = 'sound/weapons/genhit3.ogg'
-	default_material = "wood"
+	default_material = MAT_WOOD
 	force_divisor = 1.1           // 22 when wielded with weight 20 (steel)
 	unwielded_force_divisor = 0.7 // 15 when unwielded based on above.
 	dulled_divisor = 0.75		  // A "dull" bat is still gonna hurt

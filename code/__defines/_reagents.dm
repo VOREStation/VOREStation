@@ -75,6 +75,10 @@
 #define REAGENT_ID_TUNGSTEN "tungsten"
 #define REAGENT_NUTRIMENT "Nutriment"
 #define REAGENT_ID_NUTRIMENT "nutriment"
+#define REAGENT_STEEL "Liquid Steel"
+#define REAGENT_ID_STEEL "steel"
+#define REAGENT_PLASTEEL "Liquid Plasteel"
+#define REAGENT_ID_PLASTEEL "plasteel"
 
 
 // Xeno chem react
@@ -1327,3 +1331,16 @@
 #define REAGENT_ID_NEUROPHAGENANITES "neurophage_nanites"
 #define REAGENT_SALMONELLA "Salmonella"
 #define REAGENT_ID_SALMONELLA "salmonella"
+#define REAGENT_METAMORPHIC "Metamorphic Metal"
+#define REAGENT_ID_METAMORPHIC "metamorphic"
+#define REAGENT_BINDING "Binding Metal"
+#define REAGENT_ID_BINDING "binding"
+
+
+// Xenoslimes
+#define REAGENT_SLIMEBLEEDFIXER "Agent A"
+#define REAGENT_ID_SLIMEBLEEDFIXER "slime_bleed_fixer"
+#define REAGENT_SLIMEBONEFIXER "Agent B"
+#define REAGENT_ID_SLIMEBONEFIXER "slime_bone_fixer"
+#define REAGENT_SLIMEORGANFIXER "Agent C"
+#define REAGENT_ID_SLIMEORGANFIXER "slime_organ_fixer"

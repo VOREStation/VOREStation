@@ -65,7 +65,7 @@
 	display_name = ORE_SAND
 	smelts_to = MAT_GLASS
 	alloy = 1
-	compresses_to = "sandstone"
+	compresses_to = MAT_SANDSTONE
 
 /ore/phoron
 	name = ORE_PHORON

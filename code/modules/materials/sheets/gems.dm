@@ -24,7 +24,7 @@
 /obj/item/stack/material/void_opal
 	name = MAT_VOPAL
 	icon_state = "sheet-void_opal"
-	singular_name = "void opal"
+	singular_name = MAT_VOPAL
 	default_type = MAT_VOPAL
 	apply_colour = 1
 	no_variants = FALSE

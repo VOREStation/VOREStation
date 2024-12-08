@@ -1,5 +1,5 @@
 /datum/material/resin
-	name = "resin"
+	name = MAT_RESIN
 	icon_colour = "#35343a"
 	icon_base = "resin"
 	table_icon_base = "stone"

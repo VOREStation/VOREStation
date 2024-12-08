@@ -13,7 +13,7 @@
 /obj/structure/barricade/New(var/newloc, var/material_name)
 	..(newloc)
 	if(!material_name)
-		material_name = "wood"
+		material_name = MAT_WOOD
 	material = get_material_by_name("[material_name]")
 	if(!material)
 		qdel(src)
@@ -72,7 +72,7 @@
 
 /obj/structure/barricade/attack_generic(var/mob/user, var/damage, var/attack_verb)
 	visible_message(span_danger("[user] [attack_verb] the [src]!"))
-	if(material == get_material_by_name("resin"))
+	if(material == get_material_by_name(MAT_RESIN))
 		playsound(src, 'sound/effects/attackblob.ogg', 100, 1)
 	else if(material == (get_material_by_name(MAT_CLOTH) || get_material_by_name(MAT_SYNCLOTH)))
 		playsound(src, 'sound/items/drop/clothing.ogg', 100, 1)
@@ -118,7 +118,7 @@
 
 /obj/structure/barricade/sandbag/New(var/newloc, var/material_name)
 	if(!material_name)
-		material_name = "cloth"
+		material_name = MAT_CLOTH
 	..(newloc, material_name)
 	material = get_material_by_name("[material_name]")
 	if(!material)

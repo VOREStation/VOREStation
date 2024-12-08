@@ -3,8 +3,8 @@
 	max_stages = 5
 	spread_text = "On contact"
 	spread_flags = CONTACT_GENERAL
-	cure_text = "Adranol & Sulfur"
-	cures = list(REAGENT_ID_ADRANOL, "sulfur")
+	cure_text = REAGENT_ADRANOL + " & " + REAGENT_SULFUR
+	cures = list(REAGENT_ID_ADRANOL, REAGENT_ID_SULFUR)
 	agent = "Gravitokinetic Bipotential SADS-"
 	viable_mobtypes = list(/mob/living/carbon/human, /mob/living/carbon/human/monkey)
 	desc = "if left untreated death will occur."

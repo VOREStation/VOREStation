@@ -974,7 +974,7 @@
 /decl/chemical_reaction/instant/slime/pink_bone_fix
 	name = "Slime Bone Med"
 	id = "m_pink_bone_fixer"
-	result = "slime_bone_fixer"
+	result = REAGENT_ID_SLIMEBONEFIXER
 	required_reagents = list(REAGENT_ID_PHORON = 5)
 	result_amount = 30
 	required = /obj/item/slime_extract/pink
@@ -983,7 +983,7 @@
 /decl/chemical_reaction/instant/slime/pink_clotting
 	name = "Slime Clotting Med"
 	id = "m_pink_clotting"
-	result = "slime_bleed_fixer"
+	result = REAGENT_ID_SLIMEBLEEDFIXER
 	required_reagents = list(REAGENT_ID_BLOOD = 5)
 	result_amount = 30
 	required = /obj/item/slime_extract/pink
@@ -992,7 +992,7 @@
 /decl/chemical_reaction/instant/slime/pink_organ_fix
 	name = "Slime Organ Med"
 	id = "m_pink_organ_fixer"
-	result = "slime_organ_fixer"
+	result = REAGENT_ID_SLIMEORGANFIXER
 	required_reagents = list(REAGENT_ID_WATER = 5)
 	result_amount = 30
 	required = /obj/item/slime_extract/pink

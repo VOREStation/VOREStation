@@ -177,7 +177,7 @@
 	else if(istype(W,/obj/item) && breakable) //not sure, can't not just weapons get passed to this proc?
 		hardness -= W.force/10
 		visible_message(span_danger("[user] hits [src] with [W]!"))
-		if(material == get_material_by_name("resin"))
+		if(material == get_material_by_name(MAT_RESIN))
 			playsound(src, 'sound/effects/attackblob.ogg', 100, 1)
 		else if(material == (get_material_by_name(MAT_WOOD) || get_material_by_name(MAT_SIFWOOD) || get_material_by_name(MAT_HARDWOOD)))
 			playsound(src, 'sound/effects/woodcutting.ogg', 100, 1)
@@ -202,7 +202,7 @@
 
 /obj/structure/simple_door/attack_generic(var/mob/user, var/damage, var/attack_verb)
 	visible_message(span_danger("[user] [attack_verb] the [src]!"))
-	if(material == get_material_by_name("resin"))
+	if(material == get_material_by_name(MAT_RESIN))
 		playsound(src, 'sound/effects/attackblob.ogg', 100, 1)
 	else if(material == (get_material_by_name(MAT_WOOD) || get_material_by_name(MAT_SIFWOOD) || get_material_by_name(MAT_HARDWOOD)))
 		playsound(src, 'sound/effects/woodcutting.ogg', 100, 1)

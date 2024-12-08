@@ -4,7 +4,7 @@
 	max_stages = 4
 	spread_text = "On contact"
 	spread_flags = CONTACT_GENERAL
-	cure_text = "Ethanol"
+	cure_text = REAGENT_ETHANOL
 	cures = list(REAGENT_ID_ETHANOL)
 	agent = "Excess Snuggles"
 	viable_mobtypes = list(/mob/living/carbon/human, /mob/living/carbon/human/monkey)

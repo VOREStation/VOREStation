@@ -116,8 +116,8 @@
 
 // 'Duplicates' liquid metals, consuming itself in the process.
 /datum/reagent/toxin/metamorphic_metal
-	name = "Metamorphic Metal"
-	id = "metamorphic"
+	name = REAGENT_METAMORPHIC
+	id = REAGENT_ID_METAMORPHIC
 	description = "A strange metallic liquid which can rearrange itself to take the form of other metals it touches."
 	taste_description = "metallic"
 	taste_mult = 1.1
@@ -129,7 +129,7 @@
 	name = "Slime Metal"
 	id = "m_metal"
 	required_reagents = list(REAGENT_ID_PHORON = 5)
-	result = "metamorphic"
+	result = REAGENT_ID_METAMORPHIC
 	result_amount = REAGENTS_PER_SHEET // Makes enough to make one sheet of any metal.
 	required = /obj/item/slime_extract/metal
 
@@ -143,49 +143,49 @@
 	desc = "A small bottle. Contains some really weird liquid metal."
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "bottle-4"
-	prefill = list("metamorphic" = 60)
+	prefill = list(REAGENT_ID_METAMORPHIC = 60)
 
 
 // This is kind of a waste since iron is in the chem dispenser but it would be inconsistent if this wasn't here.
 /decl/chemical_reaction/instant/metamorphic/iron
 	name = "Morph into Iron"
 	id = "morph_iron"
-	required_reagents = list("metamorphic" = REAGENTS_PER_SHEET, REAGENT_ID_IRON = REAGENTS_PER_SHEET)
+	required_reagents = list(REAGENT_ID_METAMORPHIC = REAGENTS_PER_SHEET, REAGENT_ID_IRON = REAGENTS_PER_SHEET)
 	result = REAGENT_ID_IRON
 
 
 /decl/chemical_reaction/instant/metamorphic/silver
 	name = "Morph into Silver"
 	id = "morph_silver"
-	required_reagents = list("metamorphic" = REAGENTS_PER_SHEET, REAGENT_ID_SILVER = REAGENTS_PER_SHEET)
+	required_reagents = list(REAGENT_ID_METAMORPHIC = REAGENTS_PER_SHEET, REAGENT_ID_SILVER = REAGENTS_PER_SHEET)
 	result = REAGENT_ID_SILVER
 
 
 /decl/chemical_reaction/instant/metamorphic/gold
 	name = "Morph into Gold"
 	id = "morph_gold"
-	required_reagents = list("metamorphic" = REAGENTS_PER_SHEET, REAGENT_ID_GOLD = REAGENTS_PER_SHEET)
+	required_reagents = list(REAGENT_ID_METAMORPHIC = REAGENTS_PER_SHEET, REAGENT_ID_GOLD = REAGENTS_PER_SHEET)
 	result = REAGENT_ID_GOLD
 
 
 /decl/chemical_reaction/instant/metamorphic/platinum
 	name = "Morph into Platinum"
 	id = "morph_platinum"
-	required_reagents = list("metamorphic" = REAGENTS_PER_SHEET, REAGENT_ID_PLATINUM = REAGENTS_PER_SHEET)
+	required_reagents = list(REAGENT_ID_METAMORPHIC = REAGENTS_PER_SHEET, REAGENT_ID_PLATINUM = REAGENTS_PER_SHEET)
 	result = REAGENT_ID_PLATINUM
 
 
 /decl/chemical_reaction/instant/metamorphic/uranium
 	name = "Morph into Uranium"
 	id = "morph_uranium"
-	required_reagents = list("metamorphic" = REAGENTS_PER_SHEET, REAGENT_ID_URANIUM = REAGENTS_PER_SHEET)
+	required_reagents = list(REAGENT_ID_METAMORPHIC = REAGENTS_PER_SHEET, REAGENT_ID_URANIUM = REAGENTS_PER_SHEET)
 	result = REAGENT_ID_URANIUM
 
 
 /decl/chemical_reaction/instant/metamorphic/phoron
 	name = "Morph into Phoron"
 	id = "morph_phoron"
-	required_reagents = list("metamorphic" = REAGENTS_PER_SHEET, REAGENT_ID_PHORON = REAGENTS_PER_SHEET)
+	required_reagents = list(REAGENT_ID_METAMORPHIC = REAGENTS_PER_SHEET, REAGENT_ID_PHORON = REAGENTS_PER_SHEET)
 	result = REAGENT_ID_PHORON
 
 
@@ -194,14 +194,14 @@
 	name = "Slime Binding"
 	id = "m_binding"
 	required_reagents = list(REAGENT_ID_WATER = 5)
-	result = "binding"
+	result = REAGENT_ID_BINDING
 	result_amount = REAGENTS_PER_SHEET // Makes enough to make one sheet of any metal.
 	required = /obj/item/slime_extract/metal
 
 
 /datum/reagent/toxin/binding_metal
-	name = "Binding Metal"
-	id = "binding"
+	name = REAGENT_BINDING
+	id = REAGENT_ID_BINDING
 	description = "A strange metallic liquid which can bind other metals together that would otherwise require intense heat to alloy."
 	taste_description = "metallic"
 	taste_mult = 1.1
@@ -214,19 +214,19 @@
 	desc = "A small bottle. Contains some really weird liquid metal."
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "bottle-4"
-	prefill = list("binding" = 60)
+	prefill = list(REAGENT_ID_BINDING = 60)
 
 
 /decl/chemical_reaction/instant/binding
 	name = "Bind into Steel"
 	id = "bind_steel"
-	result = "steel"
-	required_reagents = list("binding" = REAGENTS_PER_SHEET, REAGENT_ID_IRON = REAGENTS_PER_SHEET, REAGENT_ID_CARBON = REAGENTS_PER_SHEET)
+	result = REAGENT_ID_STEEL
+	required_reagents = list(REAGENT_ID_BINDING = REAGENTS_PER_SHEET, REAGENT_ID_IRON = REAGENTS_PER_SHEET, REAGENT_ID_CARBON = REAGENTS_PER_SHEET)
 	result_amount = REAGENTS_PER_SHEET
 
 /datum/reagent/steel
-	name = "Liquid Steel"
-	id = "steel"
+	name = REAGENT_STEEL
+	id = REAGENT_ID_STEEL
 	description = "An 'alloy' of iron and carbon, forced to bind together by another strange metallic liquid."
 	taste_description = "metallic"
 	reagent_state = LIQUID
@@ -236,12 +236,12 @@
 /decl/chemical_reaction/instant/binding/plasteel // Two parts 'steel', one part platnium matches the smelter alloy recipe.
 	name = "Bind into Plasteel"
 	id = "bind_plasteel"
-	required_reagents = list("binding" = REAGENTS_PER_SHEET, "steel" = REAGENTS_PER_SHEET * 2, REAGENT_ID_PLATINUM = REAGENTS_PER_SHEET)
-	result = "plasteel"
+	required_reagents = list(REAGENT_ID_BINDING = REAGENTS_PER_SHEET, REAGENT_ID_STEEL = REAGENTS_PER_SHEET * 2, REAGENT_ID_PLATINUM = REAGENTS_PER_SHEET)
+	result = REAGENT_ID_PLASTEEL
 
 /datum/reagent/plasteel
-	name = "Liquid Plasteel"
-	id = "plasteel"
+	name = REAGENT_PLASTEEL
+	id = REAGENT_ID_PLASTEEL
 	description = "An 'alloy' of iron, carbon, and platinum, forced to bind together by another strange metallic liquid."
 	taste_description = "metallic"
 	reagent_state = LIQUID
@@ -625,7 +625,7 @@
 /decl/chemical_reaction/instant/slime/pink_clotting
 	name = "Slime Clotting Med"
 	id = "m_clotting"
-	result = "slime_bleed_fixer"
+	result = REAGENT_ID_SLIMEBLEEDFIXER
 	required_reagents = list(REAGENT_ID_BLOOD = 5)
 	result_amount = 30
 	required = /obj/item/slime_extract/pink
@@ -634,7 +634,7 @@
 /decl/chemical_reaction/instant/slime/pink_bone_fix
 	name = "Slime Bone Med"
 	id = "m_bone_fixer"
-	result = "slime_bone_fixer"
+	result = REAGENT_ID_SLIMEBONEFIXER
 	required_reagents = list(REAGENT_ID_PHORON = 5)
 	result_amount = 30
 	required = /obj/item/slime_extract/pink
@@ -643,29 +643,29 @@
 /decl/chemical_reaction/instant/slime/pink_organ_fix
 	name = "Slime Organ Med"
 	id = "m_organ_fixer"
-	result = "slime_organ_fixer"
+	result = REAGENT_ID_SLIMEORGANFIXER
 	required_reagents = list(REAGENT_ID_WATER = 5)
 	result_amount = 30
 	required = /obj/item/slime_extract/pink
 
 
 /datum/reagent/myelamine/slime
-	name = "Agent A"
-	id = "slime_bleed_fixer"
+	name = REAGENT_SLIMEBLEEDFIXER
+	id = REAGENT_ID_SLIMEBLEEDFIXER
 	description = "A slimy liquid which appears to rapidly clot internal hemorrhages by increasing the effectiveness of platelets at low quantities.  Toxic in high quantities."
 	taste_description = "slime"
 	overdose = 5
 
 /datum/reagent/osteodaxon/slime
-	name = "Agent B"
-	id = "slime_bone_fixer"
+	name = REAGENT_SLIMEBONEFIXER
+	id = REAGENT_ID_SLIMEBONEFIXER
 	description = "A slimy liquid which can be used to heal bone fractures at low quantities.  Toxic in high quantities."
 	taste_description = "slime"
 	overdose = 5
 
 /datum/reagent/peridaxon/slime
-	name = "Agent C"
-	id = "slime_organ_fixer"
+	name = REAGENT_SLIMEORGANFIXER
+	id = REAGENT_ID_SLIMEORGANFIXER
 	description = "A slimy liquid which is used to encourage recovery of internal organs and nervous systems in low quantities.  Toxic in high quantities."
 	taste_description = "slime"
 	overdose = 5

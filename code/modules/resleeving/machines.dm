@@ -271,7 +271,7 @@
 	if(!istype(BR) || busy)
 		return 0
 
-	if(stored_material[MAT_STEEL] < body_cost || stored_material["glass"] < body_cost)
+	if(stored_material[MAT_STEEL] < body_cost || stored_material[MAT_GLASS] < body_cost)
 		return 0
 
 	current_project = BR
@@ -373,7 +373,7 @@
 
 	//Machine specific stuff at the end
 	stored_material[MAT_STEEL] -= body_cost
-	stored_material["glass"] -= body_cost
+	stored_material[MAT_GLASS] -= body_cost
 	busy = 0
 	update_icon()
 

@@ -1381,7 +1381,7 @@
 	desc = "A mostly decorative knife made from thin ceramic and toothed with large black fangs. Printed on the flat is an eight-armed cross, like an asterisk with an extra stroke, ringed by a calligraphy-style crescent."
 	attack_verb = list("mauled", "bit", "sawed", "butchered")
 	dulled = 1
-	default_material = "glass"
+	default_material = MAT_GLASS
 
 
 //Ashling - Antoinette deKaultieste

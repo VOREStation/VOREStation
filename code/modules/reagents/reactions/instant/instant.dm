@@ -611,14 +611,14 @@
 /decl/chemical_reaction/instant/solidification/steel
 	name = "Solid Steel"
 	id = "solidsteel"
-	required_reagents = list(REAGENT_ID_FROSTOIL = 5, "steel" = REAGENTS_PER_SHEET)
+	required_reagents = list(REAGENT_ID_FROSTOIL = 5, REAGENT_ID_STEEL = REAGENTS_PER_SHEET)
 	sheet_to_give = /obj/item/stack/material/steel
 
 
 /decl/chemical_reaction/instant/solidification/plasteel
 	name = "Solid Plasteel"
 	id = "solidplasteel"
-	required_reagents = list(REAGENT_ID_FROSTOIL = 10, "plasteel" = REAGENTS_PER_SHEET)
+	required_reagents = list(REAGENT_ID_FROSTOIL = 10, REAGENT_ID_PLASTEEL = REAGENTS_PER_SHEET)
 	sheet_to_give = /obj/item/stack/material/plasteel
 
 

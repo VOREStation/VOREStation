@@ -211,14 +211,14 @@
 	name="Phazon Torso"
 	icon_state = "phazon_harness"
 	//construction_time = 300
-	//construction_cost = list(MAT_STEEL=35000,"glass"=10000,MAT_PHORON=20000)
+	//construction_cost = list(MAT_STEEL=35000,MAT_GLASS=10000,MAT_PHORON=20000)
 	origin_tech = list(TECH_DATA = 5, TECH_MATERIAL = 7, TECH_BLUESPACE = 6, TECH_POWER = 6)
 
 /obj/item/mecha_parts/part/phazon_head
 	name="Phazon Head"
 	icon_state = "phazon_head"
 	//construction_time = 200
-	//construction_cost = list(MAT_STEEL=15000,"glass"=5000,MAT_PHORON=10000)
+	//construction_cost = list(MAT_STEEL=15000,MAT_GLASS=5000,MAT_PHORON=10000)
 	origin_tech = list(TECH_DATA = 4, TECH_MATERIAL = 5, TECH_MAGNET = 6)
 
 /obj/item/mecha_parts/part/phazon_left_arm

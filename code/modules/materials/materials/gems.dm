@@ -63,8 +63,8 @@
 
 /datum/material/painite
 	name = MAT_PAINITE
-	display_name = "painite"
-	use_name = "painite"
+	display_name = MAT_PAINITE
+	use_name = MAT_PAINITE
 	icon_colour = "#6b4947"
 	stack_type = /obj/item/stack/material/painite
 	flags = MATERIAL_UNMELTABLE
@@ -78,8 +78,8 @@
 
 /datum/material/void_opal
 	name = MAT_VOPAL
-	display_name = "void opal"
-	use_name = "void opal"
+	display_name = MAT_VOPAL
+	use_name = MAT_VOPAL
 	icon_colour = "#0f0f0f"
 	stack_type = /obj/item/stack/material/void_opal
 	flags = MATERIAL_UNMELTABLE

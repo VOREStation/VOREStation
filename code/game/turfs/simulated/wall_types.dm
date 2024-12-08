@@ -1,7 +1,7 @@
 /turf/simulated/wall/r_wall
 	icon_state = "rgeneric"
 /turf/simulated/wall/r_wall/Initialize(mapload)
-	. = ..(mapload, "plasteel","plasteel") //3strong
+	. = ..(mapload, MAT_PLASTEEL,MAT_PLASTEEL) //3strong
 
 /turf/simulated/wall/shull
 	icon_state = "hull-steel"
@@ -39,7 +39,7 @@
 /turf/simulated/wall/cult
 	icon_state = "cult"
 /turf/simulated/wall/cult/Initialize(mapload)
-	. = ..(mapload, "cult","cult2","cult")
+	. = ..(mapload, MAT_CULT,MAT_CULT2,MAT_CULT)
 /turf/unsimulated/wall/cult
 	name = "cult wall"
 	desc = "Hideous images dance beneath the surface."
@@ -381,7 +381,7 @@
 /turf/simulated/wall/eris/r_wall
 	icon_state = "rgeneric"
 /turf/simulated/wall/eris/r_wall/Initialize(mapload)
-	. = ..(mapload, "plasteel","plasteel")
+	. = ..(mapload, MAT_PLASTEEL,MAT_PLASTEEL)
 
 // Bay walls
 /turf/simulated/wall/bay
@@ -429,7 +429,7 @@
 /turf/simulated/wall/bay/r_wall
 	icon_state = "rgeneric"
 /turf/simulated/wall/bay/r_wall/Initialize(mapload)
-	. = ..(mapload, "plasteel","plasteel")
+	. = ..(mapload, MAT_PLASTEEL,MAT_PLASTEEL)
 
 /turf/simulated/wall/tgmc
 	icon = 'icons/turf/wall_masks_tgmc.dmi'

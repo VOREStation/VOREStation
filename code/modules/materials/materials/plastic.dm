@@ -57,7 +57,7 @@
 	)
 
 /datum/material/cardboard
-	name = "cardboard"
+	name = MAT_CARDBOARD
 	stack_type = /obj/item/stack/material/cardboard
 	flags = MATERIAL_BRITTLE
 	integrity = 10
