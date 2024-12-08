@@ -206,12 +206,12 @@
 	rest_sprite_options = list("Default")
 	has_extra_customization = TRUE
 
-	var/list/booze_options = list("Beer" = "booze",
+	var/list/booze_options = list(REAGENT_BEER = "booze",
 								  "Space Mountain Wind" = "boozegreen",
 								  "Curacao" = "boozeblue",
 								  REAGENT_GRAPESODA = "boozepurple",
 								  "Demon's Blood" = "boozered",
-								  "Whiskey Soda" = "boozeorange",
+								  REAGENT_WHISKEYSODA = "boozeorange",
 								  REAGENT_COFFEE = "boozebrown")
 
 /datum/robot_sprite/dogborg/service/booze/handle_extra_icon_updates(var/mob/living/silicon/robot/ourborg)

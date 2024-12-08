@@ -757,7 +757,7 @@
 	reagent_state = LIQUID
 	color = "#FFD300"
 
-	glass_name = "beer"
+	glass_name = REAGENT_ID_BEER
 	glass_desc = "A freezing pint of beer"
 
 /* Drugs */

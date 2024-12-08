@@ -467,7 +467,7 @@
 			REAGENT_ID_MACROCILLIN,
 			REAGENT_ID_MICROCILLIN,
 			REAGENT_ID_NORMALCILLIN,
-			"magicdust"
+			REAGENT_ID_MAGICDUST
 			)
 		// VOREStation Edit End: Modified exclusion list
 

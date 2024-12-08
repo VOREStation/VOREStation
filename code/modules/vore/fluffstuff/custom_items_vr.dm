@@ -1160,7 +1160,7 @@
 
 /obj/item/reagent_containers/food/drinks/flask/vacuumflask/fluff/viktor/Initialize()
 	. = ..()
-	reagents.add_reagent("pwine", 60)
+	reagents.add_reagent(REAGENT_ID_PWINE, 60)
 
 //RadiantAurora: Tiemli Kroto
 /obj/item/clothing/glasses/welding/tiemgogs

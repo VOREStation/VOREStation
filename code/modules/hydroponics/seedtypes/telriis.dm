@@ -3,7 +3,7 @@
 	seed_name = "telriis"
 	display_name = "telriis grass"
 	kitchen_tag = "telriis"
-	chems = list("pwine" = list(1,5), REAGENT_ID_NUTRIMENT = list(1,6))
+	chems = list(REAGENT_ID_PWINE = list(1,5), REAGENT_ID_NUTRIMENT = list(1,6))
 
 /datum/seed/telriis/New()
 	..()

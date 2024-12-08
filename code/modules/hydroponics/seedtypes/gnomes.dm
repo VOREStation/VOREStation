@@ -4,7 +4,7 @@
 	seed_name = "gnomes"
 	display_name = "gnomes"
 	force_layer = 3
-	chems = list("magicdust" = list(5,20))
+	chems = list(REAGENT_ID_MAGICDUST = list(5,20))
 
 /datum/seed/gnomes/New()
 	..()

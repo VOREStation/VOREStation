@@ -130,7 +130,7 @@
 /decl/chemical_reaction/distilling/beer
 	name = "Distilling Beer"
 	id = "distill_beer"
-	result = "beer"
+	result = REAGENT_ID_BEER
 	required_reagents = list(REAGENT_ID_NUTRIMENT = 1, REAGENT_ID_WATER = 1, REAGENT_ID_SUGAR = 1)
 	result_amount = 2
 
@@ -141,8 +141,8 @@
 /decl/chemical_reaction/distilling/ale
 	name = "Distilling Ale"
 	id = "distill_ale"
-	result = "ale"
-	required_reagents = list(REAGENT_ID_NUTRIMENT = 1, "beer" = 1)
+	result = REAGENT_ID_ALE
+	required_reagents = list(REAGENT_ID_NUTRIMENT = 1, REAGENT_ID_BEER = 1)
 	inhibitors = list(REAGENT_ID_WATER = 1)
 	result_amount = 2
 

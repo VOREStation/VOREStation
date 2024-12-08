@@ -305,7 +305,7 @@
 			else if(W.reagents.has_reagent(REAGENT_ID_PHORON, 1) || W.reagents.has_reagent(REAGENT_ID_THERMITE, 1))
 				if(my_effect.trigger == TRIGGER_VOLATILE)
 					my_effect.ToggleActivate()
-			else if(W.reagents.has_reagent(REAGENT_ID_TOXIN, 1) || W.reagents.has_reagent(REAGENT_ID_CYANIDE, 1) || W.reagents.has_reagent(REAGENT_ID_AMATOXIN, 1) || W.reagents.has_reagent("neurotoxin", 1))
+			else if(W.reagents.has_reagent(REAGENT_ID_TOXIN, 1) || W.reagents.has_reagent(REAGENT_ID_CYANIDE, 1) || W.reagents.has_reagent(REAGENT_ID_AMATOXIN, 1) || W.reagents.has_reagent(REAGENT_ID_NEUROTOXIN, 1))
 				if(my_effect.trigger == TRIGGER_TOXIN)
 					my_effect.ToggleActivate()
 		else if(istype(W,/obj/item/melee/baton) && W:status ||\
@@ -330,7 +330,7 @@
 	var/list/water = list(REAGENT_ID_HYDROGEN, REAGENT_ID_WATER)
 	var/list/acid = list(REAGENT_ID_SACID, REAGENT_ID_PACID, REAGENT_ID_DIETHYLAMINE)
 	var/list/volatile = list(REAGENT_ID_PHORON,REAGENT_ID_THERMITE)
-	var/list/toxic = list(REAGENT_ID_TOXIN,REAGENT_ID_CYANIDE,REAGENT_ID_AMATOXIN,"neurotoxin")
+	var/list/toxic = list(REAGENT_ID_TOXIN,REAGENT_ID_CYANIDE,REAGENT_ID_AMATOXIN,REAGENT_ID_NEUROTOXIN)
 
 	for(var/datum/artifact_effect/my_effect in my_effects)
 		if(Touching.id in water)

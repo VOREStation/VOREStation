@@ -56,7 +56,7 @@ Slime definitions, Life and New live here.
 						REAGENT_ID_CHLORINE = list(XENO_CHEM_TOXIC = 0.5),
 						REAGENT_ID_AMMONIA = list(XENO_CHEM_TOXIC = 0.5),
 						REAGENT_ID_SODAWATER = list(XENO_CHEM_TOXIC = 0.1, XENO_CHEM_NUTRI = -0.1),
-						"beer" = list(XENO_CHEM_NUTRI = 0.6),
+						REAGENT_ID_BEER = list(XENO_CHEM_NUTRI = 0.6),
 						REAGENT_ID_DIETHYLAMINE = list(XENO_CHEM_NUTRI = 0.9),
 						REAGENT_ID_SUGAR = list(XENO_CHEM_TOXIC = 0.4, XENO_CHEM_NUTRI = 0.2),
 						REAGENT_ID_EZNUTRIENT = list(XENO_CHEM_NUTRI = 0.8),

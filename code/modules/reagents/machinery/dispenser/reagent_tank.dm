@@ -495,7 +495,7 @@
 
 /obj/structure/reagent_dispensers/beerkeg/Initialize()
 	. = ..()
-	reagents.add_reagent("beer",1000)
+	reagents.add_reagent(REAGENT_ID_BEER,1000)
 
 /obj/structure/reagent_dispensers/beerkeg/wood
 	name = "beer keg"
@@ -509,7 +509,7 @@
 
 /obj/structure/reagent_dispensers/beerkeg/wine/Initialize()
 	. = ..()
-	reagents.add_reagent("redwine",1000)
+	reagents.add_reagent(REAGENT_ID_REDWINE,1000)
 
 /obj/structure/reagent_dispensers/beerkeg/fakenuke
 	name = "nuclear beer keg"

@@ -61,5 +61,5 @@
 	xenoChemList += REAGENT_ID_FROSTOIL
 	xenoChemList += REAGENT_ID_CAPSAICIN
 	xenoChemList += REAGENT_ID_CONDENSEDCAPSAICIN
-	xenoChemList += "neurotoxin"
+	xenoChemList += REAGENT_ID_NEUROTOXIN
 	return 1

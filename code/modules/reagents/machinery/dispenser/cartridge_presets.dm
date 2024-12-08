@@ -56,39 +56,39 @@
 
 // Bar, alcoholic
 /obj/item/reagent_containers/chem_disp_cartridge/beer
-	spawn_reagent = "beer"
+	spawn_reagent = REAGENT_ID_BEER
 /obj/item/reagent_containers/chem_disp_cartridge/kahlua
-	spawn_reagent = "kahlua"
+	spawn_reagent = REAGENT_ID_KAHLUA
 /obj/item/reagent_containers/chem_disp_cartridge/whiskey
-	spawn_reagent = "whiskey"
+	spawn_reagent = REAGENT_ID_WHISKEY
 /obj/item/reagent_containers/chem_disp_cartridge/redwine
-	spawn_reagent = "redwine"
+	spawn_reagent = REAGENT_ID_REDWINE
 /obj/item/reagent_containers/chem_disp_cartridge/whitewine
-	spawn_reagent = "whitewine"
+	spawn_reagent = REAGENT_ID_WHITEWINE
 /obj/item/reagent_containers/chem_disp_cartridge/vodka
-	spawn_reagent = "vodka"
+	spawn_reagent = REAGENT_ID_VODKA
 /obj/item/reagent_containers/chem_disp_cartridge/gin
-	spawn_reagent = "gin"
+	spawn_reagent = REAGENT_ID_GIN
 /obj/item/reagent_containers/chem_disp_cartridge/rum
-	spawn_reagent = "rum"
+	spawn_reagent = REAGENT_ID_RUM
 /obj/item/reagent_containers/chem_disp_cartridge/tequila
-	spawn_reagent = "tequilla"
+	spawn_reagent = REAGENT_ID_TEQUILLA
 /obj/item/reagent_containers/chem_disp_cartridge/vermouth
-	spawn_reagent = "vermouth"
+	spawn_reagent = REAGENT_ID_VERMOUTH
 /obj/item/reagent_containers/chem_disp_cartridge/cognac
-	spawn_reagent = "cognac"
+	spawn_reagent = REAGENT_ID_COGNAC
 /obj/item/reagent_containers/chem_disp_cartridge/ale
-	spawn_reagent = "ale"
+	spawn_reagent = REAGENT_ID_ALE
 /obj/item/reagent_containers/chem_disp_cartridge/mead
-	spawn_reagent = "mead"
+	spawn_reagent = REAGENT_ID_MEAD
 /obj/item/reagent_containers/chem_disp_cartridge/bitters
-	spawn_reagent = "bitters"
+	spawn_reagent = REAGENT_ID_BITTERS
 /obj/item/reagent_containers/chem_disp_cartridge/cider
-	spawn_reagent = "cider"
+	spawn_reagent = REAGENT_ID_CIDER
 
 // Bar, soft
 /obj/item/reagent_containers/chem_disp_cartridge/ice
-	spawn_reagent = "ice"
+	spawn_reagent = REAGENT_ID_ICE
 /obj/item/reagent_containers/chem_disp_cartridge/tea
 	spawn_reagent = REAGENT_ID_TEA
 /obj/item/reagent_containers/chem_disp_cartridge/icetea
@@ -152,45 +152,45 @@
 
 // syrups
 /obj/item/reagent_containers/chem_disp_cartridge/syrup_pumpkin
-	spawn_reagent = "syrup_pumpkin"
+	spawn_reagent = REAGENT_ID_SYRUPPUMPKIN
 /obj/item/reagent_containers/chem_disp_cartridge/syrup_caramel
-	spawn_reagent = "syrup_caramel"
+	spawn_reagent = REAGENT_ID_SYRUPCARAMEL
 /obj/item/reagent_containers/chem_disp_cartridge/syrup_scaramel
-	spawn_reagent = "syrup_salted_caramel"
+	spawn_reagent = REAGENT_ID_SYRUPSALTEDCARAMEL
 /obj/item/reagent_containers/chem_disp_cartridge/syrup_irish
-	spawn_reagent = "syrup_irish"
+	spawn_reagent = REAGENT_ID_SYRUPIRISH
 /obj/item/reagent_containers/chem_disp_cartridge/syrup_almond
-	spawn_reagent = "syrup_almond"
+	spawn_reagent = REAGENT_ID_SYRUPALMOND
 /obj/item/reagent_containers/chem_disp_cartridge/syrup_cinnamon
-	spawn_reagent = "syrup_cinnamon"
+	spawn_reagent = REAGENT_ID_SYRUPCINNAMON
 /obj/item/reagent_containers/chem_disp_cartridge/syrup_pistachio
-	spawn_reagent = "syrup_pistachio"
+	spawn_reagent = REAGENT_ID_SYRUPPISTACHIO
 /obj/item/reagent_containers/chem_disp_cartridge/syrup_vanilla
-	spawn_reagent = "syrup_vanilla"
+	spawn_reagent = REAGENT_ID_SYRUPVANILLA
 /obj/item/reagent_containers/chem_disp_cartridge/syrup_toffee
-	spawn_reagent = "syrup_toffee"
+	spawn_reagent = REAGENT_ID_SYRUPTOFFEE
 /obj/item/reagent_containers/chem_disp_cartridge/syrup_cherry
-	spawn_reagent = "syrup_cherry"
+	spawn_reagent = REAGENT_ID_SYRUPCHERRY
 /obj/item/reagent_containers/chem_disp_cartridge/grenadine
 	spawn_reagent = REAGENT_ID_GRENADINE
 /obj/item/reagent_containers/chem_disp_cartridge/syrup_butterscotch
-	spawn_reagent = "syrup_butterscotch"
+	spawn_reagent = REAGENT_ID_SYRUPBUTTERSCOTCH
 /obj/item/reagent_containers/chem_disp_cartridge/syrup_chocolate
-	spawn_reagent = "syrup_chocolate"
+	spawn_reagent = REAGENT_ID_SYRUPCHOCOLATE
 /obj/item/reagent_containers/chem_disp_cartridge/syrup_wchocolate
-	spawn_reagent = "syrup_white_chocolate"
+	spawn_reagent = REAGENT_ID_SYRUPWHITECHOCOLATE
 /obj/item/reagent_containers/chem_disp_cartridge/syrup_strawberry
-	spawn_reagent = "syrup_strawberry"
+	spawn_reagent = REAGENT_ID_SYRUPSTRAWBERRY
 /obj/item/reagent_containers/chem_disp_cartridge/syrup_coconut
-	spawn_reagent = "syrup_coconut"
+	spawn_reagent = REAGENT_ID_SYRUPCOCONUT
 /obj/item/reagent_containers/chem_disp_cartridge/syrup_ginger
-	spawn_reagent = "syrup_ginger"
+	spawn_reagent = REAGENT_ID_SYRUPGINGER
 /obj/item/reagent_containers/chem_disp_cartridge/syrup_gingerbread
-	spawn_reagent = "syrup_gingerbread"
+	spawn_reagent = REAGENT_ID_SYRUPGINGERBREAD
 /obj/item/reagent_containers/chem_disp_cartridge/syrup_peppermint
-	spawn_reagent = "syrup_peppermint"
+	spawn_reagent = REAGENT_ID_SYRUPPEPPERMINT
 /obj/item/reagent_containers/chem_disp_cartridge/syrup_birthday
-	spawn_reagent = "syrup_birthday"
+	spawn_reagent = REAGENT_ID_SYRUPBIRTHDAY
 
 // ERT
 /obj/item/reagent_containers/chem_disp_cartridge/inaprov

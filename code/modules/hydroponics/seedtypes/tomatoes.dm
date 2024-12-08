@@ -65,7 +65,7 @@
 	seed_name = "bluespace tomato"
 	display_name = "bluespace tomato plant"
 	mutants = null
-	chems = list(REAGENT_ID_NUTRIMENT = list(1,20), "singulo" = list(10,5))
+	chems = list(REAGENT_ID_NUTRIMENT = list(1,20), REAGENT_ID_SINGULO = list(10,5))
 
 /datum/seed/tomato/blue/teleport/New()
 	..()

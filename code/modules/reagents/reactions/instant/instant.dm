@@ -537,10 +537,10 @@
 	result_amount = 3
 
 /decl/chemical_reaction/instant/neurotoxin
-	name = "Neurotoxin"
-	id = "neurotoxin"
-	result = "neurotoxin"
-	required_reagents = list("gargleblaster" = 1, REAGENT_ID_STOXIN = 1)
+	name = REAGENT_NEUROTOXIN
+	id = REAGENT_ID_NEUROTOXIN
+	result = REAGENT_ID_NEUROTOXIN
+	required_reagents = list(REAGENT_ID_GARGLEBLASTER = 1, REAGENT_ID_STOXIN = 1)
 	result_amount = 2
 
 /decl/chemical_reaction/instant/luminol
@@ -1152,7 +1152,7 @@
 	name = "Silver Blue Carpet Dyeing"
 	id = "carpetdyesblu"
 	result = REAGENT_ID_LIQUIDCARPETSBLU
-	required_reagents = list(REAGENT_ID_LIQUIDCARPET = 5, "ice" = 1)
+	required_reagents = list(REAGENT_ID_LIQUIDCARPET = 5, REAGENT_ID_ICE = 1)
 
 /decl/chemical_reaction/instant/carpetdye/clown
 	name = "Clown Carpet Dyeing"

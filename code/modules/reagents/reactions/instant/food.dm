@@ -1,15 +1,15 @@
 /decl/chemical_reaction/instant/food/hot_ramen
-	name = "Hot Ramen"
-	id = "hot_ramen"
-	result = "hot_ramen"
+	name = REAGENT_HOTRAMEN
+	id = REAGENT_ID_HOTRAMEN
+	result = REAGENT_ID_HOTRAMEN
 	required_reagents = list(REAGENT_ID_WATER = 1, REAGENT_ID_DRYRAMEN = 3)
 	result_amount = 3
 
 /decl/chemical_reaction/instant/food/hell_ramen
-	name = "Hell Ramen"
-	id = "hell_ramen"
-	result = "hell_ramen"
-	required_reagents = list(REAGENT_ID_CAPSAICIN = 1, "hot_ramen" = 6)
+	name = REAGENT_HELLRAMEN
+	id = REAGENT_ID_HELLRAMEN
+	result = REAGENT_ID_HELLRAMEN
+	required_reagents = list(REAGENT_ID_CAPSAICIN = 1, REAGENT_ID_HOTRAMEN = 6)
 	result_amount = 6
 
 /decl/chemical_reaction/instant/food/tofu
@@ -140,7 +140,7 @@
 	id = "dough"
 	result = null
 	required_reagents = list(REAGENT_ID_EGG = 3, REAGENT_ID_FLOUR = 10)
-	inhibitors = list(REAGENT_ID_WATER = 1, "beer" = 1, REAGENT_ID_SUGAR = 1) //To prevent it messing with batter recipes
+	inhibitors = list(REAGENT_ID_WATER = 1, REAGENT_ID_BEER = 1, REAGENT_ID_SUGAR = 1) //To prevent it messing with batter recipes
 	result_amount = 1
 
 /decl/chemical_reaction/instant/food/dough/on_reaction(var/datum/reagents/holder, var/created_volume)
@@ -179,7 +179,7 @@
 	name = "Beer Batter"
 	id = REAGENT_ID_BEERBATTER
 	result = REAGENT_ID_BEERBATTER
-	required_reagents = list(REAGENT_ID_EGG = 3, REAGENT_ID_FLOUR = 10, "beer" = 5, REAGENT_ID_SODIUMCHLORIDE = 2)
+	required_reagents = list(REAGENT_ID_EGG = 3, REAGENT_ID_FLOUR = 10, REAGENT_ID_BEER = 5, REAGENT_ID_SODIUMCHLORIDE = 2)
 	result_amount = 20
 
 /decl/chemical_reaction/instant/food/browniemix

@@ -801,7 +801,7 @@
 /decl/chemical_reaction/instant/slime/dark_blue_ice
 	name = "Slime Ice"
 	id = "m_darkblue_ice"
-	result = "ice"
+	result = REAGENT_ID_ICE
 	required_reagents = list(REAGENT_ID_WATER = 5)
 	result_amount = 5
 	required = /obj/item/slime_extract/dark_blue

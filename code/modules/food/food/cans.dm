@@ -206,7 +206,7 @@
 
 /obj/item/reagent_containers/food/drinks/cans/kvass/Initialize()
 	. = ..()
-	reagents.add_reagent("kvass", 30)
+	reagents.add_reagent(REAGENT_ID_KVASS, 30)
 
 /obj/item/reagent_containers/food/drinks/cans/kompot
 	name = "\improper Kompot"
@@ -217,7 +217,7 @@
 
 /obj/item/reagent_containers/food/drinks/cans/kompot/Initialize()
 	. = ..()
-	reagents.add_reagent("kompot", 30)
+	reagents.add_reagent(REAGENT_ID_KOMPOT, 30)
 
 /obj/item/reagent_containers/food/drinks/cans/boda
 	name = "\improper Boda"
@@ -437,7 +437,7 @@
 
 /obj/item/reagent_containers/food/drinks/cans/beercan/Initialize()
 	. = ..()
-	reagents.add_reagent("beer", 30)
+	reagents.add_reagent(REAGENT_ID_BEER, 30)
 
 /obj/item/reagent_containers/food/drinks/cans/alecan
 	name = "\improper Spacecastle Pale Ale"
@@ -447,7 +447,7 @@
 
 /obj/item/reagent_containers/food/drinks/cans/alecan/Initialize()
 	. = ..()
-	reagents.add_reagent("ale", 30)
+	reagents.add_reagent(REAGENT_ID_ALE, 30)
 
 /////////////////////////ENERGY DRINKS/////////////////////////
 

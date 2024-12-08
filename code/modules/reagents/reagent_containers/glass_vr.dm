@@ -1,5 +1,5 @@
 /obj/item/reagent_containers/glass/beaker/neurotoxin
-	prefill = list("neurotoxin" = 50)
+	prefill = list(REAGENT_ID_NEUROTOXIN = 50)
 
 /obj/item/reagent_containers/glass/beaker/vial/bicaridine
 	name = "vial (" + REAGENT_ID_BICARIDINE + ")"

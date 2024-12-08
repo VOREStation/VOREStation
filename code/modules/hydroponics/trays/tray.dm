@@ -67,7 +67,7 @@
 		)
 	var/static/list/nutrient_reagents = list(
 		REAGENT_ID_MILK =            0.1,
-		"beer" =            0.25,
+		REAGENT_ID_BEER =            0.25,
 		REAGENT_ID_PHOSPHORUS =      0.1,
 		REAGENT_ID_SUGAR =           0.1,
 		REAGENT_ID_SODAWATER =       0.1,
@@ -98,7 +98,7 @@
 		REAGENT_ID_WATER =           1,
 		REAGENT_ID_ADMINORDRAZINE =  1,
 		REAGENT_ID_MILK =            0.9,
-		"beer" =            0.7,
+		REAGENT_ID_BEER =            0.7,
 		REAGENT_ID_FLUORINE =       -0.5,
 		REAGENT_ID_CHLORINE =       -0.5,
 		REAGENT_ID_PHOSPHORUS =     -0.5,
@@ -108,7 +108,7 @@
 
 	// Beneficial reagents also have values for modifying health, yield_mod and mut_mod (in that order).
 	var/static/list/beneficial_reagents = list(
-		"beer" =           list( -0.05, 0,   0  ),
+		REAGENT_ID_BEER =           list( -0.05, 0,   0  ),
 		REAGENT_ID_FLUORINE =       list( -2,    0,   0  ),
 		REAGENT_ID_CHLORINE =       list( -1,    0,   0  ),
 		REAGENT_ID_PHOSPHORUS =     list( -0.75, 0,   0  ),

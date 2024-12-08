@@ -23,7 +23,7 @@
 	result = /obj/item/chaoscake_layer
 
 /datum/recipe/chaoscake_layerthree
-	reagents = list(REAGENT_ID_FLOUR = 25, REAGENT_ID_MILK = 15, REAGENT_ID_SUGAR = 10, REAGENT_ID_EGG = 6, "deathbell" = 10)
+	reagents = list(REAGENT_ID_FLOUR = 25, REAGENT_ID_MILK = 15, REAGENT_ID_SUGAR = 10, REAGENT_ID_EGG = 6, REAGENT_ID_DEATHBELL = 10)
 	fruit = list("grapes" = 3)
 	items = list(
 			/obj/item/reagent_containers/food/snacks/dough,
@@ -62,7 +62,7 @@
 	result = /obj/item/chaoscake_layer/six
 
 /datum/recipe/chaoscake_layerseven
-	reagents = list(REAGENT_ID_FLOUR = 15, REAGENT_ID_MILK = 10, REAGENT_ID_SUGAR = 5, REAGENT_ID_EGG = 3, "devilskiss" = 20)
+	reagents = list(REAGENT_ID_FLOUR = 15, REAGENT_ID_MILK = 10, REAGENT_ID_SUGAR = 5, REAGENT_ID_EGG = 3, REAGENT_ID_DEVILSKISS = 20)
 	fruit = list("potato" = 1)
 	items = list(
 			/obj/item/reagent_containers/food/snacks/dough,

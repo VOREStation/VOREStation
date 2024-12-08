@@ -170,11 +170,11 @@ I said no!
 	result = /obj/item/reagent_containers/food/snacks/meatsteak
 
 /datum/recipe/spacylibertyduff
-	reagents = list(REAGENT_ID_WATER = 5, "vodka" = 5, REAGENT_ID_PSILOCYBIN = 5)
+	reagents = list(REAGENT_ID_WATER = 5, REAGENT_ID_VODKA = 5, REAGENT_ID_PSILOCYBIN = 5)
 	result = /obj/item/reagent_containers/food/snacks/spacylibertyduff
 
 /datum/recipe/amanitajelly
-	reagents = list(REAGENT_ID_WATER = 5, "vodka" = 5, REAGENT_ID_AMATOXIN = 5)
+	reagents = list(REAGENT_ID_WATER = 5, REAGENT_ID_VODKA = 5, REAGENT_ID_AMATOXIN = 5)
 	result = /obj/item/reagent_containers/food/snacks/amanitajelly
 
 /datum/recipe/amanitajelly/make_food(var/obj/container as obj)
@@ -352,7 +352,7 @@ I said no!
 	result = /obj/item/reagent_containers/food/snacks/caramelapple
 
 /datum/recipe/twobread
-	reagents = list("redwine" = 5)
+	reagents = list(REAGENT_ID_REDWINE = 5)
 	items = list(
 		/obj/item/reagent_containers/food/snacks/slice/bread,
 		/obj/item/reagent_containers/food/snacks/slice/bread,
@@ -502,7 +502,7 @@ I said no!
 	result = /obj/item/reagent_containers/food/snacks/mashedpotato
 
 /datum/recipe/icecreamsandwich
-	reagents = list(REAGENT_ID_MILK = 5, "ice" = 5)
+	reagents = list(REAGENT_ID_MILK = 5, REAGENT_ID_ICE = 5)
 	items = list(
 		/obj/item/reagent_containers/food/snacks/icecream
 	)
@@ -833,7 +833,7 @@ I said no!
 	result = /obj/item/reagent_containers/food/snacks/chilicheesefries
 
 /datum/recipe/risotto
-	reagents = list("redwine" = 5, REAGENT_ID_RICE = 10, REAGENT_ID_SPACESPICE = 1)
+	reagents = list(REAGENT_ID_REDWINE = 5, REAGENT_ID_RICE = 10, REAGENT_ID_SPACESPICE = 1)
 	fruit = list("mushroom" = 1)
 	reagent_mix = RECIPE_REAGENT_REPLACE //Get that rice and wine outta here
 	result = /obj/item/reagent_containers/food/snacks/risotto

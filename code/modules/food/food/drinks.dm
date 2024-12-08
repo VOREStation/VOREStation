@@ -349,7 +349,7 @@
 	center_of_mass = list("x"=15, "y"=10)
 /obj/item/reagent_containers/food/drinks/ice/Initialize()
 	. = ..()
-	reagents.add_reagent("ice", 30)
+	reagents.add_reagent(REAGENT_ID_ICE, 30)
 
 /obj/item/reagent_containers/food/drinks/h_chocolate
 	name = "cup of Counselor's Choice hot cocoa"
