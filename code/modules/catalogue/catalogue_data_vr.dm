@@ -132,7 +132,3 @@
 	in the dormant brain via direct electro-uploading. However, this technology is not perfect and small, but \
 	non-zero error margins exist. Handle with care! Or don't. Stress testing this stuff makes a lucrative market."
 	value = CATALOGUER_REWARD_TRIVIAL
-
-/datum/category_item/catalogue/information/organization/khi
-	name = "Independents - Kitsuhana Heavy Industries"
-	datum_to_copy = /datum/lore/organization/other/kitsuhana

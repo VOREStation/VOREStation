@@ -9,8 +9,7 @@
 
 /obj/machinery/computer/transhuman/designer
 	name = "body design console"
-	catalogue_data = list(/datum/category_item/catalogue/information/organization/khi,
-						/datum/category_item/catalogue/technology/resleeving)
+	catalogue_data = list(/datum/category_item/catalogue/technology/resleeving)
 	icon = 'icons/obj/computer.dmi'
 	icon_keyboard = "med_key"
 	icon_screen = "explosive"

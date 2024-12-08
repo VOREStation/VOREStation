@@ -29,7 +29,7 @@
 
 /datum/lore/codex/category/auto_org/other
 	name = "Other Factions"
-	auto_keywords = list("KHI","SDF","Smuggler","Smugglers","Pirate","Pirates")
+	auto_keywords = list("SDF","Smuggler","Smugglers","Pirate","Pirates")
 	desired_type = /datum/lore/organization/other
 
 /datum/lore/codex/category/auto_org/gov

@@ -5,7 +5,7 @@
 /decl/poster/lewd/vore_2
 	icon_state = "sbsposter2"
 	name = "AroButt"
-	desc = "A lewd view of KHI's cutest fops."
+	desc = "A lewd view of one of the galaxy's cutest fops."
 /decl/poster/vore_3
 	icon_state = "sbsposter3"
 	name = "Poster This Dog"
