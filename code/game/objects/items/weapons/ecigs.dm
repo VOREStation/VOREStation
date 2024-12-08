@@ -196,7 +196,7 @@
 	..()
 	reagents.add_reagent(REAGENT_ID_NICOTINE, 5)
 	reagents.add_reagent(REAGENT_ID_WATER, 10)
-	reagents.add_reagent("orangejuice", 5)
+	reagents.add_reagent(REAGENT_ID_ORANGEJUICE, 5)
 
 /obj/item/reagent_containers/ecig_cartridge/mint
 	name = "mint flavour cartridge"
@@ -214,7 +214,7 @@
 	..()
 	reagents.add_reagent(REAGENT_ID_NICOTINE, 5)
 	reagents.add_reagent(REAGENT_ID_WATER, 10)
-	reagents.add_reagent("watermelonjuice", 5)
+	reagents.add_reagent(REAGENT_ID_WATERMELONJUICE, 5)
 
 /obj/item/reagent_containers/ecig_cartridge/grape
 	name = "grape flavour cartridge"
@@ -223,7 +223,7 @@
 	..()
 	reagents.add_reagent(REAGENT_ID_NICOTINE, 5)
 	reagents.add_reagent(REAGENT_ID_WATER, 10)
-	reagents.add_reagent("grapejuice", 5)
+	reagents.add_reagent(REAGENT_ID_GRAPEJUICE, 5)
 
 /obj/item/reagent_containers/ecig_cartridge/lemonlime
 	name = "lemon-lime flavour cartridge"
@@ -232,7 +232,7 @@
 	..()
 	reagents.add_reagent(REAGENT_ID_NICOTINE, 5)
 	reagents.add_reagent(REAGENT_ID_WATER, 10)
-	reagents.add_reagent("lemon_lime", 5)
+	reagents.add_reagent(REAGENT_ID_LEMONLIME, 5)
 
 /obj/item/reagent_containers/ecig_cartridge/coffee
 	name = "coffee flavour cartridge"
@@ -241,7 +241,7 @@
 	..()
 	reagents.add_reagent(REAGENT_ID_NICOTINE, 5)
 	reagents.add_reagent(REAGENT_ID_WATER, 10)
-	reagents.add_reagent("coffee", 5)
+	reagents.add_reagent(REAGENT_ID_COFFEE, 5)
 /*
 /obj/item/reagent_containers/ecig_cartridge/cannabis
 	name = "herb flavour cartridge"

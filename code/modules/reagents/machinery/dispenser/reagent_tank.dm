@@ -307,7 +307,7 @@
 
 /obj/structure/reagent_dispensers/peppertank/Initialize()
 	. = ..()
-	reagents.add_reagent("condensedcapsaicin",1000)
+	reagents.add_reagent(REAGENT_ID_CONDENSEDCAPSAICIN,1000)
 
 /obj/structure/reagent_dispensers/virusfood
 	name = "Virus Food Dispenser"
@@ -320,7 +320,7 @@
 
 /obj/structure/reagent_dispensers/virusfood/Initialize()
 	. = ..()
-	reagents.add_reagent("virusfood", 1000)
+	reagents.add_reagent(REAGENT_ID_VIRUSFOOD, 1000)
 
 /obj/structure/reagent_dispensers/acid
 	name = "Sulphuric Acid Dispenser"
@@ -527,7 +527,7 @@
 
 /obj/structure/reagent_dispensers/cookingoil/Initialize()
 	. = ..()
-	reagents.add_reagent("cookingoil",5000)
+	reagents.add_reagent(REAGENT_ID_COOKINGOIL,5000)
 
 /obj/structure/reagent_dispensers/cookingoil/bullet_act(var/obj/item/projectile/Proj)
 	if(Proj.get_structure_damage())

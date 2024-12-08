@@ -3,7 +3,7 @@
 	seed_name = "Malani's tear"
 	display_name = "Malani's tear leaves"
 	kitchen_tag = "mtear"
-	chems = list("honey" = list(1,10), REAGENT_ID_KELOTANE = list(3,5))
+	chems = list(REAGENT_ID_HONEY = list(1,10), REAGENT_ID_KELOTANE = list(3,5))
 
 /datum/seed/mtear/New()
 	..()

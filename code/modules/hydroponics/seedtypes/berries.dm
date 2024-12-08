@@ -5,7 +5,7 @@
 	display_name = "berry bush"
 	kitchen_tag = "berries"
 	mutants = list("glowberries","poisonberries")
-	chems = list(REAGENT_ID_NUTRIMENT = list(1,10), "berryjuice" = list(10,10))
+	chems = list(REAGENT_ID_NUTRIMENT = list(1,10), REAGENT_ID_BERRYJUICE = list(10,10))
 
 /datum/seed/berry/New()
 	..()
@@ -47,7 +47,7 @@
 	kitchen_tag = "poisonberries"
 	display_name = "poison berry bush"
 	mutants = list("deathberries")
-	chems = list(REAGENT_ID_NUTRIMENT = list(1), REAGENT_ID_TOXIN = list(3,5), "poisonberryjuice" = list(10,5))
+	chems = list(REAGENT_ID_NUTRIMENT = list(1), REAGENT_ID_TOXIN = list(3,5), REAGENT_ID_POISONBERRYJUICE = list(10,5))
 
 /datum/seed/berry/poison/New()
 	..()
@@ -74,7 +74,7 @@
 	seed_name = "peppercorn berry"
 	kitchen_tag = "peppercorns"
 	display_name = "peppercorn bush"
-	chems = list("blackpepper" = list(5,10))
+	chems = list(REAGENT_ID_BLACKPEPPER = list(5,10))
 
 /datum/seed/berry/peppercorn/New()
 	..()

@@ -57,7 +57,7 @@
 	color = "#19FFFF"
 	slime_color = "blue"
 	coretype = /obj/item/slime_extract/blue
-	reagent_injected = "cryotoxin"
+	reagent_injected = REAGENT_ID_CRYOTOXIN
 	cold_resist = 0.50 // Not as strong as dark blue, which has immunity.
 
 	description_info = "The slime is resistant to the cold, and attacks from this slime can inject cryotoxin into you. \

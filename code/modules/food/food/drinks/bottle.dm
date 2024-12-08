@@ -502,7 +502,7 @@
 
 /obj/item/reagent_containers/food/drinks/bottle/cola/Initialize()
 	. = ..()
-	reagents.add_reagent("cola", 100)
+	reagents.add_reagent(REAGENT_ID_COLA, 100)
 
 /obj/item/reagent_containers/food/drinks/bottle/decaf_cola
 	name = "\improper two-liter Space Cola Free"
@@ -512,7 +512,7 @@
 
 /obj/item/reagent_containers/food/drinks/bottle/decaf_cola/Initialize()
 	. = ..()
-	reagents.add_reagent("decafcola", 100)
+	reagents.add_reagent(REAGENT_ID_DECAFCOLA, 100)
 
 /obj/item/reagent_containers/food/drinks/bottle/space_up
 	name = "\improper two-liter Space-Up"
@@ -522,7 +522,7 @@
 
 /obj/item/reagent_containers/food/drinks/bottle/space_up/Initialize()
 	. = ..()
-	reagents.add_reagent("space_up", 100)
+	reagents.add_reagent(REAGENT_ID_SPACEUP, 100)
 
 /obj/item/reagent_containers/food/drinks/bottle/space_mountain_wind
 	name = "\improper two-liter Space Mountain Wind"
@@ -532,7 +532,7 @@
 
 /obj/item/reagent_containers/food/drinks/bottle/space_mountain_wind/Initialize()
 	. = ..()
-	reagents.add_reagent("spacemountainwind", 100)
+	reagents.add_reagent(REAGENT_ID_SPACEMOUNTAINWIND, 100)
 
 /obj/item/reagent_containers/food/drinks/bottle/dr_gibb
 	name = "\improper two-liter Dr. Gibb"
@@ -542,7 +542,7 @@
 
 /obj/item/reagent_containers/food/drinks/bottle/dr_gibb/Initialize()
 	. = ..()
-	reagents.add_reagent("dr_gibb", 100)
+	reagents.add_reagent(REAGENT_ID_DRGIBB, 100)
 
 /obj/item/reagent_containers/food/drinks/bottle/orangejuice
 	name = "Orange Juice"
@@ -554,10 +554,10 @@
 
 /obj/item/reagent_containers/food/drinks/bottle/orangejuice/Initialize()
 	. = ..()
-	reagents.add_reagent("orangejuice", 100)
+	reagents.add_reagent(REAGENT_ID_ORANGEJUICE, 100)
 
 /obj/item/reagent_containers/food/drinks/bottle/applejuice
-	name = "Apple Juice"
+	name = REAGENT_APPLEJUICE
 	desc = "Squeezed, pressed and ground to perfection!"
 	icon_state = "applejuice"
 	item_state = "carton"
@@ -566,7 +566,7 @@
 
 /obj/item/reagent_containers/food/drinks/bottle/applejuice/Initialize()
 	. = ..()
-	reagents.add_reagent("applejuice", 100)
+	reagents.add_reagent(REAGENT_ID_APPLEJUICE, 100)
 
 /obj/item/reagent_containers/food/drinks/bottle/milk
 	name = "Large Milk Carton"
@@ -578,7 +578,7 @@
 
 /obj/item/reagent_containers/food/drinks/bottle/milk/Initialize()
 	. = ..()
-	reagents.add_reagent("milk", 100)
+	reagents.add_reagent(REAGENT_ID_MILK, 100)
 
 /obj/item/reagent_containers/food/drinks/bottle/cream
 	name = "Milk Cream"
@@ -590,10 +590,10 @@
 
 /obj/item/reagent_containers/food/drinks/bottle/cream/Initialize()
 	. = ..()
-	reagents.add_reagent("cream", 100)
+	reagents.add_reagent(REAGENT_ID_CREAM, 100)
 
 /obj/item/reagent_containers/food/drinks/bottle/tomatojuice
-	name = "Tomato Juice"
+	name = REAGENT_TOMATOJUICE
 	desc = "Well, at least it LOOKS like tomato juice. You can't tell with all that redness."
 	icon_state = "tomatojuice"
 	item_state = "carton"
@@ -602,10 +602,10 @@
 
 /obj/item/reagent_containers/food/drinks/bottle/tomatojuice/Initialize()
 	. = ..()
-	reagents.add_reagent("tomatojuice", 100)
+	reagents.add_reagent(REAGENT_ID_TOMATOJUICE, 100)
 
 /obj/item/reagent_containers/food/drinks/bottle/limejuice
-	name = "Lime Juice"
+	name = REAGENT_LIMEJUICE
 	desc = "Sweet-sour goodness."
 	icon_state = "limejuice"
 	item_state = "carton"
@@ -614,10 +614,10 @@
 
 /obj/item/reagent_containers/food/drinks/bottle/limejuice/Initialize()
 	. = ..()
-	reagents.add_reagent("limejuice", 100)
+	reagents.add_reagent(REAGENT_ID_LIMEJUICE, 100)
 
 /obj/item/reagent_containers/food/drinks/bottle/lemonjuice
-	name = "Lemon Juice"
+	name = REAGENT_LEMONJUICE
 	desc = "Sweet-sour goodness. Minus the sweet."
 	icon_state = "lemonjuice"
 	item_state = "carton"
@@ -626,7 +626,7 @@
 
 /obj/item/reagent_containers/food/drinks/bottle/lemonjuice/Initialize()
 	. = ..()
-	reagents.add_reagent("lemonjuice", 100)
+	reagents.add_reagent(REAGENT_ID_LEMONJUICE, 100)
 
 /obj/item/reagent_containers/food/drinks/bottle/grenadine
 	name = "Briar Rose Grenadine Syrup"
@@ -636,7 +636,7 @@
 
 /obj/item/reagent_containers/food/drinks/bottle/grenadine/Initialize()
 	. = ..()
-	reagents.add_reagent("grenadine", 100)
+	reagents.add_reagent(REAGENT_ID_GRENADINE, 100)
 
 /obj/item/reagent_containers/food/drinks/bottle/grapejuice
 	name = "Special Blend Grapejuice"
@@ -646,7 +646,7 @@
 
 /obj/item/reagent_containers/food/drinks/bottle/grapejuice/Initialize()
 	. = ..()
-	reagents.add_reagent("grapejuice", 100)
+	reagents.add_reagent(REAGENT_ID_GRAPEJUICE, 100)
 
 //////////////////////////SMALL BOTTLES///////////////////////
 
@@ -723,24 +723,24 @@
 //////////////////////////SMALL BOTTLED SODA///////////////////////
 
 /obj/item/reagent_containers/food/drinks/bottle/small/cola
-	name = "Space Cola"
+	name = REAGENT_COLA
 	desc = "Cola. In space."
 	icon_state = "colabottle2"
 	center_of_mass = list("x"=16, "y"=6)
 
 /obj/item/reagent_containers/food/drinks/bottle/small/cola/Initialize()
 	. = ..()
-	reagents.add_reagent("cola", 50)
+	reagents.add_reagent(REAGENT_ID_COLA, 50)
 
 /obj/item/reagent_containers/food/drinks/bottle/small/space_up
-	name = "Space-Up"
+	name = REAGENT_SPACEUP
 	desc = "Tastes like a hull breach in your mouth."
 	icon_state = "space-up_bottle2"
 	center_of_mass = list("x"=16, "y"=6)
 
 /obj/item/reagent_containers/food/drinks/bottle/small/space_up/Initialize()
 	. = ..()
-	reagents.add_reagent("space_up", 50)
+	reagents.add_reagent(REAGENT_ID_SPACEUP, 50)
 
 /obj/item/reagent_containers/food/drinks/bottle/small/space_mountain_wind
 	name = "Space Mountain Wind"
@@ -750,14 +750,14 @@
 
 /obj/item/reagent_containers/food/drinks/bottle/small/space_mountain_wind/Initialize()
 	. = ..()
-	reagents.add_reagent("spacemountainwind", 50)
+	reagents.add_reagent(REAGENT_ID_SPACEMOUNTAINWIND, 50)
 
 /obj/item/reagent_containers/food/drinks/bottle/small/dr_gibb
-	name = "Dr. Gibb"
+	name = REAGENT_DRGIBB
 	desc = "A delicious mixture of 42 different flavors."
 	icon_state = "dr_gibb_bottle2"
 	center_of_mass = list("x"=16, "y"=6)
 
 /obj/item/reagent_containers/food/drinks/bottle/small/dr_gibb/Initialize()
 	. = ..()
-	reagents.add_reagent("dr_gibb", 50)
+	reagents.add_reagent(REAGENT_ID_DRGIBB, 50)

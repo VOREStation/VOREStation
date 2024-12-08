@@ -2,21 +2,21 @@
 	name = REAGENT_MUTAGENVIRUSFOOD
 	id = REAGENT_ID_MUTAGENVIRUSFOOD
 	result = REAGENT_ID_MUTAGENVIRUSFOOD
-	required_reagents = list(REAGENT_ID_MUTAGEN = 1, "virusfood" = 1)
+	required_reagents = list(REAGENT_ID_MUTAGEN = 1, REAGENT_ID_VIRUSFOOD = 1)
 	result_amount = 1
 
 /decl/chemical_reaction/instant/virus_food_adranol
 	name = REAGENT_ADRANOLVIRUSFOOD
 	id = REAGENT_ID_ADRANOLVIRUSFOOD
 	result = REAGENT_ID_ADRANOLVIRUSFOOD
-	required_reagents = list(REAGENT_ID_ADRANOL = 1, "virusfood" = 1)
+	required_reagents = list(REAGENT_ID_ADRANOL = 1, REAGENT_ID_VIRUSFOOD = 1)
 	result_amount = 1
 
 /decl/chemical_reaction/instant/virus_food_phoron
 	name = REAGENT_ADRANOLVIRUSFOOD
 	id = REAGENT_ID_PHORONVIRUSFOOD
 	result = REAGENT_ID_PHORONVIRUSFOOD
-	required_reagents = list(REAGENT_ID_PHORON = 1, "virusfood" = 1)
+	required_reagents = list(REAGENT_ID_PHORON = 1, REAGENT_ID_VIRUSFOOD = 1)
 	result_amount = 1
 
 /decl/chemical_reaction/instant/virus_food_phoron_adranol
@@ -50,7 +50,7 @@
 /decl/chemical_reaction/instant/mix_virus
 	name = "Mix Virus"
 	id = "mixvirus"
-	required_reagents = list("virusfood" = 1)
+	required_reagents = list(REAGENT_ID_VIRUSFOOD = 1)
 	catalysts = list(REAGENT_ID_BLOOD = 1)
 	var/level_min = 0
 	var/level_max = 2

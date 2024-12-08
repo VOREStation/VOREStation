@@ -119,7 +119,7 @@
 	name = "Distilling Synthplas"
 	id = "distill_synthplas"
 	result = REAGENT_ID_SYNTHBLOOD_DILUTE
-	required_reagents = list("protein" = 2, REAGENT_ID_ANTIBODIES = 1, REAGENT_ID_BICARIDINE = 1)
+	required_reagents = list(REAGENT_ID_PROTEIN = 2, REAGENT_ID_ANTIBODIES = 1, REAGENT_ID_BICARIDINE = 1)
 	result_amount = 3
 
 	reaction_rate = HALF_LIFE(15)
@@ -174,7 +174,7 @@
 	name = "Distilling Cryogellatin"
 	id = "distill_cryoslurry"
 	result = REAGENT_ID_CRYOSLURRY
-	required_reagents = list("frostoil" = 7, "enzyme" = 3, REAGENT_ID_PLASTICIDE = 3, REAGENT_ID_FOAMINGAGENT = 2)
+	required_reagents = list(REAGENT_ID_FROSTOIL = 7, REAGENT_ID_ENZYME = 3, REAGENT_ID_PLASTICIDE = 3, REAGENT_ID_FOAMINGAGENT = 2)
 	inhibitors = list(REAGENT_ID_WATER = 5)
 	result_amount = 1
 

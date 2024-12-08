@@ -3,7 +3,7 @@
 	seed_name = "rice"
 	display_name = "rice stalks"
 	kitchen_tag = "rice"
-	chems = list(REAGENT_ID_NUTRIMENT = list(1,25), "rice" = list(10,15))
+	chems = list(REAGENT_ID_NUTRIMENT = list(1,25), REAGENT_ID_RICE = list(10,15))
 
 /datum/seed/rice/New()
 	..()

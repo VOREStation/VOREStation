@@ -129,7 +129,7 @@
 
 /obj/item/reagent_containers/spray/pepper/Initialize()
 	. = ..()
-	reagents.add_reagent("condensedcapsaicin", 40)
+	reagents.add_reagent(REAGENT_ID_CONDENSEDCAPSAICIN, 40)
 
 /obj/item/reagent_containers/spray/pepper/examine(mob/user)
 	. = ..()

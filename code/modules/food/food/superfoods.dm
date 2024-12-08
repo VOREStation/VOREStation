@@ -1,7 +1,7 @@
 // Chaos cake
 
 /datum/recipe/chaoscake_layerone
-	reagents = list("flour" = 30,"milk" = 20, REAGENT_ID_SUGAR = 10, "egg" = 9)
+	reagents = list(REAGENT_ID_FLOUR = 30,REAGENT_ID_MILK = 20, REAGENT_ID_SUGAR = 10, REAGENT_ID_EGG = 9)
 	fruit = list("poisonberries" = 2, "cherries" =  2)
 	items = list(
 			/obj/item/reagent_containers/food/snacks/meat/,
@@ -12,8 +12,8 @@
 	result = /obj/structure/chaoscake
 
 /datum/recipe/chaoscake_layertwo
-	reagents = list("flour" = 30, "milk" = 20, REAGENT_ID_SUGAR = 10, "egg" = 9, )
-	fruit = list("vanilla" =  2, "banana" = 2)
+	reagents = list(REAGENT_ID_FLOUR = 30, REAGENT_ID_MILK = 20, REAGENT_ID_SUGAR = 10, REAGENT_ID_EGG = 9, )
+	fruit = list(REAGENT_ID_VANILLA =  2, REAGENT_ID_BANANA = 2)
 	items = list(
 			/obj/item/reagent_containers/food/snacks/dough,
 			/obj/item/reagent_containers/food/snacks/dough,
@@ -23,7 +23,7 @@
 	result = /obj/item/chaoscake_layer
 
 /datum/recipe/chaoscake_layerthree
-	reagents = list("flour" = 25, "milk" = 15, REAGENT_ID_SUGAR = 10, "egg" = 6, "deathbell" = 10)
+	reagents = list(REAGENT_ID_FLOUR = 25, REAGENT_ID_MILK = 15, REAGENT_ID_SUGAR = 10, REAGENT_ID_EGG = 6, "deathbell" = 10)
 	fruit = list("grapes" = 3)
 	items = list(
 			/obj/item/reagent_containers/food/snacks/dough,
@@ -33,7 +33,7 @@
 	result = /obj/item/chaoscake_layer/three
 
 /datum/recipe/chaoscake_layerfour
-	reagents = list("flour" = 25, "milk" = 15, REAGENT_ID_SUGAR = 10, "egg" = 6, "milkshake" = 30)
+	reagents = list(REAGENT_ID_FLOUR = 25, REAGENT_ID_MILK = 15, REAGENT_ID_SUGAR = 10, REAGENT_ID_EGG = 6, REAGENT_ID_MILKSHAKE = 30)
 	fruit = list("rice" = 3)
 	items = list(
 			/obj/item/reagent_containers/food/snacks/dough,
@@ -43,13 +43,13 @@
 	result = /obj/item/chaoscake_layer/four
 
 /datum/recipe/chaoscake_layerfive
-	reagents = list("flour" = 20, "milk" = 10, REAGENT_ID_SUGAR = 10, "egg" = 6, REAGENT_ID_BLOOD = 30)
+	reagents = list(REAGENT_ID_FLOUR = 20, REAGENT_ID_MILK = 10, REAGENT_ID_SUGAR = 10, REAGENT_ID_EGG = 6, REAGENT_ID_BLOOD = 30)
 	fruit = list("tomato" = 2)
 	items = list() //supposed to be made with lobster, still has to be ported.
 	result = /obj/item/chaoscake_layer/five
 
 /datum/recipe/chaoscake_layersix
-	reagents = list("flour" = 20, "milk" = 10, REAGENT_ID_SUGAR = 10, "egg" = 6, "sprinkles" = 5)
+	reagents = list(REAGENT_ID_FLOUR = 20, REAGENT_ID_MILK = 10, REAGENT_ID_SUGAR = 10, REAGENT_ID_EGG = 6, REAGENT_ID_SPRINKLES = 5)
 	fruit = list("apple" = 2)
 	items = list(
 			/obj/item/reagent_containers/food/snacks/dough,
@@ -62,7 +62,7 @@
 	result = /obj/item/chaoscake_layer/six
 
 /datum/recipe/chaoscake_layerseven
-	reagents = list("flour" = 15, "milk" = 10, REAGENT_ID_SUGAR = 5, "egg" = 3, "devilskiss" = 20)
+	reagents = list(REAGENT_ID_FLOUR = 15, REAGENT_ID_MILK = 10, REAGENT_ID_SUGAR = 5, REAGENT_ID_EGG = 3, "devilskiss" = 20)
 	fruit = list("potato" = 1)
 	items = list(
 			/obj/item/reagent_containers/food/snacks/dough,
@@ -72,7 +72,7 @@
 	result = /obj/item/chaoscake_layer/seven
 
 /datum/recipe/chaoscake_layereight
-	reagents = list("flour" = 15, "milk" = 10, REAGENT_ID_SUGAR = 5, "egg" = 3, "cream" = 20)
+	reagents = list(REAGENT_ID_FLOUR = 15, REAGENT_ID_MILK = 10, REAGENT_ID_SUGAR = 5, REAGENT_ID_EGG = 3, REAGENT_ID_CREAM = 20)
 	fruit = list("lemon" = 1)
 	items = list(
 			/obj/item/reagent_containers/food/snacks/dough,

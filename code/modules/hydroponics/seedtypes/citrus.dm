@@ -3,7 +3,7 @@
 	seed_name = "lime"
 	display_name = "lime trees"
 	kitchen_tag = "lime"
-	chems = list(REAGENT_ID_NUTRIMENT = list(1,20), "limejuice" = list(10,20))
+	chems = list(REAGENT_ID_NUTRIMENT = list(1,20), REAGENT_ID_LIMEJUICE = list(10,20))
 
 /datum/seed/citrus/New()
 	..()
@@ -23,7 +23,7 @@
 	seed_name = "lemon"
 	display_name = "lemon trees"
 	kitchen_tag = "lemon"
-	chems = list(REAGENT_ID_NUTRIMENT = list(1,20), "lemonjuice" = list(10,20))
+	chems = list(REAGENT_ID_NUTRIMENT = list(1,20), REAGENT_ID_LEMONJUICE = list(10,20))
 
 /datum/seed/citrus/lemon/New()
 	..()
@@ -38,7 +38,7 @@
 	seed_name = "orange"
 	display_name = "orange trees"
 	kitchen_tag = "orange"
-	chems = list(REAGENT_ID_NUTRIMENT = list(1,20), "orangejuice" = list(10,20))
+	chems = list(REAGENT_ID_NUTRIMENT = list(1,20), REAGENT_ID_ORANGEJUICE = list(10,20))
 
 /datum/seed/citrus/orange/New()
 	..()

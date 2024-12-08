@@ -47,9 +47,9 @@
 	..()
 	create_reagents(500)
 	coolant_reagents_purity[REAGENT_ID_WATER] = 0.5
-	coolant_reagents_purity["icecoffee"] = 0.6
-	coolant_reagents_purity["icetea"] = 0.6
-	coolant_reagents_purity["milkshake"] = 0.6
+	coolant_reagents_purity[REAGENT_ID_ICECOFFEE] = 0.6
+	coolant_reagents_purity[REAGENT_ID_ICETEA] = 0.6
+	coolant_reagents_purity[REAGENT_ID_MILKSHAKE] = 0.6
 	coolant_reagents_purity[REAGENT_ID_LEPORAZINE] = 0.7
 	coolant_reagents_purity[REAGENT_ID_KELOTANE] = 0.7
 	coolant_reagents_purity[REAGENT_ID_STERILIZINE] = 0.7

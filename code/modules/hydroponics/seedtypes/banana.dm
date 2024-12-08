@@ -3,7 +3,7 @@
 	seed_name = "banana"
 	display_name = "banana tree"
 	kitchen_tag = "banana"
-	chems = list("banana" = list(10,10))
+	chems = list(REAGENT_ID_BANANA = list(10,10))
 	trash_type = /obj/item/bananapeel
 
 /datum/seed/banana/New()

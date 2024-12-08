@@ -390,7 +390,7 @@
 									"calvatia", "gigantea", "clitopilis", "prumulus", "entoloma", "abortivum",
 									"suillus", "tuber", "aestivum", "volvacea", "delica", "russula", "rozites")
 
-		possible_prefixes |= list("butter", "shad", REAGENT_ID_SUGAR, "june", "wild", "rigus", "curry", "hard", "soft", "dark", "brick", "stone", "red", "brown",
+		possible_prefixes |= list("butter", "shad", "sugar", "june", "wild", "rigus", "curry", "hard", "soft", "dark", "brick", "stone", "red", "brown",
 								"black", "white", "paper", "slippery", "honey", "bitter")
 		prefix = pick(possible_prefixes)
 

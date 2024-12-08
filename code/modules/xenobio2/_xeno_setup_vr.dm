@@ -55,11 +55,11 @@
 	xenoChemList += REAGENT_ID_COOLANT
 	xenoChemList += REAGENT_ID_LUMINOL
 	xenoChemList += REAGENT_ID_NUTRIMENT
-	xenoChemList += "cornoil"
-	xenoChemList += "lipozine"
+	xenoChemList += REAGENT_ID_CORNOIL
+	xenoChemList += REAGENT_ID_LIPOZINE
 	xenoChemList += REAGENT_ID_SODIUMCHLORIDE
-	xenoChemList += "frostoil"
-	xenoChemList += "capsaicin"
-	xenoChemList += "condensedcapsaicin"
+	xenoChemList += REAGENT_ID_FROSTOIL
+	xenoChemList += REAGENT_ID_CAPSAICIN
+	xenoChemList += REAGENT_ID_CONDENSEDCAPSAICIN
 	xenoChemList += "neurotoxin"
 	return 1

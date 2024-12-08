@@ -276,7 +276,7 @@
 /obj/item/reagent_containers/hypospray/autoinjector/biginjector/glucose
 	name = "glucose hypo"
 	desc = "A hypoinjector filled with glucose, used for critically malnourished patients and voidsuited workers."
-	filled_reagents = list("glucose" = 15)
+	filled_reagents = list(REAGENT_ID_GLUCOSE = 15)
 
 /obj/item/reagent_containers/hypospray/autoinjector/biginjector/stimm
 	name = "stimm injector"
@@ -376,7 +376,7 @@
 	desc = "A refined version of the standard autoinjector, allowing greater capacity. \
 	The hypospray contains a viral agent inside, as well as a liquid substance that encourages \
 	the growth of the virus inside."
-	filled_reagents = list("virusfood" = 15)
+	filled_reagents = list(REAGENT_ID_VIRUSFOOD = 15)
 
 /obj/item/reagent_containers/hypospray/autoinjector/biginjector/contaminated/do_injection(mob/living/carbon/human/H, mob/living/user)
 	. = ..()

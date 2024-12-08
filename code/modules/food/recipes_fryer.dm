@@ -22,7 +22,7 @@
 
 /datum/recipe/risottoballs
 	appliance = FRYER
-	reagents = list(REAGENT_ID_SODIUMCHLORIDE = 1, "blackpepper" = 1)
+	reagents = list(REAGENT_ID_SODIUMCHLORIDE = 1, REAGENT_ID_BLACKPEPPER = 1)
 	items = list(/obj/item/reagent_containers/food/snacks/risotto)
 	coating = /datum/reagent/nutriment/coating/batter
 	reagent_mix = RECIPE_REAGENT_REPLACE //Simplify end product
@@ -120,7 +120,7 @@
 		/obj/item/reagent_containers/food/snacks/bacon,
 		/obj/item/reagent_containers/food/snacks/cutlet
 	)
-	reagents = list("soysauce" = 5, "batter" = 10)
+	reagents = list(REAGENT_ID_SOYSAUCE = 5, REAGENT_ID_BATTER = 10)
 	result = /obj/item/reagent_containers/food/snacks/sweet_and_sour
 
 //Sweet Recipes.
@@ -128,7 +128,7 @@
 // All donuts were given reagents of 5 to equal old recipes and make for faster cook times.
 /datum/recipe/jellydonut
 	appliance = FRYER
-	reagents = list("berryjuice" = 5, REAGENT_ID_SUGAR = 5)
+	reagents = list(REAGENT_ID_BERRYJUICE = 5, REAGENT_ID_SUGAR = 5)
 	items = list(
 		/obj/item/reagent_containers/food/snacks/doughslice
 	)
@@ -136,7 +136,7 @@
 	result_quantity = 2
 
 /datum/recipe/jellydonut/poisonberry
-	reagents = list("poisonberryjuice" = 5, REAGENT_ID_SUGAR = 5)
+	reagents = list(REAGENT_ID_POISONBERRYJUICE = 5, REAGENT_ID_SUGAR = 5)
 	items = list(
 		/obj/item/reagent_containers/food/snacks/dough
 	)
@@ -147,7 +147,7 @@
 	result = /obj/item/reagent_containers/food/snacks/donut/plain/jelly/slimejelly
 
 /datum/recipe/jellydonut/cherry // Subtypes of jellydonut, appliance inheritance applies.
-	reagents = list("cherryjelly" = 5, REAGENT_ID_SUGAR = 5)
+	reagents = list(REAGENT_ID_CHERRYJELLY = 5, REAGENT_ID_SUGAR = 5)
 	result = /obj/item/reagent_containers/food/snacks/donut/plain/jelly/cherryjelly
 
 /datum/recipe/donut
@@ -161,7 +161,7 @@
 
 /datum/recipe/chaosdonut
 	appliance = FRYER
-	reagents = list("frostoil" = 10, "capsaicin" = 10, REAGENT_ID_SUGAR = 10)
+	reagents = list(REAGENT_ID_FROSTOIL = 10, REAGENT_ID_CAPSAICIN = 10, REAGENT_ID_SUGAR = 10)
 	reagent_mix = RECIPE_REAGENT_REPLACE //This creates its own reagents
 	items = list(
 		/obj/item/reagent_containers/food/snacks/doughslice
@@ -171,7 +171,7 @@
 
 /datum/recipe/funnelcake
 	appliance = FRYER
-	reagents = list(REAGENT_ID_SUGAR = 5, "batter" = 10)
+	reagents = list(REAGENT_ID_SUGAR = 5, REAGENT_ID_BATTER = 10)
 	result = /obj/item/reagent_containers/food/snacks/funnelcake
 	result_quantity = 2
 
@@ -185,7 +185,7 @@
 //VOREStation Add Start
 /datum/recipe/generalschicken
 	appliance = FRYER
-	reagents = list("capsaicin" = 2, REAGENT_ID_SUGAR = 2, "batter" = 10)
+	reagents = list(REAGENT_ID_CAPSAICIN = 2, REAGENT_ID_SUGAR = 2, REAGENT_ID_BATTER = 10)
 	items = list(
 		/obj/item/reagent_containers/food/snacks/meat,
 		/obj/item/reagent_containers/food/snacks/meat
@@ -194,7 +194,7 @@
 
 /datum/recipe/chickenwings
 	appliance = FRYER
-	reagents = list("capsaicin" = 5, "batter" = 10)
+	reagents = list(REAGENT_ID_CAPSAICIN = 5, REAGENT_ID_BATTER = 10)
 	items = list(
 		/obj/item/reagent_containers/food/snacks/meat,
 		/obj/item/reagent_containers/food/snacks/meat,

@@ -66,11 +66,11 @@
 		REAGENT_ID_RADIUM =          2
 		)
 	var/static/list/nutrient_reagents = list(
-		"milk" =            0.1,
+		REAGENT_ID_MILK =            0.1,
 		"beer" =            0.25,
 		REAGENT_ID_PHOSPHORUS =      0.1,
 		REAGENT_ID_SUGAR =           0.1,
-		"sodawater" =       0.1,
+		REAGENT_ID_SODAWATER =       0.1,
 		REAGENT_ID_AMMONIA =         1,
 		REAGENT_ID_DIETHYLAMINE =    2,
 		REAGENT_ID_NUTRIMENT =       1,
@@ -97,13 +97,13 @@
 	var/static/list/water_reagents = list(
 		REAGENT_ID_WATER =           1,
 		REAGENT_ID_ADMINORDRAZINE =  1,
-		"milk" =            0.9,
+		REAGENT_ID_MILK =            0.9,
 		"beer" =            0.7,
 		REAGENT_ID_FLUORINE =       -0.5,
 		REAGENT_ID_CHLORINE =       -0.5,
 		REAGENT_ID_PHOSPHORUS =     -0.5,
 		REAGENT_ID_WATER =           1,
-		"sodawater" =       1,
+		REAGENT_ID_SODAWATER =       1,
 		)
 
 	// Beneficial reagents also have values for modifying health, yield_mod and mut_mod (in that order).
@@ -112,7 +112,7 @@
 		REAGENT_ID_FLUORINE =       list( -2,    0,   0  ),
 		REAGENT_ID_CHLORINE =       list( -1,    0,   0  ),
 		REAGENT_ID_PHOSPHORUS =     list( -0.75, 0,   0  ),
-		"sodawater" =      list(  0.1,  0,   0  ),
+		REAGENT_ID_SODAWATER =      list(  0.1,  0,   0  ),
 		REAGENT_ID_SACID =          list( -1,    0,   0  ),
 		REAGENT_ID_PACID =          list( -2,    0,   0  ),
 		REAGENT_ID_PLANTBGONE =     list( -2,    0,   0.2),
@@ -164,7 +164,7 @@
 			return
 
 		if(weedlevel > 0)
-			nymph.reagents.add_reagent("glucose", weedlevel)
+			nymph.reagents.add_reagent(REAGENT_ID_GLUCOSE, weedlevel)
 			weedlevel = 0
 			nymph.visible_message(span_notice(span_bold("[nymph]") + " begins rooting through [src], ripping out weeds and eating them noisily."),span_notice("You begin rooting through [src], ripping out weeds and eating them noisily."))
 		else if(nymph.nutrition > 100 && nutrilevel < 10)

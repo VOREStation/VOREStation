@@ -14,7 +14,7 @@
 
 /obj/item/reagent_containers/pill/protein/Initialize()
 	. = ..()
-	reagents.add_reagent("protein", 30)
+	reagents.add_reagent(REAGENT_ID_PROTEIN, 30)
 
 /obj/item/reagent_containers/pill/rezadone
 	name = REAGENT_REZADONE + " (5u)"

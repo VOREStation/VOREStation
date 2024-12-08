@@ -4,7 +4,7 @@
 	seed_name = "tomato"
 	display_name = "tomato plant"
 	mutants = list("bluetomato","bloodtomato")
-	chems = list(REAGENT_ID_NUTRIMENT = list(1,10), "tomatojuice" = list(10,10))
+	chems = list(REAGENT_ID_NUTRIMENT = list(1,10), REAGENT_ID_TOMATOJUICE = list(10,10))
 	kitchen_tag = "tomato"
 
 /datum/seed/tomato/New()

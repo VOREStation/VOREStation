@@ -148,7 +148,7 @@
 		list("dexalin plus",  REAGENT_ID_DEXALINP,      0, 80),
 		list("antibiotics",   REAGENT_ID_SPACEACILLIN,  0, 80),
 		list("antitoxins",    REAGENT_ID_ANTITOXIN,    0, 80),
-		list("nutrients",     "glucose",     0, 80),
+		list("nutrients",     REAGENT_ID_GLUCOSE,     0, 80),
 		list(REAGENT_ID_HYRONALIN,     REAGENT_ID_HYRONALIN,     0, 80),
 		list(REAGENT_ID_RADIUM,        REAGENT_ID_RADIUM,        0, 80)
 		)
@@ -165,7 +165,7 @@
 		list("dexalin plus",  REAGENT_ID_DEXALINP,      0, 30),
 		list("antibiotics",   REAGENT_ID_SPACEACILLIN,  0, 30),
 		list("antitoxins",    REAGENT_ID_ANTITOXIN,    0, 60),
-		list("nutrients",     "glucose",       0, 80),
+		list("nutrients",     REAGENT_ID_GLUCOSE,       0, 80),
 		list(REAGENT_ID_BICARIDINE,	  REAGENT_ID_BICARIDINE,    0, 30),
 		list("clotting agent", REAGENT_ID_MYELAMINE,    0, 30),
 		list(REAGENT_ID_PERIDAXON,     REAGENT_ID_PERIDAXON,     0, 30),
@@ -257,7 +257,7 @@
 		list(REAGENT_ID_SYNAPTIZINE,   REAGENT_ID_SYNAPTIZINE,   0, 30),
 		list(REAGENT_ID_HYPERZINE,     REAGENT_ID_HYPERZINE,     0, 30),
 		list(REAGENT_ID_OXYCODONE,     REAGENT_ID_OXYCODONE,     0, 30),
-		list("nutrients",     "glucose",     0, 80),
+		list("nutrients",     REAGENT_ID_GLUCOSE,     0, 80),
 		list("clotting agent", REAGENT_ID_MYELAMINE, 0, 80)
 		)
 
@@ -284,7 +284,7 @@
 		list("dexalin plus",  REAGENT_ID_DEXALINP,      0, 80),
 		list("antibiotics",   REAGENT_ID_SPACEACILLIN,  0, 80),
 		list("antitoxins",    REAGENT_ID_ANTITOXIN,    0, 80),
-		list("nutrients",     "glucose",     0, 80),
+		list("nutrients",     REAGENT_ID_GLUCOSE,     0, 80),
 		list(REAGENT_ID_HYRONALIN,     REAGENT_ID_HYRONALIN,     0, 80),
 		list(REAGENT_ID_RADIUM,        REAGENT_ID_RADIUM,        0, 80),
 		list("clotting agent", REAGENT_ID_MYELAMINE, 0, 80)

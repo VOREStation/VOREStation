@@ -82,28 +82,28 @@
 	name = "Bootleg Androrovir"
 	id = "androrovir_bootleg"
 	result = REAGENT_ID_ANDROROVIR
-	required_reagents = list(REAGENT_ID_AMORPHOROVIR = 1, "protein" = 10, "capsaicin" = 10)
+	required_reagents = list(REAGENT_ID_AMORPHOROVIR = 1, REAGENT_ID_PROTEIN = 10, REAGENT_ID_CAPSAICIN = 10)
 	result_amount = 1
 
 /decl/chemical_reaction/instant/gynorovir_bootleg
 	name = "Bootleg Gynorovir"
 	id = "gynorovir_bootleg"
 	result = REAGENT_ID_GYNOROVIR
-	required_reagents = list(REAGENT_ID_AMORPHOROVIR = 1, "soymilk" = 10, REAGENT_ID_SUGAR = 10)
+	required_reagents = list(REAGENT_ID_AMORPHOROVIR = 1, REAGENT_ID_SOYMILK = 10, REAGENT_ID_SUGAR = 10)
 	result_amount = 1
 
 /decl/chemical_reaction/instant/androgynorovir_bootleg
 	name = "Bootleg Androgynorovir"
 	id = "androgynorovir_bootleg"
 	result = REAGENT_ID_ANDROGYNOROVIR
-	required_reagents = list(REAGENT_ID_AMORPHOROVIR = 1, "cola" = 10, "berryjuice" = 10)
+	required_reagents = list(REAGENT_ID_AMORPHOROVIR = 1, REAGENT_ID_COLA = 10, REAGENT_ID_BERRYJUICE = 10)
 	result_amount = 1
 
 ///////////////////////////////////////////////////////////////////////////////////
 /// Miscellaneous Reactions
 
 /decl/chemical_reaction/instant/foam/softdrink
-	required_reagents = list("cola" = 1, "mint" = 1)
+	required_reagents = list(REAGENT_ID_COLA = 1, REAGENT_ID_MINT = 1)
 
 /decl/chemical_reaction/instant/firefightingfoam //TODO: Make it so we can add this to the foam tanks to refill them
     name = REAGENT_FIREFOAM
@@ -136,7 +136,7 @@
 	name = REAGENT_UNSORBITOL
 	id = REAGENT_ID_UNSORBITOL
 	result = REAGENT_ID_UNSORBITOL
-	required_reagents = list(REAGENT_ID_MUTAGEN = 3, "lipozine" = 2)
+	required_reagents = list(REAGENT_ID_MUTAGEN = 3, REAGENT_ID_LIPOZINE = 2)
 	result_amount = 5
 
 ///////////////////////////////////////////////////////////////////////////////////
@@ -145,7 +145,7 @@
 	name = REAGENT_ADRANOL
 	id = REAGENT_ID_ADRANOL
 	result = REAGENT_ID_ADRANOL
-	required_reagents = list("milk" = 2, REAGENT_ID_HYDROGEN = 1, REAGENT_ID_POTASSIUM = 1)
+	required_reagents = list(REAGENT_ID_MILK = 2, REAGENT_ID_HYDROGEN = 1, REAGENT_ID_POTASSIUM = 1)
 	result_amount = 3
 
 /decl/chemical_reaction/instant/vermicetol
@@ -167,30 +167,30 @@
 	name = REAGENT_LIPOZILASE
 	id = REAGENT_ID_LIPOZILASE
 	result = REAGENT_ID_LIPOZILASE
-	required_reagents = list("lipozine" = 1, REAGENT_ID_DIETHYLAMINE = 1)
+	required_reagents = list(REAGENT_ID_LIPOZINE = 1, REAGENT_ID_DIETHYLAMINE = 1)
 	result_amount = 2
 
 /decl/chemical_reaction/instant/lipostipo
 	name = REAGENT_LIPOSTIPO
 	id = REAGENT_ID_LIPOSTIPO
 	result = REAGENT_ID_LIPOSTIPO
-	required_reagents = list("lipozine" = 1, REAGENT_ID_NUTRIMENT = 1, REAGENT_ID_FLUORINE = 1)
+	required_reagents = list(REAGENT_ID_LIPOZINE = 1, REAGENT_ID_NUTRIMENT = 1, REAGENT_ID_FLUORINE = 1)
 	result_amount = 3
 
 ///////////////////////////////////////////////////////////////////////////////////
 /// Reagent colonies.
 /decl/chemical_reaction/instant/meatcolony
-	name = "protein"
+	name = REAGENT_ID_PROTEIN
 	id = REAGENT_ID_MEATCOLONY
-	result = "protein"
-	required_reagents = list(REAGENT_ID_MEATCOLONY = 5, "virusfood" = 5)
+	result = REAGENT_ID_PROTEIN
+	required_reagents = list(REAGENT_ID_MEATCOLONY = 5, REAGENT_ID_VIRUSFOOD = 5)
 	result_amount = 60
 
 /decl/chemical_reaction/instant/plantcolony
 	name = REAGENT_ID_NUTRIMENT
 	id = REAGENT_ID_PLANTCOLONY
 	result = REAGENT_ID_NUTRIMENT
-	required_reagents = list(REAGENT_ID_PLANTCOLONY = 5, "virusfood" = 5)
+	required_reagents = list(REAGENT_ID_PLANTCOLONY = 5, REAGENT_ID_VIRUSFOOD = 5)
 	result_amount = 60
 
 ///////////////////////////////////////////////////////////////////////////////////

@@ -161,14 +161,14 @@
 	desc = "A small bottle. Contains hot sauce."
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "bottle-4"
-	prefill = list("capsaicin" = 60)
+	prefill = list(REAGENT_ID_CAPSAICIN = 60)
 
 /obj/item/reagent_containers/glass/bottle/frostoil
 	name = "frost oil bottle"
 	desc = "A small bottle. Contains cold sauce."
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "bottle-4"
-	prefill = list("frostoil" = 60)
+	prefill = list(REAGENT_ID_FROSTOIL = 60)
 
 /obj/item/reagent_containers/glass/bottle/biomass
 	name = "biomass bottle"

@@ -34,7 +34,7 @@
 	cut_overlays()
 	reagents.add_reagent(REAGENT_ID_NUTRIMENT, 30)
 	reagents.add_reagent(REAGENT_ID_IRON, 10)
-	reagents.add_reagent("protein", 35)
+	reagents.add_reagent(REAGENT_ID_PROTEIN, 35)
 	reagents.add_reagent(REAGENT_ID_WATER, 25)
 
 /obj/item/reagent_containers/food/drinks/glass2/fitnessflask/proteinshake/update_icon()

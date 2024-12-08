@@ -12,7 +12,7 @@
 
 /datum/recipe/sushi
 	fruit = list("cabbage" = 1)
-	reagents = list("rice" = 20)
+	reagents = list(REAGENT_ID_RICE = 20)
 	items = list(
 		/obj/item/reagent_containers/food/snacks/meat,
 		/obj/item/reagent_containers/food/snacks/meat,
@@ -54,14 +54,14 @@
 
 /datum/recipe/hotandsoursoup
 	fruit = list("cabbage" = 1, "mushroom" = 1)
-	reagents = list(REAGENT_ID_SODIUMCHLORIDE = 2, "blackpepper" = 2, REAGENT_ID_WATER = 10)
+	reagents = list(REAGENT_ID_SODIUMCHLORIDE = 2, REAGENT_ID_BLACKPEPPER = 2, REAGENT_ID_WATER = 10)
 	items = list(
 		/obj/item/reagent_containers/food/snacks/tofu
 	)
 	result = /obj/item/reagent_containers/food/snacks/hotandsoursoup
 
 /datum/recipe/kitsuneudon
-	reagents = list("egg" = 3)
+	reagents = list(REAGENT_ID_EGG = 3)
 	items = list(
 		/obj/item/reagent_containers/food/snacks/spagetti,
 		/obj/item/reagent_containers/food/snacks/tofu
@@ -77,11 +77,11 @@
 
 /datum/recipe/mammi
 	fruit = list("orange" = 1)
-	reagents = list(REAGENT_ID_WATER = 10, "flour" = 10, "milk" = 5, REAGENT_ID_SODIUMCHLORIDE = 1)
+	reagents = list(REAGENT_ID_WATER = 10, REAGENT_ID_FLOUR = 10, REAGENT_ID_MILK = 5, REAGENT_ID_SODIUMCHLORIDE = 1)
 	result = /obj/item/reagent_containers/food/snacks/mammi
 
 /datum/recipe/makaroni
-	reagents = list("flour" = 15, "milk" = 5)
+	reagents = list(REAGENT_ID_FLOUR = 15, REAGENT_ID_MILK = 5)
 	items = list(
 		/obj/item/reagent_containers/food/snacks/meat/grubmeat,
 		/obj/item/reagent_containers/food/snacks/egg,
@@ -92,7 +92,7 @@
 
 /datum/recipe/carpsushi
 	fruit = list("cabbage" = 1)
-	reagents = list("rice" = 20)
+	reagents = list(REAGENT_ID_RICE = 20)
 	items = list(
 		/obj/item/reagent_containers/food/snacks/carpmeat,
 		/obj/item/reagent_containers/food/snacks/carpmeat,
@@ -121,7 +121,7 @@
 	result = /obj/item/reagent_containers/food/snacks/monkfishcooked
 
 /datum/recipe/sharksteak
-	reagents = list("blackpepper"= 1, REAGENT_ID_SODIUMCHLORIDE = 1)
+	reagents = list(REAGENT_ID_BLACKPEPPER= 1, REAGENT_ID_SODIUMCHLORIDE = 1)
 	items = list(
 		/obj/item/reagent_containers/food/snacks/carpmeat/fish/sharkmeat
 	)
@@ -136,7 +136,7 @@
 	result = /obj/item/reagent_containers/food/snacks/sharkmeatdip
 
 /datum/recipe/sharkcubes
-	reagents = list("soysauce" = 5, REAGENT_ID_SODIUMCHLORIDE = 1)
+	reagents = list(REAGENT_ID_SOYSAUCE = 5, REAGENT_ID_SODIUMCHLORIDE = 1)
 	fruit = list("potato" = 1)
 	items = list(
 		/obj/item/reagent_containers/food/snacks/carpmeat/fish/sharkmeat
@@ -146,7 +146,7 @@
 //// food cubes
 
 /datum/recipe/foodcubes
-	reagents = list("enzyme" = 20, "virusfood" = 5, REAGENT_ID_NUTRIMENT = 15, "protein" = 15) // labor intensive
+	reagents = list(REAGENT_ID_ENZYME = 20, REAGENT_ID_VIRUSFOOD = 5, REAGENT_ID_NUTRIMENT = 15, REAGENT_ID_PROTEIN = 15) // labor intensive
 	items = list()
 	result = /obj/item/storage/box/wings/tray
 

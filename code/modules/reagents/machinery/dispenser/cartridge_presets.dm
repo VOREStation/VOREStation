@@ -90,65 +90,65 @@
 /obj/item/reagent_containers/chem_disp_cartridge/ice
 	spawn_reagent = "ice"
 /obj/item/reagent_containers/chem_disp_cartridge/tea
-	spawn_reagent = "tea"
+	spawn_reagent = REAGENT_ID_TEA
 /obj/item/reagent_containers/chem_disp_cartridge/icetea
-	spawn_reagent = "icetea"
+	spawn_reagent = REAGENT_ID_ICETEA
 /obj/item/reagent_containers/chem_disp_cartridge/cola
-	spawn_reagent = "cola"
+	spawn_reagent = REAGENT_ID_COLA
 /obj/item/reagent_containers/chem_disp_cartridge/smw
-	spawn_reagent = "spacemountainwind"
+	spawn_reagent = REAGENT_ID_SPACEMOUNTAINWIND
 /obj/item/reagent_containers/chem_disp_cartridge/dr_gibb
-	spawn_reagent = "dr_gibb"
+	spawn_reagent = REAGENT_ID_DRGIBB
 /obj/item/reagent_containers/chem_disp_cartridge/spaceup
-	spawn_reagent = "space_up"
+	spawn_reagent = REAGENT_ID_SPACEUP
 /obj/item/reagent_containers/chem_disp_cartridge/tonic
-	spawn_reagent = "tonic"
+	spawn_reagent = REAGENT_ID_TONIC
 /obj/item/reagent_containers/chem_disp_cartridge/sodawater
-	spawn_reagent = "sodawater"
+	spawn_reagent = REAGENT_ID_SODAWATER
 /obj/item/reagent_containers/chem_disp_cartridge/lemon_lime
-	spawn_reagent = "lemon_lime"
+	spawn_reagent = REAGENT_ID_LEMONLIME
 /obj/item/reagent_containers/chem_disp_cartridge/orange
-	spawn_reagent = "orangejuice"
+	spawn_reagent = REAGENT_ID_ORANGEJUICE
 /obj/item/reagent_containers/chem_disp_cartridge/lime
-	spawn_reagent = "limejuice"
+	spawn_reagent = REAGENT_ID_LIMEJUICE
 /obj/item/reagent_containers/chem_disp_cartridge/watermelon
-	spawn_reagent = "watermelonjuice"
+	spawn_reagent = REAGENT_ID_WATERMELONJUICE
 /obj/item/reagent_containers/chem_disp_cartridge/lemon
-	spawn_reagent = "lemonjuice"
+	spawn_reagent = REAGENT_ID_LEMONJUICE
 /obj/item/reagent_containers/chem_disp_cartridge/grapesoda
-	spawn_reagent = "grapesoda"
+	spawn_reagent = REAGENT_ID_GRAPESODA
 /obj/item/reagent_containers/chem_disp_cartridge/pineapple
-	spawn_reagent = "pineapplejuice"
+	spawn_reagent = REAGENT_ID_PINEAPPLEJUICE
 
 // Bar, coffee
 /obj/item/reagent_containers/chem_disp_cartridge/coffee
-	spawn_reagent = "coffee"
+	spawn_reagent = REAGENT_ID_COFFEE
 /obj/item/reagent_containers/chem_disp_cartridge/drip_coffee
-	spawn_reagent = "drip_coffee"
+	spawn_reagent = REAGENT_ID_DRIPCOFFEE
 /obj/item/reagent_containers/chem_disp_cartridge/cafe_latte
-	spawn_reagent = "cafe_latte"
+	spawn_reagent = REAGENT_ID_CAFELATTE
 /obj/item/reagent_containers/chem_disp_cartridge/soy_latte
-	spawn_reagent = "soy_latte"
+	spawn_reagent = REAGENT_ID_SOYLATTE
 /obj/item/reagent_containers/chem_disp_cartridge/hot_coco
-	spawn_reagent = "hot_coco"
+	spawn_reagent = REAGENT_ID_HOTCOCO
 /obj/item/reagent_containers/chem_disp_cartridge/milk
-	spawn_reagent = "milk"
+	spawn_reagent = REAGENT_ID_MILK
 /obj/item/reagent_containers/chem_disp_cartridge/milk_foam
-	spawn_reagent = "milk_foam"
+	spawn_reagent = REAGENT_ID_MILKFOAM
 /obj/item/reagent_containers/chem_disp_cartridge/cream
-	spawn_reagent = "cream"
+	spawn_reagent = REAGENT_ID_CREAM
 /obj/item/reagent_containers/chem_disp_cartridge/mint
-	spawn_reagent = "mint"
+	spawn_reagent = REAGENT_ID_MINT
 /obj/item/reagent_containers/chem_disp_cartridge/berry
-	spawn_reagent = "berryjuice"
+	spawn_reagent = REAGENT_ID_BERRYJUICE
 /obj/item/reagent_containers/chem_disp_cartridge/greentea
-	spawn_reagent = "greentea"
+	spawn_reagent = REAGENT_ID_GREENTEA
 /obj/item/reagent_containers/chem_disp_cartridge/decaf
-	spawn_reagent = "decaf"
+	spawn_reagent = REAGENT_ID_DECAF
 /obj/item/reagent_containers/chem_disp_cartridge/chaitea
-	spawn_reagent = "chaitea"
+	spawn_reagent = REAGENT_ID_CHAITEA
 /obj/item/reagent_containers/chem_disp_cartridge/decafchai
-	spawn_reagent = "chaiteadecaf"
+	spawn_reagent = REAGENT_ID_CHAITEADECAF
 
 // syrups
 /obj/item/reagent_containers/chem_disp_cartridge/syrup_pumpkin
@@ -172,7 +172,7 @@
 /obj/item/reagent_containers/chem_disp_cartridge/syrup_cherry
 	spawn_reagent = "syrup_cherry"
 /obj/item/reagent_containers/chem_disp_cartridge/grenadine
-	spawn_reagent = "grenadine"
+	spawn_reagent = REAGENT_ID_GRENADINE
 /obj/item/reagent_containers/chem_disp_cartridge/syrup_butterscotch
 	spawn_reagent = "syrup_butterscotch"
 /obj/item/reagent_containers/chem_disp_cartridge/syrup_chocolate

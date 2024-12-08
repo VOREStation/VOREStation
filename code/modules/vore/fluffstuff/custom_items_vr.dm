@@ -1275,8 +1275,8 @@
 
 /obj/item/reagent_containers/food/drinks/glass2/fluff/claraflask/Initialize()
 	. = ..()
-	reagents.add_reagent("tea", 40)
-	reagents.add_reagent("milk", 20)
+	reagents.add_reagent(REAGENT_ID_TEA, 40)
+	reagents.add_reagent(REAGENT_ID_MILK, 20)
 
 /obj/item/reagent_containers/food/drinks/glass2/fluff/claraflask/update_icon()
 	..()

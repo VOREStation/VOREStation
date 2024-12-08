@@ -17,7 +17,7 @@
 
 /obj/item/reagent_containers/food/drinks/cans/cola/Initialize()
 	. = ..()
-	reagents.add_reagent("cola", 30)
+	reagents.add_reagent(REAGENT_ID_COLA, 30)
 
 /obj/item/reagent_containers/food/drinks/cans/decaf_cola
 	name = "\improper Space Cola Free"
@@ -28,7 +28,7 @@
 
 /obj/item/reagent_containers/food/drinks/cans/decaf_cola/Initialize()
 	. = ..()
-	reagents.add_reagent("decafcola", 30)
+	reagents.add_reagent(REAGENT_ID_DECAFCOLA, 30)
 
 /obj/item/reagent_containers/food/drinks/cans/waterbottle
 	name = "bottled water"
@@ -52,7 +52,7 @@
 
 /obj/item/reagent_containers/food/drinks/cans/space_mountain_wind/Initialize()
 	. = ..()
-	reagents.add_reagent("spacemountainwind", 30)
+	reagents.add_reagent(REAGENT_ID_SPACEMOUNTAINWIND, 30)
 
 /obj/item/reagent_containers/food/drinks/cans/thirteenloko
 	name = "\improper Thirteen Loko"
@@ -73,7 +73,7 @@
 
 /obj/item/reagent_containers/food/drinks/cans/dr_gibb/Initialize()
 		..()
-		reagents.add_reagent("dr_gibb", 30)
+		reagents.add_reagent(REAGENT_ID_DRGIBB, 30)
 
 /obj/item/reagent_containers/food/drinks/cans/dr_gibb_diet
 	name = "\improper Diet Dr. Gibb"
@@ -84,7 +84,7 @@
 
 /obj/item/reagent_containers/food/drinks/cans/dr_gibb_diet/Initialize()
 		..()
-		reagents.add_reagent("diet_dr_gibb", 30)
+		reagents.add_reagent(REAGENT_ID_DIETDRGIBB, 30)
 
 /obj/item/reagent_containers/food/drinks/cans/starkist
 	name = "\improper Star-kist"
@@ -95,7 +95,7 @@
 
 /obj/item/reagent_containers/food/drinks/cans/starkist/Initialize()
 	. = ..()
-	reagents.add_reagent("brownstar", 30)
+	reagents.add_reagent(REAGENT_ID_BROWNSTAR, 30)
 
 /obj/item/reagent_containers/food/drinks/cans/starkistdecaf
 	name = "\improper Star-kist Classic"
@@ -106,7 +106,7 @@
 
 /obj/item/reagent_containers/food/drinks/cans/starkistdecaf/Initialize()
 	. = ..()
-	reagents.add_reagent("brownstar_decaf", 30)
+	reagents.add_reagent(REAGENT_ID_BROWNSTARDECAF, 30)
 
 /obj/item/reagent_containers/food/drinks/cans/space_up
 	name = "\improper Space-Up"
@@ -117,7 +117,7 @@
 
 /obj/item/reagent_containers/food/drinks/cans/space_up/Initialize()
 	. = ..()
-	reagents.add_reagent("space_up", 30)
+	reagents.add_reagent(REAGENT_ID_SPACEUP, 30)
 
 /obj/item/reagent_containers/food/drinks/cans/lemon_lime
 	name = "\improper Lemon-Lime"
@@ -128,7 +128,7 @@
 
 /obj/item/reagent_containers/food/drinks/cans/lemon_lime/Initialize()
 	. = ..()
-	reagents.add_reagent("lemon_lime", 30)
+	reagents.add_reagent(REAGENT_ID_LEMONLIME, 30)
 
 /obj/item/reagent_containers/food/drinks/cans/iced_tea
 	name = "\improper Vrisk Serket Iced Tea"
@@ -139,7 +139,7 @@
 
 /obj/item/reagent_containers/food/drinks/cans/iced_tea/Initialize()
 	. = ..()
-	reagents.add_reagent("icetea", 30)
+	reagents.add_reagent(REAGENT_ID_ICETEA, 30)
 
 /obj/item/reagent_containers/food/drinks/cans/grape_juice
 	name = "\improper Grapel Juice"
@@ -150,7 +150,7 @@
 
 /obj/item/reagent_containers/food/drinks/cans/grape_juice/Initialize()
 	. = ..()
-	reagents.add_reagent("grapejuice", 30)
+	reagents.add_reagent(REAGENT_ID_GRAPEJUICE, 30)
 
 /obj/item/reagent_containers/food/drinks/cans/tonic
 	name = "\improper T-Borg's Tonic Water"
@@ -161,7 +161,7 @@
 
 /obj/item/reagent_containers/food/drinks/cans/tonic/Initialize()
 	. = ..()
-	reagents.add_reagent("tonic", 30)
+	reagents.add_reagent(REAGENT_ID_TONIC, 30)
 
 /obj/item/reagent_containers/food/drinks/cans/sodawater
 	name = "soda water"
@@ -171,7 +171,7 @@
 
 /obj/item/reagent_containers/food/drinks/cans/sodawater/Initialize()
 	. = ..()
-	reagents.add_reagent("sodawater", 30)
+	reagents.add_reagent(REAGENT_ID_SODAWATER, 30)
 
 /obj/item/reagent_containers/food/drinks/cans/gingerale
 	name = "\improper Classic Ginger Ale"
@@ -182,7 +182,7 @@
 
 /obj/item/reagent_containers/food/drinks/cans/gingerale/Initialize()
 	. = ..()
-	reagents.add_reagent("gingerale", 30)
+	reagents.add_reagent(REAGENT_ID_GINGERALE, 30)
 
 /obj/item/reagent_containers/food/drinks/cans/root_beer
 	name = "\improper R&D Root Beer"
@@ -193,7 +193,7 @@
 
 /obj/item/reagent_containers/food/drinks/cans/root_beer/Initialize()
 	. = ..()
-	reagents.add_reagent("rootbeer", 30)
+	reagents.add_reagent(REAGENT_ID_ROOTBEER, 30)
 
 /////////////////////////BODA VENDOR DRINKS/////////////////////////
 
@@ -227,7 +227,7 @@
 
 /obj/item/reagent_containers/food/drinks/cans/boda/Initialize()
 	. = ..()
-	reagents.add_reagent("sodawater", 30)
+	reagents.add_reagent(REAGENT_ID_SODAWATER, 30)
 
 /obj/item/reagent_containers/food/drinks/cans/bodaplus
 	name = "\improper Boda-Plyus"
@@ -237,16 +237,16 @@
 
 /obj/item/reagent_containers/food/drinks/cans/bodaplus/Initialize()
 	. = ..()
-	reagents.add_reagent("sodawater", 15)
+	reagents.add_reagent(REAGENT_ID_SODAWATER, 15)
 	reagents.add_reagent(pick(list(
-				"applejuice",
-				"grapejuice",
-				"lemonjuice",
-				"limejuice",
-				"watermelonjuice",
-				"banana",
-				"berryjuice",
-				"pineapplejuice")), 15)
+				REAGENT_ID_APPLEJUICE,
+				REAGENT_ID_GRAPEJUICE,
+				REAGENT_ID_LEMONJUICE,
+				REAGENT_ID_LIMEJUICE,
+				REAGENT_ID_WATERMELONJUICE,
+				REAGENT_ID_BANANA,
+				REAGENT_ID_BERRYJUICE,
+				REAGENT_ID_PINEAPPLEJUICE)), 15)
 
 /obj/item/reagent_containers/food/drinks/cans/redarmy
 	name = "\improper Red Army Twist"
@@ -256,8 +256,8 @@
 
 /obj/item/reagent_containers/food/drinks/cans/redarmy/Initialize()
 	. = ..()
-	reagents.add_reagent("potatojuice", 15)
-	reagents.add_reagent("sodawater", 15)
+	reagents.add_reagent(REAGENT_ID_POTATOJUICE, 15)
+	reagents.add_reagent(REAGENT_ID_SODAWATER, 15)
 
 /obj/item/reagent_containers/food/drinks/cans/arstbru
 	name = "\improper Arstotzka Brü"
@@ -267,7 +267,7 @@
 
 /obj/item/reagent_containers/food/drinks/cans/arstbru/Initialize()
 	. = ..()
-	reagents.add_reagent("turnipjuice", 30)
+	reagents.add_reagent(REAGENT_ID_TURNIPJUICE, 30)
 
 /obj/item/reagent_containers/food/drinks/cans/terra_cola
 	name = "\improper Terra-Cola"
@@ -291,7 +291,7 @@
 
 /obj/item/reagent_containers/food/drinks/cans/straw_cola/Initialize()
 	. = ..()
-	reagents.add_reagent("strawsoda", 30)
+	reagents.add_reagent(REAGENT_ID_STRAWSODA, 30)
 
 /obj/item/reagent_containers/food/drinks/cans/apple_cola
 	name = "\improper Andromeda Apple"
@@ -301,7 +301,7 @@
 
 /obj/item/reagent_containers/food/drinks/cans/apple_cola/Initialize()
 	. = ..()
-	reagents.add_reagent("applesoda", 30)
+	reagents.add_reagent(REAGENT_ID_APPLESODA, 30)
 
 /obj/item/reagent_containers/food/drinks/cans/lemon_cola
 	name = "\improper Lunar Lemon"
@@ -311,7 +311,7 @@
 
 /obj/item/reagent_containers/food/drinks/cans/lemon_cola/Initialize()
 	. = ..()
-	reagents.add_reagent("lemonsoda", 30)
+	reagents.add_reagent(REAGENT_ID_LEMONSODA, 30)
 
 /obj/item/reagent_containers/food/drinks/cans/sarsaparilla
 	name = "\improper Starship Sarsaparilla"
@@ -321,7 +321,7 @@
 
 /obj/item/reagent_containers/food/drinks/cans/sarsaparilla/Initialize()
 	. = ..()
-	reagents.add_reagent("sarsaparilla", 30)
+	reagents.add_reagent(REAGENT_ID_SARSAPARILLA, 30)
 
 /obj/item/reagent_containers/food/drinks/cans/grape_cola
 	name = "\improper Gravity Grape"
@@ -331,7 +331,7 @@
 
 /obj/item/reagent_containers/food/drinks/cans/grape_cola/Initialize()
 	. = ..()
-	reagents.add_reagent("grapesoda", 30)
+	reagents.add_reagent(REAGENT_ID_GRAPESODA, 30)
 
 /obj/item/reagent_containers/food/drinks/cans/orange_cola
 	name = "\improper Orion Orange"
@@ -341,7 +341,7 @@
 
 /obj/item/reagent_containers/food/drinks/cans/orange_cola/Initialize()
 	. = ..()
-	reagents.add_reagent("orangesoda", 30)
+	reagents.add_reagent(REAGENT_ID_ORANGESODA, 30)
 
 /obj/item/reagent_containers/food/drinks/cans/baconsoda
 	name = "\improper Bacon Soda"
@@ -351,7 +351,7 @@
 
 /obj/item/reagent_containers/food/drinks/cans/baconsoda/Initialize()
 	. = ..()
-	reagents.add_reagent("porksoda", 30)
+	reagents.add_reagent(REAGENT_ID_PORKSODA, 30)
 
 /obj/item/reagent_containers/food/drinks/cans/bepis
 	name = "\improper Bepis"
@@ -392,7 +392,7 @@
 
 /obj/item/reagent_containers/food/drinks/cans/icecoffee/Initialize()
 	. = ..()
-	reagents.add_reagent("icecoffee", 30)
+	reagents.add_reagent(REAGENT_ID_ICECOFFEE, 30)
 
 /obj/item/reagent_containers/food/drinks/cans/buzz
 	name = "\improper Buzz Fuzz"

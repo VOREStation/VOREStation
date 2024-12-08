@@ -351,5 +351,5 @@
 
 /obj/item/reagent_containers/pill/diet/Initialize()
 	. = ..()
-	reagents.add_reagent("lipozine", 15) //VOREStation Edit
+	reagents.add_reagent(REAGENT_ID_LIPOZINE, 15) //VOREStation Edit
 	color = reagents.get_color()

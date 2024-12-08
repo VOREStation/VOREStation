@@ -721,7 +721,7 @@
 			if(istype(src, /mob/living/carbon/human/diona) || istype(src, /mob/living/carbon/alien/diona))
 				src.composition_reagent = REAGENT_ID_NUTRIMENT // diona are plants, not meat
 			else
-				src.composition_reagent = "protein"
+				src.composition_reagent = REAGENT_ID_PROTEIN
 				if(istype(src, /mob/living/carbon/human))
 					var/mob/living/carbon/human/H = src
 					if(istype(H.species, /datum/species/diona))

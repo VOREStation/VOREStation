@@ -4,7 +4,7 @@
 	seed_name = "peanut"
 	display_name = "peanut vines"
 	kitchen_tag = "peanut"
-	chems = list(REAGENT_ID_NUTRIMENT = list(1,10), "peanutoil" = list(3,10))
+	chems = list(REAGENT_ID_NUTRIMENT = list(1,10), REAGENT_ID_PEANUTOIL = list(3,10))
 
 /datum/seed/peanuts/New()
 	..()

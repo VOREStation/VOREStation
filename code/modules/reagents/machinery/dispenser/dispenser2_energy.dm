@@ -46,25 +46,25 @@
 
 /obj/machinery/chemical_dispenser/bar_soft
 	dispense_reagents = list(
-		REAGENT_ID_WATER, "ice", "coffee", "cream", "tea", "icetea", "cola", "spacemountainwind", "dr_gibb", "space_up", "tonic",
-		"sodawater", "lemonjuice", "lemon_lime", REAGENT_ID_SUGAR, "orangejuice", "limejuice", "watermelonjuice", "thirteenloko", "grapesoda", "pineapplejuice"
+		REAGENT_ID_WATER, "ice", REAGENT_ID_COFFEE, REAGENT_ID_CREAM, REAGENT_ID_TEA, REAGENT_ID_ICETEA, REAGENT_ID_COLA, REAGENT_ID_SPACEMOUNTAINWIND, REAGENT_ID_DRGIBB, REAGENT_ID_SPACEUP, REAGENT_ID_TONIC,
+		REAGENT_ID_SODAWATER, REAGENT_ID_LEMONJUICE, REAGENT_ID_LEMONLIME, REAGENT_ID_SUGAR, REAGENT_ID_ORANGEJUICE, REAGENT_ID_LIMEJUICE, REAGENT_ID_WATERMELONJUICE, "thirteenloko", REAGENT_ID_GRAPESODA, REAGENT_ID_PINEAPPLEJUICE
 		)
 
 /obj/machinery/chemical_dispenser/bar_alc
 	dispense_reagents = list(
-		"lemon_lime", REAGENT_ID_SUGAR, "orangejuice", "limejuice", "sodawater", "tonic", "beer", "kahlua",
+		REAGENT_ID_LEMONLIME, REAGENT_ID_SUGAR, REAGENT_ID_ORANGEJUICE, REAGENT_ID_LIMEJUICE, REAGENT_ID_SODAWATER, REAGENT_ID_TONIC, "beer", "kahlua",
 		"whiskey", "redwine", "whitewine", "vodka", "cider", "gin", "rum", "tequilla", "vermouth", "cognac", "ale", "mead", "bitters"
 		)
 
 /obj/machinery/chemical_dispenser/bar_coffee
 	dispense_reagents = list(
-		"coffee", "cafe_latte", "soy_latte", "hot_coco", "milk", "cream", "tea", "ice", "water",
-		"orangejuice", "lemonjuice", "limejuice", "berryjuice", "mint", "decaf", "greentea", "milk_foam", "drip_coffee"
+		REAGENT_ID_COFFEE, REAGENT_ID_CAFELATTE, REAGENT_ID_SOYLATTE, REAGENT_ID_HOTCOCO, REAGENT_ID_MILK, REAGENT_ID_CREAM, REAGENT_ID_TEA, "ice", "water",
+		REAGENT_ID_ORANGEJUICE, REAGENT_ID_LEMONJUICE, REAGENT_ID_LIMEJUICE, REAGENT_ID_BERRYJUICE, REAGENT_ID_MINT, REAGENT_ID_DECAF, REAGENT_ID_GREENTEA, REAGENT_ID_MILKFOAM, REAGENT_ID_DRIPCOFFEE
 		)
 
 /obj/machinery/chemical_dispenser/bar_syrup
 	dispense_reagents = list(
 		"syrup_pumpkin", "syrup_caramel", "syrup_salted_caramel", "syrup_irish", "syrup_almond", "syrup_cinnamon", "syrup_pistachio",
-		"syrup_vanilla", "syrup_toffee", "grenadine", "syrup_cherry", "syrup_butterscotch", "syrup_chocolate", "syrup_white_chocolate", "syrup_strawberry",
+		"syrup_vanilla", "syrup_toffee", REAGENT_ID_GRENADINE, "syrup_cherry", "syrup_butterscotch", "syrup_chocolate", "syrup_white_chocolate", "syrup_strawberry",
 		"syrup_coconut", "syrup_ginger", "syrup_gingerbread", "syrup_peppermint", "syrup_birthday"
 		)

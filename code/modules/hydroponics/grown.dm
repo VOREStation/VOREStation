@@ -70,19 +70,19 @@
 		desc = SSplants.product_descs["[seed.uid]"]
 	else
 		var/list/descriptors = list()
-		if(reagents.has_reagent(REAGENT_ID_SUGAR) || reagents.has_reagent("cherryjelly") || reagents.has_reagent("honey") || reagents.has_reagent("berryjuice"))
+		if(reagents.has_reagent(REAGENT_ID_SUGAR) || reagents.has_reagent(REAGENT_ID_CHERRYJELLY) || reagents.has_reagent(REAGENT_ID_HONEY) || reagents.has_reagent(REAGENT_ID_BERRYJUICE))
 			descriptors |= "sweet"
 		if(reagents.has_reagent(REAGENT_ID_ANTITOXIN))
 			descriptors |= "astringent"
-		if(reagents.has_reagent("frostoil"))
+		if(reagents.has_reagent(REAGENT_ID_FROSTOIL))
 			descriptors |= "numbing"
 		if(reagents.has_reagent(REAGENT_ID_NUTRIMENT))
 			descriptors |= "nutritious"
-		if(reagents.has_reagent("condensedcapsaicin") || reagents.has_reagent("capsaicin"))
+		if(reagents.has_reagent(REAGENT_ID_CONDENSEDCAPSAICIN) || reagents.has_reagent(REAGENT_ID_CAPSAICIN))
 			descriptors |= "spicy"
-		if(reagents.has_reagent("coco"))
+		if(reagents.has_reagent(REAGENT_ID_COCO))
 			descriptors |= "bitter"
-		if(reagents.has_reagent("orangejuice") || reagents.has_reagent("lemonjuice") || reagents.has_reagent("limejuice"))
+		if(reagents.has_reagent(REAGENT_ID_ORANGEJUICE) || reagents.has_reagent(REAGENT_ID_LEMONJUICE) || reagents.has_reagent(REAGENT_ID_LIMEJUICE))
 			descriptors |= "sweet-sour"
 		if(reagents.has_reagent(REAGENT_ID_RADIUM) || reagents.has_reagent(REAGENT_ID_URANIUM))
 			descriptors |= "radioactive"
@@ -226,19 +226,19 @@
 					qdel(src)
 					return
 
-				if(!isnull(seed.chems["carrotjuice"]))
+				if(!isnull(seed.chems[REAGENT_ID_CARROTJUICE]))
 					to_chat(user, span_filter_notice("You slice \the [src] into sticks."))
 					new /obj/item/reagent_containers/food/snacks/carrotfries(get_turf(src))
 					qdel(src)
 					return
 
-				if(!isnull(seed.chems["pineapplejuice"]))
+				if(!isnull(seed.chems[REAGENT_ID_PINEAPPLEJUICE]))
 					to_chat(user, span_filter_notice("You slice \the [src] into rings."))
 					new /obj/item/reagent_containers/food/snacks/pineapple_ring(get_turf(src))
 					qdel(src)
 					return
 
-				if(!isnull(seed.chems["soymilk"]))
+				if(!isnull(seed.chems[REAGENT_ID_SOYMILK]))
 					to_chat(user, span_filter_notice("You roughly chop up \the [src]."))
 					new /obj/item/reagent_containers/food/snacks/soydope(get_turf(src))
 					qdel(src)

@@ -74,8 +74,8 @@
 	Generally coatings are intended for deep frying foods
 */
 /datum/reagent/nutriment/coating
-	name = "coating"
-	id = "coating"
+	name = REAGENT_COATING
+	id = REAGENT_ID_COATING
 	nutriment_factor = 6 //Less dense than the food itself, but coatings still add extra calories
 	var/messaged = 0
 	var/icon_raw
@@ -121,9 +121,9 @@
 	data["cooked"] = newdata["cooked"]
 
 /datum/reagent/nutriment/coating/batter
-	name = "batter mix"
-	cooked_name = "batter"
-	id = "batter"
+	name = REAGENT_BATTER
+	cooked_name = REAGENT_ID_BATTER
+	id = REAGENT_ID_BATTER
 	color = "#f5f4e9"
 	reagent_state = LIQUID
 	icon_raw = "batter_raw"
@@ -132,9 +132,9 @@
 	allergen_type = ALLERGEN_GRAINS | ALLERGEN_EGGS //Made with flour(grain), and eggs(eggs)
 
 /datum/reagent/nutriment/coating/beerbatter
-	name = "beer batter mix"
+	name = REAGENT_BEERBATTER
 	cooked_name = "beer batter"
-	id = "beerbatter"
+	id = REAGENT_ID_BEERBATTER
 	color = "#f5f4e9"
 	reagent_state = LIQUID
 	icon_raw = "batter_raw"
@@ -150,8 +150,8 @@
 //Fats
 //=========================
 /datum/reagent/nutriment/triglyceride
-	name = "triglyceride"
-	id = "triglyceride"
+	name = REAGENT_TRIGLYCERIDE
+	id = REAGENT_ID_TRIGLYCERIDE
 	description = "More commonly known as fat, the third macronutrient, with over double the energy content of carbs and protein"
 
 	reagent_state = SOLID
@@ -162,8 +162,8 @@
 
 /datum/reagent/nutriment/triglyceride/oil
 	//Having this base class incase we want to add more variants of oil
-	name = "Oil"
-	id = "oil"
+	name = REAGENT_OIL
+	id = REAGENT_ID_OIL
 	description = "Oils are liquid fats."
 	reagent_state = LIQUID
 	taste_description = "oil"
@@ -242,21 +242,21 @@
 			lastburnmessage = world.time
 
 /datum/reagent/nutriment/triglyceride/oil/cooking
-	name = "Cooking Oil"
-	id = "cookingoil"
+	name = REAGENT_COOKINGOIL
+	id = REAGENT_ID_COOKINGOIL
 	description = "A general-purpose cooking oil."
 	reagent_state = LIQUID
 
 /datum/reagent/nutriment/triglyceride/oil/corn
-	name = "Corn Oil"
-	id = "cornoil"
+	name = REAGENT_CORNOIL
+	id = REAGENT_ID_CORNOIL
 	description = "An oil derived from various types of corn."
 	reagent_state = LIQUID
 	allergen_type = ALLERGEN_VEGETABLE //Corn is a vegetable
 
 /datum/reagent/nutriment/triglyceride/oil/peanut
-	name = "Peanut Oil"
-	id = "peanutoil"
+	name = REAGENT_PEANUTOIL
+	id = REAGENT_ID_PEANUTOIL
 	description = "An oil derived from various types of nuts."
 	taste_description = "nuts"
 	taste_mult = 0.3
@@ -267,8 +267,8 @@
 // Aurora Cooking Port Insertion End
 
 /datum/reagent/nutriment/glucose
-	name = "Glucose"
-	id = "glucose"
+	name = REAGENT_GLUCOSE
+	id = REAGENT_ID_GLUCOSE
 	taste_description = "sweetness"
 	color = "#FFFFFF"
 	cup_prefix = "sweetened"
@@ -276,8 +276,8 @@
 	injectable = 1
 
 /datum/reagent/nutriment/protein // Bad for Skrell!
-	name = "animal protein"
-	id = "protein"
+	name = REAGENT_PROTEIN
+	id = REAGENT_ID_PROTEIN
 	taste_description = "some sort of meat"
 	color = "#440000"
 	allergen_type = ALLERGEN_MEAT //"Animal protein" implies it comes from animals, therefore meat.
@@ -296,57 +296,57 @@
 			..()
 
 /datum/reagent/nutriment/protein/tofu
-	name = "tofu protein"
-	id = "tofu"
+	name = REAGENT_TOFU
+	id = REAGENT_ID_TOFU
 	color = "#fdffa8"
 	taste_description = "tofu"
 	allergen_type = ALLERGEN_BEANS //Made from soy beans
 
 /datum/reagent/nutriment/protein/seafood
-	name = "seafood protein"
-	id = "seafood"
+	name = REAGENT_SEAFOOD
+	id = REAGENT_ID_SEAFOOD
 	color = "#f5f4e9"
 	taste_description = "fish"
 	allergen_type = ALLERGEN_FISH //I suppose the fish allergy likely refers to seafood in general.
 
 /datum/reagent/nutriment/protein/cheese
-	name = "cheese"
-	id = "cheese"
+	name = REAGENT_CHEESE
+	id = REAGENT_ID_CHEESE
 	color = "#EDB91F"
 	taste_description = "cheese"
 	allergen_type = ALLERGEN_DAIRY //Cheese is made from dairy
 	cup_prefix = "cheesy"
 
 /datum/reagent/nutriment/protein/egg
-	name = "egg yolk"
-	id = "egg"
+	name = REAGENT_EGG
+	id = REAGENT_ID_EGG
 	taste_description = "egg"
 	color = "#FFFFAA"
 	allergen_type = ALLERGEN_EGGS //Eggs contain egg
 	cup_prefix = "eggy"
 
 /datum/reagent/nutriment/protein/murk
-	name = "murkfin protein"
-	id = "murk_protein"
+	name = REAGENT_MURK_PROTEIN
+	id = REAGENT_ID_MURK_PROTEIN
 	taste_description = "mud"
 	color = "#664330"
 	allergen_type = ALLERGEN_FISH //Murkfin is fish
 
 /datum/reagent/nutriment/protein/bean
-	name = "beans"
-	id = "bean_protein"
+	name = REAGENT_BEANPROTEIN
+	id = REAGENT_ID_BEANPROTEIN
 	taste_description = "beans"
 	color = "#562e0b"
 	allergen_type = ALLERGEN_BEANS //Made from soy beans
 
 /datum/reagent/nutriment/honey
-	name = "Honey"
-	id = "honey"
+	name = REAGENT_HONEY
+	id = REAGENT_ID_HONEY
 	description = "A golden yellow syrup, loaded with sugary sweetness."
 	taste_description = "sweetness"
 	nutriment_factor = 10
 	color = "#FFFF00"
-	cup_prefix = "honey"
+	cup_prefix = REAGENT_ID_HONEY
 
 /datum/reagent/nutriment/honey/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
 	..()
@@ -370,26 +370,26 @@
 			M.drowsyness = max(M.drowsyness, 60)
 
 /datum/reagent/nutriment/mayo
-	name = "mayonnaise"
-	id = "mayo"
+	name = REAGENT_MAYO
+	id = REAGENT_ID_MAYO
 	description = "A thick, bitter sauce."
 	taste_description = "unmistakably mayonnaise"
 	nutriment_factor = 10
 	color = "#FFFFFF"
 	allergen_type = ALLERGEN_EGGS	//Mayo is made from eggs
-	cup_prefix = "mayo"
+	cup_prefix = REAGENT_ID_MAYO
 
 /datum/reagent/nutriment/yeast
-	name = "Yeast"
-	id = "yeast"
+	name = REAGENT_YEAST
+	id = REAGENT_ID_YEAST
 	description = "For making bread rise!"
 	taste_description = "yeast"
 	nutriment_factor = 1
 	color = "#D3AF70"
 
 /datum/reagent/nutriment/flour
-	name = "Flour"
-	id = "flour"
+	name = REAGENT_FLOUR
+	id = REAGENT_ID_FLOUR
 	description = "This is what you rub all over yourself to pretend to be a ghost."
 	taste_description = "chalky wheat"
 	reagent_state = SOLID
@@ -403,8 +403,8 @@
 		new /obj/effect/decal/cleanable/flour(T)
 
 /datum/reagent/nutriment/coffee
-	name = "Coffee Powder"
-	id = "coffeepowder"
+	name = REAGENT_COFFEEPOWDER
+	id = REAGENT_ID_COFFEEPOWDER
 	description = "A bitter powder made by grinding coffee beans."
 	taste_description = "bitterness"
 	taste_mult = 1.3
@@ -413,8 +413,8 @@
 	allergen_type = ALLERGEN_COFFEE | ALLERGEN_STIMULANT //Again, coffee contains coffee
 
 /datum/reagent/nutriment/tea
-	name = "Tea Powder"
-	id = "teapowder"
+	name = REAGENT_TEAPOWDER
+	id = REAGENT_ID_TEAPOWDER
 	description = "A dark, tart powder made from black tea leaves."
 	taste_description = "tartness"
 	taste_mult = 1.3
@@ -423,8 +423,8 @@
 	allergen_type = ALLERGEN_STIMULANT //Strong enough to contain caffeine
 
 /datum/reagent/nutriment/decaf_tea
-	name = "Decaf Tea Powder"
-	id = "decafteapowder"
+	name = REAGENT_DECAFTEAPOWDER
+	id = REAGENT_ID_DECAFTEAPOWDER
 	description = "A dark, tart powder made from black tea leaves, treated to remove caffeine content."
 	taste_description = "tartness"
 	taste_mult = 1.3
@@ -432,8 +432,8 @@
 	color = "#101000"
 
 /datum/reagent/nutriment/coco
-	name = "Coco Powder"
-	id = "coco"
+	name = REAGENT_COCO
+	id = REAGENT_ID_COCO
 	description = "A fatty, bitter paste made from coco beans."
 	taste_description = "bitterness"
 	taste_mult = 1.3
@@ -441,62 +441,62 @@
 	nutriment_factor = 5
 	color = "#302000"
 	allergen_type = ALLERGEN_CHOCOLATE
-	cup_prefix = "coco"
+	cup_prefix = REAGENT_ID_COCO
 
 /datum/reagent/nutriment/chocolate
-	name = "Chocolate"
-	id = "chocolate"
+	name = REAGENT_CHOCOLATE
+	id = REAGENT_ID_CHOCOLATE
 	description = "Great for cooking or on its own!"
 	taste_description = "chocolate"
 	color = "#582815"
 	nutriment_factor = 5
 	taste_mult = 1.3
 	allergen_type = ALLERGEN_CHOCOLATE
-	cup_prefix = "chocolate"
+	cup_prefix = REAGENT_ID_CHOCOLATE
 
 /datum/reagent/nutriment/instantjuice
-	name = "Juice Powder"
-	id = "instantjuice"
+	name = REAGENT_INSTANTJUICE
+	id = REAGENT_ID_INSTANTJUICE
 	description = "Dehydrated, powdered juice of some kind."
 	taste_mult = 1.3
 	nutriment_factor = 1
 	allergen_type = ALLERGEN_FRUIT //I suppose it's implied here that the juice is from dehydrated fruit.
 
 /datum/reagent/nutriment/instantjuice/grape
-	name = "Grape Juice Powder"
-	id = "instantgrape"
+	name = REAGENT_INSTANTGRAPE
+	id = REAGENT_ID_INSTANTGRAPE
 	description = "Dehydrated, powdered grape juice."
 	taste_description = "dry grapes"
 	color = "#863333"
 	cup_prefix = "grape"
 
 /datum/reagent/nutriment/instantjuice/orange
-	name = "Orange Juice Powder"
-	id = "instantorange"
+	name = REAGENT_INSTANTORANGE
+	id = REAGENT_ID_INSTANTORANGE
 	description = "Dehydrated, powdered orange juice."
 	taste_description = "dry oranges"
 	color = "#e78108"
 	cup_prefix = "orange"
 
 /datum/reagent/nutriment/instantjuice/watermelon
-	name = "Watermelon Juice Powder"
-	id = "instantwatermelon"
+	name = REAGENT_INSTANTWATERMELON
+	id = REAGENT_ID_INSTANTWATERMELON
 	description = "Dehydrated, powdered watermelon juice."
 	taste_description = "dry sweet watermelon"
 	color = "#b83333"
 	cup_prefix = "melon"
 
 /datum/reagent/nutriment/instantjuice/apple
-	name = "Apple Juice Powder"
-	id = "instantapple"
+	name = REAGENT_INSTANTAPPLE
+	id = REAGENT_ID_INSTANTAPPLE
 	description = "Dehydrated, powdered apple juice."
 	taste_description = "dry sweet apples"
 	color = "#c07c40"
 	cup_prefix = "apple"
 
 /datum/reagent/nutriment/soysauce
-	name = "Soy Sauce"
-	id = "soysauce"
+	name = REAGENT_SOYSAUCE
+	id = REAGENT_ID_SOYSAUCE
 	description = "A salty sauce made from the soy plant."
 	taste_description = "umami"
 	taste_mult = 1.1
@@ -507,8 +507,8 @@
 	cup_prefix = "umami"
 
 /datum/reagent/nutriment/vinegar
-	name = "Vinegar"
-	id = "vinegar"
+	name = REAGENT_VINEGAR
+	id = REAGENT_ID_VINEGAR
 	description = "vinegar, great for fish and pickles."
 	taste_description = "vinegar"
 	reagent_state = LIQUID
@@ -517,8 +517,8 @@
 	cup_prefix = "acidic"
 
 /datum/reagent/nutriment/ketchup
-	name = "Ketchup"
-	id = "ketchup"
+	name = REAGENT_KETCHUP
+	id = REAGENT_ID_KETCHUP
 	description = "Ketchup, catsup, whatever. It's tomato paste."
 	taste_description = "ketchup"
 	reagent_state = LIQUID
@@ -528,28 +528,28 @@
 	cup_prefix = "tomato"
 
 /datum/reagent/nutriment/mustard
-	name = "Mustard"
-	id = "mustard"
+	name = REAGENT_MUSTARD
+	id = REAGENT_ID_MUSTARD
 	description = "Delicious mustard. Good on Hot Dogs."
 	taste_description = "mustard"
 	reagent_state = LIQUID
 	nutriment_factor = 5
 	color = "#E3BD00"
-	cup_prefix = "mustard"
+	cup_prefix = REAGENT_ID_MUSTARD
 
 /datum/reagent/nutriment/barbecue
-	name = "Barbeque Sauce"
-	id = "barbecue"
+	name = REAGENT_BARBECUE
+	id = REAGENT_ID_BARBECUE
 	description = "Barbecue sauce for barbecues and long shifts."
 	taste_description = "barbeque"
 	reagent_state = LIQUID
 	nutriment_factor = 5
 	color = "#4F330F"
-	cup_prefix = "barbecue"
+	cup_prefix = REAGENT_ID_BARBECUE
 
 /datum/reagent/nutriment/rice
-	name = "Rice"
-	id = "rice"
+	name = REAGENT_RICE
+	id = REAGENT_ID_RICE
 	description = "Enjoy the great taste of nothing."
 	taste_description = "rice"
 	taste_mult = 0.4
@@ -558,8 +558,8 @@
 	color = "#FFFFFF"
 
 /datum/reagent/nutriment/cherryjelly
-	name = "Cherry Jelly"
-	id = "cherryjelly"
+	name = REAGENT_CHERRYJELLY
+	id = REAGENT_ID_CHERRYJELLY
 	description = "Totally the best. Only to be spread on foods with excellent lateral symmetry."
 	taste_description = "cherry"
 	taste_mult = 1.3
@@ -569,8 +569,8 @@
 	allergen_type = ALLERGEN_FRUIT //Cherries are fruits
 
 /datum/reagent/nutriment/peanutbutter
-	name = "Peanut Butter"
-	id = "peanutbutter"
+	name = REAGENT_PEANUTBUTTER
+	id = REAGENT_ID_PEANUTBUTTER
 	description = "A butter derived from various types of nuts."
 	taste_description = "peanuts"
 	taste_mult = 0.5
@@ -581,19 +581,19 @@
 	cup_prefix = "peanut butter"
 
 /datum/reagent/nutriment/vanilla
-	name = "Vanilla Extract"
-	id = "vanilla"
+	name = REAGENT_VANILLA
+	id = REAGENT_ID_VANILLA
 	description = "Vanilla extract. Tastes suspiciously like boring ice-cream."
 	taste_description = "vanilla"
 	taste_mult = 5
 	reagent_state = LIQUID
 	nutriment_factor = 2
 	color = "#0F0A00"
-	cup_prefix = "vanilla"
+	cup_prefix = REAGENT_ID_VANILLA
 
 /datum/reagent/nutriment/durian
-	name = "Durian Paste"
-	id = "durianpaste"
+	name = REAGENT_DURIANPASTE
+	id = REAGENT_ID_DURIANPASTE
 	description = "A strangely sweet and savory paste."
 	taste_description = "sweet and savory"
 	color = "#757631"
@@ -619,8 +619,8 @@
 	return ..()
 
 /datum/reagent/nutriment/virus_food
-	name = "Virus Food"
-	id = "virusfood"
+	name = REAGENT_VIRUSFOOD
+	id = REAGENT_ID_VIRUSFOOD
 	description = "A mixture of water, milk, and oxygen. Virus cells can use this mixture to reproduce."
 	taste_description = "vomit"
 	taste_mult = 2
@@ -630,8 +630,8 @@
 	allergen_type = ALLERGEN_DAIRY	//incase anyone is dumb enough to drink it - it does contain milk!
 
 /datum/reagent/nutriment/sprinkles
-	name = "Sprinkles"
-	id = "sprinkles"
+	name = REAGENT_SPRINKLES
+	id = REAGENT_ID_SPRINKLES
 	description = "Multi-colored little bits of sugar, commonly found on donuts. Loved by cops."
 	taste_description = "sugar"
 	nutriment_factor = 1
@@ -639,8 +639,8 @@
 	cup_prefix = "sprinkled"
 
 /datum/reagent/nutriment/mint
-	name = "Mint"
-	id = "mint"
+	name = REAGENT_MINT
+	id = REAGENT_ID_MINT
 	description = "Also known as Mentha."
 	taste_description = "mint"
 	reagent_state = LIQUID
@@ -648,8 +648,8 @@
 	cup_prefix = "minty"
 
 /datum/reagent/lipozine // The anti-nutriment.
-	name = "Lipozine"
-	id = "lipozine"
+	name = REAGENT_LIPOZINE
+	id = REAGENT_ID_LIPOZINE
 	description = "A chemical compound that causes a powerful fat-burning reaction."
 	taste_description = "mothballs"
 	reagent_state = LIQUID
@@ -683,8 +683,8 @@
 	affect_blood(M, alien, passthrough)
 
 /datum/reagent/blackpepper
-	name = "Black Pepper"
-	id = "blackpepper"
+	name = REAGENT_BLACKPEPPER
+	id = REAGENT_ID_BLACKPEPPER
 	description = "A powder ground from peppercorns. *AAAACHOOO*"
 	taste_description = "pepper"
 	reagent_state = SOLID
@@ -693,8 +693,8 @@
 	cup_prefix = "peppery"
 
 /datum/reagent/enzyme
-	name = "Universal Enzyme"
-	id = "enzyme"
+	name = REAGENT_ENZYME
+	id = REAGENT_ID_ENZYME
 	description = "A universal enzyme used in the preperation of certain chemicals and foods."
 	taste_description = "sweetness"
 	taste_mult = 0.7
@@ -703,31 +703,31 @@
 	overdose = REAGENTS_OVERDOSE
 
 /datum/reagent/spacespice
-	name = "Wurmwoad"
-	id = "spacespice"
+	name = REAGENT_SPACESPICE
+	id = REAGENT_ID_SPACESPICE
 	description = "An exotic blend of spices for cooking. Definitely not worms."
 	reagent_state = SOLID
 	color = "#e08702"
 	cup_prefix = "spicy"
 
 /datum/reagent/browniemix
-	name = "Brownie Mix"
-	id = "browniemix"
+	name = REAGENT_BROWNIEMIX
+	id = REAGENT_ID_BROWNIEMIX
 	description = "A dry mix for making delicious brownies."
 	reagent_state = SOLID
 	color = "#441a03"
 	allergen_type = ALLERGEN_CHOCOLATE
 
 /datum/reagent/cakebatter
-	name = "Cake Batter"
-	id = "cakebatter"
+	name = REAGENT_CAKEBATTER
+	id = REAGENT_ID_CAKEBATTER
 	description = "A batter for making delicious cakes."
 	reagent_state = LIQUID
 	color = "#F0EDDA"
 
 /datum/reagent/frostoil
-	name = "Frost Oil"
-	id = "frostoil"
+	name = REAGENT_FROSTOIL
+	id = REAGENT_ID_FROSTOIL
 	description = "A special oil that noticably chills the body. Extracted from Ice Peppers."
 	taste_description = "mint"
 	taste_mult = 1.5
@@ -741,7 +741,7 @@
 	M.bodytemperature = min(M.bodytemperature, max(M.bodytemperature - 10 * TEMPERATURE_DAMAGE_COEFFICIENT, 215))
 	if(prob(1))
 		M.emote("shiver")
-	holder.remove_reagent("capsaicin", 5)
+	holder.remove_reagent(REAGENT_ID_CAPSAICIN, 5)
 
 /datum/reagent/frostoil/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed) // Eating frostoil now acts like capsaicin. Wee!
 	if(alien == IS_DIONA)
@@ -763,19 +763,19 @@
 		M.bodytemperature -= rand(1, 5) * M.species.spice_mod // Really fucks you up, cause it makes you cold.
 		if(prob(5))
 			M.visible_message(span_warning("[M] [pick("dry heaves!","coughs!","splutters!")]"), pick(span_danger("You feel like your insides are freezing!"), span_danger("Your insides feel like they're turning to ice!")))
-	// holder.remove_reagent("capsaicin", 5) // VOREStation Edit: Nop, we don't instadelete spices for free.
+	// holder.remove_reagent(REAGENT_ID_CAPSAICIN, 5) // VOREStation Edit: Nop, we don't instadelete spices for free.
 
 /datum/reagent/frostoil/cryotoxin //A longer lasting version of frost oil.
-	name = "Cryotoxin"
-	id = "cryotoxin"
+	name = REAGENT_CRYOTOXIN
+	id = REAGENT_ID_CRYOTOXIN
 	description = "Lowers the body's internal temperature."
 	reagent_state = LIQUID
 	color = "#B31008"
 	metabolism = REM * 0.5
 
 /datum/reagent/capsaicin
-	name = "Capsaicin Oil"
-	id = "capsaicin"
+	name = REAGENT_CAPSAICIN
+	id = REAGENT_ID_CAPSAICIN
 	description = "This is what makes chilis hot."
 	taste_description = "hot peppers"
 	taste_mult = 1.5
@@ -810,11 +810,11 @@
 		M.bodytemperature += rand(1, 5) * M.species.spice_mod // Really fucks you up, cause it makes you overheat, too.
 		if(prob(5))
 			M.visible_message(span_warning("[M] [pick("dry heaves!","coughs!","splutters!")]"), pick(span_danger("You feel like your insides are burning!"), span_danger("You feel like your insides are on fire!"), span_danger("You feel like your belly is full of lava!")))
-	// holder.remove_reagent("frostoil", 5)  // VOREStation Edit: Nop, we don't instadelete spices for free.
+	// holder.remove_reagent(REAGENT_ID_FROSTOIL, 5)  // VOREStation Edit: Nop, we don't instadelete spices for free.
 
 /datum/reagent/condensedcapsaicin
-	name = "Condensed Capsaicin"
-	id = "condensedcapsaicin"
+	name = REAGENT_CONDENSEDCAPSAICIN
+	id = REAGENT_ID_CONDENSEDCAPSAICIN
 	description = "A chemical agent used for self-defense and in police work."
 	taste_description = "fire"
 	taste_mult = 10
@@ -955,13 +955,13 @@
 		M.apply_effect(4, AGONY, 0)
 		if(prob(5))
 			M.visible_message(span_warning("[M] [pick("dry heaves!","coughs!","splutters!")]"), span_danger("You feel like your insides are burning!"))
-	// holder.remove_reagent("frostoil", 5) // VOREStation Edit: Nop, we don't instadelete spices for free.
+	// holder.remove_reagent(REAGENT_ID_FROSTOIL, 5) // VOREStation Edit: Nop, we don't instadelete spices for free.
 
 /* Drinks */
 
 /datum/reagent/drink
-	name = "Drink"
-	id = "drink"
+	name = REAGENT_DRINK
+	id = REAGENT_ID_DRINK
 	description = "Uh, some kind of drink."
 	ingest_met = REM
 	reagent_state = LIQUID
@@ -1002,8 +1002,8 @@
 // Juices
 
 /datum/reagent/drink/juice/banana
-	name = "Banana Juice"
-	id = "banana"
+	name = REAGENT_BANANA
+	id = REAGENT_ID_BANANA
 	description = "The raw essence of a banana."
 	taste_description = "banana"
 	color = "#C3AF00"
@@ -1011,11 +1011,11 @@
 	glass_name = "banana juice"
 	glass_desc = "The raw essence of a banana. HONK!"
 	allergen_type = ALLERGEN_FRUIT //Bananas are fruit
-	cup_prefix = "banana"
+	cup_prefix = REAGENT_ID_BANANA
 
 /datum/reagent/drink/juice/berry
-	name = "Berry Juice"
-	id = "berryjuice"
+	name = REAGENT_BERRYJUICE
+	id = REAGENT_ID_BERRYJUICE
 	description = "A delicious blend of several different kinds of berries."
 	taste_description = "berries"
 	color = "#990066"
@@ -1026,8 +1026,8 @@
 	cup_prefix = "berry"
 
 /datum/reagent/drink/juice/pineapple
-	name = "Pineapple Juice"
-	id = "pineapplejuice"
+	name = REAGENT_PINEAPPLEJUICE
+	id = REAGENT_ID_PINEAPPLEJUICE
 	description = "A sour but refreshing juice from a pineapple."
 	taste_description = "pineapple"
 	color = "#C3AF00"
@@ -1038,8 +1038,8 @@
 	cup_prefix = "pineapple"
 
 /datum/reagent/drink/juice/carrot
-	name = "Carrot juice"
-	id = "carrotjuice"
+	name = REAGENT_CARROTJUICE
+	id = REAGENT_ID_CARROTJUICE
 	description = "It is just like a carrot but without crunching."
 	taste_description = "carrots"
 	color = "#FF8C00" // rgb: 255, 140, 0
@@ -1054,8 +1054,8 @@
 	M.reagents.add_reagent(REAGENT_ID_IMIDAZOLINE, removed * 0.2)
 
 /datum/reagent/drink/juice/lettuce
-	name = "Lettuce Juice"
-	id = "lettucejuice"
+	name = REAGENT_LETTUCEJUICE
+	id = REAGENT_ID_LETTUCEJUICE
 	description = "It's mostly water, just a bit more lettucy."
 	taste_description = "fresh greens"
 	color = "#29df4b"
@@ -1065,8 +1065,8 @@
 	cup_prefix = "lettuce"
 
 /datum/reagent/drink/juice
-	name = "Grape Juice"
-	id = "grapejuice"
+	name = REAGENT_GRAPEJUICE
+	id = REAGENT_ID_GRAPEJUICE
 	description = "It's grrrrrape!"
 	taste_description = "grapes"
 	color = "#863333"
@@ -1100,8 +1100,8 @@
 				M.drowsyness = max(M.drowsyness, 60)
 
 /datum/reagent/drink/juice/lemon
-	name = "Lemon Juice"
-	id = "lemonjuice"
+	name = REAGENT_LEMONJUICE
+	id = REAGENT_ID_LEMONJUICE
 	description = "This juice is VERY sour."
 	taste_description = "sourness"
 	taste_mult = 1.1
@@ -1114,8 +1114,8 @@
 
 
 /datum/reagent/drink/juice/apple
-	name = "Apple Juice"
-	id = "applejuice"
+	name = REAGENT_APPLEJUICE
+	id = REAGENT_ID_APPLEJUICE
 	description = "The most basic juice."
 	taste_description = "crispness"
 	taste_mult = 1.1
@@ -1127,8 +1127,8 @@
 	cup_prefix = "apple"
 
 /datum/reagent/drink/juice/lime
-	name = "Lime Juice"
-	id = "limejuice"
+	name = REAGENT_LIMEJUICE
+	id = REAGENT_ID_LIMEJUICE
 	description = "The sweet-sour juice of limes."
 	taste_description = "sourness"
 	taste_mult = 1.8
@@ -1146,8 +1146,8 @@
 	M.adjustToxLoss(-0.5 * removed)
 
 /datum/reagent/drink/juice/orange
-	name = "Orange juice"
-	id = "orangejuice"
+	name = REAGENT_ORANGEJUICE
+	id = REAGENT_ID_ORANGEJUICE
 	description = "Both delicious AND rich in Vitamin C, what more do you need?"
 	taste_description = "oranges"
 	color = "#E78108"
@@ -1164,8 +1164,8 @@
 	M.adjustOxyLoss(-2 * removed)
 
 /datum/reagent/toxin/poisonberryjuice // It has more in common with toxins than drinks... but it's a juice
-	name = "Poison Berry Juice"
-	id = "poisonberryjuice"
+	name = REAGENT_POISONBERRYJUICE
+	id = REAGENT_ID_POISONBERRYJUICE
 	description = "A tasty juice blended from various kinds of very deadly and toxic berries."
 	taste_description = "berries"
 	color = "#863353"
@@ -1176,8 +1176,8 @@
 	cup_prefix = "poison"
 
 /datum/reagent/drink/juice/potato
-	name = "Potato Juice"
-	id = "potatojuice"
+	name = REAGENT_POTATOJUICE
+	id = REAGENT_ID_POTATOJUICE
 	description = "Juice of the potato. Bleh."
 	taste_description = "potatoes"
 	nutrition = 2
@@ -1190,8 +1190,8 @@
 	cup_prefix = "potato"
 
 /datum/reagent/drink/juice/turnip
-	name = "Turnip Juice"
-	id = "turnipjuice"
+	name = REAGENT_TURNIPJUICE
+	id = REAGENT_ID_TURNIPJUICE
 	description = "Juice of the turnip. A step below the potato."
 	taste_description = "turnips"
 	nutrition = 2
@@ -1204,8 +1204,8 @@
 	cup_prefix = "turnip"
 
 /datum/reagent/drink/juice/tomato
-	name = "Tomato Juice"
-	id = "tomatojuice"
+	name = REAGENT_TOMATOJUICE
+	id = REAGENT_ID_TOMATOJUICE
 	description = "Tomatoes made into juice. What a waste of big, juicy tomatoes, huh?"
 	taste_description = "tomatoes"
 	color = "#731008"
@@ -1223,8 +1223,8 @@
 	M.heal_organ_damage(0, 0.5 * removed)
 
 /datum/reagent/drink/juice/watermelon
-	name = "Watermelon Juice"
-	id = "watermelonjuice"
+	name = REAGENT_WATERMELONJUICE
+	id = REAGENT_ID_WATERMELONJUICE
 	description = "Delicious juice made from watermelon."
 	taste_description = "sweet watermelon"
 	color = "#B83333"
@@ -1237,23 +1237,23 @@
 // Everything else
 
 /datum/reagent/drink/milk
-	name = "Milk"
-	id = "milk"
+	name = REAGENT_MILK
+	id = REAGENT_ID_MILK
 	description = "An opaque white liquid produced by the mammary glands of mammals."
 	taste_description = "milk"
 	color = "#DFDFDF"
 
-	glass_name = "milk"
+	glass_name = REAGENT_ID_MILK
 	glass_desc = "White and nutritious goodness!"
 
 	cup_icon_state = "cup_cream"
-	cup_name = "milk"
+	cup_name = REAGENT_ID_MILK
 	cup_desc = "White and nutritious goodness!"
 	allergen_type = ALLERGEN_DAIRY //Milk is dairy
 
 /datum/reagent/drink/milk/chocolate
-	name =  "Chocolate Milk"
-	id = "chocolate_milk"
+	name =  REAGENT_CHOCOLATEMILK
+	id = REAGENT_ID_CHOCOLATEMILK
 	description = "A delicious mixture of perfectly healthy mix and terrible chocolate."
 	taste_description = "chocolate milk"
 	color = "#74533b"
@@ -1271,7 +1271,7 @@
 	if(alien == IS_DIONA)
 		return
 	M.heal_organ_damage(0.5 * removed, 0)
-	holder.remove_reagent("capsaicin", 10 * removed)
+	holder.remove_reagent(REAGENT_ID_CAPSAICIN, 10 * removed)
 	//VOREStation Edit
 	if(ishuman(M) && rand(1,10000) == 1)
 		var/mob/living/carbon/human/H = M
@@ -1284,23 +1284,23 @@
 	//VOREStation Edit End
 
 /datum/reagent/drink/milk/cream
-	name = "Cream"
-	id = "cream"
+	name = REAGENT_CREAM
+	id = REAGENT_ID_CREAM
 	description = "The fatty, still liquid part of milk. Why don't you mix this with sum scotch, eh?"
 	taste_description = "thick milk"
 	color = "#DFD7AF"
 
-	glass_name = "cream"
+	glass_name = REAGENT_ID_CREAM
 	glass_desc = "Ewwww..."
 
 	cup_icon_state = "cup_cream"
-	cup_name = "cream"
+	cup_name = REAGENT_ID_CREAM
 	cup_desc = "Ewwww..."
 	allergen_type = ALLERGEN_DAIRY //Cream is dairy
 
 /datum/reagent/drink/milk/soymilk
-	name = "Soy Milk"
-	id = "soymilk"
+	name = REAGENT_SOYMILK
+	id = REAGENT_ID_SOYMILK
 	description = "An opaque white liquid made from soybeans."
 	taste_description = "soy milk"
 	color = "#DFDFC7"
@@ -1309,13 +1309,13 @@
 	glass_desc = "White and nutritious soy goodness!"
 
 	cup_icon_state = "cup_cream"
-	cup_name = "milk"
+	cup_name = REAGENT_ID_MILK
 	cup_desc = "White and nutritious goodness!"
 	allergen_type = ALLERGEN_BEANS //Would be made from soy beans
 
 /datum/reagent/drink/milk/foam
-	name = "Milk Foam"
-	id = "milk_foam"
+	name = REAGENT_MILKFOAM
+	id = REAGENT_ID_MILKFOAM
 	description = "Light and airy foamed milk."
 	taste_description = "airy milk"
 	color = "#eeebdf"
@@ -1330,8 +1330,8 @@
 
 
 /datum/reagent/drink/tea
-	name = "Tea"
-	id = "tea"
+	name = REAGENT_TEA
+	id = REAGENT_ID_TEA
 	description = "Tasty black tea, it has antioxidants, it's good for you!"
 	taste_description = "black tea"
 	color = "#832700"
@@ -1344,7 +1344,7 @@
 	glass_desc = "Tasty black tea, it has antioxidants, it's good for you!"
 
 	cup_icon_state = "cup_tea"
-	cup_name = "tea"
+	cup_name = REAGENT_ID_TEA
 	cup_desc = "Tasty black tea, it has antioxidants, it's good for you!"
 	allergen_type = ALLERGEN_STIMULANT //Black tea strong enough to have significant caffeine content
 
@@ -1355,8 +1355,8 @@
 	M.adjustToxLoss(-0.5 * removed)
 
 /datum/reagent/drink/tea/decaf
-	name = "Decaf Tea"
-	id = "teadecaf"
+	name = REAGENT_TEADECAF
+	id = REAGENT_ID_TEADECAF
 	description = "Tasty black tea, it has antioxidants, it's good for you, and won't keep you up at night!"
 	color = "#832700"
 	adj_dizzy = 0
@@ -1372,8 +1372,8 @@
 
 
 /datum/reagent/drink/tea/icetea
-	name = "Iced Tea"
-	id = "icetea"
+	name = REAGENT_ICETEA
+	id = REAGENT_ID_ICETEA
 	description = "No relation to a certain rap artist/ actor."
 	taste_description = "sweet tea"
 	color = "#AC7F24" // rgb: 16, 64, 56
@@ -1406,18 +1406,18 @@
 		//M.adjustToxLoss(5 * removed) //VOREStation Removal
 
 /datum/reagent/drink/tea/icetea/decaf
-	name = "Decaf Iced Tea"
+	name = REAGENT_ICETEADECAF
+	id = REAGENT_ID_ICETEADECAF
 	glass_name = "decaf iced tea"
 	cup_name = "decaf iced tea"
-	id = "iceteadecaf"
 	adj_dizzy = 0
 	adj_drowsy = 0
 	adj_sleepy = 0
 	allergen_type = null
 
 /datum/reagent/drink/tea/minttea
-	name = "Mint Tea"
-	id = "minttea"
+	name = REAGENT_MINTTEA
+	id = REAGENT_ID_MINTTEA
 	description = "A tasty mixture of mint and tea. It's apparently good for you!"
 	color = "#A8442C"
 	taste_description = "black tea with tones of mint"
@@ -1429,18 +1429,18 @@
 	cup_desc = "A tasty mixture of mint and tea. It's apparently good for you!"
 
 /datum/reagent/drink/tea/minttea/decaf
-	name = "Decaf Mint Tea"
+	name = REAGENT_MINTTEADECAF
+	id = REAGENT_ID_MINTTEADECAF
 	glass_name = "decaf mint tea"
 	cup_name = "decaf mint tea"
-	id = "mintteadecaf"
 	adj_dizzy = 0
 	adj_drowsy = 0
 	adj_sleepy = 0
 	allergen_type = null
 
 /datum/reagent/drink/tea/lemontea
-	name = "Lemon Tea"
-	id = "lemontea"
+	name = REAGENT_LEMONTEA
+	id = REAGENT_ID_LEMONTEA
 	description = "A tasty mixture of lemon and tea. It's apparently good for you!"
 	color = "#FC6A00"
 	taste_description = "black tea with tones of lemon"
@@ -1453,18 +1453,18 @@
 	allergen_type = ALLERGEN_FRUIT | ALLERGEN_STIMULANT //Made with lemon juice, still tea
 
 /datum/reagent/drink/tea/lemontea/decaf
-	name = "Decaf Lemon Tea"
+	name = REAGENT_LEMONTEADECAF
+	id = REAGENT_ID_LEMONTEADECAF
 	glass_name = "decaf lemon tea"
 	cup_name = "decaf lemon tea"
-	id = "lemonteadecaf"
 	adj_dizzy = 0
 	adj_drowsy = 0
 	adj_sleepy = 0
 	allergen_type = ALLERGEN_FRUIT //No caffine, still lemon.
 
 /datum/reagent/drink/tea/limetea
-	name = "Lime Tea"
-	id = "limetea"
+	name = REAGENT_LIMETEA
+	id = REAGENT_ID_LIMETEA
 	description = "A tasty mixture of lime and tea. It's apparently good for you!"
 	color = "#DE4300"
 	taste_description = "black tea with tones of lime"
@@ -1477,18 +1477,18 @@
 	allergen_type = ALLERGEN_FRUIT | ALLERGEN_STIMULANT //Made with lime juice, still tea
 
 /datum/reagent/drink/tea/limetea/decaf
-	name = "Decaf Lime Tea"
+	name = REAGENT_LIMETEADECAF
+	id = REAGENT_ID_LIMETEADECAF
 	glass_name = "decaf lime tea"
 	cup_name = "decaf lime tea"
-	id = "limeteadecaf"
 	adj_dizzy = 0
 	adj_drowsy = 0
 	adj_sleepy = 0
 	allergen_type = ALLERGEN_FRUIT //No caffine, still lime.
 
 /datum/reagent/drink/tea/orangetea
-	name = "Orange Tea"
-	id = "orangetea"
+	name = REAGENT_ORANGETEA
+	id = REAGENT_ID_ORANGETEA
 	description = "A tasty mixture of orange and tea. It's apparently good for you!"
 	color = "#FB4F06"
 	taste_description = "black tea with tones of orange"
@@ -1501,18 +1501,18 @@
 	allergen_type = ALLERGEN_FRUIT | ALLERGEN_STIMULANT //Made with orange juice, still tea
 
 /datum/reagent/drink/tea/orangetea/decaf
-	name = "Decaf orange Tea"
+	name = REAGENT_ORANGETEADECAF
+	id = REAGENT_ID_ORANGETEADECAF
 	glass_name = "decaf orange tea"
 	cup_name = "decaf orange tea"
-	id = "orangeteadecaf"
 	adj_dizzy = 0
 	adj_drowsy = 0
 	adj_sleepy = 0
 	allergen_type = ALLERGEN_FRUIT //No caffine, still orange.
 
 /datum/reagent/drink/tea/berrytea
-	name = "Berry Tea"
-	id = "berrytea"
+	name = REAGENT_BERRYTEA
+	id = REAGENT_ID_BERRYTEA
 	description = "A tasty mixture of berries and tea. It's apparently good for you!"
 	color = "#A60735"
 	taste_description = "black tea with tones of berries"
@@ -1525,18 +1525,18 @@
 	allergen_type = ALLERGEN_FRUIT | ALLERGEN_STIMULANT //Made with berry juice, still tea
 
 /datum/reagent/drink/tea/berrytea/decaf
-	name = "Decaf Berry Tea"
+	name = REAGENT_BERRYTEADECAF
+	id = REAGENT_ID_BERRYTEADECAF
 	glass_name = "decaf berry tea"
 	cup_name = "decaf berry tea"
-	id = "berryteadecaf"
 	adj_dizzy = 0
 	adj_drowsy = 0
 	adj_sleepy = 0
 	allergen_type = ALLERGEN_FRUIT //No caffine, still berries.
 
 /datum/reagent/drink/greentea
-	name = "Green Tea"
-	id = "greentea"
+	name = REAGENT_GREENTEA
+	id = REAGENT_ID_GREENTEA
 	description = "A subtle blend of green tea. It's apparently good for you!"
 	color = "#A8442C"
 	taste_description = "green tea"
@@ -1548,8 +1548,8 @@
 	cup_desc = "A subtle blend of green tea. It's apparently good for you!"
 
 /datum/reagent/drink/tea/chaitea
-	name = "Chai Tea"
-	id = "chaitea"
+	name = REAGENT_CHAITEA
+	id = REAGENT_ID_CHAITEA
 	description = "A milky tea spiced with cinnamon and cloves."
 	color = "#A8442C"
 	taste_description = "creamy cinnamon and spice"
@@ -1562,18 +1562,18 @@
 	allergen_type = ALLERGEN_STIMULANT|ALLERGEN_DAIRY //Made with milk and tea.
 
 /datum/reagent/drink/tea/chaitea/decaf
-	name = "Decaf Chai Tea"
+	name = REAGENT_CHAITEADECAF
+	id = REAGENT_ID_CHAITEADECAF
 	glass_name = "decaf chai tea"
 	cup_name = "decaf chai tea"
-	id = "chaiteadecaf"
 	adj_dizzy = 0
 	adj_drowsy = 0
 	adj_sleepy = 0
 	allergen_type = ALLERGEN_DAIRY //No caffeine, still milk.
 
 /datum/reagent/drink/coffee
-	name = "Coffee"
-	id = "coffee"
+	name = REAGENT_COFFEE
+	id = REAGENT_ID_COFFEE
 	description = "Coffee is a brewed drink prepared from roasted seeds, commonly called coffee beans, of the coffee plant."
 	taste_description = "coffee"
 	taste_mult = 1.3
@@ -1585,10 +1585,10 @@
 	overdose = 45
 
 	cup_icon_state = "cup_coffee"
-	cup_name = "coffee"
+	cup_name = REAGENT_ID_COFFEE
 	cup_desc = "Don't drop it, or you'll send scalding liquid and ceramic shards everywhere."
 
-	glass_name = "coffee"
+	glass_name = REAGENT_ID_COFFEE
 	glass_desc = "Don't drop it, or you'll send scalding liquid and glass shards everywhere."
 	allergen_type = ALLERGEN_COFFEE | ALLERGEN_STIMULANT //Apparently coffee contains coffee
 
@@ -1601,7 +1601,7 @@
 		//M.adjustToxLoss(0.5 * removed)
 		//M.make_jittery(4) //extra sensitive to caffine
 	if(adj_temp > 0)
-		holder.remove_reagent("frostoil", 10 * removed)
+		holder.remove_reagent(REAGENT_ID_FROSTOIL, 10 * removed)
 
 /datum/reagent/drink/coffee/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	..()
@@ -1620,8 +1620,8 @@
 	M.make_jittery(5)
 
 /datum/reagent/drink/coffee/icecoffee
-	name = "Iced Coffee"
-	id = "icecoffee"
+	name = REAGENT_ICECOFFEE
+	id = REAGENT_ID_ICECOFFEE
 	description = "Coffee and ice, refreshing and cool."
 	color = "#102838"
 	adj_temp = -5
@@ -1649,8 +1649,8 @@
 		//M.adjustToxLoss(5 * removed) //VOREStation Removal
 
 /datum/reagent/drink/coffee/soy_latte
-	name = "Soy Latte"
-	id = "soy_latte"
+	name = REAGENT_SOYLATTE
+	id = REAGENT_ID_SOYLATTE
 	description = "A nice and tasty beverage while you are reading your hippie books."
 	taste_description = "creamy coffee"
 	color = "#C65905"
@@ -1669,8 +1669,8 @@
 	M.heal_organ_damage(0.5 * removed, 0)
 
 /datum/reagent/drink/coffee/cafe_latte
-	name = "Cafe Latte"
-	id = "cafe_latte"
+	name = REAGENT_CAFELATTE
+	id = REAGENT_ID_CAFELATTE
 	description = "A nice, strong and tasty beverage while you are reading."
 	taste_description = "bitter cream"
 	color = "#C65905"
@@ -1689,8 +1689,8 @@
 	M.heal_organ_damage(0.5 * removed, 0)
 
 /datum/reagent/drink/decaf
-	name = "Decaf Coffee"
-	id = "decaf"
+	name = REAGENT_DECAF
+	id = REAGENT_ID_DECAF
 	description = "Coffee with all the wake-up sucked out."
 	taste_description = "bad coffee"
 	taste_mult = 1.3
@@ -1698,7 +1698,7 @@
 	adj_temp = 25
 
 	cup_icon_state = "cup_coffee"
-	cup_name = "decaf"
+	cup_name = REAGENT_ID_DECAF
 	cup_desc = "Basically just brown, bitter water."
 
 	glass_name = "decaf coffee"
@@ -1706,8 +1706,8 @@
 	allergen_type = ALLERGEN_COFFEE //Decaf coffee is still coffee, just less stimulating.
 
 /datum/reagent/drink/hot_coco
-	name = "Hot Chocolate"
-	id = "hot_coco"
+	name = REAGENT_HOTCOCO
+	id = REAGENT_ID_HOTCOCO
 	description = "Made with love! And cocoa beans."
 	taste_description = "creamy chocolate"
 	reagent_state = LIQUID
@@ -1724,8 +1724,8 @@
 	allergen_type = ALLERGEN_CHOCOLATE
 
 /datum/reagent/drink/coffee/blackeye
-	name = "Black Eye Coffee"
-	id = "black_eye"
+	name = REAGENT_BLACKEYE
+	id = REAGENT_ID_BLACKEYE
 	description = "Coffee but with more coffee for that extra coffee kick."
 	taste_description = "very concentrated coffee"
 	color = "#241001"
@@ -1740,8 +1740,8 @@
 	allergen_type = ALLERGEN_COFFEE
 
 /datum/reagent/drink/coffee/drip
-	name = "Drip Coffee"
-	id = "drip_coffee"
+	name = REAGENT_DRIPCOFFEE
+	id = REAGENT_ID_DRIPCOFFEE
 	description = "Coffee made by soaking beans in hot water and allowing it seep through."
 	taste_description = "very concentrated coffee"
 	color = "#3d1a00"
@@ -1756,31 +1756,31 @@
 	allergen_type = ALLERGEN_COFFEE
 
 /datum/reagent/drink/coffee/americano
-	name = "Americano"
-	id = "americano"
+	name = REAGENT_AMERICANO
+	id = REAGENT_ID_AMERICANO
 	description = "A traditional coffee that is more dilute and perfect for a gentle start to the day."
 	taste_description = "pleasant coffee"
 	color = "#6d3205"
 	adj_temp = 5
 
 	glass_desc = "A traditional coffee that is more dilute and perfect for a gentle start to the day."
-	glass_name = "americano"
+	glass_name = REAGENT_ID_AMERICANO
 
 	cup_icon_state = "cup_coffee"
-	cup_name = "americano"
+	cup_name = REAGENT_ID_AMERICANO
 	cup_desc = "A traditional coffee that is more dilute and perfect for a gentle start to the day."
 	allergen_type = ALLERGEN_COFFEE
 
 /datum/reagent/drink/coffee/long_black
-	name = "Long Black Coffee"
-	id = "long_black"
+	name = REAGENT_LONGBLACK
+	id = REAGENT_ID_LONGBLACK
 	description = "A traditional coffee with a little more kick."
 	taste_description = "modestly bitter coffee"
 	color = "#6d3205"
 	adj_temp = 5
 
 	glass_desc = "A traditional coffee with a little more kick."
-	glass_name = "long_black"
+	glass_name = REAGENT_ID_LONGBLACK
 
 	cup_icon_state = "cup_coffee"
 	cup_name = "long black coffee"
@@ -1788,79 +1788,79 @@
 	allergen_type = ALLERGEN_COFFEE
 
 /datum/reagent/drink/coffee/macchiato
-	name = "Macchiato"
-	id = "macchiato"
+	name = REAGENT_MACCHIATO
+	id = REAGENT_ID_MACCHIATO
 	description = "A coffee mixed with steamed milk, it has swirling patterns on top."
 	taste_description = "milky coffee"
 	color = "#ad5817"
 	adj_temp = 5
 
 	glass_desc = "A coffee mixed with steamed milk, it has swirling patterns on top."
-	glass_name = "macchiato"
+	glass_name = REAGENT_ID_MACCHIATO
 
 	cup_icon_state = "cup_latte"
-	cup_name = "macchiato"
+	cup_name = REAGENT_ID_MACCHIATO
 	cup_desc = "A coffee mixed with steamed milk, it has swirling patterns on top."
 	allergen_type = ALLERGEN_COFFEE
 
 /datum/reagent/drink/coffee/cortado
-	name = "Cortado"
-	id = "cortado"
+	name = REAGENT_CORTADO
+	id = REAGENT_ID_CORTADO
 	description = "Espresso mixed with equal parts milk and a layer of foam on top."
 	taste_description = "milky coffee"
 	color = "#ad5817"
 	adj_temp = 5
 
 	glass_desc = "Espresso mixed with equal parts milk and a layer of foam on top."
-	glass_name = "macchiato"
+	glass_name = REAGENT_ID_CORTADO
 
 	cup_icon_state = "cup_latte"
-	cup_name = "cortado"
+	cup_name = REAGENT_ID_CORTADO
 	cup_desc = "Espresso mixed with equal parts milk and a layer of foam on top."
 	allergen_type = ALLERGEN_COFFEE
 
 /datum/reagent/drink/coffee/breve
-	name = "Breve"
-	id = "breve"
+	name = REAGENT_BREVE
+	id = REAGENT_ID_BREVE
 	description = "Espresso topped with half-and-half, with a layer of foam on top."
 	taste_description = "creamy coffee"
 	color = "#d1905e"
 	adj_temp = 5
 
 	glass_desc = "Espresso topped with half-and-half, with a layer of foam on top."
-	glass_name = "breve"
+	glass_name = REAGENT_ID_BREVE
 
 	cup_icon_state = "cup_cream"
-	cup_name = "breve"
+	cup_name = REAGENT_ID_BREVE
 	cup_desc = "Espresso topped with half-and-half, with a layer of foam on top."
 	allergen_type = ALLERGEN_COFFEE
 
 /datum/reagent/drink/coffee/cappuccino
-	name = "Cappuccino"
-	id = "cappuccino"
+	name = REAGENT_CAPPUCCINO
+	id = REAGENT_ID_CAPPUCCINO
 	description = "Espresso with a large portion of milk and a hefty layer of foam."
 	taste_description = "classic coffee"
 	color = "#d1905e"
 	adj_temp = 5
 
 	glass_desc = "Espresso with a large portion of milk and a hefty layer of foam."
-	glass_name = "cappuccino"
+	glass_name = REAGENT_ID_CAPPUCCINO
 
 	cup_icon_state = "cup_cream"
-	cup_name = "cappuccino"
+	cup_name = REAGENT_ID_CAPPUCCINO
 	cup_desc = "Espresso with a large portion of milk and a hefty layer of foam."
 	allergen_type = ALLERGEN_COFFEE
 
 /datum/reagent/drink/coffee/flat_white
-	name = "Flat White Coffee"
-	id = "flat_white"
+	name = REAGENT_FLATWHITE
+	id = REAGENT_ID_FLATWHITE
 	description = "A very milky coffee that is particularly light and airy."
 	taste_description = "very milky coffee"
 	color = "#ed9f64"
 	adj_temp = 5
 
 	glass_desc = "A very milky coffee that is particularly light and airy."
-	glass_name = "flat_white"
+	glass_name = REAGENT_ID_FLATWHITE
 
 	cup_icon_state = "cup_latte"
 	cup_name = "flat white coffee"
@@ -1868,40 +1868,40 @@
 	allergen_type = ALLERGEN_COFFEE
 
 /datum/reagent/drink/coffee/mocha
-	name = "Mocha"
-	id = "mocha"
+	name = REAGENT_MOCHA
+	id = REAGENT_ID_MOCHA
 	description = "A chocolate and coffee mix topped with a lot of milk and foam."
 	taste_description = "chocolatey coffee"
 	color = "#984201"
 	adj_temp = 5
 
 	glass_desc = "A chocolate and coffee mix topped with a lot of milk and foam."
-	glass_name = "mocha"
+	glass_name = REAGENT_ID_MOCHA
 
 	cup_icon_state = "cup_cream"
-	cup_name = "mocha"
+	cup_name = REAGENT_ID_MOCHA
 	cup_desc = "A chocolate and coffee mix topped with a lot of milk and foam."
 	allergen_type = ALLERGEN_COFFEE
 
 /datum/reagent/drink/coffee/vienna
-	name = "Vienna"
-	id = "vienna"
+	name = REAGENT_VIENNA
+	id = REAGENT_ID_VIENNA
 	description = "A very sweet espresso topped with a lot of whipped cream."
 	taste_description = "super sweet and creamy coffee"
 	color = "#8e7059"
 	adj_temp = 5
 
 	glass_desc = "A very sweet espresso topped with a lot of whipped cream."
-	glass_name = "vienna"
+	glass_name = REAGENT_ID_VIENNA
 
 	cup_icon_state = "cup_cream"
-	cup_name = "vienna"
+	cup_name = REAGENT_ID_VIENNA
 	cup_desc = "A very sweet espresso topped with a lot of whipped cream."
 	allergen_type = ALLERGEN_COFFEE
 
 /datum/reagent/drink/soda/sodawater
-	name = "Soda Water"
-	id = "sodawater"
+	name = REAGENT_SODAWATER
+	id = REAGENT_ID_SODAWATER
 	description = "A can of club soda. Why not make a scotch and soda?"
 	taste_description = "carbonated water"
 	color = "#619494"
@@ -1915,8 +1915,8 @@
 	glass_special = list(DRINK_FIZZ)
 
 /datum/reagent/drink/soda/grapesoda
-	name = "Grape Soda"
-	id = "grapesoda"
+	name = REAGENT_GRAPESODA
+	id = REAGENT_ID_GRAPESODA
 	description = "Grapes made into a fine drank."
 	taste_description = "grape soda"
 	color = "#421C52"
@@ -1929,12 +1929,12 @@
 	allergen_type = ALLERGEN_FRUIT //Made with grape juice
 
 /datum/reagent/drink/soda/tonic
-	name = "Tonic Water"
-	id = "tonic"
+	name = REAGENT_TONIC
+	id = REAGENT_ID_TONIC
 	description = "It tastes strange but at least the quinine keeps the Space Malaria at bay."
 	taste_description = "tart and fresh"
 	color = "#619494"
-	cup_prefix = "tonic"
+	cup_prefix = REAGENT_ID_TONIC
 
 	adj_dizzy = -5
 	adj_drowsy = -3
@@ -1945,106 +1945,106 @@
 	glass_desc = "Quinine tastes funny, but at least it'll keep that Space Malaria away."
 
 /datum/reagent/drink/soda/lemonade
-	name = "Lemonade"
-	id = "lemonade"
+	name = REAGENT_LEMONADE
+	id = REAGENT_ID_LEMONADE
 	description = "Oh the nostalgia..."
-	taste_description = "lemonade"
+	taste_description = REAGENT_ID_LEMONADE
 	color = "#FFFF00"
 	adj_temp = -5
-	cup_prefix = "lemonade"
+	cup_prefix = REAGENT_ID_LEMONADE
 
-	glass_name = "lemonade"
+	glass_name = REAGENT_ID_LEMONADE
 	glass_desc = "Oh the nostalgia..."
 	glass_special = list(DRINK_FIZZ)
 	allergen_type = ALLERGEN_FRUIT //Made with lemon juice
 
 /datum/reagent/drink/soda/melonade
-	name = "Melonade"
-	id = "melonade"
+	name = REAGENT_MELONADE
+	id = REAGENT_ID_MELONADE
 	description = "Oh the.. nostalgia?"
 	taste_description = "watermelon"
 	color = "#FFB3BB"
 	adj_temp = -5
-	cup_prefix = "melonade"
+	cup_prefix = REAGENT_ID_MELONADE
 
-	glass_name = "melonade"
+	glass_name = REAGENT_ID_MELONADE
 	glass_desc = "Oh the.. nostalgia?"
 	glass_special = list(DRINK_FIZZ)
 	allergen_type = ALLERGEN_FRUIT //Made with watermelon juice
 
 /datum/reagent/drink/soda/appleade
-	name = "Appleade"
-	id = "appleade"
+	name = REAGENT_APPLEADE
+	id = REAGENT_ID_APPLEADE
 	description = "Applejuice, improved."
 	taste_description = "apples"
 	color = "#FFD1B3"
 	adj_temp = -5
-	cup_prefix = "appleade"
+	cup_prefix = REAGENT_ID_APPLEADE
 
-	glass_name = "appleade"
+	glass_name = REAGENT_ID_APPLEADE
 	glass_desc = "Applejuice, improved."
 	glass_special = list(DRINK_FIZZ)
 	allergen_type = ALLERGEN_FRUIT //Made with apple juice
 
 /datum/reagent/drink/soda/pineappleade
-	name = "Pineappleade"
-	id = "pineappleade"
+	name = REAGENT_PINEAPPLEADE
+	id = REAGENT_ID_PINEAPPLEADE
 	description = "Pineapple, juiced up."
 	taste_description = "sweet`n`sour pineapples"
 	color = "#FFFF00"
 	adj_temp = -5
-	cup_prefix = "pineappleade"
+	cup_prefix = REAGENT_ID_PINEAPPLEADE
 
-	glass_name = "pineappleade"
+	glass_name = REAGENT_ID_PINEAPPLEADE
 	glass_desc = "Pineapple, juiced up."
 	glass_special = list(DRINK_FIZZ)
 	allergen_type = ALLERGEN_FRUIT //Made with pineapple juice
 
 /datum/reagent/drink/soda/kiraspecial
-	name = "Kira Special"
-	id = "kiraspecial"
+	name = REAGENT_KIRASPECIAL
+	id = REAGENT_ID_KIRASPECIAL
 	description = "Long live the guy who everyone had mistaken for a girl. Baka!"
 	taste_description = "fruity sweetness"
 	color = "#CCCC99"
 	adj_temp = -5
 
-	glass_name = "Kira Special"
+	glass_name = REAGENT_KIRASPECIAL
 	glass_desc = "Long live the guy who everyone had mistaken for a girl. Baka!"
 	glass_special = list(DRINK_FIZZ)
 	allergen_type = ALLERGEN_FRUIT //Made from orange and lime juice
 
 /datum/reagent/drink/soda/brownstar
-	name = "Brown Star"
-	id = "brownstar"
+	name = REAGENT_BROWNSTAR
+	id = REAGENT_ID_BROWNSTAR
 	description = "It's not what it sounds like..."
 	taste_description = "orange and cola soda"
 	color = "#9F3400"
 	adj_temp = -2
 
-	glass_name = "Brown Star"
+	glass_name = REAGENT_BROWNSTAR
 	glass_desc = "It's not what it sounds like..."
 	allergen_type = ALLERGEN_FRUIT | ALLERGEN_STIMULANT //Made with orangejuice and cola
 
 /datum/reagent/drink/soda/brownstar_decaf //For decaf starkist
-	name = "Decaf Brown Star"
-	id = "brownstar_decaf"
+	name = REAGENT_BROWNSTARDECAF
+	id = REAGENT_ID_BROWNSTARDECAF
 	description = "It's not what it sounds like..."
 	taste_description = "orange and cola soda"
 	color = "#9F3400"
 	adj_temp = -2
 
-	glass_name = "Brown Star"
+	glass_name = REAGENT_BROWNSTAR
 	glass_desc = "It's not what it sounds like..."
 
 /datum/reagent/drink/milkshake
-	name = "Milkshake"
-	id = "milkshake"
+	name = REAGENT_MILKSHAKE
+	id = REAGENT_ID_MILKSHAKE
 	description = "Glorious brainfreezing mixture."
 	taste_description = "vanilla milkshake"
 	color = "#AEE5E4"
 	adj_temp = -9
 
-	glass_name = "milkshake"
+	glass_name = REAGENT_ID_MILKSHAKE
 	glass_desc = "Glorious brainfreezing mixture."
 	allergen_type = ALLERGEN_DAIRY //Made with dairy products
 
@@ -2070,32 +2070,32 @@
 			M.drowsyness = max(M.drowsyness, 60)
 
 /datum/reagent/drink/milkshake/chocoshake
-	name = "Chocolate Milkshake"
-	id = "chocoshake"
+	name = REAGENT_CHOCOSHAKE
+	id = REAGENT_ID_CHOCOSHAKE
 	description = "A refreshing chocolate milkshake."
 	taste_description = "cold refreshing chocolate and cream"
 	color = "#8e6f44" // rgb(142, 111, 68)
 	adj_temp = -9
 
-	glass_name = "Chocolate Milkshake"
+	glass_name = REAGENT_CHOCOSHAKE
 	glass_desc = "A refreshing chocolate milkshake, just like mom used to make."
 	allergen_type = ALLERGEN_DAIRY|ALLERGEN_CHOCOLATE //Made with dairy products
 
 /datum/reagent/drink/milkshake/berryshake
-	name = "Berry Milkshake"
-	id = "berryshake"
+	name = REAGENT_BERRYSHAKE
+	id = REAGENT_ID_BERRYSHAKE
 	description = "A refreshing berry milkshake."
 	taste_description = "cold refreshing berries and cream"
 	color = "#ffb2b2" // rgb(255, 178, 178)
 	adj_temp = -9
 
-	glass_name = "Berry Milkshake"
+	glass_name = REAGENT_BERRYSHAKE
 	glass_desc = "A refreshing berry milkshake, just like mom used to make."
 	allergen_type = ALLERGEN_FRUIT|ALLERGEN_DAIRY //Made with berry juice and dairy products
 
 /datum/reagent/drink/milkshake/coffeeshake
-	name = "Coffee Milkshake"
-	id = "coffeeshake"
+	name = REAGENT_COFFEESHAKE
+	id = REAGENT_ID_COFFEESHAKE
 	description = "A refreshing coffee milkshake."
 	taste_description = "cold energizing coffee and cream"
 	color = "#8e6f44" // rgb(142, 111, 68)
@@ -2104,7 +2104,7 @@
 	adj_drowsy = -3
 	adj_sleepy = -2
 
-	glass_name = "Coffee Milkshake"
+	glass_name = REAGENT_COFFEESHAKE
 	glass_desc = "An energizing coffee milkshake, perfect for hot days at work.."
 	allergen_type = ALLERGEN_DAIRY|ALLERGEN_COFFEE //Made with coffee and dairy products
 
@@ -2112,25 +2112,25 @@
 	M.make_jittery(5)
 
 /datum/reagent/drink/milkshake/peanutshake
-	name = "Peanut Milkshake"
-	id = "peanutmilkshake"
+	name = REAGENT_PEANUTMILKSHAKE
+	id = REAGENT_ID_PEANUTMILKSHAKE
 	description = "Savory cream in an ice-cold stature."
 	taste_description = "cold peanuts and cream"
 	color = "#8e6f44"
 
-	glass_name = "Peanut Milkshake"
+	glass_name = REAGENT_PEANUTMILKSHAKE
 	glass_desc = "Savory cream in an ice-cold stature."
 	allergen_type = ALLERGEN_SEEDS|ALLERGEN_DAIRY //Made with peanutbutter(seeds) and dairy products
 
 /datum/reagent/drink/rewriter
-	name = "Rewriter"
-	id = "rewriter"
+	name = REAGENT_REWRITER
+	id = REAGENT_ID_REWRITER
 	description = "The secret of the sanctuary of the Libarian..."
 	taste_description = "citrus and coffee"
 	color = "#485000"
 	adj_temp = -5
 
-	glass_name = "Rewriter"
+	glass_name = REAGENT_REWRITER
 	glass_desc = "The secret of the sanctuary of the Libarian..."
 	allergen_type = ALLERGEN_FRUIT|ALLERGEN_COFFEE|ALLERGEN_STIMULANT //Made with space mountain wind (Fruit, caffeine)
 
@@ -2139,8 +2139,8 @@
 	M.make_jittery(5)
 
 /datum/reagent/drink/soda/nuka_cola
-	name = "Nuka Cola"
-	id = "nuka_cola"
+	name = REAGENT_NUKACOLA
+	id = REAGENT_ID_NUKACOLA
 	description = "Cola, cola never changes."
 	taste_description = "cola"
 	color = "#100800"
@@ -2161,8 +2161,8 @@
 	M.drowsyness = 0
 
 /datum/reagent/drink/grenadine 	//Description implies that the grenadine we would be working with does not contain fruit, so no allergens.
-	name = "Grenadine Syrup"
-	id = "grenadine"
+	name = REAGENT_GRENADINE
+	id = REAGENT_ID_GRENADINE
 	description = "Made in the modern day with proper pomegranate substitute. Who uses real fruit, anyways?"
 	taste_description = "100% pure pomegranate"
 	color = "#FF004F"
@@ -2172,8 +2172,8 @@
 	glass_desc = "Sweet and tangy, a bar syrup used to add color or flavor to drinks."
 
 /datum/reagent/drink/soda/space_cola
-	name = "Space Cola"
-	id = "cola"
+	name = REAGENT_COLA
+	id = REAGENT_ID_COLA
 	description = "A refreshing beverage."
 	taste_description = "cola"
 	reagent_state = LIQUID
@@ -2181,27 +2181,27 @@
 	adj_drowsy = -3
 	adj_temp = -5
 
-	glass_name = "Space Cola"
+	glass_name = REAGENT_COLA
 	glass_desc = "A glass of refreshing Space Cola"
 	glass_special = list(DRINK_FIZZ)
 	allergen_type = ALLERGEN_STIMULANT //Cola is typically caffeinated.
 
 /datum/reagent/drink/soda/decaf_cola
-	name = "Space Cola Free"
-	id = "decafcola"
+	name = REAGENT_DECAFCOLA
+	id = REAGENT_ID_DECAFCOLA
 	description = "A refreshing beverage with none of the jitters."
 	taste_description = "cola"
 	reagent_state = LIQUID
 	color = "#100800"
 	adj_temp = -5
 
-	glass_name = "Space Cola Free"
+	glass_name = REAGENT_DECAFCOLA
 	glass_desc = "A glass of refreshing Space Cola Free"
 	glass_special = list(DRINK_FIZZ)
 
 /datum/reagent/drink/soda/lemon_soda
-	name = "Lemon Soda"
-	id = "lemonsoda"
+	name = REAGENT_LEMONSODA
+	id = REAGENT_ID_LEMONSODA
 	description = "Soda made using lemon concentrate. Sour."
 	taste_description = "strong sourness"
 	reagent_state = LIQUID
@@ -2215,8 +2215,8 @@
 	allergen_type = ALLERGEN_FRUIT
 
 /datum/reagent/drink/soda/apple_soda
-	name = "Apple Soda"
-	id = "applesoda"
+	name = REAGENT_APPLESODA
+	id = REAGENT_ID_APPLESODA
 	description = "Soda made using fresh apples."
 	taste_description = "crisp juiciness"
 	reagent_state = LIQUID
@@ -2224,15 +2224,15 @@
 	adj_drowsy = -3
 	adj_temp = -5
 
-	glass_name = "Apple Soda"
+	glass_name = REAGENT_APPLESODA
 	glass_desc = "A glass of refreshing Apple Soda. Crisp!"
 	glass_special = list(DRINK_FIZZ)
 	allergen_type = ALLERGEN_FRUIT
 
 
 /datum/reagent/drink/soda/straw_soda
-	name = "Strawberry Soda"
-	id = "strawsoda"
+	name = REAGENT_STRAWSODA
+	id = REAGENT_ID_STRAWSODA
 	description = "Soda made using sweet berries."
 	taste_description = "oddly bland"
 	reagent_state = LIQUID
@@ -2240,14 +2240,14 @@
 	adj_drowsy = -3
 	adj_temp = -5
 
-	glass_name = "Strawberry Soda"
+	glass_name = REAGENT_STRAWSODA
 	glass_desc = "A glass of refreshing Strawberry Soda"
 	glass_special = list(DRINK_FIZZ)
 	allergen_type = ALLERGEN_FRUIT
 
 /datum/reagent/drink/soda/orangesoda
-	name = "Orange Soda"
-	id = "orangesoda"
+	name = REAGENT_ORANGESODA
+	id = REAGENT_ID_ORANGESODA
 	description = "Soda made using fresh picked oranges."
 	taste_description = "sweet and citrusy"
 	reagent_state = LIQUID
@@ -2255,14 +2255,14 @@
 	adj_drowsy = -3
 	adj_temp = -5
 
-	glass_name = "Orange Soda"
+	glass_name = REAGENT_ORANGESODA
 	glass_desc = "A glass of refreshing Orange Soda. Delicious!"
 	glass_special = list(DRINK_FIZZ)
 	allergen_type = ALLERGEN_FRUIT
 
 /datum/reagent/drink/soda/grapesoda
-	name = "Grape Soda"
-	id = "grapesoda"
+	name = REAGENT_GRAPESODA
+	id = REAGENT_ID_GRAPESODA
 	description = "Soda made of carbonated grapejuice."
 	taste_description = "tangy goodness"
 	reagent_state = LIQUID
@@ -2270,14 +2270,14 @@
 	adj_drowsy = -3
 	adj_temp = -5
 
-	glass_name = "Grape Soda"
+	glass_name = REAGENT_GRAPESODA
 	glass_desc = "A glass of refreshing Grape Soda. Tangy!"
 	glass_special = list(DRINK_FIZZ)
 	allergen_type = ALLERGEN_FRUIT
 
 /datum/reagent/drink/soda/sarsaparilla
-	name = "Sarsaparilla"
-	id = "sarsaparilla"
+	name = REAGENT_SARSAPARILLA
+	id = REAGENT_ID_SARSAPARILLA
 	description = "Soda made from genetically modified Mexican sarsaparilla plants."
 	taste_description = "licorice and caramel"
 	reagent_state = LIQUID
@@ -2285,13 +2285,13 @@
 	adj_drowsy = -3
 	adj_temp = -5
 
-	glass_name = "Sarsaparilla"
+	glass_name = REAGENT_SARSAPARILLA
 	glass_desc = "A glass of refreshing Sarsaparilla. Delicious!"
 	glass_special = list(DRINK_FIZZ)
 
 /datum/reagent/drink/soda/pork_soda
-	name = "Bacon Soda"
-	id = "porksoda"
+	name = REAGENT_PORKSODA
+	id = REAGENT_ID_PORKSODA
 	description = "Soda made using pork like flavoring."
 	taste_description = "sugar coated bacon"
 	reagent_state = LIQUID
@@ -2299,13 +2299,13 @@
 	adj_drowsy = -3
 	adj_temp = -5
 
-	glass_name = "Bacon Soda"
+	glass_name = REAGENT_PORKSODA
 	glass_desc = "A glass of Bacon Soda, very odd..."
 	glass_special = list(DRINK_FIZZ)
 
 /datum/reagent/drink/soda/spacemountainwind
-	name = "Mountain Wind"
-	id = "spacemountainwind"
+	name = REAGENT_SPACEMOUNTAINWIND
+	id = REAGENT_ID_SPACEMOUNTAINWIND
 	description = "Blows right through you like a space wind."
 	taste_description = "sweet citrus soda"
 	color = "#102000"
@@ -2319,21 +2319,21 @@
 	allergen_type = ALLERGEN_FRUIT|ALLERGEN_STIMULANT //Citrus, and caffeination
 
 /datum/reagent/drink/soda/dr_gibb
-	name = "Dr. Gibb"
-	id = "dr_gibb"
+	name = REAGENT_DRGIBB
+	id = REAGENT_ID_DRGIBB
 	description = "A delicious blend of 42 different flavors."
 	taste_description = "cherry soda"
 	color = "#102000"
 	adj_drowsy = -6
 	adj_temp = -5
 
-	glass_name = "Dr. Gibb"
+	glass_name = REAGENT_DRGIBB
 	glass_desc = "Dr. Gibb. Not as dangerous as the name might imply."
 	allergen_type = ALLERGEN_STIMULANT
 
 /datum/reagent/drink/soda/space_up
-	name = "Space-Up"
-	id = "space_up"
+	name = REAGENT_SPACEUP
+	id = REAGENT_ID_SPACEUP
 	description = "Tastes like a hull breach in your mouth."
 	taste_description = "citrus soda"
 	color = "#202800"
@@ -2345,8 +2345,8 @@
 	allergen_type = ALLERGEN_FRUIT
 
 /datum/reagent/drink/soda/lemon_lime
-	name = "Lemon-Lime"
-	id = "lemon_lime"
+	name = REAGENT_LEMONLIME
+	id = REAGENT_ID_LEMONLIME
 	description = "A tangy substance made of 0.5% natural citrus!"
 	taste_description = "tangy lime and lemon soda"
 	color = "#878F00"
@@ -2358,8 +2358,8 @@
 	allergen_type = ALLERGEN_FRUIT //Made with lemon and lime juice
 
 /datum/reagent/drink/soda/gingerale
-	name = "Ginger Ale"
-	id = "gingerale"
+	name = REAGENT_GINGERALE
+	id = REAGENT_ID_GINGERALE
 	description = "The original."
 	taste_description = "somewhat tangy ginger ale"
 	color = "#edcf8f"
@@ -2370,8 +2370,8 @@
 	glass_special = list(DRINK_FIZZ)
 
 /datum/reagent/drink/root_beer
-	name = "R&D Root Beer"
-	id = "rootbeer"
+	name = REAGENT_ROOTBEER
+	id = REAGENT_ID_ROOTBEER
 	color = "#211100"
 	adj_drowsy = -6
 	taste_description = "sassafras and anise soda"
@@ -2380,8 +2380,8 @@
 	glass_desc = "A glass of bubbly R&D Root Beer."
 
 /datum/reagent/drink/dr_gibb_diet
-	name = "Diet Dr. Gibb"
-	id = "diet_dr_gibb"
+	name = REAGENT_DIETDRGIBB
+	id = REAGENT_ID_DIETDRGIBB
 	color = "#102000"
 	taste_description = "chemically sweetened cherry soda"
 
@@ -2390,8 +2390,8 @@
 	glass_special = list(DRINK_FIZZ)
 
 /datum/reagent/drink/shirley_temple
-	name = "Shirley Temple"
-	id =  "shirley_temple"
+	name = REAGENT_SHIRLEYTEMPLE
+	id =  REAGENT_ID_SHIRLEYTEMPLE
 	description = "A sweet concotion hated even by its namesake."
 	taste_description = "sweet ginger ale"
 	color = "#EF304F"
@@ -2402,8 +2402,8 @@
 	glass_special = list(DRINK_FIZZ)
 
 /datum/reagent/drink/roy_rogers
-	name = "Roy Rogers"
-	id = "roy_rogers"
+	name = REAGENT_ROYROGERS
+	id = REAGENT_ID_ROYROGERS
 	description = "I'm a cowboy, on a steel horse I ride."
 	taste_description = "cola and fruit"
 	color = "#4F1811"
@@ -2415,8 +2415,8 @@
 	allergen_type = ALLERGEN_FRUIT | ALLERGEN_STIMULANT //Made with lemon lime and cola
 
 /datum/reagent/drink/collins_mix
-	name = "Collins Mix"
-	id = "collins_mix"
+	name = REAGENT_COLLINSMIX
+	id = REAGENT_ID_COLLINSMIX
 	description = "Best hope it isn't a hoax."
 	taste_description = "gin and lemonade"
 	color = "#D7D0B3"
@@ -2428,8 +2428,8 @@
 	allergen_type = ALLERGEN_FRUIT //Made with lemon lime
 
 /datum/reagent/drink/arnold_palmer
-	name = "Arnold Palmer"
-	id = "arnold_palmer"
+	name = REAGENT_ARNOLDPALMER
+	id = REAGENT_ID_ARNOLDPALMER
 	description = "Tastes just like the old man."
 	taste_description = "lemon and sweet tea"
 	color = "#AF5517"
@@ -2441,15 +2441,15 @@
 	allergen_type = ALLERGEN_FRUIT | ALLERGEN_STIMULANT //Made with lemonade and tea
 
 /datum/reagent/drink/doctor_delight
-	name = "The Doctor's Delight"
-	id = "doctorsdelight"
+	name = REAGENT_DOCTORSDELIGHT
+	id = REAGENT_ID_DOCTORSDELIGHT
 	description = "A gulp a day keeps the MediBot away. That's probably for the best."
 	taste_description = "homely fruit smoothie"
 	reagent_state = LIQUID
 	color = "#FF8CFF"
 	nutrition = 1
 
-	glass_name = "The Doctor's Delight"
+	glass_name = REAGENT_DOCTORSDELIGHT
 	glass_desc = "A healthy mixture of juices, guaranteed to keep you healthy until the next toolboxing takes place."
 	allergen_type = ALLERGEN_FRUIT|ALLERGEN_DAIRY //Made from several fruit juices, and cream.
 
@@ -2466,8 +2466,8 @@
 		M.Confuse(-5)
 
 /datum/reagent/drink/dry_ramen
-	name = "Dry Ramen"
-	id = "dry_ramen"
+	name = REAGENT_DRYRAMEN
+	id = REAGENT_ID_DRYRAMEN
 	description = "Space age food, since August 25, 1958. Contains dried noodles, vegetables, and chemicals that boil in contact with water."
 	taste_description = "dry cheap noodles"
 	reagent_state = SOLID
@@ -2863,7 +2863,7 @@
 	description = "A sugary syrup that tastes of vanilla."
 	taste_description = "vanilla"
 	color = "#eaebd1"
-	cup_prefix = "vanilla"
+	cup_prefix = REAGENT_ID_VANILLA
 
 /datum/reagent/drink/syrup/toffee
 	name = "toffee syrup"
@@ -2895,9 +2895,9 @@
 	name = "chocolate syrup"
 	id = "syrup_chocolate"
 	description = "A sugary syrup that tastes of chocolate."
-	taste_description = "chocolate"
+	taste_description = REAGENT_ID_CHOCOLATE
 	color = "#873600"
-	cup_prefix = "chocolate"
+	cup_prefix = REAGENT_ID_CHOCOLATE
 
 	allergen_type = ALLERGEN_SUGARS|ALLERGEN_CHOCOLATE
 

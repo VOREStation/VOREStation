@@ -513,8 +513,8 @@ GLOBAL_VAR_INIT(teppi_count, 0)	// How mant teppi DO we have?
 			user.visible_message(span_notice("\The [user] tries to feed \the [O] to \the [src]. It snoofs but does not eat."),span_notice("You try to feed \the [O] to \the [src], but it only snoofts at it."))
 			return
 		var/nutriment_amount = O.reagents?.get_reagent_amount(REAGENT_ID_NUTRIMENT) //does it have nutriment, if so how much?
-		var/protein_amount = O.reagents?.get_reagent_amount("protein") //does it have protein, if so how much?
-		var/glucose_amount = O.reagents?.get_reagent_amount("glucose") //does it have glucose, if so how much?
+		var/protein_amount = O.reagents?.get_reagent_amount(REAGENT_ID_PROTEIN) //does it have protein, if so how much?
+		var/glucose_amount = O.reagents?.get_reagent_amount(REAGENT_ID_GLUCOSE) //does it have glucose, if so how much?
 		var/yum = nutriment_amount + protein_amount + glucose_amount
 		if(yum)
 			if(!teppi_adult)

@@ -151,5 +151,5 @@
 
 /obj/item/reagent_containers/food/drinks/drinkingglass/fitnessflask/glucose/Initialize()
 	. = ..()
-	reagents.add_reagent("glucose", 100)
+	reagents.add_reagent(REAGENT_ID_GLUCOSE, 100)
 	on_reagent_change()

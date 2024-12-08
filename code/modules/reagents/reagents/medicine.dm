@@ -623,7 +623,7 @@
 /datum/reagent/alkysine
 	name = REAGENT_ALKYSINE
 	id = REAGENT_ID_ALKYSINE
-	description = REAGENT_ALKYSINE " is a drug used to lessen the damage to neurological tissue after a catastrophic injury. Can heal brain tissue."
+	description = REAGENT_ALKYSINE + " is a drug used to lessen the damage to neurological tissue after a catastrophic injury. Can heal brain tissue."
 	taste_description = "bitterness"
 	reagent_state = LIQUID
 	color = "#FFFF66"

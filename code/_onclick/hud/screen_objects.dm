@@ -431,7 +431,7 @@
 								if(C.internals)
 									C.internals.icon_state = "internal1"
 							else
-								to_chat(C, span_notice("You don't have a[breathes==GAS_O2 ? "n " + GAS_O2 + " : addtext(" ",breathes)] tank."))
+								to_chat(C, span_notice("You don't have a[breathes==GAS_O2 ? "n " + GAS_O2 : addtext(" ",breathes)] tank."))
 		if("act_intent")
 			usr.a_intent_change("right")
 		if(I_HELP)

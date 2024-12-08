@@ -226,7 +226,7 @@
 
 /obj/item/clothing/mask/chewable/candy/gum/Initialize()
 	. = ..()
-	reagents.add_reagent(pick("banana","berryjuice","grapejuice","lemonjuice","limejuice","orangejuice","watermelonjuice"),10)
+	reagents.add_reagent(pick(REAGENT_ID_BANANA,REAGENT_ID_BERRYJUICE,REAGENT_ID_GRAPEJUICE,REAGENT_ID_LEMONJUICE,REAGENT_ID_LIMEJUICE,REAGENT_ID_ORANGEJUICE,REAGENT_ID_WATERMELONJUICE),10)
 	color = reagents.get_color()
 	update_icon()
 
@@ -263,7 +263,7 @@
 
 /obj/item/clothing/mask/chewable/candy/lolli/Initialize()
 	. = ..()
-	reagents.add_reagent(pick("banana","berryjuice","grapejuice","lemonjuice","limejuice","orangejuice","watermelonjuice"),20)
+	reagents.add_reagent(pick(REAGENT_ID_BANANA,REAGENT_ID_BERRYJUICE,REAGENT_ID_GRAPEJUICE,REAGENT_ID_LEMONJUICE,REAGENT_ID_LIMEJUICE,REAGENT_ID_ORANGEJUICE,REAGENT_ID_WATERMELONJUICE),20)
 	color = reagents.get_color()
 	update_icon()
 
@@ -287,7 +287,7 @@
 	desc = "A chocolate-coated biscuit stick."
 	icon_state = "pockystick"
 	item_state = "pocky"
-	filling = list(REAGENT_ID_SUGAR = 2, "chocolate" = 5)
+	filling = list(REAGENT_ID_SUGAR = 2, REAGENT_ID_CHOCOLATE = 5)
 	type_butt = null
 
 /obj/item/clothing/mask/chewable/candy/pocky/process()

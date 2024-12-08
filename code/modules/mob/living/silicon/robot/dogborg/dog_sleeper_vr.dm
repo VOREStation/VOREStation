@@ -748,7 +748,7 @@
 	name = "Supply Storage"
 	desc = "A mounted survival unit with fuel processor, helpful with both deliveries and assisting injured miners."
 	icon_state = "sleeperc"
-	injection_chems = list("glucose",REAGENT_ID_INAPROVALINE,REAGENT_ID_TRICORDRAZINE)
+	injection_chems = list(REAGENT_ID_GLUCOSE,REAGENT_ID_INAPROVALINE,REAGENT_ID_TRICORDRAZINE)
 	max_item_count = 10
 	recycles = FALSE
 	stabilizer = TRUE

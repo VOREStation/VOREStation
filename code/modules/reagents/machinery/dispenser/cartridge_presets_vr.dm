@@ -7,7 +7,7 @@
 
 	//Biochem
 	nutriment		spawn_reagent = REAGENT_ID_NUTRIMENT
-	protein			spawn_reagent = "protein"
+	protein			spawn_reagent = REAGENT_ID_PROTEIN
 
 	//Special Ops
 	biomass			spawn_reagent = REAGENT_ID_BIOMASS

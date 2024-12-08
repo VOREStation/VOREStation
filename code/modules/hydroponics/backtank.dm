@@ -202,7 +202,7 @@
 
 /obj/item/watertank/pepperspray/Initialize()
 	. = ..()
-	reagents.add_reagent("condensedcapsaicin", 1000)
+	reagents.add_reagent(REAGENT_ID_CONDENSEDCAPSAICIN, 1000)
 
 /obj/item/watertank/pepperspray/make_noz()
 	return new /obj/item/reagent_containers/spray/mister/pepperspray(src)
@@ -236,7 +236,7 @@
 	reagents.add_reagent(REAGENT_ID_FUEL, 500)
 	reagents.add_reagent(REAGENT_ID_CRYPTOBIOLIN, 500)
 	reagents.add_reagent(REAGENT_ID_PHORON, 500)
-	reagents.add_reagent("condensedcapsaicin", 500)
+	reagents.add_reagent(REAGENT_ID_CONDENSEDCAPSAICIN, 500)
 
 /obj/item/watertank/op/make_noz()
 	return new /obj/item/reagent_containers/spray/mister/op(src)

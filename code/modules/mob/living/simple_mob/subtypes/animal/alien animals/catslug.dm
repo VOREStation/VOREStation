@@ -162,8 +162,8 @@
 		to_chat(user, span_notice("\The [src] seems too full to eat."))
 		return
 	var/nutriment_amount = O.reagents?.get_reagent_amount(REAGENT_ID_NUTRIMENT) //does it have nutriment, if so how much?
-	var/protein_amount = O.reagents?.get_reagent_amount("protein") //does it have protein, if so how much?
-	var/glucose_amount = O.reagents?.get_reagent_amount("glucose") //does it have glucose, if so how much?
+	var/protein_amount = O.reagents?.get_reagent_amount(REAGENT_ID_PROTEIN) //does it have protein, if so how much?
+	var/glucose_amount = O.reagents?.get_reagent_amount(REAGENT_ID_GLUCOSE) //does it have glucose, if so how much?
 	var/yum = nutriment_amount + protein_amount + glucose_amount
 	if(yum)
 		yum = (yum * 20) / 3

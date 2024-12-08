@@ -49,7 +49,7 @@
 #define ANTIBIO_SUPER	3
 
 // Chemistry lists.
-var/list/tachycardics  = list("coffee", REAGENT_ID_INAPROVALINE, REAGENT_ID_HYPERZINE, REAGENT_ID_NITROGLYCERIN, "thirteenloko", REAGENT_ID_NICOTINE) // Increase heart rate.
+var/list/tachycardics  = list(REAGENT_ID_COFFEE, REAGENT_ID_INAPROVALINE, REAGENT_ID_HYPERZINE, REAGENT_ID_NITROGLYCERIN, "thirteenloko", REAGENT_ID_NICOTINE) // Increase heart rate.
 var/list/bradycardics  = list("neurotoxin", REAGENT_ID_CRYOXADONE, REAGENT_ID_CLONEXADONE, REAGENT_ID_BLISS, REAGENT_ID_STOXIN, REAGENT_ID_AMBROSIAEXTRACT)   // Decrease heart rate.
 var/list/heartstopper  = list(REAGENT_ID_POTASSIUMCHLOROPHORIDE, REAGENT_ID_ZOMBIEPOWDER) // This stops the heart.
 var/list/cheartstopper = list(REAGENT_ID_POTASSIUMCHLORIDE)                       // This stops the heart when overdose is met. -- c = conditional

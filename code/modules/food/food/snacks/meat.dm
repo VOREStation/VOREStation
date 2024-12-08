@@ -8,8 +8,8 @@
 
 /obj/item/reagent_containers/food/snacks/meat/Initialize()
 	. = ..()
-	reagents.add_reagent("protein", 6)
-	reagents.add_reagent("triglyceride", 2)
+	reagents.add_reagent(REAGENT_ID_PROTEIN, 6)
+	reagents.add_reagent(REAGENT_ID_TRIGLYCERIDE, 2)
 	src.bitesize = 1.5
 
 /obj/item/reagent_containers/food/snacks/meat/cook()
@@ -55,7 +55,7 @@
 
 /obj/item/reagent_containers/food/snacks/meat/chicken/Initialize()
 	. = ..()
-	reagents.remove_reagent("triglyceride", INFINITY)
+	reagents.remove_reagent(REAGENT_ID_TRIGLYCERIDE, INFINITY)
 	//Chicken is low fat. Less total calories than other meats
 
 /obj/item/reagent_containers/food/snacks/crabmeat
@@ -66,7 +66,7 @@
 
 /obj/item/reagent_containers/food/snacks/crabmeat/Initialize()
 	. = ..()
-	reagents.add_reagent("seafood", 2)
+	reagents.add_reagent(REAGENT_ID_SEAFOOD, 2)
 
 /obj/item/reagent_containers/food/snacks/hugemushroomslice
 	name = "fungus slice"
@@ -102,7 +102,7 @@
 
 /obj/item/reagent_containers/food/snacks/bearmeat/Initialize()
 	. = ..()
-	reagents.add_reagent("protein", 12)
+	reagents.add_reagent(REAGENT_ID_PROTEIN, 12)
 	reagents.add_reagent(REAGENT_ID_HYPERZINE, 5)
 
 /obj/item/reagent_containers/food/snacks/xenomeat
@@ -115,7 +115,7 @@
 
 /obj/item/reagent_containers/food/snacks/xenomeat/Initialize()
 	. = ..()
-	reagents.add_reagent("protein", 6)
+	reagents.add_reagent(REAGENT_ID_PROTEIN, 6)
 	reagents.add_reagent(REAGENT_ID_PACID,6)
 
 /obj/item/reagent_containers/food/snacks/xenomeat/spidermeat // Substitute for recipes requiring xeno meat.
@@ -139,7 +139,7 @@
 
 /obj/item/reagent_containers/food/snacks/rawturkey/Initialize()
 	. = ..()
-	reagents.add_reagent("protein", 10)
+	reagents.add_reagent(REAGENT_ID_PROTEIN, 10)
 
 /obj/item/reagent_containers/food/snacks/meat/fox
 	name = "foxmeat"
@@ -154,7 +154,7 @@
 
 /obj/item/reagent_containers/food/snacks/meat/grubmeat/Initialize()
 	. = ..()
-	reagents.add_reagent("protein", 1)
+	reagents.add_reagent(REAGENT_ID_PROTEIN, 1)
 	reagents.add_reagent(REAGENT_ID_SHOCKCHEM, 6)
 	bitesize = 6
 
@@ -168,7 +168,7 @@
 
 /obj/item/reagent_containers/food/snacks/meat/worm/Initialize()
 	. = ..()
-	reagents.add_reagent("protein", 6)
+	reagents.add_reagent(REAGENT_ID_PROTEIN, 6)
 	reagents.add_reagent(REAGENT_ID_PHORON, 3)
 	reagents.add_reagent(REAGENT_ID_MYELAMINE, 3)
 	src.bitesize = 3

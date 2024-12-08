@@ -263,7 +263,7 @@
 /decl/chemical_reaction/instant/slime/blue_frostoil
 	name = "Slime Frost Oil"
 	id = "m_frostoil"
-	result = "frostoil"
+	result = REAGENT_ID_FROSTOIL
 	required_reagents = list(REAGENT_ID_PHORON = 5)
 	result_amount = 20
 	required = /obj/item/slime_extract/blue

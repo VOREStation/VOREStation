@@ -60,7 +60,7 @@
 /obj/item/reagent_containers/glass/bottle/potion/growth
 	name = "fire giant potion"
 	desc = "A small green bottle containing some bubbling yellow liquid that claims to turn the drinker into a fire giant."
-	prefill = list(REAGENT_ID_MACROCILLIN = 1, "capsaicin" = 5)
+	prefill = list(REAGENT_ID_MACROCILLIN = 1, REAGENT_ID_CAPSAICIN = 5)
 
 /obj/item/reagent_containers/glass/bottle/potion/pain
 	name = "grit potion"
@@ -137,7 +137,7 @@
 /obj/item/reagent_containers/glass/bottle/potion/capsaicin
 	name = "warm potion"
 	desc = "A small green bottle containing some red liquid."
-	prefill = list("capsaicin" = 30)
+	prefill = list(REAGENT_ID_CAPSAICIN = 30)
 
 /obj/item/reagent_containers/glass/bottle/potion/soporific
 	name = "still potion"

@@ -22,7 +22,7 @@
 	name = "bioproduct dispenser"
 	ui_title = "Bioproduct Dispenser"
 	dispense_reagents = list(
-		REAGENT_ID_NUTRIMENT, "protein", "milk"
+		REAGENT_ID_NUTRIMENT, REAGENT_ID_PROTEIN, REAGENT_ID_MILK
 		)
 
 /obj/machinery/chemical_dispenser/biochemistry/full

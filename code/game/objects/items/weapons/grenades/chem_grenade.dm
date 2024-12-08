@@ -306,9 +306,9 @@
 
 	B1.reagents.add_reagent(REAGENT_ID_PHOSPHORUS, 40)
 	B1.reagents.add_reagent(REAGENT_ID_POTASSIUM, 40)
-	B1.reagents.add_reagent("condensedcapsaicin", 40)
+	B1.reagents.add_reagent(REAGENT_ID_CONDENSEDCAPSAICIN, 40)
 	B2.reagents.add_reagent(REAGENT_ID_SUGAR, 40)
-	B2.reagents.add_reagent("condensedcapsaicin", 80)
+	B2.reagents.add_reagent(REAGENT_ID_CONDENSEDCAPSAICIN, 80)
 
 	detonator = new/obj/item/assembly_holder/timer_igniter(src)
 

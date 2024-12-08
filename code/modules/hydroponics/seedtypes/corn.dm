@@ -3,7 +3,7 @@
 	seed_name = "corn"
 	display_name = "ears of corn"
 	kitchen_tag = "corn"
-	chems = list(REAGENT_ID_NUTRIMENT = list(1,10), "cornoil" = list(3,15))
+	chems = list(REAGENT_ID_NUTRIMENT = list(1,10), REAGENT_ID_CORNOIL = list(3,15))
 	trash_type = /obj/item/corncob
 
 /datum/seed/corn/New()

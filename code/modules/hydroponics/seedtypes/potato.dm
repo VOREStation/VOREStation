@@ -3,7 +3,7 @@
 	seed_name = "potato"
 	display_name = "potatoes"
 	kitchen_tag = "potato"
-	chems = list(REAGENT_ID_NUTRIMENT = list(1,10), "potatojuice" = list(10,10))
+	chems = list(REAGENT_ID_NUTRIMENT = list(1,10), REAGENT_ID_POTATOJUICE = list(10,10))
 
 /datum/seed/potato/New()
 	..()

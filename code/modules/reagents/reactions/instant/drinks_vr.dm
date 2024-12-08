@@ -25,7 +25,7 @@
 	name = REAGENT_MONSTERTAMER
 	id = REAGENT_ID_MONSTERTAMER
 	result = REAGENT_ID_MONSTERTAMER
-	required_reagents = list("whiskey" = 1, "protein" = 1)
+	required_reagents = list("whiskey" = 1, REAGENT_ID_PROTEIN = 1)
 	result_amount = 2
 
 /decl/chemical_reaction/instant/drinks/bigbeer
@@ -39,7 +39,7 @@
 	name = "Sweetened Tea"
 	id = REAGENT_ID_SWEETTEA
 	result = REAGENT_ID_SWEETTEA
-	required_reagents = list("icetea" = 2, REAGENT_ID_SUGAR = 1,)
+	required_reagents = list(REAGENT_ID_ICETEA = 2, REAGENT_ID_SUGAR = 1,)
 	result_amount = 3
 
 /decl/chemical_reaction/instant/drinks/unsweettea
@@ -60,14 +60,14 @@
 	name = REAGENT_BULLDOG
 	id = REAGENT_ID_BULLDOG
 	result = REAGENT_ID_BULLDOG
-	required_reagents = list("whiterussian" = 4, "cola" =1)
+	required_reagents = list("whiterussian" = 4, REAGENT_ID_COLA =1)
 	result_amount = 4
 
 /decl/chemical_reaction/instant/drinks/sbagliato
 	name = REAGENT_SBAGLIATO
 	id = REAGENT_ID_SBAGLIATO
 	result = REAGENT_ID_SBAGLIATO
-	required_reagents = list("redwine" = 1, "vermouth" = 1, "sodawater" =1)
+	required_reagents = list("redwine" = 1, "vermouth" = 1, REAGENT_ID_SODAWATER =1)
 	result_amount = 3
 
 /decl/chemical_reaction/instant/drinks/italiancrisis
@@ -81,7 +81,7 @@
 	name = REAGENT_SUGARRUSH
 	id = REAGENT_ID_SUGARRUSH
 	result = REAGENT_ID_SUGARRUSH
-	required_reagents = list(REAGENT_ID_SUGAR = 1, "sodawater" = 1, "vodka" =1)
+	required_reagents = list(REAGENT_ID_SUGAR = 1, REAGENT_ID_SODAWATER = 1, "vodka" =1)
 	result_amount = 3
 
 /decl/chemical_reaction/instant/drinks/lotus
@@ -95,7 +95,7 @@
 	name = REAGENT_SHROOMJUICE
 	id = REAGENT_ID_SHROOMJUICE
 	result = REAGENT_ID_SHROOMJUICE
-	required_reagents = list(REAGENT_ID_PSILOCYBIN = 1, "applejuice" = 1, "limejuice" =1)
+	required_reagents = list(REAGENT_ID_PSILOCYBIN = 1, REAGENT_ID_APPLEJUICE = 1, REAGENT_ID_LIMEJUICE =1)
 	result_amount = 3
 
 /decl/chemical_reaction/instant/drinks/russianroulette
@@ -109,21 +109,21 @@
 	name = REAGENT_LOVEMAKER
 	id = REAGENT_ID_LOVEMAKER
 	result = REAGENT_ID_LOVEMAKER
-	required_reagents = list("honey" = 1, "sexonthebeach" = 5)
+	required_reagents = list(REAGENT_ID_HONEY = 1, "sexonthebeach" = 5)
 	result_amount = 6
 
 /decl/chemical_reaction/instant/drinks/honeyshot
 	name = REAGENT_HONEYSHOT
 	id = REAGENT_ID_HONEYSHOT
 	result = REAGENT_ID_HONEYSHOT
-	required_reagents = list("honey" = 1, "vodka" = 1, "grenadine" =1)
+	required_reagents = list(REAGENT_ID_HONEY = 1, "vodka" = 1, REAGENT_ID_GRENADINE =1)
 	result_amount = 3
 
 /decl/chemical_reaction/instant/drinks/appletini
 	name = REAGENT_APPLETINI
 	id = REAGENT_ID_APPLETINIT
 	result = REAGENT_ID_APPLETINIT
-	required_reagents = list("applejuice" = 2, "vodka" = 1)
+	required_reagents = list(REAGENT_ID_APPLEJUICE = 2, "vodka" = 1)
 	result_amount = 3
 
 /decl/chemical_reaction/instant/drinks/glowingappletini
@@ -144,8 +144,8 @@
 	name = REAGENT_CHOCCYMILK
 	id = REAGENT_ID_CHOCCYMILK
 	result = REAGENT_ID_CHOCCYMILK
-	inhibitors = list("enzyme" = 1)
-	required_reagents = list("milk" = 3, "coco" = 1)
+	inhibitors = list(REAGENT_ID_ENZYME = 1)
+	required_reagents = list(REAGENT_ID_MILK = 3, REAGENT_ID_COCO = 1)
 	result_amount = 4
 
 /decl/chemical_reaction/instant/drinks/redspaceflush
@@ -159,7 +159,7 @@
 	name = REAGENT_GRAVEYARD
 	id = REAGENT_ID_GRAVEYARD
 	result = REAGENT_ID_GRAVEYARD
-	required_reagents = list("cola" = 1, "spacemountainwind" = 1, "dr_gibb" =1, "space_up" = 1)
+	required_reagents = list(REAGENT_ID_COLA = 1, REAGENT_ID_SPACEMOUNTAINWIND = 1, REAGENT_ID_DRGIBB =1, REAGENT_ID_SPACEUP = 1)
 	result_amount = 4
 
 /decl/chemical_reaction/instant/drinks/hairoftherat
@@ -173,7 +173,7 @@
 	name = REAGENT_PINKRUSSIAN
 	id = REAGENT_ID_PINKRUSSIAN
 	result = REAGENT_ID_PINKRUSSIAN
-	required_reagents = list("blackrussian" = 2, "berryshake" = 1)
+	required_reagents = list("blackrussian" = 2, REAGENT_ID_BERRYSHAKE = 1)
 	result_amount = 3
 
 /decl/chemical_reaction/instant/drinks/originalsin
@@ -181,21 +181,21 @@
 	id = REAGENT_ID_ORIGINALSIN
 	result = REAGENT_ID_ORIGINALSIN
 	required_reagents = list("holywine" = 1)
-	catalysts = list("applejuice" = 1)
+	catalysts = list(REAGENT_ID_APPLEJUICE = 1)
 	result_amount = 1
 
 /decl/chemical_reaction/instant/drinks/windgarita
 	name = REAGENT_WINDGARITA
 	id = REAGENT_ID_WINDGARITA
 	result = REAGENT_ID_WINDGARITA
-	required_reagents = list("margarita" = 3, "spacemountainwind" = 2, "melonliquor" = 1)
+	required_reagents = list("margarita" = 3, REAGENT_ID_SPACEMOUNTAINWIND = 2, "melonliquor" = 1)
 	result_amount = 6
 
 /decl/chemical_reaction/instant/drinks/newyorksour
 	name = REAGENT_NEWYORKSOUR
 	id = REAGENT_ID_NEWYORKSOUR
 	result = REAGENT_ID_NEWYORKSOUR
-	required_reagents = list("whiskeysour" = 3, "redwine" = 2, "egg" = 1)
+	required_reagents = list("whiskeysour" = 3, "redwine" = 2, REAGENT_ID_EGG = 1)
 	result_amount = 6
 
 /decl/chemical_reaction/instant/drinks/mudslide

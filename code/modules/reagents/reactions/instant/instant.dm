@@ -193,10 +193,10 @@
 	result_amount = 2
 
 /decl/chemical_reaction/instant/virus_food
-	name = "Virus Food"
-	id = "virusfood"
-	result = "virusfood"
-	required_reagents = list(REAGENT_ID_WATER = 1, "milk" = 1)
+	name = REAGENT_VIRUSFOOD
+	id = REAGENT_ID_VIRUSFOOD
+	result = REAGENT_ID_VIRUSFOOD
+	required_reagents = list(REAGENT_ID_WATER = 1, REAGENT_ID_MILK = 1)
 	result_amount = 5
 
 /decl/chemical_reaction/instant/leporazine
@@ -408,9 +408,9 @@
 	result_amount = 3
 
 /decl/chemical_reaction/instant/lipozine
-	name = "Lipozine"
-	id = "Lipozine"
-	result = "lipozine"
+	name = REAGENT_LIPOZINE
+	id = REAGENT_ID_LIPOZINE
+	result = REAGENT_ID_LIPOZINE
 	required_reagents = list(REAGENT_ID_SODIUMCHLORIDE = 1, REAGENT_ID_ETHANOL = 1, REAGENT_ID_RADIUM = 1)
 	result_amount = 3
 
@@ -475,7 +475,7 @@
 	name = REAGENT_GLYCEROL
 	id = REAGENT_ID_GLYCEROL
 	result = REAGENT_ID_GLYCEROL
-	required_reagents = list("cornoil" = 3, REAGENT_ID_SACID = 1)
+	required_reagents = list(REAGENT_ID_CORNOIL = 3, REAGENT_ID_SACID = 1)
 	result_amount = 1
 
 /decl/chemical_reaction/instant/sodiumchloride
@@ -486,10 +486,10 @@
 	result_amount = 2
 
 /decl/chemical_reaction/instant/condensedcapsaicin
-	name = "Condensed Capsaicin"
-	id = "condensedcapsaicin"
-	result = "condensedcapsaicin"
-	required_reagents = list("capsaicin" = 2)
+	name = REAGENT_CONDENSEDCAPSAICIN
+	id = REAGENT_ID_CONDENSEDCAPSAICIN
+	result = REAGENT_ID_CONDENSEDCAPSAICIN
+	required_reagents = list(REAGENT_ID_CAPSAICIN = 2)
 	catalysts = list(REAGENT_ID_PHORON = 5)
 	result_amount = 1
 
@@ -556,7 +556,7 @@
 	name = "Solid Iron"
 	id = "solidiron"
 	result = null
-	required_reagents = list("frostoil" = 5, REAGENT_ID_IRON = REAGENTS_PER_SHEET)
+	required_reagents = list(REAGENT_ID_FROSTOIL = 5, REAGENT_ID_IRON = REAGENTS_PER_SHEET)
 	result_amount = 1
 	var/sheet_to_give = /obj/item/stack/material/iron
 
@@ -568,42 +568,42 @@
 /decl/chemical_reaction/instant/solidification/phoron
 	name = "Solid Phoron"
 	id = "solidphoron"
-	required_reagents = list("frostoil" = 5, REAGENT_ID_PHORON = REAGENTS_PER_SHEET)
+	required_reagents = list(REAGENT_ID_FROSTOIL = 5, REAGENT_ID_PHORON = REAGENTS_PER_SHEET)
 	sheet_to_give = /obj/item/stack/material/phoron
 
 
 /decl/chemical_reaction/instant/solidification/silver
 	name = "Solid Silver"
 	id = "solidsilver"
-	required_reagents = list("frostoil" = 5, REAGENT_ID_SILVER = REAGENTS_PER_SHEET)
+	required_reagents = list(REAGENT_ID_FROSTOIL = 5, REAGENT_ID_SILVER = REAGENTS_PER_SHEET)
 	sheet_to_give = /obj/item/stack/material/silver
 
 
 /decl/chemical_reaction/instant/solidification/gold
 	name = "Solid Gold"
 	id = "solidgold"
-	required_reagents = list("frostoil" = 5, REAGENT_ID_GOLD = REAGENTS_PER_SHEET)
+	required_reagents = list(REAGENT_ID_FROSTOIL = 5, REAGENT_ID_GOLD = REAGENTS_PER_SHEET)
 	sheet_to_give = /obj/item/stack/material/gold
 
 
 /decl/chemical_reaction/instant/solidification/platinum
 	name = "Solid Platinum"
 	id = "solidplatinum"
-	required_reagents = list("frostoil" = 5, REAGENT_ID_PLATINUM = REAGENTS_PER_SHEET)
+	required_reagents = list(REAGENT_ID_FROSTOIL = 5, REAGENT_ID_PLATINUM = REAGENTS_PER_SHEET)
 	sheet_to_give = /obj/item/stack/material/platinum
 
 
 /decl/chemical_reaction/instant/solidification/uranium
 	name = "Solid Uranium"
 	id = "soliduranium"
-	required_reagents = list("frostoil" = 5, REAGENT_ID_URANIUM = REAGENTS_PER_SHEET)
+	required_reagents = list(REAGENT_ID_FROSTOIL = 5, REAGENT_ID_URANIUM = REAGENTS_PER_SHEET)
 	sheet_to_give = /obj/item/stack/material/uranium
 
 
 /decl/chemical_reaction/instant/solidification/hydrogen
 	name = "Solid Hydrogen"
 	id = "solidhydrogen"
-	required_reagents = list("frostoil" = 100, REAGENT_ID_HYDROGEN = REAGENTS_PER_SHEET)
+	required_reagents = list(REAGENT_ID_FROSTOIL = 100, REAGENT_ID_HYDROGEN = REAGENTS_PER_SHEET)
 	sheet_to_give = /obj/item/stack/material/mhydrogen
 
 
@@ -611,14 +611,14 @@
 /decl/chemical_reaction/instant/solidification/steel
 	name = "Solid Steel"
 	id = "solidsteel"
-	required_reagents = list("frostoil" = 5, "steel" = REAGENTS_PER_SHEET)
+	required_reagents = list(REAGENT_ID_FROSTOIL = 5, "steel" = REAGENTS_PER_SHEET)
 	sheet_to_give = /obj/item/stack/material/steel
 
 
 /decl/chemical_reaction/instant/solidification/plasteel
 	name = "Solid Plasteel"
 	id = "solidplasteel"
-	required_reagents = list("frostoil" = 10, "plasteel" = REAGENTS_PER_SHEET)
+	required_reagents = list(REAGENT_ID_FROSTOIL = 10, "plasteel" = REAGENTS_PER_SHEET)
 	sheet_to_give = /obj/item/stack/material/plasteel
 
 
@@ -992,7 +992,7 @@
 	name = "Milk paint"
 	id = "milk_paint"
 	result = REAGENT_ID_PAINT
-	required_reagents = list(REAGENT_ID_PLASTICIDE = 1, REAGENT_ID_WATER = 3, "milk" = 5)
+	required_reagents = list(REAGENT_ID_PLASTICIDE = 1, REAGENT_ID_WATER = 3, REAGENT_ID_MILK = 5)
 	result_amount = 5
 
 /decl/chemical_reaction/instant/milk_paint/send_data()
@@ -1002,7 +1002,7 @@
 	name = "Orange juice paint"
 	id = "orange_juice_paint"
 	result = REAGENT_ID_PAINT
-	required_reagents = list(REAGENT_ID_PLASTICIDE = 1, REAGENT_ID_WATER = 3, "orangejuice" = 5)
+	required_reagents = list(REAGENT_ID_PLASTICIDE = 1, REAGENT_ID_WATER = 3, REAGENT_ID_ORANGEJUICE = 5)
 	result_amount = 5
 
 /decl/chemical_reaction/instant/orange_juice_paint/send_data()
@@ -1012,7 +1012,7 @@
 	name = "Tomato juice paint"
 	id = "tomato_juice_paint"
 	result = REAGENT_ID_PAINT
-	required_reagents = list(REAGENT_ID_PLASTICIDE = 1, REAGENT_ID_WATER = 3, "tomatojuice" = 5)
+	required_reagents = list(REAGENT_ID_PLASTICIDE = 1, REAGENT_ID_WATER = 3, REAGENT_ID_TOMATOJUICE = 5)
 	result_amount = 5
 
 /decl/chemical_reaction/instant/tomato_juice_paint/send_data()
@@ -1022,7 +1022,7 @@
 	name = "Lime juice paint"
 	id = "lime_juice_paint"
 	result = REAGENT_ID_PAINT
-	required_reagents = list(REAGENT_ID_PLASTICIDE = 1, REAGENT_ID_WATER = 3, "limejuice" = 5)
+	required_reagents = list(REAGENT_ID_PLASTICIDE = 1, REAGENT_ID_WATER = 3, REAGENT_ID_LIMEJUICE = 5)
 	result_amount = 5
 
 /decl/chemical_reaction/instant/lime_juice_paint/send_data()
@@ -1032,7 +1032,7 @@
 	name = "Carrot juice paint"
 	id = "carrot_juice_paint"
 	result = REAGENT_ID_PAINT
-	required_reagents = list(REAGENT_ID_PLASTICIDE = 1, REAGENT_ID_WATER = 3, "carrotjuice" = 5)
+	required_reagents = list(REAGENT_ID_PLASTICIDE = 1, REAGENT_ID_WATER = 3, REAGENT_ID_CARROTJUICE = 5)
 	result_amount = 5
 
 /decl/chemical_reaction/instant/carrot_juice_paint/send_data()
@@ -1042,7 +1042,7 @@
 	name = "Berry juice paint"
 	id = "berry_juice_paint"
 	result = REAGENT_ID_PAINT
-	required_reagents = list(REAGENT_ID_PLASTICIDE = 1, REAGENT_ID_WATER = 3, "berryjuice" = 5)
+	required_reagents = list(REAGENT_ID_PLASTICIDE = 1, REAGENT_ID_WATER = 3, REAGENT_ID_BERRYJUICE = 5)
 	result_amount = 5
 
 /decl/chemical_reaction/instant/berry_juice_paint/send_data()
@@ -1052,7 +1052,7 @@
 	name = "Grape juice paint"
 	id = "grape_juice_paint"
 	result = REAGENT_ID_PAINT
-	required_reagents = list(REAGENT_ID_PLASTICIDE = 1, REAGENT_ID_WATER = 3, "grapejuice" = 5)
+	required_reagents = list(REAGENT_ID_PLASTICIDE = 1, REAGENT_ID_WATER = 3, REAGENT_ID_GRAPEJUICE = 5)
 	result_amount = 5
 
 /decl/chemical_reaction/instant/grape_juice_paint/send_data()
@@ -1062,7 +1062,7 @@
 	name = "Poison berry juice paint"
 	id = "poisonberry_juice_paint"
 	result = REAGENT_ID_PAINT
-	required_reagents = list(REAGENT_ID_PLASTICIDE = 1, REAGENT_ID_WATER = 3, "poisonberryjuice" = 5)
+	required_reagents = list(REAGENT_ID_PLASTICIDE = 1, REAGENT_ID_WATER = 3, REAGENT_ID_POISONBERRYJUICE = 5)
 	result_amount = 5
 
 /decl/chemical_reaction/instant/poisonberry_juice_paint/send_data()
@@ -1072,7 +1072,7 @@
 	name = "Watermelon juice paint"
 	id = "watermelon_juice_paint"
 	result = REAGENT_ID_PAINT
-	required_reagents = list(REAGENT_ID_PLASTICIDE = 1, REAGENT_ID_WATER = 3, "watermelonjuice" = 5)
+	required_reagents = list(REAGENT_ID_PLASTICIDE = 1, REAGENT_ID_WATER = 3, REAGENT_ID_WATERMELONJUICE = 5)
 	result_amount = 5
 
 /decl/chemical_reaction/instant/watermelon_juice_paint/send_data()
@@ -1082,7 +1082,7 @@
 	name = "Lemon juice paint"
 	id = "lemon_juice_paint"
 	result = REAGENT_ID_PAINT
-	required_reagents = list(REAGENT_ID_PLASTICIDE = 1, REAGENT_ID_WATER = 3, "lemonjuice" = 5)
+	required_reagents = list(REAGENT_ID_PLASTICIDE = 1, REAGENT_ID_WATER = 3, REAGENT_ID_LEMONJUICE = 5)
 	result_amount = 5
 
 /decl/chemical_reaction/instant/lemon_juice_paint/send_data()
@@ -1092,7 +1092,7 @@
 	name = "Banana juice paint"
 	id = "banana_juice_paint"
 	result = REAGENT_ID_PAINT
-	required_reagents = list(REAGENT_ID_PLASTICIDE = 1, REAGENT_ID_WATER = 3, "banana" = 5)
+	required_reagents = list(REAGENT_ID_PLASTICIDE = 1, REAGENT_ID_WATER = 3, REAGENT_ID_BANANA = 5)
 	result_amount = 5
 
 /decl/chemical_reaction/instant/banana_juice_paint/send_data()
@@ -1102,7 +1102,7 @@
 	name = "Potato juice paint"
 	id = "potato_juice_paint"
 	result = REAGENT_ID_PAINT
-	required_reagents = list(REAGENT_ID_PLASTICIDE = 1, REAGENT_ID_WATER = 3, "potatojuice" = 5)
+	required_reagents = list(REAGENT_ID_PLASTICIDE = 1, REAGENT_ID_WATER = 3, REAGENT_ID_POTATOJUICE = 5)
 	result_amount = 5
 
 /decl/chemical_reaction/instant/potato_juice_paint/send_data()
@@ -1140,7 +1140,7 @@
 	name = "Blue Carpet Dyeing"
 	id = "carpetdyeblue"
 	result = REAGENT_ID_LIQUIDCARPETBLU
-	required_reagents = list(REAGENT_ID_LIQUIDCARPET = 5, "frostoil" = 1)
+	required_reagents = list(REAGENT_ID_LIQUIDCARPET = 5, REAGENT_ID_FROSTOIL = 1)
 
 /decl/chemical_reaction/instant/carpetdye/tur
 	name = "Turqouise Carpet Dyeing"
@@ -1158,19 +1158,19 @@
 	name = "Clown Carpet Dyeing"
 	id = "carpetdyeclown"
 	result = REAGENT_ID_LIQUIDCARPETC
-	required_reagents = list(REAGENT_ID_LIQUIDCARPET = 5, "banana" = 1)
+	required_reagents = list(REAGENT_ID_LIQUIDCARPET = 5, REAGENT_ID_BANANA = 1)
 
 /decl/chemical_reaction/instant/carpetdye/purple
 	name = "Purple Carpet Dyeing"
 	id = "carpetdyepurple"
 	result = REAGENT_ID_LIQUIDCARPETP
-	required_reagents = list(REAGENT_ID_LIQUIDCARPET = 5, "berryjuice" = 1)
+	required_reagents = list(REAGENT_ID_LIQUIDCARPET = 5, REAGENT_ID_BERRYJUICE = 1)
 
 /decl/chemical_reaction/instant/carpetdye/orange
 	name = "Orange Carpet Dyeing"
 	id = "carpetdyeorange"
 	result = REAGENT_ID_LIQUIDCARPETO
-	required_reagents = list(REAGENT_ID_LIQUIDCARPET = 5, "orangejuice" = 1)
+	required_reagents = list(REAGENT_ID_LIQUIDCARPET = 5, REAGENT_ID_ORANGEJUICE = 1)
 
 
 //R-UST Port
@@ -1217,7 +1217,7 @@
 	name = REAGENT_BIOMASS
 	id = REAGENT_ID_BIOMASS
 	result = REAGENT_ID_BIOMASS
-	required_reagents = list("protein" = 1, REAGENT_ID_SUGAR = 1, REAGENT_ID_PHORON = 1)
+	required_reagents = list(REAGENT_ID_PROTEIN = 1, REAGENT_ID_SUGAR = 1, REAGENT_ID_PHORON = 1)
 	result_amount = 1	// Roughly 20u per phoron sheet
 
 // Neutralization.
@@ -1225,20 +1225,20 @@
 /decl/chemical_reaction/instant/neutralize_neurotoxic_protein
 	name = "Neutralize Toxic Proteins"
 	id = "neurotoxic_protein_neutral"
-	result = "protein"
+	result = REAGENT_ID_PROTEIN
 	required_reagents = list(REAGENT_ID_ANTITOXIN = 1, REAGENT_ID_NEUROTOXIC_PROTEIN = 2)
 	result_amount = 2
 
 /decl/chemical_reaction/instant/neutralize_carpotoxin
 	name = "Neutralize Carpotoxin"
 	id = "carpotoxin_neutral"
-	result = "protein"
-	required_reagents = list("enzyme" = 1, REAGENT_ID_CARPOTOXIN = 1, REAGENT_ID_SIFSAP = 1)
+	result = REAGENT_ID_PROTEIN
+	required_reagents = list(REAGENT_ID_ENZYME = 1, REAGENT_ID_CARPOTOXIN = 1, REAGENT_ID_SIFSAP = 1)
 	result_amount = 1
 
 /decl/chemical_reaction/instant/neutralize_spidertoxin
 	name = "Neutralize Spidertoxin"
 	id = "spidertoxin_neutral"
-	result = "protein"
-	required_reagents = list("enzyme" = 1, REAGENT_ID_SPIDERTOXIN = 1, REAGENT_ID_SIFSAP = 1)
+	result = REAGENT_ID_PROTEIN
+	required_reagents = list(REAGENT_ID_ENZYME = 1, REAGENT_ID_SPIDERTOXIN = 1, REAGENT_ID_SIFSAP = 1)
 	result_amount = 1

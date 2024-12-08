@@ -276,9 +276,9 @@
 	var/list/reagents_data = list()
 	for(var/datum/reagent/R in reagents.reagent_list)
 		var/display_name = R.name
-		if(R.id == "capsaicin")
+		if(R.id == REAGENT_ID_CAPSAICIN)
 			display_name = "Hotsauce"
-		if(R.id == "frostoil")
+		if(R.id == REAGENT_ID_FROSTOIL)
 			display_name = "Coldsauce"
 		UNTYPED_LIST_ADD(reagents_data, list(
 			"name" = display_name,

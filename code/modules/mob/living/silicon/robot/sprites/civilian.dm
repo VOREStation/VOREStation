@@ -209,10 +209,10 @@
 	var/list/booze_options = list("Beer" = "booze",
 								  "Space Mountain Wind" = "boozegreen",
 								  "Curacao" = "boozeblue",
-								  "Grape Soda" = "boozepurple",
+								  REAGENT_GRAPESODA = "boozepurple",
 								  "Demon's Blood" = "boozered",
 								  "Whiskey Soda" = "boozeorange",
-								  "Coffee" = "boozebrown")
+								  REAGENT_COFFEE = "boozebrown")
 
 /datum/robot_sprite/dogborg/service/booze/handle_extra_icon_updates(var/mob/living/silicon/robot/ourborg)
 	if(!("boozehound" in ourborg.sprite_extra_customization) || !ourborg.sprite_extra_customization["boozehound"])

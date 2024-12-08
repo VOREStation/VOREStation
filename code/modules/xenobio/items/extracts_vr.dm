@@ -193,7 +193,7 @@
 /decl/chemical_reaction/instant/slime/blue_frostoil
 	name = "Slime Frost Oil"
 	id = "m_blue_frostoil"
-	result = "frostoil"
+	result = REAGENT_ID_FROSTOIL
 	required_reagents = list(REAGENT_ID_PHORON = 5)
 	result_amount = 30
 	required = /obj/item/slime_extract/blue
@@ -247,7 +247,7 @@
 /decl/chemical_reaction/instant/slime/blue_cryotoxin
 	name = "Slime Cryotoxin"
 	id = "m_blue_cryotoxin"
-	result = "cryotoxin"
+	result = REAGENT_ID_CRYOTOXIN
 	required_reagents = list(REAGENT_ID_SLIMEJELLY = 5)
 	result_amount = 30
 	required = /obj/item/slime_extract/blue
@@ -881,7 +881,7 @@
 /decl/chemical_reaction/instant/slime/red_hotsauce
 	name = "Slime Hot Sauce"
 	id = "m_red_hotsauce"
-	result = "capsaicin"
+	result = REAGENT_ID_CAPSAICIN
 	required_reagents = list(REAGENT_ID_WATER = 5)
 	result_amount = 30
 	required = /obj/item/slime_extract/red
@@ -1041,7 +1041,7 @@
 /decl/chemical_reaction/instant/slime/oil_oil
 	name = "Slime Oil"
 	id = "m_oil_oil"
-	result = "cookingoil"
+	result = REAGENT_ID_COOKINGOIL
 	required_reagents = list(REAGENT_ID_BLOOD = 5)
 	result_amount = 30
 	required = /obj/item/slime_extract/oil
