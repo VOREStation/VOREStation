@@ -712,7 +712,7 @@
 /client/proc/check_panel_loaded()
 	if(stat_panel && stat_panel.is_ready())
 		return
-	to_chat(src, "<span class='danger'>Statpanel failed to load, click <a href='?src=[REF(src)];reload_statbrowser=1'>here</a> to reload the panel. If this does not work, reconnecting will reassign a new panel.</span>")
+	to_chat(src, span_danger("Statpanel failed to load, click <a href='?src=[REF(src)];reload_statbrowser=1'>here</a> to reload the panel. If this does not work, reconnecting will reassign a new panel."))
 
 /**
  * Handles incoming messages from the stat-panel TGUI.
