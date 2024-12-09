@@ -1,6 +1,6 @@
 #define DECLARE_TLV_VALUES var/red_min; var/yel_min; var/yel_max; var/red_max; var/tlv_comparitor;
 #define LOAD_TLV_VALUES(x, y) red_min = x[1]; yel_min = x[2]; yel_max = x[3]; red_max = x[4]; tlv_comparitor = y;
-#define TEST_TLV_VALUES (((tlv_comparitor >= red_max && red_max > 0) || tlv_comparitor <= red_min) ? 2 : ((tlv_comparitor >= yel_max && yel_max > 0) || tlv_comparitor <= yel_min) ? 1 : 0)
+#define TEST_TLV_VALUES (((tlv_comparitor > red_max && red_max > 0) || tlv_comparitor < red_min) ? 2 : ((tlv_comparitor > yel_max && yel_max > 0) || tlv_comparitor < yel_min) ? 1 : 0)
 
 #define AALARM_MODE_SCRUBBING	1
 #define AALARM_MODE_REPLACEMENT	2 //like scrubbing, but faster.
@@ -216,7 +216,7 @@
 		//check for when we should start adjusting temperature
 		if(!TEST_TLV_VALUES && abs(environment.temperature - target_temperature) > 2.0 && environment.return_pressure() >= 1)
 			update_use_power(USE_POWER_ACTIVE)
-			regulating_temperature = 1
+			regulating_temperature = (environment.temperature > target_temperature ? 1 : 2)
 			audible_message("\The [src] clicks as it starts [environment.temperature > target_temperature ? "cooling" : "heating"] the room.",\
 			"You hear a click and a faint electronic hum.", runemessage = "* click *")
 			playsound(src, 'sound/machines/click.ogg', 50, 1)
@@ -224,9 +224,9 @@
 		//check for when we should stop adjusting temperature
 		if(TEST_TLV_VALUES || abs(environment.temperature - target_temperature) <= 0.5 || environment.return_pressure() < 1)
 			update_use_power(USE_POWER_IDLE)
-			regulating_temperature = 0
-			audible_message("\The [src] clicks quietly as it stops [environment.temperature > target_temperature ? "cooling" : "heating"] the room.",\
+			audible_message("\The [src] clicks quietly as it stops [regulating_temperature == 1 ? "cooling" : "heating"] the room.",\
 			"You hear a click as a faint electronic humming stops.", runemessage = "* click *")
+			regulating_temperature = 0
 			playsound(src, 'sound/machines/click.ogg', 50, 1)
 
 	if(regulating_temperature)
