@@ -217,7 +217,7 @@
 		if(!TEST_TLV_VALUES && abs(environment.temperature - target_temperature) > 2.0 && environment.return_pressure() >= 1)
 			update_use_power(USE_POWER_ACTIVE)
 			regulating_temperature = (environment.temperature > target_temperature ? 1 : 2)
-			audible_message("\The [src] clicks as it starts [environment.temperature > target_temperature ? "cooling" : "heating"] the room.",\
+			audible_message("\The [src] clicks as it starts [regulating_temperature == 1 ? "cooling" : "heating"] the room.",\
 			"You hear a click and a faint electronic hum.", runemessage = "* click *")
 			playsound(src, 'sound/machines/click.ogg', 50, 1)
 	else

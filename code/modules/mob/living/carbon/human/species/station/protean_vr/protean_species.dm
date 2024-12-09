@@ -239,9 +239,10 @@
 /datum/species/protean/handle_death(var/mob/living/carbon/human/H)
 	if(!H)
 		return //No body?
-	if(OurRig.dead)
-		return
-	OurRig.dead = 1
+	if(OurRig)
+		if(OurRig.dead)
+			return
+		OurRig.dead = 1
 	var/mob/temp = H
 	if(H.temporary_form)
 		temp = H.temporary_form
