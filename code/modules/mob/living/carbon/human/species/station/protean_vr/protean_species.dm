@@ -249,11 +249,12 @@
 	playsound(temp, 'sound/voice/borg_deathsound.ogg', 50, 1)
 	temp.visible_message(span_bold("[temp.name]") + " shudders and retreats inwards, coalescing into a single core componant!")
 	to_chat(temp, span_warning("You've died as a Protean! While dead, you will be locked to your core RIG control module until you can be repaired. Instructions to your revival can be found in the Examine tab when examining your module."))
-	if(H.temporary_form)
-		if(!istype(H.temporary_form.loc, /obj/item/rig/protean))
+	if(OurRig)
+		if(H.temporary_form)
+			if(!istype(H.temporary_form.loc, /obj/item/rig/protean))
+				H.nano_rig_transform(1)
+		else
 			H.nano_rig_transform(1)
-	else
-		H.nano_rig_transform(1)
 	pseudodead = 1
 
 /datum/species/protean/handle_environment_special(var/mob/living/carbon/human/H)
