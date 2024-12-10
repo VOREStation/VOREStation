@@ -1,5 +1,5 @@
 /client/verb/vote()
-	set category = "OOC"
+	set category = "OOC.Game"
 	set name = "Vote"
 
 	if(SSvote.active_vote)

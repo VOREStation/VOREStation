@@ -24,7 +24,7 @@
 
 /mob/verb/toggle_stomach_vision()
 	set name = "Toggle Stomach Sprites"
-	set category = "Preferences"
+	set category = "Preferences.Vore"
 	set desc = "Toggle the ability to see stomachs or not"
 
 	var/toggle
