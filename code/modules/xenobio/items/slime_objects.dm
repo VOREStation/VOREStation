@@ -120,7 +120,7 @@
 	filling_color = "#FFBB00"
 	center_of_mass = list("x"=17, "y"=10)
 	nutriment_amt = 25 // Very filling.
-	nutriment_desc = list("slime" = 10, "sweetness" = 10, "bliss" = 5)
+	nutriment_desc = list("slime" = 10, "sweetness" = 10, REAGENT_ID_BLISS = 5)
 
 /obj/item/reagent_containers/food/snacks/slime/Initialize()
 	. = ..()
@@ -190,21 +190,21 @@
 
 /datum/reagent/myelamine/slime
 	name = "Agent A"
-	id = "slime_bleed_fixer"
+	id = REAGENT_ID_SLIMEBLEEDFIXER
 	description = "A slimy liquid which appears to rapidly clot internal hemorrhages by increasing the effectiveness of platelets at low quantities.  Toxic in high quantities."
 	taste_description = "slime"
 	overdose = 5
 
 /datum/reagent/osteodaxon/slime
 	name = "Agent B"
-	id = "slime_bone_fixer"
+	id = REAGENT_ID_SLIMEBONEFIXER
 	description = "A slimy liquid which can be used to heal bone fractures at low quantities.  Toxic in high quantities."
 	taste_description = "slime"
 	overdose = 5
 
 /datum/reagent/peridaxon/slime
 	name = "Agent C"
-	id = "slime_organ_fixer"
+	id = REAGENT_ID_SLIMEORGANFIXER
 	description = "A slimy liquid which is used to encourage recovery of internal organs and nervous systems in low quantities.  Toxic in high quantities."
 	taste_description = "slime"
 	overdose = 5

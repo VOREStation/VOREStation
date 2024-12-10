@@ -1,5 +1,5 @@
 /datum/material/stone
-	name = "sandstone"
+	name = MAT_SANDSTONE
 	stack_type = /obj/item/stack/material/sandstone
 	icon_base = "stone"
 	table_icon_base = "stone"
@@ -20,7 +20,7 @@
 	recipes += new /datum/stack_recipe("planting bed", /obj/machinery/portable_atmospherics/hydroponics/soil, 3, time = 10, one_per_turf = 1, on_floor = 1, recycle_material = "[name]")
 
 /datum/material/stone/marble
-	name = "marble"
+	name = MAT_MARBLE
 	icon_colour = "#AAAAAA"
 	weight = 26
 	hardness = 30 //VOREStation Edit - Please.
@@ -36,7 +36,7 @@
 	)
 //VOREStation Addition Start
 /datum/material/stone/flint
-	name = "flint"
+	name = MAT_FLINT
 	icon_colour = "#9e9c99"
 	weight = 20
 	hardness = 30

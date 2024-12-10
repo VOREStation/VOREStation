@@ -1,7 +1,7 @@
 /obj/item/stack/material/resin
-	name = "resin"
+	name = MAT_RESIN
 	icon_state = "sheet-resin"
-	default_type = "resin"
+	default_type = MAT_RESIN
 	no_variants = TRUE
 	apply_colour = TRUE
 	pass_color = TRUE

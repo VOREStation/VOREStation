@@ -4,8 +4,8 @@
 ////////////////////////////
 
 /datum/reagent/macrocillin
-	name = "Macrocillin"
-	id = "macrocillin"
+	name = REAGENT_MACROCILLIN
+	id = REAGENT_ID_MACROCILLIN
 	description = "Glowing yellow liquid."
 	reagent_state = LIQUID
 	color = "#FFFF00" // rgb: 255, 255, 0
@@ -17,8 +17,8 @@
 	return
 
 /datum/reagent/microcillin
-	name = "Microcillin"
-	id = "microcillin"
+	name = REAGENT_MICROCILLIN
+	id = REAGENT_ID_MICROCILLIN
 	description = "Murky purple liquid."
 	reagent_state = LIQUID
 	color = "#800080"
@@ -31,8 +31,8 @@
 
 
 /datum/reagent/normalcillin
-	name = "Normalcillin"
-	id = "normalcillin"
+	name = REAGENT_NORMALCILLIN
+	id = REAGENT_ID_NORMALCILLIN
 	description = "Translucent cyan liquid."
 	reagent_state = LIQUID
 	color = "#00FFFF"
@@ -48,8 +48,8 @@
 
 
 /datum/reagent/sizeoxadone
-	name = "Sizeoxadone"
-	id = "sizeoxadone"
+	name = REAGENT_SIZEOXADONE
+	id = REAGENT_ID_SIZEOXADONE
 	description = "A volatile liquid used as a precursor to size-altering chemicals. Causes dizziness if taken unprocessed."
 	reagent_state = LIQUID
 	color = "#1E90FF"
@@ -65,8 +65,8 @@
 ////////////////////////// Anti-Noms Drugs //////////////////////////
 
 /datum/reagent/ickypak
-	name = "Ickypak"
-	id = "ickypak"
+	name = REAGENT_ICKYPAK
+	id = REAGENT_ID_ICKYPAK
 	description = "A foul-smelling green liquid, for inducing muscle contractions to expel accidentally ingested things."
 	reagent_state = LIQUID
 	color = "#0E900E"
@@ -87,8 +87,8 @@
 				B.release_specific_contents(A)
 
 /datum/reagent/unsorbitol
-	name = "Unsorbitol"
-	id = "unsorbitol"
+	name = REAGENT_UNSORBITOL
+	id = REAGENT_ID_UNSORBITOL
 	description = "A frothy pink liquid, for causing cellular-level hetrogenous structure separation."
 	reagent_state = LIQUID
 	color = "#EF77E5"
@@ -118,15 +118,15 @@
 ////////////////////////// TF Drugs //////////////////////////
 
 /datum/reagent/amorphorovir
-	name = "Amorphorovir"
-	id = "amorphorovir"
+	name = REAGENT_AMORPHOROVIR
+	id = REAGENT_ID_AMORPHOROVIR
 	description = "A base medical concoction, capable of rapidly altering genetic and physical structure of the body. Requires extra processing to allow for a targeted transformation."
 	reagent_state = LIQUID
 	color = "#AAAAAA"
 
 /datum/reagent/androrovir
-	name = "Androrovir"
-	id = "androrovir"
+	name = REAGENT_ANDROROVIR
+	id = REAGENT_ID_ANDROROVIR
 	description = "A medical concoction, capable of rapidly altering genetic and physical structure of the body. This one seems to realign the target's gender to be male."
 	reagent_state = LIQUID
 	color = "#00BBFF"
@@ -136,7 +136,7 @@
 		return
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
-		if(M.reagents.has_reagent("gynorovir") || M.reagents.has_reagent("androgynorovir"))
+		if(M.reagents.has_reagent(REAGENT_ID_GYNOROVIR) || M.reagents.has_reagent(REAGENT_ID_ANDROGYNOROVIR))
 			H.Confuse(1)
 		else
 			if(!(H.gender == MALE))
@@ -146,8 +146,8 @@
 								span_warning("Your body suddenly contorts, feeling very different in various ways... By the time the rushing feeling is over it seems you just became male."))
 
 /datum/reagent/gynorovir
-	name = "Gynorovir"
-	id = "gynorovir"
+	name = REAGENT_GYNOROVIR
+	id = REAGENT_ID_GYNOROVIR
 	description = "A medical concoction, capable of rapidly altering genetic and physical structure of the body. This one seems to realign the target's gender to be female."
 	reagent_state = LIQUID
 	color = "#FF00AA"
@@ -157,7 +157,7 @@
 		return
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
-		if(M.reagents.has_reagent("androrovir") || M.reagents.has_reagent("androgynorovir"))
+		if(M.reagents.has_reagent(REAGENT_ID_ANDROROVIR) || M.reagents.has_reagent(REAGENT_ID_ANDROGYNOROVIR))
 			H.Confuse(1)
 		else
 			if(!(H.gender == FEMALE))
@@ -167,8 +167,8 @@
 								span_warning("Your body suddenly contorts, feeling very different in various ways... By the time the rushing feeling is over it seems you just became female."))
 
 /datum/reagent/androgynorovir
-	name = "Androgynorovir"
-	id = "androgynorovir"
+	name = REAGENT_ANDROGYNOROVIR
+	id = REAGENT_ID_ANDROGYNOROVIR
 	description = "A medical concoction, capable of rapidly altering genetic and physical structure of the body. This one seems to realign the target's gender to be mixed."
 	reagent_state = LIQUID
 	color = "#6600FF"
@@ -178,7 +178,7 @@
 		return
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
-		if(M.reagents.has_reagent("gynorovir") || M.reagents.has_reagent("androrovir"))
+		if(M.reagents.has_reagent(REAGENT_ID_GYNOROVIR) || M.reagents.has_reagent(REAGENT_ID_ANDROROVIR))
 			H.Confuse(1)
 		else
 			if(!(H.gender == PLURAL))
@@ -191,8 +191,8 @@
 ////////////////////////// Misc Drugs //////////////////////////
 
 /datum/reagent/drugs/rainbow_toxin /// Replaces Space Drugs.
-	name = "Rainbow Toxin"
-	id = "rainbowtoxin"
+	name = REAGENT_RAINBOWTOXIN
+	id = REAGENT_ID_RAINBOWTOXIN
 	description = "Known for providing a euphoric high, this psychoactive drug is often injected into unknowing prey by serpents and other fanged beasts. Highly valuable and frequently sought after by hypno-enthusiasts and party-goers."
 	taste_description = "mixed euphoria"
 	taste_mult = 0.8 //You ARE going to taste this!
@@ -212,8 +212,8 @@
 	..()
 
 /datum/reagent/paralysis_toxin
-	name = "Tetrodotoxin"
-	id = "paralysistoxin"
+	name = REAGENT_PARALYSISTOXIN
+	id = REAGENT_ID_PARALYSISTOXIN
 	description = "A potent toxin commonly found in a plethora of species. When exposed to the toxin, causes extreme, paralysis for a prolonged period, with only essential functions of the body being unhindered. Commonly used by covert operatives and used as a crowd control tool."
 	taste_description = "bitterness"
 	reagent_state = LIQUID
@@ -227,8 +227,8 @@
 		M.AdjustWeakened(5) //Stand in for paralyze so you can still talk/emote/see
 
 /datum/reagent/pain_enzyme
-	name = "Pain Enzyme"
-	id = "painenzyme"
+	name = REAGENT_PAINENZYME
+	id = REAGENT_ID_PAINENZYME
 	description = "An enzyme found in a variety of species. When exposed to the toxin, will cause severe, agonizing pain. The effects can last for hours depending on the dose. Only known cure is an equally strong painkiller or dialysis."
 	taste_description = "sourness"
 	reagent_state = LIQUID

@@ -1,9 +1,9 @@
 /datum/seed/soybean
-	name = "soybean"
-	seed_name = "soybean"
+	name = PLANT_SOYBEAN
+	seed_name = PLANT_SOYBEAN
 	display_name = "soybeans"
 	kitchen_tag = "soybeans"
-	chems = list("nutriment" = list(1,20), "soymilk" = list(10,20))
+	chems = list(REAGENT_ID_NUTRIMENT = list(1,20), REAGENT_ID_SOYMILK = list(10,20))
 
 /datum/seed/soybean/New()
 	..()

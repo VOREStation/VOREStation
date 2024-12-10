@@ -108,7 +108,7 @@
 
 /obj/structure/reagent_dispensers/watertank/Initialize()
 	. = ..()
-	reagents.add_reagent("water", 1000)
+	reagents.add_reagent(REAGENT_ID_WATER, 1000)
 
 /obj/structure/reagent_dispensers/watertank/high
 	name = "high-capacity water tank"
@@ -117,7 +117,7 @@
 
 /obj/structure/reagent_dispensers/watertank/high/Initialize()
 	. = ..()
-	reagents.add_reagent("water", 4000)
+	reagents.add_reagent(REAGENT_ID_WATER, 4000)
 
 /obj/structure/reagent_dispensers/watertank/barrel
 	name = "water barrel"
@@ -128,14 +128,14 @@
 /obj/structure/reagent_dispensers/fueltank
 	name = "fuel tank"
 	desc = "A fuel tank."
-	icon_state = "fuel"
+	icon_state = REAGENT_ID_FUEL
 	amount_per_transfer_from_this = 10
 	var/modded = 0
 	var/obj/item/assembly_holder/rig = null
 
 /obj/structure/reagent_dispensers/fueltank/Initialize()
 	. = ..()
-	reagents.add_reagent("fuel",1000)
+	reagents.add_reagent(REAGENT_ID_FUEL,1000)
 
 /obj/structure/reagent_dispensers/fueltank/high
 	name = "high-capacity fuel tank"
@@ -144,7 +144,7 @@
 
 /obj/structure/reagent_dispensers/fueltank/high/Initialize()
 	. = ..()
-	reagents.add_reagent("fuel",4000)
+	reagents.add_reagent(REAGENT_ID_FUEL,4000)
 
 //Foam
 /obj/structure/reagent_dispensers/foam
@@ -155,7 +155,7 @@
 
 /obj/structure/reagent_dispensers/foam/Initialize()
 	. = ..()
-	reagents.add_reagent("firefoam",1000)
+	reagents.add_reagent(REAGENT_ID_FIREFOAM,1000)
 
 //Helium3
 /obj/structure/reagent_dispensers/he3
@@ -166,7 +166,7 @@
 
 /obj/structure/reagent_dispenser/he3/Initialize()
 	..()
-	reagents.add_reagent("helium3",1000)
+	reagents.add_reagent(REAGENT_ID_HELIUM3,1000)
 
 /*
  * Misc
@@ -293,7 +293,7 @@
 		return
 
 	amount = min(amount, reagents.total_volume)
-	reagents.remove_reagent("fuel",amount)
+	reagents.remove_reagent(REAGENT_ID_FUEL,amount)
 	new /obj/effect/decal/cleanable/liquid_fuel(src.loc, amount,1)
 
 /obj/structure/reagent_dispensers/peppertank
@@ -307,7 +307,7 @@
 
 /obj/structure/reagent_dispensers/peppertank/Initialize()
 	. = ..()
-	reagents.add_reagent("condensedcapsaicin",1000)
+	reagents.add_reagent(REAGENT_ID_CONDENSEDCAPSAICIN,1000)
 
 /obj/structure/reagent_dispensers/virusfood
 	name = "Virus Food Dispenser"
@@ -320,7 +320,7 @@
 
 /obj/structure/reagent_dispensers/virusfood/Initialize()
 	. = ..()
-	reagents.add_reagent("virusfood", 1000)
+	reagents.add_reagent(REAGENT_ID_VIRUSFOOD, 1000)
 
 /obj/structure/reagent_dispensers/acid
 	name = "Sulphuric Acid Dispenser"
@@ -333,7 +333,7 @@
 
 /obj/structure/reagent_dispensers/acid/Initialize()
 	. = ..()
-	reagents.add_reagent("sacid", 1000)
+	reagents.add_reagent(REAGENT_ID_SACID, 1000)
 
 /obj/structure/reagent_dispensers/water_cooler
 	name = "Water-Cooler"
@@ -356,7 +356,7 @@
 /obj/structure/reagent_dispensers/water_cooler/Initialize()
 	. = ..()
 	if(bottle)
-		reagents.add_reagent("water",2000)
+		reagents.add_reagent(REAGENT_ID_WATER,2000)
 	update_icon()
 
 /obj/structure/reagent_dispensers/water_cooler/examine(mob/user)
@@ -495,7 +495,7 @@
 
 /obj/structure/reagent_dispensers/beerkeg/Initialize()
 	. = ..()
-	reagents.add_reagent("beer",1000)
+	reagents.add_reagent(REAGENT_ID_BEER,1000)
 
 /obj/structure/reagent_dispensers/beerkeg/wood
 	name = "beer keg"
@@ -509,7 +509,7 @@
 
 /obj/structure/reagent_dispensers/beerkeg/wine/Initialize()
 	. = ..()
-	reagents.add_reagent("redwine",1000)
+	reagents.add_reagent(REAGENT_ID_REDWINE,1000)
 
 /obj/structure/reagent_dispensers/beerkeg/fakenuke
 	name = "nuclear beer keg"
@@ -527,7 +527,7 @@
 
 /obj/structure/reagent_dispensers/cookingoil/Initialize()
 	. = ..()
-	reagents.add_reagent("cookingoil",5000)
+	reagents.add_reagent(REAGENT_ID_COOKINGOIL,5000)
 
 /obj/structure/reagent_dispensers/cookingoil/bullet_act(var/obj/item/projectile/Proj)
 	if(Proj.get_structure_damage())
@@ -550,4 +550,4 @@
 
 /obj/structure/reagent_dispensers/bloodbarrel/Initialize()
 	. = ..()
-	reagents.add_reagent("blood", 1000, list("donor"=null,"viruses"=null,"blood_DNA"=null,"blood_type"="O-","resistances"=null,"trace_chem"=null))
+	reagents.add_reagent(REAGENT_ID_BLOOD, 1000, list("donor"=null,"viruses"=null,"blood_DNA"=null,"blood_type"="O-","resistances"=null,"trace_chem"=null))

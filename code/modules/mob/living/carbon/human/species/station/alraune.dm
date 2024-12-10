@@ -18,9 +18,9 @@
 	selects_bodytype = SELECTS_BODYTYPE_CUSTOM //VOREStation edit
 
 	body_temperature = T20C
-	breath_type = "oxygen"
-	poison_type = "phoron"
-	exhale_type = "oxygen"
+	breath_type = GAS_O2
+	poison_type = GAS_PHORON
+	exhale_type = GAS_O2
 	water_breather = TRUE  //eh, why not? Aquatic plants are a thing.
 
 	// Heat and cold resistances are 20 degrees broader on the level 1 range, level 2 is default, level 3 is much weaker, halfway between L2 and normal L3.
@@ -169,7 +169,7 @@
 	var/failed_inhale = 0
 	var/failed_exhale = 0
 
-	inhaling = breath.gas["carbon_dioxide"]
+	inhaling = breath.gas[GAS_CO2]
 	poison = breath.gas[poison_type]
 	exhaling = breath.gas[exhale_type]
 
@@ -193,7 +193,7 @@
 		H.clear_alert("oxy")
 
 	inhaled_gas_used = inhaling/6
-	breath.adjust_gas("carbon_dioxide", -inhaled_gas_used, update = 0) //update afterwards
+	breath.adjust_gas(GAS_CO2, -inhaled_gas_used, update = 0) //update afterwards
 	breath.adjust_gas_temp(exhale_type, inhaled_gas_used, H.bodytemperature, update = 0) //update afterwards
 
 	//Now we handle CO2.
@@ -221,7 +221,7 @@
 	if(toxins_pp > safe_toxins_max)
 		var/ratio = (poison/safe_toxins_max) * 10
 		if(H.reagents)
-			H.reagents.add_reagent("toxin", CLAMP(ratio, MIN_TOXIN_DAMAGE, MAX_TOXIN_DAMAGE))
+			H.reagents.add_reagent(REAGENT_ID_TOXIN, CLAMP(ratio, MIN_TOXIN_DAMAGE, MAX_TOXIN_DAMAGE))
 			breath.adjust_gas(poison_type, -poison/6, update = 0) //update after
 		H.throw_alert("tox_in_air", /obj/screen/alert/tox_in_air)
 	else
@@ -338,7 +338,7 @@
 	name = "fruit gland"
 	desc = "A bulbous gourd-like structure."
 	organ_tag = A_FRUIT
-	var/generated_reagents = list("sugar" = 2) //This actually allows them. This could be anything, but sugar seems most fitting.
+	var/generated_reagents = list(REAGENT_ID_SUGAR = 2) //This actually allows them. This could be anything, but sugar seems most fitting.
 	var/usable_volume = 250 //Five fruit.
 	var/transfer_amount = 50
 	var/empty_message = list("Your have no fruit on you.", "You have a distinct lack of fruit..")
@@ -348,7 +348,7 @@
 	var/self_verb_descriptor = list("grab", "snatch", "pick")
 	var/short_emote_descriptor = list("picks", "grabs")
 	var/self_emote_descriptor = list("grab", "pick", "snatch")
-	var/fruit_type = "apple"
+	var/fruit_type = PLANT_APPLE
 	var/mob/living/organ_owner = null
 	var/gen_cost = 0.5
 
@@ -390,7 +390,7 @@
 			break
 
 	if(fruit_gland)
-		var/selection = tgui_input_list(src, "Choose your character's fruit type. Choosing nothing will result in a default of apples.", "Fruit Type", acceptable_fruit_types)
+		var/selection = tgui_input_list(src, "Choose your character's fruit type. Choosing nothing will result in a default of apples.", "Fruit Type", GLOB.acceptable_fruit_types)
 		if(selection)
 			fruit_gland.fruit_type = selection
 		add_verb(src, /mob/living/carbon/human/proc/alraune_fruit_pick)

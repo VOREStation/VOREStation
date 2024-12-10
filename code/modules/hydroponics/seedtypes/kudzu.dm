@@ -1,9 +1,9 @@
 /datum/seed/kudzu
-	name = "kudzu"
-	seed_name = "kudzu"
+	name = PLANT_KUDZU
+	seed_name = PLANT_KUDZU
 	display_name = "kudzu vines"
-	kitchen_tag = "kudzu"
-	chems = list("nutriment" = list(1,50), "anti_toxin" = list(1,25))
+	kitchen_tag = PLANT_KUDZU
+	chems = list(REAGENT_ID_NUTRIMENT = list(1,50), REAGENT_ID_ANTITOXIN = list(1,25))
 
 /datum/seed/kudzu/New()
 	..()

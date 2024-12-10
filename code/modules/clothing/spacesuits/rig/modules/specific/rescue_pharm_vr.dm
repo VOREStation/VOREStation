@@ -19,10 +19,10 @@
 	var/chems_to_use = 5 //Per injection
 
 	charges = list(
-		list("inaprovaline",  "inaprovaline",  0, 20),
-		list("anti_toxin",  "anti_toxin",  0, 20),
-		list("paracetamol",      "paracetamol",      0, 20),
-		list("dexalin",  "dexalin",      0, 20)
+		list(REAGENT_ID_INAPROVALINE,  REAGENT_ID_INAPROVALINE,  0, 20),
+		list(REAGENT_ID_ANTITOXIN,  REAGENT_ID_ANTITOXIN,  0, 20),
+		list(REAGENT_ID_PARACETAMOL,      REAGENT_ID_PARACETAMOL,      0, 20),
+		list(REAGENT_ID_DEXALIN,  REAGENT_ID_DEXALIN,      0, 20)
 		)
 
 /obj/item/rig_module/rescue_pharm/process()

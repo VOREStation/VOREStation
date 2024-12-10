@@ -13,7 +13,7 @@
 	thrown_force_divisor = 0.5
 	item_state = "shard-glass"
 	attack_verb = list("stabbed", "slashed", "sliced", "cut")
-	default_material = "glass"
+	default_material = MAT_GLASS
 	unbreakable = 1 //It's already broken.
 	drops_debris = 0
 
@@ -144,7 +144,7 @@
 
 // Preset types - left here for the code that uses them
 /obj/item/material/shard/shrapnel/New(loc)
-	..(loc, "steel")
+	..(loc, MAT_STEEL)
 
 /obj/item/material/shard/phoron/New(loc)
-	..(loc, "borosilicate glass")
+	..(loc, MAT_PGLASS)

@@ -64,16 +64,16 @@
 
 	item_list = list()
 	item_list["Food Items"] = list(
-		BIOGEN_REAGENT("Milk x10", "milk", 10, 20),
-		BIOGEN_REAGENT("Milk x50", "milk", 50, 95),
-		BIOGEN_REAGENT("Cream x10", "cream", 10, 30),
-		BIOGEN_REAGENT("Cream x50", "cream", 50, 120),
+		BIOGEN_REAGENT("Milk x10", REAGENT_ID_MILK, 10, 20),
+		BIOGEN_REAGENT("Milk x50", REAGENT_ID_MILK, 50, 95),
+		BIOGEN_REAGENT("Cream x10", REAGENT_ID_CREAM, 10, 30),
+		BIOGEN_REAGENT("Cream x50", REAGENT_ID_CREAM, 50, 120),
 		BIOGEN_ITEM("Slab of meat", /obj/item/reagent_containers/food/snacks/meat, 1, 50),
 		BIOGEN_ITEM("Slabs of meat x5", /obj/item/reagent_containers/food/snacks/meat, 5, 250),
 	)
 	item_list["Cooking Ingredients"] = list(
-		BIOGEN_REAGENT("Universal Enzyme x10", "enzyme", 10, 30),
-		BIOGEN_REAGENT("Universal Enzyme x50", "enzyme", 50, 120),
+		BIOGEN_REAGENT("Universal Enzyme x10", REAGENT_ID_ENZYME, 10, 30),
+		BIOGEN_REAGENT("Universal Enzyme x50", REAGENT_ID_ENZYME, 50, 120),
 		BIOGEN_ITEM("Nutri-spread", /obj/item/reagent_containers/food/snacks/spreads, 1, 30),
 		BIOGEN_ITEM("Nutri-spread x5", /obj/item/reagent_containers/food/snacks/spreads, 5, 120),
 	)
@@ -274,9 +274,9 @@
 	var/S = 0
 	for(var/obj/item/reagent_containers/food/snacks/grown/I in contents)
 		S += 5
-		if(I.reagents.get_reagent_amount("nutriment") < 0.1)
+		if(I.reagents.get_reagent_amount(REAGENT_ID_NUTRIMENT) < 0.1)
 			points += 1
-		else points += I.reagents.get_reagent_amount("nutriment") * 10 * eat_eff
+		else points += I.reagents.get_reagent_amount(REAGENT_ID_NUTRIMENT) * 10 * eat_eff
 		qdel(I)
 	if(S)
 		processing = 1

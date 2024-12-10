@@ -40,7 +40,7 @@
 
 	faction = FACTION_BEE
 
-	var/poison_type = "spidertoxin"	// The reagent that gets injected when it attacks, can be changed to different toxin.
+	var/poison_type = REAGENT_ID_SPIDERTOXIN	// The reagent that gets injected when it attacks, can be changed to different toxin.
 	var/poison_chance = 10			// Chance for injection to occur.
 	var/poison_per_bite = 1			// Amount added per injection.
 

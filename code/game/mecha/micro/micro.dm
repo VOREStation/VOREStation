@@ -55,10 +55,10 @@
 							update |= temp.take_damage(0, rand(force/2, force))
 						if("tox")
 							if(H.reagents)
-								if(H.reagents.get_reagent_amount("carpotoxin") + force < force*2)
-									H.reagents.add_reagent("carpotoxin", force)
-								if(H.reagents.get_reagent_amount("cryptobiolin") + force < force*2)
-									H.reagents.add_reagent("cryptobiolin", force)
+								if(H.reagents.get_reagent_amount(REAGENT_ID_CARPOTOXIN) + force < force*2)
+									H.reagents.add_reagent(REAGENT_ID_CARPOTOXIN, force)
+								if(H.reagents.get_reagent_amount(REAGENT_ID_CRYPTOBIOLIN) + force < force*2)
+									H.reagents.add_reagent(REAGENT_ID_CRYPTOBIOLIN, force)
 						else
 							return
 					if(update)	H.UpdateDamageIcon()
@@ -73,10 +73,10 @@
 						M.take_overall_damage(0, rand(force/2, force))
 					if("tox")
 						if(M.reagents)
-							if(M.reagents.get_reagent_amount("carpotoxin") + force < force*2)
-								M.reagents.add_reagent("carpotoxin", force)
-							if(M.reagents.get_reagent_amount("cryptobiolin") + force < force*2)
-								M.reagents.add_reagent("cryptobiolin", force)
+							if(M.reagents.get_reagent_amount(REAGENT_ID_CARPOTOXIN) + force < force*2)
+								M.reagents.add_reagent(REAGENT_ID_CARPOTOXIN, force)
+							if(M.reagents.get_reagent_amount(REAGENT_ID_CRYPTOBIOLIN) + force < force*2)
+								M.reagents.add_reagent(REAGENT_ID_CRYPTOBIOLIN, force)
 					else
 						return
 				M.updatehealth()

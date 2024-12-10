@@ -89,7 +89,7 @@
 		O.item = src
 		O.s_loc = user.loc
 		O.t_loc = M.loc
-		O.place = "fuel"
+		O.place = REAGENT_ID_FUEL
 		M.requests += O
 		spawn( 0 )
 			O.process()

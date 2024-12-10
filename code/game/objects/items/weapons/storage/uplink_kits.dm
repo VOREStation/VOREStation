@@ -196,31 +196,31 @@
 	var/obj/item/storage/fancy/cigarettes/pack
 
 	pack = new /obj/item/storage/fancy/cigarettes(src)
-	fill_cigarre_package(pack, list("aluminum" = 5, "potassium" = 5, "sulfur" = 5))
+	fill_cigarre_package(pack, list(REAGENT_ID_ALUMINIUM = 5, REAGENT_ID_POTASSIUM = 5, REAGENT_ID_SULFUR = 5))
 	pack.desc += " 'F' has been scribbled on it."
 
 	pack = new /obj/item/storage/fancy/cigarettes(src)
-	fill_cigarre_package(pack, list("aluminum" = 5, "potassium" = 5, "sulfur" = 5))
+	fill_cigarre_package(pack, list(REAGENT_ID_ALUMINIUM = 5, REAGENT_ID_POTASSIUM = 5, REAGENT_ID_SULFUR = 5))
 	pack.desc += " 'F' has been scribbled on it."
 
 	pack = new /obj/item/storage/fancy/cigarettes(src)
-	fill_cigarre_package(pack, list("potassium" = 5, "sugar" = 5, "phosphorus" = 5))
+	fill_cigarre_package(pack, list(REAGENT_ID_POTASSIUM = 5, REAGENT_ID_SUGAR = 5, REAGENT_ID_PHOSPHORUS = 5))
 	pack.desc += " 'S' has been scribbled on it."
 
 	pack = new /obj/item/storage/fancy/cigarettes(src)
-	fill_cigarre_package(pack, list("potassium" = 5, "sugar" = 5, "phosphorus" = 5))
+	fill_cigarre_package(pack, list(REAGENT_ID_POTASSIUM = 5, REAGENT_ID_SUGAR = 5, REAGENT_ID_PHOSPHORUS = 5))
 	pack.desc += " 'S' has been scribbled on it."
 
 	pack = new /obj/item/storage/fancy/cigarettes(src)
 	// Dylovene. Going with 1.5 rather than 1.6666666...
-	fill_cigarre_package(pack, list("potassium" = 1.5, "nitrogen" = 1.5, "silicon" = 1.5))
+	fill_cigarre_package(pack, list(REAGENT_ID_POTASSIUM = 1.5, REAGENT_ID_NITROGEN = 1.5, REAGENT_ID_SILICON = 1.5))
 	// Mindbreaker
-	fill_cigarre_package(pack, list("silicon" = 4.5, "hydrogen" = 4.5))
+	fill_cigarre_package(pack, list(REAGENT_ID_SILICON = 4.5, REAGENT_ID_HYDROGEN = 4.5))
 
 	pack.desc += " 'MB' has been scribbled on it."
 
 	pack = new /obj/item/storage/fancy/cigarettes(src)
-	pack.reagents.add_reagent("tricordrazine", 15 * pack.storage_slots)
+	pack.reagents.add_reagent(REAGENT_ID_TRICORDRAZINE, 15 * pack.storage_slots)
 	pack.desc += " 'T' has been scribbled on it."
 
 	new /obj/item/flame/lighter/zippo(src)

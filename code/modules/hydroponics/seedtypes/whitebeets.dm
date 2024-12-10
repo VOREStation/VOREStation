@@ -1,9 +1,9 @@
 /datum/seed/whitebeets
-	name = "whitebeet"
+	name = PLANT_WHITEBEET
 	seed_name = "white-beet"
 	display_name = "white-beets"
-	kitchen_tag = "whitebeet"
-	chems = list("nutriment" = list(0,20), "sugar" = list(1,5))
+	kitchen_tag = PLANT_WHITEBEET
+	chems = list(REAGENT_ID_NUTRIMENT = list(0,20), REAGENT_ID_SUGAR = list(1,5))
 
 /datum/seed/whitebeets/New()
 	..()

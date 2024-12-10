@@ -3,8 +3,8 @@
 	max_stages = 5
 	spread_text = "On contact"
 	spread_flags = CONTACT_GENERAL
-	cure_text = "Adranol & Sulfur"
-	cures = list("adranol", "sulfur")
+	cure_text = REAGENT_ADRANOL + " & " + REAGENT_SULFUR
+	cures = list(REAGENT_ID_ADRANOL, REAGENT_ID_SULFUR)
 	cure_chance = 15
 	agent = "Gravitokinetic Bipotential SADS+"
 	viable_mobtypes = list(/mob/living/carbon/human)
@@ -42,8 +42,8 @@
 	stage_prob = 5
 	spread_text = "Non-contagious"
 	spread_flags = NON_CONTAGIOUS
-	cure_text = "Cryoxadone"
-	cures = list("cryoxadone")
+	cure_text = REAGENT_CRYOXADONE
+	cures = list(REAGENT_ID_CRYOXADONE)
 	cure_chance = 10
 	agent = "gibbis"
 	disease_flags = CURABLE
