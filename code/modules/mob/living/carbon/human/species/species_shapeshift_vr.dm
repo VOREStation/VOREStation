@@ -223,3 +223,102 @@
 	if (visible)
 		visible_message(span_filter_notice(span_bold("\The [src]") + " shifts and contorts, taking the form of \a [new_species]!"))
 		regenerate_icons()
+
+
+//////////////////// Shapeshifter copy-body powers
+/// Copied from the protean version, but with some tweaks to match non-protean shapeshifters such as lleill, hanner and replicants
+
+/mob/living/carbon/human/proc/shapeshifter_regenerate()
+	set name = "Fully Reform"
+	set desc = "Reload your appearance from whatever character slot you have loaded."
+	set category = "Abilities.Shapeshift"
+	var/mob/living/character = src
+	if(temporary_form)
+		character = temporary_form
+	var/input = tgui_alert(character,{"Do you want to copy the appearance data of your currently loaded save slot?"},"Reformation",list("Reform","Cancel"))
+	if(input == "Cancel" || !input)
+		return
+	else
+		input = tgui_alert(character,{"Include Flavourtext?"},"Reformation",list("Yes","No","Cancel"))
+		if(input == "Cancel" || !input)
+			return
+		var/flavour = 0
+		if(input == "Yes")
+			flavour = 1
+		input = tgui_alert(character,{"Include OOC notes?"},"Reformation",list("Yes","No","Cancel"))
+		if(input == "Cancel" || !input)
+			return
+		var/oocnotes = 0
+		if(input == "Yes")
+			oocnotes = 1
+		to_chat(character, span_notify("You begin to reform. You will need to remain still."))
+		character.visible_message(span_notify("[character] rapidly contorts and shifts!"), span_danger("You begin to reform."))
+		if(do_after(character, 40,exclusive = TASK_ALL_EXCLUSIVE))
+			if(character.client.prefs)	//Make sure we didn't d/c
+				character.client.prefs.vanity_copy_to(src, FALSE, flavour, oocnotes, FALSE)
+				character.visible_message(span_notify("[character] adopts a new form!"), span_danger("You have reformed."))
+
+/mob/living/carbon/human/proc/shapeshifter_copy_body()
+	set name = "Copy Form"
+	set desc = "If you are aggressively grabbing someone, with their consent, you can turn into a copy of them. (Without their name)."
+	set category = "Abilities.Shapeshift"
+	var/mob/living/character = src
+	if(temporary_form)
+		character = temporary_form
+
+	var/grabbing_but_not_enough
+	var/mob/living/carbon/human/victim = null
+	for(var/obj/item/grab/G in character)
+		if(G.state < GRAB_AGGRESSIVE)
+			grabbing_but_not_enough = TRUE
+			return
+		else
+			victim = G.affecting
+	if (!victim)
+		if (grabbing_but_not_enough)
+			to_chat(character, span_warning("You need a better grip to do that!"))
+		else
+			to_chat(character, span_notice("You need to be aggressively grabbing someone before you can copy their form."))
+		return
+	if (!istype(victim))
+		to_chat(character, span_warning("You can only perform this on human mobs!"))
+		return
+	if (!victim.client)
+		to_chat(character, span_notice("The person you try this on must have a client!"))
+		return
+
+
+	to_chat(character, span_notice("Waiting for other person's consent."))
+	var/consent = tgui_alert(victim, "Allow [src] to copy what you look like?", "Consent", list("Yes", "No"))
+	if (consent != "Yes")
+		to_chat(character, span_notice("They declined your request."))
+		return
+
+	var/input = tgui_alert(character,{"Copy [victim]'s flavourtext?"},"Copy Form",list("Yes","No","Cancel"))
+	if(input == "Cancel" || !input)
+		return
+	var/flavour = 0
+	if(input == "Yes")
+		flavour = 1
+
+	var/checking = FALSE
+	for(var/obj/item/grab/G in character)
+		if(G.affecting == victim && G.state >= GRAB_AGGRESSIVE)
+			checking = TRUE
+	if (!checking)
+		to_chat(character, span_warning("You lost your grip on [victim]!"))
+		return
+
+	to_chat(character, span_notify("You begin to reassemble into [victim]. You will need to remain still."))
+	character.visible_message(span_notify("[character] rapidly contorts and shifts!"), span_danger("You begin to reassemble into [victim]."))
+	if(do_after(character, 40,exclusive = TASK_ALL_EXCLUSIVE))
+		checking = FALSE
+		for(var/obj/item/grab/G in character)
+			if(G.affecting == victim && G.state >= GRAB_AGGRESSIVE)
+				checking = TRUE
+		if (!checking)
+			to_chat(character, span_warning("You lost your grip on [victim]!"))
+			return
+		if(character.client)	//Make sure we didn't d/c
+			transform_into_other_human(victim, FALSE, flavour, FALSE)
+			character.visible_message(span_notify("[character] adopts the form of [victim]!"), span_danger("You have reassembled into [victim]."))
