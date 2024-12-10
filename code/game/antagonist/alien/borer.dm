@@ -30,7 +30,7 @@ var/datum/antagonist/borer/borers
 	borers = src
 
 /datum/antagonist/xenos/borer/get_extra_panel_options(var/datum/mind/player)
-	return "<a href='?src=\ref[src];[HrefToken()];move_to_spawn=\ref[player.current]'>\[put in host\]</a>"
+	return "<a href='byond://?src=\ref[src];[HrefToken()];move_to_spawn=\ref[player.current]'>\[put in host\]</a>"
 
 /datum/antagonist/borer/create_objectives(var/datum/mind/player)
 	if(!..())

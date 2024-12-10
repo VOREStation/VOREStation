@@ -102,7 +102,7 @@
 		if(mode == i)
 			t += span_bold("[reagent_names[i]]")
 		else
-			t += "<a href='?src=\ref[src];reagent=[reagent_ids[i]]'>[reagent_names[i]]</a>"
+			t += "<a href='byond://?src=\ref[src];reagent=[reagent_ids[i]]'>[reagent_names[i]]</a>"
 	t = "Available reagents: [t]."
 	to_chat(user,span_infoplain(t))
 

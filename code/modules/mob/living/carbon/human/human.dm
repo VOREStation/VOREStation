@@ -450,7 +450,7 @@
 								security_hud_text += span_bold("Major Crimes:") + " [R.fields["ma_crim"]]"
 								security_hud_text += span_bold("Details:") + " [R.fields["ma_crim_d"]]"
 								security_hud_text += span_bold("Notes:") + " [R.fields["notes"]]"
-								security_hud_text += "<a href='?src=\ref[src];secrecordComment=`'>\[View Comment Log\]</a>"
+								security_hud_text += "<a href='byond://?src=\ref[src];secrecordComment=`'>\[View Comment Log\]</a>"
 								to_chat(usr, span_filter_notice("[jointext(security_hud_text, "<br>")]"))
 								read = 1
 
@@ -479,7 +479,7 @@
 									counter++
 								if (counter == 1)
 									to_chat(usr, span_filter_notice("No comment found."))
-								to_chat(usr, span_filter_notice("<a href='?src=\ref[src];secrecordadd=`'>\[Add comment\]</a>"))
+								to_chat(usr, span_filter_notice("<a href='byond://?src=\ref[src];secrecordadd=`'>\[Add comment\]</a>"))
 
 			if(!read)
 				to_chat(usr, span_filter_notice("[span_red("Unable to locate a data core entry for this person.")]"))
@@ -570,7 +570,7 @@
 								medical_hud_text += span_bold("Major Disabilities:") + " [R.fields["ma_dis"]]"
 								medical_hud_text += span_bold("Details:") + " [R.fields["ma_dis_d"]]"
 								medical_hud_text += span_bold("Notes:") + " [R.fields["notes"]]"
-								medical_hud_text += "<a href='?src=\ref[src];medrecordComment=`'>\[View Comment Log\]</a>"
+								medical_hud_text += "<a href='byond://?src=\ref[src];medrecordComment=`'>\[View Comment Log\]</a>"
 								to_chat(usr, span_filter_notice("[jointext(medical_hud_text, "<br>")]"))
 								read = 1
 
@@ -599,7 +599,7 @@
 									counter++
 								if (counter == 1)
 									to_chat(usr, span_filter_notice("No comment found."))
-								to_chat(usr, span_filter_notice("<a href='?src=\ref[src];medrecordadd=`'>\[Add comment\]</a>"))
+								to_chat(usr, span_filter_notice("<a href='byond://?src=\ref[src];medrecordadd=`'>\[Add comment\]</a>"))
 
 			if(!read)
 				to_chat(usr, span_filter_notice("[span_red("Unable to locate a data core entry for this person.")]"))
@@ -656,7 +656,7 @@
 								emp_hud_text += span_bold("Religious Beliefs:") + " [R.fields["religion"]]"
 								emp_hud_text += span_bold("Known Languages:") + " [R.fields["languages"]]"
 								emp_hud_text += span_bold("Notes:") + " [R.fields["notes"]]"
-								emp_hud_text += "<a href='?src=\ref[src];emprecordComment=`'>\[View Comment Log\]</a>"
+								emp_hud_text += "<a href='byond://?src=\ref[src];emprecordComment=`'>\[View Comment Log\]</a>"
 								to_chat(usr, span_filter_notice("[jointext(emp_hud_text, "<br>")]"))
 								read = 1
 
@@ -685,7 +685,7 @@
 									counter++
 								if (counter == 1)
 									to_chat(usr, span_filter_notice("No comment found."))
-								to_chat(usr, span_filter_notice("<a href='?src=\ref[src];emprecordadd=`'>\[Add comment\]</a>"))
+								to_chat(usr, span_filter_notice("<a href='byond://?src=\ref[src];emprecordadd=`'>\[Add comment\]</a>"))
 
 			if(!read)
 				to_chat(usr, span_filter_notice("[span_red("Unable to locate a data core entry for this person.")]"))

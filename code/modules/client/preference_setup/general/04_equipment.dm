@@ -123,19 +123,19 @@ var/global/list/valid_ringtones = list(
 	. += span_bold("Equipment:") + "<br>"
 	for(var/datum/category_group/underwear/UWC in global_underwear.categories)
 		var/item_name = pref.all_underwear[UWC.name] ? pref.all_underwear[UWC.name] : "None"
-		. += "[UWC.name]: <a href='?src=\ref[src];change_underwear=[UWC.name]'><b>[item_name]</b></a>"
+		. += "[UWC.name]: <a href='byond://?src=\ref[src];change_underwear=[UWC.name]'><b>[item_name]</b></a>"
 		var/datum/category_item/underwear/UWI = UWC.items_by_name[item_name]
 		if(UWI)
 			for(var/datum/gear_tweak/gt in UWI.tweaks)
-				. += " <a href='?src=\ref[src];underwear=[UWC.name];tweak=\ref[gt]'>[gt.get_contents(get_metadata(UWC.name, gt))]</a>"
+				. += " <a href='byond://?src=\ref[src];underwear=[UWC.name];tweak=\ref[gt]'>[gt.get_contents(get_metadata(UWC.name, gt))]</a>"
 
 		. += "<br>"
-	. += "Headset Type: <a href='?src=\ref[src];change_headset=1'><b>[GLOB.headsetlist[pref.headset]]</b></a><br>"
-	. += "Backpack Type: <a href='?src=\ref[src];change_backpack=1'><b>[backbaglist[pref.backbag]]</b></a><br>"
-	. += "PDA Type: <a href='?src=\ref[src];change_pda=1'><b>[pdachoicelist[pref.pdachoice]]</b></a><br>"
-	. += "Communicator Visibility: <a href='?src=\ref[src];toggle_comm_visibility=1'><b>[(pref.communicator_visibility) ? "Yes" : "No"]</b></a><br>"
-	. += "Ringtone (leave blank for job default): <a href='?src=\ref[src];set_ringtone=1'><b>[pref.ringtone]</b></a><br>"
-	. += "Spawn With Shoes:<a href='?src=\ref[src];toggle_shoes=1'><b>[(pref.shoe_hater) ? "No" : "Yes"]</b></a><br>" //RS Addition
+	. += "Headset Type: <a href='byond://?src=\ref[src];change_headset=1'><b>[GLOB.headsetlist[pref.headset]]</b></a><br>"
+	. += "Backpack Type: <a href='byond://?src=\ref[src];change_backpack=1'><b>[backbaglist[pref.backbag]]</b></a><br>"
+	. += "PDA Type: <a href='byond://?src=\ref[src];change_pda=1'><b>[pdachoicelist[pref.pdachoice]]</b></a><br>"
+	. += "Communicator Visibility: <a href='byond://?src=\ref[src];toggle_comm_visibility=1'><b>[(pref.communicator_visibility) ? "Yes" : "No"]</b></a><br>"
+	. += "Ringtone (leave blank for job default): <a href='byond://?src=\ref[src];set_ringtone=1'><b>[pref.ringtone]</b></a><br>"
+	. += "Spawn With Shoes:<a href='byond://?src=\ref[src];toggle_shoes=1'><b>[(pref.shoe_hater) ? "No" : "Yes"]</b></a><br>" //RS Addition
 
 	return jointext(.,null)
 

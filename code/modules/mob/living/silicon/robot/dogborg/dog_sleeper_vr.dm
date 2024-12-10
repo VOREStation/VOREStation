@@ -250,7 +250,7 @@
 			for(var/re in injection_chems)
 				var/datum/reagent/C = SSchemistry.chemical_reagents[re]
 				if(C)
-					dat += "<A href='?src=\ref[src];inject=[C.id]'>Inject [C.name]</A><BR>"
+					dat += "<A href='byond://?src=\ref[src];inject=[C.id]'>Inject [C.name]</A><BR>"
 		else
 			for(var/re in injection_chems)
 				var/datum/reagent/C = SSchemistry.chemical_reagents[re]
@@ -259,21 +259,21 @@
 
 	dat += "<h3>[name] Status</h3>"
 	dat += "<div style='display: flex; flex-wrap: wrap; flex-direction: row;'>"
-	dat += "<A id='refbutton' href='?src=\ref[src];refresh=1'>Refresh</A>"
-	dat += "<A href='?src=\ref[src];eject=1'>Eject All</A>"
-	dat += "<A href='?src=\ref[src];port=1'>Eject port: [eject_port]</A>"
-	dat += "<A href='?src=\ref[src];ingest=1'>Vore All</A>" //might as well make it obvious
+	dat += "<A id='refbutton' href='byond://?src=\ref[src];refresh=1'>Refresh</A>"
+	dat += "<A href='byond://?src=\ref[src];eject=1'>Eject All</A>"
+	dat += "<A href='byond://?src=\ref[src];port=1'>Eject port: [eject_port]</A>"
+	dat += "<A href='byond://?src=\ref[src];ingest=1'>Vore All</A>" //might as well make it obvious
 	if(!cleaning)
-		dat += "<A href='?src=\ref[src];clean=1'>Self-Clean</A>"
+		dat += "<A href='byond://?src=\ref[src];clean=1'>Self-Clean</A>"
 	else
 		dat += span_linkOff("Self-Clean")
 	if(medsensor)
-		dat += "<A href='?src=\ref[src];analyze=1'>Analyze Patient</A>"
+		dat += "<A href='byond://?src=\ref[src];analyze=1'>Analyze Patient</A>"
 	if(delivery)
 		dat += "<BR><h3>Cargo Compartment</h3><BR>"
-		dat += "<A href='?src=\ref[src];deliveryslot=1'>Active Slot: [delivery_tag]</A>"
+		dat += "<A href='byond://?src=\ref[src];deliveryslot=1'>Active Slot: [delivery_tag]</A>"
 		if(islist(deliverylists[delivery_tag]))
-			dat += "<A href='?src=\ref[src];slot_eject=1'>Eject Slot</A>"
+			dat += "<A href='byond://?src=\ref[src];slot_eject=1'>Eject Slot</A>"
 	dat += "</div>"
 	dat += "<div class='statusDisplay'>"
 
@@ -296,7 +296,7 @@
 		dat += "<font color='red'>([jointext(contents - (deliveryslot_1 + deliveryslot_2 + deliveryslot_3),", ")])</font><BR><BR>"
 
 	if(analyzer && !synced)
-		dat += "<A href='?src=\ref[src];sync=1'>Sync Files</A><BR>"
+		dat += "<A href='byond://?src=\ref[src];sync=1'>Sync Files</A><BR>"
 
 	//Cleaning and there are still un-preserved items
 	if(cleaning && length(contents - items_preserved))

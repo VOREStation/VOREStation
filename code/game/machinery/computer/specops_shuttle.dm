@@ -267,8 +267,8 @@ var/specops_shuttle_timeleft = 0
 	else
 		dat += {"<BR><B>Special Operations Shuttle</B><HR>
 		\nLocation: [specops_shuttle_moving_to_station || specops_shuttle_moving_to_centcom ? "Departing for [station_name()] in ([specops_shuttle_timeleft] seconds.)":specops_shuttle_at_station ? "Station":"Dock"]<BR>
-		[specops_shuttle_moving_to_station || specops_shuttle_moving_to_centcom ? "\n*The Special Ops. shuttle is already leaving.*<BR>\n<BR>":specops_shuttle_at_station ? "\n<A href='?src=\ref[src];sendtodock=1'>Shuttle standing by...</A><BR>\n<BR>":"\n<A href='?src=\ref[src];sendtostation=1'>Depart to [station_name()]</A><BR>\n<BR>"]
-		\n<A href='?src=\ref[user];mach_close=computer'>Close</A>"}
+		[specops_shuttle_moving_to_station || specops_shuttle_moving_to_centcom ? "\n*The Special Ops. shuttle is already leaving.*<BR>\n<BR>":specops_shuttle_at_station ? "\n<A href='byond://?src=\ref[src];sendtodock=1'>Shuttle standing by...</A><BR>\n<BR>":"\n<A href='byond://?src=\ref[src];sendtostation=1'>Depart to [station_name()]</A><BR>\n<BR>"]
+		\n<A href='byond://?src=\ref[user];mach_close=computer'>Close</A>"}
 
 	user << browse(dat, "window=computer;size=575x450")
 	onclose(user, "computer")
@@ -294,7 +294,7 @@ var/specops_shuttle_timeleft = 0
 
 		to_chat(usr, span_notice("The Special Operations shuttle will arrive at [using_map.boss_name] in [(SPECOPS_MOVETIME/10)] seconds."))
 
-		temp += "Shuttle departing.<BR><BR><A href='?src=\ref[src];mainmenu=1'>OK</A>"
+		temp += "Shuttle departing.<BR><BR><A href='byond://?src=\ref[src];mainmenu=1'>OK</A>"
 		updateUsrDialog()
 
 		specops_shuttle_moving_to_centcom = 1
@@ -311,7 +311,7 @@ var/specops_shuttle_timeleft = 0
 
 		to_chat(usr, span_notice("The Special Operations shuttle will arrive on [station_name()] in [(SPECOPS_MOVETIME/10)] seconds."))
 
-		temp += "Shuttle departing.<BR><BR><A href='?src=\ref[src];mainmenu=1'>OK</A>"
+		temp += "Shuttle departing.<BR><BR><A href='byond://?src=\ref[src];mainmenu=1'>OK</A>"
 		updateUsrDialog()
 
 		var/area/centcom/specops/special_ops = locate()

@@ -54,7 +54,7 @@
 	var/output = {"<div class='wr'>
 						<div class='header'>Special</div>
 						<div class='links'>
-						<a href='?src=\ref[src];toggle_stabilization=1'><span id="stabilization_command">[stabilization_enabled?"Dis":"En"]able thruster stabilization</span></a><br>
+						<a href='byond://?src=\ref[src];toggle_stabilization=1'><span id="stabilization_command">[stabilization_enabled?"Dis":"En"]able thruster stabilization</span></a><br>
 						</div>
 						</div>
 						"}

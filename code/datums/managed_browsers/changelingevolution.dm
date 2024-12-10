@@ -27,14 +27,14 @@
 
 	dat += "<center>Genetic Points Available: [geneticpoints_current] / [geneticpoints_max] <br>"
 	dat += "Obtain more by feeding on your own kind. <br> <hr>"
-	dat += "<a style='background-color:#c72121;' href='?src=\ref[src];tutorial=1'>What am I?</a><br><hr>"
-	dat += "<a style='background-color:#c72121;' href='?src=\ref[src];inherent=1'>Inherent</a>"
-	dat += "<a style='background-color:#c72121;' href='?src=\ref[src];armor=1'>Armor</a>"
-	dat += "<a style='background-color:#c72121;' href='?src=\ref[src];weapons=1'>Weapons</a>"
-	dat += "<a style='background-color:#c72121;' href='?src=\ref[src];stings=1'>Stings</a>"
-	dat += "<a style='background-color:#c72121;' href='?src=\ref[src];shrieks=1'>Shrieks</a>"
-	dat += "<a style='background-color:#c72121;' href='?src=\ref[src];health=1'>Health</a>"
-	dat += "<a style='background-color:#c72121;' href='?src=\ref[src];enhancements=1'>Enhancements</a></center>"
+	dat += "<a style='background-color:#c72121;' href='byond://?src=\ref[src];tutorial=1'>What am I?</a><br><hr>"
+	dat += "<a style='background-color:#c72121;' href='byond://?src=\ref[src];inherent=1'>Inherent</a>"
+	dat += "<a style='background-color:#c72121;' href='byond://?src=\ref[src];armor=1'>Armor</a>"
+	dat += "<a style='background-color:#c72121;' href='byond://?src=\ref[src];weapons=1'>Weapons</a>"
+	dat += "<a style='background-color:#c72121;' href='byond://?src=\ref[src];stings=1'>Stings</a>"
+	dat += "<a style='background-color:#c72121;' href='byond://?src=\ref[src];shrieks=1'>Shrieks</a>"
+	dat += "<a style='background-color:#c72121;' href='byond://?src=\ref[src];health=1'>Health</a>"
+	dat += "<a style='background-color:#c72121;' href='byond://?src=\ref[src];enhancements=1'>Enhancements</a></center>"
 	if(textbody)
 		dat += "<table border='1' style='width:100%; background-color:#000000;'>"
 		dat += "[textbody]"
@@ -162,6 +162,6 @@
 			textbody += "<center><font color='#F7F7ED'><i><b>This ability is already evolved!</b></i></font></center>"
 		else if(cat != "Inherent")
 			textbody += "<center>Cost: [powerdata.genomecost]</center>"
-			textbody += "<center><a style='background-color:#c72121;' href='?src=\ref[src];evolve=[A]'>Evolve</a></center>"
+			textbody += "<center><a style='background-color:#c72121;' href='byond://?src=\ref[src];evolve=[A]'>Evolve</a></center>"
 		textbody += "</td></tr>"
 	display()

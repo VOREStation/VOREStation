@@ -26,7 +26,7 @@
 
 /obj/item/mecha_parts/mecha_equipment/tool/powertool/inflatables/get_equip_info()
 	if(!chassis) return
-	var/data_return = (equip_ready ? span_green("*") : span_red("*")) + "&nbsp;[chassis.selected==src?"<b>":"<a href='?src=\ref[chassis];select_equip=\ref[src]'>"][src.name][chassis.selected==src?"</b>":"</a>"] - <a href='?src=\ref[src];toggle_deployable_mode=1'>Deploy [my_deployer.mode?"Door":"Wall"]</a><br>\
+	var/data_return = (equip_ready ? span_green("*") : span_red("*")) + "&nbsp;[chassis.selected==src?"<b>":"<a href='byond://?src=\ref[chassis];select_equip=\ref[src]'>"][src.name][chassis.selected==src?"</b>":"</a>"] - <a href='byond://?src=\ref[src];toggle_deployable_mode=1'>Deploy [my_deployer.mode?"Door":"Wall"]</a><br>\
 	&nbsp; - Doors left: " + span_yellow("[my_deployer.stored_doors]") + "/[my_deployer.max_doors]<br>\
 	&nbsp; - Walls left: " + span_yellow("[my_deployer.stored_walls]") + "/[my_deployer.max_walls]"
 

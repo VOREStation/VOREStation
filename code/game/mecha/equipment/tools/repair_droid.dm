@@ -34,7 +34,7 @@
 
 /obj/item/mecha_parts/mecha_equipment/repair_droid/get_equip_info()
 	if(!chassis) return
-	return (equip_ready ? span_green("*") : span_red("*")) + "&nbsp;[src.name] - <a href='?src=\ref[src];toggle_repairs=1'>[(datum_flags & DF_ISPROCESSING)?"Dea":"A"]ctivate</a>"
+	return (equip_ready ? span_green("*") : span_red("*")) + "&nbsp;[src.name] - <a href='byond://?src=\ref[src];toggle_repairs=1'>[(datum_flags & DF_ISPROCESSING)?"Dea":"A"]ctivate</a>"
 
 
 /obj/item/mecha_parts/mecha_equipment/repair_droid/Topic(href, href_list)

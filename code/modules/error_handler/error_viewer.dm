@@ -71,7 +71,7 @@ var/global/datum/ErrorViewer/ErrorCache/error_cache = null
 		back_to_param = ";viewruntime_backto=\ref[back_to]"
 	if(linear)
 		back_to_param += ";viewruntime_linear=1"
-	return "<A HREF='?src=\ref[src];[HrefToken()];viewruntime=\ref[src][back_to_param]'>[html_encode(linktext)]</A>"
+	return "<A href='byond://?src=\ref[src];[HrefToken()];viewruntime=\ref[src][back_to_param]'>[html_encode(linktext)]</A>"
 
 /datum/ErrorViewer/Topic(href, href_list)
 	if(..())

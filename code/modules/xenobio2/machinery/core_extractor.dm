@@ -151,9 +151,9 @@
 	[occupant]<br>
 	"}
 		if (occupant && !(stat & (NOPOWER|BROKEN)))
-			dat += "<A href='?src=\ref[src];action=extract'>Start the core extraction.</a><BR>"
+			dat += "<A href='byond://?src=\ref[src];action=extract'>Start the core extraction.</a><BR>"
 		if(occupant)
-			dat += "<A href='?src=\ref[src];action=eject'>Eject the slime</a><BR>"
+			dat += "<A href='byond://?src=\ref[src];action=eject'>Eject the slime</a><BR>"
 	else
 		dat += "Please wait..."
 	var/datum/browser/popup = new(user, "Slime Extractor", "Slime Extractor", src)

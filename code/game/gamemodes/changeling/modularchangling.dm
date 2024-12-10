@@ -113,7 +113,7 @@ var/list/datum/power/changeling/powerinstances = list()
 
 					if(!ownsthis)
 					{
-						body += "<a href='?src=\ref[src];P="+power+"'>Evolve</a>"
+						body += "<a href='byond://?src=\ref[src];P="+power+"'>Evolve</a>"
 					}
 
 					body += "</td><td align='center'>";
@@ -357,4 +357,3 @@ var/list/datum/power/changeling/powerinstances = list()
 		call(M.current, Thepower.verbpath)()
 	else if(remake_verbs)
 		M.current.make_changeling()
-

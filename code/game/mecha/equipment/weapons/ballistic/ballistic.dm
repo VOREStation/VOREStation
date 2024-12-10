@@ -3,7 +3,7 @@
 	var/projectile_energy_cost
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/get_equip_info()
-	return "[..()]\[[src.projectiles]\][(src.projectiles < initial(src.projectiles))?" - <a href='?src=\ref[src];rearm=1'>Rearm</a>":null]"
+	return "[..()]\[[src.projectiles]\][(src.projectiles < initial(src.projectiles))?" - <a href='byond://?src=\ref[src];rearm=1'>Rearm</a>":null]"
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/proc/rearm()
 	if(projectiles < initial(projectiles))
