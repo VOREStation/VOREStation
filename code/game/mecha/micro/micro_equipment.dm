@@ -79,7 +79,7 @@
 	return
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/microshotgun/get_equip_info()
-	return "[..()] \[<a href='?src=\ref[src];mode=0'>BS</a>|<a href='?src=\ref[src];mode=1'>BB</a>|<a href='?src=\ref[src];mode=2'>S</a>\]"
+	return "[..()] \[<a href='byond://?src=\ref[src];mode=0'>BS</a>|<a href='byond://?src=\ref[src];mode=1'>BB</a>|<a href='byond://?src=\ref[src];mode=2'>S</a>\]"
 
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/missile_rack/grenade/microflashbang
@@ -196,7 +196,7 @@
 		occupant_message("Ore compartment emptied.")
 
 /obj/item/mecha_parts/mecha_equipment/tool/micro/orescoop/get_equip_info()
-	return "[..()] <br /><a href='?src=\ref[src];empty_box=1'>Empty ore compartment</a>"
+	return "[..()] <br /><a href='byond://?src=\ref[src];empty_box=1'>Empty ore compartment</a>"
 
 /obj/item/mecha_parts/mecha_equipment/tool/orescoop/verb/empty_box() //so you can still get the ore out if someone detaches it from the mech
 	set name = "Empty Ore compartment"

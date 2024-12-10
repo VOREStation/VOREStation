@@ -38,7 +38,7 @@
 /obj/item/mecha_parts/mecha_equipment/tool/syringe_gun/get_equip_info()
 	var/output = ..()
 	if(output)
-		return "[output] \[<a href=\"?src=\ref[src];toggle_mode=1\">[mode? "Analyze" : "Launch"]</a>\]<br />\[Syringes: [syringes.len]/[max_syringes] | Reagents: [reagents.total_volume]/[reagents.maximum_volume]\]<br /><a href='?src=\ref[src];show_reagents=1'>Reagents list</a>"
+		return "[output] \[<a href=\"?src=\ref[src];toggle_mode=1\">[mode? "Analyze" : "Launch"]</a>\]<br />\[Syringes: [syringes.len]/[max_syringes] | Reagents: [reagents.total_volume]/[reagents.maximum_volume]\]<br /><a href='byond://?src=\ref[src];show_reagents=1'>Reagents list</a>"
 	return
 
 /obj/item/mecha_parts/mecha_equipment/tool/syringe_gun/action(atom/movable/target)
@@ -474,7 +474,7 @@
 
 /obj/item/mecha_parts/mecha_equipment/crisis_drone/get_equip_info()
 	if(!chassis) return
-	return (equip_ready ? span_green("*") : span_red("*")) + "&nbsp;[src.name] - <a href='?src=\ref[src];toggle_drone=1'>[enabled?"Dea":"A"]ctivate</a>"
+	return (equip_ready ? span_green("*") : span_red("*")) + "&nbsp;[src.name] - <a href='byond://?src=\ref[src];toggle_drone=1'>[enabled?"Dea":"A"]ctivate</a>"
 
 /obj/item/mecha_parts/mecha_equipment/crisis_drone/rad
 	name = "hazmat dronebay"

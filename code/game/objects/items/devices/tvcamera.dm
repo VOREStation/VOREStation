@@ -54,11 +54,11 @@
 
 /obj/item/tvcamera/proc/show_ui(mob/user)
 	var/dat = list()
-	dat += "Channel name is: <a href='?src=\ref[src];channel=1'>[channel ? channel : "unidentified broadcast"]</a><br>"
-	dat += "Video streaming is <a href='?src=\ref[src];video=1'>[camera.status ? "on" : "off"]</a><br>"
+	dat += "Channel name is: <a href='byond://?src=\ref[src];channel=1'>[channel ? channel : "unidentified broadcast"]</a><br>"
+	dat += "Video streaming is <a href='byond://?src=\ref[src];video=1'>[camera.status ? "on" : "off"]</a><br>"
 	if(camera.status && showing_name)
 		dat += "- You're showing [showing_name] to your viewers.<br>"
-	dat += "Mic is <a href='?src=\ref[src];sound=1'>[radio.broadcasting ? "on" : "off"]</a><br>"
+	dat += "Mic is <a href='byond://?src=\ref[src];sound=1'>[radio.broadcasting ? "on" : "off"]</a><br>"
 	dat += "Sound is being broadcasted on frequency [format_frequency(radio.frequency)] ([get_frequency_name(radio.frequency)])<br>"
 	var/datum/browser/popup = new(user, "Hovercamera", "Eye Buddy", 300, 390, src)
 	popup.set_content(jointext(dat,null))

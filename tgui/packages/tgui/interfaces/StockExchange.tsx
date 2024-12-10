@@ -224,7 +224,7 @@ const StockExchangeCompactView = (props) => {
   );
 };
 
-// "<div><a href='?src=[REF(src)];show_logs=1'>Refresh</a></div></br>"
+// "<div><a href='byond://?src=[REF(src)];show_logs=1'>Refresh</a></div></br>"
 const StockExchangeLogs = (props) => {
   const { act, data } = useBackend<Data>();
 

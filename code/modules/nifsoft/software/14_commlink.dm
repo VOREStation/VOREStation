@@ -106,7 +106,7 @@
 	voice_requests |= candidate
 
 	if(ringer && nif.human)
-		nif.notify("New commlink call from [who]. (<a href='?src=\ref[nifsoft];open=1'>Open</a>)")
+		nif.notify("New commlink call from [who]. (<a href='byond://?src=\ref[nifsoft];open=1'>Open</a>)")
 
 //Similar reason
 /obj/item/communicator/commlink/request_im(var/atom/candidate, var/origin_address, var/text)
@@ -128,4 +128,4 @@
 		return
 
 	if(ringer && nif.human)
-		nif.notify("Commlink message from [who]: \"[text]\" (<a href='?src=\ref[nifsoft];open=1'>Open</a>) (<a href='?src=\ref[src];action=Reply;target=\ref[candidate]'>Reply</a>)")
+		nif.notify("Commlink message from [who]: \"[text]\" (<a href='byond://?src=\ref[nifsoft];open=1'>Open</a>) (<a href='byond://?src=\ref[src];action=Reply;target=\ref[candidate]'>Reply</a>)")

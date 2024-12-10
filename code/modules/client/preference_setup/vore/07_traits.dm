@@ -57,7 +57,7 @@ var/global/list/valid_bloodreagents = list("default",REAGENT_ID_IRON,REAGENT_ID_
 				trait_prefs[identifier] = trait.default_value_for_pref(identifier) //won't be called at all often
 				altered = TRUE
 			. += "<li>- [pref_list[2]]:"
-			var/link = " <a href='?src=\ref[src];clicked_trait_pref=[trait.type];pref=[identifier]'>"
+			var/link = " <a href='byond://?src=\ref[src];clicked_trait_pref=[trait.type];pref=[identifier]'>"
 			switch (pref_list[1])
 				if (1) //TRAIT_PREF_TYPE_BOOLEAN
 					. += link + (trait_prefs[identifier] ? "Enabled" : "Disabled")
@@ -274,12 +274,12 @@ var/global/list/valid_bloodreagents = list("default",REAGENT_ID_IRON,REAGENT_ID_
 
 /datum/category_item/player_setup_item/vore/traits/content(var/mob/user)
 	. += span_bold("Custom Species Name:") + " "
-	. += "<a href='?src=\ref[src];custom_species=1'>[pref.custom_species ? pref.custom_species : "-Input Name-"]</a><br>"
+	. += "<a href='byond://?src=\ref[src];custom_species=1'>[pref.custom_species ? pref.custom_species : "-Input Name-"]</a><br>"
 
 	var/datum/species/selected_species = GLOB.all_species[pref.species]
 	if(selected_species.selects_bodytype)
 		. += span_bold("Icon Base:") + " "
-		. += "<a href='?src=\ref[src];custom_base=1'>[pref.custom_base ? pref.custom_base : "Human"]</a><br>"
+		. += "<a href='byond://?src=\ref[src];custom_base=1'>[pref.custom_base ? pref.custom_base : "Human"]</a><br>"
 
 	var/traits_left = pref.max_traits
 
@@ -295,57 +295,57 @@ var/global/list/valid_bloodreagents = list("default",REAGENT_ID_IRON,REAGENT_ID_
 	if(points_left < 0 || traits_left < 0 || (!pref.custom_species && pref.species == SPECIES_CUSTOM))
 		. += span_red(span_bold("^ Fix things! ^")) + "<br>"
 
-	. += "<a href='?src=\ref[src];add_trait=[POSITIVE_MODE]'>Positive Trait +</a><br>"
+	. += "<a href='byond://?src=\ref[src];add_trait=[POSITIVE_MODE]'>Positive Trait +</a><br>"
 	. += "<ul>"
 	for(var/T in pref.pos_traits)
 		var/datum/trait/trait = positive_traits[T]
-		. += "<li>- <a href='?src=\ref[src];clicked_pos_trait=[T]'>[trait.name] ([trait.cost])</a> [get_html_for_trait(trait, pref.pos_traits[T])]</li>"
+		. += "<li>- <a href='byond://?src=\ref[src];clicked_pos_trait=[T]'>[trait.name] ([trait.cost])</a> [get_html_for_trait(trait, pref.pos_traits[T])]</li>"
 	. += "</ul>"
 
-	. += "<a href='?src=\ref[src];add_trait=[NEUTRAL_MODE]'>Neutral Trait +</a><br>"
+	. += "<a href='byond://?src=\ref[src];add_trait=[NEUTRAL_MODE]'>Neutral Trait +</a><br>"
 	. += "<ul>"
 	for(var/T in pref.neu_traits)
 		var/datum/trait/trait = neutral_traits[T]
-		. += "<li>- <a href='?src=\ref[src];clicked_neu_trait=[T]'>[trait.name] ([trait.cost])</a> [get_html_for_trait(trait, pref.neu_traits[T])]</li>"
+		. += "<li>- <a href='byond://?src=\ref[src];clicked_neu_trait=[T]'>[trait.name] ([trait.cost])</a> [get_html_for_trait(trait, pref.neu_traits[T])]</li>"
 	. += "</ul>"
 
-	. += "<a href='?src=\ref[src];add_trait=[NEGATIVE_MODE]'>Negative Trait +</a><br>"
+	. += "<a href='byond://?src=\ref[src];add_trait=[NEGATIVE_MODE]'>Negative Trait +</a><br>"
 	. += "<ul>"
 	for(var/T in pref.neg_traits)
 		var/datum/trait/trait = negative_traits[T]
-		. += "<li>- <a href='?src=\ref[src];clicked_neg_trait=[T]'>[trait.name] ([trait.cost])</a> [get_html_for_trait(trait, pref.neg_traits[T])]</li>"
+		. += "<li>- <a href='byond://?src=\ref[src];clicked_neg_trait=[T]'>[trait.name] ([trait.cost])</a> [get_html_for_trait(trait, pref.neg_traits[T])]</li>"
 	. += "</ul>"
 
 	. += span_bold("Blood Color: ") //People that want to use a certain species to have that species traits (xenochimera/promethean/spider) should be able to set their own blood color.
-	. += "<a href='?src=\ref[src];blood_color=1'>Set Color <font color='[pref.blood_color]'>&#9899;</font></a>"
-	. += "<a href='?src=\ref[src];blood_reset=1'>R</a><br>"
+	. += "<a href='byond://?src=\ref[src];blood_color=1'>Set Color <font color='[pref.blood_color]'>&#9899;</font></a>"
+	. += "<a href='byond://?src=\ref[src];blood_reset=1'>R</a><br>"
 	. += span_bold("Blood Reagent: ")	//Wanna be copper-based? Go ahead.
-	. += "<a href='?src=\ref[src];blood_reagents=1'>[pref.blood_reagents]</a><br>"
+	. += "<a href='byond://?src=\ref[src];blood_reagents=1'>[pref.blood_reagents]</a><br>"
 	. += "<br>"
 
 	. += span_bold("Custom Say: ")
-	. += "<a href='?src=\ref[src];custom_say=1'>Set Say Verb</a>"
-	. += "(<a href='?src=\ref[src];reset_say=1'>Reset</A>)"
+	. += "<a href='byond://?src=\ref[src];custom_say=1'>Set Say Verb</a>"
+	. += "(<a href='byond://?src=\ref[src];reset_say=1'>Reset</A>)"
 	. += "<br>"
 	. += span_bold("Custom Whisper: ")
-	. += "<a href='?src=\ref[src];custom_whisper=1'>Set Whisper Verb</a>"
-	. += "(<a href='?src=\ref[src];reset_whisper=1'>Reset</A>)"
+	. += "<a href='byond://?src=\ref[src];custom_whisper=1'>Set Whisper Verb</a>"
+	. += "(<a href='byond://?src=\ref[src];reset_whisper=1'>Reset</A>)"
 	. += "<br>"
 	. += span_bold("Custom Ask: ")
-	. += "<a href='?src=\ref[src];custom_ask=1'>Set Ask Verb</a>"
-	. += "(<a href='?src=\ref[src];reset_ask=1'>Reset</A>)"
+	. += "<a href='byond://?src=\ref[src];custom_ask=1'>Set Ask Verb</a>"
+	. += "(<a href='byond://?src=\ref[src];reset_ask=1'>Reset</A>)"
 	. += "<br>"
 	. += span_bold("Custom Exclaim: ")
-	. += "<a href='?src=\ref[src];custom_exclaim=1'>Set Exclaim Verb</a>"
-	. += "(<a href='?src=\ref[src];reset_exclaim=1'>Reset</A>)"
+	. += "<a href='byond://?src=\ref[src];custom_exclaim=1'>Set Exclaim Verb</a>"
+	. += "(<a href='byond://?src=\ref[src];reset_exclaim=1'>Reset</A>)"
 	. += "<br>"
 	. += span_bold("Custom Heat Discomfort: ")
-	. += "<a href='?src=\ref[src];custom_heat=1'>Set Heat Messages</a>"
-	. += "(<a href='?src=\ref[src];reset_heat=1'>Reset</A>)"
+	. += "<a href='byond://?src=\ref[src];custom_heat=1'>Set Heat Messages</a>"
+	. += "(<a href='byond://?src=\ref[src];reset_heat=1'>Reset</A>)"
 	. += "<br>"
 	. += span_bold("Custom Cold Discomfort: ")
-	. += "<a href='?src=\ref[src];custom_cold=1'>Set Cold Messages</a>"
-	. += "(<a href='?src=\ref[src];reset_cold=1'>Reset</A>)"
+	. += "<a href='byond://?src=\ref[src];custom_cold=1'>Set Cold Messages</a>"
+	. += "(<a href='byond://?src=\ref[src];reset_cold=1'>Reset</A>)"
 	. += "<br>"
 
 /datum/category_item/player_setup_item/vore/traits/OnTopic(var/href,var/list/href_list, var/mob/user)

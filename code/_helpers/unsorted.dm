@@ -1199,7 +1199,7 @@ var/list/WALLITEMS = list(
 /proc/topic_link(var/datum/D, var/arglist, var/content)
 	if(istype(arglist,/list))
 		arglist = list2params(arglist)
-	return "<a href='?src=\ref[D];[arglist]'>[content]</a>"
+	return "<a href='byond://?src=\ref[D];[arglist]'>[content]</a>"
 
 /proc/get_random_colour(var/simple, var/lower=0, var/upper=255)
 	var/colour
@@ -1534,7 +1534,7 @@ GLOBAL_REAL_VAR(list/stack_trace_storage)
 // Note that object refs will be converted to text, as if \ref[thing] was done. To get the ref back on Topic() side, you will need to use locate().
 // Third one is the text that will be clickable.
 /proc/href(href_src, list/href_params, href_text)
-	return "<a href='?src=\ref[href_src];[list2params(href_params)]'>[href_text]</a>"
+	return "<a href='byond://?src=\ref[href_src];[list2params(href_params)]'>[href_text]</a>"
 
 // This is a helper for anything that wants to render the map in TGUI
 /proc/get_tgui_plane_masters()

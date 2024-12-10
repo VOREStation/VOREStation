@@ -75,24 +75,24 @@
 		testing("LANGSANI: Truncated [pref.client]'s character [pref.real_name || "-name not yet loaded-"] language list because it was too long (len: [pref.alternate_languages.len], allowed: [S.num_alternate_languages])")
 		pref.alternate_languages.len = (S.num_alternate_languages + pref.extra_languages) // Truncate to allowed length
 	if(S.language)
-		. += "- [S.language] - <a href='?src=\ref[src];set_custom_key=[S.language]'>Set Custom Key</a><br>"
+		. += "- [S.language] - <a href='byond://?src=\ref[src];set_custom_key=[S.language]'>Set Custom Key</a><br>"
 	if(S.default_language && S.default_language != S.language)
-		. += "- [S.default_language] - <a href='?src=\ref[src];set_custom_key=[S.default_language]'>Set Custom Key</a><br>"
+		. += "- [S.default_language] - <a href='byond://?src=\ref[src];set_custom_key=[S.default_language]'>Set Custom Key</a><br>"
 	if(S.num_alternate_languages + pref.extra_languages)
 		if(pref.alternate_languages.len)
 			for(var/i = 1 to pref.alternate_languages.len)
 				var/lang = pref.alternate_languages[i]
-				. += "- [lang] - <a href='?src=\ref[src];remove_language=[i]'>remove</a> - <a href='?src=\ref[src];set_custom_key=[lang]'>Set Custom Key</a><br>"
+				. += "- [lang] - <a href='byond://?src=\ref[src];remove_language=[i]'>remove</a> - <a href='byond://?src=\ref[src];set_custom_key=[lang]'>Set Custom Key</a><br>"
 
 		if(pref.alternate_languages.len < (S.num_alternate_languages + pref.extra_languages))
-			. += "- <a href='?src=\ref[src];add_language=1'>add</a> ([(S.num_alternate_languages + pref.extra_languages) - pref.alternate_languages.len] remaining)<br>"
+			. += "- <a href='byond://?src=\ref[src];add_language=1'>add</a> ([(S.num_alternate_languages + pref.extra_languages) - pref.alternate_languages.len] remaining)<br>"
 	else
 		. += "- [pref.species] cannot choose secondary languages.<br>"
 
 	. += span_bold("Language Keys") + "<br>"
-	. += " [jointext(pref.language_prefixes, " ")] <a href='?src=\ref[src];change_prefix=1'>Change</a> <a href='?src=\ref[src];reset_prefix=1'>Reset</a><br>"
-	. += span_bold("Preferred Language") + " <a href='?src=\ref[src];pref_lang=1'>[pref.preferred_language]</a><br>" // VOREStation Add
-	. += span_bold("Runechat Color") + " <a href='?src=\ref[src];pref_runechat_color=1'>Change Runechat Color</a> [color_square(hex = pref.runechat_color)]"
+	. += " [jointext(pref.language_prefixes, " ")] <a href='byond://?src=\ref[src];change_prefix=1'>Change</a> <a href='byond://?src=\ref[src];reset_prefix=1'>Reset</a><br>"
+	. += span_bold("Preferred Language") + " <a href='byond://?src=\ref[src];pref_lang=1'>[pref.preferred_language]</a><br>" // VOREStation Add
+	. += span_bold("Runechat Color") + " <a href='byond://?src=\ref[src];pref_runechat_color=1'>Change Runechat Color</a> [color_square(hex = pref.runechat_color)]"
 
 /datum/category_item/player_setup_item/general/language/OnTopic(var/href,var/list/href_list, var/mob/user)
 	if(href_list["remove_language"])

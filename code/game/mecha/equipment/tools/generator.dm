@@ -67,7 +67,7 @@
 /obj/item/mecha_parts/mecha_equipment/generator/get_equip_info()
 	var/output = ..()
 	if(output)
-		return "[output] \[[fuel]: [round(fuel.get_amount()*fuel.perunit,0.1)] cm<sup>3</sup>\] - <a href='?src=\ref[src];toggle=1'>[(datum_flags & DF_ISPROCESSING)?"Dea":"A"]ctivate</a>"
+		return "[output] \[[fuel]: [round(fuel.get_amount()*fuel.perunit,0.1)] cm<sup>3</sup>\] - <a href='byond://?src=\ref[src];toggle=1'>[(datum_flags & DF_ISPROCESSING)?"Dea":"A"]ctivate</a>"
 	return
 
 /obj/item/mecha_parts/mecha_equipment/generator/action(target)

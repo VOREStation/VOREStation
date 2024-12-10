@@ -49,7 +49,7 @@ var/list/ghost_traps
 		if(pref_check && !(O.client.prefs.be_special & pref_check))
 			continue
 		if(O.client)
-			to_chat(O, "[request_string]<a href='?src=\ref[src];candidate=\ref[O];target=\ref[target]'>Click here</a> if you wish to play as this option.")
+			to_chat(O, "[request_string]<a href='byond://?src=\ref[src];candidate=\ref[O];target=\ref[target]'>Click here</a> if you wish to play as this option.")
 
 // Handles a response to request_player().
 /datum/ghosttrap/Topic(href, href_list)

@@ -133,7 +133,7 @@
 
 	var/out = span_bold("[name]") + "[(current&&(current.real_name!=name))?" (as [current.real_name])":""]<br>"
 	out += "Mind currently owned by key: [key] [active?"(synced)":"(not synced)"]<br>"
-	out += "Assigned role: [assigned_role]. <a href='?src=\ref[src];[HrefToken()];role_edit=1'>Edit</a><br>"
+	out += "Assigned role: [assigned_role]. <a href='byond://?src=\ref[src];[HrefToken()];role_edit=1'>Edit</a><br>"
 	out += "<hr>"
 	out += "Factions and special roles:<br><table>"
 	for(var/antag_type in all_antag_types)
@@ -150,15 +150,15 @@
 				out += "([span_green("complete")])"
 			else
 				out += "([span_red("incomplete")])"
-			out += " <a href='?src=\ref[src];[HrefToken()];obj_completed=\ref[O]'>\[toggle\]</a>"
-			out += " <a href='?src=\ref[src];[HrefToken()];obj_delete=\ref[O]'>\[remove\]</a><br>"
+			out += " <a href='byond://?src=\ref[src];[HrefToken()];obj_completed=\ref[O]'>\[toggle\]</a>"
+			out += " <a href='byond://?src=\ref[src];[HrefToken()];obj_delete=\ref[O]'>\[remove\]</a><br>"
 			num++
-		out += "<br><a href='?src=\ref[src];[HrefToken()];obj_announce=1'>\[announce objectives\]</a>"
+		out += "<br><a href='byond://?src=\ref[src];[HrefToken()];obj_announce=1'>\[announce objectives\]</a>"
 
 	else
 		out += "None."
-	out += "<br><a href='?src=\ref[src];[HrefToken()];obj_add=1'>\[add\]</a><br><br>"
-	out += span_bold("Ambitions:") + " [ambitions ? ambitions : "None"] <a href='?src=\ref[src];[HrefToken()];amb_edit=\ref[src]'>\[edit\]</a></br>"
+	out += "<br><a href='byond://?src=\ref[src];[HrefToken()];obj_add=1'>\[add\]</a><br><br>"
+	out += span_bold("Ambitions:") + " [ambitions ? ambitions : "None"] <a href='byond://?src=\ref[src];[HrefToken()];amb_edit=\ref[src]'>\[edit\]</a></br>"
 	usr << browse(out, "window=edit_memory[src]")
 
 /datum/mind/Topic(href, href_list)

@@ -39,7 +39,7 @@
 	if(emped)
 		t += "ERROR"
 	else
-		t += "<BR><A href='?src=\ref[src];tag=1'>Set Tag</A> "
+		t += "<BR><A href='byond://?src=\ref[src];tag=1'>Set Tag</A> "
 		t += "<BR>Tag: [gpstag]"
 
 		for(var/obj/item/gps/advanced/G in GPS_list)

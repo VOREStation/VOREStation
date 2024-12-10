@@ -28,15 +28,15 @@ var/global/list/uplink_locations = list("PDA", "Headset", "None")
 	character.antag_vis = pref.antag_vis
 
 /datum/category_item/player_setup_item/antagonism/basic/content(var/mob/user)
-	. += "Faction: <a href='?src=\ref[src];antagfaction=1'>[pref.antag_faction]</a><br/>"
-	. += "Visibility: <a href='?src=\ref[src];antagvis=1'>[pref.antag_vis]</a><br/>"
-	. +=span_bold("Uplink Type : <a href='?src=\ref[src];antagtask=1'>[pref.uplinklocation]</a>")
+	. += "Faction: <a href='byond://?src=\ref[src];antagfaction=1'>[pref.antag_faction]</a><br/>"
+	. += "Visibility: <a href='byond://?src=\ref[src];antagvis=1'>[pref.antag_vis]</a><br/>"
+	. +=span_bold("Uplink Type : <a href='byond://?src=\ref[src];antagtask=1'>[pref.uplinklocation]</a>")
 	. +="<br>"
 	. +=span_bold("Exploitable information:") + "<br>"
 	if(jobban_isbanned(user, "Records"))
 		. += span_bold("You are banned from using character records.") + "<br>"
 	else
-		. +="<a href='?src=\ref[src];exploitable_record=1'>[TextPreview(pref.exploit_record,40)]</a><br>"
+		. +="<a href='byond://?src=\ref[src];exploitable_record=1'>[TextPreview(pref.exploit_record,40)]</a><br>"
 
 /datum/category_item/player_setup_item/antagonism/basic/OnTopic(var/href,var/list/href_list, var/mob/user)
 	if (href_list["antagtask"])

@@ -119,16 +119,16 @@
 
 			var/dat = text(span_bold("[name]") + "<br>")
 			if (active)
-				dat += text("Generator: <A href='?src=\ref[src];action=disable'>On</A><br>")
+				dat += text("Generator: <A href='byond://?src=\ref[src];action=disable'>On</A><br>")
 			else
-				dat += text("Generator: <A href='?src=\ref[src];action=enable'>Off</A><br>")
+				dat += text("Generator: <A href='byond://?src=\ref[src];action=enable'>Off</A><br>")
 			if(P)
 				dat += text("Currently loaded phoron tank: [P.air_contents.phoron]<br>")
 			else
 				dat += text("No phoron tank currently loaded.<br>")
-			dat += text("Power output: <A href='?src=\ref[src];action=lower_power'>-</A> [power_gen * power_output] <A href='?src=\ref[src];action=higher_power'>+</A><br>")
+			dat += text("Power output: <A href='byond://?src=\ref[src];action=lower_power'>-</A> [power_gen * power_output] <A href='byond://?src=\ref[src];action=higher_power'>+</A><br>")
 			dat += text("Heat: [heat]<br>")
-			dat += "<br><A href='?src=\ref[src];action=close'>Close</A>"
+			dat += "<br><A href='byond://?src=\ref[src];action=close'>Close</A>"
 			user << browse("[dat]", "window=port_gen")
 
 	Topic(href, href_list)

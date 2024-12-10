@@ -46,7 +46,7 @@ SUBSYSTEM_DEF(inactivity)
 						information = " while an AI."
 
 			var/adminlinks
-			adminlinks = " (<A HREF='?_src_=holder;[HrefToken()];adminplayerobservecoodjump=1;X=[C.mob.x];Y=[C.mob.y];Z=[C.mob.z]'>JMP</a>|<A HREF='?_src_=holder;[HrefToken()];cryoplayer=\ref[C.mob]'>CRYO</a>)"
+			adminlinks = " (<A href='byond://?_src_=holder;[HrefToken()];adminplayerobservecoodjump=1;X=[C.mob.x];Y=[C.mob.y];Z=[C.mob.z]'>JMP</a>|<A href='byond://?_src_=holder;[HrefToken()];cryoplayer=\ref[C.mob]'>CRYO</a>)"
 
 			log_and_message_admins("being kicked for AFK[information][adminlinks]", C.mob)
 

@@ -132,7 +132,7 @@
 				trashman.reset_view(src)
 				START_PROCESSING(SSobj, src)
 				user.visible_message(span_warning("[hound.name]'s [src.name] groans lightly as [trashman] slips inside."), span_notice("Your [src.name] groans lightly as [trashman] slips inside."))
-				log_admin("[key_name(hound)] has eaten [key_name(patient)] with a cyborg belly. ([hound ? "<a href='?_src_=holder;[HrefToken()];adminplayerobservecoodjump=1;X=[hound.x];Y=[hound.y];Z=[hound.z]'>JMP</a>" : "null"])")
+				log_admin("[key_name(hound)] has eaten [key_name(patient)] with a cyborg belly. ([hound ? "<a href='byond://?_src_=holder;[HrefToken()];adminplayerobservecoodjump=1;X=[hound.x];Y=[hound.y];Z=[hound.z]'>JMP</a>" : "null"])")
 				playsound(src, gulpsound, vol = 100, vary = 1, falloff = 0.1, preference = /datum/preference/toggle/eating_noises)
 				if(delivery)
 					if(islist(deliverylists[delivery_tag]))
@@ -163,7 +163,7 @@
 				update_patient()
 				START_PROCESSING(SSobj, src)
 				user.visible_message(span_warning("[hound.name]'s [src.name] lights up as [H.name] slips inside."), span_notice("Your [src] lights up as [H] slips inside. Life support functions engaged."))
-				log_admin("[key_name(hound)] has eaten [key_name(patient)] with a cyborg belly. ([hound ? "<a href='?_src_=holder;[HrefToken()];adminplayerobservecoodjump=1;X=[hound.x];Y=[hound.y];Z=[hound.z]'>JMP</a>" : "null"])")
+				log_admin("[key_name(hound)] has eaten [key_name(patient)] with a cyborg belly. ([hound ? "<a href='byond://?_src_=holder;[HrefToken()];adminplayerobservecoodjump=1;X=[hound.x];Y=[hound.y];Z=[hound.z]'>JMP</a>" : "null"])")
 				playsound(src, gulpsound, vol = 100, vary = 1, falloff = 0.1, preference = /datum/preference/toggle/eating_noises)
 
 /obj/item/dogborg/sleeper/proc/ingest_atom(var/atom/ingesting)
@@ -250,7 +250,7 @@
 			for(var/re in injection_chems)
 				var/datum/reagent/C = SSchemistry.chemical_reagents[re]
 				if(C)
-					dat += "<A href='?src=\ref[src];inject=[C.id]'>Inject [C.name]</A><BR>"
+					dat += "<A href='byond://?src=\ref[src];inject=[C.id]'>Inject [C.name]</A><BR>"
 		else
 			for(var/re in injection_chems)
 				var/datum/reagent/C = SSchemistry.chemical_reagents[re]
@@ -259,21 +259,21 @@
 
 	dat += "<h3>[name] Status</h3>"
 	dat += "<div style='display: flex; flex-wrap: wrap; flex-direction: row;'>"
-	dat += "<A id='refbutton' href='?src=\ref[src];refresh=1'>Refresh</A>"
-	dat += "<A href='?src=\ref[src];eject=1'>Eject All</A>"
-	dat += "<A href='?src=\ref[src];port=1'>Eject port: [eject_port]</A>"
-	dat += "<A href='?src=\ref[src];ingest=1'>Vore All</A>" //might as well make it obvious
+	dat += "<A id='refbutton' href='byond://?src=\ref[src];refresh=1'>Refresh</A>"
+	dat += "<A href='byond://?src=\ref[src];eject=1'>Eject All</A>"
+	dat += "<A href='byond://?src=\ref[src];port=1'>Eject port: [eject_port]</A>"
+	dat += "<A href='byond://?src=\ref[src];ingest=1'>Vore All</A>" //might as well make it obvious
 	if(!cleaning)
-		dat += "<A href='?src=\ref[src];clean=1'>Self-Clean</A>"
+		dat += "<A href='byond://?src=\ref[src];clean=1'>Self-Clean</A>"
 	else
 		dat += span_linkOff("Self-Clean")
 	if(medsensor)
-		dat += "<A href='?src=\ref[src];analyze=1'>Analyze Patient</A>"
+		dat += "<A href='byond://?src=\ref[src];analyze=1'>Analyze Patient</A>"
 	if(delivery)
 		dat += "<BR><h3>Cargo Compartment</h3><BR>"
-		dat += "<A href='?src=\ref[src];deliveryslot=1'>Active Slot: [delivery_tag]</A>"
+		dat += "<A href='byond://?src=\ref[src];deliveryslot=1'>Active Slot: [delivery_tag]</A>"
 		if(islist(deliverylists[delivery_tag]))
-			dat += "<A href='?src=\ref[src];slot_eject=1'>Eject Slot</A>"
+			dat += "<A href='byond://?src=\ref[src];slot_eject=1'>Eject Slot</A>"
 	dat += "</div>"
 	dat += "<div class='statusDisplay'>"
 
@@ -296,7 +296,7 @@
 		dat += "<font color='red'>([jointext(contents - (deliveryslot_1 + deliveryslot_2 + deliveryslot_3),", ")])</font><BR><BR>"
 
 	if(analyzer && !synced)
-		dat += "<A href='?src=\ref[src];sync=1'>Sync Files</A><BR>"
+		dat += "<A href='byond://?src=\ref[src];sync=1'>Sync Files</A><BR>"
 
 	//Cleaning and there are still un-preserved items
 	if(cleaning && length(contents - items_preserved))
@@ -597,7 +597,7 @@
 				drain(-25 * damage_gain) //25*total loss as with voreorgan stats.
 				if(T.stat == DEAD)
 					if(ishuman(T))
-						log_admin("[key_name(hound)] has digested [key_name(T)] with a cyborg belly. ([hound ? "<a href='?_src_=holder;[HrefToken()];adminplayerobservecoodjump=1;X=[hound.x];Y=[hound.y];Z=[hound.z]'>JMP</a>" : "null"])")
+						log_admin("[key_name(hound)] has digested [key_name(T)] with a cyborg belly. ([hound ? "<a href='byond://?_src_=holder;[HrefToken()];adminplayerobservecoodjump=1;X=[hound.x];Y=[hound.y];Z=[hound.z]'>JMP</a>" : "null"])")
 					to_chat(hound, span_notice("You feel your belly slowly churn around [T], breaking them down into a soft slurry to be used as power for your systems."))
 					to_chat(T, span_notice("You feel [hound]'s belly slowly churn around your form, breaking you down into a soft slurry to be used as power for [hound]'s systems."))
 					var/deathsound = pick(
