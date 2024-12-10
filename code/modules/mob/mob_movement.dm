@@ -353,6 +353,7 @@
 			var/area/A = T.loc	//RS Port #658
 			if(!T)
 				return
+			var/area/A = T.loc	//RS Port #658
 			if(mob.check_holy(T))
 				to_chat(mob, span_warning("You cannot get past holy grounds while you are in this plane of existence!"))
 				return

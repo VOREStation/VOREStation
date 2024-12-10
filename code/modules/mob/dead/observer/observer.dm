@@ -13,6 +13,9 @@
 	canmove = 0
 	blinded = 0
 	anchored = TRUE	//  don't get pushed around
+	var/list/visibleChunks = list()
+	var/datum/visualnet/visualnet
+	var/use_static = TRUE
 
 	var/can_reenter_corpse
 	var/datum/hud/living/carbon/hud = null // hud
@@ -140,6 +143,13 @@
 	animate(pixel_y = default_pixel_y, time = 10, loop = -1)
 	observer_mob_list += src
 	..()
+	visualnet = ghostnet
+
+/mob/observer/dead/Moved(atom/old_loc, direction, forced)
+	. = ..()
+	use_static = !(check_rights(R_ADMIN|R_FUN|R_EVENT|R_SERVER, 0, src) || (client && client.buildmode))
+	if(visualnet && use_static)
+		visualnet.visibility(src, client)
 
 /mob/observer/dead/Topic(href, href_list)
 	if (href_list["track"])
