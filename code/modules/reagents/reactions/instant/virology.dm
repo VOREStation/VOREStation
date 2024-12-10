@@ -153,7 +153,7 @@
 			D.Devolve()
 
 /decl/chemical_reaction/instant/antibodies
-	name = "Antibodies"
+	name = REAGENT_ANTIBODIES
 	id = "antibodiesmix"
 	result = REAGENT_ID_ANTIBODIES
 	required_reagents = list(REAGENT_ID_VACCINE)
