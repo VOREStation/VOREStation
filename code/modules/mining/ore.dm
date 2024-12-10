@@ -14,7 +14,7 @@
 	material = ORE_URANIUM
 
 /obj/item/ore/iron
-	name = "hematite"
+	name = ORE_HEMATITE
 	icon_state = "ore_iron"
 	origin_tech = list(TECH_MATERIAL = 1)
 	material = ORE_HEMATITE
@@ -32,7 +32,7 @@
 	material = ORE_MARBLE
 
 /obj/item/ore/glass
-	name = "sand"
+	name = ORE_SAND
 	icon_state = "ore_glass"
 	origin_tech = list(TECH_MATERIAL = 1)
 	material = ORE_SAND
