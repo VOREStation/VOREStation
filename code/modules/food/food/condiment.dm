@@ -107,7 +107,7 @@
 				icon_state = "oliveoil"
 				center_of_mass = list("x"=16, "y"=6)
 			if(REAGENT_ID_SUGAR)
-				name = "Sugar"
+				name = REAGENT_SUGAR
 				desc = "Tastey space sugar!"
 				center_of_mass = list("x"=16, "y"=6)
 			if(REAGENT_ID_PEANUTBUTTER)
