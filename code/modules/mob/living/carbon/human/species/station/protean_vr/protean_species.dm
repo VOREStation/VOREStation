@@ -242,7 +242,7 @@
 	if(OurRig)
 		if(OurRig.dead)
 			return
-	OurRig.dead = 1
+		OurRig.dead = 1
 	var/mob/temp = H
 	if(H.temporary_form)
 		temp = H.temporary_form
