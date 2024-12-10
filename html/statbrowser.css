@@ -188,6 +188,8 @@ body.dark {
 	scrollbar-track-color: #1c1c1c;
 	scrollbar-arrow-color: #929292;
 	scrollbar-shadow-color: #3b3b3b;
+	/* Edge */
+	scrollbar-color: #3b3b3b #1c1c1c;
 }
 
 .dark a {
