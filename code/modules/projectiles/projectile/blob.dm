@@ -9,7 +9,7 @@
 	fire_sound = 'sound/effects/slime_squish.ogg'
 	var/splatter = FALSE			// Will this make a cloud of reagents?
 	var/splatter_volume = 5			// The volume of its chemical container, for said cloud of reagents.
-	var/list/my_chems = list("mold")
+	var/list/my_chems = list(REAGENT_ID_MOLD)
 
 /obj/item/projectile/energy/blob/splattering
 	splatter = TRUE
@@ -45,7 +45,7 @@
 /obj/item/projectile/energy/blob/toxic
 	damage_type = TOX
 	check_armour = "bio"
-	my_chems = list("amatoxin")
+	my_chems = list(REAGENT_ID_AMATOXIN)
 
 /obj/item/projectile/energy/blob/toxic/splattering
 	splatter = TRUE
@@ -53,7 +53,7 @@
 /obj/item/projectile/energy/blob/acid
 	damage_type = BURN
 	check_armour = "bio"
-	my_chems = list("sacid", "mold")
+	my_chems = list(REAGENT_ID_SACID, REAGENT_ID_MOLD)
 
 /obj/item/projectile/energy/blob/acid/splattering
 	splatter = TRUE
@@ -61,10 +61,10 @@
 /obj/item/projectile/energy/blob/combustible
 	splatter = TRUE
 	flammability = 0.25
-	my_chems = list("fuel", "mold")
+	my_chems = list(REAGENT_ID_FUEL, REAGENT_ID_MOLD)
 
 /obj/item/projectile/energy/blob/freezing
-	my_chems = list("frostoil")
+	my_chems = list(REAGENT_ID_FROSTOIL)
 	modifier_type_to_apply = /datum/modifier/chilled
 	modifier_duration = 1 MINUTE
 

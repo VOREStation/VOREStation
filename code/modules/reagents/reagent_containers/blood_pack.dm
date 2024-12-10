@@ -27,7 +27,7 @@
 	var/label_text = ""
 
 	var/blood_type = null
-	var/reag_id = "blood"
+	var/reag_id = REAGENT_ID_BLOOD
 
 /obj/item/reagent_containers/blood/Initialize()
 	. = ..()
@@ -98,11 +98,11 @@
 
 /obj/item/reagent_containers/blood/synthplas
 	blood_type = "O-"
-	reag_id = "synthblood_dilute"
+	reag_id = REAGENT_ID_SYNTHBLOOD_DILUTE
 
 /obj/item/reagent_containers/blood/synthblood
 	blood_type = "O-"
-	reag_id = "synthblood"
+	reag_id = REAGENT_ID_SYNTHBLOOD
 
 /obj/item/reagent_containers/blood/empty
 	name = "Empty BloodPack"

@@ -27,7 +27,7 @@
 	health = 175
 
 	poison_per_bite = 5
-	poison_type = "cryotoxin"
+	poison_type = REAGENT_ID_CRYOTOXIN
 	heat_resist = -0.50
 	cold_resist = 0.75
 

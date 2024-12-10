@@ -164,8 +164,8 @@
 
 				//Numbing flag
 				if(mode_flags & DM_FLAG_NUMBING)
-					if(H.bloodstr.get_reagent_amount("numbenzyme") < 2)
-						H.bloodstr.add_reagent("numbenzyme",4)
+					if(H.bloodstr.get_reagent_amount(REAGENT_ID_NUMBENZYME) < 2)
+						H.bloodstr.add_reagent(REAGENT_ID_NUMBENZYME,4)
 
 				//Thickbelly flag
 				if((mode_flags & DM_FLAG_THICKBELLY) && !H.muffled)

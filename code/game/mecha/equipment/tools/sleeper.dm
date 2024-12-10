@@ -236,8 +236,8 @@
 	M.Paralyse(2)
 	M.Weaken(2)
 	M.Stun(2)
-	if(M.reagents.get_reagent_amount("inaprovaline") < 5)
-		M.reagents.add_reagent("inaprovaline", 5)
+	if(M.reagents.get_reagent_amount(REAGENT_ID_INAPROVALINE) < 5)
+		M.reagents.add_reagent(REAGENT_ID_INAPROVALINE, 5)
 	chassis.use_power(energy_drain)
 	update_equip_info()
 	return

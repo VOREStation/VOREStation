@@ -2,12 +2,12 @@
 //Vore Originals
 
 /datum/seed/size
-	name = "microm"
+	name = PLANT_MICROM
 	seed_name = "Shrinking Mushroom"
 	display_name = "Shrinking mushroom trees"
-	mutants = list("megam")
-	kitchen_tag = "microm"
-	chems = list("microcillin" = list(1,20))
+	mutants = list(PLANT_MEGAM)
+	kitchen_tag = PLANT_MICROM
+	chems = list(REAGENT_ID_MICROCILLIN = list(1,20))
 
 /datum/seed/size/New()
 	..()
@@ -22,12 +22,12 @@
 
 
 /datum/seed/size/megam
-	name = "megam"
+	name = PLANT_MEGAM
 	seed_name = "Mega Mushroom"
 	display_name = "Mega mushroom trees"
-	mutants = list("microm")
-	kitchen_tag = "megam"
-	chems = list("macrocillin" = list(1,20))
+	mutants = list(PLANT_MICROM)
+	kitchen_tag = PLANT_MEGAM
+	chems = list(REAGENT_ID_MACROCILLIN = list(1,20))
 
 /datum/seed/size/megam/New()
 	..()

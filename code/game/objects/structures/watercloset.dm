@@ -216,7 +216,7 @@
 		mymist = null
 
 	if(on)
-		add_overlay(image('icons/obj/watercloset.dmi', src, "water", MOB_LAYER + 1, dir))
+		add_overlay(image('icons/obj/watercloset.dmi', src, REAGENT_ID_WATER, MOB_LAYER + 1, dir))
 		if(temperature_settings[watertemp] < T20C)
 			return //no mist for cold water
 		if(!ismist)
@@ -265,7 +265,7 @@
 				var/mob/living/L = AM
 				process_heat(L)
 	wash_floor()
-	reagents.add_reagent("water", reagents.get_free_space())
+	reagents.add_reagent(REAGENT_ID_WATER, reagents.get_free_space())
 
 /obj/machinery/shower/proc/wash_floor()
 	if(is_washing)
@@ -588,7 +588,7 @@
 
 	var/obj/item/reagent_containers/RG = O
 	if (istype(RG) && RG.is_open_container())
-		RG.reagents.add_reagent("water", min(RG.volume - RG.reagents.total_volume, RG.amount_per_transfer_from_this))
+		RG.reagents.add_reagent(REAGENT_ID_WATER, min(RG.volume - RG.reagents.total_volume, RG.amount_per_transfer_from_this))
 		user.visible_message(span_notice("[user] fills \the [RG] using \the [src]."),span_notice("You fill \the [RG] using \the [src]."))
 		playsound(src, 'sound/effects/sink.ogg', 75, 1)
 		return 1
@@ -612,7 +612,7 @@
 					span_userdanger("[user] was stunned by [TU.his] wet [O]!"))
 				return 1
 	else if(istype(O, /obj/item/mop))
-		O.reagents.add_reagent("water", 5)
+		O.reagents.add_reagent(REAGENT_ID_WATER, 5)
 		to_chat(user, span_notice("You wet \the [O] in \the [src]."))
 		playsound(src, 'sound/effects/slosh.ogg', 25, 1)
 		return

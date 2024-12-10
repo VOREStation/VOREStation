@@ -6,9 +6,9 @@
 	apply_colour = TRUE
 
 /obj/item/stack/material/plasteel
-	name = "plasteel"
+	name = MAT_PLASTEEL
 	icon_state = "sheet-reinforced"
-	default_type = "plasteel"
+	default_type = MAT_PLASTEEL
 	no_variants = FALSE
 	apply_colour = TRUE
 
@@ -26,10 +26,10 @@
 		icon_state = "rods"
 
 /obj/item/stack/material/durasteel
-	name = "durasteel"
+	name = MAT_DURASTEEL
 	icon_state = "sheet-reinforced"
 	item_state = "sheet-metal"
-	default_type = "durasteel"
+	default_type = MAT_DURASTEEL
 	no_variants = FALSE
 	apply_colour = TRUE
 
@@ -42,112 +42,112 @@
 	no_variants = FALSE
 
 /obj/item/stack/material/iron
-	name = "iron"
+	name = MAT_IRON
 	icon_state = "sheet-ingot"
-	default_type = "iron"
+	default_type = MAT_IRON
 	apply_colour = 1
 	no_variants = FALSE
 
 /obj/item/stack/material/lead
-	name = "lead"
+	name = MAT_LEAD
 	icon_state = "sheet-ingot"
-	default_type = "lead"
+	default_type = MAT_LEAD
 	apply_colour = 1
 	no_variants = FALSE
 
 /obj/item/stack/material/gold
-	name = "gold"
+	name = MAT_GOLD
 	icon_state = "sheet-ingot"
-	default_type = "gold"
+	default_type = MAT_GOLD
 	no_variants = FALSE
 	apply_colour = TRUE
 
 /obj/item/stack/material/silver
-	name = "silver"
+	name = MAT_SILVER
 	icon_state = "sheet-ingot"
-	default_type = "silver"
+	default_type = MAT_SILVER
 	no_variants = FALSE
 	apply_colour = TRUE
 
 //Valuable resource, cargo can sell it.
 /obj/item/stack/material/platinum
-	name = "platinum"
+	name = MAT_PLATINUM
 	icon_state = "sheet-adamantine"
-	default_type = "platinum"
+	default_type = MAT_PLATINUM
 	no_variants = FALSE
 	apply_colour = TRUE
 
 /obj/item/stack/material/uranium
-	name = "uranium"
+	name = MAT_URANIUM
 	icon_state = "sheet-uranium"
-	default_type = "uranium"
+	default_type = MAT_URANIUM
 	no_variants = FALSE
 
 //Extremely valuable to Research.
 /obj/item/stack/material/mhydrogen
 	name = "metallic hydrogen"
 	icon_state = "sheet-mythril"
-	default_type = "mhydrogen"
+	default_type = MAT_METALHYDROGEN
 	no_variants = FALSE
 
 // Fusion fuel.
 /obj/item/stack/material/deuterium
-	name = "deuterium"
+	name = MAT_DEUTERIUM
 	icon_state = "sheet-puck"
-	default_type = "deuterium"
+	default_type = MAT_DEUTERIUM
 	apply_colour = 1
 	no_variants = FALSE
 
 //Fuel for MRSPACMAN generator.
 /obj/item/stack/material/tritium
-	name = "tritium"
+	name = MAT_TRITIUM
 	icon_state = "sheet-puck"
-	default_type = "tritium"
+	default_type = MAT_TRITIUM
 	apply_colour = TRUE
 	no_variants = FALSE
 
 /obj/item/stack/material/osmium
-	name = "osmium"
+	name = MAT_OSMIUM
 	icon_state = "sheet-ingot"
-	default_type = "osmium"
+	default_type = MAT_OSMIUM
 	apply_colour = 1
 	no_variants = FALSE
 
 /obj/item/stack/material/graphite
-	name = "graphite"
+	name = MAT_GRAPHITE
 	icon_state = "sheet-puck"
 	default_type = MAT_GRAPHITE
 	apply_colour = 1
 	no_variants = FALSE
 
 /obj/item/stack/material/bronze
-	name = "bronze"
+	name = MAT_BRONZE
 	icon_state = "sheet-ingot"
 	singular_name = "bronze ingot"
-	default_type = "bronze"
+	default_type = MAT_BRONZE
 	apply_colour = 1
 	no_variants = FALSE
 
 /obj/item/stack/material/tin
-	name = "tin"
+	name = MAT_TIN
 	icon_state = "sheet-ingot"
 	singular_name = "tin ingot"
-	default_type = "tin"
+	default_type = MAT_TIN
 	apply_colour = 1
 	no_variants = FALSE
 
 /obj/item/stack/material/copper
-	name = "copper"
+	name = MAT_COPPER
 	icon_state = "sheet-ingot"
 	singular_name = "copper ingot"
-	default_type = "copper"
+	default_type = MAT_COPPER
 	apply_colour = 1
 	no_variants = FALSE
 
 /obj/item/stack/material/aluminium
-	name = "aluminium"
+	name = MAT_ALUMINIUM
 	icon_state = "sheet-ingot"
 	singular_name = "aluminium ingot"
-	default_type = "aluminium"
+	default_type = MAT_ALUMINIUM
 	apply_colour = 1
 	no_variants = FALSE

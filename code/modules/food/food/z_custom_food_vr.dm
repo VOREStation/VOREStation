@@ -22,7 +22,7 @@ var/global/ingredientLimit = 20
 	. = ..()
 	topping = image(icon,,"[initial(icon_state)]_top")
 	filling = image(icon,,"[initial(icon_state)]_filling")
-	src.reagents.add_reagent("nutriment",3)
+	src.reagents.add_reagent(REAGENT_ID_NUTRIMENT,3)
 	src.updateName()
 	return
 

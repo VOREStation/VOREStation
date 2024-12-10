@@ -43,8 +43,8 @@
 
 	gluttonous = 1
 
-	breath_type = "phoron"
-	poison_type = "oxygen"
+	breath_type = GAS_PHORON
+	poison_type = GAS_O2
 	ideal_air_type = /datum/gas_mixture/belly_air/vox
 	siemens_coefficient = 0.2
 

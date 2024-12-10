@@ -282,10 +282,10 @@
 
 /obj/item/reagent_containers/glass/beaker/cryoxadone
 	name = "beaker (cryoxadone)"
-	prefill = list("cryoxadone" = 30)
+	prefill = list(REAGENT_ID_CRYOXADONE = 30)
 
 /obj/item/reagent_containers/glass/beaker/sulphuric
-	prefill = list("sacid" = 60)
+	prefill = list(REAGENT_ID_SACID = 60)
 
 /obj/item/reagent_containers/glass/beaker/stopperedbottle
 	name = "stoppered bottle"
