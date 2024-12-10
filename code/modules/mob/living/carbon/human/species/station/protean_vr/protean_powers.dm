@@ -314,7 +314,7 @@
 ////
 //	Rig Transform
 ////
-/mob/living/carbon/human/proc/nano_rig_transform(var/forced)
+/mob/living/carbon/human/proc/nano_rig_transform(var/forced, var/devour = FALSE)
 	set name = "Modify Form - Hardsuit"
 	set desc = "Allows a protean to retract its mass into its hardsuit module at will."
 	//set category = "Abilities.Protean"
@@ -337,14 +337,15 @@
 			var/mob/living/simple_mob/protean_blob/P = temporary_form
 			if(S.OurRig) //Do we even have a RIG?
 				if(P.loc == S.OurRig)	//we're inside our own RIG
+					var/mob/wearer = S.OurRig.wearer
 					if(ismob(S.OurRig.loc))
 						var/mob/m = S.OurRig.loc
 						m.drop_from_inventory(S.OurRig)
-					if(S.OurRig.wearer) //We're being worn. Engulf em', if prefs align.. otherwise just drop off.
-						var/mob/living/carbon/human/victim = S.OurRig.wearer
-						if(P.can_be_drop_pred && victim.devourable && victim.can_be_drop_prey)
-							if(P.vore_selected)
-								perform_the_nom(P,victim,P,P.vore_selected,1)
+					if(wearer && devour) //We're being worn. Engulf em', if prefs align.. otherwise just drop off.
+						if(P.can_be_drop_pred && wearer.devourable && wearer.can_be_drop_prey && P.vore_selected)
+							perform_the_nom(P,wearer,P,P.vore_selected,1)
+						else
+							to_chat(P, span_vwarning("You can't assimilate your current host."))
 					P.forceMove(get_turf(S.OurRig))
 					S.OurRig.forceMove(src)
 					S.OurRig.myprotean = src
@@ -612,14 +613,7 @@
 			if(!target)
 				to_chat(protie, span_vwarning("You need a host to assimilate."))
 				return
-			if(!protie.can_be_drop_pred || !target.can_be_drop_prey || !target.devourable)
-				to_chat(protie, span_vwarning("You can't assimilate your current host."))
-				return
-			target.drop_from_inventory(S.OurRig)
-			to_chat(protie, span_vnotice("You assimilate your host."))
-			to_chat(target, span_vwarning("You feel yourself sink deeper into the suit!"))
-			target.forceMove(protie.vore_selected)
-			nano_blobform(TRUE)
+			nano_rig_transform(TRUE, TRUE)
 
 /// /// /// A helper to reuse
 /mob/living/proc/nano_get_refactory(obj/item/organ/internal/nano/refactory/R)
