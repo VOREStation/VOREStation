@@ -342,10 +342,9 @@
 						var/mob/m = S.OurRig.loc
 						m.drop_from_inventory(S.OurRig)
 					if(wearer) //We're being worn. Engulf em', if prefs align.. otherwise just drop off.
-						var/mob/living/carbon/human/victim = S.OurRig.wearer
-						if(P.can_be_drop_pred && victim.devourable && victim.can_be_drop_prey)
+						if(P.can_be_drop_pred && wearer.devourable && wearer.can_be_drop_prey)
 							if(P.vore_selected)
-								perform_the_nom(P,victim,P,P.vore_selected,1)
+								perform_the_nom(P,wearer,P,P.vore_selected,1)
 					P.forceMove(get_turf(S.OurRig))
 					S.OurRig.forceMove(src)
 					S.OurRig.myprotean = src
