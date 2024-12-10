@@ -507,7 +507,7 @@
 	if(breath && !isnull(viruses) && prob(10))
 		if((wear_mask && (wear_mask.item_flags & AIRTIGHT)) || (head && (head && (head.item_flags & AIRTIGHT))))
 			return
-		if(wear_mask.permeability_coefficient < 1)
+		if(wear_mask && wear_mask.permeability_coefficient < 1)
 			return
 		for(var/datum/disease/D in GetViruses())
 			if(!D.IsSpreadByAir())
