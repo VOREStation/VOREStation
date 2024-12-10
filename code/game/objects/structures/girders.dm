@@ -363,7 +363,7 @@
 	max_health = 225
 	health = 225
 	cover = 60
-	girder_material = "resin"
+	girder_material = MAT_RESIN
 
 /obj/structure/girder/rcd_values(mob/living/user, obj/item/rcd/the_rcd, passed_mode)
 	var/turf/simulated/T = get_turf(src)

@@ -48,36 +48,36 @@
 #define MINOR_MALEABLE 	1
 #define MIN_MALEABLE	0
 
-var/global/list/xenoChemList = list("mutationtoxin",
-						"psilocybin",
-						"mindbreaker",
-						"impedrezene",
-						"cryptobiolin",
-						"bliss",
-						"chloralhydrate",
-						"stoxin",
-						"mutagen",
-						"lexorin",
-						"pacid",
-						"cyanide",
-						"phoron",
-						"plasticide",
-						"amatoxin",
-						"carbon",
-						"radium",
-						"sacid",
-						"sugar",
-						"kelotane",
-						"dermaline",
-						"anti_toxin",
-						"dexalin",
-						"synaptizine",
-						"alkysine",
-						"imidazoline",
-						"peridaxon",
-						"rezadone",
-						"mutationtoxin",
-						"docilitytoxin")
+var/global/list/xenoChemList = list(REAGENT_ID_MUTATIONTOXIN,
+						REAGENT_ID_PSILOCYBIN,
+						REAGENT_ID_MINDBREAKER,
+						REAGENT_ID_IMPEDREZENE,
+						REAGENT_ID_CRYPTOBIOLIN,
+						REAGENT_ID_BLISS,
+						REAGENT_ID_CHLORALHYDRATE,
+						REAGENT_ID_STOXIN,
+						REAGENT_ID_MUTAGEN,
+						REAGENT_ID_LEXORIN,
+						REAGENT_ID_PACID,
+						REAGENT_ID_CYANIDE,
+						REAGENT_ID_PHORON,
+						REAGENT_ID_PLASTICIDE,
+						REAGENT_ID_AMATOXIN,
+						REAGENT_ID_CARBON,
+						REAGENT_ID_RADIUM,
+						REAGENT_ID_SACID,
+						REAGENT_ID_SUGAR,
+						REAGENT_ID_KELOTANE,
+						REAGENT_ID_DERMALINE,
+						REAGENT_ID_ANTITOXIN,
+						REAGENT_ID_DEXALIN,
+						REAGENT_ID_SYNAPTIZINE,
+						REAGENT_ID_ALKYSINE,
+						REAGENT_ID_IMIDAZOLINE,
+						REAGENT_ID_PERIDAXON,
+						REAGENT_ID_REZADONE,
+						REAGENT_ID_MUTATIONTOXIN,
+						REAGENT_ID_MUTATIONTOXIN)
 
 /datum/xeno/traits
 	var/list/traits = list()
@@ -212,5 +212,3 @@ var/global/list/xenoChemList = list("mutationtoxin",
 	var/genetype	//Label for specifying what gene is used.
 	var/list/values	//What's going to be put into specific traits
 	var/list/chems
-
-

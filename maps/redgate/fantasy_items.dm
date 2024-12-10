@@ -540,7 +540,7 @@ This device records all warnings given and teleport events for admin review in c
 //locked door
 
 /obj/structure/simple_door/dungeon/Initialize(mapload,var/material_name)
-	..(mapload, material_name || "cult")
+	..(mapload, material_name || MAT_CULT)
 
 /obj/structure/simple_door/dungeon/locked
 	locked = TRUE

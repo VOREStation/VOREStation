@@ -115,7 +115,7 @@
 
 /datum/material/glass/phoron
 	name = MAT_PGLASS
-	display_name = "borosilicate glass"
+	display_name = MAT_PGLASS
 	stack_type = /obj/item/stack/material/glass/phoronglass
 	flags = MATERIAL_BRITTLE
 	integrity = 100
@@ -129,7 +129,7 @@
 
 /datum/material/glass/phoron/reinforced
 	name = MAT_RPGLASS
-	display_name = "reinforced borosilicate glass"
+	display_name = MAT_RPGLASS
 	stack_type = /obj/item/stack/material/glass/phoronrglass
 	stack_origin_tech = list(TECH_MATERIAL = 5)
 	window_options = list("One Direction" = 1, "Full Window" = 4)

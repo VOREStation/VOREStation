@@ -1,26 +1,26 @@
 /decl/xgm_gas/oxygen
-	id = "oxygen"
-	name = "Oxygen"
+	id = GAS_O2
+	name = REAGENT_OXYGEN
 	specific_heat = 20	// J/(mol*K)
 	molar_mass = 0.032	// kg/mol
 
 	flags = XGM_GAS_OXIDIZER
 
 /decl/xgm_gas/nitrogen
-	id = "nitrogen"
-	name = "Nitrogen"
+	id = GAS_N2
+	name = REAGENT_NITROGEN
 	specific_heat = 20	// J/(mol*K)
 	molar_mass = 0.028	// kg/mol
 
 /decl/xgm_gas/carbon_dioxide
-	id = "carbon_dioxide"
-	name = "Carbon Dioxide"
+	id = GAS_CO2
+	name = REAGENT_CARBON_DIOXIDE
 	specific_heat = 30	// J/(mol*K)
 	molar_mass = 0.044	// kg/mol
 
 /decl/xgm_gas/phoron
-	id = "phoron"
-	name = "Phoron"
+	id = GAS_PHORON
+	name = REAGENT_ID_PHORON
 
 	//Note that this has a significant impact on TTV yield.
 	//Because it is so high, any leftover phoron soaks up a lot of heat and drops the yield pressure.
@@ -36,16 +36,16 @@
 	flags = XGM_GAS_FUEL | XGM_GAS_CONTAMINANT | XGM_GAS_FUSION_FUEL //R-UST port, adding XGM_GAS_FUSION_FUEL flag.
 
 /decl/xgm_gas/volatile_fuel
-	id = "volatile_fuel"
-	name = "Volatile Fuel"
+	id = GAS_VOLATILE_FUEL
+	name = REAGENT_VOLATILE_FUEL
 	specific_heat = 253	// J/(mol*K)	C8H18 gasoline. Isobaric, but good enough.
 	molar_mass = 0.114	// kg/mol. 		same.
 
 	flags = XGM_GAS_FUEL
 
 /decl/xgm_gas/nitrous_oxide
-	id = "nitrous_oxide"
-	name = "Nitrous Oxide"
+	id = GAS_N2O
+	name = REAGENT_NITROUS_OXIDE
 	specific_heat = 40	// J/(mol*K)
 	molar_mass = 0.044	// kg/mol. N2O
 

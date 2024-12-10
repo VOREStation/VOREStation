@@ -757,9 +757,9 @@ Note that amputating the affected organ does in fact remove the infection from t
 
 		// Internal wounds get worse over time. Low temperatures (cryo) stop them.
 		if(W.internal && owner.bodytemperature >= 170)
-			var/bicardose = owner.reagents.get_reagent_amount("bicaridine")
-			var/inaprovaline = owner.reagents.get_reagent_amount("inaprovaline")
-			var/myeldose = owner.reagents.get_reagent_amount("myelamine")
+			var/bicardose = owner.reagents.get_reagent_amount(REAGENT_ID_BICARIDINE)
+			var/inaprovaline = owner.reagents.get_reagent_amount(REAGENT_ID_INAPROVALINE)
+			var/myeldose = owner.reagents.get_reagent_amount(REAGENT_ID_MYELAMINE)
 			if(!(W.can_autoheal() || (bicardose && inaprovaline) || myeldose))	//bicaridine and inaprovaline stop internal wounds from growing bigger with time, unless it is so small that it is already healing
 				W.open_wound(0.1 * wound_update_accuracy)
 

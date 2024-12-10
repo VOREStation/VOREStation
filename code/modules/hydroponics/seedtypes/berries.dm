@@ -1,11 +1,11 @@
 // Berry plants/variants.
 /datum/seed/berry
-	name = "berries"
+	name = PLANT_BERRIES
 	seed_name = "berry"
 	display_name = "berry bush"
-	kitchen_tag = "berries"
-	mutants = list("glowberries","poisonberries")
-	chems = list("nutriment" = list(1,10), "berryjuice" = list(10,10))
+	kitchen_tag = PLANT_BERRIES
+	mutants = list(PLANT_GLOWBERRIES,PLANT_POISONBERRIES)
+	chems = list(REAGENT_ID_NUTRIMENT = list(1,10), REAGENT_ID_BERRYJUICE = list(10,10))
 
 /datum/seed/berry/New()
 	..()
@@ -22,11 +22,11 @@
 	set_trait(TRAIT_NUTRIENT_CONSUMPTION, 0.15)
 
 /datum/seed/berry/glow
-	name = "glowberries"
+	name = PLANT_GLOWBERRIES
 	seed_name = "glowberry"
 	display_name = "glowberry bush"
 	mutants = null
-	chems = list("nutriment" = list(1,10), "uranium" = list(3,5))
+	chems = list(REAGENT_ID_NUTRIMENT = list(1,10), REAGENT_ID_URANIUM = list(3,5))
 
 /datum/seed/berry/glow/New()
 	..()
@@ -42,12 +42,12 @@
 	set_trait(TRAIT_NUTRIENT_CONSUMPTION, 0.25)
 
 /datum/seed/berry/poison
-	name = "poisonberries"
+	name = PLANT_POISONBERRIES
 	seed_name = "poison berry"
-	kitchen_tag = "poisonberries"
+	kitchen_tag = PLANT_POISONBERRIES
 	display_name = "poison berry bush"
-	mutants = list("deathberries")
-	chems = list("nutriment" = list(1), "toxin" = list(3,5), "poisonberryjuice" = list(10,5))
+	mutants = list(PLANT_DEATHBERRIES)
+	chems = list(REAGENT_ID_NUTRIMENT = list(1), REAGENT_ID_TOXIN = list(3,5), REAGENT_ID_POISONBERRYJUICE = list(10,5))
 
 /datum/seed/berry/poison/New()
 	..()
@@ -56,11 +56,11 @@
 	set_trait(TRAIT_NUTRIENT_CONSUMPTION, 0.25)
 
 /datum/seed/berry/poison/death
-	name = "deathberries"
+	name = PLANT_DEATHBERRIES
 	seed_name = "death berry"
 	display_name = "death berry bush"
 	mutants = null
-	chems = list("nutriment" = list(1), "toxin" = list(3,3), "lexorin" = list(1,5))
+	chems = list(REAGENT_ID_NUTRIMENT = list(1), REAGENT_ID_TOXIN = list(3,3), REAGENT_ID_LEXORIN = list(1,5))
 
 /datum/seed/berry/poison/death/New()
 	..()
@@ -70,11 +70,11 @@
 	set_trait(TRAIT_NUTRIENT_CONSUMPTION, 0.35)
 
 /datum/seed/berry/peppercorn
-	name = "peppercorns"
+	name = PLANT_PEPPERCORNS
 	seed_name = "peppercorn berry"
-	kitchen_tag = "peppercorns"
+	kitchen_tag = PLANT_PEPPERCORNS
 	display_name = "peppercorn bush"
-	chems = list("blackpepper" = list(5,10))
+	chems = list(REAGENT_ID_BLACKPEPPER = list(5,10))
 
 /datum/seed/berry/peppercorn/New()
 	..()

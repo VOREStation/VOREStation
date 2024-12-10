@@ -27,7 +27,7 @@
 				<br>
 				<h1><a name="Foreword">Foreword: A Licensed Technology</a></h1>
 				This message must remain attached to all documentation regarding Nanotrasen Resleeving Technology.<br>
-				All Nanotrasen Resleeving Technology (NRT) is licensed to Nanotrasen by Vey Medical. It should only be used in the ways set forth in this guide.
+				All Nanotrasen Resleeving Technology (NRT) is licensed to Nanotrasen by Vey-Medical. It should only be used in the ways set forth in this guide.
 				Special consideration to the moral and ethical use of this technology should be undertaken before applying it in the field. Make sure you understand the technology fully before using the machinery.<br>
 				<a href="#Contents">Contents</a>
 

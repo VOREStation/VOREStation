@@ -1,10 +1,10 @@
 //Everything else
 /datum/seed/peanuts
-	name = "peanut"
-	seed_name = "peanut"
+	name = PLANT_PEANUT
+	seed_name = PLANT_PEANUT
 	display_name = "peanut vines"
-	kitchen_tag = "peanut"
-	chems = list("nutriment" = list(1,10), "peanutoil" = list(3,10))
+	kitchen_tag = PLANT_PEANUT
+	chems = list(REAGENT_ID_NUTRIMENT = list(1,10), REAGENT_ID_PEANUTOIL = list(3,10))
 
 /datum/seed/peanuts/New()
 	..()

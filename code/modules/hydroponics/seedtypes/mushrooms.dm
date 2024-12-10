@@ -1,13 +1,13 @@
 //Mushrooms/varieties.
 /datum/seed/mushroom
-	name = "mushrooms"
+	name = PLANT_MUSHROOMS
 	seed_name = "chanterelle"
 	seed_noun = "spores"
 	display_name = "chanterelle mushrooms"
-	mutants = list("reishi","amanita","plumphelmet")
-	chems = list("nutriment" = list(1,25))
+	mutants = list(PLANT_REISHI,PLANT_AMANITA,PLANT_PLUMPHELMET)
+	chems = list(REAGENT_ID_NUTRIMENT = list(1,25))
 	splat_type = /obj/effect/plant
-	kitchen_tag = "mushroom"
+	kitchen_tag = PLANT_MUSHROOMS
 
 /datum/seed/mushroom/New()
 	..()
@@ -24,7 +24,7 @@
 	set_trait(TRAIT_LIGHT_TOLERANCE, 6)
 
 /datum/seed/mushroom/mold
-	name = "mold"
+	name = PLANT_MOLD
 	seed_name = "brown mold"
 	display_name = "brown mold"
 	mutants = null
@@ -40,12 +40,12 @@
 	set_trait(TRAIT_PLANT_ICON,"mushroom9")
 
 /datum/seed/mushroom/plump
-	name = "plumphelmet"
+	name = PLANT_PLUMPHELMET
 	seed_name = "plump helmet"
 	display_name = "plump helmet mushrooms"
-	mutants = list("walkingmushroom","towercap")
-	chems = list("nutriment" = list(2,10))
-	kitchen_tag = "plumphelmet"
+	mutants = list("walkingmushroom",PLANT_TOWERCAP)
+	chems = list(REAGENT_ID_NUTRIMENT = list(2,10))
+	kitchen_tag = PLANT_PLUMPHELMET
 
 /datum/seed/mushroom/plump/New()
 	..()
@@ -58,11 +58,11 @@
 	set_trait(TRAIT_PLANT_ICON,"mushroom2")
 
 /datum/seed/mushroom/hallucinogenic
-	name = "reishi"
-	seed_name = "reishi"
-	display_name = "reishi"
-	mutants = list("libertycap","glowshroom")
-	chems = list("nutriment" = list(1,50), "psilocybin" = list(3,5))
+	name = PLANT_REISHI
+	seed_name = PLANT_REISHI
+	display_name = PLANT_REISHI
+	mutants = list(PLANT_LIBERTYCAP,PLANT_GLOWSHROOM)
+	chems = list(REAGENT_ID_NUTRIMENT = list(1,50), REAGENT_ID_PSILOCYBIN = list(3,5))
 
 /datum/seed/mushroom/hallucinogenic/New()
 	..()
@@ -76,11 +76,11 @@
 	set_trait(TRAIT_PLANT_ICON,"mushroom6")
 
 /datum/seed/mushroom/hallucinogenic/strong
-	name = "libertycap"
+	name = PLANT_LIBERTYCAP
 	seed_name = "liberty cap"
 	display_name = "liberty cap mushrooms"
 	mutants = null
-	chems = list("nutriment" = list(1), "stoxin" = list(3,3), "bliss" = list(1,25))
+	chems = list(REAGENT_ID_NUTRIMENT = list(1), REAGENT_ID_STOXIN = list(3,3), REAGENT_ID_BLISS = list(1,25))
 
 /datum/seed/mushroom/hallucinogenic/strong/New()
 	..()
@@ -92,11 +92,11 @@
 	set_trait(TRAIT_PLANT_ICON,"mushroom3")
 
 /datum/seed/mushroom/poison
-	name = "amanita"
+	name = PLANT_AMANITA
 	seed_name = "fly amanita"
 	display_name = "fly amanita mushrooms"
-	mutants = list("destroyingangel","plastic")
-	chems = list("nutriment" = list(1), "amatoxin" = list(3,3), "psilocybin" = list(1,25))
+	mutants = list(PLANT_DESTROYINGANGEL,PLANT_PLASTIC)
+	chems = list(REAGENT_ID_NUTRIMENT = list(1), REAGENT_ID_AMATOXIN = list(3,3), REAGENT_ID_PSILOCYBIN = list(1,25))
 
 /datum/seed/mushroom/poison/New()
 	..()
@@ -110,11 +110,11 @@
 	set_trait(TRAIT_PLANT_ICON,"mushroom4")
 
 /datum/seed/mushroom/poison/death
-	name = "destroyingangel"
+	name = PLANT_DESTROYINGANGEL
 	seed_name = "destroying angel"
 	display_name = "destroying angel mushrooms"
 	mutants = null
-	chems = list("nutriment" = list(1,50), "amatoxin" = list(13,3), "psilocybin" = list(1,25))
+	chems = list(REAGENT_ID_NUTRIMENT = list(1,50), REAGENT_ID_AMATOXIN = list(13,3), REAGENT_ID_PSILOCYBIN = list(1,25))
 
 /datum/seed/mushroom/poison/death/New()
 	..()
@@ -127,11 +127,11 @@
 	set_trait(TRAIT_PLANT_ICON,"mushroom5")
 
 /datum/seed/mushroom/towercap
-	name = "towercap"
+	name = PLANT_TOWERCAP
 	seed_name = "tower cap"
 	display_name = "tower caps"
-	chems = list("woodpulp" = list(10,1))
-	mutants = list("redcap")
+	chems = list(REAGENT_ID_WOODPULP = list(10,1))
+	mutants = list(PLANT_REDCAP)
 	has_item_product = /obj/item/stack/material/log
 
 /datum/seed/mushroom/towercap/New()
@@ -143,10 +143,10 @@
 	set_trait(TRAIT_PLANT_ICON,"mushroom8")
 
 /datum/seed/mushroom/towercap/red
-	name = "redcap"
+	name = PLANT_REDCAP
 	seed_name = "red cap"
 	display_name = "red caps"
-	chems = list("woodpulp" = list(10,1), "tannin" = list(1,10))
+	chems = list(REAGENT_ID_WOODPULP = list(10,1), REAGENT_ID_TANNIN = list(1,10))
 	mutants = null
 	has_item_product = null
 
@@ -155,11 +155,11 @@
 	set_trait(TRAIT_PRODUCT_COLOUR,"#b81414")
 
 /datum/seed/mushroom/glowshroom
-	name = "glowshroom"
-	seed_name = "glowshroom"
+	name = PLANT_GLOWSHROOM
+	seed_name = PLANT_GLOWSHROOM
 	display_name = "glowshrooms"
 	mutants = null
-	chems = list("radium" = list(1,20))
+	chems = list(REAGENT_ID_RADIUM = list(1,20))
 
 /datum/seed/mushroom/glowshroom/New()
 	..()
@@ -175,11 +175,11 @@
 	set_trait(TRAIT_PLANT_ICON,"mushroom7")
 
 /datum/seed/mushroom/plastic
-	name = "plastic"
+	name = PLANT_PLASTIC
 	seed_name = "plastellium"
 	display_name = "plastellium"
 	mutants = null
-	chems = list("plasticide" = list(1,10))
+	chems = list(REAGENT_ID_PLASTICIDE = list(1,10))
 
 /datum/seed/mushroom/plastic/New()
 	..()
@@ -193,11 +193,11 @@
 	set_trait(TRAIT_PLANT_ICON,"mushroom10")
 
 /datum/seed/mushroom/spore
-	name = "sporeshroom"
+	name = PLANT_SPORESHROOM
 	seed_name = "corpellian"
 	display_name = "corpellian"
 	mutants = null
-	chems = list("serotrotium" = list(5,10), "mold" = list(1,10))
+	chems = list(REAGENT_ID_SEROTROTIUM = list(5,10), REAGENT_ID_MOLD = list(1,10))
 
 /datum/seed/mushroom/spore/New()
 	..()

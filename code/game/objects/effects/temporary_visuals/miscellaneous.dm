@@ -105,7 +105,7 @@
 
 /obj/effect/temp_visual/heal
 	name = "healing glow"
-	icon_state = "heal"
+	icon_state = XENO_CHEM_HEAL
 	duration = 15
 
 /obj/effect/temp_visual/heal/Initialize(mapload)

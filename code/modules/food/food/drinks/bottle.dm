@@ -228,7 +228,7 @@
 
 /obj/item/reagent_containers/food/drinks/bottle/gin/Initialize()
 	. = ..()
-	reagents.add_reagent("gin", 100)
+	reagents.add_reagent(REAGENT_ID_GIN, 100)
 
 /obj/item/reagent_containers/food/drinks/bottle/whiskey
 	name = "Uncle Git's Special Reserve"
@@ -238,17 +238,17 @@
 
 /obj/item/reagent_containers/food/drinks/bottle/whiskey/Initialize()
 	. = ..()
-	reagents.add_reagent("whiskey", 100)
+	reagents.add_reagent(REAGENT_ID_WHISKEY, 100)
 
 /obj/item/reagent_containers/food/drinks/bottle/specialwhiskey
-	name = "Special Blend Whiskey"
+	name = REAGENT_SPECIALWHISKEY
 	desc = "Just when you thought regular station whiskey was good... This silky, amber goodness has to come along and ruin everything."
 	icon_state = "whiskeybottle2"
 	center_of_mass = list("x"=16, "y"=3)
 
 /obj/item/reagent_containers/food/drinks/bottle/specialwhiskey/Initialize()
 	. = ..()
-	reagents.add_reagent("specialwhiskey", 100)
+	reagents.add_reagent(REAGENT_ID_SPECIALWHISKEY, 100)
 
 /obj/item/reagent_containers/food/drinks/bottle/vodka
 	name = "Tunguska Triple Distilled"
@@ -258,7 +258,7 @@
 
 /obj/item/reagent_containers/food/drinks/bottle/vodka/Initialize()
 	. = ..()
-	reagents.add_reagent("vodka", 100)
+	reagents.add_reagent(REAGENT_ID_VODKA, 100)
 
 /obj/item/reagent_containers/food/drinks/bottle/tequilla
 	name = "Caccavo Guaranteed Quality Tequilla"
@@ -268,7 +268,7 @@
 
 /obj/item/reagent_containers/food/drinks/bottle/tequilla/Initialize()
 	. = ..()
-	reagents.add_reagent("tequilla", 100)
+	reagents.add_reagent(REAGENT_ID_TEQUILLA, 100)
 
 /obj/item/reagent_containers/food/drinks/bottle/bottleofnothing
 	name = "Bottle of Nothing"
@@ -278,7 +278,7 @@
 
 /obj/item/reagent_containers/food/drinks/bottle/bottleofnothing/Initialize()
 	. = ..()
-	reagents.add_reagent("nothing", 100)
+	reagents.add_reagent(REAGENT_ID_NOTHING, 100)
 
 /obj/item/reagent_containers/food/drinks/bottle/patron
 	name = "Wrapp Artiste Patron"
@@ -288,7 +288,7 @@
 
 /obj/item/reagent_containers/food/drinks/bottle/patron/Initialize()
 	. = ..()
-	reagents.add_reagent("patron", 100)
+	reagents.add_reagent(REAGENT_ID_PATRON, 100)
 
 /obj/item/reagent_containers/food/drinks/bottle/rum
 	name = "Captain Pete's Cuban Spiced Rum"
@@ -298,7 +298,7 @@
 
 /obj/item/reagent_containers/food/drinks/bottle/rum/Initialize()
 	. = ..()
-	reagents.add_reagent("rum", 100)
+	reagents.add_reagent(REAGENT_ID_RUM, 100)
 
 /obj/item/reagent_containers/food/drinks/bottle/holywater
 	name = "Flask of Holy Water"
@@ -308,7 +308,7 @@
 
 /obj/item/reagent_containers/food/drinks/bottle/holywater/Initialize()
 	. = ..()
-	reagents.add_reagent("holywater", 100)
+	reagents.add_reagent(REAGENT_ID_HOLYWATER, 100)
 
 /obj/item/reagent_containers/food/drinks/bottle/vermouth
 	name = "Goldeneye Vermouth"
@@ -318,7 +318,7 @@
 
 /obj/item/reagent_containers/food/drinks/bottle/vermouth/Initialize()
 	. = ..()
-	reagents.add_reagent("vermouth", 100)
+	reagents.add_reagent(REAGENT_ID_VERMOUTH, 100)
 
 /obj/item/reagent_containers/food/drinks/bottle/kahlua
 	name = "Robert Robust's Coffee Liqueur"
@@ -328,7 +328,7 @@
 
 /obj/item/reagent_containers/food/drinks/bottle/kahlua/Initialize()
 	. = ..()
-	reagents.add_reagent("kahlua", 100)
+	reagents.add_reagent(REAGENT_ID_KAHLUA, 100)
 
 /obj/item/reagent_containers/food/drinks/bottle/goldschlager
 	name = "College Girl Goldschlager"
@@ -338,7 +338,7 @@
 
 /obj/item/reagent_containers/food/drinks/bottle/goldschlager/Initialize()
 	. = ..()
-	reagents.add_reagent("goldschlager", 100)
+	reagents.add_reagent(REAGENT_ID_GOLDSCHLAGER, 100)
 
 /obj/item/reagent_containers/food/drinks/bottle/cognac
 	name = "Chateau De Baton Premium Cognac"
@@ -348,7 +348,7 @@
 
 /obj/item/reagent_containers/food/drinks/bottle/cognac/Initialize()
 	. = ..()
-	reagents.add_reagent("cognac", 100)
+	reagents.add_reagent(REAGENT_ID_COGNAC, 100)
 
 /obj/item/reagent_containers/food/drinks/bottle/absinthe
 	name = "Jailbreaker Verte"
@@ -358,7 +358,7 @@
 
 /obj/item/reagent_containers/food/drinks/bottle/absinthe/Initialize()
 	. = ..()
-	reagents.add_reagent("absinthe", 100)
+	reagents.add_reagent(REAGENT_ID_ABSINTHE, 100)
 
 /obj/item/reagent_containers/food/drinks/bottle/melonliquor //MODIFIED ON 04/21/2021
 	name = "Emeraldine Melon Liqueur"
@@ -368,7 +368,7 @@
 
 /obj/item/reagent_containers/food/drinks/bottle/melonliquor/Initialize()
 	. = ..()
-	reagents.add_reagent("melonliquor", 100)
+	reagents.add_reagent(REAGENT_ID_MELONLIQUOR, 100)
 
 /obj/item/reagent_containers/food/drinks/bottle/bluecuracao //MODIFIED ON 04/21/2021
 	name = "Miss Blue Curacao"
@@ -378,17 +378,17 @@
 
 /obj/item/reagent_containers/food/drinks/bottle/bluecuracao/Initialize()
 	. = ..()
-	reagents.add_reagent("bluecuracao", 100)
+	reagents.add_reagent(REAGENT_ID_BLUECURACAO, 100)
 
 /obj/item/reagent_containers/food/drinks/bottle/redeemersbrew
-	name = "Redeemer's Brew"
+	name = REAGENT_UNATHILIQUOR
 	desc = "Just opening the top of this bottle makes you feel a bit tipsy. Not for the faint of heart."
 	icon_state = "redeemersbrew"
 	center_of_mass = list("x"=16, "y"=3)
 
 /obj/item/reagent_containers/food/drinks/bottle/redeemersbrew/Initialize()
 	. = ..()
-	reagents.add_reagent("unathiliquor", 100)
+	reagents.add_reagent(REAGENT_ID_UNATHILIQUOR, 100)
 
 /obj/item/reagent_containers/food/drinks/bottle/peppermintschnapps
 	name = "Dr. Bone's Peppermint Schnapps"
@@ -398,7 +398,7 @@
 
 /obj/item/reagent_containers/food/drinks/bottle/peppermintschnapps/Initialize()
 	. = ..()
-	reagents.add_reagent("schnapps_pep", 100)
+	reagents.add_reagent(REAGENT_ID_SCHNAPPSPEP, 100)
 
 /obj/item/reagent_containers/food/drinks/bottle/peachschnapps
 	name = "Dr. Bone's Peach Schnapps"
@@ -408,7 +408,7 @@
 
 /obj/item/reagent_containers/food/drinks/bottle/peachschnapps/Initialize()
 	. = ..()
-	reagents.add_reagent("schnapps_pea", 100)
+	reagents.add_reagent(REAGENT_ID_SCHNAPPSPEA, 100)
 
 /obj/item/reagent_containers/food/drinks/bottle/lemonadeschnapps
 	name = "Dr. Bone's Lemonade Schnapps"
@@ -418,7 +418,7 @@
 
 /obj/item/reagent_containers/food/drinks/bottle/lemonadeschnapps/Initialize()
 	. = ..()
-	reagents.add_reagent("schnapps_lem", 100)
+	reagents.add_reagent(REAGENT_ID_SCHNAPPSLEM, 100)
 
 /obj/item/reagent_containers/food/drinks/bottle/jager
 	name = "Schusskonig"
@@ -428,7 +428,7 @@
 
 /obj/item/reagent_containers/food/drinks/bottle/jager/Initialize()
 	. = ..()
-	reagents.add_reagent("jager", 100)
+	reagents.add_reagent(REAGENT_ID_JAGER, 100)
 
 /////////////////////////WINES/////////////////////////
 
@@ -440,7 +440,7 @@
 
 /obj/item/reagent_containers/food/drinks/bottle/wine/Initialize()
 	. = ..()
-	reagents.add_reagent("redwine", 100)
+	reagents.add_reagent(REAGENT_ID_REDWINE, 100)
 
 /obj/item/reagent_containers/food/drinks/bottle/whitewine
 	name = "Doublebeard Bearded Special White"
@@ -450,7 +450,7 @@
 
 /obj/item/reagent_containers/food/drinks/bottle/whitewine/Initialize()
 	. = ..()
-	reagents.add_reagent("whitewine", 100)
+	reagents.add_reagent(REAGENT_ID_WHITEWINE, 100)
 
 /obj/item/reagent_containers/food/drinks/bottle/carnoth //anagram of 'ntcahors' where the bottle sprite originated from
 	name = "NanoTrasen Carnoth Red"
@@ -460,7 +460,7 @@
 
 /obj/item/reagent_containers/food/drinks/bottle/carnoth/Initialize()
 	. = ..()
-	reagents.add_reagent("carnoth", 100)
+	reagents.add_reagent(REAGENT_ID_CARNOTH, 100)
 
 /obj/item/reagent_containers/food/drinks/bottle/pwine
 	name = "Warlock's Velvet"
@@ -470,7 +470,7 @@
 
 /obj/item/reagent_containers/food/drinks/bottle/pwine/Initialize()
 	. = ..()
-	reagents.add_reagent("pwine", 100)
+	reagents.add_reagent(REAGENT_ID_PWINE, 100)
 
 /obj/item/reagent_containers/food/drinks/bottle/champagne
 	name = "Gilthari Luxury Champagne"
@@ -480,7 +480,7 @@
 
 /obj/item/reagent_containers/food/drinks/bottle/champagne/Initialize()
 	. = ..()
-	reagents.add_reagent("champagne", 100)
+	reagents.add_reagent(REAGENT_ID_CHAMPAGNE, 100)
 
 /obj/item/reagent_containers/food/drinks/bottle/sake
 	name = "Mono-No-Aware Luxury Sake"
@@ -490,7 +490,7 @@
 
 /obj/item/reagent_containers/food/drinks/bottle/sake/Initialize()
 	. = ..()
-	reagents.add_reagent("sake", 100)
+	reagents.add_reagent(REAGENT_ID_SAKE, 100)
 
 //////////////////////////JUICES AND STUFF///////////////////////
 
@@ -502,7 +502,7 @@
 
 /obj/item/reagent_containers/food/drinks/bottle/cola/Initialize()
 	. = ..()
-	reagents.add_reagent("cola", 100)
+	reagents.add_reagent(REAGENT_ID_COLA, 100)
 
 /obj/item/reagent_containers/food/drinks/bottle/decaf_cola
 	name = "\improper two-liter Space Cola Free"
@@ -512,7 +512,7 @@
 
 /obj/item/reagent_containers/food/drinks/bottle/decaf_cola/Initialize()
 	. = ..()
-	reagents.add_reagent("decafcola", 100)
+	reagents.add_reagent(REAGENT_ID_DECAFCOLA, 100)
 
 /obj/item/reagent_containers/food/drinks/bottle/space_up
 	name = "\improper two-liter Space-Up"
@@ -522,7 +522,7 @@
 
 /obj/item/reagent_containers/food/drinks/bottle/space_up/Initialize()
 	. = ..()
-	reagents.add_reagent("space_up", 100)
+	reagents.add_reagent(REAGENT_ID_SPACEUP, 100)
 
 /obj/item/reagent_containers/food/drinks/bottle/space_mountain_wind
 	name = "\improper two-liter Space Mountain Wind"
@@ -532,7 +532,7 @@
 
 /obj/item/reagent_containers/food/drinks/bottle/space_mountain_wind/Initialize()
 	. = ..()
-	reagents.add_reagent("spacemountainwind", 100)
+	reagents.add_reagent(REAGENT_ID_SPACEMOUNTAINWIND, 100)
 
 /obj/item/reagent_containers/food/drinks/bottle/dr_gibb
 	name = "\improper two-liter Dr. Gibb"
@@ -542,7 +542,7 @@
 
 /obj/item/reagent_containers/food/drinks/bottle/dr_gibb/Initialize()
 	. = ..()
-	reagents.add_reagent("dr_gibb", 100)
+	reagents.add_reagent(REAGENT_ID_DRGIBB, 100)
 
 /obj/item/reagent_containers/food/drinks/bottle/orangejuice
 	name = "Orange Juice"
@@ -554,10 +554,10 @@
 
 /obj/item/reagent_containers/food/drinks/bottle/orangejuice/Initialize()
 	. = ..()
-	reagents.add_reagent("orangejuice", 100)
+	reagents.add_reagent(REAGENT_ID_ORANGEJUICE, 100)
 
 /obj/item/reagent_containers/food/drinks/bottle/applejuice
-	name = "Apple Juice"
+	name = REAGENT_APPLEJUICE
 	desc = "Squeezed, pressed and ground to perfection!"
 	icon_state = "applejuice"
 	item_state = "carton"
@@ -566,7 +566,7 @@
 
 /obj/item/reagent_containers/food/drinks/bottle/applejuice/Initialize()
 	. = ..()
-	reagents.add_reagent("applejuice", 100)
+	reagents.add_reagent(REAGENT_ID_APPLEJUICE, 100)
 
 /obj/item/reagent_containers/food/drinks/bottle/milk
 	name = "Large Milk Carton"
@@ -578,7 +578,7 @@
 
 /obj/item/reagent_containers/food/drinks/bottle/milk/Initialize()
 	. = ..()
-	reagents.add_reagent("milk", 100)
+	reagents.add_reagent(REAGENT_ID_MILK, 100)
 
 /obj/item/reagent_containers/food/drinks/bottle/cream
 	name = "Milk Cream"
@@ -590,10 +590,10 @@
 
 /obj/item/reagent_containers/food/drinks/bottle/cream/Initialize()
 	. = ..()
-	reagents.add_reagent("cream", 100)
+	reagents.add_reagent(REAGENT_ID_CREAM, 100)
 
 /obj/item/reagent_containers/food/drinks/bottle/tomatojuice
-	name = "Tomato Juice"
+	name = REAGENT_TOMATOJUICE
 	desc = "Well, at least it LOOKS like tomato juice. You can't tell with all that redness."
 	icon_state = "tomatojuice"
 	item_state = "carton"
@@ -602,10 +602,10 @@
 
 /obj/item/reagent_containers/food/drinks/bottle/tomatojuice/Initialize()
 	. = ..()
-	reagents.add_reagent("tomatojuice", 100)
+	reagents.add_reagent(REAGENT_ID_TOMATOJUICE, 100)
 
 /obj/item/reagent_containers/food/drinks/bottle/limejuice
-	name = "Lime Juice"
+	name = REAGENT_LIMEJUICE
 	desc = "Sweet-sour goodness."
 	icon_state = "limejuice"
 	item_state = "carton"
@@ -614,10 +614,10 @@
 
 /obj/item/reagent_containers/food/drinks/bottle/limejuice/Initialize()
 	. = ..()
-	reagents.add_reagent("limejuice", 100)
+	reagents.add_reagent(REAGENT_ID_LIMEJUICE, 100)
 
 /obj/item/reagent_containers/food/drinks/bottle/lemonjuice
-	name = "Lemon Juice"
+	name = REAGENT_LEMONJUICE
 	desc = "Sweet-sour goodness. Minus the sweet."
 	icon_state = "lemonjuice"
 	item_state = "carton"
@@ -626,7 +626,7 @@
 
 /obj/item/reagent_containers/food/drinks/bottle/lemonjuice/Initialize()
 	. = ..()
-	reagents.add_reagent("lemonjuice", 100)
+	reagents.add_reagent(REAGENT_ID_LEMONJUICE, 100)
 
 /obj/item/reagent_containers/food/drinks/bottle/grenadine
 	name = "Briar Rose Grenadine Syrup"
@@ -636,7 +636,7 @@
 
 /obj/item/reagent_containers/food/drinks/bottle/grenadine/Initialize()
 	. = ..()
-	reagents.add_reagent("grenadine", 100)
+	reagents.add_reagent(REAGENT_ID_GRENADINE, 100)
 
 /obj/item/reagent_containers/food/drinks/bottle/grapejuice
 	name = "Special Blend Grapejuice"
@@ -646,7 +646,7 @@
 
 /obj/item/reagent_containers/food/drinks/bottle/grapejuice/Initialize()
 	. = ..()
-	reagents.add_reagent("grapejuice", 100)
+	reagents.add_reagent(REAGENT_ID_GRAPEJUICE, 100)
 
 //////////////////////////SMALL BOTTLES///////////////////////
 
@@ -665,7 +665,7 @@
 
 /obj/item/reagent_containers/food/drinks/bottle/small/beer/Initialize()
 	. = ..()
-	reagents.add_reagent("beer", 50)
+	reagents.add_reagent(REAGENT_ID_BEER, 50)
 
 /obj/item/reagent_containers/food/drinks/bottle/small/beer/silverdragon
 	name = "Silver Dragon pilsner"
@@ -687,7 +687,7 @@
 
 /obj/item/reagent_containers/food/drinks/bottle/small/litebeer/Initialize()
 	. = ..()
-	reagents.add_reagent("litebeer", 50)
+	reagents.add_reagent(REAGENT_ID_LITEBEER, 50)
 
 /obj/item/reagent_containers/food/drinks/bottle/small/cider
 	name = "Crisp's Cider"
@@ -697,7 +697,7 @@
 
 /obj/item/reagent_containers/food/drinks/bottle/small/cider/Initialize()
 	. = ..()
-	reagents.add_reagent("cider", 50)
+	reagents.add_reagent(REAGENT_ID_CIDER, 50)
 
 /obj/item/reagent_containers/food/drinks/bottle/small/ale
 	name = "\improper Magm-Ale"
@@ -708,7 +708,7 @@
 
 /obj/item/reagent_containers/food/drinks/bottle/small/ale/Initialize()
 	. = ..()
-	reagents.add_reagent("ale", 50)
+	reagents.add_reagent(REAGENT_ID_ALE, 50)
 
 /obj/item/reagent_containers/food/drinks/bottle/small/ale/hushedwhisper
 	name = "Hushed Whisper IPA"
@@ -718,29 +718,29 @@
 
 /obj/item/reagent_containers/food/drinks/bottle/small/ale/hushedwhisper/Initialize()
 	. = ..()
-	reagents.add_reagent("ale", 50)
+	reagents.add_reagent(REAGENT_ID_ALE, 50)
 
 //////////////////////////SMALL BOTTLED SODA///////////////////////
 
 /obj/item/reagent_containers/food/drinks/bottle/small/cola
-	name = "Space Cola"
+	name = REAGENT_COLA
 	desc = "Cola. In space."
 	icon_state = "colabottle2"
 	center_of_mass = list("x"=16, "y"=6)
 
 /obj/item/reagent_containers/food/drinks/bottle/small/cola/Initialize()
 	. = ..()
-	reagents.add_reagent("cola", 50)
+	reagents.add_reagent(REAGENT_ID_COLA, 50)
 
 /obj/item/reagent_containers/food/drinks/bottle/small/space_up
-	name = "Space-Up"
+	name = REAGENT_SPACEUP
 	desc = "Tastes like a hull breach in your mouth."
 	icon_state = "space-up_bottle2"
 	center_of_mass = list("x"=16, "y"=6)
 
 /obj/item/reagent_containers/food/drinks/bottle/small/space_up/Initialize()
 	. = ..()
-	reagents.add_reagent("space_up", 50)
+	reagents.add_reagent(REAGENT_ID_SPACEUP, 50)
 
 /obj/item/reagent_containers/food/drinks/bottle/small/space_mountain_wind
 	name = "Space Mountain Wind"
@@ -750,14 +750,14 @@
 
 /obj/item/reagent_containers/food/drinks/bottle/small/space_mountain_wind/Initialize()
 	. = ..()
-	reagents.add_reagent("spacemountainwind", 50)
+	reagents.add_reagent(REAGENT_ID_SPACEMOUNTAINWIND, 50)
 
 /obj/item/reagent_containers/food/drinks/bottle/small/dr_gibb
-	name = "Dr. Gibb"
+	name = REAGENT_DRGIBB
 	desc = "A delicious mixture of 42 different flavors."
 	icon_state = "dr_gibb_bottle2"
 	center_of_mass = list("x"=16, "y"=6)
 
 /obj/item/reagent_containers/food/drinks/bottle/small/dr_gibb/Initialize()
 	. = ..()
-	reagents.add_reagent("dr_gibb", 50)
+	reagents.add_reagent(REAGENT_ID_DRGIBB, 50)

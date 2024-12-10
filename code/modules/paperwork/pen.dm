@@ -249,8 +249,8 @@
 
 /obj/item/pen/reagent/sleepy/New()
 	..()
-	reagents.add_reagent("chloralhydrate", 1)	//VOREStation Edit
-	reagents.add_reagent("stoxin", 14)	//VOREStation Add
+	reagents.add_reagent(REAGENT_ID_CHLORALHYDRATE, 1)	//VOREStation Edit
+	reagents.add_reagent(REAGENT_ID_STOXIN, 14)	//VOREStation Add
 
 
 /*
@@ -261,8 +261,8 @@
 
 /obj/item/pen/reagent/paralysis/New()
 	..()
-	reagents.add_reagent("zombiepowder", 5)
-	reagents.add_reagent("cryptobiolin", 10)
+	reagents.add_reagent(REAGENT_ID_ZOMBIEPOWDER, 5)
+	reagents.add_reagent(REAGENT_ID_CRYPTOBIOLIN, 10)
 
 /*
  * Chameleon Pen

@@ -45,26 +45,26 @@ var/list/mining_overlay_cache = list()
 	var/ignore_mapgen
 
 	var/static/list/ore_types = list(
-		"hematite" = /obj/item/ore/iron,
-		"uranium" = /obj/item/ore/uranium,
-		"gold" = /obj/item/ore/gold,
-		"silver" = /obj/item/ore/silver,
-		"diamond" = /obj/item/ore/diamond,
-		"phoron" = /obj/item/ore/phoron,
-		"platinum" = /obj/item/ore/osmium,
-		"mhydrogen" = /obj/item/ore/hydrogen,
-		"sand" = /obj/item/ore/glass,
-		"carbon" = /obj/item/ore/coal,
-		"verdantium" = /obj/item/ore/verdantium,
-		"marble" = /obj/item/ore/marble,
-		"lead" = /obj/item/ore/lead,
-//		"copper" = /obj/item/ore/copper,
-//		"tin" = /obj/item/ore/tin,
-//		"bauxite" = /obj/item/ore/bauxite,
-//		"void opal" = /obj/item/ore/void_opal,
-//		"painite" = /obj/item/ore/painite,
-//		"quartz" = /obj/item/ore/quartz,
-		"rutile" = /obj/item/ore/rutile
+		ORE_HEMATITE = /obj/item/ore/iron,
+		ORE_URANIUM = /obj/item/ore/uranium,
+		ORE_GOLD = /obj/item/ore/gold,
+		ORE_SILVER = /obj/item/ore/silver,
+		ORE_DIAMOND = /obj/item/ore/diamond,
+		ORE_PHORON = /obj/item/ore/phoron,
+		ORE_PLATINUM = /obj/item/ore/osmium,
+		ORE_MHYDROGEN = /obj/item/ore/hydrogen,
+		ORE_SAND = /obj/item/ore/glass,
+		ORE_CARBON = /obj/item/ore/coal,
+		ORE_VERDANTIUM = /obj/item/ore/verdantium,
+		ORE_MARBLE = /obj/item/ore/marble,
+		ORE_LEAD = /obj/item/ore/lead,
+//		ORE_COPPER = /obj/item/ore/copper,
+//		ORE_TIN = /obj/item/ore/tin,
+//		ORE_BAUXITE = /obj/item/ore/bauxite,
+//		ORE_VOPAL = /obj/item/ore/void_opal,
+//		ORE_PAINITE = /obj/item/ore/painite,
+//		ORE_QUARTZ = /obj/item/ore/quartz,
+		ORE_RUTILE = /obj/item/ore/rutile
 	)
 
 	has_resources = 1
@@ -725,10 +725,10 @@ var/list/mining_overlay_cache = list()
 
 	var/mineral_name
 	if(rare_ore)
-		mineral_name = pickweight(list("marble" = 5,/* "quartz" = 15, "copper" = 10, "tin" = 5, "bauxite" = 5*/, "uranium" = 15, "platinum" = 20, "hematite" = 15, "rutile" = 20, "carbon" = 15, "diamond" = 3, "gold" = 15, "silver" = 15, "phoron" = 25, "lead" = 5,/* "void opal" = 1,*/ "verdantium" = 2/*, "painite" = 1*/))
+		mineral_name = pickweight(list(ORE_MARBLE = 5,/* ORE_QUARTZ = 15, ORE_COPPER = 10, ORE_TIN = 5, ORE_BAUXITE = 5*/, ORE_URANIUM = 15, ORE_PLATINUM = 20, ORE_HEMATITE = 15, ORE_RUTILE = 20, ORE_CARBON = 15, ORE_DIAMOND = 3, ORE_GOLD = 15, ORE_SILVER = 15, ORE_PHORON = 25, ORE_LEAD = 5,/* ORE_VOPAL = 1,*/ ORE_VERDANTIUM = 2/*, ORE_PAINITE = 1*/))
 
 	else
-		mineral_name = pickweight(list("marble" = 3,/* "quartz" = 10, "copper" = 20, "tin" = 15, "bauxite" = 15*/, "uranium" = 10, "platinum" = 10, "hematite" = 70, "rutile" = 15, "carbon" = 70, "diamond" = 2, "gold" = 10, "silver" = 10, "phoron" = 20, "lead" = 3,/* "void opal" = 1,*/ "verdantium" = 1/*, "painite" = 1*/))
+		mineral_name = pickweight(list(ORE_MARBLE = 3,/* ORE_QUARTZ = 10, ORE_COPPER = 20, ORE_TIN = 15, ORE_BAUXITE = 15*/, ORE_URANIUM = 10, ORE_PLATINUM = 10, ORE_HEMATITE = 70, ORE_RUTILE = 15, ORE_CARBON = 70, ORE_DIAMOND = 2, ORE_GOLD = 10, ORE_SILVER = 10, ORE_PHORON = 20, ORE_LEAD = 3,/* ORE_VOPAL = 1,*/ ORE_VERDANTIUM = 1/*, ORE_PAINITE = 1*/))
 
 	if(mineral_name && (mineral_name in GLOB.ore_data))
 		mineral = GLOB.ore_data[mineral_name]

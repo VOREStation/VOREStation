@@ -3,7 +3,7 @@
 	build_type = IMPRINTER
 	req_tech = list(TECH_DATA = 3)
 	materials = list(MAT_PLASTIC = 2000, MAT_GLASS = 1000)
-	chemicals = list("pacid" = 10)
+	chemicals = list(REAGENT_ID_PACID = 10)
 	time = 5
 
 /datum/design/circuit/disk/AssembleDesignName()

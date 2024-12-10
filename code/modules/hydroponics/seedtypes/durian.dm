@@ -1,10 +1,10 @@
 /datum/seed/durian
-	name = "durian"
-	seed_name = "durian"
+	name = PLANT_DURIAN
+	seed_name = PLANT_DURIAN
 	seed_noun = "pits"
-	display_name = "durian"
-	kitchen_tag = "durian"
-	chems = list("nutriment" = list(1,5), "durianpaste" = list(1, 20))
+	display_name = PLANT_DURIAN
+	kitchen_tag = PLANT_DURIAN
+	chems = list(REAGENT_ID_NUTRIMENT = list(1,5), REAGENT_ID_DURIANPASTE = list(1, 20))
 
 /datum/seed/durian/New()
 	..()

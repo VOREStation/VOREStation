@@ -73,10 +73,10 @@
 			I.digitize()
 
 	//Give breathing equipment if needed
-	if(current_project.breath_type != "oxygen")
+	if(current_project.breath_type != GAS_O2)
 		H.equip_to_slot_or_del(new /obj/item/clothing/mask/breath(H), slot_wear_mask)
 		var/obj/item/tank/tankpath
-		if(current_project.breath_type == "phoron")
+		if(current_project.breath_type == GAS_PHORON)
 			tankpath = /obj/item/tank/vox
 		else
 			tankpath = text2path("/obj/item/tank/" + current_project.breath_type)
@@ -162,8 +162,8 @@
 			occupant.adjustBrainLoss(-(CEILING((0.5*heal_rate), 1)))
 
 			//So clones don't die of oxyloss in a running pod.
-			if(occupant.reagents.get_reagent_amount("inaprovaline") < 30)
-				occupant.reagents.add_reagent("inaprovaline", 60)
+			if(occupant.reagents.get_reagent_amount(REAGENT_ID_INAPROVALINE) < 30)
+				occupant.reagents.add_reagent(REAGENT_ID_INAPROVALINE, 60)
 
 			//Also heal some oxyloss ourselves because inaprovaline is so bad at preventing it!!
 			occupant.adjustOxyLoss(-4)
@@ -271,7 +271,7 @@
 	if(!istype(BR) || busy)
 		return 0
 
-	if(stored_material[MAT_STEEL] < body_cost || stored_material["glass"] < body_cost)
+	if(stored_material[MAT_STEEL] < body_cost || stored_material[MAT_GLASS] < body_cost)
 		return 0
 
 	current_project = BR
@@ -373,7 +373,7 @@
 
 	//Machine specific stuff at the end
 	stored_material[MAT_STEEL] -= body_cost
-	stored_material["glass"] -= body_cost
+	stored_material[MAT_GLASS] -= body_cost
 	busy = 0
 	update_icon()
 

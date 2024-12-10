@@ -1,5 +1,5 @@
 /mob/living/simple_mob/tomato
-	name = "tomato"
+	name = PLANT_TOMATO
 	desc = "It's a horrifyingly enormous beef tomato, and it's packing extra beef!"
 	tt_desc = "X Solanum abominable"
 	icon_state = "tomato"

@@ -114,7 +114,7 @@
 	var/datum/gas_mixture/environment = T.return_air()
 	if(!environment) return
 
-	if(environment.gas["phoron"] > 0 || locate(/obj/effect/alien/weeds) in T)
+	if(environment.gas[GAS_PHORON] > 0 || locate(/obj/effect/alien/weeds) in T)
 		if(!regenerate(H))
 			var/obj/item/organ/internal/xenos/plasmavessel/P = H.internal_organs_by_name[O_PLASMA]
 			P.stored_plasma += weeds_plasma_rate

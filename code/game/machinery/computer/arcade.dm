@@ -161,7 +161,7 @@
 				enemy_hp -= attackamt
 				arcade_action(ui.user)
 
-			if("heal")
+			if(XENO_CHEM_HEAL)
 				blocked = 1
 				var/pointamt = rand(1,3)
 				var/healamt = rand(6,8)

@@ -68,31 +68,31 @@
 	return material
 
 /obj/item/clothing/accessory/bracelet/material/wood/New(var/newloc)
-	..(newloc, "wood")
+	..(newloc, MAT_WOOD)
 
 /obj/item/clothing/accessory/bracelet/material/plastic/New(var/newloc)
-	..(newloc, "plastic")
+	..(newloc, MAT_PLASTIC)
 
 /obj/item/clothing/accessory/bracelet/material/iron/New(var/newloc)
-	..(newloc, "iron")
+	..(newloc, MAT_IRON)
 
 /obj/item/clothing/accessory/bracelet/material/steel/New(var/newloc)
-	..(newloc, "steel")
+	..(newloc, MAT_STEEL)
 
 /obj/item/clothing/accessory/bracelet/material/silver/New(var/newloc)
-	..(newloc, "silver")
+	..(newloc, MAT_SILVER)
 
 /obj/item/clothing/accessory/bracelet/material/gold/New(var/newloc)
-	..(newloc, "gold")
+	..(newloc, MAT_GOLD)
 
 /obj/item/clothing/accessory/bracelet/material/platinum/New(var/newloc)
-	..(newloc, "platinum")
+	..(newloc, MAT_PLATINUM)
 
 /obj/item/clothing/accessory/bracelet/material/phoron/New(var/newloc)
-	..(newloc, "phoron")
+	..(newloc, MAT_PHORON)
 
 /obj/item/clothing/accessory/bracelet/material/glass/New(var/newloc)
-	..(newloc, "glass")
+	..(newloc, MAT_GLASS)
 
 //wristbands
 

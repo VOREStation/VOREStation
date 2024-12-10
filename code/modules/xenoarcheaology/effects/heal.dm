@@ -1,5 +1,5 @@
 /datum/artifact_effect/heal
-	name = "heal"
+	name = XENO_CHEM_HEAL
 	effect_type = EFFECT_ORGANIC
 	effect_color = "#4649ff"
 
@@ -17,7 +17,7 @@
 					if(affecting && istype(affecting))
 						affecting.heal_damage(25 * weakness, 25 * weakness)
 				//H:heal_organ_damage(25, 25)
-				H.vessel.add_reagent("blood",5)
+				H.vessel.add_reagent(REAGENT_ID_BLOOD,5)
 				H.adjust_nutrition(50 * weakness)
 				H.adjustBrainLoss(-25 * weakness)
 				H.radiation -= min(H.radiation, 25 * weakness)

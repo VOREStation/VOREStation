@@ -1,8 +1,8 @@
 /* Paint and crayons */
 
 /datum/reagent/crayon_dust
-	name = "Crayon dust"
-	id = "crayon_dust"
+	name = REAGENT_CRAYONDUST
+	id = REAGENT_ID_CRAYONDUST
 	description = "Intensely coloured powder obtained by grinding crayons."
 	taste_description = "powdered wax"
 	reagent_state = LIQUID
@@ -10,48 +10,48 @@
 	overdose = 5
 
 /datum/reagent/crayon_dust/red
-	name = "Red crayon dust"
-	id = "crayon_dust_red"
+	name = REAGENT_CRAYONDUSTRED
+	id = REAGENT_ID_CRAYONDUSTRED
 	color = "#FE191A"
 
 /datum/reagent/crayon_dust/orange
-	name = "Orange crayon dust"
-	id = "crayon_dust_orange"
+	name = REAGENT_CRAYONDUSTORANGE
+	id = REAGENT_ID_CRAYONDUSTORANGE
 	color = "#FFBE4F"
 
 /datum/reagent/crayon_dust/yellow
-	name = "Yellow crayon dust"
-	id = "crayon_dust_yellow"
+	name = REAGENT_CRAYONDUSTYELLOW
+	id = REAGENT_ID_CRAYONDUSTYELLOW
 	color = "#FDFE7D"
 
 /datum/reagent/crayon_dust/green
-	name = "Green crayon dust"
-	id = "crayon_dust_green"
+	name = REAGENT_CRAYONDUSTGREEN
+	id = REAGENT_ID_CRAYONDUSTGREEN
 	color = "#18A31A"
 
 /datum/reagent/crayon_dust/blue
-	name = "Blue crayon dust"
-	id = "crayon_dust_blue"
+	name = REAGENT_CRAYONDUSTBLUE
+	id = REAGENT_ID_CRAYONDUSTBLUE
 	color = "#247CFF"
 
 /datum/reagent/crayon_dust/purple
-	name = "Purple crayon dust"
-	id = "crayon_dust_purple"
+	name = REAGENT_CRAYONDUSTPURPLE
+	id = REAGENT_ID_CRAYONDUSTPURPLE
 	color = "#CC0099"
 
 /datum/reagent/crayon_dust/grey //Mime
-	name = "Grey crayon dust"
-	id = "crayon_dust_grey"
+	name = REAGENT_CRAYONDUSTGREY
+	id = REAGENT_ID_CRAYONDUSTGREY
 	color = "#808080"
 
 /datum/reagent/crayon_dust/brown //Rainbow
-	name = "Brown crayon dust"
-	id = "crayon_dust_brown"
+	name = REAGENT_CRAYONDUSTBROWN
+	id = REAGENT_ID_CRAYONDUSTBROWN
 	color = "#846F35"
 
 /datum/reagent/marker_ink
-	name = "Marker ink"
-	id = "marker_ink"
+	name = REAGENT_MARKERINK
+	id = REAGENT_ID_MARKERINK
 	description = "Intensely coloured ink used in markers."
 	taste_description = "extremely bitter"
 	reagent_state = LIQUID
@@ -59,53 +59,53 @@
 	overdose = 5
 
 /datum/reagent/marker_ink/black
-	name = "Black marker ink"
-	id = "marker_ink_black"
+	name = REAGENT_MARKERINKBLACK
+	id = REAGENT_ID_MARKERINKBLACK
 	color = "#000000"
 
 /datum/reagent/marker_ink/red
-	name = "Red marker ink"
-	id = "marker_ink_red"
+	name = REAGENT_MARKERINKRED
+	id = REAGENT_ID_MARKERINKRED
 	color = "#FE191A"
 
 /datum/reagent/marker_ink/orange
-	name = "Orange marker ink"
-	id = "marker_ink_orange"
+	name = REAGENT_MARKERINKORANGE
+	id = REAGENT_ID_MARKERINKORANGE
 	color = "#FFBE4F"
 
 /datum/reagent/marker_ink/yellow
-	name = "Yellow marker ink"
-	id = "marker_ink_yellow"
+	name = REAGENT_MARKERINKYELLOW
+	id = REAGENT_ID_MARKERINKYELLOW
 	color = "#FDFE7D"
 
 /datum/reagent/marker_ink/green
-	name = "Green marker ink"
-	id = "marker_ink_green"
+	name = REAGENT_MARKERINKGREEN
+	id = REAGENT_ID_MARKERINKGREEN
 	color = "#18A31A"
 
 /datum/reagent/marker_ink/blue
-	name = "Blue marker ink"
-	id = "marker_ink_blue"
+	name = REAGENT_MARKERINKBLUE
+	id = REAGENT_ID_MARKERINKBLUE
 	color = "#247CFF"
 
 /datum/reagent/marker_ink/purple
-	name = "Purple marker ink"
-	id = "marker_ink_purple"
+	name = REAGENT_MARKERINKPURPLE
+	id = REAGENT_ID_MARKERINKPURPLE
 	color = "#CC0099"
 
 /datum/reagent/marker_ink/grey //Mime
-	name = "Grey marker ink"
-	id = "marker_ink_grey"
+	name = REAGENT_MARKERINKGREY
+	id = REAGENT_ID_MARKERINKGREY
 	color = "#808080"
 
 /datum/reagent/marker_ink/brown //Rainbow
-	name = "Brown marker ink"
-	id = "marker_ink_brown"
+	name = REAGENT_MARKERINKBROWN
+	id = REAGENT_ID_MARKERINKBROWN
 	color = "#846F35"
 
 /datum/reagent/paint
-	name = "Paint"
-	id = "paint"
+	name = REAGENT_PAINT
+	id = REAGENT_ID_PAINT
 	description = "This paint will stick to almost any object."
 	taste_description = "chalk"
 	reagent_state = LIQUID
@@ -164,8 +164,8 @@
 /* Things that didn't fit anywhere else */
 
 /datum/reagent/adminordrazine //An OP chemical for admins
-	name = "Adminordrazine"
-	id = "adminordrazine"
+	name = REAGENT_ADMINORDRAZINE
+	id = REAGENT_ID_ADMINORDRAZINE
 	description = "It's magic. We don't have to explain it."
 	taste_description = "bwoink"
 	reagent_state = LIQUID
@@ -232,32 +232,32 @@
 						O.wounds -= W
 
 /datum/reagent/gold
-	name = "Gold"
-	id = "gold"
+	name = REAGENT_GOLD
+	id = REAGENT_ID_GOLD
 	description = "Gold is a dense, soft, shiny metal and the most malleable and ductile metal known."
 	taste_description = "metal"
 	reagent_state = SOLID
 	color = "#F7C430"
 
 /datum/reagent/silver
-	name = "Silver"
-	id = "silver"
+	name = REAGENT_SILVER
+	id = REAGENT_ID_SILVER
 	description = "A soft, white, lustrous transition metal, it has the highest electrical conductivity of any element and the highest thermal conductivity of any metal."
 	taste_description = "metal"
 	reagent_state = SOLID
 	color = "#D0D0D0"
 
 /datum/reagent/platinum
-	name = "Platinum"
-	id = "platinum"
+	name = REAGENT_PLATINUM
+	id = REAGENT_ID_PLATINUM
 	description = "Platinum is a dense, malleable, ductile, highly unreactive, precious, gray-white transition metal.  It is very resistant to corrosion."
 	taste_description = "metal"
 	reagent_state = SOLID
 	color = "#777777"
 
 /datum/reagent/uranium
-	name ="Uranium"
-	id = "uranium"
+	name = REAGENT_URANIUM
+	id = REAGENT_ID_URANIUM
 	description = "A silvery-white metallic chemical element in the actinide series, weakly radioactive."
 	taste_description = "metal"
 	reagent_state = SOLID
@@ -279,37 +279,37 @@
 			return
 
 /datum/reagent/hydrogen/deuterium
-	name = "Deuterium"
-	id = "deuterium"
+	name = REAGENT_DEUTERIUM
+	id = REAGENT_ID_DEUTERIUM
 	description = "A isotope of hydrogen. It has one extra neutron, and shares all chemical characteristics with hydrogen."
 
 /datum/reagent/hydrogen/tritium
-	name = "Tritium"
-	id = "tritium"
+	name = REAGENT_TRITIUM
+	id = REAGENT_ID_SLIMEJELLY
 	description = "A radioactive isotope of hydrogen. It has two extra neutrons, and shares all other chemical characteristics with hydrogen."
 
 /datum/reagent/lithium/lithium6
-	name = "Lithium-6"
-	id = "lithium6"
+	name = REAGENT_LITHIUM6
+	id = REAGENT_ID_LITHIUM6
 	description = "An isotope of lithium. It has 3 neutrons, but shares all chemical characteristics with regular lithium."
 
 /datum/reagent/helium/helium3
-	name = "Helium-3"
-	id = "helium3"
+	name = REAGENT_HELIUM3
+	id = REAGENT_ID_HELIUM3
 	description = "An isotope of helium. It only has one neutron, but shares all chemical characteristics with regular helium."
 	taste_mult = 0
 	reagent_state = GAS
 	color = "#808080"
 
 /datum/reagent/boron/boron11
-	name = "Boron-11"
-	id = "boron11"
+	name = REAGENT_BORON11
+	id = REAGENT_ID_BORON11
 	description = "An isotope of boron. It has 6 neutrons."
 	taste_description = "metallic" // Apparently noone on the internet knows what boron tastes like. Or at least they won't share
 
 /datum/reagent/supermatter
-	name = "Supermatter"
-	id = "supermatter"
+	name = REAGENT_SUPERMATTER
+	id = REAGENT_ID_SUPERMATTER
 	color = "#fffd6b"
 	reagent_state = SOLID
 	affects_dead = TRUE
@@ -332,8 +332,8 @@
 
 
 /datum/reagent/adrenaline
-	name = "Adrenaline"
-	id = "adrenaline"
+	name = REAGENT_ADRENALINE
+	id = REAGENT_ID_ADRENALINE
 	description = "Adrenaline is a hormone used as a drug to treat cardiac arrest and other cardiac dysrhythmias resulting in diminished or absent cardiac output."
 	taste_description = "bitterness"
 	reagent_state = LIQUID
@@ -348,8 +348,8 @@
 	M.adjustToxLoss(rand(3))
 
 /datum/reagent/water/holywater
-	name = "Holy Water"
-	id = "holywater"
+	name = REAGENT_HOLYWATER
+	id = REAGENT_ID_HOLYWATER
 	description = "An ashen-obsidian-water mix, this solution will alter certain sections of the brain's rationality."
 	taste_description = "water"
 	color = "#E0E8EF"
@@ -371,8 +371,8 @@
 	return
 
 /datum/reagent/ammonia
-	name = "Ammonia"
-	id = "ammonia"
+	name = REAGENT_AMMONIA
+	id = REAGENT_ID_AMMONIA
 	description = "A caustic substance commonly used in fertilizer or household cleaners."
 	taste_description = "mordant"
 	taste_mult = 2
@@ -380,32 +380,32 @@
 	color = "#404030"
 
 /datum/reagent/diethylamine
-	name = "Diethylamine"
-	id = "diethylamine"
+	name = REAGENT_DIETHYLAMINE
+	id = REAGENT_ID_DIETHYLAMINE
 	description = "A secondary amine, mildly corrosive."
-	taste_description = "iron"
+	taste_description = REAGENT_ID_IRON
 	reagent_state = LIQUID
 	color = "#604030"
 
 /datum/reagent/fluorosurfactant // Foam precursor
-	name = "Fluorosurfactant"
-	id = "fluorosurfactant"
+	name = REAGENT_FLUOROSURFACTANT
+	id = REAGENT_ID_FLUOROSURFACTANT
 	description = "A perfluoronated sulfonic acid that forms a foam when mixed with water."
 	taste_description = "metal"
 	reagent_state = LIQUID
 	color = "#9E6B38"
 
 /datum/reagent/foaming_agent // Metal foaming agent. This is lithium hydride. Add other recipes (e.g. LiH + H2O -> LiOH + H2) eventually.
-	name = "Foaming agent"
-	id = "foaming_agent"
+	name = REAGENT_FOAMINGAGENT
+	id = REAGENT_ID_FOAMINGAGENT
 	description = "A agent that yields metallic foam when mixed with light metal and a strong acid."
 	taste_description = "metal"
 	reagent_state = SOLID
 	color = "#664B63"
 
 /datum/reagent/thermite
-	name = "Thermite"
-	id = "thermite"
+	name = REAGENT_THERMITE
+	id = REAGENT_ID_THERMITE
 	description = "Thermite produces an aluminothermic reaction known as a thermite reaction. Can be used to melt walls."
 	taste_description = "sweet tasting metal"
 	reagent_state = SOLID
@@ -431,8 +431,8 @@
 	M.adjustFireLoss(3 * removed)
 
 /datum/reagent/space_cleaner
-	name = "Space cleaner"
-	id = "cleaner"
+	name = REAGENT_CLEANER
+	id = REAGENT_ID_CLEANER
 	description = "A compound used to clean things. Now with 50% more sodium hypochlorite!"
 	taste_description = "sourness"
 	reagent_state = LIQUID
@@ -512,8 +512,8 @@
 					H.visible_message(span_notice("[H]\'s [S.name] is put out."))
 
 /datum/reagent/lube // TODO: spraying on borgs speeds them up
-	name = "Space Lube"
-	id = "lube"
+	name = REAGENT_LUBE
+	id = REAGENT_ID_LUBE
 	description = "Lubricant is a substance introduced between two moving surfaces to reduce the friction and wear between them. giggity."
 	taste_description = "slime"
 	reagent_state = LIQUID
@@ -527,8 +527,8 @@
 		T.wet_floor(2)
 
 /datum/reagent/silicate
-	name = "Silicate"
-	id = "silicate"
+	name = REAGENT_SILICATE
+	id = REAGENT_ID_SILICATE
 	description = "A compound that can be used to reinforce glass."
 	taste_description = "plastic"
 	reagent_state = LIQUID
@@ -543,24 +543,24 @@
 	return
 
 /datum/reagent/glycerol
-	name = "Glycerol"
-	id = "glycerol"
+	name = REAGENT_GLYCEROL
+	id = REAGENT_ID_GLYCEROL
 	description = "Glycerol is a simple polyol compound. Glycerol is sweet-tasting and of low toxicity."
 	taste_description = "sweetness"
 	reagent_state = LIQUID
 	color = "#808080"
 
 /datum/reagent/nitroglycerin
-	name = "Nitroglycerin"
-	id = "nitroglycerin"
+	name = REAGENT_NITROGLYCERIN
+	id = REAGENT_ID_NITROGLYCERIN
 	description = "Nitroglycerin is a heavy, colorless, oily, explosive liquid obtained by nitrating glycerol."
 	taste_description = "oil"
 	reagent_state = LIQUID
 	color = "#808080"
 
 /datum/reagent/coolant
-	name = "Coolant"
-	id = "coolant"
+	name = REAGENT_COOLANT
+	id = REAGENT_ID_COOLANT
 	description = "Industrial cooling substance."
 	taste_description = "sourness"
 	taste_mult = 1.1
@@ -576,33 +576,33 @@
 		var/datum/reagent/blood/coolant = H.get_blood(H.vessel)
 
 		if(coolant)
-			H.vessel.add_reagent("blood", removed, coolant.data)
+			H.vessel.add_reagent(REAGENT_ID_BLOOD, removed, coolant.data)
 
 		else
-			H.vessel.add_reagent("blood", removed)
+			H.vessel.add_reagent(REAGENT_ID_BLOOD, removed)
 			H.fixblood()
 
 	else
 		..()
 
 /datum/reagent/ultraglue
-	name = "Ultra Glue"
-	id = "glue"
+	name = REAGENT_GLUE
+	id = REAGENT_ID_GLUE
 	description = "An extremely powerful bonding agent."
 	taste_description = "a special education class"
 	color = "#FFFFCC"
 
 /datum/reagent/woodpulp
-	name = "Wood Pulp"
-	id = "woodpulp"
+	name = REAGENT_WOODPULP
+	id = REAGENT_ID_WOODPULP
 	description = "A mass of wood fibers."
 	taste_description = "wood"
 	reagent_state = LIQUID
 	color = "#B97A57"
 
 /datum/reagent/luminol
-	name = "Luminol"
-	id = "luminol"
+	name = REAGENT_LUMINOL
+	id = REAGENT_ID_LUMINOL
 	description = "A compound that interacts with blood on the molecular level."
 	taste_description = "metal"
 	reagent_state = LIQUID
@@ -617,16 +617,16 @@
 	L.reveal_blood()
 
 /datum/reagent/nutriment/biomass
-	name = "Biomass"
-	id = "biomass"
+	name = REAGENT_BIOMASS
+	id = REAGENT_ID_BIOMASS
 	description = "A slurry of compounds that contains the basic requirements for life."
 	taste_description = "salty meat"
 	reagent_state = LIQUID
 	color = "#DF9FBF"
 
 /datum/reagent/mineralfluid
-	name = "Mineral-Rich Fluid"
-	id = "mineralizedfluid"
+	name = REAGENT_MINERALIZEDFLUID
+	id = REAGENT_ID_MINERALIZEDFLUID
 	description = "A warm, mineral-rich fluid."
 	taste_description = "salt"
 	reagent_state = LIQUID
@@ -634,8 +634,8 @@
 
 // The opposite to healing nanites, exists to make unidentified hypos implied to have nanites not be 100% safe.
 /datum/reagent/defective_nanites
-	name = "Defective Nanites"
-	id = "defective_nanites"
+	name = REAGENT_DEFECTIVENANITES
+	id = REAGENT_ID_DEFECTIVENANITES
 	description = "Miniature medical robots that are malfunctioning and cause bodily harm. Fortunately, they cannot self-replicate."
 	taste_description = "metal"
 	reagent_state = SOLID
@@ -650,8 +650,8 @@
 	M.adjustCloneLoss(2 * removed)
 
 /datum/reagent/nutriment/fishbait
-	name = "Fish Bait"
-	id = "fishbait"
+	name = REAGENT_FISHBAIT
+	id = REAGENT_ID_FISHBAIT
 	description = "A natural slurry that particularily appeals to fish."
 	taste_description = "slimy dirt"
 	reagent_state = LIQUID
@@ -659,72 +659,72 @@
 	nutriment_factor = 15
 
 /datum/reagent/carpet
-	name = "Liquid Carpet"
-	id = "liquidcarpet"
+	name = REAGENT_LIQUIDCARPET
+	id = REAGENT_ID_LIQUIDCARPET
 	description = "Liquified carpet fibers, ready for dyeing."
 	reagent_state = LIQUID
 	color = "#b51d05"
 	taste_description = "carpet"
 
 /datum/reagent/carpet/black
-	name = "Liquid Black Carpet"
-	id = "liquidcarpetb"
+	name = REAGENT_LIQUIDCARPETB
+	id = REAGENT_ID_LIQUIDCARPETB
 	description = "Black Carpet Fibers, ready for reinforcement."
 	reagent_state = LIQUID
 	color = "#000000"
 	taste_description = "rare and ashy carpet"
 
 /datum/reagent/carpet/blue
-	name = "Liquid Blue Carpet"
-	id = "liquidcarpetblu"
+	name = REAGENT_LIQUIDCARPETBLU
+	id = REAGENT_ID_LIQUIDCARPETBLU
 	description = "Blue Carpet Fibers, ready for reinforcement."
 	reagent_state = LIQUID
 	color = "#3f4aee"
 	taste_description = "commanding carpet"
 
 /datum/reagent/carpet/turquoise
-	name = "Liquid Turquoise Carpet"
-	id = "liquidcarpettur"
+	name = REAGENT_LIQUIDCARPETTUR
+	id = REAGENT_ID_LIQUIDCARPETTUR
 	description = "Turquoise Carpet Fibers, ready for reinforcement."
 	reagent_state = LIQUID
 	color = "#0592b5"
 	taste_description = "water-logged carpet"
 
 /datum/reagent/carpet/sblue
-	name = "Liquid Silver Blue Carpet"
-	id = "liquidcarpetsblu"
+	name = REAGENT_LIQUIDCARPETSBLU
+	id = REAGENT_ID_LIQUIDCARPETSBLU
 	description = "Silver Blue Carpet Fibers, ready for reinforcement."
 	reagent_state = LIQUID
 	color = "#0011ff"
 	taste_description = "sterile and medicinal carpet"
 
 /datum/reagent/carpet/clown
-	name = "Liquid Clown Carpet"
-	id = "liquidcarpetc"
+	name = REAGENT_LIQUIDCARPETC
+	id = REAGENT_ID_LIQUIDCARPETC
 	description = "Clown Carpet Fibers.... No clowns were harmed in the making of this."
 	reagent_state = LIQUID
 	color = "#e925be"
 	taste_description = "clown shoes and banana peels"
 
 /datum/reagent/carpet/purple
-	name = "Liquid Purple Carpet"
-	id = "liquidcarpetp"
+	name = REAGENT_LIQUIDCARPETP
+	id = REAGENT_ID_LIQUIDCARPETP
 	description = "Purple Carpet Fibers, ready for reinforcement."
 	reagent_state = LIQUID
 	color = "#a614d3"
 	taste_description = "bleeding edge carpet research"
 
 /datum/reagent/carpet/orange
-	name = "Liquid Orange Carpet"
-	id = "liquidcarpeto"
+	name = REAGENT_LIQUIDCARPETO
+	id = REAGENT_ID_LIQUIDCARPETO
 	description = "Orange Carpet Fibers, ready for reinforcement."
 	reagent_state = LIQUID
 	color = "#f16e16"
 	taste_description = "extremely overengineered carpet"
 
 /datum/reagent/essential_oil
-	name = "Essential Oils"
-	id = "essential_oil"
+	name = REAGENT_ESSENTIALOIL
+	id = REAGENT_ID_ESSENTIALOIL
 	description = "A slurry of compounds that contains the basic requirements for life."
 	taste_description = "a mixture of thick, sweet, salty, salty and spicy flavours that all blend together to not be very nice at all"
 	reagent_state = LIQUID

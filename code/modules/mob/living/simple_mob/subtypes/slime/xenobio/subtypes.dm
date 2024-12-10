@@ -8,7 +8,7 @@
 	color = "#CC23FF"
 	slime_color = "purple"
 	coretype = /obj/item/slime_extract/purple
-	reagent_injected = "toxin"
+	reagent_injected = REAGENT_ID_TOXIN
 
 	description_info = "This slime spreads a toxin when it attacks.  A biosuit or other thick armor can protect from the toxic attack."
 	player_msg = "You <b>inject a harmful toxin</b> when attacking."
@@ -57,7 +57,7 @@
 	color = "#19FFFF"
 	slime_color = "blue"
 	coretype = /obj/item/slime_extract/blue
-	reagent_injected = "cryotoxin"
+	reagent_injected = REAGENT_ID_CRYOTOXIN
 	cold_resist = 0.50 // Not as strong as dark blue, which has immunity.
 
 	description_info = "The slime is resistant to the cold, and attacks from this slime can inject cryotoxin into you. \
@@ -173,7 +173,7 @@
 	color = "#660088"
 	slime_color = "dark purple"
 	coretype = /obj/item/slime_extract/dark_purple
-	reagent_injected = "phoron"
+	reagent_injected = REAGENT_ID_PHORON
 
 	description_info = "This slime applies phoron to enemies it attacks.  A biosuit or other thick armor can protect from the toxic attack.  \
 	If hit with a burning attack, it will erupt in flames."
@@ -190,7 +190,7 @@
 /mob/living/simple_mob/slime/xenobio/dark_purple/proc/ignite()
 	visible_message(span_critical("\The [src] erupts in an inferno!"))
 	for(var/turf/simulated/target_turf in view(2, src))
-		target_turf.assume_gas("phoron", 30, 1500+T0C)
+		target_turf.assume_gas(GAS_PHORON, 30, 1500+T0C)
 		spawn(0)
 			target_turf.hotspot_expose(1500+T0C, 400)
 	qdel(src)
@@ -509,7 +509,7 @@
 	slime_color = "green"
 	coretype = /obj/item/slime_extract/green
 	glow_toggle = TRUE
-	reagent_injected = "radium"
+	reagent_injected = REAGENT_ID_RADIUM
 	var/rads = 25
 
 	description_info = "This slime will irradiate anything nearby passively, and will inject radium on attack.  \

@@ -296,16 +296,16 @@
 	for(var/datum/artifact_effect/my_effect in my_effects)
 
 		if (istype(W, /obj/item/reagent_containers))
-			if(W.reagents.has_reagent("hydrogen", 1) || W.reagents.has_reagent("water", 1))
+			if(W.reagents.has_reagent(REAGENT_ID_HYDROGEN, 1) || W.reagents.has_reagent(REAGENT_ID_WATER, 1))
 				if(my_effect.trigger == TRIGGER_WATER)
 					my_effect.ToggleActivate()
-			else if(W.reagents.has_reagent("sacid", 1) || W.reagents.has_reagent("pacid", 1) || W.reagents.has_reagent("diethylamine", 1))
+			else if(W.reagents.has_reagent(REAGENT_ID_SACID, 1) || W.reagents.has_reagent(REAGENT_ID_PACID, 1) || W.reagents.has_reagent(REAGENT_ID_DIETHYLAMINE, 1))
 				if(my_effect.trigger == TRIGGER_ACID)
 					my_effect.ToggleActivate()
-			else if(W.reagents.has_reagent("phoron", 1) || W.reagents.has_reagent("thermite", 1))
+			else if(W.reagents.has_reagent(REAGENT_ID_PHORON, 1) || W.reagents.has_reagent(REAGENT_ID_THERMITE, 1))
 				if(my_effect.trigger == TRIGGER_VOLATILE)
 					my_effect.ToggleActivate()
-			else if(W.reagents.has_reagent("toxin", 1) || W.reagents.has_reagent("cyanide", 1) || W.reagents.has_reagent("amatoxin", 1) || W.reagents.has_reagent("neurotoxin", 1))
+			else if(W.reagents.has_reagent(REAGENT_ID_TOXIN, 1) || W.reagents.has_reagent(REAGENT_ID_CYANIDE, 1) || W.reagents.has_reagent(REAGENT_ID_AMATOXIN, 1) || W.reagents.has_reagent(REAGENT_ID_NEUROTOXIN, 1))
 				if(my_effect.trigger == TRIGGER_TOXIN)
 					my_effect.ToggleActivate()
 		else if(istype(W,/obj/item/melee/baton) && W:status ||\
@@ -327,10 +327,10 @@
 /datum/component/artifact_master/proc/on_reagent()
 	var/datum/reagent/Touching = args[2]
 
-	var/list/water = list("hydrogen", "water")
-	var/list/acid = list("sacid", "pacid", "diethylamine")
-	var/list/volatile = list("phoron","thermite")
-	var/list/toxic = list("toxin","cyanide","amatoxin","neurotoxin")
+	var/list/water = list(REAGENT_ID_HYDROGEN, REAGENT_ID_WATER)
+	var/list/acid = list(REAGENT_ID_SACID, REAGENT_ID_PACID, REAGENT_ID_DIETHYLAMINE)
+	var/list/volatile = list(REAGENT_ID_PHORON,REAGENT_ID_THERMITE)
+	var/list/toxic = list(REAGENT_ID_TOXIN,REAGENT_ID_CYANIDE,REAGENT_ID_AMATOXIN,REAGENT_ID_NEUROTOXIN)
 
 	for(var/datum/artifact_effect/my_effect in my_effects)
 		if(Touching.id in water)
@@ -387,13 +387,13 @@
 		else if(env.temperature > 375)
 			trigger_hot = 1
 
-		if(env.gas["phoron"] >= 10)
+		if(env.gas[GAS_PHORON] >= 10)
 			trigger_phoron = 1
-		if(env.gas["oxygen"] >= 10)
+		if(env.gas[GAS_O2] >= 10)
 			trigger_oxy = 1
-		if(env.gas["carbon_dioxide"] >= 10)
+		if(env.gas[GAS_CO2] >= 10)
 			trigger_co2 = 1
-		if(env.gas["nitrogen"] >= 10)
+		if(env.gas[GAS_N2] >= 10)
 			trigger_nitro = 1
 
 	for(var/datum/artifact_effect/my_effect in my_effects)

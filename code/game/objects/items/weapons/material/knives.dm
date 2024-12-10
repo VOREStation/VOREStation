@@ -126,7 +126,7 @@
 	force_divisor = 0.1
 
 /obj/item/material/knife/table/plastic
-	default_material = "plastic"
+	default_material = MAT_PLASTIC
 
 /obj/item/material/knife/butch
 	name = "butcher's cleaver"
@@ -143,7 +143,7 @@
 	attack_verb = list("slashed", "chopped", "gouged", "ripped", "cut")
 	can_cleave = TRUE //Now hatchets inherit from the machete, and thus knives. Tables turned.
 	slot_flags = SLOT_BELT
-	default_material = "plasteel" //VOREStation Edit
+	default_material = MAT_PLASTEEL //VOREStation Edit
 
 /obj/item/material/knife/machete/cyborg
 	name = "integrated machete"
@@ -157,7 +157,7 @@
 	icon_state = "survivalknife"
 	item_state = "knife"
 	applies_material_colour = FALSE
-	default_material = "plasteel" //VOREStation Edit
+	default_material = MAT_PLASTEEL //VOREStation Edit
 	toolspeed = 2 // Use a real axe if you want to chop logs.
 
 /obj/item/material/knife/stone

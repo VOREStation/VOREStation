@@ -264,7 +264,7 @@
 			else
 				to_chat(user, span_notice("You need at least five segments of cable coil to complete this task."))
 			return
-	else if(istype(W,/obj/item/stack/material) && W.get_material_name() == "plastic")
+	else if(istype(W,/obj/item/stack/material) && W.get_material_name() == MAT_PLASTIC)
 		if(buildstate == 3)
 			var/obj/item/stack/material/P = W
 			if(P.use(3))

@@ -27,7 +27,7 @@
 		var/obj/item/stack/nanopaste/np = W
 		if((supply.get_free_space() >= efficiency) && np.use(1))
 			to_chat(user, span_notice("You convert some nanopaste into programmed nanites inside \the [src]."))
-			supply.add_reagent(id = "nifrepairnanites", amount = efficiency)
+			supply.add_reagent(id = REAGENT_ID_NIFREPAIRNANITES, amount = efficiency)
 			update_icon()
 		else if(supply.get_free_space() < efficiency)
 			to_chat(user, span_warning("\The [src] is too full. Empty it into a container first."))

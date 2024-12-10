@@ -4,9 +4,9 @@
 	stage_prob = 2
 	spread_text = "Blood and close contact"
 	spread_flags = BLOOD
-	cure_text = "Spaceacillin"
+	cure_text = REAGENT_SPACEACILLIN
 	agent = "Chimera cells"
-	cures = list("spaceacillin")
+	cures = list(REAGENT_ID_SPACEACILLIN)
 	cure_chance = 10
 	viable_mobtypes = list(/mob/living/carbon/human)
 	desc = "If left untreated, subject will become a xenochimera upon perishing."
