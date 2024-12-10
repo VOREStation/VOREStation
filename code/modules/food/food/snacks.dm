@@ -1785,7 +1785,7 @@
 
 /obj/item/reagent_containers/food/snacks/badrecipe/Initialize()
 	. = ..()
-	reagents.add_reagent(REAGENT_ID_TOXIN, 1)
+	reagents.add_reagent(REAGENT_ID_SALMONELLA, 1)
 	reagents.add_reagent(REAGENT_ID_CARBON, 3)
 
 /obj/item/reagent_containers/food/snacks/meatsteak
