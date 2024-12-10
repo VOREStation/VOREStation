@@ -350,7 +350,6 @@
 	switch(mob.incorporeal_move)
 		if(1)
 			var/turf/T = get_step(mob, direct)
-			var/area/A = T.loc	//RS Port #658
 			if(!T)
 				return
 			var/area/A = T.loc	//RS Port #658
