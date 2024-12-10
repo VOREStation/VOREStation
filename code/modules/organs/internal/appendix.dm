@@ -7,10 +7,8 @@
 	var/inflame_progress = 0
 
 /mob/living/carbon/human/proc/appendicitis()
-	if(stat == DEAD)
-		return 0
-	ForceContractDisease(new /datum/disease/appendicitis)
-	return 0
+	return ForceContractDisease(new /datum/disease/appendicitis)
+
 /*
 /obj/item/organ/internal/appendix/process()
 	..()

@@ -505,8 +505,12 @@
 	..()
 	//spread some viruses while we are at it
 	if(breath && !isnull(viruses) && prob(10))
+		if((wear_mask && (wear_mask.item_flags & AIRTIGHT)) || (head && (head && (head.item_flags & AIRTIGHT))))
+			return
+		if(wear_mask.permeability_coefficient < 1)
+			return
 		for(var/datum/disease/D in GetViruses())
-			if((D.spread_flags & SPECIAL) || (D.spread_flags & NON_CONTAGIOUS))
+			if(!D.IsSpreadByAir())
 				continue
 			for(var/mob/living/carbon/M in view(1,src))
 				ContractDisease(D)

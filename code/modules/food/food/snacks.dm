@@ -1785,7 +1785,7 @@
 
 /obj/item/reagent_containers/food/snacks/badrecipe/Initialize()
 	. = ..()
-	reagents.add_reagent("toxin", 1)
+	reagents.add_reagent("salmonella", 1)
 	reagents.add_reagent("carbon", 3)
 
 /obj/item/reagent_containers/food/snacks/meatsteak
@@ -2551,7 +2551,7 @@
 			reagents.add_reagent("water", 10)
 		if(8)
 			reagents.add_reagent("carbon", 10)
-			reagents.add_reagent("toxin", 10)
+			reagents.add_reagent("salmonella", 10)
 		if(9)
 			reagents.add_reagent("nutriment", 5, nutriment_desc)
 			reagents.add_reagent("tomatojuice", 10)
@@ -3825,6 +3825,7 @@
 	reagents.add_reagent("protein", 5)
 	reagents.add_reagent("tomatojuice", 6)
 	reagents.add_reagent("mold", 8)
+	reagents.add_reagent("salmonella", 1)
 
 /obj/item/reagent_containers/food/snacks/slice/oldpizza
 	name = "moldy pizza slice"

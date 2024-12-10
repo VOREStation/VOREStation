@@ -5,7 +5,7 @@
 			continue
 		if(!(A.z in using_map.station_levels))
 			continue
-		if(A.flag_check(RAD_SHIELDED))
+		if(A.flag_check(AREA_FORBID_EVENTS))
 			continue
 		if(isbelly(H.loc))
 			continue
