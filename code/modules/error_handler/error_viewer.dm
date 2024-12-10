@@ -183,20 +183,20 @@ var/global/datum/ErrorViewer/ErrorCache/error_cache = null
 	var/html = buildHeader(back_to, linear)
 	html += "<div class='runtime'>[html_encode(name)]<br>[desc]</div>"
 	if(srcRef)
-		html += "<br>src: <a href='?_src_=vars;[HrefToken()];Vars=[srcRef]'>VV</a>"
+		html += "<br>src: <a href='byond://?_src_=vars;[HrefToken()];Vars=[srcRef]'>VV</a>"
 		if(ispath(srcType, /mob))
-			html += " <a href='?_src_=holder;[HrefToken()];adminplayeropts=[srcRef]'>PP</a>"
-			html += " <a href='?_src_=holder;[HrefToken()];adminplayerobservefollow=[srcRef]'>Follow</a>"
+			html += " <a href='byond://?_src_=holder;[HrefToken()];adminplayeropts=[srcRef]'>PP</a>"
+			html += " <a href='byond://?_src_=holder;[HrefToken()];adminplayerobservefollow=[srcRef]'>Follow</a>"
 		if(istype(srcLoc))
-			html += "<br>src.loc: <a href='?_src_=vars;[HrefToken()];Vars=\ref[srcLoc]'>VV</a>"
-			html += " <a href='?_src_=holder;[HrefToken()];adminplayerobservecoodjump=1;X=[srcLoc.x];Y=[srcLoc.y];Z=[srcLoc.z]'>JMP</a>"
+			html += "<br>src.loc: <a href='byond://?_src_=vars;[HrefToken()];Vars=\ref[srcLoc]'>VV</a>"
+			html += " <a href='byond://?_src_=holder;[HrefToken()];adminplayerobservecoodjump=1;X=[srcLoc.x];Y=[srcLoc.y];Z=[srcLoc.z]'>JMP</a>"
 	if(usrRef)
-		html += "<br>usr: <a href='?_src_=vars;[HrefToken()];Vars=[usrRef]'>VV</a>"
-		html += " <a href='?_src_=holder;[HrefToken()];adminplayeropts=[usrRef]'>PP</a>"
-		html += " <a href='?_src_=holder;[HrefToken()];adminplayerobservefollow=[usrRef]'>Follow</a>"
+		html += "<br>usr: <a href='byond://?_src_=vars;[HrefToken()];Vars=[usrRef]'>VV</a>"
+		html += " <a href='byond://?_src_=holder;[HrefToken()];adminplayeropts=[usrRef]'>PP</a>"
+		html += " <a href='byond://?_src_=holder;[HrefToken()];adminplayerobservefollow=[usrRef]'>Follow</a>"
 		if(istype(usrLoc))
-			html += "<br>usr.loc: <a href='?_src_=vars;[HrefToken()];Vars=\ref[usrLoc]'>VV</a>"
-			html += " <a href='?_src_=holder;[HrefToken()];adminplayerobservecoodjump=1;X=[usrLoc.x];Y=[usrLoc.y];Z=[usrLoc.z]'>JMP</a>"
+			html += "<br>usr.loc: <a href='byond://?_src_=vars;[HrefToken()];Vars=\ref[usrLoc]'>VV</a>"
+			html += " <a href='byond://?_src_=holder;[HrefToken()];adminplayerobservecoodjump=1;X=[usrLoc.x];Y=[usrLoc.y];Z=[usrLoc.z]'>JMP</a>"
 	browseTo(user, html)
 
 /datum/ErrorViewer/ErrorEntry/makeLink(var/linktext, var/datum/ErrorViewer/back_to, var/linear)

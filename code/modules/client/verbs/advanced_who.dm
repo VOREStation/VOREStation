@@ -67,7 +67,7 @@
 				entry += "[seconds % 60] seconds)"
 
 			entry += "</td><td>"
-			entry += " (<A HREF='?_src_=holder;[HrefToken()];adminmoreinfo=\ref[C.mob]'>?</A>)"
+			entry += " (<A href='byond://?_src_=holder;[HrefToken()];adminmoreinfo=\ref[C.mob]'>?</A>)"
 			entry += "</td></tr>"
 
 			Lines += entry

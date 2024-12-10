@@ -63,7 +63,7 @@ var/global/floorIsLava = 0
 
 	body += {"
 		<br><br>\[
-		<a href='?_src_=vars;[HrefToken()];Vars=\ref[M]'>VV</a> -
+		<a href='byond://?_src_=vars;[HrefToken()];Vars=\ref[M]'>VV</a> -
 		<a href='byond://?src=\ref[src];[HrefToken()];traitor=\ref[M]'>TP</a> -
 		<a href='byond://?src=\ref[usr];[HrefToken()];priv_msg=\ref[M]'>PM</a> -
 		<a href='byond://?src=\ref[src];[HrefToken()];subtlemessage=\ref[M]'>SM</a> -
@@ -71,7 +71,7 @@ var/global/floorIsLava = 0
 		<b>Mob type:</b> [M.type]<br>
 		<b>Inactivity time:</b> [M.client ? "[M.client.inactivity/600] minutes" : "Logged out"]<br/><br/>
 		<A href='byond://?src=\ref[src];[HrefToken()];boot2=\ref[M]'>Kick</A> |
-		<A href='?_src_=holder;[HrefToken()];warn=[M.ckey]'>Warn</A> |
+		<A href='byond://?_src_=holder;[HrefToken()];warn=[M.ckey]'>Warn</A> |
 		<A href='byond://?src=\ref[src];[HrefToken()];newban=\ref[M]'>Ban</A> |
 		<A href='byond://?src=\ref[src];[HrefToken()];jobban2=\ref[M]'>Jobban</A> |
 		<A href='byond://?src=\ref[src];[HrefToken()];notes=show;mob=\ref[M]'>Notes</A>
@@ -1314,19 +1314,19 @@ var/datum/announcement/minor/admin_min_announcer = new
 			return span_bold("[key_name(C, link, name, highlight_special)]")
 
 		if(1)	//Private Messages
-			return span_bold("[key_name(C, link, name, highlight_special)](<A HREF='?_src_=holder;[HrefToken()];adminmoreinfo=\ref[M]'>?</A>)")
+			return span_bold("[key_name(C, link, name, highlight_special)](<A href='byond://?_src_=holder;[HrefToken()];adminmoreinfo=\ref[M]'>?</A>)")
 
 		if(2)	//Admins
 			var/ref_mob = "\ref[M]"
-			return span_bold("[key_name(C, link, name, highlight_special)](<A HREF='?_src_=holder;[HrefToken()];adminmoreinfo=[ref_mob]'>?</A>) (<A HREF='?_src_=holder;[HrefToken()];adminplayeropts=[ref_mob]'>PP</A>) (<A HREF='?_src_=vars;[HrefToken()];Vars=[ref_mob]'>VV</A>) (<A HREF='?_src_=holder;[HrefToken()];subtlemessage=[ref_mob]'>SM</A>) ([admin_jump_link(M)]) (<A HREF='?_src_=holder;[HrefToken()];check_antagonist=1'>CA</A>) (<A HREF='?_src_=holder;[HrefToken()];take_question=\ref[M]'>TAKE</A>)")
+			return span_bold("[key_name(C, link, name, highlight_special)](<A href='byond://?_src_=holder;[HrefToken()];adminmoreinfo=[ref_mob]'>?</A>) (<A href='byond://?_src_=holder;[HrefToken()];adminplayeropts=[ref_mob]'>PP</A>) (<A href='byond://?_src_=vars;[HrefToken()];Vars=[ref_mob]'>VV</A>) (<A href='byond://?_src_=holder;[HrefToken()];subtlemessage=[ref_mob]'>SM</A>) ([admin_jump_link(M)]) (<A href='byond://?_src_=holder;[HrefToken()];check_antagonist=1'>CA</A>) (<A href='byond://?_src_=holder;[HrefToken()];take_question=\ref[M]'>TAKE</A>)")
 
 		if(3)	//Devs
 			var/ref_mob = "\ref[M]"
-			return span_bold("[key_name(C, link, name, highlight_special)](<A HREF='?_src_=vars;[HrefToken()];Vars=[ref_mob]'>VV</A>)([admin_jump_link(M)]) (<A HREF='?_src_=holder;[HrefToken()];take_question=\ref[M]'>TAKE</A>)")
+			return span_bold("[key_name(C, link, name, highlight_special)](<A href='byond://?_src_=vars;[HrefToken()];Vars=[ref_mob]'>VV</A>)([admin_jump_link(M)]) (<A href='byond://?_src_=holder;[HrefToken()];take_question=\ref[M]'>TAKE</A>)")
 
 		if(4)	//Event Managers
 			var/ref_mob = "\ref[M]"
-			return span_bold("[key_name(C, link, name, highlight_special)] (<A HREF='?_src_=holder;[HrefToken()];adminmoreinfo=\ref[M]'>?</A>) (<A HREF='?_src_=holder;[HrefToken()];adminplayeropts=[ref_mob]'>PP</A>) (<A HREF='?_src_=vars;[HrefToken()];Vars=[ref_mob]'>VV</A>) (<A HREF='?_src_=holder;[HrefToken()];subtlemessage=[ref_mob]'>SM</A>) ([admin_jump_link(M)]) (<A HREF='?_src_=holder;[HrefToken()];take_question=\ref[M]'>TAKE</A>)")
+			return span_bold("[key_name(C, link, name, highlight_special)] (<A href='byond://?_src_=holder;[HrefToken()];adminmoreinfo=\ref[M]'>?</A>) (<A href='byond://?_src_=holder;[HrefToken()];adminplayeropts=[ref_mob]'>PP</A>) (<A href='byond://?_src_=vars;[HrefToken()];Vars=[ref_mob]'>VV</A>) (<A href='byond://?_src_=holder;[HrefToken()];subtlemessage=[ref_mob]'>SM</A>) ([admin_jump_link(M)]) (<A href='byond://?_src_=holder;[HrefToken()];take_question=\ref[M]'>TAKE</A>)")
 
 
 /proc/ishost(whom)
@@ -1549,12 +1549,12 @@ var/datum/announcement/minor/admin_min_announcer = new
 			log_admin("[key_name(src.owner)] replied to a fax message from [key_name(P.sender)]")
 			for(var/client/C in GLOB.admins)
 				if((R_ADMIN | R_MOD | R_EVENT) & C.holder.rights)
-					to_chat(C, span_log_message("[span_prefix("FAX LOG:")][key_name_admin(src.owner)] replied to a fax message from [key_name_admin(P.sender)] (<a href='?_src_=holder;[HrefToken()];AdminFaxView=\ref[rcvdcopy]'>VIEW</a>)"))
+					to_chat(C, span_log_message("[span_prefix("FAX LOG:")][key_name_admin(src.owner)] replied to a fax message from [key_name_admin(P.sender)] (<a href='byond://?_src_=holder;[HrefToken()];AdminFaxView=\ref[rcvdcopy]'>VIEW</a>)"))
 		else
 			log_admin("[key_name(src.owner)] has sent a fax message to [destination.department]")
 			for(var/client/C in GLOB.admins)
 				if((R_ADMIN | R_MOD | R_EVENT) & C.holder.rights)
-					to_chat(C, span_log_message("[span_prefix("FAX LOG:")][key_name_admin(src.owner)] has sent a fax message to [destination.department] (<a href='?_src_=holder;[HrefToken()];AdminFaxView=\ref[rcvdcopy]'>VIEW</a>)"))
+					to_chat(C, span_log_message("[span_prefix("FAX LOG:")][key_name_admin(src.owner)] has sent a fax message to [destination.department] (<a href='byond://?_src_=holder;[HrefToken()];AdminFaxView=\ref[rcvdcopy]'>VIEW</a>)"))
 
 		var/plaintext_title = P.sender ? "replied to [key_name(P.sender)]'s fax" : "sent a fax message to [destination.department]"
 		var/fax_text = paper_html_to_plaintext(P.info)
