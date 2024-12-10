@@ -77,7 +77,7 @@
 	action_circuit = new(src.IC)
 	IC.force_add_circuit(action_circuit)
 
-	new /datum/action/item_action/activate(src, name)
+	add_item_action(new /datum/action/item_action/activate(src, name))
 
 /obj/item/clothing/Destroy()
 	if(IC)
