@@ -1,7 +1,7 @@
 /obj/item/stack/material/glass
-	name = "glass"
+	name = MAT_GLASS
 	icon_state = "sheet-transparent"
-	default_type = "glass"
+	default_type = MAT_GLASS
 	no_variants = FALSE
 	drop_sound = 'sound/items/drop/glass.ogg'
 	pickup_sound = 'sound/items/pickup/glass.ogg'

@@ -90,7 +90,7 @@
 	return ..()
 
 /client/proc/generic_item()
-	set category = "EventKit"
+	set category = "Fun.Event Kit"
 	set name = "Spawn Generic Item"
 	set desc = "Spawn a customisable item with a range of different options."
 

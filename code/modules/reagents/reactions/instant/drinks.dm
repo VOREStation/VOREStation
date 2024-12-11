@@ -100,14 +100,14 @@
 	name = REAGENT_AMERICANO
 	id = REAGENT_ID_AMERICANO
 	result = REAGENT_ID_AMERICANO
-	required_reagents = list("water" = 1, REAGENT_ID_LONGBLACK = 2)
+	required_reagents = list(REAGENT_ID_WATER = 1, REAGENT_ID_LONGBLACK = 2)
 	result_amount = 3
 
 /decl/chemical_reaction/instant/drinks/long_black
 	name = REAGENT_LONGBLACK
 	id = REAGENT_ID_LONGBLACK
 	result = REAGENT_ID_LONGBLACK
-	required_reagents = list("water" = 1, REAGENT_ID_COFFEE = 1)
+	required_reagents = list(REAGENT_ID_WATER = 1, REAGENT_ID_COFFEE = 1)
 	result_amount = 2
 
 /decl/chemical_reaction/instant/drinks/macchiato

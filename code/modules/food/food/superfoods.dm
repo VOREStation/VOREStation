@@ -2,7 +2,7 @@
 
 /datum/recipe/chaoscake_layerone
 	reagents = list(REAGENT_ID_FLOUR = 30,REAGENT_ID_MILK = 20, REAGENT_ID_SUGAR = 10, REAGENT_ID_EGG = 9)
-	fruit = list(PLANT_POISONBERRIES = 2, "cherries" =  2)
+	fruit = list(PLANT_POISONBERRIES = 2, PLANT_CHERRY =  2)
 	items = list(
 			/obj/item/reagent_containers/food/snacks/meat/,
 			/obj/item/reagent_containers/food/snacks/meat/,
@@ -13,7 +13,7 @@
 
 /datum/recipe/chaoscake_layertwo
 	reagents = list(REAGENT_ID_FLOUR = 30, REAGENT_ID_MILK = 20, REAGENT_ID_SUGAR = 10, REAGENT_ID_EGG = 9, )
-	fruit = list(REAGENT_ID_VANILLA =  2, REAGENT_ID_BANANA = 2)
+	fruit = list(PLANT_VANILLA =  2, PLANT_BANANA = 2)
 	items = list(
 			/obj/item/reagent_containers/food/snacks/dough,
 			/obj/item/reagent_containers/food/snacks/dough,
@@ -214,7 +214,7 @@
 			reagents.add_reagent(REAGENT_ID_BLOOD, 20)
 			reagents.add_reagent(REAGENT_ID_STOMACID, 10)
 			reagents.add_reagent(REAGENT_ID_MUTAGEN, 4)
-			reagents.add_reagent("thirteenloko", 20)
+			reagents.add_reagent(REAGENT_ID_THIRTEENLOKO, 20)
 			reagents.add_reagent(REAGENT_ID_HYPERZINE, 10)
 			bitesize = 30
 		if(4)

@@ -1,7 +1,7 @@
 /client/proc/player_effects(var/mob/target in mob_list)
 	set name = "Player Effects"
 	set desc = "Modify a player character with various 'special treatments' from a list."
-	set category = "Fun"
+	set category = "Fun.Event Kit"
 	if(!check_rights(R_FUN))
 		return
 
