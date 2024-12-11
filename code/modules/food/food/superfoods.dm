@@ -214,7 +214,7 @@
 			reagents.add_reagent(REAGENT_ID_BLOOD, 20)
 			reagents.add_reagent(REAGENT_ID_STOMACID, 10)
 			reagents.add_reagent(REAGENT_ID_MUTAGEN, 4)
-			reagents.add_reagent("thirteenloko", 20)
+			reagents.add_reagent(REAGENT_ID_THIRTEENLOKO, 20)
 			reagents.add_reagent(REAGENT_ID_HYPERZINE, 10)
 			bitesize = 30
 		if(4)
