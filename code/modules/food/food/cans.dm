@@ -62,7 +62,7 @@
 
 /obj/item/reagent_containers/food/drinks/cans/thirteenloko/Initialize()
 	. = ..()
-	reagents.add_reagent("thirteenloko", 30)
+	reagents.add_reagent(REAGENT_ID_THIRTEENLOKO, 30)
 
 /obj/item/reagent_containers/food/drinks/cans/dr_gibb
 	name = "\improper Dr. Gibb"
