@@ -161,7 +161,7 @@
 	result = /obj/item/storage/box/wings/bucket
 
 /datum/recipe/grub_pink
-	fruit = list("cherries" = 1)
+	fruit = list(PLANT_CHERRY = 1)
 	items = list(
 		/obj/item/reagent_containers/food/snacks/grub
 	)

@@ -24,7 +24,7 @@
 	plantname = PLANT_SIFBULB
 
 /obj/item/reagent_containers/food/snacks/grown/sif/wabback
-	plantname = "wabback"
+	plantname = PLANT_WHITEWABBACK
 
 /obj/item/reagent_containers/food/snacks/grown/sif/blackwabback
 	plantname = PLANT_BLACKWABBACK
