@@ -37,7 +37,7 @@
 	if(.)
 		if(stat == CONSCIOUS)
 			if(udder && prob(5))
-				udder.add_reagent("milk", rand(5, 10))
+				udder.add_reagent(REAGENT_ID_MILK, rand(5, 10))
 
 		if(locate(/obj/effect/plant) in loc)
 			var/obj/effect/plant/SV = locate() in loc
@@ -64,7 +64,7 @@
 	var/obj/item/reagent_containers/glass/G = O
 	if(stat == CONSCIOUS && istype(G) && G.is_open_container())
 		user.visible_message(span_notice("[user] milks [src] using \the [O]."))
-		var/transfered = udder.trans_id_to(G, "milk", rand(5,10))
+		var/transfered = udder.trans_id_to(G, REAGENT_ID_MILK, rand(5,10))
 		if(G.reagents.total_volume >= G.volume)
 			to_chat(user, span_red("The [O] is full."))
 		if(!transfered)

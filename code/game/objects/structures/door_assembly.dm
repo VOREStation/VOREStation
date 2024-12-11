@@ -267,7 +267,7 @@
 		var/material_name = S.get_material_name()
 		if (S)
 			if (S.get_amount() >= 1)
-				if(material_name == "rglass")
+				if(material_name == MAT_RGLASS)
 					playsound(src, 'sound/items/Crowbar.ogg', 100, 1)
 					user.visible_message("[user] adds [S.name] to the airlock assembly.", "You start to install [S.name] into the airlock assembly.")
 					if(do_after(user, 4 SECONDS, src, exclusive = TASK_ALL_EXCLUSIVE) && !glass)
@@ -276,7 +276,7 @@
 							glass = 1
 				else if(material_name)
 					// Ugly hack, will suffice for now. Need to fix it upstream as well, may rewrite mineral walls. ~Z
-					if(!(material_name in list("gold", "silver", "diamond", "uranium", "phoron", "sandstone")))
+					if(!(material_name in list(MAT_GOLD, MAT_SILVER, MAT_DIAMOND, MAT_URANIUM, MAT_PHORON, MAT_SANDSTONE)))
 						to_chat(user, "You cannot make an airlock out of that material.")
 						return
 					if(S.get_amount() >= 2)

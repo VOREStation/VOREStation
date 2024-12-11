@@ -38,7 +38,7 @@
 /datum/lore/codex/proc/quick_link(var/target, var/word_to_display)
 	if(isnull(word_to_display))
 		word_to_display = target
-	return "<a href='?src=\ref[src];quick_link=[target]'>[word_to_display]</a>"
+	return "<a href='byond://?src=\ref[src];quick_link=[target]'>[word_to_display]</a>"
 
 // Can only be found by specifically searching for it.
 /datum/lore/codex/page/ultimate_answer

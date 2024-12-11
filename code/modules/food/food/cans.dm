@@ -17,7 +17,7 @@
 
 /obj/item/reagent_containers/food/drinks/cans/cola/Initialize()
 	. = ..()
-	reagents.add_reagent("cola", 30)
+	reagents.add_reagent(REAGENT_ID_COLA, 30)
 
 /obj/item/reagent_containers/food/drinks/cans/decaf_cola
 	name = "\improper Space Cola Free"
@@ -28,7 +28,7 @@
 
 /obj/item/reagent_containers/food/drinks/cans/decaf_cola/Initialize()
 	. = ..()
-	reagents.add_reagent("decafcola", 30)
+	reagents.add_reagent(REAGENT_ID_DECAFCOLA, 30)
 
 /obj/item/reagent_containers/food/drinks/cans/waterbottle
 	name = "bottled water"
@@ -41,7 +41,7 @@
 
 /obj/item/reagent_containers/food/drinks/cans/waterbottle/Initialize()
 	. = ..()
-	reagents.add_reagent("water", 30)
+	reagents.add_reagent(REAGENT_ID_WATER, 30)
 
 /obj/item/reagent_containers/food/drinks/cans/space_mountain_wind
 	name = "\improper Space Mountain Wind"
@@ -52,7 +52,7 @@
 
 /obj/item/reagent_containers/food/drinks/cans/space_mountain_wind/Initialize()
 	. = ..()
-	reagents.add_reagent("spacemountainwind", 30)
+	reagents.add_reagent(REAGENT_ID_SPACEMOUNTAINWIND, 30)
 
 /obj/item/reagent_containers/food/drinks/cans/thirteenloko
 	name = "\improper Thirteen Loko"
@@ -73,7 +73,7 @@
 
 /obj/item/reagent_containers/food/drinks/cans/dr_gibb/Initialize()
 		..()
-		reagents.add_reagent("dr_gibb", 30)
+		reagents.add_reagent(REAGENT_ID_DRGIBB, 30)
 
 /obj/item/reagent_containers/food/drinks/cans/dr_gibb_diet
 	name = "\improper Diet Dr. Gibb"
@@ -84,7 +84,7 @@
 
 /obj/item/reagent_containers/food/drinks/cans/dr_gibb_diet/Initialize()
 		..()
-		reagents.add_reagent("diet_dr_gibb", 30)
+		reagents.add_reagent(REAGENT_ID_DIETDRGIBB, 30)
 
 /obj/item/reagent_containers/food/drinks/cans/starkist
 	name = "\improper Star-kist"
@@ -95,7 +95,7 @@
 
 /obj/item/reagent_containers/food/drinks/cans/starkist/Initialize()
 	. = ..()
-	reagents.add_reagent("brownstar", 30)
+	reagents.add_reagent(REAGENT_ID_BROWNSTAR, 30)
 
 /obj/item/reagent_containers/food/drinks/cans/starkistdecaf
 	name = "\improper Star-kist Classic"
@@ -106,7 +106,7 @@
 
 /obj/item/reagent_containers/food/drinks/cans/starkistdecaf/Initialize()
 	. = ..()
-	reagents.add_reagent("brownstar_decaf", 30)
+	reagents.add_reagent(REAGENT_ID_BROWNSTARDECAF, 30)
 
 /obj/item/reagent_containers/food/drinks/cans/space_up
 	name = "\improper Space-Up"
@@ -117,7 +117,7 @@
 
 /obj/item/reagent_containers/food/drinks/cans/space_up/Initialize()
 	. = ..()
-	reagents.add_reagent("space_up", 30)
+	reagents.add_reagent(REAGENT_ID_SPACEUP, 30)
 
 /obj/item/reagent_containers/food/drinks/cans/lemon_lime
 	name = "\improper Lemon-Lime"
@@ -128,7 +128,7 @@
 
 /obj/item/reagent_containers/food/drinks/cans/lemon_lime/Initialize()
 	. = ..()
-	reagents.add_reagent("lemon_lime", 30)
+	reagents.add_reagent(REAGENT_ID_LEMONLIME, 30)
 
 /obj/item/reagent_containers/food/drinks/cans/iced_tea
 	name = "\improper Vrisk Serket Iced Tea"
@@ -139,7 +139,7 @@
 
 /obj/item/reagent_containers/food/drinks/cans/iced_tea/Initialize()
 	. = ..()
-	reagents.add_reagent("icetea", 30)
+	reagents.add_reagent(REAGENT_ID_ICETEA, 30)
 
 /obj/item/reagent_containers/food/drinks/cans/grape_juice
 	name = "\improper Grapel Juice"
@@ -150,7 +150,7 @@
 
 /obj/item/reagent_containers/food/drinks/cans/grape_juice/Initialize()
 	. = ..()
-	reagents.add_reagent("grapejuice", 30)
+	reagents.add_reagent(REAGENT_ID_GRAPEJUICE, 30)
 
 /obj/item/reagent_containers/food/drinks/cans/tonic
 	name = "\improper T-Borg's Tonic Water"
@@ -161,7 +161,7 @@
 
 /obj/item/reagent_containers/food/drinks/cans/tonic/Initialize()
 	. = ..()
-	reagents.add_reagent("tonic", 30)
+	reagents.add_reagent(REAGENT_ID_TONIC, 30)
 
 /obj/item/reagent_containers/food/drinks/cans/sodawater
 	name = "soda water"
@@ -171,7 +171,7 @@
 
 /obj/item/reagent_containers/food/drinks/cans/sodawater/Initialize()
 	. = ..()
-	reagents.add_reagent("sodawater", 30)
+	reagents.add_reagent(REAGENT_ID_SODAWATER, 30)
 
 /obj/item/reagent_containers/food/drinks/cans/gingerale
 	name = "\improper Classic Ginger Ale"
@@ -182,7 +182,7 @@
 
 /obj/item/reagent_containers/food/drinks/cans/gingerale/Initialize()
 	. = ..()
-	reagents.add_reagent("gingerale", 30)
+	reagents.add_reagent(REAGENT_ID_GINGERALE, 30)
 
 /obj/item/reagent_containers/food/drinks/cans/root_beer
 	name = "\improper R&D Root Beer"
@@ -193,7 +193,7 @@
 
 /obj/item/reagent_containers/food/drinks/cans/root_beer/Initialize()
 	. = ..()
-	reagents.add_reagent("rootbeer", 30)
+	reagents.add_reagent(REAGENT_ID_ROOTBEER, 30)
 
 /////////////////////////BODA VENDOR DRINKS/////////////////////////
 
@@ -206,7 +206,7 @@
 
 /obj/item/reagent_containers/food/drinks/cans/kvass/Initialize()
 	. = ..()
-	reagents.add_reagent("kvass", 30)
+	reagents.add_reagent(REAGENT_ID_KVASS, 30)
 
 /obj/item/reagent_containers/food/drinks/cans/kompot
 	name = "\improper Kompot"
@@ -217,7 +217,7 @@
 
 /obj/item/reagent_containers/food/drinks/cans/kompot/Initialize()
 	. = ..()
-	reagents.add_reagent("kompot", 30)
+	reagents.add_reagent(REAGENT_ID_KOMPOT, 30)
 
 /obj/item/reagent_containers/food/drinks/cans/boda
 	name = "\improper Boda"
@@ -227,7 +227,7 @@
 
 /obj/item/reagent_containers/food/drinks/cans/boda/Initialize()
 	. = ..()
-	reagents.add_reagent("sodawater", 30)
+	reagents.add_reagent(REAGENT_ID_SODAWATER, 30)
 
 /obj/item/reagent_containers/food/drinks/cans/bodaplus
 	name = "\improper Boda-Plyus"
@@ -237,16 +237,16 @@
 
 /obj/item/reagent_containers/food/drinks/cans/bodaplus/Initialize()
 	. = ..()
-	reagents.add_reagent("sodawater", 15)
+	reagents.add_reagent(REAGENT_ID_SODAWATER, 15)
 	reagents.add_reagent(pick(list(
-				"applejuice",
-				"grapejuice",
-				"lemonjuice",
-				"limejuice",
-				"watermelonjuice",
-				"banana",
-				"berryjuice",
-				"pineapplejuice")), 15)
+				REAGENT_ID_APPLEJUICE,
+				REAGENT_ID_GRAPEJUICE,
+				REAGENT_ID_LEMONJUICE,
+				REAGENT_ID_LIMEJUICE,
+				REAGENT_ID_WATERMELONJUICE,
+				REAGENT_ID_BANANA,
+				REAGENT_ID_BERRYJUICE,
+				REAGENT_ID_PINEAPPLEJUICE)), 15)
 
 /obj/item/reagent_containers/food/drinks/cans/redarmy
 	name = "\improper Red Army Twist"
@@ -256,8 +256,8 @@
 
 /obj/item/reagent_containers/food/drinks/cans/redarmy/Initialize()
 	. = ..()
-	reagents.add_reagent("potatojuice", 15)
-	reagents.add_reagent("sodawater", 15)
+	reagents.add_reagent(REAGENT_ID_POTATOJUICE, 15)
+	reagents.add_reagent(REAGENT_ID_SODAWATER, 15)
 
 /obj/item/reagent_containers/food/drinks/cans/arstbru
 	name = "\improper Arstotzka Brü"
@@ -267,7 +267,7 @@
 
 /obj/item/reagent_containers/food/drinks/cans/arstbru/Initialize()
 	. = ..()
-	reagents.add_reagent("turnipjuice", 30)
+	reagents.add_reagent(REAGENT_ID_TURNIPJUICE, 30)
 
 /obj/item/reagent_containers/food/drinks/cans/terra_cola
 	name = "\improper Terra-Cola"
@@ -278,8 +278,8 @@
 
 /obj/item/reagent_containers/food/drinks/cans/terra_cola/Initialize()
 	. = ..()
-	reagents.add_reagent("water", 25)
-	reagents.add_reagent("iron", 5)
+	reagents.add_reagent(REAGENT_ID_WATER, 25)
+	reagents.add_reagent(REAGENT_ID_IRON, 5)
 
 /////////////////////////MISC VENDOR DRINKS/////////////////////////
 
@@ -291,7 +291,7 @@
 
 /obj/item/reagent_containers/food/drinks/cans/straw_cola/Initialize()
 	. = ..()
-	reagents.add_reagent("strawsoda", 30)
+	reagents.add_reagent(REAGENT_ID_STRAWSODA, 30)
 
 /obj/item/reagent_containers/food/drinks/cans/apple_cola
 	name = "\improper Andromeda Apple"
@@ -301,7 +301,7 @@
 
 /obj/item/reagent_containers/food/drinks/cans/apple_cola/Initialize()
 	. = ..()
-	reagents.add_reagent("applesoda", 30)
+	reagents.add_reagent(REAGENT_ID_APPLESODA, 30)
 
 /obj/item/reagent_containers/food/drinks/cans/lemon_cola
 	name = "\improper Lunar Lemon"
@@ -311,7 +311,7 @@
 
 /obj/item/reagent_containers/food/drinks/cans/lemon_cola/Initialize()
 	. = ..()
-	reagents.add_reagent("lemonsoda", 30)
+	reagents.add_reagent(REAGENT_ID_LEMONSODA, 30)
 
 /obj/item/reagent_containers/food/drinks/cans/sarsaparilla
 	name = "\improper Starship Sarsaparilla"
@@ -321,7 +321,7 @@
 
 /obj/item/reagent_containers/food/drinks/cans/sarsaparilla/Initialize()
 	. = ..()
-	reagents.add_reagent("sarsaparilla", 30)
+	reagents.add_reagent(REAGENT_ID_SARSAPARILLA, 30)
 
 /obj/item/reagent_containers/food/drinks/cans/grape_cola
 	name = "\improper Gravity Grape"
@@ -331,7 +331,7 @@
 
 /obj/item/reagent_containers/food/drinks/cans/grape_cola/Initialize()
 	. = ..()
-	reagents.add_reagent("grapesoda", 30)
+	reagents.add_reagent(REAGENT_ID_GRAPESODA, 30)
 
 /obj/item/reagent_containers/food/drinks/cans/orange_cola
 	name = "\improper Orion Orange"
@@ -341,7 +341,7 @@
 
 /obj/item/reagent_containers/food/drinks/cans/orange_cola/Initialize()
 	. = ..()
-	reagents.add_reagent("orangesoda", 30)
+	reagents.add_reagent(REAGENT_ID_ORANGESODA, 30)
 
 /obj/item/reagent_containers/food/drinks/cans/baconsoda
 	name = "\improper Bacon Soda"
@@ -351,7 +351,7 @@
 
 /obj/item/reagent_containers/food/drinks/cans/baconsoda/Initialize()
 	. = ..()
-	reagents.add_reagent("porksoda", 30)
+	reagents.add_reagent(REAGENT_ID_PORKSODA, 30)
 
 /obj/item/reagent_containers/food/drinks/cans/bepis
 	name = "\improper Bepis"
@@ -365,7 +365,7 @@
 
 /obj/item/reagent_containers/food/drinks/cans/bepis/Initialize()
 	. = ..()
-	reagents.add_reagent("bepis", 30)
+	reagents.add_reagent(REAGENT_ID_BEPIS, 30)
 
 /obj/item/reagent_containers/food/drinks/cans/astrodew
 	name = "\improper Astro Dew Spring Water"
@@ -376,7 +376,7 @@
 
 /obj/item/reagent_containers/food/drinks/cans/astrodew/Initialize()
 	. = ..()
-	reagents.add_reagent("water", 30)
+	reagents.add_reagent(REAGENT_ID_WATER, 30)
 
 /obj/item/reagent_containers/food/drinks/cans/icecoffee
 	name = "\improper Café Del Consumir"
@@ -392,7 +392,7 @@
 
 /obj/item/reagent_containers/food/drinks/cans/icecoffee/Initialize()
 	. = ..()
-	reagents.add_reagent("icecoffee", 30)
+	reagents.add_reagent(REAGENT_ID_ICECOFFEE, 30)
 
 /obj/item/reagent_containers/food/drinks/cans/buzz
 	name = "\improper Buzz Fuzz"
@@ -403,7 +403,7 @@
 
 /obj/item/reagent_containers/food/drinks/cans/buzz/Initialize()
 	. = ..()
-	reagents.add_reagent("buzz_fuzz", 30)
+	reagents.add_reagent(REAGENT_ID_BUZZFUZZ, 30)
 
 /obj/item/reagent_containers/food/drinks/cans/shambler
 	name = "\improper Shambler's Juice"
@@ -414,7 +414,7 @@
 
 /obj/item/reagent_containers/food/drinks/cans/shambler/Initialize()
 	. = ..()
-	reagents.add_reagent("shamblers", 30)
+	reagents.add_reagent(REAGENT_ID_SHAMBLERS, 30)
 
 /obj/item/reagent_containers/food/drinks/cans/cranberry
 	name = "\improper Sprited Cranberry"
@@ -425,7 +425,7 @@
 
 /obj/item/reagent_containers/food/drinks/cans/cranberry/Initialize()
 	. = ..()
-	reagents.add_reagent("sprited_cranberry", 30)
+	reagents.add_reagent(REAGENT_ID_SPRITEDCRANBERRY, 30)
 
 /////////////////////////CANNED BOOZE DRINKS/////////////////////////
 
@@ -437,7 +437,7 @@
 
 /obj/item/reagent_containers/food/drinks/cans/beercan/Initialize()
 	. = ..()
-	reagents.add_reagent("beer", 30)
+	reagents.add_reagent(REAGENT_ID_BEER, 30)
 
 /obj/item/reagent_containers/food/drinks/cans/alecan
 	name = "\improper Spacecastle Pale Ale"
@@ -447,7 +447,7 @@
 
 /obj/item/reagent_containers/food/drinks/cans/alecan/Initialize()
 	. = ..()
-	reagents.add_reagent("ale", 30)
+	reagents.add_reagent(REAGENT_ID_ALE, 30)
 
 /////////////////////////ENERGY DRINKS/////////////////////////
 
@@ -460,7 +460,7 @@
 
 /obj/item/reagent_containers/food/drinks/cans/nukie_peach/Initialize()
 	. = ..()
-	reagents.add_reagent("nukie_peach", 60)
+	reagents.add_reagent(REAGENT_ID_NUKIEPEACH, 60)
 
 /obj/item/reagent_containers/food/drinks/cans/nukie_pear
 	name = "\improper Nukies - Great Pear"
@@ -471,7 +471,7 @@
 
 /obj/item/reagent_containers/food/drinks/cans/nukie_pear/Initialize()
 	. = ..()
-	reagents.add_reagent("nukie_pear", 60)
+	reagents.add_reagent(REAGENT_ID_NUKIEPEAR, 60)
 
 /obj/item/reagent_containers/food/drinks/cans/nukie_cherry
 	name = "\improper Nukies - Popping Cherry"
@@ -482,7 +482,7 @@
 
 /obj/item/reagent_containers/food/drinks/cans/nukie_cherry/Initialize()
 	. = ..()
-	reagents.add_reagent("nukie_cherry", 60)
+	reagents.add_reagent(REAGENT_ID_NUKIECHERRY, 60)
 
 /obj/item/reagent_containers/food/drinks/cans/nukie_melon
 	name = "\improper Nukies - Melon Squirter"
@@ -493,7 +493,7 @@
 
 /obj/item/reagent_containers/food/drinks/cans/nukie_melon/Initialize()
 	. = ..()
-	reagents.add_reagent("nukie_melon", 60)
+	reagents.add_reagent(REAGENT_ID_NUKIEMELON, 60)
 
 /obj/item/reagent_containers/food/drinks/cans/nukie_banana
 	name = "\improper Nukies - Bursting Banana"
@@ -504,7 +504,7 @@
 
 /obj/item/reagent_containers/food/drinks/cans/nukie_banana/Initialize()
 	. = ..()
-	reagents.add_reagent("nukie_banana", 60)
+	reagents.add_reagent(REAGENT_ID_NUKIEBANANA, 60)
 
 /obj/item/reagent_containers/food/drinks/cans/nukie_rose
 	name = "\improper Nukies - Insatiable Rose"
@@ -515,7 +515,7 @@
 
 /obj/item/reagent_containers/food/drinks/cans/nukie_rose/Initialize()
 	. = ..()
-	reagents.add_reagent("nukie_rose", 60)
+	reagents.add_reagent(REAGENT_ID_NUKIEROSE, 60)
 
 /obj/item/reagent_containers/food/drinks/cans/nukie_lemon
 	name = "\improper Nukies - Citrus Got Real"
@@ -526,7 +526,7 @@
 
 /obj/item/reagent_containers/food/drinks/cans/nukie_lemon/Initialize()
 	. = ..()
-	reagents.add_reagent("nukie_lemon", 60)
+	reagents.add_reagent(REAGENT_ID_NUKIELEMON, 60)
 
 /obj/item/reagent_containers/food/drinks/cans/nukie_fruit
 	name = "\improper Nukies - Swelling Fruit"
@@ -537,7 +537,7 @@
 
 /obj/item/reagent_containers/food/drinks/cans/nukie_fruit/Initialize()
 	. = ..()
-	reagents.add_reagent("nukie_fruit", 60)
+	reagents.add_reagent(REAGENT_ID_NUKIEFRUIT, 60)
 
 /obj/item/reagent_containers/food/drinks/cans/nukie_special
 	name = "\improper Nukies - Limited Edition"
@@ -548,7 +548,7 @@
 
 /obj/item/reagent_containers/food/drinks/cans/nukie_special/Initialize()
 	. = ..()
-	reagents.add_reagent("nukie_special", 60)
+	reagents.add_reagent(REAGENT_ID_NUKIESPECIAL, 60)
 
 /////////////////////////MEGA NUKIES/////////////////////////
 //Rare loot energy drinks with special properties, for the funnies.
@@ -562,7 +562,7 @@
 
 /obj/item/reagent_containers/food/drinks/cans/nukie_mega_sight/Initialize()
 	. = ..()
-	reagents.add_reagent("nukie_mega_sight", 60)
+	reagents.add_reagent(REAGENT_ID_NUKIEMEGASIGHT, 60)
 
 /obj/item/reagent_containers/food/drinks/cans/nukie_mega_heart
 	name = "\improper Nukies Mega - Juice Pumper"
@@ -573,7 +573,7 @@
 
 /obj/item/reagent_containers/food/drinks/cans/nukie_mega_heart/Initialize()
 	. = ..()
-	reagents.add_reagent("nukie_mega_heart", 60)
+	reagents.add_reagent(REAGENT_ID_NUKIEMEGAHEART, 60)
 
 /obj/item/reagent_containers/food/drinks/cans/nukie_mega_sleep
 	name = "\improper Nukies Nega - Vibrating Nights"
@@ -584,7 +584,7 @@
 
 /obj/item/reagent_containers/food/drinks/cans/nukie_mega_sleep/Initialize()
 	. = ..()
-	reagents.add_reagent("nukie_mega_sleep", 60)
+	reagents.add_reagent(REAGENT_ID_NUKIEMEGASLEEP, 60)
 
 /obj/item/reagent_containers/food/drinks/cans/nukie_mega_shock
 	name = "\improper Nukies Mega - Jolt Railer"
@@ -595,7 +595,7 @@
 
 /obj/item/reagent_containers/food/drinks/cans/nukie_mega_shock/Initialize()
 	. = ..()
-	reagents.add_reagent("nukie_mega_shock", 60)
+	reagents.add_reagent(REAGENT_ID_NUKIEMEGASHOCK, 60)
 
 /obj/item/reagent_containers/food/drinks/cans/nukie_mega_fast
 	name = "\improper Nukies Mega - Rapid Rager"
@@ -606,7 +606,7 @@
 
 /obj/item/reagent_containers/food/drinks/cans/nukie_mega_fast/Initialize()
 	. = ..()
-	reagents.add_reagent("nukie_mega_fast", 60)
+	reagents.add_reagent(REAGENT_ID_NUKIEMEGAFAST, 60)
 
 /obj/item/reagent_containers/food/drinks/cans/nukie_mega_high
 	name = "\improper Nukies Mega - Diamond Sky"
@@ -617,7 +617,7 @@
 
 /obj/item/reagent_containers/food/drinks/cans/nukie_mega_high/Initialize()
 	. = ..()
-	reagents.add_reagent("nukie_mega_high", 60)
+	reagents.add_reagent(REAGENT_ID_NUKIEMEGAHIGH, 60)
 
 /obj/item/reagent_containers/food/drinks/cans/nukie_mega_shrink
 	name = "\improper Nukies Mega - Shrinking Flower"
@@ -628,7 +628,7 @@
 
 /obj/item/reagent_containers/food/drinks/cans/nukie_mega_shrink/Initialize()
 	. = ..()
-	reagents.add_reagent("nukie_mega_shrink", 60)
+	reagents.add_reagent(REAGENT_ID_NUKIEMEGASHRINK, 60)
 
 /obj/item/reagent_containers/food/drinks/cans/nukie_mega_grow
 	name = "\improper Nukies Mega - Growing Geyser"
@@ -639,4 +639,4 @@
 
 /obj/item/reagent_containers/food/drinks/cans/nukie_mega_grow/Initialize()
 	. = ..()
-	reagents.add_reagent("nukie_mega_growth", 60)
+	reagents.add_reagent(REAGENT_ID_NUKIEMEGAGROWTH, 60)

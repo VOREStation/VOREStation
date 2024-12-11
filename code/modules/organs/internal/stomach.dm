@@ -6,7 +6,7 @@
 
 	unacidable = TRUE	// Don't melt when holding your acid, dangit.
 
-	var/acidtype = "stomacid"	// Incase you want some stomach organ with, say, polyacid instead, or sulphuric.
+	var/acidtype = REAGENT_ID_STOMACID	// Incase you want some stomach organ with, say, polyacid instead, or sulphuric.
 	var/max_acid_volume = 30
 
 	var/deadly_hold = TRUE	// Does the stomach do damage to mobs eaten by its owner? Xenos should probably have this FALSE.
@@ -47,7 +47,7 @@
 
 /obj/item/organ/internal/stomach/xeno
 	color = "#555555"
-	acidtype = "pacid"
+	acidtype = REAGENT_ID_PACID
 
 /obj/item/organ/internal/stomach/machine
 	name = "reagent cycler"
@@ -56,7 +56,7 @@
 
 	robotic = ORGAN_ROBOT
 
-	acidtype = "sacid"
+	acidtype = REAGENT_ID_SACID
 
 	organ_verbs = list(/mob/living/carbon/human/proc/reagent_purge) //VOREStation Add
 

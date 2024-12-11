@@ -23,7 +23,7 @@
 	if(on)
 		var/datum/gas_mixture/air_sample = return_air()
 		var/pressure = round(air_sample.return_pressure(), 0.1)
-		var/phoron = ("phoron" in air_sample.gas) ? round(air_sample.gas["phoron"], 0.1) : 0
+		var/phoron = (GAS_PHORON in air_sample.gas) ? round(air_sample.gas[GAS_PHORON], 0.1) : 0
 
 		if(abs(pressure - previousPressure) > 0.1 || previousPressure == null || abs(phoron - previousPhoron) > 0.1 || previousPhoron == null)
 			var/datum/signal/signal = new
@@ -31,7 +31,7 @@
 			signal.data["tag"] = id_tag
 			signal.data["timestamp"] = world.time
 			signal.data["pressure"] = num2text(pressure)
-			signal.data["phoron"] = num2text(phoron)
+			signal.data[GAS_PHORON] = num2text(phoron)
 			radio_connection.post_signal(src, signal, range = AIRLOCK_CONTROL_RANGE, radio_filter = RADIO_AIRLOCK)
 			previousPressure = pressure
 			previousPhoron = phoron
@@ -176,14 +176,14 @@
 	if(..()) return 1
 
 	if(receive_tag==tag_chamber_sensor)
-		memory["chamber_sensor_phoron"] = text2num(signal.data["phoron"])
+		memory["chamber_sensor_phoron"] = text2num(signal.data[GAS_PHORON])
 		memory["chamber_sensor_pressure"] = text2num(signal.data["pressure"])
 
 	else if(receive_tag==tag_exterior_sensor)
-		memory["external_sensor_phoron"] = text2num(signal.data["phoron"])
+		memory["external_sensor_phoron"] = text2num(signal.data[GAS_PHORON])
 
 	else if(receive_tag==tag_interior_sensor)
-		memory["internal_sensor_phoron"] = text2num(signal.data["phoron"])
+		memory["internal_sensor_phoron"] = text2num(signal.data[GAS_PHORON])
 
 	else if(receive_tag==tag_scrubber)
 		if(signal.data["power"])

@@ -31,6 +31,14 @@
 	type = replacetext(type, " ", "_")
 	return "[type]_[state]"
 
+/datum/frame/frame_types/button
+	name = "Button"
+	frame_class = FRAME_CLASS_ALARM
+	frame_size = 1
+	frame_style = FRAME_STYLE_WALL
+	x_offset = 24
+	y_offset = 24
+
 /datum/frame/frame_types/computer
 	name = "Computer"
 	icon_override = 'icons/obj/stock_parts_vr.dmi' //VOREStation Edit
@@ -207,14 +215,6 @@
 	frame_class = FRAME_CLASS_MACHINE
 	circuit = /obj/machinery/atmospheric_field_generator
 	frame_size = 3
-
-/datum/frame/frame_types/electrochromic_button
-	name = "Electrochromic Window Button"
-	frame_class = FRAME_CLASS_ALARM
-	frame_size = 1
-	frame_style = FRAME_STYLE_WALL
-	x_offset = 24
-	y_offset = 24
 
 //////////////////////////////
 // Frame Object (Structure)
@@ -545,7 +545,7 @@
 				state = FRAME_FASTENED
 				new /obj/item/stack/cable_coil(src.loc, 5)
 
-	else if(istype(P, /obj/item/stack/material) && P.get_material_name() == "glass")
+	else if(istype(P, /obj/item/stack/material) && P.get_material_name() == MAT_GLASS)
 		if(state == FRAME_WIRED)
 			if(frame_type.frame_class == FRAME_CLASS_COMPUTER)
 				var/obj/item/stack/G = P

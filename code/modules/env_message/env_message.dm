@@ -8,7 +8,7 @@ var/global/list/env_messages = list()
 	mouse_opacity = TRUE
 	anchored = TRUE
 	var/list/message_list = list()
-	var/combined_message = "You should not see this"
+	var/combined_message = DEVELOPER_WARNING_NAME
 
 /obj/effect/env_message/Initialize(mapload)
 	.=..()

@@ -8,6 +8,7 @@
 	holder_type = /obj/machinery/door/airlock
 	wire_count = 12
 	proper_name = "Airlock"
+	tgui_template = "WiresAirlock"
 
 /datum/wires/airlock/interactable(mob/user)
 	var/obj/machinery/door/airlock/A = holder
@@ -40,6 +41,39 @@
 	. += "The 'Check Wiring' light is [(A.safe == 0 && haspower) ? "on" : "off"]."
 	. += "The 'Check Timing Mechanism' light is [(A.normalspeed == 0 && haspower) ? "on" : "off"]."
 	. += "The IDScan light is [(A.aiDisabledIdScanner == 0 && haspower) ? "on" : "off."]"
+
+/datum/wires/airlock/tgui_data(mob/user)
+	var/list/data = ..()
+
+	var/obj/machinery/door/airlock/A = holder
+	data["id_tag"] = A.id_tag
+	data["frequency"] = A.radio_connection ? A.frequency : null
+	data["min_freq"] = RADIO_LOW_FREQ
+	data["max_freq"] = RADIO_HIGH_FREQ
+
+	return data
+
+/datum/wires/airlock/tgui_act(action, list/params)
+	. = ..()
+	if(.)
+		return
+
+	var/obj/machinery/door/airlock/A = holder
+
+	switch(action)
+		if("set_id_tag")
+			var/new_id = tgui_input_text(usr, "Enter a new ID tag for [A]", "[A] ID Tag", A.id_tag, 30, FALSE, TRUE)
+			if(new_id)
+				A.id_tag = new_id
+				return TRUE
+
+		if("set_frequency")
+			A.set_frequency(sanitize_frequency(text2num(params["freq"]), RADIO_LOW_FREQ, RADIO_HIGH_FREQ))
+			return TRUE
+
+		if("clear_frequency")
+			A.set_frequency(null)
+			return TRUE
 
 /datum/wires/airlock/on_cut(wire, mend)
 	var/obj/machinery/door/airlock/A = holder

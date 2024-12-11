@@ -73,7 +73,7 @@
 	req_one_access = list()
 
 /area/submap/event_autonomous_drone
-	secret_name = FALSE
+	flags = RAD_SHIELDED | AREA_FORBID_EVENTS
 
 /area/submap/event_autonomous_drone/engineering
 	name = "Engine Bay"

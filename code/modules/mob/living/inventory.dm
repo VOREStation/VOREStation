@@ -25,6 +25,17 @@
 			else
 				newitem.forceMove(S)
 			return S
+
+	if(istype(src.back,/obj/item/rig))	//This would be much cooler if we had componentized storage datums
+		var/obj/item/rig/R = src.back
+		if(R.rig_storage)
+			var/obj/item/storage/backpack = R.rig_storage
+			if(backpack.can_be_inserted(newitem, 1))
+				if(user_initiated)
+					backpack.handle_item_insertion(newitem)
+				else
+					newitem.forceMove(src.back)
+				return backpack
 	return 0
 
 //Returns the thing in our active hand

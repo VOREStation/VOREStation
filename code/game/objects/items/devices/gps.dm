@@ -239,12 +239,12 @@ var/list/GPS_list = list()
 
 	dat += "<table width = '100%'>"
 	if(!tracking)
-		dat += "<tr><td colspan = 6></td><a href='?src=\ref[src];toggle_power=1'>\[Switch On\]</a></tr>"
+		dat += "<tr><td colspan = 6></td><a href='byond://?src=\ref[src];toggle_power=1'>\[Switch On\]</a></tr>"
 	else
-		dat += "<tr><td colspan = 6></td><a href='?src=\ref[src];toggle_power=1'>\[Switch Off\]</a></tr>"
+		dat += "<tr><td colspan = 6></td><a href='byond://?src=\ref[src];toggle_power=1'>\[Switch Off\]</a></tr>"
 		dat += "<tr><td colspan = 2><b>Current location</b></td><td colspan = 2>[gps_data["my_area_name"]]</td><td colspan = 2><b>([gps_data["curr_x"]], [gps_data["curr_y"]], [gps_data["curr_z_name"]])</b></td></tr>"
 		dat += "<tr><td colspan = 4>[hide_signal ? "Tagged" : "Broadcasting"] as '[gps_tag]'.</td>"
-		dat += "<td><a href='?src=\ref[src];tag=1'>\[Change Tag\]</a><a href='?src=\ref[src];range=1'>\[Toggle Scan Range\]</a>[can_hide_signal ? "<a href='?src=\ref[src];hide=1'>\[Toggle Signal Visibility\]</a>":""]</td></tr>"
+		dat += "<td><a href='byond://?src=\ref[src];tag=1'>\[Change Tag\]</a><a href='byond://?src=\ref[src];range=1'>\[Toggle Scan Range\]</a>[can_hide_signal ? "<a href='byond://?src=\ref[src];hide=1'>\[Toggle Signal Visibility\]</a>":""]</td></tr>"
 
 		var/list/gps_list = gps_data["gps_list"]
 		if(gps_list.len)
@@ -265,9 +265,9 @@ var/list/GPS_list = list()
 					dat += "<td colspan = 2>Non-local signal.</td>"
 
 				if(LAZYACCESS(tracking_devices, gps_ref))
-					dat += "<td><a href='?src=\ref[src];stop_track=[gps_ref]'>\[Stop Tracking\]</a> <a href='?src=\ref[src];track_color=[gps_ref]'>\[Colour [color_square(hex = LAZYACCESS(tracking_devices, gps_ref))]\]</a> <a href='?src=\ref[src];track_label=[gps_ref]'>Show/Hide Label</a></td>"
+					dat += "<td><a href='byond://?src=\ref[src];stop_track=[gps_ref]'>\[Stop Tracking\]</a> <a href='byond://?src=\ref[src];track_color=[gps_ref]'>\[Colour [color_square(hex = LAZYACCESS(tracking_devices, gps_ref))]\]</a> <a href='byond://?src=\ref[src];track_label=[gps_ref]'>Show/Hide Label</a></td>"
 				else
-					dat += "<td><a href='?src=\ref[src];start_track=[gps_ref]'>\[Start Tracking\]</a></td>"
+					dat += "<td><a href='byond://?src=\ref[src];start_track=[gps_ref]'>\[Start Tracking\]</a></td>"
 				dat += "</tr>"
 		else
 			dat += "<tr><td colspan = 5>No other signals detected.</td></tr>"
@@ -481,12 +481,12 @@ var/list/GPS_list = list()
 
 	dat += "<table width = '100%'>"
 	if(!tracking)
-		dat += "<tr><td colspan = 6></td><a href='?src=\ref[src];toggle_power=1'>\[Switch On\]</a></tr>"
+		dat += "<tr><td colspan = 6></td><a href='byond://?src=\ref[src];toggle_power=1'>\[Switch On\]</a></tr>"
 	else
-		dat += "<tr><td colspan = 6></td><a href='?src=\ref[src];toggle_power=1'>\[Switch Off\]</a></tr>"
+		dat += "<tr><td colspan = 6></td><a href='byond://?src=\ref[src];toggle_power=1'>\[Switch Off\]</a></tr>"
 		dat += "<tr><td colspan = 2><b>Current location</b></td><td colspan = 2>[gps_data["my_area_name"]]</td><td colspan = 2><b>([gps_data["curr_x"]], [gps_data["curr_y"]], [gps_data["curr_z_name"]])</b></td></tr>"
 		dat += "<tr><td colspan = 4>[hide_signal ? "Tagged" : "Broadcasting"] as '[gps_tag]'.</td>"
-		dat += "<td><a href='?src=\ref[src];tag=1'>\[Change Tag\]</a><a href='?src=\ref[src];range=1'>\[Toggle Scan Range\]</a>[can_hide_signal ? "<a href='?src=\ref[src];hide=1'>\[Toggle Signal Visibility\]</a>":""]</td></tr>"
+		dat += "<td><a href='byond://?src=\ref[src];tag=1'>\[Change Tag\]</a><a href='byond://?src=\ref[src];range=1'>\[Toggle Scan Range\]</a>[can_hide_signal ? "<a href='byond://?src=\ref[src];hide=1'>\[Toggle Signal Visibility\]</a>":""]</td></tr>"
 
 		var/list/gps_list = gps_data["gps_list"]
 		if(gps_list.len)
@@ -500,9 +500,9 @@ var/list/GPS_list = list()
 				else
 					dat += "<td colspan = 2>Non-local signal.</td>"
 				if(LAZYACCESS(tracking_devices, gps_ref))
-					dat += "<td><a href='?src=\ref[src];stop_track=[gps_ref]'>\[Stop Tracking\]</a> <a href='?src=\ref[src];track_color=[gps_ref]'>\[Colour [color_square(hex = LAZYACCESS(tracking_devices, gps_ref))]\]</a> <a href='?src=\ref[src];track_label=[gps_ref]'>Show/Hide Label</a></td>"
+					dat += "<td><a href='byond://?src=\ref[src];stop_track=[gps_ref]'>\[Stop Tracking\]</a> <a href='byond://?src=\ref[src];track_color=[gps_ref]'>\[Colour [color_square(hex = LAZYACCESS(tracking_devices, gps_ref))]\]</a> <a href='byond://?src=\ref[src];track_label=[gps_ref]'>Show/Hide Label</a></td>"
 				else
-					dat += "<td><a href='?src=\ref[src];start_track=[gps_ref]'>\[Start Tracking\]</a></td>"
+					dat += "<td><a href='byond://?src=\ref[src];start_track=[gps_ref]'>\[Start Tracking\]</a></td>"
 				dat += "</tr>"
 		else
 			dat += "<tr><td colspan = 6>No other signals detected.</td></tr>"

@@ -1,9 +1,9 @@
 /datum/seed/celery
-	name = "celery"
-	seed_name = "celery"
-	display_name = "celery"
-	kitchen_tag = "celery"
-	chems = list("nutriment" = list(5,20))
+	name = PLANT_CELERY
+	seed_name = PLANT_CELERY
+	display_name = PLANT_CELERY
+	kitchen_tag = PLANT_CELERY
+	chems = list(REAGENT_ID_NUTRIMENT = list(5,20))
 
 /datum/seed/celery/New()
 	..()

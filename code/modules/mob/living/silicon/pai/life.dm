@@ -34,6 +34,7 @@
 			to_chat(src, span_green("Communication circuit reinitialized. Speech and messaging functionality restored."))
 
 	handle_statuses()
+	handle_sleeping()
 
 	if(health <= 0)
 		card.death_damage()

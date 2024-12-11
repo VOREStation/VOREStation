@@ -99,9 +99,9 @@
 	if(!dbcon_old.IsConnected())
 		dat += "<font color=red><b>ERROR</b>: Unable to contact External Archive. Please contact your system administrator for assistance.</font>"
 	else
-		dat += {"<A href='?our_comp=\ref[our_comp];[HrefToken()];orderbyid=1'>(Order book by SS<sup>13</sup>BN)</A><BR><BR>
+		dat += {"<A href='byond://?our_comp=\ref[our_comp];[HrefToken()];orderbyid=1'>(Order book by SS<sup>13</sup>BN)</A><BR><BR>
 		<table>
-		<tr><td><A href='?our_comp=\ref[our_comp];[HrefToken()];sort=author>AUTHOR</A></td><td><A href='?our_comp=\ref[our_comp];[HrefToken()];sort=title>TITLE</A></td><td><A href='?our_comp=\ref[our_comp];[HrefToken()];sort=category>CATEGORY</A></td><td></td></tr>"}
+		<tr><td><A href='byond://?our_comp=\ref[our_comp];[HrefToken()];sort=author>AUTHOR</A></td><td><A href='byond://?our_comp=\ref[our_comp];[HrefToken()];sort=title>TITLE</A></td><td><A href='byond://?our_comp=\ref[our_comp];[HrefToken()];sort=category>CATEGORY</A></td><td></td></tr>"}
 		var/DBQuery/query = dbcon_old.NewQuery("SELECT id, author, title, category FROM library ORDER BY [our_comp.sortby]")
 		query.Execute()
 
@@ -114,7 +114,7 @@
 			var/category = query.item[4]
 			dat += "<tr><td>[author]</td><td>[title]</td><td>[category]</td><td>"
 			if(show_admin_options) // This isn't the only check, since you can just href-spoof press this button. Just to tidy things up.
-				dat += "<A href='?our_comp=\ref[our_comp];[HrefToken()];delid=[id]'>\[Del\]</A>"
+				dat += "<A href='byond://?our_comp=\ref[our_comp];[HrefToken()];delid=[id]'>\[Del\]</A>"
 			dat += "</td></tr>"
 		dat += "</table>"
 

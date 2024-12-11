@@ -253,7 +253,7 @@ SUBSYSTEM_DEF(vote)
 
 		log_vote(text)
 
-		to_world(span_filter_system(span_purple(span_bold("[text]") + "\nType " + span_bold("vote") + " or click <a href='?src=\ref[src]'>here</a> to place your votes.\nYou have [config.vote_period / 10] seconds to vote.")))
+		to_world(span_filter_system(span_purple(span_bold("[text]") + "\nType " + span_bold("vote") + " or click <a href='byond://?src=\ref[src]'>here</a> to place your votes.\nYou have [config.vote_period / 10] seconds to vote.")))
 		if(vote_type == VOTE_CREW_TRANSFER || vote_type == VOTE_GAMEMODE || vote_type == VOTE_CUSTOM)
 			world << sound('sound/ambience/alarm4.ogg', repeat = 0, wait = 0, volume = 50, channel = 3)
 
@@ -292,55 +292,55 @@ SUBSYSTEM_DEF(vote)
 			. += "<tr>"
 			var/thisVote = (current_votes[C.ckey] == i)
 			if(mode == VOTE_GAMEMODE)
-				. += "<td>[thisVote ? "<b>" : ""]<a href='?src=\ref[src];vote=[i]'>[gamemode_names[choices[i]]]</a>[thisVote ? "</b>" : ""]</td><td align = 'center'>[votes]</td>"
+				. += "<td>[thisVote ? "<b>" : ""]<a href='byond://?src=\ref[src];vote=[i]'>[gamemode_names[choices[i]]]</a>[thisVote ? "</b>" : ""]</td><td align = 'center'>[votes]</td>"
 			else
-				. += "<td>[thisVote ? "<b>" : ""]<a href='?src=\ref[src];vote=[i]'>[choices[i]]</a>[thisVote ? "</b>" : ""]</td><td align = 'center'>[votes]</td>"
+				. += "<td>[thisVote ? "<b>" : ""]<a href='byond://?src=\ref[src];vote=[i]'>[choices[i]]</a>[thisVote ? "</b>" : ""]</td><td align = 'center'>[votes]</td>"
 			if (additional_text.len >= i)
 				. += additional_text[i]
 			. += "</tr>"
 
-		. += "<tr><td><a href='?src=\ref[src];vote=unvote'>Unvote</a></td></tr>"
+		. += "<tr><td><a href='byond://?src=\ref[src];vote=unvote'>Unvote</a></td></tr>"
 
 		. += "</table><hr>"
 		if(admin)
-			. += "(<a href='?src=\ref[src];[HrefToken()];vote=cancel'>Cancel Vote</a>) "
+			. += "(<a href='byond://?src=\ref[src];[HrefToken()];vote=cancel'>Cancel Vote</a>) "
 	else
 		. += "<h2>Start a vote:</h2><hr><ul><li>"
 		if(admin || config.allow_vote_restart)
-			. += "<a href='?src=\ref[src];vote=restart'>Restart</a>"
+			. += "<a href='byond://?src=\ref[src];vote=restart'>Restart</a>"
 		else
 			. += span_gray("Restart (Disallowed)")
 		. += "</li><li>"
 
 		if(admin || config.allow_vote_restart)
-			. += "<a href='?src=\ref[src];vote=crew_transfer'>Crew Transfer</a>"
+			. += "<a href='byond://?src=\ref[src];vote=crew_transfer'>Crew Transfer</a>"
 		else
 			. += span_gray("Crew Transfer (Disallowed)")
 
 		if(admin)
-			. += "\t(<a href='?src=\ref[src];[HrefToken()];vote=toggle_restart'>[config.allow_vote_restart ? "Allowed" : "Disallowed"]</a>)"
+			. += "\t(<a href='byond://?src=\ref[src];[HrefToken()];vote=toggle_restart'>[config.allow_vote_restart ? "Allowed" : "Disallowed"]</a>)"
 		. += "</li><li>"
 
 		if(admin || config.allow_vote_mode)
-			. += "<a href='?src=\ref[src];vote=gamemode'>GameMode</a>"
+			. += "<a href='byond://?src=\ref[src];vote=gamemode'>GameMode</a>"
 		else
 			. += span_gray("GameMode (Disallowed)")
 
 		if(admin)
-			. += "\t(<a href='?src=\ref[src];[HrefToken()];vote=toggle_gamemode'>[config.allow_vote_mode ? "Allowed" : "Disallowed"]</a>)"
+			. += "\t(<a href='byond://?src=\ref[src];[HrefToken()];vote=toggle_gamemode'>[config.allow_vote_mode ? "Allowed" : "Disallowed"]</a>)"
 		. += "</li><li>"
 
 		if(!antag_add_failed && config.allow_extra_antags)
-			. += "<a href='?src=\ref[src];vote=add_antagonist'>Add Antagonist Type</a>"
+			. += "<a href='byond://?src=\ref[src];vote=add_antagonist'>Add Antagonist Type</a>"
 		else
 			. += span_gray("Add Antagonist (Disallowed)")
 		. += "</li>"
 
 		if(admin)
-			. += "<li><a href='?src=\ref[src];[HrefToken()];vote=custom'>Custom</a></li>"
+			. += "<li><a href='byond://?src=\ref[src];[HrefToken()];vote=custom'>Custom</a></li>"
 		. += "</ul><hr>"
 
-	. += "<a href='?src=\ref[src];vote=close' style='position:absolute;right:50px'>Close</a></body></html>"
+	. += "<a href='byond://?src=\ref[src];vote=close' style='position:absolute;right:50px'>Close</a></body></html>"
 
 /datum/controller/subsystem/vote/Topic(href, href_list[])
 	if(!usr || !usr.client)

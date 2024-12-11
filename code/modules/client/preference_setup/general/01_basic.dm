@@ -82,19 +82,19 @@
 /datum/category_item/player_setup_item/general/basic/content()
 	. = list()
 	. += span_bold("Name:") + " "
-	. += "<a href='?src=\ref[src];rename=1'><b>[pref.real_name]</b></a><br>"
-	. += "<a href='?src=\ref[src];random_name=1'>Randomize Name</A><br>"
-	. += "<a href='?src=\ref[src];always_random_name=1'>Always Random Name: [pref.be_random_name ? "Yes" : "No"]</a><br>"
+	. += "<a href='byond://?src=\ref[src];rename=1'><b>[pref.real_name]</b></a><br>"
+	. += "<a href='byond://?src=\ref[src];random_name=1'>Randomize Name</A><br>"
+	. += "<a href='byond://?src=\ref[src];always_random_name=1'>Always Random Name: [pref.be_random_name ? "Yes" : "No"]</a><br>"
 	. += span_bold("Nickname:") + " "
-	. += "<a href='?src=\ref[src];nickname=1'><b>[pref.nickname]</b></a>"
-	. += "(<a href='?src=\ref[src];reset_nickname=1'>Clear</A>)"
+	. += "<a href='byond://?src=\ref[src];nickname=1'><b>[pref.nickname]</b></a>"
+	. += "(<a href='byond://?src=\ref[src];reset_nickname=1'>Clear</A>)"
 	. += "<br>"
-	. += span_bold("Biological Sex:") + " <a href='?src=\ref[src];bio_gender=1'><b>[gender2text(pref.biological_gender)]</b></a><br>"
-	. += span_bold("Pronouns:") + " <a href='?src=\ref[src];id_gender=1'><b>[gender2text(pref.identifying_gender)]</b></a><br>"
-	. += span_bold("Age:") + " <a href='?src=\ref[src];age=1'>[pref.age]</a> <b>Birthday:</b> <a href='?src=\ref[src];bday_month=1'>[pref.bday_month]</a><b>/</b><a href='?src=\ref[src];bday_day=1'>[pref.bday_day]</a> - <b>Announce?:</b> <a href='?src=\ref[src];bday_announce=1'>[pref.bday_announce ? "Yes" : "No"]</a><br>"
-	. += span_bold("Spawn Point") + ": <a href='?src=\ref[src];spawnpoint=1'>[pref.spawnpoint]</a><br>"
+	. += span_bold("Biological Sex:") + " <a href='byond://?src=\ref[src];bio_gender=1'><b>[gender2text(pref.biological_gender)]</b></a><br>"
+	. += span_bold("Pronouns:") + " <a href='byond://?src=\ref[src];id_gender=1'><b>[gender2text(pref.identifying_gender)]</b></a><br>"
+	. += span_bold("Age:") + " <a href='byond://?src=\ref[src];age=1'>[pref.age]</a> <b>Birthday:</b> <a href='byond://?src=\ref[src];bday_month=1'>[pref.bday_month]</a><b>/</b><a href='byond://?src=\ref[src];bday_day=1'>[pref.bday_day]</a> - <b>Announce?:</b> <a href='byond://?src=\ref[src];bday_announce=1'>[pref.bday_announce ? "Yes" : "No"]</a><br>"
+	. += span_bold("Spawn Point") + ": <a href='byond://?src=\ref[src];spawnpoint=1'>[pref.spawnpoint]</a><br>"
 	if(CONFIG_GET(flag/allow_metadata))
-		. += span_bold("OOC Notes: <a href='?src=\ref[src];edit_ooc_notes=1'>Edit</a><a href='?src=\ref[src];edit_ooc_note_likes=1'>Likes</a><a href='?src=\ref[src];edit_ooc_note_dislikes=1'>Dislikes</a>") + "<br>"
+		. += span_bold("OOC Notes: <a href='byond://?src=\ref[src];edit_ooc_notes=1'>Edit</a><a href='byond://?src=\ref[src];edit_ooc_note_likes=1'>Likes</a><a href='byond://?src=\ref[src];edit_ooc_note_dislikes=1'>Dislikes</a>") + "<br>"
 	. = jointext(.,null)
 
 /datum/category_item/player_setup_item/general/basic/OnTopic(var/href,var/list/href_list, var/mob/user)

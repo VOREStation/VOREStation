@@ -21,7 +21,7 @@ Slime definitions, Life and New live here.
 	var/growthpoint = 25 //At what point they grow up.
 	var/shiny = 0
 	move_to_delay = 17 //Slimes shouldn't be able to go faster than humans.
-	default_chems = list("slimejelly" = 5)
+	default_chems = list(REAGENT_ID_SLIMEJELLY = 5)
 	attacktext = list("absorbed some of")
 	response_help = "pats"
 	response_disarm = "tries to stop"
@@ -46,39 +46,39 @@ Slime definitions, Life and New live here.
 	//Overlay information
 	var/overlay = 1 // 1 = normal lighting, 0 = shiny, 2 = too shiny, -1 = no overlay
 
-	chemreact = list(	"nutriment" = list("nutr" = 0.5),
-						"radium" = list("toxic" = 0.3, "mut" = 1),
-						"mutagen" = list("nutr" = 0.4, "mut" = 2),
-						"water" = list("nutr" = -0.1),
-						"milk" = list("nutr" = 0.3),
-						"sacid" = list("toxic" = 1),
-						"pacid" = list("toxic" = 2),
-						"chlorine" = list("toxic" = 0.5),
-						"ammonia" = list("toxic" = 0.5),
-						"sodawater" = list("toxic" = 0.1, "nutr" = -0.1),
-						"beer" = list("nutr" = 0.6),
-						"diethylamine" = list("nutr" = 0.9),
-						"sugar" = list("toxic" = 0.4, "nutr" = 0.2),
-						"eznutrient" = list("nutr" = 0.8),
-						"cryoxadone" = list("toxic" = 0.4),
-						"flourine" = list("toxic" = 0.1),
-						"robustharvest" = list("nutr" = 1.5),
-						"glucose" = list("nutr" = 0.5),
-						"blood" = list("nutr" = 0.75, "toxic" = 0.05, "mut" = 0.45),
-						"fuel" = list("toxic" = 0.4),
-						"toxin" = list("toxic" = 0.5),
-						"carpotoxin" = list("toxic" = 1, "mut" = 1.5),
-						"phoron" = list("toxic" = 1.5, "mut" = 0.03),
-						"virusfood" = list("nutr" = 1.5, "mut" = 0.32),
-						"cyanide" = list("toxic" = 3.5),
-						"slimejelly" = list("nutr" = 0.5),
-						"amutationtoxin" = list("toxic" = 0.1, "heal" = 1.5, "mut" = 3),
-						"mutationtoxin" = list("toxic" = 0.1, "heal" = 1, "mut" = 1.5),
-						"gold" = list("heal" = 0.3, "nutr" = 0.7, "mut" = 0.3),
-						"uranium" = list("heal" = 0.3, "toxic" = 0.7, "mut" = 1.2),
-						"glycerol" = list("nutr" = 0.6),
-						"woodpulp" = list("heal" = 0.1, "nutr" = 0.7),
-						"docilitytoxin" = list("nutr" = 0.3)	)
+	chemreact = list(	REAGENT_ID_NUTRIMENT = list(XENO_CHEM_NUTRI = 0.5),
+						REAGENT_ID_RADIUM = list(XENO_CHEM_TOXIC = 0.3, XENO_CHEM_MUT = 1),
+						REAGENT_ID_MUTAGEN = list(XENO_CHEM_NUTRI = 0.4, XENO_CHEM_MUT = 2),
+						REAGENT_ID_WATER = list(XENO_CHEM_NUTRI = -0.1),
+						REAGENT_ID_MILK = list(XENO_CHEM_NUTRI = 0.3),
+						REAGENT_ID_SACID = list(XENO_CHEM_TOXIC = 1),
+						REAGENT_ID_PACID = list(XENO_CHEM_TOXIC = 2),
+						REAGENT_ID_CHLORINE = list(XENO_CHEM_TOXIC = 0.5),
+						REAGENT_ID_AMMONIA = list(XENO_CHEM_TOXIC = 0.5),
+						REAGENT_ID_SODAWATER = list(XENO_CHEM_TOXIC = 0.1, XENO_CHEM_NUTRI = -0.1),
+						REAGENT_ID_BEER = list(XENO_CHEM_NUTRI = 0.6),
+						REAGENT_ID_DIETHYLAMINE = list(XENO_CHEM_NUTRI = 0.9),
+						REAGENT_ID_SUGAR = list(XENO_CHEM_TOXIC = 0.4, XENO_CHEM_NUTRI = 0.2),
+						REAGENT_ID_EZNUTRIENT = list(XENO_CHEM_NUTRI = 0.8),
+						REAGENT_ID_CRYOXADONE = list(XENO_CHEM_TOXIC = 0.4),
+						"flourine" = list(XENO_CHEM_TOXIC = 0.1),
+						REAGENT_ID_ROBUSTHARVEST = list(XENO_CHEM_NUTRI = 1.5),
+						REAGENT_ID_GLUCOSE = list(XENO_CHEM_NUTRI = 0.5),
+						REAGENT_ID_BLOOD = list(XENO_CHEM_NUTRI = 0.75, XENO_CHEM_TOXIC = 0.05, XENO_CHEM_MUT = 0.45),
+						REAGENT_ID_FUEL = list(XENO_CHEM_TOXIC = 0.4),
+						REAGENT_ID_TOXIN = list(XENO_CHEM_TOXIC = 0.5),
+						REAGENT_ID_CARPOTOXIN = list(XENO_CHEM_TOXIC = 1, XENO_CHEM_MUT = 1.5),
+						REAGENT_ID_PHORON = list(XENO_CHEM_TOXIC = 1.5, XENO_CHEM_MUT = 0.03),
+						REAGENT_ID_VIRUSFOOD = list(XENO_CHEM_NUTRI = 1.5, XENO_CHEM_MUT = 0.32),
+						REAGENT_ID_CYANIDE = list(XENO_CHEM_TOXIC = 3.5),
+						REAGENT_ID_SLIMEJELLY = list(XENO_CHEM_NUTRI = 0.5),
+						"amutationtoxin" = list(XENO_CHEM_TOXIC = 0.1, XENO_CHEM_HEAL = 1.5, XENO_CHEM_MUT = 3),
+						REAGENT_ID_MUTATIONTOXIN = list(XENO_CHEM_TOXIC = 0.1, XENO_CHEM_HEAL = 1, XENO_CHEM_MUT = 1.5),
+						REAGENT_ID_GOLD = list(XENO_CHEM_HEAL = 0.3, XENO_CHEM_NUTRI = 0.7, XENO_CHEM_MUT = 0.3),
+						REAGENT_ID_URANIUM = list(XENO_CHEM_HEAL = 0.3, XENO_CHEM_TOXIC = 0.7, XENO_CHEM_MUT = 1.2),
+						REAGENT_ID_GLYCEROL = list(XENO_CHEM_NUTRI = 0.6),
+						REAGENT_ID_WOODPULP = list(XENO_CHEM_HEAL = 0.1, XENO_CHEM_NUTRI = 0.7),
+						REAGENT_ID_MUTATIONTOXIN = list(XENO_CHEM_NUTRI = 0.3)	)
 
 /mob/living/simple_mob/xeno/slime/New()
 	..()

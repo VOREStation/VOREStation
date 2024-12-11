@@ -52,30 +52,30 @@ VIRGO3B_TURF_CREATE(/turf/simulated/floor/outdoors/rocks)
 	var/mineral_name
 	if(rare_ore)
 		mineral_name = pickweight(list(
-			"marble" = 7,
-			"uranium" = 10,
-			"platinum" = 10,
-			"hematite" = 10,
-			"carbon" = 10,
-			"diamond" = 4,
-			"gold" = 15,
-			"silver" = 15,
-			"lead" = 5,
-			"verdantium" = 2,
-			"rutile" = 10))
+			ORE_MARBLE = 7,
+			ORE_URANIUM = 10,
+			ORE_PLATINUM = 10,
+			ORE_HEMATITE = 10,
+			ORE_CARBON = 10,
+			ORE_DIAMOND = 4,
+			ORE_GOLD = 15,
+			ORE_SILVER = 15,
+			ORE_LEAD = 5,
+			ORE_VERDANTIUM = 2,
+			ORE_RUTILE = 10))
 	else
 		mineral_name = pickweight(list(
-			"marble" = 5,
-			"uranium" = 7,
-			"platinum" = 7,
-			"hematite" = 28,
-			"carbon" = 28,
-			"diamond" = 2,
-			"gold" = 7,
-			"silver" = 7,
-			"lead" = 4,
-			"verdantium" = 1,
-			"rutile" = 10))
+			ORE_MARBLE = 5,
+			ORE_URANIUM = 7,
+			ORE_PLATINUM = 7,
+			ORE_HEMATITE = 28,
+			ORE_CARBON = 28,
+			ORE_DIAMOND = 2,
+			ORE_GOLD = 7,
+			ORE_SILVER = 7,
+			ORE_LEAD = 4,
+			ORE_VERDANTIUM = 1,
+			ORE_RUTILE = 10))
 	if(mineral_name && (mineral_name in GLOB.ore_data))
 		mineral = GLOB.ore_data[mineral_name]
 		UpdateMineral()

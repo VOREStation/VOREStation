@@ -20,10 +20,11 @@ var/global/list/special_roles = list( //keep synced with the defines BE_* in set
 	//VOREStation Add
 	"lost drone" = 1,									// 16
 	"maint pred" = 1,									// 17
-	"morph" = 1,										// 18
-	"corgi" = 1,										// 19
-	"cursed sword" = 1,									// 20
-	"Ship Survivor" = 1,								// 21
+	"maint lurker" = 1,									// 18
+	"morph" = 1,										// 19
+	"corgi" = 1,										// 20
+	"cursed sword" = 1,									// 21
+	"Ship Survivor" = 1,								// 22
 	//VOREStation Add End
 )
 
@@ -51,7 +52,7 @@ var/global/list/special_roles = list( //keep synced with the defines BE_* in set
 				if(jobban_isbanned(user, i) || (i == "positronic brain" && jobban_isbanned(user, JOB_AI) && jobban_isbanned(user, JOB_CYBORG)) || (i == "pAI candidate" && jobban_isbanned(user, JOB_PAI)))
 					. += span_bold("Be [i]:") + " <font color=red><b> \[BANNED]</b></font><br>"
 				else
-					. += span_bold("Be [i]:") + " <a href='?src=\ref[src];be_special=[n]'>" + span_bold("[pref.be_special&(1<<n) ? "Yes" : "No"]") + "</a><br>"
+					. += span_bold("Be [i]:") + " <a href='byond://?src=\ref[src];be_special=[n]'>" + span_bold("[pref.be_special&(1<<n) ? "Yes" : "No"]") + "</a><br>"
 			n++
 
 /datum/category_item/player_setup_item/antagonism/candidacy/OnTopic(var/href,var/list/href_list, var/mob/user)

@@ -7,14 +7,9 @@
 	var/inflame_progress = 0
 
 /mob/living/carbon/human/proc/appendicitis()
-	if(stat == DEAD)
-		return 0
-	var/obj/item/organ/internal/appendix/A = internal_organs_by_name[O_APPENDIX]
-	if(istype(A) && !A.inflamed)
-		A.inflamed = 1
-		return 1
-	return 0
+	return ForceContractDisease(new /datum/disease/appendicitis)
 
+/*
 /obj/item/organ/internal/appendix/process()
 	..()
 
@@ -47,7 +42,7 @@
 			owner.adjustToxLoss(25)
 			groin.wounds += W
 			inflamed = 1
-
+*/
 /obj/item/organ/internal/appendix/removed()
 	if(inflamed)
 		icon_state = "[initial(icon_state)]inflamed"

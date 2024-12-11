@@ -47,9 +47,9 @@
 
 /datum/category_item/player_setup_item/vore/persistence/proc/make_yesno(var/bit)
 	if(pref.persistence_settings & bit)
-		return "<td>" + span_linkOn(span_bold("Yes")) + "</td> <td><a href='?src=\ref[src];toggle_off=[bit]'>No</a></td>"
+		return "<td>" + span_linkOn(span_bold("Yes")) + "</td> <td><a href='byond://?src=\ref[src];toggle_off=[bit]'>No</a></td>"
 	else
-		return "<td><a href='?src=\ref[src];toggle_on=[bit]'>Yes</a></td> <td>" + span_linkOn(span_bold("No")) + "</td>"
+		return "<td><a href='byond://?src=\ref[src];toggle_on=[bit]'>Yes</a></td> <td>" + span_linkOn(span_bold("No")) + "</td>"
 
 /datum/category_item/player_setup_item/vore/persistence/OnTopic(var/href, var/list/href_list, var/mob/user)
 	if(href_list["toggle_on"])

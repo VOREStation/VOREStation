@@ -170,85 +170,85 @@
 	desc = "A small metal cartridge which contains an atomizing coil and a solution to be atomized. The label says you can add whatever flavoring agents you want."
 /obj/item/reagent_containers/ecig_cartridge/blanknico/New()
 	..()
-	reagents.add_reagent("nicotine", 5)
-	reagents.add_reagent("water", 10)
+	reagents.add_reagent(REAGENT_ID_NICOTINE, 5)
+	reagents.add_reagent(REAGENT_ID_WATER, 10)
 
 /obj/item/reagent_containers/ecig_cartridge/med_nicotine
 	name = "tobacco flavour cartridge"
 	desc =  "A small metal cartridge which contains an atomizing coil and a solution to be atomized. The label says its tobacco flavored."
 /obj/item/reagent_containers/ecig_cartridge/med_nicotine/New()
 	..()
-	reagents.add_reagent("nicotine", 5)
-	reagents.add_reagent("water", 15)
+	reagents.add_reagent(REAGENT_ID_NICOTINE, 5)
+	reagents.add_reagent(REAGENT_ID_WATER, 15)
 
 /obj/item/reagent_containers/ecig_cartridge/high_nicotine
 	name = "high nicotine tobacco flavour cartridge"
 	desc = "A small metal cartridge which contains an atomizing coil and a solution to be atomized. The label says its tobacco flavored, with extra nicotine."
 /obj/item/reagent_containers/ecig_cartridge/high_nicotine/New()
 	..()
-	reagents.add_reagent("nicotine", 10)
-	reagents.add_reagent("water", 10)
+	reagents.add_reagent(REAGENT_ID_NICOTINE, 10)
+	reagents.add_reagent(REAGENT_ID_WATER, 10)
 
 /obj/item/reagent_containers/ecig_cartridge/orange
 	name = "orange flavour cartridge"
 	desc = "A small metal cartridge which contains an atomizing coil and a solution to be atomized. The label says its orange flavored."
 /obj/item/reagent_containers/ecig_cartridge/orange/New()
 	..()
-	reagents.add_reagent("nicotine", 5)
-	reagents.add_reagent("water", 10)
-	reagents.add_reagent("orangejuice", 5)
+	reagents.add_reagent(REAGENT_ID_NICOTINE, 5)
+	reagents.add_reagent(REAGENT_ID_WATER, 10)
+	reagents.add_reagent(REAGENT_ID_ORANGEJUICE, 5)
 
 /obj/item/reagent_containers/ecig_cartridge/mint
 	name = "mint flavour cartridge"
 	desc = "A small metal cartridge which contains an atomizing coil and a solution to be atomized. The label says its mint flavored."
 /obj/item/reagent_containers/ecig_cartridge/mint/New()
 	..()
-	reagents.add_reagent("nicotine", 5)
-	reagents.add_reagent("water", 10)
-	reagents.add_reagent("menthol", 5)
+	reagents.add_reagent(REAGENT_ID_NICOTINE, 5)
+	reagents.add_reagent(REAGENT_ID_WATER, 10)
+	reagents.add_reagent(REAGENT_ID_MENTHOL, 5)
 
 /obj/item/reagent_containers/ecig_cartridge/watermelon
 	name = "watermelon flavour cartridge"
 	desc = "A small metal cartridge which contains an atomizing coil and a solution to be atomized. The label says its watermelon flavored."
 /obj/item/reagent_containers/ecig_cartridge/watermelon/New()
 	..()
-	reagents.add_reagent("nicotine", 5)
-	reagents.add_reagent("water", 10)
-	reagents.add_reagent("watermelonjuice", 5)
+	reagents.add_reagent(REAGENT_ID_NICOTINE, 5)
+	reagents.add_reagent(REAGENT_ID_WATER, 10)
+	reagents.add_reagent(REAGENT_ID_WATERMELONJUICE, 5)
 
 /obj/item/reagent_containers/ecig_cartridge/grape
 	name = "grape flavour cartridge"
 	desc = "A small metal cartridge which contains an atomizing coil and a solution to be atomized. The label says its grape flavored."
 /obj/item/reagent_containers/ecig_cartridge/grape/New()
 	..()
-	reagents.add_reagent("nicotine", 5)
-	reagents.add_reagent("water", 10)
-	reagents.add_reagent("grapejuice", 5)
+	reagents.add_reagent(REAGENT_ID_NICOTINE, 5)
+	reagents.add_reagent(REAGENT_ID_WATER, 10)
+	reagents.add_reagent(REAGENT_ID_GRAPEJUICE, 5)
 
 /obj/item/reagent_containers/ecig_cartridge/lemonlime
 	name = "lemon-lime flavour cartridge"
 	desc = "A small metal cartridge which contains an atomizing coil and a solution to be atomized. The label says its lemon-lime flavored."
 /obj/item/reagent_containers/ecig_cartridge/lemonlime/New()
 	..()
-	reagents.add_reagent("nicotine", 5)
-	reagents.add_reagent("water", 10)
-	reagents.add_reagent("lemon_lime", 5)
+	reagents.add_reagent(REAGENT_ID_NICOTINE, 5)
+	reagents.add_reagent(REAGENT_ID_WATER, 10)
+	reagents.add_reagent(REAGENT_ID_LEMONLIME, 5)
 
 /obj/item/reagent_containers/ecig_cartridge/coffee
 	name = "coffee flavour cartridge"
 	desc = "A small metal cartridge which contains an atomizing coil and a solution to be atomized. The label says its coffee flavored."
 /obj/item/reagent_containers/ecig_cartridge/coffee/New()
 	..()
-	reagents.add_reagent("nicotine", 5)
-	reagents.add_reagent("water", 10)
-	reagents.add_reagent("coffee", 5)
+	reagents.add_reagent(REAGENT_ID_NICOTINE, 5)
+	reagents.add_reagent(REAGENT_ID_WATER, 10)
+	reagents.add_reagent(REAGENT_ID_COFFEE, 5)
 /*
 /obj/item/reagent_containers/ecig_cartridge/cannabis
 	name = "herb flavour cartridge"
 	desc = "A small metal cartridge which contains an atomizing coil and a solution to be atomized. The label seems to be suspiciously scuffed off..."
 /obj/item/reagent_containers/ecig_cartridge/cannabis/New()
 	..()
-	reagents.add_reagent("nicotine", 5)
-	reagents.add_reagent("water", 10)
+	reagents.add_reagent(REAGENT_ID_NICOTINE, 5)
+	reagents.add_reagent(REAGENT_ID_WATER, 10)
 	reagents.add_reagent("cannabis", 5)
 */

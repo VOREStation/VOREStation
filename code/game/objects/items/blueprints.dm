@@ -95,11 +95,11 @@
 
 	// Offer links for what user is allowed to do based on current area
 	if(curAreaType & can_create_areas_in)
-		text += "<p>You can <a href='?src=\ref[src];action=create_area'>Mark this place as new area</a>.</p>"
+		text += "<p>You can <a href='byond://?src=\ref[src];action=create_area'>Mark this place as new area</a>.</p>"
 	if(curAreaType & can_expand_areas_in)
-		text += "<p>You can <a href='?src=\ref[src];action=expand_area'>expand the area</a>.</p>"
+		text += "<p>You can <a href='byond://?src=\ref[src];action=expand_area'>expand the area</a>.</p>"
 	if(curAreaType & can_rename_areas_in)
-		text += "<p>You can <a href='?src=\ref[src];action=edit_area'>rename the area</a>.</p>"
+		text += "<p>You can <a href='byond://?src=\ref[src];action=edit_area'>rename the area</a>.</p>"
 
 	text += "</BODY></HTML>"
 	usr << browse(text, "window=blueprints")

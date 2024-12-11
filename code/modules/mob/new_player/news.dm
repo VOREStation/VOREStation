@@ -55,9 +55,9 @@
 	else
 		dat += get_news_page(CHANNEL, CHANNEL.messages[current_news_page], current_news_page)
 		if(CHANNEL.messages.len > current_news_page)
-			dat += "<a href='?src=\ref[src];next_news=1;nextpage=\ref[CHANNEL]'>Older Issue</a>"
+			dat += "<a href='byond://?src=\ref[src];next_news=1;nextpage=\ref[CHANNEL]'>Older Issue</a>"
 		if(current_news_page > CHANNEL.messages.len || (CHANNEL.messages.len > 1) && !(current_news_page == 1))
-			dat += "<a href='?src=\ref[src];previous_news=1;prevpage=\ref[CHANNEL]'>Newer Issue</a>  "
+			dat += "<a href='byond://?src=\ref[src];previous_news=1;prevpage=\ref[CHANNEL]'>Newer Issue</a>  "
 
 		dat += "  (Page <b>[current_news_page]</b> out of <b>[CHANNEL.messages.len]</b>)"
 

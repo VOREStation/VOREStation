@@ -16,7 +16,7 @@
 	var/datum/reagents/R = new/datum/reagents(max_fuel)
 	reagents = R
 	R.my_atom = src
-	R.add_reagent("fuel", max_fuel)
+	R.add_reagent(REAGENT_ID_FUEL, max_fuel)
 	START_PROCESSING(SSobj, src)
 	. = ..()
 
@@ -73,7 +73,7 @@
 		playsound(src, 'sound/weapons/chainsaw_attack.ogg',40,1)
 	if(A && on)
 		if(get_fuel() > 0)
-			reagents.remove_reagent("fuel", 1)
+			reagents.remove_reagent(REAGENT_ID_FUEL, 1)
 		if(istype(A,/obj/structure/window))
 			var/obj/structure/window/W = A
 			W.shatter()
@@ -103,14 +103,14 @@
 
 	if(on)
 		if(get_fuel() > 0)
-			reagents.remove_reagent("fuel", 1)
+			reagents.remove_reagent(REAGENT_ID_FUEL, 1)
 			playsound(src, 'sound/weapons/chainsaw_turnoff.ogg',15,1)
 		if(get_fuel() <= 0)
 			to_chat(usr, "\The [src] sputters to a stop!")
 			turnOff()
 
 /obj/item/chainsaw/proc/get_fuel()
-	return reagents.get_reagent_amount("fuel")
+	return reagents.get_reagent_amount(REAGENT_ID_FUEL)
 
 /obj/item/chainsaw/examine(mob/user)
 	. = ..()

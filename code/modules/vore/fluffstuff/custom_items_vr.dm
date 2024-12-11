@@ -573,8 +573,8 @@
 	update_icon()
 
 /obj/item/paper/khcrystal_manual
-	name = "KH-LC91-1 manual"
-	info = {"<h4>KH-LC91-1 Life Crystal</h4>
+	name = "VM-LC91-1 manual"
+	info = {"<h4>VM-LC91-1 Life Crystal</h4>
 	<h5>Usage</h5>
 	<ol>
 		<li>Hold new crystal in hand.</li>
@@ -583,8 +583,8 @@
 	</ol>
 	<br />
 	<h5>Purpose</h5>
-	<p>The Kitsuhana Life Crystal is a small device typically worn around the neck for the purpose of reporting your status to the HAVENS (Kitsuhana's High-AVailability ENgram Storage) system, so that appropriate measures can be taken in the case of your body's demise. The whole device is housed inside a pleasing-to-the-eye elongated diamond.</p>
-	<p>Upon your body's desmise, the crystal will send a transmission to HAVENS. Depending on your membership level, the appropriate actions can be taken to ensure that you are back up and enjoying existence as soon as possible.</p>
+	<p>The Vey-Medical Life Crystal is a small device typically worn around the neck for the purpose of reporting your status to the HAVENS (High-AVailability ENgram Storage) system, so that appropriate measures can be taken in the case of your body's demise. The whole device is housed inside a pleasing-to-the-eye elongated diamond.</p>
+	<p>Upon your body's demise, the crystal will send a transmission to HAVENS. Depending on your membership level, the appropriate actions can be taken to ensure that you are back up and enjoying existence as soon as possible.</p>
 
 	<p>Nanotrasen has negotiated a <i>FREE</i> Star membership for you in the HAVENS system, though an upgrade can be obtained depending on your citizenship and reputation level.</p>
 
@@ -615,7 +615,7 @@
 	name = "life crystal case"
 	icon = 'icons/vore/custom_items_vr.dmi'
 	icon_state = "khlifebox"
-	desc = "This case can only hold the KH-LC91-1 and a manual."
+	desc = "This case can only hold the VM-LC91-1 and a manual."
 	item_state_slots = list(slot_r_hand_str = "syringe_kit", slot_l_hand_str = "syringe_kit")
 	storage_slots = 2
 	can_hold = list(/obj/item/paper/khcrystal_manual, /obj/item/clothing/accessory/collar/khcrystal)
@@ -1160,7 +1160,7 @@
 
 /obj/item/reagent_containers/food/drinks/flask/vacuumflask/fluff/viktor/Initialize()
 	. = ..()
-	reagents.add_reagent("pwine", 60)
+	reagents.add_reagent(REAGENT_ID_PWINE, 60)
 
 //RadiantAurora: Tiemli Kroto
 /obj/item/clothing/glasses/welding/tiemgogs
@@ -1275,8 +1275,8 @@
 
 /obj/item/reagent_containers/food/drinks/glass2/fluff/claraflask/Initialize()
 	. = ..()
-	reagents.add_reagent("tea", 40)
-	reagents.add_reagent("milk", 20)
+	reagents.add_reagent(REAGENT_ID_TEA, 40)
+	reagents.add_reagent(REAGENT_ID_MILK, 20)
 
 /obj/item/reagent_containers/food/drinks/glass2/fluff/claraflask/update_icon()
 	..()
@@ -1381,7 +1381,7 @@
 	desc = "A mostly decorative knife made from thin ceramic and toothed with large black fangs. Printed on the flat is an eight-armed cross, like an asterisk with an extra stroke, ringed by a calligraphy-style crescent."
 	attack_verb = list("mauled", "bit", "sawed", "butchered")
 	dulled = 1
-	default_material = "glass"
+	default_material = MAT_GLASS
 
 
 //Ashling - Antoinette deKaultieste
@@ -1396,7 +1396,7 @@
 	desc = "A small bottle of finely ground poppyseed and mixed dried berries."
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "bottle3"
-	prefill = list("bicaridine" = 30, "nutriment" = 30)
+	prefill = list(REAGENT_ID_BICARIDINE = 30, REAGENT_ID_NUTRIMENT = 30)
 
 /obj/item/clothing/accessory/storage/ritualharness/fluff/antoinette/Initialize()
 	. = ..()

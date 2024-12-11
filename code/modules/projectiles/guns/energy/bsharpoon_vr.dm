@@ -90,7 +90,7 @@
 	if(ownturf.z != T.z || get_dist(T,ownturf) > world.view)
 		to_chat(user, span_warning("The target is out of range!"))
 		return
-	if(get_area(A).flags & BLUE_SHIELDED)
+	if(get_area(A).flag_check(BLUE_SHIELDED))
 		to_chat(user, span_warning("The target area protected by bluespace shielding!"))
 		return
 	if(!(A in view(user, world.view)))

@@ -7,8 +7,8 @@
 /mob/living/simple_mob/animal/passive/fish/koi/poisonous/Initialize()
 	. = ..()
 	create_reagents(60)
-	reagents.add_reagent("toxin", 45)
-	reagents.add_reagent("impedrezene", 15)
+	reagents.add_reagent(REAGENT_ID_TOXIN, 45)
+	reagents.add_reagent(REAGENT_ID_IMPEDREZENE, 15)
 
 /mob/living/simple_mob/animal/passive/fish/koi/poisonous/Life()
 	..()
@@ -56,8 +56,8 @@
 /mob/living/simple_mob/animal/passive/fish/koi/poisonous/proc/sting(var/mob/living/M)
 	if(!M.reagents)
 		return 0
-	M.reagents.add_reagent("toxin", 2)
-	M.reagents.add_reagent("impedrezene", 1)
+	M.reagents.add_reagent(REAGENT_ID_TOXIN, 2)
+	M.reagents.add_reagent(REAGENT_ID_IMPEDREZENE, 1)
 	return 1
 
 /mob/living/simple_mob/animal/passive/fish/measelshark

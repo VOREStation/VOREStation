@@ -308,8 +308,11 @@
 	radio_filter_in = frequency==1439?(RADIO_FROM_AIRALARM):null
 	radio_filter_out = frequency==1439?(RADIO_TO_AIRALARM):null
 	if(frequency)
-		radio_connection = register_radio(src, frequency, frequency, radio_filter_in)
-		src.broadcast_status()
+		set_frequency(frequency)
+
+/obj/machinery/atmospherics/unary/vent_pump/proc/set_frequency(new_frequency)
+	radio_connection = register_radio(src, frequency, new_frequency, radio_filter_in)
+	frequency = new_frequency
 
 /obj/machinery/atmospherics/unary/vent_pump/receive_signal(datum/signal/signal)
 	if(stat & (NOPOWER|BROKEN))
@@ -407,6 +410,20 @@
 		else
 			to_chat(user, span_warning("You need more welding fuel to complete this task."))
 			return 1
+	if(W.has_tool_quality(TOOL_MULTITOOL))
+		var/choice = tgui_alert(user, "[src] has an ID of \"[id_tag]\" and a frequency of [frequency]. What would you like to change?", "[src] ID", list("ID Tag", "Frequency", "Nothing"))
+		switch(choice)
+			if("ID Tag")
+				var/new_id = tgui_input_text(user, "[src] has an ID of \"[id_tag]\". What would you like it to be?", "[src] ID", id_tag, 30, FALSE, TRUE)
+				if(new_id)
+					id_tag = new_id
+
+			if("Frequency")
+				var/new_frequency = tgui_input_number(user, "[src] has a frequency of [frequency]. What would you like it to be?", "[src] frequency", frequency, RADIO_HIGH_FREQ, RADIO_LOW_FREQ)
+				if(new_frequency)
+					new_frequency = sanitize_frequency(new_frequency, RADIO_LOW_FREQ, RADIO_HIGH_FREQ)
+					set_frequency(new_frequency)
+		return TRUE
 	else
 		..()
 

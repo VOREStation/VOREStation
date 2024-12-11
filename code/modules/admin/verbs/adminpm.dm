@@ -263,7 +263,7 @@
 	log_admin("IRC PM: [sender] -> [key_name(C)] : [msg]")
 
 	to_chat(C, span_admin_pm_warning(span_huge(span_bold("-- Administrator private message --"))))
-	to_chat(C, span_admin_pm_warning("Admin PM from-<b><a href='?priv_msg=[stealthkey]'>[adminname]</A></b>: [msg]"))
+	to_chat(C, span_admin_pm_warning("Admin PM from-<b><a href='byond://?priv_msg=[stealthkey]'>[adminname]</A></b>: [msg]"))
 	to_chat(C, span_admin_pm_warning(span_italics("Click on the administrator's name to reply.")))
 
 	admin_ticket_log(C, span_admin_pm_notice("PM From [irc_tagged]: [msg]"))

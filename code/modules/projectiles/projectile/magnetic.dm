@@ -33,15 +33,6 @@
 	armor_penetration = 100
 	hud_state = "alloy_spike"
 
-/obj/item/projectile/bullet/magnetic/flechette/small/khi
-	name = "small carbyne flechette"
-	icon_state = "flechette"
-	fire_sound = 'sound/weapons/rapidslice.ogg'
-	damage = 18
-	armor_penetration = 100
-	penetrating = 10
-	hud_state = "alloy_spike"
-
 /obj/item/projectile/bullet/magnetic/flechette/hunting
 	name = "shredder slug"
 	armor_penetration = 30

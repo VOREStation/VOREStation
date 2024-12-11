@@ -48,7 +48,7 @@ BLIND     // can't see anything
 	// Prevent people from just turning their goggles back on.
 	if(!active && (vision_flags & (SEE_TURFS|SEE_OBJS)))
 		var/area/A = get_area(src)
-		if(A.no_spoilers)
+		if(A.flag_check(AREA_NO_SPOILERS))
 			return FALSE
 
 	return TRUE

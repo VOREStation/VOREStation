@@ -1,10 +1,10 @@
 /datum/seed/grass
-	name = "grass"
-	seed_name = "grass"
-	display_name = "grass"
-	kitchen_tag = "grass"
-	mutants = list("carpet")
-	chems = list("nutriment" = list(1,20))
+	name = PLANT_GRASS
+	seed_name = PLANT_GRASS
+	display_name = PLANT_GRASS
+	kitchen_tag = PLANT_GRASS
+	mutants = list(PLANT_CARPET)
+	chems = list(REAGENT_ID_NUTRIMENT = list(1,20))
 
 /datum/seed/grass/New()
 	..()
@@ -20,12 +20,12 @@
 	set_trait(TRAIT_NUTRIENT_CONSUMPTION, 0.15)
 
 /datum/seed/grass/carpet
-	name = "carpet"
-	seed_name = "carpet"
-	display_name = "carpet"
-	kitchen_tag = "carpet"
+	name = PLANT_CARPET
+	seed_name = PLANT_CARPET
+	display_name = PLANT_CARPET
+	kitchen_tag = PLANT_CARPET
 	mutants = null
-	chems = list("liquidcarpet" = list(5,10))
+	chems = list(REAGENT_ID_LIQUIDCARPET = list(5,10))
 
 /datum/seed/grass/carpet/New()
 	..()

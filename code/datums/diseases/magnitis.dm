@@ -2,8 +2,8 @@
 	name = "Magnitis"
 	max_stages = 4
 	spread_text = "Airbone"
-	cure_text = "Iron"
-	cures = list("iron")
+	cure_text = REAGENT_IRON
+	cures = list(REAGENT_ID_IRON)
 	agent = "Fukkos Miracos"
 	viable_mobtypes = list(/mob/living/carbon/human)
 	permeability_mod = 0.75

@@ -130,7 +130,7 @@ export function toTitleCase(str: string): string {
   return currentStr;
 }
 
-const TRANSLATE_REGEX = /&(nbsp|amp|quot|lt|gt|apos);/g;
+const TRANSLATE_REGEX = /&(nbsp|amp|quot|lt|gt|apos|trade);/g;
 const TRANSLATIONS = {
   amp: '&',
   apos: "'",
@@ -138,6 +138,7 @@ const TRANSLATIONS = {
   lt: '<',
   nbsp: ' ',
   quot: '"',
+  trade: '™',
 } as const;
 
 /**

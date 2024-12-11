@@ -95,7 +95,7 @@ GLOBAL_LIST_BOILERPLATE(all_singularities, /obj/singularity)
 	var/count = locate(/obj/machinery/containment_field) in orange(30, src)
 
 	if (!count)
-		message_admins("A singulo has been created without containment fields active ([x], [y], [z] - <A HREF='?_src_=holder;[HrefToken()];adminplayerobservecoodjump=1;X=[x];Y=[y];Z=[z]'>JMP</a>).")
+		message_admins("A singulo has been created without containment fields active ([x], [y], [z] - <A href='byond://?_src_=holder;[HrefToken()];adminplayerobservecoodjump=1;X=[x];Y=[y];Z=[z]'>JMP</a>).")
 
 	investigate_log("was created. [count ? "" : "<font color='red'>No containment fields were active.</font>"]", I_SINGULO)
 
@@ -366,7 +366,7 @@ GLOBAL_LIST_BOILERPLATE(all_singularities, /obj/singularity)
 
 	// VOREStation Edit Start
 	var/area/A = get_area(T)
-	if(A.forbid_singulo) //No going to dorms
+	if(A.flag_check(AREA_FORBID_SINGULO)) //No going to dorms
 		return 0
 	// VOREStation Edit End
 

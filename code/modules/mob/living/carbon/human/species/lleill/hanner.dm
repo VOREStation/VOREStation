@@ -90,6 +90,8 @@
 		/mob/living/carbon/human/proc/shapeshifter_select_secondary_ears,
 		/mob/living/carbon/human/proc/shapeshifter_select_eye_colour,
 		/mob/living/proc/set_size,
+		/mob/living/carbon/human/proc/shapeshifter_copy_body,
+		/mob/living/carbon/human/proc/shapeshifter_regenerate,
 //		/mob/living/carbon/human/proc/lleill_contact,
 //		/mob/living/carbon/human/proc/lleill_alchemy,
 //		/mob/living/carbon/human/proc/hanner_beast_form

@@ -1,9 +1,9 @@
 /datum/seed/shand
-	name = "shand"
+	name = PLANT_SHAND
 	seed_name = "Selem's hand"
 	display_name = "Selem's hand leaves"
-	kitchen_tag = "shand"
-	chems = list("bicaridine" = list(0,10))
+	kitchen_tag = PLANT_SHAND
+	chems = list(REAGENT_ID_BICARIDINE = list(0,10))
 
 /datum/seed/shand/New()
 	..()

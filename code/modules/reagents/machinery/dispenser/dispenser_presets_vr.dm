@@ -2,7 +2,7 @@
 	name = "xenoflora chem dispenser"
 	ui_title = "Xenoflora Chemical Dispenser"
 	dispense_reagents = list(
-		"water", "sugar", "ethanol", "radium", "ammonia", "diethylamine", "plantbgone", "mutagen", "calcium"
+		REAGENT_ID_WATER, REAGENT_ID_SUGAR, REAGENT_ID_ETHANOL, REAGENT_ID_RADIUM, REAGENT_ID_AMMONIA, REAGENT_ID_DIETHYLAMINE, REAGENT_ID_PLANTBGONE, REAGENT_ID_MUTAGEN, REAGENT_ID_CALCIUM
 		)
 
 /obj/machinery/chemical_dispenser/xenoflora/full
@@ -22,7 +22,7 @@
 	name = "bioproduct dispenser"
 	ui_title = "Bioproduct Dispenser"
 	dispense_reagents = list(
-		"nutriment", "protein", "milk"
+		REAGENT_ID_NUTRIMENT, REAGENT_ID_PROTEIN, REAGENT_ID_MILK
 		)
 
 /obj/machinery/chemical_dispenser/biochemistry/full

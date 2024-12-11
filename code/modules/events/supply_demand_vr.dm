@@ -315,7 +315,7 @@
 	var/datum/gas_mixture/mixture = new
 	mixture.temperature = T20C
 	var/unpickedTypes = gas_data.gases.Copy()
-	unpickedTypes -= "volatile_fuel" // Don't do that one
+	unpickedTypes -= GAS_VOLATILE_FUEL // Don't do that one
 	for(var/i in 1 to differentTypes)
 		var/gasId = pick(unpickedTypes)
 		unpickedTypes -= gasId

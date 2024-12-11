@@ -33,7 +33,7 @@
 
 	//RS Port #658 Start
 	var/area/A = get_area(src)
-	if(!client?.holder && A.block_phase_shift)
+	if(!client?.holder && A.flag_check(AREA_BLOCK_PHASE_SHIFT))
 		to_chat(src, span_warning("You can't do that here!"))
 		return
 	//RS Port #658 End

@@ -42,8 +42,10 @@ export type Data = {
   ears2_color: string;
   tail_color: string;
   tail2_color: string;
+  tail3_color: string;
   wing_color: string;
   wing2_color: string;
+  wing3_color: string;
   facial_hair_styles: { facialhairstyle: string }[];
   hair_styles: { hairstyle: string }[];
   ear_secondary_style: string;

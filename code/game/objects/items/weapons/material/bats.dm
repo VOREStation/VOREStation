@@ -6,7 +6,7 @@
 	throwforce = 7
 	attack_verb = list("smashed", "beaten", "slammed", "smacked", "struck", "battered", "bonked")
 	hitsound = 'sound/weapons/genhit3.ogg'
-	default_material = "wood"
+	default_material = MAT_WOOD
 	force_divisor = 1.1           // 22 when wielded with weight 20 (steel)
 	unwielded_force_divisor = 0.7 // 15 when unwielded based on above.
 	dulled_divisor = 0.75		  // A "dull" bat is still gonna hurt
@@ -14,16 +14,16 @@
 
 //Predefined materials go here.
 /obj/item/material/twohanded/baseballbat/metal/New(var/newloc)
-	..(newloc,"steel")
+	..(newloc,MAT_STEEL)
 
 /obj/item/material/twohanded/baseballbat/uranium/New(var/newloc)
-	..(newloc,"uranium")
+	..(newloc,MAT_URANIUM)
 
 /obj/item/material/twohanded/baseballbat/gold/New(var/newloc)
-	..(newloc,"gold")
+	..(newloc,MAT_GOLD)
 
 /obj/item/material/twohanded/baseballbat/platinum/New(var/newloc)
-	..(newloc,"platinum")
+	..(newloc,MAT_PLATINUM)
 
 /obj/item/material/twohanded/baseballbat/diamond/New(var/newloc)
-	..(newloc,"diamond")
+	..(newloc,MAT_DIAMOND)

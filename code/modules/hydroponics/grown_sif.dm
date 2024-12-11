@@ -21,16 +21,16 @@
 	. = ..()
 
 /obj/item/reagent_containers/food/snacks/grown/sif/sifpod
-	plantname = "sifbulb"
+	plantname = PLANT_SIFBULB
 
 /obj/item/reagent_containers/food/snacks/grown/sif/wabback
 	plantname = "wabback"
 
 /obj/item/reagent_containers/food/snacks/grown/sif/blackwabback
-	plantname = "blackwabback"
+	plantname = PLANT_BLACKWABBACK
 
 /obj/item/reagent_containers/food/snacks/grown/sif/wildwabback
-	plantname = "wildwabback"
+	plantname = PLANT_WILDWABBACK
 
 /obj/item/reagent_containers/food/snacks/grown/sif/eyebulbs
 	plantname = "eyebulbs"

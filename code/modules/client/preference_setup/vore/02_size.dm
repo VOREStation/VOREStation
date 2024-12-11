@@ -68,50 +68,22 @@
 	if(!pref.voice_sound)
 		character.voice_sounds_list = talk_sound
 	else
-		switch(pref.voice_sound)
-			if("beep-boop")
-				character.voice_sounds_list = talk_sound
-			if("goon speak 1")
-				character.voice_sounds_list = goon_speak_one_sound
-			if("goon speak 2")
-				character.voice_sounds_list = goon_speak_two_sound
-			if("goon speak 3")
-				character.voice_sounds_list = goon_speak_three_sound
-			if("goon speak 4")
-				character.voice_sounds_list = goon_speak_four_sound
-			if("goon speak blub")
-				character.voice_sounds_list = goon_speak_blub_sound
-			if("goon speak bottalk")
-				character.voice_sounds_list = goon_speak_bottalk_sound
-			if("goon speak buwoo")
-				character.voice_sounds_list = goon_speak_buwoo_sound
-			if("goon speak cow")
-				character.voice_sounds_list = goon_speak_cow_sound
-			if("goon speak lizard")
-				character.voice_sounds_list = goon_speak_lizard_sound
-			if("goon speak pug")
-				character.voice_sounds_list = goon_speak_pug_sound
-			if("goon speak pugg")
-				character.voice_sounds_list = goon_speak_pugg_sound
-			if("goon speak roach")
-				character.voice_sounds_list = goon_speak_roach_sound
-			if("goon speak skelly")
-				character.voice_sounds_list = goon_speak_skelly_sound
+		character.voice_sounds_list = get_talk_sound(pref.voice_sound)
 	character.custom_speech_bubble = pref.custom_speech_bubble
 
 /datum/category_item/player_setup_item/vore/size/content(var/mob/user)
 	. += "<br>"
-	. += span_bold("Scale:") + " <a href='?src=\ref[src];size_multiplier=1'>[round(pref.size_multiplier*100)]%</a><br>"
-	. += span_bold("Scaled Appearance:") + " <a [pref.fuzzy ? "" : ""] href='?src=\ref[src];toggle_fuzzy=1'><b>[pref.fuzzy ? "Fuzzy" : "Sharp"]</b></a><br>"
-	. += span_bold("Scaling Center:") + " <a [pref.offset_override ? "" : ""] href='?src=\ref[src];toggle_offset_override=1'><b>[pref.offset_override ? "Odd" : "Even"]</b></a><br>"
-	. += span_bold("Voice Frequency:") + " <a href='?src=\ref[src];voice_freq=1'>[pref.voice_freq]</a><br>"
-	. += span_bold("Voice Sounds:") + " <a href='?src=\ref[src];voice_sounds_list=1'>[pref.voice_sound]</a><br>"
-	. += "<a href='?src=\ref[src];voice_test=1'><b>Test Selected Voice</b></a><br>"
-	. += span_bold("Custom Speech Bubble:") + " <a href='?src=\ref[src];customize_speech_bubble=1'>[pref.custom_speech_bubble]</a><br>"
+	. += span_bold("Scale:") + " <a href='byond://?src=\ref[src];size_multiplier=1'>[round(pref.size_multiplier*100)]%</a><br>"
+	. += span_bold("Scaled Appearance:") + " <a [pref.fuzzy ? "" : ""] href='byond://?src=\ref[src];toggle_fuzzy=1'><b>[pref.fuzzy ? "Fuzzy" : "Sharp"]</b></a><br>"
+	. += span_bold("Scaling Center:") + " <a [pref.offset_override ? "" : ""] href='byond://?src=\ref[src];toggle_offset_override=1'><b>[pref.offset_override ? "Odd" : "Even"]</b></a><br>"
+	. += span_bold("Voice Frequency:") + " <a href='byond://?src=\ref[src];voice_freq=1'>[pref.voice_freq]</a><br>"
+	. += span_bold("Voice Sounds:") + " <a href='byond://?src=\ref[src];voice_sounds_list=1'>[pref.voice_sound]</a><br>"
+	. += "<a href='byond://?src=\ref[src];voice_test=1'><b>Test Selected Voice</b></a><br>"
+	. += span_bold("Custom Speech Bubble:") + " <a href='byond://?src=\ref[src];customize_speech_bubble=1'>[pref.custom_speech_bubble]</a><br>"
 	. += "<br>"
-	. += span_bold("Relative Weight:") + " <a href='?src=\ref[src];weight=1'>[pref.weight_vr]</a><br>"
-	. += span_bold("Weight Gain Rate:") + " <a href='?src=\ref[src];weight_gain=1'>[pref.weight_gain]</a><br>"
-	. += span_bold("Weight Loss Rate:") + " <a href='?src=\ref[src];weight_loss=1'>[pref.weight_loss]</a><br>"
+	. += span_bold("Relative Weight:") + " <a href='byond://?src=\ref[src];weight=1'>[pref.weight_vr]</a><br>"
+	. += span_bold("Weight Gain Rate:") + " <a href='byond://?src=\ref[src];weight_gain=1'>[pref.weight_gain]</a><br>"
+	. += span_bold("Weight Loss Rate:") + " <a href='byond://?src=\ref[src];weight_loss=1'>[pref.weight_loss]</a><br>"
 
 /datum/category_item/player_setup_item/vore/size/OnTopic(var/href, var/list/href_list, var/mob/user)
 	if(href_list["size_multiplier"])

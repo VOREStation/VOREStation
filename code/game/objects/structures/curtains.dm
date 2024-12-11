@@ -26,6 +26,14 @@
 	toggle()
 	..()
 
+/obj/structure/curtain/attack_ai(mob/user)
+	if(!Adjacent(user))
+		return
+	if(!isrobot((user)))
+		return
+	playsound(src, "rustle", 15, 1, -5)
+	toggle()
+
 /obj/structure/curtain/proc/toggle()
 	set_opacity(!opacity)
 	if(opacity)

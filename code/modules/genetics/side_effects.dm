@@ -24,7 +24,7 @@
 	H.custom_emote(VISIBLE_MESSAGE, "starts turning very red..")
 
 /datum/genetics/side_effect/genetic_burn/finish(mob/living/carbon/human/H)
-	if(H.reagents.has_reagent("dexalin"))
+	if(H.reagents.has_reagent(REAGENT_ID_DEXALIN))
 		return
 	for(var/organ_name in BP_ALL)
 		var/obj/item/organ/external/E = H.get_organ(organ_name)
@@ -41,7 +41,7 @@
 	H.custom_emote(VISIBLE_MESSAGE, "'s limbs start shivering uncontrollably.")
 
 /datum/genetics/side_effect/bone_snap/finish(mob/living/carbon/human/H)
-	if(H.reagents.has_reagent("bicaridine"))
+	if(H.reagents.has_reagent(REAGENT_ID_BICARIDINE))
 		return
 	var/organ_name = pick(BP_ALL)
 	var/obj/item/organ/external/E = H.get_organ(organ_name)
@@ -60,7 +60,7 @@
 	H.custom_emote(VISIBLE_MESSAGE, "has drool running down from [T.his] mouth.")
 
 /datum/genetics/side_effect/confuse/finish(mob/living/carbon/human/H)
-	if(H.reagents.has_reagent("anti_toxin"))
+	if(H.reagents.has_reagent(REAGENT_ID_ANTITOXIN))
 		return
 	H.Confuse(100)
 
