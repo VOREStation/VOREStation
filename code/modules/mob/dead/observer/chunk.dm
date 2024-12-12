@@ -10,10 +10,6 @@
 
 	for(var/area/A in hidden_areas)
 
-		var/turf/point = locate(src.x + 8, src.y + 8, src.z)
-		if(get_dist(point, A) > 24)
-			hidden_areas -= A
-
 		for(var/turf/T in A.contents)
 			invisible[T] = T
 
@@ -60,8 +56,8 @@
 	// Removes turf that isn't in turfs.
 	newInvisibleTurfs &= turfs
 
-	var/list/visAdded = visibleTurfs - newInvisibleTurfs
-	var/list/visRemoved = newInvisibleTurfs - visibleTurfs
+	var/list/visAdded = obscuredTurfs - newInvisibleTurfs
+	var/list/visRemoved = newInvisibleTurfs - obscuredTurfs
 
 	visibleTurfs = turfs - newInvisibleTurfs
 	obscuredTurfs = newInvisibleTurfs
@@ -69,10 +65,10 @@
 	for(var/turf/t as anything in visAdded)
 		if(LAZYLEN(t.obfuscations) && t.obfuscations[obfuscation.type])
 			obscured -= t.obfuscations[obfuscation.type]
-			for(var/mob/observer/eye/m as anything in seenby)
+			for(var/mob/observer/dead/m as anything in seenby)
 				if(!m)
 					continue
-				var/client/client = m.GetViewerClient()
+				var/client/client = m.client
 				if(client)
 					client.images -= t.obfuscations[obfuscation.type]
 
@@ -85,10 +81,10 @@
 				t.obfuscations[obfuscation.type] = ob_image
 
 			obscured += t.obfuscations[obfuscation.type]
-			for(var/mob/observer/eye/m as anything in seenby)
+			for(var/mob/observer/dead/m as anything in seenby)
 				if(!m)
 					seenby -= m
 					continue
-				var/client/client = m.GetViewerClient()
+				var/client/client = m.client
 				if(client)
 					client.images += t.obfuscations[obfuscation.type]

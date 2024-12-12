@@ -582,6 +582,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	return ..()
 
 /mob/observer/dead/Destroy()
+	visualnet = null
 	if(ismob(following))
 		var/mob/M = following
 		M.following_mobs -= src
