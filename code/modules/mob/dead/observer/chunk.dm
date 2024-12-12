@@ -1,7 +1,7 @@
-// CAMERA CHUNK
+// GHOST CHUNK
 //
 // A 16x16 grid of the map with a list of turfs that can be seen, are visible and are dimmed.
-// Allows the Eye to stream these chunks and know what it can and cannot see.
+// Allows ghosts to see turfs of non AREA_BLOCK_GHOST_SIGHT flagged areas within these chunks.
 
 /datum/chunk/ghost
 	var/list/hidden_areas = list()
