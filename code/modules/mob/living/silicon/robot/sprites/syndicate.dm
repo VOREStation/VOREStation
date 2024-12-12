@@ -117,7 +117,7 @@
 	var/has_gun_sprite = FALSE
 
 /datum/robot_sprite/dogborg/tall/protector/handle_extra_icon_updates(var/mob/living/silicon/robot/ourborg)
-	if(has_gun_sprite && istype (ourborg.module_active, /obj/item/gun/energy/dakkalaser))
+	if(has_gun_sprite && ourborg.has_active_type(/obj/item/gun/energy/dakkalaser))
 		ourborg.add_overlay("[sprite_icon_state]-gun")
 
 /datum/robot_sprite/dogborg/tall/protector/syndiprotraptor
