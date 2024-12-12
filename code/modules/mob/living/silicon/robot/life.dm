@@ -336,7 +336,7 @@
 		module_state_2:screen_loc = ui_inv2
 	if(module_state_3)
 		module_state_3:screen_loc = ui_inv3
-	update_icon()
+	//update_icon() //Removed and moved to robot/inventory.dm so it's not being called EVERY LIFE TICK
 
 /mob/living/silicon/robot/proc/process_killswitch()
 	if(killswitch)

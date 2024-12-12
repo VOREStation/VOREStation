@@ -58,7 +58,7 @@
 	var/has_laser_sprite = FALSE
 
 /datum/robot_sprite/dogborg/tall/lost/handle_extra_icon_updates(var/mob/living/silicon/robot/ourborg)
-	if(has_laser_sprite && istype(ourborg.module_active, /obj/item/gun/energy/retro/mounted))
+	if(has_laser_sprite && ourborg.has_active_type(/obj/item/gun/energy/retro/mounted))
 		ourborg.add_overlay("[sprite_icon_state]-laser")
 	if(has_shield_sprite)
 		if(ourborg.has_active_type(/obj/item/borg/combat/shield))
@@ -113,7 +113,7 @@
 	var/has_laser_sprite = FALSE
 
 /datum/robot_sprite/dogborg/tall/gravekeeper/handle_extra_icon_updates(var/mob/living/silicon/robot/ourborg)
-	if(has_laser_sprite && istype(ourborg.module_active, /obj/item/gun/energy/retro/mounted))
+	if(has_laser_sprite && ourborg.has_active_type(/obj/item/gun/energy/retro/mounted))
 		ourborg.add_overlay("[sprite_icon_state]-laser")
 	if(has_shield_sprite)
 		if(ourborg.has_active_type(/obj/item/borg/combat/shield))

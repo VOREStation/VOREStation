@@ -151,7 +151,7 @@
 	var/has_taser_sprite = FALSE
 
 /datum/robot_sprite/dogborg/tall/science/handle_extra_icon_updates(var/mob/living/silicon/robot/ourborg)
-	if(has_taser_sprite && istype(ourborg.module_active, /obj/item/gun/energy/taser/xeno/robot))
+	if(has_taser_sprite && ourborg.has_active_type(/obj/item/gun/energy/taser/xeno/robot))
 		ourborg.add_overlay("[sprite_icon_state]-taser")
 
 /datum/robot_sprite/dogborg/tall/science/do_equipment_glamour(var/obj/item/robot_module/module)

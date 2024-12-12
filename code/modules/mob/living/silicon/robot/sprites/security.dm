@@ -125,9 +125,9 @@
 	var/has_taser_sprite = FALSE
 
 /datum/robot_sprite/dogborg/security/handle_extra_icon_updates(var/mob/living/silicon/robot/ourborg)
-	if(has_laser_sprite && istype(ourborg.module_active, /obj/item/gun/energy/laser/mounted))
+	if(has_laser_sprite && ourborg.has_active_type(/obj/item/gun/energy/laser/mounted))
 		ourborg.add_overlay("[sprite_icon_state]-laser")
-	if(has_taser_sprite && istype(ourborg.module_active, /obj/item/gun/energy/taser/mounted/cyborg))
+	if(has_taser_sprite && ourborg.has_active_type(/obj/item/gun/energy/taser/mounted/cyborg))
 		ourborg.add_overlay("[sprite_icon_state]-taser")
 
 /datum/robot_sprite/dogborg/security/k9

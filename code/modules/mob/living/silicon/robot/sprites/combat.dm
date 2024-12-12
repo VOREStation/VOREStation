@@ -6,10 +6,16 @@
 
 	var/has_speed_sprite = FALSE
 	var/has_shield_sprite = FALSE
+	var/has_shield_and_speed = FALSE //RS Edit
 
 /datum/robot_sprite/combat/handle_extra_icon_updates(var/mob/living/silicon/robot/ourborg)
-	if(has_speed_sprite && istype(ourborg.module_active, /obj/item/borg/combat/mobility))
+	if(has_shield_and_speed)
+		if(ourborg.has_active_type(/obj/item/borg/combat/shield) && ourborg.has_active_type(/obj/item/borg/combat/mobility))
+			ourborg.add_overlay("[sprite_icon_state]-speed_shield")
+			return
+	if(has_speed_sprite && ourborg.has_active_type(/obj/item/borg/combat/mobility))
 		ourborg.icon_state = "[sprite_icon_state]-roll"
+		return
 	if(has_shield_sprite)
 		if(ourborg.has_active_type(/obj/item/borg/combat/shield))
 			var/obj/item/borg/combat/shield/shield = locate() in ourborg
@@ -34,7 +40,7 @@
 	has_shield_sprite = TRUE
 
 /datum/robot_sprite/combat/droid/get_eyes_overlay(var/mob/living/silicon/robot/ourborg)
-	if(istype(ourborg.module_active,/obj/item/borg/combat/mobility))
+	if(ourborg.has_active_type(/obj/item/borg/combat/mobility))
 		return
 	else
 		return ..()
@@ -91,12 +97,18 @@
 	var/has_gun_sprite = FALSE
 	var/has_speed_sprite = FALSE
 	var/has_shield_sprite = FALSE
+	var/has_shield_and_speed = FALSE
 
 /datum/robot_sprite/dogborg/tall/combat/handle_extra_icon_updates(var/mob/living/silicon/robot/ourborg)
-	if(has_gun_sprite && (istype(ourborg.module_active, /obj/item/gun/energy/laser/mounted) || istype(ourborg.module_active, /obj/item/gun/energy/taser/mounted/cyborg/ertgun) || istype(ourborg.module_active, /obj/item/gun/energy/lasercannon/mounted)))
-		ourborg.add_overlay("[sprite_icon_state]-gun")
-	if(has_speed_sprite && (istype(ourborg.module_active, /obj/item/borg/combat/mobility)))
+	if(has_shield_and_speed) //RS Edit Start - Compatibility for shield+speed movement.
+		if(ourborg.has_active_type(/obj/item/borg/combat/shield) && ourborg.has_active_type(/obj/item/borg/combat/mobility))
+			ourborg.add_overlay("[sprite_icon_state]-speed_shield")
+			return
+	if(has_speed_sprite && ourborg.has_active_type(/obj/item/borg/combat/mobility))
 		ourborg.icon_state = "[sprite_icon_state]-roll"
+		return
+	if(has_gun_sprite && (ourborg.has_active_type(/obj/item/gun/energy/laser/mounted) || ourborg.has_active_type(/obj/item/gun/energy/taser/mounted/cyborg/ertgun) || ourborg.has_active_type(/obj/item/gun/energy/lasercannon/mounted)))
+		ourborg.add_overlay("[sprite_icon_state]-gun")
 	if(has_shield_sprite)
 		if(ourborg.has_active_type(/obj/item/borg/combat/shield))
 			var/obj/item/borg/combat/shield/shield = locate() in ourborg
@@ -154,17 +166,17 @@
 	has_speed_sprite = TRUE
 
 /datum/robot_sprite/dogborg/tall/combat/raptor/get_eyes_overlay(var/mob/living/silicon/robot/ourborg)
-	if(istype(ourborg.module_active,/obj/item/borg/combat/mobility))
+	if(ourborg.has_active_type(/obj/item/borg/combat/mobility))
 		return
 	else
 		return ..()
 /datum/robot_sprite/dogborg/tall/combat/raptor/get_eye_light_overlay(var/mob/living/silicon/robot/ourborg)
-	if(istype(ourborg.module_active,/obj/item/borg/combat/mobility))
+	if(ourborg.has_active_type(/obj/item/borg/combat/mobility))
 		return
 	else
 		return ..()
 /datum/robot_sprite/dogborg/tall/combat/raptor/get_belly_overlay(var/mob/living/silicon/robot/ourborg)
-	if(istype(ourborg.module_active,/obj/item/borg/combat/mobility))
+	if(ourborg.has_active_type(/obj/item/borg/combat/mobility))
 		return
 	else
 		return ..()
