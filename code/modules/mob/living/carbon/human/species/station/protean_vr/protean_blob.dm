@@ -337,6 +337,9 @@
 			healing = null
 
 /mob/living/simple_mob/protean_blob/lay_down()
+	if(hiding)
+		to_chat(src, span_warning("You can't rest while hiding."))
+		return
 	var/obj/item/rig/rig = src.get_rig()
 	if(rig)
 		rig.force_rest(src)
@@ -347,6 +350,10 @@
 	set name = "Hide Self"
 	set desc = "Disperses your mass into a thin veil, making a trap to snatch prey with, or simply hide."
 	set category = "Abilities.Protean"
+
+	if(resting)
+		to_chat(src, span_warning("You can't hide while resting."))
+		return
 
 	if(!hiding)
 		cut_overlays()
