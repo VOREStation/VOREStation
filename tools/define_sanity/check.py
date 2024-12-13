@@ -38,7 +38,7 @@ excluded_files = [
     "code/modules/tgs/**/*.dm",
 ]
 
-define_regex = re.compile(r"^([ \t]+)?#define\s?([A-Za-z0-9_]+)\(?(.+)\)?/gm")
+define_regex = re.compile(r"([ \t]+)?#define\s?([A-Za-z0-9_]+)\(?(.+)\)?")
 
 files_to_scan = []
 
