@@ -43,6 +43,7 @@ define_regex = re.compile(r"([ \t]+)?#define\s?([A-Z0-9_]+)\(?(.+)\)?")
 files_to_scan = []
 
 number_of_defines = 0
+number_of_files = 0
 
 if not on_github:
     print(blue(f"Running define sanity check outside of Github Actions.\nFor assistance, a '{output_file_name}' file will be generated at the root of your directory if any errors are detected."))
@@ -67,7 +68,7 @@ located_error_tuples = []
 
 for applicable_file in files_to_scan:
     with open(applicable_file, encoding="utf8") as file:
-        print(file.name)
+        number_of_files += 1
         file_contents = file.read()
         for define in define_regex.finditer(file_contents):
             number_of_defines += 1
@@ -80,7 +81,7 @@ if number_of_defines == 0:
     sys.exit(1)
 
 if number_of_defines <= 1000:
-    print(red(f"Only found {number_of_defines} defines! Something has likely gone wrong as the number of local defines should not be this low."))
+    print(red(f"Only found {number_of_defines} defines in {number_of_files} files! Something has likely gone wrong as the number of local defines should not be this low."))
     sys.exit(1)
 
 if len(located_error_tuples):
