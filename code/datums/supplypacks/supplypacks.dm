@@ -29,6 +29,7 @@ var/list/all_supply_groups = list("Atmospherics",
 
 /datum/supply_pack
 	var/name = null
+	var/desc = "This is a placeholder description."	//information on what the crate is/contains
 	var/list/contains = list() // Typepaths, used to actually spawn the contents
 	var/list/manifest = list() // Object names, used to compile manifests
 	var/cost = null

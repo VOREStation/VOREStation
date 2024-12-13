@@ -12,6 +12,7 @@
 
 /datum/supply_pack/costumes/wizard
 	name = "Wizard costume"
+	desc = "A generic robe and wizard hat."
 	contains = list(
 			/obj/item/staff,
 			/obj/item/clothing/suit/wizrobe/fake,
@@ -47,6 +48,7 @@
 			/obj/item/clothing/head/collectable/petehat
 			)
 	name = "Collectable hat crate!"
+	desc = "Collect them all for bragging rights."
 	cost = 200
 	containertype = /obj/structure/closet/crate/nanothreads
 	containername = "Collectable hats crate"
@@ -83,6 +85,7 @@
 			/obj/item/clothing/under/kilt
 			)
 	name = "Costumes crate"
+	desc = "Three choices from a random selection of assorted costumes."
 	cost = 10
 	containertype = /obj/structure/closet/crate/nanothreads
 	containername = "Actor Costumes"
@@ -105,12 +108,14 @@
 			/obj/item/clothing/accessory/wcoat
 			)
 	name = "Formalwear (Suits)"
+	desc = "Fancy formal clothing, for formal occasions."
 	cost = 30
 	containertype = /obj/structure/closet/crate/gilthari
 	containername = "Formal suit crate"
 
 /datum/supply_pack/costumes/witch
 	name = "Witch costume"
+	desc = "Not to be mistaken for a wizard costume."
 	containername = "Witch costume"
 	containertype = /obj/structure/closet/crate/nanothreads
 	cost = 20
@@ -123,6 +128,7 @@
 
 /datum/supply_pack/randomised/costumes/costume_hats
 	name = "Costume hats"
+	desc = "Three random hats from a modest selection."
 	containername = "Actor hats crate"
 	containertype = /obj/structure/closet/crate/nanothreads
 	cost = 10
@@ -148,6 +154,7 @@
 
 /datum/supply_pack/randomised/costumes/dresses
 	name = "Formalwear (Dresses)"
+	desc = "Formal dresses for formal occasions."
 	containername = "Formal dress crate"
 	containertype = /obj/structure/closet/crate/gilthari
 	cost = 15
@@ -168,6 +175,7 @@
 
 /datum/supply_pack/costumes/xenowear_vr
 	name = "Xenowear crate"
+	desc = "An assortment of non-human clothing."
 	contains = list(
 			/obj/item/clothing/shoes/footwraps,
 			/obj/item/clothing/shoes/boots/jackboots/toeless,
@@ -189,6 +197,7 @@
 
 /datum/supply_pack/costumes/tesh_smocks_vr
 	name = "Teshari smocks"
+	desc = "An assortment of teshari smocks."
 	num_contained = 4
 	contains = list(
 			/obj/item/clothing/under/teshari/smock,
@@ -208,6 +217,7 @@
 
 /datum/supply_pack/randomised/costumes/tesh_coats_vr
 	name = "Teshari undercoats"
+	desc = "An assortment of teshari undercoats."
 	num_contained = 4
 	contains = list(
 			/obj/item/clothing/under/teshari/undercoat/standard/orange_grey,
@@ -229,6 +239,7 @@
 
 /datum/supply_pack/randomised/costumes/tesh_coats_b_vr
 	name = "Teshari undercoats (black)"
+	desc = "Another assortment of teshari undercoats."
 	num_contained = 4
 	contains = list(
 			/obj/item/clothing/under/teshari/undercoat,
@@ -250,6 +261,7 @@
 
 /datum/supply_pack/randomised/costumes/tesh_cloaks_vr
 	name = "Teshari cloaks"
+	desc = "An assortment of teshari cloaks."
 	num_contained = 4
 	contains = list(
 			/obj/item/clothing/suit/storage/teshari/cloak/standard/white,
@@ -271,6 +283,7 @@
 
 /datum/supply_pack/randomised/costumes/tesh_cloaks_b_vr
 	name = "Teshari cloaks (black)"
+	desc = "Another assortment of teshari cloaks."
 	num_contained = 4
 	contains = list(
 			/obj/item/clothing/suit/storage/teshari/cloak,
@@ -293,6 +306,7 @@
 
 /datum/supply_pack/costumes/tesh_worksuits_vr
 	name = "Teshari worksuits"
+	desc = "An assortment of teshari worksuits."
 	num_contained = 4
 	contains = list(
 			/obj/item/clothing/under/teshari/undercoat/standard/worksuit,
@@ -312,6 +326,7 @@
 
 /datum/supply_pack/randomised/costumes/tesh_beltcloaks_vr
 	name = "Teshari cloaks (belted)"
+	desc = "An assortment of belted teshari cloaks."
 	num_contained = 4
 	contains = list(
 			/obj/item/clothing/suit/storage/teshari/beltcloak/standard/orange_grey,
@@ -333,6 +348,7 @@
 
 /datum/supply_pack/randomised/costumes/tesh_beltcloaks_b_vr
 	name = "Teshari cloaks (belted, black)"
+	desc = "Another assortment of belted teshari cloaks."
 	num_contained = 4
 	contains = list(
 			/obj/item/clothing/suit/storage/teshari/beltcloak,
@@ -356,6 +372,7 @@
 
 /datum/supply_pack/randomised/costumes/tesh_hoodcloaks_vr
 	name = "Teshari cloaks (hooded)"
+	desc = "An assortment of teshari cloaks, with hoods."
 	num_contained = 4
 	contains = list(
 			/obj/item/clothing/suit/storage/hooded/teshari/standard/orange_grey,
@@ -376,6 +393,7 @@
 
 /datum/supply_pack/randomised/costumes/tesh_hoodcloaks_b_vr
 	name = "Teshari cloaks (hooded, black)"
+	desc = "Another assortment of teshari cloaks, with hoods."
 	num_contained = 4
 	contains = list(
 			/obj/item/clothing/suit/storage/hooded/teshari,
@@ -399,10 +417,13 @@
 
 /datum/supply_pack/costumes/utility_vr
 	name = "Utility uniforms"
+	desc = "A set of standard worksuits."
 	contains = list(
 			/obj/item/clothing/under/utility,
 			/obj/item/clothing/under/utility/blue,
-			/obj/item/clothing/under/utility/grey
+			/obj/item/clothing/under/utility/grey,
+			/obj/item/clothing/under/utility/tan,
+			/obj/item/clothing/under/utility/green
 			)
 	cost = 30
 	containertype = /obj/structure/closet/crate
@@ -410,6 +431,7 @@
 
 /datum/supply_pack/costumes/skirts_vr
 	name = "Skirts crate"
+	desc = "A set of standard skirts."
 	contains = list(
 			/obj/item/clothing/under/skirt,
 			/obj/item/clothing/under/skirt/blue,
@@ -428,6 +450,7 @@
 
 /datum/supply_pack/costumes/varsity_vr
 	name = "Varsity jackets"
+	desc = "A set of varsity jackets."
 	contains = list(
 			/obj/item/clothing/suit/varsity,
 			/obj/item/clothing/suit/varsity/blue,
@@ -442,6 +465,7 @@
 
 /datum/supply_pack/randomised/costumes/leathergear_vr
 	name = "Leather gear"
+	desc = "An assortment of leather clothing. Not the naughty kind."
 	num_contained = 5
 	contains = list(
 			/obj/item/clothing/suit/leathercoat,
@@ -475,6 +499,7 @@
 
 /datum/supply_pack/costumes/eyewear_vr
 	name = "Eyewear crate"
+	desc = "Assorted eyewear."
 	contains = list(
 			/obj/item/clothing/glasses/eyepatch,
 			/obj/item/clothing/glasses/fakesunglasses,
@@ -494,6 +519,7 @@
 
 /datum/supply_pack/randomised/costumes/gloves_vr
 	name = "Gloves crate"
+	desc = "A random assortment of gloves."
 	num_contained = 4
 	contains = list(
 			/obj/item/clothing/gloves/black,
@@ -518,6 +544,7 @@
 
 /datum/supply_pack/randomised/costumes/boots_vr
 	name = "Boots crate"
+	desc = "A random assortment of boots."
 	num_contained = 3
 	contains = list(
 			/obj/item/clothing/shoes/boots/workboots,
@@ -535,6 +562,7 @@
 
 /datum/supply_pack/costumes/taurbags
 	name = "Saddlebags crate"
+	desc = "A pack of saddlebags for tauric body types. Not for actual horses."
 	contains = list(
 			/obj/item/storage/backpack/saddlebag_common,
 			/obj/item/storage/backpack/saddlebag_common/robust,
@@ -546,6 +574,7 @@
 
 /datum/supply_pack/costumes/knights_gear
 	name = "Knights Gear"
+	desc = "Knightly costumes, for knightly individuals. No actual protective properties."
 	contains = list(
 			/obj/item/clothing/suit/storage/hooded/knight_costume,
 			/obj/item/clothing/suit/storage/hooded/knight_costume/galahad,
@@ -566,6 +595,7 @@
 
 /datum/supply_pack/costumes/christmas
 	name = "Christmas costume pack"
+	desc = "Ho ho ho!"
 	contains = list(
 			/obj/item/clothing/head/santa,
 			/obj/item/clothing/head/santa/green,

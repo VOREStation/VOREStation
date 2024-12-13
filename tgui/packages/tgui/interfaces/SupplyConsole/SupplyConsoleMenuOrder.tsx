@@ -73,7 +73,7 @@ export const SupplyConsoleMenuOrder = (props) => {
                       color={pack.cost > supply_points ? 'red' : undefined}
                       onClick={() => act('view_crate', { crate: pack.ref })}
                     >
-                      C
+                      Info
                     </Button>
                   </Stack.Item>
                   <Stack.Item grow={1}>{pack.cost} points</Stack.Item>
