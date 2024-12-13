@@ -155,5 +155,8 @@ var/SMALLSIZEBLOCK     = 0
 #define DNA2_BUF_UE 2
 #define DNA2_BUF_SE 4
 
-// Genes
+// Mutation flags
 #define MUTCHK_FORCED        1
+
+// Gene flags
+#define GENE_ALWAYS_ACTIVATE 1
