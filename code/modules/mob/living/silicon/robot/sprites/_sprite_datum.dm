@@ -53,6 +53,8 @@ var/list/borg_guns = list(/obj/item/gun/energy/laser/mounted,/obj/item/gun/energ
 	return (sprite_flags & flag_to_check)
 
 /datum/robot_sprite/proc/handle_extra_icon_updates(var/mob/living/silicon/robot/ourborg)
+	if(ourborg.resting) //Don't do ANY of the overlay code if we're resting. It just won't look right!
+		return
 	if(sprite_flag_check(ROBOT_HAS_SHIELD_SPEED_SPRITE))
 		if(ourborg.has_active_type(/obj/item/borg/combat/shield) && ourborg.has_active_type(/obj/item/borg/combat/mobility))
 			ourborg.add_overlay("[sprite_icon_state]-speed_shield")
