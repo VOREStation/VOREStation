@@ -1457,7 +1457,7 @@
 		else
 			return FALSE
 	if(given_type == /obj/item/borg/upgrade/restricted/tasercooler)
-		var/obj/item/gun/energy/taser/mounted/cyborg/T = has_upgrade_module(/obj/item/gun/energy/taser/mounted/cyborg)
+		var/obj/item/gun/energy/robotic/taser/T = has_upgrade_module(/obj/item/gun/energy/robotic/taser)
 		if(T && T.recharge_time <= 2)
 			return T
 		else if(!T)
