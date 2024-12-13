@@ -1,7 +1,19 @@
+#define ROBOT_HAS_SPEED_SPRITE 0x1	//Ex:	/obj/item/borg/combat/mobility Replaces old has_speed_sprite
+#define ROBOT_HAS_SHIELD_SPRITE 0x2	//Ex:	/obj/item/borg/combat/shield Replaces old has_shield_sprite
+#define ROBOT_HAS_SHIELD_SPEED_SPRITE 0x4	//Ex: Has a sprite for when both is activated AND has /obj/item/borg/combat/mobility
+#define ROBOT_HAS_LASER_SPRITE 0x8	//Ex:	/obj/item/gun/energy/retro/mounted Replaces old has_laser_sprite
+#define ROBOT_HAS_TASER_SPRITE 0x16	//Ex:	/obj/item/gun/energy/taser/mounted/cyborg Replaces old has_taser_sprite
+#define ROBOT_HAS_GUN_SPRITE 0x32	//Ex:	Has a general gun sprite. Replaces old has_gun_sprite
+var/list/borg_lasers = list(/obj/item/gun/energy/retro/mounted,/obj/item/gun/energy/laser/mounted)
+var/list/borg_tasers = list(/obj/item/gun/energy/taser/mounted/cyborg,/obj/item/gun/energy/taser/xeno/robot)
+var/list/borg_guns = list(/obj/item/gun/energy/laser/mounted,/obj/item/gun/energy/taser/mounted/cyborg/ertgun,/obj/item/gun/energy/lasercannon/mounted,/obj/item/gun/energy/dakkalaser)
+
+
 /datum/robot_sprite
 	var/name
 	var/module_type
 	var/default_sprite = FALSE
+	var/sprite_flags
 
 	var/sprite_icon
 	var/sprite_icon_state
@@ -27,7 +39,32 @@
 	var/whitelist_ckey
 	var/whitelist_charname
 
+/// Determines if the borg has the proper flags to show an overlay.
+/datum/robot_sprite/proc/sprite_flag_check(var/flag_to_check)
+	return (sprite_flags & flag_to_check) == flag_to_check
+
 /datum/robot_sprite/proc/handle_extra_icon_updates(var/mob/living/silicon/robot/ourborg)
+	if(sprite_flag_check(ROBOT_HAS_SHIELD_SPEED_SPRITE))
+		if(ourborg.has_active_type(/obj/item/borg/combat/shield) && ourborg.has_active_type(/obj/item/borg/combat/mobility))
+			ourborg.add_overlay("[sprite_icon_state]-speed_shield")
+			return //Stop here. No need to add more overlays. Nothing else is compatible.
+
+	if(sprite_flag_check(ROBOT_HAS_SPEED_SPRITE) && ourborg.has_active_type(/obj/item/borg/combat/mobility))
+		ourborg.icon_state = "[sprite_icon_state]-roll"
+		return //Stop here. No need to add more overlays. Nothing else is compatible.
+
+	if(sprite_flag_check(ROBOT_HAS_SHIELD_SPRITE))
+		if(ourborg.has_active_type(/obj/item/borg/combat/shield))
+			var/obj/item/borg/combat/shield/shield = locate() in ourborg
+			if(shield && shield.active)
+				ourborg.add_overlay("[sprite_icon_state]-shield")
+
+	if(sprite_flag_check(ROBOT_HAS_GUN_SPRITE) && (ourborg.has_active_type(/obj/item/gun/energy/laser/mounted) || ourborg.has_active_type(/obj/item/gun/energy/taser/mounted/cyborg/ertgun) || ourborg.has_active_type(/obj/item/gun/energy/lasercannon/mounted) || ourborg.has_active_type(/obj/item/gun/energy/dakkalaser)))
+		ourborg.add_overlay("[sprite_icon_state]-gun")
+	if(sprite_flag_check(ROBOT_HAS_LASER_SPRITE) && (ourborg.has_active_type(/obj/item/gun/energy/retro/mounted) || ourborg.has_active_type(/obj/item/gun/energy/laser/mounted)))
+		ourborg.add_overlay("[sprite_icon_state]-laser")
+	if(sprite_flag_check(ROBOT_HAS_TASER_SPRITE) && (ourborg.has_active_type(/obj/item/gun/energy/taser/mounted/cyborg) || ourborg.has_active_type(/obj/item/gun/energy/taser/xeno/robot)))
+		ourborg.add_overlay("[sprite_icon_state]-taser")
 	return
 
 /datum/robot_sprite/proc/get_belly_overlay(var/mob/living/silicon/robot/ourborg, var/size = 1)
