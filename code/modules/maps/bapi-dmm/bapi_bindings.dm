@@ -34,3 +34,5 @@ x_upper, y_lower, y_upper, z_lower, z_upper, place_on_top, new_z)
 
 /proc/bapidmm_generate_automata(limit_x, limit_y, iterations, initial_wall_cell)
 	return call_ext(BAPI_DMM_READER, "byond:bapidmm_generate_automata_ffi")(limit_x, limit_y, iterations, initial_wall_cell)
+
+#undef BAPI_DMM_READER
