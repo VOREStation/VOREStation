@@ -2,8 +2,8 @@
 #define ROBOT_HAS_SHIELD_SPRITE 0x2	//Ex:	/obj/item/borg/combat/shield Replaces old has_shield_sprite
 #define ROBOT_HAS_SHIELD_SPEED_SPRITE 0x4	//Ex: Has a sprite for when both is activated AND has /obj/item/borg/combat/mobility
 #define ROBOT_HAS_LASER_SPRITE 0x8	//Ex:	/obj/item/gun/energy/retro/mounted Replaces old has_laser_sprite
-#define ROBOT_HAS_TASER_SPRITE 0x16	//Ex:	/obj/item/gun/energy/taser/mounted/cyborg Replaces old has_taser_sprite
-#define ROBOT_HAS_GUN_SPRITE 0x32	//Ex:	Has a general gun sprite. Replaces old has_gun_sprite
+#define ROBOT_HAS_TASER_SPRITE 0x10	//Ex:	/obj/item/gun/energy/taser/mounted/cyborg Replaces old has_taser_sprite
+#define ROBOT_HAS_GUN_SPRITE 0x20	//Ex:	Has a general gun sprite. Replaces old has_gun_sprite
 
 
 /// USE THESE SPARINGLY, ADDING TO THESE LISTS EXTENSIVELY AND PILING ON MORE TO LISTS /CAN/ BE RESOURCE INTENSIVE.
@@ -50,7 +50,7 @@ var/list/borg_guns = list(/obj/item/gun/energy/laser/mounted,/obj/item/gun/energ
 
 /// Determines if the borg has the proper flags to show an overlay.
 /datum/robot_sprite/proc/sprite_flag_check(var/flag_to_check)
-	return (sprite_flags & flag_to_check) == flag_to_check
+	return (sprite_flags & flag_to_check)
 
 /datum/robot_sprite/proc/handle_extra_icon_updates(var/mob/living/silicon/robot/ourborg)
 	if(sprite_flag_check(ROBOT_HAS_SHIELD_SPEED_SPRITE))
