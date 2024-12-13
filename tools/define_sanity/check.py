@@ -38,7 +38,7 @@ excluded_files = [
     "code/modules/tgs/**/*.dm",
 ]
 
-define_regex = re.compile(r"([ \t]+)?#define\s?([A-Za-z0-9_]+)\(?(.+)\)?")
+define_regex = re.compile(r"([ \t]+)?#define\s?([A-Z0-9_]+)\(?(.+)\)?")
 
 files_to_scan = []
 
@@ -80,7 +80,7 @@ if number_of_defines == 0:
     print(red("No defines found! This is likely an error."))
     sys.exit(1)
 
-if number_of_defines <= 1000:
+if number_of_defines <= 900:
     print(red(f"Only found {number_of_defines} defines in {number_of_files} files! Something has likely gone wrong as the number of local defines should not be this low."))
     sys.exit(1)
 
