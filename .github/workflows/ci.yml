@@ -56,12 +56,15 @@ jobs:
           bash tools/ci/install_node.sh
           bash tools/ci/install_ripgrep.sh
           tools/bootstrap/python -c ''
-      - name: Check Define Sanity
-        if: steps.linter-setup.conclusion == 'success' && !cancelled()
-        run: tools/bootstrap/python -m define_sanity.check
+      - name: Give Linters A Go
+        id: linter-setup
+        run: ':'
       - name: Run Grep Checks
         if: steps.linter-setup.conclusion == 'success' && !cancelled()
         run: tools/ci/validate_files.sh
+      - name: Run Define Sanity Checks
+        if: steps.linter-setup.conclusion == 'success' && !cancelled()
+        run: tools/bootstrap/python -m define_sanity.check
       - name: Run TGUI Checks
         if: steps.linter-setup.conclusion == 'success' && !cancelled()
         run: tools/build/build --ci lint tgui-test
