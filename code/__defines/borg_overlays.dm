@@ -26,7 +26,7 @@
 
 
 /// These are applied on GUNS to classify them as a GUN, TASER, OR LASER.
-/// So every borg weapon is a child of '/obj/item/gun/robotic' and given the 'laser' 'taser' 'gun' etc flag. ALL guns have 'gun' by default.
+/// So every borg weapon is a child of '/obj/item/gun/energy/robotic' and given the 'laser' 'taser' 'gun' etc flag. ALL guns have 'gun' by default.
 #define COUNTS_AS_ROBOT_GUN 0x1
 #define COUNTS_AS_ROBOT_TASER 0x2
 #define COUNTS_AS_ROBOT_LASER 0x4
