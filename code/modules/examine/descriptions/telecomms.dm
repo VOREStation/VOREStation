@@ -11,7 +11,7 @@
 	Internet (sometimes referred to as the InterPlaNet), which was conceived and developed due to the limitations of the terrestrial Internet, mainly because \
 	the IP protocol was unsuitable for long range communications in space, due to the massive delays associated with lightspeed being unable to overcome \
 	the massive distances between planets in a timely manner.  It was a store-and-forward network of smaller internets, distributed between various nodes, \
-	and was designed to be error, fault, and delay tolerant.  The first nodes were put into space around the time when colonization had begun, to service humanity’s \
+	and was designed to be error, fault, and delay tolerant.  The first nodes were put into space around the time when colonization had begun, to service humanity's \
 	close holdings, such as Luna and Mars.<br>\
 	<br>\
 	By 2104, the Interplanetary Internet had coverage within most of Sol, but the network of networks were limited by the speed of light, and due \
