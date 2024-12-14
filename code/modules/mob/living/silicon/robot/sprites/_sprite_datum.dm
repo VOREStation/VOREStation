@@ -59,6 +59,8 @@
 				ourborg.add_overlay("[sprite_icon_state]-melee")
 			if(sprite_flag_check(ROBOT_HAS_DAGGER_SPRITE) && melee.weapon_flag_check(COUNTS_AS_ROBOT_DAGGER))
 				ourborg.add_overlay("[sprite_icon_state]-dagger")
+			if(sprite_flag_check(ROBOT_HAS_BLADE_SPRITE) && melee.weapon_flag_check(COUNTS_AS_ROBOT_BLADE))
+				ourborg.add_overlay("[sprite_icon_state]-blade")
 
 	if(ourborg.has_active_type(/obj/item/gun/energy/robotic)) //We have a gun in our modules.
 		var/obj/item/gun/energy/robotic/gun = locate() in ourborg
