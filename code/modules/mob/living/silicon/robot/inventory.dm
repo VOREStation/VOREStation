@@ -135,16 +135,19 @@
 	else
 		return 0
 
+/mob/living/silicon/robot/proc/get_active_modules()
+	return list(module_state_1, module_state_2, module_state_3)
+
 // This one takes an object's type instead of an instance, as above.
 /mob/living/silicon/robot/proc/has_active_type(var/type_to_compare, var/explicit = FALSE)
-	var/list/active_modules = list(module_state_1, module_state_2, module_state_3)
+	var/list/active_modules = get_active_modules()
 	if(is_type_in_modules(type_to_compare, active_modules, explicit))
 		return TRUE
 	return FALSE
 
 /// Searches through a provided list to see if we have a module that is in that list.
 /mob/living/silicon/robot/proc/has_active_type_list(var/list/type_to_compare, var/explicit = FALSE)
-	var/list/active_modules = list(module_state_1, module_state_2, module_state_3)
+	var/list/active_modules = get_active_modules()
 	if(islist(type_to_compare))
 		for(var/object_to_compare in type_to_compare)
 			if(is_type_in_modules(object_to_compare, active_modules, explicit))
