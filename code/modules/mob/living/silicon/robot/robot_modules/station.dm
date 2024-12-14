@@ -762,10 +762,10 @@ var/global/list/robot_modules = list(
 	src.modules += new /obj/item/gun/energy/robotic/laser/rifle(src)
 	src.modules += new /obj/item/gun/energy/robotic/disabler(src)
 	src.modules += new /obj/item/pickaxe/plasmacutter/borg(src)
-	src.modules += new /obj/item/melee/combat_borgblade(src)
+	src.modules += new /obj/item/melee/robotic/dagger(src)
 	src.modules += new /obj/item/borg/combat/shield(src)
 	src.modules += new /obj/item/borg/combat/mobility(src)
-	src.modules += new /obj/item/melee/borg_combat_shocker(src)
+	src.modules += new /obj/item/melee/robotic/borg_combat_shocker(src)
 	src.modules += new /obj/item/ticket_printer(src)
 	src.emag += new /obj/item/gun/energy/robotic/laser/heavy(src)
 

@@ -1,4 +1,11 @@
+/// This file PRIMARILY contains guns for borgs. The key word being PRIMARILY.
+/// Some things are included in here for relevence's sake (like the dogborg blade)
+
+
 /obj/item/gun/energy/robotic/proc/gun_flag_check(var/flag_to_check) //Checks for the flag of the gun.
+	return (borg_flags & flag_to_check)
+
+/obj/item/melee/robotic/proc/weapon_flag_check(var/flag_to_check) //Checks for the flag of the gun.
 	return (borg_flags & flag_to_check)
 
 /// The base gun types. Build off these four.
@@ -124,3 +131,134 @@
 		list(mode_name="five shot burst", burst = 5, burst_accuracy = list(75,75,75,75,75), dispersion = list(1,1,1,1,1)),
 		list(mode_name="ten shot burst", burst = 10, burst_accuracy = list(75,75,75,75,75,75,75,75,75,75), dispersion = list(2,2,2,2,2,2,2,2,2,2)),
 		)
+
+
+/// MELEE WEAPONS
+
+/obj/item/melee/robotic //Just the parent. Don't use this one.
+	name = "Robotic Appendage"
+	desc = "A robotic weapon of some sort."
+	icon = 'icons/mob/dogborg_vr.dmi'
+	icon_state = "swordtail"
+	var/borg_flags = COUNTS_AS_ROBOTIC_MELEE
+
+/obj/item/melee/robotic/jaws
+	icon = 'icons/mob/dogborg_vr.dmi'
+	hitsound = 'sound/weapons/bite.ogg'
+	throwforce = 0
+	w_class = ITEMSIZE_NORMAL
+	pry = 1
+	tool_qualities = list(TOOL_CROWBAR)
+
+/obj/item/melee/robotic/jaws/big
+	name = "combat jaws"
+	icon_state = "jaws"
+	desc = "The jaws of the law."
+	force = 25
+	armor_penetration = 25
+	defend_chance = 15
+	attack_verb = list("chomped", "bit", "ripped", "mauled", "enforced")
+
+/obj/item/melee/robotic/jaws/small
+	name = "puppy jaws"
+	icon_state = "smalljaws"
+	desc = "The jaws of a small dog."
+	force = 10
+	defend_chance = 5
+	attack_verb = list("nibbled", "bit", "gnawed", "chomped", "nommed")
+	var/emagged = 0
+/obj/item/melee/robotic/jaws/small/attack_self(mob/user)
+	var/mob/living/silicon/robot/R = user
+	if(R.emagged || R.emag_items)
+		emagged = !emagged
+		if(emagged)
+			name = "combat jaws"
+			icon_state = "jaws"
+			desc = "The jaws of the law."
+			force = 25
+			armor_penetration = 25
+			defend_chance = 15
+			attack_verb = list("chomped", "bit", "ripped", "mauled", "enforced")
+		else
+			name = "puppy jaws"
+			icon_state = "smalljaws"
+			desc = "The jaws of a small dog."
+			force = 10
+			armor_penetration = 0
+			defend_chance = 5
+			attack_verb = list("nibbled", "bit", "gnawed", "chomped", "nommed")
+		update_icon()
+
+
+/obj/item/melee/robotic/borg_combat_shocker
+	name = "combat shocker"
+	icon = 'icons/mob/dogborg_vr.dmi'
+	icon_state = "combatshocker"
+	desc = "Shocking!"
+	force = 15
+	throwforce = 0
+	hitsound = 'sound/weapons/genhit1.ogg'
+	attack_verb = list("hit")
+	w_class = ITEMSIZE_NORMAL
+	var/charge_cost = 15
+	var/dogborg = FALSE
+
+/obj/item/melee/robotic/borg_combat_shocker/apply_hit_effect(mob/living/target, mob/living/user, var/hit_zone)
+	if(isrobot(target))
+		return ..()
+
+	var/agony = 60 // Copied from stun batons
+	var/stun = 0 // ... same
+
+	var/obj/item/organ/external/affecting = null
+	if(ishuman(target))
+		var/mob/living/carbon/human/H = target
+		affecting = H.get_organ(hit_zone)
+
+	if(user.a_intent == I_HURT)
+		// Parent handles messages
+		. = ..()
+		//whacking someone causes a much poorer electrical contact than deliberately prodding them.
+		agony *= 0.5
+		stun *= 0.5
+	else
+		if(affecting)
+			if(dogborg)
+				target.visible_message(span_danger("[target] has been zap-chomped in the [affecting.name] with [src] by [user]!"))
+			else
+				target.visible_message(span_danger("[target] has been zapped in the [affecting.name] with [src] by [user]!"))
+		else
+			if(dogborg)
+				target.visible_message(span_danger("[target] has been zap-chomped with [src] by [user]!"))
+			else
+				target.visible_message(span_danger("[target] has been zapped with [src] by [user]!"))
+		playsound(src, 'sound/weapons/Egloves.ogg', 50, 1, -1)
+
+	// Try to use power
+	var/stunning = FALSE
+	if(isrobot(loc))
+		var/mob/living/silicon/robot/R = loc
+		if(R.cell?.use(charge_cost) == charge_cost)
+			stunning = TRUE
+
+	if(stunning)
+		target.stun_effect_act(stun, agony, hit_zone, src)
+		msg_admin_attack("[key_name(user)] stunned [key_name(target)] with the [src].")
+		if(ishuman(target))
+			var/mob/living/carbon/human/H = target
+			H.forcesay(hit_appends)
+
+/obj/item/melee/robotic/dagger
+	name = "Robotic Blade"
+	desc = "A glowing dagger. It appears to be extremely sharp."
+	borg_flags = COUNTS_AS_ROBOTIC_MELEE | COUNTS_AS_ROBOT_DAGGER
+	icon = 'icons/mob/dogborg_vr.dmi'
+	icon_state = "swordtail"
+	force = 35 //Takes 3 hits to 100-0
+	armor_penetration = 70
+	sharp = TRUE
+	edge = TRUE
+	throwforce = 0 //This shouldn't be thrown in the first place.
+	hitsound = 'sound/weapons/blade1.ogg'
+	attack_verb = list("slashed", "stabbed", "jabbed", "mauled", "sliced")
+	w_class = ITEMSIZE_NORMAL

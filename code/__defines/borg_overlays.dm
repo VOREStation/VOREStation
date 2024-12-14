@@ -15,16 +15,22 @@
 #define ROBOT_HAS_GUN_SPRITE 0x20	//Ex:		Has a general gun sprite. Replaces old has_gun_sprite
 #define ROBOT_HAS_DISABLER_SPRITE 0x40 //Ex:	/obj/item/gun/energy/taser/mounted/cyborg/ertgun HOWEVER it is not used on this codebase (Virgo) but may be used downstream.
 
+#define ROBOT_HAS_MELEE_SPRITE 0x80	//Ex: 		Generic borg melee
+#define ROBOT_HAS_DAGGER_SPRITE 0x100	//Ex: Specialized dagger.
 /// For sanity's sake for you spriters out there that don't want to dig through the code, attach the below as a suffix for your sprites:
 /// Speed: -roll
 /// Shield: -shield
 /// Both: -speed_shield
+
 /// Laser: -laser
 /// Taser: -taser
 /// Gun: -gun
 /// Disabler: -disabler
 
+/// Melee: -melee
+/// Blade: -dagger
 
+/// GUN DEFINES
 /// These are applied on GUNS to classify them as a GUN, TASER, OR LASER.
 /// So every borg weapon is a child of '/obj/item/gun/energy/robotic' and given the 'laser' 'taser' 'gun' etc flag. ALL guns have 'gun' by default.
 #define COUNTS_AS_ROBOT_GUN 0x1
@@ -32,8 +38,15 @@
 #define COUNTS_AS_ROBOT_LASER 0x4
 #define COUNTS_AS_ROBOT_DISABLER 0x8
 
+/// MELEE WEAPON DEFINES
+/// These are applied on MELEE WEAPONS to classify them as MELEE WEAPONS that give sprites.
+/// Use 'melee' if your borg ONLY has a generic melee sprite. If they have more unique sprites, use the other ones!
+/// Currently, only the borg blade is used. But you could expand this define list!
+#define COUNTS_AS_ROBOTIC_MELEE 0x1
+#define COUNTS_AS_ROBOT_DAGGER 0x2
+
 /// ADDITIONAL NOTES:
-/// If you want to have a special type of item that will be used on borgs that is NOT a gun that causes an overlay, have no fear!
+/// If you want to have a special type of item that will be used on borgs that is NOT a gun OR is not included above that causes an overlay, have no fear!
 /// Currently, the SHIELD, SPEED, and both are included. If you want your borg to have a cool special overlay, use 'handle_extra_icon_updates'!
 /// Here's an example:
 
