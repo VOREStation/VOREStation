@@ -112,7 +112,7 @@
 
 /datum/supply_pack/materials/linoleum
 	name = "Linoleum flooring"
-	desc = "Easy-to-clean, easy-to-lay, guaranteed non-stick linoleum."
+	desc = "Easy-to-clean, easy-to-lay, guaranteed non-stick linoleum floor tiles."
 	containertype = /obj/structure/closet/crate/grayson
 	containername = "Linoleum crate"
 	cost = 15
