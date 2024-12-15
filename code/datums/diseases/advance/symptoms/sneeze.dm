@@ -79,8 +79,9 @@ Bonus
 				M.emote("sniff")
 			else
 				SneezeTeleport(A, M)
-				A.spread(A.stage)
-				if(prob(30))
+				if(!M.wear_mask)
+					A.spread(A.stage)
+				if(prob(30) && !M.wear_mask)
 					var/obj/effect/decal/cleanable/mucus/icky = new(get_turf(M))
 					icky.viruses |= A.Copy()
 
