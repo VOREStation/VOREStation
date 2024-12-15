@@ -126,8 +126,8 @@
 			. += "<p>This place is not noted on the [src.name].</p>"
 			return //If we're in a special area, no modifying.
 	if(!uses_charges || (uses_charges && charges)) //No charges OR it has charges available.
-		. += "<p><a href='?src=[REF(src)];create_area=1'>Create or modify an existing area (3x3 space) (1 Charge)</a></p>"
-		. += "<p><a href='?src=[REF(src)];create_area_whole=1'>Create new area or merge two areas. (Whole Room.) (5 Charges)</a></p>"
+		. += "<p><a href='byond://?src=[REF(src)];create_area=1'>Create or modify an existing area (3x3 space) (1 Charge)</a></p>"
+		. += "<p><a href='byond://?src=[REF(src)];create_area_whole=1'>Create new area or merge two areas. (Whole Room.) (5 Charges)</a></p>"
 		. += "There is a note on the corner of the [src.name]: Use 3x3 for fine-tuning and including walls into your area!"
 	if(uses_charges)
 		if(!charges) //We're out!
@@ -184,7 +184,7 @@
 		. += view_station_wire_devices(user);
 	else
 		//legend is a wireset
-		. += "<a href='?src=[REF(src)];view_legend=1'><< Back</a>"
+		. += "<a href='byond://?src=[REF(src)];view_legend=1'><< Back</a>"
 		. += view_station_wire_set(user, legend)
 
 	var/datum/browser/popup = new(user, "blueprints", "[src]", 700, 500)
@@ -206,7 +206,7 @@
 	for(var/wireset in GLOB.wire_color_directory)
 		//if(istype(wireset,/datum/wires/grid_checker))//Uncomment this in if you want the grid checker minigame to not be revealed here.
 		//	continue
-		message += "<br><a href='?src=[REF(src)];view_wireset=[wireset]'>[GLOB.wire_name_directory[wireset]]</a>"
+		message += "<br><a href='byond://?src=[REF(src)];view_wireset=[wireset]'>[GLOB.wire_name_directory[wireset]]</a>"
 	message += "</p>"
 	return message
 
@@ -252,16 +252,16 @@
 	if(!legend)
 		if(get_area_type() == AREA_STATION)
 			. += "<p>According to \the [src], you are now in <b>\"[html_encode(A.name)]\"</b>.</p>"
-			. += "<p><a href='?src=[REF(src)];edit_area=1'>Change area name</a></p>" //You can change the name without charges.
+			. += "<p><a href='byond://?src=[REF(src)];edit_area=1'>Change area name</a></p>" //You can change the name without charges.
 		if(wire_schematics)
-			. += "<p><a href='?src=[REF(src)];view_legend=1'>View wire colour legend</a></p>"
+			. += "<p><a href='byond://?src=[REF(src)];view_legend=1'>View wire colour legend</a></p>"
 	else
 		if(legend == TRUE)
-			. += "<a href='?src=[REF(src)];exit_legend=1'><< Back</a>"
+			. += "<a href='byond://?src=[REF(src)];exit_legend=1'><< Back</a>"
 			. += view_wire_devices(user);
 		else
 			//legend is a wireset
-			. += "<a href='?src=[REF(src)];view_legend=1'><< Back</a>"
+			. += "<a href='byond://?src=[REF(src)];view_legend=1'><< Back</a>"
 			. += view_wire_set(user, legend)
 	var/datum/browser/popup = new(user, "blueprints", "[src]", 700, 500)
 	popup.set_content(.)
@@ -354,7 +354,7 @@
 	for(var/wireset in GLOB.wire_color_directory)
 		//if(istype(wireset,/datum/wires/grid_checker))//Uncomment this in if you want the grid checker minigame to not be revealed here.
 		//	continue
-		message += "<br><a href='?src=[REF(src)];view_wireset=[wireset]'>[GLOB.wire_name_directory[wireset]]</a>"
+		message += "<br><a href='byond://?src=[REF(src)];view_wireset=[wireset]'>[GLOB.wire_name_directory[wireset]]</a>"
 	message += "</p>"
 	return message
 
@@ -526,7 +526,7 @@
 	oldA.power_check() //Simply makes the area turn the power off if you nicked an APC from it.
 	to_chat(creator, span_notice("You have created a new area, named [newA.name]. It is now weather proof, and constructing an APC will allow it to be powered."))
 	if(annoy_admins)
-		message_admins("[key_name(creator, creator.client)] just made a new area called [newA.name] ](<A HREF='?_src_=holder;[HrefToken()];adminmoreinfo=\ref[creator]'>?</A>) at ([creator.x],[creator.y],[creator.z] - <A HREF='?_src_=holder;[HrefToken()];adminplayerobservecoodjump=1;X=[creator.x];Y=[creator.y];Z=[creator.z]'>JMP</a>)",0,1)
+		message_admins("[key_name(creator, creator.client)] just made a new area called [newA.name] ](<A href='byond://?_src_=holder;[HrefToken()];adminmoreinfo=\ref[creator]'>?</A>) at ([creator.x],[creator.y],[creator.z] - <A href='byond://?_src_=holder;[HrefToken()];adminplayerobservecoodjump=1;X=[creator.x];Y=[creator.y];Z=[creator.z]'>JMP</a>)",0,1)
 	log_game("[key_name(creator, creator.client)] just made a new area called [newA.name]")
 	if(AO && istype(AO,/obj/item/areaeditor))
 		if(AO.uses_charges)
@@ -646,7 +646,7 @@
 	set_area_machinery(newA, newA.name, oldA.name)
 	oldA.power_check() //Simply makes the area turn the power off if you nicked an APC from it.
 	to_chat(creator, span_notice("You have created a new area, named [newA.name]. It is now weather proof, and constructing an APC will allow it to be powered."))
-	message_admins("[key_name(creator, creator.client)] just made a new area called [newA.name] ](<A HREF='?_src_=holder;[HrefToken()];adminmoreinfo=\ref[creator]'>?</A>) at ([creator.x],[creator.y],[creator.z] - <A HREF='?_src_=holder;[HrefToken()];adminplayerobservecoodjump=1;X=[creator.x];Y=[creator.y];Z=[creator.z]'>JMP</a>)",0,1)
+	message_admins("[key_name(creator, creator.client)] just made a new area called [newA.name] ](<A href='byond://?_src_=holder;[HrefToken()];adminmoreinfo=\ref[creator]'>?</A>) at ([creator.x],[creator.y],[creator.z] - <A href='byond://?_src_=holder;[HrefToken()];adminplayerobservecoodjump=1;X=[creator.x];Y=[creator.y];Z=[creator.z]'>JMP</a>)",0,1)
 	log_game("[key_name(creator, creator.client)] just made a new area called [newA.name]")
 	charges -= 5
 
@@ -923,7 +923,7 @@
 	set_area_machinery(newA, newA.name, oldA.name)
 	oldA.power_check() //Simply makes the area turn the power off if you nicked an APC from it.
 	to_chat(creator, span_notice("You have created a new area, named [newA.name]. It is now weather proof, and constructing an APC will allow it to be powered."))
-	message_admins("[key_name(creator, creator.client)] just made a new area called [newA.name] ](<A HREF='?_src_=holder;[HrefToken()];adminmoreinfo=\ref[creator]'>?</A>) at ([creator.x],[creator.y],[creator.z] - <A HREF='?_src_=holder;[HrefToken()];adminplayerobservecoodjump=1;X=[creator.x];Y=[creator.y];Z=[creator.z]'>JMP</a>)",0,1)
+	message_admins("[key_name(creator, creator.client)] just made a new area called [newA.name] ](<A href='byond://?_src_=holder;[HrefToken()];adminmoreinfo=\ref[creator]'>?</A>) at ([creator.x],[creator.y],[creator.z] - <A href='byond://?_src_=holder;[HrefToken()];adminplayerobservecoodjump=1;X=[creator.x];Y=[creator.y];Z=[creator.z]'>JMP</a>)",0,1)
 	log_game("[key_name(creator, creator.client)] just made a new area called [newA.name]")
 
 	return

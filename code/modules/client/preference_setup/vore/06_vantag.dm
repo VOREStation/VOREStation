@@ -27,8 +27,8 @@
 
 /datum/category_item/player_setup_item/vore/vantag/content(var/mob/user)
 	. += "<br>"
-	. += span_bold("Event Volunteer:") + " <a [pref.vantag_volunteer ? "class='linkOn'" : ""] href='?src=\ref[src];toggle_vantag_volunteer=1'>" + span_bold("[pref.vantag_volunteer ? "Yes" : "No"]") + "</a><br>"
-	. += span_bold("Event Pref:") + " <a href='?src=\ref[src];change_vantag=1'>" + span_bold("[vantag_choices_list[pref.vantag_preference]]") + "</a><br>"
+	. += span_bold("Event Volunteer:") + " <a [pref.vantag_volunteer ? "class='linkOn'" : ""] href='byond://?src=\ref[src];toggle_vantag_volunteer=1'>" + span_bold("[pref.vantag_volunteer ? "Yes" : "No"]") + "</a><br>"
+	. += span_bold("Event Pref:") + " <a href='byond://?src=\ref[src];change_vantag=1'>" + span_bold("[vantag_choices_list[pref.vantag_preference]]") + "</a><br>"
 
 /datum/category_item/player_setup_item/vore/vantag/OnTopic(var/href, var/list/href_list, var/mob/user)
 	if(href_list["toggle_vantag_volunteer"])

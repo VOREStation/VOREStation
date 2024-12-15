@@ -17,7 +17,7 @@
 	attack_verb = list("whipped", "battered", "slapped", "fished", "hooked")
 	hitsound = 'sound/weapons/punchmiss.ogg'
 	applies_material_colour = TRUE
-	default_material = "wood"
+	default_material = MAT_WOOD
 	can_dull = FALSE
 	var/strung = TRUE
 	var/line_break = TRUE
@@ -87,7 +87,7 @@
 	if(istype(Bait, bait_type))
 		var/foodvolume
 		for(var/datum/reagent/re in Bait.reagents.reagent_list)
-			if(re.id == "nutriment" || re.id == "protein" || re.id == "glucose" || re.id == "fishbait")
+			if(re.id == REAGENT_ID_NUTRIMENT || re.id == REAGENT_ID_PROTEIN || re.id == REAGENT_ID_GLUCOSE || re.id == REAGENT_ID_FISHBAIT)
 				foodvolume += re.volume
 
 		toolspeed = initial(toolspeed) * 10*(0.01/(0.2*(foodvolume/Bait.reagents.maximum_volume + 0.5))) //VOREStation edit: gives fishing a universal formula because Polaris' doesn't work here. Min value of 1, max value of 1/3, 0.5 at 1/2 filled with bait reagents.
@@ -116,7 +116,7 @@
 	item_state = "fishing_rod"
 	reach = 4
 	attackspeed = 2 SECONDS
-	default_material = "titanium"
+	default_material = MAT_TITANIUM
 
 	toolspeed = 0.75
 
@@ -126,6 +126,6 @@
 /obj/item/material/fishing_rod/modern/cheap //A rod sold by the fishing vendor. Done so that the rod sold by mining reward vendors doesn't loose its value.
 	name = "cheap fishing rod"
 	desc = "Mass produced, but somewhat reliable."
-	default_material = "plastic"
+	default_material = MAT_PLASTIC
 
 	toolspeed = 0.9

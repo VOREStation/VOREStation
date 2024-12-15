@@ -31,7 +31,7 @@
  * */
 
 /datum/recipe
-	var/list/reagents		// Example: = list("berryjuice" = 5) // do not list same reagent twice
+	var/list/reagents		// Example: = list(REAGENT_ID_BERRYJUICE = 5) // do not list same reagent twice
 	var/list/items			// Example: = list(/obj/item/tool/crowbar, /obj/item/welder) // place /foo/bar before /foo
 	var/list/fruit			// Example: = list("fruit" = 3)
 	var/coating = null		// Required coating on all items in the recipe. The default value of null explitly requires no coating

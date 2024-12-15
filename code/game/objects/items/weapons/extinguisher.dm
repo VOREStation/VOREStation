@@ -52,7 +52,7 @@
 
 /obj/item/extinguisher/Initialize()
 	create_reagents(max_water)
-	reagents.add_reagent("firefoam", max_water)
+	reagents.add_reagent(REAGENT_ID_FIREFOAM, max_water)
 	if(rand_overlays)
 		var/choice = rand(1,rand_overlays)
 		add_overlay("[item_state]O[choice]")

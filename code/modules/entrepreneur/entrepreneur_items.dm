@@ -407,7 +407,7 @@
 	desc = "A small bottle of various plant extracts said to improve upon a person's health as an alternative form of medicine."
 	icon = 'icons/obj/entrepreneur.dmi'
 	icon_state = "oil"
-	prefill = list("essential_oil" = 60)
+	prefill = list(REAGENT_ID_ESSENTIALOIL = 60)
 
 // Masseuse
 

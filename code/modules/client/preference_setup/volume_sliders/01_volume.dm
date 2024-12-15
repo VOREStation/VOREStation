@@ -31,7 +31,7 @@
 /datum/category_item/player_setup_item/volume_sliders/volume/content(var/mob/user)
 	. += span_bold("Volume Settings") + "<br>"
 	for(var/channel in pref.volume_channels)
-		. += "[channel]: <a href='?src=\ref[src];change_volume=[channel];'><b>[pref.volume_channels[channel] * 100]%</b></a><br>"
+		. += "[channel]: <a href='byond://?src=\ref[src];change_volume=[channel];'><b>[pref.volume_channels[channel] * 100]%</b></a><br>"
 	. += "<br>"
 
 /datum/category_item/player_setup_item/volume_sliders/volume/OnTopic(var/href, var/list/href_list, var/mob/user)

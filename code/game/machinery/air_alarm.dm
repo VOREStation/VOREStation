@@ -1,6 +1,6 @@
 #define DECLARE_TLV_VALUES var/red_min; var/yel_min; var/yel_max; var/red_max; var/tlv_comparitor;
 #define LOAD_TLV_VALUES(x, y) red_min = x[1]; yel_min = x[2]; yel_max = x[3]; red_max = x[4]; tlv_comparitor = y;
-#define TEST_TLV_VALUES (((tlv_comparitor >= red_max && red_max > 0) || tlv_comparitor <= red_min) ? 2 : ((tlv_comparitor >= yel_max && yel_max > 0) || tlv_comparitor <= yel_min) ? 1 : 0)
+#define TEST_TLV_VALUES (((tlv_comparitor > red_max && red_max > 0) || tlv_comparitor < red_min) ? 2 : ((tlv_comparitor > yel_max && yel_max > 0) || tlv_comparitor < yel_min) ? 1 : 0)
 
 #define AALARM_MODE_SCRUBBING	1
 #define AALARM_MODE_REPLACEMENT	2 //like scrubbing, but faster.
@@ -76,7 +76,7 @@
 	/// red warning minimum value, yellow warning minimum value, yellow warning maximum value, red warning maximum value
 	/// Use code\defines\gases.dm as reference for id/name. Please keep it consistent
 	var/list/TLV = list()
-	var/list/trace_gas = list("nitrous_oxide", "volatile_fuel") //list of other gases that this air alarm is able to detect
+	var/list/trace_gas = list(GAS_N2O, GAS_VOLATILE_FUEL) //list of other gases that this air alarm is able to detect
 
 	var/danger_level = 0
 	var/pressure_dangerlevel = 0
@@ -108,9 +108,9 @@
 /obj/machinery/alarm/server/Initialize(mapload)
 	. = ..()
 	req_access = list(access_rd, access_atmospherics, access_engine_equip)
-	TLV["oxygen"] =			list(-1.0, -1.0,-1.0,-1.0) // Partial pressure, kpa
-	TLV["carbon_dioxide"] = list(-1.0, -1.0,   5,  10) // Partial pressure, kpa
-	TLV["phoron"] =			list(-1.0, -1.0, 0, 0.5) // Partial pressure, kpa
+	TLV[GAS_O2] =			list(-1.0, -1.0,-1.0,-1.0) // Partial pressure, kpa
+	TLV[GAS_CO2] = list(-1.0, -1.0,   5,  10) // Partial pressure, kpa
+	TLV[GAS_PHORON] =			list(-1.0, -1.0, 0, 0.5) // Partial pressure, kpa
 	TLV["other"] =			list(-1.0, -1.0, 0.5, 1.0) // Partial pressure, kpa
 	TLV["pressure"] =		list(0,ONE_ATMOSPHERE*0.10,ONE_ATMOSPHERE*1.40,ONE_ATMOSPHERE*1.60) /* kpa */
 	TLV["temperature"] =	list(20, 40, 140, 160) // K
@@ -145,10 +145,10 @@
 		wires = new(src)
 
 	// breathable air according to human/Life()
-	TLV["oxygen"] =			list(16, 19, 135, 140) // Partial pressure, kpa
-	TLV["nitrogen"] =		list(0, 0, 135, 140) // Partial pressure, kpa
-	TLV["carbon_dioxide"] = list(-1.0, -1.0, 5, 10) // Partial pressure, kpa
-	TLV["phoron"] =			list(-1.0, -1.0, 0, 0.5) // Partial pressure, kpa
+	TLV[GAS_O2] =			list(16, 19, 135, 140) // Partial pressure, kpa
+	TLV[GAS_N2] =		list(0, 0, 135, 140) // Partial pressure, kpa
+	TLV[GAS_CO2] = list(-1.0, -1.0, 5, 10) // Partial pressure, kpa
+	TLV[GAS_PHORON] =			list(-1.0, -1.0, 0, 0.5) // Partial pressure, kpa
 	TLV["other"] =			list(-1.0, -1.0, 0.5, 1.0) // Partial pressure, kpa
 	TLV["pressure"] =		list(ONE_ATMOSPHERE * 0.80, ONE_ATMOSPHERE * 0.90, ONE_ATMOSPHERE * 1.10, ONE_ATMOSPHERE * 1.20) /* kpa */
 	TLV["temperature"] =	list(T0C - 26, T0C, T0C + 40, T0C + 66) // K
@@ -216,17 +216,17 @@
 		//check for when we should start adjusting temperature
 		if(!TEST_TLV_VALUES && abs(environment.temperature - target_temperature) > 2.0 && environment.return_pressure() >= 1)
 			update_use_power(USE_POWER_ACTIVE)
-			regulating_temperature = 1
-			audible_message("\The [src] clicks as it starts [environment.temperature > target_temperature ? "cooling" : "heating"] the room.",\
+			regulating_temperature = (environment.temperature > target_temperature ? 1 : 2)
+			audible_message("\The [src] clicks as it starts [regulating_temperature == 1 ? "cooling" : "heating"] the room.",\
 			"You hear a click and a faint electronic hum.", runemessage = "* click *")
 			playsound(src, 'sound/machines/click.ogg', 50, 1)
 	else
 		//check for when we should stop adjusting temperature
 		if(TEST_TLV_VALUES || abs(environment.temperature - target_temperature) <= 0.5 || environment.return_pressure() < 1)
 			update_use_power(USE_POWER_IDLE)
-			regulating_temperature = 0
-			audible_message("\The [src] clicks quietly as it stops [environment.temperature > target_temperature ? "cooling" : "heating"] the room.",\
+			audible_message("\The [src] clicks quietly as it stops [regulating_temperature == 1 ? "cooling" : "heating"] the room.",\
 			"You hear a click as a faint electronic humming stops.", runemessage = "* click *")
+			regulating_temperature = 0
 			playsound(src, 'sound/machines/click.ogg', 50, 1)
 
 	if(regulating_temperature)
@@ -272,11 +272,11 @@
 	DECLARE_TLV_VALUES
 	LOAD_TLV_VALUES(TLV["pressure"], environment_pressure)
 	pressure_dangerlevel = TEST_TLV_VALUES // not local because it's used in process()
-	LOAD_TLV_VALUES(TLV["oxygen"], environment.gas["oxygen"]*partial_pressure)
+	LOAD_TLV_VALUES(TLV[GAS_O2], environment.gas[GAS_O2]*partial_pressure)
 	var/oxygen_dangerlevel = TEST_TLV_VALUES
-	LOAD_TLV_VALUES(TLV["carbon_dioxide"], environment.gas["carbon_dioxide"]*partial_pressure)
+	LOAD_TLV_VALUES(TLV[GAS_CO2], environment.gas[GAS_CO2]*partial_pressure)
 	var/co2_dangerlevel = TEST_TLV_VALUES
-	LOAD_TLV_VALUES(TLV["phoron"], environment.gas["phoron"]*partial_pressure)
+	LOAD_TLV_VALUES(TLV[GAS_PHORON], environment.gas[GAS_PHORON]*partial_pressure)
 	var/phoron_dangerlevel = TEST_TLV_VALUES
 	LOAD_TLV_VALUES(TLV["temperature"], environment.temperature)
 	var/temperature_dangerlevel = TEST_TLV_VALUES
@@ -642,7 +642,7 @@
 		var/list/selected
 		var/list/thresholds = list()
 
-		var/list/gas_names = list("oxygen", "carbon_dioxide", "phoron", "other")	//Gas ids made to match code\defines\gases.dm
+		var/list/gas_names = list(GAS_O2, GAS_CO2, GAS_PHORON, "other")	//Gas ids made to match code\defines\gases.dm
 		for(var/g in gas_names)
 			thresholds[++thresholds.len] = list("name" = g, "settings" = list())
 			selected = TLV[g]

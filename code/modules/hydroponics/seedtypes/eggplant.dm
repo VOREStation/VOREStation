@@ -1,11 +1,11 @@
 //Eggplants/varieties.
 /datum/seed/eggplant
-	name = "eggplant"
-	seed_name = "eggplant"
+	name = PLANT_EGGPLANT
+	seed_name = PLANT_EGGPLANT
 	display_name = "eggplants"
-	kitchen_tag = "eggplant"
-	mutants = list("egg-plant")
-	chems = list("nutriment" = list(1,10))
+	kitchen_tag = PLANT_EGGPLANT
+	mutants = list(PLANT_EGGPLANT)
+	chems = list(REAGENT_ID_NUTRIMENT = list(1,10))
 
 /datum/seed/eggplant/New()
 	..()
@@ -22,10 +22,10 @@
 
 // Return of Eggy. Just makes purple eggs. If the reagents are separated from the egg production by xenobotany or RNG, it's still an Egg plant.
 /datum/seed/eggplant/egg
-	name = "egg-plant"
-	seed_name = "egg-plant"
+	name = PLANT_EGG_PLANT
+	seed_name = PLANT_EGG_PLANT
 	display_name = "egg-plants"
-	kitchen_tag = "egg-plant"
+	kitchen_tag = PLANT_EGG_PLANT
 	mutants = null
-	chems = list("nutriment" = list(1,5), "egg" = list(3,12))
+	chems = list(REAGENT_ID_NUTRIMENT = list(1,5), REAGENT_ID_EGG = list(3,12))
 	has_item_product = /obj/item/reagent_containers/food/snacks/egg/purple

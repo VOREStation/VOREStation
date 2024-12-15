@@ -70,10 +70,10 @@ GLOBAL_DATUM(character_directory, /datum/character_directory)
 
 		if(ishuman(C.mob))
 			var/mob/living/carbon/human/H = C.mob
-			if(data_core && data_core.general)
-				if(!find_general_record("name", H.real_name))
-					if(!find_record("name", H.real_name, data_core.hidden_general))
-						continue
+			//if(data_core && data_core.general)
+			//	if(!find_general_record("name", H.real_name))
+			//		if(!find_record("name", H.real_name, data_core.hidden_general))
+			//			continue
 			name = H.real_name
 			species = "[H.custom_species ? H.custom_species : H.species.name]"
 			ooc_notes = H.ooc_notes
@@ -108,6 +108,30 @@ GLOBAL_DATUM(character_directory, /datum/character_directory)
 				ooc_notes += "\n\nDISLIKES\n\n[R.ooc_notes_dislikes]"
 
 			flavor_text = R.flavor_text
+
+		if(istype(C.mob, /mob/living/silicon/pai))
+			var/mob/living/silicon/pai/P = C.mob
+			name = P.name
+			species = "pAI"
+			ooc_notes = P.ooc_notes
+			if(P.ooc_notes_likes)
+				ooc_notes += "\n\nLIKES\n\n[P.ooc_notes_likes]"
+			if(P.ooc_notes_dislikes)
+				ooc_notes += "\n\nDISLIKES\n\n[P.ooc_notes_dislikes]"
+
+			flavor_text = P.flavor_text
+
+		if(istype(C.mob, /mob/living/simple_mob))
+			var/mob/living/simple_mob/S = C.mob
+			name = S.name
+			species = initial(S.name)
+			ooc_notes = S.ooc_notes
+			if(S.ooc_notes_likes)
+				ooc_notes += "\n\nLIKES\n\n[S.ooc_notes_likes]"
+			if(S.ooc_notes_dislikes)
+				ooc_notes += "\n\nDISLIKES\n\n[S.ooc_notes_dislikes]"
+
+			flavor_text = S.desc
 
 		// It's okay if we fail to find OOC notes and flavor text
 		// But if we can't find the name, they must be using a non-compatible mob type currently.

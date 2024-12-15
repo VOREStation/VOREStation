@@ -68,17 +68,17 @@ Divergence proc, used in mutation to make unique datums.
 			if(!reagent_response)
 				continue // just skip this reagent, rather than clearing the whole thing
 
-			if(reagent_response["toxic"])
-				adjustToxLoss(reagent_response["toxic"] * reagent_total)
+			if(reagent_response[XENO_CHEM_TOXIC])
+				adjustToxLoss(reagent_response[XENO_CHEM_TOXIC] * reagent_total)
 
-			if(reagent_response["heal"])
-				heal_overall_damage(reagent_response["heal"] * reagent_total)
+			if(reagent_response[XENO_CHEM_HEAL])
+				heal_overall_damage(reagent_response[XENO_CHEM_HEAL] * reagent_total)
 
-			if(reagent_response["nutr"])
-				adjust_nutrition(reagent_response["nutr"] * reagent_total)
+			if(reagent_response[XENO_CHEM_NUTRI])
+				adjust_nutrition(reagent_response[XENO_CHEM_NUTRI] * reagent_total)
 
-			if(reagent_response["mut"])
-				mut_level += reagent_response["mut"] * reagent_total
+			if(reagent_response[XENO_CHEM_MUT])
+				mut_level += reagent_response[XENO_CHEM_MUT] * reagent_total
 
 		temp_chem_holder.reagents.clear_reagents()
 

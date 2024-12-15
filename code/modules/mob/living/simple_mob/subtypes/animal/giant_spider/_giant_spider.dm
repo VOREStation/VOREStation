@@ -109,7 +109,7 @@
 	/obj/item/reagent_containers/food/snacks/meat = 20
 	)
 
-	var/poison_type = "spidertoxin"	// The reagent that gets injected when it attacks.
+	var/poison_type = REAGENT_ID_SPIDERTOXIN	// The reagent that gets injected when it attacks.
 	var/poison_chance = 10			// Chance for injection to occur.
 	var/poison_per_bite = 5			// Amount added per injection.
 

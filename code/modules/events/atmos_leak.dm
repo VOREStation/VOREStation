@@ -19,11 +19,11 @@
 
 // Decide which area will be targeted!
 /datum/event/atmos_leak/setup()
-	var/gas_choices = list("carbon_dioxide", "nitrous_oxide") // Annoying
+	var/gas_choices = list(GAS_CO2, GAS_N2O) // Annoying
 	if(severity >= EVENT_LEVEL_MODERATE)
-		gas_choices += "phoron" // Dangerous
+		gas_choices += GAS_PHORON // Dangerous
 	// if(severity >= EVENT_LEVEL_MAJOR)
-	// 	gas_choices += "volatile_fuel" // Dangerous and no default atmos setup!
+	// 	gas_choices += GAS_VOLATILE_FUEL // Dangerous and no default atmos setup!
 	gas_type = pick(gas_choices)
 
 	var/list/area/grand_list_of_areas = get_station_areas(excluded)

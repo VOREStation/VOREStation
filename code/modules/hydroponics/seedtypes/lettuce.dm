@@ -1,10 +1,10 @@
 // Lettuce/varieties.
 /datum/seed/lettuce
-	name = "lettuce"
-	seed_name = "lettuce"
-	display_name = "lettuce"
-	kitchen_tag = "lettuce"
-	chems = list("nutriment" = list(1,15))
+	name = PLANT_LETTUCE
+	seed_name = PLANT_LETTUCE
+	display_name = PLANT_LETTUCE
+	kitchen_tag = PLANT_LETTUCE
+	chems = list(REAGENT_ID_NUTRIMENT = list(1,15))
 
 /datum/seed/lettuce/New()
 	..()
@@ -22,11 +22,11 @@
 	set_trait(TRAIT_NUTRIENT_CONSUMPTION, 0.13)
 
 /datum/seed/lettuce/ice
-	name = "siflettuce"
+	name = PLANT_SIFLETTUCE
 	seed_name = "glacial lettuce"
 	display_name = "glacial lettuce"
 	kitchen_tag = "icelettuce"
-	chems = list("nutriment" = list(1,5), "paracetamol" = list(0,2))
+	chems = list(REAGENT_ID_NUTRIMENT = list(1,5), REAGENT_ID_PARACETAMOL = list(0,2))
 
 /datum/seed/lettuce/ice/New()
 	..()

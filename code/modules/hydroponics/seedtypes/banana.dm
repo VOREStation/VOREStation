@@ -1,9 +1,9 @@
 /datum/seed/banana
-	name = "banana"
-	seed_name = "banana"
+	name = PLANT_BANANA
+	seed_name = PLANT_BANANA
 	display_name = "banana tree"
-	kitchen_tag = "banana"
-	chems = list("banana" = list(10,10))
+	kitchen_tag = PLANT_BANANA
+	chems = list(REAGENT_ID_BANANA = list(10,10))
 	trash_type = /obj/item/bananapeel
 
 /datum/seed/banana/New()

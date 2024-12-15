@@ -92,4 +92,4 @@
 
 /obj/item/mecha_parts/mecha_equipment/tesla_energy_relay/get_equip_info()
 	if(!chassis) return
-	return (equip_ready ? span_green("*") : span_red("*")) + "&nbsp;[src.name] - <a href='?src=\ref[src];toggle_relay=1'>[(datum_flags & DF_ISPROCESSING)?"Dea":"A"]ctivate</a>"
+	return (equip_ready ? span_green("*") : span_red("*")) + "&nbsp;[src.name] - <a href='byond://?src=\ref[src];toggle_relay=1'>[(datum_flags & DF_ISPROCESSING)?"Dea":"A"]ctivate</a>"

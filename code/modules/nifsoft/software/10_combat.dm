@@ -35,7 +35,7 @@
 /datum/nifsoft/painkillers/life()
 	if((. = ..()))
 		var/mob/living/carbon/human/H = nif.human
-		H.bloodstr.add_reagent("numbenzyme",0.5)
+		H.bloodstr.add_reagent(REAGENT_ID_NUMBENZYME,0.5)
 
 /datum/nifsoft/hardclaws
 	name = "Bloodletters"

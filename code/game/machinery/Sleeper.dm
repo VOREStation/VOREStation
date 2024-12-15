@@ -94,7 +94,7 @@
 	circuit = /obj/item/circuitboard/sleeper
 	var/mob/living/carbon/human/occupant = null
 	var/list/available_chemicals = list()
-	var/list/base_chemicals = list("inaprovaline" = "Inaprovaline", "paracetamol" = "Paracetamol", "anti_toxin" = "Dylovene", "dexalin" = "Dexalin")
+	var/list/base_chemicals = list(REAGENT_ID_INAPROVALINE = REAGENT_INAPROVALINE, REAGENT_ID_PARACETAMOL = REAGENT_PARACETAMOL, REAGENT_ID_ANTITOXIN = REAGENT_ANTITOXIN, REAGENT_ID_DEXALIN = REAGENT_DEXALIN)
 	var/amounts = list(5, 10)
 	var/obj/item/reagent_containers/glass/beaker = null
 	var/filtering = 0
@@ -149,18 +149,18 @@
 
 		if(man_rating >= 4) // Alien tech.
 			var/reag_ID = pickweight(list(
-				"healing_nanites" = 10,
-				"shredding_nanites" = 5,
-				"irradiated_nanites" = 5,
-				"neurophage_nanites" = 2)
+				REAGENT_ID_HEALINGNANITES = 10,
+				REAGENT_ID_SHREDDINGNANITES = 5,
+				REAGENT_ID_IRRADIATEDNANITES = 5,
+				REAGENT_ID_NEUROPHAGENANITES = 2)
 				)
 			new_chemicals[reag_ID] = "Nanite"
 		if(man_rating >= 3) // Anomalous tech.
-			new_chemicals["immunosuprizine"] = "Immunosuprizine"
+			new_chemicals[REAGENT_ID_IMMUNOSUPRIZINE] = REAGENT_IMMUNOSUPRIZINE
 		if(man_rating >= 2) // Tier 3.
-			new_chemicals["spaceacillin"] = "Spaceacillin"
+			new_chemicals[REAGENT_ID_SPACEACILLIN] = REAGENT_SPACEACILLIN
 		if(man_rating >= 1) // Tier 2.
-			new_chemicals["leporazine"] = "Leporazine"
+			new_chemicals[REAGENT_ID_LEPORAZINE] = REAGENT_LEPORAZINE
 
 		if(new_chemicals.len)
 			available_chemicals += new_chemicals
@@ -234,7 +234,7 @@
 		if(ishuman(occupant) && !(NO_BLOOD in occupant.species.flags) && occupant.vessel)
 			occupantData["pulse"] = occupant.get_pulse(GETPULSE_TOOL)
 			occupantData["hasBlood"] = 1
-			var/blood_volume = round(occupant.vessel.get_reagent_amount("blood"))
+			var/blood_volume = round(occupant.vessel.get_reagent_amount(REAGENT_ID_BLOOD))
 			occupantData["bloodLevel"] = blood_volume
 			occupantData["bloodMax"] = occupant.species.blood_volume
 			occupantData["bloodPercent"] = round(100*(blood_volume/occupant.species.blood_volume), 0.01) //copy pasta ends here
