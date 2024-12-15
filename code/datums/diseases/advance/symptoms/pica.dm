@@ -22,7 +22,7 @@ BONUS
 	stage_speed = 3
 	transmittable = 1
 	level = 1
-	severity = 1
+	severity = 0
 
 /datum/symptom/pica/Start(datum/disease/advance/A)
 	add_verb(A.affected_mob, /mob/living/proc/eat_trash)

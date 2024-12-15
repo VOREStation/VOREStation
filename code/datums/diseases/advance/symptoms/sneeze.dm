@@ -68,7 +68,7 @@ Bonus
 	stage_speed = 0
 	transmittable = 1
 	level = 4
-	severity = 1
+	severity = 3
 
 /datum/symptom/sneeze/bluespace/Activate(datum/disease/advance/A)
 	..()

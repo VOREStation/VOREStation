@@ -16,7 +16,6 @@ Bonus
 */
 
 /datum/symptom/confusion
-
 	name = "Confusion"
 	stealth = 1
 	resistance = -1
@@ -24,7 +23,6 @@ Bonus
 	transmittable = 0
 	level = 4
 	severity = 2
-
 
 /datum/symptom/confusion/Activate(datum/disease/advance/A)
 	..()

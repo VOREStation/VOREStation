@@ -11,7 +11,6 @@ Mlemingtong
 
 BONUS
 	Mlem. Mlem. Mlem.
-	Should be used for buffing your disease.
 
 //////////////////////////////////////
 */

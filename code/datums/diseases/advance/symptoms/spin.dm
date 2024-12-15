@@ -11,7 +11,6 @@ Spyndrome
 
 BONUS
 	Makes the host spin.
-	Should be used for buffing your disease.
 
 //////////////////////////////////////
 */
@@ -23,7 +22,7 @@ BONUS
 	stage_speed = 3
 	transmittable = 1
 	level = 1
-	severity = 1
+	severity = 0
 
 /datum/symptom/spyndrome/Activate(var/datum/disease/advance/A)
 	..()

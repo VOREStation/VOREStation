@@ -22,6 +22,7 @@ Bonus
 	stage_speed = -4
 	transmittable = -2
 	level = 4
+	severity = 0
 
 /datum/symptom/damage_converter/Activate(datum/disease/advance/A)
 	..()

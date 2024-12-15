@@ -1,7 +1,7 @@
 /*
 //////////////////////////////////////
 
-Healing
+Overactve Adrenal Gland
 
 	No change to stealth.
 	Slightly decreases resistance.
@@ -10,7 +10,7 @@ Healing
 	Moderate Level.
 
 Bonus
-	Heals toxins in the affected mob's blood stream.
+	The host produces hyperzine and gets very jittery
 
 //////////////////////////////////////
 */
