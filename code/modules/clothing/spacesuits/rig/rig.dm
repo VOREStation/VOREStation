@@ -538,7 +538,7 @@
 						to_chat(wearer, span_danger("The suit optics drop out completely, drowning you in darkness."))
 			if(!offline)
 				offline = 1
-		else
+		else if (offline)
 			offline = 0
 			if(istype(wearer) && !wearer.wearing_rig)
 				wearer.wearing_rig = src
