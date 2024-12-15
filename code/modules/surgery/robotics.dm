@@ -238,6 +238,8 @@
 ///////////////////////////////////////////////////////////////
 
 /datum/surgery_step/robotics/fix_organ_robotic //For artificial organs
+
+	priority = 2
 	surgery_name = "Fix Robotic Organ"
 	allowed_tools = list(
 	/obj/item/stack/nanopaste = 100,		\
@@ -371,6 +373,8 @@
 ///////////////////////////////////////////////////////////////
 
 /datum/surgery_step/robotics/attach_organ_robotic
+
+	priority = 2
 	surgery_name = "Attach Robotic Organ"
 	allowed_procs = list(IS_SCREWDRIVER = 100)
 
