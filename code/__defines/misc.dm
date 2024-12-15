@@ -44,12 +44,11 @@
 #define SPECIALROLE_HUD 8 // AntagHUD image.
 #define  STATUS_HUD_OOC 9 // STATUS_HUD without virus DB check for someone being ill.
 #define 	  LIFE_HUD 10 // STATUS_HUD that only reports dead or alive
-#define     TOTAL_HUDS 10 // Total number of HUDs. Like body layers, and other things, it comes up sometimes.
 #define     BACKUP_HUD 11 // HUD for showing whether or not they have a backup implant.
 #define   STATUS_R_HUD 12 // HUD for showing the same STATUS_HUD info on the right side, but not for 'boring' statuses (transparent icons)
 #define  HEALTH_VR_HUD 13 // HUD with blank 100% bar so it's hidden most of the time.
 #define     VANTAG_HUD 14 // HUD for showing being-an-antag-target prefs
-#define     TOTAL_HUDS 14 // Total number of HUDs.
+#define     TOTAL_HUDS 14 // Total number of HUDs. Like body layers, and other things, it comes up sometimes.
 
 #define CLIENT_FROM_VAR(I) (ismob(I) ? I:client : (isclient(I) ? I : null))
 
