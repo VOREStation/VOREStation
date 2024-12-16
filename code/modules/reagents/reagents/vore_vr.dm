@@ -99,7 +99,7 @@
 	M.adjustHalLoss(1)
 	if(!M.confused) M.confused = 1
 	M.confused = max(M.confused, 20)
-	M.hallucination += 15
+	M.hallucination = max(M.hallucination, 20) //This used to be += 15 resulting in INFINITE HALLUCINATION
 
 	for(var/obj/belly/B as anything in M.vore_organs)
 

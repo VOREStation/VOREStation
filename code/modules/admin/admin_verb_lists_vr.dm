@@ -565,7 +565,9 @@ var/list/admin_verbs_event_manager = list(
 	/client/proc/toggle_spawning_with_recolour,
 	/client/proc/start_vote,
 	/client/proc/AdminCreateVirus,
-	/client/proc/ReleaseVirus
+	/client/proc/ReleaseVirus,
+	/client/proc/add_hidden_area,
+	/client/proc/remove_hidden_area
 )
 
 /client/proc/add_admin_verbs()

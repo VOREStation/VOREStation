@@ -18,7 +18,11 @@
 
 /obj/item/storage/box/glasses
 	name = "box of glasses"
-	can_hold = list(/obj/item/reagent_containers/food/drinks/glass2)
+	can_hold = list(/obj/item/reagent_containers/food/drinks/glass2,
+		/obj/item/reagent_containers/food/drinks/cup,
+		/obj/item/reagent_containers/food/drinks/tall,
+		/obj/item/reagent_containers/food/drinks/grande,
+		/obj/item/reagent_containers/food/drinks/venti)
 	starts_with = list(/obj/item/reagent_containers/food/drinks/glass2 = 7)
 
 /obj/item/storage/box/glasses/square

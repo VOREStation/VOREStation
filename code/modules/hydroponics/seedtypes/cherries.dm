@@ -3,7 +3,7 @@
 	seed_name = PLANT_CHERRY
 	seed_noun = "pits"
 	display_name = "cherry tree"
-	kitchen_tag = "cherries"
+	kitchen_tag = PLANT_CHERRY
 	chems = list(REAGENT_ID_NUTRIMENT = list(1,15), REAGENT_ID_SUGAR = list(1,15), REAGENT_ID_CHERRYJELLY = list(10,15))
 
 /datum/seed/cherries/New()

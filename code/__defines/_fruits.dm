@@ -122,7 +122,7 @@ GLOBAL_LIST_INIT(acceptable_fruit_types, list(
 											PLANT_PUMPKIN,
 											PLANT_RICE,
 											PLANT_ROSE,
-											PLANT_ROSE,
+											PLANT_RHUBARB,
 											PLANT_SOYBEAN,
 											PLANT_SPINEAPPLE,
 											PLANT_SUGARCANE,

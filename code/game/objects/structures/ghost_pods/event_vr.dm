@@ -108,7 +108,7 @@
 	//newPred.movement_cooldown = 0			// The "needless artificial speed cap" exists for a reason
 	if(M.mind)
 		M.mind.transfer_to(newPred)
-	to_chat(M, span_notice("You are " + span_bold(newPred) + ", somehow having gotten aboard the station in search of food. \
+	to_chat(M, span_notice("You are " + span_bold("[newPred]") + ", somehow having gotten aboard the station in search of food. \
 	You are wary of environment around you, but you do feel rather peckish. Stick around dark, secluded places to avoid danger or, \
 	if you are cute enough, try to make friends with this place's inhabitants."))
 	to_chat(M, span_critical("Please be advised, this role is NOT AN ANTAGONIST."))

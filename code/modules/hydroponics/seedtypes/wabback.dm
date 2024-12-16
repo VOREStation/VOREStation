@@ -5,7 +5,7 @@
 	seed_noun = "nodes"
 	display_name = "white wabback"
 	chems = list(REAGENT_ID_NUTRIMENT = list(1,10), REAGENT_ID_PROTEIN = list(1,5), REAGENT_ID_ENZYME = list(0,3))
-	kitchen_tag = "wabback"
+	kitchen_tag = PLANT_WHITEWABBACK
 	mutants = list(PLANT_BLACKWABBACK,PLANT_WILDWABBACK)
 	has_item_product = /obj/item/stack/material/cloth
 

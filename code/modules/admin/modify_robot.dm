@@ -338,7 +338,7 @@
 			return TRUE
 		if("add_channel")
 			var/selected_radio_channel = params["channel"]
-			if(selected_radio_channel == CHANNEL_SPECIAL_OPS)
+			if(selected_radio_channel == CHANNEL_SPECIAL_OPS || selected_radio_channel == CHANNEL_RESPONSE_TEAM)
 				target.radio.centComm = 1
 			if(selected_radio_channel == CHANNEL_RAIDER)
 				qdel(target.radio.keyslot)
@@ -354,7 +354,7 @@
 			return TRUE
 		if("rem_channel")
 			var/selected_radio_channel = params["channel"]
-			if(selected_radio_channel == CHANNEL_SPECIAL_OPS)
+			if((selected_radio_channel == CHANNEL_SPECIAL_OPS || selected_radio_channel == CHANNEL_RESPONSE_TEAM) && !(target.module.channels[CHANNEL_SPECIAL_OPS] || target.module.channels[CHANNEL_RESPONSE_TEAM]))
 				target.radio.centComm = 0
 			target.module.channels -= selected_radio_channel
 			if((selected_radio_channel == CHANNEL_MERCENARY || selected_radio_channel == CHANNEL_RAIDER) && !(target.module.channels[CHANNEL_RAIDER] || target.module.channels[CHANNEL_MERCENARY]))

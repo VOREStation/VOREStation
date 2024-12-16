@@ -1,5 +1,6 @@
 import { BooleanLike } from 'common/react';
 import { toTitleCase } from 'common/string';
+import { Stack } from 'tgui-core/components';
 
 import { useBackend } from '../backend';
 import {
@@ -32,57 +33,67 @@ export const MiningOreProcessingConsole = (props) => {
   const { unclaimedPoints, power, speed } = data;
 
   return (
-    <Window width={400} height={500}>
+    <Window width={400} height={600}>
       <Window.Content>
-        <MiningUser
-          insertIdText={
-            <Box>
-              <Button icon="arrow-right" mr={1} onClick={() => act('insert')}>
-                Insert ID
-              </Button>
-              in order to claim points.
-            </Box>
-          }
-        />
-        <Section
-          title="Status"
-          buttons={
-            <>
-              <Button
-                icon="bolt"
-                selected={speed}
-                onClick={() => act('speed_toggle')}
-              >
-                {speed ? 'High-Speed Active' : 'High-Speed Inactive'}
-              </Button>
-              <Button
-                icon="power-off"
-                selected={power}
-                onClick={() => act('power')}
-              >
-                {power ? 'Smelting' : 'Not Smelting'}
-              </Button>
-            </>
-          }
-        >
-          <LabeledList>
-            <LabeledList.Item
-              label="Current unclaimed points"
+        <Stack vertical fill>
+          <Stack.Item>
+            <MiningUser
+              insertIdText={
+                <Box>
+                  <Button
+                    icon="arrow-right"
+                    mr={1}
+                    onClick={() => act('insert')}
+                  >
+                    Insert ID
+                  </Button>
+                  in order to claim points.
+                </Box>
+              }
+            />
+          </Stack.Item>
+          <Stack.Item>
+            <Section
+              title="Status"
               buttons={
-                <Button
-                  disabled={unclaimedPoints < 1}
-                  icon="download"
-                  onClick={() => act('claim')}
-                >
-                  Claim
-                </Button>
+                <>
+                  <Button
+                    icon="bolt"
+                    selected={speed}
+                    onClick={() => act('speed_toggle')}
+                  >
+                    {speed ? 'High-Speed Active' : 'High-Speed Inactive'}
+                  </Button>
+                  <Button
+                    icon="power-off"
+                    selected={power}
+                    onClick={() => act('power')}
+                  >
+                    {power ? 'Smelting' : 'Not Smelting'}
+                  </Button>
+                </>
               }
             >
-              <AnimatedNumber value={unclaimedPoints} />
-            </LabeledList.Item>
-          </LabeledList>
-        </Section>
-        <MOPCOres />
+              <LabeledList>
+                <LabeledList.Item
+                  label="Current unclaimed points"
+                  buttons={
+                    <Button
+                      disabled={unclaimedPoints < 1}
+                      icon="download"
+                      onClick={() => act('claim')}
+                    >
+                      Claim
+                    </Button>
+                  }
+                >
+                  <AnimatedNumber value={unclaimedPoints} />
+                </LabeledList.Item>
+              </LabeledList>
+            </Section>
+          </Stack.Item>
+          <MOPCOres />
+        </Stack>
       </Window.Content>
     </Window>
   );
@@ -131,6 +142,8 @@ const MOPCOres = (props) => {
   const { ores, showAllOres } = data;
   return (
     <Section
+      scrollable
+      fill
       title="Ore Processing Controls"
       buttons={
         <Button

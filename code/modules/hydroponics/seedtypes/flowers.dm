@@ -1,9 +1,9 @@
 //Flowers/varieties
 /datum/seed/flower
 	name = PLANT_HAREBELLS
-	seed_name = "harebell"
+	seed_name = PLANT_HAREBELLS
 	display_name = PLANT_HAREBELLS
-	kitchen_tag = "harebell"
+	kitchen_tag = PLANT_HAREBELLS
 	chems = list(REAGENT_ID_NUTRIMENT = list(1,20))
 
 /datum/seed/flower/New()
@@ -19,9 +19,9 @@
 
 /datum/seed/flower/poppy
 	name = PLANT_POPPIES
-	seed_name = "poppy"
+	seed_name = PLANT_POPPIES
 	display_name = PLANT_POPPIES
-	kitchen_tag = "poppy"
+	kitchen_tag = PLANT_POPPIES
 	chems = list(REAGENT_ID_NUTRIMENT = list(1,20), REAGENT_ID_BICARIDINE = list(1,10))
 
 /datum/seed/flower/poppy/New()

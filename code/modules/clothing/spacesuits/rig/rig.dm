@@ -536,10 +536,9 @@
 						to_chat(wearer, span_danger("The suit optics flicker and die, leaving you with restricted vision."))
 					else if(offline_vision_restriction == 2)
 						to_chat(wearer, span_danger("The suit optics drop out completely, drowning you in darkness."))
-		if(!offline)
-			offline = 1
-	else
-		if(offline)
+			if(!offline)
+				offline = 1
+		else if (offline)
 			offline = 0
 			if(istype(wearer) && !wearer.wearing_rig)
 				wearer.wearing_rig = src
