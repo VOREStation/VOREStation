@@ -166,6 +166,7 @@
 		var/datum/supply_pack/P = SSsupply.supply_pack[pack_name]
 		var/list/pack = list(
 				"name" = P.name,
+				"desc" = P.desc,
 				"cost" = P.cost,
 				"group" = P.group,
 				"contraband" = P.contraband,
@@ -200,6 +201,7 @@
 				return FALSE
 			var/list/payload = list(
 				"name" = P.name,
+				"desc" = P.desc,
 				"cost" = P.cost,
 				"manifest" = uniqueList(P.manifest),
 				"ref" = "\ref[P]",

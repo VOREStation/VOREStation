@@ -6,6 +6,7 @@
         /obj/item/instrument/eguitar,
     )
 	name = "string instruments"
+	desc = "A set of string instruments."
 	cost = 50
 	containertype = /obj/structure/closet/crate
 	containername = "string instrument crate"
@@ -21,6 +22,7 @@
         /obj/item/instrument/bikehorn,
     )
 	name = "wind instruments"
+	desc = "A set of wind instruments."
 	cost = 50
 	containertype = /obj/structure/closet/crate
 	containername = "wind instrument crate"
@@ -32,6 +34,7 @@
         /obj/item/instrument/musicalmoth
     )
 	name = "keyed instruments"
+	desc = "A set of keyboard-style instruments."
 	cost = 50
 	containertype = /obj/structure/closet/crate
 	containername = "keyed instruments crate"
