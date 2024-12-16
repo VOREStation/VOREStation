@@ -1,6 +1,6 @@
 /datum/lore/codex/category/history
 	name = "Human History"
-	data = "The author of this guide wishes to offer their gratitude to NanoTrasen historian, Emir Bodoroczki for his assistance in condensing humanity’s history!"
+	data = "The author of this guide wishes to offer their gratitude to NanoTrasen historian, Emir Bodoroczki for his assistance in condensing humanity's history!"
 	children = list(
 		/datum/lore/codex/page/commonwealthbirth,
 		/datum/lore/codex/page/eagerhumanity,
@@ -20,7 +20,7 @@
 	However, even without our stutter drives - we spread. With the aid of genetic engineering, we conquered space.\
 	Despite wars, despite traitors upon Mars who fled to their holdouts in the Ares Confederacy once the speed of light\
 	no longer tethered us - we thrived. By providence, our efforts were rewarded: phoron.\
-	Out in the Oort cloud, beyond our reach if not for our forefather’s ambition despite their scarce resources and primitive technology\
+	Out in the Oort cloud, beyond our reach if not for our forefather's ambition despite their scarce resources and primitive technology\
 	- phoron awaited us."
 
 /datum/lore/codex/page/eagerhumanity/add_content()
@@ -37,8 +37,8 @@
 	  infecting our impressionable youth out on the frontiers, far from the wisdom of the core.\
 	  <br><br> \
 	  As wars peppered our history, as have they became a fact of life once more\
-	  - rebellious, traitorous movements. World rejecting, foolishly, the yet-infant Commonwealth’s protection.\
-	  As expected - most failed to maintain their “self-realisation” - and made amends for their prodigal ways.\
+	  - rebellious, traitorous movements. World rejecting, foolishly, the yet-infant Commonwealth's protection.\
+	  As expected - most failed to maintain their 'self-realisation' - and made amends for their prodigal ways.\
 	  <br><br>\
 	  All, but those of the Elysian Colonies. Too far from the core, and the core itself was too tumultuous \
 	  - they broke away. One needs but look at worlds like Infernum \
@@ -68,7 +68,7 @@
 	 Our war was costly - too costly, perhaps - but we persevered as Humanity is wont to do. \
 	 Forty years of suffering destroyed much of what we had achieved.\
 	 But in that forty years did our megacorporations step forth, offering aid where governments faltered.\
-	 Where public science’s glacial pace would have cost us lives, forever lost - NanoTrasen’s medical research cheated death!\
+	 Where public science's glacial pace would have cost us lives, forever lost - NanoTrasen's medical research cheated death!\
 	 Where Senate-governed mining operations would have wasted precious phoron to corruption \
 	 - NanoTrasen stepped up and delivered twice what our armies needed! \
 	 <br><br>\

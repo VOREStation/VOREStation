@@ -43,3 +43,9 @@
 #define DR_SLEEP 								"Sleep"
 #define DR_FAKE									"False Sleep"
 #define DR_WEIGHT								"Weight Drain"
+
+//Vore Sprite Flags
+#define DM_FLAG_VORESPRITE_BELLY    0x1
+#define DM_FLAG_VORESPRITE_TAIL     0x2
+#define DM_FLAG_VORESPRITE_MARKING  0x4
+#define DM_FLAG_VORESPRITE_ARTICLE	0x8
