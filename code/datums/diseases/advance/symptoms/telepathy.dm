@@ -22,6 +22,7 @@ Bonus
 	stage_speed = -3
 	transmittable = -4
 	level = 5
+	severity = 0
 
 /datum/symptom/telepathy/Start(datum/disease/advance/A)
 	var/mob/living/carbon/human/H = A.affected_mob

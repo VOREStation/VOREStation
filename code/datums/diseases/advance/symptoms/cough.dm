@@ -10,8 +10,7 @@ Coughing
 	Low Level.
 
 BONUS
-	Will force the affected mob to drop small items.
-	Small spread if not wearing a mask
+	Will force the affected mob to drop small items. Small spread if not wearing a mask.
 
 //////////////////////////////////////
 */

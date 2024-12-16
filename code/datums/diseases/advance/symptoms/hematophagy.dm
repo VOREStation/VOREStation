@@ -22,6 +22,7 @@ BONUS
 	resistance = -4
 	transmittable = 1
 	level = 4
+	severity = 1
 
 /datum/symptom/hematophagy/Start(datum/disease/advance/A)
 	if(ishuman(A.affected_mob))

@@ -10,7 +10,7 @@ Lingual Disocation
 	Moderate Level.
 
 Bonus
-	Forces the affected mob to vomit
+	Randomly changes the language of the mob.
 
 //////////////////////////////////////
 */
@@ -22,6 +22,7 @@ Bonus
 	stage_speed = -2
 	transmittable = -1
 	level = 3
+	severity = 1
 
 /datum/symptom/language/Activate(var/datum/disease/advance/A)
 	..()

@@ -11,7 +11,6 @@ Flippinov
 
 BONUS
 	Makes the host FLIP.
-	Should be used for buffing your disease.
 
 //////////////////////////////////////
 */
@@ -23,7 +22,7 @@ BONUS
 	stage_speed = 3
 	transmittable = 1
 	level = 1
-	severity = 1
+	severity = 0
 
 /datum/symptom/spyndrome/Activate(datum/disease/advance/A)
 	..()

@@ -22,6 +22,7 @@ Bonus
 	stage_speed = -4
 	transmittable = -4
 	level = 6
+	severity = 0
 
 /datum/symptom/heal/Activate(datum/disease/advance/A)
 	..()
@@ -61,6 +62,7 @@ Bonus
 	stage_speed = -1
 	transmittable = -4
 	level = 3
+	severity = 0
 	var/list/cured_diseases = list()
 
 /datum/symptom/heal/metabolism/Heal(mob/living/M, datum/disease/advance/A)
@@ -108,6 +110,7 @@ Bonus
 	stage_speed = 4
 	transmittable = 4
 	level = 3
+	severity = 0
 	var/longevity = 30
 
 /datum/symptom/heal/longevity/Heal(mob/living/M, datum/disease/advance/A)
@@ -142,6 +145,7 @@ Bonus
 	stage_speed = 0
 	transmittable = -3
 	level = 5
+	severity = 0
 
 /datum/symptom/heal/dna/Heal(var/mob/living/carbon/M, var/datum/disease/advance/A)
 	var/amt_healed = max(0, (sqrtor0(20+A.totalStageSpeed()*(3+rand())))-(sqrtor0(16+A.totalStealth()*rand())))
