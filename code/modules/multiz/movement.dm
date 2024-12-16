@@ -115,11 +115,10 @@
 					to_chat(src, span_warning("You gave up on pulling yourself up."))
 					return 0
 
-			//RS Port #661 Start, Prevents noclipping
-			else if(!istype(destination, /turf/simulated/open))
+			// Explicit check if the destination turf allows full passing
+			else if(!destination.CanZPass(src, direction))
 				to_chat(src, span_warning("Something solid above stops you from passing."))
 				return 0
-			//RS Port #661 End
 
 			else if(isliving(src)) //VOREStation Edit Start. Are they a mob, and are they currently flying??
 				var/mob/living/H = src
