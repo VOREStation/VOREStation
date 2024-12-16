@@ -105,6 +105,8 @@ What is the naming convention for planes or layers?
 // Invisible things plane
 #define CLOAKED_PLANE			-15
 
+#define PLANE_CH_STOMACH		-11 //Stomach Plane
+
 // Top plane (in the sense that it's the highest in 'the world' and not a UI element)
 #define ABOVE_PLANE				-10
 
@@ -160,12 +162,21 @@ What is the naming convention for planes or layers?
 #define PLANE_CH_SPECIAL		23 //Special role icon (revhead or w/e)
 #define PLANE_CH_STATUS_OOC		24 //OOC status hud for spooks
 
+// "Character HUDs", aka HUDs, but not the game's UI. Things like medhuds.
+#define PLANE_CH_HEALTH_VR		26 //Hidden healthbar when at full health
+#define PLANE_CH_STATUS_R		27 //Right-side status icon
+#define PLANE_CH_BACKUP			28 //Backup implant
+#define PLANE_CH_VANTAG			29 //Vore Antag hud
+
 #define PLANE_MESONS			30 //Stuff seen with mesons, like open ceilings. This is 30 for downstreams.
 #define PLANE_JANHUD			31 //Stuff seen with janiHUD. Mostly highlight of dirt.
 
 #define PLANE_ADMIN2			33 //Purely for shenanigans (above lighting)
 
 #define PLANE_BUILDMODE			39 //Things that only show up when you have buildmode on
+
+#define PLANE_AUGMENTED			40 //Augmented-reality plane
+#define PLANE_SOULCATCHER		41 //Soulcatcher
 
 //Fullscreen overlays under inventory
 #define PLANE_FULLSCREEN		90 //Blindness, mesons, druggy, etc

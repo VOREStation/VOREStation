@@ -313,6 +313,7 @@
 /obj/machinery/atmospherics/unary/vent_pump/proc/set_frequency(new_frequency)
 	radio_connection = register_radio(src, frequency, new_frequency, radio_filter_in)
 	frequency = new_frequency
+	broadcast_status()
 
 /obj/machinery/atmospherics/unary/vent_pump/receive_signal(datum/signal/signal)
 	if(stat & (NOPOWER|BROKEN))
