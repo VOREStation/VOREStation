@@ -550,3 +550,35 @@
 	B.icon_state = "bottle-1"
 	B.reagents.add_reagent(R.id, 60)
 	B.name = "[B.name] of [R.name]"
+
+/client/proc/add_hidden_area()
+	set name = "Add Ghostsight Block Area"
+	set category = "Admin.Game"
+
+	var/list/blocked_areas = list()
+	for(var/area/A in world)
+		if(!A.flag_check(AREA_BLOCK_GHOST_SIGHT))
+			blocked_areas[A.name] = A
+	blocked_areas = sortTim(blocked_areas, GLOBAL_PROC_REF(cmp_text_asc))
+	var/selected_area = tgui_input_list(usr, "Pick an area to hide from ghost", "Select Area to hide", blocked_areas)
+	var/area/A = blocked_areas[selected_area]
+	if(!A)
+		return
+	A.flags |= AREA_BLOCK_GHOST_SIGHT
+	ghostnet.addArea(A)
+
+/client/proc/remove_hidden_area()
+	set name = "Remove Ghostsight Block Area"
+	set category = "Admin.Game"
+
+	var/list/blocked_areas = list()
+	for(var/area/A in world)
+		if(A.flag_check(AREA_BLOCK_GHOST_SIGHT))
+			blocked_areas[A.name] = A
+	blocked_areas = sortTim(blocked_areas, GLOBAL_PROC_REF(cmp_text_asc))
+	var/selected_area = tgui_input_list(usr, "Pick a from ghost hidden area to let them see it again", "Select Hidden Area", blocked_areas)
+	var/area/A = blocked_areas[selected_area]
+	if(!A)
+		return
+	A.flags &= ~(AREA_BLOCK_GHOST_SIGHT)
+	ghostnet.removeArea(A)
