@@ -14,57 +14,6 @@
 		species.silk_reserve = min(species.silk_reserve + 2, species.silk_max_reserve)
 		adjust_nutrition(-0.4)
 
-/mob/living/carbon/human/proc/handle_hud_list_vr()
-
-	//Right-side status hud updates with left side one.
-	if (BITTEST(hud_updateflag, STATUS_HUD))
-		var/image/other_status = hud_list[STATUS_HUD]
-		var/image/status_r = grab_hud(STATUS_R_HUD)
-		status_r.icon_state = other_status.icon_state
-		if(block_hud)
-			status_r.icon_state = "hudblank"
-		apply_hud(STATUS_R_HUD, status_r)
-
-	//Our custom health bar HUD
-	if (BITTEST(hud_updateflag, HEALTH_HUD))
-		var/image/other_health = hud_list[HEALTH_HUD]
-		var/image/health_us = grab_hud(HEALTH_VR_HUD)
-		health_us.icon_state = other_health.icon_state
-		if(block_hud)
-			health_us.icon_state = "hudblank"
-		apply_hud(HEALTH_VR_HUD, health_us)
-
-	//Backup implant hud status
-	if (BITTEST(hud_updateflag, BACKUP_HUD))
-		var/image/holder = grab_hud(BACKUP_HUD)
-
-		holder.icon_state = "hudblank"
-
-		for(var/obj/item/organ/external/E in organs)
-			for(var/obj/item/implant/I in E.implants)
-				if(I.implanted && istype(I,/obj/item/implant/backup))
-					var/obj/item/implant/backup/B = I
-					if(!mind)
-						holder.icon_state = "hud_backup_nomind"
-					else if(!(mind.name in B.our_db.body_scans))
-						holder.icon_state = "hud_backup_nobody"
-					else
-						holder.icon_state = "hud_backup_norm"
-		if(block_hud)
-			holder.icon_state = "hudblank"
-		apply_hud(BACKUP_HUD, holder)
-
-	//VOREStation Antag Hud
-	if (BITTEST(hud_updateflag, VANTAG_HUD))
-		var/image/vantag = grab_hud(VANTAG_HUD)
-		if(vantag_pref)
-			vantag.icon_state = vantag_pref
-		else
-			vantag.icon_state = "hudblank"
-		if(block_hud)
-			vantag.icon_state = "hudblank"
-		apply_hud(VANTAG_HUD, vantag)
-
 //Our call for the NIF to do whatever
 /mob/living/carbon/human/proc/handle_nif()
 	if(!nif) return
@@ -89,4 +38,3 @@
 
 /mob/living/carbon
 	var/synth_cosmetic_pain = FALSE
-
