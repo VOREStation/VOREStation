@@ -14,6 +14,7 @@
 			)
 
 	name = "Contraband crate"
+	desc = "REDACTED"
 	cost = 25
 	containertype = /obj/structure/closet/crate
 	containername = "Unlabeled crate"
@@ -22,6 +23,7 @@
 
 /datum/supply_pack/security/specialops
 	name = "Special Ops supplies"
+	desc = "ERR: explosive contents detected"
 	contains = list(
 			/obj/item/storage/box/emps,
 			/obj/item/grenade/smokebomb = 4,
@@ -34,6 +36,7 @@
 
 /datum/supply_pack/supply/moghes
 	name = "Moghes imports"
+	desc = "Black market imports, straight from the Hegemony."
 	contains = list(
 			/obj/item/reagent_containers/food/drinks/bottle/redeemersbrew = 2,
 			/obj/item/reagent_containers/food/snacks/unajerky = 4
@@ -44,18 +47,20 @@
 	contraband = 1
 
 /datum/supply_pack/munitions/bolt_rifles_militia
- 	name = "Weapon - Surplus militia rifles"
- 	contains = list(
- 			/obj/item/gun/projectile/shotgun/pump/rifle = 3,
- 			/obj/item/ammo_magazine/clip/c762 = 6
- 			)
- 	cost = 50
- 	contraband = 1
- 	containertype = /obj/structure/closet/crate/hedberg
- 	containername = "Ballistic weapons crate"
+	name = "Weapon - Surplus militia rifles"
+	desc = "Vintage ballistic rifles that fell off the back of a truck. A few centuries ago, that is."
+	contains = list(
+			/obj/item/gun/projectile/shotgun/pump/rifle = 3,
+			/obj/item/ammo_magazine/clip/c762 = 6
+			)
+	cost = 50
+	contraband = 1
+	containertype = /obj/structure/closet/crate/hedberg
+	containername = "Ballistic weapons crate"
 
 /datum/supply_pack/randomised/misc/telecrate //you get something awesome, a couple of decent things, and a few weak/filler things
 	name = "ERR_NULL_ENTRY" //null crate! also dream maker is hell,
+	desc = "NO DATA FOUND"
 	num_contained = 1
 	contains = list(
 			list( //the operator,
@@ -116,6 +121,7 @@
 
 /datum/supply_pack/supply/stolen
 	name = "Stolen supply crate"
+	desc = "ERR: NO DATA!"
 	contains = list(/obj/item/stolenpackage = 1)
 	cost = 150
 	containertype = /obj/structure/closet/crate
@@ -124,6 +130,7 @@
 
 /datum/supply_pack/supply/wolfgirl
 	name = "Wolfgirl Crate"
+	desc = "Half wolf, half girl, no brains."
 	cost = 200 //I mean, it's a whole wolfgirl
 	containertype = /obj/structure/largecrate/animal/wolfgirl
 	containername = "Wolfgirl crate"
@@ -131,6 +138,7 @@
 
 /datum/supply_pack/supply/catgirl
 	name = "Catgirl Crate"
+	desc = "Half cat, half girl, no brains."
 	cost = 200 //I mean, it's a whole catgirl
 	containertype = /obj/structure/largecrate/animal/catgirl
 	containername = "Catgirl crate"
@@ -144,6 +152,7 @@
 			/obj/item/pizzavoucher
 			)
 	name = "FANTASTIC PIZZA PIE VOUCHER CRATE!"
+	desc = "WE ALWAYS DELIVER!"
 	cost = 60
 	containertype = /obj/structure/closet/crate
 	containername = "WE ALWAYS DELIVER!"

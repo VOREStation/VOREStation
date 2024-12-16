@@ -23,7 +23,7 @@
 		display_name = name
 
 /ore/uranium
-	name = ORE_LEAD
+	name = ORE_URANIUM
 	display_name = "pitchblende"
 	smelts_to = MAT_URANIUM
 	result_amount = 5

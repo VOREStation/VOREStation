@@ -248,15 +248,15 @@
 				else
 					dat += span_warning("Unknown substance[(unknown > 1)?"s":""] found in subject's dermis.")
 					dat += "<br>"
-		if(LAZYLEN(C.resistances))
+		if(LAZYLEN(C.viruses))
 			for (var/datum/disease/virus in C.GetViruses())
 				if(virus.visibility_flags & HIDDEN_SCANNER || virus.visibility_flags & HIDDEN_PANDEMIC)
 					continue
-				if(virus.discovered)
-					dat += span_warning("Warning: [virus.name] detected in subject's blood.")
-					dat += "<br>"
-					dat += span_warning("Severity: [virus.severity]")
-					dat += "<br>"
+				virus.discovered = TRUE
+				dat += span_warning("Warning: [virus.name] detected in subject's blood.")
+				dat += "<br>"
+				dat += span_warning("Severity: [virus.severity]")
+				dat += "<br>"
 	if (M.getCloneLoss())
 		dat += span_warning("Subject appears to have been imperfectly cloned.")
 		dat += "<br>"

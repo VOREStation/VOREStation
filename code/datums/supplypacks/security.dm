@@ -14,6 +14,7 @@
 
 /datum/supply_pack/randomised/security/armor
 	name = "Armor - Security armor"
+	desc = "A set of standard security armor vests, chosen at random. Requires Armory access."
 	num_contained = 5
 	contains = list(
 			/obj/item/clothing/suit/storage/vest,
@@ -35,6 +36,7 @@
 
 /datum/supply_pack/security/carriersblack
 	name = "Armor - Black modular armor"
+	desc = "A set of modular black armor."
 	contains = list(
 			/obj/item/clothing/suit/armor/pcarrier,
 			/obj/item/clothing/accessory/armor/armguards,
@@ -47,6 +49,7 @@
 
 /datum/supply_pack/security/carriersblue
 	name = "Armor - Blue modular armor"
+	desc = "A set of modular blue armor."
 	contains = list(
 			/obj/item/clothing/suit/armor/pcarrier/blue,
 			/obj/item/clothing/accessory/armor/armguards/blue,
@@ -59,6 +62,7 @@
 
 /datum/supply_pack/security/carriersgreen
 	name = "Armor - Green modular armor"
+	desc = "A set of modular green armor."
 	contains = list(
 			/obj/item/clothing/suit/armor/pcarrier/green,
 			/obj/item/clothing/accessory/armor/armguards/green,
@@ -71,6 +75,7 @@
 
 /datum/supply_pack/security/carriersnavy
 	name = "Armor - Navy modular armor"
+	desc = "A set of modular navy blue armor."
 	contains = list(
 			/obj/item/clothing/suit/armor/pcarrier/navy,
 			/obj/item/clothing/accessory/armor/armguards/navy,
@@ -83,6 +88,7 @@
 
 /datum/supply_pack/security/carrierstan
 	name = "Armor - Tan modular armor"
+	desc = "A set of modular tan armor."
 	contains = list(
 			/obj/item/clothing/suit/armor/pcarrier/tan,
 			/obj/item/clothing/accessory/armor/armguards/tan,
@@ -95,6 +101,7 @@
 
 /datum/supply_pack/security/armorplate
 	name = "Armor - Security light armor plate"
+	desc = "A lightweight armor insert plate."
 	contains = list(
 			/obj/item/clothing/accessory/armor/armorplate,
 			)
@@ -104,6 +111,7 @@
 
 /datum/supply_pack/security/armorplatestab
 	name = "Armor - Security stab armor plate"
+	desc = "A lightweight stabproof armor insert plate."
 	contains = list(
 			/obj/item/clothing/accessory/armor/armorplate/stab,
 			)
@@ -113,6 +121,7 @@
 
 /datum/supply_pack/security/armorplatemedium
 	name = "Armor - Security armor plate"
+	desc = "A mediumweight armor insert plate."
 	contains = list(
 			/obj/item/clothing/accessory/armor/armorplate/medium,
 			)
@@ -122,6 +131,7 @@
 
 /datum/supply_pack/security/armorplatetac
 	name = "Armor - Security medium armor plate"
+	desc = "A tactical armor insert plate."
 	contains = list(
 			/obj/item/clothing/accessory/armor/armorplate/tactical,
 			)
@@ -131,6 +141,7 @@
 
 /datum/supply_pack/randomised/security/carriers
 	name = "Armor - Surplus plate carriers"
+	desc = "A selection of random plate carriers."
 	num_contained = 5
 	contains = list(
 			/obj/item/clothing/suit/armor/pcarrier,
@@ -146,6 +157,7 @@
 
 /datum/supply_pack/security/carriertags
 	name = "Armor - Plate carrier tags"
+	desc = "Various identifying tags for attachment to a plate carrier set."
 	contains = list(
 			/obj/item/clothing/accessory/armor/tag,
 			/obj/item/clothing/accessory/armor/tag/nt,
@@ -164,6 +176,7 @@
 
 /datum/supply_pack/security/helmcovers
 	name = "Armor - Helmet covers"
+	desc = "A set of helmet covers, for attachment to standard issue helmets."
 	contains = list(
 			/obj/item/clothing/accessory/armor/helmcover/blue,
 			/obj/item/clothing/accessory/armor/helmcover/blue,
@@ -180,6 +193,7 @@
 
 /datum/supply_pack/randomised/security/armorplates
 	name = "Armor - Surplus security armor plates"
+	desc = "A random selection of attachable armor insert plates."
 	num_contained = 5
 	contains = list(
 			/obj/item/clothing/accessory/armor/armorplate,
@@ -199,6 +213,7 @@
 
 /datum/supply_pack/randomised/security/carrierarms
 	name = "Armor - Surplus security armguard attachments"
+	desc = "A random selection of attachable armor arm guards."
 	num_contained = 5
 	contains = list(
 			/obj/item/clothing/accessory/armor/armguards,
@@ -216,6 +231,7 @@
 
 /datum/supply_pack/randomised/security/carrierlegs
 	name = "Armor - Surplus security legguard attachments"
+	desc = "A random selection of attachable armor leg guards."
 	num_contained = 5
 	contains = list(
 			/obj/item/clothing/accessory/armor/legguards,
@@ -252,6 +268,7 @@
 
 /datum/supply_pack/security/riot_gear
 	name = "Gear - Riot"
+	desc = "A pack of riot control gear: less-lethal weapons, batons, shields, and handcuffs. Requires Armory access."
 	contains = list(
 			/obj/item/melee/baton = 3,
 			/obj/item/shield/riot = 3,
@@ -267,6 +284,7 @@
 
 /datum/supply_pack/security/riot_armor
 	name = "Armor - Riot"
+	desc = "A pack of riot suppression armor. Requires Armory access."
 	contains = list(
 			/obj/item/clothing/head/helmet/riot,
 			/obj/item/clothing/suit/armor/riot,
@@ -280,6 +298,7 @@
 
 /datum/supply_pack/security/riot_plates
 	name = "Armor - Riot plates"
+	desc = "A fully-equipped modular riot suppression suit. Requires Armory access."
 	contains = list(
 			/obj/item/clothing/head/helmet/riot,
 			/obj/item/clothing/suit/armor/pcarrier/riot/full
@@ -301,6 +320,7 @@
 
 /datum/supply_pack/security/ablative_armor
 	name = "Armor - Ablative"
+	desc = "A full set of laser-resistant armor. Requires Armory access."
 	contains = list(
 			/obj/item/clothing/head/helmet/laserproof,
 			/obj/item/clothing/suit/armor/laserproof,
@@ -314,6 +334,7 @@
 
 /datum/supply_pack/security/ablative_plates
 	name = "Armor - Ablative plates"
+	desc = "A fully-equipped modular laser-resistant armor suit. Requires Armory access."
 	contains = list(
 			/obj/item/clothing/head/helmet/laserproof,
 			/obj/item/clothing/suit/armor/pcarrier/laserproof/full
@@ -325,6 +346,7 @@
 
 /datum/supply_pack/security/bullet_resistant_armor
 	name = "Armor - Ballistic"
+	desc = "A full set of ballistic-resistant armor. Requires Armory access."
 	contains = list(
 			/obj/item/clothing/head/helmet/bulletproof,
 			/obj/item/clothing/suit/armor/bulletproof,
@@ -389,6 +411,7 @@
 
 /datum/supply_pack/security/flexitac
 	name = "Armor - Tactical Light"
+	desc = "A full set of light tactical armor. Requires Armory access."
 	containertype = /obj/structure/closet/crate/secure/saare
 	containername = "Tactical Light armor crate"
 	cost = 75
@@ -412,6 +435,7 @@
 
 /datum/supply_pack/security/securitybarriers
 	name = "Misc - Security Barriers"
+	desc = "Four quick-deployment security barriers."
 	contains = list(/obj/machinery/deployable/barrier = 4)
 	cost = 20
 	containertype = /obj/structure/closet/crate/large/secure/heph
@@ -419,6 +443,7 @@
 
 /datum/supply_pack/security/securityshieldgen
 	name = "Misc - Wall shield generators"
+	desc = "Four portable wall shield generators. Requires Teleporter access."
 	contains = list(/obj/machinery/shieldwallgen = 4)
 	cost = 20
 	containertype = /obj/structure/closet/crate/secure/heph
@@ -427,6 +452,7 @@
 
 /datum/supply_pack/randomised/security/holster
 	name = "Gear - Holsters"
+	desc = "Four random holsters."
 	num_contained = 4
 	contains = list(
 			/obj/item/clothing/accessory/holster,
@@ -441,6 +467,7 @@
 
 /datum/supply_pack/security/extragear
 	name = "Gear - Security surplus equipment"
+	desc = "An assortment of surplus security equipment."
 	contains = list(
 			/obj/item/storage/belt/security = 3,
 			/obj/item/clothing/glasses/sunglasses/sechud = 3,
@@ -454,6 +481,7 @@
 
 /datum/supply_pack/security/detectivegear
 	name = "Forensic - Investigation equipment"
+	desc = "Standard issue equipment for detectives and forensic investigators. Requires Forensics access."
 	contains = list(
 			/obj/item/storage/box/evidence = 2,
 			/obj/item/clothing/suit/storage/vest/detective,
@@ -482,6 +510,7 @@
 
 /datum/supply_pack/security/detectivescan
 	name = "Forensic - Scanning Equipment"
+	desc = "Additional specialist forensic equipment. Requires Forensics access."
 	contains = list(
 			/obj/item/mass_spectrometer,
 			/obj/item/reagent_scanner,
@@ -495,6 +524,7 @@
 
 /datum/supply_pack/security/detectiveclothes
 	name = "Forensic - Investigation apparel"
+	desc = "Apparel for the discerning detective (or forensics expert). Requires Forensics access."
 	contains = list(
 			/obj/item/clothing/under/det/black = 2,
 			/obj/item/clothing/under/det/grey = 2,
@@ -517,6 +547,7 @@
 
 /datum/supply_pack/security/officergear
 	name = "Gear - Officer equipment"
+	desc = "Standard issue equipment for security officers. Requires Brig access."
 	contains = list(
 			/obj/item/clothing/suit/storage/vest/officer,
 			/obj/item/clothing/head/helmet,
@@ -547,6 +578,7 @@
 
 /datum/supply_pack/security/wardengear
 	name = "Gear - " + JOB_WARDEN + " equipment"
+	desc = "Standard issue equipment for Wardens. Requires Armory access."
 	contains = list(
 			/obj/item/clothing/suit/storage/vest/warden,
 			/obj/item/clothing/under/rank/warden,
@@ -576,6 +608,7 @@
 
 /datum/supply_pack/security/headofsecgear
 	name = "Gear - " + JOB_HEAD_OF_SECURITY + " equipment"
+	desc = "Standard issue equipment for the Head of Security. Requires Head of Security access."
 	contains = list(
 			/obj/item/clothing/head/helmet/HoS,
 			/obj/item/clothing/suit/storage/vest/hos,
@@ -603,6 +636,7 @@
 
 /datum/supply_pack/security/securityclothing
 	name = "Misc - Security uniform red"
+	desc = "A set of standard red security uniforms."
 	contains = list(
 			/obj/item/storage/backpack/satchel/sec = 2,
 			/obj/item/storage/backpack/security = 2,
@@ -621,6 +655,7 @@
 
 /datum/supply_pack/security/navybluesecurityclothing
 	name = "Misc - Security uniform navy blue"
+	desc = "A set of alternative navy blue security uniforms."
 	contains = list(
 			/obj/item/storage/backpack/satchel/sec = 2,
 			/obj/item/storage/backpack/security = 2,
@@ -642,6 +677,7 @@
 
 /datum/supply_pack/security/corporatesecurityclothing
 	name = "Misc - Security uniform corporate"
+	desc = "A set of alternative corporate black-and-red security uniforms."
 	contains = list(
 			/obj/item/storage/backpack/satchel/sec = 2,
 			/obj/item/storage/backpack/security = 2,
@@ -662,6 +698,7 @@
 
 /datum/supply_pack/security/biosuit
 	name = "Gear - Security biohazard gear"
+	desc = "Three sets of security biohazard equipment. Requires Security access."
 	contains = list(
 			/obj/item/clothing/head/bio_hood/security = 3,
 			/obj/item/clothing/under/rank/security = 3,
@@ -679,6 +716,7 @@
 
 /datum/supply_pack/security/posters
 	name = "Gear - Morale Posters"
+	desc = "Six \'morale enhancement\' posters."
 	contains = list(
 			/obj/item/poster/nanotrasen = 6
 			)
@@ -708,21 +746,9 @@
 	one_access = TRUE
 */
 
-/datum/supply_pack/security/biosuit
-	contains = list(
-			/obj/item/clothing/head/bio_hood/security = 3,
-			/obj/item/clothing/under/rank/security = 3,
-			/obj/item/clothing/suit/bio_suit/security = 3,
-			/obj/item/clothing/shoes/white = 3,
-			/obj/item/clothing/mask/gas = 3,
-			/obj/item/tank/oxygen = 3,
-			/obj/item/clothing/gloves/sterile/latex,
-			/obj/item/storage/box/gloves
-			)
-	cost = 40
-
 /datum/supply_pack/security/trackingimplant
 	name = "Implants - Tracking"
+	desc = "A set of tracking implants. Requires Security access."
 	contains = list(
 			/obj/item/storage/box/trackimp = 1
 			)
@@ -733,6 +759,7 @@
 
 /datum/supply_pack/security/chemicalimplant
 	name = "Implants - Chemical"
+	desc = "A set of chemical implants. Requires Security access."
 	contains = list(
 			/obj/item/storage/box/chemimp = 1
 			)

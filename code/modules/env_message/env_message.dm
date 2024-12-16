@@ -124,7 +124,7 @@ var/global/list/env_messages = list()
 /client/proc/create_gm_message()
 	set name = "Map Message - Create"
 	set desc = "Create an ooc message in the environment for other players to see."
-	set category = "EventKit"
+	set category = "Fun.Event Kit"
 
 	if(!check_rights(R_FUN))
 		return
@@ -154,7 +154,7 @@ var/global/list/env_messages = list()
 /client/proc/remove_gm_message()
 	set name = "Map Message - Remove"
 	set desc = "Remove any env/map message."
-	set category = "EventKit"
+	set category = "Fun.Event Kit"
 
 	if(!istype(src) || !src.ckey)
 		return

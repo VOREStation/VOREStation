@@ -2016,13 +2016,16 @@
 /mob/living/carbon/human/proc/handle_hud_list()
 	if (BITTEST(hud_updateflag, HEALTH_HUD))
 		var/image/holder = grab_hud(HEALTH_HUD)
+		var/image/health_us = grab_hud(HEALTH_VR_HUD)
 		if(stat == DEAD)
 			holder.icon_state = "-100" 	// X_X
 		else
 			holder.icon_state = RoundHealth((health-CONFIG_GET(number/health_threshold_crit))/(getMaxHealth()-CONFIG_GET(number/health_threshold_crit))*100)
 		if(block_hud)
 			holder.icon_state = "hudblank"
+		health_us.icon_state = holder.icon_state
 		apply_hud(HEALTH_HUD, holder)
+		apply_hud(HEALTH_VR_HUD, health_us)
 
 	if (BITTEST(hud_updateflag, LIFE_HUD))
 		var/image/holder = grab_hud(LIFE_HUD)
@@ -2037,20 +2040,16 @@
 		apply_hud(LIFE_HUD, holder)
 
 	if (BITTEST(hud_updateflag, STATUS_HUD))
-		var/foundVirus = 0
-		for (var/datum/disease/D in GetViruses())
-			if(D.discovered)
-				foundVirus = 1
-				break
 
 		var/image/holder = grab_hud(STATUS_HUD)
 		var/image/holder2 = grab_hud(STATUS_HUD_OOC)
+		var/image/status_r = grab_hud(STATUS_R_HUD)
 		if (isSynthetic())
 			holder.icon_state = "hudrobo"
 		else if(stat == DEAD)
 			holder.icon_state = "huddead"
 			holder2.icon_state = "huddead"
-		else if(foundVirus)
+		else if(has_virus())
 			holder.icon_state = "hudill"
 		else if(has_brain_worms())
 			var/mob/living/simple_mob/animal/borer/B = has_brain_worms()
@@ -2061,17 +2060,17 @@
 			holder2.icon_state = "hudbrainworm"
 		else
 			holder.icon_state = "hudhealthy"
-			if(viruses.len)
-				for(var/datum/disease/D in GetViruses())
-					if(D.discovered)
-						holder2.icon_state = "hudill"
+			if(has_virus())
+				holder2.icon_state = "hudill"
 			else
 				holder2.icon_state = "hudhealthy"
 		if(block_hud)
 			holder.icon_state = "hudblank"
 			holder2.icon_state = "hudblank"
 
+		status_r.icon_state = holder.icon_state
 		apply_hud(STATUS_HUD, holder)
+		apply_hud(STATUS_R_HUD, status_r)
 		apply_hud(STATUS_HUD_OOC, holder2)
 
 	if (BITTEST(hud_updateflag, ID_HUD))
@@ -2153,7 +2152,36 @@
 				holder.icon_state = "hudsyndicate"
 		apply_hud(SPECIALROLE_HUD, holder)
 
-	attempt_vr(src,"handle_hud_list_vr",list()) //VOREStation Add - Custom HUDs.
+	//Backup implant hud status
+	if (BITTEST(hud_updateflag, BACKUP_HUD))
+		var/image/holder = grab_hud(BACKUP_HUD)
+
+		holder.icon_state = "hudblank"
+
+		for(var/obj/item/organ/external/E in organs)
+			for(var/obj/item/implant/I in E.implants)
+				if(I.implanted && istype(I,/obj/item/implant/backup))
+					var/obj/item/implant/backup/B = I
+					if(!mind)
+						holder.icon_state = "hud_backup_nomind"
+					else if(!(mind.name in B.our_db.body_scans))
+						holder.icon_state = "hud_backup_nobody"
+					else
+						holder.icon_state = "hud_backup_norm"
+		if(block_hud)
+			holder.icon_state = "hudblank"
+		apply_hud(BACKUP_HUD, holder)
+
+	//VOREStation Antag Hud
+	if (BITTEST(hud_updateflag, VANTAG_HUD))
+		var/image/vantag = grab_hud(VANTAG_HUD)
+		if(vantag_pref)
+			vantag.icon_state = vantag_pref
+		else
+			vantag.icon_state = "hudblank"
+		if(block_hud)
+			vantag.icon_state = "hudblank"
+		apply_hud(VANTAG_HUD, vantag)
 
 	hud_updateflag = 0
 
@@ -2193,6 +2221,15 @@
 		return // Still no brain.
 
 	brain.tick_defib_timer()
+
+/mob/living/carbon/human/proc/has_virus()
+	for(var/thing in viruses)
+		var/datum/disease/D = thing
+		if(!D.discovered)
+			continue
+		if((!(D.visibility_flags & HIDDEN_SCANNER)) && (D.severity != NONTHREAT))
+			return TRUE
+	return FALSE
 
 #undef HUMAN_MAX_OXYLOSS
 #undef HUMAN_CRIT_MAX_OXYLOSS

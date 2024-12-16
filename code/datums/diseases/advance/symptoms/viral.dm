@@ -20,6 +20,7 @@ BONUS
 	stage_speed = -3
 	transmittable = 0
 	level = 3
+	severity = 0
 
 /datum/symptom/viraladaptation/Activate(datum/disease/advance/A)
 	..()
@@ -53,6 +54,7 @@ BONUS
 	stage_speed = 5
 	transmittable = 3
 	level = 3
+	severity = 0
 
 /datum/symptom/viralevolution/Activate(datum/disease/advance/A)
 	..()

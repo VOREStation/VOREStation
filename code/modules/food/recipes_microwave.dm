@@ -84,7 +84,7 @@ I said no!
 	result = /obj/item/reagent_containers/food/snacks/eggplantparm
 
 /datum/recipe/soylenviridians
-	fruit = list("soybeans" = 1)
+	fruit = list(PLANT_SOYBEAN = 1)
 	reagents = list(REAGENT_ID_FLOUR = 10)
 	reagent_mix = RECIPE_REAGENT_REPLACE
 	result = /obj/item/reagent_containers/food/snacks/soylenviridians
@@ -451,14 +451,14 @@ I said no!
 	result = /obj/item/reagent_containers/food/snacks/tossedsalad
 
 /datum/recipe/flowersalad
-	fruit = list("harebell" = 1, "poppy" = 1)
+	fruit = list(PLANT_HAREBELLS = 1, PLANT_POPPIES = 1)
 	items = list(
 		/obj/item/reagent_containers/food/snacks/roastedsunflower
 	)
 	result = /obj/item/reagent_containers/food/snacks/flowerchildsalad
 
 /datum/recipe/rosesalad
-	fruit = list("harebell" = 1, PLANT_ROSE = 1)
+	fruit = list(PLANT_HAREBELLS = 1, PLANT_ROSE = 1)
 	items = list(
 		/obj/item/reagent_containers/food/snacks/roastedsunflower
 	)
@@ -600,7 +600,7 @@ I said no!
 	result = /obj/item/reagent_containers/food/snacks/benedict
 
 /datum/recipe/bakedbeans
-	fruit = list("soybeans" = 2)
+	fruit = list(PLANT_SOYBEAN = 2)
 	reagents = list(REAGENT_ID_KETCHUP = 5)
 	result = /obj/item/reagent_containers/food/snacks/beans
 
@@ -725,7 +725,7 @@ I said no!
 	result = /obj/item/reagent_containers/food/snacks/bagelraisin
 
 /datum/recipe/bagelpoppy
-	fruit = list("poppy" = 1)
+	fruit = list(PLANT_POPPIES = 1)
 	reagents = list(REAGENT_ID_WATER = 5)
 	items = list(
 		/obj/item/reagent_containers/food/snacks/bun
@@ -937,7 +937,7 @@ I said no!
 	result = /obj/item/reagent_containers/food/snacks/burrito_cheese
 
 /datum/recipe/burrito_cheese_spicy
-	fruit = list(PLANT_CHILI = 2, "soybeans" = 1)
+	fruit = list(PLANT_CHILI = 2, PLANT_SOYBEAN = 1)
 	items = list(
 		/obj/item/reagent_containers/food/snacks/tortilla,
 		/obj/item/reagent_containers/food/snacks/cheesewedge,
@@ -946,7 +946,7 @@ I said no!
 	result = /obj/item/reagent_containers/food/snacks/burrito_cheese_spicy
 
 /datum/recipe/burrito_hell
-	fruit = list("soybeans" = 1, PLANT_CHILI = 10)
+	fruit = list(PLANT_SOYBEAN = 1, PLANT_CHILI = 10)
 	reagents = list(REAGENT_ID_SPACESPICE = 1)
 	items = list(
 		/obj/item/reagent_containers/food/snacks/tortilla,
@@ -958,7 +958,7 @@ I said no!
 	reagent_mix = RECIPE_REAGENT_REPLACE //Already hot sauce
 
 /datum/recipe/meatburrito
-	fruit = list("soybeans" = 1)
+	fruit = list(PLANT_SOYBEAN = 1)
 	items = list(
 		/obj/item/reagent_containers/food/snacks/tortilla,
 		/obj/item/reagent_containers/food/snacks/cutlet,
@@ -967,7 +967,7 @@ I said no!
 	result = /obj/item/reagent_containers/food/snacks/meatburrito
 
 /datum/recipe/cheeseburrito
-	fruit = list("soybeans" = 1)
+	fruit = list(PLANT_SOYBEAN = 1)
 	items = list(
 		/obj/item/reagent_containers/food/snacks/tortilla,
 		/obj/item/reagent_containers/food/snacks/cheesewedge,
@@ -976,7 +976,7 @@ I said no!
 	result = /obj/item/reagent_containers/food/snacks/cheeseburrito
 
 /datum/recipe/fuegoburrito
-	fruit = list("soybeans" = 1, PLANT_CHILI = 2)
+	fruit = list(PLANT_SOYBEAN = 1, PLANT_CHILI = 2)
 	items = list(
 		/obj/item/reagent_containers/food/snacks/tortilla
 	)

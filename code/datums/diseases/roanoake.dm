@@ -18,7 +18,7 @@
 	var/list/obj/item/organ/organ_list = list()
 	var/obj/item/organ/O
 
-/datum/disease/roanoake/Start
+/datum/disease/roanoake/Start()
 	var/mob/living/carbon/human/M = affected_mob
 
 	organ_list += M.organs
@@ -35,6 +35,7 @@
 			if(prob(1))
 				to_chat(M, span_warning(pick("You feel hot.", "You feel like you're burning.")))
 				if(M.bodytemperature < BODYTEMP_HEAT_DAMAGE_LIMIT)
+					fever(M)
 		if(3)
 			if(prob(1))
 				to_chat(M, span_notice("You shiver a bit."))
@@ -77,8 +78,10 @@
 				O.take_damage(rand(1, 3))
 
 			if(prob(1) && prob(10))
+				O = pick(organ_list)
+				var/obj/item/organ/external/E = O.parent_organ
 				var/datum/wound/W = new /datum/wound/internal_bleeding(5)
-				O.wounds += W
+				E.wounds += W
 
 			if(M.stat == DEAD)
 				M.species = /datum/species/xenochimera
