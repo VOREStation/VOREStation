@@ -355,7 +355,7 @@
 		if(tgui_alert(mob, "Do you want to leave your predator's belly?", "Leave belly?", list("Yes", "No")) != "Yes")
 			is_leaving_belly = FALSE
 			return
-	is_leaving_belly = FALSE
+		is_leaving_belly = FALSE
 	var/turf/mobloc = get_turf(mob)
 
 	switch(mob.incorporeal_move)
