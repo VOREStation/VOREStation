@@ -341,10 +341,21 @@
 /mob/proc/SelfMove(turf/n, direct, movetime)
 	return Move(n, direct, movetime)
 
+/client
+	var/leave_belly = FALSE
+
 ///Process_Incorpmove
 ///Called by client/Move()
 ///Allows mobs to run though walls
 /client/proc/Process_Incorpmove(direct)
+	if(isbelly(mob.loc) && isobserver(mob))
+		if(leave_belly)
+			return
+		leave_belly = TRUE
+		if(tgui_alert(mob, "Do you want to leave your predator's belly?", "Leave belly?", list("Yes", "No")) != "Yes")
+			leave_belly = FALSE
+			return
+		leave_belly = FALSE
 	var/turf/mobloc = get_turf(mob)
 
 	switch(mob.incorporeal_move)
