@@ -16,6 +16,7 @@
 	var/list/visibleChunks = list()
 	var/datum/visualnet/visualnet
 	var/use_static = TRUE
+	var/static_visibility_range = 16
 
 	var/can_reenter_corpse
 	var/datum/hud/living/carbon/hud = null // hud
