@@ -207,7 +207,7 @@ Works together with spawning an observer, noted above.
 	if(!isturf(loc))
 		return
 	var/area/A = get_area(src)
-	if(A.flag_check(AREA_BLOCK_GHOSTS))
+	if(A.flag_check(AREA_BLOCK_GHOSTS) && !isbelly(loc))
 		to_chat(src, span_warning("Ghosts can't enter this location."))
 		return_to_spawn()
 
@@ -463,7 +463,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 	//RS Port #658 Start
 	var/area/A = get_area(destination)
-	if(A?.flag_check(AREA_BLOCK_GHOSTS))
+	if(A?.flag_check(AREA_BLOCK_GHOSTS) && !isbelly(destination))
 		to_chat(src,span_warning("Sorry, that area does not allow ghosts."))
 		if(following)
 			stop_following()
