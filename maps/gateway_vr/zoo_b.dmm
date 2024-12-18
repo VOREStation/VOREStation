@@ -4737,10 +4737,7 @@
 /obj/item/stack/material/glass{
 	amount = 15
 	},
-/obj/item/cell{
-	charge = 100;
-	maxcharge = 15000
-	},
+/obj/item/cell,
 /turf/simulated/shuttle/floor/darkred,
 /area/awaymission/zoo/syndieship)
 "OZ" = (

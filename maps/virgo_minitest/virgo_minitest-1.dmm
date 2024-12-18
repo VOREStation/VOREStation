@@ -3371,10 +3371,7 @@
 "kr" = (
 /obj/structure/table/steel,
 /obj/item/storage/box/lights/mixed,
-/obj/item/cell/high{
-	charge = 100;
-	maxcharge = 15000
-	},
+/obj/item/cell/high,
 /obj/item/paper{
 	info = "The big blue box recently installed in here is a 'grid checker' which will shut off the power if a dangerous power spike from the engine erupts into the powernet.  Shutting everything down protects everything from electrical damage, however the outages can be disruptive to colony operations, so it is designed to restore power after a somewhat significant delay, up to ten minutes or so.  The grid checker can be manually hacked in order to end the outage sooner.  To do that, you must cut three specific wires which do not cause a red light to shine, then pulse a fourth wire.  Electrical protection is highly recommended when doing maintenance on the grid checker.";
 	name = "grid checker info"
@@ -4786,10 +4783,7 @@
 	pixel_x = 3;
 	pixel_y = 3
 	},
-/obj/item/cell/high{
-	charge = 100;
-	maxcharge = 15000
-	},
+/obj/item/cell/high,
 /turf/simulated/floor/tiled/techmaint,
 /area/engineering/engine_monitoring)
 "zf" = (

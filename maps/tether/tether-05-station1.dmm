@@ -421,10 +421,7 @@
 	pixel_x = 3;
 	pixel_y = 3
 	},
-/obj/item/cell/high{
-	charge = 100;
-	maxcharge = 15000
-	},
+/obj/item/cell/high,
 /turf/simulated/floor/tiled/techmaint,
 /area/engineering/engine_smes)
 "aaS" = (
@@ -517,10 +514,7 @@
 	info = "The big blue box recently installed in here is a 'grid checker' which will shut off the power if a dangerous power spike from the engine erupts into the powernet.  Shutting everything down protects everything from electrical damage, however the outages can be disruptive to colony operations, so it is designed to restore power after a somewhat significant delay, up to ten minutes or so.  The grid checker can be manually hacked in order to end the outage sooner.  To do that, you must cut three specific wires which do not cause a red light to shine, then pulse a fourth wire.  Electrical protection is highly recommended when doing maintenance on the grid checker.";
 	name = "grid checker info"
 	},
-/obj/item/cell/high{
-	charge = 100;
-	maxcharge = 15000
-	},
+/obj/item/cell/high,
 /obj/item/storage/box/lights/mixed,
 /turf/simulated/floor/tiled/techmaint,
 /area/engineering/engine_smes)
@@ -10385,10 +10379,7 @@
 /area/engineering/gravity_gen)
 "aCf" = (
 /obj/structure/table/reinforced,
-/obj/item/cell/high{
-	charge = 100;
-	maxcharge = 15000
-	},
+/obj/item/cell/high,
 /obj/machinery/camera/network/engineering,
 /turf/simulated/floor/tiled,
 /area/engineering/engine_eva)
@@ -10525,22 +10516,13 @@
 "aCP" = (
 /obj/structure/table/reinforced,
 /obj/machinery/cell_charger,
-/obj/item/cell/high{
-	charge = 100;
-	maxcharge = 15000
-	},
+/obj/item/cell/high,
 /obj/item/tool/wrench,
 /obj/structure/window/reinforced{
 	dir = 1
 	},
-/obj/item/cell/high{
-	charge = 100;
-	maxcharge = 15000
-	},
-/obj/item/cell/high{
-	charge = 100;
-	maxcharge = 15000
-	},
+/obj/item/cell/high,
+/obj/item/cell/high,
 /turf/simulated/floor/tiled,
 /area/engineering/workshop)
 "aCQ" = (
@@ -28841,10 +28823,7 @@
 /area/maintenance/substation/civilian)
 "rxE" = (
 /obj/structure/table/steel,
-/obj/item/cell/high{
-	charge = 100;
-	maxcharge = 15000
-	},
+/obj/item/cell/high,
 /obj/item/stack/cable_coil,
 /obj/machinery/cell_charger{
 	pixel_y = 5
@@ -32472,14 +32451,8 @@
 "vHM" = (
 /obj/structure/table/reinforced,
 /obj/machinery/cell_charger,
-/obj/item/cell/high{
-	charge = 100;
-	maxcharge = 15000
-	},
-/obj/item/cell/high{
-	charge = 100;
-	maxcharge = 15000
-	},
+/obj/item/cell/high,
+/obj/item/cell/high,
 /obj/item/stack/cable_coil{
 	pixel_x = 3;
 	pixel_y = -7
