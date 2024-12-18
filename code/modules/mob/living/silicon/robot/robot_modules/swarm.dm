@@ -12,7 +12,7 @@
 	src.modules += new /obj/item/flash/robot(src)
 	src.modules += new /obj/item/handcuffs/cable/tape/cyborg(src)
 	src.modules += new /obj/item/melee/baton/robot(src)
-	src.modules += new /obj/item/gun/energy/taser/mounted/cyborg/swarm(src)
+	src.modules += new /obj/item/gun/energy/robotic/taser/swarm(src)
 	src.modules += new /obj/item/matter_decompiler/swarm(src)
 
 /obj/item/robot_module/drone/swarm/ranged

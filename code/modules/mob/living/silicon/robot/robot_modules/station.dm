@@ -479,12 +479,12 @@ var/global/list/robot_modules = list(
 	..()
 	src.modules += new /obj/item/handcuffs/cyborg(src)
 	src.modules += new /obj/item/melee/baton/robot(src)
-	src.modules += new /obj/item/gun/energy/taser/mounted/cyborg(src)
+	src.modules += new /obj/item/gun/energy/robotic/taser(src)
 	src.modules += new /obj/item/taperoll/police(src)
 	src.modules += new /obj/item/reagent_containers/spray/pepper(src)
 	src.modules += new /obj/item/gripper/security(src)
 	src.modules += new /obj/item/ticket_printer(src)	//VOREStation Add
-	src.emag += new /obj/item/gun/energy/laser/mounted(src)
+	src.emag += new /obj/item/gun/energy/robotic/laser/rifle(src)
 
 	src.modules += new /obj/item/dogborg/sleeper/K9(src) //Eat criminals. Bring them to the brig.
 	src.modules += new /obj/item/dogborg/pounce(src) //Pounce
@@ -715,7 +715,7 @@ var/global/list/robot_modules = list(
 	src.modules += new /obj/item/storage/part_replacer(src)
 	src.modules += new /obj/item/shockpaddles/robot/jumper(src)
 	src.modules += new /obj/item/melee/baton/slime/robot(src)
-	src.modules += new /obj/item/gun/energy/taser/xeno/robot(src)
+	src.modules += new /obj/item/gun/energy/robotic/taser/xeno(src)
 	src.modules += new /obj/item/xenoarch_multi_tool(src)
 	src.modules += new /obj/item/pickaxe/excavationdrill(src)
 
@@ -759,15 +759,15 @@ var/global/list/robot_modules = list(
 	..()
 	src.modules += new /obj/item/handcuffs/cyborg(src)
 	src.modules += new /obj/item/taperoll/police(src)
-	src.modules += new /obj/item/gun/energy/laser/mounted(src)
-	src.modules += new /obj/item/gun/energy/taser/mounted/cyborg/ertgun(src)
+	src.modules += new /obj/item/gun/energy/robotic/laser/rifle(src)
+	src.modules += new /obj/item/gun/energy/robotic/disabler(src)
 	src.modules += new /obj/item/pickaxe/plasmacutter/borg(src)
-	src.modules += new /obj/item/melee/combat_borgblade(src)
+	src.modules += new /obj/item/melee/robotic/dagger(src)
 	src.modules += new /obj/item/borg/combat/shield(src)
 	src.modules += new /obj/item/borg/combat/mobility(src)
-	src.modules += new /obj/item/melee/borg_combat_shocker(src)
+	src.modules += new /obj/item/melee/robotic/borg_combat_shocker(src)
 	src.modules += new /obj/item/ticket_printer(src)
-	src.emag += new /obj/item/gun/energy/lasercannon/mounted(src)
+	src.emag += new /obj/item/gun/energy/robotic/laser/heavy(src)
 
 	src.modules += new /obj/item/dogborg/sleeper/K9/ert(src)
 	src.modules += new /obj/item/dogborg/pounce(src)
