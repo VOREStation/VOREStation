@@ -88,9 +88,11 @@
 	data["job_datum"] = null
 	data["allow_change_job"] = null
 	data["job_choices"] = null
+	data["on_cooldown"] = null
 	if(card)
 		data["card"] = "[card]"
 		data["assignment"] = card.assignment
+		data["card_cooldown"] = getCooldown()
 		var/datum/job/job = job_master.GetJob(card.rank)
 		if(job)
 			data["job_datum"] = list(
@@ -101,10 +103,10 @@
 				"timeoff_factor" = job.timeoff_factor,
 				"pto_department" = job.pto_type
 			)
-		if(CONFIG_GET(flag/time_off) && CONFIG_GET(flag/pto_job_change))
-			data["allow_change_job"] = TRUE
-			if(job && job.timeoff_factor < 0) // Currently are Off Duty, so gotta lookup what on-duty jobs are open
-				data["job_choices"] = getOpenOnDutyJobs(user, job.pto_type)
+		//if(CONFIG_GET(flag/time_off) && CONFIG_GET(flag/pto_job_change))
+		data["allow_change_job"] = TRUE
+		if(job && job.timeoff_factor < 0) // Currently are Off Duty, so gotta lookup what on-duty jobs are open
+			data["job_choices"] = getOpenOnDutyJobs(user, job.pto_type)
 
 	return data
 
@@ -216,11 +218,14 @@
 /obj/machinery/computer/timeclock/proc/checkCardCooldown(var/mob/user)
 	if(!card)
 		return FALSE
-	var/time_left = 10 MINUTES - (world.time - card.last_job_switch)
+	var/time_left = getCooldown()
 	if(time_left > 0)
 		to_chat(user, "You need to wait another [round((time_left/10)/60, 1)] minute\s before you can switch.")
 		return FALSE
 	return TRUE
+
+/obj/machinery/computer/timeclock/proc/getCooldown()
+	return 10 MINUTES - (world.time - card.last_job_switch)
 
 /obj/machinery/computer/timeclock/proc/checkFace(var/mob/user)
 	if(!card)

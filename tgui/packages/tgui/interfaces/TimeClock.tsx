@@ -10,6 +10,7 @@ import {
   NoticeBox,
   Section,
 } from '../components';
+import { formatTime } from '../format';
 import { Window } from '../layouts';
 import { RankIcon } from './common/RankIcon';
 
@@ -18,6 +19,7 @@ type Data = {
   department_hours: Record<string, number> | undefined;
   user_name: string;
   assignment: string | null;
+  card_cooldown: number;
   job_datum: {
     title: string;
     departments: string;
@@ -37,6 +39,7 @@ export const TimeClock = (props) => {
     department_hours,
     user_name,
     card,
+    card_cooldown,
     assignment,
     job_datum,
     allow_change_job,
@@ -128,6 +131,13 @@ export const TimeClock = (props) => {
                 department_hours[job_datum.pto_department] > 0 && (
                   <Button
                     fluid
+                    disabled={card_cooldown > 0}
+                    tooltip={
+                      card_cooldown > 0
+                        ? "You've recently modified your card, please wait " +
+                          formatTime(card_cooldown, 'short')
+                        : 'Clock out!'
+                    }
                     icon="exclamation-triangle"
                     onClick={() => act('switch-to-offduty')}
                   >
@@ -147,6 +157,13 @@ export const TimeClock = (props) => {
                   return alt_titles.map((title) => (
                     <Button
                       key={title}
+                      disabled={card_cooldown > 0}
+                      tooltip={
+                        card_cooldown > 0
+                          ? "You've recently modified your card, please wait " +
+                            formatTime(card_cooldown, 'short')
+                          : 'Clock in!'
+                      }
                       icon="suitcase"
                       onClick={() =>
                         act('switch-to-onduty-rank', {
