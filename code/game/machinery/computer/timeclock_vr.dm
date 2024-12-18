@@ -103,10 +103,10 @@
 				"timeoff_factor" = job.timeoff_factor,
 				"pto_department" = job.pto_type
 			)
-		//if(CONFIG_GET(flag/time_off) && CONFIG_GET(flag/pto_job_change))
-		data["allow_change_job"] = TRUE
-		if(job && job.timeoff_factor < 0) // Currently are Off Duty, so gotta lookup what on-duty jobs are open
-			data["job_choices"] = getOpenOnDutyJobs(user, job.pto_type)
+		if(CONFIG_GET(flag/time_off) && CONFIG_GET(flag/pto_job_change))
+			data["allow_change_job"] = TRUE
+			if(job && job.timeoff_factor < 0) // Currently are Off Duty, so gotta lookup what on-duty jobs are open
+				data["job_choices"] = getOpenOnDutyJobs(user, job.pto_type)
 
 	return data
 
