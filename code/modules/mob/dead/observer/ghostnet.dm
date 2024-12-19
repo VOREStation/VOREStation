@@ -31,7 +31,6 @@
 	for(var/entry in chunks)
 		var/datum/chunk/ghost/gchunk = chunks[entry]
 		for(var/turf/T in gchunk.turfs)
-			to_world("DO WE?")
 			if(T.loc == A)
 				onMajorChunkChange(A, choice, gchunk)
 				gchunk.hasChanged(TRUE)
