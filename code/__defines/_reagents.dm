@@ -8,7 +8,7 @@
 #define GAS_VOLATILE_FUEL "volatile_fuel"
 
 // Gas Reagents
-#define REAGENT_CARBON_DIOXIDE "Nitrogen"
+#define REAGENT_CARBON_DIOXIDE "Carbon Dioxide"
 #define REAGENT_NITROGEN "Nitrogen"
 #define REAGENT_ID_NITROGEN "nitrogen"
 #define REAGENT_NITROUS_OXIDE "Nitrous Oxide"
@@ -1245,7 +1245,7 @@
 #define REAGENT_ID_TOXIN "toxin"
 #define REAGENT_PACID "Polytrinic acid"
 #define REAGENT_ID_PACID "pacid"
-#define REAGEMT_PHORON "Phoron"
+#define REAGENT_PHORON "Phoron"
 #define REAGENT_ID_PHORON "phoron"
 #define REAGENT_SPIDERTOXIN "Spidertoxin"
 #define REAGENT_ID_SPIDERTOXIN "spidertoxin"
