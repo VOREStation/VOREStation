@@ -20,7 +20,7 @@
 
 /decl/xgm_gas/phoron
 	id = GAS_PHORON
-	name = REAGENT_ID_PHORON
+	name = REAGENT_PHORON
 
 	//Note that this has a significant impact on TTV yield.
 	//Because it is so high, any leftover phoron soaks up a lot of heat and drops the yield pressure.

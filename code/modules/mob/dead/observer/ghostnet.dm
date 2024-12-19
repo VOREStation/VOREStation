@@ -26,6 +26,8 @@
 		majorChunkChange(A, 0)
 
 /datum/visualnet/ghost/majorChunkChange(area/A, var/choice)
+	if(choice == 2)
+		return
 	for(var/entry in chunks)
 		var/datum/chunk/ghost/gchunk = chunks[entry]
 		for(var/turf/T in gchunk.turfs)
