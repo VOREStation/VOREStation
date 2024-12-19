@@ -13,7 +13,7 @@
 	result_amount = 1
 
 /decl/chemical_reaction/instant/virus_food_phoron
-	name = REAGENT_ADRANOLVIRUSFOOD
+	name = REAGENT_PHORONVIRUSFOOD
 	id = REAGENT_ID_PHORONVIRUSFOOD
 	result = REAGENT_ID_PHORONVIRUSFOOD
 	required_reagents = list(REAGENT_ID_PHORON = 1, REAGENT_ID_VIRUSFOOD = 1)
