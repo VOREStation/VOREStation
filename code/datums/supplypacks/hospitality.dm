@@ -9,6 +9,7 @@
 
 /datum/supply_pack/hospitality/party
 	name = "Party equipment"
+	desc = "Miscellaneous alcohol, glasses, and smokes, for partying!"
 	contains = list(
 			/obj/item/storage/box/mixedglasses = 2,
 			/obj/item/storage/box/glasses/square,
@@ -29,6 +30,7 @@
 
 /datum/supply_pack/hospitality/barsupplies
 	name = "Bar supplies"
+	desc = "Spare glasses and extras, for bartending. No booze."
 	contains = list(
 			/obj/item/storage/box/glasses/cocktail,
 			/obj/item/storage/box/glasses/rocks,
@@ -50,6 +52,7 @@
 
 /datum/supply_pack/hospitality/cookingoil
 	name = "Cooking oil tank crate"
+	desc = "A tank of cooking oil."
 	contains = list(/obj/structure/reagent_dispensers/cookingoil)
 	cost = 10
 	containertype = /obj/structure/largecrate
@@ -57,6 +60,7 @@
 
 /datum/supply_pack/hospitality/pizza
 	name = "Surprise pack of five pizzas"
+	desc = "Five random pizzas, a plastic knife, and a pizza delivery outfit."
 	contains = list(
 			/obj/random/pizzabox/supplypack = 5,
 			/obj/item/material/knife/plastic,
@@ -69,6 +73,7 @@
 
 /datum/supply_pack/hospitality/gifts
 	name = "Gift crate"
+	desc = "A selection of gifts from AlliCo."
 	contains = list(
 		/obj/item/toy/bouquet = 3,
 		/obj/item/storage/fancy/heartbox = 2,
@@ -83,6 +88,7 @@
 
 /datum/supply_pack/hospitality/painting
 	name = "Painting equipment"
+	desc = "Miscellaneous items for painting and artistry."
 	contains = list(
 		/obj/item/paint_brush = 2,
 		/obj/item/paint_palette = 2,
@@ -100,6 +106,7 @@
 
 /datum/supply_pack/hospitality/holywater
 	name = "Holy water crate"
+	desc = "Three flasks of genuine Holy water, guaranteed to have been blessed by at least one ordained priest."
 	contains = list(
 		/obj/item/reagent_containers/food/drinks/bottle/holywater = 3
 		)
@@ -112,6 +119,7 @@
 
 /datum/supply_pack/randomised/hospitality/burgers_vr
 	num_contained = 5
+	desc = "A random selection of burgers and/or fries."
 	contains = list(
 			/obj/item/reagent_containers/food/snacks/bigbiteburger,
 			/obj/item/reagent_containers/food/snacks/cheeseburger,
@@ -188,6 +196,7 @@
 			/obj/item/reagent_containers/food/snacks/hotandsoursoup
 			)
 	name = "Chinese takeout crate"
+	desc = "Classic chinese-style takeout, a Terran staple throughout much of the 21st century."
 	cost = 50
 	containertype = /obj/structure/closet/crate/freezer
 	containername = "Chinese takeout crate"
@@ -206,6 +215,7 @@
 		/obj/item/storage/box/jaffacake
 		)
 	name = "Desatti jaffa cake crate"
+	desc = "More jaffa cakes than you know what to do with."
 	cost = 25
 	containertype = /obj/structure/closet/crate/freezer
 	containername = "Desatti jaffa cake crate"
@@ -220,6 +230,7 @@
 			/obj/item/storage/box/rhubarbcustard
 			)
 	name = "Sweets crate"
+	desc = "A random selection of sweet treats from Desatti."
 	cost = 25
 	containertype = /obj/structure/closet/crate/freezer
 	containername = "Sweets crate"

@@ -10,8 +10,7 @@ Headache
 	Low Level.
 
 BONUS
-	Displays an annoying message!
-	Should be used for buffing your disease.
+	Displays an annoying message.
 
 //////////////////////////////////////
 */

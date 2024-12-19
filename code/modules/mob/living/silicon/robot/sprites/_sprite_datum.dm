@@ -2,6 +2,7 @@
 	var/name
 	var/module_type
 	var/default_sprite = FALSE
+	var/sprite_flags
 
 	var/sprite_icon
 	var/sprite_icon_state
@@ -27,7 +28,60 @@
 	var/whitelist_ckey
 	var/whitelist_charname
 
+/// Determines if the borg has the proper flags to show an overlay.
+/datum/robot_sprite/proc/sprite_flag_check(var/flag_to_check)
+	return (sprite_flags & flag_to_check)
+
 /datum/robot_sprite/proc/handle_extra_icon_updates(var/mob/living/silicon/robot/ourborg)
+	if(ourborg.resting) //Don't do ANY of the overlay code if we're resting. It just won't look right!
+		return
+	if(sprite_flag_check(ROBOT_HAS_SHIELD_SPEED_SPRITE))
+		if(ourborg.has_active_type(/obj/item/borg/combat/shield) && ourborg.has_active_type(/obj/item/borg/combat/mobility))
+			ourborg.add_overlay("[sprite_icon_state]-speed_shield")
+			return //Stop here. No need to add more overlays. Nothing else is compatible.
+
+	if(sprite_flag_check(ROBOT_HAS_SPEED_SPRITE) && ourborg.has_active_type(/obj/item/borg/combat/mobility))
+		ourborg.icon_state = "[sprite_icon_state]-roll"
+		return //Stop here. No need to add more overlays. Nothing else is compatible.
+
+	if(sprite_flag_check(ROBOT_HAS_SHIELD_SPRITE))
+		if(ourborg.has_active_type(/obj/item/borg/combat/shield))
+			var/obj/item/borg/combat/shield/shield = locate() in ourborg
+			if(shield && shield.active)
+				ourborg.add_overlay("[sprite_icon_state]-shield")
+
+	for(var/thing_to_check in ourborg.get_active_modules()) //We look at our active modules. Let's peep!
+
+		//Melee Check
+		if(istype(thing_to_check, /obj/item/melee/robotic))
+			var/obj/item/melee/robotic/melee = thing_to_check
+			if(sprite_flag_check(ROBOT_HAS_MELEE_SPRITE) && melee.weapon_flag_check(COUNTS_AS_ROBOTIC_MELEE))
+				ourborg.add_overlay("[sprite_icon_state]-melee")
+				continue
+			if(sprite_flag_check(ROBOT_HAS_DAGGER_SPRITE) && melee.weapon_flag_check(COUNTS_AS_ROBOT_DAGGER))
+				ourborg.add_overlay("[sprite_icon_state]-dagger")
+				continue
+			if(sprite_flag_check(ROBOT_HAS_BLADE_SPRITE) && melee.weapon_flag_check(COUNTS_AS_ROBOT_BLADE))
+				ourborg.add_overlay("[sprite_icon_state]-blade")
+				continue
+
+		//Gun Check
+		if(istype(thing_to_check, /obj/item/gun/energy/robotic))
+			var/obj/item/gun/energy/robotic/gun = thing_to_check
+			if(sprite_flag_check(ROBOT_HAS_GUN_SPRITE) && gun.gun_flag_check(COUNTS_AS_ROBOT_GUN))
+				ourborg.add_overlay("[sprite_icon_state]-gun")
+				continue
+			if(sprite_flag_check(ROBOT_HAS_LASER_SPRITE) && gun.gun_flag_check(COUNTS_AS_ROBOT_LASER))
+				ourborg.add_overlay("[sprite_icon_state]-laser")
+				continue
+			if(sprite_flag_check(ROBOT_HAS_TASER_SPRITE) && gun.gun_flag_check(COUNTS_AS_ROBOT_TASER))
+				ourborg.add_overlay("[sprite_icon_state]-taser")
+				continue
+			if(sprite_flag_check(ROBOT_HAS_DISABLER_SPRITE) && gun.gun_flag_check(COUNTS_AS_ROBOT_DISABLER))
+				ourborg.add_overlay("[sprite_icon_state]-disabler")
+				continue
+		else //We are NEITHER a melee or a gun (Or whatever else you add in here in the future)
+			continue //Go on to the next.
 	return
 
 /datum/robot_sprite/proc/get_belly_overlay(var/mob/living/silicon/robot/ourborg, var/size = 1)

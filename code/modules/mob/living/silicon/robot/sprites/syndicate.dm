@@ -114,17 +114,11 @@
 	sprite_icon = 'icons/mob/robot/syndie_large.dmi'
 	sprite_hud_icon_state = "malf"
 
-	var/has_gun_sprite = FALSE
-
-/datum/robot_sprite/dogborg/tall/protector/handle_extra_icon_updates(var/mob/living/silicon/robot/ourborg)
-	if(has_gun_sprite && istype (ourborg.module_active, /obj/item/gun/energy/dakkalaser))
-		ourborg.add_overlay("[sprite_icon_state]-gun")
-
 /datum/robot_sprite/dogborg/tall/protector/syndiprotraptor
 	name = "Raptor V-4"
 	sprite_icon_state = "syndiprotraptor"
 	has_eye_light_sprites = TRUE
-	has_gun_sprite = TRUE
+	sprite_flags = ROBOT_HAS_GUN_SPRITE
 	rest_sprite_options = list("Default", "Bellyup")
 
 // Mechanist

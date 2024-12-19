@@ -41,3 +41,6 @@ tgui/public/tgui.bundle.css
 tgui/public/tgui.bundle.js
 #ignore tracy dll
 prof.dll
+
+# From /tools/define_sanity/check.py - potential output file that we load onto the user's machine that we don't want to have committed.
+define_sanity_output.txt

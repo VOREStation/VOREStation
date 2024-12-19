@@ -73,11 +73,18 @@ GLOBAL_LIST_INIT(diseases, subtypesof(/datum/disease))
 		stage = min(stage + 1, max_stages)
 		if(!discovered && stage >= CEILING(max_stages * discovery_threshold, 1))
 			discovered = TRUE
-			BITSET(affected_mob.hud_updateflag, STATUS_HUD)
 
 /datum/disease/proc/handle_cure_testing(has_cure = FALSE)
 	if(has_cure && prob(cure_chance))
 		stage = max(stage -1, 1)
+
+	for(var/organ in required_organs)
+		if(locate(organ) in affected_mob.internal_organs)
+			continue
+		if(locate(organ) in affected_mob.organs)
+			continue
+		cure()
+		return FALSE
 
 	if(disease_flags & CURABLE)
 		if(has_cure && prob(cure_chance))
@@ -165,7 +172,6 @@ GLOBAL_LIST_INIT(diseases, subtypesof(/datum/disease))
 
 /datum/disease/proc/remove_virus()
 	affected_mob.viruses -= src
-	BITSET(affected_mob.hud_updateflag, STATUS_HUD)
 
 /datum/disease/proc/Start()
 	return

@@ -4,18 +4,6 @@
 	module_type = "Combat"
 	sprite_icon = 'icons/mob/robot/combat.dmi'
 
-	var/has_speed_sprite = FALSE
-	var/has_shield_sprite = FALSE
-
-/datum/robot_sprite/combat/handle_extra_icon_updates(var/mob/living/silicon/robot/ourborg)
-	if(has_speed_sprite && istype(ourborg.module_active, /obj/item/borg/combat/mobility))
-		ourborg.icon_state = "[sprite_icon_state]-roll"
-	if(has_shield_sprite)
-		if(ourborg.has_active_type(/obj/item/borg/combat/shield))
-			var/obj/item/borg/combat/shield/shield = locate() in ourborg
-			if(shield && shield.active)
-				ourborg.add_overlay("[sprite_icon_state]-shield")
-
 /datum/robot_sprite/combat/default
 	name = DEFAULT_ROBOT_SPRITE_NAME
 	default_sprite = TRUE
@@ -24,17 +12,15 @@
 /datum/robot_sprite/combat/marina
 	name = "Haruka"
 	sprite_icon_state = "marina"
-	has_speed_sprite = TRUE
-	has_shield_sprite = TRUE
+	sprite_flags = ROBOT_HAS_SPEED_SPRITE | ROBOT_HAS_SHIELD_SPRITE
 
 /datum/robot_sprite/combat/droid
 	name = "Android"
 	sprite_icon_state = "droid"
-	has_speed_sprite = TRUE
-	has_shield_sprite = TRUE
+	sprite_flags = ROBOT_HAS_SPEED_SPRITE | ROBOT_HAS_SHIELD_SPRITE
 
 /datum/robot_sprite/combat/droid/get_eyes_overlay(var/mob/living/silicon/robot/ourborg)
-	if(istype(ourborg.module_active,/obj/item/borg/combat/mobility))
+	if(ourborg.has_active_type(/obj/item/borg/combat/mobility))
 		return
 	else
 		return ..()
@@ -42,32 +28,30 @@
 /datum/robot_sprite/combat/insekt
 	name = "Insekt"
 	sprite_icon_state = "insekt"
-	has_shield_sprite = TRUE
+	sprite_flags = ROBOT_HAS_SHIELD_SPRITE
 
 /datum/robot_sprite/combat/decapod
 	name = "Decapod"
 	sprite_icon_state = "decapod"
 	has_custom_open_sprites = TRUE
-	has_shield_sprite = TRUE
+	sprite_flags = ROBOT_HAS_SHIELD_SPRITE
 
 /datum/robot_sprite/combat/mechoid
 	name = "Acheron"
 	sprite_icon_state = "mechoid"
-	has_speed_sprite = TRUE
-	has_shield_sprite = TRUE
+	sprite_flags = ROBOT_HAS_SPEED_SPRITE | ROBOT_HAS_SHIELD_SPRITE
 
 /datum/robot_sprite/combat/zoomba
 	name = "ZOOM-BA"
 	sprite_icon_state = "zoomba"
 	has_dead_sprite = TRUE
-	has_speed_sprite = TRUE
-	has_shield_sprite = TRUE
+	sprite_flags = ROBOT_HAS_SPEED_SPRITE | ROBOT_HAS_SHIELD_SPRITE
 
 /datum/robot_sprite/combat/worm
 	name = "W02M"
 	sprite_icon_state = "worm"
 	has_custom_open_sprites = TRUE
-	has_shield_sprite = TRUE
+	sprite_flags = ROBOT_HAS_SHIELD_SPRITE
 
 /datum/robot_sprite/combat/uptall
 	name = "Feminine Humanoid"
@@ -88,33 +72,17 @@
 	sprite_icon = 'icons/mob/robot/combat_large.dmi'
 	has_custom_equipment_sprites = TRUE
 
-	var/has_gun_sprite = FALSE
-	var/has_speed_sprite = FALSE
-	var/has_shield_sprite = FALSE
-
-/datum/robot_sprite/dogborg/tall/combat/handle_extra_icon_updates(var/mob/living/silicon/robot/ourborg)
-	if(has_gun_sprite && (istype(ourborg.module_active, /obj/item/gun/energy/laser/mounted) || istype(ourborg.module_active, /obj/item/gun/energy/taser/mounted/cyborg/ertgun) || istype(ourborg.module_active, /obj/item/gun/energy/lasercannon/mounted)))
-		ourborg.add_overlay("[sprite_icon_state]-gun")
-	if(has_speed_sprite && (istype(ourborg.module_active, /obj/item/borg/combat/mobility)))
-		ourborg.icon_state = "[sprite_icon_state]-roll"
-	if(has_shield_sprite)
-		if(ourborg.has_active_type(/obj/item/borg/combat/shield))
-			var/obj/item/borg/combat/shield/shield = locate() in ourborg
-			if(shield && shield.active)
-				ourborg.add_overlay("[sprite_icon_state]-shield")
-
-
 /datum/robot_sprite/dogborg/tall/combat/do_equipment_glamour(var/obj/item/robot_module/module)
 	if(!has_custom_equipment_sprites)
 		return
 
 	..()
 
-	var/obj/item/melee/combat_borgblade/CBB = locate() in module.modules
+	var/obj/item/melee/robotic/dagger/CBB = locate() in module.modules
 	if(CBB)
 		CBB.name = "sword tail"
 		CBB.desc = "A glowing dagger normally attached to the end of a cyborg's tail. It appears to be extremely sharp."
-	var/obj/item/melee/borg_combat_shocker/BCS = locate() in module.modules
+	var/obj/item/melee/robotic/borg_combat_shocker/BCS = locate() in module.modules
 	if(BCS)
 		BCS.name = "combat jaws"
 		BCS.desc = "Shockingly chompy!"
@@ -127,7 +95,7 @@
 	name = "ERT"
 	sprite_icon_state = "derg"
 	rest_sprite_options = list("Default")
-	has_gun_sprite = TRUE
+	sprite_flags = ROBOT_HAS_GUN_SPRITE
 
 /datum/robot_sprite/dogborg/tall/combat/hound
 	name = "Hound"
@@ -148,23 +116,21 @@
 	sprite_icon_state = "raptor"
 	sprite_hud_icon_state = "ert"
 	rest_sprite_options = list("Default", "Bellyup")
-	has_gun_sprite = TRUE
 	has_eye_light_sprites = TRUE
-	has_shield_sprite = TRUE
-	has_speed_sprite = TRUE
+	sprite_flags = ROBOT_HAS_GUN_SPRITE | ROBOT_HAS_SHIELD_SPRITE | ROBOT_HAS_SPEED_SPRITE
 
 /datum/robot_sprite/dogborg/tall/combat/raptor/get_eyes_overlay(var/mob/living/silicon/robot/ourborg)
-	if(istype(ourborg.module_active,/obj/item/borg/combat/mobility))
+	if(ourborg.has_active_type(/obj/item/borg/combat/mobility))
 		return
 	else
 		return ..()
 /datum/robot_sprite/dogborg/tall/combat/raptor/get_eye_light_overlay(var/mob/living/silicon/robot/ourborg)
-	if(istype(ourborg.module_active,/obj/item/borg/combat/mobility))
+	if(ourborg.has_active_type(/obj/item/borg/combat/mobility))
 		return
 	else
 		return ..()
 /datum/robot_sprite/dogborg/tall/combat/raptor/get_belly_overlay(var/mob/living/silicon/robot/ourborg)
-	if(istype(ourborg.module_active,/obj/item/borg/combat/mobility))
+	if(ourborg.has_active_type(/obj/item/borg/combat/mobility))
 		return
 	else
 		return ..()

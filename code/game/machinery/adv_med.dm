@@ -127,7 +127,7 @@
 	if (occupant.client)
 		occupant.client.eye = occupant.client.mob
 		occupant.client.perspective = MOB_PERSPECTIVE
-	occupant.loc = src.loc
+	occupant.forceMove(src.loc) // was occupant.loc = src.loc, but that doesn't trigger exit(), and thus recursive radio listeners forwarded messages to the occupant as if they were still inside it for the rest of the round! OP21 #5f88307 Port
 	occupant = null
 	update_icon() //icon_state = "body_scanner_1" //VOREStation Edit - Health display for consoles with light and such.
 	SStgui.update_uis(src)
@@ -189,7 +189,7 @@
 		occupantData["health"] = H.health
 		occupantData["maxHealth"] = H.getMaxHealth()
 
-		occupantData["hasVirus"] = H.viruses.len
+		occupantData["hasVirus"] = LAZYLEN(H.viruses)
 
 		occupantData["bruteLoss"] = H.getBruteLoss()
 		occupantData["oxyLoss"] = H.getOxyLoss()
@@ -379,7 +379,7 @@
 		dat += (occupant.health > (occupant.getMaxHealth() / 2) ? span_blue(health_text) : span_red(health_text))
 		dat += "<br>"
 
-		if(occupant.viruses.len)
+		if(LAZYLEN(occupant.viruses))
 			for(var/datum/disease/D in occupant.GetViruses())
 				if(D.visibility_flags & HIDDEN_SCANNER)
 					continue

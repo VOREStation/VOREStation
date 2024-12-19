@@ -10895,10 +10895,7 @@
 /obj/structure/table/reinforced,
 /obj/item/suit_cooling_unit,
 /obj/item/suit_cooling_unit,
-/obj/item/cell/high{
-	charge = 100;
-	maxcharge = 15000
-	},
+/obj/item/cell/high,
 /obj/machinery/status_display{
 	pixel_x = 32
 	},

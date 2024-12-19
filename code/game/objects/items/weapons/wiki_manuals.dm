@@ -143,3 +143,6 @@
 	title = "Engineering Textbook"
 
 	page_link = "Guide_to_Engineering"
+
+#undef BOOK_WINDOW_BROWSE_SIZE
+#undef WIKI_PAGE_IFRAME

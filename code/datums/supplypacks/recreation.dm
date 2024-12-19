@@ -13,6 +13,7 @@
 
 /datum/supply_pack/recreation/foam_weapons
 	name = "Foam Weapon Crate"
+	desc = "A set of foam weapons, from AlliCo."
 	contains = list(
 			/obj/item/material/sword/foam = 2,
 			/obj/item/material/twohanded/baseballbat/foam = 2,
@@ -25,6 +26,7 @@
 
 /datum/supply_pack/recreation/donksoftweapons
 	name = "Donk-Soft Weapon Crate"
+	desc = "Donk-Soft foam dart guns, and extra darts, from AlliCo."
 	contains = list(
 			/obj/item/ammo_magazine/ammo_box/foam = 2,
 			/obj/item/gun/projectile/shotgun/pump/toy = 2,
@@ -37,6 +39,7 @@
 
 /datum/supply_pack/recreation/donksoftborg
 	name = "Donk-Soft Cyborg Blaster Crate"
+	desc = "A pair of modular attachable Donk-Soft foam dart guns, for installation in various cyborg platforms."
 	contains = list(
 			/obj/item/borg/upgrade/no_prod/toygun = 2,
 			)
@@ -46,6 +49,7 @@
 
 /datum/supply_pack/recreation/donksoftvend
 	name = "Donk-Soft Vendor Crate"
+	desc = "A Donk-Soft vending machine."
 	contains = list()
 	cost = 75
 	containertype = /obj/structure/largecrate/donksoftvendor
@@ -53,6 +57,7 @@
 
 /datum/supply_pack/recreation/lasertag
 	name = "Lasertag equipment"
+	desc = "A standard set of Laser Tag equipment."
 	contains = list(
 			/obj/item/gun/energy/lasertag/red,
 			/obj/item/clothing/suit/redtag,
@@ -65,6 +70,7 @@
 
 /datum/supply_pack/recreation/artscrafts
 	name = "Arts and Crafts supplies"
+	desc = "A set of painting, drawing, and photography supplies."
 	contains = list(
 			/obj/item/storage/fancy/crayons,
 			/obj/item/storage/fancy/markers,
@@ -89,6 +95,7 @@
 
 /datum/supply_pack/recreation/painters
 	name = "Station Painting Supplies"
+	desc = "A set of supplies for turning the walls and floors into your canvas."
 	cost = 10
 	containername = "station painting supplies crate"
 	containertype = /obj/structure/closet/crate/grayson
@@ -110,6 +117,7 @@
 
 /datum/supply_pack/recreation/cheapbait
 	name = "Cheap Fishing Bait"
+	desc = "Some cheap, low-quality bait for fishing with."
 	cost = 10
 	containername = "cheap bait crate"
 	containertype = /obj/structure/closet/crate/freezer
@@ -119,6 +127,7 @@
 
 /datum/supply_pack/randomised/recreation/cheapbait
 	name = "Deluxe Fishing Bait"
+	desc = "High-quality bait for masterful fishing."
 	cost = 40
 	containername = "deluxe bait crate"
 	containertype = /obj/structure/closet/crate/carp
@@ -130,6 +139,7 @@
 
 /datum/supply_pack/recreation/ltagturrets
 	name = "Laser Tag Turrets"
+	desc = "A pair of portable laser tag turrets."
 	cost = 40
 	containername = "laser tag turret crate"
 	containertype = /obj/structure/closet/crate/ward
@@ -140,6 +150,7 @@
 
 /datum/supply_pack/recreation/monster_bait
 	name = "Monster Bait Toy"
+	desc = "A simple toy for playing with various critters."
 	cost = 5
 	containername = "monster bait crate"
 	containertype = /obj/structure/closet/crate/allico
@@ -159,6 +170,7 @@
 */
 /datum/supply_pack/recreation/restraints
 	name = "Recreational Restraints"
+	desc = "You know what these are for. If you have to ask, you're too innocent for this end of the galaxy."
 	contains = list(
 			/obj/item/clothing/mask/muzzle,
 			/obj/item/clothing/glasses/sunglasses/blindfold,
@@ -178,6 +190,7 @@
 
 /datum/supply_pack/recreation/wolfgirl_cosplay_crate
 	name = "Wolfgirl Cosplay Crate"
+	desc = "A set of cosplay supplies."
 	contains = list(
 			/obj/item/clothing/head/fluff/wolfgirl = 1,
 			/obj/item/clothing/shoes/fluff/wolfgirl = 1,
@@ -191,6 +204,7 @@
 
 /datum/supply_pack/randomised/recreation/figures
 	name = "Action figures crate"
+	desc = "Five random action figures."
 	num_contained = 5
 	contains = list(
 			/obj/random/action_figure/supplypack
@@ -201,6 +215,7 @@
 
 /datum/supply_pack/recreation/collars
 	name = "Collar bundle"
+	desc = "Collars."
 	contains = list(
 			/obj/item/clothing/accessory/collar/shock = 1,
 			/obj/item/clothing/accessory/collar/spike = 1,
@@ -216,6 +231,7 @@
 
 /datum/supply_pack/recreation/shiny
 	name = "Shiny Clothing"
+	desc = "Questionably shiny clothing. If you have to ask, you're too innocent for this end of the galaxy."
 	contains = list(
 			/obj/item/clothing/mask/muzzle/ballgag = 1,
 			/obj/item/clothing/mask/muzzle/ballgag/ringgag = 1,
@@ -239,6 +255,7 @@
 //3/19/21
 /datum/supply_pack/recreation/smoleworld
 	name = "Smole Bulding Bricks"
+	desc = "A set of interlocking plastic bricks for building things with."
 	contains = list(
 			/obj/item/storage/smolebrickcase, /obj/item/storage/smolebrickcase,
 			)
@@ -248,6 +265,7 @@
 
 /datum/supply_pack/recreation/smolesnackplanets
 	name = "Snack planets pack"
+	desc = "Bags of planet-shaped snacks."
 	num_contained = 4
 	contains = list(
 			/obj/item/storage/bagoplanets, /obj/item/storage/bagoplanets
@@ -258,6 +276,7 @@
 
 /datum/supply_pack/recreation/pinkpillows
 	name = "Pillow Crate - Pink"
+	desc = "Six pink pillows."
 	contains = list(
 		/obj/item/bedsheet/pillow = 6
 	)
@@ -266,6 +285,7 @@
 
 /datum/supply_pack/recreation/tealpillows
 	name = "Pillow Crate - Teal"
+	desc = "Six teal pillows."
 	contains = list(
 		/obj/item/bedsheet/pillow/teal = 6
 	)
@@ -274,6 +294,7 @@
 
 /datum/supply_pack/recreation/whitepillows
 	name = "Pillow Crate - White"
+	desc = "Six white pillows."
 	contains = list(
 		/obj/item/bedsheet/pillow/white = 6
 	)
@@ -282,6 +303,7 @@
 
 /datum/supply_pack/recreation/blackpillows
 	name = "Pillow Crate - Black"
+	desc = "Six black pillows."
 	contains = list(
 		/obj/item/bedsheet/pillow/black = 6
 	)
@@ -290,6 +312,7 @@
 
 /datum/supply_pack/recreation/redpillows
 	name = "Pillow Crate - Red"
+	desc = "Six red pillows."
 	contains = list(
 		/obj/item/bedsheet/pillow/red = 6
 	)
@@ -298,6 +321,7 @@
 
 /datum/supply_pack/recreation/greenpillows
 	name = "Pillow Crate - Green"
+	desc = "Six green pillows."
 	contains = list(
 		/obj/item/bedsheet/pillow/green = 6
 	)
@@ -306,6 +330,7 @@
 
 /datum/supply_pack/recreation/orangepillows
 	name = "Pillow Crate - Orange"
+	desc = "Six orange pillows."
 	contains = list(
 		/obj/item/bedsheet/pillow/orange = 6
 	)
@@ -314,6 +339,7 @@
 
 /datum/supply_pack/recreation/yellowpillows
 	name = "Pillow Crate - Yellow"
+	desc = "Six yellow pillows."
 	contains = list(
 		/obj/item/bedsheet/pillow/yellow = 6
 	)
