@@ -427,8 +427,8 @@ SUBSYSTEM_DEF(statpanels)
 		COMSIG_MOB_LOGOUT = PROC_REF(on_mob_logout),
 	)
 	AddComponent(/datum/component/connect_mob_behalf, parent, connections)
-	RegisterSignal(parent.tracked_turf, COMSIG_ATOM_ENTERED, PROC_REF(turflist_changed))
-	RegisterSignal(parent.tracked_turf, COMSIG_ATOM_EXITED, PROC_REF(turflist_changed))
+	RegisterSignal(new_turf, COMSIG_ATOM_ENTERED, PROC_REF(turflist_changed))
+	RegisterSignal(new_turf, COMSIG_ATOM_EXITED, PROC_REF(turflist_changed))
 	parent.stat_panel.send_message("create_listedturf", new_turf)
 	parent.tracked_turf = new_turf
 
