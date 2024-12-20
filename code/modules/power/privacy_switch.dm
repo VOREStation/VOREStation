@@ -31,11 +31,11 @@
 		icon_state = "light0"
 		ghostnet.removeArea(A)
 		to_chat(user, span_notice("The area is no longer protected from ghost vison."))
-		log_and_message_admins("[user] toggled ghost vision in [A] on.")
+		log_and_message_admins("toggled ghost vision in [A] on.", user)
 	else
 		A.flags ^= AREA_BLOCK_GHOST_SIGHT
 		icon_state = "light1"
 		ghostnet.addArea(A)
 		to_chat(user, span_notice("The area is now protected from ghost vison."))
-		log_and_message_admins("[user] toggled ghost vision in [A] off.")
+		log_and_message_admins("toggled ghost vision in [A] off.", user)
 	nextUse = world.time + 5 MINUTES
