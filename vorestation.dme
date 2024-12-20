@@ -3750,6 +3750,7 @@
 #include "code\modules\power\port_gen_vr.dm"
 #include "code\modules\power\power.dm"
 #include "code\modules\power\powernet.dm"
+#include "code\modules\power\privacy_switch.dm"
 #include "code\modules\power\smes.dm"
 #include "code\modules\power\smes_construction.dm"
 #include "code\modules\power\smes_vr.dm"
