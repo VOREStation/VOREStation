@@ -14,7 +14,7 @@
 	blinded = 0
 	anchored = TRUE	//  don't get pushed around
 	var/list/visibleChunks = list()
-	var/datum/visualnet/visualnet
+	var/datum/visualnet/ghost/visualnet
 	var/use_static = TRUE
 	var/static_visibility_range = 16
 

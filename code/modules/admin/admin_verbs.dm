@@ -359,6 +359,9 @@
 		message_admins("[src] re-admined themself.", 1)
 		to_chat(src, span_filter_system(span_interface("You now have the keys to control the planet, or at least a small space station")))
 		remove_verb(src, /client/proc/readmin_self)
+		if(isobserver(mob))
+			var/mob/observer/dead/our_mob = mob
+			our_mob.visualnet?.removeVisibility(our_mob, src)
 
 /client/proc/deadmin_self()
 	set name = "De-admin self"
@@ -371,6 +374,9 @@
 			deadmin()
 			to_chat(src, span_filter_system(span_interface("You are now a normal player.")))
 			add_verb(src, /client/proc/readmin_self)
+		if(isobserver(mob))
+			var/mob/observer/dead/our_mob = mob
+			our_mob.visualnet?.visibility(our_mob, src)
 	feedback_add_details("admin_verb","DAS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/toggle_log_hrefs()

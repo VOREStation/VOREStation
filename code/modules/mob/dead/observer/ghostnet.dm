@@ -5,20 +5,31 @@
 /datum/visualnet/ghost
 	chunk_type = /datum/chunk/ghost
 
-// Removes a area from a chunk.
+/datum/visualnet/ghost/proc/removeVisibility(list/moved_eyes, client/C)
+	if(!islist(moved_eyes))
+		moved_eyes = moved_eyes ? list(moved_eyes) : list()
 
+	var/list/chunks_pre_seen = list()
+
+	for(var/mob/observer/eye/eye as anything in moved_eyes)
+		if(C)
+			chunks_pre_seen |= eye.visibleChunks
+
+	if(C)
+		for(var/datum/chunk/c as anything in chunks_pre_seen)
+			C.images -= c.obscured
+
+// Removes a area from a chunk.
 /datum/visualnet/ghost/proc/removeArea(area/A)
 	if(!A.flag_check(AREA_BLOCK_GHOST_SIGHT))
 		majorChunkChange(A, 0)
 
 // Add a area to a chunk.
-
 /datum/visualnet/ghost/proc/addArea(area/A)
 	if(A.flag_check(AREA_BLOCK_GHOST_SIGHT))
 		majorChunkChange(A, 1)
 
 // Used for ghost visible areas. Since portable areas can be in ANY chunk.
-
 /datum/visualnet/ghost/proc/updateArea(area/A)
 	if(A.flag_check(AREA_BLOCK_GHOST_SIGHT))
 		majorChunkChange(A, 1)
@@ -26,8 +37,6 @@
 		majorChunkChange(A, 0)
 
 /datum/visualnet/ghost/majorChunkChange(area/A, var/choice)
-	if(choice == 2)
-		return
 	for(var/entry in chunks)
 		var/datum/chunk/ghost/gchunk = chunks[entry]
 		for(var/turf/T in gchunk.turfs)
