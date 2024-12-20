@@ -85,6 +85,8 @@
 				if(!m)
 					seenby -= m
 					continue
+				if(isbelly(m.loc))
+					continue
 				var/client/client = m.client
 				if(client)
 					client.images += t.obfuscations[obfuscation.type]
