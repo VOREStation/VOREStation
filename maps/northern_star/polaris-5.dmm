@@ -1627,7 +1627,7 @@
 "Fo" = (/obj/structure/grille,/obj/structure/window/reinforced{dir = 1},/obj/structure/window/reinforced{dir = 4},/obj/machinery/door/firedoor/border_only,/turf/simulated/floor/plating,/area/outpost/engineering/hallway)
 "Fp" = (/turf/simulated/wall/r_wall,/area/outpost/engineering/storage)
 "Fq" = (/obj/machinery/cell_charger,/obj/structure/table/steel,/obj/structure/cable,/obj/item/frame/apc,/obj/item/module/power_control,/turf/simulated/floor/airless{icon_state = "asteroidplating2"},/area/mine/explored)
-"Fr" = (/obj/item/cell/high{charge = 100; maxcharge = 15000},/obj/structure/table/steel,/turf/simulated/floor/airless{icon_state = "asteroidplating2"},/area/mine/explored)
+"Fr" = (/obj/item/cell/high,/obj/structure/table/steel,/turf/simulated/floor/airless{icon_state = "asteroidplating2"},/area/mine/explored)
 "Fs" = (/turf/simulated/wall/r_wall,/area/outpost/engineering/kitchen)
 "Ft" = (/obj/structure/table/steel,/obj/effect/floor_decal/industrial/warning/dust,/turf/simulated/floor/tiled/asteroid_steel/airless,/area/mine/explored)
 "Fu" = (/obj/effect/floor_decal/industrial/warning/dust,/obj/machinery/light/small{dir = 4; pixel_y = 0},/turf/simulated/floor/tiled/asteroid_steel/airless,/area/outpost/engineering/kitchen)
@@ -2170,4 +2170,3 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 "}
-

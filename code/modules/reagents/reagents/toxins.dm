@@ -139,7 +139,7 @@
 	strength = 5
 
 /datum/reagent/toxin/phoron
-	name = REAGEMT_PHORON
+	name = REAGENT_PHORON
 	id = REAGENT_ID_PHORON
 	description = "Phoron in its liquid form."
 	taste_mult = 1.5

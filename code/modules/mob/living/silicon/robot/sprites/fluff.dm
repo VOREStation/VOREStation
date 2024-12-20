@@ -84,12 +84,6 @@
 	whitelist_ckey = "jademanique"
 	whitelist_charname = "B.A.U-Kingside"
 
-/datum/robot_sprite/fluff/jademanique/handle_extra_icon_updates(var/mob/living/silicon/robot/ourborg)
-	if(istype(ourborg.module_active, /obj/item/gun/energy/laser/mounted))
-		ourborg.add_overlay("[sprite_icon_state]-laser")
-	if(istype(ourborg.module_active, /obj/item/gun/energy/taser/mounted/cyborg))
-		ourborg.add_overlay("[sprite_icon_state]-taser")
-
 // L
 
 /datum/robot_sprite/fluff/lunarfleet

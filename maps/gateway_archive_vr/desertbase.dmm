@@ -298,10 +298,7 @@
 /obj/item/stack/material/glass{
 	amount = 15
 	},
-/obj/item/cell{
-	charge = 100;
-	maxcharge = 15000
-	},
+/obj/item/cell,
 /turf/simulated/shuttle/floor/darkred,
 /area/space)
 "ba" = (
@@ -556,7 +553,7 @@
 	name = "Flasher";
 	pixel_x = 27;
 	pixel_y = 0;
-	
+
 	},
 /turf/simulated/shuttle/floor/darkred,
 /area/space)

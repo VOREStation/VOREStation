@@ -60,6 +60,7 @@
 	min_pressure_protection = 0.5 * ONE_ATMOSPHERE
 	max_pressure_protection = 20 * ONE_ATMOSPHERE
 	body_parts_covered = HEAD|FACE|EYES
+	heat_protection = HEAD
 	cold_protection = HEAD
 	min_cold_protection_temperature = SPACE_HELMET_MIN_COLD_PROTECTION_TEMPERATURE
 	flash_protection = FLASH_PROTECTION_MODERATE
