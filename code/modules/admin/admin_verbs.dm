@@ -67,13 +67,11 @@
 		var/mob/observer/dead/ghost
 		if(build_mode)
 			togglebuildmode(body)
-			ghost = body.ghostize(1)
-			ghost.admin_ghosted = 1
+			ghost = body.ghostize(1, TRUE)
 			if(build_mode == "Yes")
 				togglebuildmode(ghost)
 		else
-			ghost = body.ghostize(1)
-			ghost.admin_ghosted = 1
+			ghost = body.ghostize(1, TRUE)
 		init_verbs()
 		if(body)
 			body.teleop = ghost
