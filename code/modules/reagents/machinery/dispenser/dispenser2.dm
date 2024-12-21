@@ -135,6 +135,10 @@
 			to_chat(user, span_warning("You don't see how \the [src] could dispense reagents into \the [RC]."))
 			return
 
+		if(istype(RC, /obj/item/reagent_containers/glass/cooler_bottle))
+			to_chat(user, span_warning("You don't see how \the [RC] could fit into \the [src]."))
+			return
+
 		container =  RC
 		user.drop_from_inventory(RC)
 		RC.loc = src
