@@ -11,41 +11,42 @@
 
 	var/list/chunks_pre_seen = list()
 
-	for(var/mob/observer/eye/eye as anything in moved_eyes)
+	for(var/mob/observer/dead/ghost as anything in moved_eyes)
 		if(C)
-			chunks_pre_seen |= eye.visibleChunks
+			chunks_pre_seen |= ghost.visibleChunks
 
 	if(C)
-		for(var/datum/chunk/c as anything in chunks_pre_seen)
-			C.images -= c.obscured
+		for(var/datum/chunk/ghost/c as anything in chunks_pre_seen)
+			for(var/mob/observer/dead/ghost as anything in moved_eyes)
+				c.remove(ghost)
 
-/datum/visualnet/proc/removeVisibility(list/moved_eyes, client/C)
+/datum/visualnet/ghost/proc/removeVisibility(list/moved_eyes, client/C)
 	if(!islist(moved_eyes))
 		moved_eyes = moved_eyes ? list(moved_eyes) : list()
 
 	var/list/chunks_post_seen = list()
 
-	for(var/mob/observer/eye/eye as anything in moved_eyes)
+	for(var/mob/observer/dead/ghost as anything in moved_eyes)
 		// 0xf = 15
-		var/static_range = eye.static_visibility_range
-		var/x1 = max(0, eye.x - static_range) & ~(CHUNK_SIZE - 1)
-		var/y1 = max(0, eye.y - static_range) & ~(CHUNK_SIZE - 1)
-		var/x2 = min(world.maxx, eye.x + static_range) & ~(CHUNK_SIZE - 1)
-		var/y2 = min(world.maxy, eye.y + static_range) & ~(CHUNK_SIZE - 1)
+		var/static_range = ghost.static_visibility_range
+		var/x1 = max(0, ghost.x - static_range) & ~(CHUNK_SIZE - 1)
+		var/y1 = max(0, ghost.y - static_range) & ~(CHUNK_SIZE - 1)
+		var/x2 = min(world.maxx, ghost.x + static_range) & ~(CHUNK_SIZE - 1)
+		var/y2 = min(world.maxy, ghost.y + static_range) & ~(CHUNK_SIZE - 1)
 
 		var/list/visibleChunks = list()
 
 		for(var/x = x1; x <= x2; x += CHUNK_SIZE)
 			for(var/y = y1; y <= y2; y += CHUNK_SIZE)
-				visibleChunks |= getChunk(x, y, eye.z)
+				visibleChunks |= getChunk(x, y, ghost.z)
 
-		var/list/remove = eye.visibleChunks - visibleChunks
+		var/list/add = visibleChunks - ghost.visibleChunks
 
-		for(var/datum/chunk/c as anything in remove)
-			c.remove(eye, FALSE)
+		for(var/datum/chunk/ghost/c as anything in add)
+			c.add(ghost, FALSE)
 
 		if(C)
-			chunks_post_seen |= eye.visibleChunks
+			chunks_post_seen |= ghost.visibleChunks
 
 	if(C)
 

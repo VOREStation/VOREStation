@@ -6,6 +6,27 @@
 /datum/chunk/ghost
 	var/list/hidden_areas = list()
 
+/datum/chunk/ghost/add(mob/observer/dead/ghost, add_images = TRUE)
+	if(add_images)
+		var/client/client = ghost.client
+		if(client)
+			client.images += obscured
+	ghost.visibleChunks += src
+	visible++
+	seenby += ghost
+	if(changed && !updating)
+		update()
+
+/datum/chunk/ghost/remove(mob/observer/dead/ghost, remove_images = TRUE)
+	if(remove_images)
+		var/client/client = ghost.client
+		if(client)
+			client.images -= obscured
+	ghost.visibleChunks -= src
+	seenby -= ghost
+	if(visible > 0)
+		visible--
+
 /datum/chunk/ghost/acquireVisibleTurfs(var/list/invisible)
 
 	for(var/area/A in hidden_areas)
@@ -85,7 +106,7 @@
 				if(!m)
 					seenby -= m
 					continue
-				if(isbelly(m.loc))
+				if(!m.checkStatic())
 					continue
 				var/client/client = m.client
 				if(client)

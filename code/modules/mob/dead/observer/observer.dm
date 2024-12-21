@@ -15,7 +15,6 @@
 	anchored = TRUE	//  don't get pushed around
 	var/list/visibleChunks = list()
 	var/datum/visualnet/ghost/visualnet
-	var/use_static = TRUE
 	var/static_visibility_range = 16
 
 	var/can_reenter_corpse
@@ -147,10 +146,14 @@
 	..()
 	visualnet = ghostnet
 
+/mob/observer/dead/proc/checkStatic()
+	return !(check_rights(R_ADMIN|R_FUN|R_EVENT|R_SERVER, 0, src) || (client && client.buildmode) || isbelly(loc))
+
 /mob/observer/dead/Moved(atom/old_loc, direction, forced)
 	. = ..()
-	use_static = !(check_rights(R_ADMIN|R_FUN|R_EVENT|R_SERVER, 0, src) || (client && client.buildmode))
-	if(visualnet && use_static)
+	if(isbelly(loc) && !isbelly(old_loc))
+		visualnet.addVisibility()
+	if(visualnet && checkStatic())
 		visualnet.visibility(src, client)
 
 /mob/observer/dead/Topic(href, href_list)

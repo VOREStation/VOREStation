@@ -1,6 +1,6 @@
 /obj/structure/privacyswitch
-	name = "ghost vision switch"
-	desc = "A special switch to block out ghost vision for an area."
+	name = "privacy switch"
+	desc = "A special switch to increase the room's privavy. (Blocks ghosts from seeing the area)"
 	icon = 'icons/obj/power_vr.dmi'
 	icon_state = "light0"
 	var/nextUse = 0
