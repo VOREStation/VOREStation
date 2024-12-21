@@ -14,8 +14,7 @@
 	blinded = 0
 	anchored = TRUE	//  don't get pushed around
 	var/list/visibleChunks = list()
-	var/datum/visualnet/visualnet
-	var/use_static = TRUE
+	var/datum/visualnet/ghost/visualnet
 	var/static_visibility_range = 16
 
 	var/can_reenter_corpse
@@ -92,13 +91,14 @@
 	var/last_revive_notification = null // world.time of last notification, used to avoid spamming players from defibs or cloners.
 	var/cleanup_timer // Refernece to a timer that will delete this mob if no client returns
 
-/mob/observer/dead/New(mob/body)
+/mob/observer/dead/New(mob/body, aghost = FALSE)
 
 	appearance = body
 	invisibility = INVISIBILITY_OBSERVER
 	layer = BELOW_MOB_LAYER
 	plane = PLANE_GHOSTS
 	alpha = 127
+	admin_ghosted = aghost
 
 	sight |= SEE_TURFS | SEE_MOBS | SEE_OBJS | SEE_SELF
 	see_invisible = SEE_INVISIBLE_OBSERVER
@@ -146,10 +146,14 @@
 	..()
 	visualnet = ghostnet
 
+/mob/observer/dead/proc/checkStatic()
+	return !(check_rights(R_ADMIN|R_FUN|R_EVENT|R_SERVER, 0, src) || (client && client.buildmode) || isbelly(loc))
+
 /mob/observer/dead/Moved(atom/old_loc, direction, forced)
 	. = ..()
-	use_static = !(check_rights(R_ADMIN|R_FUN|R_EVENT|R_SERVER, 0, src) || (client && client.buildmode))
-	if(visualnet && use_static)
+	if(isbelly(loc) && !isbelly(old_loc))
+		visualnet.addVisibility()
+	if(visualnet && checkStatic())
 		visualnet.visibility(src, client)
 
 /mob/observer/dead/Topic(href, href_list)
@@ -220,14 +224,14 @@ Works together with spawning an observer, noted above.
 		forceMove(O.loc)
 //RS Port #658 End
 
-/mob/proc/ghostize(var/can_reenter_corpse = 1)
+/mob/proc/ghostize(var/can_reenter_corpse = 1, var/aghost = FALSE)
 	if(key)
 		if(ishuman(src))
 			var/mob/living/carbon/human/H = src
 			if(H.vr_holder && !can_reenter_corpse)
 				H.exit_vr()
 				return 0
-		var/mob/observer/dead/ghost = new(src)	//Transfer safety to observer spawning proc.
+		var/mob/observer/dead/ghost = new(src, aghost)	//Transfer safety to observer spawning proc.
 		ghost.can_reenter_corpse = can_reenter_corpse
 		ghost.timeofdeath = src.timeofdeath //BS12 EDIT
 		ghost.key = key
@@ -463,7 +467,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 	//RS Port #658 Start
 	var/area/A = get_area(destination)
-	if(A?.flag_check(AREA_BLOCK_GHOSTS) && !isbelly(destination))
+	if(A?.flag_check(AREA_BLOCK_GHOSTS) && !isbelly(destination) && !admin_ghosted)
 		to_chat(src,span_warning("Sorry, that area does not allow ghosts."))
 		if(following)
 			stop_following()
