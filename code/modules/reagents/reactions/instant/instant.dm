@@ -158,8 +158,8 @@
 
 /decl/chemical_reaction/instant/respirodaxon
 	name = REAGENT_RESPIRODAXON
-	id = REAGENT_ID_HYRONALIN
-	result = REAGENT_ID_HYRONALIN
+	id = REAGENT_ID_RESPIRODAXON
+	result = REAGENT_ID_RESPIRODAXON
 	required_reagents = list(REAGENT_ID_DEXALINP = 2, REAGENT_ID_BIOMASS = 2, REAGENT_ID_PHORON = 1)
 	catalysts = list(REAGENT_ID_PHORON = 5)
 	inhibitors = list(REAGENT_ID_DEXALIN = 1)
