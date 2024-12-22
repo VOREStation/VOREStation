@@ -68,3 +68,6 @@
 
 #define istaurtail(A)	istype(A, /datum/sprite_accessory/tail/taur)
 #define islongtail(A)	istype(A, /datum/sprite_accessory/tail/longtail)
+
+// Diveable water
+#define isdiveablewater(A)	istype(A, /turf/simulated/floor/water/deep/ocean/diving)
