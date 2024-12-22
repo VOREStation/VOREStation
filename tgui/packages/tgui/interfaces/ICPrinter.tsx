@@ -40,7 +40,7 @@ export const ICPrinter = (props) => {
   const { metal, max_metal, metal_per_sheet, upgraded, can_clone } = data;
 
   return (
-    <Window width={600} height={660}>
+    <Window width={600} height={675}>
       <Window.Content>
         <Stack fill vertical>
           <Stack.Item>
