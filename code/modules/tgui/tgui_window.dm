@@ -322,6 +322,9 @@
 	if(istype(asset, /datum/asset/spritesheet))
 		var/datum/asset/spritesheet/spritesheet = asset
 		send_message("asset/stylesheet", spritesheet.css_filename())
+	else if(istype(asset, /datum/asset/spritesheet_batched))
+		var/datum/asset/spritesheet_batched/spritesheet = asset
+		send_message("asset/stylesheet", spritesheet.css_filename())
 	send_message("asset/mappings", asset.get_url_mappings())
 
 /**

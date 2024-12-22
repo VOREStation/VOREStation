@@ -1,5 +1,3 @@
-#define ASSET_CROSS_ROUND_CACHE_DIRECTORY "cache/assets"
-
 //These datums are used to populate the asset cache, the proc "register()" does this.
 //Place any asset datums you create in asset_list_items.dm
 
@@ -63,6 +61,19 @@ GLOBAL_LIST_EMPTY(asset_datums)
 /datum/asset/proc/should_refresh()
 	return !cross_round_cachable || !CONFIG_GET(flag/cache_assets)
 
+/// Immediately regenerate the asset, overwriting any cache.
+/datum/asset/proc/regenerate()
+	SHOULD_CALL_PARENT(FALSE)
+	unregister()
+	cached_serialized_url_mappings = null
+	cached_serialized_url_mappings_transport_type = null
+	register()
+
+/// Unregisters any assets from the transport.
+/datum/asset/proc/unregister()
+	SHOULD_CALL_PARENT(FALSE)
+	CRASH("unregister() not implemented for asset [type]!")
+
 /// Simply takes any generated file and saves it to the round-specific /logs folder. Useful for debugging potential issues with spritesheet generation/display.
 /// Only called when the SAVE_SPRITESHEETS config option is uncommented.
 /datum/asset/proc/save_to_logs(file_name, file_location)
@@ -117,6 +128,11 @@ GLOBAL_LIST_EMPTY(asset_datums)
 		var/datum/asset/A = get_asset_datum(type)
 		. = A.send(C) || .
 
+/datum/asset/group/unregister()
+	for(var/type in children)
+		var/datum/asset/A = get_asset_datum(type)
+		A.unregister()
+
 /datum/asset/group/get_url_mappings()
 	. = list()
 	for(var/type in children)
@@ -168,6 +184,35 @@ GLOBAL_LIST_EMPTY(asset_datums)
 		should_refresh = !fexists(css_cache_filename()) || !fexists(data_cache_filename())
 
 	return should_refresh
+
+/datum/asset/spritesheet/unregister()
+	SSassets.transport.unregister_asset("spritesheet_[name].css")
+	if(length(sizes))
+		for(var/size_id in sizes)
+			SSassets.transport.unregister_asset("[name]_[size_id].png")
+	else
+		for(var/sheet in cached_spritesheets_needed)
+			SSassets.transport.unregister_asset(sheet)
+
+/datum/asset/spritesheet/regenerate()
+	unregister()
+	sprites = list()
+	fdel("[ASSET_CROSS_ROUND_CACHE_DIRECTORY]/spritesheet.[name].css")
+	for(var/sheet in cached_spritesheets_needed)
+		fdel("[ASSET_CROSS_ROUND_CACHE_DIRECTORY]/spritesheet.[sheet].png")
+	fdel("data/spritesheets/spritesheet_[name].css")
+	for(var/size_id in sizes)
+		fdel("data/spritesheets/[name]_[size_id].png")
+	sizes = list()
+	to_generate = list()
+	cached_serialized_url_mappings = null
+	cached_serialized_url_mappings_transport_type = null
+	fully_generated = FALSE
+	var/old_load = load_immediately
+	load_immediately = TRUE
+	create_spritesheets()
+	realize_spritesheets(yield = FALSE)
+	load_immediately = old_load
 
 /datum/asset/spritesheet/register()
 	SHOULD_NOT_OVERRIDE(TRUE)
@@ -620,5 +665,8 @@ GLOBAL_LIST_EMPTY(asset_datums)
 /datum/asset/json/proc/generate()
 	SHOULD_CALL_PARENT(FALSE)
 	CRASH("generate() not implemented for [type]!")
+
+/datum/asset/json/unregister()
+	SSassets.transport.unregister_asset("[name].json")
 
 #undef ASSET_CROSS_ROUND_CACHE_DIRECTORY
