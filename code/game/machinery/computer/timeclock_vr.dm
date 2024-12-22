@@ -88,7 +88,6 @@
 	data["job_datum"] = null
 	data["allow_change_job"] = null
 	data["job_choices"] = null
-	data["on_cooldown"] = null
 	if(card)
 		data["card"] = "[card]"
 		data["assignment"] = card.assignment
