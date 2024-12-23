@@ -44,7 +44,9 @@
 	vore_bump_emote = "pounces on"
 
 /mob/living/simple_mob/vore/sonadile/init_vore()
-	..()
+	if(!voremob_loaded)
+		return
+	. = ..()
 	var/obj/belly/B = vore_selected
 	B.name = "stomach"
 	B.desc = "The creature's huge maw drops down over your body, the long neck preventing it from barely having to shift its torso at all. The jaws quickly travel down you, slathering you in a drool as you're quickly stuffed through the flexible muscle of the throat. In a matter of seconds you are effortlessly lifted from the ground, your entire figure now reduced to a bulge within the neck of the beast, your feet soon vanishing into its mouth with a visceral gulp. The journey down is a long and slow one, the gullet squeezing you steadily along with heavy rippling contractions, the sonadile is quite content that you're heading in the right direction. With every inch, the world around you grows louder with the sound of a heartbeat and the gutteral grumbles of your upcoming destination. Before long you are squeezed down through a tight fleshy valve and deposited in the stomach of the reptile, walls immediately bearing down on you from every direction to ensure that you're tightly confined with little room to move. Hot, humid and slick with all manner of thick and thin liquids, this place isn't treating you any different from whatever else this animal likes to eat."

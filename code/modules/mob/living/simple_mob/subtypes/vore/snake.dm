@@ -64,7 +64,9 @@
 	swallowTime = 2 SECONDS // Hungry little bastards.
 
 /mob/living/simple_mob/vore/aggressive/giant_snake/init_vore()
-	..()
+	if(!voremob_loaded)
+		return
+	. = ..()
 	var/obj/belly/B = vore_selected
 	B.name = "stomach"
 	B.desc = "As the giant snake's closed jaws seal you away from the outside world, you are immediately greeted with a seemingly endless passage of tightly squeezing flesh. Hot and coated in thick, body-clinging slime, the serpent's stomach walls immediately get to work at rhythmically pulsing and contracting against your figure, slowly tugging you deeper into its ravenous clutches."

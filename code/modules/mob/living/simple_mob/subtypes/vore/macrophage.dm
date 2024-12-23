@@ -62,7 +62,7 @@
 
 /mob/living/simple_mob/vore/aggressive/macrophage/init_vore()
 
-	if(LAZYLEN(vore_organs))
+	if(!voremob_loaded || LAZYLEN(vore_organs))
 		return TRUE
 
 	var/obj/belly/B = new /obj/belly/macrophage(src)

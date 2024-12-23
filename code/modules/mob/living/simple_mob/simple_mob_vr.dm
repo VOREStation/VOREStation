@@ -54,6 +54,8 @@
 
 	var/nom_mob = FALSE //If a mob is meant to be hostile for vore purposes but is otherwise not hostile, if true makes certain AI ignore the mob
 
+	var/voremob_loaded = FALSE // On-demand belly loading.
+
 // Release belly contents before being gc'd!
 /mob/living/simple_mob/Destroy()
 	release_vore_contents()
@@ -208,7 +210,7 @@
 
 // Make sure you don't call ..() on this one, otherwise you duplicate work.
 /mob/living/simple_mob/init_vore()
-	if(!vore_active || no_vore)
+	if(!vore_active || no_vore || !voremob_loaded)
 		return
 
 	if(!IsAdvancedToolUser())

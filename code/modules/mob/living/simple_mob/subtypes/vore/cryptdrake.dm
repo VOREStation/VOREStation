@@ -69,7 +69,9 @@
 	movement_cooldown = -1
 
 /mob/living/simple_mob/vore/cryptdrake/init_vore()
-	. = ..()
+	if(!voremob_loaded)
+		return
+	.=..()
 	var/obj/belly/B = vore_selected
 	B.name = "stomach"
 	B.desc = "The enormous beast snaps it's boney jaws around your form, effortlessly lifting you from the ground. Throwing it's head backwards, your body is tossed up momentarily as the maw parts wider, only for you to descend rapidly moments later. You're caught in the creature's throat for a moment, contracting dark purple flesh holding tightly onto you, there's no going back at this point. The peristaltic motions squeeze you down this tunnel towards your final destination, where you're soon relieved of the intense squelching to be pushed into a move flexible, stretching chamber. Immediately coated in caustic oozes, the world around you seems more than eager to ensure that you're soaked over every inch, wrinkled walls twisting and grinding around your body. The drake's stomach clenches and compresses over you rhythmically, attempting to eagerly add you to the soup of fluids that fill this sloshing gut. Omnipresent sounds of groaning, gurgling and burbling bodily functions signify just how active this process already is."

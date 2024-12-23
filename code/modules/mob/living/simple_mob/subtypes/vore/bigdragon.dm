@@ -516,6 +516,8 @@ I think I covered everything.
 ///	My thanks to Raeschen for these descriptions
 
 /mob/living/simple_mob/vore/bigdragon/init_vore()
+	if(!voremob_loaded || LAZYLEN(vore_organs))
+		return
 	var/obj/belly/B = new /obj/belly/dragon/maw(src)
 	B.emote_lists[DM_HOLD] = list(
 		"The dragon's breath continues to pant over you rhythmically, each exhale carrying a bone-shivering growl",
