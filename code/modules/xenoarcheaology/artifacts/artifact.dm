@@ -1,9 +1,3 @@
-//Xenoarch machinery spawning code!
-//These are colloquially refered to 'large' artifacts.
-//The below dictates the icon, description, and the activation requirement.
-//Additionally, it updates the icon based on if it's active or not.
-//What the artifact does itself is dictated by effect.dm.
-
 /obj/machinery/artifact
 	name = "alien artifact"
 	desc = "A large alien device."
@@ -39,7 +33,7 @@
 	if(!istype(artifact_master))
 		return
 
-	var/datum/artifact_effect/my_effect = artifact_master.get_primary() //Gets the primary effect of the artifact.
+	var/datum/artifact_effect/my_effect = artifact_master.get_primary()
 
 	if(!isnull(predefined_icon_num))
 		icon_num = predefined_icon_num
@@ -54,22 +48,27 @@
 		"It seems to draw you inward as you look it at.",
 		"Something twinkles faintly as you look at it.",
 		"It's mesmerizing to behold.")
-		my_effect.trigger = pick(TRIGGER_ENERGY, TRIGGER_TOUCH)
+		if(prob(50))
+			my_effect.trigger = TRIGGER_ENERGY
 	else if(icon_num == 9 || icon_num == 17 || icon_num == 19)
 		name = "alien computer"
 		desc = "It is covered in strange markings."
-		my_effect.trigger = TRIGGER_TOUCH
+		if(prob(75))
+			my_effect.trigger = TRIGGER_TOUCH
 	else if(icon_num == 10)
 		desc = "A large alien device, there appear to be some kind of vents in the side."
-		my_effect.trigger = pick(TRIGGER_ENERGY, TRIGGER_HEAT, TRIGGER_COLD, TRIGGER_PHORON, TRIGGER_OXY, TRIGGER_CO2, TRIGGER_NITRO)
+		if(prob(50))
+			my_effect.trigger = pick(TRIGGER_ENERGY, TRIGGER_HEAT, TRIGGER_COLD, TRIGGER_PHORON, TRIGGER_OXY, TRIGGER_CO2, TRIGGER_NITRO)
 	else if(icon_num == 11)
 		name = "sealed alien pod"
 		desc = "A strange alien device."
-		my_effect.trigger = pick(TRIGGER_WATER, TRIGGER_ACID, TRIGGER_VOLATILE, TRIGGER_TOXIN)
+		if(prob(25))
+			my_effect.trigger = pick(TRIGGER_WATER, TRIGGER_ACID, TRIGGER_VOLATILE, TRIGGER_TOXIN)
 	else if(icon_num == 12 || icon_num == 14)
 		name = "intricately carved statue"
 		desc = "A strange statue."
-		my_effect.trigger = pick(TRIGGER_TOUCH, TRIGGER_HEAT, TRIGGER_COLD, TRIGGER_PHORON, TRIGGER_OXY, TRIGGER_CO2, TRIGGER_NITRO)
+		if(prob(60))
+			my_effect.trigger = pick(TRIGGER_TOUCH, TRIGGER_HEAT, TRIGGER_COLD, TRIGGER_PHORON, TRIGGER_OXY, TRIGGER_CO2, TRIGGER_NITRO)
 
 /obj/machinery/artifact/update_icon()
 	..()
