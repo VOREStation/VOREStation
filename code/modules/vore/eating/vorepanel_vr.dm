@@ -1769,35 +1769,56 @@ var/global/list/belly_colorable_only_fullscreens = list("a_synth_flesh_mono",
 				return FALSE
 			else
 				host.vore_selected.belly_sprite_to_affect = belly_choice
-				host.update_fullness()
+				if(isanimal(host))
+					host.update_icon()
+				else
+					host.update_fullness()
 			. = TRUE
 		if("b_affects_vore_sprites")
 			host.vore_selected.affects_vore_sprites = !host.vore_selected.affects_vore_sprites
-			host.update_fullness()
+			if(isanimal(host))
+				host.update_icon()
+			else
+				host.update_fullness()
 			. = TRUE
 		if("b_count_absorbed_prey_for_sprites")
 			host.vore_selected.count_absorbed_prey_for_sprite = !host.vore_selected.count_absorbed_prey_for_sprite
-			host.update_fullness()
+			if(isanimal(host))
+				host.update_icon()
+			else
+				host.update_fullness()
 			. = TRUE
 		if("b_absorbed_multiplier")
 			var/absorbed_multiplier_input = input(user, "Set the impact absorbed prey's size have on your vore sprite. 1 means no scaling, 0.5 means absorbed prey count half as much, 2 means absorbed prey count double. (Range from 0.1 - 3)", "Absorbed Multiplier") as num|null
 			if(!isnull(absorbed_multiplier_input))
 				host.vore_selected.absorbed_multiplier = CLAMP(absorbed_multiplier_input, 0.1, 3)
-				host.update_fullness()
+				if(isanimal(host))
+					host.update_icon()
+				else
+					host.update_fullness()
 			. = TRUE
 		if("b_count_items_for_sprites")
 			host.vore_selected.count_items_for_sprite = !host.vore_selected.count_items_for_sprite
-			host.update_fullness()
+			if(isanimal(host))
+				host.update_icon()
+			else
+				host.update_fullness()
 			. = TRUE
 		if("b_item_multiplier")
 			var/item_multiplier_input = input(user, "Set the impact items will have on your vore sprite. 1 means a belly with 8 normal-sized items will count as 1 normal sized prey-thing's worth, 0.5 means items count half as much, 2 means items count double. (Range from 0.1 - 10)", "Item Multiplier") as num|null
 			if(!isnull(item_multiplier_input))
 				host.vore_selected.item_multiplier = CLAMP(item_multiplier_input, 0.1, 10)
-				host.update_fullness()
+				if(isanimal(host))
+					host.update_icon()
+				else
+					host.update_fullness()
 			. = TRUE
 		if("b_health_impacts_size")
 			host.vore_selected.health_impacts_size = !host.vore_selected.health_impacts_size
-			host.update_fullness()
+			if(isanimal(host))
+				host.update_icon()
+			else
+				host.update_fullness()
 			. = TRUE
 		if("b_resist_animation")
 			host.vore_selected.resist_triggers_animation = !host.vore_selected.resist_triggers_animation
@@ -1806,7 +1827,10 @@ var/global/list/belly_colorable_only_fullscreens = list("a_synth_flesh_mono",
 			var/size_factor_input = input(user, "Set the impact all belly content's collective size has on your vore sprite. 1 means no scaling, 0.5 means content counts half as much, 2 means contents count double. (Range from 0.1 - 3)", "Size Factor") as num|null
 			if(!isnull(size_factor_input))
 				host.vore_selected.size_factor_for_sprite = CLAMP(size_factor_input, 0.1, 3)
-				host.update_fullness()
+				if(isanimal(host))
+					host.update_icon()
+				else
+					host.update_fullness()
 			. = TRUE
 		if("b_vore_sprite_flags")
 			var/list/menu_list = host.vore_selected.vore_sprite_flag_list.Copy()
