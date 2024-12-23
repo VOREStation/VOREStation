@@ -458,3 +458,12 @@ var/list/toxic_reagents = list(TOXIN_PATH)
 		//NITROGEN GAS ACTIVATION
 		if(my_effect.trigger == TRIGGER_NITRO && (trigger_nitro ^ my_effect.activated))
 			my_effect.ToggleActivate()
+
+#undef HYDROGEN_PATH
+#undef WATER_PATH
+#undef ACID_PATH
+#undef DIETHYLAMINE_PATH
+#undef PHORON_PATH
+#undef HYDROPHORON_PATH
+#undef THERMITE_PATH
+#undef TOXIN_PATH
