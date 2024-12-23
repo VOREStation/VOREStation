@@ -446,8 +446,8 @@ var/list/mining_overlay_cache = list()
 				return
 
 			var/obj/item/melee/shock_maul/S = W
-			if(!S.wielded || !S.status)	//if we're not wielded OR not powered up, do nothing
-				to_chat(user, span_warning("\The [src] must be wielded in two hands and powered on to be used for mining!"))
+			if(!S.wielded)
+				to_chat(user, span_warning("\The [W] must be wielded in two hands to be used for mining!"))
 				return
 
 			var/newDepth = excavation_level + S.excavation_amount // Used commonly below
@@ -461,6 +461,8 @@ var/list/mining_overlay_cache = list()
 					wreckfinds(S.destroy_artefacts)
 
 			to_chat(user, span_notice("You smash through \the [src][fail_message]."))
+			user.visible_message(span_warning("\The [src] discharges with a thunderous, hair-raising crackle!"))
+			playsound(src, 'sound/weapons/resonator_blast.ogg', 100, 1, -1)
 
 			if(newDepth >= 200) // This means the rock is mined out fully
 				if(S.destroy_artefacts)
@@ -471,7 +473,7 @@ var/list/mining_overlay_cache = list()
 
 			excavation_level += S.excavation_amount
 			update_archeo_overlays(S.excavation_amount)
-
+			geologic_data = new /datum/geosample(src)
 			//drop some rocks
 			next_rock += S.excavation_amount
 			while(next_rock > 50)
@@ -479,12 +481,6 @@ var/list/mining_overlay_cache = list()
 				var/obj/item/ore/O = new(src)
 				geologic_data.UpdateNearbyArtifactInfo(src)
 				O.geologic_data = geologic_data
-
-			user.visible_message(span_warning("\The [src] discharges with a thunderous, hair-raising crackle!"))
-			playsound(src, 'sound/weapons/resonator_blast.ogg', 100, 1, -1)
-			S.deductcharge()
-			S.status = 0
-			S.update_held_icon()
 
 		if (istype(W, /obj/item/pickaxe))
 			if(!istype(user.loc, /turf))
@@ -527,7 +523,7 @@ var/list/mining_overlay_cache = list()
 
 				excavation_level += P.excavation_amount
 				update_archeo_overlays(P.excavation_amount)
-
+				geologic_data = new /datum/geosample(src)
 				//drop some rocks
 				next_rock += P.excavation_amount
 				while(next_rock > 50)
@@ -595,6 +591,7 @@ var/list/mining_overlay_cache = list()
 	if(!mineral)
 		return
 	clear_ore_effects()
+	geologic_data = new /datum/geosample(src)
 	var/obj/item/ore/O = new mineral.ore (src)
 	if(istype(O))
 		geologic_data.UpdateNearbyArtifactInfo(src)
@@ -668,9 +665,10 @@ var/list/mining_overlay_cache = list()
 /turf/simulated/mineral/proc/excavate_find(var/is_clean = 0, var/datum/find/F)
 	//with skill and luck, players can cleanly extract finds
 	//otherwise, they come out inside a chunk of rock
+	geologic_data = new /datum/geosample(src)
 	var/obj/item/X
 	if(is_clean)
-		X = new /obj/item/archaeological_find(src, new_item_type = F.find_type)
+		X = new /obj/item/archaeological_find(src, F.find_type) // CHOMPEdit
 	else
 		X = new /obj/item/strangerock(src, inside_item_type = F.find_type)
 		geologic_data.UpdateNearbyArtifactInfo(src)

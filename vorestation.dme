@@ -211,6 +211,7 @@
 #include "code\_helpers\traits.dm"
 #include "code\_helpers\turfs.dm"
 #include "code\_helpers\type2type.dm"
+#include "code\_helpers\typelists.dm"
 #include "code\_helpers\unsorted.dm"
 #include "code\_helpers\unsorted_vr.dm"
 #include "code\_helpers\verbs.dm"
