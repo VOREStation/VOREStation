@@ -632,7 +632,6 @@
 		else if(M.reagents)
 			M.reagents.trans_to_holder(Pred.bloodstr, M.reagents.total_volume, 0.5, TRUE)
 
-	owner.update_fullness()
 	//Incase they have the loop going, let's double check to stop it.
 	M.stop_sound_channel(CHANNEL_PREYLOOP)
 	// Delete the digested mob
@@ -642,6 +641,8 @@
 	qdel(M)
 	if(isanimal(owner))
 		owner.update_icon()
+	else
+		owner.update_fullness()
 
 // Handle a mob being absorbed
 /obj/belly/proc/absorb_living(mob/living/M)
@@ -689,9 +690,10 @@
 
 	//Update owner
 	owner.updateVRPanel()
-	owner.update_fullness()
 	if(isanimal(owner))
 		owner.update_icon()
+	else
+		owner.update_fullness()
 	// Finally, if they're to be sent to a special pudge belly, send them there
 	if(transferlocation_absorb)
 		var/obj/belly/dest_belly
