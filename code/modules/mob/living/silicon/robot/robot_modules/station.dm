@@ -498,6 +498,8 @@ var/global/list/robot_modules = list(
 	else if(F.times_used)
 		F.times_used--
 	var/obj/item/gun/energy/robotic/taser/T = locate() in src.modules
+	if(!T)
+		return
 	if(T.power_supply.charge < T.power_supply.maxcharge)
 		T.power_supply.give(T.charge_cost * amount)
 		T.update_icon()
