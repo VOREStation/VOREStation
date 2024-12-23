@@ -140,7 +140,9 @@
 	. = ..()
 
 /mob/living/simple_mob/shadekin/init_vore()
-	if(!voremob_loaded || LAZYLEN(vore_organs))
+	if(!voremob_loaded)
+		return
+	if(LAZYLEN(vore_organs))
 		return
 
 	var/obj/belly/B = new /obj/belly(src)
