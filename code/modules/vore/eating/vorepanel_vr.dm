@@ -1763,7 +1763,7 @@ var/global/list/belly_colorable_only_fullscreens = list("a_synth_flesh_mono",
 			qdel(host.vore_selected)
 			host.vore_selected = host.vore_organs[1]
 			. = TRUE
-			if("b_belly_sprite_to_affect")
+		if("b_belly_sprite_to_affect")
 			var/belly_choice = tgui_input_list(user, "Which belly sprite do you want your [lowertext(host.vore_selected.name)] to affect?","Select Region", host.vore_icon_bellies)
 			if(!belly_choice) //They cancelled, no changes
 				return FALSE
