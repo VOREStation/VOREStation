@@ -4,7 +4,7 @@
 	icon_state = "ano01"
 	var/find_type = 0
 
-/obj/item/archaeological_find/Initialize(mapload, var/new_item_type)
+/obj/item/archaeological_find/Initialize(mapload, var/new_item_type) // CHOMPEdit NEW -> Initialize
 	. = ..()
 	if(new_item_type)
 		find_type = new_item_type
@@ -15,13 +15,14 @@
 	icon_state = "unknown[rand(1,4)]"
 	var/additional_desc = ""
 	var/obj/item/new_item
+	var/obj/item/secondary_item //Allows for more than one item to be found at a time. For sets of items that should be the same.
 	var/source_material = ""
 	var/apply_material_decorations = TRUE
 	var/apply_image_decorations = FALSE
 	var/material_descriptor = ""
 	var/apply_prefix = TRUE
 
-	var/become_anomalous = FALSE
+	var/become_anomalous = FALSE //This, simply put, gives the item either precursor or an arcane tech level, along with setting a random tech level to 4-7.
 
 	if(prob(40))
 		material_descriptor = pick("rusted ","dusty ","archaic ","fragile ", "damaged", "pristine")
@@ -63,12 +64,12 @@
 				additional_desc = "It [pick("whispers faintly","makes a quiet roaring sound","whistles softly","thrums quietly","throbs")] if you put it to your ear."
 		if(ARCHAEO_CUTLERY)
 			item_type = "[pick("fork","spoon","knife")]"
-			if(prob(25))
-				new_item = new /obj/item/material/kitchen/utensil/fork(src.loc)
-			else if(prob(50))
-				new_item = new /obj/item/material/knife(src.loc)
-			else
-				new_item = new /obj/item/material/kitchen/utensil/spoon(src.loc)
+			var/list/possible_cutlery = list(/obj/item/material/kitchen/utensil/fork,
+			/obj/item/material/knife,
+			/obj/item/material/kitchen/utensil/spoon)
+
+			var/new_cutlery = pick(possible_cutlery)
+			new_item = new new_cutlery(src.loc)
 			if(prob(60))
 				LAZYSET(new_item.origin_tech, TECH_ARCANE, 1)
 			additional_desc = "[pick("It's like no [item_type] you've ever seen before",\
@@ -90,6 +91,23 @@
 			icon = 'icons/obj/xenoarchaeology.dmi'
 			item_type = "instrument"
 			icon_state = "instrument"
+			var/list/possible_instrument = list(/obj/item/instrument/violin,
+			/obj/item/instrument/banjo,
+			/obj/item/instrument/guitar,
+			/obj/item/instrument/eguitar,
+			/obj/item/instrument/accordion,
+			/obj/item/instrument/trumpet,
+			/obj/item/instrument/saxophone,
+			/obj/item/instrument/trombone,
+			/obj/item/instrument/recorder,
+			/obj/item/instrument/harmonica,
+			/obj/item/instrument/bikehorn,
+			/obj/item/instrument/piano_synth,
+			/obj/item/instrument/glockenspiel,
+			/obj/item/instrument/musicalmoth)
+
+			var/new_instrument = pick(possible_instrument)
+			new_item = new new_instrument(src.loc)
 			if(prob(30))
 				become_anomalous = TRUE
 			if(prob(30))
@@ -119,12 +137,22 @@
 			apply_image_decorations = TRUE
 		if(ARCHAEO_HANDCUFFS)
 			item_type = "handcuffs"
-			new_item = new /obj/item/handcuffs(src.loc)
+			var/list/possible_cuffs = list(/obj/item/handcuffs,
+			/obj/item/handcuffs/legcuffs,
+			/obj/item/handcuffs/fuzzy,
+			/obj/item/handcuffs/legcuffs/bola)
+
+			var/new_cuffs = pick(possible_cuffs)
+			new_item = new new_cuffs(src.loc)
 			additional_desc = "[pick("They appear to be for securing two things together","Looks kinky","Doesn't seem like a children's toy")]."
 		if(ARCHAEO_BEARTRAP)
 			item_type = "[pick("wicked","evil","byzantine","dangerous")] looking [pick("device","contraption","thing","trap")]"
 			apply_prefix = FALSE
-			new_item = new /obj/item/beartrap(src.loc)
+			var/list/possible_trap = list(/obj/item/beartrap,
+			/obj/item/beartrap/hunting)
+
+			var/new_trap = pick(possible_trap)
+			new_item = new new_trap(src.loc)
 			if(prob(40))
 				new_item.color = rgb(rand(0,255),rand(0,255),rand(0,255))
 			additional_desc = "[pick("It looks like it could take a limb off",\
@@ -132,7 +160,14 @@
 			"There appear to be [pick("dark red","dark purple","dark green","dark blue")] stains along part of it")]."
 		if(ARCHAEO_LIGHTER)
 			item_type = "[pick("cylinder","tank","chamber")]"
-			new_item = new /obj/item/flame/lighter(src.loc)
+			var/list/possible_lighter = list(/obj/item/flame/lighter,
+			/obj/item/flame/lighter/zippo,
+			/obj/item/flame/lighter/zippo/capitalist,
+			/obj/item/flame/lighter/zippo/communist,
+			/obj/item/flame/lighter/zippo/rainbow)
+
+			var/new_lighter = pick(possible_lighter)
+			new_item = new new_lighter(src.loc)
 			additional_desc = "There is a tiny device attached."
 			if(prob(30))
 				apply_image_decorations = TRUE
@@ -150,22 +185,27 @@
 				apply_image_decorations = TRUE
 		if(ARCHAEO_GASTANK)
 			item_type = "[pick("cylinder","tank","chamber")]"
-			if(prob(25))
-				new_item = new /obj/item/tank/air(src.loc)
-			else if(prob(50))
-				new_item = new /obj/item/tank/anesthetic(src.loc)
-			else
-				new_item = new /obj/item/tank/phoron(src.loc)
+			var/list/possible_tank = list(/obj/item/tank/air,
+			/obj/item/tank/anesthetic,
+			/obj/item/tank/nitrogen,
+			/obj/item/tank/phoron,
+			/obj/item/tank/phoron/pressurized)
+
+			var/new_tank = pick(possible_tank)
+			new_item = new new_tank(src.loc)
 			icon_state = pick("oxygen","oxygen_fr","oxygen_f","phoron","anesthetic")
 			additional_desc = "It [pick("gloops","sloshes")] slightly when you shake it."
 		if(ARCHAEO_TOOL)
 			item_type = "tool"
-			if(prob(25))
-				new_item = new /obj/item/tool/wrench(src.loc)
-			else if(prob(25))
-				new_item = new /obj/item/tool/crowbar(src.loc)
-			else
-				new_item = new /obj/item/tool/screwdriver(src.loc)
+			var/list/possible_tool = list(/obj/item/tool/wrench/hybrid,
+			/obj/item/tool/crowbar/hybrid,
+			/obj/item/tool/screwdriver/hybrid,
+			/obj/item/weldingtool/experimental/hybrid,
+			/obj/item/tool/wirecutters/hybrid
+			)
+
+			var/new_tool = pick(possible_tool)
+			new_item = new new_tool(src.loc)
 			if(prob(40))
 				new_item.color = rgb(rand(0,255),rand(0,255),rand(0,255))
 				apply_image_decorations = TRUE
@@ -177,14 +217,25 @@
 			var/list/possible_spawns = list()
 			possible_spawns += /obj/item/stack/material/steel
 			possible_spawns += /obj/item/stack/material/plasteel
-			possible_spawns += /obj/item/stack/material/glass
-			possible_spawns += /obj/item/stack/material/glass/reinforced
-			possible_spawns += /obj/item/stack/material/phoron
+			possible_spawns += /obj/item/stack/material/durasteel
+			possible_spawns += /obj/item/stack/material/titanium
+			possible_spawns += /obj/item/stack/material/iron
+			possible_spawns += /obj/item/stack/material/lead
 			possible_spawns += /obj/item/stack/material/gold
 			possible_spawns += /obj/item/stack/material/silver
+			possible_spawns += /obj/item/stack/material/platinum
 			possible_spawns += /obj/item/stack/material/uranium
+			possible_spawns += /obj/item/stack/material/mhydrogen
+			possible_spawns += /obj/item/stack/material/deuterium
+			possible_spawns += /obj/item/stack/material/tritium
+			possible_spawns += /obj/item/stack/material/osmium
+			possible_spawns += /obj/item/stack/material/graphite
+			possible_spawns += /obj/item/stack/material/bronze
+			possible_spawns += /obj/item/stack/material/tin
+			possible_spawns += /obj/item/stack/material/copper
+			possible_spawns += /obj/item/stack/material/aluminium
+			possible_spawns += /obj/item/stack/material/phoron
 			possible_spawns += /obj/item/stack/material/sandstone
-			possible_spawns += /obj/item/stack/material/silver
 
 			var/new_type = pick(possible_spawns)
 			new_item = new new_type(src.loc)
@@ -194,6 +245,8 @@
 				new_item = new /obj/item/pen(src.loc)
 			else
 				new_item = new /obj/item/pen/reagent/sleepy(src.loc)
+				additional_desc = "[pick("It sloshes when you move it around.",\
+				"There seems to be a needle inside of the pen tip.")]."
 			if(prob(30))
 				icon = 'icons/obj/xenoarchaeology.dmi'
 				icon_state = "pen1"
@@ -248,15 +301,23 @@
 				new_item.icon_state = "blade1"
 		if(ARCHAEO_CULTROBES)
 			//arcane clothing
+			//Funnily enough, this was just helmets before I edited it, with no robes.
 			apply_prefix = FALSE
-			var/list/possible_spawns = list(/obj/item/clothing/head/culthood,
+			var/list/possible_headwear = list(/obj/item/clothing/head/culthood,
 			/obj/item/clothing/head/culthood/magus,
 			/obj/item/clothing/head/culthood/alt,
 			/obj/item/clothing/head/helmet/space/cult)
+			var/list/possible_suit = list(/obj/item/clothing/suit/cultrobes,
+			/obj/item/clothing/suit/cultrobes/magusred,
+			/obj/item/clothing/suit/cultrobes/alt,
+			/obj/item/clothing/suit/space/cult)
 
-			var/new_type = pick(possible_spawns)
-			new_item = new new_type(src.loc)
+			var/new_helmet = pick(possible_headwear)
+			var/new_robes = pick(possible_suit)
+			new_item = new new_helmet(src.loc)
+			secondary_item = new new_robes(src.loc)
 			LAZYSET(new_item.origin_tech, TECH_ARCANE, 1)
+			LAZYSET(secondary_item.origin_tech, TECH_ARCANE, 1)
 		if(ARCHAEO_SOULSTONE)
 			//soulstone
 			become_anomalous = TRUE
@@ -305,7 +366,7 @@
 			if(spawn_type)
 				var/obj/item/gun/energy/new_gun = new spawn_type(src.loc)
 				new_item = new_gun
-				new_item.icon_state = "egun[rand(1,18)]" //CHOMPStation Edit: We now reference our own DMI which has 18 unique guns.
+				new_item.icon_state = "egun[rand(1,6)]"
 				new_gun.desc = "This is an antique energy weapon, you're not sure if it will fire or not."
 
 				//5% chance to explode when first fired
@@ -391,7 +452,7 @@
 			//fossil plant
 			new_item = new /obj/item/fossil/plant(src.loc)
 			item_type = new_item.name
-			additional_desc = "A fossilised shred of alien plant matter."
+			additional_desc = "A fossilised shred of alien plant matter. The genetic material inside would allow for seed extraction." //A hint to give this to xenobotany.
 			apply_image_decorations = FALSE
 			apply_material_decorations = FALSE
 			apply_prefix = FALSE
@@ -441,6 +502,18 @@
 			"It doesn't look human.")
 			apply_image_decorations = FALSE
 			apply_material_decorations = FALSE
+			var/list/possible_plasma_vessel = list(/obj/item/organ/internal/xenos/plasmavessel,
+			/obj/item/organ/internal/xenos/plasmavessel/queen,
+			/obj/item/organ/internal/xenos/plasmavessel/sentinel,
+			/obj/item/organ/internal/xenos/plasmavessel/hunter)
+			var/list/possible_organ = list(/obj/item/organ/internal/xenos/acidgland,
+			/obj/item/organ/internal/xenos/hivenode,
+			/obj/item/organ/internal/xenos/resinspinner)
+
+			var/new_vessel = pick(possible_plasma_vessel)
+			var/new_organ = pick(possible_organ)
+			new_item = new new_vessel(src.loc)
+			secondary_item = new new_organ(src.loc)
 		if(ARCHAEO_GASMASK)
 			//gas mask
 			if(prob(25))
@@ -622,17 +695,54 @@
 		else
 			MW.force *= 0.3
 
+	if(istype(secondary_item, /obj/item/material))
+		var/new_item_mat = pickweight(list(
+			MAT_STEEL = 80,
+			MAT_WOOD = 20,
+			MAT_SIFWOOD = 40,
+			MAT_URANIUM = 14,
+			MAT_MARBLE = 16,
+			MAT_GOLD = 20,
+			MAT_SILVER = 24,
+			MAT_PLASTEEL = 10,
+			MAT_TITANIUM = 6,
+			MAT_IRON = 30,
+			MAT_PHORON = 4,
+			MAT_VERDANTIUM = 2,
+			MAT_DIAMOND = 4,
+			MAT_DURASTEEL = 2,
+			MAT_MORPHIUM = 2,
+			MAT_SUPERMATTER = 1
+			))
+		var/obj/item/material/MW = new_item
+		MW.applies_material_colour = TRUE
+		MW.set_material(new_item_mat)
+		if(istype(MW, /obj/item/material/twohanded))
+			var/obj/item/material/twohanded/TH = MW
+			TH.force_unwielded *= 0.7
+			TH.force_wielded *= 0.5
+		else
+			MW.force *= 0.3
+
 	var/decorations = ""
+	var/secondary_item_decorations = ""
 	if(apply_material_decorations)
 		source_material = pick("cordite","quadrinium","steel","titanium","aluminium","ferritic-alloy","plasteel","duranium")
 
 		if(istype(new_item, /obj/item/material))
 			var/obj/item/material/MW = new_item
 			source_material = MW.material.display_name
+		if(istype(secondary_item, /obj/item/material))
+			var/obj/item/material/SMW = secondary_item
+			source_material = SMW.material.display_name
 		if(istype(new_item, /obj/vehicle/boat))
 			var/obj/vehicle/boat/B = new_item
 			source_material = B.material.display_name
+		if(istype(secondary_item, /obj/vehicle/boat))
+			var/obj/vehicle/boat/SB = secondary_item
+			source_material = SB.material.display_name
 		desc = "A [material_descriptor ? "[material_descriptor] " : ""][item_type] made of [source_material], all craftsmanship is of [pick("the lowest","low","average","high","the highest")] quality."
+		secondary_item.desc = "A [material_descriptor ? "[material_descriptor] " : ""][item_type] made of [source_material], all craftsmanship is of [pick("the lowest","low","average","high","the highest")] quality."
 
 		var/list/descriptors = list()
 		if(prob(30))
@@ -655,8 +765,11 @@
 			decorations += "."
 		if(decorations)
 			desc += " " + decorations
+		if(secondary_item_decorations)
+			secondary_item.desc += " " + decorations
 
 	var/engravings = ""
+	var/secondary_item_engravings = ""
 	if(apply_image_decorations)
 		engravings = "[pick("Engraved","Carved","Etched")] on the item is [pick("an image of","a frieze of","a depiction of")] \
 		[pick("an alien humanoid","an amorphic blob","a short, hairy being","a rodent-like creature","a robot","a primate","a reptilian alien","an unidentifiable object","a statue","a starship","unusual devices","a structure")] \
@@ -665,19 +778,30 @@
 		if(prob(50))
 			engravings += ", [pick("they seem to be enjoying themselves","they seem extremely angry","they look pensive","they are making gestures of supplication","the scene is one of subtle horror","the scene conveys a sense of desperation","the scene is completely bizarre")]"
 		engravings += "."
+		if(secondary_item)
+			secondary_item_engravings += "."
 
 		if(desc)
 			desc += " "
 		desc += engravings
+		if(secondary_item.desc)
+			desc += " "
+			secondary_item.desc += secondary_item_engravings
 
 	if(apply_prefix)
 		name = "[pick("Strange","Ancient","Alien","")] [item_type]"
+		if(secondary_item)
+			secondary_item.name = "[pick("Strange","Ancient","Alien","")] [item_type]"
 	else
 		name = item_type
+		if(secondary_item)
+			secondary_item.name = item_type
 
 	if(desc)
 		desc += " "
 	desc += additional_desc
+	if(secondary_item.desc)
+		secondary_item.desc += additional_desc
 	if(!desc)
 		desc = "This item is completely [pick("alien","bizarre")]."
 
@@ -688,7 +812,7 @@
 
 		if(talkative)
 			new_item.talking_atom = new(new_item)
-			if("origin_tech" in new_item.vars) //fix runtimes with items that don't have this var
+			if("origin_tech" in new_item.vars) //ChompEDIT - fix runtimes with items that don't have this var
 				var/list/new_tech
 				if(new_item.origin_tech)
 					new_tech = new_item.origin_tech.Copy()
@@ -704,6 +828,18 @@
 		var/turf/simulated/mineral/T = get_turf(new_item)
 		if(istype(T))
 			T.last_find = new_item
+		if(secondary_item) //Is this part of a set?
+			secondary_item.name = name
+			secondary_item.desc = src.desc
+
+			if(talkative)
+				secondary_item.talking_atom = new(secondary_item)
+				LAZYINITLIST(secondary_item.origin_tech)
+				secondary_item.origin_tech[TECH_ARCANE] += 1
+				secondary_item.origin_tech[TECH_PRECURSOR] += 1
+
+			if(become_anomalous)
+				secondary_item.become_anomalous()
 
 		qdel(src)
 		return
