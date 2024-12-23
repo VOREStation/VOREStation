@@ -113,7 +113,7 @@
 	var/rock_climbing = FALSE //If true, allows climbing cliffs using click drag for single Z, walls if multiZ
 	var/climbing_delay = 1 //If rock_climbing, lower better.
 
-/obj/item/New()
+/obj/item/Initialize(mapload)
 	..()
 
 	for(var/path in actions_types)
