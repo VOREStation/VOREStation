@@ -64,11 +64,12 @@
 	var/belly_overall_mult = 1	//Multiplier applied ontop of any other specific multipliers
 
 
-	var/vore_sprite_flags = DM_FLAG_VORESPRITE_ARTICLE
+	var/vore_sprite_flags = DM_FLAG_VORESPRITE_BELLY
 	var/tmp/static/list/vore_sprite_flag_list= list(
-		"Normal Belly Sprite" = DM_FLAG_VORESPRITE_ARTICLE,
+		"Normal Belly Sprite" = DM_FLAG_VORESPRITE_BELLY,
 		//"Tail adjustment" = DM_FLAG_VORESPRITE_TAIL,
 		//"Marking addition" = DM_FLAG_VORESPRITE_MARKING
+		"Undergarment addition" = DM_FLAG_VORESPRITE_ARTICLE,
 		)
 	var/affects_vore_sprites = FALSE
 	var/count_absorbed_prey_for_sprite = TRUE
@@ -86,6 +87,8 @@
 	var/tail_extra_overlay = FALSE
 	var/tail_extra_overlay2 = FALSE
 	var/undergarment_chosen = "Underwear, bottom"
+	var/undergarment_if_none
+	var/undergarment_color = COLOR_GRAY
 
 	// Generally just used by AI
 	var/autotransferchance = 0 				// % Chance of prey being autotransferred to transfer location
@@ -231,7 +234,10 @@
 	"belly_sprite_to_affect",
 	"health_impacts_size",
 	"count_items_for_sprite",
-	"item_multiplier"
+	"item_multiplier",
+	"undergarment_chosen",
+	"undergarment_if_none",
+	"undergarment_color"
 	)
 
 	if (save_digest_mode == 1)
@@ -305,9 +311,7 @@
 		if(M.ai_holder)
 			M.ai_holder.handle_eaten()
 
-		if (istype(owner, /mob/living/carbon/human))
-			var/mob/living/carbon/human/hum = owner
-			hum.update_fullness()
+		owner.update_fullness()
 
 	// Intended for simple mobs
 	if(!owner.client && autotransferlocation && autotransferchance > 0)
@@ -327,9 +331,9 @@
 				L.toggle_hud_vis()
 		if((L.stat != DEAD) && L.ai_holder)
 			L.ai_holder.go_wake()
-	if (istype(owner, /mob/living/carbon/human))
-		var/mob/living/carbon/human/hum = owner
-		hum.update_fullness()
+	owner.update_fullness()
+	return
+
 
 
 /obj/belly/proc/vore_fx(mob/living/L)
@@ -797,6 +801,9 @@
 	var/sound/struggle_snuggle
 	var/sound/struggle_rustle = sound(get_sfx("rustle"))
 
+	if((vore_sprite_flags & DM_FLAG_VORESPRITE_BELLY) && (owner.vore_capacity_ex[belly_sprite_to_affect] >= 1) /*&& !private_struggle*/ && resist_triggers_animation && affects_vore_sprites)
+		owner.vs_animate(belly_sprite_to_affect)
+
 	if(resist_triggers_animation && affects_vore_sprites)
 		var/mob/living/carbon/human/O = owner
 		if(istype(O))
@@ -1100,6 +1107,9 @@
 	dupe.health_impacts_size = health_impacts_size
 	dupe.count_items_for_sprite = count_items_for_sprite
 	dupe.item_multiplier = item_multiplier
+	dupe.undergarment_chosen = undergarment_chosen
+	dupe.undergarment_if_none = undergarment_if_none
+	dupe.undergarment_color = undergarment_color
 
 	//// Object-holding variables
 	//struggle_messages_outside - strings
@@ -1310,10 +1320,14 @@
 			if(M.absorbed)
 				fullness_to_add *= absorbed_multiplier
 			if(health_impacts_size)
-				fullness_to_add *= M.health / M.getMaxHealth()
-			belly_fullness += fullness_to_add
-	if(count_liquid_for_sprite)
-		belly_fullness += (reagents.total_volume / 100) * liquid_multiplier
+				if(ishuman(M))
+					fullness_to_add *= (M.health + 100) / (M.getMaxHealth() + 100)
+				else
+					fullness_to_add *= M.health / M.getMaxHealth()
+			if(fullness_to_add > 0)
+				belly_fullness += fullness_to_add
+	/*if(count_liquid_for_sprite)
+		belly_fullness += (reagents.total_volume / 100) * liquid_multiplier*/// Not yet implemented here
 	if(count_items_for_sprite)
 		for(var/obj/item/I in src)
 			var/fullness_to_add = 0
@@ -1328,7 +1342,7 @@
 			else if(I.w_class == ITEMSIZE_HUGE)
 				fullness_to_add = ITEMSIZE_COST_HUGE
 			else
-				fullness_to_add = ITEMSIZE_COST_NO_CONTAINER
+				fullness_to_add = I.w_class
 			fullness_to_add /= 32
 			belly_fullness += fullness_to_add * item_multiplier
 	belly_fullness *= size_factor_for_sprite

@@ -131,6 +131,11 @@
 	buckle_movable = TRUE
 	buckle_lying = FALSE
 
+	var/list/vore_light_states = list() //Robot exclusive
+	vore_capacity_ex = list()
+	vore_fullness_ex = list()
+	vore_icon_bellies = list()
+
 /mob/living/silicon/robot/New(loc, var/unfinished = 0)
 	spark_system = new /datum/effect/effect/system/spark_spread()
 	spark_system.set_up(5, 0, src)
@@ -775,6 +780,9 @@
 	updatename("Default")
 	has_recoloured = FALSE
 	robotact?.update_static_data_for_all_viewers()
+	vore_capacity_ex = list()
+	vore_fullness_ex = list()
+	vore_light_states = list()
 
 /mob/living/silicon/robot/proc/ColorMate()
 	set name = "Recolour Module"
@@ -918,52 +926,24 @@
 		old_x = sprite_datum.pixel_x
 
 	if(stat == CONSCIOUS)
-		var/belly_size = 0
-		if(sprite_datum.has_vore_belly_sprites && vore_selected.belly_overall_mult != 0)
-			if(vore_selected.silicon_belly_overlay_preference == "Sleeper")
-				if(sleeper_state)
-					belly_size = sprite_datum.max_belly_size
-			else if(vore_selected.silicon_belly_overlay_preference == "Vorebelly" || vore_selected.silicon_belly_overlay_preference == "Both")
-				if(sleeper_state && vore_selected.silicon_belly_overlay_preference == "Both")
-					belly_size += 1
-				if(LAZYLEN(vore_selected.contents) > 0)
-					for(var/borgfood in vore_selected.contents) //"inspired" (kinda copied) from Chompstation's belly fullness system's procs
-						if(istype(borgfood, /mob/living))
-							if(vore_selected.belly_mob_mult <= 0) //If mobs dont contribute, dont calculate further
-								continue
-							var/mob/living/prey = borgfood //typecast to living
-							belly_size += (prey.size_multiplier / size_multiplier) / vore_selected.belly_mob_mult //Smaller prey are less filling to larger bellies
-						else if(istype(borgfood, /obj/item))
-							if(vore_selected.belly_item_mult <= 0) //If items dont contribute, dont calculate further
-								continue
-							var/obj/item/junkfood = borgfood //typecast to item
-							var/fullness_to_add = 0
-							switch(junkfood.w_class)
-								if(ITEMSIZE_TINY)
-									fullness_to_add = ITEMSIZE_COST_TINY
-								if(ITEMSIZE_SMALL)
-									fullness_to_add = ITEMSIZE_COST_SMALL
-								if(ITEMSIZE_NORMAL)
-									fullness_to_add = ITEMSIZE_COST_NORMAL
-								if(ITEMSIZE_LARGE)
-									fullness_to_add = ITEMSIZE_COST_LARGE
-								if(ITEMSIZE_HUGE)
-									fullness_to_add = ITEMSIZE_COST_HUGE
-								else
-									fullness_to_add = ITEMSIZE_COST_NO_CONTAINER
-							belly_size += (fullness_to_add / 32) //* vore_selected.overlay_item_multiplier //Enable this later when vorepanel is reworked.
-						else
-							belly_size += 1 //if it's not a person, nor an item... lets just go with 1
-
-					belly_size *= vore_selected.belly_overall_mult //Enable this after vore panel rework
-					belly_size = round(belly_size, 1)
-					belly_size = clamp(belly_size, 0, sprite_datum.max_belly_size) //Value from 0 to however many bellysizes the borg has
-
-		if(belly_size > 0) //Borgs probably only have 1 belly size. but here's support for larger ones if that changes.
-			if(resting && sprite_datum.has_vore_belly_resting_sprites)
-				add_overlay(sprite_datum.get_belly_resting_overlay(src, belly_size))
-			else if(!resting)
-				add_overlay(sprite_datum.get_belly_overlay(src, belly_size))
+		update_fullness()
+		for(var/belly_class in vore_fullness_ex)
+			reset_belly_lights(belly_class)
+			var/vs_fullness = vore_fullness_ex[belly_class]
+			if(belly_class == "sleeper" && sleeper_state == 0 && vore_selected.silicon_belly_overlay_preference == "Sleeper") continue
+			if(belly_class == "sleeper" && sleeper_state != 0 && !(vs_fullness + 1 > vore_capacity_ex[belly_class]))
+				if(vore_selected.silicon_belly_overlay_preference == "Sleeper")
+					vs_fullness = vore_capacity_ex[belly_class]
+				else if(vore_selected.silicon_belly_overlay_preference == "Both")
+					vs_fullness += 1
+			if(!vs_fullness > 0) continue
+			if(resting)
+				if(!sprite_datum.has_vore_belly_resting_sprites)
+					continue
+				add_overlay(sprite_datum.get_belly_resting_overlay(src, vs_fullness, belly_class))
+			else
+				update_belly_lights(belly_class)
+				add_overlay(sprite_datum.get_belly_overlay(src, vs_fullness, belly_class))
 
 		sprite_datum.handle_extra_icon_updates(src)			// Various equipment-based sprites go here.
 

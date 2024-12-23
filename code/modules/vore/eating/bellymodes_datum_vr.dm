@@ -36,9 +36,7 @@ GLOBAL_LIST_INIT(digest_modes, list())
 				SEND_SOUND(L, sound(get_sfx("fancy_death_prey")))
 		B.handle_digestion_death(L)
 		if(!L)
-			if (istype(B.owner, /mob/living/carbon/human))
-				var/mob/living/carbon/human/howner = B.owner
-				howner.update_fullness()
+			B.owner.update_fullness()
 		if(!B.fancy_vore)
 			return list("to_update" = TRUE, "soundToPlay" = sound(get_sfx("classic_death_sounds")))
 		return list("to_update" = TRUE, "soundToPlay" = sound(get_sfx("fancy_death_pred")))
@@ -66,9 +64,7 @@ GLOBAL_LIST_INIT(digest_modes, list())
 	var/difference = B.owner.size_multiplier / L.size_multiplier
 
 	if(B.health_impacts_size)
-		if (istype(B.owner, /mob/living/carbon/human))
-			var/mob/living/carbon/human/howner = B.owner
-			howner.update_fullness()
+		B.owner.update_fullness()
 
 	consider_healthbar(L, old_health, B.owner)
 

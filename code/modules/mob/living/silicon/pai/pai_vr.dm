@@ -68,6 +68,9 @@
 	var/soft_si = FALSE	//signaler
 	var/soft_ar = FALSE	//ar hud
 
+	vore_capacity = 1
+	vore_capacity_ex = list("stomach" = 1)
+
 /mob/living/silicon/pai/Initialize()
 	. = ..()
 
@@ -182,6 +185,10 @@
 	var/oursize = size_multiplier
 	resize(1, FALSE, TRUE, TRUE, FALSE)		//We resize ourselves to normal here for a moment to let the vis_height get reset
 	chassis = possible_chassis[choice]
+
+	vore_capacity = 1
+	vore_capacity_ex = list("stomach" = 1)
+
 	if(chassis == "13")
 		if(!holo_icon)
 			if(!get_character_icon())

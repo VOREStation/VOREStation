@@ -71,6 +71,7 @@ V::::::V           V::::::VO:::::::OOO:::::::ORR:::::R     R:::::REE::::::EEEEEE
 	var/pickup_pref = TRUE
 
 	var/vore_sprite_color = list("stomach" = "#000", "taur belly" = "#000")
+	var/vore_sprite_multiply = list("stomach" = FALSE, "taur belly" = FALSE)
 	var/allow_mind_transfer = FALSE
 
 	var/list/belly_prefs = list()
