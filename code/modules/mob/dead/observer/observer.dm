@@ -455,7 +455,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 	ManualFollow(M || jumpable_mobs()[mobname])
 
-/mob/observer/dead/forceMove(atom/destination, direction, just_spawned = FALSE)
+/mob/observer/dead/forceMove(atom/destination, just_spawned = FALSE)
 	if(client?.holder)
 		return ..()
 
