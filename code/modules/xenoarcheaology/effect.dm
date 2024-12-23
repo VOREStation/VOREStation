@@ -1,14 +1,14 @@
 /datum/artifact_effect
 	var/name = "unknown"
-	var/effect = EFFECT_TOUCH
-	var/effectrange = 4
-	var/trigger = TRIGGER_TOUCH
-	var/datum/component/artifact_master/master
+	var/effect = EFFECT_TOUCH //This is simply if the effect occurs on touch, in an aura, or a pulse AOE. Horribly named variable.
+	var/effectrange = 4 //How far the effect will hit something.
+	var/trigger = TRIGGER_TOUCH //This decides how the artifact is actually activated. Ex: Splashing water on it.
+	var/datum/component/artifact_master/master //This code is handled in effect_master.dm
 	var/activated = 0
 	var/chargelevel = 1
 	var/chargelevelmax = 10
 	var/artifact_id = ""
-	var/effect_type = 0
+	var/effect_type = 0 //This is what the artifact does. This is used to generating a description when inspected.
 
 	var/req_type = /atom/movable
 
@@ -111,6 +111,11 @@
 			DoEffectPulse()
 
 /datum/artifact_effect/proc/getDescription()
+//This simply gives a fluff description. It has no bearing on what the artifact actually does.
+//Sometimes it doesn't make much sense. Heat generating artifacts can be organic, bluespace, or synth.
+//This is slated to be reworked and give actual, meaningful descriptions
+//That way you know if the healing artifact is actually /just/ a healing artifact and can throw it in med or if it's a ticking time bomb with a a 100 tile range EMP.
+//Maybe check the artifact_effect.name and give it a description based on that?
 	. = "<b>"
 	switch(effect_type)
 		if(EFFECT_ENERGY)
@@ -138,19 +143,34 @@
 		if(EFFECT_AURA)
 			. += "emitting in an ambient energy field."
 		if(EFFECT_PULSE)
-			. += "emitting in periodic bursts."
+			. += "emitting in wide, periodic bursts."
 		else
 			. += "emitting in an unknown way."
 
 	. += "</b>"
 
 	switch(trigger)
-		if(TRIGGER_TOUCH, TRIGGER_WATER, TRIGGER_ACID, TRIGGER_VOLATILE, TRIGGER_TOXIN)
-			. += " Activation index involves <b>physical interaction</b> with artifact surface."
-		if(TRIGGER_FORCE, TRIGGER_ENERGY, TRIGGER_HEAT, TRIGGER_COLD)
-			. += " Activation index involves <b>energetic interaction</b> with artifact surface."
-		if(TRIGGER_PHORON, TRIGGER_OXY, TRIGGER_CO2, TRIGGER_NITRO)
-			. += " Activation index involves <b>precise local atmospheric conditions</b>."
+		if(TRIGGER_TOUCH) //This one should be self explanatory.
+			. += " Activation index involves <b>physical interaction</b> or <b>chemical interaction<b> with artifact surface. Water, Acid, Phoron, and toxic substances are potential chemical triggers."
+		if(TRIGGER_WATER, TRIGGER_ACID, TRIGGER_VOLATILE, TRIGGER_TOXIN) //No xenoarch would know how to activate these without code digging.
+			. += " Activation index involves <b>chemical interaction<b> with artifact surface. Water, Acid, Phoron, and toxic substances are potential triggers."
+
+		if(TRIGGER_FORCE, TRIGGER_ENERGY) //Did you know multitools can activate energy artifacts?
+			. += " Activation index involves <b>forceful or energetic interaction</b> with artifact surface. Potential triggers are a multitool or a strong object."
+
+		if(TRIGGER_HEAT, TRIGGER_COLD) //Heat is easy to activate. Smack it with a welder. Cold? Have to cool the area.
+			. += " Activation index involves <b>precise temperature conditions</b>. Heating/Cooling the atmosphere (>375K or <225K) or using a welder are potential triggers."
+
+		//Gases are separate since they are a pain in the rear to get activated and might as well let you know exactly what to do.
+		//I've been playing this game since the dawn of man and I've never seen someone bother to actually TRY to set up atmos to get these activated.
+		if(TRIGGER_PHORON)
+			. += " Activation index involves <b>precise local atmospheric conditions</b>. Phoron is a potential trigger. (Atmosphere must be >10% of gas to activate device)"
+		if(TRIGGER_OXY)
+			. += " Activation index involves <b>precise local atmospheric conditions</b>. Oxygen is a potential trigger. (Atmosphere must be >10% of gas to activate device)"
+		if(TRIGGER_CO2)
+			. += " Activation index involves <b>precise local atmospheric conditions</b>. Carbon Dioxide, is a potential trigger. (Atmosphere must be >10% of gas to activate device)"
+		if(TRIGGER_NITRO)
+			. += " Activation index involves <b>precise local atmospheric conditions</b>. Nitrous Oxide is a potential trigger. (Atmosphere must be >10% of gas to activate device)"
 		else
 			. += " Unable to determine any data about activation trigger."
 
