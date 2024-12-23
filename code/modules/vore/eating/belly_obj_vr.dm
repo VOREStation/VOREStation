@@ -632,6 +632,7 @@
 		else if(M.reagents)
 			M.reagents.trans_to_holder(Pred.bloodstr, M.reagents.total_volume, 0.5, TRUE)
 
+	owner.update_fullness()
 	//Incase they have the loop going, let's double check to stop it.
 	M.stop_sound_channel(CHANNEL_PREYLOOP)
 	// Delete the digested mob
@@ -639,6 +640,8 @@
 	if(G)
 		G.forceMove(src)
 	qdel(M)
+	if(isanimal(owner))
+		owner.update_icon()
 
 // Handle a mob being absorbed
 /obj/belly/proc/absorb_living(mob/living/M)
@@ -686,6 +689,7 @@
 
 	//Update owner
 	owner.updateVRPanel()
+	owner.update_fullness()
 	if(isanimal(owner))
 		owner.update_icon()
 	// Finally, if they're to be sent to a special pudge belly, send them there
@@ -714,6 +718,7 @@
 
 	//Update owner
 	owner.updateVRPanel()
+	owner.update_fullness()
 	if(isanimal(owner))
 		owner.update_icon()
 
@@ -803,11 +808,6 @@
 
 	if((vore_sprite_flags & DM_FLAG_VORESPRITE_BELLY) && (owner.vore_capacity_ex[belly_sprite_to_affect] >= 1) /*&& !private_struggle*/ && resist_triggers_animation && affects_vore_sprites)
 		owner.vs_animate(belly_sprite_to_affect)
-
-	if(resist_triggers_animation && affects_vore_sprites)
-		var/mob/living/carbon/human/O = owner
-		if(istype(O))
-			O.vore_belly_animation()
 
 	if(is_wet)
 		if(!fancy_vore)
@@ -1015,8 +1015,6 @@
 			I.gurgle_contaminate(target.contents, target.contamination_flavor, target.contamination_color)
 	items_preserved -= content
 	owner.updateVRPanel()
-	if(isanimal(owner))
-		owner.update_icon()
 	for(var/mob/living/M in contents)
 		M.updateVRPanel()
 	owner.update_icon()

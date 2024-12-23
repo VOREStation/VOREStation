@@ -282,6 +282,7 @@ GLOBAL_VAR_INIT(teppi_count, 0)	// How mant teppi DO we have?
 // The friend zone.
 	var/obj/belly/p = new /obj/belly(src)
 	p.immutable = TRUE
+	p.affects_vore_sprites = TRUE
 	p.mode_flags = 40
 	p.human_prey_swallow_time = 0.01 SECONDS
 	p.digestchance = 0
