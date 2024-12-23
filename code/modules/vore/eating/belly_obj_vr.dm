@@ -720,9 +720,10 @@
 
 	//Update owner
 	owner.updateVRPanel()
-	owner.update_fullness()
 	if(isanimal(owner))
 		owner.update_icon()
+	else
+		owner.update_fullness()
 
 /////////////////////////////////////////////////////////////////////////
 /obj/belly/proc/handle_absorb_langs()
