@@ -4,7 +4,7 @@
 	icon_state = "ano01"
 	var/find_type = 0
 
-/obj/item/archaeological_find/Initialize(mapload, var/new_item_type) // CHOMPEdit NEW -> Initialize
+/obj/item/archaeological_find/Initialize(mapload, var/new_item_type)
 	. = ..()
 	if(new_item_type)
 		find_type = new_item_type
@@ -812,7 +812,7 @@
 
 		if(talkative)
 			new_item.talking_atom = new(new_item)
-			if("origin_tech" in new_item.vars) //ChompEDIT - fix runtimes with items that don't have this var
+			if("origin_tech" in new_item.vars)
 				var/list/new_tech
 				if(new_item.origin_tech)
 					new_tech = new_item.origin_tech.Copy()
