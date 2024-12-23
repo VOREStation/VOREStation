@@ -68,7 +68,7 @@
 /mob/living/simple_mob/animal/passive/snake/init_vore()
 	if(!voremob_loaded)
 		return
-	.=..()
+	. = ..()
 	var/obj/belly/B = vore_selected
 	B.name = "stomach"
 	B.desc = "The snake coils its tail around you, pushing you to the ground and pinning you with its weight. It flicks its tongue at you, before pouncing onto your head, engulfing the upper half of your body with ease as it unhinges its jaw. With greedy swallows, it pulls you deeper, and deeper. The tight walls undulate rhythmically as the danger noodle rumbles contentedly at this new meal. The snake sends the last of you down with a deep swallow, hissing softly and closing its eyes as it enjoys its new meal, tucked away nicely under those beautiful, green scales."

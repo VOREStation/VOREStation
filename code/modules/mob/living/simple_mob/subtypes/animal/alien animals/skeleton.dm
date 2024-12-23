@@ -89,7 +89,7 @@
 /mob/living/simple_mob/vore/alienanimals/skeleton/init_vore()
 	if(!voremob_loaded)
 		return
-	.=..()
+	. = ..()
 	var/obj/belly/B = vore_selected
 	B.name = "stomach"
 	B.desc = "You're not sure quite how, but you've found your way inside of the skeleton's stomach! It's cramped and cold and sounds heavily of xylophones!"
