@@ -4,7 +4,7 @@
 	var/view_range = 40				//how close excavation has to come to show an overlay on the turf
 	var/clearance_range = 3			//how close excavation has to come to extract the item
 									//if excavation hits var/excavation_required exactly, it's contained find is extracted cleanly without the ore
-	var/prob_delicate = 90			//probability it requires an active suspension field to not insta-crumble
+	var/prob_delicate = 0			//probability it requires an active suspension field to not insta-crumble. Set to 0 to nullify the need for suspension field.
 	var/dissonance_spread = 1		//proportion of the tile that is affected by this find
 									//used in conjunction with analysis machines to determine correct suspension field type
 

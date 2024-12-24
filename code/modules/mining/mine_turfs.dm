@@ -683,6 +683,8 @@ var/list/mining_overlay_cache = list()
 	if(X)
 		display_name = X.name
 
+	//This is affected by 'prob_delicate' in finds.dm. As of writing, this has been set to 0 because the suspension field is just one extra piece that makes
+	//Xenoarch that much more confusing, and the intent of this PR is to make it more friendly to get into.
 	//many finds are ancient and thus very delicate - luckily there is a specialised energy suspension field which protects them when they're being extracted
 	if(prob(F.prob_delicate))
 		var/obj/effect/suspension_field/S = locate() in src
