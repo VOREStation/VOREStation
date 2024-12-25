@@ -1,6 +1,6 @@
 /datum/artifact_effect/emp
 	name = "emp"
-	effect_type = EFFECT_ELECTRO
+	effect_type = EFFECT_EMP
 
 	effect_state = "empdisable"
 

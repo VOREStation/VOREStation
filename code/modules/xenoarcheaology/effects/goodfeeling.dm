@@ -1,6 +1,6 @@
 /datum/artifact_effect/goodfeeling
 	name = "good feeling"
-	effect_type = EFFECT_PSIONIC
+	effect_type = EFFECT_GOODFEELING
 	var/list/messages = list("You feel good.",
 		"Everything seems to be going alright",
 		"You've got a good feeling about this",

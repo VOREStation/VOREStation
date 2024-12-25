@@ -1,7 +1,7 @@
 
 /datum/artifact_effect/animate_anomaly
 	name = "animate anomaly"
-	effect_type = EFFECT_PSIONIC
+	effect_type = EFFECT_ANIMATE
 	var/mob/living/target = null
 
 	effect_state = "pulsing"

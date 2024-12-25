@@ -4,7 +4,7 @@
 /datum/artifact_effect/gasoxy/New()
 	..()
 	effect = pick(EFFECT_TOUCH, EFFECT_AURA)
-	effect_type = pick(EFFECT_BLUESPACE, EFFECT_SYNTH)
+	effect_type = EFFECT_GAS_OXY
 
 /datum/artifact_effect/gasoxy/DoEffectTouch(var/mob/user)
 	var/atom/holder = get_master_holder()

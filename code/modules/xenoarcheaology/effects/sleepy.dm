@@ -5,7 +5,7 @@
 
 /datum/artifact_effect/sleepy/New()
 	..()
-	effect_type = pick(EFFECT_PSIONIC, EFFECT_ORGANIC)
+	effect_type = EFFECT_SLEEPY
 
 /datum/artifact_effect/sleepy/DoEffectTouch(var/mob/toucher)
 	if(toucher)

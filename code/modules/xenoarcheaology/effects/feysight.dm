@@ -1,6 +1,6 @@
 /datum/artifact_effect/feysight
 	name = "feysight"
-	effect_type = EFFECT_PSIONIC
+	effect_type = EFFECT_FEYSIGHT
 
 	effect_state = "pulsing"
 	effect_color = "#00c763"

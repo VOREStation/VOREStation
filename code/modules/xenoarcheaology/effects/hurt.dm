@@ -1,6 +1,6 @@
 /datum/artifact_effect/hurt
 	name = "hurt"
-	effect_type = EFFECT_ORGANIC
+	effect_type = EFFECT_HURT
 
 	effect_color = "#6d1212"
 

@@ -1,6 +1,6 @@
 /datum/artifact_effect/teleport
 	name = "teleport"
-	effect_type = EFFECT_BLUESPACE
+	effect_type = EFFECT_TELEPORT
 	effect_state = "pulsing"
 	effect_color = "#88ffdb"
 

@@ -97,7 +97,7 @@ SUBSYSTEM_DEF(xenoarch)
 					archeo_turf.update_icon()
 
 			//have a chance for an artifact to spawn here, but not in animal or plant digsites
-			if(isnull(M.artifact_find) && digsite != DIGSITE_GARDEN && digsite != DIGSITE_ANIMAL)
+			if(isnull(M.artifact_find) && digsite != DIGSITE_GARDEN)
 				artifact_spawning_turfs.Add(archeo_turf)
 
 		//Larger maps will convince byond this is an infinite loop, so let go for a second

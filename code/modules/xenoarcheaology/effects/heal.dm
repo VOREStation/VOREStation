@@ -1,6 +1,6 @@
 /datum/artifact_effect/heal
 	name = XENO_CHEM_HEAL
-	effect_type = EFFECT_ORGANIC
+	effect_type = EFFECT_HEAL
 	effect_color = "#4649ff"
 
 /datum/artifact_effect/heal/DoEffectTouch(var/mob/toucher)

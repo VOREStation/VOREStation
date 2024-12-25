@@ -9,7 +9,7 @@
 	..()
 	target_temp = rand(0, 250)
 	effect = pick(EFFECT_TOUCH, EFFECT_AURA)
-	effect_type = pick(EFFECT_ORGANIC, EFFECT_BLUESPACE, EFFECT_SYNTH)
+	effect_type = EFFECT_COLD
 
 /datum/artifact_effect/cold/DoEffectTouch(var/mob/user)
 	var/atom/holder = get_master_holder()

@@ -1,7 +1,7 @@
 
 /datum/artifact_effect/electric_field
 	name = "electric field"
-	effect_type = EFFECT_ENERGY
+	effect_type = EFFECT_ELECTIC_FIELD
 
 	effect_color = "#ffff00"
 

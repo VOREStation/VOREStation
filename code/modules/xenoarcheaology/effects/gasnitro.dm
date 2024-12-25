@@ -6,7 +6,7 @@
 /datum/artifact_effect/gasnitro/New()
 	..()
 	effect = pick(EFFECT_TOUCH, EFFECT_AURA)
-	effect_type = pick(EFFECT_BLUESPACE, EFFECT_SYNTH)
+	effect_type = EFFECT_GAS_NITRO
 
 /datum/artifact_effect/gasnitro/DoEffectTouch(var/mob/user)
 	var/atom/holder = get_master_holder()

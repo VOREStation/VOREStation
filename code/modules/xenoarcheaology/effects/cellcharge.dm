@@ -1,6 +1,6 @@
 /datum/artifact_effect/cellcharge
 	name = "cell charge"
-	effect_type = EFFECT_ELECTRO
+	effect_type = EFFECT_CELLCHARGE
 	effect_color = "#ffee06"
 	var/last_message
 
@@ -38,7 +38,7 @@
 	charge_cells(100)
 
 /datum/artifact_effect/cellcharge/DoEffectAura()
-	charge_cells()
+	charge_cells(25)
 
 /datum/artifact_effect/cellcharge/DoEffectPulse()
 	charge_cells(50)

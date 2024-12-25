@@ -4,7 +4,7 @@
 
 /datum/artifact_effect/stun/New()
 	..()
-	effect_type = pick(EFFECT_PSIONIC, EFFECT_ORGANIC)
+	effect_type = EFFECT_STUN
 
 /datum/artifact_effect/stun/DoEffectTouch(var/mob/toucher)
 	if(toucher && iscarbon(toucher))

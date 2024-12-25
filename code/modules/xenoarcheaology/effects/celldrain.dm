@@ -1,7 +1,7 @@
 //todo
 /datum/artifact_effect/celldrain
 	name = "cell drain"
-	effect_type = EFFECT_ELECTRO
+	effect_type = EFFECT_CELLDRAIN
 	var/last_message
 
 /datum/artifact_effect/celldrain/proc/drain_cells(var/amount = 25)

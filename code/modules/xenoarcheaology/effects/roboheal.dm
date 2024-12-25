@@ -6,7 +6,7 @@
 
 /datum/artifact_effect/roboheal/New()
 	..()
-	effect_type = pick(EFFECT_ELECTRO, EFFECT_PARTICLE)
+	effect_type = EFFECT_ROBO_HEAL
 
 /datum/artifact_effect/roboheal/DoEffectTouch(var/mob/user)
 	if(user)

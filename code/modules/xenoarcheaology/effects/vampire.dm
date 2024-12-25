@@ -1,7 +1,7 @@
 
 /datum/artifact_effect/vampire
 	name = "vampire"
-	effect_type = EFFECT_ORGANIC
+	effect_type = EFFECT_VAMPIRE
 	var/last_bloodcall = 0
 	var/bloodcall_interval = 50
 	var/last_eat = 0
@@ -62,9 +62,9 @@
 
 			qdel(B)
 
-	if(charges >= 10)
+	if(charges >= 10) //Listen, if you have INTENTIONALLY FED THE SPOOKY, SCARY ARTIFACT THAT IS DRAINING YOUR BLOOD, then go ahead and have your spooky reward.
 		charges -= 10
-		var/manifestation = pick(/obj/item/soulstone, /mob/living/simple_mob/faithless/cult/strong, /mob/living/simple_mob/creature/cult/strong, /mob/living/simple_mob/animal/space/bats/cult/strong)
+		var/manifestation = pick(/obj/item/soulstone, /obj/item/melee/artifact_blade, /obj/item/book/tome, /obj/item/clothing/head/helmet/space/cult, /obj/item/clothing/suit/space/cult, /obj/structure/constructshell)
 		new manifestation(pick(RANGE_TURFS(1,T)))
 
 	if(charges >= 3)

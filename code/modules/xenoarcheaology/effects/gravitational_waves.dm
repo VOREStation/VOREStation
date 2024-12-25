@@ -1,6 +1,6 @@
 /datum/artifact_effect/extreme/gravity_wave
 	name = "gravity wave"
-	effect_type = EFFECT_ENERGY
+	effect_type = EFFECT_GRAVIATIONAL_WAVES
 
 	var/last_wave_pull = 0
 	var/pull_power
@@ -10,7 +10,7 @@
 
 /datum/artifact_effect/extreme/gravity_wave/New()
 	..()
-	effect_type = pick(EFFECT_ENERGY, EFFECT_BLUESPACE, EFFECT_PSIONIC)
+	effect_type = EFFECT_GRAVIATIONAL_WAVES
 	switch(pick(100;1, 50;2, 25;3))
 		if(1) //short range
 			effectrange = rand(2, 4)

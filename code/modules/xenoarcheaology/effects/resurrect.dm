@@ -1,6 +1,6 @@
 /datum/artifact_effect/resurrect
 	name = "resurrect"
-	effect_type = EFFECT_ORGANIC
+	effect_type = EFFECT_RESURRECT
 
 	var/stored_life = 0
 

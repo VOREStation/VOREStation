@@ -7,7 +7,7 @@
 /datum/artifact_effect/radiate/New()
 	..()
 	radiation_amount = rand(1, 10)
-	effect_type = pick(EFFECT_PARTICLE, EFFECT_ORGANIC)
+	effect_type = EFFECT_RADIATE
 
 /datum/artifact_effect/radiate/DoEffectTouch(var/mob/living/user)
 	if(user)

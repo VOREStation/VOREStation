@@ -4,7 +4,7 @@
 /datum/artifact_effect/gassleeping/New()
 	..()
 	effect = pick(EFFECT_TOUCH, EFFECT_AURA)
-	effect_type = pick(EFFECT_BLUESPACE, EFFECT_SYNTH)
+	effect_type = EFFECT_GAS_SLEEPING
 
 /datum/artifact_effect/gassleeping/DoEffectTouch(var/mob/user)
 	var/atom/holder = get_master_holder()

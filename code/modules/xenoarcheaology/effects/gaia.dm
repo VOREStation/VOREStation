@@ -1,7 +1,7 @@
 
 /datum/artifact_effect/gaia
 	name = "gaia"
-	effect_type = EFFECT_ORGANIC
+	effect_type = EFFECT_GAIA
 
 	var/list/my_glitterflies = list()
 

@@ -1,6 +1,6 @@
 /datum/artifact_effect/badfeeling
 	name = "badfeeling"
-	effect_type = EFFECT_PSIONIC
+	effect_type = EFFECT_BADFEELING
 	var/list/messages = list("You feel worried.",
 		"Something doesn't feel right.",
 		"You get a strange feeling in your gut.",

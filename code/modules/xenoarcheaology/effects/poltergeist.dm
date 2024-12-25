@@ -1,7 +1,7 @@
 
 /datum/artifact_effect/poltergeist
 	name = "poltergeist"
-	effect_type = EFFECT_ENERGY
+	effect_type = EFFECT_POLTERGEIST
 
 	effect_state = "shield2"
 	effect_color = "#a824c9"
