@@ -4,27 +4,3 @@
 
 /obj/item/gun/energy/laser/xenoarch/update_icon()
 		return
-
-/obj/item/gun/energy/laser/practice/xenoarch
-	icon = 'icons/obj/xenoarchaeology.dmi'
-
-/obj/item/gun/energy/laser/practice/xenoarch/update_icon()
-		return
-
-/obj/item/gun/energy/laser/practice/xenoarch
-	icon = 'icons/obj/xenoarchaeology.dmi'
-
-/obj/item/gun/energy/laser/practice/xenoarch/update_icon()
-		return
-
-/obj/item/gun/energy/xray/xenoarch
-	icon = 'icons/obj/xenoarchaeology.dmi'
-
-/obj/item/gun/energy/xray/xenoarch/update_icon()
-		return
-
-/obj/item/gun/energy/captain/xenoarch
-	icon = 'icons/obj/xenoarchaeology.dmi'
-
-/obj/item/gun/energy/captain/xenoarch/update_icon()
-		return

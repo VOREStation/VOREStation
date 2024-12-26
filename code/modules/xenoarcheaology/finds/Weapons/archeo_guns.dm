@@ -44,6 +44,6 @@
 			BB = new our_gun.projectile_type(src) //Then we create the bullet inside of us that is the projectile_type that the gun shoots!
 		else
 			BB = new /obj/item/ammo_casing/afoam_dart/riot(src) //Something went wrong. Should never happen.
-		else //The bullet was adminspawned in outside of an artifact gun.
-			BB = new /obj/item/ammo_casing/afoam_dart/riot(src)
+	else //The bullet was adminspawned in outside of an artifact gun.
+		BB = new /obj/item/ammo_casing/afoam_dart/riot(src)
 	randpixel_xy()
