@@ -22,9 +22,11 @@
 		find_type = rand(1, MAX_ARCHAEO)
 
 	var/item_type = "object"
+	var/secondary_item_type = "object"
 	icon_state = "unknown[rand(1,4)]"
-	var/additional_desc = ""
-	var/obj/item/new_item
+	var/additional_desc = "" //Description for the item we find!
+	var/secondary_item_desc = "" //Description for the secondary item that can be found
+	var/obj/item/new_item //The item we're finding!
 	var/obj/item/secondary_item //Allows for more than one item to be found at a time.
 	var/source_material = ""
 	var/apply_material_decorations = TRUE
@@ -82,7 +84,7 @@
 			icon = 'icons/obj/xenoarchaeology.dmi'
 			item_type = "instrument"
 			icon_state = "instrument"
-			var/possible_object_paths = list(/obj/item/paper/carbon/cursedform)
+			var/possible_object_paths = list()
 			possible_object_paths |= subtypesof(/obj/item/instrument)
 			var/new_instrument = pick(possible_object_paths)
 			new_item = new new_instrument(src.loc)
@@ -95,9 +97,9 @@
 			"You wonder what kind of music was made with it")]."
 		if(ARCHAEO_KNIFE)
 			item_type = "[pick("bladed knife","serrated blade","sharp cutting implement")]"
-			var/possible_object_paths = list(/obj/item/paper/carbon/cursedform) //As far as I can tell, this is more 'random' than using typesof, as it just picks a random one vs going down the list with a prob (as seen below)
+			var/possible_object_paths = list(/obj/item/material/knife) //As far as I can tell, this is more 'random' than using typesof, as it just picks a random one vs going down the list with a prob (as seen below)
 			possible_object_paths |= subtypesof(/obj/item/material/knife)
-			var/new_knife = pick(possible_object_paths)
+			var/obj/item/material/knife/new_knife = pick(possible_object_paths)
 			new_item = new new_knife(src.loc)
 			additional_desc = "[pick("It doesn't look safe.",\
 			"It looks wickedly jagged",\
@@ -117,7 +119,7 @@
 			apply_image_decorations = TRUE
 		if(ARCHAEO_HANDCUFFS)
 			item_type = "handcuffs"
-			var/possible_object_paths = list(/obj/item/paper/carbon/cursedform)
+			var/possible_object_paths = list(/obj/item/handcuffs)
 			possible_object_paths |= subtypesof(/obj/item/handcuffs)
 			var/new_cuffs = pick(possible_object_paths)
 			new_item = new new_cuffs(src.loc)
@@ -136,7 +138,7 @@
 			"There appear to be [pick("dark red","dark purple","dark green","dark blue")] stains along part of it")]."
 		if(ARCHAEO_LIGHTER)
 			item_type = "[pick("cylinder","tank","chamber")]"
-			var/possible_object_paths = list(/obj/item/paper/carbon/cursedform)
+			var/possible_object_paths = list(/obj/item/flame)
 			possible_object_paths |= subtypesof(/obj/item/flame)
 			var/new_lighter = pick(possible_object_paths)
 			new_item = new new_lighter(src.loc)
@@ -156,7 +158,7 @@
 				apply_image_decorations = TRUE
 		if(ARCHAEO_GASTANK)
 			item_type = "[pick("cylinder","tank","chamber")]"
-			var/possible_object_paths = list(/obj/item/paper/carbon/cursedform)
+			var/possible_object_paths = list()
 			possible_object_paths |= subtypesof(/obj/item/tank)
 			var/new_tank = pick(possible_object_paths)
 			new_item = new new_tank(src.loc)
@@ -164,7 +166,7 @@
 			additional_desc = "It [pick("gloops","sloshes")] slightly when you shake it."
 		if(ARCHAEO_TOOL)
 			item_type = "tool"
-			var/possible_object_paths = list(/obj/item/paper/carbon/cursedform)
+			var/possible_object_paths = list()
 			possible_object_paths |= subtypesof(/obj/item/tool)
 			var/new_tool = pick(possible_object_paths)
 			new_item = new new_tool(src.loc)
@@ -175,7 +177,7 @@
 			"There appear to be [pick("dark red","dark purple","dark green","dark blue")] stains on it")]."
 		if(ARCHAEO_METAL)
 			apply_material_decorations = FALSE
-			var/possible_object_paths = list(/obj/item/paper/carbon/cursedform)
+			var/possible_object_paths = list()
 			possible_object_paths |= subtypesof(/obj/item/stack/material)
 			//I looked through the code for any materials that should be banned...Most of the "DO NOT EVER GIVE THESE TO ANYONE EVER" materials are only in their /datum form and the ones that have sheets spawn in as normal sheets (ex: hull datums) so...This is here in case it's needed in the future.
 			var/list/banned_materials = list(
@@ -301,7 +303,7 @@
 		if(ARCHAEO_LASER)
 			//energy gun
 			var/obj/item/gun/energy/new_gun = new /obj/item/gun/energy/laser/xenoarch(src.loc)
-			var/possible_laser_paths = list(/obj/item/paper/carbon/cursedform)
+			var/possible_laser_paths = list()
 			possible_laser_paths |= subtypesof(/obj/item/projectile/beam)
 			// possible_laser_paths |= /obj/item/projectile/animate //Funny 'turns object into mimic' beam. Currently unticked in the .dme, but here in case it gets toggled!
 			possible_laser_paths |= /obj/item/projectile/ion
@@ -336,7 +338,7 @@
 			new_gun.caliber = "[pick(".357", "12g", ".38", "7.62mm", ".38", "9mm", "10mm", ".45", "5.45mm", "7.62mm")]" //A list of gun calibers that are obtainable.
 			additional_desc = "[pick("A dusty engraving on the side says <b>[new_gun.caliber]</b>. The ammo slot seems like it'd only fit single shells at a time.",\
 			"The gun's barrel has <b>[new_gun.caliber]</b> barely visible on it. The ammo slot seems like it'd only fit single shells at a time.")]"
-			var/possible_bullet_paths = list(/obj/item/paper/carbon/cursedform)
+			var/possible_bullet_paths = list()
 			possible_bullet_paths |= subtypesof(/obj/item/projectile/bullet) //As funny as it would be to have your pistol shoot pulse rifle rounds, sorry.
 			//You COULD add a bullet blacklist here. Look at the material code below if you want an example of how to do so.
 			//During testing I found nothing EXTRAORDINARILY gamebreaking (although supermatter fuel rod gun rounds were VERY comical, but still obtainable in game)
@@ -393,21 +395,14 @@
 		if(ARCHAEO_REMAINS_HUMANOID)
 			//humanoid remains
 			apply_prefix = FALSE
-			item_type = "humanoid [pick("remains","skeleton")]"
+			item_type = "humanoid organ]"
 			icon = 'icons/effects/blood.dmi'
 			icon_state = "remains"
-			additional_desc = pick("They appear almost human.",\
-			"They are contorted in a most gruesome way.",\
-			"They look almost peaceful.",\
-			"The bones are yellowing and old, but remarkably well preserved.",\
-			"The bones are scored by numerous burns and partially melted.",\
-			"The are battered and broken, in some cases less than splinters are left.",\
-			"The mouth is wide open in a death rictus, the victim would appear to have died screaming.")
 			apply_image_decorations = FALSE
 			apply_material_decorations = FALSE
 
 			//We get a list of random internal organs and spawn it. Yes. You can get a still beating heart. Xenoarch is spooky.
-			var/possible_object_paths = list(/obj/item/paper/carbon/cursedform)
+			var/possible_object_paths = list()
 			possible_object_paths |= subtypesof(/obj/item/organ/internal)
 			var/new_organ = pick(possible_object_paths)
 			new_item = new new_organ(src.loc)
@@ -415,32 +410,20 @@
 		if(ARCHAEO_REMAINS_ROBOT)
 			//robot remains
 			apply_prefix = FALSE
-			item_type = "[pick("mechanical","robotic","cyborg")] [pick("remains","chassis","debris")]"
+			item_type = "Alien cybernetic pod"
 			icon = 'icons/mob/robots.dmi'
 			icon_state = "remainsrobot"
-			additional_desc = pick("Almost mistakeable for the remains of a modern cyborg.",\
-			"They are barely recognisable as anything other than a pile of waste metals.",\
-			"It looks like the battered remains of an ancient robot chassis.",\
-			"The chassis is rusting and old, but remarkably well preserved.",\
-			"The chassis is scored by numerous burns and partially melted.",\
-			"The chassis is battered and broken, in some cases only chunks of metal are left.",\
-			"A pile of wires and crap metal that looks vaguely robotic.")
 			apply_image_decorations = FALSE
 			apply_material_decorations = FALSE
-			new /obj/structure/ghost_pod/manual/lost_drone/dogborg(src) //We find a lost drone pod!
+			new_item = new /obj/structure/ghost_pod/manual/lost_drone/dogborg(src.loc) //We find a lost drone pod!
 		if(ARCHAEO_REMAINS_XENO)
 			//xenos remains
 			apply_prefix = FALSE
-			item_type = "alien [pick("remains","skeleton")]"
-			icon = 'icons/effects/blood.dmi'
-			icon_state = "remainsxeno"
-			additional_desc = pick("It looks vaguely reptilian, but with more teeth.",\
-			"They are faintly unsettling.",\
+			item_type = "alien plasma organ"
+			secondary_item_type = "alien gland"
+			additional_desc = pick("The organ pulses and writhes.",\
+			"The mass of flesh is unsettling.",\
 			"There is a faint aura of unease about them.",\
-			"The bones are yellowing and old, but remarkably well preserved.",\
-			"The bones are scored by numerous burns and partially melted.",\
-			"The are battered and broken, in some cases less than splinters are left.",\
-			"This creature would have been twisted and monstrous when it was alive.",\
 			"It doesn't look human.")
 			apply_image_decorations = FALSE
 			apply_material_decorations = FALSE
@@ -458,11 +441,11 @@
 			secondary_item = new new_organ(src.loc)
 		if(ARCHAEO_GASMASK)
 			//gas mask
-			if(prob(25))
+			if(prob(50))
 				new_item = new /obj/item/clothing/mask/gas/poltergeist(src.loc)
 				LAZYSET(new_item.origin_tech, TECH_ARCANE, 1)
 			else
-				new_item = new /obj/item/clothing/mask/gas(src.loc)
+				new_item = new /obj/item/clothing/mask/gas/voice(src.loc)
 			if(prob(40))
 				new_item.color = rgb(rand(0,255),rand(0,255),rand(0,255))
 		if(ARCHAEO_ALIEN_ITEM)
@@ -506,7 +489,7 @@
 		if(ARCHAEO_ALIEN_BOAT)
 			// Alien boats.
 			apply_prefix = FALSE
-			var/possible_object_paths = list(/obj/item/paper/carbon/cursedform)
+			var/possible_object_paths = list()
 			possible_object_paths |= subtypesof(/datum/material)
 			var/list/banned_materials = list(
 				/datum/material/flesh,
@@ -619,10 +602,7 @@
 			// Ring.
 			if(prob(15))
 				apply_prefix = FALSE
-			if(prob(40))
-				apply_image_decorations = TRUE
-			if(prob(25))
-				apply_material_decorations = FALSE
+			apply_image_decorations = TRUE //It's a ring. Let's just allow you to have fancy decorations on it.
 			new_item = new /obj/item/clothing/accessory/ring/material(src.loc)
 			item_type = new_item.name
 
@@ -639,36 +619,38 @@
 			new_item.name = pick("great-club","club","billyclub","mace","tenderizer","maul","bat")
 			item_type = new_item.name
 
+	/// Used for the below material type generation code.
+	var/list/banned_materials = list(
+		/datum/material/flesh,
+		/datum/material/fluff,
+		/datum/material/darkglass,
+		/datum/material/fancyblack,
+		/datum/material/steel/hull,
+		/datum/material/plasteel/hull,
+		/datum/material/durasteel/hull,
+		/datum/material/titanium/hull,
+		/datum/material/morphium/hull,
+		/datum/material/steel/holographic,
+		/datum/material/plastic/holographic,
+		/datum/material/wood/holographic,
+		/datum/material/alienalloy,
+		/datum/material/alienalloy/elevatorium,
+		/datum/material/alienalloy/dungeonium,
+		/datum/material/alienalloy/bedrock,
+		/datum/material/alienalloy/alium
+		///datum/material/debug //Enable if ticked in the .dme
+		)
+
 	if(istype(new_item, /obj/item/material))
-		var/possible_object_paths = list(/obj/item/paper/carbon/cursedform)
+		var/possible_object_paths = list()
 		possible_object_paths |= subtypesof(/datum/material)
-		var/list/banned_materials = list(
-			/datum/material/flesh,
-			/datum/material/fluff,
-			/datum/material/darkglass,
-			/datum/material/fancyblack,
-			/datum/material/steel/hull,
-			/datum/material/plasteel/hull,
-			/datum/material/durasteel/hull,
-			/datum/material/titanium/hull,
-			/datum/material/morphium/hull,
-			/datum/material/steel/holographic,
-			/datum/material/plastic/holographic,
-			/datum/material/wood/holographic,
-			/datum/material/alienalloy,
-			/datum/material/alienalloy/elevatorium,
-			/datum/material/alienalloy/dungeonium,
-			/datum/material/alienalloy/bedrock,
-			/datum/material/alienalloy/alium
-			///datum/material/debug //Enable if ticked in the .dme
-			)
-		var/new_item_mat = /datum/material/steel
-		for(var/x=1;x<=20;x++) //You got 20 chances to hit a metal that is NOT banned.
-			var/picked_metal = pick(possible_object_paths) //We select
+		var/new_item_mat = "MAT_STEEL"
+		for(var/x=1;x<=5;x++) //You got 5 chances to hit a metal that is NOT banned.
+			var/datum/material/picked_metal = pick(possible_object_paths) //We select
 			if(picked_metal in banned_materials)
 				continue
 			else
-				new_item_mat = picked_metal
+				new_item_mat = "[picked_metal.name]" //set_material requires NAME.
 				break
 		var/obj/item/material/MW = new_item
 		MW.applies_material_colour = TRUE
@@ -681,37 +663,17 @@
 			MW.force *= 0.3
 
 	if(istype(secondary_item, /obj/item/material))
-		var/possible_object_paths = list(/obj/item/paper/carbon/cursedform)
+		var/possible_object_paths = list()
 		possible_object_paths |= subtypesof(/datum/material)
-		var/list/banned_materials = list(
-			/datum/material/flesh,
-			/datum/material/fluff,
-			/datum/material/darkglass,
-			/datum/material/fancyblack,
-			/datum/material/steel/hull,
-			/datum/material/plasteel/hull,
-			/datum/material/durasteel/hull,
-			/datum/material/titanium/hull,
-			/datum/material/morphium/hull,
-			/datum/material/steel/holographic,
-			/datum/material/plastic/holographic,
-			/datum/material/wood/holographic,
-			/datum/material/alienalloy,
-			/datum/material/alienalloy/elevatorium,
-			/datum/material/alienalloy/dungeonium,
-			/datum/material/alienalloy/bedrock,
-			/datum/material/alienalloy/alium
-			///datum/material/debug //Enable if ticked in the .dme
-			)
-		var/new_item_mat = /datum/material/steel
-		for(var/x=1;x<=20;x++) //You got 20 chances to hit a metal that is NOT banned.
-			var/picked_metal = pick(possible_object_paths) //We select
+		var/new_item_mat = "MAT_STEEL"
+		for(var/x=1;x<=5;x++)
+			var/datum/material/picked_metal = pick(possible_object_paths)
 			if(picked_metal in banned_materials)
 				continue
 			else
-				new_item_mat = picked_metal
+				new_item_mat = "[picked_metal.name]"
 				break
-		var/obj/item/material/MW = new_item
+		var/obj/item/material/MW = secondary_item
 		MW.applies_material_colour = TRUE
 		MW.set_material(new_item_mat)
 		if(istype(MW, /obj/item/material/twohanded))
@@ -721,6 +683,35 @@
 		else
 			MW.force *= 0.3
 
+	//Why is ring/material and item/material two different things (and have the same /datum/material var) instead of datum/material being on /obj ? Hell if I know. Someone should fix that eventually. Outside of the scope of this PR.
+	if(istype(new_item, /obj/item/clothing/accessory/ring/material))
+		var/possible_object_paths = list()
+		possible_object_paths |= subtypesof(/datum/material)
+		var/new_item_mat = "MAT_STEEL"
+		for(var/x=1;x<=5;x++) //You got 5 chances to hit a metal that is NOT banned.
+			var/datum/material/picked_metal = pick(possible_object_paths) //We select
+			if(picked_metal in banned_materials)
+				continue
+			else
+				new_item_mat = "[picked_metal.name]" //set_material requires NAME.
+				break
+		var/obj/item/clothing/accessory/ring/material/MW = new_item
+		MW.set_material(new_item_mat)
+
+	if(istype(secondary_item, /obj/item/clothing/accessory/ring/material))
+		var/possible_object_paths = list()
+		possible_object_paths |= subtypesof(/datum/material)
+		var/new_item_mat = "MAT_STEEL"
+		for(var/x=1;x<=5;x++)
+			var/datum/material/picked_metal = pick(possible_object_paths)
+			if(picked_metal in banned_materials)
+				continue
+			else
+				new_item_mat = "[picked_metal.name]"
+				break
+		var/obj/item/clothing/accessory/ring/material/MW = secondary_item
+		MW.set_material(new_item_mat)
+
 	var/decorations = ""
 	var/secondary_item_decorations = ""
 	if(apply_material_decorations)
@@ -729,23 +720,39 @@
 		//If we have a material that has a display_name, let's use that! If not, we'll use the random fancy sounding one above.
 		if(istype(new_item, /obj/item/material))
 			var/obj/item/material/MW = new_item
-			if(MW.material.display_name)
+			if(MW.material && MW.material.display_name)
 				source_material = MW.material.display_name
-		if(istype(secondary_item, /obj/item/material))
-			var/obj/item/material/SMW = secondary_item
-			if(SMW.material.display_name)
-				source_material = SMW.material.display_name
+
+		if(istype(new_item, /obj/item/clothing/accessory/ring/material))
+			var/obj/item/clothing/accessory/ring/material/MW = new_item
+			if(MW.material && MW.material.display_name)
+				source_material = MW.material.display_name
+
 		if(istype(new_item, /obj/vehicle/boat))
 			var/obj/vehicle/boat/B = new_item
-			if(B.material.display_name)
+			if(B.material && B.material.display_name)
 				source_material = B.material.display_name
-		if(istype(secondary_item, /obj/vehicle/boat))
-			var/obj/vehicle/boat/SB = secondary_item
-			if(SB.material.display_name)
-				source_material = SB.material.display_name
+
+		//I split these apart. Above here is the primary item. Below here is the secondary item.
+		if(secondary_item)
+			if(istype(secondary_item, /obj/item/material))
+				var/obj/item/material/SMW = secondary_item
+				if(SMW.material && SMW.material.display_name)
+					source_material = SMW.material.display_name
+
+			if(istype(secondary_item, /obj/item/clothing/accessory/ring/material))
+				var/obj/item/clothing/accessory/ring/material/SMW = secondary_item
+				if(SMW.material && SMW.material.display_name)
+					source_material = SMW.material.display_name
+
+			if(istype(secondary_item, /obj/vehicle/boat))
+				var/obj/vehicle/boat/SB = secondary_item
+				if(SB.material && SB.material.display_name)
+					source_material = SB.material.display_name
+
 		desc = "A [material_descriptor ? "[material_descriptor] " : ""][item_type] made of [source_material], all craftsmanship is of [pick("the lowest","low","average","high","the highest")] quality."
 		if(secondary_item)
-			secondary_item.desc = "A [material_descriptor ? "[material_descriptor] " : ""][item_type] made of [source_material], all craftsmanship is of [pick("the lowest","low","average","high","the highest")] quality."
+			secondary_item.desc = "A [material_descriptor ? "[material_descriptor] " : ""][secondary_item_type] made of [source_material], all craftsmanship is of [pick("the lowest","low","average","high","the highest")] quality."
 
 		var/list/descriptors = list()
 		if(prob(30))
@@ -798,13 +805,13 @@
 	else
 		name = item_type
 		if(secondary_item)
-			secondary_item.name = item_type
+			secondary_item.name = secondary_item_type
 
 	if(desc)
 		desc += " "
 	desc += additional_desc
 	if(secondary_item && secondary_item.desc)
-		secondary_item.desc += additional_desc
+		secondary_item.desc += secondary_item_desc
 	if(!desc)
 		desc = "This item is completely [pick("alien","bizarre")]."
 
