@@ -36,6 +36,28 @@
 
 	var/become_anomalous = FALSE //This, simply put, gives the item either precursor or an arcane tech level, along with setting a random tech level to 4-7.
 
+	/// Used for the below material type generation code.
+	var/list/banned_materials = list(
+		/datum/material/flesh,
+		/datum/material/fluff,
+		/datum/material/darkglass,
+		/datum/material/fancyblack,
+		/datum/material/steel/hull,
+		/datum/material/plasteel/hull,
+		/datum/material/durasteel/hull,
+		/datum/material/titanium/hull,
+		/datum/material/morphium/hull,
+		/datum/material/steel/holographic,
+		/datum/material/plastic/holographic,
+		/datum/material/wood/holographic,
+		/datum/material/alienalloy,
+		/datum/material/alienalloy/elevatorium,
+		/datum/material/alienalloy/dungeonium,
+		/datum/material/alienalloy/bedrock,
+		/datum/material/alienalloy/alium
+		///datum/material/debug //Enable if ticked in the .dme
+		)
+
 	if(prob(40))
 		material_descriptor = pick("rusted ","dusty ","archaic ","fragile ", "damaged", "pristine")
 	source_material = pick("cordite","quadrinium","steel","titanium","aluminium","ferritic-alloy","plasteel","duranium")
@@ -76,9 +98,8 @@
 			additional_desc = "It depicts a [pick("small","ferocious","wild","pleasing","hulking")] \
 			[pick("alien figure","rodent-like creature","reptilian alien","primate","unidentifiable object")] \
 			[pick("performing unspeakable acts","posing heroically","in a fetal position","cheering","sobbing","making a plaintive gesture","making a rude gesture")]."
-			if(prob(50))
-				new_item = new /obj/item/vampiric(src.loc)
-				LAZYSET(new_item.origin_tech, TECH_ARCANE, 1)
+			new_item = new /obj/item/vampiric(src.loc) //Possibly make multiple subtypes of this?
+			LAZYSET(new_item.origin_tech, TECH_ARCANE, 1)
 		if(ARCHAEO_INSTRUMENT)
 			name = "instrument"
 			icon = 'icons/obj/xenoarchaeology.dmi'
@@ -180,13 +201,13 @@
 			var/possible_object_paths = list()
 			possible_object_paths |= subtypesof(/obj/item/stack/material)
 			//I looked through the code for any materials that should be banned...Most of the "DO NOT EVER GIVE THESE TO ANYONE EVER" materials are only in their /datum form and the ones that have sheets spawn in as normal sheets (ex: hull datums) so...This is here in case it's needed in the future.
-			var/list/banned_materials = list(
+			var/list/banned_sheet_materials = list(
 				// Include if you enable in the .dme /obj/item/stack/material/debug
 				)
 			var/new_metal = /obj/item/stack/material/supermatter
 			for(var/x=1;x<=10;x++) //You got 10 chances to hit a metal that is NOT banned.
 				var/picked_metal = pick(possible_object_paths) //We select
-				if(picked_metal in banned_materials)
+				if(picked_metal in banned_sheet_materials)
 					continue
 				else
 					new_metal = picked_metal
@@ -234,6 +255,7 @@
 			//cultblade
 			apply_prefix = FALSE
 			new_item = new /obj/item/melee/artifact_blade(src.loc) //Changed to an artifact one.
+			additional_desc = "This sword emanates terrifying power"
 			apply_material_decorations = FALSE
 			apply_image_decorations = FALSE
 		if(ARCHAEO_TOME)
@@ -264,13 +286,19 @@
 			/obj/item/clothing/head/culthood/magus,
 			/obj/item/clothing/head/culthood/alt,
 			/obj/item/clothing/head/helmet/space/cult)
-			var/list/possible_suit = list(/obj/item/clothing/suit/cultrobes,
-			/obj/item/clothing/suit/cultrobes/magusred,
-			/obj/item/clothing/suit/cultrobes/alt,
-			/obj/item/clothing/suit/space/cult)
 
 			var/new_helmet = pick(possible_headwear)
-			var/new_robes = pick(possible_suit)
+			var/new_robes
+			///Makes sets spawn. Quick, dirty, easy. Simplest thing I could think of without reinventing the wheel.
+			if(new_helmet == /obj/item/clothing/head/culthood)
+				new_robes = /obj/item/clothing/suit/cultrobes
+			else if(new_helmet == /obj/item/clothing/head/culthood/magus)
+				new_robes = /obj/item/clothing/suit/cultrobes/magusred
+			else if(new_helmet == /obj/item/clothing/head/culthood/alt)
+				new_robes = /obj/item/clothing/suit/cultrobes/alt
+			else if(new_helmet == /obj/item/clothing/head/helmet/space/cult)
+				new_robes = /obj/item/clothing/suit/space/cult
+
 			new_item = new new_helmet(src.loc)
 			secondary_item = new new_robes(src.loc)
 			LAZYSET(new_item.origin_tech, TECH_ARCANE, 1)
@@ -354,7 +382,7 @@
 				new_gun.loaded += new /obj/item/ammo_casing/artifact(new_gun)
 
 		if(ARCHAEO_UNKNOWN) //This previously spawned NOTHING...Are you kidding me?
-			var/new_sample = new /obj/item/research_sample/rare //So instead, you get a really good research sample. Eat your heart out, science.
+			var/new_sample = new /obj/item/research_sample/rare(src.loc) //So instead, you get a really good research sample. Eat your heart out, science.
 			become_anomalous = TRUE
 			new_item = new_sample
 			item_type = new_item.name
@@ -483,49 +511,30 @@
 			new_item = new new_tool(src.loc)
 			secondary_item = new new_clothes(src.loc)
 			item_type = new_item.name
+			secondary_item_type = secondary_item.name
 			LAZYSET(new_item.origin_tech, TECH_ARCANE, 2)
 			LAZYSET(new_item.origin_tech, TECH_PRECURSOR, 1)
 
 		if(ARCHAEO_ALIEN_BOAT)
 			// Alien boats.
-			apply_prefix = FALSE
-			var/possible_object_paths = list()
-			possible_object_paths |= subtypesof(/datum/material)
-			var/list/banned_materials = list(
-				/datum/material/flesh,
-				/datum/material/fluff,
-				/datum/material/darkglass,
-				/datum/material/fancyblack,
-				/datum/material/steel/hull,
-				/datum/material/plasteel/hull,
-				/datum/material/durasteel/hull,
-				/datum/material/titanium/hull,
-				/datum/material/morphium/hull,
-				/datum/material/steel/holographic,
-				/datum/material/plastic/holographic,
-				/datum/material/wood/holographic,
-				/datum/material/alienalloy,
-				/datum/material/alienalloy/elevatorium,
-				/datum/material/alienalloy/dungeonium,
-				/datum/material/alienalloy/bedrock,
-				/datum/material/alienalloy/alium
-				///datum/material/debug //Enable if ticked in the .dme
-				)
-			var/new_boat_mat = /datum/material/steel
-			for(var/x=1;x<=20;x++) //You got 20 chances to hit a metal that is NOT banned.
-				var/picked_metal = pick(possible_object_paths)
-				if(picked_metal in banned_materials)
-					continue
-				else
-					new_boat_mat = picked_metal
-					break
-			var/list/alien_stuff = list(
+			var/list/boat_types = list(
 				/obj/vehicle/boat,
 				/obj/vehicle/boat/dragon
 				)
+			apply_prefix = FALSE
+			var/possible_object_paths = list()
+			possible_object_paths |= subtypesof(/datum/material)
+			var/new_boat_mat = "MAT_STEEL"
+			for(var/x=1;x<=5;x++) //You got 5 chances to hit a metal that is NOT banned.
+				var/datum/material/picked_metal = pick(possible_object_paths) //We select
+				if(picked_metal in banned_materials)
+					continue
+				else
+					new_boat_mat = "[picked_metal.name]" //set_material requires NAME.
+					break
 			new /obj/item/oar(src.loc, new_boat_mat)
-			var/new_type = pick(alien_stuff)
-			new_item = new new_type(src.loc, new_boat_mat)
+			var/obj/vehicle/boat/new_boat = pick(boat_types)
+			new_item = new new_boat(src.loc, new_boat_mat)
 			item_type = new_item.name
 
 		if(ARCHAEO_IMPERION_CIRCUIT)
@@ -576,10 +585,10 @@
 			new_item = new /obj/item/reagent_containers/syringe(src.loc)
 			var/obj/item/reagent_containers/syringe/S = new_item
 
-			S.volume = 30
+			S.volume = 15
 			//If S hasn't initialized yet, S.reagents will be null.
 			//However, in that case Initialize will set the maximum volume to the volume for us, so we don't need to do anything.
-			S.reagents?.maximum_volume = 30
+			S.reagents?.maximum_volume = 15
 			item_type = new_item.name
 			//Taken from hydroponics/seed.dm...This should be a global list at some point and reworked in both places.
 			var/list/banned_chems = list(
@@ -590,13 +599,13 @@
 				REAGENT_ID_NORMALCILLIN,
 				REAGENT_ID_MAGICDUST
 				)
-			var/additional_chems = rand(3,6) //3 to 6 random chems added to the syringe! 15 to 30u of RANDOM stuff!
+			var/additional_chems = 5 //5 random chems added to the syringe! 15u of RANDOM stuff! (I tried to keep this 30, but this was...Horribly bugged. There is no icon_state for 16-30, so the icon was invisible when filled.)
 			for(var/x=1;x<=additional_chems;x++)
 				var/new_chem = pick(SSchemistry.chemical_reagents)
 				if(new_chem in banned_chems)
 					continue
 				banned_chems += new_chem
-				S.reagents.add_reagent(new_chem, 5)
+				S.reagents.add_reagent(new_chem, 3)
 
 		if(ARCHAEO_RING)
 			// Ring.
@@ -619,27 +628,6 @@
 			new_item.name = pick("great-club","club","billyclub","mace","tenderizer","maul","bat")
 			item_type = new_item.name
 
-	/// Used for the below material type generation code.
-	var/list/banned_materials = list(
-		/datum/material/flesh,
-		/datum/material/fluff,
-		/datum/material/darkglass,
-		/datum/material/fancyblack,
-		/datum/material/steel/hull,
-		/datum/material/plasteel/hull,
-		/datum/material/durasteel/hull,
-		/datum/material/titanium/hull,
-		/datum/material/morphium/hull,
-		/datum/material/steel/holographic,
-		/datum/material/plastic/holographic,
-		/datum/material/wood/holographic,
-		/datum/material/alienalloy,
-		/datum/material/alienalloy/elevatorium,
-		/datum/material/alienalloy/dungeonium,
-		/datum/material/alienalloy/bedrock,
-		/datum/material/alienalloy/alium
-		///datum/material/debug //Enable if ticked in the .dme
-		)
 
 	if(istype(new_item, /obj/item/material))
 		var/possible_object_paths = list()
