@@ -461,8 +461,12 @@ var/list/mining_overlay_cache = list()
 					wreckfinds(S.destroy_artefacts)
 
 			to_chat(user, span_notice("You smash through \the [src][fail_message]."))
-			user.visible_message(span_warning("\The [src] discharges with a thunderous, hair-raising crackle!"))
-			playsound(src, 'sound/weapons/resonator_blast.ogg', 100, 1, -1)
+			if(S.status != 0) //We're on. This isn't just a == 1 in case someone adds some weird functionality in the future to give it multiple states.
+				user.visible_message(span_warning("\The [src] discharges with a thunderous, hair-raising crackle!"))
+				playsound(src, 'sound/weapons/resonator_blast.ogg', 100, 1, -1)
+			else
+				user.visible_message(span_warning("\The [src] plows into the rock with a thunk, smashing it to pieces."))
+				playsound(src, get_sfx(pickaxe), 35, 1, -1) //Weak. Not on. Just as good as a normal pick.
 
 			if(newDepth >= 200) // This means the rock is mined out fully
 				if(S.destroy_artefacts)
