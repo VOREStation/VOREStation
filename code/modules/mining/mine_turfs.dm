@@ -466,7 +466,7 @@ var/list/mining_overlay_cache = list()
 				playsound(src, 'sound/weapons/resonator_blast.ogg', 100, 1, -1)
 			else
 				user.visible_message(span_warning("\The [src] plows into the rock with a thunk, smashing it to pieces."))
-				playsound(src, get_sfx(pickaxe), 35, 1, -1) //Weak. Not on. Just as good as a normal pick.
+				playsound(src, get_sfx("pickaxe"), 35, 1, -1) //Weak. Not on. Just as good as a normal pick.
 
 			if(newDepth >= 200) // This means the rock is mined out fully
 				if(S.destroy_artefacts)
