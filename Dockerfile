@@ -1,4 +1,4 @@
-FROM ubuntu:22.04 as base
+FROM ubuntu:22.04 AS base
 
 RUN dpkg --add-architecture i386 \
 	&& apt-get update \
@@ -29,7 +29,7 @@ RUN . ./dependencies.sh \
 	&& cd .. \
 	&& rm -rf byond byond.zip
 
-FROM byond as build
+FROM byond AS build
 
 WORKDIR /vorestation
 
