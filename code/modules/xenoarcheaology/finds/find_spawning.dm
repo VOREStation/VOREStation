@@ -4,6 +4,16 @@
 	icon_state = "ano01"
 	var/find_type = 0
 
+/// ADD DEBUG TOOL HERE TO TEST BECAUSE BY GOD IM NOT MINING ARTIFACTS FOR THE NEXT 5 YEARS TO BUGTEST IT.
+/// Remove before final commit.
+/mob/living/verb/artifact_spawn_debug_tool()
+	set name = "Artifact Debug"
+	set desc = "Spawn an artifact."
+	set category = "Debug"
+
+	var/type_to_spawn = tgui_input_number(usr, "Desired type to spawn. Consult xenoarcheaology.dm for the spawn list", "Spawn Artifact", 0)
+	new /obj/item/archaeological_find(src.loc, type_to_spawn)
+
 /obj/item/archaeological_find/Initialize(mapload, var/new_item_type)
 	. = ..()
 	if(new_item_type)
@@ -317,36 +327,32 @@
 
 			item_type = "gun"
 
+
+		/// Artifact type gun that requires a random caliber and selects a random bullet type it shoots out!.
 		if(ARCHAEO_GUN)
 			var/obj/item/gun/projectile/artifact/new_gun = new /obj/item/gun/projectile/artifact(src.loc)
 			new_item = new_gun
 			new_item.icon_state = "gun[rand(1,7)]"
 			item_type = "gun"
-			//There is no 'global list of all the gun caliber types' so...Whatever. This will have to do.
+			//There is no 'global list of all the gun caliber types' so...Whatever. This will have to do. (Side note: After further review, making it a global list would result in the gun requiring unobtainable calibers, so this is ideal.)
 			//When someone does make a global list of all the calibers, replace the below with it.
-			new_gun.caliber = "[pick(".357", "12g", "14.5mm", "7.62mm", "9.5x40mm", "9mm", "10mm", "7.93x33mm", "5.45mm")]"
-			additional_desc = "[pick("A dusty engraving on the side says [new_gun.caliber].",\
-			"The gun's barrel has [new_gun.caliber] barely visible on it.")]."
+			new_gun.caliber = "[pick(".357", "12g", ".38", "7.62mm", ".38", "9mm", "10mm", ".45", "5.45mm", "7.62mm")]" //A list of gun calibers that are obtainable.
+			additional_desc = "[pick("A dusty engraving on the side says <b>[new_gun.caliber]</b>. The ammo slot seems like it'd only fit single shells at a time.",\
+			"The gun's barrel has <b>[new_gun.caliber]</b> barely visible on it. The ammo slot seems like it'd only fit single shells at a time.")]"
 			var/possible_bullet_paths = list(/obj/item/paper/carbon/cursedform)
 			possible_bullet_paths |= subtypesof(/obj/item/projectile/bullet) //As funny as it would be to have your pistol shoot pulse rifle rounds, sorry.
+			//You COULD add a bullet blacklist here. Look at the material code below if you want an example of how to do so.
+			//During testing I found nothing EXTRAORDINARILY gamebreaking (although supermatter fuel rod gun rounds were VERY comical, but still obtainable in game)
+			//But maybe someone will add in a projectile/bullet/admin_instakills_you that needs to be blacklisted!
 			var/new_bullet = pick(possible_bullet_paths)
 			new_gun.projectile_type = new_bullet //Instead, you can get anything from chem darts to rifle rounds to everything in between.
 
 			new_gun.max_shells = rand(1,12)
 			var/num_bullets = rand(1,new_gun.max_shells)
-			if(num_bullets < new_gun.loaded.len)
-				new_gun.loaded.Cut()
-				for(var/i = 1, i <= num_bullets, i++)
-					var/A = new_gun.ammo_type
-					new_gun.loaded += new A(new_gun)
-			else
-				for(var/obj/item/I in new_gun)
-					if(new_gun.loaded.len > num_bullets)
-						if(I in new_gun.loaded)
-							new_gun.loaded.Remove(I)
-							I.loc = null
-						else
-							break
+			new_gun.loaded.Cut() //Remove all the bullets we spawned with.
+			new_gun.contents.Cut()
+			for(var/i = 1, i <= num_bullets, i++)//Load our gun with the special artifact ammo.
+				new_gun.loaded += new /obj/item/ammo_casing/artifact(new_gun)
 
 		if(ARCHAEO_UNKNOWN) //This previously spawned NOTHING...Are you kidding me?
 			var/new_sample = new /obj/item/research_sample/rare //So instead, you get a really good research sample. Eat your heart out, science.
@@ -736,7 +742,8 @@
 			var/obj/vehicle/boat/SB = secondary_item
 			source_material = SB.material.display_name
 		desc = "A [material_descriptor ? "[material_descriptor] " : ""][item_type] made of [source_material], all craftsmanship is of [pick("the lowest","low","average","high","the highest")] quality."
-		secondary_item.desc = "A [material_descriptor ? "[material_descriptor] " : ""][item_type] made of [source_material], all craftsmanship is of [pick("the lowest","low","average","high","the highest")] quality."
+		if(secondary_item)
+			secondary_item.desc = "A [material_descriptor ? "[material_descriptor] " : ""][item_type] made of [source_material], all craftsmanship is of [pick("the lowest","low","average","high","the highest")] quality."
 
 		var/list/descriptors = list()
 		if(prob(30))
@@ -759,7 +766,7 @@
 			decorations += "."
 		if(decorations)
 			desc += " " + decorations
-		if(secondary_item_decorations)
+		if(secondary_item && secondary_item_decorations)
 			secondary_item.desc += " " + decorations
 
 	var/engravings = ""
@@ -778,7 +785,7 @@
 		if(desc)
 			desc += " "
 		desc += engravings
-		if(secondary_item.desc)
+		if(secondary_item && secondary_item.desc)
 			desc += " "
 			secondary_item.desc += secondary_item_engravings
 
@@ -794,7 +801,7 @@
 	if(desc)
 		desc += " "
 	desc += additional_desc
-	if(secondary_item.desc)
+	if(secondary_item && secondary_item.desc)
 		secondary_item.desc += additional_desc
 	if(!desc)
 		desc = "This item is completely [pick("alien","bizarre")]."

@@ -22,7 +22,7 @@
 /obj/item/melee/artifact_blade/process()
 	if(!last_touched) //Nobody has touched us yet...For now.
 		return
-	if(loc = last_touched) //We are currently being wielded by our owner
+	if(loc == last_touched) //We are currently being wielded by our owner
 		return //Now, we do a variety of effects. TODO
 
 /obj/item/melee/artifact_blade/cultify()
