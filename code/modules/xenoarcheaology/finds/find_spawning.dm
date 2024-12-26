@@ -303,7 +303,7 @@
 			var/obj/item/gun/energy/new_gun = new /obj/item/gun/energy/laser/xenoarch(src.loc)
 			var/possible_laser_paths = list(/obj/item/paper/carbon/cursedform)
 			possible_laser_paths |= subtypesof(/obj/item/projectile/beam)
-			possible_laser_paths |= /obj/item/projectile/animate //Funny 'turns object into mimic' beam
+			// possible_laser_paths |= /obj/item/projectile/animate //Funny 'turns object into mimic' beam. Currently unticked in the .dme, but here in case it gets toggled!
 			possible_laser_paths |= /obj/item/projectile/ion
 			possible_laser_paths |= subtypesof(/obj/item/projectile/energy/floramut)
 			var/new_laser = pick(possible_laser_paths)
@@ -724,20 +724,25 @@
 	var/decorations = ""
 	var/secondary_item_decorations = ""
 	if(apply_material_decorations)
-		source_material = pick("cordite","quadrinium","steel","titanium","aluminium","ferritic-alloy","plasteel","duranium")
+		source_material = pick("cordite","quadrinium","chromium","roentgenium","aluminium","ferritic-alloy","meitnerium","tin","hafnium","zirconium","duranium","an unidentifiable alloy","palladium","copper")
 
+		//If we have a material that has a display_name, let's use that! If not, we'll use the random fancy sounding one above.
 		if(istype(new_item, /obj/item/material))
 			var/obj/item/material/MW = new_item
-			source_material = MW.material.display_name
+			if(MW.material.display_name)
+				source_material = MW.material.display_name
 		if(istype(secondary_item, /obj/item/material))
 			var/obj/item/material/SMW = secondary_item
-			source_material = SMW.material.display_name
+			if(SMW.material.display_name)
+				source_material = SMW.material.display_name
 		if(istype(new_item, /obj/vehicle/boat))
 			var/obj/vehicle/boat/B = new_item
-			source_material = B.material.display_name
+			if(B.material.display_name)
+				source_material = B.material.display_name
 		if(istype(secondary_item, /obj/vehicle/boat))
 			var/obj/vehicle/boat/SB = secondary_item
-			source_material = SB.material.display_name
+			if(SB.material.display_name)
+				source_material = SB.material.display_name
 		desc = "A [material_descriptor ? "[material_descriptor] " : ""][item_type] made of [source_material], all craftsmanship is of [pick("the lowest","low","average","high","the highest")] quality."
 		if(secondary_item)
 			secondary_item.desc = "A [material_descriptor ? "[material_descriptor] " : ""][item_type] made of [source_material], all craftsmanship is of [pick("the lowest","low","average","high","the highest")] quality."
