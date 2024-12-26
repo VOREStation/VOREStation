@@ -300,31 +300,28 @@
 			item_type = new_item.name
 		if(ARCHAEO_LASER)
 			//energy gun
-			var/spawn_type = pick(\
-			/obj/item/gun/energy/laser/practice/xenoarch,\
-			/obj/item/gun/energy/laser/xenoarch,\
-			/obj/item/gun/energy/xray/xenoarch,\
-			/obj/item/gun/energy/captain/xenoarch)
-			if(spawn_type)
-				var/obj/item/gun/energy/new_gun = new spawn_type(src.loc)
-				new_item = new_gun
-				new_item.icon_state = "egun[rand(1,6)]"
-				new_gun.desc = "This is an antique energy weapon, you're not sure if it will fire or not."
+			var/obj/item/gun/energy/new_gun = new /obj/item/gun/energy/laser/xenoarch(src.loc)
+			var/possible_laser_paths = list(/obj/item/paper/carbon/cursedform)
+			possible_laser_paths |= subtypesof(/obj/item/projectile/beam)
+			possible_laser_paths |= /obj/item/projectile/animate //Funny 'turns object into mimic' beam
+			possible_laser_paths |= /obj/item/projectile/ion
+			possible_laser_paths |= subtypesof(/obj/item/projectile/energy/floramut)
+			var/new_laser = pick(possible_laser_paths)
+			new_gun.projectile_type = new_laser
+			new_item = new_gun
+			new_item.icon_state = "egun[rand(1,6)]"
+			new_gun.desc = "This is an antique energy weapon, you're not sure if it will fire or not."
 
-				//5% chance to explode when first fired
-				//10% chance to have an unchargeable cell
-				//15% chance to gain a random amount of starting energy, otherwise start with an empty cell
-				if(prob(5))
-					new_gun.power_supply.rigged = 1
-				if(prob(10))
-					new_gun.power_supply.maxcharge = 0
-					LAZYSET(new_gun.origin_tech, TECH_ARCANE, rand(0, 1))
-				if(prob(15))
-					new_gun.power_supply.charge = rand(0, new_gun.power_supply.maxcharge)
-					LAZYSET(new_gun.origin_tech, TECH_ARCANE, 1)
-				else
-					new_gun.power_supply.charge = 0
-
+			//10% chance to have an unchargeable cell
+			//15% chance to gain a random amount of starting energy, otherwise start with an empty cell
+			if(prob(10))
+				new_gun.power_supply.maxcharge = 0
+				LAZYSET(new_gun.origin_tech, TECH_ARCANE, rand(0, 1))
+			if(prob(15))
+				new_gun.power_supply.charge = rand(0, new_gun.power_supply.maxcharge)
+				LAZYSET(new_gun.origin_tech, TECH_ARCANE, 1)
+			else
+				new_gun.power_supply.charge = 0
 			item_type = "gun"
 
 
