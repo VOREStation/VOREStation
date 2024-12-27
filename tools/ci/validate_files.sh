@@ -4,7 +4,7 @@ set -euo pipefail
 # nb: must be bash to support shopt globstar
 shopt -s globstar extglob
 
-source _build_dependencies.sh
+source dependencies.sh
 
 # ANSI Colors
 RED='\033[0;31m'

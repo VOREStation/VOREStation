@@ -1,7 +1,7 @@
 #!/bin/bash
 set -euo pipefail
 
-source _build_dependencies.sh
+source dependencies.sh
 
 if [ ! -f ~/$1 ]; then
 	mkdir -p "$HOME/SpacemanDMM"
