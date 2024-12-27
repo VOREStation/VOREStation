@@ -15,7 +15,7 @@
 		"million" = 999
 		)
 	var/xarch_source_mineral = REAGENT_ID_IRON
-	var/reagent = REAGENT_SILICATE
+	var/reagent = REAGENT_ID_SILICATE
 
 /ore/New()
 	. = ..()
