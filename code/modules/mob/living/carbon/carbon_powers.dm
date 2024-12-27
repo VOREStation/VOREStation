@@ -67,16 +67,16 @@
 
 	if(invisibility == INVISIBILITY_OBSERVER)
 		invisibility = initial(invisibility)
-		to_chat(src, "<span class='notice'>You are now visible.</span>")
+		to_chat(src, span_notice("You are now visible."))
 		alpha = max(alpha + 100, 255)
 	else
 		invisibility = INVISIBILITY_OBSERVER
-		to_chat(src, "<span class='danger'><b>You are now invisible.</b></span>")
+		to_chat(src, span_notice("You are now invisible."))
 		alpha = max(alpha - 100, 0)
 
 	var/datum/effect/effect/system/spark_spread/sparks = new /datum/effect/effect/system/spark_spread()
 	sparks.set_up(5, 0, src)
 	sparks.attach(loc)
 	sparks.start()
-	visible_message("<span class='warning'>Electrical sparks manifest around \the [src] as they suddenly appear!</span>")
+	visible_message(span_warning("Electrical sparks manifest around \the [src] as they suddenly appear!"))
 	qdel(sparks)
