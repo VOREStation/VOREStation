@@ -27,6 +27,8 @@
 	var/is_whitelisted = FALSE
 	var/whitelist_ckey
 	var/whitelist_charname
+	var/list/belly_light_list = list() // Support multiple sleepers with r/g light "sleeper"
+	var/list/belly_capacity_list = list() //Support multiple bellies with multiple sizes, default: "sleeper" = 1
 
 /// Determines if the borg has the proper flags to show an overlay.
 /datum/robot_sprite/proc/sprite_flag_check(var/flag_to_check)
@@ -84,25 +86,38 @@
 			continue //Go on to the next.
 	return
 
-/datum/robot_sprite/proc/get_belly_overlay(var/mob/living/silicon/robot/ourborg, var/size = 1)
+/datum/robot_sprite/proc/get_belly_overlay(var/mob/living/silicon/robot/ourborg, var/size = 1, var/b_class)
 	//Size
-	if(has_sleeper_light_indicator)
-		var/sleeperColor = "g"
-		if(ourborg.sleeper_state == 1) // Is our belly safe, or gurgling cuties?
-			sleeperColor = "r"
-		return "[sprite_icon_state]-sleeper-[size]-[sleeperColor]"
-	return "[sprite_icon_state]-sleeper-[size]"
+	if(has_sleeper_light_indicator || belly_light_list.len)
+		if(belly_light_list.len)
+			if(belly_light_list.Find(b_class))
+				//First, Sleeper base icon is input. Second the belly class, supposedly taken from the borg's vore_fullness_ex list.
+				//The belly class should be the same as the belly sprite's name, with as many size values as you defined in the
+				//vore_capacity_ex list. Finally, if the borg has a red/green light sleeper, it'll use g or r appended to the end.
+				//Bellies with lights should be defined in belly_light_list
+				var/sleeperColor = "g"
+				if(ourborg.sleeper_state == 1 || ourborg.vore_light_states[b_class] == 1) // Is our belly safe, or gurgling cuties?
+					sleeperColor = "r"
+				return "[sprite_icon_state]-[b_class]-[size]-[sleeperColor]"
 
-/datum/robot_sprite/proc/get_belly_resting_overlay(var/mob/living/silicon/robot/ourborg, var/size = 1)
+			return "[sprite_icon_state]-[b_class]-[size]"
+		else
+			var/sleeperColor = "g"
+			if(ourborg.sleeper_state == 1) // Is our belly safe, or gurgling cuties?
+				sleeperColor = "r"
+			return "[sprite_icon_state]-[b_class]-[size]-[sleeperColor]"
+	return "[sprite_icon_state]-[b_class]-[size]"
+
+/datum/robot_sprite/proc/get_belly_resting_overlay(var/mob/living/silicon/robot/ourborg, var/size = 1, var/b_class)
 	if(!(ourborg.rest_style in rest_sprite_options))
 		ourborg.rest_style = "Default"
 	switch(ourborg.rest_style)
 		if("Sit")
-			return "[get_belly_overlay(ourborg, size)]-sit"
+			return "[get_belly_overlay(ourborg, size, b_class)]-sit"
 		if("Bellyup")
-			return "[get_belly_overlay(ourborg, size)]-bellyup"
+			return "[get_belly_overlay(ourborg, size, b_class)]-bellyup"
 		else
-			return "[get_belly_overlay(ourborg, size)]-rest"
+			return "[get_belly_overlay(ourborg, size, b_class)]-rest"
 
 /datum/robot_sprite/proc/get_eyes_overlay(var/mob/living/silicon/robot/ourborg)
 	if(!(ourborg.resting && has_rest_sprites))

@@ -140,6 +140,7 @@
 		if("confirm")
 			R.apply_name(new_name)
 			R.apply_module(sprite_datum, selected_module)
+			R.update_multibelly()
 			R.transform_module()
 			close_ui()
 			. = TRUE

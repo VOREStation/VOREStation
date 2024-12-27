@@ -128,3 +128,27 @@
 	mount_offset_x = -9
 	has_eye_glow = TRUE
 	vore_eyes = TRUE
+
+// A fluff sprite for an event mob created by grayscaledrake
+
+/mob/living/simple_mob/vore/aggressive/dragon/gray_scaled
+	name = "gray scaled drake"
+	desc = "This is a big, scaly drake."
+
+	icon_dead = "drake_dead"
+	icon_living = "drake"
+	icon_state = "drake"
+	icon_rest = "drake_rest"
+	icon = 'icons/mob/vore_grayscale_drake.dmi'
+	vis_height = 115
+
+	old_x = -57
+	old_y = 0
+	default_pixel_x = -57
+	pixel_x = -57
+	pixel_y = 0
+
+	vore_active = 1
+	vore_capacity = 1
+	vore_pounce_chance = 0 // Beat them into crit before eating.
+	vore_icons = SA_ICON_LIVING
