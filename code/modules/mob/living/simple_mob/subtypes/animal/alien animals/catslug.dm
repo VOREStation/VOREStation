@@ -1055,6 +1055,41 @@
 /datum/say_list/catslug/custom/exploslug
 	speak = list("Fortune and porls, kid. Fortune and porls.", "Lizards, why'd it have to be lizards.", "That thingy is an important artifact. It belongs in a museum!", "Everything lost is meant to be found. By me.", "I swear I've seen that stone before...", "I should have packed more jellyfishes.", "I better get back before nightfall!", "A comfy bed? Hah! I sleep under the stars!")
 
+//xmas slug
+
+/mob/living/simple_mob/vore/alienanimals/catslug/custom/santaslug
+	name = "Santa Claws"
+	desc = "A green-furred noodley bodied creature with thin arms and legs, and gloomy dark eyes. This one is adorned with a festive coat, hat, boots and ribbons on it's tail."
+	tt_desc = "Mollusca Felis Solstice"
+	icon_state = "santaslug"
+	icon_living = "santaslug"
+	icon_rest = "santaslug_rest"
+	icon_dead = "santaslug_dead"
+	catalogue_data = list(/datum/category_item/catalogue/fauna/catslug/custom/santaslug)
+	say_list_type = /datum/say_list/catslug/custom/santaslug
+
+/datum/category_item/catalogue/fauna/catslug/custom/santaslug
+	name = "Alien Wildlife - Catslug - Santa Claws"
+	desc = "Found in a mysterious toyshop in a snowy wonderland, Claws\
+	is a catslug who spends their days building toys and is said to, \
+	once a year, hand them out to well behaved people. Always seen wearing \
+	their red coat and hat, they are always ready to spread \
+	festive cheer throughout the galaxy. \
+	\
+	The Catslug is an omnivorous terrestrial creature.\
+	Exhibiting properties of both a cat and a slug (hence its name)\
+	it moves somewhat awkwardly. However, the unique qualities of\
+	its body make it exceedingly flexible and smooth, allowing it to\
+	wiggle into and move effectively in even extremely tight spaces.\
+	Additionally, it has surprisingly capable hands, and moves quite\
+	well on two legs or four. Caution is advised when interacting\
+	with these creatures, they are quite intelligent, and proficient\
+	tool users."
+	value = CATALOGUER_REWARD_TRIVIAL
+
+/datum/say_list/catslug/custom/santaslug
+	speak = list("Ho ho ho!", "Meow-ery Solstice, everybody!", "Thanks fur all the furstive cheer!", "I must get all these purresents", "What would be the pawfect gift for you?", "All I want for solstice is... Porls.", "The winter trees are more bark than bite!", "I'm just glad not to be stuck in a blizzard again!")
+
 
 //=============================
 //Admin-spawn only catslugs end
