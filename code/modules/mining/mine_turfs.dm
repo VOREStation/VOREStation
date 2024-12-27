@@ -413,6 +413,7 @@ var/list/mining_overlay_cache = list()
 
 
 	else
+		//This lets us get a sample of the artifact core...This is JUST used for fluff.
 		if (istype(W, /obj/item/core_sampler))
 			geologic_data.UpdateNearbyArtifactInfo(src)
 			var/obj/item/core_sampler/C = W

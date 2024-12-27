@@ -97,7 +97,8 @@
 			icon_state = "statuette[rand(1,3)]"
 			additional_desc = "It depicts a [pick("small","ferocious","wild","pleasing","hulking")] \
 			[pick("alien figure","rodent-like creature","reptilian alien","primate","unidentifiable object")] \
-			[pick("performing unspeakable acts","posing heroically","in a fetal position","cheering","sobbing","making a plaintive gesture","making a rude gesture")]."
+			[pick("performing unspeakable acts","posing heroically","in a fetal position","cheering","sobbing","making a plaintive gesture","making a rude gesture")]. \
+			[pick("It glares at anything that makes sound", "Any nearby sounds attract it's gaze", "Its eyes glow crimson when noises are made nearby")]]."
 			new_item = new /obj/item/vampiric(src.loc) //Possibly make multiple subtypes of this?
 			LAZYSET(new_item.origin_tech, TECH_ARCANE, 1)
 		if(ARCHAEO_INSTRUMENT)
