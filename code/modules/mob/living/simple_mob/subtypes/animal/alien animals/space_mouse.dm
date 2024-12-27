@@ -62,7 +62,9 @@
 	vore_default_item_mode = IM_DIGEST
 
 /mob/living/simple_mob/vore/alienanimals/dustjumper/init_vore()
-	..()
+	if(!voremob_loaded)
+		return
+	. = ..()
 	var/obj/belly/B = vore_selected
 	B.name = "stomach"
 	B.desc = "You've been packed into the impossibly tight stomach of the dust jumper!!! The broiling heat seeps into you while the walls churn in powerfully, forcing you to curl up in the darkness."

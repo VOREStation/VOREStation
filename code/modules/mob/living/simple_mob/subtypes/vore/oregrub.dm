@@ -164,7 +164,9 @@
 //I'm no good at writing this stuff, so I've just left it as placeholders and disabled the chances of them eating you.
 /*
 /mob/living/simple_mob/vore/oregrub/init_vore()
-	..()
+	if(!voremob_loaded)
+		return
+	. = ..()
 	var/obj/belly/B = vore_selected
 	B.name = "stomach"
 	B.desc = "PLACEHOLDER!"

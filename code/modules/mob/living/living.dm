@@ -675,7 +675,9 @@
 	sdisabilities = 0
 	disabilities = 0
 	resting = FALSE
-	viruses.Cut()
+
+	if(viruses)
+		viruses.Cut()
 
 	// fix blindness and deafness
 	blinded = 0

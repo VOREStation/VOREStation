@@ -1,3 +1,40 @@
+/atom/movable/proc/get_mob()
+	if(buckled_mobs) return buckled_mobs.Copy()
+
+/obj/mecha/get_mob()
+	return occupant
+
+/obj/vehicle_old/train/get_mob()
+	return buckled_mobs
+
+/mob/get_mob()
+	return src
+
+/mob/living/bot/mulebot/get_mob()
+	if(load && istype(load, /mob/living))
+		return list(src, load)
+	return src
+
+/proc/mobs_in_view(range, source)
+	var/list/mobs = list()
+	for(var/atom/movable/AM in view(range, source))
+		var/M = AM.get_mob()
+		if(M)
+			mobs += M
+
+	return mobs
+
+/// This gets a list of mobs ALL around us as if we had xray vision and can see through walls.
+/// Currently only used in portable_turret.dm if you wish to see an example of how to use it.
+/proc/mobs_in_xray_view(range, source)
+	var/list/mobs = list()
+	for(var/atom/movable/AM in orange(range, source))
+		var/M = AM.get_mob()
+		if(M)
+			mobs += M
+
+	return mobs
+
 /proc/random_hair_style(gender, species = SPECIES_HUMAN)
 	var/h_style = "Bald"
 

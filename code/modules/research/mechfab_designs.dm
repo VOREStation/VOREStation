@@ -538,7 +538,7 @@
 	req_tech = list(TECH_BLUESPACE = 10, TECH_MAGNET = 5)
 	build_path = /obj/item/mecha_parts/mecha_equipment/teleporter
 
-/datum/design/item/mecha/teleporter
+/datum/design/item/mecha/cloak
 	name = "Cloaking Device"
 	desc = "A device that renders the exosuit invisible to the naked eye, though not to thermal detection. Uses large amounts of energy."
 	id = "mech_cloaking"

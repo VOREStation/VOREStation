@@ -88,7 +88,9 @@ TODO: Make them light up and heat the air when exposed to oxygen.
 	vore_icons = SA_ICON_LIVING
 
 /mob/living/simple_mob/animal/passive/gaslamp/init_vore()
-	..()
+	if(!voremob_loaded)
+		return
+	. = ..()
 	var/obj/belly/B = vore_selected
 	B.name = "internal chamber"
 	B.desc = "Having been too slow to disentangle yourself from the gaslamp's tentacles, the alien creature eventually winds enough of them around your body to lift you up off of the ground. Struggle as you might now, it is too late to deny the jellyfish-esque scavenger its lucky catch; inch by inch, the gaslamp tugs you upwards into its equivalent of a stomach, the transition between the cool-to-frigid atmosphere on the outside to its surprising internal heat something you can feel through any outer wear you possess. Minutes pass, soon resulting in the gentle creature's body sporting a rounded, bulging swell, an indistinct shadow shifting and twitching inside it as you squirm about. Be it to escape or simply to get settled, you might want to take care, however. The gaslamp's internal chamber is slick and squishy instead of overly oppressive, yet, each wave of warmth that pulses over you leaves you feeling weaker than the last..."

@@ -107,7 +107,7 @@
 		if(locked && state == 0)
 			to_chat(M,span_warning("It's locked!"))
 			return
-		if(world.time - user.last_bumped <= 60)
+		if(world.time - last_bumped <= 60)
 			return
 		if(M.client)
 			if(iscarbon(M))
