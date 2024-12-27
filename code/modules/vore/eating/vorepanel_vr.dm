@@ -806,7 +806,7 @@ var/global/list/belly_colorable_only_fullscreens = list("a_synth_flesh_mono",
 	var/atom/movable/target = locate(params["pick"])
 	if(!(target in host.vore_selected))
 		return TRUE // Not in our X anymore, update UI
-	var/list/available_options = list("Examine", "Eject", "Move", "Transfer")
+	var/list/available_options = list("Examine", "Eject", "Launch", "Move", "Transfer")
 	if(ishuman(target))
 		available_options += "Transform"
 		available_options += "Health Check"
@@ -832,6 +832,16 @@ var/global/list/belly_colorable_only_fullscreens = list("a_synth_flesh_mono",
 				return TRUE
 
 			host.vore_selected.release_specific_contents(target)
+			return TRUE
+
+		if("Launch")
+			if(host.stat)
+				to_chat(user, span_warning("You can't do that in your state!"))
+				return TRUE
+
+			host.vore_selected.release_specific_contents(target)
+			target.throw_at(get_edge_target_turf(host, host.dir), 3, 1, host)
+			host.visible_message(span_danger("[host] launches [target]!"))
 			return TRUE
 
 		if("Move")
