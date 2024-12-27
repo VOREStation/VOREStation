@@ -1481,3 +1481,12 @@
 			robotact?.update_static_data_for_all_viewers()
 
 	. = ..()
+
+/// This proc checks to see if a borg has access to whatever they're interacting with
+/obj/proc/siliconaccess(mob/user)
+	var/mob/living/silicon/robot/R = user
+	if(istype(R))
+		return check_access(R.idcard)
+	if(issilicon(user))
+		return TRUE
+	return FALSE
