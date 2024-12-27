@@ -179,6 +179,10 @@
 	var/hasthermals = TRUE
 	var/isthermal = 0
 
+	//vars for vore_icons toggle control
+	var/vore_icons_cache = null // null by default. Going from ON to OFF should store vore_icons val here, OFF to ON reset as null
+
+
 /mob/living/simple_mob/Initialize()
 	remove_verb(src, /mob/verb/observe)
 	health = maxHealth
@@ -225,6 +229,9 @@
 /mob/living/simple_mob/Login()
 	. = ..()
 	to_chat(src,span_boldnotice("You are \the [src].") + " [player_msg]")
+	if(vore_active && !voremob_loaded)
+		voremob_loaded = TRUE
+		init_vore()
 	if(hasthermals)
 		add_verb(src, /mob/living/simple_mob/proc/hunting_vision) //So that maint preds can see prey through walls, to make it easier to find them.
 
@@ -390,3 +397,22 @@
 
 /mob/living/simple_mob/proc/character_directory_species()
 	return "simplemob"
+
+/mob/living/simple_mob/verb/toggle_vore_icons()
+
+	set name = "Toggle Vore Sprite"
+	set desc = "Toggle visibility of changed mob sprite when you have eaten other things."
+	set category = "Abilities.Vore"
+
+	if(!vore_icons && !vore_icons_cache)
+		to_chat(src,span_warning("This simplemob has no vore sprite."))
+	else if(isnull(vore_icons_cache))
+		vore_icons_cache = vore_icons
+		vore_icons = 0
+		to_chat(src,span_warning("Vore sprite disabled."))
+	else
+		vore_icons = vore_icons_cache
+		vore_icons_cache = null
+		to_chat(src,span_warning("Vore sprite enabled."))
+
+	update_icon()

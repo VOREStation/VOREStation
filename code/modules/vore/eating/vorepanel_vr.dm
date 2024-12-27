@@ -249,12 +249,15 @@ var/global/list/belly_colorable_only_fullscreens = list("a_synth_flesh_mono",
 			"resist_animation" = selected.resist_triggers_animation,
 			"voresprite_size_factor" = selected.size_factor_for_sprite,
 			"belly_sprite_to_affect" = selected.belly_sprite_to_affect,
-			"belly_sprite_option_shown" = istype(host, /mob/living/carbon/human) ? (LAZYLEN(host:vore_icon_bellies) >= 1 ? TRUE : FALSE) : FALSE, // TODO: FIX THIS (It won't be fixed)
+			"belly_sprite_option_shown" = LAZYLEN(host.vore_icon_bellies) >= 1 ? TRUE : FALSE,
 			"tail_option_shown" = istype(host, /mob/living/carbon/human),
 			"tail_to_change_to" = selected.tail_to_change_to,
 			"tail_colouration" = selected.tail_colouration,
 			"tail_extra_overlay" = selected.tail_extra_overlay,
-			"tail_extra_overlay2" = selected.tail_extra_overlay2
+			"tail_extra_overlay2" = selected.tail_extra_overlay2,
+			"undergarment_chosen" = selected.undergarment_chosen,
+			"undergarment_if_none" = selected.undergarment_if_none || "None",
+			"undergarment_color" = selected.undergarment_color
 		)
 
 		var/list/addons = list()
@@ -671,19 +674,19 @@ var/global/list/belly_colorable_only_fullscreens = list("a_synth_flesh_mono",
 			unsaved_changes = TRUE
 			return TRUE
 		if("set_vs_color")
-			if (istype(host, /mob/living/carbon/human))
-				var/mob/living/carbon/human/hhost = host
-				var/belly_choice = tgui_input_list(ui.user, "Which vore sprite are you going to edit the color of?", "Vore Sprite Color", hhost.vore_icon_bellies)
-				var/newcolor = input(ui.user, "Choose a color.", "", hhost.vore_sprite_color[belly_choice]) as color|null
+			var/belly_choice = tgui_input_list(ui.user, "Which vore sprite are you going to edit the color of?", "Vore Sprite Color", host.vore_icon_bellies)
+			if(belly_choice)
+				var/newcolor = input(ui.user, "Choose a color.", "", host.vore_sprite_color[belly_choice]) as color|null
 				if(newcolor)
-					hhost.vore_sprite_color[belly_choice] = newcolor
-					var/multiply = tgui_input_list(ui.user, "Set the color to be applied multiplicatively or additively? Currently in [hhost.vore_sprite_multiply[belly_choice] ? "Multiply" : "Add"]", "Vore Sprite Color", list("Multiply", "Add"))
+					host.vore_sprite_color[belly_choice] = newcolor
+					var/multiply = tgui_input_list(ui.user, "Set the color to be applied multiplicatively or additively? Currently in [host.vore_sprite_multiply[belly_choice] ? "Multiply" : "Add"]", "Vore Sprite Color", list("Multiply", "Add"))
 					if(multiply == "Multiply")
-						hhost.vore_sprite_multiply[belly_choice] = TRUE
+						host.vore_sprite_multiply[belly_choice] = TRUE
 					else if(multiply == "Add")
-						hhost.vore_sprite_multiply[belly_choice] = FALSE
-					hhost.update_icons_body()
-				return TRUE
+						host.vore_sprite_multiply[belly_choice] = FALSE
+					host.update_icons_body()
+					unsaved_changes = TRUE
+			return TRUE
 
 /datum/vore_look/proc/pick_from_inside(mob/user, params)
 	var/atom/movable/target = locate(params["pick"])
@@ -1453,7 +1456,9 @@ var/global/list/belly_colorable_only_fullscreens = list("a_synth_flesh_mono",
 			list("Sleeper", "Vorebelly", "Both"))
 			if(belly_choice == null)
 				return FALSE
-			host.vore_selected.silicon_belly_overlay_preference = belly_choice
+			for (var/belly in host.vore_organs)
+				var/obj/belly/B = belly
+				B.silicon_belly_overlay_preference = belly_choice
 			host.update_icon()
 			. = TRUE
 		if("b_belly_mob_mult")
@@ -1759,97 +1764,125 @@ var/global/list/belly_colorable_only_fullscreens = list("a_synth_flesh_mono",
 			host.vore_selected = host.vore_organs[1]
 			. = TRUE
 		if("b_belly_sprite_to_affect")
-			if (istype(host, /mob/living/carbon/human))
-				var/mob/living/carbon/human/hhost = host
-				var/belly_choice = tgui_input_list(user, "Which belly sprite do you want your [lowertext(hhost.vore_selected.name)] to affect?","Select Region", hhost.vore_icon_bellies)
-				if(!belly_choice) //They cancelled, no changes
-					return FALSE
+			var/belly_choice = tgui_input_list(user, "Which belly sprite do you want your [lowertext(host.vore_selected.name)] to affect?","Select Region", host.vore_icon_bellies)
+			if(!belly_choice) //They cancelled, no changes
+				return FALSE
+			else
+				host.vore_selected.belly_sprite_to_affect = belly_choice
+				if(isanimal(host))
+					host.update_icon()
 				else
-					hhost.vore_selected.belly_sprite_to_affect = belly_choice
-					hhost.update_fullness()
-				. = TRUE
+					host.update_fullness()
+			. = TRUE
 		if("b_affects_vore_sprites")
-			if (istype(host, /mob/living/carbon/human))
-				var/mob/living/carbon/human/hhost = host
-				hhost.vore_selected.affects_vore_sprites = !hhost.vore_selected.affects_vore_sprites
-				hhost.update_fullness()
-				. = TRUE
+			host.vore_selected.affects_vore_sprites = !host.vore_selected.affects_vore_sprites
+			if(isanimal(host))
+				host.update_icon()
+			else
+				host.update_fullness()
+			. = TRUE
 		if("b_count_absorbed_prey_for_sprites")
-			if (istype(host, /mob/living/carbon/human))
-				var/mob/living/carbon/human/hhost = host
-				hhost.vore_selected.count_absorbed_prey_for_sprite = !hhost.vore_selected.count_absorbed_prey_for_sprite
-				hhost.update_fullness()
-				. = TRUE
+			host.vore_selected.count_absorbed_prey_for_sprite = !host.vore_selected.count_absorbed_prey_for_sprite
+			if(isanimal(host))
+				host.update_icon()
+			else
+				host.update_fullness()
+			. = TRUE
 		if("b_absorbed_multiplier")
-			if (istype(host, /mob/living/carbon/human))
-				var/mob/living/carbon/human/hhost = host
-				var/absorbed_multiplier_input = input(user, "Set the impact absorbed prey's size have on your vore sprite. 1 means no scaling, 0.5 means absorbed prey count half as much, 2 means absorbed prey count double. (Range from 0.1 - 3)", "Absorbed Multiplier") as num|null
-				if(!isnull(absorbed_multiplier_input))
-					hhost.vore_selected.absorbed_multiplier = CLAMP(absorbed_multiplier_input, 0.1, 3)
-					hhost.update_fullness()
-				. = TRUE
-		if("b_count_items_for_sprites")
-			if (istype(host, /mob/living/carbon/human))
-				var/mob/living/carbon/human/hhost = host
-				hhost.vore_selected.count_items_for_sprite = !hhost.vore_selected.count_items_for_sprite
-				hhost.update_fullness()
-				. = TRUE
-		if("b_item_multiplier")
-			if (istype(host, /mob/living/carbon/human))
-				var/mob/living/carbon/human/hhost = host
-				var/item_multiplier_input = input(user, "Set the impact items will have on your vore sprite. 1 means a belly with 8 normal-sized items will count as 1 normal sized prey-thing's worth, 0.5 means items count half as much, 2 means items count double. (Range from 0.1 - 10)", "Item Multiplier") as num|null
-				if(!isnull(item_multiplier_input))
-					hhost.vore_selected.item_multiplier = CLAMP(item_multiplier_input, 0.1, 10)
-					hhost.update_fullness()
-				. = TRUE
-		if("b_health_impacts_size")
-			if (istype(host, /mob/living/carbon/human))
-				var/mob/living/carbon/human/hhost = host
-				hhost.vore_selected.health_impacts_size = !hhost.vore_selected.health_impacts_size
-				hhost.update_fullness()
-				. = TRUE
-		if("b_resist_animation")
-			if (istype(host, /mob/living/carbon/human))
-				var/mob/living/carbon/human/hhost = host
-				hhost.vore_selected.resist_triggers_animation = !hhost.vore_selected.resist_triggers_animation
-				. = TRUE
-		if("b_size_factor_sprites")
-			if (istype(host, /mob/living/carbon/human))
-				var/mob/living/carbon/human/hhost = host
-				var/size_factor_input = input(user, "Set the impact all belly content's collective size has on your vore sprite. 1 means no scaling, 0.5 means content counts half as much, 2 means contents count double. (Range from 0.1 - 3)", "Size Factor") as num|null
-				if(!isnull(size_factor_input))
-					hhost.vore_selected.size_factor_for_sprite = CLAMP(size_factor_input, 0.1, 3)
-					hhost.update_fullness()
-				. = TRUE
-		if("b_tail_to_change_to")
-			if (istype(host, /mob/living/carbon/human))
-				var/mob/living/carbon/human/hhost = host
-				var/tail_choice = tgui_input_list(user, "Which tail sprite do you want to use when your [lowertext(host.vore_selected.name)] is filled?","Select Sprite", global.tail_styles_list)
-				if(!tail_choice) //They cancelled, no changes
-					return FALSE
+			var/absorbed_multiplier_input = input(user, "Set the impact absorbed prey's size have on your vore sprite. 1 means no scaling, 0.5 means absorbed prey count half as much, 2 means absorbed prey count double. (Range from 0.1 - 3)", "Absorbed Multiplier") as num|null
+			if(!isnull(absorbed_multiplier_input))
+				host.vore_selected.absorbed_multiplier = CLAMP(absorbed_multiplier_input, 0.1, 3)
+				if(isanimal(host))
+					host.update_icon()
 				else
-					hhost.vore_selected.tail_to_change_to = tail_choice
-				. = TRUE
+					host.update_fullness()
+			. = TRUE
+		if("b_count_items_for_sprites")
+			host.vore_selected.count_items_for_sprite = !host.vore_selected.count_items_for_sprite
+			if(isanimal(host))
+				host.update_icon()
+			else
+				host.update_fullness()
+			. = TRUE
+		if("b_item_multiplier")
+			var/item_multiplier_input = input(user, "Set the impact items will have on your vore sprite. 1 means a belly with 8 normal-sized items will count as 1 normal sized prey-thing's worth, 0.5 means items count half as much, 2 means items count double. (Range from 0.1 - 10)", "Item Multiplier") as num|null
+			if(!isnull(item_multiplier_input))
+				host.vore_selected.item_multiplier = CLAMP(item_multiplier_input, 0.1, 10)
+				if(isanimal(host))
+					host.update_icon()
+				else
+					host.update_fullness()
+			. = TRUE
+		if("b_health_impacts_size")
+			host.vore_selected.health_impacts_size = !host.vore_selected.health_impacts_size
+			if(isanimal(host))
+				host.update_icon()
+			else
+				host.update_fullness()
+			. = TRUE
+		if("b_resist_animation")
+			host.vore_selected.resist_triggers_animation = !host.vore_selected.resist_triggers_animation
+			. = TRUE
+		if("b_size_factor_sprites")
+			var/size_factor_input = input(user, "Set the impact all belly content's collective size has on your vore sprite. 1 means no scaling, 0.5 means content counts half as much, 2 means contents count double. (Range from 0.1 - 3)", "Size Factor") as num|null
+			if(!isnull(size_factor_input))
+				host.vore_selected.size_factor_for_sprite = CLAMP(size_factor_input, 0.1, 3)
+				if(isanimal(host))
+					host.update_icon()
+				else
+					host.update_fullness()
+			. = TRUE
+		if("b_vore_sprite_flags")
+			var/list/menu_list = host.vore_selected.vore_sprite_flag_list.Copy()
+			var/toggle_vs_flag = tgui_input_list(user, "Toggle Vore Sprite Modes", "Mode Choice", menu_list)
+			if(!toggle_vs_flag)
+				return FALSE
+			host.vore_selected.vore_sprite_flags ^= host.vore_selected.vore_sprite_flag_list[toggle_vs_flag]
+			. = TRUE
+		if("b_undergarment_choice")
+			var/datum/category_group/underwear/undergarment_choice = tgui_input_list(user, "Which undergarment do you want to enable when your [lowertext(host.vore_selected.name)] is filled?","Select Undergarment Class", global_underwear.categories)
+			if(!undergarment_choice) //They cancelled, no changes
+				return FALSE
+			else
+				host.vore_selected.undergarment_chosen = undergarment_choice.name
+				host.update_fullness()
+			. = TRUE
+		if("b_undergarment_if_none")
+			var/datum/category_group/underwear/UWC = global_underwear.categories_by_name[host.vore_selected.undergarment_chosen]
+			var/datum/category_item/underwear/selected_underwear = tgui_input_list(user, "If no undergarment is equipped, which undergarment style do you want to use?","Select Underwear Style",UWC.items,host.vore_selected.undergarment_if_none)
+			if(!selected_underwear) //They cancelled, no changes
+				return FALSE
+			else
+				host.vore_selected.undergarment_if_none = selected_underwear
+				host.update_fullness()
+				host.updateVRPanel()
+		if("b_undergarment_color")
+			var/newcolor = input(user, "Choose a color.", "", host.vore_selected.undergarment_color) as color|null
+			if(newcolor)
+				host.vore_selected.undergarment_color = newcolor
+				host.update_fullness()
+			. = TRUE
+		if("b_tail_to_change_to")
+			var/tail_choice = tgui_input_list(user, "Which tail sprite do you want to use when your [lowertext(host.vore_selected.name)] is filled?","Select Sprite", global.tail_styles_list)
+			if(!tail_choice) //They cancelled, no changes
+				return FALSE
+			else
+				host.vore_selected.tail_to_change_to = tail_choice
+			. = TRUE
 		if("b_tail_color")
-			if (istype(host, /mob/living/carbon/human))
-				var/mob/living/carbon/human/hhost = host
-				var/newcolor = input(user, "Choose tail color.", "", hhost.vore_selected.tail_colouration) as color|null
-				if(newcolor)
-					hhost.vore_selected.tail_colouration = newcolor
-				. = TRUE
+			var/newcolor = input(user, "Choose tail color.", "", host.vore_selected.tail_colouration) as color|null
+			if(newcolor)
+				host.vore_selected.tail_colouration = newcolor
+			. = TRUE
 		if("b_tail_color2")
-			if (istype(host, /mob/living/carbon/human))
-				var/mob/living/carbon/human/hhost = host
-				var/newcolor = input(user, "Choose tail secondary color.", "", hhost.vore_selected.tail_extra_overlay) as color|null
-				if(newcolor)
-					hhost.vore_selected.tail_extra_overlay = newcolor
-				. = TRUE
+			var/newcolor = input(user, "Choose tail secondary color.", "", host.vore_selected.tail_extra_overlay) as color|null
+			if(newcolor)
+				host.vore_selected.tail_extra_overlay = newcolor
+			. = TRUE
 		if("b_tail_color3")
-			if (istype(host, /mob/living/carbon/human))
-				var/mob/living/carbon/human/hhost = host
-				var/newcolor = input(user, "Choose tail tertiary color.", "", hhost.vore_selected.tail_extra_overlay2) as color|null
-				if(newcolor)
-					hhost.vore_selected.tail_extra_overlay2 = newcolor
-				. = TRUE
+			var/newcolor = input(user, "Choose tail tertiary color.", "", host.vore_selected.tail_extra_overlay2) as color|null
+			if(newcolor)
+				host.vore_selected.tail_extra_overlay2 = newcolor
+			. = TRUE
 	if(.)
 		unsaved_changes = TRUE
