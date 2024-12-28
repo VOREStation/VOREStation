@@ -67,7 +67,7 @@ var/global/client_record_update_lock = FALSE
 		if(COM && !QDELETED(COM))
 			COM.visible_message(span_notice("\The [COM] buzzes!"))
 			playsound(COM, 'sound/machines/deniedbeep.ogg', 50, 0)
-		return "Update syncronization failed (OOC: Client mob does not exist, has no mind record, or is possesssed)"
+		return "Update syncronization failed (OOC: Player mob does not exist, has no mind record, or is possesssed)"
 
 	var/client/C = M.client
 	if(!C)
@@ -76,13 +76,13 @@ var/global/client_record_update_lock = FALSE
 			playsound(COM, 'sound/machines/deniedbeep.ogg', 50, 0)
 		return "Update syncronization failed (OOC: Record's owner is offline)"
 
-	var/choice = tgui_alert(M, "Your [record_string] record has been updated from the a records console by [user]. Please review the changes made to your [record_string] record. Accepting these changes will SAVE your CURRENT character slot! If your new [record_string] record has errors, it is recomended to have it corrected IC instead of editing it yourself.", "Record Updated", list("Review Changes","Refuse Update"))
-	if(choice == "Refuse Update")
+	var/choice = tgui_alert(M, "Your [record_string] record has been updated from the a records console by [user]. Please review the changes made to your [record_string] record. Accepting these changes will SAVE your CURRENT character slot! If your new [record_string] record has errors, it is recomended to have it corrected IC instead of editing it yourself.", "Record Updated", list("Review Changes","DENY"))
+	if(choice == "DENY")
 		message_admins("[active.fields["name"]] refused [record_string] record update from [user] without review.")
 		if(COM && !QDELETED(COM))
 			COM.visible_message(span_notice("\The [COM] buzzes!"))
 			playsound(COM, 'sound/machines/deniedbeep.ogg', 50, 0)
-		return "Update syncronization failed (OOC: Client refused without review)"
+		return "Update syncronization failed (OOC: Player refused without review)"
 
 	var/datum/preferences/P = C.prefs
 	var/new_data = strip_html_simple(tgui_input_text(M,"Please review [user]'s changes to your [record_string] record before confirming. Confirming will SAVE your CURRENT character slot! If your new [record_string] record major errors, it is recomended to have it corrected IC instead of editing it yourself.","Character Preference", html_decode(active.fields["notes"]), MAX_RECORD_LENGTH, TRUE, prevent_enter = TRUE), MAX_RECORD_LENGTH)
@@ -91,13 +91,13 @@ var/global/client_record_update_lock = FALSE
 		if(COM && !QDELETED(COM))
 			COM.visible_message(span_notice("\The [COM] buzzes!"))
 			playsound(COM, 'sound/machines/deniedbeep.ogg', 50, 0)
-		return "Update syncronization failed (OOC: Client refused with review)"
+		return "Update syncronization failed (OOC: Player refused with review)"
 	if(!M || !M.client || !P)
-		message_admins("[active.fields["name"]]'s [record_string] record could not be updated, client disconnected.")
+		message_admins("[active.fields["name"]]'s [record_string] record could not be updated, player disconnected.")
 		if(COM && !QDELETED(COM))
 			COM.visible_message(span_notice("\The [COM] buzzes!"))
 			playsound(COM, 'sound/machines/deniedbeep.ogg', 50, 0)
-		return "Update syncronization failed (OOC: Client does not exist)"
+		return "Update syncronization failed (OOC: Player does not exist)"
 
 	// Update records in the consoles, remember this can happen a while after a record is closed on the console... Use cached data.
 	switch(console_path)

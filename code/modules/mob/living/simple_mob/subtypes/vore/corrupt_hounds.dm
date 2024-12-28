@@ -126,7 +126,9 @@
 	return TRUE
 
 /mob/living/simple_mob/vore/aggressive/corrupthound/init_vore()
-	..()
+	if(!voremob_loaded)
+		return
+	. = ..()
 	var/obj/belly/B = vore_selected
 	B.name = "fuel processor"
 	B.desc = "Uttering distorted growls and fragmented voice clips all the while, the corrupted hound gulps the rest of your squirming figure past its jaws... which snap shut with an audible click of metal on metal. Your trip down its slickly lubricated, rubbery gullet is a tight and efficient one... and once you spill out into the machine's fuel processor, your weight making it sag slightly, hot-and-thick slime begins oozing all over your form. Only time will tell if you're destined to become fuel for its next bout of rampaging... be it days, hours, or just mere minutes..."
@@ -148,7 +150,9 @@
 		"'FU3L mE A1RE@Dy, S0 sO SORrY!?', your corrupted captor growls as its synthetic innards begin oozing more potent juices, grinding down into your body with increasing fervor!")
 
 /mob/living/simple_mob/vore/aggressive/corrupthound/prettyboi/init_vore()
-	..()
+	if(!voremob_loaded)
+		return
+	. = ..()
 	var/obj/belly/B = vore_selected
 	B.name = "fuel processor"
 	B.desc = "The twice-corrupted hound takes a moment to lather over the rest of your figure in heated, slimy synth-slobber before gulping you the rest of the way down its lubricated, rubbery throat. After a short string of slick-sounding, autonomous swallows, you spill out into its awaiting processor, your body immediately making its synth-flesh sag down slightly... and, as an oddly distorted rumble vibrates into the chamber, so too does a slowly accumulating pool of hot, viscous ooze. Only time will tell if whatever extra programming the hound has will spare you from being processed..."
