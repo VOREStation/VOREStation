@@ -302,3 +302,4 @@
 	. = ..()
 	if(. && (species.tail || tail_style))
 		update_tail_showing()
+		update_inv_wear_suit()

@@ -1087,6 +1087,7 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 			. = tail_overlay
 
 	apply_layer(tail_layer)
+	update_inv_wear_suit() //In case we have a suit that obscures our tail! Otherwise the suit disappears!
 
 //Not really once, since BYOND can't do that.
 //Update this if the ability to flick() images or make looping animation start at the first frame is ever added.
