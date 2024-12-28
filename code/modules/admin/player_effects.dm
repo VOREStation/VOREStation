@@ -610,6 +610,12 @@
 			add_verb(Tar, /mob/living/proc/eat_trash)
 			add_verb(Tar, /mob/living/proc/toggle_trash_catching)
 
+		if("active_cloaking")
+			var/mob/living/Tar = target
+			if(!istype(Tar))
+				return
+			add_verb(Tar, /mob/living/proc/toggle_active_cloaking)
+
 
 		////////INVENTORY//////////////
 
