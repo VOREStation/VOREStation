@@ -220,11 +220,11 @@
 	else
 		ourborg.icon_state = booze_options[ourborg.sprite_extra_customization["boozehound"]]
 
-/datum/robot_sprite/dogborg/service/booze/get_belly_overlay(var/mob/living/silicon/robot/ourborg, var/size = 1)
-	if(!("boozehound" in ourborg.sprite_extra_customization) || !ourborg.sprite_extra_customization["boozehound"])
+/datum/robot_sprite/dogborg/service/booze/get_belly_overlay(var/mob/living/silicon/robot/ourborg, var/size = 1, var/b_class)
+	if(!("boozehound" in ourborg.sprite_extra_customization) || !ourborg.sprite_extra_customization["boozehound"] || b_class != "sleeper")
 		return ..()
 	else
-		return "[booze_options[ourborg.sprite_extra_customization["boozehound"]]]-sleeper-[size]"
+		return "[booze_options[ourborg.sprite_extra_customization["boozehound"]]]-[b_class]-[size]"
 
 /datum/robot_sprite/dogborg/service/booze/get_rest_sprite(var/mob/living/silicon/robot/ourborg)
 	if(!(ourborg.rest_style in rest_sprite_options))

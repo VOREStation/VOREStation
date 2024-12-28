@@ -56,7 +56,9 @@
 	emote_see = list("gestures for you to come over","winks","smiles","stretches")
 
 /mob/living/simple_mob/vore/succubus/init_vore()
-	..()
+	if(!voremob_loaded)
+		return
+	. = ..()
 	var/obj/belly/B = vore_selected
 	B.name = "stomach"
 	B.desc = "You find yourself tightly compressed into the stomach of the succubus, with immense pressure squeezing down on you from every direction. The wrinkled walls of the gut knead over you, like a swelteringly hot, wet massage. You can feel movement from the outside, as though the demoness is running her hands over your form with delight. The world around you groans and gurgles, but the fluids that ooze into this place don't seem harmful, yet. Instead, you feel your very energy being steadily depleted, much to the joy of the woman who's claiming it all for herself."

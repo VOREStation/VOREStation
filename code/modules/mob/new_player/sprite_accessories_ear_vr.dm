@@ -229,6 +229,37 @@
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
 
+/datum/sprite_accessory/ears/hopeful_horns
+	name = "hopeful horns, colorable"
+	desc = ""
+	icon_state = "hopefulhorns"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/ears/highrise_horns
+	name = "high-rise horns, colorable"
+	desc = ""
+	icon = 'icons/mob/vore/ears_32x64.dmi'
+	icon_state = "highrisehorns"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/ears/whos_horns
+	name = "who's horns, colorable"
+	desc = ""
+	icon = 'icons/mob/vore/ears_32x64.dmi'
+	icon_state = "whoshorns"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/ears/paintedpoints_horns
+	name = "painted points horns, colorable"
+	desc = ""
+	icon = 'icons/mob/vore/ears_32x64.dmi'
+	icon_state = "paintedpoints"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
 /datum/sprite_accessory/ears/foxears
 	name = "highlander zorren ears"
 	desc = ""
@@ -910,6 +941,14 @@
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
 
+/datum/sprite_accessory/ears/antlers_tall
+	name = "Antlers (tall)"
+	desc = ""
+	icon = 'icons/mob/vore/ears_32x64.dmi'
+	icon_state = "antlerstall"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
 /datum/sprite_accessory/ears/antlers_large
 	name = "Antlers (large)"
 	desc = ""
@@ -952,6 +991,16 @@
 	extra_overlay = "bunny-tall-inner"
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/ears/bunnytall_alt
+	name = "Bunny tall, alt, colorable"
+	desc = ""
+	icon = 'icons/mob/vore/ears_32x64.dmi'
+	icon_state = "tallbunny"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "tallbunny-inner"
+	extra_overlay2 = "tallbunny-tips"
 
 /datum/sprite_accessory/ears/altevian
 	name = "Altevian Ears"

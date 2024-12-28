@@ -166,7 +166,9 @@ GLOBAL_VAR_INIT(teppi_count, 0)	// How mant teppi DO we have?
 	vore_standing_too = TRUE
 
 /mob/living/simple_mob/vore/alienanimals/teppi/init_vore()
-	..()
+	if(!voremob_loaded)
+		return
+	. = ..()
 	var/obj/belly/B = vore_selected
 	B.name = "stomach"
 	B.desc = "The heat of the roiling flesh around you bakes into you immediately as you’re cast into the gloom of a Teppi’s primary gastric chamber. The undulations are practically smothering, clinging to you and grinding you all over as the Teppi continues about its day. The walls are heavy against you, so it’s really difficult to move at all, while the heart of this creature pulses rhythmically somewhere nearby, and you can feel the throb of its pulse in the doughy squish pressing up against you. Your figure sinks a ways into the flesh as it presses in, wrapping limbs up between countless slick folds and kneading waves. It’s not long before you’re positively soaked in a thin layer of slime as you’re rocked and squeezed and jostled in the stomach of your captor."
@@ -280,6 +282,7 @@ GLOBAL_VAR_INIT(teppi_count, 0)	// How mant teppi DO we have?
 // The friend zone.
 	var/obj/belly/p = new /obj/belly(src)
 	p.immutable = TRUE
+	p.affects_vore_sprites = TRUE
 	p.mode_flags = 40
 	p.human_prey_swallow_time = 0.01 SECONDS
 	p.digestchance = 0
@@ -788,6 +791,9 @@ GLOBAL_VAR_INIT(teppi_count, 0)	// How mant teppi DO we have?
 		vore_selected.digest_burn = 0.05
 
 /mob/living/simple_mob/vore/alienanimals/teppi/animal_nom(mob/living/T in living_mobs(1))
+	if(vore_active && !voremob_loaded)
+		voremob_loaded = TRUE
+		init_vore()
 	if(client)
 		return ..()
 	var/current_affinity = affinity[T.real_name]
