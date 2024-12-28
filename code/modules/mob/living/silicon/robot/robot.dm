@@ -24,6 +24,7 @@
 	var/crisis //Admin-settable for combat module use.
 	var/crisis_override = 0
 	var/integrated_light_power = 6
+	var/robotdecal_on = 0
 	var/datum/wires/robot/wires
 
 	can_be_antagged = TRUE
@@ -441,6 +442,13 @@
 	lights_on = !lights_on
 	to_chat(usr, span_filter_notice("You [lights_on ? "enable" : "disable"] your integrated light."))
 	handle_light()
+	update_icon()
+
+/mob/living/silicon/robot/verb/toggle_robot_decals() // loads overlay UNDER lights.
+	set category = "Abilities.Silicon"
+	set name = "Toggle extras"
+	robotdecal_on = !robotdecal_on
+	to_chat(usr, span_filter_notice("You [robotdecal_on ? "enable" : "disable"] your extra apperances."))
 	update_icon()
 
 /mob/living/silicon/robot/verb/spark_plug() //So you can still sparkle on demand without violence.
@@ -955,6 +963,12 @@
 				var/eyes_overlay = sprite_datum.get_eyes_overlay(src)
 				if(eyes_overlay)
 					add_overlay(eyes_overlay)
+
+		if(robotdecal_on && sprite_datum.has_robotdecal_sprites)
+			if(!shell || deployed) // Shell borgs that are not deployed will have no eyes.
+				var/robotdecal_overlay = sprite_datum.get_robotdecal_overlay(src)
+				if(robotdecal_overlay)
+					add_overlay(robotdecal_overlay)
 
 		if(lights_on && sprite_datum.has_eye_light_sprites)
 			if(!shell || deployed) // Shell borgs that are not deployed will have no eyes.
