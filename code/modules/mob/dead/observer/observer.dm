@@ -846,7 +846,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	add_verb(src, /mob/observer/dead/proc/ghost_whisper)
 	to_chat(src, span_filter_notice(span_purple("As you are now in the realm of the living, you can whisper to the living with the " + span_bold("Spectral Whisper") + " verb, inside the IC tab.")))
 	if(!user)
-		visible_message(span_purple("The ghost of \the [src] is dragged back in to our plane of reality!"))
+		visible_message(span_deadsay("The ghost of \the [src] is dragged back in to our plane of reality!"))
 		toggle_visibility(TRUE)
 		return
 	if(plane != PLANE_WORLD)
