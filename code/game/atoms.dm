@@ -293,6 +293,9 @@
 /atom/proc/rcd_act(mob/living/user, obj/item/rcd/the_rcd, passed_mode)
 	return
 
+/atom/proc/occult_act(mob/living/user)
+	return
+
 /atom/proc/melt()
 	return
 

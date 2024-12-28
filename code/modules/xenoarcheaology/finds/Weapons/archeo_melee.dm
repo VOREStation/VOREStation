@@ -1,7 +1,3 @@
-/// Our modes
-#define CONSECRATE 1
-#define PURGE 2
-
 /// Our summonables
 #define SOULSTONE /obj/item/soulstone
 #define SHELL /obj/structure/constructshell
@@ -14,6 +10,7 @@
 	w_class = ITEMSIZE_LARGE
 	force = 30
 	throwforce = 10
+	toolspeed = 5 //Syncs perfectly with the animation time.
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	drop_sound = 'sound/items/drop/sword.ogg'
 	pickup_sound = 'sound/items/pickup/sword.ogg'
@@ -24,12 +21,9 @@
 	var/stored_blood = 0 //How much energy we have!
 	var/last_special = 0 //How recently our powers were used! Can be admin-set to a high number to keep from having the mode able to be changed.
 	var/list/abilities = list("Consecrate", "Summon", "Purge")
-
-	/// This is listed here instead so admins can modify the list to spawn different stuff.
-	/// The logic is "What we want the user to read" = "Path of thing we want to spawn"
-	/// Admins can VV this to do something like "Paper" = /obj/item/paper
 	var/list/summonables = list("Soulstone" = SOULSTONE, "Shell" = SHELL)
-	var/mode = 0 //
+	var/consecrating = 0 //If we are consecrating or not!
+	var/consecration_cost = 10 //Ten stored_blood per use!
 
 /obj/item/melee/artifact_blade/Initialize() //We will never spawn without xenoarch or SOMEONE unearthing us.
 	. = ..()
@@ -38,7 +32,7 @@
 /obj/item/melee/artifact_blade/examine(mob/user)
 	. = ..()
 	if(stored_blood && user == last_touched)
-	. += span_cult("You can sense the blade has about <b>[stored_blood]</b> lifeforce contained within it.")
+		. += span_cult("You can sense the blade has about <b>[stored_blood]</b> lifeforce contained within it.")
 
 /obj/item/melee/artifact_blade/process()
 	if(!last_touched) //Nobody has touched us yet...For now.
@@ -129,33 +123,110 @@
 		to_chat(user, span_cult("The blade does not respond to your attempts, seeming to have not enough blood to perform any actions!"))
 		return
 	if(stored_blood > 100)
-		var/choice = tgui_input_list(user, "What action do you wish to have the blade p", "Download", abilities)
-		if(choice && loc == user.loc)
+		var/choice = tgui_input_list(user, "What action do you wish to have the blade perform?", "Download", abilities)
+		if(choice && loc == user)
 			switch(choice)
-				if("Consecrate")
-					mode = 1
 
+				if("Consecrate")
+					var/decision2 = tgui_alert(user, "Do you wish to toggle the sword's 'consecrate' mode? If enabled, this will allow the sword to turn floors and walls into a more cult-like appearance! It requires [consecration_cost] per use!", "Consecrate!", list("Toggle on", "Toggle off"))
+					switch(decision2)
+						if("Toggle on")
+							consecrating = TRUE
+							to_chat(user, span_cult("The blade will now transform walls and tiles!"))
+							return
+						if("Toggle off")
+							consecrating = FALSE
+							to_chat(user, span_cult("The blade will <b>NOT</b> transform walls and tiles!"))
+							return
+
+				/// Spawning logic. Checks the 'summonables' list.
+				/// It lets them select it, gives them a small blurb on it (w/ cost), then checks to see if they have enough blood.
+				/// The summonables list can be VV'd by admins to allow for adminbus.
+				/// To add to the list: Add-Item, Multi-line text (Front-facing name), Associated value = yes, Atom Typepath = whatever you want.
+				/// This should appear something like " Paper = /obj/item/paper " if you did it right, and will let them summon paper!
 				if("Summon")
 					var/summon_item = tgui_input_list(user, "What do you wish to summon?", "Summon", summonables)
 					if(summon_item)
-						switch(summon_item)
-							if("Soulstone")
+						if(summon_item == "Soulstone")
+							var/decision2 = tgui_alert(user, "Do you wish to create a redspace gem? This will take 200 lifeforce from the sword.", "Generate Gem", list("YES", "NO"))
+							if(stored_blood < 200)
+								to_chat(user, span_cult("The blade does not have enough lifeforce!"))
+								return
+							if(decision2 == "YES")
 								var/obj/item/soulstone/our_stone = new SOULSTONE(user.loc)
 								our_stone.desc = "A glowing stone made of what appears to be a pure chunk of redspace. It seems to have the power to transfer the consciousness of dead or nearly-dead humanoids into it."
 								our_stone.name  = "Redspace Gem"
+								stored_blood -= 200
+								to_chat(user, span_cult("You have summoned a redspace gem!"))
 								return
-							if("Shell")
-								return //TODO
+							else
+								return
+						if(summon_item == "Shell")
+							var/decision2 = tgui_alert(user, "Do you wish to create a shell? This will take 500 lifeforce from the sword.", "Generate Shell", list("YES", "NO"))
+							if(stored_blood < 500)
+								to_chat(user, span_cult("The blade does not have enough lifeforce!"))
+								return
+							if(decision2 == "YES")
+								var/obj/structure/constructshell/shell = new SHELL(user.loc)
+								shell.desc = "A strange collection of stone carved out in a vague, humanoid shape. Red, pulsing lines travel down its entirety."
+								stored_blood -= 500 //This is VERY costly.
+								return
+							else
+								return
 
-							if(summon_item && (summon_item in summonables)) //If admins modify the list, let's spawn it!
-								new summon_item(src.loc)
-								return
-							else // You're trying to href hack it! (Or an admin put in the wrong thing). I'm going to assume if you know how to href hack, you're looking at this beforehand. (Hi!)
-								message_admins("[key_name_admin(user)] attempted to spawn an object not in the artifact blade's spawnlist! This is either a HREF hack, the list was improperly VV'd by an admin, or something went wrong!")
-								log_game("[key_name_admin(user)] attempted to spawn an object not in the artifact blade's spawnlist!")
-								return
+						if(summon_item in summonables) //If admins modify the list, let's spawn it!
+							//This one doesn't have a blood requirement, barring the 100 required to GET to this menu. If an admin VV'd the list, there's a reason!
+							var/thing_to_spawn = summonables[summon_item]
+							new thing_to_spawn(user.loc)
+							stored_blood = max(0,stored_blood-250) //Subtract 250 stored blood, down to a minimum of 0. No negative numbers here!
+							return
+						else // You're trying to href hack it! (Or an admin put in the wrong thing). I'm going to assume if you know how to href hack, you're looking at this beforehand.
+							message_admins("[key_name_admin(user)] attempted to spawn an object not in the artifact blade's spawnlist! This is either a HREF hack, the list was improperly VV'd by an admin, or something went wrong!")
+							log_game("[key_name_admin(user)] attempted to spawn an object not in the artifact blade's spawnlist!")
+							return
+					else
+						return
 				if("Purge")
+					to_chat(user, span_cult("You have chosen not to summon anything for now."))
 					return //TODO
 
-#undef CONSECRATE
-#undef PURGE
+/// While this COULD just use the cultify() proc ultimately, I decided against that as this isn't meant to be
+/// Some sort of weapon of mass destruction. It's supposed to be a funny, spooky artifact that you find.
+/// Thus, it uses the 'occult_act' proc, which does a HEAVILY watered down version of the cultify() proc.
+/// Only affects simulated turf, simulated walls, and girders. Nothing else. This shouldn't be desturctive, simply gimmicky.
+/obj/item/melee/artifact_blade/afterattack(atom/A, mob/living/user, proximity)
+	if(consecrating && proximity && !ismob(A))
+		convert_turf(A, user)
+	else
+		..()
+
+/obj/item/melee/artifact_blade/proc/conjure_animation(var/turf/target, var/time_taken) //Taken from occult wizard code.
+	var/atom/movable/overlay/animation = new /atom/movable/overlay(target)
+	animation.name = "conjure"
+	animation.icon = 'icons/effects/effects.dmi'
+	animation.plane = OBJ_PLANE
+	animation.layer = ABOVE_JUNK_LAYER
+	animation.icon_state = "cultwall"
+	flick("cultwall",animation)
+	spawn(10)
+		qdel(animation)
+
+/obj/item/melee/artifact_blade/proc/convert_turf(atom/A, mob/living/user) //Shamelessly taken from RCD code.
+	if(stored_blood < consecration_cost) //We don't have enough blood!
+		to_chat(user, span_cult("\The [src] lacks enough lifeforce to convert."))
+		return FALSE
+	conjure_animation(A, toolspeed) //VOREStation Add
+	if(do_after(user, toolspeed, target = A))
+		if(stored_blood < consecration_cost)
+			to_chat(user, span_cult("\The [src] lacks enough lifeforce to convert."))
+			return FALSE
+		if(A.occult_act(user))
+			stored_blood -= consecration_cost
+			return TRUE
+
+	//Moving = stop.
+	return FALSE
+
+
+#undef SOULSTONE
+#undef SHELL

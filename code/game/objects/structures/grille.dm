@@ -9,7 +9,7 @@
 	layer = TABLE_LAYER
 	explosion_resistance = 1
 	var/health = 10
-	var/destroyed = 0
+	var/destroyed = FALSE
 
 
 /obj/structure/grille/ex_act(severity)
@@ -60,7 +60,7 @@
 
 	//Flimsy grilles aren't so great at stopping projectiles. However they can absorb some of the impact
 	var/damage = Proj.get_structure_damage()
-	var/passthrough = 0
+	var/passthrough = FALSE
 
 	if(!damage) return
 
@@ -72,15 +72,15 @@
 			if(Proj.original == src || prob(20))
 				Proj.damage *= between(0, Proj.damage/60, 0.5)
 				if(prob(max((damage-10)/25, 0))*100)
-					passthrough = 1
+					passthrough = TRUE
 			else
 				Proj.damage *= between(0, Proj.damage/60, 1)
-				passthrough = 1
+				passthrough = TRUE
 		if(BURN)
 			//beams and other projectiles are either blocked completely by grilles or stop half the damage.
 			if(!(Proj.original == src || prob(20)))
 				Proj.damage *= 0.5
-				passthrough = 1
+				passthrough = TRUE
 
 	if(passthrough)
 		. = PROJECTILE_CONTINUE
@@ -221,7 +221,7 @@
 
 // Used in mapping to avoid
 /obj/structure/grille/broken
-	destroyed = 1
+	destroyed = TRUE
 	icon_state = "grille-b"
 	density = FALSE
 
@@ -281,6 +281,11 @@
 			WD.anchored = TRUE
 			return TRUE
 	return FALSE
+
+/obj/structure/grille/occult_act(mob/living/user)
+	new /obj/structure/grille/cult(get_turf(src))
+	qdel(src)
+	return TRUE
 
 /obj/structure/grille/take_damage(var/damage)
 	health -= damage
