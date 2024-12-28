@@ -36,6 +36,7 @@
 	incorporeal_move = 1
 
 	var/is_manifest = 0 //If set to 1, the ghost is able to whisper. Usually only set if a cultist drags them through the veil.
+	var/toggled_invisible = 0
 	var/ghost_sprite = null
 	var/global/list/possible_ghost_sprites = list(
 		"Clear" = "blank",
@@ -880,7 +881,6 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	set name = "Toggle Visibility"
 	set desc = "Allows you to turn (in)visible (almost) at will."
 
-	var/toggled_invisible
 	if(!forced && plane == PLANE_GHOSTS && world.time < toggled_invisible + 600)
 		to_chat(src, span_filter_notice("You must gather strength before you can turn visible again..."))
 		return
