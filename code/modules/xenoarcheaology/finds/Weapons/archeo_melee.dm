@@ -20,7 +20,7 @@
 	var/mob/living/carbon/human/last_touched //The last human that touched us
 	var/stored_blood = 0 //How much energy we have!
 	var/last_special = 0 //How recently our powers were used! Can be admin-set to a high number to keep from having the mode able to be changed.
-	var/list/abilities = list("Consecrate", "Summon", "Purge")
+	var/list/abilities = list("Consecrate", "Summon")
 	var/list/summonables = list("Soulstone" = SOULSTONE, "Shell" = SHELL)
 	var/consecrating = 0 //If we are consecrating or not!
 	var/consecration_cost = 10 //Ten stored_blood per use!
@@ -186,9 +186,6 @@
 							return
 					else
 						return
-				if("Purge")
-					to_chat(user, span_cult("You have chosen not to summon anything for now."))
-					return //TODO
 
 /// While this COULD just use the cultify() proc ultimately, I decided against that as this isn't meant to be
 /// Some sort of weapon of mass destruction. It's supposed to be a funny, spooky artifact that you find.
