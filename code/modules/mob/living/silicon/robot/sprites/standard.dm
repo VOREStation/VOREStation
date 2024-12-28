@@ -127,3 +127,20 @@
 
 		// None yet
 */
+
+/datum/robot_sprite/dogborg/tall/standard
+	module_type = "Standard"
+	//sprite_icon = 'icons/mob/robot/standard_large.dmi' NOT USED YET
+
+/datum/robot_sprite/dogborg/tall/standard/dullahanv3
+	sprite_icon = 'icons/mob/tallborg/dullahans64x64.dmi'
+	//named v3 to avoid conflicts with downstream
+
+/datum/robot_sprite/dogborg/tall/standard/dullahanv3/standarddully
+	name = "Dullahan standard v3"
+	sprite_icon_state = "dullahanstandard"
+	has_eye_light_sprites = TRUE
+	has_custom_open_sprites = TRUE
+	has_vore_belly_sprites = TRUE
+	has_robotdecal_sprites = TRUE
+	rest_sprite_options = list("Default", "sit")
