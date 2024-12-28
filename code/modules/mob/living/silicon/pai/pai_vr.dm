@@ -1,5 +1,4 @@
 /mob/living/silicon/pai
-	var/people_eaten = 0
 	icon = 'icons/mob/pai_vr.dmi'
 	softfall = TRUE
 	var/eye_glow = TRUE
