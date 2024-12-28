@@ -36,6 +36,7 @@
 	incorporeal_move = 1
 
 	var/is_manifest = 0 //If set to 1, the ghost is able to whisper. Usually only set if a cultist drags them through the veil.
+	var/toggled_invisible = 0
 	var/ghost_sprite = null
 	var/global/list/possible_ghost_sprites = list(
 		"Clear" = "blank",
@@ -841,15 +842,19 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 /mob/observer/dead/proc/manifest(mob/user)
 	is_manifest = TRUE
-	add_verb(src, /mob/observer/dead/proc/toggle_visibility)
-	add_verb(src, /mob/observer/dead/proc/ghost_whisper)
+	// Allows them to use the 'toggle_visibility' verb add_verb(src, /mob/observer/dead/verb/toggle_visibility)
+	// Allows them to use the 'ghost  whisper' verb add_verb(src, /mob/observer/dead/verb/ghost_whisper)
 	to_chat(src, span_filter_notice(span_purple("As you are now in the realm of the living, you can whisper to the living with the " + span_bold("Spectral Whisper") + " verb, inside the IC tab.")))
+	if(!user)
+		visible_message(span_deadsay("The ghost of \the [src] is dragged back in to our plane of reality!"))
+		toggle_ghost_visibility(TRUE)
+		return
 	if(plane != PLANE_WORLD)
 		user.visible_message( \
 			span_warning("\The [user] drags ghost, [src], to our plane of reality!"), \
 			span_warning("You drag [src] to our plane of reality!") \
 		)
-		toggle_visibility(TRUE)
+		toggle_ghost_visibility(TRUE)
 	else
 		var/datum/gender/T = gender_datums[user.get_visible_gender()]
 		user.visible_message ( \
@@ -871,12 +876,17 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		var/image/J = image('icons/mob/mob.dmi', loc = src, icon_state = icon)
 		client.images += J
 
-/mob/observer/dead/proc/toggle_visibility(var/forced = 0)
-	set category = "Ghost.Settings"
+/mob/observer/dead/verb/toggle_visibility()
+
 	set name = "Toggle Visibility"
 	set desc = "Allows you to turn (in)visible (almost) at will."
+	set category = "Ghost.Settings"
+	toggle_ghost_visibility()
 
-	var/toggled_invisible
+/mob/observer/dead/proc/toggle_ghost_visibility(var/forced = FALSE)
+	if(!is_manifest)
+		to_chat(src, span_filter_notice("You are not strong enough to pierce the veil..."))
+		return
 	if(!forced && plane == PLANE_GHOSTS && world.time < toggled_invisible + 600)
 		to_chat(src, span_filter_notice("You must gather strength before you can turn visible again..."))
 		return
@@ -972,7 +982,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 //Culted Ghosts
 
-/mob/observer/dead/proc/ghost_whisper()
+/mob/observer/dead/verb/ghost_whisper()
 	set name = "Spectral Whisper"
 	set category = "IC.Subtle"
 
@@ -992,7 +1002,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 			return
 		return 1
 	else
-		to_chat(src, span_danger("You have not been pulled past the veil!"))
+		to_chat(src, span_danger("You have not been pulled past the veil! You can not whisper to the living."))
 
 /mob/observer/dead/verb/choose_ghost_sprite()
 	set category = "Ghost.Settings"
