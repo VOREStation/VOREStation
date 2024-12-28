@@ -883,7 +883,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	set category = "Ghost.Settings"
 	toggle_ghost_visibility()
 
-/mob/observer/dead/proc/toggle_ghost_visibility(var/forced = 0)
+/mob/observer/dead/proc/toggle_ghost_visibility(var/forced = FALSE)
 	if(!is_manifest)
 		to_chat(src, span_filter_notice("You are not strong enough to pierce the veil..."))
 		return
