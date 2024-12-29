@@ -6,7 +6,6 @@
 	set category = "IC.Settings"
 
 	var/language = tgui_input_list(src, "Select your default language", "Available languages", languages)
-
 	if(!language)
 		return
 
@@ -18,13 +17,12 @@
 		to_chat(src, span_warning("You can't speak any languages."))
 		return
 	var/language = tgui_input_list(src, "Select your default language", "Available languages", speech_synthesizer_langs)
-	// Silicons have no species language usually. So let's default them to GALCOM
 	if(!language)
 		return
 
 	apply_default_language(language)
 
-// Simple Mobs have no species language, so fall back to their first one
+// Simple Mobs have no species language
 /mob/living/simple_mob/set_default_language()
 	if(!LAZYLEN(languages))
 		to_chat(src, span_warning("You can't speak any languages."))
