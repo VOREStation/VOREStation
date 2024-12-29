@@ -219,8 +219,6 @@
 /datum/robot_sprite/dogborg/tall/security/dullahanv3/securitydully
 	name = "Dullahan security v3"
 	sprite_icon_state = "dullahansecurity"
-	has_eye_light_sprites = TRUE
-	has_custom_open_sprites = TRUE
 	has_vore_belly_sprites = TRUE
 	has_robotdecal_sprites = TRUE
 	rest_sprite_options = list("Default", "sit")

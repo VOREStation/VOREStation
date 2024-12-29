@@ -213,8 +213,6 @@
 /datum/robot_sprite/dogborg/tall/science/dullahanv3/sciencedully
 	name = "Dullahan science v3"
 	sprite_icon_state = "dullahanscience"
-	has_eye_light_sprites = TRUE
-	has_custom_open_sprites = TRUE
 	has_vore_belly_sprites = TRUE
 	has_robotdecal_sprites = TRUE
 	rest_sprite_options = list("Default", "sit")
