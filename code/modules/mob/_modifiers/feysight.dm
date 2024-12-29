@@ -13,10 +13,12 @@
 /datum/modifier/feysight/on_applied()
 	holder.see_invisible = 60
 	holder.see_invisible_default = 60
+	holder.plane_holder.set_vis(VIS_GHOSTS,TRUE)
 
 /datum/modifier/feysight/on_expire()
 	holder.see_invisible_default = initial(holder.see_invisible_default)
 	holder.see_invisible = holder.see_invisible_default
+	holder.plane_holder.set_vis(VIS_GHOSTS,FALSE)
 
 /datum/modifier/feysight/can_apply(var/mob/living/L)
 	if(L.stat)

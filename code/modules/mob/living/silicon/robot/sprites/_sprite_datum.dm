@@ -10,6 +10,7 @@
 
 	var/has_eye_sprites = TRUE
 	var/has_eye_light_sprites = FALSE
+	var/has_robotdecal_sprites = FALSE
 	var/has_custom_open_sprites = FALSE
 	var/has_vore_belly_sprites = FALSE
 	var/has_vore_belly_resting_sprites = FALSE
@@ -131,6 +132,12 @@
 	else
 		return
 
+/datum/robot_sprite/proc/get_robotdecal_overlay(var/mob/living/silicon/robot/ourborg)
+	if(!(ourborg.resting && has_rest_sprites))
+		return "[sprite_icon_state]-decals"
+	else
+		return
+
 /datum/robot_sprite/proc/get_rest_sprite(var/mob/living/silicon/robot/ourborg)
 	if(!(ourborg.rest_style in rest_sprite_options))
 		ourborg.rest_style = "Default"
@@ -181,21 +188,7 @@
 	has_dead_sprite_overlay = TRUE
 	has_custom_equipment_sprites = TRUE
 	pixel_x = -16
-/* //Does not need to be dogborg-only, letting all borgs use these -Reo
-/datum/robot_sprite/dogborg/get_rest_sprite(var/mob/living/silicon/robot/ourborg)
-	if(!(ourborg.rest_style in rest_sprite_options))
-		ourborg.rest_style = "Default"
-	switch(ourborg.rest_style)
-		if("Sit")
-			return "[sprite_icon_state]-sit"
-		if("Bellyup")
-			return "[sprite_icon_state]-bellyup"
-		else
-			return "[sprite_icon_state]-rest"
 
-/datum/robot_sprite/dogborg/get_belly_overlay(var/mob/living/silicon/robot/ourborg)
-	return "[sprite_icon_state]-sleeper"
-*/
 /datum/robot_sprite/dogborg/do_equipment_glamour(var/obj/item/robot_module/module)
 	if(!has_custom_equipment_sprites)
 		return

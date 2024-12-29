@@ -1,5 +1,4 @@
 /mob/living/silicon/pai
-	var/people_eaten = 0
 	icon = 'icons/mob/pai_vr.dmi'
 	softfall = TRUE
 	var/eye_glow = TRUE
@@ -156,14 +155,18 @@
 		add_eyes()
 		return
 	update_fullness()
-	if(!people_eaten && !resting)
+	//Add a check when selecting a chassis if you add in support for this, to set vore_capacity to 2 or however many states you have.
+	var/fullness_extension = ""
+	if(vore_capacity > 1 && vore_fullness > 1)
+		fullness_extension = "_[vore_fullness]"
+	if(!vore_fullness && !resting)
 		icon_state = "[chassis]"
-	else if(!people_eaten && resting)
+	else if(!vore_fullness && resting)
 		icon_state = "[chassis]_rest"
-	else if(people_eaten && !resting)
-		icon_state = "[chassis]_full"
-	else if(people_eaten && resting)
-		icon_state = "[chassis]_rest_full"
+	else if(vore_fullness && !resting)
+		icon_state = "[chassis]_full[fullness_extension]"
+	else if(vore_fullness && resting)
+		icon_state = "[chassis]_rest_full[fullness_extension]"
 	if(chassis in wide_chassis)
 		pixel_x = -16
 		default_pixel_x = -16

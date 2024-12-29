@@ -1631,7 +1631,11 @@
 
 	else //We aren't dead
 		sight &= ~(SEE_TURFS|SEE_MOBS|SEE_OBJS)
-		see_invisible = see_in_dark>2 ? SEE_INVISIBLE_LEVEL_ONE : see_invisible_default
+
+		if(see_invisible_default > SEE_INVISIBLE_LEVEL_ONE)
+			see_invisible = see_invisible_default
+		else
+			see_invisible = see_in_dark>2 ? SEE_INVISIBLE_LEVEL_ONE : see_invisible_default
 
 		// Do this early so certain stuff gets turned off before vision is assigned.
 		var/area/A = get_area(src)
@@ -1659,7 +1663,10 @@
 		else
 			sight = species.get_vision_flags(src)
 			see_in_dark = species.darksight
-			see_invisible = see_in_dark>2 ? SEE_INVISIBLE_LEVEL_ONE : see_invisible_default
+			if(see_invisible_default > SEE_INVISIBLE_LEVEL_ONE)
+				see_invisible = see_invisible_default
+			else
+				see_invisible = see_in_dark>2 ? SEE_INVISIBLE_LEVEL_ONE : see_invisible_default
 
 		var/glasses_processed = 0
 		var/obj/item/rig/rig = get_rig()
@@ -1673,7 +1680,8 @@
 		if(XRAY in mutations)
 			sight |= SEE_TURFS|SEE_MOBS|SEE_OBJS
 			see_in_dark = 8
-			if(!druggy)		see_invisible = SEE_INVISIBLE_LEVEL_TWO
+			if(!druggy)
+				see_invisible = SEE_INVISIBLE_LEVEL_TWO
 
 		for(var/datum/modifier/M in modifiers)
 			if(!isnull(M.vision_flags))

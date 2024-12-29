@@ -45,6 +45,9 @@ export const ControlAbilities = (props) => {
       <Button fluid onClick={() => act('trash_eater')}>
         Give Trash Eater
       </Button>
+      <Button fluid onClick={() => act('active_cloaking')}>
+        Give Active Cloaking
+      </Button>
     </Section>
   );
 };
