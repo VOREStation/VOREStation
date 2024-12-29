@@ -308,11 +308,11 @@
 	has_vore_belly_sprites = FALSE
 	rest_sprite_options = list("Default", "Bellyup")
 
-/datum/robot_sprite/dogborg/tall/service/dullahan
+/datum/robot_sprite/dogborg/tall/service/dullahanv3
 	sprite_icon = 'icons/mob/tallborg/dullahans64x64.dmi'
 	//named v3 to avoid conflicts with downstream
 
-/datum/robot_sprite/dogborg/tall/service/dullahan/basic
+/datum/robot_sprite/dogborg/tall/service/dullahanv3/basic
 	name = "Dullahan service v3"
 	sprite_icon_state = "dullahanservice"
 	has_vore_belly_sprites = TRUE
