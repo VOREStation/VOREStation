@@ -29,7 +29,7 @@
 
 // Simple Mobs have no species language, so fall back to their first one
 /mob/living/simple_mob/set_default_language()
-	if(!LAZYLEN(languages))languages
+	if(!LAZYLEN(languages))
 		to_chat(src, span_warning("You can't speak any languages."))
 		return
 	var/language = tgui_input_list(usr, "Select your default language", "Available languages", languages)
