@@ -5,7 +5,7 @@
 	set name = "Set Default Language"
 	set category = "IC.Settings"
 
-	var/language = tgui_input_list(usr, "Select your default language", "Available languages", languages)
+	var/language = tgui_input_list(src, "Select your default language", "Available languages", languages)
 
 	apply_default_language(language)
 
@@ -14,7 +14,7 @@
 	if(!LAZYLEN(speech_synthesizer_langs))
 		to_chat(src, span_warning("You can't speak any languages."))
 		return
-	var/language = tgui_input_list(usr, "Select your default language", "Available languages", speech_synthesizer_langs)
+	var/language = tgui_input_list(src, "Select your default language", "Available languages", speech_synthesizer_langs)
 	// Silicons have no species language usually. So let's default them to GALCOM
 	if(!language)
 		var/found = FALSE
@@ -32,7 +32,7 @@
 	if(!LAZYLEN(languages))
 		to_chat(src, span_warning("You can't speak any languages."))
 		return
-	var/language = tgui_input_list(usr, "Select your default language", "Available languages", languages)
+	var/language = tgui_input_list(src, "Select your default language", "Available languages", languages)
 	if(!language)
 		language = languages[1]
 	apply_default_language(language)
