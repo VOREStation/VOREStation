@@ -7,6 +7,9 @@
 
 	var/language = tgui_input_list(src, "Select your default language", "Available languages", languages)
 
+	if(!language)
+		return
+
 	apply_default_language(language)
 
 // Silicons can't neccessarily speak everything in their languages list
@@ -17,14 +20,8 @@
 	var/language = tgui_input_list(src, "Select your default language", "Available languages", speech_synthesizer_langs)
 	// Silicons have no species language usually. So let's default them to GALCOM
 	if(!language)
-		var/found = FALSE
-		for(var/datum/language/lang in speech_synthesizer_langs)
-			if(lang.name == LANGUAGE_GALCOM)
-				language = lang
-				found = TRUE
-				break
-		if(!found)
-			language = speech_synthesizer_langs[1]
+		return
+
 	apply_default_language(language)
 
 // Simple Mobs have no species language, so fall back to their first one
@@ -34,7 +31,8 @@
 		return
 	var/language = tgui_input_list(src, "Select your default language", "Available languages", languages)
 	if(!language)
-		language = languages[1]
+		return
+
 	apply_default_language(language)
 
 /mob/living/proc/apply_default_language(var/language)
