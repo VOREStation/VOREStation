@@ -1,5 +1,3 @@
-#undef VIS_COUNT
-
 //Protean organs
 #define O_ORCH		"orchestrator"
 #define O_FACT		"refactory"
