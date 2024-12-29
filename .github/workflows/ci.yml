@@ -113,7 +113,7 @@ jobs:
         run: |
           sudo dpkg --add-architecture i386
           sudo apt update || true
-          sudo apt install zlib1g-dev:i386 libssl-dev:i386
+          sudo apt install zlib1g-dev:i386
           ldd librust_g.so
           ldd libbapi_dmm_reader.so
           ldd libverdigris.so
