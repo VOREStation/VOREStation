@@ -9,7 +9,7 @@
 
 /mob/living/voice/Initialize(loc)
 	add_language(LANGUAGE_GALCOM)
-	set_default_language(GLOB.all_languages[LANGUAGE_GALCOM])
+	apply_default_language(GLOB.all_languages[LANGUAGE_GALCOM])
 
 	if(istype(loc, /obj/item/communicator))
 		comm = loc

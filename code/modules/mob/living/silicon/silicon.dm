@@ -33,7 +33,7 @@
 	silicon_mob_list |= src
 	..()
 	add_language(LANGUAGE_GALCOM)
-	set_default_language(GLOB.all_languages[LANGUAGE_GALCOM])
+	apply_default_language(GLOB.all_languages[LANGUAGE_GALCOM])
 	init_id()
 	init_subsystems()
 

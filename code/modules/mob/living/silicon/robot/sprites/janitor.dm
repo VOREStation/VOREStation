@@ -191,10 +191,23 @@
 	has_vore_belly_sprites = FALSE
 	rest_sprite_options = list("Default", "Bellyup")
 
-/datum/robot_sprite/dogborg/tall/mining/k4t_alt1
+/datum/robot_sprite/dogborg/tall/janitor/k4t_alt1
 	name = "K4T Alt"
 	sprite_icon_state = "k4t_alt1"
 	has_eye_light_sprites = TRUE
 	has_custom_open_sprites = TRUE
 	has_vore_belly_sprites = FALSE
 	rest_sprite_options = list("Default", "Bellyup")
+
+/datum/robot_sprite/dogborg/tall/janitor/dullahanv3
+	sprite_icon = 'icons/mob/tallborg/dullahans64x64.dmi'
+	//named v3 to avoid conflicts with downstream
+
+/datum/robot_sprite/dogborg/tall/janitor/dullahanv3/janitordully
+	name = "Dullahan janitor v3"
+	sprite_icon_state = "dullahanjanitor"
+	has_eye_light_sprites = TRUE
+	has_custom_open_sprites = TRUE
+	has_vore_belly_sprites = TRUE
+	has_robotdecal_sprites = TRUE
+	rest_sprite_options = list("Default", "sit")

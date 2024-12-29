@@ -69,6 +69,15 @@
 	has_vore_belly_sprites = FALSE
 	rest_sprite_options = list("Default", "Bellyup")
 
+/datum/robot_sprite/dogborg/tall/syndie/dullahanv3syndi
+	sprite_icon = 'icons/mob/tallborg/dullahans64x64.dmi'
+	sprite_icon_state = "dullahansyndi"
+	name = "Dullahan syndie v3"
+	has_eye_light_sprites = TRUE
+	has_custom_open_sprites = TRUE
+	has_vore_belly_sprites = TRUE
+	has_robotdecal_sprites = TRUE
+	rest_sprite_options = list("Default", "sit")
 
 // Protector
 
@@ -157,6 +166,16 @@
 	module_type = "Mechanist"
 	sprite_icon = 'icons/mob/robot/syndie_large.dmi'
 	sprite_hud_icon_state = "malf"
+
+/datum/robot_sprite/dogborg/tall/mechanist/dullahanv3mech
+	sprite_icon = 'icons/mob/tallborg/dullahans64x64.dmi'
+	sprite_icon_state = "dullahanmechanist"
+	name = "Dullahan mechanist v3"
+	has_eye_light_sprites = TRUE
+	has_custom_open_sprites = TRUE
+	has_vore_belly_sprites = TRUE
+	has_robotdecal_sprites = TRUE
+	rest_sprite_options = list("Default", "sit")
 
 /datum/robot_sprite/dogborg/tall/mechanist/syndimechraptor
 	name = "Raptor V-4"

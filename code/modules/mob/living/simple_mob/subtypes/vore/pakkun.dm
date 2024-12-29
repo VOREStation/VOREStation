@@ -81,11 +81,13 @@
 		return
 
 	if(resting)
-		vore_selected.digest_mode = DM_UNABSORB
+		if(isbelly(vore_selected))
+			vore_selected.digest_mode = DM_UNABSORB
 		ai_holder.go_sleep()
 
 	else
-		vore_selected.digest_mode = vore_default_mode
+		if(isbelly(vore_selected))
+			vore_selected.digest_mode = vore_default_mode
 		ai_holder.go_wake()
 
 /mob/living/simple_mob/vore/pakkun/attack_hand(mob/user)

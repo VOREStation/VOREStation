@@ -205,3 +205,16 @@
 	has_custom_open_sprites = TRUE
 	has_vore_belly_sprites = FALSE
 	rest_sprite_options = list("Default", "Bellyup")
+
+/datum/robot_sprite/dogborg/tall/science/dullahanv3
+	sprite_icon = 'icons/mob/tallborg/dullahans64x64.dmi'
+	//named v3 to avoid conflicts with downstream
+
+/datum/robot_sprite/dogborg/tall/science/dullahanv3/sciencedully
+	name = "Dullahan science v3"
+	sprite_icon_state = "dullahanscience"
+	has_eye_light_sprites = TRUE
+	has_custom_open_sprites = TRUE
+	has_vore_belly_sprites = TRUE
+	has_robotdecal_sprites = TRUE
+	rest_sprite_options = list("Default", "sit")
