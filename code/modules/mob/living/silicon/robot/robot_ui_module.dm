@@ -23,7 +23,7 @@
 
 /datum/tgui_module/robot_ui_module/ui_assets(mob/user)
 	return list(
-		get_asset_datum(/datum/asset/spritesheet/robot_icons)
+		get_asset_datum(/datum/asset/spritesheet_batched/robot_icons)
 	)
 
 /datum/tgui_module/robot_ui_module/tgui_static_data()
@@ -60,7 +60,7 @@
 	var/list/data = ..()
 
 	var/mob/living/silicon/robot/R = host
-	var/datum/asset/spritesheet/robot_icons/spritesheet = get_asset_datum(/datum/asset/spritesheet/robot_icons)
+	var/datum/asset/spritesheet_batched/robot_icons/spritesheet = get_asset_datum(/datum/asset/spritesheet_batched/robot_icons)
 
 	data["currentName"] = new_name ? new_name : R.name
 	data["isDefaultName"] = !new_name
