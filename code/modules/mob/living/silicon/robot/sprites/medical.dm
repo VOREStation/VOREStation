@@ -144,8 +144,6 @@
 /datum/robot_sprite/dogborg/tall/medical/dullahanv3/medicaldully
 	name = "Dullahan medical v3"
 	sprite_icon_state = "dullahanmedical"
-	has_eye_light_sprites = TRUE
-	has_custom_open_sprites = TRUE
 	has_vore_belly_sprites = TRUE
 	has_robotdecal_sprites = TRUE
 	rest_sprite_options = list("Default", "sit")

@@ -221,8 +221,6 @@
 /datum/robot_sprite/dogborg/tall/engineering/dullahanv3/engineerdully
 	name = "Dullahan engineer v3"
 	sprite_icon_state = "dullahanengineer"
-	has_eye_light_sprites = TRUE
-	has_custom_open_sprites = TRUE
 	has_vore_belly_sprites = TRUE
 	has_robotdecal_sprites = TRUE
 	rest_sprite_options = list("Default", "sit")

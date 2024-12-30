@@ -191,8 +191,6 @@
 /datum/robot_sprite/dogborg/tall/mining/dullahanv3/miningdully
 	name = "Dullahan mining v3"
 	sprite_icon_state = "dullahanmining"
-	has_eye_light_sprites = TRUE
-	has_custom_open_sprites = TRUE
 	has_vore_belly_sprites = TRUE
 	has_robotdecal_sprites = TRUE
 	rest_sprite_options = list("Default", "sit")
