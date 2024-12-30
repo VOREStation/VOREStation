@@ -29,6 +29,18 @@
 				I_E.blend_icon(I_EE, ICON_OVERLAY)
 
 		var/imgid = sanitize_css_class_name("[S.type]")
+		if(S.icon_x > S.icon_y)
+			var/buffer = (S.icon_x - S.icon_y) / 2
+			I_N.crop(0, -buffer, S.icon_x, S.icon_y + buffer)
+			I_S.crop(0, -buffer, S.icon_x, S.icon_y + buffer)
+			I_W.crop(0, -buffer, S.icon_x, S.icon_y + buffer)
+			I_E.crop(0, -buffer, S.icon_x, S.icon_y + buffer)
+		else if (S.icon_x < S.icon_y)
+			var/buffer = (S.icon_y - S.icon_x) / 2
+			I_N.crop(-buffer, 0, S.icon_x + buffer, S.icon_y)
+			I_S.crop(-buffer, 0, S.icon_x + buffer, S.icon_y)
+			I_W.crop(-buffer, 0, S.icon_x + buffer, S.icon_y)
+			I_E.crop(-buffer, 0, S.icon_x + buffer, S.icon_y)
 		I_N.scale(120, 120)
 		I_S.scale(120, 120)
 		I_W.scale(120, 120)

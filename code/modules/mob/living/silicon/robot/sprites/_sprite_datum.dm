@@ -24,6 +24,8 @@
 	var/has_custom_equipment_sprites = FALSE
 	var/vis_height = 32
 	var/pixel_x = 0
+	var/icon_x = 32
+	var/icon_y = 32
 
 	var/is_whitelisted = FALSE
 	var/whitelist_ckey
@@ -188,6 +190,8 @@
 	has_dead_sprite_overlay = TRUE
 	has_custom_equipment_sprites = TRUE
 	pixel_x = -16
+	icon_x = 64
+	icon_y = 32
 
 /datum/robot_sprite/dogborg/do_equipment_glamour(var/obj/item/robot_module/module)
 	if(!has_custom_equipment_sprites)
@@ -207,6 +211,8 @@
 	has_dead_sprite_overlay = FALSE
 	has_custom_equipment_sprites = FALSE
 	vis_height = 64
+	icon_x = 64
+	icon_y = 64
 
 
 // Default module sprite
