@@ -139,8 +139,6 @@
 /datum/robot_sprite/dogborg/tall/standard/dullahanv3/standarddully
 	name = "Dullahan standard v3"
 	sprite_icon_state = "dullahanstandard"
-	has_eye_light_sprites = TRUE
-	has_custom_open_sprites = TRUE
 	has_vore_belly_sprites = TRUE
 	has_robotdecal_sprites = TRUE
 	rest_sprite_options = list("Default", "sit")
