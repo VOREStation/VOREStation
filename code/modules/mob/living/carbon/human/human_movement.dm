@@ -126,6 +126,7 @@
 // This calculates the amount of slowdown to receive from items worn. This does NOT include species modifiers.
 // It is in a seperate place to avoid an infinite loop situation with dragging mobs dragging each other.
 // Also its nice to have these things seperated.
+
 /mob/living/carbon/human/proc/calculate_item_encumbrance()
 	/// We check for all the items the wearer has that cause slowdown (positive or negative)
 	/// We then multiply the postive ones by our species.item_slowdown_mod to slow us down more, while we leave negative ones untouched.
@@ -138,7 +139,7 @@
 
 	var/total_item_slowdown = 0
 	var/slowdown_mod = species.item_slowdown_mod //HIGHER = MAKES YOU SLOWER
-	for(var/slot in list(back, belt, l_ear, r_ear, glasses, gloves, head, shoes, wear_id, wear_mask, wear_suit, w_uniform))
+	for(var/slot in list(back, belt, l_ear, r_ear, glasses, gloves, head, shoes, wear_id, wear_mask, wear_suit, w_uniform)) //Two things to note here. ONE: If you add a new inventory slot, ADD IT HERE. Two: If we ever get a global list on human of all the inventory slots (MINUS HANDS) add it here.
 		if(!slot) //ZOOM
 			continue
 		var/obj/item/I = slot
