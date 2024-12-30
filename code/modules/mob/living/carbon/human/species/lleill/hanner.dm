@@ -20,6 +20,8 @@
 	min_age = 18
 	max_age = 200
 
+	digi_allowed = TRUE
+
 	//Specific abilities
 
 	burn_mod = 0.8 //Slightly resistant to fire
