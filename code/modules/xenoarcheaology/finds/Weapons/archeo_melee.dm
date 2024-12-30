@@ -56,11 +56,10 @@
 	if(!iscultist(user) && (ishuman(M) || M.faction == user.faction) && !iscultist(M))
 		user.visible_message(span_cult("[user]'s arm is engulfed in dark flames!"))
 		to_chat(user, span_cult("An inexplicable force rips through your arm as it's engulfed in flames, tearing the sword from your grasp!"))
-		//random amount of damage between half of the blade's force and the full force of the blade.
 		user.drop_from_inventory(src, src.loc)
-		throw_at(get_edge_target_turf(src, pick(alldirs)), rand(1,5), throw_speed)
-		user.apply_damage(rand(force/2, force), BURN, zone, FALSE)
 		user.Weaken(5)
+		throw_at(get_edge_target_turf(user.loc, pick(alldirs)), rand(1,5), throw_speed) //Something is bugged here. It's going INSIDE the person.
+		user.apply_damage(rand(force/2, force), BURN, zone, FALSE)
 		return
 
 	..() //We hit them!
@@ -209,10 +208,10 @@
 		qdel(animation)
 
 /obj/item/melee/artifact_blade/proc/convert_turf(atom/A, mob/living/user) //Shamelessly taken from RCD code.
-	if(stored_blood < consecration_cost) //We don't have enough blood!
+	if(stored_blood < consecration_cost)
 		to_chat(user, span_cult("\The [src] lacks enough lifeforce to convert."))
 		return FALSE
-	conjure_animation(A, toolspeed) //VOREStation Add
+	conjure_animation(A, toolspeed)
 	if(do_after(user, toolspeed, target = A))
 		if(stored_blood < consecration_cost)
 			to_chat(user, span_cult("\The [src] lacks enough lifeforce to convert."))
