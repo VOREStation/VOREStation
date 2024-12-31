@@ -242,7 +242,7 @@
 	effective_brute_resistance = 1
 
 	max_fire_resistance = 0.70
-	min_brute_resistance = 0.85
+	min_fire_resistance = 0.85
 	effective_fire_resistance = 1
 
 	max_hal_resistance = 1.5 // No mobs should be shooting you with halloss. If this happens, it means you're using it wrong!!!

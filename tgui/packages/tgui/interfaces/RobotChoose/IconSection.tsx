@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useBackend } from 'tgui/backend';
 import { Box, Button, Flex, Input, Section, Stack } from 'tgui-core/components';
 import { classes } from 'tgui-core/react';
@@ -6,12 +7,14 @@ import { Tooltip } from '../../components';
 
 export const IconSection = (props: {
   currentName: string;
+  mindName: string;
   isDefaultName: boolean;
   sprite?: string | null;
   size?: string | null;
 }) => {
   const { act } = useBackend();
-  const { currentName, isDefaultName, sprite, size } = props;
+  const { currentName, mindName, isDefaultName, sprite, size } = props;
+  const [robotName, setRobotName] = useState<string>(currentName);
 
   return (
     <Section
@@ -30,16 +33,29 @@ export const IconSection = (props: {
           <Stack.Item>
             <Box>Name: </Box>
           </Stack.Item>
-          <Stack.Item basis="100%">
+          <Stack.Item grow>
             <Tooltip content="Adjust your name">
               <Input
                 fluid
-                value={currentName}
-                onChange={(e, value) => act('rename', { value })}
+                value={robotName}
+                onChange={(e, value) => {
+                  act('rename', { value });
+                  setRobotName(value);
+                }}
                 maxLength={52}
                 textColor={isDefaultName ? 'red' : undefined}
               />
             </Tooltip>
+          </Stack.Item>
+          <Stack.Item>
+            <Button
+              icon="floppy-disk"
+              tooltip="Load character slot name"
+              onClick={() => {
+                act('rename', { value: mindName });
+                setRobotName(mindName);
+              }}
+            />
           </Stack.Item>
         </Stack>
       </Stack.Item>
