@@ -420,9 +420,9 @@
 		user.add_language(LANGUAGE_ALAI)
 		user.add_language(LANGUAGE_PROMETHEAN)
 		user.add_language(LANGUAGE_GIBBERISH)
-		user.add_language("Mouse")
-		user.add_language("Animal")
-		user.add_language("Teppi")
+		user.add_language(LANGUAGE_MOUSE)
+		user.add_language(LANGUAGE_ANIMAL)
+		user.add_language(LANGUAGE_TEPPI)
 	else
 		user.remove_language(LANGUAGE_UNATHI)
 		user.remove_language(LANGUAGE_SIIK)
@@ -447,9 +447,9 @@
 		user.remove_language(LANGUAGE_ALAI)
 		user.remove_language(LANGUAGE_PROMETHEAN)
 		user.remove_language(LANGUAGE_GIBBERISH)
-		user.remove_language("Mouse")
-		user.remove_language("Animal")
-		user.remove_language("Teppi")
+		user.remove_language(LANGUAGE_MOUSE)
+		user.remove_language(LANGUAGE_ANIMAL)
+		user.remove_language(LANGUAGE_TEPPI)
 
 /datum/pai_software/translator/is_active(mob/living/silicon/pai/user)
 	return user.translator_on
