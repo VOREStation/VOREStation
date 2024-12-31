@@ -1,5 +1,5 @@
-/datum/asset/spritesheet/chat
+/datum/asset/spritesheet_batched/chat
 	name = "chat"
 
-/datum/asset/spritesheet/chat/create_spritesheets()
-	InsertAll("", text_tag_icons) // OOC, LOOC ect icons
+/datum/asset/spritesheet_batched/chat/create_spritesheets()
+	insert_all_icons("", text_tag_icons, prefix_with_dirs = FALSE) // OOC, LOOC ect icons

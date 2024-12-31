@@ -23,7 +23,7 @@
 
 /datum/tgui_module/robot_ui_module/ui_assets(mob/user)
 	return list(
-		get_asset_datum(/datum/asset/spritesheet/robot_icons)
+		get_asset_datum(/datum/asset/spritesheet_batched/robot_icons)
 	)
 
 /datum/tgui_module/robot_ui_module/tgui_static_data()
@@ -49,6 +49,7 @@
 				if(is_borg_whitelisted(R, module_name))
 					modules |= module_name
 	data["possible_modules"] = modules
+	data["mind_name"] = R.mind.name
 	if(R.emagged)
 		data["theme"] = "syndicate"
 	else if (R.ui_theme)
@@ -60,7 +61,7 @@
 	var/list/data = ..()
 
 	var/mob/living/silicon/robot/R = host
-	var/datum/asset/spritesheet/robot_icons/spritesheet = get_asset_datum(/datum/asset/spritesheet/robot_icons)
+	var/datum/asset/spritesheet_batched/robot_icons/spritesheet = get_asset_datum(/datum/asset/spritesheet_batched/robot_icons)
 
 	data["currentName"] = new_name ? new_name : R.name
 	data["isDefaultName"] = !new_name
@@ -136,6 +137,7 @@
 			var/name = params["value"]
 			if(name)
 				new_name = sanitizeSafe(name, MAX_NAME_LEN)
+				R.sprite_name = new_name
 			. = TRUE
 		if("confirm")
 			R.apply_name(new_name)
