@@ -9,8 +9,7 @@
 /// That is the damage required (in ONE hit) to tear off or destroy a limb.
 /// If the damage dealt per hit is below that, it can NOT remove limbs.
 /// </summary>
-#define DROPLIMB_THRESHOLD_EDGE 8 //For limb of 80(arm/leg) requires 10 or more damage to cut off.
-#define DROPLIMB_THRESHOLD_TEAROFF 3 //Requires 26.66 or more damage to cut off an arm/leg with a blunt object. Lower than the
+#define DROPLIMB_THRESHOLD_EDGE 5 //For limb of 80(arm/leg) requires 16 or more damage to cut off.
 #define DROPLIMB_THRESHOLD_DESTROY 3.34 //Requires 24 damage or more to DESTROY a arm/leg with a blunt object. Blunt is going to DESTROY over just knocking something off!
 
 /obj/item/organ/external
@@ -285,12 +284,15 @@
 	//Continued damage to vital organs can kill you, and robot organs don't count towards total damage so no need to cap them.
 	return (vital || (robotic >= ORGAN_ROBOT) || brute_dam + burn_dam + additional_damage < max_damage)
 
-/obj/item/organ/external/take_damage(brute, burn, sharp, edge, used_weapon = null, list/forbidden_limbs = list(), permutation = 0)
+/obj/item/organ/external/take_damage(brute, burn, sharp, edge, used_weapon = null, list/forbidden_limbs = list(), permutation = FALSE, projectile)
 	brute = round(brute * brute_mod, 0.1)
 	burn = round(burn * burn_mod, 0.1)
 
 	if((brute <= 0) && (burn <= 0))
 		return 0
+
+	//This tells us how damaged we are prior to this attack.
+	var/prior_damage = brute_dam + burn_dam
 
 	// High brute damage or sharp objects may damage internal organs
 	if(internal_organs && (brute_dam >= max_damage || (((sharp && brute >= 5) || brute >= 10) && prob(5))))
@@ -302,7 +304,7 @@
 
 	if(status & ORGAN_BROKEN && brute)
 		jostle_bone(brute)
-		if(organ_can_feel_pain() && prob(40) && !isbelly(owner.loc) && !istype(owner.loc, /obj/item/dogborg/sleeper)) //VOREStation Edit
+		if(organ_can_feel_pain() && prob(40) && !isbelly(owner.loc) && !istype(owner.loc, /obj/item/dogborg/sleeper))
 			owner.emote("scream")	//getting hit on broken hand hurts
 	if(used_weapon)
 		add_autopsy_data("[used_weapon]", brute + burn)
@@ -370,21 +372,22 @@
 		/// It checks if it's amputatable, if the config setting is set, then continues down the proc.
 		/// </summary>
 		if(!cannot_amputate && CONFIG_GET(flag/limbs_can_break))
-			//organs can come off in three cases
-			//1. If the damage source is edge_eligible and the brute damage dealt exceeds the edge threshold, then the organ is cut off.
-			//2. If the damage amount dealt exceeds the disintegrate threshold, the organ is completely obliterated.
-			//3. If the organ has already reached or would be put over it's max damage amount (currently redundant),
-			//   and the brute damage dealt exceeds the tearoff threshold, the organ is torn off.
+			// By default, limbs aren't knocked off unless certain criteria is met.
+			var/destruction_eligible = FALSE
 
-			// Let's calculate how INJURED our limb is. Determines the chance the next attack will take our limb off!
+			// These are adjusted in case we get hit with a projectile.
+			// Projectiles have suffered MASSIVE damage creep and as a result, throw ALL the numbers off.
+			// This code was - primarily - intended for melee weapons, which have MUCH lower numbers.
+			var/modifed_brute = brute
+			var/modifed_burn = burn
+
+			// Let's calculate how INJURED our limb is accounting for AFTER the damage we just took. Determines the chance the next attack will take our limb off!
 			var/damage_factor = ((max_damage*CONFIG_GET(number/organ_health_multiplier))/(brute_dam + burn_dam))*100
-			// Max_damage of 80 and brute_dam of 80? Factor = 100
-			// Max_damage of 80 and brute_dam of 40? Factor = 50
-			// Max_damage of 80 and brute_dam of 5? Factor = 5
+			// Max_damage of 80 and brute_dam of 80? || Factor = 100 Max_damage of 80 and brute_dam of 40? Factor = 50 || Max_damage of 80 and brute_dam of 5? Factor = 5
 			// This lowers our chances of having our limb removed when it has less damage. The more damaged the limb, the higher the chance it falls off!
 
 			//Check edge eligibility
-			var/edge_eligible = 0
+			var/edge_eligible = FALSE
 			if(edge)
 				if(istype(used_weapon,/obj/item))
 					var/obj/item/W = used_weapon
@@ -393,54 +396,64 @@
 				else
 					edge_eligible = 1
 
-			if(nonsolid && damage >= max_damage)
-				droplimb(TRUE, DROPLIMB_EDGE)
-			else if (robotic >= ORGAN_NANOFORM && damage >= max_damage)
-				droplimb(TRUE, DROPLIMB_BURN)
+			// Due to the afformentioned damage creep, projectile damage is halved.
+			// UNLESS The projectile does over the limb's max damage in the first place, then you're in danger of it going bye bye.
+			if(projectile && (brute + burn) < max_damage)
+				modifed_brute = modifed_brute/2
+				modifed_burn = modifed_burn/2
 
-			//Math:
-			//Edge w/ 10 damage on an 80 hp limb. First hit: Prob(10) && Prob(12.5) = 1.25% Second hit: Prob(10) && Prob(25) = 2.5, etc up to 10.
-			//Edge w/ 20 damage on an 80 hp limb. First hit: Prob(20) && Prob(25)= 5% Second hit: Prob(20) && Prob(50)=10%, etc up to max 20.
-			else if(edge_eligible && brute >= max_damage / DROPLIMB_THRESHOLD_EDGE && prob(brute) && prob(damage_factor))
-				droplimb(0, DROPLIMB_EDGE)
+			// Vital organs have a lower chance of getting causing removals AND require much higher damaging attacks.
+			// For reference, the head has 75 max_damage.
+			if(vital)
+				modifed_brute = modifed_brute/1.5
+				modifed_burn = modifed_burn/1.5
 
-			//Math:
-			//Burn w/ 25dmg on an 80 hp limb. First hit: Prob(18.75) && Prob(31.25) = ~6% Second Hit: Prob(18.75) && Prob (62.5) =~12, etc up to 18.75
-			//Burn w/ 25dmg on a 50 hp limb. First hit: Prob(18.75) && Prob(50) = ~9% Second hit: 18.75%
-			else if((burn >= max_damage / DROPLIMB_THRESHOLD_DESTROY) && prob(burn*0.75) && prob(damage_factor))
-				droplimb(0, DROPLIMB_BURN)
+			// So, limbs have this issue where "If my limb is already at max damage, it doesn't matter how much more damage it takes, it won't go up"
+			// While that is FINE, there should be some benefit to repeatedly hitting the same limb when it's aleady maxed out. Thus, time comes in.
+			if(prior_damage >= max_damage)
+				modifed_brute = modifed_brute*3
+				modifed_burn = modifed_burn*3
 
-			//Brute it special. It gets both a chance to destroy AND a chance to knock a limb off!
-			//Math:
-			//Brute w/ 25dmg on an 80 hp limb. First hit: Prob(25) && Prob (31.25) = ~8% Second Hit: ~16% etc up to 25%
-			//Brute w/ 25dmg on a 50 hp limb. First hit: Prob(25) && Prob (50) = 12.5 Second hit: 25%
-			else if((brute >= max_damage / DROPLIMB_THRESHOLD_DESTROY && prob(brute)) && prob(damage_factor))
-				droplimb(0, DROPLIMB_BLUNT)
+			// Our limb has OVER 1/3 it's max health in damage already, we are eligible for removal.
+			if(prior_damage > max_damage/3)
+				destruction_eligible = TRUE
+			// If an attack is doing OVER half our max damage in ONE hit, we are eligible for removal.
+			else if((modifed_brute + modifed_burn) > max_damage/2)
+				destruction_eligible = TRUE
 
-			//This is where brute gets it SECOND chance to affect the limb! Much lower probability.
-			//This means you can add this to the above to get brute damage's TRUE drop chance IF the damage is high enough to hit BOTH the DROPLIMB_THRESHOLD_DESTROY & the DROPLIMB_THRESHOLD_TEAROFF
-			//Ex: If it hits
-			//Math:
-			//Brute w/ 25dmg on an 80 hp limb. First hit:  Prob(8.25) && Prob(31.25) = ~2.6% Second Hit: Prob(8.25) && Prob(62.5) = 5%. (This can't ACTUALLY happen with 25 damage with the current numbers, but it's an example to keep it similar to the above.)
-			//Brute w/ 25dmg on a 50 hp limb. First hit: Prob(8.25) && Prob (50) = ~4% Second hit: 8.25%
-			else if(brute >= max_damage / DROPLIMB_THRESHOLD_TEAROFF && prob(brute*0.33) && prob(damage_factor))
-				droplimb(0, DROPLIMB_EDGE)
+			if(destruction_eligible)
+				if(nonsolid && damage >= max_damage)
+					droplimb(TRUE, DROPLIMB_EDGE)
+				else if (robotic >= ORGAN_NANOFORM && damage >= max_damage)
+					droplimb(TRUE, DROPLIMB_BURN)
 
-			else if(spread_dam && owner && parent && (brute_overflow || burn_overflow) && (brute_overflow >= 5 || burn_overflow >= 5) && !permutation) //No infinite damage loops.
-				var/brute_third = brute_overflow * 0.33
-				var/burn_third = burn_overflow * 0.33
-				if(children && children.len)
-					var/brute_on_children = brute_third / children.len
-					var/burn_on_children = burn_third / children.len
-					spawn()
-						for(var/obj/item/organ/external/C in children)
-							if(!C.is_stump())
-								C.take_damage(brute_on_children, burn_on_children, 0, 0, null, forbidden_limbs, 1) //Splits the damage to each individual 'child', incase multiple exist.
-				parent.take_damage(brute_third, burn_third, 0, 0, null, forbidden_limbs, 1)
+				//Hit with a sharp object.
+				else if(edge_eligible && modifed_brute >= max_damage / DROPLIMB_THRESHOLD_EDGE && prob(modifed_brute*0.15) && prob(damage_factor))
+					droplimb(FALSE, DROPLIMB_EDGE)
+
+				//Hit with burn. Such as by getting shocked by a door.
+				else if((modifed_burn >= max_damage / DROPLIMB_THRESHOLD_DESTROY) && prob(modifed_burn*0.75) && prob(damage_factor))
+					droplimb(FALSE, DROPLIMB_BURN)
+
+				//These are the 'Hit with a big, blunt weapon.' Sharp objects don't get to do this. Walls do enough to do this if someone gets thrown against it enough times.
+				else if((!edge_eligible && modifed_brute >= max_damage / DROPLIMB_THRESHOLD_DESTROY && prob(modifed_brute*0.25)) && prob(damage_factor))
+					droplimb(FALSE, DROPLIMB_BLUNT)
+
+				else if(spread_dam && owner && parent && (brute_overflow || burn_overflow) && (brute_overflow >= 5 || burn_overflow >= 5) && !permutation) //No infinite damage loops.
+					var/brute_third = brute_overflow * 0.33
+					var/burn_third = burn_overflow * 0.33
+					if(children && children.len)
+						var/brute_on_children = brute_third / children.len
+						var/burn_on_children = burn_third / children.len
+						spawn()
+							for(var/obj/item/organ/external/C in children)
+								if(!C.is_stump())
+									C.take_damage(brute_on_children, burn_on_children, FALSE, FALSE, null, forbidden_limbs, 1) //Splits the damage to each individual 'child', incase multiple exist.
+					parent.take_damage(brute_third, burn_third, FALSE, FALSE, null, forbidden_limbs, 1)
 
 	return update_icon()
 
-/obj/item/organ/external/proc/heal_damage(brute, burn, internal = 0, robo_repair = 0)
+/obj/item/organ/external/proc/heal_damage(brute, burn, internal = FALSE, robo_repair = FALSE)
 	if(robotic >= ORGAN_ROBOT && !robo_repair)
 		return
 
@@ -1467,5 +1480,4 @@ Note that amputating the affected organ does in fact remove the infection from t
 				return 1
 
 #undef DROPLIMB_THRESHOLD_EDGE
-#undef DROPLIMB_THRESHOLD_TEAROFF
 #undef DROPLIMB_THRESHOLD_DESTROY
