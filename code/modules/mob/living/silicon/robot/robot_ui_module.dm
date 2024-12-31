@@ -49,6 +49,7 @@
 				if(is_borg_whitelisted(R, module_name))
 					modules |= module_name
 	data["possible_modules"] = modules
+	data["mind_name"] = R.mind.name
 	if(R.emagged)
 		data["theme"] = "syndicate"
 	else if (R.ui_theme)
@@ -136,6 +137,7 @@
 			var/name = params["value"]
 			if(name)
 				new_name = sanitizeSafe(name, MAX_NAME_LEN)
+				R.sprite_name = new_name
 			. = TRUE
 		if("confirm")
 			R.apply_name(new_name)
