@@ -193,9 +193,13 @@
 
 	if(istype(P, /obj/item/storage/sample_container))
 		var/obj/item/storage/sample_container/SC = P
-		src.loc = SC
-		SC.update_icon()
-		to_chat(user, span_notice("You store \the [src] in \the [SC]."))
+		if(SC.contents.len >= SC.max_storage_space)
+			to_chat(user, span_notice("\The [SC] is full!"))
+			return
+		else
+			src.loc = SC
+			SC.update_icon()
+			to_chat(user, span_notice("You store \the [src] in \the [SC]."))
 
 	if(istype(P, /obj/item/cataloguer))
 		to_chat(user, span_notice("You start to scan \the [src] with \the [P]..."))
