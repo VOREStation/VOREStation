@@ -14,6 +14,7 @@
 	siemens_coefficient = 1.5 //Don't get electrocuted
 
 	secondary_langs = list()	// None by default
+	digi_allowed = TRUE
 
 	has_organ = list(
 		O_HEART =		/obj/item/organ/internal/heart/replicant/rage/crew,
