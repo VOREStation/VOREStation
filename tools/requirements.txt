@@ -10,4 +10,4 @@ beautifulsoup4==4.9.3
 mysql-connector-python==9.1.0
 
 # icon cutter
-numpy==1.24.4
+numpy==1.26.0
