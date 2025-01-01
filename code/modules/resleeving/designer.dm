@@ -474,7 +474,7 @@
 	ASSERT(istype(S))
 	var/datum/category_item/player_setup_item/vore/traits/V = CC.categories_by_name["VORE"].items_by_name["Traits"]
 	ASSERT(istype(V))
-	var/list/use_different_category = list("rename" = G, "bio_gender" = G, "blood_reagents" = V, "custom_species" = V, "blood_color" = V, "custom_base" = V, "species_sound_options" = S, "toggle_fuzzy" = S, "toggle_offset_override" = S, "weight" = S, "flavor_text" = F) //add more here if needed, Outpost 21 edit - Added more because it was needed
+	var/list/use_different_category = list("rename" = G, "bio_gender" = G, "blood_reagents" = V, "custom_species" = V, "blood_color" = V, "custom_base" = V, "species_sound_options" = S, "toggle_fuzzy" = S, "toggle_offset_override" = S, "weight" = S, "flavor_text" = F) //add more here if needed
 
 
 	var/href_list = list()
