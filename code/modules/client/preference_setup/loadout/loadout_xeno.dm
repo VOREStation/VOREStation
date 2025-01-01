@@ -8,7 +8,7 @@
 /datum/gear/head/zhan_scarf
 	display_name = "Zhan headscarf"
 	path = /obj/item/clothing/head/tajaran/scarf
-	whitelisted = SPECIES_TAJ
+	whitelisted = SPECIES_TAJARAN
 
 /datum/gear/suit/unathi_mantle
 	display_name = "hide mantle (Unathi)"

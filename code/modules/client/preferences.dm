@@ -721,6 +721,9 @@ var/list/preferences_datums = list()
 
 	character.digitigrade = selected_species.digi_allowed ? digitigrade : 0
 
+	for(var/obj/item/clothing/O in character.contents)
+		O.handle_digitigrade(character)
+
 	character.dna.ResetUIFrom(character)
 	character.force_update_limbs()
 	character.regenerate_icons()

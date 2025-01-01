@@ -1655,14 +1655,14 @@ shaved
 	name = "Shaved"
 	icon_state = "bald"
 	gender = NEUTER
-	species_allowed = list(SPECIES_HUMAN, SPECIES_UNATHI, SPECIES_TAJ, SPECIES_TESHARI, SPECIES_EVENT1, SPECIES_EVENT2, SPECIES_EVENT3)
+	species_allowed = list(SPECIES_HUMAN, SPECIES_UNATHI, SPECIES_TAJARAN, SPECIES_TESHARI, SPECIES_EVENT1, SPECIES_EVENT2, SPECIES_EVENT3)
 */
 /datum/sprite_accessory/facial_hair/neck_fluff
 	name = "Neck Fluff"
 	icon = 'icons/mob/human_face_or_alt.dmi'
 	icon_state = "facial_neckfluff"
 	gender = NEUTER
-	species_allowed = list(SPECIES_TAJ, SPECIES_EVENT1, SPECIES_EVENT2, SPECIES_EVENT3)
+	species_allowed = list(SPECIES_TAJARAN, SPECIES_EVENT1, SPECIES_EVENT2, SPECIES_EVENT3)
 	color_blend_mode = ICON_MULTIPLY
 
 /datum/sprite_accessory/facial_hair/vulp_none
@@ -1754,7 +1754,7 @@ shaved
 	name = "Shaved"
 	icon_state = "bald"
 	gender = NEUTER
-	species_allowed = list(SPECIES_HUMAN,SPECIES_HUMAN_VATBORN,SPECIES_UNATHI,SPECIES_TAJ,SPECIES_SKRELL, "Machine", SPECIES_TESHARI, SPECIES_TESHARI,SPECIES_PROMETHEAN)
+	species_allowed = list(SPECIES_HUMAN,SPECIES_HUMAN_VATBORN,SPECIES_UNATHI,SPECIES_TAJARAN,SPECIES_SKRELL, "Machine", SPECIES_TESHARI, SPECIES_TESHARI,SPECIES_PROMETHEAN)
 
 /datum/sprite_accessory/facial_hair/watson
 	name = "Watson Mustache"
@@ -1950,7 +1950,7 @@ shaved
 /datum/sprite_accessory/hair/taj
 	name = "Tajaran Ears"
 	icon_state = "ears_plain"
-	species_allowed = list(SPECIES_TAJ)
+	species_allowed = list(SPECIES_TAJARAN)
 
 /datum/sprite_accessory/hair/taj/bangs
 	name = "Tajaran Bangs"
@@ -2213,7 +2213,7 @@ shaved
 /datum/sprite_accessory/facial_hair/taj
 	name = "Tajaran Sideburns"
 	icon_state = "facial_sideburns"
-	species_allowed = list(SPECIES_TAJ)
+	species_allowed = list(SPECIES_TAJARAN)
 
 /datum/sprite_accessory/facial_hair/taj/mutton
 	name = "Tajaran Mutton"
@@ -2460,7 +2460,7 @@ shaved
 	name = "Color Bands (Face)"
 	icon_state = "bandsface"
 	body_parts = list(BP_HEAD)
-	//species_allowed = list(SPECIES_TAJ,SPECIES_UNATHI)			//Removing Polaris whitelits
+	//species_allowed = list(SPECIES_TAJARAN,SPECIES_UNATHI)			//Removing Polaris whitelits
 
 /datum/sprite_accessory/marking/bandsface_human
 	name = "Color Bands (Face)"
@@ -2472,7 +2472,7 @@ shaved
 	name = "Tiger Stripes"
 	icon_state = "tiger"
 	body_parts = list(BP_L_FOOT,BP_R_FOOT,BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_TORSO,BP_GROIN)
-	//species_allowed = list(SPECIES_TAJ) 			//Removing Polaris whitelits	//There's a tattoo for non-cats
+	//species_allowed = list(SPECIES_TAJARAN) 			//Removing Polaris whitelits	//There's a tattoo for non-cats
 
 /datum/sprite_accessory/marking/tigerhead
 	name = "Tiger Stripes (Head, Minor)"
@@ -2483,7 +2483,7 @@ shaved
 	name = "Tiger Stripes (Head, Major)"
 	icon_state = "tigerface"
 	body_parts = list(BP_HEAD)
-	//species_allowed = list(SPECIES_TAJ)			//Removing Polaris whitelits //There's a tattoo for non-cats
+	//species_allowed = list(SPECIES_TAJARAN)			//Removing Polaris whitelits //There's a tattoo for non-cats
 
 /datum/sprite_accessory/marking/backstripe
 	name = "Back Stripe"
@@ -3001,7 +3001,7 @@ shaved
 	name = "Socks Coloration (Taj)"
 	icon_state = "taj_pawsocks"
 	body_parts = list(BP_L_FOOT,BP_R_FOOT,BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_L_HAND,BP_R_HAND)
-	//species_allowed = list(SPECIES_TAJ)			//Removing Polaris whitelits
+	//species_allowed = list(SPECIES_TAJARAN)			//Removing Polaris whitelits
 
 /datum/sprite_accessory/marking/una_paw_socks
 	name = "Socks Coloration (Una)"
@@ -3013,43 +3013,43 @@ shaved
 	name = "Socks Coloration (Generic)"
 	icon_state = "pawsocks"
 	body_parts = list(BP_L_FOOT,BP_R_FOOT,BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_L_HAND,BP_R_HAND)
-	//species_allowed = list(SPECIES_TAJ, SPECIES_UNATHI)			//Removing Polaris whitelits
+	//species_allowed = list(SPECIES_TAJARAN, SPECIES_UNATHI)			//Removing Polaris whitelits
 
 /datum/sprite_accessory/marking/paw_socks_belly
 	name = "Socks,Belly Coloration (Generic)"
 	icon_state = "pawsocksbelly"
 	body_parts = list(BP_L_FOOT,BP_R_FOOT,BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_L_HAND,BP_R_HAND,BP_GROIN,BP_TORSO)
-	//species_allowed = list(SPECIES_TAJ, SPECIES_UNATHI)			//Removing Polaris whitelits
+	//species_allowed = list(SPECIES_TAJARAN, SPECIES_UNATHI)			//Removing Polaris whitelits
 
 /datum/sprite_accessory/marking/belly_hands_feet
 	name = "Hands,Feet,Belly Color (Minor)"
 	icon_state = "bellyhandsfeetsmall"
 	body_parts = list(BP_L_FOOT,BP_R_FOOT,BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_L_HAND,BP_R_HAND,BP_GROIN,BP_TORSO)
-	//species_allowed = list(SPECIES_TAJ, SPECIES_UNATHI)			//Removing Polaris whitelits
+	//species_allowed = list(SPECIES_TAJARAN, SPECIES_UNATHI)			//Removing Polaris whitelits
 
 /datum/sprite_accessory/marking/hands_feet_belly_full
 	name = "Hands,Feet,Belly Color (Major)"
 	icon_state = "bellyhandsfeet"
 	body_parts = list(BP_L_FOOT,BP_R_FOOT,BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_L_HAND,BP_R_HAND,BP_GROIN,BP_TORSO)
-	//SPECIES_TAJ, SPECIES_UNATHI)				//Removing Polaris whitelits
+	//SPECIES_TAJARAN, SPECIES_UNATHI)				//Removing Polaris whitelits
 
 /datum/sprite_accessory/marking/hands_feet_belly_full_female
 	name = "Hands,Feet,Belly Color (Major, Female)"
 	icon_state = "bellyhandsfeet_female"
 	body_parts = list(BP_L_FOOT,BP_R_FOOT,BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_L_HAND,BP_R_HAND,BP_GROIN,BP_TORSO)
-	//species_allowed = list(SPECIES_TAJ)			//Removing Polaris whitelits
+	//species_allowed = list(SPECIES_TAJARAN)			//Removing Polaris whitelits
 
 /datum/sprite_accessory/marking/patches
 	name = "Color Patches"
 	icon_state = "patches"
 	body_parts = list(BP_L_FOOT,BP_R_FOOT,BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_L_HAND,BP_R_HAND,BP_TORSO,BP_GROIN)
-	//species_allowed = list(SPECIES_TAJ)			//Removing Polaris whitelits
+	//species_allowed = list(SPECIES_TAJARAN)			//Removing Polaris whitelits
 
 /datum/sprite_accessory/marking/patchesface
 	name = "Color Patches (Face)"
 	icon_state = "patchesface"
 	body_parts = list(BP_HEAD)
-	//species_allowed = list(SPECIES_TAJ)				//Removing Polaris whitelits
+	//species_allowed = list(SPECIES_TAJARAN)				//Removing Polaris whitelits
 
 
 	//Taj specific stuff
@@ -3057,55 +3057,55 @@ shaved
 	name = "Belly Fur (Taj)"
 	icon_state = "taj_belly"
 	body_parts = list(BP_TORSO)
-	//species_allowed = list(SPECIES_TAJ)			//Removing Polaris whitelits
+	//species_allowed = list(SPECIES_TAJARAN)			//Removing Polaris whitelits
 
 /datum/sprite_accessory/marking/taj_bellyfull
 	name = "Belly Fur Wide (Taj)"
 	icon_state = "taj_bellyfull"
 	body_parts = list(BP_TORSO)
-	//species_allowed = list(SPECIES_TAJ)			//Removing Polaris whitelits
+	//species_allowed = list(SPECIES_TAJARAN)			//Removing Polaris whitelits
 
 /datum/sprite_accessory/marking/taj_earsout
 	name = "Outer Ear (Taj)"
 	icon_state = "taj_earsout"
 	body_parts = list(BP_HEAD)
-	//species_allowed = list(SPECIES_TAJ)			//Removing Polaris whitelits
+	//species_allowed = list(SPECIES_TAJARAN)			//Removing Polaris whitelits
 
 /datum/sprite_accessory/marking/taj_earsin
 	name = "Inner Ear (Taj)"
 	icon_state = "taj_earsin"
 	body_parts = list(BP_HEAD)
-	//species_allowed = list(SPECIES_TAJ)			//Removing Polaris whitelits
+	//species_allowed = list(SPECIES_TAJARAN)			//Removing Polaris whitelits
 
 /datum/sprite_accessory/marking/taj_nose
 	name = "Nose Color (Taj)"
 	icon_state = "taj_nose"
 	body_parts = list(BP_HEAD)
-	//species_allowed = list(SPECIES_TAJ)			//Removing Polaris whitelits
+	//species_allowed = list(SPECIES_TAJARAN)			//Removing Polaris whitelits
 
 /datum/sprite_accessory/marking/taj_crest
 	name = "Chest Fur Crest (Taj)"
 	icon_state = "taj_crest"
 	body_parts = list(BP_TORSO)
-	//species_allowed = list(SPECIES_TAJ)			//Removing Polaris whitelits
+	//species_allowed = list(SPECIES_TAJARAN)			//Removing Polaris whitelits
 
 /datum/sprite_accessory/marking/taj_muzzle
 	name = "Muzzle Color (Taj)"
 	icon_state = "taj_muzzle"
 	body_parts = list(BP_HEAD)
-	//species_allowed = list(SPECIES_TAJ)			//Removing Polaris whitelits
+	//species_allowed = list(SPECIES_TAJARAN)			//Removing Polaris whitelits
 
 /datum/sprite_accessory/marking/taj_face
 	name = "Cheeks Color (Taj)"
 	icon_state = "taj_face"
 	body_parts = list(BP_HEAD)
-	//species_allowed = list(SPECIES_TAJ)			//Removing Polaris whitelits
+	//species_allowed = list(SPECIES_TAJARAN)			//Removing Polaris whitelits
 
 /datum/sprite_accessory/marking/taj_all
 	name = "All Taj Head (Taj)"
 	icon_state = "taj_all"
 	body_parts = list(BP_HEAD)
-	//species_allowed = list(SPECIES_TAJ)			//Removing Polaris whitelits
+	//species_allowed = list(SPECIES_TAJARAN)			//Removing Polaris whitelits
 
 	//Una specific stuff
 /datum/sprite_accessory/marking/una_face
@@ -3694,7 +3694,7 @@ shaved
 	name = "Default tajaran skin"
 	icon_state = "default"
 	icon = 'icons/mob/human_races/r_tajaran.dmi'
-	//species_allowed = list(SPECIES_TAJ)			//Removing Polaris whitelits
+	//species_allowed = list(SPECIES_TAJARAN)			//Removing Polaris whitelits
 
 /datum/sprite_accessory/skin/unathi
 	name = "Default Unathi skin"

@@ -180,6 +180,10 @@
 	// Remove the cache, since it's invalid if we get to this point.
 	fdel("[ASSET_CROSS_ROUND_SMART_CACHE_DIRECTORY]/spritesheet_cache.[name].json")
 
+	if(!fexists(ASSET_CROSS_ROUND_SMART_CACHE_DIRECTORY))
+		rustg_file_write("stub", "[ASSET_CROSS_ROUND_SMART_CACHE_DIRECTORY]/stub.txt")
+		fdel("[ASSET_CROSS_ROUND_SMART_CACHE_DIRECTORY]/stub.txt")
+
 	var/do_cache = CONFIG_GET(flag/smart_cache_assets) || force_cache
 	var/data_out
 	if(yield || !isnull(job_id))

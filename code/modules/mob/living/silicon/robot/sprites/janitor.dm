@@ -206,8 +206,6 @@
 /datum/robot_sprite/dogborg/tall/janitor/dullahanv3/janitordully
 	name = "Dullahan janitor v3"
 	sprite_icon_state = "dullahanjanitor"
-	has_eye_light_sprites = TRUE
-	has_custom_open_sprites = TRUE
 	has_vore_belly_sprites = TRUE
 	has_robotdecal_sprites = TRUE
 	rest_sprite_options = list("Default", "sit")

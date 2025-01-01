@@ -46,7 +46,7 @@
 	cold_level_2 = -1
 	cold_level_3 = -1
 
-	//primitive_form = "Farwa"
+	//primitive_form = SPECIES_MONKEY_TAJ
 
 	spawn_flags = SPECIES_CAN_JOIN | SPECIES_IS_WHITELISTED | SPECIES_WHITELIST_SELECTABLE//Whitelisted as restricted is broken.
 	flags = NO_SCAN | NO_INFECT // | NO_DEFIB // Dying as a chimera is, quite literally, a death sentence. Well, if it wasn't for their revive, that is. Leaving NO_DEFIB there for the future/in case reversion to old 'chimera no-defib.
@@ -368,7 +368,7 @@
 	cold_level_2 = -1
 	cold_level_3 = -1
 
-	//primitive_form = "Monkey" //I dunno. Replace this in the future.
+	//primitive_form = SPECIES_MONKEY //I dunno. Replace this in the future.
 
 	flags = NO_MINOR_CUT
 	spawn_flags = SPECIES_CAN_JOIN
@@ -424,7 +424,7 @@
 	secondary_langs = list(LANGUAGE_CANILUNZT)
 	name_language = LANGUAGE_CANILUNZT
 	species_language = LANGUAGE_CANILUNZT
-	primitive_form = "Wolpin"
+	primitive_form = SPECIES_MONKEY_VULPKANIN
 	color_mult = 1
 	icon_height = 64
 	can_climb = TRUE

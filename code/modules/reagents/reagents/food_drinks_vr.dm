@@ -938,7 +938,8 @@
 
 /datum/reagent/drink/coffee/nukie/mega/shrink/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
 	..()
-	M.resize((M.size_multiplier - 0.01), uncapped = M.has_large_resize_bounds(), aura_animation = FALSE)
+	var/new_size = clamp((M.size_multiplier - 0.01), RESIZE_MINIMUM_DORMS, RESIZE_MAXIMUM_DORMS)
+	M.resize(new_size, uncapped = M.has_large_resize_bounds(), aura_animation = FALSE)
 
 /datum/reagent/drink/coffee/nukie/mega/grow //Basically macrocillin but for ingesting
 	name = REAGENT_NUKIEMEGAGROWTH
@@ -948,4 +949,5 @@
 
 /datum/reagent/drink/coffee/nukie/mega/grow/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
 	..()
-	M.resize((M.size_multiplier + 0.01), uncapped = M.has_large_resize_bounds(), aura_animation = FALSE)
+	var/new_size = clamp((M.size_multiplier + 0.01), RESIZE_MINIMUM_DORMS, RESIZE_MAXIMUM_DORMS)
+	M.resize(new_size, uncapped = M.has_large_resize_bounds(), aura_animation = FALSE)

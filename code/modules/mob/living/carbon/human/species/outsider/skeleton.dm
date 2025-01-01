@@ -2,7 +2,7 @@
 	name = SPECIES_SKELETON
 	name_plural = "Skeletons"
 	icobase = 'icons/mob/human_races/r_skeleton.dmi'
-	primitive_form = "Monkey"
+	primitive_form = SPECIES_MONKEY
 	language = "Sol Common"
 	unarmed_types = list(/datum/unarmed_attack/claws/strong, /datum/unarmed_attack/bite/sharp)	//Bones are pointy, fight me.
 	blurb = "Spooky Scary Skeletons!"

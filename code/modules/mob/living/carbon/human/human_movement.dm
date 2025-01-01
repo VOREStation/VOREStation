@@ -20,22 +20,21 @@
 			. += M.slowdown
 
 	var/health_deficiency = (getMaxHealth() - health)
-	if(istype(src, /mob/living/carbon/human)) //VOREStation Edit Start
+	if(istype(src, /mob/living/carbon/human))
 		var/mob/living/carbon/human/H = src
 		health_deficiency *= H.species.trauma_mod //Species pain sensitivity does not apply to painkillers, so we apply it before
 	if(health_deficiency >= 40)
 		if(chem_effects[CE_PAINKILLER]) //On painkillers? Reduce pain! On anti-painkillers? Increase pain!
 			health_deficiency = max(0, health_deficiency - src.chem_effects[CE_PAINKILLER])
 		if(health_deficiency >= 40) //Still in enough pain for it to be significant?
-			. += (health_deficiency / 25) //VOREStation Edit End
+			. += (health_deficiency / 25)
 
 	if(can_feel_pain())
 		if(halloss >= 10) . += (halloss / 10) //halloss shouldn't slow you down if you can't even feel it
 
-	var/hungry = (500 - nutrition) / 5 //VOREStation Edit - Fixed 500 here instead of our huge MAX_NUTRITION
+	var/hungry = (500 - nutrition) / 5 //Fixed 500 here instead of our huge MAX_NUTRITION
 	if (hungry >= 70) . += hungry/50
 
-	//VOREstation start
 	if (feral >= 10) //crazy feral animals give less and less of a shit about pain and hunger as they get crazier
 		. = max(species.slowdown, species.slowdown+((.-species.slowdown)/(feral/10))) // As feral scales to damage, this amounts to an effective +1 slowdown cap
 		if(shock_stage >= 10) . -= 1.5 //this gets a +3 later, feral critters take reduced penalty
@@ -49,7 +48,6 @@
 					. += 1
 				//if(H.weight > L.weight) weight should not have mechanical impact
 					//. += 1
-	//VOREstation end
 
 	if(istype(buckled, /obj/structure/bed/chair/wheelchair))
 		for(var/organ_name in list(BP_L_HAND, BP_R_HAND, BP_L_ARM, BP_R_ARM))
@@ -102,7 +100,8 @@
 			var/their_slowdown = max(H.calculate_item_encumbrance(), 1)
 			item_tally = max(item_tally, their_slowdown) // If our slowdown is less than theirs, then we become as slow as them (before species modifires).
 
-	item_tally *= species.item_slowdown_mod
+	if(item_tally > 0) //ALT-ENCUMBERANCE
+		item_tally *= species.item_slowdown_mod //ALT-ENCUMBERANCE
 
 	. += item_tally
 
@@ -127,7 +126,49 @@
 // This calculates the amount of slowdown to receive from items worn. This does NOT include species modifiers.
 // It is in a seperate place to avoid an infinite loop situation with dragging mobs dragging each other.
 // Also its nice to have these things seperated.
+
 /mob/living/carbon/human/proc/calculate_item_encumbrance()
+	/// We check for all the items the wearer has that cause slowdown (positive or negative)
+	/// We then multiply the postive ones by our species.item_slowdown_mod to slow us down more, while we leave negative ones untouched.
+	/// Heavy things in your hands are affected by this change, UNLESS the thing in your hand speeds you up, in which case it doesn't.
+	/// Before you look at the below for(), yes, I know. It looks ugly. However, it is REQUIRED to be done this way instead of using get_equipped_items() as that makes a new list and does a LOT. This proc is called once (or up to 3 times if someone is being dragged) every time someone moves. Making hundreds of new lists() every second is a good way to destroy you CPU.
+
+	/// If this is STILL proving to be too resource intensive, I have left the old code commented out underneath this.
+	/// Just search this file for lines labled as "ALT-ENCUMBERANCE" that are commented out.
+	/// Just comment out the below code, uncomment out the version labeled 'ALT-ENCUMBERANCE', and you'll be back to the old system.
+
+	var/total_item_slowdown = 0
+	var/slowdown_mod = species.item_slowdown_mod //HIGHER = MAKES YOU SLOWER
+	for(var/slot in list(back, belt, l_ear, r_ear, glasses, gloves, head, shoes, wear_id, wear_mask, wear_suit, w_uniform)) //Two things to note here. ONE: If you add a new inventory slot, ADD IT HERE. Two: If we ever get a global list on human of all the inventory slots (MINUS HANDS) add it here.
+		if(!slot) //ZOOM
+			continue
+		var/obj/item/I = slot
+		if(istype(I))
+			var/item_slowdown = I.slowdown //Positive == Slows you down. Negative == Speeds you up.
+			if(item_slowdown != 0) //If it's a positive number, we multiply it by out slowdown mod. Otherwise, don't do anything special.
+				if(item_slowdown > 0 && slowdown_mod > 0)
+					item_slowdown = item_slowdown * (slowdown_mod)
+
+				/// Adminbus / future proofing. These should NEVER get called unless someone down the line does something crazy
+				else if(slowdown_mod < 0 && item_slowdown < 0)
+					item_slowdown = -(item_slowdown * slowdown_mod)
+				else if(slowdown_mod < 0 && item_slowdown > 0)
+					item_slowdown = item_slowdown + slowdown_mod //Yes, this is + (Adding a negative), not multiplied. You are not making the 5 slowdown rigsuit give you 5*X speed. You're getting 5-X slowdown instead.
+			total_item_slowdown += item_slowdown
+	for(var/hands in list(l_hand, r_hand)) //Hands get special treatment. We want slowdown_mod
+		if(!hands)
+			continue
+		var/obj/item/H = hands
+		var/item_slowdown = H.slowdown
+		if(item_slowdown > 0)
+			total_item_slowdown += item_slowdown * slowdown_mod
+		else
+			continue
+
+	. += total_item_slowdown
+
+	//ALT-ENCUMBERANCE below here
+	/*
 	if(shoes)	// Shoes can make you go faster.
 		if(!buckled || (buckled && istype(buckled, /obj/machinery/power/rtg/reg)))
 			. += shoes.slowdown
@@ -141,13 +182,15 @@
 	// This is done seperately to disallow negative numbers (so you can't hold shoes in your hands to go faster).
 	for(var/obj/item/I in list(r_hand, l_hand) )
 		. += max(I.slowdown, 0)
+	*/
+	//ALT-ENCUMBERANCE end
 
 // Similar to above, but for turf slowdown.
 /mob/living/carbon/human/proc/calculate_turf_slowdown(turf/T, direct)
 	if(!T)
 		return 0
 
-	if(T.movement_cost && !flying) //VOREStation Add: If you are flying you are probably not affected by the terrain on the ground.
+	if(T.movement_cost && !flying) //If you are flying you are probably not affected by the terrain on the ground.
 		var/turf_move_cost = T.movement_cost
 		if(istype(T, /turf/simulated/floor/water))
 			if(species.water_movement)
@@ -171,7 +214,6 @@
 
 	// Wind makes it easier or harder to move, depending on if you're with or against the wind.
 	// I don't like that so I'm commenting it out :)
-	// VOREstation Edit Start
 /*
 	if((T.is_outdoors()) && (T.z <= SSplanets.z_to_planet.len))
 		var/datum/planet/P = SSplanets.z_to_planet[z]
@@ -186,7 +228,6 @@
 					. += WH.wind_speed
 
 */
-// VOREstation Edit End.
 #undef HUMAN_LOWEST_SLOWDOWN
 
 /mob/living/carbon/human/get_jetpack()
@@ -205,11 +246,11 @@
 	if(..()) //Can move due to other reasons, don't use jetpack fuel
 		return TRUE
 
-	if(species.can_space_freemove || (species.can_zero_g_move && !istype(get_turf(src), /turf/space))) //VOREStation Edit.
-		return TRUE  //VOREStation Edit.
+	if(species.can_space_freemove || (species.can_zero_g_move && !istype(get_turf(src), /turf/space)))
+		return TRUE
 
-	if(flying) //VOREStation Edit. If you're flying, you glide around!
-		return TRUE  //VOREStation Edit.
+	if(flying) //If you're flying, you glide around!
+		return TRUE
 
 	//Do we have a working jetpack?
 	var/obj/item/tank/jetpack/thrust = get_jetpack()

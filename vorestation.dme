@@ -95,7 +95,6 @@
 #include "code\__defines\mecha.dm"
 #include "code\__defines\misc.dm"
 #include "code\__defines\mobs.dm"
-#include "code\__defines\mobs_vr.dm"
 #include "code\__defines\nifsoft.dm"
 #include "code\__defines\objects.dm"
 #include "code\__defines\observer.dm"

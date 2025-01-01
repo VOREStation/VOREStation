@@ -19,6 +19,8 @@
 	has_dead_sprite = TRUE
 	has_dead_sprite_overlay = TRUE
 	pixel_x = -16
+	icon_x = 64
+	icon_y = 32
 
 	whitelist_ckey = "argonne"
 	whitelist_charname = "RUSS"
@@ -80,6 +82,8 @@
 	has_dead_sprite = TRUE
 	has_dead_sprite_overlay = TRUE
 	pixel_x = -16
+	icon_x = 64
+	icon_y = 32
 
 	whitelist_ckey = "jademanique"
 	whitelist_charname = "B.A.U-Kingside"
@@ -101,6 +105,8 @@
 	has_dead_sprite = TRUE
 	has_dead_sprite_overlay = TRUE
 	pixel_x = -16
+	icon_x = 64
+	icon_y = 32
 
 	whitelist_ckey = "lunarfleet"
 	whitelist_charname = "Clea-Nor"

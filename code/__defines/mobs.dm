@@ -262,6 +262,13 @@
 #define MOB_PULL_SAME 2
 #define MOB_PULL_LARGER 3
 
+//Protean organs
+#define O_ORCH		"orchestrator"
+#define O_FACT		"refactory"
+
+//Alraune organs
+#define A_FRUIT	"fruit gland"
+
 //XENOBIO2 FLAGS
 #define NOMUT		0
 #define COLORMUT 	1
@@ -298,23 +305,42 @@
 #define SPECIES_UNATHI			"Unathi"
 #define SPECIES_SKRELL			"Skrell"
 #define SPECIES_TESHARI			"Teshari"
-#define SPECIES_TAJ				"Tajara"
+#define SPECIES_TAJARAN			"Tajara"
 #define SPECIES_PROMETHEAN		"Promethean"
 #define SPECIES_DIONA			"Diona"
 #define SPECIES_VOX				"Vox"
 #define SPECIES_ZADDAT			"Zaddat"
+#define SPECIES_AKULA			"Akula"
+#define SPECIES_ALRAUNE			"Alraune"
+#define SPECIES_NEVREAN			"Nevrean"
+#define SPECIES_PROTEAN			"Protean"
+#define SPECIES_RAPALA			"Rapala"
+#define SPECIES_SERGAL			"Sergal"
+#define SPECIES_ALTEVIAN		"Altevian"
+#define SPECIES_SHADEKIN_CREW	"Black-Eyed Shadekin"
+#define SPECIES_VASILISSAN		"Vasilissan"
+#define SPECIES_VULPKANIN		"Vulpkanin"
+#define SPECIES_XENOCHIMERA		"Xenochimera"
+#define SPECIES_ZORREN_HIGH		"Zorren"
+#define SPECIES_CUSTOM			"Custom Species"
+#define SPECIES_LLEILL			"Lleill"
+#define SPECIES_HANNER			"Hanner"
 
 // Monkey and alien monkeys.
-#define SPECIES_MONKEY			"Monkey"
-#define SPECIES_MONKEY_TAJ		"Farwa"
-#define SPECIES_MONKEY_SKRELL	"Neaera"
-#define SPECIES_MONKEY_UNATHI	"Stok"
+#define SPECIES_MONKEY				"Monkey"
+#define SPECIES_MONKEY_TAJ			"Farwa"
+#define SPECIES_MONKEY_SKRELL		"Neaera"
+#define SPECIES_MONKEY_UNATHI		"Stok"
+#define SPECIES_MONKEY_AKULA		"Sobaka"
+#define SPECIES_MONKEY_NEVREAN		"Sparra"
+#define SPECIES_MONKEY_SERGAL		"Saru"
+#define SPECIES_MONKEY_VULPKANIN	"Wolpin"
 
 // Virtual Reality IDs.
 #define SPECIES_VR				"Virtual Reality Avatar"
 #define SPECIES_VR_HUMAN		"Virtual Reality Human"
 #define SPECIES_VR_UNATHI		"Virtual Reality Unathi"
-#define SPECIES_VR_TAJ			"Virtual Reality Tajara" // NO CHANGING.
+#define SPECIES_VR_TAJARAN		"Virtual Reality Tajara" // NO CHANGING.
 #define SPECIES_VR_SKRELL		"Virtual Reality Skrell"
 #define SPECIES_VR_TESHARI		"Virtual Reality Teshari"
 #define SPECIES_VR_DIONA		"Virtual Reality Diona"
@@ -343,6 +369,24 @@
 #define SPECIES_REPLICANT_ALPHA	"Alpha Replicant"
 #define SPECIES_REPLICANT_BETA	"Beta Replicant"
 #define SPECIES_REPLICANT_CREW	"Gamma Replicant"
+#define SPECIES_WEREBEAST		"Werebeast"
+#define SPECIES_SHADEKIN		"Shadekin"
+
+// Custom species base
+#define SPECIES_FENNEC			"Fennec"
+#define SPECIES_XENOHYBRID		"Xenohybrid"
+
+//for custom bodytypes
+#define SELECTS_BODYTYPE_FALSE			0
+#define SELECTS_BODYTYPE_CUSTOM			1
+#define SELECTS_BODYTYPE_SHAPESHIFTER	2
+
+#define MARKING_NONDIGI_ONLY 		(1 << 0)
+#define MARKING_DIGITIGRADE_ONLY 	(1 << 1)
+#define MARKING_ALL_LEGS 			MARKING_NONDIGI_ONLY|MARKING_DIGITIGRADE_ONLY
+
+//Grabs
+#define UPGRADE_COOLDOWN	40
 
 // Used to seperate simple animals by ""intelligence"".
 #define SA_PLANT	1
