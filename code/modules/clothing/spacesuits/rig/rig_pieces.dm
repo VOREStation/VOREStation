@@ -11,13 +11,13 @@
 	cold_protection =    HEAD|FACE|EYES
 	light_range = 4
 	sprite_sheets = list(
-		SPECIES_TAJ = 'icons/inventory/head/mob_tajaran.dmi',
+		SPECIES_TAJARAN = 'icons/inventory/head/mob_tajaran.dmi',
 		SPECIES_SKRELL = 'icons/inventory/head/mob_skrell.dmi',
 		SPECIES_UNATHI = 'icons/inventory/head/mob_unathi.dmi',
 		SPECIES_VOX = 'icons/inventory/head/mob_vox.dmi',
 		SPECIES_TESHARI = 'icons/inventory/head/mob_teshari.dmi'
 		)
-	species_restricted = list(SPECIES_HUMAN, SPECIES_SKRELL, SPECIES_TAJ, SPECIES_UNATHI, SPECIES_PROMETHEAN, SPECIES_TESHARI) //vox, diona, and zaddat can't use hardsuits not designed for them
+	species_restricted = list(SPECIES_HUMAN, SPECIES_SKRELL, SPECIES_TAJARAN, SPECIES_UNATHI, SPECIES_PROMETHEAN, SPECIES_TESHARI) //vox, diona, and zaddat can't use hardsuits not designed for them
 	max_pressure_protection = null
 	min_pressure_protection = null
 
@@ -28,7 +28,7 @@
 	body_parts_covered = HANDS
 	heat_protection =    HANDS
 	cold_protection =    HANDS
-	species_restricted = list(SPECIES_HUMAN, SPECIES_SKRELL, SPECIES_TAJ, SPECIES_UNATHI, SPECIES_PROMETHEAN, SPECIES_TESHARI)
+	species_restricted = list(SPECIES_HUMAN, SPECIES_SKRELL, SPECIES_TAJARAN, SPECIES_UNATHI, SPECIES_PROMETHEAN, SPECIES_TESHARI)
 	gender = PLURAL
 
 /obj/item/clothing/shoes/magboots/rig
@@ -36,7 +36,7 @@
 	body_parts_covered = FEET
 	cold_protection = FEET
 	heat_protection = FEET
-	species_restricted = list(SPECIES_HUMAN, SPECIES_SKRELL, SPECIES_TAJ, SPECIES_UNATHI, SPECIES_PROMETHEAN, SPECIES_TESHARI)
+	species_restricted = list(SPECIES_HUMAN, SPECIES_SKRELL, SPECIES_TAJARAN, SPECIES_UNATHI, SPECIES_PROMETHEAN, SPECIES_TESHARI)
 	gender = PLURAL
 	icon_base = null
 
@@ -54,13 +54,13 @@
 	resilience = 0.2
 	can_breach = 1
 	sprite_sheets = list(
-		SPECIES_TAJ = 'icons/inventory/suit/mob_tajaran.dmi',
+		SPECIES_TAJARAN = 'icons/inventory/suit/mob_tajaran.dmi',
 		SPECIES_UNATHI = 'icons/inventory/suit/mob_unathi.dmi',
 		SPECIES_VOX = 'icons/inventory/suit/mob_vox.dmi',
 		SPECIES_TESHARI = 'icons/inventory/suit/mob_teshari.dmi'
 		)
 	supporting_limbs = list()
-	species_restricted = list(SPECIES_HUMAN, SPECIES_SKRELL, SPECIES_TAJ, SPECIES_UNATHI, SPECIES_PROMETHEAN, SPECIES_TESHARI) //vox, diona, and zaddat can't use hardsuits not designed for them
+	species_restricted = list(SPECIES_HUMAN, SPECIES_SKRELL, SPECIES_TAJARAN, SPECIES_UNATHI, SPECIES_PROMETHEAN, SPECIES_TESHARI) //vox, diona, and zaddat can't use hardsuits not designed for them
 	var/obj/item/material/knife/tacknife
 	max_pressure_protection = null
 	min_pressure_protection = null

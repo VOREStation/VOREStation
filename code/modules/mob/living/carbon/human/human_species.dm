@@ -66,7 +66,7 @@
 	icon = 'icons/mob/human_races/r_tajaran.dmi'
 /mob/living/carbon/human/dummy/mannequin/autoequip/tajaran/Initialize(var/new_loc)
 	h_style = "Tajaran Ears"
-	return ..(new_loc, SPECIES_TAJ)
+	return ..(new_loc, SPECIES_TAJARAN)
 
 /mob/living/carbon/human/dummy/mannequin/autoequip/unathi
 	icon = 'icons/mob/human_races/r_lizard.dmi'
@@ -98,7 +98,7 @@
 
 /mob/living/carbon/human/tajaran/Initialize(var/new_loc)
 	h_style = "Tajaran Ears"
-	return ..(new_loc, SPECIES_TAJ)
+	return ..(new_loc, SPECIES_TAJARAN)
 
 /mob/living/carbon/human/unathi/Initialize(var/new_loc)
 	h_style = "Unathi Horns"

@@ -27,7 +27,7 @@
 
 /* Example from Polaris code
 /datum/species/monkey/tajaran
-	name = "Farwa"
+	name = SPECIES_MONKEY_TAJ
 	name_plural = "Farwa"
 
 	icobase = 'icons/mob/human_races/monkeys/r_farwa.dmi'

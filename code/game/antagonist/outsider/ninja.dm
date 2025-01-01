@@ -158,7 +158,7 @@ var/datum/antagonist/ninja/ninjas
 		if(13)
 			directive += "Some disgruntled [using_map.company_name] employees have been supportive of our operations. Be wary of any mistreatment by command staff."
 		if(14)
-			var/xenorace = pick(SPECIES_UNATHI, SPECIES_TAJ, SPECIES_SKRELL)
+			var/xenorace = pick(SPECIES_UNATHI, SPECIES_TAJARAN, SPECIES_SKRELL)
 			directive += "A group of [xenorace] radicals have been loyal supporters of the Spider Clan. Favor [xenorace] crew whenever possible."
 		if(15)
 			directive += "The Spider Clan has recently been accused of religious insensitivity. Attempt to speak with the " + JOB_CHAPLAIN + " and prove these accusations false."
