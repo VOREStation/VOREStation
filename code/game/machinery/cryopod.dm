@@ -339,6 +339,9 @@
 //Lifted from Unity stasis.dm and refactored. ~Zuhayr
 /obj/machinery/cryopod/process()
 	if(occupant)
+		if(occupant.loc != src)
+			go_out(TRUE)
+			return
 		//Allow a ten minute gap between entering the pod and actually despawning.
 		if(world.time - time_entered < time_till_despawn)
 			return
@@ -654,12 +657,12 @@
 	for(var/obj/machinery/gateway/G in range(1,src))
 		G.icon_state = "on"
 
-/obj/machinery/cryopod/robot/door/gateway/go_out()
-	..()
+/obj/machinery/cryopod/robot/door/gateway/go_out(var/skip_move = FALSE)
+	..(skip_move)
 	for(var/obj/machinery/gateway/G in range(1,src))
 		G.icon_state = "off"
 
-/obj/machinery/cryopod/proc/go_out()
+/obj/machinery/cryopod/proc/go_out(var/skip_move = FALSE)
 
 	if(!occupant)
 		return
@@ -667,8 +670,8 @@
 	if(occupant.client)
 		occupant.client.eye = occupant.client.mob
 		occupant.client.perspective = MOB_PERSPECTIVE
-
-	occupant.forceMove(get_turf(src))
+	if(!skip_move)
+		occupant.forceMove(get_turf(src))
 	if(ishuman(occupant) && applies_stasis)
 		var/mob/living/carbon/human/H = occupant
 		H.Stasis(0)
