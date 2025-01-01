@@ -295,6 +295,8 @@
 		if("savetodisk")
 			if(active_br.locked)
 				var/answer = tgui_alert(ui.user,"This body record will be written to a disk and allow any mind to inhabit it. This is against the current body owner's configured OOC preferences for body impersonation. Please confirm that you have permission to do this, and are sure! Admins will be notified.","Mind Compatability",list("No","Yes"))
+				if(!answert)
+					return
 				if(answer == "No")
 					to_chat(ui.user, span_warning("ERROR: This body record is restricted."))
 					return
