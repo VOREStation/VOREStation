@@ -59,27 +59,27 @@
 /mob/living/carbon/human/sharkm
 	low_sorting_priority = TRUE
 
-/mob/living/carbon/human/sharkm/New(var/new_loc)
+/mob/living/carbon/human/sharkm/Initialize(var/new_loc)
 	..(new_loc, SPECIES_MONKEY_AKULA)
 	species.produceCopy(species.traits.Copy(),src,null,FALSE)
 
 /mob/living/carbon/human/sergallingm
 	low_sorting_priority = TRUE
 
-/mob/living/carbon/human/sergallingm/New(var/new_loc)
+/mob/living/carbon/human/sergallingm/Initialize(var/new_loc)
 	..(new_loc, SPECIES_MONKEY_SERGAL)
 	species.produceCopy(species.traits.Copy(),src,null,FALSE)
 
 /mob/living/carbon/human/sparram
 	low_sorting_priority = TRUE
 
-/mob/living/carbon/human/sparram/New(var/new_loc)
+/mob/living/carbon/human/sparram/Initialize(var/new_loc)
 	..(new_loc, SPECIES_MONKEY_NEVREAN)
 	species.produceCopy(species.traits.Copy(),src,null,FALSE)
 
 /mob/living/carbon/human/wolpin
 	low_sorting_priority = TRUE
 
-/mob/living/carbon/human/wolpin/New(var/new_loc)
+/mob/living/carbon/human/wolpin/Initialize(var/new_loc)
 	..(new_loc, SPECIES_MONKEY_VULPKANIN)
 	species.produceCopy(species.traits.Copy(),src,null,FALSE)
