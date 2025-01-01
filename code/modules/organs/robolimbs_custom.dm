@@ -64,7 +64,7 @@
 
 /*/datum/robolimb/dsi_tajaran/New()
 	species_cannot_use = GLOB.all_species.Copy()
-	species_cannot_use -= SPECIES_TAJ
+	species_cannot_use -= SPECIES_TAJARAN
 VS Edit - anyone can select these. */
 
 /obj/item/disk/limb/dsi_tajaran

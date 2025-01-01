@@ -43,6 +43,8 @@
 
 	..(loc, generate_species)
 
+	species.produceCopy(species.traits.Copy(),src,null,FALSE)
+
 	h_style = to_wear_hair
 
 	if(to_wear_uniform)

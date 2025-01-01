@@ -337,7 +337,7 @@ GLOBAL_LIST_EMPTY(suit_cycler_emagged)
 /datum/suit_cycler_choice/species/unathi
 	name = SPECIES_UNATHI
 /datum/suit_cycler_choice/species/tajaran
-	name = SPECIES_TAJ
+	name = SPECIES_TAJARAN
 /datum/suit_cycler_choice/species/teshari
 	name = SPECIES_TESHARI
 /datum/suit_cycler_choice/species/akula

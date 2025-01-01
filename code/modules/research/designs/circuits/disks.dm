@@ -25,7 +25,7 @@
 	sort_string = "DBAAA"
 
 /datum/design/circuit/disk/tajprint
-	name = SPECIES_TAJ
+	name = SPECIES_TAJARAN
 	id = "prosthetic_tajaran"
 	req_tech = list(TECH_DATA = 3, TECH_BIO = 3)
 	build_path = /obj/item/disk/species/tajaran
