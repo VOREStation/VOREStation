@@ -40,7 +40,6 @@ export const BodyDesigner = (props) => {
 
   return (
     <Window width={750} height={850}>
-      {' '}
       <Window.Content>
         <Box>
           <Button
@@ -62,7 +61,6 @@ export const BodyDesigner = (props) => {
             onClick={() => act('ejectdisk')}
             disabled={!disk}
           >
-            {' '}
             Eject
           </Button>
         </Box>
