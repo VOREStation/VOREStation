@@ -125,22 +125,26 @@
 	low_sorting_priority = TRUE
 
 /mob/living/carbon/human/monkey/Initialize(var/new_loc)
-	return ..(new_loc, SPECIES_MONKEY)
+	. = ..(new_loc, SPECIES_MONKEY)
+	species.produceCopy(species.traits.Copy(),src,null,FALSE)
 
 /mob/living/carbon/human/farwa
 	low_sorting_priority = TRUE
 
 /mob/living/carbon/human/farwa/Initialize(var/new_loc)
-	return ..(new_loc, SPECIES_MONKEY_TAJ)
+	. = .. (new_loc, SPECIES_MONKEY_TAJ)
+	species.produceCopy(species.traits.Copy(),src,null,FALSE)
 
 /mob/living/carbon/human/neaera
 	low_sorting_priority = TRUE
 
 /mob/living/carbon/human/neaera/Initialize(var/new_loc)
-	return ..(new_loc, SPECIES_MONKEY_SKRELL)
+	. = ..(new_loc, SPECIES_MONKEY_SKRELL)
+	species.produceCopy(species.traits.Copy(),src,null,FALSE)
 
 /mob/living/carbon/human/stok
 	low_sorting_priority = TRUE
 
 /mob/living/carbon/human/stok/Initialize(var/new_loc)
-	return ..(new_loc, SPECIES_MONKEY_UNATHI)
+	. = ..(new_loc, SPECIES_MONKEY_UNATHI)
+	species.produceCopy(species.traits.Copy(),src,null,FALSE)
