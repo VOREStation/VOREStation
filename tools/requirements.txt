@@ -3,7 +3,7 @@ bidict==0.22.1
 Pillow==10.3.0
 
 # changelogs
-PyYaml==6.0
+PyYaml==6.0.1
 beautifulsoup4==4.11.2
 
 # ezdb
