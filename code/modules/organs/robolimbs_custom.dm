@@ -60,7 +60,7 @@
 	unavailable_to_build = 1
 	includes_tail = 1
 	skin_tone = 1
-	suggested_species = "Tajara"
+	suggested_species = SPECIES_TAJARAN
 
 /*/datum/robolimb/dsi_tajaran/New()
 	species_cannot_use = GLOB.all_species.Copy()
@@ -79,7 +79,7 @@ VS Edit - anyone can select these. */
 	unavailable_to_build = 1
 	includes_tail = 1
 	skin_tone = 1
-	suggested_species = "Unathi"
+	suggested_species = SPECIES_UNATHI
 
 /* /datum/robolimb/dsi_lizard/New() //
 	species_cannot_use = GLOB.all_species.Copy()
@@ -98,7 +98,7 @@ VS Edit - anyone can select these. */
 	unavailable_to_build = 1
 	includes_tail = 1
 	skin_tone = 1
-	suggested_species = "Sergal"
+	suggested_species = SPECIES_SERGAL
 
 /obj/item/disk/limb/dsi_sergal
 	company = "DSI - Sergal"
@@ -112,7 +112,7 @@ VS Edit - anyone can select these. */
 	unavailable_to_build = 1
 	includes_tail = 1
 	skin_tone = 1
-	suggested_species = "Nevrean"
+	suggested_species = SPECIES_NEVREAN
 
 /obj/item/disk/limb/dsi_nevrean
 	company = "DSI - Nevrean"
@@ -126,7 +126,7 @@ VS Edit - anyone can select these. */
 	unavailable_to_build = 1
 	includes_tail = 1
 	skin_tone = 1
-	suggested_species = "Vulpkanin"
+	suggested_species = SPECIES_VULPKANIN
 
 /obj/item/disk/limb/dsi_vulpkanin
 	company = "DSI - Vulpkanin"
@@ -140,7 +140,7 @@ VS Edit - anyone can select these. */
 	unavailable_to_build = 1
 	includes_tail = 1
 	skin_tone = 1
-	suggested_species = "Akula"
+	suggested_species = SPECIES_AKULA
 
 /obj/item/disk/limb/dsi_akula
 	company = "DSI - Akula"
@@ -154,7 +154,7 @@ VS Edit - anyone can select these. */
 	unavailable_to_build = 1
 	includes_tail = 1
 	skin_tone = 1
-	suggested_species = "Vasilissan"
+	suggested_species = SPECIES_VASILISSAN
 
 /obj/item/disk/limb/dsi_spider
 	company = "DSI - Vasilissan"
@@ -186,7 +186,7 @@ VS Edit - anyone can select these. */
 	unavailable_to_build = 1
 	includes_tail = 1
 	skin_tone = 1
-	suggested_species = "Zorren"
+	suggested_species = SPECIES_ZORREN_HIGH
 
 /obj/item/disk/limb/dsi_zorren
 	company = "DSI - Zorren"
@@ -200,7 +200,7 @@ VS Edit - anyone can select these. */
 	unavailable_to_build = 1
 	includes_tail = 1
 	skin_tone = 1
-	suggested_species = "Fennec"
+	suggested_species = SPECIES_FENNEC
 
 /obj/item/disk/limb/dsi_fennec
 	company = "DSI - Fennec"
