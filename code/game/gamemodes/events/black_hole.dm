@@ -30,46 +30,46 @@
 	addtimer(CALLBACK(src, PROC_REF(pull_1)), 0.6 SECONDS, TIMER_DELETE_ME)
 
 /obj/effect/bhole/proc/pull_1()
-	grav(10, 4, 10, 0 )
+	grav(10, 4, 10, 0)
 	addtimer(CALLBACK(src, PROC_REF(pull_2)), 0.6 SECONDS, TIMER_DELETE_ME)
 
 /obj/effect/bhole/proc/pull_2()
-	grav( 8, 4, 10, 0 )
+	grav(8, 4, 10, 0)
 	addtimer(CALLBACK(src, PROC_REF(pull_3)), 0.6 SECONDS, TIMER_DELETE_ME)
 
 /obj/effect/bhole/proc/pull_3()
-	grav( 9, 4, 10, 0 )
+	grav(9, 4, 10, 0)
 	addtimer(CALLBACK(src, PROC_REF(pull_4)), 0.6 SECONDS, TIMER_DELETE_ME)
 
 /obj/effect/bhole/proc/pull_4()
-	grav( 7, 3, 40, 1 )
+	grav(7, 3, 40, 1)
 	addtimer(CALLBACK(src, PROC_REF(pull_5)), 0.6 SECONDS, TIMER_DELETE_ME)
 
 /obj/effect/bhole/proc/pull_5()
-	grav( 5, 3, 40, 1 )
+	grav(5, 3, 40, 1)
 	addtimer(CALLBACK(src, PROC_REF(pull_6)), 0.6 SECONDS, TIMER_DELETE_ME)
 
 /obj/effect/bhole/proc/pull_6()
-	grav( 6, 3, 40, 1 )
+	grav(6, 3, 40, 1)
 	addtimer(CALLBACK(src, PROC_REF(pull_7)), 0.6 SECONDS, TIMER_DELETE_ME)
 
 /obj/effect/bhole/proc/pull_7()
-	grav( 4, 2, 50, 6 )
+	grav(4, 2, 50, 6)
 	addtimer(CALLBACK(src, PROC_REF(pull_8)), 0.6 SECONDS, TIMER_DELETE_ME)
 
 /obj/effect/bhole/proc/pull_8()
-	grav( 3, 2, 50, 6 )
+	grav(3, 2, 50, 6)
 	addtimer(CALLBACK(src, PROC_REF(pull_9)), 0.6 SECONDS, TIMER_DELETE_ME)
 
 /obj/effect/bhole/proc/pull_9()
-	grav( 2, 2, 75,25 )
+	grav(2, 2, 75,25)
 	addtimer(CALLBACK(src, PROC_REF(move)), 0.6 SECONDS, TIMER_DELETE_ME)
 
 /obj/effect/bhole/proc/move()
 	//MOVEMENT
-	if( prob(50) )
+	if(prob(50))
 		anchored = FALSE
-		step(pick(alldirs))
+		step(src, pick(alldirs))
 		anchored = TRUE
 	controller()
 
