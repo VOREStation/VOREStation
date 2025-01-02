@@ -280,8 +280,8 @@
 	network = list(NETWORK_OUTSIDE)
 
 // Shelter Capsule extra restrictions
-/datum/map_template/shelter/Initialize()
-	. = ..()
+/datum/map_template/shelter/New()
+	..()
 	banned_areas += list(/area/tether/surfacebase/fish_farm, /area/tether/surfacebase/public_garden, /area/tether/surfacebase/tram)
 
 //
