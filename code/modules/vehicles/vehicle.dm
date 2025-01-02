@@ -45,8 +45,8 @@
 //-------------------------------------------
 // Standard procs
 //-------------------------------------------
-/obj/vehicle/New()
-	..()
+/obj/vehicle/Initialize(mapload)
+	. = ..()
 	//spawn the cell you want in each vehicle
 
 /obj/vehicle/Destroy()

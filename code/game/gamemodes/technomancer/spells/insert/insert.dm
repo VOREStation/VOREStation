@@ -11,8 +11,8 @@
 	var/obj/item/inserted_spell/inserting = null
 	var/allow_stacking = 0
 
-/obj/item/spell/insert/New()
-	..()
+/obj/item/spell/insert/Initialize()
+	. = ..()
 	set_light(spell_light_range, spell_light_intensity, l_color = light_color)
 
 /obj/item/inserted_spell

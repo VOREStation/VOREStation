@@ -16,8 +16,8 @@
 	var/build_stage = 0
 	var/obj/item/cell/cell = null
 
-/obj/item/vehicle_assembly/New()
-	..()
+/obj/item/vehicle_assembly/Initialize()
+	. = ..()
 	icon_state = "[initial(icon_state)][build_stage]"
 	update_icon()
 
