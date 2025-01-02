@@ -103,6 +103,6 @@ VIRGO3B_TURF_CREATE(/turf/simulated/floor/tiled/kafel_full/yellow)
 
 //Mechbay
 /obj/mecha/working/ripley/abandoned/Initialize()
-	..()
+	. = ..()
 	for(var/obj/item/mecha_parts/mecha_tracking/B in src.contents)	//Deletes the beacon so it can't be found easily
 		qdel(B)

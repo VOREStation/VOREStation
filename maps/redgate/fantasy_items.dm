@@ -97,9 +97,9 @@
 			qdel(I)
 
 
-/obj/structure/bed/bath/New()
+/obj/structure/bed/bath/Initialize(mapload)
 	create_reagents(300)
-	..()
+	. = ..()
 
 //oven
 
@@ -179,10 +179,10 @@
 		to_chat(user, "You carefully place \the [I] into the cistern.")
 		return
 
-/obj/structure/toilet/wooden/New()
+/obj/structure/toilet/wooden/Initialize()
 	open = 1 //just to make sure it works
 	icon_state = "toilet3"
-	return
+	. = ..()
 
 /obj/structure/toilet/wooden/update_icon()
 	return
@@ -540,7 +540,7 @@ This device records all warnings given and teleport events for admin review in c
 //locked door
 
 /obj/structure/simple_door/dungeon/Initialize(mapload,var/material_name)
-	..(mapload, material_name || MAT_CULT)
+	. = ..(mapload, material_name || MAT_CULT)
 
 /obj/structure/simple_door/dungeon/locked
 	locked = TRUE

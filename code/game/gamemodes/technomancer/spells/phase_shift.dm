@@ -15,8 +15,8 @@
 	cast_methods = CAST_USE
 	aspect = ASPECT_TELE
 
-/obj/item/spell/phase_shift/New()
-	..()
+/obj/item/spell/phase_shift/Initialize()
+	. = ..()
 	set_light(3, 2, l_color = "#FA58F4")
 
 /obj/effect/phase_shift
@@ -28,8 +28,8 @@
 /obj/effect/phase_shift/ex_act()
 	return
 
-/obj/effect/phase_shift/New()
-	..()
+/obj/effect/phase_shift/Initialize()
+	. = ..()
 	set_light(3, 5, l_color = "#FA58F4")
 	START_PROCESSING(SSobj, src)
 

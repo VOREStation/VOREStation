@@ -7,7 +7,7 @@
 	title = "Standard Operating Procedure"
 
 /obj/item/book/manual/standard_operating_procedure/Initialize()
-	..()
+	. = ..()
 	dat = {"
 
 		<html><head>
@@ -30,7 +30,7 @@
 	title = "Corporate Regulations"
 
 /obj/item/book/manual/command_guide/Initialize()
-	..()
+	. = ..()
 	dat = {"
 
 		<html><head>
@@ -53,8 +53,8 @@
 	author = "Ali Big"
 	title = "Food for Dummies 2"
 
-/obj/item/book/manual/cook_guide/New()
-	..()
+/obj/item/book/manual/cook_guide/Initialize()
+	. = ..()
 	dat = {"
 		<html>
                 <html>
@@ -76,7 +76,7 @@
 		<h5>Penned by Ali Big</h5>
                 <p><b>Hello Newbie</b>, congratz on deciding to make food! This guide assumes you know absolutely nothing, so fret not, the information here will help you prepare food for your hungry crewmates!</p>
 		<h3>Workspace prep:</h3>
-		This step is simple: merely go to the Grill, Oven, and Fryer and turn everything on so you do not need to wait for them to warm up later; they won’t start a fire unless food is left in them unchecked. It is also highly suggested to lay out at least a few Measuring Cups on the counters for ease of use.
+		This step is simple: merely go to the Grill, Oven, and Fryer and turn everything on so you do not need to wait for them to warm up later; they won't start a fire unless food is left in them unchecked. It is also highly suggested to lay out at least a few Measuring Cups on the counters for ease of use.
                 <h3>Basic ingredient prep:</h3>
 		In the lockers and fridges, you have all your needed supplies for this guide, so look through them and familiarize yourself! This guide will only use ingredients you already have access to, so don't worry about missing items!
                 <h2>Part 1: How to Create Various Essential Ingredients with What You Have</h2>
@@ -109,7 +109,7 @@
 		<h2>Cheesy Nachos:</h2>
 		Tortilla, Cheese and 1 unit of Salt in the microwave, the perfect Finger Food!
 		<h2>Spaghetti:</h2>
-		Without Tomato’s from Botany it's not going to be the flashiest, but one can make Boiled Spaghetti with Spaghetti and Water in the Microwave. Kitsune Udon can be made with Spaghetti, Egg Yolk (crack egg in beaker then add to microwave), and Tofu. Spaghetti and Meatballs can be made by doing the Boiled Spaghetti Recipe and adding 2 Meatballs; adding 4 Meatballs into the initial mix makes Spesslaw. Lastly, Spaghetti, Milk, and Cheese in the Oven makes Macaroni and Cheese.
+		Without Tomato's from Botany it's not going to be the flashiest, but one can make Boiled Spaghetti with Spaghetti and Water in the Microwave. Kitsune Udon can be made with Spaghetti, Egg Yolk (crack egg in beaker then add to microwave), and Tofu. Spaghetti and Meatballs can be made by doing the Boiled Spaghetti Recipe and adding 2 Meatballs; adding 4 Meatballs into the initial mix makes Spesslaw. Lastly, Spaghetti, Milk, and Cheese in the Oven makes Macaroni and Cheese.
 		<h2>Steak:</h2>
 		For the pure meat eaters, just add Meat, 1 Salt, and 1 Pepper into the grill for them, and try not to cry as they use up all your Meat quickly. (There's a second Meat Locker in the freezer room if you do run out!)
 		<h2>Donk Pockets:</h2>
@@ -137,8 +137,8 @@
 	author = "Ali Big"
 	title = "How to Alcohol (And other Drinks)"
 
-/obj/item/book/manual/bar_guide/New()
-	..()
+/obj/item/book/manual/bar_guide/Initialize()
+	. = ..()
 	dat = {"
 			<html>
              <head>
@@ -350,8 +350,8 @@
 	author = "Engineering Encyclopedia"
 	title = "Rotary Electric Generator Manual"
 
-/obj/item/book/manual/rotary_electric_generator/New()
-	..()
+/obj/item/book/manual/rotary_electric_generator/Initialize()
+	. = ..()
 	dat = {"<html>
 				<head>
 				<style>
@@ -447,8 +447,8 @@
 	author = "Pontifex Publishing"
 	title = "Synthetics"
 
-/obj/item/book/manual/synthetic_life/New()
-	..()
+/obj/item/book/manual/synthetic_life/Initialize()
+	. = ..()
 	dat = {"
 <html lang="en">
 	<head>
@@ -598,7 +598,7 @@
 		artificial, non-organic origin. In fact, most of the Diaspora qualifies in some form as "Cyborg", especially
 		under the cultures that use and facilitate NIFs. However, when sapients talk about Cyborgs, they talk
 		about MMI-Cyborgs.</p>
-		<p>MMI, a bland warrior’s acronym, is short for "Man-Machine-Interface", the catchall term in Solar and
+		<p>MMI, a bland warrior's acronym, is short for "Man-Machine-Interface", the catchall term in Solar and
 		Galactic Common for any wetware interface that integrates a brain as primary CPU. A product of mostly
 		bygone times, MMIs are used to breathe life into machine chassis with sapient life without the need to
 		grow a drone to beta or alpha level or construct a positronic brain. An MMI, after a short acclimation
@@ -655,10 +655,10 @@
 		they are capable of cannibalizing their seed network. What takes weeks to learn, they learn in days, what takes months,
 		weeks, what takes years, they learn in months. This makes freshly activated positronics attractive for creating expert
 		workers and specialists in a relatively short time. This initial malleability lasts, however, not forever. At some point
-		the positronic’s learning capabilities slow down to more "organic" levels.</p>
+		the positronic's learning capabilities slow down to more "organic" levels.</p>
 		<p>Some sapients opt to "digitize" themselves and become positronic brains. This process is a very in-depth scan of the
-		brain of a sapient to create a mirror image of the brain’s anatomy, which is used for the "seed" of a new crucible. This
-		seed is not cannibalized, so the accelerated learning phase is skipped, to preserve as much of the previous sapient’s
+		brain of a sapient to create a mirror image of the brain's anatomy, which is used for the "seed" of a new crucible. This
+		seed is not cannibalized, so the accelerated learning phase is skipped, to preserve as much of the previous sapient's
 		network as possible. For best results, the brain is physically sliced up and microscopically scanned slice by slice,
 		obviously destroying the brain in the process.</p>
 		<p>Positronics are not fully culpable for their actions after activation, as they possess the raw intelligence of an
@@ -713,7 +713,7 @@
 		<li><p><b>Drone</b>: are virtually immortal. Their continued existence is flexible and their consciousness can expand
 		and contract at will, while their modularity makes it easy to add more storage space to them to contain all their
 		memories and experiences. However, this modularity also brings in question if the drone that exists today is the same
-		as the drone in ten years - Theseus’s Drone, some philosophers joke about it.</p></li>
+		as the drone in ten years - Theseus's Drone, some philosophers joke about it.</p></li>
 		<li><p><b>Cyborg</b>: live longer than totally unassisted organics, easily surpassing double the lifespan of whatever
 		host species they come from. After this, however, they slowly succumb to dementia-like symptoms before shutting down
 		as the brain tissue tires out and slowly crumbles. Many MMI-cyborgs opt at this point to become positronics to live

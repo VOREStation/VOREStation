@@ -197,6 +197,7 @@
 
 /obj/item/kit/suit/rig/debug/Initialize()
 	set_info("debug suit", "This is a test", "debug", CUSTOM_ITEM_OBJ, CUSTOM_ITEM_MOB)
+	. = ..()
 
 /obj/item/kit/paint
 	name = "mecha customisation kit"
