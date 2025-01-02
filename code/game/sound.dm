@@ -138,8 +138,8 @@
 	if(!ticker || !SSmedia_tracks.lobby_tracks.len || !media)	return
 	if(prefs?.read_preference(/datum/preference/toggle/play_lobby_music))
 		var/datum/track/T = pick(SSmedia_tracks.lobby_tracks)
-		media.push_music(T.url, world.time, 0.85)
-		to_chat(src,span_notice("Lobby music: <b>[T.title]</b> by <b>[T.artist]</b>."))
+		media.push_music(T.url, world.time, 0.35)
+		to_chat(src,span_notice("Lobby music: " + span_bold("[T.title]") + " by " + span_bold("[T.artist]") + "."))
 
 /proc/get_sfx(soundin)
 	if(istext(soundin))
