@@ -10,7 +10,7 @@
 
 /obj/effect/bhole/Initialize()
 	. = ..()
-	addTimer(CALLBACK(src, PROC_REF(controller)), 0.4 SECONDS, TIMER_DELETE_ME)
+	addtimer(CALLBACK(src, PROC_REF(controller)), 0.4 SECONDS, TIMER_DELETE_ME)
 
 /obj/effect/bhole/proc/controller()
 	if(!isturf(loc))
