@@ -220,11 +220,11 @@
 	else
 		ourborg.icon_state = booze_options[ourborg.sprite_extra_customization["boozehound"]]
 
-/datum/robot_sprite/dogborg/service/booze/get_belly_overlay(var/mob/living/silicon/robot/ourborg, var/size = 1)
-	if(!("boozehound" in ourborg.sprite_extra_customization) || !ourborg.sprite_extra_customization["boozehound"])
+/datum/robot_sprite/dogborg/service/booze/get_belly_overlay(var/mob/living/silicon/robot/ourborg, var/size = 1, var/b_class)
+	if(!("boozehound" in ourborg.sprite_extra_customization) || !ourborg.sprite_extra_customization["boozehound"] || b_class != "sleeper")
 		return ..()
 	else
-		return "[booze_options[ourborg.sprite_extra_customization["boozehound"]]]-sleeper-[size]"
+		return "[booze_options[ourborg.sprite_extra_customization["boozehound"]]]-[b_class]-[size]"
 
 /datum/robot_sprite/dogborg/service/booze/get_rest_sprite(var/mob/living/silicon/robot/ourborg)
 	if(!(ourborg.rest_style in rest_sprite_options))
@@ -308,6 +308,23 @@
 	has_vore_belly_sprites = FALSE
 	rest_sprite_options = list("Default", "Bellyup")
 
+/datum/robot_sprite/dogborg/tall/service/dullahanv3
+	sprite_icon = 'icons/mob/tallborg/dullahans64x64.dmi'
+	//named v3 to avoid conflicts with downstream
+
+/datum/robot_sprite/dogborg/tall/service/dullahanv3/basic
+	name = "Dullahan service v3"
+	sprite_icon_state = "dullahanservice"
+	has_vore_belly_sprites = TRUE
+	has_robotdecal_sprites = TRUE
+	rest_sprite_options = list("Default", "sit")
+
+/datum/robot_sprite/dogborg/tall/service/dullahanv3/barista
+	name = "Dullahan matcha v3"
+	sprite_icon_state = "dullahanbarista"
+	has_vore_belly_sprites = TRUE
+	has_robotdecal_sprites = TRUE
+	rest_sprite_options = list("Default", "sit")
 
 // Clerical
 

@@ -40,28 +40,35 @@ export const ICPrinter = (props) => {
   const { metal, max_metal, metal_per_sheet, upgraded, can_clone } = data;
 
   return (
-    <Window width={600} height={630}>
-      <Window.Content scrollable>
-        <Section title="Status">
-          <LabeledList>
-            <LabeledList.Item label="Metal">
-              <ProgressBar value={metal} maxValue={max_metal}>
-                {metal / metal_per_sheet} / {max_metal / metal_per_sheet} sheets
-              </ProgressBar>
-            </LabeledList.Item>
-            <LabeledList.Item label="Circuits Available">
-              {upgraded ? 'Advanced' : 'Regular'}
-            </LabeledList.Item>
-            <LabeledList.Item label="Assembly Cloning">
-              {can_clone ? 'Available' : 'Unavailable'}
-            </LabeledList.Item>
-          </LabeledList>
-          <Box mt={1}>
-            Note: A red component name means that the printer must be upgraded
-            to create that component.
-          </Box>
-        </Section>
-        <ICPrinterCategories />
+    <Window width={600} height={675}>
+      <Window.Content>
+        <Stack fill vertical>
+          <Stack.Item>
+            <Section fill title="Status">
+              <LabeledList>
+                <LabeledList.Item label="Metal">
+                  <ProgressBar value={metal} maxValue={max_metal}>
+                    {metal / metal_per_sheet} / {max_metal / metal_per_sheet}{' '}
+                    sheets
+                  </ProgressBar>
+                </LabeledList.Item>
+                <LabeledList.Item label="Circuits Available">
+                  {upgraded ? 'Advanced' : 'Regular'}
+                </LabeledList.Item>
+                <LabeledList.Item label="Assembly Cloning">
+                  {can_clone ? 'Available' : 'Unavailable'}
+                </LabeledList.Item>
+              </LabeledList>
+              <Box mt={1}>
+                Note: A red component name means that the printer must be
+                upgraded to create that component.
+              </Box>
+            </Section>
+          </Stack.Item>
+          <Stack.Item>
+            <ICPrinterCategories />
+          </Stack.Item>
+        </Stack>
       </Window.Content>
     </Window>
   );
@@ -95,9 +102,9 @@ const ICPrinterCategories = (props) => {
   )[0];
 
   return (
-    <Section title="Circuits">
+    <Section fill title="Circuits">
       <Stack fill>
-        <Stack.Item mr={2}>
+        <Stack.Item mr={2} basis="20%">
           <Tabs vertical>
             {sortBy(categories, (cat: category) => cat.name).map((cat) => (
               <Tabs.Tab
@@ -110,9 +117,9 @@ const ICPrinterCategories = (props) => {
             ))}
           </Tabs>
         </Stack.Item>
-        <Stack.Item>
+        <Stack.Item grow>
           {selectedCategory ? (
-            <Section>
+            <Section fill scrollable>
               <LabeledList>
                 {sortBy(selectedCategory.items, (item: item) => item.name).map(
                   (item) => (

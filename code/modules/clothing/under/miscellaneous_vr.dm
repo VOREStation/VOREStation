@@ -76,7 +76,11 @@
 		to_chat(H,span_warning("You must be WEARING the uniform to change your size."))
 		return
 
-	var/new_size = tgui_input_number(usr, "Put the desired size (25-200%), or (1-600%) in dormitory areas.", "Set Size", 200, 600, 1)
+	var/new_size
+	if(H.has_large_resize_bounds())
+		new_size = tgui_input_number(H, "Put the desired size (25-200%), or (1-600%) in dormitory areas.", "Set Size", H.size_multiplier * 100, RESIZE_MAXIMUM_DORMS * 100, RESIZE_MINIMUM_DORMS * 100)
+	else
+		new_size = tgui_input_number(H, "Put the desired size (25-200%), or (1-600%) in dormitory areas.", "Set Size", H.size_multiplier * 100, RESIZE_MAXIMUM * 100, RESIZE_MINIMUM * 100)
 	if(!new_size)
 		return //cancelled
 

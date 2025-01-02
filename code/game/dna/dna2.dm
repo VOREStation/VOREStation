@@ -50,6 +50,19 @@ var/global/list/datum/dna/gene/dna_genes[0]
 	var/base_species = "Human"
 	var/list/species_traits = list()
 	var/blood_color = "#A10808"
+	var/blood_reagents = "iron"
+	var/scale_appearance = 0
+	var/offset_override = 0
+	var/synth_markings = 0
+	var/custom_speech_bubble = "default"
+	var/species_sounds = "None"
+	var/gender_specific_species_sounds = FALSE
+	var/species_sounds_male = "None"
+	var/species_sounds_female = "None"
+	var/grad_style = 0
+	var/r_grad = 0
+	var/g_grad = 0
+	var/b_grad = 0
 	var/custom_say
 	var/custom_ask
 	var/custom_whisper
@@ -79,6 +92,19 @@ var/global/list/datum/dna/gene/dna_genes[0]
 	new_dna.custom_species=custom_species //VOREStaton Edit
 	new_dna.species_traits=species_traits.Copy() //VOREStation Edit
 	new_dna.blood_color=blood_color //VOREStation Edit
+	new_dna.blood_reagents=blood_reagents
+	new_dna.scale_appearance = scale_appearance
+	new_dna.offset_override = offset_override
+	new_dna.synth_markings = synth_markings
+	new_dna.custom_speech_bubble = custom_speech_bubble
+	new_dna.species_sounds = species_sounds
+	new_dna.gender_specific_species_sounds = gender_specific_species_sounds
+	new_dna.species_sounds_male = species_sounds_male
+	new_dna.species_sounds_female = species_sounds_female
+	new_dna.grad_style = grad_style
+	new_dna.r_grad = r_grad
+	new_dna.g_grad = g_grad
+	new_dna.b_grad = b_grad
 	new_dna.custom_say=custom_say //VOREStaton Edit
 	new_dna.custom_ask=custom_ask //VOREStaton Edit
 	new_dna.custom_whisper=custom_whisper //VOREStaton Edit
@@ -157,6 +183,21 @@ var/global/list/datum/dna/gene/dna_genes[0]
 	src.custom_species = character.custom_species
 	src.base_species = character.species.base_species
 	src.blood_color = character.species.blood_color
+	src.blood_reagents = character.species.blood_reagents
+	src.scale_appearance = character.fuzzy
+	src.offset_override = character.offset_override
+	src.synth_markings = character.synth_markings
+	src.custom_speech_bubble = character.custom_speech_bubble
+	/* Currently not implemented on virgo
+	src.species_sounds = character.species.species_sounds
+	src.gender_specific_species_sounds = character.species.gender_specific_species_sounds
+	src.species_sounds_male = character.species.species_sounds_male
+	src.species_sounds_female = character.species.species_sounds_female
+	*/
+	src.grad_style = character.grad_style
+	src.r_grad = character.r_grad
+	src.g_grad = character.g_grad
+	src.b_grad = character.b_grad
 	src.species_traits = character.species.traits.Copy()
 	src.custom_say = character.custom_say
 	src.custom_ask = character.custom_ask

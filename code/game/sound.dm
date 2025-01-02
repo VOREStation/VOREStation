@@ -14,10 +14,6 @@
 	var/sound/S = sound(get_sfx(soundin))
 	var/maxdistance = (world.view + extrarange) * 2  //VOREStation Edit - 3 to 2
 	var/list/listeners = player_list.Copy()
-	if(!ignore_walls) //these sounds don't carry through walls
-		for(var/mob/listen in listeners)
-			if(!(get_turf(listen) in hear(maxdistance,source)))
-				listeners -= listen
 	for(var/mob/M as anything in listeners)
 		if(!M || !M.client)
 			continue
@@ -27,11 +23,16 @@
 		var/area/A = T.loc
 		if((A.flag_check(AREA_SOUNDPROOF) || area_source.flag_check(AREA_SOUNDPROOF)) && (A != area_source))
 			continue
-		var/distance = get_dist(T, turf_source)
+		//var/distance = get_dist(T, turf_source) Save get_dist for later because it's more expensive
 
-		if(distance <= maxdistance)
-			if(T && T.z == turf_source.z)
-				M.playsound_local(turf_source, soundin, vol, vary, frequency, falloff, is_global, channel, pressure_affected, S, preference, volume_channel)
+		if(!T || T.z != turf_source.z) //^ +1
+			continue
+		if(get_dist(T, turf_source) > maxdistance)
+			continue
+		if(!ignore_walls && !can_see(turf_source, T, length = maxdistance * 2))
+			continue
+
+		M.playsound_local(turf_source, soundin, vol, vary, frequency, falloff, is_global, channel, pressure_affected, S, preference, volume_channel)
 
 /mob/proc/check_sound_preference(list/preference)
 	if(!islist(preference))
@@ -64,7 +65,7 @@
 	vol *= client.get_preference_volume_channel(VOLUME_CHANNEL_MASTER)
 	S.volume = vol
 
-	if(vary)
+	if(vary || frequency)
 		if(frequency)
 			S.frequency = frequency
 		else
@@ -308,8 +309,6 @@ var/list/bodyfall_sound = list('sound/effects/bodyfall1.ogg','sound/effects/body
 var/list/teppi_sound = list('sound/voice/teppi/gyooh1.ogg', 'sound/voice/teppi/gyooh2.ogg', 'sound/voice/teppi/gyooh3.ogg',  'sound/voice/teppi/gyooh4.ogg', 'sound/voice/teppi/gyooh5.ogg', 'sound/voice/teppi/gyooh6.ogg', 'sound/voice/teppi/snoot1.ogg', 'sound/voice/teppi/snoot2.ogg')
 var/list/talk_sound = list('sound/talksounds/a.ogg','sound/talksounds/b.ogg','sound/talksounds/c.ogg','sound/talksounds/d.ogg','sound/talksounds/e.ogg','sound/talksounds/f.ogg','sound/talksounds/g.ogg','sound/talksounds/h.ogg')
 var/list/emote_sound = list('sound/talksounds/me_a.ogg','sound/talksounds/me_b.ogg','sound/talksounds/me_c.ogg','sound/talksounds/me_d.ogg','sound/talksounds/me_e.ogg','sound/talksounds/me_f.ogg')
-
-//Goon sounds
 var/list/goon_speak_one_sound = list('sound/talksounds/goon/speak_1.ogg', 'sound/talksounds/goon/speak_1_ask.ogg', 'sound/talksounds/goon/speak_1_exclaim.ogg')
 var/list/goon_speak_two_sound = list('sound/talksounds/goon/speak_2.ogg', 'sound/talksounds/goon/speak_2_ask.ogg', 'sound/talksounds/goon/speak_2_exclaim.ogg')
 var/list/goon_speak_three_sound = list('sound/talksounds/goon/speak_3.ogg', 'sound/talksounds/goon/speak_3_ask.ogg', 'sound/talksounds/goon/speak_3_exclaim.ogg')

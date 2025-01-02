@@ -419,35 +419,35 @@
 
 /obj/item/reagent_containers/food/snacks/monkeycube/sobakacube
 	name = "sobaka cube"
-	monkey_type = "Sobaka"
+	monkey_type = SPECIES_MONKEY_AKULA
 
 /obj/item/reagent_containers/food/snacks/monkeycube/wrapped/sobakacube
 	name = "sobaka cube"
-	monkey_type = "Sobaka"
+	monkey_type = SPECIES_MONKEY_AKULA
 
 /obj/item/reagent_containers/food/snacks/monkeycube/sarucube
 	name = "saru cube"
-	monkey_type = "Saru"
+	monkey_type = SPECIES_MONKEY_SERGAL
 
 /obj/item/reagent_containers/food/snacks/monkeycube/wrapped/sarucube
 	name = "saru cube"
-	monkey_type = "Saru"
+	monkey_type = SPECIES_MONKEY_SERGAL
 
 /obj/item/reagent_containers/food/snacks/monkeycube/sparracube
 	name = "sparra cube"
-	monkey_type = "Sparra"
+	monkey_type = SPECIES_MONKEY_NEVREAN
 
 /obj/item/reagent_containers/food/snacks/monkeycube/wrapped/sparracube
 	name = "sparra cube"
-	monkey_type = "Sparra"
+	monkey_type = SPECIES_MONKEY_NEVREAN
 
 /obj/item/reagent_containers/food/snacks/monkeycube/wolpincube
 	name = "wolpin cube"
-	monkey_type = "Wolpin"
+	monkey_type = SPECIES_MONKEY_VULPKANIN
 
 /obj/item/reagent_containers/food/snacks/monkeycube/wrapped/wolpincube
 	name = "wolpin cube"
-	monkey_type = "Wolpin"
+	monkey_type = SPECIES_MONKEY_VULPKANIN
 
 // food cubes
 /obj/item/reagent_containers/food/snacks/cube

@@ -230,7 +230,7 @@
 	name = REAGENT_CHOCOLATEPROTEINSHAKE
 	id = REAGENT_ID_CHOCOLATEPROTEINSHAKE
 	result = REAGENT_ID_CHOCOLATEPROTEINSHAKE
-	required_reagents = list(REAGENT_ID_WATER = 5, REAGENT_CHOCOLATEPROTEINPOWDER = 1)
+	required_reagents = list(REAGENT_ID_WATER = 5, REAGENT_ID_CHOCOLATEPROTEINPOWDER = 1)
 	result_amount = 5
 
 /decl/chemical_reaction/instant/drinks/protein_shake/strawberry

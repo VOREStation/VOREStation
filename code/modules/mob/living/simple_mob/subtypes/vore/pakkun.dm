@@ -81,11 +81,13 @@
 		return
 
 	if(resting)
-		vore_selected.digest_mode = DM_UNABSORB
+		if(isbelly(vore_selected))
+			vore_selected.digest_mode = DM_UNABSORB
 		ai_holder.go_sleep()
 
 	else
-		vore_selected.digest_mode = vore_default_mode
+		if(isbelly(vore_selected))
+			vore_selected.digest_mode = vore_default_mode
 		ai_holder.go_wake()
 
 /mob/living/simple_mob/vore/pakkun/attack_hand(mob/user)
@@ -147,7 +149,9 @@
 		ai_holder.remove_target()
 
 /mob/living/simple_mob/vore/pakkun/init_vore()
-	..()
+	if(!voremob_loaded)
+		return
+	. = ..()
 	var/obj/belly/B = vore_selected
 	B.name = "stomach"
 	B.desc = "you land with a soft bump in what can only be described as a big soft slimy sack, the walls effortlessly stretching to match your every move with no sign of reaching any kind of elastic \
@@ -271,7 +275,9 @@
 	..()
 
 /mob/living/simple_mob/vore/pakkun/snapdragon/snappy/init_vore()
-	..()
+	if(!voremob_loaded)
+		return
+	. = ..()
 	var/obj/belly/B = vore_selected
 	B.digest_mode = DM_HOLD
 	B.desc = "the lizard gently yet insistently stuffs you down her gullet - evidently enjoying this moment of playtime as you land in a sprawled heap in the stretchy, clinging sack that makes up \

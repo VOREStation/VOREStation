@@ -13,6 +13,8 @@
 		cur_bubble_appearance = speech_bubble_appearance()
 	active_thinking_indicator = mutable_appearance('icons/mob/talk_vr.dmi', "[cur_bubble_appearance]_thinking", FLOAT_LAYER)
 	active_thinking_indicator.appearance_flags |= (RESET_COLOR|PIXEL_SCALE)
+	active_thinking_indicator.pixel_x = get_oversized_icon_offsets()["x"]
+	active_thinking_indicator.pixel_y = get_oversized_icon_offsets()["y"]
 	add_overlay(active_thinking_indicator)
 
 /** Removes the thinking indicator over the mob. */
@@ -31,6 +33,8 @@
 		cur_bubble_appearance = speech_bubble_appearance()
 	active_typing_indicator = mutable_appearance('icons/mob/talk_vr.dmi', "[cur_bubble_appearance]_typing", ABOVE_MOB_LAYER)
 	active_typing_indicator.appearance_flags |= (RESET_COLOR|PIXEL_SCALE)
+	active_typing_indicator.pixel_x = get_oversized_icon_offsets()["x"]
+	active_typing_indicator.pixel_y = get_oversized_icon_offsets()["y"]
 	add_overlay(active_typing_indicator)
 
 /** Removes the typing indicator over the mob. */

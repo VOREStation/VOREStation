@@ -6,12 +6,12 @@
 	gluttonous = 0
 	water_damage_mod = 0		//No water damage
 	valid_transform_species = list(
-		"Human", "Unathi", "Tajara", "Skrell",
-		"Diona", "Teshari", "Monkey","Sergal",
-		"Akula","Nevrean","Zorren",
-		"Fennec", "Vulpkanin", "Vasilissan",
-		"Rapala", "Neaera", "Stok", "Farwa", "Sobaka",
-		"Wolpin", "Saru", "Sparra")
+		SPECIES_HUMAN, SPECIES_UNATHI, SPECIES_TAJARAN, SPECIES_SKRELL,
+		SPECIES_DIONA, SPECIES_TESHARI, SPECIES_MONKEY, SPECIES_SERGAL,
+		SPECIES_AKULA, SPECIES_NEVREAN, SPECIES_ZORREN_HIGH,
+		SPECIES_FENNEC, SPECIES_VULPKANIN, SPECIES_VASILISSAN,
+		SPECIES_RAPALA, SPECIES_MONKEY_SKRELL, SPECIES_MONKEY_UNATHI, SPECIES_MONKEY_TAJ, SPECIES_MONKEY_AKULA,
+		SPECIES_MONKEY_VULPKANIN, SPECIES_MONKEY_SERGAL, SPECIES_MONKEY_NEVREAN)
 
 	spawn_flags = SPECIES_CAN_JOIN
 	wikilink="https://wiki.vore-station.net/Promethean"

@@ -38,7 +38,9 @@
 	vore_bump_emote = "encloses on"
 
 /mob/living/simple_mob/vore/mantrap/init_vore()
-	..()
+	if(!voremob_loaded)
+		return
+	. = ..()
 	var/obj/belly/B = vore_selected
 	B.name = "trap"
 	B.desc = "As you step onto the large leaves of the mantrap, they suddenly shoot up and snap shut around you, encasing you in a fleshy-feeling gut. The saw-toothed spikes around the edge of the leaves interlock with one another and exerts a tremendous pressure on your body. Copious volumes of fluids begin to seep in from the walls themselves, rapidly coating your body and pooling around you, all of your movements only seem to speed up this process.."
@@ -125,7 +127,9 @@
 	projectilesound = 'sound/effects/slime_squish.ogg'
 
 /mob/living/simple_mob/vore/pitcher/init_vore()
-	..()
+	if(!voremob_loaded)
+		return
+	. = ..()
 	var/obj/belly/B = vore_selected
 	B.name = "stomach"
 	B.desc = "Walking a little too close to the pitcher plant, you trigger its trap mechanism and a tendril shoots out towards you. Wrapping around your body, you are rapidly dragged into the open mouth of the plant, stuffing your entire body into a fleshy, green stomach filled with a pool of some sort of tingling liquid. The lid of the plant slams down over the mouth, making it far more difficult to escape, all whilst that pool steadily seems to be filling up."
