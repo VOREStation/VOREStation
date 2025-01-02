@@ -242,41 +242,41 @@
 	SSradiation.radiate(src, round(material.radioactivity/3))
 
 /obj/structure/simple_door/iron/Initialize(mapload,var/material_name)
-	..(mapload, material_name || MAT_IRON)
+	. = ..(mapload, material_name || MAT_IRON)
 
 /obj/structure/simple_door/silver/Initialize(mapload,var/material_name)
-	..(mapload, material_name || MAT_SILVER)
+	. = ..(mapload, material_name || MAT_SILVER)
 
 /obj/structure/simple_door/gold/Initialize(mapload,var/material_name)
-	..(mapload, material_name || MAT_GOLD)
+	. = ..(mapload, material_name || MAT_GOLD)
 
 /obj/structure/simple_door/uranium/Initialize(mapload,var/material_name)
-	..(mapload, material_name || MAT_URANIUM)
+	. = ..(mapload, material_name || MAT_URANIUM)
 
 /obj/structure/simple_door/sandstone/Initialize(mapload,var/material_name)
-	..(mapload, material_name || MAT_SANDSTONE)
+	. = ..(mapload, material_name || MAT_SANDSTONE)
 
 /obj/structure/simple_door/phoron/Initialize(mapload,var/material_name)
-	..(mapload, material_name || MAT_PHORON)
+	. = ..(mapload, material_name || MAT_PHORON)
 
 /obj/structure/simple_door/diamond/Initialize(mapload,var/material_name)
-	..(mapload, material_name || MAT_DIAMOND)
+	. = ..(mapload, material_name || MAT_DIAMOND)
 
 /obj/structure/simple_door/wood/Initialize(mapload,var/material_name)
-	..(mapload, material_name || MAT_WOOD)
+	. = ..(mapload, material_name || MAT_WOOD)
 	knock_sound = 'sound/machines/door/knock_wood.wav'
 
 /obj/structure/simple_door/hardwood/Initialize(mapload,var/material_name)
-	..(mapload, material_name || MAT_HARDWOOD)
+	. = ..(mapload, material_name || MAT_HARDWOOD)
 
 /obj/structure/simple_door/sifwood/Initialize(mapload,var/material_name)
-	..(mapload, material_name || MAT_SIFWOOD)
+	. = ..(mapload, material_name || MAT_SIFWOOD)
 
 /obj/structure/simple_door/resin/Initialize(mapload,var/material_name)
-	..(mapload, material_name || MAT_RESIN)
+	. = ..(mapload, material_name || MAT_RESIN)
 
 /obj/structure/simple_door/cult/Initialize(mapload,var/material_name)
-	..(mapload, material_name || MAT_CULT)
+	. = ..(mapload, material_name || MAT_CULT)
 
 /obj/structure/simple_door/cult/TryToSwitchState(atom/user)
 	if(isliving(user))

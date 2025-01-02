@@ -17,6 +17,7 @@
 	var/hatsize = 0
 
 /obj/item/clothing/head/fishing/Initialize()
+	. = ..()
 	//short phrases that women and fish may have about you
 	var/feelings = list("love me",
 						"fear me",

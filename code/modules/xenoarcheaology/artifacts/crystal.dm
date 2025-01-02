@@ -4,8 +4,7 @@
 	icon_state = "crystal"
 	density = TRUE
 
-/obj/structure/crystal/New()
-	..()
+/obj/structure/crystal/Initialize()
 
 	icon_state = pick("ano70","ano80")
 
@@ -15,6 +14,7 @@
 	"It seems to draw you inward as you look it at.",
 	"Something twinkles faintly as you look at it.",
 	"It's mesmerizing to behold.")
+	. = ..()
 
 /obj/structure/crystal/Destroy()
 	src.visible_message(span_bolddanger("[src] shatters!"))

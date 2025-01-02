@@ -1,5 +1,5 @@
 /turf/simulated/wall/diona/Initialize(mapload)
-	..(mapload, MAT_BIOMASS)
+	. = ..(mapload, MAT_BIOMASS)
 
 /turf/simulated/wall/diona/attack_generic(var/mob/user, var/damage, var/attack_message)
 	if(istype(user, /mob/living/carbon/alien/diona))

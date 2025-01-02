@@ -3,28 +3,28 @@
 
 /mob/living/carbon/human/sergal/New(var/new_loc)
 	h_style = "Sergal Plain"
-	..(new_loc, "Sergal")
+	..(new_loc, SPECIES_SERGAL)
 
 /mob/living/carbon/human/akula/New(var/new_loc)
-	..(new_loc, "Akula")
+	..(new_loc, SPECIES_AKULA)
 
 /mob/living/carbon/human/nevrean/New(var/new_loc)
-	..(new_loc, "Nevrean")
+	..(new_loc, SPECIES_NEVREAN)
 
 /mob/living/carbon/human/xenochimera/New(var/new_loc)
-	..(new_loc, "Xenochimera")
+	..(new_loc, SPECIES_XENOCHIMERA)
 
 /mob/living/carbon/human/spider/New(var/new_loc)
-	..(new_loc, "Vasilissan")
+	..(new_loc, SPECIES_VASILISSAN)
 
 /mob/living/carbon/human/vulpkanin/New(var/new_loc)
-	..(new_loc, "Vulpkanin")
+	..(new_loc, SPECIES_VULPKANIN)
 
 /mob/living/carbon/human/protean/New(var/new_loc)
-	..(new_loc, "Protean")
+	..(new_loc, SPECIES_PROTEAN)
 
 /mob/living/carbon/human/alraune/New(var/new_loc)
-	..(new_loc, "Alraune")
+	..(new_loc, SPECIES_ALRAUNE)
 
 /mob/living/carbon/human/shadekin/New(var/new_loc)
 	..(new_loc, SPECIES_SHADEKIN)
