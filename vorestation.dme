@@ -165,6 +165,7 @@
 #include "code\__defines\dcs\flags.dm"
 #include "code\__defines\dcs\helpers.dm"
 #include "code\__defines\dcs\signals.dm"
+#include "code\__defines\dcs\signals\signals_subsystem.dm"
 #include "code\__defines\traits\_traits.dm"
 #include "code\__defines\traits\declarations.dm"
 #include "code\__defines\traits\sources.dm"
