@@ -154,6 +154,7 @@
 	return
 
 /obj/effect/gateway/active/Initialize()
+	. = ..()
 	addtimer(CALLBACK(src, PROC_REF(spawn_and_qdel)), rand(30, 60) SECONDS)
 
 /obj/effect/gateway/active/proc/spawn_and_qdel()
