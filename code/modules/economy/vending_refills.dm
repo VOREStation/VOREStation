@@ -27,7 +27,7 @@
 	return FALSE
 
 /obj/item/refill_cartridge/autoname/Initialize()
-	..()
+	. = ..()
 	if(refill_type && ispath(refill_type))
 		var/atom/tmp = refill_type
 		src.name = "[initial(tmp.name)] refill cartridge"

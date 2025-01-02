@@ -42,7 +42,7 @@
 	layer = DIRTY_LAYER
 
 /obj/effect/weaversilk/floor/Initialize()
-	..()
+	. = ..()
 	icon_state = pick(possible_icon_states)
 
 /obj/effect/weaversilk/wall
@@ -53,7 +53,7 @@
 	density = TRUE
 
 /obj/effect/weaversilk/wall/Initialize()
-	..()
+	. = ..()
 	icon_state = pick(possible_icon_states)
 
 /obj/effect/weaversilk/wall/CanPass(atom/movable/mover, turf/target)

@@ -21,7 +21,7 @@
 	name = "Mark VII-C Emergency Response Team Commander Suit"
 
 /obj/item/clothing/suit/space/void/responseteam/command/Initialize()
-	..()
+	. = ..()
 	attach_helmet(new /obj/item/clothing/head/helmet/space/void/responseteam/command) //autoinstall the helmet
 
 /obj/item/clothing/suit/space/void/responseteam/medical
@@ -30,7 +30,7 @@
 	item_state = "ertsuit_m"
 
 /obj/item/clothing/suit/space/void/responseteam/medical/Initialize()
-	..()
+	. = ..()
 	attach_helmet(new /obj/item/clothing/head/helmet/space/void/responseteam/medical) //autoinstall the helmet
 
 /obj/item/clothing/suit/space/void/responseteam/engineer
@@ -39,7 +39,7 @@
 	item_state = "ertsuit_e"
 
 /obj/item/clothing/suit/space/void/responseteam/engineer/Initialize()
-	..()
+	. = ..()
 	attach_helmet(new /obj/item/clothing/head/helmet/space/void/responseteam/engineer) //autoinstall the helmet
 
 /obj/item/clothing/suit/space/void/responseteam/security
@@ -48,7 +48,7 @@
 	item_state = "ertsuit_s"
 
 /obj/item/clothing/suit/space/void/responseteam/security/Initialize()
-	..()
+	. = ..()
 	attach_helmet(new /obj/item/clothing/head/helmet/space/void/responseteam/security) //autoinstall the helmet
 
 /obj/item/clothing/suit/space/void/responseteam/janitor
@@ -60,7 +60,7 @@
 	item_flags = NOSLIP //INBUILT NANOGALOSHES
 
 /obj/item/clothing/suit/space/void/responseteam/janitor/Initialize()
-	..()
+	. = ..()
 	attach_helmet(new /obj/item/clothing/head/helmet/space/void/responseteam/janitor) //autoinstall the helmet
 
 

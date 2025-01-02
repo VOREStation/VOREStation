@@ -252,7 +252,7 @@ I think I covered everything.
 	faction = FACTION_NEUTRAL
 
 /mob/living/simple_mob/vore/bigdragon/Initialize()
-	..()
+	. = ..()
 	src.adjust_nutrition(src.max_nutrition)
 	build_icons(1)
 	add_language(LANGUAGE_DRUDAKAR)

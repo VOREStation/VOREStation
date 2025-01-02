@@ -72,7 +72,7 @@
 	center_of_mass = list("x"=16, "y"=8)
 
 /obj/item/reagent_containers/food/drinks/cans/dr_gibb/Initialize()
-		..()
+		. = ..()
 		reagents.add_reagent(REAGENT_ID_DRGIBB, 30)
 
 /obj/item/reagent_containers/food/drinks/cans/dr_gibb_diet
@@ -83,7 +83,7 @@
 	center_of_mass = list("x"=16, "y"=8)
 
 /obj/item/reagent_containers/food/drinks/cans/dr_gibb_diet/Initialize()
-		..()
+		. = ..()
 		reagents.add_reagent(REAGENT_ID_DIETDRGIBB, 30)
 
 /obj/item/reagent_containers/food/drinks/cans/starkist
