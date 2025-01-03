@@ -159,13 +159,13 @@
 
 /obj/item/paper/examine(mob/user)
 	. = ..()
-	if(in_range(user, src) || istype(user, /mob/observer/dead))
+	if(in_range(user, src) || isobserver(user))
 		show_content(usr)
 	else
 		. += span_notice("You have to go closer if you want to read it.")
 
 /obj/item/paper/proc/show_content(var/mob/user, var/forceshow=0)
-	if(!(forceshow || (istype(user, /mob/living/carbon/human) || istype(user, /mob/observer/dead) || istype(user, /mob/living/silicon) || (istype(user) && user.universal_understand))))
+	if(!(forceshow || (ishuman(user) || isobserver(user) || issilicon(user) || (istype(user) && user.universal_understand))))
 		user << browse("<HTML><HEAD><TITLE>[name]</TITLE></HEAD><BODY>[stars(info)][stamps]</BODY></HTML>", "window=[name]")
 		onclose(user, "[name]")
 	else
@@ -554,7 +554,7 @@
 		else if (P.name != initial(P.name))
 			B.name = P.name
 		user.drop_from_inventory(P)
-		if (istype(user, /mob/living/carbon/human))
+		if (ishuman(user))
 			var/mob/living/carbon/human/h_user = user
 			if (h_user.r_hand == src)
 				h_user.drop_from_inventory(src)

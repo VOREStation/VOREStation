@@ -24,7 +24,7 @@ var/datum/antagonist/traitor/infiltrator/infiltrators
 	// Now for the special headset.
 
 	// Humans and the AI.
-	if(istype(traitor_mob) || istype(traitor_mob, /mob/living/silicon/ai))
+	if(istype(traitor_mob) || isAI(traitor_mob))
 		var/obj/item/radio/headset/R
 		R = locate(/obj/item/radio/headset) in traitor_mob.contents
 		if(!R)
@@ -50,7 +50,7 @@ var/datum/antagonist/traitor/infiltrator/infiltrators
 				<b>:t</b>")
 
 	// Borgs, because their radio is not a headset for some reason.
-	if(istype(traitor_mob, /mob/living/silicon/robot))
+	if(isrobot(traitor_mob))
 		var/mob/living/silicon/robot/borg = traitor_mob
 		var/obj/item/encryptionkey/syndicate/encrypt_key = new(null)
 		if(borg.radio)

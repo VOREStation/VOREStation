@@ -11,7 +11,7 @@
 /obj/item/bananapeel/Crossed(atom/movable/AM as mob|obj)
 	if(AM.is_incorporeal())
 		return
-	if(istype(AM, /mob/living))
+	if(isliving(AM))
 		var/mob/living/M = AM
 		M.slip("the [src.name]",4)
 /*
@@ -28,7 +28,7 @@
 /obj/item/soap/Crossed(atom/movable/AM as mob|obj)
 	if(AM.is_incorporeal())
 		return
-	if(istype(AM, /mob/living))
+	if(isliving(AM))
 		var/mob/living/M =	AM
 		M.slip("the [src.name]",3)
 
@@ -83,5 +83,5 @@
 /obj/item/bikehorn/Crossed(atom/movable/AM as mob|obj)
 	if(AM.is_incorporeal())
 		return
-	if(istype(AM, /mob/living))
+	if(isliving(AM))
 		playsound(src, honk_sound, 50, 1)

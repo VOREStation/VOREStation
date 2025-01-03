@@ -52,7 +52,7 @@
 
 /obj/machinery/transhuman/autoresleever/attackby(var/mob/user)	//Let's not let people mess with this.
 	update_icon()
-	if(istype(user,/mob/observer/dead))
+	if(isobserver(user))
 		attack_ghost(user)
 	else
 		return
@@ -61,7 +61,7 @@
 	if(stat)
 		to_chat(ghost, span_warning("This machine is not functioning..."))
 		return
-	if(!istype(ghost,/mob/observer/dead))
+	if(!isobserver(ghost))
 		return
 	if(ghost.mind && ghost.mind.current && ghost.mind.current.stat != DEAD)
 		if(istype(ghost.mind.current.loc, /obj/item/mmi))

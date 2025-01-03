@@ -126,7 +126,7 @@
 		else
 			do_animate("deny")
 
-	if(istype(AM, /mob/living/bot))
+	if(isbot(AM))
 		var/mob/living/bot/bot = AM
 		if(src.check_access(bot.botcard))
 			if(density)

@@ -64,7 +64,7 @@
 		if(dam > maxdam && (maxdam == 0 || prob(70)) )
 			damaged_organ = E
 			maxdam = dam
-			if(istype(src, /mob/living/carbon/human)) //VOREStation Edit Start
+			if(ishuman(src)) //VOREStation Edit Start
 				var/mob/living/carbon/human/H = src
 				maxdam *= H.species.trauma_mod //VOREStation edit end
 	if(damaged_organ && chem_effects[CE_PAINKILLER] < maxdam)

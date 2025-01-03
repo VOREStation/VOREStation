@@ -16,7 +16,7 @@
 	return ..()
 
 /obj/structure/portal_event/Bumped(mob/M as mob|obj)
-	if(istype(M,/mob) && !(istype(M,/mob/living)))
+	if(ismob(M) && !(isliving(M)))
 		return	//do not send ghosts, zshadows, ai eyes, etc
 	spawn(0)
 		src.teleport(M)
@@ -24,7 +24,7 @@
 	return
 
 /obj/structure/portal_event/Crossed(AM as mob|obj)
-	if(istype(AM,/mob) && !(istype(AM,/mob/living)))
+	if(ismob(AM) && !(isliving(AM)))
 		return	//do not send ghosts, zshadows, ai eyes, etc
 	spawn(0)
 		src.teleport(AM)
@@ -39,7 +39,7 @@
 			to_chat(user, span_notice("Your hand scatters \the [src]..."))
 			qdel(src)	//Delete portals which aren't set that people mess with.
 		else return		//do not send ghosts, zshadows, ai eyes, etc
-	else if(isliving(user) || istype(user, /mob/observer/dead) && user?.client?.holder)	//unless they're staff
+	else if(isliving(user) || isobserver(user) && user?.client?.holder)	//unless they're staff
 		spawn(0)
 		src.teleport(user)
 
@@ -177,14 +177,14 @@
 	anchored = TRUE
 
 /obj/structure/portal_gateway/Bumped(mob/M as mob|obj)
-	if(istype(M,/mob) && !(istype(M,/mob/living)))
+	if(ismob(M) && !(isliving(M)))
 		return	//do not send ghosts, zshadows, ai eyes, etc
 	var/obj/effect/landmark/dest = pick(eventdestinations)
 	if(dest)
 		M << 'sound/effects/phasein.ogg'
 		playsound(src, 'sound/effects/phasein.ogg', 100, 1)
 		M.forceMove(dest.loc)
-		if(istype(M, /mob/living) && dest.abductor)
+		if(isliving(M) && dest.abductor)
 			var/mob/living/L = M
 			//Situations to get the mob out of
 			if(L.buckled)

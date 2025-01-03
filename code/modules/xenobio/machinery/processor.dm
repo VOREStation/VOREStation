@@ -89,7 +89,7 @@
 		to_be_processed.Remove(S)
 		qdel(S)
 
-	if(istype(AM, /mob/living/carbon/human))
+	if(ishuman(AM))
 		var/mob/living/carbon/human/M = AM
 		playsound(src, 'sound/effects/splat.ogg', 50, 1)
 		to_be_processed.Remove(M)
@@ -103,7 +103,7 @@
 		if(S.stat != DEAD)
 			return FALSE
 		return TRUE
-	if(istype(AM, /mob/living/carbon/human))
+	if(ishuman(AM))
 		var/mob/living/carbon/human/H = AM
 		if(!istype(H.species, /datum/species/monkey))
 			return FALSE

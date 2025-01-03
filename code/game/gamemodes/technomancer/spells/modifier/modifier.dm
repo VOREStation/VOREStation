@@ -14,12 +14,12 @@
 	set_light(spell_light_range, spell_light_intensity, l_color = light_color)
 
 /obj/item/spell/modifier/on_melee_cast(atom/hit_atom, mob/user)
-	if(istype(hit_atom, /mob/living))
+	if(isliving(hit_atom))
 		return on_add_modifier(hit_atom)
 	return FALSE
 
 /obj/item/spell/modifier/on_ranged_cast(atom/hit_atom, mob/user)
-	if(istype(hit_atom, /mob/living))
+	if(isliving(hit_atom))
 		return on_add_modifier(hit_atom)
 	return FALSE
 

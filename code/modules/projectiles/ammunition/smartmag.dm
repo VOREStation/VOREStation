@@ -204,7 +204,7 @@
 	set category = "Object"
 	set src in usr
 
-	if(!istype(src.loc, /mob/living))	// Needs to be in your hands to reset
+	if(!isliving(src.loc))	// Needs to be in your hands to reset
 		return
 
 	var/mob/living/carbon/human/H = usr

@@ -192,7 +192,7 @@
 
 	for(var/turf/T in destination)
 		for(var/atom/movable/AM in T)
-			if(istype(AM, /mob/living) && !(AM.is_incorporeal()))
+			if(isliving(AM) && !(AM.is_incorporeal()))
 				var/mob/living/M = AM
 				M.gib()
 			else if(AM.simulated && !(istype(AM, /mob/observer)) && !(AM.is_incorporeal()))

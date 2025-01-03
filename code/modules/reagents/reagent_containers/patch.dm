@@ -23,7 +23,7 @@
 	var/mob/living/L = user
 
 	if(M == L)
-		if(istype(M, /mob/living/carbon/human))
+		if(ishuman(M))
 			var/mob/living/carbon/human/H = M
 			var/obj/item/organ/external/affecting = H.get_organ(check_zone(L.zone_sel.selecting))
 			if(!affecting)
@@ -44,7 +44,7 @@
 			qdel(src)
 			return 1
 
-	else if(istype(M, /mob/living/carbon/human))
+	else if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		var/obj/item/organ/external/affecting = H.get_organ(check_zone(L.zone_sel.selecting))
 		if(!affecting)

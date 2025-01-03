@@ -58,7 +58,7 @@
 		var/obj/item/spacecasinocash/SC = W
 
 		SC.adjust_worth(src.worth)
-		if(istype(user, /mob/living/carbon/human))
+		if(ishuman(user))
 			var/mob/living/carbon/human/h_user = user
 
 			h_user.drop_from_inventory(src)

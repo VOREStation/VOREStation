@@ -335,7 +335,7 @@
 			if(M.read_preference(/datum/preference/toggle/subtle_sounds))
 				M << sound('sound/talksounds/subtle_sound.ogg', volume = 50)
 		for (var/mob/G in player_list)
-			if (istype(G, /mob/new_player))
+			if (isnewplayer(G))
 				continue
 			else if(isobserver(G) &&  G.client?.prefs?.read_preference(/datum/preference/toggle/ghost_ears) && \
 			G.client?.prefs?.read_preference(/datum/preference/toggle/ghost_see_whisubtle))
@@ -432,7 +432,7 @@
 			if(M.read_preference(/datum/preference/toggle/subtle_sounds))
 				M << sound('sound/talksounds/subtle_sound.ogg', volume = 50)
 		for (var/mob/G in player_list)
-			if (istype(G, /mob/new_player))
+			if (isnewplayer(G))
 				continue
 			else if(isobserver(G) && G.client?.prefs?.read_preference(/datum/preference/toggle/ghost_ears) && \
 			G.client?.prefs?.read_preference(/datum/preference/toggle/ghost_see_whisubtle))

@@ -190,7 +190,7 @@
 
 /obj/random/outside_mob/spawn_item()
 	. = ..()
-	if(istype(., /mob/living/simple_mob))
+	if(isanimal(.))
 		var/mob/living/simple_mob/this_mob = .
 		this_mob.faction = src.faction
 		if (this_mob.minbodytemp > 200) // Temporary hotfix. Eventually I'll add code to change all mob vars to fit the environment they are spawned in.

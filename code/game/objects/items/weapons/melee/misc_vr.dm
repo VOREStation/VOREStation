@@ -27,7 +27,7 @@
 	defend_chance = 0
 
 /obj/item/melee/hammer/apply_hit_effect(mob/living/target, mob/living/user, var/hit_zone, var/attack_modifier)
-	if(istype(target,/mob/living/carbon/human))
+	if(ishuman(target))
 		var/mob/living/carbon/human/H = target
 		if(prob(50))
 			var/obj/item/organ/external/affecting = H.get_organ(hit_zone)

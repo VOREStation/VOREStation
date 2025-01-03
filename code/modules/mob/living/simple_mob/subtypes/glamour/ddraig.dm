@@ -339,7 +339,7 @@
 	for(var/mob/living/possible_target in possible_targets)
 		if(!can_attack(possible_target))
 			continue
-		if(istype(target,/mob/living/simple_mob) && !check_attacker(target)) //Do not target simple mobs who didn't attack you (disengage with TF'd mobs)
+		if(isanimal(target) && !check_attacker(target)) //Do not target simple mobs who didn't attack you (disengage with TF'd mobs)
 			continue
 		. |= possible_target
 		if(!isliving(possible_target))
@@ -375,7 +375,7 @@
 		spawn(60 SECONDS)
 			holder.uncloak()
 
-	if(istype(target,/mob/living/simple_mob) && !check_attacker(target)) //Immediately disengage with TF'd mobs so you don't one shot the poor guy you turned into a mouse.
+	if(isanimal(target) && !check_attacker(target)) //Immediately disengage with TF'd mobs so you don't one shot the poor guy you turned into a mouse.
 		lose_target()
 
 	// Can we still see them?

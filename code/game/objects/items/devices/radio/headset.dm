@@ -212,7 +212,7 @@
 /obj/item/radio/headset/mob_headset/afterattack(var/atom/movable/target, mob/living/user, proximity)
 	if(!proximity)
 		return
-	if(istype(target,/mob/living/simple_mob))
+	if(isanimal(target))
 		var/mob/living/simple_mob/M = target
 		if(!M.mob_radio)
 			user.drop_item()

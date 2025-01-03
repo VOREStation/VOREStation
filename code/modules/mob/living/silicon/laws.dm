@@ -15,7 +15,7 @@
 	laws_sanity_check()
 	laws.set_zeroth_law(law, law_borg)
 	if(notify)
-		notify_of_law_change(law||law_borg ? "NEW ZEROTH LAW: <b>[istype(src, /mob/living/silicon/robot) && law_borg ? law_borg : law]</b>" : null)
+		notify_of_law_change(law||law_borg ? "NEW ZEROTH LAW: <b>[isrobot(src) && law_borg ? law_borg : law]</b>" : null)
 	log_and_message_admins("has given [src] the zeroth laws: [law]/[law_borg ? law_borg : "N/A"]")
 
 /mob/living/silicon/robot/set_zeroth_law(var/law, var/law_borg, notify = TRUE)

@@ -29,7 +29,7 @@
 				to_chat(user, span_danger("\The [L]'s been dead for too long, even this function cannot replace cloning at this point."))
 				return 0
 			to_chat(user, span_notice("You stab \the [L] with a hidden integrated hypo, attempting to bring them back..."))
-			if(istype(L, /mob/living/simple_mob))
+			if(isanimal(L))
 				var/mob/living/simple_mob/SM = L
 				SM.health = SM.getMaxHealth() / 3
 				SM.set_stat(CONSCIOUS)

@@ -155,7 +155,7 @@
 
 /mob/living/simple_mob/vore/overmap/spacewhale/apply_melee_effects(var/atom/A)
 	. = ..()
-	if(istype(A, /mob/living))
+	if(isliving(A))
 		var/mob/living/L = A
 		if(L.stat == DEAD && !L.allowmobvore)
 			L.gib()

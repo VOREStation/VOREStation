@@ -215,7 +215,7 @@
 	user.visible_message("\The [user] attaches \the [src] to the wall.",
 		span_notice("You attach \the [src] to the wall."),
 		span_warningplain("You hear clicking."))
-	if(istype(user, /mob/living/silicon/robot)) //Robots cannot unequip/drop items, for Safety Reasons.
+	if(isrobot(user)) //Robots cannot unequip/drop items, for Safety Reasons.
 		forceMove(T)
 	user.drop_item(T)
 	anchored = TRUE

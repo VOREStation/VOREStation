@@ -38,7 +38,7 @@
 
 	var/atom/movable/A = extra_data[1]
 
-	if(istype(A, /mob/living) && world.time > (B.last_passive_use + B.passive_ability_cooldown) && B.should_tick)
+	if(isliving(A) && world.time > (B.last_passive_use + B.passive_ability_cooldown) && B.should_tick)
 		B.last_passive_use = world.time
 		var/mob/living/L = A
 

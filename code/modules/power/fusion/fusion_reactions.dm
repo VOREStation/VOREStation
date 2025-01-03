@@ -126,7 +126,7 @@ var/list/fusion_reactions
 	for(var/mob/living/mob in living_mob_list)
 		var/turf/T = get_turf(mob)
 		if(T && (holder.z == T.z))
-			if(istype(mob, /mob/living/carbon/human))
+			if(ishuman(mob))
 				var/mob/living/carbon/human/H = mob
 				H.hallucination += rand(100,150)
 

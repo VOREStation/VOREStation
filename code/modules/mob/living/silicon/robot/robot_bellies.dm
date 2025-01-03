@@ -31,6 +31,6 @@
 				if(B.digest_mode != DM_DIGEST || B.belly_sprite_to_affect != b_class || !B.contents.len)
 					continue
 				for(var/contents in B.contents)
-					if(istype(contents, /mob/living))
+					if(isliving(contents))
 						vore_light_states[b_class] = 1
 						return

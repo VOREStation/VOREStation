@@ -146,7 +146,7 @@
 			sendPDAs["[P.name]"] = "\ref[P]"
 		data["possibleRecipients"] = sendPDAs
 
-	data["isMalfAI"] = ((istype(user, /mob/living/silicon/ai) || istype(user, /mob/living/silicon/robot)) && (user.mind.special_role && user.mind.original == user))
+	data["isMalfAI"] = ((isAI(user) || isrobot(user)) && (user.mind.special_role && user.mind.original == user))
 
 	return data
 
@@ -211,7 +211,7 @@
 				temp = noserver
 		//Hack the Console to get the password
 		if("hack")
-			if((istype(ui.user, /mob/living/silicon/ai) || istype(ui.user, /mob/living/silicon/robot)) && (ui.user.mind.special_role && ui.user.mind.original == ui.user))
+			if((isAI(ui.user) || isrobot(ui.user)) && (ui.user.mind.special_role && ui.user.mind.original == ui.user))
 				hacking = 1
 				update_icon()
 				//Time it takes to bruteforce is dependant on the password length.

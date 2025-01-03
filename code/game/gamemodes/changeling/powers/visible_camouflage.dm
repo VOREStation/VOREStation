@@ -15,7 +15,7 @@
 	set desc = "Turns yourself almost invisible, as long as you move slowly."
 
 
-	if(istype(src,/mob/living/carbon/human))
+	if(ishuman(src))
 		var/mob/living/carbon/human/H = src
 
 		if(H.mind.changeling.cloaked)

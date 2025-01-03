@@ -169,7 +169,7 @@
 		return
 
 	var/has_hands = TRUE
-	if(istype(holder, /mob/living/simple_mob))
+	if(isanimal(holder))
 		var/mob/living/simple_mob/S = holder
 		has_hands = S.has_hands
 

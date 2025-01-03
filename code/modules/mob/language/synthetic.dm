@@ -24,7 +24,7 @@
 	var/message_body = span_message("[speaker.say_quote(message)], \"[message]\"")
 
 	for (var/mob/M in dead_mob_list)
-		if(!istype(M,/mob/new_player) && !istype(M,/mob/living/carbon/brain)) //No meta-evesdropping
+		if(!isnewplayer(M) && !istype(M,/mob/living/carbon/brain)) //No meta-evesdropping
 			var/message_to_send = span_binarysay("[message_start] ([ghost_follow_link(speaker, M)]) [message_body]")
 			if(M.check_mentioned(message) && M.client?.prefs?.read_preference(/datum/preference/toggle/check_mention))
 				message_to_send = span_large(span_bold("[message_to_send]"))
@@ -33,7 +33,7 @@
 	for (var/mob/living/S in living_mob_list)
 		if(drone_only && !istype(S,/mob/living/silicon/robot/drone))
 			continue
-		else if(istype(S , /mob/living/silicon/ai))
+		else if(isAI(S))
 			message_start = span_binarysay("[name], <a href='byond://?src=\ref[S];track2=\ref[S];track=\ref[speaker];trackname=[html_encode(speaker.name)]'>" + span_name("[speaker.name]") + "</a>")
 		else if (!S.binarycheck())
 			continue

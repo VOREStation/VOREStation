@@ -82,7 +82,7 @@
 		to_chat(user,span_warning("Your rehydrator flashes an error as it attempts to process your target."))
 		playsound(src, 'sound/weapons/empty.ogg', 50, 1)
 		return
-	if(istype(A, /mob/living))
+	if(isliving(A))
 		to_chat(user,span_warning("The rehydrator's saftey systems prevent firing into living creatures!"))
 		playsound(src, 'sound/weapons/empty.ogg', 50, 1)
 		return
@@ -138,7 +138,7 @@
 		if(S.stat != DEAD)
 			return FALSE
 		return TRUE
-	if(istype(AM, /mob/living/carbon/human))
+	if(ishuman(AM))
 		var/mob/living/carbon/human/H = AM
 		if(!istype(H.species, /datum/species/monkey))
 			return FALSE

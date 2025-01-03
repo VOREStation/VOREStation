@@ -772,7 +772,7 @@
 			X.orbit(target)
 
 		if("ai")
-			if(!istype(target, /mob/living))
+			if(!isliving(target))
 				to_chat(ui.user, span_notice("This can only be used on instances of type /mob/living"))
 				return
 			var/mob/living/L = target

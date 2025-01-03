@@ -289,7 +289,7 @@
 		for (var/atom/movable/M in prey.loc)
 			if (prey == M || pred == M)
 				continue
-			if (istype(M, /mob/living))
+			if (isliving(M))
 				var/mob/living/L = M
 				if (!M.CanPass(src, prey.loc) && !(get_effective_size(FALSE) - L.get_effective_size(TRUE) >= size_ratio_needed || L.lying))
 					can_pass = FALSE

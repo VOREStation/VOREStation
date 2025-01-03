@@ -90,7 +90,7 @@ VORESTATION REMOVAL
 	agony = 3
 
 /obj/item/projectile/beam/stun/xeno/on_hit(var/atom/target, var/blocked = 0, var/def_zone = null)
-	if(istype(target, /mob/living))
+	if(isliving(target))
 		var/mob/living/L = target
 		if(L.mob_class & MOB_CLASS_SLIME)
 			if(isslime(L))

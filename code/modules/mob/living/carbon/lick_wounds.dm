@@ -15,12 +15,11 @@
 		to_chat(src, span_warning("You need to be closer to do that."))
 		return
 
-	if ( ! (istype(src, /mob/living/carbon/human) || \
-			istype(src, /mob/living/silicon)) )
+	if ( ! (ishuman(src) || issilicon(src)) )
 		to_chat(src, span_warning("If you even have a tongue, it doesn't work that way."))
 		return
 
-	if (istype(M, /mob/living/carbon/human))
+	if (ishuman(M))
 		var/mob/living/carbon/human/H = M
 		var/obj/item/organ/external/affecting = H.get_organ(src.zone_sel.selecting)
 

@@ -108,7 +108,7 @@
 	target_ladder.audible_message(span_notice("You hear something coming [direction] \the [src]"), runemessage = "clank clank")
 
 	var/climb_modifier = 1
-	if(istype(M, /mob/living/carbon/human))
+	if(ishuman(M))
 		var/mob/living/carbon/human/MS = M
 		climb_modifier = MS.species.climb_mult
 

@@ -118,7 +118,7 @@
 		..()
 
 /obj/effect/mine/interact(mob/living/user as mob)
-	if(!panel_open || istype(user, /mob/living/silicon/ai))
+	if(!panel_open || isAI(user))
 		return
 	user.set_machine(src)
 	wires.Interact(user)

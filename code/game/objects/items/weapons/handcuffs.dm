@@ -51,7 +51,7 @@
 /obj/item/handcuffs/proc/can_place(var/mob/target, var/mob/user)
 	if(user == target)
 		return 1
-	if(istype(user, /mob/living/silicon/robot))
+	if(isrobot(user))
 		if(user.Adjacent(target))
 			return 1
 	else

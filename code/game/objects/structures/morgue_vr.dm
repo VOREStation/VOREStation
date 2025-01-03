@@ -22,7 +22,7 @@
 			if(!(I in allowed_items))
 				to_chat(user, span_notice("\The [src] cannot cremate while there are items inside!"))
 				return
-			if(istype(I, /mob/living))
+			if(isliving(I))
 				var/mob/living/cremated = I
 				for(var/Z in cremated.contents)
 					if(!(Z in allowed_items))

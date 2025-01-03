@@ -101,7 +101,7 @@
 			dat += span_boldnotice("Subject died [DisplayTimeText(tdelta)] ago - resuscitation may be possible!")
 			dat += "<br>"
 	//VOREStation edit/addition ends
-	if(istype(M, /mob/living/carbon/human) && mode == 1)
+	if(ishuman(M) && mode == 1)
 		var/mob/living/carbon/human/H = M
 		var/list/damaged = H.get_damaged_organs(1,1)
 		dat += 	span_notice("Localized Damage, Brute/Burn:")

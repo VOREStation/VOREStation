@@ -650,7 +650,7 @@
 
 /obj/item/spell/construct/slam/on_melee_cast(atom/hit_atom, mob/living/user, def_zone)
 	var/attack_message = "slams"
-	if(istype(user, /mob/living/simple_mob))
+	if(isanimal(user))
 		var/mob/living/simple_mob/S = user
 		attack_message = pick(S.attacktext)
 	if(isliving(hit_atom))

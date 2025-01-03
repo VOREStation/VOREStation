@@ -100,7 +100,7 @@
 	if(!ticker)
 		tgui_alert_async(usr, "Wait until the game starts")
 		return
-	if(istype(M, /mob/living/carbon/human))
+	if(ishuman(M))
 		log_admin("[key_name(src)] has robotized [M.key].")
 		spawn(10)
 			M:Robotize()
@@ -120,7 +120,7 @@
 		tgui_alert_async(usr, "That mob doesn't seem to exist, close the panel and try again.")
 		return
 
-	if(istype(M, /mob/new_player))
+	if(isnewplayer(M))
 		tgui_alert_async(usr, "The mob must not be a new_player.")
 		return
 
@@ -279,7 +279,7 @@
 	if (!ticker)
 		tgui_alert_async(usr, "Wait until the game starts")
 		return
-	if (istype(M, /mob/living/carbon/human))
+	if (ishuman(M))
 		var/mob/living/carbon/human/H = M
 		if (H.wear_id)
 			var/obj/item/card/id/id = H.wear_id

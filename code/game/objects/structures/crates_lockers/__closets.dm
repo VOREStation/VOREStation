@@ -53,7 +53,7 @@
 		starts_with = null
 
 	if(!opened)		// if closed, any item at the crate's loc is put in the contents
-		if(istype(loc, /mob/living)) return
+		if(isliving(loc)) return
 		var/obj/item/I
 		for(I in loc)
 			if(I.density || I.anchored || I == src) continue
@@ -552,7 +552,7 @@
 	set category = "Object"
 	set name = "Vore Occupants"
 
-	if(!istype(usr, /mob/living)) //no ghosts
+	if(!isliving(usr)) //no ghosts
 		return
 
 	if(!(usr in src.contents))
@@ -562,7 +562,7 @@
 	var/list/targets = list() //IF IT IS NOT BROKEN. DO NOT FIX IT.
 
 	for(var/mob/living/L in src.contents)
-		if(!istype(L, /mob/living)) //Don't eat anything that isn't mob/living. Failsafe.
+		if(!isliving(L)) //Don't eat anything that isn't mob/living. Failsafe.
 			continue
 		if(L == usr) //no eating yourself. 1984.
 			continue
@@ -578,7 +578,7 @@
 	if(!target)
 		return
 
-	if(!istype(target, /mob/living)) //Safety.
+	if(!isliving(target)) //Safety.
 		to_chat(src, span_warning("You need to select a living target!"))
 		return
 

@@ -234,7 +234,7 @@
 	var/datum/integrated_io/O = outputs[1]
 	O.data = null
 	if(assembly)
-		if(istype(assembly.loc, /mob/living)) // Now check if someone's holding us.
+		if(isliving(assembly.loc)) // Now check if someone's holding us.
 			O.data = WEAKREF(assembly.loc)
 
 	O.push_data()

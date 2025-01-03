@@ -110,7 +110,7 @@
 	proc
 		interact(mob/user)
 			if (get_dist(src, user) > 1 )
-				if (!istype(user, /mob/living/silicon/ai))
+				if (!isAI(user))
 					user.machine = null
 					user << browse(null, "window=port_gen")
 					return

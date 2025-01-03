@@ -10,7 +10,7 @@
 
 /datum/artifact_effect/roboheal/DoEffectTouch(var/mob/user)
 	if(user)
-		if (istype(user, /mob/living/silicon/robot))
+		if (isrobot(user))
 			var/mob/living/silicon/robot/R = user
 			to_chat(R, span_blue("Your systems report damaged components mending by themselves!"))
 			R.adjustBruteLoss(rand(-10,-30))

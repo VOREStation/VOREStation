@@ -18,7 +18,7 @@
 	//Initializing our working list
 	for(var/player in player_list_local)
 
-		if(!istype(player, /mob/living)) continue //We only care for living players
+		if(!isliving(player)) continue //We only care for living players
 		var/mob/living/L = player
 		players += 1
 		if(L.client.inactivity > INACTIVITY_CAP)

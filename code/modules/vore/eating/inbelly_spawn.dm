@@ -39,7 +39,7 @@ Please do not abuse this ability.
 				continue
 			eligible_targets += S
 			continue
-		if(istype(pred, /mob/living/simple_mob))
+		if(isanimal(pred))
 			var/mob/living/simple_mob/SM = pred
 			if(!SM.vore_active)						// No vore, no bellies, no inbelly spawning
 				continue

@@ -14,12 +14,12 @@
 	aspect = ASPECT_TELE
 
 /obj/item/spell/abjuration/on_ranged_cast(atom/hit_atom, mob/user)
-	if(istype(hit_atom, /mob/living) && pay_energy(500) && within_range(hit_atom))
+	if(isliving(hit_atom) && pay_energy(500) && within_range(hit_atom))
 		var/mob/living/L = hit_atom
 		var/mob/living/simple_mob/SM = null
 
 		//Bit of a roundabout typecheck, in order to test for two variables from two different mob types in one line.
-		if(istype(L, /mob/living/simple_mob))
+		if(isanimal(L))
 			SM = L
 		if(L.summoned || (SM && SM.supernatural) )
 			if(L.client) // Player-controlled mobs are immune to being killed by this.

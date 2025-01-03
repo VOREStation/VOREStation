@@ -47,7 +47,7 @@
 			add_attack_logs(user,I,"Stolen with [src]")
 			qdel(src)
 		//Now let's try to teleport a living mob.
-		else if(istype(hit_atom, /mob/living))
+		else if(isliving(hit_atom))
 			var/mob/living/L = hit_atom
 			to_chat(L, span_danger("You are teleported towards \the [user]."))
 			var/datum/effect/effect/system/spark_spread/s1 = new /datum/effect/effect/system/spark_spread

@@ -214,7 +214,7 @@
 		var/obj/item/I = A
 		I.attack_hand(holder)
 		lose_target()
-	if(istype(A,/mob/living) && holder.Adjacent(A))	// Not the dumbest tool in the shed. If we're fighting, we're gonna dance around them.
+	if(isliving(A) && holder.Adjacent(A))	// Not the dumbest tool in the shed. If we're fighting, we're gonna dance around them.
 		holder.IMove(get_step(holder, pick(alldirs)))
 		holder.face_atom(A)
 		request_help()	// And we're going to call friends, too.
@@ -258,7 +258,7 @@
 
 	for(var/possible_target in possible_targets)
 		var/atom/A = possible_target
-		if(istype(A, /mob/living) && !can_pick_mobs)
+		if(isliving(A) && !can_pick_mobs)
 			continue
 		if(can_attack(A)) // Can we attack it?
 			. += A

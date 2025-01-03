@@ -102,7 +102,7 @@
 		return
 
 	// Don't let AI eyes yeet themselves off the map
-	if(istype(A, /mob/observer/eye))
+	if(isobserver(A))
 		return
 
 	if(A.lost_in_space())

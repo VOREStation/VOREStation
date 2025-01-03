@@ -54,7 +54,7 @@
 		general.fields["sex"] = I.sex
 	else
 		var/mob/living/carbon/human/H
-		if(istype(user,/mob/living/carbon/human))
+		if(ishuman(user))
 			H = user
 			general.fields["age"] = H.age
 		else
@@ -106,4 +106,3 @@
 	var/datum/event_meta/EM = new(EVENT_LEVEL_MUNDANE, "Fake Radiation Storm", add_to_queue = 0)
 	new/datum/event/radiation_storm/syndicate(EM)
 	return 1
-

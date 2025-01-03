@@ -58,7 +58,7 @@
 					neworg.name = "[name] [neworg.name]"
 					neworg.meat_type = meat_type
 
-					if(istype(src, /mob/living/simple_mob))
+					if(isanimal(src))
 						var/mob/living/simple_mob/SM = src
 						if(SM.limb_icon)
 							neworg.force_icon = SM.limb_icon
