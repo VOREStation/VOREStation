@@ -19,7 +19,6 @@ var/list/preferences_datums = list()
 
 	//character preferences
 	var/real_name						//our character's name
-	var/be_random_name = 0				//whether we are a random name every round
 	var/nickname						//our character's nickname
 	var/spawnpoint = "Arrivals Shuttle" //where this character will spawn (0-2).
 	var/b_type = "A+"					//blood type (not-chooseable)
@@ -352,7 +351,7 @@ var/list/preferences_datums = list()
 	// This needs to happen before anything else becuase it sets some variables.
 	character.set_species(species)
 	// Special Case: This references variables owned by two different datums, so do it here.
-	if(be_random_name)
+	if(read_preference(/datum/preference/toggle/human/name_is_always_random))
 		real_name = random_name(identifying_gender,species)
 
 	// Ask the preferences datums to apply their own settings to the new mob

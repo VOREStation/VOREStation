@@ -13,7 +13,6 @@
 /datum/category_item/player_setup_item/general/basic/load_character(list/save_data)
 	pref.real_name						= save_data["real_name"]
 	pref.nickname						= save_data["nickname"]
-	pref.be_random_name					= save_data["name_is_always_random"]
 	pref.biological_gender				= save_data["gender"]
 	pref.identifying_gender				= save_data["id_gender"]
 	pref.spawnpoint						= save_data["spawnpoint"]
@@ -24,7 +23,6 @@
 /datum/category_item/player_setup_item/general/basic/save_character(list/save_data)
 	save_data["real_name"]				= pref.real_name
 	save_data["nickname"]				= pref.nickname
-	save_data["name_is_always_random"]	= pref.be_random_name
 	save_data["gender"]					= pref.biological_gender
 	save_data["id_gender"]				= pref.identifying_gender
 	save_data["spawnpoint"]				= pref.spawnpoint
@@ -40,7 +38,6 @@
 		pref.real_name      = random_name(pref.identifying_gender, pref.species)
 	pref.nickname		= sanitize_name(pref.nickname)
 	pref.spawnpoint         = sanitize_inlist(pref.spawnpoint, spawntypes, initial(pref.spawnpoint))
-	pref.be_random_name     = sanitize_integer(pref.be_random_name, 0, 1, initial(pref.be_random_name))
 
 // Moved from /datum/preferences/proc/copy_to()
 /datum/category_item/player_setup_item/general/basic/copy_to_mob(var/mob/living/carbon/human/character)
@@ -67,7 +64,7 @@
 	. += span_bold("Name:") + " "
 	. += "<a href='byond://?src=\ref[src];rename=1'><b>[pref.real_name]</b></a><br>"
 	. += "<a href='byond://?src=\ref[src];random_name=1'>Randomize Name</A><br>"
-	. += "<a href='byond://?src=\ref[src];always_random_name=1'>Always Random Name: [pref.be_random_name ? "Yes" : "No"]</a><br>"
+	. += "<a href='byond://?src=\ref[src];always_random_name=1'>Always Random Name: [pref.read_preference(/datum/preference/toggle/human/name_is_always_random) ? "Yes" : "No"]</a><br>"
 	. += span_bold("Nickname:") + " "
 	. += "<a href='byond://?src=\ref[src];nickname=1'><b>[pref.nickname]</b></a>"
 	. += "(<a href='byond://?src=\ref[src];reset_nickname=1'>Clear</A>)"
@@ -97,7 +94,7 @@
 		return TOPIC_REFRESH
 
 	else if(href_list["always_random_name"])
-		pref.be_random_name = !pref.be_random_name
+		pref.update_preference_by_type(/datum/preference/toggle/human/name_is_always_random, !pref.read_preference(/datum/preference/toggle/human/name_is_always_random))
 		return TOPIC_REFRESH
 
 	else if(href_list["nickname"])
