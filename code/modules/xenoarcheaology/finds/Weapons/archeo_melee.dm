@@ -75,6 +75,7 @@
 		if(last_touched.loc)
 			conjure_animation(last_touched.loc)
 	visible_message(span_cult("\The [src] screeches as it's destroyed"))
+	lightning_strike(last_touched.loc, TRUE)
 	playsound(src, 'sound/goonstation/spooky/creepyshriek.ogg', 100, 1, 75) //It plays VERY far.
 	last_touched = null //Get rid of the reference to our owner.
 	..()
@@ -90,9 +91,9 @@
 		force = force*2
 		empowered = 0
 	/// First, we check a few things.
-	/// If we're  not a cultist, our target IS a cultist, OR their faction is our faction, we get wrecked.
+	/// If we're  not a cultist, and our target is a  human, OR we're a cultist and our factions are the same, we get wrecked.
 	/// Fun fact, monkeys count as humans. Yes.
-	if(!iscultist(user) || iscultist(M) || M.faction == user.faction)
+	if((!iscultist(user) && ishuman(M))  || ((is_cultist(user) && iscultist(M)) || M.faction == user.faction))
 		user.visible_message(span_cult("[user]'s arm is engulfed in dark flames!"))
 		to_chat(user, span_cult("An inexplicable force rips through your arm as it's engulfed in flames, tearing the sword from your grasp!"))
 		user.drop_from_inventory(src, user.loc)
