@@ -106,6 +106,7 @@
 /datum/tgui_state/air_alarm_remote/Destroy()
 	atmos_control = null
 	air_alarm = null
+	return ..()
 
 /datum/tgui_module/atmos_control/ntos
 	ntos = TRUE
