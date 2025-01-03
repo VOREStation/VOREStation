@@ -183,7 +183,7 @@
 /obj/item/glass_jar/fish/afterattack(var/atom/A, var/mob/user, var/proximity)
 	if(!filled)
 		if(istype(A, /obj/structure/sink) || istype(A, /turf/simulated/floor/water))
-			if(contains && user.a_intent == "help")
+			if(contains && user.a_intent == I_HELP)
 				to_chat(user, span_warning("That probably isn't the best idea."))
 				return
 
@@ -197,7 +197,7 @@
 /obj/item/glass_jar/fish/attack_self(var/mob/user)
 	if(filled)
 		if(contains == JAR_ANIMAL)
-			if(user.a_intent == "help")
+			if(user.a_intent == I_HELP)
 				to_chat(user, span_notice("Maybe you shouldn't empty the water..."))
 				return
 

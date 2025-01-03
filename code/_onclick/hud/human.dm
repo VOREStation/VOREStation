@@ -132,7 +132,7 @@
 		using = new /obj/screen()
 		using.name = "mov_intent"
 		using.icon = HUD.ui_style
-		using.icon_state = (m_intent == "run" ? "running" : "walking")
+		using.icon_state = (m_intent == I_RUN ? "running" : "walking")
 		using.screen_loc = ui_movi
 		using.color = HUD.ui_color
 		using.alpha = HUD.ui_alpha
