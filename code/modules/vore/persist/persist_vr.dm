@@ -91,7 +91,7 @@
 
 	// Okay we can start saving the data
 	if(new_spawn_point_type && prefs.persistence_settings & PERSIST_SPAWN)
-		prefs.spawnpoint = initial(new_spawn_point_type.display_name)
+		prefs.update_preference_by_type(/datum/preference/choiced/human/spawnpoint, initial(new_spawn_point_type.display_name))
 	if(ishuman(occupant) && occupant.stat != DEAD)
 		var/mob/living/carbon/human/H = occupant
 		testing("Persist (PID): Saving stuff from [H] to [prefs] (\ref[prefs]).")
@@ -112,20 +112,14 @@
 // This basically needs to be the reverse of /datum/category_item/player_setup_item/general/body/copy_to_mob() ~Leshana
 /proc/apply_coloration_to_prefs(var/mob/living/carbon/human/character, var/datum/preferences/prefs)
 	if(!istype(character)) return
-	prefs.r_eyes	= character.r_eyes
-	prefs.g_eyes	= character.g_eyes
-	prefs.b_eyes	= character.b_eyes
 	prefs.h_style	= character.h_style
-	prefs.r_hair	= character.r_hair
-	prefs.g_hair	= character.g_hair
-	prefs.b_hair	= character.b_hair
+
+	prefs.update_preference_by_type(/datum/preference/color/human/eyes_color, rgb(character.r_eyes, character.g_eyes, character.b_eyes))
+	prefs.update_preference_by_type(/datum/preference/color/human/hair_color, rgb(character.r_hair, character.g_hair, character.b_hair))
+	prefs.update_preference_by_type(/datum/preference/color/human/facial_color, rgb(character.r_facial, character.g_facial, character.b_facial))
+	prefs.update_preference_by_type(/datum/preference/color/human/skin_color, rgb(character.r_skin, character.g_skin, character.b_skin))
+
 	prefs.f_style	= character.f_style
-	prefs.r_facial	= character.r_facial
-	prefs.g_facial	= character.g_facial
-	prefs.b_facial	= character.b_facial
-	prefs.r_skin	= character.r_skin
-	prefs.g_skin	= character.g_skin
-	prefs.b_skin	= character.b_skin
 	prefs.s_tone	= character.s_tone
 	prefs.h_style	= character.h_style
 	prefs.f_style	= character.f_style
@@ -137,38 +131,24 @@
 	if(character.ear_style) prefs.ear_style = character.ear_style.name
 	if(character.tail_style) prefs.tail_style = character.tail_style.name
 	if(character.wing_style) prefs.wing_style = character.wing_style.name
-	prefs.r_ears			= character.r_ears
-	prefs.g_ears			= character.g_ears
-	prefs.b_ears			= character.b_ears
-	prefs.r_ears2			= character.r_ears2
-	prefs.g_ears2			= character.g_ears2
-	prefs.b_ears2			= character.b_ears2
-	prefs.r_ears3			= character.r_ears3
-	prefs.g_ears3			= character.g_ears3
-	prefs.b_ears3			= character.b_ears3
+
+	prefs.update_preference_by_type(/datum/preference/color/human/ears_color1, rgb(character.r_ears, character.g_ears, character.b_ears))
+	prefs.update_preference_by_type(/datum/preference/color/human/ears_color2, rgb(character.r_ears2, character.g_ears2, character.b_ears2))
+	prefs.update_preference_by_type(/datum/preference/color/human/ears_color3, rgb(character.r_ears3, character.g_ears3, character.b_ears3))
 
 	// secondary ears
 	prefs.ear_secondary_style = character.ear_secondary_style?.name
 	prefs.ear_secondary_colors = character.ear_secondary_colors
 
-	prefs.r_tail			= character.r_tail
-	prefs.b_tail			= character.b_tail
-	prefs.g_tail			= character.g_tail
-	prefs.r_tail2			= character.r_tail2
-	prefs.b_tail2			= character.b_tail2
-	prefs.g_tail2			= character.g_tail2
-	prefs.r_tail3			= character.r_tail3
-	prefs.b_tail3			= character.b_tail3
-	prefs.g_tail3			= character.g_tail3
-	prefs.r_wing			= character.r_wing
-	prefs.b_wing			= character.b_wing
-	prefs.g_wing			= character.g_wing
-	prefs.r_wing2			= character.r_wing2
-	prefs.b_wing2			= character.b_wing2
-	prefs.g_wing2			= character.g_wing2
-	prefs.r_wing3			= character.r_wing3
-	prefs.b_wing3			= character.b_wing3
-	prefs.g_wing3			= character.g_wing3
+	prefs.update_preference_by_type(/datum/preference/color/human/tail_color1, rgb(character.r_tail, character.g_tail, character.b_tail))
+	prefs.update_preference_by_type(/datum/preference/color/human/tail_color2, rgb(character.r_tail2, character.g_tail2, character.b_tail2))
+	prefs.update_preference_by_type(/datum/preference/color/human/tail_color3, rgb(character.r_tail3, character.g_tail3, character.b_tail3))
+
+	// TODO: This will break if update_preference_by_type starts to respect is_accessible
+	prefs.update_preference_by_type(/datum/preference/color/human/wing_color1, rgb(character.r_wing, character.g_wing, character.b_wing))
+	prefs.update_preference_by_type(/datum/preference/color/human/wing_color2, rgb(character.r_wing2, character.g_wing2, character.b_wing2))
+	prefs.update_preference_by_type(/datum/preference/color/human/wing_color3, rgb(character.r_wing3, character.g_wing3, character.b_wing3))
+
 	prefs.custom_species	= character.custom_species
 	prefs.digitigrade		= character.digitigrade
 

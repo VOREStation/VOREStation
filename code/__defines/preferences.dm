@@ -16,6 +16,15 @@
 
 #define SAVE_RESET -1
 
+//randomised elements
+#define RANDOM_ANTAG_ONLY 1
+#define RANDOM_DISABLED 2
+#define RANDOM_ENABLED 3
+
+// randomise_appearance_prefs() and randomize_human_appearance() proc flags
+#define RANDOMIZE_SPECIES (1<<0)
+#define RANDOMIZE_NAME (1<<1)
+
 // Values for /datum/preference/savefile_identifier
 /// This preference is character specific.
 #define PREFERENCE_CHARACTER "character"

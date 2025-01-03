@@ -36,11 +36,6 @@
 		qdel(hud_used)		//remove the hud objects
 	new /datum/hud(src)
 
-	if(client.prefs && client.prefs.client_fps)
-		client.fps = client.prefs.client_fps
-	else
-		client.fps = 0 // Results in using the server FPS
-
 	next_move = 1
 	disconnect_time = null				//VOREStation Addition: clear the disconnect time
 	sight |= SEE_SELF

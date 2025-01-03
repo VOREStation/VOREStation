@@ -1,5 +1,5 @@
 #define SAVEFILE_VERSION_MIN	8
-#define SAVEFILE_VERSION_MAX	15
+#define SAVEFILE_VERSION_MAX	16
 
 /*
 SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Carn
@@ -69,6 +69,16 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 		log_debug("[client_ckey] preferences successfully migrated from [current_version] to v15.")
 		to_chat(client, span_danger("v15 savefile migration complete."))
 
+	// Migration for colors
+	if(current_version < 16)
+		log_debug("[client_ckey] preferences migrating from [current_version] to v16....")
+		to_chat(client, span_danger("Migrating savefile from version [current_version] to v16..."))
+
+		migration_16_colors(S)
+
+		log_debug("[client_ckey] preferences successfully migrated from [current_version] to v16.")
+		to_chat(client, span_danger("v16 savefile migration complete."))
+
 
 /datum/preferences/proc/update_character(current_version, list/save_data)
 	// Migration from BYOND savefiles to JSON: Important milemark.
@@ -105,6 +115,22 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 		CRASH("Attempted to load savefile without first loading a path!")
 	savefile = new /datum/json_savefile(load_and_save ? path : null)
 
+// General preferences, have to be preloaded
+/datum/preferences/proc/load_early_prefs()
+	default_slot	= savefile.get_entry("default_slot", default_slot)
+	lastnews		= savefile.get_entry("lastnews", lastnews)
+	lastlorenews	= savefile.get_entry("lastlorenews", lastlorenews)
+
+/datum/preferences/proc/sanitize_early_prefs()
+	default_slot 	= sanitize_integer(default_slot, 1, CONFIG_GET(number/character_slots), initial(default_slot))
+	lastnews		= sanitize_text(lastnews, initial(lastnews))
+	lastlorenews	= sanitize_text(lastlorenews, initial(lastlorenews))
+
+/datum/preferences/proc/save_early_prefs()
+	savefile.set_entry("default_slot",	default_slot)
+	savefile.set_entry("lastnews",		lastnews)
+	savefile.set_entry("lastlorenews",	lastlorenews)
+
 /datum/preferences/proc/load_preferences()
 	if(!savefile)
 		stack_trace("Attempted to load the preferences of [client] without a savefile; did you forget to call load_savefile?")
@@ -122,6 +148,9 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 		return FALSE
 
 	apply_all_client_preferences()
+
+	load_early_prefs()
+	sanitize_early_prefs()
 
 	//try to fix any outdated data if necessary
 	if(needs_update >= 0)
@@ -177,6 +206,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 		if(preference_type in value_cache)
 			write_preference(preference, preference.pref_serialize(value_cache[preference_type]))
 
+	save_early_prefs()
 	savefile.save()
 
 	return TRUE
@@ -244,9 +274,23 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 		return FALSE
 
 	var/tree_key = "character[default_slot]"
+	var/first_save = FALSE
 	if(!(tree_key in savefile.get_entry()))
 		savefile.set_entry(tree_key, list())
+		first_save = TRUE
 	var/save_data = savefile.get_entry(tree_key)
+
+	for(var/datum/preference/preference as anything in get_preferences_in_priority_order())
+		if(preference.savefile_identifier != PREFERENCE_CHARACTER && !first_save)
+			continue
+
+		if(!(preference.type in recently_updated_keys) && !first_save)
+			continue
+
+		recently_updated_keys -= preference.type
+
+		if(preference.type in value_cache)
+			write_preference(preference, preference.pref_serialize(value_cache[preference.type]))
 
 	save_data["version"] = SAVEFILE_VERSION_MAX //load_character will sanitize any bad data, so assume up-to-date.
 	player_setup.save_character(save_data)

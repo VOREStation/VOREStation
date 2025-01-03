@@ -8,15 +8,6 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	var/list/bgstate_options = list("steel", "000", "midgrey", "FFF", "white", "techmaint", "desert", "grass", "snow")
 
 	var/ear_style		// Type of selected ear style
-	var/r_ears = 30		// Ear color.
-	var/g_ears = 30		// Ear color
-	var/b_ears = 30		// Ear color
-	var/r_ears2 = 30	// Ear extra color.
-	var/g_ears2 = 30	// Ear extra color
-	var/b_ears2 = 30	// Ear extra color
-	var/r_ears3 = 30	// Ear tertiary color.
-	var/g_ears3 = 30	// Ear tertiary color
-	var/b_ears3 = 30	// Ear tertiary color
 
 	/// The typepath of the character's selected secondary ears.
 	var/ear_secondary_style
@@ -27,26 +18,8 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	var/list/ear_secondary_colors = list()
 
 	var/tail_style		// Type of selected tail style
-	var/r_tail = 30		// Tail/Taur color
-	var/g_tail = 30		// Tail/Taur color
-	var/b_tail = 30		// Tail/Taur color
-	var/r_tail2 = 30 	// For extra overlay.
-	var/g_tail2 = 30	// For extra overlay.
-	var/b_tail2 = 30	// For extra overlay.
-	var/r_tail3 = 30 	// For tertiary overlay.
-	var/g_tail3 = 30	// For tertiary overlay.
-	var/b_tail3 = 30	// For tertiary overlay.
 
 	var/wing_style		// Type of selected wing style
-	var/r_wing = 30		// Wing color
-	var/g_wing = 30		// Wing color
-	var/b_wing = 30		// Wing color
-	var/r_wing2 = 30	// Wing extra color
-	var/g_wing2 = 30	// Wing extra color
-	var/b_wing2 = 30	// Wing extra color
-	var/r_wing3 = 30	// Wing tertiary color
-	var/g_wing3 = 30	// Wing tertiary color
-	var/b_wing3 = 30	// Wing tertiary color
 
 	var/datum/browser/markings_subwindow = null
 
@@ -105,25 +78,10 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 
 /datum/category_item/player_setup_item/general/body/load_character(list/save_data)
 	pref.species			= save_data["species"]
-	pref.r_hair				= save_data["hair_red"]
-	pref.g_hair				= save_data["hair_green"]
-	pref.b_hair				= save_data["hair_blue"]
-	pref.r_facial			= save_data["facial_red"]
-	pref.r_grad				= save_data["grad_red"]
-	pref.g_grad				= save_data["grad_green"]
-	pref.b_grad				= save_data["grad_blue"]
-	pref.g_facial			= save_data["facial_green"]
-	pref.b_facial			= save_data["facial_blue"]
 	pref.s_tone				= save_data["skin_tone"]
-	pref.r_skin				= save_data["skin_red"]
-	pref.g_skin				= save_data["skin_green"]
-	pref.b_skin				= save_data["skin_blue"]
 	pref.h_style			= save_data["hair_style_name"]
 	pref.f_style			= save_data["facial_style_name"]
 	pref.grad_style			= save_data["grad_style_name"]
-	pref.r_eyes				= save_data["eyes_red"]
-	pref.g_eyes				= save_data["eyes_green"]
-	pref.b_eyes				= save_data["eyes_blue"]
 	pref.b_type				= save_data["b_type"]
 	pref.disabilities		= save_data["disabilities"]
 	pref.organ_data			= check_list_copy(save_data["organ_data"])
@@ -134,67 +92,22 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 		for(var/j in pref.body_markings[i])
 			pref.body_markings[i][j] = check_list_copy(pref.body_markings[i][j])
 	pref.synth_color		= save_data["synth_color"]
-	pref.r_synth			= save_data["synth_red"]
-	pref.g_synth			= save_data["synth_green"]
-	pref.b_synth			= save_data["synth_blue"]
 	pref.synth_markings		= save_data["synth_markings"]
 	pref.bgstate			= save_data["bgstate"]
 	pref.body_descriptors	= check_list_copy(save_data["body_descriptors"])
 	pref.ear_style			= save_data["ear_style"]
-	pref.r_ears				= save_data["r_ears"]
-	pref.g_ears				= save_data["g_ears"]
-	pref.b_ears				= save_data["b_ears"]
-	pref.r_ears2			= save_data["r_ears2"]
-	pref.g_ears2			= save_data["g_ears2"]
-	pref.b_ears2			= save_data["b_ears2"]
-	pref.r_ears3			= save_data["r_ears3"]
-	pref.g_ears3			= save_data["g_ears3"]
-	pref.b_ears3			= save_data["b_ears3"]
 	pref.ear_secondary_style = save_data["ear_secondary_style"]
 	pref.ear_secondary_colors = save_data["ear_secondary_colors"]
 	pref.tail_style			= save_data["tail_style"]
-	pref.r_tail				= save_data["r_tail"]
-	pref.g_tail				= save_data["g_tail"]
-	pref.b_tail				= save_data["b_tail"]
-	pref.r_tail2			= save_data["r_tail2"]
-	pref.g_tail2			= save_data["g_tail2"]
-	pref.b_tail2			= save_data["b_tail2"]
-	pref.r_tail3			= save_data["r_tail3"]
-	pref.g_tail3			= save_data["g_tail3"]
-	pref.b_tail3			= save_data["b_tail3"]
 	pref.wing_style			= save_data["wing_style"]
-	pref.r_wing				= save_data["r_wing"]
-	pref.g_wing				= save_data["g_wing"]
-	pref.b_wing				= save_data["b_wing"]
-	pref.r_wing2			= save_data["r_wing2"]
-	pref.g_wing2			= save_data["g_wing2"]
-	pref.b_wing2			= save_data["b_wing2"]
-	pref.r_wing3			= save_data["r_wing3"]
-	pref.g_wing3			= save_data["g_wing3"]
-	pref.b_wing3			= save_data["b_wing3"]
 	pref.digitigrade 		= save_data["digitigrade"]
 
 /datum/category_item/player_setup_item/general/body/save_character(list/save_data)
 	save_data["species"]			= pref.species
-	save_data["hair_red"]			= pref.r_hair
-	save_data["hair_green"]			= pref.g_hair
-	save_data["hair_blue"]			= pref.b_hair
-	save_data["grad_red"]			= pref.r_grad
-	save_data["grad_green"]			= pref.g_grad
-	save_data["grad_blue"]			= pref.b_grad
-	save_data["facial_red"]			= pref.r_facial
-	save_data["facial_green"]		= pref.g_facial
-	save_data["facial_blue"]		= pref.b_facial
 	save_data["skin_tone"]			= pref.s_tone
-	save_data["skin_red"]			= pref.r_skin
-	save_data["skin_green"]			= pref.g_skin
-	save_data["skin_blue"]			= pref.b_skin
 	save_data["hair_style_name"]	= pref.h_style
 	save_data["facial_style_name"]	= pref.f_style
 	save_data["grad_style_name"]	= pref.grad_style
-	save_data["eyes_red"]			= pref.r_eyes
-	save_data["eyes_green"]			= pref.g_eyes
-	save_data["eyes_blue"]			= pref.b_eyes
 	save_data["b_type"]				= pref.b_type
 	save_data["disabilities"]		= pref.disabilities
 	save_data["organ_data"]			= check_list_copy(pref.organ_data)
@@ -206,68 +119,23 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 			body_markings[i][j] = check_list_copy(body_markings[i][j])
 	save_data["body_markings"]		= body_markings
 	save_data["synth_color"]		= pref.synth_color
-	save_data["synth_red"]			= pref.r_synth
-	save_data["synth_green"]		= pref.g_synth
-	save_data["synth_blue"]			= pref.b_synth
 	save_data["synth_markings"]		= pref.synth_markings
 	save_data["bgstate"]			= pref.bgstate
 	save_data["body_descriptors"]	= check_list_copy(pref.body_descriptors)
 	save_data["ear_style"]			= pref.ear_style
-	save_data["r_ears"]				= pref.r_ears
-	save_data["g_ears"]				= pref.g_ears
-	save_data["b_ears"]				= pref.b_ears
-	save_data["r_ears2"]			= pref.r_ears2
-	save_data["g_ears2"]			= pref.g_ears2
-	save_data["b_ears2"]			= pref.b_ears2
-	save_data["r_ears3"]			= pref.r_ears3
-	save_data["g_ears3"]			= pref.g_ears3
-	save_data["b_ears3"]			= pref.b_ears3
 	save_data["ear_secondary_style"] = pref.ear_secondary_style
 	save_data["ear_secondary_colors"] = pref.ear_secondary_colors
 	save_data["tail_style"]			= pref.tail_style
-	save_data["r_tail"]				= pref.r_tail
-	save_data["g_tail"]				= pref.g_tail
-	save_data["b_tail"]				= pref.b_tail
-	save_data["r_tail2"]			= pref.r_tail2
-	save_data["g_tail2"]			= pref.g_tail2
-	save_data["b_tail2"]			= pref.b_tail2
-	save_data["r_tail3"]			= pref.r_tail3
-	save_data["g_tail3"]			= pref.g_tail3
-	save_data["b_tail3"]			= pref.b_tail3
 	save_data["wing_style"]			= pref.wing_style
-	save_data["r_wing"]				= pref.r_wing
-	save_data["g_wing"]				= pref.g_wing
-	save_data["b_wing"]				= pref.b_wing
-	save_data["r_wing2"]			= pref.r_wing2
-	save_data["g_wing2"]			= pref.g_wing2
-	save_data["b_wing2"]			= pref.b_wing2
-	save_data["r_wing3"]			= pref.r_wing3
-	save_data["g_wing3"]			= pref.g_wing3
-	save_data["b_wing3"]			= pref.b_wing3
 	save_data["digitigrade"]		= pref.digitigrade
 
 /datum/category_item/player_setup_item/general/body/sanitize_character()
 	if(!pref.species || !(pref.species in GLOB.playable_species))
 		pref.species = SPECIES_HUMAN
-	pref.r_hair			= sanitize_integer(pref.r_hair, 0, 255, initial(pref.r_hair))
-	pref.g_hair			= sanitize_integer(pref.g_hair, 0, 255, initial(pref.g_hair))
-	pref.b_hair			= sanitize_integer(pref.b_hair, 0, 255, initial(pref.b_hair))
-	pref.r_grad			= sanitize_integer(pref.r_grad, 0, 255, initial(pref.r_grad))
-	pref.g_grad			= sanitize_integer(pref.g_grad, 0, 255, initial(pref.g_grad))
-	pref.b_grad			= sanitize_integer(pref.b_grad, 0, 255, initial(pref.b_grad))
-	pref.r_facial		= sanitize_integer(pref.r_facial, 0, 255, initial(pref.r_facial))
-	pref.g_facial		= sanitize_integer(pref.g_facial, 0, 255, initial(pref.g_facial))
-	pref.b_facial		= sanitize_integer(pref.b_facial, 0, 255, initial(pref.b_facial))
 	pref.s_tone			= sanitize_integer(pref.s_tone, -185, 34, initial(pref.s_tone))
-	pref.r_skin			= sanitize_integer(pref.r_skin, 0, 255, initial(pref.r_skin))
-	pref.g_skin			= sanitize_integer(pref.g_skin, 0, 255, initial(pref.g_skin))
-	pref.b_skin			= sanitize_integer(pref.b_skin, 0, 255, initial(pref.b_skin))
 	pref.h_style		= sanitize_inlist(pref.h_style, hair_styles_list, initial(pref.h_style))
 	pref.f_style		= sanitize_inlist(pref.f_style, facial_hair_styles_list, initial(pref.f_style))
 	pref.grad_style		= sanitize_inlist(pref.grad_style, GLOB.hair_gradients, initial(pref.grad_style))
-	pref.r_eyes			= sanitize_integer(pref.r_eyes, 0, 255, initial(pref.r_eyes))
-	pref.g_eyes			= sanitize_integer(pref.g_eyes, 0, 255, initial(pref.g_eyes))
-	pref.b_eyes			= sanitize_integer(pref.b_eyes, 0, 255, initial(pref.b_eyes))
 	pref.b_type			= sanitize_text(pref.b_type, initial(pref.b_type))
 
 	pref.disabilities	= sanitize_integer(pref.disabilities, 0, 65535, initial(pref.disabilities))
@@ -282,16 +150,6 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	if(!pref.bgstate || !(pref.bgstate in pref.bgstate_options))
 		pref.bgstate = "000"
 
-	pref.r_ears		= sanitize_integer(pref.r_ears, 0, 255, initial(pref.r_ears))
-	pref.g_ears		= sanitize_integer(pref.g_ears, 0, 255, initial(pref.g_ears))
-	pref.b_ears		= sanitize_integer(pref.b_ears, 0, 255, initial(pref.b_ears))
-	pref.r_ears2	= sanitize_integer(pref.r_ears2, 0, 255, initial(pref.r_ears2))
-	pref.g_ears2	= sanitize_integer(pref.g_ears2, 0, 255, initial(pref.g_ears2))
-	pref.b_ears2	= sanitize_integer(pref.b_ears2, 0, 255, initial(pref.b_ears2))
-	pref.r_ears3	= sanitize_integer(pref.r_ears3, 0, 255, initial(pref.r_ears3))
-	pref.g_ears3	= sanitize_integer(pref.g_ears3, 0, 255, initial(pref.g_ears3))
-	pref.b_ears3	= sanitize_integer(pref.b_ears3, 0, 255, initial(pref.b_ears3))
-
 	// sanitize secondary ears
 	pref.ear_secondary_colors = SANITIZE_LIST(pref.ear_secondary_colors)
 	if(length(pref.ear_secondary_colors) > length(GLOB.fancy_sprite_accessory_color_channel_names))
@@ -299,24 +157,6 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	for(var/i in 1 to length(pref.ear_secondary_colors))
 		pref.ear_secondary_colors[i] = sanitize_hexcolor(pref.ear_secondary_colors[i], "#ffffff")
 
-	pref.r_tail		= sanitize_integer(pref.r_tail, 0, 255, initial(pref.r_tail))
-	pref.g_tail		= sanitize_integer(pref.g_tail, 0, 255, initial(pref.g_tail))
-	pref.b_tail		= sanitize_integer(pref.b_tail, 0, 255, initial(pref.b_tail))
-	pref.r_tail2	= sanitize_integer(pref.r_tail2, 0, 255, initial(pref.r_tail2))
-	pref.g_tail2	= sanitize_integer(pref.g_tail2, 0, 255, initial(pref.g_tail2))
-	pref.b_tail2	= sanitize_integer(pref.b_tail2, 0, 255, initial(pref.b_tail2))
-	pref.r_tail3	= sanitize_integer(pref.r_tail3, 0, 255, initial(pref.r_tail3))
-	pref.g_tail3	= sanitize_integer(pref.g_tail3, 0, 255, initial(pref.g_tail3))
-	pref.b_tail3	= sanitize_integer(pref.b_tail3, 0, 255, initial(pref.b_tail3))
-	pref.r_wing		= sanitize_integer(pref.r_wing, 0, 255, initial(pref.r_wing))
-	pref.g_wing		= sanitize_integer(pref.g_wing, 0, 255, initial(pref.g_wing))
-	pref.b_wing		= sanitize_integer(pref.b_wing, 0, 255, initial(pref.b_wing))
-	pref.r_wing2	= sanitize_integer(pref.r_wing2, 0, 255, initial(pref.r_wing2))
-	pref.g_wing2	= sanitize_integer(pref.g_wing2, 0, 255, initial(pref.g_wing2))
-	pref.b_wing2	= sanitize_integer(pref.b_wing2, 0, 255, initial(pref.b_wing2))
-	pref.r_wing3	= sanitize_integer(pref.r_wing3, 0, 255, initial(pref.r_wing3))
-	pref.g_wing3	= sanitize_integer(pref.g_wing3, 0, 255, initial(pref.g_wing3))
-	pref.b_wing3	= sanitize_integer(pref.b_wing3, 0, 255, initial(pref.b_wing3))
 	pref.digitigrade	= sanitize_integer(pref.digitigrade, 0, 1, initial(pref.digitigrade))
 
 	pref.sanitize_body_styles()
@@ -324,32 +164,14 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 // Moved from /datum/preferences/proc/copy_to()
 /datum/category_item/player_setup_item/general/body/copy_to_mob(var/mob/living/carbon/human/character)
 	// Copy basic values
-	character.r_eyes	= pref.r_eyes
-	character.g_eyes	= pref.g_eyes
-	character.b_eyes	= pref.b_eyes
 	character.h_style	= pref.h_style
-	character.r_hair	= pref.r_hair
-	character.g_hair	= pref.g_hair
-	character.b_hair	= pref.b_hair
-	character.r_grad	= pref.r_grad
-	character.g_grad	= pref.g_grad
-	character.b_grad	= pref.b_grad
 	character.f_style	= pref.f_style
-	character.r_facial	= pref.r_facial
-	character.g_facial	= pref.g_facial
-	character.b_facial	= pref.b_facial
-	character.r_skin	= pref.r_skin
-	character.g_skin	= pref.g_skin
-	character.b_skin	= pref.b_skin
 	character.s_tone	= pref.s_tone
 	character.h_style	= pref.h_style
 	character.f_style	= pref.f_style
 	character.grad_style= pref.grad_style
 	character.b_type	= pref.b_type
 	character.synth_color = pref.synth_color
-	character.r_synth	= pref.r_synth
-	character.g_synth	= pref.g_synth
-	character.b_synth	= pref.b_synth
 	character.synth_markings = pref.synth_markings
 	if(character.species.digi_allowed)
 		character.digitigrade = pref.digitigrade
@@ -363,15 +185,6 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 
 	var/list/ear_styles = pref.get_available_styles(global.ear_styles_list)
 	character.ear_style =  ear_styles[pref.ear_style]
-	character.r_ears =     pref.r_ears
-	character.b_ears =     pref.b_ears
-	character.g_ears =     pref.g_ears
-	character.r_ears2 =    pref.r_ears2
-	character.b_ears2 =    pref.b_ears2
-	character.g_ears2 =    pref.g_ears2
-	character.r_ears3 =    pref.r_ears3
-	character.b_ears3 =    pref.b_ears3
-	character.g_ears3 =    pref.g_ears3
 
 	// apply secondary ears; sanitize again to prevent runtimes in rendering
 	character.ear_secondary_style = ear_styles[pref.ear_secondary_style]
@@ -379,27 +192,9 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 
 	var/list/tail_styles = pref.get_available_styles(global.tail_styles_list)
 	character.tail_style = tail_styles[pref.tail_style]
-	character.r_tail =     pref.r_tail
-	character.b_tail =     pref.b_tail
-	character.g_tail =     pref.g_tail
-	character.r_tail2 =    pref.r_tail2
-	character.b_tail2 =    pref.b_tail2
-	character.g_tail2 =    pref.g_tail2
-	character.r_tail3 =    pref.r_tail3
-	character.b_tail3 =    pref.b_tail3
-	character.g_tail3 =    pref.g_tail3
 
 	var/list/wing_styles = pref.get_available_styles(global.wing_styles_list)
 	character.wing_style = wing_styles[pref.wing_style]
-	character.r_wing =     pref.r_wing
-	character.b_wing =     pref.b_wing
-	character.g_wing =     pref.g_wing
-	character.r_wing2 =    pref.r_wing2
-	character.b_wing2 =    pref.b_wing2
-	character.g_wing2 =    pref.g_wing2
-	character.r_wing3 =    pref.r_wing3
-	character.b_wing3 =    pref.b_wing3
-	character.g_wing3 =    pref.g_wing3
 
 	character.set_gender(pref.biological_gender)
 
@@ -613,25 +408,25 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 
 	. += span_bold("Hair") + "<br>"
 	if(has_flag(mob_species, HAS_HAIR_COLOR))
-		. += "<a href='byond://?src=\ref[src];hair_color=1'>Change Color</a> [color_square(pref.r_hair, pref.g_hair, pref.b_hair)] "
+		. += "<a href='byond://?src=\ref[src];hair_color=1'>Change Color</a> [color_square(hex = pref.read_preference(/datum/preference/color/human/hair_color))] "
 	. += " Style: <a href='byond://?src=\ref[src];hair_style_left=[pref.h_style]'><</a> <a href='byond://?src=\ref[src];hair_style_right=[pref.h_style]''>></a> <a href='byond://?src=\ref[src];hair_style=1'>[pref.h_style]</a><br>" //The <</a> & ></a> in this line is correct-- those extra characters are the arrows you click to switch between styles.
 
 	. += span_bold("Gradient") + "<br>"
-	. += "<a href='byond://?src=\ref[src];grad_color=1'>Change Color</a> [color_square(pref.r_grad, pref.g_grad, pref.b_grad)] "
+	. += "<a href='byond://?src=\ref[src];grad_color=1'>Change Color</a> [color_square(hex = pref.read_preference(/datum/preference/color/human/grad_color))] "
 	. += " Style: <a href='byond://?src=\ref[src];grad_style_left=[pref.grad_style]'><</a> <a href='byond://?src=\ref[src];grad_style_right=[pref.grad_style]''>></a> <a href='byond://?src=\ref[src];grad_style=1'>[pref.grad_style]</a><br>"
 
 	. += "<br><b>Facial</b><br>"
 	if(has_flag(mob_species, HAS_HAIR_COLOR))
-		. += "<a href='byond://?src=\ref[src];facial_color=1'>Change Color</a> [color_square(pref.r_facial, pref.g_facial, pref.b_facial)] "
+		. += "<a href='byond://?src=\ref[src];facial_color=1'>Change Color</a> [color_square(hex = pref.read_preference(/datum/preference/color/human/facial_color))] "
 	. += " Style: <a href='byond://?src=\ref[src];facial_style_left=[pref.f_style]'><</a> <a href='byond://?src=\ref[src];facial_style_right=[pref.f_style]''>></a> <a href='byond://?src=\ref[src];facial_style=1'>[pref.f_style]</a><br>" //Same as above with the extra > & < characters
 
 	if(has_flag(mob_species, HAS_EYE_COLOR))
 		. += "<br><b>Eyes</b><br>"
-		. += "<a href='byond://?src=\ref[src];eye_color=1'>Change Color</a> [color_square(pref.r_eyes, pref.g_eyes, pref.b_eyes)]<br>"
+		. += "<a href='byond://?src=\ref[src];eye_color=1'>Change Color</a> [color_square(hex = pref.read_preference(/datum/preference/color/human/eyes_color))]<br>"
 
 	if(has_flag(mob_species, HAS_SKIN_COLOR))
 		. += "<br><b>Body Color</b><br>"
-		. += "<a href='byond://?src=\ref[src];skin_color=1'>Change Color</a> [color_square(pref.r_skin, pref.g_skin, pref.b_skin)]<br>"
+		. += "<a href='byond://?src=\ref[src];skin_color=1'>Change Color</a> [color_square(hex = pref.read_preference(/datum/preference/color/human/skin_color))]<br>"
 
 	if(mob_species.digi_allowed)
 		. += "<br><b>Digitigrade?:</b> <a href='byond://?src=\ref[src];digitigrade=1'><b>[pref.digitigrade ? "Yes" : "No"]</b></a><br>"
@@ -644,11 +439,11 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	if(istype(ear))
 		. += " Style: <a href='byond://?src=\ref[src];ear_style=1'>[ear.name]</a><br>"
 		if(ear.do_colouration)
-			. += "<a href='byond://?src=\ref[src];ear_color=1'>Change Color</a> [color_square(pref.r_ears, pref.g_ears, pref.b_ears)]<br>"
+			. += "<a href='byond://?src=\ref[src];ear_color=1'>Change Color</a> [color_square(hex = pref.read_preference(/datum/preference/color/human/ears_color1))]<br>"
 		if(ear.extra_overlay)
-			. += "<a href='byond://?src=\ref[src];ear_color2=1'>Change Secondary Color</a> [color_square(pref.r_ears2, pref.g_ears2, pref.b_ears2)]<br>"
+			. += "<a href='byond://?src=\ref[src];ear_color2=1'>Change Secondary Color</a> [color_square(hex = pref.read_preference(/datum/preference/color/human/ears_color2))]<br>"
 		if(ear.extra_overlay2)
-			. += "<a href='byond://?src=\ref[src];ear_color3=1'>Change Tertiary Color</a> [color_square(pref.r_ears3, pref.g_ears3, pref.b_ears3)]<br>"
+			. += "<a href='byond://?src=\ref[src];ear_color3=1'>Change Tertiary Color</a> [color_square(hex = pref.read_preference(/datum/preference/color/human/ears_color3))]<br>"
 	else
 		. += " Style: <a href='byond://?src=\ref[src];ear_style=1'>Select</a><br>"
 
@@ -667,11 +462,11 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	if(istype(tail))
 		. += " Style: <a href='byond://?src=\ref[src];tail_style=1'>[tail.name]</a><br>"
 		if(tail.do_colouration)
-			. += "<a href='byond://?src=\ref[src];tail_color=1'>Change Color</a> [color_square(pref.r_tail, pref.g_tail, pref.b_tail)]<br>"
+			. += "<a href='byond://?src=\ref[src];tail_color=1'>Change Color</a> [color_square(hex = pref.read_preference(/datum/preference/color/human/tail_color1))]<br>"
 		if(tail.extra_overlay)
-			. += "<a href='byond://?src=\ref[src];tail_color2=1'>Change Secondary Color</a> [color_square(pref.r_tail2, pref.g_tail2, pref.b_tail2)]<br>"
+			. += "<a href='byond://?src=\ref[src];tail_color2=1'>Change Secondary Color</a> [color_square(hex = pref.read_preference(/datum/preference/color/human/tail_color2))]<br>"
 		if(tail.extra_overlay2)
-			. += "<a href='byond://?src=\ref[src];tail_color3=1'>Change Tertiary Color</a> [color_square(pref.r_tail3, pref.g_tail3, pref.b_tail3)]<br>"
+			. += "<a href='byond://?src=\ref[src];tail_color3=1'>Change Tertiary Color</a> [color_square(hex = pref.read_preference(/datum/preference/color/human/tail_color3))]<br>"
 	else
 		. += " Style: <a href='byond://?src=\ref[src];tail_style=1'>Select</a><br>"
 
@@ -681,11 +476,11 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	if(istype(wings))
 		. += " Style: <a href='byond://?src=\ref[src];wing_style=1'>[wings.name]</a><br>"
 		if(wings.do_colouration)
-			. += "<a href='byond://?src=\ref[src];wing_color=1'>Change Color</a> [color_square(pref.r_wing, pref.g_wing, pref.b_wing)]<br>"
+			. += "<a href='byond://?src=\ref[src];wing_color=1'>Change Color</a> [color_square(hex = pref.read_preference(/datum/preference/color/human/wing_color1))]<br>"
 		if(wings.extra_overlay)
-			. += "<a href='byond://?src=\ref[src];wing_color2=1'>Change Secondary Color</a> [color_square(pref.r_wing2, pref.g_wing2, pref.b_wing2)]<br>"
+			. += "<a href='byond://?src=\ref[src];wing_color2=1'>Change Secondary Color</a> [color_square(hex = pref.read_preference(/datum/preference/color/human/wing_color2))]<br>"
 		if(wings.extra_overlay2)
-			. += "<a href='byond://?src=\ref[src];wing_color3=1'>Change Secondary Color</a> [color_square(pref.r_wing3, pref.g_wing3, pref.b_wing3)]<br>"
+			. += "<a href='byond://?src=\ref[src];wing_color3=1'>Change Secondary Color</a> [color_square(hex = pref.read_preference(/datum/preference/color/human/wing_color3))]<br>"
 	else
 		. += " Style: <a href='byond://?src=\ref[src];wing_style=1'>Select</a><br>"
 
@@ -699,7 +494,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	. += span_bold("Allow Synth markings:") + " <a href='byond://?src=\ref[src];synth_markings=1'><b>[pref.synth_markings ? "Yes" : "No"]</b></a><br>"
 	. += span_bold("Allow Synth color:") + " <a href='byond://?src=\ref[src];synth_color=1'><b>[pref.synth_color ? "Yes" : "No"]</b></a><br>"
 	if(pref.synth_color)
-		. += "<a href='byond://?src=\ref[src];synth2_color=1'>Change Color</a> [color_square(pref.r_synth, pref.g_synth, pref.b_synth)]"
+		. += "<a href='byond://?src=\ref[src];synth2_color=1'>Change Color</a> [color_square(hex = pref.read_preference(/datum/preference/color/human/synth_color))]"
 
 	. = jointext(.,null)
 
@@ -780,9 +575,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 				pref.f_style = facial_hair_styles_list["Shaved"]
 
 			//reset hair colour and skin colour
-			pref.r_hair = 0//hex2num(copytext(new_hair, 2, 4))
-			pref.g_hair = 0//hex2num(copytext(new_hair, 4, 6))
-			pref.b_hair = 0//hex2num(copytext(new_hair, 6, 8))
+			pref.update_preference_by_type(/datum/preference/color/human/hair_color, "#000000")
 			pref.s_tone = -75
 
 			reset_limbs() // Safety for species with incompatible manufacturers; easier than trying to do it case by case.
@@ -792,7 +585,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 
 			var/min_age = get_min_age()
 			var/max_age = get_max_age()
-			pref.age = max(min(pref.age, max_age), min_age)
+			pref.update_preference_by_type(/datum/preference/numeric/human/age, max(min(pref.read_preference(/datum/preference/numeric/human/age), max_age), min_age))
 			pref.blood_color = setting_species.blood_color // VOREstation edit
 
 			return TOPIC_REFRESH_UPDATE_PREVIEW
@@ -800,21 +593,17 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	else if(href_list["hair_color"])
 		if(!has_flag(mob_species, HAS_HAIR_COLOR))
 			return TOPIC_NOACTION
-		var/new_hair = input(user, "Choose your character's hair colour:", "Character Preference", rgb(pref.r_hair, pref.g_hair, pref.b_hair)) as color|null
+		var/new_hair = input(user, "Choose your character's hair colour:", "Character Preference", pref.read_preference(/datum/preference/color/human/hair_color)) as color|null
 		if(new_hair && has_flag(mob_species, HAS_HAIR_COLOR) && CanUseTopic(user))
-			pref.r_hair = hex2num(copytext(new_hair, 2, 4))
-			pref.g_hair = hex2num(copytext(new_hair, 4, 6))
-			pref.b_hair = hex2num(copytext(new_hair, 6, 8))
+			pref.update_preference_by_type(/datum/preference/color/human/hair_color, new_hair)
 			return TOPIC_REFRESH_UPDATE_PREVIEW
 
 	else if(href_list["grad_color"])
 		if(!has_flag(mob_species, HAS_HAIR_COLOR))
 			return TOPIC_NOACTION
-		var/new_grad = input(user, "Choose your character's secondary hair color:", "Character Preference", rgb(pref.r_grad, pref.g_grad, pref.b_grad)) as color|null
+		var/new_grad = input(user, "Choose your character's secondary hair color:", "Character Preference", pref.read_preference(/datum/preference/color/human/grad_color)) as color|null
 		if(new_grad && has_flag(mob_species, HAS_HAIR_COLOR) && CanUseTopic(user))
-			pref.r_grad = hex2num(copytext(new_grad, 2, 4))
-			pref.g_grad = hex2num(copytext(new_grad, 4, 6))
-			pref.b_grad = hex2num(copytext(new_grad, 6, 8))
+			pref.update_preference_by_type(/datum/preference/color/human/grad_color, new_grad)
 			return TOPIC_REFRESH_UPDATE_PREVIEW
 
 	else if(href_list["hair_style"])
@@ -858,11 +647,9 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	else if(href_list["facial_color"])
 		if(!has_flag(mob_species, HAS_HAIR_COLOR))
 			return TOPIC_NOACTION
-		var/new_facial = input(user, "Choose your character's facial-hair colour:", "Character Preference", rgb(pref.r_facial, pref.g_facial, pref.b_facial)) as color|null
+		var/new_facial = input(user, "Choose your character's facial-hair colour:", "Character Preference", pref.read_preference(/datum/preference/color/human/facial_color)) as color|null
 		if(new_facial && has_flag(mob_species, HAS_HAIR_COLOR) && CanUseTopic(user))
-			pref.r_facial = hex2num(copytext(new_facial, 2, 4))
-			pref.g_facial = hex2num(copytext(new_facial, 4, 6))
-			pref.b_facial = hex2num(copytext(new_facial, 6, 8))
+			pref.update_preference_by_type(/datum/preference/color/human/facial_color, new_facial)
 			return TOPIC_REFRESH_UPDATE_PREVIEW
 
 	if(href_list["digitigrade"])
@@ -873,11 +660,9 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	else if(href_list["eye_color"])
 		if(!has_flag(mob_species, HAS_EYE_COLOR))
 			return TOPIC_NOACTION
-		var/new_eyes = input(user, "Choose your character's eye colour:", "Character Preference", rgb(pref.r_eyes, pref.g_eyes, pref.b_eyes)) as color|null
+		var/new_eyes = input(user, "Choose your character's eye colour:", "Character Preference", pref.read_preference(/datum/preference/color/human/eyes_color)) as color|null
 		if(new_eyes && has_flag(mob_species, HAS_EYE_COLOR) && CanUseTopic(user))
-			pref.r_eyes = hex2num(copytext(new_eyes, 2, 4))
-			pref.g_eyes = hex2num(copytext(new_eyes, 4, 6))
-			pref.b_eyes = hex2num(copytext(new_eyes, 6, 8))
+			pref.update_preference_by_type(/datum/preference/color/human/eyes_color, new_eyes)
 			return TOPIC_REFRESH_UPDATE_PREVIEW
 
 	else if(href_list["skin_tone"])
@@ -891,11 +676,9 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	else if(href_list["skin_color"])
 		if(!has_flag(mob_species, HAS_SKIN_COLOR))
 			return TOPIC_NOACTION
-		var/new_skin = input(user, "Choose your character's skin colour: ", "Character Preference", rgb(pref.r_skin, pref.g_skin, pref.b_skin)) as color|null
+		var/new_skin = input(user, "Choose your character's skin colour: ", "Character Preference", pref.read_preference(/datum/preference/color/human/skin_color)) as color|null
 		if(new_skin && has_flag(mob_species, HAS_SKIN_COLOR) && CanUseTopic(user))
-			pref.r_skin = hex2num(copytext(new_skin, 2, 4))
-			pref.g_skin = hex2num(copytext(new_skin, 4, 6))
-			pref.b_skin = hex2num(copytext(new_skin, 6, 8))
+			pref.update_preference_by_type(/datum/preference/color/human/skin_color, new_skin)
 			return TOPIC_REFRESH_UPDATE_PREVIEW
 
 	else if(href_list["facial_style"])
@@ -1253,11 +1036,9 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 		return TOPIC_REFRESH_UPDATE_PREVIEW
 
 	else if(href_list["synth2_color"])
-		var/new_color = input(user, "Choose your character's synth colour: ", "Character Preference", rgb(pref.r_synth, pref.g_synth, pref.b_synth)) as color|null
+		var/new_color = input(user, "Choose your character's synth colour: ", "Character Preference", pref.read_preference(/datum/preference/color/human/synth_color)) as color|null
 		if(new_color && CanUseTopic(user))
-			pref.r_synth = hex2num(copytext(new_color, 2, 4))
-			pref.g_synth = hex2num(copytext(new_color, 4, 6))
-			pref.b_synth = hex2num(copytext(new_color, 6, 8))
+			pref.update_preference_by_type(/datum/preference/color/human/synth_color, new_color)
 			return TOPIC_REFRESH_UPDATE_PREVIEW
 
 	else if(href_list["synth_markings"])
@@ -1277,29 +1058,23 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 
 	else if(href_list["ear_color"])
 		var/new_earc = input(user, "Choose your character's ear colour:", "Character Preference",
-			rgb(pref.r_ears, pref.g_ears, pref.b_ears)) as color|null
+			pref.read_preference(/datum/preference/color/human/ears_color1)) as color|null
 		if(new_earc)
-			pref.r_ears = hex2num(copytext(new_earc, 2, 4))
-			pref.g_ears = hex2num(copytext(new_earc, 4, 6))
-			pref.b_ears = hex2num(copytext(new_earc, 6, 8))
+			pref.update_preference_by_type(/datum/preference/color/human/ears_color1, new_earc)
 			return TOPIC_REFRESH_UPDATE_PREVIEW
 
 	else if(href_list["ear_color2"])
 		var/new_earc2 = input(user, "Choose your character's ear colour:", "Character Preference",
-			rgb(pref.r_ears2, pref.g_ears2, pref.b_ears2)) as color|null
+			pref.read_preference(/datum/preference/color/human/ears_color2)) as color|null
 		if(new_earc2)
-			pref.r_ears2 = hex2num(copytext(new_earc2, 2, 4))
-			pref.g_ears2 = hex2num(copytext(new_earc2, 4, 6))
-			pref.b_ears2 = hex2num(copytext(new_earc2, 6, 8))
+			pref.update_preference_by_type(/datum/preference/color/human/ears_color2, new_earc2)
 			return TOPIC_REFRESH_UPDATE_PREVIEW
 
 	else if(href_list["ear_color3"])
 		var/new_earc3 = input(user, "Choose your character's tertiary ear colour:", "Character Preference",
-			rgb(pref.r_ears3, pref.g_ears3, pref.b_ears3)) as color|null
+			pref.read_preference(/datum/preference/color/human/ears_color3)) as color|null
 		if(new_earc3)
-			pref.r_ears3 = hex2num(copytext(new_earc3, 2, 4))
-			pref.g_ears3 = hex2num(copytext(new_earc3, 4, 6))
-			pref.b_ears3 = hex2num(copytext(new_earc3, 6, 8))
+			pref.update_preference_by_type(/datum/preference/color/human/ears_color3, new_earc3)
 			return TOPIC_REFRESH_UPDATE_PREVIEW
 
 	else if(href_list["ear_secondary_style"])
@@ -1336,29 +1111,23 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 
 	else if(href_list["tail_color"])
 		var/new_tailc = input(user, "Choose your character's tail/taur colour:", "Character Preference",
-			rgb(pref.r_tail, pref.g_tail, pref.b_tail)) as color|null
+			pref.read_preference(/datum/preference/color/human/tail_color1)) as color|null
 		if(new_tailc)
-			pref.r_tail = hex2num(copytext(new_tailc, 2, 4))
-			pref.g_tail = hex2num(copytext(new_tailc, 4, 6))
-			pref.b_tail = hex2num(copytext(new_tailc, 6, 8))
+			pref.update_preference_by_type(/datum/preference/color/human/tail_color1, new_tailc)
 			return TOPIC_REFRESH_UPDATE_PREVIEW
 
 	else if(href_list["tail_color2"])
 		var/new_tailc2 = input(user, "Choose your character's secondary tail/taur colour:", "Character Preference",
-			rgb(pref.r_tail2, pref.g_tail2, pref.b_tail2)) as color|null
+			pref.read_preference(/datum/preference/color/human/tail_color2)) as color|null
 		if(new_tailc2)
-			pref.r_tail2 = hex2num(copytext(new_tailc2, 2, 4))
-			pref.g_tail2 = hex2num(copytext(new_tailc2, 4, 6))
-			pref.b_tail2 = hex2num(copytext(new_tailc2, 6, 8))
+			pref.update_preference_by_type(/datum/preference/color/human/tail_color2, new_tailc2)
 			return TOPIC_REFRESH_UPDATE_PREVIEW
 
 	else if(href_list["tail_color3"])
 		var/new_tailc3 = input(user, "Choose your character's tertiary tail/taur colour:", "Character Preference",
-			rgb(pref.r_tail3, pref.g_tail3, pref.b_tail3)) as color|null
+			pref.read_preference(/datum/preference/color/human/tail_color3)) as color|null
 		if(new_tailc3)
-			pref.r_tail3 = hex2num(copytext(new_tailc3, 2, 4))
-			pref.g_tail3 = hex2num(copytext(new_tailc3, 4, 6))
-			pref.b_tail3 = hex2num(copytext(new_tailc3, 6, 8))
+			pref.update_preference_by_type(/datum/preference/color/human/tail_color3, new_tailc3)
 			return TOPIC_REFRESH_UPDATE_PREVIEW
 
 	else if(href_list["wing_style"])
@@ -1370,29 +1139,23 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 
 	else if(href_list["wing_color"])
 		var/new_wingc = input(user, "Choose your character's wing colour:", "Character Preference",
-			rgb(pref.r_wing, pref.g_wing, pref.b_wing)) as color|null
+			pref.read_preference(/datum/preference/color/human/wing_color1)) as color|null
 		if(new_wingc)
-			pref.r_wing = hex2num(copytext(new_wingc, 2, 4))
-			pref.g_wing = hex2num(copytext(new_wingc, 4, 6))
-			pref.b_wing = hex2num(copytext(new_wingc, 6, 8))
+			pref.update_preference_by_type(/datum/preference/color/human/wing_color1, new_wingc)
 			return TOPIC_REFRESH_UPDATE_PREVIEW
 
 	else if(href_list["wing_color2"])
-		var/new_wingc2 = input(user, "Choose your character's secondary wing colour:", "Character Preference",
-			rgb(pref.r_wing2, pref.g_wing2, pref.b_wing2)) as color|null
-		if(new_wingc2)
-			pref.r_wing2 = hex2num(copytext(new_wingc2, 2, 4))
-			pref.g_wing2 = hex2num(copytext(new_wingc2, 4, 6))
-			pref.b_wing2 = hex2num(copytext(new_wingc2, 6, 8))
+		var/new_wingc = input(user, "Choose your character's secondary wing colour:", "Character Preference",
+			pref.read_preference(/datum/preference/color/human/wing_color2)) as color|null
+		if(new_wingc)
+			pref.update_preference_by_type(/datum/preference/color/human/wing_color2, new_wingc)
 			return TOPIC_REFRESH_UPDATE_PREVIEW
 
 	else if(href_list["wing_color3"])
-		var/new_wingc3 = input(user, "Choose your character's tertiary wing colour:", "Character Preference",
-			rgb(pref.r_wing3, pref.g_wing3, pref.b_wing3)) as color|null
-		if(new_wingc3)
-			pref.r_wing3 = hex2num(copytext(new_wingc3, 2, 4))
-			pref.g_wing3 = hex2num(copytext(new_wingc3, 4, 6))
-			pref.b_wing3 = hex2num(copytext(new_wingc3, 6, 8))
+		var/new_wingc = input(user, "Choose your character's tertiary wing colour:", "Character Preference",
+			pref.read_preference(/datum/preference/color/human/wing_color3)) as color|null
+		if(new_wingc)
+			pref.update_preference_by_type(/datum/preference/color/human/wing_color3, new_wingc)
 			return TOPIC_REFRESH_UPDATE_PREVIEW
 
 	return ..()

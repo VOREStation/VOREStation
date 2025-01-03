@@ -71,3 +71,18 @@
 	savefile_key = "CHAT_ADSAY"
 	default_value = TRUE
 	savefile_identifier = PREFERENCE_PLAYER
+
+/// The color admins will speak in for OOC.
+/datum/preference/color/ooc_color
+	category = PREFERENCE_CATEGORY_GAME_PREFERENCES
+	savefile_key = "ooccolor"
+	savefile_identifier = PREFERENCE_PLAYER
+
+/datum/preference/color/ooc_color/create_default_value()
+	return "#010000"
+
+/datum/preference/color/ooc_color/is_accessible(datum/preferences/preferences)
+	if(!..(preferences))
+		return FALSE
+
+	return CONFIG_GET(flag/allow_admin_ooccolor) && check_rights(R_ADMIN|R_EVENT|R_FUN, 0, preferences.client)

@@ -62,7 +62,7 @@
 	//Check if we're on fire
 	handle_fire()
 
-	if(client && !(client.prefs.ambience_freq == 0))	// Handle re-running ambience to mobs if they've remained in an area, AND have an active client assigned to them, and do not have repeating ambience disabled.
+	if(client)	// Handle re-running ambience to mobs if they've remained in an area, AND have an active client assigned to them, and do not have repeating ambience disabled.
 		handle_ambience()
 
 	//stuff in the stomach
@@ -109,7 +109,11 @@
 	return
 
 /mob/living/proc/handle_ambience() // If you're in an ambient area and have not moved out of it for x time as configured per-client, and do not have it disabled, we're going to play ambience again to you, to help break up the silence.
-	if(world.time >= (lastareachange + client.prefs.ambience_freq MINUTES)) // Every 5 minutes (by default, set per-client), we're going to run a 35% chance (by default, also set per-client) to play ambience.
+	var/pref = read_preference(/datum/preference/numeric/ambience_freq)
+	if(!pref)
+		return
+
+	if(world.time >= (lastareachange + pref MINUTES)) // Every 5 minutes (by default, set per-client), we're going to run a 35% chance (by default, also set per-client) to play ambience.
 		var/area/A = get_area(src)
 		if(A)
 			lastareachange = world.time // This will refresh the last area change to prevent this call happening LITERALLY every life tick.

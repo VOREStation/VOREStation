@@ -147,3 +147,23 @@
 	savefile_key = "DIGEST_NOISES"
 	default_value = TRUE
 	savefile_identifier = PREFERENCE_PLAYER
+
+/datum/preference/numeric/ambience_freq
+	category = PREFERENCE_CATEGORY_GAME_PREFERENCES
+	savefile_key = "ambience_freq"
+	savefile_identifier = PREFERENCE_PLAYER
+	minimum = 0
+	maximum = 60
+
+/datum/preference/numeric/ambience_freq/create_default_value()
+	return 5
+
+/datum/preference/numeric/ambience_chance
+	category = PREFERENCE_CATEGORY_GAME_PREFERENCES
+	savefile_key = "ambience_chance"
+	savefile_identifier = PREFERENCE_PLAYER
+	minimum = 0
+	maximum = 100
+
+/datum/preference/numeric/ambience_chance/create_default_value()
+	return 35

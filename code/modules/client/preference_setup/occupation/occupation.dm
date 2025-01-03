@@ -151,7 +151,7 @@
 		if(job.is_species_banned(user.client.prefs.species, user.client.prefs.organ_data["brain"]) == TRUE)
 			. += "<del>[rank]</del></td></a><td> \[THIS RACE/BRAIN TYPE CANNOT TAKE THIS ROLE.\]</td></tr>"
 			continue
-		if((job.minimum_character_age || job.min_age_by_species) && user.client && (user.client.prefs.age < job.get_min_age(user.client.prefs.species, user.client.prefs.organ_data["brain"])))
+		if((job.minimum_character_age || job.min_age_by_species) && user.client && (user.read_preference(/datum/preference/numeric/human/age) < job.get_min_age(user.client.prefs.species, user.client.prefs.organ_data["brain"])))
 			. += "<del>[rank]</del></td></a><td> \[MINIMUM CHARACTER AGE FOR SELECTED RACE/BRAIN TYPE: [job.get_min_age(user.client.prefs.species, user.client.prefs.organ_data["brain"])]\]</td></tr>"
 			continue
 		if((pref.job_civilian_low & ASSISTANT) && job.type != /datum/job/assistant)

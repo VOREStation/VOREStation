@@ -31,7 +31,7 @@
 	//	return tgui_input_list(user, message, title, buttons, timeout, autofocus)
 
 	// Client does NOT have tgui_input on: Returns regular input
-	if(!user.client.prefs.tgui_input_mode || strict_byond)
+	if(!user.read_preference(/datum/preference/toggle/tgui_input_mode) || strict_byond)
 		if(length(buttons) == 2)
 			return alert(user, message, title, buttons[1], buttons[2])
 		if(length(buttons) == 3)
@@ -109,8 +109,8 @@
 	data["autofocus"] = autofocus
 	data["buttons"] = buttons
 	data["message"] = message
-	data["large_buttons"] = user.client.prefs.tgui_large_buttons
-	data["swapped_buttons"] = !user.client.prefs.tgui_swapped_buttons
+	data["large_buttons"] = user.read_preference(/datum/preference/toggle/tgui_large_buttons)
+	data["swapped_buttons"] = !user.read_preference(/datum/preference/toggle/tgui_swapped_buttons)
 	data["title"] = title
 	return data
 
