@@ -311,8 +311,8 @@
 	get_icon()
 	..()
 
-/obj/item/organ/external/head/take_damage(brute, burn, sharp, edge, used_weapon = null, list/forbidden_limbs = list())
-	..(brute, burn, sharp, edge, used_weapon, forbidden_limbs)
+/obj/item/organ/external/head/take_damage(brute, burn, sharp, edge, used_weapon = null, list/forbidden_limbs = list(), permutation, projectile)
+	..(brute, burn, sharp, edge, used_weapon, forbidden_limbs, permutation, projectile)
 	if (!disfigured)
 		if (brute_dam > 40)
 			if (prob(50))
