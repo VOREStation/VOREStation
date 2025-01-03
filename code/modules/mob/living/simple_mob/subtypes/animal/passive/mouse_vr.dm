@@ -22,7 +22,7 @@
 /mob/living/simple_mob/animal/passive/mouse/attack_hand(var/atom/over_object)
 	var/mob/living/carbon/human/H = over_object
 	if(holder_type && issmall(src) && istype(H) && !H.lying && Adjacent(H) && (src.a_intent == I_HELP && H.a_intent == I_HELP))
-		if(!issmall(H) || !istype(src, /mob/living/carbon/human))
+		if(!issmall(H) || !ishuman(src))
 			get_scooped(H, (usr == src))
 		return
 	return ..()

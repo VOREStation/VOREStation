@@ -22,7 +22,7 @@
 	return GLOB.tgui_always_state
 
 /datum/pai_software/tgui_status(mob/user)
-	if(!istype(user, /mob/living/silicon/pai))
+	if(!ispAI(user))
 		return STATUS_CLOSE
 	return ..()
 
@@ -61,7 +61,7 @@
 
 		var/count = 0
 		// Find the carrier
-		while(!istype(M, /mob/living))
+		while(!isliving(M))
 			if(!M || !M.loc || count > 6)
 				//For a runtime where M ends up in nullspace (similar to bluespace but less colourful)
 				to_chat(src, span_infoplain("You are not being carried by anyone!"))

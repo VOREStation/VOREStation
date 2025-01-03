@@ -19,7 +19,7 @@
 		if(!Player.mind || isnewplayer(Player))
 			continue // No mind we can do nothing, new players we care not for
 		else if(Player.stat == DEAD)
-			if(istype(Player,/mob/observer/dead))
+			if(isobserver(Player))
 				var/mob/observer/dead/O = Player
 				if(O.started_as_observer)
 					continue // They are just a pure observer, ignore

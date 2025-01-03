@@ -57,7 +57,7 @@
 	icon_state = pick(possible_icon_states)
 
 /obj/effect/weaversilk/wall/CanPass(atom/movable/mover, turf/target)
-	if(istype(mover, /mob/living/carbon/human))
+	if(ishuman(mover))
 		var/mob/living/carbon/human/H = mover
 		if(H.species.is_weaver)
 			return TRUE
@@ -94,7 +94,7 @@
 /obj/effect/weaversilk/trap/Crossed(atom/movable/AM as mob|obj)
 	if(AM.is_incorporeal())
 		return
-	if(istype(AM, /mob/living/carbon/human))
+	if(ishuman(AM))
 		var/mob/living/carbon/human/H = AM
 		if(H.species.is_weaver)
 			return

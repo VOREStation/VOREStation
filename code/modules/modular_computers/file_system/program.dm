@@ -109,7 +109,7 @@
 		return 1
 
 	// Admin override - allows operation of any computer as aghosted admin, as if you had any required access.
-	if(istype(user, /mob/observer/dead) && check_rights(R_ADMIN|R_EVENT, 0, user))
+	if(isobserver(user) && check_rights(R_ADMIN|R_EVENT, 0, user))
 		return 1
 
 	if(!istype(user))

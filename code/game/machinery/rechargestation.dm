@@ -173,7 +173,7 @@
 			return
 		if (istype(O, /obj/item/grab) && get_dist(src,user)<2)
 			var/obj/item/grab/G = O
-			if(istype(G.affecting,/mob/living))
+			if(isliving(G.affecting))
 				var/mob/living/M = G.affecting
 				qdel(O)
 				go_in(M)
@@ -252,7 +252,7 @@
 	if(occupant)
 		return
 
-	if(istype(L, /mob/living/silicon/robot))
+	if(isrobot(L))
 		var/mob/living/silicon/robot/R = L
 
 		if(R.incapacitated())
@@ -273,7 +273,7 @@
 		return 1
 
 	//VOREStation Add Start
-	else if(istype(L, /mob/living/silicon/pai))
+	else if(ispAI(L))
 		var/mob/living/silicon/pai/P = L
 
 		if(P.incapacitated())

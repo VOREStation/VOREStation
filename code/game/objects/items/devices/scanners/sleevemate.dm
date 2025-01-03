@@ -283,7 +283,7 @@ var/global/mob/living/carbon/human/dummy/mannequin/sleevemate_mob
 		if(!istype(target))
 			return
 
-		if(istype(target, /mob/living/carbon/human))
+		if(ishuman(target))
 			var/mob/living/carbon/human/H = target
 			if(H.resleeve_lock && stored_mind.loaded_from_ckey != H.resleeve_lock)
 				to_chat(usr,span_warning("\The [H] is protected from impersonation!"))
@@ -325,7 +325,7 @@ var/global/mob/living/carbon/human/dummy/mannequin/sleevemate_mob
 	spark_system.set_up(5, 0, src.loc)
 	spark_system.start()
 	playsound(src, "sparks", 50, 1)
-	if(istype(src.loc,/mob/living))
+	if(isliving(src.loc))
 		var/mob/living/L = src.loc
 		L.unEquip(src)
 	src.forceMove(get_turf(src))

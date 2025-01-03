@@ -57,7 +57,7 @@ GLOBAL_LIST_EMPTY(all_blobs)
 /obj/structure/blob/CanPass(atom/movable/mover, turf/target)
 	if(istype(mover) && mover.checkpass(PASSBLOB))
 		return TRUE
-	else if(istype(mover, /mob/living))
+	else if(isliving(mover))
 		var/mob/living/L = mover
 		if(L.faction == faction)
 			return TRUE

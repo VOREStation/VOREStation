@@ -64,7 +64,7 @@
 
 		// Check if this is a hardsuit upgrade or a modification.
 		else if(istype(W,/obj/item/rig_module))
-			if(istype(src.loc,/mob/living/carbon/human))
+			if(ishuman(src.loc))
 				var/mob/living/carbon/human/H = src.loc
 				if(H.back == src || H.belt == src)
 					to_chat(user, span_danger("You can't install a hardsuit module while the suit is being worn."))
@@ -126,7 +126,7 @@
 			if(!to_remove)
 				return
 
-			if(istype(src.loc,/mob/living/carbon/human) && to_remove != "cell")
+			if(ishuman(src.loc) && to_remove != "cell")
 				var/mob/living/carbon/human/H = src.loc
 				if(H.back == src || H.belt == src)
 					to_chat(user, "You can't remove an installed device while the hardsuit is being worn.")

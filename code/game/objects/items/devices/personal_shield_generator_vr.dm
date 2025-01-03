@@ -297,7 +297,7 @@
 
 /obj/item/personal_shield_generator/process()
 	if(!bcell) //They removed the battery midway.
-		if(istype(loc, /mob/living/carbon/human)) //We on someone? Tell them it turned off.
+		if(ishuman(loc)) //We on someone? Tell them it turned off.
 			var/mob/living/carbon/human/user = loc
 			to_chat(user, span_warning("The shield deactivates! An error message pops up on screen: 'Cell missing. Cell replacement required.'"))
 			user.remove_modifiers_of_type(/datum/modifier/shield_projection)
@@ -309,7 +309,7 @@
 
 	if(shield_active)
 		if(bcell.rigged) //They turned it back on after it was rigged to go boom.
-			if(istype(loc, /mob/living/carbon/human)) //Deactivate the shield, first. You're not getting reduced damage...
+			if(ishuman(loc)) //Deactivate the shield, first. You're not getting reduced damage...
 				var/mob/living/carbon/human/user = loc
 				to_chat(user, span_warning("The shield deactivates, an error message popping up on screen: 'Cell Reactor Critically damaged. Cell replacement required.'"))
 				user.remove_modifiers_of_type(/datum/modifier/shield_projection)
@@ -330,7 +330,7 @@
 
 	if(bcell.charge < generator_hit_cost || bcell.charge < generator_active_cost) //Out of charge...
 		shield_active = 0
-		if(istype(loc, /mob/living/carbon/human)) //We on someone? Tell them it turned off.
+		if(ishuman(loc)) //We on someone? Tell them it turned off.
 			var/mob/living/carbon/human/user = loc
 			to_chat(user, span_warning("The shield deactivates, an error message popping up on screen: 'Cell out of charge.'"))
 			user.remove_modifiers_of_type(/datum/modifier/shield_projection)

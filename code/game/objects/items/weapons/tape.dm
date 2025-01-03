@@ -10,7 +10,7 @@
 	toolspeed = 2 //It is now used in surgery as a not awful, but probably dangerous option, due to speed.
 
 /obj/item/tape_roll/proc/can_place(var/mob/living/carbon/human/H, var/mob/user)
-	if(istype(user, /mob/living/silicon/robot) || user == H)
+	if(isrobot(user) || user == H)
 		return TRUE
 
 	for (var/obj/item/grab/G in H.grabbed_by)
