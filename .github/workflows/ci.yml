@@ -11,7 +11,7 @@ jobs:
 
   run_linters:
     name: Run Linters
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
 
     steps:
       - uses: actions/checkout@v4
@@ -65,7 +65,7 @@ jobs:
 
   dreamchecker:
     name: DreamChecker
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
 
@@ -98,7 +98,7 @@ jobs:
     # name: Integration Tests (${{ matrix.map }})
     name: Integration Tests
     # needs: ['run_linters', 'dreamchecker']
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
       - name: Ensure +x on CI directory
@@ -127,7 +127,7 @@ jobs:
 
   extra_map_tests:
     name: Map Tests
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
       - name: Ensure +x on CI directory
@@ -154,7 +154,7 @@ jobs:
   tests_successful:
     name: Integration Tests
     needs: ['run_linters', 'dreamchecker', 'unit_tests', 'extra_map_tests']
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     steps:
       - name: Report Success
         run: |
