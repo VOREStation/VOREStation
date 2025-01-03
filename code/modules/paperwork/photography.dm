@@ -54,6 +54,7 @@ var/global/photo_count = 0
 
 /obj/item/photo/examine(mob/user)
 	//This is one time we're not going to call parent, because photos are 'secret' unless you're close enough.
+	SHOULD_CALL_PARENT(FALSE)
 	if(in_range(user, src))
 		show(user)
 		return list(desc)

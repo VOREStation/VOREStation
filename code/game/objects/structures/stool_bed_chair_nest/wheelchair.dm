@@ -13,7 +13,7 @@
 	var/min_mob_buckle_size = MOB_SMALL
 	var/max_mob_buckle_size = MOB_LARGE
 
-/obj/structure/bed/chair/wheelchair/New(var/newloc, var/new_material, var/new_padding_material)
+/obj/structure/bed/chair/wheelchair/Initialize(var/newloc, var/new_material, var/new_padding_material)
 	..()
 	update_icon()
 
