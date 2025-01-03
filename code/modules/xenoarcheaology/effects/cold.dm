@@ -1,6 +1,7 @@
+/// Verified to work with the Artifact Harvester
 //inverse of /datum/artifact_effect/heat, the two effects split up for neatness' sake
 /datum/artifact_effect/cold
-	name = "cold"
+	name = "Atmospheric Cooling"
 	var/target_temp
 
 	effect_color = "#b3f6ff"
@@ -9,7 +10,7 @@
 	..()
 	target_temp = rand(0, 250)
 	effect = pick(EFFECT_TOUCH, EFFECT_AURA)
-	effect_type = pick(EFFECT_ORGANIC, EFFECT_BLUESPACE, EFFECT_SYNTH)
+	effect_type = EFFECT_COLD
 
 /datum/artifact_effect/cold/DoEffectTouch(var/mob/user)
 	var/atom/holder = get_master_holder()

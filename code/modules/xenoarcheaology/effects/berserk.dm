@@ -1,6 +1,7 @@
+/// Verified to work with the Artifact Harvester
 /datum/artifact_effect/berserk
-	name = "berserk"
-	effect_type = EFFECT_PSIONIC
+	name = "Berserk"
+	effect_type = EFFECT_BERSERK
 
 	effect_state = "summoning"
 	effect_color = "#5f0000"

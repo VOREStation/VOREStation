@@ -1,19 +1,26 @@
 
 /datum/artifact_effect/vampire
-	name = "vampire"
-	effect_type = EFFECT_ORGANIC
+	name = "Cultic Vampirism"
+	effect_type = EFFECT_VAMPIRE
 	var/last_bloodcall = 0
 	var/bloodcall_interval = 50
 	var/last_eat = 0
 	var/eat_interval = 100
 	var/charges = 0
 	var/list/nearby_mobs = list()
+	var/harvested = FALSE
 
 	effect_state = "gravisphere"
 	effect_color = "#ff0000"
 
 /datum/artifact_effect/vampire/proc/bloodcall(var/mob/living/carbon/human/M)
 	var/atom/holder = get_master_holder()
+	if(istype(holder, /obj/item/anobattery))
+		holder = holder.loc
+		eat_interval = 10 //If we're in an artifact just CRUNCH through those blood piles!
+		harvested = 1 //We're in a harvester. We need special handling for this.
+	if(istype(holder.loc, /mob/living))
+		holder = holder.loc
 	last_bloodcall = world.time
 	if(istype(M))
 		playsound(holder, pick('sound/hallucinations/wail.ogg','sound/hallucinations/veryfar_noise.ogg','sound/hallucinations/far_noise.ogg'), 50, 1, -3)
@@ -27,7 +34,10 @@
 		B.target_turf = pick(RANGE_TURFS(1, holder))
 		B.blood_DNA = list()
 		B.blood_DNA[M.dna.unique_enzymes] = M.dna.b_type
-		M.remove_blood(rand(10,30))
+		var/blood_to_remove = (rand(10,30))
+		M.remove_blood(blood_to_remove)
+		if(harvested)
+			charges += blood_to_remove/10 //Anywhere from 1 to 3 charges based on how much it sucks, plus the extra blood puddle.. This means you can reasonably get things from the harvested variant.
 
 /datum/artifact_effect/vampire/DoEffectTouch(var/mob/user)
 	bloodcall(user)
@@ -35,6 +45,10 @@
 
 /datum/artifact_effect/vampire/DoEffectAura()
 	var/atom/holder = get_master_holder()
+	if(istype(holder, /obj/item/anobattery))
+		holder = holder.loc
+	if(istype(holder.loc, /mob/living))
+		holder = holder.loc
 	if(nearby_mobs.len)
 		nearby_mobs.Cut()
 	var/turf/T = get_turf(holder)
@@ -62,9 +76,9 @@
 
 			qdel(B)
 
-	if(charges >= 10)
+	if(charges >= 10) //Listen, if you have INTENTIONALLY FED THE SPOOKY, SCARY ARTIFACT THAT IS DRAINING YOUR BLOOD, then go ahead and have your spooky reward.
 		charges -= 10
-		var/manifestation = pick(/obj/item/soulstone, /mob/living/simple_mob/faithless/cult/strong, /mob/living/simple_mob/creature/cult/strong, /mob/living/simple_mob/animal/space/bats/cult/strong)
+		var/manifestation = pick(/obj/item/soulstone, /obj/item/melee/artifact_blade, /obj/item/book/tome, /obj/item/clothing/head/helmet/space/cult, /obj/item/clothing/suit/space/cult, /obj/structure/constructshell)
 		new manifestation(pick(RANGE_TURFS(1,T)))
 
 	if(charges >= 3)

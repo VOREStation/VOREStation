@@ -1,6 +1,7 @@
+/// Verified to work with the Artifact Harvester
 /datum/artifact_effect/cannibalfeeling
-	name = "cannibalfeeling"
-	effect_type = EFFECT_PSIONIC
+	name = "Gnawing Hunger"
+	effect_type = EFFECT_CANNIBAL
 	var/list/messages = list("You feel peckish.",
 		"Something doesn't feel right.",
 		"You get a strange feeling in your gut.",

@@ -1,12 +1,13 @@
+/// Verified to work with the Artifact Harvester
 /datum/artifact_effect/roboheal
-	name = "robotic healing"
+	name = "Robotic Healing"
 	var/last_message
 
 	effect_color = "#3879ad"
 
 /datum/artifact_effect/roboheal/New()
 	..()
-	effect_type = pick(EFFECT_ELECTRO, EFFECT_PARTICLE)
+	effect_type = EFFECT_ROBO_HEAL
 
 /datum/artifact_effect/roboheal/DoEffectTouch(var/mob/user)
 	if(user)

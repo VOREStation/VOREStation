@@ -1,12 +1,13 @@
+/// Verified to work with the Artifact Harvester
 /datum/artifact_effect/robohurt
-	name = "robotic harm"
+	name = "Robotic Harming"
 	var/last_message
 
 	effect_color = "#5432cf"
 
 /datum/artifact_effect/robohurt/New()
 	..()
-	effect_type = pick(EFFECT_ELECTRO, EFFECT_PARTICLE)
+	effect_type = EFFECT_ROBO_HURT
 
 /datum/artifact_effect/robohurt/DoEffectTouch(var/mob/user)
 	if(user)

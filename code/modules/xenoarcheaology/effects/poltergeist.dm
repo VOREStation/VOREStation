@@ -1,7 +1,7 @@
-
+/// Verified to work with the Artifact Harvester
 /datum/artifact_effect/poltergeist
-	name = "poltergeist"
-	effect_type = EFFECT_ENERGY
+	name = "Poltergeist"
+	effect_type = EFFECT_POLTERGEIST
 
 	effect_state = "shield2"
 	effect_color = "#a824c9"
@@ -23,6 +23,8 @@
 
 /datum/artifact_effect/poltergeist/DoEffectAura()
 	var/atom/holder = get_master_holder()
+	if(istype(holder, /obj/item/anobattery))
+		holder = holder.loc //We are inside of an artifact harvester. Make that the holder.
 	var/mob/living/target = null
 	for(var/mob/living/L in oview(get_turf(holder), effectrange))
 		if(L.stat || !L.mind)
@@ -39,6 +41,8 @@
 /datum/artifact_effect/poltergeist/DoEffectPulse()
 	var/atom/holder = get_master_holder()
 	var/mob/living/target = null
+	if(istype(holder, /obj/item/anobattery))
+		holder = holder.loc //We are inside of an artifact harvester. Make that the holder.
 	for(var/mob/living/L in oview(get_turf(holder), effectrange))
 		if(L.stat || !L.mind)
 			continue
