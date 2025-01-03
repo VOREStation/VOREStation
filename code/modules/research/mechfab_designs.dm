@@ -1244,3 +1244,129 @@
 	req_tech = list(TECH_MATERIAL = 5, TECH_ENGINEERING = 4, TECH_POWER = 4)
 	materials = list(MAT_PLASTEEL = 10000, MAT_OSMIUM = 3000, MAT_GOLD = 5000)
 	build_path = /obj/item/mecha_parts/component/actuator/hispeed
+
+///--------///
+///Fighters///
+///--------///
+
+///Pinnace///
+
+/datum/design/item/mechfab/fighter/pinnace
+	category = list("Pinnace")
+
+/datum/design/item/mechfab/fighter/pinnace/chassis
+	name = "Pinnace Chassis"
+	id = "pinnace_chassis"
+	build_path = /obj/item/mecha_parts/fighter/chassis/pinnace
+	time = 30
+	materials = list(MAT_STEEL = 25000, MAT_GLASS = 10000, MAT_PLASTEEL = 10000)
+
+/datum/design/item/mechfab/fighter/pinnace/core
+	name = "Pinnace Core"
+	id = "pinnace_core"
+	build_path = /obj/item/mecha_parts/fighter/part/pinnace_core
+	time = 60
+	materials = list(MAT_STEEL = 25000, MAT_GLASS = 7000, MAT_PLASTEEL = 7000)
+
+/datum/design/item/mechfab/fighter/pinnace/cockpit
+	name = "Pinnace Cockpit"
+	id = "pinnace_cockpit"
+	build_path = /obj/item/mecha_parts/fighter/part/pinnace_cockpit
+	time = 15
+	materials = list(MAT_STEEL = 2500, MAT_PLASTEEL = 2500, MAT_GLASS = 7500, MAT_PLASTIC = 2500)
+
+/datum/design/item/mechfab/fighter/pinnace/main_engine
+	name = "Pinnace Main Engine"
+	id = "pinnace_main_engine"
+	build_path = /obj/item/mecha_parts/fighter/part/pinnace_main_engine
+	time = 25
+	materials = list(MAT_STEEL = 15000, MAT_PLASTEEL = 5000)
+
+/datum/design/item/mechfab/fighter/pinnace/left_engine
+	name = "Pinnace Left Engine"
+	id = "pinnace_left_engine"
+	build_path = /obj/item/mecha_parts/fighter/part/pinnace_left_engine
+	time = 25
+	materials = list(MAT_STEEL = 10000, MAT_PLASTEEL = 2500)
+
+/datum/design/item/mechfab/fighter/pinnace/right_engine
+	name = "Pinnace Right Engine"
+	id = "pinnace_right_engine"
+	build_path = /obj/item/mecha_parts/fighter/part/pinnace_right_engine
+	time = 25
+	materials = list(MAT_STEEL = 10000, MAT_PLASTEEL = 2500)
+
+/datum/design/item/mechfab/fighter/pinnace/left_wing
+	name = "Pinnace Left Wing"
+	id = "pinnace_left_wing"
+	build_path = /obj/item/mecha_parts/fighter/part/pinnace_left_wing
+	time = 20
+	materials = list(MAT_STEEL = 7000, MAT_PLASTIC = 3000, MAT_PLASTEEL = 5000)
+
+/datum/design/item/mechfab/fighter/pinnace/right_wing
+	name = "Pinnace Right Wing"
+	id = "pinnace_right_wing"
+	build_path = /obj/item/mecha_parts/fighter/part/pinnace_right_wing
+	time = 20
+	materials = list(MAT_STEEL = 7000, MAT_PLASTIC = 3000, MAT_PLASTEEL = 5000)
+
+///Baron///
+
+/datum/design/item/mechfab/fighter/baron
+	category = list("Baron")
+
+/datum/design/item/mechfab/fighter/baron/chassis
+	name = "Baron Chassis"
+	id = "baron_chassis"
+	build_path = /obj/item/mecha_parts/fighter/chassis/baron
+	time = 30
+	materials = list(MAT_STEEL = 37500, MAT_GLASS = 15000, MAT_PLASTEEL = 15000)
+
+/datum/design/item/mechfab/fighter/baron/core
+	name = "Baron Core"
+	id = "baron_core"
+	build_path = /obj/item/mecha_parts/fighter/part/baron_core
+	time = 60
+	materials = list(MAT_STEEL = 37500, MAT_GLASS = 15000, MAT_PLASTEEL = 15000)
+
+/datum/design/item/mechfab/fighter/baron/cockpit
+	name = "Baron Cockpit"
+	id = "baron_cockpit"
+	build_path = /obj/item/mecha_parts/fighter/part/baron_cockpit
+	time = 15
+	materials = list(MAT_STEEL = 5000, MAT_PLASTEEL = 5000, MAT_GLASS = 10000, MAT_PLASTIC = 5000)
+
+/datum/design/item/mechfab/fighter/baron/main_engine
+	name = "Baron Main Engine"
+	id = "baron_main_engine"
+	build_path = /obj/item/mecha_parts/fighter/part/baron_main_engine
+	time = 25
+	materials = list(MAT_STEEL = 25000, MAT_PLASTEEL = 10000)
+
+/datum/design/item/mechfab/fighter/baron/left_engine
+	name = "Baron Left Engine"
+	id = "baron_left_engine"
+	build_path = /obj/item/mecha_parts/fighter/part/baron_left_engine
+	time = 25
+	materials = list(MAT_STEEL = 20000, MAT_PLASTEEL = 5000)
+
+/datum/design/item/mechfab/fighter/baron/right_engine
+	name = "Baron Right Engine"
+	id = "baron_right_engine"
+	build_path = /obj/item/mecha_parts/fighter/part/baron_right_engine
+	time = 25
+	materials = list(MAT_STEEL = 20000, MAT_PLASTEEL = 5000)
+
+/datum/design/item/mechfab/fighter/baron/left_wing
+	name = "Baron Left Wing"
+	id = "baron_left_wing"
+	build_path = /obj/item/mecha_parts/fighter/part/baron_left_wing
+	time = 20
+	materials = list(MAT_STEEL = 15000, MAT_PLASTIC = 6000, MAT_PLASTEEL = 10000)
+
+/datum/design/item/mechfab/fighter/baron/right_wing
+	name = "Baron Right Wing"
+	id = "baron_right_wing"
+	build_path = /obj/item/mecha_parts/fighter/part/baron_right_wing
+	time = 20
+	materials = list(MAT_STEEL = 15000, MAT_PLASTIC = 6000, MAT_PLASTEEL = 10000)
