@@ -18,10 +18,6 @@
 	. = ..()
 	add_overlay("working")
 
-/obj/item/gps/advanced/Destroy()
-	GPS_list.Remove(src)
-	. = ..()
-
 /obj/item/gps/advanced/emp_act(severity)
 	emped = 1
 	cut_overlay("working")
