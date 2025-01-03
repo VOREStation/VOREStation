@@ -20,7 +20,6 @@ var/list/preferences_datums = list()
 	//character preferences
 	var/real_name						//our character's name
 	var/nickname						//our character's nickname
-	var/spawnpoint = "Arrivals Shuttle" //where this character will spawn (0-2).
 	var/b_type = "A+"					//blood type (not-chooseable)
 	var/blood_reagents = "default"		//blood restoration reagents
 	var/headset = 1						//headset type

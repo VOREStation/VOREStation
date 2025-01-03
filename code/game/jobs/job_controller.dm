@@ -660,16 +660,16 @@ var/global/datum/controller/occupations/job_master
 	fail_deadly = J?.offmap_spawn
 
 	//Spawn them at their preferred one
-	if(C && C.prefs.spawnpoint)
-		if(!(C.prefs.spawnpoint in using_map.allowed_spawns))
+	if(C && C.prefs.read_preference(/datum/preference/choiced/human/spawnpoint))
+		if(!(C.prefs.read_preference(/datum/preference/choiced/human/spawnpoint) in using_map.allowed_spawns))
 			if(fail_deadly)
 				to_chat(C, span_warning("Your chosen spawnpoint is unavailable for this map and your job requires a specific spawnpoint. Please correct your spawn point choice."))
 				return
 			else
-				to_chat(C, span_warning("Your chosen spawnpoint ([C.prefs.spawnpoint]) is unavailable for the current map. Spawning you at one of the enabled spawn points instead."))
+				to_chat(C, span_warning("Your chosen spawnpoint ([C.prefs.read_preference(/datum/preference/choiced/human/spawnpoint)]) is unavailable for the current map. Spawning you at one of the enabled spawn points instead."))
 				spawnpos = null
 		else
-			spawnpos = spawntypes[C.prefs.spawnpoint]
+			spawnpos = spawntypes[C.prefs.read_preference(/datum/preference/choiced/human/spawnpoint)]
 
 	//We will return a list key'd by "turf" and "msg"
 	. = list("turf","msg")

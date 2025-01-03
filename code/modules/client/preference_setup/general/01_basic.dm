@@ -15,7 +15,6 @@
 	pref.nickname						= save_data["nickname"]
 	pref.biological_gender				= save_data["gender"]
 	pref.identifying_gender				= save_data["id_gender"]
-	pref.spawnpoint						= save_data["spawnpoint"]
 	pref.metadata						= save_data["OOC_Notes"]
 	pref.metadata_likes					= save_data["OOC_Notes_Likes"]
 	pref.metadata_dislikes				= save_data["OOC_Notes_Disikes"]
@@ -25,7 +24,6 @@
 	save_data["nickname"]				= pref.nickname
 	save_data["gender"]					= pref.biological_gender
 	save_data["id_gender"]				= pref.identifying_gender
-	save_data["spawnpoint"]				= pref.spawnpoint
 	save_data["OOC_Notes"]				= pref.metadata
 	save_data["OOC_Notes_Likes"]		= pref.metadata_likes
 	save_data["OOC_Notes_Disikes"]		= pref.metadata_dislikes
@@ -37,7 +35,6 @@
 	if(!pref.real_name)
 		pref.real_name      = random_name(pref.identifying_gender, pref.species)
 	pref.nickname		= sanitize_name(pref.nickname)
-	pref.spawnpoint         = sanitize_inlist(pref.spawnpoint, spawntypes, initial(pref.spawnpoint))
 
 // Moved from /datum/preferences/proc/copy_to()
 /datum/category_item/player_setup_item/general/basic/copy_to_mob(var/mob/living/carbon/human/character)
@@ -72,7 +69,7 @@
 	. += span_bold("Biological Sex:") + " <a href='byond://?src=\ref[src];bio_gender=1'><b>[gender2text(pref.biological_gender)]</b></a><br>"
 	. += span_bold("Pronouns:") + " <a href='byond://?src=\ref[src];id_gender=1'><b>[gender2text(pref.identifying_gender)]</b></a><br>"
 	. += span_bold("Age:") + " <a href='byond://?src=\ref[src];age=1'>[pref.read_preference(/datum/preference/numeric/human/age)]</a> <b>Birthday:</b> <a href='byond://?src=\ref[src];bday_month=1'>[pref.read_preference(/datum/preference/numeric/human/bday_month)]</a><b>/</b><a href='byond://?src=\ref[src];bday_day=1'>[pref.read_preference(/datum/preference/numeric/human/bday_day)]</a> - <b>Announce?:</b> <a href='byond://?src=\ref[src];bday_announce=1'>[pref.read_preference(/datum/preference/toggle/human/bday_announce) ? "Yes" : "No"]</a><br>"
-	. += span_bold("Spawn Point:") + " <a href='byond://?src=\ref[src];spawnpoint=1'>[pref.spawnpoint]</a><br>"
+	. += span_bold("Spawn Point:") + " <a href='byond://?src=\ref[src];spawnpoint=1'>[pref.read_preference(/datum/preference/choiced/human/spawnpoint)]</a><br>"
 	if(CONFIG_GET(flag/allow_metadata))
 		. += span_bold("OOC Notes: <a href='byond://?src=\ref[src];edit_ooc_notes=1'>Edit</a><a href='byond://?src=\ref[src];edit_ooc_note_likes=1'>Likes</a><a href='byond://?src=\ref[src];edit_ooc_note_dislikes=1'>Dislikes</a>") + "<br>"
 	. = jointext(.,null)
@@ -192,7 +189,7 @@
 			spawnkeys += spawntype
 		var/choice = tgui_input_list(user, "Where would you like to spawn when late-joining?", "Late-Join Choice", spawnkeys)
 		if(!choice || !spawntypes[choice] || !CanUseTopic(user))	return TOPIC_NOACTION
-		pref.spawnpoint = choice
+		pref.update_preference_by_type(/datum/preference/choiced/human/spawnpoint, choice)
 		return TOPIC_REFRESH
 
 	else if(href_list["edit_ooc_notes"])
