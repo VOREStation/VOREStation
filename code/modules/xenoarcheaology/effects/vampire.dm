@@ -8,6 +8,7 @@
 	var/eat_interval = 100
 	var/charges = 0
 	var/list/nearby_mobs = list()
+	var/harvested = FALSE
 
 	effect_state = "gravisphere"
 	effect_color = "#ff0000"
@@ -17,6 +18,7 @@
 	if(istype(holder, /obj/item/anobattery))
 		holder = holder.loc
 		eat_interval = 10 //If we're in an artifact just CRUNCH through those blood piles!
+		harvested = 1 //We're in a harvester. We need special handling for this.
 	if(istype(holder.loc, /mob/living))
 		holder = holder.loc
 	last_bloodcall = world.time
@@ -32,7 +34,10 @@
 		B.target_turf = pick(RANGE_TURFS(1, holder))
 		B.blood_DNA = list()
 		B.blood_DNA[M.dna.unique_enzymes] = M.dna.b_type
-		M.remove_blood(rand(10,30))
+		var/blood_to_remove = (rand(10,30))
+		M.remove_blood(blood_to_remove)
+		if(harvested)
+			charges += blood_to_remove/10 //Anywhere from 1 to 3 charges based on how much it sucks, plus the extra blood puddle.. This means you can reasonably get things from the harvested variant.
 
 /datum/artifact_effect/vampire/DoEffectTouch(var/mob/user)
 	bloodcall(user)
