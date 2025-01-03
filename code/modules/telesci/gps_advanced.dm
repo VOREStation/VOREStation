@@ -37,7 +37,7 @@
 	if(emped)
 		t += "ERROR"
 	else
-		t += "<BR><A href='byond://?src=\ref[src];tag=1'>Set Tag</A> "
+		t += "<BR><A href='byond://?src=\ref[src];advtag=1'>Set Tag</A> "
 		t += "<BR>Tag: [gps_tag]"
 
 		for(var/obj/item/gps/advanced/G in GPS_list)
@@ -56,7 +56,7 @@
 
 /obj/item/gps/advanced/Topic(href, href_list)
 	..()
-	if(href_list["tag"] )
+	if(href_list["advtag"] )
 		var/a = tgui_input_text(usr, "Please enter desired tag.", name, gps_tag)
 		a = uppertext(copytext(sanitize(a), 1, 5))
 		if(src.loc == usr)
