@@ -17,7 +17,7 @@
 /mob/living/SelfMove(turf/n, direct, movetime)
 	// If on walk intent, don't willingly step into hazardous tiles.
 	// Unless the walker is confused.
-	if(m_intent == "walk" && confused <= 0)
+	if(m_intent == I_WALK && confused <= 0)
 		if(!n.is_safe_to_enter(src))
 			to_chat(src, span_warning("\The [n] is dangerous to move into."))
 			return FALSE // In case any code wants to know if movement happened.
@@ -175,11 +175,11 @@ default behaviour is:
 	. = ..()
 	if (!istype(AM, /atom/movable) || AM.anchored)
 		//VOREStation Edit - object-specific proc for running into things
-		if(((confused || is_blind()) && stat == CONSCIOUS && prob(50) && m_intent=="run") || flying)
+		if(((confused || is_blind()) && stat == CONSCIOUS && prob(50) && m_intent==I_RUN) || flying)
 			AM.stumble_into(src)
 		//VOREStation Edit End
 		/* VOREStation Removal - See above
-		if(confused && prob(50) && m_intent=="run")
+		if(confused && prob(50) && m_intent==I_RUN)
 			Weaken(2)
 			playsound(src, "punch", 25, 1, -1)
 			visible_message(span_warning("[src] [pick("ran", "slammed")] into \the [AM]!"))

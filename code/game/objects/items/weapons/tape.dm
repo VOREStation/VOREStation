@@ -127,6 +127,7 @@
 	flags |= NOBLUDGEON
 
 /obj/item/ducttape/examine(mob/user)
+	SHOULD_CALL_PARENT(FALSE)
 	return stuck.examine(user)
 
 /obj/item/ducttape/proc/attach(var/obj/item/W)

@@ -36,7 +36,8 @@
 	IC.emp_act(severity)
 
 /obj/item/implant/integrated_circuit/examine(mob/user)
-	return IC.examine(user)
+	. = ..()
+	. += IC.examine(user)
 
 /obj/item/implant/integrated_circuit/attackby(var/obj/item/O, var/mob/user)
 	if(O.has_tool_quality(TOOL_CROWBAR) || istype(O, /obj/item/integrated_electronics) || istype(O, /obj/item/integrated_circuit) || O.has_tool_quality(TOOL_SCREWDRIVER) || istype(O, /obj/item/cell/device) )

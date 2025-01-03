@@ -1,4 +1,5 @@
 /mob/living/carbon/human/examine(mob/user)
+	SHOULD_CALL_PARENT(FALSE)
 	// . = ..() //Note that we don't call parent. We build the list by ourselves.
 
 	var/skip_gear = 0

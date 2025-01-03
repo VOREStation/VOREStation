@@ -357,7 +357,7 @@
 			equip_to_slot_if_possible(prey.get_scooped(pred), slot_shoes, 0, 1)
 			add_attack_logs(pred, prey, "Grabbed underfoot ([tail ? "taur" : "nontaur"], no shoes)")
 
-	if(m_intent == "run")
+	if(m_intent == I_RUN)
 		switch(a_intent)
 			if(I_DISARM)
 				message_pred = "You quickly push [prey] to the ground with your foot!"

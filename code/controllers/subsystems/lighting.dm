@@ -12,7 +12,7 @@ SUBSYSTEM_DEF(lighting)
 	return ..()
 
 
-/datum/controller/subsystem/lighting/Initialize(timeofday)
+/datum/controller/subsystem/lighting/Initialize()
 	if(!subsystem_initialized)
 		if (CONFIG_GET(flag/starlight))
 			for(var/area/A in world)
@@ -24,7 +24,7 @@ SUBSYSTEM_DEF(lighting)
 
 	fire(FALSE, TRUE)
 
-	return ..()
+	return SS_INIT_SUCCESS
 
 /datum/controller/subsystem/lighting/fire(resumed, init_tick_checks)
 	MC_SPLIT_TICK_INIT(3)

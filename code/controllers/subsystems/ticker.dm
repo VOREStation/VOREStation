@@ -61,7 +61,7 @@ var/global/datum/controller/subsystem/ticker/ticker
 		)
 	)
 	GLOB.autospeaker = new (null, null, null, 1) //Set up Global Announcer
-	return ..()
+	return SS_INIT_SUCCESS
 
 /datum/controller/subsystem/ticker/fire(resumed = FALSE)
 	switch(current_state)
