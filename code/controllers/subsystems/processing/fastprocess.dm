@@ -4,6 +4,7 @@ PROCESSING_SUBSYSTEM_DEF(fastprocess)
 	name = "Fast Processing"
 	wait = 2
 	stat_tag = "FP"
+	flags = SS_NO_INIT
 
 /datum/controller/subsystem/processing/fastprocess/Recover()
 	log_debug("[name] subsystem Recover().")

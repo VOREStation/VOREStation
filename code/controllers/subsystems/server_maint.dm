@@ -18,7 +18,7 @@ SUBSYSTEM_DEF(server_maint)
 /*/datum/controller/subsystem/server_maint/PreInit()
 	world.hub_password = "" *///quickly! before the hubbies see us.
 
-/datum/controller/subsystem/server_maint/New()
+/datum/controller/subsystem/server_maint/Initialize()
 	if (fexists("tmp/"))
 		fdel("tmp/")
 	//if (CONFIG_GET(flag/hub))
