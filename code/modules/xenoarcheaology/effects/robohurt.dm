@@ -1,5 +1,6 @@
+/// Verified to work with the Artifact Harvester
 /datum/artifact_effect/robohurt
-	name = "robotic harm"
+	name = "Robotic Harming"
 	var/last_message
 
 	effect_color = "#5432cf"

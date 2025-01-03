@@ -1,5 +1,6 @@
+/// Verified to work with the Artifact Harvester
 /datum/artifact_effect/gasphoron
-	name = "phoron creation"
+	name = "Phoron creation"
 
 	effect_color = "#c408ba"
 
@@ -20,4 +21,4 @@
 	if(holder)
 		var/turf/holder_loc = holder.loc
 		if(istype(holder_loc))
-			holder_loc.assume_gas(GAS_PHORON, pick(0, 0, 0.1, rand()))
+			holder_loc.assume_gas(GAS_PHORON, rand(2, 15))

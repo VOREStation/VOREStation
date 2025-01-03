@@ -1,5 +1,6 @@
+/// Verified to work with the Artifact Harvester
 /datum/artifact_effect/cellcharge
-	name = "cell charge"
+	name = "Cell Power Charge"
 	effect_type = EFFECT_CELLCHARGE
 	effect_color = "#ffee06"
 	var/last_message

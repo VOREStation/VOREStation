@@ -1,5 +1,6 @@
+/// Verified to work with the Artifact Harvester
 /datum/artifact_effect/hurt
-	name = "hurt"
+	name = "Harm"
 	effect_type = EFFECT_HURT
 
 	effect_color = "#6d1212"

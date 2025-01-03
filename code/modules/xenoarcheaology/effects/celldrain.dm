@@ -1,6 +1,6 @@
-//todo
+/// Verified to work with the Artifact Harvester
 /datum/artifact_effect/celldrain
-	name = "cell drain"
+	name = "Cell Power Drain"
 	effect_type = EFFECT_CELLDRAIN
 	var/last_message
 

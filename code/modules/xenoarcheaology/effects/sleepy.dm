@@ -1,6 +1,6 @@
-//todo
+/// Verified to work with the Artifact Harvester
 /datum/artifact_effect/sleepy
-	name = "sleepy"
+	name = "Drowsiness"
 	effect_color = "#a36fa1"
 
 /datum/artifact_effect/sleepy/New()

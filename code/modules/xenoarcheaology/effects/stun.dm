@@ -1,5 +1,6 @@
+/// Verified to work with the Artifact Harvester
 /datum/artifact_effect/stun
-	name = "stun"
+	name = "Stun"
 	effect_color = "#00eeff"
 
 /datum/artifact_effect/stun/New()

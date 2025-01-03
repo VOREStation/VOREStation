@@ -1,5 +1,6 @@
+/// Verified to work with the Artifact Harvester
 /datum/artifact_effect/roboheal
-	name = "robotic healing"
+	name = "Robotic Healing"
 	var/last_message
 
 	effect_color = "#3879ad"

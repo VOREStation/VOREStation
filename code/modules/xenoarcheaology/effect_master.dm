@@ -117,6 +117,13 @@ var/list/toxic_reagents = list(TOXIN_PATH)
 
 	return active_effects
 
+/datum/component/artifact_master/proc/get_all_effects()
+	var/list/effects = list()
+	for(var/datum/artifact_effect/my_effect in my_effects)
+		effects |= my_effect
+
+	return effects
+
 /datum/component/artifact_master/proc/add_effect()
 	var/effect_type = input(usr, "What type do you want?", "Effect Type") as null|anything in subtypesof(/datum/artifact_effect)
 	if(effect_type)
@@ -161,7 +168,7 @@ var/list/toxic_reagents = list(TOXIN_PATH)
 
 /datum/component/artifact_master/proc/generate_effects()
 	while(effect_generation_chance > 0)
-		var/chosen_path = pick(subtypesof(/datum/artifact_effect))
+		var/chosen_path = pick(subtypesof(/datum/artifact_effect) - /datum/artifact_effect/extreme)
 		if(effect_generation_chance >= 100)	// If we're above 100 percent, just cut a flat amount and add an effect.
 			var/datum/artifact_effect/AE = new chosen_path(src)
 			if(istype(holder, AE.req_type))

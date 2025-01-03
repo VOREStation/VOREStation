@@ -1,5 +1,6 @@
+/// Verified to work with the Artifact Harvester
 /datum/artifact_effect/forcefield
-	name = "force field"
+	name = "Forcefield"
 	var/list/created_field = list()
 	effect_type = EFFECT_FORCEFIELD
 

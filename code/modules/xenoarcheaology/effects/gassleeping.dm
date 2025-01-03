@@ -1,3 +1,4 @@
+/// Verified to work with the Artifact Harvester
 /datum/artifact_effect/gassleeping
 	name = "N2O creation"
 
@@ -18,4 +19,4 @@
 	if(holder)
 		var/turf/holder_loc = holder.loc
 		if(istype(holder_loc))
-			holder_loc.assume_gas(GAS_N2O, pick(0, 0, 0.1, rand()))
+			holder_loc.assume_gas(GAS_N2O, rand(2, 15))

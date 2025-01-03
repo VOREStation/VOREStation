@@ -1,5 +1,6 @@
+/// Verified to work with the Artifact Harvester
 /datum/artifact_effect/badfeeling
-	name = "badfeeling"
+	name = "Bad Feeling"
 	effect_type = EFFECT_BADFEELING
 	var/list/messages = list("You feel worried.",
 		"Something doesn't feel right.",

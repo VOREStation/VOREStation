@@ -1,5 +1,6 @@
+/// Verified to work with the Artifact Harvester
 /datum/artifact_effect/berserk
-	name = "berserk"
+	name = "Berserk"
 	effect_type = EFFECT_BERSERK
 
 	effect_state = "summoning"

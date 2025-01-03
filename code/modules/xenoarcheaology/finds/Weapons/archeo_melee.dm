@@ -67,10 +67,10 @@
 /obj/item/melee/artifact_blade/Destroy()
 	if(stored_blood && last_touched && last_touched.stat != DEAD) //We have been activated (have some energy), an owner and they are alive. They are going to feel pain.
 		to_chat(last_touched, span_cult("You feel as though your mind is suddenly being torn apart at the seams as the [src] is destroyed!"))
-		last_touched.apply_effect(200, AGONY, FALSE) //We are in PAIN
 		last_touched.Paralyse(10)
 		last_touched.make_jittery(1000)
 		last_touched.eye_blurry += 10
+		last_touched.add_modifier(/datum/modifier/agonize, 30 SECONDS)
 		blood_splatter(last_touched, last_touched, 1)
 		if(last_touched.loc)
 			conjure_animation(last_touched.loc)
@@ -111,7 +111,7 @@
 
 		var/damage_to_apply = rand(1,3)
 		affecting.take_damage(damage_to_apply, sharp = FALSE, edge = FALSE) //Careful...Too much use and you might break your arm! This doesn't make you bleed because the sword is slurping that up.
-		if(((affecting.brute_dam + affecting.burn_dam) >= affecting.max_damage/2) && prob((affecting.brute_dam + affecting.burn_dam))) //If our limb has >= half the max health damage, start rolling a probability our limb is hacked off!
+		if(((affecting.brute_dam + affecting.burn_dam) >= affecting.max_damage) && prob((affecting.brute_dam + affecting.burn_dam))) //Don't just splint  your arm and keep using it, because you'll lose it!
 			user.visible_message(span_cult("[H]'s arm is engulfed in dark flames!"))
 			affecting.droplimb(TRUE, DROPLIMB_BURN) //And by hacked off, we mean melted into ashes... It's fire, so it's a clean loss.
 

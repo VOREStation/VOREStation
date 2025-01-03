@@ -1,6 +1,7 @@
+/// Verified to work with the Artifact Harvester
 //inverse of /datum/artifact_effect/cold, the two effects split up for neatness' sake
 /datum/artifact_effect/heat
-	name = "heat"
+	name = "Atmospheric Heating"
 	var/target_temp
 	effect_color = "#ff6600"
 

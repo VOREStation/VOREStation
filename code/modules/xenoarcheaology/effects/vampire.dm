@@ -1,6 +1,6 @@
 
 /datum/artifact_effect/vampire
-	name = "vampire"
+	name = "Cultic Vampirism"
 	effect_type = EFFECT_VAMPIRE
 	var/last_bloodcall = 0
 	var/bloodcall_interval = 50
@@ -14,6 +14,11 @@
 
 /datum/artifact_effect/vampire/proc/bloodcall(var/mob/living/carbon/human/M)
 	var/atom/holder = get_master_holder()
+	if(istype(holder, /obj/item/anobattery))
+		holder = holder.loc
+		eat_interval = 10 //If we're in an artifact just CRUNCH through those blood piles!
+	if(istype(holder.loc, /mob/living))
+		holder = holder.loc
 	last_bloodcall = world.time
 	if(istype(M))
 		playsound(holder, pick('sound/hallucinations/wail.ogg','sound/hallucinations/veryfar_noise.ogg','sound/hallucinations/far_noise.ogg'), 50, 1, -3)
@@ -35,6 +40,10 @@
 
 /datum/artifact_effect/vampire/DoEffectAura()
 	var/atom/holder = get_master_holder()
+	if(istype(holder, /obj/item/anobattery))
+		holder = holder.loc
+	if(istype(holder.loc, /mob/living))
+		holder = holder.loc
 	if(nearby_mobs.len)
 		nearby_mobs.Cut()
 	var/turf/T = get_turf(holder)

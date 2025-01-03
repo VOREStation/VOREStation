@@ -1,3 +1,4 @@
+/// Verified to work with the Artifact Harvester
 /datum/artifact_effect/gasoxy
 	name = "O2 creation"
 
@@ -18,4 +19,4 @@
 	if(holder)
 		var/turf/holder_loc = holder.loc
 		if(istype(holder_loc))
-			holder_loc.assume_gas(GAS_O2, pick(0, 0, 0.1, rand()))
+			holder_loc.assume_gas(GAS_O2, rand(2, 15))

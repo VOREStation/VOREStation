@@ -11,13 +11,11 @@
 	icon_state = "ano00"
 	var/icon_num = 0
 	density = TRUE
+	//Note: If you adminspawn this, it will NOT have an assosciated artifact_id. You have to manually set it!
 
 	var/predefined_icon_num
 
 	var/datum/component/artifact_master/artifact_master = /datum/component/artifact_master
-
-	var/being_used = 0
-
 
 /obj/machinery/artifact/Destroy()
 	if(artifact_master)

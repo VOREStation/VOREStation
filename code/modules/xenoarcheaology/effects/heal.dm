@@ -1,10 +1,14 @@
+/// Modified to work with the Artifact Harvester
 /datum/artifact_effect/heal
-	name = XENO_CHEM_HEAL
+	name = "Healing"
 	effect_type = EFFECT_HEAL
 	effect_color = "#4649ff"
 
 /datum/artifact_effect/heal/DoEffectTouch(var/mob/toucher)
-	//todo: check over this properly
+	var/atom/holder = get_master_holder()
+	if(istype(holder, /obj/item/anobattery))
+		var/obj/item/anobattery/battery = holder
+		battery.stored_charge = max(0, battery.stored_charge-50) //This artifact uses charge at an accelrated rate. It makes you nigh invincvible while it's up.
 	if(toucher && iscarbon(toucher))
 		var/weakness = GetAnomalySusceptibility(toucher)
 		if(prob(weakness * 100))
@@ -22,8 +26,7 @@
 				H.adjustBrainLoss(-25 * weakness)
 				H.radiation -= min(H.radiation, 25 * weakness)
 				H.bodytemperature = initial(H.bodytemperature)
-				spawn(1)
-					H.fixblood()
+				H.fixblood()
 			//
 			C.adjustOxyLoss(-25 * weakness)
 			C.adjustToxLoss(-25 * weakness)
@@ -35,7 +38,7 @@
 
 /datum/artifact_effect/heal/DoEffectAura()
 	var/atom/holder = get_master_holder()
-	//todo: check over this properly
+	//This is where I would make it drain charge at an accelerated rate, but...A passive 1 heal per 2 seconds is weak and fine.
 	if(holder)
 		var/turf/T = get_turf(holder)
 		for (var/mob/living/carbon/C in range(src.effectrange,T))
@@ -51,17 +54,18 @@
 				C.updatehealth()
 
 /datum/artifact_effect/heal/DoEffectPulse()
-	var/atom/holder = get_master_holder()
+	var/atom/holder = get_master_holder() //I'm not touching the below line because it's FUNNY that a 'todo:' has been sitting there for 12 years.
 	//todo: check over this properly
+	//Anyways, this is where you'd put accelerated drain code, but it already drains at 200 a tick, meaning you get 2-3 uses at most before having to recharge.
 	if(holder)
 		var/turf/T = get_turf(holder)
 		for (var/mob/living/carbon/C in range(src.effectrange,T))
 			var/weakness = GetAnomalySusceptibility(C)
 			if(prob(weakness * 100))
 				to_chat(C, span_blue("A wave of energy invigorates you."))
-				C.adjustBruteLoss(-5 * weakness)
-				C.adjustFireLoss(-5 * weakness)
-				C.adjustToxLoss(-5 * weakness)
-				C.adjustOxyLoss(-5 * weakness)
-				C.adjustBrainLoss(-5 * weakness)
+				C.adjustBruteLoss(-25 * weakness)
+				C.adjustFireLoss(-25 * weakness)
+				C.adjustToxLoss(-25 * weakness)
+				C.adjustOxyLoss(-25 * weakness)
+				C.adjustBrainLoss(-25 * weakness)
 				C.updatehealth()
