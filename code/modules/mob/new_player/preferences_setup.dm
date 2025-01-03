@@ -44,18 +44,12 @@
 		if(current_species.appearance_flags & HAS_SKIN_TONE)
 			s_tone = random_skin_tone()
 		if(current_species.appearance_flags & HAS_SKIN_COLOR)
-			r_skin = rand (0,255)
-			g_skin = rand (0,255)
-			b_skin = rand (0,255)
+			update_preference_by_type(/datum/preference/color/human/skin_color, rgb(rand(0, 255), rand(0, 255), rand(0, 255)))
 		if(current_species.appearance_flags & HAS_EYE_COLOR)
 			randomize_eyes_color()
 		if(current_species.appearance_flags & HAS_HAIR_COLOR)
 			randomize_hair_color("hair")
 			randomize_hair_color("facial")
-		if(current_species.appearance_flags & HAS_SKIN_COLOR)
-			r_skin = rand (0,255)
-			g_skin = rand (0,255)
-			b_skin = rand (0,255)
 	if(current_species.appearance_flags & HAS_UNDERWEAR)
 		all_underwear.Cut()
 		for(var/datum/category_group/underwear/WRC in global_underwear.categories)
@@ -74,9 +68,7 @@
 
 /datum/preferences/proc/randomize_hair_color(var/target = "hair")
 	if(prob (75) && target == "facial") // Chance to inherit hair color
-		r_facial = r_hair
-		g_facial = g_hair
-		b_facial = b_hair
+		update_preference_by_type(/datum/preference/color/human/facial_color, read_preference(/datum/preference/color/human/hair_color))
 		return
 
 	var/red
@@ -124,13 +116,9 @@
 
 	switch(target)
 		if("hair")
-			r_hair = red
-			g_hair = green
-			b_hair = blue
+			update_preference_by_type(/datum/preference/color/human/hair_color, rgb(red, green, blue))
 		if("facial")
-			r_facial = red
-			g_facial = green
-			b_facial = blue
+			update_preference_by_type(/datum/preference/color/human/facial_color, rgb(red, green, blue))
 
 /datum/preferences/proc/randomize_eyes_color()
 	var/red
@@ -176,9 +164,7 @@
 	green = max(min(green + rand (-25, 25), 255), 0)
 	blue = max(min(blue + rand (-25, 25), 255), 0)
 
-	r_eyes = red
-	g_eyes = green
-	b_eyes = blue
+	update_preference_by_type(/datum/preference/color/human/eyes_color, rgb(red, green, blue))
 
 /datum/preferences/proc/randomize_skin_color()
 	var/red
@@ -224,9 +210,7 @@
 	green = max(min(green + rand (-25, 25), 255), 0)
 	blue = max(min(blue + rand (-25, 25), 255), 0)
 
-	r_skin = red
-	g_skin = green
-	b_skin = blue
+	update_preference_by_type(/datum/preference/color/human/skin_color, rgb(red, green, blue))
 
 /datum/preferences/proc/dress_preview_mob(var/mob/living/carbon/human/mannequin)
 	if(!mannequin.dna) // Special handling for preview icons before SSAtoms has initailized.
