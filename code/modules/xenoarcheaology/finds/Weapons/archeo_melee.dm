@@ -90,9 +90,9 @@
 		force = force*2
 		empowered = 0
 	/// First, we check a few things.
-	/// If we are (NOT a cultist) AND (we are using it on a human OR our faction = their faction), OR we use it against a cultist, we get wrecked.
+	/// If we're  not a cultist, our target IS a cultist, OR their faction is our faction, we get wrecked.
 	/// Fun fact, monkeys count as humans. Yes.
-	if(!iscultist(user) && (ishuman(M) || M.faction == user.faction) && !iscultist(M))
+	if(!iscultist(user) || iscultist(M) || M.faction == user.faction)
 		user.visible_message(span_cult("[user]'s arm is engulfed in dark flames!"))
 		to_chat(user, span_cult("An inexplicable force rips through your arm as it's engulfed in flames, tearing the sword from your grasp!"))
 		user.drop_from_inventory(src, user.loc)
