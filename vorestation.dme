@@ -1309,6 +1309,7 @@
 #include "code\game\objects\items\gunbox.dm"
 #include "code\game\objects\items\gunbox_vr.dm"
 #include "code\game\objects\items\latexballoon.dm"
+#include "code\game\objects\items\leash.dm"
 #include "code\game\objects\items\lockpicks.dm"
 #include "code\game\objects\items\magazine.dm"
 #include "code\game\objects\items\paintkit.dm"
