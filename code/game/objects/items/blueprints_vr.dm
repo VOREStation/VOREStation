@@ -939,7 +939,6 @@
 	for(var/obj/machinery/gravity_generator/main/GG in machines)
 		if(GG.z in zLevels)
 			GG.update_areas()
-
 	return
 
 
