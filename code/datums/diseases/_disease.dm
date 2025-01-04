@@ -135,7 +135,7 @@ GLOBAL_LIST_INIT(diseases, subtypesof(/datum/disease))
 						break
 					var/direction = get_dir(current, target)
 					var/turf/next = get_step(current, direction)
-					if(!current.CanZASPass() || !next.CanZASPass(get_turf(turn(direction, 100))))
+					if(!current.CanZASPass(next))
 						break
 					current = next
 
