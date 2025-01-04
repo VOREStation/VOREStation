@@ -42,6 +42,7 @@ GLOBAL_LIST_INIT(diseases, subtypesof(/datum/disease))
 	var/allow_dead = FALSE
 	var/infect_synthetics = FALSE
 	var/processing = FALSE
+	var/has_timer = FALSE
 
 /datum/disease/Destroy()
 	affected_mob = null
@@ -146,6 +147,23 @@ GLOBAL_LIST_INIT(diseases, subtypesof(/datum/disease))
 				affected_mob.resistances += type
 		remove_virus()
 	qdel(src)
+
+/datum/disease/proc/start_cure_timer()
+	if(has_timer)
+		return
+	if(!(disease_flags & CURABLE))
+		return
+	has_timer = TRUE
+	addtimer(CALLBACK(src, PROC_REF(check_natural_immunity)), (1 HOUR) + rand( -20 MINUTES, 30 MINUTES), TIMER_DELETE_ME)
+
+/datum/disease/proc/check_natural_immunity()
+	if(!(disease_flags & CURABLE))
+		return
+	if(prob(rand(10, 15)))
+		has_timer = FALSE
+		cure()
+		return
+	addtimer(CALLBACK(src, PROC_REF(check_natural_immunity)), rand(5 MINUTES, 10 MINUTES), TIMER_DELETE_ME)
 
 /datum/disease/proc/IsSame(datum/disease/D)
 	if(ispath(D))
