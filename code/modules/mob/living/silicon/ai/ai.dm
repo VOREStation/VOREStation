@@ -210,11 +210,9 @@ var/list/ai_verbs_default = list(
 
 	// Vorestation Edit: Meta Info for AI's. Mostly used for Holograms
 	if (client)
-		var/meta_info = client.prefs.metadata
-		if (meta_info)
-			ooc_notes = meta_info
-			ooc_notes_likes = client.prefs.metadata_likes
-			ooc_notes_dislikes = client.prefs.metadata_dislikes
+		ooc_notes = client.prefs.read_preference(/datum/preference/text/living/ooc_notes)
+		ooc_notes_likes = client.prefs.read_preference(/datum/preference/text/living/ooc_notes_likes)
+		ooc_notes_dislikes = client.prefs.read_preference(/datum/preference/text/living/ooc_notes_dislikes)
 
 	if (malf && !(mind in malf.current_antagonists))
 		show_laws()

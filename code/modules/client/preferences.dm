@@ -106,11 +106,6 @@ var/list/preferences_datums = list()
 
 	var/economic_status = "Average"
 
-	// OOC Metadata:
-	var/metadata = ""
-	var/metadata_likes = ""
-	var/metadata_dislikes = ""
-
 	var/client/client = null
 	var/client_ckey = null
 
@@ -342,7 +337,7 @@ var/list/preferences_datums = list()
 		if(preference.savefile_identifier != PREFERENCE_CHARACTER)
 			continue
 
-		preference.apply_to_human(character, read_preference(preference.type))
+		preference.apply_pref_to(character, read_preference(preference.type))
 
 	// VOREStation Edit - Sync up all their organs and species one final time
 	character.force_update_organs()
@@ -477,10 +472,10 @@ var/list/preferences_datums = list()
 	character.h_style	= h_style
 
 	var/datum/preference/color/hair_color = GLOB.preference_entries[/datum/preference/color/human/hair_color]
-	hair_color.apply_to_human(character, read_preference(/datum/preference/color/human/hair_color))
+	hair_color.apply_pref_to(character, read_preference(/datum/preference/color/human/hair_color))
 
 	var/datum/preference/color/grad_color = GLOB.preference_entries[/datum/preference/color/human/grad_color]
-	grad_color.apply_to_human(character, read_preference(/datum/preference/color/human/grad_color))
+	grad_color.apply_pref_to(character, read_preference(/datum/preference/color/human/grad_color))
 
 	character.f_style	= f_style
 	character.s_tone	= s_tone
@@ -492,7 +487,7 @@ var/list/preferences_datums = list()
 	character.synth_color = synth_color
 
 	var/datum/preference/color/synth_color_color = GLOB.preference_entries[/datum/preference/color/human/synth_color]
-	synth_color_color.apply_to_human(character, read_preference(/datum/preference/color/human/synth_color))
+	synth_color_color.apply_pref_to(character, read_preference(/datum/preference/color/human/synth_color))
 
 	character.synth_markings = synth_markings
 
@@ -500,13 +495,13 @@ var/list/preferences_datums = list()
 	character.ear_style =  ear_styles[ear_style]
 
 	var/datum/preference/color/ears_color1 = GLOB.preference_entries[/datum/preference/color/human/ears_color1]
-	ears_color1.apply_to_human(character, read_preference(/datum/preference/color/human/ears_color1))
+	ears_color1.apply_pref_to(character, read_preference(/datum/preference/color/human/ears_color1))
 
 	var/datum/preference/color/ears_color2 = GLOB.preference_entries[/datum/preference/color/human/ears_color2]
-	ears_color2.apply_to_human(character, read_preference(/datum/preference/color/human/ears_color2))
+	ears_color2.apply_pref_to(character, read_preference(/datum/preference/color/human/ears_color2))
 
 	var/datum/preference/color/ears_color3 = GLOB.preference_entries[/datum/preference/color/human/ears_color3]
-	ears_color3.apply_to_human(character, read_preference(/datum/preference/color/human/ears_color3))
+	ears_color3.apply_pref_to(character, read_preference(/datum/preference/color/human/ears_color3))
 
 	character.ear_secondary_style = ear_styles[ear_secondary_style]
 	character.ear_secondary_colors = SANITIZE_LIST(ear_secondary_colors)
@@ -515,25 +510,25 @@ var/list/preferences_datums = list()
 	character.tail_style = tail_styles[tail_style]
 
 	var/datum/preference/color/tail_color1 = GLOB.preference_entries[/datum/preference/color/human/tail_color1]
-	tail_color1.apply_to_human(character, read_preference(/datum/preference/color/human/tail_color1))
+	tail_color1.apply_pref_to(character, read_preference(/datum/preference/color/human/tail_color1))
 
 	var/datum/preference/color/tail_color2 = GLOB.preference_entries[/datum/preference/color/human/tail_color2]
-	tail_color2.apply_to_human(character, read_preference(/datum/preference/color/human/tail_color2))
+	tail_color2.apply_pref_to(character, read_preference(/datum/preference/color/human/tail_color2))
 
 	var/datum/preference/color/tail_color3 = GLOB.preference_entries[/datum/preference/color/human/tail_color3]
-	tail_color3.apply_to_human(character, read_preference(/datum/preference/color/human/tail_color3))
+	tail_color3.apply_pref_to(character, read_preference(/datum/preference/color/human/tail_color3))
 
 	var/list/wing_styles = get_available_styles(global.wing_styles_list)
 	character.wing_style = wing_styles[wing_style]
 
 	var/datum/preference/color/wing_color1 = GLOB.preference_entries[/datum/preference/color/human/wing_color1]
-	wing_color1.apply_to_human(character, read_preference(/datum/preference/color/human/wing_color1))
+	wing_color1.apply_pref_to(character, read_preference(/datum/preference/color/human/wing_color1))
 
 	var/datum/preference/color/wing_color2 = GLOB.preference_entries[/datum/preference/color/human/wing_color2]
-	wing_color2.apply_to_human(character, read_preference(/datum/preference/color/human/wing_color2))
+	wing_color2.apply_pref_to(character, read_preference(/datum/preference/color/human/wing_color2))
 
 	var/datum/preference/color/wing_color3 = GLOB.preference_entries[/datum/preference/color/human/wing_color3]
-	wing_color3.apply_to_human(character, read_preference(/datum/preference/color/human/wing_color3))
+	wing_color3.apply_pref_to(character, read_preference(/datum/preference/color/human/wing_color3))
 
 	character.set_gender(biological_gender)
 
@@ -610,9 +605,9 @@ var/list/preferences_datums = list()
 		character.flavor_texts["legs"]		= flavor_texts["legs"]
 		character.flavor_texts["feet"]		= flavor_texts["feet"]
 	if (copy_ooc_notes)
-		character.ooc_notes 				= metadata
-		character.ooc_notes_dislikes 		= metadata_dislikes
-		character.ooc_notes_likes 			= metadata_likes
+		character.ooc_notes 				= read_preference(/datum/preference/text/living/ooc_notes)
+		character.ooc_notes_dislikes 		= read_preference(/datum/preference/text/living/ooc_notes_dislikes)
+		character.ooc_notes_likes 			= read_preference(/datum/preference/text/living/ooc_notes_likes)
 
 	character.weight			= weight_vr
 	character.weight_gain		= weight_gain

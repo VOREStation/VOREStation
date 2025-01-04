@@ -222,14 +222,14 @@ GLOBAL_LIST_INIT(preference_entries_by_key, init_preference_entries_by_key())
 
 /// Apply this preference onto the given liivng mob.
 /// Calls the according procs depending on type.
-/datum/preference/proc/apply_pref_to(mob/living)
-	apply_to_living(living)
+/datum/preference/proc/apply_pref_to(mob/living, value)
+	apply_to_living(living, value)
 	if(isanimal(living))
-		apply_to_animal(living)
+		apply_to_animal(living, value)
 	else if(ishuman(living))
-		apply_to_human(living)
+		apply_to_human(living, value)
 	else if(issilicon(living))
-		apply_to_silicon(living)
+		apply_to_silicon(living, value)
 
 /// Apply this preference onto the given human.
 /// Must be overriden by subtypes.

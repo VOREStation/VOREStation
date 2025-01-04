@@ -15,18 +15,12 @@
 	pref.nickname						= save_data["nickname"]
 	pref.biological_gender				= save_data["gender"]
 	pref.identifying_gender				= save_data["id_gender"]
-	pref.metadata						= save_data["OOC_Notes"]
-	pref.metadata_likes					= save_data["OOC_Notes_Likes"]
-	pref.metadata_dislikes				= save_data["OOC_Notes_Disikes"]
 
 /datum/category_item/player_setup_item/general/basic/save_character(list/save_data)
 	save_data["real_name"]				= pref.real_name
 	save_data["nickname"]				= pref.nickname
 	save_data["gender"]					= pref.biological_gender
 	save_data["id_gender"]				= pref.identifying_gender
-	save_data["OOC_Notes"]				= pref.metadata
-	save_data["OOC_Notes_Likes"]		= pref.metadata_likes
-	save_data["OOC_Notes_Disikes"]		= pref.metadata_dislikes
 
 /datum/category_item/player_setup_item/general/basic/sanitize_character()
 	pref.biological_gender  = sanitize_inlist(pref.biological_gender, get_genders(), pick(get_genders()))
@@ -193,21 +187,21 @@
 		return TOPIC_REFRESH
 
 	else if(href_list["edit_ooc_notes"])
-		var/new_metadata = strip_html_simple(tgui_input_text(usr, "Enter any information you'd like others to see, such as Roleplay-preferences. This will not be saved permanently unless you click save in the Character Setup panel!", "Game Preference" , html_decode(pref.metadata), multiline = TRUE,  prevent_enter = TRUE))
+		var/new_metadata = strip_html_simple(tgui_input_text(usr, "Enter any information you'd like others to see, such as Roleplay-preferences. This will not be saved permanently unless you click save in the Character Setup panel!", "Game Preference" , html_decode(pref.read_preference(/datum/preference/text/living/ooc_notes)), multiline = TRUE,  prevent_enter = TRUE))
 		if(new_metadata && CanUseTopic(user))
-			pref.metadata = new_metadata
+			pref.update_preference_by_type(/datum/preference/text/living/ooc_notes, new_metadata)
 	else if(href_list["edit_ooc_note_likes"])
-		var/new_metadata = strip_html_simple(tgui_input_text(usr, "Enter any information you'd like others to see relating to your LIKED roleplay preferences. This will not be saved permanently unless you click save in the Character Setup panel! Type \"!clear\" to empty.", "Game Preference" , html_decode(pref.metadata_likes), multiline = TRUE,  prevent_enter = TRUE))
+		var/new_metadata = strip_html_simple(tgui_input_text(usr, "Enter any information you'd like others to see relating to your LIKED roleplay preferences. This will not be saved permanently unless you click save in the Character Setup panel! Type \"!clear\" to empty.", "Game Preference" , html_decode(pref.read_preference(/datum/preference/text/living/ooc_notes_likes)), multiline = TRUE,  prevent_enter = TRUE))
 		if(new_metadata && CanUseTopic(user))
 			if(new_metadata == "!clear")
 				new_metadata = ""
-			pref.metadata_likes = new_metadata
+			pref.update_preference_by_type(/datum/preference/text/living/ooc_notes_likes, new_metadata)
 	else if(href_list["edit_ooc_note_dislikes"])
-		var/new_metadata = strip_html_simple(tgui_input_text(usr, "Enter any information you'd like others to see relating to your DISLIKED roleplay preferences. This will not be saved permanently unless you click save in the Character Setup panel! Type \"!clear\" to empty.", "Game Preference" , html_decode(pref.metadata_dislikes), multiline = TRUE,  prevent_enter = TRUE))
+		var/new_metadata = strip_html_simple(tgui_input_text(usr, "Enter any information you'd like others to see relating to your DISLIKED roleplay preferences. This will not be saved permanently unless you click save in the Character Setup panel! Type \"!clear\" to empty.", "Game Preference" , html_decode(pref.read_preference(/datum/preference/text/living/ooc_notes_dislikes)), multiline = TRUE,  prevent_enter = TRUE))
 		if(new_metadata && CanUseTopic(user))
 			if(new_metadata == "!clear")
 				new_metadata = ""
-			pref.metadata_dislikes = new_metadata
+			pref.update_preference_by_type(/datum/preference/text/living/ooc_notes_dislikes, new_metadata)
 	return ..()
 
 /datum/category_item/player_setup_item/general/basic/proc/get_genders()
