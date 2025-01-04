@@ -38,8 +38,10 @@
 	var/corpsesynthtype = 0			// 0 for organic, 1 for drone, 2 for posibrain
 	var/corpsesynthbrand = "Unbranded"
 
-/obj/effect/landmark/mobcorpse/New()
+/obj/effect/landmark/mobcorpse/Initialize()
+	..()
 	createCorpse()
+	return INITIALIZE_HINT_QDEL
 
 /obj/effect/landmark/mobcorpse/proc/createCorpse() //Creates a mob and checks for gear in each slot before attempting to equip it.
 	var/mob/living/carbon/human/M = new /mob/living/carbon/human (src.loc)
@@ -169,7 +171,6 @@
 	if(src.corpsesuit)
 		M.equip_voidsuit_to_slot_or_del_with_refit(new src.corpsesuit(M), slot_wear_suit, src.species)
 	delete_me = 1
-	qdel(src)
 
 /obj/effect/landmark/mobcorpse/proc/generateCorpseName()
 	return name

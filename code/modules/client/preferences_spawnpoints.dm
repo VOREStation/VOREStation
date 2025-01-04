@@ -83,9 +83,9 @@ var/list/spawntypes = list()
 	name = "JoinLateShuttle"
 	delete_me = 1
 
-/obj/effect/landmark/arrivals/New()
+/obj/effect/landmark/arrivals/Initialize()
+	. = ..()
 	latejoin += loc
-	..()
 
 var/global/list/latejoin_tram   = list()
 
@@ -93,14 +93,14 @@ var/global/list/latejoin_tram   = list()
 	name = "JoinLateTram"
 	delete_me = 1
 
-/obj/effect/landmark/tram/New()
+/obj/effect/landmark/tram/Initialize()
+	. = ..()
 	latejoin_tram += loc // There's no tram but you know whatever man!
-	..()
 
 /datum/spawnpoint/tram
 	display_name = "Tram Station"
 	msg = "will arrive to the station shortly by shuttle"
 
-/datum/spawnpoint/tram/New()
-	..()
+/datum/spawnpoint/tram/Initialize()
+	. = ..()
 	turfs = latejoin_tram

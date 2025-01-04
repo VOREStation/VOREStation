@@ -92,8 +92,8 @@
 	icon_state = "x"
 	anchored = TRUE
 
-/obj/effect/landmark/start/New()
-	..()
+/obj/effect/landmark/start/Initialize()
+	. = ..()
 	tag = "start*[name]"
 	invisibility = 101
 
