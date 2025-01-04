@@ -101,6 +101,6 @@ var/global/list/latejoin_tram   = list()
 	display_name = "Tram Station"
 	msg = "will arrive to the station shortly by shuttle"
 
-/datum/spawnpoint/tram/Initialize()
-	. = ..()
+/datum/spawnpoint/tram/New()
+	..()
 	turfs = latejoin_tram
