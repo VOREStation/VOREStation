@@ -12,7 +12,8 @@
 	capacity = 3000
 
 /*
-/obj/item/anobattery/New()
+/obj/item/anobattery/Initialize()
+	. = ..()
 	battery_effect = new()
 */
 
@@ -38,8 +39,8 @@
 	var/turf/archived_loc
 	var/energy_consumed_on_touch = 100
 
-/obj/item/anodevice/New()
-	..()
+/obj/item/anodevice/Initialize()
+	. = ..()
 	START_PROCESSING(SSobj, src)
 
 /obj/item/anodevice/attackby(var/obj/I as obj, var/mob/user as mob)

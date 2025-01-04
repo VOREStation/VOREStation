@@ -56,19 +56,19 @@
 	hardware_size = 1
 	battery_rating = 30000
 
-/obj/item/computer_hardware/battery_module/lambda/New()
-	..()
+/obj/item/computer_hardware/battery_module/lambda/Initialize()
+	. = ..()
 	battery = new/obj/item/cell/infinite(src)
 
 /obj/item/computer_hardware/battery_module/diagnostics(var/mob/user)
 	..()
 	to_chat(user, "Internal battery charge: [battery.charge]/[battery.maxcharge] CU")
 
-/obj/item/computer_hardware/battery_module/New()
+/obj/item/computer_hardware/battery_module/Initialize()
+	. = ..()
 	battery = new/obj/item/cell(src)
 	battery.maxcharge = battery_rating
 	battery.charge = 0
-	..()
 
 /obj/item/computer_hardware/battery_module/Destroy()
 	qdel_null(battery)

@@ -180,9 +180,9 @@
 		return
 
 /obj/structure/toilet/wooden/Initialize()
+	. = ..()
 	open = 1 //just to make sure it works
 	icon_state = "toilet3"
-	. = ..()
 
 /obj/structure/toilet/wooden/update_icon()
 	return

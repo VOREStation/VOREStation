@@ -110,8 +110,8 @@
 	var/triggered = 0
 
 /obj/effect/meatgrinder/Initialize()
-	icon_state = "blob"
 	. = ..()
+	icon_state = "blob"
 
 /obj/effect/meatgrinder/HasEntered(AM as mob|obj)
 	Bumped(AM)

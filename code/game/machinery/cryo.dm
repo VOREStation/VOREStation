@@ -27,8 +27,8 @@
 
 	var/image/fluid
 
-/obj/machinery/atmospherics/unary/cryo_cell/New()
-	..()
+/obj/machinery/atmospherics/unary/cryo_cell/Initialize()
+	. = ..()
 	icon = 'icons/obj/cryogenics_split.dmi'
 	icon_state = "base"
 	initialize_directions = dir

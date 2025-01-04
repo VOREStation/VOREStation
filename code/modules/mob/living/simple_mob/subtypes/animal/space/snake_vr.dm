@@ -231,7 +231,8 @@
 	icon_state = "sneksnakbox"
 	storage_slots = 7
 
-/obj/item/storage/box/snakesnackbox/New()
+/obj/item/storage/box/snakesnackbox/Initialize()
+	. = ..()
 	new /obj/item/reagent_containers/food/snacks/snakesnack(src)
 	new /obj/item/reagent_containers/food/snacks/snakesnack(src)
 	new /obj/item/reagent_containers/food/snacks/snakesnack(src)
@@ -239,4 +240,3 @@
 	new /obj/item/reagent_containers/food/snacks/snakesnack(src)
 	new /obj/item/reagent_containers/food/snacks/snakesnack(src)
 	new /obj/item/reagent_containers/food/snacks/snakesnack(src)
-	..()

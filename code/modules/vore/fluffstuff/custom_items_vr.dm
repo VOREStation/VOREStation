@@ -904,8 +904,8 @@
 				slot_r_hand_str = 'icons/vore/custom_items_right_hand_vr.dmi',
 				)
 
-/obj/item/material/twohanded/fluff/Initialize(var/newloc)
-	. = ..(newloc," ") //See materials_vr_dmi for more information as to why this is a blank space.
+/obj/item/material/twohanded/fluff/Initialize(mapload)
+	. = ..(mapload," ") //See materials_vr_dmi for more information as to why this is a blank space.
 
 //jacknoir413:Areax Third
 /obj/item/melee/baton/fluff/stunstaff
@@ -1568,8 +1568,8 @@
 	icon_state = "ceph_d6[result]"
 
 /obj/item/dice/loaded/ceph/Initialize()
-	icon_state = "ceph_d6[rand(1,sides)]"
 	. = ..()
+	icon_state = "ceph_d6[rand(1,sides)]"
 
 
 //abc123: Mira Nesyne
