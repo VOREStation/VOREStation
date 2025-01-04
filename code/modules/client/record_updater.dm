@@ -77,7 +77,7 @@ var/global/client_record_update_lock = FALSE
 		return "Update syncronization failed (OOC: Record's owner is offline)"
 
 	var/choice = tgui_alert(M, "Your [record_string] record has been updated from the a records console by [user]. Please review the changes made to your [record_string] record. Accepting these changes will SAVE your CURRENT character slot! If your new [record_string] record has errors, it is recomended to have it corrected IC instead of editing it yourself.", "Record Updated", list("Review Changes","DENY"))
-	if(choice == "DENY")
+	if(!choice || choice == "DENY")
 		message_admins("[active.fields["name"]] refused [record_string] record update from [user] without review.")
 		if(COM && !QDELETED(COM))
 			COM.visible_message(span_notice("\The [COM] buzzes!"))

@@ -446,6 +446,14 @@
 	color_blend_mode = ICON_MULTIPLY
 	body_parts = list(BP_L_FOOT,BP_R_FOOT,BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_L_HAND,BP_R_HAND,BP_GROIN,BP_TORSO,BP_HEAD)
 
+/datum/sprite_accessory/marking/vr_osocks_complete
+	name = "Modular Longsocks"
+	icon = 'icons/mob/human_races/markings_vr.dmi'
+	icon_state = "osocks"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_R_ARM,BP_R_HAND,BP_L_ARM,BP_L_HAND,BP_R_FOOT,BP_R_LEG,BP_L_FOOT,BP_L_LEG)
+
+//TODO: remove these in a few months?
 /datum/sprite_accessory/marking/vr_osocks_rarm
 	name = "Modular Longsock (right arm)"
 	icon = 'icons/mob/human_races/markings_vr.dmi'
@@ -473,6 +481,7 @@
 	icon_state = "osocks"
 	color_blend_mode = ICON_MULTIPLY
 	body_parts = list(BP_L_FOOT,BP_L_LEG)
+//END TODO
 
 /datum/sprite_accessory/marking/vr_animeeyesinner
 	name = "Anime Eyes Inner"

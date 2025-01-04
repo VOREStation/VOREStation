@@ -354,6 +354,8 @@
 			sprite_datum = module_sprites[1]
 			sprite_datum.do_equipment_glamour(module)
 			return
+	if(mind)
+		sprite_name = mind.name
 	if(!selecting_module)
 		var/datum/tgui_module/robot_ui_module/ui = new(src)
 		ui.tgui_interact(src)

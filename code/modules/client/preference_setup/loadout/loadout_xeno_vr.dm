@@ -59,31 +59,31 @@
 /datum/gear/eyes/tajblind
 	display_name = "embroidered veil"
 	path = /obj/item/clothing/glasses/tajblind
-	//whitelisted = SPECIES_TAJ
+	//whitelisted = SPECIES_TAJARAN
 	sort_category = "Xenowear"
 
 /datum/gear/eyes/medical/tajblind
 	display_name = "medical veil (Tajara) (Medical)"
 	path = /obj/item/clothing/glasses/hud/health/tajblind
-	//whitelisted = SPECIES_TAJ
+	//whitelisted = SPECIES_TAJARAN
 	sort_category = "Xenowear"
 
 /datum/gear/eyes/meson/tajblind
 	display_name = "industrial veil (Tajara) (Engineering, Science)"
 	path = /obj/item/clothing/glasses/meson/prescription/tajblind
-	//whitelisted = SPECIES_TAJ
+	//whitelisted = SPECIES_TAJARAN
 	sort_category = "Xenowear"
 
 /datum/gear/eyes/material/tajblind
 	display_name = "mining veil (Tajara) (Mining)"
 	path = /obj/item/clothing/glasses/material/prescription/tajblind
-	//whitelisted = SPECIES_TAJ
+	//whitelisted = SPECIES_TAJARAN
 	sort_category = "Xenowear"
 
 /datum/gear/eyes/security/tajblind
 	display_name = "sleek veil (Tajara) (Security)"
 	path = /obj/item/clothing/glasses/sunglasses/sechud/tajblind
-	//whitelisted = SPECIES_TAJ
+	//whitelisted = SPECIES_TAJARAN
 	sort_category = "Xenowear"
 
 /datum/gear/mask/altevian_breath

@@ -11,18 +11,12 @@
 	w_class = ITEMSIZE_SMALL
 	slot_flags = SLOT_BELT
 	origin_tech = list(TECH_DATA = 2, TECH_ENGINEERING = 2)
-	var/gpstag = "COM0"
+	gps_tag = "COM0"
 	emped = 0
 
-/obj/item/gps/advanced/New()
-	..()
-	GPS_list.Add(src)
-	name = "global positioning system ([gpstag])"
-	add_overlay("working")
-
-/obj/item/gps/advanced/Destroy()
-	GPS_list.Remove(src)
+/obj/item/gps/advanced/Initialize()
 	. = ..()
+	add_overlay("working")
 
 /obj/item/gps/advanced/emp_act(severity)
 	emped = 1
@@ -39,13 +33,13 @@
 	if(emped)
 		t += "ERROR"
 	else
-		t += "<BR><A href='byond://?src=\ref[src];tag=1'>Set Tag</A> "
-		t += "<BR>Tag: [gpstag]"
+		t += "<BR><A href='byond://?src=\ref[src];advtag=1'>Set Tag</A> "
+		t += "<BR>Tag: [gps_tag]"
 
 		for(var/obj/item/gps/advanced/G in GPS_list)
 			var/turf/pos = get_turf(G)
 			var/area/gps_area = get_area(G)
-			var/tracked_gpstag = G.gpstag
+			var/tracked_gpstag = G.gps_tag
 			if(G.emped == 1)
 				t += "<BR>[tracked_gpstag]: ERROR"
 			else
@@ -58,22 +52,22 @@
 
 /obj/item/gps/advanced/Topic(href, href_list)
 	..()
-	if(href_list["tag"] )
-		var/a = tgui_input_text(usr, "Please enter desired tag.", name, gpstag)
+	if(href_list["advtag"] )
+		var/a = tgui_input_text(usr, "Please enter desired tag.", name, gps_tag)
 		a = uppertext(copytext(sanitize(a), 1, 5))
 		if(src.loc == usr)
-			gpstag = a
-			name = "global positioning system ([gpstag])"
+			gps_tag = a
+			name = "global positioning system ([gps_tag])"
 			attack_self(usr)
 
 /obj/item/gps/advanced/science
 	icon_state = "gps-s"
-	gpstag = "SCI0"
+	gps_tag = "SCI0"
 
 /obj/item/gps/advanced/engineering
 	icon_state = "gps-e"
-	gpstag = "ENG0"
+	gps_tag = "ENG0"
 
 /obj/item/gps/advanced/security
 	icon_state = "gps-sec"
-	gpstag = "SEC0"
+	gps_tag = "SEC0"

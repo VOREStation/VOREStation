@@ -66,6 +66,6 @@
 	close_button_y_start = 86
 	close_button_y_end = 94
 
-/obj/screen/popup/default/New()
-	..()
+/obj/screen/popup/default/Initialize(mapload)
 	icon_state = "popup[rand(1,10)]"
+	. = ..()

@@ -8,55 +8,70 @@
 	density = FALSE
 	anchored = TRUE
 
-/obj/effect/bhole/New()
-	spawn(4)
-		controller()
+/obj/effect/bhole/Initialize()
+	. = ..()
+	addtimer(CALLBACK(src, PROC_REF(controller)), 0.4 SECONDS, TIMER_DELETE_ME)
 
 /obj/effect/bhole/proc/controller()
-	while(src)
+	if(!isturf(loc))
+		qdel(src)
+		return
 
-		if(!isturf(loc))
-			qdel(src)
-			return
+	//DESTROYING STUFF AT THE EPICENTER
+	for(var/mob/living/M in orange(1,src))
+		qdel(M)
+	for(var/obj/O in orange(1,src))
+		qdel(O)
+	var/base_turf = get_base_turf_by_area(src)
+	for(var/turf/simulated/ST in orange(1,src))
+		if(ST.type == base_turf)
+			continue
+		ST.ChangeTurf(base_turf)
+	addtimer(CALLBACK(src, PROC_REF(pull_1)), 0.6 SECONDS, TIMER_DELETE_ME)
 
-		//DESTROYING STUFF AT THE EPICENTER
-		for(var/mob/living/M in orange(1,src))
-			qdel(M)
-		for(var/obj/O in orange(1,src))
-			qdel(O)
-		var/base_turf = get_base_turf_by_area(src)
-		for(var/turf/simulated/ST in orange(1,src))
-			if(ST.type == base_turf)
-				continue
-			ST.ChangeTurf(base_turf)
+/obj/effect/bhole/proc/pull_1()
+	grav(10, 4, 10, 0)
+	addtimer(CALLBACK(src, PROC_REF(pull_2)), 0.6 SECONDS, TIMER_DELETE_ME)
 
-		sleep(6)
-		grav(10, 4, 10, 0 )
-		sleep(6)
-		grav( 8, 4, 10, 0 )
-		sleep(6)
-		grav( 9, 4, 10, 0 )
-		sleep(6)
-		grav( 7, 3, 40, 1 )
-		sleep(6)
-		grav( 5, 3, 40, 1 )
-		sleep(6)
-		grav( 6, 3, 40, 1 )
-		sleep(6)
-		grav( 4, 2, 50, 6 )
-		sleep(6)
-		grav( 3, 2, 50, 6 )
-		sleep(6)
-		grav( 2, 2, 75,25 )
-		sleep(6)
+/obj/effect/bhole/proc/pull_2()
+	grav(8, 4, 10, 0)
+	addtimer(CALLBACK(src, PROC_REF(pull_3)), 0.6 SECONDS, TIMER_DELETE_ME)
 
+/obj/effect/bhole/proc/pull_3()
+	grav(9, 4, 10, 0)
+	addtimer(CALLBACK(src, PROC_REF(pull_4)), 0.6 SECONDS, TIMER_DELETE_ME)
 
+/obj/effect/bhole/proc/pull_4()
+	grav(7, 3, 40, 1)
+	addtimer(CALLBACK(src, PROC_REF(pull_5)), 0.6 SECONDS, TIMER_DELETE_ME)
 
-		//MOVEMENT
-		if( prob(50) )
-			src.anchored = FALSE
-			step(src,pick(alldirs))
-			src.anchored = TRUE
+/obj/effect/bhole/proc/pull_5()
+	grav(5, 3, 40, 1)
+	addtimer(CALLBACK(src, PROC_REF(pull_6)), 0.6 SECONDS, TIMER_DELETE_ME)
+
+/obj/effect/bhole/proc/pull_6()
+	grav(6, 3, 40, 1)
+	addtimer(CALLBACK(src, PROC_REF(pull_7)), 0.6 SECONDS, TIMER_DELETE_ME)
+
+/obj/effect/bhole/proc/pull_7()
+	grav(4, 2, 50, 6)
+	addtimer(CALLBACK(src, PROC_REF(pull_8)), 0.6 SECONDS, TIMER_DELETE_ME)
+
+/obj/effect/bhole/proc/pull_8()
+	grav(3, 2, 50, 6)
+	addtimer(CALLBACK(src, PROC_REF(pull_9)), 0.6 SECONDS, TIMER_DELETE_ME)
+
+/obj/effect/bhole/proc/pull_9()
+	grav(2, 2, 75,25)
+	addtimer(CALLBACK(src, PROC_REF(move)), 0.6 SECONDS, TIMER_DELETE_ME)
+
+/obj/effect/bhole/proc/move()
+	//MOVEMENT
+	if(prob(50))
+		anchored = FALSE
+		step(src, pick(alldirs))
+		anchored = TRUE
+	controller()
 
 /obj/effect/bhole/proc/grav(var/r, var/ex_act_force, var/pull_chance, var/turf_removal_chance)
 	if(!isturf(loc))	//blackhole cannot be contained inside anything. Weird stuff might happen

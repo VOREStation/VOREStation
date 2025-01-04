@@ -1,5 +1,6 @@
 export type Data = {
   possible_modules: string[];
+  mind_name: string;
   possible_sprites?: spriteOption[];
   currentName: string;
   isDefaultName: boolean;

@@ -26,9 +26,9 @@ SUBSYSTEM_DEF(plants)
 	msg = "P:[processing.len]|S:[seeds.len]"
 	return ..()
 
-/datum/controller/subsystem/plants/Initialize(timeofday)
+/datum/controller/subsystem/plants/Initialize()
 	setup()
-	return ..()
+	return SS_INIT_SUCCESS
 
 // Predefined/roundstart varieties use a string key to make it
 // easier to grab the new variety when mutating. Post-roundstart

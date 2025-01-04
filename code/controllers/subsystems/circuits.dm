@@ -17,9 +17,9 @@ SUBSYSTEM_DEF(circuit)
 /datum/controller/subsystem/circuit/Recover()
 	flags |= SS_NO_INIT // Make extra sure we don't initialize twice.
 
-/datum/controller/subsystem/circuit/Initialize(timeofday)
+/datum/controller/subsystem/circuit/Initialize()
 	circuits_init()
-	return ..()
+	return SS_INIT_SUCCESS
 
 /datum/controller/subsystem/circuit/proc/circuits_init()
 	//Cached lists for free performance

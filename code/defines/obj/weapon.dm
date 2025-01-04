@@ -45,6 +45,7 @@
 /obj/item/soap/Initialize()
 	if(randomize && prob(square_chance))
 		icon_state = "[icon_state]-alt"
+	. = ..()
 
 /obj/item/soap/nanotrasen
 	desc = "A NanoTrasen-brand bar of soap. Smells of phoron, a years-old marketing gimmick."

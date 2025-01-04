@@ -71,7 +71,7 @@
 	movement_cooldown = -1
 
 /mob/living/simple_mob/vore/leopardmander/Initialize()
-	..()
+	. = ..()
 	src.adjust_nutrition(src.max_nutrition)
 
 /mob/living/simple_mob/vore/leopardmander/init_vore()
