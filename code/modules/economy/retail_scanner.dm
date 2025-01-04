@@ -82,6 +82,9 @@
 		dat += locked ? "<br>" : "<a href='byond://?src=\ref[src];choice=reset_log'>Reset Log</a><br>"
 		dat += "<br>"
 	dat += "<i>Device ID:</i> [machine_id]"
+
+	dat = "<html><head><title>Retail Scanner</title></head><body>[dat]</body></html>"
+
 	user << browse(dat, "window=retail;size=350x500")
 	onclose(user, "retail")
 
@@ -182,7 +185,7 @@
 
 /obj/item/retail_scanner/showoff(mob/user)
 	for (var/mob/M in view(user))
-		M.show_message("[user] holds up [src]. <a HREF=?src=\ref[M];clickitem=\ref[src]>Swipe card or item.</a>",1)
+		M.show_message("[user] holds up [src]. <a HREF='byond://?src=\ref[M];clickitem=\ref[src]'>Swipe card or item.</a>",1)
 
 
 /obj/item/retail_scanner/proc/confirm(var/obj/item/I)
