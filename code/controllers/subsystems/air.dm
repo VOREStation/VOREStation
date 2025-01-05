@@ -101,7 +101,8 @@ SUBSYSTEM_DEF(air)
 	var/current_cycle = 0
 	var/next_id = 1 //Used to keep track of zone UIDs.
 
-/datum/controller/subsystem/air/Initialize(timeofday)
+/datum/controller/subsystem/air/Initialize()
+	var/start_timeofday = REALTIMEOFDAY
 	report_progress("Processing Geometry...")
 
 	current_cycle = 0
@@ -111,7 +112,7 @@ SUBSYSTEM_DEF(air)
 		S.update_air_properties()
 		CHECK_TICK
 
-	admin_notice(span_danger("Geometry initialized in [round(0.1*(REALTIMEOFDAY-timeofday),0.1)] seconds.") + \
+	admin_notice(span_danger("Geometry initialized in [round(0.1*(REALTIMEOFDAY-start_timeofday),0.1)] seconds.") + \
 span_info("<br>\
 Total Simulated Turfs: [simulated_turf_count]<br>\
 Total Zones: [zones.len]<br>\
@@ -166,7 +167,7 @@ Total Unsimulated Turfs: [world.maxx*world.maxy*world.maxz - simulated_turf_coun
 		log_debug("Active Edges on ZAS Startup\n" + edge_log.Join("\n"))
 		startup_active_edge_log = edge_log.Copy()
 
-	..()
+	return SS_INIT_SUCCESS
 
 /datum/controller/subsystem/air/fire(resumed = 0)
 	var/timer

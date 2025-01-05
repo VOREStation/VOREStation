@@ -41,7 +41,7 @@
 /datum/artifact_effect/resurrect/proc/attempt_revive(var/mob/living/L = null)
 	var/atom/holder = get_master_holder()
 	spawn()
-		if(istype(L, /mob/living/simple_mob))
+		if(isanimal(L))
 			var/mob/living/simple_mob/SM = L
 			SM.adjustBruteLoss(-40)
 			SM.adjustFireLoss(-40)

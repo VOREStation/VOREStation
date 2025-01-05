@@ -90,7 +90,7 @@
 		to_chat(user, span_warning("\The [H] is wearing gloves."))
 		return 1
 
-	if(user != H && H.a_intent != "help" && !H.lying)
+	if(user != H && H.a_intent != I_HELP && !H.lying)
 		user.visible_message(span_danger("\The [user] tries to take prints from \the [H], but they move away."))
 		return 1
 

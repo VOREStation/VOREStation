@@ -19,6 +19,42 @@ export const VCHAT_ENABLE: FeatureToggle = {
   component: CheckboxInput,
 };
 
+export const tgui_fancy: FeatureToggle = {
+  name: 'TGUI: Fancy Mode',
+  category: 'UI',
+  description: 'When enabled, hide the title bar and fully style tgui windows.',
+  component: CheckboxInput,
+};
+
+export const tgui_lock: FeatureToggle = {
+  name: 'TGUI: Window Lock',
+  category: 'UI',
+  description:
+    'When enabled, forces windows to spawn on the primary monitor - otherwise, any monitor.',
+  component: CheckboxInput,
+};
+
+export const tgui_input_mode: FeatureToggle = {
+  name: 'TGUI: Input Framework',
+  category: 'UI',
+  description: 'Enable TGUI based input for most input dialogs.',
+  component: CheckboxInput,
+};
+
+export const tgui_large_buttons: FeatureToggle = {
+  name: 'TGUI: Large Buttons',
+  category: 'UI',
+  description: 'Use large buttons in TGUI Input windows.',
+  component: CheckboxInput,
+};
+
+export const tgui_swapped_buttons: FeatureToggle = {
+  name: 'TGUI: Swapped Buttons',
+  category: 'UI',
+  description: 'Swap the position of OK and Cancel buttons.',
+  component: CheckboxInput,
+};
+
 export const TGUI_SAY: FeatureToggle = {
   name: 'Say: Use TGUI',
   category: 'UI',

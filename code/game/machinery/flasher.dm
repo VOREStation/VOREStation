@@ -67,7 +67,7 @@
 			continue
 
 		var/flash_time = strength
-		if(istype(O, /mob/living/carbon/human))
+		if(ishuman(O))
 			var/mob/living/carbon/human/H = O
 			//VOREStation Edit Start
 			if(H.nif && H.nif.flag_check(NIF_V_FLASHPROT,NIF_FLAGS_VISION))
@@ -103,7 +103,7 @@
 
 	if(iscarbon(AM))
 		var/mob/living/carbon/M = AM
-		if(M.m_intent != "walk")
+		if(M.m_intent != I_WALK)
 			flash()
 
 /obj/machinery/flasher/portable/attackby(obj/item/W as obj, mob/user as mob)

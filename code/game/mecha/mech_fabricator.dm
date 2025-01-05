@@ -67,6 +67,8 @@
 								"Vehicle",
 								"Rigsuit",
 								"Phazon",
+								"Pinnace",
+								"Baron",
 								"Gopher", // VOREStation Add
 								"Polecat", // VOREStation Add
 								"Weasel", // VOREStation Add
@@ -183,6 +185,10 @@
 					category_override += "Durand"
 				if(mech_types & EXOSUIT_MODULE_PHAZON)
 					category_override += "Phazon"
+				if(mech_types & EXOSUIT_MODULE_PINNACE)
+					category_override += "Pinnace"
+				if(mech_types & EXOSUIT_MODULE_BARON)
+					category_override += "Baron"
 
 	var/list/part = list(
 		"name" = D.name,

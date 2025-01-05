@@ -423,6 +423,7 @@
 	var/mob/living/carbon/human/charger
 
 /obj/item/cell/protean/Initialize()
+	. = ..()
 	charge = maxcharge
 	update_icon()
 	addtimer(CALLBACK(src, PROC_REF(search_for_protean)), 60)

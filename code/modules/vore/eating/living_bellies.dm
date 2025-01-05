@@ -14,7 +14,7 @@
 	for(var/obj/belly/B as anything in vore_organs)
 		if(DM_FLAG_VORESPRITE_BELLY & B.vore_sprite_flags)
 			new_fullness[B.belly_sprite_to_affect] += B.GetFullnessFromBelly()
-		if(istype(src, /mob/living/carbon/human) && DM_FLAG_VORESPRITE_ARTICLE & B.vore_sprite_flags)
+		if(ishuman(src) && DM_FLAG_VORESPRITE_ARTICLE & B.vore_sprite_flags)
 			if(!new_fullness[B.undergarment_chosen])
 				new_fullness[B.undergarment_chosen] = 1
 			new_fullness[B.undergarment_chosen] += B.GetFullnessFromBelly()

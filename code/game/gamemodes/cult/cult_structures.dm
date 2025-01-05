@@ -154,6 +154,7 @@
 	return
 
 /obj/effect/gateway/active/Initialize()
+	. = ..()
 	addtimer(CALLBACK(src, PROC_REF(spawn_and_qdel)), rand(30, 60) SECONDS)
 
 /obj/effect/gateway/active/proc/spawn_and_qdel()
@@ -165,7 +166,7 @@
 /obj/effect/gateway/active/Crossed(var/atom/A)
 	if(A.is_incorporeal())
 		return
-	if(!istype(A, /mob/living))
+	if(!isliving(A))
 		return
 
 	var/mob/living/M = A

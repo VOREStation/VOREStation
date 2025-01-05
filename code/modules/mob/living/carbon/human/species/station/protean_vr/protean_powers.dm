@@ -570,7 +570,7 @@
 	var/obj/held_item = protie.get_active_hand()
 	if(istype(held_item,/obj/item/grab))
 		var/obj/item/grab/G = held_item
-		if(istype(G.affecting, /mob/living/carbon/human))
+		if(ishuman(G.affecting))
 			target = G.affecting
 			if(istype(target.species, /datum/species/protean))
 				to_chat(protie, span_danger("You can't latch onto a fellow Protean!"))

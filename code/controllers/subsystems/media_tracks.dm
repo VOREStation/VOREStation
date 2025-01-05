@@ -10,10 +10,10 @@ SUBSYSTEM_DEF(media_tracks)
 	/// Lobby music tracks
 	var/list/lobby_tracks = list()
 
-/datum/controller/subsystem/media_tracks/Initialize(timeofday)
+/datum/controller/subsystem/media_tracks/Initialize()
 	load_tracks()
 	sort_tracks()
-	return ..()
+	return SS_INIT_SUCCESS
 
 /datum/controller/subsystem/media_tracks/proc/load_tracks()
 	for(var/filename in CONFIG_GET(str_list/jukebox_track_files))

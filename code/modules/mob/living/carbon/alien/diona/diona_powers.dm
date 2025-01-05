@@ -17,7 +17,7 @@
 
 		if(!(src.Adjacent(C)) || !(C.client)) continue
 
-		if(istype(C,/mob/living/carbon/human))
+		if(ishuman(C))
 			var/mob/living/carbon/human/D = C
 			if(D.species && D.species.name == SPECIES_DIONA)
 				choices += C

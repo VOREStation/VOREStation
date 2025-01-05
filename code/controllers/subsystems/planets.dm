@@ -14,10 +14,10 @@ SUBSYSTEM_DEF(planets)
 	var/static/list/needs_sun_update = list()
 	var/static/list/needs_temp_update = list()
 
-/datum/controller/subsystem/planets/Initialize(timeofday)
+/datum/controller/subsystem/planets/Initialize()
 	admin_notice(span_danger("Initializing planetary weather."), R_DEBUG)
 	createPlanets()
-	..()
+	return SS_INIT_SUCCESS
 
 /datum/controller/subsystem/planets/proc/createPlanets()
 	var/list/planet_datums = using_map.planet_datums_to_make

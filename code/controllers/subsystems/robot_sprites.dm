@@ -8,7 +8,7 @@ SUBSYSTEM_DEF(robot_sprites)
 
 /datum/controller/subsystem/robot_sprites/Initialize()
 	initialize_borg_sprites()
-	..()
+	return SS_INIT_SUCCESS
 
 /datum/controller/subsystem/robot_sprites/proc/initialize_borg_sprites()
 

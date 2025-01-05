@@ -1611,6 +1611,10 @@
 /obj/effect/floor_decal/corner/paleblue/border{
 	dir = 8
 	},
+/obj/structure/mirror{
+	dir = 4;
+	pixel_x = -25
+	},
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/resleeving)
 "acs" = (
@@ -31252,7 +31256,6 @@
 	dir = 8
 	},
 /obj/machinery/alarm{
-	alarm_id = null;
 	breach_detection = 0;
 	dir = 1;
 	pixel_y = -22
@@ -33808,7 +33811,6 @@
 "vzk" = (
 /obj/machinery/door/airlock/hatch{
 	icon_state = "door_locked";
-	id_tag = null;
 	locked = 1;
 	name = "AI Core";
 	req_access = list(16)
@@ -33854,7 +33856,6 @@
 "vYb" = (
 /obj/machinery/door/airlock/hatch{
 	icon_state = "door_locked";
-	id_tag = null;
 	locked = 1;
 	name = "AI Core";
 	req_access = list(16)

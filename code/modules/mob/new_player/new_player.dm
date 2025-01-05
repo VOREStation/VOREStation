@@ -138,11 +138,13 @@
 		var/datum/job/refJob = null
 		for(var/mob/new_player/player in player_list)
 			refJob = player.client.prefs.get_highest_job()
-			if(player.client.prefs.obfuscate_key && player.client.prefs.obfuscate_job)
+			var/obfuscate_key = player.client.prefs.read_preference(/datum/preference/toggle/obfuscate_key)
+			var/obfuscate_job = player.client.prefs.read_preference(/datum/preference/toggle/obfuscate_job)
+			if(obfuscate_key && obfuscate_job)
 				. += "Anonymous User [player.ready ? "Ready!" : null]"
-			else if(player.client.prefs.obfuscate_key)
+			else if(obfuscate_key)
 				. += "Anonymous User [player.ready ? "(Playing as: [refJob ? refJob.title : "Unknown"])" : null]"
-			else if(player.client.prefs.obfuscate_job)
+			else if(obfuscate_job)
 				. += "[player.key] [player.ready ? "Ready!" : null]"
 			else
 				. += "[player.key] [player.ready ? "(Playing as: [refJob ? refJob.title : "Unknown"])" : null]"
@@ -193,7 +195,7 @@
 
 			announce_ghost_joinleave(src)
 
-			if(client.prefs.be_random_name)
+			if(client.prefs.read_preference(/datum/preference/toggle/human/name_is_always_random))
 				client.prefs.real_name = random_name(client.prefs.identifying_gender)
 			observer.real_name = client.prefs.real_name
 			observer.name = observer.real_name

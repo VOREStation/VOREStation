@@ -42,7 +42,7 @@
 		if(build_mode != "Yes")
 			to_chat(src, "Will not re-enter buildmode after switch.")
 
-	if(istype(mob,/mob/observer/dead))
+	if(isobserver(mob))
 		//re-enter
 		var/mob/observer/dead/ghost = mob
 		if(ghost.can_reenter_corpse)
@@ -59,7 +59,7 @@
 
 		feedback_add_details("admin_verb","P") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-	else if(istype(mob,/mob/new_player))
+	else if(isnewplayer(mob))
 		to_chat(src, span_filter_system(span_warning("Error: Aghost: Can't admin-ghost whilst in the lobby. Join or Observe first.")))
 	else
 		//ghostize
@@ -157,20 +157,6 @@
 	feedback_add_details("admin_verb","S") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	return
 
-/client/proc/colorooc()
-	set category = "Admin.Misc"
-	set name = "OOC Text Color"
-	if(!holder)	return
-	var/response = tgui_alert(src, "Please choose a distinct color that is easy to read and doesn't mix with all the other chat and radio frequency colors.", "Change own OOC color", list("Pick new color", "Reset to default", "Cancel"))
-	if(response == "Pick new color")
-		prefs.ooccolor = input(src, "Please select your OOC colour.", "OOC colour") as color
-	else if(response == "Reset to default")
-		prefs.ooccolor = initial(prefs.ooccolor)
-	SScharacter_setup.queue_preferences_save(prefs)
-
-	feedback_add_details("admin_verb","OC") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-	return
-
 /client/proc/findStealthKey(txt)
 	if(txt)
 		for(var/P in GLOB.stealthminID)
@@ -196,7 +182,7 @@
 	if(holder)
 		if(holder.fakekey)
 			holder.fakekey = null
-			if(istype(src.mob, /mob/new_player))
+			if(isnewplayer(src.mob))
 				mob.name = capitalize(ckey)
 		else
 			var/new_key = ckeyEx(tgui_input_text(usr, "Enter your desired display name.", "Fake Key", key))
@@ -206,7 +192,7 @@
 				new_key = copytext(new_key, 1, 26)
 			holder.fakekey = new_key
 			createStealthKey()
-			if(istype(mob, /mob/new_player))
+			if(isnewplayer(mob))
 				mob.name = new_key
 		log_and_message_admins("[key_name(usr)] has turned stealth mode [holder.fakekey ? "ON" : "OFF"]")
 	feedback_add_details("admin_verb","SM") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!

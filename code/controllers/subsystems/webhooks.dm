@@ -6,7 +6,7 @@ SUBSYSTEM_DEF(webhooks)
 
 /datum/controller/subsystem/webhooks/Initialize()
 	load_webhooks()
-	. = ..()
+	return SS_INIT_SUCCESS
 
 /datum/controller/subsystem/webhooks/proc/load_webhooks()
 

@@ -266,7 +266,7 @@
 		to_chat(user, "\The [M] cannot be infested.")
 		return
 
-	if(istype(M,/mob/living/carbon/human))
+	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 
 		var/obj/item/organ/external/E = H.organs_by_name[infest_target]
@@ -301,7 +301,7 @@
 			ai_holder.hostile = FALSE
 			ai_holder.lose_target()
 
-		if(istype(M,/mob/living/carbon/human))
+		if(ishuman(M))
 			var/mob/living/carbon/human/H = M
 			host_bodypart = H.get_organ(infest_target)
 			host_bodypart.implants |= src

@@ -30,7 +30,7 @@
 			if(do_after(user, pick_time * D.lock_difficulty))
 				to_chat(user, span_notice("Success!"))
 				D.locked = FALSE
-	else if(istype(A,/mob/living/carbon/human)) //you can pick your friends, and you can pick your nose, but you can't pick your friend's nose
+	else if(ishuman(A)) //you can pick your friends, and you can pick your nose, but you can't pick your friend's nose
 		var/mob/living/carbon/human/H = A
 		if(user.zone_sel.selecting == BP_HEAD)
 			if(H == user)

@@ -75,6 +75,9 @@
 #define I_GRAB		"grab"
 #define I_HURT		"harm"
 
+#define I_RUN		"run"
+#define I_WALK		"walk"
+
 //These are used Bump() code for living mobs, in the mob_bump_flag, mob_swap_flags, and mob_push_flags vars to determine whom can bump/swap with whom.
 #define HUMAN 1
 #define MONKEY 2

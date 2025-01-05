@@ -91,7 +91,7 @@
 			dirtoverlay.alpha = min((dirt - 50) * 5, 255)
 
 /turf/simulated/Entered(atom/A, atom/OL)
-	if (istype(A,/mob/living))
+	if (isliving(A))
 		var/mob/living/M = A
 		if(M.lying || M.flying) //VOREStation Edit
 			return ..()
@@ -100,7 +100,7 @@
 			// Dirt overlays.
 			update_dirt()
 
-		if(istype(M, /mob/living/carbon/human))
+		if(ishuman(M))
 			var/mob/living/carbon/human/H = M
 			// Tracking blood
 			var/list/bloodDNA = null
@@ -108,7 +108,7 @@
 			if(H.shoes)
 				var/obj/item/clothing/shoes/S = H.shoes
 				if(istype(S))
-					S.handle_movement(src,(H.m_intent == "run" ? 1 : 0))
+					S.handle_movement(src,(H.m_intent == I_RUN ? 1 : 0))
 					if(S.track_blood && S.blood_DNA)
 						bloodDNA = S.blood_DNA
 						bloodcolor=S.blood_color
@@ -129,7 +129,7 @@
 
 		if(src.wet)
 
-			if(M.buckled || (src.wet == 1 && M.m_intent == "walk"))
+			if(M.buckled || (src.wet == 1 && M.m_intent == I_WALK))
 				return
 
 			var/slip_dist = 1
