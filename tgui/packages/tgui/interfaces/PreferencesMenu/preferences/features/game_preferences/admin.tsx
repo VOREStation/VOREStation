@@ -1,4 +1,9 @@
-import { CheckboxInput, FeatureToggle } from '../base';
+import {
+  CheckboxInput,
+  Feature,
+  FeatureColorInput,
+  FeatureToggle,
+} from '../base';
 
 export const CHAT_ATTACKLOGS: FeatureToggle = {
   name: 'Attack Log Messages',
@@ -47,4 +52,12 @@ export const CHAT_ADSAY: FeatureToggle = {
   category: 'ADMIN',
   description: 'Enables seeing deadchat when not observing.',
   component: CheckboxInput,
+};
+
+export const ooccolor: Feature<string> = {
+  name: 'OOC Color',
+  category: 'ADMIN',
+  description:
+    'The color your OOC messages will be. Set to #010000 to use default',
+  component: FeatureColorInput,
 };

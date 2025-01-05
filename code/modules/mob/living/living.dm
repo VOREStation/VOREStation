@@ -726,7 +726,7 @@
 			ooc_notes_window(usr)
 //			to_chat(usr, span_filter_notice("[src]'s Metainfo:<br>[ooc_notes]"))
 		else if(client)
-			to_chat(usr, span_filter_notice("[src]'s Metainfo:<br>[client.prefs.metadata]"))
+			to_chat(usr, span_filter_notice("[src]'s Metainfo:<br>[client.prefs.read_preference(/datum/preference/text/living/ooc_notes)]"))
 		else
 			to_chat(usr, span_filter_notice("[src] does not have any stored infomation!"))
 	else

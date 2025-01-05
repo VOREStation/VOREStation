@@ -420,7 +420,7 @@ var/list/mob/living/forced_ambiance_list = new
 		else
 			L << sound(null, channel = CHANNEL_AMBIENCE_FORCED)
 	else if(src.ambience && src.ambience.len)
-		var/ambience_odds = L?.client.prefs.ambience_chance
+		var/ambience_odds = L.read_preference(/datum/preference/numeric/ambience_chance)
 		if(prob(ambience_odds) && (world.time >= L.client.time_last_ambience_played + 1 MINUTE))
 			var/sound = pick(ambience)
 			L << sound(sound, repeat = 0, wait = 0, volume = 50 * volume_mod, channel = CHANNEL_AMBIENCE)

@@ -69,8 +69,6 @@
 	//return QDEL_HINT_HARDDEL_NOW Just keep track of mob references. They delete SO much faster now.
 
 /mob/proc/show_message(msg, type, alt, alt_type)//Message, type of message (1 or 2), alternative message, alt message type (1 or 2)
-	var/time = say_timestamp()
-
 	if(!client && !teleop)	return
 
 	if (type)
@@ -92,12 +90,7 @@
 	if(stat == UNCONSCIOUS || sleeping > 0)
 		to_chat(src, span_filter_notice(span_italics("... You can almost hear someone talking ...")))
 	else
-		if(client && client.prefs.chat_timestamp)
-			// TG-Chat filters latch directly to the spans, we no longer need that
-			//msg = replacetext(msg, new/regex("^(<span(?: \[^>]*)?>)((?:.|\\n)*</span>)", ""), "$1[time] $2") // Insteres timestamps after the first qualifying span
-			//msg = replacetext(msg, new/regex("^\[^<]((?:.|\\n)*)", ""), "[time] $1") // Spanless messages also get timestamped
-			to_chat(src,"[time] [msg]")
-		else if(teleop)
+		if(teleop)
 			to_chat(teleop, create_text_tag("body", "BODY:", teleop.client) + "[msg]")
 		else
 			to_chat(src,msg)
@@ -478,13 +471,6 @@
 	set name = "Changelog"
 	set category = "OOC.Resources"
 	src << link("https://wiki.vore-station.net/Changelog")
-
-	/*
-	if(prefs.lastchangelog != changelog_hash)
-		prefs.lastchangelog = changelog_hash
-		SScharacter_setup.queue_preferences_save(prefs)
-		winset(src, "rpane.changelog", "background-color=none;font-style=;")
-	*/
 
 /mob/verb/observe()
 	set name = "Observe"
