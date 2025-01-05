@@ -296,7 +296,7 @@ var/list/global/tank_gauge_cache = list()
 			var/can_open_valve
 			if(location.wear_mask && (location.wear_mask.item_flags & AIRTIGHT))
 				can_open_valve = 1
-			else if(istype(location,/mob/living/carbon/human))
+			else if(ishuman(location))
 				var/mob/living/carbon/human/H = location
 				if(H.head && (H.head.item_flags & AIRTIGHT))
 					can_open_valve = 1

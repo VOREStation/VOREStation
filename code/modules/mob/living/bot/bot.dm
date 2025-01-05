@@ -232,7 +232,7 @@
 					if(step_towards(src, pick(can_go)))
 						return
 			for(var/mob in loc)
-				if(istype(mob, /mob/living/bot) && mob != src) // Same as above, but we also don't want to have bots ontop of bots. Cleanbots shouldn't stack >:(
+				if(isbot(mob) && mob != src) // Same as above, but we also don't want to have bots ontop of bots. Cleanbots shouldn't stack >:(
 					var/turf/my_turf = get_turf(src)
 					var/list/can_go = my_turf.CardinalTurfsWithAccess(botcard)
 					if(LAZYLEN(can_go))

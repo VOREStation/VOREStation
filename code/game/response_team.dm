@@ -49,7 +49,7 @@ var/silent_ert = 0
 		to_chat(usr, span_warning("You cannot join the response team at this time."))
 		return
 
-	if(istype(usr,/mob/observer/dead) || istype(usr,/mob/new_player))
+	if(isobserver(usr) || isnewplayer(usr))
 		if(!send_emergency_team)
 			to_chat(usr, "No emergency response team is currently being sent.")
 			return

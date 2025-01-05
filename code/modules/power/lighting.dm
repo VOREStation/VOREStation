@@ -768,7 +768,7 @@ var/global/list/light_type_cache = list()
 		to_chat(user, "There is no [get_fitting_name()] in this light.")
 		return
 
-	if(istype(user,/mob/living/carbon/human))
+	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
 		if(H.species.can_shred(H))
 			user.setClickCooldown(user.get_attack_speed())

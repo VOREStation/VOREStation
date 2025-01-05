@@ -42,7 +42,7 @@
 		if(build_mode != "Yes")
 			to_chat(src, "Will not re-enter buildmode after switch.")
 
-	if(istype(mob,/mob/observer/dead))
+	if(isobserver(mob))
 		//re-enter
 		var/mob/observer/dead/ghost = mob
 		if(ghost.can_reenter_corpse)
@@ -59,7 +59,7 @@
 
 		feedback_add_details("admin_verb","P") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-	else if(istype(mob,/mob/new_player))
+	else if(isnewplayer(mob))
 		to_chat(src, span_filter_system(span_warning("Error: Aghost: Can't admin-ghost whilst in the lobby. Join or Observe first.")))
 	else
 		//ghostize
@@ -182,7 +182,7 @@
 	if(holder)
 		if(holder.fakekey)
 			holder.fakekey = null
-			if(istype(src.mob, /mob/new_player))
+			if(isnewplayer(src.mob))
 				mob.name = capitalize(ckey)
 		else
 			var/new_key = ckeyEx(tgui_input_text(usr, "Enter your desired display name.", "Fake Key", key))
@@ -192,7 +192,7 @@
 				new_key = copytext(new_key, 1, 26)
 			holder.fakekey = new_key
 			createStealthKey()
-			if(istype(mob, /mob/new_player))
+			if(isnewplayer(mob))
 				mob.name = new_key
 		log_and_message_admins("[key_name(usr)] has turned stealth mode [holder.fakekey ? "ON" : "OFF"]")
 	feedback_add_details("admin_verb","SM") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!

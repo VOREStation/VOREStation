@@ -168,7 +168,7 @@
 
 /obj/item/organ/external/examine()
 	. = ..()
-	if(in_range(usr, src) || istype(usr, /mob/observer/dead))
+	if(in_range(usr, src) || isobserver(usr))
 		for(var/obj/item/I in contents)
 			if(istype(I, /obj/item/organ))
 				continue
@@ -850,7 +850,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 	var/clamped = 0
 
 	var/mob/living/carbon/human/H
-	if(istype(owner,/mob/living/carbon/human))
+	if(ishuman(owner))
 		H = owner
 
 	//update damage counts

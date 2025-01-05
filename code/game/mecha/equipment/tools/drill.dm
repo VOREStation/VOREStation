@@ -65,7 +65,7 @@
 		target.apply_damage(drill_force, BRUTE)
 		return
 
-	else if(istype(target, /mob/living/simple_mob))
+	else if(isanimal(target))
 		var/mob/living/simple_mob/S = target
 		if(target.stat == DEAD)
 			if(S.meat_amount > 0)

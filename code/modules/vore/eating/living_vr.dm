@@ -267,7 +267,7 @@
 	P.weight_messages = src.weight_messages
 	P.allow_mind_transfer = src.allow_mind_transfer
 
-	P.vore_sprite_color = istype(src, /mob/living/carbon/human) ? src:vore_sprite_color : null
+	P.vore_sprite_color = ishuman(src) ? src:vore_sprite_color : null
 
 	var/list/serialized = list()
 	for(var/obj/belly/B as anything in src.vore_organs)
@@ -585,7 +585,7 @@
 		log_and_message_admins("[key_name(src)] used the OOC escape button to get out of [crystal] owned by [crystal.owner]. [ADMIN_FLW(src)]")
 
 	//You've been turned into an item!
-	else if(tf_mob_holder && istype(src, /mob/living/voice) && istype(src.loc, /obj/item))
+	else if(tf_mob_holder && isvoice(src) && istype(src.loc, /obj/item))
 		var/obj/item/item_to_destroy = src.loc //If so, let's destroy the item they just TF'd out of.
 		if(istype(src.loc, /obj/item/clothing)) //Are they in clothes? Delete the item then revert them.
 			qdel(item_to_destroy)
@@ -721,7 +721,7 @@
 	if(delay)
 		swallow_time = delay
 	else
-		swallow_time = istype(prey, /mob/living/carbon/human) ? belly.human_prey_swallow_time : belly.nonhuman_prey_swallow_time
+		swallow_time = ishuman(prey) ? belly.human_prey_swallow_time : belly.nonhuman_prey_swallow_time
 
 	// Their AI should get notified so they can stab us
 	prey.ai_holder?.react_to_attack(user)

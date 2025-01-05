@@ -475,7 +475,7 @@ var/list/ai_verbs_default = list(
 	if (href_list["track"])
 		var/mob/target = locate(href_list["track"]) in mob_list
 
-		if(target && (!istype(target, /mob/living/carbon/human) || html_decode(href_list["trackname"]) == target:get_face_name()))
+		if(target && (!ishuman(target) || html_decode(href_list["trackname"]) == target:get_face_name()))
 			ai_actual_track(target)
 		else
 			to_chat(src, span_filter_warning("[span_red("System error. Cannot locate [html_decode(href_list["trackname"])].")]"))
@@ -960,7 +960,7 @@ var/list/ai_verbs_default = list(
 		jobname = JOB_AI
 	else if(isrobot(speaker))
 		jobname = JOB_CYBORG
-	else if(istype(speaker, /mob/living/silicon/pai))
+	else if(ispAI(speaker))
 		jobname = "Personal AI"
 	else
 		jobname = "Unknown"
@@ -973,7 +973,7 @@ var/list/ai_verbs_default = list(
 		else // We couldn't find a mob with their fake name, don't track at all
 			track = "[speaker_name] ([jobname])"
 	else // Not faking their name
-		if(istype(speaker, /mob/living/bot)) // It's a bot, and no fake name! (That'd be kinda weird.) :p
+		if(isbot(speaker)) // It's a bot, and no fake name! (That'd be kinda weird.) :p
 			track = "<a href='byond://?src=\ref[src];trackbot=\ref[speaker]'>[speaker_name] ([jobname])</a>"
 		else // It's not a bot, and no fake name!
 			track = "<a href='byond://?src=\ref[src];trackname=[html_encode(speaker_name)];track=\ref[speaker]'>[speaker_name] ([jobname])</a>"

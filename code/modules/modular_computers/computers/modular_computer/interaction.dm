@@ -12,7 +12,7 @@
 	set category = "Object"
 	set src in view(1)
 
-	if(usr.incapacitated() || !istype(usr, /mob/living))
+	if(usr.incapacitated() || !isliving(usr))
 		to_chat(usr, span_warning("You can't do that."))
 		return
 
@@ -36,7 +36,7 @@
 	set category = "Object"
 	set src in view(1)
 
-	if(usr.incapacitated() || !istype(usr, /mob/living))
+	if(usr.incapacitated() || !isliving(usr))
 		to_chat(usr, span_warning("You can't do that."))
 		return
 
@@ -52,7 +52,7 @@
 	set category = "Object"
 	set src in view(1)
 
-	if(usr.incapacitated() || !istype(usr, /mob/living))
+	if(usr.incapacitated() || !isliving(usr))
 		to_chat(usr, span_warning("You can't do that."))
 		return
 

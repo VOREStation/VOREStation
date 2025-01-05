@@ -113,7 +113,7 @@
 				var/obj/item/I = H.get_active_hand()
 				if(I.force <= 1.25 * melee_damage_upper)
 					return TRUE
-		else if(istype(L, /mob/living/simple_mob))
+		else if(isanimal(L))
 			var/mob/living/simple_mob/S = L
 			if(S.melee_damage_upper > 1.5 * melee_damage_upper)
 				return TRUE

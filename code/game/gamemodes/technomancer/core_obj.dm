@@ -116,7 +116,7 @@
 			summoned_mobs -= A
 			continue
 		// Now check for dead mobs who shouldn't be on the list.
-		if(istype(A, /mob/living))
+		if(isliving(A))
 			var/mob/living/L = A
 			if(L.stat == DEAD)
 				summoned_mobs -= L

@@ -163,7 +163,7 @@
 
 		if(3)
 			var/obj/item/gun/projectile/heavysniper/collapsible/gun = new (get_turf(src), 0)
-			if(usr && istype(usr, /mob/living/carbon/human))
+			if(usr && ishuman(usr))
 				var/mob/living/carbon/human/user = usr
 				user.unEquip(src, force=1)
 				user.put_in_any_hand_if_possible(gun) || gun.dropInto(loc)

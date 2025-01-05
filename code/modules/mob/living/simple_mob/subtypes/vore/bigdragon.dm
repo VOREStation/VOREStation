@@ -922,7 +922,7 @@ I think I covered everything.
 	var/last_warning
 
 /datum/ai_holder/simple_mob/healbelly/proc/confirmPatient(var/mob/living/P)
-	if(istype(holder,/mob/living/simple_mob))
+	if(isanimal(holder))
 		var/mob/living/simple_mob/H = holder
 		if(H.will_eat(P))
 			if(issilicon(P))
@@ -1002,7 +1002,7 @@ I think I covered everything.
 				//The following is some reagent injections to cover our bases, since being swallowed and dying from internal injuries sucks
 				//If this ends up being op because medbay gets replaced by a voremob buckled to a chair, feel free to remove some.
 				//Alternatively bully a coder (me) to make a unique digest_mode for mob healbellies that prevents death, or something.
-				if(istype(A, /mob/living/carbon/human))
+				if(ishuman(A))
 					var/mob/living/carbon/human/P = L
 					var/list/to_inject = list(REAGENT_ID_MYELAMINE,REAGENT_ID_OSTEODAXON,REAGENT_ID_SPACEACILLIN,REAGENT_ID_PERIDAXON, REAGENT_ID_IRON, REAGENT_ID_HYRONALIN)
 					//Lets not OD them...

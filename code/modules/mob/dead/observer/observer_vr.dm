@@ -110,7 +110,7 @@
 	set desc = "Find an active ghost pod"
 	set popup_menu = FALSE
 
-	if(!istype(usr, /mob/observer/dead)) //Make sure they're an observer!
+	if(!isobserver(usr)) //Make sure they're an observer!
 		return
 
 	var/input = tgui_input_list(usr, "Select a ghost pod:", "Ghost Jump", observe_list_format(active_ghost_pods))
@@ -137,7 +137,7 @@
 	set desc = "Find a Auto Resleever"
 	set popup_menu = FALSE
 
-	if(!istype(usr, /mob/observer/dead)) //Make sure they're an observer!
+	if(!isobserver(usr)) //Make sure they're an observer!
 		return
 
 	var/list/ar = list()

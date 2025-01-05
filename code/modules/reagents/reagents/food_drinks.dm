@@ -848,7 +848,7 @@
 	if(alien == IS_SKRELL)	//Larger eyes means bigger targets.
 		effective_strength = 8
 
-	if(istype(M, /mob/living/carbon/human))
+	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		if(!H.can_feel_pain())
 			return

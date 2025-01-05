@@ -37,7 +37,7 @@
 	AI.wander = FALSE
 	AI.forget_everything()
 
-	if(istype(L, /mob/living/simple_mob))
+	if(isanimal(L))
 		var/mob/living/simple_mob/SM = L
 		SM.friends |= src.owner
 
@@ -55,7 +55,7 @@
 		AI.wander = initial(AI.wander)
 		AI.forget_everything()
 
-	if(istype(L, /mob/living/simple_mob))
+	if(isanimal(L))
 		var/mob/living/simple_mob/SM = L
 		SM.friends -= owner
 

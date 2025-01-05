@@ -276,16 +276,16 @@
 
 /obj/belly/proc/steal_nutrition(mob/living/L)
 	if(L.nutrition <= 110)
-		if(drainmode == DR_SLEEP && istype(L,/mob/living/carbon/human)) //Slowly put prey to sleep
+		if(drainmode == DR_SLEEP && ishuman(L)) //Slowly put prey to sleep
 			if(L.tiredness <= 105)
 				L.tiredness = (L.tiredness + 6)
 			if(L.tiredness <= 90 && L.tiredness >= 75)
 				to_chat(L, span_warning("You are about to fall unconscious!"))
 				to_chat(owner, span_warning("[L] is about to fall unconscious!"))
-		if(drainmode == DR_FAKE && istype(L,/mob/living/carbon/human)) //Slowly bring prey to the edge of sleep without crossing it
+		if(drainmode == DR_FAKE && ishuman(L)) //Slowly bring prey to the edge of sleep without crossing it
 			if(L.tiredness <= 93)
 				L.tiredness = (L.tiredness + 6)
-		if(drainmode == DR_WEIGHT && istype(L,/mob/living/carbon/human)) //Slowly drain your prey's weight and add it to your own
+		if(drainmode == DR_WEIGHT && ishuman(L)) //Slowly drain your prey's weight and add it to your own
 			if(L.weight > 70)
 				L.weight -= (0.01 * L.weight_loss)
 				owner.weight += (0.01 * L.weight_loss) //intentionally dependant on the prey's weight loss ratio rather than the preds weight gain to keep them in pace with one another.

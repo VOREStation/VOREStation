@@ -321,7 +321,7 @@
 	if(!speaker.client)
 		rendered = span_npc_say(rendered)
 	else
-		if(istype(speaker, /mob/living/silicon/ai))
+		if(isAI(speaker))
 			var/mob/living/silicon/ai/source = speaker
 			if(!(get_z(src) == get_z(source.holo)))
 				rendered = span_multizsay(rendered)

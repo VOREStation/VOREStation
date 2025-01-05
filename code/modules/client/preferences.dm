@@ -272,7 +272,7 @@ var/list/preferences_datums = list()
 /datum/preferences/proc/process_link(mob/user, list/href_list)
 	if(!user)	return
 
-	if(!istype(user, /mob/new_player))	return
+	if(!isnewplayer(user))	return
 
 	if(href_list["preference"] == "open_whitelist_forum")
 		if(CONFIG_GET(string/forumurl))

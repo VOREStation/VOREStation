@@ -168,7 +168,7 @@
 		playsound(chassis, 'sound/items/AirHorn.ogg', 100, 1)
 		chassis.occupant_message(span_infoplain(span_red(span_giant("HONK"))))
 		for(var/mob/living/carbon/M in ohearers(6, chassis))
-			if(istype(M, /mob/living/carbon/human))
+			if(ishuman(M))
 				var/mob/living/carbon/human/H = M
 				if(istype(H.l_ear, /obj/item/clothing/ears/earmuffs) || istype(H.r_ear, /obj/item/clothing/ears/earmuffs))
 					continue

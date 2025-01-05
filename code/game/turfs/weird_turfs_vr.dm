@@ -19,7 +19,7 @@
 	cut_overlays()
 	if(prob(5))
 		add_glow()
-	if(istype(O, /mob/living/carbon/human))
+	if(ishuman(O))
 		var/mob/living/carbon/human/L = O
 		if(istype(L.species, /datum/species/crew_shadekin))
 			L.halloss += 5
@@ -78,7 +78,7 @@
 	cut_overlays()
 	if(prob(5))
 		add_glow()
-	if(istype(O, /mob/living/carbon/human))
+	if(ishuman(O))
 		var/mob/living/carbon/human/L = O
 		if(istype(L.species, /datum/species/crew_shadekin))
 			L.halloss += 5

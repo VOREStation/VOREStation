@@ -479,7 +479,7 @@
 
 	if(client.holder && (client.holder.rights & R_ADMIN|R_EVENT))
 		is_admin = 1
-	else if(stat != DEAD || istype(src, /mob/new_player))
+	else if(stat != DEAD || isnewplayer(src))
 		to_chat(usr, span_filter_notice("[span_blue("You must be observing to use this!")]"))
 		return
 

@@ -19,7 +19,7 @@
 		create_reagents(30)
 
 /obj/item/organ/internal/stomach/handle_organ_proc_special()
-	if(owner && istype(owner, /mob/living/carbon/human))
+	if(owner && ishuman(owner))
 		if(reagents)
 			if(reagents.total_volume + 2 < max_acid_volume && prob(20))
 				reagents.add_reagent(acidtype, rand(1,2))

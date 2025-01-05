@@ -155,7 +155,7 @@
 	for(var/mob/viewer in m_viewers)
 		if(viewer.client && viewer.client.prefs?.read_preference(/datum/preference/toggle/show_looc))
 			receivers |= viewer.client
-		else if(istype(viewer,/mob/observer/eye)) // For AI eyes and the like
+		else if(isobserver(viewer)) // For AI eyes and the like
 			var/mob/observer/eye/E = viewer
 			if(E.owner && E.owner.client)
 				receivers |= E.owner.client
