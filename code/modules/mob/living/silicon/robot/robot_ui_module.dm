@@ -156,9 +156,12 @@
 /mob/living/silicon/robot/proc/apply_module(var/datum/robot_sprite/new_datum, var/new_module)
 	icon_selected = TRUE
 	var/module_type = robot_modules[new_module]
-	modtype = new_module
-	module = new module_type(src)
-	feedback_inc("cyborg_[lowertext(new_module)]",1)
+	if(modtype != new_module || !module)
+		if(module)
+			qdel(module)
+		modtype = new_module
+		module = new module_type(src)
+		feedback_inc("cyborg_[lowertext(new_module)]",1)
 	updatename()
 	hud_used.update_robot_modules_display()
 	notify_ai(ROBOT_NOTIFICATION_NEW_MODULE, module.name)

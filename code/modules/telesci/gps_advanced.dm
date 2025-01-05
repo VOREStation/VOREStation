@@ -36,7 +36,7 @@
 		t += "<BR><A href='byond://?src=\ref[src];advtag=1'>Set Tag</A> "
 		t += "<BR>Tag: [gps_tag]"
 
-		for(var/obj/item/gps/advanced/G in GPS_list)
+		for(var/obj/item/gps/advanced/G in GLOB.GPS_list)
 			var/turf/pos = get_turf(G)
 			var/area/gps_area = get_area(G)
 			var/tracked_gpstag = G.gps_tag
