@@ -1389,7 +1389,6 @@
 "dc" = (
 /obj/machinery/door/airlock/hatch{
 	icon_state = "door_locked";
-	id_tag = null;
 	locked = 1;
 	name = "AI Core";
 	req_access = list(16)
@@ -1766,7 +1765,6 @@
 	},
 /obj/machinery/door/airlock/security{
 	name = "Armory";
-	req_access = null;
 	req_one_access = list()
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -1883,7 +1881,6 @@
 "ec" = (
 /obj/machinery/door/airlock/hatch{
 	icon_state = "door_locked";
-	id_tag = null;
 	locked = 1;
 	name = "AI Core";
 	req_access = list(16)
@@ -2798,9 +2795,7 @@
 	},
 /obj/effect/map_helper/airlock/door/ext_door,
 /obj/machinery/door/airlock/maintenance_hatch{
-	frequency = null;
 	icon_state = "door_locked";
-	id_tag = null;
 	locked = 1;
 	name = "Telecoms Server Access";
 	req_access = list(61)
@@ -3286,7 +3281,6 @@
 	id = "PubPrep";
 	name = "Public Access Shutter";
 	pixel_x = -26;
-	req_access = null;
 	req_one_access = list(18)
 	},
 /turf/simulated/floor/outdoors/grass/seasonal/notrees_nomobs_lowsnow,
@@ -3569,8 +3563,7 @@
 /area/groundbase/cargo/mining)
 "hS" = (
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
-	dir = 8;
-	id_tag = null
+	dir = 8
 	},
 /obj/effect/map_helper/airlock/atmos/chamber_pump,
 /obj/machinery/firealarm{
@@ -4008,9 +4001,7 @@
 	},
 /obj/effect/map_helper/airlock/door/int_door,
 /obj/machinery/door/airlock/maintenance_hatch{
-	frequency = null;
 	icon_state = "door_locked";
-	id_tag = null;
 	locked = 1;
 	name = "Telecoms Server Access";
 	req_access = list(61)
@@ -5509,9 +5500,7 @@
 /obj/machinery/conveyor_switch/oneway{
 	id = "recycling";
 	name = "Recycling conveyor switch";
-	pixel_y = 20;
-	req_access = null;
-	req_one_access = null
+	pixel_y = 20
 	},
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
 	dir = 1
@@ -5712,8 +5701,7 @@
 "mr" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock{
-	name = "Bar";
-	req_access = null
+	name = "Bar"
 	},
 /turf/simulated/floor/bmarble,
 /area/groundbase/civilian/bar)
@@ -9392,8 +9380,7 @@
 "uK" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/security{
-	name = "Security";
-	req_access = null
+	name = "Security"
 	},
 /obj/machinery/door/blast/regular{
 	density = 0;
@@ -11139,7 +11126,6 @@
 	tag_east = 1;
 	tag_east_con = 0.21;
 	tag_north = 2;
-	tag_north_con = null;
 	tag_south = 1;
 	tag_south_con = 0.79
 	},
@@ -11322,9 +11308,7 @@
 /area/groundbase/medical/lhallway)
 "zb" = (
 /obj/machinery/door/airlock/multi_tile/glass/polarized{
-	id_tag = null;
-	name = "Tool Storage";
-	req_one_access = null
+	name = "Tool Storage"
 	},
 /obj/machinery/door/firedoor,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -11974,6 +11958,10 @@
 /obj/machinery/light{
 	dir = 8
 	},
+/obj/structure/mirror{
+	dir = 4;
+	pixel_x = -23
+	},
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/medical/resleeving)
 "AC" = (
@@ -12277,8 +12265,7 @@
 "Bo" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock{
-	name = "Bar";
-	req_access = null
+	name = "Bar"
 	},
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -12481,7 +12468,6 @@
 	},
 /obj/machinery/door/airlock/security{
 	name = "Armory";
-	req_access = null;
 	req_one_access = list()
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -12944,8 +12930,7 @@
 "CS" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/security{
-	name = "Security";
-	req_access = null
+	name = "Security"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
@@ -13790,7 +13775,6 @@
 "ES" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock{
-	id_tag = null;
 	name = "Restroom"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -16355,6 +16339,10 @@
 "KA" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 5
+	},
+/obj/structure/mirror{
+	pixel_y = -25;
+	dir = 1
 	},
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/medical/autoresleeving)
