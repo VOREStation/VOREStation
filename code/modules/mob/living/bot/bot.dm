@@ -43,9 +43,8 @@
 
 	allow_mind_transfer = TRUE
 
-/mob/living/bot/New()
-	..()
-	//update_icons() //VOREstation edit: moved to Init
+/mob/living/bot/Initialize()
+	. = ..()
 
 	//default_language = GLOB.all_languages[LANGUAGE_GALCOM] //VOREstation edit: moved to Init
 
@@ -59,9 +58,6 @@
 	if(!using_map.bot_patrolling)
 		will_patrol = FALSE
 
-// Make sure mapped in units start turned on.
-/mob/living/bot/Initialize()
-	. = ..()
 	if(on)
 		turn_on() // Update lights and other stuff
 	update_icons() //VOREstation edit - overlay runtime fix

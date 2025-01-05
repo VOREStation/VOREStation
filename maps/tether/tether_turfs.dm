@@ -167,6 +167,7 @@ VIRGO3B_TURF_CREATE(/turf/simulated/mineral/floor)
 	name = "bluespace"
 	icon = 'icons/turf/space_vr.dmi'
 	icon_state = "bluespace"
+
 /turf/space/bluespace/Initialize()
 	icon = 'icons/turf/space_vr.dmi'
 	icon_state = "bluespace"
@@ -177,9 +178,10 @@ VIRGO3B_TURF_CREATE(/turf/simulated/mineral/floor)
 	name = "sand transit"
 	icon = 'icons/turf/transit_vr.dmi'
 	icon_state = "desert_ns"
+
 /turf/space/sandyscroll/Initialize()
-	icon_state = "desert_ns"
 	. = ..()
+	icon_state = "desert_ns"
 
 //Sky stuff!
 // A simple turf to fake the appearance of flying.

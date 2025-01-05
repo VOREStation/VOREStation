@@ -216,8 +216,8 @@
 		return 1
 	return 0
 
-/obj/vehicle/train/trolley/trailer/New()
-	..()
+/obj/vehicle/train/trolley/trailer/Initialize()
+	. = ..()
 	update_icon()
 
 /obj/vehicle/train/trolley/trailer/Moved(atom/old_loc, direction, forced = FALSE)
