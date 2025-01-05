@@ -25,12 +25,12 @@ $_channel_map: (
   'ITV': #8a8a8a,
   // Modes
   'LOOC': #3a9696,
-  'Me': #5975da,
+  'Me': #485fce,
   'OOC': #cca300,
   'Radio': #1ecc43,
   'Say': #a4bad6,
   'Whis': #7c7fd9,
-  'Subtle': #6366bd
+  'Subtle': #c52076
 );
 
 $channel_keys: map.keys($_channel_map) !default;

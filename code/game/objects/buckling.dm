@@ -118,7 +118,7 @@
 	if(!ticker)
 		to_chat(user, span_warning("You can't buckle anyone in before the game starts."))
 		return FALSE // Is this really needed?
-	if(!user.Adjacent(M) || user.restrained() || user.stat || istype(user, /mob/living/silicon/pai))
+	if(!user.Adjacent(M) || user.restrained() || user.stat || ispAI(user))
 		return FALSE
 	if(M in buckled_mobs)
 		to_chat(user, span_warning("\The [M] is already buckled to \the [src]."))

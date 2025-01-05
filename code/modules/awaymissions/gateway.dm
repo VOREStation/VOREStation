@@ -156,7 +156,7 @@ GLOBAL_DATUM(gateway_station, /obj/machinery/gateway/centerstation)
 		if(istype(M, /obj/item/uav))
 			var/obj/item/uav/L = M
 			L.power_down()
-		if(istype(M, /mob/living))
+		if(isliving(M))
 			var/mob/living/L = M
 			if(LAZYLEN(L.buckled_mobs))
 				var/datum/riding/R = L.riding_datum
@@ -175,7 +175,7 @@ GLOBAL_DATUM(gateway_station, /obj/machinery/gateway/centerstation)
 			//VOREStation Addition End: Mcguffin time!
 
 			//VOREStation Addition Start: Abduction!
-			if(istype(M, /mob/living) && dest.abductor)
+			if(isliving(M) && dest.abductor)
 				var/mob/living/L = M
 				if(L.nutrition > 500)
 					L.nutrition = 500 //If the aim is to negate people overpreparing, then they shouldn't be able to stuff themselves full of food either.

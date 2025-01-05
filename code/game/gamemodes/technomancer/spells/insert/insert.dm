@@ -11,8 +11,8 @@
 	var/obj/item/inserted_spell/inserting = null
 	var/allow_stacking = 0
 
-/obj/item/spell/insert/New()
-	..()
+/obj/item/spell/insert/Initialize()
+	. = ..()
 	set_light(spell_light_range, spell_light_intensity, l_color = light_color)
 
 /obj/item/inserted_spell
@@ -49,11 +49,11 @@
 		qdel(src)
 
 /obj/item/spell/insert/on_melee_cast(atom/hit_atom, mob/user)
-	if(istype(hit_atom, /mob/living))
+	if(isliving(hit_atom))
 		var/mob/living/L = hit_atom
 		insert(L,user)
 
 /obj/item/spell/insert/on_ranged_cast(atom/hit_atom, mob/user)
-	if(istype(hit_atom, /mob/living))
+	if(isliving(hit_atom))
 		var/mob/living/L = hit_atom
 		insert(L,user)

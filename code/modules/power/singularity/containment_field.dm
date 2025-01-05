@@ -53,7 +53,7 @@
 	shock(L)
 
 /obj/machinery/containment_field/HasProximity(turf/T, atom/movable/AM, old_loc)
-	if(!istype(AM, /mob/living) || AM:incorporeal_move)
+	if(!isliving(AM) || AM:incorporeal_move)
 		return 0
 	if(!(get_dir(src,AM) in shockdirs))
 		return 0

@@ -24,8 +24,8 @@
 			fire_sound		= 'sound/weapons/pulse3.ogg'
 		))
 
-/obj/item/gun/energy/sizegun/New()
-	..()
+/obj/item/gun/energy/sizegun/Initialize()
+	. = ..()
 	verbs += /obj/item/gun/energy/sizegun/proc/select_size
 	verbs += /obj/item/gun/energy/sizegun/proc/spin_dial
 

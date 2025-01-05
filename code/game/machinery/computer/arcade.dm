@@ -500,7 +500,7 @@
 						if(severity >= 3) //you didn't pray hard enough
 							to_chat(M, span_warning("An overpowering wave of nausea consumes over you. You hunch over, your stomach's contents preparing for a spectacular exit."))
 							spawn(30)
-							if(istype(M,/mob/living/carbon/human))
+							if(ishuman(M))
 								var/mob/living/carbon/human/H = M
 								H.vomit()
 					if(ORION_TRAIL_FLUX)

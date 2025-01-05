@@ -75,7 +75,7 @@
 
 	for(var/mob/living/L in view(owner))
 		// Spiders, carp... bears.
-		if(istype(L, /mob/living/simple_mob))
+		if(isanimal(L))
 			var/mob/living/simple_mob/SM = L
 			if(!is_ally(SM) && SM.has_AI() && SM.ai_holder.hostile)
 				hostile_mobs++
@@ -83,13 +83,13 @@
 					potential_spells |= /obj/item/spell/abjuration
 
 		// Always assume borgs are hostile.
-		if(istype(L, /mob/living/silicon/robot))
+		if(isrobot(L))
 			if(!istype(L, /mob/living/silicon/robot/drone)) // Drones are okay, however.
 				hostile_mobs++
 				potential_spells |= /obj/item/spell/projectile/ionic_bolt
 
 		// Finally we get to humanoids.
-		if(istype(L, /mob/living/carbon/human))
+		if(ishuman(L))
 			var/mob/living/carbon/human/H = L
 			if(is_ally(H)) // Don't get scared by our apprentice.
 				continue

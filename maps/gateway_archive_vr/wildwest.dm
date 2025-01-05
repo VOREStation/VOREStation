@@ -27,7 +27,7 @@
 		to_chat(user, "The Wish Granter lies silent.")
 		return
 
-	else if(!istype(user, /mob/living/carbon/human))
+	else if(!ishuman(user))
 		to_chat(user, "You feel a dark stirring inside of the Wish Granter, something you want nothing of. Your instincts are better than any man's.")
 		return
 
@@ -109,8 +109,9 @@
 	var/triggerproc = "explode" //name of the proc thats called when the mine is triggered
 	var/triggered = 0
 
-/obj/effect/meatgrinder/New()
+/obj/effect/meatgrinder/Initialize()
 	icon_state = "blob"
+	. = ..()
 
 /obj/effect/meatgrinder/HasEntered(AM as mob|obj)
 	Bumped(AM)
@@ -119,7 +120,7 @@
 
 	if(triggered) return
 
-	if(istype(M, /mob/living/carbon/human) || istype(M, /mob/living/carbon/monkey))
+	if(ishuman(M) || istype(M, /mob/living/carbon/monkey))
 		for(var/mob/O in viewers(world.view, src.loc))
 			to_chat(O, span_red("[M] triggered the [icon2html(src, O.client)] [src]"))
 		triggered = 1

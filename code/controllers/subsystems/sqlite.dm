@@ -7,11 +7,11 @@ SUBSYSTEM_DEF(sqlite)
 	flags = SS_NO_FIRE
 	var/database/sqlite_db = null
 
-/datum/controller/subsystem/sqlite/Initialize(timeofday)
+/datum/controller/subsystem/sqlite/Initialize()
 	connect()
 	if(sqlite_db)
 		init_schema(sqlite_db)
-	return ..()
+	return SS_INIT_SUCCESS
 
 /datum/controller/subsystem/sqlite/proc/connect()
 	if(!CONFIG_GET(flag/sqlite_enabled))

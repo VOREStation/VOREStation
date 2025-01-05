@@ -77,7 +77,7 @@
 				post_signal(control_freq, "command", "bot_status", "active", active, s_filter = bot_filter)
 
 /obj/item/radio/integrated/receive_signal(datum/signal/signal)
-	if(bot_type && istype(signal.source, /mob/living/bot) && signal.data["type"] == bot_type)
+	if(bot_type && isbot(signal.source) && signal.data["type"] == bot_type)
 		if(!botlist)
 			botlist = new()
 

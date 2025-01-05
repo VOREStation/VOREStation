@@ -107,7 +107,7 @@
 	if(target)
 		if(istype(target, /mob/living/simple_mob/slime/xenobio))	//Don't call reinforcements for internal disputes
 			return
-		if(istype(target, /mob/living/carbon/human))
+		if(ishuman(target))
 			var/mob/living/carbon/human/H = target
 			if(istype(H.species, /datum/species/monkey))			//Or for food
 				return
@@ -170,7 +170,7 @@
 
 // The holder's attack changes based on intent. This lets the AI choose what effect is desired.
 /datum/ai_holder/simple_mob/xenobio_slime/pre_melee_attack(atom/A)
-	if(istype(A, /mob/living))
+	if(isliving(A))
 		var/mob/living/L = A
 		var/mob/living/simple_mob/slime/xenobio/my_slime = holder
 
@@ -182,7 +182,7 @@
 			my_slime.a_intent = I_HURT // Otherwise robust them.
 
 /datum/ai_holder/simple_mob/xenobio_slime/closest_distance(atom/movable/AM)
-	if(istype(AM, /mob/living))
+	if(isliving(AM))
 		var/mob/living/L = AM
 		if(ishuman(L))
 			var/mob/living/carbon/human/H = L

@@ -45,8 +45,8 @@
 //-------------------------------------------
 // Standard procs
 //-------------------------------------------
-/obj/vehicle/New()
-	..()
+/obj/vehicle/Initialize(mapload)
+	. = ..()
 	//spawn the cell you want in each vehicle
 
 /obj/vehicle/Destroy()
@@ -234,7 +234,7 @@
 	var/turf/Tsec = get_turf(src)
 
 	//stuns people who are thrown off a train that has been blown up
-	if(istype(load, /mob/living))
+	if(isliving(load))
 		var/mob/living/M = load
 		M.apply_effects(5, 5)
 

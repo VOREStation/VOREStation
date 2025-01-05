@@ -23,6 +23,7 @@ FLOOR SAFES
 
 
 /obj/structure/safe/Initialize()
+	. = ..()
 	tumbler_1_pos = rand(0, 72)
 	tumbler_1_open = rand(0, 72)
 

@@ -36,7 +36,7 @@ SUBSYSTEM_DEF(transcore)
 			warning("Instantiated transcore DB without a key: [t]")
 			continue
 		databases[db.key] = db
-	return ..()
+	return SS_INIT_SUCCESS
 
 /datum/controller/subsystem/transcore/fire(resumed = 0)
 	var/timer = TICK_USAGE

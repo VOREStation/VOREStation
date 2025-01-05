@@ -123,7 +123,7 @@
 		if(abs(holder.x - L.x)>6 || abs(holder.y - L.y)>6) //finally, pakkuns on the very very edge of the screen won't target you
 			our_targets -= list_target
 			continue
-	if(istype(holder, /mob/living/simple_mob))
+	if(isanimal(holder))
 		var/mob/living/simple_mob/SM = holder
 		our_targets -= SM.prey_excludes // Lazylist, but subtracting a null from the list seems fine.
 	return our_targets
@@ -134,7 +134,7 @@
 		var/mob/living/L = the_target
 		if(!(L.can_be_drop_prey && L.throw_vore && L.allowmobvore))
 			return FALSE
-		if(istype(holder, /mob/living/simple_mob))
+		if(isanimal(holder))
 			var/mob/living/simple_mob/SM = holder
 			if(LAZYFIND(SM.prey_excludes, L))
 				return FALSE

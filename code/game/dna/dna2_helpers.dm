@@ -127,7 +127,7 @@
 
 // Simpler. Don't specify UI in order for the mob to use its own.
 /mob/proc/UpdateAppearance(var/list/UI=null)
-	if(istype(src, /mob/living/carbon/human))
+	if(ishuman(src))
 		if(UI!=null)
 			src.dna.UI=UI
 			src.dna.UpdateUI()
@@ -269,7 +269,7 @@
 		H.custom_heat = dna.custom_heat
 		H.custom_cold = dna.custom_cold
 		var/datum/species/S = H.species
-		S.produceCopy(dna.species_traits, H, dna.base_species, FALSE) // Traitgenes edit - reset_dna flag required, or genes get reset on resleeve
+		S.produceCopy(dna.species_traits, H, dna.base_species/*, FALSE*/) // Traitgenes edit - reset_dna flag required, or genes get reset on resleeve
 		// VOREStation Edit End
 
 		H.species.blood_reagents = dna.blood_reagents

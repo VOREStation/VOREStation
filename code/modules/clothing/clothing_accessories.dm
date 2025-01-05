@@ -120,7 +120,7 @@
 	set category = "Object"
 	set src in usr
 
-	if(!istype(usr, /mob/living))
+	if(!isliving(usr))
 		return
 
 	if(usr.stat)
