@@ -77,6 +77,7 @@
 	. += span_notice("It will open in [ourtime] minutes!")
 
 /obj/structure/timer_door/Initialize()
+	. = ..()
 	START_PROCESSING(SSobj, src)
 
 	start_time = world.time
