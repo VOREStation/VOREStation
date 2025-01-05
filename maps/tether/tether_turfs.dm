@@ -169,9 +169,9 @@ VIRGO3B_TURF_CREATE(/turf/simulated/mineral/floor)
 	icon_state = "bluespace"
 
 /turf/space/bluespace/Initialize()
+	. = ..()
 	icon = 'icons/turf/space_vr.dmi'
 	icon_state = "bluespace"
-	. = ..()
 
 // Desert jump turf!
 /turf/space/sandyscroll

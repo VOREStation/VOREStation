@@ -295,6 +295,7 @@
 	breakable = TRUE
 
 /obj/structure/hull_corner/Initialize()
+	..()
 	return INITIALIZE_HINT_LATELOAD
 
 /obj/structure/hull_corner/LateInitialize()

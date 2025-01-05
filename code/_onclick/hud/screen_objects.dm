@@ -776,6 +776,7 @@
 	var/obj/screen/mapper/extras_holder/extras_holder
 
 /obj/screen/movable/mapper_holder/Initialize(mapload, newowner)
+	. = ..()
 	owner = newowner
 
 	mask_full = new(src) // Full white square mask
