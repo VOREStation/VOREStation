@@ -962,7 +962,7 @@
 	else
 		set_light(0)
 
-/obj/item/melee/baton/fluff/stunstaff/dropped()
+/obj/item/melee/baton/fluff/stunstaff/dropped(mob/user)
 	..()
 	if(wielded)
 		wielded = 0

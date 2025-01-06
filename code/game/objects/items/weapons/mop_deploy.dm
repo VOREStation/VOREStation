@@ -56,7 +56,7 @@
 	user.drop_from_inventory(src)
 	spawn(1) if(!QDELETED(src)) qdel(src)
 
-/obj/item/mop_deploy/dropped()
+/obj/item/mop_deploy/dropped(mob/user)
 	spawn(1) if(!QDELETED(src)) qdel(src)
 
 /obj/item/mop_deploy/process()

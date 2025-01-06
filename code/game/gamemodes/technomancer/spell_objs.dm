@@ -282,7 +282,7 @@
 // Proc: dropped()
 // Parameters: 0
 // Description: Deletes the spell object immediately.
-/obj/item/spell/dropped()
+/obj/item/spell/dropped(mob/user)
 	spawn(1)
 		if(src)
 			qdel(src)

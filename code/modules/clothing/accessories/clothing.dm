@@ -187,7 +187,7 @@
 			icon_override = 'icons/inventory/accessory/mob.dmi'
 		update_clothing_icon()
 
-/obj/item/clothing/accessory/poncho/dropped() //Resets the override to prevent the wrong .dmi from being used because equipped only triggers when wearing ponchos as suits.
+/obj/item/clothing/accessory/poncho/dropped(mob/user) //Resets the override to prevent the wrong .dmi from being used because equipped only triggers when wearing ponchos as suits.
 	icon_override = null
 
 /obj/item/clothing/accessory/poncho/green

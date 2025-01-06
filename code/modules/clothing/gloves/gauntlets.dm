@@ -39,7 +39,7 @@
 	wearer = H
 	return 1
 
-/obj/item/clothing/gloves/gauntlets/dropped()
+/obj/item/clothing/gloves/gauntlets/dropped(mob/user)
 	var/mob/living/carbon/human/H = wearer
 	if(gloves)
 		if(!H.equip_to_slot_if_possible(gloves, slot_gloves))
