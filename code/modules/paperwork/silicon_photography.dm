@@ -85,7 +85,7 @@
 	src.in_camera_mode = 0
 	to_chat(user, span_infoplain(span_bold("Camera Mode deactivated")))
 
-/obj/item/camera/siliconcam/proc/camera_mode_on()
+/obj/item/camera/siliconcam/proc/camera_mode_on(mob/user)
 	src.in_camera_mode = 1
 	to_chat(user, span_infoplain(span_bold("Camera Mode activated")))
 
