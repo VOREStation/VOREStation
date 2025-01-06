@@ -102,7 +102,7 @@
 		return
 
 	// Don't let AI eyes yeet themselves off the map
-	if(isobserver(A))
+	if(isEye(A))
 		return
 
 	if(A.lost_in_space())
