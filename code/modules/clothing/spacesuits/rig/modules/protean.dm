@@ -185,7 +185,7 @@ These should come standard with the Protean rigsuit, unless you want them to wor
 	if(active)
 		var/mob/living/carbon/human/H = holder.wearer
 		var/mob/living/P = holder?:myprotean
-		if((istype(H.species, /datum/species/protean)) || !H || !P)
+		if(!H || !P || istype(H.species, /datum/species/protean))
 			to_chat(H, span_warning("Your Protean modules do not function on yourself."))
 			deactivate()
 			return
