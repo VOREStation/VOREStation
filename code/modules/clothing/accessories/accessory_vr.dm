@@ -42,6 +42,7 @@
 	..(S, user)
 
 /obj/item/clothing/accessory/choker/dropped(mob/user)
+	..()
 	icon_override = icon_previous_override
 
 /obj/item/clothing/accessory/collar
@@ -80,6 +81,7 @@
 	..(S, user)
 
 /obj/item/clothing/accessory/collar/dropped(mob/user)
+	..()
 	icon_override = icon_previous_override
 
 /obj/item/clothing/accessory/collar/silver

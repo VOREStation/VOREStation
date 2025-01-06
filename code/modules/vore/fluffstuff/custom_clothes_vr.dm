@@ -2284,6 +2284,7 @@ Departamental Swimsuits, for general use
 	update_clothing_icon()
 
 /obj/item/clothing/accessory/poncho/roles/cloak/fluff/cloakglowing/dropped(mob/user)
+	..()
 	icon_override = 'icons/vore/custom_onmob_vr.dmi'
 
 /obj/item/clothing/accessory/poncho/roles/cloak/fluff/cloakglowing/proc/colorswap(mob/user)

@@ -83,6 +83,7 @@
 	use_to_pickup = FALSE
 
 /obj/item/storage/laundry_basket/offhand/dropped(mob/user as mob)
+	SHOULD_CALL_PARENT(FALSE)
 	if(user.isEquipped(linked))
 		user.drop_from_inventory(linked)
 	return

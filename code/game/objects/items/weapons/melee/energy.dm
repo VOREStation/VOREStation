@@ -454,6 +454,7 @@
 	spawn(1) if(src) qdel(src)
 
 /obj/item/melee/energy/blade/dropped(mob/user)
+	..()
 	spawn(1) if(src) qdel(src)
 
 /obj/item/melee/energy/blade/process()

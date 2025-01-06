@@ -121,6 +121,7 @@
 	return ..()
 
 /obj/item/mapping_unit/dropped(mob/dropper)
+	..()
 	if(loc != dropper) // Not just a juggle
 		hide_device()
 

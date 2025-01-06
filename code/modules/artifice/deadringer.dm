@@ -24,6 +24,7 @@
 	..()
 
 /obj/item/deadringer/dropped(mob/user)
+	..()
 	if(timer > 20)
 		reveal()
 		watchowner = null
