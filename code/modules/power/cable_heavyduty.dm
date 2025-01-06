@@ -18,10 +18,10 @@
 		return
 
 	if(W.has_tool_quality(TOOL_WIRECUTTER))
-		to_chat(usr, span_blue("These cables are too tough to be cut with those [W.name]."))
+		to_chat(user, span_blue("These cables are too tough to be cut with those [W.name]."))
 		return
 	else if(istype(W, /obj/item/stack/cable_coil))
-		to_chat(usr, span_blue("You will need heavier cables to connect to these."))
+		to_chat(user, span_blue("You will need heavier cables to connect to these."))
 		return
 	else
 		..()
