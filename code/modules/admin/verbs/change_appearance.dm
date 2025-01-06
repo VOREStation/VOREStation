@@ -43,7 +43,7 @@
 
 	var/mob/living/carbon/human/M = tgui_input_list(usr, "Select mob.", "Edit Appearance", human_mob_list)
 
-	if(!istype(M, /mob/living/carbon/human))
+	if(!ishuman(M))
 		to_chat(usr, span_warning("You can only do this to humans!"))
 		return
 	if(tgui_alert(usr, "Are you sure you wish to edit this mob's appearance? Skrell, Unathi, Tajaran can result in unintended consequences.","Danger!",list("Yes","No")) != "Yes")

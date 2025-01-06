@@ -102,14 +102,14 @@
 
 	var/mob/M = targets[target]
 
-	if(istype(M, /mob/observer/dead) || M.stat == DEAD)
+	if(isobserver(M) || M.stat == DEAD)
 		to_chat(src, span_filter_notice("Not even a [src.species.name] can speak to the dead."))
 		return
 
 	log_say("(COMMUNE to [key_name(M)]) [text]",src)
 
 	to_chat(M, span_filter_say("[span_blue("Like lead slabs crashing into the ocean, alien thoughts drop into your mind: [text]")]"))
-	if(istype(M,/mob/living/carbon/human))
+	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		if(H.species.name == src.species.name)
 			return

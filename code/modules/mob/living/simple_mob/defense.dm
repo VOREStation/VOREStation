@@ -45,7 +45,7 @@
 
 		if(I_HURT)
 			var/armor = run_armor_check(def_zone = null, attack_flag = "melee")
-			if(istype(L,/mob/living/carbon/human)) //VOREStation EDIT START Is it a human?
+			if(ishuman(L)) //VOREStation EDIT START Is it a human?
 				var/mob/living/carbon/human/attacker = L //We are a human!
 				var/datum/unarmed_attack/attack = attacker.get_unarmed_attack(src, BP_TORSO) //What attack are we using? Also, just default to attacking the chest.
 				var/rand_damage = rand(1, 5) //Like normal human attacks, let's randomize the damage...

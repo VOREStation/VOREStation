@@ -342,7 +342,7 @@
 						H.handcuffed = new /obj/item/handcuffs(H)
 					H.update_handcuffed()
 			busy = FALSE
-	else if(istype(M, /mob/living))
+	else if(isliving(M))
 		var/mob/living/L = M
 		L.adjustBruteLoss(xeno_harm_strength)
 		do_attack_animation(M)

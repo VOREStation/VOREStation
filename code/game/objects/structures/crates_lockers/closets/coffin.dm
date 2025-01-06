@@ -42,7 +42,7 @@
 		add_fingerprint(M)
 		if(ishuman(M))
 			var/mob/living/carbon/human/H = M
-			if(H.m_intent == "walk")
+			if(H.m_intent == I_WALK)
 				to_chat(H, span_warning("You stop at the edge of \the [src.name]."))
 				return FALSE
 			else

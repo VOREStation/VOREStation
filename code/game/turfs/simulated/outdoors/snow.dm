@@ -67,7 +67,7 @@
 
 /turf/simulated/floor/outdoors/ice/Entered(var/mob/living/M)
 	sleep(1 * world.tick_lag)
-	if(istype(M, /mob/living))
+	if(isliving(M))
 		if(M.stunned == 0)
 			to_chat(M, span_warning("You slide across the ice!"))
 		M.SetStunned(1)

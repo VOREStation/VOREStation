@@ -12,7 +12,7 @@
 	var/list/active_beams
 
 /obj/structure/cult/pylon/swarm/CanPass(atom/movable/mover, turf/target)
-	if(istype(mover, /mob/living))
+	if(isliving(mover))
 		var/mob/living/L = mover
 		if(L.faction == FACTION_SWARMER)
 			return TRUE

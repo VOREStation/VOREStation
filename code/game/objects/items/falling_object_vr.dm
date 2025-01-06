@@ -31,7 +31,7 @@
 	qdel(src)
 
 /atom/movable/proc/end_fall(var/crushing = FALSE)
-	if(istype(src, /mob/living))
+	if(isliving(src))
 		var/mob/living/L = src
 		if(L.vore_selected && L.can_be_drop_pred && L.drop_vore)
 			for(var/mob/living/P in loc)

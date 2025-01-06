@@ -133,7 +133,7 @@
 /datum/game_mode/meme/check_finished()
 	var/memes_alive = 0
 	for(var/datum/mind/meme in memes)
-		if(!istype(meme.current,/mob/living))
+		if(!isliving(meme.current))
 			continue
 		if(meme.current.stat==2)
 			continue

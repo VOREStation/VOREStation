@@ -125,7 +125,7 @@
 			if(L.alpha <= FAKE_INVIS_ALPHA_THRESHOLD) // Can't fear something you can't (easily) see.
 				continue
 
-			if(istype(thing, /mob/living/carbon/human))
+			if(ishuman(thing))
 				var/mob/living/carbon/human/H = thing
 				var/self_multiplier = H == holder ? 2 : 1
 				var/human_blood_fear_amount = 0
@@ -456,7 +456,7 @@
 				else
 					fear_amount += 10 // It's huge and feral.
 
-			if(istype(L, /mob/living/carbon/human))
+			if(ishuman(L))
 				var/mob/living/carbon/human/S = L
 				if(istype(S.species, /datum/species/skrell)) //Skrell ARE slimey.
 					fear_amount += 1
@@ -547,7 +547,7 @@
 			var/mob/living/L = thing
 			if(L.alpha <= FAKE_INVIS_ALPHA_THRESHOLD) // Can't fear something you can't (easily) see.
 				continue
-			if(istype(L, /mob/living/carbon/human))
+			if(ishuman(L))
 				var/mob/living/carbon/human/H = L
 				if(H.l_hand && istype(H.l_hand, /obj/item/reagent_containers/syringe) || H.r_hand && istype(H.r_hand, /obj/item/reagent_containers/syringe))
 					fear_amount += 10

@@ -12,7 +12,7 @@
 		pass = FALSE
 
 	//No OOC notes
-	if (CONFIG_GET(flag/allow_metadata) && (!client?.prefs?.metadata || length(client.prefs.metadata) < 15))
+	if (CONFIG_GET(flag/allow_metadata) && (!client?.prefs?.read_preference(/datum/preference/text/living/ooc_notes) || length(client.prefs.read_preference(/datum/preference/text/living/ooc_notes)) < 15))
 		to_chat(src,span_warning("Please set informative OOC notes related to RP/ERP preferences. Set them using the 'OOC Notes' button on the 'General' tab in character setup."))
 		pass = FALSE
 

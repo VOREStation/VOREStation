@@ -279,7 +279,7 @@
 		if(gargoyle.adminbus_trash || is_type_in_list(I,edible_trash) && I.trash_eatable && !is_type_in_list(I,item_vore_blacklist))
 			gargoyle.hitby(AM, speed)
 			return
-	else if(istype(AM,/mob/living) && gargoyle)
+	else if(isliving(AM) && gargoyle)
 		var/mob/living/L = AM
 		if(gargoyle.throw_vore && L.throw_vore && gargoyle.can_be_drop_pred && L.can_be_drop_prey)
 			var/drop_prey_temp = FALSE

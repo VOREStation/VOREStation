@@ -12,13 +12,13 @@
 	var/datum/tgui_module/appearance_changer/mirror/M
 
 /obj/structure/mirror/Initialize(mapload, var/dir, var/building = 0)
+	. = ..()
 	M = new(src, null)
 	if(building)
 		glass = 0
 		icon_state = "mirror_frame"
 		pixel_x = (dir & 3)? 0 : (dir == 4 ? -28 : 28)
 		pixel_y = (dir & 3)? (dir == 1 ? -30 : 30) : 0
-	return
 
 /obj/structure/mirror/Destroy()
 	QDEL_NULL(M)

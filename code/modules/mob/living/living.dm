@@ -151,7 +151,7 @@
 
 //sort of a legacy burn method for /electrocute, /shock, and the e_chair
 /mob/living/proc/burn_skin(burn_amount)
-	if(istype(src, /mob/living/carbon/human))
+	if(ishuman(src))
 		//to_world("DEBUG: burn_skin(), mutations=[mutations]")
 		if(mShock in src.mutations) //shockproof
 			return 0
@@ -166,7 +166,7 @@
 				H.UpdateDamageIcon()
 		H.updatehealth()
 		return 1
-	else if(istype(src, /mob/living/silicon/ai))
+	else if(isAI(src))
 		return 0
 
 /mob/living/proc/adjustBodyTemp(actual, desired, incrementboost)
@@ -185,7 +185,7 @@
 		temperature -= change
 		if(actual < desired)
 			temperature = desired
-//	if(istype(src, /mob/living/carbon/human))
+//	if(ishuman(src))
 //		to_world("[src] ~ [src.bodytemperature] ~ [temperature]")
 	return temperature
 
@@ -726,7 +726,7 @@
 			ooc_notes_window(usr)
 //			to_chat(usr, span_filter_notice("[src]'s Metainfo:<br>[ooc_notes]"))
 		else if(client)
-			to_chat(usr, span_filter_notice("[src]'s Metainfo:<br>[client.prefs.metadata]"))
+			to_chat(usr, span_filter_notice("[src]'s Metainfo:<br>[client.prefs.read_preference(/datum/preference/text/living/ooc_notes)]"))
 		else
 			to_chat(usr, span_filter_notice("[src] does not have any stored infomation!"))
 	else

@@ -36,7 +36,7 @@ SUBSYSTEM_DEF(game_master)
 	if(config && !config.enable_game_master)
 		can_fire = FALSE
 
-	return ..()
+	return SS_INIT_SUCCESS
 
 /datum/controller/subsystem/game_master/fire(resumed)
 	adjust_staleness(1)

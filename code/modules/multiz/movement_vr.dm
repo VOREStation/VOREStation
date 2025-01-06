@@ -33,10 +33,10 @@
 
 	var/mob/living/pred = hit_atom
 	var/safe_fall = FALSE
-	if(pred.softfall || (istype(pred, /mob/living/simple_mob) && pred.mob_size <= MOB_SMALL))		// TODO: add ability for mob below to be 'soft' and cushion fall
+	if(pred.softfall || (isanimal(pred) && pred.mob_size <= MOB_SMALL))		// TODO: add ability for mob below to be 'soft' and cushion fall
 		safe_fall = TRUE
 
-	if(istype(pred, /mob/living/carbon/human))
+	if(ishuman(pred))
 		var/mob/living/carbon/human/H = pred
 		if(H.species.soft_landing)
 			safe_fall = TRUE
@@ -89,7 +89,7 @@
 	set category = "Object"
 	set src in oview(1)
 
-	if(!istype(usr, /mob/living)) return	//Why would ghosts want to climb?
+	if(!isliving(usr)) return	//Why would ghosts want to climb?
 	var/mob/living/L = usr
 	var/climbing_delay_min = L.climbing_delay
 	var/fall_chance = 0

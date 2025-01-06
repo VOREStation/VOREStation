@@ -177,7 +177,7 @@
 	else
 		var/list/candidates = list()
 		for(var/client/player in GLOB.clients)
-			if(player.mob && istype(player.mob, /mob/observer/dead))
+			if(player.mob && isobserver(player.mob))
 				candidates |= player
 
 		if(!candidates.len)
@@ -194,7 +194,7 @@
 		spawned_mob.tag = "awaiting drop"
 
 		// Equip them, if they are human and it is desirable.
-		if(istype(spawned_mob, /mob/living/carbon/human))
+		if(ishuman(spawned_mob))
 			var/antag_type = tgui_input_list(usr, "Select an equipment template to use or cancel for nude.", all_antag_types)
 			if(antag_type)
 				var/datum/antagonist/A = all_antag_types[antag_type]

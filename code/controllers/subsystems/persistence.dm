@@ -11,12 +11,12 @@ SUBSYSTEM_DEF(persistence)
 	var/list/unpicked_paintings = list()
 
 /datum/controller/subsystem/persistence/Initialize()
-	. = ..()
 	for(var/datum/persistent/P as anything in subtypesof(/datum/persistent))
 		if(initial(P.name))
 			P = new P
 			persistence_datums[P.type] = P
 			P.Initialize()
+	return SS_INIT_SUCCESS
 
 /datum/controller/subsystem/persistence/Shutdown()
 	for(var/thing in persistence_datums)

@@ -91,7 +91,7 @@
 /obj/item/melee/changeling/process()  //Stolen from ninja swords.
 	if(!creator || loc != creator || !creator.item_is_in_hands(src))
 		// Tidy up a bit.
-		if(istype(loc,/mob/living))
+		if(isliving(loc))
 			var/mob/living/carbon/human/host = loc
 			if(istype(host))
 				for(var/obj/item/organ/external/organ in host.organs)

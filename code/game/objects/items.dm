@@ -760,7 +760,7 @@ GLOBAL_LIST_EMPTY(blood_overlays_by_type)
 
 /obj/item/proc/showoff(mob/user)
 	for (var/mob/M in view(user))
-		M.show_message(span_filter_notice("[user] holds up [src]. <a HREF=?src=\ref[M];lookitem=\ref[src]>Take a closer look.</a>"),1)
+		M.show_message(span_filter_notice("[user] holds up [src]. <a HREF='byond://?src=\ref[M];lookitem=\ref[src]'>Take a closer look.</a>"),1)
 
 /mob/living/carbon/verb/showoff()
 	set name = "Show Held Item"
@@ -796,7 +796,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 
 	var/cannotzoom
 
-	if((M.stat && !zoom) || !(istype(M,/mob/living/carbon/human)))
+	if((M.stat && !zoom) || !(ishuman(M)))
 		to_chat(M, span_filter_notice("You are unable to focus through the [devicename]."))
 		cannotzoom = 1
 	else if(!zoom && (global_hud.darkMask[1] in M.client.screen))

@@ -29,6 +29,7 @@
 /obj/effect/temporary_effect/pulse
 	var/pulses_remaining = 3
 	var/pulse_delay = 2 SECONDS
+	var/pulsetimer
 
 /obj/effect/temporary_effect/pulse/Initialize()
 	..()
@@ -37,14 +38,19 @@
 /obj/effect/temporary_effect/pulse/LateInitialize()
 	pulse_loop()
 
-/obj/effect/temporary_effect/pulse/proc/pulse_loop()
-	set waitfor = FALSE
+/obj/effect/temporary_effect/pulse/Destroy()
+	deltimer(pulsetimer)
+	pulsetimer = null
+	. = ..()
 
-	while(pulses_remaining)
-		sleep(pulse_delay)
-		on_pulse()
+/obj/effect/temporary_effect/pulse/proc/pulse_loop()
+
+	if(pulses_remaining > 0)
+		pulsetimer = addtimer(CALLBACK(src, PROC_REF(pulse_loop)), pulse_delay, TIMER_STOPPABLE)
 		pulses_remaining--
-	qdel(src)
+		on_pulse()
+	else
+		qdel(src)
 
 // Override for specific effects.
 /obj/effect/temporary_effect/pulse/proc/on_pulse()

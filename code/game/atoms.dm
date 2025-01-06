@@ -127,7 +127,7 @@
 //return flags that should be added to the viewer's sight var.
 //Otherwise return a negative number to indicate that the view should be cancelled.
 /atom/proc/check_eye(user as mob)
-	if (istype(user, /mob/living/silicon/ai)) // WHYYYY
+	if (isAI(user)) // WHYYYY
 		return 0
 	return -1
 
@@ -225,6 +225,7 @@
 
 //All atoms
 /atom/proc/examine(mob/user, var/infix = "", var/suffix = "")
+	SHOULD_CALL_PARENT(TRUE)
 	//This reformat names to get a/an properly working on item descriptions when they are bloody
 	var/f_name = "\a [src][infix]."
 	if(src.blood_DNA && !istype(src, /obj/effect/decal))

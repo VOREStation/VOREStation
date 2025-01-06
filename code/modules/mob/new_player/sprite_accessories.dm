@@ -2316,6 +2316,12 @@ shaved
 	icon_state = "tat_nightling"
 	body_parts = list(BP_TORSO)
 
+/datum/sprite_accessory/marking/tat_campbell_full
+	name = "Tattoo (Campbell, Arms/Legs)"
+	icon_state = "tat_campbell"
+	body_parts = list (BP_R_ARM,BP_L_ARM,BP_R_LEG,BP_L_LEG)
+
+//TODO: remove these in a few months?
 /datum/sprite_accessory/marking/tat_campbell
 	name = "Tattoo (Campbell, R.Arm)"
 	icon_state = "tat_campbell"
@@ -2332,6 +2338,7 @@ shaved
 /datum/sprite_accessory/marking/tat_campbell/leftleg
 	name = "Tattoo (Campbell, L.Leg)"
 	body_parts = list (BP_L_LEG)
+//END TODO
 
 /datum/sprite_accessory/marking/tat_silverburgh
 	name = "Tattoo (Silverburgh, R.Leg)"

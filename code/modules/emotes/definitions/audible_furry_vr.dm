@@ -173,7 +173,7 @@
 			emote_sound = pick(smolsound)
 		else
 			emote_sound = pick(bigsound)
-	else if(istype(user, /mob/living/silicon/pai))
+	else if(ispAI(user))
 		var/mob/living/silicon/pai/me = user
 		if(me.chassis == "teppi")
 			emote_sound = pick(bigsound)
@@ -200,7 +200,7 @@
 			emote_sound = pick(smolsound)
 		else
 			emote_sound = pick(bigsound)
-	else if(istype(user, /mob/living/silicon/pai))
+	else if(ispAI(user))
 		var/mob/living/silicon/pai/me = user
 		if(me.chassis == "teppi")
 			emote_sound = pick(bigsound)

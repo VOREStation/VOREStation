@@ -206,7 +206,7 @@
 	set category = "Object"
 	set src in usr
 
-	if(!istype(src.loc,/mob/living)) return
+	if(!isliving(src.loc)) return
 
 	var/mob/living/carbon/human/H = usr
 
@@ -232,7 +232,7 @@
 
 /obj/item/clothing/suit/space/void/attackby(obj/item/W as obj, mob/user as mob)
 
-	if(!istype(user,/mob/living)) return
+	if(!isliving(user)) return
 
 	if(istype(W,/obj/item/clothing/accessory) || istype(W, /obj/item/hand_labeler))
 		return ..()

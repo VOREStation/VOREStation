@@ -1,21 +1,21 @@
 var/global/list/special_roles = list( //keep synced with the defines BE_* in setup.dm --rastaf
 //some autodetection here.
 // Change these to 0 if the equivalent mode is disabled for whatever reason!
-	"traitor" = 1,										// 0
-	"operative" = 1,									// 1
-	"changeling" = 1,									// 2
-	"wizard" = 1,										// 3
-	"malf AI" = 1,										// 4
-	"revolutionary" = 1,								// 5
-	"alien candidate" = 1,								// 6
+	"traitor" = 0,										// 0
+	"operative" = 0,									// 1
+	"changeling" = 0,									// 2
+	"wizard" = 0,										// 3
+	"malf AI" = 0,										// 4
+	"revolutionary" = 0,								// 5
+	"alien candidate" = 0,								// 6
 	"positronic brain" = 1,								// 7
-	"cultist" = 1,										// 8
-	"renegade" = 1,										// 9
-	"ninja" = 1,										// 10
-	"raider" = 1,										// 11
-	"diona" = 1,										// 12
-	"mutineer" = 1,										// 13
-	"loyalist" = 1,										// 14
+	"cultist" = 0,										// 8
+	"renegade" = 0,										// 9
+	"ninja" = 0,										// 10
+	"raider" = 0,										// 11
+	"diona" = 0,										// 12
+	"mutineer" = 0,										// 13
+	"loyalist" = 0,										// 14
 	"pAI candidate" = 1,								// 15
 	//VOREStation Add
 	"lost drone" = 1,									// 16
