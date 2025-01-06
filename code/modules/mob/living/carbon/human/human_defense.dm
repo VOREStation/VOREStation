@@ -571,10 +571,11 @@ emp_act
 
 
 /mob/living/carbon/human/proc/bloody_hands(var/mob/living/source, var/amount = 2)
-	if (gloves)
-		gloves.add_blood(source)
-		gloves:transfer_blood = amount
-		gloves:bloody_hands_mob = source
+	if (istype(gloves, /obj/item/clothing/gloves))
+		var/obj/item/clothing/gloves/gl = gloves
+		gl.add_blood(source)
+		gl.transfer_blood = amount
+		gl.bloody_hands_mob = source
 	else
 		add_blood(source)
 		bloody_hands = amount
