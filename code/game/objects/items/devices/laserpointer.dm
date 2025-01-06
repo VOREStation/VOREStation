@@ -184,7 +184,7 @@
 
 
 	//laser pointer image
-	icon_state = "pointer_[pointer_icon_state]"
+	icon_state = "[initial(icon_state)]_[pointer_icon_state]"
 	var/list/showto = list()
 	for(var/mob/M in viewers(world.view,targloc))
 		if(M.client)
@@ -211,7 +211,7 @@
 
 	flick_overlay(I, showto, cooldown)
 	spawn(cooldown)
-		icon_state = "pointer"
+		icon_state = initial(icon_state)
 
 /obj/item/laser_pointer/process()
 	if(prob(20 - recharge_locked*5))
