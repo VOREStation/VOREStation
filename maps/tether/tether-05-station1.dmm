@@ -14698,7 +14698,6 @@
 /area/tether/exploration)
 "bYK" = (
 /obj/structure/cable/green{
-	dir = 1;
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/unary/vent_pump/on,
@@ -15379,7 +15378,6 @@
 	icon_state = "0-2"
 	},
 /obj/structure/cable/green{
-	dir = 1;
 	icon_state = "1-2"
 	},
 /turf/simulated/floor/tiled,
@@ -15929,7 +15927,6 @@
 /area/quartermaster/belterdock/refinery)
 "dfN" = (
 /obj/structure/cable/green{
-	dir = 1;
 	icon_state = "1-2"
 	},
 /obj/structure/cable/green{
@@ -28049,7 +28046,6 @@
 	dir = 4
 	},
 /obj/structure/cable/green{
-	dir = 1;
 	icon_state = "1-2"
 	},
 /turf/simulated/floor/tiled/dark{
@@ -28912,7 +28908,6 @@
 /area/engineering/hallway)
 "rFu" = (
 /obj/structure/cable/green{
-	dir = 1;
 	icon_state = "1-2"
 	},
 /obj/machinery/hologram/holopad,

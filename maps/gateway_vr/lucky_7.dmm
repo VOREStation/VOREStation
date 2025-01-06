@@ -2431,7 +2431,6 @@
 /obj/structure/disposalpipe/segment,
 /obj/structure/catwalk,
 /obj/structure/cable/green{
-	dir = 1;
 	icon_state = "1-2"
 	},
 /turf/simulated/floor/plating,
@@ -3260,7 +3259,6 @@
 	},
 /obj/structure/catwalk,
 /obj/structure/cable/green{
-	dir = 1;
 	icon_state = "1-2"
 	},
 /turf/simulated/floor/plating,
@@ -3894,7 +3892,6 @@
 /obj/structure/disposalpipe/segment,
 /obj/structure/catwalk,
 /obj/structure/cable/green{
-	dir = 1;
 	icon_state = "1-2"
 	},
 /turf/simulated/floor/plating,

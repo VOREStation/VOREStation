@@ -10,6 +10,7 @@
 	icon = DRINK_ICON_FILE
 	var/base_icon = "square" // Base icon name
 	volume = 30
+	icon_state = "square"
 
 	var/list/filling_states // List of percentages full that have icons
 
