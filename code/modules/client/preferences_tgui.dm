@@ -13,7 +13,7 @@
 
 /datum/preferences/ui_assets(mob/user)
 	var/list/assets = list(
-		// get_asset_datum(/datum/asset/spritesheet/preferences),
+		get_asset_datum(/datum/asset/spritesheet/preferences),
 		get_asset_datum(/datum/asset/json/preferences),
 	)
 
@@ -76,6 +76,34 @@
 
 			// if(istype(requested_preference, /datum/preference/name)) // TODO: do this
 			// 	tainted_character_profiles = TRUE
+
+			return TRUE
+
+		if("set_color_preference")
+			var/requested_preference_key = params["preference"]
+
+			var/datum/preference/requested_preference = GLOB.preference_entries_by_key[requested_preference_key]
+			if(isnull(requested_preference))
+				return FALSE
+
+			if(!istype(requested_preference, /datum/preference/color))
+				return FALSE
+
+			var/default_value = read_preference(requested_preference.type)
+
+			// Yielding
+			var/new_color = input(
+				usr,
+				"Select new color",
+				null,
+				default_value || COLOR_WHITE,
+			) as color | null
+
+			if(!new_color)
+				return FALSE
+
+			if(!update_preference(requested_preference, new_color))
+				return FALSE
 
 			return TRUE
 

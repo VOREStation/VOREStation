@@ -3005,6 +3005,9 @@
 /obj/machinery/light{
 	dir = 1
 	},
+/obj/structure/mirror{
+	pixel_y = 24
+	},
 /turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/stellardelight/deck1/resleeving)
 "fM" = (
@@ -8309,6 +8312,10 @@
 "qR" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 9
+	},
+/obj/structure/mirror{
+	dir = 8;
+	pixel_x = 24
 	},
 /turf/simulated/floor/tiled/dark,
 /area/stellardelight/deck1/resleeving)

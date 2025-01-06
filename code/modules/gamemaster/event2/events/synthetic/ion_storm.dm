@@ -29,7 +29,7 @@
 				continue
 
 			// Or borgs with an AI (they'll get their AI's ion law anyways).
-			if(istype(target, /mob/living/silicon/robot))
+			if(isrobot(target))
 				var/mob/living/silicon/robot/R = target
 				if(R.connected_ai)
 					continue

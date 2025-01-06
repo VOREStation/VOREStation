@@ -975,3 +975,10 @@ var/global/list/json_cache = list()
 		if(islist(value))
 			new_value = deep_copy_list_alt(value)
 		copied_list[key_or_value] = new_value
+
+/// Turns an associative list into a flat list of keys
+/proc/assoc_to_keys(list/input)
+	var/list/keys = list()
+	for(var/key in input)
+		UNTYPED_LIST_ADD(keys, key)
+	return keys

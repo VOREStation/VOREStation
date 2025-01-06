@@ -17,7 +17,7 @@
 	. = ..()
 	if(active)
 		. += "It's a holographic warrant for '[active.fields["namewarrant"]]'."
-	if(in_range(user, src) || istype(user, /mob/observer/dead))
+	if(in_range(user, src) || isobserver(user))
 		show_content(user) //Opens a browse window, not chatbox related
 	else
 		. += span_notice("You have to go closer if you want to read it.")

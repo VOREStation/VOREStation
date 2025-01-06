@@ -255,7 +255,7 @@ This device records all warnings given and teleport events for admin review in c
 	if(!teleport_checks(target,user))
 		return //The checks proc can send them a message if it wants.
 
-	if(istype(target, /mob/living))
+	if(isliving(target))
 		var/mob/living/L = target
 		if(!L.stat)
 			if(L != user)
@@ -270,7 +270,7 @@ This device records all warnings given and teleport events for admin review in c
 	power_source.use(charge_cost)
 
 	//Unbuckle taur riders
-	if(istype(target, /mob/living))
+	if(isliving(target))
 		var/mob/living/L = target
 		if(LAZYLEN(L.buckled_mobs))
 			var/datum/riding/R = L.riding_datum

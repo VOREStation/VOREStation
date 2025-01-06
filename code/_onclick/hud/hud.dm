@@ -361,14 +361,50 @@ var/list/global_huds = list(
 	if(!client)
 		return 0
 
-	HUD.ui_style = ui_style2icon(client?.prefs?.UI_style)
-	HUD.ui_color = client?.prefs?.UI_style_color
-	HUD.ui_alpha = client?.prefs?.UI_style_alpha
+	HUD.ui_style = ui_style2icon(read_preference(/datum/preference/choiced/ui_style))
+	HUD.ui_color = read_preference(/datum/preference/color/ui_style_color)
+	HUD.ui_alpha = read_preference(/datum/preference/numeric/ui_style_alpha)
 	set_hud_used(HUD)
 
 /mob/proc/set_hud_used(datum/hud/new_hud)
 	hud_used = new_hud
 	new_hud.build_action_groups()
+
+/mob/proc/update_ui_style(UI_style_new, UI_style_alpha_new, UI_style_color_new)
+	if(!hud_used)
+		return
+
+	if(!UI_style_alpha_new)
+		UI_style_alpha_new = hud_used.ui_alpha
+	hud_used.ui_alpha = UI_style_alpha_new
+	if(!UI_style_color_new)
+		UI_style_color_new = hud_used.ui_color
+	hud_used.ui_color = UI_style_color_new
+
+	var/list/icons = hud_used.adding + hud_used.other + hud_used.hotkeybuttons
+	icons.Add(zone_sel)
+	icons.Add(gun_setting_icon)
+	icons.Add(item_use_icon)
+	icons.Add(gun_move_icon)
+	icons.Add(radio_use_icon)
+
+	var/icon/ic
+
+	if(UI_style_new)
+		if(isrobot(src))
+			ic = all_ui_styles_robot[UI_style_new]
+		else
+			ic = all_ui_styles[UI_style_new]
+		hud_used.ui_style = ic
+	else
+		ic = hud_used.ui_style
+
+	for(var/obj/screen/I in icons)
+		if(I.name in list(I_HELP, I_HURT, I_DISARM, I_GRAB))
+			continue
+		I.icon = ic
+		I.color = UI_style_color_new
+		I.alpha = UI_style_alpha_new
 
 /datum/hud/proc/apply_minihud(var/datum/mini_hud/MH)
 	if(MH in minihuds)

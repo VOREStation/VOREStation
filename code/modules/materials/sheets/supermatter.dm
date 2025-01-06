@@ -26,7 +26,7 @@
 		return
 
 	var/burn_user = TRUE
-	if(istype(M, /mob/living/carbon/human))
+	if(ishuman(M))
 		var/mob/living/carbon/human/H = user
 		var/obj/item/clothing/gloves/G = H.gloves
 		if(istype(G) && ((G.flags & THICKMATERIAL && prob(70)) || istype(G, /obj/item/clothing/gloves/gauntlets)))
@@ -39,7 +39,7 @@
 			H.drop_from_inventory(src, get_turf(H))
 			return
 
-	if(istype(user, /mob/living/silicon/robot))
+	if(isrobot(user))
 		burn_user = FALSE
 
 	if(burn_user)

@@ -100,7 +100,7 @@
 		to_chat(user, span_notice("You feed the slime the agent, removing its hunger and calming it."))
 
 	// Simple Mobs.
-	else if(istype(M, /mob/living/simple_mob))
+	else if(isanimal(M))
 		var/mob/living/simple_mob/SM = M
 		if(!(SM.mob_class & MOB_CLASS_SLIME|MOB_CLASS_ANIMAL)) // So you can't use this on Russians/syndies/hivebots/etc.
 			to_chat(user, span_warning("\The [SM] only works on slimes and animals."))

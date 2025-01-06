@@ -7,20 +7,6 @@ export const AMBIENT_OCCLUSION_PREF: FeatureToggle = {
   component: CheckboxInput,
 };
 
-export const MOB_TOOLTIPS: FeatureToggle = {
-  name: 'Enable mob tooltips',
-  category: 'GAMEPLAY',
-  description: 'Enable tooltips when hovering over mobs.',
-  component: CheckboxInput,
-};
-
-export const INV_TOOLTIPS: FeatureToggle = {
-  name: 'Enable inventory tooltips',
-  category: 'GAMEPLAY',
-  description: 'Enable tooltips when hovering over inventory items.',
-  component: CheckboxInput,
-};
-
 export const ATTACK_ICONS: FeatureToggle = {
   name: 'Attack Icons',
   category: 'GAMEPLAY',
@@ -94,5 +80,19 @@ export const BrowserDevTools: FeatureToggle = {
   category: 'UI',
   description:
     'When enabled, you can right click -> inspect to open Microsoft Edge dev tools. BYOND 516+ Only.',
+  component: CheckboxInput,
+};
+
+export const obfuscate_key: FeatureToggle = {
+  name: 'Obfuscate Key',
+  category: 'UI',
+  description: 'Hide your byond ckey from other players in the lobby',
+  component: CheckboxInput,
+};
+
+export const obfuscate_job: FeatureToggle = {
+  name: 'Obfuscate Job',
+  category: 'UI',
+  description: 'Hide your job from other players in the lobby',
   component: CheckboxInput,
 };
