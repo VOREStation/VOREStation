@@ -7,14 +7,16 @@ mapdirs=(
     "maps/tether"
     "maps/offmap_vr/talon"
 )
-#DO NOT TOUCH THIS VARIABLE. It will automatically fill with any maps in mapdirs that are form MAPNAME-n.dmm where n is the z level.
+RED='\033[0;31m'
+GREEN="\033[0;32m"
+#DO NOT TOUCH THIS VARIABLE. It will automatically fill with any maps in mapdirs that are form MAPNAMEn.dmm.
 map_files=()
 
 #Fill up mapfiles list
 for mapdir in ${mapdirs[@]}; do
     echo "Scanning $mapdir..."
     FULLMAPDIR=$BASEDIR/$mapdir
-    map_files+=($FULLMAPDIR/*-*[0-9].dmm)
+    map_files+=($FULLMAPDIR/*[0-9]*.dmm)
 done
 
 #Print full map list
@@ -27,7 +29,19 @@ printf "\n\n\n"
 echo "Rendering maps..."
 
 #Render maps to initial images
-~/dmm-tools minimap "${map_files[@]}"
+~/dmm-tools minimap "${map_files[@]}" --disable smart-cables,overlays,pretty
+exit 0
+
+if [ $1 == "--testing" ]; then
+	if [ $? -eq 0 ]; then
+		#Errors occured during test
+		echo "${RED}Errors occured during testing!"
+		exit 1
+	fi
+	#Testing passed
+	echo "${GREEN}Maps were successfully rendered."
+	exit 0
+fi
 
 cd data/minimaps
 

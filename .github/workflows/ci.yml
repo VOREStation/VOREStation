@@ -55,6 +55,7 @@ jobs:
           pip3 install setuptools
           bash tools/ci/install_node.sh
           bash tools/ci/install_ripgrep.sh
+          bash tools/ci/install_spaceman_dmm.sh dmm-tools
           tools/bootstrap/python -c ''
       - name: Run Grep Checks
         run: tools/ci/validate_files.sh
@@ -62,6 +63,8 @@ jobs:
         run: tools/bootstrap/python -m define_sanity.check
       - name: Run TGUI Checks
         run: tools/build/build --ci lint tgui-test
+      - name: Run Nanomap Checks
+        run: tools/github-actions/nanomap-renderer-invoker.sh --dryrun
 
   dreamchecker:
     name: DreamChecker
