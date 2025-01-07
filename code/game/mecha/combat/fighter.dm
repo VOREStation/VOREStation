@@ -139,7 +139,7 @@
 	..()
 	if (href_list["toggle_landing_gear"])
 		landing_gear_raised = !landing_gear_raised
-		send_byjax(src.occupant,"exosuit.browser","landing_gear_command","[landing_gear_raised?"Lower":"Raise"] landing gear")
+		send_byjax(src.occupant,"exosuit.browser","landing_gear_command","[landing_gear_raised?"Raise":"Lower"] landing gear")
 		src.occupant_message(span_notice("Landing gear [landing_gear_raised? "raised" : "lowered"]."))
 		return
 
@@ -239,7 +239,7 @@
 	if(istype(obstacle, /obj) || istype(obstacle, /turf))
 		occupant_message("<B><FONT COLOR=red SIZE=+2>COLLISION ALERT!</B></FONT>")
 		take_damage(20, "brute")
-		playsound(src, 'sound/mecha/fighter/fighter_collision.ogg',volume=50)
+		playsound(src, 'sound/mecha/fighter/fighter_collision.ogg', 50)
 
 ////////////// Gunpod //////////////
 
