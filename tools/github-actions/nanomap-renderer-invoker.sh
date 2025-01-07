@@ -31,8 +31,7 @@ for mapdir in "${mapdirs[@]}"; do
 done
 
 #Print full map list
-echo "Full map list:"
-echo ${#map_files[@]} # TODO: Remove
+echo "Full map list (${#map_files[@]}):"
 for map in "${map_files[@]}"; do
 	echo $map
 done
