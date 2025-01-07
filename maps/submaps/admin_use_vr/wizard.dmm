@@ -504,24 +504,6 @@
 	icon_state = "dark"
 	},
 /area/wizard_station)
-"bj" = (
-/obj/structure/sign/double/map/left{
-	pixel_y = 32
-	},
-/turf/unsimulated/floor{
-	icon_state = "vault";
-	dir = 5
-	},
-/area/wizard_station)
-"bk" = (
-/obj/structure/sign/double/map/right{
-	pixel_y = 32
-	},
-/turf/unsimulated/floor{
-	icon_state = "vault";
-	dir = 5
-	},
-/area/wizard_station)
 "bl" = (
 /obj/machinery/computer/message_monitor,
 /turf/unsimulated/floor{
@@ -1368,7 +1350,7 @@ ao
 ao
 aV
 ab
-bj
+be
 bu
 be
 ab
@@ -1400,7 +1382,7 @@ aI
 ao
 aW
 ab
-bk
+be
 ay
 be
 ab

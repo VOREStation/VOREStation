@@ -458,7 +458,6 @@
 /area/submap/Diner)
 "bA" = (
 /obj/structure/table/standard,
-/obj/random/soap/anom,
 /turf/simulated/floor/tiled/hydro,
 /area/submap/Diner)
 
