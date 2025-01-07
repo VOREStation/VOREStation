@@ -63,7 +63,7 @@ for mapdir in ${mapdirs[@]}; do
 	result=$(~/dmm-tools minimap "${map_files[@]}" --disable smart-cables,overlays,pretty 2>&1 | tee /dev/fd/5)
 
 	#Check if anything errored
-	if [[ ($? -ne 0) || ("${result}" =~ ("bad icon"|"bad path")) ]]; then
+	if [[ ($? -ne 0) || ("${result}" =~ ("bad icon"|"bad path"|"error")) ]]; then
 		any_errors=1
 	fi
 
