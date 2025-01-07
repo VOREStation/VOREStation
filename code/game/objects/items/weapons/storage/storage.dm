@@ -604,7 +604,7 @@
 	W.add_fingerprint(user)
 	return handle_item_insertion(W)
 
-/obj/item/storage/dropped(mob/user as mob)
+/obj/item/storage/dropped(mob/user)
 	return ..()
 
 /obj/item/storage/attack_hand(mob/user as mob)

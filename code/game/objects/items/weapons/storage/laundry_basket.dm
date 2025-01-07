@@ -58,21 +58,21 @@
 	return
 
 
-/obj/item/storage/laundry_basket/MouseDrop(obj/over_object as obj)
+/obj/item/storage/laundry_basket/MouseDrop(obj/over_object)
 	if(over_object == usr)
 		return
 	else
 		return ..()
 
-/obj/item/storage/laundry_basket/dropped(mob/user as mob)
+/obj/item/storage/laundry_basket/dropped(mob/user)
 	if(linked)
 		QDEL_NULL(linked)
 	return ..()
 
-/obj/item/storage/laundry_basket/show_to(mob/user as mob)
+/obj/item/storage/laundry_basket/show_to(mob/user)
 	return
 
-/obj/item/storage/laundry_basket/open(mob/user as mob)
+/obj/item/storage/laundry_basket/open(mob/user)
 
 
 //Offhand
@@ -82,7 +82,7 @@
 	name = "second hand"
 	use_to_pickup = FALSE
 
-/obj/item/storage/laundry_basket/offhand/dropped(mob/user as mob)
+/obj/item/storage/laundry_basket/offhand/dropped(mob/user)
 	SHOULD_CALL_PARENT(FALSE)
 	if(user.isEquipped(linked))
 		user.drop_from_inventory(linked)

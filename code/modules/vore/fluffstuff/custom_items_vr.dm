@@ -1076,7 +1076,7 @@
 	allowed = list(/obj/item/shield/fluff/wolfgirlshield)
 	damtype = HALLOSS
 
-/obj/item/melee/fluffstuff/wolfgirlsword/dropped(var/mob/user)
+/obj/item/melee/fluffstuff/wolfgirlsword/dropped(mob/user)
 	..()
 	if(!istype(loc,/mob))
 		deactivate(user)
