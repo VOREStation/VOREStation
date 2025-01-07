@@ -1,4 +1,5 @@
 #!/bin/bash
+
 BASEDIR=$PWD
 #Put directories to get maps from here. One per line.
 mapdirs=(
@@ -16,6 +17,7 @@ mapdefines=(
 	"maps/tether/tether.dm"
 )
 dme="vorestation.dme"
+
 RED='\033[0;31m'
 GREEN="\033[0;32m"
 #This will automatically fill with any maps in mapdirs that are form MAPNAMEn.dmm.
