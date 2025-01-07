@@ -58,7 +58,7 @@
 /obj/random/technology_scanner
 	name = "random scanner"
 	desc = "This is a random technology scanner."
-	icon_state = "random_device"
+	icon_state = "tech"
 
 /obj/random/technology_scanner/item_to_spawn()
 	return pick(prob(5);/obj/item/t_scanner,
@@ -91,7 +91,7 @@
 /obj/random/bomb_supply
 	name = "bomb supply"
 	desc = "This is a random bomb supply."
-	icon_state = "random_device"
+	icon_state = "tech"
 
 /obj/random/bomb_supply/item_to_spawn()
 	return pick(/obj/item/assembly/igniter,

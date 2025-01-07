@@ -22,10 +22,11 @@ var/list/marker_beacon_colors = list(
 	description_info = "Use inhand to drop one marker beacon. You can pick them up again with an empty hand or \
 	hitting them with this marker stack. Alt-click to select a specific color."
 	icon = 'icons/obj/lighting.dmi'
-	icon_state = "marker"
+	icon_state = "markerrandom"
 	max_amount = 100
 	no_variants = TRUE
 	w_class = ITEMSIZE_SMALL
+	var/icon_base = "marker"
 	var/picked_color = "random"
 
 /obj/item/stack/marker_beacon/ten
@@ -47,7 +48,7 @@ var/list/marker_beacon_colors = list(
 	. += span_notice("Alt-click to select a color. Current color is [picked_color].")
 
 /obj/item/stack/marker_beacon/update_icon()
-	icon_state = "[initial(icon_state)][lowertext(picked_color)]"
+	icon_state = "[icon_base][lowertext(picked_color)]"
 
 /obj/item/stack/marker_beacon/attack_self(mob/user)
 	if(!isturf(user.loc))
