@@ -30,7 +30,6 @@ echo "Rendering maps..."
 
 #Render maps to initial images
 ~/dmm-tools minimap "${map_files[@]}" --disable smart-cables,overlays,pretty
-exit 0
 
 if [ $1 == "--testing" ]; then
 	if [ $? -eq 0 ]; then
