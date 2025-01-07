@@ -29917,7 +29917,6 @@
 /area/tether/surfacebase/surface_three_hall)
 "baI" = (
 /obj/structure/closet/crate{
-	icon_state = "crate";
 	name = "Grenade Crate"
 	},
 /obj/item/grenade/chem_grenade,

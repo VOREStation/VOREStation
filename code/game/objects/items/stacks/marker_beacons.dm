@@ -79,11 +79,12 @@ var/list/marker_beacon_colors = list(
 	name = "marker beacon"
 	desc = "A prismatic path illumination device. It is anchored in place and glowing steadily."
 	icon = 'icons/obj/lighting.dmi'
-	icon_state = "marker"
+	icon_state = "markerrandom"
 //	layer = BELOW_OPEN_DOOR_LAYER
 	anchored = TRUE
 	light_range = 2
 	light_power = 0.8
+	var/icon_base = "marker"
 	var/remove_speed = 15
 	var/picked_color
 	var/perma = FALSE
@@ -105,7 +106,7 @@ var/list/marker_beacon_colors = list(
 /obj/structure/marker_beacon/update_icon()
 	if(!picked_color || !marker_beacon_colors[picked_color])
 		picked_color = pick(marker_beacon_colors)
-	icon_state = "[initial(icon_state)][lowertext(picked_color)]-on"
+	icon_state = "[icon_base][lowertext(picked_color)]-on"
 	set_light(light_range, light_power, marker_beacon_colors[picked_color])
 
 /obj/structure/marker_beacon/attack_hand(mob/living/user)
