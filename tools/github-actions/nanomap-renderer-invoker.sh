@@ -22,15 +22,18 @@ GREEN="\033[0;32m"
 map_files=()
 
 #Fill up mapfiles list
-for mapdir in ${mapdirs[@]}; do
+for mapdir in "${mapdirs[@]}"; do
 	echo "Scanning $mapdir..."
-	FULLMAPDIR=$BASEDIR/$mapdir
-	map_files+=($FULLMAPDIR/*[0-9]*.dmm)
+	#https://stackoverflow.com/a/23357277
+	while IFS= read -r -d $'\0'; do
+		map_files+=("$REPLY")
+	done < <(find "${BASEDIR}/${mapdir}" -maxdepth 1 -name '*[0-9]*.dmm' -print0)
 done
 
 #Print full map list
 echo "Full map list:"
-for map in ${map_files[@]}; do
+echo ${#map_files[@]} # TODO: Remove
+for map in "${map_files[@]}"; do
 	echo $map
 done
 printf "\n\n\n"
@@ -42,9 +45,11 @@ exec 5>&2
 any_errors=0
 map_files=()
 index=0
-for mapdir in ${mapdirs[@]}; do
-	FULLMAPDIR=$BASEDIR/$mapdir
-	map_files+=($FULLMAPDIR/*[0-9]*.dmm)
+for mapdir in "${mapdirs[@]}"; do
+	#https://stackoverflow.com/a/23357277
+	while IFS= read -r -d $'\0'; do
+		map_files+=("$REPLY")
+	done < <(find "${BASEDIR}/${mapdir}" -maxdepth 1 -name '*[0-9]*.dmm' -print0)
 	cur_define=${mapdefines[index++]}
 
 	if [[ (index -lt ${#mapdefines[@]}) && ("${cur_define}" == "${mapdefines[$index]}") ]]; then
