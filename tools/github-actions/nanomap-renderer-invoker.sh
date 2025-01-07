@@ -35,8 +35,8 @@ for map in ${map_files[@]}; do
 done
 printf "\n\n\n"
 
-#Duplicate stdout because dmm-tools doesn't return an error code for bad icons or bad path so we need to capture it
-exec 5>&1
+#Duplicate stderr because dmm-tools doesn't return an error code for bad icons or bad path so we need to capture it
+exec 5>&2
 
 #Now render per group to initial images
 any_errors=0
@@ -60,7 +60,7 @@ for mapdir in ${mapdirs[@]}; do
 	fi
 
 	#Render maps to initial images ignoring some tg specific icon_state handling
-	result=$(~/dmm-tools minimap "${map_files[@]}" --disable smart-cables,overlays,pretty | tee /dev/fd/5)
+	result=$(~/dmm-tools minimap "${map_files[@]}" --disable smart-cables,overlays,pretty 2>&1 | tee /dev/fd/5)
 
 	#Check if anything errored
 	if [[ ($? -ne 0) || ("${result}" =~ ("bad icon"|"bad path")) ]]; then
@@ -72,8 +72,12 @@ for mapdir in ${mapdirs[@]}; do
 	if [[ "${cur_define}" != "" ]]; then
 		sed -i '$ d' ${dme}
 	fi
+
 	printf "\n"
 done
+
+#Close the new file descriptor
+exec 5>&-
 
 #Give results if we're just testing
 if [[ $1 == "--testing" ]]; then
