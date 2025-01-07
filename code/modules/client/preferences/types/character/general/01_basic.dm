@@ -167,7 +167,7 @@
 
 /datum/preference/choiced/human/spawnpoint/init_possible_values()
 	var/list/spawnkeys = list()
-	for(var/spawntype in spawntypes)
+	for(var/spawntype in get_spawn_points())
 		spawnkeys += spawntype
 	return spawnkeys
 
