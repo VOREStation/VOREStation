@@ -34,11 +34,11 @@ echo "Rendering maps..."
 if [ $1 == "--testing" ]; then
 	if [ $? -eq 0 ]; then
 		#Errors occured during test
-		echo "${RED}Errors occured during testing!"
+		echo -e "${RED}Errors occured during testing!"
 		exit 1
 	fi
 	#Testing passed
-	echo "${GREEN}Maps were successfully rendered."
+	echo -e "${GREEN}Maps were successfully rendered."
 	exit 0
 fi
 
