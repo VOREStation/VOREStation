@@ -2,10 +2,10 @@
 BASEDIR=$PWD
 #Put directories to get maps from here. One per line.
 mapdirs=(
-    "maps/groundbase"
-    "maps/stellar_delight"
-    "maps/tether"
-    "maps/offmap_vr/talon"
+	"maps/groundbase"
+	"maps/stellar_delight"
+	"maps/tether"
+	"maps/offmap_vr/talon"
 )
 #Put a define file to include. One per line matching mapdirs.
 #If the same define is reused it will be batched if in sequence.
@@ -24,14 +24,14 @@ map_files=()
 #Fill up mapfiles list
 for mapdir in ${mapdirs[@]}; do
 	echo "Scanning $mapdir..."
-    FULLMAPDIR=$BASEDIR/$mapdir
-    map_files+=($FULLMAPDIR/*[0-9]*.dmm)
+	FULLMAPDIR=$BASEDIR/$mapdir
+	map_files+=($FULLMAPDIR/*[0-9]*.dmm)
 done
 
 #Print full map list
 echo "Full map list:"
 for map in ${map_files[@]}; do
-    echo $map
+	echo $map
 done
 printf "\n\n\n"
 
@@ -43,8 +43,8 @@ any_errors=0
 map_files=()
 index=0
 for mapdir in ${mapdirs[@]}; do
-    FULLMAPDIR=$BASEDIR/$mapdir
-    map_files+=($FULLMAPDIR/*[0-9]*.dmm)
+	FULLMAPDIR=$BASEDIR/$mapdir
+	map_files+=($FULLMAPDIR/*[0-9]*.dmm)
 	cur_define=${mapdefines[index++]}
 
 	if [[ (index -lt ${#mapdefines[@]}) && ("${cur_define}" == "${mapdefines[$index]}") ]]; then
@@ -96,7 +96,7 @@ echo "Starting image resizing..."
 
 #Resize images to proper size and move them to the correct place
 for map in ./*.png; do
-    j=$(echo $map | sed -n "s/^\.\/\(.*\)-\([0-9]*\)\-1.png$/\1_nanomap_z\2.png/p")
-    echo "Resizing $map and moving to icons/_nanomaps/$j"
-    convert $map -resize 2240x2240 "$BASEDIR/icons/_nanomaps/$j"
+	j=$(echo $map | sed -n "s/^\.\/\(.*\)-\([0-9]*\)\-1.png$/\1_nanomap_z\2.png/p")
+	echo "Resizing $map and moving to icons/_nanomaps/$j"
+	convert $map -resize 2240x2240 "$BASEDIR/icons/_nanomaps/$j"
 done
