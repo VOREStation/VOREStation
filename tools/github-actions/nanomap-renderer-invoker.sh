@@ -93,10 +93,8 @@ if [[ $1 == "--testing" ]]; then
 	exit 0
 fi
 
-cd data/minimaps
-
-printf "\n\n\n"
 echo "Starting image resizing..."
+cd data/minimaps
 
 #Resize images to proper size and move them to the correct place
 for map in ./*.png; do
