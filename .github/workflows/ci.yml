@@ -64,7 +64,7 @@ jobs:
       - name: Run TGUI Checks
         run: tools/build/build --ci lint tgui-test
       - name: Run Nanomap Checks
-        run: tools/github-actions/nanomap-renderer-invoker.sh --dryrun
+        run: tools/github-actions/nanomap-renderer-invoker.sh --testing
 
   dreamchecker:
     name: DreamChecker
