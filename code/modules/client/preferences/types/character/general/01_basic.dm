@@ -171,5 +171,5 @@
 		spawnkeys += spawntype
 	return spawnkeys
 
-/datum/preference/choiced/living/spawnpoint/apply_to_human(mob/living/carbon/human/target, value)
+/datum/preference/choiced/living/spawnpoint/apply_to_living(mob/living/target, value)
 	return // handled in job_controller
