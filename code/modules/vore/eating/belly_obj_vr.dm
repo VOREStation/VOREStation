@@ -281,9 +281,9 @@
 	if(vore_sound && !recent_sound && !istype(thing, /mob/observer))
 		var/soundfile
 		if(!fancy_vore)
-			soundfile = classic_vore_sounds[vore_sound]
+			soundfile = GLOB.classic_vore_sounds[vore_sound]
 		else
-			soundfile = fancy_vore_sounds[vore_sound]
+			soundfile = GLOB.fancy_vore_sounds[vore_sound]
 		if(soundfile)
 			playsound(src, soundfile, vol = 100, vary = 1, falloff = VORE_SOUND_FALLOFF, preference = /datum/preference/toggle/eating_noises, volume_channel = VOLUME_CHANNEL_VORE)
 			recent_sound = TRUE
@@ -463,9 +463,9 @@
 		owner.visible_message(span_vnotice(span_green(span_bold("[owner] [release_verb] everything from their [lowertext(name)]!"))), range = privacy_range)
 		var/soundfile
 		if(!fancy_vore)
-			soundfile = classic_release_sounds[release_sound]
+			soundfile = GLOB.classic_release_sounds[release_sound]
 		else
-			soundfile = fancy_release_sounds[release_sound]
+			soundfile = GLOB.fancy_release_sounds[release_sound]
 		if(soundfile)
 			playsound(src, soundfile, vol = privacy_volume, vary = 1, falloff = VORE_SOUND_FALLOFF, preference = /datum/preference/toggle/eating_noises, volume_channel = VOLUME_CHANNEL_VORE)
 
@@ -549,9 +549,9 @@
 		owner.visible_message(span_vnotice(span_green(span_bold("[owner] [release_verb] [M] from their [lowertext(name)]!"))),range = privacy_range)
 		var/soundfile
 		if(!fancy_vore)
-			soundfile = classic_release_sounds[release_sound]
+			soundfile = GLOB.classic_release_sounds[release_sound]
 		else
-			soundfile = fancy_release_sounds[release_sound]
+			soundfile = GLOB.fancy_release_sounds[release_sound]
 		if(soundfile)
 			playsound(src, soundfile, vol = privacy_volume, vary = 1, falloff = VORE_SOUND_FALLOFF, preference = /datum/preference/toggle/eating_noises, volume_channel = VOLUME_CHANNEL_VORE)
 	//Should fix your view not following you out of mobs sometimes!

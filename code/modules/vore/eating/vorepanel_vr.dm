@@ -1081,14 +1081,14 @@ var/global/list/belly_colorable_only_fullscreens = list("a_synth_flesh_mono",
 			host.vore_selected.contaminates = !host.vore_selected.contaminates
 			. = TRUE
 		if("b_contamination_flavor")
-			var/list/menu_list = contamination_flavors.Copy()
+			var/list/menu_list = GLOB.contamination_flavors.Copy()
 			var/new_flavor = tgui_input_list(user, "Choose Contamination Flavor Text Type (currently [host.vore_selected.contamination_flavor])", "Flavor Choice", menu_list)
 			if(!new_flavor)
 				return FALSE
 			host.vore_selected.contamination_flavor = new_flavor
 			. = TRUE
 		if("b_contamination_color")
-			var/list/menu_list = contamination_colors.Copy()
+			var/list/menu_list = GLOB.contamination_colors.Copy()
 			var/new_color = tgui_input_list(user, "Choose Contamination Color (currently [host.vore_selected.contamination_color])", "Color Choice", menu_list)
 			if(!new_color)
 				return FALSE
@@ -1096,7 +1096,7 @@ var/global/list/belly_colorable_only_fullscreens = list("a_synth_flesh_mono",
 			host.vore_selected.items_preserved.Cut() //To re-contaminate for new color
 			. = TRUE
 		if("b_egg_type")
-			var/list/menu_list = global_vore_egg_types.Copy()
+			var/list/menu_list = GLOB.global_vore_egg_types.Copy()
 			var/new_egg_type = tgui_input_list(user, "Choose Egg Type (currently [host.vore_selected.egg_type])", "Egg Choice", menu_list)
 			if(!new_egg_type)
 				return FALSE
@@ -1506,9 +1506,9 @@ var/global/list/belly_colorable_only_fullscreens = list("a_synth_flesh_mono",
 		if("b_release")
 			var/choice
 			if(host.vore_selected.fancy_vore)
-				choice = tgui_input_list(user,"Currently set to [host.vore_selected.release_sound]","Select Sound", fancy_release_sounds)
+				choice = tgui_input_list(user,"Currently set to [host.vore_selected.release_sound]","Select Sound", GLOB.fancy_release_sounds)
 			else
-				choice = tgui_input_list(user,"Currently set to [host.vore_selected.release_sound]","Select Sound", classic_release_sounds)
+				choice = tgui_input_list(user,"Currently set to [host.vore_selected.release_sound]","Select Sound", GLOB.classic_release_sounds)
 
 			if(!choice)
 				return FALSE
@@ -1518,9 +1518,9 @@ var/global/list/belly_colorable_only_fullscreens = list("a_synth_flesh_mono",
 		if("b_releasesoundtest")
 			var/sound/releasetest
 			if(host.vore_selected.fancy_vore)
-				releasetest = fancy_release_sounds[host.vore_selected.release_sound]
+				releasetest = GLOB.fancy_release_sounds[host.vore_selected.release_sound]
 			else
-				releasetest = classic_release_sounds[host.vore_selected.release_sound]
+				releasetest = GLOB.classic_release_sounds[host.vore_selected.release_sound]
 
 			if(releasetest)
 				SEND_SOUND(user, releasetest)
@@ -1528,9 +1528,9 @@ var/global/list/belly_colorable_only_fullscreens = list("a_synth_flesh_mono",
 		if("b_sound")
 			var/choice
 			if(host.vore_selected.fancy_vore)
-				choice = tgui_input_list(user,"Currently set to [host.vore_selected.vore_sound]","Select Sound", fancy_vore_sounds)
+				choice = tgui_input_list(user,"Currently set to [host.vore_selected.vore_sound]","Select Sound", GLOB.fancy_vore_sounds)
 			else
-				choice = tgui_input_list(user,"Currently set to [host.vore_selected.vore_sound]","Select Sound", classic_vore_sounds)
+				choice = tgui_input_list(user,"Currently set to [host.vore_selected.vore_sound]","Select Sound", GLOB.classic_vore_sounds)
 
 			if(!choice)
 				return FALSE
@@ -1540,9 +1540,9 @@ var/global/list/belly_colorable_only_fullscreens = list("a_synth_flesh_mono",
 		if("b_soundtest")
 			var/sound/voretest
 			if(host.vore_selected.fancy_vore)
-				voretest = fancy_vore_sounds[host.vore_selected.vore_sound]
+				voretest = GLOB.fancy_vore_sounds[host.vore_selected.vore_sound]
 			else
-				voretest = classic_vore_sounds[host.vore_selected.vore_sound]
+				voretest = GLOB.classic_vore_sounds[host.vore_selected.vore_sound]
 			if(voretest)
 				SEND_SOUND(user, voretest)
 			. = TRUE

@@ -31,7 +31,7 @@
 			var/prefsound = client.prefs.voice_sound
 			voice_sounds_list = get_talk_sound(prefsound)
 		else
-			voice_sounds_list = talk_sound
+			voice_sounds_list = GLOB.talk_sound
 	//VOREStation Add End
 
 	return .

@@ -58,7 +58,7 @@ List of things solar grubs should be able to do:
 	emote_see = list("squelches", "squishes")
 
 /mob/living/simple_mob/vore/solargrub/New()
-	existing_solargrubs += src
+	GLOB.existing_solargrubs += src
 	..()
 
 /mob/living/simple_mob/vore/solargrub/Life()
@@ -131,7 +131,7 @@ List of things solar grubs should be able to do:
 	..()
 
 /mob/living/simple_mob/vore/solargrub/Destroy()
-	existing_solargrubs -= src
+	GLOB.existing_solargrubs -= src
 	..()
 
 /mob/living/simple_mob/vore/solargrub/handle_light()

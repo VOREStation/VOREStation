@@ -531,8 +531,8 @@
 								if(setmedical != "Cancel")
 									R.fields["p_stat"] = setmedical
 									modified = 1
-									if(PDA_Manifest.len)
-										PDA_Manifest.Cut()
+									if(GLOB.PDA_Manifest.len)
+										GLOB.PDA_Manifest.Cut()
 
 									spawn()
 										if(ishuman(usr))
@@ -848,7 +848,7 @@
 
 /mob/living/carbon/human/proc/play_xylophone()
 	if(!src.xylophone)
-		var/datum/gender/T = gender_datums[get_visible_gender()]
+		var/datum/gender/T = GLOB.gender_datums[get_visible_gender()]
 		visible_message(span_filter_notice("[span_red("\The [src] begins playing [T.his] ribcage like a xylophone. It's quite spooky.")]"),span_notice("You begin to play a spooky refrain on your ribcage."),span_filter_notice("[span_red("You hear a spooky xylophone melody.")]"))
 		var/song = pick('sound/effects/xylophone1.ogg','sound/effects/xylophone2.ogg','sound/effects/xylophone3.ogg')
 		playsound(src, song, 50, 1, -1)
@@ -939,7 +939,7 @@
 			gender = NEUTER
 	regenerate_icons()
 	check_dna()
-	var/datum/gender/T = gender_datums[get_visible_gender()]
+	var/datum/gender/T = GLOB.gender_datums[get_visible_gender()]
 	visible_message(span_notice("\The [src] morphs and changes [T.his] appearance!"), span_notice("You change your appearance!"), span_filter_notice("[span_red("Oh, god!  What the hell was that?  It sounded like flesh getting squished and bone ground into a different shape!")]"))
 
 /mob/living/carbon/human/proc/remotesay()
@@ -1205,8 +1205,8 @@
 
 	if(usr.stat || usr.restrained() || !isliving(usr)) return
 
-	var/datum/gender/TU = gender_datums[usr.get_visible_gender()]
-	var/datum/gender/T = gender_datums[get_visible_gender()]
+	var/datum/gender/TU = GLOB.gender_datums[usr.get_visible_gender()]
+	var/datum/gender/T = GLOB.gender_datums[get_visible_gender()]
 
 	if(usr == src)
 		self = 1

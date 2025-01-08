@@ -1,9 +1,8 @@
-
-var/list/word_to_uristrune_table = null
+GLOBAL_LIST(word_to_uristrune_table)
 
 /proc/word_to_uristrune_bit(word)
-	if(word_to_uristrune_table == null)
-		word_to_uristrune_table = list()
+	if(GLOB.word_to_uristrune_table == null)
+		GLOB.word_to_uristrune_table = list()
 
 		var/bit = 1
 		var/list/words = list("ire", "ego", "nahlizet", "certum", "veri", "jatkaa", "mgar", "balaq", "karazet", "geeri")
@@ -11,41 +10,41 @@ var/list/word_to_uristrune_table = null
 		while(length(words))
 			var/w = pick(words)
 
-			word_to_uristrune_table[w] = bit
+			GLOB.word_to_uristrune_table[w] = bit
 
 			words -= w
 			bit <<= 1
 
-	return word_to_uristrune_table[word]
+	return GLOB.word_to_uristrune_table[word]
 
 
 
 /proc/get_uristrune_cult(word1, word2, word3)
 	var/animated
 
-	if((word1 == cultwords["travel"] && word2 == cultwords["self"])						\
-	|| (word1 == cultwords["join"] && word2 == cultwords["blood"] && word3 == cultwords["self"])	\
-	|| (word1 == cultwords["hell"] && word2 == cultwords["join"] && word3 == cultwords["self"])	\
-	|| (word1 == cultwords["see"] && word2 == cultwords["blood"] && word3 == cultwords["hell"])	\
-	|| (word1 == cultwords["destroy"] && word2 == cultwords["see"] && word3 == cultwords["technology"])	\
-	|| (word1 == cultwords["travel"] && word2 == cultwords["blood"] && word3 == cultwords["self"])	\
-	|| (word1 == cultwords["see"] && word2 == cultwords["hell"] && word3 == cultwords["join"])		\
-	|| (word1 == cultwords["blood"] && word2 == cultwords["join"] && word3 == cultwords["hell"])	\
-	|| (word1 == cultwords["hide"] && word2 == cultwords["see"] && word3 == cultwords["blood"])	\
-	|| (word1 == cultwords["hell"] && word2 == cultwords["travel"] && word3 == cultwords["self"])	\
-	|| (word1 == cultwords["blood"] && word2 == cultwords["see"] && word3 == cultwords["travel"])	\
-	|| (word1 == cultwords["hell"] && word2 == cultwords["technology"] && word3 == cultwords["join"])	\
-	|| (word1 == cultwords["hell"] && word2 == cultwords["blood"] && word3 == cultwords["join"])	\
-	|| (word1 == cultwords["blood"] && word2 == cultwords["see"] && word3 == cultwords["hide"])	\
-	|| (word1 == cultwords["destroy"] && word2 == cultwords["travel"] && word3 == cultwords["self"])	\
-	|| (word1 == cultwords["travel"] && word2 == cultwords["technology"] && word3 == cultwords["other"])	\
-	|| (word1 == cultwords["join"] && word2 == cultwords["other"] && word3 == cultwords["self"])	\
-	|| (word1 == cultwords["hide"] && word2 == cultwords["other"] && word3 == cultwords["see"])	\
-	|| (word1 == cultwords["destroy"] && word2 == cultwords["see"] && word3 == cultwords["other"])	\
-	|| (word1 == cultwords["destroy"] && word2 == cultwords["see"] && word3 == cultwords["blood"])	\
-	|| (word1 == cultwords["self"] && word2 == cultwords["other"] && word3 == cultwords["technology"])	\
-	|| (word1 == cultwords["travel"] && word2 == cultwords["other"])						\
-	|| (word1 == cultwords["join"] && word2 == cultwords["hide"] && word3 == cultwords["technology"])	)
+	if((word1 == GLOB.cultwords["travel"] && word2 == GLOB.cultwords["self"])						\
+	|| (word1 == GLOB.cultwords["join"] && word2 == GLOB.cultwords["blood"] && word3 == GLOB.cultwords["self"])	\
+	|| (word1 == GLOB.cultwords["hell"] && word2 == GLOB.cultwords["join"] && word3 == GLOB.cultwords["self"])	\
+	|| (word1 == GLOB.cultwords["see"] && word2 == GLOB.cultwords["blood"] && word3 == GLOB.cultwords["hell"])	\
+	|| (word1 == GLOB.cultwords["destroy"] && word2 == GLOB.cultwords["see"] && word3 == GLOB.cultwords["technology"])	\
+	|| (word1 == GLOB.cultwords["travel"] && word2 == GLOB.cultwords["blood"] && word3 == GLOB.cultwords["self"])	\
+	|| (word1 == GLOB.cultwords["see"] && word2 == GLOB.cultwords["hell"] && word3 == GLOB.cultwords["join"])		\
+	|| (word1 == GLOB.cultwords["blood"] && word2 == GLOB.cultwords["join"] && word3 == GLOB.cultwords["hell"])	\
+	|| (word1 == GLOB.cultwords["hide"] && word2 == GLOB.cultwords["see"] && word3 == GLOB.cultwords["blood"])	\
+	|| (word1 == GLOB.cultwords["hell"] && word2 == GLOB.cultwords["travel"] && word3 == GLOB.cultwords["self"])	\
+	|| (word1 == GLOB.cultwords["blood"] && word2 == GLOB.cultwords["see"] && word3 == GLOB.cultwords["travel"])	\
+	|| (word1 == GLOB.cultwords["hell"] && word2 == GLOB.cultwords["technology"] && word3 == GLOB.cultwords["join"])	\
+	|| (word1 == GLOB.cultwords["hell"] && word2 == GLOB.cultwords["blood"] && word3 == GLOB.cultwords["join"])	\
+	|| (word1 == GLOB.cultwords["blood"] && word2 == GLOB.cultwords["see"] && word3 == GLOB.cultwords["hide"])	\
+	|| (word1 == GLOB.cultwords["destroy"] && word2 == GLOB.cultwords["travel"] && word3 == GLOB.cultwords["self"])	\
+	|| (word1 == GLOB.cultwords["travel"] && word2 == GLOB.cultwords["technology"] && word3 == GLOB.cultwords["other"])	\
+	|| (word1 == GLOB.cultwords["join"] && word2 == GLOB.cultwords["other"] && word3 == GLOB.cultwords["self"])	\
+	|| (word1 == GLOB.cultwords["hide"] && word2 == GLOB.cultwords["other"] && word3 == GLOB.cultwords["see"])	\
+	|| (word1 == GLOB.cultwords["destroy"] && word2 == GLOB.cultwords["see"] && word3 == GLOB.cultwords["other"])	\
+	|| (word1 == GLOB.cultwords["destroy"] && word2 == GLOB.cultwords["see"] && word3 == GLOB.cultwords["blood"])	\
+	|| (word1 == GLOB.cultwords["self"] && word2 == GLOB.cultwords["other"] && word3 == GLOB.cultwords["technology"])	\
+	|| (word1 == GLOB.cultwords["travel"] && word2 == GLOB.cultwords["other"])						\
+	|| (word1 == GLOB.cultwords["join"] && word2 == GLOB.cultwords["hide"] && word3 == GLOB.cultwords["technology"])	)
 		animated = 1
 	else
 		animated = 0

@@ -12,10 +12,10 @@
 		var/obj/machinery/mecha_part_fabricator/pros/prosfab = fabricator
 		var/obj/item/organ/O = new build_path(newloc)
 		if(prosfab.manufacturer)
-			var/datum/robolimb/manf = all_robolimbs[prosfab.manufacturer]
+			var/datum/robolimb/manf = GLOB.all_robolimbs[prosfab.manufacturer]
 
 			if(!(O.organ_tag in manf.parts))	// Make sure we're using an actually present icon.
-				manf = all_robolimbs["Unbranded"]
+				manf = GLOB.all_robolimbs["Unbranded"]
 
 			if(prosfab.species in manf.species_alternates)	// If the prosthetics fab is set to say, Unbranded, and species set to 'Tajaran', it will make the Taj variant of Unbranded, if it exists.
 				manf = manf.species_alternates[prosfab.species]
@@ -39,7 +39,7 @@
 		var/obj/machinery/mecha_part_fabricator/pros/prosfab = fabricator
 		var/newspecies = "Human"
 
-		var/datum/robolimb/manf = all_robolimbs[prosfab.manufacturer]
+		var/datum/robolimb/manf = GLOB.all_robolimbs[prosfab.manufacturer]
 
 		if(manf)
 			if(prosfab.species in manf.species_alternates)	// If the prosthetics fab is set to say, Unbranded, and species set to 'Tajaran', it will make the Taj variant of Unbranded, if it exists.
@@ -63,7 +63,7 @@
 			O.species = GLOB.all_species[newspecies]
 
 			if(!(O.organ_tag in manf.parts))	// Make sure we're using an actually present icon.
-				manf = all_robolimbs["Unbranded"]
+				manf = GLOB.all_robolimbs["Unbranded"]
 
 			O.robotize(manf.company)
 			qdel_swap(O.dna, new/datum/dna())
