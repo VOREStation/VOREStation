@@ -134,4 +134,4 @@
 				tgui_alert_async(new_user,"Your current species, [new_user.client.prefs.species], is not available for play on the station.")
 				return 0
 
-			new_user.AttemptLateSpawn(job, new_user.read_preference(/datum/preference/choiced/human/spawnpoint))
+			new_user.AttemptLateSpawn(job, new_user.read_preference(/datum/preference/choiced/living/spawnpoint))
