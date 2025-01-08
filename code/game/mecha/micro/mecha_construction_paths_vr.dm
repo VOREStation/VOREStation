@@ -9,7 +9,7 @@
 	)
 
 /datum/construction/mecha/polecat_chassis/custom_action(step, atom/used_atom, mob/user)
-	user.visible_message("[user] has connected [used_atom] to [holder].", "You connect [used_atom] to [holder]")
+	user.visible_message(span_infoplain("[user] has connected [used_atom] to [holder]."), span_infoplain("You connect [used_atom] to [holder]"))
 	holder.add_overlay(used_atom.icon_state+"+o")
 	qdel(used_atom)
 	return 1
@@ -123,153 +123,153 @@
 	//TODO: better messages.
 	switch(index)
 		if(20)
-			user.visible_message("[user] connects [holder] hydraulic systems", "You connect [holder] hydraulic systems.")
+			user.visible_message(span_infoplain("[user] connects [holder] hydraulic systems"), span_infoplain("You connect [holder] hydraulic systems."))
 			holder.icon_state = "polecat1"
 		if(19)
 			if(diff==FORWARD)
-				user.visible_message("[user] activates [holder] hydraulic systems.", "You activate [holder] hydraulic systems.")
+				user.visible_message(span_infoplain("[user] activates [holder] hydraulic systems."), span_infoplain("You activate [holder] hydraulic systems."))
 				holder.icon_state = "polecat2"
 			else
-				user.visible_message("[user] disconnects [holder] hydraulic systems", "You disconnect [holder] hydraulic systems.")
+				user.visible_message(span_infoplain("[user] disconnects [holder] hydraulic systems"), span_infoplain("You disconnect [holder] hydraulic systems."))
 				holder.icon_state = "polecat0"
 		if(18)
 			if(diff==FORWARD)
-				user.visible_message("[user] adds the wiring to [holder].", "You add the wiring to [holder].")
+				user.visible_message(span_infoplain("[user] adds the wiring to [holder]."), span_infoplain("You add the wiring to [holder]."))
 				holder.icon_state = "polecat3"
 			else
-				user.visible_message("[user] deactivates [holder] hydraulic systems.", "You deactivate [holder] hydraulic systems.")
+				user.visible_message(span_infoplain("[user] deactivates [holder] hydraulic systems."), span_infoplain("You deactivate [holder] hydraulic systems."))
 				holder.icon_state = "polecat1"
 		if(17)
 			if(diff==FORWARD)
-				user.visible_message("[user] adjusts the wiring of [holder].", "You adjust the wiring of [holder].")
+				user.visible_message(span_infoplain("[user] adjusts the wiring of [holder]."), span_infoplain("You adjust the wiring of [holder]."))
 				holder.icon_state = "polecat4"
 			else
-				user.visible_message("[user] removes the wiring from [holder].", "You remove the wiring from [holder].")
+				user.visible_message(span_infoplain("[user] removes the wiring from [holder]."), span_infoplain("You remove the wiring from [holder]."))
 				new /obj/item/stack/cable_coil(get_turf(holder), 4)
 				holder.icon_state = "polecat2"
 		if(16)
 			if(diff==FORWARD)
-				user.visible_message("[user] installs the central control module into [holder].", "You install the central computer mainboard into [holder].")
+				user.visible_message(span_infoplain("[user] installs the central control module into [holder]."), span_infoplain("You install the central computer mainboard into [holder]."))
 				qdel(used_atom)
 				holder.icon_state = "polecat5"
 			else
-				user.visible_message("[user] disconnects the wiring of [holder].", "You disconnect the wiring of [holder].")
+				user.visible_message(span_infoplain("[user] disconnects the wiring of [holder]."), span_infoplain("You disconnect the wiring of [holder]."))
 				holder.icon_state = "polecat3"
 		if(15)
 			if(diff==FORWARD)
-				user.visible_message("[user] secures the mainboard.", "You secure the mainboard.")
+				user.visible_message(span_infoplain("[user] secures the mainboard."), span_infoplain("You secure the mainboard."))
 				holder.icon_state = "polecat6"
 			else
-				user.visible_message("[user] removes the central control module from [holder].", "You remove the central computer mainboard from [holder].")
+				user.visible_message(span_infoplain("[user] removes the central control module from [holder]."), span_infoplain("You remove the central computer mainboard from [holder]."))
 				new /obj/item/circuitboard/mecha/polecat/main(get_turf(holder))
 				holder.icon_state = "polecat4"
 		if(14)
 			if(diff==FORWARD)
-				user.visible_message("[user] installs the peripherals control module into [holder].", "You install the peripherals control module into [holder].")
+				user.visible_message(span_infoplain("[user] installs the peripherals control module into [holder]."), span_infoplain("You install the peripherals control module into [holder]."))
 				qdel(used_atom)
 				holder.icon_state = "polecat7"
 			else
-				user.visible_message("[user] unfastens the mainboard.", "You unfasten the mainboard.")
+				user.visible_message(span_infoplain("[user] unfastens the mainboard."), span_infoplain("You unfasten the mainboard."))
 				holder.icon_state = "polecat5"
 		if(13)
 			if(diff==FORWARD)
-				user.visible_message("[user] secures the peripherals control module.", "You secure the peripherals control module.")
+				user.visible_message(span_infoplain("[user] secures the peripherals control module."), span_infoplain("You secure the peripherals control module."))
 				holder.icon_state = "polecat8"
 			else
-				user.visible_message("[user] removes the peripherals control module from [holder].", "You remove the peripherals control module from [holder].")
+				user.visible_message(span_infoplain("[user] removes the peripherals control module from [holder]."), span_infoplain("You remove the peripherals control module from [holder]."))
 				new /obj/item/circuitboard/mecha/polecat/peripherals(get_turf(holder))
 				holder.icon_state = "polecat6"
 		if(12)
 			if(diff==FORWARD)
-				user.visible_message("[user] installs the weapon control module into [holder].", "You install the weapon control module into [holder].")
+				user.visible_message(span_infoplain("[user] installs the weapon control module into [holder]."), span_infoplain("You install the weapon control module into [holder]."))
 				qdel(used_atom)
 				holder.icon_state = "polecat9"
 			else
-				user.visible_message("[user] unfastens the peripherals control module.", "You unfasten the peripherals control module.")
+				user.visible_message(span_infoplain("[user] unfastens the peripherals control module."), span_infoplain("You unfasten the peripherals control module."))
 				holder.icon_state = "polecat7"
 		if(11)
 			if(diff==FORWARD)
-				user.visible_message("[user] secures the weapon control module.", "You secure the weapon control module.")
+				user.visible_message(span_infoplain("[user] secures the weapon control module."), span_infoplain("You secure the weapon control module."))
 				holder.icon_state = "polecat10"
 			else
-				user.visible_message("[user] removes the weapon control module from [holder].", "You remove the weapon control module from [holder].")
+				user.visible_message(span_infoplain("[user] removes the weapon control module from [holder]."), span_infoplain("You remove the weapon control module from [holder]."))
 				new /obj/item/circuitboard/mecha/polecat/targeting(get_turf(holder))
 				holder.icon_state = "polecat8"
 		if(10)
 			if(diff==FORWARD)
-				user.visible_message("[user] installs advanced scanner module to [holder].", "You install advanced scanner module to [holder].")
+				user.visible_message(span_infoplain("[user] installs advanced scanner module to [holder]."), span_infoplain("You install advanced scanner module to [holder]."))
 				qdel(used_atom)
 				holder.icon_state = "polecat11"
 			else
-				user.visible_message("[user] unfastens the weapon control module.", "You unfasten the weapon control module.")
+				user.visible_message(span_infoplain("[user] unfastens the weapon control module."), span_infoplain("You unfasten the weapon control module."))
 				holder.icon_state = "polecat9"
 		if(9)
 			if(diff==FORWARD)
-				user.visible_message("[user] secures the advanced scanner module.", "You secure the advanced scanner module.")
+				user.visible_message(span_infoplain("[user] secures the advanced scanner module."), span_infoplain("You secure the advanced scanner module."))
 				holder.icon_state = "polecat12"
 			else
-				user.visible_message("[user] removes the advanced scanner module from [holder].", "You remove the advanced scanner module from [holder].")
+				user.visible_message(span_infoplain("[user] removes the advanced scanner module from [holder]."), span_infoplain("You remove the advanced scanner module from [holder]."))
 				new /obj/item/stock_parts/scanning_module/adv(get_turf(holder))
 				holder.icon_state = "polecat10"
 		if(8)
 			if(diff==FORWARD)
-				user.visible_message("[user] installs advanced capacitor to [holder].", "You install advanced capacitor to [holder].")
+				user.visible_message(span_infoplain("[user] installs advanced capacitor to [holder]."), span_infoplain("You install advanced capacitor to [holder]."))
 				qdel(used_atom)
 				holder.icon_state = "polecat13"
 			else
-				user.visible_message("[user] unfastens the advanced scanner module.", "You unfasten the advanced scanner module.")
+				user.visible_message(span_infoplain("[user] unfastens the advanced scanner module."), span_infoplain("You unfasten the advanced scanner module."))
 				holder.icon_state = "polecat11"
 		if(7)
 			if(diff==FORWARD)
-				user.visible_message("[user] secures the advanced capacitor.", "You secure the advanced capacitor.")
+				user.visible_message(span_infoplain("[user] secures the advanced capacitor."), span_infoplain("You secure the advanced capacitor."))
 				holder.icon_state = "polecat14"
 			else
-				user.visible_message("[user] removes the advanced capacitor from [holder].", "You remove the advanced capacitor from [holder].")
+				user.visible_message(span_infoplain("[user] removes the advanced capacitor from [holder]."), span_infoplain("You remove the advanced capacitor from [holder]."))
 				new /obj/item/stock_parts/capacitor/adv(get_turf(holder))
 				holder.icon_state = "polecat12"
 		if(6)
 			if(diff==FORWARD)
-				user.visible_message("[user] installs internal armor layer to [holder].", "You install internal armor layer to [holder].")
+				user.visible_message(span_infoplain("[user] installs internal armor layer to [holder]."), span_infoplain("You install internal armor layer to [holder]."))
 				holder.icon_state = "polecat15"
 			else
-				user.visible_message("[user] unfastens the advanced capacitor.", "You unfasten the advanced capacitor.")
+				user.visible_message(span_infoplain("[user] unfastens the advanced capacitor."), span_infoplain("You unfasten the advanced capacitor."))
 				holder.icon_state = "polecat13"
 		if(5)
 			if(diff==FORWARD)
-				user.visible_message("[user] secures internal armor layer.", "You secure internal armor layer.")
+				user.visible_message(span_infoplain("[user] secures internal armor layer."), span_infoplain("You secure internal armor layer."))
 				holder.icon_state = "polecat16"
 			else
-				user.visible_message("[user] pries internal armor layer from [holder].", "You prie internal armor layer from [holder].")
+				user.visible_message(span_infoplain("[user] pries internal armor layer from [holder]."), span_infoplain("You prie internal armor layer from [holder]."))
 				new /obj/item/stack/material/steel(get_turf(holder), 3)
 				holder.icon_state = "polecat14"
 		if(4)
 			if(diff==FORWARD)
-				user.visible_message("[user] welds internal armor layer to [holder].", "You weld the internal armor layer to [holder].")
+				user.visible_message(span_infoplain("[user] welds internal armor layer to [holder]."), span_infoplain("You weld the internal armor layer to [holder]."))
 				holder.icon_state = "polecat17"
 			else
-				user.visible_message("[user] unfastens the internal armor layer.", "You unfasten the internal armor layer.")
+				user.visible_message(span_infoplain("[user] unfastens the internal armor layer."), span_infoplain("You unfasten the internal armor layer."))
 				holder.icon_state = "polecat15"
 		if(3)
 			if(diff==FORWARD)
-				user.visible_message("[user] installs external reinforced armor layer to [holder].", "You install external reinforced armor layer to [holder].")
+				user.visible_message(span_infoplain("[user] installs external reinforced armor layer to [holder]."), span_infoplain("You install external reinforced armor layer to [holder]."))
 				qdel(used_atom)// upstream port. Fixes polecat not useing it's armor plates up.
 				holder.icon_state = "polecat18"
 			else
-				user.visible_message("[user] cuts internal armor layer from [holder].", "You cut the internal armor layer from [holder].")
+				user.visible_message(span_infoplain("[user] cuts internal armor layer from [holder]."), span_infoplain("You cut the internal armor layer from [holder]."))
 				holder.icon_state = "polecat16"
 		if(2)
 			if(diff==FORWARD)
-				user.visible_message("[user] secures external armor layer.", "You secure external reinforced armor layer.")
+				user.visible_message(span_infoplain("[user] secures external armor layer."), span_infoplain("You secure external reinforced armor layer."))
 				holder.icon_state = "polecat19"
 			else
-				user.visible_message("[user] pries external armor layer from [holder].", "You pry the external armor layer from [holder].") // Rykka does smol grammar fix.
+				user.visible_message(span_infoplain("[user] pries external armor layer from [holder]."), span_infoplain("You pry the external armor layer from [holder].")) // Rykka does smol grammar fix.
 				new /obj/item/mecha_parts/micro/part/polecat_armour(get_turf(holder))// Actually gives you the polecat's armored plates back instead of plasteel.
 				holder.icon_state = "polecat17"
 		if(1)
 			if(diff==FORWARD)
-				user.visible_message("[user] welds external armor layer to [holder].", "You weld external armor layer to [holder].")
+				user.visible_message(span_infoplain("[user] welds external armor layer to [holder]."), span_infoplain("You weld external armor layer to [holder]."))
 			else
-				user.visible_message("[user] unfastens the external armor layer.", "You unfasten the external armor layer.")
+				user.visible_message(span_infoplain("[user] unfastens the external armor layer."), span_infoplain("You unfasten the external armor layer."))
 				holder.icon_state = "polecat18"
 	return 1
 
@@ -288,7 +288,7 @@
 	)
 
 /datum/construction/mecha/gopher_chassis/custom_action(step, atom/used_atom, mob/user)
-	user.visible_message("[user] has connected [used_atom] to [holder].", "You connect [used_atom] to [holder]")
+	user.visible_message(span_infoplain("[user] has connected [used_atom] to [holder]."), span_infoplain("You connect [used_atom] to [holder]"))
 	holder.add_overlay(used_atom.icon_state+"+o")
 	qdel(used_atom)
 	return 1
@@ -378,104 +378,104 @@
 	//TODO: better messages.
 	switch(index)
 		if(14)
-			user.visible_message("[user] connects [holder] hydraulic systems", "You connect [holder] hydraulic systems.")
+			user.visible_message(span_infoplain("[user] connects [holder] hydraulic systems"), span_infoplain("You connect [holder] hydraulic systems."))
 			holder.icon_state = "gopher1"
 		if(13)
 			if(diff==FORWARD)
-				user.visible_message("[user] activates [holder] hydraulic systems.", "You activate [holder] hydraulic systems.")
+				user.visible_message(span_infoplain("[user] activates [holder] hydraulic systems."), span_infoplain("You activate [holder] hydraulic systems."))
 				holder.icon_state = "gopher2"
 			else
-				user.visible_message("[user] disconnects [holder] hydraulic systems", "You disconnect [holder] hydraulic systems.")
+				user.visible_message(span_infoplain("[user] disconnects [holder] hydraulic systems"), span_infoplain("You disconnect [holder] hydraulic systems."))
 				holder.icon_state = "gopher0"
 		if(12)
 			if(diff==FORWARD)
-				user.visible_message("[user] adds the wiring to [holder].", "You add the wiring to [holder].")
+				user.visible_message(span_infoplain("[user] adds the wiring to [holder]."), span_infoplain("You add the wiring to [holder]."))
 				holder.icon_state = "gopher3"
 			else
-				user.visible_message("[user] deactivates [holder] hydraulic systems.", "You deactivate [holder] hydraulic systems.")
+				user.visible_message(span_infoplain("[user] deactivates [holder] hydraulic systems."), span_infoplain("You deactivate [holder] hydraulic systems."))
 				holder.icon_state = "gopher1"
 		if(11)
 			if(diff==FORWARD)
-				user.visible_message("[user] adjusts the wiring of [holder].", "You adjust the wiring of [holder].")
+				user.visible_message(span_infoplain("[user] adjusts the wiring of [holder]."), span_infoplain("You adjust the wiring of [holder]."))
 				holder.icon_state = "gopher4"
 			else
-				user.visible_message("[user] removes the wiring from [holder].", "You remove the wiring from [holder].")
+				user.visible_message(span_infoplain("[user] removes the wiring from [holder]."), span_infoplain("You remove the wiring from [holder]."))
 				new /obj/item/stack/cable_coil(get_turf(holder), 4)
 				holder.icon_state = "gopher2"
 		if(10)
 			if(diff==FORWARD)
-				user.visible_message("[user] installs the central control module into [holder].", "You install the central computer mainboard into [holder].")
+				user.visible_message(span_infoplain("[user] installs the central control module into [holder]."), span_infoplain("You install the central computer mainboard into [holder]."))
 				qdel(used_atom)
 				holder.icon_state = "gopher5"
 			else
-				user.visible_message("[user] disconnects the wiring of [holder].", "You disconnect the wiring of [holder].")
+				user.visible_message(span_infoplain("[user] disconnects the wiring of [holder]."), span_infoplain("You disconnect the wiring of [holder]."))
 				holder.icon_state = "gopher3"
 		if(9)
 			if(diff==FORWARD)
-				user.visible_message("[user] secures the mainboard.", "You secure the mainboard.")
+				user.visible_message(span_infoplain("[user] secures the mainboard."), span_infoplain("You secure the mainboard."))
 				holder.icon_state = "gopher6"
 			else
-				user.visible_message("[user] removes the central control module from [holder].", "You remove the central computer mainboard from [holder].")
+				user.visible_message(span_infoplain("[user] removes the central control module from [holder]."), span_infoplain("You remove the central computer mainboard from [holder]."))
 				new /obj/item/circuitboard/mecha/gopher/main(get_turf(holder))
 				holder.icon_state = "gopher4"
 		if(8)
 			if(diff==FORWARD)
-				user.visible_message("[user] installs the peripherals control module into [holder].", "You install the peripherals control module into [holder].")
+				user.visible_message(span_infoplain("[user] installs the peripherals control module into [holder]."), span_infoplain("You install the peripherals control module into [holder]."))
 				qdel(used_atom)
 				holder.icon_state = "gopher7"
 			else
-				user.visible_message("[user] unfastens the mainboard.", "You unfasten the mainboard.")
+				user.visible_message(span_infoplain("[user] unfastens the mainboard."), span_infoplain("You unfasten the mainboard."))
 				holder.icon_state = "gopher5"
 		if(7)
 			if(diff==FORWARD)
-				user.visible_message("[user] secures the peripherals control module.", "You secure the peripherals control module.")
+				user.visible_message(span_infoplain("[user] secures the peripherals control module."), span_infoplain("You secure the peripherals control module."))
 				holder.icon_state = "gopher8"
 			else
-				user.visible_message("[user] removes the peripherals control module from [holder].", "You remove the peripherals control module from [holder].")
+				user.visible_message(span_infoplain("[user] removes the peripherals control module from [holder]."), span_infoplain("You remove the peripherals control module from [holder]."))
 				new /obj/item/circuitboard/mecha/gopher/peripherals(get_turf(holder))
 				holder.icon_state = "gopher6"
 		if(6)
 			if(diff==FORWARD)
-				user.visible_message("[user] installs internal armor layer to [holder].", "You install internal armor layer to [holder].")
+				user.visible_message(span_infoplain("[user] installs internal armor layer to [holder]."), span_infoplain("You install internal armor layer to [holder]."))
 				holder.icon_state = "gopher9"
 			else
-				user.visible_message("[user] unfastens the peripherals control module.", "You unfasten the peripherals control module.")
+				user.visible_message(span_infoplain("[user] unfastens the peripherals control module."), span_infoplain("You unfasten the peripherals control module."))
 				holder.icon_state = "gopher7"
 		if(5)
 			if(diff==FORWARD)
-				user.visible_message("[user] secures internal armor layer.", "You secure internal armor layer.")
+				user.visible_message(span_infoplain("[user] secures internal armor layer."), span_infoplain("You secure internal armor layer."))
 				holder.icon_state = "gopher10"
 			else
-				user.visible_message("[user] pries internal armor layer from [holder].", "You prie internal armor layer from [holder].")
+				user.visible_message(span_infoplain("[user] pries internal armor layer from [holder]."), span_infoplain("You prie internal armor layer from [holder]."))
 				new /obj/item/stack/material/steel(get_turf(holder), 3)
 				holder.icon_state = "gopher8"
 		if(4)
 			if(diff==FORWARD)
-				user.visible_message("[user] welds internal armor layer to [holder].", "You weld the internal armor layer to [holder].")
+				user.visible_message(span_infoplain("[user] welds internal armor layer to [holder]."), span_infoplain("You weld the internal armor layer to [holder]."))
 				holder.icon_state = "gopher11"
 			else
-				user.visible_message("[user] unfastens the internal armor layer.", "You unfasten the internal armor layer.")
+				user.visible_message(span_infoplain("[user] unfastens the internal armor layer."), span_infoplain("You unfasten the internal armor layer."))
 				holder.icon_state = "gopher9"
 		if(3)
 			if(diff==FORWARD)
-				user.visible_message("[user] installs external reinforced armor layer to [holder].", "You install external reinforced armor layer to [holder].")
+				user.visible_message(span_infoplain("[user] installs external reinforced armor layer to [holder]."), span_infoplain("You install external reinforced armor layer to [holder]."))
 				holder.icon_state = "gopher12"
 			else
-				user.visible_message("[user] cuts internal armor layer from [holder].", "You cut the internal armor layer from [holder].")
+				user.visible_message(span_infoplain("[user] cuts internal armor layer from [holder]."), span_infoplain("You cut the internal armor layer from [holder]."))
 				holder.icon_state = "gopher10"
 		if(2)
 			if(diff==FORWARD)
-				user.visible_message("[user] secures external armor layer.", "You secure external reinforced armor layer.")
+				user.visible_message(span_infoplain("[user] secures external armor layer."), span_infoplain("You secure external reinforced armor layer."))
 				holder.icon_state = "gopher13"
 			else
-				user.visible_message("[user] pries external armor layer from [holder].", "You prie external armor layer from [holder].")
+				user.visible_message(span_infoplain("[user] pries external armor layer from [holder]."), span_infoplain("You prie external armor layer from [holder]."))
 				new /obj/item/stack/material/plasteel(get_turf(holder), 2)
 				holder.icon_state = "gopher11"
 		if(1)
 			if(diff==FORWARD)
-				user.visible_message("[user] welds external armor layer to [holder].", "You weld external armor layer to [holder].")
+				user.visible_message(span_infoplain("[user] welds external armor layer to [holder]."), span_infoplain("You weld external armor layer to [holder]."))
 			else
-				user.visible_message("[user] unfastens the external armor layer.", "You unfasten the external armor layer.")
+				user.visible_message(span_infoplain("[user] unfastens the external armor layer."), span_infoplain("You unfasten the external armor layer."))
 				holder.icon_state = "gopher12"
 	return 1
 
@@ -494,7 +494,7 @@
 	)
 
 /datum/construction/mecha/weasel_chassis/custom_action(step, atom/used_atom, mob/user)
-	user.visible_message("[user] has connected [used_atom] to [holder].", "You connect [used_atom] to [holder]")
+	user.visible_message(span_infoplain("[user] has connected [used_atom] to [holder]."), span_infoplain("You connect [used_atom] to [holder]"))
 	holder.add_overlay(used_atom.icon_state+"+o")
 	qdel(used_atom)
 	return 1
@@ -608,152 +608,152 @@
 	//TODO: better messages.
 	switch(index)
 		if(20)
-			user.visible_message("[user] connects [holder] hydraulic systems", "You connect [holder] hydraulic systems.")
+			user.visible_message(span_infoplain("[user] connects [holder] hydraulic systems"), span_infoplain("You connect [holder] hydraulic systems."))
 			holder.icon_state = "weasel1"
 		if(19)
 			if(diff==FORWARD)
-				user.visible_message("[user] activates [holder] hydraulic systems.", "You activate [holder] hydraulic systems.")
+				user.visible_message(span_infoplain("[user] activates [holder] hydraulic systems."), span_infoplain("You activate [holder] hydraulic systems."))
 				holder.icon_state = "weasel2"
 			else
-				user.visible_message("[user] disconnects [holder] hydraulic systems", "You disconnect [holder] hydraulic systems.")
+				user.visible_message(span_infoplain("[user] disconnects [holder] hydraulic systems"), span_infoplain("You disconnect [holder] hydraulic systems."))
 				holder.icon_state = "weasel0"
 		if(18)
 			if(diff==FORWARD)
-				user.visible_message("[user] adds the wiring to [holder].", "You add the wiring to [holder].")
+				user.visible_message(span_infoplain("[user] adds the wiring to [holder]."), span_infoplain("You add the wiring to [holder]."))
 				holder.icon_state = "weasel3"
 			else
-				user.visible_message("[user] deactivates [holder] hydraulic systems.", "You deactivate [holder] hydraulic systems.")
+				user.visible_message(span_infoplain("[user] deactivates [holder] hydraulic systems."), span_infoplain("You deactivate [holder] hydraulic systems."))
 				holder.icon_state = "weasel1"
 		if(17)
 			if(diff==FORWARD)
-				user.visible_message("[user] adjusts the wiring of [holder].", "You adjust the wiring of [holder].")
+				user.visible_message(span_infoplain("[user] adjusts the wiring of [holder]."), span_infoplain("You adjust the wiring of [holder]."))
 				holder.icon_state = "weasel4"
 			else
-				user.visible_message("[user] removes the wiring from [holder].", "You remove the wiring from [holder].")
+				user.visible_message(span_infoplain("[user] removes the wiring from [holder]."), span_infoplain("You remove the wiring from [holder]."))
 				new /obj/item/stack/cable_coil(get_turf(holder), 4)
 				holder.icon_state = "weasel2"
 		if(16)
 			if(diff==FORWARD)
-				user.visible_message("[user] installs the central control module into [holder].", "You install the central computer mainboard into [holder].")
+				user.visible_message(span_infoplain("[user] installs the central control module into [holder]."), span_infoplain("You install the central computer mainboard into [holder]."))
 				qdel(used_atom)
 				holder.icon_state = "weasel5"
 			else
-				user.visible_message("[user] disconnects the wiring of [holder].", "You disconnect the wiring of [holder].")
+				user.visible_message(span_infoplain("[user] disconnects the wiring of [holder]."), span_infoplain("You disconnect the wiring of [holder]."))
 				holder.icon_state = "weasel3"
 		if(15)
 			if(diff==FORWARD)
-				user.visible_message("[user] secures the mainboard.", "You secure the mainboard.")
+				user.visible_message(span_infoplain("[user] secures the mainboard."), span_infoplain("You secure the mainboard."))
 				holder.icon_state = "weasel6"
 			else
-				user.visible_message("[user] removes the central control module from [holder].", "You remove the central computer mainboard from [holder].")
+				user.visible_message(span_infoplain("[user] removes the central control module from [holder]."), span_infoplain("You remove the central computer mainboard from [holder]."))
 				new /obj/item/circuitboard/mecha/weasel/main(get_turf(holder))
 				holder.icon_state = "weasel4"
 		if(14)
 			if(diff==FORWARD)
-				user.visible_message("[user] installs the peripherals control module into [holder].", "You install the peripherals control module into [holder].")
+				user.visible_message(span_infoplain("[user] installs the peripherals control module into [holder]."), span_infoplain("You install the peripherals control module into [holder]."))
 				qdel(used_atom)
 				holder.icon_state = "weasel7"
 			else
-				user.visible_message("[user] unfastens the mainboard.", "You unfasten the mainboard.")
+				user.visible_message(span_infoplain("[user] unfastens the mainboard."), span_infoplain("You unfasten the mainboard."))
 				holder.icon_state = "weasel5"
 		if(13)
 			if(diff==FORWARD)
-				user.visible_message("[user] secures the peripherals control module.", "You secure the peripherals control module.")
+				user.visible_message(span_infoplain("[user] secures the peripherals control module."), span_infoplain("You secure the peripherals control module."))
 				holder.icon_state = "weasel8"
 			else
-				user.visible_message("[user] removes the peripherals control module from [holder].", "You remove the peripherals control module from [holder].")
+				user.visible_message(span_infoplain("[user] removes the peripherals control module from [holder]."), span_infoplain("You remove the peripherals control module from [holder]."))
 				new /obj/item/circuitboard/mecha/weasel/peripherals(get_turf(holder))
 				holder.icon_state = "weasel6"
 		if(12)
 			if(diff==FORWARD)
-				user.visible_message("[user] installs the weapon control module into [holder].", "You install the weapon control module into [holder].")
+				user.visible_message(span_infoplain("[user] installs the weapon control module into [holder]."), span_infoplain("You install the weapon control module into [holder]."))
 				qdel(used_atom)
 				holder.icon_state = "weasel9"
 			else
-				user.visible_message("[user] unfastens the peripherals control module.", "You unfasten the peripherals control module.")
+				user.visible_message(span_infoplain("[user] unfastens the peripherals control module."), span_infoplain("You unfasten the peripherals control module."))
 				holder.icon_state = "weasel7"
 		if(11)
 			if(diff==FORWARD)
-				user.visible_message("[user] secures the weapon control module.", "You secure the weapon control module.")
+				user.visible_message(span_infoplain("[user] secures the weapon control module."), span_infoplain("You secure the weapon control module."))
 				holder.icon_state = "weasel10"
 			else
-				user.visible_message("[user] removes the weapon control module from [holder].", "You remove the weapon control module from [holder].")
+				user.visible_message(span_infoplain("[user] removes the weapon control module from [holder]."), span_infoplain("You remove the weapon control module from [holder]."))
 				new /obj/item/circuitboard/mecha/weasel/targeting(get_turf(holder))
 				holder.icon_state = "weasel8"
 		if(10)
 			if(diff==FORWARD)
-				user.visible_message("[user] installs advanced scanner module to [holder].", "You install advanced scanner module to [holder].")
+				user.visible_message(span_infoplain("[user] installs advanced scanner module to [holder]."), span_infoplain("You install advanced scanner module to [holder]."))
 				qdel(used_atom)
 				holder.icon_state = "weasel11"
 			else
-				user.visible_message("[user] unfastens the weapon control module.", "You unfasten the weapon control module.")
+				user.visible_message(span_infoplain("[user] unfastens the weapon control module."), span_infoplain("You unfasten the weapon control module."))
 				holder.icon_state = "weasel9"
 		if(9)
 			if(diff==FORWARD)
-				user.visible_message("[user] secures the advanced scanner module.", "You secure the advanced scanner module.")
+				user.visible_message(span_infoplain("[user] secures the advanced scanner module."), span_infoplain("You secure the advanced scanner module."))
 				holder.icon_state = "weasel12"
 			else
-				user.visible_message("[user] removes the advanced scanner module from [holder].", "You remove the advanced scanner module from [holder].")
+				user.visible_message(span_infoplain("[user] removes the advanced scanner module from [holder]."), span_infoplain("You remove the advanced scanner module from [holder]."))
 				new /obj/item/stock_parts/scanning_module/adv(get_turf(holder))
 				holder.icon_state = "weasel10"
 		if(8)
 			if(diff==FORWARD)
-				user.visible_message("[user] installs advanced capacitor to [holder].", "You install advanced capacitor to [holder].")
+				user.visible_message(span_infoplain("[user] installs advanced capacitor to [holder]."), span_infoplain("You install advanced capacitor to [holder]."))
 				qdel(used_atom)
 				holder.icon_state = "weasel13"
 			else
-				user.visible_message("[user] unfastens the advanced scanner module.", "You unfasten the advanced scanner module.")
+				user.visible_message(span_infoplain("[user] unfastens the advanced scanner module."), span_infoplain("You unfasten the advanced scanner module."))
 				holder.icon_state = "weasel11"
 		if(7)
 			if(diff==FORWARD)
-				user.visible_message("[user] secures the advanced capacitor.", "You secure the advanced capacitor.")
+				user.visible_message(span_infoplain("[user] secures the advanced capacitor."), span_infoplain("You secure the advanced capacitor."))
 				holder.icon_state = "weasel14"
 			else
-				user.visible_message("[user] removes the advanced capacitor from [holder].", "You remove the advanced capacitor from [holder].")
+				user.visible_message(span_infoplain("[user] removes the advanced capacitor from [holder]."), span_infoplain("You remove the advanced capacitor from [holder]."))
 				new /obj/item/stock_parts/capacitor/adv(get_turf(holder))
 				holder.icon_state = "weasel12"
 		if(6)
 			if(diff==FORWARD)
-				user.visible_message("[user] installs internal armor layer to [holder].", "You install internal armor layer to [holder].")
+				user.visible_message(span_infoplain("[user] installs internal armor layer to [holder]."), span_infoplain("You install internal armor layer to [holder]."))
 				holder.icon_state = "weasel15"
 			else
-				user.visible_message("[user] unfastens the advanced capacitor.", "You unfasten the advanced capacitor.")
+				user.visible_message(span_infoplain("[user] unfastens the advanced capacitor."), span_infoplain("You unfasten the advanced capacitor."))
 				holder.icon_state = "weasel13"
 		if(5)
 			if(diff==FORWARD)
-				user.visible_message("[user] secures internal armor layer.", "You secure internal armor layer.")
+				user.visible_message(span_infoplain("[user] secures internal armor layer."), span_infoplain("You secure internal armor layer."))
 				holder.icon_state = "weasel16"
 			else
-				user.visible_message("[user] pries internal armor layer from [holder].", "You prie internal armor layer from [holder].")
+				user.visible_message(span_infoplain("[user] pries internal armor layer from [holder]."), span_infoplain("You prie internal armor layer from [holder]."))
 				new /obj/item/stack/material/steel(get_turf(holder), 3)
 				holder.icon_state = "weasel14"
 		if(4)
 			if(diff==FORWARD)
-				user.visible_message("[user] welds internal armor layer to [holder].", "You weld the internal armor layer to [holder].")
+				user.visible_message(span_infoplain("[user] welds internal armor layer to [holder]."), span_infoplain("You weld the internal armor layer to [holder]."))
 				holder.icon_state = "weasel17"
 			else
-				user.visible_message("[user] unfastens the internal armor layer.", "You unfasten the internal armor layer.")
+				user.visible_message(span_infoplain("[user] unfastens the internal armor layer."), span_infoplain("You unfasten the internal armor layer."))
 				holder.icon_state = "weasel15"
 		if(3)
 			if(diff==FORWARD)
-				user.visible_message("[user] installs external reinforced armor layer to [holder].", "You install external reinforced armor layer to [holder].")
+				user.visible_message(span_infoplain("[user] installs external reinforced armor layer to [holder]."), span_infoplain("You install external reinforced armor layer to [holder]."))
 				holder.icon_state = "weasel18"
 			else
-				user.visible_message("[user] cuts internal armor layer from [holder].", "You cut the internal armor layer from [holder].")
+				user.visible_message(span_infoplain("[user] cuts internal armor layer from [holder]."), span_infoplain("You cut the internal armor layer from [holder]."))
 				holder.icon_state = "weasel16"
 		if(2)
 			if(diff==FORWARD)
-				user.visible_message("[user] secures external armor layer.", "You secure external reinforced armor layer.")
+				user.visible_message(span_infoplain("[user] secures external armor layer."), span_infoplain("You secure external reinforced armor layer."))
 				holder.icon_state = "weasel19"
 			else
-				user.visible_message("[user] pries external armor layer from [holder].", "You prie external armor layer from [holder].")
+				user.visible_message(span_infoplain("[user] pries external armor layer from [holder]."), span_infoplain("You prie external armor layer from [holder]."))
 				new /obj/item/stack/material/plasteel(get_turf(holder), 3)
 				holder.icon_state = "weasel17"
 		if(1)
 			if(diff==FORWARD)
-				user.visible_message("[user] welds external armor layer to [holder].", "You weld external armor layer to [holder].")
+				user.visible_message(span_infoplain("[user] welds external armor layer to [holder]."), span_infoplain("You weld external armor layer to [holder]."))
 			else
-				user.visible_message("[user] unfastens the external armor layer.", "You unfasten the external armor layer.")
+				user.visible_message(span_infoplain("[user] unfastens the external armor layer."), span_infoplain("You unfasten the external armor layer."))
 				holder.icon_state = "weasel18"
 	return 1
 
