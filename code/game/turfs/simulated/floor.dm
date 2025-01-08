@@ -177,6 +177,11 @@
 			ChangeTurf(get_base_turf_by_area(src), preserve_outdoors = TRUE)
 			return TRUE
 
+/turf/simulated/floor/occult_act(mob/living/user)
+	to_chat(user, span_cult("You consecrate the floor."))
+	ChangeTurf(/turf/simulated/floor/cult, preserve_outdoors = TRUE)
+	return TRUE
+
 /turf/simulated/floor/AltClick(mob/user)
 	if(isliving(user))
 		var/mob/living/livingUser = user

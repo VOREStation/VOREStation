@@ -334,6 +334,11 @@
 		return TRUE
 	return FALSE
 
+/turf/simulated/wall/occult_act(mob/living/user)
+	to_chat(user, span_cult("You consecrate the wall."))
+	ChangeTurf(/turf/simulated/wall/cult, preserve_outdoors = TRUE)
+	return TRUE
+
 /turf/simulated/wall/AltClick(mob/user)
 	if(isliving(user))
 		var/mob/living/livingUser = user

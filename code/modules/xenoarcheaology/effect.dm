@@ -1,14 +1,14 @@
 /datum/artifact_effect
 	var/name = "unknown"
-	var/effect = EFFECT_TOUCH
-	var/effectrange = 4
-	var/trigger = TRIGGER_TOUCH
-	var/datum/component/artifact_master/master
+	var/effect = EFFECT_TOUCH //This is simply if the effect occurs on touch, in an aura, or a pulse AOE. Horribly named variable.
+	var/effectrange = 4 //How far the effect will hit something.
+	var/trigger = TRIGGER_TOUCH //This decides how the artifact is actually activated. Ex: Splashing water on it.
+	var/datum/component/artifact_master/master //This code is handled in effect_master.dm
 	var/activated = 0
 	var/chargelevel = 1
 	var/chargelevelmax = 10
 	var/artifact_id = ""
-	var/effect_type = 0
+	var/effect_type = 0 //This is what the artifact does. This is used to generating a description when inspected.
 
 	var/req_type = /atom/movable
 
@@ -111,46 +111,94 @@
 			DoEffectPulse()
 
 /datum/artifact_effect/proc/getDescription()
-	. = "<b>"
+	. = "<br><br>This object has been detected to:<b> "
 	switch(effect_type)
-		if(EFFECT_ENERGY)
-			. += "Concentrated energy emissions"
-		if(EFFECT_PSIONIC)
-			. += "Intermittent psionic wavefront"
-		if(EFFECT_ELECTRO)
-			. += "Electromagnetic energy"
-		if(EFFECT_PARTICLE)
-			. += "High frequency particles"
-		if(EFFECT_ORGANIC)
-			. += "Organically reactive exotic particles"
-		if(EFFECT_BLUESPACE)
-			. += "Interdimensional/bluespace? phasing"
-		if(EFFECT_SYNTH)
-			. += "Atomic synthesis"
+		if(EFFECT_UNKNOWN)
+			. += "have an unknown effect" //Should never happen but you know, whatever. Failsafe.
+		if(EFFECT_ANIMATE)
+			. += "have intermittent movement either towards or away from an individual"
+		if(EFFECT_FEELINGS)
+			. += "cause subjects to feel a certain way"
+		if(EFFECT_CELL)
+			. += "charges or drains electronic devices in range"
+		if(EFFECT_TEMPERATURE)
+			. += "adjust the thermal energy in an area"
+		/* //Not Yet Implemented
+		if(EFFECT_DNASWITCH)
+			. += "scramble the DNA of a subject, resulting in rampant genetic mutation"
+		*/
+		if(EFFECT_ELECTIC_FIELD)
+			. += "discharge concentrated electrical energy"
+		if(EFFECT_EMP)
+			. += "discharge electromagnetic energy"
+		if(EFFECT_FEYSIGHT)
+			. += "invoke visions in subjects" //spooky.
+		if(EFFECT_FORCEFIELD)
+			. += "create a forcefield within a short range"
+		if(EFFECT_GAIA)
+			. += "transfer healing energies to nearby flora"
+		if(EFFECT_GAS)
+			. += "emits gas of some type"
+		if(EFFECT_GRAVIATIONAL_WAVES)
+			. += "create local gravitational distortions"
+		if(EFFECT_HEALTH)
+			. += "transfer energies into subjects, harming or healing them"
+		if(EFFECT_POLTERGEIST)
+			. += "cause local movement phenomena"
+		if(EFFECT_RADIATE)
+			. += "transfer high energy gamma rays into subjects"
+		if(EFFECT_RESURRECT)
+			. += "transfer the lifeforce from one entity to another, potentially allowing the ressurection of deceased entities"
+		if(EFFECT_ROBOT_HEALTH)
+			. += "transfer energies into synthetic lifeforms, harming or healing them"
+		if(EFFECT_SLEEPY)
+			. += "invoke drowsiness in subjects"
+		if(EFFECT_STUN)
+			. += "discharge non-lethal amounts of energy into subjects"
+		if(EFFECT_TELEPORT)
+			. += "displace subjects using bluespace phenomena"
+		if(EFFECT_VAMPIRE)
+			. += "drain the blood of subjects, creating creatures or anomalous artifacts in the process"
 		else
-			. += "Low level energy emissions"
+			. += "have no previously-known anomalous properties"
 
-	. += "</b> have been detected <b>"
+	. += "</b>. The method of the dispersion of the object's effect seems to be through <b>"
 
 	switch(effect)
 		if(EFFECT_TOUCH)
-			. += "interspersed throughout substructure and shell."
+			. += "contact with the object."
 		if(EFFECT_AURA)
-			. += "emitting in an ambient energy field."
+			. += "occasional, short ranged pulses of energy."
 		if(EFFECT_PULSE)
-			. += "emitting in periodic bursts."
+			. += "occasional, long ranged pulses of energy."
 		else
-			. += "emitting in an unknown way."
+			. += ""
 
-	. += "</b>"
+	. += "</b> <br>"
 
 	switch(trigger)
-		if(TRIGGER_TOUCH, TRIGGER_WATER, TRIGGER_ACID, TRIGGER_VOLATILE, TRIGGER_TOXIN)
+		if(TRIGGER_TOUCH) //This one should be self explanatory.
 			. += " Activation index involves <b>physical interaction</b> with artifact surface."
-		if(TRIGGER_FORCE, TRIGGER_ENERGY, TRIGGER_HEAT, TRIGGER_COLD)
-			. += " Activation index involves <b>energetic interaction</b> with artifact surface."
-		if(TRIGGER_PHORON, TRIGGER_OXY, TRIGGER_CO2, TRIGGER_NITRO)
-			. += " Activation index involves <b>precise local atmospheric conditions</b>."
+		if(TRIGGER_WATER, TRIGGER_ACID, TRIGGER_VOLATILE, TRIGGER_TOXIN) //No xenoarch would know how to activate these without code digging.
+			. += " Activation index involves <b>chemical interaction<b> with artifact surface. Water/Hydrogen, sulfuric acid, Thermite/Phoron, and toxin/toxic substances are potential triggers."
+
+		if(TRIGGER_FORCE, TRIGGER_ENERGY) //Did you know multitools can activate energy artifacts?
+			. += " Activation index involves <b>forceful or energetic interaction</b> with artifact surface. Potential triggers are a pulse from a multitool or battering the artifact with a strong object."
+
+		if(TRIGGER_HEAT, TRIGGER_COLD) //Heat is easy to activate. Smack it with a welder. Cold? Have to cool the area.
+			. += " Activation index involves <b>precise temperature conditions</b>. Heating/Cooling the atmosphere (>375K or <225K) or using a welder are potential triggers."
+
+		//Gases are separate since they are a pain in the rear to get activated and might as well let you know exactly what to do.
+		//I've been playing this game since the dawn of man and I've never seen someone bother to actually TRY to set up atmos to get these activated.
+		//Honestly, I'm slating these for removal.
+		if(TRIGGER_PHORON)
+			. += " Activation index involves <b>precise local atmospheric conditions</b>. Phoron is a potential trigger. (Atmosphere must be >10% of gas to activate device)"
+		if(TRIGGER_OXY)
+			. += " Activation index involves <b>precise local atmospheric conditions</b>. Oxygen is a potential trigger. (Atmosphere must be >10% of gas to activate device)"
+		if(TRIGGER_CO2)
+			. += " Activation index involves <b>precise local atmospheric conditions</b>. Carbon Dioxide, is a potential trigger. (Atmosphere must be >10% of gas to activate device)"
+		if(TRIGGER_NITRO)
+			. += " Activation index involves <b>precise local atmospheric conditions</b>. Nitrous Oxide is a potential trigger. (Atmosphere must be >10% of gas to activate device)"
 		else
 			. += " Unable to determine any data about activation trigger."
 
