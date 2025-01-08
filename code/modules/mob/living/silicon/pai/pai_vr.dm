@@ -1,5 +1,4 @@
 /mob/living/silicon/pai
-	var/people_eaten = 0
 	icon = 'icons/mob/pai_vr.dmi'
 	softfall = TRUE
 	var/eye_glow = TRUE
@@ -68,6 +67,9 @@
 	var/soft_si = FALSE	//signaler
 	var/soft_ar = FALSE	//ar hud
 
+	vore_capacity = 1
+	vore_capacity_ex = list("stomach" = 1)
+
 /mob/living/silicon/pai/Initialize()
 	. = ..()
 
@@ -108,13 +110,6 @@
 		return
 	return feed_grabbed_to_self(src,T)
 
-/mob/living/silicon/pai/proc/update_fullness_pai() //Determines if they have something in their stomach. Copied and slightly modified.
-	var/new_people_eaten = 0
-	for(var/obj/belly/B as anything in vore_organs)
-		for(var/mob/living/M in B)
-			new_people_eaten += M.size_multiplier
-	people_eaten = min(1, new_people_eaten)
-
 /mob/living/silicon/pai/update_icon() //Some functions cause this to occur, such as resting
 	..()
 	if(chassis == "13")
@@ -122,22 +117,27 @@
 		add_eyes()
 		return
 
-	update_fullness_pai()
+	update_fullness()
 
-	if(!people_eaten && !resting)
+	//Add a check when selecting a chassis if you add in support for this, to set vore_capacity to 2 or however many states you have.
+	var/fullness_extension = ""
+	if(vore_capacity > 1 && vore_fullness > 1)
+		fullness_extension = "_[vore_fullness]"
+
+	if(!vore_fullness && !resting)
 		icon_state = "[chassis]" //Using icon_state here resulted in quite a few bugs. Chassis is much less buggy.
-	else if(!people_eaten && resting)
+	else if(!vore_fullness && resting)
 		icon_state = "[chassis]_rest"
 
 	// Unfortunately not all these states exist, ugh.
-	else if(people_eaten && !resting)
-		if("[chassis]_full" in cached_icon_states(icon))
-			icon_state = "[chassis]_full"
+	else if(vore_fullness && !resting)
+		if("[chassis]_full[fullness_extension]" in cached_icon_states(icon))
+			icon_state = "[chassis]_full[fullness_extension]"
 		else
 			icon_state = "[chassis]"
-	else if(people_eaten && resting)
-		if("[chassis]_rest_full" in cached_icon_states(icon))
-			icon_state = "[chassis]_rest_full"
+	else if(vore_fullness && resting)
+		if("[chassis]_rest_full[fullness_extension]" in cached_icon_states(icon))
+			icon_state = "[chassis]_rest_full[fullness_extension]"
 		else
 			icon_state = "[chassis]_rest"
 	if(chassis in wide_chassis)
@@ -154,15 +154,19 @@
 		icon = holo_icon
 		add_eyes()
 		return
-	update_fullness_pai()
-	if(!people_eaten && !resting)
+	update_fullness()
+	//Add a check when selecting a chassis if you add in support for this, to set vore_capacity to 2 or however many states you have.
+	var/fullness_extension = ""
+	if(vore_capacity > 1 && vore_fullness > 1)
+		fullness_extension = "_[vore_fullness]"
+	if(!vore_fullness && !resting)
 		icon_state = "[chassis]"
-	else if(!people_eaten && resting)
+	else if(!vore_fullness && resting)
 		icon_state = "[chassis]_rest"
-	else if(people_eaten && !resting)
-		icon_state = "[chassis]_full"
-	else if(people_eaten && resting)
-		icon_state = "[chassis]_rest_full"
+	else if(vore_fullness && !resting)
+		icon_state = "[chassis]_full[fullness_extension]"
+	else if(vore_fullness && resting)
+		icon_state = "[chassis]_rest_full[fullness_extension]"
 	if(chassis in wide_chassis)
 		pixel_x = -16
 		default_pixel_x = -16
@@ -182,6 +186,10 @@
 	var/oursize = size_multiplier
 	resize(1, FALSE, TRUE, TRUE, FALSE)		//We resize ourselves to normal here for a moment to let the vis_height get reset
 	chassis = possible_chassis[choice]
+
+	vore_capacity = 1
+	vore_capacity_ex = list("stomach" = 1)
+
 	if(chassis == "13")
 		if(!holo_icon)
 			if(!get_character_icon())

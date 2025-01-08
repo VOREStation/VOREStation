@@ -95,6 +95,8 @@
 	movement_cooldown = -1
 
 /mob/living/simple_mob/vore/scel/init_vore()
+	if(!voremob_loaded)
+		return
 	. = ..()
 	var/obj/belly/B = vore_selected
 	B.name = "stomach"

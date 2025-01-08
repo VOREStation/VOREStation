@@ -55,7 +55,9 @@
 	emote_see = list("wafts about","licks their lips","flaps a bit")
 
 /mob/living/simple_mob/vore/vampire/init_vore()
-	..()
+	if(!voremob_loaded)
+		return
+	. = ..()
 	var/obj/belly/B = vore_selected
 	B.name = "stomach"
 	B.desc = "Having been rapidly gulped up by the vampire, you find yourself tightly contained with a set of groaning, wrinkled walls. It seems that the beast has decided against draining your lifeforce through you blood, and instead taking a more direct approach as it saps your strength from all around you. Your attacker seems content to just take that essence for now, but it is a gut afterall and struggling may set it off."

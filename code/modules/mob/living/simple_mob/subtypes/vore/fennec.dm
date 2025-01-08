@@ -130,7 +130,9 @@
 	add_overlay(bigshadow)
 
 /mob/living/simple_mob/vore/fennec/huge/init_vore()
-	..()
+	if(!voremob_loaded)
+		return
+	. = ..()
 	var/obj/belly/B = vore_selected
 	B.name = "Stomach"
 	B.desc = "The slimy wet insides of a rather large fennec! Not quite as clean as the fen on the outside."

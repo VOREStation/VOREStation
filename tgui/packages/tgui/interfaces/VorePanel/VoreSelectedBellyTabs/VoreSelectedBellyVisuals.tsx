@@ -163,7 +163,11 @@ export const VoreSelectedBellyVisuals = (props: { belly: selectedData }) => {
                     </Button>
                   </LabeledList.Item>
                 ) : (
-                  ''
+                  <LabeledList.Item label="Belly Sprite to affect">
+                    <span style={{ color: 'red' }}>
+                      You do not have any bellysprites.
+                    </span>
+                  </LabeledList.Item>
                 )}
                 {tail_option_shown &&
                 vore_sprite_flags.includes('Undergarment addition') ? (

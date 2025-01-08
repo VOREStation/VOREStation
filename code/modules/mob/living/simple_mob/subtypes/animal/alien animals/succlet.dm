@@ -73,7 +73,9 @@
 	say_got_target = list("...")
 
 /mob/living/simple_mob/vore/alienanimals/succlet/init_vore()
-	..()
+	if(!voremob_loaded)
+		return
+	. = ..()
 	var/obj/belly/B = vore_selected
 	B.name = "stummy"
 	B.desc = "It's a star shaped stomach. A stummy, if you will. It's warm and soft, not unlike plush, but it's tight!"

@@ -46,12 +46,15 @@
 		stored_mmi = null
 	return ..()
 
-/obj/item/organ/internal/mmi_holder/New(var/mob/living/carbon/human/new_owner, var/internal)
+/obj/item/organ/internal/mmi_holder/New(var/mob/living/carbon/human/new_owner, var/internal, var/obj/item/mmi/installed)
 	..(new_owner, internal)
 	var/mob/living/carbon/human/dummy/mannequin/M = new_owner
 	if(istype(M))
 		return
-	stored_mmi = new brain_type(src)
+	if(installed)
+		stored_mmi = installed
+	else
+		stored_mmi = new brain_type(src)
 	sleep(-1)
 	update_from_mmi()
 
