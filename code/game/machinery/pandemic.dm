@@ -73,13 +73,20 @@
 		return
 	icon_state = "pandemic[(beaker)?"1":"0"][!(stat & NOPOWER) ? "" : "_nopower"]"
 
-/obj/machinery/computer/pandemic/proc/create_culture(name, bottle_type = "culture", cooldown = 50)
-	var/obj/item/reagent_containers/glass/bottle/vaccine/B = new/obj/item/reagent_containers/glass/bottle/vaccine(loc)
-	B.icon_state = "bottle10"
+/obj/machinery/computer/pandemic/proc/create_culture(name, bottle_type = "culture", cooldown = 50, vaccine = FALSE)
+
+	var/obj/item/reagent_containers/glass/bottle/B
+	if(vaccine)
+		B = new /obj/item/reagent_containers/glass/bottle/vaccine(loc)
+		B.name = "[name] vaccine"
+	else
+		B = new(loc)
+		B.icon_state = "bottle10"
+		B.name = "[name] [bottle_type] bottle"
+
 	B.pixel_x = rand(-3, 3)
 	B.pixel_y = rand(-3, 3)
 	replicator_cooldown(cooldown)
-	B.name = "[name] [bottle_type] bottle"
 	return B
 
 /obj/machinery/computer/pandemic/tgui_act(action, params, datum/tgui/ui, datum/tgui_state/state)
@@ -152,7 +159,7 @@
 				atom_say("Unable to synthesize requested antibody.")
 				return
 
-			var/obj/item/reagent_containers/glass/bottle/vaccine/B = create_culture(vaccine_name, REAGENT_ID_VACCINE, 200)
+			var/obj/item/reagent_containers/glass/bottle/vaccine/B = create_culture(vaccine_name, REAGENT_ID_VACCINE, 200, TRUE)
 			B.reagents.add_reagent(REAGENT_ID_VACCINE, 15, list(vaccine_type))
 			if(beaker && beaker.reagents && length(beaker.reagents.reagent_list))
 				beaker.reagents.remove_reagent(REAGENT_ID_BLOOD, 5)
