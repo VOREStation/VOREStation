@@ -40,7 +40,7 @@
 				"You feel giddy.",
 				"You're so happy suddenly, you almost want to dance and sing.",
 				"You feel like the world is out to help you.")
-		else if(BAD_FEELING)
+		if(BAD_FEELING)
 			messages = list("You feel worried.",
 				"Something doesn't feel right.",
 				"You get a strange feeling in your gut.",
