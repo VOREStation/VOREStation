@@ -1,4 +1,4 @@
-var/global/list/micro_tunnels = list()
+GLOBAL_LIST_EMPTY(micro_tunnels)
 
 /obj/structure/micro_tunnel
 	name = "mouse hole"
@@ -22,7 +22,7 @@ var/global/list/micro_tunnels = list()
 
 /obj/structure/micro_tunnel/New()
 	. = ..()
-	micro_tunnels.Add(src)
+	GLOB.micro_tunnels.Add(src)
 
 /obj/structure/micro_tunnel/Initialize()
 	. = ..()
@@ -40,7 +40,7 @@ var/global/list/micro_tunnels = list()
 		thing.forceMove(get_turf(src.loc))
 		thing.cancel_camera()
 
-	micro_tunnels.Remove(src)
+	GLOB.micro_tunnels.Remove(src)
 
 	return ..()
 
@@ -71,7 +71,7 @@ var/global/list/micro_tunnels = list()
 		if(myturf.z in P.expected_z_levels)
 			planet = P
 		else
-	for(var/obj/structure/micro_tunnel/t in micro_tunnels)
+	for(var/obj/structure/micro_tunnel/t in GLOB.micro_tunnels)
 		if(t == src)
 			continue
 		if(magic || t.magic)

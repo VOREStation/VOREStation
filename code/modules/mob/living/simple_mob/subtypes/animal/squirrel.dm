@@ -155,7 +155,7 @@
 /mob/living/simple_mob/vore/squirrel/Initialize()
 	. = ..()
 	if(do_seasons)
-		switch(world_time_season)
+		switch(GLOB.world_time_season)
 			if("spring")
 				if(prob(1))
 					winterize()

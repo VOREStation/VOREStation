@@ -33,7 +33,7 @@ var/list/gurgled_overlays = list(
 		gurgled = TRUE
 		gurgled_color = contamination_color
 		add_overlay(gurgled_overlays[gurgled_color])
-		var/list/pickfrom = contamination_flavors[contamination_flavor]
+		var/list/pickfrom = GLOB.contamination_flavors[contamination_flavor]
 		var/gurgleflavor = pick(pickfrom)
 		cleanname = src.name
 		cleandesc = src.desc

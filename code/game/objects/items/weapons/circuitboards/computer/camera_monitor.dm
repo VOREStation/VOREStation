@@ -24,7 +24,7 @@
 
 /obj/item/circuitboard/security/engineering/New()
 	..()
-	network = engineering_networks
+	network = GLOB.engineering_networks
 
 /obj/item/circuitboard/security/mining
 	name = T_BOARD("mining camera monitor")

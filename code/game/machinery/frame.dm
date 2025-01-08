@@ -1,16 +1,16 @@
-/var/global/list/construction_frame_wall
-/var/global/list/construction_frame_floor
+GLOBAL_LIST(construction_frame_wall)
+GLOBAL_LIST(construction_frame_floor)
 
 /proc/populate_frame_types()
 	//Create global frame type list if it hasn't been made already.
-	construction_frame_wall = list()
-	construction_frame_floor = list()
+	GLOB.construction_frame_wall = list()
+	GLOB.construction_frame_floor = list()
 	for(var/R in subtypesof(/datum/frame/frame_types))
 		var/datum/frame/frame_types/type = new R
 		if(type.frame_style == FRAME_STYLE_WALL)
-			construction_frame_wall += type
+			GLOB.construction_frame_wall += type
 		else
-			construction_frame_floor += type
+			GLOB.construction_frame_floor += type
 
 //////////////////////////////
 // Frame Type Datum - Describes the frame structures that can be created from a frame item.

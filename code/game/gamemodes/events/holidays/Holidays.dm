@@ -305,7 +305,7 @@ var/global/list/Holiday = list() //Holidays are lists now, so we can have more t
 
 			message_admins(span_notice("DEBUG: Event: Egg spawned at [Egg.loc] ([Egg.x],[Egg.y],[Egg.z])"))*/
 		if("End of the World")
-			if(prob(eventchance))	GameOver()
+			if(prob(GLOB.eventchance))	GameOver()
 
 		if("Christmas","Christmas Eve")
-			if(prob(eventchance))	ChristmasEvent()
+			if(prob(GLOB.eventchance))	ChristmasEvent()

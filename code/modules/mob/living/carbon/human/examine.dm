@@ -80,7 +80,7 @@
 
 	var/gender_hidden = (skip_gear & EXAMINE_SKIPJUMPSUIT) && (skip_body & EXAMINE_SKIPFACE)
 	var/gender_key = get_visible_gender(user, gender_hidden)
-	var/datum/gender/T = gender_datums[gender_key]
+	var/datum/gender/T = GLOB.gender_datums[gender_key]
 	if (!T)
 		CRASH({"Null gender datum on examine: mob="[src]",hidden="[gender_hidden]",key="[gender_key]",bio="[gender]",id="[identifying_gender]""})
 

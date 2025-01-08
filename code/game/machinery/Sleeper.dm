@@ -308,7 +308,7 @@
 			if(!occupant)
 				return
 			if(occupant.stat == DEAD)
-				var/datum/gender/G = gender_datums[occupant.get_visible_gender()]
+				var/datum/gender/G = GLOB.gender_datums[occupant.get_visible_gender()]
 				to_chat(ui.user, span_danger("This person has no life to preserve anymore. Take [G.him] to a department capable of reanimating [G.him]."))
 				return
 			var/chemical = params["chemid"]
