@@ -292,9 +292,6 @@ var/list/toxic_reagents = list(TOXIN_PATH)
 	if (get_dist(user, holder) > 1)
 		to_chat(user, span_filter_notice("[span_red("You can't reach [holder] from here.")]"))
 		return
-	if(ishuman(user) && user:gloves)
-		to_chat(user, span_filter_notice(span_bold("You touch [holder]") + " with your gloved hands, [pick("but nothing of note happens","but nothing happens","but nothing interesting happens","but you notice nothing different","but nothing seems to have happened")]."))
-		return
 
 	var/triggered = FALSE
 

@@ -159,9 +159,12 @@
 			atom_say("Cannot harvest. No energy emitting from source.")
 			return
 		var/effects_to_show = active_effects
+		for(var/datum/artifact_effect/selected_effect in effects_to_show) //We check to see if we're harvestable. If not, remove it from the list.
+			if(selected_effect.harvestable == FALSE)
+				effects_to_show -= selected_effect
 
 		if(!active_effects.len)
-			atom_say("Cannot harvest. No energy emitting from source.")
+			atom_say("Cannot harvest. No harvestable energy emitting from source.")
 			return
 
 		var/artifact_selection = tgui_input_list(user, "Which effect do you wish to harvest?", "Effect Selection", effects_to_show)

@@ -9,6 +9,7 @@
 	var/chargelevelmax = 10
 	var/artifact_id = ""
 	var/effect_type = 0 //This is what the artifact does. This is used to generating a description when inspected.
+	var/harvestable = 1 //If we can be harvested or not
 
 	var/req_type = /atom/movable
 
