@@ -23,7 +23,7 @@
 	var/created_for
 
 /mob/new_player/New()
-	mob_list += src
+	GLOB.mob_list += src
 	add_verb(src, /mob/proc/insidePanel)
 	initialized = TRUE // Explicitly don't use Initialize().  New players join super early and use New()
 
@@ -136,7 +136,7 @@
 		totalPlayers = 0
 		totalPlayersReady = 0
 		var/datum/job/refJob = null
-		for(var/mob/new_player/player in player_list)
+		for(var/mob/new_player/player in GLOB.player_list)
 			refJob = player.client.prefs.get_highest_job()
 			var/obfuscate_key = player.client.prefs.read_preference(/datum/preference/toggle/obfuscate_key)
 			var/obfuscate_job = player.client.prefs.read_preference(/datum/preference/toggle/obfuscate_job)

@@ -10,7 +10,7 @@
 	obfuscation = new /datum/obfuscation/cult()
 
 /datum/chunk/cult/acquireVisibleTurfs(var/list/visible)
-	for(var/mob/living/L in living_mob_list)
+	for(var/mob/living/L in GLOB.living_mob_list)
 		for(var/turf/t in L.seen_cult_turfs())
 			visible[t] = t
 
@@ -18,7 +18,7 @@
 	return seen_turfs_in_range(src, 3)
 
 /mob/living/carbon/human/seen_cult_turfs()
-	if(mind in cult.current_antagonists)
+	if(mind in GLOB.cult.current_antagonists)
 		return seen_turfs_in_range(src, world.view)
 	return ..()
 

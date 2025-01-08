@@ -30,10 +30,10 @@
 		return
 
 	if (M.stat !=2)
-		if(cult && (M.mind in cult.current_antagonists) && prob(33))
+		if(GLOB.cult && (M.mind in GLOB.cult.current_antagonists) && prob(33))
 			to_chat(M, span_danger("The power of [src] clears your mind of the cult's influence!"))
 			to_chat(user, span_danger("You wave [src] over [M]'s head and see their eyes become clear, their mind returning to normal."))
-			cult.remove_antagonist(M.mind)
+			GLOB.cult.remove_antagonist(M.mind)
 			M.visible_message(span_danger("\The [user] waves \the [src] over \the [M]'s head."))
 		else if(prob(10))
 			to_chat(user, span_danger("The rod slips in your hand."))

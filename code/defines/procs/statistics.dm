@@ -3,7 +3,7 @@
 		return
 	var/admincount = GLOB.admins.len
 	var/playercount = 0
-	for(var/mob/M in player_list)
+	for(var/mob/M in GLOB.player_list)
 		if(M.client)
 			playercount += 1
 	establish_db_connection()
@@ -103,12 +103,12 @@
 
 //This proc is used for feedback. It is executed at round end.
 /proc/sql_commit_feedback()
-	if(!blackbox)
+	if(!GLOB.blackbox)
 		log_game("Round ended without a blackbox recorder. No feedback was sent to the database.")
 		return
 
 	//content is a list of lists. Each item in the list is a list with two fields, a variable name and a value. Items MUST only have these two values.
-	var/list/datum/feedback_variable/content = blackbox.get_round_feedback()
+	var/list/datum/feedback_variable/content = GLOB.blackbox.get_round_feedback()
 
 	if(!content)
 		log_game("Round ended without any feedback being generated. No feedback was sent to the database.")

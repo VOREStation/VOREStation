@@ -1,4 +1,4 @@
-var/static/list/fake_sunlight_zs = list()
+GLOBAL_LIST_EMPTY(fake_sunlight_zs)
 
 /obj/effect/fake_sun
 	name = "fake sun"
@@ -142,7 +142,7 @@ var/static/list/fake_sunlight_zs = list()
 	sun.set_alpha(round(CLAMP01(choice["brightness"])*255,1))
 
 	if(do_sun)
-		fake_sunlight_zs |= z
+		GLOB.fake_sunlight_zs |= z
 		for(var/turf/T as anything in turfs_to_use)
 			sun.apply_to_turf(T)
 

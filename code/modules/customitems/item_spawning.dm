@@ -17,7 +17,7 @@
 // If hooded, have [kit_icon]_suit_t in both files for the hood-up version.
 // If not using the default overlay, have [kit_icon]_light in both files for custom light overlays.
 
-/var/list/custom_items = list()
+GLOBAL_LIST_EMPTY(custom_items)
 
 /datum/custom_item
 	var/assoc_key
@@ -129,9 +129,9 @@
 
 		if(findtext(line, "{", 1, 2) || findtext(line, "}", 1, 2)) // New block!
 			if(current_data && current_data.assoc_key)
-				if(!custom_items[current_data.assoc_key])
-					custom_items[current_data.assoc_key] = list()
-				var/list/L = custom_items[current_data.assoc_key]
+				if(!GLOB.custom_items[current_data.assoc_key])
+					GLOB.custom_items[current_data.assoc_key] = list()
+				var/list/L = GLOB.custom_items[current_data.assoc_key]
 				L |= current_data
 			current_data = null
 
@@ -177,7 +177,7 @@
 
 //gets the relevant list for the key from the listlist if it exists, check to make sure they are meant to have it and then calls the giving function
 /proc/equip_custom_items(mob/living/carbon/human/M)
-	var/list/key_list = custom_items[M.ckey]
+	var/list/key_list = GLOB.custom_items[M.ckey]
 	if(!key_list || key_list.len < 1)
 		return
 

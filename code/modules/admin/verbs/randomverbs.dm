@@ -1,4 +1,4 @@
-/client/proc/cmd_admin_drop_everything(mob/M as mob in mob_list)
+/client/proc/cmd_admin_drop_everything(mob/M as mob in GLOB.mob_list)
 	set category = null
 	set name = "Drop Everything"
 	if(!holder)
@@ -17,7 +17,7 @@
 	message_admins("[key_name_admin(usr)] made [key_name_admin(M)] drop everything!", 1)
 	feedback_add_details("admin_verb","DEVR") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/client/proc/cmd_admin_prison(mob/M as mob in mob_list)
+/client/proc/cmd_admin_prison(mob/M as mob in GLOB.mob_list)
 	set category = "Admin.Game"
 	set name = "Prison"
 	if(!holder)
@@ -79,7 +79,7 @@
 	else
 		to_chat(src, "No matches for that age range found.")
 
-/client/proc/cmd_admin_subtle_message(mob/M as mob in mob_list)
+/client/proc/cmd_admin_subtle_message(mob/M as mob in GLOB.mob_list)
 	set category = "Admin"
 	set name = "Subtle Message"
 
@@ -154,7 +154,7 @@
 	admin_ticket_log(M, msg)
 	feedback_add_details("admin_verb","DIRN") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/client/proc/cmd_admin_godmode(mob/M as mob in mob_list)
+/client/proc/cmd_admin_godmode(mob/M as mob in GLOB.mob_list)
 	set category = "Admin.Game"
 	set name = "Godmode"
 
@@ -256,7 +256,7 @@ Ccomp's first proc.
 
 	var/list/mobs = list()
 	var/list/ghosts = list()
-	var/list/sortmob = sortAtom(mob_list)                           // get the mob list.
+	var/list/sortmob = sortAtom(GLOB.mob_list)                           // get the mob list.
 	var/any=0
 	for(var/mob/observer/dead/M in sortmob)
 		mobs.Add(M)                                             //filter it where it's only ghosts
@@ -445,7 +445,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 
 	//Well you're not reloading their job or they never had one.
 	if(!charjob)
-		var/pickjob = tgui_input_list(src,"Pick a job to assign them (or none).","Job Select", joblist + "-No Job-", "-No Job-")
+		var/pickjob = tgui_input_list(src,"Pick a job to assign them (or none).","Job Select", GLOB.joblist + "-No Job-", "-No Job-")
 		if(!pickjob)
 			return
 		if(pickjob != "-No Job-")
@@ -603,14 +603,14 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	var/input = sanitize(tgui_input_text(usr, "Please enter anything you want the AI to do. Anything. Serious.", "What?", ""))
 	if(!input)
 		return
-	for(var/mob/living/silicon/ai/M in mob_list)
+	for(var/mob/living/silicon/ai/M in GLOB.mob_list)
 		if (M.stat == 2)
 			to_chat(usr, "Upload failed. No signal is being detected from the AI.")
 		else if (M.see_in_dark == 0)
 			to_chat(usr, "Upload failed. Only a faint signal is being detected from the AI, and it is not responding to our requests. It may be low on power.")
 		else
 			M.add_ion_law(input)
-			for(var/mob/living/silicon/ai/O in mob_list)
+			for(var/mob/living/silicon/ai/O in GLOB.mob_list)
 				to_chat(O,input + span_red("... LAWS UPDATED!"))
 				O.show_laws()
 
@@ -622,7 +622,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		command_announcement.Announce("Ion storm detected near the [station_name()]. Please check all AI-controlled equipment for errors.", "Anomaly Alert", new_sound = 'sound/AI/ionstorm.ogg')
 	feedback_add_details("admin_verb","IONC") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/client/proc/cmd_admin_rejuvenate(mob/living/M as mob in mob_list)
+/client/proc/cmd_admin_rejuvenate(mob/living/M as mob in GLOB.mob_list)
 	set category = "Admin.Game"
 	set name = "Rejuvenate"
 
@@ -750,7 +750,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	else
 		return
 
-/client/proc/cmd_admin_gib(mob/M as mob in mob_list)
+/client/proc/cmd_admin_gib(mob/M as mob in GLOB.mob_list)
 	set category = "Fun.Do Not"
 	set name = "Gib"
 
@@ -801,7 +801,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	switch(tgui_alert(usr, "How would you like to ban someone today?", "Manual Ban", "Key List", "Enter Manually", "Cancel"))
 		if("Key List")
 			var/list/keys = list()
-			for(var/mob/M in player_list)
+			for(var/mob/M in GLOB.player_list)
 				keys += M.client
 			var/selection = tgui_input_list(usr, "Please, select a player!", "Admin Jumping", keys)
 			if(!selection)
@@ -852,7 +852,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	// I will both remove their SVN access and permanently ban them from my servers.
 	return
 
-/client/proc/cmd_admin_check_contents(mob/living/M as mob in mob_list)
+/client/proc/cmd_admin_check_contents(mob/living/M as mob in GLOB.mob_list)
 	set category = "Admin.Investigate"
 	set name = "Check Contents"
 	set popup_menu = FALSE //VOREStation Edit - Declutter.
@@ -980,7 +980,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	log_admin("[key_name(src)] has [emergency_shuttle.deny_shuttle ? "denied" : "allowed"] the shuttle to be called.")
 	message_admins("[key_name_admin(usr)] has [emergency_shuttle.deny_shuttle ? "denied" : "allowed"] the shuttle to be called.")
 
-/client/proc/cmd_admin_attack_log(mob/M as mob in mob_list)
+/client/proc/cmd_admin_attack_log(mob/M as mob in GLOB.mob_list)
 	set category = "Admin.Logs"
 	set name = "Attack Log"
 
@@ -1041,7 +1041,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		message_admins("Admin [key_name_admin(usr)] has disabled random events.", 1)
 	feedback_add_details("admin_verb","TRE") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/client/proc/despawn_player(var/mob/M in living_mob_list)
+/client/proc/despawn_player(var/mob/M in GLOB.living_mob_list)
 	set name = "Cryo Player"
 	set category = "Admin.Game"
 	set desc = "Removes a player from the round as if they'd cryo'd."
@@ -1153,7 +1153,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	if(!check_rights(R_SPAWN))
 		return
 
-	var/mob/living/L = tgui_input_list(usr, "Select the mob to drop:", "Mob Picker", living_mob_list)
+	var/mob/living/L = tgui_input_list(usr, "Select the mob to drop:", "Mob Picker", GLOB.living_mob_list)
 	if(!L)
 		return
 

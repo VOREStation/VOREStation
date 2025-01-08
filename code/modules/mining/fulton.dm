@@ -1,4 +1,4 @@
-var/global/list/total_extraction_beacons = list()
+GLOBAL_LIST_EMPTY(total_extraction_beacons)
 
 /obj/item/extraction_pack
 	name = "fulton extraction pack"
@@ -18,7 +18,7 @@ var/global/list/total_extraction_beacons = list()
 
 /obj/item/extraction_pack/attack_self(mob/user)
 	var/list/possible_beacons = list()
-	for(var/obj/structure/extraction_point/EP as anything in global.total_extraction_beacons)
+	for(var/obj/structure/extraction_point/EP as anything in GLOB.total_extraction_beacons)
 		if(EP.beacon_network in beacon_networks)
 			possible_beacons += EP
 
@@ -162,10 +162,10 @@ var/global/list/total_extraction_beacons = list()
 /obj/structure/extraction_point/Initialize()
 	. = ..()
 	name += " ([rand(100,999)]) ([get_area_name(src, TRUE)])"
-	global.total_extraction_beacons += src
+	GLOB.total_extraction_beacons += src
 
 /obj/structure/extraction_point/Destroy()
-	global.total_extraction_beacons -= src
+	GLOB.total_extraction_beacons -= src
 	..()
 
 /obj/effect/extraction_holder

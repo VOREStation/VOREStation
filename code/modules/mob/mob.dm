@@ -1,8 +1,8 @@
 /mob/Destroy()//This makes sure that mobs withGLOB.clients/keys are not just deleted from the game.
-	mob_list -= src
-	dead_mob_list -= src
-	living_mob_list -= src
-	player_list -= src
+	GLOB.mob_list -= src
+	GLOB.dead_mob_list -= src
+	GLOB.living_mob_list -= src
+	GLOB.player_list -= src
 	unset_machine()
 	QDEL_NULL(hud_used)
 	clear_fullscreen()
@@ -56,11 +56,11 @@
 	zone_sel = null
 
 /mob/Initialize()
-	mob_list += src
+	GLOB.mob_list += src
 	if(stat == DEAD)
-		dead_mob_list += src
+		GLOB.dead_mob_list += src
 	else
-		living_mob_list += src
+		GLOB.living_mob_list += src
 	lastarea = get_area(src)
 	set_focus(src) // VOREStation Add - Key Handling
 	hook_vr("mob_new",list(src)) //VOREStation Code
@@ -163,7 +163,7 @@
 			M.create_chat_message(src, "[runemessage || message]", FALSE, list("emote"), audible = FALSE)
 
 /mob/proc/findname(msg)
-	for(var/mob/M in mob_list)
+	for(var/mob/M in GLOB.mob_list)
 		if (M.real_name == text("[]", msg))
 			return M
 	return 0
@@ -492,7 +492,7 @@
 	targets += observe_list_format(GLOB.nuke_disks)
 	targets += observe_list_format(all_singularities)
 	targets += getmobs()
-	targets += observe_list_format(sortAtom(mechas_list))
+	targets += observe_list_format(sortAtom(GLOB.mechas_list))
 	targets += observe_list_format(SSshuttles.ships)
 
 	client.perspective = EYE_PERSPECTIVE

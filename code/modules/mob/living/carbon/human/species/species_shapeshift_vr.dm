@@ -12,8 +12,8 @@
 	last_special = world.time + 10
 	// Construct the list of names allowed for this user.
 	var/list/pretty_ear_styles = list("Normal" = null)
-	for(var/path in ear_styles_list)
-		var/datum/sprite_accessory/ears/instance = ear_styles_list[path]
+	for(var/path in GLOB.ear_styles_list)
+		var/datum/sprite_accessory/ears/instance = GLOB.ear_styles_list[path]
 		if((!instance.ckeys_allowed) || (ckey in instance.ckeys_allowed))
 			pretty_ear_styles[instance.name] = path
 
@@ -23,7 +23,7 @@
 		return
 
 	//Set new style
-	ear_style = ear_styles_list[pretty_ear_styles[new_ear_style]]
+	ear_style = GLOB.ear_styles_list[pretty_ear_styles[new_ear_style]]
 
 	//Allow color picks
 	var/current_pri_color = rgb(r_ears,g_ears,b_ears)
@@ -66,8 +66,8 @@
 
 	// Construct the list of names allowed for this user.
 	var/list/pretty_ear_styles = list("Normal" = null)
-	for(var/path in ear_styles_list)
-		var/datum/sprite_accessory/ears/instance = ear_styles_list[path]
+	for(var/path in GLOB.ear_styles_list)
+		var/datum/sprite_accessory/ears/instance = GLOB.ear_styles_list[path]
 		if((!instance.ckeys_allowed) || (ckey in instance.ckeys_allowed))
 			pretty_ear_styles[instance.name] = path
 
@@ -75,7 +75,7 @@
 	var/new_ear_style = tgui_input_list(src, "Pick some ears!", "Character Preference", pretty_ear_styles)
 	if(!new_ear_style)
 		return
-	ear_secondary_style = ear_styles_list[pretty_ear_styles[new_ear_style]]
+	ear_secondary_style = GLOB.ear_styles_list[pretty_ear_styles[new_ear_style]]
 
 	// Handle color picks
 	if(ear_secondary_style)
@@ -98,8 +98,8 @@
 	last_special = world.time + 10
 	// Construct the list of names allowed for this user.
 	var/list/pretty_tail_styles = list("Normal" = null)
-	for(var/path in tail_styles_list)
-		var/datum/sprite_accessory/tail/instance = tail_styles_list[path]
+	for(var/path in GLOB.tail_styles_list)
+		var/datum/sprite_accessory/tail/instance = GLOB.tail_styles_list[path]
 		if((!instance.ckeys_allowed) || (ckey in instance.ckeys_allowed))
 			pretty_tail_styles[instance.name] = path
 
@@ -109,7 +109,7 @@
 		return
 
 	//Set new style
-	tail_style = tail_styles_list[pretty_tail_styles[new_tail_style]]
+	tail_style = GLOB.tail_styles_list[pretty_tail_styles[new_tail_style]]
 
 	//Allow color picks
 	var/current_pri_color = rgb(r_tail,g_tail,b_tail)
@@ -152,8 +152,8 @@
 	last_special = world.time + 10
 	// Construct the list of names allowed for this user.
 	var/list/pretty_wing_styles = list("None" = null)
-	for(var/path in wing_styles_list)
-		var/datum/sprite_accessory/wing/instance = wing_styles_list[path]
+	for(var/path in GLOB.wing_styles_list)
+		var/datum/sprite_accessory/wing/instance = GLOB.wing_styles_list[path]
 		if((!instance.ckeys_allowed) || (ckey in instance.ckeys_allowed))
 			pretty_wing_styles[instance.name] = path
 
@@ -163,7 +163,7 @@
 		return
 
 	//Set new style
-	wing_style = wing_styles_list[pretty_wing_styles[new_wing_style]]
+	wing_style = GLOB.wing_styles_list[pretty_wing_styles[new_wing_style]]
 
 	//Allow color picks
 	var/current_color = rgb(r_wing,g_wing,b_wing)
@@ -219,7 +219,7 @@
 
 	dna.base_species = new_species
 	species.base_species = new_species
-	wrapped_species_by_ref["\ref[src]"] = new_species
+	GLOB.wrapped_species_by_ref["\ref[src]"] = new_species
 	if (visible)
 		visible_message(span_filter_notice(span_bold("\The [src]") + " shifts and contorts, taking the form of \a [new_species]!"))
 		regenerate_icons()

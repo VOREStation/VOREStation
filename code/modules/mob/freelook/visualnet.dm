@@ -10,10 +10,10 @@
 
 /datum/visualnet/New()
 	..()
-	visual_nets += src
+	GLOB.visual_nets += src
 
 /datum/visualnet/Destroy()
-	visual_nets -= src
+	GLOB.visual_nets -= src
 	return ..()
 
 // Checks if a chunk has been Generated in x, y, z.

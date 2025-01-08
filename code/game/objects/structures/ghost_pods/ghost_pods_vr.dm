@@ -1,6 +1,6 @@
 /obj/structure/ghost_pod/Destroy()
-	if(src in active_ghost_pods)
-		active_ghost_pods -= src
+	if(src in GLOB.active_ghost_pods)
+		GLOB.active_ghost_pods -= src
 	..()
 
 /obj/structure/ghost_pod
@@ -47,8 +47,8 @@
 	create_occupant(user)
 
 /obj/structure/ghost_pod/proc/ghostpod_startup(var/notify = FALSE)
-	if(!(src in active_ghost_pods))
-		active_ghost_pods += src
+	if(!(src in GLOB.active_ghost_pods))
+		GLOB.active_ghost_pods += src
 	if(notify)
 		trigger()
 

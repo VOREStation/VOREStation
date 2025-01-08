@@ -1,7 +1,8 @@
 /client
 		var/datum/mentor/mentorholder = null
 
-var/list/mentor_datums = list()
+GLOBAL_LIST_EMPTY(mentor_datums)
+GLOBAL_PROTECT(mentor_datums)
 
 var/list/mentor_verbs_default = list(
 	/client/proc/cmd_mentor_ticket_panel,
@@ -17,7 +18,7 @@ var/list/mentor_verbs_default = list(
 		error("Mentor datum created without a ckey argument. Datum has been deleted")
 		qdel(src)
 		return
-	mentor_datums[ckey] = src
+	GLOB.mentor_datums[ckey] = src
 
 /datum/mentor/proc/associate(client/C)
 	if(istype(C))
@@ -31,7 +32,7 @@ var/list/mentor_verbs_default = list(
 		GLOB.mentors -= owner
 		owner.remove_mentor_verbs()
 		owner.mentorholder = null
-		mentor_datums[owner.ckey] = null
+		GLOB.mentor_datums[owner.ckey] = null
 		qdel(src)
 
 /client/proc/add_mentor_verbs()

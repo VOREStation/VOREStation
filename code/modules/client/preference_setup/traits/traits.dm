@@ -1,6 +1,6 @@
-var/list/trait_datums = list() // Assoc list using name = instance.  Traits are saved as a list of strings.
-var/list/trait_type_to_ref = list() // Similar to above but uses paths, which is more reliable but more risky to save.
-var/list/trait_categories = list() // The categories available for the trait menu.
+GLOBAL_LIST_EMPTY(trait_datums) // Assoc list using name = instance.  Traits are saved as a list of strings.
+GLOBAL_LIST_EMPTY(trait_type_to_ref) // Similar to above but uses paths, which is more reliable but more risky to save.
+GLOBAL_LIST_EMPTY(trait_categories) // The categories available for the trait menu.
 
 /hook/startup/proc/populate_trait_list()
 

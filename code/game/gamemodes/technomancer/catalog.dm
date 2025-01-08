@@ -330,7 +330,7 @@ var/list/all_technomancer_assistance = subtypesof(/datum/technomancer/assistance
 					budget -= desired_object.cost
 					to_chat(H, span_notice("You have just bought \a [desired_object.name]."))
 					var/obj/O = new desired_object.obj_path(get_turf(H))
-					technomancer_belongings.Add(O) // Used for the Track spell.
+					GLOB.technomancer_belongings.Add(O) // Used for the Track spell.
 
 				else //Can't afford.
 					to_chat(H, span_danger("You can't afford that!"))

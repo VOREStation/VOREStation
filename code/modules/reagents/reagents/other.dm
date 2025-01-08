@@ -361,8 +361,8 @@
 /datum/reagent/water/holywater/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
 	..()
 	if(ishuman(M)) // Any location
-		if(M.mind && cult.is_antagonist(M.mind) && prob(10))
-			cult.remove_antagonist(M.mind)
+		if(M.mind && GLOB.cult.is_antagonist(M.mind) && prob(10))
+			GLOB.cult.remove_antagonist(M.mind)
 
 /datum/reagent/water/holywater/touch_turf(var/turf/T)
 	..()

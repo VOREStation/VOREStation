@@ -112,7 +112,7 @@ var/global/list/datum/dna/gene/dna_genes[0]
 	new_dna.custom_heat=custom_heat //VOREStation Edit
 	new_dna.custom_cold=custom_cold //VOREStation Edit
 	new_dna.digitigrade=src.digitigrade //VOREStation Edit
-	var/list/body_markings_genetic = (body_markings - body_marking_nopersist_list)
+	var/list/body_markings_genetic = (body_markings - GLOB.body_marking_nopersist_list)
 	new_dna.body_markings=body_markings_genetic.Copy()
 	for(var/b=1;b<=DNA_SE_LENGTH;b++)
 		new_dna.SE[b]=SE[b]
@@ -156,21 +156,21 @@ var/global/list/datum/dna/gene/dna_genes[0]
 	// Demi Ears
 	var/ear_style = 0
 	if(character.ear_style)
-		ear_style = ear_styles_list.Find(character.ear_style.type)
+		ear_style = GLOB.ear_styles_list.Find(character.ear_style.type)
 
 	var/ear_secondary_style = 0
 	if(character.ear_secondary_style)
-		ear_secondary_style = ear_styles_list.Find(character.ear_secondary_style.type)
+		ear_secondary_style = GLOB.ear_styles_list.Find(character.ear_secondary_style.type)
 
 	// Demi Tails
 	var/tail_style = 0
 	if(character.tail_style)
-		tail_style = tail_styles_list.Find(character.tail_style.type)
+		tail_style = GLOB.tail_styles_list.Find(character.tail_style.type)
 
 	// Demi Wings
 	var/wing_style = 0
 	if(character.wing_style)
-		wing_style = wing_styles_list.Find(character.wing_style.type)
+		wing_style = GLOB.wing_styles_list.Find(character.wing_style.type)
 
 	// Playerscale (This assumes list is sorted big->small)
 	var/size_multiplier = GLOB.player_sizes_list.len // If fail to find, take smallest
@@ -208,11 +208,11 @@ var/global/list/datum/dna/gene/dna_genes[0]
 	src.digitigrade = character.digitigrade
 
 	// +1 to account for the none-of-the-above possibility
-	SetUIValueRange(DNA_UI_EAR_STYLE,             ear_style + 1,               ear_styles_list.len  + 1,  1)
-	SetUIValueRange(DNA_UI_EAR_SECONDARY_STYLE,	  ear_secondary_style + 1,     ear_styles_list.len  + 1,  1)
-	SetUIValueRange(DNA_UI_TAIL_STYLE,	          tail_style + 1,              tail_styles_list.len + 1,  1)
+	SetUIValueRange(DNA_UI_EAR_STYLE,             ear_style + 1,               GLOB.ear_styles_list.len  + 1,  1)
+	SetUIValueRange(DNA_UI_EAR_SECONDARY_STYLE,	  ear_secondary_style + 1,     GLOB.ear_styles_list.len  + 1,  1)
+	SetUIValueRange(DNA_UI_TAIL_STYLE,	          tail_style + 1,              GLOB.tail_styles_list.len + 1,  1)
 	SetUIValueRange(DNA_UI_PLAYERSCALE,           size_multiplier,             GLOB.player_sizes_list.len,     1)
-	SetUIValueRange(DNA_UI_WING_STYLE,            wing_style + 1,              wing_styles_list.len + 1,  1)
+	SetUIValueRange(DNA_UI_WING_STYLE,            wing_style + 1,              GLOB.wing_styles_list.len + 1,  1)
 
 	SetUIValueRange(DNA_UI_TAIL_R,    character.r_tail,    255,    1)
 	SetUIValueRange(DNA_UI_TAIL_G,    character.g_tail,    255,    1)

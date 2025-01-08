@@ -185,19 +185,19 @@
 	if(CONFIG_GET(flag/ert_admin_call_only)) return 1
 	return ticker.mode && ticker.mode.ert_disabled
 
-var/global/maint_all_access = 0
+GLOBAL_VAR_INIT(maint_all_access, 0)
 
 /proc/make_maint_all_access()
-	maint_all_access = 1
+	GLOB.maint_all_access = 1
 	to_world(span_alert(span_red(span_huge("Attention!"))))
 	to_world(span_alert(span_red("The maintenance access requirement has been revoked on all airlocks.")))
 
 /proc/revoke_maint_all_access()
-	maint_all_access = 0
+	GLOB.maint_all_access = 0
 	to_world(span_alert(span_red(span_huge("Attention!"))))
 	to_world(span_alert(span_red("The maintenance access requirement has been readded on all maintenance airlocks.")))
 
 /obj/machinery/door/airlock/allowed(mob/M)
-	if(maint_all_access && src.check_access_list(list(access_maint_tunnels)))
+	if(GLOB.maint_all_access && src.check_access_list(list(access_maint_tunnels)))
 		return 1
 	return ..(M)

@@ -18,7 +18,7 @@
 
 // Sometime down the road it would be great to make all of these 'ask ghosts if they want to be X' procs into a generic datum.
 /obj/item/slime_cube/proc/request_player()
-	for(var/mob/observer/dead/O in player_list)
+	for(var/mob/observer/dead/O in GLOB.player_list)
 		if(!O.MayRespawn())
 			continue
 		if(O.client)

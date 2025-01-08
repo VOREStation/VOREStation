@@ -71,11 +71,11 @@
 			delete_me = 1
 			return
 		if("endgame_exit")
-			endgame_safespawns += loc
+			GLOB.endgame_safespawns += loc
 			delete_me = 1
 			return
 		if("bluespacerift")
-			endgame_exits += loc
+			GLOB.endgame_exits += loc
 			delete_me = 1
 			return
 		//VOREStation Add Start
@@ -85,7 +85,7 @@
 			return
 		//VORE Station Add End
 
-	landmarks_list += src
+	GLOB.landmarks_list += src
 	return 1
 
 /obj/effect/landmark/proc/delete()
@@ -98,7 +98,7 @@
 
 /obj/effect/landmark/Destroy(var/force = FALSE)
 	if(delete_me || force)
-		landmarks_list -= src
+		GLOB.landmarks_list -= src
 		return ..()
 	return QDEL_HINT_LETMELIVE
 

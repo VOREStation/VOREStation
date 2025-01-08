@@ -18,7 +18,7 @@
 
 // HIVE MIND UPLOAD/DOWNLOAD DNA
 
-var/list/datum/dna/hivemind_bank = list()
+GLOBAL_LIST_EMPTY_TYPED(hivemind_bank, /datum/dna)
 
 /mob/proc/changeling_hiveupload()
 	set category = "Changeling"
@@ -30,7 +30,7 @@ var/list/datum/dna/hivemind_bank = list()
 
 	var/list/names = list()
 	for(var/datum/absorbed_dna/DNA in changeling.absorbed_dna)
-		if(!(DNA in hivemind_bank))
+		if(!(DNA in GLOB.hivemind_bank))
 			names += DNA.name
 
 	if(names.len <= 0)
@@ -45,7 +45,7 @@ var/list/datum/dna/hivemind_bank = list()
 		return
 
 	changeling.chem_charges -= 10
-	hivemind_bank += chosen_dna
+	GLOB.hivemind_bank += chosen_dna
 	to_chat(src, span_notice("We channel the DNA of [S] to the air."))
 	feedback_add_details("changeling_powers","HU")
 	return 1
@@ -59,7 +59,7 @@ var/list/datum/dna/hivemind_bank = list()
 	if(!changeling)	return
 
 	var/list/names = list()
-	for(var/datum/absorbed_dna/DNA in hivemind_bank)
+	for(var/datum/absorbed_dna/DNA in GLOB.hivemind_bank)
 		if(!(DNA in changeling.absorbed_dna))
 			names[DNA.name] = DNA
 

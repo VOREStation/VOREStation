@@ -10,7 +10,7 @@
 	. = ..()
 	if(!reference)
 //		testing("First overmap descriptor, name: [name]")
-		for(var/obj/effect/overmap/visitable/D in visitable_overmap_object_instances)
+		for(var/obj/effect/overmap/visitable/D in GLOB.visitable_overmap_object_instances)
 			if(D.unique_identifier == "Debris Field")
 				if(D.possible_descriptors && islist(D.possible_descriptors))
 					D.possible_descriptors |= list(descriptors)

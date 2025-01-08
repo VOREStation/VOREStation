@@ -1,5 +1,5 @@
-var/list/loadout_categories = list()
-var/list/gear_datums = list()
+GLOBAL_LIST_EMPTY(loadout_categories)
+GLOBAL_LIST_EMPTY(gear_datums)
 
 /datum/loadout_category
 	var/category = ""
@@ -28,15 +28,15 @@ var/list/gear_datums = list()
 			error("Loadout - Missing path definition: [G]")
 			continue
 
-		if(!loadout_categories[use_category])
-			loadout_categories[use_category] = new /datum/loadout_category(use_category)
-		var/datum/loadout_category/LC = loadout_categories[use_category]
-		gear_datums[use_name] = new G
-		LC.gear[use_name] = gear_datums[use_name]
+		if(!GLOB.loadout_categories[use_category])
+			GLOB.loadout_categories[use_category] = new /datum/loadout_category(use_category)
+		var/datum/loadout_category/LC = GLOB.loadout_categories[use_category]
+		GLOB.gear_datums[use_name] = new G
+		LC.gear[use_name] = GLOB.gear_datums[use_name]
 
-	loadout_categories = sortAssoc(loadout_categories)
-	for(var/loadout_category in loadout_categories)
-		var/datum/loadout_category/LC = loadout_categories[loadout_category]
+	GLOB.loadout_categories = sortAssoc(GLOB.loadout_categories)
+	for(var/loadout_category in GLOB.loadout_categories)
+		var/datum/loadout_category/LC = GLOB.loadout_categories[loadout_category]
 		LC.gear = sortAssoc(LC.gear)
 	return 1
 
@@ -77,8 +77,8 @@ var/list/gear_datums = list()
 /datum/category_item/player_setup_item/loadout/proc/valid_gear_choices(var/max_cost)
 	. = list()
 	var/mob/preference_mob = preference_mob() //VOREStation Add
-	for(var/gear_name in gear_datums)
-		var/datum/gear/G = gear_datums[gear_name]
+	for(var/gear_name in GLOB.gear_datums)
+		var/datum/gear/G = GLOB.gear_datums[gear_name]
 
 		if(G.whitelisted && CONFIG_GET(flag/loadout_whitelist) != LOADOUT_WHITELIST_OFF && pref.client) //VOREStation Edit.
 			if(CONFIG_GET(flag/loadout_whitelist) == LOADOUT_WHITELIST_STRICT && G.whitelisted != pref.species)
@@ -104,18 +104,18 @@ var/list/gear_datums = list()
 		pref.gear_list = list()
 
 	for(var/gear_name in pref.gear)
-		if(!(gear_name in gear_datums))
+		if(!(gear_name in GLOB.gear_datums))
 			pref.gear -= gear_name
 	var/total_cost = 0
 	for(var/gear_name in pref.gear)
-		if(!gear_datums[gear_name])
+		if(!GLOB.gear_datums[gear_name])
 			to_chat(preference_mob, span_warning("You cannot have more than one of the \the [gear_name]"))
 			pref.gear -= gear_name
 		else if(!(gear_name in valid_gear_choices()))
 			to_chat(preference_mob, span_warning("You cannot take \the [gear_name] as you are not whitelisted for the species or item."))		//Vorestation Edit
 			pref.gear -= gear_name
 		else
-			var/datum/gear/G = gear_datums[gear_name]
+			var/datum/gear/G = GLOB.gear_datums[gear_name]
 			if(total_cost + G.cost > MAX_GEAR_COST)
 				pref.gear -= gear_name
 				to_chat(preference_mob, span_warning("You cannot afford to take \the [gear_name]"))
@@ -128,7 +128,7 @@ var/list/gear_datums = list()
 	var/total_cost = 0
 	if(pref.gear && pref.gear.len)
 		for(var/i = 1; i <= pref.gear.len; i++)
-			var/datum/gear/G = gear_datums[pref.gear[i]]
+			var/datum/gear/G = GLOB.gear_datums[pref.gear[i]]
 			if(G)
 				total_cost += G.cost
 
@@ -141,14 +141,14 @@ var/list/gear_datums = list()
 
 	. += "<tr><td colspan=3><center><b>"
 	var/firstcat = 1
-	for(var/category in loadout_categories)
+	for(var/category in GLOB.loadout_categories)
 
 		if(firstcat)
 			firstcat = 0
 		else
 			. += " |"
 
-		var/datum/loadout_category/LC = loadout_categories[category]
+		var/datum/loadout_category/LC = GLOB.loadout_categories[category]
 		var/category_cost = 0
 		for(var/gear in LC.gear)
 			if(gear in pref.gear)
@@ -164,7 +164,7 @@ var/list/gear_datums = list()
 				. += " <a href='byond://?src=\ref[src];select_category=[category]'>[category] - 0</a> "
 	. += "</b></center></td></tr>"
 
-	var/datum/loadout_category/LC = loadout_categories[current_tab]
+	var/datum/loadout_category/LC = GLOB.loadout_categories[current_tab]
 	. += "<tr><td colspan=3><hr></td></tr>"
 	. += "<tr><td colspan=3><b><center>[LC.category]</center></b></td></tr>"
 	. += "<tr><td colspan=3><hr></td></tr>"
@@ -208,19 +208,19 @@ var/list/gear_datums = list()
 
 /datum/category_item/player_setup_item/loadout/OnTopic(href, href_list, user)
 	if(href_list["toggle_gear"])
-		var/datum/gear/TG = gear_datums[href_list["toggle_gear"]]
+		var/datum/gear/TG = GLOB.gear_datums[href_list["toggle_gear"]]
 		if(TG.display_name in pref.gear)
 			pref.gear -= TG.display_name
 		else
 			var/total_cost = 0
 			for(var/gear_name in pref.gear)
-				var/datum/gear/G = gear_datums[gear_name]
+				var/datum/gear/G = GLOB.gear_datums[gear_name]
 				if(istype(G)) total_cost += G.cost
 			if((total_cost+TG.cost) <= MAX_GEAR_COST)
 				pref.gear += TG.display_name
 		return TOPIC_REFRESH_UPDATE_PREVIEW
 	if(href_list["gear"] && href_list["tweak"])
-		var/datum/gear/gear = gear_datums[url_decode(href_list["gear"])]
+		var/datum/gear/gear = GLOB.gear_datums[url_decode(href_list["gear"])]
 		var/datum/gear_tweak/tweak = locate(href_list["tweak"])
 		if(!tweak || !istype(gear) || !(tweak in gear.gear_tweaks))
 			return TOPIC_NOACTION

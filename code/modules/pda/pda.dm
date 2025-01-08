@@ -1,7 +1,7 @@
 
 //The advanced pea-green monochrome lcd of tomorrow.
 
-var/global/list/obj/item/pda/PDAs = list()
+GLOBAL_LIST_EMPTY_TYPED(PDAs, /obj/item/pda)
 
 /obj/item/pda
 	name = "\improper PDA"
@@ -128,8 +128,8 @@ var/global/list/obj/item/pda/PDAs = list()
 
 /obj/item/pda/New(var/mob/living/carbon/human/H)
 	..()
-	PDAs += src
-	PDAs = sortAtom(PDAs)
+	GLOB.PDAs += src
+	GLOB.PDAs = sortAtom(GLOB.PDAs)
 	update_programs()
 	if(default_cartridge)
 		cartridge = new default_cartridge(src)
@@ -490,7 +490,7 @@ var/global/list/obj/item/pda/PDAs = list()
 	return
 
 /obj/item/pda/Destroy()
-	PDAs -= src
+	GLOB.PDAs -= src
 	if (src.id && prob(100) && !delete_id) //IDs are kept in 90% of the cases //VOREStation Edit - 100% of the cases, excpet when specified otherwise
 		src.id.forceMove(get_turf(src.loc))
 	else

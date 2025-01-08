@@ -10,4 +10,4 @@
 
 /mob/observer/eye/maskEye/New()
 	..()
-	visualnet = cultnet
+	visualnet = GLOB.cultnet

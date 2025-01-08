@@ -23,4 +23,4 @@
 			return send_raw("type=keepalive")
 
 
-var/global/datum/socket_talk/socket_talk
+GLOBAL_DATUM(socket_talk, /datum/socket_talk)

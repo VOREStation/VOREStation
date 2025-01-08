@@ -10,7 +10,7 @@
 
 /datum/event/ianstorm/start()
 	spawn()
-		for(var/mob/living/carbon/human/C in living_mob_list)
+		for(var/mob/living/carbon/human/C in GLOB.living_mob_list)
 			var/turf/T = get_turf(C)
 			if(!T)
 				continue

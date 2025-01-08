@@ -339,11 +339,11 @@
 	if(A.outdoors)
 		return AREA_SPACE
 
-	for (var/type in BUILDABLE_AREA_TYPES)
+	for (var/type in GLOB.BUILDABLE_AREA_TYPES)
 		if ( istype(A,type) )
 			return AREA_SPACE
 
-	for (var/type in SPECIALS)
+	for (var/type in GLOB.SPECIALS)
 		if ( istype(A,type) )
 			return AREA_SPECIAL
 	return AREA_STATION
@@ -592,7 +592,7 @@
 		if(blacklisted_areas[place.type])
 			if(!creator.lastarea != place) //Stops them from merging a blacklisted area to make it larger. Allows them to merge a blacklisted area into an allowed area. (Expansion!)
 				continue
-		if(!BUILDABLE_AREA_TYPES[place.type]) //TODOTODOTODO
+		if(!GLOB.BUILDABLE_AREA_TYPES[place.type]) //TODOTODOTODO
 			can_make_new_area = 0
 		if(!place.requires_power || (place.flag_check(BLUE_SHIELDED)))
 			continue // No expanding powerless rooms etc
@@ -813,11 +813,11 @@
 	if(A.outdoors) //ALWAYS able to build outdoors. This means if it's missed in BUILDABLE_AREA_TYPES it's fine.
 		return 1
 
-	for (var/type in BUILDABLE_AREA_TYPES) //This works well.
+	for (var/type in GLOB.BUILDABLE_AREA_TYPES) //This works well.
 		if ( istype(A,type) )
 			return 1
 
-	for (var/type in SPECIALS)
+	for (var/type in GLOB.SPECIALS)
 		if ( istype(A,type) )
 			return 0
 	return 0 //If it's not a buildable area, don't let them build in it.

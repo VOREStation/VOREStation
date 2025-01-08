@@ -14,7 +14,7 @@
 
 /datum/event/aurora_caelus/start()
 	affecting_z -= global.using_map.sealed_levels // Space levels only please!
-	for(var/mob/M in player_list)
+	for(var/mob/M in GLOB.player_list)
 		if(M.z in affecting_z)
 			M.playsound_local(null, 'sound/ambience/space/aurora_caelus.ogg', 100, FALSE, pressure_affected = FALSE)
 	..()

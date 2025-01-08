@@ -42,7 +42,7 @@
 /** Checks if any living humans are in a given area. */
 /proc/area_is_occupied(var/area/myarea)
 	// Testing suggests looping over human_mob_list is quicker than looping over area contents
-	for(var/mob/living/carbon/human/H in human_mob_list)
+	for(var/mob/living/carbon/human/H in GLOB.human_mob_list)
 		if(H.stat >= DEAD) //Conditions for exclusion here, like if disconnected people start blocking it.
 			continue
 		var/area/A = get_area(H)
@@ -157,7 +157,7 @@
 
 
 
-//var/debug_mob = 0
+//GLOBAL_VAR_INIT(debug_mob, 0)
 
 // Will recursively loop through an atom's contents and check for mobs, then it will loop through every atom in that atom's contents.
 // It will keep doing this until it checks every content possible. This will fix any problems with mobs, that are inside objects,
@@ -234,8 +234,8 @@
 
 
 	// Try to find all the players who can hear the message
-	for(var/i = 1; i <= player_list.len; i++)
-		var/mob/M = player_list[i]
+	for(var/i = 1; i <= GLOB.player_list.len; i++)
+		var/mob/M = GLOB.player_list[i]
 		if(M.can_hear_radio(speaker_coverage))
 			. += M
 	return .
@@ -300,9 +300,9 @@
 			hearturfs |= get_turf(thing)
 
 	//A list of every mob with a client
-	for(var/mob in player_list)
+	for(var/mob in GLOB.player_list)
 		if(!ismob(mob))
-			player_list -= mob
+			GLOB.player_list -= mob
 			continue
 		//VOREStation Edit End - Trying to fix some vorestation bug.
 		if(get_turf(mob) in hearturfs)
@@ -320,7 +320,7 @@
 						mobs |= M
 
 	//For objects below the top level who still want to hear
-	for(var/obj in listening_objects)
+	for(var/obj in GLOB.listening_objects)
 		if(get_turf(obj) in hearturfs)
 			objs |= obj
 
@@ -401,7 +401,7 @@
 			return get_step(start, EAST)
 
 /proc/get_mob_by_key(var/key)
-	for(var/mob/M in mob_list)
+	for(var/mob/M in GLOB.mob_list)
 		if(M.ckey == lowertext(key))
 			return M
 	return null
@@ -413,7 +413,7 @@
 	var/list/candidates = list() //List of candidate KEYS to assume control of the new larva ~Carn
 	var/i = 0
 	while(candidates.len <= 0 && i < 5)
-		for(var/mob/observer/dead/G in player_list)
+		for(var/mob/observer/dead/G in GLOB.player_list)
 			if(((G.client.inactivity/10)/60) <= buffer + i) // the most active players are more likely to become an alien
 				if(!(G.mind && G.mind.current && G.mind.current.stat != DEAD))
 					candidates += G.key
@@ -427,7 +427,7 @@
 	var/list/candidates = list() //List of candidate KEYS to assume control of the new larva ~Carn
 	var/i = 0
 	while(candidates.len <= 0 && i < 5)
-		for(var/mob/observer/dead/G in player_list)
+		for(var/mob/observer/dead/G in GLOB.player_list)
 			if(G.client.prefs.be_special & BE_ALIEN)
 				if(((G.client.inactivity/10)/60) <= ALIEN_SELECT_AFK_BUFFER + i) // the most active players are more likely to become an alien
 					if(!(G.mind && G.mind.current && G.mind.current.stat != DEAD))

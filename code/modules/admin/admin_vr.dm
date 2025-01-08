@@ -5,7 +5,7 @@
 	set popup_menu = FALSE
 
 	if(check_rights(R_ADMIN|R_DEBUG))
-		traitors.spawn_uplink(H)
+		GLOB.traitors.spawn_uplink(H)
 		H.mind.tcrystals = DEFAULT_TELECRYSTAL_AMOUNT
 		H.mind.accept_tcrystals = 1
 		var/msg = "[key_name(usr)] has given [H.ckey] an uplink."

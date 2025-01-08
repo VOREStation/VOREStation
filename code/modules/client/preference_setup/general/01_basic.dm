@@ -179,10 +179,10 @@
 
 	else if(href_list["spawnpoint"])
 		var/list/spawnkeys = list()
-		for(var/spawntype in spawntypes)
+		for(var/spawntype in GLOB.spawntypes)
 			spawnkeys += spawntype
 		var/choice = tgui_input_list(user, "Where would you like to spawn when late-joining?", "Late-Join Choice", spawnkeys)
-		if(!choice || !spawntypes[choice] || !CanUseTopic(user))	return TOPIC_NOACTION
+		if(!choice || !GLOB.spawntypes[choice] || !CanUseTopic(user))	return TOPIC_NOACTION
 		pref.update_preference_by_type(/datum/preference/choiced/living/spawnpoint, choice)
 		return TOPIC_REFRESH
 

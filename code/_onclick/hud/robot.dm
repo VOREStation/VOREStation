@@ -1,4 +1,4 @@
-var/obj/screen/robot_inventory
+GLOBAL_DATUM(robot_inventory, /obj/screen)
 
 /mob/living/silicon/robot/create_mob_hud(datum/hud/HUD, apply_to_client = TRUE)
 	..()
@@ -173,14 +173,14 @@ var/obj/screen/robot_inventory
 	other += throw_icon
 
 //Inventory
-	robot_inventory = new /obj/screen()
-	robot_inventory.name = "inventory"
-	robot_inventory.icon = HUD.ui_style
-	robot_inventory.icon_state = "inventory"
-	robot_inventory.alpha = HUD.ui_alpha
-	robot_inventory.color = HUD.ui_color
-	robot_inventory.screen_loc = ui_borg_inventory
-	other += robot_inventory
+	GLOB.robot_inventory = new /obj/screen()
+	GLOB.robot_inventory.name = "inventory"
+	GLOB.robot_inventory.icon = HUD.ui_style
+	GLOB.robot_inventory.icon_state = "inventory"
+	GLOB.robot_inventory.alpha = HUD.ui_alpha
+	GLOB.robot_inventory.color = HUD.ui_color
+	GLOB.robot_inventory.screen_loc = ui_borg_inventory
+	other += GLOB.robot_inventory
 
 	pullin = new /obj/screen()
 	pullin.icon = HUD.ui_style
@@ -213,7 +213,7 @@ var/obj/screen/robot_inventory
 
 	if(client && apply_to_client)
 		client.screen = list()
-		client.screen += list( throw_icon, zone_sel, hands, healths, pullin, robot_inventory, gun_setting_icon)
+		client.screen += list( throw_icon, zone_sel, hands, healths, pullin, GLOB.robot_inventory, gun_setting_icon)
 		client.screen += HUD.adding + HUD.other
 		client.screen += client.void
 		if(vtec_active)

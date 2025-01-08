@@ -42,7 +42,7 @@
 	. = ..()
 
 // Go through all materials, and add them to the possible storage, but hide them unless we contain them.
-	for(var/Name in name_to_material)
+	for(var/Name in GLOB.name_to_material)
 		if(Name in materials)
 			continue
 

@@ -25,13 +25,13 @@ GLOBAL_VAR_INIT(floorIsLava, 0)
 						confidential = TRUE)
 
 /proc/admin_notice(var/message, var/rights)
-	for(var/mob/M in mob_list)
+	for(var/mob/M in GLOB.mob_list)
 		if(check_rights(rights, 0, M))
 			to_chat(M,message)
 
 ///////////////////////////////////////////////////////////////////////////////////////////////Panels
 
-/datum/admins/proc/show_player_panel(var/mob/M in mob_list)
+/datum/admins/proc/show_player_panel(mob/M in GLOB.mob_list)
 	set category = "Admin.Game"
 	set name = "Show Player Panel"
 	set desc="Edit player (respawn, ban, heal, etc)"
@@ -609,8 +609,8 @@ GLOBAL_VAR_INIT(floorIsLava, 0)
 		feedback_set_details("end_error","admin reboot - by [usr.key] [usr.client.holder.fakekey ? "(stealth)" : ""]")
 		feedback_add_details("admin_verb","R") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-		if(blackbox)
-			blackbox.save_all_data_to_sql()
+		if(GLOB.blackbox)
+			GLOB.blackbox.save_all_data_to_sql()
 
 		sleep(50)
 		world.Reboot()
@@ -1001,12 +1001,12 @@ var/datum/announcement/minor/admin_min_announcer = new
 	feedback_set_details("end_error","immediate admin reboot - by [usr.key] [usr.client.holder.fakekey ? "(stealth)" : ""]")
 	feedback_add_details("admin_verb","IR") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-	if(blackbox)
-		blackbox.save_all_data_to_sql()
+	if(GLOB.blackbox)
+		GLOB.blackbox.save_all_data_to_sql()
 
 	world.Reboot()
 
-/datum/admins/proc/unprison(var/mob/M in mob_list)
+/datum/admins/proc/unprison(var/mob/M in GLOB.mob_list)
 	set category = "Admin.Moderation"
 	set name = "Unprison"
 	if (M.z == 2)
@@ -1069,11 +1069,11 @@ var/datum/announcement/minor/admin_min_announcer = new
 
 	if(!check_rights(R_SPAWN))	return
 
-	var/owner = tgui_input_list(usr, "Select a ckey.", "Spawn Custom Item", custom_items)
-	if(!owner|| !custom_items[owner])
+	var/owner = tgui_input_list(usr, "Select a ckey.", "Spawn Custom Item", GLOB.custom_items)
+	if(!owner|| !GLOB.custom_items[owner])
 		return
 
-	var/list/possible_items = custom_items[owner]
+	var/list/possible_items = GLOB.custom_items[owner]
 	var/datum/custom_item/item_to_spawn = tgui_input_list(usr, "Select an item to spawn.", "Spawn Custom Item", possible_items)
 	if(!item_to_spawn)
 		return
@@ -1087,17 +1087,17 @@ var/datum/announcement/minor/admin_min_announcer = new
 
 	if(!check_rights(R_SPAWN))	return
 
-	if(!custom_items)
+	if(!GLOB.custom_items)
 		to_chat(usr, "Custom item list is null.")
 		return
 
-	if(!custom_items.len)
+	if(!GLOB.custom_items.len)
 		to_chat(usr, "Custom item list not populated.")
 		return
 
-	for(var/assoc_key in custom_items)
+	for(var/assoc_key in GLOB.custom_items)
 		to_chat(usr, "[assoc_key] has:")
-		var/list/current_items = custom_items[assoc_key]
+		var/list/current_items = GLOB.custom_items[assoc_key]
 		for(var/datum/custom_item/item in current_items)
 			to_chat(usr, "- name: [item.name] icon: [item.item_icon] path: [item.item_path] desc: [item.item_desc]")
 
@@ -1148,7 +1148,7 @@ var/datum/announcement/minor/admin_min_announcer = new
 	feedback_add_details("admin_verb","SA") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 
-/datum/admins/proc/show_traitor_panel(var/mob/M in mob_list)
+/datum/admins/proc/show_traitor_panel(mob/M in GLOB.mob_list)
 	set category = "Admin.Events"
 	set desc = "Edit mobs's memory and role"
 	set name = "Show Traitor Panel"
@@ -1265,7 +1265,7 @@ var/datum/announcement/minor/admin_min_announcer = new
 
 /datum/admins/proc/output_ai_laws()
 	var/ai_number = 0
-	for(var/mob/living/silicon/S in mob_list)
+	for(var/mob/living/silicon/S in GLOB.mob_list)
 		ai_number++
 		if(isAI(S))
 			to_chat(usr, span_bold("AI [key_name(S, usr)]'s laws:"))

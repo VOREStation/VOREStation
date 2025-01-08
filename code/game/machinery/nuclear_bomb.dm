@@ -402,8 +402,8 @@ GLOBAL_VAR(bomb_set)
 
 				feedback_set_details("end_error","nuke - unhandled ending")
 
-				if(blackbox)
-					blackbox.save_all_data_to_sql()
+				if(GLOB.blackbox)
+					GLOB.blackbox.save_all_data_to_sql()
 				sleep(300)
 				log_game("Rebooting due to nuclear detonation")
 				world.Reboot()

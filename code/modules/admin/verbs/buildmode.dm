@@ -11,7 +11,7 @@
 
 #define LAST_BUILDMODE		10
 
-/proc/togglebuildmode(mob/M as mob in player_list)
+/proc/togglebuildmode(mob/M as mob in GLOB.player_list)
 	set name = "Toggle Build Mode"
 	set category = "Special Verbs"
 	if(M.client)
@@ -285,7 +285,7 @@
 					if("number")
 						master.buildmode.valueholder = tgui_input_number(usr,"Enter variable value:" ,"Value", 123)
 					if("mob-reference")
-						master.buildmode.valueholder = tgui_input_list(usr,"Enter variable value:", "Value", mob_list)
+						master.buildmode.valueholder = tgui_input_list(usr,"Enter variable value:", "Value", GLOB.mob_list)
 					if("obj-reference")
 						master.buildmode.valueholder = tgui_input_list(usr,"Enter variable value:", "Value", world)
 					if("turf-reference")
@@ -701,7 +701,7 @@
 			var/z = c1.z //Eh
 
 			var/i = 0
-			for(var/mob/living/L in living_mob_list)
+			for(var/mob/living/L in GLOB.living_mob_list)
 				if(L.z != z || L.client)
 					continue
 				if(L.x >= low_x && L.x <= hi_x && L.y >= low_y && L.y <= hi_y)
@@ -855,11 +855,11 @@
 	if(A.outdoors)
 		return AREA_SPACE
 
-	for (var/type in BUILDABLE_AREA_TYPES)
+	for (var/type in GLOB.BUILDABLE_AREA_TYPES)
 		if ( istype(A,type) )
 			return AREA_SPACE
 
-	for (var/type in SPECIALS)
+	for (var/type in GLOB.SPECIALS)
 		if ( istype(A,type) )
 			return AREA_SPECIAL
 	return AREA_STATION

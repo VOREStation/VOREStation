@@ -178,16 +178,16 @@
 		// VORE StationEdit Start
 
 		// Ears
-		var/ears = dna.GetUIValueRange(DNA_UI_EAR_STYLE, ear_styles_list.len + 1) - 1
+		var/ears = dna.GetUIValueRange(DNA_UI_EAR_STYLE, GLOB.ear_styles_list.len + 1) - 1
 		if(ears < 1)
 			H.ear_style = null
-		else if((0 < ears) && (ears <= ear_styles_list.len))
-			H.ear_style = ear_styles_list[ear_styles_list[ears]]
-		var/ears_secondary = dna.GetUIValueRange(DNA_UI_EAR_SECONDARY_STYLE, ear_styles_list.len + 1) - 1
+		else if((0 < ears) && (ears <= GLOB.ear_styles_list.len))
+			H.ear_style = GLOB.ear_styles_list[GLOB.ear_styles_list[ears]]
+		var/ears_secondary = dna.GetUIValueRange(DNA_UI_EAR_SECONDARY_STYLE, GLOB.ear_styles_list.len + 1) - 1
 		if(ears_secondary < 1)
 			H.ear_secondary_style = null
-		else if((0 < ears_secondary) && (ears_secondary <= ear_styles_list.len))
-			H.ear_secondary_style = ear_styles_list[ear_styles_list[ears_secondary]]
+		else if((0 < ears_secondary) && (ears_secondary <= GLOB.ear_styles_list.len))
+			H.ear_secondary_style = GLOB.ear_styles_list[GLOB.ear_styles_list[ears_secondary]]
 
 		// Ear Color
 		H.r_ears  = dna.GetUIValueRange(DNA_UI_EARS_R,    255)
@@ -211,18 +211,18 @@
 			)
 
 		//Tail
-		var/tail = dna.GetUIValueRange(DNA_UI_TAIL_STYLE, tail_styles_list.len + 1) - 1
+		var/tail = dna.GetUIValueRange(DNA_UI_TAIL_STYLE, GLOB.tail_styles_list.len + 1) - 1
 		if(tail < 1)
 			H.tail_style = null
-		else if((0 < tail) && (tail <= tail_styles_list.len))
-			H.tail_style = tail_styles_list[tail_styles_list[tail]]
+		else if((0 < tail) && (tail <= GLOB.tail_styles_list.len))
+			H.tail_style = GLOB.tail_styles_list[GLOB.tail_styles_list[tail]]
 
 		//Wing
-		var/wing = dna.GetUIValueRange(DNA_UI_WING_STYLE, wing_styles_list.len + 1) - 1
+		var/wing = dna.GetUIValueRange(DNA_UI_WING_STYLE, GLOB.wing_styles_list.len + 1) - 1
 		if(wing < 1)
 			H.wing_style = null
-		else if((0 < wing) && (wing <= wing_styles_list.len))
-			H.wing_style = wing_styles_list[wing_styles_list[wing]]
+		else if((0 < wing) && (wing <= GLOB.wing_styles_list.len))
+			H.wing_style = GLOB.wing_styles_list[GLOB.wing_styles_list[wing]]
 
 		//Wing Color
 		H.r_wing   = dna.GetUIValueRange(DNA_UI_WING_R,    255)

@@ -31,7 +31,7 @@
 	save_data["ringtone"]					= pref.ringtone
 	save_data["shoe_hater"] 				= pref.shoe_hater
 
-var/global/list/valid_ringtones = list(
+GLOBAL_LIST_INIT(valid_ringtones, list(
 		"beep",
 		"boom",
 		"slip",
@@ -56,7 +56,7 @@ var/global/list/valid_ringtones = list(
 		"roark",
 		"chitter",
 		"squish"
-		)
+		))
 
 // Moved from /datum/preferences/proc/copy_to()
 /datum/category_item/player_setup_item/general/equipment/copy_to_mob(var/mob/living/carbon/human/character)
@@ -64,7 +64,7 @@ var/global/list/valid_ringtones = list(
 	character.all_underwear_metadata.Cut()
 
 	for(var/underwear_category_name in pref.all_underwear)
-		var/datum/category_group/underwear/underwear_category = global_underwear.categories_by_name[underwear_category_name]
+		var/datum/category_group/underwear/underwear_category = GLOB.global_underwear.categories_by_name[underwear_category_name]
 		if(underwear_category)
 			var/underwear_item_name = pref.all_underwear[underwear_category_name]
 			character.all_underwear[underwear_category_name] = underwear_category.items_by_name[underwear_item_name]
@@ -78,7 +78,7 @@ var/global/list/valid_ringtones = list(
 		pref.headset = 1 //Same as above
 	character.headset = pref.headset
 
-	if(pref.backbag > backbaglist.len || pref.backbag < 1)
+	if(pref.backbag > GLOB.backbaglist.len || pref.backbag < 1)
 		pref.backbag = 2 //Same as above
 	character.backbag = pref.backbag
 
@@ -92,7 +92,7 @@ var/global/list/valid_ringtones = list(
 	if(!istype(pref.all_underwear))
 		pref.all_underwear = list()
 
-		for(var/datum/category_group/underwear/WRC in global_underwear.categories)
+		for(var/datum/category_group/underwear/WRC in GLOB.global_underwear.categories)
 			for(var/datum/category_item/underwear/WRI in WRC.items)
 				if(WRI.is_default(pref.identifying_gender ? pref.identifying_gender : MALE))
 					pref.all_underwear[WRC.name] = WRI.name
@@ -102,7 +102,7 @@ var/global/list/valid_ringtones = list(
 		pref.all_underwear_metadata = list()
 
 	for(var/underwear_category in pref.all_underwear)
-		var/datum/category_group/underwear/UWC = global_underwear.categories_by_name[underwear_category]
+		var/datum/category_group/underwear/UWC = GLOB.global_underwear.categories_by_name[underwear_category]
 		if(!UWC)
 			pref.all_underwear -= underwear_category
 		else
@@ -114,14 +114,14 @@ var/global/list/valid_ringtones = list(
 		if(!(underwear_metadata in pref.all_underwear))
 			pref.all_underwear_metadata -= underwear_metadata
 	pref.headset	= sanitize_integer(pref.headset, 1, GLOB.headsetlist.len, initial(pref.headset))
-	pref.backbag	= sanitize_integer(pref.backbag, 1, backbaglist.len, initial(pref.backbag))
-	pref.pdachoice	= sanitize_integer(pref.pdachoice, 1, pdachoicelist.len, initial(pref.pdachoice))
+	pref.backbag	= sanitize_integer(pref.backbag, 1, GLOB.backbaglist.len, initial(pref.backbag))
+	pref.pdachoice	= sanitize_integer(pref.pdachoice, 1, GLOB.pdachoicelist.len, initial(pref.pdachoice))
 	pref.ringtone	= sanitize(pref.ringtone, 20)
 
 /datum/category_item/player_setup_item/general/equipment/content()
 	. = list()
 	. += span_bold("Equipment:") + "<br>"
-	for(var/datum/category_group/underwear/UWC in global_underwear.categories)
+	for(var/datum/category_group/underwear/UWC in GLOB.global_underwear.categories)
 		var/item_name = pref.all_underwear[UWC.name] ? pref.all_underwear[UWC.name] : "None"
 		. += "[UWC.name]: <a href='byond://?src=\ref[src];change_underwear=[UWC.name]'><b>[item_name]</b></a>"
 		var/datum/category_item/underwear/UWI = UWC.items_by_name[item_name]
@@ -131,8 +131,8 @@ var/global/list/valid_ringtones = list(
 
 		. += "<br>"
 	. += "Headset Type: <a href='byond://?src=\ref[src];change_headset=1'><b>[GLOB.headsetlist[pref.headset]]</b></a><br>"
-	. += "Backpack Type: <a href='byond://?src=\ref[src];change_backpack=1'><b>[backbaglist[pref.backbag]]</b></a><br>"
-	. += "PDA Type: <a href='byond://?src=\ref[src];change_pda=1'><b>[pdachoicelist[pref.pdachoice]]</b></a><br>"
+	. += "Backpack Type: <a href='byond://?src=\ref[src];change_backpack=1'><b>[GLOB.backbaglist[pref.backbag]]</b></a><br>"
+	. += "PDA Type: <a href='byond://?src=\ref[src];change_pda=1'><b>[GLOB.pdachoicelist[pref.pdachoice]]</b></a><br>"
 	. += "Communicator Visibility: <a href='byond://?src=\ref[src];toggle_comm_visibility=1'><b>[(pref.communicator_visibility) ? "Yes" : "No"]</b></a><br>"
 	. += "Ringtone (leave blank for job default): <a href='byond://?src=\ref[src];set_ringtone=1'><b>[pref.ringtone]</b></a><br>"
 	. += "Spawn With Shoes:<a href='byond://?src=\ref[src];toggle_shoes=1'><b>[(pref.shoe_hater) ? "No" : "Yes"]</b></a><br>" //RS Addition
@@ -164,19 +164,19 @@ var/global/list/valid_ringtones = list(
 			return TOPIC_REFRESH_UPDATE_PREVIEW
 
 	if(href_list["change_backpack"])
-		var/new_backbag = tgui_input_list(user, "Choose your character's style of bag:", "Character Preference", backbaglist, backbaglist[pref.backbag])
+		var/new_backbag = tgui_input_list(user, "Choose your character's style of bag:", "Character Preference", GLOB.backbaglist, GLOB.backbaglist[pref.backbag])
 		if(!isnull(new_backbag) && CanUseTopic(user))
-			pref.backbag = backbaglist.Find(new_backbag)
+			pref.backbag = GLOB.backbaglist.Find(new_backbag)
 			return TOPIC_REFRESH_UPDATE_PREVIEW
 
 	else if(href_list["change_pda"])
-		var/new_pdachoice = tgui_input_list(user, "Choose your character's style of PDA:", "Character Preference", pdachoicelist, pdachoicelist[pref.pdachoice])
+		var/new_pdachoice = tgui_input_list(user, "Choose your character's style of PDA:", "Character Preference", GLOB.pdachoicelist, GLOB.pdachoicelist[pref.pdachoice])
 		if(!isnull(new_pdachoice) && CanUseTopic(user))
-			pref.pdachoice = pdachoicelist.Find(new_pdachoice)
+			pref.pdachoice = GLOB.pdachoicelist.Find(new_pdachoice)
 			return TOPIC_REFRESH
 
 	else if(href_list["change_underwear"])
-		var/datum/category_group/underwear/UWC = global_underwear.categories_by_name[href_list["change_underwear"]]
+		var/datum/category_group/underwear/UWC = GLOB.global_underwear.categories_by_name[href_list["change_underwear"]]
 		if(!UWC)
 			return
 		var/datum/category_item/underwear/selected_underwear = tgui_input_list(user, "Choose underwear:", "Character Preference", UWC.items, pref.all_underwear[UWC.name])
@@ -200,7 +200,7 @@ var/global/list/valid_ringtones = list(
 			pref.communicator_visibility = !pref.communicator_visibility
 			return TOPIC_REFRESH
 	else if(href_list["set_ringtone"])
-		var/choice = tgui_input_list(user, "Please select a ringtone. All of these choices come with an associated preset sound. Alternately, select \"Other\" to specify manually.", "Character Preference", valid_ringtones + "Other", pref.ringtone)
+		var/choice = tgui_input_list(user, "Please select a ringtone. All of these choices come with an associated preset sound. Alternately, select \"Other\" to specify manually.", "Character Preference", GLOB.valid_ringtones + "Other", pref.ringtone)
 		if(!choice || !CanUseTopic(user))
 			return TOPIC_NOACTION
 		if(choice == "Other")

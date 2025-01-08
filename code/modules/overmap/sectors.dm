@@ -87,7 +87,7 @@
 		real_desc = desc
 		desc = "Scan this to find out more information."
 	//at the moment only used for the OM location renamer. Initializing here in case we want shuttles incl as well in future. Also proc definition convenience.
-	visitable_overmap_object_instances |= src
+	GLOB.visitable_overmap_object_instances |= src
 
 //To be used by GMs and calling through var edits for the overmap object
 //It causes the overmap object to "reinitialize" its real_appearance for known = FALSE objects

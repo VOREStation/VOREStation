@@ -1,6 +1,6 @@
 /mob/Logout()
 	SStgui.on_logout(src) // Cleanup any TGUIs the user has open
-	player_list -= src
+	GLOB.player_list -= src
 	disconnect_time = world.realtime	//VOREStation Addition: logging when we disappear.
 	update_client_z(null)
 	log_access_out(src)

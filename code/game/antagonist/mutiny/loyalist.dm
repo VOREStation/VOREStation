@@ -1,4 +1,4 @@
-var/datum/antagonist/mutineer/loyalist/loyalists
+GLOBAL_DATUM(loyalists, /datum/antagonist/mutineer/loyalist)
 
 /datum/antagonist/mutineer/loyalist
 	role_text = "Loyalist"
@@ -7,4 +7,4 @@ var/datum/antagonist/mutineer/loyalist/loyalists
 
 /datum/antagonist/mutineer/loyalist/New()
 	..(1)
-	loyalists = src
+	GLOB.loyalists = src

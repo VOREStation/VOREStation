@@ -1,8 +1,8 @@
 //Augmented reality objects and their associated systems for attaching to things
-var/global/list/entopic_images = list()
-var/global/list/entopic_users = list()
+GLOBAL_LIST_EMPTY(entopic_images)
+GLOBAL_LIST_EMPTY(entopic_users)
 
-var/global/list/alt_farmanimals = list()
+GLOBAL_LIST_EMPTY(alt_farmanimals)
 
 /datum/entopic
 	var/name
@@ -76,8 +76,8 @@ var/global/list/alt_farmanimals = list()
 		return
 
 	registered = TRUE
-	entopic_images += my_image
-	for(var/mob/M as anything in entopic_users)
+	GLOB.entopic_images += my_image
+	for(var/mob/M as anything in GLOB.entopic_users)
 		if(M.client)
 			M.client.images += my_image
 
@@ -86,8 +86,8 @@ var/global/list/alt_farmanimals = list()
 		return
 
 	registered = FALSE
-	entopic_images -= my_image
-	for(var/mob/M as anything in entopic_users)
+	GLOB.entopic_images -= my_image
+	for(var/mob/M as anything in GLOB.entopic_users)
 		if(M.client)
 			M.client.images -= my_image
 

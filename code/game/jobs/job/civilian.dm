@@ -220,7 +220,7 @@
 //		Internal Affairs Agent
 //////////////////////////////////
 
-//var/global/lawyer = 0//Checks for another lawyer //This changed clothes on 2nd lawyer, both IA get the same dreds.
+//GLOBAL_VAR_INIT(lawyer, 0)//Checks for another lawyer //This changed clothes on 2nd lawyer, both IA get the same dreds.
 /datum/job/lawyer
 	title = JOB_INTERNAL_AFFAIRS_AGENT
 	flag = LAWYER

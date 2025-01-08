@@ -1,15 +1,15 @@
-var/list/spawntypes = list()
+GLOBAL_LIST_EMPTY(spawntypes)
 
 /proc/populate_spawn_points()
-	spawntypes = list()
+	GLOB.spawntypes = list()
 	for(var/type in subtypesof(/datum/spawnpoint))
 		var/datum/spawnpoint/S = new type()
-		spawntypes[S.display_name] = S
+		GLOB.spawntypes[S.display_name] = S
 
 /proc/get_spawn_points()
-	if(!LAZYLEN(spawntypes))
+	if(!LAZYLEN(GLOB.spawntypes))
 		populate_spawn_points()
-	return spawntypes
+	return GLOB.spawntypes
 
 /datum/spawnpoint
 	var/msg          //Message to display on the arrivals computer.
@@ -92,14 +92,14 @@ var/list/spawntypes = list()
 	latejoin += loc
 	..()
 
-var/global/list/latejoin_tram   = list()
+GLOBAL_LIST_EMPTY(latejoin_tram)
 
 /obj/effect/landmark/tram
 	name = "JoinLateTram"
 	delete_me = 1
 
 /obj/effect/landmark/tram/New()
-	latejoin_tram += loc // There's no tram but you know whatever man!
+	GLOB.latejoin_tram += loc // There's no tram but you know whatever man!
 	..()
 
 /datum/spawnpoint/tram
@@ -108,4 +108,4 @@ var/global/list/latejoin_tram   = list()
 
 /datum/spawnpoint/tram/New()
 	..()
-	turfs = latejoin_tram
+	turfs = GLOB.latejoin_tram

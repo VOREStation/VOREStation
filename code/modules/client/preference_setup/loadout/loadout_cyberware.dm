@@ -26,7 +26,7 @@
 
 /datum/gear/utility/implant/generic/New()
 	..()
-	gear_tweaks += global.gear_tweak_implant_location
+	gear_tweaks += GLOB.gear_tweak_implant_location
 
 /datum/gear/utility/implant/language
 	cost = 2

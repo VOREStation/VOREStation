@@ -150,7 +150,7 @@ GLOBAL_LIST_EMPTY(all_cataloguers)
 	// Figure out who may have helped out.
 	var/list/contributers = list()
 	var/list/contributer_names = list()
-	for(var/mob/living/L as anything in player_list)
+	for(var/mob/living/L as anything in GLOB.player_list)
 		if(L == user)
 			continue
 		if(!istype(L))

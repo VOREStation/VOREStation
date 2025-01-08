@@ -37,7 +37,7 @@
 	var/mob/living/carrier = isliving(loc) ? loc : null
 
 	// First, let's check if any AIs are actively tracking them.
-	for(var/mob/living/silicon/ai/AI in silicon_mob_list)
+	for(var/mob/living/silicon/ai/AI in GLOB.silicon_mob_list)
 		if(carrier && AI.cameraFollow == carrier)
 			if(!carrier.tracking_status()) // Successful tracking returns a 0, so we need to invert it.
 				return PROXIMITY_TRACKING
@@ -62,10 +62,10 @@
 	// Now for the somewhat harder AI cameranet checks.
 
 	// Check if we are even on the cameranet.
-	if(!cameranet.checkVis(T))
+	if(!GLOB.cameranet.checkVis(T))
 		return PROXIMITY_OFF_CAMERANET
 
-	var/datum/chunk/chunk = cameranet.getChunk(T.x, T.y, T.z)
+	var/datum/chunk/chunk = GLOB.cameranet.getChunk(T.x, T.y, T.z)
 	if(!chunk)
 		return PROXIMITY_OFF_CAMERANET
 

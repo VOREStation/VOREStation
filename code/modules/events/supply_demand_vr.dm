@@ -1,7 +1,7 @@
-/var/global/running_demand_events = list()
+GLOBAL_LIST_EMPTY(running_demand_events)
 
 /hook/sell_shuttle/proc/supply_demand_sell_shuttle(var/area/area_shuttle)
-	for(var/datum/event/supply_demand/E in running_demand_events)
+	for(var/datum/event/supply_demand/E in GLOB.running_demand_events)
 		E.handle_sold_shuttle(area_shuttle)
 	return 1 // All hooks must return one to show success.
 
@@ -19,7 +19,7 @@
 /datum/event/supply_demand/setup()
 	my_department = "[using_map.company_name] Supply Division" // Can't have company name in initial value (not const)
 	end_time = world.time + 1 HOUR + (severity * 30 MINUTES)
-	running_demand_events += src
+	GLOB.running_demand_events += src
 	// Decide what items are requried!
 	// We base this on what departmets are most active, excluding departments we don't have
 	var/list/notHaveDeptList = metric.departments.Copy()
@@ -70,7 +70,7 @@
 		endWhen = activeFor  // End early becuase we're done already!
 
 /datum/event/supply_demand/end()
-	running_demand_events -= src
+	GLOB.running_demand_events -= src
 	// Check if the crew succeeded or failed!
 	if(required_items.len == 0)
 		// Success!

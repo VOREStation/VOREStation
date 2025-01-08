@@ -44,7 +44,7 @@
 
 /datum/gear/gloves/evening/New()
 	..()
-	gear_tweaks += gear_tweak_free_color_choice
+	gear_tweaks += GLOB.gear_tweak_free_color_choice
 
 /datum/gear/gloves/duty
 	display_name = "gloves, work"
@@ -70,7 +70,7 @@
 		"recolourable, alt"=/obj/item/clothing/gloves/fingerless_recolourable/alt
 	)
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(selector_uniforms))
-	gear_tweaks += gear_tweak_free_color_choice
+	gear_tweaks += GLOB.gear_tweak_free_color_choice
 
 /datum/gear/gloves/ring
 	display_name = "ring selection"

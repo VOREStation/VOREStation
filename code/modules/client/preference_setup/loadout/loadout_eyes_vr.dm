@@ -11,7 +11,7 @@
 
 /datum/gear/eyes/arglasses/visor/New()
 	..()
-	gear_tweaks = list(gear_tweak_free_color_choice)
+	gear_tweaks = list(GLOB.gear_tweak_free_color_choice)
 /datum/gear/eyes/arglassespres
 	display_name = "AR glasses, prescription"
 	path = /obj/item/clothing/glasses/omnihud/prescription

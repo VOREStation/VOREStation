@@ -1,4 +1,4 @@
-var/datum/planet/virgo4/planet_virgo4 = null
+GLOBAL_DATUM(planet_virgo4, /datum/planet/virgo4)
 
 /datum/time/virgo4
 	seconds_in_day = 24 HOURS
@@ -12,7 +12,7 @@ var/datum/planet/virgo4/planet_virgo4 = null
 
 /datum/planet/virgo4/New()
 	..()
-	planet_virgo4 = src
+	GLOB.planet_virgo4 = src
 	weather_holder = new /datum/weather_holder/virgo4(src)
 
 /datum/planet/virgo4/update_sun()
@@ -267,7 +267,7 @@ var/datum/planet/virgo4/planet_virgo4 = null
 
 /datum/weather/virgo4/rain/process_effects()
 	..()
-	for(var/mob/living/L as anything in living_mob_list)
+	for(var/mob/living/L as anything in GLOB.living_mob_list)
 		if(L.z in holder.our_planet.expected_z_levels)
 			var/turf/T = get_turf(L)
 			if(!T.is_outdoors())
@@ -317,7 +317,7 @@ var/datum/planet/virgo4/planet_virgo4 = null
 
 /datum/weather/virgo4/storm/process_effects()
 	..()
-	for(var/mob/living/L as anything in living_mob_list)
+	for(var/mob/living/L as anything in GLOB.living_mob_list)
 		if(L.z in holder.our_planet.expected_z_levels)
 			var/turf/T = get_turf(L)
 			if(!T.is_outdoors())
@@ -373,7 +373,7 @@ var/datum/planet/virgo4/planet_virgo4 = null
 
 /datum/weather/virgo4/hail/process_effects()
 	..()
-	for(var/mob/living/carbon/H as anything in human_mob_list)
+	for(var/mob/living/carbon/H as anything in GLOB.human_mob_list)
 		if(H.z in holder.our_planet.expected_z_levels)
 			var/turf/T = get_turf(H)
 			if(!T.is_outdoors())
@@ -493,7 +493,7 @@ var/datum/planet/virgo4/planet_virgo4 = null
 
 /datum/weather/virgo4/ash_storm/process_effects()
 	..()
-	for(var/mob/living/L as anything in living_mob_list)
+	for(var/mob/living/L as anything in GLOB.living_mob_list)
 		if(L.z in holder.our_planet.expected_z_levels)
 			var/turf/T = get_turf(L)
 			if(!T.is_outdoors())
@@ -553,7 +553,7 @@ var/datum/planet/virgo4/planet_virgo4 = null
 
 /datum/weather/virgo4/fallout/process_effects()
 	..()
-	for(var/mob/living/L as anything in living_mob_list)
+	for(var/mob/living/L as anything in GLOB.living_mob_list)
 		if(L.z in holder.our_planet.expected_z_levels)
 			irradiate_nearby_turf(L)
 			var/turf/T = get_turf(L)

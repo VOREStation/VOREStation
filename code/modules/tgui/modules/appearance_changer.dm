@@ -331,31 +331,31 @@
 				switch (todo)
 					if (0) //delete
 						if (name_marking)
-							var/datum/sprite_accessory/marking/mark_datum = body_marking_styles_list[name_marking]
+							var/datum/sprite_accessory/marking/mark_datum = GLOB.body_marking_styles_list[name_marking]
 							if (owner.remove_marking(mark_datum))
 								changed_hook(APPEARANCECHANGER_CHANGED_HAIRSTYLE)
 								return TRUE
 					if (1) //add
-						var/list/usable_markings = markings.Copy() ^ body_marking_styles_list.Copy()
+						var/list/usable_markings = markings.Copy() ^ GLOB.body_marking_styles_list.Copy()
 						var/new_marking = tgui_input_list(ui.user, "Choose a body marking:", "New Body Marking", usable_markings)
 						if(new_marking && can_still_topic(owner, state))
-							var/datum/sprite_accessory/marking/mark_datum = body_marking_styles_list[new_marking]
+							var/datum/sprite_accessory/marking/mark_datum = GLOB.body_marking_styles_list[new_marking]
 							if (owner.add_marking(mark_datum))
 								changed_hook(APPEARANCECHANGER_CHANGED_HAIRSTYLE)
 								return TRUE
 					if (2) //move up
-						var/datum/sprite_accessory/marking/mark_datum = body_marking_styles_list[name_marking]
+						var/datum/sprite_accessory/marking/mark_datum = GLOB.body_marking_styles_list[name_marking]
 						if (owner.change_priority_of_marking(mark_datum, FALSE))
 							return TRUE
 					if (3) //move down
-						var/datum/sprite_accessory/marking/mark_datum = body_marking_styles_list[name_marking]
+						var/datum/sprite_accessory/marking/mark_datum = GLOB.body_marking_styles_list[name_marking]
 						if (owner.change_priority_of_marking(mark_datum, TRUE))
 							return TRUE
 					if (4) //color
 						var/current = markings[name_marking] ? markings[name_marking] : "#000000"
 						var/marking_color = input(ui.user, "Please select marking color", "Marking color", current) as color|null
 						if(marking_color && can_still_topic(owner, state))
-							var/datum/sprite_accessory/marking/mark_datum = body_marking_styles_list[name_marking]
+							var/datum/sprite_accessory/marking/mark_datum = GLOB.body_marking_styles_list[name_marking]
 							if (owner.change_marking_color(mark_datum, marking_color))
 								return TRUE
 		// VOREStation Add End
@@ -559,8 +559,8 @@
 
 	// VOREStation Add - Ears/Tails/Wings
 	if(!LAZYLEN(valid_earstyles))
-		for(var/path in ear_styles_list)
-			var/datum/sprite_accessory/ears/instance = ear_styles_list[path]
+		for(var/path in GLOB.ear_styles_list)
+			var/datum/sprite_accessory/ears/instance = GLOB.ear_styles_list[path]
 			if(can_use_sprite(instance, target, user))
 				valid_earstyles.Add(list(list(
 					"name" = instance.name,
@@ -570,8 +570,8 @@
 				)))
 
 	if(!LAZYLEN(valid_tailstyles))
-		for(var/path in tail_styles_list)
-			var/datum/sprite_accessory/tail/instance = tail_styles_list[path]
+		for(var/path in GLOB.tail_styles_list)
+			var/datum/sprite_accessory/tail/instance = GLOB.tail_styles_list[path]
 			if(can_use_sprite(instance, target, user))
 				valid_tailstyles.Add(list(list(
 					"name" = instance.name,
@@ -581,8 +581,8 @@
 				)))
 
 	if(!LAZYLEN(valid_wingstyles))
-		for(var/path in wing_styles_list)
-			var/datum/sprite_accessory/wing/instance = wing_styles_list[path]
+		for(var/path in GLOB.wing_styles_list)
+			var/datum/sprite_accessory/wing/instance = GLOB.wing_styles_list[path]
 			if(can_use_sprite(instance, target, user))
 				valid_wingstyles.Add(list(list(
 					"name" = instance.name,

@@ -224,7 +224,7 @@ GLOBAL_LIST_BOILERPLATE(all_deactivated_AI_cores, /obj/structure/AIcore/deactiva
 
 /obj/structure/AIcore/deactivated/proc/check_malf(var/mob/living/silicon/ai/ai)
 	if(!ai) return
-	for (var/datum/mind/malfai in malf.current_antagonists)
+	for (var/datum/mind/malfai in GLOB.malf.current_antagonists)
 		if (ai.mind == malfai)
 			return 1
 

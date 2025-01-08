@@ -1,4 +1,4 @@
-var/list/blob_cores = list()
+GLOBAL_LIST_EMPTY(blob_cores)
 
 /obj/structure/blob/core
 	name = "blob core"
@@ -97,7 +97,7 @@ var/list/blob_cores = list()
 
 /obj/structure/blob/core/Initialize(newloc, client/new_overmind = null, new_rate = 2, placed = 0)
 	. = ..(newloc)
-	blob_cores += src
+	GLOB.blob_cores += src
 	START_PROCESSING(SSobj, src)
 	update_icon() //so it atleast appears
 	if(!placed && !overmind)
@@ -110,7 +110,7 @@ var/list/blob_cores = list()
 	var/turf/T = get_turf(src)
 	new /obj/item/blobcore_chunk(T, overmind.blob_type)
 
-	blob_cores -= src
+	GLOB.blob_cores -= src
 	if(overmind)
 		overmind.blob_core = null
 		qdel(overmind)

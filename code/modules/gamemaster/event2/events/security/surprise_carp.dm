@@ -16,7 +16,7 @@
 
 /datum/event2/event/surprise_carp/set_up()
 	var/list/potential_victims = list()
-	for(var/mob/living/L in player_list)
+	for(var/mob/living/L in GLOB.player_list)
 		if(!(L.z in get_location_z_levels()))
 			continue // Not on the right z-level.
 		if(L.stat)

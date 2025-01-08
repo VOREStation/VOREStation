@@ -1,4 +1,4 @@
-var/global/list/responsive_carriers = list(
+GLOBAL_LIST_INIT(responsive_carriers, list(
 	REAGENT_ID_CARBON,
 	REAGENT_ID_POTASSIUM,
 	REAGENT_ID_HYDROGEN,
@@ -7,9 +7,9 @@ var/global/list/responsive_carriers = list(
 	REAGENT_ID_IRON,
 	REAGENT_ID_CHLORINE,
 	REAGENT_ID_PHOSPHORUS,
-	REAGENT_ID_PHORON)
+	REAGENT_ID_PHORON))
 
-var/global/list/finds_as_strings = list(
+GLOBAL_LIST_INIT(finds_as_strings, list(
 	"Trace organic cells",
 	"Long exposure particles",
 	"Trace water particles",
@@ -18,7 +18,7 @@ var/global/list/finds_as_strings = list(
 	"Metallic composite",
 	"Metamorphic/igneous rock composite",
 	"Metamorphic/sedimentary rock composite",
-	"Anomalous material")
+	"Anomalous material"))
 
 /proc/get_responsive_reagent(var/find_type)
 	switch(find_type)

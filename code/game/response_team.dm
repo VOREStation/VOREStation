@@ -56,10 +56,10 @@ GLOBAL_VAR_INIT(silent_ert, 0)
 		if(jobban_isbanned(usr, JOB_SYNDICATE) || jobban_isbanned(usr, JOB_EMERGENCY_RESPONSE_TEAM) || jobban_isbanned(usr, JOB_SECURITY_OFFICER))
 			to_chat(usr, span_danger("You are jobbanned from the emergency reponse team!"))
 			return
-		if(ert.current_antagonists.len >= ert.hard_cap)
+		if(GLOB.ert.current_antagonists.len >= GLOB.ert.hard_cap)
 			to_chat(usr, "The emergency response team is already full!")
 			return
-		ert.create_default(usr)
+		GLOB.ert.create_default(usr)
 	else
 		to_chat(usr, "You need to be an observer or new player to use this.")
 
@@ -67,7 +67,7 @@ GLOBAL_VAR_INIT(silent_ert, 0)
 /proc/percentage_dead()
 	var/total = 0
 	var/deadcount = 0
-	for(var/mob/living/carbon/human/H in mob_list)
+	for(var/mob/living/carbon/human/H in GLOB.mob_list)
 		if(H.client) // Monkeys and mice don't have a client, amirite?
 			if(H.stat == 2) deadcount++
 			total++
@@ -79,7 +79,7 @@ GLOBAL_VAR_INIT(silent_ert, 0)
 /proc/percentage_antagonists()
 	var/total = 0
 	var/antagonists = 0
-	for(var/mob/living/carbon/human/H in mob_list)
+	for(var/mob/living/carbon/human/H in GLOB.mob_list)
 		if(is_special_character(H) >= 1)
 			antagonists++
 		total++

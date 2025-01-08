@@ -1,4 +1,4 @@
-var/global/client_record_update_lock = FALSE
+GLOBAL_VAR_INIT(client_record_update_lock, FALSE)
 
 // Manually updating records from medical console to a player's save.
 /proc/get_current_mob_from_record(var/datum/data/record/active)
@@ -43,15 +43,15 @@ var/global/client_record_update_lock = FALSE
 		record_string = "security"
 		console_path = /obj/machinery/computer/secure_data
 
-	if(client_record_update_lock)
+	if(GLOB.client_record_update_lock)
 		to_chat(user,"Update already in progress! Please wait a moment...")
 		if(COM && !QDELETED(COM))
 			COM.visible_message(span_notice("\The [COM] buzzes!"))
 			playsound(COM, 'sound/machines/deniedbeep.ogg', 50, 0)
 		return "Update already in progress! Please wait a moment..."
-	client_record_update_lock = TRUE
+	GLOB.client_record_update_lock = TRUE
 	spawn(60 SECONDS)
-		client_record_update_lock = FALSE
+		GLOB.client_record_update_lock = FALSE
 
 	if(!active || !console_path)
 		if(COM && !QDELETED(COM))

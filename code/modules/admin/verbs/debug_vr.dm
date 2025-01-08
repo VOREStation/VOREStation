@@ -8,7 +8,7 @@
 	if(!check_rights(R_ADMIN))
 		return
 
-	var/mob/living/carbon/human/H = tgui_input_list(usr, "Pick a mob with a player","Quick NIF", player_list)
+	var/mob/living/carbon/human/H = tgui_input_list(usr, "Pick a mob with a player","Quick NIF", GLOB.player_list)
 
 	if(!H)
 		return

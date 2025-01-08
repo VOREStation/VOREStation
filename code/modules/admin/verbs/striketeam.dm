@@ -1,5 +1,5 @@
 //STRIKE TEAMS
-var/const/commandos_possible = 6 //if more Commandos are needed in the future
+GLOBAL_VAR_INIT(commandos_possible, 6) //if more Commandos are needed in the future
 
 /client/proc/strike_team()
 	set category = "Fun.Event Kit"
@@ -26,9 +26,9 @@ var/const/commandos_possible = 6 //if more Commandos are needed in the future
 
 	switch(choice)
 		if("Heavy Asset Protection")
-			team = deathsquad
+			team = GLOB.deathsquad
 		if("Mercenaries")
-			team = commandos
+			team = GLOB.commandos
 		else
 			return
 

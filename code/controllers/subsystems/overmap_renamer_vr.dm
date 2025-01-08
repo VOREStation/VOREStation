@@ -17,9 +17,9 @@ SUBSYSTEM_DEF(overmap_renamer)
 /*Shouldn't be a switch statement. We want ALL of the if(map_template.name in visitable_z_leves_name_list) to fire
 if we end up with multiple renamable lateload overmap objects.*/
 /datum/controller/subsystem/overmap_renamer/proc/update_names()
-	if(!visitable_overmap_object_instances || !islist(visitable_overmap_object_instances) || !length(visitable_overmap_object_instances))
+	if(!GLOB.visitable_overmap_object_instances || !islist(GLOB.visitable_overmap_object_instances) || !length(GLOB.visitable_overmap_object_instances))
 		return
-	for(var/obj/effect/overmap/visitable/V in visitable_overmap_object_instances)
+	for(var/obj/effect/overmap/visitable/V in GLOB.visitable_overmap_object_instances)
 		if(V.unique_identifier == "Debris Field")
 			V.modify_descriptors()
 			if(V.visitable_renamed) //could just if(D.modify_descriptors()), but having a var recording renaming is useful for debugging and stuff!

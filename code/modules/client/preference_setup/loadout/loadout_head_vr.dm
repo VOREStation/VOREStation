@@ -8,7 +8,7 @@
 
 /datum/gear/head/headbando/New()
 	..()
-	gear_tweaks += gear_tweak_free_color_choice
+	gear_tweaks += GLOB.gear_tweak_free_color_choice
 
 /datum/gear/head/maid
 	display_name = "maid headband selection"
@@ -50,7 +50,7 @@
 
 /datum/gear/head/magic_hat/New()
 	..()
-	gear_tweaks += gear_tweak_free_color_choice
+	gear_tweaks += GLOB.gear_tweak_free_color_choice
 
 /datum/gear/head/wedding
 	display_name = "wedding veil"
@@ -58,7 +58,7 @@
 
 /datum/gear/head/wedding/New()
 	..()
-	gear_tweaks += gear_tweak_free_color_choice
+	gear_tweaks += GLOB.gear_tweak_free_color_choice
 
 /datum/gear/head/halo/alt
 	display_name = "halo, alt"
@@ -70,7 +70,7 @@
 
 /datum/gear/head/buckethat/New()
 	..()
-	gear_tweaks += gear_tweak_free_color_choice
+	gear_tweaks += GLOB.gear_tweak_free_color_choice
 
 /datum/gear/head/nonla
 	display_name = "hat, non la"

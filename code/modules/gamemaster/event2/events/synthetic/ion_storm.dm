@@ -22,7 +22,7 @@
 
 /datum/event2/event/ion_storm/start()
 	// Ion laws.
-	for(var/mob/living/silicon/target in silicon_mob_list)
+	for(var/mob/living/silicon/target in GLOB.silicon_mob_list)
 		if(target.z in get_location_z_levels())
 			// Don't ion law drons.
 			if(istype(target, /mob/living/silicon/robot/drone))
@@ -42,15 +42,15 @@
 			target.show_laws()
 
 	// Emag bots.
-	for(var/mob/living/bot/B in mob_list)
+	for(var/mob/living/bot/B in GLOB.mob_list)
 		if(B.z in get_location_z_levels())
 			if(prob(bot_emag_chance))
 				B.emag_act(1)
 
 	// Messaging server spam filters.
 	// This might be better served as a seperate event since it seems more like a hacker attack than a natural occurance.
-	if(message_servers)
-		for(var/obj/machinery/message_server/MS in message_servers)
+	if(GLOB.message_servers)
+		for(var/obj/machinery/message_server/MS in GLOB.message_servers)
 			if(MS.z in get_location_z_levels())
 				MS.spamfilter.Cut()
 				for (var/i = 1, i <= MS.spamfilter_limit, i++)

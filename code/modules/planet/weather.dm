@@ -154,7 +154,7 @@
 	message_all_outdoor_players(span_warning(message))
 
 /datum/weather_holder/proc/message_all_outdoor_players(message)
-	for(var/mob/M in player_list) // Don't need to care about clientless mobs.
+	for(var/mob/M in GLOB.player_list) // Don't need to care about clientless mobs.
 		if(M.z in our_planet.expected_z_levels)
 			var/turf/T = get_turf(M)
 			if(!T.is_outdoors())

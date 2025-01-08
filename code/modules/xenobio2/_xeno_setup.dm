@@ -48,7 +48,7 @@
 #define MINOR_MALEABLE 	1
 #define MIN_MALEABLE	0
 
-var/global/list/xenoChemList = list(REAGENT_ID_MUTATIONTOXIN,
+GLOBAL_LIST_INIT(xenoChemList, list(REAGENT_ID_MUTATIONTOXIN,
 						REAGENT_ID_PSILOCYBIN,
 						REAGENT_ID_MINDBREAKER,
 						REAGENT_ID_IMPEDREZENE,
@@ -77,7 +77,7 @@ var/global/list/xenoChemList = list(REAGENT_ID_MUTATIONTOXIN,
 						REAGENT_ID_PERIDAXON,
 						REAGENT_ID_REZADONE,
 						REAGENT_ID_MUTATIONTOXIN,
-						REAGENT_ID_MUTATIONTOXIN)
+						REAGENT_ID_MUTATIONTOXIN))
 
 /datum/xeno/traits
 	var/list/traits = list()

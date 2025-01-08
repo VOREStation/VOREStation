@@ -2,7 +2,7 @@
  * VOREStation global lists
 */
 
-var/global/list/hair_accesories_list= list()// Stores /datum/sprite_accessory/hair_accessory indexed by type
+GLOBAL_LIST_EMPTY(hair_accesories_list) // Stores /datum/sprite_accessory/hair_accessory indexed by type
 GLOBAL_LIST_EMPTY(negative_traits)	// Negative custom species traits, indexed by path
 GLOBAL_LIST_EMPTY(neutral_traits)		// Neutral custom species traits, indexed by path
 GLOBAL_LIST_EMPTY(positive_traits)	// Positive custom species traits, indexed by path
@@ -11,11 +11,11 @@ GLOBAL_LIST_EMPTY(everyone_traits_neutral)	// Neutral traits available to all sp
 GLOBAL_LIST_EMPTY(everyone_traits_negative)	// Neutral traits available to all species, indexed by path
 GLOBAL_LIST_EMPTY(traits_costs)		// Just path = cost list, saves time in char setup
 GLOBAL_LIST_EMPTY(all_traits)			// All of 'em at once (same instances)
-var/global/list/active_ghost_pods = list()
+GLOBAL_LIST_EMPTY(active_ghost_pods)
 
 //Global vars for making the overmap_renamer subsystem.
 //Collects all instances by reference of visitable overmap objects of /obj/effect/overmap/visitable like the debris field.
-var/global/list/visitable_overmap_object_instances = list()
+GLOBAL_LIST_EMPTY(visitable_overmap_object_instances)
 
 GLOBAL_LIST_INIT(sensorpreflist, list("Off", "Binary", "Vitals", "Tracking", "No Preference"))
 
@@ -41,7 +41,7 @@ GLOBAL_LIST_INIT(vantag_choices_list, list(
 		VANTAG_KILL		=	"Be Killed"))
 
 //Blacklist to exclude items from object ingestion. Digestion blacklist located in digest_act_vr.dm
-var/global/list/item_vore_blacklist = list(
+GLOBAL_LIST_INIT(item_vore_blacklist, list(
 		/obj/item/hand_tele,
 		/obj/item/card/id/gold/captain/spare,
 		/obj/item/gun,
@@ -50,7 +50,7 @@ var/global/list/item_vore_blacklist = list(
 		/obj/item/areaeditor/blueprints,
 		/obj/item/clothing/head/helmet/space,
 		/obj/item/disk/nuclear,
-		/obj/item/clothing/suit/storage/hooded/wintercoat/roiz)
+		/obj/item/clothing/suit/storage/hooded/wintercoat/roiz))
 
 //Classic Vore sounds
 GLOBAL_LIST_INIT(classic_vore_sounds, list(
@@ -155,7 +155,7 @@ GLOBAL_LIST_INIT(global_vore_egg_types, list(
 	"Spotted Pink"
 	))
 
-var/global/list/tf_vore_egg_types = list(
+GLOBAL_LIST_INIT(tf_vore_egg_types, list(
 	"Unathi" 		= /obj/item/storage/vore_egg/unathi,
 	"Tajara" 		= /obj/item/storage/vore_egg/tajaran,
 	"Akula" 		= /obj/item/storage/vore_egg/shark,
@@ -188,9 +188,9 @@ var/global/list/tf_vore_egg_types = list(
 	"Purple"		= /obj/item/storage/vore_egg/purple,
 	"Red"			= /obj/item/storage/vore_egg/red,
 	"Rainbow"		= /obj/item/storage/vore_egg/rainbow,
-	"Spotted Pink"	= /obj/item/storage/vore_egg/pinkspots)
+	"Spotted Pink"	= /obj/item/storage/vore_egg/pinkspots))
 
-var/global/list/edible_trash = list(/obj/item/broken_device,
+GLOBAL_LIST_INIT(edible_trash, list(/obj/item/broken_device,
 				/obj/item/clothing/accessory/collar,
 				/obj/item/communicator,
 				/obj/item/clothing/mask,
@@ -247,7 +247,7 @@ var/global/list/edible_trash = list(/obj/item/broken_device,
 				/obj/item/capture_crystal,
 				/obj/item/roulette_ball,
 				/obj/item/pizzabox
-				)
+				))
 
 GLOBAL_LIST_INIT(contamination_flavors, list(
 				"Generic" = GLOB.contamination_flavors_generic,
@@ -534,7 +534,7 @@ GLOBAL_LIST_EMPTY(existing_solargrubs)
 	paths = subtypesof(/datum/sprite_accessory/hair_accessory)
 	for(var/path in paths)
 		var/datum/sprite_accessory/hair_accessory/instance = new path()
-		hair_accesories_list[path] = instance
+		GLOB.hair_accesories_list[path] = instance
 
 	// Custom species traits
 	paths = typesof(/datum/trait) - /datum/trait - /datum/trait/negative - /datum/trait/neutral - /datum/trait/positive
@@ -986,7 +986,7 @@ GLOBAL_LIST_INIT(selectable_speech_bubbles, list(
 // Then add it to SPECIALS and area_or_turf_fail_types
 
 // If you want someone to
-var/global/list/BUILDABLE_AREA_TYPES = list(
+GLOBAL_LIST_INIT(BUILDABLE_AREA_TYPES, list(
 	/area/space,
 	/area/mine,
 //	/area/surface/outside, 	//SC
@@ -999,7 +999,7 @@ var/global/list/BUILDABLE_AREA_TYPES = list(
 	/area/offmap/aerostat/surface,
 	/area/tether_away/beach,
 	/area/tether_away/cave,
-)
+))
 
 var/static/list/blacklisted_areas = typecacheof(list(
 	/area/space,
@@ -1018,7 +1018,7 @@ var/static/list/blacklisted_areas = typecacheof(list(
 	/area/tether_away/cave
 	))
 
-var/global/list/SPECIALS = list(
+GLOBAL_LIST_INIT(SPECIALS, list(
 	/turf/space,
 	/area/shuttle,
 	/area/admin,
@@ -1037,7 +1037,7 @@ var/global/list/SPECIALS = list(
 	/area/submap/event,
 	/area/submap/casino_event
 	// /area/derelict //commented out, all hail derelict-rebuilders!
-)
+))
 
 var/global/list/area_or_turf_fail_types = typecacheof(list(
 	/turf/space,

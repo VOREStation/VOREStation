@@ -25,15 +25,15 @@
   */
 
 // Cached runechat icon
-var/list/runechat_image_cache = list()
+GLOBAL_LIST_EMPTY(runechat_image_cache)
 
 
 /hook/startup/proc/runechat_images()
 	var/image/radio_image = image('icons/UI_Icons/chat/chat_icons.dmi', icon_state = "radio")
-	runechat_image_cache["radio"] = radio_image
+	GLOB.runechat_image_cache["radio"] = radio_image
 
 	var/image/emote_image = image('icons/UI_Icons/chat/chat_icons.dmi', icon_state = "emote")
-	runechat_image_cache["emote"] = emote_image
+	GLOB.runechat_image_cache["emote"] = emote_image
 
 	return TRUE
 
@@ -149,14 +149,14 @@ var/list/runechat_image_cache = list()
 
 	// Append prefixes
 	if(extra_classes.Find("virtual-speaker"))
-		LAZYADD(prefixes, "[icon2html(runechat_image_cache["radio"],owner.client)]")
+		LAZYADD(prefixes, "[icon2html(GLOB.runechat_image_cache["radio"],owner.client)]")
 	if(extra_classes.Find("emote"))
 		// Icon on both ends?
-		//var/image/I = runechat_image_cache["emote"]
+		//var/image/I = GLOB.runechat_image_cache["emote"]
 		//text = "icon2html(I)[text]icon2html(I)"
 
 		// Icon on one end?
-		//LAZYADD(prefixes, "icon2html(runechat_image_cache["emote")]")
+		//LAZYADD(prefixes, "icon2html(GLOB.runechat_image_cache["emote")]")
 
 		// Asterisks instead?
 		text = "*&nbsp;[text]&nbsp;*"
@@ -311,7 +311,7 @@ var/list/runechat_image_cache = list()
 	var/static/rseed = rand(1,26)
 
 	// get hsl using the selected 6 characters of the md5 hash
-	var/hash = copytext(md5(name + "[world_startup_time]"), rseed, rseed + 6)
+	var/hash = copytext(md5(name + "[GLOB.world_startup_time]"), rseed, rseed + 6)
 	var/h = hex2num(copytext(hash, 1, 3)) * (360 / 255)
 	var/s = (hex2num(copytext(hash, 3, 5)) >> 2) * ((CM_COLOR_SAT_MAX - CM_COLOR_SAT_MIN) / 63) + CM_COLOR_SAT_MIN
 	var/l = (hex2num(copytext(hash, 5, 7)) >> 2) * ((CM_COLOR_LUM_MAX - CM_COLOR_LUM_MIN) / 63) + CM_COLOR_LUM_MIN

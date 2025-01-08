@@ -19,8 +19,8 @@
 //- Identify how hard it is to break into the area and where the weak points are
 //- Check if the area has too much empty space. If so, make it smaller and replace the rest with maintenance tunnels.
 
-var/camera_range_display_status = 0
-var/intercom_range_display_status = 0
+GLOBAL_VAR_INIT(camera_range_display_status, 0)
+GLOBAL_VAR_INIT(intercom_range_display_status, 0)
 
 GLOBAL_LIST_BOILERPLATE(all_debugging_effects, /obj/effect/debugging)
 
@@ -47,18 +47,18 @@ GLOBAL_LIST_BOILERPLATE(all_debugging_effects, /obj/effect/debugging)
 	set category = "Mapping"
 	set name = "Camera Range Display"
 
-	if(camera_range_display_status)
-		camera_range_display_status = 0
+	if(GLOB.camera_range_display_status)
+		GLOB.camera_range_display_status = 0
 	else
-		camera_range_display_status = 1
+		GLOB.camera_range_display_status = 1
 
 
 
 	for(var/obj/effect/debugging/camera_range/C in all_debugging_effects)
 		qdel(C)
 
-	if(camera_range_display_status)
-		for(var/obj/machinery/camera/C in cameranet.cameras)
+	if(GLOB.camera_range_display_status)
+		for(var/obj/machinery/camera/C in GLOB.cameranet.cameras)
 			new/obj/effect/debugging/camera_range(C.loc)
 	feedback_add_details("admin_verb","mCRD") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
@@ -74,7 +74,7 @@ GLOBAL_LIST_BOILERPLATE(all_debugging_effects, /obj/effect/debugging)
 
 	var/list/obj/machinery/camera/CL = list()
 
-	for(var/obj/machinery/camera/C in cameranet.cameras)
+	for(var/obj/machinery/camera/C in GLOB.cameranet.cameras)
 		CL += C
 
 	var/output = {"<B>CAMERA ANNOMALITIES REPORT</B><HR>
@@ -108,15 +108,15 @@ GLOBAL_LIST_BOILERPLATE(all_debugging_effects, /obj/effect/debugging)
 	set category = "Mapping"
 	set name = "Intercom Range Display"
 
-	if(intercom_range_display_status)
-		intercom_range_display_status = 0
+	if(GLOB.intercom_range_display_status)
+		GLOB.intercom_range_display_status = 0
 	else
-		intercom_range_display_status = 1
+		GLOB.intercom_range_display_status = 1
 
 	for(var/obj/effect/debugging/marker/M in all_debugging_effects)
 		qdel(M)
 
-	if(intercom_range_display_status)
+	if(GLOB.intercom_range_display_status)
 		for(var/obj/item/radio/intercom/I in machines)
 			for(var/turf/T in orange(7,I))
 				var/obj/effect/debugging/marker/F = new/obj/effect/debugging/marker(T)

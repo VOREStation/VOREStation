@@ -24,7 +24,7 @@
 
 /mob/living/bot/cleanbot/Destroy()
 	if(target)
-		cleanbot_reserved_turfs -= target
+		GLOB.cleanbot_reserved_turfs -= target
 	return ..()
 
 /mob/living/bot/cleanbot/handleIdle()
@@ -79,17 +79,17 @@
 				continue // already checked this one
 			else if(confirmTarget(D))
 				target = D
-				cleanbot_reserved_turfs += D
+				GLOB.cleanbot_reserved_turfs += D
 				return
 
 /mob/living/bot/resetTarget()
-	cleanbot_reserved_turfs -= target
+	GLOB.cleanbot_reserved_turfs -= target
 	..()
 
 /mob/living/bot/cleanbot/confirmTarget(var/obj/effect/decal/cleanable/D)
 	if(!..())
 		return FALSE
-	if(D.loc in cleanbot_reserved_turfs)
+	if(D.loc in GLOB.cleanbot_reserved_turfs)
 		return FALSE
 	for(var/T in target_types)
 		if(istype(D, T))
@@ -127,7 +127,7 @@
 				return
 			qdel(D)
 			if(D == target)
-				cleanbot_reserved_turfs -= target
+				GLOB.cleanbot_reserved_turfs -= target
 				target = null
 	else if(D == src)
 		for(var/obj/effect/O in loc)

@@ -157,22 +157,22 @@
 /datum/nifsoft/worldbend/activate()
 	if((. = ..()))
 		var/list/justme = list(nif.human)
-		for(var/human in human_mob_list)
+		for(var/human in GLOB.human_mob_list)
 			if(human == nif.human)
 				continue
 			var/mob/living/carbon/human/H = human
 			H.display_alt_appearance("animals", justme)
-			alt_farmanimals += nif.human
+			GLOB.alt_farmanimals += nif.human
 
 /datum/nifsoft/worldbend/deactivate(var/force = FALSE)
 	if((. = ..()))
 		var/list/justme = list(nif.human)
-		for(var/human in human_mob_list)
+		for(var/human in GLOB.human_mob_list)
 			if(human == nif.human)
 				continue
 			var/mob/living/carbon/human/H = human
 			H.hide_alt_appearance("animals", justme)
-			alt_farmanimals -= nif.human
+			GLOB.alt_farmanimals -= nif.human
 
 /datum/nifsoft/malware
 	name = "Cool Kidz Toolbar"

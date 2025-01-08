@@ -157,7 +157,7 @@ var/global/datum/controller/occupations/job_master
 			break
 
 /datum/controller/occupations/proc/ResetOccupations()
-	for(var/mob/new_player/player in player_list)
+	for(var/mob/new_player/player in GLOB.player_list)
 		if((player) && (player.mind))
 			player.mind.assigned_role = null
 			player.mind.special_role = null
@@ -234,7 +234,7 @@ var/global/datum/controller/occupations/job_master
 				break
 
 	//Get the players who are ready
-	for(var/mob/new_player/player in player_list)
+	for(var/mob/new_player/player in GLOB.player_list)
 		if(player.ready && player.mind && !player.mind.assigned_role)
 			unassigned += player
 
@@ -360,7 +360,7 @@ var/global/datum/controller/occupations/job_master
 	if(!joined_late)
 		var/obj/S = null
 		var/list/possible_spawns = list()
-		for(var/obj/effect/landmark/start/sloc in landmarks_list)
+		for(var/obj/effect/landmark/start/sloc in GLOB.landmarks_list)
 			if(sloc.name != rank)	continue
 			if(locate(/mob/living) in sloc.loc)	continue
 			possible_spawns.Add(sloc)
@@ -391,7 +391,7 @@ var/global/datum/controller/occupations/job_master
 		var/list/custom_equip_leftovers = list()
 		if(H.client && H.client.prefs && H.client.prefs.gear && H.client.prefs.gear.len && !(job.mob_type & JOB_SILICON))
 			for(var/thing in H.client.prefs.gear)
-				var/datum/gear/G = gear_datums[thing]
+				var/datum/gear/G = GLOB.gear_datums[thing]
 				if(!G) //Not a real gear datum (maybe removed, as this is loaded from their savefile)
 					continue
 
@@ -452,7 +452,7 @@ var/global/datum/controller/occupations/job_master
 
 		// If some custom items could not be equipped before, try again now.
 		for(var/thing in custom_equip_leftovers)
-			var/datum/gear/G = gear_datums[thing]
+			var/datum/gear/G = GLOB.gear_datums[thing]
 			if(G.slot == slot_shoes && H.client?.prefs?.shoe_hater)	//RS ADD
 				continue
 			if(G.slot in custom_equip_slots)
@@ -509,7 +509,7 @@ var/global/datum/controller/occupations/job_master
 			if(!isnull(B))
 				for(var/thing in spawn_in_storage)
 					to_chat(H, span_notice("Placing \the [thing] in your [B.name]!"))
-					var/datum/gear/G = gear_datums[thing]
+					var/datum/gear/G = GLOB.gear_datums[thing]
 					var/metadata = H.client.prefs.gear[G.display_name]
 					G.spawn_item(B, metadata)
 			else
@@ -626,7 +626,7 @@ var/global/datum/controller/occupations/job_master
 		var/level4 = 0 //never
 		var/level5 = 0 //banned
 		var/level6 = 0 //account too young
-		for(var/mob/new_player/player in player_list)
+		for(var/mob/new_player/player in GLOB.player_list)
 			if(!(player.ready && player.mind && !player.mind.assigned_role))
 				continue //This player is not ready
 			if(jobban_isbanned(player, job.title))
@@ -669,7 +669,7 @@ var/global/datum/controller/occupations/job_master
 				to_chat(C, span_warning("Your chosen spawnpoint ([C.prefs.read_preference(/datum/preference/choiced/living/spawnpoint)]) is unavailable for the current map. Spawning you at one of the enabled spawn points instead."))
 				spawnpos = null
 		else
-			spawnpos = spawntypes[C.prefs.read_preference(/datum/preference/choiced/living/spawnpoint)]
+			spawnpos = GLOB.spawntypes[C.prefs.read_preference(/datum/preference/choiced/living/spawnpoint)]
 
 	//We will return a list key'd by "turf" and "msg"
 	. = list("turf","msg")

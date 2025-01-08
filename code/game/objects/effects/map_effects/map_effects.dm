@@ -30,7 +30,7 @@
 /obj/effect/map_effect/interval/Initialize()
 	. = ..()
 	START_PROCESSING(SSobj, src)
-	
+
 /obj/effect/map_effect/interval/Destroy()
 	STOP_PROCESSING(SSobj, src)
 	return ..()
@@ -44,7 +44,7 @@
 	//Not yet!
 	if(world.time < next_attempt)
 		return
-	
+
 	// Check to see if we're useful first.
 	if(!always_run && !check_for_player_proximity(src, proximity_needed, ignore_ghosts, ignore_afk))
 		next_attempt = world.time + retry_delay
@@ -58,8 +58,8 @@
 	if(!proximity_to)
 		return FALSE
 
-	for(var/thing in player_list)
-		var/mob/M = thing // Avoiding typechecks for more speed, player_list will only contain mobs anyways.
+	for(var/thing in GLOB.player_list)
+		var/mob/M = thing // Avoiding typechecks for more speed, GLOB.player_list will only contain mobs anyways.
 		if(ignore_ghosts && isobserver(M))
 			continue
 		if(ignore_afk && M.client && M.client.is_afk(5 MINUTES))

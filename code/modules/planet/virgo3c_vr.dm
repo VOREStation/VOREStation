@@ -20,7 +20,7 @@
 #define VIRGO3C_TURF_CREATE(x)	x/virgo3c/nitrogen=VIRGO3C_MOL_N2;x/virgo3c/oxygen=VIRGO3C_MOL_O2;x/virgo3c/carbon_dioxide=VIRGO3C_MOL_CO2;x/virgo3c/phoron=VIRGO3C_MOL_PHORON;x/virgo3c/temperature=VIRGO3C_AVG_TEMP;x/virgo3c/outdoors=TRUE;x/virgo3c/update_graphic(list/graphic_add = null, list/graphic_remove = null) return 0
 #define VIRGO3C_TURF_CREATE_UN(x)	x/virgo3c/nitrogen=VIRGO3C_MOL_N2;x/virgo3c/oxygen=VIRGO3C_MOL_O2;x/virgo3c/carbon_dioxide=VIRGO3C_MOL_CO2;x/virgo3c/phoron=VIRGO3C_MOL_PHORON;x/virgo3c/temperature=VIRGO3C_AVG_TEMP
 
-var/datum/planet/virgo3c/planet_virgo3c = null
+GLOBAL_DATUM(planet_virgo3c, /datum/planet/virgo3c)
 
 /datum/time/virgo3c
 	seconds_in_day = 6 HOURS
@@ -33,7 +33,7 @@ var/datum/planet/virgo3c/planet_virgo3c = null
 
 /datum/planet/virgo3c/New()
 	..()
-	planet_virgo3c = src
+	GLOB.planet_virgo3c = src
 	weather_holder = new /datum/weather_holder/virgo3c(src)
 
 /datum/planet/virgo3c/update_sun()
@@ -277,7 +277,7 @@ var/datum/planet/virgo3c/planet_virgo3c = null
 
 /datum/weather/virgo3c/rain/process_effects()
 	..()
-	for(var/mob/living/L as anything in living_mob_list)
+	for(var/mob/living/L as anything in GLOB.living_mob_list)
 		if(L.z in holder.our_planet.expected_z_levels)
 			var/turf/T = get_turf(L)
 			if(!T.is_outdoors())
@@ -331,7 +331,7 @@ var/datum/planet/virgo3c/planet_virgo3c = null
 
 /datum/weather/virgo3c/storm/process_effects()
 	..()
-	for(var/mob/living/L as anything in living_mob_list)
+	for(var/mob/living/L as anything in GLOB.living_mob_list)
 		if(L.z in holder.our_planet.expected_z_levels)
 			var/turf/T = get_turf(L)
 			if(!T.is_outdoors())
@@ -389,7 +389,7 @@ var/datum/planet/virgo3c/planet_virgo3c = null
 
 /datum/weather/virgo3c/hail/process_effects()
 	..()
-	for(var/mob/living/carbon/H as anything in human_mob_list)
+	for(var/mob/living/carbon/H as anything in GLOB.human_mob_list)
 		if(H.z in holder.our_planet.expected_z_levels)
 			var/turf/T = get_turf(H)
 			if(!T.is_outdoors())
@@ -518,7 +518,7 @@ var/datum/planet/virgo3c/planet_virgo3c = null
 
 /datum/weather/virgo3c/ash_storm/process_effects()
 	..()
-	for(var/mob/living/L as anything in living_mob_list)
+	for(var/mob/living/L as anything in GLOB.living_mob_list)
 		if(L.z in holder.our_planet.expected_z_levels)
 			var/turf/T = get_turf(L)
 			if(!T.is_outdoors())
@@ -582,7 +582,7 @@ var/datum/planet/virgo3c/planet_virgo3c = null
 
 /datum/weather/virgo3c/fallout/process_effects()
 	..()
-	for(var/mob/living/L as anything in living_mob_list)
+	for(var/mob/living/L as anything in GLOB.living_mob_list)
 		if(L.z in holder.our_planet.expected_z_levels)
 			irradiate_nearby_turf(L)
 			var/turf/T = get_turf(L)

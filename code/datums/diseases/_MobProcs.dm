@@ -178,7 +178,7 @@
 		return FALSE
 
 	var/disease = tgui_input_list(usr, "Choose virus", "Viruses", subtypesof(/datum/disease), subtypesof(/datum/disease))
-	var/mob/living/carbon/human/H = tgui_input_list(usr, "Choose infectee", "Characters", human_mob_list)
+	var/mob/living/carbon/human/H = tgui_input_list(usr, "Choose infectee", "Characters", GLOB.human_mob_list)
 
 	var/datum/disease/D = new disease
 

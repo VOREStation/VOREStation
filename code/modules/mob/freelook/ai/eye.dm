@@ -9,7 +9,7 @@
 
 /mob/observer/eye/aiEye/New()
 	..()
-	visualnet = cameranet
+	visualnet = GLOB.cameranet
 
 /mob/observer/eye/aiEye/Destroy()
 	if(owner)

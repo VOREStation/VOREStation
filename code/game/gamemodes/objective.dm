@@ -229,7 +229,7 @@ GLOBAL_LIST_EMPTY(all_objectives)
 		return 0
 	var/area/shuttle = locate(/area/shuttle/escape/centcom)
 	var/list/protected_mobs = list(/mob/living/silicon/ai, /mob/living/silicon/pai)
-	for(var/mob/living/player in player_list)
+	for(var/mob/living/player in GLOB.player_list)
 		if(player.type in protected_mobs)	continue
 		if (player.mind && (player.mind != owner))
 			if(player.stat != DEAD)			//they're not dead!
@@ -251,7 +251,7 @@ GLOBAL_LIST_EMPTY(all_objectives)
 		return 0
 	var/area/shuttle = locate(/area/shuttle/escape/centcom)
 	var/protected_mobs[] = list(/mob/living/silicon/ai, /mob/living/silicon/pai, /mob/living/silicon/robot)
-	for(var/mob/living/player in player_list)
+	for(var/mob/living/player in GLOB.player_list)
 		if(player.type in protected_mobs)	continue
 		if (player.mind)
 			if (player.stat != 2)
@@ -266,7 +266,7 @@ GLOBAL_LIST_EMPTY(all_objectives)
 	if(!emergency_shuttle.returned())
 		return 0
 
-	for(var/mob/living/player in player_list)
+	for(var/mob/living/player in GLOB.player_list)
 		if(player == owner.current)
 			continue
 		if(player.mind)
@@ -521,7 +521,7 @@ GLOBAL_LIST_EMPTY(all_objectives)
 					if(isAI(M) && M.stat != 2) //See if any AI's are alive inside that card.
 						return 1
 
-			for(var/mob/living/silicon/ai/ai in mob_list)
+			for(var/mob/living/silicon/ai/ai in GLOB.mob_list)
 				var/turf/T = get_turf(ai)
 				if(istype(T))
 					var/area/check_area = get_area(ai)
@@ -609,11 +609,11 @@ GLOBAL_LIST_EMPTY(all_objectives)
 	if (ticker)
 		var/n_p = 1 //autowin
 		if (ticker.current_state == GAME_STATE_SETTING_UP)
-			for(var/mob/new_player/P in player_list)
+			for(var/mob/new_player/P in GLOB.player_list)
 				if(P.client && P.ready && P.mind!=owner)
 					n_p ++
 		else if (ticker.current_state == GAME_STATE_PLAYING)
-			for(var/mob/living/carbon/human/P in player_list)
+			for(var/mob/living/carbon/human/P in GLOB.player_list)
 				if(P.client && !(P.mind.changeling) && P.mind!=owner)
 					n_p ++
 		target_amount = min(target_amount, n_p)
@@ -836,12 +836,12 @@ GLOBAL_LIST_EMPTY(all_objectives)
 
 /datum/objective/cult/survive/check_completion()
 	var/acolytes_survived = 0
-	if(!cult)
+	if(!GLOB.cult)
 		return 0
-	for(var/datum/mind/cult_mind in cult.current_antagonists)
+	for(var/datum/mind/cult_mind in GLOB.cult.current_antagonists)
 		if (cult_mind.current && cult_mind.current.stat!=2)
 			var/area/A = get_area(cult_mind.current )
-			if ( is_type_in_list(A, centcom_areas))
+			if ( is_type_in_list(A, GLOB.centcom_areas))
 				acolytes_survived++
 	if(acolytes_survived >= target_amount)
 		return 0
@@ -860,15 +860,15 @@ GLOBAL_LIST_EMPTY(all_objectives)
 /datum/objective/cult/sacrifice/find_target()
 	var/list/possible_targets = list()
 	if(!possible_targets.len)
-		for(var/mob/living/carbon/human/player in player_list)
-			if(player.mind && !(player.mind in cult))
+		for(var/mob/living/carbon/human/player in GLOB.player_list)
+			if(player.mind && !(player.mind in GLOB.cult))
 				possible_targets += player.mind
 	if(possible_targets.len > 0)
 		target = pick(possible_targets)
 	if(target) explanation_text = "Sacrifice [target.name], the [target.assigned_role]. You will need the sacrifice rune (Hell blood join) and three acolytes to do so."
 
 /datum/objective/cult/sacrifice/check_completion()
-	return (target && cult && !cult.sacrificed.Find(target))
+	return (target && GLOB.cult && !GLOB.cult.sacrificed.Find(target))
 
 /datum/objective/rev/find_target()
 	..()
@@ -896,7 +896,7 @@ GLOBAL_LIST_EMPTY(all_objectives)
 		if(H.stat == DEAD || H.restrained())
 			return 1
 		// Check if they're converted
-		if(target in revs.current_antagonists)
+		if(target in GLOB.revs.current_antagonists)
 			return 1
 		var/turf/T = get_turf(H)
 		if(T && isNotStationLevel(T.z))			//If they leave the station they count as dead for this

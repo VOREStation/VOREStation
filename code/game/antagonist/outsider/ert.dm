@@ -1,4 +1,4 @@
-var/datum/antagonist/ert/ert
+GLOBAL_DATUM(ert, /datum/antagonist/ert)
 
 /datum/antagonist/ert
 	id = MODE_ERT
@@ -35,7 +35,7 @@ var/datum/antagonist/ert/ert
 
 /datum/antagonist/ert/New()
 	..()
-	ert = src
+	GLOB.ert = src
 
 /datum/antagonist/ert/greet(var/datum/mind/player)
 	if(!..())

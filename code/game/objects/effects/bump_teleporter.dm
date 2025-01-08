@@ -1,4 +1,4 @@
-var/list/obj/effect/bump_teleporter/BUMP_TELEPORTERS = list()
+GLOBAL_LIST_EMPTY_TYPED(BUMP_TELEPORTERS, /obj/effect/bump_teleporter)
 
 /obj/effect/bump_teleporter
 	name = "bump-teleporter"
@@ -13,10 +13,10 @@ var/list/obj/effect/bump_teleporter/BUMP_TELEPORTERS = list()
 
 /obj/effect/bump_teleporter/New()
 	..()
-	BUMP_TELEPORTERS += src
+	GLOB.BUMP_TELEPORTERS += src
 
 /obj/effect/bump_teleporter/Destroy()
-	BUMP_TELEPORTERS -= src
+	GLOB.BUMP_TELEPORTERS -= src
 	return ..()
 
 /obj/effect/bump_teleporter/Bumped(atom/user)
@@ -28,7 +28,7 @@ var/list/obj/effect/bump_teleporter/BUMP_TELEPORTERS = list()
 		//user.loc = src.loc	//Stop at teleporter location, there is nowhere to teleport to.
 		return
 
-	for(var/obj/effect/bump_teleporter/BT in BUMP_TELEPORTERS)
+	for(var/obj/effect/bump_teleporter/BT in GLOB.BUMP_TELEPORTERS)
 		if(BT.id == src.id_target)
 			M.forceMove(BT.loc)	//Teleport to location with correct id.	//VOREStation Edit
 			return

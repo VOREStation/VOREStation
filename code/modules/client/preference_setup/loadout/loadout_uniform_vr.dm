@@ -90,7 +90,7 @@ Qipao
 
 /datum/gear/uniform/qipao_colorable_alt/New()
 	..()
-	gear_tweaks += gear_tweak_free_color_choice
+	gear_tweaks += GLOB.gear_tweak_free_color_choice
 
 /*
 Bluespace jumpsuit
@@ -189,7 +189,7 @@ Talon jumpsuit
 	"short skirt"=/obj/item/clothing/under/skirt/colorable/short,
 	"short skirt (split)"=/obj/item/clothing/under/skirt/colorable/short_split
 	)
-	gear_tweaks += list(new/datum/gear_tweak/path(skirts), gear_tweak_free_color_choice)
+	gear_tweaks += list(new/datum/gear_tweak/path(skirts), GLOB.gear_tweak_free_color_choice)
 
 // gwen beedells clown clothes
 
@@ -205,7 +205,7 @@ Talon jumpsuit
 
 /datum/gear/uniform/cdress_fire/New()
 	..()
-	gear_tweaks += gear_tweak_free_color_choice
+	gear_tweaks += GLOB.gear_tweak_free_color_choice
 
 
 // recolorable yellow dress
@@ -215,7 +215,7 @@ Talon jumpsuit
 
 /datum/gear/uniform/cbridesmaid/New()
 	..()
-	gear_tweaks += gear_tweak_free_color_choice
+	gear_tweaks += GLOB.gear_tweak_free_color_choice
 
 // recolorable orange swoop dress
 /datum/gear/uniform/cswoopdress
@@ -224,4 +224,4 @@ Talon jumpsuit
 
 /datum/gear/uniform/cswoopdress/New()
 	..()
-	gear_tweaks += gear_tweak_free_color_choice
+	gear_tweaks += GLOB.gear_tweak_free_color_choice

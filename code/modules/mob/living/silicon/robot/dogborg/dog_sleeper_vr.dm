@@ -79,7 +79,7 @@
 		return
 
 	if(compactor)
-		if(is_type_in_list(target,item_vore_blacklist))
+		if(is_type_in_list(target, GLOB.item_vore_blacklist))
 			to_chat(user, span_warning("You are hard-wired to not ingest this item."))
 			return
 		if(istype(target, /obj/item) || istype(target, /obj/effect/decal/remains))
@@ -176,7 +176,7 @@
 		ingest_living(ingesting, belly)
 	else if (istype(ingesting, /obj/item))
 		var/obj/item/to_eat = ingesting
-		if (is_type_in_list(to_eat, item_vore_blacklist))
+		if (is_type_in_list(to_eat, GLOB.item_vore_blacklist))
 			return
 		if (istype(to_eat, /obj/item/holder)) //just in case
 			var/obj/item/holder/micro = ingesting

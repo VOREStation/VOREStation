@@ -52,7 +52,7 @@
 /mob/living/simple_mob/animal/borer/Login()
 	..()
 	if(antag && mind)
-		borers.add_antagonist(mind)
+		GLOB.borers.add_antagonist(mind)
 
 /mob/living/simple_mob/animal/borer/Initialize()
 	add_language("Cortical Link")
@@ -162,7 +162,7 @@
 		return
 
 	if(host.mind)
-		borers.remove_antagonist(host.mind)
+		GLOB.borers.remove_antagonist(host.mind)
 
 	forceMove(get_turf(host))
 
@@ -257,7 +257,7 @@
 	to_chat(src, "You drop words into [host]'s mind: \"[message]\"")
 	to_chat(host, "Your own thoughts speak: \"[message]\"")
 
-	for(var/mob/M in player_list)
+	for(var/mob/M in GLOB.player_list)
 		if(isnewplayer(M))
 			continue
 		else if(M.stat == DEAD && M.client?.prefs?.read_preference(/datum/preference/toggle/ghost_ears))

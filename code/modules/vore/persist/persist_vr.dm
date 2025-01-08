@@ -15,7 +15,7 @@
 
 // Handle people leaving due to round ending.
 /hook/roundend/proc/persist_locations()
-	for(var/mob/Player in human_mob_list)
+	for(var/mob/Player in GLOB.human_mob_list)
 		if(!Player.mind || isnewplayer(Player))
 			continue // No mind we can do nothing, new players we care not for
 		else if(Player.stat == DEAD)
@@ -46,7 +46,7 @@
 	// Find out of this mob is a proper mob!
 	if (persister.mind && persister.mind.loaded_from_ckey)
 		// Okay this mob has a real loaded-from-savefile mind in it!
-		var/datum/preferences/prefs = preferences_datums[persister.mind.loaded_from_ckey]
+		var/datum/preferences/prefs = GLOB.preferences_datums[persister.mind.loaded_from_ckey]
 		if(!prefs)
 			warning("Persist (P4P): [persister.mind] was loaded from ckey [persister.mind.loaded_from_ckey] but no prefs datum found.")
 			return

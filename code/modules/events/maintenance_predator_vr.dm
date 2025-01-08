@@ -6,7 +6,7 @@
 
 	var/obj/effect/landmark/spawnspot = null
 	var/list/possibleSpawnspots = list()
-	for(var/obj/effect/landmark/L in landmarks_list)
+	for(var/obj/effect/landmark/L in GLOB.landmarks_list)
 		if(L.name == "maint_pred")
 			possibleSpawnspots += L
 	if(possibleSpawnspots.len)

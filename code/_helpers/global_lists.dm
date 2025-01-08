@@ -1,37 +1,37 @@
 //Since it didn't really belong in any other category, I'm putting this here
 //This is for procs to replace all the goddamn 'in world's that are chilling around the code
 
-var/global/list/player_list = list()				//List of all mobs **with clients attached**. Excludes /mob/new_player
-var/global/list/mob_list = list()					//List of all mobs, including clientless
-var/global/list/human_mob_list = list()				//List of all human mobs and sub-types, including clientless
-var/global/list/silicon_mob_list = list()			//List of all silicon mobs, including clientless
-var/global/list/ai_list = list()					//List of all AIs, including clientless
-var/global/list/living_mob_list = list()			//List of all alive mobs, including clientless. Excludes /mob/new_player
-var/global/list/dead_mob_list = list()				//List of all dead mobs, including clientless. Excludes /mob/new_player
-var/global/list/observer_mob_list = list()			//List of all /mob/observer/dead, including clientless.
-var/global/list/listening_objects = list()			//List of all objects which care about receiving messages (communicators, radios, etc)
-var/global/list/cleanbot_reserved_turfs = list()	//List of all turfs currently targeted by some cleanbot
+GLOBAL_LIST_EMPTY(player_list)				//List of all mobs **with clients attached**. Excludes /mob/new_player
+GLOBAL_LIST_EMPTY(mob_list)					//List of all mobs, including clientless
+GLOBAL_LIST_EMPTY(human_mob_list)			//List of all human mobs and sub-types, including clientless
+GLOBAL_LIST_EMPTY(silicon_mob_list)			//List of all silicon mobs, including clientless
+GLOBAL_LIST_EMPTY(ai_list)					//List of all AIs, including clientless
+GLOBAL_LIST_EMPTY(living_mob_list)			//List of all alive mobs, including clientless. Excludes /mob/new_player
+GLOBAL_LIST_EMPTY(dead_mob_list)			//List of all dead mobs, including clientless. Excludes /mob/new_player
+GLOBAL_LIST_EMPTY(observer_mob_list)		//List of all /mob/observer/dead, including clientless.
+GLOBAL_LIST_EMPTY(listening_objects)		//List of all objects which care about receiving messages (communicators, radios, etc)
+GLOBAL_LIST_EMPTY(cleanbot_reserved_turfs)	//List of all turfs currently targeted by some cleanbot
 
-var/global/list/cable_list = list()					//Index for all cables, so that powernets don't have to look through the entire world all the time
-var/global/list/landmarks_list = list()				//list of all landmarks created
-var/global/list/event_triggers = list()				//Associative list of creator_ckey:list(landmark references) for event triggers
-var/global/list/surgery_steps = list()				//list of all surgery steps  |BS12
-var/global/list/side_effects = list()				//list of all medical sideeffects types by thier names |BS12
-var/global/list/mechas_list = list()				//list of all mechs. Used by hostile mobs target tracking.
-var/global/list/joblist = list()					//list of all jobstypes, minus borg and AI
+GLOBAL_LIST_EMPTY(cable_list)				//Index for all cables, so that powernets don't have to look through the entire world all the time
+GLOBAL_LIST_EMPTY(landmarks_list)			//list of all landmarks created
+GLOBAL_LIST_EMPTY(event_triggers)			//Associative list of creator_ckey:list(landmark references) for event triggers
+GLOBAL_LIST_EMPTY(surgery_steps)			//list of all surgery steps  |BS12
+GLOBAL_LIST_EMPTY(side_effects)				//list of all medical sideeffects types by thier names |BS12
+GLOBAL_LIST_EMPTY(mechas_list)				//list of all mechs. Used by hostile mobs target tracking.
+GLOBAL_LIST_EMPTY(joblist)					//list of all jobstypes, minus borg and AI
 
 #define all_genders_define_list list(MALE,FEMALE,PLURAL,NEUTER,HERM) //VOREStaton Edit
 #define all_genders_text_list list("Male","Female","Plural","Neuter","Herm") //VOREStation Edit
 
-var/list/mannequins_
+GLOBAL_LIST(mannequins_)
 
 // Times that players are allowed to respawn ("ckey" = world.time)
 GLOBAL_LIST_EMPTY(respawn_timers)
 
 // Holomaps
-var/global/list/holomap_markers = list()
-var/global/list/mapping_units = list()
-var/global/list/mapping_beacons = list()
+GLOBAL_LIST_EMPTY(holomap_markers)
+GLOBAL_LIST_EMPTY(mapping_units)
+GLOBAL_LIST_EMPTY(mapping_beacons)
 
 //Preferences stuff
 	//Hairstyles
@@ -42,42 +42,42 @@ var/global/list/facial_hair_styles_list = list()	//stores /datum/sprite_accessor
 var/global/list/facial_hair_styles_male_list = list()
 var/global/list/facial_hair_styles_female_list = list()
 var/global/list/skin_styles_female_list = list()		//unused
-var/global/list/body_marking_styles_list = list()		//stores /datum/sprite_accessory/marking indexed by name
-var/global/list/body_marking_nopersist_list = list()	// Body marking styles, minus non-genetic markings and augments
-var/global/list/ear_styles_list = list()	// Stores /datum/sprite_accessory/ears indexed by type
-var/global/list/tail_styles_list = list()	// Stores /datum/sprite_accessory/tail indexed by type
-var/global/list/wing_styles_list = list()	// Stores /datum/sprite_accessory/wing indexed by type
+GLOBAL_LIST_EMPTY(body_marking_styles_list)		//stores /datum/sprite_accessory/marking indexed by name
+GLOBAL_LIST_EMPTY(body_marking_nopersist_list)	// Body marking styles, minus non-genetic markings and augments
+GLOBAL_LIST_EMPTY(ear_styles_list)				// Stores /datum/sprite_accessory/ears indexed by type
+GLOBAL_LIST_EMPTY(tail_styles_list)				// Stores /datum/sprite_accessory/tail indexed by type
+GLOBAL_LIST_EMPTY(wing_styles_list)				// Stores /datum/sprite_accessory/wing indexed by type
 
 GLOBAL_LIST_INIT(custom_species_bases, new) // Species that can be used for a Custom Species icon base
 	//Underwear
-var/datum/category_collection/underwear/global_underwear = new()
+GLOBAL_DATUM_INIT(global_underwear, /datum/category_collection/underwear, new())
 
 	//Customizables
 GLOBAL_LIST_INIT(headsetlist, list("Standard","Bowman","Earbud"))
-var/global/list/backbaglist = list("Nothing", "Backpack", "Satchel", "Satchel Alt", "Messenger Bag", "Sports Bag", "Strapless Satchel")
-var/global/list/pdachoicelist = list("Default", "Slim", "Old", "Rugged", "Holographic", "Wrist-Bound","Slider", "Vintage")
-var/global/list/exclude_jobs = list(/datum/job/ai,/datum/job/cyborg)
+GLOBAL_LIST_INIT(backbaglist, list("Nothing", "Backpack", "Satchel", "Satchel Alt", "Messenger Bag", "Sports Bag", "Strapless Satchel"))
+GLOBAL_LIST_INIT(pdachoicelist, list("Default", "Slim", "Old", "Rugged", "Holographic", "Wrist-Bound","Slider", "Vintage"))
+GLOBAL_LIST_INIT(exclude_jobs, list(/datum/job/ai, /datum/job/cyborg))
 
 // Visual nets
-var/list/datum/visualnet/visual_nets = list()
-var/datum/visualnet/camera/cameranet = new()
-var/datum/visualnet/cult/cultnet = new()
-var/datum/visualnet/ghost/ghostnet = new()
+GLOBAL_LIST_EMPTY_TYPED(visual_nets, /datum/visualnet)
+GLOBAL_DATUM_INIT(cameranet, /datum/visualnet/camera, new())
+GLOBAL_DATUM_INIT(cultnet, /datum/visualnet/cult, new())
+GLOBAL_DATUM_INIT(ghostnet, /datum/visualnet/ghost, new())
 
 // Runes
 var/global/list/rune_list = new()
-var/global/list/escape_list = list()
-var/global/list/endgame_exits = list()
-var/global/list/endgame_safespawns = list()
+GLOBAL_LIST_EMPTY(escape_list)
+GLOBAL_LIST_EMPTY(endgame_exits)
+GLOBAL_LIST_EMPTY(endgame_safespawns)
 
-var/global/list/syndicate_access = list(access_maint_tunnels, access_syndicate, access_external_airlocks)
+GLOBAL_LIST_INIT(syndicate_access, list(access_maint_tunnels, access_syndicate, access_external_airlocks))
 
 // Ores (for mining)
 GLOBAL_LIST_EMPTY(ore_data)
 GLOBAL_LIST_EMPTY(alloy_data)
 
 // Strings which corraspond to bodypart covering flags, useful for outputting what something covers.
-var/global/list/string_part_flags = list(
+GLOBAL_LIST_INIT(string_part_flags, list(
 	"head" = HEAD,
 	"face" = FACE,
 	"eyes" = EYES,
@@ -87,10 +87,10 @@ var/global/list/string_part_flags = list(
 	"feet" = FEET,
 	"arms" = ARMS,
 	"hands" = HANDS
-)
+))
 
 // Strings which corraspond to slot flags, useful for outputting what slot something is.
-var/global/list/string_slot_flags = list(
+GLOBAL_LIST_INIT(string_slot_flags, list(
 	"back" = SLOT_BACK,
 	"face" = SLOT_MASK,
 	"waist" = SLOT_BELT,
@@ -104,7 +104,7 @@ var/global/list/string_slot_flags = list(
 	"body" = SLOT_ICLOTHING,
 	"uniform" = SLOT_TIE,
 	"holster" = SLOT_HOLSTER
-)
+))
 
 GLOBAL_LIST_EMPTY(mannequins)
 /proc/get_mannequin(var/ckey = "NULL")
@@ -152,23 +152,23 @@ GLOBAL_LIST_EMPTY(mannequins)
 	paths = subtypesof(/datum/sprite_accessory/marking)
 	for(var/path in paths)
 		var/datum/sprite_accessory/marking/M = new path()
-		body_marking_styles_list[M.name] = M
+		GLOB.body_marking_styles_list[M.name] = M
 		if(!M.genetic)
-			body_marking_nopersist_list[M.name] = M
+			GLOB.body_marking_nopersist_list[M.name] = M
 
 	//Surgery Steps - Initialize all /datum/surgery_step into a list
 	paths = subtypesof(/datum/surgery_step)
 	for(var/T in paths)
 		var/datum/surgery_step/S = new T
-		surgery_steps += S
+		GLOB.surgery_steps += S
 	sort_surgeries()
 
 	//List of job. I can't believe this was calculated multiple times per tick!
 	paths = subtypesof(/datum/job)
-	paths -= exclude_jobs
+	paths -= GLOB.exclude_jobs
 	for(var/T in paths)
 		var/datum/job/J = new T
-		joblist[J.title] = J
+		GLOB.joblist[J.title] = J
 
 	//Languages
 	paths = subtypesof(/datum/language)
@@ -252,19 +252,19 @@ GLOBAL_LIST_EMPTY(mannequins)
 	paths = subtypesof(/datum/sprite_accessory/ears)
 	for(var/path in paths)
 		var/obj/item/clothing/head/instance = new path()
-		ear_styles_list[path] = instance
+		GLOB.ear_styles_list[path] = instance
 
 	// Custom Tails
 	paths = subtypesof(/datum/sprite_accessory/tail) - /datum/sprite_accessory/tail/taur
 	for(var/path in paths)
 		var/datum/sprite_accessory/tail/instance = new path()
-		tail_styles_list[path] = instance
+		GLOB.tail_styles_list[path] = instance
 
 	// Custom Wings
 	paths = subtypesof(/datum/sprite_accessory/wing)
 	for(var/path in paths)
 		var/datum/sprite_accessory/wing/instance = new path()
-		wing_styles_list[path] = instance
+		GLOB.wing_styles_list[path] = instance
 
 	// VOREStation Add - Vore Modes!
 	paths = typesof(/datum/digest_mode)
@@ -328,7 +328,7 @@ GLOBAL_LIST_EMPTY(mannequins)
 	to_world(.)
 */
 //Hexidecimal numbers
-var/global/list/hexNums = list("0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F")
+#define hexNums list("0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F")
 
 // Many global vars aren't GLOB type. This puts them there to be more easily inspected.
 GLOBAL_LIST_EMPTY(legacy_globals)
@@ -337,24 +337,24 @@ GLOBAL_LIST_EMPTY(legacy_globals)
 	//Note: these lists cannot be changed to a new list anywhere in code!
 	//If they are, these will cause the old list to stay around!
 	//Check by searching for "<GLOBAL_NAME> =" in the entire codebase
-	GLOB.legacy_globals["player_list"] = player_list
-	GLOB.legacy_globals["mob_list"] = mob_list
-	GLOB.legacy_globals["human_mob_list"] = human_mob_list
-	GLOB.legacy_globals["silicon_mob_list"] = silicon_mob_list
-	GLOB.legacy_globals["ai_list"] = ai_list
-	GLOB.legacy_globals["living_mob_list"] = living_mob_list
-	GLOB.legacy_globals["dead_mob_list"] = dead_mob_list
-	GLOB.legacy_globals["observer_mob_list"] = observer_mob_list
-	GLOB.legacy_globals["listening_objects"] = listening_objects
-	GLOB.legacy_globals["cleanbot_reserved_turfs"] = cleanbot_reserved_turfs
-	GLOB.legacy_globals["cable_list"] = cable_list
-	GLOB.legacy_globals["landmarks_list"] = landmarks_list
-	GLOB.legacy_globals["event_triggers"] = event_triggers
-	GLOB.legacy_globals["side_effects"] = side_effects
-	GLOB.legacy_globals["mechas_list"] = mechas_list
-	GLOB.legacy_globals["mannequins_"] = mannequins_
+	GLOB.legacy_globals["player_list"] = GLOB.player_list
+	GLOB.legacy_globals["mob_list"] = GLOB.mob_list
+	GLOB.legacy_globals["human_mob_list"] = GLOB.human_mob_list
+	GLOB.legacy_globals["silicon_mob_list"] = GLOB.silicon_mob_list
+	GLOB.legacy_globals["ai_list"] = GLOB.ai_list
+	GLOB.legacy_globals["living_mob_list"] = GLOB.living_mob_list
+	GLOB.legacy_globals["dead_mob_list"] = GLOB.dead_mob_list
+	GLOB.legacy_globals["observer_mob_list"] = GLOB.observer_mob_list
+	GLOB.legacy_globals["listening_objects"] = GLOB.listening_objects
+	GLOB.legacy_globals["cleanbot_reserved_turfs"] = GLOB.cleanbot_reserved_turfs
+	GLOB.legacy_globals["cable_list"] = GLOB.cable_list
+	GLOB.legacy_globals["landmarks_list"] = GLOB.landmarks_list
+	GLOB.legacy_globals["event_triggers"] = GLOB.event_triggers
+	GLOB.legacy_globals["side_effects"] = GLOB.side_effects
+	GLOB.legacy_globals["mechas_list"] = GLOB.mechas_list
+	GLOB.legacy_globals["mannequins_"] = GLOB.mannequins_
 	//visual nets
-	GLOB.legacy_globals["visual_nets"] = visual_nets
-	GLOB.legacy_globals["cameranet"] = cameranet
-	GLOB.legacy_globals["cultnet"] = cultnet
+	GLOB.legacy_globals["visual_nets"] = GLOB.visual_nets
+	GLOB.legacy_globals["cameranet"] = GLOB.cameranet
+	GLOB.legacy_globals["cultnet"] = GLOB.cultnet
 	GLOB.legacy_globals["existing_solargrubs"] = GLOB.existing_solargrubs

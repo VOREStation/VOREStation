@@ -258,7 +258,7 @@ var/static/icon/ingame_hud_med_vr = icon('icons/mob/hud_med_vr.dmi')
 	species?.base_species = bodytype
 	species?.vanity_base_fit = bodytype
 	if (istype(species, /datum/species/shapeshifter))
-		wrapped_species_by_ref["\ref[src]"] = bodytype
+		GLOB.wrapped_species_by_ref["\ref[src]"] = bodytype
 
 	custom_species	= character.custom_species
 	custom_say		= character.custom_say

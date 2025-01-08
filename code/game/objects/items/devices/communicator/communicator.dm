@@ -191,7 +191,7 @@ GLOBAL_LIST_EMPTY_TYPED(all_communicators, /obj/item/communicator)
 		if(!comm || !comm.exonet || !comm.exonet.address || comm.exonet.address == src.exonet.address) //Don't add addressless devices, and don't add ourselves.
 			continue
 		src.known_devices |= comm
-	for(var/mob/observer/dead/O in dead_mob_list)
+	for(var/mob/observer/dead/O in GLOB.dead_mob_list)
 		if(!O.client || O.client.prefs.communicator_visibility == 0)
 			continue
 		src.known_devices |= O
@@ -316,7 +316,7 @@ GLOBAL_LIST_EMPTY_TYPED(all_communicators, /obj/item/communicator)
 	//Clean up references that might point at us
 	GLOB.all_communicators -= src
 	STOP_PROCESSING(SSobj, src)
-	listening_objects.Remove(src)
+	GLOB.listening_objects.Remove(src)
 	QDEL_NULL(camera)
 	QDEL_NULL(exonet)
 

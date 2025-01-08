@@ -155,4 +155,4 @@
 
 /datum/gear/suit/taur/colorable_skirt/New()
 	..()
-	gear_tweaks += gear_tweak_free_color_choice
+	gear_tweaks += GLOB.gear_tweak_free_color_choice

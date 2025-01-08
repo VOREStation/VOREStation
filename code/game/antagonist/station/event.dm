@@ -1,4 +1,4 @@
-var/datum/antagonist/event/event
+GLOBAL_DATUM(event, /datum/antagonist/event)
 
 // Inherits most of its vars from the base datum.
 /datum/antagonist/event

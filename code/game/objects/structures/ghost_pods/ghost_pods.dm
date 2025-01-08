@@ -40,8 +40,8 @@
 /obj/structure/ghost_pod/proc/create_occupant(var/mob/M)
 	used = TRUE
 	//VOREStation Addition Start
-	if(src in active_ghost_pods)
-		active_ghost_pods -= src
+	if(src in GLOB.active_ghost_pods)
+		GLOB.active_ghost_pods -= src
 	//VOREStation Addition End
 	return TRUE
 

@@ -9,4 +9,4 @@
  * bunch of ChangeTurf() calls.
  */
 
-var/list/turbolifts = list()
+GLOBAL_LIST_EMPTY(turbolifts)

@@ -1,4 +1,4 @@
-var/global/list/special_roles = list( //keep synced with the defines BE_* in setup.dm --rastaf
+GLOBAL_LIST_INIT(special_roles, list( //keep synced with the defines BE_* in setup.dm --rastaf
 //some autodetection here.
 // Change these to 0 if the equivalent mode is disabled for whatever reason!
 	"traitor" = 0,										// 0
@@ -26,7 +26,7 @@ var/global/list/special_roles = list( //keep synced with the defines BE_* in set
 	"cursed sword" = 1,									// 21
 	"Ship Survivor" = 1,								// 22
 	//VOREStation Add End
-)
+))
 
 /datum/category_item/player_setup_item/antagonism/candidacy
 	name = "Candidacy"
@@ -47,8 +47,8 @@ var/global/list/special_roles = list( //keep synced with the defines BE_* in set
 		pref.be_special = 0
 	else
 		var/n = 0
-		for (var/i in special_roles)
-			if(special_roles[i]) //if mode is available on the server
+		for (var/i in GLOB.special_roles)
+			if(GLOB.special_roles[i]) //if mode is available on the server
 				if(jobban_isbanned(user, i) || (i == "positronic brain" && jobban_isbanned(user, JOB_AI) && jobban_isbanned(user, JOB_CYBORG)) || (i == "pAI candidate" && jobban_isbanned(user, JOB_PAI)))
 					. += span_bold("Be [i]:") + " <font color=red><b> \[BANNED]</b></font><br>"
 				else

@@ -49,7 +49,7 @@
 	var/new_species = null
 	new_species = tgui_input_list(usr, "Please select a species to emulate.", "Shapeshifter Body", species.get_valid_shapeshifter_forms(src))
 
-	if(!new_species || !GLOB.all_species[new_species] || wrapped_species_by_ref["\ref[src]"] == new_species)
+	if(!new_species || !GLOB.all_species[new_species] || GLOB.wrapped_species_by_ref["\ref[src]"] == new_species)
 		return
 	lleill_change_shape(new_species)
 
@@ -57,7 +57,7 @@
 	if(!new_species)
 		return
 
-	wrapped_species_by_ref["\ref[src]"] = new_species
+	GLOB.wrapped_species_by_ref["\ref[src]"] = new_species
 	dna.base_species = new_species
 	species.base_species = new_species
 	visible_message(span_infoplain(span_bold("\The [src]") + " shifts and contorts, taking the form of \a [new_species]!"))
@@ -261,7 +261,7 @@
 		return
 
 	var/list/targets = list()
-	for(var/mob/living/carbon/human/M in mob_list)
+	for(var/mob/living/carbon/human/M in GLOB.mob_list)
 		if(M.z != src.z || get_dist(src,M) > 1)
 			continue
 		if(src == M)

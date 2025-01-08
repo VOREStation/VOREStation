@@ -1,4 +1,4 @@
-/client/proc/smite(var/mob/living/carbon/human/target in player_list)
+/client/proc/smite(mob/living/carbon/human/target in GLOB.player_list)
 	set name = "Smite"
 	set desc = "Abuse a player with various 'special treatments' from a list."
 	set category = "Fun.Do Not"
@@ -201,7 +201,7 @@
 		target.Weaken(20)
 		target.stuttering = 20
 
-var/redspace_abduction_z
+GLOBAL_VAR(redspace_abduction_z)
 
 /area/redspace_abduction
 	name = "Another Time And Place"
@@ -209,11 +209,11 @@ var/redspace_abduction_z
 	dynamic_lighting = FALSE
 
 /proc/redspace_abduction(mob/living/target, user)
-	if(redspace_abduction_z < 0)
+	if(GLOB.redspace_abduction_z < 0)
 		to_chat(user,span_warning("The abduction z-level is already being created. Please wait."))
 		return
-	if(!redspace_abduction_z)
-		redspace_abduction_z = -1
+	if(!GLOB.redspace_abduction_z)
+		GLOB.redspace_abduction_z = -1
 		to_chat(user,span_warning("This is the first use of the verb this shift, it will take a minute to configure the abduction z-level. It will be z[world.maxz+1]."))
 		var/z = ++world.maxz
 		world.max_z_changed()
@@ -224,7 +224,7 @@ var/redspace_abduction_z
 				T.ChangeTurf(/turf/unsimulated/fake_space)
 				T.plane = -100
 				CHECK_TICK
-		redspace_abduction_z = z
+		GLOB.redspace_abduction_z = z
 
 	if(!target || !user)
 		return
@@ -243,7 +243,7 @@ var/redspace_abduction_z
 	for(var/x = llc_x to llc_x+size_of_square)
 		for(var/y = llc_y to llc_y+size_of_square)
 			var/turf/T_src = locate(x,y,target.z)
-			var/turf/T_dest = locate(x,y,redspace_abduction_z)
+			var/turf/T_dest = locate(x,y,GLOB.redspace_abduction_z)
 			T_dest.vis_contents.Cut()
 			T_dest.vis_contents += T_src
 			T_dest.density = T_src.density
@@ -254,7 +254,7 @@ var/redspace_abduction_z
 	for(var/x = llc_x to llc_x+1) //Left
 		for(var/y = llc_y to llc_y+size_of_square)
 			if(prob(50))
-				var/turf/T = locate(x,y,redspace_abduction_z)
+				var/turf/T = locate(x,y,GLOB.redspace_abduction_z)
 				T.density = FALSE
 				T.opacity = FALSE
 				T.vis_contents.Cut()
@@ -262,7 +262,7 @@ var/redspace_abduction_z
 	for(var/x = llc_x+size_of_square-1 to llc_x+size_of_square) //Right
 		for(var/y = llc_y to llc_y+size_of_square)
 			if(prob(50))
-				var/turf/T = locate(x,y,redspace_abduction_z)
+				var/turf/T = locate(x,y,GLOB.redspace_abduction_z)
 				T.density = FALSE
 				T.opacity = FALSE
 				T.vis_contents.Cut()
@@ -270,7 +270,7 @@ var/redspace_abduction_z
 	for(var/x = llc_x to llc_x+size_of_square) //Top
 		for(var/y = llc_y+size_of_square-1 to llc_y+size_of_square)
 			if(prob(50))
-				var/turf/T = locate(x,y,redspace_abduction_z)
+				var/turf/T = locate(x,y,GLOB.redspace_abduction_z)
 				T.density = FALSE
 				T.opacity = FALSE
 				T.vis_contents.Cut()
@@ -278,12 +278,12 @@ var/redspace_abduction_z
 	for(var/x = llc_x to llc_x+size_of_square) //Bottom
 		for(var/y = llc_y to llc_y+1)
 			if(prob(50))
-				var/turf/T = locate(x,y,redspace_abduction_z)
+				var/turf/T = locate(x,y,GLOB.redspace_abduction_z)
 				T.density = FALSE
 				T.opacity = FALSE
 				T.vis_contents.Cut()
 
-	target.forceMove(locate(target.x,target.y,redspace_abduction_z))
+	target.forceMove(locate(target.x,target.y,GLOB.redspace_abduction_z))
 	to_chat(target,span_danger("The tug relaxes, but everything around you looks... slightly off."))
 	to_chat(user,span_notice("The mob has been moved. ([admin_jump_link(target,usr.client.holder)])"))
 

@@ -117,7 +117,7 @@ GLOBAL_DATUM_INIT(iconCache, /savefile, new("data/iconCache.sav")) //Cache of ic
 		if(!src.loaded)
 			src.become_broken()
 
-//var/list/joins = list() //Just for testing with the below
+//GLOBAL_LIST_EMPTY(joins) //Just for testing with the below
 //Called by Topic, when the JS in the HTML page finishes loading
 /datum/chatOutput/proc/done_loading()
 	if(loaded)
