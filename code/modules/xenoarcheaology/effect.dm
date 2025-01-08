@@ -117,16 +117,12 @@
 			. += "have an unknown effect" //Should never happen but you know, whatever. Failsafe.
 		if(EFFECT_ANIMATE)
 			. += "have intermittent movement either towards or away from an individual"
-		if(EFFECT_BADFEELING)
-			. += "cause bad feelings in subjects"
-		if(EFFECT_CANNIBAL)
-			. += "cause hunger in subjects"
-		if(EFFECT_CELLCHARGE)
-			. += "charge energetic devices in range"
-		if(EFFECT_CELLDRAIN)
-			. += "drain energetic devices in range"
-		if(EFFECT_COLD)
-			. += "lower the thermal energy in an area"
+		if(EFFECT_FEELINGS)
+			. += "cause subjects to feel a certain way"
+		if(EFFECT_CELL)
+			. += "charges or drains electronic devices in range"
+		if(EFFECT_TEMPERATURE)
+			. += "adjust the thermal energy in an area"
 		/* //Not Yet Implemented
 		if(EFFECT_DNASWITCH)
 			. += "scramble the DNA of a subject, resulting in rampant genetic mutation"
@@ -141,34 +137,20 @@
 			. += "create a forcefield within a short range"
 		if(EFFECT_GAIA)
 			. += "transfer healing energies to nearby flora"
-		if(EFFECT_GAS_C02)
-			. += "emit noxious carbon dioxide gas"
-		if(EFFECT_GAS_OXY)
-			. += "emit oxygen gas"
-		if(EFFECT_GAS_PHORON)
-			. += "emit phoron gas"
-		if(EFFECT_GAS_SLEEPING)
-			. += "emit nitrous oxide gas"
-		if(EFFECT_GOODFEELING)
-			. += "invoke good feelings in subjects"
+		if(EFFECT_GAS)
+			. += "emits gas of some type"
 		if(EFFECT_GRAVIATIONAL_WAVES)
 			. += "create local gravitational distortions"
-		if(EFFECT_HEAL)
-			. += "transfer healing energies to subjects"
-		if(EFFECT_HEAT)
-			. += "increase the thermal energy in an area"
-		if(EFFECT_HURT)
-			. += "drain the lifeforce of subjects"
+		if(EFFECT_HEALTH)
+			. += "transfer energies into subjects, harming or healing them"
 		if(EFFECT_POLTERGEIST)
 			. += "cause local movement phenomena"
 		if(EFFECT_RADIATE)
 			. += "transfer high energy gamma rays into subjects"
 		if(EFFECT_RESURRECT)
 			. += "transfer the lifeforce from one entity to another, potentially allowing the ressurection of deceased entities"
-		if(EFFECT_ROBO_HEAL)
-			. += "transfer healing energies into synthetic lifeforms"
-		if(EFFECT_ROBO_HURT)
-			. += "drain the lifeforce of synthetic lifeforms"
+		if(EFFECT_ROBOT_HEALTH)
+			. += "transfer energies into synthetic lifeforms, harming or healing them"
 		if(EFFECT_SLEEPY)
 			. += "invoke drowsiness in subjects"
 		if(EFFECT_STUN)
