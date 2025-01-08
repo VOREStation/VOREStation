@@ -43,7 +43,7 @@
 	if(!user) //Sanity.
 		return
 	/// This controls the NORMAL functionality!
-	if(target && istype(T) && istype(O.loc, /turf))
+	if(target && istype(T) && isturf(O.loc))
 		O.Move(T)
 		O.visible_message(span_alien("\The [holder] lurches away from [user]"))
 
@@ -87,7 +87,7 @@
 
 	O.dir = get_dir(O, target)
 
-	if(istype(O.loc, /turf))
+	if(isturf(O.loc))
 		if(get_dist(O.loc, target.loc) > 1)
 			O.Move(get_step_to(O, target))
 			O.visible_message(span_alien("\The [O] lurches toward [target]"))

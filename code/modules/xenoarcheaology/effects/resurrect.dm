@@ -12,7 +12,7 @@
 	var/atom/holder = get_master_holder()
 	if(istype(holder, /obj/item/anobattery))
 		holder = holder.loc
-	if(istype(holder.loc, /mob/living)) //We are being held by someone.
+	if(isliving(holder.loc)) //We are being held by someone.
 		holder = holder.loc
 	if(!istype(target))
 		return 0
@@ -37,9 +37,9 @@
 	/// So while this LOOKS weird, it's efficent.
 	if(istype(holder, /obj/item/anobattery))
 		holder = holder.loc
-	if(istype(holder.loc, /mob/living)) //We are being held by someone.
+	if(isliving(holder.loc)) //We are being held by someone.
 		holder = holder.loc
-	if(!istype(target))
+	if(!isliving(target))
 		return
 
 	if(target.stat == DEAD && stored_life)
@@ -100,7 +100,7 @@
 	var/atom/holder = get_master_holder()
 	if(istype(holder, /obj/item/anobattery))
 		holder = holder.loc
-	if(istype(holder.loc, /mob/living)) //We are being held by someone.
+	if(isliving(holder.loc)) //We are being held by someone.
 		holder = holder.loc
 	for(var/mob/living/L in oview(effectrange, get_turf(holder)))
 		stored_life += 4 * steal_life(L)
@@ -114,7 +114,7 @@
 	var/atom/holder = get_master_holder()
 	if(istype(holder, /obj/item/anobattery))
 		holder = holder.loc
-	if(istype(holder.loc, /mob/living)) //We are being held by someone.
+	if(isliving(holder.loc)) //We are being held by someone.
 		holder = holder.loc
 	for(var/mob/living/L in oview(effectrange, get_turf(holder)))
 		stored_life += steal_life(L)
@@ -128,7 +128,7 @@
 	var/atom/holder = get_master_holder()
 	if(istype(holder, /obj/item/anobattery))
 		holder = holder.loc
-	if(istype(holder.loc, /mob/living)) //We are being held by someone.
+	if(isliving(holder.loc)) //We are being held by someone.
 		holder = holder.loc
 	for(var/mob/living/L in oview(effectrange, get_turf(holder)))
 		stored_life += 2 * steal_life(L)

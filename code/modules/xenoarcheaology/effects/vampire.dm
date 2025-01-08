@@ -19,10 +19,10 @@
 		holder = holder.loc
 		eat_interval = 10 //If we're in an artifact just CRUNCH through those blood piles!
 		harvested = 1 //We're in a harvester. We need special handling for this.
-	if(istype(holder.loc, /mob/living))
+	if(isliving(holder.loc))
 		holder = holder.loc
 	last_bloodcall = world.time
-	if(istype(M))
+	if(ishuman(M))
 		playsound(holder, pick('sound/hallucinations/wail.ogg','sound/hallucinations/veryfar_noise.ogg','sound/hallucinations/far_noise.ogg'), 50, 1, -3)
 
 		var/target = pick(M.organs_by_name)
@@ -51,7 +51,7 @@
 	var/atom/holder = get_master_holder()
 	if(istype(holder, /obj/item/anobattery))
 		holder = holder.loc
-	if(istype(holder.loc, /mob/living))
+	if(isliving(holder.loc))
 		holder = holder.loc
 	if(nearby_mobs.len)
 		nearby_mobs.Cut()

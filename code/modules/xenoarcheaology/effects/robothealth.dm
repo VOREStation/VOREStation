@@ -18,7 +18,7 @@
 
 /datum/artifact_effect/robohealth/DoEffectTouch(var/mob/user)
 	if(user)
-		if (istype(user, /mob/living/silicon/robot))
+		if(isrobot(user))
 			var/mob/living/silicon/robot/R = user
 			if(health_type == ROBO_HEAL)
 				to_chat(R, span_blue("Your systems report damaged components mending by themselves!"))

@@ -7,7 +7,7 @@
 	effect_color = "#00c763"
 
 /datum/artifact_effect/feysight/proc/apply_modifier(var/mob/living/L)
-	if(!istype(L))
+	if(!isliving(L))
 		return FALSE
 
 	if(!L.is_sentient())

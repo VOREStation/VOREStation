@@ -16,12 +16,12 @@
 	var/atom/holder = get_master_holder()
 	if(holder)
 		var/turf/holder_loc = holder.loc
-		if(istype(holder_loc))
+		if(isturf(holder_loc))
 			holder_loc.assume_gas(GAS_TYPE, rand(2, 15)) //You can spam touch this, so it's lesser.
 
 /datum/artifact_effect/gas/DoEffectAura()
 	var/atom/holder = get_master_holder()
 	if(holder)
 		var/turf/holder_loc = holder.loc
-		if(istype(holder_loc))
+		if(isturf(holder_loc))
 			holder_loc.assume_gas(GAS_TYPE, rand(25, 50))
