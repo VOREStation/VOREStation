@@ -365,8 +365,8 @@
 			//There is no 'global list of all the gun caliber types' so...Whatever. This will have to do. (Side note: After further review, making it a global list would result in the gun requiring unobtainable calibers, so this is ideal.)
 			//When someone does make a global list of all the calibers, replace the below with it.
 			new_gun.caliber = "[pick(".357", "12g", ".38", "7.62mm", ".38", "9mm", "10mm", ".45", "5.45mm", "7.62mm")]" //A list of gun calibers that are obtainable.
-			additional_desc = "[pick("A dusty engraving on the side says <b>[new_gun.caliber]</b>. The ammo slot seems like it'd only fit single shells at a time.",\
-			"The gun's barrel has <b>[new_gun.caliber]</b> barely visible on it. The ammo slot seems like it'd only fit single shells at a time.")]"
+			additional_desc = "[pick("A dusty engraving on the side says" + span_bold("[new_gun.caliber]") + " The ammo slot seems like it'd only fit single shells at a time.",\
+			"The gun's barrel has " + span_bold("[new_gun.caliber]") + " barely visible on it. The ammo slot seems like it'd only fit single shells at a time.")]"
 			var/possible_bullet_paths = list()
 			possible_bullet_paths |= subtypesof(/obj/item/projectile/bullet) //As funny as it would be to have your pistol shoot pulse rifle rounds, sorry.
 			//You COULD add a bullet blacklist here. Look at the material code below if you want an example of how to do so.
@@ -417,7 +417,7 @@
 			//fossil plant
 			new_item = new /obj/item/fossil/plant(src.loc)
 			item_type = new_item.name
-			additional_desc = "A fossilised shred of alien plant matter. <b>The genetic material inside would allow for seed extraction.</b>" //A hint to give this to xenobotany.
+			additional_desc = "A fossilised shred of alien plant matter. " + span_bold("The genetic material inside would allow for seed extraction.") //A hint to give this to xenobotany.
 			apply_image_decorations = FALSE
 			apply_material_decorations = FALSE
 			apply_prefix = FALSE

@@ -43,7 +43,7 @@
 /obj/item/melee/artifact_blade/examine(mob/user)
 	. = ..()
 	if(stored_blood && user == last_touched)
-		. += span_cult("You can sense the blade has about <b>[stored_blood]</b> lifeforce contained within it.")
+		. += span_cult("You can sense the blade has about " + span_bold("[stored_blood]") + " lifeforce contained within it.")
 
 /obj/item/melee/artifact_blade/process()
 	if(!last_touched || !stored_blood) //Nobody has touched us yet or we have no energy...For now.
@@ -186,7 +186,7 @@
 			return
 		if("Toggle off")
 			consecrating = FALSE
-			to_chat(user, span_cult("The blade will <b>NOT</b> transform walls and tiles!"))
+			to_chat(user, span_cult("The blade will " + span_bold("NOT") +" transform walls and tiles!"))
 			return
 		else
 			return

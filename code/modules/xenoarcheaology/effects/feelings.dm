@@ -115,7 +115,7 @@
 				if(prob(75))
 					to_chat(H, span_red("[pick(messages)]"))
 				else
-					to_chat(H, span_red("<font size='[num2text(rand(1,5))]'><b>[pick(drastic_messages)]</b></font>"))
+					to_chat(H, span_red("<font size='[num2text(rand(1,5))]'> " + span_bold("[pick(drastic_messages)]") + " </font>"))
 
 				if(prob(10))
 					H.dizziness += rand(3,5)
@@ -130,7 +130,7 @@
 		for (var/mob/living/carbon/human/H in range(src.effectrange,T))
 			if(prob(50))
 				if(prob(95))
-					to_chat(H, span_red("<font size='[num2text(rand(1,5))]'><b>[pick(drastic_messages)]</b></font>"))
+					to_chat(H, span_red("<font size='[num2text(rand(1,5))]'> " + span_bold("[pick(drastic_messages)]") + " </font>"))
 				else
 					to_chat(H, span_red("[pick(messages)]"))
 
