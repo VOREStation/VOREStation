@@ -89,8 +89,8 @@ var/list/possible_cable_coil_colours = list(
 /obj/structure/cable/white
 	color = COLOR_WHITE
 
-/obj/structure/cable/New()
-	..()
+/obj/structure/cable/Initialize()
+	. = ..()
 
 	// ensure d1 & d2 reflect the icon_state for entering and exiting cable
 
@@ -208,7 +208,7 @@ var/list/possible_cable_coil_colours = list(
 					if(c.d1 == UP || c.d2 == UP)
 						qdel(c)
 
-		investigate_log("was cut by [key_name(usr, usr.client)] in [user.loc.loc]","wires")
+		investigate_log("was cut by [key_name(user, user.client)] in [user.loc.loc]","wires")
 
 		qdel(src)
 		return
@@ -245,7 +245,7 @@ var/list/possible_cable_coil_colours = list(
 		var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
 		s.set_up(5, 1, src)
 		s.start()
-		if(usr.stunned)
+		if(user.stunned)
 			return 1
 	return 0
 
@@ -524,9 +524,9 @@ var/list/possible_cable_coil_colours = list(
 	uses_charge = 1
 	charge_costs = list(1)
 
-/obj/item/stack/cable_coil/New(loc, length = MAXCOIL, var/param_color = null)
-	..()
-	src.amount = length
+/obj/item/stack/cable_coil/Initialize(ml, length = MAXCOIL, var/param_color = null)
+	. = ..()
+	amount = length
 	if (param_color) // It should be red by default, so only recolor it if parameter was specified.
 		color = param_color
 	pixel_x = rand(-2,2)
@@ -601,8 +601,8 @@ var/list/possible_cable_coil_colours = list(
 
 /obj/item/stack/cable_coil/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/multitool))
-		var/selected_type = tgui_input_list(usr, "Pick new colour.", "Cable Colour", possible_cable_coil_colours)
-		set_cable_color(selected_type, usr)
+		var/selected_type = tgui_input_list(user, "Pick new colour.", "Cable Colour", possible_cable_coil_colours)
+		set_cable_color(selected_type, user)
 		return
 	return ..()
 
@@ -821,9 +821,9 @@ var/list/possible_cable_coil_colours = list(
 /obj/item/stack/cable_coil/cut
 	item_state = "coil2"
 
-/obj/item/stack/cable_coil/cut/New(loc)
-	..()
-	src.amount = rand(1,2)
+/obj/item/stack/cable_coil/cut/Initialize(ml)
+	. = ..()
+	amount = rand(1,2)
 	pixel_x = rand(-2,2)
 	pixel_y = rand(-2,2)
 	update_icon()
@@ -901,16 +901,16 @@ var/list/possible_cable_coil_colours = list(
 	stacktype = /obj/item/stack/cable_coil
 	color = COLOR_BROWN
 
-/obj/item/stack/cable_coil/random/New()
+/obj/item/stack/cable_coil/random/Initialize()
 	stacktype = /obj/item/stack/cable_coil
 	color = pick(COLOR_RED, COLOR_BLUE, COLOR_LIME, COLOR_WHITE, COLOR_PINK, COLOR_YELLOW, COLOR_CYAN, COLOR_SILVER, COLOR_GRAY, COLOR_BLACK, COLOR_MAROON, COLOR_OLIVE, COLOR_LIME, COLOR_TEAL, COLOR_NAVY, COLOR_PURPLE, COLOR_BEIGE, COLOR_BROWN)
-	..()
+	. = ..()
 
-/obj/item/stack/cable_coil/random_belt/New()
+/obj/item/stack/cable_coil/random_belt/Initialize()
 	stacktype = /obj/item/stack/cable_coil
 	color = pick(COLOR_RED, COLOR_YELLOW, COLOR_ORANGE)
 	amount = 30
-	..()
+	. = ..()
 
 //Endless alien cable coil
 
@@ -949,7 +949,8 @@ var/list/possible_cable_coil_colours = list(
 	stacktype = null
 	toolspeed = 0.25
 
-/obj/item/stack/cable_coil/alien/New(loc, length = MAXCOIL, var/param_color = null)		//There has to be a better way to do this.
+/obj/item/stack/cable_coil/alien/Initialize(ml, length = MAXCOIL, var/param_color = null)		//There has to be a better way to do this.
+	. = ..()
 	if(embed_chance == -1)		//From /obj/item, don't want to do what the normal cable_coil does
 		if(sharp)
 			embed_chance = force/w_class
@@ -980,7 +981,7 @@ var/list/possible_cable_coil_colours = list(
 
 /obj/item/stack/cable_coil/alien/attack_hand(mob/user as mob)
 	if (user.get_inactive_hand() == src)
-		var/N = tgui_input_number(usr, "How many units of wire do you want to take from [src]? You can only take up to [amount] at a time.", "Split stacks", 1, amount)
+		var/N = tgui_input_number(user, "How many units of wire do you want to take from [src]? You can only take up to [amount] at a time.", "Split stacks", 1, amount)
 		if(N && N <= amount)
 			var/obj/item/stack/cable_coil/CC = new/obj/item/stack/cable_coil(user.loc)
 			CC.amount = N
@@ -991,8 +992,8 @@ var/list/possible_cable_coil_colours = list(
 				src.add_fingerprint(user)
 				CC.add_fingerprint(user)
 				spawn(0)
-					if (src && usr.machine==src)
-						src.interact(usr)
+					if (src && user.machine==src)
+						src.interact(user)
 		else
 			return
 	else

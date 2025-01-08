@@ -160,3 +160,4 @@ var/SMALLSIZEBLOCK     = 0
 
 // Gene flags
 #define GENE_ALWAYS_ACTIVATE 1
+#define MUTCHK_HIDEMSG       2

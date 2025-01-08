@@ -384,7 +384,7 @@ var/list/mob/living/forced_ambiance_list = new
 	if(!L.lastarea)
 		L.lastarea = src
 	var/area/oldarea = L.lastarea
-	if((oldarea.get_gravity() == 0) && (get_gravity() == 1) && (L.m_intent == "run")) // Being ready when you change areas gives you a chance to avoid falling all together.
+	if((oldarea.get_gravity() == 0) && (get_gravity() == 1) && (L.m_intent == I_RUN)) // Being ready when you change areas gives you a chance to avoid falling all together.
 		thunk(L)
 		L.update_floating( L.Check_Dense_Object() )
 
@@ -420,7 +420,7 @@ var/list/mob/living/forced_ambiance_list = new
 		else
 			L << sound(null, channel = CHANNEL_AMBIENCE_FORCED)
 	else if(src.ambience && src.ambience.len)
-		var/ambience_odds = L?.client.prefs.ambience_chance
+		var/ambience_odds = L.read_preference(/datum/preference/numeric/ambience_chance)
 		if(prob(ambience_odds) && (world.time >= L.client.time_last_ambience_played + 1 MINUTE))
 			var/sound = pick(ambience)
 			L << sound(sound, repeat = 0, wait = 0, volume = 50 * volume_mod, channel = CHANNEL_AMBIENCE)
@@ -450,7 +450,7 @@ var/list/mob/living/forced_ambiance_list = new
 		if(H.species.can_zero_g_move || H.species.can_space_freemove)
 			return
 
-		if(H.m_intent == "run")
+		if(H.m_intent == I_RUN)
 			H.AdjustStunned(6)
 			H.AdjustWeakened(6)
 		else

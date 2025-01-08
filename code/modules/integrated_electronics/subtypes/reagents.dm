@@ -149,7 +149,7 @@
 						activate_pin(3)
 					return
 				var/datum/reagent/B
-				if(istype(T, /mob/living/carbon/human))
+				if(ishuman(T))
 					var/mob/living/carbon/human/H = T
 					if(H.species && !H.should_have_organ(O_HEART))
 						H.reagents.trans_to_obj(src, tramount)

@@ -338,7 +338,7 @@
 	var/matter_amount_per_sheet = 10
 	var/matter_type = MAT_STEEL
 
-/obj/machinery/organ_printer/robot/full/New()
+/obj/machinery/organ_printer/robot/full/Initialize()
 	. = ..()
 	stored_matter = max_stored_matter
 

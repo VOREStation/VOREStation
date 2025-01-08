@@ -136,7 +136,7 @@
 	if(giver)
 		to_chat(usr, span_notice("You remove \the [giver] from \the [src]."))
 		giver.loc = get_turf(src)
-		if(!usr.get_active_hand() && istype(usr,/mob/living/carbon/human))
+		if(!usr.get_active_hand() && ishuman(usr))
 			usr.put_in_hands(giver)
 		else
 			giver.loc = src.loc

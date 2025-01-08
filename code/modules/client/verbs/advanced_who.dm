@@ -81,7 +81,7 @@
 			var/mob/observer/dead/O = C.mob
 			if(isobserver(O))
 				entry += " - " + span_gray("Observing") + "<br>"
-			else if(istype(O,/mob/new_player))
+			else if(isnewplayer(O))
 				entry += " - " + span_blue("In Lobby") + "<br>"
 			else
 				entry += " - "+ span_green("Playing") + "<br>"

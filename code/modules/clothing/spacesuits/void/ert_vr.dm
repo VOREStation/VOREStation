@@ -21,7 +21,7 @@
 	name = "Mark VII-C Emergency Response Team Commander Suit"
 
 /obj/item/clothing/suit/space/void/responseteam/command/Initialize()
-	..()
+	. = ..()
 	attach_helmet(new /obj/item/clothing/head/helmet/space/void/responseteam/command) //autoinstall the helmet
 
 /obj/item/clothing/suit/space/void/responseteam/medical
@@ -30,7 +30,7 @@
 	item_state = "ertsuit_m"
 
 /obj/item/clothing/suit/space/void/responseteam/medical/Initialize()
-	..()
+	. = ..()
 	attach_helmet(new /obj/item/clothing/head/helmet/space/void/responseteam/medical) //autoinstall the helmet
 
 /obj/item/clothing/suit/space/void/responseteam/engineer
@@ -39,7 +39,7 @@
 	item_state = "ertsuit_e"
 
 /obj/item/clothing/suit/space/void/responseteam/engineer/Initialize()
-	..()
+	. = ..()
 	attach_helmet(new /obj/item/clothing/head/helmet/space/void/responseteam/engineer) //autoinstall the helmet
 
 /obj/item/clothing/suit/space/void/responseteam/security
@@ -48,7 +48,7 @@
 	item_state = "ertsuit_s"
 
 /obj/item/clothing/suit/space/void/responseteam/security/Initialize()
-	..()
+	. = ..()
 	attach_helmet(new /obj/item/clothing/head/helmet/space/void/responseteam/security) //autoinstall the helmet
 
 /obj/item/clothing/suit/space/void/responseteam/janitor
@@ -60,7 +60,7 @@
 	item_flags = NOSLIP //INBUILT NANOGALOSHES
 
 /obj/item/clothing/suit/space/void/responseteam/janitor/Initialize()
-	..()
+	. = ..()
 	attach_helmet(new /obj/item/clothing/head/helmet/space/void/responseteam/janitor) //autoinstall the helmet
 
 
@@ -170,7 +170,7 @@
 /obj/item/clothing/suit/space/void/responseteam
 	sprite_sheets = list(
 		SPECIES_HUMAN			= 'icons/inventory/suit/mob_vr.dmi',
-		SPECIES_TAJ 			= 'icons/inventory/suit/mob_vr_tajaran.dmi',
+		SPECIES_TAJARAN 			= 'icons/inventory/suit/mob_vr_tajaran.dmi',
 		SPECIES_LLEILL 			= 'icons/inventory/suit/mob_vr_tajaran.dmi',
 		SPECIES_SKRELL 			= 'icons/inventory/suit/mob_vr_skrell.dmi',
 		SPECIES_UNATHI 			= 'icons/inventory/suit/mob_vr_unathi.dmi',
@@ -188,7 +188,7 @@
 		SPECIES_ZADDAT			= 'icons/inventory/suit/mob_vr.dmi'
 		)
 	sprite_sheets_obj = list(
-		SPECIES_TAJ			= 'icons/inventory/suit/item_vr.dmi',
+		SPECIES_TAJARAN			= 'icons/inventory/suit/item_vr.dmi',
 		SPECIES_SKRELL			= 'icons/inventory/suit/item_vr.dmi',
 		SPECIES_UNATHI			= 'icons/inventory/suit/item_vr.dmi',
 		SPECIES_XENOHYBRID		= 'icons/inventory/suit/item_vr.dmi',
@@ -209,7 +209,7 @@
 /obj/item/clothing/head/helmet/space/void/responseteam
 	sprite_sheets = list(
 		SPECIES_HUMAN			= 'icons/inventory/head/mob_vr.dmi',
-		SPECIES_TAJ 			= 'icons/inventory/head/mob_vr_tajaran.dmi',
+		SPECIES_TAJARAN 			= 'icons/inventory/head/mob_vr_tajaran.dmi',
 		SPECIES_LLEILL 			= 'icons/inventory/suit/mob_vr_tajaran.dmi',
 		SPECIES_SKRELL 			= 'icons/inventory/head/mob_vr_skrell.dmi',
 		SPECIES_UNATHI 			= 'icons/inventory/head/mob_vr_unathi.dmi',
@@ -227,7 +227,7 @@
 		SPECIES_ZADDAT			= 'icons/inventory/head/mob_vr.dmi'
 		)
 	sprite_sheets_obj = list(
-		SPECIES_TAJ 			= 'icons/inventory/head/item_vr.dmi',
+		SPECIES_TAJARAN 			= 'icons/inventory/head/item_vr.dmi',
 		SPECIES_SKRELL			= 'icons/inventory/head/item_vr.dmi',
 		SPECIES_UNATHI			= 'icons/inventory/head/item_vr.dmi',
 		SPECIES_XENOHYBRID		= 'icons/inventory/head/item_vr.dmi',

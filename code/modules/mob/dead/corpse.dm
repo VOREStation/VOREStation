@@ -28,7 +28,7 @@
 	var/corpseidicon = null //For setting it to be a gold, silver, CentCom etc ID
 	var/species = SPECIES_HUMAN	//defaults to generic-ass humans
 	var/random_species = FALSE	//flip to TRUE to randomize species from the list below
-	var/list/random_species_list = list(SPECIES_HUMAN,SPECIES_TAJ,SPECIES_UNATHI,SPECIES_SKRELL)
+	var/list/random_species_list = list(SPECIES_HUMAN,SPECIES_TAJARAN,SPECIES_UNATHI,SPECIES_SKRELL)
 	var/list/tail_type = null
 	var/list/ear_type = null
 	/// list(name of ear, color of ear, color of ear, ...).

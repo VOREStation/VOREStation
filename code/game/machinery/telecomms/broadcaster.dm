@@ -411,11 +411,11 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 			if(!R.client?.prefs?.read_preference(/datum/preference/toggle/holder/hear_radio))
 				continue
 
-		if(istype(R, /mob/new_player)) // we don't want new players to hear messages. rare but generates runtimes.
+		if(isnewplayer(R)) // we don't want new players to hear messages. rare but generates runtimes.
 			continue
 
 		// Ghosts hearing all radio chat don't want to hear syndicate intercepts, they're duplicates
-		if(data == DATA_ANTAG && istype(R, /mob/observer/dead) && R.client?.prefs?.read_preference(/datum/preference/toggle/ghost_radio))
+		if(data == DATA_ANTAG && isobserver(R) && R.client?.prefs?.read_preference(/datum/preference/toggle/ghost_radio))
 			continue
 
 		// --- Check for compression ---

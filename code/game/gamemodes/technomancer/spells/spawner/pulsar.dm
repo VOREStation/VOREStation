@@ -13,8 +13,8 @@
 	aspect = ASPECT_EMP
 	spawner_type = /obj/effect/temporary_effect/pulse/pulsar
 
-/obj/item/spell/spawner/pulsar/New()
-	..()
+/obj/item/spell/spawner/pulsar/Initialize()
+	. = ..()
 	set_light(3, 2, l_color = "#2ECCFA")
 
 /obj/item/spell/spawner/pulsar/on_ranged_cast(atom/hit_atom, mob/user)
@@ -29,6 +29,7 @@
 /obj/effect/temporary_effect/pulse
 	var/pulses_remaining = 3
 	var/pulse_delay = 2 SECONDS
+	var/pulsetimer
 
 /obj/effect/temporary_effect/pulse/Initialize()
 	..()
@@ -37,14 +38,19 @@
 /obj/effect/temporary_effect/pulse/LateInitialize()
 	pulse_loop()
 
+/obj/effect/temporary_effect/pulse/Destroy()
+	deltimer(pulsetimer)
+	pulsetimer = null
+	. = ..()
+
 /obj/effect/temporary_effect/pulse/proc/pulse_loop()
-	set waitfor = FALSE
-	
-	while(pulses_remaining)
-		sleep(pulse_delay)
-		on_pulse()
+
+	if(pulses_remaining > 0)
+		pulsetimer = addtimer(CALLBACK(src, PROC_REF(pulse_loop)), pulse_delay, TIMER_STOPPABLE)
 		pulses_remaining--
-	qdel(src)
+		on_pulse()
+	else
+		qdel(src)
 
 // Override for specific effects.
 /obj/effect/temporary_effect/pulse/proc/on_pulse()
@@ -63,10 +69,3 @@
 
 /obj/effect/temporary_effect/pulse/pulsar/on_pulse()
 	empulse(src, 1, 1, 2, 2, log = 1)
-
-
-
-
-
-
-

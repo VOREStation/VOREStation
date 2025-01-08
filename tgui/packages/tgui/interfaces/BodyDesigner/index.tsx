@@ -39,31 +39,31 @@ export const BodyDesigner = (props) => {
   let body = MenuToTemplate[menu];
 
   return (
-    <Window width={400} height={650}>
+    <Window width={750} height={850}>
       <Window.Content>
-        {disk ? (
-          <Box>
-            <Button
-              icon="save"
-              onClick={() => act('savetodisk')}
-              disabled={!activeBodyRecord}
-            >
-              Save To Disk
-            </Button>
-            <Button
-              icon="save"
-              onClick={() => act('loadfromdisk')}
-              disabled={!diskStored}
-            >
-              Load From Disk
-            </Button>
-            <Button icon="eject" onClick={() => act('ejectdisk')}>
-              Eject
-            </Button>
-          </Box>
-        ) : (
-          ''
-        )}
+        <Box>
+          <Button
+            icon="save"
+            onClick={() => act('savetodisk')}
+            disabled={!disk || !activeBodyRecord}
+          >
+            Save To Disk
+          </Button>
+          <Button
+            icon="save"
+            onClick={() => act('loadfromdisk')}
+            disabled={!disk || !diskStored}
+          >
+            Load From Disk
+          </Button>
+          <Button
+            icon="eject"
+            onClick={() => act('ejectdisk')}
+            disabled={!disk}
+          >
+            Eject
+          </Button>
+        </Box>
         {body}
       </Window.Content>
     </Window>

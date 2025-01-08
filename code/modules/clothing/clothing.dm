@@ -73,7 +73,7 @@
 	if (!..())
 		return 0
 
-	if(LAZYLEN(species_restricted) && istype(M,/mob/living/carbon/human))
+	if(LAZYLEN(species_restricted) && ishuman(M))
 		var/exclusive = null
 		var/wearable = null
 		var/mob/living/carbon/human/H = M
@@ -226,7 +226,7 @@
 /obj/item/clothing/ears/attack_hand(mob/user as mob)
 	if (!user) return
 
-	if (src.loc != user || !istype(user,/mob/living/carbon/human))
+	if (src.loc != user || !ishuman(user))
 		..()
 		return
 
@@ -367,7 +367,7 @@
 		desc = "[desc]<br>They have had the fingertips cut off of them."
 		if("exclude" in species_restricted)
 			species_restricted -= SPECIES_UNATHI
-			species_restricted -= SPECIES_TAJ
+			species_restricted -= SPECIES_TAJARAN
 		return
 */
 
@@ -573,7 +573,7 @@
 	sprite_sheets = list(
 		SPECIES_TESHARI = 'icons/inventory/face/mob_teshari.dmi',
 		SPECIES_VOX = 'icons/inventory/face/mob_vox.dmi',
-		SPECIES_TAJ = 'icons/inventory/face/mob_tajaran.dmi',
+		SPECIES_TAJARAN = 'icons/inventory/face/mob_tajaran.dmi',
 		SPECIES_UNATHI = 'icons/inventory/face/mob_unathi.dmi'
 		)
 
@@ -897,7 +897,7 @@
 
 /obj/item/clothing/under/proc/update_rolldown_status()
 	var/mob/living/carbon/human/H
-	if(istype(src.loc, /mob/living/carbon/human))
+	if(ishuman(src.loc))
 		H = src.loc
 
 	var/icon/under_icon
@@ -920,7 +920,7 @@
 
 /obj/item/clothing/under/proc/update_rollsleeves_status()
 	var/mob/living/carbon/human/H
-	if(istype(src.loc, /mob/living/carbon/human))
+	if(ishuman(src.loc))
 		H = src.loc
 
 	var/icon/under_icon
@@ -1005,7 +1005,7 @@
 	set name = "Roll Down Jumpsuit"
 	set category = "Object"
 	set src in usr
-	if(!istype(usr, /mob/living)) return
+	if(!isliving(usr)) return
 	if(usr.stat) return
 
 	update_rolldown_status()
@@ -1038,7 +1038,7 @@
 	set name = "Roll Up Sleeves"
 	set category = "Object"
 	set src in usr
-	if(!istype(usr, /mob/living)) return
+	if(!isliving(usr)) return
 	if(usr.stat) return
 
 	update_rollsleeves_status()

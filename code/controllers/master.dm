@@ -19,44 +19,66 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 	/// Stack end detector to detect stack overflows that kill the mc's main loop
 	var/datum/stack_end_detector/stack_end_detector
 
-	// world.time of last fire, for tracking lag outside of the mc
+	/// world.time of last fire, for tracking lag outside of the mc
 	var/last_run
 
-	// List of subsystems to process().
+	/// List of subsystems to process().
 	var/list/subsystems
 
 	// Vars for keeping track of tick drift.
 	var/init_timeofday
 	var/init_time
 	var/tickdrift = 0
+	/// Tickdrift as of last tick, w no averaging going on
+	var/olddrift = 0
 
+	/// How long is the MC sleeping between runs, read only (set by Loop() based off of anti-tick-contention heuristics)
 	var/sleep_delta = 1
 
-	var/make_runtime = 0
+	/// Only run ticker subsystems for the next n ticks.
+	var/skip_ticks = 0
+
+	/// makes the mc main loop runtime
+	var/make_runtime = FALSE
 
 	var/initializations_finished_with_no_players_logged_in	//I wonder what this could be?
 
 	// The type of the last subsystem to be process()'d.
 	var/last_type_processed
 
-	var/datum/controller/subsystem/queue_head //Start of queue linked list
-	var/datum/controller/subsystem/queue_tail //End of queue linked list (used for appending to the list)
+	var/datum/controller/subsystem/queue_head //!Start of queue linked list
+	var/datum/controller/subsystem/queue_tail //!End of queue linked list (used for appending to the list)
 	var/queue_priority_count = 0 //Running total so that we don't have to loop thru the queue each run to split up the tick
 	var/queue_priority_count_bg = 0 //Same, but for background subsystems
-	var/map_loading = FALSE	//Are we loading in a new map?
+	var/map_loading = FALSE //!Are we loading in a new map?
 
-	var/current_runlevel	//for scheduling different subsystems for different stages of the round
+	var/current_runlevel //!for scheduling different subsystems for different stages of the round
+
+	/// During initialization, will be the instanced subsytem that is currently initializing.
+	/// Outside of initialization, returns null.
+	var/current_initializing_subsystem = null
 
 	var/static/restart_clear = 0
 	var/static/restart_timeout = 0
 	var/static/restart_count = 0
 
-	//current tick limit, assigned by the queue controller before running a subsystem.
-	//used by check_tick as well so that the procs subsystems call can obey that SS's tick limits
+	var/static/random_seed
+
+	///current tick limit, assigned before running a subsystem.
+	///used by CHECK_TICK as well so that the procs subsystems call can obey that SS's tick limits
 	var/static/current_ticklimit
 
 /datum/controller/master/New()
 	// Highlander-style: there can only be one! Kill off the old and replace it with the new.
+
+	if(!random_seed)
+		#ifdef UNIT_TESTS
+		random_seed = 29051994 // How about 22475?
+		#else
+		random_seed = rand(1, 1e9)
+		#endif
+		rand_seed(random_seed)
+
 	var/list/_subsystems = list()
 	subsystems = _subsystems
 	if (Master != src)
@@ -84,6 +106,8 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 	reverseRange(subsystems)
 	for(var/datum/controller/subsystem/ss in subsystems)
 		log_world("Shutting down [ss.name] subsystem...")
+		if (ss.slept_count > 0)
+			log_world("Warning: Subsystem `[ss.name]` slept [ss.slept_count] times.")
 		ss.Shutdown()
 	log_world("Shutdown complete")
 
@@ -178,14 +202,19 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 	for (var/datum/controller/subsystem/SS in subsystems)
 		if (SS.flags & SS_NO_INIT)
 			continue
-		SS.Initialize(REALTIMEOFDAY)
+		init_subsystem(SS)
 		CHECK_TICK
+	current_initializing_subsystem = null
 	current_ticklimit = TICK_LIMIT_RUNNING
 	var/time = (REALTIMEOFDAY - start_timeofday) / 10
 
 	var/msg = "MC: Initializations complete within [time] second[time == 1 ? "" : "s"]!"
 	to_chat(world, span_boldannounce("[msg]"))
 	log_world(msg)
+
+
+	// FIXME: TGS <-> Discord communication; sending message to a TGS chat channel
+	// send2chat("Server Initialization completed! - Took [time] second[time == 1 ? "" : "s"].", "bot announce")
 
 	if (!current_runlevel)
 		SetRunLevel(RUNLEVEL_LOBBY)
@@ -206,6 +235,80 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 	initializations_finished_with_no_players_logged_in = initialized_tod < REALTIMEOFDAY - 10
 	// Loop.
 	Master.StartProcessing(0)
+
+/**
+ * Initialize a given subsystem and handle the results.
+ *
+ * Arguments:
+ * * subsystem - the subsystem to initialize.
+ */
+/datum/controller/master/proc/init_subsystem(datum/controller/subsystem/subsystem)
+	var/static/list/valid_results = list(
+		SS_INIT_FAILURE,
+		SS_INIT_NONE,
+		SS_INIT_SUCCESS,
+		SS_INIT_NO_NEED,
+	)
+
+	if (subsystem.flags & SS_NO_INIT || subsystem.subsystem_initialized) //Don't init SSs with the corresponding flag or if they already are initialized
+		return
+
+	current_initializing_subsystem = subsystem
+	rustg_time_reset(SS_INIT_TIMER_KEY)
+
+	var/result = subsystem.Initialize()
+
+	// Capture end time
+	var/time = rustg_time_milliseconds(SS_INIT_TIMER_KEY)
+	var/seconds = round(time / 1000, 0.01)
+
+	// Always update the blackbox tally regardless.
+	// SSblackbox.record_feedback("tally", "subsystem_initialize", time, subsystem.name)
+	feedback_set_details("subsystem_initialize", "[time] [subsystem.name]")
+
+	// Gave invalid return value.
+	if(result && !(result in valid_results))
+		warning("[subsystem.name] subsystem initialized, returning invalid result [result]. This is a bug.")
+
+	// just returned ..() or didn't implement Initialize() at all
+	if(result == SS_INIT_NONE)
+		warning("[subsystem.name] subsystem does not implement Initialize() or it returns ..(). If the former is true, the SS_NO_INIT flag should be set for this subsystem.")
+
+	if(result != SS_INIT_FAILURE)
+		// Some form of success, implicit failure, or the SS in unused.
+		subsystem.subsystem_initialized = TRUE
+
+		SEND_SIGNAL(subsystem, COMSIG_SUBSYSTEM_POST_INITIALIZE)
+	else
+		// The subsystem officially reports that it failed to init and wishes to be treated as such.
+		subsystem.subsystem_initialized = FALSE
+		subsystem.can_fire = FALSE
+
+	// The rest of this proc is printing the world log and chat message.
+	var/message_prefix
+
+	// If true, print the chat message with boldwarning text.
+	var/chat_warning = FALSE
+
+	switch(result)
+		if(SS_INIT_FAILURE)
+			message_prefix = "Failed to initialize [subsystem.name] subsystem after"
+			chat_warning = TRUE
+		if(SS_INIT_SUCCESS)
+			message_prefix = "Initialized [subsystem.name] subsystem within"
+		if(SS_INIT_NO_NEED)
+			// This SS is disabled or is otherwise shy.
+			return
+		else
+			// SS_INIT_NONE or an invalid value.
+			message_prefix = "Initialized [subsystem.name] subsystem with errors within"
+			chat_warning = TRUE
+
+	var/message = "[message_prefix] [seconds] second[seconds == 1 ? "" : "s"]!"
+	var/chat_message = chat_warning ? span_boldwarning(message) : span_boldannounce(message)
+
+	to_chat(world, chat_message)
+	log_world(message)
 
 /datum/controller/master/proc/SetRunLevel(new_runlevel)
 	var/old_runlevel = isnull(current_runlevel) ? "NULL" : runlevel_flags[current_runlevel]

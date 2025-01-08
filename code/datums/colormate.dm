@@ -90,10 +90,10 @@
 			if("paint")
 				do_paint(inserted)
 				temp = "Painted Successfully!"
-				if(istype(inserted, /mob/living/simple_mob))
+				if(isanimal(inserted))
 					var/mob/living/simple_mob/M = inserted
 					M.has_recoloured = TRUE
-				if(istype(inserted, /mob/living/silicon/robot))
+				if(isrobot(inserted))
 					var/mob/living/silicon/robot/R = inserted
 					R.has_recoloured = TRUE
 				Destroy()

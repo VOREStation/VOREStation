@@ -11445,7 +11445,6 @@
 /obj/effect/shuttle_landmark{
 	base_area = /area/tether/surfacebase/tram;
 	base_turf = /turf/simulated/floor/tiled/techfloor/grid;
-	docking_controller = null;
 	landmark_tag = "escape_station";
 	name = "Tether Surface Base"
 	},
@@ -12183,7 +12182,6 @@
 	},
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/door/airlock/glass_security{
-	id_tag = null;
 	layer = 2.8;
 	name = "Security Checkpoint";
 	req_access = list(1)
@@ -13738,7 +13736,6 @@
 /area/tether/surfacebase/tram)
 "axz" = (
 /obj/machinery/door/airlock/medical{
-	id_tag = null;
 	name = "Auto Resleeving";
 	req_access = list(5)
 	},
@@ -17918,7 +17915,6 @@
 /obj/effect/floor_decal/steeldecal/steel_decals_central1,
 /obj/machinery/door/airlock/multi_tile/glass{
 	dir = 2;
-	id_tag = null;
 	name = "Construction Site"
 	},
 /turf/simulated/floor/tiled/monotile,
@@ -18357,7 +18353,6 @@
 /obj/effect/floor_decal/steeldecal/steel_decals_central1,
 /obj/machinery/door/airlock/multi_tile/glass{
 	dir = 2;
-	id_tag = null;
 	name = "Cafe"
 	},
 /turf/simulated/floor/tiled/monotile,
@@ -26413,7 +26408,6 @@
 /obj/effect/floor_decal/steeldecal/steel_decals_central1,
 /obj/machinery/door/airlock/multi_tile/glass{
 	dir = 2;
-	id_tag = null;
 	name = "Laundry"
 	},
 /turf/simulated/floor/tiled/monotile,
@@ -30693,7 +30687,6 @@
 /obj/effect/floor_decal/steeldecal/steel_decals_central1,
 /obj/machinery/door/airlock/multi_tile/glass{
 	dir = 2;
-	id_tag = null;
 	name = "Laundry"
 	},
 /obj/structure/cable/orange{
@@ -31698,10 +31691,6 @@
 /turf/simulated/floor/plating,
 /area/tether/surfacebase/funny/clownoffice)
 "fKm" = (
-/obj/machinery/firealarm{
-	dir = 8;
-	pixel_x = -24
-	},
 /obj/effect/floor_decal/borderfloorwhite{
 	dir = 8
 	},
@@ -31709,6 +31698,10 @@
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/universal,
+/obj/structure/mirror{
+	dir = 4;
+	pixel_x = -25
+	},
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/autoresleeving)
 "fLB" = (
@@ -32853,6 +32846,10 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 9
+	},
+/obj/machinery/firealarm{
+	dir = 1;
+	pixel_y = -25
 	},
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/autoresleeving)

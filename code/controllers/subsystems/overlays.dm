@@ -28,9 +28,9 @@ SUBSYSTEM_DEF(overlays)
 		CHECK_TICK
 
 
-/datum/controller/subsystem/overlays/Initialize(timeofday)
+/datum/controller/subsystem/overlays/Initialize()
 	fire(FALSE, TRUE)
-	..()
+	return SS_INIT_SUCCESS
 
 /datum/controller/subsystem/overlays/stat_entry(msg)
 	msg = "Queued Atoms: [queue.len], Cache Size: [cache_size]"

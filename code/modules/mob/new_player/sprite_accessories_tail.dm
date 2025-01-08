@@ -44,7 +44,7 @@
 	icon = null
 	icon_state = null
 
-	//species_allowed = list(SPECIES_TAJ, SPECIES_UNATHI, SPECIES_TESHARI, SPECIES_EVENT1, SPECIES_EVENT2, SPECIES_EVENT3)			//Removing Polaris whitelits, ones we need are defined in our files
+	//species_allowed = list(SPECIES_TAJARAN, SPECIES_UNATHI, SPECIES_TESHARI, SPECIES_EVENT1, SPECIES_EVENT2, SPECIES_EVENT3)			//Removing Polaris whitelits, ones we need are defined in our files
 
 /datum/sprite_accessory/tail/squirrel_orange
 	name = "squirel, orange"
@@ -93,7 +93,7 @@
 	color_blend_mode = ICON_MULTIPLY
 	extra_overlay = "stripeytail_mark"
 
-	//species_allowed = list(SPECIES_TAJ, SPECIES_EVENT1, SPECIES_EVENT2, SPECIES_EVENT3)			//Removing Polaris whitelits, ones we need are defined in our files
+	//species_allowed = list(SPECIES_TAJARAN, SPECIES_EVENT1, SPECIES_EVENT2, SPECIES_EVENT3)			//Removing Polaris whitelits, ones we need are defined in our files
 
 /datum/sprite_accessory/tail/stripeytail_brown
 	name = "stripey taj, brown"
@@ -495,7 +495,7 @@
 	icon_state = "tajtail_s"
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
-	//species_allowed = list(SPECIES_TAJ, SPECIES_EVENT1, SPECIES_EVENT2, SPECIES_EVENT3)			//Removing Polaris whitelits, ones we need are defined in our files
+	//species_allowed = list(SPECIES_TAJARAN, SPECIES_EVENT1, SPECIES_EVENT2, SPECIES_EVENT3)			//Removing Polaris whitelits, ones we need are defined in our files
 
 /datum/sprite_accessory/tail/special/sergal
 	name = "sergal tail"
@@ -579,7 +579,7 @@
 	icon_state = "tajtail_hc_s"
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
-	//species_allowed = list(SPECIES_TAJ, SPECIES_EVENT1, SPECIES_EVENT2, SPECIES_EVENT3)			//Removing Polaris whitelits, ones we need are defined in our files
+	//species_allowed = list(SPECIES_TAJARAN, SPECIES_EVENT1, SPECIES_EVENT2, SPECIES_EVENT3)			//Removing Polaris whitelits, ones we need are defined in our files
 
 /datum/sprite_accessory/tail/special/sergalhc
 	name = "sergal tail, colorable"

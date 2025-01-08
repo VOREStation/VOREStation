@@ -269,6 +269,12 @@
 	ckeywhitelist = list("bigbababooey")
 	character_name = list("Ali Big")
 
+/datum/gear/fluff/beeholddrbeesphb_plushie
+	path = /obj/item/laser_pointer/evelynn_fluff
+	display_name = "Evelynn's Laser Pointer"
+	ckeywhitelist = list("beeholddrbeesphb")
+	character_name = list("Evelynn")
+
 //  C CKEYS
 /datum/gear/fluff/cappy_watch
 	path = /obj/item/clothing/accessory/watch/custom
@@ -1517,7 +1523,7 @@
 	display_name = "Tempest's Medical Hud"
 	slot = slot_glasses
 	ckeywhitelist = list("wickedtemp")
-	character_name = list("Chakat Tempest Venosare")
+	character_name = list("Chakat Tempest Trismaer")
 	allowed_roles = list(JOB_CHIEF_MEDICAL_OFFICER,JOB_MEDICAL_DOCTOR,JOB_CHEMIST,JOB_PSYCHIATRIST,JOB_PARAMEDIC, JOB_OFFDUTY_MEDIC)
 
 /datum/gear/fluff/tempest_hypospray
@@ -1525,7 +1531,7 @@
 	display_name = "Tempest's Hypospray"
 	slot = slot_belt
 	ckeywhitelist = list("wickedtemp")
-	character_name = list("Chakat Tempest Venosare")
+	character_name = list("Chakat Tempest Trismaer")
 	allowed_roles = list(JOB_CHIEF_MEDICAL_OFFICER,JOB_MEDICAL_DOCTOR,JOB_CHEMIST,JOB_PSYCHIATRIST,JOB_PARAMEDIC, JOB_OFFDUTY_MEDIC)
 
 /datum/gear/fluff/tempest_backpack
@@ -1533,7 +1539,7 @@
 	display_name = "Tempest's Saddlebag"
 	slot = slot_back
 	ckeywhitelist = list("wickedtemp")
-	character_name = list("Chakat Tempest Venosare")
+	character_name = list("Chakat Tempest Trismaer")
 
 //  X CKEYS
 /datum/gear/fluff/penelope_box

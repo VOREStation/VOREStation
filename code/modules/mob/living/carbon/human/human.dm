@@ -414,7 +414,7 @@
 
 										spawn()
 											BITSET(hud_updateflag, WANTED_HUD)
-											if(istype(usr,/mob/living/carbon/human))
+											if(ishuman(usr))
 												var/mob/living/carbon/human/U = usr
 												U.handle_hud_list()
 											if(istype(usr,/mob/living/silicon/robot))
@@ -500,7 +500,7 @@
 								var/counter = 1
 								while(R.fields[text("com_[]", counter)])
 									counter++
-								if(istype(usr,/mob/living/carbon/human))
+								if(ishuman(usr))
 									var/mob/living/carbon/human/U = usr
 									R.fields[text("com_[counter]")] = text("Made by [U.get_authentification_name()] ([U.get_assignment()]) on [time2text(world.realtime, "DDD MMM DD hh:mm:ss")], [game_year]<BR>[t1]")
 								if(istype(usr,/mob/living/silicon/robot))
@@ -533,7 +533,7 @@
 										PDA_Manifest.Cut()
 
 									spawn()
-										if(istype(usr,/mob/living/carbon/human))
+										if(ishuman(usr))
 											var/mob/living/carbon/human/U = usr
 											U.handle_regular_hud_updates()
 										if(istype(usr,/mob/living/silicon/robot))
@@ -620,7 +620,7 @@
 								var/counter = 1
 								while(R.fields[text("com_[]", counter)])
 									counter++
-								if(istype(usr,/mob/living/carbon/human))
+								if(ishuman(usr))
 									var/mob/living/carbon/human/U = usr
 									R.fields[text("com_[counter]")] = text("Made by [U.get_authentification_name()] ([U.get_assignment()]) on [time2text(world.realtime, "DDD MMM DD hh:mm:ss")], [game_year]<BR>[t1]")
 								if(istype(usr,/mob/living/silicon/robot))
@@ -706,7 +706,7 @@
 								var/counter = 1
 								while(R.fields[text("com_[]", counter)])
 									counter++
-								if(istype(usr,/mob/living/carbon/human))
+								if(ishuman(usr))
 									var/mob/living/carbon/human/U = usr
 									R.fields[text("com_[counter]")] = text("Made by [U.get_authentification_name()] ([U.get_assignment()]) on [time2text(world.realtime, "DDD MMM DD hh:mm:ss")], [game_year]<BR>[t1]")
 								if(istype(usr,/mob/living/silicon/robot))
@@ -1813,8 +1813,6 @@
 		if(rig_goggles.vision_flags & (SEE_TURFS|SEE_OBJS))
 			rig.visor.deactivate()
 			to_chat(src, span_warning("\The [rig]'s visor has shuddenly deactivated!"))
-
-	..()
 
 /mob/living/carbon/human/get_mob_riding_slots()
 	return list(back, head, wear_suit)

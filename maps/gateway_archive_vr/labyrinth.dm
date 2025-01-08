@@ -117,8 +117,8 @@
 	wreckage = /obj/effect/decal/mecha_wreckage/honker/cluwne
 	max_equip = 4
 
-/obj/mecha/combat/honker/cluwne/New()
-	..()
+/obj/mecha/combat/honker/cluwne/Initialize()
+	. = ..()
 	var/obj/item/mecha_parts/mecha_equipment/ME = new /obj/item/mecha_parts/mecha_equipment/weapon/energy/pulse
 	ME.attach(src)
 	ME = new /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/missile_rack/explosive
@@ -127,7 +127,6 @@
 	ME.attach(src)
 	ME = new /obj/item/mecha_parts/mecha_equipment/weapon/honker
 	ME.attach(src)
-	return
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/missile_rack/banana_mortar
 	name = "Banana Mortar"
@@ -169,7 +168,7 @@
 		playsound(chassis, 'sound/items/AirHorn.ogg', 100, 1)
 		chassis.occupant_message(span_infoplain(span_red(span_giant("HONK"))))
 		for(var/mob/living/carbon/M in ohearers(6, chassis))
-			if(istype(M, /mob/living/carbon/human))
+			if(ishuman(M))
 				var/mob/living/carbon/human/H = M
 				if(istype(H.l_ear, /obj/item/clothing/ears/earmuffs) || istype(H.r_ear, /obj/item/clothing/ears/earmuffs))
 					continue
@@ -218,7 +217,7 @@
 //	speak = list("HONK", "Honk!")
 //	emote_hear = list("honks")
 //	speak_chance = 1
-	a_intent = "harm"
+	a_intent = I_HURT
 	var/corpse = /obj/effect/landmark/mobcorpse/tunnelclown
 	var/weapon1 = /obj/item/material/twohanded/fireaxe
 	stop_when_pulled = 0
@@ -284,7 +283,7 @@
 	response_harm = "euthanizes"
 //	speak = list("HONK!", "Honk!", "H-Honk...", "Honk... Please...","Kill me... Honk.", "It hurts to live... Honk...","The pain... HONK!")
 //	emote_hear = list("honks", "wheeps","sobs","whimpers","honks uncontrollably")
-	a_intent = "harm"
+	a_intent = I_HURT
 	stop_when_pulled = 0
 	maxHealth = 10
 	health = 10

@@ -441,7 +441,7 @@ the implant may become unstable and either pre-maturely inject the subject or si
 
 /obj/item/implant/loyalty/handle_implant(mob/M, target_zone = BP_TORSO)
 	. = ..(M, target_zone)
-	if(!istype(M, /mob/living/carbon/human))
+	if(!ishuman(M))
 		. = FALSE
 	var/mob/living/carbon/human/H = M
 	var/datum/antagonist/antag_data = get_antag_data(H.mind.special_role)

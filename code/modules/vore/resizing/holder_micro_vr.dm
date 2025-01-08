@@ -11,6 +11,7 @@
 	pixel_y = 0		  // Override value from parent.
 
 /obj/item/holder/examine(mob/user)
+	SHOULD_CALL_PARENT(FALSE)
 	. = list()
 	for(var/mob/living/M in contents)
 		. += M.examine(user)

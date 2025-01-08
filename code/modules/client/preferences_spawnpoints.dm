@@ -6,6 +6,11 @@ var/list/spawntypes = list()
 		var/datum/spawnpoint/S = new type()
 		spawntypes[S.display_name] = S
 
+/proc/get_spawn_points()
+	if(!LAZYLEN(spawntypes))
+		populate_spawn_points()
+	return spawntypes
+
 /datum/spawnpoint
 	var/msg          //Message to display on the arrivals computer.
 	var/list/turfs   //List of turfs to spawn on.

@@ -92,7 +92,7 @@
 				O.anchored = initial(O.anchored)
 
 	//attacking
-	else if(istype(target,/mob/living))
+	else if(isliving(target))
 		var/mob/living/M = target
 		if(M.stat>1) return
 		if(chassis.occupant.a_intent == I_HURT || istype(chassis.occupant,/mob/living/carbon/brain)) //No tactile feedback for brains
@@ -156,7 +156,7 @@
 		else
 			chassis.occupant_message(span_warning("[target] is firmly secured."))
 
-	else if(istype(target,/mob/living))
+	else if(isliving(target))
 		var/mob/living/M = target
 		if(M.stat>1) return
 		if(chassis.occupant.a_intent == I_HURT)

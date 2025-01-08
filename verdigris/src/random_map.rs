@@ -25,7 +25,7 @@ pub fn generate_automata(
 
                 for x in [-1, 0, 1] {
                     for y in [-1, 0, 1] {
-                        let idx = ((i as i32) + x + (y * (limit_y as i32))) as usize;
+                        let idx = ((i as i32) + x + (y * (limit_x as i32))) as usize;
 
                         if let Some(&value) = map.get(idx) {
                             let is_border_left = idx % limit_x == 0;

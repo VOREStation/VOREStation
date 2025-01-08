@@ -28,7 +28,7 @@
 	// Technically this does mean being dragged takes nutrition
 	if(stat != DEAD)
 		adjust_nutrition(hunger_rate/-10)
-		if(m_intent == "run")
+		if(m_intent == I_RUN)
 			adjust_nutrition(hunger_rate/-10)
 
 	// Moving around increases germ_level faster

@@ -90,20 +90,20 @@
 	if (malfunction)
 		return
 
-	if(istype(imp_in, /mob/living))
+	if(isliving(imp_in))
 		var/mob/living/H = imp_in
 		if(findtext(msg,"implant-toggle"))
 			active = !active
 		if(active)
 			if(findtext(msg,"grow"))
-				H.resize(min(H.size_multiplier*1.5, 2))
+				H.resize(min(H.size_multiplier*1.5, RESIZE_MAXIMUM))
 			else if(findtext(msg,"shrink"))
-				H.resize(max(H.size_multiplier*0.5, 0.25))
+				H.resize(max(H.size_multiplier*0.5, RESIZE_MINIMUM))
 			else if(findtext(msg, "resize"))
 				var/static/regex/size_mult = new/regex("\\d+")
 				if(size_mult.Find(msg))
 					var/resizing_value = text2num(size_mult.match)
-					H.resize(CLAMP(resizing_value/100 , 0.25, 2))
+					H.resize(CLAMP(resizing_value/100 , RESIZE_MINIMUM, RESIZE_MAXIMUM))
 
 
 
@@ -113,7 +113,7 @@
 
 
 /obj/item/implant/sizecontrol/emp_act(severity)
-	if(istype(imp_in, /mob/living))
+	if(isliving(imp_in))
 		var/newsize = pick(RESIZE_HUGE,RESIZE_BIG,RESIZE_NORMAL,RESIZE_SMALL,RESIZE_TINY,RESIZE_A_HUGEBIG,RESIZE_A_BIGNORMAL,RESIZE_A_NORMALSMALL,RESIZE_A_SMALLTINY)
 		var/mob/living/H = imp_in
 		H.resize(newsize)

@@ -79,7 +79,7 @@
 /obj/machinery/meter/examine(mob/user)
 	. = ..()
 
-	if(get_dist(user, src) > 3 && !(istype(user, /mob/living/silicon/ai) || istype(user, /mob/observer/dead)))
+	if(get_dist(user, src) > 3 && !(isAI(user) || isobserver(user)))
 		. += span_warning("You are too far away to read it.")
 
 	else if(stat & (NOPOWER|BROKEN))
@@ -96,7 +96,7 @@
 
 /obj/machinery/meter/Click()
 
-	if(istype(usr, /mob/living/carbon/human) || istype(usr, /mob/living/silicon/ai)) // ghosts can call ..() for examine
+	if(ishuman(usr) || isAI(usr)) // ghosts can call ..() for examine
 		var/mob/living/L = usr
 		if(!L.get_active_hand() || !L.Adjacent(src))
 			usr.examinate(src)

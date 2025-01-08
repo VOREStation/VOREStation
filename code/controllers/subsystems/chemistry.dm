@@ -18,7 +18,7 @@ SUBSYSTEM_DEF(chemistry)
 /datum/controller/subsystem/chemistry/Initialize()
 	initialize_chemical_reagents()
 	initialize_chemical_reactions()
-	..()
+	return SS_INIT_SUCCESS
 
 /datum/controller/subsystem/chemistry/stat_entry(msg)
 	msg = "C: [chemical_reagents.len] | R: [chemical_reactions.len]"

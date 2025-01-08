@@ -27,32 +27,32 @@
 	external_pressure_bound = ONE_ATMOSPHERE * 1.1
 
 
-/obj/effect/step_trigger/teleporter/to_mining/New()
-	..()
+/obj/effect/step_trigger/teleporter/to_mining/Initialize()
+	. = ..()
 	teleport_x = src.x
 	teleport_y = 2
 	teleport_z = Z_LEVEL_SURFACE_MINE
 
-/obj/effect/step_trigger/teleporter/from_mining/New()
-	..()
+/obj/effect/step_trigger/teleporter/from_mining/Initialize()
+	. = ..()
 	teleport_x = src.x
 	teleport_y = world.maxy - 1
 	teleport_z = Z_LEVEL_SURFACE_LOW
 
-/obj/effect/step_trigger/teleporter/to_solars/New()
-	..()
+/obj/effect/step_trigger/teleporter/to_solars/Initialize()
+	. = ..()
 	teleport_x = world.maxx - 1
 	teleport_y = src.y
 	teleport_z = Z_LEVEL_SOLARS
 
-/obj/effect/step_trigger/teleporter/from_solars/New()
-	..()
+/obj/effect/step_trigger/teleporter/from_solars/Initialize()
+	. = ..()
 	teleport_x = 2
 	teleport_y = src.y
 	teleport_z = Z_LEVEL_SURFACE_LOW
 
-/obj/effect/step_trigger/teleporter/wild/New()
-	..()
+/obj/effect/step_trigger/teleporter/wild/Initialize()
+	. = ..()
 
 	//If starting on east/west edges.
 	if (src.x == 1)
@@ -95,14 +95,14 @@
 		if(Z.name == "Mining Outpost")
 			teleport_z = Z.z
 
-/obj/effect/step_trigger/teleporter/to_plains/New()
-	..()
+/obj/effect/step_trigger/teleporter/to_plains/Initialize()
+	. = ..()
 	teleport_x = src.x
 	teleport_y = world.maxy - 1
 	teleport_z = Z_LEVEL_PLAINS
 
-/obj/effect/step_trigger/teleporter/from_plains/New()
-	..()
+/obj/effect/step_trigger/teleporter/from_plains/Initialize()
+	. = ..()
 	teleport_x = src.x
 	teleport_y = 2
 	teleport_z = Z_LEVEL_SURFACE_LOW

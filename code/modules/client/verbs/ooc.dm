@@ -73,8 +73,9 @@
 						display_name = "[holder.fakekey]/([src.key])"
 					else
 						display_name = holder.fakekey
-			if(holder && !holder.fakekey && (holder.rights & R_ADMIN|R_FUN|R_EVENT) && CONFIG_GET(flag/allow_admin_ooccolor) && (src.prefs.ooccolor != initial(src.prefs.ooccolor))) // keeping this for the badmins
-				to_chat(target, span_ooc("<font color='[src.prefs.ooccolor]'>" + create_text_tag("ooc", "OOC:", target) + " <EM>[display_name]:</EM> [span_message(msg)]</font>"))
+			var/pref_color = prefs.read_preference(/datum/preference/color/ooc_color)
+			if(holder && !holder.fakekey && (holder.rights & R_ADMIN|R_FUN|R_EVENT) && CONFIG_GET(flag/allow_admin_ooccolor) && pref_color != "#010000") // keeping this for the badmins
+				to_chat(target, span_ooc("<font color='[pref_color]'>" + create_text_tag("ooc", "OOC:", target) + " <EM>[display_name]:</EM> [span_message(msg)]</font>"))
 			else
 				to_chat(target, span_ooc("<span class='[ooc_style]'>" + create_text_tag("ooc", "OOC:", target) + " <EM>[display_name]:</EM> " + span_message(msg)) + "</span>")
 
@@ -154,7 +155,7 @@
 	for(var/mob/viewer in m_viewers)
 		if(viewer.client && viewer.client.prefs?.read_preference(/datum/preference/toggle/show_looc))
 			receivers |= viewer.client
-		else if(istype(viewer,/mob/observer/eye)) // For AI eyes and the like
+		else if(isEye(viewer)) // For AI eyes and the like
 			var/mob/observer/eye/E = viewer
 			if(E.owner && E.owner.client)
 				receivers |= E.owner.client

@@ -22,7 +22,7 @@
 	return GLOB.tgui_always_state
 
 /datum/pai_software/tgui_status(mob/user)
-	if(!istype(user, /mob/living/silicon/pai))
+	if(!ispAI(user))
 		return STATUS_CLOSE
 	return ..()
 
@@ -61,7 +61,7 @@
 
 		var/count = 0
 		// Find the carrier
-		while(!istype(M, /mob/living))
+		while(!isliving(M))
 			if(!M || !M.loc || count > 6)
 				//For a runtime where M ends up in nullspace (similar to bluespace but less colourful)
 				to_chat(src, span_infoplain("You are not being carried by anyone!"))
@@ -420,9 +420,9 @@
 		user.add_language(LANGUAGE_ALAI)
 		user.add_language(LANGUAGE_PROMETHEAN)
 		user.add_language(LANGUAGE_GIBBERISH)
-		user.add_language("Mouse")
-		user.add_language("Animal")
-		user.add_language("Teppi")
+		user.add_language(LANGUAGE_MOUSE)
+		user.add_language(LANGUAGE_ANIMAL)
+		user.add_language(LANGUAGE_TEPPI)
 	else
 		user.remove_language(LANGUAGE_UNATHI)
 		user.remove_language(LANGUAGE_SIIK)
@@ -447,9 +447,9 @@
 		user.remove_language(LANGUAGE_ALAI)
 		user.remove_language(LANGUAGE_PROMETHEAN)
 		user.remove_language(LANGUAGE_GIBBERISH)
-		user.remove_language("Mouse")
-		user.remove_language("Animal")
-		user.remove_language("Teppi")
+		user.remove_language(LANGUAGE_MOUSE)
+		user.remove_language(LANGUAGE_ANIMAL)
+		user.remove_language(LANGUAGE_TEPPI)
 
 /datum/pai_software/translator/is_active(mob/living/silicon/pai/user)
 	return user.translator_on

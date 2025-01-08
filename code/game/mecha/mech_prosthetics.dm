@@ -49,6 +49,8 @@
 					"Vehicle",
 					"Rigsuit",
 					"Phazon",
+					"Pinnace",
+					"Baron",
 					"Gopher", // VOREStation Add
 					"Polecat", // VOREStation Add
 					"Weasel", // VOREStation Add

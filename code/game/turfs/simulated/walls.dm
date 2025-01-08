@@ -120,7 +120,7 @@
 
 /turf/simulated/wall/ChangeTurf(var/turf/N, var/tell_universe, var/force_lighting_update, var/preserve_outdoors)
 	clear_plants()
-	..(N, tell_universe, force_lighting_update, preserve_outdoors)
+	. = ..(N, tell_universe, force_lighting_update, preserve_outdoors)
 
 //Appearance
 /turf/simulated/wall/examine(mob/user)

@@ -219,7 +219,6 @@
 	id_tag = "vonbraun_pd"
 	},
 /obj/structure/cable/yellow{
-	dir = 4;
 	icon_state = "0-4"
 	},
 /turf/simulated/floor/reinforced/airless,
@@ -472,7 +471,6 @@
 	id_tag = "vonbraun_pd"
 	},
 /obj/structure/cable/yellow{
-	dir = 4;
 	icon_state = "0-4"
 	},
 /turf/simulated/floor/reinforced/airless,
@@ -845,7 +843,6 @@
 	id_tag = "vonbraun_pd"
 	},
 /obj/structure/cable/yellow{
-	dir = 4;
 	icon_state = "0-4"
 	},
 /turf/simulated/floor/reinforced/airless,
@@ -6347,7 +6344,6 @@
 	id_tag = "vonbraun_pd"
 	},
 /obj/structure/cable/yellow{
-	dir = 4;
 	icon_state = "0-4"
 	},
 /turf/simulated/floor/reinforced/airless,
@@ -8837,7 +8833,6 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/structure/cable/yellow{
-	dir = 4;
 	icon_state = "0-4"
 	},
 /turf/simulated/floor/tiled/techmaint,

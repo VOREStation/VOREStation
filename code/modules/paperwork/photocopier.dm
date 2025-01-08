@@ -87,7 +87,7 @@
 
 				if(!camera)
 					return
-				var/obj/item/photo/selection = camera.selectpicture()
+				var/obj/item/photo/selection = camera.selectpicture(ui.user)
 				if (!selection)
 					return
 
@@ -272,7 +272,7 @@
 		switch(species_to_check)
 			if(SPECIES_HUMAN)
 				temp_img = icon('icons/obj/butts_vr.dmi', "human")
-			if(SPECIES_TAJ)
+			if(SPECIES_TAJARAN)
 				temp_img = icon('icons/obj/butts_vr.dmi', "tajaran")
 			if(SPECIES_UNATHI)
 				temp_img = icon('icons/obj/butts_vr.dmi', "unathi")
