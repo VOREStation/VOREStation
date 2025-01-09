@@ -1,4 +1,4 @@
-var/list/_robot_default_emotes = list(
+GLOBAL_LIST_INIT(_robot_default_emotes, list(
 	/decl/emote/audible/clap,
 	/decl/emote/visible/bow,
 	/decl/emote/visible/salute,
@@ -33,9 +33,9 @@ var/list/_robot_default_emotes = list(
 	/decl/emote/visible/mlem,
 	/decl/emote/visible/blep
 	//VOREStation Add End
-)
+))
 
 /mob/living/silicon/robot/get_available_emotes()
-	var/list/fulllist = global._robot_default_emotes.Copy()
-	fulllist |= _human_default_emotes
+	var/list/fulllist = GLOB._robot_default_emotes.Copy()
+	fulllist |= GLOB._human_default_emotes
 	return fulllist

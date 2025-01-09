@@ -11,7 +11,7 @@
 	var/next_wave = METEOR_DELAY
 
 /datum/game_mode/meteor/post_setup()
-	defer_powernet_rebuild = 2//Might help with the lag
+	GLOB.defer_powernet_rebuild = 2//Might help with the lag
 	..()
 
 /datum/game_mode/meteor/process()

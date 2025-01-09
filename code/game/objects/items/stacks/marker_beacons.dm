@@ -1,19 +1,19 @@
 /*****************Marker Beacons**************************/
-var/list/marker_beacon_colors = list(
-"Random" = FALSE, //not a true color, will pick a random color
-"Burgundy" = LIGHT_COLOR_FLARE,
-"Bronze" = LIGHT_COLOR_ORANGE,
-"Yellow" = LIGHT_COLOR_YELLOW,
-"Lime" = LIGHT_COLOR_SLIME_LAMP,
-"Olive" = LIGHT_COLOR_GREEN,
-"Jade" = LIGHT_COLOR_BLUEGREEN,
-"Teal" = LIGHT_COLOR_LIGHT_CYAN,
-"Cerulean" = LIGHT_COLOR_BLUE,
-"Indigo" = LIGHT_COLOR_DARK_BLUE,
-"Purple" = LIGHT_COLOR_PURPLE,
-"Violet" = LIGHT_COLOR_LAVENDER,
-"Fuchsia" = LIGHT_COLOR_PINK
-)
+GLOBAL_LIST_INIT(marker_beacon_colors, list(
+	"Random" = FALSE, //not a true color, will pick a random color
+	"Burgundy" = LIGHT_COLOR_FLARE,
+	"Bronze" = LIGHT_COLOR_ORANGE,
+	"Yellow" = LIGHT_COLOR_YELLOW,
+	"Lime" = LIGHT_COLOR_SLIME_LAMP,
+	"Olive" = LIGHT_COLOR_GREEN,
+	"Jade" = LIGHT_COLOR_BLUEGREEN,
+	"Teal" = LIGHT_COLOR_LIGHT_CYAN,
+	"Cerulean" = LIGHT_COLOR_BLUE,
+	"Indigo" = LIGHT_COLOR_DARK_BLUE,
+	"Purple" = LIGHT_COLOR_PURPLE,
+	"Violet" = LIGHT_COLOR_LAVENDER,
+	"Fuchsia" = LIGHT_COLOR_PINK
+	))
 
 /obj/item/stack/marker_beacon
 	name = "marker beacons"
@@ -68,7 +68,7 @@ var/list/marker_beacon_colors = list(
 		return
 	if(!in_range(src, user))
 		return
-	var/input_color = tgui_input_list(user, "Choose a color.", "Beacon Color", marker_beacon_colors)
+	var/input_color = tgui_input_list(user, "Choose a color.", "Beacon Color", GLOB.marker_beacon_colors)
 	if(user.incapacitated() || !istype(user) || !in_range(src, user))
 		return
 	if(input_color)
@@ -103,10 +103,10 @@ var/list/marker_beacon_colors = list(
 		. += span_notice("Alt-click to select a color. Current color is [picked_color].")
 
 /obj/structure/marker_beacon/update_icon()
-	if(!picked_color || !marker_beacon_colors[picked_color])
-		picked_color = pick(marker_beacon_colors)
+	if(!picked_color || !GLOB.marker_beacon_colors[picked_color])
+		picked_color = pick(GLOB.marker_beacon_colors)
 	icon_state = "[initial(icon_state)][lowertext(picked_color)]-on"
-	set_light(light_range, light_power, marker_beacon_colors[picked_color])
+	set_light(light_range, light_power, GLOB.marker_beacon_colors[picked_color])
 
 /obj/structure/marker_beacon/attack_hand(mob/living/user)
 	if(perma)
@@ -143,7 +143,7 @@ var/list/marker_beacon_colors = list(
 		return
 	if(!in_range(src, user))
 		return
-	var/input_color = tgui_input_list(user, "Choose a color.", "Beacon Color", marker_beacon_colors)
+	var/input_color = tgui_input_list(user, "Choose a color.", "Beacon Color", GLOB.marker_beacon_colors)
 	if(user.incapacitated() || !istype(user) || !in_range(src, user))
 		return
 	if(input_color)

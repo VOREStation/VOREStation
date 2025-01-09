@@ -715,12 +715,12 @@
 	if(!visible)
 		alpha = 0
 
-	if(!lobby_image)
+	if(!GLOB.lobby_image)
 		qdel(src)
 		return
 
-	icon = lobby_image.icon
-	icon_state = lobby_image.icon_state
+	icon = GLOB.lobby_image.icon
+	icon_state = GLOB.lobby_image.icon_state
 
 	holder.screen += src
 

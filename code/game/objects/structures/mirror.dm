@@ -135,7 +135,7 @@
 			if(choice && choice == "Yes")
 				var/mob/living/carbon/human/vox/vox = new(get_turf(src),SPECIES_VOX)
 				vox.gender = user.gender
-				raiders.equip(vox)
+				GLOB.raiders.equip(vox)
 				if(user.mind)
 					user.mind.transfer_to(vox)
 				spawn(1)
@@ -145,6 +145,6 @@
 						newname = L.get_random_name()
 					vox.real_name = newname
 					vox.name = vox.real_name
-					raiders.update_access(vox)
+					GLOB.raiders.update_access(vox)
 				qdel(user)
 	..()

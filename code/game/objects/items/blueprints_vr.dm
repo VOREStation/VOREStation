@@ -471,7 +471,7 @@
 			to_chat(creator, span_warning("You need more paper before you can even think of editing this area!"))
 			return
 
-	var/list/turfs = detect_room(get_turf(creator), area_or_turf_fail_types, BP_MAX_ROOM_SIZE*2)
+	var/list/turfs = detect_room(get_turf(creator), GLOB.area_or_turf_fail_types, BP_MAX_ROOM_SIZE*2)
 	if(!turfs)
 		to_chat(creator, span_warning("The new area must have a floor and not a part of a shuttle."))
 		return
@@ -483,7 +483,7 @@
 
 	for(var/i in 1 to length(turfs))
 		var/area/place = get_area(turfs[i])
-		if(blacklisted_areas[place.type])
+		if(GLOB.blacklisted_areas[place.type])
 			continue
 		if(!place.requires_power || (place.flag_check(BLUE_SHIELDED)))
 			continue // No expanding powerless rooms etc
@@ -551,7 +551,7 @@
 		to_chat(creator, span_warning("You need more paper before you can even think of editing this area!"))
 		return
 
-	var/res = detect_room_ex(get_turf(creator), can_create_areas_into, area_or_turf_fail_types)
+	var/res = detect_room_ex(get_turf(creator), can_create_areas_into, GLOB.area_or_turf_fail_types)
 	if(!res)
 		to_chat(creator, span_warning("There is an area forbidden from being edited here! Use the fine-tune area creator! (3x3)"))
 		return
@@ -578,7 +578,7 @@
 	var/str										//What the new area is named.
 	var/can_make_new_area = 1					//If they can make a new area here or not.
 
-	var/list/nearby_turfs_to_check = detect_room(get_turf(creator), area_or_turf_fail_types, BP_MAX_ROOM_SIZE*2) //Get the nearby areas.
+	var/list/nearby_turfs_to_check = detect_room(get_turf(creator), GLOB.area_or_turf_fail_types, BP_MAX_ROOM_SIZE*2) //Get the nearby areas.
 
 	if(!nearby_turfs_to_check)
 		to_chat(creator, span_warning("The new area must have a floor and not a part of a shuttle."))
@@ -589,7 +589,7 @@
 
 	for(var/i in 1 to length(nearby_turfs_to_check))
 		var/area/place = get_area(nearby_turfs_to_check[i])
-		if(blacklisted_areas[place.type])
+		if(GLOB.blacklisted_areas[place.type])
 			if(!creator.lastarea != place) //Stops them from merging a blacklisted area to make it larger. Allows them to merge a blacklisted area into an allowed area. (Expansion!)
 				continue
 		if(!GLOB.BUILDABLE_AREA_TYPES[place.type]) //TODOTODOTODO
@@ -891,7 +891,7 @@
 	var/area/oldA = get_area(get_turf(creator))	//The old area (area currently standing in)
 	var/str										//What the new area is named.
 
-	var/list/nearby_turfs_to_check = detect_room(get_turf(creator), area_or_turf_fail_types, 70) //Get the nearby areas.
+	var/list/nearby_turfs_to_check = detect_room(get_turf(creator), GLOB.area_or_turf_fail_types, 70) //Get the nearby areas.
 
 	if(!nearby_turfs_to_check)
 		to_chat(creator, span_warning("The new area must have a floor and not a part of a shuttle."))

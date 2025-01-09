@@ -5,7 +5,7 @@
 	..()
 	owner = "Away Team"
 	name = "Away Team (Relay)"
-	cartridges_to_send_to = exploration_cartridges
+	cartridges_to_send_to = GLOB.exploration_cartridges
 
 /obj/item/pda/centcom
 	default_cartridge = /obj/item/cartridge/captain

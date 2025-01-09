@@ -1,4 +1,4 @@
-var/global/list/global_used_pois = list()
+GLOBAL_LIST_EMPTY(global_used_pois)
 
 
 
@@ -41,9 +41,9 @@ INITIALIZE_IMMEDIATE(/obj/effect/landmark/poi_loader)
 	if(!poi_type)
 		return
 
-	if(!(global_used_pois.len) || !(global_used_pois[poi_type]))
-		global_used_pois[poi_type] = list()
-		var/list/poi_list = global_used_pois[poi_type]
+	if(!(GLOB.global_used_pois.len) || !(GLOB.global_used_pois[poi_type]))
+		GLOB.global_used_pois[poi_type] = list()
+		var/list/poi_list = GLOB.global_used_pois[poi_type]
 		for(var/map in SSmapping.map_templates)
 			var/template = SSmapping.map_templates[map]
 			if(istype(template, poi_type))
@@ -51,7 +51,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/landmark/poi_loader)
 
 	var/datum/map_template/template_to_use = null
 
-	var/list/our_poi_list = global_used_pois[poi_type]
+	var/list/our_poi_list = GLOB.global_used_pois[poi_type]
 
 	if(!our_poi_list.len)
 		return
@@ -64,7 +64,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/landmark/poi_loader)
 	//admin_notice(span_danger("Chosen Predefined PoI Map: [chosen_type.name]"), R_DEBUG)
 
 	if(remove_from_pool)
-		global_used_pois[poi_type] -= template_to_use
+		GLOB.global_used_pois[poi_type] -= template_to_use
 
 	// Annihilate movable atoms
 	annihilate_bounds()

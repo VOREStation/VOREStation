@@ -1,6 +1,4 @@
-///var/atom/movable/lobby_image = new /atom/movable{icon = 'icons/misc/title.dmi'; icon_state = lobby_image_state; screen_loc = "1,1"; name = "Polaris"}
-
-var/obj/effect/lobby_image = new /obj/effect/lobby_image
+GLOBAL_DATUM_INIT(lobby_image, /obj/effect, new /obj/effect/lobby_image)
 
 /obj/effect/lobby_image
 	name = "Polaris"
@@ -42,7 +40,7 @@ var/obj/effect/lobby_image = new /obj/effect/lobby_image
 		mind.current = src
 
 	loc = null
-	client.screen += lobby_image
+	client.screen += GLOB.lobby_image
 	my_client = client
 	sight |= SEE_TURFS
 	GLOB.player_list |= src

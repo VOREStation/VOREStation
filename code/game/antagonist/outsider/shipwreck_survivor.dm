@@ -1,4 +1,4 @@
-var/datum/antagonist/shipwreck_survivor/survivors
+GLOBAL_DATUM(survivors, /datum/antagonist/shipwreck_survivor)
 
 //Shipwreck survivors can only spawn from ghost_pods at time of this commit.
 //These are NOT meant to be real antagonists

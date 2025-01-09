@@ -1028,18 +1028,18 @@ Turf and target are seperate in case you want to teleport some distance from a t
 
 
 //Quick type checks for some tools
-var/global/list/common_tools = list(
-/obj/item/stack/cable_coil,
-/obj/item/tool/wrench,
-/obj/item/weldingtool,
-/obj/item/tool/screwdriver,
-/obj/item/tool/wirecutters,
-/obj/item/multitool,
-/obj/item/tool/crowbar,
-/obj/item/tool/transforming)
+GLOBAL_LIST_INIT(common_tools, list(
+	/obj/item/stack/cable_coil,
+	/obj/item/tool/wrench,
+	/obj/item/weldingtool,
+	/obj/item/tool/screwdriver,
+	/obj/item/tool/wirecutters,
+	/obj/item/multitool,
+	/obj/item/tool/crowbar,
+	/obj/item/tool/transforming))
 
 /proc/istool(O)
-	if(O && is_type_in_list(O, common_tools))
+	if(O && is_type_in_list(O, GLOB.common_tools))
 		return 1
 	return 0
 
@@ -1152,7 +1152,7 @@ var/global/list/common_tools = list(
 Checks if that loc and dir has a item on the wall
 TODO - Fix this ancient list of wall items. Preferably make it dynamically populated. ~Leshana
 */
-var/list/WALLITEMS = list(
+GLOBAL_LIST_INIT(WALLITEMS, list(
 	/obj/machinery/power/apc, /obj/machinery/alarm, /obj/item/radio/intercom, /obj/structure/frame,
 	/obj/structure/extinguisher_cabinet, /obj/structure/reagent_dispensers/peppertank,
 	/obj/machinery/status_display, /obj/machinery/requests_console, /obj/machinery/light_switch, /obj/structure/sign,
@@ -1160,10 +1160,10 @@ var/list/WALLITEMS = list(
 	/obj/machinery/computer/security/telescreen, /obj/machinery/embedded_controller/radio,
 	/obj/item/storage/secure/safe, /obj/machinery/door_timer, /obj/machinery/flasher, /obj/machinery/keycard_auth,
 	/obj/structure/mirror, /obj/structure/fireaxecabinet, /obj/machinery/computer/security/telescreen/entertainment
-	)
+	))
 /proc/gotwallitem(loc, dir)
 	for(var/obj/O in loc)
-		for(var/item in WALLITEMS)
+		for(var/item in GLOB.WALLITEMS)
 			if(istype(O, item))
 				//Direction works sometimes
 				if(O.dir == dir)
@@ -1187,7 +1187,7 @@ var/list/WALLITEMS = list(
 
 	//Some stuff is placed directly on the wallturf (signs)
 	for(var/obj/O in get_step(loc, dir))
-		for(var/item in WALLITEMS)
+		for(var/item in GLOB.WALLITEMS)
 			if(istype(O, item))
 				if(O.pixel_x == 0 && O.pixel_y == 0)
 					return 1
@@ -1217,22 +1217,22 @@ var/list/WALLITEMS = list(
 	var/color = hex ? hex : "#[num2hex(red, 2)][num2hex(green, 2)][num2hex(blue, 2)]"
 	return "<span style='font-face: fixedsys; font-size: 14px; background-color: [color]; color: [color]'>___</span>"
 
-var/mob/dview/dview_mob = new
+GLOBAL_DATUM_INIT(dview_mob, /mob/dview, new)
 
 //Version of view() which ignores darkness, because BYOND doesn't have it.
 /proc/dview(var/range = world.view, var/center, var/invis_flags = 0)
 	if(!center)
 		return
-	if(!dview_mob) //VOREStation Add: Debugging
-		dview_mob = new
+	if(!GLOB.dview_mob) //VOREStation Add: Debugging
+		GLOB.dview_mob = new
 		log_error("Had to recreate the dview mob!")
 
-	dview_mob.loc = center
+	GLOB.dview_mob.loc = center
 
-	dview_mob.see_invisible = invis_flags
+	GLOB.dview_mob.see_invisible = invis_flags
 
-	. = view(range, dview_mob)
-	dview_mob.loc = null
+	. = view(range, GLOB.dview_mob)
+	GLOB.dview_mob.loc = null
 
 /mob/dview
 	invisibility = 101
@@ -1266,7 +1266,7 @@ var/mob/dview/dview_mob = new
 	stack_trace("Attempt to delete the dview_mob: [log_info_line(src)]")
 	if (!force)
 		return QDEL_HINT_LETMELIVE
-	global.dview_mob = new
+	GLOB.dview_mob = new
 	return ..()
 
 /proc/screen_loc2turf(scr_loc, turf/origin)

@@ -1,4 +1,4 @@
-var/list/gurgled_overlays = list(
+GLOBAL_LIST_INIT(gurgled_overlays, list(
 								"green" = image('icons/effects/sludgeoverlay_vr.dmi', icon_state = "green"),
 								"white" = image('icons/effects/sludgeoverlay_vr.dmi', icon_state = "white"),
 								"black" = image('icons/effects/sludgeoverlay_vr.dmi', icon_state = "black"),
@@ -14,7 +14,7 @@ var/list/gurgled_overlays = list(
 								"cyan" = image('icons/effects/sludgeoverlay_vr.dmi', icon_state = "cyan"),
 								"beige" = image('icons/effects/sludgeoverlay_vr.dmi', icon_state = "beige"),
 								"pink" = image('icons/effects/sludgeoverlay_vr.dmi', icon_state = "pink")
-								)
+								))
 
 /obj/item
 	var/gurgled = FALSE
@@ -32,7 +32,7 @@ var/list/gurgled_overlays = list(
 	if(!gurgled)
 		gurgled = TRUE
 		gurgled_color = contamination_color
-		add_overlay(gurgled_overlays[gurgled_color])
+		add_overlay(GLOB.gurgled_overlays[gurgled_color])
 		var/list/pickfrom = GLOB.contamination_flavors[contamination_flavor]
 		var/gurgleflavor = pick(pickfrom)
 		cleanname = src.name
@@ -54,7 +54,7 @@ var/list/gurgled_overlays = list(
 /obj/item/decontaminate() //Decontaminate the sogginess as well.
 	..()
 	gurgled = FALSE
-	cut_overlay(gurgled_overlays[gurgled_color])
+	cut_overlay(GLOB.gurgled_overlays[gurgled_color])
 	if(cleanname)
 		name = cleanname
 	if(cleandesc)

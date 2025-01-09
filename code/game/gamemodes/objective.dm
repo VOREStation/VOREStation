@@ -723,7 +723,7 @@ GLOBAL_LIST_EMPTY(all_objectives)
 			if(istype(I,target)) total_amount++
 		if(total_amount >= target_amount) return 1
 
-	for(var/datum/mind/raider in raiders.current_antagonists)
+	for(var/datum/mind/raider in GLOB.raiders.current_antagonists)
 		if(raider.current)
 			for(var/obj/O in raider.current.get_contents())
 				if(istype(O,target)) total_amount++
@@ -777,7 +777,7 @@ GLOBAL_LIST_EMPTY(all_objectives)
 					S = I
 					total_amount += S.get_amount()
 
-	for(var/datum/mind/raider in raiders.current_antagonists)
+	for(var/datum/mind/raider in GLOB.raiders.current_antagonists)
 		if(raider.current)
 			for(var/obj/item/O in raider.current.get_contents())
 				if(istype(O,/obj/item/stack/material))
@@ -793,7 +793,7 @@ GLOBAL_LIST_EMPTY(all_objectives)
 	explanation_text = "Do not leave anyone behind, alive or dead."
 
 /datum/objective/heist/preserve_crew/check_completion()
-	if(raiders && raiders.is_raider_crew_safe()) return 1
+	if(GLOB.raiders && GLOB.raiders.is_raider_crew_safe()) return 1
 	return 0
 
 //Borer objective(s).

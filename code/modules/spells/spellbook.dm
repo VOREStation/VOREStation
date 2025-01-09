@@ -14,7 +14,7 @@
 /obj/item/spellbook/attack_self(mob/user = usr)
 	if(!user)
 		return
-	if((user.mind && !wizards.is_antagonist(user.mind)))
+	if((user.mind && !GLOB.wizards.is_antagonist(user.mind)))
 		to_chat(usr, span_warning("You stare at the book but cannot make sense of the markings!"))
 		return
 

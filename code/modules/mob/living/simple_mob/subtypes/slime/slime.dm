@@ -1,4 +1,4 @@
-var/list/_slime_default_emotes = list(
+GLOBAL_LIST_INIT(_slime_default_emotes, list(
 	/decl/emote/audible/moan,
 	/decl/emote/visible/twitch,
 	/decl/emote/visible/sway,
@@ -13,7 +13,7 @@ var/list/_slime_default_emotes = list(
 	/decl/emote/slime/angry,
 	/decl/emote/slime/frown,
 	/decl/emote/slime/smile
-)
+))
 
 // The top-level slime defines. Xenobio slimes and feral slimes will inherit from this.
 /mob/living/simple_mob/slime
@@ -83,7 +83,7 @@ var/list/_slime_default_emotes = list(
 	can_enter_vent_with = list(/obj/item/clothing/head)
 
 /mob/living/simple_mob/slime/get_available_emotes()
-	return global._slime_default_emotes.Copy()
+	return GLOB._slime_default_emotes.Copy()
 
 /datum/say_list/slime
 	speak = list("Blorp...", "Blop...")

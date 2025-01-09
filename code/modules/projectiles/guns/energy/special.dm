@@ -185,7 +185,7 @@
 	charge_meter = 0
 
 /obj/item/gun/energy/staff/special_check(var/mob/user)
-	if((user.mind && !wizards.is_antagonist(user.mind)))
+	if((user.mind && !GLOB.wizards.is_antagonist(user.mind)))
 		to_chat(usr, span_warning("You focus your mind on \the [src], but nothing happens!"))
 		return 0
 

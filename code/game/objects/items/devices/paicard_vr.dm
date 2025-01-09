@@ -1,4 +1,4 @@
-var/global/list/paikeys = list()
+GLOBAL_LIST_EMPTY(paikeys)
 
 /obj/item/paicard
 	var/panel_open = FALSE

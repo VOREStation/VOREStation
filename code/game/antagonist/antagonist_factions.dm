@@ -47,4 +47,4 @@
 	set category = "Abilities.Antag"
 	if(!M.mind)
 		return
-	convert_to_faction(M.mind, loyalists)
+	convert_to_faction(M.mind, GLOB.loyalists)

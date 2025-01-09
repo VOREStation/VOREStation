@@ -3,7 +3,7 @@
 
 	// see login.dm
 	if(my_client)
-		my_client.screen -= lobby_image
+		my_client.screen -= GLOB.lobby_image
 		my_client = null
 
 	..()

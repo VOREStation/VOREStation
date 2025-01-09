@@ -1,4 +1,4 @@
-var/list/sacrificed = list()
+GLOBAL_LIST_EMPTY(sacrificed)
 
 /obj/effect/rune/cultify()
 	return
@@ -669,7 +669,7 @@ var/list/sacrificed = list()
 		if (ticker.mode.name == "cult")
 			if(H.mind == GLOB.cult.sacrifice_target)
 				if(cultsinrange.len >= 3)
-					sacrificed += H.mind
+					GLOB.sacrificed += H.mind
 					if(isrobot(H))
 						H.dust()//To prevent the MMI from remaining
 					else

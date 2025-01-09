@@ -1,12 +1,12 @@
 // If you add a more comprehensive system, just untick this file.
-var/list/z_levels = list()// Each bit re... haha just kidding this is a list of bools now
+GLOBAL_LIST_EMPTY(z_levels) // Each bit re... haha just kidding this is a list of bools now
 
 // If the height is more than 1, we mark all contained levels as connected.
 /obj/effect/landmark/map_data/New()
 	for(var/i = (z - height + 1) to (z-1))
-		if (z_levels.len <i)
-			z_levels.len = i
-		z_levels[i] = TRUE
+		if (GLOB.z_levels.len <i)
+			GLOB.z_levels.len = i
+		GLOB.z_levels[i] = TRUE
 
 /obj/effect/landmark/map_data/Initialize()
 	..()
@@ -14,14 +14,14 @@ var/list/z_levels = list()// Each bit re... haha just kidding this is a list of 
 
 // The storage of connections between adjacent levels means some bitwise magic is needed.
 /proc/HasAbove(var/z)
-	if(z >= world.maxz || z < 1 || z > z_levels.len)
+	if(z >= world.maxz || z < 1 || z > GLOB.z_levels.len)
 		return 0
-	return z_levels[z]
+	return GLOB.z_levels[z]
 
 /proc/HasBelow(var/z)
-	if(z > world.maxz || z < 2 || (z-1) > z_levels.len)
+	if(z > world.maxz || z < 2 || (z-1) > GLOB.z_levels.len)
 		return 0
-	return z_levels[z-1]
+	return GLOB.z_levels[z-1]
 
 // Thankfully, no bitwise magic is needed here.
 /proc/GetAbove(var/atom/atom)

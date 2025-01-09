@@ -1,4 +1,4 @@
-var/list/holder_mob_icon_cache = list()
+GLOBAL_LIST_EMPTY(holder_mob_icon_cache)
 
 //Helper object for picking dionaea (and other creatures) up.
 /obj/item/holder

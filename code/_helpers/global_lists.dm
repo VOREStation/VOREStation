@@ -35,13 +35,13 @@ GLOBAL_LIST_EMPTY(mapping_beacons)
 
 //Preferences stuff
 	//Hairstyles
-var/global/list/hair_styles_list = list()			//stores /datum/sprite_accessory/hair indexed by name
-var/global/list/hair_styles_male_list = list()
-var/global/list/hair_styles_female_list = list()
-var/global/list/facial_hair_styles_list = list()	//stores /datum/sprite_accessory/facial_hair indexed by name
-var/global/list/facial_hair_styles_male_list = list()
-var/global/list/facial_hair_styles_female_list = list()
-var/global/list/skin_styles_female_list = list()		//unused
+GLOBAL_LIST_EMPTY(hair_styles_list)				//stores /datum/sprite_accessory/hair indexed by name
+GLOBAL_LIST_EMPTY(hair_styles_male_list)
+GLOBAL_LIST_EMPTY(hair_styles_female_list)
+GLOBAL_LIST_EMPTY(facial_hair_styles_list)		//stores /datum/sprite_accessory/facial_hair indexed by name
+GLOBAL_LIST_EMPTY(facial_hair_styles_male_list)
+GLOBAL_LIST_EMPTY(facial_hair_styles_female_list)
+GLOBAL_LIST_EMPTY(skin_styles_female_list)		//unused
 GLOBAL_LIST_EMPTY(body_marking_styles_list)		//stores /datum/sprite_accessory/marking indexed by name
 GLOBAL_LIST_EMPTY(body_marking_nopersist_list)	// Body marking styles, minus non-genetic markings and augments
 GLOBAL_LIST_EMPTY(ear_styles_list)				// Stores /datum/sprite_accessory/ears indexed by type
@@ -128,25 +128,25 @@ GLOBAL_LIST_EMPTY(mannequins)
 	paths = subtypesof(/datum/sprite_accessory/hair)
 	for(var/path in paths)
 		var/datum/sprite_accessory/hair/H = new path()
-		hair_styles_list[H.name] = H
+		GLOB.hair_styles_list[H.name] = H
 		switch(H.gender)
-			if(MALE)	hair_styles_male_list += H.name
-			if(FEMALE)	hair_styles_female_list += H.name
+			if(MALE)	GLOB.hair_styles_male_list += H.name
+			if(FEMALE)	GLOB.hair_styles_female_list += H.name
 			else
-				hair_styles_male_list += H.name
-				hair_styles_female_list += H.name
+				GLOB.hair_styles_male_list += H.name
+				GLOB.hair_styles_female_list += H.name
 
 	//Facial Hair - Initialise all /datum/sprite_accessory/facial_hair into an list indexed by facialhair-style name
 	paths = subtypesof(/datum/sprite_accessory/facial_hair)
 	for(var/path in paths)
 		var/datum/sprite_accessory/facial_hair/H = new path()
-		facial_hair_styles_list[H.name] = H
+		GLOB.facial_hair_styles_list[H.name] = H
 		switch(H.gender)
-			if(MALE)	facial_hair_styles_male_list += H.name
-			if(FEMALE)	facial_hair_styles_female_list += H.name
+			if(MALE)	GLOB.facial_hair_styles_male_list += H.name
+			if(FEMALE)	GLOB.facial_hair_styles_female_list += H.name
 			else
-				facial_hair_styles_male_list += H.name
-				facial_hair_styles_female_list += H.name
+				GLOB.facial_hair_styles_male_list += H.name
+				GLOB.facial_hair_styles_female_list += H.name
 
 	//Body markings - Initialise all /datum/sprite_accessory/marking into an list indexed by marking name
 	paths = subtypesof(/datum/sprite_accessory/marking)

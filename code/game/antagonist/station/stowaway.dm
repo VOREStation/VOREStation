@@ -1,4 +1,4 @@
-var/datum/antagonist/stowaway/stowaways
+GLOBAL_DATUM(stowaways, /datum/antagonist/stowaway)
 
 /datum/antagonist/STOWAWAY
 	id = MODE_STOWAWAY

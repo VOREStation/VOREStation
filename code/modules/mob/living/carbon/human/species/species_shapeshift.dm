@@ -89,8 +89,8 @@ GLOBAL_LIST_EMPTY(wrapped_species_by_ref)
 	var/list/valid_hairstyles = list()
 	var/list/valid_facialhairstyles = list()
 	var/list/valid_gradstyles = GLOB.hair_gradients
-	for(var/hairstyle in hair_styles_list)
-		var/datum/sprite_accessory/S = hair_styles_list[hairstyle]
+	for(var/hairstyle in GLOB.hair_styles_list)
+		var/datum/sprite_accessory/S = GLOB.hair_styles_list[hairstyle]
 		if(gender == MALE && S.gender == FEMALE)
 			continue
 		if(gender == FEMALE && S.gender == MALE)
@@ -98,8 +98,8 @@ GLOBAL_LIST_EMPTY(wrapped_species_by_ref)
 		if(!(species.get_bodytype(src) in S.species_allowed))
 			continue
 		valid_hairstyles += hairstyle
-	for(var/facialhairstyle in facial_hair_styles_list)
-		var/datum/sprite_accessory/S = facial_hair_styles_list[facialhairstyle]
+	for(var/facialhairstyle in GLOB.facial_hair_styles_list)
+		var/datum/sprite_accessory/S = GLOB.facial_hair_styles_list[facialhairstyle]
 		if(gender == MALE && S.gender == FEMALE)
 			continue
 		if(gender == FEMALE && S.gender == MALE)

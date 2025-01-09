@@ -168,7 +168,7 @@
 	var/list/data = ..()
 
 	data["categories"] = list()
-	for(var/datum/uplink_category/category in uplink.categories)
+	for(var/datum/uplink_category/category in GLOB.uplink.categories)
 		var/list/cat = list(
 				"name" = category.name,
 				"items" = (category == selected_cat ? list() : null)
@@ -196,7 +196,7 @@
 
 	switch(action)
 		if("buy")
-			var/datum/uplink_item/UI = (locate(params["ref"]) in uplink.items)
+			var/datum/uplink_item/UI = (locate(params["ref"]) in GLOB.uplink.items)
 			UI.buy(src, ui.user)
 			return TRUE
 		if("lock")

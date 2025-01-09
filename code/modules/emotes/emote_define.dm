@@ -4,12 +4,12 @@
 //   gender-appropriate version of the same.
 // - Impaired messages do not do any substitutions.
 
-var/global/list/emotes_by_key
+GLOBAL_LIST(emotes_by_key)
 
 /proc/get_emote_by_key(var/key)
-	if(!global.emotes_by_key)
+	if(!GLOB.emotes_by_key)
 		decls_repository.get_decls_of_type(/decl/emote) // emotes_by_key will be updated in emote Initialize()
-	return global.emotes_by_key[key]
+	return GLOB.emotes_by_key[key]
 
 /decl/emote
 	var/key                                             // Command to use emote ie. '*[key]'
@@ -49,7 +49,7 @@ var/global/list/emotes_by_key
 /decl/emote/Initialize()
 	. = ..()
 	if(key)
-		LAZYSET(global.emotes_by_key, key, src)
+		LAZYSET(GLOB.emotes_by_key, key, src)
 
 /decl/emote/proc/get_emote_message_1p(var/atom/user, var/atom/target, var/extra_params)
 	if(target)

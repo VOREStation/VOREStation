@@ -17,6 +17,6 @@
 
 	// The program is active and connected to one of the station's networks. Has a very small chance to trigger IDS alarm every tick.
 	if(prob(0.1))
-		if(ntnet_global.intrusion_detection_enabled)
-			ntnet_global.add_log("IDS WARNING - Unauthorised access detected to camera network by device with NID [computer.network_card.get_network_tag()]")
-			ntnet_global.intrusion_detection_alarm = 1
+		if(GLOB.ntnet_global.intrusion_detection_enabled)
+			GLOB.ntnet_global.add_log("IDS WARNING - Unauthorised access detected to camera network by device with NID [computer.network_card.get_network_tag()]")
+			GLOB.ntnet_global.intrusion_detection_alarm = 1

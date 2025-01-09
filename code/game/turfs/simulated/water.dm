@@ -179,7 +179,7 @@
 	remove_modifiers_of_type(/datum/modifier/fire)
 	inflict_water_damage(20 * amount) // Only things vulnerable to water will actually be harmed (slimes/prommies).
 
-var/list/shoreline_icon_cache = list()
+GLOBAL_LIST_EMPTY(shoreline_icon_cache)
 
 /turf/simulated/floor/water/beach
 	name = "beach shoreline"
@@ -209,8 +209,8 @@ var/list/shoreline_icon_cache = list()
 	cut_overlays()
 	..() // Get the underlay first.
 	var/cache_string = "[initial(icon_state)]_[water_state]_[dir]"
-	if(cache_string in shoreline_icon_cache) // Check to see if an icon already exists.
-		add_overlay(shoreline_icon_cache[cache_string])
+	if(cache_string in GLOB.shoreline_icon_cache) // Check to see if an icon already exists.
+		add_overlay(GLOB.shoreline_icon_cache[cache_string])
 	else // If not, make one, but only once.
 		var/icon/shoreline_water = icon(src.icon, "shoreline_water", src.dir)
 		var/icon/shoreline_subtract = icon(src.icon, "[initial(icon_state)]_subtract", src.dir)
@@ -218,8 +218,8 @@ var/list/shoreline_icon_cache = list()
 		var/image/final = image(shoreline_water)
 		final.layer = WATER_LAYER
 
-		shoreline_icon_cache[cache_string] = final
-		add_overlay(shoreline_icon_cache[cache_string])
+		GLOB.shoreline_icon_cache[cache_string] = final
+		add_overlay(GLOB.shoreline_icon_cache[cache_string])
 
 /turf/simulated/floor/water/is_safe_to_enter(mob/living/L)
 	if(L.get_water_protection() < 1)

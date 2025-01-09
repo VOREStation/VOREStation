@@ -90,7 +90,7 @@
 		"preview_rows" = recipe.get_preview(p_dir),
 		"categories" = list(),
 		"selected_color" = paint_color,
-		"paint_colors" = pipe_colors,
+		"paint_colors" = GLOB.pipe_colors,
 		"mode" = mode
 	)
 
@@ -189,7 +189,7 @@
 		if(!istype(A, /obj/machinery/atmospherics/pipe/simple/heat_exchanging) && istype(A, /obj/machinery/atmospherics/pipe))
 			var/obj/machinery/atmospherics/pipe/P = A
 			playsound(src, 'sound/machines/click.ogg', 50, 1)
-			P.change_color(pipe_colors[paint_color])
+			P.change_color(GLOB.pipe_colors[paint_color])
 			user.visible_message(span_notice("[user] paints \the [P] [paint_color]."), span_notice("You paint \the [P] [paint_color]."))
 			return
 
@@ -219,7 +219,7 @@
 						P.update()
 						P.add_fingerprint(user)
 						if(R.paintable)
-							P.color = pipe_colors[paint_color]
+							P.color = GLOB.pipe_colors[paint_color]
 						P.setPipingLayer(queued_piping_layer)
 						if(queued_p_flipped)
 							P.do_a_flip()

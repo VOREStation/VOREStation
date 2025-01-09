@@ -50,7 +50,7 @@
 		data["messages"] = all_messages
 
 	var/list/all_accounts = list()
-	for(var/datum/computer_file/data/email_account/account in ntnet_global.email_accounts)
+	for(var/datum/computer_file/data/email_account/account in GLOB.ntnet_global.email_accounts)
 		if(!account.can_login)
 			continue
 		all_accounts.Add(list(list(
@@ -85,7 +85,7 @@
 				return TRUE
 
 			current_account.suspended = !current_account.suspended
-			ntnet_global.add_log_with_ids_check("EMAIL LOG: SA-EDIT Account [current_account.login] has been [current_account.suspended ? "" : "un" ]suspended by SA [I.registered_name] ([I.assignment]).")
+			GLOB.ntnet_global.add_log_with_ids_check("EMAIL LOG: SA-EDIT Account [current_account.login] has been [current_account.suspended ? "" : "un" ]suspended by SA [I.registered_name] ([I.assignment]).")
 			error = "Account [current_account.login] has been [current_account.suspended ? "" : "un" ]suspended."
 			return TRUE
 
@@ -97,7 +97,7 @@
 			if(!newpass)
 				return TRUE
 			current_account.password = newpass
-			ntnet_global.add_log_with_ids_check("EMAIL LOG: SA-EDIT Password for account [current_account.login] has been changed by SA [I.registered_name] ([I.assignment]).")
+			GLOB.ntnet_global.add_log_with_ids_check("EMAIL LOG: SA-EDIT Password for account [current_account.login] has been changed by SA [I.registered_name] ([I.assignment]).")
 			return TRUE
 
 		if("viewmail")
@@ -111,7 +111,7 @@
 			return TRUE
 
 		if("viewaccount")
-			for(var/datum/computer_file/data/email_account/email_account in ntnet_global.email_accounts)
+			for(var/datum/computer_file/data/email_account/email_account in GLOB.ntnet_global.email_accounts)
 				if(email_account.uid == text2num(params["viewaccount"]))
 					current_account = email_account
 					break
@@ -126,7 +126,7 @@
 				return TRUE
 
 			var/complete_login = "[newlogin]@[newdomain]"
-			if(ntnet_global.does_email_exist(complete_login))
+			if(GLOB.ntnet_global.does_email_exist(complete_login))
 				error = "Error creating account: An account with same address already exists."
 				return TRUE
 

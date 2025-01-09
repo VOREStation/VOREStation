@@ -25,8 +25,8 @@
 
 /datum/effect/effect/system/grav_pull/proc/do_pull()
 	//following is adapted from supermatter and singulo code
-	if(defer_powernet_rebuild != 2)
-		defer_powernet_rebuild = 1
+	if(GLOB.defer_powernet_rebuild != 2)
+		GLOB.defer_powernet_rebuild = 1
 
 	// Let's just make this one loop.
 	for(var/X in orange(pull_radius, location))
@@ -59,5 +59,5 @@
 			step_towards(X, location) // Step twice
 			step_towards(X, location)
 
-	if(defer_powernet_rebuild != 2)
-		defer_powernet_rebuild = 0
+	if(GLOB.defer_powernet_rebuild != 2)
+		GLOB.defer_powernet_rebuild = 0

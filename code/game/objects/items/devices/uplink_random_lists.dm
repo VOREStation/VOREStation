@@ -33,7 +33,7 @@ var/datum/uplink_random_selection/all_uplink_selection = new/datum/uplink_random
 			RI = pick(items)
 		if(!prob(RI.keep_probability))
 			continue
-		var/datum/uplink_item/I = uplink.items_assoc[RI.uplink_item]
+		var/datum/uplink_item/I = GLOB.uplink.items_assoc[RI.uplink_item]
 		if(I.cost(U) > telecrystals)
 			continue
 		if(bought_items && (I in bought_items) && !prob(RI.reselect_probability))
@@ -44,7 +44,7 @@ var/datum/uplink_random_selection/all_uplink_selection = new/datum/uplink_random
 
 /datum/uplink_random_selection/all/New()
 	..()
-	for(var/datum/uplink_item/item in uplink.items)
+	for(var/datum/uplink_item/item in GLOB.uplink.items)
 		if(item.blacklisted)
 			continue
 		else
@@ -113,6 +113,6 @@ var/datum/uplink_random_selection/all_uplink_selection = new/datum/uplink_random
 		A.print_player_summary()
 
 /proc/debug_uplink_item_assoc_list()
-	for(var/key in uplink.items_assoc)
-		to_world("[key] - [uplink.items_assoc[key]]")
+	for(var/key in GLOB.uplink.items_assoc)
+		to_world("[key] - [GLOB.uplink.items_assoc[key]]")
 #endif

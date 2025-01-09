@@ -306,8 +306,8 @@
 
 /datum/preferences/proc/get_valid_hairstyles()
 	var/list/valid_hairstyles = list()
-	for(var/hairstyle in hair_styles_list)
-		var/datum/sprite_accessory/S = hair_styles_list[hairstyle]
+	for(var/hairstyle in GLOB.hair_styles_list)
+		var/datum/sprite_accessory/S = GLOB.hair_styles_list[hairstyle]
 		if(!(species in S.species_allowed) && (!custom_base || !(custom_base in S.species_allowed))) //VOREStation Edit - Custom species base species allowance
 			continue
 		if((!S.ckeys_allowed) || (usr.ckey in S.ckeys_allowed)) //VOREStation Edit, allows ckey locked hairstyles.
@@ -319,8 +319,8 @@
 
 /datum/preferences/proc/get_valid_facialhairstyles()
 	var/list/valid_facialhairstyles = list()
-	for(var/facialhairstyle in facial_hair_styles_list)
-		var/datum/sprite_accessory/S = facial_hair_styles_list[facialhairstyle]
+	for(var/facialhairstyle in GLOB.facial_hair_styles_list)
+		var/datum/sprite_accessory/S = GLOB.facial_hair_styles_list[facialhairstyle]
 		if(biological_gender == MALE && S.gender == FEMALE)
 			continue
 		if(biological_gender == FEMALE && S.gender == MALE)
@@ -328,6 +328,6 @@
 		if(!(species in S.species_allowed) && (!custom_base || !(custom_base in S.species_allowed))) //VOREStation Edit - Custom species base species allowance
 			continue
 
-		valid_facialhairstyles[facialhairstyle] = facial_hair_styles_list[facialhairstyle]
+		valid_facialhairstyles[facialhairstyle] = GLOB.facial_hair_styles_list[facialhairstyle]
 
 	return valid_facialhairstyles

@@ -1,4 +1,4 @@
-var/global/defer_powernet_rebuild = 0      // True if net rebuild will be called manually after an event.
+GLOBAL_VAR_INIT(defer_powernet_rebuild, 0) // True if net rebuild will be called manually after an event.
 
 #define CELLRATE 0.002 // Multiplier for watts per tick <> cell storage (e.g., 0.02 means if there is a load of 1000 watts, 20 units will be taken from a cell per second)
                        // It's a conversion constant. power_used*CELLRATE = charge_provided, or charge_used/CELLRATE = power_provided
@@ -78,7 +78,7 @@ var/global/defer_powernet_rebuild = 0      // True if net rebuild will be called
 #define NETWORK_TALON_SHIP "TalonShip" //VOREStation Add
 
 // Those networks can only be accessed by pre-existing terminals. AIs and new terminals can't use them.
-var/list/restricted_camera_networks = list(NETWORK_ERT,NETWORK_MERCENARY,"Secret", NETWORK_COMMUNICATORS)
+GLOBAL_LIST_INIT(restricted_camera_networks, list(NETWORK_ERT, NETWORK_MERCENARY, "Secret", NETWORK_COMMUNICATORS))
 
 #define TRANSMISSION_WIRE		0 //Is this ever used? I don't think it is.
 #define TRANSMISSION_RADIO		1 //Radio transmissions (like airlock controller to pump)

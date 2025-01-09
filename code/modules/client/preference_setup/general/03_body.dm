@@ -133,8 +133,8 @@ GLOBAL_LIST_INIT(valid_bloodtypes, list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	if(!pref.species || !(pref.species in GLOB.playable_species))
 		pref.species = SPECIES_HUMAN
 	pref.s_tone			= sanitize_integer(pref.s_tone, -185, 34, initial(pref.s_tone))
-	pref.h_style		= sanitize_inlist(pref.h_style, hair_styles_list, initial(pref.h_style))
-	pref.f_style		= sanitize_inlist(pref.f_style, facial_hair_styles_list, initial(pref.f_style))
+	pref.h_style		= sanitize_inlist(pref.h_style, GLOB.hair_styles_list, initial(pref.h_style))
+	pref.f_style		= sanitize_inlist(pref.f_style, GLOB.facial_hair_styles_list, initial(pref.f_style))
 	pref.grad_style		= sanitize_inlist(pref.grad_style, GLOB.hair_gradients, initial(pref.grad_style))
 	pref.b_type			= sanitize_text(pref.b_type, initial(pref.b_type))
 
@@ -562,7 +562,7 @@ GLOBAL_LIST_INIT(valid_bloodtypes, list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 					pref.h_style = pick(valid_hairstyles)
 			else
 				//this shouldn't happen
-				pref.h_style = hair_styles_list["Bald"]
+				pref.h_style = GLOB.hair_styles_list["Bald"]
 
 			//grab one of the valid facial hair styles for the newly chosen species
 			var/list/valid_facialhairstyles = pref.get_valid_facialhairstyles()
@@ -572,7 +572,7 @@ GLOBAL_LIST_INIT(valid_bloodtypes, list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 					pref.f_style = pick(valid_facialhairstyles)
 			else
 				//this shouldn't happen
-				pref.f_style = facial_hair_styles_list["Shaved"]
+				pref.f_style = GLOB.facial_hair_styles_list["Shaved"]
 
 			//reset hair colour and skin colour
 			pref.update_preference_by_type(/datum/preference/color/human/hair_color, "#000000")

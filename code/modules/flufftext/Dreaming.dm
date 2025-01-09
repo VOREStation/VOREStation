@@ -1,5 +1,5 @@
 
-var/list/dreams = list(
+GLOBAL_LIST_INIT(dreams, list(
 	"an ID card","a bottle","a familiar face","a crewmember","a toolbox","a " + JOB_SECURITY_OFFICER,"the " + JOB_SITE_MANAGER,
 	"voices from all around","deep space","a doctor","the engine","a traitor","an ally","darkness",
 	"light","a scientist","a monkey","a catastrophe","a loved one","a gun","warmth","freezing","the sun",
@@ -20,14 +20,14 @@ var/list/dreams = list(
 	"slimey surroundings","a sexy squirrel","licking their lips","a gaping maw","an unlikely predator","sinking inside",
 	"vulpine assets","more dakka","churning guts","pools of fluid","an exceptional grip","mawing in faces","gaping throat",
 	"swallowed whole","a fox","a wolf","a cat","a tiger","a dog","a taur","a xenochimera"
-	)
+	))
 
 /mob/living/carbon/proc/dream()
 	dreaming = 1
 
 	spawn(0)
 		for(var/i = rand(1,4),i > 0, i--)
-			to_chat(src, span_infoplain(span_blue(span_italics("... [pick(dreams)] ..."))))
+			to_chat(src, span_infoplain(span_blue(span_italics("... [pick(GLOB.dreams)] ..."))))
 			sleep(rand(40,70))
 			if(paralysis <= 0)
 				dreaming = 0

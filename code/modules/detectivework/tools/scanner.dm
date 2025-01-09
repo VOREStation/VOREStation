@@ -87,7 +87,7 @@
 		var/list/incomplete_prints = list()
 		for(var/i in A.fingerprints)
 			var/print = A.fingerprints[i]
-			if(stringpercent(print) <= FINGERPRINT_COMPLETE)
+			if(stringpercent(print) <= GLOB.FINGERPRINT_COMPLETE)
 				complete_prints += print
 			else
 				incomplete_prints += print
@@ -163,7 +163,7 @@
 				var/list/incomplete_prints = list()
 				for(var/i in fprints)
 					var/print = fprints[i]
-					if(stringpercent(print) <= FINGERPRINT_COMPLETE)
+					if(stringpercent(print) <= GLOB.FINGERPRINT_COMPLETE)
 						complete_prints += print
 						to_chat(user, " - " + span_notice("[print]"))
 					else

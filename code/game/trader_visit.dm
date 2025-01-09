@@ -46,10 +46,10 @@ GLOBAL_VAR_INIT(can_call_traders, 1)
 		if(!GLOB.send_beruang)
 			to_chat(usr, "The Beruang is not currently heading to the station.")
 			return
-		if(traders.current_antagonists.len >= traders.hard_cap)
+		if(GLOB.traders.current_antagonists.len >= GLOB.traders.hard_cap)
 			to_chat(usr, "The number of trader slots is already full!")
 			return
-		traders.create_default(usr)
+		GLOB.traders.create_default(usr)
 	else
 		to_chat(usr, "You need to be an observer or new player to use this.")
 

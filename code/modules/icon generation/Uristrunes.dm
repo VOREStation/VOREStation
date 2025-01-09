@@ -168,13 +168,13 @@ var/list/rune_animation = list(
 		list(0.125, 1),
 	)
 
-/var/list/rune_cache = list()
+GLOBAL_LIST_EMPTY(rune_cache)
 
 /proc/get_rune(rune_bits, animated = 0)
 	var/lookup = "[rune_bits]-[animated]"
 
-	if(lookup in rune_cache)
-		return rune_cache[lookup]
+	if(lookup in GLOB.rune_cache)
+		return GLOB.rune_cache[lookup]
 
 	var/icon/base = icon('icons/effects/uristrunes.dmi', "")
 
@@ -190,7 +190,7 @@ var/list/rune_animation = list(
 	else
 		result = inanimate_rune(base)
 
-	rune_cache[lookup] = result
+	GLOB.rune_cache[lookup] = result
 	return result
 
 
