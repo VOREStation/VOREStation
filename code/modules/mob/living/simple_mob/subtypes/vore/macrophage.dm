@@ -30,13 +30,20 @@
 	can_be_drop_prey = FALSE
 	allow_mind_transfer = TRUE
 
-	ai_holder_type = /datum/ai_holder/simple_mob/melee
+	ai_holder_type = /datum/ai_holder/simple_mob/melee/macrophage
 
 /mob/living/simple_mob/vore/aggressive/macrophage/proc/deathcheck()
 	if(locate(/mob/living/carbon/human) in vore_selected)
 		addtimer(CALLBACK(src, TYPE_PROC_REF(/mob/living/simple_mob/vore/aggressive/macrophage, deathcheck)), 3000)
 	else
 		dust()
+
+/mob/living/simple_mob/vore/aggressive/macrophage/Initialize()
+	. = ..()
+	if(base_disease)
+		ai_holder_type.virus = new base_disease
+	else
+		ai_holder_type.virus = new /datum/disease/cold
 
 /mob/living/simple_mob/vore/aggressive/macrophage/green
 	icon_state = "macrophage-2"
@@ -67,3 +74,25 @@
 
 	var/obj/belly/B = new /obj/belly/macrophage(src)
 	vore_selected = B
+
+/mob/living/simple_mob/vore/aggressive/macrophage/do_attack(atom/A, turf/T)
+	. = ..()
+	if(iscarbon(A))
+		var/mob/living/carbon/human/victim = A
+		A.ContractDisease(base_disease)
+
+/datum/ai_holder/simple_mob/melee/macrophage
+	var/datum/disease/virus = null
+
+/datum/ai_holder/simple_mob/melee/macrophage/list_targets()
+	var/list/our_targets = ..()
+	for(var/list_target in our_targets)
+		if(!ishuman(list_target)) // Mobs? Robots? Meh. We want to INFECT.
+			our_targets -= list_target
+			continue
+		var/mob/living/carbon/human/victim = list_target
+		if(victim.viruses)
+			if(victim.HasDisease(virus) && prob(25)) // Less likely to be a target if you're infected
+				our_targets -= list_target
+				continue
+	return our_targets
