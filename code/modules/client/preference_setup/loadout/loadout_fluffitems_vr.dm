@@ -269,6 +269,12 @@
 	ckeywhitelist = list("bigbababooey")
 	character_name = list("Ali Big")
 
+/datum/gear/fluff/beeholddrbeesphb_plushie
+	path = /obj/item/laser_pointer/evelynn_fluff
+	display_name = "Evelynn's Laser Pointer"
+	ckeywhitelist = list("beeholddrbeesphb")
+	character_name = list("Evelynn")
+
 //  C CKEYS
 /datum/gear/fluff/cappy_watch
 	path = /obj/item/clothing/accessory/watch/custom

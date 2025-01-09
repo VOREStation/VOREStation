@@ -56,7 +56,7 @@
 /datum/preference/color/human/synth_color
 	category = PREFERENCE_CATEGORY_MANUALLY_RENDERED
 	savefile_identifier = PREFERENCE_CHARACTER
-	savefile_key = "synth_color"
+	savefile_key = "synth_color_rgb"
 	can_randomize = FALSE
 
 /datum/preference/color/human/synth_color/apply_to_human(mob/living/carbon/human/target, value)

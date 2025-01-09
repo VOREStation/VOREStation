@@ -30,7 +30,7 @@
 		if("JoinLateGateway")
 			latejoin_gateway += loc
 			latejoin += src				//VOREStation Addition
-			delete_me = 1
+			// delete_me = 1
 			return
 		if("JoinLateElevator")
 			latejoin_elevator += loc
