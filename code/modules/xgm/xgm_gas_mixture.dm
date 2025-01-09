@@ -142,7 +142,7 @@
 			return 0
 		var/thermal_energy_limit = -(temperature - TCMB)*heat_capacity	//ensure temperature does not go below TCMB
 		thermal_energy = max( thermal_energy, thermal_energy_limit )	//thermal_energy and thermal_energy_limit are negative here.
-	if(heat_capacity() > 0)
+	if(heat_capacity > 0)
 		temperature = min(temperature + thermal_energy / heat_capacity, MAX_ATMOS_TEMPERATURE)
 	return thermal_energy
 
