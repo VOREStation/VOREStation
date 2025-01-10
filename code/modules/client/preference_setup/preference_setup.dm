@@ -26,13 +26,11 @@
 	name = "Traits"
 	sort_order = 6
 	category_item_type = /datum/category_item/player_setup_item/traits
-
-//redundant due to having most of its content stripped out, merged into special roles
+*/ //VOREStation Removal End
 /datum/category_group/player_setup_category/global_preferences
 	name = "Global"
 	sort_order = 6 //VOREStation Edit due to above commented out
 	category_item_type = /datum/category_item/player_setup_item/player_global
-*/ //VOREStation Removal End
 
 /****************************
 * Category Collection Setup *

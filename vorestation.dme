@@ -2088,6 +2088,7 @@
 #include "code\modules\client\preference_setup\general\04_equipment.dm"
 #include "code\modules\client\preference_setup\general\05_background.dm"
 #include "code\modules\client\preference_setup\general\06_flavor.dm"
+#include "code\modules\client\preference_setup\global\03_pai.dm"
 #include "code\modules\client\preference_setup\loadout\gear_tweaks.dm"
 #include "code\modules\client\preference_setup\loadout\gear_tweaks_vr.dm"
 #include "code\modules\client\preference_setup\loadout\loadout.dm"
