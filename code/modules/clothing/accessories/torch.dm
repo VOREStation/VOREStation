@@ -457,6 +457,58 @@ department tags
 	icon_state = "dept_army"
 	on_rolled = list("down" = "none")
 
+/obj/item/clothing/accessory/gorka/department
+	name = "gorka insignia"
+	desc = "Coloured panelling denoting assignment to a specific department."
+	icon_state = "gorka_dept"
+	on_rolled = list("down" = "none")
+
+/obj/item/clothing/accessory/gorka/department/command
+	name = "command insignia"
+	desc = "Coloured panelling denoting assignment to the command department."
+	color = "#3066bf"
+
+/obj/item/clothing/accessory/gorka/department/sec
+	name = "security insignia"
+	desc = "Coloured panelling denoting assignment to the security department."
+	color = "#bf3032"
+
+/obj/item/clothing/accessory/gorka/department/cargo
+	name = "cargo insignia"
+	desc = "Coloured panelling denoting assignment to the cargo department."
+	color = "#815b20"
+
+/obj/item/clothing/accessory/gorka/department/engi
+	name = "engineering insignia"
+	desc = "Coloured panelling denoting assignment to the engineering department."
+	color = "#bf8d30"
+
+/obj/item/clothing/accessory/gorka/department/sci
+	name = "research insignia"
+	desc = "Coloured panelling denoting assignment to the research department."
+	color = "#9b1688"
+
+/obj/item/clothing/accessory/gorka/department/med
+	name = "medical insignia"
+	desc = "Coloured panelling denoting assignment to the medical department."
+	color = "#609ebf"
+
+/obj/item/clothing/accessory/gorka/department/service
+	name = "service insignia"
+	desc = "Coloured panelling denoting assignment to the service department."
+	color = "#90bf60"
+
+/obj/item/clothing/accessory/gorka/department/janitor
+	name = "janitorial insignia"
+	desc = "Coloured panelling denoting assignment to the janitorial department."
+	color = "#bf60b3"
+
+/obj/item/clothing/accessory/gorka/rank
+	name = "gorka command trim"
+	desc = "Silver trim denoting a higher rank within one's department."
+	icon_state = "gorka_rank"
+	on_rolled = list("down" = "none")
+
 /*********
 ranks - ec
 *********/
