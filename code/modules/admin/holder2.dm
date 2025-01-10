@@ -1,7 +1,8 @@
+GLOBAL_LIST_EMPTY(admin_datums)
+GLOBAL_PROTECT(admin_datums)
+
 GLOBAL_VAR_INIT(href_token, GenerateToken())
 GLOBAL_PROTECT(href_token)
-
-var/list/admin_datums = list()
 
 /datum/admins
 	var/rank			= "Temporary Admin"
@@ -28,7 +29,7 @@ var/list/admin_datums = list()
 	href_token = GenerateToken()
 	rank = initial_rank
 	rights = initial_rights
-	admin_datums[ckey] = src
+	GLOB.admin_datums[ckey] = src
 	if(rights & R_DEBUG) //grant profile access
 		world.SetConfig("APP/admin", ckey, "role=admin")
 

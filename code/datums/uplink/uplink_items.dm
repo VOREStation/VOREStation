@@ -182,7 +182,7 @@ GLOBAL_DATUM_INIT(uplink, /datum/uplink, new())
 /proc/get_random_uplink_items(var/obj/item/uplink/U, var/remaining_TC, var/loc)
 	var/list/bought_items = list()
 	while(remaining_TC)
-		var/datum/uplink_item/I = default_uplink_selection.get_random_item(remaining_TC, U, bought_items)
+		var/datum/uplink_item/I = GLOB.default_uplink_selection.get_random_item(remaining_TC, U, bought_items)
 		if(!I)
 			break
 		bought_items += I
@@ -194,7 +194,7 @@ GLOBAL_DATUM_INIT(uplink, /datum/uplink, new())
 	var/list/bought_items = list()
 	var/override = TRUE
 	while(remaining_TC)
-		var/datum/uplink_item/I = all_uplink_selection.get_random_item(remaining_TC, U, bought_items, override)
+		var/datum/uplink_item/I = GLOB.all_uplink_selection.get_random_item(remaining_TC, U, bought_items, override)
 		if(!I)
 			break
 		bought_items += I

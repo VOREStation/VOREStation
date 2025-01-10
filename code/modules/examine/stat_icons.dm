@@ -1,5 +1,5 @@
 //Some global icons for the examine tab to use to display some item properties.
-var/global/list/description_icons = list(
+GLOBAL_LIST_INIT(description_icons, list(
 	"melee_armor" = image(icon='icons/mob/screen1_stats.dmi',icon_state="melee_protection"),
 	"bullet_armor" = image(icon='icons/mob/screen1_stats.dmi',icon_state="bullet_protection"),
 	"laser_armor" = image(icon='icons/mob/screen1_stats.dmi',icon_state="laser_protection"),
@@ -32,4 +32,4 @@ var/global/list/description_icons = list(
 	"weapon cell" = image(icon='icons/obj/power.dmi',icon_state="wcell"),
 
 	"hatchet" = image(icon='icons/obj/weapons.dmi',icon_state="hatchet"),
-	)
+	))

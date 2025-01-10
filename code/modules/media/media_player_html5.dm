@@ -1,5 +1,5 @@
 // IT IS FINALLY TIME.  IT IS HERE.  Converted to HTML5 <audio>  - Leshana
-var/const/PLAYER_HTML5_HTML={"<!DOCTYPE html>
+#define PLAYER_HTML5_HTML {"<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="X-UA-Compatible" content="IE=11">

@@ -260,7 +260,7 @@
 
 /obj/item/stack/material/wax/Initialize()
 	. = ..()
-	recipes = wax_recipes
+	recipes = GLOB.wax_recipes
 
 /datum/material/wax
 	name = "wax"
@@ -270,9 +270,9 @@
 	weight = 1
 	pass_stack_colors = TRUE
 
-var/global/list/datum/stack_recipe/wax_recipes = list( \
+GLOBAL_LIST_INIT_TYPED(wax_recipes, /datum/stack_recipe, list( \
 	new/datum/stack_recipe("candle", /obj/item/flame/candle) \
-)
+))
 
 /obj/item/bee_pack
 	name = "bee pack"

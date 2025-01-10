@@ -1,4 +1,4 @@
-var/datum/species/shapeshifter/promethean/prometheans
+GLOBAL_DATUM(prometheans, /datum/species/shapeshifter/promethean)
 
 // Species definition follows.
 /datum/species/shapeshifter/promethean
@@ -135,7 +135,7 @@ var/datum/species/shapeshifter/promethean/prometheans
 
 /datum/species/shapeshifter/promethean/New()
 	..()
-	prometheans = src
+	GLOB.prometheans = src
 
 /datum/species/shapeshifter/promethean/equip_survival_gear(var/mob/living/carbon/human/H)
 	var/boxtype = pick(list(/obj/item/storage/toolbox/lunchbox,

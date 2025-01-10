@@ -22,11 +22,11 @@
 	desc = "Buys you one random item."
 
 /datum/uplink_item/item/badassery/random_one/buy(var/obj/item/uplink/U, var/mob/user)
-	var/datum/uplink_item/item = default_uplink_selection.get_random_item((user ? user.mind.tcrystals : DEFAULT_TELECRYSTAL_AMOUNT), U)
+	var/datum/uplink_item/item = GLOB.default_uplink_selection.get_random_item((user ? user.mind.tcrystals : DEFAULT_TELECRYSTAL_AMOUNT), U)
 	return item.buy(U, user)
 
 /datum/uplink_item/item/badassery/random_one/can_buy(var/obj/item/uplink/U, var/telecrystals)
-	return default_uplink_selection.get_random_item(telecrystals, U) != null
+	return GLOB.default_uplink_selection.get_random_item(telecrystals, U) != null
 
 /datum/uplink_item/item/badassery/random_many
 	name = "Random Items"

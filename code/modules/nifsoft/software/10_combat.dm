@@ -49,7 +49,7 @@
 	combat_flags = (NIF_C_HARDCLAWS)
 
 // The unarmed attack to go with the hardclaws
-var/global/datum/unarmed_attack/hardclaws/unarmed_hardclaws = new()
+GLOBAL_DATUM_INIT(unarmed_hardclaws, /datum/unarmed_attack/hardclaws, new())
 /datum/unarmed_attack/hardclaws
 	attack_verb = list("claws")
 	attack_noun = list("talons")

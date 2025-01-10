@@ -1,7 +1,7 @@
 #define AI_CHECK_WIRELESS 1
 #define AI_CHECK_RADIO 2
 
-var/list/ai_verbs_default = list(
+GLOBAL_LIST_INIT(ai_verbs_default, list(
 	// /mob/living/silicon/ai/proc/ai_recall_shuttle,
 	/mob/living/silicon/ai/proc/ai_emergency_message,
 	/mob/living/silicon/ai/proc/ai_goto_location,
@@ -27,7 +27,7 @@ var/list/ai_verbs_default = list(
 	/mob/living/silicon/ai/proc/delete_images,
 	/mob/living/silicon/ai/proc/toggle_multicam_verb,
 	/mob/living/silicon/ai/proc/add_multicam_verb
-)
+))
 
 //Not sure why this is necessary...
 /proc/AutoUpdateAI(obj/subject)
@@ -99,11 +99,11 @@ var/list/ai_verbs_default = list(
 	can_be_antagged = TRUE
 
 /mob/living/silicon/ai/proc/add_ai_verbs()
-	add_verb(src, ai_verbs_default)
+	add_verb(src, GLOB.ai_verbs_default)
 	add_verb(src, silicon_subsystems)
 
 /mob/living/silicon/ai/proc/remove_ai_verbs()
-	remove_verb(src, ai_verbs_default)
+	remove_verb(src, GLOB.ai_verbs_default)
 	remove_verb(src, silicon_subsystems)
 
 /mob/living/silicon/ai/New(loc, var/datum/ai_laws/L, var/obj/item/mmi/B, var/safety = 0)

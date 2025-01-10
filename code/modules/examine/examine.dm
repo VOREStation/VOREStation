@@ -33,7 +33,7 @@
 
 // Quickly adds the boilerplate code to add an image and padding for the image.
 /proc/desc_panel_image(var/icon_state)
-	return "[icon2html(description_icons[icon_state], usr)]&emsp;"
+	return "[icon2html(GLOB.description_icons[icon_state], usr)]&emsp;"
 
 /mob/living/get_description_fluff()
 	if(flavor_text) //Get flavor text for the green text.

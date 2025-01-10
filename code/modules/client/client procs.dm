@@ -214,7 +214,7 @@
 	GLOB.mhelp_tickets.ClientLogin(src)
 
 	//Admin Authorisation
-	holder = admin_datums[ckey]
+	holder = GLOB.admin_datums[ckey]
 	if(holder)
 		GLOB.admins += src
 		holder.owner = src

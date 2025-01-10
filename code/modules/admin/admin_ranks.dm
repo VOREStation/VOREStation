@@ -64,7 +64,7 @@ GLOBAL_PROTECT(admin_ranks)
 
 /proc/load_admins()
 	//clear the datums references
-	admin_datums.Cut()
+	GLOB.admin_datums.Cut()
 	for(var/client/C in GLOB.admins)
 		C.remove_admin_verbs()
 		C.holder = null
@@ -127,7 +127,7 @@ GLOBAL_PROTECT(admin_ranks)
 
 			//find the client for a ckey if they are connected and associate them with the new admin datum
 			D.associate(GLOB.directory[ckey])
-		if(!admin_datums)
+		if(!GLOB.admin_datums)
 			error("The database query in load_admins() resulted in no admins being added to the list. Reverting to legacy system.")
 			log_misc("The database query in load_admins() resulted in no admins being added to the list. Reverting to legacy system.")
 			CONFIG_SET(flag/admin_legacy_system, TRUE)

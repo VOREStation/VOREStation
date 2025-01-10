@@ -138,7 +138,7 @@
 		if(task == "add")
 			var/new_ckey = ckey(tgui_input_text(usr,"New admin's ckey","Admin ckey", null))
 			if(!new_ckey)	return
-			if(new_ckey in admin_datums)
+			if(new_ckey in GLOB.admin_datums)
 				to_chat(usr, span_filter_adminlog(span_warning("Error: Topic 'editrights': [new_ckey] is already an admin")))
 				return
 			adm_ckey = new_ckey
@@ -149,12 +149,12 @@
 				to_chat(usr, span_filter_adminlog(span_warning("Error: Topic 'editrights': No valid ckey")))
 				return
 
-		var/datum/admins/D = admin_datums[adm_ckey]
+		var/datum/admins/D = GLOB.admin_datums[adm_ckey]
 
 		if(task == "remove")
 			if(tgui_alert(usr, "Are you sure you want to remove [adm_ckey]?","Message",list("Yes","Cancel")) == "Yes")
 				if(!D)	return
-				admin_datums -= adm_ckey
+				GLOB.admin_datums -= adm_ckey
 				D.disassociate()
 
 				message_admins("[key_name_admin(usr)] removed [adm_ckey] from the admins list")

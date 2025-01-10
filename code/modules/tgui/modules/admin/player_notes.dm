@@ -48,7 +48,7 @@
 	current_filter = filter
 
 /datum/tgui_module/player_notes/proc/open_legacy()
-	var/datum/admins/A = admin_datums[usr.ckey]
+	var/datum/admins/A = GLOB.admin_datums[usr.ckey]
 	A.PlayerNotesLegacy()
 
 /datum/tgui_module/player_notes/tgui_state(mob/user)
@@ -113,7 +113,7 @@
 	if(..())
 		return TRUE
 
-	var/datum/admins/A = admin_datums[usr.ckey]
+	var/datum/admins/A = GLOB.admin_datums[usr.ckey]
 	A.show_player_info_legacy(key)
 
 /datum/tgui_module/player_notes_info/tgui_act(action, params, datum/tgui/ui)

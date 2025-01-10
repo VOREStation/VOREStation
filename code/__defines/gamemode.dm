@@ -48,7 +48,7 @@
 #define BE_EVENT		0x800000
 //VOREStation Add End
 
-var/list/be_special_flags = list(
+GLOBAL_LIST_INIT(be_special_flags, list(
 	"Traitor"          = BE_TRAITOR,
 	"Operative"        = BE_OPERATIVE,
 	"Changeling"       = BE_CHANGELING,
@@ -74,7 +74,7 @@ var/list/be_special_flags = list(
 	"Cursed Sword"     = BE_CURSEDSWORD,
 	"Ship Survivor"	   = BE_SURVIVOR
 	//VOREStation Add End
-)
+))
 
 
 // Antagonist datum flags.
