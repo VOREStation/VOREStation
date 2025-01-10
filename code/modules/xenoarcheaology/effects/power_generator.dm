@@ -39,7 +39,7 @@
 				holder.anchored = TRUE
 				mode = 2
 				holder.visible_message("[holder] connects itself to the cable. Weird.")
-				playsound(holder, 'sound/effects/ship_charge.ogg', 75, TRUE)
+				// playsound(holder, 'x', 75, TRUE) //TODO: Get sounds here
 				holder.set_light(gen_level, 25, effect_color)
 		else
 			to_chat(user, "[holder] must be placed over a cable to attach to it.")
@@ -48,7 +48,7 @@
 		mode = 0
 		attached = 0
 		to_chat(user, "[holder] disconnects itself from the cable.")
-		playsound(holder, 'sound/effects/shielddown2.ogg', 75, TRUE, 0, 2)
+		// playsound(holder, 'X', 75, TRUE, 0, 2) //TODO: Get sounds here
 		holder.set_light(FALSE)
 
 /datum/artifact_effect/generator/process(var/obj/holder)
@@ -58,9 +58,9 @@
 		if(PN)
 			PN.newavail += gen_rate
 			var/turf/T = get_turf(holder)
-			playsound(holder, 'sound/machines/engine_highpower.ogg', 75, TRUE, 0, 1)
+			// playsound(holder, 'X', 75, TRUE, 0, 1) //TODO: Get sounds here
 			if (prob(5))
-				playsound(holder, 'sound/effects/screech2.ogg', 75, TRUE)
+				// playsound(holder, 'X', 75, TRUE) //TODO: Get sounds here
 				var/turf/location = holder.loc
 				if(isturf(location))
 					var/obj/effect/decal/cleanable/liquid_fuel/flamethrower_fuel/fuel_spill = new /obj/effect/decal/cleanable/liquid_fuel/flamethrower_fuel(location)
@@ -69,7 +69,7 @@
 					location.hotspot_expose(1000,500,1)
 				holder.visible_message(span_alert("[holder] erupts in flame!"))
 			if (prob(3))
-				playsound(holder, 'sound/effects/screech2.ogg', 75, TRUE)
+				// playsound(holder, 'X', 75, TRUE) //TODO: Get sounds here
 				holder.visible_message(span_alert("[holder] rumbles!"))
 				for (var/mob/M in range(min(5,gen_level),T))
 					shake_camera(M, 5, 8)
@@ -81,7 +81,7 @@
 						W.health = 0
 						W.shatter()
 			if (prob(5))
-				playsound(holder, 'sound/effects/screech2.ogg', 75, TRUE)
+				// playsound(holder, 'X', 75, TRUE) //TODO: Get sounds here
 				holder.visible_message(span_alert("[holder] sparks violently!"))
 				for (var/mob/living/M in view(min(5,gen_level),T))
 					if(ishuman(M))
