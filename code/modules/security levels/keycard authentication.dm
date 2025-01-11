@@ -22,11 +22,11 @@
 	active_power_usage = 6
 	power_channel = ENVIRON
 
-/obj/machinery/keycard_auth/attack_ai(mob/user as mob)
+/obj/machinery/keycard_auth/attack_ai(mob/user)
 	to_chat (user, span_warning("A firewall prevents you from interfacing with this device!"))
 	return
 
-/obj/machinery/keycard_auth/attackby(obj/item/W as obj, mob/user as mob)
+/obj/machinery/keycard_auth/attackby(obj/item/W, mob/user)
 	if(stat & (NOPOWER|BROKEN))
 		to_chat(user, "This device is not powered.")
 		return
@@ -37,10 +37,10 @@
 				//This is not the device that made the initial request. It is the device confirming the request.
 				if(event_source)
 					event_source.confirmed = 1
-					event_source.event_confirmed_by = usr
+					event_source.event_confirmed_by = user
 			else if(screen == 2)
-				event_triggered_by = usr
-				broadcast_request() //This is the device making the initial event request. It needs to broadcast to other devices
+				event_triggered_by = user
+				broadcast_request(user) //This is the device making the initial event request. It needs to broadcast to other devices
 
 	if(W.has_tool_quality(TOOL_SCREWDRIVER))
 		to_chat(user, "You begin removing the faceplate from the [src]")
@@ -131,7 +131,7 @@
 	event_triggered_by = null
 	event_confirmed_by = null
 
-/obj/machinery/keycard_auth/proc/broadcast_request()
+/obj/machinery/keycard_auth/proc/broadcast_request(mob/user)
 	icon_state = "auth_on"
 	for(var/obj/machinery/keycard_auth/KA in machines)
 		if(KA == src) continue
@@ -142,7 +142,7 @@
 	sleep(confirm_delay)
 	if(confirmed)
 		confirmed = 0
-		trigger_event(event)
+		trigger_event(user)
 		log_game("[key_name(event_triggered_by)] triggered and [key_name(event_confirmed_by)] confirmed event [event]")
 		message_admins("[key_name(event_triggered_by)] triggered and [key_name(event_confirmed_by)] confirmed event [event]", 1)
 	reset()
@@ -162,7 +162,7 @@
 	active = 0
 	busy = 0
 
-/obj/machinery/keycard_auth/proc/trigger_event()
+/obj/machinery/keycard_auth/proc/trigger_event(mob/user)
 	switch(event)
 		if("Red alert")
 			set_security_level(SEC_LEVEL_RED)
@@ -175,7 +175,7 @@
 			feedback_inc("alert_keycard_auth_maintRevoke",1)
 		if("Emergency Response Team")
 			if(is_ert_blocked())
-				to_chat(usr, span_red("All emergency response teams are dispatched and can not be called at this time."))
+				to_chat(user, span_red("All emergency response teams are dispatched and can not be called at this time."))
 				return
 
 			trigger_armed_response_team(1)

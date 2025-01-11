@@ -93,7 +93,7 @@
 
 			// Yielding
 			var/new_color = input(
-				usr,
+				ui.user,
 				"Select new color",
 				null,
 				default_value || COLOR_WHITE,

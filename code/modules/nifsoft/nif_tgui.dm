@@ -86,7 +86,7 @@
 
 	var/obj/item/nif/N = nif
 	if(istype(N))
-		N.tgui_interact(usr)
+		N.tgui_interact(src)
 
 /**
  * The NIF State ensures that only our authorized implanted user can touch us.

@@ -10,7 +10,7 @@
 		return
 	//VOREStation Addition End
 
-	usr.say(message,whispering=1)
+	src.say(message,whispering=1)
 
 /mob/verb/say_verb(message as text)
 	set name = "Say"
@@ -50,9 +50,9 @@
 
 	client?.stop_thinking()
 	if(use_me)
-		custom_emote(usr.emote_type, message)
+		custom_emote(src.emote_type, message)
 	else
-		usr.emote(message)
+		src.emote(message)
 
 /mob/proc/say_dead(var/message)
 	if(!client)
@@ -64,7 +64,7 @@
 			return
 
 	if(!client?.prefs?.read_preference(/datum/preference/toggle/show_dsay))
-		to_chat(usr, span_danger("You have deadchat muted."))
+		to_chat(src, span_danger("You have deadchat muted."))
 		return
 
 	message = encode_html_emphasis(message)

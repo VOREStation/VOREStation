@@ -3,7 +3,7 @@
 	name = "string pin"
 
 /datum/integrated_io/string/ask_for_pin_data(mob/user)
-	var/new_data = tgui_input_text(usr, "Please type in a string.","[src] string writing")
+	var/new_data = tgui_input_text(user, "Please type in a string.","[src] string writing")
 	new_data = sanitizeSafe(new_data, MAX_MESSAGE_LEN, 0, 0)
 
 	if(new_data && holder.check_interactivity(user) )
