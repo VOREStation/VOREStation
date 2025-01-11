@@ -986,9 +986,6 @@
 /obj/structure/disposalpipe/trunk,
 /turf/simulated/floor/tiled/milspec,
 /area/lunaship/hallway_port)
-"nN" = (
-/turf/simulated/floor/outdoors/grass/heavy/atoll,
-/area/lunaship/park)
 "nR" = (
 /obj/structure/lattice,
 /obj/structure/cable/cyan{
@@ -2069,7 +2066,9 @@
 /area/lunaship/park)
 "BM" = (
 /obj/structure/flora/ausbushes/ppflowers,
-/turf/simulated/floor/outdoors/grass/heavy/atoll,
+/turf/simulated/floor/outdoors/grass/heavy{
+	outdoors = 0
+	},
 /area/lunaship/park)
 "BO" = (
 /obj/structure/cable/cyan{
@@ -2361,7 +2360,9 @@
 	dir = 8
 	},
 /obj/structure/table/bench/wooden,
-/turf/simulated/floor/outdoors/grass/heavy/atoll,
+/turf/simulated/floor/outdoors/grass/heavy{
+	outdoors = 0
+	},
 /area/lunaship/park)
 "GT" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -3296,12 +3297,6 @@
 	opacity = 1
 	},
 /area/lunaship/bar)
-"Uy" = (
-/obj/structure/cable/cyan{
-	icon_state = "4-8"
-	},
-/turf/simulated/floor/outdoors/grass/heavy/atoll,
-/area/lunaship/park)
 "UK" = (
 /obj/structure/table/glass,
 /obj/item/healthanalyzer/advanced{
@@ -3547,10 +3542,6 @@
 	},
 /turf/simulated/floor/tiled/milspec,
 /area/lunaship/engineering)
-"Xw" = (
-/obj/structure/table/bench/wooden,
-/turf/simulated/floor/outdoors/grass/heavy/atoll,
-/area/lunaship/park)
 "Xx" = (
 /obj/effect/floor_decal/techfloor{
 	dir = 6
@@ -5405,7 +5396,7 @@ Ag
 Ag
 gZ
 gC
-Uy
+ku
 ad
 bP
 hr
@@ -5466,7 +5457,7 @@ BB
 EG
 GQ
 gC
-nN
+gC
 ku
 ad
 bP
@@ -5524,11 +5515,11 @@ bj
 bp
 BB
 EG
-nN
+gC
 BM
 gC
 gC
-nN
+gC
 ku
 ad
 bP
@@ -5584,14 +5575,14 @@ ad
 sh
 bj
 BB
-nN
+gC
 sa
 gC
 gC
-nN
-nN
 gC
-Uy
+gC
+gC
+ku
 ad
 bP
 Ww
@@ -5649,7 +5640,7 @@ BB
 BB
 EG
 gC
-nN
+gC
 gC
 gC
 Hv
@@ -5711,11 +5702,11 @@ il
 BB
 BB
 BB
-Xw
+EG
 Rf
 ru
-nN
-Uy
+gC
+ku
 ad
 bP
 Ar

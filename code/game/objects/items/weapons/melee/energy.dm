@@ -279,7 +279,7 @@
 
 	projectile_parry_chance = 65
 
-/obj/item/melee/energy/sword/dropped(var/mob/user)
+/obj/item/melee/energy/sword/dropped(mob/user)
 	..()
 	if(!istype(loc,/mob))
 		deactivate(user)
@@ -453,7 +453,8 @@
 	user.drop_from_inventory(src)
 	spawn(1) if(src) qdel(src)
 
-/obj/item/melee/energy/blade/dropped()
+/obj/item/melee/energy/blade/dropped(mob/user)
+	..()
 	spawn(1) if(src) qdel(src)
 
 /obj/item/melee/energy/blade/process()

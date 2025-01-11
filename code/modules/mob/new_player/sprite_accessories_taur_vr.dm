@@ -270,6 +270,15 @@
 	msg_owner_grab_fail = "You step down onto %prey, squishing them and forcing them down to the ground!"
 	msg_prey_grab_fail = "%owner steps down and squishes you with their hoof, forcing you down to the ground!"
 
+/datum/sprite_accessory/tail/taur/cow/fat
+	name = "Fat Cow (Taur)"
+	icon_state = "fatcow_s"
+
+/datum/sprite_accessory/tail/taur/cow/wag
+	name = "Cow (Taur, Fat vwag)"
+	icon_state = "cow_s"
+	ani_state = "fatcow_s"
+
 /datum/sprite_accessory/tail/taur/deer
 	name = "Deer dual-color (Taur)"
 	icon_state = "deer_s"

@@ -6,8 +6,8 @@
 
 /obj/machinery/smartfridge/chef/accept_check(var/obj/item/O as obj)
 	if(istype(O,/obj/item/reagent_containers/food/snacks))
-		return 1
-	return 0
+		return TRUE
+	return FALSE
 
 /*
  * Bartender
@@ -19,8 +19,8 @@
 
 /obj/machinery/smartfridge/drinks/accept_check(var/obj/item/O as obj)
 	if(istype(O,/obj/item/reagent_containers/glass) || istype(O,/obj/item/reagent_containers/food/drinks) || istype(O,/obj/item/reagent_containers/food/condiment))
-		return 1
-	return 0
+		return TRUE
+	return FALSE
 
 /obj/machinery/smartfridge/drinks/showcase
 	name = "\improper Drink Showcase"
@@ -63,8 +63,8 @@
 
 /obj/machinery/smartfridge/produce/accept_check(var/obj/item/O as obj)
 	if(istype(O,/obj/item/reagent_containers/food/snacks/grown/) || istype(O,/obj/item/seeds/))
-		return 1
-	return 0
+		return TRUE
+	return FALSE
 
 /obj/machinery/smartfridge/seeds //I honestly don't know why this exists when you can store seeds in the vendor. It's not even persistent.
 	name = "\improper MegaSeed Servitor"
@@ -73,5 +73,5 @@
 
 /obj/machinery/smartfridge/seeds/accept_check(var/obj/item/O as obj)
 	if(istype(O,/obj/item/seeds/))
-		return 1
-	return 0
+		return TRUE
+	return FALSE

@@ -29,7 +29,7 @@
 			icon_state = monitor_states[monitor_state_index]
 			to_chat(H, span_notice("\The [src] connects to your display output."))
 
-/obj/item/clothing/mask/monitor/dropped()
+/obj/item/clothing/mask/monitor/dropped(mob/user)
 	canremove = TRUE
 	return ..()
 

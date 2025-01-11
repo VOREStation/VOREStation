@@ -72,7 +72,7 @@
 	icon_state = "[base_icon][wielded]"
 	item_state = icon_state
 
-/obj/item/material/twohanded/dropped()
+/obj/item/material/twohanded/dropped(mob/user)
 	..()
 	if(wielded)
 		spawn(0)

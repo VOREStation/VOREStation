@@ -167,7 +167,7 @@
 	if(!M.vore_active)
 		add_verb(M, /mob/living/simple_mob/proc/animal_nom)
 	M.ghostjoin_icon()
-	log_and_message_admins("[key_name_admin(user)] used a sapience potion on a simple mob: [M]. [ADMIN_FLW(src)]")
+	log_and_message_admins("used a sapience potion on a simple mob: [M]. [ADMIN_FLW(src)]", user)
 	playsound(src, 'sound/effects/bubbles.ogg', 50, 1)
 	qdel(src)
 

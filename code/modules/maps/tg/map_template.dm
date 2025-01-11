@@ -15,11 +15,12 @@
 	var/discard_prob = 0 // If non-zero, there is a chance that the map seeding algorithm will skip this template when selecting potential templates to use.
 
 /datum/map_template/New(path = null, rename = null)
+	SHOULD_CALL_PARENT(TRUE)
+	. = ..()
 	if(path)
 		mappath = path
 	if(mappath)
-		spawn(1)
-			preload_size(mappath)
+		preload_size(mappath)
 	if(rename)
 		name = rename
 
@@ -46,7 +47,6 @@
 	var/list/turf/turfs = block(locate(bounds[MAP_MINX], bounds[MAP_MINY], bounds[MAP_MINZ]),
 	                   			locate(bounds[MAP_MAXX], bounds[MAP_MAXY], bounds[MAP_MAXZ]))
 	for(var/turf/B as anything in turfs)
-		atoms += B
 		areas |= B.loc
 		for(var/A in B)
 			atoms += A
@@ -57,7 +57,7 @@
 	atoms |= areas
 
 	admin_notice(span_danger("Initializing newly created atom(s) in submap."), R_DEBUG)
-	SSatoms.InitializeAtoms(atoms)
+	SSatoms.InitializeAtoms(areas + turfs + atoms)
 
 	admin_notice(span_danger("Initializing atmos pipenets and machinery in submap."), R_DEBUG)
 	SSmachines.setup_atmos_machinery(atmos_machines)

@@ -58,7 +58,7 @@
 	user.visible_message(span_notice("[user] smashes [src] on [comp]"),
 		span_info("You smash [src] on [comp], christening a new landable ship named [S.name]"),
 		span_notice("You hear glass shattering"))
-	log_and_message_admins("[key_name_admin(user)] Created a new shuttle [S.name]. [ADMIN_JMP(comp_turf)]")
+	log_and_message_admins("Created a new shuttle [S.name]. [ADMIN_JMP(comp_turf)]", user)
 	spawn(1 SECOND)
 		playsound(comp_turf, 'sound/voice/Serithi/Shuttlehere.ogg', 75, 0)
 	qdel(src)

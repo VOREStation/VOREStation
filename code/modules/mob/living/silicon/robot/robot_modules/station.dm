@@ -712,6 +712,7 @@ var/global/list/robot_modules = list(
 	src.modules += new /obj/item/multitool(src)
 	src.modules += new /obj/item/surgical/hemostat/cyborg(src) //Synth repair
 	src.modules += new /obj/item/surgical/surgicaldrill/cyborg(src) //NIF repair
+	src.modules += new /obj/item/surgical/circular_saw/cyborg(src) // Synth limb replacement
 	src.modules += new /obj/item/reagent_containers/syringe(src)
 	src.modules += new /obj/item/reagent_containers/glass/beaker/large/borg(src)
 	src.modules += new /obj/item/storage/part_replacer(src)

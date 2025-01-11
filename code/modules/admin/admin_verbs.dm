@@ -194,7 +194,7 @@
 			createStealthKey()
 			if(isnewplayer(mob))
 				mob.name = new_key
-		log_and_message_admins("[key_name(usr)] has turned stealth mode [holder.fakekey ? "ON" : "OFF"]")
+		log_and_message_admins("has turned stealth mode [holder.fakekey ? "ON" : "OFF"]", usr)
 	feedback_add_details("admin_verb","SM") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 #define MAX_WARNS 3
