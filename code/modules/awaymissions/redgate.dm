@@ -1489,7 +1489,7 @@
 
 /*
 //TODO - make this not trigger when the flag is returned to its original location
-/obj/item/laserdome_flag/dropped()
+/obj/item/laserdome_flag/dropped(mob/user)
 	. = ..()
 	global_announcer.autosay("[src] dropped!","Laserdome Announcer","Entertainment")
 */
@@ -1654,7 +1654,7 @@
 
 /*
 //TODO- make this not trigger when the ball is thrown or dunked, only when it's actually dropped
-/obj/item/laserdome_hyperball/dropped()
+/obj/item/laserdome_hyperball/dropped(mob/user)
 	. = ..()
 	global_announcer.autosay("[capitalize(last_team)] fumble!","Laserdome Announcer","Entertainment")
 */

@@ -37,6 +37,7 @@
 		to_chat(loc, span_notice("We shape our finger to fit inside electronics, and are ready to force them open."))
 
 /obj/item/finger_lockpick/dropped(mob/user)
+	..()
 	to_chat(user, span_notice("We discreetly shape our finger back to a less suspicious form."))
 	spawn(1)
 		if(src)

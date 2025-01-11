@@ -61,7 +61,7 @@
 	if(enables_planes)
 		user.recalculate_vis()
 
-/obj/item/clothing/dropped(var/mob/user)
+/obj/item/clothing/dropped(mob/user)
 	..()
 	if(enables_planes)
 		user.recalculate_vis()
@@ -406,7 +406,7 @@
 	wearer = H //TODO clean this when magboots are cleaned
 	return 1
 
-/obj/item/clothing/gloves/dropped()
+/obj/item/clothing/gloves/dropped(mob/user)
 	..()
 
 	if(!wearer)
