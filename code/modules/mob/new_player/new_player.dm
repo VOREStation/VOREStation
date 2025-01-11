@@ -25,7 +25,7 @@
 /mob/new_player/New()
 	mob_list += src
 	add_verb(src, /mob/proc/insidePanel)
-	initialized = TRUE // Explicitly don't use Initialize().  New players join super early and use New()
+	flags |= ATOM_INITIALIZED // Explicitly don't use Initialize().  New players join super early and use New()
 
 
 /mob/new_player/Destroy()
