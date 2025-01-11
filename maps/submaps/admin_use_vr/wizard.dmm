@@ -284,9 +284,6 @@
 	icon_state = "dark"
 	},
 /area/wizard_station)
-"aH" = (
-/turf/template_noop,
-/area/wizard_station)
 "aI" = (
 /obj/structure/bed/chair/wood/wings{
 	icon_state = "wooden_chair_wings";
@@ -332,10 +329,6 @@
 /turf/unsimulated/floor{
 	icon_state = "dark"
 	},
-/area/wizard_station)
-"aO" = (
-/obj/effect/wingrille_spawn/reinforced/crescent,
-/turf/template_noop,
 /area/wizard_station)
 "aP" = (
 /obj/structure/table/woodentable,
@@ -1282,8 +1275,8 @@ aa
 aa
 aa
 aa
-aH
-aO
+ab
+ac
 ab
 ay
 bi
