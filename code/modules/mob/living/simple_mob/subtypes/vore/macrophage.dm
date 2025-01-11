@@ -99,6 +99,7 @@
 		if(belly)
 			var/mob/living/pred = belly.owner
 			pred.ForceContractDisease(base_disease)
+	dust(remains=/obj/effect/decal/cleanable/mucus)
 
 /obj/belly/macrophage
 	name = "capsid"
