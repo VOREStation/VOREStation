@@ -8,7 +8,7 @@
 #define TURF_HAS_CORNERS        128
 #define TURF_IS_FRAGILE         256
 #define TURF_ACID_IMMUNE        512
-// The 0x80000000 is blocked by INITIALIZED, do NOT use it!
+// The 0x1000000 is blocked by INITIALIZED, do NOT use it!
 
 //Used for floor/wall smoothing
 #define SMOOTH_NONE 0	//Smooth only with itself

@@ -114,7 +114,7 @@
 #define AREA_BLOCK_SUIT_SENSORS		0x800	// If suit sensors are blocked in the area.
 #define AREA_BLOCK_TRACKING			0x1000	// If camera tracking is blocked in the area.
 #define AREA_BLOCK_GHOST_SIGHT		0x2000	// If an area blocks sight for ghosts
-// The 0x80000000 is blocked by INITIALIZED, do NOT use it!
+// The 0x40000000 is blocked by INITIALIZED, do NOT use it!
 
 // OnTopic return values
 #define TOPIC_NOACTION 0
