@@ -236,3 +236,18 @@
 
 		else
 			step_delay = initial(step_delay)
+
+
+/obj/item/mecha_parts/component/armor/fighter
+	name = "fighter plating"
+	step_delay = 0
+	emp_resistance = 2
+	required_type = list(/obj/mecha/combat/fighter)
+	damage_absorption = list(
+		"brute"=0.8,
+		"fire"=0.8,
+		"bullet"=1,
+		"laser"=1,
+		"energy"=0.8,
+		"bomb"=0.5
+		)
