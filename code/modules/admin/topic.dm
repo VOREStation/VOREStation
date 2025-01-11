@@ -1593,7 +1593,7 @@
 			usr.on_mob_jump()
 			usr.forceMove(T)
 			feedback_add_details("admin_verb","JM") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-			log_and_message_admins("[key_name_admin(usr)] jumped to [key_name_admin(M)]")
+			log_and_message_admins("jumped to [key_name_admin(M)]", usr)
 		else
 			to_chat(usr, span_filter_adminlog("This mob is not located in the game world."))
 

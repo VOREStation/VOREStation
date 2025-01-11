@@ -295,7 +295,7 @@
 						L.pulledby.stop_pulling()
 					stop_pulling()
 					original_ckey = ckey
-					log_and_message_admins("[key_name_admin(src)] has swapped bodies with [key_name_admin(L)] as a morph at [get_area(src)] - [COORD(src)].")
+					log_and_message_admins("has swapped bodies with [key_name_admin(L)] as a morph at [get_area(src)] - [COORD(src)].", src)
 					new /mob/living/simple_mob/vore/morph/dominated_prey(L.vore_selected, L.ckey, src, L)
 				else
 					to_chat(src, span_warning("\The [L] declined your request for control."))
@@ -362,13 +362,13 @@
 		parent_morph.forceMove(get_turf(src))
 		parent_morph.ckey = parent_morph.original_ckey
 		prey_body.ckey = prey_ckey
-		log_and_message_admins("[key_name_admin(prey_body)] used the OOC escape button to get out of [key_name_admin(parent_morph)]. They have been returned to their original bodies. [ADMIN_FLW(src)]")
+		log_and_message_admins("used the OOC escape button to get out of [key_name_admin(parent_morph)]. They have been returned to their original bodies. [ADMIN_FLW(src)]", prey_body)
 	else
 		parent_morph.forceMove(get_turf(prey_body))
 		parent_morph.ckey = parent_morph.original_ckey
 		prey_body.ckey = prey_ckey
 		prey_body.forceMove(parent_morph.vore_selected)
-		log_and_message_admins("[key_name_admin(prey_body)] and [key_name_admin(parent_morph)] have been returned to their original bodies. [get_area(src)] - [COORD(src)].")
+		log_and_message_admins("and [key_name_admin(parent_morph)] have been returned to their original bodies. [get_area(src)] - [COORD(src)].", prey_body)
 	qdel(src)
 
 #undef MORPH_COOLDOWN
