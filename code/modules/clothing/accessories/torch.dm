@@ -462,6 +462,7 @@ department tags
 	desc = "Coloured panelling denoting assignment to a specific department."
 	icon_state = "gorka_dept"
 	on_rolled = list("down" = "none")
+	can_remove = FALSE
 
 /obj/item/clothing/accessory/gorka/department/civilian
 	name = "civilian insignia"
@@ -513,6 +514,7 @@ department tags
 	desc = "Silver trim denoting a higher rank within one's department."
 	icon_state = "gorka_rank"
 	on_rolled = list("down" = "none")
+	can_remove = FALSE
 
 /*********
 ranks - ec
