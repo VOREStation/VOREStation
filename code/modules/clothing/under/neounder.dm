@@ -1005,6 +1005,22 @@ this file deals with uniforms/under. */
 	rolled_sleeves = -1
 	rolled_down = -1
 
+/obj/item/clothing/under/rank/neo_gorka/civilian
+	name = "civilian gorka"
+	desc = "A rugged weather-resistant uniform made of ripstop fabric. For those who appreciate durable clothing. It has a tag denoting it's made by Total Gear & Co."
+	icon_state = "neo_gorka"
+	rolled_sleeves = -1
+	rolled_down = -1
+	starting_accessories = list(/obj/item/clothing/accessory/gorka/department/civilian)
+
+/obj/item/clothing/under/rank/neo_gorka/black_command
+	name = "plain command gorka"
+	desc = "A rugged weather-resistant uniform made of ripstop fabric. For those who appreciate durable clothing. It has a tag denoting it's made by Total Gear & Co."
+	icon_state = "neo_gorka"
+	rolled_sleeves = -1
+	rolled_down = -1
+	starting_accessories = list(/obj/item/clothing/accessory/gorka/rank)
+
 /obj/item/clothing/under/rank/neo_gorka/service
 	name = "service gorka"
 	desc = "A rugged weather-resistant uniform made of ripstop fabric. No thorns will be ripping these! It has a tag denoting it's made by Total Gear & Co."

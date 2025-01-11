@@ -463,6 +463,11 @@ department tags
 	icon_state = "gorka_dept"
 	on_rolled = list("down" = "none")
 
+/obj/item/clothing/accessory/gorka/department/civilian
+	name = "civilian insignia"
+	desc = "Coloured panelling denoting assignment to no department in particular."
+	color = "#bbbbbb"
+
 /obj/item/clothing/accessory/gorka/department/command
 	name = "command insignia"
 	desc = "Coloured panelling denoting assignment to the command department."

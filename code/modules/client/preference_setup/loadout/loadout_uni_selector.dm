@@ -46,7 +46,8 @@
 		"TG&C black suit"=/obj/item/clothing/under/rank/neo_captain_blacksuit,
 		"TG&C parade uniform"=/obj/item/clothing/under/rank/neo_captain_parade,
 		"TG&C jumpkilt"=/obj/item/clothing/under/rank/neo_captain_kilt,
-		"TG&C gorka suit"=/obj/item/clothing/under/rank/neo_gorka/command
+		"TG&C gorka suit"=/obj/item/clothing/under/rank/neo_gorka/command,
+		"TG&C black command gorka"=/obj/item/clothing/under/rank/neo_gorka/black_command
 	)
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(selector_uniforms))
 
@@ -78,7 +79,8 @@
 		"TG&C parade dress"=/obj/item/clothing/under/rank/neo_hop_parade_fem,
 		"TG&C turtleneck"=/obj/item/clothing/under/rank/neo_hop_turtle,
 		"TG&C turtleneck w/ skirt"=/obj/item/clothing/under/rank/neo_hop_turtle_skirt,
-		"TG&C gorka suit"=/obj/item/clothing/under/rank/neo_gorka/command
+		"TG&C gorka suit"=/obj/item/clothing/under/rank/neo_gorka/command,
+		"TG&C black command gorka"=/obj/item/clothing/under/rank/neo_gorka/black_command
 	)
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(selector_uniforms))
 
@@ -162,7 +164,8 @@
 		"Utility uniform, tan"=/obj/item/clothing/under/utility/tan,
 		"Utility uniform, green"=/obj/item/clothing/under/utility/green,
 		"TG&C gorka suit"=/obj/item/clothing/under/rank/neo_gorka,
-		"TG&C gorka suit (service)"=/obj/item/clothing/under/rank/neo_gorka/service
+		"TG&C gorka suit (service)"=/obj/item/clothing/under/rank/neo_gorka/service,
+		"TG&C gorka suit (civilian)"=/obj/item/clothing/under/rank/neo_gorka/civilian
 	)
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(selector_uniforms))
 
