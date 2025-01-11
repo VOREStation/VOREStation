@@ -3069,14 +3069,6 @@
 	},
 /turf/simulated/floor/tiled/milspec,
 /area/aro3/hallway_starboard)
-"sX" = (
-/obj/structure/prop/tgmc_minirockets,
-/obj/effect/floor_decal/milspec/hatchmarks,
-/obj/effect/floor_decal/industrial/warning/dust{
-	dir = 6
-	},
-/turf/simulated/floor/tiled/techmaint/airless,
-/area/space)
 "td" = (
 /obj/effect/floor_decal/milspec_sterile/green/half{
 	dir = 4
@@ -5182,14 +5174,6 @@
 /obj/item/storage/firstaid/adv,
 /turf/simulated/floor/tiled/techmaint,
 /area/aro3/medical)
-"Hb" = (
-/obj/structure/prop/tgmc_minirockets,
-/obj/effect/floor_decal/milspec/hatchmarks,
-/obj/effect/floor_decal/industrial/warning/dust{
-	dir = 10
-	},
-/turf/simulated/floor/tiled/techmaint/airless,
-/area/space)
 "Hd" = (
 /turf/simulated/wall/tgmc/durawall,
 /area/aro3/hallway_starboard)
@@ -5324,7 +5308,6 @@
 /turf/simulated/floor/tiled/milspec,
 /area/aro3/atmos)
 "Im" = (
-/obj/structure/prop/tgmc_laser/loaded,
 /obj/effect/floor_decal/milspec/hatchmarks,
 /obj/effect/floor_decal/industrial/warning/dust{
 	dir = 6
@@ -6275,7 +6258,6 @@
 /turf/simulated/floor/plating/eris/under,
 /area/aro3/atmos)
 "OM" = (
-/obj/structure/prop/tgmc_laser/loaded,
 /obj/effect/floor_decal/milspec/hatchmarks,
 /obj/effect/floor_decal/industrial/warning/dust{
 	dir = 10
@@ -6474,11 +6456,6 @@
 	},
 /turf/simulated/floor/tiled/milspec,
 /area/aro3/power)
-"Qd" = (
-/obj/structure/prop/tgmc_minirockets,
-/obj/effect/floor_decal/milspec/hatchmarks,
-/turf/simulated/floor/tiled/techmaint/airless,
-/area/space)
 "Qe" = (
 /obj/effect/floor_decal/milspec/hatchmarks,
 /turf/simulated/floor/tiled/milspec,
@@ -11537,7 +11514,7 @@ Ua
 Ua
 Ua
 pO
-Qd
+pO
 tp
 Ua
 Ua
@@ -15636,7 +15613,7 @@ Ua
 Ua
 yn
 UL
-Hb
+OM
 hD
 hD
 hD
@@ -19754,7 +19731,7 @@ Ua
 Ua
 yn
 lJ
-sX
+Im
 hD
 hD
 hD
@@ -23891,7 +23868,7 @@ Ua
 Ua
 Ua
 pO
-Qd
+pO
 AA
 Ua
 Ua
