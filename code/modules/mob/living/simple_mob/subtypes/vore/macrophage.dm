@@ -5,8 +5,25 @@
 	icon_state = "macrophage-1"
 
 	faction = FACTION_MACROBACTERIA
-	maxHealth = 60
-	health = 60
+	maxHealth = 20
+	health = 20
+
+	minbodytemp = T0C-30
+	heat_damage_per_tick = 40
+	cold_damage_per_tick = 40
+
+	min_oxy = 0
+	max_oxy = 0
+	min_tox = 0
+	max_tox = 0
+	min_co2 = 0
+	max_co2 = 0
+	min_n2 = 0
+	max_n2 = 0
+	unsuitable_atoms_damage = 0
+	shock_resist = 0.5
+	taser_kill = FALSE
+	water_resist = 1
 
 	var/datum/disease/base_disease = null
 	var/list/infections = list()
@@ -30,20 +47,35 @@
 	can_be_drop_prey = FALSE
 	allow_mind_transfer = TRUE
 
+	pass_flags = PASSTABLE | PASSMOB
+	mob_size = MOB_TINY
+
 	ai_holder_type = /datum/ai_holder/simple_mob/melee/macrophage
+
+/mob/living/simple_mob/vore/aggressive/macrophage/giant
+	name = "Giant Germ"
+	desc = "An incredibly huge virus!"
+
+	maxHealth = 40
+	health = 40
+
+	pass_flags = PASSTABLE | PASSGRILLE
+
+/mob/living/simple_mob/vore/aggressive/macrophage/Initialize()
+	. = ..()
+	var/datum/disease/advance/random/macrophage/D = new
+	health += D.totalResistance()
+	maxHealth += D.totalResistance()
+	melee_damage_lower += max(0, D.totalResistance())
+	melee_damage_upper += max(0, D.totalResistance())
+	infections += D
+	base_disease = D
 
 /mob/living/simple_mob/vore/aggressive/macrophage/proc/deathcheck()
 	if(locate(/mob/living/carbon/human) in vore_selected)
 		addtimer(CALLBACK(src, TYPE_PROC_REF(/mob/living/simple_mob/vore/aggressive/macrophage, deathcheck)), 3000)
 	else
 		dust()
-
-/mob/living/simple_mob/vore/aggressive/macrophage/Initialize()
-	. = ..()
-	if(base_disease)
-		ai_holder_type.virus = new base_disease
-	else
-		ai_holder_type.virus = new /datum/disease/cold
 
 /mob/living/simple_mob/vore/aggressive/macrophage/green
 	icon_state = "macrophage-2"
@@ -53,6 +85,20 @@
 
 /mob/living/simple_mob/vore/aggressive/macrophage/blue
 	icon_state = "macrophage-4"
+
+/mob/living/simple_mob/vore/aggressive/macrophage/do_attack(atom/A, turf/T)
+	. = ..()
+	if(iscarbon(A))
+		var/mob/living/carbon/human/victim = A
+		victim.ContractDisease(base_disease)
+
+/mob/living/simple_mob/vore/aggressive/macrophage/death()
+	. = ..()
+	if(isbelly(loc))
+		var/obj/belly/belly = loc
+		if(belly)
+			var/mob/living/pred = belly.owner
+			pred.ForceContractDisease(base_disease)
 
 /obj/belly/macrophage
 	name = "capsid"
@@ -75,24 +121,19 @@
 	var/obj/belly/B = new /obj/belly/macrophage(src)
 	vore_selected = B
 
-/mob/living/simple_mob/vore/aggressive/macrophage/do_attack(atom/A, turf/T)
-	. = ..()
-	if(iscarbon(A))
-		var/mob/living/carbon/human/victim = A
-		A.ContractDisease(base_disease)
-
 /datum/ai_holder/simple_mob/melee/macrophage
 	var/datum/disease/virus = null
 
 /datum/ai_holder/simple_mob/melee/macrophage/list_targets()
 	var/list/our_targets = ..()
+	var/mob/living/simple_mob/vore/aggressive/macrophage/macrophage = holder
 	for(var/list_target in our_targets)
 		if(!ishuman(list_target)) // Mobs? Robots? Meh. We want to INFECT.
 			our_targets -= list_target
 			continue
 		var/mob/living/carbon/human/victim = list_target
 		if(victim.viruses)
-			if(victim.HasDisease(virus) && prob(25)) // Less likely to be a target if you're infected
+			if(victim.HasDisease(macrophage.base_disease) && prob(75)) // Less likely to be a target if you're infected
 				our_targets -= list_target
 				continue
 	return our_targets

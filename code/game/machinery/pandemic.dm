@@ -379,7 +379,7 @@
 	if(I.has_tool_quality(TOOL_SCREWDRIVER))
 		eject_beaker()
 		return
-	if(istype(I, /obj/item/reagent_containers/glass) && I.is_open_container())
+	if(istype(I, /obj/item/reagent_containers/glass) && I.is_open_container() || istype(I, /obj/item/reagent_containers/syringe))
 		if(stat & (NOPOWER|BROKEN))
 			return
 		if(beaker)

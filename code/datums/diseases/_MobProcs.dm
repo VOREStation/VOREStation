@@ -84,14 +84,7 @@
 	if(nutrition > 300 && prob(nutrition/50))
 		return
 
-	var/list/zone_weights = list(
-		1 = head_ch,
-		2 = body_ch,
-		3 = hands_ch,
-		4 = feet_ch
-		)
-
-	var/target_zone = pick(zone_weights)
+	var/target_zone = pick(head_ch;1,body_ch;2,hands_ch;3,feet_ch;4)
 
 	if(ishuman(src))
 		var/mob/living/carbon/human/H = src

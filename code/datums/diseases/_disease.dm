@@ -191,8 +191,14 @@ GLOBAL_LIST_INIT(diseases, subtypesof(/datum/disease))
 /datum/disease/proc/remove_virus()
 	affected_mob.viruses -= src
 
+// Called when a disease is added onto a mob
 /datum/disease/proc/Start()
 	return
 
+// Called when a disease is removed from a mob
 /datum/disease/proc/End()
+	return
+
+// Called when the mob dies
+/datum/disease/proc/OnDeath()
 	return
