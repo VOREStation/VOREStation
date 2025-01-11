@@ -91,7 +91,7 @@
 
 	// Okay we can start saving the data
 	if(new_spawn_point_type && prefs.persistence_settings & PERSIST_SPAWN)
-		prefs.update_preference_by_type(/datum/preference/choiced/human/spawnpoint, initial(new_spawn_point_type.display_name))
+		prefs.update_preference_by_type(/datum/preference/choiced/living/spawnpoint, initial(new_spawn_point_type.display_name))
 	if(ishuman(occupant) && occupant.stat != DEAD)
 		var/mob/living/carbon/human/H = occupant
 		testing("Persist (PID): Saving stuff from [H] to [prefs] (\ref[prefs]).")

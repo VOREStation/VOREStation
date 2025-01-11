@@ -89,7 +89,7 @@ var/list/possible_cable_coil_colours = list(
 /obj/structure/cable/white
 	color = COLOR_WHITE
 
-/obj/structure/cable/Initialize()
+/obj/structure/cable/Initialize(mapload)
 	. = ..()
 
 	// ensure d1 & d2 reflect the icon_state for entering and exiting cable
@@ -158,6 +158,9 @@ var/list/possible_cable_coil_colours = list(
 	return 1
 
 /obj/structure/cable/update_icon()
+	 // We rely on the icon state for the wire Initialize(), prevent any updates to the icon before init passed
+	if(!(flags & ATOM_INITIALIZED))
+		return
 	icon_state = "[d1]-[d2]"
 	alpha = invisibility ? 127 : 255
 
