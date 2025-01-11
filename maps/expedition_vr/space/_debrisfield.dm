@@ -45,7 +45,7 @@
 	name = "away mission initializer - debrisfield"
 
 /obj/away_mission_init/debrisfield/Initialize()
-	initialized = TRUE
+	flags |= ATOM_INITIALIZED
 	return INITIALIZE_HINT_QDEL
 
 /area/tether_away/debrisfield

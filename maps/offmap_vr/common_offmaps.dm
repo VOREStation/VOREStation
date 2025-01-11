@@ -488,7 +488,7 @@
 
 	if(!LAZYLEN(mobs_to_pick_from))
 		error("Mob spawner at [x],[y],[z] ([get_area(src)]) had no mobs_to_pick_from set on it!")
-		initialized = TRUE
+		flags |= ATOM_INITIALIZED
 		return INITIALIZE_HINT_QDEL
 	START_PROCESSING(SSobj, src)
 
