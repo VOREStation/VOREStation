@@ -11357,14 +11357,14 @@
 "wI" = (
 /turf/unsimulated/floor/steel{
 	icon = 'icons/turf/outdoors.dmi';
-	icon_state = "grass"
+	icon_state = "grass-dark0"
 	},
 /area/centcom/main_hall)
 "wJ" = (
 /obj/structure/table/bench/wooden,
 /turf/unsimulated/floor/steel{
 	icon = 'icons/turf/outdoors.dmi';
-	icon_state = "grass"
+	icon_state = "grass-dark0"
 	},
 /area/centcom/main_hall)
 "wK" = (
@@ -11645,14 +11645,14 @@
 /obj/machinery/light/flamp/noshade,
 /turf/unsimulated/floor/steel{
 	icon = 'icons/turf/outdoors.dmi';
-	icon_state = "grass"
+	icon_state = "grass-dark0"
 	},
 /area/centcom/main_hall)
 "xh" = (
 /obj/structure/flora/ausbushes/brflowers,
 /turf/unsimulated/floor/steel{
 	icon = 'icons/turf/outdoors.dmi';
-	icon_state = "grass"
+	icon_state = "grass-dark0"
 	},
 /area/centcom/main_hall)
 "xi" = (
@@ -12002,7 +12002,7 @@
 /obj/structure/flora/ausbushes/ppflowers,
 /turf/unsimulated/floor/steel{
 	icon = 'icons/turf/outdoors.dmi';
-	icon_state = "grass"
+	icon_state = "grass-dark0"
 	},
 /area/centcom/main_hall)
 "xJ" = (
@@ -13000,7 +13000,7 @@
 /obj/structure/flora/ausbushes/ywflowers,
 /turf/unsimulated/floor/steel{
 	icon = 'icons/turf/outdoors.dmi';
-	icon_state = "grass"
+	icon_state = "grass-dark0"
 	},
 /area/centcom/main_hall)
 "zf" = (
