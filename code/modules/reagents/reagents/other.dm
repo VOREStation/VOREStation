@@ -447,7 +447,7 @@
 
 	if(istype(M, /mob/living/simple_mob/vore/aggressive/macrophage)) // Big ouch for viruses
 		var/mob/living/simple_mob/macrophage = M
-		macrophage.adjustToxLoss(15)
+		macrophage.adjustToxLoss(20)
 
 /datum/reagent/space_cleaner/touch_obj(var/obj/O)
 	..()
