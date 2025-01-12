@@ -48,7 +48,8 @@
 		span_warning("We inflate our flesh, creating a spaceproof suit!"),
 		span_warningplain("You hear organic matter ripping and tearing!"))
 
-/obj/item/clothing/suit/space/changeling/dropped()
+/obj/item/clothing/suit/space/changeling/dropped(mob/user)
+	..()
 	qdel(src)
 
 /obj/item/clothing/head/helmet/space/changeling
@@ -60,7 +61,8 @@
 	body_parts_covered = HEAD|FACE|EYES
 	canremove = FALSE
 
-/obj/item/clothing/head/helmet/space/changeling/dropped()
+/obj/item/clothing/head/helmet/space/changeling/dropped(mob/user)
+	..()
 	qdel(src)
 
 /obj/item/clothing/shoes/magboots/changeling
@@ -89,7 +91,7 @@
 		force = 5
 		to_chat(user, "We cling to the terrain below us.")
 
-/obj/item/clothing/shoes/magboots/changeling/dropped()
+/obj/item/clothing/shoes/magboots/changeling/dropped(mob/user)
 	..()
 	qdel(src)
 

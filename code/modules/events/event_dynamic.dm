@@ -192,7 +192,7 @@ var/list/event_last_fired = list()
 		if(!M.mind || !M.client || M.client.is_afk(10 MINUTES)) // longer than 10 minutes AFK counts them as inactive
 			continue
 
-		active_with_role["Any"]++
+		active_with_role[DEPARTMENT_ANY]++
 
 		if(isrobot(M))
 			var/mob/living/silicon/robot/R = M

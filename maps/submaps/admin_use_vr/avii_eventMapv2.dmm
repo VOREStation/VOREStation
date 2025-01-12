@@ -5193,7 +5193,6 @@
 /area/engineering/engine_monitoring)
 "yw" = (
 /obj/structure/table/steel_reinforced,
-/obj/item/book/manual/sd_guide,
 /obj/effect/floor_decal/milspec/color/blue/half{
 	dir = 6
 	},

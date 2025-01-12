@@ -115,7 +115,7 @@
 	else
 		return ..()
 
-/obj/item/watertank/dropped(var/mob/user)
+/obj/item/watertank/dropped(mob/user)
 	..()
 	remove_noz(user)
 

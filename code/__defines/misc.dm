@@ -114,6 +114,7 @@
 #define AREA_BLOCK_SUIT_SENSORS		0x800	// If suit sensors are blocked in the area.
 #define AREA_BLOCK_TRACKING			0x1000	// If camera tracking is blocked in the area.
 #define AREA_BLOCK_GHOST_SIGHT		0x2000	// If an area blocks sight for ghosts
+// The 0x800000 is blocked by INITIALIZED, do NOT use it!
 
 // OnTopic return values
 #define TOPIC_NOACTION 0
@@ -213,6 +214,7 @@
 // These are mostly for the department guessing code and event system.
 #define DEPARTMENT_UNKNOWN			"Unknown"
 #define DEPARTMENT_EVERYONE			"Everyone"
+#define DEPARTMENT_ANY				"Any" // Used for events
 
 // Canonical spellings of TSCs, so typos never have to happen again due to human error.
 #define TSC_NT		"NanoTrasen"

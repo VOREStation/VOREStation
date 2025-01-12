@@ -1911,14 +1911,6 @@
 /area/aro2/airarea)
 "sB" = (
 /obj/structure/table/steel,
-/obj/item/magnetic_ammo/pistol/khi{
-	pixel_x = 5;
-	pixel_y = 2
-	},
-/obj/item/magnetic_ammo/pistol/khi{
-	pixel_x = -3;
-	pixel_y = 5
-	},
 /turf/simulated/floor/tiled/eris/techmaint_perforated,
 /area/aro2/surfluid)
 "sF" = (

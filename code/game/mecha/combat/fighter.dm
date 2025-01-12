@@ -39,10 +39,12 @@
 	max_universal_equip = 1
 	max_special_equip = 1
 
+	zoom_possible = 1
+
 	starting_components = list(
-		/obj/item/mecha_parts/component/hull/lightweight,
+		/obj/item/mecha_parts/component/hull/fighter,
 		/obj/item/mecha_parts/component/actuator,
-		/obj/item/mecha_parts/component/armor,
+		/obj/item/mecha_parts/component/armor/fighter,
 		/obj/item/mecha_parts/component/gas,
 		/obj/item/mecha_parts/component/electrical
 		)
@@ -137,7 +139,7 @@
 	..()
 	if (href_list["toggle_landing_gear"])
 		landing_gear_raised = !landing_gear_raised
-		send_byjax(src.occupant,"exosuit.browser","landing_gear_command","[landing_gear_raised?"Lower":"Raise"] landing gear")
+		send_byjax(src.occupant,"exosuit.browser","landing_gear_command","[landing_gear_raised?"Raise":"Lower"] landing gear")
 		src.occupant_message(span_notice("Landing gear [landing_gear_raised? "raised" : "lowered"]."))
 		return
 
@@ -226,9 +228,18 @@
 
 /obj/mecha/combat/fighter/play_entered_noise(var/mob/who)
 	if(hasInternalDamage())
-		who << sound('sound/mecha/fighter_entered_bad.ogg',volume=50)
+		who << sound('sound/mecha/fighter/fighter_entered_bad.ogg',volume=60)
 	else
-		who << sound('sound/mecha/fighter_entered.ogg',volume=50)
+		who << sound('sound/mecha/fighter/fighter_entered.ogg',volume=60)
+
+
+//causes damage when running into objects
+/obj/mecha/combat/fighter/Bump(atom/obstacle)
+	. = ..()
+	if(istype(obstacle, /obj) || istype(obstacle, /turf))
+		occupant_message("<B><FONT COLOR=red SIZE=+2>COLLISION ALERT!</B></FONT>")
+		take_damage(20, "brute")
+		playsound(src, 'sound/mecha/fighter/fighter_collision.ogg', 50)
 
 ////////////// Gunpod //////////////
 
@@ -351,7 +362,7 @@
 
 /obj/mecha/combat/fighter/scoralis
 	name = "scoralis"
-	desc = "An imported space fighter with integral cloaking device. Beware the power consumption, though. Not capable of ground operations."
+	desc = "An imported space fighter with an integral cloaking device. Beware the power consumption, though. Incapable of ground operations."
 	icon = 'icons/mecha/fighters64x64.dmi'
 	icon_state = "scoralis"
 	initial_icon = "scoralis"
@@ -424,30 +435,27 @@
 
 /obj/mecha/combat/fighter/pinnace
 	name = "pinnace"
-	desc = "A cramped ship's boat, capable of atmospheric and space flight. Not capable of mounting weapons. Capable of fitting one pilot and one passenger."
+	desc = "A mass-produced, lightweight fighter craft, capable of atmospheric and interstellar operation. While cheap and simple to operate, it suffers from sub-par survivability."
 	icon = 'icons/mecha/fighters64x64.dmi'
 	icon_state = "pinnace"
 	initial_icon = "pinnace"
-
-	max_hull_equip = 1
-	max_weapon_equip = 0
-	max_utility_equip = 0
-	max_universal_equip = 0
-	max_special_equip = 1
 
 	catalogue_data = list(/datum/category_item/catalogue/technology/pinnace)
 	wreckage = /obj/effect/decal/mecha_wreckage/pinnace
 
 	ground_capable = TRUE
 
+	health = 200
+	maxhealth = 200
+
 /obj/mecha/combat/fighter/pinnace/loaded/Initialize() //Loaded version with guns
 	. = ..()
-	var/obj/item/mecha_parts/mecha_equipment/ME = new /obj/item/mecha_parts/mecha_equipment/tool/passenger
+	var/obj/item/mecha_parts/mecha_equipment/ME = new /obj/item/mecha_parts/mecha_equipment/weapon/energy/laser
 	ME.attach(src)
 
 /obj/effect/decal/mecha_wreckage/pinnace
 	name = "pinnace wreckage"
-	desc = "Remains of some unfortunate ship's boat. Completely unrepairable."
+	desc = "Remains of some unfortunate fighter. Completely unrepairable."
 	icon = 'icons/mecha/fighters64x64.dmi'
 	icon_state = "pinnace-broken"
 	bound_width = 64
@@ -455,10 +463,11 @@
 
 /datum/category_item/catalogue/technology/pinnace
 	name = "Voidcraft - Pinnace"
-	desc = "A very small boat, usually used as a tender at very close ranges. The lack of a bluespace \
-	drive means that it can't get too far from it's parent ship. Though the pinnace is typically unarmed, \
-	it is capable of atmospheric flight and escaping most pursuing fighters by diving into the atmosphere of \
-	nearby planets to seek cover."
+	desc = "A small, unassuming forward-swept-wing fighter craft, first produced some seventy years ago by Hesphaestus Industries for \
+	the Commonwealth. Since then, the design has seen widespread adoption by many different corporate, federal and independent \
+	groups alike; this can easily be attributed due to its ease of manufacturing, reliability and simplicity to both maintain and \
+	operate. Outdated in comparison to more modern aerospace craft, it still sees heavy usage in the frontier regions where \
+	cutting-edge technology is less of a concern."
 	value = CATALOGUER_REWARD_MEDIUM
 
 #undef NOGRAV_FIGHTER_DAMAGE

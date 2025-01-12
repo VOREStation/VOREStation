@@ -21,7 +21,7 @@
 		maskmaster = H
 		START_PROCESSING(SSprocessing, src)
 
-/obj/item/clothing/mask/synthfacemask/dropped()
+/obj/item/clothing/mask/synthfacemask/dropped(mob/user)
 	canremove = 1
 	maskmaster = null
 	STOP_PROCESSING(SSprocessing, src)

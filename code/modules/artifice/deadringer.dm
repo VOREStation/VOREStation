@@ -23,7 +23,8 @@
 	STOP_PROCESSING(SSobj, src)
 	..()
 
-/obj/item/deadringer/dropped()
+/obj/item/deadringer/dropped(mob/user)
+	..()
 	if(timer > 20)
 		reveal()
 		watchowner = null

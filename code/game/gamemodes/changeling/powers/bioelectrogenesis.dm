@@ -122,6 +122,7 @@
 		new /obj/effect/effect/sparks(T)
 
 /obj/item/electric_hand/dropped(mob/user)
+	..()
 	spawn(1)
 		if(src)
 			qdel(src)
