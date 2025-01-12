@@ -383,13 +383,13 @@
 		if(stat & (NOPOWER|BROKEN))
 			return
 		if(beaker)
-			to_chat(user, span_warning("A beaker is already loaded into the machine!"))
+			to_chat(user, span_warning("A [beaker] is already loaded into the machine!"))
 			return
 
 		user.drop_item()
 		beaker = I
 		beaker.loc = src
-		to_chat(user, span_notice("You add the beaker to the machine."))
+		to_chat(user, span_notice("You add \the [I] to the machine."))
 		update_tgui_static_data(user)
 		icon_state = "pandemic1"
 	else

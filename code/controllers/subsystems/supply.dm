@@ -121,9 +121,9 @@ SUBSYSTEM_DEF(supply)
 
 					if(istype(A, /obj/item/reagent_containers/glass/bottle/vaccine))
 						var/obj/item/reagent_containers/glass/bottle/vaccine/sale_bottle = A
-						if(istype(CR, /obj/structure/closet/crate/freezer))
+						if(!istype(CR, /obj/structure/closet/crate/freezer))
 							EC.contents = list(
-								"error" = "Error: Product was improperly packaged. Send conents in freezer crate to preserver contents for transport."
+								"error" = "Error: Product was improperly packaged. Send conents in freezer crate to preserve contents for transport."
 							)
 						else if(sale_bottle.reagents.reagent_list.len != 1 || sale_bottle.reagents.get_reagent_amount(REAGENT_ID_VACCINE) < sale_bottle.volume)
 							EC.contents = list(

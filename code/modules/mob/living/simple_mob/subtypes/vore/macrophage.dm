@@ -75,7 +75,7 @@
 	if(locate(/mob/living/carbon/human) in vore_selected)
 		addtimer(CALLBACK(src, TYPE_PROC_REF(/mob/living/simple_mob/vore/aggressive/macrophage, deathcheck)), 3000)
 	else
-		dust()
+		death()
 
 /mob/living/simple_mob/vore/aggressive/macrophage/green
 	icon_state = "macrophage-2"
@@ -93,13 +93,17 @@
 		victim.ContractDisease(base_disease)
 
 /mob/living/simple_mob/vore/aggressive/macrophage/death()
-	. = ..()
+	..()
+	visible_message(span_warning("\The [src] shrivels up and dies, unable to survive!"))
 	if(isbelly(loc))
 		var/obj/belly/belly = loc
 		if(belly)
 			var/mob/living/pred = belly.owner
 			pred.ForceContractDisease(base_disease)
-	dust(remains=/obj/effect/decal/cleanable/mucus)
+	else
+		var/obj/effect/decal/cleanable/mucus/sick = new(loc)
+		sick.viruses += base_disease
+	qdel(src)
 
 /obj/belly/macrophage
 	name = "capsid"
