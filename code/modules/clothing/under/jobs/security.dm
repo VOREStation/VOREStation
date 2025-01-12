@@ -26,6 +26,27 @@
 	siemens_coefficient = 0.9
 	rolled_sleeves = 0
 
+/obj/item/clothing/under/rank/security/aces
+	name = "ACE security undersuit"
+	desc = "A snug but comfortable undersuit with removable arm sleeves, originally developed for the ACE Security Group. Includes a wrist-mounted minicomp."
+	icon_state = "aces_undersuit"
+	item_state_slots = list(slot_r_hand_str = "black", slot_l_hand_str = "black")
+	armor = list(melee = 10, bullet = 0, laser = 0, energy = 0, bomb = 0, bio = 0, rad = 0)
+	siemens_coefficient = 0.9
+	rolled_sleeves = 0	//sleeves can be removed, but this disables the minicomp
+	rolled_down = -1	//can't be rolled down
+
+/obj/item/clothing/under/rank/security/aces/examine(mob/user)
+	. = ..()
+
+	if(!rolled_sleeves && Adjacent(user))	//can't see the comp if you've taken the sleeves off, or if you're not adjacent
+		. += "<span class='notice'>The minicomp reports that the current station time is [stationtime2text()] and that it is [stationdate2text()].</span>"
+		var/TB = src.loc.loc
+		if(istype(TB, /turf/simulated))	//no point returning atmospheric data from unsimulated tiles (they don't track pressure anyway, only temperature)
+			var/turf/simulated/T = TB
+			var/datum/gas_mixture/env = T.return_air()
+			. += "<span class='notice'>The minicomp reports the current atmospheric pressure: [env.return_pressure()]kPa, and temperature: [env.temperature]K </span>"
+
 /obj/item/clothing/under/rank/security/modern
 	name = "modernized security officer's jumpsuit"
 	desc = "A recent redesign of the classic Security jumpsuit, featuring sturdy materials, joint padding, one giant zipper, and tight-fitting synthleather."

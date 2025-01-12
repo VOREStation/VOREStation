@@ -1243,6 +1243,7 @@
 		/obj/item/clothing/under/rank/security2 = 5,
 		/obj/item/clothing/under/rank/security/turtleneck = 5,
 		/obj/item/clothing/under/rank/security/modern = 5,
+		/obj/item/clothing/under/rank/security/aces = 5,
 		/obj/item/clothing/under/rank/security/skirt = 5,
 		/obj/item/clothing/shoes/boots/jackboots = 5,
 		/obj/item/clothing/head/soft/sec = 5,
