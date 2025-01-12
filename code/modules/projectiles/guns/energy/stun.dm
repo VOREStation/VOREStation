@@ -25,7 +25,6 @@
 
 /obj/item/gun/energy/taser/mounted/cyborg
 	name = "taser gun"
-	charge_cost = 160
 	recharge_time = 7 //Time it takes for shots to recharge (in ticks)
 
 /*
