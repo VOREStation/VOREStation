@@ -15,7 +15,7 @@
 					if(matches)	matches += " and "
 					matches += "ID ([client.computer_id])"
 					if(!CONFIG_GET(flag/disable_cid_warn_popup))
-						tgui_alert_async(usr, "You appear to have logged in with another key this round, which is not permitted. Please contact an administrator if you believe this message to be in error.")
+						tgui_alert_async(src, "You appear to have logged in with another key this round, which is not permitted. Please contact an administrator if you believe this message to be in error.")
 				if(matches)
 					if(M.client)
 						message_admins("[span_red(span_bold("Notice:"))] [span_blue("[key_name_admin(src)] has the same [matches] as [key_name_admin(M)].")]", 1)

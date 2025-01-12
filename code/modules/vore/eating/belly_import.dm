@@ -1,19 +1,19 @@
 /datum/vore_look/proc/import_belly(mob/host)
-	var/panel_choice = tgui_input_list(usr, "Belly Import", "Pick an option", list("Import all bellies from VRDB","Import one belly from VRDB"))
+	var/panel_choice = tgui_input_list(host, "Belly Import", "Pick an option", list("Import all bellies from VRDB","Import one belly from VRDB"))
 	if(!panel_choice) return
 	var/pickOne = FALSE
 	if(panel_choice == "Import one belly from VRDB")
 		pickOne = TRUE
-	var/input_file = input(usr,"Please choose a valid VRDB file to import from.","Belly Import") as file
+	var/input_file = input(host,"Please choose a valid VRDB file to import from.","Belly Import") as file
 	var/input_data
 	try
 		input_data = json_decode(file2text(input_file))
 	catch(var/exception/e)
-		tgui_alert_async(usr, "The supplied file contains errors: [e]", "Error!")
+		tgui_alert_async(host, "The supplied file contains errors: [e]", "Error!")
 		return FALSE
 
 	if(!islist(input_data))
-		tgui_alert_async(usr, "The supplied file was not a valid VRDB file.", "Error!")
+		tgui_alert_async(host, "The supplied file was not a valid VRDB file.", "Error!")
 		return FALSE
 
 	var/list/valid_names = list()
@@ -35,11 +35,11 @@
 		valid_lists += list(raw_list)
 
 	if(length(valid_names) == 0)
-		tgui_alert_async(usr, "The supplied VRDB file does not contain any valid bellies.", "Error!")
+		tgui_alert_async(host, "The supplied VRDB file does not contain any valid bellies.", "Error!")
 		return FALSE
 
 	if(pickOne)
-		var/picked = tgui_input_list(usr, "Belly Import", "Which belly?", valid_names)
+		var/picked = tgui_input_list(host, "Belly Import", "Which belly?", valid_names)
 		if(!picked) return
 		for(var/B in valid_lists)
 			if(lowertext(picked) == lowertext(B["name"]))

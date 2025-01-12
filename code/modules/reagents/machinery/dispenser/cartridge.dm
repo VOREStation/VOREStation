@@ -51,13 +51,13 @@
 		label = ""
 		name = initial(name)
 
-/obj/item/reagent_containers/chem_disp_cartridge/attack_self()
+/obj/item/reagent_containers/chem_disp_cartridge/attack_self(mob/user)
 	..()
 	if (is_open_container())
-		to_chat(usr, span_notice("You put the cap on \the [src]."))
+		to_chat(user, span_notice("You put the cap on \the [src]."))
 		flags ^= OPENCONTAINER
 	else
-		to_chat(usr, span_notice("You take the cap off \the [src]."))
+		to_chat(user, span_notice("You take the cap off \the [src]."))
 		flags |= OPENCONTAINER
 
 /obj/item/reagent_containers/chem_disp_cartridge/afterattack(obj/target, mob/user , flag)

@@ -18,7 +18,7 @@
 	var/list/pages = list()  // Ordered list of pages as they are to be displayed. Can be different order than src.contents.
 
 
-/obj/item/paper_bundle/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/paper_bundle/attackby(obj/item/W, mob/user)
 	..()
 
 	if (istype(W, /obj/item/paper/carbon))
@@ -40,7 +40,7 @@
 		user.drop_from_inventory(W)
 		for(var/obj/O in W)
 			O.loc = src
-			O.add_fingerprint(usr)
+			O.add_fingerprint(user)
 			pages.Add(O)
 
 		to_chat(user, span_notice("You add \the [W.name] to [(src.name == "paper bundle") ? "the paper bundle" : src.name]."))
@@ -49,13 +49,13 @@
 		if(istype(W, /obj/item/tape_roll))
 			return 0
 		if(istype(W, /obj/item/pen))
-			usr << browse("", "window=[name]") //Closes the dialog
+			user << browse("", "window=[name]") //Closes the dialog
 		var/obj/P = pages[page]
 		P.attackby(W, user)
 
 	update_icon()
-	attack_self(usr) //Update the browsed page.
-	add_fingerprint(usr)
+	attack_self(user) //Update the browsed page.
+	add_fingerprint(user)
 	return
 
 /obj/item/paper_bundle/proc/insert_sheet_at(mob/user, var/index, obj/item/sheet)
@@ -103,7 +103,7 @@
 	else
 		. += span_notice("It is too far away.")
 
-/obj/item/paper_bundle/proc/show_content(mob/user as mob)
+/obj/item/paper_bundle/proc/show_content(mob/user)
 	var/dat
 	var/obj/item/W = pages[page]
 
@@ -125,7 +125,7 @@
 
 	if(istype(pages[page], /obj/item/paper))
 		var/obj/item/paper/P = W
-		if(!(ishuman(usr) || isobserver(usr) || issilicon(usr)))
+		if(!(ishuman(user) || isobserver(user) || issilicon(user)))
 			dat+= "<HTML><HEAD><TITLE>[P.name]</TITLE></HEAD><BODY>[stars(P.info)][P.stamps]</BODY></HTML>"
 		else
 			dat+= "<HTML><HEAD><TITLE>[P.name]</TITLE></HEAD><BODY>[P.info][P.stamps]</BODY></HTML>"
@@ -139,9 +139,9 @@
 		+ "[P.scribble ? "<div> Written on the back:<br><i>[P.scribble]</i>" : null]"\
 		+ "</body></html>", "window=[name]")
 
-/obj/item/paper_bundle/attack_self(mob/user as mob)
+/obj/item/paper_bundle/attack_self(mob/user)
 	src.show_content(user)
-	add_fingerprint(usr)
+	add_fingerprint(user)
 	update_icon()
 	return
 

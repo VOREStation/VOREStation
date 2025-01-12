@@ -26,7 +26,7 @@
 			var/obj/item/sniper_rifle_part/stock/stock = new(assembly)
 			assembly.stock = stock
 			assembly.part_count = 2
-			assembly.update_build()
+			assembly.update_build(user)
 			user.put_in_any_hand_if_possible(assembly) || assembly.dropInto(user.loc)
 			user.put_in_any_hand_if_possible(barrel) || barrel.dropInto(user.loc)
 
@@ -69,7 +69,7 @@
 	..()
 	trigger_group = src
 
-/obj/item/sniper_rifle_part/attack_self(mob/user as mob)
+/obj/item/sniper_rifle_part/attack_self(mob/user)
 	if(part_count == 1)
 		to_chat(user, span_warning("You can't disassemble this further!"))
 		return
@@ -90,7 +90,7 @@
 			user.put_in_any_hand_if_possible(P) || P.dropInto(loc)
 		P.part_count = 1
 
-	update_build()
+	update_build(user)
 
 /obj/item/sniper_rifle_part/attackby(var/obj/item/sniper_rifle_part/A as obj, mob/user as mob)
 
@@ -143,7 +143,7 @@
 	update_build(user)
 
 
-/obj/item/sniper_rifle_part/proc/update_build()
+/obj/item/sniper_rifle_part/proc/update_build(mob/user)
 	switch(part_count)
 		if(1)
 			name = initial(name)
@@ -163,10 +163,10 @@
 
 		if(3)
 			var/obj/item/gun/projectile/heavysniper/collapsible/gun = new (get_turf(src), 0)
-			if(usr && ishuman(usr))
-				var/mob/living/carbon/human/user = usr
-				user.unEquip(src, force=1)
-				user.put_in_any_hand_if_possible(gun) || gun.dropInto(loc)
+			if(user && ishuman(user))
+				var/mob/living/carbon/human/H = user
+				H.unEquip(src, force=1)
+				H.put_in_any_hand_if_possible(gun) || gun.dropInto(loc)
 			qdel(src)
 
 /obj/item/gun/projectile/heavysniper/update_icon()

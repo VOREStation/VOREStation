@@ -227,7 +227,7 @@
 				update_icon()
 
 
-/obj/machinery/injector_maker/proc/make_injector(var/size, var/amount, var/new_name, var/material, mob/user as mob)
+/obj/machinery/injector_maker/proc/make_injector(var/size, var/amount, var/new_name, var/material, mob/user)
 	if(!beaker)
 		return
 	var/amount_per_injector = null
@@ -238,7 +238,7 @@
 		if("large injector")
 			amount_per_injector = CLAMP(beaker.reagents.total_volume / amount, 0, 15)
 	if((size == "small injector" && amount_per_injector < 5) || size == "large injector" && amount_per_injector < 15)
-		proceed = tgui_alert(usr, "Heads up! Less than max volume per injector!\n Making [amount] [size](s) filled with [amount_per_injector] total reagent volume each!","Proceed?",list("No","Yes"))
+		proceed = tgui_alert(user, "Heads up! Less than max volume per injector!\n Making [amount] [size](s) filled with [amount_per_injector] total reagent volume each!","Proceed?",list("No","Yes"))
 	if(!proceed || proceed == "No" || !amount_per_injector)
 		return
 	for(var/i, i < amount, i++)

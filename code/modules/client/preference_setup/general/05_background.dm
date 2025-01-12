@@ -152,19 +152,19 @@
 		return TOPIC_REFRESH
 
 	else if(href_list["reset_medrecord"])
-		var/resetmed_choice = tgui_alert(usr, "Wipe your Medical Records? This cannot be reverted if you have not saved your character recently! You may wish to make a backup first.","Reset Records",list("Yes","No"))
+		var/resetmed_choice = tgui_alert(user, "Wipe your Medical Records? This cannot be reverted if you have not saved your character recently! You may wish to make a backup first.","Reset Records",list("Yes","No"))
 		if(resetmed_choice == "Yes")
 			pref.med_record = null
 		return TOPIC_REFRESH
 
 	else if(href_list["reset_emprecord"])
-		var/resetemp_choice = tgui_alert(usr, "Wipe your Employment Records? This cannot be reverted if you have not saved your character recently! You may wish to make a backup first.","Reset Records",list("Yes","No"))
+		var/resetemp_choice = tgui_alert(user, "Wipe your Employment Records? This cannot be reverted if you have not saved your character recently! You may wish to make a backup first.","Reset Records",list("Yes","No"))
 		if(resetemp_choice == "Yes")
 			pref.gen_record = null
 		return TOPIC_REFRESH
 
 	else if(href_list["reset_secrecord"])
-		var/resetsec_choice = tgui_alert(usr, "Wipe your Security Records? This cannot be reverted if you have not saved your character recently! You may wish to make a backup first.","Reset Records",list("Yes","No"))
+		var/resetsec_choice = tgui_alert(user, "Wipe your Security Records? This cannot be reverted if you have not saved your character recently! You may wish to make a backup first.","Reset Records",list("Yes","No"))
 		if(resetsec_choice == "Yes")
 			pref.sec_record = null
 		return TOPIC_REFRESH

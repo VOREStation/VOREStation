@@ -173,8 +173,8 @@
 	w_class = 2
 	attack_verb = list("drilled")
 
-/obj/item/pickaxe/excavationdrill/attack_self(mob/user as mob)
-	var/depth = tgui_input_number(usr, "Put the desired depth (1-30 centimeters).", "Set Depth", 30, 30, 1)
+/obj/item/pickaxe/excavationdrill/attack_self(mob/user)
+	var/depth = tgui_input_number(user, "Put the desired depth (1-30 centimeters).", "Set Depth", 30, 30, 1)
 	if(depth>30 || depth<1)
 		to_chat(user, span_notice("Invalid depth."))
 		return

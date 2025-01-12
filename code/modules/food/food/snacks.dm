@@ -57,9 +57,6 @@
 
 //Placeholder for effect that trigger on eating that aren't tied to reagents.
 /obj/item/reagent_containers/food/snacks/proc/On_Consume(var/mob/living/M)
-	if(!usr) // what
-		usr = M
-
 	if(food_inserted_micros && food_inserted_micros.len)
 		if(M.can_be_drop_pred && M.food_vore && M.vore_selected)
 			for(var/mob/living/F in food_inserted_micros)
@@ -82,11 +79,11 @@
 	if(!reagents.total_volume)
 		M.visible_message(span_notice("[M] finishes eating \the [src]."),span_notice("You finish eating \the [src]."))
 
-		usr.drop_from_inventory(src) // Drop food from inventory so it doesn't end up staying on the hud after qdel, and so inhands go away
+		M.drop_from_inventory(src) // Drop food from inventory so it doesn't end up staying on the hud after qdel, and so inhands go away
 
 		if(trash)
-			var/obj/item/TrashItem = new trash(usr)
-			usr.put_in_hands(TrashItem)
+			var/obj/item/TrashItem = new trash(M)
+			M.put_in_hands(TrashItem)
 		qdel(src)
 
 /obj/item/reagent_containers/food/snacks/attack_self(mob/user as mob)
@@ -843,7 +840,7 @@
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_EGG, 3)
 
-/obj/item/reagent_containers/food/snacks/egg/afterattack(obj/O as obj, mob/user as mob, proximity)
+/obj/item/reagent_containers/food/snacks/egg/afterattack(obj/O, mob/user, proximity)
 	if(istype(O,/obj/machinery/microwave))
 		return . = ..()
 	if(!(proximity && O.is_open_container()))
@@ -860,16 +857,16 @@
 	src.visible_message(span_red("[src.name] has been squashed."),span_red("You hear a smack."))
 	qdel(src)
 
-/obj/item/reagent_containers/food/snacks/egg/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/reagent_containers/food/snacks/egg/attackby(obj/item/W, mob/user)
 	if(istype( W, /obj/item/pen/crayon ))
 		var/obj/item/pen/crayon/C = W
 		var/clr = C.colourName
 
 		if(!(clr in list("blue","green","mime","orange","purple","rainbow","red","yellow")))
-			to_chat(usr, span_blue("The egg refuses to take on this color!"))
+			to_chat(user, span_blue("The egg refuses to take on this color!"))
 			return
 
-		to_chat(usr, span_blue("You color \the [src] [clr]"))
+		to_chat(user, span_blue("You color \the [src] [clr]"))
 		icon_state = "egg-[clr]"
 	else
 		. = ..()
@@ -1635,9 +1632,9 @@
 	. = ..()
 	unpopped = rand(1,10)
 
-/obj/item/reagent_containers/food/snacks/popcorn/On_Consume()
+/obj/item/reagent_containers/food/snacks/popcorn/On_Consume(mob/living/M)
 	if(prob(unpopped))	//lol ...what's the point?
-		to_chat(usr, span_red("You bite down on an un-popped kernel!"))
+		to_chat(M, span_red("You bite down on an un-popped kernel!"))
 		unpopped = max(0, unpopped-1)
 	. = ..()
 
@@ -3985,7 +3982,7 @@
 		if( src.open )
 			return
 
-		var/t = sanitize(input(usr, "Enter what you want to add to the tag:", "Write", null, null) as text, 30)
+		var/t = sanitize(input(user, "Enter what you want to add to the tag:", "Write", null, null) as text, 30)
 
 		var/obj/item/pizzabox/boxtotagto = src
 		if( boxes.len > 0 )

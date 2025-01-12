@@ -414,7 +414,7 @@
 	set category = "Abilities.Settings"
 
 	if(custom_name)
-		to_chat(usr, "You can't pick another custom name. [isshell(src) ? "" : "Go ask for a name change."]")
+		to_chat(src, "You can't pick another custom name. [isshell(src) ? "" : "Go ask for a name change."]")
 		return 0
 
 	var/newname = sanitizeSafe(tgui_input_text(src,"You are a robot. Enter a name, or leave blank for the default name.", "Name change","", MAX_NAME_LEN), MAX_NAME_LEN)
@@ -440,7 +440,7 @@
 	set name = "Toggle Lights"
 
 	lights_on = !lights_on
-	to_chat(usr, span_filter_notice("You [lights_on ? "enable" : "disable"] your integrated light."))
+	to_chat(src, span_filter_notice("You [lights_on ? "enable" : "disable"] your integrated light."))
 	handle_light()
 	update_icon()
 
@@ -448,7 +448,7 @@
 	set category = "Abilities.Silicon"
 	set name = "Toggle extras"
 	robotdecal_on = !robotdecal_on
-	to_chat(usr, span_filter_notice("You [robotdecal_on ? "enable" : "disable"] your extra apperances."))
+	to_chat(src, span_filter_notice("You [robotdecal_on ? "enable" : "disable"] your extra apperances."))
 	update_icon()
 
 /mob/living/silicon/robot/verb/spark_plug() //So you can still sparkle on demand without violence.
@@ -511,7 +511,7 @@
 	if(prob(75) && Proj.damage > 0) spark_system.start()
 	return 2
 
-/mob/living/silicon/robot/attackby(obj/item/W as obj, mob/user as mob)
+/mob/living/silicon/robot/attackby(obj/item/W, mob/user)
 	if (istype(W, /obj/item/handcuffs)) // fuck i don't even know why isrobot() in handcuff code isn't working so this will have to do
 		return
 
@@ -530,7 +530,7 @@
 					C.brute_damage = WC.brute
 					C.electronics_damage = WC.burn
 
-				to_chat(usr, span_notice("You install the [W.name]."))
+				to_chat(user, span_notice("You install the [W.name]."))
 
 				return
 
@@ -716,7 +716,7 @@
 		if(opened)
 			to_chat(user, span_filter_notice("You must close the cover to swipe an ID card."))
 		else
-			if(allowed(usr))
+			if(allowed(user))
 				locked = !locked
 				to_chat(user, span_filter_notice("You [ locked ? "lock" : "unlock"] [src]'s interface."))
 				update_icon()
@@ -726,21 +726,21 @@
 	else if(istype(W, /obj/item/borg/upgrade/))
 		var/obj/item/borg/upgrade/U = W
 		if(!opened)
-			to_chat(usr, span_filter_notice("You must access the borgs internals!"))
+			to_chat(user, span_filter_notice("You must access the borgs internals!"))
 		else if(!src.module && U.require_module)
-			to_chat(usr, span_filter_notice("The borg must choose a module before it can be upgraded!"))
+			to_chat(user, span_filter_notice("The borg must choose a module before it can be upgraded!"))
 		else if(user == src && istype(W,/obj/item/borg/upgrade/utility/reset))
-			to_chat(usr, span_warning("You are restricted from reseting your own module."))
+			to_chat(user, span_warning("You are restricted from reseting your own module."))
 		else if(U.locked)
-			to_chat(usr, span_filter_notice("The upgrade is locked and cannot be used yet!"))
+			to_chat(user, span_filter_notice("The upgrade is locked and cannot be used yet!"))
 		else
 			if(U.action(src))
-				to_chat(usr, span_filter_notice("You apply the upgrade to [src]!"))
-				usr.drop_item()
+				to_chat(user, span_filter_notice("You apply the upgrade to [src]!"))
+				user.drop_item()
 				U.loc = src
 				hud_used.update_robot_modules_display()
 			else
-				to_chat(usr, span_filter_notice("Upgrade error!"))
+				to_chat(user, span_filter_notice("Upgrade error!"))
 
 
 	else
@@ -798,10 +798,10 @@
 	set desc = "Allows to recolour once."
 
 	if(!has_recoloured)
-		var/datum/ColorMate/recolour = new /datum/ColorMate(usr)
-		recolour.tgui_interact(usr)
+		var/datum/ColorMate/recolour = new /datum/ColorMate(src)
+		recolour.tgui_interact(src)
 		return
-	to_chat(usr, "You've already recoloured yourself once. Ask for a module reset for another.")
+	to_chat(src, "You've already recoloured yourself once. Ask for a module reset for another.")
 
 /mob/living/silicon/robot/attack_hand(mob/user)
 	if(LAZYLEN(buckled_mobs))
@@ -1069,7 +1069,7 @@
 	set category = "Abilities.Silicon"
 	set desc = "Augment visual feed with internal sensor overlays."
 	sensor_type = !sensor_type //VOREStation Add
-	to_chat(usr, "You [sensor_type ? "enable" : "disable"] your sensors.") //VOREStation Add
+	to_chat(src, "You [sensor_type ? "enable" : "disable"] your sensors.") //VOREStation Add
 	toggle_sensor_mode()
 
 /mob/living/silicon/robot/proc/repick_laws()

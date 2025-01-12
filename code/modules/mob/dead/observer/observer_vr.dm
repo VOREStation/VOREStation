@@ -3,7 +3,7 @@
 	set name = "Join Into Soulcatcher"
 	set desc = "Select a player with a working NIF + Soulcatcher NIFSoft to join into it."
 
-	var/picked = tgui_input_list(usr, "Pick a friend with NIF and Soulcatcher to join into. Harrass strangers, get banned. Not everyone has a NIF w/ Soulcatcher.","Select a player", player_list)
+	var/picked = tgui_input_list(src, "Pick a friend with NIF and Soulcatcher to join into. Harrass strangers, get banned. Not everyone has a NIF w/ Soulcatcher.","Select a player", player_list)
 
 	//Didn't pick anyone or picked a null
 	if(!picked)
@@ -110,10 +110,10 @@
 	set desc = "Find an active ghost pod"
 	set popup_menu = FALSE
 
-	if(!isobserver(usr)) //Make sure they're an observer!
+	if(!isobserver(src)) //Make sure they're an observer!
 		return
 
-	var/input = tgui_input_list(usr, "Select a ghost pod:", "Ghost Jump", observe_list_format(active_ghost_pods))
+	var/input = tgui_input_list(src, "Select a ghost pod:", "Ghost Jump", observe_list_format(active_ghost_pods))
 	if(!input)
 		to_chat(src, span_filter_notice("No active ghost pods detected."))
 		return
@@ -137,7 +137,7 @@
 	set desc = "Find a Auto Resleever"
 	set popup_menu = FALSE
 
-	if(!isobserver(usr)) //Make sure they're an observer!
+	if(!isobserver(src)) //Make sure they're an observer!
 		return
 
 	var/list/ar = list()

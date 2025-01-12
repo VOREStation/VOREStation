@@ -23,14 +23,14 @@
 	// Prevents carrying of open laptops inhand.
 	// While they work inhand, i feel it'd make tablets lose some of their high-mobility advantage they have over laptops now.
 	if(!istype(loc, /turf/))
-		to_chat(usr, "\The [src] has to be on a stable surface first!")
+		to_chat(user, "\The [src] has to be on a stable surface first!")
 		return
 	//VOREStation Addition Begin
 	var/supported = FALSE
 	for(var/obj/structure/table/S in loc)
 		supported = TRUE
 	if(!supported && !anchored)
-		to_chat(usr, "You will need a better supporting surface before opening \the [src]!")
+		to_chat(user, "You will need a better supporting surface before opening \the [src]!")
 		return
 	//VOREStation Addition End
 	anchored = !anchored

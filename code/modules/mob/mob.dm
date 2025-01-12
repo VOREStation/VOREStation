@@ -326,8 +326,8 @@
 /mob/proc/update_flavor_text()
 	set src in usr
 	if(usr != src)
-		to_chat(usr, "No.")
-	var/msg = sanitize(tgui_input_text(usr,"Set the flavor text in your 'examine' verb.","Flavor Text",html_decode(flavor_text), multiline = TRUE, prevent_enter = TRUE), extra = 0)	//VOREStation Edit: separating out OOC notes
+		to_chat(src, "No.")
+	var/msg = sanitize(tgui_input_text(src,"Set the flavor text in your 'examine' verb.","Flavor Text",html_decode(flavor_text), multiline = TRUE, prevent_enter = TRUE), extra = 0)	//VOREStation Edit: separating out OOC notes
 
 	if(msg != null)
 		flavor_text = msg
@@ -391,16 +391,16 @@
 	set category = "OOC.Game"
 
 	if(stat != DEAD || !ticker)
-		to_chat(usr, span_boldnotice("You must be dead to use this!"))
+		to_chat(src, span_boldnotice("You must be dead to use this!"))
 		return
 
 	// Final chance to abort "respawning"
 	if(mind && timeofdeath) // They had spawned before
-		var/choice = tgui_alert(usr, "Returning to the menu will prevent your character from being revived in-round. Are you sure?", "Confirmation", list("No, wait", "Yes, leave"))
+		var/choice = tgui_alert(src, "Returning to the menu will prevent your character from being revived in-round. Are you sure?", "Confirmation", list("No, wait", "Yes, leave"))
 		if(!choice || choice == "No, wait")
 			return
 		else if(mind.assigned_role)
-			var/extra_check = tgui_alert(usr, "Do you want to Quit This Round before you return to lobby?\
+			var/extra_check = tgui_alert(src, "Do you want to Quit This Round before you return to lobby?\
 			This will properly remove you from manifest, as well as prevent resleeving. BEWARE: Pressing 'NO' will STILL return you to lobby!",
 			"Quit This Round",list("Quit Round","No"))
 			if(extra_check == "Quit Round")
@@ -444,19 +444,19 @@
 	// Beyond this point, you're going to respawn
 
 	if(!client)
-		log_game("[usr.key] AM failed due to disconnect.")
+		log_game("[src.key] AM failed due to disconnect.")
 		return
 	client.screen.Cut()
 	client.screen += client.void
 	if(!client)
-		log_game("[usr.key] AM failed due to disconnect.")
+		log_game("[src.key] AM failed due to disconnect.")
 		return
 
 	announce_ghost_joinleave(client, 0)
 
 	var/mob/new_player/M = new /mob/new_player()
 	if(!client)
-		log_game("[usr.key] AM failed due to disconnect.")
+		log_game("[src.key] AM failed due to disconnect.")
 		qdel(M)
 		return
 
@@ -480,7 +480,7 @@
 	if(client.holder && (client.holder.rights & R_ADMIN|R_EVENT))
 		is_admin = 1
 	else if(stat != DEAD || isnewplayer(src))
-		to_chat(usr, span_filter_notice("[span_blue("You must be observing to use this!")]"))
+		to_chat(src, span_filter_notice("[span_blue("You must be observing to use this!")]"))
 		return
 
 	if(is_admin && stat == DEAD)
@@ -500,7 +500,7 @@
 	var/eye_name = null
 
 	var/ok = "[is_admin ? "Admin Observe" : "Observe"]"
-	eye_name = tgui_input_list(usr, "Select something to [ok]:", "Select Target", targets)
+	eye_name = tgui_input_list(src, "Select something to [ok]:", "Select Target", targets)
 
 	if (!eye_name)
 		return
@@ -527,8 +527,8 @@
 		src << browse(null, t1)
 
 	if(href_list["flavor_more"])
-		usr << browse(text("<HTML><HEAD><TITLE>[]</TITLE></HEAD><BODY><TT>[]</TT></BODY></HTML>", name, replacetext(flavor_text, "\n", "<BR>")), text("window=[];size=500x200", name))
-		onclose(usr, "[name]")
+		src << browse(text("<HTML><HEAD><TITLE>[]</TITLE></HEAD><BODY><TT>[]</TT></BODY></HTML>", name, replacetext(flavor_text, "\n", "<BR>")), text("window=[];size=500x200", name))
+		onclose(src, "[name]")
 	if(href_list["flavor_change"])
 		update_flavor_text()
 	return ..()
@@ -661,7 +661,7 @@
 	return
 
 /mob/proc/is_active()
-	return (0 >= usr.stat)
+	return (0 >= src.stat)
 
 /mob/proc/is_dead()
 	return stat == DEAD
@@ -1001,9 +1001,9 @@
 	set_face_dir()
 
 	if(!facing_dir)
-		to_chat(usr, span_filter_notice("You are now not facing anything."))
+		to_chat(src, span_filter_notice("You are now not facing anything."))
 	else
-		to_chat(usr, span_filter_notice("You are now facing [dir2text(facing_dir)]."))
+		to_chat(src, span_filter_notice("You are now facing [dir2text(facing_dir)]."))
 
 /mob/proc/set_face_dir(var/newdir)
 	if(newdir == facing_dir)

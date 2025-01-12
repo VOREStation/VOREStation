@@ -61,7 +61,7 @@
 
 	switch(action)
 		if("toggle_power")
-			attempt_toggle_power(usr)
+			attempt_toggle_power(ui.user)
 			return TRUE
 		if("toggle_safety")
 			toggle_safety()

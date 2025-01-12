@@ -872,7 +872,7 @@
 
 /obj/item/fluff/injector/monkey/attack(mob/living/M, mob/living/user)
 
-	if(usr == M) //Is the person using it on theirself?
+	if(user == M) //Is the person using it on theirself?
 		if(ishuman(M)) //If so, monkify them.
 			var/mob/living/carbon/human/H = user
 			H.monkeyize()
@@ -886,7 +886,7 @@
 
 /obj/item/fluff/injector/numb_bite/attack(mob/living/M, mob/living/user)
 
-	if(usr == M) //Is the person using it on theirself?
+	if(user == M) //Is the person using it on theirself?
 		if(ishuman(M)) //Give them numbing bites.
 			var/mob/living/carbon/human/H = user
 			H.species.give_numbing_bite() //This was annoying, but this is the easiest way of performing it.

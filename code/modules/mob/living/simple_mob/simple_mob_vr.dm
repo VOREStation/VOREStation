@@ -418,7 +418,7 @@
 	if(last_special > world.time)
 		return
 
-	if(usr.incapacitated(INCAPACITATION_DISABLED))
+	if(src.incapacitated(INCAPACITATION_DISABLED))
 		to_chat(src, "You cannot leap in your current state.")
 		return
 

@@ -39,21 +39,21 @@
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 60, rad = 0)
 	var/hanging = 0
 
-/obj/item/clothing/mask/surgical/proc/adjust_mask(mob_user)
-	if(usr.canmove && !usr.stat)
+/obj/item/clothing/mask/surgical/proc/adjust_mask(mob/user)
+	if(user.canmove && !user.stat)
 		src.hanging = !src.hanging
 		if (src.hanging)
 			gas_transfer_coefficient = 1
 			body_parts_covered = body_parts_covered & ~FACE
 			armor = list(melee = 0, bullet = 0, laser = 0, energy = 0, bomb = 0, bio = 0, rad = 0)
 			icon_state = "steriledown"
-			to_chat(usr, "You pull the mask below your chin.")
+			to_chat(user, "You pull the mask below your chin.")
 		else
 			gas_transfer_coefficient = initial(gas_transfer_coefficient)
 			body_parts_covered = initial(body_parts_covered)
 			icon_state = initial(icon_state)
 			armor = initial(armor)
-			to_chat(usr, "You pull the mask up to cover your face.")
+			to_chat(user, "You pull the mask up to cover your face.")
 		update_clothing_icon()
 
 /obj/item/clothing/mask/surgical/verb/toggle()

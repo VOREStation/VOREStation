@@ -235,7 +235,7 @@
 	default_worn_icon = 'icons/mob/spacesuit.dmi'
 
 //Copy pasted most of this proc from base because I don't feel like rewriting the base proc with a shit load of exceptions
-/obj/item/rig/protean/attackby(obj/item/W as obj, mob/living/user as mob)
+/obj/item/rig/protean/attackby(obj/item/W, mob/living/user)
 	if(!istype(user))
 		return 0
 	if(dead)
@@ -339,7 +339,7 @@
 			to_chat(user, "There are no installed modules to remove.")
 			return
 
-		var/removal_choice = tgui_input_list(usr, "Which module would you like to remove?", "Removal Choice", possible_removals)
+		var/removal_choice = tgui_input_list(user, "Which module would you like to remove?", "Removal Choice", possible_removals)
 		if(!removal_choice)
 			return
 

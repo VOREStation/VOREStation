@@ -19,11 +19,11 @@
 			U.visible_message(span_notice("[U] [M.response_help] \the [M]."))
 
 //Jank grabber that uses the 'attack_hand' insead of 'MouseDrop'
-/mob/living/simple_mob/animal/passive/mouse/attack_hand(var/atom/over_object)
-	var/mob/living/carbon/human/H = over_object
+/mob/living/simple_mob/animal/passive/mouse/attack_hand(mob/user)
+	var/mob/living/carbon/human/H = user
 	if(holder_type && issmall(src) && istype(H) && !H.lying && Adjacent(H) && (src.a_intent == I_HELP && H.a_intent == I_HELP))
 		if(!issmall(H) || !ishuman(src))
-			get_scooped(H, (usr == src))
+			get_scooped(H, (H == src))
 		return
 	return ..()
 

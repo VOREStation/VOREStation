@@ -21,7 +21,7 @@
 
 	client?.start_thinking()
 	client?.start_typing()
-	var/message = tgui_input_text(usr, "Type your message:", "Say")
+	var/message = tgui_input_text(src, "Type your message:", "Say")
 	client?.stop_thinking()
 
 	if(message)
@@ -37,7 +37,7 @@
 
 	client?.start_thinking()
 	client?.start_typing()
-	var/message = tgui_input_text(usr, "Type your message:", "Emote", multiline = TRUE)
+	var/message = tgui_input_text(src, "Type your message:", "Emote", multiline = TRUE)
 	client?.stop_thinking()
 
 	if(message)
@@ -54,7 +54,7 @@
 	if(client?.prefs?.read_preference(/datum/preference/toggle/show_typing_indicator_subtle))
 		client?.start_thinking()
 		client?.start_typing()
-	var/message = tgui_input_text(usr, "Type your message:", "Whisper")
+	var/message = tgui_input_text(src, "Type your message:", "Whisper")
 	client?.stop_thinking()
 
 	if(message)
@@ -72,7 +72,7 @@
 	if(client?.prefs?.read_preference(/datum/preference/toggle/show_typing_indicator_subtle))
 		client?.start_thinking()
 		client?.start_typing()
-	var/message = tgui_input_text(usr, "Type your message:", "Subtle", multiline = TRUE)
+	var/message = tgui_input_text(src, "Type your message:", "Subtle", multiline = TRUE)
 	client?.stop_thinking()
 
 	if(message)

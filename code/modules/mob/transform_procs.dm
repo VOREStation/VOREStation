@@ -241,13 +241,13 @@
 	qdel(src)
 	return
 
-/mob/living/carbon/human/Animalize()
+/mob/living/carbon/human/Animalize(mob/user)
 
 	var/list/mobtypes = typesof(/mob/living/simple_mob)
-	var/mobpath = tgui_input_list(usr, "Which type of mob should [src] turn into?", "Choose a type", mobtypes)
+	var/mobpath = tgui_input_list(user, "Which type of mob should [src] turn into?", "Choose a type", mobtypes)
 
 	if(!safe_animal(mobpath))
-		to_chat(usr, span_red("Sorry but this mob type is currently unavailable."))
+		to_chat(user, span_red("Sorry but this mob type is currently unavailable."))
 		return
 
 	if(transforming)
@@ -275,13 +275,13 @@
 		qdel(src)
 	return
 
-/mob/proc/Animalize()
+/mob/proc/Animalize(mob/user)
 
 	var/list/mobtypes = typesof(/mob/living/simple_mob)
-	var/mobpath = tgui_input_list(usr, "Which type of mob should [src] turn into?", "Choose a type", mobtypes)
+	var/mobpath = tgui_input_list(user, "Which type of mob should [src] turn into?", "Choose a type", mobtypes)
 
 	if(!safe_animal(mobpath))
-		to_chat(usr, span_red("Sorry but this mob type is currently unavailable."))
+		to_chat(user, span_red("Sorry but this mob type is currently unavailable."))
 		return
 
 	var/mob/new_mob = new mobpath(src.loc)

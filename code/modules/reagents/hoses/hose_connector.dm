@@ -64,7 +64,7 @@
 				to_chat(user, span_notice("You connect one end of tubing to \the [AC]."))
 
 		else
-			var/choice = tgui_input_list(usr, "Select a target hose connector.", "Socket Selection", available_sockets)
+			var/choice = tgui_input_list(user, "Select a target hose connector.", "Socket Selection", available_sockets)
 
 			if(choice)
 				var/obj/item/hose_connector/CC = choice

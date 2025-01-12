@@ -276,4 +276,4 @@
 /obj/item/ammo_magazine/ammo_box/examine(mob/user)
 	. = ..()
 
-	. += to_chat(usr, span_notice("Alt-click to extract contents."))
+	. += to_chat(user, span_notice("Alt-click to extract contents."))

@@ -16,7 +16,7 @@
 	set category = "Special Verbs"
 	if(M.client)
 		if(M.client.buildmode)
-			log_admin("[key_name(usr)] has left build mode.")
+			log_admin("[key_name(M)] has left build mode.")
 			M.client.buildmode = 0
 			M.client.show_popup_menus = 1
 			M.plane_holder.set_vis(VIS_BUILDMODE, FALSE)
@@ -24,7 +24,7 @@
 				if(H.cl == M.client)
 					qdel(H)
 		else
-			log_admin("[key_name(usr)] has entered build mode.")
+			log_admin("[key_name(M)] has entered build mode.")
 			M.client.buildmode = 1
 			M.client.show_popup_menus = 0
 			M.plane_holder.set_vis(VIS_BUILDMODE, TRUE)

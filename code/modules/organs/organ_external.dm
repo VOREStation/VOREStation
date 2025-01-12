@@ -166,9 +166,9 @@
 		return //no eating the limb until everything's been removed
 	return ..()
 
-/obj/item/organ/external/examine()
+/obj/item/organ/external/examine(mob/user)
 	. = ..()
-	if(in_range(usr, src) || isobserver(usr))
+	if(in_range(user, src) || isobserver(user))
 		for(var/obj/item/I in contents)
 			if(istype(I, /obj/item/organ))
 				continue

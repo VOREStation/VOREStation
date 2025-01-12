@@ -25,18 +25,18 @@
 /obj/item/gun/energy/mouseray/attack_self(mob/user)
 	. = ..()
 	if(tf_allow_select)
-		pick_type()
+		pick_type(user)
 
-/obj/item/gun/energy/mouseray/proc/pick_type()
-	var/choice = tgui_input_list(usr, "Select a type to turn things into.", "[src.name]", tf_possible_types)
+/obj/item/gun/energy/mouseray/proc/pick_type(mob/user)
+	var/choice = tgui_input_list(user, "Select a type to turn things into.", "[src.name]", tf_possible_types)
 	if(!choice)
 		return
 	tf_type = tf_possible_types[choice]
-	to_chat(usr, span_notice("You selected [choice]."))
+	to_chat(user, span_notice("You selected [choice]."))
 
 /obj/item/gun/energy/mouseray/Fire(atom/target, mob/living/user, clickparams, pointblank, reflex)
 	if(world.time < cooldown)
-		to_chat(usr, span_warning("\The [src] isn't ready yet."))
+		to_chat(user, span_warning("\The [src] isn't ready yet."))
 		return
 	. = ..()
 
@@ -428,7 +428,7 @@
 
 /obj/item/gun/energy/mouseray/metamorphosis/advanced/random/Fire(atom/target, mob/living/user, clickparams, pointblank, reflex)
 	if(world.time < cooldown)
-		to_chat(usr, span_warning("\The [src] isn't ready yet."))
+		to_chat(user, span_warning("\The [src] isn't ready yet."))
 		return
 	var/choice = pick(tf_possible_types)
 	tf_type = tf_possible_types[choice]

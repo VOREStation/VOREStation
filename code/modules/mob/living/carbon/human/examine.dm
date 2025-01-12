@@ -298,7 +298,7 @@
 		if((stat == 2 || src.losebreath) && get_dist(user, src) <= 3)
 			msg += span_warning("[T.He] [T.does] not appear to be breathing.")
 		if(ishuman(user) && !user.stat && Adjacent(user))
-			user.visible_message(span_infoplain(span_bold("[usr]") + " checks [src]'s pulse."), span_infoplain("You check [src]'s pulse."))
+			user.visible_message(span_infoplain(span_bold("[user]") + " checks [src]'s pulse."), span_infoplain("You check [src]'s pulse."))
 		spawn(15)
 			if(isobserver(user) || (Adjacent(user) && !user.stat)) // If you're a corpse then you can't exactly check their pulse, but ghosts can see anything
 				if(pulse == PULSE_NONE)

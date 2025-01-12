@@ -263,23 +263,23 @@ GLOBAL_LIST_EMPTY(vending_products)
 /**
  *  Receive payment with cashmoney.
  *
- *  usr is the mob who gets the change.
+ *  user is the mob who gets the change.
  */
 /obj/machinery/vending/proc/pay_with_cash(var/obj/item/spacecash/cashmoney, mob/user)
 	if(currently_vending.price > cashmoney.worth)
 
 		// This is not a status display message, since it's something the character
 		// themselves is meant to see BEFORE putting the money in
-		to_chat(usr, "[icon2html(cashmoney, user.client)] " + span_warning("That is not enough money."))
+		to_chat(user, "[icon2html(cashmoney, user.client)] " + span_warning("That is not enough money."))
 		return 0
 
 	if(istype(cashmoney, /obj/item/spacecash))
 
-		visible_message(span_info("\The [usr] inserts some cash into \the [src]."))
+		visible_message(span_info("\The [user] inserts some cash into \the [src]."))
 		cashmoney.worth -= currently_vending.price
 
 		if(cashmoney.worth <= 0)
-			usr.drop_from_inventory(cashmoney)
+			user.drop_from_inventory(cashmoney)
 			qdel(cashmoney)
 		else
 			cashmoney.update_icon()
@@ -298,7 +298,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 	visible_message(span_info("\The [user] swipes \the [wallet] through \the [src]."))
 	playsound(src, 'sound/machines/id_swipe.ogg', 50, 1)
 	if(currently_vending.price > wallet.worth)
-		to_chat(usr, span_warning("Insufficient funds on chargecard."))
+		to_chat(user, span_warning("Insufficient funds on chargecard."))
 		return 0
 	else
 		wallet.worth -= currently_vending.price

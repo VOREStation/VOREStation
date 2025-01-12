@@ -12,13 +12,13 @@
 		var/sayselect = tgui_alert(src, "Which say-verb do you wish to customize?", "Select Verb", list("Say","Whisper","Ask (?)","Exclaim/Shout/Yell (!)","Cancel"))
 
 		if(sayselect == "Say")
-			custom_say =  lowertext(sanitize(tgui_input_text(usr, "This word or phrase will appear instead of 'says': [src] says, \"Hi.\"", "Custom Say", null)))
+			custom_say =  lowertext(sanitize(tgui_input_text(src, "This word or phrase will appear instead of 'says': [src] says, \"Hi.\"", "Custom Say", null)))
 		else if(sayselect == "Whisper")
-			custom_whisper =  lowertext(sanitize(tgui_input_text(usr, "This word or phrase will appear instead of 'whispers': [src] whispers, \"Hi...\"", "Custom Whisper", null)))
+			custom_whisper =  lowertext(sanitize(tgui_input_text(src, "This word or phrase will appear instead of 'whispers': [src] whispers, \"Hi...\"", "Custom Whisper", null)))
 		else if(sayselect == "Ask (?)")
-			custom_ask =  lowertext(sanitize(tgui_input_text(usr, "This word or phrase will appear instead of 'asks': [src] asks, \"Hi?\"", "Custom Ask", null)))
+			custom_ask =  lowertext(sanitize(tgui_input_text(src, "This word or phrase will appear instead of 'asks': [src] asks, \"Hi?\"", "Custom Ask", null)))
 		else if(sayselect == "Exclaim/Shout/Yell (!)")
-			custom_exclaim =  lowertext(sanitize(tgui_input_text(usr, "This word or phrase will appear instead of 'exclaims', 'shouts' or 'yells': [src] exclaims, \"Hi!\"", "Custom Exclaim", null)))
+			custom_exclaim =  lowertext(sanitize(tgui_input_text(src, "This word or phrase will appear instead of 'exclaims', 'shouts' or 'yells': [src] exclaims, \"Hi!\"", "Custom Exclaim", null)))
 		else
 			return
 
@@ -29,63 +29,63 @@
 
 	if(usr != src)
 		return
-	var/new_metadata = strip_html_simple(tgui_input_text(usr, "Enter any information you'd like others to see, such as Roleplay-preferences. This will not be saved permanently unless you click save in the OOC notes panel!", "Game Preference" , html_decode(ooc_notes), multiline = TRUE,  prevent_enter = TRUE))
-	if(new_metadata && CanUseTopic(usr))
+	var/new_metadata = strip_html_simple(tgui_input_text(src, "Enter any information you'd like others to see, such as Roleplay-preferences. This will not be saved permanently unless you click save in the OOC notes panel!", "Game Preference" , html_decode(ooc_notes), multiline = TRUE,  prevent_enter = TRUE))
+	if(new_metadata && CanUseTopic(src))
 		ooc_notes = new_metadata
 		client.prefs.update_preference_by_type(/datum/preference/text/living/ooc_notes, new_metadata)
-		to_chat(usr, span_filter_notice("OOC notes updated. Don't forget to save!"))
-		log_admin("[key_name(usr)] updated their OOC notes mid-round.")
-		ooc_notes_window(usr)
+		to_chat(src, span_filter_notice("OOC notes updated. Don't forget to save!"))
+		log_admin("[key_name(src)] updated their OOC notes mid-round.")
+		ooc_notes_window(src)
 		set_metainfo_likes(FALSE)
 		set_metainfo_dislikes(FALSE)
 
 /mob/living/proc/set_metainfo_panel()
 	if(usr != src)
 		return
-	var/new_metadata = strip_html_simple(tgui_input_text(usr, "Enter any information you'd like others to see, such as Roleplay-preferences. This will not be saved permanently unless you click save in the OOC notes panel!", "Game Preference" , html_decode(ooc_notes), multiline = TRUE,  prevent_enter = TRUE))
-	if(new_metadata && CanUseTopic(usr))
+	var/new_metadata = strip_html_simple(tgui_input_text(src, "Enter any information you'd like others to see, such as Roleplay-preferences. This will not be saved permanently unless you click save in the OOC notes panel!", "Game Preference" , html_decode(ooc_notes), multiline = TRUE,  prevent_enter = TRUE))
+	if(new_metadata && CanUseTopic(src))
 		ooc_notes = new_metadata
 		client.prefs.update_preference_by_type(/datum/preference/text/living/ooc_notes, new_metadata)
-		to_chat(usr, span_filter_notice("OOC notes updated. Don't forget to save!"))
-		log_admin("[key_name(usr)] updated their OOC notes mid-round.")
-		ooc_notes_window(usr)
+		to_chat(src, span_filter_notice("OOC notes updated. Don't forget to save!"))
+		log_admin("[key_name(src)] updated their OOC notes mid-round.")
+		ooc_notes_window(src)
 
 /mob/living/proc/set_metainfo_likes(var/reopen = TRUE)
 	if(usr != src)
 		return
-	var/new_metadata = strip_html_simple(tgui_input_text(usr, "Enter any information you'd like others to see relating to your LIKED roleplay preferences. This will not be saved permanently unless you click save in the OOC notes panel! Type \"!clear\" to empty.", "Game Preference" , html_decode(ooc_notes_likes), multiline = TRUE,  prevent_enter = TRUE))
-	if(new_metadata && CanUseTopic(usr))
+	var/new_metadata = strip_html_simple(tgui_input_text(src, "Enter any information you'd like others to see relating to your LIKED roleplay preferences. This will not be saved permanently unless you click save in the OOC notes panel! Type \"!clear\" to empty.", "Game Preference" , html_decode(ooc_notes_likes), multiline = TRUE,  prevent_enter = TRUE))
+	if(new_metadata && CanUseTopic(src))
 		if(new_metadata == "!clear")
 			new_metadata = ""
 		ooc_notes_likes = new_metadata
 		client.prefs.update_preference_by_type(/datum/preference/text/living/ooc_notes_likes, new_metadata)
-		to_chat(usr, span_filter_notice("OOC note likes have been updated. Don't forget to save!"))
-		log_admin("[key_name(usr)] updated their OOC note likes mid-round.")
+		to_chat(src, span_filter_notice("OOC note likes have been updated. Don't forget to save!"))
+		log_admin("[key_name(src)] updated their OOC note likes mid-round.")
 		if(reopen)
-			ooc_notes_window(usr)
+			ooc_notes_window(src)
 
 /mob/living/proc/set_metainfo_dislikes(var/reopen = TRUE)
 	if(usr != src)
 		return
-	var/new_metadata = strip_html_simple(tgui_input_text(usr, "Enter any information you'd like others to see relating to your DISLIKED roleplay preferences. This will not be saved permanently unless you click save in the OOC notes panel! Type \"!clear\" to empty.", "Game Preference" , html_decode(ooc_notes_dislikes), multiline = TRUE,  prevent_enter = TRUE))
-	if(new_metadata && CanUseTopic(usr))
+	var/new_metadata = strip_html_simple(tgui_input_text(src, "Enter any information you'd like others to see relating to your DISLIKED roleplay preferences. This will not be saved permanently unless you click save in the OOC notes panel! Type \"!clear\" to empty.", "Game Preference" , html_decode(ooc_notes_dislikes), multiline = TRUE,  prevent_enter = TRUE))
+	if(new_metadata && CanUseTopic(src))
 		if(new_metadata == "!clear")
 			new_metadata = ""
 		ooc_notes_dislikes = new_metadata
 		client.prefs.update_preference_by_type(/datum/preference/text/living/ooc_notes_dislikes, new_metadata)
-		to_chat(usr, span_filter_notice("OOC note dislikes have been updated. Don't forget to save!"))
-		log_admin("[key_name(usr)] updated their OOC note dislikes mid-round.")
+		to_chat(src, span_filter_notice("OOC note dislikes have been updated. Don't forget to save!"))
+		log_admin("[key_name(src)] updated their OOC note dislikes mid-round.")
 		if(reopen)
-			ooc_notes_window(usr)
+			ooc_notes_window(src)
 
 /mob/living/proc/save_ooc_panel()
 	if(usr != src)
 		return
 	if(client.prefs.real_name != real_name)
-		to_chat(usr, span_danger("Your selected character slot name is not the same as your character's name. Aborting save. Please select [real_name]'s character slot in character setup before saving."))
+		to_chat(src, span_danger("Your selected character slot name is not the same as your character's name. Aborting save. Please select [real_name]'s character slot in character setup before saving."))
 		return
 	if(client.prefs.save_character())
-		to_chat(usr, span_filter_notice("Character preferences saved."))
+		to_chat(src, span_filter_notice("Character preferences saved."))
 
 /mob/living/proc/print_ooc_notes_to_chat()
 	if(!ooc_notes)
@@ -95,7 +95,7 @@
 		msg += "<br><br><b>LIKES</b><br><br>[ooc_notes_likes]"
 	if(ooc_notes_dislikes)
 		msg += "<br><br><b>DISLIKES</b><br><br>[ooc_notes_dislikes]"
-	to_chat(usr, span_chatexport("[src]'s Metainfo:<br>[msg]"))
+	to_chat(src, span_chatexport("[src]'s Metainfo:<br>[msg]"))
 
 /mob/living/verb/set_custom_link()
 	set name = "Set Custom Link"
@@ -104,15 +104,15 @@
 
 	if(usr != src)
 		return
-	var/new_link = strip_html_simple(tgui_input_text(usr, "Enter a link to add on to your examine text! This should be a related image link/gallery, or things like your F-list. This is not the place for memes.", "Custom Link" , html_decode(custom_link), max_length = 100, encode = TRUE,  prevent_enter = TRUE))
-	if(new_link && CanUseTopic(usr))
+	var/new_link = strip_html_simple(tgui_input_text(src, "Enter a link to add on to your examine text! This should be a related image link/gallery, or things like your F-list. This is not the place for memes.", "Custom Link" , html_decode(custom_link), max_length = 100, encode = TRUE,  prevent_enter = TRUE))
+	if(new_link && CanUseTopic(src))
 		if(length(new_link) > 100)
-			to_chat(usr, span_warning("Your entry is too long, it must be 100 characters or less."))
+			to_chat(src, span_warning("Your entry is too long, it must be 100 characters or less."))
 			return
 
 		custom_link = new_link
-		to_chat(usr, span_notice("Link set: [custom_link]"))
-		log_admin("[usr]/[usr.ckey] set their custom link to [custom_link]")
+		to_chat(src, span_notice("Link set: [custom_link]"))
+		log_admin("[src]/[src.ckey] set their custom link to [custom_link]")
 
 /mob/living/verb/set_voice_freq()
 	set name = "Set Voice Frequency"
@@ -141,7 +141,7 @@
 	set category = "OOC.Game Settings"
 
 	var/list/possible_voice_types = get_talk_sound()
-	var/choice = tgui_input_list(usr, "Which set of sounds would you like to use for your character's speech sounds?", "Voice Sounds", possible_voice_types)
+	var/choice = tgui_input_list(src, "Which set of sounds would you like to use for your character's speech sounds?", "Voice Sounds", possible_voice_types)
 	if(!choice)
 		voice_sounds_list = talk_sound
 	voice_sounds_list = get_talk_sound(choice)

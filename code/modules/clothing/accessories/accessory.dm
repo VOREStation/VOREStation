@@ -104,7 +104,7 @@
 		has_gloves.punch_force = initial(has_gloves.punch_force)
 	has_suit = null
 	if(user)
-		usr.put_in_hands(src)
+		user.put_in_hands(src)
 		add_fingerprint(user)
 	else if(get_turf(src))		//We actually exist in space
 		forceMove(get_turf(src))
@@ -114,7 +114,7 @@
 	..()
 
 //default attack_hand behaviour
-/obj/item/clothing/accessory/attack_hand(mob/user as mob)
+/obj/item/clothing/accessory/attack_hand(mob/user)
 	if(has_suit)
 		return	//we aren't an object on the ground so don't call parent
 	..()

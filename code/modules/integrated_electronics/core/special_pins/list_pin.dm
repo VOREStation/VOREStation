@@ -53,7 +53,7 @@
 		to_chat(user, span_warning("The list is empty, there's nothing to remove."))
 		return
 	if(!target_entry)
-		target_entry = tgui_input_list(usr, "Which piece of data do you want to remove?", "Remove", my_list)
+		target_entry = tgui_input_list(user, "Which piece of data do you want to remove?", "Remove", my_list)
 	if(target_entry)
 		my_list.Remove(target_entry)
 
@@ -63,7 +63,7 @@
 		to_chat(user, span_warning("The list is empty, there's nothing to modify."))
 		return
 	if(!target_entry)
-		target_entry = tgui_input_list(usr, "Which piece of data do you want to edit?", "Edit", my_list)
+		target_entry = tgui_input_list(user, "Which piece of data do you want to edit?", "Edit", my_list)
 	if(target_entry)
 		var/edited_entry = ask_for_data_type(user, target_entry)
 		if(edited_entry)
@@ -88,11 +88,11 @@
 		to_chat(user, span_warning("The list is empty, or too small to do any meaningful swapping."))
 		return
 	if(!first_target)
-		first_target = tgui_input_list(usr, "Which piece of data do you want to swap? (1)", "Swap", my_list)
+		first_target = tgui_input_list(user, "Which piece of data do you want to swap? (1)", "Swap", my_list)
 
 	if(first_target)
 		if(!second_target)
-			second_target = tgui_input_list(usr, "Which piece of data do you want to swap? (2)", "Swap", my_list - first_target)
+			second_target = tgui_input_list(user, "Which piece of data do you want to swap? (2)", "Swap", my_list - first_target)
 
 		if(second_target)
 			var/first_pos = my_list.Find(first_target)

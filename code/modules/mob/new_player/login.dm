@@ -33,7 +33,7 @@ var/obj/effect/lobby_image = new /obj/effect/lobby_image
 		to_chat(src, examine_block("<div class=\"motd\">[join_motd]</div>"))
 
 	if(has_respawned)
-		to_chat(usr, CONFIG_GET(string/respawn_message))
+		to_chat(src, CONFIG_GET(string/respawn_message))
 		has_respawned = FALSE
 
 	if(!mind)
