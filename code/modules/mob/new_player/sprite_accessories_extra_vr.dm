@@ -426,6 +426,20 @@
 	color_blend_mode = ICON_MULTIPLY
 	body_parts = list(BP_L_FOOT,BP_R_FOOT)
 
+/datum/sprite_accessory/marking/vr_topscars
+	name = "Top surgery scars"
+	icon = 'icons/mob/human_races/markings_vr.dmi'
+	icon_state = "topscars"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_TORSO)
+
+/datum/sprite_accessory/marking/vr_body_tonage
+	name = "Body tonage"
+	icon = 'icons/mob/human_races/markings_vr.dmi'
+	icon_state = "tonage"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_TORSO)
+
 /datum/sprite_accessory/marking/vr_body_tone
 	name = "Body toning (for emergency contrast loss)"
 	icon = 'icons/mob/human_races/markings_vr.dmi'
@@ -482,6 +496,34 @@
 	color_blend_mode = ICON_MULTIPLY
 	body_parts = list(BP_L_FOOT,BP_L_LEG)
 //END TODO
+
+/datum/sprite_accessory/marking/vr_gradient_rarm
+	name = "Gradient (right arm)"
+	icon = 'icons/mob/human_races/markings_vr.dmi'
+	icon_state = "gradient"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_R_ARM,BP_R_HAND)
+
+/datum/sprite_accessory/marking/vr_gradient_larm
+	name = "Gradient (left arm)"
+	icon = 'icons/mob/human_races/markings_vr.dmi'
+	icon_state = "gradient"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_L_ARM,BP_L_HAND)
+
+/datum/sprite_accessory/marking/vr_gradient_rleg
+	name = "Gradient (right leg)"
+	icon = 'icons/mob/human_races/markings_vr.dmi'
+	icon_state = "gradient"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_R_FOOT,BP_R_LEG)
+
+/datum/sprite_accessory/marking/vr_gradient_lleg
+	name = "Gradient (left leg)"
+	icon = 'icons/mob/human_races/markings_vr.dmi'
+	icon_state = "gradient"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_L_FOOT,BP_L_LEG)
 
 /datum/sprite_accessory/marking/vr_animeeyesinner
 	name = "Anime Eyes Inner"
@@ -1298,3 +1340,15 @@
 	icon_state = "digi_inner"
 	color_blend_mode = ICON_MULTIPLY
 	body_parts = list(BP_L_LEG,BP_R_LEG)
+
+/datum/sprite_accessory/marking/digi/gradientleft
+	name = "Digitigrade Gradient Left (Only works with digitigrade legs)"
+	icon_state = "gradient"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_L_LEG,BP_L_FOOT)
+
+/datum/sprite_accessory/marking/digi/gradientright
+	name = "Digitigrade Gradient Right (Only works with digitigrade legs)"
+	icon_state = "gradient"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_R_LEG,BP_R_FOOT)
