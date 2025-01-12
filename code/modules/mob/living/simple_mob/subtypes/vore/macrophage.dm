@@ -56,6 +56,8 @@
 	name = "Giant Germ"
 	desc = "An incredibly huge virus!"
 
+	size_multiplier = 1.5
+
 	maxHealth = 40
 	health = 40
 
