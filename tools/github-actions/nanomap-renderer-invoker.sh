@@ -98,9 +98,9 @@ fi
 echo "Starting image resizing..."
 cd data/minimaps
 
-#Resize images to proper size and move them to the correct place
+#Resize images to proper size and copy them to the correct place
 for map in ./*.png; do
-	j=$(echo $map | sed -n "s/^\.\/\(.*\)-\([0-9]*\)\-1.png$/\1_nanomap_z\2.png/p")
-	echo "Resizing $map and moving to icons/_nanomaps/$j"
+	j=$(echo $map | sed -nE "s/^\.\/([^-]*)(-[^1-9]*)?([1-9][0-9]*)(.*)-1\.png$/\1_nanomap_z\3.png/p")
+	echo "Resizing $map and copying to icons/_nanomaps/$j"
 	convert $map -resize 2240x2240 "$BASEDIR/icons/_nanomaps/$j"
 done
