@@ -1,12 +1,13 @@
+/// Verified to work with the Artifact Harvester
 /datum/artifact_effect/feysight
-	name = "feysight"
-	effect_type = EFFECT_PSIONIC
+	name = "Fey Sight"
+	effect_type = EFFECT_FEYSIGHT
 
 	effect_state = "pulsing"
 	effect_color = "#00c763"
 
 /datum/artifact_effect/feysight/proc/apply_modifier(var/mob/living/L)
-	if(!istype(L))
+	if(!isliving(L))
 		return FALSE
 
 	if(!L.is_sentient())

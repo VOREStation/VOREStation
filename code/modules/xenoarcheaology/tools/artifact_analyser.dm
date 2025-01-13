@@ -5,6 +5,7 @@
 	icon_state = "isolator"
 	anchored = TRUE
 	density = TRUE
+	bubble_icon = "science"
 	var/scan_in_progress = 0
 	var/scan_num = 0
 	var/obj/scanned_obj

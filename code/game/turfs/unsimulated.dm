@@ -29,3 +29,6 @@
 
 /turf/unsimulated/rcd_act(mob/living/user, obj/item/rcd/the_rcd, passed_mode)
 	return FALSE
+
+/turf/unsimulated/occult_act(mob/living/user)
+	return FALSE

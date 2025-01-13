@@ -63,12 +63,6 @@
 		to_chat(user, span_notice("You finish [P.drill_verb] [src]."))
 		excavation_level += P.excavation_amount
 
-		if(excavation_level > 100)
-			//failure
-			user.visible_message(span_warning("\The [src] suddenly crumbles away."), span_warning("\The [src] has disintegrated under your onslaught, any secrets it was holding are long gone."))
-			qdel(src)
-			return
-
 		if(prob(excavation_level))
 			//success
 			if(artifact_find)

@@ -1,21 +1,28 @@
-
+/// Modified to work with the Artifact Harvester
 /datum/artifact_effect/vampire
-	name = "vampire"
-	effect_type = EFFECT_ORGANIC
+	name = "Cultic Vampirism"
+	effect_type = EFFECT_VAMPIRE
 	var/last_bloodcall = 0
 	var/bloodcall_interval = 50
 	var/last_eat = 0
 	var/eat_interval = 100
 	var/charges = 0
 	var/list/nearby_mobs = list()
+	var/harvested = FALSE
 
 	effect_state = "gravisphere"
 	effect_color = "#ff0000"
 
 /datum/artifact_effect/vampire/proc/bloodcall(var/mob/living/carbon/human/M)
 	var/atom/holder = get_master_holder()
+	if(istype(holder, /obj/item/anobattery))
+		holder = holder.loc
+		eat_interval = 10 //If we're in an artifact just CRUNCH through those blood piles!
+		harvested = 1 //We're in a harvester. We need special handling for this.
+	if(isliving(holder.loc))
+		holder = holder.loc
 	last_bloodcall = world.time
-	if(istype(M))
+	if(ishuman(M))
 		playsound(holder, pick('sound/hallucinations/wail.ogg','sound/hallucinations/veryfar_noise.ogg','sound/hallucinations/far_noise.ogg'), 50, 1, -3)
 
 		var/target = pick(M.organs_by_name)
@@ -27,14 +34,25 @@
 		B.target_turf = pick(RANGE_TURFS(1, holder))
 		B.blood_DNA = list()
 		B.blood_DNA[M.dna.unique_enzymes] = M.dna.b_type
-		M.remove_blood(rand(10,30))
+		var/blood_to_remove = (rand(10,30))
+		M.remove_blood(blood_to_remove)
+		if(harvested)
+			charges += blood_to_remove/10 //Anywhere from 1 to 3 charges based on how much it sucks, plus the extra blood puddle.. This means you can reasonably get things from the harvested variant.
+			/// In testing, (with it set to effect = 1 aka AURA, it got ~18 charges with 300 anobattery usage, 22% blood loss from the person being drained, and 41 damage to them (plus the resulting 20 oxyloss from low blood)
+			/// I feel like 22% blood loss and 41 damage is a good exchange for 18 charges. If this seems to be too strong later down the line, just  change that /10 above to a /15 (33% less per blood) or /20 (50% less per blood)
 
 /datum/artifact_effect/vampire/DoEffectTouch(var/mob/user)
-	bloodcall(user)
+	if(world.time - bloodcall_interval*2 > last_bloodcall) //The artifact harvester works by having you massively targeted if you use it as a 'on touch' artifact.
+		bloodcall(user) // Due to such, things like the 'harm artifact' will just annihilate you if you set it high enough. This will also annihilate you, but it feels really cheesey, so let's not do that, as DoEffectTouch calls DoEffectAura already.
+		// Additionally, it requires the *2 or it will ALWAYS target the person who activated it
 	DoEffectAura()
 
 /datum/artifact_effect/vampire/DoEffectAura()
 	var/atom/holder = get_master_holder()
+	if(istype(holder, /obj/item/anobattery))
+		holder = holder.loc
+	if(isliving(holder.loc))
+		holder = holder.loc
 	if(nearby_mobs.len)
 		nearby_mobs.Cut()
 	var/turf/T = get_turf(holder)
@@ -62,9 +80,9 @@
 
 			qdel(B)
 
-	if(charges >= 10)
+	if(charges >= 10) //Listen, if you have INTENTIONALLY FED THE SPOOKY, SCARY ARTIFACT THAT IS DRAINING YOUR BLOOD, then go ahead and have your spooky reward.
 		charges -= 10
-		var/manifestation = pick(/obj/item/soulstone, /mob/living/simple_mob/faithless/cult/strong, /mob/living/simple_mob/creature/cult/strong, /mob/living/simple_mob/animal/space/bats/cult/strong)
+		var/manifestation = pick(/obj/item/soulstone, /obj/item/melee/artifact_blade, /obj/item/book/tome, /obj/item/clothing/head/helmet/space/cult, /obj/item/clothing/suit/space/cult, /obj/structure/constructshell)
 		new manifestation(pick(RANGE_TURFS(1,T)))
 
 	if(charges >= 3)
