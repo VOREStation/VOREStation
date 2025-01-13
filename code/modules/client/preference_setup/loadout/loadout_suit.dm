@@ -719,11 +719,11 @@
 	..()
 	gear_tweaks += gear_tweak_free_color_choice
 
-/datum/gear/suit/miscellaneous/kimono
+/datum/gear/suit/miscellaneous/kimono_select
 	display_name = "kimono selection"
 	path = /obj/item/clothing/suit/kimono/red
 
-/datum/gear/suit/miscellaneous/kimono/New()
+/datum/gear/suit/miscellaneous/kimono_select/New()
 	..()
 	var/list/kimonos = list(
 	"Red kimono" = /obj/item/clothing/suit/kimono/red,
