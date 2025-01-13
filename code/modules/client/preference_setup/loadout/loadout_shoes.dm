@@ -45,6 +45,14 @@
 	..()
 	gear_tweaks += gear_tweak_free_color_choice
 
+/datum/gear/shoes/jackboots_white
+	display_name = "jackboots, white"
+	path = /obj/item/clothing/shoes/boots/jackboots/white
+
+/datum/gear/shoes/jackboots_silver
+	display_name = "jackboots, silver"
+	path = /obj/item/clothing/shoes/boots/jackboots/silver
+
 /datum/gear/shoes/workboots
 	display_name = "workboots"
 	path = /obj/item/clothing/shoes/boots/workboots
