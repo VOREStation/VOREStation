@@ -310,7 +310,6 @@
 	var/amount
 	var/inserted = 0
 	var/current = 0
-	var/old_loc = S.loc
 	for(var/obj/item/stack/material/S2 in contents)
 		current += S2.get_amount()
 	if(capacity < current + S.get_amount())//If the stack will fill it up
@@ -327,15 +326,14 @@
 			break
 
 	if(!inserted)
-		usr.remove_from_mob(S)
-		if (usr.client && usr.s_active != src)
-			usr.client.screen -= S
-		S.dropped(usr)
 		if(capacity < current + S.get_amount())
 			var/obj/item/stack/F = S.split(amount)
-			S.forceMove(old_loc)
 			F.loc = src
 		else
+			usr.remove_from_mob(S)
+			if (usr.client && usr.s_active != src)
+				usr.client.screen -= S
+			S.dropped(usr)
 			S.loc = src
 
 	orient2hud(usr)
