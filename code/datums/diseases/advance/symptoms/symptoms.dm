@@ -32,5 +32,10 @@ GLOBAL_LIST_INIT(list_symptoms, subtypesof(/datum/symptom))
 /datum/symptom/proc/End(datum/disease/advance/A)
 	return
 
+// Called when the disease activates. It's what makes your diseases work!
 /datum/symptom/proc/Activate(datum/disease/advance/A)
+	return
+
+// Called when the host dies
+/datum/symptom/proc/OnDeath(datum/disease/advance/A)
 	return

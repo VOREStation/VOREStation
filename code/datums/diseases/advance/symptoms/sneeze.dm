@@ -87,34 +87,33 @@ Bonus
 
 	return
 
-/datum/symptom/sneeze/bluespace/proc/SneezeTeleport(datum/disease/advance/A, var/mob/living/M)
+/datum/symptom/sneeze/bluespace/proc/SneezeTeleport(datum/disease/advance/A, var/mob/living/mob)
 	var/list/destination = list()
-	var/mob/living/carbon/human/H = M
 	var/place
 
-	for(var/mob/living/carbon/human/B in range(A.stage, M))
-		if(B.can_be_drop_pred && H.can_be_drop_prey && H.devourable)
+	for(var/mob/living/carbon/human/B in range(A.stage, mob))
+		if(B.can_be_drop_pred && mob.can_be_drop_prey && mob.devourable)
 			destination += B.vore_selected
 
-	for(var/turf/T in range(A.stage, H))
+	for(var/turf/T in range(A.stage, mob))
 		if(istype(T, /turf/space)) // No danger, this is just a fun/vore symptom
 			continue
 		destination += T
 
 	if(isemptylist(destination))
-		to_chat(H, span_warning("You go to sneeze, but can't."))
+		to_chat(mob, span_warning("You go to sneeze, but can't."))
 		return FALSE
 
 	place = safepick(destination)
 
-	var/mob/living/carbon/human/unlucky = locate() in place
+	var/mob/living/unlucky = locate() in place
 
 	if(unlucky)
-		if(unlucky.can_be_drop_pred && H.can_be_drop_prey && H.devourable)
+		if(unlucky.can_be_drop_pred && mob.can_be_drop_prey && mob.devourable)
 			place = unlucky.vore_selected
-		else if(unlucky.devourable && unlucky.can_be_drop_prey && H.can_be_drop_pred)
-			unlucky.forceMove(H.vore_selected)
+		else if(unlucky.devourable && unlucky.can_be_drop_prey && mob.can_be_drop_pred)
+			unlucky.forceMove(mob.vore_selected)
 
-	H.emote("sneeze")
-	do_teleport(H, place)
+	mob.emote("sneeze")
+	do_teleport(mob, place)
 	return TRUE

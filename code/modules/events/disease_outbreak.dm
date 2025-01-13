@@ -1,11 +1,6 @@
 GLOBAL_LIST_EMPTY(current_pending_diseases)
 /datum/event/disease_outbreak
 	var/datum/disease/chosen_disease
-	var/list/disease_blacklist = list(
-		/datum/disease/advance,
-		/datum/disease/food_poisoning,
-		/datum/disease/gbs // Terrible. It's only in the code to scare people.
-	)
 	var/static/list/transmissable_symptoms = list()
 	var/static/list/diseases_minor = list()
 	var/static/list/diseases_moderate_major = list()
@@ -85,7 +80,7 @@ GLOBAL_LIST_EMPTY(current_pending_diseases)
 /datum/event/disease_outbreak/proc/populate_diseases()
 	for(var/candidate in subtypesof(/datum/disease))
 		var/datum/disease/CD = new candidate
-		if(is_type_in_list(CD, disease_blacklist))
+		if(CD.disease_flags & CAN_NOT_POPULATE)
 			continue
 		switch(CD.severity)
 			if(NONTHREAT, MINOR)

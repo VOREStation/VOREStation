@@ -24,3 +24,43 @@
 	diseases += new /datum/disease/advance/flu
 	data["viruses"] = diseases
 	reagents.add_reagent(REAGENT_ID_BLOOD, 10, data)
+
+/obj/item/reagent_containers/glass/bottle/culture/blobspores
+	name = "blob spores culture"
+	desc = "A bottle with blob spores"
+
+/obj/item/reagent_containers/glass/bottle/culture/blobspores/Initialize()
+	. = ..()
+	diseases += new /datum/disease/advance/blobspores
+	data["viruses"] = diseases
+	reagents.add_reagent(REAGENT_ID_BLOOD, 10, data)
+
+/obj/item/reagent_containers/glass/bottle/culture/macrophages
+	name = "macrophages culture"
+	desc = "A bottle with giant viruses"
+
+/obj/item/reagent_containers/glass/bottle/culture/macrophages/Initialize()
+	. = ..()
+	diseases += new /datum/disease/advance/macrophage
+	data["viruses"] = diseases
+	reagents.add_reagent(REAGENT_ID_BLOOD, 10, data)
+
+/obj/item/reagent_containers/glass/bottle/culture/random_virus
+	name = "experimental disease culture bottle"
+	desc = "A small bottle. Contains an untested viral culture."
+
+/obj/item/reagent_containers/glass/bottle/culture/random_virus/Initialize()
+	. = ..()
+	diseases += new /datum/disease/advance/random
+	data["viruses"] = diseases
+	reagents.add_reagent(REAGENT_ID_BLOOD, 10, data)
+
+/obj/item/reagent_containers/glass/bottle/culture/random_virus/minor
+	name = "minor experimental disease culture bottle"
+	desc = "A small bottle. Contains a weak version of an untested viral culture."
+
+/obj/item/reagent_containers/glass/bottle/culture/random_virus/minor/Initialize()
+	. = ..()
+	diseases += new /datum/disease/advance/random/minor
+	data["viruses"] = diseases
+	reagents.add_reagent(REAGENT_ID_BLOOD, 10, data)

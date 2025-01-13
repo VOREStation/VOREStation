@@ -36,7 +36,7 @@ Bonus
 			if(3, 4)
 				L.jitteriness += 10
 			else
-				if(L.reagents.get_reagent_amount(REAGENT_ID_HYPERZINE < 10))
+				if(L.reagents.get_reagent_amount(REAGENT_ID_HYPERZINE) < 10)
 					L.reagents.add_reagent(REAGENT_ID_HYPERZINE, 5)
 				if(prob(30))
 					L.jitteriness += 15

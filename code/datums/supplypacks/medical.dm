@@ -421,6 +421,26 @@
 	containername = "Virology biohazard equipment"
 	access = access_medical_equip
 
+/datum/supply_pack/med/disease
+	name = "Experimental Disease crate"
+	desc = "An experimental disease. Contains a multitude of symptoms."
+	contains = list(
+		/obj/item/reagent_containers/glass/bottle/culture/random_virus = 1
+	)
+	cost = 60
+	containertype = /obj/structure/closet/crate/freezer
+	access = access_medical_equip
+
+/datum/supply_pack/med/disease_minor
+	name = "Minor Experimental Disease crate"
+	desc = "An experimental disease. Contains a weakened, untested viral culture."
+	contains = list(
+		/obj/item/reagent_containers/glass/bottle/culture/random_virus/minor = 1
+	)
+	cost = 40
+	containertype = /obj/structure/closet/crate/freezer
+	access = access_medical_equip
+
 /datum/supply_pack/med/compactdefib
 	name = "Compact Defibrillator crate"
 	desc = "A compact defibrillator. Requires Medical Equipment access."
