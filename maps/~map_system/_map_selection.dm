@@ -1,4 +1,4 @@
-#ifndef CITESTING
+#if !defined(CITESTING) && !defined(SPACEMAN_DMM)
 
 /*********************/
 /* MAP SELECTION     */

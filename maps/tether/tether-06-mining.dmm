@@ -1116,7 +1116,6 @@
 	alarm_id = null;
 	breach_detection = 0;
 	dir = 1;
-	icon_state = "alarm0";
 	pixel_y = -22
 	},
 /obj/effect/floor_decal/borderfloor,
@@ -1442,7 +1441,6 @@
 	alarm_id = null;
 	breach_detection = 0;
 	dir = 1;
-	icon_state = "alarm0";
 	pixel_y = -22
 	},
 /obj/structure/cable/green{

@@ -8781,7 +8781,6 @@
 /area/engineering/engine_room)
 "sZ" = (
 /obj/structure/closet/crate{
-	icon_state = "crate";
 	name = "Grenade Crate"
 	},
 /obj/item/grenade/chem_grenade,

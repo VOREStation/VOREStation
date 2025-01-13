@@ -12,7 +12,7 @@ CATEGORY: Fiction
 						In this first volume in the series of the Chronicles of Margata, follow a young man's journey to dispel a curse of pure evil."
 
 	title = "The Chronicles of Margata: Volume I"
-	icon_state = "chronicles1_battlefieldcommander"
+	icon_state = "book"
 	origkey = "battlefieldcommander"
 	author = "Molly Highlander"
 

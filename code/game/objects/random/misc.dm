@@ -163,7 +163,7 @@
 /obj/random/tech_supply/component
 	name = "random tech component"
 	desc = "This is a random machine component."
-	icon_state = "tech"
+	icon_state = "random_device"
 
 /obj/random/tech_supply/component/item_to_spawn()
 	return pick(prob(3);/obj/item/stock_parts/gear,

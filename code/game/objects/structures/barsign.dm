@@ -2,7 +2,7 @@
 	desc = "The current barsign of this shift! The bartender can change it with their ID."
 	icon = 'icons/obj/barsigns.dmi'
 	plane = ABOVE_PLANE
-	icon_state = "empty"
+	icon_state = "Empty"
 	appearance_flags = 0
 	anchored = TRUE
 	var/cult = 0
