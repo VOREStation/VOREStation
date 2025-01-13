@@ -234,7 +234,8 @@
 		"TG&C bodyguard's skirt"=/obj/item/clothing/under/rank/bodyguard_skirt,
 		"TG&C bodyguard's turtleneck"=/obj/item/clothing/under/rank/bodyguard_turtleneck,
 		"TG&C bodyguard's turtleneck w/ skirt"=/obj/item/clothing/under/rank/bodyguard_turtleskirt,
-		"TG&C gorka suit"=/obj/item/clothing/under/rank/neo_gorka/sec
+		"TG&C gorka suit"=/obj/item/clothing/under/rank/neo_gorka/sec,
+		"ACE security undersuit"=/obj/item/clothing/under/rank/security/aces
 	)
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(selector_uniforms))
 
