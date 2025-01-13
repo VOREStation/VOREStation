@@ -92,6 +92,8 @@
 	. = ..()
 	if(iscarbon(A))
 		var/mob/living/carbon/human/victim = A
+		if((victim.HasDisease(base_disease) || !victim.CanContractDisease(base_disease)) && prob(75))
+			ai_holder.lose_target()
 		victim.ContractDisease(base_disease)
 
 /mob/living/simple_mob/vore/aggressive/macrophage/death()
