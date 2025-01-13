@@ -3865,7 +3865,6 @@
 #include "code\modules\projectiles\guns\energy\special.dm"
 #include "code\modules\projectiles\guns\energy\special_vr.dm"
 #include "code\modules\projectiles\guns\energy\stun.dm"
-#include "code\modules\projectiles\guns\energy\stun_vr.dm"
 #include "code\modules\projectiles\guns\energy\temperature.dm"
 #include "code\modules\projectiles\guns\energy\cell_loaded_vr\cell_loaded.dm"
 #include "code\modules\projectiles\guns\energy\cell_loaded_vr\ml3m.dm"
