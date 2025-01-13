@@ -1257,6 +1257,12 @@
     ckeywhitelist = list("satinisle")
     character_name = list("Millie Orlen")
 
+/datum/gear/fluff/memorycrown
+    path = /obj/item/clothing/head/fluff/memory_crown
+    display_name = "memory crown"
+    slot = slot_head
+    ckeywhitelist = list("sixberry")
+    character_name = list("Thistle")
 
 //  T CKEYS
 /datum/gear/fluff/ascian_medal
