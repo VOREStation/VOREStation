@@ -183,6 +183,6 @@
 		playsound(src, 'sound/items/change_jaws.ogg', 30, 1)
 
 	if(equipping.loc != src)
-		equipping.dropped()
+		equipping.dropped(src)
 
 	return 1

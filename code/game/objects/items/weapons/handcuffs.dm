@@ -311,12 +311,12 @@ var/last_chew = 0
 
 	var/mob/living/carbon/human/H = target
 	if(!istype(H))
-		src.dropped()
+		src.dropped(user)
 		return 0
 
 	if(!H.has_organ_for_slot(slot_legcuffed))
 		H.visible_message(span_infoplain(span_bold("\The [src]") + " slams into [H], but slides off!"))
-		src.dropped()
+		src.dropped(user)
 		return 0
 
 	H.visible_message(span_danger("\The [H] has been snared by \the [src]!"))
