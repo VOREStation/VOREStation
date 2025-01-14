@@ -549,6 +549,8 @@
 	dir = 6
 	},
 /obj/structure/cable/blue{
+	d1 = 2;
+	d2 = 4;
 	icon_state = "2-4"
 	},
 /turf/simulated/floor/tiled,
@@ -564,6 +566,8 @@
 	dir = 4
 	},
 /obj/structure/cable/blue{
+	d1 = 4;
+	d2 = 8;
 	icon_state = "4-8"
 	},
 /turf/simulated/floor/tiled,
@@ -580,6 +584,8 @@
 	dir = 4
 	},
 /obj/structure/cable/blue{
+	d1 = 4;
+	d2 = 8;
 	icon_state = "4-8"
 	},
 /obj/machinery/door/airlock/research{
@@ -594,6 +600,8 @@
 	icon_state = "pipe-c"
 	},
 /obj/structure/cable/blue{
+	d1 = 4;
+	d2 = 8;
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -606,6 +614,8 @@
 /area/surface/outpost/research/xenoarcheology/longtermstorage)
 "bx" = (
 /obj/structure/cable/blue{
+	d1 = 4;
+	d2 = 8;
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -618,6 +628,8 @@
 /area/surface/outpost/research/xenoarcheology/longtermstorage)
 "by" = (
 /obj/structure/cable/blue{
+	d1 = 4;
+	d2 = 8;
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
@@ -688,6 +700,8 @@
 	dir = 8
 	},
 /obj/structure/cable/blue{
+	d1 = 2;
+	d2 = 4;
 	icon_state = "2-4"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -701,6 +715,8 @@
 "bG" = (
 /obj/machinery/door/firedoor/glass,
 /obj/structure/cable/blue{
+	d1 = 4;
+	d2 = 8;
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -723,6 +739,8 @@
 	dir = 4
 	},
 /obj/structure/cable/blue{
+	d1 = 4;
+	d2 = 8;
 	icon_state = "4-8"
 	},
 /obj/effect/floor_decal/industrial/warning{
@@ -739,6 +757,8 @@
 	dir = 10
 	},
 /obj/structure/cable/blue{
+	d1 = 2;
+	d2 = 8;
 	icon_state = "2-8"
 	},
 /turf/simulated/floor/tiled/white,
@@ -763,6 +783,8 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/structure/cable/blue{
+	d1 = 1;
+	d2 = 2;
 	icon_state = "1-2"
 	},
 /obj/effect/floor_decal/industrial/warning{
@@ -933,6 +955,8 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/structure/cable/blue{
+	d1 = 1;
+	d2 = 2;
 	icon_state = "1-2"
 	},
 /turf/simulated/floor/tiled/white,
@@ -1008,6 +1032,8 @@
 "cj" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/structure/cable/blue{
+	d1 = 1;
+	d2 = 2;
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply{
@@ -1031,6 +1057,8 @@
 	dir = 4
 	},
 /obj/structure/cable/blue{
+	d1 = 1;
+	d2 = 2;
 	icon_state = "1-2"
 	},
 /obj/machinery/camera/network/research_outpost{
@@ -1049,6 +1077,8 @@
 "cm" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/structure/cable/blue{
+	d1 = 1;
+	d2 = 2;
 	icon_state = "1-2"
 	},
 /obj/effect/floor_decal/industrial/warning/corner{
@@ -1088,6 +1118,8 @@
 	dir = 4
 	},
 /obj/structure/cable/blue{
+	d1 = 2;
+	d2 = 4;
 	icon_state = "2-4"
 	},
 /obj/effect/floor_decal/industrial/warning/corner,
@@ -1097,6 +1129,8 @@
 /obj/machinery/door/firedoor/border_only,
 /obj/effect/wingrille_spawn/reinforced,
 /obj/structure/cable/blue{
+	d1 = 4;
+	d2 = 8;
 	icon_state = "4-8"
 	},
 /turf/simulated/floor/plating,
@@ -1240,6 +1274,8 @@
 /area/surface/outpost/research/xenoarcheology)
 "cK" = (
 /obj/structure/cable/blue{
+	d1 = 1;
+	d2 = 2;
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
@@ -1249,12 +1285,16 @@
 	dir = 8
 	},
 /obj/structure/cable/blue{
+	d1 = 2;
+	d2 = 4;
 	icon_state = "2-4"
 	},
 /turf/simulated/floor/tiled/white,
 /area/surface/outpost/research/xenoarcheology)
 "cL" = (
 /obj/structure/cable/blue{
+	d1 = 4;
+	d2 = 8;
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -1271,6 +1311,8 @@
 "cM" = (
 /obj/machinery/door/firedoor/glass,
 /obj/structure/cable/blue{
+	d1 = 4;
+	d2 = 8;
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -1288,12 +1330,16 @@
 "cN" = (
 /obj/effect/floor_decal/industrial/warning,
 /obj/structure/cable/blue{
+	d1 = 4;
+	d2 = 8;
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
 /obj/structure/cable/blue{
+	d1 = 1;
+	d2 = 8;
 	icon_state = "1-8"
 	},
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
@@ -1305,6 +1351,8 @@
 /obj/effect/floor_decal/industrial/warning,
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers,
 /obj/structure/cable/blue{
+	d1 = 4;
+	d2 = 8;
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
@@ -1312,6 +1360,8 @@
 	pixel_y = 0
 	},
 /obj/structure/cable/blue{
+	d1 = 1;
+	d2 = 8;
 	icon_state = "1-8"
 	},
 /turf/simulated/floor/tiled,
@@ -1319,6 +1369,8 @@
 "cP" = (
 /obj/effect/floor_decal/industrial/warning,
 /obj/structure/cable/blue{
+	d1 = 4;
+	d2 = 8;
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -1329,6 +1381,8 @@
 "cQ" = (
 /obj/effect/floor_decal/industrial/warning,
 /obj/structure/cable/blue{
+	d1 = 4;
+	d2 = 8;
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -1351,9 +1405,13 @@
 	dir = 4
 	},
 /obj/structure/cable/blue{
+	d1 = 4;
+	d2 = 8;
 	icon_state = "4-8"
 	},
 /obj/structure/cable/blue{
+	d1 = 2;
+	d2 = 8;
 	icon_state = "2-8"
 	},
 /turf/simulated/floor/tiled,
@@ -1364,6 +1422,8 @@
 	},
 /obj/effect/floor_decal/industrial/warning/full,
 /obj/structure/cable/blue{
+	d1 = 1;
+	d2 = 8;
 	icon_state = "1-8"
 	},
 /turf/simulated/floor/plating,
@@ -1474,6 +1534,8 @@
 "dh" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/structure/cable/blue{
+	d1 = 1;
+	d2 = 2;
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
@@ -1519,6 +1581,8 @@
 	dir = 5
 	},
 /obj/structure/cable/blue{
+	d1 = 1;
+	d2 = 2;
 	icon_state = "1-2"
 	},
 /turf/simulated/floor/tiled,
@@ -1605,6 +1669,8 @@
 	dir = 5
 	},
 /obj/structure/cable/blue{
+	d1 = 4;
+	d2 = 8;
 	icon_state = "4-8"
 	},
 /obj/machinery/hologram/holopad,
@@ -1619,6 +1685,8 @@
 	dir = 4
 	},
 /obj/structure/cable/blue{
+	d1 = 4;
+	d2 = 8;
 	icon_state = "4-8"
 	},
 /turf/simulated/floor/tiled/white,
@@ -1636,6 +1704,8 @@
 	req_one_access = list()
 	},
 /obj/structure/cable/blue{
+	d1 = 4;
+	d2 = 8;
 	icon_state = "4-8"
 	},
 /turf/simulated/floor/tiled/white,
@@ -1646,6 +1716,8 @@
 	},
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers,
 /obj/structure/cable/blue{
+	d1 = 4;
+	d2 = 8;
 	icon_state = "4-8"
 	},
 /turf/simulated/floor/tiled/neutral,
@@ -1655,12 +1727,16 @@
 	dir = 4
 	},
 /obj/structure/cable/blue{
+	d1 = 2;
+	d2 = 4;
 	icon_state = "2-4"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 10
 	},
 /obj/structure/cable/blue{
+	d1 = 2;
+	d2 = 8;
 	icon_state = "2-8"
 	},
 /turf/simulated/floor/tiled/neutral,
@@ -1698,6 +1774,8 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/door/firedoor/glass,
 /obj/structure/cable/blue{
+	d1 = 1;
+	d2 = 2;
 	icon_state = "1-2"
 	},
 /obj/machinery/door/airlock/glass_research{
@@ -1742,6 +1820,8 @@
 	},
 /obj/effect/floor_decal/industrial/warning/full,
 /obj/structure/cable/blue{
+	d1 = 1;
+	d2 = 2;
 	icon_state = "1-2"
 	},
 /turf/simulated/floor/plating,
@@ -1833,6 +1913,8 @@
 "dP" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/structure/cable/blue{
+	d1 = 1;
+	d2 = 2;
 	icon_state = "1-2"
 	},
 /obj/structure/bed/chair/office/light{
@@ -1865,6 +1947,8 @@
 /area/surface/outpost/research/xenoarcheology)
 "dS" = (
 /obj/structure/cable/blue{
+	d1 = 1;
+	d2 = 2;
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -1932,9 +2016,13 @@
 	icon_state = "warningcorner"
 	},
 /obj/structure/cable/blue{
+	d1 = 1;
+	d2 = 2;
 	icon_state = "1-2"
 	},
 /obj/structure/cable/blue{
+	d1 = 1;
+	d2 = 4;
 	icon_state = "1-4"
 	},
 /turf/simulated/floor/tiled,
@@ -1942,6 +2030,8 @@
 "dZ" = (
 /obj/effect/floor_decal/industrial/warning/corner,
 /obj/structure/cable/blue{
+	d1 = 4;
+	d2 = 8;
 	icon_state = "4-8"
 	},
 /turf/simulated/floor/tiled,
@@ -1950,6 +2040,8 @@
 /obj/machinery/door/firedoor/border_only,
 /obj/effect/wingrille_spawn/reinforced,
 /obj/structure/cable/blue{
+	d1 = 4;
+	d2 = 8;
 	icon_state = "4-8"
 	},
 /turf/simulated/floor/plating,
@@ -2019,6 +2111,8 @@
 "el" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/structure/cable/blue{
+	d1 = 1;
+	d2 = 2;
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -2092,6 +2186,8 @@
 	dir = 4
 	},
 /obj/structure/cable/blue{
+	d1 = 1;
+	d2 = 2;
 	icon_state = "1-2"
 	},
 /turf/simulated/floor/tiled,
@@ -2175,6 +2271,8 @@
 "eC" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/structure/cable/blue{
+	d1 = 1;
+	d2 = 2;
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -2253,6 +2351,8 @@
 	icon_state = "warningcorner"
 	},
 /obj/structure/cable/blue{
+	d1 = 1;
+	d2 = 2;
 	icon_state = "1-2"
 	},
 /turf/simulated/floor/tiled,
@@ -2373,10 +2473,14 @@
 /area/surface/outpost/research/xenoarcheology)
 "eW" = (
 /obj/structure/cable/blue{
+	d1 = 2;
+	d2 = 4;
 	icon_state = "2-4"
 	},
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply,
 /obj/structure/cable/blue{
+	d1 = 1;
+	d2 = 2;
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
@@ -2386,6 +2490,8 @@
 /area/surface/outpost/research/xenoarcheology)
 "eX" = (
 /obj/structure/cable/blue{
+	d1 = 4;
+	d2 = 8;
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
@@ -2397,6 +2503,8 @@
 "eY" = (
 /obj/machinery/door/firedoor/glass,
 /obj/structure/cable/blue{
+	d1 = 4;
+	d2 = 8;
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
@@ -2409,6 +2517,8 @@
 /area/surface/outpost/research/xenoarcheology)
 "eZ" = (
 /obj/structure/cable/blue{
+	d1 = 4;
+	d2 = 8;
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply,
@@ -2419,9 +2529,13 @@
 /area/surface/outpost/research/xenoarcheology)
 "fa" = (
 /obj/structure/cable/blue{
+	d1 = 1;
+	d2 = 8;
 	icon_state = "1-8"
 	},
 /obj/structure/cable/blue{
+	d1 = 2;
+	d2 = 8;
 	icon_state = "2-8"
 	},
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply{
@@ -2492,6 +2606,8 @@
 "fh" = (
 /obj/effect/floor_decal/industrial/warning/full,
 /obj/structure/cable/blue{
+	d1 = 1;
+	d2 = 2;
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/binary/pump{
@@ -2556,6 +2672,8 @@
 "fo" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/structure/cable/blue{
+	d1 = 1;
+	d2 = 2;
 	icon_state = "1-2"
 	},
 /obj/effect/floor_decal/industrial/warning,
@@ -2583,6 +2701,8 @@
 /area/surface/outpost/research/xenoarcheology)
 "fs" = (
 /obj/structure/cable/blue{
+	d1 = 1;
+	d2 = 2;
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -2619,6 +2739,8 @@
 	icon_state = "warning"
 	},
 /obj/structure/cable/blue{
+	d1 = 1;
+	d2 = 4;
 	icon_state = "1-4"
 	},
 /turf/simulated/floor/tiled,
@@ -2633,6 +2755,8 @@
 	icon_state = "tube1"
 	},
 /obj/structure/cable/blue{
+	d1 = 4;
+	d2 = 8;
 	icon_state = "4-8"
 	},
 /turf/simulated/floor/tiled,
@@ -2641,6 +2765,8 @@
 /obj/machinery/door/firedoor/border_only,
 /obj/effect/wingrille_spawn/reinforced,
 /obj/structure/cable/blue{
+	d1 = 4;
+	d2 = 8;
 	icon_state = "4-8"
 	},
 /turf/simulated/floor/plating,
@@ -2692,6 +2818,8 @@
 /obj/machinery/door/firedoor/border_only,
 /obj/machinery/atmospherics/pipe/simple/hidden/universal,
 /obj/structure/cable/blue{
+	d1 = 1;
+	d2 = 2;
 	icon_state = "1-2"
 	},
 /obj/machinery/door/airlock/engineering{
@@ -2717,9 +2845,13 @@
 /area/surface/outpost/research/xenoarcheology)
 "fJ" = (
 /obj/structure/cable/blue{
+	d1 = 1;
+	d2 = 2;
 	icon_state = "1-2"
 	},
 /obj/structure/cable/blue{
+	d1 = 1;
+	d2 = 4;
 	icon_state = "1-4"
 	},
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
@@ -2732,6 +2864,8 @@
 /area/surface/outpost/research/xenoarcheology)
 "fK" = (
 /obj/structure/cable/blue{
+	d1 = 4;
+	d2 = 8;
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -2753,6 +2887,8 @@
 	dir = 4
 	},
 /obj/structure/cable/blue{
+	d1 = 4;
+	d2 = 8;
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -2769,6 +2905,8 @@
 	dir = 1
 	},
 /obj/structure/cable/blue{
+	d1 = 4;
+	d2 = 8;
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply,
@@ -2788,6 +2926,8 @@
 	dir = 10
 	},
 /obj/structure/cable/blue{
+	d1 = 2;
+	d2 = 8;
 	icon_state = "2-8"
 	},
 /turf/simulated/floor/tiled,
@@ -2882,6 +3022,8 @@
 /area/surface/outpost/research/xenoarcheology/smes)
 "fX" = (
 /obj/structure/cable/blue{
+	d1 = 4;
+	d2 = 8;
 	icon_state = "4-8"
 	},
 /obj/structure/table/steel,
@@ -2896,6 +3038,8 @@
 "fY" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/universal,
 /obj/structure/cable/blue{
+	d1 = 4;
+	d2 = 8;
 	icon_state = "4-8"
 	},
 /obj/structure/table/steel,
@@ -2907,6 +3051,8 @@
 /area/surface/outpost/research/xenoarcheology/smes)
 "fZ" = (
 /obj/structure/cable/blue{
+	d1 = 4;
+	d2 = 8;
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/unary/vent_pump/on{
@@ -2924,9 +3070,13 @@
 	target_pressure = 200
 	},
 /obj/structure/cable/blue{
+	d1 = 1;
+	d2 = 8;
 	icon_state = "1-8"
 	},
 /obj/structure/cable/blue{
+	d1 = 1;
+	d2 = 4;
 	icon_state = "1-4"
 	},
 /obj/effect/floor_decal/industrial/warning{
@@ -2972,6 +3122,8 @@
 	},
 /obj/machinery/door/firedoor/border_only,
 /obj/structure/cable/blue{
+	d1 = 1;
+	d2 = 2;
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -2998,6 +3150,8 @@
 /area/surface/outpost/research/xenoarcheology/anomaly)
 "gg" = (
 /obj/structure/cable/blue{
+	d1 = 1;
+	d2 = 2;
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -3196,6 +3350,8 @@
 /area/surface/outpost/research/xenoarcheology/restroom)
 "gC" = (
 /obj/structure/cable/blue{
+	d1 = 1;
+	d2 = 8;
 	icon_state = "1-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -3221,6 +3377,8 @@
 	req_one_access = list(65)
 	},
 /obj/structure/cable/blue{
+	d1 = 1;
+	d2 = 2;
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -3357,11 +3515,15 @@
 /area/surface/outpost/research/xenoarcheology/analysis)
 "gX" = (
 /obj/structure/cable/blue{
+	d1 = 1;
+	d2 = 2;
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/structure/cable/blue{
+	d1 = 1;
+	d2 = 8;
 	icon_state = "1-8"
 	},
 /turf/simulated/floor/tiled/white,
@@ -3515,12 +3677,16 @@
 	dir = 5
 	},
 /obj/structure/cable/blue{
+	d1 = 1;
+	d2 = 4;
 	icon_state = "1-4"
 	},
 /turf/simulated/floor/tiled/white,
 /area/surface/outpost/research/xenoarcheology/analysis)
 "hq" = (
 /obj/structure/cable/blue{
+	d1 = 4;
+	d2 = 8;
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply,
@@ -3531,6 +3697,8 @@
 /area/surface/outpost/research/xenoarcheology/analysis)
 "hr" = (
 /obj/structure/cable/blue{
+	d1 = 4;
+	d2 = 8;
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
@@ -3544,6 +3712,8 @@
 /area/surface/outpost/research/xenoarcheology/analysis)
 "hs" = (
 /obj/structure/cable/blue{
+	d1 = 4;
+	d2 = 8;
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
@@ -3553,6 +3723,8 @@
 /area/surface/outpost/research/xenoarcheology/analysis)
 "ht" = (
 /obj/structure/cable/blue{
+	d1 = 4;
+	d2 = 8;
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
@@ -3562,6 +3734,8 @@
 /area/surface/outpost/research/xenoarcheology/analysis)
 "hu" = (
 /obj/structure/cable/blue{
+	d1 = 4;
+	d2 = 8;
 	icon_state = "4-8"
 	},
 /turf/simulated/floor/tiled/white,
@@ -3572,12 +3746,16 @@
 	name = "Emergency Storage"
 	},
 /obj/structure/cable/blue{
+	d1 = 4;
+	d2 = 8;
 	icon_state = "4-8"
 	},
 /turf/simulated/floor/plating,
 /area/surface/outpost/research/xenoarcheology/emergencystorage)
 "hw" = (
 /obj/structure/cable/blue{
+	d1 = 1;
+	d2 = 8;
 	icon_state = "1-8"
 	},
 /turf/simulated/floor/plating,
