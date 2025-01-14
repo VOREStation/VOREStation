@@ -4,12 +4,14 @@
 	icon_state = "ano01"
 	var/find_type = 0
 
-/// ADD DEBUG TOOL HERE TO TEST BECAUSE BY GOD IM NOT MINING ARTIFACTS FOR THE NEXT 5 YEARS TO BUGTEST IT.
-/// Remove before final commit.
-/mob/living/verb/artifact_spawn_debug_tool()
+/// Find spawning debug tool. Can be called on any /mob to spawn it at their location.
+/mob/proc/artifact_spawn_debug_tool()
 	set name = "Artifact Debug"
 	set desc = "Spawn an artifact."
 	set category = "Debug"
+	if(!src.loc)
+		to_chat(usr, "You need to select a mob with a proper LOC to spawn a minor artifact!")
+		return
 
 	var/type_to_spawn = tgui_input_number(usr, "Desired type to spawn. Consult xenoarcheaology.dm for the spawn list", "Spawn Artifact", 0)
 	new /obj/item/archaeological_find(src.loc, type_to_spawn)

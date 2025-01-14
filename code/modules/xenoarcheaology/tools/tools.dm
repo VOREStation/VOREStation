@@ -43,6 +43,8 @@
 
 	var/last_scan_time = 0
 	var/scan_delay = 25
+	var/last_repopulation_time = 0
+	var/repopulation_delay = 600 //Anti spam.
 
 /obj/item/ano_scanner/attack_self(var/mob/living/user)
 	interact(user)
@@ -77,10 +79,11 @@
 				else
 					SSxenoarch.digsite_spawning_turfs.Remove(T)
 
-		if(SSxenoarch && ((nearestTargetDist == -1) || (nearestSimpleTargetDist == -1)) && user.z)
+		if(SSxenoarch && ((nearestTargetDist == -1) || (nearestSimpleTargetDist == -1)) && user.z && (world.time - last_repopulation_time >= repopulation_delay))
 			if(user.z in using_map.xenoarch_exempt_levels) //We found no artifacts and our Z level is not spawn exempt. Time for random generation.
 				//Yeah we do nothing here. I tried to make the above a !user.z ... but VSC compiler screeched at me.
 			else
+				last_repopulation_time = world.time
 				to_chat(user, "The [src] beeps and buzzes, a warning popping up on screen stating 'No artifacts detected on current wavelength. Swapping to different wavelength. Please try scanning momentarily.'")
 				SSxenoarch.continual_generation(user)
 
