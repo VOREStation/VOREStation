@@ -484,6 +484,7 @@
 #include "code\datums\diseases\magnitis.dm"
 #include "code\datums\diseases\advance\advance.dm"
 #include "code\datums\diseases\advance\disease_preset.dm"
+#include "code\datums\diseases\advance\symptoms\blobspores.dm"
 #include "code\datums\diseases\advance\symptoms\choking.dm"
 #include "code\datums\diseases\advance\symptoms\confusion.dm"
 #include "code\datums\diseases\advance\symptoms\cough.dm"
