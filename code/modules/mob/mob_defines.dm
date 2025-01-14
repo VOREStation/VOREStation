@@ -115,7 +115,6 @@
 	var/stunned = 0.0
 	var/weakened = 0.0
 	var/losebreath = 0.0//Carbon
-	var/shakecamera = 0
 	var/a_intent = I_HELP//Living
 	var/m_int = null//Living
 	var/m_intent = I_RUN//Living
