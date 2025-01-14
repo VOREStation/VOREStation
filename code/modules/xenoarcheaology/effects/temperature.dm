@@ -17,6 +17,7 @@
 		target_temp = rand(300, 3000)
 	else
 		target_temp = rand (0, 150)
+	effect_type = EFFECT_TEMPERATURE
 
 /datum/artifact_effect/temperature/DoEffectTouch(var/mob/user)
 	var/atom/holder = get_master_holder()

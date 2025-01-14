@@ -160,7 +160,7 @@
 			"There appear to be [pick("dark red","dark purple","dark green","dark blue")] stains along part of it")]."
 		if(ARCHAEO_LIGHTER)
 			item_type = "[pick("cylinder","tank","chamber")]"
-			var/possible_object_paths = list(/obj/item/flame)
+			var/possible_object_paths = list()
 			possible_object_paths |= subtypesof(/obj/item/flame)
 			var/new_lighter = pick(possible_object_paths)
 			new_item = new new_lighter(src.loc)
@@ -251,6 +251,8 @@
 				new_item = new /obj/item/soulstone(src.loc)
 				new_item.icon = 'icons/obj/xenoarchaeology.dmi'
 				new_item.icon_state = icon_state
+				new_item.name = "Redspace Gem"
+				new_item.desc = "A glowing stone made of what appears to be a pure chunk of redspace. It seems to have the power to transfer the consciousness of dead or nearly-dead humanoids into it."
 				LAZYSET(new_item.origin_tech, TECH_ARCANE, 2)
 		if(ARCHAEO_CULTBLADE)
 			//cultblade
@@ -433,6 +435,7 @@
 			//We get a list of random internal organs and spawn it. Yes. You can get a still beating heart. Xenoarch is spooky.
 			var/possible_object_paths = list()
 			possible_object_paths |= subtypesof(/obj/item/organ/internal)
+			possible_object_paths |= list(/obj/item/organ/internal/mmi_holder, /obj/item/organ/internal/stack/vox)
 			var/new_organ = pick(possible_object_paths)
 			new_item = new new_organ(src.loc)
 
@@ -513,6 +516,7 @@
 			secondary_item = new new_clothes(src.loc)
 			item_type = new_item.name
 			secondary_item_type = secondary_item.name
+			secondary_item_desc = ""
 			LAZYSET(new_item.origin_tech, TECH_ARCANE, 2)
 			LAZYSET(new_item.origin_tech, TECH_PRECURSOR, 1)
 
@@ -557,7 +561,7 @@
 				apply_image_decorations = TRUE
 			if(prob(25))
 				apply_material_decorations = FALSE
-			new_item = new /obj/item/telecube/randomized(src.loc)
+			new_item = new /obj/item/telecube/randomized/mated(src.loc)
 			item_type = new_item.name
 
 		if(ARCHAEO_BATTERY)
@@ -790,7 +794,7 @@
 	if(apply_prefix)
 		name = "[pick("Strange","Ancient","Alien","")] [item_type]"
 		if(secondary_item)
-			secondary_item.name = "[pick("Strange","Ancient","Alien","")] [item_type]"
+			secondary_item.name = "[pick("Strange","Ancient","Alien","")] [secondary_item_type]"
 	else
 		name = item_type
 		if(secondary_item)
@@ -828,9 +832,6 @@
 		if(istype(T))
 			T.last_find = new_item
 		if(secondary_item) //Is this part of a set?
-			secondary_item.name = name
-			secondary_item.desc = src.desc
-
 			if(talkative)
 				secondary_item.talking_atom = new(secondary_item)
 				LAZYINITLIST(secondary_item.origin_tech)

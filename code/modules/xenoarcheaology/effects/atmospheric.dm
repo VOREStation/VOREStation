@@ -1,6 +1,6 @@
 /// Verified to work with the Artifact Harvester
 /datum/artifact_effect/gas
-	name = "CO2 creation"
+	name = "Gas creation"
 	var/GAS_TYPE = GAS_O2 //O2 by default. Changed in /New(). Do NOT MODIFY THIS TO SOMETHING
 	effect_type = EFFECT_GAS
 

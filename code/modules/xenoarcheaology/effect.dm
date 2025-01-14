@@ -163,15 +163,15 @@
 		else
 			. += "have no previously-known anomalous properties"
 
-	. += ". The method of the dispersion of the object's effect seems to be through"
+	. += ". The method of the dispersion of the object's effect seems to be through "
 
 	switch(effect)
 		if(EFFECT_TOUCH)
-			. += span_bold("contact with the object.")
+			. += span_bold(" contact with the object.")
 		if(EFFECT_AURA)
-			. += span_bold("occasional, short ranged pulses of energy.")
+			. += span_bold(" occasional, short ranged pulses of energy.")
 		if(EFFECT_PULSE)
-			. += span_bold("occasional, long ranged pulses of energy.")
+			. += span_bold(" occasional, long ranged pulses of energy.")
 		else
 			. += ""
 
