@@ -77,8 +77,15 @@
 				else
 					SSxenoarch.digsite_spawning_turfs.Remove(T)
 
+		if(SSxenoarch && ((nearestTargetDist == -1) || (nearestSimpleTargetDist == -1)) && user.z)
+			if(user.z in using_map.xenoarch_exempt_levels) //We found no artifacts and our Z level is not spawn exempt. Time for random generation.
+				//Yeah we do nothing here. I tried to make the above a !user.z ... but VSC compiler screeched at me.
+			else
+				to_chat(user, "The [src] beeps and buzzes, a warning popping up on screen stating 'No artifacts detected on current wavelength. Swapping to different wavelength. Please try scanning momentarily.'")
+				SSxenoarch.continual_generation(user)
+
 		if(nearestTargetDist >= 0)
-			to_chat(user, "Exotic energy detected on wavelength '[nearestTargetId]' in a radius of [nearestTargetDist]m[nearestSimpleTargetDist > 0 ? "; small anomaly detected in a radius of [nearestSimpleTargetDist]m" : ""]")
+			to_chat(user, "Large artifact energy signature detected on wavelength '[nearestTargetId]' in a radius of [nearestTargetDist]m[nearestSimpleTargetDist > 0 ? "; small anomaly detected in a radius of [nearestSimpleTargetDist]m" : ""]")
 		else if(nearestSimpleTargetDist >= 0)
 			to_chat(user, "Small anomaly detected in a radius of [nearestSimpleTargetDist]m.")
 		else

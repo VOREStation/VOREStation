@@ -606,16 +606,9 @@ var/list/mining_overlay_cache = list()
 /turf/simulated/mineral/proc/excavate_turf()
 	var/obj/structure/boulder/B
 	if(artifact_find)
-		if( excavation_level > 0 || prob(15) )
-			//boulder with an artifact inside
-			B = new(src)
-			if(artifact_find)
-				B.artifact_find = artifact_find
-		else
-			artifact_debris(1)
-	else if(prob(5))
-		//empty boulder
+		//boulder with an artifact inside
 		B = new(src)
+		B.artifact_find = artifact_find
 
 	if(B)
 		GetDrilled(0)

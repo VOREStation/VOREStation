@@ -54,13 +54,13 @@
 				return	//do nothing
 
 /obj/item/strangerock/attackby(var/obj/item/I, var/mob/user)
-	if(istype(I, /obj/item/pickaxe/brush))
+	if(istype(I, /obj/item/pickaxe)) //Whatever, if you use a hand pick it should work just like a brush. No reason for otherwise.
 		var/obj/item/inside = locate() in src
 		if(inside)
 			inside.loc = get_turf(src)
-			visible_message(span_info("\The [src] is brushed away, revealing \the [inside]."))
+			visible_message(span_info("\The [src] is mined away, revealing \the [inside]."))
 		else
-			visible_message(span_info("\The [src] is brushed away into nothing."))
+			visible_message(span_info("\The [src] is mined away into nothing."))
 		qdel(src)
 		return
 
