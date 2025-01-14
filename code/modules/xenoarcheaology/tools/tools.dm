@@ -110,9 +110,7 @@
 	var/time = ""
 	var/coords = ""
 	var/depth = ""
-	var/clearance = 0
 	var/record_index = 1
-	var/dissonance_spread = 1
 	var/material = "unknown"
 
 /obj/item/depth_scanner/proc/scan_atom(var/mob/user, var/atom/A)
@@ -133,7 +131,6 @@
 			if(M.finds.len)
 				var/datum/find/F = M.finds[1]
 				D.depth = "[F.excavation_required]"
-				D.clearance = F.clearance_range
 				D.material = get_responsive_reagent(F.find_type)
 
 			positive_locations.Add(D)
@@ -151,8 +148,6 @@
 
 			//these values are arbitrary
 			D.depth = rand(150, 200)
-			D.clearance = rand(10, 50)
-			D.dissonance_spread = rand(750, 2500) / 100
 
 			positive_locations.Add(D)
 
@@ -179,8 +174,6 @@
 			"time" = current.time,
 			"coords" = current.coords,
 			"depth" = current.depth,
-			"clearance" = current.clearance,
-			"dissonance_spread" = current.dissonance_spread,
 			"index" = current.record_index,
 		)
 		data["current"]["material"] = "Unknown"
