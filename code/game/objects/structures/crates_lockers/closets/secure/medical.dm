@@ -144,7 +144,7 @@
 		/obj/item/clothing/under/rank/neo_cmo_skirt,
 		/obj/item/clothing/under/rank/neo_cmo_turtle,
 		/obj/item/clothing/under/rank/neo_cmo_turtle_skirt,
-		/obj/item/clothing/under/rank/neo_cmo_gorka,
+		/obj/item/clothing/under/rank/neo_gorka/cmo,
 		/obj/item/radio/headset/heads/cmo,
 		/obj/item/radio/headset/alt/heads/cmo,
 		/obj/item/radio/headset/earbud/heads/cmo,

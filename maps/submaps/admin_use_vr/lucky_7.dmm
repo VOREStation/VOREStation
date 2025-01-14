@@ -1751,8 +1751,6 @@
 /obj/item/radio/headset/casino,
 /obj/item/radio/headset/casino,
 /obj/item/radio/headset/casino,
-/obj/item/radio/headset/casino/bowman,
-/obj/item/radio/headset/casino/bowman,
 /turf/simulated/floor/tiled,
 /area/submap/casino_event)
 "eL" = (
@@ -2225,9 +2223,6 @@
 /obj/item/radio/headset/casino,
 /obj/item/radio/headset/casino,
 /obj/item/radio/headset/casino,
-/obj/item/radio/headset/casino/bowman,
-/obj/item/radio/headset/casino/bowman,
-/obj/item/radio/headset/casino/bowman,
 /turf/simulated/floor/tiled/dark,
 /area/submap/casino_event)
 "fH" = (

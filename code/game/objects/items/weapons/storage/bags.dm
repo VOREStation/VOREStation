@@ -326,11 +326,15 @@
 			break
 
 	if(!inserted)
-		usr.remove_from_mob(S)
-		if (usr.client && usr.s_active != src)
-			usr.client.screen -= S
-		S.dropped(usr)
-		S.loc = src
+		if(capacity < current + S.get_amount())
+			var/obj/item/stack/F = S.split(amount)
+			F.loc = src
+		else
+			usr.remove_from_mob(S)
+			if (usr.client && usr.s_active != src)
+				usr.client.screen -= S
+			S.dropped(usr)
+			S.loc = src
 
 	orient2hud(usr)
 	if(usr.s_active)

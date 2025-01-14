@@ -920,9 +920,6 @@
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/expe/southairlock)
-"cw" = (
-/turf/simulated/floor/tiled/techfloor,
-/area/ship/expe/hangarcontrol)
 "cx" = (
 /obj/machinery/door/airlock/glass_medical{
 	req_one_access = newlist()
@@ -4341,7 +4338,6 @@
 	dir = 1;
 	icon_state = "bordercolor"
 	},
-/obj/item/clothing/under/hephaestus,
 /obj/item/clothing/suit/armor/vest,
 /obj/item/clothing/shoes/boots/duty,
 /obj/item/clothing/head/beret,
@@ -12250,7 +12246,6 @@
 	dir = 1;
 	icon_state = "bordercolor"
 	},
-/obj/item/clothing/under/hephaestus,
 /obj/item/clothing/suit/armor/vest,
 /obj/item/clothing/shoes/boots/duty,
 /obj/item/clothing/head/beret,
@@ -16319,14 +16314,14 @@ af
 bi
 fP
 bX
-cw
+jV
 dq
 bX
-cw
+jV
 fY
 bX
 qf
-cw
+jV
 jV
 bX
 mh
@@ -16461,14 +16456,14 @@ ba
 bj
 bu
 bX
-cw
+jV
 dq
 bX
-cw
+jV
 fZ
 bX
 hz
-cw
+jV
 jW
 bX
 mi
@@ -16610,7 +16605,7 @@ fc
 dr
 bX
 hy
-cw
+jV
 jX
 bY
 mj
@@ -16748,11 +16743,11 @@ bX
 cy
 ds
 ej
-cw
+jV
 ga
 gN
-cw
-cw
+jV
+jV
 jY
 lk
 mk
@@ -16887,7 +16882,7 @@ aS
 bh
 bw
 bY
-cw
+jV
 dt
 ek
 fd
@@ -17171,12 +17166,12 @@ aS
 bi
 bw
 bX
-cw
+jV
 du
 bX
 pM
 bX
-cw
+jV
 hB
 bX
 kb
@@ -17313,12 +17308,12 @@ aS
 bm
 bx
 bX
-cw
+jV
 du
 bX
 ff
 bX
-cw
+jV
 hC
 bX
 kc

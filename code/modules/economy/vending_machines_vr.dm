@@ -936,7 +936,7 @@
 					/obj/item/clothing/under/suit_jacket/checkered/skirt = 5,
 					/obj/item/clothing/under/suit_jacket/tan = 5,
 					/obj/item/clothing/under/suit_jacket/tan/skirt = 5,
-					/obj/item/clothing/under/rank/neo_civvie_gorka = 5,
+					/obj/item/clothing/under/rank/neo_gorka = 5,
 					/obj/item/clothing/suit/storage/toggle/labcoat/neo_leather = 5,
 					/obj/item/clothing/suit/neo_gorka = 5,
 					/obj/item/clothing/suit/storage/toggle/labcoat/neo_civ_dep = 5,

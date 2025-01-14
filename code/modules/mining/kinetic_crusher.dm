@@ -340,7 +340,8 @@
 /obj/item/offhand/crushergauntlets
 	var/obj/item/kinetic_crusher/machete/gauntlets/linked
 
-/obj/item/offhand/crushergauntlets/dropped(mob/user as mob)
+/obj/item/offhand/crushergauntlets/dropped(mob/user)
+	SHOULD_CALL_PARENT(FALSE)
 	if(linked.wielded)
 		linked.ready_toggle(TRUE)
 
