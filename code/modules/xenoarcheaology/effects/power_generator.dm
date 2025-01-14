@@ -1,3 +1,5 @@
+// Unticking this from the .dme until it has some custom sounds and is modified.
+// This works as is, but is EXTREMELY dangerous and I want it to only show up on LARGE artifacts, not small ones.
 /datum/artifact_effect/generator
 	name = "Power Generation"
 	effect_type = EFFECT_GENERATOR
