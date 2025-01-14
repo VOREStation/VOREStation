@@ -17,6 +17,7 @@
 	pref.communicator_visibility	= save_data["communicator_visibility"]
 	pref.ringtone					= save_data["ringtone"]
 	pref.shoe_hater					= save_data["shoe_hater"]
+	pref.no_jacket					= save_data["no_jacket"]
 
 /datum/category_item/player_setup_item/general/equipment/save_character(list/save_data)
 	save_data["all_underwear"]				= pref.all_underwear
@@ -30,6 +31,7 @@
 	save_data["communicator_visibility"]	= pref.communicator_visibility
 	save_data["ringtone"]					= pref.ringtone
 	save_data["shoe_hater"] 				= pref.shoe_hater
+	save_data["no_jacket"]					= pref.no_jacket
 
 var/global/list/valid_ringtones = list(
 		"beep",
@@ -136,6 +138,7 @@ var/global/list/valid_ringtones = list(
 	. += "Communicator Visibility: <a href='byond://?src=\ref[src];toggle_comm_visibility=1'><b>[(pref.communicator_visibility) ? "Yes" : "No"]</b></a><br>"
 	. += "Ringtone (leave blank for job default): <a href='byond://?src=\ref[src];set_ringtone=1'><b>[pref.ringtone]</b></a><br>"
 	. += "Spawn With Shoes:<a href='byond://?src=\ref[src];toggle_shoes=1'><b>[(pref.shoe_hater) ? "No" : "Yes"]</b></a><br>" //RS Addition
+	. += "Spawn With Jacket:<a href='byond://?src=\ref[src];toggle_jacket=1'><b>[(pref.no_jacket) ? "No" : "Yes"]</b></a><br>"
 
 	return jointext(.,null)
 
@@ -213,6 +216,11 @@ var/global/list/valid_ringtones = list(
 	else if(href_list["toggle_shoes"])	//RS ADD START
 		if(CanUseTopic(user))
 			pref.shoe_hater = !pref.shoe_hater
+			return TOPIC_REFRESH
+			//RS ADD END
+	else if(href_list["toggle_jacket"])	//RS ADD START
+		if(CanUseTopic(user))
+			pref.no_jacket = !pref.no_jacket
 			return TOPIC_REFRESH
 			//RS ADD END
 
