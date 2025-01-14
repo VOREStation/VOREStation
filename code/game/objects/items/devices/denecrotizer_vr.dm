@@ -62,7 +62,7 @@
 
 /// Inject a ghost into this mob. Assumes you've done all sanity before this point.
 /mob/living/simple_mob/proc/ghost_join(mob/observer/dead/D)
-	log_and_message_admins("[key_name_admin(D)] joined [src] as a ghost [ADMIN_FLW(src)]")
+	log_and_message_admins("joined [src] as a ghost [ADMIN_FLW(src)]", D)
 	active_ghost_pods -= src
 
 	// Move the ghost in
@@ -163,7 +163,7 @@
 				target.ghostjoin_icon()
 				last_used = world.time
 				charges--
-				log_and_message_admins("[key_name_admin(user)] used a denecrotizer to tame/offer a simplemob to ghosts: [target]. [ADMIN_FLW(src)]")
+				log_and_message_admins("used a denecrotizer to tame/offer a simplemob to ghosts: [target]. [ADMIN_FLW(src)]", user)
 				target.visible_message("[target]'s eyes widen, as though in revelation as it looks at [user].", runemessage = "eyes widen")
 				if(charges == 0)
 					icon_state = "[initial(icon_state)]-o"
@@ -186,7 +186,7 @@
 		target.see_invisible = initial(target.see_invisible)
 		target.update_icon()
 		visible_message("[target] lifts its head and looks at [user].", runemessage = "lifts its head and looks at [user]")
-		log_and_message_admins("[key_name_admin(user)] used a denecrotizer to revive a simple mob: [target]. [ADMIN_FLW(src)]")
+		log_and_message_admins("used a denecrotizer to revive a simple mob: [target]. [ADMIN_FLW(src)]", user)
 		if(!target.mind) //if it doesn't have a mind then no one has been playing as it, and it is safe to offer to ghosts.
 			target.ghostjoin = 1
 			active_ghost_pods |= target

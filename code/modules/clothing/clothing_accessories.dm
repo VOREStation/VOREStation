@@ -135,7 +135,11 @@
 			A = tgui_input_list(usr, "Select an accessory to remove from \the [src]", "Accessory Choice", accessories)
 
 	if(A)
-		remove_accessory(usr,A)
+		if(A.can_remove)
+			remove_accessory(usr,A)
+		else
+			to_chat(usr, span_warning("It doesn't look like \the [A] can be taken off \the [src]."))
+
 
 	if(!LAZYLEN(accessories))
 		src.verbs -= /obj/item/clothing/proc/removetie_verb

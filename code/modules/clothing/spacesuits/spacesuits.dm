@@ -101,7 +101,7 @@
 	check_limb_support(M)
 	..()
 
-/obj/item/clothing/suit/space/dropped(var/mob/user)
+/obj/item/clothing/suit/space/dropped(mob/user)
 	check_limb_support(user)
 	..()
 

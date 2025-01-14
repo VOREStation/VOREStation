@@ -13,6 +13,6 @@
 			remove_verb(H, /mob/living/proc/shred_limb_temp)
 	..()
 
-/obj/item/beartrap/dropped(var/mob/user)
+/obj/item/beartrap/dropped(mob/user)
 	remove_verb(user, /mob/living/proc/shred_limb_temp)
 	..()

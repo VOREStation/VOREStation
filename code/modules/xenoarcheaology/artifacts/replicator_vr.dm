@@ -234,7 +234,7 @@
 					return
 				if(isvoice(inserted_mob) || W.loc == src) //Sanity.
 					return
-				log_and_message_admins("[user] has just placed [inserted_mob] into a mob transformation machine.", user)
+				log_and_message_admins("has just placed [inserted_mob] into a mob transformation machine.", user)
 		else
 			to_chat(user, span_notice("You cannot put \the [W] into the machine. ((The micro must be connected to the server.))"))
 			return
@@ -263,7 +263,7 @@
 					return
 				if(isvoice(inserted_mob) || W.loc == src)
 					return
-				log_and_message_admins("[user] has just placed [inserted_mob] into a mob transformation machine.", user)
+				log_and_message_admins("has just placed [inserted_mob] into a mob transformation machine.", user)
 				user.drop_item() //Dropping a grab destroys it.
 				//Grabs require a bit of extra work.
 				//We want them to drop their clothing/items as well.
@@ -502,7 +502,7 @@
 					return
 				if(isvoice(inserted_mob) || W.loc == src) //This is a sanity check to keep them from entering it multiple times.
 					return
-				log_and_message_admins("[user] has just placed [inserted_mob] into an item transformation machine.", user)
+				log_and_message_admins("has just placed [inserted_mob] into an item transformation machine.", user)
 		else
 			to_chat(user, span_notice("You cannot put \the [W] into the machine. ((The micro must be connected to the server.))"))
 			return
@@ -531,7 +531,7 @@
 					return
 				if(isvoice(inserted_mob) || W.loc == src)
 					return
-				log_and_message_admins("[user] has just placed [inserted_mob] into an item transformation machine.", user)
+				log_and_message_admins("has just placed [inserted_mob] into an item transformation machine.", user)
 				user.drop_item() //Dropping a grab destroys it.
 				//Grabs require a bit of extra work.
 				//We want them to drop their clothing/items as well.

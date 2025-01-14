@@ -21,7 +21,7 @@ var/list/floor_decals = list()
 // abstract handler that explicitly doesn't invoke any obj behavior.
 /obj/effect/floor_decal/Initialize()
 	add_to_turf_decals()
-	initialized = TRUE
+	flags |= ATOM_INITIALIZED
 	return INITIALIZE_HINT_QDEL
 
 // This is a separate proc from initialize() to facilitiate its caching and other stuff.  Look into it someday.
@@ -1254,4 +1254,3 @@ var/list/floor_decals = list()
 /obj/effect/floor_decal/arrows
 	name = "floor arrows"
 	icon_state = "arrows"
-

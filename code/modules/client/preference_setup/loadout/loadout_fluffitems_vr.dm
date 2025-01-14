@@ -269,6 +269,12 @@
 	ckeywhitelist = list("bigbababooey")
 	character_name = list("Ali Big")
 
+/datum/gear/fluff/beeholddrbeesphb_plushie
+	path = /obj/item/laser_pointer/evelynn_fluff
+	display_name = "Evelynn's Laser Pointer"
+	ckeywhitelist = list("beeholddrbeesphb")
+	character_name = list("Evelynn")
+
 //  C CKEYS
 /datum/gear/fluff/cappy_watch
 	path = /obj/item/clothing/accessory/watch/custom
@@ -1251,6 +1257,12 @@
     ckeywhitelist = list("satinisle")
     character_name = list("Millie Orlen")
 
+/datum/gear/fluff/memorycrown
+    path = /obj/item/clothing/head/fluff/memory_crown
+    display_name = "memory crown"
+    slot = slot_head
+    ckeywhitelist = list("sixberry")
+    character_name = list("Thistle")
 
 //  T CKEYS
 /datum/gear/fluff/ascian_medal
