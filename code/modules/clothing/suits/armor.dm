@@ -300,6 +300,15 @@
 	icon_badge = "officervest_badge"
 	icon_nobadge = "officervest_nobadge"
 
+/obj/item/clothing/suit/storage/vest/aces
+	name = "ACE security rig"
+	desc = "A set of lightweight armor designed to be worn over the matching ACE security undersuit. Includes thigh, shin, and forearm protectors in addition to standard torso and groin guards."
+	icon_state = "aces_armor"
+	item_state_slots = list(slot_r_hand_str = "armor", slot_l_hand_str = "armor")
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
+	cold_protection = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
+	heat_protection = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
+
 /obj/item/clothing/suit/storage/vest/warden
 	name = "warden armor vest"
 	desc = "A simple kevlar plate carrier. This one has a silver badge clipped to the chest."
