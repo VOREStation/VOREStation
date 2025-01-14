@@ -137,7 +137,7 @@ var/global/list/valid_ringtones = list(
 	. += "PDA Type: <a href='byond://?src=\ref[src];change_pda=1'><b>[pdachoicelist[pref.pdachoice]]</b></a><br>"
 	. += "Communicator Visibility: <a href='byond://?src=\ref[src];toggle_comm_visibility=1'><b>[(pref.communicator_visibility) ? "Yes" : "No"]</b></a><br>"
 	. += "Ringtone (leave blank for job default): <a href='byond://?src=\ref[src];set_ringtone=1'><b>[pref.ringtone]</b></a><br>"
-	. += "Spawn With Shoes:<a href='byond://?src=\ref[src];toggle_shoes=1'><b>[(pref.shoe_hater) ? "No" : "Yes"]</b></a><br>" //RS Addition
+	. += "Spawn With Shoes:<a href='byond://?src=\ref[src];toggle_shoes=1'><b>[(pref.shoe_hater) ? "No" : "Yes"]</b></a><br>"
 	. += "Spawn With Jacket:<a href='byond://?src=\ref[src];toggle_jacket=1'><b>[(pref.no_jacket) ? "No" : "Yes"]</b></a><br>"
 
 	return jointext(.,null)
@@ -213,15 +213,13 @@ var/global/list/valid_ringtones = list(
 		else
 			pref.ringtone = choice
 		return TOPIC_REFRESH
-	else if(href_list["toggle_shoes"])	//RS ADD START
+	else if(href_list["toggle_shoes"])
 		if(CanUseTopic(user))
 			pref.shoe_hater = !pref.shoe_hater
 			return TOPIC_REFRESH
-			//RS ADD END
-	else if(href_list["toggle_jacket"])	//RS ADD START
+	else if(href_list["toggle_jacket"])
 		if(CanUseTopic(user))
 			pref.no_jacket = !pref.no_jacket
 			return TOPIC_REFRESH
-			//RS ADD END
 
 	return ..()
