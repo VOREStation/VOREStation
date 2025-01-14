@@ -514,8 +514,8 @@ var/list/mining_overlay_cache = list()
 					var/datum/find/F = finds[1]
 					if(newDepth == F.excavation_required) // When the pick hits that edge just right, you extract your find perfectly, it's never confined in a rock
 						excavate_find(1, F)
-					else if(newDepth > F.excavation_required - F.clearance_range) // Not quite right but you still extract your find, the closer to the bottom the better, but not above 80%
-						excavate_find(prob(80 * (F.excavation_required - newDepth) / F.clearance_range), F)
+					else if(newDepth > F.excavation_required)
+						excavate_find(prob(10), F) //A 1 in 10 chance to get it out perfectly seems fine if you're not being careful.
 
 				to_chat(user, span_notice("You finish [P.drill_verb] \the [src]."))
 

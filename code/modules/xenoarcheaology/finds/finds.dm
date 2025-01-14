@@ -11,7 +11,7 @@
 /datum/find/New(var/digsite, var/exc_req)
 	excavation_required = exc_req
 	find_type = get_random_find_type(digsite)
-	clearance_range = rand(4, 12)
+	clearance_range = 0 //Just cutting out clearance_range altogether. All it did was confuse people.
 	dissonance_spread = rand(1500, 2500) / 100
 
 /obj/item/strangerock
