@@ -237,7 +237,7 @@
 	//This inherits from the robot cryo, so synths can be properly cryo'd.  If a non-synth enters and is cryo'd, ..() is called and it'll still work.
 	name = "Airlock of Wonders"
 	desc = "An airlock that isn't an airlock, and shouldn't exist.  Yell at a coder/mapper."
-	icon = 'icons/obj/doors/Doorint.dmi'
+	icon = 'icons/obj/doors/doorint.dmi'
 	icon_state = "door_open"
 	base_icon_state = "door_open"
 	occupied_icon_state = "door_closed"
@@ -528,7 +528,7 @@
 		//Make an announcement and log the person entering storage.
 		control_computer.frozen_crew += "[to_despawn.real_name], [to_despawn.mind.role_alt_title] - [stationtime2text()]"
 		control_computer._admin_logs += "[key_name(to_despawn)] ([to_despawn.mind.role_alt_title]) at [stationtime2text()]"
-		log_and_message_admins("[key_name(to_despawn)] ([to_despawn.mind.role_alt_title]) entered cryostorage.")
+		log_and_message_admins("([to_despawn.mind.role_alt_title]) entered cryostorage.", to_despawn)
 
 		//VOREStation Edit Start
 		var/depart_announce = TRUE

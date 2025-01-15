@@ -42,7 +42,7 @@
 			H.update_inv_wear_suit()
 		hood.forceMove(src)
 
-/obj/item/clothing/suit/storage/hooded/dropped()
+/obj/item/clothing/suit/storage/hooded/dropped(mob/user)
 	RemoveHood()
 	..()
 

@@ -39,7 +39,7 @@
 		/obj/item/clothing/under/rank/neo_rd_turtle_skirt,
 		/obj/item/clothing/under/rank/neo_rd_suit,
 		/obj/item/clothing/under/rank/neo_rd_suit_skirt,
-		/obj/item/clothing/under/rank/neo_rd_gorka,
+		/obj/item/clothing/under/rank/neo_gorka/rd,
 		/obj/item/cartridge/rd,
 		/obj/item/clothing/shoes/white,
 		/obj/item/clothing/shoes/laceup/brown,

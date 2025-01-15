@@ -57,7 +57,7 @@
 		/obj/item/clothing/under/rank/neo_hop_parade_fem,
 		/obj/item/clothing/under/rank/neo_hop_turtle,
 		/obj/item/clothing/under/rank/neo_hop_turtle_skirt,
-		/obj/item/clothing/under/rank/neo_cmd_gorka,
+		/obj/item/clothing/under/rank/neo_gorka/command,
 		/obj/item/clothing/suit/storage/toggle/labcoat/neo_hopformal,
 		/obj/item/clothing/suit/storage/toggle/labcoat/neo_civ_dep,
 		/obj/item/clothing/shoes/brown,
@@ -136,6 +136,8 @@
 	closet_appearance = /decl/closet_appearance/secure_closet/security/warden
 
 	starts_with = list(
+		/obj/item/clothing/under/rank/security/aces,
+		/obj/item/clothing/suit/storage/vest/aces,
 		/obj/item/clothing/suit/storage/vest/warden,
 		/obj/item/clothing/under/rank/warden,
 		/obj/item/clothing/under/rank/warden/corp,
@@ -151,7 +153,7 @@
 		/obj/item/clothing/suit/storage/vest/wardencoat/neo_armsco_trench,
 		/obj/item/clothing/suit/storage/vest/wardencoat/neo_bluewarden,
 		/obj/item/clothing/suit/storage/vest/wardencoat/neo_warden_heavy,
-		/obj/item/clothing/under/rank/neo_sec_gorka,
+		/obj/item/clothing/under/rank/neo_gorka/sec,
 		/obj/item/cartridge/security,
 		/obj/item/radio/headset/headset_sec,
 		/obj/item/radio/headset/alt/headset_sec,
@@ -189,6 +191,8 @@
 	closet_appearance = /decl/closet_appearance/secure_closet/security
 
 	starts_with = list(
+		/obj/item/clothing/under/rank/security/aces,
+		/obj/item/clothing/suit/storage/vest/aces,
 		/obj/item/clothing/suit/storage/vest/officer,
 		/obj/item/clothing/head/helmet,
 		/obj/item/cartridge/security,

@@ -114,7 +114,7 @@
 	. = ..()
 	update_icon()
 
-/obj/item/telecube/dropped()
+/obj/item/telecube/dropped(mob/user)
 	. = ..()
 	update_icon()
 

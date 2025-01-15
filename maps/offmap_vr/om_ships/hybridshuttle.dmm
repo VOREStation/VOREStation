@@ -63,7 +63,7 @@
 	pixel_y = 24
 	},
 /obj/structure/cable{
-	icon_state = "0-4";
+	icon_state = "0-4"
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/blue_fo)

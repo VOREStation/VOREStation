@@ -38,7 +38,6 @@
 /area/submap/event_autonomous_drone/cargo)
 "eW" = (
 /obj/structure/cable/green{
-	dir = 1;
 	icon_state = "4-8"
 	},
 /obj/machinery/light_switch{

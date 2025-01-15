@@ -2901,7 +2901,6 @@
 /area/ship/aro/engineering)
 "gQ" = (
 /obj/structure/cable/pink{
-	dir = 1;
 	icon_state = "1-2"
 	},
 /turf/simulated/shuttle/floor/alienplating/blue,
@@ -2924,7 +2923,6 @@
 /area/ship/aro/engines)
 "gU" = (
 /obj/structure/cable/pink{
-	dir = 1;
 	icon_state = "2-5"
 	},
 /turf/simulated/shuttle/wall/alien/blue,

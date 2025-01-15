@@ -372,6 +372,7 @@
 	desc = "A large bin."
 	closet_appearance = null
 	icon = 'icons/obj/closets/largebin.dmi'
+	icon_state = ""
 
 /obj/structure/closet/crate/radiation
 	name = "radioactive gear crate"

@@ -87,7 +87,7 @@
 
 				if(!camera)
 					return
-				var/obj/item/photo/selection = camera.selectpicture()
+				var/obj/item/photo/selection = camera.selectpicture(ui.user)
 				if (!selection)
 					return
 

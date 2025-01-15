@@ -426,7 +426,9 @@ var/global/datum/controller/occupations/job_master
 					//if(G.slot == slot_wear_mask || G.slot == slot_wear_suit || G.slot == slot_head)
 					//	custom_equip_leftovers += thing
 					//else
-					if(G.slot == slot_shoes && H.client?.prefs?.shoe_hater)	//RS ADD
+					if(G.slot == slot_wear_suit && H.client?.prefs?.no_jacket)
+						continue
+					if(G.slot == slot_shoes && H.client?.prefs?.shoe_hater)
 						continue
 					if(H.equip_to_slot_or_del(G.spawn_item(H, metadata), G.slot))
 						to_chat(H, span_notice("Equipping you with \the [thing]!"))
@@ -453,7 +455,9 @@ var/global/datum/controller/occupations/job_master
 		// If some custom items could not be equipped before, try again now.
 		for(var/thing in custom_equip_leftovers)
 			var/datum/gear/G = gear_datums[thing]
-			if(G.slot == slot_shoes && H.client?.prefs?.shoe_hater)	//RS ADD
+			if(G.slot == slot_wear_suit && H.client?.prefs?.no_jacket)
+				continue
+			if(G.slot == slot_shoes && H.client?.prefs?.shoe_hater)
 				continue
 			if(G.slot in custom_equip_slots)
 				spawn_in_storage += thing
@@ -660,16 +664,16 @@ var/global/datum/controller/occupations/job_master
 	fail_deadly = J?.offmap_spawn
 
 	//Spawn them at their preferred one
-	if(C && C.prefs.read_preference(/datum/preference/choiced/human/spawnpoint))
-		if(!(C.prefs.read_preference(/datum/preference/choiced/human/spawnpoint) in using_map.allowed_spawns))
+	if(C && C.prefs.read_preference(/datum/preference/choiced/living/spawnpoint))
+		if(!(C.prefs.read_preference(/datum/preference/choiced/living/spawnpoint) in using_map.allowed_spawns))
 			if(fail_deadly)
 				to_chat(C, span_warning("Your chosen spawnpoint is unavailable for this map and your job requires a specific spawnpoint. Please correct your spawn point choice."))
 				return
 			else
-				to_chat(C, span_warning("Your chosen spawnpoint ([C.prefs.read_preference(/datum/preference/choiced/human/spawnpoint)]) is unavailable for the current map. Spawning you at one of the enabled spawn points instead."))
+				to_chat(C, span_warning("Your chosen spawnpoint ([C.prefs.read_preference(/datum/preference/choiced/living/spawnpoint)]) is unavailable for the current map. Spawning you at one of the enabled spawn points instead."))
 				spawnpos = null
 		else
-			spawnpos = spawntypes[C.prefs.read_preference(/datum/preference/choiced/human/spawnpoint)]
+			spawnpos = spawntypes[C.prefs.read_preference(/datum/preference/choiced/living/spawnpoint)]
 
 	//We will return a list key'd by "turf" and "msg"
 	. = list("turf","msg")

@@ -377,7 +377,7 @@
 
 	var/pickablecards = list()
 	for(var/datum/playingcard/P in cards)
-		pickablecards[P.name] += P
+		pickablecards[P.name] = P
 	var/pickedcard = tgui_input_list(usr, "Which card do you want to remove from the hand?", "Card Selection", pickablecards)
 
 	if(!pickedcard || !pickablecards[pickedcard] || !usr || !src) return
@@ -455,12 +455,13 @@
 		i++
 
 
-/obj/item/hand/dropped(mob/user as mob)
+/obj/item/hand/dropped(mob/user)
+	..()
 	if(locate(/obj/structure/table, loc))
 		src.update_icon(user.dir)
 	else
 		update_icon()
 
-/obj/item/hand/pickup(mob/user as mob)
+/obj/item/hand/pickup(mob/user)
 	..()
 	src.update_icon()

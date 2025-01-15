@@ -120,8 +120,9 @@
 
 	return ..()
 
-/obj/item/mapping_unit/dropped(mob/dropper)
-	if(loc != dropper) // Not just a juggle
+/obj/item/mapping_unit/dropped(mob/user)
+	..()
+	if(loc != user) // Not just a juggle
 		hide_device()
 
 /obj/item/mapping_unit/attack_self(mob/user)

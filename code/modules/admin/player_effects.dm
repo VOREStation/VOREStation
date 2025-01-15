@@ -46,7 +46,7 @@
 	if(!check_rights_for(ui.user.client, R_SPAWN))
 		return
 
-	log_and_message_admins("[key_name(user)] used player effect: [action] on [target.ckey] playing [target.name]")
+	log_and_message_admins("used player effect: [action] on [target.ckey] playing [target.name]", user)
 
 	switch(action)
 
@@ -714,7 +714,7 @@
 					new chosen_NIF(Tar)
 				else
 					new /obj/item/nif(Tar)
-			log_and_message_admins("[key_name(user)] Quick NIF'd [Tar.real_name] with a [input_NIF].")
+			log_and_message_admins("Quick NIF'd [Tar.real_name] with a [input_NIF].", user)
 
 		if("resize")
 			user.client.resize(target)
@@ -814,7 +814,7 @@
 			var/reply = tgui_input_text(target, "An admin has sent you a message: [message]", "Reply")
 			if(!reply)
 				return
-			log_and_message_admins("[key_name(target)] replied to [user]'s message: [reply].")
+			log_and_message_admins("replied to [user]'s message: [reply].", target)
 
 		if("stop-orbits")
 			for(var/datum/orbit/X in target.orbiters)

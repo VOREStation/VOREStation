@@ -414,7 +414,7 @@
 		infect_chance = 0
 	infect_chance += (targets.len-1)*10    //Extra 10% per extra target
 	if(prob(infect_chance))
-		log_and_message_admins("[loc] infected [target]'s [eo.name] with \the [src].")
+		log_and_message_admins("[loc] infected [target]'s [eo.name] with \the [src].", usr)
 		infect_limb(eo)
 
 	//75% chance to spread a virus if we have one
