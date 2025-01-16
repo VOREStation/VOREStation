@@ -43,7 +43,7 @@
 	..()
 	var/mob/living/carbon/human/H = wearer
 	if(gloves)
-		if(!H.equip_to_slot_if_possible(gloves, slot_gloves))
+		if(!H?.equip_to_slot_if_possible(gloves, slot_gloves))
 			gloves.forceMove(get_turf(src))
 		if(ring)
 			gloves.ring = ring
