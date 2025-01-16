@@ -16,7 +16,7 @@
 	has_eye_light_sprites = TRUE
 	has_sleeper_light_indicator = FALSE
 	has_vore_belly_resting_sprites = TRUE
-	sprite_icon = 'icons/mob/catborgs/departmental/catborgs/catborg_engineering.dmi'
+	sprite_icon = 'icons/mob/catborgs/Departmental/catborgs/catborg_engineering.dmi'
 	rest_sprite_options = list("Default", "Bellyup", "Sit")
 	belly_capacity_list = list("belly" = 2, "throat" =2)
 	module_type = list("Standard", "Engineering", "Crisis", "Miner", "Janitor", "Service", "Clerical", "Security", "Research") //Select whichever ones they apply to.
@@ -33,7 +33,7 @@
 	has_eye_light_sprites = TRUE
 	has_sleeper_light_indicator = FALSE
 	has_vore_belly_resting_sprites = TRUE
-	sprite_icon = 'icons/mob/catborgs/departmental/kittyborg/kittyborg_cargo.dmi'
+	sprite_icon = 'icons/mob/robot/catborgs/departmental/small/kittyborg_cargo.dmi'
 	rest_sprite_options = list("Default", "Bellyup", "Sit")
 	belly_capacity_list = list("belly" = 2, "throat" =2)
 	sprite_flags = ROBOT_HAS_SHIELD_SPRITE | ROBOT_HAS_GUN_SPRITE
@@ -47,7 +47,7 @@
 	has_eye_light_sprites = TRUE
 	has_sleeper_light_indicator = FALSE
 	has_vore_belly_resting_sprites = TRUE
-	sprite_icon = 'icons/mob/catborgs/departmental/kittyborg/kittyborg_engi.dmi'
+	sprite_icon = 'icons/mob/robot/catborgs/departmental/small/kittyborg_engi.dmi'
 	rest_sprite_options = list("Default", "Bellyup", "Sit")
 	belly_capacity_list = list("belly" = 2)
 	sprite_flags = ROBOT_HAS_SHIELD_SPRITE | ROBOT_HAS_GUN_SPRITE
@@ -62,7 +62,7 @@
 	has_eye_light_sprites = TRUE
 	has_sleeper_light_indicator = FALSE
 	has_vore_belly_resting_sprites = TRUE
-	sprite_icon = 'icons/mob/catborgs/departmental/kittyborg/kittyborg_jani.dmi'
+	sprite_icon = 'icons/mob/robot/catborgs/departmental/small/kittyborg_jani.dmi'
 	rest_sprite_options = list("Default", "Bellyup", "Sit")
 	belly_capacity_list = list("belly" = 2)
 	sprite_flags = ROBOT_HAS_SHIELD_SPRITE | ROBOT_HAS_GUN_SPRITE
@@ -76,7 +76,7 @@
 	has_eye_light_sprites = TRUE
 	has_sleeper_light_indicator = FALSE
 	has_vore_belly_resting_sprites = TRUE
-	sprite_icon = 'icons/mob/catborgs/departmental/kittyborg/kittyborg_medicat.dmi'
+	sprite_icon = 'icons/mob/robot/catborgs/departmental/small/kittyborg_medicat.dmi'
 	rest_sprite_options = list("Default", "Bellyup", "Sit")
 	belly_capacity_list = list("belly" = 2)
 	sprite_flags = ROBOT_HAS_SHIELD_SPRITE | ROBOT_HAS_GUN_SPRITE
@@ -91,7 +91,7 @@
 	has_eye_light_sprites = TRUE
 	has_sleeper_light_indicator = FALSE
 	has_vore_belly_resting_sprites = TRUE
-	sprite_icon = 'icons/mob/catborgs/departmental/kittyborg/kittyborg_sci.dmi'
+	sprite_icon = 'icons/mob/robot/catborgs/departmental/small/kittyborg_sci.dmi'
 	rest_sprite_options = list("Default", "Bellyup", "Sit")
 	belly_capacity_list = list("belly" = 2)
 	sprite_flags = ROBOT_HAS_SHIELD_SPRITE | ROBOT_HAS_GUN_SPRITE
@@ -105,7 +105,7 @@
 	has_eye_light_sprites = TRUE
 	has_sleeper_light_indicator = FALSE
 	has_vore_belly_resting_sprites = TRUE
-	sprite_icon = 'icons/mob/catborgs/departmental/kittyborg/kittyborg_sec.dmi'
+	sprite_icon = 'icons/mob/robot/catborgs/departmental/small/kittyborg_sec.dmi'
 	rest_sprite_options = list("Default", "Bellyup", "Sit")
 	belly_capacity_list = list("belly" = 2)
 	sprite_flags = ROBOT_HAS_SHIELD_SPRITE | ROBOT_HAS_GUN_SPRITE
@@ -119,7 +119,7 @@
 	has_eye_light_sprites = TRUE
 	has_sleeper_light_indicator = FALSE
 	has_vore_belly_resting_sprites = TRUE
-	sprite_icon = 'icons/mob/catborgs/departmental/kittyborg/kittyborg_service.dmi'
+	sprite_icon = 'icons/mob/robot/catborgs/departmental/small/kittyborg_service.dmi'
 	rest_sprite_options = list("Default", "Bellyup", "Sit")
 	belly_capacity_list = list("belly" = 2)
 	sprite_flags = ROBOT_HAS_SHIELD_SPRITE | ROBOT_HAS_GUN_SPRITE
@@ -146,7 +146,7 @@
 	has_eye_light_sprites = TRUE
 	has_sleeper_light_indicator = FALSE
 	has_vore_belly_resting_sprites = TRUE
-	sprite_icon = 'icons/mob/catborgs/departmental/catborgs/catborg_cargo.dmi'
+	sprite_icon = 'icons/mob/robot/catborgs/departmental/large/catborg_cargo.dmi'
 	rest_sprite_options = list("Default", "Bellyup", "Sit")
 	belly_capacity_list = list("belly" = 2, "throat" =2)
 	sprite_flags = ROBOT_HAS_SHIELD_SPRITE | ROBOT_HAS_DISABLER_SPRITE | ROBOT_HAS_TASER_SPRITE | ROBOT_HAS_LASER_SPRITE
@@ -160,7 +160,7 @@
 	has_eye_light_sprites = TRUE
 	has_sleeper_light_indicator = FALSE
 	has_vore_belly_resting_sprites = TRUE
-	sprite_icon = 'icons/mob/catborgs/departmental/catborgs/catborg_engineering.dmi'
+	sprite_icon = 'icons/mob/robot/catborgs/departmental/large/catborg_engineering.dmi'
 	rest_sprite_options = list("Default", "Bellyup", "Sit")
 	belly_capacity_list = list("belly" = 2, "throat" =2)
 	sprite_flags = ROBOT_HAS_SHIELD_SPRITE | ROBOT_HAS_DISABLER_SPRITE | ROBOT_HAS_TASER_SPRITE | ROBOT_HAS_LASER_SPRITE
@@ -174,7 +174,7 @@
 	has_eye_light_sprites = TRUE
 	has_sleeper_light_indicator = FALSE
 	has_vore_belly_resting_sprites = TRUE
-	sprite_icon = 'icons/mob/catborgs/departmental/catborgs/catborg_medical.dmi'
+	sprite_icon = 'icons/mob/robot/catborgs/departmental/large/catborg_medical.dmi'
 	rest_sprite_options = list("Default", "Bellyup", "Sit")
 	belly_capacity_list = list("belly" = 2, "throat" =2)
 	sprite_flags = ROBOT_HAS_SHIELD_SPRITE | ROBOT_HAS_DISABLER_SPRITE | ROBOT_HAS_TASER_SPRITE | ROBOT_HAS_LASER_SPRITE
@@ -189,7 +189,7 @@
 	has_eye_light_sprites = TRUE
 	has_sleeper_light_indicator = FALSE
 	has_vore_belly_resting_sprites = TRUE
-	sprite_icon = 'icons/mob/catborgs/departmental/catborgs/catborg_science.dmi'
+	sprite_icon = 'icons/mob/robot/catborgs/departmental/large/catborg_science.dmi'
 	rest_sprite_options = list("Default", "Bellyup", "Sit")
 	belly_capacity_list = list("belly" = 2, "throat" =2)
 	sprite_flags = ROBOT_HAS_SHIELD_SPRITE | ROBOT_HAS_DISABLER_SPRITE | ROBOT_HAS_TASER_SPRITE | ROBOT_HAS_LASER_SPRITE
@@ -203,7 +203,7 @@
 	has_eye_light_sprites = TRUE
 	has_sleeper_light_indicator = FALSE
 	has_vore_belly_resting_sprites = TRUE
-	sprite_icon = 'icons/mob/catborgs/departmental/catborgs/catborg_security.dmi'
+	sprite_icon = 'icons/mob/robot/catborgs/departmental/large/catborg_security.dmi'
 	rest_sprite_options = list("Default", "Bellyup", "Sit")
 	belly_capacity_list = list("belly" = 2, "throat" =2)
 	sprite_flags = ROBOT_HAS_SHIELD_SPRITE | ROBOT_HAS_DISABLER_SPRITE | ROBOT_HAS_TASER_SPRITE | ROBOT_HAS_LASER_SPRITE
@@ -218,7 +218,7 @@
 	has_sleeper_light_indicator = FALSE
 	has_vore_belly_resting_sprites = TRUE
 	has_robotdecal_sprites = TRUE
-	sprite_icon = 'icons/mob/catborgs/departmental/catborgs/catborg_service.dmi'
+	sprite_icon = 'icons/mob/robot/catborgs/departmental/large/catborg_service.dmi'
 	rest_sprite_options = list("Default", "Bellyup", "Sit")
 	belly_capacity_list = list("belly" = 2, "throat" =2)
 	sprite_flags = ROBOT_HAS_SHIELD_SPRITE | ROBOT_HAS_DISABLER_SPRITE | ROBOT_HAS_TASER_SPRITE | ROBOT_HAS_LASER_SPRITE
@@ -234,7 +234,7 @@
 	name = "Gryphonborg"
 	sprite_icon_state = "borb"
 	sprite_hud_icon_state = "borb"
-	sprite_icon = 'icons/mob/catborgs/Custom/catborg_cameron.dmi'
+	sprite_icon = 'icons/mob/robot/catborgs/custom/catborg_cameron.dmi'
 	belly_capacity_list = list("belly" = 3, "throat" =2)
 	rest_sprite_options = list("Default", "Bellyup", "Sit")
 	has_eye_sprites = TRUE
@@ -255,7 +255,7 @@
 	name = "Catborg - Matica"
 	sprite_icon_state = "chonker"
 	sprite_hud_icon_state = "chonker"
-	sprite_icon = 'icons/mob/catborgs/Custom/catborg_matica_custom.dmi'
+	sprite_icon = 'icons/mob/catborgs/custom/catborg_matica_custom.dmi'
 	belly_capacity_list = list("belly" = 1, "throat" =2)
 	rest_sprite_options = list("Default", "Bellyup", "Sit")
 	has_eye_sprites = TRUE
@@ -272,7 +272,7 @@
 	name = "Kittyborg - Spotteh"
 	sprite_icon_state = "spotteh"
 	sprite_hud_icon_state = "spotteh"
-	sprite_icon = 'icons/mob/catborgs/Custom/kittyborg_spotteh_custom.dmi'
+	sprite_icon = 'icons/mob/catborgs/custom/kittyborg_spotteh_custom.dmi'
 	belly_capacity_list = list("belly" = 2)
 	rest_sprite_options = list("Default", "Bellyup", "Sit")
 	has_eye_sprites = TRUE
@@ -284,9 +284,9 @@
 	sprite_flags = ROBOT_HAS_SHIELD_SPRITE | ROBOT_HAS_GUN_SPRITE
 	whitelist_ckey = "Spotteh"
 	module_type = list("Standard", "Engineering", "Surgeon", "Crisis", "Miner", "Janitor", "Service", "Clerical", "Security", "Research")
+*/
 
 /* //This is just kept here as a reference.
 var/global/list/departmental_robot_modules:
 	module_type = list("Standard", "Engineering", "Surgeon", "Crisis", "Miner", "Janitor", "Service", "Clerical", "Security", "Research")
 */
-/*

@@ -118,7 +118,7 @@
 	name = "Catborg - Matica"
 	sprite_icon_state = "chonker"
 	sprite_hud_icon_state = "chonker"
-	sprite_icon = 'icons/mob/catborgs/Custom/catborg_matica_custom.dmi'
+	sprite_icon = 'icons/mob/robot/catborgs/custom/catborg_matica_custom.dmi'
 	belly_capacity_list = list("belly" = 1, "throat" =2)
 	rest_sprite_options = list("Default", "Bellyup", "Sit")
 	has_eye_sprites = TRUE
@@ -135,7 +135,7 @@
 	name = "Kittyborg - Spotteh"
 	sprite_icon_state = "spotteh"
 	sprite_hud_icon_state = "spotteh"
-	sprite_icon = 'icons/mob/catborgs/Custom/kittyborg_spotteh_custom.dmi'
+	sprite_icon = 'icons/mob/robot/catborgs/custom/kittyborg_spotteh_custom.dmi'
 	belly_capacity_list = list("belly" = 2)
 	rest_sprite_options = list("Default", "Bellyup", "Sit")
 	has_eye_sprites = TRUE
