@@ -145,7 +145,7 @@
 	has_robotdecal_sprites = TRUE
 	is_whitelisted = TRUE
 	sprite_flags = ROBOT_HAS_SHIELD_SPRITE | ROBOT_HAS_GUN_SPRITE
-	whitelist_ckey = "Spotteh"
+	whitelist_ckey = "spotteh"
 	module_type = list("Standard", "Engineering", "Surgeon", "Crisis", "Miner", "Janitor", "Service", "Clerical", "Security", "Research")
 
 
