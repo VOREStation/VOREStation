@@ -37,6 +37,7 @@
 
 //Extra micro turfs
 /turf/simulated/floor/smole/grass
+	icon = 'icons/turf/outdoors.dmi'
 	name = "grass"
 	icon_state = "grass0"
 	initial_flooring = /decl/flooring/grass/outdoors

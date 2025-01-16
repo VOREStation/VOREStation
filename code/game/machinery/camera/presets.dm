@@ -119,7 +119,7 @@ var/global/list/engineering_networks = list(
 // X-RAY
 
 /obj/machinery/camera/xray
-	icon_state = "xraycam" // Thanks to Krutchen for the icons.
+	icon_state = "camera" // Thanks to Krutchen for the icons. // no xraycam in vr icons
 
 /obj/machinery/camera/xray/command
 	network = list(NETWORK_COMMAND)

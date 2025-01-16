@@ -143,7 +143,7 @@
 /obj/item/clothing/suit/justice
 	name = "justice suit"
 	desc = "This pretty much looks ridiculous."
-	icon_state = "gentle_coat"
+	icon_state = "gentlecoat"
 	item_state_slots = list(slot_r_hand_str = "greatcoat", slot_l_hand_str = "greatcoat")
 	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT|HIDETIE|HIDEHOLSTER
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|HANDS|LEGS|FEET
@@ -482,14 +482,16 @@
 /obj/item/clothing/suit/stripper/stripper_pink
 	name = "pink skimpy dress"
 	desc = "A rather skimpy pink dress."
-	icon_state = "stripper_p_over"
+	icon = 'icons/inventory/uniform/item.dmi'
+	icon_state = "stripper_p"
 	item_state_slots = list(slot_r_hand_str = "pink_labcoat", slot_l_hand_str = "pink_labcoat")
 	siemens_coefficient = 1
 
 /obj/item/clothing/suit/stripper/stripper_green
 	name = "green skimpy dress"
 	desc = "A rather skimpy green dress."
-	icon_state = "stripper_g_over"
+	icon = 'icons/inventory/uniform/item.dmi'
+	icon_state = "stripper_g"
 	item_state_slots = list(slot_r_hand_str = "green_labcoat", slot_l_hand_str = "green_labcoat")
 	siemens_coefficient = 1
 
