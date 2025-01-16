@@ -396,6 +396,10 @@
 		if(I.type == /turf/space)
 			I.cut_overlays()
 			continue
+		if(isturf(I))
+			var/turf/T = I
+			T.ChangeTurf(/turf/space)
+			continue
 		else if(!I.simulated)
 			continue
 		else if(I.type in ignored)
@@ -407,6 +411,10 @@
 	for(var/atom/I in myarea.contents)
 		if(I.type == /turf/space)
 			I.cut_overlays()
+			continue
+		if(isturf(I))
+			var/turf/T = I
+			T.ChangeTurf(/turf/space)
 			continue
 		else if(!I.simulated)
 			continue

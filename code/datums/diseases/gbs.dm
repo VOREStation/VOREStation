@@ -9,6 +9,7 @@
 	agent = "Gravitokinetic Bipotential SADS+"
 	viable_mobtypes = list(/mob/living/carbon/human)
 	severity = BIOHAZARD
+	disease_flags = CAN_NOT_POPULATE
 
 /datum/disease/gbs/stage_act()
 	if(!..())

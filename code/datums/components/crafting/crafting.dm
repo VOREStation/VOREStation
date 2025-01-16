@@ -458,20 +458,7 @@
 		return
 	switch(action)
 		if("make")
-			var/datum/crafting_recipe/TR = locate(params["recipe"]) in GLOB.crafting_recipes
-			busy = TRUE
-			tgui_interact(ui.user)
-			var/atom/movable/result = construct_item(ui.user, TR)
-			if(!istext(result)) //We made an item and didn't get a fail message
-				if(ismob(ui.user) && isitem(result)) //In case the user is actually possessing a non mob like a machine
-					ui.user.put_in_hands(result)
-				else
-					result.forceMove(ui.user.drop_location())
-				to_chat(ui.user, span_notice("[TR.name] constructed."))
-				TR.on_craft_completion(ui.user, result)
-			else
-				to_chat(ui.user, span_warning("Construction failed[result]"))
-			busy = FALSE
+			do_make(ui.user, locate(params["recipe"]) in GLOB.crafting_recipes)
 		if("toggle_recipes")
 			display_craftable_only = !display_craftable_only
 			. = TRUE
@@ -482,6 +469,21 @@
 			cur_category = params["category"]
 			cur_subcategory = params["subcategory"] || ""
 			. = TRUE
+
+/datum/component/personal_crafting/proc/do_make(mob/user, datum/crafting_recipe/TR)
+	busy = TRUE
+	tgui_interact(user)
+	var/atom/movable/result = construct_item(user, TR)
+	if(!istext(result)) //We made an item and didn't get a fail message
+		if(ismob(user) && isitem(result)) //In case the user is actually possessing a non mob like a machine
+			user.put_in_hands(result)
+		else
+			result.forceMove(user.drop_location())
+		to_chat(user, span_notice("[TR.name] constructed."))
+		TR.on_craft_completion(user, result)
+	else
+		to_chat(user, span_warning("Construction failed[result]"))
+	busy = FALSE
 
 /datum/component/personal_crafting/proc/build_recipe_data(datum/crafting_recipe/R)
 	var/list/data = list()
