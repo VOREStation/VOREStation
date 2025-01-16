@@ -135,7 +135,7 @@
 		return
 
 /datum/robot_sprite/proc/get_robotdecal_overlay(var/mob/living/silicon/robot/ourborg)
-	if(!(ourborg.resting && has_rest_sprites))
+	if(!(ourborg.resting && has_robotdecal_sprites))
 		return "[sprite_icon_state]-decals"
 	else
 		return
