@@ -6,6 +6,15 @@
 /// And the two custom-whitelisted ones also have all the departments.
 /// So to keep it neat and organized, I put them all in one file for ease of viewing instead of copy and pasting all over the place.
 
+/// ADDITIONALLY, SOME NOTES:
+/// The only two borgs here that have sleeper color sprites are the Secborg and the Crisis borg (That also has surgery. Surgery shouldn't even be a borg module, but I digress)
+/// If you want to add them to the rest of the borgs in here that have sleepers (or want to make your own and add sleeper colors)
+/// Let's do an example.
+/// Go to the .dmi for the borg (catborg_security.dmi), copy the sec-sleeper-1, sec-sleeper-2 (the static and moving states) as many times as you have sleeper states.
+/// Rename them to sec-sleeper-1-g sec-sleeper-1-r sec-sleeper-2-g sec-sleeper-2-r respectively
+/// Copy the sleeper-g, sleeper-g(moving), sleeper-r, sleeper-r(moving) and copy & paste them on the sprites.
+/// Save it and boom, you're done. You should now have 8 new icon states. 4 static 4 moving.
+
 /// EXAMPLE.
 /*
 /datum/robot_sprite/dogborg/DEPARTMENT/catborg
@@ -18,7 +27,7 @@
 	has_vore_belly_resting_sprites = TRUE
 	sprite_icon = 'icons/mob/catborgs/Departmental/catborgs/catborg_engineering.dmi'
 	rest_sprite_options = list("Default", "Bellyup", "Sit")
-	belly_capacity_list = list("belly" = 2, "throat" =2)
+	belly_capacity_list = list("sleeper" = 2, "throat" =2)
 	module_type = list("Standard", "Engineering", "Crisis", "Miner", "Janitor", "Service", "Clerical", "Security", "Research") //Select whichever ones they apply to.
 */
 
@@ -35,7 +44,7 @@
 	has_vore_belly_resting_sprites = TRUE
 	sprite_icon = 'icons/mob/robot/catborgs/departmental/small/kittyborg_cargo.dmi'
 	rest_sprite_options = list("Default", "Bellyup", "Sit")
-	belly_capacity_list = list("belly" = 2, "throat" =2)
+	belly_capacity_list = list("sleeper" = 2, "throat" =2)
 	sprite_flags = ROBOT_HAS_SHIELD_SPRITE | ROBOT_HAS_GUN_SPRITE
 
 /// Engineering
@@ -49,7 +58,7 @@
 	has_vore_belly_resting_sprites = TRUE
 	sprite_icon = 'icons/mob/robot/catborgs/departmental/small/kittyborg_engi.dmi'
 	rest_sprite_options = list("Default", "Bellyup", "Sit")
-	belly_capacity_list = list("belly" = 2)
+	belly_capacity_list = list("sleeper" = 2)
 	sprite_flags = ROBOT_HAS_SHIELD_SPRITE | ROBOT_HAS_GUN_SPRITE
 
 
@@ -64,7 +73,7 @@
 	has_vore_belly_resting_sprites = TRUE
 	sprite_icon = 'icons/mob/robot/catborgs/departmental/small/kittyborg_jani.dmi'
 	rest_sprite_options = list("Default", "Bellyup", "Sit")
-	belly_capacity_list = list("belly" = 2)
+	belly_capacity_list = list("sleeper" = 2)
 	sprite_flags = ROBOT_HAS_SHIELD_SPRITE | ROBOT_HAS_GUN_SPRITE
 
 /// Medical
@@ -78,7 +87,7 @@
 	has_vore_belly_resting_sprites = TRUE
 	sprite_icon = 'icons/mob/robot/catborgs/departmental/small/kittyborg_medicat.dmi'
 	rest_sprite_options = list("Default", "Bellyup", "Sit")
-	belly_capacity_list = list("belly" = 2)
+	belly_capacity_list = list("sleeper" = 2)
 	sprite_flags = ROBOT_HAS_SHIELD_SPRITE | ROBOT_HAS_GUN_SPRITE
 	module_type = list("Crisis", "Surgeon")
 
@@ -93,7 +102,7 @@
 	has_vore_belly_resting_sprites = TRUE
 	sprite_icon = 'icons/mob/robot/catborgs/departmental/small/kittyborg_sci.dmi'
 	rest_sprite_options = list("Default", "Bellyup", "Sit")
-	belly_capacity_list = list("belly" = 2)
+	belly_capacity_list = list("sleeper" = 2)
 	sprite_flags = ROBOT_HAS_SHIELD_SPRITE | ROBOT_HAS_GUN_SPRITE
 
 /// Security
@@ -107,7 +116,7 @@
 	has_vore_belly_resting_sprites = TRUE
 	sprite_icon = 'icons/mob/robot/catborgs/departmental/small/kittyborg_sec.dmi'
 	rest_sprite_options = list("Default", "Bellyup", "Sit")
-	belly_capacity_list = list("belly" = 2)
+	belly_capacity_list = list("sleeper" = 2)
 	sprite_flags = ROBOT_HAS_SHIELD_SPRITE | ROBOT_HAS_GUN_SPRITE
 
 /// Service
@@ -121,7 +130,7 @@
 	has_vore_belly_resting_sprites = TRUE
 	sprite_icon = 'icons/mob/robot/catborgs/departmental/small/kittyborg_service.dmi'
 	rest_sprite_options = list("Default", "Bellyup", "Sit")
-	belly_capacity_list = list("belly" = 2)
+	belly_capacity_list = list("sleeper" = 2)
 	sprite_flags = ROBOT_HAS_SHIELD_SPRITE | ROBOT_HAS_GUN_SPRITE
 	module_type = list("Service", "Clerical")
 
@@ -148,7 +157,7 @@
 	has_vore_belly_resting_sprites = TRUE
 	sprite_icon = 'icons/mob/robot/catborgs/departmental/large/catborg_cargo.dmi'
 	rest_sprite_options = list("Default", "Bellyup", "Sit")
-	belly_capacity_list = list("belly" = 2, "throat" =2)
+	belly_capacity_list = list("sleeper" = 2, "throat" =2)
 	sprite_flags = ROBOT_HAS_SHIELD_SPRITE | ROBOT_HAS_DISABLER_SPRITE | ROBOT_HAS_TASER_SPRITE | ROBOT_HAS_LASER_SPRITE
 
 /// Engineering
@@ -162,7 +171,7 @@
 	has_vore_belly_resting_sprites = TRUE
 	sprite_icon = 'icons/mob/robot/catborgs/departmental/large/catborg_engineering.dmi'
 	rest_sprite_options = list("Default", "Bellyup", "Sit")
-	belly_capacity_list = list("belly" = 2, "throat" =2)
+	belly_capacity_list = list("sleeper" = 2, "throat" =2)
 	sprite_flags = ROBOT_HAS_SHIELD_SPRITE | ROBOT_HAS_DISABLER_SPRITE | ROBOT_HAS_TASER_SPRITE | ROBOT_HAS_LASER_SPRITE
 
 /// Crisis
@@ -176,7 +185,8 @@
 	has_vore_belly_resting_sprites = TRUE
 	sprite_icon = 'icons/mob/robot/catborgs/departmental/large/catborg_medical.dmi'
 	rest_sprite_options = list("Default", "Bellyup", "Sit")
-	belly_capacity_list = list("belly" = 2, "throat" =2)
+	belly_capacity_list = list("sleeper" = 2, "throat" =2)
+	belly_light_list = list("sleeper" = 2)
 	sprite_flags = ROBOT_HAS_SHIELD_SPRITE | ROBOT_HAS_DISABLER_SPRITE | ROBOT_HAS_TASER_SPRITE | ROBOT_HAS_LASER_SPRITE
 	module_type = list("Crisis", "Surgeon")
 
@@ -191,7 +201,7 @@
 	has_vore_belly_resting_sprites = TRUE
 	sprite_icon = 'icons/mob/robot/catborgs/departmental/large/catborg_science.dmi'
 	rest_sprite_options = list("Default", "Bellyup", "Sit")
-	belly_capacity_list = list("belly" = 2, "throat" =2)
+	belly_capacity_list = list("sleeper" = 2, "throat" =2)
 	sprite_flags = ROBOT_HAS_SHIELD_SPRITE | ROBOT_HAS_DISABLER_SPRITE | ROBOT_HAS_TASER_SPRITE | ROBOT_HAS_LASER_SPRITE
 
 /// Security
@@ -205,7 +215,8 @@
 	has_vore_belly_resting_sprites = TRUE
 	sprite_icon = 'icons/mob/robot/catborgs/departmental/large/catborg_security.dmi'
 	rest_sprite_options = list("Default", "Bellyup", "Sit")
-	belly_capacity_list = list("belly" = 2, "throat" =2)
+	belly_capacity_list = list("sleeper" = 2, "throat" =2)
+	belly_light_list = list("sleeper" = 2)
 	sprite_flags = ROBOT_HAS_SHIELD_SPRITE | ROBOT_HAS_DISABLER_SPRITE | ROBOT_HAS_TASER_SPRITE | ROBOT_HAS_LASER_SPRITE
 
 /// Service
@@ -220,7 +231,7 @@
 	has_robotdecal_sprites = TRUE
 	sprite_icon = 'icons/mob/robot/catborgs/departmental/large/catborg_service.dmi'
 	rest_sprite_options = list("Default", "Bellyup", "Sit")
-	belly_capacity_list = list("belly" = 2, "throat" =2)
+	belly_capacity_list = list("sleeper" = 2, "throat" =2)
 	sprite_flags = ROBOT_HAS_SHIELD_SPRITE | ROBOT_HAS_DISABLER_SPRITE | ROBOT_HAS_TASER_SPRITE | ROBOT_HAS_LASER_SPRITE
 	module_type = list("Service", "Clerical", "Janitor") //They get Janitor because no specific janitor sprite.
 
@@ -235,7 +246,7 @@
 	sprite_icon_state = "borb"
 	sprite_hud_icon_state = "borb"
 	sprite_icon = 'icons/mob/robot/catborgs/custom/catborg_cameron.dmi'
-	belly_capacity_list = list("belly" = 3, "throat" =2)
+	belly_capacity_list = list("sleeper" = 3, "throat" =2)
 	rest_sprite_options = list("Default", "Bellyup", "Sit")
 	has_eye_sprites = TRUE
 	has_eye_light_sprites = TRUE
@@ -256,7 +267,7 @@
 	sprite_icon_state = "chonker"
 	sprite_hud_icon_state = "chonker"
 	sprite_icon = 'icons/mob/catborgs/custom/catborg_matica_custom.dmi'
-	belly_capacity_list = list("belly" = 1, "throat" =2)
+	belly_capacity_list = list("sleeper" = 1, "throat" =2)
 	rest_sprite_options = list("Default", "Bellyup", "Sit")
 	has_eye_sprites = TRUE
 	has_eye_light_sprites = TRUE
@@ -273,7 +284,7 @@
 	sprite_icon_state = "spotteh"
 	sprite_hud_icon_state = "spotteh"
 	sprite_icon = 'icons/mob/catborgs/custom/kittyborg_spotteh_custom.dmi'
-	belly_capacity_list = list("belly" = 2)
+	belly_capacity_list = list("sleeper" = 2)
 	rest_sprite_options = list("Default", "Bellyup", "Sit")
 	has_eye_sprites = TRUE
 	has_eye_light_sprites = TRUE
