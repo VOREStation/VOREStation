@@ -254,3 +254,18 @@
 			step(tug_pet, WEST, 1)
 		if(tug_pet_x < tug_master_x)
 			step(tug_pet, EAST, 1)
+
+/obj/item/leash/cable
+	name = "cable leash"
+	desc = "A simple tether that can easily be hooked onto a collar. This one is made from wiring cable."
+	icon = 'icons/obj/leash.dmi'
+	icon_state = "cable"
+
+/datum/crafting_recipe/leash
+	name = "cable leash"
+	result = /obj/item/leash/cable
+	reqs = list(
+		list(/obj/item/stack/cable_coil = 3)
+	)
+	time = 60
+	category = CAT_MISC

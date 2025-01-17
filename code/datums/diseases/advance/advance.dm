@@ -22,7 +22,7 @@ GLOBAL_LIST_INIT(advance_cures, list(
 	form = "Advance Disease"
 	agent = "advance microbes"
 	max_stages = 5
-	disease_flags = CAN_NOT_POPULATE
+	disease_flags = CURABLE|CAN_CARRY|CAN_RESIST|CAN_NOT_POPULATE
 	spread_text = "Unknown"
 	viable_mobtypes = list(/mob/living/carbon/human)
 
