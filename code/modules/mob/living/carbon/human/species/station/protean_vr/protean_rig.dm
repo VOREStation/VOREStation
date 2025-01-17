@@ -60,8 +60,12 @@
 /obj/item/rig/protean/Destroy()
 	if(myprotean)
 		var/mob/living/carbon/human/P = myprotean
-		var/datum/species/protean/S = P?.species
-		S?.OurRig = null
+		if(!ishuman(P) && isprotblob(myprotean))
+			var/mob/living/simple_mob/protean_blob/blob = myprotean
+			P = blob.humanform
+		if(ishuman(P))
+			var/datum/species/protean/S = P?.species
+			S?.OurRig = null
 		myprotean = null
 	. = ..()
 

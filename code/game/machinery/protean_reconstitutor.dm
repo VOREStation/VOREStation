@@ -242,6 +242,7 @@
 					return
 				if(P.dna)
 					P.dna.ResetUIFrom(P)
+					P.sync_dna_traits(FALSE) // Traitgenes Sync traits to genetics if needed
 					P.sync_organ_dna()
 
 				if(P.mind)

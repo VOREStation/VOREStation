@@ -133,7 +133,14 @@
 			spawn_slots --
 			return
 
+	var/slot = ghost.client.prefs.default_slot
 	if(tgui_alert(ghost, "Would you like to be resleeved?", "Resleeve", list("No","Yes")) != "Yes")
+		return
+	//This keeps people from dying in round, clicking the autoresleever, then swapping savefiles and clicking 'yes'
+	if(slot != ghost.client.prefs.default_slot && (!equip_body || !ghost_spawns))
+		var/turf/T = get_turf(src)
+		to_chat(ghost, span_warning("It appears as though your loaded character has not been spawned this round, or has quit the round. If you died as a different character, please load them, and try again."))
+		message_admins("[key_name_admin(ghost)] swapped savefiles while using the autosleever and tried to spawn as another character! [ADMIN_JMP(T)]")
 		return
 	var/mob/living/carbon/human/new_character
 	new_character = new(spawnloc)
@@ -147,6 +154,7 @@
 	ghost_client.prefs.copy_to(new_character)
 	if(new_character.dna)
 		new_character.dna.ResetUIFrom(new_character)
+		new_character.sync_dna_traits(TRUE) // Traitgenes Sync traits to genetics if needed
 		new_character.sync_organ_dna()
 	if(ghost.mind)
 		ghost.mind.transfer_to(new_character)
@@ -172,12 +180,10 @@
 			var/datum/language/keylang = GLOB.all_languages[ghost_client.prefs.language_custom_keys[key]]
 			if(keylang)
 				new_character.language_keys[key] = keylang
-	// VOREStation Add: Preferred Language Setting;
 	if(ghost_client.prefs.preferred_language) // Do we have a preferred language?
 		var/datum/language/def_lang = GLOB.all_languages[ghost_client.prefs.preferred_language]
 		if(def_lang)
 			new_character.default_language = def_lang
-	// VOREStation Add End
 
 	//If desired, apply equipment.
 	if(equip_body)
@@ -216,6 +222,9 @@
 				for(var/path in record.nif_software)
 					new path(nif)
 				nif.durability = record.nif_durability
+
+	if(!new_character.dna)
+		CRASH("[new_character] just came out of an autosleever and has no DNA! Species: [new_character.species] as mob: [new_character.type]. NIF Status: [new_character.nif]")
 
 	if(spawn_slots == -1)
 		return

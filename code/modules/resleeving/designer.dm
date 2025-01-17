@@ -151,6 +151,18 @@
 		var/list/flavors = data["activeBodyRecord"]["flavors"]
 		flavors += active_br.mydna.flavor.Copy()
 
+		if(flavors.len == 0)
+			flavors["general"] = ""
+			flavors["head"] = ""
+			flavors["face"] = ""
+			flavors["eyes"] = ""
+			flavors["torso"] = ""
+			flavors["arms"] = ""
+			flavors["hands"] = ""
+			flavors["legs"] = ""
+			flavors["feet"] = ""
+			data["activeBodyRecord"]["flavors"] = flavors.Copy()
+
 		var/list/styles = data["activeBodyRecord"]["styles"]
 		var/list/temp
 

@@ -30,7 +30,7 @@ const DNAModifierMainBuffersElement = (props: {
 }) => {
   const { act, data } = useBackend<Data>();
   const { id, name, buffer } = props;
-  const { isInjectorReady } = data;
+  const { isInjectorReady, hasOccupant, occupant } = data; // Traitgenes Allow accessing menus while no occupant is inside
   const realName: string = name + (buffer.data ? ' - ' + buffer.label : '');
   return (
     <Box backgroundColor="rgba(0, 0, 0, 0.33)" mb="0.5rem">
@@ -41,7 +41,7 @@ const DNAModifierMainBuffersElement = (props: {
         buttons={
           <>
             <Button.Confirm
-              disabled={!buffer.data}
+              disabled={!buffer.data || !buffer.owner} // Traitgenes Allow accessing menus while no occupant is inside
               icon="trash"
               onClick={() =>
                 act('bufferOption', {
@@ -53,7 +53,7 @@ const DNAModifierMainBuffersElement = (props: {
               Clear
             </Button.Confirm>
             <Button
-              disabled={!buffer.data}
+              disabled={!buffer.data || !buffer.owner} // Traitgenes Allow accessing menus while no occupant is inside
               icon="pen"
               onClick={() =>
                 act('bufferOption', {
@@ -64,8 +64,24 @@ const DNAModifierMainBuffersElement = (props: {
             >
               Rename
             </Button>
+            {/* Traitgenes So the geneticist doesn't need to fight with the doctor for the sleeve pod */}
             <Button
-              disabled={!buffer.data || !data.hasDisk}
+              disabled={!buffer.data || !buffer.owner} // Traitgenes Allow accessing menus while no occupant is inside
+              icon="user-plus"
+              tooltip="Grow a clone from the buffer's data."
+              tooltipPosition="bottom-end"
+              onClick={() =>
+                act('bufferOption', {
+                  option: 'sleeveDisk',
+                  id: id,
+                })
+              }
+            >
+              Grow Body
+            </Button>
+            {/* Traitgenes edit end */}
+            <Button
+              disabled={!buffer.data || !data.hasDisk || !buffer.owner} // Traitgenes Allow accessing menus while no occupant is inside
               icon="save"
               tooltip="Exports this buffer to the currently loaded data disk."
               tooltipPosition="bottom-end"
@@ -83,6 +99,8 @@ const DNAModifierMainBuffersElement = (props: {
       >
         <LabeledList>
           <LabeledList.Item label="Write">
+            {/* Traitgenes use body records instead of unique disks */}
+            {/*
             <Button
               icon="arrow-circle-down"
               mb="0"
@@ -107,17 +125,19 @@ const DNAModifierMainBuffersElement = (props: {
             >
               Subject U.I and U.E.
             </Button>
+            */}
             <Button
+              disabled={!hasOccupant || !occupant.isViableSubject} // Traitgenes Allow accessing menus while no occupant is inside
               icon="arrow-circle-down"
               mb="0"
               onClick={() =>
                 act('bufferOption', {
-                  option: 'saveSE',
+                  option: 'saveDNA',
                   id: id,
                 })
               }
             >
-              Subject S.E.
+              From Subject
             </Button>
             <Button
               disabled={!data.hasDisk || !data.disk.data}
@@ -146,7 +166,7 @@ const DNAModifierMainBuffersElement = (props: {
               </LabeledList.Item>
               <LabeledList.Item label="Transfer to">
                 <Button
-                  disabled={!isInjectorReady}
+                  disabled={!isInjectorReady || !buffer.owner} // Traitgenes Allow accessing menus while no occupant is inside
                   icon={isInjectorReady ? 'syringe' : 'spinner'}
                   iconSpin={!isInjectorReady}
                   mb="0"
@@ -160,7 +180,7 @@ const DNAModifierMainBuffersElement = (props: {
                   Injector
                 </Button>
                 <Button
-                  disabled={!isInjectorReady}
+                  disabled={!isInjectorReady || !buffer.owner} // Traitgenes Allow accessing menus while no occupant is inside
                   icon={isInjectorReady ? 'syringe' : 'spinner'}
                   iconSpin={!isInjectorReady}
                   mb="0"
@@ -175,6 +195,9 @@ const DNAModifierMainBuffersElement = (props: {
                   Block Injector
                 </Button>
                 <Button
+                  disabled={
+                    !hasOccupant || !buffer.owner || !occupant.isViableSubject
+                  } // Traitgenes Allow accessing menus while no occupant is inside
                   icon="user"
                   mb="0"
                   onClick={() =>

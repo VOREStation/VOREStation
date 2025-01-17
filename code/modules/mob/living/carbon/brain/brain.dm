@@ -8,7 +8,7 @@
 	use_me = 0 //Can't use the me verb, it's a freaking immobile brain
 	icon = 'icons/obj/surgery.dmi'
 	icon_state = "brain1"
-	no_vore = TRUE //VOREStation Edit - PLEASE. lol.
+	no_vore = TRUE
 
 /mob/living/carbon/brain/Initialize()
 	. = ..()

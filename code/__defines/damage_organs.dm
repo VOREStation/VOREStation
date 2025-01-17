@@ -45,6 +45,7 @@
 #define DROPLIMB_EDGE 0
 #define DROPLIMB_BLUNT 1
 #define DROPLIMB_BURN 2
+#define DROPLIMB_ACID 3
 
 // Damage above this value must be repaired with surgery.
 #define ROBOLIMB_REPAIR_CAP 30

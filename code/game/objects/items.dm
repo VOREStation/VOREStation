@@ -1057,7 +1057,11 @@ closest to where the cursor has clicked on.
 Note: This proc can be overwritten to allow for different types of auto-alignment.
 */
 
-/obj/item/var/list/center_of_mass = list("x" = 16,"y" = 16)
+/obj/item/var/list/center_of_mass = list("x" = 16,"y" = 16) //This really needs to be changed into:
+/*
+/obj/item/var/center_of_mass_x = 16
+/obj/item/var/center_of_mass_y = 16
+*/
 
 /proc/auto_align(obj/item/W, click_parameters, var/animate = FALSE)
 	if(!W.center_of_mass)

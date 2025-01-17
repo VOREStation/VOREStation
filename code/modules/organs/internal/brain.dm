@@ -33,7 +33,7 @@ GLOBAL_LIST_BOILERPLATE(all_brain_organs, /obj/item/organ/internal/brain)
 	if(!owner || owner.stat == DEAD)
 		defib_timer = max(--defib_timer, 0)
 	else
-		defib_timer = min(++defib_timer, (CONFIG_GET(number/defib_timer) MINUTES) / 20)		// Time vars measure things in ticks. Life tick happens every ~2 seconds, therefore dividing by 20
+		defib_timer = min(++defib_timer, (CONFIG_GET(number/defib_timer) MINUTES) / 2)
 
 /obj/item/organ/internal/brain/proc/can_assist()
 	return can_assist
@@ -78,11 +78,11 @@ GLOBAL_LIST_BOILERPLATE(all_brain_organs, /obj/item/organ/internal/brain)
 		tmp_owner.internal_organs_by_name[organ_tag] = new replace_path(tmp_owner, 1)
 		tmp_owner = null
 
-/obj/item/organ/internal/brain/New()
-	..()
+/obj/item/organ/internal/brain/Initialize()
+	. = ..()
 	health = CONFIG_GET(number/default_brain_health)
-	defib_timer = (CONFIG_GET(number/defib_timer) MINUTES) / 20				// Time vars measure things in ticks. Life tick happens every ~2 seconds, therefore dividing by 20
-	spawn(5)
+	defib_timer = ((CONFIG_GET(number/defib_timer) MINUTES) / 2)
+	spawn(5) //FUCK (spawn in New/Init)
 		if(brainmob)
 			butcherable = FALSE
 
@@ -103,7 +103,7 @@ GLOBAL_LIST_BOILERPLATE(all_brain_organs, /obj/item/organ/internal/brain)
 		if(istype(H))
 			brainmob.dna = H.dna.Clone()
 			brainmob.timeofhostdeath = H.timeofdeath
-			brainmob.ooc_notes = H.ooc_notes //VOREStation Edit
+			brainmob.ooc_notes = H.ooc_notes
 			brainmob.ooc_notes_likes = H.ooc_notes_likes
 			brainmob.ooc_notes_dislikes = H.ooc_notes_dislikes
 
@@ -139,7 +139,7 @@ GLOBAL_LIST_BOILERPLATE(all_brain_organs, /obj/item/organ/internal/brain)
 
 	var/obj/item/organ/internal/brain/B = src
 	if(istype(B) && owner)
-		if(istype(owner, /mob/living/carbon))
+		if(istype(owner, /mob/living/carbon) && owner.ckey)
 			B.transfer_identity(owner)
 
 	..()
@@ -179,7 +179,7 @@ GLOBAL_LIST_BOILERPLATE(all_brain_organs, /obj/item/organ/internal/brain)
 	can_assist = FALSE
 
 /obj/item/organ/internal/brain/slime
-	icon = 'icons/obj/surgery_vr.dmi' // Vorestation edit
+	icon = 'icons/obj/surgery_vr.dmi'
 	name = "slime core"
 	desc = "A complex, organic knot of jelly and crystalline particles."
 	icon_state = "core"
@@ -196,7 +196,7 @@ GLOBAL_LIST_BOILERPLATE(all_brain_organs, /obj/item/organ/internal/brain)
 	..()
 	create_reagents(50)
 	var/mob/living/carbon/human/H = null
-	spawn(15) //Match the core to the Promethean's starting color.
+	spawn(15) //Match the core to the Promethean's starting color. //FUCK (spawn in New/Init)
 		if(ishuman(owner))
 			H = owner
 			color = rgb(min(H.r_skin + 40, 255), min(H.g_skin + 40, 255), min(H.b_skin + 40, 255))
@@ -251,6 +251,7 @@ GLOBAL_LIST_BOILERPLATE(all_brain_organs, /obj/item/organ/internal/brain)
 		H.dna = R.dna
 
 	H.UpdateAppearance()
+	H.sync_dna_traits(FALSE) // Traitgenes Sync traits to genetics if needed
 	H.sync_organ_dna()
 	if(!R.dna.real_name)	//to prevent null names
 		R.dna.real_name = "promethean ([rand(0,999)])"
@@ -313,7 +314,7 @@ GLOBAL_LIST_BOILERPLATE(all_brain_organs, /obj/item/organ/internal/brain)
 /obj/item/organ/internal/brain/grey/colormatch/New()
 	..()
 	var/mob/living/carbon/human/H = null
-	spawn(15)
+	spawn(15) //FUCK (spawn in New/Init)
 		if(ishuman(owner))
 			H = owner
 			color = H.species.blood_color
