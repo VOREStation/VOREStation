@@ -74,6 +74,7 @@ export const CrewMonitorCrew = (props: { crew: crewmember[] }) => {
             </Stack.Item>
             <Stack.Item>
               <Button
+                selected={sortType === 'name'}
                 icon={nameSortOrder ? 'arrow-down' : 'arrow-up'}
                 height="19px"
                 tooltip={nameSortOrder ? 'Descending order' : 'Ascending order'}
@@ -107,6 +108,7 @@ export const CrewMonitorCrew = (props: { crew: crewmember[] }) => {
             Decea
           </Button.Checkbox>
           <Button
+            selected={sortType === 'damage'}
             icon={damageSortOrder ? 'arrow-down' : 'arrow-up'}
             height="19px"
             tooltip={damageSortOrder ? 'Descending order' : 'Ascending order'}
@@ -136,6 +138,7 @@ export const CrewMonitorCrew = (props: { crew: crewmember[] }) => {
               </Button>
             ))}
           <Button
+            selected={sortType === 'location'}
             icon={locationSortOrder ? 'arrow-down' : 'arrow-up'}
             height="19px"
             tooltip={locationSortOrder ? 'Descending order' : 'Ascending order'}
