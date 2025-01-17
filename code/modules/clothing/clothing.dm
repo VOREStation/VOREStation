@@ -1093,7 +1093,7 @@
 
 				// only override icon if a corresponding digitigrade replacement icon_state exists
 				// otherwise, keep the old non-digi icon_define (or nothing)
-				if(icon_state && icon_states(update_icon_define_digi).Find(icon_state))
+				if(icon_state && icon_states(update_icon_define_digi)?.Find(icon_state))
 					update_icon_define = update_icon_define_digi
 
 
