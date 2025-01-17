@@ -243,6 +243,7 @@
 			C.install()
 	cell.charge = cell.maxcharge
 	..()
+	update_icon()
 
 /mob/living/silicon/robot/proc/init()
 	aiCamera = new/obj/item/camera/siliconcam/robot_camera(src)

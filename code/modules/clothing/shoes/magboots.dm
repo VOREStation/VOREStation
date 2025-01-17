@@ -48,7 +48,7 @@
 
 	if(H.shoes)
 		shoes = H.shoes
-		if(shoes.overshoes)
+		if(istype(shoes, /obj/item/clothing/shoes) && shoes.overshoes)
 			if(slot && slot == slot_shoes)
 				to_chat(user, "You are unable to wear \the [src] as \the [H.shoes] are in the way.")
 			shoes = null

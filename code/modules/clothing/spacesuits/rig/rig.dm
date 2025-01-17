@@ -732,7 +732,7 @@
 						use_obj.canremove = TRUE
 						holder.drop_from_inventory(use_obj)
 						use_obj.forceMove(get_turf(src))
-						use_obj.dropped()
+						use_obj.dropped(holder)
 						use_obj.canremove = FALSE
 						use_obj.forceMove(src)
 

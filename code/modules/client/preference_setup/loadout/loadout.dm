@@ -273,6 +273,8 @@ var/list/gear_datums = list()
 	var/list/gear_tweaks = list() //List of datums which will alter the item after it has been spawned.
 	var/exploitable = 0		//Does it go on the exploitable information list?
 	var/type_category = null
+	var/list/ckeywhitelist	//restricted based on these ckeys?
+	var/list/character_name	//restricted to these character names?
 
 /datum/gear/New()
 	..()

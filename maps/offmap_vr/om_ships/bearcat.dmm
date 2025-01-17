@@ -60,7 +60,6 @@
 /obj/machinery/light,
 /obj/machinery/alarm/alarms_hidden{
 	dir = 1;
-	icon_state = "alarm0";
 	pixel_y = -26
 	},
 /turf/simulated/floor/tiled/techfloor,
@@ -214,7 +213,6 @@
 	},
 /obj/machinery/alarm/alarms_hidden{
 	dir = 8;
-	icon_state = "alarm0";
 	pixel_x = 26
 	},
 /turf/simulated/floor/wood,
@@ -241,7 +239,6 @@
 	},
 /obj/machinery/alarm/alarms_hidden{
 	dir = 8;
-	icon_state = "alarm0";
 	pixel_x = 26
 	},
 /obj/structure/handrail{
@@ -309,7 +306,6 @@
 	},
 /obj/machinery/alarm/alarms_hidden{
 	dir = 4;
-	icon_state = "alarm0";
 	pixel_x = -26
 	},
 /obj/machinery/light{
@@ -722,7 +718,6 @@
 "bN" = (
 /obj/machinery/alarm/alarms_hidden{
 	dir = 8;
-	icon_state = "alarm0";
 	pixel_x = 26
 	},
 /obj/machinery/atmospherics/unary/vent_pump/on{
@@ -759,7 +754,6 @@
 "bV" = (
 /obj/machinery/alarm/alarms_hidden{
 	dir = 4;
-	icon_state = "alarm0";
 	pixel_x = -26
 	},
 /obj/machinery/atmospherics/unary/vent_pump/on{
@@ -905,7 +899,6 @@
 	},
 /obj/machinery/alarm/alarms_hidden{
 	dir = 8;
-	icon_state = "alarm0";
 	pixel_x = 26
 	},
 /obj/machinery/light{
@@ -925,7 +918,6 @@
 /obj/machinery/vending/snack,
 /obj/machinery/alarm/alarms_hidden{
 	dir = 4;
-	icon_state = "alarm0";
 	pixel_x = -26
 	},
 /turf/simulated/floor/tiled/techfloor,
@@ -983,7 +975,6 @@
 /obj/structure/closet,
 /obj/machinery/alarm/alarms_hidden{
 	dir = 8;
-	icon_state = "alarm0";
 	pixel_x = 26
 	},
 /obj/item/clothing/suit/space/void/refurb,
@@ -1456,7 +1447,6 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/alarm/alarms_hidden{
 	dir = 4;
-	icon_state = "alarm0";
 	pixel_x = -26
 	},
 /obj/structure/handrail{
@@ -1570,7 +1560,6 @@
 	},
 /obj/machinery/alarm/alarms_hidden{
 	dir = 4;
-	icon_state = "alarm0";
 	pixel_x = -26
 	},
 /turf/simulated/floor/tiled/techmaint,
@@ -1795,7 +1784,6 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/cyan,
 /obj/machinery/alarm/alarms_hidden{
 	dir = 8;
-	icon_state = "alarm0";
 	pixel_x = 26
 	},
 /turf/simulated/floor/tiled/techmaint,
@@ -1957,7 +1945,6 @@
 	},
 /obj/machinery/alarm/alarms_hidden{
 	dir = 8;
-	icon_state = "alarm0";
 	pixel_x = 26
 	},
 /turf/simulated/floor/tiled/techfloor,
@@ -2165,7 +2152,6 @@
 /obj/item/clothing/head/helmet/space/void/refurb/engineering,
 /obj/machinery/alarm/alarms_hidden{
 	dir = 8;
-	icon_state = "alarm0";
 	pixel_x = 26
 	},
 /obj/item/storage/belt/utility/full,
@@ -2304,7 +2290,6 @@
 /obj/structure/cable,
 /obj/machinery/alarm/alarms_hidden{
 	dir = 4;
-	icon_state = "alarm0";
 	pixel_x = -26
 	},
 /obj/machinery/power/apc/alarms_hidden,
@@ -2577,7 +2562,6 @@
 	},
 /obj/machinery/alarm/alarms_hidden{
 	dir = 1;
-	icon_state = "alarm0";
 	pixel_y = -26
 	},
 /turf/simulated/floor/tiled/techfloor,
@@ -2932,7 +2916,6 @@
 	},
 /obj/machinery/alarm/alarms_hidden{
 	dir = 4;
-	icon_state = "alarm0";
 	pixel_x = -26
 	},
 /turf/simulated/floor/plating,
@@ -3004,7 +2987,6 @@
 	},
 /obj/machinery/alarm/alarms_hidden{
 	dir = 1;
-	icon_state = "alarm0";
 	pixel_y = -26
 	},
 /obj/structure/handrail{
@@ -3379,7 +3361,6 @@
 "Ea" = (
 /obj/machinery/alarm/alarms_hidden{
 	dir = 1;
-	icon_state = "alarm0";
 	pixel_y = -26
 	},
 /obj/structure/cable{
@@ -3439,7 +3420,6 @@
 "Ik" = (
 /obj/machinery/alarm/alarms_hidden{
 	dir = 4;
-	icon_state = "alarm0";
 	pixel_x = -26
 	},
 /obj/structure/closet/firecloset/full,
