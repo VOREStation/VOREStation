@@ -23,7 +23,7 @@
 			flick("[icon_state]_hit", src)
 			playsound(src, 'sound/effects/woodhit.ogg', 25, 1, -1)
 			user.do_attack_animation(src)
-			user.nutrition = user.nutrition - 5
+			user.adjust_nutrition(-5)
 			user.weight -= 0.25 * weightloss_power * (0.01 * user.weight_loss)
 			to_chat(user, span_warning("You [pick(hit_message)] \the [src]."))
 
