@@ -29,7 +29,7 @@
 		shockdirs = list(turn(dir,90),turn(dir,-90))
 
 /obj/machinery/containment_field/Destroy()
-	unsense_proximity(callback = /atom/proc/HasProximity)
+	unsense_proximity(callback = TYPE_PROC_REF(/atom,HasProximity))
 	if(FG1 && !FG1.clean_up)
 		FG1.cleanup()
 	if(FG2 && !FG2.clean_up)

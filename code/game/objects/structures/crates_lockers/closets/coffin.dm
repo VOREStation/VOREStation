@@ -3,7 +3,7 @@
 	desc = "It's a burial receptacle for the dearly departed."
 	icon = 'icons/obj/closets/coffin.dmi'
 
-	icon_state = "closed"
+	icon_state = "closed_unlocked"
 	seal_tool = /obj/item/tool/screwdriver
 	breakout_sound = 'sound/weapons/tablehit1.ogg'
 	closet_appearance = null // Special icon for us
