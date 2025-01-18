@@ -118,6 +118,7 @@
 			dat += "</td></tr>"
 		dat += "</table>"
 
+		qdel(query)
 	usr << browse("<html>[dat]</html>", "window=library")
 	onclose(usr, "library")
 

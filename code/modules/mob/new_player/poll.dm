@@ -372,6 +372,7 @@
 			validoption = 1
 			break
 
+		qdel(select_query2)
 		if(!validoption)
 			to_chat(usr, span_red("Poll option is not valid."))
 			return

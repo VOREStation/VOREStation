@@ -32,7 +32,7 @@
 
 /proc/log_admin_private(text)
 	admin_log.Add(text)
-	if (config.log_admin)
+	if (CONFIG_GET(flag/log_admin))
 		WRITE_LOG(diary, "ADMINPRIVATE: [text]")
 
 /proc/log_adminpm(text, client/source, client/dest)

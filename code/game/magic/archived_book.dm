@@ -74,6 +74,7 @@ var/global/datum/book_manager/book_mgr = new()
 					dat += "<A href='byond://?our_comp=\ref[our_comp];[HrefToken()];delid=[id]'>\[Del\]</A>"
 				dat += "</td></tr>"
 			dat += "</table>"
+			qdel(query)
 
 	usr << browse("<html>[dat]</html>", "window=library")
 	onclose(usr, "library")
