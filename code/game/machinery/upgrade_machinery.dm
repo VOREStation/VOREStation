@@ -27,7 +27,7 @@
 			break
 		component_parts.Remove(C)
 		C.forceMove(src.loc)
-		C.Destroy()
+		qdel(C)
 		cur_coils--
 	// Rebuild from mapper's coils
 	for(var/i = 1, i <= parts_found.len, i++)

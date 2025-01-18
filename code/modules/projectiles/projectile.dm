@@ -469,10 +469,8 @@
 			impacted_mobs.Cut()
 		impacted_mobs = null
 
-	trajectory = null
-	beam_index = null
-	beam_components = null
-
+	QDEL_NULL(trajectory)
+	cleanup_beam_segments()
 
 	if(my_case)
 		if(my_case.BB == src)
