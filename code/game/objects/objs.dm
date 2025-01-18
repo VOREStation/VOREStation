@@ -39,6 +39,15 @@
 			m.visible_message(span_notice("\The [m] tumbles out of \the [src]!"))
 	//VOREStation Add End
 
+	if(istype(src, /obj/item))
+		var/obj/item/I = src
+		if(I.possessed_voice && I.possessed_voice.len)
+			for(var/mob/living/voice/V in I.possessed_voice)
+				if(!V.tf_mob_holder)
+					V.ghostize(0)
+					V.stat = DEAD
+					qdel(V)
+
 	return ..()
 
 /obj/Topic(href, href_list, var/datum/tgui_state/state = GLOB.tgui_default_state)
