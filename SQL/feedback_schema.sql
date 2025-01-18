@@ -1,7 +1,4 @@
---
 -- Table structure for table `erro_admin`
---
-
 CREATE TABLE `erro_admin` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `ckey` varchar(32) NOT NULL,
@@ -11,10 +8,7 @@ CREATE TABLE `erro_admin` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 ;
 
---
 -- Table structure for table `erro_admin_log`
---
-
 CREATE TABLE `erro_admin_log` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `datetime` datetime NOT NULL,
@@ -24,10 +18,7 @@ CREATE TABLE `erro_admin_log` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 ;
 
---
 -- Table structure for table `erro_ban`
---
-
 CREATE TABLE `erro_ban` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `bantime` datetime NOT NULL,
@@ -55,10 +46,7 @@ CREATE TABLE `erro_ban` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 ;
 
---
 -- Table structure for table `erro_connection_log`
---
-
 CREATE TABLE `erro_connection_log` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `datetime` datetime NOT NULL,
@@ -69,10 +57,7 @@ CREATE TABLE `erro_connection_log` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 ;
 
---
 -- Table structure for table `erro_feedback`
---
-
 CREATE TABLE `erro_feedback` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `time` datetime NOT NULL,
@@ -83,10 +68,7 @@ CREATE TABLE `erro_feedback` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 ;
 
---
 -- Table structure for table `erro_player`
---
-
 CREATE TABLE `erro_player` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `ckey` varchar(32) NOT NULL,
@@ -101,10 +83,7 @@ CREATE TABLE `erro_player` (
   KEY `discord_id` (`discord_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 ;
 
---
 -- Table structure for table `erro_poll_option`
---
-
 CREATE TABLE `erro_poll_option` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `pollid` int(11) NOT NULL,
@@ -118,10 +97,7 @@ CREATE TABLE `erro_poll_option` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 ;
 
---
 -- Table structure for table `erro_poll_question`
---
-
 CREATE TABLE `erro_poll_question` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `polltype` varchar(16) NOT NULL DEFAULT 'OPTION',
@@ -132,10 +108,7 @@ CREATE TABLE `erro_poll_question` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 ;
 
---
 -- Table structure for table `erro_poll_textreply`
---
-
 CREATE TABLE `erro_poll_textreply` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `datetime` datetime NOT NULL,
@@ -147,10 +120,7 @@ CREATE TABLE `erro_poll_textreply` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 ;
 
---
 -- Table structure for table `erro_poll_vote`
---
-
 CREATE TABLE `erro_poll_vote` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `datetime` datetime NOT NULL,
@@ -163,10 +133,7 @@ CREATE TABLE `erro_poll_vote` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 ;
 
---
 -- Table structure for table `erro_privacy`
---
-
 CREATE TABLE `erro_privacy` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `datetime` datetime NOT NULL,
@@ -175,10 +142,7 @@ CREATE TABLE `erro_privacy` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 ;
 
---
 -- Table structure for table `death`
---
-
 CREATE TABLE `death` (
   `id` INT(11) NOT NULL AUTO_INCREMENT ,
   `pod` TEXT NOT NULL COMMENT 'Place of death' ,
@@ -199,10 +163,7 @@ CREATE TABLE `death` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 ;
 
 
---
 -- Table structure for table `karma`
---
-
 CREATE TABLE `karma` (
   `id` INT(11) NOT NULL AUTO_INCREMENT ,
   `spendername` TEXT NOT NULL ,
@@ -217,11 +178,7 @@ CREATE TABLE `karma` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 ;
 
-
---
 -- Table structure for table `karmatotals`
---
-
 CREATE TABLE `karmatotals` (
   `id` INT(11) NOT NULL AUTO_INCREMENT ,
   `byondkey` TEXT NOT NULL ,
@@ -229,10 +186,7 @@ CREATE TABLE `karmatotals` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 ;
 
---
 -- Table structure for table `library`
---
-
 CREATE TABLE `library` (
   `id` INT(11) NOT NULL AUTO_INCREMENT ,
   `author` TEXT NOT NULL ,
@@ -242,11 +196,7 @@ CREATE TABLE `library` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 ;
 
-
---
 -- Table structure for table `population`
---
-
 CREATE TABLE `population` (
   `id` INT(11) NOT NULL AUTO_INCREMENT ,
   `playercount` INT(11) NULL DEFAULT NULL ,
@@ -255,10 +205,7 @@ CREATE TABLE `population` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 ;
 
---
 -- Table structure for table `vr_player_hours`
---
-
 CREATE TABLE `vr_player_hours` (
   `ckey` varchar(32) CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL,
   `department` varchar(64) CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL,
