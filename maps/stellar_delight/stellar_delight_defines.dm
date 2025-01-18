@@ -343,7 +343,6 @@
 	initial_restricted_waypoints = list("Central Command Shuttlepad" = list("cc_shuttlepad"))
 
 	extra_z_levels = list(Z_LEVEL_SPACE_ROCKS)
-	var/mob_announce_cooldown = 0
 
 /////SD Starts at V3b to pick up crew refuel and repair (And to make sure it doesn't spawn on hazards)
 /obj/effect/overmap/visitable/sector/virgo3b/Initialize()
