@@ -164,11 +164,9 @@
 
 /mob/living/proc/set_metainfo_private_notes(mob/user as mob)
 	if(user != src)
-		to_world("Test")
 		return
 	var/new_metadata = sanitize(tgui_input_text(src,"Write some notes for yourself. These can be anything that is useful, whether it's character events that you want to remember or a bit of lore. Things that you would normally stick in a txt file for yourself! This will not be saved unless you press save in the private notes panel.", "Private Notes", html_decode(private_notes), multiline = TRUE, prevent_enter = TRUE), extra = 0)
 	if(new_metadata && CanUseTopic(src))
-		to_world("Test2")
 		private_notes = new_metadata
 		client.prefs.update_preference_by_type(/datum/preference/text/living/private_notes, new_metadata)
 		to_chat(src, span_filter_notice("Private notes updated. Don't forget to save!"))
