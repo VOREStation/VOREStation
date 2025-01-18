@@ -52,7 +52,7 @@
 				dat += {"<table>
 				<tr><td>AUTHOR</td><td>TITLE</td><td>CATEGORY</td><td>SS<sup>13</sup>BN</td></tr>"}
 
-				var/datum/DBQuery/query = SSdbcore.NewQuery(SQLquery)
+				var/datum/db_query/query = SSdbcore.NewQuery(SQLquery)
 				query.Execute()
 
 				while(query.NextRow())
@@ -283,7 +283,7 @@
 				dat += {"<A href='byond://?src=\ref[src];orderbyid=1'>(Order book by SS<sup>13</sup>BN)</A><BR><BR>
 				<table>
 				<tr><td><A href='byond://?src=\ref[src];sort=author>AUTHOR</A></td><td><A href='byond://?src=\ref[src];sort=title>TITLE</A></td><td><A href='byond://?src=\ref[src];sort=category>CATEGORY</A></td><td></td></tr>"}
-				var/datum/DBQuery/query = SSdbcore.NewQuery("SELECT id, author, title, category FROM library ORDER BY [sortby]")
+				var/datum/db_query/query = SSdbcore.NewQuery("SELECT id, author, title, category FROM library ORDER BY [sortby]")
 				query.Execute()
 
 				var/show_admin_options = check_rights(R_ADMIN, show_msg = FALSE)
@@ -324,7 +324,7 @@
 			dat += {"<A href='byond://?src=\ref[src];orderbyid=1'>(Order book by SS<sup>13</sup>BN)</A><BR><BR>
 			<table>
 			<tr><td><A href='byond://?src=\ref[src];sort=author>AUTHOR</A></td><td><A href='byond://?src=\ref[src];sort=title>TITLE</A></td><td><A href='byond://?src=\ref[src];sort=category>CATEGORY</A></td><td></td></tr>"}
-			var/datum/DBQuery/query = SSdbcore.NewQuery("SELECT id, author, title, category FROM library ORDER BY [sortby]")
+			var/datum/db_query/query = SSdbcore.NewQuery("SELECT id, author, title, category FROM library ORDER BY [sortby]")
 			query.Execute()
 
 			while(query.NextRow())
@@ -451,7 +451,7 @@
 							var/sqlauthor = sanitizeSQL(scanner.cache.author)
 							var/sqlcontent = sanitizeSQL(scanner.cache.dat)
 							var/sqlcategory = sanitizeSQL(upload_category)
-							var/datum/DBQuery/query = SSdbcore.NewQuery("INSERT INTO library (author, title, content, category) VALUES ('[sqlauthor]', '[sqltitle]', '[sqlcontent]', '[sqlcategory]')")
+							var/datum/db_query/query = SSdbcore.NewQuery("INSERT INTO library (author, title, content, category) VALUES ('[sqlauthor]', '[sqltitle]', '[sqlcontent]', '[sqlcategory]')")
 							if(!query.Execute())
 								to_chat(usr,query.ErrorMsg())
 							else
@@ -471,7 +471,7 @@
 			bibledelay = 1
 			spawn(6)
 				bibledelay = 0
-			var/datum/DBQuery/query = SSdbcore.NewQuery("SELECT * FROM library WHERE id=[sqlid]")
+			var/datum/db_query/query = SSdbcore.NewQuery("SELECT * FROM library WHERE id=[sqlid]")
 			query.Execute()
 
 			while(query.NextRow())
@@ -496,7 +496,7 @@
 		if(!SSdbcore.IsConnected())
 			tgui_alert_async(usr, "Connection to Archive has been severed. Aborting.")
 		else
-			var/datum/DBQuery/query = SSdbcore.NewQuery("DELETE FROM library WHERE id=[sqlid]")
+			var/datum/db_query/query = SSdbcore.NewQuery("DELETE FROM library WHERE id=[sqlid]")
 			query.Execute()
 			log_admin("[usr.key] has deleted the book [sqlid]")	//VOREStation Addition
 

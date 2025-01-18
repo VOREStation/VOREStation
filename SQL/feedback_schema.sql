@@ -266,3 +266,21 @@ CREATE TABLE `vr_player_hours` (
   `total_hours` double NOT NULL DEFAULT '0',
   PRIMARY KEY (`ckey`,`department`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+CREATE TABLE IF NOT EXISTS `round` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `initialize_datetime` DATETIME NOT NULL,
+  `start_datetime` DATETIME NULL,
+  `shutdown_datetime` DATETIME NULL,
+  `end_datetime` DATETIME NULL,
+  `server_ip` INT(10) UNSIGNED NOT NULL,
+  `server_port` SMALLINT(5) UNSIGNED NOT NULL,
+  `commit_hash` CHAR(40) NULL,
+  `game_mode` VARCHAR(32) NULL,
+  `game_mode_result` VARCHAR(64) NULL,
+  `end_state` VARCHAR(64) NULL,
+  `shuttle_name` VARCHAR(64) NULL,
+  `map_name` VARCHAR(32) NULL,
+  `station_name` VARCHAR(80) NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;

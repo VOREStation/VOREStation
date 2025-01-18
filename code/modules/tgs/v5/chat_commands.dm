@@ -92,7 +92,7 @@ GLOBAL_LIST_EMPTY(pending_discord_registrations)
 /datum/tgs_chat_command/register/Run(datum/tgs_chat_user/sender, params)
 	// Try to find if that ID is registered to someone already
 	var/sql_discord = sql_sanitize_text(sender.id)
-	var/datum/DBQuery/query = SSdbcore.NewQuery("SELECT discord_id FROM erro_player WHERE discord_id = '[sql_discord]'")
+	var/datum/db_query/query = SSdbcore.NewQuery("SELECT discord_id FROM erro_player WHERE discord_id = '[sql_discord]'")
 	query.Execute()
 	if(query.NextRow())
 		return "[sender.friendly_name], your Discord ID is already registered to a Byond username. Please contact an administrator if you changed your Byond username or Discord ID."

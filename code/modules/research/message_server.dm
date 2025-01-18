@@ -351,7 +351,7 @@ var/obj/machinery/blackbox_recorder/blackbox
 	if(!SSdbcore.IsConnected()) return
 	var/round_id
 
-	var/datum/DBQuery/query = SSdbcore.NewQuery("SELECT MAX(round_id) AS round_id FROM erro_feedback")
+	var/datum/db_query/query = SSdbcore.NewQuery("SELECT MAX(round_id) AS round_id FROM erro_feedback")
 	query.Execute()
 	while(query.NextRow())
 		round_id = query.item[1]
@@ -362,7 +362,7 @@ var/obj/machinery/blackbox_recorder/blackbox
 
 	for(var/datum/feedback_variable/FV in feedback)
 		var/sql = "INSERT INTO erro_feedback VALUES (null, Now(), [round_id], \"[FV.get_variable()]\", [FV.get_value()], \"[FV.get_details()]\")"
-		var/datum/DBQuery/query_insert = SSdbcore.NewQuery(sql)
+		var/datum/db_query/query_insert = SSdbcore.NewQuery(sql)
 		query_insert.Execute()
 
 // Sanitize inputs to avoid SQL injection attacks
