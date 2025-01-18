@@ -542,7 +542,7 @@ var/global/floorIsLava = 0
 	if(!check_rights(0))	return
 
 	var/dat = {"
-		<center><B>Game Panel</B></center><hr>\n
+		<html><center><B>Game Panel</B></center><hr>\n
 		<A href='byond://?src=\ref[src];[HrefToken()];c_mode=1'>Change Game Mode</A><br>
 		"}
 	if(master_mode == "secret")
@@ -556,7 +556,7 @@ var/global/floorIsLava = 0
 		<A href='byond://?src=\ref[src];[HrefToken()];create_mob=1'>Create Mob</A><br>
 		<br><A href='byond://?src=\ref[src];[HrefToken()];vsc=airflow'>Edit Airflow Settings</A><br>
 		<A href='byond://?src=\ref[src];[HrefToken()];vsc=phoron'>Edit Phoron Settings</A><br>
-		<A href='byond://?src=\ref[src];[HrefToken()];vsc=default'>Choose a default ZAS setting</A><br>
+		<A href='byond://?src=\ref[src];[HrefToken()];vsc=default'>Choose a default ZAS setting</A><br></html>
 		"}
 
 	usr << browse(dat, "window=admin2;size=210x280")
