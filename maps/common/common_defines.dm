@@ -121,7 +121,7 @@
 
 	fore_dir = NORTH
 
-	skybox_icon = 'stelardelightskybox.dmi'
+	skybox_icon = 'maps/stellar_delight/stelardelightskybox.dmi'
 	skybox_icon_state = "skybox"
 	skybox_pixel_x = 450
 	skybox_pixel_y = 200
