@@ -95,7 +95,7 @@
 	// (i.e. basically nothing should be added before load_admins() in here)
 
 	// Try to set round ID
-	//SSdbcore.InitializeRound() TODO: Implement roundid on database subsystem and uncomment
+	SSdbcore.InitializeRound()
 
 	//apply a default value to config.python_path, if needed
 	if (!CONFIG_GET(string/python_path))
