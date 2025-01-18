@@ -208,7 +208,7 @@ Book Cart End
 		to_chat(user, "This book is completely blank!")
 
 /obj/item/book/proc/display_content(mob/living/user)
-	user << browse("<TT><I>Penned by [author].</I></TT> <BR>" + "[dat]", "window=book")
+	user << browse(replacetext(dat, "<html>", "<html><TT><I>Penned by [author].</I></TT> <BR>"), "window=book")
 
 /obj/item/book/attackby(obj/item/W as obj, mob/user as mob)
 	if(carved)
