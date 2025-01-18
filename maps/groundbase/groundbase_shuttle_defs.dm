@@ -13,16 +13,6 @@
 	shuttle = "Exploration Shuttle"
 	known = TRUE
 
-// A shuttle lateloader landmark
-
-/datum/shuttle/autodock/overmap/gbexplo
-	name = "Exploration Shuttle"
-	current_location = "gb_excursion_pad"
-	docking_controller_tag = "expshuttle_docker"
-	shuttle_area = list(/area/shuttle/groundbase/exploration)
-	fuel_consumption = 1
-	move_direction = NORTH
-
 /area/shuttle/groundbase/exploration
 	icon = 'icons/turf/areas_vr.dmi'
 	icon_state = "yelwhitri"
@@ -44,23 +34,12 @@
 	name = "short jump console"
 	shuttle_tag = "Axolotl"
 
-// The 'shuttle'
-/datum/shuttle/autodock/overmap/axolotl
-	name = "Axolotl"
-	current_location = "omship_axolotl"
-	docking_controller_tag = "axolotl_docking"
-	shuttle_area = list(/area/shuttle/axolotl,/area/shuttle/axolotl_cockpit,/area/shuttle/axolotl_engineering,/area/shuttle/axolotl_q1,/area/shuttle/axolotl_q2,/area/shuttle/axolotl_galley,/area/shuttle/axolotl_head)
-	defer_initialisation = TRUE //We're not loaded until an admin does it
-	fuel_consumption = 5
-	ceiling_type = /turf/simulated/floor/reinforced/airless
-
 // A shuttle lateloader landmark
 /obj/effect/shuttle_landmark/shuttle_initializer/axolotl
 	name = "ITV Axolotl"
 	base_area = /area/submap/groundbase/wilderness/west
 	base_turf = /turf/simulated/floor/outdoors/sidewalk/slab/virgo3c
 	landmark_tag = "omship_axolotl"
-	shuttle_type = /datum/shuttle/autodock/overmap/axolotl
 
 // The 'ship'
 /obj/effect/overmap/visitable/ship/landable/axolotl

@@ -4,7 +4,28 @@
 	move_direction = WEST
 	ceiling_type = /turf/simulated/floor/reinforced/virgo3c
 
-////////////////////////////////////////////////
+/////EXPLOSHUTTL/////
+/datum/shuttle/autodock/overmap/gbexplo
+	name = "Exploration Shuttle"
+	current_location = "gb_excursion_pad"
+	docking_controller_tag = "expshuttle_docker"
+	shuttle_area = list(/area/shuttle/groundbase/exploration)
+	fuel_consumption = 1
+	move_direction = NORTH
+
+//AXOLOTL
+/datum/shuttle/autodock/overmap/axolotl
+	name = "Axolotl"
+	current_location = "omship_axolotl"
+	docking_controller_tag = "axolotl_docking"
+	shuttle_area = list(/area/shuttle/axolotl,/area/shuttle/axolotl_cockpit,/area/shuttle/axolotl_engineering,/area/shuttle/axolotl_q1,/area/shuttle/axolotl_q2,/area/shuttle/axolotl_galley,/area/shuttle/axolotl_head)
+	defer_initialisation = TRUE //We're not loaded until an admin does it
+	fuel_consumption = 5
+	ceiling_type = /turf/simulated/floor/reinforced/airless
+
+/obj/effect/shuttle_landmark/shuttle_initializer/axolotl/New(loc, ...)
+	shuttle_type = /datum/shuttle/autodock/overmap/axolotl
+	..()
 
 // Escape shuttle
 /datum/shuttle/autodock/ferry/emergency/escape/New()
