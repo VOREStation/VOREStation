@@ -1,17 +1,40 @@
-//////////////////////////////////////////////////////////////
-// Escape shuttle and pods
-/datum/shuttle/autodock/ferry/emergency/escape
-	name = "Escape"
-	location = FERRY_LOCATION_OFFSITE
-	shuttle_area = /area/shuttle/escape
-	warmup_time = 10
-	landmark_offsite = "escape_cc"
-	landmark_station = "escape_station"
-	landmark_transition = "escape_transit"
-	move_time = SHUTTLE_TRANSIT_DURATION_RETURN
-	move_direction = NORTH
+////////////////////////////////////////
+// Tether custom shuttle implemnetations
+////////////////////////////////////////
 
-//////////////////////////////////////////////////////////////
+/obj/machinery/computer/shuttle_control/tether_backup
+	name = "tether backup shuttle control console"
+	shuttle_tag = "Tether Backup"
+	req_one_access = list()
+	ai_control = TRUE
+
+/obj/machinery/computer/shuttle_control/multi/mercenary
+	name = "vessel control console"
+	shuttle_tag = "Mercenary"
+	req_one_access = list(access_syndicate)
+
+/obj/machinery/computer/shuttle_control/multi/ninja
+	name = "vessel control console"
+	shuttle_tag = "Ninja"
+	//req_one_access = list()
+
+/obj/machinery/computer/shuttle_control/multi/specops
+	name = "vessel control console"
+	shuttle_tag = "NDV Phantom"
+	req_one_access = list(access_cent_specops)
+
+/obj/machinery/computer/shuttle_control/multi/trade
+	name = "vessel control console"
+	shuttle_tag = "Trade"
+	req_one_access = list(access_trader)
+
+/obj/machinery/computer/shuttle_control/surface_mining_outpost
+	name = "surface mining outpost shuttle control console"
+	shuttle_tag = "Mining Outpost"
+	req_one_access = list(access_mining)
+	ai_control = TRUE
+
+// Large Escape Pod 1
 /datum/shuttle/autodock/ferry/escape_pod/large_escape_pod1
 	name = "Large Escape Pod 1"
 	location = FERRY_LOCATION_STATION
@@ -24,18 +47,110 @@
 	move_time = SHUTTLE_TRANSIT_DURATION_RETURN
 	move_direction = EAST
 
-//////////////////////////////////////////////////////////////
-// Supply shuttle
-/datum/shuttle/autodock/ferry/supply/cargo
-	name = "Supply"
-	location = FERRY_LOCATION_OFFSITE
-	shuttle_area = /area/shuttle/supply
-	warmup_time = 10
-	landmark_offsite = "supply_cc"
-	landmark_station = "supply_station"
-	docking_controller_tag = "supply_shuttle"
-	flags = SHUTTLE_FLAGS_PROCESS|SHUTTLE_FLAGS_SUPPLY
+////////////////////////////////////////
+//////// Excursion Shuttle /////////////
+////////////////////////////////////////
+// The 'shuttle' of the excursion shuttle
+/datum/shuttle/autodock/overmap/excursion
+	name = "Excursion Shuttle"
+	warmup_time = 0
+	current_location = "tether_excursion_hangar"
+	docking_controller_tag = "expshuttle_docker"
+	shuttle_area = list(/area/shuttle/excursion/cockpit, /area/shuttle/excursion/general, /area/shuttle/excursion/cargo, /area/shuttle/excursion/power)
+	fuel_consumption = 3
 	move_direction = NORTH
+
+// The 'ship' of the excursion shuttle
+/obj/effect/overmap/visitable/ship/landable/excursion
+	name = "Excursion Shuttle"
+	desc = "The traditional Excursion Shuttle. NT Approved!"
+	icon_state = "htu_destroyer_g"
+	vessel_mass = 8000
+	vessel_size = SHIP_SIZE_SMALL
+	shuttle = "Excursion Shuttle"
+
+/obj/machinery/computer/shuttle_control/explore/excursion
+	name = "short jump console"
+	shuttle_tag = "Excursion Shuttle"
+	req_one_access = list(access_pilot)
+
+////////////////////////////////////////
+////////      Tour Bus     /////////////
+////////////////////////////////////////
+/datum/shuttle/autodock/overmap/tourbus
+	name = "Tour Bus"
+	warmup_time = 0
+	current_location = "tourbus_dock"
+	docking_controller_tag = "tourbus_docker"
+	shuttle_area = list(/area/shuttle/tourbus/cockpit, /area/shuttle/tourbus/general)
+	fuel_consumption = 1
+	move_direction = NORTH
+
+// The 'ship' of the excursion shuttle
+/obj/effect/overmap/visitable/ship/landable/tourbus
+	name = "Tour Bus"
+	desc = "A small 'space bus', if you will."
+	icon_state = "htu_frigate_g"
+	vessel_mass = 2000
+	vessel_size = SHIP_SIZE_SMALL
+	shuttle = "Tour Bus"
+
+/obj/machinery/computer/shuttle_control/explore/tourbus
+	name = "short jump console"
+	shuttle_tag = "Tour Bus"
+	req_one_access = list(access_pilot)
+
+////////////////////////////////////////
+////////      Medivac      /////////////
+////////////////////////////////////////
+/datum/shuttle/autodock/overmap/medivac
+	name = "Medivac Shuttle"
+	warmup_time = 0
+	current_location = "tether_medivac_dock"
+	docking_controller_tag = "medivac_docker"
+	shuttle_area = list(/area/shuttle/medivac/cockpit, /area/shuttle/medivac/general, /area/shuttle/medivac/engines)
+	fuel_consumption = 2
+	move_direction = EAST
+
+// The 'ship' of the excursion shuttle
+/obj/effect/overmap/visitable/ship/landable/medivac
+	name = "Medivac Shuttle"
+	desc = "A medical evacuation shuttle."
+	icon_state = "htu_frigate_g"
+	vessel_mass = 4000
+	vessel_size = SHIP_SIZE_SMALL
+	shuttle = "Medivac Shuttle"
+	fore_dir = EAST
+
+/obj/machinery/computer/shuttle_control/explore/medivac
+	name = "short jump console"
+	shuttle_tag = "Medivac Shuttle"
+
+////////////////////////////////////////
+////////      Securiship   /////////////
+////////////////////////////////////////
+/datum/shuttle/autodock/overmap/securiship
+	name = "Securiship Shuttle"
+	warmup_time = 0
+	current_location = "tether_securiship_dock"
+	docking_controller_tag = "securiship_docker"
+	shuttle_area = list(/area/shuttle/securiship/cockpit, /area/shuttle/securiship/general, /area/shuttle/securiship/engines)
+	fuel_consumption = 2
+	move_direction = NORTH
+
+// The 'ship' of the excursion shuttle
+/obj/effect/overmap/visitable/ship/landable/securiship
+	name = "Securiship Shuttle"
+	desc = "A security transport ship."
+	icon_state = "htu_frigate_g"
+	vessel_mass = 4000
+	vessel_size = SHIP_SIZE_SMALL
+	shuttle = "Securiship Shuttle"
+	fore_dir = EAST
+
+/obj/machinery/computer/shuttle_control/explore/securiship
+	name = "short jump console"
+	shuttle_tag = "Securiship Shuttle"
 
 //////////////////////////////////////////////////////////////
 // Trade Ship
@@ -194,7 +309,6 @@
 
 //////////////////////////////////////////////////////////////
 // RogueMiner "Belter: Shuttle
-
 /datum/shuttle/autodock/ferry/belter
 	name = "Belter"
 	location = FERRY_LOCATION_STATION
@@ -213,7 +327,6 @@
 
 //////////////////////////////////////////////////////////////
 // Surface Mining Outpost Shuttle
-
 /datum/shuttle/autodock/ferry/surface_mining_outpost
 	name = "Mining Outpost"
 	location = FERRY_LOCATION_STATION
@@ -223,48 +336,3 @@
 	landmark_offsite = "mining_outpost"
 	docking_controller_tag = "mining_docking"
 	move_direction = NORTH
-
-/////Virgo Flyer/////
-// The shuttle's 'shuttle' computer
-/obj/machinery/computer/shuttle_control/explore/ccboat
-	name = "Virgo Flyer control console"
-	shuttle_tag = "Virgo Flyer"
-	req_one_access = list(access_pilot)
-
-/obj/effect/overmap/visitable/ship/landable/ccboat
-	name = "NTV Virgo Flyer"
-	desc = "A small shuttle from Central Command."
-	vessel_mass = 1000
-	vessel_size = SHIP_SIZE_TINY
-	shuttle = "Virgo Flyer"
-	known = TRUE
-
-// A shuttle lateloader landmark
-/obj/effect/shuttle_landmark/shuttle_initializer/ccboat
-	name = "Central Command Shuttlepad"
-	base_area = /area/shuttle/centcom/ccbay
-	base_turf = /turf/simulated/floor/reinforced
-	landmark_tag = "cc_shuttlepad"
-	docking_controller = "cc_landing_pad"
-	shuttle_type = /datum/shuttle/autodock/overmap/ccboat
-
-/datum/shuttle/autodock/overmap/ccboat
-	name = "Virgo Flyer"
-	current_location = "cc_shuttlepad"
-	docking_controller_tag = "ccboat" 
-	shuttle_area = /area/shuttle/ccboat
-	fuel_consumption = 0
-	defer_initialisation = TRUE
-
-/area/shuttle/ccboat
-	icon = 'icons/turf/areas_vr.dmi'
-	icon_state = "yelwhitri"
-	name = "Virgo Flyer"
-	requires_power = 0
-
-/area/shuttle/centcom/ccbay
-	icon = 'icons/turf/areas_vr.dmi'
-	icon_state = "bluwhisqu"
-	name = "Central Command Shuttle Bay"
-	requires_power = 0
-	dynamic_lighting = 0
