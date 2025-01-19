@@ -248,7 +248,7 @@
 
 	if(!check_rights(R_DEBUG))
 		return
-	src << browse(replacetext("<html>[SSatoms.InitLog()]</html>", "\n", "<br>"), "window=initlog")
+	src << browse("<html>[replacetext(SSatoms.InitLog(), "\n", "<br>")]</html>", "window=initlog")
 
 /*
 /client/proc/cmd_display_overlay_log()
