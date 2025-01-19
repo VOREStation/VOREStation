@@ -35,13 +35,13 @@ const getRelativePosition = (
   const pointer = event as MouseEvent;
   return {
     left: clamp(
-      (pointer.pageX - (rect.left + getParentWindow(node).pageXOffset)) /
+      (pointer.pageX - (rect.left + getParentWindow(node).scrollX)) /
         rect.width,
       0,
       1,
     ),
     top: clamp(
-      (pointer.pageY - (rect.top + getParentWindow(node).pageYOffset)) /
+      (pointer.pageY - (rect.top + getParentWindow(node).scrollY)) /
         rect.height,
       0,
       1,
@@ -52,7 +52,7 @@ const getRelativePosition = (
 export interface InteractiveProps {
   onMove: (interaction: Interaction) => void;
   onKey: (offset: Interaction) => void;
-  children: ReactNode[];
+  children: ReactNode;
   style?: any;
 }
 
@@ -61,19 +61,19 @@ export class Interactive extends Component {
   props: InteractiveProps;
 
   constructor(props: InteractiveProps) {
-    super();
+    super(props);
     this.props = props;
     this.containerRef = createRef();
   }
 
-  handleMoveStart = (event: MouseEvent) => {
+  handleMoveStart = (event: React.MouseEvent<HTMLDivElement>) => {
     const el = this.containerRef?.current;
     if (!el) return;
 
     // Prevent text selection
     event.preventDefault();
     el.focus();
-    this.props.onMove(getRelativePosition(el, event));
+    this.props.onMove(getRelativePosition(el, event.nativeEvent));
     this.toggleDocumentEvents(true);
   };
 
@@ -99,14 +99,14 @@ export class Interactive extends Component {
     this.toggleDocumentEvents(false);
   };
 
-  handleKeyDown = (event: KeyboardEvent) => {
+  handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
     const pressedKey = event.key;
 
     // Ignore all keys except arrow ones
     if (
-      pressedKey !== KEY.Left ||
-      pressedKey !== KEY.Right ||
-      pressedKey !== KEY.Up ||
+      pressedKey !== KEY.Left &&
+      pressedKey !== KEY.Right &&
+      pressedKey !== KEY.Up &&
       pressedKey !== KEY.Down
     ) {
       return;
