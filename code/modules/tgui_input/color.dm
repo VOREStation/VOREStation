@@ -130,7 +130,7 @@
 				if (!hex)
 					return
 				user.write_preference_directly(/datum/preference/text/preset_colors, hex)
-			return TRUE
+		return TRUE
 
 /datum/tgui_color_picker/proc/set_choice(choice)
 	src.choice = choice
