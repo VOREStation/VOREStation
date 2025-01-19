@@ -246,7 +246,8 @@
 	set name = "Display Initialize() Log"
 	set desc = "Displays a list of things that didn't handle Initialize() properly"
 
-	if(!check_rights(R_DEBUG))	returnsrc << browse(replacetext(SSatoms.InitLog(), "\n", "<br>"), "window=initlog")
+	if(!check_rights(R_DEBUG))
+		return
 	src << browse(replacetext("<html>[SSatoms.InitLog()]</html>", "\n", "<br>"), "window=initlog")
 
 /*
