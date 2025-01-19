@@ -247,7 +247,7 @@
 	set desc = "Displays a list of things that didn't handle Initialize() properly"
 
 	if(!check_rights(R_DEBUG))	return
-	src << browse(replacetext(SSatoms.InitLog(), "\n", "<br>"), "window=initlog")
+	usr << browse("<htlm>[dellog.Join()]</html>", "window=dellog")
 
 /*
 /client/proc/cmd_display_overlay_log()
