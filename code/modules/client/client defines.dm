@@ -87,7 +87,6 @@
 	///Used for limiting the rate of clicks sends by the client to avoid abuse
 	var/list/clicklimiter
 
-
 		////////////////////////////////////
 		//things that require the database//
 		////////////////////////////////////
