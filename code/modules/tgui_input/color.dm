@@ -129,7 +129,7 @@
 				var/hex = sanitize_hexcolor(raw_data)
 				if (!hex)
 					return
-				user.write_preference_directly(/datum/preference/text/preset_colors, hex)
+				ui.user.write_preference_directly(/datum/preference/text/preset_colors, hex)
 			return TRUE
 
 /datum/tgui_color_picker/proc/set_choice(choice)
