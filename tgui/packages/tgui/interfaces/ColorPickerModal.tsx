@@ -47,7 +47,7 @@ type ColorPickerData = {
   presets: string | null;
 };
 
-export const ColorPickerModal = (_) => {
+export const ColorPickerModal = (props) => {
   const { act, data } = useBackend<ColorPickerData>();
   const {
     timeout,
@@ -56,7 +56,7 @@ export const ColorPickerModal = (_) => {
     autofocus,
     default_color = '#000000',
   } = data;
-  let [selectedColor, setSelectedColor] = useState<HsvaColor>(
+  const [selectedColor, setSelectedColor] = useState<HsvaColor>(
     hexToHsva(default_color),
   );
 
@@ -417,7 +417,6 @@ export class ColorInput extends Component {
   }
 
   render() {
-    '§!$';
     return (
       <Box className={classes(['Input', this.props.fluid && 'Input--fluid'])}>
         <div className="Input__baseline">.</div>
