@@ -20,7 +20,7 @@ BONUS
 	stealth = -4
 	resistance = -1
 	stage_speed = -2
-	transmittable = 2
+	transmission = 2
 	level = 6
 	severity = 2
 
@@ -43,7 +43,7 @@ BONUS
 			if(4)
 				M.visible_message(span_danger("Lumps form on [M]'s skin!"), span_userdanger("You cringe in pain as lumps form and move around on your skin!"))
 			if(5)
-				phagecounter -= max(2, A.totalStageSpeed())
+				phagecounter -= max(2, A.stage_rate)
 				if(gigagerms && phagecounter <= 0)
 					Burst(A, M, TRUE)
 					phagecounter += 10
@@ -56,8 +56,8 @@ BONUS
 	phage = new(M.loc)
 	M.apply_damage(rand(1, 7))
 	phage.viruses = A.Copy()
-	phage.health += A.totalResistance()
-	phage.maxHealth += A.totalResistance()
+	phage.health += A.resistance
+	phage.maxHealth += A.resistance
 	phage.infections += A
 	phage.base_disease = A
 

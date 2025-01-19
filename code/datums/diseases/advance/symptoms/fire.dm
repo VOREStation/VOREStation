@@ -20,7 +20,7 @@ Bonus
 	stealth = 1
 	resistance = -4
 	stage_speed = -4
-	transmittable = -4
+	transmission = -4
 	level = 6
 	severity = 5
 
@@ -44,13 +44,13 @@ Bonus
 	return
 
 /datum/symptom/fire/proc/Firestacks_stage_4(mob/living/M, datum/disease/advance/A)
-	var/get_stacks = max((sqrtor0(20 + A.totalStageSpeed() * 2)) - (sqrtor0(16 + A.totalStealth())), 1)
+	var/get_stacks = max((sqrtor0(20 + A.stage_rate * 2)) - (sqrtor0(16 + A.stealth)), 1)
 	M.adjust_fire_stacks(get_stacks)
 	M.adjustFireLoss(get_stacks * 0.5)
 	return 1
 
 /datum/symptom/fire/proc/Firestacks_stage_5(mob/living/M, datum/disease/advance/A)
-	var/get_stacks = max((sqrtor0(20 + A.totalStageSpeed() * 3))-(sqrtor0(16 + A.totalStealth())), 1)
+	var/get_stacks = max((sqrtor0(20 + A.stage_rate * 3))-(sqrtor0(16 + A.stealth)), 1)
 	M.adjust_fire_stacks(get_stacks)
 	M.adjustFireLoss(get_stacks)
 	return 1

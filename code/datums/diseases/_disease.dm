@@ -20,6 +20,7 @@ GLOBAL_LIST_INIT(diseases, subtypesof(/datum/disease))
 	var/stage = 1
 	var/max_stages = 0
 	var/stage_prob = 4
+
 	/// The fraction of stages the virus must at least be at to show up on medical HUDs. Rounded up.
 	var/discovery_threshold = 0.5
 	/// If TRUE, this virus will show up on medical HUDs. Automatically set when it reaches mid-stage.
@@ -35,11 +36,11 @@ GLOBAL_LIST_INIT(diseases, subtypesof(/datum/disease))
 	var/bypasses_immunity = FALSE
 	var/virus_heal_resistant = FALSE
 	var/permeability_mod = 1
-	var/severity = NONTHREAT
+	var/danger = NONTHREAT
 	var/list/required_organs = list()
 	var/needs_all_cures = TRUE
 	var/list/strain_data = list()
-	var/allow_dead = FALSE
+	var/spread_dead = FALSE
 	var/infect_synthetics = FALSE
 	var/processing = FALSE
 	var/has_timer = FALSE
@@ -111,7 +112,10 @@ GLOBAL_LIST_INIT(diseases, subtypesof(/datum/disease))
 	if(!affected_mob)
 		return
 
-	if((spread_flags & SPECIAL || spread_flags & NON_CONTAGIOUS || spread_flags & BLOOD) && !force_spread)
+	if(!(spread_flags & AIRBORNE) && !force_spread)
+		return
+
+	if(affected_mob.stat == DEAD && !spread_dead && !force_spread)
 		return
 
 	if(affected_mob.bloodstr.has_reagent(REAGENT_ID_SPACEACILLIN) || (affected_mob.nutrition > 300 && prob(affected_mob.nutrition/50)))
@@ -179,7 +183,7 @@ GLOBAL_LIST_INIT(diseases, subtypesof(/datum/disease))
 	return type
 
 /datum/disease/proc/IsSpreadByTouch()
-	if(spread_flags & CONTACT_FEET || spread_flags & CONTACT_HANDS || spread_flags & CONTACT_GENERAL)
+	if(spread_flags & CONTACT_GENERAL)
 		return TRUE
 	return FALSE
 

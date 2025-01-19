@@ -91,5 +91,5 @@ GLOBAL_LIST_EMPTY(current_pending_diseases)
 /datum/event/disease_outbreak/proc/populate_symptoms()
 	for(var/candidate in subtypesof(/datum/symptom))
 		var/datum/symptom/CS = candidate
-		if(initial(CS.transmittable) > 1)
+		if(initial(CS.transmission) > 1)
 			transmissable_symptoms += candidate

@@ -20,7 +20,7 @@ Bonus
 	stealth = 0
 	resistance = 3
 	stage_speed = 3
-	transmittable = 2
+	transmission = 2
 	level = 2
 	severity = 2
 
@@ -35,6 +35,6 @@ Bonus
 	return
 
 /datum/symptom/fever/proc/Heat(var/mob/living/M, var/datum/disease/advance/A)
-	var/get_heat = (sqrtor0(21+A.totalTransmittable()*2))+(sqrtor0(20+A.totalStageSpeed()*3))
+	var/get_heat = (sqrtor0(21+A.transmission*2))+(sqrtor0(20+A.stage_rate*3))
 	M.bodytemperature = min(M.bodytemperature + (get_heat * A.stage), BODYTEMP_HEAT_DAMAGE_LIMIT - 1)
 	return TRUE

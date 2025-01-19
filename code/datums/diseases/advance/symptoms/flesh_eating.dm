@@ -20,7 +20,7 @@ Bonus
 	stealth = -3
 	resistance = -4
 	stage_speed = 0
-	transmittable = -4
+	transmission = -4
 	level = 6
 	severity = 5
 
@@ -37,6 +37,6 @@ Bonus
 	return
 
 /datum/symptom/flesh_eating/proc/Flesheat(mob/living/M, datum/disease/advance/A)
-	var/get_damage = ((sqrtor0(16-A.totalStealth()))*5)
+	var/get_damage = ((sqrtor0(16-A.stealth))*5)
 	M.adjustBruteLoss(get_damage)
 	return 1

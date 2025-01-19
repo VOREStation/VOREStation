@@ -26,8 +26,16 @@ GLOBAL_LIST_INIT(advance_cures, list(
 	spread_text = "Unknown"
 	viable_mobtypes = list(/mob/living/carbon/human)
 
-	var/s_processing = FALSE
+	var/last_modified_by = "no CKEY"
+	var/resistance
+	var/stealth
+	var/stage_rate
+	var/transmission
+	var/severity
+	var/speed
 	var/list/symptoms = list()
+
+	var/s_processing = FALSE
 	var/id = ""
 
 /datum/disease/advance/New(process = 1, datum/disease/advance/D)
@@ -150,8 +158,8 @@ GLOBAL_LIST_INIT(advance_cures, list(
 	return generated
 
 /datum/disease/advance/proc/Refresh(new_name = FALSE, archive = FALSE)
-	var/list/properties = GenerateProperties()
-	AssignProperties(properties)
+	GenerateProperties()
+	AssignProperties()
 	id = null
 
 	if(!GLOB.archive_diseases[GetDiseaseID()])
@@ -164,59 +172,73 @@ GLOBAL_LIST_INIT(advance_cures, list(
 	AssignName(A.name)
 
 /datum/disease/advance/proc/GenerateProperties()
+	resistance = 0
+	stealth = 0
+	stage_rate = 0
+	transmission = 0
+	severity = 0
 
-	if(!symptoms || !length(symptoms))
-		CRASH("We did not have any symptoms before generating properties.")
+	var/c1sev
+	var/c2sev
+	var/c3sev
 
-	var/list/properties = list("resistance" = 1, "stealth" = 0, "stage rate" = 1, "transmittable" = 1, "severity" = 0)
+	for(var/datum/symptom/S as() in symptoms)
+		resistance = S.resistance
+		stealth += S.stealth
+		stage_rate += S.stage_speed
+		transmission += S.transmission
+	for(var/datum/symptom/S as() in symptoms)
+		S.severityset(src)
+		switch(S.severity)
+			if(-INFINITY to 0)
+				c1sev += S.severity
+			if(1 to 2)
+				c2sev = max(c2sev, min(3, (S.severity + c2sev)))
+			if(3 to 4)
+				c2sev = max(c2sev, min(4, (S.severity + c2sev)))
+			if(5 to INFINITY)
+				if(c3sev >= 5)
+					c3sev += (S.severity -3)
+				else
+					c3sev += S.severity
 
-	for(var/datum/symptom/S in symptoms)
-
-		properties["resistance"] += S.resistance
-		properties["stealth"] += S.stealth
-		properties["stage rate"] += S.stage_speed
-		properties["transmittable"] += S.transmittable
-		properties["severity"] = max(properties["severity"], S.severity) // severity is based on the highest severity symptom
-
-	return properties
+	severity += (max(c2sev, c3sev) + c1sev)
 
 /datum/disease/advance/proc/AssignProperties(list/properties = list())
 
-	if(properties && length(properties))
-		switch(properties["stealth"])
-			if(2)
-				visibility_flags = HIDDEN_SCANNER
-			if(3 to INFINITY)
-				visibility_flags = HIDDEN_SCANNER|HIDDEN_PANDEMIC
-
-		// The more symptoms we have, the less transmittable it is but some symptoms can make up for it.
-		SetSpread(clamp(2 ** (properties["transmittable"] - length(symptoms)), BLOOD, AIRBORNE))
-		permeability_mod = max(CEILING(0.4 * properties["transmittable"], 1), 1)
-		cure_chance = 15 - clamp(properties["resistance"], -5, 5) // can be between 10 and 20
-		stage_prob = max(properties["stage rate"], 2)
-		SetSeverity(properties["severity"])
-		GenerateCure(properties)
+	if(stealth >= 2)
+		visibility_flags |= HIDDEN_SCANNER
 	else
-		CRASH("Our properties were empty or null!")
+		visibility_flags &= ~HIDDEN_SCANNER
 
-/datum/disease/advance/proc/SetSpread(spread_id)
-	switch(spread_id)
-		if(NON_CONTAGIOUS, SPECIAL)
-			spread_text = "Non-contagious"
-		if(CONTACT_GENERAL, CONTACT_HANDS, CONTACT_FEET)
-			spread_text = "On contact"
-		if(AIRBORNE)
-			spread_text = "Airborne"
-		if(BLOOD)
+	SetSpread()
+	permeability_mod = max(CEILING(0.4 * transmission, 1), 1)
+	cure_chance = 15 - clamp(resistance, -5, 5) // can be between 10 and 20
+	stage_prob = max(stage_rate, 2)
+	SetSeverity(severity)
+	GenerateCure()
+
+/datum/disease/advance/proc/SetSpread()
+	switch(transmission)
+		if(-INFINITY to 5)
+			spread_flags = BLOOD
 			spread_text = "Blood"
-
-	spread_flags = spread_id
+		if(6 to 10)
+			spread_flags = BLOOD | FLUIDS
+			spread_text = "Fluids"
+		if(11 to INFINITY)
+			spread_flags = BLOOD | FLUIDS | CONTACT_GENERAL
+			spread_text = "On Contact"
 
 /datum/disease/advance/proc/SetSeverity(level_sev)
 
 	switch(level_sev)
 
-		if(-INFINITY to 0)
+		if(-INFINITY to -2)
+			severity = BENEFICIAL
+		if(-1)
+			severity = POSITIVE
+		if(0)
 			severity = NONTHREAT
 		if(1)
 			severity = MINOR
@@ -231,11 +253,10 @@ GLOBAL_LIST_INIT(advance_cures, list(
 		else
 			severity = "Unknown"
 
-/datum/disease/advance/proc/GenerateCure(list/properties = list())
-    if(properties && length(properties))
-        var/res = clamp(properties["resistance"] - (length(symptoms) / 2), 1, length(GLOB.advance_cures))
-        cures = list(GLOB.advance_cures[res])
-        cure_text = cures[1]
+/datum/disease/advance/proc/GenerateCure()
+    var/res = clamp(resistance - (length(symptoms) / 2), 1, length(GLOB.advance_cures))
+    cures = list(GLOB.advance_cures[res])
+    cure_text = cures[1]
     return
 
 // Randomly generate a symptom, has a chance to lose or gain a symptom.
@@ -394,31 +415,3 @@ GLOBAL_LIST_INIT(advance_cures, list(
 		log_admin("[key_name_admin(usr)] infected [key_name_admin(H)] with [D.name]. It has these symptoms: [english_list(name_symptoms)]")
 
 		return TRUE
-
-/datum/disease/advance/proc/totalStageSpeed()
-	var/total_stage_speed = 0
-	for(var/i in symptoms)
-		var/datum/symptom/S = i
-		total_stage_speed += S.stage_speed
-	return total_stage_speed
-
-/datum/disease/advance/proc/totalStealth()
-	var/total_stealth = 0
-	for(var/i in symptoms)
-		var/datum/symptom/S = i
-		total_stealth += S.stealth
-	return total_stealth
-
-/datum/disease/advance/proc/totalResistance()
-	var/total_resistance = 0
-	for(var/i in symptoms)
-		var/datum/symptom/S = i
-		total_resistance += S.resistance
-	return total_resistance
-
-/datum/disease/advance/proc/totalTransmittable()
-	var/total_transmittable = 0
-	for(var/i in symptoms)
-		var/datum/symptom/S = i
-		total_transmittable += S.transmittable
-	return total_transmittable

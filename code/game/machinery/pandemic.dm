@@ -277,10 +277,12 @@
 			for(var/datum/symptom/S in A.symptoms)
 				symptoms += list(list(
 					"name" = S.name,
+					"description" = S.desc,
+					"threshold_desc" = S.threshold_desc,
 					"stealth" = S.stealth,
 					"resistance" = S.resistance,
 					"stageSpeed" = S.stage_speed,
-					"transmissibility" = S.transmittable,
+					"transmissibility" = S.transmission,
 					"complexity" = S.level,
 				))
 

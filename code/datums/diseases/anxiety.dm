@@ -9,7 +9,7 @@
 	agent = "Excess Lepdopticides"
 	viable_mobtypes = list(/mob/living/carbon/human, /mob/living/carbon/human/monkey)
 	desc = "If left untreated subject will regurgitate butterflies."
-	severity = MINOR
+	danger = MINOR
 
 /datum/disease/anxiety/stage_act()
 	if(!..())

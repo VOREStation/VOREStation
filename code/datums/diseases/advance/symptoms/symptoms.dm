@@ -5,16 +5,23 @@ GLOBAL_LIST_INIT(list_symptoms, subtypesof(/datum/symptom))
 /datum/symptom
 	// Buffs/Debuffs the symptom has to the overall engineered disease.
 	var/name = ""
+	var/desc = "ERR://355. PanDEMIC was not able to initialize description!" // Someone forgot the description
+	var/threshold_desc = ""
 	var/stealth = 0
 	var/resistance = 0
 	var/stage_speed = 0
-	var/transmittable = 0
+	var/transmission = 0
 	// The type level of the symptom. Higher is harder to generate.
 	var/level = 0
 	// The severity level of the symptom. Higher is more dangerous.
 	var/severity = 0
 	// The hash tag for our diseases, we will add it up with our other symptoms to get a unique id! ID MUST BE UNIQUE!!!
 	var/id = ""
+	var/supress_warning = FALSE
+	var/next_activaction = 0
+	var/symptom_delay_min = 1
+	var/symptom_delay_max = 1
+	var/naturally_occuring = TRUE // If this symptom can roll from random diseases
 
 /datum/symptom/New()
 	var/list/S = GLOB.list_symptoms
@@ -26,16 +33,36 @@ GLOBAL_LIST_INIT(list_symptoms, subtypesof(/datum/symptom))
 
 // Called when processing of the advance disease, which holds this symptom, starts.
 /datum/symptom/proc/Start(datum/disease/advance/A)
-	return
+	next_activaction = world.time + rand(symptom_delay_min * 10, symptom_delay_max * 10)
+	return TRUE
+
+/datum/symptom/proc/severityset(datum/disease/advance/A)
+	severity = initial(severity)
 
 // Called when the advance disease is going to be deleted or when the advance disease stops processing.
 /datum/symptom/proc/End(datum/disease/advance/A)
-	return
+	return TRUE
 
 // Called when the disease activates. It's what makes your diseases work!
 /datum/symptom/proc/Activate(datum/disease/advance/A)
-	return
+	if(!A)
+		return FALSE
+	if(world.time < next_activaction)
+		return FALSE
+	else
+		next_activaction = world.time + rand(symptom_delay_min * 10, symptom_delay_max * 10)
+		return TRUE
 
 // Called when the host dies
 /datum/symptom/proc/OnDeath(datum/disease/advance/A)
+	return
+
+// Called when the stage changes
+/datum/symptom/proc/OnStageChange(datum/disease/advance/A)
+	return TRUE
+
+/datum/symptom/proc/OnAdd(datum/disease/advance/A)
+	return
+
+/datum/symptom/proc/OnRemove(datum/disease/advance/A)
 	return

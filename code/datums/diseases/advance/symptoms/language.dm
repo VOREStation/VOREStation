@@ -20,7 +20,7 @@ Bonus
 	stealth = 3
 	resistance = 2
 	stage_speed = -2
-	transmittable = -1
+	transmission = -1
 	level = 3
 	severity = 1
 

@@ -6,7 +6,7 @@
 	return FALSE
 
 /mob/proc/CanContractDisease(datum/disease/D)
-	if(stat == DEAD && !D.allow_dead)
+	if(stat == DEAD && !D.spread_dead)
 		return FALSE
 
 	if(D.GetDiseaseID() in GetResistances())
@@ -19,7 +19,7 @@
 		return FALSE
 
 	if(!(type in D.viable_mobtypes))
-		return -1
+		return FALSE
 
 	if(isSynthetic())
 		if(D.infect_synthetics)
@@ -28,7 +28,7 @@
 
 	return TRUE
 
-/mob/proc/ContractDisease(datum/disease/D)
+/mob/proc/ContractDisease(datum/disease/D, var/target_zone)
 	if(!CanContractDisease(D))
 		return 0
 	AddDisease(D)
@@ -55,28 +55,17 @@
 
 	log_admin("[key_name(usr)] has contracted the virus \"[DD]\"")
 
-/mob/living/carbon/ContractDisease(datum/disease/D)
+/mob/living/carbon/human/ContractDisease(datum/disease/D, target_zone)
 	if(!CanContractDisease(D))
-		return 0
+		return FALSE
 
 	var/obj/item/clothing/Cl = null
-	var/passed = 1
+	var/passed = TRUE
 
-	var/head_ch = 100
-	var/body_ch = 100
-	var/hands_ch = 25
-	var/feet_ch = 25
-
-	if(D.spread_flags & CONTACT_HANDS)
-		head_ch = 0
-		body_ch = 0
-		hands_ch = 100
-		feet_ch = 0
-	if(D.spread_flags & CONTACT_FEET)
-		head_ch = 0
-		body_ch = 0
-		hands_ch = 0
-		feet_ch = 100
+	var/head_chance = 80
+	var/body_chance = 100
+	var/hands_chance = 35/2
+	var/feet_chance = 15/2
 
 	if(prob(15/D.permeability_mod))
 		return
@@ -84,27 +73,37 @@
 	if(nutrition > 300 && prob(nutrition/50))
 		return
 
-	var/target_zone = pick(head_ch;1,body_ch;2,hands_ch;3,feet_ch;4)
+	if(!target_zone)
+		target_zone = pick(list(
+			BP_HEAD = head_chance,
+			BP_TORSO = body_chance,
+			BP_R_ARM = hands_chance,
+			BP_L_ARM = hands_chance,
+			BP_R_LEG = feet_chance,
+			BP_L_LEG = feet_chance
+		))
+	else
+		target_zone = check_zone(target_zone)
 
 	if(ishuman(src))
 		var/mob/living/carbon/human/H = src
 
 		switch(target_zone)
-			if(1)
+			if(BP_HEAD)
 				if(isobj(H.head) && !istype(H.head, /obj/item/paper))
 					Cl = H.head
 					passed = prob((Cl.permeability_coefficient*100) - 1)
 				if(passed && isobj(H.wear_mask))
 					Cl = H.wear_mask
 					passed = prob((Cl.permeability_coefficient*100) - 1)
-			if(2)
+			if(BP_TORSO)
 				if(isobj(H.wear_suit))
 					Cl = H.wear_suit
 					passed = prob((Cl.permeability_coefficient*100) - 1)
 				if(passed && isobj(H.w_uniform))
 					Cl = H.w_uniform
 					passed = prob((Cl.permeability_coefficient*100) - 1)
-			if(3)
+			if(BP_L_ARM, BP_R_ARM)
 				if(isobj(H.wear_suit) && H.wear_suit.body_parts_covered & HANDS)
 					Cl = H.wear_suit
 					passed = prob((Cl.permeability_coefficient*100) - 1)
@@ -112,7 +111,7 @@
 				if(passed && isobj(H.gloves))
 					Cl = H.gloves
 					passed = prob((Cl.permeability_coefficient*100) - 1)
-			if(4)
+			if(BP_L_FOOT, BP_R_FOOT)
 				if(isobj(H.wear_suit) && H.wear_suit.body_parts_covered & FEET)
 					Cl = H.wear_suit
 					passed = prob((Cl.permeability_coefficient*100) - 1)
@@ -120,8 +119,9 @@
 				if(passed && isobj(H.shoes))
 					Cl = H.shoes
 					passed = prob((Cl.permeability_coefficient*100) - 1)
+
 	if(!passed && (D.spread_flags & AIRBORNE) && !internal)
-		passed = (prob((50*D.permeability_mod) -1))
+		passed = (prob((50*D.permeability_mod) - 1))
 
 	if(passed)
 		AddDisease(D)
@@ -135,15 +135,15 @@
 	return TRUE
 
 /mob/living/carbon/human/CanContractDisease(datum/disease/D)
-	if(species.virus_immune && !D.bypasses_immunity)
-		return FALSE
-
 	for(var/organ in D.required_organs)
-		if(locate(organ) in internal_organs)
-			continue
-		if(locate(organ) in organs)
-			continue
-		return FALSE
+		if(!((locate(organ) in organs) || (locate(organ) in internal_organs)))
+			return FALSE
+
+	if(species.virus_immune && !D.bypasses_immunity)
+		D.carrier = TRUE
+	else
+		D.carrier = FALSE
+
 	return ..()
 
 /mob/living/carbon/human/monkey/CanContractDisease(datum/disease/D)

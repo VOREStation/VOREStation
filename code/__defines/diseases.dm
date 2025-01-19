@@ -14,12 +14,13 @@
 #define SPECIAL			(1<<0)
 #define NON_CONTAGIOUS	(1<<1)
 #define BLOOD			(1<<2)
-#define CONTACT_FEET	(1<<3)
-#define CONTACT_HANDS	(1<<4)
-#define CONTACT_GENERAL	(1<<5)
-#define AIRBORNE		(1<<6)
+#define FLUIDS			(1<<3)
+#define CONTACT_GENERAL	(1<<4)
+#define AIRBORNE		(1<<5)
 
 //Severity Defines
+#define BENEFICIAL	"Beneficial"
+#define POSITIVE	"Positive"
 #define NONTHREAT	"No threat"
 #define MINOR		"Minor"
 #define MEDIUM		"Medium"

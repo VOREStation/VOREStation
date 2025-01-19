@@ -35,6 +35,8 @@ type Strain = {
 
 type Symptom = {
   name: string;
+  description: string;
+  threshold_desc: string;
   stealth: number;
   resistance: number;
   stageSpeed: number;

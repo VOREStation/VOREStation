@@ -9,7 +9,7 @@
 	agent = "Excess Snuggles"
 	viable_mobtypes = list(/mob/living/carbon/human, /mob/living/carbon/human/monkey)
 	desc = "If left untreated subject will regurgitate... puppies."
-	severity = HARMFUL
+	danger = HARMFUL
 	var/barklimit
 	var/list/puppy_types = list(/mob/living/simple_mob/animal/passive/dog/corgi/puppy)
 	var/list/plush_types = list(/obj/item/toy/plushie/orange_fox, /obj/item/toy/plushie/corgi, /obj/item/toy/plushie/robo_corgi, /obj/item/toy/plushie/pink_fox)

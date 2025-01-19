@@ -18,7 +18,7 @@ BONUS
 	stealth = 1
 	resistance = 5
 	stage_speed = -2
-	transmittable = 1
+	transmission = 1
 	level = -1
 	severity = 3
 
@@ -31,11 +31,11 @@ BONUS
 	if(!..())
 		return
 
-	if(A.totalResistance() >= 8)
+	if(A.resistance >= 8)
 		factory_blob = TRUE
-	if(A.totalResistance() >= 5)
+	if(A.resistance >= 5)
 		strong_blob = TRUE
-		if(A.totalResistance() >= 10)
+		if(A.resistance >= 10)
 			node_blob = TRUE
 
 /datum/symptom/blobspores/Activate(datum/disease/advance/A)

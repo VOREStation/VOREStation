@@ -20,7 +20,7 @@ BONUS
 	stealth = 1
 	resistance = -1
 	resistance = -4
-	transmittable = 1
+	transmission = 1
 	level = 4
 	severity = 1
 

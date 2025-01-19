@@ -614,3 +614,6 @@
 
 /mob/living/proc/restore_all_organs()
 	return
+
+/mob/living/proc/is_mouth_covered(head_only = 0, mask_only = 0)
+	return FALSE

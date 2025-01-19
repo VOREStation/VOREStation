@@ -20,7 +20,7 @@ Bonus
 	stealth = -3
 	resistance = -2
 	stage_speed = -2
-	transmittable = -4
+	transmission = -4
 	level = 3
 	severity = 3
 
@@ -42,11 +42,11 @@ Bonus
 	return
 
 /datum/symptom/choking/proc/Choke_stage_3_4(mob/living/M, datum/disease/advance/A)
-	var/get_damage = sqrtor0(21+A.totalStageSpeed()*0.5)+sqrtor0(16+A.totalStealth())
+	var/get_damage = sqrtor0(21+A.stage_rate*0.5)+sqrtor0(16+A.stealth)
 	M.adjustOxyLoss(get_damage)
 	return 1
 
 /datum/symptom/choking/proc/Choke(mob/living/M, datum/disease/advance/A)
-	var/get_damage = sqrtor0(21+A.totalStageSpeed()*0.5)+sqrtor0(16+A.totalStealth()*5)
+	var/get_damage = sqrtor0(21+A.stage_rate*0.5)+sqrtor0(16+A.stealth*5)
 	M.adjustOxyLoss(get_damage)
 	return 1
