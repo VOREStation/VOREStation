@@ -484,7 +484,7 @@ GLOBAL_LIST_BOILERPLATE(all_janitorial_carts, /obj/structure/janitorialcart)
 					L.pixel_x = -13
 					L.pixel_y = 7
 
-/obj/structure/bed/chair/janicart/proc/update_icon()
+/obj/structure/bed/chair/janicart/update_icon()
 	return
 
 /obj/structure/bed/chair/janicart/bullet_act(var/obj/item/projectile/Proj)
