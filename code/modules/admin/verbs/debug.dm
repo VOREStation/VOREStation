@@ -239,15 +239,15 @@
 
 	dellog += "</ol>"
 
-	usr << browse(dellog.Join(), "window=dellog")
+	usr << browse("<html>[dellog.Join()]</html>", "window=dellog")
 
 /client/proc/cmd_display_init_log()
 	set category = "Debug.Investigate"
 	set name = "Display Initialize() Log"
 	set desc = "Displays a list of things that didn't handle Initialize() properly"
 
-	if(!check_rights(R_DEBUG))	return
-	usr << browse("<htlm>[dellog.Join()]</html>", "window=dellog")
+	if(!check_rights(R_DEBUG))	returnsrc << browse(replacetext(SSatoms.InitLog(), "\n", "<br>"), "window=initlog")
+	src << browse(replacetext("<html>[SSatoms.InitLog()]</html>", "\n", "<br>"), "window=initlog")
 
 /*
 /client/proc/cmd_display_overlay_log()
