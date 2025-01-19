@@ -48,7 +48,7 @@
 
 	if(H.shoes)
 		shoes = H.shoes
-		if(shoes.overshoes)
+		if(istype(shoes, /obj/item/clothing/shoes) && shoes.overshoes)
 			if(slot && slot == slot_shoes)
 				to_chat(user, "You are unable to wear \the [src] as \the [H.shoes] are in the way.")
 			shoes = null
@@ -117,7 +117,7 @@
 /obj/item/clothing/shoes/magboots/vox/dropped(mob/user)
 	..(user)
 	if(src.magpulse)
-		user.visible_message("The [src] go limp as they are removed from [usr]'s feet.", "The [src] go limp as they are removed from your feet.")
+		user.visible_message("The [src] go limp as they are removed from [user]'s feet.", "The [src] go limp as they are removed from your feet.")
 		item_flags &= ~NOSLIP
 		magpulse = 0
 		canremove = TRUE

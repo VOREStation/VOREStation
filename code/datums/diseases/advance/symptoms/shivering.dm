@@ -27,10 +27,10 @@ Bonus
 /datum/symptom/shivering/Activate(datum/disease/advance/A)
 	..()
 	if(prob(SYMPTOM_ACTIVATION_PROB))
-		var/mob/living/carbon/M = A.affected_mob
-		to_chat(M, span_warning(pick("You feel cold.", "You start shivering.")))
-		if(M.bodytemperature > BODYTEMP_COLD_DAMAGE_LIMIT)
-			Chill(M, A)
+		var/mob/living/L = A.affected_mob
+		to_chat(L, span_warning(pick("You feel cold.", "You start shivering.")))
+		if(L.bodytemperature > BODYTEMP_COLD_DAMAGE_LIMIT)
+			Chill(L, A)
 	return
 
 /datum/symptom/shivering/proc/Chill(mob/living/M, datum/disease/advance/A)

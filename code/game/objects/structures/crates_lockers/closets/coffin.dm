@@ -13,7 +13,7 @@
 	name = "grave"
 	desc = "Dirt."
 	icon = 'icons/obj/closets/grave.dmi'
-	icon_state = "closed_unlocked"
+	icon_state = ""
 	seal_tool = null
 	breakout_sound = 'sound/weapons/thudswoosh.ogg'
 	anchored = TRUE

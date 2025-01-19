@@ -26,6 +26,7 @@ var/list/preferences_datums = list()
 	var/backbag = 2						//backpack type
 	var/pdachoice = 1					//PDA type
 	var/shoe_hater = FALSE				//RS ADD - if true, will spawn with no shoes
+	var/no_jacket = FALSE				//if true, will not spawn with outfit's jacket/outer layer
 	var/h_style = "Bald"				//Hair type
 	var/grad_style = "none"				//Gradient style
 	var/f_style = "Shaved"				//Face hair type

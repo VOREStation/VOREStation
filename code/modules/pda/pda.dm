@@ -491,10 +491,10 @@ var/global/list/obj/item/pda/PDAs = list()
 
 /obj/item/pda/Destroy()
 	PDAs -= src
-	if (src.id && prob(100) && !delete_id) //IDs are kept in 90% of the cases //VOREStation Edit - 100% of the cases, excpet when specified otherwise
-		src.id.forceMove(get_turf(src.loc))
+	if (id && !delete_id && id.loc == src)
+		id.forceMove(get_turf(loc))
 	else
-		QDEL_NULL(src.id)
+		QDEL_NULL(id)
 
 	current_app = null
 	scanmode = null

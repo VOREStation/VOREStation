@@ -140,7 +140,7 @@ var/list/slot_equipment_priority = list( \
 		return 0
 	W.forceMove(drop_location())
 	W.reset_plane_and_layer()
-	W.dropped()
+	W.dropped(src)
 	return 0
 
 // Removes an item from inventory and places it in the target atom.

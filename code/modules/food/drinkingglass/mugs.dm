@@ -40,6 +40,7 @@
 	desc = "A plain white coffee mug."
 	icon = 'icons/obj/drinks_mugs.dmi'
 	base_icon = "coffeecup"
+	icon_state = "coffeecup"
 	volume = 30
 	var/fillsource = "coffeecup"
 

@@ -183,7 +183,6 @@
 	},
 /obj/machinery/alarm{
 	dir = 4;
-	icon_state = "alarm0";
 	pixel_x = -22;
 	pixel_y = 0
 	},
@@ -371,7 +370,6 @@
 "fY" = (
 /obj/machinery/alarm{
 	dir = 4;
-	icon_state = "alarm0";
 	pixel_x = -22;
 	pixel_y = 0
 	},
@@ -436,7 +434,6 @@
 "gq" = (
 /obj/machinery/alarm{
 	dir = 4;
-	icon_state = "alarm0";
 	pixel_x = -22;
 	pixel_y = 0
 	},
@@ -516,7 +513,6 @@
 "gD" = (
 /obj/machinery/alarm{
 	dir = 4;
-	icon_state = "alarm0";
 	pixel_x = -22;
 	pixel_y = 0
 	},
@@ -1320,7 +1316,6 @@
 	},
 /obj/machinery/alarm{
 	dir = 4;
-	icon_state = "alarm0";
 	pixel_x = -22;
 	pixel_y = 0
 	},
@@ -2620,7 +2615,6 @@
 "lF" = (
 /obj/machinery/alarm{
 	dir = 4;
-	icon_state = "alarm0";
 	pixel_x = -22;
 	pixel_y = 0
 	},
@@ -2629,7 +2623,6 @@
 "lG" = (
 /obj/machinery/alarm{
 	dir = 4;
-	icon_state = "alarm0";
 	pixel_x = -22;
 	pixel_y = 0
 	},
@@ -2643,7 +2636,6 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/alarm{
 	dir = 4;
-	icon_state = "alarm0";
 	pixel_x = -22;
 	pixel_y = 0
 	},
@@ -2656,7 +2648,6 @@
 	},
 /obj/machinery/alarm{
 	dir = 4;
-	icon_state = "alarm0";
 	pixel_x = -22;
 	pixel_y = 0
 	},
@@ -3073,7 +3064,6 @@
 "mQ" = (
 /obj/machinery/alarm{
 	dir = 4;
-	icon_state = "alarm0";
 	pixel_x = -22;
 	pixel_y = 0
 	},

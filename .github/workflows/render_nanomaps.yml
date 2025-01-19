@@ -46,7 +46,7 @@ jobs:
       run: chmod -R +x ./tools/github-actions
 
     - name: Generate Maps
-      run: './tools/github-actions/nanomap-renderer-invoker.sh'
+      run: tools/github-actions/nanomap-renderer-invoker.sh
 
     - name: Commit Maps
       run: |
