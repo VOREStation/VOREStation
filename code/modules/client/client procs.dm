@@ -802,7 +802,7 @@
 			clicklimiter[CURRENT_SECOND] = second
 			clicklimiter[SECOND_COUNT] = 0
 
-		clicklimiter[SECOND_COUNT] += 1 + (!!ab)
+		clicklimiter[SECOND_COUNT] += 1
 
 		if (clicklimiter[SECOND_COUNT] > scl)
 			to_chat(src, span_danger("Your previous click was ignored because you've done too many in a second"))
