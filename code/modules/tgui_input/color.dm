@@ -126,10 +126,18 @@
 		if("preset")
 			if(ui.user)
 				var/raw_data = lowertext(params["color"])
+				var/index = lowertext(params["index"])
+				var/colors = ui.user.read_preference(/datum/preference/text/preset_colors)
+				var/list/entries = splittext(colors, ";")
+				while(LAZYLEN(entries) < 20)
+					entries += "#FFFFFF"
+				if(LAZYLEN(entries) > 20)
+					entries.Cut(21)
 				var/hex = sanitize_hexcolor(raw_data)
-				if (!hex)
+				if (!hex || !isnum(index) || entries[index] == hex)
 					return
-				ui.user.write_preference_directly(/datum/preference/text/preset_colors, hex)
+				entries[index] = hex
+				ui.user.write_preference_directly(/datum/preference/text/preset_colors, entries.Join(";"))
 			return TRUE
 
 /datum/tgui_color_picker/proc/set_choice(choice)

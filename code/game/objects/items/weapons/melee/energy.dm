@@ -192,6 +192,8 @@
 		if(energy_color_input)
 			lcolor = sanitize_hexcolor(energy_color_input)
 		update_icon()
+		if(active)
+			set_light(lrange, lpower, lcolor)
 
 /obj/item/melee/energy/examine(mob/user)
 	. = ..()
