@@ -1274,7 +1274,7 @@
 		return
 
 	if(choice == "Color") //Easy way to set color so we don't bloat up the menu with even more buttons.
-		var/new_color = input(src, "Choose a color to set your appendage to!", "", appendage_color) as color|null
+		var/new_color = tgui_color_picker(src, "Choose a color to set your appendage to!", "", appendage_color)
 		if(new_color)
 			appendage_color = new_color
 	if(choice == "Functionality") //Easy way to set color so we don't bloat up the menu with even more buttons.
