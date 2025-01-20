@@ -104,7 +104,7 @@ export const ColorPickerModal: React.FC<ColorPickerModalProps> = () => {
   );
   return (
     <Window
-      height={message ? 400 : 360}
+      height={message ? 440 : 400}
       title={title}
       width={600}
       theme="generic"
