@@ -137,7 +137,7 @@
 				if (!hex || !isnum(index) || entries[index] == hex)
 					return
 				entries[index] = hex
-				ui.user.client?.prefs?.update_preference_by_type(/datum/preference/text/preset_colors, entries.Join(";"))
+				ui.user.write_preference_by_type(/datum/preference/text/preset_colors, entries.Join(";"))
 			return TRUE
 
 /datum/tgui_color_picker/proc/set_choice(choice)
