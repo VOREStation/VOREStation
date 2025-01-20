@@ -458,7 +458,7 @@ const SaturationValue = ({ hsva, onChange }) => {
       s: 100,
       v: 100,
       a: 1,
-    })} !important`,
+    })}`,
   };
 
   return (
