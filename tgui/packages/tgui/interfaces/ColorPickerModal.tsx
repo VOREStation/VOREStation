@@ -76,7 +76,6 @@ export const ColorPickerModal: React.FC<ColorPickerModalProps> = () => {
     if (selectedPreset && lastSelectedColor !== hexCol && allowEditing) {
       setLastSelectedColor(hexCol);
       act('preset', { color: hexCol, index: selectedPreset });
-      return;
     }
   }, [selectedColor]);
 
