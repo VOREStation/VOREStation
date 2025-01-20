@@ -83,7 +83,7 @@ export const ColorPickerModal: React.FC<ColorPickerModalProps> = () => {
     title = 'Color';
   }
 
-  const [selectedPreset, setSelectedPreset] = useState<number | null>();
+  const [selectedPreset, setSelectedPreset] = useState<number | null>(null);
 
   const ourPresets = presets
     .replaceAll('#', '')
@@ -129,6 +129,7 @@ export const ColorPickerModal: React.FC<ColorPickerModalProps> = () => {
                 setColor={setSelectedColor}
                 defaultColor={default_color}
                 presetList={presetList}
+                selectedPreset={selectedPreset}
                 onSelectedPreset={setSelectedPreset}
                 allowEditing={allowEditing}
                 onAllowEditing={setAllowEditing}
@@ -148,6 +149,7 @@ interface ColorPresetsProps {
   setColor: (color: HsvaColor) => void;
   setShowPresets: (show: boolean) => void;
   presetList: string[][];
+  selectedPreset: number | null;
   onSelectedPreset: React.Dispatch<React.SetStateAction<number | null>>;
   allowEditing: boolean;
   onAllowEditing: React.Dispatch<React.SetStateAction<boolean>>;
@@ -158,6 +160,7 @@ const ColorPresets: React.FC<ColorPresetsProps> = React.memo(
     setColor,
     setShowPresets,
     presetList,
+    selectedPreset,
     onSelectedPreset,
     allowEditing,
     onAllowEditing,
@@ -204,8 +207,14 @@ const ColorPresets: React.FC<ColorPresetsProps> = React.memo(
                   {row.map((entry, i) => (
                     <Box key={i} p="1px" backgroundColor="black">
                       <Box
-                        p="1px"
-                        backgroundColor="#AAAAAA"
+                        p={
+                          selectedPreset === 10 ** index + i + 1 ? '2px' : '1px'
+                        }
+                        backgroundColor={
+                          selectedPreset === 10 ** index + i + 1
+                            ? '#FF0000'
+                            : '#AAAAAA'
+                        }
                         onClick={() => {
                           setColor(hexToHsva(entry));
                           onSelectedPreset(10 ** index + i + 1);
@@ -242,6 +251,7 @@ interface ColorSelectorProps {
   setColor: React.Dispatch<React.SetStateAction<HsvaColor>>;
   defaultColor: string;
   presetList: string[][];
+  selectedPreset: number | null;
   onSelectedPreset: React.Dispatch<React.SetStateAction<number | null>>;
   allowEditing: boolean;
   onAllowEditing: React.Dispatch<React.SetStateAction<boolean>>;
@@ -253,6 +263,7 @@ const ColorSelector: React.FC<ColorSelectorProps> = React.memo(
     setColor,
     defaultColor,
     presetList,
+    selectedPreset,
     onSelectedPreset,
     allowEditing,
     onAllowEditing,
@@ -315,6 +326,7 @@ const ColorSelector: React.FC<ColorSelectorProps> = React.memo(
               setColor={(c) => handleChange(c)}
               setShowPresets={setShowPresets}
               presetList={presetList}
+              selectedPreset={selectedPreset}
               onSelectedPreset={onSelectedPreset}
               allowEditing={allowEditing}
               onAllowEditing={onAllowEditing}
