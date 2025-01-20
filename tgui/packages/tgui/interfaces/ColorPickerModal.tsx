@@ -5,6 +5,7 @@
  */
 
 import {
+  colorList,
   hexToHsva,
   HsvaColor,
   hsvaToHex,
@@ -15,13 +16,11 @@ import {
 } from 'common/color';
 import { clamp } from 'common/math';
 import { classes } from 'common/react';
-import { Component, FocusEvent, FormEvent, ReactNode, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { Interaction, Interactive } from 'tgui/components/Interactive';
-import { logger } from 'tgui/logging';
 
 import { useBackend } from '../backend';
 import {
-  Autofocus,
   Box,
   Button,
   Flex,
@@ -31,11 +30,12 @@ import {
   Stack,
   Tooltip,
 } from '../components';
+import { Autofocus } from '../components/Autofocus';
 import { Window } from '../layouts';
 import { InputButtons } from './common/InputButtons';
 import { Loader } from './common/Loader';
 
-type ColorPickerData = {
+interface ColorPickerData {
   autofocus: boolean;
   buttons: string[];
   message: string;
@@ -44,27 +44,38 @@ type ColorPickerData = {
   timeout: number;
   title: string;
   default_color: string;
-  presets: string | null;
-};
+}
 
-export const ColorPickerModal = (props) => {
-  const { act, data } = useBackend<ColorPickerData>();
-  const {
-    timeout,
-    message,
-    title,
-    autofocus,
-    default_color = '#000000',
-  } = data;
+interface ColorPickerModalProps {}
+
+export const ColorPickerModal: React.FC<ColorPickerModalProps> = () => {
+  const { data } = useBackend<ColorPickerData>();
+  const { timeout, message, autofocus, default_color = '#000000' } = data;
+  let { title } = data;
+
   const [selectedColor, setSelectedColor] = useState<HsvaColor>(
     hexToHsva(default_color),
   );
 
+  useEffect(() => {
+    setSelectedColor(hexToHsva(default_color));
+  }, [default_color]);
+
+  if (!title) {
+    title = 'Color';
+  }
+
   return (
-    <Window height={400} title={title} width={600} theme="generic">
+    <Window
+      height={message ? 400 : 360}
+      title={title}
+      width={600}
+      theme="generic"
+    >
       {!!timeout && <Loader value={timeout} />}
       <Window.Content>
         <Stack fill vertical>
+          {!!autofocus && <Autofocus />}
           {message && (
             <Stack.Item m={1}>
               <Section fill>
@@ -76,7 +87,6 @@ export const ColorPickerModal = (props) => {
           )}
           <Stack.Item grow>
             <Section fill>
-              {!!autofocus && <Autofocus />}
               <ColorSelector
                 color={selectedColor}
                 setColor={setSelectedColor}
@@ -86,7 +96,6 @@ export const ColorPickerModal = (props) => {
           </Stack.Item>
           <Stack.Item>
             <InputButtons input={hsvaToHex(selectedColor)} />
-            <Button onClick={() => act('null')}>Null</Button>
           </Stack.Item>
         </Stack>
       </Window.Content>
@@ -94,412 +103,480 @@ export const ColorPickerModal = (props) => {
   );
 };
 
-export const ColorSelector = ({
-  color,
-  setColor,
-  defaultColor,
-}: {
-  color: HsvaColor;
-  setColor;
-  defaultColor: string;
-}) => {
-  const handleChange = (params: Partial<HsvaColor>) => {
-    setColor((current: HsvaColor) => {
-      return Object.assign({}, current, params);
-    });
-  };
-  const rgb = hsvaToRgba(color);
-  const hexColor = hsvaToHex(color);
-  return (
-    <Flex direction="row">
-      <Flex.Item mr={2}>
-        <Stack vertical>
-          <Stack.Item>
-            <div className="react-colorful">
-              <SaturationValue hsva={color} onChange={handleChange} />
-              <Hue
-                hue={color.h}
-                onChange={handleChange}
-                className="react-colorful__last-control"
-              />
-            </div>
-          </Stack.Item>
-          <Stack.Item>
-            <Box inline width="100px" height="20px" textAlign="center">
-              Current
-            </Box>
-            <Box inline width="100px" height="20px" textAlign="center">
-              Previous
-            </Box>
-            <br />
-            <Tooltip content={hexColor} position="bottom">
-              <Box
-                inline
-                width="100px"
-                height="30px"
-                backgroundColor={hexColor}
-              />
-            </Tooltip>
-            <Tooltip content={defaultColor} position="bottom">
-              <Box
-                inline
-                width="100px"
-                height="30px"
-                backgroundColor={defaultColor}
-              />
-            </Tooltip>
-          </Stack.Item>
-        </Stack>
-      </Flex.Item>
-      <Flex.Item grow fontSize="15px" lineHeight="24px">
-        <Stack vertical>
-          <Stack.Item>
-            <Stack>
-              <Stack.Item>
-                <Box textColor="label">Hex:</Box>
-              </Stack.Item>
-              <Stack.Item grow height="24px">
-                <HexColorInput
-                  fluid
-                  color={hsvaToHex(color).substring(1)}
-                  onChange={(value) => {
-                    logger.info(value);
-                    setColor(hexToHsva(value));
-                  }}
-                  prefixed
-                />
-              </Stack.Item>
-            </Stack>
-          </Stack.Item>
-          <Stack.Divider />
-          <Stack.Item>
-            <Stack>
-              <Stack.Item width="25px">
-                <Box textColor="label">H:</Box>
-              </Stack.Item>
-              <Stack.Item grow>
-                <Hue hue={color.h} onChange={handleChange} />
-              </Stack.Item>
-              <Stack.Item>
-                <TextSetter
-                  value={color.h}
-                  callback={(_, v) => handleChange({ h: v })}
-                  max={360}
-                  unit="°"
-                />
-              </Stack.Item>
-            </Stack>
-          </Stack.Item>
-          <Stack.Item>
-            <Stack>
-              <Stack.Item width="25px">
-                <Box textColor="label">S:</Box>
-              </Stack.Item>
-              <Stack.Item grow>
-                <Saturation color={color} onChange={handleChange} />
-              </Stack.Item>
-              <Stack.Item>
-                <TextSetter
-                  value={color.s}
-                  callback={(_, v) => handleChange({ s: v })}
-                  unit="%"
-                />
-              </Stack.Item>
-            </Stack>
-          </Stack.Item>
-          <Stack.Item>
-            <Stack>
-              <Stack.Item width="25px">
-                <Box textColor="label">V:</Box>
-              </Stack.Item>
-              <Stack.Item grow>
-                <Value color={color} onChange={handleChange} />
-              </Stack.Item>
-              <Stack.Item>
-                <TextSetter
-                  value={color.v}
-                  callback={(_, v) => handleChange({ v: v })}
-                  unit="%"
-                />
-              </Stack.Item>
-            </Stack>
-          </Stack.Item>
-          <Stack.Divider />
-          <Stack.Item>
-            <Stack>
-              <Stack.Item width="25px">
-                <Box textColor="label">R:</Box>
-              </Stack.Item>
-              <Stack.Item grow>
-                <RGBSlider color={color} onChange={handleChange} target="r" />
-              </Stack.Item>
-              <Stack.Item>
-                <TextSetter
-                  value={rgb.r}
-                  callback={(_, v) => {
-                    rgb.r = v;
-                    handleChange(rgbaToHsva(rgb));
-                  }}
-                  max={255}
-                />
-              </Stack.Item>
-            </Stack>
-          </Stack.Item>
-          <Stack.Item>
-            <Stack>
-              <Stack.Item width="25px">
-                <Box textColor="label">G:</Box>
-              </Stack.Item>
-              <Stack.Item grow>
-                <RGBSlider color={color} onChange={handleChange} target="g" />
-              </Stack.Item>
-              <Stack.Item>
-                <TextSetter
-                  value={rgb.g}
-                  callback={(_, v) => {
-                    rgb.g = v;
-                    handleChange(rgbaToHsva(rgb));
-                  }}
-                  max={255}
-                />
-              </Stack.Item>
-            </Stack>
-          </Stack.Item>
-          <Stack.Item>
-            <Stack>
-              <Stack.Item width="25px">
-                <Box textColor="label">B:</Box>
-              </Stack.Item>
-              <Stack.Item grow>
-                <RGBSlider color={color} onChange={handleChange} target="b" />
-              </Stack.Item>
-              <Stack.Item>
-                <TextSetter
-                  value={rgb.b}
-                  callback={(_, v) => {
-                    rgb.b = v;
-                    handleChange(rgbaToHsva(rgb));
-                  }}
-                  max={255}
-                />
-              </Stack.Item>
-            </Stack>
-          </Stack.Item>
-        </Stack>
-      </Flex.Item>
-    </Flex>
-  );
-};
+interface ColorPresetsProps {
+  setColor: (color: HsvaColor) => void;
+  setShowPresets: (show: boolean) => void;
+}
 
-const TextSetter = ({
-  value,
-  callback,
-  min = 0,
-  max = 100,
-  unit,
-}: {
+const ColorPresets: React.FC<ColorPresetsProps> = React.memo(
+  ({ setColor, setShowPresets }) => {
+    return (
+      <>
+        <Button
+          onClick={() => setShowPresets(false)}
+          position="absolute"
+          right="4px"
+          icon="arrow-left"
+        />
+        <Stack justify="center">
+          <Stack.Item>
+            {colorList.map((row, index) => (
+              <Stack.Item key={index} width="100%">
+                <Stack justify="center">
+                  {row.map((entry) => (
+                    <Box key={entry} p="1px" backgroundColor="black">
+                      <Box
+                        p="1px"
+                        backgroundColor="#AAAAAA"
+                        onClick={() => setColor(hexToHsva(entry))}
+                      >
+                        <Box
+                          backgroundColor={'#' + entry}
+                          width="21px"
+                          height="14px"
+                        />
+                      </Box>
+                    </Box>
+                  ))}
+                </Stack>
+              </Stack.Item>
+            ))}
+          </Stack.Item>
+        </Stack>
+      </>
+    );
+  },
+);
+
+interface ColorSelectorProps {
+  color: HsvaColor;
+  setColor: React.Dispatch<React.SetStateAction<HsvaColor>>;
+  defaultColor: string;
+}
+
+const ColorSelector: React.FC<ColorSelectorProps> = React.memo(
+  ({ color, setColor, defaultColor }) => {
+    const handleChange = useCallback(
+      (params: Partial<HsvaColor>) => {
+        setColor((current) => ({ ...current, ...params }));
+      },
+      [setColor],
+    );
+
+    const [showPresets, setShowPresets] = useState<boolean>(false);
+    const rgb = hsvaToRgba(color);
+    const hexColor = hsvaToHex(color);
+
+    return (
+      <Flex direction="row">
+        <Flex.Item mr={2}>
+          <Stack vertical>
+            <Stack.Item>
+              <div className="react-colorful">
+                <SaturationValue hsva={color} onChange={handleChange} />
+                <Hue
+                  hue={color.h}
+                  onChange={handleChange}
+                  className="react-colorful__last-control"
+                />
+              </div>
+            </Stack.Item>
+            <Stack.Item>
+              <Box inline width="100px" height="20px" textAlign="center">
+                Current
+              </Box>
+              <Box inline width="100px" height="20px" textAlign="center">
+                Previous
+              </Box>
+              <br />
+              <Tooltip content={hexColor} position="bottom">
+                <Box
+                  inline
+                  width="100px"
+                  height="30px"
+                  backgroundColor={hexColor}
+                />
+              </Tooltip>
+              <Tooltip content={defaultColor} position="bottom">
+                <Box
+                  inline
+                  width="100px"
+                  height="30px"
+                  backgroundColor={defaultColor}
+                />
+              </Tooltip>
+            </Stack.Item>
+          </Stack>
+        </Flex.Item>
+        <Flex.Item grow fontSize="15px" lineHeight="24px">
+          {showPresets ? (
+            <ColorPresets
+              setColor={(c) => handleChange(c)}
+              setShowPresets={setShowPresets}
+            />
+          ) : (
+            <Stack vertical>
+              <Stack.Item>
+                <Stack>
+                  <Stack.Item>
+                    <Box textColor="label">Hex:</Box>
+                  </Stack.Item>
+                  <Stack.Item grow height="24px">
+                    <HexColorInput
+                      fluid
+                      color={hsvaToHex(color).substring(1)}
+                      onChange={(value) => {
+                        setColor(hexToHsva(value));
+                      }}
+                    />
+                  </Stack.Item>
+                  <Stack.Item>
+                    <Button
+                      icon="eye-dropper"
+                      onClick={() => setShowPresets(true)}
+                    />
+                  </Stack.Item>
+                </Stack>
+              </Stack.Item>
+              <Stack.Divider />
+              <HueRow color={color} handleChange={handleChange} />
+              <SaturationRow color={color} handleChange={handleChange} />
+              <ValueRow color={color} handleChange={handleChange} />
+              <Stack.Divider />
+              <RedRow color={color} handleChange={handleChange} />
+              <GreenRow color={color} handleChange={handleChange} />
+              <BlueRow color={color} handleChange={handleChange} />
+            </Stack>
+          )}
+        </Flex.Item>
+      </Flex>
+    );
+  },
+);
+
+interface RowProps {
+  color: HsvaColor;
+  handleChange: (c: Partial<HsvaColor>) => void;
+}
+
+const HueRow: React.FC<RowProps> = React.memo(({ color, handleChange }) => (
+  <Stack.Item>
+    <Stack>
+      <Stack.Item width="25px">
+        <Box textColor="label">H:</Box>
+      </Stack.Item>
+      <Stack.Item grow>
+        <Hue hue={color.h} onChange={handleChange} />
+      </Stack.Item>
+      <Stack.Item>
+        <TextSetter
+          value={color.h}
+          callback={(v) => handleChange({ h: v })}
+          max={360}
+          unit="°"
+        />
+      </Stack.Item>
+    </Stack>
+  </Stack.Item>
+));
+
+const SaturationRow: React.FC<RowProps> = React.memo(
+  ({ color, handleChange }) => (
+    <Stack.Item>
+      <Stack>
+        <Stack.Item width="25px">
+          <Box textColor="label">S:</Box>
+        </Stack.Item>
+        <Stack.Item grow>
+          <Saturation color={color} onChange={handleChange} />
+        </Stack.Item>
+        <Stack.Item>
+          <TextSetter
+            value={color.s}
+            callback={(v) => handleChange({ s: v })}
+            unit="%"
+          />
+        </Stack.Item>
+      </Stack>
+    </Stack.Item>
+  ),
+);
+
+const ValueRow: React.FC<RowProps> = React.memo(({ color, handleChange }) => (
+  <Stack.Item>
+    <Stack>
+      <Stack.Item width="25px">
+        <Box textColor="label">V:</Box>
+      </Stack.Item>
+      <Stack.Item grow>
+        <Value color={color} onChange={handleChange} />
+      </Stack.Item>
+      <Stack.Item>
+        <TextSetter
+          value={color.v}
+          callback={(v) => handleChange({ v })}
+          unit="%"
+        />
+      </Stack.Item>
+    </Stack>
+  </Stack.Item>
+));
+
+interface RGBRowProps {
+  color: HsvaColor;
+  handleChange: (c: HsvaColor) => void;
+}
+
+const RedRow: React.FC<RGBRowProps> = React.memo(({ color, handleChange }) => {
+  const rgb = hsvaToRgba(color);
+  return (
+    <Stack.Item>
+      <Stack>
+        <Stack.Item width="25px">
+          <Box textColor="label">R:</Box>
+        </Stack.Item>
+        <Stack.Item grow>
+          <RGBSlider color={color} onChange={handleChange} target="r" />
+        </Stack.Item>
+        <Stack.Item>
+          <TextSetter
+            value={rgb.r}
+            callback={(v) => {
+              handleChange(rgbaToHsva({ ...rgb, r: v }));
+            }}
+            max={255}
+          />
+        </Stack.Item>
+      </Stack>
+    </Stack.Item>
+  );
+});
+
+const GreenRow: React.FC<RGBRowProps> = React.memo(
+  ({ color, handleChange }) => {
+    const rgb = hsvaToRgba(color);
+    return (
+      <Stack.Item>
+        <Stack>
+          <Stack.Item width="25px">
+            <Box textColor="label">G:</Box>
+          </Stack.Item>
+          <Stack.Item grow>
+            <RGBSlider color={color} onChange={handleChange} target="g" />
+          </Stack.Item>
+          <Stack.Item>
+            <TextSetter
+              value={rgb.g}
+              callback={(v) => {
+                handleChange(rgbaToHsva({ ...rgb, g: v }));
+              }}
+              max={255}
+            />
+          </Stack.Item>
+        </Stack>
+      </Stack.Item>
+    );
+  },
+);
+
+const BlueRow: React.FC<RGBRowProps> = React.memo(({ color, handleChange }) => {
+  const rgb = hsvaToRgba(color);
+  return (
+    <Stack.Item>
+      <Stack>
+        <Stack.Item width="25px">
+          <Box textColor="label">B:</Box>
+        </Stack.Item>
+        <Stack.Item grow>
+          <RGBSlider color={color} onChange={handleChange} target="b" />
+        </Stack.Item>
+        <Stack.Item>
+          <TextSetter
+            value={rgb.b}
+            callback={(v) => {
+              handleChange(rgbaToHsva({ ...rgb, b: v }));
+            }}
+            max={255}
+          />
+        </Stack.Item>
+      </Stack>
+    </Stack.Item>
+  );
+});
+
+interface TextSetterProps {
   value: number;
-  callback: any;
+  callback: (value: number) => void;
   min?: number;
   max?: number;
   unit?: string;
-}) => {
-  return (
-    <NumberInput
-      width="70px"
-      value={Math.round(value)}
-      step={1}
-      minValue={min}
-      maxValue={max}
-      onChange={callback}
-      unit={unit}
-    />
-  );
-};
-
-/**
- * MIT License
- * https://github.com/omgovich/react-colorful/
- *
- * Copyright (c) 2020 Vlad Shilov <omgovich@ya.ru>
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
- * SOFTWARE.
- */
-
-interface HexColorInputProps
-  extends Omit<ColorInputBaseProps, 'escape' | 'validate'> {
-  /** Enables `#` prefix displaying */
-  prefixed?: boolean;
-  /** Allows `#rgba` and `#rrggbbaa` color formats */
-  alpha?: boolean;
 }
 
-/** Adds "#" symbol to the beginning of the string */
-const prefix = (value: string) => '#' + value;
-
-export const HexColorInput = (props: HexColorInputProps): ReactNode => {
-  const { prefixed, alpha, color, fluid, onChange, ...rest } = props;
-
-  /** Escapes all non-hexadecimal characters including "#" */
-  const escape = (value: string) =>
-    value.replace(/([^0-9A-F]+)/gi, '').substring(0, alpha ? 8 : 6);
-
-  /** Validates hexadecimal strings */
-  const validate = (value: string) => validHex(value, alpha);
-
-  return (
-    <ColorInput
-      {...rest}
-      fluid={fluid}
-      color={color}
-      onChange={onChange}
-      escape={escape}
-      format={prefixed ? prefix : undefined}
-      validate={validate}
-    />
-  );
-};
-
-interface ColorInputBaseProps {
-  fluid?: boolean;
-  color: string;
-  onChange: (newColor: string) => void;
-  /** Blocks typing invalid characters and limits string length */
-  escape: (value: string) => string;
-  /** Checks that value is valid color string */
-  validate: (value: string) => boolean;
-  /** Processes value before displaying it in the input */
-  format?: (value: string) => string;
-}
-
-export class ColorInput extends Component {
-  props: ColorInputBaseProps;
-  state: { localValue: string };
-
-  constructor(props: ColorInputBaseProps) {
-    super(props);
-    this.props = props;
-    this.state = { localValue: this.props.escape(this.props.color) };
-  }
-
-  // Trigger `onChange` handler only if the input value is a valid color
-  handleInput = (e: FormEvent<HTMLInputElement>) => {
-    const inputValue = this.props.escape(e.currentTarget.value);
-    this.setState({ localValue: inputValue });
-  };
-
-  // Take the color from props if the last typed color (in local state) is not valid
-  handleBlur = (e: FocusEvent<HTMLInputElement>) => {
-    if (e.currentTarget) {
-      if (!this.props.validate(e.currentTarget.value)) {
-        this.setState({ localValue: this.props.escape(this.props.color) }); // return to default;
-      } else {
-        this.props.onChange(
-          this.props.escape
-            ? this.props.escape(e.currentTarget.value)
-            : e.currentTarget.value,
-        );
-      }
-    }
-  };
-
-  componentDidUpdate(prevProps, prevState): void {
-    if (prevProps.color !== this.props.color) {
-      // Update the local state when `color` property value is changed
-      // eslint-disable-next-line react/no-did-update-set-state
-      this.setState({ localValue: this.props.escape(this.props.color) });
-    }
-  }
-
-  render() {
+const TextSetter: React.FC<TextSetterProps> = React.memo(
+  ({ value, callback, min = 0, max = 100, unit }) => {
     return (
-      <Box className={classes(['Input', this.props.fluid && 'Input--fluid'])}>
+      <NumberInput
+        width="70px"
+        value={Math.round(value)}
+        step={1}
+        minValue={min}
+        maxValue={max}
+        onChange={callback}
+        unit={unit}
+      />
+    );
+  },
+);
+
+interface HexColorInputProps {
+  prefixed?: boolean;
+  alpha?: boolean;
+  color: string;
+  fluid?: boolean;
+  onChange: (newColor: string) => void;
+}
+
+const HexColorInput: React.FC<HexColorInputProps> = React.memo(
+  ({ alpha, color, fluid, onChange, ...rest }) => {
+    const initialColor = useMemo(() => {
+      const stripped = color
+        .replace(/[^0-9A-Fa-f]/g, '')
+        .substring(0, 6)
+        .toUpperCase();
+      return stripped;
+    }, [color]);
+
+    const [localValue, setLocalValue] = useState(initialColor);
+
+    useEffect(() => {
+      setLocalValue(initialColor);
+    }, [initialColor]);
+
+    const isValidFullHex = useCallback(
+      (val: string) => {
+        return validHex(val, alpha) && val.length === 6;
+      },
+      [alpha],
+    );
+
+    const handleChangeEvent = (e: React.ChangeEvent<HTMLInputElement>) => {
+      const inputValue = e.currentTarget.value;
+      const strippedValue = inputValue
+        .replace(/[^0-9A-Fa-f]/g, '')
+        .substring(0, 6)
+        .toUpperCase();
+
+      setLocalValue(strippedValue);
+
+      if (isValidFullHex(strippedValue)) {
+        onChange(strippedValue);
+      }
+    };
+
+    const commitOrRevert = useCallback(() => {
+      if (isValidFullHex(localValue)) {
+        onChange(localValue);
+      } else {
+        setLocalValue(initialColor);
+      }
+    }, [initialColor, isValidFullHex, localValue, onChange]);
+
+    const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
+      commitOrRevert();
+    };
+
+    const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+      if (e.key === 'Enter') {
+        commitOrRevert();
+        (e.currentTarget as HTMLInputElement).blur();
+      }
+    };
+
+    return (
+      <Box className={classes(['Input', fluid && 'Input--fluid'])}>
         <div className="Input__baseline">.</div>
         <input
           className="Input__input"
-          value={
-            this.props.format
-              ? this.props.format(this.state.localValue)
-              : this.state.localValue
-          }
-          spellCheck="false" // the element should not be checked for spelling errors
-          onInput={this.handleInput}
-          onBlur={this.handleBlur}
+          value={localValue}
+          spellCheck={false}
+          onChange={handleChangeEvent}
+          onBlur={handleBlur}
+          onKeyDown={handleKeyDown}
+          {...rest}
         />
       </Box>
     );
-  }
+  },
+);
+
+interface SaturationValueProps {
+  hsva: HsvaColor;
+  onChange: (newColor: Partial<HsvaColor>) => void;
 }
 
-const SaturationValue = ({ hsva, onChange }) => {
-  const handleMove = (interaction: Interaction) => {
-    onChange({
-      s: interaction.left * 100,
-      v: 100 - interaction.top * 100,
-    });
-  };
+const SaturationValue: React.FC<SaturationValueProps> = React.memo(
+  ({ hsva, onChange }) => {
+    const handleMove = (interaction: Interaction) => {
+      onChange({
+        s: interaction.left * 100,
+        v: 100 - interaction.top * 100,
+      });
+    };
 
-  const handleKey = (offset: Interaction) => {
-    // Saturation and brightness always fit into [0, 100] range
-    onChange({
-      s: clamp(hsva.s + offset.left * 100, 0, 100),
-      v: clamp(hsva.v - offset.top * 100, 0, 100),
-    });
-  };
+    const handleKey = (offset: Interaction) => {
+      onChange({
+        s: clamp(hsva.s + offset.left * 100, 0, 100),
+        v: clamp(hsva.v - offset.top * 100, 0, 100),
+      });
+    };
 
-  const containerStyle = {
-    backgroundColor: `${hsvaToHslString({
-      h: hsva.h,
-      s: 100,
-      v: 100,
-      a: 1,
-    })}`,
-  };
+    const containerStyle = useMemo(
+      () => ({
+        backgroundColor: hsvaToHslString({
+          h: hsva.h,
+          s: 100,
+          v: 100,
+          a: 1,
+        }),
+      }),
+      [hsva.h],
+    );
 
-  return (
-    <div className="react-colorful__saturation_value" style={containerStyle}>
-      <Interactive
-        onMove={handleMove}
-        onKey={handleKey}
-        aria-label="Color"
-        aria-valuetext={`Saturation ${Math.round(
-          hsva.s,
-        )}%, Brightness ${Math.round(hsva.v)}%`}
-      >
-        <Pointer
-          className="react-colorful__saturation_value-pointer"
-          top={1 - hsva.v / 100}
-          left={hsva.s / 100}
-          color={hsvaToHslString(hsva)}
-        />
-      </Interactive>
-    </div>
-  );
-};
+    return (
+      <div className="react-colorful__saturation_value" style={containerStyle}>
+        <Interactive
+          onMove={handleMove}
+          onKey={handleKey}
+          aria-label="Color"
+          aria-valuetext={`Saturation ${Math.round(
+            hsva.s,
+          )}%, Brightness ${Math.round(hsva.v)}%`}
+        >
+          <Pointer
+            className="react-colorful__saturation_value-pointer"
+            top={1 - hsva.v / 100}
+            left={hsva.s / 100}
+            color={hsvaToHslString(hsva)}
+          />
+        </Interactive>
+      </div>
+    );
+  },
+);
 
-const Hue = ({
-  className,
-  hue,
-  onChange,
-}: {
+interface HueProps {
   className?: string;
   hue: number;
-  onChange: (newHue: { h: number }) => void;
-}) => {
+  onChange: (newHue: Partial<HsvaColor>) => void;
+}
+
+const Hue: React.FC<HueProps> = React.memo(({ className, hue, onChange }) => {
   const handleMove = (interaction: Interaction) => {
     onChange({ h: 360 * interaction.left });
   };
 
   const handleKey = (offset: Interaction) => {
-    // Hue measured in degrees of the color circle ranging from 0 to 360
-    onChange({
-      h: clamp(hue + offset.left * 360, 0, 360),
-    });
+    onChange({ h: clamp(hue + offset.left * 360, 0, 360) });
   };
 
   const nodeClassName = classes(['react-colorful__hue', className]);
@@ -511,8 +588,8 @@ const Hue = ({
         onKey={handleKey}
         aria-label="Hue"
         aria-valuenow={Math.round(hue)}
-        aria-valuemax="360"
-        aria-valuemin="0"
+        aria-valuemax={360}
+        aria-valuemin={0}
       >
         <Pointer
           className="react-colorful__hue-pointer"
@@ -522,157 +599,169 @@ const Hue = ({
       </Interactive>
     </div>
   );
-};
+});
 
-const Saturation = ({
-  className,
-  color,
-  onChange,
-}: {
+interface SaturationProps {
   className?: string;
   color: HsvaColor;
-  onChange: (newSaturation: { s: number }) => void;
-}) => {
-  const handleMove = (interaction: Interaction) => {
-    onChange({ s: 100 * interaction.left });
-  };
+  onChange: (newSaturation: Partial<HsvaColor>) => void;
+}
 
-  const handleKey = (offset: Interaction) => {
-    // Hue measured in degrees of the color circle ranging from 0 to 100
-    onChange({
-      s: clamp(color.s + offset.left * 100, 0, 100),
-    });
-  };
+const Saturation: React.FC<SaturationProps> = React.memo(
+  ({ className, color, onChange }) => {
+    const handleMove = (interaction: Interaction) => {
+      onChange({ s: 100 * interaction.left });
+    };
 
-  const nodeClassName = classes(['react-colorful__saturation', className]);
+    const handleKey = (offset: Interaction) => {
+      onChange({ s: clamp(color.s + offset.left * 100, 0, 100) });
+    };
 
-  return (
-    <div className={nodeClassName}>
-      <Interactive
-        style={{
-          background: `linear-gradient(to right, ${hsvaToHslString({
-            h: color.h,
-            s: 0,
-            v: color.v,
-            a: 1,
-          })}, ${hsvaToHslString({ h: color.h, s: 100, v: color.v, a: 1 })})`,
-        }}
-        onMove={handleMove}
-        onKey={handleKey}
-        aria-label="Saturation"
-        aria-valuenow={Math.round(color.s)}
-        aria-valuemax="100"
-        aria-valuemin="0"
-      >
-        <Pointer
-          className="react-colorful__saturation-pointer"
-          left={color.s / 100}
-          color={hsvaToHslString({ h: color.h, s: color.s, v: color.v, a: 1 })}
-        />
-      </Interactive>
-    </div>
-  );
-};
+    const nodeClassName = classes(['react-colorful__saturation', className]);
 
-const Value = ({
-  className,
-  color,
-  onChange,
-}: {
+    const background = useMemo(
+      () =>
+        `linear-gradient(to right, ${hsvaToHslString({
+          h: color.h,
+          s: 0,
+          v: color.v,
+          a: 1,
+        })}, ${hsvaToHslString({ h: color.h, s: 100, v: color.v, a: 1 })})`,
+      [color],
+    );
+
+    return (
+      <div className={nodeClassName}>
+        <Interactive
+          style={{ background }}
+          onMove={handleMove}
+          onKey={handleKey}
+          aria-label="Saturation"
+          aria-valuenow={Math.round(color.s)}
+          aria-valuemax={100}
+          aria-valuemin={0}
+        >
+          <Pointer
+            className="react-colorful__saturation-pointer"
+            left={color.s / 100}
+            color={hsvaToHslString({
+              h: color.h,
+              s: color.s,
+              v: color.v,
+              a: 1,
+            })}
+          />
+        </Interactive>
+      </div>
+    );
+  },
+);
+
+interface ValueProps {
   className?: string;
   color: HsvaColor;
-  onChange: (newValue: { v: number }) => void;
-}) => {
-  const handleMove = (interaction: Interaction) => {
-    onChange({ v: 100 * interaction.left });
-  };
+  onChange: (newValue: Partial<HsvaColor>) => void;
+}
 
-  const handleKey = (offset: Interaction) => {
-    onChange({
-      v: clamp(color.v + offset.left * 100, 0, 100),
-    });
-  };
+const Value: React.FC<ValueProps> = React.memo(
+  ({ className, color, onChange }) => {
+    const handleMove = (interaction: Interaction) => {
+      onChange({ v: 100 * interaction.left });
+    };
 
-  const nodeClassName = classes(['react-colorful__value', className]);
+    const handleKey = (offset: Interaction) => {
+      onChange({
+        v: clamp(color.v + offset.left * 100, 0, 100),
+      });
+    };
 
-  return (
-    <div className={nodeClassName}>
-      <Interactive
-        style={{
-          background: `linear-gradient(to right, ${hsvaToHslString({
-            h: color.h,
-            s: color.s,
-            v: 0,
-            a: 1,
-          })}, ${hsvaToHslString({ h: color.h, s: color.s, v: 100, a: 1 })})`,
-        }}
-        onMove={handleMove}
-        onKey={handleKey}
-        aria-label="Value"
-        aria-valuenow={Math.round(color.s)}
-        aria-valuemax="100"
-        aria-valuemin="0"
-      >
-        <Pointer
-          className="react-colorful__value-pointer"
-          left={color.v / 100}
-          color={hsvaToHslString({ h: color.h, s: color.s, v: color.v, a: 1 })}
-        />
-      </Interactive>
-    </div>
-  );
-};
+    const nodeClassName = classes(['react-colorful__value', className]);
 
-const RGBSlider = ({
-  className,
-  color,
-  onChange,
-  target,
-}: {
+    const background = useMemo(
+      () =>
+        `linear-gradient(to right, ${hsvaToHslString({
+          h: color.h,
+          s: color.s,
+          v: 0,
+          a: 1,
+        })}, ${hsvaToHslString({ h: color.h, s: color.s, v: 100, a: 1 })})`,
+      [color],
+    );
+
+    return (
+      <div className={nodeClassName}>
+        <Interactive
+          style={{
+            background,
+          }}
+          onMove={handleMove}
+          onKey={handleKey}
+          aria-label="Value"
+          aria-valuenow={Math.round(color.v)}
+          aria-valuemax={100}
+          aria-valuemin={0}
+        >
+          <Pointer
+            className="react-colorful__value-pointer"
+            left={color.v / 100}
+            color={hsvaToHslString(color)}
+          />
+        </Interactive>
+      </div>
+    );
+  },
+);
+
+interface RGBSliderProps {
   className?: string;
   color: HsvaColor;
   onChange: (newValue: HsvaColor) => void;
-  target: string;
-}) => {
-  const rgb = hsvaToRgba(color);
+  target: 'r' | 'g' | 'b';
+}
 
-  const setNewTarget = (value: number) => {
-    rgb[target] = value;
-    onChange(rgbaToHsva(rgb));
-  };
+const RGBSlider: React.FC<RGBSliderProps> = React.memo(
+  ({ className, color, onChange, target }) => {
+    const rgb = hsvaToRgba(color);
 
-  const handleMove = (interaction: Interaction) => {
-    setNewTarget(255 * interaction.left);
-  };
+    const setNewTarget = (value: number) => {
+      const newRgb = { ...rgb, [target]: value };
+      onChange(rgbaToHsva(newRgb));
+    };
 
-  const handleKey = (offset: Interaction) => {
-    setNewTarget(clamp(rgb[target] + offset.left * 255, 0, 255));
-  };
+    const handleMove = (interaction: Interaction) => {
+      setNewTarget(255 * interaction.left);
+    };
 
-  const nodeClassName = classes([`react-colorful__${target}`, className]);
+    const handleKey = (offset: Interaction) => {
+      setNewTarget(clamp(rgb[target] + offset.left * 255, 0, 255));
+    };
 
-  let selected =
-    target === 'r'
-      ? `rgb(${Math.round(rgb.r)},0,0)`
-      : target === 'g'
-        ? `rgb(0,${Math.round(rgb.g)},0)`
-        : `rgb(0,0,${Math.round(rgb.b)})`;
+    const nodeClassName = classes([`react-colorful__${target}`, className]);
 
-  return (
-    <div className={nodeClassName}>
-      <Interactive
-        onMove={handleMove}
-        onKey={handleKey}
-        aria-valuenow={rgb[target]}
-        aria-valuemax="100"
-        aria-valuemin="0"
-      >
-        <Pointer
-          className={`react-colorful__${target}-pointer`}
-          left={rgb[target] / 255}
-          color={selected}
-        />
-      </Interactive>
-    </div>
-  );
-};
+    const channels = {
+      r: `rgb(${Math.round(rgb.r)},0,0)`,
+      g: `rgb(0,${Math.round(rgb.g)},0)`,
+      b: `rgb(0,0,${Math.round(rgb.b)})`,
+    };
+
+    const selected = channels[target];
+
+    return (
+      <div className={nodeClassName}>
+        <Interactive
+          onMove={handleMove}
+          onKey={handleKey}
+          aria-valuenow={rgb[target]}
+          aria-valuemax={255}
+          aria-valuemin={0}
+        >
+          <Pointer
+            className={`react-colorful__${target}-pointer`}
+            left={rgb[target] / 255}
+            color={selected}
+          />
+        </Interactive>
+      </div>
+    );
+  },
+);
