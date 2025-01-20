@@ -14,7 +14,7 @@
 
 import { KEY } from 'common/keys';
 import { clamp } from 'common/math';
-import { Component, createRef, ReactNode, RefObject } from 'react';
+import React, { Component, createRef, ReactNode, RefObject } from 'react';
 
 export interface Interaction {
   left: number;
@@ -23,7 +23,7 @@ export interface Interaction {
 
 // Finds the proper window object to fix iframe embedding issues
 const getParentWindow = (node?: HTMLDivElement | null): Window => {
-  return (node && node.ownerDocument.defaultView) || self;
+  return (node && node.ownerDocument.defaultView) || window;
 };
 
 // Returns a relative position of the pointer inside the node's bounding box
@@ -32,20 +32,14 @@ const getRelativePosition = (
   event: MouseEvent,
 ): Interaction => {
   const rect = node.getBoundingClientRect();
-  const pointer = event as MouseEvent;
+  const parentWindow = getParentWindow(node);
+
+  const offsetX = event.pageX - (rect.left + parentWindow.scrollX);
+  const offsetY = event.pageY - (rect.top + parentWindow.scrollY);
+
   return {
-    left: clamp(
-      (pointer.pageX - (rect.left + getParentWindow(node).scrollX)) /
-        rect.width,
-      0,
-      1,
-    ),
-    top: clamp(
-      (pointer.pageY - (rect.top + getParentWindow(node).scrollY)) /
-        rect.height,
-      0,
-      1,
-    ),
+    left: clamp(offsetX / rect.width, 0, 1),
+    top: clamp(offsetY / rect.height, 0, 1),
   };
 };
 
@@ -53,16 +47,14 @@ export interface InteractiveProps {
   onMove: (interaction: Interaction) => void;
   onKey: (offset: Interaction) => void;
   children: ReactNode;
-  style?: any;
+  style?: React.CSSProperties;
 }
 
-export class Interactive extends Component {
+export class Interactive extends Component<InteractiveProps> {
   containerRef: RefObject<HTMLDivElement>;
-  props: InteractiveProps;
 
   constructor(props: InteractiveProps) {
     super(props);
-    this.props = props;
     this.containerRef = createRef();
   }
 
@@ -78,14 +70,8 @@ export class Interactive extends Component {
   };
 
   handleMove = (event: MouseEvent) => {
-    // Prevent text selection
     event.preventDefault();
 
-    // If user moves the pointer outside of the window or iframe bounds and release it there,
-    // `mouseup`/`touchend` won't be fired. In order to stop the picker from following the cursor
-    // after the user has moved the mouse/finger back to the document, we check `event.buttons`
-    // and `event.touches`. It allows us to detect that the user is just moving his pointer
-    // without pressing it down
     const isDown = event.buttons > 0;
 
     if (isDown && this.containerRef?.current) {
@@ -102,7 +88,6 @@ export class Interactive extends Component {
   handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
     const pressedKey = event.key;
 
-    // Ignore all keys except arrow ones
     if (
       pressedKey !== KEY.Left &&
       pressedKey !== KEY.Right &&
@@ -111,11 +96,7 @@ export class Interactive extends Component {
     ) {
       return;
     }
-    // Do not scroll page by arrow keys when document is focused on the element
     event.preventDefault();
-    // Send relative offset to the parent component.
-    // We use codes (37←, 38↑, 39→, 40↓) instead of keys ('ArrowRight', 'ArrowDown', etc)
-    // to reduce the size of the library
     this.props.onKey({
       left:
         pressedKey === KEY.Right ? 0.05 : pressedKey === KEY.Left ? -0.05 : 0,
@@ -127,7 +108,6 @@ export class Interactive extends Component {
     const el = this.containerRef?.current;
     const parentWindow = getParentWindow(el);
 
-    // Add or remove additional pointer event listeners
     const toggleEvent = state
       ? parentWindow.addEventListener
       : parentWindow.removeEventListener;
@@ -144,10 +124,11 @@ export class Interactive extends Component {
   }
 
   render() {
+    const { style, children, ...rest } = this.props;
     return (
       <div
-        {...this.props}
-        style={this.props.style}
+        {...rest}
+        style={style}
         ref={this.containerRef}
         onMouseDown={this.handleMoveStart}
         className="react-colorful__interactive"
@@ -155,7 +136,7 @@ export class Interactive extends Component {
         tabIndex={0}
         role="slider"
       >
-        {this.props.children}
+        {children}
       </div>
     );
   }

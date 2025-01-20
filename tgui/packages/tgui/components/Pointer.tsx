@@ -13,7 +13,7 @@
  */
 
 import { classes } from 'common/react';
-import { ReactNode } from 'react';
+import React from 'react';
 
 interface PointerProps {
   className?: string;
@@ -22,12 +22,12 @@ interface PointerProps {
   color: string;
 }
 
-export const Pointer = ({
+export const Pointer: React.FC<PointerProps> = ({
   className,
   color,
   left,
   top = 0.5,
-}: PointerProps): ReactNode => {
+}) => {
   const nodeClassName = classes(['react-colorful__pointer', className]);
 
   const style = {
