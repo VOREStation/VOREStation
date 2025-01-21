@@ -23,12 +23,18 @@
 	var/icon/clip_mask_icon = null //Icon file used for clip mask.
 	var/clip_mask_state = null //Icon state to generate clip mask. Clip mask is used to 'clip' off the lower part of clothing such as jumpsuits & full suits.
 	var/icon/clip_mask = null //Instantiated clip mask of given icon and state
+	var/offset_x = 0
+	var/offset_y = 0
+	var/mob_offset_x = 0
+	var/mob_offset_y = 0
 
 	// VOREStation Edit: Taur Loafing
 	var/can_loaf = FALSE
 	var/loaf_offset = 0
+	var/list/lower_layer_dirs = list(SOUTH)
+	var/icon_loaf = null
 
-	//species_allowed = list(SPECIES_EVENT1, SPECIES_EVENT2, SPECIES_EVENT3)			//Removing Polaris whitelits, ones we need are defined in our files
+	species_allowed = list(SPECIES_HUMAN, SPECIES_SKRELL, SPECIES_UNATHI, SPECIES_TAJARAN, SPECIES_TESHARI, SPECIES_NEVREAN, SPECIES_AKULA, SPECIES_SERGAL, SPECIES_FENNEC, SPECIES_ZORREN_HIGH, SPECIES_VULPKANIN, SPECIES_XENOCHIMERA, SPECIES_XENOHYBRID, SPECIES_VASILISSAN, SPECIES_RAPALA, SPECIES_PROTEAN, SPECIES_ALRAUNE, SPECIES_WEREBEAST, SPECIES_SHADEKIN, SPECIES_SHADEKIN_CREW, SPECIES_ALTEVIAN, SPECIES_LLEILL, SPECIES_HANNER)
 
 /datum/sprite_accessory/tail/New()
 	. = ..()

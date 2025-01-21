@@ -150,7 +150,6 @@ GLOBAL_LIST_INIT(fancy_sprite_accessory_color_channel_names, list("Primary", "Se
 	name = "Bald"
 	icon_state = "bald"
 	flags = HAIR_VERY_SHORT
-	species_allowed = list(SPECIES_HUMAN,SPECIES_UNATHI,SPECIES_PROMETHEAN,SPECIES_HUMAN_VATBORN,SPECIES_VOX,SPECIES_TESHARI)
 
 /datum/sprite_accessory/hair/baldfade
 	name = "Balding Fade"
@@ -229,7 +228,6 @@ GLOBAL_LIST_INIT(fancy_sprite_accessory_color_channel_names, list("Primary", "Se
 /datum/sprite_accessory/hair/bob
 	name = "Bob"
 	icon_state = "hair_bobcut"
-	species_allowed = list(SPECIES_HUMAN,SPECIES_PROMETHEAN,SPECIES_HUMAN_VATBORN,SPECIES_UNATHI)
 	flags = HAIR_TIEABLE
 
 /datum/sprite_accessory/hair/bobcutalt
@@ -245,7 +243,6 @@ GLOBAL_LIST_INIT(fancy_sprite_accessory_color_channel_names, list("Primary", "Se
 /datum/sprite_accessory/hair/bobcurl
 	name = "Bobcurl"
 	icon_state = "hair_bobcurl"
-	species_allowed = list(SPECIES_HUMAN,SPECIES_PROMETHEAN,SPECIES_HUMAN_VATBORN,SPECIES_UNATHI)
 	flags = HAIR_TIEABLE
 
 /datum/sprite_accessory/hair/bobcutovereye
@@ -396,7 +393,6 @@ GLOBAL_LIST_INIT(fancy_sprite_accessory_color_channel_names, list("Primary", "Se
 	name = "Buzzcut"
 	icon_state = "hair_buzzcut"
 	flags = HAIR_VERY_SHORT
-	species_allowed = list(SPECIES_HUMAN,SPECIES_PROMETHEAN,SPECIES_HUMAN_VATBORN,SPECIES_UNATHI)
 
 /datum/sprite_accessory/hair/celebcurls
 	name = "Celeb Curls"
@@ -859,7 +855,6 @@ GLOBAL_LIST_INIT(fancy_sprite_accessory_color_channel_names, list("Primary", "Se
 /datum/sprite_accessory/hair/mohawk
 	name = "Mohawk"
 	icon_state = "hair_d"
-	species_allowed = list(SPECIES_HUMAN,SPECIES_PROMETHEAN,SPECIES_HUMAN_VATBORN,SPECIES_UNATHI)
 
 /datum/sprite_accessory/hair/regulationmohawk
 	name = "Mohawk Regulation"
@@ -1206,7 +1201,6 @@ GLOBAL_LIST_INIT(fancy_sprite_accessory_color_channel_names, list("Primary", "Se
 /datum/sprite_accessory/hair/spiky
 	name = "Spiky"
 	icon_state = "hair_spikey"
-	species_allowed = list(SPECIES_HUMAN,SPECIES_PROMETHEAN,SPECIES_HUMAN_VATBORN,SPECIES_UNATHI)
 
 /datum/sprite_accessory/hair/starling
 	name = "Starling"
@@ -1389,57 +1383,44 @@ GLOBAL_LIST_INIT(fancy_sprite_accessory_color_channel_names, list("Primary", "Se
 	icon = 'icons/mob/human_face_alt.dmi'
 	icon_add = 'icons/mob/human_face_alt_add.dmi'
 	icon_state = "soghun_hood"
-	species_allowed = list(SPECIES_UNATHI, SPECIES_EVENT1, SPECIES_EVENT2, SPECIES_EVENT3)
 
 /datum/sprite_accessory/hair/una_doublehorns
 	name = "Double Unathi Horns"
 	icon = 'icons/mob/human_face_alt.dmi'
 	icon_add = 'icons/mob/human_face_alt_add.dmi'
 	icon_state = "soghun_dubhorns"
-	species_allowed = list(SPECIES_UNATHI, SPECIES_EVENT1, SPECIES_EVENT2, SPECIES_EVENT3)
 
 /datum/sprite_accessory/hair/sergal_plain
 	name = "Sergal Plain"
 	icon = 'icons/mob/human_face_alt.dmi'
 	icon_add = 'icons/mob/human_face_alt_add.dmi'
 	icon_state = "serg_plain"
-	species_allowed = list(SPECIES_EVENT1, SPECIES_EVENT2, SPECIES_EVENT3)
 
 /datum/sprite_accessory/hair/sergal_medicore
 	name = "Sergal Medicore"
 	icon = 'icons/mob/human_face_alt.dmi'
 	icon_add = 'icons/mob/human_face_alt_add.dmi'
 	icon_state = "serg_medicore"
-	species_allowed = list(SPECIES_EVENT1, SPECIES_EVENT2, SPECIES_EVENT3)
 
 /datum/sprite_accessory/hair/sergal_tapered
 	name = "Sergal Tapered"
 	icon = 'icons/mob/human_face_alt.dmi'
 	icon_add = 'icons/mob/human_face_alt_add.dmi'
 	icon_state = "serg_tapered"
-	species_allowed = list(SPECIES_EVENT1, SPECIES_EVENT2, SPECIES_EVENT3)
 
 /datum/sprite_accessory/hair/sergal_fairytail
 	name = "Sergal Fairytail"
 	icon = 'icons/mob/human_face_alt.dmi'
 	icon_add = 'icons/mob/human_face_alt_add.dmi'
 	icon_state = "serg_fairytail"
-	species_allowed = list(SPECIES_EVENT1, SPECIES_EVENT2, SPECIES_EVENT3)
 
 // Vulpa stuffs
-
-/datum/sprite_accessory/hair/vulp_hair_none
-	name = "None"
-	icon_state = "bald"
-	species_allowed = list(SPECIES_EVENT1, SPECIES_EVENT2, SPECIES_EVENT3)
-	gender = NEUTER
 
 /datum/sprite_accessory/hair/vulp_hair_kajam
 	name = "Kajam"
 	icon = 'icons/mob/human_face_alt.dmi'
 	icon_add = 'icons/mob/human_face_alt_add.dmi'
 	icon_state = "kajam"
-	species_allowed = list(SPECIES_EVENT1, SPECIES_EVENT2, SPECIES_EVENT3)
 	gender = NEUTER
 
 /datum/sprite_accessory/hair/vulp_hair_keid
@@ -1447,7 +1428,6 @@ GLOBAL_LIST_INIT(fancy_sprite_accessory_color_channel_names, list("Primary", "Se
 	icon = 'icons/mob/human_face_alt.dmi'
 	icon_add = 'icons/mob/human_face_alt_add.dmi'
 	icon_state = "keid"
-	species_allowed = list(SPECIES_EVENT1, SPECIES_EVENT2, SPECIES_EVENT3)
 	gender = NEUTER
 
 /datum/sprite_accessory/hair/vulp_hair_adhara
@@ -1455,7 +1435,6 @@ GLOBAL_LIST_INIT(fancy_sprite_accessory_color_channel_names, list("Primary", "Se
 	icon = 'icons/mob/human_face_alt.dmi'
 	icon_add = 'icons/mob/human_face_alt_add.dmi'
 	icon_state = "adhara"
-	species_allowed = list(SPECIES_EVENT1, SPECIES_EVENT2, SPECIES_EVENT3)
 	gender = NEUTER
 
 /datum/sprite_accessory/hair/vulp_hair_kleeia
@@ -1463,7 +1442,6 @@ GLOBAL_LIST_INIT(fancy_sprite_accessory_color_channel_names, list("Primary", "Se
 	icon = 'icons/mob/human_face_alt.dmi'
 	icon_add = 'icons/mob/human_face_alt_add.dmi'
 	icon_state = "kleeia"
-	species_allowed = list(SPECIES_EVENT1, SPECIES_EVENT2, SPECIES_EVENT3)
 	gender = NEUTER
 
 /datum/sprite_accessory/hair/vulp_hair_mizar
@@ -1471,7 +1449,6 @@ GLOBAL_LIST_INIT(fancy_sprite_accessory_color_channel_names, list("Primary", "Se
 	icon = 'icons/mob/human_face_alt.dmi'
 	icon_add = 'icons/mob/human_face_alt_add.dmi'
 	icon_state = "mizar"
-	species_allowed = list(SPECIES_EVENT1, SPECIES_EVENT2, SPECIES_EVENT3)
 	gender = NEUTER
 
 /datum/sprite_accessory/hair/vulp_hair_apollo
@@ -1479,7 +1456,6 @@ GLOBAL_LIST_INIT(fancy_sprite_accessory_color_channel_names, list("Primary", "Se
 	icon = 'icons/mob/human_face_alt.dmi'
 	icon_add = 'icons/mob/human_face_alt_add.dmi'
 	icon_state = "apollo"
-	species_allowed = list(SPECIES_EVENT1, SPECIES_EVENT2, SPECIES_EVENT3)
 	gender = NEUTER
 
 /datum/sprite_accessory/hair/vulp_hair_belle
@@ -1487,7 +1463,6 @@ GLOBAL_LIST_INIT(fancy_sprite_accessory_color_channel_names, list("Primary", "Se
 	icon = 'icons/mob/human_face_alt.dmi'
 	icon_add = 'icons/mob/human_face_alt_add.dmi'
 	icon_state = "belle"
-	species_allowed = list(SPECIES_EVENT1, SPECIES_EVENT2, SPECIES_EVENT3)
 	gender = NEUTER
 
 /datum/sprite_accessory/hair/vulp_hair_bun
@@ -1495,7 +1470,6 @@ GLOBAL_LIST_INIT(fancy_sprite_accessory_color_channel_names, list("Primary", "Se
 	icon = 'icons/mob/human_face_alt.dmi'
 	icon_add = 'icons/mob/human_face_alt_add.dmi'
 	icon_state = "bun"
-	species_allowed = list(SPECIES_EVENT1, SPECIES_EVENT2, SPECIES_EVENT3)
 	gender = NEUTER
 
 /datum/sprite_accessory/hair/vulp_hair_jagged
@@ -1503,7 +1477,6 @@ GLOBAL_LIST_INIT(fancy_sprite_accessory_color_channel_names, list("Primary", "Se
 	icon = 'icons/mob/human_face_alt.dmi'
 	icon_add = 'icons/mob/human_face_alt_add.dmi'
 	icon_state = "jagged"
-	species_allowed = list(SPECIES_EVENT1, SPECIES_EVENT2, SPECIES_EVENT3)
 	gender = NEUTER
 
 /datum/sprite_accessory/hair/vulp_hair_curl
@@ -1511,7 +1484,6 @@ GLOBAL_LIST_INIT(fancy_sprite_accessory_color_channel_names, list("Primary", "Se
 	icon = 'icons/mob/human_face_alt.dmi'
 	icon_add = 'icons/mob/human_face_alt_add.dmi'
 	icon_state = "curl"
-	species_allowed = list(SPECIES_EVENT1, SPECIES_EVENT2, SPECIES_EVENT3)
 	gender = NEUTER
 
 /datum/sprite_accessory/hair/vulp_hair_hawk
@@ -1519,7 +1491,6 @@ GLOBAL_LIST_INIT(fancy_sprite_accessory_color_channel_names, list("Primary", "Se
 	icon = 'icons/mob/human_face_alt.dmi'
 	icon_add = 'icons/mob/human_face_alt_add.dmi'
 	icon_state = "hawk"
-	species_allowed = list(SPECIES_EVENT1, SPECIES_EVENT2, SPECIES_EVENT3)
 	gender = NEUTER
 
 /datum/sprite_accessory/hair/vulp_hair_anita
@@ -1527,7 +1498,6 @@ GLOBAL_LIST_INIT(fancy_sprite_accessory_color_channel_names, list("Primary", "Se
 	icon = 'icons/mob/human_face_alt.dmi'
 	icon_add = 'icons/mob/human_face_alt_add.dmi'
 	icon_state = "anita"
-	species_allowed = list(SPECIES_EVENT1, SPECIES_EVENT2, SPECIES_EVENT3)
 	gender = NEUTER
 
 /datum/sprite_accessory/hair/vulp_hair_short
@@ -1535,7 +1505,6 @@ GLOBAL_LIST_INIT(fancy_sprite_accessory_color_channel_names, list("Primary", "Se
 	icon = 'icons/mob/human_face_alt.dmi'
 	icon_add = 'icons/mob/human_face_alt_add.dmi'
 	icon_state = "short"
-	species_allowed = list(SPECIES_EVENT1, SPECIES_EVENT2, SPECIES_EVENT3)
 	gender = NEUTER
 
 /datum/sprite_accessory/hair/vulp_hair_spike
@@ -1543,7 +1512,6 @@ GLOBAL_LIST_INIT(fancy_sprite_accessory_color_channel_names, list("Primary", "Se
 	icon = 'icons/mob/human_face_alt.dmi'
 	icon_add = 'icons/mob/human_face_alt_add.dmi'
 	icon_state = "spike"
-	species_allowed = list(SPECIES_EVENT1, SPECIES_EVENT2, SPECIES_EVENT3)
 	gender = NEUTER
 
 //xeno stuffs
@@ -1552,15 +1520,14 @@ GLOBAL_LIST_INIT(fancy_sprite_accessory_color_channel_names, list("Primary", "Se
 	icon = 'icons/mob/human_face_alt.dmi'
 	icon_add = 'icons/mob/human_face_alt_add.dmi'
 	icon_state = "cxeno_drone"
-	species_allowed = list(SPECIES_EVENT1, SPECIES_EVENT2, SPECIES_EVENT3)
 	gender = NEUTER
+
 // figure this one out for better coloring
 /datum/sprite_accessory/hair/xeno_head_sentinel_color
 	name = "Sentinal dome"
 	icon = 'icons/mob/human_face_alt.dmi'
 	icon_add = 'icons/mob/human_face_alt_add.dmi'
 	icon_state = "cxeno_sentinel"
-	species_allowed = list(SPECIES_EVENT1, SPECIES_EVENT2, SPECIES_EVENT3)
 	gender = NEUTER
 
 /datum/sprite_accessory/hair/xeno_head_queen_color
@@ -1568,7 +1535,6 @@ GLOBAL_LIST_INIT(fancy_sprite_accessory_color_channel_names, list("Primary", "Se
 	icon = 'icons/mob/human_face_alt.dmi'
 	icon_add = 'icons/mob/human_face_alt_add.dmi'
 	icon_state = "cxeno_queen"
-	species_allowed = list(SPECIES_EVENT1, SPECIES_EVENT2, SPECIES_EVENT3)
 	gender = NEUTER
 
 /datum/sprite_accessory/hair/xeno_head_hunter_color
@@ -1576,7 +1542,6 @@ GLOBAL_LIST_INIT(fancy_sprite_accessory_color_channel_names, list("Primary", "Se
 	icon = 'icons/mob/human_face_alt.dmi'
 	icon_add = 'icons/mob/human_face_alt_add.dmi'
 	icon_state = "cxeno_hunter"
-	species_allowed = list(SPECIES_EVENT1, SPECIES_EVENT2, SPECIES_EVENT3)
 	gender = NEUTER
 
 /datum/sprite_accessory/hair/xeno_head_praetorian_color
@@ -1584,7 +1549,6 @@ GLOBAL_LIST_INIT(fancy_sprite_accessory_color_channel_names, list("Primary", "Se
 	icon = 'icons/mob/human_face_alt.dmi'
 	icon_add = 'icons/mob/human_face_alt_add.dmi'
 	icon_state = "cxeno_praetorian"
-	species_allowed = list(SPECIES_EVENT1, SPECIES_EVENT2, SPECIES_EVENT3)
 	gender = NEUTER
 
 // Shadekin stuffs
@@ -1594,7 +1558,6 @@ GLOBAL_LIST_INIT(fancy_sprite_accessory_color_channel_names, list("Primary", "Se
 	icon = 'icons/mob/human_face_alt.dmi'
 	icon_add = 'icons/mob/human_face_alt_add.dmi'
 	icon_state = "shadekin_short"
-	species_allowed = list(SPECIES_EVENT1, SPECIES_EVENT2, SPECIES_EVENT3)
 	gender = NEUTER
 
 /datum/sprite_accessory/hair/shadekin_hair_poofy
@@ -1602,7 +1565,6 @@ GLOBAL_LIST_INIT(fancy_sprite_accessory_color_channel_names, list("Primary", "Se
 	icon = 'icons/mob/human_face_alt.dmi'
 	icon_add = 'icons/mob/human_face_alt_add.dmi'
 	icon_state = "shadekin_poofy"
-	species_allowed = list(SPECIES_EVENT1, SPECIES_EVENT2, SPECIES_EVENT3)
 	gender = NEUTER
 
 /datum/sprite_accessory/hair/shadekin_hair_long
@@ -1610,7 +1572,6 @@ GLOBAL_LIST_INIT(fancy_sprite_accessory_color_channel_names, list("Primary", "Se
 	icon = 'icons/mob/human_face_alt.dmi'
 	icon_add = 'icons/mob/human_face_alt_add.dmi'
 	icon_state = "shadekin_long"
-	species_allowed = list(SPECIES_EVENT1, SPECIES_EVENT2, SPECIES_EVENT3)
 	gender = NEUTER
 
 //its bird time mfers - Nevrean Hairs
@@ -1662,22 +1623,12 @@ shaved
 	icon = 'icons/mob/human_face_or_alt.dmi'
 	icon_state = "facial_neckfluff"
 	gender = NEUTER
-	species_allowed = list(SPECIES_TAJARAN, SPECIES_EVENT1, SPECIES_EVENT2, SPECIES_EVENT3)
-	color_blend_mode = ICON_MULTIPLY
-
-/datum/sprite_accessory/facial_hair/vulp_none
-	name = "None"
-	icon = 'icons/mob/human_face_alt.dmi'
-	icon_state = "none"
-	species_allowed = list(SPECIES_EVENT1, SPECIES_EVENT2, SPECIES_EVENT3)
-	gender = NEUTER
 	color_blend_mode = ICON_MULTIPLY
 
 /datum/sprite_accessory/facial_hair/vulp_blaze
 	name = "Blaze"
 	icon = 'icons/mob/human_face_alt.dmi'
 	icon_state = "vulp_facial_blaze"
-	species_allowed = list(SPECIES_EVENT1, SPECIES_EVENT2, SPECIES_EVENT3)
 	gender = NEUTER
 	color_blend_mode = ICON_MULTIPLY
 
@@ -1685,7 +1636,6 @@ shaved
 	name = "Vulpine"
 	icon = 'icons/mob/human_face_alt.dmi'
 	icon_state = "vulp_facial_vulpine"
-	species_allowed = list(SPECIES_EVENT1, SPECIES_EVENT2, SPECIES_EVENT3)
 	gender = NEUTER
 	color_blend_mode = ICON_MULTIPLY
 
@@ -1693,7 +1643,6 @@ shaved
 	name = "Earfluff"
 	icon = 'icons/mob/human_face_alt.dmi'
 	icon_state = "vulp_facial_earfluff"
-	species_allowed = list(SPECIES_EVENT1, SPECIES_EVENT2, SPECIES_EVENT3)
 	gender = NEUTER
 	color_blend_mode = ICON_MULTIPLY
 
@@ -1701,7 +1650,6 @@ shaved
 	name = "Mask"
 	icon = 'icons/mob/human_face_alt.dmi'
 	icon_state = "vulp_facial_mask"
-	species_allowed = list(SPECIES_EVENT1, SPECIES_EVENT2, SPECIES_EVENT3)
 	gender = NEUTER
 	color_blend_mode = ICON_MULTIPLY
 
@@ -1709,7 +1657,6 @@ shaved
 	name = "Patch"
 	icon = 'icons/mob/human_face_alt.dmi'
 	icon_state = "vulp_facial_patch"
-	species_allowed = list(SPECIES_EVENT1, SPECIES_EVENT2, SPECIES_EVENT3)
 	gender = NEUTER
 	color_blend_mode = ICON_MULTIPLY
 
@@ -1717,7 +1664,6 @@ shaved
 	name = "Ruff"
 	icon = 'icons/mob/human_face_alt.dmi'
 	icon_state = "vulp_facial_ruff"
-	species_allowed = list(SPECIES_EVENT1, SPECIES_EVENT2, SPECIES_EVENT3)
 	gender = NEUTER
 	color_blend_mode = ICON_MULTIPLY
 
@@ -1725,7 +1671,6 @@ shaved
 	name = "Kita"
 	icon = 'icons/mob/human_face_alt.dmi'
 	icon_state = "vulp_facial_kita"
-	species_allowed = list(SPECIES_EVENT1, SPECIES_EVENT2, SPECIES_EVENT3)
 	gender = NEUTER
 	color_blend_mode = ICON_MULTIPLY
 
@@ -1733,7 +1678,6 @@ shaved
 	name = "Swift"
 	icon = 'icons/mob/human_face_alt.dmi'
 	icon_state = "vulp_facial_swift"
-	species_allowed = list(SPECIES_EVENT1, SPECIES_EVENT2, SPECIES_EVENT3)
 	gender = NEUTER
 	color_blend_mode = ICON_MULTIPLY
 
@@ -1754,7 +1698,6 @@ shaved
 	name = "Shaved"
 	icon_state = "bald"
 	gender = NEUTER
-	species_allowed = list(SPECIES_HUMAN,SPECIES_HUMAN_VATBORN,SPECIES_UNATHI,SPECIES_TAJARAN,SPECIES_SKRELL, "Machine", SPECIES_TESHARI, SPECIES_TESHARI,SPECIES_PROMETHEAN)
 
 /datum/sprite_accessory/facial_hair/watson
 	name = "Watson Mustache"
@@ -1795,7 +1738,6 @@ shaved
 /datum/sprite_accessory/facial_hair/elvis
 	name = "Elvis Sideburns"
 	icon_state = "facial_elvis"
-	species_allowed = list(SPECIES_HUMAN,SPECIES_PROMETHEAN,SPECIES_HUMAN_VATBORN,SPECIES_UNATHI)
 
 /datum/sprite_accessory/facial_hair/abe
 	name = "Abraham Lincoln Beard"
@@ -1893,7 +1835,6 @@ shaved
 /datum/sprite_accessory/hair/una
 	name = "Long Unathi Spines"
 	icon_state = "soghun_longspines"
-	species_allowed = list(SPECIES_UNATHI)
 
 /datum/sprite_accessory/hair/una/spines_short
 	name = "Short Unathi Spines"
@@ -1931,7 +1872,6 @@ shaved
 /datum/sprite_accessory/hair/skr
 	name = "Skrell Average Tentacles"
 	icon_state = "skrell_hair_average"
-	species_allowed = list(SPECIES_SKRELL, SPECIES_EVENT1, SPECIES_EVENT2, SPECIES_EVENT3)
 
 /datum/sprite_accessory/hair/skr/tentacle_veryshort
 	name = "Skrell Short Tentacles"
@@ -1950,7 +1890,6 @@ shaved
 /datum/sprite_accessory/hair/taj
 	name = "Tajaran Ears"
 	icon_state = "ears_plain"
-	species_allowed = list(SPECIES_TAJARAN)
 
 /datum/sprite_accessory/hair/taj/bangs
 	name = "Tajaran Bangs"
@@ -2112,7 +2051,6 @@ shaved
 	name = "Teshari Default"
 	icon_add = 'icons/mob/human_face_vr_add.dmi'
 	icon_state = "teshari_default"
-	species_allowed = list(SPECIES_TESHARI)
 
 /datum/sprite_accessory/hair/teshari/altdefault
 	name = "Teshari Alt. Default"
@@ -2213,7 +2151,6 @@ shaved
 /datum/sprite_accessory/facial_hair/taj
 	name = "Tajaran Sideburns"
 	icon_state = "facial_sideburns"
-	species_allowed = list(SPECIES_TAJARAN)
 
 /datum/sprite_accessory/facial_hair/taj/mutton
 	name = "Tajaran Mutton"
@@ -2240,7 +2177,6 @@ shaved
 /datum/sprite_accessory/facial_hair/una
 	name = "Unathi Chin Horn"
 	icon_state = "facial_chinhorns"
-	species_allowed = list(SPECIES_UNATHI)
 
 /datum/sprite_accessory/facial_hair/una/hornadorns
 	name = "Unathi Horn Adorns"
@@ -2259,7 +2195,6 @@ shaved
 /datum/sprite_accessory/facial_hair/teshari
 	name = "Teshari Beard"
 	icon_state = "teshari_chin"
-	species_allowed = list(SPECIES_TESHARI)
 	gender = NEUTER
 
 /datum/sprite_accessory/facial_hair/teshari/scraggly
@@ -2457,7 +2392,6 @@ shaved
 	icon_state = "tilaka"
 	body_parts = list(BP_HEAD)
 
-
 /datum/sprite_accessory/marking/bands
 	name = "Color Bands"
 	icon_state = "bands"
@@ -2467,19 +2401,16 @@ shaved
 	name = "Color Bands (Face)"
 	icon_state = "bandsface"
 	body_parts = list(BP_HEAD)
-	//species_allowed = list(SPECIES_TAJARAN,SPECIES_UNATHI)			//Removing Polaris whitelits
 
 /datum/sprite_accessory/marking/bandsface_human
 	name = "Color Bands (Face)"
 	icon_state = "bandshumanface"
 	body_parts = list(BP_HEAD)
-	//species_allowed = list(SPECIES_HUMAN,SPECIES_HUMAN_VATBORN,SPECIES_SKRELL)			//Removing Polaris whitelits
 
 /datum/sprite_accessory/marking/tiger_stripes
 	name = "Tiger Stripes"
 	icon_state = "tiger"
 	body_parts = list(BP_L_FOOT,BP_R_FOOT,BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_TORSO,BP_GROIN)
-	//species_allowed = list(SPECIES_TAJARAN) 			//Removing Polaris whitelits	//There's a tattoo for non-cats
 
 /datum/sprite_accessory/marking/tigerhead
 	name = "Tiger Stripes (Head, Minor)"
@@ -2490,7 +2421,6 @@ shaved
 	name = "Tiger Stripes (Head, Major)"
 	icon_state = "tigerface"
 	body_parts = list(BP_HEAD)
-	//species_allowed = list(SPECIES_TAJARAN)			//Removing Polaris whitelits //There's a tattoo for non-cats
 
 /datum/sprite_accessory/marking/backstripe
 	name = "Back Stripe"
@@ -2586,7 +2516,6 @@ shaved
 	name = "Full Face Paint"
 	icon_state = "fullface"
 	body_parts = list(BP_HEAD)
-	//species_allowed = list(SPECIES_HUMAN,SPECIES_HUMAN_VATBORN,SPECIES_SKRELL)			//Removing Polaris whitelits
 
 /datum/sprite_accessory/marking/lips
 	name = "Lips"
@@ -3008,133 +2937,110 @@ shaved
 	name = "Socks Coloration (Taj)"
 	icon_state = "taj_pawsocks"
 	body_parts = list(BP_L_FOOT,BP_R_FOOT,BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_L_HAND,BP_R_HAND)
-	//species_allowed = list(SPECIES_TAJARAN)			//Removing Polaris whitelits
 
 /datum/sprite_accessory/marking/una_paw_socks
 	name = "Socks Coloration (Una)"
 	icon_state = "una_pawsocks"
 	body_parts = list(BP_L_FOOT,BP_R_FOOT,BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_L_HAND,BP_R_HAND)
-	//species_allowed = list(SPECIES_UNATHI)			//Removing Polaris whitelits
 
 /datum/sprite_accessory/marking/paw_socks
 	name = "Socks Coloration (Generic)"
 	icon_state = "pawsocks"
 	body_parts = list(BP_L_FOOT,BP_R_FOOT,BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_L_HAND,BP_R_HAND)
-	//species_allowed = list(SPECIES_TAJARAN, SPECIES_UNATHI)			//Removing Polaris whitelits
 
 /datum/sprite_accessory/marking/paw_socks_belly
 	name = "Socks,Belly Coloration (Generic)"
 	icon_state = "pawsocksbelly"
 	body_parts = list(BP_L_FOOT,BP_R_FOOT,BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_L_HAND,BP_R_HAND,BP_GROIN,BP_TORSO)
-	//species_allowed = list(SPECIES_TAJARAN, SPECIES_UNATHI)			//Removing Polaris whitelits
 
 /datum/sprite_accessory/marking/belly_hands_feet
 	name = "Hands,Feet,Belly Color (Minor)"
 	icon_state = "bellyhandsfeetsmall"
 	body_parts = list(BP_L_FOOT,BP_R_FOOT,BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_L_HAND,BP_R_HAND,BP_GROIN,BP_TORSO)
-	//species_allowed = list(SPECIES_TAJARAN, SPECIES_UNATHI)			//Removing Polaris whitelits
 
 /datum/sprite_accessory/marking/hands_feet_belly_full
 	name = "Hands,Feet,Belly Color (Major)"
 	icon_state = "bellyhandsfeet"
 	body_parts = list(BP_L_FOOT,BP_R_FOOT,BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_L_HAND,BP_R_HAND,BP_GROIN,BP_TORSO)
-	//SPECIES_TAJARAN, SPECIES_UNATHI)				//Removing Polaris whitelits
 
 /datum/sprite_accessory/marking/hands_feet_belly_full_female
 	name = "Hands,Feet,Belly Color (Major, Female)"
 	icon_state = "bellyhandsfeet_female"
 	body_parts = list(BP_L_FOOT,BP_R_FOOT,BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_L_HAND,BP_R_HAND,BP_GROIN,BP_TORSO)
-	//species_allowed = list(SPECIES_TAJARAN)			//Removing Polaris whitelits
 
 /datum/sprite_accessory/marking/patches
 	name = "Color Patches"
 	icon_state = "patches"
 	body_parts = list(BP_L_FOOT,BP_R_FOOT,BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_L_HAND,BP_R_HAND,BP_TORSO,BP_GROIN)
-	//species_allowed = list(SPECIES_TAJARAN)			//Removing Polaris whitelits
 
 /datum/sprite_accessory/marking/patchesface
 	name = "Color Patches (Face)"
 	icon_state = "patchesface"
 	body_parts = list(BP_HEAD)
-	//species_allowed = list(SPECIES_TAJARAN)				//Removing Polaris whitelits
 
-
-	//Taj specific stuff
+//Taj specific stuff
 /datum/sprite_accessory/marking/taj_belly
 	name = "Belly Fur (Taj)"
 	icon_state = "taj_belly"
 	body_parts = list(BP_TORSO)
-	//species_allowed = list(SPECIES_TAJARAN)			//Removing Polaris whitelits
 
 /datum/sprite_accessory/marking/taj_bellyfull
 	name = "Belly Fur Wide (Taj)"
 	icon_state = "taj_bellyfull"
 	body_parts = list(BP_TORSO)
-	//species_allowed = list(SPECIES_TAJARAN)			//Removing Polaris whitelits
 
 /datum/sprite_accessory/marking/taj_earsout
 	name = "Outer Ear (Taj)"
 	icon_state = "taj_earsout"
 	body_parts = list(BP_HEAD)
-	//species_allowed = list(SPECIES_TAJARAN)			//Removing Polaris whitelits
 
 /datum/sprite_accessory/marking/taj_earsin
 	name = "Inner Ear (Taj)"
 	icon_state = "taj_earsin"
 	body_parts = list(BP_HEAD)
-	//species_allowed = list(SPECIES_TAJARAN)			//Removing Polaris whitelits
 
 /datum/sprite_accessory/marking/taj_nose
 	name = "Nose Color (Taj)"
 	icon_state = "taj_nose"
 	body_parts = list(BP_HEAD)
-	//species_allowed = list(SPECIES_TAJARAN)			//Removing Polaris whitelits
 
 /datum/sprite_accessory/marking/taj_crest
 	name = "Chest Fur Crest (Taj)"
 	icon_state = "taj_crest"
 	body_parts = list(BP_TORSO)
-	//species_allowed = list(SPECIES_TAJARAN)			//Removing Polaris whitelits
 
 /datum/sprite_accessory/marking/taj_muzzle
 	name = "Muzzle Color (Taj)"
 	icon_state = "taj_muzzle"
 	body_parts = list(BP_HEAD)
-	//species_allowed = list(SPECIES_TAJARAN)			//Removing Polaris whitelits
 
 /datum/sprite_accessory/marking/taj_face
 	name = "Cheeks Color (Taj)"
 	icon_state = "taj_face"
 	body_parts = list(BP_HEAD)
-	//species_allowed = list(SPECIES_TAJARAN)			//Removing Polaris whitelits
 
 /datum/sprite_accessory/marking/taj_all
 	name = "All Taj Head (Taj)"
 	icon_state = "taj_all"
 	body_parts = list(BP_HEAD)
-	//species_allowed = list(SPECIES_TAJARAN)			//Removing Polaris whitelits
 
-	//Una specific stuff
+//Una specific stuff
 /datum/sprite_accessory/marking/una_face
 	name = "Face Color (Una)"
 	icon_state = "una_face"
 	body_parts = list(BP_HEAD)
-	//species_allowed = list(SPECIES_UNATHI)			//Removing Polaris whitelits
 
 /datum/sprite_accessory/marking/una_facelow
 	name = "Face Color Low (Una)"
 	icon_state = "una_facelow"
 	body_parts = list(BP_HEAD)
-	//species_allowed = list(SPECIES_UNATHI)			//Removing Polaris whitelits
 
 /datum/sprite_accessory/marking/una_scutes
 	name = "Scutes (Una)"
 	icon_state = "una_scutes"
 	body_parts = list(BP_TORSO)
-	//species_allowed = list(SPECIES_UNATHI)			//Removing Polaris whitelits
 
-	//Tesh stuff.
-
+//Tesh stuff.
 /datum/sprite_accessory/marking/teshi_fluff
 	name = "Underfluff (Teshari)"
 	icon_state = "teshi_fluff"
@@ -3153,50 +3059,42 @@ shaved
 	name = "Leaves (Diona)"
 	icon_state = "diona_leaves"
 	body_parts = list(BP_L_FOOT, BP_R_FOOT, BP_L_LEG, BP_R_LEG, BP_L_ARM, BP_R_ARM, BP_L_HAND, BP_R_HAND, BP_TORSO, BP_GROIN, BP_HEAD)
-	//species_allowed = list(SPECIES_DIONA)			//Removing Polaris whitelits
 
 /datum/sprite_accessory/marking/diona_thorns
 	name = "Thorns (Diona)"
 	icon_state = "diona_thorns"
 	body_parts =list(BP_TORSO, BP_HEAD)
-	//species_allowed = list(SPECIES_DIONA)			//Removing Polaris whitelits
 	do_colouration = 0
 
 /datum/sprite_accessory/marking/diona_flowers
 	name = "Flowers (Diona)"
 	icon_state = "diona_flowers"
 	body_parts =list(BP_TORSO, BP_HEAD)
-	//species_allowed = list(SPECIES_DIONA)			//Removing Polaris whitelits
 	do_colouration = 0
 
 /datum/sprite_accessory/marking/diona_moss
 	name = "Moss (Diona)"
 	icon_state = "diona_moss"
 	body_parts =list(BP_TORSO)
-	//species_allowed = list(SPECIES_DIONA)			//Removing Polaris whitelits
 	do_colouration = 0
 
 /datum/sprite_accessory/marking/diona_mushroom
 	name = "Mushroom (Diona)"
 	icon_state = "diona_mushroom"
 	body_parts =list(BP_HEAD)
-	//species_allowed = list(SPECIES_DIONA)			//Removing Polaris whitelits
 	do_colouration = 0
 
 /datum/sprite_accessory/marking/diona_antennae
 	name = "Antennae (Diona)"
 	icon_state = "diona_antennae"
 	body_parts =list(BP_HEAD)
-	//species_allowed = list(SPECIES_DIONA)			//Removing Polaris whitelits
 	do_colouration = 0
 
 //Skrell stuff.
-
 /datum/sprite_accessory/marking/skrell
 	name = "Countershading (Skrell)"
 	icon_state = "skr_shade"
 	body_parts = list(BP_TORSO, BP_GROIN, BP_HEAD)
-	//species_allowed = list(SPECIES_SKRELL)			//Removing Polaris whitelits
 
 /datum/sprite_accessory/marking/skrell/stripes
 	name = "Poison Dart Stripes (Skrell)"
@@ -3204,13 +3102,11 @@ shaved
 	body_parts = list(BP_L_LEG, BP_R_LEG, BP_L_ARM, BP_R_ARM, BP_TORSO)
 
 //Cybernetic Augments, some species-limited due to sprite misalignment. /aug/ types are excluded from dna.
-
 /datum/sprite_accessory/marking/aug
 	name = "Augment (Backports, Back)"
 	icon_state = "aug_backports"
 	genetic = FALSE
 	body_parts = list(BP_TORSO)
-	species_allowed = list()			//Removing Polaris whitelits
 
 /datum/sprite_accessory/marking/aug/diode
 	name = "Augment (Backports Diode, Back)"
@@ -3248,7 +3144,6 @@ shaved
 	name = "Augment (Lower Jaw, Head)"
 	icon_state = "aug_lowerjaw"
 	body_parts = list(BP_HEAD)
-	species_allowed = list()			//Removing Polaris whitelits
 
 /datum/sprite_accessory/marking/aug/scalpports
 	name = "Augment (Scalp Ports)"
@@ -3679,41 +3574,6 @@ shaved
 	name = "Bandage, Right Foot 3 (Teshari)"
 	icon_state = "bandage3_tesh"
 	species_allowed = list(SPECIES_TESHARI)
-
-//skin styles - WIP
-//going to have to re-integrate this with surgery
-//let the icon_state hold an icon preview for now
-
-/datum/sprite_accessory/skin
-	icon = 'icons/mob/human_races/r_human.dmi'
-
-/datum/sprite_accessory/skin/human
-	name = "Default human skin"
-	icon_state = "default"
-	//species_allowed = list(SPECIES_HUMAN,SPECIES_HUMAN_VATBORN)			//Removing Polaris whitelits
-
-/datum/sprite_accessory/skin/human_tatt01
-	name = "Tatt01 human skin"
-	icon_state = "tatt1"
-	//species_allowed = list(SPECIES_HUMAN,SPECIES_HUMAN_VATBORN)			//Removing Polaris whitelits
-
-/datum/sprite_accessory/skin/tajaran
-	name = "Default tajaran skin"
-	icon_state = "default"
-	icon = 'icons/mob/human_races/r_tajaran.dmi'
-	//species_allowed = list(SPECIES_TAJARAN)			//Removing Polaris whitelits
-
-/datum/sprite_accessory/skin/unathi
-	name = "Default Unathi skin"
-	icon_state = "default"
-	icon = 'icons/mob/human_races/r_lizard.dmi'
-	//species_allowed = list(SPECIES_UNATHI)			//Removing Polaris whitelits
-
-/datum/sprite_accessory/skin/skrell
-	name = "Default skrell skin"
-	icon_state = "default"
-	icon = 'icons/mob/human_races/r_skrell.dmi'
-	//species_allowed = list(SPECIES_SKRELL)			//Removing Polaris whitelits
 
 //Vox Exclusives
 /datum/sprite_accessory/marking/vox
