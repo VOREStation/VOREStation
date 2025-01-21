@@ -9,6 +9,7 @@ import './styles/main.scss';
 import './styles/themes/abductor.scss';
 import './styles/themes/cardtable.scss';
 import './styles/themes/hackerman.scss';
+import './styles/themes/crtsoul.scss';
 import './styles/themes/malfunction.scss';
 import './styles/themes/neutral.scss';
 import './styles/themes/ntos.scss';

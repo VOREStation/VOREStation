@@ -1,0 +1,137 @@
+/**
+ * Copyright (c) 2020 Aleksej Komarov
+ * SPDX-License-Identifier: MIT
+ */
+
+@use 'sass:color';
+@use 'sass:meta';
+
+@use '../colors.scss' with ($primary: #00ff00,
+  $fg-map-keys: (),
+  $bg-map-keys: ());
+@use '../base.scss' with ($color-bg: #121b12,
+  $color-bg-grad-spread: 0%);
+
+.theme-crtsoul {
+  // Atomic classes
+  @include meta.load-css('../atomic/color.scss');
+
+  // Components
+  @include meta.load-css('../components/Button.scss',
+    $with: ('color-default': colors.$primary,
+      'color-disabled': #4a6a4a,
+      'color-selected': #00ff00));
+  @include meta.load-css('../components/Input.scss',
+    $with: ('border-color': colors.$primary));
+  @include meta.load-css('../components/Modal.scss');
+  @include meta.load-css('../components/Section.scss');
+
+  @include meta.load-css('../components/LabeledList.scss'); // Layouts
+  @include meta.load-css('../layouts/Layout.scss');
+  @include meta.load-css('../layouts/Window.scss');
+  @include meta.load-css('../layouts/Image.scss');
+  @include meta.load-css('../layouts/TitleBar.scss',
+    $with: ('background-color': #223d22));
+
+  @import url(//fonts.googleapis.com/css?family=VT323);
+  font-family: 'VT323';
+  font-size: 15px;
+  text-shadow: 0 0 5px #00ff00;
+  color: #00ff00;
+
+  .Layout__content {
+    background-image: none;
+    color: #00ff00;
+  }
+
+  .Button {
+    font-family: monospace;
+    border-width: base.em(2px);
+    border-style: outset;
+    border-color: #00aa00;
+    outline: base.em(1px) solid rgb(0, 122, 0);
+  }
+
+  @keyframes flicker {
+    0% {
+      opacity: 0.37861;
+    }
+
+    5% {
+      opacity: 0.44769;
+    }
+
+    10% {
+      opacity: 0.33604;
+    }
+
+    15% {
+      opacity: 0.20626;
+    }
+
+    20% {
+      opacity: 0.28128;
+    }
+
+    25% {
+      opacity: 0.20626;
+    }
+
+    30% {
+      opacity: 0.28128;
+    }
+
+    35% {
+      opacity: 0.33604;
+    }
+  }
+
+  .candystripe:nth-child(odd) {
+    background-color: rgba(0, 100, 0, 0.5);
+  }
+
+  .Layout__content::after {
+    content: " ";
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: rgba(18, 16, 16, 0.1);
+    opacity: 0;
+    z-index: 2;
+    pointer-events: none;
+    animation: flicker 0.15s infinite;
+  }
+
+  .Layout__content::before {
+    content: " ";
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+    z-index: 2;
+    background-size: 100% 3px, 5px 100%;
+    pointer-events: none;
+  }
+
+  .Section__titleText {
+    color: #00ff00;
+
+  }
+
+  /*media all*/
+  .color-label {
+    color: #00ff00 !important;
+  }
+
+  img {
+    filter: sepia(1) hue-rotate(80deg) saturate(5) drop-shadow(-1px 1px 3px lime);
+  }
+
+
+}
