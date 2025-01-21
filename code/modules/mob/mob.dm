@@ -286,7 +286,7 @@
 	for(var/t in typesof(/area))
 		master += text("[]\n", t)
 		//Foreach goto(26)
-	src << browse(master)
+	src << browse("<html>[master]</html>")
 	return
 */
 

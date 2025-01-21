@@ -301,7 +301,7 @@
 			dat += "<BR><A href='byond://?src=\ref[src];switchscreen=0'>(Return to main menu)</A><BR>"
 
 	//dat += "<A href='byond://?src=\ref[user];mach_close=library'>Close</A><br><br>"
-	user << browse(dat, "window=library")
+	user << browse("<html>[dat]</html>", "window=library")
 	onclose(user, "library")
 
 //VOREStation Addition Start
@@ -337,7 +337,7 @@
 			dat += "</table>"
 		dat += "<BR><A href='byond://?src=\ref[src];switchscreen=0'>(Return to main menu)</A><BR>"
 
-		user << browse(dat, "window=library")
+		user << browse("<html>[dat]</html>", "window=library")
 		onclose(user, "library")
 //VOREStation Addition End
 
@@ -544,7 +544,7 @@
 		dat += "       <A href='byond://?src=\ref[src];clear=1'>\[Clear Memory\]</A><BR><BR><A href='byond://?src=\ref[src];eject=1'>\[Remove Book\]</A>"
 	else
 		dat += "<BR>"
-	user << browse(dat, "window=scanner")
+	user << browse("<html>[dat]</html>", "window=scanner")
 	onclose(user, "scanner")
 
 /obj/machinery/libraryscanner/Topic(href, href_list)

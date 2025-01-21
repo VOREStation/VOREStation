@@ -213,7 +213,7 @@ var/list/preferences_datums = list()
 	dat += "<br><HR></center>"
 	dat += player_setup.content(user)
 
-	dat += "</html></body>"
+	dat += "</body></html>"
 	//user << browse(dat, "window=preferences;size=635x736")
 	winshow(user, "preferences_window", TRUE)
 	var/datum/browser/popup = new(user, "preferences_browser", "Character Setup", 800, 800)
