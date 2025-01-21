@@ -35,7 +35,7 @@
 /datum/gear_tweak/color/get_metadata(var/user, var/metadata, var/title = "Character Preference")
 	if(valid_colors)
 		return tgui_input_list(user, "Choose a color.", title, valid_colors, metadata)
-	return input(user, "Choose a color.", title, metadata) as color|null
+	return tgui_color_picker(user, "Choose a color.", title, metadata)
 
 /datum/gear_tweak/color/tweak_item(var/obj/item/I, var/metadata)
 	if(valid_colors && !(metadata in valid_colors))

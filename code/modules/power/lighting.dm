@@ -1114,7 +1114,7 @@ var/global/list/light_type_cache = list()
 					brightness_power = new_power
 
 			if("Normal Color")
-				var/new_color = input(usr, "Choose a color to set the light to!", "", brightness_color) as color|null
+				var/new_color = tgui_color_picker(usr, "Choose a color to set the light to!", "", brightness_color)
 				if(new_color)
 					brightness_color = new_color
 
@@ -1129,7 +1129,7 @@ var/global/list/light_type_cache = list()
 					nightshift_power = new_power
 
 			if("Nightshift Color")
-				var/new_color = input(usr, "Choose a color to set the light to!", "", nightshift_color) as color|null
+				var/new_color = tgui_color_picker(usr, "Choose a color to set the light to!", "", nightshift_color)
 				if(new_color)
 					nightshift_color = new_color
 

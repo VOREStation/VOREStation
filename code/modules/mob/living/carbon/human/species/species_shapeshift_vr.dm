@@ -83,7 +83,7 @@
 		for(var/channel in 1 to ear_secondary_style.get_color_channel_count())
 			var/channel_name = GLOB.fancy_sprite_accessory_color_channel_names[channel]
 			var/default = LAZYACCESS(ear_secondary_colors, channel) || "#ffffff"
-			var/new_color = input(usr, "Pick [channel_name]", "Ear Color ([channel_name])", default) as color | null
+			var/new_color = tgui_color_picker(usr, "Pick [channel_name]", "Ear Color ([channel_name])", default)
 			new_colors += new_color || default
 
 	update_hair()
