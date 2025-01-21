@@ -101,5 +101,6 @@
 <br>
 **Folder:** `icons/mob/robot/catborgs`<br>
 **Title:** Catborgs<br>
-**Creator:** Toriate<br>
+**Creator / Copyright:** Toriate<br>
+**License Holders:** Matica, Cameron The Raven, Spotteh<br>
 **License:** [CC BY-NC-SA 3.0](https://creativecommons.org/licenses/by-nc-sa/3.0/)<br>
