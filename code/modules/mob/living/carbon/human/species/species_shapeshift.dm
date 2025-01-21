@@ -12,7 +12,6 @@ var/list/wrapped_species_by_ref = list()
 		)
 
 	var/list/valid_transform_species = list()
-	var/monochromatic
 	//var/default_form = SPECIES_HUMAN //VOREStation edit
 
 /datum/species/shapeshifter/get_valid_shapeshifter_forms(var/mob/living/carbon/human/H)
@@ -64,13 +63,6 @@ var/list/wrapped_species_by_ref = list()
 /datum/species/shapeshifter/handle_post_spawn(var/mob/living/carbon/human/H)
 	..()
 	wrapped_species_by_ref["\ref[H]"] = base_species //VOREStation edit
-	if(monochromatic)
-		H.r_hair =   H.r_skin
-		H.g_hair =   H.g_skin
-		H.b_hair =   H.b_skin
-		H.r_facial = H.r_skin
-		H.g_facial = H.g_skin
-		H.b_facial = H.b_skin
 
 	for(var/obj/item/organ/external/E in H.organs)
 		E.sync_colour_to_human(H)
@@ -193,14 +185,6 @@ var/list/wrapped_species_by_ref = list()
 	g_synth = g_skin
 	b_synth = b_skin
 
-	var/datum/species/shapeshifter/S = species
-	if(S.monochromatic)
-		r_hair =   r_skin
-		g_hair =   g_skin
-		b_hair =   b_skin
-		r_facial = r_skin
-		g_facial = g_skin
-		b_facial = b_skin
 
 	for(var/obj/item/organ/external/E in organs)
 		E.sync_colour_to_human(src)
