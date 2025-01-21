@@ -104,3 +104,8 @@
 **Creator / Copyright:** Toriate<br>
 **License Holders:** Matica, Cameron The Raven, Spotteh<br>
 **License:** [CC BY-NC-SA 3.0](https://creativecommons.org/licenses/by-nc-sa/3.0/)<br>
+**File:** `icons/mob/robot/catborgs/custom/kittyborg_spotteh_custom.dmi`<br>
+**Title:** Catborgs<br>
+**Creator / Copyright:** Toriate<br>
+**License Holder:** Spotteh<br>
+**License:** [CC BY-NC-ND 3.0](https://creativecommons.org/licenses/by-nc-nd/3.0/)<br>
