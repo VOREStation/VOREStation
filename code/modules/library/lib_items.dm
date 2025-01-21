@@ -208,6 +208,8 @@ Book Cart End
 		to_chat(user, "This book is completely blank!")
 
 /obj/item/book/proc/display_content(mob/living/user)
+	if(!findtext(dat, regex("^<html")))
+		dat = "<html>[dat]</html>"
 	user << browse(replacetext(dat, "<html>", "<html><TT><I>Penned by [author].</I></TT> <BR>"), "window=book")
 
 /obj/item/book/attackby(obj/item/W as obj, mob/user as mob)
