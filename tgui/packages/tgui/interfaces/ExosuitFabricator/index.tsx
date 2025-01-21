@@ -1,6 +1,7 @@
-import { useBackend, useSharedState } from '../../backend';
-import { Box, Button, Flex, Section } from '../../components';
-import { Window } from '../../layouts';
+import { useBackend, useSharedState } from 'tgui/backend';
+import { Window } from 'tgui/layouts';
+import { Box, Button, Flex, Section } from 'tgui-core/components';
+
 import { materialArrayToObj, queueCondFormat } from './functions';
 import { Materials } from './Material';
 import { PartLists, PartSets } from './Parts';

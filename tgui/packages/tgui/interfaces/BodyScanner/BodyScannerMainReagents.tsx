@@ -1,4 +1,5 @@
-import { Box, Section, Table } from '../../components';
+import { Box, Section, Table } from 'tgui-core/components';
+
 import { occupant } from './types';
 
 export const BodyScannerMainReagents = (props: { occupant: occupant }) => {

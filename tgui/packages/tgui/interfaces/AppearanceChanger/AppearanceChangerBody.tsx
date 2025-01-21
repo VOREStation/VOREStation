@@ -1,7 +1,7 @@
 import { sortBy } from 'common/collections';
+import { useBackend } from 'tgui/backend';
+import { Button, LabeledList, Section, Stack } from 'tgui-core/components';
 
-import { useBackend } from '../../backend';
-import { Button, LabeledList, Section, Stack } from '../../components';
 import { Data, species, styles } from './types';
 
 export const AppearanceChangerSpecies = (props) => {

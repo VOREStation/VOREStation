@@ -1,4 +1,4 @@
-import { Flex, Section } from '../../components';
+import { Flex, Section } from 'tgui-core/components';
 
 /**
  * Just a generic wrapper for fullscreen notices.

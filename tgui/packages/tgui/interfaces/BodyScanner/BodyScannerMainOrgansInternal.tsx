@@ -1,6 +1,6 @@
 import { toFixed } from 'common/math';
+import { Box, ProgressBar, Section, Table } from 'tgui-core/components';
 
-import { Box, ProgressBar, Section, Table } from '../../components';
 import { damageRange } from './constants';
 import { germStatus, reduceOrganStatus } from './functions';
 import { internalOrgan } from './types';

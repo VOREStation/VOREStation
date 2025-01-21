@@ -1,6 +1,7 @@
-import { useBackend } from '../../backend';
-import { Box, Button, Flex, ProgressBar, Section } from '../../components';
-import { formatMoney } from '../../format';
+import { useBackend } from 'tgui/backend';
+import { formatMoney } from 'tgui/format';
+import { Box, Button, Flex, ProgressBar, Section } from 'tgui-core/components';
+
 import { COLOR_KEYS } from './constants';
 import { MaterialAmount } from './Material';
 import { Data } from './types';

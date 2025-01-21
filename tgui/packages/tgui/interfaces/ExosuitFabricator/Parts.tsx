@@ -1,6 +1,5 @@
 import { Fragment } from 'react';
-
-import { useBackend, useSharedState } from '../../backend';
+import { useBackend, useSharedState } from 'tgui/backend';
 import {
   Box,
   Button,
@@ -9,7 +8,8 @@ import {
   Input,
   Section,
   Tabs,
-} from '../../components';
+} from 'tgui-core/components';
+
 import { COLOR_BAD, COLOR_KEYS } from './constants';
 import {
   getFirstValidPartSet,

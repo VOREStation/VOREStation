@@ -1,5 +1,6 @@
-import { useBackend } from '../../backend';
-import { Flex, Icon, LabeledList, Section } from '../../components';
+import { useBackend } from 'tgui/backend';
+import { Flex, Icon, LabeledList, Section } from 'tgui-core/components';
+
 import { DockStatus } from './EmbeddedControllerHelpers';
 import { DockingConsoleMultiData } from './types';
 

@@ -1,4 +1,4 @@
-import { Flex, Icon, Section } from '../../components';
+import { Flex, Icon, Section } from 'tgui-core/components';
 
 export const BodyScannerEmpty = () => {
   return (

@@ -1,8 +1,8 @@
 import { toFixed } from 'common/math';
 import { classes } from 'common/react';
 import { toTitleCase } from 'common/string';
-
-import { useBackend, useSharedState } from '../../backend';
+import { useBackend, useSharedState } from 'tgui/backend';
+import { formatMoney, formatSiUnit } from 'tgui/format';
 import {
   Box,
   Button,
@@ -10,8 +10,8 @@ import {
   Icon,
   NumberInput,
   Tooltip,
-} from '../../components';
-import { formatMoney, formatSiUnit } from '../../format';
+} from 'tgui-core/components';
+
 import { MATERIAL_KEYS } from './constants';
 import { Data, material } from './types';
 

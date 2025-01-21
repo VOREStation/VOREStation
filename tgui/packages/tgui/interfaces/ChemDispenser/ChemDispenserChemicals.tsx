@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
+import { useBackend } from 'tgui/backend';
+import { Button, Flex, Icon, Section, Tooltip } from 'tgui-core/components';
 
-import { useBackend } from '../../backend';
-import { Button, Flex, Icon, Section, Tooltip } from '../../components';
 import { Data } from './types';
 
 export const ChemDispenserChemicals = (props) => {

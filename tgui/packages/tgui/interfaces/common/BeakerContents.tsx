@@ -1,4 +1,4 @@
-import { Box, Flex } from '../../components';
+import { Box, Flex } from 'tgui-core/components';
 
 const formatUnits = (a) => a + ' unit' + (a === 1 ? '' : 's');
 

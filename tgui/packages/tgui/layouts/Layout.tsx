@@ -6,13 +6,12 @@
 
 import { classes } from 'common/react';
 import { useEffect, useRef } from 'react';
-
 import {
   BoxProps,
   computeBoxClassName,
   computeBoxProps,
-} from '../components/Box';
-import { addScrollableNode, removeScrollableNode } from '../events';
+} from 'tgui/components/Box';
+import { addScrollableNode, removeScrollableNode } from 'tgui/events';
 
 type Props = Partial<{
   theme: string;

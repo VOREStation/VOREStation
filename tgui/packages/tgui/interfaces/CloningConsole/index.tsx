@@ -1,10 +1,11 @@
-import { useBackend } from '../../backend';
-import { Box, Section } from '../../components';
+import { useBackend } from 'tgui/backend';
 import {
   ComplexModal,
   modalRegisterBodyOverride,
-} from '../../interfaces/common/ComplexModal';
-import { Window } from '../../layouts';
+} from 'tgui/interfaces/common/ComplexModal';
+import { Window } from 'tgui/layouts';
+import { Box, Section } from 'tgui-core/components';
+
 import { viewRecordModalBodyOverride } from './CloningConsoleBodyOverride';
 import { CloningConsoleNavigation } from './CloningConsoleNavigation';
 import {

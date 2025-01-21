@@ -1,6 +1,5 @@
 import { toFixed } from 'common/math';
-
-import { useBackend } from '../../backend';
+import { useBackend } from 'tgui/backend';
 import {
   Box,
   Icon,
@@ -8,7 +7,8 @@ import {
   LabeledList,
   NumberInput,
   Table,
-} from '../../components';
+} from 'tgui-core/components';
+
 import { Data } from './types';
 
 export const ColorMateMatrix = (props) => {

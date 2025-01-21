@@ -1,6 +1,6 @@
 import { KeyboardEvent } from 'react';
-
-import { useBackend } from '../../backend';
+import { useBackend } from 'tgui/backend';
+import { Modal } from 'tgui/components';
 import {
   Box,
   Button,
@@ -8,8 +8,7 @@ import {
   Flex,
   Image,
   Input,
-  Modal,
-} from '../../components';
+} from 'tgui-core/components';
 
 type Data = { modal: { id: string; args: {}; text: string; type: string } };
 let bodyOverrides = {};

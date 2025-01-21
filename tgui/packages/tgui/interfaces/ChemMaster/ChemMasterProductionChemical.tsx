@@ -1,5 +1,6 @@
-import { classes } from '../../.././common/react';
-import { Box, Button, LabeledList } from '../../components';
+import { classes } from 'tgui/.././common/react';
+import { Box, Button, LabeledList } from 'tgui-core/components';
+
 import { modalOpen } from '../common/ComplexModal';
 
 export const ChemMasterProductionChemical = (props: {

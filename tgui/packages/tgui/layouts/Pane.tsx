@@ -5,11 +5,11 @@
  */
 
 import { classes } from 'common/react';
+import { useBackend } from 'tgui/backend';
+import { BoxProps } from 'tgui/components/Box';
+import { useDebug } from 'tgui/debug';
+import { Box } from 'tgui-core/components';
 
-import { useBackend } from '../backend';
-import { Box } from '../components';
-import { BoxProps } from '../components/Box';
-import { useDebug } from '../debug';
 import { Layout } from './Layout';
 
 type Props = Partial<{

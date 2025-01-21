@@ -1,13 +1,21 @@
 import { BooleanLike } from 'common/react';
-import { ByondUi, Stack } from 'tgui-core/components';
+import { useBackend } from 'tgui/backend';
+import { Window } from 'tgui/layouts';
+import {
+  Box,
+  Button,
+  ByondUi,
+  Flex,
+  LabeledList,
+  Section,
+  Stack,
+  Table,
+} from 'tgui-core/components';
 
-import { useBackend } from '../backend';
-import { Box, Button, Flex, LabeledList, Section, Table } from '../components';
-import { Window } from '../layouts';
 import { OvermapFlightData, OvermapPanControls } from './common/Overmap';
 
 type Data = {
-  mapRef: string | null;
+  mapRef: string | undefined;
   sector: string;
   sector_info: string;
   landed: string;

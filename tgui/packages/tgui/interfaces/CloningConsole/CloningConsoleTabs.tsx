@@ -1,7 +1,6 @@
 import { toFixed } from 'common/math';
-
-import { resolveAsset } from '../../assets';
-import { useBackend } from '../../backend';
+import { resolveAsset } from 'tgui/assets';
+import { useBackend } from 'tgui/backend';
 import {
   Box,
   Button,
@@ -11,7 +10,8 @@ import {
   LabeledList,
   ProgressBar,
   Section,
-} from '../../components';
+} from 'tgui-core/components';
+
 import { Data } from './types';
 
 export const CloningConsoleMain = (props) => {

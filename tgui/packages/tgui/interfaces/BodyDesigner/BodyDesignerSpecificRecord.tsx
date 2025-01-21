@@ -3,12 +3,12 @@ import { useBackend } from 'tgui/backend';
 import {
   Box,
   Button,
+  ByondUi,
   ColorBox,
   Flex,
   LabeledList,
   Section,
-} from 'tgui/components';
-import { ByondUi } from 'tgui-core/components';
+} from 'tgui-core/components';
 
 import { activeBodyRecord } from './types';
 

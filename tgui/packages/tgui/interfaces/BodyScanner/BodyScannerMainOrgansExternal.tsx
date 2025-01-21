@@ -1,5 +1,4 @@
 import { toFixed } from 'common/math';
-
 import {
   Box,
   Icon,
@@ -7,7 +6,8 @@ import {
   Section,
   Table,
   Tooltip,
-} from '../../components';
+} from 'tgui-core/components';
+
 import { damageRange } from './constants';
 import { germStatus, reduceOrganStatus } from './functions';
 import { externalOrgan } from './types';

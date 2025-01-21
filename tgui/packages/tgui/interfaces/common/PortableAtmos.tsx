@@ -1,6 +1,5 @@
 import { BooleanLike } from 'common/react';
-
-import { useBackend } from '../../backend';
+import { useBackend } from 'tgui/backend';
 import {
   AnimatedNumber,
   Box,
@@ -8,7 +7,7 @@ import {
   LabeledList,
   ProgressBar,
   Section,
-} from '../../components';
+} from 'tgui-core/components';
 
 type Data = {
   connected: BooleanLike;

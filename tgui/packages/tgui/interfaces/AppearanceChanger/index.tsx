@@ -1,9 +1,15 @@
 import { capitalize, decodeHtmlEntities } from 'common/string';
 import { useState } from 'react';
 import { useBackend } from 'tgui/backend';
-import { Box, Flex, LabeledList, Section, Tabs } from 'tgui/components';
 import { Window } from 'tgui/layouts';
-import { ByondUi } from 'tgui-core/components';
+import {
+  Box,
+  ByondUi,
+  Flex,
+  LabeledList,
+  Section,
+  Tabs,
+} from 'tgui-core/components';
 
 import {
   AppearanceChangerEars,

@@ -1,5 +1,6 @@
-import { useBackend } from '../../backend';
-import { Section } from '../../components';
+import { useBackend } from 'tgui/backend';
+import { Section } from 'tgui-core/components';
+
 import {
   EscapePodControls,
   EscapePodStatus,

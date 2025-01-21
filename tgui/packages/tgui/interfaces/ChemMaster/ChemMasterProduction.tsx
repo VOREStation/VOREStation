@@ -1,7 +1,7 @@
 import { BooleanLike } from 'common/react';
+import { useBackend } from 'tgui/backend';
+import { Button, Flex, Icon, Section } from 'tgui-core/components';
 
-import { useBackend } from '../../backend';
-import { Button, Flex, Icon, Section } from '../../components';
 import { ChemMasterProductionChemical } from './ChemMasterProductionChemical';
 import { ChemMasterProductionCondiment } from './ChemMasterProductionCondiment';
 

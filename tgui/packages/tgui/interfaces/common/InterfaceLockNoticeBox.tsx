@@ -1,7 +1,6 @@
 import { BooleanLike } from 'common/react';
-
-import { useBackend } from '../../backend';
-import { Button, Flex, NoticeBox } from '../../components';
+import { useBackend } from 'tgui/backend';
+import { Button, Flex, NoticeBox } from 'tgui-core/components';
 
 type Data = {
   siliconUser: BooleanLike;

@@ -1,6 +1,5 @@
 import { decodeHtmlEntities } from 'common/string';
-
-import { useBackend } from '../../backend';
+import { useBackend } from 'tgui/backend';
 import {
   Box,
   Button,
@@ -10,7 +9,8 @@ import {
   LabeledList,
   Section,
   Table,
-} from '../../components';
+} from 'tgui-core/components';
+
 import { MESSTAB } from './constants';
 import { Data } from './types';
 

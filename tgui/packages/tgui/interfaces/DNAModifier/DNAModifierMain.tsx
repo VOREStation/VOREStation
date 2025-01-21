@@ -1,6 +1,5 @@
 import { BooleanLike } from 'common/react';
-
-import { useBackend } from '../../backend';
+import { useBackend } from 'tgui/backend';
 import {
   Box,
   Button,
@@ -10,7 +9,8 @@ import {
   LabeledList,
   Section,
   Tabs,
-} from '../../components';
+} from 'tgui-core/components';
+
 import { operations, rejuvenatorsDoses } from './constants';
 import { DNAModifierBlocks } from './DNAModifierBlocks';
 import { DNAModifierMainBuffers } from './DNAModifierMainBuffers';

@@ -1,7 +1,6 @@
 import { BooleanLike } from 'common/react';
 import { decodeHtmlEntities } from 'common/string';
-
-import { useBackend } from '../../backend';
+import { useBackend } from 'tgui/backend';
 import {
   Box,
   Button,
@@ -10,7 +9,8 @@ import {
   Input,
   LabeledList,
   Section,
-} from '../../components';
+} from 'tgui-core/components';
+
 import { Data } from './types';
 
 export const MessageMonitorMain = (props) => {

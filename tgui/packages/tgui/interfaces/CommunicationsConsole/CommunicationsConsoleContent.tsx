@@ -1,5 +1,6 @@
-import { useBackend } from '../../backend';
-import { Box } from '../../components';
+import { useBackend } from 'tgui/backend';
+import { Box } from 'tgui-core/components';
+
 import { CommunicationsConsoleAuth } from './CommunicationsConsoleAuth';
 import { CommunicationsConsoleMain } from './CommunicationsConsoleMain';
 import { CommunicationsConsoleMessage } from './CommunicationsConsoleMessage';

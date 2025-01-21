@@ -1,7 +1,13 @@
 import { decodeHtmlEntities } from 'common/string';
 import { useBackend } from 'tgui/backend';
-import { Box, Button, Flex, Icon, Section } from 'tgui/components';
-import { ByondUi } from 'tgui-core/components';
+import {
+  Box,
+  Button,
+  ByondUi,
+  Flex,
+  Icon,
+  Section,
+} from 'tgui-core/components';
 
 import { HOMETAB } from './constants';
 import { Data } from './types';

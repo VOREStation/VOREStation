@@ -5,10 +5,8 @@
  */
 
 import { useState } from 'react';
-import { ByondUi } from 'tgui-core/components';
-
-import { Box, Button, Section } from '../components';
-import { logger } from '../logging';
+import { logger } from 'tgui/logging';
+import { Box, Button, ByondUi, Section } from 'tgui-core/components';
 
 export const meta = {
   title: 'ByondUi',

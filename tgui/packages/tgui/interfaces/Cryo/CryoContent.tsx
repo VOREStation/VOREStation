@@ -1,6 +1,5 @@
 import { toFixed } from 'common/math';
-
-import { useBackend } from '../../backend';
+import { useBackend } from 'tgui/backend';
 import {
   AnimatedNumber,
   Box,
@@ -10,7 +9,8 @@ import {
   LabeledList,
   ProgressBar,
   Section,
-} from '../../components';
+} from 'tgui-core/components';
+
 import { damageTypes, statNames } from './constants';
 import { Data } from './types';
 
