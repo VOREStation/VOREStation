@@ -98,3 +98,8 @@
 **Icon-States:** 'memorycrown', 'memorycrown_onmob'
 **Creator:** Sixberry<br>
 **License:** [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/)<br>
+<br>
+**Folder:** `icons/mob/robot/catborgs`<br>
+**Title:** Catborgs<br>
+**Creator:** Toriate<br>
+**License:** [CC BY-NC-SA 3.0](https://creativecommons.org/licenses/by-nc-sa/3.0/)<br>

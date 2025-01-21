@@ -150,10 +150,13 @@
 		C.hitsound = 'sound/weapons/bite.ogg'
 		C.attack_verb = list("nibbled", "bit", "gnawed", "chomped", "nommed")
 
-/// Custom Kittyborg Spotteh
-/datum/robot_sprite/fluff/spotteh
-	name = CUSTOM_BORGSPRITE("Spotteh Kittyborg")
-	whitelist_ckey = "spotteh"
+/// T
+
+
+/// Custom Kittyborg Tetra Knife
+/datum/robot_sprite/fluff/kittyborg
+	name = CUSTOM_BORGSPRITE("Tetra Knife Kittyborg")
+	whitelist_ckey = "tetra knife"
 	sprite_icon_state = "spotteh"
 	sprite_hud_icon_state = "spotteh"
 	sprite_icon = 'icons/mob/robot/catborgs/custom/kittyborg_spotteh_custom.dmi'
