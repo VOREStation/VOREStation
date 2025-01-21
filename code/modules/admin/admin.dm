@@ -1233,7 +1233,7 @@ var/datum/announcement/minor/admin_min_announcer = new
 		out += " None."
 	out += " <a href='byond://?src=\ref[ticker.mode];[HrefToken()];add_antag_type=1'>\[+\]</a><br/>"
 
-	usr << browse("<html>[dat]</html>", "window=edit_mode[src]")
+	usr << browse("<html>[out]</html>", "window=edit_mode[src]")
 	feedback_add_details("admin_verb","SGM")
 
 
