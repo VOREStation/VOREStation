@@ -17,19 +17,19 @@ import {
 import { clamp } from 'common/math';
 import { classes } from 'common/react';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import { Pointer } from 'tgui/components';
 import { Interaction, Interactive } from 'tgui/components/Interactive';
-
-import { useBackend } from '../backend';
 import {
   Box,
   Button,
   Flex,
   NumberInput,
-  Pointer,
   Section,
   Stack,
   Tooltip,
-} from '../components';
+} from 'tgui-core/components';
+
+import { useBackend } from '../backend';
 import { Autofocus } from '../components/Autofocus';
 import { Window } from '../layouts';
 import { InputButtons } from './common/InputButtons';
@@ -73,9 +73,13 @@ export const ColorPickerModal: React.FC<ColorPickerModalProps> = () => {
 
   useEffect(() => {
     const hexCol = hsvaToHex(selectedColor);
-    if (selectedPreset && lastSelectedColor !== hexCol && allowEditing) {
+    if (
+      selectedPreset !== undefined &&
+      lastSelectedColor !== hexCol &&
+      allowEditing
+    ) {
       setLastSelectedColor(hexCol);
-      act('preset', { color: hexCol, index: selectedPreset });
+      act('preset', { color: hexCol, index: selectedPreset + 1 });
     }
   }, [selectedColor]);
 
@@ -83,7 +87,9 @@ export const ColorPickerModal: React.FC<ColorPickerModalProps> = () => {
     title = 'Color';
   }
 
-  const [selectedPreset, setSelectedPreset] = useState<number | null>(null);
+  const [selectedPreset, setSelectedPreset] = useState<number | undefined>(
+    undefined,
+  );
 
   const ourPresets = presets
     .replaceAll('#', '')
@@ -104,7 +110,7 @@ export const ColorPickerModal: React.FC<ColorPickerModalProps> = () => {
   );
   return (
     <Window
-      height={message ? 440 : 400}
+      height={message ? 460 : 420}
       title={title}
       width={600}
       theme="generic"
@@ -149,8 +155,8 @@ interface ColorPresetsProps {
   setColor: (color: HsvaColor) => void;
   setShowPresets: (show: boolean) => void;
   presetList: string[][];
-  selectedPreset: number | null;
-  onSelectedPreset: React.Dispatch<React.SetStateAction<number | null>>;
+  selectedPreset: number | undefined;
+  onSelectedPreset: React.Dispatch<React.SetStateAction<number | undefined>>;
   allowEditing: boolean;
   onAllowEditing: React.Dispatch<React.SetStateAction<boolean>>;
 }
@@ -185,7 +191,7 @@ const ColorPresets: React.FC<ColorPresetsProps> = React.memo(
                         backgroundColor="#AAAAAA"
                         onClick={() => {
                           setColor(hexToHsva(entry));
-                          onSelectedPreset(null);
+                          onSelectedPreset(undefined);
                         }}
                       >
                         <Box
@@ -207,17 +213,15 @@ const ColorPresets: React.FC<ColorPresetsProps> = React.memo(
                   {row.map((entry, i) => (
                     <Box key={i} p="1px" backgroundColor="black">
                       <Box
-                        p={
-                          selectedPreset === 10 ** index + i + 1 ? '2px' : '1px'
-                        }
+                        p="1px"
                         backgroundColor={
-                          selectedPreset === 10 ** index + i + 1
+                          selectedPreset === 10 * index + i
                             ? '#FF0000'
                             : '#AAAAAA'
                         }
                         onClick={() => {
                           setColor(hexToHsva(entry));
-                          onSelectedPreset(10 ** index + i + 1);
+                          onSelectedPreset(10 * index + i);
                         }}
                       >
                         <Box
@@ -251,8 +255,8 @@ interface ColorSelectorProps {
   setColor: React.Dispatch<React.SetStateAction<HsvaColor>>;
   defaultColor: string;
   presetList: string[][];
-  selectedPreset: number | null;
-  onSelectedPreset: React.Dispatch<React.SetStateAction<number | null>>;
+  selectedPreset: number | undefined;
+  onSelectedPreset: React.Dispatch<React.SetStateAction<number | undefined>>;
   allowEditing: boolean;
   onAllowEditing: React.Dispatch<React.SetStateAction<boolean>>;
 }
