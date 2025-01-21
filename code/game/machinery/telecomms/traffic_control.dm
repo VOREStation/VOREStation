@@ -112,7 +112,7 @@
 				dat += "<a href='byond://?src=\ref[src];operation=togglerun'>NEVER</a>"
 
 
-	user << browse(dat, "window=traffic_control;size=575x400")
+	user << browse("<html>[dat]</html>", "window=traffic_control;size=575x400")
 	onclose(user, "server_control")
 
 	temp = ""

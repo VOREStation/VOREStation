@@ -43,7 +43,7 @@
 		dat += text("Phoron coins: [amt_phoron] <A href='byond://?src=\ref[src];remove=phoron'>Remove one</A><br>")
 	if (amt_uranium)
 		dat += text("Uranium coins: [amt_uranium] <A href='byond://?src=\ref[src];remove=uranium'>Remove one</A><br>")
-	user << browse("[dat]", "window=moneybag")
+	user << browse("<html>[dat]</html>", "window=moneybag")
 
 /obj/item/moneybag/attackby(obj/item/W as obj, mob/user as mob)
 	..()

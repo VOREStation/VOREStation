@@ -35,14 +35,14 @@
 		else
 			health_text = "[round(src.occupant.health,0.1)]"
 
-	var/dat =span_bold("Implanter Status") + "<BR>"
+	var/dat = span_bold("Implanter Status") + "<BR>"
 
-	dat +=span_bold("Current occupant:") + " [src.occupant ? "<BR>Name: [src.occupant]<BR>Health: [health_text]<BR>" : "<FONT color=red>None</FONT>"]<BR>"
+	dat += span_bold("Current occupant:") + " [src.occupant ? "<BR>Name: [src.occupant]<BR>Health: [health_text]<BR>" : "<FONT color=red>None</FONT>"]<BR>"
 	dat += span_bold("Implants:") + " [src.implant_list.len ? "[implant_list.len]" : "<A href='byond://?src=\ref[src];replenish=1'>Replenish</A>"]<BR>"
 	if(src.occupant)
 		dat += "[src.ready ? "<A href='byond://?src=\ref[src];implant=1'>Implant</A>" : "Recharging"]<BR>"
 	user.set_machine(src)
-	user << browse(dat, "window=implant")
+	user << browse("<html>[dat]</html>", "window=implant")
 	onclose(user, "implant")
 
 
