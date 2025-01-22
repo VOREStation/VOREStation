@@ -1,0 +1,17 @@
+This directory is for testing robot dmis direclty without the need to define the sprite datums.
+
+For this, name the dmi in the following format: [sprite-name]_[x_size]x[y_size].dmi
+
+Don't use underlines within the name!
+
+An exaple would be: mydrake_64x64.dmi
+
+The states inside the dmi then need to match the name, so all icons need to follow the common format:
+
+mydrake
+mydrake-[overlay]
+etc.
+
+Many examples for how the states should be named can be found in other robot dmis
+
+In game, the "Reload Robot Test Sprites" can be used to reload the dmis for testing without the need to recompile the game.
