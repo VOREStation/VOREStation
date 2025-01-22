@@ -208,7 +208,7 @@
 				to_chat(user, span_notice("You remove the cell from \the [src]."))
 				update_icon()
 	else if(istype(W,/obj/item/multitool))
-		var/new_color = input(usr, "Choose a color to set the shield to!", "", effect_color) as color|null
+		var/new_color = tgui_color_picker(usr, "Choose a color to set the shield to!", "", effect_color)
 		if(new_color)
 			effect_color = new_color
 	else

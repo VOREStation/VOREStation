@@ -85,7 +85,7 @@
 	for(var/obj/item/photo/Ph in src)
 		dat += "<A href='byond://?src=\ref[src];remove=\ref[Ph]'>Remove</A> <A href='byond://?src=\ref[src];rename=\ref[Ph]'>Rename</A> - <A href='byond://?src=\ref[src];look=\ref[Ph]'>[Ph.name]</A><BR>"
 
-	user << browse(dat, "window=clipboard")
+	user << browse("<html>[dat]</html>", "window=clipboard")
 	onclose(user, "clipboard")
 	add_fingerprint(usr)
 	return

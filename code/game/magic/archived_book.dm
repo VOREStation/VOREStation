@@ -75,7 +75,7 @@ var/global/datum/book_manager/book_mgr = new()
 				dat += "</td></tr>"
 			dat += "</table>"
 
-	usr << browse(dat, "window=library")
+	usr << browse("<html>[dat]</html>", "window=library")
 	onclose(usr, "library")
 //VOREStation Edit End
 

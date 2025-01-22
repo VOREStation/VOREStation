@@ -140,7 +140,7 @@
 	if(D != home)
 		dat += "<br><a href='byond://?src=\ref[src];go_to_home=1'>\[Go To Home\]</a>"
 	dat += "</center></body>"
-	user << browse(dat, "window=the_empress_protects;size=600x550")
+	user << browse("<html>[dat]</html>", "window=the_empress_protects;size=600x550")
 	onclose(user, "the_empress_protects", src)
 
 /datum/codex_tree/Topic(href, href_list)
