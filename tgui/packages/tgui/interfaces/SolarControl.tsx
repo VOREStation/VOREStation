@@ -66,7 +66,7 @@ export const SolarControl = (props) => {
                   </LabeledList.Item>
                 </LabeledList>
               </Table.Cell>
-              <Table.Cell size={1.5}>
+              <Table.Cell>
                 <LabeledList>
                   <LabeledList.Item label="Power output">
                     <ProgressBar

@@ -27,9 +27,7 @@ export const SignalerContent = (props) => {
     <Section>
       <Table>
         <Table.Row>
-          <Table.Cell size={1.4} color="label">
-            Frequency:
-          </Table.Cell>
+          <Table.Cell color="label">Frequency:</Table.Cell>
           <Table.Cell>
             <NumberInput
               animated
@@ -63,9 +61,7 @@ export const SignalerContent = (props) => {
           </Table.Cell>
         </Table.Row>
         <Table.Row mt={0.6}>
-          <Table.Cell size={1.4} color="label">
-            Code:
-          </Table.Cell>
+          <Table.Cell color="label">Code:</Table.Cell>
           <Table.Cell>
             <NumberInput
               animated

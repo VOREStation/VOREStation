@@ -45,7 +45,7 @@ export const NtosArcade = (props) => {
           <Box>
             <Table>
               <Table.Row>
-                <Table.Cell size={2}>
+                <Table.Cell>
                   <Box m={1} />
                   <LabeledList>
                     <LabeledList.Item label="Player Health">
