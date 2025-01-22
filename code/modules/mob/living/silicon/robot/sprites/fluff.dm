@@ -149,3 +149,5 @@
 		C.icon_state = "smalljaws_textless"
 		C.hitsound = 'sound/weapons/bite.ogg'
 		C.attack_verb = list("nibbled", "bit", "gnawed", "chomped", "nommed")
+
+#undef CUSTOM_BORGSPRITE
