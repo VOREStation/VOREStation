@@ -3493,7 +3493,6 @@
 #include "code\modules\mob\new_player\preferences_setup_vr.dm"
 #include "code\modules\mob\new_player\sprite_accessories.dm"
 #include "code\modules\mob\new_player\sprite_accessories_ear.dm"
-#include "code\modules\mob\new_player\sprite_accessories_ear_vr.dm"
 #include "code\modules\mob\new_player\sprite_accessories_extra.dm"
 #include "code\modules\mob\new_player\sprite_accessories_extra_vr.dm"
 #include "code\modules\mob\new_player\sprite_accessories_tail.dm"
