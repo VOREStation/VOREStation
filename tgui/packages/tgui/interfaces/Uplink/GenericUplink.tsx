@@ -1,7 +1,7 @@
 import { createSearch } from 'common/string';
 import { useState } from 'react';
-
-import { useBackend } from '../../backend';
+import { useBackend } from 'tgui/backend';
+import { formatMoney } from 'tgui/format';
 import {
   Box,
   Button,
@@ -10,8 +10,8 @@ import {
   NoticeBox,
   Section,
   Tabs,
-} from '../../components';
-import { formatMoney } from '../../format';
+} from 'tgui-core/components';
+
 import { MAX_SEARCH_RESULTS } from './constants';
 import { ItemList } from './ItemList';
 import { Data, item } from './types';

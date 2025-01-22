@@ -1,9 +1,9 @@
 import { BooleanLike } from 'common/react';
 import { decodeHtmlEntities } from 'common/string';
+import { useBackend } from 'tgui/backend';
+import { formatMoney } from 'tgui/format';
+import { Button, Section, Table } from 'tgui-core/components';
 
-import { useBackend } from '../../backend';
-import { Button, Section, Table } from '../../components';
-import { formatMoney } from '../../format';
 import { item } from './types';
 
 export const ItemList = (props: {

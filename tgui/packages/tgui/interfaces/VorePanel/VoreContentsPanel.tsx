@@ -1,7 +1,7 @@
 import { BooleanLike } from 'common/react';
+import { useBackend } from 'tgui/backend';
+import { Button, Flex, Image, LabeledList } from 'tgui-core/components';
 
-import { useBackend } from '../../backend';
-import { Button, Flex, Image, LabeledList } from '../../components';
 import { stats } from './constants';
 import { contentData } from './types';
 

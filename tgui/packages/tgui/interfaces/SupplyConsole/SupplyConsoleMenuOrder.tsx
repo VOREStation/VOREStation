@@ -1,9 +1,9 @@
 import { filter, sortBy } from 'common/collections';
 import { flow } from 'common/fp';
 import { useState } from 'react';
+import { useBackend } from 'tgui/backend';
+import { Box, Button, Section, Stack } from 'tgui-core/components';
 
-import { useBackend } from '../../backend';
-import { Box, Button, Section, Stack } from '../../components';
 import { Data, supplyPack } from './types';
 
 export const SupplyConsoleMenuOrder = (props) => {

@@ -1,7 +1,7 @@
 import { capitalize } from 'common/string';
+import { useBackend } from 'tgui/backend';
+import { Button, Flex, LabeledList } from 'tgui-core/components';
 
-import { useBackend } from '../../../backend';
-import { Button, Flex, LabeledList } from '../../../components';
 import { hostMob, selectedData } from '../types';
 import { VoreSelectedMobTypeBellyButtons } from './VoreSelectedMobTypeBellyButtons';
 

@@ -1,7 +1,7 @@
 import { BooleanLike } from 'common/react';
+import { useBackend } from 'tgui/backend';
+import { Button, Flex, Section } from 'tgui-core/components';
 
-import { useBackend } from '../../../backend';
-import { Button, Flex, Section } from '../../../components';
 import { localPrefs } from '../types';
 import { VoreUserPreferenceItem } from '../VoreUserPreferenceItem';
 

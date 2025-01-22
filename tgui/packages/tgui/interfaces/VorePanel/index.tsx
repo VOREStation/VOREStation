@@ -1,9 +1,9 @@
 import { useState } from 'react';
+import { useBackend } from 'tgui/backend';
+import { Window } from 'tgui/layouts';
 import { Stack } from 'tgui-core/components';
+import { Button, Flex, Icon, NoticeBox, Tabs } from 'tgui-core/components';
 
-import { useBackend } from '../../backend';
-import { Button, Flex, Icon, NoticeBox, Tabs } from '../../components';
-import { Window } from '../../layouts';
 import { Data } from './types';
 import { VoreBellySelectionAndCustomization } from './VoreBellySelectionAndCustomization';
 import { VoreInsidePanel } from './VoreInsidePanel';

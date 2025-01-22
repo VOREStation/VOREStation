@@ -1,5 +1,6 @@
-import { useBackend } from '../../../backend';
-import { Button, Flex, LabeledList } from '../../../components';
+import { useBackend } from 'tgui/backend';
+import { Button, Flex, LabeledList } from 'tgui-core/components';
+
 import { selectedData } from '../types';
 
 export const VoreSelectedBellySounds = (props: { belly: selectedData }) => {

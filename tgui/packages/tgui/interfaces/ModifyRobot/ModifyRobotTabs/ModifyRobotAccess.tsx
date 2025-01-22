@@ -10,7 +10,7 @@ import {
   Input,
   Section,
   Stack,
-} from 'tgui/components';
+} from 'tgui-core/components';
 
 import { NoSpriteWarning } from '../components';
 import { prepareSearch } from '../functions';

@@ -7,7 +7,7 @@ import {
   NoticeBox,
   Section,
   Stack,
-} from 'tgui/components';
+} from 'tgui-core/components';
 
 import { RankIcon } from '../common/RankIcon';
 import { Target } from './types';

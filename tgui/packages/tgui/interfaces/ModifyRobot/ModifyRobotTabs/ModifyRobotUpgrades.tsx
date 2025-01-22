@@ -9,7 +9,7 @@ import {
   Input,
   Section,
   Stack,
-} from 'tgui/components';
+} from 'tgui-core/components';
 import { classes } from 'tgui-core/react';
 
 import { NoSpriteWarning } from '../components';

@@ -9,7 +9,7 @@ import {
   Section,
   Slider,
   Stack,
-} from 'tgui/components';
+} from 'tgui-core/components';
 
 import { Cell, Comp, InstalledCell, Target } from '../types';
 

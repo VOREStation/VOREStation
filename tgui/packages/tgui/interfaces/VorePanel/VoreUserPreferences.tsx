@@ -1,7 +1,7 @@
 import { BooleanLike } from 'common/react';
+import { useBackend } from 'tgui/backend';
+import { Button, Divider, Flex, Section } from 'tgui-core/components';
 
-import { useBackend } from '../../backend';
-import { Button, Divider, Flex, Section } from '../../components';
 import { prefData } from './types';
 import { VoreUserPreferencesAesthetic } from './VoreUserPreferencesTabs/VoreUserPreferencesAesthetic ';
 import { VoreUserPreferencesMechanical } from './VoreUserPreferencesTabs/VoreUserPreferencesMechanical ';

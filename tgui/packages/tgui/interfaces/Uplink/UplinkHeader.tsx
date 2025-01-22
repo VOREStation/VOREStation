@@ -1,5 +1,6 @@
-import { useBackend } from '../../backend';
-import { Box, Section, Tabs } from '../../components';
+import { useBackend } from 'tgui/backend';
+import { Box, Section, Tabs } from 'tgui-core/components';
+
 import { Data } from './types';
 
 export const UplinkHeader = (props: {

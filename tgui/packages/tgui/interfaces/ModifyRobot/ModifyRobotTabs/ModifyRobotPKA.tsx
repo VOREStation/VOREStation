@@ -9,7 +9,7 @@ import {
   Image,
   Input,
   NoticeBox,
-} from 'tgui/components';
+} from 'tgui-core/components';
 
 import { NoSpriteWarning } from '../components';
 import { getModuleIcon, prepareSearch } from '../functions';

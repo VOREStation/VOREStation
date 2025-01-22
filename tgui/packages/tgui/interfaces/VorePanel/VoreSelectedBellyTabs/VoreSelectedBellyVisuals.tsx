@@ -1,6 +1,5 @@
 import { classes } from 'common/react';
-
-import { useBackend } from '../../../backend';
+import { useBackend } from 'tgui/backend';
 import {
   Box,
   Button,
@@ -8,7 +7,8 @@ import {
   LabeledList,
   Section,
   Stack,
-} from '../../../components';
+} from 'tgui-core/components';
+
 import { selectedData } from '../types';
 
 export const VoreSelectedBellyVisuals = (props: { belly: selectedData }) => {
