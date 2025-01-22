@@ -28,7 +28,7 @@
 	set category = "Abilities.Silicon"
 	set src in usr
 
-	var/new_pupil_color = input(usr, "Select a pupil colour.", "Pupil Colour Selection") as color|null
+	var/new_pupil_color = tgui_color_picker(usr, "Select a pupil colour.", "Pupil Colour Selection")
 	if(usr.incapacitated() || QDELETED(usr) || QDELETED(src) || loc != usr)
 		return
 

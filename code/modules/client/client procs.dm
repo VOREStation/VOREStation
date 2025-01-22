@@ -608,7 +608,7 @@
 /client/proc/disconnect_with_message(var/message = "You have been intentionally disconnected by the server.<br>This may be for security or administrative reasons.")
 	message = "<head><title>You Have Been Disconnected</title></head><body><hr><center><b>[message]</b></center><hr><br>If you feel this is in error, you can contact an administrator out-of-game (for example, on Discord).</body>"
 	window_flash(src)
-	src << browse(message,"window=dropmessage;size=480x360;can_close=1")
+	src << browse("<html>[message]</html>","window=dropmessage;size=480x360;can_close=1")
 	qdel(src)
 
 /// Keydown event in a tgui window this client has open. Has keycode passed to it.

@@ -208,6 +208,8 @@ Book Cart End
 		to_chat(user, "This book is completely blank!")
 
 /obj/item/book/proc/display_content(mob/living/user)
+	if(!findtext(dat, regex("^<html")))
+		dat = "<html>[dat]</html>"
 	user << browse(replacetext(dat, "<html>", "<html><TT><I>Penned by [author].</I></TT> <BR>"), "window=book")
 
 /obj/item/book/attackby(obj/item/W as obj, mob/user as mob)
@@ -338,7 +340,7 @@ Book Cart End
 	else if(istype(pages[page], /obj/item/photo))
 		var/obj/item/photo/P = W
 		user << browse_rsc(P.img, "tmp_photo.png")
-		user << browse(dat + "<html><head><title>[P.name]</title></head>" \
+		user << browse("<html>" + dat + "<head><title>[P.name]</title></head>" \
 		+ "<body style='overflow:hidden'>" \
 		+ "<div> <img src='tmp_photo.png' width = '180'" \
 		+ "[P.scribble ? "<div> Written on the back:<br><i>[P.scribble]</i>" : null]"\
