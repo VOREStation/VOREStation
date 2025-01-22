@@ -663,7 +663,7 @@
 /datum/sprite_accessory/tail/taur/tiger
 	name = "Tiger (Taur)"
 	icon_state = "tiger_s"
-	suit_sprites = 'icons/mob/taursuits_feline_vr.dmi'
+	suit_sprites = 'icons/mob/taursuits_feline.dmi'
 	icon_sprite_tag = "feline"
 	extra_overlay = "tiger_markings"
 	extra_overlay2 = "tiger_markings_2"
