@@ -8,7 +8,7 @@ import {
   Section,
   Slider,
   Stack,
-} from 'tgui/components';
+} from 'tgui-core/components';
 
 import { updateSettings } from './actions';
 import { selectSettings } from './selectors';

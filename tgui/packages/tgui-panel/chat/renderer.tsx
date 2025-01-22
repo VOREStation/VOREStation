@@ -8,8 +8,8 @@ import { EventEmitter } from 'common/events';
 import { classes } from 'common/react';
 import { createRoot } from 'react-dom/client';
 import { createLogger } from 'tgui/logging';
+import { Tooltip } from 'tgui-core/components';
 
-import { Tooltip } from '../../tgui/components';
 import {
   IMAGE_RETRY_DELAY,
   IMAGE_RETRY_LIMIT,
@@ -151,7 +151,52 @@ const updateMessageBadge = (message) => {
   }
 };
 
+type message = {
+  node?: Node | string;
+  type: string;
+  text: string;
+  html: string;
+  times: number;
+  createdAt: number;
+  roundId: number;
+};
+
 class ChatRenderer {
+  loaded: boolean;
+  rootNode: HTMLElement | null;
+  queue: string[];
+  messages: message[];
+  archivedMessages: message[];
+  visibleMessages: message[];
+  page: null;
+  events: EventEmitter;
+  prependTimestamps: boolean;
+  visibleMessageLimit: number;
+  combineMessageLimit: number;
+  combineIntervalLimit: number;
+  persistentMessageLimit: number;
+  logLimit: number;
+  logEnable: boolean;
+  roundId: null | number;
+  storedTypes: {};
+  interleave: boolean;
+  interleaveEnabled: boolean;
+  interleaveColor: string;
+  hideImportantInAdminTab: boolean;
+  scrollNode: HTMLElement | null;
+  scrollTracking: boolean;
+  handleScroll: (type: any) => void;
+  ensureScrollTracking: () => void;
+  highlightParsers:
+    | {
+        highlightWords: string;
+        highlightRegex: RegExp;
+        highlightColor: string;
+        highlightWholeMessage: boolean;
+        highlightBlacklist: string;
+        blacklistregex: RegExp;
+      }[]
+    | null;
   constructor() {
     /** @type {HTMLElement} */
     this.loaded = false;
@@ -182,14 +227,16 @@ class ChatRenderer {
     this.scrollTracking = true;
     this.handleScroll = (type) => {
       const node = this.scrollNode;
-      const height = node.scrollHeight;
-      const bottom = node.scrollTop + node.offsetHeight;
-      const scrollTracking =
-        Math.abs(height - bottom) < SCROLL_TRACKING_TOLERANCE;
-      if (scrollTracking !== this.scrollTracking) {
-        this.scrollTracking = scrollTracking;
-        this.events.emit('scrollTrackingChanged', scrollTracking);
-        logger.debug('tracking', this.scrollTracking);
+      if (node) {
+        const height = node.scrollHeight;
+        const bottom = node.scrollTop + node.offsetHeight;
+        const scrollTracking =
+          Math.abs(height - bottom) < SCROLL_TRACKING_TOLERANCE;
+        if (scrollTracking !== this.scrollTracking) {
+          this.scrollTracking = scrollTracking;
+          this.events.emit('scrollTrackingChanged', scrollTracking);
+          logger.debug('tracking', this.scrollTracking);
+        }
       }
     };
     this.ensureScrollTracking = () => {
@@ -216,7 +263,9 @@ class ChatRenderer {
     }
     // Find scrollable parent
     this.scrollNode = findNearestScrollableParent(this.rootNode);
-    this.scrollNode.addEventListener('scroll', this.handleScroll);
+    if (this.scrollNode) {
+      this.scrollNode.addEventListener('scroll', this.handleScroll);
+    }
     setTimeout(() => {
       this.scrollToBottom();
     });
@@ -238,7 +287,9 @@ class ChatRenderer {
 
   assignStyle(style = {}) {
     for (let key of Object.keys(style)) {
-      this.rootNode.style.setProperty(key, style[key]);
+      if (this.rootNode) {
+        this.rootNode.style.setProperty(key, style[key]);
+      }
     }
   }
 
@@ -293,7 +344,7 @@ class ChatRenderer {
       let blacklistWords;
       let blacklistregex;
       if (highlightBlacklist && blacklistLines.length > 0) {
-        let blacklistRegexExpressions = [];
+        let blacklistRegexExpressions: string[] = [];
         for (let line of blacklistLines) {
           // Regex expression syntax is /[exp]/
           if (line.charAt(0) === '/' && line.charAt(line.length - 1) === '/') {
@@ -326,7 +377,7 @@ class ChatRenderer {
           blacklistregex = null;
         }
       }
-      let regexExpressions = [];
+      let regexExpressions: string[] = [];
       // Organize each highlight entry into regex expressions and words
       for (let line of lines) {
         // Regex expression syntax is /[exp]/
@@ -384,21 +435,23 @@ class ChatRenderer {
   scrollToBottom() {
     // scrollHeight is always bigger than scrollTop and is
     // automatically clamped to the valid range.
-    this.scrollNode.scrollTop = this.scrollNode.scrollHeight;
+    if (this.scrollNode) {
+      this.scrollNode.scrollTop = this.scrollNode.scrollHeight;
+    }
   }
 
   setVisualChatLimits(
-    visibleMessageLimit,
-    combineMessageLimit,
-    combineIntervalLimit,
-    logEnable,
-    logLimit,
-    storedTypes,
-    roundId,
-    prependTimestamps,
-    hideImportantInAdminTab,
-    interleaveEnabled,
-    interleaveColor,
+    visibleMessageLimit: number,
+    combineMessageLimit: number,
+    combineIntervalLimit: number,
+    logEnable: boolean,
+    logLimit: number,
+    storedTypes: {},
+    roundId: number | null,
+    prependTimestamps: boolean,
+    hideImportantInAdminTab: boolean,
+    interleaveEnabled: boolean,
+    interleaveColor: string,
   ) {
     this.visibleMessageLimit = visibleMessageLimit;
     this.combineMessageLimit = combineMessageLimit;
@@ -421,7 +474,9 @@ class ChatRenderer {
     }
     this.page = page;
     // Fast clear of the root node
-    this.rootNode.textContent = '';
+    if (this.rootNode) {
+      this.rootNode.textContent = '';
+    }
     this.visibleMessages = [];
     // Re-add message nodes
     const fragment = document.createDocumentFragment();
@@ -446,7 +501,7 @@ class ChatRenderer {
         this.visibleMessages.push(message);
       }
     }
-    if (node) {
+    if (node && this.rootNode) {
       this.rootNode.appendChild(fragment);
       node.scrollIntoView();
     }
@@ -474,7 +529,14 @@ class ChatRenderer {
     return null;
   }
 
-  processBatch(batch, options = {}) {
+  processBatch(
+    batch,
+    options: {
+      prepend?: boolean;
+      notifyListeners?: boolean;
+      doArchive?: boolean;
+    } = {},
+  ) {
     const { prepend, notifyListeners = true, doArchive = false } = options;
     const now = Date.now();
     // Queue up messages until chat is ready
@@ -665,7 +727,7 @@ class ChatRenderer {
         this.visibleMessages.push(message);
       }
     }
-    if (node) {
+    if (node && this.rootNode) {
       const firstChild = this.rootNode.childNodes[0];
       if (prepend && firstChild) {
         this.rootNode.insertBefore(fragment, firstChild);
@@ -700,7 +762,9 @@ class ChatRenderer {
         this.visibleMessages = messages.slice(fromIndex);
         for (let i = 0; i < fromIndex; i++) {
           const message = messages[i];
-          this.rootNode.removeChild(message.node);
+          if (this.rootNode && message.node) {
+            this.rootNode.removeChild(message.node as Node);
+          }
           // Mark this message as pruned
           message.node = 'pruned';
         }
@@ -737,7 +801,9 @@ class ChatRenderer {
       message.node = undefined;
     }
     // Fast clear of the root node
-    this.rootNode.textContent = '';
+    if (this.rootNode) {
+      this.rootNode.textContent = '';
+    }
     this.messages = [];
     this.visibleMessages = [];
     // Repopulate the chat log
@@ -763,7 +829,7 @@ class ChatRenderer {
     // Compile chat log as HTML text
     let messagesHtml = '';
 
-    let tmpMsgArray = [];
+    let tmpMsgArray: message[] = [];
     if (startLine || endLine) {
       if (!endLine) {
         tmpMsgArray = this.archivedMessages.slice(startLine);
@@ -825,11 +891,18 @@ class ChatRenderer {
   }
 }
 
+type ChatWindow = Window &
+  typeof globalThis & {
+    __chatRenderer__: ChatRenderer;
+  };
+
 // Make chat renderer global so that we can continue using the same
 // instance after hot code replacement.
-if (!window.__chatRenderer__) {
-  window.__chatRenderer__ = new ChatRenderer();
+
+const chatWindow = window as ChatWindow;
+if (!chatWindow.__chatRenderer__) {
+  chatWindow.__chatRenderer__ = new ChatRenderer();
 }
 
 /** @type {ChatRenderer} */
-export const chatRenderer = window.__chatRenderer__;
+export const chatRenderer = chatWindow.__chatRenderer__;

@@ -10,7 +10,7 @@ import {
   LabeledList,
   NumberInput,
   Section,
-} from 'tgui/components';
+} from 'tgui-core/components';
 
 import { purgeChatMessageArchive, saveChatToDisk } from '../../chat/actions';
 import { MESSAGE_TYPES } from '../../chat/constants';
