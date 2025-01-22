@@ -531,6 +531,34 @@
 	extra_overlay_w = "fatsynthfeline_markings"
 	extra_overlay2_w = "fatsynthfeline_glow"
 
+/datum/sprite_accessory/tail/taur/tiger
+	name = "Tiger (Taur)"
+	icon_state = "tiger_s"
+	suit_sprites = 'icons/mob/taursuits_feline_vr.dmi'
+	icon_sprite_tag = "feline"
+	extra_overlay = "tiger_markings"
+	extra_overlay2 = "tiger_markings_2"
+	can_loaf = TRUE
+	icon_loaf = 'icons/mob/vore/taurs_vr_loaf.dmi'
+	loaf_offset = 5
+	vore_tail_sprite_variant = "Feline"
+	belly_variant_when_loaf = TRUE
+	fullness_icons = 1
+
+/datum/sprite_accessory/tail/taur/tiger/fat
+	name = "Fat Tiger (Taur)"
+	icon_state = "fattiger_s"
+	extra_overlay = "fattiger_markings"
+	extra_overlay2 = "fattiger_markings_2"
+	icon_loaf = 'icons/mob/vore/taurs_vr_loaf.dmi'
+	loaf_offset = 3
+
+/datum/sprite_accessory/tail/taur/tiger/fat_vwag
+	name = "Tiger (Taur, Fat vwag)"
+	ani_state = "fattiger_s"
+	extra_overlay_w = "fattiger_markings"
+	extra_overlay2_w = "fattiger_markings_2"
+
 /datum/sprite_accessory/tail/taur/synthetic/syntheticagi
 	name = "Synthetic chassis - agile (Taur)"
 	icon_state = "synthtaur1_s"
