@@ -64,7 +64,7 @@
 
 
 /obj/machinery/cash_register/interact(mob/user as mob)
-	var/dat = "<h2>Cash Register<hr></h2>"
+	var/dat = "<html><h2>Cash Register<hr></h2>"
 	if (locked)
 		dat += "<a href='byond://?src=\ref[src];choice=toggle_lock'>Unlock</a><br>"
 		dat += "Linked account: " + span_bold("[linked_account ? linked_account.owner_name : "None"]") + "<br>"
@@ -85,7 +85,7 @@
 	if(transaction_logs.len)
 		dat += locked ? "<br>" : "<a href='byond://?src=\ref[src];choice=reset_log'>Reset Log</a><br>"
 		dat += "<br>"
-	dat += "<i>Device ID:</i> [machine_id]"
+	dat += "<i>Device ID:</i> [machine_id]</html>"
 	user << browse(dat, "window=cash_register;size=350x500")
 	onclose(user, "cash_register")
 

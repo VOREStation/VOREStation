@@ -147,7 +147,7 @@
 	set src in oview(1)
 	if(ismouse(usr) || (isobserver(usr) && !CONFIG_GET(flag/ghost_interaction)))
 		return
-	var/new_color = input(usr, "Please select color.", "Paint Color", color) as color|null
+	var/new_color = tgui_color_picker(usr, "Please select color.", "Paint Color", color)
 	color = new_color
 	return
 
@@ -307,7 +307,7 @@
 	set src in oview(1)
 	if(ismouse(usr) || (isobserver(usr) && !CONFIG_GET(flag/ghost_interaction)))
 		return
-	var/new_color = input(usr, "Please select color.", "Paint Color", color) as color|null
+	var/new_color = tgui_color_picker(usr, "Please select color.", "Paint Color", color)
 	color = new_color
 	return
 

@@ -83,7 +83,7 @@
 				active_mode = text2num(params["mode"])
 				return TRUE
 			if("choose_color")
-				var/chosen_color = input(inserted, "Choose a color: ", "ColorMate colour picking", activecolor) as color|null
+				var/chosen_color = tgui_color_picker(inserted, "Choose a color: ", "ColorMate colour picking", activecolor)
 				if(chosen_color)
 					activecolor = chosen_color
 				return TRUE
