@@ -28,11 +28,18 @@
 	var/mob_offset_x = 0
 	var/mob_offset_y = 0
 
-	// VOREStation Edit: Taur Loafing
+	// Taur Loafing
 	var/can_loaf = FALSE
 	var/loaf_offset = 0
 	var/list/lower_layer_dirs = list(SOUTH)
 	var/icon_loaf = null
+
+	// Taur Vore
+	var/vore_tail_sprite_variant = ""
+	var/belly_variant_when_loaf = FALSE
+	var/fullness_icons = 0
+	var/struggle_anim = FALSE
+	var/bellies_icon_path = 'icons/mob/vore/Taur_Bellies.dmi'
 
 	species_allowed = list(SPECIES_HUMAN, SPECIES_SKRELL, SPECIES_UNATHI, SPECIES_TAJARAN, SPECIES_TESHARI, SPECIES_NEVREAN, SPECIES_AKULA, SPECIES_SERGAL, SPECIES_FENNEC, SPECIES_ZORREN_HIGH, SPECIES_VULPKANIN, SPECIES_XENOCHIMERA, SPECIES_XENOHYBRID, SPECIES_VASILISSAN, SPECIES_RAPALA, SPECIES_PROTEAN, SPECIES_ALRAUNE, SPECIES_WEREBEAST, SPECIES_SHADEKIN, SPECIES_SHADEKIN_CREW, SPECIES_ALTEVIAN, SPECIES_LLEILL, SPECIES_HANNER)
 
