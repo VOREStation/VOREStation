@@ -277,27 +277,4 @@
 	whitelist_ckey = "somememeguy"
 	module_type = list("Standard", "Engineering", "Surgeon", "Crisis", "Miner", "Janitor", "Service", "Clerical", "Security", "Research")
 	sprite_flags = ROBOT_HAS_SHIELD_SPRITE | ROBOT_HAS_DISABLER_SPRITE | ROBOT_HAS_TASER_SPRITE | ROBOT_HAS_LASER_SPRITE
-
-/// Custom Kittyborg Spotteh
-/datum/robot_sprite/dogborg/kittyborg/spotteh
-	name = "Kittyborg - Spotteh"
-	sprite_icon_state = "spotteh"
-	sprite_hud_icon_state = "spotteh"
-	sprite_icon = 'icons/mob/catborgs/custom/kittyborg_spotteh_custom.dmi'
-	belly_capacity_list = list("sleeper" = 2)
-	rest_sprite_options = list("Default", "Bellyup", "Sit")
-	has_eye_sprites = TRUE
-	has_eye_light_sprites = TRUE
-	has_sleeper_light_indicator = FALSE
-	has_vore_belly_resting_sprites = TRUE
-	has_robotdecal_sprites = TRUE
-	is_whitelisted = TRUE
-	sprite_flags = ROBOT_HAS_SHIELD_SPRITE | ROBOT_HAS_GUN_SPRITE
-	whitelist_ckey = "Spotteh"
-	module_type = list("Standard", "Engineering", "Surgeon", "Crisis", "Miner", "Janitor", "Service", "Clerical", "Security", "Research")
-*/
-
-/* //This is just kept here as a reference.
-var/global/list/departmental_robot_modules:
-	module_type = list("Standard", "Engineering", "Surgeon", "Crisis", "Miner", "Janitor", "Service", "Clerical", "Security", "Research")
 */
