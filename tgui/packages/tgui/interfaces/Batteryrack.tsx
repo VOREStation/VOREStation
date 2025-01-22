@@ -6,10 +6,10 @@ import {
   AnimatedNumber,
   Box,
   Button,
-  Flex,
   LabeledList,
   ProgressBar,
   Section,
+  Stack,
   Table,
 } from 'tgui-core/components';
 
@@ -107,15 +107,15 @@ export const Batteryrack = (props) => {
                     maxValue={100}
                     color={cell.used ? 'good' : 'bad'}
                   >
-                    <Flex>
-                      <Flex.Item>
+                    <Stack>
+                      <Stack.Item>
                         {!!cell.name && capitalize(cell.name)}
-                      </Flex.Item>
-                      <Flex.Item grow={1} />
-                      <Flex.Item>
+                      </Stack.Item>
+                      <Stack.Item grow={1} />
+                      <Stack.Item>
                         {cell.used ? cell.percentage + '%' : 'N/C'}
-                      </Flex.Item>
-                    </Flex>
+                      </Stack.Item>
+                    </Stack>
                   </ProgressBar>
                 </Table.Cell>
                 <Table.Cell collapsing>

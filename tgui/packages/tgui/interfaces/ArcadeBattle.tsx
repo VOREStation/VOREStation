@@ -4,10 +4,10 @@ import { Window } from 'tgui/layouts';
 import {
   Box,
   Button,
-  Flex,
   LabeledList,
   ProgressBar,
   Section,
+  Stack,
 } from 'tgui-core/components';
 
 type Data = {
@@ -42,8 +42,8 @@ export const ArcadeBattle = (props) => {
             <Box>{temp}</Box>
             <Box>{!gameOver && enemyAction}</Box>
           </Section>
-          <Flex spacing={1}>
-            <Flex.Item>
+          <Stack>
+            <Stack.Item>
               <LabeledList>
                 <LabeledList.Item label="Player Health">
                   <ProgressBar
@@ -75,8 +75,8 @@ export const ArcadeBattle = (props) => {
                   </ProgressBar>
                 </LabeledList.Item>
               </LabeledList>
-            </Flex.Item>
-            <Flex.Item>
+            </Stack.Item>
+            <Stack.Item>
               <LabeledList>
                 <LabeledList.Item label="Enemy HP">
                   <ProgressBar
@@ -94,15 +94,15 @@ export const ArcadeBattle = (props) => {
                   </ProgressBar>
                 </LabeledList.Item>
               </LabeledList>
-            </Flex.Item>
-          </Flex>
+            </Stack.Item>
+          </Stack>
           {(gameOver && (
             <Button fluid mt={1} color="green" onClick={() => act('newgame')}>
               New Game
             </Button>
           )) || (
-            <Flex mt={2} justify="space-between" spacing={1}>
-              <Flex.Item grow={1}>
+            <Stack mt={2} justify="space-between">
+              <Stack.Item grow={1}>
                 <Button
                   fluid
                   icon="fist-raised"
@@ -112,8 +112,8 @@ export const ArcadeBattle = (props) => {
                 >
                   Attack!
                 </Button>
-              </Flex.Item>
-              <Flex.Item grow={1}>
+              </Stack.Item>
+              <Stack.Item grow={1}>
                 <Button
                   fluid
                   icon="band-aid"
@@ -123,8 +123,8 @@ export const ArcadeBattle = (props) => {
                 >
                   Heal!
                 </Button>
-              </Flex.Item>
-              <Flex.Item grow={1}>
+              </Stack.Item>
+              <Stack.Item grow={1}>
                 <Button
                   fluid
                   icon="magic"
@@ -134,8 +134,8 @@ export const ArcadeBattle = (props) => {
                 >
                   Recharge!
                 </Button>
-              </Flex.Item>
-            </Flex>
+              </Stack.Item>
+            </Stack>
           )}
         </Section>
       </Window.Content>
