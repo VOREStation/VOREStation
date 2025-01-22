@@ -3,7 +3,7 @@ import { toTitleCase } from 'common/string';
 import { useState } from 'react';
 import { useBackend } from 'tgui/backend';
 import { Window } from 'tgui/layouts';
-import { Box, Button, Flex, LabeledList, Section } from 'tgui-core/components';
+import { Box, Button, LabeledList, Section, Stack } from 'tgui-core/components';
 
 type scrubber = {
   id: string;
@@ -41,8 +41,8 @@ export const AreaScrubberControl = (props) => {
     <Window width={600} height={400}>
       <Window.Content scrollable>
         <Section>
-          <Flex wrap="wrap">
-            <Flex.Item m="2px" basis="49%">
+          <Stack wrap="wrap">
+            <Stack.Item m="2px" basis="49%">
               <Button
                 textAlign="center"
                 fluid
@@ -51,8 +51,8 @@ export const AreaScrubberControl = (props) => {
               >
                 Scan
               </Button>
-            </Flex.Item>
-            <Flex.Item m="2px" basis="49%" grow={1}>
+            </Stack.Item>
+            <Stack.Item m="2px" basis="49%" grow={1}>
               <Button
                 textAlign="center"
                 fluid
@@ -62,8 +62,8 @@ export const AreaScrubberControl = (props) => {
               >
                 Show Areas
               </Button>
-            </Flex.Item>
-            <Flex.Item m="2px" basis="49%">
+            </Stack.Item>
+            <Stack.Item m="2px" basis="49%">
               <Button
                 textAlign="center"
                 fluid
@@ -72,8 +72,8 @@ export const AreaScrubberControl = (props) => {
               >
                 All On
               </Button>
-            </Flex.Item>
-            <Flex.Item m="2px" basis="49%" grow={1}>
+            </Stack.Item>
+            <Stack.Item m="2px" basis="49%" grow={1}>
               <Button
                 textAlign="center"
                 fluid
@@ -82,15 +82,15 @@ export const AreaScrubberControl = (props) => {
               >
                 All Off
               </Button>
-            </Flex.Item>
-          </Flex>
-          <Flex wrap="wrap">
+            </Stack.Item>
+          </Stack>
+          <Stack wrap="wrap">
             {scrubbers.map((scrubber) => (
-              <Flex.Item m="2px" key={scrubber.id} basis="32%">
+              <Stack.Item m="2px" key={scrubber.id} basis="32%">
                 <BigScrubber scrubber={scrubber} showArea={showArea} />
-              </Flex.Item>
+              </Stack.Item>
             ))}
-          </Flex>
+          </Stack>
         </Section>
       </Window.Content>
     </Window>
