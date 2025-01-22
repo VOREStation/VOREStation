@@ -12,6 +12,10 @@ mydrake
 mydrake-[overlay]
 etc.
 
+There are 2 special cases, for whitelist testing, you can just add an empty state called
+ckey-[whatever], the sprite will then no longer show, if you enter your own key, you should see it
+modules-[type]..., for example modules-Standard-Engineering-Surgeon-Crisis-Miner-Janitor-Service-Clerical-Security-Research, this is the default, so there is no need to name a state including all jobs. But if only a few are wanted, that is a quick way to do so
+
 Many examples for how the states should be named can be found in other robot dmis
 
 In game, the "Reload Robot Test Sprites" can be used to reload the dmis for testing without the need to recompile the game.
