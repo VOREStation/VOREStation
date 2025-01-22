@@ -1,6 +1,6 @@
 import { round, toFixed } from 'common/math';
-
-import { useBackend } from '../backend';
+import { useBackend } from 'tgui/backend';
+import { Window } from 'tgui/layouts';
 import {
   Box,
   Button,
@@ -8,8 +8,7 @@ import {
   LabeledList,
   NumberInput,
   Section,
-} from '../components';
-import { Window } from '../layouts';
+} from 'tgui-core/components';
 
 type Data = {
   scan_ticks: number;

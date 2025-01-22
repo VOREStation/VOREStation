@@ -1,10 +1,9 @@
 /* eslint react/no-danger: "off" */
 
 import { BooleanLike } from 'common/react';
-
-import { useBackend } from '../backend';
-import { Button, Flex, Section, Table } from '../components';
-import { NtosWindow } from '../layouts';
+import { useBackend } from 'tgui/backend';
+import { NtosWindow } from 'tgui/layouts';
+import { Button, Flex, Section, Table } from 'tgui-core/components';
 
 type Data = {
   PC_device_theme: string;

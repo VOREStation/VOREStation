@@ -1,8 +1,7 @@
 import { BooleanLike } from 'common/react';
-
-import { useBackend } from '../backend';
-import { Box, Button, Flex, LabeledList, Section } from '../components';
-import { NtosWindow } from '../layouts';
+import { useBackend } from 'tgui/backend';
+import { NtosWindow } from 'tgui/layouts';
+import { Box, Button, Flex, LabeledList, Section } from 'tgui-core/components';
 
 type Data = {
   current_uav: { status: string; power: BooleanLike } | null;

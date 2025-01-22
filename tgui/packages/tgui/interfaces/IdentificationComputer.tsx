@@ -2,8 +2,8 @@ import { sortBy } from 'common/collections';
 import { BooleanLike } from 'common/react';
 import { decodeHtmlEntities } from 'common/string';
 import { Fragment } from 'react';
-
-import { useBackend } from '../backend';
+import { useBackend } from 'tgui/backend';
+import { Window } from 'tgui/layouts';
 import {
   Box,
   Button,
@@ -13,8 +13,8 @@ import {
   Section,
   Table,
   Tabs,
-} from '../components';
-import { Window } from '../layouts';
+} from 'tgui-core/components';
+
 import { CrewManifestContent } from './CrewManifest';
 
 type Data = {

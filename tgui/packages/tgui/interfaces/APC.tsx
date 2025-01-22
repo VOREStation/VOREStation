@@ -1,6 +1,6 @@
 import { BooleanLike } from 'common/react';
-
-import { useBackend } from '../backend';
+import { useBackend } from 'tgui/backend';
+import { Window } from 'tgui/layouts';
 import {
   Box,
   Button,
@@ -9,8 +9,8 @@ import {
   LabeledList,
   ProgressBar,
   Section,
-} from '../components';
-import { Window } from '../layouts';
+} from 'tgui-core/components';
+
 import { FullscreenNotice } from './common/FullscreenNotice';
 import { InterfaceLockNoticeBox } from './common/InterfaceLockNoticeBox';
 
@@ -352,7 +352,7 @@ const GridCheck = (props) => {
         />
       </Box>
       <Box fontSize="1.5rem" bold>
-        Power surge detected, grid check in effect...
+        Power surge detected, grid check in effecttgui.
       </Box>
     </FullscreenNotice>
   );
@@ -380,10 +380,10 @@ const ApcFailure = (props) => {
       </Box>
       <Box color="average">
         <h2>
-          I/O regulators malfunction detected! Waiting for system reboot...
+          I/O regulators malfunction detected! Waiting for system reboottgui.
         </h2>
       </Box>
-      <Box color="good">Automatic reboot in {failTime} seconds...</Box>
+      <Box color="good">Automatic reboot in {failTime} secondstgui.</Box>
       <Box mt={4}>{rebootOptions}</Box>
     </Dimmer>
   );

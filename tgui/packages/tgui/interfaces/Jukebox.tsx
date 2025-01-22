@@ -2,8 +2,9 @@ import { round, toFixed } from 'common/math';
 import { BooleanLike } from 'common/react';
 import { capitalize } from 'common/string';
 import { useState } from 'react';
-
-import { useBackend } from '../backend';
+import { useBackend } from 'tgui/backend';
+import { formatTime } from 'tgui/format';
+import { Window } from 'tgui/layouts';
 import {
   Box,
   Button,
@@ -16,9 +17,7 @@ import {
   ProgressBar,
   Section,
   Slider,
-} from '../components';
-import { formatTime } from '../format';
-import { Window } from '../layouts';
+} from 'tgui-core/components';
 
 type Data = {
   playing: BooleanLike;

@@ -1,4 +1,5 @@
-import { useBackend } from '../backend';
+import { useBackend } from 'tgui/backend';
+import { Window } from 'tgui/layouts';
 import {
   Button,
   Flex,
@@ -8,8 +9,7 @@ import {
   Stack,
   Table,
   Tabs,
-} from '../components';
-import { Window } from '../layouts';
+} from 'tgui-core/components';
 
 type Data = {
   beakerLoaded: boolean;

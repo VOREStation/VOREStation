@@ -1,5 +1,3 @@
-import { useState } from 'react';
-
 import {
   KEY_ENTER,
   KEY_ESCAPE,
@@ -7,10 +5,19 @@ import {
   KEY_RIGHT,
   KEY_SPACE,
   KEY_TAB,
-} from '../../common/keycodes';
-import { useBackend } from '../backend';
-import { Autofocus, Box, Button, Flex, Section, Stack } from '../components';
-import { Window } from '../layouts';
+} from 'common/keycodes';
+import { useState } from 'react';
+import { useBackend } from 'tgui/backend';
+import { Window } from 'tgui/layouts';
+import {
+  Autofocus,
+  Box,
+  Button,
+  Flex,
+  Section,
+  Stack,
+} from 'tgui-core/components';
+
 import { Loader } from './common/Loader';
 
 type AlertModalData = {

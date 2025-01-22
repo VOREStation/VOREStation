@@ -1,7 +1,8 @@
 import { toFixed } from 'common/math';
 import { BooleanLike } from 'common/react';
-
-import { useBackend } from '../backend';
+import { useBackend } from 'tgui/backend';
+import { formatPower } from 'tgui/format';
+import { Window } from 'tgui/layouts';
 import {
   Box,
   Button,
@@ -10,9 +11,7 @@ import {
   ProgressBar,
   Section,
   Slider,
-} from '../components';
-import { formatPower } from '../format';
-import { Window } from '../layouts';
+} from 'tgui-core/components';
 
 // Common power multiplier
 const POWER_MUL: number = 1e3;

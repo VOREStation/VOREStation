@@ -1,5 +1,7 @@
 import { toTitleCase } from 'common/string';
 import { useCallback, useMemo } from 'react';
+import { useBackend, useSharedState } from 'tgui/backend';
+import { formatSiUnit } from 'tgui/format';
 import { Window } from 'tgui/layouts';
 import {
   Box,
@@ -13,8 +15,6 @@ import {
 } from 'tgui-core/components';
 import { BooleanLike } from 'tgui-core/react';
 
-import { useBackend, useSharedState } from '../backend';
-import { formatSiUnit } from '../format';
 import { Materials } from './ExosuitFabricator/Material';
 
 type MaterialData = {

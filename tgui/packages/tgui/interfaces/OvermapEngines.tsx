@@ -1,6 +1,6 @@
 import { BooleanLike } from 'common/react';
-
-import { useBackend } from '../backend';
+import { useBackend } from 'tgui/backend';
+import { Window } from 'tgui/layouts';
 import {
   AnimatedNumber,
   Box,
@@ -9,8 +9,7 @@ import {
   Flex,
   LabeledList,
   Section,
-} from '../components';
-import { Window } from '../layouts';
+} from 'tgui-core/components';
 
 type Data = {
   global_state: BooleanLike;

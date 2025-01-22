@@ -1,15 +1,14 @@
 import { BooleanLike } from 'common/react';
-
-import { useBackend } from '../backend';
+import { useBackend } from 'tgui/backend';
+import { formatPower } from 'tgui/format';
+import { Window } from 'tgui/layouts';
 import {
   AnimatedNumber,
   Box,
   Button,
   LabeledList,
   Section,
-} from '../components';
-import { formatPower } from '../format';
-import { Window } from '../layouts';
+} from 'tgui-core/components';
 
 type Data = {
   connected: BooleanLike;

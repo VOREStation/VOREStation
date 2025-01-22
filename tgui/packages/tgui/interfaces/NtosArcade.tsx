@@ -1,7 +1,7 @@
 import { BooleanLike } from 'common/react';
-
-import { resolveAsset } from '../assets';
-import { useBackend } from '../backend';
+import { resolveAsset } from 'tgui/assets';
+import { useBackend } from 'tgui/backend';
+import { NtosWindow } from 'tgui/layouts';
 import {
   AnimatedNumber,
   Box,
@@ -11,8 +11,7 @@ import {
   ProgressBar,
   Section,
   Table,
-} from '../components';
-import { NtosWindow } from '../layouts';
+} from 'tgui-core/components';
 
 type Data = {
   Hitpoints: number;

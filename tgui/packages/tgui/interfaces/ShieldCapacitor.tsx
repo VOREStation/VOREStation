@@ -1,7 +1,8 @@
 import { round, toFixed } from 'common/math';
 import { BooleanLike } from 'common/react';
-
-import { useBackend } from '../backend';
+import { useBackend } from 'tgui/backend';
+import { formatPower, formatSiUnit } from 'tgui/format';
+import { Window } from 'tgui/layouts';
 import {
   AnimatedNumber,
   Box,
@@ -9,9 +10,7 @@ import {
   LabeledList,
   NumberInput,
   Section,
-} from '../components';
-import { formatPower, formatSiUnit } from '../format';
-import { Window } from '../layouts';
+} from 'tgui-core/components';
 
 type Data = {
   active: BooleanLike;

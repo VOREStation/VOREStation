@@ -1,7 +1,7 @@
 import { BooleanLike } from 'common/react';
 import { toTitleCase } from 'common/string';
-
-import { useBackend } from '../backend';
+import { useBackend } from 'tgui/backend';
+import { Window } from 'tgui/layouts';
 import {
   Box,
   Button,
@@ -9,8 +9,8 @@ import {
   NoticeBox,
   ProgressBar,
   Section,
-} from '../components';
-import { Window } from '../layouts';
+} from 'tgui-core/components';
+
 import { Materials } from './ExosuitFabricator/Material';
 import { material } from './ExosuitFabricator/types';
 

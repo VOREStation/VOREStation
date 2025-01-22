@@ -1,7 +1,7 @@
 import { BooleanLike } from 'common/react';
 import { decodeHtmlEntities } from 'common/string';
-
-import { useBackend } from '../backend';
+import { useBackend } from 'tgui/backend';
+import { Window } from 'tgui/layouts';
 import {
   Box,
   Button,
@@ -10,8 +10,7 @@ import {
   ProgressBar,
   Section,
   Slider,
-} from '../components';
-import { Window } from '../layouts';
+} from 'tgui-core/components';
 
 type Data = {
   scanned_item: string;

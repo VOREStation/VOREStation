@@ -1,8 +1,7 @@
 import { BooleanLike } from 'common/react';
-
-import { useBackend } from '../backend';
-import { Button, ColorBox, Section, Table } from '../components';
-import { NtosWindow } from '../layouts';
+import { useBackend } from 'tgui/backend';
+import { NtosWindow } from 'tgui/layouts';
+import { Button, ColorBox, Section, Table } from 'tgui-core/components';
 
 const PROGRAM_ICONS = {
   compconfig: 'cog',

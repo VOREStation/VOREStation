@@ -1,10 +1,9 @@
 import { round } from 'common/math';
 import { BooleanLike } from 'common/react';
-
-import { useBackend } from '../backend';
-import { Button, Flex, NumberInput, Section } from '../components';
-import { formatTime } from '../format';
-import { Window } from '../layouts';
+import { useBackend } from 'tgui/backend';
+import { formatTime } from 'tgui/format';
+import { Window } from 'tgui/layouts';
+import { Button, Flex, NumberInput, Section } from 'tgui-core/components';
 
 type Data = {
   time_left: number;

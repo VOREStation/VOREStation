@@ -1,7 +1,8 @@
 import { toFixed } from 'common/math';
 import { BooleanLike } from 'common/react';
-
-import { useBackend } from '../backend';
+import { useBackend } from 'tgui/backend';
+import { formatTime } from 'tgui/format';
+import { Window } from 'tgui/layouts';
 import {
   Box,
   Button,
@@ -9,9 +10,8 @@ import {
   LabeledList,
   NoticeBox,
   Section,
-} from '../components';
-import { formatTime } from '../format';
-import { Window } from '../layouts';
+} from 'tgui-core/components';
+
 import { RankIcon } from './common/RankIcon';
 
 type Data = {

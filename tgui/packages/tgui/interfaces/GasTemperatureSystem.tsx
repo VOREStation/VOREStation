@@ -1,7 +1,7 @@
 import { toFixed } from 'common/math';
 import { BooleanLike } from 'common/react';
-
-import { useBackend } from '../backend';
+import { useBackend } from 'tgui/backend';
+import { Window } from 'tgui/layouts';
 import {
   AnimatedNumber,
   Button,
@@ -10,8 +10,7 @@ import {
   LabeledList,
   Section,
   Slider,
-} from '../components';
-import { Window } from '../layouts';
+} from 'tgui-core/components';
 
 type Data = {
   on: BooleanLike;

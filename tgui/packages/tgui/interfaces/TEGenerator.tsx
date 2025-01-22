@@ -1,9 +1,14 @@
 import { toFixed } from 'common/math';
-
-import { useBackend } from '../backend';
-import { Box, Flex, LabeledList, ProgressBar, Section } from '../components';
-import { formatPower, formatSiUnit } from '../format';
-import { Window } from '../layouts';
+import { useBackend } from 'tgui/backend';
+import { formatPower, formatSiUnit } from 'tgui/format';
+import { Window } from 'tgui/layouts';
+import {
+  Box,
+  Flex,
+  LabeledList,
+  ProgressBar,
+  Section,
+} from 'tgui-core/components';
 
 type Data = {
   totalOutput: number;

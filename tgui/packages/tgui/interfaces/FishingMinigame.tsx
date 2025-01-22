@@ -7,10 +7,9 @@ import {
   useState,
 } from 'react';
 import { Box } from 'tgui/components';
+import { BoxProps } from 'tgui/components/Box';
 import { Window } from 'tgui/layouts';
 import { Button, Icon, ProgressBar, Stack } from 'tgui-core/components';
-
-import { BoxProps } from '../components/Box';
 
 enum GameOverState {
   GameRunning = 0,

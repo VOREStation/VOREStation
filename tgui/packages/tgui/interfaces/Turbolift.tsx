@@ -1,8 +1,7 @@
 import { BooleanLike } from 'common/react';
-
-import { useBackend } from '../backend';
-import { Button, Flex, Section } from '../components';
-import { Window } from '../layouts';
+import { useBackend } from 'tgui/backend';
+import { Window } from 'tgui/layouts';
+import { Button, Flex, Section } from 'tgui-core/components';
 
 type Data = {
   doors_open: BooleanLike;

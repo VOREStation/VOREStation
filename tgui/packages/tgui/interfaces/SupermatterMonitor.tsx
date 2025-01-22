@@ -1,8 +1,8 @@
 import { toFixed } from 'common/math';
 import { BooleanLike } from 'common/react';
 import { toTitleCase } from 'common/string';
-
-import { useBackend } from '../backend';
+import { useBackend } from 'tgui/backend';
+import { Window } from 'tgui/layouts';
 import {
   AnimatedNumber,
   Box,
@@ -11,8 +11,7 @@ import {
   LabeledList,
   ProgressBar,
   Section,
-} from '../components';
-import { Window } from '../layouts';
+} from 'tgui-core/components';
 
 type Data = {
   active: BooleanLike;

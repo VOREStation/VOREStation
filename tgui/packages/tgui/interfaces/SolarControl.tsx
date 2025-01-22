@@ -1,7 +1,7 @@
 import { toFixed } from 'common/math';
 import { BooleanLike } from 'common/react';
-
-import { useBackend } from '../backend';
+import { useBackend } from 'tgui/backend';
+import { Window } from 'tgui/layouts';
 import {
   Box,
   Button,
@@ -10,8 +10,7 @@ import {
   ProgressBar,
   Section,
   Table,
-} from '../components';
-import { Window } from '../layouts';
+} from 'tgui-core/components';
 
 type Data = {
   generated: number;

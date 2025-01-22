@@ -1,7 +1,7 @@
 import { toFixed } from 'common/math';
 import { BooleanLike } from 'common/react';
-
-import { useBackend } from '../backend';
+import { useBackend } from 'tgui/backend';
+import { NtosWindow } from 'tgui/layouts';
 import {
   Box,
   Button,
@@ -11,8 +11,7 @@ import {
   NoticeBox,
   ProgressBar,
   Section,
-} from '../components';
-import { NtosWindow } from '../layouts';
+} from 'tgui-core/components';
 
 type Data = {
   PC_device_theme: string;

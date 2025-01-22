@@ -1,9 +1,15 @@
 import { BooleanLike } from 'common/react';
 import { Component } from 'react';
-
-import { useBackend } from '../backend';
-import { Box, Button, Icon, LabeledList, Section, Slider } from '../components';
-import { Window } from '../layouts';
+import { useBackend } from 'tgui/backend';
+import { Icon } from 'tgui/components';
+import { Window } from 'tgui/layouts';
+import {
+  Box,
+  Button,
+  LabeledList,
+  Section,
+  Slider,
+} from 'tgui-core/components';
 
 type Data = {
   simulating: BooleanLike;

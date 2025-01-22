@@ -2,8 +2,8 @@ import { filter } from 'common/collections';
 import { flow } from 'common/fp';
 import { BooleanLike } from 'common/react';
 import { createSearch } from 'common/string';
-
-import { useBackend, useSharedState } from '../backend';
+import { useBackend, useSharedState } from 'tgui/backend';
+import { Window } from 'tgui/layouts';
 import {
   Button,
   Input,
@@ -12,8 +12,7 @@ import {
   Section,
   Table,
   Tabs,
-} from '../components';
-import { Window } from '../layouts';
+} from 'tgui-core/components';
 
 type Data = {
   ion_law_nr: string;

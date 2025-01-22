@@ -1,7 +1,7 @@
 import { BooleanLike } from 'common/react';
 import { useState } from 'react';
-
-import { useBackend } from '../backend';
+import { useBackend } from 'tgui/backend';
+import { Window } from 'tgui/layouts';
 import {
   Box,
   Button,
@@ -10,8 +10,7 @@ import {
   Section,
   Tabs,
   TextArea,
-} from '../components';
-import { Window } from '../layouts';
+} from 'tgui-core/components';
 
 type data = {
   mode_select: BooleanLike; // Data for emote/talk. 0 for talk, 1 for emote
