@@ -1,5 +1,6 @@
-import { useBackend } from '../../backend';
-import { Button, Flex, LabeledList, Section } from '../../components';
+import { useBackend } from 'tgui/backend';
+import { Button, Flex, LabeledList, Section } from 'tgui-core/components';
+
 import { NEWSCASTER_SCREEN_MAIN } from './constants';
 import { Data } from './types';
 

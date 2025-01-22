@@ -1,6 +1,6 @@
 import { toFixed } from 'common/math';
+import { Box, LabeledList, ProgressBar, Section } from 'tgui-core/components';
 
-import { Box, LabeledList, ProgressBar, Section } from '../../components';
 import { damageRange, damages, stats, tempColors } from './constants';
 import { occupant } from './types';
 

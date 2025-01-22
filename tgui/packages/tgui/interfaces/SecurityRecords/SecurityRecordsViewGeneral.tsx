@@ -1,5 +1,6 @@
-import { useBackend } from '../../backend';
-import { Box, Button, Flex, Image, LabeledList } from '../../components';
+import { useBackend } from 'tgui/backend';
+import { Box, Button, Flex, Image, LabeledList } from 'tgui-core/components';
+
 import { doEdit } from '../GeneralRecords/functions';
 import { Data } from './types';
 

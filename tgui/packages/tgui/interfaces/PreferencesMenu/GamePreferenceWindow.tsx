@@ -1,9 +1,9 @@
 // import { exhaustiveCheck } from 'common/exhaustive';
 import { useState } from 'react';
+import { useBackend } from 'tgui/backend';
+import { Window } from 'tgui/layouts';
+import { Stack } from 'tgui-core/components';
 
-import { useBackend } from '../../backend';
-import { Stack } from '../../components';
-import { Window } from '../../layouts';
 import { GamePreferencesSelectedPage, PreferencesMenuData } from './data';
 import { GamePreferencesPage } from './GamePreferencesPage';
 // import { KeybindingsPage } from './KeybindingsPage';

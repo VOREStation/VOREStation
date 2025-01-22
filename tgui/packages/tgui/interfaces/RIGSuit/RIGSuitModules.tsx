@@ -1,7 +1,7 @@
 import { capitalize, toTitleCase } from 'common/string';
+import { useBackend } from 'tgui/backend';
+import { Box, Button, Flex, LabeledList, Section } from 'tgui-core/components';
 
-import { useBackend } from '../../backend';
-import { Box, Button, Flex, LabeledList, Section } from '../../components';
 import { Data } from './types';
 
 export const RIGSuitModules = (props) => {

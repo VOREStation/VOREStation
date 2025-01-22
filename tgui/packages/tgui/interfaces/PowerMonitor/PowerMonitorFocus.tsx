@@ -2,8 +2,7 @@ import { map, sortBy } from 'common/collections';
 import { flow } from 'common/fp';
 import { toFixed } from 'common/math';
 import { useState } from 'react';
-
-import { useBackend } from '../../backend';
+import { useBackend } from 'tgui/backend';
 import {
   Box,
   Button,
@@ -13,7 +12,8 @@ import {
   ProgressBar,
   Section,
   Table,
-} from '../../components';
+} from 'tgui-core/components';
+
 import { PEAK_DRAW } from './constants';
 import { powerRank } from './functions';
 import { AreaCharge, AreaStatusColorBox } from './PowerMonitorHelpers';
@@ -182,15 +182,9 @@ export const PowerMonitorFocus = (props: { focus: sensor }) => {
             <Table.Cell>Area</Table.Cell>
             <Table.Cell collapsing>Charge</Table.Cell>
             <Table.Cell textAlign="right">Draw</Table.Cell>
-            <Table.Cell collapsing title="Equipment">
-              Eqp
-            </Table.Cell>
-            <Table.Cell collapsing title="Lighting">
-              Lgt
-            </Table.Cell>
-            <Table.Cell collapsing title="Environment">
-              Env
-            </Table.Cell>
+            <Table.Cell collapsing>Eqp</Table.Cell>
+            <Table.Cell collapsing>Lgt</Table.Cell>
+            <Table.Cell collapsing>Env</Table.Cell>
           </Table.Row>
           {areas.map((area, i) => (
             <tr key={i} className="Table__row candystripe">

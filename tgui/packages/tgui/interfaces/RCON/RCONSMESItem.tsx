@@ -1,6 +1,6 @@
 import { toFixed } from 'common/math';
+import { ProgressBar, Stack } from 'tgui-core/components';
 
-import { ProgressBar, Stack } from '../../components';
 import { SMESControls } from './RCONSMESControls';
 import { rconSmes } from './types';
 
@@ -11,7 +11,7 @@ export const SMESItem = (props: { smes: rconSmes }) => {
     <Stack vertical>
       <Stack.Item>
         <Stack fill justify="space-between">
-          <Stack.Item flexBasis="40%" fontSize={1.2}>
+          <Stack.Item basis="20%" fontSize={1.2}>
             {RCON_tag}
           </Stack.Item>
           <Stack.Item grow={1}>

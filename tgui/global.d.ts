@@ -168,6 +168,16 @@ type ByondType = {
    * Maps icons to their ref
    */
   iconRefMap: Record<string, string>;
+
+  /**
+   * Internet Explorer detection
+   */
+  TRIDENT: number | null;
+
+  /**
+   * Webview2 detection
+   */
+  BLINK: number | null;
 };
 
 /**

@@ -1,10 +1,17 @@
 import { BooleanLike } from 'common/react';
 import { useState } from 'react';
 import { useBackend } from 'tgui/backend';
-import { Box, Button, Flex, Icon, LabeledList, Section } from 'tgui/components';
 import { Window } from 'tgui/layouts';
 /* This is all basically stolen from routes.js. */
 import { routingError } from 'tgui/routes';
+import {
+  Box,
+  Button,
+  Flex,
+  Icon,
+  LabeledList,
+  Section,
+} from 'tgui-core/components';
 
 type Data = {
   owner: string;

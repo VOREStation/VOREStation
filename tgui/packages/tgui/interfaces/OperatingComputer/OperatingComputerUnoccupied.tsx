@@ -1,4 +1,4 @@
-import { Flex, Icon } from '../../components';
+import { Flex, Icon } from 'tgui-core/components';
 
 export const OperatingComputerUnoccupied = (props) => {
   return (

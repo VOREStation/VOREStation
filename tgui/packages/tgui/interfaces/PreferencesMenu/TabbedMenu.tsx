@@ -1,11 +1,9 @@
 import { Component, createRef, ReactNode, RefObject } from 'react';
-
-import { Button, Section, Stack } from '../../components';
-import { FlexProps } from '../../components/Flex';
+import { Button, Section, Stack } from 'tgui-core/components';
 
 type TabbedMenuProps = {
   categoryEntries: [string, ReactNode][];
-  contentProps?: FlexProps;
+  contentProps?: any;
 };
 
 export class TabbedMenu extends Component<TabbedMenuProps> {

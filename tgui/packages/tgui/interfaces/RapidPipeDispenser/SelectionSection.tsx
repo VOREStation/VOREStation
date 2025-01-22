@@ -1,6 +1,5 @@
 import { capitalize } from 'common/string';
-
-import { useBackend } from '../../backend';
+import { useBackend } from 'tgui/backend';
 import {
   Box,
   Button,
@@ -8,7 +7,8 @@ import {
   LabeledList,
   Section,
   Stack,
-} from '../../components';
+} from 'tgui-core/components';
+
 import { ICON_BY_CATEGORY_NAME, ROOT_CATEGORIES, TOOLS } from './constants';
 import { Data } from './types';
 

@@ -1,5 +1,6 @@
-import { useBackend } from '../../backend';
-import { Box, Button, Section, Table } from '../../components';
+import { useBackend } from 'tgui/backend';
+import { Box, Button, Section, Table } from 'tgui-core/components';
+
 import { PowerMonitorFocus } from './PowerMonitorFocus';
 import { Data } from './types';
 

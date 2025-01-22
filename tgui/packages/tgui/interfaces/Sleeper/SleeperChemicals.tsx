@@ -1,4 +1,4 @@
-import { useBackend } from '../../backend';
+import { useBackend } from 'tgui/backend';
 import {
   Box,
   Button,
@@ -6,7 +6,8 @@ import {
   Icon,
   ProgressBar,
   Section,
-} from '../../components';
+} from 'tgui-core/components';
+
 import { Data } from './types';
 
 export const SleeperChemicals = (props) => {

@@ -1,6 +1,5 @@
 import { toFixed } from 'common/math';
-
-import { Box, ColorBox, Icon, Tooltip } from '../../components';
+import { Box, ColorBox, Icon, Tooltip } from 'tgui-core/components';
 
 export const AreaCharge = (props: { charging: number; charge: number }) => {
   const { charging, charge } = props;

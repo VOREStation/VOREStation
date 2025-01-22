@@ -1,9 +1,9 @@
 import { BooleanLike } from 'common/react';
 import { capitalize } from 'common/string';
+import { useBackend } from 'tgui/backend';
+import { formatPower } from 'tgui/format';
+import { Button, Slider, Stack } from 'tgui-core/components';
 
-import { useBackend } from '../../backend';
-import { Button, Slider, Stack } from '../../components';
-import { formatPower } from '../../format';
 import { POWER_MUL } from './constants';
 import { rconSmes } from './types';
 

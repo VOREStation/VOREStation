@@ -1,7 +1,7 @@
 import { decodeHtmlEntities } from 'common/string';
+import { useBackend } from 'tgui/backend';
+import { Button, Input, LabeledList, Section } from 'tgui-core/components';
 
-import { useBackend } from '../../backend';
-import { Button, Input, LabeledList, Section } from '../../components';
 import { NEWSCASTER_SCREEN_MAIN } from './constants';
 import { Data } from './types';
 
