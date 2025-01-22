@@ -145,7 +145,7 @@ SUBSYSTEM_DEF(robot_sprites)
 				RS.whitelist_ckey = owner[3]
 				RS.is_whitelisted = TRUE
 				continue
-			// testing module types slots modules-engineering-...
+			// testing module types slots modules-...
 			if(findtext(icon, regex("modules-")))
 				var/list/jobs = splittext(icon, "-")
 				jobs -= "modules"
