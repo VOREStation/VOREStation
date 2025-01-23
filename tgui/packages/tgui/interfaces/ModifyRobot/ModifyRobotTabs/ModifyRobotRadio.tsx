@@ -5,7 +5,6 @@ import {
   Box,
   Button,
   Divider,
-  Flex,
   Icon,
   Input,
   Section,
@@ -26,8 +25,8 @@ export const ModifyRobotRadio = (props: { target: Target }) => {
   return (
     <>
       {!target.active && <NoSpriteWarning name={target.name} />}
-      <Flex height={!target.active ? '75%' : '80%'}>
-        <Flex.Item width="30%" fill>
+      <Stack height={!target.active ? '75%' : '80%'}>
+        <Stack.Item width="30%">
           <RadioSection
             title="Add Radio Channel"
             searchText={searchChannelAddText}
@@ -37,19 +36,19 @@ export const ModifyRobotRadio = (props: { target: Target }) => {
             buttonColor="green"
             buttonIcon="arrow-right-to-bracket"
           />
-        </Flex.Item>
-        <Flex.Item width="40%">
-          <Flex>
-            <Flex.Item grow />
-            <Flex.Item>
+        </Stack.Item>
+        <Stack.Item width="40%">
+          <Stack>
+            <Stack.Item grow />
+            <Stack.Item>
               <Box
                 className={classes([target.sprite_size, target.sprite + 'N'])}
               />
-            </Flex.Item>
-            <Flex.Item grow />
-          </Flex>
-        </Flex.Item>
-        <Flex.Item width="30%" fill>
+            </Stack.Item>
+            <Stack.Item grow />
+          </Stack>
+        </Stack.Item>
+        <Stack.Item width="30%">
           <RadioSection
             title="Remove Radio Channel"
             searchText={searchChannelRemoveText}
@@ -59,8 +58,8 @@ export const ModifyRobotRadio = (props: { target: Target }) => {
             buttonColor="red"
             buttonIcon="trash"
           />
-        </Flex.Item>
-      </Flex>
+        </Stack.Item>
+      </Stack>
     </>
   );
 };
@@ -106,17 +105,17 @@ const RadioSection = (props: {
                   })
                 }
               >
-                <Flex varticalAlign="center">
-                  <Flex.Item>{capitalize(channel)}</Flex.Item>
-                  <Flex.Item grow />
-                  <Flex.Item>
+                <Stack align="center">
+                  <Stack.Item>{capitalize(channel)}</Stack.Item>
+                  <Stack.Item grow />
+                  <Stack.Item>
                     <Icon
                       name={buttonIcon}
                       backgroundColor={buttonColor}
                       size={1.5}
                     />
-                  </Flex.Item>
-                </Flex>
+                  </Stack.Item>
+                </Stack>
               </Button>
             );
           })}
