@@ -352,7 +352,7 @@ const GridCheck = (props) => {
         />
       </Box>
       <Box fontSize="1.5rem" bold>
-        Power surge detected, grid check in effecttgui.
+        Power surge detected, grid check in effect...
       </Box>
     </FullscreenNotice>
   );
@@ -380,7 +380,7 @@ const ApcFailure = (props) => {
       </Box>
       <Box color="average">
         <h2>
-          I/O regulators malfunction detected! Waiting for system reboottgui.
+          I/O regulators malfunction detected! Waiting for system reboot...
         </h2>
       </Box>
       <Box color="good">Automatic reboot in {failTime} secondstgui.</Box>
