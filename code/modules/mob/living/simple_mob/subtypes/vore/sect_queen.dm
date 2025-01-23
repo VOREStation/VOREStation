@@ -96,7 +96,7 @@
 	set desc = "Customize your eyes and abdomen glow color."
 	set category = "Abilities.Sect Queen"
 
-	var/new_color = input(src, "Please select color.", "Glow Color", custom_eye_color) as color|null
+	var/new_color = tgui_color_picker(src, "Please select color.", "Glow Color", custom_eye_color)
 	if(new_color)
 		custom_eye_color = new_color
 		remove_eyes()

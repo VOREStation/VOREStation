@@ -115,7 +115,7 @@ world/New()
 	else
 		output += "Whoops, no reports!"
 
-	usr << browse(output, "window=news;size=600x400")
+	usr << browse("<html>[output]</html>", "window=news;size=600x400")
 
 
 /client/proc/Report(mob/M as mob in world)

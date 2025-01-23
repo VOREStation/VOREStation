@@ -621,4 +621,4 @@
 
 // 	dat += resources
 
-// 	src << browse(dat, "window=robotmod")
+// 	src << browse("<html>[dat]</html>", "window=robotmod")

@@ -209,7 +209,7 @@
 		to_chat(user, span_warning("You can't do that right now!"))
 		return
 	if(tgui_alert(user, "Are you sure you want to recolor your shield?", "Confirm Recolor", list("Yes", "No")) == "Yes")
-		var/energy_color_input = input(user,"","Choose Energy Color",lcolor) as color|null
+		var/energy_color_input = tgui_color_picker(user,"","Choose Energy Color",lcolor)
 		if(energy_color_input)
 			lcolor = sanitize_hexcolor(energy_color_input)
 		update_icon()
