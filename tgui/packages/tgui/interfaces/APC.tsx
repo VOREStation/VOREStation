@@ -383,7 +383,7 @@ const ApcFailure = (props) => {
           I/O regulators malfunction detected! Waiting for system reboot...
         </h2>
       </Box>
-      <Box color="good">Automatic reboot in {failTime} secondstgui.</Box>
+      <Box color="good">Automatic reboot in {failTime} seconds...</Box>
       <Box mt={4}>{rebootOptions}</Box>
     </Dimmer>
   );
