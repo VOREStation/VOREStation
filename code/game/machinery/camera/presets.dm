@@ -191,16 +191,22 @@ var/global/list/engineering_networks = list(
 // CHECKS
 
 /obj/machinery/camera/proc/isEmpProof()
+	if(!assembly)
+		return FALSE
 	var/O = locate(/obj/item/stack/material/osmium) in assembly.upgrades
 	return O
 
 /obj/machinery/camera/proc/isXRay()
+	if(!assembly)
+		return FALSE
 	var/obj/item/stock_parts/scanning_module/O = locate(/obj/item/stock_parts/scanning_module) in assembly.upgrades
 	if (O && O.rating >= 2)
 		return O
 	return null
 
 /obj/machinery/camera/proc/isMotion()
+	if(!assembly)
+		return FALSE
 	var/O = locate(/obj/item/assembly/prox_sensor) in assembly.upgrades
 	return O
 
