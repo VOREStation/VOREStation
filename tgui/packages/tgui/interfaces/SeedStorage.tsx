@@ -5,9 +5,9 @@ import { Window } from 'tgui/layouts';
 import {
   Button,
   Collapsible,
-  Flex,
   LabeledList,
   Section,
+  Stack,
 } from 'tgui-core/components';
 
 type Data = {
@@ -46,8 +46,8 @@ export const SeedStorage = (props) => {
       <Window.Content scrollable>
         <Section title="Seeds">
           {sortedSeeds.map((seed) => (
-            <Flex spacing={1} mt={-1} key={seed.name + seed.uid}>
-              <Flex.Item basis="60%">
+            <Stack mt={-1} key={seed.name + seed.uid}>
+              <Stack.Item basis="60%">
                 <Collapsible title={toTitleCase(seed.name) + ' #' + seed.uid}>
                   <Section width="165%" title="Traits">
                     <LabeledList>
@@ -59,9 +59,9 @@ export const SeedStorage = (props) => {
                     </LabeledList>
                   </Section>
                 </Collapsible>
-              </Flex.Item>
-              <Flex.Item mt={0.4}>{seed.amount} Remaining</Flex.Item>
-              <Flex.Item grow={1}>
+              </Stack.Item>
+              <Stack.Item mt={0.4}>{seed.amount} Remaining</Stack.Item>
+              <Stack.Item grow={1}>
                 <Button
                   fluid
                   icon="download"
@@ -69,8 +69,8 @@ export const SeedStorage = (props) => {
                 >
                   Vend
                 </Button>
-              </Flex.Item>
-              <Flex.Item grow={1}>
+              </Stack.Item>
+              <Stack.Item grow={1}>
                 <Button
                   fluid
                   icon="trash"
@@ -78,8 +78,8 @@ export const SeedStorage = (props) => {
                 >
                   Purge
                 </Button>
-              </Flex.Item>
-            </Flex>
+              </Stack.Item>
+            </Stack>
           ))}
         </Section>
       </Window.Content>

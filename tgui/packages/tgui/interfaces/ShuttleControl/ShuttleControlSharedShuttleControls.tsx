@@ -1,5 +1,5 @@
 import { useBackend } from 'tgui/backend';
-import { Button, Flex, Section } from 'tgui-core/components';
+import { Button, Section, Stack } from 'tgui-core/components';
 
 import { Data } from './types';
 
@@ -10,8 +10,8 @@ export const ShuttleControlSharedShuttleControls = (props) => {
 
   return (
     <Section title="Controls">
-      <Flex spacing={1}>
-        <Flex.Item grow={1}>
+      <Stack>
+        <Stack.Item grow>
           <Button
             onClick={() => act('move')}
             disabled={!can_launch}
@@ -20,8 +20,8 @@ export const ShuttleControlSharedShuttleControls = (props) => {
           >
             Launch Shuttle
           </Button>
-        </Flex.Item>
-        <Flex.Item grow={1}>
+        </Stack.Item>
+        <Stack.Item grow>
           <Button
             onClick={() => act('cancel')}
             disabled={!can_cancel}
@@ -30,8 +30,8 @@ export const ShuttleControlSharedShuttleControls = (props) => {
           >
             Cancel Launch
           </Button>
-        </Flex.Item>
-        <Flex.Item grow={1}>
+        </Stack.Item>
+        <Stack.Item grow>
           <Button
             onClick={() => act('force')}
             color="bad"
@@ -41,8 +41,8 @@ export const ShuttleControlSharedShuttleControls = (props) => {
           >
             Force Launch
           </Button>
-        </Flex.Item>
-      </Flex>
+        </Stack.Item>
+      </Stack>
     </Section>
   );
 };

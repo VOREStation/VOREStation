@@ -5,10 +5,10 @@ import { formatMoney } from 'tgui/format';
 import {
   Box,
   Button,
-  Flex,
   Input,
   NoticeBox,
   Section,
+  Stack,
   Tabs,
 } from 'tgui-core/components';
 
@@ -72,9 +72,9 @@ export const GenericUplink = (props: {
         </>
       }
     >
-      <Flex>
+      <Stack>
         {searchText.length === 0 && (
-          <Flex.Item>
+          <Stack.Item mr={1}>
             <Tabs vertical>
               {categories.map((category) => (
                 <Tabs.Tab
@@ -86,9 +86,9 @@ export const GenericUplink = (props: {
                 </Tabs.Tab>
               ))}
             </Tabs>
-          </Flex.Item>
+          </Stack.Item>
         )}
-        <Flex.Item grow={1} basis={0}>
+        <Stack.Item grow basis={0}>
           {items.length === 0 && (
             <NoticeBox>
               {searchText.length === 0
@@ -102,8 +102,8 @@ export const GenericUplink = (props: {
             currencySymbol={currencySymbol}
             items={items}
           />
-        </Flex.Item>
-      </Flex>
+        </Stack.Item>
+      </Stack>
     </Section>
   );
 };

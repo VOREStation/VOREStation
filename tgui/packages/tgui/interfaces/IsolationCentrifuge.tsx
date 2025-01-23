@@ -1,7 +1,7 @@
 import { BooleanLike } from 'common/react';
 import { useBackend } from 'tgui/backend';
 import { Window } from 'tgui/layouts';
-import { Box, Button, Flex, LabeledList, Section } from 'tgui-core/components';
+import { Box, Button, LabeledList, Section, Stack } from 'tgui-core/components';
 
 type Data = {
   antibodies: string | null;
@@ -60,8 +60,8 @@ export const IsolationCentrifuge = (props) => {
             <Section
               title={is_antibody_sample ? 'Antibody Sample' : 'Blood Sample'}
             >
-              <Flex spacing={1} mb={1}>
-                <Flex.Item grow={1}>
+              <Stack mb={1}>
+                <Stack.Item grow={1}>
                   <Button
                     fluid
                     icon="print"
@@ -70,8 +70,8 @@ export const IsolationCentrifuge = (props) => {
                   >
                     Print
                   </Button>
-                </Flex.Item>
-                <Flex.Item grow={1}>
+                </Stack.Item>
+                <Stack.Item grow={1}>
                   <Button
                     fluid
                     icon="eject"
@@ -80,8 +80,8 @@ export const IsolationCentrifuge = (props) => {
                   >
                     Eject Vial
                   </Button>
-                </Flex.Item>
-              </Flex>
+                </Stack.Item>
+              </Stack>
               {blood_sample}
             </Section>
             {(antibodies && !is_antibody_sample) || pathogens.length ? (

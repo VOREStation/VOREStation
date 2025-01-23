@@ -4,10 +4,10 @@ import { formatPower, formatSiUnit } from 'tgui/format';
 import { Window } from 'tgui/layouts';
 import {
   Box,
-  Flex,
   LabeledList,
   ProgressBar,
   Section,
+  Stack,
 } from 'tgui-core/components';
 
 type Data = {
@@ -50,14 +50,14 @@ export const TEGenerator = (props) => {
           </LabeledList>
         </Section>
         {primary && secondary ? (
-          <Flex spacing={1}>
-            <Flex.Item shrink={1} grow={1}>
+          <Stack>
+            <Stack.Item shrink={1} grow={1}>
               <TEGCirculator name="Primary Circulator" values={primary} />
-            </Flex.Item>
-            <Flex.Item shrink={1} grow={1}>
+            </Stack.Item>
+            <Stack.Item shrink={1} grow={1}>
               <TEGCirculator name="Secondary Circulator" values={secondary} />
-            </Flex.Item>
-          </Flex>
+            </Stack.Item>
+          </Stack>
         ) : (
           <Box color="bad">
             Warning! Both circulators must be connected in order to operate this
