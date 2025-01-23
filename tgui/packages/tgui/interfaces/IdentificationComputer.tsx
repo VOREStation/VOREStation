@@ -7,10 +7,10 @@ import { Window } from 'tgui/layouts';
 import {
   Box,
   Button,
-  Flex,
   Input,
   LabeledList,
   Section,
+  Stack,
   Table,
   Tabs,
 } from 'tgui-core/components';
@@ -143,7 +143,7 @@ export const IdentificationComputerAccessModification = (props: {
   } = data;
 
   return (
-    <Section title="Access Modification">
+    <Section title="Access Modification" scrollable fill height="92%">
       {!authenticated && (
         <Box italic mb={1}>
           Please insert the IDs into the terminal to proceed.
@@ -275,10 +275,10 @@ export const IdentificationComputerRegions = (props: { actName: string }) => {
   const { regions } = data;
 
   return (
-    <Flex wrap="wrap" spacing={1}>
+    <Stack wrap="wrap">
       {regions &&
         sortBy(regions, (r) => r.name).map((region) => (
-          <Flex.Item mb={1} basis="content" grow={1} key={region.name}>
+          <Stack.Item mb={1} basis="content" grow={1} key={region.name}>
             <Section title={region.name} height="100%">
               {sortBy(region.accesses, (a) => a.desc).map((access) => (
                 <Box key={access.ref}>
@@ -297,8 +297,8 @@ export const IdentificationComputerRegions = (props: { actName: string }) => {
                 </Box>
               ))}
             </Section>
-          </Flex.Item>
+          </Stack.Item>
         ))}
-    </Flex>
+    </Stack>
   );
 };

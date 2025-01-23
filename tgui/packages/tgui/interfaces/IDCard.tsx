@@ -2,11 +2,11 @@ import { useBackend } from 'tgui/backend';
 import { Window } from 'tgui/layouts';
 import {
   Box,
-  Flex,
   Icon,
   Image,
   LabeledList,
   Section,
+  Stack,
 } from 'tgui-core/components';
 
 import { RankIcon } from './common/RankIcon';
@@ -54,8 +54,8 @@ export const IDCard = (props) => {
     <Window width={470} height={250}>
       <Window.Content>
         <Section>
-          <Flex>
-            <Flex.Item basis="25%" textAlign="left">
+          <Stack>
+            <Stack.Item basis="25%" textAlign="left">
               <Box
                 inline
                 style={{
@@ -75,8 +75,8 @@ export const IDCard = (props) => {
                   />
                 )) || <Icon name="user" size={8} ml={1.5} mt={2.5} />}
               </Box>
-            </Flex.Item>
-            <Flex.Item basis={0} grow={1}>
+            </Stack.Item>
+            <Stack.Item basis={0} grow={1}>
               <LabeledList>
                 {dataIter.map((data) => (
                   <LabeledList.Item key={data.name} label={data.name}>
@@ -84,25 +84,25 @@ export const IDCard = (props) => {
                   </LabeledList.Item>
                 ))}
               </LabeledList>
-            </Flex.Item>
-          </Flex>
-          <Flex
+            </Stack.Item>
+          </Stack>
+          <Stack
             className="IDCard__NamePlate"
             align="center"
             justify="space-around"
           >
-            <Flex.Item>
+            <Stack.Item>
               <Box textAlign="center">{registered_name}</Box>
-            </Flex.Item>
-            <Flex.Item>
+            </Stack.Item>
+            <Stack.Item>
               <Box textAlign="center">
                 <RankIcon color="" rank={assignment} />
               </Box>
-            </Flex.Item>
-            <Flex.Item>
+            </Stack.Item>
+            <Stack.Item>
               <Box textAlign="center">{assignment}</Box>
-            </Flex.Item>
-          </Flex>
+            </Stack.Item>
+          </Stack>
         </Section>
       </Window.Content>
     </Window>

@@ -10,13 +10,13 @@ import {
   Button,
   Collapsible,
   Divider,
-  Flex,
   Input,
   LabeledList,
   NumberInput,
   ProgressBar,
   Section,
   Slider,
+  Stack,
 } from 'tgui-core/components';
 
 type Data = {
@@ -212,8 +212,8 @@ export const Jukebox = (props) => {
                         >
                           <div style={{ marginLeft: '1em' }}>
                             {genre_songs[genre].map((track) => (
-                              <Flex key={track.ref}>
-                                <Flex.Item grow={1}>
+                              <Stack key={track.ref}>
+                                <Stack.Item grow={1}>
                                   <Button
                                     fluid
                                     icon="play"
@@ -227,8 +227,8 @@ export const Jukebox = (props) => {
                                   >
                                     {track.title}
                                   </Button>
-                                </Flex.Item>
-                                <Flex.Item>
+                                </Stack.Item>
+                                <Stack.Item>
                                   <Button.Confirm
                                     icon="trash"
                                     onClick={() =>
@@ -237,8 +237,8 @@ export const Jukebox = (props) => {
                                       })
                                     }
                                   />
-                                </Flex.Item>
-                              </Flex>
+                                </Stack.Item>
+                              </Stack>
                             ))}
                           </div>
                         </Collapsible>
@@ -280,8 +280,8 @@ export const Jukebox = (props) => {
                     />
                   </LabeledList.Item>
                   <LabeledList.Item label="Genre">
-                    <Flex>
-                      <Flex.Item grow={1}>
+                    <Stack>
+                      <Stack.Item grow={1}>
                         {unlockGenre ? (
                           <Input
                             width="100%"
@@ -291,15 +291,15 @@ export const Jukebox = (props) => {
                         ) : (
                           <Box>{newGenre}</Box>
                         )}
-                      </Flex.Item>
-                      <Flex.Item>
+                      </Stack.Item>
+                      <Stack.Item>
                         <Button.Checkbox
                           icon={unlockGenre ? 'lock-open' : 'lock'}
                           color={unlockGenre ? 'good' : 'bad'}
                           onClick={() => handleUnlockGenre()}
                         />
-                      </Flex.Item>
-                    </Flex>
+                      </Stack.Item>
+                    </Stack>
                   </LabeledList.Item>
                   <LabeledList.Item label="Secret">
                     <Button.Checkbox

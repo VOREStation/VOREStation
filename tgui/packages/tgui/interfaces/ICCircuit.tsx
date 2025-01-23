@@ -3,7 +3,7 @@ import { decodeHtmlEntities } from 'common/string';
 import { useBackend } from 'tgui/backend';
 import { formatPower } from 'tgui/format';
 import { Window } from 'tgui/layouts';
-import { Box, Button, Flex, LabeledList, Section } from 'tgui-core/components';
+import { Box, Button, LabeledList, Section, Stack } from 'tgui-core/components';
 
 type Data = {
   name: string;
@@ -87,16 +87,16 @@ export const ICCircuit = (props) => {
           {extended_desc}
         </Section>
         <Section title="Circuit">
-          <Flex textAlign="center" spacing={1}>
+          <Stack textAlign="center">
             {(inputs.length && (
-              <Flex.Item grow={1}>
+              <Stack.Item grow={1}>
                 <Section title="Inputs">
                   <ICIODisplay list={inputs} />
                 </Section>
-              </Flex.Item>
+              </Stack.Item>
             )) ||
               null}
-            <Flex.Item
+            <Stack.Item
               basis={
                 inputs.length && outputs.length
                   ? '33%'
@@ -108,16 +108,16 @@ export const ICCircuit = (props) => {
               <Section title={displayed_name} mb={1}>
                 <Box>{desc}</Box>
               </Section>
-            </Flex.Item>
+            </Stack.Item>
             {(outputs.length && (
-              <Flex.Item grow={1}>
+              <Stack.Item grow={1}>
                 <Section title="Outputs">
                   <ICIODisplay list={outputs} />
                 </Section>
-              </Flex.Item>
+              </Stack.Item>
             )) ||
               null}
-          </Flex>
+          </Stack>
           <Section title="Triggers">
             {activators.map((activator) => (
               <LabeledList.Item key={activator.name} label={activator.name}>
