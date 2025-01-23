@@ -8,11 +8,11 @@ import { Window } from 'tgui/layouts';
 import {
   Button,
   Dimmer,
-  Flex,
   Icon,
   Input,
   LabeledList,
   Section,
+  Stack,
   Tabs,
 } from 'tgui-core/components';
 
@@ -140,8 +140,8 @@ export const PersonalCrafting = (props) => {
             placeholder="Search for recipes..."
             onInput={(e, value: string) => setSearchText(value)}
           />
-          <Flex>
-            <Flex.Item>
+          <Stack>
+            <Stack.Item mr={1}>
               <Tabs vertical>
                 {categories.map((category, i) => (
                   <Tabs.Tab
@@ -159,15 +159,15 @@ export const PersonalCrafting = (props) => {
                   </Tabs.Tab>
                 ))}
               </Tabs>
-            </Flex.Item>
-            <Flex.Item grow={1} basis={0}>
+            </Stack.Item>
+            <Stack.Item grow={1} basis={0}>
               <CraftingList
                 craftables={shownRecipes}
                 display_compact={display_compact}
                 display_craftable_only={display_craftable_only}
               />
-            </Flex.Item>
-          </Flex>
+            </Stack.Item>
+          </Stack>
         </Section>
       </Window.Content>
     </Window>

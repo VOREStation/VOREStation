@@ -5,9 +5,9 @@ import { Window } from 'tgui/layouts';
 import {
   Box,
   ByondUi,
-  Flex,
   LabeledList,
   Section,
+  Stack,
   Tabs,
 } from 'tgui-core/components';
 
@@ -132,8 +132,8 @@ export const AppearanceChanger = (props) => {
     <Window width={700} height={650} title={decodeHtmlEntities(title)}>
       <Window.Content>
         <Section title="Reflection">
-          <Flex>
-            <Flex.Item grow={1}>
+          <Stack>
+            <Stack.Item grow={1}>
               <LabeledList>
                 <LabeledList.Item label="Name">{name}</LabeledList.Item>
                 <LabeledList.Item
@@ -187,8 +187,8 @@ export const AppearanceChanger = (props) => {
                   {wing_style ? capitalize(wing_style) : 'Not Set'}
                 </LabeledList.Item>
               </LabeledList>
-            </Flex.Item>
-            <Flex.Item>
+            </Stack.Item>
+            <Stack.Item>
               <ByondUi
                 style={{
                   width: '256px',
@@ -199,8 +199,8 @@ export const AppearanceChanger = (props) => {
                   type: 'map',
                 }}
               />
-            </Flex.Item>
-          </Flex>
+            </Stack.Item>
+          </Stack>
         </Section>
         <Tabs>
           {change_race ? (

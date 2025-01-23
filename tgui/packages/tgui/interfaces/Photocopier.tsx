@@ -4,10 +4,10 @@ import { Window } from 'tgui/layouts';
 import {
   Box,
   Button,
-  Flex,
   NumberInput,
   ProgressBar,
   Section,
+  Stack,
 } from 'tgui-core/components';
 
 type Data = {
@@ -77,14 +77,14 @@ const Options = (props) => {
 
   return (
     <Section title="Options">
-      <Flex>
-        <Flex.Item mt={0.4} width={11} color="label">
+      <Stack>
+        <Stack.Item mt={0.4} width={11} color="label">
           Make copies:
-        </Flex.Item>
-        <Flex.Item>
+        </Stack.Item>
+        <Stack.Item>
           <NumberInput
             animated
-            width="2.6"
+            width="2.6em"
             height="1.65"
             step={1}
             stepPixelSize={8}
@@ -97,8 +97,8 @@ const Options = (props) => {
               })
             }
           />
-        </Flex.Item>
-        <Flex.Item>
+        </Stack.Item>
+        <Stack.Item>
           <Button
             ml={0.2}
             icon="copy"
@@ -107,8 +107,8 @@ const Options = (props) => {
           >
             Copy
           </Button>
-        </Flex.Item>
-      </Flex>
+        </Stack.Item>
+      </Stack>
       <Button
         mt={0.5}
         textAlign="center"
