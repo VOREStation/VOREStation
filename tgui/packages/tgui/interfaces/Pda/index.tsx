@@ -7,10 +7,10 @@ import { routingError } from 'tgui/routes';
 import {
   Box,
   Button,
-  Flex,
   Icon,
   LabeledList,
   Section,
+  Stack,
 } from 'tgui-core/components';
 
 type Data = {
@@ -112,9 +112,9 @@ const PDAHeader = (props: {
 
   return (
     <Box mb={1}>
-      <Flex align="center" justify="space-between">
+      <Stack align="center" justify="space-between">
         {!!idInserted && (
-          <Flex.Item>
+          <Stack.Item>
             <Button
               icon="eject"
               color="transparent"
@@ -122,20 +122,20 @@ const PDAHeader = (props: {
             >
               {idLink}
             </Button>
-          </Flex.Item>
+          </Stack.Item>
         )}
-        <Flex.Item grow={1} textAlign="center" bold>
+        <Stack.Item grow={1} textAlign="center" bold>
           {stationTime}
-        </Flex.Item>
-        <Flex.Item>
+        </Stack.Item>
+        <Stack.Item>
           <Button
             selected={props.settingsMode}
             onClick={() => props.onSettingsMode(!props.settingsMode)}
             icon="cog"
           />
           <Button onClick={() => act('Retro')} icon="adjust" />
-        </Flex.Item>
-      </Flex>
+        </Stack.Item>
+      </Stack>
     </Box>
   );
 };
@@ -194,8 +194,8 @@ const PDAFooter = (props: { onSettingsMode: Function }) => {
       right="0%"
       backgroundColor={useRetro ? '#6f7961' : '#1b1b1b'}
     >
-      <Flex>
-        <Flex.Item basis="33%">
+      <Stack>
+        <Stack.Item basis="33%">
           <Button
             fluid
             color="transparent"
@@ -206,8 +206,8 @@ const PDAFooter = (props: { onSettingsMode: Function }) => {
             fontSize={1.7}
             onClick={() => act('Back')}
           />
-        </Flex.Item>
-        <Flex.Item basis="33%">
+        </Stack.Item>
+        <Stack.Item basis="33%">
           <Button
             fluid
             color="transparent"
@@ -221,8 +221,8 @@ const PDAFooter = (props: { onSettingsMode: Function }) => {
               act('Home');
             }}
           />
-        </Flex.Item>
-      </Flex>
+        </Stack.Item>
+      </Stack>
     </Box>
   );
 };
