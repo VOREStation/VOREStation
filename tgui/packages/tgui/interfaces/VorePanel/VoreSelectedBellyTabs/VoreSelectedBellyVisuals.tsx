@@ -57,7 +57,7 @@ export const VoreSelectedBellyVisuals = (props: { belly: selectedData }) => {
               </Button>
             </LabeledList.Item>
             {affects_voresprite ? (
-              <span>
+              <>
                 <LabeledList.Item label="Vore Sprite Mode">
                   {(vore_sprite_flags.length && vore_sprite_flags.join(', ')) ||
                     'None'}
@@ -164,14 +164,12 @@ export const VoreSelectedBellyVisuals = (props: { belly: selectedData }) => {
                   </LabeledList.Item>
                 ) : (
                   <LabeledList.Item label="Belly Sprite to affect">
-                    <span style={{ color: 'red' }}>
-                      You do not have any bellysprites.
-                    </span>
+                    <Box textColor="red">You do not have any bellysprites.</Box>
                   </LabeledList.Item>
                 )}
                 {tail_option_shown &&
                 vore_sprite_flags.includes('Undergarment addition') ? (
-                  <div>
+                  <>
                     <LabeledList.Item label="Undergarment type to affect">
                       <Button
                         onClick={() =>
@@ -194,7 +192,7 @@ export const VoreSelectedBellyVisuals = (props: { belly: selectedData }) => {
                         {undergarment_if_none}
                       </Button>
                     </LabeledList.Item>
-                  </div>
+                  </>
                 ) : (
                   ''
                 )}
@@ -214,7 +212,7 @@ export const VoreSelectedBellyVisuals = (props: { belly: selectedData }) => {
                 ) : (
                   ''
                 )}
-              </span>
+              </>
             ) : (
               ''
             )}
