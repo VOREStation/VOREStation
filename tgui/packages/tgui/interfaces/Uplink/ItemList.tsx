@@ -44,6 +44,7 @@ export const ItemList = (props: {
   }
   return items.map((item) => (
     <Section
+      ml={0}
       key={item.name}
       title={item.name}
       buttons={

@@ -74,7 +74,7 @@ export const GenericUplink = (props: {
     >
       <Stack>
         {searchText.length === 0 && (
-          <Stack.Item mr={1}>
+          <Stack.Item>
             <Tabs vertical>
               {categories.map((category) => (
                 <Tabs.Tab

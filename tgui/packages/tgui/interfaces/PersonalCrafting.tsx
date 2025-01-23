@@ -141,7 +141,7 @@ export const PersonalCrafting = (props) => {
             onInput={(e, value: string) => setSearchText(value)}
           />
           <Stack>
-            <Stack.Item mr={1}>
+            <Stack.Item>
               <Tabs vertical>
                 {categories.map((category, i) => (
                   <Tabs.Tab
@@ -218,6 +218,7 @@ const CraftingList = (props: {
     // Full display
     return (
       <Section
+        ml={0}
         key={i}
         title={craftable.name}
         buttons={
