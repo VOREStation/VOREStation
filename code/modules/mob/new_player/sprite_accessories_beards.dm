@@ -4,6 +4,8 @@
 /  == Facial Hair Definitions ==  /
 /  =---------------------------=  /
 ///////////////////////////////////
+
+Includes things like facial spines for unathi
 */
 
 /datum/sprite_accessory/facial_hair
