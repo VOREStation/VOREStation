@@ -30,7 +30,7 @@ export const VoreContentsPanel = (props: {
       {(show_pictures && (
         <Stack wrap="wrap" justify="center" align="center">
           {contents.map((thing) => (
-            <Stack.Item key={thing.name} basis="33%">
+            <Stack.Item key={thing.name} basis="32%">
               <Button
                 width="64px"
                 color={thing.absorbed ? 'purple' : stats[thing.stat]}
