@@ -24,6 +24,7 @@ export const DesignList = (props) => {
     >
       <Input
         fluid
+        updateOnPropsChange
         placeholder="Search for..."
         value={data.search}
         onInput={(e, v) => act('search', { search: v })}

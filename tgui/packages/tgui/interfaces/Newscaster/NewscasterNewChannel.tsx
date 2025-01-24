@@ -25,6 +25,7 @@ export const NewscasterNewChannel = (props: { setScreen: Function }) => {
         <LabeledList.Item label="Channel Name">
           <Input
             fluid
+            updateOnPropsChange
             value={decodeHtmlEntities(channel_name)}
             onInput={(e, val: string) => act('set_channel_name', { val: val })}
           />

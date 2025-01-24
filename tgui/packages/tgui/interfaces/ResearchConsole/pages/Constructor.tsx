@@ -194,6 +194,7 @@ const BuildTab = (props: {
     >
       <Input
         fluid
+        updateOnPropsChange
         placeholder="Search for..."
         value={data.search}
         onInput={(e, v: string) => act('search', { search: v })}

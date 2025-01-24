@@ -130,6 +130,7 @@ const Designs = (props) => {
               <Input
                 fluid
                 placeholder="Search all designs..."
+                updateOnPropsChange
                 value={searchText}
                 onChange={(e, val) => setSearchText(val)}
               />

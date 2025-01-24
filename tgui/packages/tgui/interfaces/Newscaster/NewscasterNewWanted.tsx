@@ -31,6 +31,7 @@ export const NewscasterNewWanted = (props: { setScreen: Function }) => {
         <LabeledList.Item label="Criminal Name">
           <Input
             fluid
+            updateOnPropsChange
             value={decodeHtmlEntities(channel_name)}
             onInput={(e, val) => act('set_channel_name', { val: val })}
           />
@@ -38,6 +39,7 @@ export const NewscasterNewWanted = (props: { setScreen: Function }) => {
         <LabeledList.Item label="Description">
           <Input
             fluid
+            updateOnPropsChange
             value={decodeHtmlEntities(msg)}
             onInput={(e, val) => act('set_wanted_desc', { val: val })}
           />

@@ -169,6 +169,7 @@ export const IdentificationComputerAccessModification = (props: {
             <LabeledList>
               <LabeledList.Item label="Registered Name">
                 <Input
+                  updateOnPropsChange
                   value={target_owner!}
                   fluid
                   onInput={(e, val) => act('reg', { reg: val })}
@@ -176,6 +177,7 @@ export const IdentificationComputerAccessModification = (props: {
               </LabeledList.Item>
               <LabeledList.Item label="Account Number">
                 <Input
+                  updateOnPropsChange
                   value={account_number!}
                   fluid
                   onInput={(e, val) => act('account', { account: val })}

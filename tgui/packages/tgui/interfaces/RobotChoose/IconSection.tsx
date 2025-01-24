@@ -36,6 +36,7 @@ export const IconSection = (props: {
           <Stack.Item grow>
             <Tooltip content="Adjust your name">
               <Input
+                updateOnPropsChange
                 fluid
                 value={robotName}
                 onChange={(e, value) => {

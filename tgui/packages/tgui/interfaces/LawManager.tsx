@@ -294,6 +294,7 @@ export const LawManagerLaws = (props: {
                 <Table.Cell collapsing>Zero</Table.Cell>
                 <Table.Cell>
                   <Input
+                    updateOnPropsChange
                     value={zeroth_law}
                     fluid
                     onChange={(e, val: string) =>
@@ -315,6 +316,7 @@ export const LawManagerLaws = (props: {
               <Table.Cell collapsing>Ion</Table.Cell>
               <Table.Cell>
                 <Input
+                  updateOnPropsChange
                   value={ion_law}
                   fluid
                   onChange={(e, val: string) =>
@@ -333,6 +335,7 @@ export const LawManagerLaws = (props: {
               <Table.Cell>Inherent</Table.Cell>
               <Table.Cell>
                 <Input
+                  updateOnPropsChange
                   value={inherent_law}
                   fluid
                   onChange={(e, val: string) =>
@@ -351,6 +354,7 @@ export const LawManagerLaws = (props: {
               <Table.Cell>Supplied</Table.Cell>
               <Table.Cell>
                 <Input
+                  updateOnPropsChange
                   value={supplied_law}
                   fluid
                   onChange={(e, val: string) =>
