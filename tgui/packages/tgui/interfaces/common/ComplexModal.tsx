@@ -106,6 +106,7 @@ export const ComplexModal = (props) => {
   const { id, text, type } = modal;
 
   let modalOnEnter: ((e: KeyboardEvent<HTMLDivElement>) => void) | undefined;
+  let modalOnEscape: ((e: KeyboardEvent<HTMLDivElement>) => void) | undefined;
   let modalBody: React.JSX.Element | undefined;
   let modalFooter: React.JSX.Element = (
     <Button icon="arrow-left" color="grey" onClick={() => modalClose(null)}>
@@ -113,6 +114,7 @@ export const ComplexModal = (props) => {
     </Button>
   );
 
+  modalOnEscape = (e) => modalClose(id);
   // Different contents depending on the type
   if (bodyOverrides[id]) {
     modalBody = bodyOverrides[id](modal);
@@ -240,6 +242,7 @@ export const ComplexModal = (props) => {
       maxWidth={props.maxWidth || window.innerWidth / 2 + 'px'}
       maxHeight={props.maxHeight || window.innerHeight / 2 + 'px'}
       onEnter={modalOnEnter}
+      onEscape={modalOnEscape}
       mx="auto"
     >
       <Box inline>{text}</Box>

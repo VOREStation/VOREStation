@@ -1,4 +1,4 @@
-import { KEY_DOWN, KEY_E, KEY_S, KEY_UP, KEY_W } from 'common/keycodes';
+import { KEY } from 'common/keys';
 import React, { Component, PropsWithChildren } from 'react';
 import { resolveAsset } from 'tgui/assets';
 import { useBackend } from 'tgui/backend';
@@ -132,18 +132,18 @@ export class NanoMap extends Component<Props, State> {
     };
 
     this.handleKey = (e: KeyEvent) => {
-      switch (e.code) {
-        case KEY_UP:
-        case KEY_W: {
+      switch (e.event.key) {
+        case KEY.Up:
+        case KEY.W: {
           this.setZoom(this.state.zoom + 1);
           break;
         }
-        case KEY_DOWN:
-        case KEY_S: {
+        case KEY.Down:
+        case KEY.S: {
           this.setZoom(this.state.zoom - 1);
           break;
         }
-        case KEY_E: {
+        case KEY.E: {
           logger.log(this.state.offsetX, this.state.offsetY);
           break;
         }

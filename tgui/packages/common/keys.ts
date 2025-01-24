@@ -40,6 +40,12 @@ export enum KEY {
   Space = ' ',
   Tab = 'Tab',
   Up = 'ArrowUp',
+  W = 'w',
+  A = 'a',
+  S = 's',
+  D = 'd',
+  E = 'e',
+  Z = 'z',
 }
 
 /**

@@ -1,11 +1,4 @@
-import {
-  KEY_ENTER,
-  KEY_ESCAPE,
-  KEY_LEFT,
-  KEY_RIGHT,
-  KEY_SPACE,
-  KEY_TAB,
-} from 'common/keycodes';
+import { isEscape, KEY } from 'common/keys';
 import { useState } from 'react';
 import { useBackend } from 'tgui/backend';
 import { Window } from 'tgui/layouts';
@@ -53,29 +46,29 @@ export const AlertModal = (props) => {
     }
   };
 
+  function handleKeyDown(event: React.KeyboardEvent<HTMLDivElement>) {
+    const key = event.key;
+    /**
+     * Simulate a click when pressing space or enter,
+     * allow keyboard navigation, override tab behavior
+     */
+    if (key === KEY.Space || key === KEY.Enter) {
+      act('choose', { choice: buttons[selected] });
+    } else if (isEscape(key)) {
+      act('cancel');
+    } else if (key === KEY.Left) {
+      event.preventDefault();
+      onKey(KEY_DECREMENT);
+    } else if (key === KEY.Tab || key === KEY.Right) {
+      event.preventDefault();
+      onKey(KEY_INCREMENT);
+    }
+  }
+
   return (
     <Window height={windowHeight} title={title} width={windowWidth}>
       {!!timeout && <Loader value={timeout} />}
-      <Window.Content
-        onKeyDown={(e) => {
-          const keyCode = window.event ? e.which : e.keyCode;
-          /**
-           * Simulate a click when pressing space or enter,
-           * allow keyboard navigation, override tab behavior
-           */
-          if (keyCode === KEY_SPACE || keyCode === KEY_ENTER) {
-            act('choose', { choice: buttons[selected] });
-          } else if (keyCode === KEY_ESCAPE) {
-            act('cancel');
-          } else if (keyCode === KEY_LEFT) {
-            e.preventDefault();
-            onKey(KEY_DECREMENT);
-          } else if (keyCode === KEY_TAB || keyCode === KEY_RIGHT) {
-            e.preventDefault();
-            onKey(KEY_INCREMENT);
-          }
-        }}
-      >
+      <Window.Content onKeyDown={(e) => handleKeyDown(e)}>
         <Section fill>
           <Stack fill vertical>
             <Stack.Item grow m={1}>
