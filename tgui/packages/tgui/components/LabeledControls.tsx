@@ -4,13 +4,14 @@
  * @license MIT
  */
 
-import { Flex, FlexProps } from './Flex';
+import { Stack } from 'tgui-core/components';
 
-export function LabeledControls(props: FlexProps) {
+export function LabeledControls(props: any) {
+  // Replace once tgui core exports the type properly
   const { children, wrap, ...rest } = props;
 
   return (
-    <Flex
+    <Stack
       mx={-0.5}
       wrap={wrap}
       align="stretch"
@@ -18,20 +19,20 @@ export function LabeledControls(props: FlexProps) {
       {...rest}
     >
       {children}
-    </Flex>
+    </Stack>
   );
 }
 
 type ItemProps = {
   label: string;
-} & FlexProps;
+} & any; // Replace once tgui core exports the type properly
 
 function LabeledControlsItem(props: ItemProps) {
   const { label, children, mx = 1, ...rest } = props;
 
   return (
-    <Flex.Item mx={mx}>
-      <Flex
+    <Stack.Item mx={mx}>
+      <Stack
         height="100%"
         direction="column"
         align="center"
@@ -39,11 +40,11 @@ function LabeledControlsItem(props: ItemProps) {
         justify="space-between"
         {...rest}
       >
-        <Flex.Item />
-        <Flex.Item>{children}</Flex.Item>
-        <Flex.Item color="label">{label}</Flex.Item>
-      </Flex>
-    </Flex.Item>
+        <Stack.Item />
+        <Stack.Item>{children}</Stack.Item>
+        <Stack.Item color="label">{label}</Stack.Item>
+      </Stack>
+    </Stack.Item>
   );
 }
 

@@ -1,13 +1,6 @@
 import { classes } from 'common/react';
 import { useBackend } from 'tgui/backend';
-import {
-  Box,
-  Button,
-  Flex,
-  LabeledList,
-  Section,
-  Stack,
-} from 'tgui-core/components';
+import { Box, Button, LabeledList, Section, Stack } from 'tgui-core/components';
 
 import { selectedData } from '../types';
 
@@ -43,7 +36,7 @@ export const VoreSelectedBellyVisuals = (props: { belly: selectedData }) => {
   return (
     <>
       <Section title="Vore Sprites">
-        <Flex direction="row">
+        <Stack direction="row">
           <LabeledList>
             <LabeledList.Item label="Affect Vore Sprites">
               <Button
@@ -217,7 +210,7 @@ export const VoreSelectedBellyVisuals = (props: { belly: selectedData }) => {
               ''
             )}
           </LabeledList>
-        </Flex>
+        </Stack>
       </Section>
       <Section title="Belly Fullscreens Preview and Coloring">
         <Stack align="center">

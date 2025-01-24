@@ -1,6 +1,6 @@
 import { BooleanLike } from 'common/react';
 import { useBackend } from 'tgui/backend';
-import { Button, Section, Stack } from 'tgui-core/components';
+import { Button, Section, Stack } from 'tgui/components';
 
 import { localPrefs } from '../types';
 import { VoreUserPreferenceItem } from '../VoreUserPreferenceItem';
@@ -26,7 +26,12 @@ export const VoreUserPreferencesMechanical = (props: {
       }
     >
       <Stack wrap="wrap" justify="center">
-        <Stack.Item basis="32%">
+        <Stack.Item
+          basis="32%"
+          style={{
+            marginLeft: '0.5em', // Remove if tgui-core implements gap
+          }}
+        >
           <VoreUserPreferenceItem spec={preferences.digestion} />
         </Stack.Item>
         <Stack.Item basis="32%" grow={1}>
