@@ -1,5 +1,5 @@
 import { useBackend } from 'tgui/backend';
-import { Button, Flex, LabeledList } from 'tgui-core/components';
+import { Button, LabeledList, Stack } from 'tgui-core/components';
 
 import { selectedData } from '../types';
 
@@ -10,8 +10,8 @@ export const VoreSelectedBellySounds = (props: { belly: selectedData }) => {
   const { is_wet, wet_loop, fancy, sound, release_sound } = belly;
 
   return (
-    <Flex wrap="wrap">
-      <Flex.Item basis="49%" grow={1}>
+    <Stack wrap="wrap">
+      <Stack.Item basis="49%" grow={1}>
         <LabeledList>
           <LabeledList.Item label="Fleshy Belly">
             <Button
@@ -67,7 +67,7 @@ export const VoreSelectedBellySounds = (props: { belly: selectedData }) => {
             />
           </LabeledList.Item>
         </LabeledList>
-      </Flex.Item>
-    </Flex>
+      </Stack.Item>
+    </Stack>
   );
 };

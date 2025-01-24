@@ -7,10 +7,10 @@ import {
   Box,
   Button,
   Dropdown,
-  Flex,
   Input,
   NoticeBox,
   Section,
+  Stack,
   Table,
 } from 'tgui-core/components';
 
@@ -109,16 +109,16 @@ const SheetSearch = (props: {
   } = props;
   return (
     <Box mb="0.5rem">
-      <Flex width="100%">
-        <Flex.Item grow="1" mr="0.5rem">
+      <Stack width="100%">
+        <Stack.Item grow mr="0.5rem">
           <Input
             placeholder="Search by item name.."
             value={searchText}
             width="100%"
             onInput={(_e, value) => onSearchText(value)}
           />
-        </Flex.Item>
-        <Flex.Item basis="30%">
+        </Stack.Item>
+        <Stack.Item basis="30%">
           <Dropdown
             autoScroll={false}
             selected={sortOrder}
@@ -127,8 +127,8 @@ const SheetSearch = (props: {
             lineHeight="19px"
             onSelected={(v) => onSortOrder(v)}
           />
-        </Flex.Item>
-        <Flex.Item>
+        </Stack.Item>
+        <Stack.Item>
           <Button
             icon={descending ? 'arrow-down' : 'arrow-up'}
             height="19px"
@@ -137,8 +137,8 @@ const SheetSearch = (props: {
             ml="0.5rem"
             onClick={() => onDescending(!descending)}
           />
-        </Flex.Item>
-      </Flex>
+        </Stack.Item>
+      </Stack>
     </Box>
   );
 };
