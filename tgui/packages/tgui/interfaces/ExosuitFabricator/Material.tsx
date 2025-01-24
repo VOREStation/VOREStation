@@ -6,9 +6,9 @@ import { formatMoney, formatSiUnit } from 'tgui/format';
 import {
   Box,
   Button,
-  Flex,
   Icon,
   NumberInput,
+  Stack,
   Tooltip,
 } from 'tgui-core/components';
 
@@ -86,11 +86,11 @@ export const Materials = (props: {
   }
 
   return (
-    <Flex wrap="wrap">
+    <Stack wrap="wrap">
       {display_materials.map(
         (material) =>
           (
-            <Flex.Item width="80px" key={material.name}>
+            <Stack.Item width="80px" key={material.name}>
               <MaterialAmount
                 name={material.name}
                 amount={material.amount}
@@ -101,10 +101,10 @@ export const Materials = (props: {
                   <EjectMaterial material={material} />
                 </Box>
               )}
-            </Flex.Item>
+            </Stack.Item>
           ) || '',
       )}
-    </Flex>
+    </Stack>
   );
 };
 
@@ -130,8 +130,8 @@ export const MaterialAmount = (props: {
   }
 
   return (
-    <Flex direction="column" align="center">
-      <Flex.Item>
+    <Stack vertical align="center">
+      <Stack.Item>
         <Tooltip position="bottom" content={toTitleCase(name)}>
           <Box
             className={classes(['sheetmaterials32x32', MATERIAL_KEYS[name]])}
@@ -139,12 +139,12 @@ export const MaterialAmount = (props: {
             style={style}
           />
         </Tooltip>
-      </Flex.Item>
-      <Flex.Item>
+      </Stack.Item>
+      <Stack.Item>
         <Box textColor={color} style={{ textAlign: 'center' }}>
           {amountDisplay}
         </Box>
-      </Flex.Item>
-    </Flex>
+      </Stack.Item>
+    </Stack>
   );
 };

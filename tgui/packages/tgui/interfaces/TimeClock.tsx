@@ -6,10 +6,10 @@ import { Window } from 'tgui/layouts';
 import {
   Box,
   Button,
-  Flex,
   LabeledList,
   NoticeBox,
   Section,
+  Stack,
 } from 'tgui-core/components';
 
 import { RankIcon } from './common/RankIcon';
@@ -87,18 +87,18 @@ export const TimeClock = (props) => {
               <>
                 <LabeledList.Item label="Rank">
                   <Box backgroundColor={job_datum.selection_color} p={0.8}>
-                    <Flex justify="space-between" align="center">
-                      <Flex.Item>
+                    <Stack justify="space-between" align="center">
+                      <Stack.Item>
                         <Box ml={1}>
                           <RankIcon color="white" rank={job_datum.title} />
                         </Box>
-                      </Flex.Item>
-                      <Flex.Item>
+                      </Stack.Item>
+                      <Stack.Item>
                         <Box fontSize={1.5} inline mr={1}>
                           {job_datum.title}
                         </Box>
-                      </Flex.Item>
-                    </Flex>
+                      </Stack.Item>
+                    </Stack>
                   </Box>
                 </LabeledList.Item>
                 <LabeledList.Item label="Departments">
