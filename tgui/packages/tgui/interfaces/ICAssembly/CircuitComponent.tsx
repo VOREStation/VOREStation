@@ -1,9 +1,7 @@
 import { decodeHtmlEntities } from 'common/string';
 import { Component } from 'react';
 import { useBackend } from 'tgui/backend';
-import { Box } from 'tgui/components';
-import { BoxProps } from 'tgui/components/Box';
-import { Button, Icon, Stack } from 'tgui-core/components';
+import { Box, Button, Icon, Stack } from 'tgui-core/components';
 import { shallowDiffers } from 'tgui-core/react';
 
 import { Port, PortProps } from './Port';
@@ -16,7 +14,8 @@ export type CircuitProps = {
   color?: string;
   gridMode?: boolean;
   onComponentMoved?: (newPos: { x: number; y: number }) => void;
-} & BoxProps &
+  // FIx this when BOX Props are exported in tgui core!
+} & any &
   Pick<
     PortProps,
     | 'onPortUpdated'

@@ -1,7 +1,6 @@
 import { createSearch, decodeHtmlEntities } from 'common/string';
 import { useState } from 'react';
 import { useBackend } from 'tgui/backend';
-import { TableCell, TableRow } from 'tgui/components/Table';
 import { Window } from 'tgui/layouts';
 import {
   Button,
@@ -68,8 +67,8 @@ export const CheckboxInput = (props) => {
             <Section fill scrollable>
               <Table>
                 {toDisplay.map((item, index) => (
-                  <TableRow className="candystripe" key={index}>
-                    <TableCell>
+                  <Table.Row className="candystripe" key={index}>
+                    <Table.Cell>
                       <Button.Checkbox
                         checked={selections.includes(item)}
                         disabled={
@@ -81,8 +80,8 @@ export const CheckboxInput = (props) => {
                       >
                         {item}
                       </Button.Checkbox>
-                    </TableCell>
-                  </TableRow>
+                    </Table.Cell>
+                  </Table.Row>
                 ))}
               </Table>
             </Section>

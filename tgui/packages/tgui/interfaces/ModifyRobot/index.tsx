@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useBackend } from 'tgui/backend';
+import { Window } from 'tgui/layouts';
 import {
   Button,
   Divider,
@@ -10,8 +11,7 @@ import {
   Section,
   Stack,
   Tabs,
-} from 'tgui/components';
-import { Window } from 'tgui/layouts';
+} from 'tgui-core/components';
 
 import { LawManagerLaws, LawManagerLawSets } from '../LawManager';
 import { ModifyRobotNoModule } from './ModifyRobotNoModule';

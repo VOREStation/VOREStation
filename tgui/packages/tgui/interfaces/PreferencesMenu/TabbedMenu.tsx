@@ -3,6 +3,7 @@ import { Button, Section, Stack } from 'tgui-core/components';
 
 type TabbedMenuProps = {
   categoryEntries: [string, ReactNode][];
+  // FIx this when BOX Props are exported in tgui core!
   contentProps?: any;
 };
 

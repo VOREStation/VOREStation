@@ -6,10 +6,8 @@ import {
   useEffect,
   useState,
 } from 'react';
-import { Box } from 'tgui/components';
-import { BoxProps } from 'tgui/components/Box';
 import { Window } from 'tgui/layouts';
-import { Button, Icon, ProgressBar, Stack } from 'tgui-core/components';
+import { Box, Button, Icon, ProgressBar, Stack } from 'tgui-core/components';
 
 enum GameOverState {
   GameRunning = 0,
@@ -302,7 +300,8 @@ export class MouseTracker extends Component<MouseTrackerProps> {
   }
 }
 
-const FishingRod = (props: BoxProps) => {
+// FIx this when BOX Props are exported in tgui core!
+const FishingRod = (props: any) => {
   return (
     <Box {...props}>
       <svg viewBox="0 0 256 256">

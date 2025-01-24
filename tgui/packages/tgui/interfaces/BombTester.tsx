@@ -1,11 +1,11 @@
 import { BooleanLike } from 'common/react';
 import { Component } from 'react';
 import { useBackend } from 'tgui/backend';
-import { Icon } from 'tgui/components';
 import { Window } from 'tgui/layouts';
 import {
   Box,
   Button,
+  Icon,
   LabeledList,
   Section,
   Slider,
@@ -213,7 +213,7 @@ class BombTesterSimulation extends Component {
   render() {
     const { x, y } = this.state;
 
-    const newStyle = {
+    const newStyle: {} = {
       position: 'relative',
       left: x + 'px',
       top: y + 'px',
