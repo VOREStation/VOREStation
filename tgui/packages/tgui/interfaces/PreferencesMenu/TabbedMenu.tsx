@@ -1,10 +1,15 @@
-import { Component, createRef, ReactNode, RefObject } from 'react';
+import {
+  Component,
+  ComponentProps,
+  createRef,
+  ReactNode,
+  RefObject,
+} from 'react';
 import { Button, Section, Stack } from 'tgui-core/components';
 
 type TabbedMenuProps = {
   categoryEntries: [string, ReactNode][];
-  // FIx this when BOX Props are exported in tgui core!
-  contentProps?: any;
+  contentProps?: ComponentProps<typeof Stack>;
 };
 
 export class TabbedMenu extends Component<TabbedMenuProps> {

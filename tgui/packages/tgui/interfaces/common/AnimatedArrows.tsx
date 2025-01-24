@@ -1,8 +1,9 @@
-import { useEffect, useState } from 'react';
+import { ComponentProps, useEffect, useState } from 'react';
 import { Box, Icon } from 'tgui-core/components';
 
-// FIx this when BOX Props are exported in tgui core!
-export const AnimatedArrows = (props: { on: boolean } & any) => {
+export const AnimatedArrows = (
+  props: { on: boolean } & ComponentProps<typeof Box>,
+) => {
   const { on, ...rest } = props;
 
   const [activeArrow, setActiveArrow] = useState(0);

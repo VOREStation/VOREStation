@@ -29,7 +29,7 @@ export const VoreUserPreferencesMechanical = (props: {
         <Stack.Item
           basis="32%"
           style={{
-            marginLeft: '0.5em', // Remove if tgui-core implements gap
+            marginLeft: '0.5em', // Remove if tgui core implements gap
           }}
         >
           <VoreUserPreferenceItem spec={preferences.digestion} />

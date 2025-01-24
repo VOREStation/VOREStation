@@ -4,10 +4,10 @@
  * @license MIT
  */
 
+import { ComponentProps } from 'react';
 import { Stack } from 'tgui-core/components';
 
-export function LabeledControls(props: any) {
-  // Replace once tgui core exports the type properly
+export function LabeledControls(props: ComponentProps<typeof Stack>) {
   const { children, wrap, ...rest } = props;
 
   return (
@@ -25,7 +25,7 @@ export function LabeledControls(props: any) {
 
 type ItemProps = {
   label: string;
-} & any; // Replace once tgui core exports the type properly
+} & ComponentProps<typeof Stack>;
 
 function LabeledControlsItem(props: ItemProps) {
   const { label, children, mx = 1, ...rest } = props;

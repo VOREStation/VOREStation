@@ -1,6 +1,7 @@
 import { clamp } from 'common/math';
 import {
   Component,
+  ComponentProps,
   PropsWithChildren,
   ReactNode,
   useEffect,
@@ -300,8 +301,7 @@ export class MouseTracker extends Component<MouseTrackerProps> {
   }
 }
 
-// FIx this when BOX Props are exported in tgui core!
-const FishingRod = (props: any) => {
+const FishingRod = (props: ComponentProps<typeof Box>) => {
   return (
     <Box {...props}>
       <svg viewBox="0 0 256 256">

@@ -16,7 +16,7 @@ export const VoreUserPreferencesAesthetic = (props: {
         <Stack.Item
           grow
           style={{
-            marginLeft: '0.5em', // Remove if tgui-core implements gap
+            marginLeft: '0.5em', // Remove if tgui core implements gap
           }}
         >
           <Button fluid icon="grin-tongue" onClick={() => act('setflavor')}>
