@@ -67,7 +67,7 @@ export const AppearanceChangerEars = (props) => {
 
   return (
     <Stack vertical fill>
-      <Stack.Item grow={1}>
+      <Stack.Item grow>
         <Section title="Ears" fill scrollable>
           <Button
             onClick={() => act('ear', { clear: true })}
@@ -88,7 +88,7 @@ export const AppearanceChangerEars = (props) => {
           )}
         </Section>
       </Stack.Item>
-      <Stack.Item grow={1}>
+      <Stack.Item grow>
         <Section title="Ears - Secondary" fill scrollable>
           <Button
             onClick={() => act('ear_secondary', { clear: true })}

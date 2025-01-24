@@ -95,12 +95,12 @@ export const RIGSuitModules = (props) => {
               <Box color="bad">-- MODULE DESTROYED --</Box>
             ) : (
               <Stack>
-                <Stack.Item grow={1}>
+                <Stack.Item grow>
                   <Box color="average">Engage: {module.engagecost}</Box>
                   <Box color="average">Active: {module.activecost}</Box>
                   <Box color="average">Passive: {module.passivecost}</Box>
                 </Stack.Item>
-                <Stack.Item grow={1}>{module.desc}</Stack.Item>
+                <Stack.Item grow>{module.desc}</Stack.Item>
               </Stack>
             )}
             {module.charges ? (

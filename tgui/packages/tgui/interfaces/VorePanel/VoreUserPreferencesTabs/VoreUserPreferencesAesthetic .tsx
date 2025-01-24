@@ -50,7 +50,7 @@ export const VoreUserPreferencesAesthetic = (props: {
             Set Weight Examine Message
           </Button>
         </Stack.Item>
-        <Stack.Item basis="50%" grow={1}>
+        <Stack.Item basis="50%" grow>
           <VoreUserPreferenceItem spec={preferences.examine_nutrition} />
         </Stack.Item>
         <Stack.Item basis="48%">

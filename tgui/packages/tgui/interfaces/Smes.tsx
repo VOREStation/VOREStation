@@ -208,7 +208,7 @@ export const Smes = (props) => {
                     }
                   />
                 </Stack.Item>
-                <Stack.Item grow={1} mx={1}>
+                <Stack.Item grow mx={1}>
                   <Slider
                     value={outputLevel / POWER_MUL}
                     minValue={0}

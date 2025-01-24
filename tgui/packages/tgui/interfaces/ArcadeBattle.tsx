@@ -102,7 +102,7 @@ export const ArcadeBattle = (props) => {
             </Button>
           )) || (
             <Stack mt={2} justify="space-between">
-              <Stack.Item grow={1}>
+              <Stack.Item grow>
                 <Button
                   fluid
                   icon="fist-raised"
@@ -113,7 +113,7 @@ export const ArcadeBattle = (props) => {
                   Attack!
                 </Button>
               </Stack.Item>
-              <Stack.Item grow={1}>
+              <Stack.Item grow>
                 <Button
                   fluid
                   icon="band-aid"
@@ -124,7 +124,7 @@ export const ArcadeBattle = (props) => {
                   Heal!
                 </Button>
               </Stack.Item>
-              <Stack.Item grow={1}>
+              <Stack.Item grow>
                 <Button
                   fluid
                   icon="magic"

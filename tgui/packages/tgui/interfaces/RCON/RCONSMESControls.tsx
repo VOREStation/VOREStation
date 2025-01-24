@@ -70,7 +70,7 @@ export const SMESControls = (props: { way: string; smes: rconSmes }) => {
   return (
     <Stack fill>
       <Stack.Item basis="20%">{capitalize(way)}</Stack.Item>
-      <Stack.Item grow={1}>
+      <Stack.Item grow>
         <Stack>
           <Stack.Item>
             <Button
@@ -106,7 +106,7 @@ export const SMESControls = (props: { way: string; smes: rconSmes }) => {
               }
             />
           </Stack.Item>
-          <Stack.Item grow={1}>
+          <Stack.Item grow>
             <Slider
               value={level / POWER_MUL}
               fillValue={available / POWER_MUL}

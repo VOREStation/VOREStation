@@ -160,7 +160,7 @@ export const PersonalCrafting = (props) => {
                 ))}
               </Tabs>
             </Stack.Item>
-            <Stack.Item grow={1} basis={0}>
+            <Stack.Item grow basis={0}>
               <CraftingList
                 craftables={shownRecipes}
                 display_compact={display_compact}

@@ -82,7 +82,7 @@ export const ExportTab = (props) => {
             Enable logging
           </Button>
         )}
-        <Stack.Item grow={1} />
+        <Stack.Item grow />
         <Stack.Item color="label">Round ID:&nbsp;</Stack.Item>
         <Stack.Item color={game.roundId ? '' : 'red'}>
           {game.roundId ? game.roundId : 'ERROR'}

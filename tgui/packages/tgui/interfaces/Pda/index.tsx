@@ -124,7 +124,7 @@ const PDAHeader = (props: {
             </Button>
           </Stack.Item>
         )}
-        <Stack.Item grow={1} textAlign="center" bold>
+        <Stack.Item grow textAlign="center" bold>
           {stationTime}
         </Stack.Item>
         <Stack.Item>

@@ -14,7 +14,7 @@ export const SMESItem = (props: { smes: rconSmes }) => {
           <Stack.Item basis="20%" fontSize={1.2}>
             {RCON_tag}
           </Stack.Item>
-          <Stack.Item grow={1}>
+          <Stack.Item grow>
             <ProgressBar
               value={capacityPercent * 0.01}
               ranges={{

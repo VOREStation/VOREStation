@@ -15,7 +15,7 @@ const NotificationsItem = (props) => {
   const { rightSlot, children } = props;
   return (
     <Stack align="center" className="Notification">
-      <Stack.Item className="Notification__content" grow={1}>
+      <Stack.Item className="Notification__content" grow>
         {children}
       </Stack.Item>
       {rightSlot && (

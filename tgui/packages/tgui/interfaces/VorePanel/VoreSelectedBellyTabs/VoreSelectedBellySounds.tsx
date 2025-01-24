@@ -11,7 +11,7 @@ export const VoreSelectedBellySounds = (props: { belly: selectedData }) => {
 
   return (
     <Stack wrap="wrap">
-      <Stack.Item basis="49%" grow={1}>
+      <Stack.Item basis="49%" grow>
         <LabeledList>
           <LabeledList.Item label="Fleshy Belly">
             <Button

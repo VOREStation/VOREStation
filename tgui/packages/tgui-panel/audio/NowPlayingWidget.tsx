@@ -40,7 +40,7 @@ export const NowPlayingWidget = (props) => {
       {(audio.playing && (
         <Stack.Item
           mx={0.5}
-          grow={1}
+          grow
           style={{
             whiteSpace: 'nowrap',
             overflow: 'hidden',
@@ -51,27 +51,27 @@ export const NowPlayingWidget = (props) => {
             <Collapsible title={title || 'Unknown Track'} color={'blue'}>
               <Section>
                 {URL !== 'Song Link Hidden' && (
-                  <Stack.Item grow={1} color="label">
+                  <Stack.Item grow color="label">
                     URL: {URL}
                   </Stack.Item>
                 )}
-                <Stack.Item grow={1} color="label">
+                <Stack.Item grow color="label">
                   Duration: {duration}
                 </Stack.Item>
                 {Artist !== 'Song Artist Hidden' &&
                   Artist !== 'Unknown Artist' && (
-                    <Stack.Item grow={1} color="label">
+                    <Stack.Item grow color="label">
                       Artist: {Artist}
                     </Stack.Item>
                   )}
                 {album !== 'Song Album Hidden' && album !== 'Unknown Album' && (
-                  <Stack.Item grow={1} color="label">
+                  <Stack.Item grow color="label">
                     Album: {album}
                   </Stack.Item>
                 )}
                 {upload_date !== 'Song Upload Date Hidden' &&
                   upload_date !== 'Unknown Date' && (
-                    <Stack.Item grow={1} color="label">
+                    <Stack.Item grow color="label">
                       Uploaded: {date}
                     </Stack.Item>
                   )}
@@ -80,7 +80,7 @@ export const NowPlayingWidget = (props) => {
           }
         </Stack.Item>
       )) || (
-        <Stack.Item grow={1} color="label">
+        <Stack.Item grow color="label">
           Nothing to play.
         </Stack.Item>
       )}

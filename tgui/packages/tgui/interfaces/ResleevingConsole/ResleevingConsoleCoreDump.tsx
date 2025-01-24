@@ -8,7 +8,7 @@ export const ResleevingConsoleCoreDump = (props) => {
         <Stack.Item grow>
           <Icon size={12} color="bad" name="exclamation-triangle" />
         </Stack.Item>
-        <Stack.Item grow={1} color="bad" mt={5}>
+        <Stack.Item grow color="bad" mt={5}>
           <h2>TransCore dump completed. Resleeving offline.</h2>
         </Stack.Item>
       </Stack>

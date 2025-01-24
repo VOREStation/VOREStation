@@ -37,7 +37,7 @@ export const VoreSelectedBellyOptions = (props: {
 
   return (
     <Stack wrap="wrap">
-      <Stack.Item basis="49%" grow={1}>
+      <Stack.Item basis="49%" grow>
         <LabeledList>
           <LabeledList.Item label="Can Taste">
             <Button
@@ -144,7 +144,7 @@ export const VoreSelectedBellyOptions = (props: {
           host_mobtype={host_mobtype}
         />
       </Stack.Item>
-      <Stack.Item basis="49%" grow={1}>
+      <Stack.Item basis="49%" grow>
         <LabeledList>
           <LabeledList.Item label="Idle Emotes">
             <Button

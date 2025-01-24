@@ -34,7 +34,7 @@ export const VoreUserPreferencesMechanical = (props: {
         >
           <VoreUserPreferenceItem spec={preferences.digestion} />
         </Stack.Item>
-        <Stack.Item basis="32%" grow={1}>
+        <Stack.Item basis="32%" grow>
           <VoreUserPreferenceItem spec={preferences.absorbable} />
         </Stack.Item>
         <Stack.Item basis="32%">
@@ -43,7 +43,7 @@ export const VoreUserPreferencesMechanical = (props: {
         <Stack.Item basis="32%">
           <VoreUserPreferenceItem spec={preferences.mobvore} />
         </Stack.Item>
-        <Stack.Item basis="32%" grow={1}>
+        <Stack.Item basis="32%" grow>
           <VoreUserPreferenceItem spec={preferences.feed} />
         </Stack.Item>
         <Stack.Item basis="32%">
@@ -55,7 +55,7 @@ export const VoreUserPreferencesMechanical = (props: {
         <Stack.Item basis="32%">
           <VoreUserPreferenceItem spec={preferences.dropnom_prey} />
         </Stack.Item>
-        <Stack.Item basis="32%" grow={1}>
+        <Stack.Item basis="32%" grow>
           <VoreUserPreferenceItem spec={preferences.dropnom_pred} />
         </Stack.Item>
         <Stack.Item basis="32%">
@@ -64,7 +64,7 @@ export const VoreUserPreferencesMechanical = (props: {
         <Stack.Item basis="32%">
           <VoreUserPreferenceItem spec={preferences.toggle_slip_vore} />
         </Stack.Item>
-        <Stack.Item basis="32%" grow={1}>
+        <Stack.Item basis="32%" grow>
           <VoreUserPreferenceItem spec={preferences.toggle_stumble_vore} />
         </Stack.Item>
         <Stack.Item basis="32%">
@@ -73,7 +73,7 @@ export const VoreUserPreferencesMechanical = (props: {
         <Stack.Item basis="32%">
           <VoreUserPreferenceItem spec={preferences.toggle_food_vore} />
         </Stack.Item>
-        <Stack.Item basis="32%" grow={1}>
+        <Stack.Item basis="32%" grow>
           <VoreUserPreferenceItem spec={preferences.toggle_digest_pain} />
         </Stack.Item>
         <Stack.Item basis="32%">
@@ -82,7 +82,7 @@ export const VoreUserPreferencesMechanical = (props: {
         <Stack.Item basis="32%">
           <VoreUserPreferenceItem spec={preferences.noisy} />
         </Stack.Item>
-        <Stack.Item basis="32%" grow={1}>
+        <Stack.Item basis="32%" grow>
           <VoreUserPreferenceItem spec={preferences.resize} />
         </Stack.Item>
         <Stack.Item basis="32%">
@@ -97,7 +97,7 @@ export const VoreUserPreferencesMechanical = (props: {
             tooltipPosition="top"
           />
         </Stack.Item>
-        <Stack.Item basis="32%" grow={1}>
+        <Stack.Item basis="32%" grow>
           <VoreUserPreferenceItem
             spec={preferences.remains}
             tooltipPosition="top"
@@ -112,7 +112,7 @@ export const VoreUserPreferencesMechanical = (props: {
         <Stack.Item basis="32%">
           <VoreUserPreferenceItem spec={preferences.spontaneous_tf} />
         </Stack.Item>
-        <Stack.Item basis="32%" grow={1}>
+        <Stack.Item basis="32%" grow>
           <Button fluid onClick={() => act('switch_selective_mode_pref')}>
             Selective Mode Preference
           </Button>
@@ -120,10 +120,10 @@ export const VoreUserPreferencesMechanical = (props: {
         <Stack.Item basis="32%">
           <VoreUserPreferenceItem spec={preferences.mind_transfer} />
         </Stack.Item>
-        <Stack.Item basis="32%" grow={1}>
+        <Stack.Item basis="32%" grow>
           <VoreUserPreferenceItem spec={preferences.eating_privacy_global} />
         </Stack.Item>
-        <Stack.Item basis="32%" grow={1}>
+        <Stack.Item basis="32%" grow>
           <VoreUserPreferenceItem spec={preferences.allow_mimicry} />
         </Stack.Item>
       </Stack>

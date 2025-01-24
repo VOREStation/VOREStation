@@ -68,7 +68,7 @@ export const BrigTimer = (props) => {
             onDrag={(val: number) => act('time', { time: val })}
           />
           <Stack mt={1}>
-            <Stack.Item grow={1}>
+            <Stack.Item grow>
               <Button
                 fluid
                 icon="hourglass-start"
@@ -77,7 +77,7 @@ export const BrigTimer = (props) => {
                 {'Add ' + formatTime(preset_short)}
               </Button>
             </Stack.Item>
-            <Stack.Item grow={1}>
+            <Stack.Item grow>
               <Button
                 fluid
                 icon="hourglass-start"
@@ -86,7 +86,7 @@ export const BrigTimer = (props) => {
                 {'Add ' + formatTime(preset_medium)}
               </Button>
             </Stack.Item>
-            <Stack.Item grow={1}>
+            <Stack.Item grow>
               <Button
                 fluid
                 icon="hourglass-start"

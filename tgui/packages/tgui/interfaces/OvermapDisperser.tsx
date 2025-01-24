@@ -66,7 +66,7 @@ const OvermapDisperserContent = (props) => {
           />
         </Section>
       </Stack.Item>
-      <Stack.Item basis="74%" grow={1}>
+      <Stack.Item basis="74%" grow>
         <Section title="Charge">
           <LabeledList>
             {(nopower && (
@@ -119,7 +119,7 @@ const OvermapDisperserContent = (props) => {
           </Box>
         </Section>
       </Stack.Item>
-      <Stack.Item basis="45%" grow={1} mt={1}>
+      <Stack.Item basis="45%" grow mt={1}>
         <Section title="Setup">
           <LabeledList>
             <LabeledList.Item label="Strength">
@@ -139,7 +139,7 @@ const OvermapDisperserContent = (props) => {
           </LabeledList>
         </Section>
       </Stack.Item>
-      <Stack.Item grow={1} mt={1}>
+      <Stack.Item grow mt={1}>
         <Button fluid color="red" icon="bomb" onClick={() => act('fire')}>
           Fire ORB
         </Button>

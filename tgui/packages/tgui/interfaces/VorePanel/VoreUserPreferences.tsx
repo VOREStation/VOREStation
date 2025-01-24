@@ -456,12 +456,12 @@ export const VoreUserPreferences = (props: {
               Save Prefs
             </Button>
           </Stack.Item>
-          <Stack.Item basis="32%" grow={1}>
+          <Stack.Item basis="32%" grow>
             <Button fluid icon="undo" onClick={() => act('reloadprefs')}>
               Reload Prefs
             </Button>
           </Stack.Item>
-          <Stack.Item basis="32%" grow={1}>
+          <Stack.Item basis="32%" grow>
             <Button
               fluid
               icon="people-arrows"

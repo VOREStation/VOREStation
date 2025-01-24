@@ -12,7 +12,7 @@ export const NIFSettings = (props) => {
     <LabeledList>
       <LabeledList.Item label="NIF Theme" verticalAlign="top">
         <Stack>
-          <Stack.Item grow={1}>
+          <Stack.Item grow>
             <Dropdown
               autoScroll={false}
               width="100%"

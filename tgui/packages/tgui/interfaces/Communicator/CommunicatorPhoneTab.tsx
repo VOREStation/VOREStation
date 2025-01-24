@@ -67,7 +67,7 @@ export const CommunicatorPhoneTab = (props) => {
       <LabeledList>
         <LabeledList.Item label="Target EPv2 Address" verticalAlign="middle">
           <Stack align="center">
-            <Stack.Item grow={1}>
+            <Stack.Item grow>
               <Input
                 fluid
                 value={targetAddress}

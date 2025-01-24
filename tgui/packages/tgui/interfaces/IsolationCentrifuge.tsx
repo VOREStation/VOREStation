@@ -61,7 +61,7 @@ export const IsolationCentrifuge = (props) => {
               title={is_antibody_sample ? 'Antibody Sample' : 'Blood Sample'}
             >
               <Stack mb={1}>
-                <Stack.Item grow={1}>
+                <Stack.Item grow>
                   <Button
                     fluid
                     icon="print"
@@ -71,7 +71,7 @@ export const IsolationCentrifuge = (props) => {
                     Print
                   </Button>
                 </Stack.Item>
-                <Stack.Item grow={1}>
+                <Stack.Item grow>
                   <Button
                     fluid
                     icon="eject"

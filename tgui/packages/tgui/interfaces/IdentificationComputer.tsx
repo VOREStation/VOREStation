@@ -278,7 +278,7 @@ export const IdentificationComputerRegions = (props: { actName: string }) => {
     <Stack wrap="wrap">
       {regions &&
         sortBy(regions, (r) => r.name).map((region) => (
-          <Stack.Item mb={1} basis="content" grow={1} key={region.name}>
+          <Stack.Item mb={1} basis="content" grow key={region.name}>
             <Section title={region.name} height="100%">
               {sortBy(region.accesses, (a) => a.desc).map((access) => (
                 <Box key={access.ref}>

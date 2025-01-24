@@ -51,10 +51,10 @@ export const TEGenerator = (props) => {
         </Section>
         {primary && secondary ? (
           <Stack>
-            <Stack.Item shrink={1} grow={1}>
+            <Stack.Item shrink={1} grow>
               <TEGCirculator name="Primary Circulator" values={primary} />
             </Stack.Item>
-            <Stack.Item shrink={1} grow={1}>
+            <Stack.Item shrink={1} grow>
               <TEGCirculator name="Secondary Circulator" values={secondary} />
             </Stack.Item>
           </Stack>

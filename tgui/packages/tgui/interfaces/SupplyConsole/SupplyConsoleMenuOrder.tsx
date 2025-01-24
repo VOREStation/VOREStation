@@ -42,7 +42,7 @@ export const SupplyConsoleMenuOrder = (props) => {
             ))}
           </Section>
         </Stack.Item>
-        <Stack.Item grow={1} ml={2}>
+        <Stack.Item grow ml={2}>
           <Section title="Contents" scrollable fill height="290px">
             {viewingPacks.map((pack) => (
               <Box key={pack.name}>
@@ -76,7 +76,7 @@ export const SupplyConsoleMenuOrder = (props) => {
                       Info
                     </Button>
                   </Stack.Item>
-                  <Stack.Item grow={1}>{pack.cost} points</Stack.Item>
+                  <Stack.Item grow>{pack.cost} points</Stack.Item>
                 </Stack>
               </Box>
             ))}

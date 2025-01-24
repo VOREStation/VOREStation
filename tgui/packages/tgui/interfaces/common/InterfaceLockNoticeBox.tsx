@@ -37,7 +37,7 @@ export const InterfaceLockNoticeBox = (props) => {
       <NoticeBox color="grey">
         <Stack align="center">
           <Stack.Item>Interface lock status:</Stack.Item>
-          <Stack.Item grow={1} />
+          <Stack.Item grow />
           <Stack.Item>
             <Button
               m={0}

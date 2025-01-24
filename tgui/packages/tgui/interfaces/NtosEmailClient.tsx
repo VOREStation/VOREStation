@@ -384,7 +384,7 @@ const NtosEmailClientNewMessage = (props) => {
         </LabeledList.Item>
         <LabeledList.Item label="Recipient" verticalAlign="top">
           <Stack>
-            <Stack.Item grow={1}>
+            <Stack.Item grow>
               <Input
                 fluid
                 value={msg_recipient!}

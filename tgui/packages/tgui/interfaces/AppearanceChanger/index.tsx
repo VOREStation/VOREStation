@@ -133,7 +133,7 @@ export const AppearanceChanger = (props) => {
       <Window.Content>
         <Section title="Reflection">
           <Stack>
-            <Stack.Item grow={1}>
+            <Stack.Item grow>
               <LabeledList>
                 <LabeledList.Item label="Name">{name}</LabeledList.Item>
                 <LabeledList.Item

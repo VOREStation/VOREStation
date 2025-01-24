@@ -118,7 +118,7 @@ export const PowerMonitorFocus = (props: { focus: sensor }) => {
             </LabeledList>
           </Section>
         </Stack.Item>
-        <Stack.Item mx={0.5} grow={1}>
+        <Stack.Item mx={0.5} grow>
           <Section position="relative" height="100%">
             <Chart.Line
               fillPositionedParent

@@ -21,7 +21,7 @@ export const Queue = (props: {
 
   return (
     <Stack height="100%" width="100%" vertical>
-      <Stack.Item height={0} grow={1}>
+      <Stack.Item height={0} grow>
         <Section
           height="100%"
           title="Queue"
@@ -150,7 +150,7 @@ const BeingBuilt = (props) => {
         <ProgressBar minValue={0} maxValue={1} value={1} color="average">
           <Stack>
             <Stack.Item>{storedPart}</Stack.Item>
-            <Stack.Item grow={1} />
+            <Stack.Item grow />
             <Stack.Item>{'Fabricator outlet obstructed...'}</Stack.Item>
           </Stack>
         </ProgressBar>
@@ -168,7 +168,7 @@ const BeingBuilt = (props) => {
         <ProgressBar minValue={0} maxValue={printTime} value={duration}>
           <Stack>
             <Stack.Item>{name}</Stack.Item>
-            <Stack.Item grow={1} />
+            <Stack.Item grow />
             <Stack.Item>
               {(timeLeft >= 0 && timeLeft + 's') || 'Dispensing...'}
             </Stack.Item>

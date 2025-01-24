@@ -111,7 +111,7 @@ export const Batteryrack = (props) => {
                       <Stack.Item>
                         {!!cell.name && capitalize(cell.name)}
                       </Stack.Item>
-                      <Stack.Item grow={1} />
+                      <Stack.Item grow />
                       <Stack.Item>
                         {cell.used ? cell.percentage + '%' : 'N/C'}
                       </Stack.Item>

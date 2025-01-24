@@ -408,7 +408,7 @@ export const BodyDesignerSpecificRecord = (props: {
                               }
                             />
                           </Stack.Item>
-                          <Stack.Item grow={1}>
+                          <Stack.Item grow>
                             <Button
                               fluid
                               backgroundColor={marking}

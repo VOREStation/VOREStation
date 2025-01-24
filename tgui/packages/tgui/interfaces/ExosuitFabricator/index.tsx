@@ -42,7 +42,7 @@ export const ExosuitFabricator = (props) => {
       <Window.Content scrollable>
         <Stack fillPositionedParent vertical>
           <Stack>
-            <Stack.Item ml={1} mr={1} mt={1} basis="75%" grow={1}>
+            <Stack.Item ml={1} mr={1} mt={1} basis="75%" grow>
               <Section title="Materials">
                 <Materials displayAllMat={displayAllMat} />
               </Section>
@@ -80,7 +80,7 @@ export const ExosuitFabricator = (props) => {
               </Section>
             </Stack.Item>
           </Stack>
-          <Stack.Item grow={1} m={1}>
+          <Stack.Item grow m={1}>
             <Stack height="100%" overflowY="hide">
               <Stack.Item position="relative" basis="20%">
                 <Section
@@ -94,7 +94,7 @@ export const ExosuitFabricator = (props) => {
                   <PartSets />
                 </Section>
               </Stack.Item>
-              <Stack.Item position="relative" grow={1}>
+              <Stack.Item position="relative" grow>
                 <Box fillPositionedParent overflowY="auto">
                   <PartLists
                     queueMaterials={materialTally}

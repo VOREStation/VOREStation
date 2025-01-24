@@ -30,7 +30,7 @@ export const ChatPageSettings = (props) => {
   return (
     <Section>
       <Stack align="center">
-        <Stack.Item grow={1}>
+        <Stack.Item grow>
           <Input
             fluid
             value={page.name}

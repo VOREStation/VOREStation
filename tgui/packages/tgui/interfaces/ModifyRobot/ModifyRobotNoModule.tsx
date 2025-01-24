@@ -63,7 +63,7 @@ export const ModifyRobotNoModule = (props: { target: Target }) => {
                         <Stack.Item>
                           {RankIcon({ rank: active_restriction, color: '' })}
                         </Stack.Item>
-                        <Stack.Item grow={1}>{active_restriction}</Stack.Item>
+                        <Stack.Item grow>{active_restriction}</Stack.Item>
                       </Stack>
                     </Button>
                   );
@@ -92,7 +92,7 @@ export const ModifyRobotNoModule = (props: { target: Target }) => {
                         <Stack.Item>
                           {RankIcon({ rank: possible_restriction, color: '' })}
                         </Stack.Item>
-                        <Stack.Item grow={1}>{possible_restriction}</Stack.Item>
+                        <Stack.Item grow>{possible_restriction}</Stack.Item>
                       </Stack>
                     </Button>
                   );

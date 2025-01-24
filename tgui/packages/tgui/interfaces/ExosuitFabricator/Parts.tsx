@@ -105,7 +105,7 @@ export const PartLists = (props: {
           <Stack.Item mr={1}>
             <Icon name="search" />
           </Stack.Item>
-          <Stack.Item grow={1}>
+          <Stack.Item grow>
             <Input
               fluid
               placeholder="Search for..."
@@ -197,7 +197,7 @@ const PartCategory = (props: {
                   {part.name}
                 </Box>
               </Stack.Item>
-              <Stack.Item grow={1} />
+              <Stack.Item grow />
               <Stack.Item>
                 <Button
                   icon="question-circle"

@@ -89,7 +89,7 @@ export const ICCircuit = (props) => {
         <Section title="Circuit">
           <Stack textAlign="center">
             {(inputs.length && (
-              <Stack.Item grow={1}>
+              <Stack.Item grow>
                 <Section title="Inputs">
                   <ICIODisplay list={inputs} />
                 </Section>
@@ -110,7 +110,7 @@ export const ICCircuit = (props) => {
               </Section>
             </Stack.Item>
             {(outputs.length && (
-              <Stack.Item grow={1}>
+              <Stack.Item grow>
                 <Section title="Outputs">
                   <ICIODisplay list={outputs} />
                 </Section>

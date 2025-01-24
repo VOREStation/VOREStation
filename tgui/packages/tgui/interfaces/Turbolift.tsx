@@ -83,7 +83,7 @@ export const Turbolift = (props) => {
                       onClick={() => act('move_to_floor', { ref: floor.ref })}
                     />
                   </Stack.Item>
-                  <Stack.Item basis="50%" grow={1}>
+                  <Stack.Item basis="50%" grow>
                     {floor.name}
                   </Stack.Item>
                 </Stack>

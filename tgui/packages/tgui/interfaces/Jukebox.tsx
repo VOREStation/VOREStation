@@ -213,7 +213,7 @@ export const Jukebox = (props) => {
                           <div style={{ marginLeft: '1em' }}>
                             {genre_songs[genre].map((track) => (
                               <Stack key={track.ref}>
-                                <Stack.Item grow={1}>
+                                <Stack.Item grow>
                                   <Button
                                     fluid
                                     icon="play"
@@ -281,7 +281,7 @@ export const Jukebox = (props) => {
                   </LabeledList.Item>
                   <LabeledList.Item label="Genre">
                     <Stack>
-                      <Stack.Item grow={1}>
+                      <Stack.Item grow>
                         {unlockGenre ? (
                           <Input
                             width="100%"

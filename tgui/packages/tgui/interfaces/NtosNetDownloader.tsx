@@ -105,7 +105,7 @@ const Program = (props: { program: program }) => {
   return (
     <Box mb={3}>
       <Stack align="baseline">
-        <Stack.Item bold grow={1}>
+        <Stack.Item bold grow>
           {program.filedesc}
         </Stack.Item>
         <Stack.Item color="label" nowrap>

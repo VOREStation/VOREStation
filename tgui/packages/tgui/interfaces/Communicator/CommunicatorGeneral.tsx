@@ -119,7 +119,7 @@ export const VideoComm = (props: {
           }}
         />
         <Stack justify="space-between" mt={0.5}>
-          <Stack.Item grow={1}>
+          <Stack.Item grow>
             <Button
               textAlign="center"
               fluid
@@ -128,7 +128,7 @@ export const VideoComm = (props: {
               onClick={() => setVideoSetting(1)}
             />
           </Stack.Item>
-          <Stack.Item grow={1}>
+          <Stack.Item grow>
             <Button
               textAlign="center"
               fluid
@@ -138,7 +138,7 @@ export const VideoComm = (props: {
               onClick={() => act('endvideo')}
             />
           </Stack.Item>
-          <Stack.Item grow={1}>
+          <Stack.Item grow>
             <Button
               textAlign="center"
               fluid
@@ -163,7 +163,7 @@ export const VideoComm = (props: {
       >
         <Section p={0} m={0}>
           <Stack justify="space-between">
-            <Stack.Item grow={1}>
+            <Stack.Item grow>
               <Button
                 textAlign="center"
                 fluid
@@ -172,7 +172,7 @@ export const VideoComm = (props: {
                 onClick={() => setVideoSetting(2)}
               />
             </Stack.Item>
-            <Stack.Item grow={1}>
+            <Stack.Item grow>
               <Button
                 textAlign="center"
                 fluid
@@ -181,7 +181,7 @@ export const VideoComm = (props: {
                 onClick={() => setVideoSetting(0)}
               />
             </Stack.Item>
-            <Stack.Item grow={1}>
+            <Stack.Item grow>
               <Button
                 textAlign="center"
                 fluid
@@ -191,7 +191,7 @@ export const VideoComm = (props: {
                 onClick={() => act('endvideo')}
               />
             </Stack.Item>
-            <Stack.Item grow={1}>
+            <Stack.Item grow>
               <Button
                 textAlign="center"
                 fluid

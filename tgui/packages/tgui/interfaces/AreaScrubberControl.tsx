@@ -52,7 +52,7 @@ export const AreaScrubberControl = (props) => {
                 Scan
               </Button>
             </Stack.Item>
-            <Stack.Item m="2px" basis="49%" grow={1}>
+            <Stack.Item m="2px" basis="49%" grow>
               <Button
                 textAlign="center"
                 fluid
@@ -73,7 +73,7 @@ export const AreaScrubberControl = (props) => {
                 All On
               </Button>
             </Stack.Item>
-            <Stack.Item m="2px" basis="49%" grow={1}>
+            <Stack.Item m="2px" basis="49%" grow>
               <Button
                 textAlign="center"
                 fluid

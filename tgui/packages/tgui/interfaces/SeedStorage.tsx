@@ -61,7 +61,7 @@ export const SeedStorage = (props) => {
                 </Collapsible>
               </Stack.Item>
               <Stack.Item mt={0.4}>{seed.amount} Remaining</Stack.Item>
-              <Stack.Item grow={1}>
+              <Stack.Item grow>
                 <Button
                   fluid
                   icon="download"
@@ -70,7 +70,7 @@ export const SeedStorage = (props) => {
                   Vend
                 </Button>
               </Stack.Item>
-              <Stack.Item grow={1}>
+              <Stack.Item grow>
                 <Button
                   fluid
                   icon="trash"

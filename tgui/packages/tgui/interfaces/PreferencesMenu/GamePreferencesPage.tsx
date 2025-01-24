@@ -54,7 +54,7 @@ export const GamePreferencesPage = (props) => {
     }
 
     let name: ReactNode = (
-      <Stack.Item grow={1} pr={2} basis={0} ml={2}>
+      <Stack.Item grow pr={2} basis={0} ml={2}>
         {nameInner}
       </Stack.Item>
     );
@@ -71,7 +71,7 @@ export const GamePreferencesPage = (props) => {
       <Stack align="center" key={featureId} pb={2}>
         {name}
 
-        <Stack.Item grow={1} basis={0}>
+        <Stack.Item grow basis={0}>
           {(feature && (
             <FeatureValueInput
               feature={feature}

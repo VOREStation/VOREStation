@@ -125,7 +125,7 @@ export const CookingAppliance = (props) => {
                         {content.container || 'No Container'}
                       </Button>
                     </Stack.Item>
-                    <Stack.Item grow={1}>
+                    <Stack.Item grow>
                       <ProgressBar
                         color={content.progressText[0]}
                         value={content.progress}

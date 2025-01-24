@@ -76,7 +76,7 @@ export const IDCard = (props) => {
                 )) || <Icon name="user" size={8} ml={1.5} mt={2.5} />}
               </Box>
             </Stack.Item>
-            <Stack.Item basis={0} grow={1}>
+            <Stack.Item basis={0} grow>
               <LabeledList>
                 {dataIter.map((data) => (
                   <LabeledList.Item key={data.name} label={data.name}>
