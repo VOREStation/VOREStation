@@ -7,10 +7,10 @@ import {
   Box,
   Button,
   Chart,
-  Flex,
   LabeledList,
   ProgressBar,
   Section,
+  Stack,
   Table,
 } from 'tgui-core/components';
 
@@ -91,8 +91,8 @@ export const PowerMonitorFocus = (props: { focus: sensor }) => {
           </Button>
         }
       />
-      <Flex mx={-0.5} mb={1}>
-        <Flex.Item mx={0.5} width="200px">
+      <Stack mx={-0.5} mb={1}>
+        <Stack.Item mx={0.5} width="200px">
           <Section>
             <LabeledList>
               <LabeledList.Item label="Supply">
@@ -117,8 +117,8 @@ export const PowerMonitorFocus = (props: { focus: sensor }) => {
               </LabeledList.Item>
             </LabeledList>
           </Section>
-        </Flex.Item>
-        <Flex.Item mx={0.5} grow={1}>
+        </Stack.Item>
+        <Stack.Item mx={0.5} grow={1}>
           <Section position="relative" height="100%">
             <Chart.Line
               fillPositionedParent
@@ -137,8 +137,8 @@ export const PowerMonitorFocus = (props: { focus: sensor }) => {
               fillColor="rgba(224, 57, 151, 0.25)"
             />
           </Section>
-        </Flex.Item>
-      </Flex>
+        </Stack.Item>
+      </Stack>
       <Section>
         <Box mb={1}>
           <Box inline mr={2} color="label">
