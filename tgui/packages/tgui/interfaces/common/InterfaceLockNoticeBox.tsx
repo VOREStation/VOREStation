@@ -1,6 +1,6 @@
 import { BooleanLike } from 'common/react';
 import { useBackend } from 'tgui/backend';
-import { Button, Flex, NoticeBox } from 'tgui-core/components';
+import { Button, NoticeBox, Stack } from 'tgui-core/components';
 
 type Data = {
   siliconUser: BooleanLike;
@@ -35,10 +35,10 @@ export const InterfaceLockNoticeBox = (props) => {
   if (siliconUser) {
     return (
       <NoticeBox color="grey">
-        <Flex align="center">
-          <Flex.Item>Interface lock status:</Flex.Item>
-          <Flex.Item grow={1} />
-          <Flex.Item>
+        <Stack align="center">
+          <Stack.Item>Interface lock status:</Stack.Item>
+          <Stack.Item grow={1} />
+          <Stack.Item>
             <Button
               m={0}
               color={locked ? 'red' : 'green'}
@@ -52,8 +52,8 @@ export const InterfaceLockNoticeBox = (props) => {
             >
               {locked ? 'Locked' : 'Unlocked'}
             </Button>
-          </Flex.Item>
-        </Flex>
+          </Stack.Item>
+        </Stack>
       </NoticeBox>
     );
   }
