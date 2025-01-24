@@ -5,9 +5,9 @@ import {
   Box,
   Button,
   Dropdown,
-  Flex,
   Image,
   Input,
+  Stack,
 } from 'tgui-core/components';
 
 type Data = { modal: { id: string; args: {}; text: string; type: string } };
@@ -175,33 +175,33 @@ export const ComplexModal = (props) => {
     );
   } else if (type === 'bento') {
     modalBody = (
-      <Flex spacingPrecise="1" wrap="wrap" my="0.5rem" maxHeight="1%">
+      <Stack wrap="wrap" my="0.5rem" maxHeight="1%">
         {modal.choices.map((c, i) => (
-          <Flex.Item key={i} flex="1 1 auto">
+          <Stack.Item key={i}>
             <Button
               selected={i + 1 === parseInt(modal.value, 10)}
               onClick={() => modalAnswer(id, (i + 1).toString(), {})}
             >
               <Image src={c} />
             </Button>
-          </Flex.Item>
+          </Stack.Item>
         ))}
-      </Flex>
+      </Stack>
     );
   } else if (type === 'bentospritesheet') {
     modalBody = (
-      <Flex spacingPrecise="1" wrap="wrap" my="0.5rem" maxHeight="1%">
+      <Stack wrap="wrap" my="0.5rem" maxHeight="1%">
         {modal.choices.map((c, i) => (
-          <Flex.Item key={i} flex="1 1 auto">
+          <Stack.Item key={i}>
             <Button
               selected={i + 1 === parseInt(modal.value, 10)}
               onClick={() => modalAnswer(id, (i + 1).toString(), {})}
             >
               <Box className={c} />
             </Button>
-          </Flex.Item>
+          </Stack.Item>
         ))}
-      </Flex>
+      </Stack>
     );
   } else if (type === 'boolean') {
     modalFooter = (

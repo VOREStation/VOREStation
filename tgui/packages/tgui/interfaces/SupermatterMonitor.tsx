@@ -7,10 +7,10 @@ import {
   AnimatedNumber,
   Box,
   Button,
-  Flex,
   LabeledList,
   ProgressBar,
   Section,
+  Stack,
 } from 'tgui-core/components';
 
 type Data = {
@@ -64,9 +64,9 @@ const SupermatterMonitorList = (props) => {
         </Button>
       }
     >
-      <Flex wrap="wrap">
+      <Stack wrap="wrap">
         {supermatters.map((sm, i) => (
-          <Flex.Item basis="49%" grow={i % 2} key={i}>
+          <Stack.Item basis="49%" grow={i % 2} key={i}>
             <Section title={sm.area_name + ' (#' + sm.uid + ')'}>
               <LabeledList>
                 <LabeledList.Item label="Integrity">
@@ -82,9 +82,9 @@ const SupermatterMonitorList = (props) => {
                 </LabeledList.Item>
               </LabeledList>
             </Section>
-          </Flex.Item>
+          </Stack.Item>
         ))}
-      </Flex>
+      </Stack>
     </Section>
   );
 };

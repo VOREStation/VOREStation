@@ -5,10 +5,10 @@ import { Window } from 'tgui/layouts';
 import {
   Box,
   Button,
-  Flex,
   LabeledList,
   NoticeBox,
   Section,
+  Stack,
 } from 'tgui-core/components';
 
 type Data = {
@@ -182,11 +182,11 @@ const TelecommsSelectedServer = (props: {
         </LabeledList.Item>
       </LabeledList>
       <Section title="Stored Logs" mt="4px">
-        <Flex wrap="wrap">
+        <Stack wrap="wrap">
           {!server.logs || !server.logs.length
             ? 'No Logs Detected.'
             : server.logs.map((log) => (
-                <Flex.Item m="2px" key={log.id} basis="49%" grow={log.id % 2}>
+                <Stack.Item m="2px" key={log.id} basis="49%" grow={log.id % 2}>
                   <Section
                     title={
                       universal_translate ||
@@ -229,9 +229,9 @@ const TelecommsSelectedServer = (props: {
                       <TelecommsLog error />
                     )}
                   </Section>
-                </Flex.Item>
+                </Stack.Item>
               ))}
-        </Flex>
+        </Stack>
       </Section>
     </Section>
   );
