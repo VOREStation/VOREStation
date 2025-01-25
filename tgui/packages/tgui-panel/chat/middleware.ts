@@ -110,7 +110,7 @@ const loadChatFromStorage = async (store: Store<number, Action<string>>) => {
       settings.exportEnd = 0;
 
       for (let message of archivedMessages as message[]) {
-        const currentId = message.roundId;
+        const currentId = message.roundId || 0;
         if (currentId !== oldId) {
           const round = currentId;
           const line = currentLine;
