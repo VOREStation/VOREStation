@@ -1,4 +1,3 @@
-import { clamp } from 'common/math';
 import {
   Component,
   ComponentProps,
@@ -9,6 +8,7 @@ import {
 } from 'react';
 import { Window } from 'tgui/layouts';
 import { Box, Button, Icon, ProgressBar, Stack } from 'tgui-core/components';
+import { clamp } from 'tgui-core/math';
 
 enum GameOverState {
   GameRunning = 0,

@@ -1,6 +1,6 @@
-import { BooleanLike } from 'common/react';
 import { useBackend } from 'tgui/backend';
 import { Button, Section, Stack } from 'tgui/components';
+import { BooleanLike } from 'tgui-core/react';
 
 import { localPrefs } from '../types';
 import { VoreUserPreferenceItem } from '../VoreUserPreferenceItem';

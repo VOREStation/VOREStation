@@ -1,9 +1,9 @@
 /* eslint react/no-danger: "off" */
 
-import { BooleanLike } from 'common/react';
 import { useBackend } from 'tgui/backend';
 import { NtosWindow } from 'tgui/layouts';
 import { Button, Section, Stack, Table } from 'tgui-core/components';
+import { BooleanLike } from 'tgui-core/react';
 
 type Data = {
   PC_device_theme: string;

@@ -1,5 +1,5 @@
-import { toFixed } from 'common/math';
 import { Box, LabeledList, ProgressBar, Section } from 'tgui-core/components';
+import { toFixed } from 'tgui-core/math';
 
 import { damageRange, damages, stats, tempColors } from './constants';
 import { occupant } from './types';

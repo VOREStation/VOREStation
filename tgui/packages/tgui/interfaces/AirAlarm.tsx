@@ -1,10 +1,10 @@
-import { toFixed } from 'common/math';
-import { BooleanLike } from 'common/react';
 import { Fragment, useState } from 'react';
 import { useBackend } from 'tgui/backend';
 import { getGasColor, getGasLabel } from 'tgui/constants';
 import { Window } from 'tgui/layouts';
 import { Box, Button, LabeledList, Section } from 'tgui-core/components';
+import { toFixed } from 'tgui-core/math';
+import { BooleanLike } from 'tgui-core/react';
 
 import { Scrubber, Vent } from './common/AtmosControls';
 import { single_scrubber, single_vent } from './common/CommonTypes';
@@ -43,14 +43,7 @@ type thresholds = {
   settings: {
     env: string;
     val: number;
-    selected: {
-      oxygen: number[];
-      carbon_dioxide: number;
-      phoron: number;
-      other: number;
-      pressure: number;
-      temperature: number;
-    };
+    selected: number;
   }[];
 };
 

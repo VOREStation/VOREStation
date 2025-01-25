@@ -1,4 +1,3 @@
-import { BooleanLike } from 'common/react';
 import { toTitleCase } from 'common/string';
 import { useBackend } from 'tgui/backend';
 import { Window } from 'tgui/layouts';
@@ -11,6 +10,7 @@ import {
   LabeledList,
   Section,
 } from 'tgui-core/components';
+import { BooleanLike } from 'tgui-core/react';
 
 import { MiningUser } from './common/Mining';
 

@@ -4,7 +4,6 @@
  * @license MIT
  */
 
-import { toFixed } from 'common/math';
 import { useDispatch, useSelector } from 'tgui/backend';
 import {
   Button,
@@ -13,6 +12,7 @@ import {
   Section,
   Stack,
 } from 'tgui-core/components';
+import { toFixed } from 'tgui-core/math';
 
 import { useSettings } from '../settings';
 import { selectAudio } from './selectors';

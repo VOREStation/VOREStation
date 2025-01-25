@@ -1,4 +1,3 @@
-import { BooleanLike } from 'common/react';
 import { useBackend } from 'tgui/backend';
 import { Window } from 'tgui/layouts';
 import {
@@ -11,6 +10,7 @@ import {
   Section,
   Stack,
 } from 'tgui-core/components';
+import { BooleanLike } from 'tgui-core/react';
 
 type Data = {
   broken: BooleanLike;

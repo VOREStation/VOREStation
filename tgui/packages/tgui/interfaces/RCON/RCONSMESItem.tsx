@@ -1,5 +1,5 @@
-import { toFixed } from 'common/math';
 import { ProgressBar, Stack } from 'tgui-core/components';
+import { toFixed } from 'tgui-core/math';
 
 import { SMESControls } from './RCONSMESControls';
 import { rconSmes } from './types';

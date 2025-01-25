@@ -1,6 +1,6 @@
-import { BooleanLike } from 'common/react';
 import { useBackend } from 'tgui/backend';
 import { Button, LabeledList } from 'tgui-core/components';
+import { BooleanLike } from 'tgui-core/react';
 
 import { interactData } from '../types';
 

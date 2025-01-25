@@ -1,4 +1,3 @@
-import { BooleanLike } from 'common/react';
 import { createSearch } from 'common/string';
 import { useState } from 'react';
 import { useBackend } from 'tgui/backend';
@@ -13,6 +12,7 @@ import {
   Stack,
   Table,
 } from 'tgui-core/components';
+import { BooleanLike } from 'tgui-core/react';
 
 type Data = {
   contents: content[];

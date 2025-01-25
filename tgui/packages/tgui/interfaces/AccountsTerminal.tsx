@@ -1,4 +1,3 @@
-import { BooleanLike } from 'common/react';
 import { useBackend, useSharedState } from 'tgui/backend';
 import { Window } from 'tgui/layouts';
 import {
@@ -10,6 +9,7 @@ import {
   Table,
   Tabs,
 } from 'tgui-core/components';
+import { BooleanLike } from 'tgui-core/react';
 
 type Data = {
   id_inserted: BooleanLike;

@@ -1,7 +1,7 @@
-import { BooleanLike } from 'common/react';
 import { useBackend } from 'tgui/backend';
 import { NtosWindow } from 'tgui/layouts';
 import { Box, Button, LabeledList, Section, Table } from 'tgui-core/components';
+import { BooleanLike } from 'tgui-core/react';
 
 import { NtosEmailClientViewMessage } from './NtosEmailClient';
 

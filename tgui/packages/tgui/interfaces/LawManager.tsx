@@ -1,6 +1,5 @@
 import { filter } from 'common/collections';
 import { flow } from 'common/fp';
-import { BooleanLike } from 'common/react';
 import { createSearch } from 'common/string';
 import { useBackend, useSharedState } from 'tgui/backend';
 import { Window } from 'tgui/layouts';
@@ -13,6 +12,7 @@ import {
   Table,
   Tabs,
 } from 'tgui-core/components';
+import { BooleanLike } from 'tgui-core/react';
 
 type Data = {
   ion_law_nr: string;

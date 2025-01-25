@@ -1,5 +1,5 @@
-import { toFixed } from 'common/math';
 import { Box, ProgressBar, Section, Table } from 'tgui-core/components';
+import { toFixed } from 'tgui-core/math';
 
 import { damageRange } from './constants';
 import { germStatus, reduceOrganStatus } from './functions';

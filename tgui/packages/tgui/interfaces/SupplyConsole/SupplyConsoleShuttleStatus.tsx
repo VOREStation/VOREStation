@@ -1,11 +1,11 @@
 import { useBackend } from 'tgui/backend';
-import { formatTime } from 'tgui/format';
 import {
   AnimatedNumber,
   Button,
   LabeledList,
   Section,
 } from 'tgui-core/components';
+import { formatTime } from 'tgui-core/format';
 
 import { Data } from './types';
 

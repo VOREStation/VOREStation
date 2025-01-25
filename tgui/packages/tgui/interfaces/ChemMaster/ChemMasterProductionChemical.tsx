@@ -1,5 +1,5 @@
-import { classes } from 'tgui/.././common/react';
 import { Box, Button, LabeledList } from 'tgui-core/components';
+import { classes } from 'tgui-core/react';
 
 import { modalOpen } from '../common/ComplexModal';
 

@@ -1,6 +1,4 @@
-import { toFixed } from 'common/math';
 import { useBackend } from 'tgui/backend';
-import { formatPower, formatSiUnit } from 'tgui/format';
 import { Window } from 'tgui/layouts';
 import {
   Box,
@@ -9,6 +7,8 @@ import {
   Section,
   Stack,
 } from 'tgui-core/components';
+import { formatPower, formatSiUnit } from 'tgui-core/format';
+import { toFixed } from 'tgui-core/math';
 
 type Data = {
   totalOutput: number;

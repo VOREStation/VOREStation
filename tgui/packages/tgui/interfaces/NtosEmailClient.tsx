@@ -1,6 +1,4 @@
 /* eslint react/no-danger: "off" */
-import { toFixed } from 'common/math';
-import { BooleanLike } from 'common/react';
 import { useBackend } from 'tgui/backend';
 import { NtosWindow } from 'tgui/layouts';
 import {
@@ -15,6 +13,8 @@ import {
   Table,
   Tabs,
 } from 'tgui-core/components';
+import { toFixed } from 'tgui-core/math';
+import { BooleanLike } from 'tgui-core/react';
 
 type Data = {
   PC_device_theme: string;

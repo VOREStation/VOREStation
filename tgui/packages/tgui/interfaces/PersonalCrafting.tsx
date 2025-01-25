@@ -1,6 +1,5 @@
 import { filter } from 'common/collections';
 import { flow } from 'common/fp';
-import { BooleanLike } from 'common/react';
 import { createSearch } from 'common/string';
 import { useState } from 'react';
 import { useBackend } from 'tgui/backend';
@@ -15,6 +14,7 @@ import {
   Stack,
   Tabs,
 } from 'tgui-core/components';
+import { BooleanLike } from 'tgui-core/react';
 
 type Data = {
   busy: BooleanLike;

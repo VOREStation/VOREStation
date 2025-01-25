@@ -1,9 +1,9 @@
-import { BooleanLike } from 'common/react';
 import { decodeHtmlEntities } from 'common/string';
 import { useBackend } from 'tgui/backend';
-import { formatPower } from 'tgui/format';
 import { Window } from 'tgui/layouts';
 import { Box, Button, LabeledList, Section, Stack } from 'tgui-core/components';
+import { formatPower } from 'tgui-core/format';
+import { BooleanLike } from 'tgui-core/react';
 
 type Data = {
   name: string;

@@ -1,8 +1,8 @@
-import { BooleanLike } from 'common/react';
 import { decodeHtmlEntities } from 'common/string';
 import { useBackend } from 'tgui/backend';
-import { formatMoney } from 'tgui/format';
 import { Button, Section, Table } from 'tgui-core/components';
+import { formatMoney } from 'tgui-core/format';
+import { BooleanLike } from 'tgui-core/react';
 
 import { item } from './types';
 

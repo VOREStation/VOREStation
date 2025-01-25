@@ -1,4 +1,3 @@
-import { round, toFixed } from 'common/math';
 import { useBackend } from 'tgui/backend';
 import { Window } from 'tgui/layouts';
 import {
@@ -9,6 +8,7 @@ import {
   NumberInput,
   Section,
 } from 'tgui-core/components';
+import { round, toFixed } from 'tgui-core/math';
 
 type Data = {
   scan_ticks: number;

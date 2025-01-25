@@ -1,4 +1,3 @@
-import { BooleanLike } from 'common/react';
 import { resolveAsset } from 'tgui/assets';
 import { useBackend } from 'tgui/backend';
 import { NtosWindow } from 'tgui/layouts';
@@ -12,6 +11,7 @@ import {
   Section,
   Table,
 } from 'tgui-core/components';
+import { BooleanLike } from 'tgui-core/react';
 
 type Data = {
   Hitpoints: number;

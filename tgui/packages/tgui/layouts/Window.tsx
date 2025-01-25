@@ -4,7 +4,6 @@
  * @license MIT
  */
 
-import { classes } from 'common/react';
 import { decodeHtmlEntities, toTitleCase } from 'common/string';
 import { PropsWithChildren, ReactNode, useEffect } from 'react';
 import { backendSuspendStart, globalStore, useBackend } from 'tgui/backend';
@@ -13,6 +12,7 @@ import { UI_DISABLED, UI_INTERACTIVE, UI_UPDATE } from 'tgui/constants';
 import { useDebug } from 'tgui/debug';
 import { toggleKitchenSink } from 'tgui/debug/actions';
 import { Icon } from 'tgui-core/components';
+import { classes } from 'tgui-core/react';
 
 import {
   dragStartHandler,

@@ -1,4 +1,3 @@
-import { toFixed } from 'common/math';
 import { resolveAsset } from 'tgui/assets';
 import { useBackend } from 'tgui/backend';
 import {
@@ -11,6 +10,7 @@ import {
   Section,
   Stack,
 } from 'tgui-core/components';
+import { toFixed } from 'tgui-core/math';
 
 import { Data } from './types';
 

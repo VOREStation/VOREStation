@@ -1,5 +1,5 @@
-import { BooleanLike } from 'common/react';
 import { Box } from 'tgui-core/components';
+import { BooleanLike } from 'tgui-core/react';
 
 /*
  */

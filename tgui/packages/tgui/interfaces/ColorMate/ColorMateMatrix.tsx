@@ -1,4 +1,3 @@
-import { toFixed } from 'common/math';
 import { useBackend } from 'tgui/backend';
 import {
   Box,
@@ -8,6 +7,7 @@ import {
   NumberInput,
   Table,
 } from 'tgui-core/components';
+import { toFixed } from 'tgui-core/math';
 
 import { Data } from './types';
 

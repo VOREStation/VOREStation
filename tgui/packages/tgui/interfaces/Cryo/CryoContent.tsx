@@ -1,4 +1,3 @@
-import { toFixed } from 'common/math';
 import { useBackend } from 'tgui/backend';
 import {
   AnimatedNumber,
@@ -10,6 +9,7 @@ import {
   Section,
   Stack,
 } from 'tgui-core/components';
+import { toFixed } from 'tgui-core/math';
 
 import { damageTypes, statNames } from './constants';
 import { Data } from './types';

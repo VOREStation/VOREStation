@@ -1,6 +1,6 @@
 import { useBackend } from 'tgui/backend';
-import { formatMoney } from 'tgui/format';
 import { Box, Button, ProgressBar, Section, Stack } from 'tgui-core/components';
+import { formatMoney } from 'tgui-core/format';
 
 import { COLOR_KEYS } from './constants';
 import { MaterialAmount } from './Material';

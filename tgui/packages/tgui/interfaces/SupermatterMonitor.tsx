@@ -1,5 +1,3 @@
-import { toFixed } from 'common/math';
-import { BooleanLike } from 'common/react';
 import { toTitleCase } from 'common/string';
 import { useBackend } from 'tgui/backend';
 import { Window } from 'tgui/layouts';
@@ -12,6 +10,8 @@ import {
   Section,
   Stack,
 } from 'tgui-core/components';
+import { toFixed } from 'tgui-core/math';
+import { BooleanLike } from 'tgui-core/react';
 
 type Data = {
   active: BooleanLike;

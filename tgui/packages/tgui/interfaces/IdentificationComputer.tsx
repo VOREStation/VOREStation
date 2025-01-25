@@ -1,5 +1,4 @@
 import { sortBy } from 'common/collections';
-import { BooleanLike } from 'common/react';
 import { decodeHtmlEntities } from 'common/string';
 import { Fragment } from 'react';
 import { useBackend } from 'tgui/backend';
@@ -14,6 +13,7 @@ import {
   Table,
   Tabs,
 } from 'tgui-core/components';
+import { BooleanLike } from 'tgui-core/react';
 
 import { CrewManifestContent } from './CrewManifest';
 

@@ -1,7 +1,7 @@
-import { toFixed } from 'common/math';
 import { resolveAsset } from 'tgui/assets';
 import { useBackend } from 'tgui/backend';
 import { Box, Button, Icon, Image, ProgressBar } from 'tgui-core/components';
+import { toFixed } from 'tgui-core/math';
 
 import { Data } from './types';
 

@@ -1,4 +1,3 @@
-import { toFixed } from 'common/math';
 import { useBackend } from 'tgui/backend';
 import {
   AnimatedNumber,
@@ -7,6 +6,7 @@ import {
   ProgressBar,
   Section,
 } from 'tgui-core/components';
+import { toFixed } from 'tgui-core/math';
 
 import { stats } from './constants';
 import { occupant } from './types';

@@ -1,11 +1,11 @@
 import { sortBy } from 'common/collections';
 import { flow } from 'common/fp';
-import { BooleanLike } from 'common/react';
 import { useState } from 'react';
 import { useBackend } from 'tgui/backend';
 import { NanoMap } from 'tgui/components';
 import { Window } from 'tgui/layouts';
 import { Box, Button, Icon, Table, Tabs } from 'tgui-core/components';
+import { BooleanLike } from 'tgui-core/react';
 
 type Data = {
   zoomScale: number;

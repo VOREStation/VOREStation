@@ -1,4 +1,3 @@
-import { BooleanLike } from 'common/react';
 import { useState } from 'react';
 import { useBackend } from 'tgui/backend';
 import { Window } from 'tgui/layouts';
@@ -11,6 +10,7 @@ import {
   Stack,
   Tabs,
 } from 'tgui-core/components';
+import { BooleanLike } from 'tgui-core/react';
 
 import { ComplexModal, modalRegisterBodyOverride } from './common/ComplexModal';
 import { modalData } from './MedicalRecords/types';

@@ -1,8 +1,8 @@
-import { BooleanLike } from 'common/react';
 import { capitalize } from 'common/string';
 import { useBackend } from 'tgui/backend';
-import { formatPower } from 'tgui/format';
 import { Button, Slider, Stack } from 'tgui-core/components';
+import { formatPower } from 'tgui-core/format';
+import { BooleanLike } from 'tgui-core/react';
 
 import { POWER_MUL } from './constants';
 import { rconSmes } from './types';

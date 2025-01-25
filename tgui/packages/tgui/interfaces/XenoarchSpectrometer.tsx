@@ -1,4 +1,3 @@
-import { BooleanLike } from 'common/react';
 import { decodeHtmlEntities } from 'common/string';
 import { useBackend } from 'tgui/backend';
 import { Window } from 'tgui/layouts';
@@ -11,6 +10,7 @@ import {
   Section,
   Slider,
 } from 'tgui-core/components';
+import { BooleanLike } from 'tgui-core/react';
 
 type Data = {
   scanned_item: string;

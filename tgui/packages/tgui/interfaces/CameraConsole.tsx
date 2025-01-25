@@ -1,6 +1,5 @@
 import { filter, sortBy } from 'common/collections';
 import { flow } from 'common/fp';
-import { BooleanLike, classes } from 'common/react';
 import { createSearch } from 'common/string';
 import { useState } from 'react';
 import { useBackend } from 'tgui/backend';
@@ -13,6 +12,7 @@ import {
   Section,
   Stack,
 } from 'tgui-core/components';
+import { BooleanLike, classes } from 'tgui-core/react';
 
 type activeCamera = { name: string; status: BooleanLike } | null;
 

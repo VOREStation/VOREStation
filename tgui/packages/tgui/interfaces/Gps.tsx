@@ -2,8 +2,6 @@
 
 import { map, sortBy } from 'common/collections';
 import { flow } from 'common/fp';
-import { clamp } from 'common/math';
-import { BooleanLike } from 'common/react';
 import { vecLength, vecSubtract } from 'common/vector';
 import { useBackend } from 'tgui/backend';
 import { Window } from 'tgui/layouts';
@@ -15,6 +13,8 @@ import {
   Section,
   Table,
 } from 'tgui-core/components';
+import { clamp } from 'tgui-core/math';
+import { BooleanLike } from 'tgui-core/react';
 
 const coordsToVec = (coords) => map(coords.split(', '), parseFloat);
 

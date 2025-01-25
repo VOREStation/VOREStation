@@ -4,7 +4,6 @@
  * @license MIT
  */
 
-import { classes } from 'common/react';
 import { useEffect, useRef } from 'react';
 import {
   BoxProps,
@@ -12,6 +11,7 @@ import {
   computeBoxProps,
 } from 'tgui/components/Box';
 import { addScrollableNode, removeScrollableNode } from 'tgui/events';
+import { classes } from 'tgui-core/react';
 
 type Props = Partial<{
   theme: string;

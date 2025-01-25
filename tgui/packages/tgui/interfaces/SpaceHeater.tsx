@@ -1,4 +1,3 @@
-import { BooleanLike } from 'common/react';
 import { useBackend } from 'tgui/backend';
 import { T0C } from 'tgui/constants';
 import { Window } from 'tgui/layouts';
@@ -9,6 +8,7 @@ import {
   LabeledList,
   Section,
 } from 'tgui-core/components';
+import { BooleanLike } from 'tgui-core/react';
 
 type Data = {
   temp: number;

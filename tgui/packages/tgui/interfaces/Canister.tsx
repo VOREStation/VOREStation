@@ -1,7 +1,4 @@
-import { toFixed } from 'common/math';
-import { BooleanLike } from 'common/react';
 import { useBackend } from 'tgui/backend';
-import { formatSiUnit } from 'tgui/format';
 import { Window } from 'tgui/layouts';
 import {
   AnimatedNumber,
@@ -14,6 +11,9 @@ import {
   Section,
   Tooltip,
 } from 'tgui-core/components';
+import { formatSiUnit } from 'tgui-core/format';
+import { toFixed } from 'tgui-core/math';
+import { BooleanLike } from 'tgui-core/react';
 
 type Data = {
   connected: BooleanLike;

@@ -4,11 +4,11 @@
  * @license MIT
  */
 
-import { classes } from 'common/react';
 import { useBackend } from 'tgui/backend';
 import { BoxProps } from 'tgui/components/Box';
 import { useDebug } from 'tgui/debug';
 import { Box } from 'tgui-core/components';
+import { classes } from 'tgui-core/react';
 
 import { Layout } from './Layout';
 

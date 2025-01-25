@@ -1,6 +1,4 @@
-import { round } from 'common/math';
 import { useBackend } from 'tgui/backend';
-import { formatTime } from 'tgui/format';
 import { Window } from 'tgui/layouts';
 import {
   Button,
@@ -8,6 +6,8 @@ import {
   NumberInput,
   Section,
 } from 'tgui-core/components';
+import { formatTime } from 'tgui-core/format';
+import { round } from 'tgui-core/math';
 
 type Data = { timing: number; time: number };
 

@@ -1,4 +1,3 @@
-import { BooleanLike } from 'common/react';
 import { Component } from 'react';
 import { useBackend } from 'tgui/backend';
 import { Window } from 'tgui/layouts';
@@ -10,6 +9,7 @@ import {
   Section,
   Slider,
 } from 'tgui-core/components';
+import { BooleanLike } from 'tgui-core/react';
 
 type Data = {
   simulating: BooleanLike;

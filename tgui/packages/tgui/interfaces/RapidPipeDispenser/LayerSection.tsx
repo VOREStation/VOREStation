@@ -1,6 +1,6 @@
-import { classes } from 'common/react';
 import { useBackend } from 'tgui/backend';
 import { Box, Button, Section, Stack } from 'tgui-core/components';
+import { classes } from 'tgui-core/react';
 
 import { Data } from './types';
 

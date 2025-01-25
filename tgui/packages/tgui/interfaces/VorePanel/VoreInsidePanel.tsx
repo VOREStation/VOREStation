@@ -1,5 +1,5 @@
-import { BooleanLike } from 'common/react';
 import { Box, Collapsible, Section } from 'tgui-core/components';
+import { BooleanLike } from 'tgui-core/react';
 
 import { digestModeToColor, digestModeToPreyMode } from './constants';
 import { insideData } from './types';

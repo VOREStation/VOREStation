@@ -1,7 +1,5 @@
-import { toFixed } from 'common/math';
 import { useState } from 'react';
 import { useBackend } from 'tgui/backend';
-import { formatPower } from 'tgui/format';
 import { Window } from 'tgui/layouts';
 import {
   AnimatedNumber,
@@ -11,6 +9,8 @@ import {
   ProgressBar,
   Section,
 } from 'tgui-core/components';
+import { formatPower } from 'tgui-core/format';
+import { toFixed } from 'tgui-core/math';
 
 import { Plane } from './Plane';
 import { Data } from './types';

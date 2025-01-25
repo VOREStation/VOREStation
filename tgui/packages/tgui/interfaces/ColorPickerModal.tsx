@@ -14,8 +14,6 @@ import {
   rgbaToHsva,
   validHex,
 } from 'common/colorpicker';
-import { clamp } from 'common/math';
-import { classes } from 'common/react';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { Pointer } from 'tgui/components';
 import { Interaction, Interactive } from 'tgui/components/Interactive';
@@ -27,6 +25,8 @@ import {
   Stack,
   Tooltip,
 } from 'tgui-core/components';
+import { clamp } from 'tgui-core/math';
+import { classes } from 'tgui-core/react';
 
 import { useBackend } from '../backend';
 import { Autofocus } from '../components/Autofocus';

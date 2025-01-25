@@ -1,7 +1,7 @@
-import { BooleanLike } from 'common/react';
 import { useBackend } from 'tgui/backend';
 import { Stack } from 'tgui-core/components';
 import { Box, Divider, Icon, Section, Tabs } from 'tgui-core/components';
+import { BooleanLike } from 'tgui-core/react';
 
 import { digestModeToColor } from './constants';
 import { bellyData, hostMob, selectedData } from './types';

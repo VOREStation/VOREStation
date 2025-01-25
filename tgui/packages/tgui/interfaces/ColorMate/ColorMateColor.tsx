@@ -1,6 +1,6 @@
-import { toFixed } from 'common/math';
 import { useBackend } from 'tgui/backend';
 import { Button, Slider, Table } from 'tgui-core/components';
+import { toFixed } from 'tgui-core/math';
 
 import { Data } from './types';
 

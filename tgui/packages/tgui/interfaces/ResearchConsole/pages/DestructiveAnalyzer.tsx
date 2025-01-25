@@ -1,7 +1,7 @@
-import { classes } from 'common/react';
 import { useEffect, useState } from 'react';
 import { useBackend } from 'tgui/backend';
 import { Box, Button, Icon, Section, Stack, Table } from 'tgui-core/components';
+import { classes } from 'tgui-core/react';
 
 import { Data, LinkedDestroyer } from '../data';
 
