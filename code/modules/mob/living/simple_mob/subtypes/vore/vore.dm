@@ -20,6 +20,7 @@
 	ooc_notes = client.prefs.read_preference(/datum/preference/text/living/ooc_notes)
 	ooc_notes_likes = client.prefs.read_preference(/datum/preference/text/living/ooc_notes_likes)
 	ooc_notes_dislikes = client.prefs.read_preference(/datum/preference/text/living/ooc_notes_dislikes)
+	private_notes = client.prefs.read_preference(/datum/preference/text/living/private_notes)
 	digestable = client.prefs_vr.digestable
 	devourable = client.prefs_vr.devourable
 	absorbable = client.prefs_vr.absorbable
