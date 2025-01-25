@@ -2534,6 +2534,7 @@ includes scars and tattoos
 
 //Digitigrade markings
 /datum/sprite_accessory/marking/digi
+	name = "Digitigrate Marking Subcat, Please Ignore"
 	icon = 'icons/mob/human_races/markings_digi.dmi'
 	digitigrade_acceptance = MARKING_DIGITIGRADE_ONLY
 
