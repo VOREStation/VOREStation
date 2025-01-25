@@ -101,6 +101,32 @@ export function isCardinal(key: string): boolean {
 }
 
 /**
+ * ### isArrow
+ *
+ * Checks if the user has hit any arrow key
+ *
+ * @param key - the key to check, typically from event.key
+ * @returns true if key matches any arrow keys
+ */
+export function isArrow(key: string): boolean {
+  return (
+    key === KEY.Up || key === KEY.Down || key === KEY.Left || key === KEY.Right
+  );
+}
+
+/**
+ * ### isWASD
+ *
+ * Checks if the user has hit any w a s d key
+ *
+ * @param key - the key to check, typically from event.key
+ * @returns true if key matches any w a s d
+ */
+export function isWASD(key: string): boolean {
+  return key === KEY.W || key === KEY.A || key === KEY.S || key === KEY.D;
+}
+
+/**
  * ### isMovement
  *
  * Checks if the user has hit any movement key (w a s d and arrow keys)
@@ -109,14 +135,5 @@ export function isCardinal(key: string): boolean {
  * @returns true if key matches any movement key w a s d and arrow keys
  */
 export function isMovement(key: string): boolean {
-  return (
-    key === KEY.W ||
-    key === KEY.A ||
-    key === KEY.S ||
-    key === KEY.D ||
-    key === KEY.Up ||
-    key === KEY.Down ||
-    key === KEY.Left ||
-    key === KEY.Right
-  );
+  return isWASD(key) || isArrow(key);
 }
