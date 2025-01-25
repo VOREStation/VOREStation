@@ -48,7 +48,7 @@ export const TGUI_CHAT_ATTRIBUTES_TO_PROPS = {
   content: 'content',
 };
 
-const findNearestScrollableParent = (startingNode) => {
+const findNearestScrollableParent = (startingNode: HTMLElement) => {
   const body = document.body;
   let node = startingNode;
   while (node && node !== body) {
@@ -58,12 +58,12 @@ const findNearestScrollableParent = (startingNode) => {
     if (node.scrollWidth < node.offsetWidth) {
       return node;
     }
-    node = node.parentNode;
+    node = node.parentNode as HTMLElement;
   }
   return window;
 };
 
-const createHighlightNode = (text, color) => {
+const createHighlightNode = (text: string, color: string): HTMLElement => {
   const node = document.createElement('span');
   node.className = 'Chat__highlight';
   node.setAttribute('style', 'background-color:' + color);
@@ -71,13 +71,17 @@ const createHighlightNode = (text, color) => {
   return node;
 };
 
-const createMessageNode = () => {
+const createMessageNode = (): HTMLElement => {
   const node = document.createElement('div');
   node.className = 'ChatMessage';
   return node;
 };
 
-const interleaveMessage = (node, interleave, color) => {
+const interleaveMessage = (
+  node: HTMLElement,
+  interleave: boolean,
+  color: string,
+): HTMLElement => {
   if (interleave) {
     node.setAttribute('style', 'background-color:' + color);
     node.setAttribute('display', 'block');
@@ -88,20 +92,20 @@ const interleaveMessage = (node, interleave, color) => {
   return node;
 };
 
-const stripNewLineFlood = (text) => {
+const stripNewLineFlood = (text: string): string => {
   text = text.replace(/((\n)\2{2})\2+/g, '$1');
   return text;
 };
 
-const createReconnectedNode = () => {
+const createReconnectedNode = (): HTMLElement => {
   const node = document.createElement('div');
   node.className = 'Chat__reconnected';
   return node;
 };
 
-const getChatTimestamp = (message) => {
+const getChatTimestamp = (message: message): string => {
   let stamp = '';
-  if (message.createdAt && !message.hasTimestamp) {
+  if (message.createdAt) {
     const dateTime = new Date(message.createdAt);
     stamp =
       '[' +
@@ -114,34 +118,37 @@ const getChatTimestamp = (message) => {
   return stamp;
 };
 
-const handleImageError = (e) => {
+const handleImageError = (e: ErrorEvent) => {
   setTimeout(() => {
     /** @type {HTMLImageElement} */
-    const node = e.target;
-    const attempts = parseInt(node.getAttribute('data-reload-n'), 10) || 0;
-    if (attempts >= IMAGE_RETRY_LIMIT) {
-      logger.error(`failed to load an image after ${attempts} attempts`);
-      return;
+    const node = e.target as HTMLImageElement;
+    if (node) {
+      const attempts =
+        parseInt(node.getAttribute('data-reload-n') || '', 10) || 0;
+      if (attempts >= IMAGE_RETRY_LIMIT) {
+        logger.error(`failed to load an image after ${attempts} attempts`);
+        return;
+      }
+      const src = node.src;
+      node.src = '';
+      node.src = src + '#' + attempts;
+      node.setAttribute('data-reload-n', (attempts + 1).toString());
     }
-    const src = node.src;
-    node.src = null;
-    node.src = src + '#' + attempts;
-    node.setAttribute('data-reload-n', attempts + 1);
   }, IMAGE_RETRY_DELAY);
 };
 
 /**
  * Assigns a "times-repeated" badge to the message.
  */
-const updateMessageBadge = (message) => {
+const updateMessageBadge = (message: message) => {
   const { node, times } = message;
-  if (!node || !times) {
+  if (!node || !times || typeof node === 'string') {
     // Nothing to update
     return;
   }
   const foundBadge = node.querySelector('.Chat__badge');
   const badge = foundBadge || document.createElement('div');
-  badge.textContent = times;
+  badge.textContent = times.toString();
   badge.className = classes(['Chat__badge', 'Chat__badge--animate']);
   requestAnimationFrame(() => {
     badge.className = 'Chat__badge';
@@ -152,7 +159,7 @@ const updateMessageBadge = (message) => {
 };
 
 type message = {
-  node?: Node | string;
+  node?: HTMLElement | string;
   type: string;
   text: string;
   html: string;
@@ -262,7 +269,11 @@ class ChatRenderer {
       this.rootNode = node;
     }
     // Find scrollable parent
-    this.scrollNode = findNearestScrollableParent(this.rootNode);
+    if (this.rootNode) {
+      this.scrollNode = findNearestScrollableParent(
+        this.rootNode,
+      ) as HTMLElement;
+    }
     if (this.scrollNode) {
       this.scrollNode.addEventListener('scroll', this.handleScroll);
     }
