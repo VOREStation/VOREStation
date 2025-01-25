@@ -1,29 +1,30 @@
 import { useState } from 'react';
+import { Window } from 'tgui/layouts';
 
-import { NtosWindow } from '../layouts';
-import { CrewMonitorContent } from './CrewMonitor/CrewMonitorContent';
+import { CrewMonitorContent } from './CrewMonitorContent';
 
-export const NtosCrewMonitor = () => {
+export const CrewMonitor = () => {
   const [tabIndex, setTabIndex] = useState<number>(0);
   const [zoom, setZoom] = useState<number>(1);
 
-  function handleTabIndex(value) {
+  function handleTabIndex(value: number) {
     setTabIndex(value);
   }
 
-  function handleZoom(value) {
+  function handleZoom(value: number) {
     setZoom(value);
   }
+
   return (
-    <NtosWindow width={800} height={600}>
-      <NtosWindow.Content>
+    <Window width={800} height={600}>
+      <Window.Content>
         <CrewMonitorContent
           tabIndex={tabIndex}
           zoom={zoom}
           onTabIndex={handleTabIndex}
           onZoom={handleZoom}
         />
-      </NtosWindow.Content>
-    </NtosWindow>
+      </Window.Content>
+    </Window>
   );
 };

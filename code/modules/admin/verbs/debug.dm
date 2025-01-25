@@ -729,3 +729,11 @@
 		fdel("[ASSET_CROSS_ROUND_SMART_CACHE_DIRECTORY]/spritesheet_cache.[initial(A.name)].json")
 		cleared++
 	to_chat(usr, span_notice("Cleared [cleared] asset\s."))
+
+// For spriters with long world loads, allows to reload test robot sprites
+/client/proc/cmd_reload_robot_sprite_test()
+	set category = "Debug.Sprites"
+	set name = "Reload Robot Test Sprites"
+	set desc = "Reloads the dmis from the test folder and creates the test datums."
+
+	SSrobot_sprites.reload_test_sprites()

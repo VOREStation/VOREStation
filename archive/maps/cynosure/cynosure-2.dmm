@@ -8906,7 +8906,6 @@
 "eqk" = (
 /obj/structure/window/reinforced,
 /obj/machinery/computer/security/telescreen/entertainment{
-	icon_state = "frame";
 	pixel_x = -32
 	},
 /obj/machinery/camera/network/civilian{
@@ -21631,7 +21630,6 @@
 /area/surface/station/engineering/atmos)
 "kwY" = (
 /obj/machinery/computer/security/telescreen/entertainment{
-	icon_state = "frame";
 	pixel_y = 32
 	},
 /obj/structure/sign/christmas/lights{
@@ -30547,7 +30545,6 @@
 /obj/effect/floor_decal/borderfloor,
 /obj/effect/floor_decal/corner/grey/border,
 /obj/machinery/computer/security/telescreen/entertainment{
-	icon_state = "frame";
 	pixel_x = 32
 	},
 /obj/effect/floor_decal/spline/plain,
@@ -42043,7 +42040,6 @@
 	},
 /obj/item/clothing/glasses/science,
 /obj/machinery/computer/security/telescreen/entertainment{
-	icon_state = "frame";
 	pixel_y = -32
 	},
 /obj/machinery/light,
@@ -50317,7 +50313,6 @@
 	dir = 1
 	},
 /obj/machinery/computer/security/telescreen/entertainment{
-	icon_state = "frame";
 	pixel_y = 32
 	},
 /turf/simulated/floor/tiled/white,

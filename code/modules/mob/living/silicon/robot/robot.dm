@@ -408,6 +408,7 @@
 		ooc_notes = client.prefs.read_preference(/datum/preference/text/living/ooc_notes)
 		ooc_notes_likes = client.prefs.read_preference(/datum/preference/text/living/ooc_notes_likes)
 		ooc_notes_dislikes = client.prefs.read_preference(/datum/preference/text/living/ooc_notes_dislikes)
+		private_notes = client.prefs.read_preference(/datum/preference/text/living/private_notes)
 		custom_link = client.prefs.custom_link
 
 /mob/living/silicon/robot/verb/namepick()
