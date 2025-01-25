@@ -1,4 +1,3 @@
-import { capitalize } from 'common/string';
 import { useDispatch, useSelector } from 'tgui/backend';
 import {
   Button,
@@ -9,6 +8,7 @@ import {
   Stack,
 } from 'tgui-core/components';
 import { toFixed } from 'tgui-core/math';
+import { capitalize } from 'tgui-core/string';
 
 import { updateSettings } from './actions';
 import { selectSettings } from './selectors';

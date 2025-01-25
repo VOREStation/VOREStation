@@ -1,4 +1,3 @@
-import { capitalize } from 'common/string';
 import { useBackend } from 'tgui/backend';
 import {
   Box,
@@ -9,6 +8,7 @@ import {
   Stack,
 } from 'tgui-core/components';
 import { toFixed } from 'tgui-core/math';
+import { capitalize } from 'tgui-core/string';
 
 import { Cell, Comp, InstalledCell, Target } from '../types';
 

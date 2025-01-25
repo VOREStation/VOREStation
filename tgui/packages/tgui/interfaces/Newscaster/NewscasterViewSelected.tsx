@@ -1,6 +1,6 @@
-import { decodeHtmlEntities } from 'common/string';
 import { useBackend } from 'tgui/backend';
 import { Box, Button, Image, LabeledList, Section } from 'tgui-core/components';
+import { decodeHtmlEntities } from 'tgui-core/string';
 
 import { NEWSCASTER_SCREEN_VIEWLIST } from './constants';
 import { Data } from './types';

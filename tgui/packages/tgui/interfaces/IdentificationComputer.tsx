@@ -1,5 +1,4 @@
 import { sortBy } from 'common/collections';
-import { decodeHtmlEntities } from 'common/string';
 import { Fragment } from 'react';
 import { useBackend } from 'tgui/backend';
 import { Window } from 'tgui/layouts';
@@ -14,6 +13,7 @@ import {
   Tabs,
 } from 'tgui-core/components';
 import { BooleanLike } from 'tgui-core/react';
+import { decodeHtmlEntities } from 'tgui-core/string';
 
 import { CrewManifestContent } from './CrewManifest';
 

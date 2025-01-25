@@ -1,4 +1,3 @@
-import { toTitleCase } from 'common/string';
 import { useBackend, useSharedState } from 'tgui/backend';
 import {
   Box,
@@ -11,6 +10,7 @@ import {
 import { formatMoney, formatSiUnit } from 'tgui-core/format';
 import { toFixed } from 'tgui-core/math';
 import { classes } from 'tgui-core/react';
+import { toTitleCase } from 'tgui-core/string';
 
 import { MATERIAL_KEYS } from './constants';
 import { Data, material } from './types';

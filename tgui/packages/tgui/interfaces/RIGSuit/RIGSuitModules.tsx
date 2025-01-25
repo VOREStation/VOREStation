@@ -1,6 +1,6 @@
-import { capitalize, toTitleCase } from 'common/string';
 import { useBackend } from 'tgui/backend';
 import { Box, Button, LabeledList, Section, Stack } from 'tgui-core/components';
+import { capitalize, toTitleCase } from 'tgui-core/string';
 
 import { Data } from './types';
 

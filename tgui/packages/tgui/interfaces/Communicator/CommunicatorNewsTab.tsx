@@ -1,6 +1,6 @@
-import { decodeHtmlEntities } from 'common/string';
 import { useBackend } from 'tgui/backend';
 import { Box, Button, Image, Section } from 'tgui-core/components';
+import { decodeHtmlEntities } from 'tgui-core/string';
 
 import { Data } from './types';
 

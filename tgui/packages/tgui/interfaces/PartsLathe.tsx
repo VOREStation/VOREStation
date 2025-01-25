@@ -1,4 +1,3 @@
-import { toTitleCase } from 'common/string';
 import { useBackend } from 'tgui/backend';
 import { Window } from 'tgui/layouts';
 import {
@@ -10,6 +9,7 @@ import {
   Section,
 } from 'tgui-core/components';
 import { BooleanLike } from 'tgui-core/react';
+import { toTitleCase } from 'tgui-core/string';
 
 import { Materials } from './ExosuitFabricator/Material';
 import { material } from './ExosuitFabricator/types';

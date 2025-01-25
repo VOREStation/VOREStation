@@ -1,4 +1,3 @@
-import { toTitleCase } from 'common/string';
 import { useBackend } from 'tgui/backend';
 import { Window } from 'tgui/layouts';
 import {
@@ -12,6 +11,7 @@ import {
 } from 'tgui-core/components';
 import { toFixed } from 'tgui-core/math';
 import { BooleanLike } from 'tgui-core/react';
+import { toTitleCase } from 'tgui-core/string';
 
 type Data = {
   active: BooleanLike;

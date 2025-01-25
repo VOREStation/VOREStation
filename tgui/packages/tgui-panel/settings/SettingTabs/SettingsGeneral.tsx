@@ -1,4 +1,3 @@
-import { capitalize } from 'common/string';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'tgui/backend';
 import {
@@ -13,6 +12,7 @@ import {
   Stack,
 } from 'tgui-core/components';
 import { toFixed } from 'tgui-core/math';
+import { capitalize } from 'tgui-core/string';
 
 import { rebuildChat } from '../../chat/actions';
 import { THEMES } from '../../themes';

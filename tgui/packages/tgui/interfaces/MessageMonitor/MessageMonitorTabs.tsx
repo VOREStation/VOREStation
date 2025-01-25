@@ -1,4 +1,3 @@
-import { decodeHtmlEntities } from 'common/string';
 import { useBackend } from 'tgui/backend';
 import {
   Box,
@@ -10,6 +9,7 @@ import {
   Stack,
 } from 'tgui-core/components';
 import { BooleanLike } from 'tgui-core/react';
+import { decodeHtmlEntities } from 'tgui-core/string';
 
 import { Data } from './types';
 

@@ -1,6 +1,6 @@
-import { createSearch } from 'common/string';
 import { useState } from 'react';
 import { Input, Section, Stack } from 'tgui-core/components';
+import { createSearch } from 'tgui-core/string';
 
 import { SelectorElement } from './SelectorElement';
 

@@ -1,4 +1,3 @@
-import { decodeHtmlEntities } from 'common/string';
 import { useBackend } from 'tgui/backend';
 import { Window } from 'tgui/layouts';
 import {
@@ -11,6 +10,7 @@ import {
   Slider,
 } from 'tgui-core/components';
 import { BooleanLike } from 'tgui-core/react';
+import { decodeHtmlEntities } from 'tgui-core/string';
 
 type Data = {
   scanned_item: string;

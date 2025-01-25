@@ -1,4 +1,3 @@
-import { capitalize } from 'common/string';
 import { useBackend } from 'tgui/backend';
 import { Window } from 'tgui/layouts';
 import {
@@ -10,6 +9,7 @@ import {
   Section,
   Table,
 } from 'tgui-core/components';
+import { capitalize } from 'tgui-core/string';
 
 type Data = {
   usePower: number;

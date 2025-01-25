@@ -1,5 +1,4 @@
 import { sortBy } from 'common/collections';
-import { toTitleCase } from 'common/string';
 import { useBackend } from 'tgui/backend';
 import { Window } from 'tgui/layouts';
 import {
@@ -9,6 +8,7 @@ import {
   Section,
   Stack,
 } from 'tgui-core/components';
+import { toTitleCase } from 'tgui-core/string';
 
 type Data = {
   scanner: string[];

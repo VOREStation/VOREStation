@@ -1,4 +1,3 @@
-import { decodeHtmlEntities } from 'common/string';
 import { useBackend } from 'tgui/backend';
 import {
   Box,
@@ -10,6 +9,7 @@ import {
   Stack,
   Table,
 } from 'tgui-core/components';
+import { decodeHtmlEntities } from 'tgui-core/string';
 
 import { MESSTAB } from './constants';
 import { Data } from './types';

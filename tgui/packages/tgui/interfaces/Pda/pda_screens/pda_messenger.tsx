@@ -1,10 +1,10 @@
 import { filter } from 'common/collections';
-import { decodeHtmlEntities } from 'common/string';
 import { ReactNode, useEffect, useRef, useState } from 'react';
 import { useBackend } from 'tgui/backend';
 import { fetchRetry } from 'tgui/http';
 import { Box, Button, Image, LabeledList, Section } from 'tgui-core/components';
 import { BooleanLike } from 'tgui-core/react';
+import { decodeHtmlEntities } from 'tgui-core/string';
 
 type Data = {
   active_conversation: string;

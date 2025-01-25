@@ -1,4 +1,3 @@
-import { capitalize } from 'common/string';
 import { useState } from 'react';
 import { useBackend } from 'tgui/backend';
 import { Window } from 'tgui/layouts';
@@ -18,6 +17,7 @@ import {
 import { formatTime } from 'tgui-core/format';
 import { round, toFixed } from 'tgui-core/math';
 import { BooleanLike } from 'tgui-core/react';
+import { capitalize } from 'tgui-core/string';
 
 type Data = {
   playing: BooleanLike;

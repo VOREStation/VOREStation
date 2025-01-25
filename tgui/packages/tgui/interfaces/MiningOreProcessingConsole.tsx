@@ -1,4 +1,3 @@
-import { toTitleCase } from 'common/string';
 import { useBackend } from 'tgui/backend';
 import { Window } from 'tgui/layouts';
 import { Stack } from 'tgui-core/components';
@@ -11,6 +10,7 @@ import {
   Section,
 } from 'tgui-core/components';
 import { BooleanLike } from 'tgui-core/react';
+import { toTitleCase } from 'tgui-core/string';
 
 import { MiningUser } from './common/Mining';
 

@@ -1,4 +1,3 @@
-import { createSearch } from 'common/string';
 import { useState } from 'react';
 import { useBackend } from 'tgui/backend';
 import {
@@ -11,6 +10,7 @@ import {
   Tabs,
 } from 'tgui-core/components';
 import { formatMoney } from 'tgui-core/format';
+import { createSearch } from 'tgui-core/string';
 
 import { MAX_SEARCH_RESULTS } from './constants';
 import { ItemList } from './ItemList';

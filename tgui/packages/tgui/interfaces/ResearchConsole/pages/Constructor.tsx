@@ -1,4 +1,3 @@
-import { capitalizeAll } from 'common/string';
 import { Fragment, useState } from 'react';
 import { useBackend, useSharedState } from 'tgui/backend';
 import {
@@ -13,6 +12,7 @@ import {
   Stack,
   Tabs,
 } from 'tgui-core/components';
+import { capitalizeAll } from 'tgui-core/string';
 
 import { PaginationChevrons } from '..';
 import {

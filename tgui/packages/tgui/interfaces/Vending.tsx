@@ -1,6 +1,4 @@
 import { filter } from 'common/collections';
-import { flow } from 'common/fp';
-import { createSearch } from 'common/string';
 import { useState } from 'react';
 import { useBackend } from 'tgui/backend';
 import { Window } from 'tgui/layouts';
@@ -13,7 +11,9 @@ import {
   Table,
   Tooltip,
 } from 'tgui-core/components';
+import { flow } from 'tgui-core/fp';
 import { BooleanLike, classes } from 'tgui-core/react';
+import { createSearch } from 'tgui-core/string';
 
 type Data = {
   chargesMoney: BooleanLike;

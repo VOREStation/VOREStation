@@ -1,4 +1,3 @@
-import { capitalize } from 'common/string';
 import { useBackend } from 'tgui/backend';
 import {
   Box,
@@ -9,6 +8,7 @@ import {
   Section,
   Stack,
 } from 'tgui-core/components';
+import { capitalize } from 'tgui-core/string';
 
 import { activeBodyRecord } from './types';
 

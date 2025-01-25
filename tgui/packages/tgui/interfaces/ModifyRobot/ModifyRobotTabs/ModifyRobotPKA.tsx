@@ -1,4 +1,3 @@
-import { capitalize } from 'common/string';
 import { useState } from 'react';
 import { useBackend } from 'tgui/backend';
 import {
@@ -10,6 +9,7 @@ import {
   NoticeBox,
   Stack,
 } from 'tgui-core/components';
+import { capitalize } from 'tgui-core/string';
 
 import { NoSpriteWarning } from '../components';
 import { getModuleIcon, prepareSearch } from '../functions';

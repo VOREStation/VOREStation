@@ -1,5 +1,4 @@
 import { map, sortBy } from 'common/collections';
-import { flow } from 'common/fp';
 import { useState } from 'react';
 import { useBackend } from 'tgui/backend';
 import {
@@ -12,6 +11,7 @@ import {
   Stack,
   Table,
 } from 'tgui-core/components';
+import { flow } from 'tgui-core/fp';
 import { toFixed } from 'tgui-core/math';
 
 import { PEAK_DRAW } from './constants';

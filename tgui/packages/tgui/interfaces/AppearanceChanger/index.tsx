@@ -1,4 +1,3 @@
-import { capitalize, decodeHtmlEntities } from 'common/string';
 import { useState } from 'react';
 import { useBackend } from 'tgui/backend';
 import { Window } from 'tgui/layouts';
@@ -10,6 +9,7 @@ import {
   Stack,
   Tabs,
 } from 'tgui-core/components';
+import { capitalize, decodeHtmlEntities } from 'tgui-core/string';
 
 import {
   AppearanceChangerEars,

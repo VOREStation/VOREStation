@@ -4,7 +4,6 @@
  * @license MIT
  */
 
-import { decodeHtmlEntities, toTitleCase } from 'common/string';
 import { PropsWithChildren, ReactNode, useEffect } from 'react';
 import { backendSuspendStart, globalStore, useBackend } from 'tgui/backend';
 import { BoxProps } from 'tgui/components/Box';
@@ -13,6 +12,7 @@ import { useDebug } from 'tgui/debug';
 import { toggleKitchenSink } from 'tgui/debug/actions';
 import { Icon } from 'tgui-core/components';
 import { classes } from 'tgui-core/react';
+import { decodeHtmlEntities, toTitleCase } from 'tgui-core/string';
 
 import {
   dragStartHandler,

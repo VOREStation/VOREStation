@@ -1,4 +1,3 @@
-import { capitalize } from 'common/string';
 import { useBackend } from 'tgui/backend';
 import { Window } from 'tgui/layouts';
 import {
@@ -12,6 +11,7 @@ import {
   Table,
 } from 'tgui-core/components';
 import { BooleanLike } from 'tgui-core/react';
+import { capitalize } from 'tgui-core/string';
 
 type Data = {
   mode: number;

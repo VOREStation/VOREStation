@@ -1,6 +1,6 @@
-import { capitalize } from 'common/string';
 import { useBackend } from 'tgui/backend';
 import { Button, LabeledList, Stack } from 'tgui-core/components';
+import { capitalize } from 'tgui-core/string';
 
 import { hostMob, selectedData } from '../types';
 import { VoreSelectedMobTypeBellyButtons } from './VoreSelectedMobTypeBellyButtons';

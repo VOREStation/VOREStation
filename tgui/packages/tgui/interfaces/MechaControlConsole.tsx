@@ -1,4 +1,3 @@
-import { decodeHtmlEntities, toTitleCase } from 'common/string';
 import { useBackend } from 'tgui/backend';
 import { Window } from 'tgui/layouts';
 import {
@@ -10,6 +9,7 @@ import {
   ProgressBar,
   Section,
 } from 'tgui-core/components';
+import { decodeHtmlEntities, toTitleCase } from 'tgui-core/string';
 
 type Data = {
   beacons: {

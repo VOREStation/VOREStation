@@ -1,4 +1,3 @@
-import { createSearch } from 'common/string';
 import { useState } from 'react';
 import { useBackend } from 'tgui/backend';
 import { Window } from 'tgui/layouts';
@@ -11,6 +10,7 @@ import {
   Section,
   Stack,
 } from 'tgui-core/components';
+import { createSearch } from 'tgui-core/string';
 
 import { MiningUser } from './common/Mining';
 

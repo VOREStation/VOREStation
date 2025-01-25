@@ -1,4 +1,3 @@
-import { decodeHtmlEntities } from 'common/string';
 import { useBackend } from 'tgui/backend';
 import {
   Button,
@@ -6,6 +5,7 @@ import {
   NumberInput,
   Section,
 } from 'tgui-core/components';
+import { decodeHtmlEntities } from 'tgui-core/string';
 
 import { single_scrubber, single_vent } from './CommonTypes';
 

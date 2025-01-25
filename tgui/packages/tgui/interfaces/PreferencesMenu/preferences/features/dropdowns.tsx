@@ -1,6 +1,6 @@
-import { capitalizeFirst } from 'common/string';
 import { ReactNode } from 'react';
 import { classes } from 'tgui-core/react';
+import { capitalizeFirst } from 'tgui-core/string';
 
 import { Box, Dropdown, Stack } from '../../../../components';
 import { Feature, FeatureChoicedServerData, FeatureValueProps } from './base';

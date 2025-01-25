@@ -1,7 +1,6 @@
 // Currently not used!
 
 import { map, sortBy } from 'common/collections';
-import { flow } from 'common/fp';
 import { vecLength, vecSubtract } from 'common/vector';
 import { useBackend } from 'tgui/backend';
 import { Window } from 'tgui/layouts';
@@ -13,6 +12,7 @@ import {
   Section,
   Table,
 } from 'tgui-core/components';
+import { flow } from 'tgui-core/fp';
 import { clamp } from 'tgui-core/math';
 import { BooleanLike } from 'tgui-core/react';
 

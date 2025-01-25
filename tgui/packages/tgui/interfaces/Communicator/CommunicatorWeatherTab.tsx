@@ -1,7 +1,7 @@
 import { filter } from 'common/collections';
-import { decodeHtmlEntities, toTitleCase } from 'common/string';
 import { useBackend } from 'tgui/backend';
 import { Box, LabeledList, Section } from 'tgui-core/components';
+import { decodeHtmlEntities, toTitleCase } from 'tgui-core/string';
 
 import { AirContent, WeatherTabData } from './types';
 

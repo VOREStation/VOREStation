@@ -1,4 +1,3 @@
-import { toTitleCase } from 'common/string';
 import { useBackend } from 'tgui/backend';
 import {
   Box,
@@ -7,6 +6,7 @@ import {
   ProgressBar,
   Section,
 } from 'tgui-core/components';
+import { toTitleCase } from 'tgui-core/string';
 
 import { getDockingStatus } from './functions';
 import { Data } from './types';

@@ -1,4 +1,3 @@
-import { toTitleCase } from 'common/string';
 import { useBackend } from 'tgui/backend';
 import { Window } from 'tgui/layouts';
 import {
@@ -8,6 +7,7 @@ import {
   NumberInput,
   Section,
 } from 'tgui-core/components';
+import { toTitleCase } from 'tgui-core/string';
 
 type Data = {
   stacktypes: { type: string; amt: number }[];

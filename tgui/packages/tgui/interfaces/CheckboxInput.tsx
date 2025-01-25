@@ -1,4 +1,3 @@
-import { createSearch, decodeHtmlEntities } from 'common/string';
 import { useState } from 'react';
 import { useBackend } from 'tgui/backend';
 import { Window } from 'tgui/layouts';
@@ -12,6 +11,7 @@ import {
   Table,
   Tooltip,
 } from 'tgui-core/components';
+import { createSearch, decodeHtmlEntities } from 'tgui-core/string';
 
 import { InputButtons } from './common/InputButtons';
 import { Loader } from './common/Loader';
