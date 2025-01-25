@@ -6,7 +6,7 @@
 @use 'sass:color';
 @use 'sass:meta';
 
-$nanotrasen: #384e68;
+$nanotrasen: hsl(213, 30%, 31%);
 
 @use '../colors.scss' with (
   $fg-map-keys: (),
@@ -22,14 +22,14 @@ $nanotrasen: #384e68;
     '../components/Button.scss',
     $with: (
       'color-default': $nanotrasen,
-      'color-transparent-text': rgba(227, 240, 255, 0.75)
+      'color-transparent-text': hsla(212, 100%, 95%, 0.75)
     )
   );
   @include meta.load-css(
     '../components/ProgressBar.scss',
     $with: (
       'color-default-fill': $nanotrasen,
-      'background-color': rgba(0, 0, 0, 0.5)
+      'background-color': hsla(0, 0%, 0%, 0.5)
     )
   );
   @include meta.load-css('../components/Section.scss');
