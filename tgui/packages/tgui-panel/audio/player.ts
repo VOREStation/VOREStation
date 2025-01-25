@@ -8,10 +8,19 @@ import { createLogger } from 'tgui/logging';
 
 const logger = createLogger('AudioPlayer');
 
+type CustomAudioElement = HTMLAudioElement & { stop: Function };
+
 export class AudioPlayer {
+  node: CustomAudioElement;
+  playing: boolean;
+  volume: number;
+  options: { pitch?: number; start?: number; end?: number };
+  onPlaySubscribers: Function[];
+  onStopSubscribers: Function[];
+  playbackInterval: NodeJS.Timeout;
   constructor() {
     // Set up the HTMLAudioElement node
-    this.node = document.createElement('audio');
+    this.node = document.createElement('audio') as CustomAudioElement;
     this.node.style.setProperty('display', 'none');
     document.body.appendChild(this.node);
     // Set up other properties
@@ -50,7 +59,9 @@ export class AudioPlayer {
         return;
       }
       const shouldStop =
-        this.options.end > 0 && this.node.currentTime >= this.options.end;
+        this.options.end &&
+        this.options.end > 0 &&
+        this.node.currentTime >= this.options.end;
       if (shouldStop) {
         this.stop();
       }

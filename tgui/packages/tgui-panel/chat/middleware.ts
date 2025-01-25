@@ -4,6 +4,7 @@
  * @license MIT
  */
 
+import type { Action, Store } from 'common/redux';
 import { storage } from 'common/storage';
 import DOMPurify from 'dompurify';
 
@@ -33,13 +34,14 @@ import {
 import { createMessage, serializeMessage } from './model';
 import { chatRenderer } from './renderer';
 import { selectChat, selectCurrentChatPage } from './selectors';
+import { message } from './types';
 
 // List of blacklisted tags
 const blacklisted_tags = ['a', 'iframe', 'link', 'video'];
-let storedRounds = [];
-let storedLines = [];
+let storedRounds: number[] = [];
+let storedLines: number[] = [];
 
-const saveChatToStorage = async (store) => {
+const saveChatToStorage = async (store: Store<number, Action<string>>) => {
   const state = selectChat(store.getState());
   const settings = selectSettings(store.getState());
   const fromIndex = Math.max(
@@ -57,7 +59,7 @@ const saveChatToStorage = async (store) => {
   ); // FIXME: Better chat history
 };
 
-const loadChatFromStorage = async (store) => {
+const loadChatFromStorage = async (store: Store<number, Action<string>>) => {
   const [state, messages, archivedMessages] = await Promise.all([
     storage.get('chat-state'),
     storage.get('chat-messages'),
@@ -87,7 +89,7 @@ const loadChatFromStorage = async (store) => {
     });
   }
   if (archivedMessages) {
-    for (let archivedMessage of archivedMessages) {
+    for (let archivedMessage of archivedMessages as message[]) {
       if (archivedMessage.html) {
         archivedMessage.html = DOMPurify.sanitize(archivedMessage.html, {
           FORBID_TAGS: blacklisted_tags,
@@ -101,18 +103,18 @@ const loadChatFromStorage = async (store) => {
     if (settings.logRetainRounds) {
       storedRounds = [];
       storedLines = [];
-      let oldId = null;
-      let currentLine = 0;
+      let oldId: number | null = null;
+      let currentLine: number = 0;
       settings.storedRounds = 0;
       settings.exportStart = 0;
       settings.exportEnd = 0;
 
-      for (let message of archivedMessages) {
+      for (let message of archivedMessages as message[]) {
         const currentId = message.roundId;
         if (currentId !== oldId) {
           const round = currentId;
           const line = currentLine;
-          storedRounds.push(round);
+          storedRounds.push(round || 0);
           storedLines.push(line);
           oldId = currentId;
           currentLine++;
@@ -137,8 +139,8 @@ const loadChatFromStorage = async (store) => {
 export const chatMiddleware = (store) => {
   let initialized = false;
   let loaded = false;
-  const sequences = [];
-  const sequences_requested = [];
+  const sequences: number[] = [];
+  const sequences_requested: number[] = [];
   chatRenderer.events.on('batchProcessed', (countByType) => {
     // Use this flag to workaround unread messages caused by
     // loading them from storage. Side effect of that, is that
@@ -206,7 +208,7 @@ export const chatMiddleware = (store) => {
             requesting < sequence;
             requesting++
           ) {
-            requested_sequences.push(requesting);
+            sequences_requested.push(requesting);
             Byond.sendMessage('chat/resend', requesting);
           }
         }

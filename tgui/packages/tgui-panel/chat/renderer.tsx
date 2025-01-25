@@ -29,6 +29,7 @@ import {
   typeIsImportant,
 } from './model';
 import { highlightNode, linkifyNode } from './replaceInTextNode';
+import { message } from './types';
 
 const logger = createLogger('chatRenderer');
 
@@ -146,7 +147,7 @@ const updateMessageBadge = (message: message) => {
     // Nothing to update
     return;
   }
-  const foundBadge = node.querySelector('.Chat__badge');
+  const foundBadge = (node as HTMLElement).querySelector('.Chat__badge');
   const badge = foundBadge || document.createElement('div');
   badge.textContent = times.toString();
   badge.className = classes(['Chat__badge', 'Chat__badge--animate']);
@@ -156,16 +157,6 @@ const updateMessageBadge = (message: message) => {
   if (!foundBadge) {
     node.appendChild(badge);
   }
-};
-
-type message = {
-  node?: HTMLElement | string;
-  type: string;
-  text: string;
-  html: string;
-  times: number;
-  createdAt: number;
-  roundId: number;
 };
 
 class ChatRenderer {
@@ -721,6 +712,7 @@ class ChatRenderer {
         this.archivedMessages.push(serializeMessage(message, true)); // TODO: Actually having a better message archiving maybe for exports?
       }
       if (
+        this.page &&
         canPageAcceptType(this.page, message.type) &&
         !(
           adminPageOnly(this.page) &&
@@ -859,7 +851,7 @@ class ChatRenderer {
     // for (let message of this.visibleMessages) { // TODO: Actually having a better message archiving maybe for exports?
     for (let message of tmpMsgArray) {
       // Filter messages according to active tab for export
-      if (canPageAcceptType(this.page, message.type)) {
+      if (this.page && canPageAcceptType(this.page, message.type)) {
         messagesHtml += message.html + '\n';
       }
       // if (message.node) {

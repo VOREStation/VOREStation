@@ -7,11 +7,12 @@
 import { createUuid } from 'common/uuid';
 
 import { MESSAGE_TYPE_INTERNAL, MESSAGE_TYPES } from './constants';
+import { message, Page } from './types';
 
-export const canPageAcceptType = (page, type) =>
+export const canPageAcceptType = (page: Page, type: string): string | boolean =>
   type.startsWith(MESSAGE_TYPE_INTERNAL) || page.acceptedTypes[type];
 
-export const typeIsImportant = (type) => {
+export const typeIsImportant = (type: string): boolean => {
   let isImportant = false;
   for (let typeDef of MESSAGE_TYPES) {
     if (typeDef.type === type && !!typeDef.important) {
@@ -22,7 +23,7 @@ export const typeIsImportant = (type) => {
   return isImportant;
 };
 
-export const adminPageOnly = (page) => {
+export const adminPageOnly = (page: Page): boolean => {
   let adminTab = true;
   let checked = 0;
   for (let typeDef of MESSAGE_TYPES) {
@@ -40,9 +41,10 @@ export const adminPageOnly = (page) => {
   return checked > 0 && adminTab;
 };
 
-export const canStoreType = (storedTypes, type) => storedTypes[type];
+export const canStoreType = (storedTypes: Object, type: string) =>
+  storedTypes[type];
 
-export const createPage = (obj) => {
+export const createPage = (obj?: Object): Page => {
   let acceptedTypes = {};
 
   for (let typeDef of MESSAGE_TYPES) {
@@ -61,7 +63,7 @@ export const createPage = (obj) => {
   };
 };
 
-export const createMainPage = () => {
+export const createMainPage = (): Page => {
   const acceptedTypes = {};
   for (let typeDef of MESSAGE_TYPES) {
     acceptedTypes[typeDef.type] = true;
@@ -73,15 +75,18 @@ export const createMainPage = () => {
   });
 };
 
-export const createMessage = (payload) => ({
+export const createMessage = (payload: { type: string }): message => ({
+  ...payload,
   createdAt: Date.now(),
   roundId: null,
-  ...payload,
 });
 
-export const serializeMessage = (message, archive = false) => {
+export const serializeMessage = (
+  message: message,
+  archive = false,
+): message => {
   let archiveM = '';
-  if (archive) {
+  if (archive && message.node && typeof message.node !== 'string') {
     archiveM = message.node.outerHTML.replace(/(?:\r\n|\r|\n)/g, '<br>');
   }
   return {
@@ -94,6 +99,6 @@ export const serializeMessage = (message, archive = false) => {
   };
 };
 
-export const isSameMessage = (a, b) =>
+export const isSameMessage = (a: message, b: message): boolean =>
   (typeof a.text === 'string' && a.text === b.text) ||
   (typeof a.html === 'string' && a.html === b.html);
