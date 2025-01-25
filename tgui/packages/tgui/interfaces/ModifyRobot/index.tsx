@@ -160,7 +160,8 @@ export const ModifyRobot = (props) => {
         )}
         <LabeledList>
           <LabeledList.Item label="Player Selection">
-            <Stack inline align="baseline">
+            <Stack align="baseline">
+              {/* Fix inline-flex with the next tgui core update */}
               <Stack.Item>
                 <Dropdown
                   selected={target ? target.name : ''}
@@ -213,7 +214,8 @@ export const ModifyRobot = (props) => {
           </LabeledList.Item>
           <LabeledList.Item label="AI Selection">
             {!!target?.module && (
-              <Stack inline align="baseline">
+              <Stack align="baseline">
+                {/* Fix inline-flex with the next tgui core update */}
                 <Stack.Item>
                   <Dropdown
                     selected={selected_ai || ''}
