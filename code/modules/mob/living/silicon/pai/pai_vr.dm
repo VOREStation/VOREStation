@@ -236,7 +236,7 @@
 	else
 		to_chat(src, span_warning("Your selected chassis eye color can not be modified. The color you pick will only apply to supporting chassis and your card screen."))
 
-	var/new_eye_color = input(src, "Choose your character's eye color:", "Eye Color") as color|null
+	var/new_eye_color = tgui_color_picker(src, "Choose your character's eye color:", "Eye Color")
 	if(new_eye_color)
 		eye_color = new_eye_color
 		update_icon()

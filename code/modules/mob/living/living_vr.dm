@@ -145,3 +145,29 @@
 	if(!choice)
 		voice_sounds_list = talk_sound
 	voice_sounds_list = get_talk_sound(choice)
+
+/mob/living/proc/save_private_notes(mob/user)
+	if(user != src)
+		return
+	if(client.prefs.real_name != real_name)
+		to_chat(src, span_danger("Your selected character slot name is not the same as your character's name. Aborting save. Please select [real_name]'s character slot in character setup before saving."))
+		return
+	if(client.prefs.save_character())
+		to_chat(src, span_filter_notice("Character preferences saved."))
+
+/mob/living/verb/open_private_notes(mob/user)
+	set name = "Private Notes"
+	set desc = "View and edit your character's private notes, that persist between rounds!"
+	set category = "IC.Notes"
+
+	private_notes_window(user)
+
+/mob/living/proc/set_metainfo_private_notes(mob/user)
+	if(user != src)
+		return
+	var/new_metadata = sanitize(tgui_input_text(src,"Write some notes for yourself. These can be anything that is useful, whether it's character events that you want to remember or a bit of lore. Things that you would normally stick in a txt file for yourself! This will not be saved unless you press save in the private notes panel.", "Private Notes", html_decode(private_notes), multiline = TRUE, prevent_enter = TRUE), extra = 0)
+	if(new_metadata && CanUseTopic(src))
+		private_notes = new_metadata
+		client.prefs.update_preference_by_type(/datum/preference/text/living/private_notes, new_metadata)
+		to_chat(src, span_filter_notice("Private notes updated. Don't forget to save!"))
+		private_notes_window(user)

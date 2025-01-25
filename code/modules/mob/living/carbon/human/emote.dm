@@ -344,7 +344,7 @@ var/list/_simple_mob_default_emotes = list(
 	set desc = "Sets an extended description of your character's features."
 	set category = "IC.Settings"
 
-	var/HTML = "<body>"
+	var/HTML = "<html><body>"
 	HTML += "<tt><center>"
 	HTML += span_bold("Update Flavour Text") + " <hr />"
 	HTML += "<br></center>"
@@ -377,7 +377,7 @@ var/list/_simple_mob_default_emotes = list(
 	HTML += "<br>"
 	HTML += "<hr />"
 	HTML +="<a href='byond://?src=\ref[src];flavor_change=done'>\[Done\]</a>"
-	HTML += "<tt>"
+	HTML += "<tt></body></html>"
 	src << browse(HTML, "window=flavor_changes;size=430x300")
 
 /mob/living/carbon/human/proc/toggle_tail(var/setting,var/message = 0)

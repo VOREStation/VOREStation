@@ -171,7 +171,7 @@
 		return
 	switch(option)
 		if("tint")
-			var/new_color = input(user, "Choose the color for the [identifier] to be:", "Statue color", tint) as color|null
+			var/new_color = tgui_color_picker(user, "Choose the color for the [identifier] to be:", "Statue color", tint)
 			if (new_color)
 				tint = new_color
 		if("material","identifier","adjective")

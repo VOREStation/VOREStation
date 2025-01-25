@@ -28,7 +28,7 @@
 /obj/item/clothing/suit/drake_cloak
 	name = "drake cloak"
 	desc = "A simple cloak for drake-taurs."
-	icon = 'icons/mob/taursuits_drake_vr.dmi'
+	icon = 'icons/mob/taursuits_drake.dmi'
 	icon_state = "cloak"
 	item_state_slots = list(slot_r_hand_str = "capjacket", slot_l_hand_str = "capjacket")
 	body_parts_covered = UPPER_TORSO|ARMS
@@ -44,7 +44,7 @@
 
 /obj/item/clothing/suit/barding
 	description_info = "You need to be a horsy to wear that."
-	icon = 'icons/mob/taursuits_horse_vr.dmi'
+	icon = 'icons/mob/taursuits_horse.dmi'
 	item_state_slots = list(slot_r_hand_str = "capjacket", slot_l_hand_str = "capjacket")
 	body_parts_covered = UPPER_TORSO|ARMS|LOWER_TORSO|LEGS
 	pixel_x = -16
@@ -75,7 +75,7 @@
 	icon_state = "Mason_barding"
 
 /obj/item/clothing/suit/taur
-	icon = 'icons/mob/taursuits_horse_vr.dmi'
+	icon = 'icons/mob/taursuits_horse.dmi'
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO
 	pixel_x = -16
 

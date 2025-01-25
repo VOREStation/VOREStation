@@ -9,4 +9,4 @@
 	var/dat = span_bold("Bombing List")
 	for(var/l in bombers)
 		dat += text("[l]<BR>")
-	user << browse(dat, "window=bombers")
+	user << browse("<html>[dat]</html>", "window=bombers")

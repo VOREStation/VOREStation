@@ -4,7 +4,7 @@
 	seed_name = PLANT_EGGPLANT
 	display_name = "eggplants"
 	kitchen_tag = PLANT_EGGPLANT
-	mutants = list(PLANT_EGGPLANT)
+	mutants = list(PLANT_EGG_PLANT)
 	chems = list(REAGENT_ID_NUTRIMENT = list(1,10))
 
 /datum/seed/eggplant/New()

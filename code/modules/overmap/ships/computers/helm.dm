@@ -113,8 +113,8 @@ GLOBAL_LIST_EMPTY(all_waypoints)
 
 	var/turf/T = get_turf(linked)
 	var/obj/effect/overmap/visitable/sector/current_sector = locate() in T
-
-	data["mapRef"] = linked?.map_name
+	if(linked)
+		data["mapRef"] = linked.map_name
 	data["sector"] = current_sector ? current_sector.name : "Deep Space"
 	data["sector_info"] = current_sector ? current_sector.desc : "Not Available"
 	data["landed"] = linked.get_landed_info()

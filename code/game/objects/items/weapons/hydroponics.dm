@@ -75,7 +75,7 @@
 
 		dat += "<br><a href='byond://?src=\ref[src];unload=1'>Unload All</A>"
 		dat += "</TT>"
-	user << browse("<HEAD><TITLE>Seedbag Supplies</TITLE></HEAD><TT>[dat]</TT>", "window=seedbag")
+	user << browse("<html><HEAD><TITLE>Seedbag Supplies</TITLE></HEAD><TT>[dat]</TT></html>", "window=seedbag")
 	onclose(user, "seedbag")
 	return
 

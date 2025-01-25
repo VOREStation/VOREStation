@@ -138,7 +138,7 @@
 			return
 	*/
 	to_chat(user, "It has [uses] lights remaining.")
-	var/new_color = input(user, "Choose a color to set the light to! (Default is [LIGHT_COLOR_INCANDESCENT_TUBE])", "", selected_color) as color|null
+	var/new_color = tgui_color_picker(user, "Choose a color to set the light to! (Default is [LIGHT_COLOR_INCANDESCENT_TUBE])", "", selected_color)
 	if(new_color)
 		selected_color = new_color
 		to_chat(user, "The light color has been changed.")
