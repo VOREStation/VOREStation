@@ -2239,7 +2239,7 @@
 "Rc" = (/obj/item/pizzabox/meat,/turf/simulated/shuttle/floor/red,/area/skipjack_station/start)
 "Rd" = (/obj/item/bedsheet/clown,/obj/structure/bed/padded,/turf/simulated/shuttle/floor/red,/area/skipjack_station/start)
 "Re" = (/turf/unsimulated/floor{icon_state = "plating"; name = "plating"},/area/space)
-"Rf" = (/turf/unsimulated/wall{icon = 'icons/misc/title.dmi'; icon_state = "title"},/area/space)
+"Rf" = (/turf/unsimulated/wall,/area/space)
 "Rg" = (/obj/effect/step_trigger/thrower{affect_ghosts = 1; direction = 2; name = "thrower_throwdown"; tiles = 0},/obj/effect/step_trigger/teleporter/random{affect_ghosts = 1; name = "escapeshuttle_leave"; teleport_x = 25; teleport_x_offset = 245; teleport_y = 25; teleport_y_offset = 245; teleport_z = 6; teleport_z_offset = 6},/obj/effect/step_trigger/teleporter/random{affect_ghosts = 1; name = "escapeshuttle_leave"; teleport_x = 25; teleport_x_offset = 245; teleport_y = 25; teleport_y_offset = 245; teleport_z = 6; teleport_z_offset = 6},/turf/simulated/mineral,/area/space)
 "Rh" = (/turf/unsimulated/wall,/area/tdome/tdomeobserve)
 "Ri" = (/obj/machinery/door/blast/regular{id = "thunderdomeaxe"; name = "Axe Supply"},/turf/unsimulated/floor{icon_state = "vault"; dir = 5},/area/tdome/tdome1)
