@@ -7,8 +7,8 @@
 @use '../functions.scss' as *;
 
 $text-color: base.$color-fg !default;
-$background-color: #0a0a0a !default;
-$border-color: #88bfff !default;
+$background-color: hsl(0, 0%, 4%) !default;
+$border-color: hsl(212, 100%, 77%) !default;
 $border-radius: base.$border-radius !default;
 
 .Input {
@@ -58,15 +58,15 @@ $border-radius: base.$border-radius !default;
 
   &::placeholder {
     font-style: italic;
-    color: #777;
-    color: rgba(255, 255, 255, 0.45);
+    color: hsl(0, 0%, 47%);
+    color: hsla(0, 0%, 100%, 0.45);
   }
 
   // TODO: Remove with 516
   &:-ms-input-placeholder {
     font-style: italic;
-    color: #777;
-    color: rgba(255, 255, 255, 0.45);
+    color: hsl(0, 0%, 47%);
+    color: hsla(0, 0%, 100%, 0.45);
   }
 }
 
