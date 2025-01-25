@@ -46,7 +46,7 @@
 /obj/item/organ/internal/stack
 	name = "cortical stack"
 	parent_organ = BP_HEAD
-	icon_state = "brain-prosthetic"
+	icon_state = "brain_prosthetic"
 	organ_tag = "stack"
 	vital = 1
 	var/backup_time = 0

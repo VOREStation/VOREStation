@@ -13572,7 +13572,6 @@
 /area/centcom/security)
 "Sn" = (
 /obj/machinery/computer/security/telescreen/entertainment{
-	icon_state = "frame";
 	pixel_x = 32
 	},
 /obj/effect/floor_decal/borderfloorblack{

@@ -19534,9 +19534,7 @@
 /turf/space/transit/east,
 /area/space)
 "vCc" = (
-/turf/unsimulated/floor{
-	icon_state = "sandwater"
-	},
+/turf/unsimulated/floor,
 /area/beach)
 "vCL" = (
 /obj/structure/table/steel,
@@ -22007,7 +22005,6 @@
 	dir = 8
 	},
 /obj/machinery/computer/security/telescreen/entertainment{
-	icon_state = "frame";
 	pixel_x = 32
 	},
 /turf/simulated/floor/carpet,
