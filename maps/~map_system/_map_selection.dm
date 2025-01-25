@@ -10,7 +10,7 @@
 //#define USE_MAP_GROUNDBASE
 
 // Debug
-// #define USE_MAP_MINITEST
+//#define USE_MAP_MINITEST
 
 /*********************/
 /* End Map Selection */
