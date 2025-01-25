@@ -380,7 +380,7 @@
 	var/mob/living/carbon/human/H = user
 
 	if(slot && slot == slot_gloves)
-		var/obj/item/clothing/gloves/G = H.gloves
+		var/obj/item/clothing/G = H.gloves
 		if(istype(G))
 			ring = H.gloves
 			if(ring.glove_level >= src.glove_level)
