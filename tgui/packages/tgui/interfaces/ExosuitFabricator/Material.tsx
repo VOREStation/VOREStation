@@ -87,23 +87,20 @@ export const Materials = (props: {
 
   return (
     <Stack wrap="wrap">
-      {display_materials.map(
-        (material) =>
-          (
-            <Stack.Item width="80px" key={material.name}>
-              <MaterialAmount
-                name={material.name}
-                amount={material.amount}
-                formatsi
-              />
-              {!disableEject && (
-                <Box mt={1} style={{ textAlign: 'center' }}>
-                  <EjectMaterial material={material} />
-                </Box>
-              )}
-            </Stack.Item>
-          ) || '',
-      )}
+      {display_materials.map((material) => (
+        <Stack.Item width="80px" key={material.name}>
+          <MaterialAmount
+            name={material.name}
+            amount={material.amount}
+            formatsi
+          />
+          {!disableEject && (
+            <Box mt={1} style={{ textAlign: 'center' }}>
+              <EjectMaterial material={material} />
+            </Box>
+          )}
+        </Stack.Item>
+      ))}
     </Stack>
   );
 };
