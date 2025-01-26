@@ -769,8 +769,7 @@
 	loaf_offset = 6
 	vore_tail_sprite_variant = "Drake"
 	belly_variant_when_loaf = TRUE
-	fullness_icons = 1
-	struggle_anim = TRUE
+	fullness_icons = 3
 
 /datum/sprite_accessory/tail/taur/drake/fat
 	name = "Fat Drake (Taur)"
