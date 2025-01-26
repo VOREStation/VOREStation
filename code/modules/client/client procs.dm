@@ -393,6 +393,7 @@
 	while(query_ip.NextRow())
 		related_accounts_ip += "[query_ip.item[1]], "
 		break
+	qdel(query_ip)
 
 	var/datum/db_query/query_cid = SSdbcore.NewQuery("SELECT ckey FROM erro_player WHERE computerid = '[computer_id]'")
 	query_cid.Execute()
@@ -400,6 +401,7 @@
 	while(query_cid.NextRow())
 		related_accounts_cid += "[query_cid.item[1]], "
 		break
+	qdel(query_cid)
 
 	//Just the standard check to see if it's actually a number
 	if(sql_id)
