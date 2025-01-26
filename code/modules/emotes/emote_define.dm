@@ -82,6 +82,8 @@ var/global/list/emotes_by_key
 		)
 
 /decl/emote/proc/do_emote(var/atom/user, var/extra_params)
+	if(user.transforming)
+		return
 	if(ismob(user) && check_restraints)
 		var/mob/M = user
 		if(M.restrained())
