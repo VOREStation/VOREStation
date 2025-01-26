@@ -114,7 +114,7 @@
 	var/climbing_delay = 1 //If rock_climbing, lower better.
 
 /obj/item/Initialize(mapload)
-	..()
+	. = ..()
 
 	for(var/path in actions_types)
 		add_item_action(path)
