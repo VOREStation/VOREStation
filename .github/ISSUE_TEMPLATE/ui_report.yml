@@ -28,7 +28,7 @@ body:
 - type: input
   attributes:
     label: Code Revision
-    description: "Found using the "Show Server Revision" verb under the OOC tab."
+    description: "Found using the 'Show Server Revision' verb under the OOC tab."
   validations:
     required: false
 
