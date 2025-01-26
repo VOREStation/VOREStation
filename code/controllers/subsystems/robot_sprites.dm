@@ -109,7 +109,7 @@ SUBSYSTEM_DEF(robot_sprites)
 		return
 
 	for(var/datum/robot_sprite/RS in whitelisted_sprites_by_module[module])
-		if(RS.whitelist_ckey == ckey && RS.whitelist_charname == spritename)
+		if(RS.whitelist_ckey == ckey) //If we're trusting people to be a custom borg, does the whitelist_charname really matter? Leaving untouched for downstream, but really.
 			. |= RS
 
 	return

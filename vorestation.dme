@@ -3216,6 +3216,7 @@
 #include "code\modules\mob\living\silicon\robot\robot_modules\swarm.dm"
 #include "code\modules\mob\living\silicon\robot\robot_modules\syndicate.dm"
 #include "code\modules\mob\living\silicon\robot\sprites\_sprite_datum.dm"
+#include "code\modules\mob\living\silicon\robot\sprites\catborgs.dm"
 #include "code\modules\mob\living\silicon\robot\sprites\civilian.dm"
 #include "code\modules\mob\living\silicon\robot\sprites\combat.dm"
 #include "code\modules\mob\living\silicon\robot\sprites\engineering.dm"
