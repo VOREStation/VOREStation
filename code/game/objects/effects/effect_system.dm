@@ -212,7 +212,7 @@ steam.start() -- spawns the effect
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "sparks"
 
-/obj/effect/effect/smoke/illumination/Initialize(var/newloc, var/lifetime=10, var/range=null, var/power=null, var/color=null)
+/obj/effect/effect/smoke/illumination/Initialize(mapload, var/lifetime=10, var/range=null, var/power=null, var/color=null)
 	time_to_live=lifetime
 	. = ..()
 	set_light(range, power, color)
