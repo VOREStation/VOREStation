@@ -4,8 +4,20 @@
 #define UPLOAD_LIMIT		10485760	//Restricts client uploads to the server to 10MB //Boosted this thing. What's the worst that can happen?
 #define MIN_CLIENT_VERSION	0		//Just an ambiguously low version for now, I don't want to suddenly stop people playing.
 									//I would just like the code ready should it ever need to be used.
+#define LIMITER_SIZE 12
+#define CURRENT_SECOND 1
+#define SECOND_COUNT 2
+#define CURRENT_MINUTE 3
+#define MINUTE_COUNT 4
+#define ADMINSWARNED_AT 5
 
 //# define TOPIC_DEBUGGING 1
+
+/client/proc/reduce_minute_count()
+	if (!topiclimiter)
+		topiclimiter = new(LIMITER_SIZE)
+	if(topiclimiter[MINUTE_COUNT] > 0)
+		topiclimiter[MINUTE_COUNT] -= 1
 
 	/*
 	When somebody clicks a link in game, this Topic is called first.
@@ -39,6 +51,38 @@
 	if(href_list["asset_cache_confirm_arrival"])
 		asset_cache_job = asset_cache_confirm_arrival(href_list["asset_cache_confirm_arrival"])
 		if (!asset_cache_job)
+			return
+
+	// Rate limiting
+	var/mtl = CONFIG_GET(number/minute_topic_limit)
+	if (!holder && mtl)
+		var/minute = round(world.time, 600)
+		if (!topiclimiter)
+			topiclimiter = new(LIMITER_SIZE)
+		if (minute != topiclimiter[CURRENT_MINUTE])
+			topiclimiter[CURRENT_MINUTE] = minute
+			topiclimiter[MINUTE_COUNT] = 0
+		topiclimiter[MINUTE_COUNT] += 1
+		if (topiclimiter[MINUTE_COUNT] > mtl)
+			var/msg = "Your previous action was ignored because you've done too many in a minute."
+			if (minute != topiclimiter[ADMINSWARNED_AT]) //only one admin message per-minute. (if they spam the admins can just boot/ban them)
+				topiclimiter[ADMINSWARNED_AT] = minute
+				msg += " Administrators have been informed."
+				log_and_message_admins("[key_name(src)] Has hit the per-minute topic limit of [mtl] topic calls in a given game minute", src)
+			to_chat(src, span_danger("[msg]"))
+			return
+
+	var/stl = CONFIG_GET(number/second_topic_limit)
+	if (!holder && stl && href_list["window_id"] != "statbrowser")
+		var/second = round(world.time, 10)
+		if (!topiclimiter)
+			topiclimiter = new(LIMITER_SIZE)
+		if (second != topiclimiter[CURRENT_SECOND])
+			topiclimiter[CURRENT_SECOND] = second
+			topiclimiter[SECOND_COUNT] = 0
+		topiclimiter[SECOND_COUNT] += 1
+		if (topiclimiter[SECOND_COUNT] > stl)
+			to_chat(src, span_danger("Your previous action was ignored because you've done too many in a second"))
 			return
 
 	//search the href for script injection
@@ -725,5 +769,50 @@
 
 // Mouse stuff
 /client/Click(atom/object, atom/location, control, params)
+	var/mcl = CONFIG_GET(number/minute_click_limit)
+	if (!holder && mcl)
+		var/minute = round(world.time, 600)
+
+		if (!clicklimiter)
+			clicklimiter = new(LIMITER_SIZE)
+
+		if (minute != clicklimiter[CURRENT_MINUTE])
+			clicklimiter[CURRENT_MINUTE] = minute
+			clicklimiter[MINUTE_COUNT] = 0
+
+		clicklimiter[MINUTE_COUNT] += 1
+
+		if (clicklimiter[MINUTE_COUNT] > mcl)
+			var/msg = "Your previous click was ignored because you've done too many in a minute."
+			if (minute != clicklimiter[ADMINSWARNED_AT]) //only one admin message per-minute. (if they spam the admins can just boot/ban them)
+				clicklimiter[ADMINSWARNED_AT] = minute
+
+				msg += " Administrators have been informed."
+				log_and_message_admins("Has hit the per-minute click limit of [mcl] clicks in a given game minute", src)
+			to_chat(src, span_danger("[msg]"))
+			return
+
+	var/scl = CONFIG_GET(number/second_click_limit)
+	if (!holder && scl)
+		var/second = round(world.time, 10)
+		if (!clicklimiter)
+			clicklimiter = new(LIMITER_SIZE)
+
+		if (second != clicklimiter[CURRENT_SECOND])
+			clicklimiter[CURRENT_SECOND] = second
+			clicklimiter[SECOND_COUNT] = 0
+
+		clicklimiter[SECOND_COUNT] += 1
+
+		if (clicklimiter[SECOND_COUNT] > scl)
+			to_chat(src, span_danger("Your previous click was ignored because you've done too many in a second"))
+			return
 	SEND_SIGNAL(src, COMSIG_CLIENT_CLICK, object, location, control, params, usr)
 	. = ..()
+
+#undef ADMINSWARNED_AT
+#undef CURRENT_MINUTE
+#undef CURRENT_SECOND
+#undef LIMITER_SIZE
+#undef MINUTE_COUNT
+#undef SECOND_COUNT
