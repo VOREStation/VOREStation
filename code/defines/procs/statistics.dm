@@ -11,10 +11,11 @@
 		log_game("SQL ERROR during population polling. Failed to connect.")
 	else
 		var/sqltime = time2text(world.realtime, "YYYY-MM-DD hh:mm:ss")
-		var/datum/db_query/query = SSdbcore.NewQuery("INSERT INTO `tgstation`.`population` (`playercount`, `admincount`, `time`) VALUES ([playercount], [admincount], '[sqltime]')")
+		var/datum/db_query/query = SSdbcore.NewQuery("INSERT INTO population ('playercount', 'admincount', 'time') VALUES ([playercount], [admincount], '[sqltime]')")
 		if(!query.Execute())
 			var/err = query.ErrorMsg()
 			log_game("SQL ERROR during population polling. Error : \[[err]\]\n")
+		qdel(query)
 
 /proc/sql_report_round_start()
 	// TODO
@@ -57,6 +58,7 @@
 		if(!query.Execute())
 			var/err = query.ErrorMsg()
 			log_game("SQL ERROR during death reporting. Error : \[[err]\]\n")
+		qdel(query)
 
 
 /proc/sql_report_cyborg_death(var/mob/living/silicon/robot/H)
@@ -91,6 +93,7 @@
 		if(!query.Execute())
 			var/err = query.ErrorMsg()
 			log_game("SQL ERROR during death reporting. Error : \[[err]\]\n")
+		qdel(query)
 
 
 /proc/statistic_cycle()
