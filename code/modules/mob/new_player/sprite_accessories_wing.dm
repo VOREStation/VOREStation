@@ -95,39 +95,6 @@
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
 
-/datum/sprite_accessory/wing/beewings
-	name = "bee wings"
-	desc = ""
-	icon_state = "beewings"
-
-/datum/sprite_accessory/wing/liquidfirefly_gazer //I g-guess this could be considered wings?
-	name = "gazer eyestalks"
-	desc = ""
-	icon_state = "liquidfirefly-eyestalks"
-	//ckeys_allowed = list("liquidfirefly","seiga") //At request.
-
-/datum/sprite_accessory/wing/moth_full
-	name = "moth antenna and wings"
-	desc = ""
-	icon_state = "moth_full"
-
-/datum/sprite_accessory/wing/moth_full_gray
-	name = "moth antenna and wings, colorable"
-	desc = ""
-	icon_state = "moth_full_gray"
-	do_colouration = 1
-	color_blend_mode = ICON_MULTIPLY
-
-/datum/sprite_accessory/wing/snag
-	name = "xenomorph backplate"
-	desc = ""
-	icon_state = "snag-backplate"
-
-/datum/sprite_accessory/wing/sepulchre_c_yw
-	name = "demon wings (colorable)"
-	desc = ""
-	icon_state = "sepulchre_wingsc"
-	do_colouration = 1
 
 /datum/sprite_accessory/wing/mantisarms
 	name = "Mantis arms"
@@ -135,67 +102,6 @@
 	icon_state = "mantisarms_s"
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
-
-/datum/sprite_accessory/wing/featheredlarge //Made by Natje!
-	name = "large feathered wings (colorable)"
-	desc = ""
-	icon_state = "feathered2"
-	do_colouration = 1
-	color_blend_mode = ICON_MULTIPLY
-
-/datum/sprite_accessory/wing/spider_legs //Not really /WINGS/ but they protrude from the back, kinda. Might as well have them here.
-	name = "spider legs"
-	desc = ""
-	icon_state = "spider-legs"
-	do_colouration = 1
-	color_blend_mode = ICON_MULTIPLY
-
-/datum/sprite_accessory/wing/moth
-	name = "moth wings"
-	desc = ""
-	icon_state = "moth"
-
-/datum/sprite_accessory/wing/mothc
-	name = "moth wings, colorable"
-	desc = ""
-	icon_state = "moth"
-	do_colouration = 1
-	color_blend_mode = ICON_MULTIPLY
-
-/datum/sprite_accessory/wing/dragonfly
-	name = "dragonfly"
-	desc = ""
-	icon_state = "dragonfly"
-	color_blend_mode = ICON_MULTIPLY
-
-/datum/sprite_accessory/wing/citheroniamoth
-	name = "citheronia wings"
-	desc = ""
-	icon_state = "citheronia_wings"
-	ckeys_allowed = list("kira72")
-
-/datum/sprite_accessory/wing/feathered_medium
-	name = "medium feathered wings, colorable" // Keekenox made these feathery things with a little bit more shape to them than the other wings. They are medium sized wing boys.
-	desc = ""
-	icon_state = "feathered3"
-	do_colouration = 1
-	color_blend_mode = ICON_MULTIPLY
-
-/datum/sprite_accessory/wing/bat_black
-	name = "bat wings, black"
-	desc = ""
-	icon_state = "bat-black"
-
-/datum/sprite_accessory/wing/bat_color
-	name = "bat wings, colorable"
-	desc = ""
-	icon_state = "bat-color"
-	do_colouration = 1
-
-/datum/sprite_accessory/wing/bat_red
-	name = "bat wings, red"
-	desc = ""
-	icon_state = "bat-red"
 
 /datum/sprite_accessory/wing/harpywings_alt
 	name = "harpy wings alt, archeopteryx"
@@ -519,3 +425,9 @@
 	desc = ""
 	icon_state = "shock"
 	ckeys_allowed = list("icowom")
+
+/datum/sprite_accessory/wing/citheroniamoth
+	name = "citheronia wings"
+	desc = ""
+	icon_state = "citheronia_wings"
+	ckeys_allowed = list("kira72")
