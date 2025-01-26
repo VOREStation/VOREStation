@@ -1,8 +1,8 @@
 name: "✨ New feature"
 description: Suggest an idea for this codebase
 title: "✨ <title>"
-type: ''
-labels: ['Type: Feature / Enhancement', 'Type: Suggestion']
+type: 'feature'
+labels: ['Type: Feature/Suggestion']
 body:
 - type: textarea
   attributes:
