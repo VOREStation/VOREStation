@@ -529,7 +529,7 @@
 		log_debug("polymorph tf_type fail")
 		return
 	log_debug("polymorph tf_type pass")
-	var/new_mob = new tf_type(get_turf(src))
+	var/new_mob = new tf_type(src.loc)
 	return new_mob
 
 /mob/living/proc/revert_beast_form()
@@ -546,8 +546,38 @@
 		visible_message(span_infoplain(span_bold("\The [src]") + " ceases shifting their form."))
 		return 0
 	visible_message(span_infoplain(span_bold("\The [src]") + " has reverted to their original form."))
-	revert_mob_tf()
+	revert_beast_tf()
 
+/mob/living/proc/revert_beast_tf()
+	if(!tf_mob_holder)
+		return
+	var/mob/living/ourmob = tf_mob_holder
+	if(ourmob.ai_holder)
+		var/datum/ai_holder/our_AI = ourmob.ai_holder
+		our_AI.set_stance(STANCE_IDLE)
+	tf_mob_holder = null
+	ourmob.ckey = ckey
+	var/turf/beast_loc = src.loc
+	ourmob.loc = beast_loc
+	ourmob.forceMove(beast_loc)
+	ourmob.vore_selected = vore_selected
+	vore_selected = null
+	for(var/obj/belly/B as anything in vore_organs)
+		B.loc = ourmob
+		B.forceMove(ourmob)
+		B.owner = ourmob
+		vore_organs -= B
+		ourmob.vore_organs += B
+
+	ourmob.Life(1)
+
+	if(ishuman(src))
+		for(var/obj/item/W in src)
+			if(istype(W, /obj/item/implant/backup) || istype(W, /obj/item/nif))
+				continue
+			src.drop_from_inventory(W)
+
+	qdel(src)
 
 //Hanner variant
 

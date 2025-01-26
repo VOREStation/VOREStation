@@ -213,6 +213,7 @@ var/list/ai_verbs_default = list(
 		ooc_notes = client.prefs.read_preference(/datum/preference/text/living/ooc_notes)
 		ooc_notes_likes = client.prefs.read_preference(/datum/preference/text/living/ooc_notes_likes)
 		ooc_notes_dislikes = client.prefs.read_preference(/datum/preference/text/living/ooc_notes_dislikes)
+		private_notes = client.prefs.read_preference(/datum/preference/text/living/private_notes)
 
 	if (malf && !(mind in malf.current_antagonists))
 		show_laws()
@@ -607,7 +608,7 @@ var/list/ai_verbs_default = list(
 
 	switch(choice)
 		if("Color")
-			input = input("Choose a color:", "Hologram Color", holo_color) as color|null
+			input = tgui_color_picker("Choose a color:", "Hologram Color", holo_color)
 
 			if(input)
 				holo_color = input

@@ -61,9 +61,9 @@ THAT STUPID GAME KIT
 		return ..()
 	else
 		user.machine = src
-		if (!( src.data ))
+		if (!(data))
 			update()
-		user << browse(src.data, "window=game_kit")
+		user << browse("<html>[data]</html>", "window=game_kit")
 		onclose(user, "game_kit")
 		return
 	return

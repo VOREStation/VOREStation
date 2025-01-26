@@ -165,7 +165,7 @@
 	icon_state = "excavationdrill2"
 	item_state = "syringe_0"
 	excavation_amount = 15
-	digspeed = 30
+	digspeed = 10
 	desc = "Advanced archaeological drill combining ultrasonic excitation and bluespace manipulation to provide extreme precision. The tip is adjustable from 1 to 30 cm."
 	drill_sound = 'sound/weapons/thudswoosh.ogg'
 	drill_verb = "drilling"
@@ -174,8 +174,8 @@
 	attack_verb = list("drilled")
 
 /obj/item/pickaxe/excavationdrill/attack_self(mob/user as mob)
-	var/depth = tgui_input_number(usr, "Put the desired depth (1-30 centimeters).", "Set Depth", 30, 30, 1)
-	if(depth>30 || depth<1)
+	var/depth = tgui_input_number(usr, "Put the desired depth (1-60 centimeters).", "Set Depth", excavation_amount, 60, 1)
+	if(depth>60 || depth<1)
 		to_chat(user, span_notice("Invalid depth."))
 		return
 	excavation_amount = depth
@@ -191,7 +191,7 @@
 			icon_state = "excavationdrill3"
 		if(21 to 25)
 			icon_state = "excavationdrill4"
-		if(25 to 30)
+		if(26 to 60)
 			icon_state = "excavationdrill5" //The other 2 sprites are comically long. Let's just cut it at 5.
 
 /obj/item/pickaxe/excavationdrill/examine(mob/user)
