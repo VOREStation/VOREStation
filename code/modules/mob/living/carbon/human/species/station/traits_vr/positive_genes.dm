@@ -87,30 +87,6 @@
 	if(!(/mob/living/carbon/human/proc/remotesay in S.inherent_verbs))
 		remove_verb(H, /mob/living/carbon/human/proc/remotesay)
 
-/* Too out of date to port, only handles old UI values, can't do markings or other cosmetics... replace with promie verbs?
-/datum/trait/positive/superpower_morph
-	name = "Morph"
-	desc = "It's morphing time!"
-	cost = 5
-	custom_only = FALSE
-
-	is_genetrait = TRUE
-	hidden = TRUE // Cannot start with superpowers
-
-	mutation = mMorph
-	activity_bounds = DNA_HARDER_BOUNDS
-	activation_message="Your skin feels strange."
-
-/datum/trait/positive/superpower_morph/apply(datum/species/S, mob/living/carbon/human/H)
-	. = ..()
-	add_verb(H, /mob/living/carbon/human/proc/morph)
-
-/datum/trait/positive/superpower_morph/unapply(datum/species/S, mob/living/carbon/human/H)
-	. = ..()
-	if(!(/mob/living/carbon/human/proc/morph in S.inherent_verbs))
-		remove_verb(H, /mob/living/carbon/human/proc/morph)
-*/
-
 /datum/trait/positive/superpower_noprints
 	name = "No Prints"
 	desc = "Your hands leave no fingerprints behind."
@@ -217,33 +193,14 @@
 
 /datum/trait/positive/superpower_morph/apply(datum/species/S, mob/living/carbon/human/H)
 	. = ..()
-	add_verb(H, /mob/living/carbon/human/proc/shapeshifter_select_colour)
-	add_verb(H, /mob/living/carbon/human/proc/shapeshifter_select_ears)
-	add_verb(H, /mob/living/carbon/human/proc/shapeshifter_select_eye_colour)
-	add_verb(H, /mob/living/carbon/human/proc/shapeshifter_select_gender)
-	add_verb(H, /mob/living/carbon/human/proc/shapeshifter_select_hair)
-	add_verb(H, /mob/living/carbon/human/proc/shapeshifter_select_hair_colors)
-	add_verb(H, /mob/living/carbon/human/proc/shapeshifter_select_secondary_ears)
-	add_verb(H, /mob/living/carbon/human/proc/shapeshifter_select_tail)
-	add_verb(H, /mob/living/carbon/human/proc/shapeshifter_select_wings)
-
-	// TODO: Move all the specific shapeshifter 'get_race_key' and all that from being procs on /datum/species/shapeshifter in species_shapeshift.dm
-	// And move them as base procs on /species in species_getters.dm
-	// That will enable the below two to work
-	// add_verb(H, /mob/living/carbon/human/proc/shapeshifter_select_shape)
-	// add_verb(H, /mob/living/carbon/human/proc/shapeshifter_copy_body)
+	add_verb(H, /mob/living/carbon/human/proc/shapeshfit_form)
 
 /datum/trait/positive/superpower_morph/unapply(datum/species/S, mob/living/carbon/human/H)
 	. = ..()
-	remove_verb(H, /mob/living/carbon/human/proc/shapeshifter_select_colour)
-	remove_verb(H, /mob/living/carbon/human/proc/shapeshifter_select_ears)
-	remove_verb(H, /mob/living/carbon/human/proc/shapeshifter_select_eye_colour)
-	remove_verb(H, /mob/living/carbon/human/proc/shapeshifter_select_gender)
-	remove_verb(H, /mob/living/carbon/human/proc/shapeshifter_select_hair)
-	remove_verb(H, /mob/living/carbon/human/proc/shapeshifter_select_hair_colors)
-	remove_verb(H, /mob/living/carbon/human/proc/shapeshifter_select_secondary_ears)
-	remove_verb(H, /mob/living/carbon/human/proc/shapeshifter_select_tail)
-	remove_verb(H, /mob/living/carbon/human/proc/shapeshifter_select_wings)
-	// TODO
-	// remove_verb(H, /mob/living/carbon/human/proc/shapeshifter_select_shape)
-	// remove_verb(H, /mob/living/carbon/human/proc/shapeshifter_copy_body)
+	remove_verb(H, /mob/living/carbon/human/proc/shapeshfit_form)
+
+/mob/living/carbon/human/proc/shapeshfit_form()
+	set name = "Transform Shape"
+	set category = "Abilities.Superpower"
+	var/datum/tgui_module/appearance_changer/superpower/V = new(src, src)
+	V.tgui_interact(src)

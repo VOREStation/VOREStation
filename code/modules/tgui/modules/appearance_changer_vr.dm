@@ -47,11 +47,20 @@
 // Cocoon Stuff
 /datum/tgui_module/appearance_changer/cocoon
 	name ="Appearance Editor (Cocoon)"
-	flags = APPEARANCE_ALL_HAIR
+	flags = APPEARANCE_ALL_HAIR | APPEARANCE_EYE_COLOR | APPEARANCE_SKIN
 	customize_usr = TRUE
 
 /datum/tgui_module/appearance_changer/cocoon/tgui_status(mob/user, datum/tgui_state/state)
 	//if(!istype(owner.loc, /obj/item/storage/vore_egg/bugcocoon))
 	if(!owner.transforming)
 		return STATUS_CLOSE
+	return ..()
+
+// Morph Superpower
+/datum/tgui_module/appearance_changer/superpower
+	name ="Appearance Editor (Superpower)"
+	flags = APPEARANCE_ALL_HAIR | APPEARANCE_EYE_COLOR | APPEARANCE_SKIN
+	customize_usr = TRUE
+
+/datum/tgui_module/appearance_changer/superpower/tgui_status(mob/user, datum/tgui_state/state)
 	return ..()
