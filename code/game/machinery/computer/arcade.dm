@@ -449,7 +449,7 @@
 		dat += "<br><center><h3>Experience the journey of your ancestors!</h3></center><br><br>"
 		dat += "<center><b><a href='byond://?src=\ref[src];newgame=1'>New Game</a></b></center>"
 		dat += "<P ALIGN=Right><a href='byond://?src=\ref[src];close=1'>Close</a></P>"
-	user << browse(dat,"window=arcade")
+	user << browse("<html>[dat]</html>","window=arcade")
 	return
 
 /obj/machinery/computer/arcade/orion_trail/Topic(href, href_list)

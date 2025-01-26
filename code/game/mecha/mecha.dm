@@ -1606,7 +1606,7 @@
 	var/output = {"<b>Assume direct control over [src]?</b>
 						<a href='byond://?src=\ref[src];ai_take_control=\ref[user];duration=3000'>Yes</a><br>
 						"}
-	user << browse(output, "window=mecha_attack_ai")
+	user << browse("<html>[output]</html>", "window=mecha_attack_ai")
 	return
 */
 

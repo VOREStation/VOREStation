@@ -126,7 +126,6 @@
 /obj/random/handgun
 	name = "Random Handgun"
 	desc = "This is a random sidearm."
-	icon = 'icons/obj/gun.dmi'
 	icon_state = "gun"
 
 /obj/random/handgun/item_to_spawn()
@@ -239,7 +238,6 @@
 /obj/random/projectile/random
 	name = "Random Projectile Weapon"
 	desc = "This is a random projectile weapon."
-	icon = 'icons/obj/gun.dmi'
 	icon_state = "gun_2"
 
 /obj/random/projectile/random/item_to_spawn()

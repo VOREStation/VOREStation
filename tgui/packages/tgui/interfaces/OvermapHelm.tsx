@@ -7,7 +7,7 @@ import { Window } from '../layouts';
 import { OvermapFlightData, OvermapPanControls } from './common/Overmap';
 
 type Data = {
-  mapRef: string | null;
+  mapRef: string | undefined;
   sector: string;
   sector_info: string;
   landed: string;

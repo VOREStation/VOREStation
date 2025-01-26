@@ -676,7 +676,7 @@ var/global/list/belly_colorable_only_fullscreens = list("a_synth_flesh_mono",
 		if("set_vs_color")
 			var/belly_choice = tgui_input_list(ui.user, "Which vore sprite are you going to edit the color of?", "Vore Sprite Color", host.vore_icon_bellies)
 			if(belly_choice)
-				var/newcolor = input(ui.user, "Choose a color.", "", host.vore_sprite_color[belly_choice]) as color|null
+				var/newcolor = tgui_color_picker(ui.user, "Choose a color.", "", host.vore_sprite_color[belly_choice])
 				if(newcolor)
 					host.vore_sprite_color[belly_choice] = newcolor
 					var/multiply = tgui_input_list(ui.user, "Set the color to be applied multiplicatively or additively? Currently in [host.vore_sprite_multiply[belly_choice] ? "Multiply" : "Add"]", "Vore Sprite Color", list("Multiply", "Add"))
@@ -1724,17 +1724,17 @@ var/global/list/belly_colorable_only_fullscreens = list("a_synth_flesh_mono",
 			host.vore_selected.clear_preview(host) //Clears the stomach overlay. This is a failsafe but shouldn't occur.
 			. = TRUE
 		if("b_fullscreen_color")
-			var/newcolor = input(user, "Choose a color.", "", host.vore_selected.belly_fullscreen_color) as color|null
+			var/newcolor = tgui_color_picker(user, "Choose a color.", "", host.vore_selected.belly_fullscreen_color)
 			if(newcolor)
 				host.vore_selected.belly_fullscreen_color = newcolor
 			. = TRUE
 		if("b_fullscreen_color_secondary")
-			var/newcolor = input(user, "Choose a color.", "", host.vore_selected.belly_fullscreen_color_secondary) as color|null
+			var/newcolor = tgui_color_picker(user, "Choose a color.", "", host.vore_selected.belly_fullscreen_color_secondary)
 			if(newcolor)
 				host.vore_selected.belly_fullscreen_color_secondary = newcolor
 			. = TRUE
 		if("b_fullscreen_color_trinary")
-			var/newcolor = input(user, "Choose a color.", "", host.vore_selected.belly_fullscreen_color_trinary) as color|null
+			var/newcolor = tgui_color_picker(user, "Choose a color.", "", host.vore_selected.belly_fullscreen_color_trinary)
 			if(newcolor)
 				host.vore_selected.belly_fullscreen_color_trinary = newcolor
 			. = TRUE
@@ -1867,7 +1867,7 @@ var/global/list/belly_colorable_only_fullscreens = list("a_synth_flesh_mono",
 				host.update_fullness()
 				host.updateVRPanel()
 		if("b_undergarment_color")
-			var/newcolor = input(user, "Choose a color.", "", host.vore_selected.undergarment_color) as color|null
+			var/newcolor = tgui_color_picker(user, "Choose a color.", "", host.vore_selected.undergarment_color)
 			if(newcolor)
 				host.vore_selected.undergarment_color = newcolor
 				host.update_fullness()
@@ -1880,17 +1880,17 @@ var/global/list/belly_colorable_only_fullscreens = list("a_synth_flesh_mono",
 				host.vore_selected.tail_to_change_to = tail_choice
 			. = TRUE
 		if("b_tail_color")
-			var/newcolor = input(user, "Choose tail color.", "", host.vore_selected.tail_colouration) as color|null
+			var/newcolor = tgui_color_picker(user, "Choose tail color.", "", host.vore_selected.tail_colouration)
 			if(newcolor)
 				host.vore_selected.tail_colouration = newcolor
 			. = TRUE
 		if("b_tail_color2")
-			var/newcolor = input(user, "Choose tail secondary color.", "", host.vore_selected.tail_extra_overlay) as color|null
+			var/newcolor = tgui_color_picker(user, "Choose tail secondary color.", "", host.vore_selected.tail_extra_overlay)
 			if(newcolor)
 				host.vore_selected.tail_extra_overlay = newcolor
 			. = TRUE
 		if("b_tail_color3")
-			var/newcolor = input(user, "Choose tail tertiary color.", "", host.vore_selected.tail_extra_overlay2) as color|null
+			var/newcolor = tgui_color_picker(user, "Choose tail tertiary color.", "", host.vore_selected.tail_extra_overlay2)
 			if(newcolor)
 				host.vore_selected.tail_extra_overlay2 = newcolor
 			. = TRUE

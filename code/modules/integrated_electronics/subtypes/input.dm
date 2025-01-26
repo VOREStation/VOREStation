@@ -92,7 +92,7 @@
 	power_draw_per_use = 4
 
 /obj/item/integrated_circuit/input/colorpad/ask_for_input(mob/user)
-	var/new_color = input(user, "Enter a color, please.", "Color pad", get_pin_data(IC_OUTPUT, 1)) as color|null
+	var/new_color = tgui_color_picker(user, "Enter a color, please.", "Color pad", get_pin_data(IC_OUTPUT, 1))
 	if(new_color && CanInteract(user, GLOB.tgui_physical_state))
 		set_pin_data(IC_OUTPUT, 1, new_color)
 		push_data()

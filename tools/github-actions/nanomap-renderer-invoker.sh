@@ -35,7 +35,7 @@ exec 5>&2
 
 #Render maps to initial images ignoring some tg specific icon_state handling
 any_errors=0
-result=$(~/dmm-tools minimap "${map_files[@]}" --disable smart-cables,overlays,pretty 2>&1 | tee /dev/fd/5)
+result=$(~/dmm-tools minimap "${map_files[@]}" --disable smart-cables,overlays,pretty,transit-tube 2>&1 | tee /dev/fd/5)
 
 #Check if anything errored
 if [[ ($? -ne 0) || ("${result}" =~ ("bad icon"|"bad path"|"error")) ]]; then

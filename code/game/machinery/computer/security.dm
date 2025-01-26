@@ -520,7 +520,7 @@
 	..(severity)
 
 /obj/machinery/computer/secure_data/detective_computer
-	icon_state = "messyfiles"
+	icon_state = "forensic"
 
 #undef SEC_DATA_R_LIST
 #undef SEC_DATA_MAINT

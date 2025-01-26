@@ -173,3 +173,14 @@
 
 /datum/preference/choiced/living/spawnpoint/apply_to_living(mob/living/target, value)
 	return // handled in job_controller
+
+/datum/preference/text/living/private_notes
+	category = PREFERENCE_CATEGORY_MANUALLY_RENDERED
+	savefile_identifier = PREFERENCE_CHARACTER
+	savefile_key = "Private_Notes"
+	maximum_value_length = MAX_MESSAGE_LEN * 4
+	can_randomize = FALSE
+
+/datum/preference/text/living/private_notes/apply_to_living(mob/living/target, value)
+	target.private_notes = value
+	return
