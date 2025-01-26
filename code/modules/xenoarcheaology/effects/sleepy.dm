@@ -1,11 +1,11 @@
-//todo
+/// Verified to work with the Artifact Harvester
 /datum/artifact_effect/sleepy
-	name = "sleepy"
+	name = "Drowsiness"
 	effect_color = "#a36fa1"
 
 /datum/artifact_effect/sleepy/New()
 	..()
-	effect_type = pick(EFFECT_PSIONIC, EFFECT_ORGANIC)
+	effect_type = EFFECT_SLEEPY
 
 /datum/artifact_effect/sleepy/DoEffectTouch(var/mob/toucher)
 	if(toucher)

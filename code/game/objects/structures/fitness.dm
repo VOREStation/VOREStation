@@ -1,7 +1,7 @@
 /obj/structure/fitness
 	icon = 'icons/obj/stationobjs.dmi'
 	anchored = TRUE
-	var/being_used = 0
+	var/fitness_being_used = 0
 	var/weightloss_power = 1
 
 /obj/structure/fitness/punchingbag
@@ -50,11 +50,11 @@
 	if(user.nutrition < 50)
 		to_chat(user, span_warning("You need more energy to lift weights. Go eat something."))
 		return
-	if(being_used)
+	if(fitness_being_used)
 		to_chat(user, span_warning("The weight machine is already in use by somebody else."))
 		return
 	else
-		being_used = 1
+		fitness_being_used = 1
 		playsound(src, 'sound/effects/weightlifter.ogg', 50, 1)
 		user.set_dir(SOUTH)
 		flick("[icon_state]_[weight]", src)
@@ -64,7 +64,7 @@
 			var/weightloss_enhanced = weightloss_power * (weight * 0.5)
 			user.weight -= 0.25 * weightloss_enhanced * (0.01 * user.weight_loss)
 			to_chat(user, span_notice("You lift the weights [qualifiers[weight]]."))
-			being_used = 0
+			fitness_being_used = 0
 		else
 			to_chat(user, span_notice("Against your previous judgement, perhaps working out is not for you."))
-			being_used = 0
+			fitness_being_used = 0
