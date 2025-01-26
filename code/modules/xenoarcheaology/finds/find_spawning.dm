@@ -864,7 +864,7 @@
 /obj/item/archaeological_find/Destroy()
 	if(src.is_anomalous())
 		var/datum/component/artifact_master/arti_mstr = GetComponent(/datum/component/artifact_master)
-		arti_mstr.ClearFromParent()
+		arti_mstr.RemoveComponent()
 		if(!QDELETED(arti_mstr))
 			qdel(arti_mstr)
 
