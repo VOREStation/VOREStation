@@ -105,6 +105,8 @@ SUBSYSTEM_DEF(robot_sprites)
 /datum/controller/subsystem/robot_sprites/proc/get_whitelisted_sprites(var/ckey, var/spritename, var/module)
 	. = list()
 
+	return	// CHOMPDisable
+
 	if(!ckey || !spritename || !module || !(module in whitelisted_sprites_by_module))
 		return
 
