@@ -69,7 +69,7 @@
 	w_class = ITEMSIZE_NORMAL
 	force = 7
 	matter = list(MAT_STEEL = 2000)
-	slot_flags = SLOT_BELT
+	slot_flags = SLOT_BELT | SLOT_HOLSTER
 
 	fire_sound = 'sound/weapons/empty.ogg'
 	fire_sound_text = "a metallic thunk"

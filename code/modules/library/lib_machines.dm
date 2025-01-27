@@ -44,7 +44,7 @@
 			<A href='byond://?src=\ref[src];search=1'>\[Start Search\]</A><BR>"}
 		if(1)
 			establish_db_connection()
-			if(!dbcon_old.IsConnected())
+			if(!SSdbcore.IsConnected())
 				dat += span_red(span_bold("ERROR") + ": Unable to contact External Archive. Please contact your system administrator for assistance.") + "<BR>"
 			else if(!SQLquery)
 				dat += span_red(span_bold("ERROR") + ": Malformed search request. Please contact your system administrator for assistance.") + "<BR>"
@@ -52,7 +52,7 @@
 				dat += {"<table>
 				<tr><td>AUTHOR</td><td>TITLE</td><td>CATEGORY</td><td>SS<sup>13</sup>BN</td></tr>"}
 
-				var/DBQuery/query = dbcon_old.NewQuery(SQLquery)
+				var/datum/db_query/query = SSdbcore.NewQuery(SQLquery)
 				query.Execute()
 
 				while(query.NextRow())
@@ -277,13 +277,13 @@
 
 			//dat += "<h3>" + span_red("arning: System Administrator has slated this archive for removal. Personal uploads should be taken to the NT board of internal literature.") + "</h3>" //VOREStation Removal
 
-			if(!dbcon_old.IsConnected())
+			if(!SSdbcore.IsConnected())
 				dat += span_red(span_bold("ERROR") + ": Unable to contact External Archive. Please contact your system administrator for assistance.")
 			else
 				dat += {"<A href='byond://?src=\ref[src];orderbyid=1'>(Order book by SS<sup>13</sup>BN)</A><BR><BR>
 				<table>
 				<tr><td><A href='byond://?src=\ref[src];sort=author>AUTHOR</A></td><td><A href='byond://?src=\ref[src];sort=title>TITLE</A></td><td><A href='byond://?src=\ref[src];sort=category>CATEGORY</A></td><td></td></tr>"}
-				var/DBQuery/query = dbcon_old.NewQuery("SELECT id, author, title, category FROM library ORDER BY [sortby]")
+				var/datum/db_query/query = SSdbcore.NewQuery("SELECT id, author, title, category FROM library ORDER BY [sortby]")
 				query.Execute()
 
 				var/show_admin_options = check_rights(R_ADMIN, show_msg = FALSE)
@@ -318,13 +318,13 @@
 		dat += "<h3>ADMINISTRATIVE MANAGEMENT</h3>"
 		establish_db_connection()
 
-		if(!dbcon_old.IsConnected())
+		if(!SSdbcore.IsConnected())
 			dat += span_red(span_bold("ERROR") + ": Unable to contact External Archive. Please contact your system administrator for assistance.")
 		else
 			dat += {"<A href='byond://?src=\ref[src];orderbyid=1'>(Order book by SS<sup>13</sup>BN)</A><BR><BR>
 			<table>
 			<tr><td><A href='byond://?src=\ref[src];sort=author>AUTHOR</A></td><td><A href='byond://?src=\ref[src];sort=title>TITLE</A></td><td><A href='byond://?src=\ref[src];sort=category>CATEGORY</A></td><td></td></tr>"}
-			var/DBQuery/query = dbcon_old.NewQuery("SELECT id, author, title, category FROM library ORDER BY [sortby]")
+			var/datum/db_query/query = SSdbcore.NewQuery("SELECT id, author, title, category FROM library ORDER BY [sortby]")
 			query.Execute()
 
 			while(query.NextRow())
@@ -335,6 +335,7 @@
 				dat += "<tr><td>[author]</td><td>[title]</td><td>[category]</td><td><A href='byond://?src=\ref[src];delid=[id]'>\[Del\]</A>"
 				dat += "</td></tr>"
 			dat += "</table>"
+			qdel(query)
 		dat += "<BR><A href='byond://?src=\ref[src];switchscreen=0'>(Return to main menu)</A><BR>"
 
 		user << browse("<html>[dat]</html>", "window=library")
@@ -437,20 +438,20 @@
 						tgui_alert_async(usr, "This book has been rejected from the database. Aborting!")
 					else
 						establish_db_connection()
-						if(!dbcon_old.IsConnected())
+						if(!SSdbcore.IsConnected())
 							tgui_alert_async(usr, "Connection to Archive has been severed. Aborting.")
 						else
 							/*
-							var/sqltitle = dbcon.Quote(scanner.cache.name)
-							var/sqlauthor = dbcon.Quote(scanner.cache.author)
-							var/sqlcontent = dbcon.Quote(scanner.cache.dat)
-							var/sqlcategory = dbcon.Quote(upload_category)
+							var/sqltitle = SSdbcore.Quote(scanner.cache.name)
+							var/sqlauthor = SSdbcore.Quote(scanner.cache.author)
+							var/sqlcontent = SSdbcore.Quote(scanner.cache.dat)
+							var/sqlcategory = SSdbcore.Quote(upload_category)
 							*/
 							var/sqltitle = sanitizeSQL(scanner.cache.name)
 							var/sqlauthor = sanitizeSQL(scanner.cache.author)
 							var/sqlcontent = sanitizeSQL(scanner.cache.dat)
 							var/sqlcategory = sanitizeSQL(upload_category)
-							var/DBQuery/query = dbcon_old.NewQuery("INSERT INTO library (author, title, content, category) VALUES ('[sqlauthor]', '[sqltitle]', '[sqlcontent]', '[sqlcategory]')")
+							var/datum/db_query/query = SSdbcore.NewQuery("INSERT INTO library (author, title, content, category) VALUES ('[sqlauthor]', '[sqltitle]', '[sqlcontent]', '[sqlcategory]')")
 							if(!query.Execute())
 								to_chat(usr,query.ErrorMsg())
 							else
@@ -461,7 +462,7 @@
 	if(href_list["targetid"])
 		var/sqlid = sanitizeSQL(href_list["targetid"])
 		establish_db_connection()
-		if(!dbcon_old.IsConnected())
+		if(!SSdbcore.IsConnected())
 			tgui_alert_async(usr, "Connection to Archive has been severed. Aborting.")
 		if(bibledelay)
 			for (var/mob/V in hearers(src))
@@ -470,7 +471,7 @@
 			bibledelay = 1
 			spawn(6)
 				bibledelay = 0
-			var/DBQuery/query = dbcon_old.NewQuery("SELECT * FROM library WHERE id=[sqlid]")
+			var/datum/db_query/query = SSdbcore.NewQuery("SELECT * FROM library WHERE id=[sqlid]")
 			query.Execute()
 
 			while(query.NextRow())
@@ -492,10 +493,10 @@
 			return
 		var/sqlid = sanitizeSQL(href_list["delid"])
 		establish_db_connection()
-		if(!dbcon_old.IsConnected())
+		if(!SSdbcore.IsConnected())
 			tgui_alert_async(usr, "Connection to Archive has been severed. Aborting.")
 		else
-			var/DBQuery/query = dbcon_old.NewQuery("DELETE FROM library WHERE id=[sqlid]")
+			var/datum/db_query/query = SSdbcore.NewQuery("DELETE FROM library WHERE id=[sqlid]")
 			query.Execute()
 			log_admin("[usr.key] has deleted the book [sqlid]")	//VOREStation Addition
 
