@@ -182,7 +182,7 @@
 	if(initial(smoke.opacity))
 		smoke.set_opacity(1)		//switching opacity on after the smoke has spawned, and then
 	var/lifespan = 150 + rand(0, 20)
-	addtimer(CALLBACK(src, PROC_REF(fadeOut)), lifespan)
+	addtimer(CALLBACK(src, PROC_REF(fadeOut), smoke), lifespan)
 
 /datum/effect/effect/system/smoke_spread/chem/spores/spawnSmoke(var/turf/T, var/icon/I, var/dist = 1)
 	var/obj/effect/effect/smoke/chem/spores = new /obj/effect/effect/smoke/chem(location)
