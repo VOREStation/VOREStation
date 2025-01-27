@@ -1,8 +1,8 @@
 import { filter } from 'common/collections';
 import { ReactNode, useEffect, useRef, useState } from 'react';
 import { useBackend } from 'tgui/backend';
-import { fetchRetry } from 'tgui/http';
 import { Box, Button, Image, LabeledList, Section } from 'tgui-core/components';
+import { fetchRetry } from 'tgui-core/http';
 import { BooleanLike } from 'tgui-core/react';
 import { decodeHtmlEntities } from 'tgui-core/string';
 

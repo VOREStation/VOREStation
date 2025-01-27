@@ -1,8 +1,8 @@
-import { KEY } from 'common/keys';
 import { useRef, useState } from 'react';
 import { useBackend } from 'tgui/backend';
 import { Window } from 'tgui/layouts';
 import { Autofocus, Button, Input, Section, Stack } from 'tgui-core/components';
+import { isAlphabetic, isNumeric, KEY } from 'tgui-core/keys';
 
 import { InputButtons } from './common/InputButtons';
 import { Loader } from './common/Loader';
@@ -112,7 +112,7 @@ export const ListInputModal = (props) => {
       event.preventDefault();
       act('submit', { entry: filteredItems[selected] });
     }
-    if (!searchBarVisible && key >= KEY.A && key <= KEY.Z) {
+    if (!searchBarVisible && (isAlphabetic(key) || isNumeric(key))) {
       event.preventDefault();
       onLetterSearch(key);
     }
@@ -188,7 +188,7 @@ const ListDisplay = (props) => {
 
   function handleKeyDown(event: React.KeyboardEvent<HTMLDivElement>) {
     const key = event.key;
-    if (searchBarVisible && key >= KEY.A && key <= KEY.Z) {
+    if (searchBarVisible && (isAlphabetic(key) || isNumeric(key))) {
       event.preventDefault();
       onFocusSearch();
     }

@@ -1,12 +1,19 @@
-import { KEY } from 'common/keys';
 import React, { Component, PropsWithChildren } from 'react';
 import { resolveAsset } from 'tgui/assets';
 import { useBackend } from 'tgui/backend';
-import { KeyEvent } from 'tgui/events';
 import { KeyListener } from 'tgui-core/components';
+import {
+  Box,
+  Button,
+  Icon,
+  LabeledList,
+  Slider,
+  Tooltip,
+} from 'tgui-core/components';
+import { KeyEvent } from 'tgui-core/events';
+import { KEY } from 'tgui-core/keys';
 
 import { logger } from '../logging';
-import { Box, Button, Icon, LabeledList, Slider, Tooltip } from '.';
 
 const pauseEvent = (e) => {
   if (e.stopPropagation) {
@@ -161,7 +168,7 @@ export class NanoMap extends Component<Props, State> {
     );
     // (x * zoom), x Needs to be double the turf- map size. (for virgo, 140x140)
     const mapSize = this.props.zoomScale * zoom + 'px';
-    const newStyle = {
+    const newStyle: {} = {
       width: mapSize,
       height: mapSize,
       'margin-top': offsetY + 'px',

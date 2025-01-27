@@ -1,6 +1,5 @@
+import { Box } from 'tgui-core/components';
 import { BooleanLike } from 'tgui-core/react';
-
-import { Box } from '../../components';
 
 export function getDockingStatus(
   docking_status: string | null | undefined,

@@ -5,12 +5,13 @@
  */
 
 import { useBackend } from 'tgui/backend';
-import { BoxProps } from 'tgui/components/Box';
 import { useDebug } from 'tgui/debug';
 import { Box } from 'tgui-core/components';
 import { classes } from 'tgui-core/react';
 
 import { Layout } from './Layout';
+
+type BoxProps = React.ComponentProps<typeof Box>;
 
 type Props = Partial<{
   theme: string;

@@ -6,9 +6,7 @@ import {
   useEffect,
   useState,
 } from 'react';
-import { BooleanLike } from 'tgui-core/react';
-
-import { sendAct, useBackend } from '../../../../backend';
+import { sendAct, useBackend } from 'tgui/backend';
 import {
   Box,
   Button,
@@ -17,7 +15,9 @@ import {
   NumberInput,
   Slider,
   Stack,
-} from '../../../../components';
+} from 'tgui-core/components';
+import { BooleanLike } from 'tgui-core/react';
+
 import { createSetPreference, PreferencesMenuData } from '../../data';
 import { ServerPreferencesFetcher } from '../../ServerPreferencesFetcher';
 

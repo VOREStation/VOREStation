@@ -1,10 +1,10 @@
-import { isEscape, KEY } from 'common/keys';
 import { Component, createRef, RefObject } from 'react';
 import { dragStartHandler } from 'tgui/drag';
 import {
   removeAllSkiplines,
   sanitizeMultiline,
 } from 'tgui/interfaces/TextInputModal';
+import { isEscape, KEY } from 'tgui-core/keys';
 import { clamp } from 'tgui-core/math';
 import { BooleanLike } from 'tgui-core/react';
 

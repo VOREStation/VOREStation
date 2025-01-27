@@ -1,4 +1,4 @@
-import { map, sortBy } from 'common/collections';
+import { sortBy } from 'common/collections';
 import { useState } from 'react';
 import { useBackend } from 'tgui/backend';
 import {
@@ -36,7 +36,7 @@ export const PowerMonitorFocus = (props: { focus: sensor }) => {
   // Process area data
   const areas: area[] = flow([
     (areas: area[]) =>
-      map(areas, (area, i) => ({
+      areas.map((area, i) => ({
         ...area,
         // Generate a unique id
         id: area.name + i,

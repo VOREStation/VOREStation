@@ -1,6 +1,6 @@
 import { KeyboardEvent } from 'react';
 import { useBackend } from 'tgui/backend';
-import { Modal } from 'tgui/components';
+import { Modal } from 'tgui-core/components';
 import {
   Box,
   Button,

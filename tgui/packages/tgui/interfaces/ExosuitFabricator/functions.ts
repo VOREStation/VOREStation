@@ -1,5 +1,5 @@
 import { uniqBy } from 'common/collections';
-import { createSearch } from 'common/string';
+import { createSearch } from 'tgui-core/string';
 
 import { COLOR_AVERAGE, COLOR_BAD, COLOR_NONE } from './constants';
 import { material, part, queueFormat } from './types';

@@ -1,5 +1,5 @@
 import { useBackend } from 'tgui/backend';
-import { Button, Section, Stack } from 'tgui/components';
+import { Button, Section, Stack } from 'tgui-core/components';
 import { BooleanLike } from 'tgui-core/react';
 
 import { localPrefs } from '../types';

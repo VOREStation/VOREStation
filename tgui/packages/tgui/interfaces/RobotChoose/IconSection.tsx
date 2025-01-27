@@ -1,9 +1,14 @@
 import { useState } from 'react';
 import { useBackend } from 'tgui/backend';
-import { Box, Button, Input, Section, Stack } from 'tgui-core/components';
+import {
+  Box,
+  Button,
+  Input,
+  Section,
+  Stack,
+  Tooltip,
+} from 'tgui-core/components';
 import { classes } from 'tgui-core/react';
-
-import { Tooltip } from '../../components';
 
 export const IconSection = (props: {
   currentName: string;

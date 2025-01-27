@@ -12,9 +12,9 @@
  * SOFTWARE.
  */
 
-import { KEY } from 'common/keys';
-import { clamp } from 'common/math';
 import React, { Component, createRef, ReactNode, RefObject } from 'react';
+import { isArrow, KEY } from 'tgui-core/keys';
+import { clamp } from 'tgui-core/math';
 
 export interface Interaction {
   left: number;
@@ -88,12 +88,7 @@ export class Interactive extends Component<InteractiveProps> {
   handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
     const pressedKey = event.key;
 
-    if (
-      pressedKey !== KEY.Left &&
-      pressedKey !== KEY.Right &&
-      pressedKey !== KEY.Up &&
-      pressedKey !== KEY.Down
-    ) {
+    if (!isArrow(pressedKey)) {
       return;
     }
     event.preventDefault();

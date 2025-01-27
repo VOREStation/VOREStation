@@ -1,6 +1,6 @@
 import { Component, ReactNode } from 'react';
 import { resolveAsset } from 'tgui/assets';
-import { fetchRetry } from 'tgui/http';
+import { fetchRetry } from 'tgui-core/http';
 
 import { ServerData } from './data';
 

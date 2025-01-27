@@ -30,13 +30,13 @@ $font-size: 24px;
   @include meta.load-css('../atomic/color.scss');
 
   // Components
-  @include meta.load-css('../components/Tabs.scss');
+  @include meta.load-css('~tgui-core/styles/components/Tabs.scss');
   @include meta.load-css(
-    '../components/Section.scss',
+    '~tgui-core/styles/components/Section.scss',
     $with: ('background-color': hsla(0, 0%, 0%, 0.1))
   );
   @include meta.load-css(
-    '../components/Button.scss',
+    '~tgui-core/styles/components/Button.scss',
     $with: (
       'color-default': hsl(52, 40%, 85%),
       'color-disabled': hsl(0, 0%, 21%),

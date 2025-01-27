@@ -1,4 +1,3 @@
-import { isEscape, KEY } from 'common/keys';
 import { useState } from 'react';
 import { useBackend } from 'tgui/backend';
 import { Window } from 'tgui/layouts';
@@ -9,6 +8,7 @@ import {
   Section,
   Stack,
 } from 'tgui-core/components';
+import { isEscape, KEY } from 'tgui-core/keys';
 
 import { InputButtons } from './common/InputButtons';
 import { Loader } from './common/Loader';

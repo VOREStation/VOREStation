@@ -23,7 +23,7 @@
 
   // Components
   @include meta.load-css(
-    '../components/Button.scss',
+    '~tgui-core/styles/components/Button.scss',
     $with: (
       'color-default': colors.$primary,
       'color-disabled': hsl(0, 0%, 21%),
@@ -33,25 +33,25 @@
     )
   );
   @include meta.load-css(
-    '../components/Input.scss',
+    '~tgui-core/styles/components/Input.scss',
     $with: ('border-color': hsl(226, 26%, 34%))
   );
   @include meta.load-css('../components/NanoMap.scss');
   @include meta.load-css(
-    '../components/NoticeBox.scss',
+    '~tgui-core/styles/components/NoticeBox.scss',
     $with: ('background-color': hsl(340, 58%, 42%))
   );
   @include meta.load-css(
-    '../components/NumberInput.scss',
+    '~tgui-core/styles/components/NumberInput.scss',
     $with: ('border-color': hsl(226, 26%, 34%))
   );
   @include meta.load-css(
-    '../components/ProgressBar.scss',
+    '~tgui-core/styles/components/ProgressBar.scss',
     $with: ('background-color': hsla(0, 0%, 0%, 0.5))
   );
-  @include meta.load-css('../components/Section.scss');
+  @include meta.load-css('~tgui-core/styles/components/Section.scss');
   @include meta.load-css(
-    '../components/Tooltip.scss',
+    '~tgui-core/styles/components/Tooltip.scss',
     $with: ('background-color': hsl(340, 58%, 42%))
   );
 

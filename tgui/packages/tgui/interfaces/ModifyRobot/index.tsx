@@ -161,7 +161,6 @@ export const ModifyRobot = (props) => {
         <LabeledList>
           <LabeledList.Item label="Player Selection">
             <Stack align="baseline">
-              {/* Fix inline-flex with the next tgui core update */}
               <Stack.Item>
                 <Dropdown
                   selected={target ? target.name : ''}
@@ -194,7 +193,6 @@ export const ModifyRobot = (props) => {
                       Rename
                     </Button>
                   </Stack.Item>
-                  <Stack.Item grow />
                   <Stack.Item>
                     <Button
                       icon={target.emagged ? 'sd-card' : 'bolt'}
@@ -215,7 +213,6 @@ export const ModifyRobot = (props) => {
           <LabeledList.Item label="AI Selection">
             {!!target?.module && (
               <Stack align="baseline">
-                {/* Fix inline-flex with the next tgui core update */}
                 <Stack.Item>
                   <Dropdown
                     selected={selected_ai || ''}
