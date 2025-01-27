@@ -1294,7 +1294,7 @@
 /area/redgate/fantasy/walls)
 "iy" = (
 /obj/structure/closet/cabinet,
-/obj/item/clothing/suit/armor/combat/imperial,
+/obj/item/clothing/suit/armor/combat/crusader,
 /obj/item/clothing/shoes/knight/black,
 /obj/item/clothing/gloves/combat/knight/brown,
 /obj/item/clothing/head/helmet/gladiator,
@@ -3377,6 +3377,19 @@
 /obj/structure/window/basic/full,
 /turf/simulated/floor/wood/alt/parquet,
 /area/redgate/fantasy/restaurant)
+"uE" = (
+/obj/structure/closet/cabinet,
+/obj/item/clothing/shoes/knight/black,
+/obj/item/clothing/gloves/combat/knight/brown,
+/obj/item/clothing/head/helmet/gladiator,
+/obj/item/shield/primitive,
+/obj/item/handcuffs/cable/plantfiber,
+/obj/machinery/light/small/torch{
+	dir = 4
+	},
+/obj/item/clothing/suit/armor/combat/crusader,
+/turf/simulated/floor/concrete,
+/area/redgate/fantasy/walls)
 "uH" = (
 /obj/structure/bed/chair/sofa/pew/left{
 	dir = 8
@@ -4492,7 +4505,7 @@
 /obj/structure/closet/crate/chest,
 /obj/random/fantasy_item,
 /obj/item/material/sword/longsword,
-/obj/item/clothing/suit/armor/combat/imperial,
+/obj/item/clothing/suit/armor/combat/crusader,
 /turf/simulated/floor/wood/alt/parquet,
 /area/redgate/fantasy/guardhouse)
 "BC" = (
@@ -4573,7 +4586,7 @@
 /area/redgate/fantasy/castle)
 "Ci" = (
 /obj/structure/closet/cabinet,
-/obj/item/clothing/suit/armor/combat/imperial,
+/obj/item/clothing/suit/armor/combat/crusader,
 /obj/item/clothing/shoes/knight/black,
 /obj/item/clothing/gloves/combat/knight/brown,
 /obj/item/clothing/head/helmet/gladiator,
@@ -5003,19 +5016,6 @@
 /obj/machinery/microwave/cookingpot,
 /turf/simulated/floor/wood/alt,
 /area/redgate/fantasy/cafe)
-"Fd" = (
-/obj/structure/closet/cabinet,
-/obj/item/clothing/suit/armor/combat/imperial,
-/obj/item/clothing/shoes/knight/black,
-/obj/item/clothing/gloves/combat/knight/brown,
-/obj/item/clothing/head/helmet/gladiator,
-/obj/item/shield/primitive,
-/obj/item/handcuffs/cable/plantfiber,
-/obj/machinery/light/small/torch{
-	dir = 4
-	},
-/turf/simulated/floor/concrete,
-/area/redgate/fantasy/walls)
 "Fe" = (
 /obj/structure/table/rack/wood,
 /obj/fruitspawner/poppies,
@@ -16077,7 +16077,7 @@ aW
 mz
 aW
 iy
-Fd
+uE
 iy
 bp
 aW
@@ -17640,7 +17640,7 @@ dL
 dL
 dL
 bp
-Fd
+uE
 aW
 aW
 bp

@@ -963,8 +963,8 @@
 /obj/structure/table/rack/wood,
 /obj/item/clothing/shoes/knight/black,
 /obj/item/clothing/gloves/combat/knight/brown,
-/obj/item/clothing/suit/armor/combat/imperial,
 /obj/item/clothing/head/helmet/gladiator,
+/obj/item/clothing/suit/armor/combat/crusader,
 /turf/simulated/mineral/floor/light{
 	nitrogen = 82.1472;
 	oxygen = 21.8366;
@@ -1088,8 +1088,7 @@
 "mX" = (
 /obj/structure/bonfire,
 /obj/structure/railing/overhang/waterless{
-	dir = 4;
-	icon_state = "wbronze_railing0"
+	dir = 4
 	},
 /turf/simulated/floor/wood,
 /area/redgate/jungle/aboveground)
