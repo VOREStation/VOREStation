@@ -952,7 +952,7 @@
 /datum/sprite_accessory/ears/altevian
 	name = "Altevian Ears"
 	desc = ""
-	icon = 'icons/mob/vore/ears_vr.dmi'
+	icon = 'icons/mob/human_races/sprite_accessories/ears.dmi'
 	icon_state = "altevian"
 	extra_overlay = "altevian-inner"
 	do_colouration = 1
