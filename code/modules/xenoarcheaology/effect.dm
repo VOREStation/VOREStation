@@ -22,8 +22,8 @@
 	var/last_activation = 0
 
 /datum/artifact_effect/Destroy()
-	if(master)
-		master = null
+	master = null //Master still exists even if our effect gets destroyed. No need to qdel_null.
+	qdel_null(active_effect)
 	..()
 
 /datum/artifact_effect/proc/get_master_holder()	// Return the effectmaster's holder, if it is set to an effectmaster. Otherwise, master is the target object.
@@ -160,6 +160,8 @@
 			. += "displace subjects using bluespace phenomena"
 		if(EFFECT_VAMPIRE)
 			. += "drain the blood of subjects, creating creatures or anomalous artifacts in the process"
+		if(EFFECT_DNASWITCH)
+			. += "mutate the cells of the organism that touches it, resulting in rampant mutations"
 		else
 			. += "have no previously-known anomalous properties"
 

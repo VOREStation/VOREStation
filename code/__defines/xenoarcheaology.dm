@@ -112,4 +112,4 @@
 #define EFFECT_VAMPIRE 20
 #define EFFECT_HEALTH 21
 #define EFFECT_GENERATOR 22
-//#define EFFECT_DNASWITCH 23 //Not in as of yet.
+#define EFFECT_DNASWITCH 23 //Not in as of yet.

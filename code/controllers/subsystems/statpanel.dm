@@ -31,7 +31,7 @@ SUBSYSTEM_DEF(statpanels)
 			"Map: [using_map.name]",
 			//cached ? "Next Map: [cached.map_name]" : null,
 			//"Next Map: -- Not Available --",
-			// "Round ID: [GLOB.round_id ? GLOB.round_id : "NULL"]",
+			"Round ID: [GLOB.round_id ? GLOB.round_id : "NULL"]",
 			"Server Time: [time2text(world.timeofday, "YYYY-MM-DD hh:mm:ss")]",
 			"Round Time: [roundduration2text()]",
 			"Station Date: [stationdate2text()]", // [capitalize(GLOB.world_time_season)]",
