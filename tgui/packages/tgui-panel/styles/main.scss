@@ -24,19 +24,25 @@
 @include meta.load-css('~tgui/styles/atomic/text.scss');
 
 // Components
+@include meta.load-css('~tgui-core/styles/components/BlockQuote.scss');
 @include meta.load-css('~tgui-core/styles/components/Button.scss');
 @include meta.load-css('~tgui-core/styles/components/ColorBox.scss');
+@include meta.load-css('~tgui-core/styles/components/Dialog.scss');
 @include meta.load-css('~tgui-core/styles/components/Dimmer.scss');
 @include meta.load-css('~tgui-core/styles/components/Divider.scss');
 @include meta.load-css('~tgui-core/styles/components/Dropdown.scss');
 @include meta.load-css('~tgui-core/styles/components/Flex.scss');
+@include meta.load-css('~tgui-core/styles/components/Icon.scss');
+@include meta.load-css('~tgui-core/styles/components/ImageButton.scss');
 @include meta.load-css('~tgui-core/styles/components/Input.scss');
 @include meta.load-css('~tgui-core/styles/components/Knob.scss');
 @include meta.load-css('~tgui-core/styles/components/LabeledList.scss');
+@include meta.load-css('~tgui-core/styles/components/MenuBar.scss');
 @include meta.load-css('~tgui-core/styles/components/Modal.scss');
 @include meta.load-css('~tgui-core/styles/components/NoticeBox.scss');
 @include meta.load-css('~tgui-core/styles/components/NumberInput.scss');
 @include meta.load-css('~tgui-core/styles/components/ProgressBar.scss');
+@include meta.load-css('~tgui-core/styles/components/RoundGauge.scss');
 @include meta.load-css('~tgui-core/styles/components/Section.scss');
 @include meta.load-css('~tgui-core/styles/components/Slider.scss');
 @include meta.load-css('~tgui-core/styles/components/Stack.scss');
