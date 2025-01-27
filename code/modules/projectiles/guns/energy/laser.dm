@@ -171,7 +171,6 @@
 						prob(45);/obj/item/projectile/beam,
 						prob(10);/obj/item/projectile/beam/cyan,
 						prob(10);/obj/item/projectile/beam/eluger,
-						prob(10);/obj/item/projectile/beam/imperial,
 						prob(10);/obj/item/projectile/beam/weaklaser,
 						prob(5);/obj/item/projectile/beam/practice)
 	//now, decide whether it has a shot limit and if so how many
@@ -351,25 +350,6 @@
 	origin_tech = list(TECH_COMBAT = 3, TECH_MAGNET = 1, TECH_MATERIAL = 4)
 
 	projectile_type = /obj/item/projectile/scatter/laser
-
-/*
- * Imperial Pistol
- */
-/obj/item/gun/energy/imperial
-	name = "imperial energy pistol"
-	desc = "An elegant weapon developed by the Imperium Auream. Their weaponsmiths have cleverly found a way to make a gun that \
-	is only about the size of an average energy pistol, yet with the fire power of a laser carbine."
-	icon = 'icons/obj/gun_vr.dmi'
-	icon_override = 'icons/obj/gun_vr.dmi'
-	icon_state = "ge_pistol"
-	item_state = "ge_pistol"
-	slot_flags = SLOT_BELT
-	w_class = ITEMSIZE_NORMAL
-	force = 10
-	origin_tech = list(TECH_COMBAT = 4, TECH_MAGNET = 2)
-	matter = list(MAT_STEEL = 2000)
-	fire_sound = 'sound/weapons/mandalorian.ogg'
-	projectile_type = /obj/item/projectile/beam/imperial
 
 /*
  * Mining-Laser Rifle

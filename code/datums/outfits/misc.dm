@@ -17,29 +17,6 @@
 	back = /obj/item/tank/oxygen
 	mask = /obj/item/clothing/mask/breath
 
-/decl/hierarchy/outfit/soviet_soldier
-	name = "Soviet soldier"
-	uniform = /obj/item/clothing/under/soviet
-	shoes = /obj/item/clothing/shoes/boots/combat
-	head = /obj/item/clothing/head/ushanka/soviet
-	gloves = /obj/item/clothing/gloves/combat
-	back = /obj/item/storage/backpack/satchel
-	belt = /obj/item/gun/projectile/revolver/mateba
-
-/decl/hierarchy/outfit/soviet_soldier/admiral
-	name = "Soviet admiral"
-	head = /obj/item/clothing/head/hgpiratecap
-	glasses = /obj/item/clothing/glasses/thermal/plain/eyepatch
-	suit = /obj/item/clothing/suit/hgpirate
-
-	id_slot = slot_wear_id
-	id_type = /obj/item/card/id/centcom	//station
-	id_pda_assignment = "Admiral"
-
-	headset = /obj/item/radio/headset/heads/captain
-	headset_alt = /obj/item/radio/headset/heads/captain
-	headset_earbud = /obj/item/radio/headset/heads/captain
-
 /decl/hierarchy/outfit/merchant
 	name = "Merchant"
 	shoes = /obj/item/clothing/shoes/black

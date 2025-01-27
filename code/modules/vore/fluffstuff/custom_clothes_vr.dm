@@ -197,17 +197,6 @@
 	item_state = "brittrenchcoat"
 
 //For general use
-/obj/item/clothing/suit/storage/vest/hoscoat/ancient_greatcoat
-	name = "Greatcoat"
-	desc = "This coat gives off an imposing look, while offering a luxuriously plush fur liner."
-
-	icon = 'icons/vore/custom_clothes_vr.dmi'
-	icon_state = "greatcoat"
-
-	icon_override = 'icons/vore/custom_clothes_vr.dmi'
-	item_state = "greatcoat_mob"
-
-//For general use
 /obj/item/clothing/suit/storage/vest/hoscoat/russofurcoat
 	name = "long fur coat"
 	desc = "A sophisticated long coat made of fur."

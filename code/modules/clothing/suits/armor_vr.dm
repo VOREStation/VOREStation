@@ -51,27 +51,6 @@
 	name = "commander heavy armored vest"
 	desc = "A synthetic armor vest with COMMANDER printed in detailed gold lettering on the chest. This one has added webbing and ballistic plates."
 
-/obj/item/clothing/suit/armor/combat/USDF
-	name = "marine body armor"
-	desc = "When I joined the Corps, we didn't have any fancy-schmanzy armor. We had sticks! Two sticks, and a rock for the whole platoon-and we had to <i>share</i> the rock!"
-	icon_state = "unsc_armor"
-	icon = 'icons/inventory/suit/item_vr.dmi'
-	icon_override = 'icons/inventory/suit/mob_vr.dmi'
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO // ToDo: Break up the armor into smaller bits.
-
-/obj/item/clothing/suit/armor/combat/imperial
-	name = "imperial soldier armor"
-	desc = "Made out of an especially light metal, it lets you conquer in style."
-	icon_state = "ge_armor"
-	icon = 'icons/inventory/suit/item_vr.dmi'
-	icon_override = 'icons/inventory/suit/mob_vr.dmi'
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO
-
-/obj/item/clothing/suit/armor/combat/imperial/centurion
-	name = "imperial centurion armor"
-	desc = "Not all heroes wear capes, but it'd be cooler if they did."
-	icon_state = "ge_armorcent"
-
 /obj/item/clothing/suit/storage/vest/wardencoat/alt2
 	icon = 'icons/inventory/suit/item_vr.dmi'
 	icon_override = 'icons/inventory/suit/mob_vr.dmi'

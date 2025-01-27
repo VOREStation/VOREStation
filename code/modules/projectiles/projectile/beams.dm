@@ -423,16 +423,6 @@
 	impact_type = /obj/effect/projectile/impact/xray
 	hud_state = "laser"
 
-/obj/item/projectile/beam/imperial
-	name = "laser beam"
-	fire_sound = 'sound/weapons/mandalorian.ogg'
-	icon_state = "darkb"
-	light_color = "#8837A3"
-	muzzle_type = /obj/effect/projectile/muzzle/darkmatter
-	tracer_type = /obj/effect/projectile/tracer/darkmatter
-	impact_type = /obj/effect/projectile/impact/darkmatter
-	hud_state = "plasma_rifle_blast"
-
 /obj/item/projectile/beam/rainbow
 	name = "rainbow"
 	fire_sound = 'sound/weapons/sparkle.ogg'

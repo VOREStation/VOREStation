@@ -76,7 +76,6 @@
 				prob(2);/obj/item/melee/shock_maul,
 			/*	prob(1);/obj/item/gun/projectile/automatic/battlerifle, */ // Too OP
 				prob(1);/obj/item/gun/projectile/deagle/gold,
-				prob(1);/obj/item/gun/energy/imperial,
 				prob(1);/obj/item/gun/projectile/automatic/as24,
 				prob(1);/obj/item/gun/launcher/rocket,
 				prob(1);/obj/item/gun/launcher/grenade,
