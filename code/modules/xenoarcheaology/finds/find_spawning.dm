@@ -109,7 +109,7 @@
 			item_type = "instrument"
 			icon_state = "instrument"
 			var/possible_object_paths = list()
-			possible_object_paths |= subtypesof(/obj/item/instrument)
+			possible_object_paths += subtypesof(/obj/item/instrument)
 			var/new_instrument = pick(possible_object_paths)
 			new_item = new new_instrument(src.loc)
 			if(prob(30))
@@ -122,7 +122,7 @@
 		if(ARCHAEO_KNIFE)
 			item_type = "[pick("bladed knife","serrated blade","sharp cutting implement")]"
 			var/possible_object_paths = list(/obj/item/material/knife) //As far as I can tell, this is more 'random' than using typesof, as it just picks a random one vs going down the list with a prob (as seen below)
-			possible_object_paths |= subtypesof(/obj/item/material/knife)
+			possible_object_paths += subtypesof(/obj/item/material/knife)
 			var/obj/item/material/knife/new_knife = pick(possible_object_paths)
 			new_item = new new_knife(src.loc)
 			additional_desc = "[pick("It doesn't look safe.",\
@@ -144,7 +144,7 @@
 		if(ARCHAEO_HANDCUFFS)
 			item_type = "handcuffs"
 			var/possible_object_paths = list(/obj/item/handcuffs)
-			possible_object_paths |= subtypesof(/obj/item/handcuffs)
+			possible_object_paths += subtypesof(/obj/item/handcuffs)
 			var/new_cuffs = pick(possible_object_paths)
 			new_item = new new_cuffs(src.loc)
 			additional_desc = "[pick("They appear to be for securing two things together","Looks kinky","Doesn't seem like a children's toy")]."
@@ -163,7 +163,7 @@
 		if(ARCHAEO_LIGHTER)
 			item_type = "[pick("cylinder","tank","chamber")]"
 			var/possible_object_paths = list()
-			possible_object_paths |= subtypesof(/obj/item/flame)
+			possible_object_paths += subtypesof(/obj/item/flame)
 			var/new_lighter = pick(possible_object_paths)
 			new_item = new new_lighter(src.loc)
 			additional_desc = "There is a tiny device attached."
@@ -183,7 +183,7 @@
 		if(ARCHAEO_GASTANK)
 			item_type = "[pick("cylinder","tank","chamber")]"
 			var/possible_object_paths = list()
-			possible_object_paths |= subtypesof(/obj/item/tank)
+			possible_object_paths += subtypesof(/obj/item/tank)
 			var/new_tank = pick(possible_object_paths)
 			new_item = new new_tank(src.loc)
 			icon_state = pick("oxygen","oxygen_fr","oxygen_f","phoron","anesthetic")
@@ -191,7 +191,7 @@
 		if(ARCHAEO_TOOL)
 			item_type = "tool"
 			var/possible_object_paths = list()
-			possible_object_paths |= subtypesof(/obj/item/tool)
+			possible_object_paths += subtypesof(/obj/item/tool)
 			var/new_tool = pick(possible_object_paths)
 			new_item = new new_tool(src.loc)
 			new_item.color = rgb(rand(0,255),rand(0,255),rand(0,255))
@@ -202,7 +202,7 @@
 		if(ARCHAEO_METAL)
 			apply_material_decorations = FALSE
 			var/possible_object_paths = list()
-			possible_object_paths |= subtypesof(/obj/item/stack/material)
+			possible_object_paths += subtypesof(/obj/item/stack/material)
 			//I looked through the code for any materials that should be banned...Most of the "DO NOT EVER GIVE THESE TO ANYONE EVER" materials are only in their /datum form and the ones that have sheets spawn in as normal sheets (ex: hull datums) so...This is here in case it's needed in the future.
 			var/list/banned_sheet_materials = list(
 				// Include if you enable in the .dme /obj/item/stack/material/debug
@@ -337,10 +337,10 @@
 			//energy gun
 			var/obj/item/gun/energy/new_gun = new /obj/item/gun/energy/laser/xenoarch(src.loc)
 			var/possible_laser_paths = list()
-			possible_laser_paths |= subtypesof(/obj/item/projectile/beam)
-			// possible_laser_paths |= /obj/item/projectile/animate //Funny 'turns object into mimic' beam. Currently unticked in the .dme, but here in case it gets toggled!
-			possible_laser_paths |= /obj/item/projectile/ion
-			possible_laser_paths |= subtypesof(/obj/item/projectile/energy/floramut)
+			possible_laser_paths += subtypesof(/obj/item/projectile/beam)
+			// possible_laser_paths += /obj/item/projectile/animate //Funny 'turns object into mimic' beam. Currently unticked in the .dme, but here in case it gets toggled!
+			possible_laser_paths += /obj/item/projectile/ion
+			possible_laser_paths += subtypesof(/obj/item/projectile/energy/floramut)
 			var/new_laser = pick(possible_laser_paths)
 			new_gun.projectile_type = new_laser
 			new_item = new_gun
@@ -372,7 +372,7 @@
 			additional_desc = "[pick("A dusty engraving on the side says" + span_bold("[new_gun.caliber]") + " The ammo slot seems like it'd only fit single shells at a time.",\
 			"The gun's barrel has " + span_bold("[new_gun.caliber]") + " barely visible on it. The ammo slot seems like it'd only fit single shells at a time.")]"
 			var/possible_bullet_paths = list()
-			possible_bullet_paths |= subtypesof(/obj/item/projectile/bullet) //As funny as it would be to have your pistol shoot pulse rifle rounds, sorry.
+			possible_bullet_paths += subtypesof(/obj/item/projectile/bullet) //As funny as it would be to have your pistol shoot pulse rifle rounds, sorry.
 			//You COULD add a bullet blacklist here. Look at the material code below if you want an example of how to do so.
 			//During testing I found nothing EXTRAORDINARILY gamebreaking (although supermatter fuel rod gun rounds were VERY comical, but still obtainable in game)
 			//But maybe someone will add in a projectile/bullet/admin_instakills_you that needs to be blacklisted!
@@ -436,8 +436,12 @@
 
 			//We get a list of random internal organs and spawn it. Yes. You can get a still beating heart. Xenoarch is spooky.
 			var/possible_object_paths = list()
-			possible_object_paths |= subtypesof(/obj/item/organ/internal)
-			possible_object_paths |= list(/obj/item/organ/internal/mmi_holder, /obj/item/organ/internal/stack/vox)
+			possible_object_paths += subtypesof(/obj/item/organ/internal)
+
+			//BLACKLIST BELOW
+			possible_object_paths -= list(/obj/item/organ/internal/mmi_holder, /obj/item/organ/internal/stack/vox)
+			//BLACKLIST ABOVE
+
 			var/new_organ = pick(possible_object_paths)
 			new_item = new new_organ(src.loc)
 
@@ -530,7 +534,7 @@
 				)
 			apply_prefix = FALSE
 			var/possible_object_paths = list()
-			possible_object_paths |= subtypesof(/datum/material)
+			possible_object_paths += subtypesof(/datum/material)
 			var/new_boat_mat = "MAT_STEEL"
 			for(var/x=1;x<=5;x++) //You got 5 chances to hit a metal that is NOT banned.
 				var/datum/material/picked_metal = pick(possible_object_paths) //We select
@@ -638,7 +642,7 @@
 
 	if(istype(new_item, /obj/item/material))
 		var/possible_object_paths = list()
-		possible_object_paths |= subtypesof(/datum/material)
+		possible_object_paths += subtypesof(/datum/material)
 		var/new_item_mat = "MAT_STEEL"
 		for(var/x=1;x<=5;x++) //You got 5 chances to hit a metal that is NOT banned.
 			var/datum/material/picked_metal = pick(possible_object_paths) //We select
@@ -659,7 +663,7 @@
 
 	if(istype(secondary_item, /obj/item/material))
 		var/possible_object_paths = list()
-		possible_object_paths |= subtypesof(/datum/material)
+		possible_object_paths += subtypesof(/datum/material)
 		var/new_item_mat = "MAT_STEEL"
 		for(var/x=1;x<=5;x++)
 			var/datum/material/picked_metal = pick(possible_object_paths)
@@ -681,7 +685,7 @@
 	//Why is ring/material and item/material two different things (and have the same /datum/material var) instead of datum/material being on /obj ? Hell if I know. Someone should fix that eventually. Outside of the scope of this PR.
 	if(istype(new_item, /obj/item/clothing/accessory/ring/material))
 		var/possible_object_paths = list()
-		possible_object_paths |= subtypesof(/datum/material)
+		possible_object_paths += subtypesof(/datum/material)
 		var/new_item_mat = "MAT_STEEL"
 		for(var/x=1;x<=5;x++) //You got 5 chances to hit a metal that is NOT banned.
 			var/datum/material/picked_metal = pick(possible_object_paths) //We select
@@ -695,7 +699,7 @@
 
 	if(istype(secondary_item, /obj/item/clothing/accessory/ring/material))
 		var/possible_object_paths = list()
-		possible_object_paths |= subtypesof(/datum/material)
+		possible_object_paths += subtypesof(/datum/material)
 		var/new_item_mat = "MAT_STEEL"
 		for(var/x=1;x<=5;x++)
 			var/datum/material/picked_metal = pick(possible_object_paths)
