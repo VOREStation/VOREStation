@@ -95,8 +95,9 @@ GLOBAL_LIST_EMPTY(pending_discord_registrations)
 	var/datum/db_query/query = SSdbcore.NewQuery("SELECT discord_id FROM erro_player WHERE discord_id = '[sql_discord]'")
 	query.Execute()
 	if(query.NextRow())
+		qdel(query)
 		return "[sender.friendly_name], your Discord ID is already registered to a Byond username. Please contact an administrator if you changed your Byond username or Discord ID."
-
+	qdel(query)
 	var/key_to_find = "[ckey(params)]"
 
 	// They didn't provide anything worth looking up.
@@ -120,12 +121,14 @@ GLOBAL_LIST_EMPTY(pending_discord_registrations)
 
 	// We somehow found their client, BUT they don't exist in the database
 	if(!query.NextRow())
+		qdel(query)
 		return "[sender.friendly_name], the server's database is either not responding or there's no evidence you've ever logged in. Please contact an administrator."
 
 	// We found them in the database, AND they already have a discord ID assigned
 	if(query.item[1])
+		qdel(query)
 		return "[sender.friendly_name], it appears you've already registered your chat and game IDs. If you've changed game or chat usernames, please contact an administrator for help."
-
+	qdel(query)
 	// Okay. We found them, they're in the DB, and they have no discord ID set.
 	var/message = span_notice("A request has been sent from Discord to validate your Byond username, by '[sender.friendly_name]' in '[sender.channel.friendly_name]'") + "\
 	<br>" + span_warning("If you did not send this request, do not click the link below, and do notify an administrator in-game or on Discord ASAP.") + "\

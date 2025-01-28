@@ -297,6 +297,7 @@
 					if(show_admin_options) // This isn't the only check, since you can just href-spoof press this button. Just to tidy things up.
 						dat += "<A href='byond://?src=\ref[src];delid=[id]'>\[Del\]</A>"
 					dat += "</td></tr>"
+				qdel(query)
 				dat += "</table>"
 			dat += "<BR><A href='byond://?src=\ref[src];switchscreen=0'>(Return to main menu)</A><BR>"
 
@@ -457,6 +458,7 @@
 							else
 								log_game("[usr.name]/[usr.key] has uploaded the book titled [scanner.cache.name], [length(scanner.cache.dat)] signs")
 								tgui_alert_async(usr, "Upload Complete.")
+							qdel(query)
 	//VOREStation Edit End
 
 	if(href_list["targetid"])
@@ -487,6 +489,7 @@
 				B.item_state = B.icon_state
 				src.visible_message("[src]'s printer hums as it produces a completely bound book. How did it do that?")
 				break
+			qdel(query)
 
 	if(href_list["delid"])
 		if(!check_rights(R_ADMIN))

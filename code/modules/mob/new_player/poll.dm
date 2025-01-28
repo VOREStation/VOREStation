@@ -10,7 +10,7 @@
 	while(query.NextRow())
 		voted = 1
 		break
-
+	qdel(query)
 	if(!voted)
 		privacy_poll()
 
@@ -72,7 +72,7 @@
 			pollquestion = select_query.item[2]
 			output += "<tr bgcolor='[ (i % 2 == 1) ? color1 : color2 ]'><td><a href=\"byond://?src=\ref[src];pollid=[pollid]\"><b>[pollquestion]</b></a></td></tr>"
 			i++
-
+		qdel(select_query)
 		output += "</table>"
 
 		src << browse("<html>[output]</html>","window=playerpolllist;size=500x300")
@@ -101,7 +101,7 @@
 			polltype = select_query.item[4]
 			found = 1
 			break
-
+		qdel(select_query)
 		if(!found)
 			to_chat(usr, span_red("Poll question details not found."))
 			return
@@ -118,7 +118,7 @@
 					votedoptionid = text2num(voted_query.item[1])
 					voted = 1
 					break
-
+				qdel(voted_query)
 				var/list/datum/polloption/options = list()
 
 				var/datum/db_query/options_query = SSdbcore.NewQuery("SELECT id, text FROM erro_poll_option WHERE pollid = [pollid]")
@@ -128,7 +128,7 @@
 					PO.optionid = text2num(options_query.item[1])
 					PO.optiontext = options_query.item[2]
 					options += PO
-
+				qdel(options_query)
 				var/output = "<div align='center'><B>Player poll</B>"
 				output +="<hr>"
 				output += span_bold("Question: [pollquestion]") + "<br>"
@@ -171,6 +171,7 @@
 					vote_text = voted_query.item[1]
 					voted = 1
 					break
+				qdel(voted_query)
 
 
 				var/output = "<div align='center'><B>Player poll</B>"
@@ -220,7 +221,7 @@
 					var/rating = voted_query.item[2]
 
 					output += "<br><b>[optiontext] - [rating]</b>"
-
+				qdel(voted_query)
 				if(!voted)	//Only make this a form if we have not voted yet
 					output += "<form name='cardcomp' action='?src=\ref[src]' method='get'>"
 					output += "<input type='hidden' name='src' value='\ref[src]'>"
@@ -264,7 +265,7 @@
 								output += "<option value='[j]'>[j]</option>"
 
 						output += "</select>"
-
+					qdel(option_query)
 					output += "<input type='hidden' name='minid' value='[minid]'>"
 					output += "<input type='hidden' name='maxid' value='[maxid]'>"
 
@@ -281,7 +282,7 @@
 				while(voted_query.NextRow())
 					votedfor.Add(text2num(voted_query.item[1]))
 					voted = 1
-
+				qdel(voted_query)
 				var/list/datum/polloption/options = list()
 				var/maxoptionid = 0
 				var/minoptionid = 0
@@ -297,7 +298,7 @@
 					if(PO.optionid < minoptionid || !minoptionid)
 						minoptionid = PO.optionid
 					options += PO
-
+				qdel(options_query)
 
 				if(select_query.item[5])
 					multiplechoiceoptions = text2num(select_query.item[5])
@@ -358,7 +359,7 @@
 			if(select_query.item[5])
 				multiplechoiceoptions = text2num(select_query.item[5])
 			break
-
+		qdel(select_query)
 		if(!validpoll)
 			to_chat(usr, span_red("Poll is not valid."))
 			return
@@ -386,7 +387,7 @@
 			alreadyvoted += 1
 			if(!multichoice)
 				break
-
+		qdel(voted_query)
 		if(!multichoice && alreadyvoted)
 			to_chat(usr, span_red("You already voted in this poll."))
 			return
@@ -404,6 +405,7 @@
 		insert_query.Execute()
 
 		to_chat(usr, span_blue("Vote successful."))
+		qdel(insert_query)
 		usr << browse(null,"window=playerpoll")
 
 
@@ -426,6 +428,7 @@
 				return
 			validpoll = 1
 			break
+		qdel(select_query)
 
 		if(!validpoll)
 			to_chat(usr, span_red("Poll is not valid."))
@@ -439,7 +442,7 @@
 		while(voted_query.NextRow())
 			alreadyvoted = 1
 			break
-
+		qdel(voted_query)
 		if(alreadyvoted)
 			to_chat(usr, span_red("You already sent your feedback for this poll."))
 			return
@@ -462,6 +465,7 @@
 		insert_query.Execute()
 
 		to_chat(usr, span_blue("Feedback logging successful."))
+		qdel(insert_query)
 		usr << browse(null,"window=playerpoll")
 
 
@@ -484,7 +488,7 @@
 				return
 			validpoll = 1
 			break
-
+		qdel(select_query)
 		if(!validpoll)
 			to_chat(usr, span_red("Poll is not valid."))
 			return
@@ -497,6 +501,7 @@
 		while(select_query2.NextRow())
 			validoption = 1
 			break
+		qdel(select_query2)
 
 		if(!validoption)
 			to_chat(usr, span_red("Poll option is not valid."))
@@ -510,7 +515,7 @@
 		while(voted_query.NextRow())
 			alreadyvoted = 1
 			break
-
+		qdel(voted_query)
 		if(alreadyvoted)
 			to_chat(usr, span_red("You already voted in this poll."))
 			return
@@ -524,4 +529,5 @@
 		insert_query.Execute()
 
 		to_chat(usr, span_blue("Vote successful."))
+		qdel(insert_query)
 		usr << browse(null,"window=playerpoll")

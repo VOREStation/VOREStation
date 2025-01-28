@@ -129,7 +129,7 @@
 
 		while(max_query.NextRow())
 			newroundid = max_query.item[1]
-
+		qdel(max_query)
 		if(!(isnum(newroundid)))
 			newroundid = text2num(newroundid)
 
@@ -146,3 +146,4 @@
 			if(!query.Execute())
 				var/err = query.ErrorMsg()
 				log_game("SQL ERROR during death reporting. Error : \[[err]\]\n")
+			qdel(query)
