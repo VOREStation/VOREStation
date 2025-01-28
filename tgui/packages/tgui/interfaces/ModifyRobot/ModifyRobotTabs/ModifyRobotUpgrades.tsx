@@ -130,6 +130,7 @@ const UpgradeSection = (props: {
           {prepareSearch(upgrades, searchText).map((upgrade, i) => {
             return (
               <Button
+                ellipsis
                 fluid
                 key={i}
                 color={

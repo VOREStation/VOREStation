@@ -177,14 +177,13 @@ const SelectionField = (props: {
                   })
                 }
               >
-                <Stack align="center">
+                <Stack fill align="center">
                   <Stack.Item>
                     <Image src={modul_option.icon} />
                   </Stack.Item>
-                  <Stack.Item ml="10px">
+                  <Stack.Item grow overflow="hidden" ml="10px">
                     {capitalize(modul_option.name)}
                   </Stack.Item>
-                  <Stack.Item grow />
                   <Stack.Item>
                     <Icon
                       name={buttonIcon}

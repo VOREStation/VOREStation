@@ -158,9 +158,10 @@ const AccessSection = (props: {
                   })
                 }
               >
-                <Stack align="center">
-                  <Stack.Item>{capitalize(acc.name)}</Stack.Item>
-                  <Stack.Item grow />
+                <Stack fill align="center">
+                  <Stack.Item grow overflow="hidden">
+                    {capitalize(acc.name)}
+                  </Stack.Item>
                   <Stack.Item>
                     <Icon
                       name={buttonIcon}

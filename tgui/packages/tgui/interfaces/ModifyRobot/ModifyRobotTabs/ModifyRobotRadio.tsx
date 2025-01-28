@@ -105,9 +105,10 @@ const RadioSection = (props: {
                   })
                 }
               >
-                <Stack align="center">
-                  <Stack.Item>{capitalize(channel)}</Stack.Item>
-                  <Stack.Item grow />
+                <Stack fill align="center">
+                  <Stack.Item grow overflow="hidden">
+                    {capitalize(channel)}
+                  </Stack.Item>
                   <Stack.Item>
                     <Icon
                       name={buttonIcon}
