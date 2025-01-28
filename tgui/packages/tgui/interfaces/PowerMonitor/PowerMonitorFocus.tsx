@@ -33,6 +33,7 @@ export const PowerMonitorFocus = (props: { focus: sensor }) => {
     ...history.supply,
     ...history.demand,
   );
+
   // Process area data
   const areas: area[] = flow([
     (areas: area[]) =>
@@ -81,6 +82,7 @@ export const PowerMonitorFocus = (props: { focus: sensor }) => {
       }
     },
   ])(focus.areas);
+
   return (
     <>
       <Section
