@@ -63,14 +63,16 @@ var/inactive_keys = "None<br>"
 			if(ckeys_with_customitems.Find(cur_ckey))
 				ckeys_with_customitems.Remove(cur_ckey)
 				inactive_ckeys[cur_ckey] = "last seen on [query_inactive.item[2]]"
+		qdel(query_inactive)
 
 	//if there are ckeys left over, check whether they have a database entry at all
 	if(ckeys_with_customitems.len)
 		for(var/cur_ckey in ckeys_with_customitems)
 			var/datum/db_query/query_inactive = SSdbcore.NewQuery("SELECT ckey FROM erro_player WHERE ckey = '[cur_ckey]'")
 			query_inactive.Execute()
-			if(!query_inactive.rows)
+			if(!length(query_inactive.rows))
 				inactive_ckeys += cur_ckey
+			qdel(query_inactive)
 
 	if(inactive_ckeys.len)
 		inactive_keys = ""

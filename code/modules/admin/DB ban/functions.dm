@@ -49,6 +49,7 @@
 	var/validckey = 0
 	if(query.NextRow())
 		validckey = 1
+	qdel(query)
 	if(!validckey)
 		if(!banned_mob || (banned_mob && !IsGuestKey(banned_mob.key))) //VOREStation Edit Start.
 			var/confirm = tgui_alert(usr, "This ckey hasn't been seen, are you sure?", "Confirm Badmin", list("Yes", "No"))
@@ -85,7 +86,7 @@
 	query_insert.Execute()
 	to_chat(usr, span_filter_adminlog("[span_blue("Ban saved to database.")]"))
 	message_admins("[key_name_admin(usr)] has added a [bantype_str] for [ckey] [(job)?"([job])":""] [(duration > 0)?"([duration] minutes)":""] with the reason: \"[reason]\" to the ban database.",1)
-
+	qdel(query_insert)
 
 
 /datum/admins/proc/DB_ban_unban(var/ckey, var/bantype, var/job = "")
@@ -135,6 +136,7 @@
 	while(query.NextRow())
 		ban_id = query.item[1]
 		ban_number++;
+	qdel(query)
 
 	if(ban_number == 0)
 		to_chat(usr, span_filter_adminlog("[span_red("Database update failed due to no bans fitting the search criteria. If this is not a legacy ban you should contact the database admin.")]"))
@@ -193,6 +195,7 @@
 			var/datum/db_query/update_query = SSdbcore.NewQuery("UPDATE erro_ban SET reason = '[value]', edits = CONCAT(edits,'- [eckey] changed ban reason from <cite><b>\\\"[reason]\\\"</b></cite> to <cite><b>\\\"[value]\\\"</b></cite><BR>') WHERE id = [banid]")
 			update_query.Execute()
 			message_admins("[key_name_admin(usr)] has edited a ban for [pckey]'s reason from [reason] to [value]",1)
+			qdel(update_query)
 		if("duration")
 			if(!value)
 				value = tgui_input_number(usr, "Insert the new duration (in minutes) for [pckey]'s ban", "New Duration", "[duration]", null)
@@ -203,6 +206,7 @@
 			var/datum/db_query/update_query = SSdbcore.NewQuery("UPDATE erro_ban SET duration = [value], edits = CONCAT(edits,'- [eckey] changed ban duration from [duration] to [value]<br>'), expiration_time = DATE_ADD(bantime, INTERVAL [value] MINUTE) WHERE id = [banid]")
 			message_admins("[key_name_admin(usr)] has edited a ban for [pckey]'s duration from [duration] to [value]",1)
 			update_query.Execute()
+			qdel(update_query)
 		if("unban")
 			if(tgui_alert(usr, "Unban [pckey]?", "Unban?", list("Yes", "No")) == "Yes")
 				DB_ban_unban_by_id(banid)
@@ -228,7 +232,7 @@
 	while(query.NextRow())
 		pckey = query.item[1]
 		ban_number++;
-
+	qdel(query)
 	if(ban_number == 0)
 		to_chat(usr, span_filter_adminlog("[span_red("Database update failed due to a ban id not being present in the database.")]"))
 		return
@@ -249,6 +253,7 @@
 
 	var/datum/db_query/query_update = SSdbcore.NewQuery(sql_update)
 	query_update.Execute()
+	qdel(query_update)
 
 
 /client/proc/DB_ban_panel()
@@ -479,5 +484,6 @@
 				output += "</tr>"
 
 			output += "</table></div>"
+			qdel(select_query)
 
 	usr << browse("<html>[output]</html>","window=lookupbans;size=900x700")

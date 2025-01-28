@@ -4363,6 +4363,7 @@
 #include "code\modules\xenoarcheaology\effects\atmospheric.dm"
 #include "code\modules\xenoarcheaology\effects\berserk.dm"
 #include "code\modules\xenoarcheaology\effects\cell.dm"
+#include "code\modules\xenoarcheaology\effects\dnaswitch.dm"
 #include "code\modules\xenoarcheaology\effects\electric_field.dm"
 #include "code\modules\xenoarcheaology\effects\emp.dm"
 #include "code\modules\xenoarcheaology\effects\feelings.dm"
