@@ -141,8 +141,7 @@ const ICPrinterCategories = (props) => {
                     >
                       {item.desc}
                     </LabeledList.Item>
-                  ),
-                )}
+                  ))}
               </LabeledList>
             </Section>
           ) : (

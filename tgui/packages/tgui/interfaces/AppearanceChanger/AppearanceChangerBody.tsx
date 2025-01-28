@@ -7,7 +7,9 @@ export const AppearanceChangerSpecies = (props) => {
   const { act, data } = useBackend<Data>();
   const { species, specimen } = data;
 
-  const sortedSpecies = (species || []).sort((a: species, b: species) => a.specimen.localeCompare(b.specimen));
+  const sortedSpecies = (species || []).sort((a: species, b: species) =>
+    a.specimen.localeCompare(b.specimen),
+  );
 
   return (
     <Section title="Species" fill scrollable>
@@ -64,7 +66,9 @@ export const AppearanceChangerEars = (props) => {
 
   const { ear_style, ear_styles } = data;
 
-  ear_styles.sort((a, b) => a.name.toLowerCase().localeCompare(b.name.toLowerCase()));
+  ear_styles.sort((a, b) =>
+    a.name.toLowerCase().localeCompare(b.name.toLowerCase()),
+  );
 
   return (
     <Stack vertical fill>
@@ -76,17 +80,15 @@ export const AppearanceChangerEars = (props) => {
           >
             -- Not Set --
           </Button>
-          {ear_styles.map(
-            (ear) => (
-              <Button
-                key={ear.instance}
-                onClick={() => act('ear', { ref: ear.instance })}
-                selected={ear.name === ear_style}
-              >
-                {ear.name}
-              </Button>
-            ),
-          )}
+          {ear_styles.map((ear) => (
+            <Button
+              key={ear.instance}
+              onClick={() => act('ear', { ref: ear.instance })}
+              selected={ear.name === ear_style}
+            >
+              {ear.name}
+            </Button>
+          ))}
         </Section>
       </Stack.Item>
       <Stack.Item grow>
@@ -97,17 +99,15 @@ export const AppearanceChangerEars = (props) => {
           >
             -- Not Set --
           </Button>
-          {ear_styles.map(
-            (ear) => (
-              <Button
-                key={ear.instance}
-                onClick={() => act('ear_secondary', { ref: ear.instance })}
-                selected={ear.name === ear_style}
-              >
-                {ear.name}
-              </Button>
-            ),
-          )}
+          {ear_styles.map((ear) => (
+            <Button
+              key={ear.instance}
+              onClick={() => act('ear_secondary', { ref: ear.instance })}
+              selected={ear.name === ear_style}
+            >
+              {ear.name}
+            </Button>
+          ))}
         </Section>
       </Stack.Item>
     </Stack>
@@ -119,7 +119,9 @@ export const AppearanceChangerTails = (props) => {
 
   const { tail_style, tail_styles } = data;
 
-  tail_styles.sort((a, b) => a.name.toLowerCase().localeCompare(b.name.toLowerCase()));
+  tail_styles.sort((a, b) =>
+    a.name.toLowerCase().localeCompare(b.name.toLowerCase()),
+  );
 
   return (
     <Section title="Tails" fill scrollable>
@@ -146,7 +148,9 @@ export const AppearanceChangerWings = (props) => {
   const { act, data } = useBackend<Data>();
 
   const { wing_style, wing_styles } = data;
-  wing_styles.sort((a, b) => a.name.toLowerCase().localeCompare(b.name.toLowerCase()));
+  wing_styles.sort((a, b) =>
+    a.name.toLowerCase().localeCompare(b.name.toLowerCase()),
+  );
 
   return (
     <Section title="Wings" fill scrollable>

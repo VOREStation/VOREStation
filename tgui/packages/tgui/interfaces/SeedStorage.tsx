@@ -38,7 +38,9 @@ export const SeedStorage = (props) => {
 
   const { seeds } = data;
 
-  seeds.sort((a, b) => a.name.toLowerCase().localeCompare(b.name.toLowerCase()));
+  seeds.sort((a, b) =>
+    a.name.toLowerCase().localeCompare(b.name.toLowerCase()),
+  );
 
   return (
     <Window width={600} height={760}>

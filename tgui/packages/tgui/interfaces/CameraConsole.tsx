@@ -64,13 +64,15 @@ export const selectCameras = (
       } else {
         return testSearch(camera);
       }
-    }).filter((camera) => {
+    })
+    .filter((camera) => {
       if (!networkFilter) {
         return true;
       } else {
         return camera.networks.includes(networkFilter);
       }
-    }).sort((a, b) => a.name.localeCompare(b.name));
+    })
+    .sort((a, b) => a.name.localeCompare(b.name));
 };
 
 export const CameraConsole = (props) => {
