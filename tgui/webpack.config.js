@@ -29,18 +29,16 @@ module.exports = (env = {}, argv) => {
   const config = {
     mode: mode === 'production' ? 'production' : 'development',
     context: path.resolve(__dirname),
-    target: ['web', 'es5', 'browserslist:ie 11'],
+    target: ['web', 'browserslist:last 2 Edge versions'],
     entry: {
       tgui: ['./packages/tgui-polyfill', './packages/tgui'],
-      'tgui-panel': ['./packages/tgui-polyfill', './packages/tgui-panel'],
-      'tgui-say': ['./packages/tgui-polyfill', './packages/tgui-say'],
     },
     output: {
       path: argv.useTmpFolder
         ? path.resolve(__dirname, './public/.tmp')
         : path.resolve(__dirname, './public'),
-      filename: '[name].bundle.js',
-      chunkFilename: '[name].bundle.js',
+      filename: '[name].bundle.edge.js',
+      chunkFilename: '[name].bundle.edge.js',
       chunkLoadTimeout: 15000,
       publicPath: '/',
     },
@@ -114,8 +112,8 @@ module.exports = (env = {}, argv) => {
         DEV_SERVER_IP: env.DEV_SERVER_IP || null,
       }),
       new ExtractCssPlugin({
-        filename: '[name].bundle.css',
-        chunkFilename: '[name].bundle.css',
+        filename: '[name].bundle.edge.css',
+        chunkFilename: '[name].bundle.edge.css',
       }),
     ],
   };
@@ -127,17 +125,6 @@ module.exports = (env = {}, argv) => {
         './packages/tgui-bench/entrypoint',
       ],
     };
-  }
-
-  // Production build specific options
-  if (mode === 'production') {
-    const { EsbuildPlugin } = require('esbuild-loader');
-    config.optimization.minimizer = [
-      new EsbuildPlugin({
-        target: 'ie11',
-        css: true,
-      }),
-    ];
   }
 
   // Development build specific options
