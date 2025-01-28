@@ -83,6 +83,7 @@
 			while(query.NextRow())
 				newpoll = 1
 				break
+			qdel(query)
 
 			if(newpoll)
 				output += "<p><b><a href='byond://?src=\ref[src];showpoll=1'>Show Player Polls</A> (NEW!)</b></p>"
@@ -244,6 +245,7 @@
 		while(query.NextRow())
 			voted = 1
 			break
+		qdel(query)
 
 		//This is a safety switch, so only valid options pass through
 		var/option = "UNKNOWN"

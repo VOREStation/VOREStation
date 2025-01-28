@@ -355,7 +355,7 @@ var/obj/machinery/blackbox_recorder/blackbox
 	query.Execute()
 	while(query.NextRow())
 		round_id = query.item[1]
-
+	qdel(query)
 	if(!isnum(round_id))
 		round_id = text2num(round_id)
 	round_id++
@@ -364,6 +364,7 @@ var/obj/machinery/blackbox_recorder/blackbox
 		var/sql = "INSERT INTO erro_feedback VALUES (null, Now(), [round_id], \"[FV.get_variable()]\", [FV.get_value()], \"[FV.get_details()]\")"
 		var/datum/db_query/query_insert = SSdbcore.NewQuery(sql)
 		query_insert.Execute()
+		qdel(query_insert)
 
 // Sanitize inputs to avoid SQL injection attacks
 /proc/sql_sanitize_text(var/text)

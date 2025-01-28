@@ -155,6 +155,7 @@
 		else
 			to_chat(src, span_warning("There was an error registering your Discord ID in the database. Contact an administrator."))
 			log_and_message_admins("[ckey] failed to register their Discord ID. Their Discord snowflake ID is: [their_id]. Is the database connected?", src)
+		qdel(query)
 		return
 	//VOREStation Add End
 	if(href_list["reload_statbrowser"])
@@ -425,11 +426,13 @@
 		player_age = text2num(query.item[2])
 		break
 
+	qdel(query)
 	account_join_date = sanitizeSQL(findJoinDate())
 	if(account_join_date && SSdbcore.IsConnected())
 		var/datum/db_query/query_datediff = SSdbcore.NewQuery("SELECT DATEDIFF(Now(),'[account_join_date]')")
 		if(query_datediff.Execute() && query_datediff.NextRow())
 			account_age = text2num(query_datediff.item[1])
+		qdel(query_datediff)
 
 	var/datum/db_query/query_ip = SSdbcore.NewQuery("SELECT ckey FROM erro_player WHERE ip = '[address]'")
 	query_ip.Execute()
@@ -506,20 +509,24 @@
 		log_debug("Error loading play hours for [ckey]: [error_message]")
 		tgui_alert_async(src, "The query to load your existing playtime failed. Screenshot this, give the screenshot to a developer, and reconnect, otherwise you may lose any recorded play hours (which may limit access to jobs). ERROR: [error_message]", "PROBLEMS!!")
 	// VOREStation Edit End - Department Hours
+	qdel(query_hours)
 
 	if(sql_id)
 		//Player already identified previously, we need to just update the 'lastseen', 'ip' and 'computer_id' variables
 		var/datum/db_query/query_update = SSdbcore.NewQuery("UPDATE erro_player SET lastseen = Now(), ip = '[sql_ip]', computerid = '[sql_computerid]', lastadminrank = '[sql_admin_rank]' WHERE id = [sql_id]")
 		query_update.Execute()
+		qdel(query_update)
 	else
 		//New player!! Need to insert all the stuff
 		var/datum/db_query/query_insert = SSdbcore.NewQuery("INSERT INTO erro_player (id, ckey, firstseen, lastseen, ip, computerid, lastadminrank) VALUES (null, '[sql_ckey]', Now(), Now(), '[sql_ip]', '[sql_computerid]', '[sql_admin_rank]')")
 		query_insert.Execute()
+		qdel(query_insert)
 
 	//Logging player access
 	var/serverip = "[world.internet_address]:[world.port]"
 	var/datum/db_query/query_accesslog = SSdbcore.NewQuery("INSERT INTO `erro_connection_log`(`id`,`datetime`,`serverip`,`ckey`,`ip`,`computerid`) VALUES(null,Now(),'[serverip]','[sql_ckey]','[sql_ip]','[sql_computerid]');")
 	query_accesslog.Execute()
+	qdel(query_accesslog)
 
 #undef UPLOAD_LIMIT
 #undef MIN_CLIENT_VERSION
