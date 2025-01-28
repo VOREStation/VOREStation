@@ -33,3 +33,8 @@
 	name = "Rudos Mask"
 	desc = "Worn by robust fighters who are willing to do anything to win."
 	icon_state = "luchar"
+
+/obj/item/clothing/mask/luchador/colorable
+	name = "Wrestling Mask"
+	desc = "A mask that covers the top half of the head, worn by robust wrestlers."
+	icon_state = "wrestler"
