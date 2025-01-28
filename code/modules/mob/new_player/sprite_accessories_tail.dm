@@ -547,6 +547,14 @@
 	color_blend_mode = ICON_MULTIPLY
 	extra_overlay = "deertail_mark"
 
+/datum/sprite_accessory/tail/deeralt
+	name = "deer alt, colorable (vwag)"
+	desc = ""
+	icon_state = "deeralt"
+	ani_state = "deeralt_w"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
 /datum/sprite_accessory/tail/tesh_feathered
 	name = "Teshari tail"
 	desc = ""
@@ -1072,6 +1080,21 @@
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
 
+/datum/sprite_accessory/tail/tail_smooth_dual
+	name = "Smooth Lizard Tail, dual color"
+	desc = ""
+	icon_state = "tail_smooth"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "tail_smooth_markings"
+
+/datum/sprite_accessory/tail/fennec_tail
+	name = "Fennec tail"
+	desc = ""
+	icon_state = "fennec_tail_s"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
 /datum/sprite_accessory/tail/fox_tail
 	name = "Fox tail, colorable"
 	desc = ""
@@ -1408,7 +1431,7 @@
 	do_colouration = 1
 	extra_overlay = "synth_stilts_marking"
 	hide_body_parts = list(BP_L_LEG, BP_L_FOOT, BP_R_LEG, BP_R_FOOT) //Exclude pelvis just in case.
-	clip_mask_icon = 'icons/mob/vore/taurs_vr.dmi'
+	clip_mask_icon = 'icons/mob/human_races/sprite_accessories/taurs.dmi'
 	clip_mask_state = "taur_clip_mask_def" //Used to clip off the lower part of suits & uniforms.
 
 /datum/sprite_accessory/tail/blade_like_tail
@@ -1431,7 +1454,7 @@
 	color_blend_mode = ICON_MULTIPLY
 	do_colouration = 1
 	hide_body_parts = list(BP_L_LEG, BP_L_FOOT, BP_R_LEG, BP_R_FOOT) //Exclude pelvis just in case.
-	clip_mask_icon = 'icons/mob/vore/taurs_vr.dmi'
+	clip_mask_icon = 'icons/mob/human_races/sprite_accessories/taurs.dmi'
 	clip_mask_state = "taur_clip_mask_def" //Used to clip off the lower part of suits & uniforms.
 	extra_overlay = "horse" //I can't believe this works.
 
@@ -1571,7 +1594,7 @@
 /datum/sprite_accessory/tail/peacocktail_red //this is ckey locked for now, but prettiebyrd wants these tails to be unlocked at a later date
 	name = "Peacock tail (vwag)"
 	desc = ""
-	icon = 'icons/mob/vore/tails_vr.dmi'
+	icon = 'icons/mob/human_races/sprite_accessories/tails.dmi'
 	icon_state = "peacocktail_red"
 	ani_state = "peacocktail_red_w"
 	ckeys_allowed = list("prettiebyrd")
@@ -1579,7 +1602,7 @@
 /datum/sprite_accessory/tail/peacocktail //ditto
 	name = "Peacock tail, colorable (vwag)"
 	desc = ""
-	icon = 'icons/mob/vore/tails_vr.dmi'
+	icon = 'icons/mob/human_races/sprite_accessories/tails.dmi'
 	icon_state = "peacocktail"
 	ani_state = "peacocktail_w"
 	do_colouration = 1
@@ -1594,7 +1617,7 @@
 
 /datum/sprite_accessory/tail/kara //SatinIsle fluff item
 	name = "Pterokara Tail"
-	icon = 'icons/mob/vore/tails_vr.dmi'
+	icon = 'icons/mob/human_races/sprite_accessories/tails.dmi'
 	icon_state = "kara_tail"
 	ckeys_allowed = list("satinisle")
 

@@ -1,7 +1,8 @@
+/// Verified to work with the Artifact Harvester
 /datum/artifact_effect/forcefield
-	name = "force field"
+	name = "Forcefield"
 	var/list/created_field = list()
-	effect_type = EFFECT_PARTICLE
+	effect_type = EFFECT_FORCEFIELD
 
 	effect_state = "shield-old"
 	effect_color = "#00b7ff"

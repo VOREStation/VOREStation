@@ -20,11 +20,6 @@
 		ready_chemicals()
 	..()
 
-/obj/item/projectile/energy/blob/Destroy()
-	qdel(reagents)
-	reagents = null
-	..()
-
 /obj/item/projectile/energy/blob/on_impact(var/atom/A)
 	if(splatter)
 		var/turf/location = get_turf(src)
