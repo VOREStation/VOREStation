@@ -57,6 +57,9 @@ GLOBAL_LIST_EMPTY(current_pending_diseases)
 			candidates -= H
 		chosen_infect--
 
+	if(!GLOB.archive_diseases[chosen_disease.GetDiseaseID()])
+		GLOB.archive_diseases[chosen_disease.GetDiseaseID()] = chosen_disease
+
 //Creates a virus with a harmful effect, guaranteed to be spreadable by contact or airborne
 /datum/event/disease_outbreak/proc/create_virus(max_severity = 6)
 	var/datum/disease/advance/A = new /datum/disease/advance
@@ -82,10 +85,10 @@ GLOBAL_LIST_EMPTY(current_pending_diseases)
 		var/datum/disease/CD = new candidate
 		if(CD.disease_flags & CAN_NOT_POPULATE)
 			continue
-		switch(CD.severity)
-			if(NONTHREAT, MINOR)
+		switch(CD.danger)
+			if(DISEASE_NONTHREAT, DISEASE_MINOR)
 				diseases_minor += candidate
-			if(MEDIUM, HARMFUL, DANGEROUS, BIOHAZARD)
+			if(DISEASE_MEDIUM, DISEASE_HARMFUL, DISEASE_DANGEROUS, DISEASE_BIOHAZARD)
 				diseases_moderate_major += candidate
 
 /datum/event/disease_outbreak/proc/populate_symptoms()

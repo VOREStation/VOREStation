@@ -6,7 +6,7 @@ GLOBAL_LIST_INIT(list_symptoms, subtypesof(/datum/symptom))
 	// Buffs/Debuffs the symptom has to the overall engineered disease.
 	var/name = ""
 	var/desc = "ERR://355. PanDEMIC was not able to initialize description!" // Someone forgot the description
-	var/threshold_desc = ""
+	var/threshold_descs = list()
 	var/stealth = 0
 	var/resistance = 0
 	var/stage_speed = 0
@@ -22,6 +22,9 @@ GLOBAL_LIST_INIT(list_symptoms, subtypesof(/datum/symptom))
 	var/symptom_delay_min = 1
 	var/symptom_delay_max = 1
 	var/naturally_occuring = TRUE // If this symptom can roll from random diseases
+
+	var/base_message_chance = 10
+	var/power = 1
 
 /datum/symptom/New()
 	var/list/S = GLOB.list_symptoms
@@ -66,3 +69,18 @@ GLOBAL_LIST_INIT(list_symptoms, subtypesof(/datum/symptom))
 
 /datum/symptom/proc/OnRemove(datum/disease/advance/A)
 	return
+
+/datum/symptom/proc/generate_threshold_desc()
+	return
+
+/datum/symptom/proc/get_symptom_data()
+	var/list/data = list()
+	data["name"] = name
+	data["desc"] = desc
+	data["stealth"] = stealth
+	data["resistance"] = resistance
+	data["stage_speed"] = stage_speed
+	data["transmission"] = transmission
+	data["level"] = level
+	data["threshold_desc"] = threshold_descs
+	return data

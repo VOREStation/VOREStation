@@ -869,65 +869,52 @@
 	if(deaf >= 0)
 		ear_deaf = deaf
 
-/mob/living/proc/vomit(var/skip_wait, var/blood_vomit)
+/mob/living/proc/vomit(lost_nutrition = 10, blood = FALSE, stun = TRUE, distance = 1, message = TRUE, toxic = VOMIT_TOXIC, purge = FALSE)
+	var/mob/living/carbon/human/H
+
 	if(!check_has_mouth())
-		return
+		return 1
 
-	if(!lastpuke)
-		lastpuke = 1
-		if(isSynthetic())
-			to_chat(src, span_danger("A sudden, dizzying wave of internal feedback rushes over you!"))
-			src.Weaken(5)
-		else
-			if (nutrition <= 100)
-				to_chat(src, span_danger("You gag as you want to throw up, but there's nothing in your stomach!"))
-				src.Weaken(10)
-			else
-				to_chat(src, span_warning("You feel nauseous..."))
+	if(nutrition < 100 && !blood)
+		if(message)
+			visible_message(span_warning("[src] dry heaves!"), span_userdanger("You try to throw up, but there's nothing in your stomach!"))
 
-				if(ishuman(src))
-					var/mob/living/carbon/human/Hu = src
-					if(CE_ANTACID in Hu.chem_effects)
-						if(prob(min(90, Hu.chem_effects[CE_ANTACID] * 15)))
-							spawn(rand(30 SECONDS, 2 MINUTES))
-								lastpuke = FALSE
-							return
+		if(stun)
+			Stun(10)
+		return 1
 
-				spawn()
-					if(!skip_wait)
-						sleep(150)	//15 seconds until second warning
-						to_chat(src, span_warning("You feel like you are about to throw up!"))
-						sleep(100)	//and you have 10 more for mad dash to the bucket
+	if(iscarbon(src))
+		H = src
 
-					//Damaged livers cause you to vomit blood.
-					if(!blood_vomit)
-						if(ishuman(src))
-							var/mob/living/carbon/human/H = src
-							if(!H.isSynthetic())
-								var/obj/item/organ/internal/liver/L = H.internal_organs_by_name["liver"]
-								if(!L || L.is_broken())
-									blood_vomit = 1
+	if(H.is_mouth_covered())
+		if(message)
+			visible_message(span_danger("[src] throws up all over themself!"), span_userdanger("You throw up all over yourself!"))
+		distance = 0
+	else
+		if(message)
+			visible_message(span_danger("[src] throws up!"), span_userdanger("You throw up!"))
 
-					Stun(5)
-					src.visible_message(span_warning("[src] throws up!"),span_warning("You throw up!"))
-					playsound(src, 'sound/effects/splat.ogg', 50, 1)
+	if(stun)
+		Stun(15)
 
-					var/turf/simulated/T = get_turf(src)	//TODO: Make add_blood_floor remove blood from human mobs
-					if(istype(T))
-						if(blood_vomit)
-							T.add_blood_floor(src)
-						else
-							T.add_vomit_floor(src, 1)
-
-					if(blood_vomit)
-						if(getBruteLoss() < 50)
-							adjustBruteLoss(3)
-					else
-						adjust_nutrition(-40)
-						adjustToxLoss(-3)
-
-		spawn(350)
-			lastpuke = 0
+	playsound(get_turf(src), 'sound/effects/splat.ogg', 50, 1)
+	var/turf/T = get_turf(src)
+	if(!blood)
+		adjust_nutrition(-lost_nutrition)
+		adjustToxLoss(-3)
+	for(var/i=0 to distance)
+		if(blood)
+			if(T)
+				blood_splatter(T, H.get_blood(H.vessel), TRUE)
+			if(stun)
+				adjustBruteLoss(3)
+		else if(src.reagents.has_reagent(/datum/reagent/toxin/phoron))
+			if(T)
+				T.add_vomit_floor(src, toxic || VOMIT_PURPLE, purge)
+		T = get_step(T, dir)
+		if (!CanZASPass(T))
+			break
+	return TRUE
 
 /mob/living/update_canmove()
 	if(!resting && cannot_stand() && can_stand_overridden())

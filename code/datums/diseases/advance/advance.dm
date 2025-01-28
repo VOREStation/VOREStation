@@ -221,13 +221,13 @@ GLOBAL_LIST_INIT(advance_cures, list(
 /datum/disease/advance/proc/SetSpread()
 	switch(transmission)
 		if(-INFINITY to 5)
-			spread_flags = BLOOD
+			spread_flags = DISEASE_SPREAD_BLOOD
 			spread_text = "Blood"
 		if(6 to 10)
-			spread_flags = BLOOD | FLUIDS
+			spread_flags = DISEASE_SPREAD_BLOOD | DISEASE_SPREAD_FLUIDS
 			spread_text = "Fluids"
 		if(11 to INFINITY)
-			spread_flags = BLOOD | FLUIDS | CONTACT_GENERAL
+			spread_flags = DISEASE_SPREAD_BLOOD | DISEASE_SPREAD_FLUIDS | DISEASE_SPREAD_CONTACT
 			spread_text = "On Contact"
 
 /datum/disease/advance/proc/SetSeverity(level_sev)
@@ -235,21 +235,21 @@ GLOBAL_LIST_INIT(advance_cures, list(
 	switch(level_sev)
 
 		if(-INFINITY to -2)
-			severity = BENEFICIAL
+			severity = DISEASE_BENEFICIAL
 		if(-1)
-			severity = POSITIVE
+			severity = DISEASE_POSITIVE
 		if(0)
-			severity = NONTHREAT
+			severity = DISEASE_NONTHREAT
 		if(1)
-			severity = MINOR
+			severity = DISEASE_MINOR
 		if(2)
-			severity = MEDIUM
+			severity = DISEASE_MEDIUM
 		if(3)
-			severity = HARMFUL
+			severity = DISEASE_HARMFUL
 		if(4)
-			severity = DANGEROUS
+			severity = DISEASE_DANGEROUS
 		if(5 to INFINITY)
-			severity = BIOHAZARD
+			severity = DISEASE_BIOHAZARD
 		else
 			severity = "Unknown"
 

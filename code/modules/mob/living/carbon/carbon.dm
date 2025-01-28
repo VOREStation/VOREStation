@@ -398,7 +398,7 @@
 	if(istype(A, /mob/living/carbon) && prob(10))
 		var/mob/living/carbon/human/H = A
 		for(var/datum/disease/D in GetViruses())
-			if(D.spread_flags & CONTACT_GENERAL)
+			if(D.spread_flags & DISEASE_SPREAD_CONTACT)
 				H.ContractDisease(D)
 
 /mob/living/carbon/cannot_use_vents()
@@ -550,5 +550,5 @@
 		if(prob(D.infectivity))
 			D.spread()
 
-		if(stat != DEAD || D.allow_dead)
+		if(stat != DEAD || D.spread_dead)
 			D.stage_act()

@@ -66,10 +66,10 @@
 /mob/living/simple_mob/vore/aggressive/macrophage/Initialize()
 	. = ..()
 	var/datum/disease/advance/random/macrophage/D = new
-	health += D.totalResistance()
-	maxHealth += D.totalResistance()
-	melee_damage_lower += max(0, D.totalResistance())
-	melee_damage_upper += max(0, D.totalResistance())
+	health += D.resistance
+	maxHealth += D.resistance
+	melee_damage_lower += max(0, D.resistance)
+	melee_damage_upper += max(0, D.resistance)
 	infections += D
 	base_disease = D
 

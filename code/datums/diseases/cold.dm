@@ -2,7 +2,7 @@
 	name = "The Cold"
 	max_stages = 3
 	spread_text = "Airborne"
-	spread_flags = AIRBORNE
+	spread_flags = DISEASE_SPREAD_AIRBORNE
 	cure_text = "Rest & " + REAGENT_SPACEACILLIN
 	cures = list(REAGENT_ID_SPACEACILLIN, REAGENT_ID_CHICKENSOUP)
 	needs_all_cures = FALSE
@@ -10,11 +10,10 @@
 	viable_mobtypes = list(/mob/living/carbon/human, /mob/living/carbon/human/monkey)
 	permeability_mod = 0.5
 	desc = "If left untreated the subject will contract the flu."
-	danger = MINOR
+	danger = DISEASE_MINOR
 
 /datum/disease/cold/stage_act()
-	if(!..())
-		return FALSE
+	..()
 	switch(stage)
 		if(2)
 			if(affected_mob.stat == UNCONSCIOUS && prob(40))

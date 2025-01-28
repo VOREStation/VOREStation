@@ -15,27 +15,40 @@ BONUS
 */
 /datum/symptom/blobspores
 	name = "Blob Spores"
+	desc = "This symptom causes the host to produce blob spores, which will leave the host at the later stages, and if the host dies, all of the spores will erupt from the host at the same time, while also producing a blob tile."
 	stealth = 1
-	resistance = 5
+	resistance = 6
 	stage_speed = -2
 	transmission = 1
 	level = -1
 	severity = 3
+	naturally_occuring = FALSE
+
+	threshold_descs = list(
+		"Resistance 8" = "Spawns a strong blob instead of a normal blob",
+		"Resistance 11" = "There is a chance to spawn a factory blob, instead of a normal blob.",
+		"Resistance 14" = "Has a chance to spawn a blob node instead of a normal blob"
+	)
 
 	var/ready_to_pop
 	var/factory_blob
 	var/strong_blob
 	var/node_blob
 
+/datum/symptom/blobspores/severityset(datum/disease/advance/A)
+	. = ..()
+	if(A.resistance >= 14)
+		severity += 1
+
 /datum/symptom/blobspores/Start(datum/disease/advance/A)
 	if(!..())
 		return
 
-	if(A.resistance >= 8)
+	if(A.resistance >= 11)
 		factory_blob = TRUE
-	if(A.resistance >= 5)
+	if(A.resistance >= 8)
 		strong_blob = TRUE
-		if(A.resistance >= 10)
+		if(A.resistance >= 14)
 			node_blob = TRUE
 
 /datum/symptom/blobspores/Activate(datum/disease/advance/A)

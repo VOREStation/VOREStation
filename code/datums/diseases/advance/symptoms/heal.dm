@@ -1,43 +1,78 @@
-/*
-//////////////////////////////////////
-
-Healing
-
-	Little bit hidden.
-	Lowers resistance tremendously.
-	Decreases stage speed tremendously.
-	Decreases transmittablity temrendously.
-	Fatal Level.
-
-Bonus
-	Heals toxins in the affected mob's blood stream.
-
-//////////////////////////////////////
-*/
-
 /datum/symptom/heal
-	name = "Toxic Filter"
-	stealth = 1
-	resistance = -4
-	stage_speed = -4
-	transmission = -4
-	level = 6
-	severity = 0
+	name = "Basic Healing (does nothing)"
+	stealth = 0
+	resistance = 0
+	stage_speed = 0
+	transmission = 0
+	level = -1
+	base_message_chance = 20
+	symptom_delay_min = 1
+	symptom_delay_max = 1
+	var/passive_message = ""
+	threshold_descs = list(
+		"Stealth 4" = "Healing will no longer be visible to onlookers."
+	)
 
-/datum/symptom/heal/Activate(datum/disease/advance/A)
-	..()
-	if(prob(SYMPTOM_ACTIVATION_PROB * 10))
-		var/mob/living/M = A.affected_mob
-		switch(A.stage)
-			if(4, 5)
-				Heal(M, A)
-	return
-
-/datum/symptom/heal/proc/Heal(mob/living/M, datum/disease/advance/A)
-	var/get_damage = max(0, (sqrtor0(20+A.stage_rate)*(1+rand())))
-	M.adjustToxLoss(-get_damage)
+/datum/symptom/heal/Start(datum/disease/advance/A)
+	if(!..())
+		return FALSE
 	return TRUE
 
+/datum/symptom/heal/Activate(datum/disease/advance/A)
+	if(!..())
+		return
+	var/mob/living/M = A.affected_mob
+	switch(A.stage)
+		if(4, 5)
+			var/effectiveness = CanHeal(A)
+			if(!effectiveness)
+				if(passive_message && prob(2) && passive_message_condition(M))
+					to_chat(M, passive_message)
+				return
+			else
+				Heal(M, A, effectiveness)
+	return
+
+/datum/symptom/heal/proc/CanHeal(datum/disease/advance/A)
+	return power
+
+/datum/symptom/heal/proc/Heal(mob/living/M, /datum/disease/advance/A, actual_power = 1)
+	return TRUE
+
+/datum/symptom/heal/proc/passive_message_condition(mob/living/M)
+	return TRUE
+
+/datum/symptom/heal/chem
+	name = "Toxolysis"
+	desc = "This virus rapidly breaks down any foreign chemicals in the bloodstream."
+	stealth = 0
+	resistance = -2
+	stage_speed = 2
+	transmission = -2
+	level = 6
+	power = 2
+	var/food_conversion = FALSE
+
+	threshold_descs = list(
+		"Resistance 7" = "Increases chem removal speed.",
+		"Stage Speed 6" = "Consumed chemicals nourish "
+	)
+
+/datum/symptom/heal/chem/Start(datum/disease/advance/A)
+	if(!..())
+		return
+	if(A.stage >= 6)
+		food_conversion = TRUE
+	if(A.resistance >= 7)
+		power = 4
+
+/datum/symptom/heal/chem/Heal(mob/living/carbon/human/H, datum/disease/advance/A, actual_power)
+	for(var/datum/reagent/R in H.bloodstr.reagent_list)
+		H.reagents.remove_reagent(R.type, actual_power)
+		if(food_conversion)
+			H.adjust_nutrition(0.3)
+		if(prob(2) && H.stat != DEAD)
+			to_chat(H, span_notice("You feel a mild warmth as your blood purifies itself."))
 /*
 //////////////////////////////////////
 
@@ -53,7 +88,7 @@ Bonus
 	Cures all diseases (except itself) and creates anti-bodies for them until the symptom dies.
 
 //////////////////////////////////////
-*/
+
 
 /datum/symptom/heal/metabolism
 	name = "Anti-Bodies Metabolism"
@@ -152,3 +187,4 @@ Bonus
 	M.adjustBrainLoss(-amt_healed)
 	M.radiation = max(M.radiation - 3, 0)
 	return TRUE
+*/

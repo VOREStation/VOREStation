@@ -255,7 +255,7 @@
 				virus.discovered = TRUE
 				dat += span_warning("Warning: [virus.name] detected in subject's blood.")
 				dat += "<br>"
-				dat += span_warning("Severity: [virus.severity]")
+				dat += span_warning("Severity: [virus.danger]")
 				dat += "<br>"
 	if (M.getCloneLoss())
 		dat += span_warning("Subject appears to have been imperfectly cloned.")

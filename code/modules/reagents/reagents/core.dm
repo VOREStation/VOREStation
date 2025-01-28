@@ -77,7 +77,7 @@
 				if(!ID)
 					continue
 				var/datum/disease/D = ID
-				if((D.spread_flags & SPECIAL) || (D.spread_flags & NON_CONTAGIOUS))
+				if((D.spread_flags & DISEASE_SPREAD_SPECIAL) || (D.spread_flags & DISEASE_SPREAD_NON_CONTAGIOUS))
 					continue
 				M.ContractDisease(D)
 
@@ -94,7 +94,7 @@
 		if(vlist.len)
 			for(var/ID in vlist)
 				var/datum/disease/D = ID
-				if((D.spread_flags & SPECIAL) || (D.spread_flags & NON_CONTAGIOUS))
+				if((D.spread_flags & DISEASE_SPREAD_SPECIAL) || (D.spread_flags & DISEASE_SPREAD_NON_CONTAGIOUS))
 					continue
 				M.ContractDisease(D)
 	if(data && data["resistances"])
@@ -166,6 +166,13 @@
 
 	M.inject_blood(src, volume * volume_mod)
 	remove_self(volume)
+
+/datum/reagent/blood/proc/get_diseases()
+	. = list()
+	if(data && data["viruses"])
+		for(var/thing in data["viruses"])
+			var/datum/disease/D = thing
+			. += D
 
 /datum/reagent/blood/synthblood
 	name = REAGENT_SYNTHBLOOD

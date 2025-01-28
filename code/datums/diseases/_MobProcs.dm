@@ -120,12 +120,23 @@
 					Cl = H.shoes
 					passed = prob((Cl.permeability_coefficient*100) - 1)
 
-	if(!passed && (D.spread_flags & AIRBORNE) && !internal)
+	if(!passed && (D.spread_flags & DISEASE_SPREAD_AIRBORNE) && !internal)
 		passed = (prob((50*D.permeability_mod) - 1))
 
 	if(passed)
 		AddDisease(D)
 	return passed
+
+/mob/living/proc/AirborneContractDisease(datum/disease/D, force_spread)
+	if(((D.spread_flags & DISEASE_SPREAD_AIRBORNE) || force_spread) && prob(50*D.spreading_modifier) - 1)
+		ForceContractDisease(D)
+
+/mob/living/carbon/AirborneContractDisease(datum/disease/D, force_spread)
+	if(internal)
+		return
+	if(mNobreath in mutations)
+		return
+	..()
 
 /mob/proc/ForceContractDisease(datum/disease/D, respect_carrier)
 	if(!CanContractDisease(D))
@@ -150,7 +161,10 @@
 	. = ..()
 	if(. == -1)
 		if(D.viable_mobtypes.Find(/mob/living/carbon/human))
-			return 1
+			return
+
+/mob/living/proc/CanSpreadAirborneDisease()
+	return !is_mouth_covered()
 
 /mob/living/proc/handle_diseases()
 	return
@@ -184,5 +198,8 @@
 
 		message_admins("[key_name_admin(usr)] has triggered a virus outbreak of [D.name]! Affected mob: [key_name_admin(H)]")
 		log_admin("[key_name_admin(usr)] infected [key_name_admin(H)] with [D.name]")
+
+		if(!GLOB.archive_diseases[D.GetDiseaseID()])
+			GLOB.archive_diseases[D.GetDiseaseID()] = D
 
 		return TRUE

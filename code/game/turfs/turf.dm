@@ -412,3 +412,32 @@
 // We were the the B-side in a turf translation
 /turf/proc/post_translate_B(var/turf/A)
 	return
+
+/turf/proc/add_vomit_floor(mob/living/carbon/M, toxvomit = NONE, purge = TRUE)
+
+	var/obj/effect/decal/cleanable/vomit/V = new /obj/effect/decal/cleanable/vomit(src, M.GetViruses())
+
+	if (QDELETED(V))
+		V = locate() in src
+	if(!V)
+		return
+	if(toxvomit == VOMIT_PURPLE)
+		V.icon_state = "vomitpurp_1"
+		V.random_icon_states = list("vomitpurp_1", "vomitpurp_2", "vomitpurp_3", "vomitpurp_4")
+	else if (toxvomit == VOMIT_TOXIC)
+		V.icon_state = "vomittox_1"
+		V.random_icon_states = list("vomittox_1", "vomittox_2", "vomittox_3", "vomittox_4")
+	else if (toxvomit == VOMIT_NANITE)
+		V.name = "metallic slurry"
+		V.desc = "A puddle of metallic slury that looks vaguely like very fine sand. It almost seems like it's moving..."
+		V.icon_state = "vomitnanite_1"
+		V.random_icon_states = list("vomitnanite_1", "vomitnanite_2", "vomitnanite_3", "vomitnanite_4")
+	if(purge && iscarbon(M))
+		var/mob/living/carbon/C = M
+		if(C.reagents)
+			clear_reagents_to_vomit_pool(C, V)
+
+/proc/clear_reagents_to_vomit_pool(mob/living/carbon/M, obj/effect/decal/cleanable/vomit/V)
+	M.reagents.trans_to(V, M.reagents.total_volume / 10)
+	for(var/datum/reagent/R in M.reagents.reagent_list)
+		M.reagents.remove_reagent(R, min(R.volume, 10))

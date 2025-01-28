@@ -4,7 +4,7 @@ GLOBAL_LIST_INIT(diseases, subtypesof(/datum/disease))
 	//Flags
 	var/visibility_flags = 0
 	var/disease_flags = CURABLE|CAN_CARRY|CAN_RESIST
-	var/spread_flags = AIRBORNE
+	var/spread_flags = DISEASE_SPREAD_AIRBORNE
 
 	//Fluff
 	/// Used for identification of viruses in the Medical Records Virus Database
@@ -30,13 +30,14 @@ GLOBAL_LIST_INIT(diseases, subtypesof(/datum/disease))
 	var/list/viable_mobtypes = list()
 	var/mob/living/carbon/affected_mob
 	var/list/cures = list()
-	var/infectivity = 65
+	var/infectivity = 10
 	var/cure_chance = 8
-	var/carrier = FALSE
+	var/carrier = FALSE // If the host is only a carrier
+	var/spreading_modifier = 1
 	var/bypasses_immunity = FALSE
 	var/virus_heal_resistant = FALSE
 	var/permeability_mod = 1
-	var/danger = NONTHREAT
+	var/danger = DISEASE_MINOR
 	var/list/required_organs = list()
 	var/needs_all_cures = TRUE
 	var/list/strain_data = list()
@@ -112,7 +113,7 @@ GLOBAL_LIST_INIT(diseases, subtypesof(/datum/disease))
 	if(!affected_mob)
 		return
 
-	if(!(spread_flags & AIRBORNE) && !force_spread)
+	if(!(spread_flags & DISEASE_SPREAD_AIRBORNE) && !force_spread)
 		return
 
 	if(affected_mob.stat == DEAD && !spread_dead && !force_spread)
@@ -126,23 +127,26 @@ GLOBAL_LIST_INIT(diseases, subtypesof(/datum/disease))
 	if(force_spread)
 		spread_range = force_spread
 
-	if(spread_flags & AIRBORNE)
+	if(spread_flags & DISEASE_SPREAD_AIRBORNE)
 		spread_range++
 
 	var/turf/target = affected_mob.loc
 	if(istype(target))
 		for(var/mob/living/carbon/human/C in oview(spread_range, affected_mob))
 			var/turf/current = get_turf(C)
-			if(current)
-				while(TRUE)
-					if(current == target)
-						C.ContractDisease(src)
-						break
-					var/direction = get_dir(current, target)
-					var/turf/next = get_step(current, direction)
-					if(!current.CanZASPass(next))
-						break
-					current = next
+			if(disease_air_spread_walk(target, current))
+				C.AirborneContractDisease(src, force_spread)
+
+/proc/disease_air_spread_walk(turf/start, turf/end)
+	if(!start || !end)
+		return FALSE
+	while(TRUE)
+		if(end == start)
+			return TRUE
+		var/turf/Temp = get_step_towards(end, start)
+		if(!end.CanZASPass(Temp))
+			return FALSE
+		end = Temp
 
 /datum/disease/proc/cure()
 	if(affected_mob)
@@ -183,12 +187,12 @@ GLOBAL_LIST_INIT(diseases, subtypesof(/datum/disease))
 	return type
 
 /datum/disease/proc/IsSpreadByTouch()
-	if(spread_flags & CONTACT_GENERAL)
+	if(spread_flags & DISEASE_SPREAD_CONTACT)
 		return TRUE
 	return FALSE
 
 /datum/disease/proc/IsSpreadByAir()
-	if(spread_flags & AIRBORNE)
+	if(spread_flags & DISEASE_SPREAD_AIRBORNE)
 		return TRUE
 	return FALSE
 
