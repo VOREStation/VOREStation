@@ -1,5 +1,6 @@
-import { useBackend } from '../../backend';
-import { Button, Knob, LabeledList } from '../../components';
+import { useBackend } from 'tgui/backend';
+import { Button, Knob, LabeledList } from 'tgui-core/components';
+
 import { Data } from './types';
 
 export const OperatingComputerOptions = (props) => {

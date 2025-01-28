@@ -1,17 +1,17 @@
-import { toFixed } from 'common/math';
-import { BooleanLike } from 'common/react';
-
-import { useBackend } from '../backend';
+import { useBackend } from 'tgui/backend';
+import { Window } from 'tgui/layouts';
 import {
   Box,
   Button,
-  Flex,
   LabeledList,
   NoticeBox,
   Section,
-} from '../components';
-import { formatTime } from '../format';
-import { Window } from '../layouts';
+  Stack,
+} from 'tgui-core/components';
+import { formatTime } from 'tgui-core/format';
+import { toFixed } from 'tgui-core/math';
+import { BooleanLike } from 'tgui-core/react';
+
 import { RankIcon } from './common/RankIcon';
 
 type Data = {
@@ -87,18 +87,18 @@ export const TimeClock = (props) => {
               <>
                 <LabeledList.Item label="Rank">
                   <Box backgroundColor={job_datum.selection_color} p={0.8}>
-                    <Flex justify="space-between" align="center">
-                      <Flex.Item>
+                    <Stack justify="space-between" align="center">
+                      <Stack.Item>
                         <Box ml={1}>
                           <RankIcon color="white" rank={job_datum.title} />
                         </Box>
-                      </Flex.Item>
-                      <Flex.Item>
+                      </Stack.Item>
+                      <Stack.Item>
                         <Box fontSize={1.5} inline mr={1}>
                           {job_datum.title}
                         </Box>
-                      </Flex.Item>
-                    </Flex>
+                      </Stack.Item>
+                    </Stack>
                   </Box>
                 </LabeledList.Item>
                 <LabeledList.Item label="Departments">

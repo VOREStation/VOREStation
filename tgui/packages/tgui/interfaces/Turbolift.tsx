@@ -1,8 +1,7 @@
-import { BooleanLike } from 'common/react';
-
-import { useBackend } from '../backend';
-import { Button, Flex, Section } from '../components';
-import { Window } from '../layouts';
+import { useBackend } from 'tgui/backend';
+import { Window } from 'tgui/layouts';
+import { Button, Section, Stack } from 'tgui-core/components';
+import { BooleanLike } from 'tgui-core/react';
 
 type Data = {
   doors_open: BooleanLike;
@@ -62,14 +61,14 @@ export const Turbolift = (props) => {
               title="FIREFIGHTER MODE ENGAGED"
             />
           )}
-          <Flex wrap="wrap">
+          <Stack wrap="wrap">
             {floors.map((floor) => (
-              <Flex.Item basis="100%" key={floor.id}>
-                <Flex align="center" justify="space-around">
-                  <Flex.Item basis="22%" textAlign="right" mr="3px">
+              <Stack.Item basis="100%" key={floor.id}>
+                <Stack align="center" justify="space-around">
+                  <Stack.Item basis="22%" textAlign="right" mr="3px">
                     {floor.label || 'Floor #' + floor.id}
-                  </Flex.Item>
-                  <Flex.Item basis="8%" textAlign="left">
+                  </Stack.Item>
+                  <Stack.Item basis="8%" textAlign="left">
                     <Button
                       icon="circle"
                       color={
@@ -83,14 +82,14 @@ export const Turbolift = (props) => {
                       }
                       onClick={() => act('move_to_floor', { ref: floor.ref })}
                     />
-                  </Flex.Item>
-                  <Flex.Item basis="50%" grow={1}>
+                  </Stack.Item>
+                  <Stack.Item basis="50%" grow>
                     {floor.name}
-                  </Flex.Item>
-                </Flex>
-              </Flex.Item>
+                  </Stack.Item>
+                </Stack>
+              </Stack.Item>
             ))}
-          </Flex>
+          </Stack>
         </Section>
       </Window.Content>
     </Window>

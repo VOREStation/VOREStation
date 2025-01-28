@@ -1,7 +1,7 @@
-import { toFixed } from 'common/math';
+import { useBackend } from 'tgui/backend';
+import { LabeledList, ProgressBar, Section } from 'tgui-core/components';
+import { toFixed } from 'tgui-core/math';
 
-import { useBackend } from '../../backend';
-import { LabeledList, ProgressBar, Section } from '../../components';
 import { damageRange, damages } from './constants';
 import { Data } from './types';
 

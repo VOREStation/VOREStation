@@ -1,13 +1,13 @@
-import { toTitleCase } from 'common/string';
-
-import { useBackend } from '../../backend';
+import { useBackend } from 'tgui/backend';
 import {
   Box,
   Button,
   LabeledList,
   ProgressBar,
   Section,
-} from '../../components';
+} from 'tgui-core/components';
+import { toTitleCase } from 'tgui-core/string';
+
 import { getDockingStatus } from './functions';
 import { Data } from './types';
 

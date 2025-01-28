@@ -1,18 +1,17 @@
-import { toFixed } from 'common/math';
-import { BooleanLike } from 'common/react';
-import { toTitleCase } from 'common/string';
-
-import { useBackend } from '../backend';
+import { useBackend } from 'tgui/backend';
+import { Window } from 'tgui/layouts';
 import {
   AnimatedNumber,
   Box,
   Button,
-  Flex,
   LabeledList,
   ProgressBar,
   Section,
-} from '../components';
-import { Window } from '../layouts';
+  Stack,
+} from 'tgui-core/components';
+import { toFixed } from 'tgui-core/math';
+import { BooleanLike } from 'tgui-core/react';
+import { toTitleCase } from 'tgui-core/string';
 
 type Data = {
   active: BooleanLike;
@@ -65,9 +64,9 @@ const SupermatterMonitorList = (props) => {
         </Button>
       }
     >
-      <Flex wrap="wrap">
+      <Stack wrap="wrap">
         {supermatters.map((sm, i) => (
-          <Flex.Item basis="49%" grow={i % 2} key={i}>
+          <Stack.Item basis="49%" grow={i % 2} key={i}>
             <Section title={sm.area_name + ' (#' + sm.uid + ')'}>
               <LabeledList>
                 <LabeledList.Item label="Integrity">
@@ -83,9 +82,9 @@ const SupermatterMonitorList = (props) => {
                 </LabeledList.Item>
               </LabeledList>
             </Section>
-          </Flex.Item>
+          </Stack.Item>
         ))}
-      </Flex>
+      </Stack>
     </Section>
   );
 };

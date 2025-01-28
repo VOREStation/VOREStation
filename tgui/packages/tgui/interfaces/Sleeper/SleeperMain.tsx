@@ -1,4 +1,5 @@
-import { useBackend } from '../../backend';
+import { useBackend } from 'tgui/backend';
+
 import { SleeperChemicals } from './SleeperChemicals';
 import { SleeperDamage } from './SleeperDamage';
 import { SleeperDialysisPump } from './SleeperDialysisPump';

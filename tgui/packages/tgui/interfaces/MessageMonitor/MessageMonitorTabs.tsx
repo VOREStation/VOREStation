@@ -1,16 +1,16 @@
-import { BooleanLike } from 'common/react';
-import { decodeHtmlEntities } from 'common/string';
-
-import { useBackend } from '../../backend';
+import { useBackend } from 'tgui/backend';
 import {
   Box,
   Button,
   Dropdown,
-  Flex,
   Input,
   LabeledList,
   Section,
-} from '../../components';
+  Stack,
+} from 'tgui-core/components';
+import { BooleanLike } from 'tgui-core/react';
+import { decodeHtmlEntities } from 'tgui-core/string';
+
 import { Data } from './types';
 
 export const MessageMonitorMain = (props) => {
@@ -93,9 +93,9 @@ export const MessageMonitorLogs = (props: {
         </Button.Confirm>
       }
     >
-      <Flex wrap="wrap">
+      <Stack wrap="wrap">
         {logs.map((log, i) => (
-          <Flex.Item m="2px" key={log.ref} basis="49%" grow={i % 2}>
+          <Stack.Item m="2px" key={log.ref} basis="49%" grow={i % 2}>
             <Section
               title={log.sender + ' -> ' + log.recipient}
               buttons={
@@ -130,9 +130,9 @@ export const MessageMonitorLogs = (props: {
                 log.message
               )}
             </Section>
-          </Flex.Item>
+          </Stack.Item>
         ))}
-      </Flex>
+      </Stack>
     </Section>
   );
 };

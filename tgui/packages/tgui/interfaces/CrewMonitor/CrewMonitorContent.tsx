@@ -1,7 +1,7 @@
 import { sortBy } from 'common/collections';
-import { flow } from 'common/fp';
 import { useBackend } from 'tgui/backend';
-import { Box, Icon, Tabs } from 'tgui/components';
+import { Box, Icon, Tabs } from 'tgui-core/components';
+import { flow } from 'tgui-core/fp';
 
 import { CrewMonitorCrew } from './CrewMonitorCrew';
 import { CrewMonitorMapView } from './CrewMonitorMapView';

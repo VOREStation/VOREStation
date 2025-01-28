@@ -1,16 +1,9 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
+import { useBackend } from 'tgui/backend';
+import { Window } from 'tgui/layouts';
+import { Autofocus, Button, Input, Section, Stack } from 'tgui-core/components';
+import { isAlphabetic, isNumeric, KEY } from 'tgui-core/keys';
 
-import {
-  KEY_A,
-  KEY_DOWN,
-  KEY_ENTER,
-  KEY_ESCAPE,
-  KEY_UP,
-  KEY_Z,
-} from '../../common/keycodes';
-import { useBackend } from '../backend';
-import { Autofocus, Button, Input, Section, Stack } from '../components';
-import { Window } from '../layouts';
 import { InputButtons } from './common/InputButtons';
 import { Loader } from './common/Loader';
 
@@ -38,9 +31,10 @@ export const ListInputModal = (props) => {
   const [searchQuery, setSearchQuery] = useState('');
   // User presses up or down on keyboard
   // Simulates clicking an item
-  const onArrowKey = (key: number) => {
+  const inputRef = useRef<HTMLDivElement>(null);
+  const onArrowKey = (key: KEY) => {
     const len = filteredItems.length - 1;
-    if (key === KEY_DOWN) {
+    if (key === KEY.Down) {
       if (selected === null || selected === len) {
         setSelected(0);
         document!.getElementById('0')?.scrollIntoView();
@@ -48,7 +42,7 @@ export const ListInputModal = (props) => {
         setSelected(selected + 1);
         document!.getElementById((selected + 1).toString())?.scrollIntoView();
       }
-    } else if (key === KEY_UP) {
+    } else if (key === KEY.Up) {
       if (selected === null || selected === 0) {
         setSelected(len);
         document!.getElementById(len.toString())?.scrollIntoView();
@@ -68,13 +62,14 @@ export const ListInputModal = (props) => {
   // User presses a letter key and searchbar is visible
   const onFocusSearch = () => {
     setSearchBarVisible(false);
-    setSearchBarVisible(true);
+    setTimeout(() => {
+      setSearchBarVisible(true);
+    }, 1);
   };
   // User presses a letter key with no searchbar visible
-  const onLetterSearch = (key: number) => {
-    const keyChar = String.fromCharCode(key);
+  const onLetterSearch = (key: string) => {
     const foundItem = items.find((item) => {
-      return item?.toLowerCase().startsWith(keyChar?.toLowerCase());
+      return item?.toLowerCase().startsWith(key?.toLowerCase());
     });
     if (foundItem) {
       const foundIndex = items.indexOf(foundItem);
@@ -107,28 +102,32 @@ export const ListInputModal = (props) => {
     setTimeout(() => document!.getElementById(selected.toString())?.focus(), 1);
   }
 
+  function handleKeyDown(event: React.KeyboardEvent<HTMLDivElement>) {
+    const key = event.key;
+    if (key === KEY.Down || key === KEY.Up) {
+      event.preventDefault();
+      onArrowKey(key);
+    }
+    if (key === KEY.Enter) {
+      event.preventDefault();
+      act('submit', { entry: filteredItems[selected] });
+    }
+    if (!searchBarVisible && (isAlphabetic(key) || isNumeric(key))) {
+      event.preventDefault();
+      onLetterSearch(key);
+    }
+    if (key === KEY.Escape) {
+      event.preventDefault();
+      act('cancel');
+    }
+  }
+
   return (
     <Window title={title} width={325} height={windowHeight}>
       {timeout && <Loader value={timeout} />}
       <Window.Content
         onKeyDown={(event) => {
-          const keyCode = window.event ? event.which : event.keyCode;
-          if (keyCode === KEY_DOWN || keyCode === KEY_UP) {
-            event.preventDefault();
-            onArrowKey(keyCode);
-          }
-          if (keyCode === KEY_ENTER) {
-            event.preventDefault();
-            act('submit', { entry: filteredItems[selected] });
-          }
-          if (!searchBarVisible && keyCode >= KEY_A && keyCode <= KEY_Z) {
-            event.preventDefault();
-            onLetterSearch(keyCode);
-          }
-          if (keyCode === KEY_ESCAPE) {
-            event.preventDefault();
-            act('cancel');
-          }
+          handleKeyDown(event);
         }}
       >
         <Section
@@ -187,6 +186,14 @@ const ListDisplay = (props) => {
   const { filteredItems, onClick, onFocusSearch, searchBarVisible, selected } =
     props;
 
+  function handleKeyDown(event: React.KeyboardEvent<HTMLDivElement>) {
+    const key = event.key;
+    if (searchBarVisible && (isAlphabetic(key) || isNumeric(key))) {
+      event.preventDefault();
+      onFocusSearch();
+    }
+  }
+
   return (
     <Section fill scrollable>
       <Autofocus />
@@ -195,6 +202,7 @@ const ListDisplay = (props) => {
           <Button
             color="transparent"
             fluid
+            id={index}
             key={index}
             onClick={() => onClick(index)}
             onDoubleClick={(event) => {
@@ -202,11 +210,7 @@ const ListDisplay = (props) => {
               act('submit', { entry: filteredItems[selected] });
             }}
             onKeyDown={(event) => {
-              const keyCode = window.event ? event.which : event.keyCode;
-              if (searchBarVisible && keyCode >= KEY_A && keyCode <= KEY_Z) {
-                event.preventDefault();
-                onFocusSearch();
-              }
+              handleKeyDown(event);
             }}
             selected={index === selected}
             style={{

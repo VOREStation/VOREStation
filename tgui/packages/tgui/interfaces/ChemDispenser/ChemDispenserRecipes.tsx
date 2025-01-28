@@ -1,5 +1,6 @@
-import { useBackend } from '../../backend';
-import { Box, Button, Flex, Section } from '../../components';
+import { useBackend } from 'tgui/backend';
+import { Box, Button, Section, Stack } from 'tgui-core/components';
+
 import { Data } from './types';
 
 export const ChemDispenserRecipes = (props) => {
@@ -77,8 +78,8 @@ export const ChemDispenserRecipes = (props) => {
       )}
       {recipeData.length
         ? recipeData.map((recipe) => (
-            <Flex key={recipe}>
-              <Flex.Item grow={1}>
+            <Stack key={recipe}>
+              <Stack.Item grow>
                 <Button
                   fluid
                   icon="flask"
@@ -86,8 +87,8 @@ export const ChemDispenserRecipes = (props) => {
                 >
                   {recipe}
                 </Button>
-              </Flex.Item>
-              <Flex.Item>
+              </Stack.Item>
+              <Stack.Item>
                 <Button.Confirm
                   icon="trash"
                   confirmIcon="triangle-exclamation"
@@ -95,8 +96,8 @@ export const ChemDispenserRecipes = (props) => {
                   color="bad"
                   onClick={() => act('remove_recipe', { recipe })}
                 />
-              </Flex.Item>
-            </Flex>
+              </Stack.Item>
+            </Stack>
           ))
         : 'No Recipes.'}
     </Section>

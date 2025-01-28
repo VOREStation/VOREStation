@@ -1,17 +1,17 @@
-import { BooleanLike } from 'common/react';
 import { useState } from 'react';
-
-import { useBackend } from '../backend';
+import { useBackend } from 'tgui/backend';
+import { Window } from 'tgui/layouts';
 import {
   Box,
   Button,
-  Flex,
   LabeledList,
   NoticeBox,
   Section,
+  Stack,
   Tabs,
-} from '../components';
-import { Window } from '../layouts';
+} from 'tgui-core/components';
+import { BooleanLike } from 'tgui-core/react';
+
 import { ComplexModal, modalRegisterBodyOverride } from './common/ComplexModal';
 import { modalData } from './MedicalRecords/types';
 
@@ -165,12 +165,12 @@ const PathogenicIsolatorTabHome = (props) => {
         pathogen_pool.map((pathogen) => (
           <Section key={pathogen.unique_id}>
             <Box color="label">
-              <Flex align="center">
-                <Flex.Item grow={1}>
+              <Stack align="center">
+                <Stack.Item grow>
                   <u>Stamm #{pathogen.unique_id}</u>
                   {pathogen.is_in_database ? ' (Analyzed)' : ' (Not Analyzed)'}
-                </Flex.Item>
-                <Flex.Item>
+                </Stack.Item>
+                <Stack.Item>
                   <Button
                     icon="virus"
                     onClick={() =>
@@ -186,8 +186,8 @@ const PathogenicIsolatorTabHome = (props) => {
                   >
                     Database
                   </Button>
-                </Flex.Item>
-              </Flex>
+                </Stack.Item>
+              </Stack>
             </Box>
             <Box>
               <Box color="average" mb={1}>

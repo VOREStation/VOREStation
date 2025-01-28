@@ -1,7 +1,7 @@
-import { createSearch } from 'common/string';
 import { useState } from 'react';
 import { useBackend } from 'tgui/backend';
-import { Box, Button, Input, Stack, Table } from 'tgui/components';
+import { Box, Button, Input, Stack, Table } from 'tgui-core/components';
+import { createSearch } from 'tgui-core/string';
 
 import {
   getShownCrew,

@@ -1,5 +1,6 @@
-import { useBackend } from '../../backend';
-import { Box, Button, LabeledList, Section } from '../../components';
+import { useBackend } from 'tgui/backend';
+import { Box, Button, LabeledList, Section } from 'tgui-core/components';
+
 import { modalData } from './types';
 
 export const virusModalBodyOverride = (modal: modalData) => {
