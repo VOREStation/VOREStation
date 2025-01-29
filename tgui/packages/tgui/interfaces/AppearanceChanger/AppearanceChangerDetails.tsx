@@ -77,7 +77,7 @@ export const AppearanceChangerColors = (props) => {
               Change Ears Color (Secondary)
             </Button>
           </Box>
-          {data.ear_secondary_colors.map((color, index) => (
+          {ear_secondary_colors.map((color, index) => (
             <Box key={index}>
               <ColorBox color={color} mr={1} />
               <Button
