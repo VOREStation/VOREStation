@@ -94,15 +94,13 @@
 
 /obj/structure/closet/body_bag/update_icon()
 	if(opened)
-		icon_state = "open"
+		icon_state = "base"
 	else
-		icon_state = "closed_unlocked"
+		icon_state = "open"
 
 	cut_overlays()
-	/* Ours don't have toetags
 	if(has_label)
 		add_overlay("bodybag_label")
-	*/
 
 
 /obj/item/bodybag/cryobag
