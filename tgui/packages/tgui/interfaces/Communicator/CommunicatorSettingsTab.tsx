@@ -1,7 +1,7 @@
-import { decodeHtmlEntities } from 'common/string';
+import { useBackend } from 'tgui/backend';
+import { Box, Button, LabeledList, Section } from 'tgui-core/components';
+import { decodeHtmlEntities } from 'tgui-core/string';
 
-import { useBackend } from '../../backend';
-import { Box, Button, LabeledList, Section } from '../../components';
 import { Data } from './types';
 
 export const CommunicatorSettingsTab = (props) => {

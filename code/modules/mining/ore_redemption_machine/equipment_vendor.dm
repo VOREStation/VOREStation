@@ -133,9 +133,9 @@
 		EQUIPMENT("Resonator",			/obj/item/resonator,							900),
 		EQUIPMENT("Silver Pickaxe",		/obj/item/pickaxe/silver,				1200),
 		EQUIPMENT("Super Resonator",	/obj/item/resonator/upgraded,					2500),
-		EQUIPMENT("Fine Excavation Kit - Chisels",			/obj/item/storage/excavation,			500),
+		EQUIPMENT("Archeology Equipment - Chisels",			/obj/item/storage/excavation,			500),
+		EQUIPMENT("Archeology Equipment - Scanner",			/obj/item/depth_scanner,				1000), // They can get a basic scanner for archeology, but not the anomaly scanner. Keeps job stealing at a minimum while also allowing miners to excavate any cool rocks they come across.
 		EQUIPMENT("Fine Excavation Kit - Measuring Tape",	/obj/item/measuring_tape,				125),
-		EQUIPMENT("Fine Excavation Kit - Hand Pick",		/obj/item/pickaxe/hand,					375),
 		EQUIPMENT("Explosive Excavation Kit - Plastic Charge",/obj/item/plastique/seismic/locked,	1500),
 		EQUIPMENT("Industrial Equipment - Phoron Bore",		/obj/item/gun/magnetic/matfed/phoronbore/loaded,			3000),
 		EQUIPMENT("Industrial Equipment - Inducer",			/obj/item/inducer,						3500),

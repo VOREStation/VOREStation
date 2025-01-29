@@ -1,8 +1,15 @@
 import { binaryInsertWith, sortBy } from 'common/collections';
 import { ReactNode, useState } from 'react';
+import { useBackend } from 'tgui/backend';
+import {
+  Box,
+  Button,
+  Input,
+  Section,
+  Stack,
+  Tooltip,
+} from 'tgui-core/components';
 
-import { useBackend } from '../../backend';
-import { Box, Button, Flex, Input, Section, Tooltip } from '../../components';
 import { PreferencesMenuData } from './data';
 import features from './preferences/features';
 import { FeatureValueInput } from './preferences/features/base';
@@ -47,9 +54,9 @@ export const GamePreferencesPage = (props) => {
     }
 
     let name: ReactNode = (
-      <Flex.Item grow={1} pr={2} basis={0} ml={2}>
+      <Stack.Item grow pr={2} basis={0} ml={2}>
         {nameInner}
-      </Flex.Item>
+      </Stack.Item>
     );
 
     if (feature?.description) {
@@ -61,10 +68,10 @@ export const GamePreferencesPage = (props) => {
     }
 
     const child = (
-      <Flex align="center" key={featureId} pb={2}>
+      <Stack align="center" key={featureId} pb={2}>
         {name}
 
-        <Flex.Item grow={1} basis={0}>
+        <Stack.Item grow basis={0}>
           {(feature && (
             <FeatureValueInput
               feature={feature}
@@ -77,8 +84,8 @@ export const GamePreferencesPage = (props) => {
               ...is not filled out properly!!!
             </Box>
           )}
-        </Flex.Item>
-      </Flex>
+        </Stack.Item>
+      </Stack>
     );
 
     const entry = {

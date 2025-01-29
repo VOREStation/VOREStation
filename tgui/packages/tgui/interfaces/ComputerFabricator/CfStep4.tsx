@@ -1,4 +1,4 @@
-import { Box, Section } from '../../components';
+import { Box, Section } from 'tgui-core/components';
 
 export const CfStep4 = (props) => {
   return (

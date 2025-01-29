@@ -269,7 +269,7 @@ something, make sure it's not in one of the other lists.*/
 				prob(5);/obj/item/storage/backpack/toxins,
 				prob(5);/obj/item/storage/backpack/satchel/tox,
 				prob(5);/obj/item/storage/backpack/messenger/tox,
-				prob(2);/obj/item/storage/excavation,
+				prob(2);/obj/item/pickaxe/excavationdrill,
 				prob(1);/obj/item/storage/backpack/holding,
 				prob(3);/obj/item/storage/box/beakers,
 				prob(3);/obj/item/storage/box/syringes,

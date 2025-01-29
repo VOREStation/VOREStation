@@ -1,4 +1,8 @@
-import { IconProps } from 'tgui/components/Icon';
+import { ComponentProps } from 'react';
+import { Icon } from 'tgui-core/components';
+
+type IconProps = ComponentProps<typeof Icon>;
+
 /**
  * Gernal Record data
  */

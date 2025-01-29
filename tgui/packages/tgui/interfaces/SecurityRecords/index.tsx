@@ -1,7 +1,8 @@
-import { useBackend } from '../../backend';
-import { Section } from '../../components';
-import { ComplexModal } from '../../interfaces/common/ComplexModal';
-import { Window } from '../../layouts';
+import { useBackend } from 'tgui/backend';
+import { Window } from 'tgui/layouts';
+import { Section } from 'tgui-core/components';
+
+import { ComplexModal } from '../common/ComplexModal';
 import { LoginInfo } from '../common/LoginInfo';
 import { LoginScreen } from '../common/LoginScreen';
 import { TemporaryNotice } from '../common/TemporaryNotice';

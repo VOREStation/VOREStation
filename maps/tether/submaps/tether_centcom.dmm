@@ -2780,7 +2780,6 @@
 /area/centcom/command)
 "iU" = (
 /obj/machinery/computer/security/telescreen/entertainment{
-	icon_state = "frame";
 	pixel_x = 32
 	},
 /obj/effect/floor_decal/borderfloorblack{
@@ -8426,7 +8425,6 @@
 /area/shuttle/supply)
 "HH" = (
 /obj/machinery/computer/security/telescreen/entertainment{
-	icon_state = "frame";
 	pixel_y = 30
 	},
 /turf/simulated/floor/lino,
@@ -14155,7 +14153,6 @@
 /area/shuttle/ccboat)
 "VK" = (
 /obj/machinery/computer/security/telescreen/entertainment{
-	icon_state = "frame";
 	pixel_x = 32
 	},
 /obj/effect/floor_decal/borderfloorblack{

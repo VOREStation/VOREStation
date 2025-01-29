@@ -1,14 +1,14 @@
-import { capitalize } from 'common/string';
 import { useBackend } from 'tgui/backend';
 import {
   Box,
   Button,
+  ByondUi,
   ColorBox,
-  Flex,
   LabeledList,
   Section,
-} from 'tgui/components';
-import { ByondUi } from 'tgui-core/components';
+  Stack,
+} from 'tgui-core/components';
+import { capitalize } from 'tgui-core/string';
 
 import { activeBodyRecord } from './types';
 
@@ -19,7 +19,7 @@ export const BodyDesignerSpecificRecord = (props: {
   const { act } = useBackend();
   const { activeBodyRecord, mapRef } = props;
   return activeBodyRecord ? (
-    <Flex direction="column">
+    <Stack vertical>
       <Section
         title="Specific Record"
         buttons={
@@ -31,8 +31,8 @@ export const BodyDesignerSpecificRecord = (props: {
           </Button>
         }
       >
-        <Flex.Item basis="175px">
-          <Flex.Item basis="130px">
+        <Stack.Item basis="175px">
+          <Stack.Item basis="130px">
             <ByondUi
               style={{
                 width: '100%',
@@ -43,12 +43,12 @@ export const BodyDesignerSpecificRecord = (props: {
                 type: 'map',
               }}
             />
-          </Flex.Item>
-        </Flex.Item>
+          </Stack.Item>
+        </Stack.Item>
       </Section>
-      <Flex.Item basis="600px">
-        <Flex direction="row">
-          <Flex.Item basis="48%">
+      <Stack.Item>
+        <Stack>
+          <Stack.Item basis="48%">
             <Section title="General">
               <LabeledList>
                 <LabeledList.Item label="Name">
@@ -176,7 +176,13 @@ export const BodyDesignerSpecificRecord = (props: {
                 </LabeledList.Item>
               </LabeledList>
             </Section>
-            <Section title="Flavor Text">
+            <Section
+              title="Flavor Text"
+              width="400px"
+              fill
+              height="57%"
+              scrollable
+            >
               <LabeledList>
                 {Object.keys(activeBodyRecord.flavors).map((key) => {
                   return (
@@ -194,15 +200,20 @@ export const BodyDesignerSpecificRecord = (props: {
                         Edit
                       </Button>
                       <br />
-                      {activeBodyRecord.flavors[key]}
+                      <Box
+                        preserveWhitespace
+                        style={{ wordBreak: 'break-all' }}
+                      >
+                        {activeBodyRecord.flavors[key]}
+                      </Box>
                     </LabeledList.Item>
                   );
                 })}
               </LabeledList>
             </Section>
-          </Flex.Item>
-          <Flex.Item basis="50%">
-            <Section title="Unique Identifiers">
+          </Stack.Item>
+          <Stack.Item basis="50%">
+            <Section title="Unique Identifiers" scrollable fill height="600px">
               <LabeledList.Item label="Scale">
                 <Button
                   icon="pen"
@@ -376,13 +387,13 @@ export const BodyDesignerSpecificRecord = (props: {
                 >
                   Add Marking
                 </Button>
-                <Flex wrap="wrap" justify="center" align="center">
+                <Stack wrap="wrap" justify="center" align="center">
                   {Object.keys(activeBodyRecord.markings).map((key) => {
                     const marking = activeBodyRecord.markings[key];
                     return (
-                      <Flex.Item basis="100%" key={key}>
-                        <Flex>
-                          <Flex.Item>
+                      <Stack.Item basis="100%" key={key}>
+                        <Stack>
+                          <Stack.Item>
                             <Button
                               mr={0.2}
                               fluid
@@ -396,8 +407,8 @@ export const BodyDesignerSpecificRecord = (props: {
                                 })
                               }
                             />
-                          </Flex.Item>
-                          <Flex.Item grow={1}>
+                          </Stack.Item>
+                          <Stack.Item grow>
                             <Button
                               fluid
                               backgroundColor={marking}
@@ -411,18 +422,18 @@ export const BodyDesignerSpecificRecord = (props: {
                             >
                               {key}
                             </Button>
-                          </Flex.Item>
-                        </Flex>
-                      </Flex.Item>
+                          </Stack.Item>
+                        </Stack>
+                      </Stack.Item>
                     );
                   })}
-                </Flex>
+                </Stack>
               </LabeledList.Item>
             </Section>
-          </Flex.Item>
-        </Flex>
-      </Flex.Item>
-    </Flex>
+          </Stack.Item>
+        </Stack>
+      </Stack.Item>
+    </Stack>
   ) : (
     <Box color="bad">ERROR: Record Not Found!</Box>
   );

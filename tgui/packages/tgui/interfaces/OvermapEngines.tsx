@@ -1,16 +1,15 @@
-import { BooleanLike } from 'common/react';
-
-import { useBackend } from '../backend';
+import { useBackend } from 'tgui/backend';
+import { Window } from 'tgui/layouts';
 import {
   AnimatedNumber,
   Box,
   Button,
   Collapsible,
-  Flex,
   LabeledList,
   Section,
-} from '../components';
-import { Window } from '../layouts';
+  Stack,
+} from 'tgui-core/components';
+import { BooleanLike } from 'tgui-core/react';
 
 type Data = {
   global_state: BooleanLike;
@@ -77,8 +76,8 @@ export const OvermapEnginesContent = (props) => {
       </Section>
       <Section title="Engines" height="340px" style={{ overflowY: 'auto' }}>
         {engines_info.map((engine, i) => (
-          <Flex spacing={1} mt={i !== 0 && -1} key={i}>
-            <Flex.Item basis="80%">
+          <Stack mt={i !== 0 && -1} key={i}>
+            <Stack.Item basis="80%">
               <Collapsible
                 title={
                   <Box inline>
@@ -160,8 +159,8 @@ export const OvermapEnginesContent = (props) => {
                   </LabeledList>
                 </Section>
               </Collapsible>
-            </Flex.Item>
-            <Flex.Item basis="20%">
+            </Stack.Item>
+            <Stack.Item basis="20%">
               <Button
                 fluid
                 iconSpin={engine.eng_on === -1}
@@ -178,8 +177,8 @@ export const OvermapEnginesContent = (props) => {
                     : 'Booting'
                   : 'Startup'}
               </Button>
-            </Flex.Item>
-          </Flex>
+            </Stack.Item>
+          </Stack>
         ))}
       </Section>
     </>

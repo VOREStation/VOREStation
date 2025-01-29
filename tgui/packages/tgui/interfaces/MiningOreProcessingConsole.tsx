@@ -1,8 +1,6 @@
-import { BooleanLike } from 'common/react';
-import { toTitleCase } from 'common/string';
+import { useBackend } from 'tgui/backend';
+import { Window } from 'tgui/layouts';
 import { Stack } from 'tgui-core/components';
-
-import { useBackend } from '../backend';
 import {
   AnimatedNumber,
   Box,
@@ -10,8 +8,10 @@ import {
   Dropdown,
   LabeledList,
   Section,
-} from '../components';
-import { Window } from '../layouts';
+} from 'tgui-core/components';
+import { BooleanLike } from 'tgui-core/react';
+import { toTitleCase } from 'tgui-core/string';
+
 import { MiningUser } from './common/Mining';
 
 type Data = {

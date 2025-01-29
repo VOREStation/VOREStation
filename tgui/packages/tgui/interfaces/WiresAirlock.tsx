@@ -1,4 +1,3 @@
-import { round } from 'common/math';
 import { useBackend } from 'tgui/backend';
 import { Window } from 'tgui/layouts';
 import {
@@ -8,6 +7,7 @@ import {
   NumberInput,
   Section,
 } from 'tgui-core/components';
+import { round } from 'tgui-core/math';
 
 import { WireData, WiresStatus, WiresWires } from './Wires';
 

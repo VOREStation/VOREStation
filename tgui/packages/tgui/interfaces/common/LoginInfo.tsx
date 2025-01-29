@@ -1,5 +1,5 @@
-import { useBackend } from '../../backend';
-import { Box, Button, NoticeBox } from '../../components';
+import { useBackend } from 'tgui/backend';
+import { Box, Button, NoticeBox } from 'tgui-core/components';
 
 type Data = { authenticated: string; rank: string };
 

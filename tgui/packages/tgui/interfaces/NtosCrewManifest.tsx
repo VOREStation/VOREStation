@@ -1,4 +1,5 @@
-import { NtosWindow } from '../layouts';
+import { NtosWindow } from 'tgui/layouts';
+
 import { CrewManifestContent } from './CrewManifest';
 
 export const NtosCrewManifest = () => {

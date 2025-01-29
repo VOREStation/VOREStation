@@ -1,14 +1,7 @@
-import { classes } from 'common/react';
+import { useBackend } from 'tgui/backend';
+import { Box, Button, LabeledList, Section, Stack } from 'tgui-core/components';
+import { classes } from 'tgui-core/react';
 
-import { useBackend } from '../../../backend';
-import {
-  Box,
-  Button,
-  Flex,
-  LabeledList,
-  Section,
-  Stack,
-} from '../../../components';
 import { selectedData } from '../types';
 
 export const VoreSelectedBellyVisuals = (props: { belly: selectedData }) => {
@@ -43,7 +36,7 @@ export const VoreSelectedBellyVisuals = (props: { belly: selectedData }) => {
   return (
     <>
       <Section title="Vore Sprites">
-        <Flex direction="row">
+        <Stack direction="row">
           <LabeledList>
             <LabeledList.Item label="Affect Vore Sprites">
               <Button
@@ -57,7 +50,7 @@ export const VoreSelectedBellyVisuals = (props: { belly: selectedData }) => {
               </Button>
             </LabeledList.Item>
             {affects_voresprite ? (
-              <span>
+              <>
                 <LabeledList.Item label="Vore Sprite Mode">
                   {(vore_sprite_flags.length && vore_sprite_flags.join(', ')) ||
                     'None'}
@@ -164,14 +157,12 @@ export const VoreSelectedBellyVisuals = (props: { belly: selectedData }) => {
                   </LabeledList.Item>
                 ) : (
                   <LabeledList.Item label="Belly Sprite to affect">
-                    <span style={{ color: 'red' }}>
-                      You do not have any bellysprites.
-                    </span>
+                    <Box textColor="red">You do not have any bellysprites.</Box>
                   </LabeledList.Item>
                 )}
                 {tail_option_shown &&
                 vore_sprite_flags.includes('Undergarment addition') ? (
-                  <div>
+                  <>
                     <LabeledList.Item label="Undergarment type to affect">
                       <Button
                         onClick={() =>
@@ -194,7 +185,7 @@ export const VoreSelectedBellyVisuals = (props: { belly: selectedData }) => {
                         {undergarment_if_none}
                       </Button>
                     </LabeledList.Item>
-                  </div>
+                  </>
                 ) : (
                   ''
                 )}
@@ -214,12 +205,12 @@ export const VoreSelectedBellyVisuals = (props: { belly: selectedData }) => {
                 ) : (
                   ''
                 )}
-              </span>
+              </>
             ) : (
               ''
             )}
           </LabeledList>
-        </Flex>
+        </Stack>
       </Section>
       <Section title="Belly Fullscreens Preview and Coloring">
         <Stack align="center">

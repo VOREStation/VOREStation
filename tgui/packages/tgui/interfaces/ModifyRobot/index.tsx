@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useBackend } from 'tgui/backend';
+import { Window } from 'tgui/layouts';
 import {
   Button,
   Divider,
@@ -10,8 +11,7 @@ import {
   Section,
   Stack,
   Tabs,
-} from 'tgui/components';
-import { Window } from 'tgui/layouts';
+} from 'tgui-core/components';
 
 import { LawManagerLaws, LawManagerLawSets } from '../LawManager';
 import { ModifyRobotNoModule } from './ModifyRobotNoModule';
@@ -160,7 +160,7 @@ export const ModifyRobot = (props) => {
         )}
         <LabeledList>
           <LabeledList.Item label="Player Selection">
-            <Stack inline align="baseline">
+            <Stack align="baseline">
               <Stack.Item>
                 <Dropdown
                   selected={target ? target.name : ''}
@@ -193,7 +193,6 @@ export const ModifyRobot = (props) => {
                       Rename
                     </Button>
                   </Stack.Item>
-                  <Stack.Item grow />
                   <Stack.Item>
                     <Button
                       icon={target.emagged ? 'sd-card' : 'bolt'}
@@ -213,7 +212,7 @@ export const ModifyRobot = (props) => {
           </LabeledList.Item>
           <LabeledList.Item label="AI Selection">
             {!!target?.module && (
-              <Stack inline align="baseline">
+              <Stack align="baseline">
                 <Stack.Item>
                   <Dropdown
                     selected={selected_ai || ''}

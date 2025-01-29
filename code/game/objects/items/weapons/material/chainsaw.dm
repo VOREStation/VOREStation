@@ -22,8 +22,6 @@
 
 /obj/item/chainsaw/Destroy()
 	STOP_PROCESSING(SSobj, src)
-	if(reagents)
-		qdel(reagents)
 	..()
 
 /obj/item/chainsaw/proc/turnOn(mob/user as mob)

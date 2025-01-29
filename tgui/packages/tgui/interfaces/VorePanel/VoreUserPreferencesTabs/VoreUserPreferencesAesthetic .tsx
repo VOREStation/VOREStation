@@ -1,5 +1,6 @@
-import { useBackend } from '../../../backend';
-import { Button, Flex, Section } from '../../../components';
+import { useBackend } from 'tgui/backend';
+import { Button, Section, Stack } from 'tgui-core/components';
+
 import { localPrefs } from '../types';
 import { VoreUserPreferenceItem } from '../VoreUserPreferenceItem';
 
@@ -11,18 +12,23 @@ export const VoreUserPreferencesAesthetic = (props: {
 
   return (
     <Section title="Aesthetic Preferences">
-      <Flex spacing={1} wrap="wrap" justify="center">
-        <Flex.Item basis="50%" grow={1}>
+      <Stack wrap="wrap" align="center" justify="center">
+        <Stack.Item
+          grow
+          style={{
+            marginLeft: '0.5em', // Remove if tgui core implements gap
+          }}
+        >
           <Button fluid icon="grin-tongue" onClick={() => act('setflavor')}>
             Set Taste
           </Button>
-        </Flex.Item>
-        <Flex.Item basis="50%">
+        </Stack.Item>
+        <Stack.Item basis="48%">
           <Button fluid icon="wind" onClick={() => act('setsmell')}>
             Set Smell
           </Button>
-        </Flex.Item>
-        <Flex.Item basis="50%" grow={1}>
+        </Stack.Item>
+        <Stack.Item basis="50%" grow>
           <Button
             onClick={() =>
               act('set_attribute', { attribute: 'b_msgs', msgtype: 'en' })
@@ -32,8 +38,8 @@ export const VoreUserPreferencesAesthetic = (props: {
           >
             Set Nutrition Examine Message
           </Button>
-        </Flex.Item>
-        <Flex.Item basis="50%">
+        </Stack.Item>
+        <Stack.Item basis="48%">
           <Button
             onClick={() =>
               act('set_attribute', { attribute: 'b_msgs', msgtype: 'ew' })
@@ -43,19 +49,19 @@ export const VoreUserPreferencesAesthetic = (props: {
           >
             Set Weight Examine Message
           </Button>
-        </Flex.Item>
-        <Flex.Item basis="50%" grow={1}>
+        </Stack.Item>
+        <Stack.Item basis="50%" grow>
           <VoreUserPreferenceItem spec={preferences.examine_nutrition} />
-        </Flex.Item>
-        <Flex.Item basis="50%">
+        </Stack.Item>
+        <Stack.Item basis="48%">
           <VoreUserPreferenceItem spec={preferences.examine_weight} />
-        </Flex.Item>
-        <Flex.Item basis="50%">
+        </Stack.Item>
+        <Stack.Item basis="50%">
           <Button fluid onClick={() => act('set_vs_color')} icon="palette">
             Vore Sprite Color
           </Button>
-        </Flex.Item>
-      </Flex>
+        </Stack.Item>
+      </Stack>
     </Section>
   );
 };

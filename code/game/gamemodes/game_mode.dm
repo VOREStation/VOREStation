@@ -218,6 +218,7 @@ var/global/list/additional_antag_types = list()
 		emergency_shuttle.auto_recall = 1
 
 	feedback_set_details("round_start","[time2text(world.realtime)]")
+	INVOKE_ASYNC(SSdbcore, TYPE_PROC_REF(/datum/controller/subsystem/dbcore, SetRoundStart))
 	if(ticker && ticker.mode)
 		feedback_set_details("game_mode","[ticker.mode]")
 	feedback_set_details("server_ip","[world.internet_address]:[world.port]")
@@ -473,7 +474,7 @@ var/global/list/additional_antag_types = list()
 /proc/display_roundstart_logout_report()
 	var/msg = span_bold("Roundstart logout report")
 	msg += "<br><br>"
-	for(var/mob/living/L in mob_list)
+	for(var/mob/living/L in living_mob_list)
 
 		if(L.ckey)
 			var/found = 0
@@ -500,7 +501,7 @@ var/global/list/additional_antag_types = list()
 					continue //Dead
 
 			continue //Happy connected client
-		for(var/mob/observer/dead/D in mob_list)
+		for(var/mob/observer/dead/D in dead_mob_list)
 			if(D.mind && (D.mind.original == L || D.mind.current == L))
 				if(L.stat == DEAD)
 					if(L.suiciding)	//Suicider

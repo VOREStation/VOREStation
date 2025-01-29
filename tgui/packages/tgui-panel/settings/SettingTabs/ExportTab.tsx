@@ -1,4 +1,3 @@
-import { toFixed } from 'common/math';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'tgui/backend';
 import {
@@ -6,11 +5,12 @@ import {
   Button,
   Collapsible,
   Divider,
-  Flex,
   LabeledList,
   NumberInput,
   Section,
-} from 'tgui/components';
+  Stack,
+} from 'tgui-core/components';
+import { toFixed } from 'tgui-core/math';
 
 import { purgeChatMessageArchive, saveChatToDisk } from '../../chat/actions';
 import { MESSAGE_TYPES } from '../../chat/constants';
@@ -36,7 +36,7 @@ export const ExportTab = (props) => {
   const [logConfirm, setLogConfirm] = useState(false);
   return (
     <Section>
-      <Flex align="baseline">
+      <Stack align="baseline">
         {logEnable ? (
           logConfirm ? (
             <Button
@@ -82,12 +82,12 @@ export const ExportTab = (props) => {
             Enable logging
           </Button>
         )}
-        <Flex.Item grow={1} />
-        <Flex.Item color="label">Round ID:&nbsp;</Flex.Item>
-        <Flex.Item color={game.roundId ? '' : 'red'}>
+        <Stack.Item grow />
+        <Stack.Item color="label">Round ID:&nbsp;</Stack.Item>
+        <Stack.Item color={game.roundId ? '' : 'red'}>
           {game.roundId ? game.roundId : 'ERROR'}
-        </Flex.Item>
-      </Flex>
+        </Stack.Item>
+      </Stack>
       {logEnable ? (
         <>
           <LabeledList>

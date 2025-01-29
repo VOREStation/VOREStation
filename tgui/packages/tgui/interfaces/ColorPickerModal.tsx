@@ -14,23 +14,22 @@ import {
   rgbaToHsva,
   validHex,
 } from 'common/colorpicker';
-import { clamp } from 'common/math';
-import { classes } from 'common/react';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { Pointer } from 'tgui/components';
 import { Interaction, Interactive } from 'tgui/components/Interactive';
 import {
+  Autofocus,
   Box,
   Button,
-  Flex,
   NumberInput,
   Section,
   Stack,
   Tooltip,
 } from 'tgui-core/components';
+import { clamp } from 'tgui-core/math';
+import { classes } from 'tgui-core/react';
 
 import { useBackend } from '../backend';
-import { Autofocus } from '../components/Autofocus';
 import { Window } from '../layouts';
 import { InputButtons } from './common/InputButtons';
 import { Loader } from './common/Loader';
@@ -284,8 +283,8 @@ const ColorSelector: React.FC<ColorSelectorProps> = React.memo(
     const hexColor = hsvaToHex(color);
 
     return (
-      <Flex direction="row">
-        <Flex.Item mr={2}>
+      <Stack direction="row">
+        <Stack.Item mr={2}>
           <Stack vertical>
             <Stack.Item>
               <div className="react-colorful">
@@ -323,8 +322,8 @@ const ColorSelector: React.FC<ColorSelectorProps> = React.memo(
               </Tooltip>
             </Stack.Item>
           </Stack>
-        </Flex.Item>
-        <Flex.Item grow fontSize="15px" lineHeight="24px">
+        </Stack.Item>
+        <Stack.Item grow fontSize="15px" lineHeight="24px">
           {showPresets ? (
             <ColorPresets
               setColor={(c) => handleChange(c)}
@@ -369,8 +368,8 @@ const ColorSelector: React.FC<ColorSelectorProps> = React.memo(
               <BlueRow color={color} handleChange={handleChange} />
             </Stack>
           )}
-        </Flex.Item>
-      </Flex>
+        </Stack.Item>
+      </Stack>
     );
   },
 );

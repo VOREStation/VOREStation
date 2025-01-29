@@ -49,6 +49,8 @@
 	var/autofocus
 	/// Boolean field describing if the tgui_color_picker was closed by the user.
 	var/closed
+	/// The user's presets
+	var/preset_colors
 
 /datum/tgui_color_picker/New(mob/user, message, title, default, timeout, autofocus)
 	src.autofocus = autofocus
@@ -59,6 +61,8 @@
 		src.timeout = timeout
 		start_time = world.time
 		QDEL_IN(src, timeout)
+	if(user)
+		src.preset_colors = user.read_preference(/datum/preference/text/preset_colors)
 
 /datum/tgui_color_picker/Destroy(force)
 	SStgui.close_uis(src)
@@ -80,6 +84,8 @@
 		ui.set_autoupdate(timeout > 0)
 
 /datum/tgui_color_picker/tgui_close(mob/user)
+	if(user)
+		user.write_preference_directly(/datum/preference/text/preset_colors, preset_colors)
 	. = ..()
 	closed = TRUE
 
@@ -99,7 +105,7 @@
 	. = list()
 	if(timeout)
 		.["timeout"] = CLAMP01((timeout - (world.time - start_time) - 1 SECONDS) / (timeout - 1 SECONDS))
-	.["presets"] = user.read_preference(/datum/preference/text/preset_colors)
+	.["presets"] = preset_colors
 
 /datum/tgui_color_picker/tgui_act(action, list/params, datum/tgui/ui)
 	. = ..()
@@ -124,20 +130,18 @@
 			SStgui.close_uis(src)
 			return TRUE
 		if("preset")
-			if(ui.user)
-				var/raw_data = lowertext(params["color"])
-				var/index = lowertext(params["index"])
-				var/colors = ui.user.read_preference(/datum/preference/text/preset_colors)
-				var/list/entries = splittext(colors, ";")
-				while(LAZYLEN(entries) < 20)
-					entries += "#FFFFFF"
-				if(LAZYLEN(entries) > 20)
-					entries.Cut(21)
-				var/hex = sanitize_hexcolor(raw_data)
-				if (!hex || !isnum(index) || entries[index] == hex)
-					return
-				entries[index] = hex
-				ui.user.write_preference_directly(/datum/preference/text/preset_colors, entries.Join(";"))
+			var/raw_data = lowertext(params["color"])
+			var/index = lowertext(params["index"])
+			var/list/entries = splittext(preset_colors, ";")
+			while(LAZYLEN(entries) < 20)
+				entries += "#FFFFFF"
+			if(LAZYLEN(entries) > 20)
+				entries.Cut(21)
+			var/hex = sanitize_hexcolor(raw_data)
+			if (!hex || !isnum(index) || entries[index] == hex)
+				return
+			entries[index] = hex
+			preset_colors = entries.Join(";")
 			return TRUE
 
 /datum/tgui_color_picker/proc/set_choice(choice)

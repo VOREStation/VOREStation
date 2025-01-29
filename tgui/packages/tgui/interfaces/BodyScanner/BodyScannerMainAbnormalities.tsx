@@ -1,4 +1,5 @@
-import { Box, Section } from '../../components';
+import { Box, Section } from 'tgui-core/components';
+
 import { abnormalities } from './constants';
 import { occupant } from './types';
 

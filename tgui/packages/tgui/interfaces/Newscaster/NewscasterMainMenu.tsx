@@ -1,5 +1,6 @@
-import { useBackend } from '../../backend';
-import { Button, Section } from '../../components';
+import { useBackend } from 'tgui/backend';
+import { Button, Section } from 'tgui-core/components';
+
 import {
   NEWSCASTER_SCREEN_NEWCHANNEL,
   NEWSCASTER_SCREEN_NEWSTORY,

@@ -1,5 +1,6 @@
-import { useBackend } from '../../backend';
-import { Button, LabeledList, Section, Slider } from '../../components';
+import { useBackend } from 'tgui/backend';
+import { Button, LabeledList, Section, Slider } from 'tgui-core/components';
+
 import { dispenseAmounts } from './constants';
 import { Data } from './types';
 

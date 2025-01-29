@@ -1,7 +1,6 @@
+import { useBackend } from 'tgui/backend';
 import { Window } from 'tgui/layouts';
 import { Box, Button, NoticeBox, Section, Stack } from 'tgui-core/components';
-
-import { useBackend } from '../backend';
 
 enum Evac {
   Gone = 'Gone',

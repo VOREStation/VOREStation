@@ -1,16 +1,16 @@
-import { decodeHtmlEntities } from 'common/string';
-
-import { useBackend } from '../../backend';
+import { useBackend } from 'tgui/backend';
 import {
   Box,
   Button,
-  Flex,
   Icon,
   Input,
   LabeledList,
   Section,
+  Stack,
   Table,
-} from '../../components';
+} from 'tgui-core/components';
+import { decodeHtmlEntities } from 'tgui-core/string';
+
 import { MESSTAB } from './constants';
 import { Data } from './types';
 
@@ -66,29 +66,29 @@ export const CommunicatorPhoneTab = (props) => {
     <Section title="Phone">
       <LabeledList>
         <LabeledList.Item label="Target EPv2 Address" verticalAlign="middle">
-          <Flex align="center">
-            <Flex.Item grow={1}>
+          <Stack align="center">
+            <Stack.Item grow>
               <Input
                 fluid
                 value={targetAddress}
                 onInput={(e, val) => act('write_target_address', { val: val })}
               />
-            </Flex.Item>
-            <Flex.Item>
+            </Stack.Item>
+            <Stack.Item>
               <Button
                 icon="times"
                 onClick={() => act('clear_target_address')}
               />
-            </Flex.Item>
-          </Flex>
+            </Stack.Item>
+          </Stack>
         </LabeledList.Item>
       </LabeledList>
-      <Flex align="center" justify="center" mt={1}>
-        <Flex.Item>
+      <Stack align="center" justify="center" mt={1}>
+        <Stack.Item>
           <Table>{finalArray}</Table>
-          <Flex width="100%" justify="space-between">
+          <Stack width="100%" justify="space-between">
             {/* Dial */}
-            <Flex.Item basis="33%">
+            <Stack.Item basis="33%">
               <Button
                 width="100%"
                 height="64px"
@@ -104,9 +104,9 @@ export const CommunicatorPhoneTab = (props) => {
                 />
               </Button>
               <Box textAlign="center">Dial</Box>
-            </Flex.Item>
+            </Stack.Item>
             {/* Message */}
-            <Flex.Item basis="33%">
+            <Stack.Item basis="33%">
               <Button
                 width="100%"
                 height="64px"
@@ -125,9 +125,9 @@ export const CommunicatorPhoneTab = (props) => {
                 />
               </Button>
               <Box textAlign="center">Message</Box>
-            </Flex.Item>
+            </Stack.Item>
             {/* Hang Up */}
-            <Flex.Item basis="33%">
+            <Stack.Item basis="33%">
               <Button
                 width="100%"
                 height="64px"
@@ -143,10 +143,10 @@ export const CommunicatorPhoneTab = (props) => {
                 />
               </Button>
               <Box textAlign="center">Hang Up</Box>
-            </Flex.Item>
-          </Flex>
-        </Flex.Item>
-      </Flex>
+            </Stack.Item>
+          </Stack>
+        </Stack.Item>
+      </Stack>
       <Section title="Connection Management" mt={2}>
         <LabeledList>
           <LabeledList.Item label="Camera Mode">

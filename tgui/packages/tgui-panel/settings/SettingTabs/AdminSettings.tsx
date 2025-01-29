@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'tgui/backend';
-import { Button, LabeledList, Section } from 'tgui/components';
+import { Button, LabeledList, Section } from 'tgui-core/components';
 
 import { updateSettings } from '../actions';
 import { selectSettings } from '../selectors';

@@ -1,15 +1,15 @@
-import { capitalize } from 'common/string';
 import { useState } from 'react';
 import { useBackend } from 'tgui/backend';
 import {
   Box,
   Button,
   Divider,
-  Flex,
   Image,
   Input,
   NoticeBox,
-} from 'tgui/components';
+  Stack,
+} from 'tgui-core/components';
+import { capitalize } from 'tgui-core/string';
 
 import { NoSpriteWarning } from '../components';
 import { getModuleIcon, prepareSearch } from '../functions';
@@ -27,8 +27,8 @@ export const ModifyRobotPKA = (props: { target: Target }) => {
       {!target.pka ? (
         <NoticeBox danger>{target.name} has no PKA installed.</NoticeBox>
       ) : (
-        <Flex height={!target.active ? '75%' : '80%'}>
-          <Flex.Item width="35%" fill>
+        <Stack height={!target.active ? '75%' : '80%'}>
+          <Stack.Item width="35%">
             <Divider />
             <Box>Remaining Capacity: {target.pka.capacity}</Box>
             <Divider />
@@ -63,16 +63,16 @@ export const ModifyRobotPKA = (props: { target: Target }) => {
                 );
               },
             )}
-          </Flex.Item>
-          <Flex.Item grow />
-          <Flex.Item>
+          </Stack.Item>
+          <Stack.Item grow />
+          <Stack.Item>
             <Image
               src={getModuleIcon(target.modules, target.pka.name)}
               width="150px"
             />
-          </Flex.Item>
-          <Flex.Item grow />
-          <Flex.Item width="35%" fill>
+          </Stack.Item>
+          <Stack.Item grow />
+          <Stack.Item width="35%">
             <Divider />
             <Box>
               Used Capacity: {target.pka.max_capacity - target.pka.capacity}
@@ -104,8 +104,8 @@ export const ModifyRobotPKA = (props: { target: Target }) => {
                 </Button>
               );
             })}
-          </Flex.Item>
-        </Flex>
+          </Stack.Item>
+        </Stack>
       )}
     </>
   );

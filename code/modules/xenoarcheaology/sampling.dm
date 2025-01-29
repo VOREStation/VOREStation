@@ -55,7 +55,7 @@
 
 	for(var/datum/find/F in container.finds)
 		var/responsive_reagent = get_responsive_reagent(F.find_type)
-		find_presence[responsive_reagent] = F.dissonance_spread
+		find_presence[responsive_reagent] = 25 //Just making this phoron because this this feature was axed 8 years ago.
 
 	var/total_presence = 0
 	for(var/carrier in find_presence)

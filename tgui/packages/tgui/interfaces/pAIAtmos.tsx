@@ -1,9 +1,8 @@
 import { filter } from 'common/collections';
-import { decodeHtmlEntities } from 'common/string';
-
-import { useBackend } from '../backend';
-import { LabeledList, Section } from '../components';
-import { Window } from '../layouts';
+import { useBackend } from 'tgui/backend';
+import { Window } from 'tgui/layouts';
+import { LabeledList, Section } from 'tgui-core/components';
+import { decodeHtmlEntities } from 'tgui-core/string';
 
 type Data = {
   aircontents: aircontent[];

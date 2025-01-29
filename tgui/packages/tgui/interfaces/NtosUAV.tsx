@@ -1,8 +1,7 @@
-import { BooleanLike } from 'common/react';
-
-import { useBackend } from '../backend';
-import { Box, Button, Flex, LabeledList, Section } from '../components';
-import { NtosWindow } from '../layouts';
+import { useBackend } from 'tgui/backend';
+import { NtosWindow } from 'tgui/layouts';
+import { Box, Button, LabeledList, Section, Stack } from 'tgui-core/components';
+import { BooleanLike } from 'tgui-core/react';
 
 type Data = {
   current_uav: { status: string; power: BooleanLike } | null;
@@ -57,8 +56,8 @@ export const NtosUAV = (props) => {
         <Section title="Paired UAVs">
           {(paired_uavs.length &&
             paired_uavs.map((uav) => (
-              <Flex key={uav.uavref} spacing={1}>
-                <Flex.Item grow={1}>
+              <Stack key={uav.uavref}>
+                <Stack.Item grow>
                   <Button
                     fluid
                     icon="quidditch"
@@ -68,15 +67,15 @@ export const NtosUAV = (props) => {
                   >
                     {uav.name}
                   </Button>
-                </Flex.Item>
-                <Flex.Item>
+                </Stack.Item>
+                <Stack.Item>
                   <Button
                     color="bad"
                     icon="times"
                     onClick={() => act('del_uav', { del_uav: uav.uavref })}
                   />
-                </Flex.Item>
-              </Flex>
+                </Stack.Item>
+              </Stack>
             ))) || <Box color="average">No UAVs Paired.</Box>}
         </Section>
       </NtosWindow.Content>

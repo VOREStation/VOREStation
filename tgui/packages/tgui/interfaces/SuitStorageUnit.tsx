@@ -1,17 +1,16 @@
-import { BooleanLike } from 'common/react';
-
-import { useBackend } from '../backend';
+import { useBackend } from 'tgui/backend';
+import { Window } from 'tgui/layouts';
 import {
   Box,
   Button,
-  Flex,
   Icon,
   Knob,
   LabeledList,
   NoticeBox,
   Section,
-} from '../components';
-import { Window } from '../layouts';
+  Stack,
+} from 'tgui-core/components';
+import { BooleanLike } from 'tgui-core/react';
 
 type Data = {
   broken: BooleanLike;
@@ -43,7 +42,7 @@ export const SuitStorageUnit = (props) => {
   }
 
   return (
-    <Window width={400} height={365}>
+    <Window width={430} height={370}>
       <Window.Content>{subTemplate}</Window.Content>
     </Window>
   );
@@ -171,8 +170,8 @@ const SuitStorageUnitPanel = (props) => {
       <Box>
         A small dial with a biohazard symbol next to it. It&apos;s pointing
         towards a gauge that reads {uv_super ? '15nm' : '185nm'}.
-        <Flex mt={1} align="center" textAlign="center">
-          <Flex.Item basis="50%" textAlign="center">
+        <Stack mt={1} align="center" textAlign="center">
+          <Stack.Item basis="50%" textAlign="center">
             <Knob
               size={2}
               inline
@@ -185,11 +184,11 @@ const SuitStorageUnitPanel = (props) => {
               format={(val) => (val ? '15nm' : '185nm')}
               onChange={(e, val) => act('toggleUV')}
             />
-          </Flex.Item>
-          <Flex.Item basis="50%" textAlign="center">
+          </Stack.Item>
+          <Stack.Item basis="50%" textAlign="center">
             <Icon name="biohazard" size={3} color="orange" />
-          </Flex.Item>
-        </Flex>
+          </Stack.Item>
+        </Stack>
       </Box>
       <br />
       <Box>
@@ -200,8 +199,8 @@ const SuitStorageUnitPanel = (props) => {
           <Box textColor="red">RED</Box>
         )}{' '}
         LED is on.
-        <Flex mt={1} align="center" textAlign="center">
-          <Flex.Item basis="50%" textAlign="center">
+        <Stack mt={1} align="center" textAlign="center">
+          <Stack.Item basis="50%" textAlign="center">
             <Button
               fontSize="2rem"
               color="grey"
@@ -213,12 +212,12 @@ const SuitStorageUnitPanel = (props) => {
               }}
               onClick={() => act('togglesafeties')}
             />
-          </Flex.Item>
-          <Flex.Item basis="50%" textAlign="center">
+          </Stack.Item>
+          <Stack.Item basis="50%" textAlign="center">
             <Icon name="circle" color={safeties ? 'black' : 'red'} mr={2} />
             <Icon name="circle" color={safeties ? 'green' : 'black'} />
-          </Flex.Item>
-        </Flex>
+          </Stack.Item>
+        </Stack>
       </Box>
     </Section>
   );
