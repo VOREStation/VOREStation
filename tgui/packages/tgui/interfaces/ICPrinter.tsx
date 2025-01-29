@@ -1,4 +1,3 @@
-import { filter } from 'common/collections';
 import { useBackend, useSharedState } from 'tgui/backend';
 import { Window } from 'tgui/layouts';
 import {
@@ -95,8 +94,7 @@ const ICPrinterCategories = (props) => {
     '',
   );
 
-  const selectedCategory = filter(
-    categories,
+  const selectedCategory = categories.filter(
     (cat: category) => cat.name === categoryTarget,
   )[0];
 

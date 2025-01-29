@@ -1,6 +1,6 @@
 // Currently not used!
 
-import { map, sortBy } from 'common/collections';
+import { sortBy } from 'common/collections';
 import { vecLength, vecSubtract } from 'common/vector';
 import { useBackend } from 'tgui/backend';
 import { Window } from 'tgui/layouts';
@@ -16,7 +16,7 @@ import { flow } from 'tgui-core/fp';
 import { clamp } from 'tgui-core/math';
 import { BooleanLike } from 'tgui-core/react';
 
-const coordsToVec = (coords) => map(coords.split(', '), parseFloat);
+const coordsToVec = (coords: string) => coords.split(', ').map(parseFloat);
 
 type Data = {
   currentArea: string;
@@ -40,7 +40,7 @@ export const Gps = (props) => {
   const { currentArea, currentCoords, globalmode, power, tag, updating } = data;
   const signals: signal[] = flow([
     (signals: signal[]) =>
-      map(signals, (signal, index) => {
+      signals.map((signal, index) => {
         // Calculate distance to the target. BYOND distance is capped to 127,
         // that's why we roll our own calculations here.
         const dist =
