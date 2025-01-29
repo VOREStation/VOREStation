@@ -32,6 +32,8 @@ module.exports = (env = {}, argv) => {
     target: ['web', 'browserslist:last 2 Edge versions'],
     entry: {
       tgui: ['./packages/tgui-polyfill', './packages/tgui'],
+      'tgui-panel': ['./packages/tgui-polyfill', './packages/tgui-panel'],
+      'tgui-say': ['./packages/tgui-polyfill', './packages/tgui-say'],
     },
     output: {
       path: argv.useTmpFolder
@@ -112,8 +114,8 @@ module.exports = (env = {}, argv) => {
         DEV_SERVER_IP: env.DEV_SERVER_IP || null,
       }),
       new ExtractCssPlugin({
-        filename: '[name].bundle.edge.css',
-        chunkFilename: '[name].bundle.edge.css',
+        filename: '[name].bundle.css',
+        chunkFilename: '[name].bundle.css',
       }),
     ],
   };
