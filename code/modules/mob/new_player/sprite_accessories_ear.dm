@@ -1108,6 +1108,14 @@
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
 
+/datum/sprite_accessory/ears/angler
+	name = "Angler bulb"
+	desc = ""
+	icon_state = "angler"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "angler_bulb"
+
 //Dino frills
 /datum/sprite_accessory/ears/dino_frills
 	name = "triceratops frills"
