@@ -660,18 +660,6 @@
 	src << browse("<html>[message]</html>","window=dropmessage;size=480x360;can_close=1")
 	qdel(src)
 
-/// Keydown event in a tgui window this client has open. Has keycode passed to it.
-/client/verb/TguiKeyDown(keycode as text)
-	set name = "TguiKeyDown"
-	set hidden = TRUE
-	return // stub
-
-/// Keyup event in a tgui window this client has open. Has keycode passed to it.
-/client/verb/TguiKeyUp(keycode as text) // Doesn't seem to currently fire?
-	set name = "TguiKeyUp"
-	set hidden = TRUE
-	return // stub
-
 /client/verb/toggle_fullscreen()
 	set name = "Toggle Fullscreen"
 	set category = "OOC.Client Settings"
