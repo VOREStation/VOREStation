@@ -97,9 +97,9 @@
 
 /obj/structure/closet/body_bag/update_icon()
 	if(opened)
-		icon_state = "base"
-	else
 		icon_state = "open"
+	else
+		icon_state = "base"
 
 	cut_overlays()
 	if(has_label)
