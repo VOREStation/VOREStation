@@ -23,8 +23,10 @@ export const CrewMonitorCrew = (props: { crew: crewmember[] }) => {
 
   const { isAI, map_levels } = data;
 
+  const our_levels: number[] = [-1, ...map_levels];
+
   const levelObject = Object.fromEntries(
-    map_levels.map((level) => [level.toString(), true]),
+    our_levels.map((level) => [level.toString(), true]),
   );
 
   const [locationSearch, setLocationSearch] = useState<object>(levelObject);
@@ -121,7 +123,7 @@ export const CrewMonitorCrew = (props: { crew: crewmember[] }) => {
           />
         </Table.Cell>
         <Table.Cell>
-          {map_levels
+          {our_levels
             .sort((a, b) => Number(a) - Number(b))
             .map((level) => (
               <Button
@@ -134,7 +136,7 @@ export const CrewMonitorCrew = (props: { crew: crewmember[] }) => {
                   });
                 }}
               >
-                {level.toString()}
+                {level === -1 ? '?' : level.toString()}
               </Button>
             ))}
           <Button

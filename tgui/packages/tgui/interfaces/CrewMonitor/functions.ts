@@ -51,7 +51,7 @@ export function getShownCrew(
         crew,
         (cm) =>
           (deceasedStatus && cm.dead === true) ||
-          (livingStatus && cm.stat < 1) ||
+          (livingStatus && (cm.stat === undefined || cm.stat < 1)) ||
           (unconsciousStatus && cm.stat === 1),
       );
     },

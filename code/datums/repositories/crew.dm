@@ -24,8 +24,8 @@ var/global/datum/repository/crew/crew_repository = new()
 	var/tracked = scan()
 	for(var/obj/item/clothing/under/C in tracked)
 		var/turf/pos = get_turf(C)
-		var/area/B = pos?.loc //VOREStation Add: No sensor in Dorm
-		if((C.has_sensor) && (pos?.z == zLevel) && (C.sensor_mode != SUIT_SENSOR_OFF) && !(B.flag_check(AREA_BLOCK_SUIT_SENSORS)) && !(is_jammed(C)) && !(is_vore_jammed(C))) //VOREStation Edit
+		var/area/B = pos?.loc //No sensor in Dorm
+		if((C.has_sensor) && (pos?.z == zLevel) && (C.sensor_mode != SUIT_SENSOR_OFF) && !(B.flag_check(AREA_BLOCK_SUIT_SENSORS)) && !(is_jammed(C)) && !(is_vore_jammed(C)))
 			if(ishuman(C.loc))
 				var/mob/living/carbon/human/H = C.loc
 				if(H.w_uniform != C)
