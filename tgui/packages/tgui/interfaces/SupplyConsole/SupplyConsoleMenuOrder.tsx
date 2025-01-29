@@ -47,7 +47,7 @@ export const SupplyConsoleMenuOrder = (props) => {
             {viewingPacks.map((pack) => (
               <Box key={pack.name}>
                 <Stack align="center" justify="flex-start">
-                  <Stack.Item basis="70%">
+                  <Stack.Item maxWidth="70%" basis="70%">
                     <Button
                       fluid
                       icon="shopping-cart"
