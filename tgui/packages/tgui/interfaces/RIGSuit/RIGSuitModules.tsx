@@ -2,7 +2,7 @@ import { useBackend } from 'tgui/backend';
 import { Box, Button, LabeledList, Section, Stack } from 'tgui-core/components';
 import { capitalize, toTitleCase } from 'tgui-core/string';
 
-import { Data } from './types';
+import type { Data } from './types';
 
 export const RIGSuitModules = (props) => {
   const { act, data } = useBackend<Data>();

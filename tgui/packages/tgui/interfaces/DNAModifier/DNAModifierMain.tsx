@@ -14,7 +14,7 @@ import { BooleanLike } from 'tgui-core/react';
 import { operations, rejuvenatorsDoses } from './constants';
 import { DNAModifierBlocks } from './DNAModifierBlocks';
 import { DNAModifierMainBuffers } from './DNAModifierMainBuffers';
-import { Data } from './types';
+import type { Data } from './types';
 
 export const DNAModifierMain = (props: { isDNAInvalid: BooleanLike }) => {
   const { act, data } = useBackend<Data>();

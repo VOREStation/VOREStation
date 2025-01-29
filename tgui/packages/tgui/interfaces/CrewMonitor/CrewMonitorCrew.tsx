@@ -9,7 +9,7 @@ import {
   getStatColor,
   getStatText,
 } from './functions';
-import { crewmember, Data } from './types';
+import type { crewmember, Data } from './types';
 
 export const CrewMonitorCrew = (props: { crew: crewmember[] }) => {
   const { act, data } = useBackend<Data>();

@@ -2,7 +2,7 @@ import { useBackend } from 'tgui/backend';
 import { COLORS } from 'tgui/constants';
 import { Box, Button, LabeledList, Section } from 'tgui-core/components';
 
-import { Data, modalData } from './types';
+import type { Data, modalData } from './types';
 
 export const viewRecordModalBodyOverride = (modal: modalData) => {
   const { act, data } = useBackend<Data>();

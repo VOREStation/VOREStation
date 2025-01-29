@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Tabs } from 'tgui-core/components';
 import { BooleanLike } from 'tgui-core/react';
 
-import { hostMob, selectedData } from './types';
+import type { hostMob, selectedData } from './types';
 import { VoreContentsPanel } from './VoreContentsPanel';
 import { VoreSelectedBellyControls } from './VoreSelectedBellyTabs/VoreSelectedBellyControls';
 import { VoreSelectedBellyDescriptions } from './VoreSelectedBellyTabs/VoreSelectedBellyDescriptions';

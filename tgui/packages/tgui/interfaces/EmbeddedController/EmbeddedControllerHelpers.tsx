@@ -8,7 +8,7 @@ import {
 } from 'tgui-core/components';
 import { BooleanLike } from 'tgui-core/react';
 
-import { status } from './types';
+import type { status } from './types';
 
 /** ***************************************************************************\
 *                             HELPER COMPONENTS                                *

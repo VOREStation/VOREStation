@@ -5,7 +5,7 @@ import { ComplexModal } from '../common/ComplexModal';
 import { DNAModifierIrradiating } from './DNAModifierIrradiating';
 import { DNAModifierMain } from './DNAModifierMain';
 import { DNAModifierOccupant } from './DNAModifierOccupant';
-import { Data } from './types';
+import type { Data } from './types';
 
 export const DNAModifier = (props) => {
   const { data } = useBackend<Data>();

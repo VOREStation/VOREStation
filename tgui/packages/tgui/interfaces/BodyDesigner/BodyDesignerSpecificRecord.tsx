@@ -10,7 +10,7 @@ import {
 } from 'tgui-core/components';
 import { capitalize } from 'tgui-core/string';
 
-import { activeBodyRecord } from './types';
+import type { activeBodyRecord } from './types';
 
 export const BodyDesignerSpecificRecord = (props: {
   activeBodyRecord: activeBodyRecord;

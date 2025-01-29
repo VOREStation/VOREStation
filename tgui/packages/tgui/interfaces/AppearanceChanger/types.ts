@@ -1,12 +1,5 @@
 import { BooleanLike } from 'tgui-core/react';
 
-export const SPRITE_ACCESSORY_COLOR_CHANNEL_NAMES = [
-  'Primary',
-  'Secondary',
-  'Tertiary',
-  'Quaternary',
-];
-
 export type Data = {
   name: string;
   specimen: string;

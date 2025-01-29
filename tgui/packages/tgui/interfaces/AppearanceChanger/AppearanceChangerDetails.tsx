@@ -7,7 +7,8 @@ import {
   Section,
 } from 'tgui-core/components';
 
-import { Data, SPRITE_ACCESSORY_COLOR_CHANNEL_NAMES } from './types';
+import { SPRITE_ACCESSORY_COLOR_CHANNEL_NAMES } from './constants';
+import type { Data } from './types';
 
 export const AppearanceChangerColors = (props) => {
   const { act, data } = useBackend<Data>();

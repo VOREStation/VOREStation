@@ -7,7 +7,7 @@ import { BodyDesignerMain } from './BodyDesignerMain';
 import { BodyDesignerOOCNotes } from './BodyDesignerOOCNotes';
 import { BodyDesignerSpecificRecord } from './BodyDesignerSpecificRecord';
 import { BodyDesignerStockRecords } from './BodyDesignerStockRecords';
-import { Data } from './types';
+import type { Data } from './types';
 
 export const BodyDesigner = (props) => {
   const { act, data } = useBackend<Data>();

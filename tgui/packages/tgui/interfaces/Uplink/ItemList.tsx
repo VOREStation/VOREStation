@@ -4,7 +4,7 @@ import { formatMoney } from 'tgui-core/format';
 import { BooleanLike } from 'tgui-core/react';
 import { decodeHtmlEntities } from 'tgui-core/string';
 
-import { item } from './types';
+import type { item } from './types';
 
 export const ItemList = (props: {
   compactMode: BooleanLike;

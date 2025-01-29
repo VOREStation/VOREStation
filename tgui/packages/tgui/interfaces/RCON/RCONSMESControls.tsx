@@ -5,7 +5,7 @@ import { BooleanLike } from 'tgui-core/react';
 import { capitalize } from 'tgui-core/string';
 
 import { POWER_MUL } from './constants';
-import { rconSmes } from './types';
+import type { rconSmes } from './types';
 
 export const SMESControls = (props: { way: string; smes: rconSmes }) => {
   const { act } = useBackend();

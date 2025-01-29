@@ -1,7 +1,7 @@
 import { useBackend } from 'tgui/backend';
 import { Button, Section } from 'tgui-core/components';
 
-import { activeBodyRecord } from './types';
+import type { activeBodyRecord } from './types';
 
 export const BodyDesignerOOCNotes = (props: {
   activeBodyRecord: activeBodyRecord;

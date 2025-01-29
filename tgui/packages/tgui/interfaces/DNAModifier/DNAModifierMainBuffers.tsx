@@ -1,7 +1,7 @@
 import { useBackend } from 'tgui/backend';
 import { Box, Button, Icon, LabeledList, Section } from 'tgui-core/components';
 
-import { buffData, Data } from './types';
+import type { buffData, Data } from './types';
 
 export const DNAModifierMainBuffers = (props) => {
   const { data } = useBackend<Data>();

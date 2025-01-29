@@ -5,7 +5,7 @@ import { flow } from 'tgui-core/fp';
 
 import { CrewMonitorCrew } from './CrewMonitorCrew';
 import { CrewMonitorMapView } from './CrewMonitorMapView';
-import { crewmember, Data } from './types';
+import type { crewmember, Data } from './types';
 
 export const CrewMonitorContent = (props: {
   tabIndex: number;

@@ -6,7 +6,7 @@ import { BodyScannerMainOccupant } from './BodyScannerMainOccupant';
 import { BodyScannerMainOrgansExternal } from './BodyScannerMainOrgansExternal';
 import { BodyScannerMainOrgansInternal } from './BodyScannerMainOrgansInternal';
 import { BodyScannerMainReagents } from './BodyScannerMainReagents';
-import { occupant } from './types';
+import type { occupant } from './types';
 
 export const BodyScannerMain = (props: { occupant: occupant }) => {
   const { occupant } = props;

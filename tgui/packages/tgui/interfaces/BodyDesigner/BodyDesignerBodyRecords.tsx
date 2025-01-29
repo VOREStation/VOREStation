@@ -1,7 +1,7 @@
 import { useBackend } from 'tgui/backend';
 import { Button, Section } from 'tgui-core/components';
 
-import { bodyrecord } from './types';
+import type { bodyrecord } from './types';
 
 export const BodyDesignerBodyRecords = (props: {
   bodyrecords: bodyrecord[];

@@ -4,7 +4,7 @@ import { useBackend } from 'tgui/backend';
 import { Box, Button, Section, Stack } from 'tgui-core/components';
 import { flow } from 'tgui-core/fp';
 
-import { Data, supplyPack } from './types';
+import type { Data, supplyPack } from './types';
 
 export const SupplyConsoleMenuOrder = (props) => {
   const { act, data } = useBackend<Data>();
