@@ -59,11 +59,11 @@ export const CrewMonitorCrew = (props: { crew: crewmember[] }) => {
   return (
     <Table>
       <Table.Row header>
-        <Table.Cell>Name</Table.Cell>
+        <Table.Cell width="35%">Name</Table.Cell>
         <Table.Cell>Status</Table.Cell>
-        <Table.Cell>Location</Table.Cell>
+        <Table.Cell width="30%">Location</Table.Cell>
       </Table.Row>
-      <Table.Row>
+      <Table.Row mb="rem">
         <Table.Cell>
           <Stack>
             <Stack.Item grow>
@@ -78,10 +78,10 @@ export const CrewMonitorCrew = (props: { crew: crewmember[] }) => {
               <Button
                 selected={sortType === 'name'}
                 icon={nameSortOrder ? 'arrow-down' : 'arrow-up'}
-                height="19px"
                 tooltip={nameSortOrder ? 'Descending order' : 'Ascending order'}
                 tooltipPosition="bottom-end"
                 ml="0.5rem"
+                mr="1rem"
                 onClick={() => {
                   setSortType('name');
                   setNameSortOrder(!nameSortOrder);
@@ -112,7 +112,6 @@ export const CrewMonitorCrew = (props: { crew: crewmember[] }) => {
           <Button
             selected={sortType === 'damage'}
             icon={damageSortOrder ? 'arrow-down' : 'arrow-up'}
-            height="19px"
             tooltip={damageSortOrder ? 'Descending order' : 'Ascending order'}
             tooltipPosition="bottom-end"
             ml="0.5rem"
@@ -142,7 +141,6 @@ export const CrewMonitorCrew = (props: { crew: crewmember[] }) => {
           <Button
             selected={sortType === 'location'}
             icon={locationSortOrder ? 'arrow-down' : 'arrow-up'}
-            height="19px"
             tooltip={locationSortOrder ? 'Descending order' : 'Ascending order'}
             tooltipPosition="bottom-end"
             ml="0.5rem"
