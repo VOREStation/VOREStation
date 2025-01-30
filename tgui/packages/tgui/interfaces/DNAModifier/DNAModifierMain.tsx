@@ -7,7 +7,6 @@ import {
   Knob,
   LabeledList,
   Section,
-  Stack,
   Tabs,
 } from 'tgui-core/components';
 
@@ -22,31 +21,6 @@ export const DNAModifierMain = (props /* : {isDNAInvalid: BooleanLike} */) => {
 
   const { selectedMenuKey, hasOccupant } = data;
 
-  if (!hasOccupant) {
-    return (
-      <Section flexGrow>
-        <Stack height="100%">
-          <Stack.Item grow align="center" textAlign="center" color="label">
-            <Icon name="user-slash" mb="0.5rem" size={5} />
-            <br />
-            No occupant in DNA modifier.
-          </Stack.Item>
-        </Stack>
-      </Section>
-    );
-  } else if (props.isDNAInvalid) {
-    return (
-      <Section flexGrow>
-        <Stack height="100%">
-          <Stack.Item grow align="center" textAlign="center" color="label">
-            <Icon name="user-slash" mb="0.5rem" size={5} />
-            <br />
-            No operation possible on this subject.
-          </Stack.Item>
-        </Stack>
-      </Section>
-    );
-  }
   let body;
   if (selectedMenuKey === 'se') {
     body = (
