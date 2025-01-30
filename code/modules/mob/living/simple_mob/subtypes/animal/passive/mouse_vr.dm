@@ -13,7 +13,7 @@
 	universal_understand = 1
 
 /obj/item/holder/mouse/attack_self(var/mob/U)
-	for(var/mob/living/simple_mob/M in src.contents)
+	for(var/mob/living/simple_mob/M in contents)
 		if((I_HELP) && U.checkClickCooldown()) //a little snowflakey, but makes it use the same cooldown as interacting with non-inventory objects
 			U.setClickCooldown(U.get_attack_speed()) //if there's a cleaner way in baycode, I'll change this
 			U.visible_message(span_notice("[U] [M.response_help] \the [M]."))
@@ -21,7 +21,7 @@
 //Jank grabber that uses the 'attack_hand' insead of 'MouseDrop'
 /mob/living/simple_mob/animal/passive/mouse/attack_hand(mob/user)
 	var/mob/living/carbon/human/H = user
-	if(holder_type && issmall(src) && istype(H) && !H.lying && Adjacent(H) && (src.a_intent == I_HELP && H.a_intent == I_HELP))
+	if(holder_type && issmall(src) && istype(H) && !H.lying && Adjacent(H) && (a_intent == I_HELP && H.a_intent == I_HELP))
 		if(!issmall(H) || !ishuman(src))
 			get_scooped(H, (H == src))
 		return
@@ -33,7 +33,7 @@
 		return
 
 	if(self_grab)
-		if(src.incapacitated()) return
+		if(incapacitated()) return
 	else
 		if(grabber.incapacitated()) return
 

@@ -247,7 +247,7 @@
 
 /mob/living/silicon/robot/proc/init()
 	aiCamera = new/obj/item/camera/siliconcam/robot_camera(src)
-	laws = new global.using_map.default_law_type // VOREstation edit: use map's default
+	laws = new global.using_map.default_law_type //use map's default
 	additional_law_channels["Binary"] = "#b"
 	var/new_ai = select_active_ai_with_fewest_borgs()
 	if(new_ai)
@@ -404,7 +404,7 @@
 			flavor_text = module_flavour
 		else
 			flavor_text = client.prefs.flavour_texts_robot["Default"]
-		// Vorestation Edit: and meta info
+		//and meta info
 		ooc_notes = client.prefs.read_preference(/datum/preference/text/living/ooc_notes)
 		ooc_notes_likes = client.prefs.read_preference(/datum/preference/text/living/ooc_notes_likes)
 		ooc_notes_dislikes = client.prefs.read_preference(/datum/preference/text/living/ooc_notes_dislikes)
@@ -728,7 +728,7 @@
 		var/obj/item/borg/upgrade/U = W
 		if(!opened)
 			to_chat(user, span_filter_notice("You must access the borgs internals!"))
-		else if(!src.module && U.require_module)
+		else if(!module && U.require_module)
 			to_chat(user, span_filter_notice("The borg must choose a module before it can be upgraded!"))
 		else if(user == src && istype(W,/obj/item/borg/upgrade/utility/reset))
 			to_chat(user, span_warning("You are restricted from reseting your own module."))
@@ -775,7 +775,7 @@
 	return
 
 /mob/living/silicon/robot/proc/module_reset(var/notify = TRUE)
-	transform_with_anim() //VOREStation edit: sprite animation
+	transform_with_anim() //sprite animation
 	uneq_all()
 	hud_used.update_robot_modules_display(TRUE)
 	modtype = initial(modtype)
@@ -1066,11 +1066,11 @@
 	update_icon()
 
 /mob/living/silicon/robot/proc/sensor_mode() //Medical/Security HUD controller for borgs
-	set name = "Toggle Sensor Augmentation" //VOREStation Add
+	set name = "Toggle Sensor Augmentation"
 	set category = "Abilities.Silicon"
 	set desc = "Augment visual feed with internal sensor overlays."
-	sensor_type = !sensor_type //VOREStation Add
-	to_chat(src, "You [sensor_type ? "enable" : "disable"] your sensors.") //VOREStation Add
+	sensor_type = !sensor_type
+	to_chat(src, "You [sensor_type ? "enable" : "disable"] your sensors.")
 	toggle_sensor_mode()
 
 /mob/living/silicon/robot/proc/repick_laws()

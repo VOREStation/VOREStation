@@ -165,7 +165,7 @@
 		SetStunned(0)
 		SetWeakened(0)
 		radiation = 0
-		heal_overall_damage(src.getBruteLoss(), src.getFireLoss())
+		heal_overall_damage(getBruteLoss(), getFireLoss())
 		reagents.clear_reagents()
 		to_chat(src, span_notice("You have regenerated."))
 		visible_message(span_warning("[src] appears to wake from the dead, having healed all wounds."))

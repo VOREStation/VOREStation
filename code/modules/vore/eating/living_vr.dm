@@ -1179,7 +1179,7 @@
 	if(href_list["vore_prefs"])
 		display_voreprefs(usr)
 	if(href_list["ooc_notes"])
-		src.Examine_OOC(usr)
+		Examine_OOC(usr)
 	if(href_list["edit_ooc_notes"])
 		if(usr == src)
 			set_metainfo_panel()

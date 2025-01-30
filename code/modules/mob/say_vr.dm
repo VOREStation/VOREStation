@@ -17,9 +17,9 @@
 
 	client?.stop_thinking()
 	if(use_me)
-		src.emote_vr("me",4,message)
+		emote_vr("me",4,message)
 	else
-		src.emote_vr(message)
+		emote_vr(message)
 
 /mob/verb/me_verb_subtle_custom(message as message) // Literally same as above but with mode_selection set to true
 	set name = "Subtle (Custom)"
@@ -35,9 +35,9 @@
 
 	client?.stop_thinking()
 	if(use_me)
-		src.emote_vr("me",4,message,TRUE)
+		emote_vr("me",4,message,TRUE)
 	else
-		src.emote_vr(message)
+		emote_vr(message)
 
 /mob/proc/custom_emote_vr(var/m_type=1,var/message = null,var/mode_selection = FALSE) //This would normally go in emote.dm
 	if(stat || !use_me && usr == src)
