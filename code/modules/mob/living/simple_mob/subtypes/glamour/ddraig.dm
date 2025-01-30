@@ -242,8 +242,7 @@
 
 		new_mob.mob_tf(M)
 
-		spawn(30 SECONDS)
-			new_mob.revert_mob_tf() //TF them back after 30 seconds, basically takes them out of the fight for a short time.
+		addtimer(CALLBACK(new_mob, TYPE_PROC_REF(/mob/living, revert_mob_tf)), 30 SECONDS, TIMER_DELETE_ME)
 
 /obj/item/projectile/beam/mouselaser/ddraig/spawn_mob(var/mob/living/target)
 	var/list/tf_list = list(/mob/living/simple_mob/animal/passive/mouse,
