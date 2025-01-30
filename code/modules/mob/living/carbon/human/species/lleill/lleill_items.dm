@@ -430,7 +430,7 @@
 	return new_mob
 
 /obj/item/glamour_unstable/proc/size_change(mob/living/L)
-	var/new_size = rand(0.25,2)
+	var/new_size = (rand(25,200))/100
 	L.resize(new_size, ignore_prefs = FALSE)
 
 /obj/item/glamour_unstable/attack_hand(mob/user)
