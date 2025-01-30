@@ -353,7 +353,7 @@
 	var/mob/living/M = user
 	if(!istype(M))
 		return
-	user.visible_message(span_warning("[user] uses \the [src]!"), span_danger("You use \the [src]!"))
+	user.visible_message(span_warning("[user] triggers \the [src]!"), span_danger("You trigger \the [src]!"))
 	var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread()
 	s.set_up(5, 1, get_turf(src))
 	s.start()
