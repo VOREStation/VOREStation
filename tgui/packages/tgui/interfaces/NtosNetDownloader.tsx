@@ -1,18 +1,17 @@
-import { toFixed } from 'common/math';
-import { BooleanLike } from 'common/react';
-
-import { useBackend } from '../backend';
+import { useBackend } from 'tgui/backend';
+import { NtosWindow } from 'tgui/layouts';
 import {
   Box,
   Button,
-  Flex,
   Icon,
   LabeledList,
   NoticeBox,
   ProgressBar,
   Section,
-} from '../components';
-import { NtosWindow } from '../layouts';
+  Stack,
+} from 'tgui-core/components';
+import { toFixed } from 'tgui-core/math';
+import { BooleanLike } from 'tgui-core/react';
 
 type Data = {
   PC_device_theme: string;
@@ -105,14 +104,14 @@ const Program = (props: { program: program }) => {
   const disk_free = disk_size - disk_used;
   return (
     <Box mb={3}>
-      <Flex align="baseline">
-        <Flex.Item bold grow={1}>
+      <Stack align="baseline">
+        <Stack.Item bold grow>
           {program.filedesc}
-        </Flex.Item>
-        <Flex.Item color="label" nowrap>
+        </Stack.Item>
+        <Stack.Item color="label" nowrap>
           {program.size} GQ
-        </Flex.Item>
-        <Flex.Item ml={2} width="110px" textAlign="center">
+        </Stack.Item>
+        <Stack.Item ml={2} width="110px" textAlign="center">
           {(program.filename === downloadname && (
             <ProgressBar
               color="green"
@@ -150,8 +149,8 @@ const Program = (props: { program: program }) => {
                 Download
               </Button>
             )}
-        </Flex.Item>
-      </Flex>
+        </Stack.Item>
+      </Stack>
       {program.compatibility !== 'Compatible' && (
         <Box mt={1} italic fontSize="12px" position="relative">
           <Icon mx={1} color="red" name="times" />

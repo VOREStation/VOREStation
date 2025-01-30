@@ -1,7 +1,7 @@
-import { decodeHtmlEntities } from 'common/string';
+import { useBackend } from 'tgui/backend';
+import { Button, Section } from 'tgui-core/components';
+import { decodeHtmlEntities } from 'tgui-core/string';
 
-import { useBackend } from '../../backend';
-import { Button, Section } from '../../components';
 import {
   NEWSCASTER_SCREEN_MAIN,
   NEWSCASTER_SCREEN_SELECTEDCHANNEL,

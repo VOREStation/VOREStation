@@ -1,8 +1,7 @@
-import { BooleanLike } from 'common/react';
-
-import { useBackend } from '../backend';
-import { Box, Button, Icon, Input, Section, Table } from '../components';
-import { NtosWindow } from '../layouts';
+import { useBackend } from 'tgui/backend';
+import { NtosWindow } from 'tgui/layouts';
+import { Box, Button, Icon, Input, Section, Table } from 'tgui-core/components';
+import { BooleanLike } from 'tgui-core/react';
 
 type Data = {
   can_admin: BooleanLike;

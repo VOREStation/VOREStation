@@ -1,7 +1,7 @@
 import { useState } from 'react';
+import { useBackend } from 'tgui/backend';
+import { Box, Icon, Tabs } from 'tgui-core/components';
 
-import { useBackend } from '../../backend';
-import { Box, Icon, Tabs } from '../../components';
 import {
   MessageMonitorAdmin,
   MessageMonitorLogs,

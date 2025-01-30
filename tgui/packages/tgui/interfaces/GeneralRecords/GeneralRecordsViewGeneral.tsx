@@ -1,5 +1,6 @@
-import { useBackend } from '../../backend';
-import { Box, Button, Image, LabeledList, Section } from '../../components';
+import { useBackend } from 'tgui/backend';
+import { Box, Button, Image, LabeledList, Section } from 'tgui-core/components';
+
 import { modalOpen } from '../common/ComplexModal';
 import { doEdit } from './functions';
 import { Data } from './types';

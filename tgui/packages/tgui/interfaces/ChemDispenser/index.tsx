@@ -1,6 +1,7 @@
-import { useBackend } from '../../backend';
-import { Stack } from '../../components';
-import { Window } from '../../layouts';
+import { useBackend } from 'tgui/backend';
+import { Window } from 'tgui/layouts';
+import { Stack } from 'tgui-core/components';
+
 import { ChemDispenserBeaker } from './ChemDispenserBeaker';
 import { ChemDispenserChemicals } from './ChemDispenserChemicals';
 import { ChemDispenserRecipes } from './ChemDispenserRecipes';

@@ -10,6 +10,7 @@ SUBSYSTEM_DEF(persist)
 	flags = SS_BACKGROUND|SS_NO_INIT|SS_KEEP_TIMING
 	runlevels = RUNLEVEL_GAME|RUNLEVEL_POSTGAME
 	var/list/currentrun = list()
+	var/list/query_stack = list()
 
 /datum/controller/subsystem/persist/fire(var/resumed = FALSE)
 	update_department_hours(resumed)
@@ -20,7 +21,7 @@ SUBSYSTEM_DEF(persist)
 		return
 
 	establish_db_connection()
-	if(!dbcon.IsConnected())
+	if(!SSdbcore.IsConnected())
 		src.currentrun.Cut()
 		return
 	if(!resumed)
@@ -29,6 +30,7 @@ SUBSYSTEM_DEF(persist)
 
 	//cache for sanic speed (lists are references anyways)
 	var/list/currentrun = src.currentrun
+	var/list/query_stack = src.query_stack
 	while (currentrun.len)
 		var/mob/M = currentrun[currentrun.len]
 		currentrun.len--
@@ -85,11 +87,20 @@ SUBSYSTEM_DEF(persist)
 		var/sql_dpt = sql_sanitize_text(department_earning)
 		var/sql_bal = text2num("[C.department_hours[department_earning]]")
 		var/sql_total = text2num("[C.play_hours[department_earning]]")
-		var/DBQuery/query = dbcon.NewQuery("INSERT INTO vr_player_hours (ckey, department, hours, total_hours) VALUES ('[sql_ckey]', '[sql_dpt]', [sql_bal], [sql_total]) ON DUPLICATE KEY UPDATE hours = VALUES(hours), total_hours = VALUES(total_hours)")
-		query.Execute()
+		var/list/entry = list(
+			"ckey" = sql_ckey,
+			"department" = sql_dpt,
+			"hours" = sql_bal,
+			"total_hours" = sql_total
+		)
+		query_stack += list(entry)
 
 		if (MC_TICK_CHECK)
 			return
+
+	if(query_stack.len)
+		SSdbcore.MassInsert(format_table_name("vr_player_hours"), query_stack, duplicate_key = "ON DUPLICATE KEY UPDATE hours = VALUES(hours), total_hours = VALUES(total_hours)")
+		query_stack.Cut()
 
 // This proc tries to find the job datum of an arbitrary mob.
 /datum/controller/subsystem/persist/proc/detect_job(var/mob/M)

@@ -1,5 +1,6 @@
-import { useBackend } from '../../backend';
-import { Box, Button, Flex, Icon, Section } from '../../components';
+import { useBackend } from 'tgui/backend';
+import { Box, Button, Icon, Section, Stack } from 'tgui-core/components';
+
 import { Data } from './types';
 
 export const SleeperEmpty = (props) => {
@@ -7,8 +8,8 @@ export const SleeperEmpty = (props) => {
   const { isBeakerLoaded } = data;
   return (
     <Section textAlign="center" flexGrow>
-      <Flex height="100%">
-        <Flex.Item grow="1" align="center" color="label">
+      <Stack height="100%">
+        <Stack.Item grow align="center" color="label">
           <Icon name="user-slash" mb="0.5rem" size={5} />
           <br />
           No occupant detected.
@@ -20,8 +21,8 @@ export const SleeperEmpty = (props) => {
             </Box>
           )) ||
             null}
-        </Flex.Item>
-      </Flex>
+        </Stack.Item>
+      </Stack>
     </Section>
   );
 };

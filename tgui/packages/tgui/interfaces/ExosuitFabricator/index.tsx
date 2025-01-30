@@ -1,6 +1,7 @@
-import { useBackend, useSharedState } from '../../backend';
-import { Box, Button, Flex, Section } from '../../components';
-import { Window } from '../../layouts';
+import { useBackend, useSharedState } from 'tgui/backend';
+import { Window } from 'tgui/layouts';
+import { Box, Button, Section, Stack } from 'tgui-core/components';
+
 import { materialArrayToObj, queueCondFormat } from './functions';
 import { Materials } from './Material';
 import { PartLists, PartSets } from './Parts';
@@ -39,14 +40,14 @@ export const ExosuitFabricator = (props) => {
   return (
     <Window width={1100} height={640}>
       <Window.Content scrollable>
-        <Flex fillPositionedParent direction="column">
-          <Flex>
-            <Flex.Item ml={1} mr={1} mt={1} basis="75%" grow={1}>
+        <Stack fillPositionedParent vertical>
+          <Stack>
+            <Stack.Item ml={1} mr={1} mt={1} basis="75%" grow>
               <Section title="Materials">
                 <Materials displayAllMat={displayAllMat} />
               </Section>
-            </Flex.Item>
-            <Flex.Item mt={1} mr={1}>
+            </Stack.Item>
+            <Stack.Item mt={1} mr={1}>
               <Section title="Settings" height="100%">
                 <Button.Checkbox
                   onClick={() => setDisplayMatCost(!displayMatCost)}
@@ -77,11 +78,11 @@ export const ExosuitFabricator = (props) => {
                 )) ||
                   null}
               </Section>
-            </Flex.Item>
-          </Flex>
-          <Flex.Item grow={1} m={1}>
-            <Flex spacing={1} height="100%" overflowY="hide">
-              <Flex.Item position="relative" basis="20%">
+            </Stack.Item>
+          </Stack>
+          <Stack.Item grow m={1}>
+            <Stack height="100%" overflowY="hide">
+              <Stack.Item position="relative" basis="20%">
                 <Section
                   height="100%"
                   overflowY="auto"
@@ -92,25 +93,25 @@ export const ExosuitFabricator = (props) => {
                 >
                   <PartSets />
                 </Section>
-              </Flex.Item>
-              <Flex.Item position="relative" grow={1}>
+              </Stack.Item>
+              <Stack.Item position="relative" grow>
                 <Box fillPositionedParent overflowY="auto">
                   <PartLists
                     queueMaterials={materialTally}
                     materials={materialAsObj}
                   />
                 </Box>
-              </Flex.Item>
-              <Flex.Item width="420px" position="relative">
+              </Stack.Item>
+              <Stack.Item width="420px" position="relative">
                 <Queue
                   queueMaterials={materialTally}
                   missingMaterials={missingMatTally}
                   textColors={textColors}
                 />
-              </Flex.Item>
-            </Flex>
-          </Flex.Item>
-        </Flex>
+              </Stack.Item>
+            </Stack>
+          </Stack.Item>
+        </Stack>
       </Window.Content>
     </Window>
   );

@@ -2,12 +2,11 @@ import { useBackend } from 'tgui/backend';
 import {
   Button,
   Divider,
-  Flex,
   Icon,
   NoticeBox,
   Section,
   Stack,
-} from 'tgui/components';
+} from 'tgui-core/components';
 
 import { RankIcon } from '../common/RankIcon';
 import { Target } from './types';
@@ -31,20 +30,20 @@ export const ModifyRobotNoModule = (props: { target: Target }) => {
           ' combat module option for this unit!'
         }
       >
-        <Flex>
-          <Flex.Item>
+        <Stack>
+          <Stack.Item>
             <Icon name="circle-radiation" size={2} />
-          </Flex.Item>
-          <Flex.Item grow={1}>
+          </Stack.Item>
+          <Stack.Item grow>
             {(target.crisis_override ? 'Disable' : 'Enable') +
               ' Crisis Override'}
-          </Flex.Item>
-        </Flex>
+          </Stack.Item>
+        </Stack>
       </Button>
       <Divider />
-      <Flex>
-        <Flex.Item grow />
-        <Flex.Item shrink>
+      <Stack>
+        <Stack.Item grow />
+        <Stack.Item shrink>
           <Section title="Active Restrictions">
             <Stack fill>
               <Stack.Item fillPositionedParent>
@@ -60,20 +59,20 @@ export const ModifyRobotNoModule = (props: { target: Target }) => {
                         })
                       }
                     >
-                      <Flex>
-                        <Flex.Item>
+                      <Stack>
+                        <Stack.Item>
                           {RankIcon({ rank: active_restriction, color: '' })}
-                        </Flex.Item>
-                        <Flex.Item grow={1}>{active_restriction}</Flex.Item>
-                      </Flex>
+                        </Stack.Item>
+                        <Stack.Item grow>{active_restriction}</Stack.Item>
+                      </Stack>
                     </Button>
                   );
                 })}
               </Stack.Item>
             </Stack>
           </Section>
-        </Flex.Item>
-        <Flex.Item shrink>
+        </Stack.Item>
+        <Stack.Item shrink>
           <Section title="Possible Restrictions">
             <Stack fill>
               <Stack.Item fillPositionedParent>
@@ -89,21 +88,21 @@ export const ModifyRobotNoModule = (props: { target: Target }) => {
                         })
                       }
                     >
-                      <Flex>
-                        <Flex.Item>
+                      <Stack>
+                        <Stack.Item>
                           {RankIcon({ rank: possible_restriction, color: '' })}
-                        </Flex.Item>
-                        <Flex.Item grow={1}>{possible_restriction}</Flex.Item>
-                      </Flex>
+                        </Stack.Item>
+                        <Stack.Item grow>{possible_restriction}</Stack.Item>
+                      </Stack>
                     </Button>
                   );
                 })}
               </Stack.Item>
             </Stack>
           </Section>
-        </Flex.Item>
-        <Flex.Item grow />
-      </Flex>
+        </Stack.Item>
+        <Stack.Item grow />
+      </Stack>
     </>
   );
 };

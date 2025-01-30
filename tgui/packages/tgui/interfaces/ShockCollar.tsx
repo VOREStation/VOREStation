@@ -1,4 +1,3 @@
-import { round } from 'common/math';
 import { useBackend } from 'tgui/backend';
 import { Window } from 'tgui/layouts';
 import {
@@ -7,6 +6,7 @@ import {
   NumberInput,
   Tooltip,
 } from 'tgui-core/components';
+import { round } from 'tgui-core/math';
 
 export type ShockCollarData = {
   on: boolean;

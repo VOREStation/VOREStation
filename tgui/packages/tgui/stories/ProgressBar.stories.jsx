@@ -5,7 +5,6 @@
  */
 
 import { useState } from 'react';
-
 import {
   Box,
   Button,
@@ -13,7 +12,7 @@ import {
   LabeledList,
   ProgressBar,
   Section,
-} from '../components';
+} from 'tgui-core/components';
 
 export const meta = {
   title: 'ProgressBar',

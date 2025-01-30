@@ -16,15 +16,15 @@
   @include meta.load-css('~tgui/styles/atomic/color.scss');
 
   // Components
-  @include meta.load-css('~tgui/styles/components/Tabs.scss');
-  @include meta.load-css('~tgui/styles/components/Section.scss');
-  @include meta.load-css('~tgui/styles/components/Button.scss');
-  @include meta.load-css('~tgui/styles/components/Input.scss');
-  @include meta.load-css('~tgui/styles/components/NumberInput.scss');
-  @include meta.load-css('~tgui/styles/components/TextArea.scss');
-  @include meta.load-css('~tgui/styles/components/Knob.scss');
-  @include meta.load-css('~tgui/styles/components/Slider.scss');
-  @include meta.load-css('~tgui/styles/components/ProgressBar.scss');
+  @include meta.load-css('~tgui-core/styles/components/Tabs.scss');
+  @include meta.load-css('~tgui-core/styles/components/Section.scss');
+  @include meta.load-css('~tgui-core/styles/components/Button.scss');
+  @include meta.load-css('~tgui-core/styles/components/Input.scss');
+  @include meta.load-css('~tgui-core/styles/components/NumberInput.scss');
+  @include meta.load-css('~tgui-core/styles/components/TextArea.scss');
+  @include meta.load-css('~tgui-core/styles/components/Knob.scss');
+  @include meta.load-css('~tgui-core/styles/components/Slider.scss');
+  @include meta.load-css('~tgui-core/styles/components/ProgressBar.scss');
 
   // Components specific to tgui-panel
   @include meta.load-css(

@@ -1,7 +1,7 @@
-import { capitalize } from 'common/string';
+import { useBackend } from 'tgui/backend';
+import { Button, LabeledList, Stack } from 'tgui-core/components';
+import { capitalize } from 'tgui-core/string';
 
-import { useBackend } from '../../../backend';
-import { Button, Flex, LabeledList } from '../../../components';
 import { hostMob, selectedData } from '../types';
 import { VoreSelectedMobTypeBellyButtons } from './VoreSelectedMobTypeBellyButtons';
 
@@ -36,8 +36,8 @@ export const VoreSelectedBellyOptions = (props: {
   } = belly;
 
   return (
-    <Flex wrap="wrap">
-      <Flex.Item basis="49%" grow={1}>
+    <Stack wrap="wrap">
+      <Stack.Item basis="49%" grow>
         <LabeledList>
           <LabeledList.Item label="Can Taste">
             <Button
@@ -143,8 +143,8 @@ export const VoreSelectedBellyOptions = (props: {
           belly={belly}
           host_mobtype={host_mobtype}
         />
-      </Flex.Item>
-      <Flex.Item basis="49%" grow={1}>
+      </Stack.Item>
+      <Stack.Item basis="49%" grow>
         <LabeledList>
           <LabeledList.Item label="Idle Emotes">
             <Button
@@ -235,7 +235,7 @@ export const VoreSelectedBellyOptions = (props: {
             </Button>
           </LabeledList.Item>
         </LabeledList>
-      </Flex.Item>
-    </Flex>
+      </Stack.Item>
+    </Stack>
   );
 };

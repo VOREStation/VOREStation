@@ -1,17 +1,18 @@
-import { toFixed } from 'common/math';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'tgui/backend';
 import {
   Box,
   Button,
+  Collapsible,
   ColorBox,
-  Dropdown,
   Input,
   LabeledList,
-  NumberInput,
   Section,
+  Slider,
   Stack,
-} from 'tgui/components';
+} from 'tgui-core/components';
+import { toFixed } from 'tgui-core/math';
+import { capitalize } from 'tgui-core/string';
 
 import { rebuildChat } from '../../chat/actions';
 import { THEMES } from '../../themes';
@@ -36,39 +37,63 @@ export const SettingsGeneral = (props) => {
     <Section>
       <LabeledList>
         <LabeledList.Item label="Theme">
-          <Dropdown
-            autoScroll={false}
-            width="175px"
-            selected={theme}
-            options={THEMES}
-            onSelected={(value) =>
-              dispatch(
-                updateSettings({
-                  theme: value,
-                }),
-              )
-            }
-          />
+          {THEMES.map((THEME) => (
+            <Button
+              key={THEME}
+              selected={theme === THEME}
+              color="transparent"
+              onClick={() =>
+                dispatch(
+                  updateSettings({
+                    theme: THEME,
+                  }),
+                )
+              }
+            >
+              {capitalize(THEME)}
+            </Button>
+          ))}
         </LabeledList.Item>
         <LabeledList.Item label="Font style">
-          <Stack inline align="baseline">
-            <Stack.Item>
-              {(!freeFont && (
-                <Dropdown
-                  autoScroll={false}
-                  width="175px"
-                  selected={fontFamily}
-                  options={FONTS}
-                  onSelected={(value) =>
-                    dispatch(
-                      updateSettings({
-                        fontFamily: value,
-                      }),
-                    )
-                  }
-                />
-              )) || (
+          <Stack.Item>
+            {!freeFont ? (
+              <Collapsible
+                title={fontFamily}
+                width={'100%'}
+                buttons={
+                  <Button
+                    icon={freeFont ? 'lock-open' : 'lock'}
+                    color={freeFont ? 'good' : 'bad'}
+                    onClick={() => {
+                      setFreeFont(!freeFont);
+                    }}
+                  >
+                    Custom font
+                  </Button>
+                }
+              >
+                {FONTS.map((FONT) => (
+                  <Button
+                    key={FONT}
+                    fontFamily={FONT}
+                    selected={fontFamily === FONT}
+                    color="transparent"
+                    onClick={() =>
+                      dispatch(
+                        updateSettings({
+                          fontFamily: FONT,
+                        }),
+                      )
+                    }
+                  >
+                    {FONT}
+                  </Button>
+                ))}
+              </Collapsible>
+            ) : (
+              <Stack>
                 <Input
+                  width={'100%'}
                   value={fontFamily}
                   onChange={(e, value) =>
                     dispatch(
@@ -78,51 +103,48 @@ export const SettingsGeneral = (props) => {
                     )
                   }
                 />
-              )}
-            </Stack.Item>
-            <Stack.Item>
-              <Button
-                icon={freeFont ? 'lock-open' : 'lock'}
-                color={freeFont ? 'good' : 'bad'}
-                ml={1}
-                onClick={() => {
-                  setFreeFont(!freeFont);
-                }}
-              >
-                Custom font
-              </Button>
+                <Button
+                  ml={0.5}
+                  icon={freeFont ? 'lock-open' : 'lock'}
+                  color={freeFont ? 'good' : 'bad'}
+                  onClick={() => {
+                    setFreeFont(!freeFont);
+                  }}
+                >
+                  Custom font
+                </Button>
+              </Stack>
+            )}
+          </Stack.Item>
+        </LabeledList.Item>
+        <LabeledList.Item label="Font size" verticalAlign="middle">
+          <Stack textAlign="center">
+            <Stack.Item grow>
+              <Slider
+                width="100%"
+                step={1}
+                stepPixelSize={20}
+                minValue={8}
+                maxValue={32}
+                value={fontSize}
+                unit="px"
+                format={(value) => toFixed(value)}
+                onChange={(e, value) =>
+                  dispatch(updateSettings({ fontSize: value }))
+                }
+              />
             </Stack.Item>
           </Stack>
         </LabeledList.Item>
-        <LabeledList.Item label="Font size">
-          <NumberInput
-            width="4em"
-            step={1}
-            stepPixelSize={10}
-            minValue={8}
-            maxValue={32}
-            value={fontSize}
-            unit="px"
-            format={(value) => toFixed(value)}
-            onChange={(value) =>
-              dispatch(
-                updateSettings({
-                  fontSize: value,
-                }),
-              )
-            }
-          />
-        </LabeledList.Item>
         <LabeledList.Item label="Line height">
-          <NumberInput
-            width="4em"
+          <Slider
+            width="100%"
             step={0.01}
-            stepPixelSize={2}
             minValue={0.8}
             maxValue={5}
             value={lineHeight}
             format={(value) => toFixed(value, 2)}
-            onDrag={(value) =>
+            onDrag={(e, value) =>
               dispatch(
                 updateSettings({
                   lineHeight: value,

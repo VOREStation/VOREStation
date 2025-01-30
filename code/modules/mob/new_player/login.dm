@@ -60,6 +60,8 @@ var/obj/effect/lobby_image = new /obj/effect/lobby_image
 /mob/new_player/proc/version_warnings()
 	var/problems // string to store message to present to player as a problem
 
+	if(client.byond_version < 516) // Temporary warning whilst we transition to byond 516.
+		problems = "The server is currently transitioning to BYOND 516, and you are currently on version [client.byond_version]. If you continue to use your current version, you WILL experience UI issues, and very soon older clients will not be able to connect at all. You can update BYOND on the client homepage by switching from stable to beta, just above either the update button or where it says that you are currently up to date. For more information how to update byond, please check the wiki."
 	// TODO: Move this to a config file at some point maybe? What would the structure of that look like?
 	switch(client.byond_build)
 		// http://www.byond.com/forum/post/2711510

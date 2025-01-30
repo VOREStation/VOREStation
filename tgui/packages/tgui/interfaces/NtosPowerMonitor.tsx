@@ -1,4 +1,5 @@
-import { NtosWindow } from '../layouts';
+import { NtosWindow } from 'tgui/layouts';
+
 import { PowerMonitorContent } from './PowerMonitor/PowerMonitorContent';
 
 export const NtosPowerMonitor = () => {

@@ -1,5 +1,6 @@
-import { useBackend } from '../../backend';
-import { Flex, Icon, LabeledList, Section } from '../../components';
+import { useBackend } from 'tgui/backend';
+import { Icon, LabeledList, Section, Stack } from 'tgui-core/components';
+
 import { DockStatus } from './EmbeddedControllerHelpers';
 import { DockingConsoleMultiData } from './types';
 
@@ -33,13 +34,13 @@ export const DockingConsoleMulti = (props) => {
             ))}
           </LabeledList>
         ) : (
-          <Flex height="100%" mt="0.5em">
-            <Flex.Item grow="1" align="center" textAlign="center" color="bad">
+          <Stack height="100%" mt="0.5em">
+            <Stack.Item grow align="center" textAlign="center" color="bad">
               <Icon name="door-closed" mb="0.5rem" size={5} />
               <br />
               No airlocks found.
-            </Flex.Item>
-          </Flex>
+            </Stack.Item>
+          </Stack>
         )}
       </Section>
     </>

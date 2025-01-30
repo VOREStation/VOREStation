@@ -1,4 +1,4 @@
-import { Icon } from '../../components';
+import { Icon } from 'tgui-core/components';
 
 const rank2icon = {
   // Command Site Manager

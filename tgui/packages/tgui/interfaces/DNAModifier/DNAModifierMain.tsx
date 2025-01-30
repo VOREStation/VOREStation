@@ -1,4 +1,4 @@
-import { useBackend } from '../../backend';
+import { useBackend } from 'tgui/backend';
 import {
   Box,
   Button,
@@ -7,8 +7,10 @@ import {
   Knob,
   LabeledList,
   Section,
+  Stack,
   Tabs,
-} from '../../components';
+} from 'tgui-core/components';
+
 import { operations, rejuvenatorsDoses } from './constants';
 import { DNAModifierBlocks } from './DNAModifierBlocks';
 import { DNAModifierMainBuffers } from './DNAModifierMainBuffers';
@@ -19,6 +21,32 @@ export const DNAModifierMain = (props /* : {isDNAInvalid: BooleanLike} */) => {
   const { act, data } = useBackend<Data>();
 
   const { selectedMenuKey, hasOccupant } = data;
+
+  if (!hasOccupant) {
+    return (
+      <Section flexGrow>
+        <Stack height="100%">
+          <Stack.Item grow align="center" textAlign="center" color="label">
+            <Icon name="user-slash" mb="0.5rem" size={5} />
+            <br />
+            No occupant in DNA modifier.
+          </Stack.Item>
+        </Stack>
+      </Section>
+    );
+  } else if (props.isDNAInvalid) {
+    return (
+      <Section flexGrow>
+        <Stack height="100%">
+          <Stack.Item grow align="center" textAlign="center" color="label">
+            <Icon name="user-slash" mb="0.5rem" size={5} />
+            <br />
+            No operation possible on this subject.
+          </Stack.Item>
+        </Stack>
+      </Section>
+    );
+  }
   let body;
   if (selectedMenuKey === 'se') {
     body = (

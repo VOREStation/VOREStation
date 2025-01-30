@@ -1,11 +1,10 @@
 import { filter } from 'common/collections';
-import { BooleanLike } from 'common/react';
-import { decodeHtmlEntities } from 'common/string';
 import { ReactNode, useEffect, useRef, useState } from 'react';
 import { useBackend } from 'tgui/backend';
-import { Box, Button, Image, LabeledList, Section } from 'tgui/components';
-
-import { fetchRetry } from '../../../http';
+import { Box, Button, Image, LabeledList, Section } from 'tgui-core/components';
+import { fetchRetry } from 'tgui-core/http';
+import { BooleanLike } from 'tgui-core/react';
+import { decodeHtmlEntities } from 'tgui-core/string';
 
 type Data = {
   active_conversation: string;
@@ -82,8 +81,12 @@ const copyToClipboard = (messages: message[]) => {
     }
   }
 
-  let ie_window = window as IeWindow;
-  ie_window.clipboardData.setData('Text', string);
+  if (Byond.TRIDENT) {
+    let ie_window = window as IeWindow;
+    ie_window.clipboardData.setData('Text', string);
+  } else {
+    navigator.clipboard.writeText(string);
+  }
 };
 
 export const pda_messenger = (props) => {

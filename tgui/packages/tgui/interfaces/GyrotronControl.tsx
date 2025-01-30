@@ -1,8 +1,7 @@
-import { BooleanLike } from 'common/react';
-
-import { useBackend } from '../backend';
-import { Button, Knob, Section, Table } from '../components';
-import { Window } from '../layouts';
+import { useBackend } from 'tgui/backend';
+import { Window } from 'tgui/layouts';
+import { Button, Knob, Section, Table } from 'tgui-core/components';
+import { BooleanLike } from 'tgui-core/react';
 
 export const GyrotronControl = () => (
   <Window width={627} height={700}>
