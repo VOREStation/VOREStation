@@ -455,7 +455,7 @@
 		return
 	if(!istype(O, /obj/item/card/id/cargo/miner/borg))
 		return
-	if(!(user == src.loc || user == src.loc.loc))
+	if(!(user == loc || user == loc.loc))
 		return
 	var/obj/item/card/id/cargo/miner/borg/id = O
 	if(!id.adjust_mining_points(-upgrade_cost))
