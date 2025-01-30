@@ -11550,7 +11550,6 @@
 /area/surface/station/hallway/primary/secondfloor/east)
 "hMg" = (
 /obj/machinery/computer/security/telescreen/entertainment{
-	icon_state = "frame";
 	pixel_y = -32
 	},
 /turf/simulated/floor/carpet/sblucarpet,
@@ -15302,7 +15301,6 @@
 	dir = 4
 	},
 /obj/machinery/computer/security/telescreen/entertainment{
-	icon_state = "frame";
 	pixel_x = 32
 	},
 /obj/machinery/light{
@@ -16263,7 +16261,6 @@
 /obj/structure/table/wooden_reinforced,
 /obj/item/flashlight/lamp/green,
 /obj/machinery/computer/security/telescreen/entertainment{
-	icon_state = "frame";
 	pixel_y = 32
 	},
 /turf/simulated/floor/carpet,
@@ -18227,7 +18224,6 @@
 	},
 /obj/effect/floor_decal/corner/lime/diagonal,
 /obj/machinery/computer/security/telescreen/entertainment{
-	icon_state = "frame";
 	pixel_y = -32
 	},
 /turf/simulated/floor/tiled/neutral,
@@ -31476,7 +31472,6 @@
 	},
 /obj/item/bedsheet/medical,
 /obj/machinery/computer/security/telescreen/entertainment{
-	icon_state = "frame";
 	pixel_x = -32
 	},
 /obj/effect/floor_decal/corner/pink/border{
@@ -35997,7 +35992,6 @@
 	},
 /obj/item/bedsheet/medical,
 /obj/machinery/computer/security/telescreen/entertainment{
-	icon_state = "frame";
 	pixel_x = -32
 	},
 /obj/effect/floor_decal/corner/pink/border{

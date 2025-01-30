@@ -2066,9 +2066,7 @@
 /turf/unsimulated/beach/sand,
 /area/beach)
 "gt" = (
-/turf/unsimulated/floor{
-	icon_state = "sandwater"
-	},
+/turf/unsimulated/floor,
 /area/beach)
 "gu" = (
 /turf/unsimulated/beach/coastline{

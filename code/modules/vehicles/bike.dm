@@ -48,7 +48,7 @@
 
 /obj/vehicle/bike/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/multitool) && open)
-		var/new_paint = input(user, "Please select paint color.", "Paint Color", paint_color) as color|null
+		var/new_paint = tgui_color_picker(user, "Please select paint color.", "Paint Color", paint_color)
 		if(new_paint)
 			paint_color = new_paint
 			update_icon()

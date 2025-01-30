@@ -72,7 +72,7 @@
 #define span_filter_combat(str) ("<span class='filter_combat'>" + str + "</span>")
 
 // Filtered under warning messages
-#define span_critical(str) ("<span class='critical'>" + str + "</span>")
+#define span_critical(str) ("<span class='critical'>" + str + "</span>") //This doesn't seem to work.
 #define span_userdanger(str) ("<span class='userdanger'>" + str + "</span>")
 #define span_warning(str) ("<span class='warning'>" + str + "</span>")
 #define span_warningplain(str) ("<span class='warningplain'>" + str + "</span>")

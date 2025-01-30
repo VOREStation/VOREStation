@@ -199,7 +199,7 @@
 	// VOREStation Add End
 
 	else if(href_list["pref_runechat_color"])
-		var/new_runechat_color = input(user, "Choose your character's runechat colour (#000000 for random):", "Character Preference", pref.runechat_color) as color|null
+		var/new_runechat_color = tgui_color_picker(user, "Choose your character's runechat colour (#000000 for random):", "Character Preference", pref.runechat_color)
 		if(new_runechat_color && CanUseTopic(user))
 			pref.runechat_color = new_runechat_color
 			// whenever we change this, we update our mob

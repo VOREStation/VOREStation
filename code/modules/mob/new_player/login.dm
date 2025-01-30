@@ -3,11 +3,11 @@
 var/obj/effect/lobby_image = new /obj/effect/lobby_image
 
 /obj/effect/lobby_image
-	name = "Polaris"
+	name = "VORE Station"
 	desc = "How are you reading this?"
 	screen_loc = "1,1"
-	icon = 'icons/misc/loading.dmi' //VOREStation Add - Loading Screen
-	icon_state = "loading" //VOREStation Add - Loading Screen
+	icon = 'icons/misc/loading.dmi'
+	icon_state = "loading"
 
 /obj/effect/lobby_image/Initialize()
 	icon = using_map.lobby_icon

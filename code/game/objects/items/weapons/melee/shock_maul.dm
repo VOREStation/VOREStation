@@ -1,6 +1,7 @@
 /obj/item/melee/shock_maul
 	name = "concussion maul"
-	desc = "A heavy-duty concussion hammer, typically used for mining. An iconic weapon for the many uprisings of Mars. It uses a manually engaged concussive-force amplifier unit in the head to multiply impact force, but its weight and the charge up time makes it difficult to use effectively. Devastating if used correctly, but requires skill."
+	desc = "A heavy-duty concussion hammer typically used for mining, as it can pulverize and break rocks without damaging denser ores if used correctly. If used incorrectly, there are very few things it cannot smash; this fact made it an iconic weapon for the many uprisings of Mars. It uses a manually engaged concussive-force amplifier unit in the head to multiply impact power, but its weight and the charge up time makes it difficult to use effectively. Devastating if used correctly, but requires skill. It also appears to have a sling attached, so that you can carry it on your back if you need to."
+	description_info = "The concussion maul can be manually charged to massively increase its damage, grant a powerful knockback and short stun effect, and allow it to instantly destroy certain obstacles. This takes a moment (and some battery charge upon impact), but is devastating if used correctly. You can also switch to Disarm intent in order increase the inflicted stun duration and knockback distance, at the cost of reducing the damage dealt. You can manually depower the maul to save charge (or for safety purposes), and the maul features a grip safety that will depower it if it is dropped or otherwise unequipped."
 	icon_state = "forcemaul"
 	item_state = "forcemaul"
 	slot_flags = SLOT_BACK
@@ -13,6 +14,7 @@
 	var/force_unwielded = 8.75
 	var/wieldsound = null
 	var/unwieldsound = null
+	var/charge_time = 2 SECONDS		//how long it takes to charge the hammer
 	var/charge_force_mult = 1.75	//damage and AP multiplier on charged hits
 	var/launch_force = 3	//yeet distance
 	var/launch_force_unwielded = 1	//awful w/ one hand, but still gets a little distance
@@ -26,7 +28,7 @@
 	var/destroy_artefacts = TRUE	//sorry, breaks stuff
 
 	can_cleave = TRUE	//SSSSMITE!
-	attackspeed = 15	//very slow!!
+	attackspeed = 12	//very slow!!
 	sharp = FALSE
 	edge = FALSE
 	throwforce = 25
@@ -39,7 +41,7 @@
 	var/lightcolor = "#D3FDFD"
 	var/status = 0		//whether the thing is on or not
 	var/obj/item/cell/bcell = null
-	var/hitcost = 600	//you get 4 hits out of a standard cell
+	var/hitcost = 400	//you get 6 hits out of a standard cell
 
 /obj/item/melee/shock_maul/update_held_icon()
 	var/mob/living/M = loc
@@ -198,7 +200,7 @@
 	if(!user.IsAdvancedToolUser())
 		return
 	if(!status && bcell && bcell.charge >= hitcost)
-		if(do_after(user, 2 SECONDS))
+		if(do_after(user, charge_time))
 			status = 1
 			user.visible_message(span_warning("[user] charges \the [src]!"),span_warning("You charge \the [src]. <b>It's hammer time!</b>"))
 			playsound(src, "sparks", 75, 1, -1)
@@ -229,8 +231,10 @@
 			W.shatter()
 		else if(istype(A,/obj/structure/barricade))
 			var/obj/structure/barricade/B = A
+			visible_message(span_warning("\The [B] crumples under the force of the impact!"))
 			B.dismantle()
 		else if(istype(A,/obj/structure/grille))
+			visible_message(span_warning("\The [A] crumples under the force of the impact!"))
 			qdel(A)
 		powercheck(hitcost)
 

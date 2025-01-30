@@ -198,6 +198,7 @@ export const DockingStatus = (props: { state: string }) => {
   const dockHatch: React.JSX.Element[] = [];
 
   dockHatch['open'] = <Box color="average">OPEN</Box>;
+  dockHatch['closed'] = <Box color="good">CLOSED</Box>;
   dockHatch['unlocked'] = <Box color="average">UNSECURED</Box>;
   dockHatch['locked'] = <Box color="good">SECURED</Box>;
   return (

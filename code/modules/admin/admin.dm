@@ -521,7 +521,7 @@ var/global/floorIsLava = 0
 
 	//to_world("Channelname: [src.admincaster_feed_channel.channel_name] [src.admincaster_feed_channel.author]")
 	//to_world("Msg: [src.admincaster_feed_message.author] [src.admincaster_feed_message.body]")
-	usr << browse(dat, "window=admincaster_main;size=400x600")
+	usr << browse("<html>[dat]</html>", "window=admincaster_main;size=400x600")
 	onclose(usr, "admincaster_main")
 
 
@@ -536,13 +536,13 @@ var/global/floorIsLava = 0
 			r = copytext( r, 1, findtext(r,"##") )//removes the description
 		dat += text("<tr><td>[t] (<A href='byond://?src=\ref[src];[HrefToken()];removejobban=[r]'>unban</A>)</td></tr>")
 	dat += "</table>"
-	usr << browse(dat, "window=ban;size=400x400")
+	usr << browse("<html>[dat]</html>", "window=ban;size=400x400")
 
 /datum/admins/proc/Game()
 	if(!check_rights(0))	return
 
 	var/dat = {"
-		<center><B>Game Panel</B></center><hr>\n
+		<html><center><B>Game Panel</B></center><hr>\n
 		<A href='byond://?src=\ref[src];[HrefToken()];c_mode=1'>Change Game Mode</A><br>
 		"}
 	if(master_mode == "secret")
@@ -556,7 +556,7 @@ var/global/floorIsLava = 0
 		<A href='byond://?src=\ref[src];[HrefToken()];create_mob=1'>Create Mob</A><br>
 		<br><A href='byond://?src=\ref[src];[HrefToken()];vsc=airflow'>Edit Airflow Settings</A><br>
 		<A href='byond://?src=\ref[src];[HrefToken()];vsc=phoron'>Edit Phoron Settings</A><br>
-		<A href='byond://?src=\ref[src];[HrefToken()];vsc=default'>Choose a default ZAS setting</A><br>
+		<A href='byond://?src=\ref[src];[HrefToken()];vsc=default'>Choose a default ZAS setting</A><br></html>
 		"}
 
 	usr << browse(dat, "window=admin2;size=210x280")
@@ -1233,7 +1233,7 @@ var/datum/announcement/minor/admin_min_announcer = new
 		out += " None."
 	out += " <a href='byond://?src=\ref[ticker.mode];[HrefToken()];add_antag_type=1'>\[+\]</a><br/>"
 
-	usr << browse(out, "window=edit_mode[src]")
+	usr << browse("<html>[out]</html>", "window=edit_mode[src]")
 	feedback_add_details("admin_verb","SGM")
 
 

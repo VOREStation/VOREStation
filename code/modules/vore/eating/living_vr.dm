@@ -1194,6 +1194,12 @@
 			save_ooc_panel()
 	if(href_list["print_ooc_notes_to_chat"])
 		print_ooc_notes_to_chat()
+	if(href_list["save_private_notes"])
+		if(usr == src)
+			save_private_notes(usr)
+	if(href_list["edit_private_notes"])
+		if(usr == src)
+			set_metainfo_private_notes(usr)
 	return ..()
 
 /mob/living/proc/display_voreprefs(mob/user)	//Called by Topic() calls on instances of /mob/living (and subtypes) containing vore_prefs as an argument

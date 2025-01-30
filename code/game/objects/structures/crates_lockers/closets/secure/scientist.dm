@@ -70,7 +70,8 @@
 		/obj/item/clothing/glasses/science,
 		/obj/item/radio/headset/headset_sci,
 		/obj/item/storage/belt/archaeology,
-		/obj/item/storage/excavation)
+		/obj/item/storage/excavation,
+		/obj/item/pickaxe/excavationdrill)
 
 /obj/structure/closet/excavation
 	name = "Excavation tools"
