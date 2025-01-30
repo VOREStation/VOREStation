@@ -227,7 +227,7 @@
 		to_chat(H, span_warning("You must be WEARING the bracelet and have it uncovered to change your size."))
 		return
 
-	var/new_size = tgui_input_number(user, "Put the desired size you wish to be while wearing the bracelet ([RESIZE_SMALL*100]-[RESIZE_HUGE*100]%).", "Set Size", H.size_multiplier*100, RESIZE_HUGE*100, RESIZE_SMALL*100)
+	var/new_size = tgui_input_number(user, "Put the desired size you wish to be while wearing the bracelet ([RESIZE_MINIMUM*100]-[RESIZE_MAXIMUM*100]%).", "Set Size", H.size_multiplier*100, RESIZE_MAXIMUM*100, RESIZE_MINIMUM*100)
 	if(!new_size)
 		return
 
