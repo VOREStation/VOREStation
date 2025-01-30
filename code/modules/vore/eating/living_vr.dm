@@ -175,7 +175,7 @@
 	else if(istype(I,/obj/item/radio/beacon))
 		var/confirm = tgui_alert(user, "[src == user ? "Eat the beacon?" : "Feed the beacon to [src]?"]", "Confirmation", list("Yes!", "Cancel"))
 		if(confirm == "Yes!")
-			var/obj/belly/B = tgui_input_list(usr, "Which belly?", "Select A Belly", vore_organs)
+			var/obj/belly/B = tgui_input_list(user, "Which belly?", "Select A Belly", vore_organs)
 			if(!istype(B))
 				return TRUE
 			visible_message(span_warning("[user] is trying to stuff a beacon into [src]'s [lowertext(B.name)]!"),
@@ -640,17 +640,17 @@
 /mob/living/proc/eat_held_mob(mob/living/user, mob/living/prey, mob/living/pred)
 	var/belly
 	if(user != pred)
-		belly = tgui_input_list(usr, "Choose Belly", "Belly Choice", pred.vore_organs)
+		belly = tgui_input_list(user, "Choose Belly", "Belly Choice", pred.vore_organs)
 	else
 		belly = pred.vore_selected
 	return perform_the_nom(user, prey, pred, belly)
 
 /mob/living/proc/feed_self_to_grabbed(mob/living/user, mob/living/pred)
-	var/belly = tgui_input_list(usr, "Choose Belly", "Belly Choice", pred.vore_organs)
+	var/belly = tgui_input_list(user, "Choose Belly", "Belly Choice", pred.vore_organs)
 	return perform_the_nom(user, user, pred, belly)
 
 /mob/living/proc/feed_grabbed_to_other(mob/living/user, mob/living/prey, mob/living/pred)
-	var/belly = tgui_input_list(usr, "Choose Belly", "Belly Choice", pred.vore_organs)
+	var/belly = tgui_input_list(user, "Choose Belly", "Belly Choice", pred.vore_organs)
 	return perform_the_nom(user, prey, pred, belly)
 
 //
@@ -1179,7 +1179,7 @@
 	if(href_list["vore_prefs"])
 		display_voreprefs(usr)
 	if(href_list["ooc_notes"])
-		src.Examine_OOC()
+		Examine_OOC(usr)
 	if(href_list["edit_ooc_notes"])
 		if(usr == src)
 			set_metainfo_panel()
@@ -1260,12 +1260,12 @@
 	if(result == "Open Panel")
 		var/mob/living/user = usr
 		if(!user)
-			to_chat(usr,span_notice("Mob undefined: [user]"))
+			to_chat(user,span_notice("Mob undefined: [user]"))
 			return FALSE
 
 		var/datum/vore_look/export_panel/exportPanel
 		if(!exportPanel)
-			exportPanel = new(usr)
+			exportPanel = new(user)
 
 		if(!exportPanel)
 			to_chat(user,span_notice("Export panel undefined: [exportPanel]"))

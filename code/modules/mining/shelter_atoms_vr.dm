@@ -42,7 +42,7 @@ GLOBAL_LIST_EMPTY(unique_deployable)
 	else
 		. += "This capsule has an unknown template stored."
 
-/obj/item/survivalcapsule/attack_self()
+/obj/item/survivalcapsule/attack_self(mob/user)
 	//Can't grab when capsule is New() because templates aren't loaded then
 	get_template()
 	if(!used)
@@ -89,7 +89,7 @@ GLOBAL_LIST_EMPTY(unique_deployable)
 
 		playsound(src, 'sound/effects/phasein.ogg', 100, 1)
 
-		log_and_message_admins("activated a bluespace capsule at [get_area(T)]!", usr)
+		log_and_message_admins("activated a bluespace capsule at [get_area(T)]!", user)
 		if(above_location)
 			template.add_roof(above_location)
 		template.annihilate_plants(deploy_location)

@@ -281,7 +281,7 @@ var/list/preferences_datums = list()
 		else
 			to_chat(user, span_danger("The forum URL is not set in the server configuration."))
 			return
-	ShowChoices(usr)
+	ShowChoices(user)
 	return 1
 
 /datum/preferences/Topic(href, list/href_list)
