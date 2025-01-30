@@ -45,6 +45,11 @@
 	src.update_status()
 	setup_season()	//VOREStation Addition
 
+	var/debug_server = world.GetConfig("env", "AUXTOOLS_DEBUG_DLL")
+	if (debug_server)
+		call_ext(debug_server, "auxtools_init")()
+		enable_debugging()
+
 	. = ..()
 
 #ifdef UNIT_TEST
@@ -721,3 +726,18 @@ var/global/game_id = null
 		game_id = "[c[(t % l) + 1]][game_id]"
 		t = round(t / l)
 	return 1
+
+/proc/auxtools_stack_trace(msg)
+	CRASH(msg)
+
+/proc/auxtools_expr_stub()
+	CRASH("auxtools not loaded")
+
+/proc/enable_debugging(mode, port)
+	CRASH("auxtools not loaded")
+
+/world/Del()
+	var/debug_server = world.GetConfig("env", "AUXTOOLS_DEBUG_DLL")
+	if (debug_server)
+		call_ext(debug_server, "auxtools_shutdown")()
+	. = ..()

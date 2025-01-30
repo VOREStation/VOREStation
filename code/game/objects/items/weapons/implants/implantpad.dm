@@ -64,7 +64,7 @@
 			dat += "The implant casing is empty."
 	else
 		dat += "Please insert an implant casing!"
-	user << browse(dat, "window=implantpad")
+	user << browse("<html>[dat]</html>", "window=implantpad")
 	onclose(user, "implantpad")
 	return
 

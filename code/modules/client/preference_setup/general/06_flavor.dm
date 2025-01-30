@@ -96,7 +96,7 @@
 	return ..()
 
 /datum/category_item/player_setup_item/general/flavor/proc/SetFlavorText(mob/user)
-	var/HTML = "<body>"
+	var/HTML = "<html><body>"
 	HTML += "<tt><center>"
 	HTML += span_bold("Set Flavor Text") + " <hr />"
 	HTML += "Note: This is not *literal* flavor of your character. This is visual description of what they look like. <hr />"
@@ -129,12 +129,12 @@
 	HTML += TextPreview(pref.flavor_texts["feet"])
 	HTML += "<br>"
 	HTML += "<hr />"
-	HTML += "<tt>"
+	HTML += "<tt></body></html>"
 	user << browse(HTML, "window=flavor_text;size=430x300")
 	return
 
 /datum/category_item/player_setup_item/general/flavor/proc/SetFlavourTextRobot(mob/user)
-	var/HTML = "<body>"
+	var/HTML = "<html><body>"
 	HTML += "<tt><center>"
 	HTML += span_bold("Set Robot Flavour Text") + " <hr />"
 	HTML += "<br></center>"
@@ -146,6 +146,6 @@
 		HTML += TextPreview(pref.flavour_texts_robot[module])
 		HTML += "<br>"
 	HTML += "<hr />"
-	HTML += "<tt>"
+	HTML += "<tt></body></html>"
 	user << browse(HTML, "window=flavour_text_robot;size=430x300")
 	return

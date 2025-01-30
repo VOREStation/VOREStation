@@ -5104,7 +5104,7 @@
 /turf/simulated/floor/concrete,
 /area/redgate/fantasy/castle)
 "FE" = (
-/obj/structure/signpost,
+/obj/structure/signpost_fake,
 /turf/simulated/floor/outdoors/grass/seasonal,
 /area/redgate/fantasy/streets)
 "FH" = (

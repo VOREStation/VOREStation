@@ -67,7 +67,7 @@
 				dat = "<table width='100%'>[dat]</table>"
 			else
 				dat = "No addresses in list."
-			src << browse(dat,"window=ToRban_show")
+			src << browse("<html>[dat]</html>","window=ToRban_show")
 		if("remove")
 			var/savefile/F = new(TORFILE)
 			var/choice = tgui_input_list(src,"Please select an IP address to remove from the ToR banlist:","Remove ToR ban", F.dir)

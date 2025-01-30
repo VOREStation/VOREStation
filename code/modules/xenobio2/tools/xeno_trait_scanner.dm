@@ -180,6 +180,6 @@
 	if(dat)
 		last_data = dat
 		dat += "<br><br>\[<a href='byond://?src=\ref[src];print=1'>print report</a>\]"
-		user << browse(dat,"window=xeno_analyzer")
+		user << browse("<html>[dat]</html>","window=xeno_analyzer")
 
 	return

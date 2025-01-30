@@ -678,7 +678,7 @@
 "nb" = (/obj/structure/table/reinforced,/obj/item/pda/ert,/turf/unsimulated/floor{icon_state = "dark"},/area/centcom/specops)
 "nc" = (/obj/effect/floor_decal/corner/purple{dir = 9},/turf/unsimulated/floor{icon_state = "vault"; dir = 5},/area/centcom/specops)
 "nd" = (/obj/structure/sink{dir = 4; icon_state = "sink"; pixel_x = 11; pixel_y = 0},/turf/unsimulated/floor{icon_state = "freezerfloor"; dir = 2},/area/centcom/specops)
-"ne" = (/turf/unsimulated/wall{icon = 'icons/misc/title.dmi'; icon_state = "title"},/area)
+"ne" = (/turf/unsimulated/wall,/area)
 "nf" = (/turf/unsimulated/wall,/area/centcom/specops)
 "ng" = (/obj/machinery/mech_recharger,/turf/unsimulated/floor{icon_state = "plating"; name = "plating"},/area/centcom/specops)
 "nh" = (/obj/mecha/combat/gygax/dark,/turf/unsimulated/floor{icon_state = "plating"; name = "plating"},/area/centcom/specops)

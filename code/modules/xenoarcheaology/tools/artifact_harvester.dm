@@ -1,6 +1,6 @@
 /obj/machinery/artifact_harvester
 	name = "Exotic Particle Harvester"
-	icon = 'icons/obj/virology_vr.dmi' //VOREStation Edit
+	icon = 'icons/obj/virology_vr.dmi'
 	icon_state = "incubator"	//incubator_on
 	anchored = TRUE
 	density = TRUE
@@ -9,10 +9,12 @@
 	use_power = USE_POWER_IDLE
 	var/harvesting = 0
 	var/obj/item/anobattery/inserted_battery
-	var/obj/machinery/artifact/cur_artifact
+	var/obj/cur_artifact
 	var/obj/machinery/artifact_scanpad/owned_scanner = null
 	var/last_process = 0
+	bubble_icon = "science"
 
+/// If you want it to load smoothly, set it's dir to wherever the scanpad is!
 /obj/machinery/artifact_harvester/Initialize()
 	. = ..()
 	owned_scanner = locate(/obj/machinery/artifact_scanpad) in get_step(src, dir)
@@ -77,7 +79,7 @@
 
 	switch(action)
 		if("harvest")
-			harvest()
+			harvest(ui.user)
 			return TRUE
 
 		if("stopharvest")
@@ -116,7 +118,7 @@
 			return TRUE
 
 
-/obj/machinery/artifact_harvester/proc/harvest()
+/obj/machinery/artifact_harvester/proc/harvest(mob/user)
 	if(!inserted_battery)
 		atom_say("Cannot harvest. No battery inserted.")
 		return
@@ -127,10 +129,11 @@
 	//locate artifact on analysis pad
 	cur_artifact = null
 	var/articount = 0
-	var/obj/machinery/artifact/analysed
-	for(var/obj/machinery/artifact/A in get_turf(owned_scanner))
+	var/obj/analysed
+	for(var/obj/A in get_turf(owned_scanner))
 		analysed = A
-		articount++
+		if(A.is_anomalous())
+			articount++
 
 	if(articount <= 0)
 		atom_say("Cannot harvest. No noteworthy energy signature isolated.")
@@ -147,14 +150,29 @@
 	if(analysed)
 		cur_artifact = analysed
 
-		//if both effects are active, we can't harvest either
-		var/list/active_effects = cur_artifact.artifact_master.get_active_effects()
+		var/list/active_effects //This will be populated when we see if it has the artifact component or the artifact_master var
 
-		if(active_effects.len > 1)
-			atom_say("Cannot harvest. Source is emitting conflicting energy signatures.")
-			return
-		else if(!active_effects.len)
+		var/datum/component/artifact_master/ScannedMaster = analysed.GetComponent(/datum/component/artifact_master)
+		if(istype(ScannedMaster))
+			active_effects = ScannedMaster.get_all_effects()
+		else
 			atom_say("Cannot harvest. No energy emitting from source.")
+			return
+		var/effects_to_show = active_effects
+		for(var/datum/artifact_effect/selected_effect in effects_to_show) //We check to see if we're harvestable. If not, remove it from the list.
+			if(selected_effect.harvestable == FALSE)
+				effects_to_show -= selected_effect
+
+		if(!active_effects.len)
+			atom_say("Cannot harvest. No harvestable energy emitting from source.")
+			return
+
+		var/artifact_selection = tgui_input_list(user, "Which effect do you wish to harvest?", "Effect Selection", effects_to_show)
+		var/datum/artifact_effect/selected_effect
+		if(artifact_selection && (artifact_selection in effects_to_show))
+			selected_effect = artifact_selection
+		else
+			atom_say("No selection made. Shutting down harvester.")
 			return
 
 		//see if we can clear out an old effect
@@ -165,25 +183,21 @@
 
 		//
 		var/datum/artifact_effect/source_effect
-		var/datum/artifact_effect/active_effect = active_effects[1]
 
 		//if we already have charge in the battery, we can only recharge it from the source artifact
 		if(inserted_battery.stored_charge > 0)
+			to_world("Line 185")
 			var/battery_matches_primary_id = 0
-			if(inserted_battery.battery_effect && inserted_battery.battery_effect.artifact_id == cur_artifact.artifact_master.artifact_id)
+			if(inserted_battery.battery_effect && inserted_battery.battery_effect.artifact_id == ScannedMaster.artifact_id)
 				battery_matches_primary_id = 1
-			if(battery_matches_primary_id && active_effect.activated)
+			if(battery_matches_primary_id && selected_effect)
 				//we're good to recharge the primary effect!
-				source_effect = active_effect
+				source_effect = selected_effect
 
 			if(!source_effect)
 				atom_say("Cannot harvest. Battery is charged with a different energy signature.")
 		else
-			//we're good to charge either
-			if(active_effect.activated)
-				//charge the primary effect
-				source_effect = active_effect
-
+			source_effect = selected_effect
 
 		if(source_effect)
 			harvesting = 1
@@ -208,6 +222,8 @@
 				inserted_battery.stored_charge = 0
 
 /obj/machinery/artifact_harvester/process()
+	if(harvesting == 0)
+		return
 	if(stat & (NOPOWER|BROKEN))
 		return
 
@@ -250,7 +266,7 @@
 				inserted_battery.battery_effect.ToggleActivate()
 			src.visible_message(span_bold("[name]") + " states, \"Battery dump completed.\"")
 			icon_state = "incubator"
-
+/* //This is old and unused.
 /obj/machinery/artifact_harvester/Topic(href, href_list)
 
 	if (href_list["harvest"])
@@ -266,7 +282,7 @@
 			cur_artifact = null
 			var/articount = 0
 			var/obj/machinery/artifact/analysed
-			for(var/obj/machinery/artifact/A in get_turf(owned_scanner))
+			for(var/obj/A in get_turf(owned_scanner))
 				analysed = A
 				articount++
 
@@ -284,7 +300,10 @@
 					cur_artifact = analysed
 
 					//if both effects are active, we can't harvest either
-					var/list/active_effects = cur_artifact.artifact_master.get_active_effects()
+					var/datum/component/artifact_master/ScannedMaster = analysed.GetComponent(/datum/component/artifact_master)
+					if(ScannedMaster && istype(ScannedMaster))
+						active_effects = ScannedMaster.get_all_effects()
+					var/list/active_effects = ScannedMaster.artifact_id.get_active_effects()
 
 					if(active_effects.len > 1)
 						src.visible_message(span_bold("[src]") + " states, \"Cannot harvest. Source is emitting conflicting energy signatures.\"")
@@ -381,3 +400,4 @@
 		usr.unset_machine(src)
 
 	updateDialog()
+*/

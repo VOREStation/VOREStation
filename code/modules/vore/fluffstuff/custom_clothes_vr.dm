@@ -1296,7 +1296,7 @@ Departamental Swimsuits, for general use
 /obj/item/clothing/suit/storage/hooded/wintercoat/jessie
 	name = "Handmade Winter Suit"
 	desc = "A durable, but somewhat ragged lower portion of a snow suit fitted for a wolftaur."
-	icon = 'icons/mob/taursuits_wolf_vr.dmi'
+	icon = 'icons/mob/taursuits_wolf.dmi'
 	icon_state = "jessiecoat"
 	item_state = "jessiecoat"
 
@@ -1313,7 +1313,7 @@ Departamental Swimsuits, for general use
 	name = "Kat's Fox Taur Armor"
 	desc = "A set of security armor, light weight and easy to run in for a Taur, this item protects the \
 	entire body."
-	icon = 'icons/mob/taursuits_wolf_vr.dmi'
+	icon = 'icons/mob/taursuits_wolf.dmi'
 	icon_state = "katesuit"
 	item_state_slots = null
 
@@ -1331,7 +1331,7 @@ Departamental Swimsuits, for general use
 	desc = "Taur engineering voidsuit. Recolored navy blue and white. Slightly tweaked as well to \
 	get close to having security voidsuit protection as possible with a slight reduction in movement \
 	speed to compensate for custom padding and armor Kateryna made herself."
-	icon = 'icons/mob/taursuits_wolf_vr.dmi'
+	icon = 'icons/mob/taursuits_wolf.dmi'
 	icon_state = "lilithsuit"
 	item_state = "lilithsuit"
 	species_restricted = null
@@ -1752,7 +1752,7 @@ Departamental Swimsuits, for general use
 	armor = list(melee = 0, bullet = 0, laser = 0, energy = 0, bomb = 0, bio = 0, rad = 0)
 	desc = "A series of armor plates painted black, deployed from a back-mounted module. They fit smoothly over the unit's armor plates and projects a skintight bubble shield over the unit's uncovered parts. Faceplate and coolant unit not included."
 	species_restricted = null
-	icon = 'icons/mob/taursuits_lizard_vr.dmi'
+	icon = 'icons/mob/taursuits_lizard.dmi'
 	icon_state = "hasd_suit"
 	item_state = "hasd_suit"
 	pixel_x = -16
