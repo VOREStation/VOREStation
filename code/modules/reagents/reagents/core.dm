@@ -98,7 +98,7 @@
 					continue
 				M.ContractDisease(D)
 	if(data && data["resistances"])
-		M.resistances |= data["resistances"]
+		M.AddResistances(data["resistances"])
 
 /datum/reagent/blood/mix_data(newdata, newamount)
 	if(!data || !newdata)

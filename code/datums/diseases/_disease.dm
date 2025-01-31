@@ -152,7 +152,7 @@ GLOBAL_LIST_INIT(diseases, subtypesof(/datum/disease))
 	if(affected_mob)
 		if(disease_flags & CAN_RESIST)
 			if(!(type in affected_mob.GetResistances()))
-				affected_mob.resistances += type
+				affected_mob.AddResistances(type)
 		remove_virus()
 	qdel(src)
 
@@ -197,7 +197,7 @@ GLOBAL_LIST_INIT(diseases, subtypesof(/datum/disease))
 	return FALSE
 
 /datum/disease/proc/remove_virus()
-	affected_mob.viruses -= src
+	affected_mob.RemoveDisease(src)
 
 // Called when a disease is added onto a mob
 /datum/disease/proc/Start()

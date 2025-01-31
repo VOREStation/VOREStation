@@ -5,6 +5,20 @@
 			return TRUE
 	return FALSE
 
+/mob/proc/RemoveDisease(datum/disease/D)
+	viruses -= D
+	return TRUE
+
+/mob/proc/HasResistance(resistance)
+	if(resistances.Find(resistance))
+		return TRUE
+	return FALSE
+
+/mob/proc/IsInfected()
+	if(viruses.len)
+		return TRUE
+	return FALSE
+
 /mob/proc/CanContractDisease(datum/disease/D)
 	if(stat == DEAD && !D.spread_dead)
 		return FALSE
@@ -176,6 +190,11 @@
 /mob/proc/GetResistances()
 	LAZYINITLIST(resistances)
 	return resistances
+
+/mob/proc/AddResistances(resistance)
+	LAZYINITLIST(resistances)
+	resistances |= resistance
+	return TRUE
 
 /client/proc/ReleaseVirus()
 	set category = "Fun.Event Kit"

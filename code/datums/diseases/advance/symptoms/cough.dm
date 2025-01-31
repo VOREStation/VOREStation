@@ -25,8 +25,8 @@ BONUS
 	level = 1
 	severity = 0
 	base_message_chance = 15
-	symptom_delay_min = 2
-	symptom_delay_max = 15
+	symptom_delay_min = 10
+	symptom_delay_max = 30
 
 	var/infective = FALSE
 
@@ -35,7 +35,7 @@ BONUS
 		"Resistance 10" = "Occasonally causes coughing fits that stun the host.",
 		"Stage Speed 6" = "Increases cough frequency",
 		"Stealth 4" = "The symptom remains hidden until active.",
-		"Transmission 11" = "The hosts coughing wll occasonally spread the virus."
+		"Transmission 11" = "The hosts coughing will occasonally spread the virus."
 	)
 
 /datum/symptom/cough/severityset(datum/disease/advance/A)

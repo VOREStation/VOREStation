@@ -88,7 +88,7 @@ BONUS
 	phage.base_disease = A
 
 	if(A.transmission >= 12)
-		for(var/datum/disease/D in M.viruses)
+		for(var/datum/disease/D in M.GetViruses())
 			if((D.spread_flags & DISEASE_SPREAD_SPECIAL) || (D.spread_flags & DISEASE_SPREAD_CONTACT))
 				continue
 			if(D == A)

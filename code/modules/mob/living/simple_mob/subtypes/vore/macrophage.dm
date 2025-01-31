@@ -138,7 +138,7 @@
 	var/mob/living/simple_mob/vore/aggressive/macrophage/macrophage = holder
 	for(var/list_target in our_targets)
 		var/mob/living/victim = list_target
-		if(victim.viruses)
+		if(victim.IsInfected())
 			if(victim.HasDisease(macrophage.base_disease) && prob(75)) // Less likely to be a target if you're infected
 				our_targets -= list_target
 				continue

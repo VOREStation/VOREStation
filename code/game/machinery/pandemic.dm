@@ -6,6 +6,9 @@
 	anchored = TRUE
 	icon = 'icons/obj/pandemic.dmi'
 	icon_state = "pandemic0"
+	idle_power_usage = 20
+	use_power = TRUE
+
 	var/temp_html = ""
 	var/printing = FALSE
 	var/wait = FALSE
@@ -203,36 +206,39 @@
 		return ..()
 
 /obj/machinery/computer/pandemic/proc/get_viruses_data(datum/reagent/blood/blood)
-	var/list/data = list()
+	. = list()
 	var/list/viruses = blood.get_diseases()
 	var/index = 1
+
 	for(var/datum/disease/disease as anything in viruses)
-		if(!istype(disease) || disease.visibility_flags & HIDDEN_PANDEMIC)
+		if(CHECK_BITFIELD(disease.visibility_flags, HIDDEN_PANDEMIC))
 			continue
+
 		var/list/traits = list()
-		traits["agent"] = disease.agent
-		traits["cure"] = disease.cure_text || "none"
-		traits["description"] = disease.desc || "none"
-		traits["index"] = index++
 		traits["name"] = disease.name
-		traits["spread"] = disease.spread_text || "none"
 		if(istype(disease, /datum/disease/advance))
 			var/datum/disease/advance/adv_disease = disease
 			var/disease_name = adv_disease.GetDiseaseID()
 			traits["can_rename"] = (adv_disease.name == "Unknown")
-			traits["is_adv"] = TRUE
 			traits["name"] = disease_name
-			traits["resistance"] = adv_disease.resistance
-			traits["stage_speed"] = adv_disease.stage_rate
-			traits["stealth"] = adv_disease.stealth
+			traits["is_adv"] = TRUE
 			traits["symptoms"] = list()
-			for(var/datum/symptom/symptom as anything in adv_disease.symptoms)
-				var/list/this_symptom = list()
-				this_symptom = symptom.get_symptom_data()
-				traits["symptoms"] += list(this_symptom)
+			for(var/datum/symptom/symptom as() in adv_disease.symptoms)
+				traits["symptoms"] += list(symptom.get_symptom_data())
+			traits["resistance"] = adv_disease.resistance
+			traits["stealth"] = adv_disease.stealth
+			traits["stage_speed"] = adv_disease.stage_rate
 			traits["transmission"] = adv_disease.transmission
-		data += list(traits)
-	return data
+			traits["symptom_severity"] = adv_disease.severity
+
+		traits["index"] = index++
+		traits["agent"] = disease.agent
+		traits["description"] = disease.desc || "none"
+		traits["spread"] = disease.spread_text || "none"
+		traits["cure"] = disease.cure_text || "none"
+		traits["danger"] = disease.danger || "none"
+
+		. += list(traits)
 
 /obj/machinery/computer/pandemic/proc/get_resistance_data(datum/reagent/blood/blood)
 	var/list/data = list()

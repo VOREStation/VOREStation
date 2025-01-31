@@ -10,7 +10,7 @@
 			var/datum/disease/D = thing
 			if(D.GetDiseaseID() in data)
 				D.cure()
-		M.resistances |= data
+		M.AddResistances(data)
 
 /datum/reagent/vaccines/mix_data(newdata, newamount)
 	if(islist(newdata))
