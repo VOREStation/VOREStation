@@ -1,9 +1,8 @@
-import { BooleanLike } from 'common/react';
 import { useState } from 'react';
-
-import { useBackend } from '../backend';
-import { Box, NoticeBox, Section, Tabs } from '../components';
-import { Window } from '../layouts';
+import { useBackend } from 'tgui/backend';
+import { Window } from 'tgui/layouts';
+import { Box, NoticeBox, Section, Tabs } from 'tgui-core/components';
+import { BooleanLike } from 'tgui-core/react';
 
 export type Data = {
   real_name: string;

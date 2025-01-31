@@ -67,7 +67,7 @@
 		else
 			DD.vars[V] = D.vars[V]
 
-	log_admin("[key_name(usr)] has contracted the virus \"[DD]\"")
+	log_admin("[key_name(src)] has contracted the virus \"[DD]\"")
 
 /mob/living/carbon/human/ContractDisease(datum/disease/D, target_zone)
 	if(!CanContractDisease(D))

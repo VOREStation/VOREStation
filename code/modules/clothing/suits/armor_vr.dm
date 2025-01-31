@@ -11,14 +11,14 @@
 	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
 	siemens_coefficient = 0
 
-
 /obj/item/clothing/suit/armor/vest/wolftaur
 	name = "wolf-taur armor vest"
 	desc = "An armored vest that protects against some damage. It appears to be created for a wolf-taur."
 	species_restricted = null //Species restricted since all it cares about is a taur half
-	icon = 'icons/mob/taursuits_wolf_vr.dmi'
+	icon = 'icons/mob/taursuits_wolf.dmi'
 	icon_state = "wolf_item"
 	item_state = "heavy_wolf_armor"
+
 /obj/item/clothing/suit/armor/vest/wolftaur/mob_can_equip(var/mob/living/carbon/human/H, slot, disable_warning = 0)
 	if(..())
 		if(istype(H) && istype(H.tail_style, /datum/sprite_accessory/tail/taur/wolf))
@@ -113,8 +113,6 @@
 	desc = "ye olde knight, risen again."
 	icon_state = "bedevere"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO
-
-
 
 //Deluxe explorer suit
 /obj/item/clothing/suit/armor/pcarrier/explorer/deluxe

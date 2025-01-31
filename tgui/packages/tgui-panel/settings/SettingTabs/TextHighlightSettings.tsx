@@ -4,11 +4,11 @@ import {
   Button,
   ColorBox,
   Divider,
-  Flex,
   Input,
   Section,
+  Stack,
   TextArea,
-} from 'tgui/components';
+} from 'tgui-core/components';
 
 import { rebuildChat } from '../../chat/actions';
 import {
@@ -28,7 +28,7 @@ export const TextHighlightSettings = (props) => {
   return (
     <Section fill scrollable height="235px">
       <Section p={0}>
-        <Flex direction="column">
+        <Stack direction="column">
           {highlightSettings.map((id, i) => (
             <TextHighlightSetting
               key={i}
@@ -37,7 +37,7 @@ export const TextHighlightSettings = (props) => {
             />
           ))}
           {highlightSettings.length < MAX_HIGHLIGHT_SETTINGS && (
-            <Flex.Item>
+            <Stack.Item>
               <Button
                 color="transparent"
                 icon="plus"
@@ -47,9 +47,9 @@ export const TextHighlightSettings = (props) => {
               >
                 Add Highlight Setting
               </Button>
-            </Flex.Item>
+            </Stack.Item>
           )}
-        </Flex>
+        </Stack>
       </Section>
       <Divider />
       <Box>
@@ -78,9 +78,9 @@ const TextHighlightSetting = (props) => {
     matchCase,
   } = highlightSettingById[id];
   return (
-    <Flex.Item {...rest}>
-      <Flex mb={1} color="label" align="baseline">
-        <Flex.Item grow>
+    <Stack.Item {...rest}>
+      <Stack mb={1} color="label" align="baseline">
+        <Stack.Item grow>
           <Button
             color="transparent"
             icon="times"
@@ -94,8 +94,8 @@ const TextHighlightSetting = (props) => {
           >
             Delete
           </Button>
-        </Flex.Item>
-        <Flex.Item>
+        </Stack.Item>
+        <Stack.Item>
           <Button.Checkbox
             checked={highlightBlacklist}
             tooltip="If this option is selected, you can blacklist senders not to highlight their messages."
@@ -111,8 +111,8 @@ const TextHighlightSetting = (props) => {
           >
             Highlight Blacklist
           </Button.Checkbox>
-        </Flex.Item>
-        <Flex.Item>
+        </Stack.Item>
+        <Stack.Item>
           <Button.Checkbox
             checked={highlightWholeMessage}
             tooltip="If this option is selected, the entire message will be highlighted in yellow."
@@ -128,8 +128,8 @@ const TextHighlightSetting = (props) => {
           >
             Whole Message
           </Button.Checkbox>
-        </Flex.Item>
-        <Flex.Item>
+        </Stack.Item>
+        <Stack.Item>
           <Button.Checkbox
             checked={matchWord}
             tooltipPosition="bottom-start"
@@ -145,8 +145,8 @@ const TextHighlightSetting = (props) => {
           >
             Exact
           </Button.Checkbox>
-        </Flex.Item>
-        <Flex.Item>
+        </Stack.Item>
+        <Stack.Item>
           <Button.Checkbox
             tooltip="If this option is selected, the highlight will be case-sensitive."
             checked={matchCase}
@@ -161,8 +161,8 @@ const TextHighlightSetting = (props) => {
           >
             Case
           </Button.Checkbox>
-        </Flex.Item>
-        <Flex.Item shrink={0}>
+        </Stack.Item>
+        <Stack.Item shrink={0}>
           <ColorBox mr={1} color={highlightColor} />
           <Input
             width="5em"
@@ -178,8 +178,8 @@ const TextHighlightSetting = (props) => {
               )
             }
           />
-        </Flex.Item>
-      </Flex>
+        </Stack.Item>
+      </Stack>
       <TextArea
         height="3em"
         value={highlightText}
@@ -210,6 +210,6 @@ const TextHighlightSetting = (props) => {
       ) : (
         ''
       )}
-    </Flex.Item>
+    </Stack.Item>
   );
 };

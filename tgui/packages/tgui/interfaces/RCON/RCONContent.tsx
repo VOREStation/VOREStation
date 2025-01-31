@@ -1,6 +1,6 @@
 import { useState } from 'react';
+import { Box, Icon, Tabs } from 'tgui-core/components';
 
-import { Box, Icon, Tabs } from '../../components';
 import { RCONBreakerList } from './RCONBreakerList';
 import { RCONSmesList } from './RCONSmesList';
 
@@ -30,7 +30,7 @@ export const RCONContent = (props) => {
           <Icon name="bolt" /> Breakers
         </Tabs.Tab>
       </Tabs>
-      <Box m={2}>{body[tabIndex] || ''}</Box>
+      <Box m={1}>{body[tabIndex] || ''}</Box>
     </>
   );
 };

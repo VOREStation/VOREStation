@@ -1,7 +1,7 @@
-import { BooleanLike } from 'common/react';
+import { useBackend } from 'tgui/backend';
+import { Button, Icon, Section, Stack } from 'tgui-core/components';
+import { BooleanLike } from 'tgui-core/react';
 
-import { useBackend } from '../../backend';
-import { Button, Flex, Icon, Section } from '../../components';
 import { ChemMasterProductionChemical } from './ChemMasterProductionChemical';
 import { ChemMasterProductionCondiment } from './ChemMasterProductionCondiment';
 
@@ -51,13 +51,13 @@ export const ChemMasterProduction = (props: {
           </Button>
         }
       >
-        <Flex height="100%">
-          <Flex.Item grow="1" align="center" textAlign="center" color="label">
+        <Stack height="100%">
+          <Stack.Item grow align="center" textAlign="center" color="label">
             <Icon name="tint-slash" mt="0.5rem" mb="0.5rem" size={5} />
             <br />
             Buffer is empty.
-          </Flex.Item>
-        </Flex>
+          </Stack.Item>
+        </Stack>
       </Section>
     );
   }

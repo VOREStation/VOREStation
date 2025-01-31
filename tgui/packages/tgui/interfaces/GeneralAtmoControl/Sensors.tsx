@@ -1,4 +1,5 @@
-import { Box, Flex, LabeledList, Section } from '../../components';
+import { Box, LabeledList, Section, Stack } from 'tgui-core/components';
+
 import { sensor } from './types';
 
 export const AtmoControlSensors = (props: { sensors: sensor[] }) => {
@@ -49,14 +50,14 @@ const AtmoSensor = (props: { sensor: sensor }) => {
   if (oxygen || nitrogen || carbon_dioxide || phoron) {
     labeledListContents.push(
       <LabeledList.Item label="Gas Composition">
-        <Flex justify="space-around">
-          {oxygen ? <Flex.Item>({oxygen}% O²)</Flex.Item> : null}
-          {nitrogen ? <Flex.Item>({nitrogen}% N²)</Flex.Item> : null}
+        <Stack justify="space-around">
+          {oxygen ? <Stack.Item>({oxygen}% O²)</Stack.Item> : null}
+          {nitrogen ? <Stack.Item>({nitrogen}% N²)</Stack.Item> : null}
           {carbon_dioxide ? (
-            <Flex.Item>({carbon_dioxide}% CO²)</Flex.Item>
+            <Stack.Item>({carbon_dioxide}% CO²)</Stack.Item>
           ) : null}
-          {phoron ? <Flex.Item>({phoron}% TX)</Flex.Item> : null}
-        </Flex>
+          {phoron ? <Stack.Item>({phoron}% TX)</Stack.Item> : null}
+        </Stack>
       </LabeledList.Item>,
     );
   }

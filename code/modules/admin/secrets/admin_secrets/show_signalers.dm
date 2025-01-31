@@ -12,4 +12,4 @@
 	var/dat = span_bold("Showing last [length(lastsignalers)] signalers.") + "<HR>"
 	for(var/sig in lastsignalers)
 		dat += "[sig]<BR>"
-	user << browse(dat, "window=lastsignalers;size=800x500")
+	user << browse("<html>[dat]</html>", "window=lastsignalers;size=800x500")

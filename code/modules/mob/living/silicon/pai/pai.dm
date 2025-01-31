@@ -152,6 +152,7 @@
 		ooc_notes = client.prefs.read_preference(/datum/preference/text/living/ooc_notes)
 		ooc_notes_likes = client.prefs.read_preference(/datum/preference/text/living/ooc_notes_likes)
 		ooc_notes_dislikes = client.prefs.read_preference(/datum/preference/text/living/ooc_notes_dislikes)
+		private_notes = client.prefs.read_preference(/datum/preference/text/living/private_notes)
 
 	src << sound('sound/effects/pai_login.ogg', volume = 75)	//VOREStation Add
 
@@ -237,7 +238,7 @@
 	medicalActive2 = null
 	medical_cannotfind = 0
 	SStgui.update_uis(src)
-	to_chat(usr, span_notice("You reset your record-viewing software."))
+	to_chat(src, span_notice("You reset your record-viewing software."))
 
 /mob/living/silicon/pai/cancel_camera()
 	set category = "Abilities.pAI Commands"
@@ -333,11 +334,11 @@
 	var/finalized = "No"
 	while(finalized == "No" && src.client)
 
-		choice = tgui_input_list(usr,"What would you like to use for your mobile chassis icon?","Chassis Choice", possible_chassis)
+		choice = tgui_input_list(src,"What would you like to use for your mobile chassis icon?","Chassis Choice", possible_chassis)
 		if(!choice) return
 
 		icon_state = possible_chassis[choice]
-		finalized = tgui_alert(usr, "Look at your sprite. Is this what you wish to use?","Choose Chassis",list("No","Yes"))
+		finalized = tgui_alert(src, "Look at your sprite. Is this what you wish to use?","Choose Chassis",list("No","Yes"))
 
 	chassis = possible_chassis[choice]
 	add_verb(src, /mob/living/proc/hide)
@@ -348,7 +349,7 @@
 	set category = "Abilities.pAI Commands"
 	set name = "Choose Speech Verbs"
 
-	var/choice = tgui_input_list(usr,"What theme would you like to use for your speech verbs?","Theme Choice", possible_say_verbs)
+	var/choice = tgui_input_list(src,"What theme would you like to use for your speech verbs?","Theme Choice", possible_say_verbs)
 	if(!choice) return
 
 	var/list/sayverbs = possible_say_verbs[choice]
@@ -539,7 +540,7 @@
 	set desc = "Upload your personality to the cloud and wipe your software from the card. This is functionally equivalent to cryo or robotic storage, freeing up your job slot."
 
 	// Make sure people don't kill themselves accidentally
-	if(tgui_alert(usr, "WARNING: This will immediately wipe your software and ghost you, removing your character from the round permanently (similar to cryo and robotic storage). Are you entirely sure you want to do this?", "Wipe Software", list("No", "Yes")) != "Yes")
+	if(tgui_alert(src, "WARNING: This will immediately wipe your software and ghost you, removing your character from the round permanently (similar to cryo and robotic storage). Are you entirely sure you want to do this?", "Wipe Software", list("No", "Yes")) != "Yes")
 		return
 
 	close_up()

@@ -16,11 +16,11 @@ var/global/list/empty_playable_ai_cores = list()
 	set desc = "Enter intelligence storage. This is functionally equivalent to cryo or robotic storage, freeing up your job slot."
 
 	if(ticker && ticker.mode && ticker.mode.name == "AI malfunction")
-		to_chat(usr, span_danger("You cannot use this verb in malfunction. If you need to leave, please adminhelp."))
+		to_chat(src, span_danger("You cannot use this verb in malfunction. If you need to leave, please adminhelp."))
 		return
 
 	// Guard against misclicks, this isn't the sort of thing we want happening accidentally
-	if(tgui_alert(usr, "WARNING: This will immediately empty your core and ghost you, removing your character from the round permanently (similar to cryo and robotic storage). Are you entirely sure you want to do this?", "Store Core", list("No", "Yes")) != "Yes")
+	if(tgui_alert(src, "WARNING: This will immediately empty your core and ghost you, removing your character from the round permanently (similar to cryo and robotic storage). Are you entirely sure you want to do this?", "Store Core", list("No", "Yes")) != "Yes")
 		return
 
 	// We warned you.

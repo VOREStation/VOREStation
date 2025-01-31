@@ -11,11 +11,11 @@ body {
   padding: 0;
   margin: 0;
   height: 100%;
-  color: #000000;
+  color: hsl(0, 0%, 0%);
 }
 
 body {
-  background: #fff;
+  background: hsl(0, 0%, 100%);
   font-family: Verdana, sans-serif;
   font-size: 13px;
   line-height: 1.2;
@@ -45,15 +45,15 @@ img.icon {
 }
 
 a {
-  color: #0000ff;
+  color: hsl(240, 100%, 50%);
 }
 
 a.visited {
-  color: #ff00ff;
+  color: hsl(300, 100%, 50%);
 }
 
 a:visited {
-  color: #ff00ff;
+  color: hsl(300, 100%, 50%);
 }
 
 a.popt {
@@ -66,15 +66,15 @@ a.popt {
   position: fixed;
   top: 50%;
   left: 50%;
-  background: #ddd;
+  background: hsl(0, 0%, 87%);
 }
 
 .popup .close {
   position: absolute;
-  background: #aaa;
+  background: hsl(0, 0%, 67%);
   top: 0;
   right: 0;
-  color: #333;
+  color: hsl(0, 0%, 20%);
   text-decoration: none;
   z-index: 2;
   padding: 0 10px;
@@ -83,12 +83,12 @@ a.popt {
 }
 
 .popup .close:hover {
-  background: #999;
+  background: hsl(0, 0%, 60%);
 }
 
 .popup .head {
-  background: #999;
-  color: #ddd;
+  background: hsl(0, 0%, 60%);
+  color: hsl(0, 0%, 87%);
   padding: 0 10px;
   height: 30px;
   line-height: 30px;
@@ -99,12 +99,12 @@ a.popt {
 }
 
 .popup input {
-  border: 1px solid #999;
-  background: #fff;
+  border: 1px solid hsl(0, 0%, 60%);
+  background: hsl(0, 0%, 100%);
   margin: 0;
   padding: 5px;
   outline: none;
-  color: #333;
+  color: hsl(0, 0%, 20%);
 }
 
 .popup input[type='text']:hover,
@@ -115,8 +115,8 @@ a.popt {
 
 .popup input[type='submit'] {
   padding: 5px 10px;
-  background: #999;
-  color: #ddd;
+  background: hsl(0, 0%, 60%);
+  color: hsl(0, 0%, 87%);
   text-transform: uppercase;
   font-size: 0.9em;
   font-weight: bold;
@@ -125,7 +125,7 @@ a.popt {
 .popup input[type='submit']:hover,
 .popup input[type='submit']:focus,
 .popup input[type='submit']:active {
-  background: #aaa;
+  background: hsl(0, 0%, 67%);
   cursor: pointer;
 }
 
@@ -137,11 +137,11 @@ a.popt {
   display: block;
   text-decoration: none;
   padding: 3px;
-  color: #333;
+  color: hsl(0, 0%, 20%);
 }
 
 .changeFont a:hover {
-  background: #ccc;
+  background: hsl(0, 0%, 80%);
 }
 
 .highlightPopup {
@@ -157,7 +157,7 @@ a.popt {
 }
 
 .highlightPopup input.highlightColor {
-  background-color: #ffff00;
+  background-color: hsl(60, 100%, 50%);
 }
 
 .highlightPopup input.highlightTermSubmit {
@@ -167,7 +167,7 @@ a.popt {
 /* ADMIN CONTEXT MENU */
 
 .contextMenu {
-  background-color: #ddd;
+  background-color: hsl(0, 0%, 87%);
   position: fixed;
   margin: 2px;
   width: 150px;
@@ -177,11 +177,11 @@ a.popt {
   display: block;
   padding: 2px 5px;
   text-decoration: none;
-  color: #333;
+  color: hsl(0, 0%, 20%);
 }
 
 .contextMenu a:hover {
-  background-color: #ccc;
+  background-color: hsl(0, 0%, 80%);
 }
 
 /* ADMIN FILTER MESSAGES MENU */
@@ -211,7 +211,7 @@ a.popt {
 /* MOTD */
 
 .motd {
-  color: #638500;
+  color: hsl(75, 100%, 26%);
   font-family: Verdana, sans-serif;
   white-space: normal;
 }
@@ -222,7 +222,7 @@ a.popt {
 .motd h4,
 .motd h5,
 .motd h6 {
-  color: #638500;
+  color: hsl(75, 100%, 26%);
   text-decoration: underline;
 }
 
@@ -231,7 +231,7 @@ a.popt {
 .motd a:visited,
 .motd a:active,
 .motd a:hover {
-  color: #638500;
+  color: hsl(75, 100%, 26%);
 }
 
 .underline {
@@ -271,13 +271,13 @@ h3,
 h4,
 h5,
 h6 {
-  color: #0000ff;
+  color: hsl(240, 100%, 50%);
   font-family: Georgia, Verdana, sans-serif;
 }
 
 h1.alert,
 h2.alert {
-  color: #000000;
+  color: hsl(0, 0%, 0%);
 }
 
 em {
@@ -286,32 +286,32 @@ em {
 }
 
 .ooc {
-  color: #002eb8;
+  color: hsl(225, 100%, 36%);
   font-weight: bold;
 }
 
 .ooc .elevated {
-  color: #2e78d9;
+  color: hsl(214, 69%, 52%);
 }
 
 .ooc .moderator {
-  color: #184880;
+  color: hsl(212, 68%, 30%);
 }
 
 .ooc .developer {
-  color: #1b521f;
+  color: hsl(124, 50%, 21%);
 }
 
 .ooc .admin {
-  color: #b82e00;
+  color: hsl(15, 100%, 36%);
 }
 
 .ooc .event_manager {
-  color: #660033;
+  color: hsl(330, 100%, 20%);
 }
 
 .ooc .aooc {
-  color: #960018;
+  color: hsl(350, 100%, 29%);
 }
 
 img.text_tag {
@@ -330,52 +330,52 @@ img.icon.bigicon {
 }
 
 .looc {
-  color: #3a9696;
+  color: hsl(180, 44%, 41%);
   font-weight: bold;
 }
 
 .rlooc {
-  color: #3abb96;
+  color: hsl(163, 53%, 48%);
   font-weight: bold;
 }
 
 .adminobserverooc {
-  color: #0099cc;
+  color: hsl(195, 100%, 40%);
   font-weight: bold;
 }
 
 .adminooc {
-  color: #700038;
+  color: hsl(330, 100%, 22%);
   font-weight: bold;
 }
 
 .adminsay {
-  color: #ff4500;
+  color: hsl(16, 100%, 50%);
   font-weight: bold;
 }
 
 .admin {
-  color: #4473ff;
+  color: hsl(225, 100%, 63%);
   font-weight: bold;
 }
 
 .mentor_channel {
-  color: #808000;
+  color: hsl(60, 100%, 25%);
   font-weight: bold;
 }
 
 .mod_channel {
-  color: #735638;
+  color: hsl(31, 35%, 34%);
   font-weight: bold;
 }
 
 .admin_channel {
-  color: #9611d4;
+  color: hsl(281, 85%, 45%);
   font-weight: bold;
 }
 
 .event_channel {
-  color: #cc3399;
+  color: hsl(320, 60%, 50%);
   font-weight: bold;
 }
 
@@ -396,99 +396,99 @@ img.icon.bigicon {
 }
 
 .psay {
-  color: #800080;
+  color: hsl(300, 100%, 25%);
   font-style: italic;
 }
 
 .pemote {
-  color: #800080;
+  color: hsl(300, 100%, 25%);
   font-style: italic;
 }
 
 .deadsay {
-  color: #530fad;
+  color: hsl(266, 84%, 37%);
 }
 
 .binarysay {
   font-style: italic;
-  color: #000000;
+  color: hsl(0, 0%, 0%);
 }
 
 .binarysay a {
-  color: #00ff00;
+  color: hsl(120, 100%, 50%);
 }
 
 .binarysay a:active,
 .binarysay a:visited {
-  color: #88ff88;
+  color: hsl(120, 100%, 77%);
 }
 
 .radio {
-  color: #008000;
+  color: hsl(120, 100%, 25%);
 }
 
 .sciradio {
-  color: #993399;
+  color: hsl(300, 50%, 40%);
 }
 
 .comradio {
-  color: #193a7a;
+  color: hsl(220, 66%, 29%);
 }
 
 .secradio {
-  color: #a30000;
+  color: hsl(0, 100%, 32%);
 }
 
 .medradio {
-  color: #008160;
+  color: hsl(165, 100%, 25%);
 }
 
 .engradio {
-  color: #a66300;
+  color: hsl(36, 100%, 33%);
 }
 
 .supradio {
-  color: #5f4519;
+  color: hsl(38, 58%, 24%);
 }
 
 .srvradio {
-  color: #6eaa2c;
+  color: hsl(89, 59%, 42%);
 }
 
 .expradio {
-  color: #555555;
+  color: hsl(0, 0%, 33%);
 }
 
 .syndradio {
-  color: #6d3f40;
+  color: hsl(359, 27%, 34%);
 }
 
 .gangradio {
-  color: #ac2ea1;
+  color: hsl(305, 58%, 43%);
 }
 
 .centradio {
-  color: #5c5c8a;
+  color: hsl(240, 20%, 45%);
 }
 
 .airadio {
-  color: #ff00ff;
+  color: hsl(300, 100%, 50%);
 }
 
 .redteamradio {
-  color: #ff0000 !important;
+  color: hsl(0, 100%, 50%) !important;
 }
 
 .blueteamradio {
-  color: #0000ff !important;
+  color: hsl(240, 100%, 50%) !important;
 }
 
 .greenteamradio {
-  color: #00ff00 !important;
+  color: hsl(120, 100%, 50%) !important;
 }
 
 .yellowteamradio {
-  color: #d1ba22 !important;
+  color: hsl(52, 72%, 48%) !important;
 }
 
 .yell {
@@ -496,423 +496,423 @@ img.icon.bigicon {
 }
 
 .alert {
-  color: #ff0000;
+  color: hsl(0, 100%, 50%);
 }
 
 .valert {
-  color: #ff0000;
+  color: hsl(0, 100%, 50%);
 }
 
 h1.alert,
 h2.alert {
-  color: #000000;
+  color: hsl(0, 0%, 0%);
 }
 
 .userdanger {
-  color: #ff0000;
+  color: hsl(0, 100%, 50%);
   font-weight: bold;
   font-size: 185%;
 }
 
 .bolddanger {
-  color: #ff0000;
+  color: hsl(0, 100%, 50%);
   font-weight: bold;
 }
 
 .danger {
-  color: #ff0000;
+  color: hsl(0, 100%, 50%);
 }
 
 .vdanger {
-  color: #ff0000;
+  color: hsl(0, 100%, 50%);
 }
 
 .tinydanger {
-  color: #ff0000;
+  color: hsl(0, 100%, 50%);
   font-size: 85%;
 }
 
 .smalldanger {
-  color: #ff0000;
+  color: hsl(0, 100%, 50%);
   font-size: 90%;
 }
 
 .warning {
-  color: #ff0000;
+  color: hsl(0, 100%, 50%);
   font-style: italic;
 }
 
 .vwarning {
-  color: #ff0000;
+  color: hsl(0, 100%, 50%);
   font-style: italic;
 }
 
 .alertwarning {
-  color: #ff0000;
+  color: hsl(0, 100%, 50%);
   font-weight: bold;
 }
 
 .boldwarning {
-  color: #ff0000;
+  color: hsl(0, 100%, 50%);
   font-style: italic;
   font-weight: bold;
 }
 
 .announce {
-  color: #228b22;
+  color: hsl(120, 61%, 34%);
   font-weight: bold;
 }
 
 .boldannounce {
-  color: #ff0000;
+  color: hsl(0, 100%, 50%);
   font-weight: bold;
 }
 
 .minorannounce {
-  color: #ff0000;
+  color: hsl(0, 100%, 50%);
   font-weight: bold;
   font-size: 185%;
 }
 
 .minoralert {
-  color: #000000;
+  color: hsl(0, 0%, 0%);
   font-size: 125%;
 }
 
 .priorityannounce {
-  color: #000000;
+  color: hsl(0, 0%, 0%);
   font-weight: bold;
   font-size: 225%;
 }
 
 .prioritytitle {
-  color: #0000ff;
+  color: hsl(240, 100%, 50%);
   font-weight: bold;
   font-size: 185%;
 }
 
 .priorityalert {
-  color: #ff0000;
+  color: hsl(0, 100%, 50%);
   font-size: 140%;
 }
 
 .greenannounce {
-  color: #00ff00;
+  color: hsl(120, 100%, 50%);
   font-weight: bold;
 }
 
 .rose {
-  color: #ff5050;
+  color: hsl(0, 100%, 66%);
 }
 
 .info {
-  color: #0000cc;
+  color: hsl(240, 100%, 40%);
 }
 
 .notice {
-  color: #000099;
+  color: hsl(240, 100%, 30%);
 }
 
 .vnotice {
-  color: #000099;
+  color: hsl(240, 100%, 30%);
 }
 
 .tinynotice {
-  color: #000099;
+  color: hsl(240, 100%, 30%);
   font-size: 85%;
 }
 
 .tinynoticeital {
-  color: #000099;
+  color: hsl(240, 100%, 30%);
   font-style: italic;
   font-size: 85%;
 }
 
 .smallnotice {
-  color: #000099;
+  color: hsl(240, 100%, 30%);
   font-size: 90%;
 }
 
 .smallnoticeital {
-  color: #000099;
+  color: hsl(240, 100%, 30%);
   font-style: italic;
   font-size: 90%;
 }
 
 .boldnotice {
-  color: #000099;
+  color: hsl(240, 100%, 30%);
   font-weight: bold;
 }
 
 .hear {
-  color: #000099;
+  color: hsl(240, 100%, 30%);
   font-style: italic;
 }
 
 .adminnotice {
-  color: #0000ff;
+  color: hsl(240, 100%, 50%);
 }
 
 .adminhelp {
-  color: #ff0000;
+  color: hsl(0, 100%, 50%);
   font-weight: bold;
 }
 
 .log_message {
-  color: #386aff;
+  color: hsl(225, 100%, 61%);
   font-weight: bold;
 }
 
 .unconscious {
-  color: #0000ff;
+  color: hsl(240, 100%, 50%);
   font-weight: bold;
 }
 
 .suicide {
-  color: #ff5050;
+  color: hsl(0, 100%, 66%);
   font-style: italic;
 }
 
 .green {
-  color: #03ff39;
+  color: hsl(133, 100%, 51%);
 }
 
 .darkgreen {
-  color: #008000;
+  color: hsl(120, 100%, 25%);
 }
 
 .grey {
-  color: #838383;
+  color: hsl(0, 0%, 51%);
 }
 
 .red {
-  color: #ff0000;
+  color: hsl(0, 100%, 50%);
 }
 
 .crimson {
-  color: #dc143c;
+  color: hsl(348, 83%, 47%);
 }
 
 .maroon {
-  color: #800000;
+  color: hsl(0, 100%, 25%);
 }
 
 .brown {
-  color: #8d4925;
+  color: hsl(21, 58%, 35%);
 }
 
 .blue {
-  color: #0000ff;
+  color: hsl(240, 100%, 50%);
 }
 
 .black {
-  color: #000000;
+  color: hsl(0, 0%, 0%);
 }
 
 .white {
-  color: #000000;
+  color: hsl(0, 0%, 0%);
 }
 
 .darkgray {
-  color: #808080;
+  color: hsl(0, 0%, 50%);
 }
 
 .gray {
-  color: #a9a9a9;
+  color: hsl(0, 0%, 66%);
 }
 
 .yellow {
-  color: #ffcc00;
+  color: hsl(48, 100%, 50%);
 }
 
 .pink {
-  color: #ffc0cb;
+  color: hsl(350, 100%, 88%);
 }
 
 .cyan {
-  color: #00ffff;
+  color: hsl(180, 100%, 50%);
 }
 
 .orange {
-  color: #ff8c00;
+  color: hsl(33, 100%, 50%);
 }
 
 .nicegreen {
-  color: #14a833;
+  color: hsl(133, 79%, 37%);
 }
 
 .boldnicegreen {
-  color: #14a833;
+  color: hsl(133, 79%, 37%);
   font-weight: bold;
 }
 
 .cult {
-  color: #973e3b;
+  color: hsl(2, 44%, 41%);
 }
 
 .cultitalic {
-  color: #973e3b;
+  color: hsl(2, 44%, 41%);
   font-style: italic;
 }
 
 .cultbold {
-  color: #973e3b;
+  color: hsl(2, 44%, 41%);
   font-style: italic;
   font-weight: bold;
 }
 
 .cultboldtalic {
-  color: #973e3b;
+  color: hsl(2, 44%, 41%);
   font-weight: bold;
   font-size: 185%;
 }
 
 .cultlarge {
-  color: #973e3b;
+  color: hsl(2, 44%, 41%);
   font-weight: bold;
   font-size: 185%;
 }
 
 .blob {
-  color: #ee4000;
+  color: hsl(16, 100%, 47%);
 }
 
 .blobannounce {
-  color: #323f1c;
+  color: hsl(82, 38%, 18%);
   font-weight: bold;
   font-size: 185%;
 }
 
 .narsie {
-  color: #973e3b;
+  color: hsl(2, 44%, 41%);
   font-weight: bold;
   font-size: 925%;
 }
 
 .narsiesmall {
-  color: #973e3b;
+  color: hsl(2, 44%, 41%);
   font-weight: bold;
   font-size: 370%;
 }
 
 .colossus {
-  color: #7f282a;
+  color: hsl(359, 52%, 33%);
   font-size: 310%;
 }
 
 .hierophant {
-  color: #660099;
+  color: hsl(280, 100%, 30%);
   font-weight: bold;
   font-style: italic;
 }
 
 .hierophant_warning {
-  color: #660099;
+  color: hsl(280, 100%, 30%);
   font-style: italic;
 }
 
 .purple {
-  color: #5e2d79;
+  color: hsl(279, 46%, 33%);
 }
 
 .lightpurple {
-  color: #ad5aad;
+  color: hsl(300, 34%, 52%);
 }
 
 .darkpink {
-  color: #e3209b;
+  color: hsl(322, 78%, 51%);
 }
 
 .holoparasite {
-  color: #35333a;
+  color: hsl(257, 6%, 21%);
 }
 
 .revennotice {
-  color: #1d2953;
+  color: hsl(227, 48%, 22%);
 }
 
 .revenboldnotice {
-  color: #1d2953;
+  color: hsl(227, 48%, 22%);
   font-weight: bold;
 }
 
 .revenbignotice {
-  color: #1d2953;
+  color: hsl(227, 48%, 22%);
   font-weight: bold;
   font-size: 185%;
 }
 
 .revenminor {
-  color: #823abb;
+  color: hsl(273, 53%, 48%);
 }
 
 .revenwarning {
-  color: #760fbb;
+  color: hsl(276, 85%, 40%);
   font-style: italic;
 }
 
 .revendanger {
-  color: #760fbb;
+  color: hsl(276, 85%, 40%);
   font-weight: bold;
   font-size: 185%;
 }
 
 .deconversion_message {
-  color: #5000a0;
+  color: hsl(270, 100%, 31%);
   font-size: 185%;
   font-style: italic;
 }
 
 .ghostalert {
-  color: #5c00e6;
+  color: hsl(264, 100%, 45%);
   font-style: italic;
   font-weight: bold;
 }
 
 .alien {
-  color: #543354;
+  color: hsl(300, 24%, 26%);
 }
 
 .noticealien {
-  color: #00c000;
+  color: hsl(120, 100%, 38%);
 }
 
 .alertalien {
-  color: #00c000;
+  color: hsl(120, 100%, 38%);
   font-weight: bold;
 }
 
 .changeling {
-  color: #800080;
+  color: hsl(300, 100%, 25%);
   font-style: italic;
 }
 
 .alertsyndie {
-  color: #ff0000;
+  color: hsl(0, 100%, 50%);
   font-size: 185%;
   font-weight: bold;
 }
 
 .spiderbroodmother {
-  color: #4d004d;
+  color: hsl(300, 100%, 15%);
   font-weight: bold;
   font-size: 185%;
 }
 
 .spiderbreacher {
-  color: #804b02;
+  color: hsl(35, 97%, 25%);
   font-weight: bold;
   font-size: 140%;
 }
 
 .spiderscout {
-  color: #0c0674;
+  color: hsl(243, 90%, 24%);
   font-weight: bold;
   font-size: 120%;
 }
 
 .interface {
-  color: #330033;
+  color: hsl(300, 100%, 10%);
 }
 
 .sans {
@@ -928,7 +928,7 @@ h2.alert {
 }
 
 .tape_recorder {
-  color: #800000;
+  color: hsl(0, 100%, 25%);
   font-family: 'Courier New', cursive, sans-serif;
 }
 
@@ -954,17 +954,17 @@ h2.alert {
 }
 
 .greentext {
-  color: #00ff00;
+  color: hsl(120, 100%, 50%);
   font-size: 185%;
 }
 
 .redtext {
-  color: #ff0000;
+  color: hsl(0, 100%, 50%);
   font-size: 185%;
 }
 
 .clown {
-  color: #ff69bf;
+  color: hsl(326, 100%, 71%);
   font-size: 160%;
   font-family: 'Comic Sans MS', cursive, sans-serif;
   font-weight: bold;
@@ -976,13 +976,13 @@ h2.alert {
 }
 
 .his_grace {
-  color: #15d512;
+  color: hsl(119, 84%, 45%);
   font-family: 'Courier New', cursive, sans-serif;
   font-style: italic;
 }
 
 .hypnophrase {
-  color: #0d0d0d;
+  color: hsl(0, 0%, 5%);
   font-weight: bold;
   animation: hypnocolor 1500ms infinite;
   animation-direction: alternate;
@@ -990,43 +990,43 @@ h2.alert {
 
 @keyframes hypnocolor {
   0% {
-    color: #0d0d0d;
+    color: hsl(0, 0%, 5%);
   }
 
   25% {
-    color: #410194;
+    color: hsl(266, 99%, 29%);
   }
 
   50% {
-    color: #7f17d8;
+    color: hsl(272, 81%, 47%);
   }
 
   75% {
-    color: #410194;
+    color: hsl(266, 99%, 29%);
   }
 
   100% {
-    color: #3bb5d3;
+    color: hsl(192, 63%, 53%);
   }
 }
 
 .phobia {
-  color: #dd0000;
+  color: hsl(0, 100%, 43%);
   font-weight: bold;
   animation: phobia 750ms infinite;
 }
 
 @keyframes phobia {
   0% {
-    color: #0d0d0d;
+    color: hsl(0, 0%, 5%);
   }
 
   50% {
-    color: #dd0000;
+    color: hsl(0, 100%, 43%);
   }
 
   100% {
-    color: #0d0d0d;
+    color: hsl(0, 0%, 5%);
   }
 }
 
@@ -1044,7 +1044,7 @@ h2.alert {
 }
 
 .memo {
-  color: #638500;
+  color: hsl(75, 100%, 26%);
   text-align: center;
 }
 
@@ -1054,35 +1054,35 @@ h2.alert {
 }
 
 .abductor {
-  color: #800080;
+  color: hsl(300, 100%, 25%);
   font-style: italic;
 }
 
 .mind_control {
-  color: #a00d6f;
+  color: hsl(320, 85%, 34%);
   font-size: 100%;
   font-weight: bold;
   font-style: italic;
 }
 
 .slime {
-  color: #00ced1;
+  color: hsl(181, 100%, 41%);
 }
 
 .drone {
-  color: #848482;
+  color: hsl(60, 1%, 51%);
 }
 
 .monkey {
-  color: #975032;
+  color: hsl(18, 50%, 39%);
 }
 
 .swarmer {
-  color: #2c75ff;
+  color: hsl(219, 100%, 59%);
 }
 
 .resonate {
-  color: #298f85;
+  color: hsl(174, 55%, 36%);
 }
 
 .upside_down {
@@ -1135,63 +1135,63 @@ h2.alert {
 }
 
 .examine_block {
-  background: #f2f7fa;
-  border: 1px solid #111a27;
+  background: hsl(202, 44%, 96%);
+  border: 1px solid hsl(215, 39%, 11%);
   margin: 0.5em;
   padding: 0.5em 0.75em;
 }
 
 .tooltip {
   font-style: italic;
-  border-bottom: 1px dashed #000;
+  border-bottom: 1px dashed hsl(0, 0%, 0%);
 }
 
 $alert-stripe-colors: (
-  'default': #b3bfff,
-  'green': #adffad,
-  'blue': #b3bfff,
-  'pink': #ffb3df,
-  'yellow': #fff3b3,
-  'orange': #ffe2b3,
-  'red': #ffb3b3,
-  'purple': #fac2ff,
-  'grey': #e3e3e3,
+  'default': hsl(231, 100%, 85%),
+  'green': hsl(120, 100%, 84%),
+  'blue': hsl(231, 100%, 85%),
+  'pink': hsl(325, 100%, 85%),
+  'yellow': hsl(51, 100%, 85%),
+  'orange': hsl(37, 100%, 85%),
+  'red': hsl(0, 100%, 85%),
+  'purple': hsl(295, 100%, 88%),
+  'grey': hsl(0, 0%, 89%),
 );
 
 $alert-stripe-alternate-colors: (
-  'default': #bdc8ff,
-  'green': #bdffbd,
-  'blue': #bdc8ff,
-  'pink': #ffc2e5,
-  'yellow': #fff5c2,
-  'orange': #ffe8c2,
-  'red': #ffc2c2,
-  'purple': #fbd1ff,
-  'grey': #ebebeb,
+  'default': hsl(230, 100%, 87%),
+  'green': hsl(120, 100%, 87%),
+  'blue': hsl(230, 100%, 87%),
+  'pink': hsl(326, 100%, 88%),
+  'yellow': hsl(50, 100%, 88%),
+  'orange': hsl(37, 100%, 88%),
+  'red': hsl(0, 100%, 88%),
+  'purple': hsl(295, 100%, 91%),
+  'grey': hsl(0, 0%, 92%),
 );
 
 $alert-major-header-colors: (
-  'default': #003061,
-  'green': #005229,
-  'blue': #003061,
-  'pink': #800033,
-  'yellow': #754900,
-  'orange': #823208,
-  'red': #800029,
-  'purple': #450d8c,
-  'grey': #800033,
+  'default': hsl(210, 100%, 19%),
+  'green': hsl(150, 100%, 16%),
+  'blue': hsl(210, 100%, 19%),
+  'pink': hsl(336, 100%, 25%),
+  'yellow': hsl(37, 100%, 23%),
+  'orange': hsl(21, 88%, 27%),
+  'red': hsl(341, 100%, 25%),
+  'purple': hsl(266, 83%, 30%),
+  'grey': hsl(336, 100%, 25%),
 );
 
 $alert-subheader-header-colors: (
-  'default': #6b0020,
-  'green': #6b0020,
-  'blue': #6b0020,
-  'pink': #002c85,
-  'yellow': #002c85,
-  'orange': #002c85,
-  'red': #002c85,
-  'purple': #002c85,
-  'grey': #002c85,
+  'default': hsl(342, 100%, 21%),
+  'green': hsl(342, 100%, 21%),
+  'blue': hsl(342, 100%, 21%),
+  'pink': hsl(220, 100%, 26%),
+  'yellow': hsl(220, 100%, 26%),
+  'orange': hsl(220, 100%, 26%),
+  'red': hsl(220, 100%, 26%),
+  'purple': hsl(220, 100%, 26%),
+  'grey': hsl(220, 100%, 26%),
 );
 
 $border-width: 4;
@@ -1219,8 +1219,8 @@ $border-width-px: $border-width * 1px;
 }
 
 .major_announcement_text {
-  color: #131313;
-  background-color: #eaeaea;
+  color: hsl(0, 0%, 7%);
+  background-color: hsl(0, 0%, 92%);
   font-weight: bold;
   font-size: 100%;
   text-align: left;
@@ -1241,8 +1241,8 @@ $border-width-px: $border-width * 1px;
 }
 
 .minor_announcement_text {
-  background-color: #eaeaea;
-  color: #202020;
+  background-color: hsl(0, 0%, 92%);
+  color: hsl(0, 0%, 13%);
   padding: 0.5rem 0.5rem;
   text-align: left;
   font-size: 100%;
@@ -1255,18 +1255,18 @@ $border-width-px: $border-width * 1px;
 }
 
 .ooc_alert {
-  background: #bdc8ff;
-  border: 1px solid #002eb8;
+  background: hsl(230, 100%, 87%);
+  border: 1px solid hsl(225, 100%, 36%);
   margin: 0.5em;
   padding: 0.5em 0.5em 0.5em 0.2em;
-  color: #00283a;
+  color: hsl(199, 100%, 11%);
   font-weight: bold;
   display: flex;
   flex-direction: column;
 }
 
 .ooc_announcement_text {
-  color: #002eb8;
+  color: hsl(225, 100%, 36%);
   padding: 0.5em 0 0 0.35em;
   display: flex;
   flex-direction: column;
@@ -1274,7 +1274,7 @@ $border-width-px: $border-width * 1px;
 
 @each $color-name, $color-value in $alert-stripe-colors {
   .chat_alert_#{$color-name} {
-    color: #ffffff;
+    color: hsl(0, 0%, 100%);
     padding: 0.5rem 0.5rem;
     box-shadow: none;
     font-weight: bold;
@@ -1310,105 +1310,107 @@ $border-width-px: $border-width * 1px;
   }
 
   .chat_alert_#{$color-name} .minor_announcement_text {
-    background-color: lighten(
+    background-color: color.adjust(
       map.get($alert-stripe-alternate-colors, $color-name),
-      5
+      $lightness: 5%,
+      $space: hsl
     );
   }
 
   .chat_alert_#{$color-name} .major_announcement_text {
-    background-color: lighten(
+    background-color: color.adjust(
       map.get($alert-stripe-alternate-colors, $color-name),
-      5
+      $lightness: 5%,
+      $space: hsl
     );
   }
 }
 
 // Extra Languages
 .tajaran {
-  color: #803b56;
+  color: hsl(337, 37%, 37%);
 }
 
 .tajaran_signlang {
-  color: #941c1c;
+  color: hsl(0, 68%, 35%);
 }
 
 .akhani {
-  color: #ac398c;
+  color: hsl(317, 50%, 45%);
 }
 
 .skrell {
-  color: #00b0b3;
+  color: hsl(181, 100%, 35%);
 }
 
 .skrellfar {
-  color: #70fcff;
+  color: hsl(181, 100%, 72%);
 }
 
 .soghun {
-  color: #50ba6c;
+  color: hsl(136, 43%, 52%);
 }
 
 .solcom {
-  color: #3333ce;
+  color: hsl(240, 61%, 50%);
 }
 
 .sergal {
-  color: #0077ff;
+  color: hsl(212, 100%, 50%);
 }
 
 .birdsongc {
-  color: #cc9900;
+  color: hsl(45, 100%, 40%);
 }
 
 .vulpkanin {
-  color: #b97a57;
+  color: hsl(21, 41%, 53%);
 }
 
 .tavan {
-  color: #f54298;
+  color: hsl(331, 90%, 61%);
   font-family: Arial;
 }
 
 .echosong {
-  color: #826d8c;
+  color: hsl(281, 12%, 49%);
 }
 
 .enochian {
-  color: #848a33;
+  color: hsl(64, 46%, 37%);
   letter-spacing: -1pt;
   word-spacing: 4pt;
   font-family: 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;
 }
 
 .daemon {
-  color: #5e339e;
+  color: hsl(264, 51%, 41%);
   letter-spacing: -1pt;
   word-spacing: 0pt;
   font-family: 'Courier New', Courier, monospace;
 }
 
 .drudakar {
-  color: #bb2463;
+  color: hsl(335, 68%, 44%);
   word-spacing: 0pt;
   font-family: 'High Tower Text', monospace;
 }
 
 .bug {
-  color: #9e9e39;
+  color: hsl(60, 47%, 42%);
 }
 
 .vox {
-  color: #aa00aa;
+  color: hsl(300, 100%, 33%);
 }
 
 .promethean {
-  color: #5a5a5a;
+  color: hsl(0, 0%, 35%);
   font-family: 'Comic Sans MS', 'Comic Sans', cursive;
 }
 
 .zaddat {
-  color: #941c1c;
+  color: hsl(0, 68%, 35%);
 }
 
 .rough {
@@ -1429,21 +1431,21 @@ $border-width-px: $border-width * 1px;
 }
 
 .spacer {
-  color: #9c660b;
+  color: hsl(38, 87%, 33%);
 }
 
 .teppi {
-  color: #816540;
+  color: hsl(34, 34%, 38%);
   word-spacing: 4pt;
   font-family: 'Segoe Script Bold', 'Segoe Script', sans-serif, Verdana;
 }
 
 .marish {
-  color: #9e31a4;
+  color: hsl(297, 54%, 42%);
 }
 
 .shadekin {
-  color: #be3cc5;
+  color: hsl(297, 54%, 50%);
   font-size: 150%;
   font-weight: bold;
   font-family: 'Gabriola', cursive, sans-serif;

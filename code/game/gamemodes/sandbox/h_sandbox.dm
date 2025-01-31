@@ -43,7 +43,7 @@ mob
 				hsbpanel += "- <a href=\"?\ref[src];hsb=[T]\">[hrefs[T]]</a><br>"
 			if(hsboxspawn)
 				hsbpanel += "- <a href=\"?\ref[src];hsb=hsbobj\">Spawn Object</a><br><br>"
-			usr << browse(hsbpanel, "window=hsbpanel")
+			usr << browse("<html>[hsbpanel]</html>", "window=hsbpanel")
 	Topic(href, href_list)
 		if(!(src.owner == usr.ckey)) return
 		if(!usr) return //I guess this is possible if they log out or die with the panel open? It happened.

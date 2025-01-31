@@ -33,7 +33,8 @@
 
 /datum/tgui_module/ship/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
 	var/list/data = ..()
-	data["mapRef"] = linked?.map_name
+	if(linked)
+		data["mapRef"] = linked.map_name
 	return data
 
 /datum/tgui_module/ship/tgui_status(mob/user)

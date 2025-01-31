@@ -1,5 +1,6 @@
-import { useBackend } from '../../backend';
-import { Box, Button, Flex, Icon } from '../../components';
+import { useBackend } from 'tgui/backend';
+import { Box, Button, Icon, Stack } from 'tgui-core/components';
+
 import { Data } from './types';
 
 export const CommunicatorHomeTab = (props) => {
@@ -8,9 +9,15 @@ export const CommunicatorHomeTab = (props) => {
   const { homeScreen } = data;
 
   return (
-    <Flex mt={2} wrap="wrap" align="center" justify="center">
+    <Stack mt={2} wrap="wrap" align="center" justify="center">
       {homeScreen.map((app) => (
-        <Flex.Item basis="25%" textAlign="center" mb={2} key={app.number}>
+        <Stack.Item
+          basis="25%"
+          textAlign="center"
+          m={0}
+          mb={2}
+          key={app.number}
+        >
           <Button
             style={{
               borderRadius: '10%',
@@ -32,9 +39,9 @@ export const CommunicatorHomeTab = (props) => {
             />
           </Button>
           <Box>{app.module}</Box>
-        </Flex.Item>
+        </Stack.Item>
       ))}
-    </Flex>
+    </Stack>
   );
 };
 

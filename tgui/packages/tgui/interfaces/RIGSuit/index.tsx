@@ -1,6 +1,7 @@
-import { useBackend } from '../../backend';
-import { Box } from '../../components';
-import { Window } from '../../layouts';
+import { useBackend } from 'tgui/backend';
+import { Window } from 'tgui/layouts';
+import { Box } from 'tgui-core/components';
+
 import { RIGSuitHardware } from './RIGSuitHardware';
 import { RIGSuitModules } from './RIGSuitModules';
 import { RIGSuitStatus } from './RIGSuitStatus';

@@ -165,6 +165,8 @@ If it gains pressure too slowly, it may leak or just rupture instead of explodin
 				//reduce firelevel.
 				if(enemy_tile.fire_protection > world.time-30)
 					firelevel -= 1.5
+					if(firelevel < 0)
+						firelevel = 0
 					continue
 
 				//Spread the fire.

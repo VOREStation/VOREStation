@@ -1,7 +1,14 @@
 import { useBackend, useSharedState } from 'tgui/backend';
-import { Box, Button, Icon, Section, Stack, Tabs } from 'tgui/components';
 import { Window } from 'tgui/layouts';
-import { FitText } from 'tgui-core/components';
+import {
+  Box,
+  Button,
+  FitText,
+  Icon,
+  Section,
+  Stack,
+  Tabs,
+} from 'tgui-core/components';
 
 import { ConstructorEnum, Data, Tab } from './data';
 import { Constructor } from './pages/Constructor';

@@ -521,7 +521,7 @@ var/global/floorIsLava = 0
 
 	//to_world("Channelname: [src.admincaster_feed_channel.channel_name] [src.admincaster_feed_channel.author]")
 	//to_world("Msg: [src.admincaster_feed_message.author] [src.admincaster_feed_message.body]")
-	usr << browse(dat, "window=admincaster_main;size=400x600")
+	usr << browse("<html>[dat]</html>", "window=admincaster_main;size=400x600")
 	onclose(usr, "admincaster_main")
 
 
@@ -536,7 +536,7 @@ var/global/floorIsLava = 0
 			r = copytext( r, 1, findtext(r,"##") )//removes the description
 		dat += text("<tr><td>[t] (<A href='byond://?src=\ref[src];[HrefToken()];removejobban=[r]'>unban</A>)</td></tr>")
 	dat += "</table>"
-	usr << browse(dat, "window=ban;size=400x400")
+	usr << browse("<html>[dat]</html>", "window=ban;size=400x400")
 
 /datum/admins/proc/Game()
 	if(!check_rights(0))	return
@@ -1233,7 +1233,7 @@ var/datum/announcement/minor/admin_min_announcer = new
 		out += " None."
 	out += " <a href='byond://?src=\ref[ticker.mode];[HrefToken()];add_antag_type=1'>\[+\]</a><br/>"
 
-	usr << browse(out, "window=edit_mode[src]")
+	usr << browse("<html>[out]</html>", "window=edit_mode[src]")
 	feedback_add_details("admin_verb","SGM")
 
 

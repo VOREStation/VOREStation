@@ -51,7 +51,7 @@ var/global/list/all_tooltip_styles = list(
 	var/UI_style_alpha_new = tgui_input_number(usr, "Select a new alpha (transparency) parameter for your UI, between 50 and 255", null, null, 255, 50)
 	if(!UI_style_alpha_new || !(UI_style_alpha_new <= 255 && UI_style_alpha_new >= 50)) return
 
-	var/UI_style_color_new = input(usr, "Choose your UI color. Dark colors are not recommended!") as color|null
+	var/UI_style_color_new = tgui_color_picker(usr, "Choose your UI color. Dark colors are not recommended!")
 	if(!UI_style_color_new) return
 
 	//update UI

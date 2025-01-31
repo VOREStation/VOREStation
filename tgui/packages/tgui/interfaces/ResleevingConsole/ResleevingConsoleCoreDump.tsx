@@ -1,17 +1,17 @@
 import { useBackend } from 'tgui/backend';
-import { Box, Button, Dimmer, Flex, Icon } from 'tgui-core/components';
+import { Box, Button, Dimmer, Icon, Stack } from 'tgui-core/components';
 
 export const ResleevingConsoleCoreDump = (props) => {
   return (
     <Dimmer>
-      <Flex direction="column" justify="space-evenly" align="center">
-        <Flex.Item grow={1}>
+      <Stack direction="column" justify="space-evenly" align="center">
+        <Stack.Item grow>
           <Icon size={12} color="bad" name="exclamation-triangle" />
-        </Flex.Item>
-        <Flex.Item grow={1} color="bad" mt={5}>
+        </Stack.Item>
+        <Stack.Item grow color="bad" mt={5}>
           <h2>TransCore dump completed. Resleeving offline.</h2>
-        </Flex.Item>
-      </Flex>
+        </Stack.Item>
+      </Stack>
     </Dimmer>
   );
 };

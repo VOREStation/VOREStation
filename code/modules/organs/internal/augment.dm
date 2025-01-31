@@ -107,7 +107,7 @@
 	set desc = "Toggle your augment menu."
 	set category = "Augments"
 
-	enable_augments(usr)
+	enable_augments(src)
 
 /mob/living/carbon/human/proc/enable_augments(var/mob/living/user)
 	var/list/options = list()

@@ -1,16 +1,9 @@
 import { useState } from 'react';
+import { useBackend } from 'tgui/backend';
+import { Window } from 'tgui/layouts';
+import { Autofocus, Box, Button, Section, Stack } from 'tgui-core/components';
+import { isEscape, KEY } from 'tgui-core/keys';
 
-import {
-  KEY_ENTER,
-  KEY_ESCAPE,
-  KEY_LEFT,
-  KEY_RIGHT,
-  KEY_SPACE,
-  KEY_TAB,
-} from '../../common/keycodes';
-import { useBackend } from '../backend';
-import { Autofocus, Box, Button, Flex, Section, Stack } from '../components';
-import { Window } from '../layouts';
 import { Loader } from './common/Loader';
 
 type AlertModalData = {
@@ -53,29 +46,29 @@ export const AlertModal = (props) => {
     }
   };
 
+  function handleKeyDown(event: React.KeyboardEvent<HTMLDivElement>) {
+    const key = event.key;
+    /**
+     * Simulate a click when pressing space or enter,
+     * allow keyboard navigation, override tab behavior
+     */
+    if (key === KEY.Space || key === KEY.Enter) {
+      act('choose', { choice: buttons[selected] });
+    } else if (isEscape(key)) {
+      act('cancel');
+    } else if (key === KEY.Left) {
+      event.preventDefault();
+      onKey(KEY_DECREMENT);
+    } else if (key === KEY.Tab || key === KEY.Right) {
+      event.preventDefault();
+      onKey(KEY_INCREMENT);
+    }
+  }
+
   return (
     <Window height={windowHeight} title={title} width={windowWidth}>
       {!!timeout && <Loader value={timeout} />}
-      <Window.Content
-        onKeyDown={(e) => {
-          const keyCode = window.event ? e.which : e.keyCode;
-          /**
-           * Simulate a click when pressing space or enter,
-           * allow keyboard navigation, override tab behavior
-           */
-          if (keyCode === KEY_SPACE || keyCode === KEY_ENTER) {
-            act('choose', { choice: buttons[selected] });
-          } else if (keyCode === KEY_ESCAPE) {
-            act('cancel');
-          } else if (keyCode === KEY_LEFT) {
-            e.preventDefault();
-            onKey(KEY_DECREMENT);
-          } else if (keyCode === KEY_TAB || keyCode === KEY_RIGHT) {
-            e.preventDefault();
-            onKey(KEY_INCREMENT);
-          }
-        }}
-      >
+      <Window.Content onKeyDown={(e) => handleKeyDown(e)}>
         <Section fill>
           <Stack fill vertical>
             <Stack.Item grow m={1}>
@@ -105,7 +98,7 @@ const ButtonDisplay = (props) => {
   const { selected } = props;
 
   return (
-    <Flex
+    <Stack
       align="center"
       direction={!swapped_buttons ? 'row-reverse' : 'row'}
       fill
@@ -114,24 +107,24 @@ const ButtonDisplay = (props) => {
     >
       {buttons?.map((button, index) =>
         !!large_buttons && buttons.length < 3 ? (
-          <Flex.Item grow key={index}>
+          <Stack.Item grow key={index}>
             <AlertButton
               button={button}
               id={index.toString()}
               selected={selected === index}
             />
-          </Flex.Item>
+          </Stack.Item>
         ) : (
-          <Flex.Item key={index}>
+          <Stack.Item key={index}>
             <AlertButton
               button={button}
               id={index.toString()}
               selected={selected === index}
             />
-          </Flex.Item>
+          </Stack.Item>
         ),
       )}
-    </Flex>
+    </Stack>
   );
 };
 

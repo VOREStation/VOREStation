@@ -1,4 +1,5 @@
 /obj/item/detective_scanner
+	icon = 'icons/obj/device.dmi'
 	name = "forensic scanner"
 	desc = "Used to scan objects for DNA and fingerprints."
 	icon_state = "forensic"

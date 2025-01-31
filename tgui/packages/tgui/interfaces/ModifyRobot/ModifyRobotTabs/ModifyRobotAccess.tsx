@@ -1,16 +1,15 @@
-import { capitalize } from 'common/string';
 import { useState } from 'react';
 import { useBackend } from 'tgui/backend';
 import {
   Button,
   Divider,
-  Flex,
   Icon,
   Image,
   Input,
   Section,
   Stack,
-} from 'tgui/components';
+} from 'tgui-core/components';
+import { capitalize } from 'tgui-core/string';
 
 import { NoSpriteWarning } from '../components';
 import { prepareSearch } from '../functions';
@@ -29,8 +28,8 @@ export const ModifyRobotAccess = (props: {
   return (
     <>
       {!target.active && <NoSpriteWarning name={target.name} />}
-      <Flex height={!target.active ? '75%' : '80%'}>
-        <Flex.Item width="30%" fill>
+      <Stack height={!target.active ? '75%' : '80%'}>
+        <Stack.Item width="30%">
           <AccessSection
             title="Add Access"
             searchText={searchAccessAll}
@@ -40,8 +39,8 @@ export const ModifyRobotAccess = (props: {
             buttonColor="green"
             buttonIcon="arrow-right-to-bracket"
           />
-        </Flex.Item>
-        <Flex.Item width="40%">
+        </Stack.Item>
+        <Stack.Item width="40%">
           <Image
             src={tab_icon}
             style={{
@@ -53,9 +52,9 @@ export const ModifyRobotAccess = (props: {
           />
           <Stack vertical>
             <Stack.Item>
-              <Flex>
-                <Flex.Item grow />
-                <Flex.Item>
+              <Stack>
+                <Stack.Item grow />
+                <Stack.Item>
                   <Button
                     height="20px"
                     color="green"
@@ -64,8 +63,8 @@ export const ModifyRobotAccess = (props: {
                   >
                     Add station access
                   </Button>
-                </Flex.Item>
-                <Flex.Item grow />
+                </Stack.Item>
+                <Stack.Item grow />
                 <Button
                   height="20px"
                   color="red"
@@ -74,12 +73,12 @@ export const ModifyRobotAccess = (props: {
                 >
                   Remove station access
                 </Button>
-                <Flex.Item grow />
-              </Flex>
+                <Stack.Item grow />
+              </Stack>
             </Stack.Item>
             <Stack.Item mt="40px">
-              <Flex>
-                <Flex.Item grow />
+              <Stack>
+                <Stack.Item grow />
                 <Button
                   height="20px"
                   color="green"
@@ -88,7 +87,7 @@ export const ModifyRobotAccess = (props: {
                 >
                   Add centcom access
                 </Button>
-                <Flex.Item grow />
+                <Stack.Item grow />
                 <Button
                   height="20px"
                   color="red"
@@ -97,12 +96,12 @@ export const ModifyRobotAccess = (props: {
                 >
                   Remove centcom access
                 </Button>
-                <Flex.Item grow />
-              </Flex>
+                <Stack.Item grow />
+              </Stack>
             </Stack.Item>
           </Stack>
-        </Flex.Item>
-        <Flex.Item width="30%" fill>
+        </Stack.Item>
+        <Stack.Item width="30%">
           <AccessSection
             title="Remove Access"
             searchText={searchAccessActive}
@@ -112,8 +111,8 @@ export const ModifyRobotAccess = (props: {
             buttonColor="red"
             buttonIcon="trash"
           />
-        </Flex.Item>
-      </Flex>
+        </Stack.Item>
+      </Stack>
     </>
   );
 };
@@ -159,17 +158,17 @@ const AccessSection = (props: {
                   })
                 }
               >
-                <Flex varticalAlign="center">
-                  <Flex.Item>{capitalize(acc.name)}</Flex.Item>
-                  <Flex.Item grow />
-                  <Flex.Item>
+                <Stack align="center">
+                  <Stack.Item>{capitalize(acc.name)}</Stack.Item>
+                  <Stack.Item grow />
+                  <Stack.Item>
                     <Icon
                       name={buttonIcon}
                       backgroundColor={buttonColor}
                       size={1.5}
                     />
-                  </Flex.Item>
-                </Flex>
+                  </Stack.Item>
+                </Stack>
               </Button>
             );
           })}

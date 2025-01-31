@@ -274,9 +274,9 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		var/turf/location = get_turf(src)
 		var/special_role = check_special_role()
 		if(!istype(loc,/obj/machinery/cryopod))
-			log_and_message_admins("has ghosted outside cryo[special_role ? " as [special_role]" : ""]. (<A href='byond://?_src_=holder;[HrefToken()];adminplayerobservecoodjump=1;X=[location.x];Y=[location.y];Z=[location.z]'>JMP</a>)",usr)
+			log_and_message_admins("has ghosted outside cryo[special_role ? " as [special_role]" : ""]. (<A href='byond://?_src_=holder;[HrefToken()];adminplayerobservecoodjump=1;X=[location.x];Y=[location.y];Z=[location.z]'>JMP</a>)",src)
 		else if(special_role)
-			log_and_message_admins("has ghosted in cryo as [special_role]. (<A href='byond://?_src_=holder;[HrefToken()];adminplayerobservecoodjump=1;X=[location.x];Y=[location.y];Z=[location.z]'>JMP</a>)",usr)
+			log_and_message_admins("has ghosted in cryo as [special_role]. (<A href='byond://?_src_=holder;[HrefToken()];adminplayerobservecoodjump=1;X=[location.x];Y=[location.y];Z=[location.z]'>JMP</a>)",src)
 		var/mob/observer/dead/ghost = ghostize(0)	// 0 parameter is so we can never re-enter our body, "Charlie, you can never come baaaack~" :3
 		if(ghost)
 			ghost.timeofdeath = world.time 	// Because the living mob won't have a time of death and we want the respawn timer to work properly.
@@ -302,11 +302,11 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		to_chat(src, span_warning("You have no body."))
 		return
 	if(mind.current.key && copytext(mind.current.key,1,2)!="@")	//makes sure we don't accidentally kick any clients
-		to_chat(usr, span_warning("Another consciousness is in your body... it is resisting you."))
+		to_chat(src, span_warning("Another consciousness is in your body... it is resisting you."))
 		return
 	//VOREStation Add
 	if(prevent_respawns.Find(mind.name))
-		to_chat(usr, span_warning("You already quit this round as this character, sorry!"))
+		to_chat(src, span_warning("You already quit this round as this character, sorry!"))
 		return
 	//VOREStation Add End
 	if(mind.current.ajourn && mind.current.stat != DEAD) //check if the corpse is astral-journeying (it's client ghosted using a cultist rune).
@@ -316,7 +316,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 				found_rune = 1
 				break
 		if(!found_rune)
-			to_chat(usr, span_warning("The astral cord that ties your body and your spirit has been severed. You are likely to wander the realm beyond until your body is finally dead and thus reunited with you."))
+			to_chat(src, span_warning("The astral cord that ties your body and your spirit has been severed. You are likely to wander the realm beyond until your body is finally dead and thus reunited with you."))
 			return
 	mind.current.ajourn=0
 	mind.current.key = key
@@ -410,8 +410,8 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	set category = "Ghost.Game"
 	set desc = "Teleport to a location."
 
-	if(!isobserver(usr))
-		to_chat(usr, span_filter_notice("Not when you're not dead!"))
+	if(!isobserver(src))
+		to_chat(src, span_filter_notice("Not when you're not dead!"))
 		return
 
 	var/area/A
@@ -419,39 +419,39 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	if(areaname)
 		A = return_sorted_areas()[areaname]
 	else
-		A = return_sorted_areas()[tgui_input_list(usr,  "Select an area:", "Ghost Teleport", jumpable_areas())]
+		A = return_sorted_areas()[tgui_input_list(src,  "Select an area:", "Ghost Teleport", jumpable_areas())]
 		if(!A)
 			return
 
-	if(!isobserver(usr))
-		to_chat(usr, "Not when you're not dead!")
+	if(!isobserver(src))
+		to_chat(src, "Not when you're not dead!")
 		return
 
-	usr.forceMove(pick(get_area_turfs(A)))
-	usr.on_mob_jump()
+	src.forceMove(pick(get_area_turfs(A)))
+	src.on_mob_jump()
 
 /mob/observer/dead/verb/follow(mobname as anything in jumpable_mobs())
 	set name = "Follow"
 	set category = "Ghost.Game"
 	set desc = "Follow and haunt a mob."
 
-	if(!isobserver(usr))
-		to_chat(usr, "Not when you're not dead!")
+	if(!isobserver(src))
+		to_chat(src, "Not when you're not dead!")
 		return
 
 	var/mob/M
 
 	if(!mobname)
 		var/list/possible_mobs = jumpable_mobs()
-		var/input = tgui_input_list(usr, "Select a mob:", "Ghost Follow", possible_mobs)
+		var/input = tgui_input_list(src, "Select a mob:", "Ghost Follow", possible_mobs)
 		if(!input)
 			return
 		M = possible_mobs[input]
 		if(!M)
 			return
 
-	if(!isobserver(usr))
-		to_chat(usr, "Not when you're not dead!")
+	if(!isobserver(src))
+		to_chat(src, "Not when you're not dead!")
 		return
 
 	ManualFollow(M || jumpable_mobs()[mobname])
@@ -495,7 +495,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 	var/turf/targetloc = get_turf(target)
 	if(check_holy(targetloc))
-		to_chat(usr, span_warning("You cannot follow a mob standing on holy grounds!"))
+		to_chat(src, span_warning("You cannot follow a mob standing on holy grounds!"))
 		return
 	if(get_z(target) in using_map?.secret_levels)
 		to_chat(src, span_warning("Sorry, that target is in an area that ghosts aren't allowed to go."))
@@ -510,7 +510,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		if(ismob(target))
 			var/target_turf = get_turf(target)
 			if(!target_turf)
-				to_chat(usr, span_warning("This mob does not seem to exist in the tangible world."))
+				to_chat(src, span_warning("This mob does not seem to exist in the tangible world."))
 				return
 			forceMove(target_turf)
 			var/mob/M = target
@@ -620,11 +620,11 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	set desc = "Teleport to a mob"
 	set popup_menu = FALSE
 
-	if(!isobserver(usr)) //Make sure they're an observer!
+	if(!isobserver(src)) //Make sure they're an observer!
 		return
 
 	var/list/possible_mobs = jumpable_mobs()
-	var/input = tgui_input_list(usr, "Select a mob:", "Ghost Jump", possible_mobs)
+	var/input = tgui_input_list(src, "Select a mob:", "Ghost Jump", possible_mobs)
 	if(!input)
 		return
 
@@ -656,13 +656,13 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	set name = "Analyze Air"
 	set category = "Ghost.Game"
 
-	if(!isobserver(usr)) return
+	if(!isobserver(src)) return
 
 	// Shamelessly copied from the Gas Analyzers
-	if (!( istype(usr.loc, /turf) ))
+	if (!( istype(src.loc, /turf) ))
 		return
 
-	var/datum/gas_mixture/environment = usr.loc.return_air()
+	var/datum/gas_mixture/environment = src.loc.return_air()
 
 	var/pressure = environment.return_pressure()
 	var/total_moles = environment.total_moles
@@ -819,7 +819,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 	var/max_length = 50
 
-	var/message = sanitize(tgui_input_text(usr, "Write a message. It cannot be longer than [max_length] characters.","Blood writing", "", max_length))
+	var/message = sanitize(tgui_input_text(src, "Write a message. It cannot be longer than [max_length] characters.","Blood writing", "", max_length))
 
 	if (message)
 
@@ -837,7 +837,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 /mob/observer/dead/pointed(atom/A as mob|obj|turf in view())
 	if(!..())
 		return 0
-	usr.visible_message(span_deadsay(span_bold("[src]") + " points to [A]."))
+	src.visible_message(span_deadsay(span_bold("[src]") + " points to [A]."))
 	return 1
 
 /mob/observer/dead/proc/manifest(mob/user)
@@ -1013,7 +1013,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	var/finalized = "No"
 
 	while(finalized == "No" && src.client)
-		choice = tgui_input_list(usr, "What would you like to use for your ghost sprite?", "Ghost Sprite", possible_ghost_sprites)
+		choice = tgui_input_list(src, "What would you like to use for your ghost sprite?", "Ghost Sprite", possible_ghost_sprites)
 		if(!choice)
 			return
 
@@ -1045,21 +1045,21 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 	var/time_till_respawn = time_till_respawn()
 	if(time_till_respawn == -1) // Special case, never allowed to respawn
-		to_chat(usr, span_warning("Respawning is not allowed!"))
+		to_chat(src, span_warning("Respawning is not allowed!"))
 	else if(time_till_respawn) // Nonzero time to respawn
-		to_chat(usr, span_warning("You can't do that yet! You died too recently. You need to wait another [round(time_till_respawn/10/60, 0.1)] minutes."))
+		to_chat(src, span_warning("You can't do that yet! You died too recently. You need to wait another [round(time_till_respawn/10/60, 0.1)] minutes."))
 		return
 
-	if(jobban_isbanned(usr, "pAI"))
-		to_chat(usr,span_warning("You cannot alert pAI cards when you are banned from playing as a pAI."))
+	if(jobban_isbanned(src, "pAI"))
+		to_chat(src,span_warning("You cannot alert pAI cards when you are banned from playing as a pAI."))
 		return
 
-	if(usr.client.prefs?.be_special & BE_PAI)
-		var/choice = tgui_alert(usr, "Would you like to submit yourself to the recruitment list too?", "Confirmation", list("No", "Yes"))
+	if(src.client.prefs?.be_special & BE_PAI)
+		var/choice = tgui_alert(src, "Would you like to submit yourself to the recruitment list too?", "Confirmation", list("No", "Yes"))
 		if(!choice)
 			return
 		if(choice == "Yes")
-			paiController.recruitWindow(usr)
+			paiController.recruitWindow(src)
 		var/count = 0
 		for(var/obj/item/paicard/p in all_pai_cards)
 			var/obj/item/paicard/PP = p
@@ -1069,9 +1069,9 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 				PP.alertUpdate()
 				spawn(54)
 					PP.cut_overlays()
-		to_chat(usr,span_notice("Flashing the displays of [count] unoccupied PAIs."))
+		to_chat(src,span_notice("Flashing the displays of [count] unoccupied PAIs."))
 	else
-		to_chat(usr,span_warning("You have 'Be pAI' disabled in your character prefs, so we can't help you."))
+		to_chat(src,span_warning("You have 'Be pAI' disabled in your character prefs, so we can't help you."))
 
 /mob/observer/dead/speech_bubble_appearance()
 	return "ghost"

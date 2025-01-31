@@ -40,7 +40,7 @@ Frequency:
 <A href='byond://?src=\ref[src];freq=10'>+</A><BR>
 
 <A href='byond://?src=\ref[src];refresh=1'>Refresh</A>"}
-	user << browse(dat, "window=radio")
+	user << browse("<html>[dat]</html>", "window=radio")
 	onclose(user, "radio")
 	return
 

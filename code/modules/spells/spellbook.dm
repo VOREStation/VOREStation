@@ -15,7 +15,7 @@
 	if(!user)
 		return
 	if((user.mind && !wizards.is_antagonist(user.mind)))
-		to_chat(usr, span_warning("You stare at the book but cannot make sense of the markings!"))
+		to_chat(user, span_warning("You stare at the book but cannot make sense of the markings!"))
 		return
 
 	user.set_machine(src)
@@ -78,7 +78,7 @@
 		// END AUTOFIX
 		if(op)
 			dat += "<A href='byond://?src=\ref[src];spell_choice=rememorize'>Re-memorize Spells</A><BR>"
-	user << browse(dat, "window=radio")
+	user << browse("<html>[dat]</html>", "window=radio")
 	onclose(user, "radio")
 	return
 
@@ -100,7 +100,7 @@
 		if(href_list["spell_choice"])
 			if(href_list["spell_choice"] == "rememorize")
 				var/area/wizard_station/A = locate()
-				if(usr in A.contents)
+				if(H in A.contents)
 					uses = max_uses
 					H.spellremove()
 					temp = "All spells have been removed. You may now memorize a new set of spells."

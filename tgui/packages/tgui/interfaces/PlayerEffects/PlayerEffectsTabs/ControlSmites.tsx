@@ -1,5 +1,5 @@
-import { useBackend } from '../../../backend';
-import { Button, Section } from '../../../components';
+import { useBackend } from 'tgui/backend';
+import { Button, Section } from 'tgui-core/components';
 
 export const ControlSmites = (props) => {
   const { act } = useBackend();

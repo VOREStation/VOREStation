@@ -1,9 +1,8 @@
 import { useState } from 'react';
-import { Stack } from 'tgui-core/components';
+import { useBackend } from 'tgui/backend';
+import { Window } from 'tgui/layouts';
+import { Button, Icon, NoticeBox, Stack, Tabs } from 'tgui-core/components';
 
-import { useBackend } from '../../backend';
-import { Button, Flex, Icon, NoticeBox, Tabs } from '../../components';
-import { Window } from '../../layouts';
 import { Data } from './types';
 import { VoreBellySelectionAndCustomization } from './VoreBellySelectionAndCustomization';
 import { VoreInsidePanel } from './VoreInsidePanel';
@@ -43,14 +42,14 @@ export const VorePanel = (props) => {
           <Stack.Item>
             {(data.unsaved_changes && (
               <NoticeBox danger>
-                <Flex>
-                  <Flex.Item basis="90%">Warning: Unsaved Changes!</Flex.Item>
-                  <Flex.Item>
+                <Stack>
+                  <Stack.Item basis="90%">Warning: Unsaved Changes!</Stack.Item>
+                  <Stack.Item>
                     <Button icon="save" onClick={() => act('saveprefs')}>
                       Save Prefs
                     </Button>
-                  </Flex.Item>
-                  <Flex.Item>
+                  </Stack.Item>
+                  <Stack.Item>
                     <Button
                       icon="download"
                       onClick={() => {
@@ -60,8 +59,8 @@ export const VorePanel = (props) => {
                     >
                       Save Prefs & Export Selected Belly
                     </Button>
-                  </Flex.Item>
-                </Flex>
+                  </Stack.Item>
+                </Stack>
               </NoticeBox>
             )) ||
               ''}

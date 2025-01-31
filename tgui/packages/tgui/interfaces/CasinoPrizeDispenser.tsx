@@ -1,17 +1,16 @@
-import { createSearch } from 'common/string';
 import { useState } from 'react';
-
-import { useBackend } from '../backend';
+import { useBackend } from 'tgui/backend';
+import { Window } from 'tgui/layouts';
 import {
   Box,
   Button,
   Collapsible,
   Dropdown,
-  Flex,
   Input,
   Section,
-} from '../components';
-import { Window } from '../layouts';
+  Stack,
+} from 'tgui-core/components';
+import { createSearch } from 'tgui-core/string';
 
 type Data = {
   items: Record<string, sortable[]>;
@@ -77,15 +76,15 @@ const CasinoPrizeDispenserSearch = (props: {
 }) => {
   return (
     <Box mb="0.5rem">
-      <Flex width="100%">
-        <Flex.Item grow="1" mr="0.5rem">
+      <Stack width="100%">
+        <Stack.Item grow mr="0.5rem">
           <Input
             placeholder="Search by item name.."
             width="100%"
             onInput={(_e, value) => props.onSearchText(value)}
           />
-        </Flex.Item>
-        <Flex.Item basis="30%">
+        </Stack.Item>
+        <Stack.Item basis="30%">
           <Dropdown
             autoScroll={false}
             selected={props.sortOrder}
@@ -94,8 +93,8 @@ const CasinoPrizeDispenserSearch = (props: {
             lineHeight="19px"
             onSelected={(v) => props.onSortOrder(v)}
           />
-        </Flex.Item>
-        <Flex.Item>
+        </Stack.Item>
+        <Stack.Item>
           <Button
             icon={props.descending ? 'arrow-down' : 'arrow-up'}
             height="19px"
@@ -104,8 +103,8 @@ const CasinoPrizeDispenserSearch = (props: {
             ml="0.5rem"
             onClick={() => props.onDescending(!props.descending)}
           />
-        </Flex.Item>
-      </Flex>
+        </Stack.Item>
+      </Stack>
     </Box>
   );
 };
@@ -150,7 +149,7 @@ const CasinoPrizeDispenserItems = (props: {
     );
   });
   return (
-    <Flex.Item grow="1" overflow="auto">
+    <Stack.Item grow overflow="auto">
       <Section>
         {has_contents ? (
           contents
@@ -158,7 +157,7 @@ const CasinoPrizeDispenserItems = (props: {
           <Box color="label">No items matching your criteria was found!</Box>
         )}
       </Section>
-    </Flex.Item>
+    </Stack.Item>
   );
 };
 
