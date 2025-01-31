@@ -98,19 +98,3 @@
 /obj/machinery/button/remote/experimenter/trigger()
 	for(var/obj/machinery/crystalexperimenter/E in machines)
 		E.experiment()
-
-/turf/unsimulated/wall/glamour
-	name = "glamour"
-	desc = "A blindingly white light that appears to cast your reflection."
-	icon = 'icons/turf/flooring/glamour.dmi'
-	icon_state = "glamour"
-
-/turf/simulated/floor/glamour
-	name = "glamour"
-	desc = "A blindingly white light that appears to cast your reflection."
-	icon = 'icons/turf/flooring/glamour.dmi'
-	icon_state = "glamour"
-	light_range = 7
-	light_power = 1
-	light_color = "#ffffff"
-	light_on = TRUE
