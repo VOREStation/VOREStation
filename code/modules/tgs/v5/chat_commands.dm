@@ -16,13 +16,13 @@
 		var/client/C = X
 		if(C)
 			counts++
-		if(C && !(isnewplayer(C.mob) || istype(C.mob, /mob/observer)))
-			if(C && C.mob && isbelly(C.mob.loc))
-				bellied++
-		if(C.is_afk())
-			afks++
-		else
-			active++
+			if(!(isnewplayer(C.mob) || istype(C.mob, /mob/observer)))
+				if(C.mob && isbelly(C.mob.loc))
+					bellied++
+			if(C.is_afk())
+				afks++
+			else
+				active++
 
 	return "Current server status:\n**Web Manifest:** <https://vore-station.net/manifest.php>\n**Players:** [counts]\n**Active:** [active]\n**AFK:** [afks]\n**Bellied:** [bellied]\n\n**Round Duration:** [roundduration2text()]\n**Current Map:** [map_name]"
 
@@ -140,3 +140,21 @@ GLOBAL_LIST_EMPTY(pending_discord_registrations)
 	GLOB.pending_discord_registrations[GLOB.pending_discord_registrations.len] = list("ckey" = key_to_find, "id" = sender.id, "time" = world.realtime)
 
 	return "[sender.friendly_name], I've sent you a message in-game. Please verify your username there to complete your registration within 10 minutes."
+
+/*//YW Commands //CHOMP Commenting this out for now. Should now be using Virgo's version.
+//Status
+/datum/tgs_chat_command/status/Run(datum/tgs_chat_user/sender, params)
+	return "Current server status:**Players:** [TGS_CLIENT_COUNT]\n**Round Duration:** [roundduration2text()]"
+*/
+// - FAX
+/datum/tgs_chat_command/readfax
+	name = "readfax"
+	help_text = "Reads a fax with specified faxid"
+	//required_parameters = 1 Is not a thing
+	admin_only = TRUE
+
+/datum/tgs_chat_command/readfax/Run(sender, params)
+	var/list/all_params = splittext(params, " ")
+	var/faxid = all_params[1]
+	var/faxmsg = return_file_text("[CONFIG_GET(string/fax_export_dir)]/fax_[faxid].html")
+	return "FAX: ```[strip_html_properly(faxmsg)]```"
