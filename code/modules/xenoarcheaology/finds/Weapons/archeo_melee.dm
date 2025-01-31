@@ -123,7 +123,7 @@
 			stored_blood += blood_loss //We add the damage dealt to our owner to our stored blood.
 
 		/// If the thing we're hitting is dead, our faction, friendly, or synthetic, we get no blood.
-		if(M.stat < DEAD && M.faction != user.faction && !ispassive(M) && !issilicon(M) && !isbot(M) && isslime(M))
+		if(M.stat < DEAD && M.faction != user.faction && !ispassive(M) && !issilicon(M) && !isbot(M) && !isslime(M))
 			stored_blood += force
 
 	//If the user isn't 'worthy' they get a single swing before the sword THROWS itself away from them. Possibly even off-screen!
