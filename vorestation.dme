@@ -2792,6 +2792,7 @@
 #include "code\modules\lore_codex\robutt_data\bybrand.dm"
 #include "code\modules\lore_codex\robutt_data\main_robutts.dm"
 #include "code\modules\lore_codex\robutt_data\more.dm"
+#include "code\modules\maint_recycler\code\client.dm"
 #include "code\modules\maint_recycler\code\MaintRecycler.dm"
 #include "code\modules\makeup\nailpolish.dm"
 #include "code\modules\maps\bapi-dmm\bapi_bindings.dm"

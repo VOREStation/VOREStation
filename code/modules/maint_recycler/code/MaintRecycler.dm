@@ -1,4 +1,9 @@
-/obj/machinery/MaintRecycler //fresh outta 2298 baby
+#define RECYCLER_ALLOWED 1
+#define RECYCLER_FORBIDDEN 2
+#define RECYCLER_EVIL 3 //no scugs, cats, etc
+
+
+/obj/machinery/MaintRecycler //fresh outta 2288 baby
 	name = "Decrepit Machine"
 
 	//icon etc are self contained because it's dumb that they not to begin with.
@@ -34,9 +39,71 @@
 	var/obj/effect/overlay/recycler/item_overlay
 	var/obj/item/inserted_item
 
-	var/list/hostile_towards //we remember mean people. do NOT recycle scugs.
+	var/list/hostile_towards = list() //we remember mean people. do NOT recycle scugs. list of user keys
 
-	///radial
+
+	//the tldr:
+	//if we can get infinite of it easily, it's worth 1.
+	//if we can get a fair amount but it wouldn't be worth the effort, it's worth 10
+	// if it's an overt scene tool and kinda rare, we can't recycle it. Ae, compliance disk.
+	// if it's technically a scene tool but mostly for shitposting (borg-os, bait toys, etc) we can recycle 'em for 10.
+	// we can get them back cheaply via the vendor anyway
+
+
+	var/list/item_whitelist = list(
+		/obj/item/holder/mouse,
+		/obj/item/holder/human,
+		/obj/item/trash,
+		/obj/item/clothing/head/cone,
+		/obj/item/toy/plushie, //begone foul beasts
+		/obj/item/flashlight/glowstick,
+		/obj/item/trash/material, //different price scheme
+		/obj/item/soap,
+		/obj/item/toy/tennis,
+		/obj/item/reagent_containers/food/drinks/cans/nukie_mega_sight,
+		/obj/item/reagent_containers/food/drinks/cans/nukie_mega_heart,
+		/obj/item/reagent_containers/food/drinks/cans/nukie_mega_sleep,
+		/obj/item/reagent_containers/food/drinks/cans/nukie_mega_shock,
+		/obj/item/reagent_containers/food/drinks/cans/nukie_mega_fast,
+		/obj/item/reagent_containers/food/drinks/cans/nukie_mega_high,
+		/obj/item/reagent_containers/food/drinks/cans/nukie_mega_shrink,
+		/obj/item/reagent_containers/food/drinks/cans/nukie_mega_grow, //nukies is epic but rare enough to warrant being recyclable.
+		/obj/item/toy/monster_bait,
+		/obj/item/material/fishing_net/butterfly_net,
+		/obj/item/flashlight/flare) //anything that's a type of, or a subtype of these can be put in the machine. associated list
+
+	var/list/item_blacklist_general = list(
+		/obj/item/card/id,
+
+	) //anything that's passively blacklisted - even if they're part of the above, they'll be denied. this is in case you want to say, allow mice getting recycled, but not brown mice because that's racist
+
+	var/list/item_blacklist_hostile = list(
+		/obj/item/holder/catslug, //no scugs
+		/obj/item/holder/cat, //no murdering jones or runtime
+		/obj/item/organ/internal/brain, //posibrain murder
+		/obj/item/card/id/centcom, //ERT id. won't ever come up but in 0.000% chance it does, it'd be funny.
+		/obj/item/card/id/gold/captain, //probably will come up.
+		/obj/item/disk/nuclear, //won't come up at all, but just in case.
+		/obj/item/holder/possum/poppy, //poppy my beloved
+		/obj/item/perfect_tele
+	) //an active list of things that'll make the machine mad at you. Will refuse service, make an annoucement over sec comms (akin to the tipped medibot over med comms), and blast with a stun or two. no recycling scugs. Think of this as a super high priority no-touchy list.
+
+
+	var/list/success_sounds = list(
+		'code/modules/maint_recycler/sfx/voice/thankyou/reduce-reuse-recycle.ogg',
+		'code/modules/maint_recycler/sfx/voice/thankyou/thankyouforkeepingclean.ogg',
+		'code/modules/maint_recycler/sfx/voice/thankyou/the-ecosystem-thanks-you.ogg'
+	)
+
+	var/list/angry_sounds = list(
+		'code/modules/maint_recycler/sfx/voice/mad/denied.ogg',
+		'code/modules/maint_recycler/sfx/voice/mad/die die die die.ogg',
+		'code/modules/maint_recycler/sfx/voice/mad/this will not stand.ogg'
+	)
+
+	///voice audio files filted via audacity:
+	/// * Rectifier distort @ 39
+	/// filter curve EQ w/ telephone preset
 
 /obj/machinery/MaintRecycler/fall_apart(var/severity = 3, var/scatter = TRUE)
 	return FALSE //don't fall apart
@@ -65,6 +132,20 @@
 	//ditto for the monitor and door. sure, these COULD be overlays, but that is way more effort
 	. = ..()
 
+/obj/machinery/MaintRecycler/proc/whitelistCheck(var/obj/whitelistCandidate)
+
+	. = RECYCLER_FORBIDDEN //default state
+
+	for(var/t in item_blacklist_hostile)
+		if(istype(whitelistCandidate,t))
+			return RECYCLER_EVIL
+
+	for(var/t in item_whitelist)
+		if(istype(whitelistCandidate,t))
+			return RECYCLER_ALLOWED
+
+	return .
+
 /obj/machinery/MaintRecycler/attackby(obj/item/O, mob/user)
 	if(!door_open)
 		to_chat(user, span_warning("\The [src] doesn't have it's door open!"))
@@ -75,9 +156,21 @@
 		return
 	//TODO: check against whitelist....
 
+	switch(whitelistCheck(O))
+		if(RECYCLER_FORBIDDEN) //the usual stuff.
+			deny_act(O,user)
+			return
+
+		if(RECYCLER_EVIL)
+			evil_act(O,user)
+			return
+
+		if(RECYCLER_ALLOWED)
+			to_chat(user, span_notice("you put \The [O] into \The [src]'s processing department!"))
+
 	if(istype(O,/obj/item/holder))
 		var/obj/item/holder/h = O
-		var/mob/m = h.held_mob
+		var/mob/m = h.held_mob //TODO: Client check.
 		user.drop_item()
 		m.forceMove(src)
 		inserted_item = m
@@ -90,12 +183,60 @@
 	update_icon()
 	. = ..()
 
+//todo: throw code. look @ disposals.
+/obj/machinery/MaintRecycler/proc/IsHostileToUser(var/mob/user) //negative points modifier for getting more.
+	return (user.key in hostile_towards)
+
+/obj/machinery/MaintRecycler/proc/deny_act(var/obj/item/O,var/mob/user)
+	to_chat(user, span_warning("\The [src] rejects \The [O]!"))
+	if(prob(99))
+		playsound(src, 'code/modules/maint_recycler/sfx/generaldeny.ogg', 75, 1)
+		return //todo
+	else
+		playsound(src, 'code/modules/maint_recycler/sfx/voice/mad/denied.ogg', 75)
+
+//add people to the evil list, and be mean to them
+/obj/machinery/MaintRecycler/proc/evil_act(var/obj/item/O,var/mob/user)
+	var/isRepeat = IsHostileToUser(user)
+	if(!isRepeat && user.key)
+		hostile_towards |= user.key
+
+
+
+	if(istype(O,/obj/item/holder) || istype(O,/mob/)) //just in case.
+		var/obj/item/holder/h = O
+		global_announcer.autosay("HARM ALERT: Crewmember [user] recorded displaying murderous tendencies towards innocent creatures in [get_area(src)]. Please schedule psych evaluation and ensure the wellbeing of recorded victim: [h.held_mob]", "[src]", "Security")
+		audible_message("[src] states, \"AMORAL INTENT DETECTED.\" ", "\The [src]'s screen briefly flashes to an angry red graphic!" , runemessage = ">:(")
+	else
+		global_announcer.autosay("PROPERTY DESTRUCTION ALERT: Crewmember [user] has been recorded attempting to destroy high priority station equipment in [get_area(src)]. Please ensure the integrity of \The [O].", "[src]", "Security")
+		audible_message("[src] states, \"CRIMINAL INTENT DETECTED.\" ", "\The [src]'s screen briefly flashes to an angry red graphic!" , runemessage = ">:(")
+
+	playsound(src,pick(angry_sounds),80)
+
+	var/projectile = /obj/item/projectile/beam/stun
+	spawn(1)
+		for(var/i = 1 to 3 )
+		{
+			var/obj/item/projectile/P = new projectile(loc)
+			playsound(src, 'sound/weapons/Taser.ogg', 30, 1)
+			P.firer = src
+			P.old_style_target(user)
+			P.fire()
+			sleep(3)
+		}
+
+/obj/machinery/MaintRecycler/proc/mob_consent_check(var/mob/probable_victim)
+	if(probable_victim.key)
+		if(probable_victim.client) //sanity check to make sure they are alright with getting squished to death
+			return (tgui_alert(usr,"Do you want to be put in \The [src]? Industrial machinery is generally considered pretty damn deadly at the best of the times, and this thing's ANCIENT, you'll probably die. to death, even. A fine paste.", "Welcome to the Hydralulic Press Prompt", list("OSHA is for chumps", "what the fuck? get me outta here!")) == "OSHA is for chumps")
+		else return FALSE //no logged out users
+	else return TRUE //mindless mobs that've never felt the gentle touch of a client are fine
 
 /obj/machinery/MaintRecycler/proc/closeDoor()
 	if(!door_open) return
 	door_moving = TRUE
 	flick("door closing",hatch)
-	playsound(src, 'sound/effects/blobattack.ogg', 40, 1)
+	playsound(src, 'code/modules/maint_recycler/sfx/hatchclose.ogg', 40, 1)
 	spawn(10) //wait a second. TODO: refactor to repo standards.
 	hatch.icon_state = "door closed"
 	door_open = FALSE
@@ -105,6 +246,7 @@
 	if(door_open) return
 	door_moving = TRUE
 	flick("door opening",hatch)
+	playsound(src, 'code/modules/maint_recycler/sfx/hatchopen.ogg', 40, 1)
 	spawn(10) //wait a second. TODO: refactor to repo standards.
 	hatch.icon_state = "door open"
 	door_open = TRUE
@@ -123,10 +265,10 @@
 /obj/machinery/MaintRecycler/update_icon()
 	if(inserted_item != null)
 		item_overlay.appearance = inserted_item.appearance;
-
-		if(istype(inserted_item,/mob/))
+		//todo, assoc list for icon states from type
+		if(istype(inserted_item,/mob/living/simple_mob/animal/passive/mouse))
 			item_overlay.icon = src.icon
-			item_overlay.icon_state = "hepme"
+			item_overlay.icon_state = "hepme" //the creature deserves it's horrible end
 
 		item_overlay.vis_flags = VIS_INHERIT_ID //gotta reapply
 		item_overlay.appearance_flags = KEEP_TOGETHER | LONG_GLIDE | PASS_MOUSE
@@ -163,12 +305,14 @@
 	var/list/data = list()
 	data["heldItemName"] = inserted_item?.name
 	data["heldItemValue"] = 100 //TODO
+	data["userName"] = user.name
+	data["userBalance"] = user.client.recycle_points
 
 	var/icon/display
 	if(inserted_item)
 		display = getFlatIcon(inserted_item) //dogshit! fix this! grr!
 	else
-		display = icon('html/images/no_image32.png')
+		display = icon(src.icon,"NoItem")
 
 	data["itemIcon"] = "'data:image/png;base64,[icon2base64(display)]'"
 	return data
@@ -208,11 +352,9 @@
 //fix sounds for door shutter / add them
 // add recycling sound
 // UI interact sounds?
-//custom tgui theme with crt effect https://aleclownes.com/2017/02/01/crt-display.html
-//
-//fix eject not resetting icon appearance
-//fix layering for
+
 /datum/asset/simple/maintRecycler
 	assets = list(
 		"recycle.gif" = 'code/modules/maint_recycler/tgui/recycle.gif',
+		"logo.png" = 'code/modules/maint_recycler/tgui/logo.png',
 	)
