@@ -14,4 +14,5 @@ export const selectChatPages = (state) =>
 export const selectCurrentChatPage = (state) =>
   state.chat.pageById[state.chat.currentPageId];
 
-export const selectChatPageById = (id) => (state) => state.chat.pageById[id];
+export const selectChatPageById = (id: string) => (state) =>
+  state.chat.pageById[id];

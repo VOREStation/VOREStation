@@ -1,6 +1,7 @@
-import { useBackend } from '../backend';
-import { LabeledList, Section, Slider } from '../components';
-import { Window } from '../layouts';
+import { useBackend } from 'tgui/backend';
+import { Window } from 'tgui/layouts';
+import { LabeledList, Section, Slider } from 'tgui-core/components';
+
 import { PortableBasicInfo } from './common/PortableAtmos';
 
 type Data = {

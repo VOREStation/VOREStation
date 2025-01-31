@@ -1,5 +1,6 @@
-import { useBackend } from '../../backend';
-import { Window } from '../../layouts';
+import { useBackend } from 'tgui/backend';
+import { Window } from 'tgui/layouts';
+
 import { SleeperEmpty } from './SleeperEmpty';
 import { SleeperMain } from './SleeperMain';
 import { Data } from './types';

@@ -43,12 +43,12 @@
 	if (!in_range(src, user))
 		return
 	user.set_machine(src)
-	var/dat = "<TT><B>Soul Stone</B><BR>"
+	var/dat = "<html><TT><B>Soul Stone</B><BR>"
 	for(var/mob/living/simple_mob/construct/shade/A in src)
 		dat += "Captured Soul: [A.name]<br>"
 		dat += {"<A href='byond://?src=\ref[src];choice=Summon'>Summon Shade</A>"}
 		dat += "<br>"
-		dat += {"<a href='byond://?src=\ref[src];choice=Close'> Close</a>"}
+		dat += {"<a href='byond://?src=\ref[src];choice=Close'> Close</a></html>"}
 	user << browse(dat, "window=aicard")
 	onclose(user, "aicard")
 	return

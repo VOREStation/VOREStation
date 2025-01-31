@@ -1,16 +1,16 @@
-import { toFixed } from 'common/math';
-
-import { useBackend } from '../../backend';
+import { useBackend } from 'tgui/backend';
 import {
   AnimatedNumber,
   Box,
   Button,
-  Flex,
   Icon,
   LabeledList,
   ProgressBar,
   Section,
-} from '../../components';
+  Stack,
+} from 'tgui-core/components';
+import { toFixed } from 'tgui-core/math';
+
 import { damageTypes, statNames } from './constants';
 import { Data } from './types';
 
@@ -85,13 +85,13 @@ export const CryoContent = (props) => {
             ))}
           </LabeledList>
         ) : (
-          <Flex height="100%" textAlign="center">
-            <Flex.Item grow="1" align="center" color="label">
+          <Stack height="100%" textAlign="center">
+            <Stack.Item grow align="center" color="label">
               <Icon name="user-slash" mb="0.5rem" size={5} />
               <br />
               No occupant detected.
-            </Flex.Item>
-          </Flex>
+            </Stack.Item>
+          </Stack>
         )}
       </Section>
       <Section

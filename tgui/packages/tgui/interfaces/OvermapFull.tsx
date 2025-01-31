@@ -1,7 +1,7 @@
 import { useState } from 'react';
+import { Window } from 'tgui/layouts';
+import { Tabs } from 'tgui-core/components';
 
-import { Tabs } from '../components';
-import { Window } from '../layouts';
 import { OvermapEnginesContent } from './OvermapEngines';
 import { OvermapHelmContent } from './OvermapHelm';
 import { OvermapShipSensorsContent } from './OvermapShipSensors';

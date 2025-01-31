@@ -1,12 +1,13 @@
-import { useBackend } from '../../backend';
+import { useBackend } from 'tgui/backend';
 import {
   Box,
   Button,
-  Flex,
   Icon,
   ProgressBar,
   Section,
-} from '../../components';
+  Stack,
+} from 'tgui-core/components';
+
 import { Data } from './types';
 
 export const SleeperChemicals = (props) => {
@@ -42,7 +43,7 @@ export const SleeperChemicals = (props) => {
               lineHeight="18px"
               buttons={odWarning}
             >
-              <Flex align="flex-start">
+              <Stack align="flex-start">
                 <ProgressBar
                   minValue={0}
                   maxValue={1}
@@ -73,7 +74,7 @@ export const SleeperChemicals = (props) => {
                     {a}
                   </Button>
                 ))}
-              </Flex>
+              </Stack>
             </Section>
           </Box>
         );

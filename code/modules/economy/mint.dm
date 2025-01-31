@@ -9,7 +9,7 @@
 	var/coinsToProduce = 6	//how many coins do we make per sheet? a sheet is 2000 units whilst a coin is 250, and some material should be lost in the process
 	var/list/validMats = list(MAT_SILVER, MAT_GOLD, MAT_DIAMOND, MAT_IRON, MAT_PHORON, MAT_URANIUM)	//what's valid stuff to make coins out of?
 
-/obj/machinery/mineral/mint/attackby(obj/item/stack/material/M as obj, mob/user as mob)
+/obj/machinery/mineral/mint/attackby(obj/item/stack/material/M, mob/user)
 	if(M.default_type in validMats)
 		user.visible_message("[user] starts to feed a sheet of [M.default_type] into \the [src].")
 		while(M.amount > 0)
@@ -42,7 +42,7 @@
 					src.visible_message(span_notice("\The [src] has run out of usable materials."))
 					break
 			else
-				to_chat(usr,span_warning("\The [src] is hand-operated and requires your full attention!"))
+				to_chat(user,span_warning("\The [src] is hand-operated and requires your full attention!"))
 				icon_state = "coinpress0"
 				break
 	else

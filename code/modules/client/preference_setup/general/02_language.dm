@@ -122,7 +122,7 @@
 				if(new_lang && pref.alternate_languages.len < (S.num_alternate_languages + pref.extra_languages))
 					var/datum/language/chosen_lang = GLOB.all_languages[new_lang]
 					if(istype(chosen_lang))
-						var/choice = tgui_alert(usr, "[chosen_lang.desc]",chosen_lang.name, list("Take","Cancel"))
+						var/choice = tgui_alert(user, "[chosen_lang.desc]",chosen_lang.name, list("Take","Cancel"))
 						if(choice != "Cancel" && pref.alternate_languages.len < (S.num_alternate_languages + pref.extra_languages))
 							pref.alternate_languages |= new_lang
 					return TOPIC_REFRESH
@@ -131,7 +131,7 @@
 		var/char
 		var/keys[0]
 		do
-			char = tgui_input_text(usr, "Enter a single special character.\nYou may re-select the same characters.\nThe following characters are already in use by radio: ; : .\nThe following characters are already in use by special say commands: ! * ^", "Enter Character - [3 - keys.len] remaining")
+			char = tgui_input_text(user, "Enter a single special character.\nYou may re-select the same characters.\nThe following characters are already in use by radio: ; : .\nThe following characters are already in use by special say commands: ! * ^", "Enter Character - [3 - keys.len] remaining")
 			if(char)
 				if(length(char) > 1)
 					tgui_alert_async(user, "Only single characters allowed.", "Error")
@@ -199,7 +199,7 @@
 	// VOREStation Add End
 
 	else if(href_list["pref_runechat_color"])
-		var/new_runechat_color = input(user, "Choose your character's runechat colour (#000000 for random):", "Character Preference", pref.runechat_color) as color|null
+		var/new_runechat_color = tgui_color_picker(user, "Choose your character's runechat colour (#000000 for random):", "Character Preference", pref.runechat_color)
 		if(new_runechat_color && CanUseTopic(user))
 			pref.runechat_color = new_runechat_color
 			// whenever we change this, we update our mob

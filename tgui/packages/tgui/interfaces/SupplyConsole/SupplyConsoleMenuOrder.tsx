@@ -1,9 +1,9 @@
 import { filter, sortBy } from 'common/collections';
-import { flow } from 'common/fp';
 import { useState } from 'react';
+import { useBackend } from 'tgui/backend';
+import { Box, Button, Section, Stack } from 'tgui-core/components';
+import { flow } from 'tgui-core/fp';
 
-import { useBackend } from '../../backend';
-import { Box, Button, Section, Stack } from '../../components';
 import { Data, supplyPack } from './types';
 
 export const SupplyConsoleMenuOrder = (props) => {
@@ -42,7 +42,7 @@ export const SupplyConsoleMenuOrder = (props) => {
             ))}
           </Section>
         </Stack.Item>
-        <Stack.Item grow={1} ml={2}>
+        <Stack.Item grow ml={2}>
           <Section title="Contents" scrollable fill height="290px">
             {viewingPacks.map((pack) => (
               <Box key={pack.name}>
@@ -76,7 +76,7 @@ export const SupplyConsoleMenuOrder = (props) => {
                       Info
                     </Button>
                   </Stack.Item>
-                  <Stack.Item grow={1}>{pack.cost} points</Stack.Item>
+                  <Stack.Item grow>{pack.cost} points</Stack.Item>
                 </Stack>
               </Box>
             ))}

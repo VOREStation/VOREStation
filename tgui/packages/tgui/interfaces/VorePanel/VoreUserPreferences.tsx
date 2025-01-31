@@ -1,7 +1,7 @@
-import { BooleanLike } from 'common/react';
+import { useBackend } from 'tgui/backend';
+import { Button, Divider, Section, Stack } from 'tgui-core/components';
+import { BooleanLike } from 'tgui-core/react';
 
-import { useBackend } from '../../backend';
-import { Button, Divider, Flex, Section } from '../../components';
 import { prefData } from './types';
 import { VoreUserPreferencesAesthetic } from './VoreUserPreferencesTabs/VoreUserPreferencesAesthetic ';
 import { VoreUserPreferencesMechanical } from './VoreUserPreferencesTabs/VoreUserPreferencesMechanical ';
@@ -450,18 +450,18 @@ export const VoreUserPreferences = (props: {
       <VoreUserPreferencesAesthetic preferences={preferences} />
       <Divider />
       <Section>
-        <Flex spacing={1}>
-          <Flex.Item basis="49%">
+        <Stack>
+          <Stack.Item basis="32%">
             <Button fluid icon="save" onClick={() => act('saveprefs')}>
               Save Prefs
             </Button>
-          </Flex.Item>
-          <Flex.Item basis="49%" grow={1}>
+          </Stack.Item>
+          <Stack.Item basis="32%" grow>
             <Button fluid icon="undo" onClick={() => act('reloadprefs')}>
               Reload Prefs
             </Button>
-          </Flex.Item>
-          <Flex.Item basis="49%" grow={1}>
+          </Stack.Item>
+          <Stack.Item basis="32%" grow>
             <Button
               fluid
               icon="people-arrows"
@@ -469,8 +469,8 @@ export const VoreUserPreferences = (props: {
             >
               Load Prefs From Slot
             </Button>
-          </Flex.Item>
-        </Flex>
+          </Stack.Item>
+        </Stack>
       </Section>
     </Section>
   );

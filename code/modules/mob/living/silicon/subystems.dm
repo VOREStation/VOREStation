@@ -53,7 +53,7 @@
 	set name = "Alarm Monitor"
 	set category = "Abilities.Silicon"
 
-	alarm_monitor.tgui_interact(usr)
+	alarm_monitor.tgui_interact(src)
 
 /********************
 *	Atmos Control	*
@@ -62,7 +62,7 @@
 	set category = "Abilities.Silicon"
 	set name = "Atmospherics Control"
 
-	atmos_control.tgui_interact(usr)
+	atmos_control.tgui_interact(src)
 
 /********************
 *	Crew Manifest	*
@@ -71,7 +71,7 @@
 	set category = "Abilities.Silicon"
 	set name = "Crew Manifest"
 
-	crew_manifest.tgui_interact(usr)
+	crew_manifest.tgui_interact(src)
 
 /********************
 *	Crew Monitor	*
@@ -80,7 +80,7 @@
 	set category = "Abilities.Silicon"
 	set name = "Crew Monitor"
 
-	crew_monitor.tgui_interact(usr)
+	crew_monitor.tgui_interact(src)
 
 /****************
 *	Law Manager	*
@@ -89,7 +89,7 @@
 	set name = "Law Manager"
 	set category = "Abilities.Silicon"
 
-	law_manager.tgui_interact(usr)
+	law_manager.tgui_interact(src)
 
 /********************
 *	Power Monitor	*
@@ -98,7 +98,7 @@
 	set category = "Abilities.Silicon"
 	set name = "Power Monitor"
 
-	power_monitor.tgui_interact(usr)
+	power_monitor.tgui_interact(src)
 
 /************
 *	RCON	*
@@ -107,4 +107,4 @@
 	set category = "Abilities.Silicon"
 	set name = "RCON"
 
-	rcon.tgui_interact(usr)
+	rcon.tgui_interact(src)

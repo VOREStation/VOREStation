@@ -475,7 +475,7 @@
 	if(my_case)
 		if(my_case.BB == src)
 			my_case.BB = null
-			my_case = null
+		my_case = null
 
 	return ..()
 

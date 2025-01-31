@@ -55,13 +55,13 @@ export enum PortTypes {
 export const PortTypesToColor = {
   [PortTypes.IC_FORMAT_ANY]: 'olive',
   [PortTypes.IC_FORMAT_STRING]: 'green',
-  [PortTypes.IC_FORMAT_CHAR]: 'darkyellow',
+  [PortTypes.IC_FORMAT_CHAR]: 'teal',
   [PortTypes.IC_FORMAT_COLOR]: 'pink',
   [PortTypes.IC_FORMAT_NUMBER]: 'blue',
-  [PortTypes.IC_FORMAT_DIR]: 'darkred',
+  [PortTypes.IC_FORMAT_DIR]: 'brown',
   [PortTypes.IC_FORMAT_BOOLEAN]: 'red',
-  [PortTypes.IC_FORMAT_REF]: 'darkblue',
-  [PortTypes.IC_FORMAT_LIST]: 'darkgreen',
+  [PortTypes.IC_FORMAT_REF]: 'orange',
+  [PortTypes.IC_FORMAT_LIST]: 'average',
   [PortTypes.IC_FORMAT_PULSE]: 'yellow',
 };
 

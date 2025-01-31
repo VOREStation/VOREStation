@@ -1,18 +1,17 @@
-import { BooleanLike } from 'common/react';
-import { capitalize } from 'common/string';
-
-import { useBackend } from '../backend';
+import { useBackend } from 'tgui/backend';
+import { Window } from 'tgui/layouts';
 import {
   AnimatedNumber,
   Box,
   Button,
-  Flex,
   LabeledList,
   ProgressBar,
   Section,
+  Stack,
   Table,
-} from '../components';
-import { Window } from '../layouts';
+} from 'tgui-core/components';
+import { BooleanLike } from 'tgui-core/react';
+import { capitalize } from 'tgui-core/string';
 
 type Data = {
   mode: number;
@@ -108,15 +107,15 @@ export const Batteryrack = (props) => {
                     maxValue={100}
                     color={cell.used ? 'good' : 'bad'}
                   >
-                    <Flex>
-                      <Flex.Item>
+                    <Stack>
+                      <Stack.Item>
                         {!!cell.name && capitalize(cell.name)}
-                      </Flex.Item>
-                      <Flex.Item grow={1} />
-                      <Flex.Item>
+                      </Stack.Item>
+                      <Stack.Item grow />
+                      <Stack.Item>
                         {cell.used ? cell.percentage + '%' : 'N/C'}
-                      </Flex.Item>
-                    </Flex>
+                      </Stack.Item>
+                    </Stack>
                   </ProgressBar>
                 </Table.Cell>
                 <Table.Cell collapsing>

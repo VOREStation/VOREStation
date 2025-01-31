@@ -55,7 +55,7 @@
 			to_chat(user, span_warning("You are banned from leaving persistent information across rounds."))
 			return
 
-		var/_message = sanitize(tgui_input_text(usr, "Enter an additional message to engrave.", "Graffiti"), trim = TRUE)
+		var/_message = sanitize(tgui_input_text(user, "Enter an additional message to engrave.", "Graffiti"), trim = TRUE)
 		if(_message && loc && user && !user.incapacitated() && user.Adjacent(loc) && thing.loc == user)
 			user.visible_message(span_warning("\The [user] begins carving something into \the [loc]."))
 			if(do_after(user, max(20, length(_message)), src) && loc)

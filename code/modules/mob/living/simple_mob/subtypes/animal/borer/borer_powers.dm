@@ -218,7 +218,7 @@
 	if(chemicals < 50)
 		to_chat(src,  span_warning("You don't have enough chemicals!"))
 
-	var/chem = tgui_input_list(usr, "Select a chemical to secrete.", "Chemicals", list(REAGENT_ID_ALKYSINE,REAGENT_ID_BICARIDINE,REAGENT_ID_HYPERZINE,REAGENT_ID_TRAMADOL))
+	var/chem = tgui_input_list(src, "Select a chemical to secrete.", "Chemicals", list(REAGENT_ID_ALKYSINE,REAGENT_ID_BICARIDINE,REAGENT_ID_HYPERZINE,REAGENT_ID_TRAMADOL))
 
 	if(!chem || chemicals < 50 || !host || controlling || !src || stat) //Sanity check.
 		return
@@ -344,7 +344,7 @@
 	set desc = "Send a jolt of electricity through your host, reviving them."
 
 	if(stat != 2)
-		to_chat(usr, "Your host is already alive.")
+		to_chat(src, "Your host is already alive.")
 		return
 
 	remove_verb(src, /mob/living/carbon/human/proc/jumpstart)

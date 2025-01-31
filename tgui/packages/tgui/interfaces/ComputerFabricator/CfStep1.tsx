@@ -1,5 +1,5 @@
-import { useBackend } from '../../backend';
-import { Box, Button, Section, Table } from '../../components';
+import { useBackend } from 'tgui/backend';
+import { Box, Button, Section, Table } from 'tgui-core/components';
 
 // This had a pretty gross backend so this was unfortunately one of the
 // best ways of doing it.

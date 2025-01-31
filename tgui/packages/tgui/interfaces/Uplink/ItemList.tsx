@@ -1,9 +1,9 @@
-import { BooleanLike } from 'common/react';
-import { decodeHtmlEntities } from 'common/string';
+import { useBackend } from 'tgui/backend';
+import { Button, Section, Table } from 'tgui-core/components';
+import { formatMoney } from 'tgui-core/format';
+import { BooleanLike } from 'tgui-core/react';
+import { decodeHtmlEntities } from 'tgui-core/string';
 
-import { useBackend } from '../../backend';
-import { Button, Section, Table } from '../../components';
-import { formatMoney } from '../../format';
 import { item } from './types';
 
 export const ItemList = (props: {
@@ -44,6 +44,7 @@ export const ItemList = (props: {
   }
   return items.map((item) => (
     <Section
+      ml={0}
       key={item.name}
       title={item.name}
       buttons={

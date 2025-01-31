@@ -92,7 +92,7 @@
 	else if(choices.len == 1)
 		choice = choices[1]
 	else
-		choice = tgui_input_list(usr, "What kind of evidence are you looking for?","Evidence Collection", choices)
+		choice = tgui_input_list(user, "What kind of evidence are you looking for?","Evidence Collection", choices)
 
 	if(!choice)
 		return

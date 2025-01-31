@@ -1,4 +1,5 @@
-import { Window } from '../../layouts';
+import { Window } from 'tgui/layouts';
+
 import { RCONContent } from './RCONContent';
 
 export const RCON = (props) => {

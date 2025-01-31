@@ -2,17 +2,11 @@
 	var/find_type = 0				//random according to the digsite type
 	var/excavation_required = 0		//random 10 - 190
 	var/view_range = 40				//how close excavation has to come to show an overlay on the turf
-	var/clearance_range = 3			//how close excavation has to come to extract the item
-									//if excavation hits var/excavation_required exactly, it's contained find is extracted cleanly without the ore
-	var/prob_delicate = 90			//probability it requires an active suspension field to not insta-crumble
-	var/dissonance_spread = 1		//proportion of the tile that is affected by this find
-									//used in conjunction with analysis machines to determine correct suspension field type
+	var/prob_delicate = 0			//probability it requires an active suspension field to not insta-crumble. Set to 0 to nullify the need for suspension field.
 
 /datum/find/New(var/digsite, var/exc_req)
 	excavation_required = exc_req
 	find_type = get_random_find_type(digsite)
-	clearance_range = rand(4, 12)
-	dissonance_spread = rand(1500, 2500) / 100
 
 /obj/item/strangerock
 	name = "Strange rock"
@@ -31,7 +25,7 @@
 	if(inside_item_type)
 		switch(d100)
 			if(51 to 100) //standard spawn logic 50% of the time
-				new /obj/item/archaeological_find(src, new_item_type = inside_item_type)
+				new /obj/item/archaeological_find(src, inside_item_type)
 			if(21 to 50) // 30% chance
 				new /obj/item/research_sample/common(src)
 			if(6 to 20) // 15% chance
@@ -39,7 +33,7 @@
 			if(1 to 5) // 5% chance
 				new /obj/item/research_sample/rare(src)
 			else	//if something went wrong, somehow, generate the usual find
-				new /obj/item/archaeological_find(src, new_item_type = inside_item_type)
+				new /obj/item/archaeological_find(src, inside_item_type)
 	else	//if this strange rock isn't set to generate a find for whatever reason, create a sample 75% of the time (this shouldn't happen unless the rock is mapped in or adminspawned)
 		switch(d100)
 			if(76 to 100)
@@ -54,13 +48,13 @@
 				return	//do nothing
 
 /obj/item/strangerock/attackby(var/obj/item/I, var/mob/user)
-	if(istype(I, /obj/item/pickaxe/brush))
+	if(istype(I, /obj/item/pickaxe)) //Whatever, if you use a hand pick it should work just like a brush. No reason for otherwise.
 		var/obj/item/inside = locate() in src
 		if(inside)
 			inside.loc = get_turf(src)
-			visible_message(span_info("\The [src] is brushed away, revealing \the [inside]."))
+			visible_message(span_info("\The [src] is mined away, revealing \the [inside]."))
 		else
-			visible_message(span_info("\The [src] is brushed away into nothing."))
+			visible_message(span_info("\The [src] is mined away into nothing."))
 		qdel(src)
 		return
 

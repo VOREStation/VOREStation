@@ -71,13 +71,13 @@
 		if(!is_open_container())
 			. += span_notice("Airtight lid seals it completely.")
 
-/obj/item/reagent_containers/glass/attack_self()
+/obj/item/reagent_containers/glass/attack_self(mob/user)
 	..()
 	if(is_open_container())
-		to_chat(usr, span_notice("You put the lid on \the [src]."))
+		to_chat(user, span_notice("You put the lid on \the [src]."))
 		flags ^= OPENCONTAINER
 	else
-		to_chat(usr, span_notice("You take the lid off \the [src]."))
+		to_chat(user, span_notice("You take the lid off \the [src]."))
 		flags |= OPENCONTAINER
 	update_icon()
 

@@ -1,5 +1,5 @@
 import { useBackend } from 'tgui/backend';
-import { Box, Button, Input, LabeledList, Section } from 'tgui/components';
+import { Box, Button, Input, LabeledList, Section } from 'tgui-core/components';
 
 import { PaginationChevrons } from '..';
 import { Data } from '../data';
@@ -24,6 +24,7 @@ export const DesignList = (props) => {
     >
       <Input
         fluid
+        updateOnPropsChange
         placeholder="Search for..."
         value={data.search}
         onInput={(e, v) => act('search', { search: v })}

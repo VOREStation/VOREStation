@@ -1,6 +1,6 @@
-import { useBackend } from '../backend';
-import { Box, Button, LabeledList, ProgressBar } from '../components';
-import { Window } from '../layouts';
+import { useBackend } from 'tgui/backend';
+import { Window } from 'tgui/layouts';
+import { Box, Button, LabeledList, ProgressBar } from 'tgui-core/components';
 
 type Data = {
   wintick: number;

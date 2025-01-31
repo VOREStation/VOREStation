@@ -1,6 +1,6 @@
-import { useBackend } from '../backend';
-import { Box, Button, Collapsible, Section, Table } from '../components';
-import { Window } from '../layouts';
+import { useBackend } from 'tgui/backend';
+import { Window } from 'tgui/layouts';
+import { Box, Button, Collapsible, Section, Table } from 'tgui-core/components';
 
 type Data = { amount: number; recipes: recipe[] };
 

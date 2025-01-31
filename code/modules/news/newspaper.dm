@@ -94,7 +94,7 @@
 				dat+="I'm sorry to break your immersion. This shit's bugged. Report this bug to Agouri, polyxenitopalidou@gmail.com"
 
 		dat+="<BR><HR><div align='center'>[curr_page+1]</div>"
-		human_user << browse(dat, "window=newspaper_main;size=300x400")
+		human_user << browse("<html>[dat]</html>", "window=newspaper_main;size=300x400")
 		onclose(human_user, "newspaper_main")
 	else
 		to_chat(user, span_infoplain("The paper is full of intelligible symbols!"))
@@ -130,7 +130,7 @@
 		if(istype(src.loc, /mob))
 			attack_self(src.loc)
 
-/obj/item/newspaper/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/newspaper/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/pen))
 		if(scribble_page == curr_page)
 			to_chat(user, span_blue("There's already a scribble in this page... You wouldn't want to make things too cluttered, would you?"))
@@ -139,7 +139,7 @@
 			s = sanitize(s)
 			if(!s)
 				return
-			if(!in_range(src, usr) && src.loc != usr)
+			if(!in_range(src, user) && src.loc != user)
 				return
 			scribble_page = curr_page
 			scribble = s

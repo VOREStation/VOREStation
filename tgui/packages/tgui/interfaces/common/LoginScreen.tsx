@@ -1,7 +1,7 @@
-import { BooleanLike } from 'common/react';
+import { useBackend } from 'tgui/backend';
+import { Box, Button, Icon } from 'tgui-core/components';
+import { BooleanLike } from 'tgui-core/react';
 
-import { useBackend } from '../../backend';
-import { Box, Button, Icon } from '../../components';
 import { FullscreenNotice } from './FullscreenNotice';
 
 type machine = { machineType?: string };

@@ -337,14 +337,14 @@ var/list/_simple_mob_default_emotes = list(
 
 	var/datum/gender/T = gender_datums[get_visible_gender()]
 
-	pose = strip_html_simple(tgui_input_text(usr, "This is [src]. [T.he]...", "Pose", null))
+	pose = strip_html_simple(tgui_input_text(src, "This is [src]. [T.he]...", "Pose", null))
 
 /mob/living/carbon/human/verb/set_flavor()
 	set name = "Set Flavour Text"
 	set desc = "Sets an extended description of your character's features."
 	set category = "IC.Settings"
 
-	var/HTML = "<body>"
+	var/HTML = "<html><body>"
 	HTML += "<tt><center>"
 	HTML += span_bold("Update Flavour Text") + " <hr />"
 	HTML += "<br></center>"
@@ -377,7 +377,7 @@ var/list/_simple_mob_default_emotes = list(
 	HTML += "<br>"
 	HTML += "<hr />"
 	HTML +="<a href='byond://?src=\ref[src];flavor_change=done'>\[Done\]</a>"
-	HTML += "<tt>"
+	HTML += "<tt></body></html>"
 	src << browse(HTML, "window=flavor_changes;size=430x300")
 
 /mob/living/carbon/human/proc/toggle_tail(var/setting,var/message = 0)

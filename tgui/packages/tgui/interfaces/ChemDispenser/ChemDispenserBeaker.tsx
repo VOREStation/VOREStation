@@ -1,5 +1,6 @@
-import { useBackend } from '../../backend';
-import { Box, Button, Section } from '../../components';
+import { useBackend } from 'tgui/backend';
+import { Box, Button, Section } from 'tgui-core/components';
+
 import { BeakerContents } from '../common/BeakerContents';
 import { removeAmounts } from './constants';
 import { Data } from './types';

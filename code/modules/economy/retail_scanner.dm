@@ -165,7 +165,7 @@
 
 
 
-/obj/item/retail_scanner/attackby(obj/O as obj, user as mob)
+/obj/item/retail_scanner/attackby(obj/O, mob/user)
 	// Check for a method of paying (ID, PDA, e-wallet, cash, ect.)
 	var/obj/item/card/id/I = O.GetID()
 	if(I)
@@ -174,7 +174,7 @@
 		var/obj/item/spacecash/ewallet/E = O
 		scan_wallet(E)
 	else if (istype(O, /obj/item/spacecash))
-		to_chat(usr, span_warning("This device does not accept cash."))
+		to_chat(user, span_warning("This device does not accept cash."))
 
 	else if(istype(O, /obj/item/card/emag))
 		return ..()

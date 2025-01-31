@@ -1,5 +1,6 @@
-import { useBackend } from '../../backend';
-import { Button, Flex, LabeledList, Section } from '../../components';
+import { useBackend } from 'tgui/backend';
+import { Button, LabeledList, Section, Stack } from 'tgui-core/components';
+
 import { NEWSCASTER_SCREEN_MAIN } from './constants';
 import { Data } from './types';
 
@@ -29,13 +30,13 @@ export const NewscasterNewStory = (props: { setScreen: Function }) => {
           {user}
         </LabeledList.Item>
         <LabeledList.Item label="Message Title" verticalAlign="top">
-          <Flex>
-            <Flex.Item grow={1}>
+          <Stack>
+            <Stack.Item grow>
               <Section width="99%" inline>
                 {title || '(no title yet)'}
               </Section>
-            </Flex.Item>
-            <Flex.Item>
+            </Stack.Item>
+            <Stack.Item>
               <Button
                 verticalAlign="top"
                 onClick={() => act('set_new_title')}
@@ -43,17 +44,17 @@ export const NewscasterNewStory = (props: { setScreen: Function }) => {
                 tooltip="Edit Title"
                 tooltipPosition="left"
               />
-            </Flex.Item>
-          </Flex>
+            </Stack.Item>
+          </Stack>
         </LabeledList.Item>
         <LabeledList.Item label="Message Body" verticalAlign="top">
-          <Flex>
-            <Flex.Item grow={1}>
+          <Stack>
+            <Stack.Item grow>
               <Section width="99%" inline>
                 {msg || '(no message yet)'}
               </Section>
-            </Flex.Item>
-            <Flex.Item>
+            </Stack.Item>
+            <Stack.Item>
               <Button
                 verticalAlign="top"
                 onClick={() => act('set_new_message')}
@@ -61,8 +62,8 @@ export const NewscasterNewStory = (props: { setScreen: Function }) => {
                 tooltip="Edit Message"
                 tooltipPosition="left"
               />
-            </Flex.Item>
-          </Flex>
+            </Stack.Item>
+          </Stack>
         </LabeledList.Item>
         <LabeledList.Item label="Attach Photo">
           <Button fluid icon="image" onClick={() => act('set_attachment')}>

@@ -89,3 +89,12 @@
 
 /datum/preference/numeric/tgui_say_height/apply_to_client(client/client, value)
 	client.tgui_say?.load()
+
+/datum/preference/text/preset_colors
+	category = PREFERENCE_CATEGORY_MANUALLY_RENDERED
+	savefile_identifier = PREFERENCE_PLAYER
+	savefile_key = "preset_colors"
+	maximum_value_length = 160
+
+/datum/preference/text/preset_colors/apply_to_client(client/client, value)
+	return

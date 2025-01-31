@@ -1,6 +1,7 @@
-import { useBackend } from '../../backend';
-import { Box, Button } from '../../components';
-import { Window } from '../../layouts';
+import { useBackend } from 'tgui/backend';
+import { Window } from 'tgui/layouts';
+import { Box, Button } from 'tgui-core/components';
+
 import { BodyDesignerBodyRecords } from './BodyDesignerBodyRecords';
 import { BodyDesignerMain } from './BodyDesignerMain';
 import { BodyDesignerOOCNotes } from './BodyDesignerOOCNotes';

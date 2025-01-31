@@ -1,5 +1,12 @@
-import { useBackend } from '../../backend';
-import { Box, Button, ColorBox, LabeledList, Section } from '../../components';
+import { useBackend } from 'tgui/backend';
+import {
+  Box,
+  Button,
+  ColorBox,
+  LabeledList,
+  Section,
+} from 'tgui-core/components';
+
 import { Data, SPRITE_ACCESSORY_COLOR_CHANNEL_NAMES } from './types';
 
 export const AppearanceChangerColors = (props) => {

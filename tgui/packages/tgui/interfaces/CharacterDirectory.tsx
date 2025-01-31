@@ -1,9 +1,15 @@
-import { BooleanLike } from 'common/react';
 import { ReactNode, useState } from 'react';
-
-import { useBackend } from '../backend';
-import { Box, Button, Icon, LabeledList, Section, Table } from '../components';
-import { Window } from '../layouts';
+import { useBackend } from 'tgui/backend';
+import { Window } from 'tgui/layouts';
+import {
+  Box,
+  Button,
+  Icon,
+  LabeledList,
+  Section,
+  Table,
+} from 'tgui-core/components';
+import { BooleanLike } from 'tgui-core/react';
 
 const getTagColor = (tag: string) => {
   switch (tag) {

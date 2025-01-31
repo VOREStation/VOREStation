@@ -1,4 +1,4 @@
-import { NoticeBox } from 'tgui/components';
+import { NoticeBox } from 'tgui-core/components';
 
 export const NoSpriteWarning = (props: { name: string }) => {
   const { name } = props;

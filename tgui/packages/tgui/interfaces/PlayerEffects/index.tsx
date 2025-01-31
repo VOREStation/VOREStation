@@ -1,8 +1,8 @@
 import { useState } from 'react';
+import { useBackend } from 'tgui/backend';
+import { Window } from 'tgui/layouts';
+import { NoticeBox, Tabs } from 'tgui-core/components';
 
-import { useBackend } from '../../backend';
-import { NoticeBox, Tabs } from '../../components';
-import { Window } from '../../layouts';
 import { ControlAbilities } from './PlayerEffectsTabs/ControlAbilities';
 import { ControlAdmin } from './PlayerEffectsTabs/ControlAdmin';
 import { ControlFixes } from './PlayerEffectsTabs/ControlFixes';

@@ -1,6 +1,6 @@
 import { useState } from 'react';
+import { Section, Tabs } from 'tgui-core/components';
 
-import { Section, Tabs } from '../../components';
 import { SupplyConsoleMenuHistoryExport } from './SupplyConsoleMenuHistoryExport';
 import { SupplyConsoleMenuOrder } from './SupplyConsoleMenuOrder';
 import { SupplyConsoleMenuOrderList } from './SupplyConsoleMenuOrderList';
