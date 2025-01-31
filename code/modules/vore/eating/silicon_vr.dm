@@ -13,13 +13,13 @@
 	walk(src, 0) // Because we might have called walk_to, we must stop the walk loop or BYOND keeps an internal reference to us forever.
 	return ..()
 
-/obj/effect/overlay/aiholo/proc/get_prey(var/mob/living/prey)
+/obj/effect/overlay/aiholo/proc/get_prey(var/mob/living/prey, mob/user)
 	if(bellied) return
 	playsound(src, 'sound/effects/stealthoff.ogg',50,0)
 	bellied = prey
 	prey.forceMove(src)
 	visible_message("[src] entirely engulfs [prey] in hardlight holograms!")
-	to_chat(usr, span_vnotice("You completely engulf [prey] in hardlight holograms!")) //Can't be part of the above, because the above is from the hologram.
+	to_chat(user, span_vnotice("You completely engulf [prey] in hardlight holograms!")) //Can't be part of the above, because the above is from the hologram.
 
 	desc = "[initial(desc)] It seems to have hardlight mode enabled and someone inside."
 	pass_flags = 0
@@ -46,7 +46,7 @@
 
 	// Wrong state
 	if (!eyeobj || !holo)
-		to_chat(usr, span_vwarning("You can only use this when holo-projecting!"))
+		to_chat(src, span_vwarning("You can only use this when holo-projecting!"))
 		return
 
 	//Holopads have this 'masters' list where the keys are AI names and the values are the hologram effects
@@ -58,7 +58,7 @@
 
 	//Already full
 	if (hologram.bellied)
-		var/choice = tgui_alert(usr, "You can only contain one person. [hologram.bellied] is in you.", "Already Full", list("Drop Mob", "Cancel"))
+		var/choice = tgui_alert(src, "You can only contain one person. [hologram.bellied] is in you.", "Already Full", list("Drop Mob", "Cancel"))
 		if(choice == "Drop Mob")
 			hologram.drop_prey()
 		return
@@ -68,13 +68,13 @@
 		return //Probably cancelled
 
 	if(!istype(prey))
-		to_chat(usr, span_vwarning("Invalid mob choice!"))
+		to_chat(src, span_vwarning("Invalid mob choice!"))
 		return
 
 	hologram.visible_message("[hologram] starts engulfing [prey] in hardlight holograms!")
 	to_chat(src, span_vnotice("You begin engulfing [prey] in hardlight holograms.")) //Can't be part of the above, because the above is from the hologram.
 	if(do_after(user=eyeobj,delay=50,target=prey,needhand=0) && holo && hologram && !hologram.bellied) //Didn't move and still projecting and effect exists and no other bellied people
-		hologram.get_prey(prey)
+		hologram.get_prey(prey, src)
 
 /*	Can't, lets them examine things in camera blackout areas
 //I basically have to do this, you know?

@@ -13,7 +13,7 @@ export type crewmember = {
   rank: string;
   assignment: string;
   dead: BooleanLike;
-  stat: number;
+  stat?: number;
   oxy: number;
   tox: number;
   fire: number;

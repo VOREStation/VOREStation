@@ -254,7 +254,7 @@
 	if(!choice)
 		return
 	if(choice == "Color")
-		var/new_color = tgui_color_picker(usr, "Choose a color to set the light to! (Default is [LIGHT_COLOR_INCANDESCENT_TUBE])", "", selected_color)
+		var/new_color = tgui_color_picker(user, "Choose a color to set the light to! (Default is [LIGHT_COLOR_INCANDESCENT_TUBE])", "", selected_color)
 		if(new_color)
 			selected_color = new_color
 			to_chat(user, span_filter_notice("The light color has been changed."))
@@ -351,7 +351,7 @@
 		to_chat(src, span_filter_notice("Cell charge too low to continue."))
 		return
 
-	if(usr.incapacitated(INCAPACITATION_DISABLED))
+	if(src.incapacitated(INCAPACITATION_DISABLED))
 		to_chat(src, span_filter_notice("You cannot leap in your current state."))
 		return
 
@@ -380,7 +380,7 @@
 	if(last_special > world.time)
 		return
 
-	if(usr.incapacitated(INCAPACITATION_DISABLED))
+	if(src.incapacitated(INCAPACITATION_DISABLED))
 		to_chat(src, span_filter_notice("You cannot leap in your current state."))
 		return
 

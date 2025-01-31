@@ -274,9 +274,9 @@
 	name = "Printing Pen"
 	var/mode = 1
 
-/obj/item/pen/robopen/attack_self(mob/user as mob)
+/obj/item/pen/robopen/attack_self(mob/user)
 
-	var/choice = tgui_alert(usr, "Would you like to change colour or mode?", "Change What?", list("Colour","Mode","Cancel"))
+	var/choice = tgui_alert(user, "Would you like to change colour or mode?", "Change What?", list("Colour","Mode","Cancel"))
 	if(!choice || choice == "Cancel")
 		return
 
@@ -285,7 +285,7 @@
 	switch(choice)
 
 		if("Colour")
-			var/newcolour = tgui_input_list(usr, "Which colour would you like to use?", "Color Choice", list("black","blue","red","green","yellow"))
+			var/newcolour = tgui_input_list(user, "Which colour would you like to use?", "Color Choice", list("black","blue","red","green","yellow"))
 			if(newcolour) colour = newcolour
 
 		if("Mode")
@@ -329,19 +329,19 @@
 /obj/item/form_printer/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
 	return
 
-/obj/item/form_printer/afterattack(atom/target as mob|obj|turf|area, mob/living/user as mob|obj, flag, params)
+/obj/item/form_printer/afterattack(atom/target, mob/living/user, flag, params)
 
 	if(!target || !flag)
 		return
 
 	if(istype(target,/obj/structure/table))
-		deploy_paper(get_turf(target))
+		deploy_paper(user)
 
-/obj/item/form_printer/attack_self(mob/user as mob)
-	deploy_paper()
+/obj/item/form_printer/attack_self(mob/user)
+	deploy_paper(user)
 
-/obj/item/form_printer/proc/deploy_paper()
-	var/choice = tgui_alert(usr, "Would you like dispense and empty page or print a form?", "Dispense", list("Paper","Form"))
+/obj/item/form_printer/proc/deploy_paper(mob/user)
+	var/choice = tgui_alert(user, "Would you like dispense and empty page or print a form?", "Dispense", list("Paper","Form"))
 	if(!choice || choice == "Cancel")
 		return
 	switch(choice)
@@ -352,9 +352,9 @@
 				T.visible_message(span_notice("\The [src.loc] dispenses a sheet of crisp white paper."))
 				new /obj/item/paper(T)
 		if ("Form")
-			var/list/content = print_form()
+			var/list/content = print_form(user)
 			if(!content)
-				to_chat(usr, span_warning("No form for this category found in central network. Central is advising employees to upload new forms whenever possible."))
+				to_chat(user, span_warning("No form for this category found in central network. Central is advising employees to upload new forms whenever possible."))
 				return
 			flick("doc_printer_mod_printing", src)
 			spawn(22)
@@ -362,7 +362,7 @@
 				T.visible_message(span_notice("\The [src.loc] dispenses an official form to fill."))
 				new /obj/item/paper(T, content[1], content[2])
 
-/obj/item/form_printer/proc/print_form()
+/obj/item/form_printer/proc/print_form(mob/user)
 	var/list/paper_forms = list("Empty", "Command", "Security", "Supply", "Science", "Medical", "Engineering", "Service", "Exploration", "Event", "Other", "Mercenary")
 	var/list/command_paper_forms = list("COM-0002: Dismissal Order", "COM-0003: Job Change Request", "COM-0004: ID Replacement Request", "COM-0005: Access Change Order", "COM-0006: Formal Complaint", "COM-0009: Visitor Permit", "COM-0012: Personnel Request Form", "COM-0013: Employee of the Month Nomination Form")
 	var/list/security_paper_forms = list("SEC-1001: Shift-Start Checklist", "SEC-1002: Patrol Assignment Sheet", "SEC-1003: Incident Report", "SEC-1004: Arrest Report", "SEC-1005: Arrest Warrant", "SEC-1006: Search Warrant", "SEC-1007: Forensics Investigation Report", "SEC-1008: Interrogation Report", "SEC-1009: Witness Statement", "SEC-1010: Armory Inventory", "SEC-1011: Armory Equipment Request", "SEC-1012: Armory Equipment Deployment", "SEC-1013: Weapon Permit", "SEC-1014: Injunction", "SEC-1015: Deputization Waiver")
@@ -377,64 +377,64 @@
 	var/list/mercenary_paper_forms = list("MERC-?071: Mercenary Request")
 
 	var/list/split = list()
-	var/papertype = tgui_input_list(usr, "What kind of form do you want to print?", "Department", paper_forms)
+	var/papertype = tgui_input_list(user, "What kind of form do you want to print?", "Department", paper_forms)
 	if(!papertype || papertype == "Cancel")
 		return
 	switch(papertype)
 		if ("Empty")
 			split = list("", "Empty form")
 		if("Command")
-			var/command_paper = tgui_input_list(usr, "What kind of command form do you want to print?", "Form", command_paper_forms)
+			var/command_paper = tgui_input_list(user, "What kind of command form do you want to print?", "Form", command_paper_forms)
 			if(!command_paper || command_paper == "Cancel")
 				return
 			split = splittext(command_paper, ": ")
 		if("Security")
-			var/security_paper = tgui_input_list(usr, "What kind of security form do you want to print?", "Form", security_paper_forms)
+			var/security_paper = tgui_input_list(user, "What kind of security form do you want to print?", "Form", security_paper_forms)
 			if(!security_paper || security_paper == "Cancel")
 				return
 			split = splittext(security_paper, ": ")
 		if("Supply")
-			var/supply_paper = tgui_input_list(usr, "What kind of supply form do you want to print?", "Form", supply_paper_forms)
+			var/supply_paper = tgui_input_list(user, "What kind of supply form do you want to print?", "Form", supply_paper_forms)
 			if(!supply_paper || supply_paper == "Cancel")
 				return
 			split = splittext(supply_paper, ": ")
 		if("Science")
-			var/science_paper = tgui_input_list(usr, "What kind of science form do you want to print?", "Form", science_paper_forms)
+			var/science_paper = tgui_input_list(user, "What kind of science form do you want to print?", "Form", science_paper_forms)
 			if(!science_paper || science_paper == "Cancel")
 				return
 			split = splittext(science_paper, ": ")
 		if("Medical")
-			var/medical_paper = tgui_input_list(usr, "What kind of medical form do you want to print?", "Form", medical_paper_forms)
+			var/medical_paper = tgui_input_list(user, "What kind of medical form do you want to print?", "Form", medical_paper_forms)
 			if(!medical_paper || medical_paper == "Cancel")
 				return
 			split = splittext(medical_paper, ": ")
 		if("Engineering")
-			var/engineering_paper = tgui_input_list(usr, "What kind of engineering form do you want to print?", "Form", engineering_paper_forms)
+			var/engineering_paper = tgui_input_list(user, "What kind of engineering form do you want to print?", "Form", engineering_paper_forms)
 			if(!engineering_paper || engineering_paper == "Cancel")
 				return
 			split = splittext(engineering_paper, ": ")
 		if("Service")
-			var/service_paper = tgui_input_list(usr, "What kind of service form do you want to print?", "Form", service_paper_forms)
+			var/service_paper = tgui_input_list(user, "What kind of service form do you want to print?", "Form", service_paper_forms)
 			if(!service_paper || service_paper == "Cancel")
 				return
 			split = splittext(service_paper, ": ")
 		if("Exploration")
-			var/exploration_paper = tgui_input_list(usr, "What kind of exploration form do you want to print?", "Form", exploration_paper_forms)
+			var/exploration_paper = tgui_input_list(user, "What kind of exploration form do you want to print?", "Form", exploration_paper_forms)
 			if(!exploration_paper || exploration_paper == "Cancel")
 				return
 			split = splittext(exploration_paper, ": ")
 		if("Event")
-			var/event_paper = tgui_input_list(usr, "What kind of event form do you want to print?", "Form", event_paper_forms)
+			var/event_paper = tgui_input_list(user, "What kind of event form do you want to print?", "Form", event_paper_forms)
 			if(!event_paper || event_paper == "Cancel")
 				return
 			split = splittext(event_paper, ": ")
 		if("Other")
-			var/other_paper = tgui_input_list(usr, "What kind of other form do you want to print?", "Form", other_paper_forms)
+			var/other_paper = tgui_input_list(user, "What kind of other form do you want to print?", "Form", other_paper_forms)
 			if(!other_paper || other_paper == "Cancel")
 				return
 			split = splittext(other_paper, ": ")
 		if("Mercenary")
-			var/mercenary_paper = tgui_input_list(usr, "What kind of mercenary form do you want to print?", "Form", mercenary_paper_forms)
+			var/mercenary_paper = tgui_input_list(user, "What kind of mercenary form do you want to print?", "Form", mercenary_paper_forms)
 			if(!mercenary_paper || mercenary_paper == "Cancel")
 				return
 			split = splittext(mercenary_paper, ": ")
@@ -686,9 +686,9 @@
 	. += "It has [stored_walls] wall segment\s and [stored_doors] door segment\s stored."
 	. += "It is set to deploy [mode ? "doors" : "walls"]"
 
-/obj/item/inflatable_dispenser/attack_self()
+/obj/item/inflatable_dispenser/attack_self(mob/user)
 	mode = !mode
-	to_chat(usr, span_filter_notice("You set \the [src] to deploy [mode ? "doors" : "walls"]."))
+	to_chat(user, span_filter_notice("You set \the [src] to deploy [mode ? "doors" : "walls"]."))
 
 /obj/item/inflatable_dispenser/afterattack(var/atom/A, var/mob/user)
 	..(A, user)
@@ -750,7 +750,7 @@
 			qdel(A)
 		else
 			if(stored_doors >= max_doors)
-				to_chat(usr, span_filter_notice("\The [src] is full!"))
+				to_chat(user, span_filter_notice("\The [src] is full!"))
 				return
 			stored_doors++
 			qdel(A)

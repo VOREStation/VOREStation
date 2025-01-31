@@ -126,7 +126,7 @@
 
 	log_admin("[key_name(src)] has animalized [M.key].")
 	spawn(10)
-		M.Animalize()
+		M.Animalize(usr)
 
 
 /client/proc/makepAI()

@@ -249,7 +249,7 @@
 	set name = "Pick Color"
 	set category = "Abilities.Settings"
 	set desc = "You can set your color!"
-	var/newcolor = tgui_color_picker(usr, "Choose a color.", "", color)
+	var/newcolor = tgui_color_picker(src, "Choose a color.", "", color)
 	if(newcolor)
 		color = newcolor
 		chosen_color = newcolor
