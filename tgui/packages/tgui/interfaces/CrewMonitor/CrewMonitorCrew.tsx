@@ -63,7 +63,7 @@ export const CrewMonitorCrew = (props: { crew: crewmember[] }) => {
         <Table.Cell>Status</Table.Cell>
         <Table.Cell width="30%">Location</Table.Cell>
       </Table.Row>
-      <Table.Row mb="rem">
+      <Table.Row>
         <Table.Cell>
           <Stack>
             <Stack.Item grow>

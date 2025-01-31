@@ -1,6 +1,6 @@
 import { useBackend } from 'tgui/backend';
 import { Button, Divider, Section, Stack } from 'tgui-core/components';
-import { BooleanLike } from 'tgui-core/react';
+import type { BooleanLike } from 'tgui-core/react';
 
 import type { prefData } from './types';
 import { VoreUserPreferencesAesthetic } from './VoreUserPreferencesTabs/VoreUserPreferencesAesthetic ';

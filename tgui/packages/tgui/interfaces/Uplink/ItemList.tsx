@@ -1,7 +1,7 @@
 import { useBackend } from 'tgui/backend';
 import { Button, Section, Table } from 'tgui-core/components';
 import { formatMoney } from 'tgui-core/format';
-import { BooleanLike } from 'tgui-core/react';
+import type { BooleanLike } from 'tgui-core/react';
 import { decodeHtmlEntities } from 'tgui-core/string';
 
 import type { item } from './types';

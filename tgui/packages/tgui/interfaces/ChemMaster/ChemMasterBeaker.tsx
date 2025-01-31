@@ -1,6 +1,6 @@
 import { useBackend } from 'tgui/backend';
 import { Box, Button, Section } from 'tgui-core/components';
-import { BooleanLike } from 'tgui-core/react';
+import type { BooleanLike } from 'tgui-core/react';
 
 import { BeakerContents } from '../common/BeakerContents';
 import { modalOpen } from '../common/ComplexModal';

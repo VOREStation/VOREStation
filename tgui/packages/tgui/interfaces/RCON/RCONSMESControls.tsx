@@ -1,7 +1,7 @@
 import { useBackend } from 'tgui/backend';
 import { Button, Slider, Stack } from 'tgui-core/components';
 import { formatPower } from 'tgui-core/format';
-import { BooleanLike } from 'tgui-core/react';
+import type { BooleanLike } from 'tgui-core/react';
 import { capitalize } from 'tgui-core/string';
 
 import { POWER_MUL } from './constants';

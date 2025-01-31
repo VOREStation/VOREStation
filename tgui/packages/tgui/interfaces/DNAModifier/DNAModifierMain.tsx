@@ -9,7 +9,7 @@ import {
   Stack,
   Tabs,
 } from 'tgui-core/components';
-import { BooleanLike } from 'tgui-core/react';
+import type { BooleanLike } from 'tgui-core/react';
 
 import { operations, rejuvenatorsDoses } from './constants';
 import { DNAModifierBlocks } from './DNAModifierBlocks';

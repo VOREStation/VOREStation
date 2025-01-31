@@ -4,7 +4,7 @@ import { FormEvent, KeyboardEvent, useEffect, useRef, useState } from 'react';
 import { dragStartHandler } from 'tgui/drag';
 import { isEscape, KEY } from 'tgui-core/keys';
 import { clamp } from 'tgui-core/math';
-import { BooleanLike, classes } from 'tgui-core/react';
+import { type BooleanLike, classes } from 'tgui-core/react';
 
 import { Channel, ChannelIterator } from './ChannelIterator';
 import { ChatHistory } from './ChatHistory';

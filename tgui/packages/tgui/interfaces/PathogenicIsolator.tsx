@@ -10,7 +10,7 @@ import {
   Stack,
   Tabs,
 } from 'tgui-core/components';
-import { BooleanLike } from 'tgui-core/react';
+import type { BooleanLike } from 'tgui-core/react';
 
 import { ComplexModal, modalRegisterBodyOverride } from './common/ComplexModal';
 import { modalData } from './MedicalRecords/types';

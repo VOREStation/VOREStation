@@ -1,6 +1,6 @@
 import { useBackend } from 'tgui/backend';
 import { Button, Image, LabeledList, Stack } from 'tgui-core/components';
-import { BooleanLike } from 'tgui-core/react';
+import type { BooleanLike } from 'tgui-core/react';
 
 import { stats } from './constants';
 import type { contentData } from './types';

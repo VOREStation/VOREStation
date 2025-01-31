@@ -14,7 +14,7 @@ import {
 } from 'tgui-core/components';
 import { flow } from 'tgui-core/fp';
 import { clamp } from 'tgui-core/math';
-import { BooleanLike } from 'tgui-core/react';
+import type { BooleanLike } from 'tgui-core/react';
 
 const coordsToVec = (coords) => map(coords.split(', '), parseFloat);
 

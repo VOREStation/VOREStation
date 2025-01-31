@@ -11,7 +11,7 @@ import {
   Stack,
 } from 'tgui-core/components';
 import { flow } from 'tgui-core/fp';
-import { BooleanLike, classes } from 'tgui-core/react';
+import { type BooleanLike, classes } from 'tgui-core/react';
 import { createSearch } from 'tgui-core/string';
 
 type activeCamera = { name: string; status: BooleanLike } | null;

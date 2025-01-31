@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Tabs } from 'tgui-core/components';
-import { BooleanLike } from 'tgui-core/react';
+import type { BooleanLike } from 'tgui-core/react';
 
 import type { hostMob, selectedData } from './types';
 import { VoreContentsPanel } from './VoreContentsPanel';

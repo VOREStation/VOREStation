@@ -12,7 +12,7 @@ import {
   Table,
   Tabs,
 } from 'tgui-core/components';
-import { BooleanLike } from 'tgui-core/react';
+import type { BooleanLike } from 'tgui-core/react';
 import { decodeHtmlEntities } from 'tgui-core/string';
 
 import { CrewManifestContent } from './CrewManifest';
