@@ -343,9 +343,9 @@
 			possible_laser_paths += subtypesof(/obj/item/projectile/energy/floramut)
 			var/new_laser = pick(possible_laser_paths)
 			new_gun.projectile_type = new_laser
-			new_item = new_gun
+			new_item = new_gun.name
 			new_item.icon_state = "egun[rand(1,18)]"
-			new_gun.desc = "This is an antique energy weapon, you're not sure if it will fire or not."
+			new_gun.desc = "This is an antique energy weapon."
 
 			//10% chance to have an unchargeable cell
 			//15% chance to gain a random amount of starting energy, otherwise start with an empty cell
@@ -428,7 +428,7 @@
 		if(ARCHAEO_REMAINS_HUMANOID)
 			//humanoid remains
 			apply_prefix = FALSE
-			item_type = "humanoid organ]"
+			item_type = "humanoid organ"
 			icon = 'icons/effects/blood.dmi'
 			icon_state = "remains"
 			apply_image_decorations = FALSE
