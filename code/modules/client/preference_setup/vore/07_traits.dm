@@ -367,7 +367,7 @@ var/global/list/valid_bloodreagents = list("default",REAGENT_ID_IRON,REAGENT_ID_
 		return TOPIC_REFRESH_UPDATE_PREVIEW
 
 	else if(href_list["blood_color"])
-		var/color_choice = input(user, "Pick a blood color (does not apply to synths)","Blood Color",pref.blood_color) as color
+		var/color_choice = tgui_color_picker(user, "Pick a blood color (does not apply to synths)","Blood Color",pref.blood_color)
 		if(color_choice)
 			pref.blood_color = sanitize_hexcolor(color_choice, default="#A10808")
 		return TOPIC_REFRESH

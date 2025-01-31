@@ -383,7 +383,7 @@
 	if(user.incapacitated())
 		return
 	if(ishuman(user) || isrobot(user))
-		switch(input(user,"Choose what to do","Wheel Of Fortune") in list("Spin the Wheel! (Not Lottery)", "Set the interval", "Cancel"))
+		switch(tgui_input_list(user,"Choose what to do","Wheel Of Fortune", list("Spin the Wheel! (Not Lottery)", "Set the interval", "Cancel")))
 			if("Cancel")
 				return
 			if("Spin the Wheel! (Not Lottery)")
@@ -412,7 +412,7 @@
 		else
 			to_chat(user, span_warning("Proper access, allowed staff controls."))
 			if(ishuman(user) || isrobot(user))
-				switch(input(user,"Choose what to do (Management)","Wheel Of Fortune (Management)") in list("Spin the Lottery Wheel!", "Toggle Lottery Sales", "Toggle Public Spins", "Reset Lottery", "Cancel"))
+				switch(tgui_input_list(user,"Choose what to do (Management)","Wheel Of Fortune (Management)", list("Spin the Lottery Wheel!", "Toggle Lottery Sales", "Toggle Public Spins", "Reset Lottery", "Cancel")))
 					if("Cancel")
 						return
 					if("Spin the Lottery Wheel!")
@@ -560,7 +560,7 @@
 		return
 
 	if(ishuman(user) || isrobot(user))
-		switch(input(user,"Choose what to do","SPASM") in list("Show selected Prize", "Select Prize", "Become Prize (Please examine yourself first)", "Cancel"))
+		switch(tgui_input_list(user,"Choose what to do","SPASM", list("Show selected Prize", "Select Prize", "Become Prize (Please examine yourself first)", "Cancel")))
 			if("Cancel")
 				return
 			if("Show selected Prize")
@@ -667,7 +667,7 @@
 		else
 			to_chat(user, span_warning("Proper access, allowed staff controls."))
 			if(ishuman(user) || isrobot(user))
-				switch(input(user,"Choose what to do (Management)","SPASM (Management)") in list("Toggle Sentient Prize Sales", "Wipe Selected Prize Entry", "Change Prize Value", "Cancel"))
+				switch(tgui_input_list(user,"Choose what to do (Management)","SPASM (Management)", list("Toggle Sentient Prize Sales", "Wipe Selected Prize Entry", "Change Prize Value", "Cancel")))
 					if("Cancel")
 						return
 

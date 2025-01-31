@@ -159,7 +159,7 @@
 	set category = "Object"
 	set src in usr
 
-	var/newcolor = input(usr,"Pick a color!","HUD Color") as null|color
+	var/newcolor = tgui_color_picker(usr,"Pick a color!","HUD Color")
 	if(newcolor)
 		for(var/img in list("top_words","left_bar","right_bar","flyboxes"))
 			var/image/I = images[img]

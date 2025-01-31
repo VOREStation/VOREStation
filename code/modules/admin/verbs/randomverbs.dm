@@ -813,11 +813,11 @@ Traitors and the like can also be revived with the previous role mostly intact.
 
 	switch(tgui_alert(usr, "Temporary Ban?","Temporary Ban",list("Yes","No")))
 	if("Yes")
-		var/mins = input(usr,"How long (in minutes)?","Ban time",1440) as num
+		var/mins = tgui_input_number(usr,"How long (in minutes)?","Ban time",1440) as num
 		if(!mins)
 			return
 		if(mins >= 525600) mins = 525599
-		var/reason = input(usr,"Reason?","reason","Griefer") as text
+		var/reason = tgui_input_text(usr,"Reason?","reason","Griefer")
 		if(!reason)
 			return
 		if(M)
@@ -833,7 +833,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		else
 
 	if("No")
-		var/reason = input(usr,"Reason?","reason","Griefer") as text
+		var/reason = tgui_input_text(usr,"Reason?","reason","Griefer")
 		if(!reason)
 			return
 		AddBan(M.ckey, M.computer_id, reason, usr.ckey, 0, 0)
