@@ -108,6 +108,9 @@
 				if(combined_dir in dirs_checked)
 					bad_tests++
 					log_unit_test("[bad_msg] Contains multiple wires with same direction on top of each other.")
+				if(C.dir != SOUTH)
+					bad_tests++
+					log_unit_test("[bad_msg] Contains wire with dir set, wires MUST face south, use icon_states.")
 				dirs_checked.Add(combined_dir)
 
 		log_unit_test("[color] wires checked.")
