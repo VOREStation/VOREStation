@@ -82,13 +82,13 @@
 
 	var/mob/living/carbon/user = usr
 
-	if(usr.stat || !Adjacent(usr)) return
+	if(user.stat || !Adjacent(user)) return
 
 	if(user.hands_are_full()) // Safety check lest the card disappear into oblivion
 		to_chat(user,span_notice("Your hands are full!"))
 		return
 
-	if(!istype(usr,/mob/living/carbon))
+	if(!istype(user,/mob/living/carbon))
 		return
 
 	if(!cards.len)
@@ -237,10 +237,10 @@
 		return
 
 
-/obj/item/deck/MouseDrop(mob/user as mob) // Code from Paper bin, so you can still pick up the deck
-	if((user == usr && (!( usr.restrained() ) && (!( usr.stat ) && (usr.contents.Find(src) || in_range(src, usr))))))
-		if(!isanimal(usr))
-			if( !usr.get_active_hand() )		//if active hand is empty
+/obj/item/deck/MouseDrop(mob/user) // Code from Paper bin, so you can still pick up the deck
+	if((user == usr && (!( user.restrained() ) && (!( user.stat ) && (user.contents.Find(src) || in_range(src, user))))))
+		if(!isanimal(user))
+			if( !user.get_active_hand() )		//if active hand is empty
 				var/mob/living/carbon/human/H = user
 				var/obj/item/organ/external/temp = H.organs_by_name["r_hand"]
 
@@ -257,9 +257,9 @@
 
 /obj/item/deck/verb_pickup() // Snowflaked so pick up verb work as intended
 	var/mob/user = usr
-	if((istype(user) && (!( usr.restrained() ) && (!( usr.stat ) && (usr.contents.Find(src) || in_range(src, usr))))))
-		if(!isanimal(usr))
-			if( !usr.get_active_hand() )		//if active hand is empty
+	if((istype(user) && (!( user.restrained() ) && (!( user.stat ) && (user.contents.Find(src) || in_range(src, user))))))
+		if(!isanimal(user))
+			if( !user.get_active_hand() )		//if active hand is empty
 				var/mob/living/carbon/human/H = user
 				var/obj/item/organ/external/temp = H.organs_by_name["r_hand"]
 
@@ -372,15 +372,15 @@
 	if(user.stat || !Adjacent(user)) return
 
 	if(user.hands_are_full()) // Safety check lest the card disappear into oblivion
-		to_chat(usr,span_danger("Your hands are full!"))
+		to_chat(user,span_danger("Your hands are full!"))
 		return
 
 	var/pickablecards = list()
 	for(var/datum/playingcard/P in cards)
 		pickablecards[P.name] = P
-	var/pickedcard = tgui_input_list(usr, "Which card do you want to remove from the hand?", "Card Selection", pickablecards)
+	var/pickedcard = tgui_input_list(user, "Which card do you want to remove from the hand?", "Card Selection", pickablecards)
 
-	if(!pickedcard || !pickablecards[pickedcard] || !usr || !src) return
+	if(!pickedcard || !pickablecards[pickedcard] || !user || !src) return
 
 	var/datum/playingcard/card = pickablecards[pickedcard]
 

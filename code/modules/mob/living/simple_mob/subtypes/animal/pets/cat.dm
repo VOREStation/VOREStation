@@ -105,7 +105,7 @@ var/list/_cat_default_emotes = list(
 		return // Fuck off ghosts.
 
 	if(friend)
-		if(friend == usr)
+		if(friend == L)
 			to_chat(L, span_notice("\The [src] is already your friend! Meow!"))
 			return
 		else

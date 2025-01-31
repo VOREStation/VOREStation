@@ -344,7 +344,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 			var/key = pref.rlimb_data[name]
 			if(!istext(key))
 				log_debug("Bad rlimb_data for [key_name(pref.client)], [name] was set to [key]")
-				to_chat(usr, span_warning("Error loading robot limb data for `[name]`, clearing pref."))
+				to_chat(user, span_warning("Error loading robot limb data for `[name]`, clearing pref."))
 				pref.rlimb_data -= name
 			else
 				R = LAZYACCESS(all_robolimbs, key)
@@ -513,7 +513,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 			var/desc_id = href_list["change_descriptor"]
 			if(pref.body_descriptors[desc_id])
 				var/datum/mob_descriptor/descriptor = mob_species.descriptors[desc_id]
-				var/choice = tgui_input_list(usr, "Please select a descriptor.", "Descriptor", descriptor.chargen_value_descriptors)
+				var/choice = tgui_input_list(user, "Please select a descriptor.", "Descriptor", descriptor.chargen_value_descriptors)
 				if(choice && mob_species.descriptors[desc_id]) // Check in case they sneakily changed species.
 					pref.body_descriptors[desc_id] = descriptor.chargen_value_descriptors[choice]
 					return TOPIC_REFRESH
@@ -526,7 +526,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 
 	else if(href_list["show_species"])
 		// Actual whitelist checks are handled elsewhere, this is just for accessing the preview window.
-		var/choice = tgui_input_list(usr, "Which species would you like to look at?", "Species Choice", GLOB.playable_species)
+		var/choice = tgui_input_list(user, "Which species would you like to look at?", "Species Choice", GLOB.playable_species)
 		if(!choice) return
 		pref.species_preview = choice
 		SetSpecies(preference_mob())
@@ -555,7 +555,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 				pref.set_biological_gender(mob_species.genders[1])
 			pref.custom_species = null //VOREStation Edit - This is cleared on species changes
 			//grab one of the valid hair styles for the newly chosen species
-			var/list/valid_hairstyles = pref.get_valid_hairstyles()
+			var/list/valid_hairstyles = pref.get_valid_hairstyles(user)
 
 			if(valid_hairstyles.len)
 				if(!(pref.h_style in valid_hairstyles))
@@ -607,7 +607,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 			return TOPIC_REFRESH_UPDATE_PREVIEW
 
 	else if(href_list["hair_style"])
-		var/list/valid_hairstyles = pref.get_valid_hairstyles()
+		var/list/valid_hairstyles = pref.get_valid_hairstyles(user)
 
 		var/new_h_style = tgui_input_list(user, "Choose your character's hair style:", "Character Preference", valid_hairstyles, pref.h_style)
 		if(new_h_style && CanUseTopic(user))
@@ -624,7 +624,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 
 	else if(href_list["hair_style_left"])
 		var/H = href_list["hair_style_left"]
-		var/list/valid_hairstyles = pref.get_valid_hairstyles()
+		var/list/valid_hairstyles = pref.get_valid_hairstyles(user)
 		var/start = valid_hairstyles.Find(H)
 
 		if(start != 1) //If we're not the beginning of the list, become the previous element.
@@ -635,7 +635,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 
 	else if(href_list["hair_style_right"])
 		var/H = href_list["hair_style_right"]
-		var/list/valid_hairstyles = pref.get_valid_hairstyles()
+		var/list/valid_hairstyles = pref.get_valid_hairstyles(user)
 		var/start = valid_hairstyles.Find(H)
 
 		if(start != valid_hairstyles.len) //If we're not the end of the list, become the next element.
@@ -1193,7 +1193,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	//vorestation edit end
 	dat += "<td width = 200 align='center'>"
 	if("preview" in cached_icon_states(current_species.icobase))
-		usr << browse_rsc(icon(current_species.icobase,"preview"), "species_preview_[current_species.name].png")
+		user << browse_rsc(icon(current_species.icobase,"preview"), "species_preview_[current_species.name].png")
 		dat += "<img src='species_preview_[current_species.name].png' width='64px' height='64px'><br/><br/>"
 	dat += span_bold("Language:") + " [current_species.species_language]<br/>"
 	dat += "<small>"

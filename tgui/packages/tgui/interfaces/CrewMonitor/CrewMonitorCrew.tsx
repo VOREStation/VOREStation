@@ -23,8 +23,10 @@ export const CrewMonitorCrew = (props: { crew: crewmember[] }) => {
 
   const { isAI, map_levels } = data;
 
+  const our_levels: number[] = [-1, ...map_levels];
+
   const levelObject = Object.fromEntries(
-    map_levels.map((level) => [level.toString(), true]),
+    our_levels.map((level) => [level.toString(), true]),
   );
 
   const [locationSearch, setLocationSearch] = useState<object>(levelObject);
@@ -57,11 +59,11 @@ export const CrewMonitorCrew = (props: { crew: crewmember[] }) => {
   return (
     <Table>
       <Table.Row header>
-        <Table.Cell>Name</Table.Cell>
+        <Table.Cell width="35%">Name</Table.Cell>
         <Table.Cell>Status</Table.Cell>
-        <Table.Cell>Location</Table.Cell>
+        <Table.Cell width="30%">Location</Table.Cell>
       </Table.Row>
-      <Table.Row>
+      <Table.Row mb="rem">
         <Table.Cell>
           <Stack>
             <Stack.Item grow>
@@ -76,10 +78,10 @@ export const CrewMonitorCrew = (props: { crew: crewmember[] }) => {
               <Button
                 selected={sortType === 'name'}
                 icon={nameSortOrder ? 'arrow-down' : 'arrow-up'}
-                height="19px"
                 tooltip={nameSortOrder ? 'Descending order' : 'Ascending order'}
                 tooltipPosition="bottom-end"
                 ml="0.5rem"
+                mr="1rem"
                 onClick={() => {
                   setSortType('name');
                   setNameSortOrder(!nameSortOrder);
@@ -110,7 +112,6 @@ export const CrewMonitorCrew = (props: { crew: crewmember[] }) => {
           <Button
             selected={sortType === 'damage'}
             icon={damageSortOrder ? 'arrow-down' : 'arrow-up'}
-            height="19px"
             tooltip={damageSortOrder ? 'Descending order' : 'Ascending order'}
             tooltipPosition="bottom-end"
             ml="0.5rem"
@@ -121,7 +122,7 @@ export const CrewMonitorCrew = (props: { crew: crewmember[] }) => {
           />
         </Table.Cell>
         <Table.Cell>
-          {map_levels
+          {our_levels
             .sort((a, b) => Number(a) - Number(b))
             .map((level) => (
               <Button
@@ -134,13 +135,12 @@ export const CrewMonitorCrew = (props: { crew: crewmember[] }) => {
                   });
                 }}
               >
-                {level.toString()}
+                {level === -1 ? '?' : level.toString()}
               </Button>
             ))}
           <Button
             selected={sortType === 'location'}
             icon={locationSortOrder ? 'arrow-down' : 'arrow-up'}
-            height="19px"
             tooltip={locationSortOrder ? 'Descending order' : 'Ascending order'}
             tooltipPosition="bottom-end"
             ml="0.5rem"
