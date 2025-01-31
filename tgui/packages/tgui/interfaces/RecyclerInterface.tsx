@@ -8,6 +8,8 @@ type Data = {
   heldItemName: string;
   heldItemValue: string;
   itemIcon: string;
+  userName: string;
+  userBalance: number;
 
 };
 
@@ -18,6 +20,9 @@ export const RecyclerInterface = (props) => {
     heldItemName,
     heldItemValue,
     itemIcon,
+    userName,
+    userBalance,
+
   } = data;
 
   return (
@@ -29,63 +34,93 @@ export const RecyclerInterface = (props) => {
       <Window.Content>
         <Section title="Temporary Name Co Branded Recycling Interface">
           <Flex align="center" direction="column">
-            <Flex.Item>
-              <Box key="1" width="100%" align="center">
+            <Flex.Item align="center">
+              <Image
+                src={resolveAsset(
+                  "recycle.gif",
+                )}
+                style={{
+
+                  maxWidth: '152px',
+                }}
+              />
+            </Flex.Item>
+
+            <Flex.Item align="center" style={{ width: '100%', maxWidth: '152px', marginTop: '-8vh' }}>
+              <Box as="logo-container"
+                inline
+                style={{
+                  width: '100%',
+                  overflow: 'hidden',
+                  // outline: '2px solid #4972a1',
+                }}
+              >
                 <Image
-                  src={resolveAsset(
-                    "recycle.gif",
-                  )}
+                  src={resolveAsset("logo.png")}
                   style={{
                     width: '100%',
                   }}
                 />
-                fsdfsdfsdfsd
               </Box>
             </Flex.Item>
-          </Flex>
-          <Flex align="center" direction="column">
-            <Flex.Item>{heldItemName}</Flex.Item>
-            <Box
-              inline
-              style={{
-                width: '101px',
-                height: '101px',
-                overflow: 'hidden',
-                outline: '2px solid #4972a1',
-              }}
-            >
-              <Image
-                src={itemIcon.substring(1, itemIcon.length - 1)}
-                style={{
-                  filter: 'blur(444px)',
-                  width: '100%',
-                }}
-              />
-            </Box>
-            <Flex.Item>{heldItemValue}</Flex.Item>
-            <Flex.Item>
-              <Button
-                content="Open the door"
-                onClick={() => act('open')} />
-            </Flex.Item>
-            <Flex.Item>
-              <Button
-                content="Close the door"
-                onClick={() => act('close')} />
-            </Flex.Item>
-
-            <Flex.Item>            <Button
-              content="Eject the current item"
-              onClick={() => act('eject')} />
-            </Flex.Item>
-
-            <Flex.Item><Button
-              content="Recycle the current item"
-              onClick={() => act('eject')} />
-            </Flex.Item>
 
 
           </Flex>
+
+          <Section title=" " style={{
+
+          }}>
+            <h1>Welcome back, {userName}!</h1>
+            <h1>Your Balance Is: {userBalance}!</h1>
+            <Flex align="center" direction="Row">
+
+              <Flex.Item>
+                <Box as="image-container"
+                  inline
+                  style={{
+                    width: '101px',
+                    height: '101px',
+                    overflow: 'hidden',
+                    outline: '2px solidrgb(7, 77, 14)',
+                  }}
+                >
+                  <Image
+                    src={itemIcon.substring(1, itemIcon.length - 1)}
+                    style={{
+                      width: '100%',
+                    }}
+                  />
+                </Box>
+              </Flex.Item>
+              <Flex.Item>
+                <Flex align="left" direction="column">
+                  <Flex.Item> Current Object: {heldItemName || "Empty"} </Flex.Item>
+                  <Flex.Item> Estimated Recycle Value: {heldItemValue || "???"} </Flex.Item>
+                </Flex>
+              </Flex.Item>
+            </Flex>
+            <Flex align="left" direction="row" wrap="wrap-reverse">
+              <Flex.Item>
+                <Button
+                  content="Open the door"
+                  onClick={() => act('open')} />
+              </Flex.Item>
+              <Flex.Item>
+                <Button
+                  content="Close the door"
+                  onClick={() => act('close')} />
+              </Flex.Item>
+              <Flex.Item>            <Button
+                content="Eject the current item"
+                onClick={() => act('eject')} />
+              </Flex.Item>
+              <Flex.Item><Button
+                content="Recycle the current item"
+                onClick={() => act('eject')} />
+              </Flex.Item>
+            </Flex>
+          </Section>
+
 
         </Section>
       </Window.Content>
