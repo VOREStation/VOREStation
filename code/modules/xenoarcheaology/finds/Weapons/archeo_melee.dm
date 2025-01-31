@@ -85,6 +85,8 @@
 	return
 
 /obj/item/melee/artifact_blade/attack(mob/living/M, mob/living/user, var/target_zone)
+	if(M == user) //No accidentally hitting yourself and exploding.
+		return
 	var/zone = (user.hand ? "l_arm":"r_arm") //Which arm we're in!
 	var/prior_force = force
 	if(empowered)
@@ -161,10 +163,10 @@
 		to_chat(user, span_cult("The blade does not respond to your attempts, having recently performed an action!"))
 		return
 	last_special = world.time
-	if(stored_blood < 20)
+	if(stored_blood < 10)
 		to_chat(user, span_cult("The blade does not respond to your attempts, seeming to have not enough blood to perform any actions!"))
 		return
-	if(stored_blood > 100)
+	if(stored_blood >= 10)
 		var/choice = tgui_input_list(user, "What action do you wish to have the blade perform?", "Download", abilities)
 		if(choice && loc == user)
 			switch(choice)
