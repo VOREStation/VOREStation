@@ -247,7 +247,7 @@
 		H.update_icons() //Just want the matrix transform
 		return
 
-	if(new_size && (new_size != H.size_multiplier))
+	if(new_size != H.size_multiplier)
 		if(!original_size)
 			original_size = H.size_multiplier
 		H.resize(new_size/100, ignore_prefs = TRUE) // Ignores prefs because you can only resize yourself
