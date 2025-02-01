@@ -84,6 +84,9 @@ var/obj/effect/lobby_image = new /obj/effect/lobby_image
 			if(world.byond_build == 1569)
 				problems = "frequent crashes, usually when transitioning between z-levels"
 
+		if(1652 to 1654)
+			problems = "various webview graphics issues and client hanging (1652 to 1654 are all affected). 516.1651 is known to be safe from these issues if a newer version than 1654 is not available."
+
 	if(problems)
 		// To get attention
 		var/message = "Your BYOND client version ([client.byond_version].[client.byond_build]) has known issues: [problems]. See the chat window for other version options."
