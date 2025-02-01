@@ -1,4 +1,3 @@
-import { capitalizeFirst, decodeHtmlEntities } from 'common/string';
 import { useBackend } from 'tgui/backend';
 import {
   Box,
@@ -8,6 +7,7 @@ import {
   Stack,
   Tooltip,
 } from 'tgui-core/components';
+import { capitalizeFirst, decodeHtmlEntities } from 'tgui-core/string';
 
 import { getColor } from './helpers';
 import { Data } from './types';

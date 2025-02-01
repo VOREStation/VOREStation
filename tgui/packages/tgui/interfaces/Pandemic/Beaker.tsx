@@ -1,4 +1,3 @@
-import { capitalizeFirst } from 'common/string';
 import { useBackend } from 'tgui/backend';
 import {
   Button,
@@ -8,6 +7,7 @@ import {
   Section,
   Stack,
 } from 'tgui-core/components';
+import { capitalizeFirst } from 'tgui-core/string';
 
 import { Data } from './types';
 

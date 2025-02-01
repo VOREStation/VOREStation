@@ -17,6 +17,7 @@ Bonus
 
 /datum/symptom/fever
 	name = "Fever"
+	desc = "The virus causes a febrile response from the host, raising it's body temperature."
 	stealth = -1
 	resistance = 3
 	stage_speed = 3
@@ -30,7 +31,7 @@ Bonus
 	var/unsafe = FALSE
 
 	threshold_descs = list(
-		"Resistance 5" = "Increases fever intensity, fever can overhear and harm the host.",
+		"Resistance 5" = "Increases fever intensity, fever can overheat and harm the host.",
 		"Resistance 10" = "Further increases fever intensity."
 	)
 

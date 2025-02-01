@@ -10,6 +10,6 @@ export const getColor = (severity: number) => {
   } else if (severity <= 13) {
     return 'orange';
   } else {
-    return 'danger';
+    return 'bad';
   }
 };

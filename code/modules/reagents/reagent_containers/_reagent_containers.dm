@@ -145,3 +145,9 @@
 	var/trans = reagents.trans_to(target, amount_per_transfer_from_this)
 	to_chat(user, span_notice("You transfer [trans] units of the solution to [target]."))
 	return 1
+
+/obj/item/reagent_containers/extrapolator_act(mob/living/user, obj/item/extrapolator/extrapolator, dry_run = FALSE)
+	. = ..()
+	EXTRAPOLATOR_ACT_SET(., EXTRAPOLATOR_ACT_PRIORITY_ISOLATE)
+	var/datum/reagent/blood/blood = reagents.get_reagent(REAGENT_ID_BLOOD)
+	EXTRAPOLATOR_ACT_ADD_DISEASES(., blood?.get_diseases())

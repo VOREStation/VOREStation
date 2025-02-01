@@ -299,6 +299,10 @@ GLOBAL_LIST_INIT(advance_cures, list(
 		id = result
 	return id
 
+/datum/disease/advance/proc/Finalize()
+	for(var/datum/symptom/S in symptoms)
+		S.OnAdd(src)
+
 // Add a symptom, if it is over the limit (with a small chance to be able to go over)
 // we take a random symptom away and add the new one.
 /datum/disease/advance/proc/AddSymptom(datum/symptom/S)
@@ -396,6 +400,7 @@ GLOBAL_LIST_INIT(advance_cures, list(
 			return FALSE
 		D.AssignName(new_name)
 		D.Refresh()
+		D.Finalize()
 
 		for(var/datum/disease/advance/AD in active_diseases)
 			AD.Refresh()
