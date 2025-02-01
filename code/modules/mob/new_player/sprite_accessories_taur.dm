@@ -915,7 +915,7 @@
 
 /datum/sprite_accessory/tail/taur/zorgoia/fat
 	name = "Zorgoia (Fat Taur)"
-	extra_overlay = "zorgoia_fat"
+	extra_overlay = "zorgoia_fat2"
 
 /datum/sprite_accessory/tail/taur/rat
 	name = "Rat (Taur)"
