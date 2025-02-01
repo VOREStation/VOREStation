@@ -716,7 +716,7 @@
 	return
 
 
-/mob/living/proc/Examine_OOC(mob/user = src)
+/mob/living/verb/Examine_OOC(mob/user = usr)
 	set name = "Examine Meta-Info (OOC)"
 	set category = "OOC.Game"
 	set src in view()

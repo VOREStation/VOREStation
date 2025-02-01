@@ -94,11 +94,10 @@ var/obj/effect/lobby_image = new /obj/effect/lobby_image
 
 		// So we can be more wordy and give links.
 		to_chat(src, span_userdanger("Your client version has known issues.") + " Please consider using a different version: <a href='https://www.byond.com/download/build/'>https://www.byond.com/download/build/</a>.")
-		var/chat_message = ""
 		if(CONFIG_GET(number/suggested_byond_version))
-			chat_message += "We suggest using version [CONFIG_GET(number/suggested_byond_version)]."
+			var/chat_message = "We suggest using version [CONFIG_GET(number/suggested_byond_version)]."
 			if(CONFIG_GET(number/suggested_byond_build))
 				chat_message += "[CONFIG_GET(number/suggested_byond_build)]."
 			chat_message += " If you find this version doesn't work for you, let us know."
-		to_chat(src, chat_message)
+			to_chat(src, chat_message)
 		to_chat(src, "Tip: You can always use the '.zip' versions of BYOND and keep multiple versions in folders wherever you want, rather than uninstalling/reinstalling. Just make sure BYOND is *really* closed (check your system tray for the icon) before starting a different version.")
