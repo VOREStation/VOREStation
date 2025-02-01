@@ -138,3 +138,17 @@
 		update_icon()
 	else
 		draw(user)
+
+/obj/item/gun/launcher/crossbow/bow/glamour
+	name = "glamour bow"
+	desc = "A glamour bow, capable of firing arrows at high speed towards a target. Useful for hunting while keeping quiet."
+	icon = 'icons/obj/guns/projectile/bows.dmi'
+	icon_override = 'icons/obj/guns/projectile/bows.dmi'
+	icon_state = "gbow"
+	item_state = "gbow"
+
+/obj/item/arrow/standard/glamour
+	name = "glamour arrow"
+	icon = 'icons/obj/guns/projectile/bows.dmi'
+	icon_state = "garrow"
+	edge = TRUE

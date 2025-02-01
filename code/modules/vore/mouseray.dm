@@ -100,12 +100,7 @@
 		ourmob.forceMove(get_dat_turf)
 		ourmob.vore_selected = M.vore_selected
 		M.vore_selected = null
-		for(var/obj/belly/B as anything in M.vore_organs)
-			B.loc = ourmob
-			B.forceMove(ourmob)
-			B.owner = ourmob
-			M.vore_organs -= B
-			ourmob.vore_organs += B
+		ourmob.mob_belly_transfer(M)
 
 		ourmob.Life(1)
 		if(ishuman(M))
@@ -122,48 +117,7 @@
 		var/mob/living/new_mob = spawn_mob(M)
 		new_mob.faction = M.faction
 
-		if(new_mob && isliving(new_mob))
-			for(var/obj/belly/B as anything in new_mob.vore_organs)
-				new_mob.vore_organs -= B
-				qdel(B)
-			new_mob.vore_organs = list()
-			new_mob.name = M.name
-			new_mob.real_name = M.real_name
-			for(var/lang in M.languages)
-				new_mob.languages |= lang
-			M.copy_vore_prefs_to_mob(new_mob)
-			new_mob.vore_selected = M.vore_selected
-			if(ishuman(M))
-				var/mob/living/carbon/human/H = M
-				if(ishuman(new_mob))
-					var/mob/living/carbon/human/N = new_mob
-					N.gender = H.gender
-					N.identifying_gender = H.identifying_gender
-				else
-					new_mob.gender = H.gender
-			else
-				new_mob.gender = M.gender
-				if(ishuman(new_mob))
-					var/mob/living/carbon/human/N = new_mob
-					N.identifying_gender = M.gender
-
-			for(var/obj/belly/B as anything in M.vore_organs)
-				B.loc = new_mob
-				B.forceMove(new_mob)
-				B.owner = new_mob
-				M.vore_organs -= B
-				new_mob.vore_organs += B
-
-			new_mob.ckey = M.ckey
-			if(M.ai_holder && new_mob.ai_holder)
-				var/datum/ai_holder/old_AI = M.ai_holder
-				old_AI.set_stance(STANCE_SLEEP)
-				var/datum/ai_holder/new_AI = new_mob.ai_holder
-				new_AI.hostile = old_AI.hostile
-				new_AI.retaliate = old_AI.retaliate
-			M.loc = new_mob
-			M.forceMove(new_mob)
-			new_mob.tf_mob_holder = M
+		new_mob.mob_tf(M)
 
 /obj/item/projectile/beam/mouselaser/proc/spawn_mob(var/mob/living/target)
 	if(!ispath(tf_type))
@@ -171,87 +125,6 @@
 	var/new_mob = new tf_type(get_turf(target))
 	return new_mob
 
-/mob/living
-	var/mob/living/tf_mob_holder = null
-
-/mob/living/proc/revert_mob_tf()
-	if(!tf_mob_holder)
-		return
-	var/mob/living/ourmob = tf_mob_holder
-	if(ourmob.ai_holder)
-		var/datum/ai_holder/our_AI = ourmob.ai_holder
-		our_AI.set_stance(STANCE_IDLE)
-	tf_mob_holder = null
-	ourmob.ckey = ckey
-	var/turf/get_dat_turf = get_turf(src)
-	ourmob.loc = get_dat_turf
-	ourmob.forceMove(get_dat_turf)
-	ourmob.vore_selected = vore_selected
-	vore_selected = null
-	for(var/obj/belly/B as anything in vore_organs)
-		B.loc = ourmob
-		B.forceMove(ourmob)
-		B.owner = ourmob
-		vore_organs -= B
-		ourmob.vore_organs += B
-
-	ourmob.Life(1)
-
-	if(ishuman(src))
-		for(var/obj/item/W in src)
-			if(istype(W, /obj/item/implant/backup) || istype(W, /obj/item/nif))
-				continue
-			src.drop_from_inventory(W)
-
-	qdel(src)
-
-
-/mob/living/proc/handle_tf_holder()
-	if(!tf_mob_holder)
-		return
-	if(stat != tf_mob_holder.stat)
-		if(stat == DEAD)
-			tf_mob_holder.death(FALSE, null)
-		if(tf_mob_holder.stat == DEAD)
-			death()
-
-/mob/living/proc/copy_vore_prefs_to_mob(var/mob/living/new_mob)
-	//For primarily copying vore preference settings from a carbon mob to a simplemob
-	//It can be used for other things, but be advised, if you're using it to put a simplemob into a carbon mob, you're gonna be overriding a bunch of prefs
-	new_mob.ooc_notes = ooc_notes
-	new_mob.ooc_notes_likes = ooc_notes_likes
-	new_mob.ooc_notes_dislikes = ooc_notes_dislikes
-	new_mob.digestable = digestable
-	new_mob.devourable = devourable
-	new_mob.absorbable = absorbable
-	new_mob.feeding = feeding
-	new_mob.can_be_drop_prey = can_be_drop_prey
-	new_mob.can_be_drop_pred = can_be_drop_pred
-	new_mob.allow_inbelly_spawning = allow_inbelly_spawning
-	new_mob.digest_leave_remains = digest_leave_remains
-	new_mob.allowmobvore = allowmobvore
-	new_mob.permit_healbelly = permit_healbelly
-	new_mob.noisy = noisy
-	new_mob.selective_preference = selective_preference
-	new_mob.appendage_color = appendage_color
-	new_mob.appendage_alt_setting = appendage_alt_setting
-	new_mob.drop_vore = drop_vore
-	new_mob.stumble_vore = stumble_vore
-	new_mob.slip_vore = slip_vore
-	new_mob.throw_vore = throw_vore
-	new_mob.food_vore = food_vore
-	new_mob.resizable = resizable
-	new_mob.show_vore_fx = show_vore_fx
-	new_mob.step_mechanics_pref = step_mechanics_pref
-	new_mob.pickup_pref = pickup_pref
-	new_mob.vore_taste = vore_taste
-	new_mob.vore_smell = vore_smell
-	new_mob.nutrition_message_visible = nutrition_message_visible
-	new_mob.allow_spontaneous_tf = allow_spontaneous_tf
-	new_mob.eating_privacy_global = eating_privacy_global
-	new_mob.allow_mimicry = allow_mimicry
-	new_mob.text_warnings = text_warnings
-	new_mob.allow_mind_transfer = allow_mind_transfer
 
 /////SUBTYPES/////
 
