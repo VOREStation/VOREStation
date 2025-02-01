@@ -1,4 +1,5 @@
-import { Window } from '../../layouts';
+import { Window } from 'tgui/layouts';
+
 import { CryoContent } from './CryoContent';
 
 export const Cryo = (props) => {

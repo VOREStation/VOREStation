@@ -1,8 +1,7 @@
-import { BooleanLike } from 'common/react';
-
-import { useBackend } from '../backend';
-import { Box, Button, Flex, LabeledList, Section } from '../components';
-import { Window } from '../layouts';
+import { useBackend } from 'tgui/backend';
+import { Window } from 'tgui/layouts';
+import { Box, Button, LabeledList, Section, Stack } from 'tgui-core/components';
+import { BooleanLike } from 'tgui-core/react';
 
 type Data = {
   on: BooleanLike;
@@ -63,16 +62,16 @@ export const ExonetNode = (props) => {
           </LabeledList>
         </Section>
         <Section title="Logging">
-          <Flex wrap="wrap">
+          <Stack wrap="wrap">
             {logs.map((log, i) => (
-              <Flex.Item m="2px" key={i} basis="49%" grow={i % 2}>
+              <Stack.Item m="2px" key={i} basis="49%" grow={i % 2}>
                 {log}
-              </Flex.Item>
+              </Stack.Item>
             ))}
             {!logs || logs.length === 0 ? (
               <Box color="average">No logs found.</Box>
             ) : null}
-          </Flex>
+          </Stack>
         </Section>
       </Window.Content>
     </Window>

@@ -1,21 +1,20 @@
 /* eslint react/no-danger: "off" */
-import { toFixed } from 'common/math';
-import { BooleanLike } from 'common/react';
-
-import { useBackend } from '../backend';
+import { useBackend } from 'tgui/backend';
+import { NtosWindow } from 'tgui/layouts';
 import {
   AnimatedNumber,
   Box,
   Button,
-  Flex,
   Input,
   LabeledList,
   ProgressBar,
   Section,
+  Stack,
   Table,
   Tabs,
-} from '../components';
-import { NtosWindow } from '../layouts';
+} from 'tgui-core/components';
+import { toFixed } from 'tgui-core/math';
+import { BooleanLike } from 'tgui-core/react';
 
 type Data = {
   PC_device_theme: string;
@@ -384,8 +383,8 @@ const NtosEmailClientNewMessage = (props) => {
           />
         </LabeledList.Item>
         <LabeledList.Item label="Recipient" verticalAlign="top">
-          <Flex>
-            <Flex.Item grow={1}>
+          <Stack>
+            <Stack.Item grow>
               <Input
                 fluid
                 value={msg_recipient!}
@@ -393,16 +392,16 @@ const NtosEmailClientNewMessage = (props) => {
                   act('edit_recipient', { val: val })
                 }
               />
-            </Flex.Item>
-            <Flex.Item>
+            </Stack.Item>
+            <Stack.Item>
               <Button
                 icon="address-book"
                 onClick={() => act('addressbook')}
                 tooltip="Find Receipients"
                 tooltipPosition="left"
               />
-            </Flex.Item>
-          </Flex>
+            </Stack.Item>
+          </Stack>
         </LabeledList.Item>
         <LabeledList.Item
           label="Attachments"
@@ -430,13 +429,13 @@ const NtosEmailClientNewMessage = (props) => {
             null}
         </LabeledList.Item>
         <LabeledList.Item label="Message" verticalAlign="top">
-          <Flex>
-            <Flex.Item grow={1}>
+          <Stack>
+            <Stack.Item grow>
               <Section width="99%" inline>
                 <div dangerouslySetInnerHTML={{ __html: msg_body! }} />
               </Section>
-            </Flex.Item>
-            <Flex.Item>
+            </Stack.Item>
+            <Stack.Item>
               <Button
                 verticalAlign="top"
                 onClick={() => act('edit_body')}
@@ -444,8 +443,8 @@ const NtosEmailClientNewMessage = (props) => {
                 tooltip="Edit Message"
                 tooltipPosition="left"
               />
-            </Flex.Item>
-          </Flex>
+            </Stack.Item>
+          </Stack>
         </LabeledList.Item>
       </LabeledList>
     </Section>

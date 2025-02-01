@@ -76,9 +76,9 @@
 				expires = " The ban is for [duration] minutes and expires on [expiration] (server time)."
 
 			var/desc = "\nReason: You, or another user of this computer or connection ([pckey]) is banned from playing here. The ban reason is:\n[reason]\nThis ban was applied by [ackey] on [bantime], [expires]"
-
+			qdel(query)
 			return list("reason"="[bantype]", "desc"="[desc]")
-
+		qdel(query)
 		if (failedcid)
 			message_admins("[key] has logged in with a blank computer id in the ban check.")
 		if (failedip)

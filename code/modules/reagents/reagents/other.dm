@@ -285,7 +285,7 @@
 
 /datum/reagent/hydrogen/tritium
 	name = REAGENT_TRITIUM
-	id = REAGENT_ID_SLIMEJELLY
+	id = REAGENT_ID_TRITIUM
 	description = "A radioactive isotope of hydrogen. It has two extra neutrons, and shares all other chemical characteristics with hydrogen."
 
 /datum/reagent/lithium/lithium6

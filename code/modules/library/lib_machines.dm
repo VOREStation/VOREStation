@@ -32,8 +32,8 @@
 	var/author
 	var/SQLquery
 
-/obj/machinery/librarypubliccomp/attack_hand(var/mob/user as mob)
-	usr.set_machine(src)
+/obj/machinery/librarypubliccomp/attack_hand(var/mob/user)
+	user.set_machine(src)
 	var/dat = "<html><HEAD><TITLE>Library Visitor</TITLE></HEAD><BODY>\n" // <META HTTP-EQUIV='Refresh' CONTENT='10'>
 	switch(screenstate)
 		if(0)
@@ -61,6 +61,7 @@
 					var/category = query.item[3]
 					var/id = query.item[4]
 					dat += "<tr><td>[author]</td><td>[title]</td><td>[category]</td><td>[id]</td></tr>"
+				qdel(query)
 				dat += "</table><BR>"
 			dat += "<A href='byond://?src=\ref[src];back=1'>\[Go Back\]</A><BR></html>"
 	user << browse(dat, "window=publiclibrary")
@@ -168,8 +169,8 @@
 			var/obj/item/book/M = new path(null)
 			all_books[M.title] = M
 
-/obj/machinery/librarycomp/attack_hand(var/mob/user as mob)
-	usr.set_machine(src)
+/obj/machinery/librarycomp/attack_hand(var/mob/user)
+	user.set_machine(src)
 	var/dat = "<HEAD><TITLE>Book Inventory Management</TITLE></HEAD><BODY>\n" // <META HTTP-EQUIV='Refresh' CONTENT='10'>
 	switch(screenstate)
 		if(0)
@@ -297,6 +298,7 @@
 					if(show_admin_options) // This isn't the only check, since you can just href-spoof press this button. Just to tidy things up.
 						dat += "<A href='byond://?src=\ref[src];delid=[id]'>\[Del\]</A>"
 					dat += "</td></tr>"
+				qdel(query)
 				dat += "</table>"
 			dat += "<BR><A href='byond://?src=\ref[src];switchscreen=0'>(Return to main menu)</A><BR>"
 
@@ -312,7 +314,7 @@
 		. = ..()
 
 	else
-		usr.set_machine(src)
+		user.set_machine(src)
 		var/dat = "<HEAD><TITLE>Book Inventory Management</TITLE></HEAD><BODY>\n" // <META HTTP-EQUIV='Refresh' CONTENT='10'>
 
 		dat += "<h3>ADMINISTRATIVE MANAGEMENT</h3>"
@@ -457,6 +459,7 @@
 							else
 								log_game("[usr.name]/[usr.key] has uploaded the book titled [scanner.cache.name], [length(scanner.cache.dat)] signs")
 								tgui_alert_async(usr, "Upload Complete.")
+							qdel(query)
 	//VOREStation Edit End
 
 	if(href_list["targetid"])
@@ -487,6 +490,7 @@
 				B.item_state = B.icon_state
 				src.visible_message("[src]'s printer hums as it produces a completely bound book. How did it do that?")
 				break
+			qdel(query)
 
 	if(href_list["delid"])
 		if(!check_rights(R_ADMIN))
@@ -499,6 +503,7 @@
 			var/datum/db_query/query = SSdbcore.NewQuery("DELETE FROM library WHERE id=[sqlid]")
 			query.Execute()
 			log_admin("[usr.key] has deleted the book [sqlid]")	//VOREStation Addition
+			qdel(query)
 
 	if(href_list["orderbyid"])
 		var/orderid = tgui_input_number(usr, "Enter your order:")
@@ -528,13 +533,13 @@
 	density = TRUE
 	var/obj/item/book/cache		// Last scanned book
 
-/obj/machinery/libraryscanner/attackby(var/obj/O as obj, var/mob/user as mob)
+/obj/machinery/libraryscanner/attackby(var/obj/O, var/mob/user)
 	if(istype(O, /obj/item/book))
 		user.drop_item()
 		O.loc = src
 
-/obj/machinery/libraryscanner/attack_hand(var/mob/user as mob)
-	usr.set_machine(src)
+/obj/machinery/libraryscanner/attack_hand(var/mob/user)
+	user.set_machine(src)
 	var/dat = "<HEAD><TITLE>Scanner Control Interface</TITLE></HEAD><BODY>\n" // <META HTTP-EQUIV='Refresh' CONTENT='10'>
 	if(cache)
 		dat += span_darkgray("Data stored in memory.") + "<BR>"

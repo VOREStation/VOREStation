@@ -141,7 +141,7 @@
 
 	else if(href_list["voice_freq"])
 		var/list/preset_voice_freqs = list("high" = MAX_VOICE_FREQ, "middle-high" = 56250, "middle" = 42500, "middle-low"= 28750, "low" = MIN_VOICE_FREQ, "custom" = 1, "random" = 0)
-		var/choice = tgui_input_list(usr, "What would you like to set your voice frequency to? ([MIN_VOICE_FREQ] - [MAX_VOICE_FREQ])", "Voice Frequency", preset_voice_freqs)
+		var/choice = tgui_input_list(user, "What would you like to set your voice frequency to? ([MIN_VOICE_FREQ] - [MAX_VOICE_FREQ])", "Voice Frequency", preset_voice_freqs)
 		if(!choice)
 			return
 		choice = preset_voice_freqs[choice]
@@ -173,14 +173,14 @@
 			"goon speak pugg",
 			"goon speak roach",
 			"goon speak skelly")
-		var/choice = tgui_input_list(usr, "Which set of sounds would you like to use for your character's speech sounds?", "Voice Sounds", possible_voice_types)
+		var/choice = tgui_input_list(user, "Which set of sounds would you like to use for your character's speech sounds?", "Voice Sounds", possible_voice_types)
 		if(!choice)
 			pref.voice_sound = "beep-boop"
 		else
 			pref.voice_sound = choice
 		return TOPIC_REFRESH
 	else if(href_list["customize_speech_bubble"])
-		var/choice = tgui_input_list(usr, "What speech bubble style do you want to use? (default for automatic selection)", "Custom Speech Bubble", selectable_speech_bubbles)
+		var/choice = tgui_input_list(user, "What speech bubble style do you want to use? (default for automatic selection)", "Custom Speech Bubble", selectable_speech_bubbles)
 		if(!choice)
 			pref.custom_speech_bubble = "default"
 		else

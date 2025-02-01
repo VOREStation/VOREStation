@@ -138,7 +138,7 @@ obj/item/newspaper/attackby(obj/item/W as obj, mob/user)
 			s = sanitize(s)
 			if(!s)
 				return
-			if(!in_range(src, usr) && src.loc != usr)
+			if(!in_range(src, user) && loc != user)
 				return
 			scribble_page = curr_page
 			scribble = s

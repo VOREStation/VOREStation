@@ -1,4 +1,4 @@
-import { Box, Dimmer, Icon } from '../../components';
+import { Box, Dimmer, Icon } from 'tgui-core/components';
 
 export const DNAModifierIrradiating = (props: { duration: number }) => {
   return (

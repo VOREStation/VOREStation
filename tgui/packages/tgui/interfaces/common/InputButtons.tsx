@@ -1,5 +1,5 @@
-import { useBackend } from '../../backend';
-import { Box, Button, Flex } from '../../components';
+import { useBackend } from 'tgui/backend';
+import { Box, Button, Stack } from 'tgui-core/components';
 
 type InputButtonsData = {
   large_buttons: boolean;
@@ -50,29 +50,29 @@ export const InputButtons = (props: InputButtonsProps) => {
   );
 
   return (
-    <Flex
+    <Stack
       align="center"
       direction={!swapped_buttons ? 'row' : 'row-reverse'}
       fill
       justify="space-around"
     >
       {large_buttons ? (
-        <Flex.Item grow>{cancelButton}</Flex.Item>
+        <Stack.Item grow>{cancelButton}</Stack.Item>
       ) : (
-        <Flex.Item>{cancelButton}</Flex.Item>
+        <Stack.Item>{cancelButton}</Stack.Item>
       )}
       {!large_buttons && message && (
-        <Flex.Item>
+        <Stack.Item>
           <Box color="label" textAlign="center">
             {message}
           </Box>
-        </Flex.Item>
+        </Stack.Item>
       )}
       {large_buttons ? (
-        <Flex.Item grow>{submitButton}</Flex.Item>
+        <Stack.Item grow>{submitButton}</Stack.Item>
       ) : (
-        <Flex.Item>{submitButton}</Flex.Item>
+        <Stack.Item>{submitButton}</Stack.Item>
       )}
-    </Flex>
+    </Stack>
   );
 };

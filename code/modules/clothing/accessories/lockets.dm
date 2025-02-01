@@ -11,7 +11,7 @@
 	var/open
 	var/obj/item/held //Item inside locket.
 
-/obj/item/clothing/accessory/locket/attack_self(mob/user as mob)
+/obj/item/clothing/accessory/locket/attack_self(mob/user)
 	if(!base_icon)
 		base_icon = icon_state
 
@@ -30,16 +30,16 @@
 	else
 		icon_state = "[base_icon]"
 
-/obj/item/clothing/accessory/locket/attackby(var/obj/item/O as obj, mob/user as mob)
+/obj/item/clothing/accessory/locket/attackby(var/obj/item/O, mob/user)
 	if(!open)
 		to_chat(user, "You have to open it first.")
 		return
 
 	if(istype(O,/obj/item/paper) || istype(O, /obj/item/photo))
 		if(held)
-			to_chat(usr, "\The [src] already has something inside it.")
+			to_chat(user, "\The [src] already has something inside it.")
 		else
-			to_chat(usr, "You slip [O] into [src].")
+			to_chat(user, "You slip [O] into [src].")
 			user.drop_item()
 			O.loc = src
 			held = O

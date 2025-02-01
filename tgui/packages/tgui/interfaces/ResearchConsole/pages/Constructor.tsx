@@ -1,4 +1,3 @@
-import { capitalizeAll } from 'common/string';
 import { Fragment, useState } from 'react';
 import { useBackend, useSharedState } from 'tgui/backend';
 import {
@@ -12,7 +11,8 @@ import {
   Section,
   Stack,
   Tabs,
-} from 'tgui/components';
+} from 'tgui-core/components';
+import { capitalizeAll } from 'tgui-core/string';
 
 import { PaginationChevrons } from '..';
 import {
@@ -194,6 +194,7 @@ const BuildTab = (props: {
     >
       <Input
         fluid
+        updateOnPropsChange
         placeholder="Search for..."
         value={data.search}
         onInput={(e, v: string) => act('search', { search: v })}

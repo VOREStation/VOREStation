@@ -60,12 +60,16 @@
 	colourName = "rainbow"
 	uses = 0
 
-/obj/item/pen/crayon/rainbow/attack_self(mob/living/user as mob)
-	colour = input(user, "Please select the main colour.", "Crayon colour") as color
-	shadeColour = input(user, "Please select the shade colour.", "Crayon colour") as color
+/obj/item/pen/crayon/rainbow/attack_self(mob/living/user)
+	var/new_colour = tgui_color_picker(user, "Please select the main colour.", "Crayon colour", colour)
+	if(new_colour)
+		colour = new_colour
+	new_colour = tgui_color_picker(user, "Please select the shade colour.", "Crayon shade colour", shadeColour)
+	if(new_colour)
+		shadeColour = new_colour
 	return
 
-/obj/item/pen/crayon/afterattack(atom/target, mob/user as mob, proximity)
+/obj/item/pen/crayon/afterattack(atom/target, mob/user, proximity)
 	if(!proximity) return
 	if(istype(target,/turf/simulated/floor))
 		var/drawtype = tgui_input_list(user, "Choose what you'd like to draw.", "Crayon scribbles", list("graffiti","rune","letter","arrow"))
@@ -174,7 +178,7 @@
 	colourName = "mime"
 	uses = 0
 
-/obj/item/pen/crayon/marker/mime/attack_self(mob/living/user as mob) //inversion
+/obj/item/pen/crayon/marker/mime/attack_self(mob/living/user) //inversion
 	if(colour != "#FFFFFF" && shadeColour != "#000000")
 		colour = "#FFFFFF"
 		shadeColour = "#000000"
@@ -192,12 +196,16 @@
 	colourName = "rainbow"
 	uses = 0
 
-/obj/item/pen/crayon/marker/rainbow/attack_self(mob/living/user as mob)
-	colour = input(user, "Please select the main colour.", "Marker colour") as color
-	shadeColour = input(user, "Please select the shade colour.", "Marker colour") as color
+/obj/item/pen/crayon/marker/rainbow/attack_self(mob/living/user)
+	var/new_colour = tgui_color_picker(user, "Please select the main colour.", "Marker colour", colour)
+	if(new_colour)
+		colour = new_colour
+	new_colour = tgui_color_picker(user, "Please select the shade colour.", "Marker colour", shadeColour)
+	if(new_colour)
+		shadeColour = new_colour
 	return
 
-/obj/item/pen/crayon/marker/attack(mob/living/M as mob, mob/living/user as mob)
+/obj/item/pen/crayon/marker/attack(mob/living/M, mob/living/user)
 	if(M == user)
 		to_chat(user, "You take a bite of the marker and swallow it.")
 		user.nutrition += 1

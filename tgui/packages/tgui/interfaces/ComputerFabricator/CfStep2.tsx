@@ -1,5 +1,6 @@
-import { useBackend } from '../../backend';
-import { Box, Button, Section, Table, Tooltip } from '../../components';
+import { useBackend } from 'tgui/backend';
+import { Box, Button, Section, Table, Tooltip } from 'tgui-core/components';
+
 import { Data } from './types';
 
 export const CfStep2 = (props) => {

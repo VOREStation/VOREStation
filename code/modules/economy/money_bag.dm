@@ -45,12 +45,12 @@
 		dat += text("Uranium coins: [amt_uranium] <A href='byond://?src=\ref[src];remove=uranium'>Remove one</A><br>")
 	user << browse("<html>[dat]</html>", "window=moneybag")
 
-/obj/item/moneybag/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/moneybag/attackby(obj/item/W, mob/user)
 	..()
 	if (istype(W, /obj/item/coin))
 		var/obj/item/coin/C = W
 		to_chat(user, span_blue("You add the [C.name] into the bag."))
-		usr.drop_item()
+		user.drop_item()
 		contents += C
 	if (istype(W, /obj/item/moneybag))
 		var/obj/item/moneybag/C = W

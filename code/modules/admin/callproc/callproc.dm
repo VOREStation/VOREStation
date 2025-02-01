@@ -171,7 +171,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 	//var/list/named_args = list()			//Named arguments are removed, due to them making proccalling take too long.
 	while(argnum--)
 		/*						//Named arguments are removed, due to them making proccalling take too long.
-		var/named_arg = input(usr,"Leave blank for positional argument. Positional arguments will be considered as if they were added first.", "Named argument") as text|null
+		var/named_arg = tgui_input_text(usr,"Leave blank for positional argument. Positional arguments will be considered as if they were added first.", "Named argument")
 		if(isnull(named_arg))
 			return null				//Cancel
 		*/

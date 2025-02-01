@@ -1,8 +1,7 @@
 import { sortBy } from 'common/collections';
-
-import { useBackend } from '../backend';
-import { Button, Section, Table } from '../components';
-import { Window } from '../layouts';
+import { useBackend } from 'tgui/backend';
+import { Window } from 'tgui/layouts';
+import { Button, Section, Table } from 'tgui-core/components';
 
 type Data = {
   shuttles: Shuttle[];

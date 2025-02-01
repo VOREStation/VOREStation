@@ -115,7 +115,7 @@
 
 /obj/structure/smoletrack/attack_hand(mob/user)
 	if(user.a_intent == I_DISARM)
-		if(ismouse(usr) || (isobserver(usr) && !CONFIG_GET(flag/ghost_interaction)))
+		if(ismouse(user) || (isobserver(user) && !CONFIG_GET(flag/ghost_interaction)))
 			return
 		to_chat(user, span_notice("[src] was dismantaled into bricks."))
 		playsound(src, 'sound/items/smolesmallbuild.ogg', 50, 1, -1, volume_channel = VOLUME_CHANNEL_MASTER)
@@ -212,7 +212,7 @@
 //makes it so buildings can be dismaintaled or GodZilla style attacked
 /obj/structure/smolebuilding/attack_hand(mob/user)
 	if(user.a_intent == I_DISARM)
-		if(ismouse(usr) || (isobserver(usr) && !CONFIG_GET(flag/ghost_interaction)))
+		if(ismouse(user) || (isobserver(user) && !CONFIG_GET(flag/ghost_interaction)))
 			return
 		to_chat(user, span_notice("[src] was dismantaled into bricks."))
 		playsound(src, 'sound/items/smolesmallbuild.ogg', 50, 1, -1, volume_channel = VOLUME_CHANNEL_MASTER)
@@ -221,19 +221,19 @@
 			new /obj/item/stack/material/smolebricks(loc)
 		qdel(src)
 
-	else if (usr.a_intent == I_HURT)
+	else if (user.a_intent == I_HURT)
 
-		if(ismouse(usr) || (isobserver(usr) && !CONFIG_GET(flag/ghost_interaction)))
+		if(ismouse(user) || (isobserver(user) && !CONFIG_GET(flag/ghost_interaction)))
 			return
 
 		take_damage()
 		playsound(src, 'sound/items/smolebuildinghit2.ogg', 50, 1)
 		user.do_attack_animation(src)
-		usr.visible_message(span_danger("\The [usr] bangs against \the [src]!"),
+		user.visible_message(span_danger("\The [user] bangs against \the [src]!"),
 							span_danger("You bang against \the [src]!"),
 							"You hear a banging sound.")
 	else
-		usr.visible_message("[usr.name] knocks on the [src.name].",
+		user.visible_message("[user.name] knocks on the [src.name].",
 							"You knock on the [src.name].")
 	return
 
@@ -275,7 +275,7 @@
 //get material from ruins
 /obj/structure/smoleruins/attack_hand(mob/user)
 	if(user.a_intent == I_DISARM)
-		if(ismouse(usr) || (isobserver(usr) && !CONFIG_GET(flag/ghost_interaction)))
+		if(ismouse(user) || (isobserver(user) && !CONFIG_GET(flag/ghost_interaction)))
 			return
 		to_chat(user, span_notice("[src] was dismantaled into bricks."))
 		playsound(src, 'sound/items/smolelargeunbuild.ogg', 50, 1, volume_channel = VOLUME_CHANNEL_MASTER)

@@ -1,5 +1,3 @@
-import { toFixed } from 'common/math';
-
 import {
   Box,
   Icon,
@@ -7,7 +5,9 @@ import {
   Section,
   Table,
   Tooltip,
-} from '../../components';
+} from 'tgui-core/components';
+import { toFixed } from 'tgui-core/math';
+
 import { damageRange } from './constants';
 import { germStatus, reduceOrganStatus } from './functions';
 import { externalOrgan } from './types';
@@ -36,7 +36,7 @@ export const BodyScannerMainOrgansExternal = (props: {
         {organs.map((o, i) => (
           <Table.Row key={i} style={{ textTransform: 'capitalize' }}>
             <Table.Cell width="33%">{o.name}</Table.Cell>
-            <Table.Cell textAlign="center" q>
+            <Table.Cell textAlign="center">
               <ProgressBar
                 minValue={0}
                 maxValue={o.maxHealth / 100}

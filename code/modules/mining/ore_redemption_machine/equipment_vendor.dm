@@ -221,7 +221,7 @@
 	return target.mining_points
 
 /obj/machinery/mineral/equipment_vendor/proc/remove_points(obj/item/card/id/target, amt)
-	target.mining_points -= amt
+	target.adjust_mining_points(-amt)
 
 /obj/machinery/mineral/equipment_vendor/tgui_static_data(mob/user)
 	var/list/static_data[0]

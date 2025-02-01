@@ -59,7 +59,7 @@ var/global/datum/book_manager/book_mgr = new()
 			dat += {"<A href='byond://?our_comp=\ref[our_comp];[HrefToken()];orderbyid=1'>(Order book by SS<sup>13</sup>BN)</A><BR><BR>
 			<table>
 			<tr><td><A href='byond://?our_comp=\ref[our_comp];[HrefToken()];sort=author>AUTHOR</A></td><td><A href='byond://?our_comp=\ref[our_comp];[HrefToken()];sort=title>TITLE</A></td><td><A href='byond://?our_comp=\ref[our_comp];[HrefToken()];sort=category>CATEGORY</A></td><td></td></tr>"}
-			var/datum/DBQuery/query = SSdbcore.NewQuery("SELECT id, author, title, category FROM library ORDER BY [sortby]")
+			var/datum/db_query/query = SSdbcore.NewQuery("SELECT id, author, title, category FROM library ORDER BY [sortby]")
 			query.Execute()
 
 			var/show_admin_options = check_rights(R_ADMIN, show_msg = FALSE)

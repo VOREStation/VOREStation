@@ -31,7 +31,7 @@
 
 /obj/item/gun/energy/sizegun/attack_self(mob/user)
 	. = ..()
-	select_size()
+	select_size(user)
 
 /obj/item/gun/energy/sizegun/proc/spin_dial()
 	set name = "Spin Size Dial"
@@ -47,12 +47,12 @@
 	if(istype(G))
 		G.set_size = size_set_to
 
-/obj/item/gun/energy/sizegun/proc/select_size()
+/obj/item/gun/energy/sizegun/proc/select_size(mob/user = usr)
 	set name = "Select Size"
 	set category = "Object"
 	set src in view(1)
 
-	var/size_select = tgui_input_number(usr, "Put the desired size (25-200%), (1-600%) in dormitory areas.", "Set Size", size_set_to * 100, 600, 1)
+	var/size_select = tgui_input_number(user, "Put the desired size (25-200%), (1-600%) in dormitory areas.", "Set Size", size_set_to * 100, 600, 1)
 	if(!size_select)
 		return //cancelled
 	//We do valid resize testing in actual firings because people move after setting these things.
@@ -123,15 +123,14 @@
 	charge_cost = 0
 	projectile_type = /obj/item/projectile/beam/sizelaser/admin/alien
 
-/obj/item/gun/energy/sizegun/admin/select_size()
+/obj/item/gun/energy/sizegun/admin/select_size(mob/user = usr)
 	set name = "Select Size"
 	set category = "Object"
 	set src in view(1)
 
-	var/size_select = tgui_input_number(usr, "Put the desired size (1-600%)", "Set Size", size_set_to * 100, 600, 1)
+	var/size_select = tgui_input_number(user, "Put the desired size (1-600%)", "Set Size", size_set_to * 100, 600, 1)
 	if(!size_select)
 		return //cancelled
-	size_set_to = clamp((size_select/100), 0, 1000) //eheh
 	to_chat(usr, span_notice("You set the size to [size_select]%"))
 
 /obj/item/gun/energy/sizegun/afterattack(atom/A, mob/living/user, adjacent, params)

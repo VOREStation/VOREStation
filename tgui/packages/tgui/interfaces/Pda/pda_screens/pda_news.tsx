@@ -1,7 +1,7 @@
-import { BooleanLike } from 'common/react';
-import { decodeHtmlEntities } from 'common/string';
 import { useBackend } from 'tgui/backend';
-import { Box, Button, Image, Section } from 'tgui/components';
+import { Box, Button, Image, Section } from 'tgui-core/components';
+import { BooleanLike } from 'tgui-core/react';
+import { decodeHtmlEntities } from 'tgui-core/string';
 
 type Data = {
   feeds: feed[];

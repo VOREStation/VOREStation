@@ -1,5 +1,5 @@
 import { useBackend } from 'tgui/backend';
-import { Box, Button, Flex, Icon } from 'tgui-core/components';
+import { Box, Button, Icon, Stack } from 'tgui-core/components';
 
 import { record } from './types';
 
@@ -11,13 +11,13 @@ export const ResleevingConsoleRecords = (props: {
   const { records, actToDo } = props;
   if (!records.length) {
     return (
-      <Flex height="100%" mt="0.5rem">
-        <Flex.Item grow="1" align="center" textAlign="center" color="label">
+      <Stack height="100%" mt="0.5rem">
+        <Stack.Item grow align="center" textAlign="center" color="label">
           <Icon name="user-slash" mb="0.5rem" size={5} />
           <br />
           No records found.
-        </Flex.Item>
-      </Flex>
+        </Stack.Item>
+      </Stack>
     );
   }
   return (

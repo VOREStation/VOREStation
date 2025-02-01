@@ -1,5 +1,6 @@
-import { useBackend } from '../../backend';
-import { Box, Button, Icon, LabeledList, Section } from '../../components';
+import { useBackend } from 'tgui/backend';
+import { Box, Button, Icon, LabeledList, Section } from 'tgui-core/components';
+
 import { buffData, Data } from './types';
 
 export const DNAModifierMainBuffers = (props) => {

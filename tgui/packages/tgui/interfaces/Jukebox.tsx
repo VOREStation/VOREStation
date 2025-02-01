@@ -1,24 +1,23 @@
-import { round, toFixed } from 'common/math';
-import { BooleanLike } from 'common/react';
-import { capitalize } from 'common/string';
 import { useState } from 'react';
-
-import { useBackend } from '../backend';
+import { useBackend } from 'tgui/backend';
+import { Window } from 'tgui/layouts';
 import {
   Box,
   Button,
   Collapsible,
   Divider,
-  Flex,
   Input,
   LabeledList,
   NumberInput,
   ProgressBar,
   Section,
   Slider,
-} from '../components';
-import { formatTime } from '../format';
-import { Window } from '../layouts';
+  Stack,
+} from 'tgui-core/components';
+import { formatTime } from 'tgui-core/format';
+import { round, toFixed } from 'tgui-core/math';
+import { BooleanLike } from 'tgui-core/react';
+import { capitalize } from 'tgui-core/string';
 
 type Data = {
   playing: BooleanLike;
@@ -213,8 +212,8 @@ export const Jukebox = (props) => {
                         >
                           <div style={{ marginLeft: '1em' }}>
                             {genre_songs[genre].map((track) => (
-                              <Flex key={track.ref}>
-                                <Flex.Item grow={1}>
+                              <Stack key={track.ref}>
+                                <Stack.Item grow>
                                   <Button
                                     fluid
                                     icon="play"
@@ -228,8 +227,8 @@ export const Jukebox = (props) => {
                                   >
                                     {track.title}
                                   </Button>
-                                </Flex.Item>
-                                <Flex.Item>
+                                </Stack.Item>
+                                <Stack.Item>
                                   <Button.Confirm
                                     icon="trash"
                                     onClick={() =>
@@ -238,8 +237,8 @@ export const Jukebox = (props) => {
                                       })
                                     }
                                   />
-                                </Flex.Item>
-                              </Flex>
+                                </Stack.Item>
+                              </Stack>
                             ))}
                           </div>
                         </Collapsible>
@@ -281,8 +280,8 @@ export const Jukebox = (props) => {
                     />
                   </LabeledList.Item>
                   <LabeledList.Item label="Genre">
-                    <Flex>
-                      <Flex.Item grow={1}>
+                    <Stack>
+                      <Stack.Item grow>
                         {unlockGenre ? (
                           <Input
                             width="100%"
@@ -292,15 +291,15 @@ export const Jukebox = (props) => {
                         ) : (
                           <Box>{newGenre}</Box>
                         )}
-                      </Flex.Item>
-                      <Flex.Item>
+                      </Stack.Item>
+                      <Stack.Item>
                         <Button.Checkbox
                           icon={unlockGenre ? 'lock-open' : 'lock'}
                           color={unlockGenre ? 'good' : 'bad'}
                           onClick={() => handleUnlockGenre()}
                         />
-                      </Flex.Item>
-                    </Flex>
+                      </Stack.Item>
+                    </Stack>
                   </LabeledList.Item>
                   <LabeledList.Item label="Secret">
                     <Button.Checkbox

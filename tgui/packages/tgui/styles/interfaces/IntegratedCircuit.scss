@@ -4,7 +4,7 @@
 $fg-map: colors.$fg-map !default;
 
 .CircuitInfo__Examined {
-  background-color: rgba(0, 0, 0, 1);
+  background-color: hsla(0, 0%, 0%, 1);
   padding: 8px;
   border-radius: 5px;
 
@@ -24,7 +24,7 @@ $fg-map: colors.$fg-map !default;
 
 .ObjectComponent__Content {
   white-space: nowrap;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: hsla(0, 0%, 0%, 0.5);
 
   -ms-user-select: none; // TODO: Remove with 516
   user-select: none;
@@ -32,7 +32,7 @@ $fg-map: colors.$fg-map !default;
 
 .ObjectComponent__Greyed_Content {
   white-space: nowrap;
-  background-color: rgba(19, 19, 19, 0.5);
+  background-color: hsla(0, 0%, 7%, 0.5);
 
   -ms-user-select: none;
   user-select: none;
@@ -62,7 +62,7 @@ $fg-map: colors.$fg-map !default;
   }
 }
 
-$border-color: #88bfff !default;
+$border-color: hsl(212, 100%, 77%) !default;
 $border-radius: base.$border-radius !default;
 
 .IntegratedCircuit__BlueBorder {

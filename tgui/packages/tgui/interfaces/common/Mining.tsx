@@ -1,5 +1,5 @@
-import { useBackend } from '../../backend';
-import { Box, Button, NoticeBox } from '../../components';
+import { useBackend } from 'tgui/backend';
+import { Box, Button, NoticeBox } from 'tgui-core/components';
 
 type Data = { has_id: boolean; id: { name: string; points: number } };
 

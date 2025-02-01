@@ -19,7 +19,7 @@
 	if (!hide_on_roll)
 		on_rolled["down"] = icon_state
 
-/obj/item/clothing/accessory/storage/attack_hand(mob/user as mob)
+/obj/item/clothing/accessory/storage/attack_hand(mob/user)
 	if (has_suit)	//if we are part of a suit
 		hold.open(user)
 		return
@@ -27,24 +27,24 @@
 	if (hold.handle_attack_hand(user))	//otherwise interact as a regular storage item
 		..(user)
 
-/obj/item/clothing/accessory/storage/MouseDrop(obj/over_object as obj)
+/obj/item/clothing/accessory/storage/MouseDrop(obj/over_object)
 	if (has_suit)
 		return
 
 	if (hold.handle_mousedrop(usr, over_object))
 		..(over_object)
 
-/obj/item/clothing/accessory/storage/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/clothing/accessory/storage/attackby(obj/item/W, mob/user)
 	return hold.attackby(W, user)
 
 /obj/item/clothing/accessory/storage/emp_act(severity)
 	hold.emp_act(severity)
 	..()
 
-/obj/item/clothing/accessory/storage/attack_self(mob/user as mob)
+/obj/item/clothing/accessory/storage/attack_self(mob/user)
 	to_chat(user, span_notice("You empty [src]."))
 	var/turf/T = get_turf(src)
-	hold.hide_from(usr)
+	hold.hide_from(user)
 	for(var/obj/item/I in hold.contents)
 		hold.remove_from_storage(I, T)
 	add_fingerprint(user)

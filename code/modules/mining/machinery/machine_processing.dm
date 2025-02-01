@@ -125,7 +125,7 @@
 		if("claim")
 			if(istype(inserted_id))
 				if(access_mining_station in inserted_id.GetAccess())
-					inserted_id.mining_points += machine.points
+					inserted_id.adjust_mining_points(machine.points)
 					machine.points = 0
 				else
 					to_chat(ui.user, span_warning("Required access not found."))

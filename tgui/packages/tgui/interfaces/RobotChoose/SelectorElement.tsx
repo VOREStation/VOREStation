@@ -1,5 +1,5 @@
 import { useBackend } from 'tgui/backend';
-import { Button, Flex, Icon, Stack } from 'tgui-core/components';
+import { Button, Icon, Stack } from 'tgui-core/components';
 
 export const SelectorElement = (props: {
   option: string;
@@ -17,17 +17,17 @@ export const SelectorElement = (props: {
         selected={option === selected}
         onClick={() => act(action, { value: option })}
       >
-        <Flex>
-          <Flex.Item>{option}</Flex.Item>
+        <Stack>
+          <Stack.Item>{option}</Stack.Item>
           {!!belly && (
             <>
-              <Flex.Item grow />
-              <Flex.Item>
+              <Stack.Item grow />
+              <Stack.Item>
                 <Icon name="utensils" />
-              </Flex.Item>
+              </Stack.Item>
             </>
           )}
-        </Flex>
+        </Stack>
       </Button>
     </Stack.Item>
   );

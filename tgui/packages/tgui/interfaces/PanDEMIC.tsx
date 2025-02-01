@@ -1,15 +1,14 @@
-import { useBackend } from '../backend';
+import { useBackend } from 'tgui/backend';
+import { Window } from 'tgui/layouts';
 import {
   Button,
-  Flex,
   LabeledList,
   NoticeBox,
   Section,
   Stack,
   Table,
   Tabs,
-} from '../components';
-import { Window } from '../layouts';
+} from 'tgui-core/components';
 
 type Data = {
   beakerLoaded: boolean;
@@ -120,6 +119,7 @@ const CultureInformationSection = () => {
     <Stack.Item grow>
       <Section
         title="Culture Information"
+        scrollable
         fill
         buttons={
           <>
@@ -137,12 +137,12 @@ const CultureInformationSection = () => {
           </>
         }
       >
-        <Flex fill direction="column">
+        <Stack fill vertical>
           <StrainInformationSection
             strains={strains}
             selectedStrainIndex={selectedStrainIndex}
           />
-        </Flex>
+        </Stack>
       </Section>
     </Stack.Item>
   );
@@ -159,7 +159,7 @@ const StrainInformationSection = ({
   const selectedStrain = strains[selectedStrainIndex - 1];
 
   return (
-    <Flex.Item>
+    <Stack.Item>
       <Tabs>
         {strains.map((strain, index) => (
           <Tabs.Tab
@@ -190,7 +190,7 @@ const StrainInformationSection = ({
           <TotalStats strain={selectedStrain} />
         </>
       )}
-    </Flex.Item>
+    </Stack.Item>
   );
 };
 
@@ -198,28 +198,30 @@ const StrainSymptomsSection = ({ strain }: { strain: Strain }) => {
   const symptoms = strain.symptoms;
 
   return (
-    <Flex.Item grow>
+    <Stack.Item grow>
       <Section title="Infection Symptoms" fill>
         <Table>
           <Table.Row header>
             <Table.Cell>Name</Table.Cell>
-            <Table.Cell>Stealth</Table.Cell>
-            <Table.Cell>Resistance</Table.Cell>
-            <Table.Cell>Stage Speed</Table.Cell>
-            <Table.Cell>Transmissibility</Table.Cell>
+            <Table.Cell textAlign="center">Stealth</Table.Cell>
+            <Table.Cell textAlign="center">Resistance</Table.Cell>
+            <Table.Cell textAlign="center">Stage Speed</Table.Cell>
+            <Table.Cell textAlign="center">Transmissibility</Table.Cell>
           </Table.Row>
           {symptoms.map((symptom, index) => (
             <Table.Row key={index}>
               <Table.Cell>{symptom.name}</Table.Cell>
-              <Table.Cell>{symptom.stealth}</Table.Cell>
-              <Table.Cell>{symptom.resistance}</Table.Cell>
-              <Table.Cell>{symptom.stageSpeed}</Table.Cell>
-              <Table.Cell>{symptom.transmissibility}</Table.Cell>
+              <Table.Cell textAlign="right">{symptom.stealth}</Table.Cell>
+              <Table.Cell textAlign="right">{symptom.resistance}</Table.Cell>
+              <Table.Cell textAlign="right">{symptom.stageSpeed}</Table.Cell>
+              <Table.Cell textAlign="right">
+                {symptom.transmissibility}
+              </Table.Cell>
             </Table.Row>
           ))}
         </Table>
       </Section>
-    </Flex.Item>
+    </Stack.Item>
   );
 };
 
@@ -240,16 +242,18 @@ const TotalStats = ({ strain }: { strain: Strain }) => {
     <Section title="Total Stats">
       <Table>
         <Table.Row header>
-          <Table.Cell>Stealth</Table.Cell>
-          <Table.Cell>Resistance</Table.Cell>
-          <Table.Cell>Stage Speed</Table.Cell>
-          <Table.Cell>Transmissibility</Table.Cell>
+          <Table.Cell textAlign="center">Stealth</Table.Cell>
+          <Table.Cell textAlign="center">Resistance</Table.Cell>
+          <Table.Cell textAlign="center">Stage Speed</Table.Cell>
+          <Table.Cell textAlign="center">Transmissibility</Table.Cell>
         </Table.Row>
         <Table.Row>
-          <Table.Cell>{TotalStats.stealth}</Table.Cell>
-          <Table.Cell>{TotalStats.resistance}</Table.Cell>
-          <Table.Cell>{TotalStats.stageSpeed}</Table.Cell>
-          <Table.Cell>{TotalStats.transmissibility}</Table.Cell>
+          <Table.Cell textAlign="right">{TotalStats.stealth}</Table.Cell>
+          <Table.Cell textAlign="right">{TotalStats.resistance}</Table.Cell>
+          <Table.Cell textAlign="right">{TotalStats.stageSpeed}</Table.Cell>
+          <Table.Cell textAlign="right">
+            {TotalStats.transmissibility}
+          </Table.Cell>
         </Table.Row>
       </Table>
     </Section>
@@ -278,7 +282,7 @@ const StrainInformation = ({
   return (
     <LabeledList>
       <LabeledList.Item label="Common Name">
-        <Flex align="center">
+        <Stack align="center">
           {commonName ?? 'Unknown'}
           {isAdvanced && (
             <>
@@ -301,7 +305,7 @@ const StrainInformation = ({
               </Button>
             </>
           )}
-        </Flex>
+        </Stack>
       </LabeledList.Item>
       {description && (
         <LabeledList.Item label="Description">{description}</LabeledList.Item>

@@ -165,3 +165,68 @@
 	supply_conversion_value = 13
 	icon_base = "stone"
 	table_icon_base = "stone"
+
+/datum/material/glamour
+	name = MAT_GLAMOUR
+	stack_type = /obj/item/stack/material/glamour
+	icon_base = "stone"
+	door_icon_base = "stone"
+	icon_colour = "#fffee7"
+	icon_reinf = "reinf_mesh"
+	protectiveness = 70
+	integrity = 300
+	conductive = 1
+	conductivity = 20
+	hardness = 120
+	shard_type = SHARD_SHARD
+	weight = 20
+	negation = 35
+	explosion_resistance = 20
+	reflectivity = 1
+	radiation_resistance = 100
+	stack_origin_tech = list(TECH_MATERIAL = 4, TECH_BLUESPACE = 8)
+	supply_conversion_value = 15
+	icon_base = "stone"
+	table_icon_base = "stone"
+
+/datum/material/glamour/generate_recipes()
+	..()
+	recipes += list(
+		new /datum/stack_recipe("oar", /obj/item/oar, 2, time = 30, supplied_material = "[name]", pass_stack_color = TRUE),
+		new /datum/stack_recipe("boat", /obj/vehicle/boat, 20, time = 10 SECONDS, supplied_material = "[name]", pass_stack_color = TRUE),
+		new /datum/stack_recipe("dragon boat", /obj/vehicle/boat/dragon, 50, time = 30 SECONDS, supplied_material = "[name]", pass_stack_color = TRUE),
+		new /datum/stack_recipe("glamour sandals", /obj/item/clothing/shoes/sandal, 1, pass_stack_color = TRUE, recycle_material = "[name]"),
+		new /datum/stack_recipe("glamour circlet", /obj/item/clothing/head/woodcirclet, 1, pass_stack_color = TRUE, recycle_material = "[name]"),
+		new /datum/stack_recipe("book shelf", /obj/structure/bookcase, 5, time = 15, one_per_turf = 1, on_floor = 1, pass_stack_color = TRUE, recycle_material = "[name]"),
+		new /datum/stack_recipe("glamour shelves", /obj/structure/table/rack/shelf/wood, 1, one_per_turf = TRUE, time = 5, on_floor = TRUE, recycle_material = "[name]"),
+		new /datum/stack_recipe("glamour standup figure", /obj/structure/barricade/cutout, 5, time = 10 SECONDS, pass_stack_color = TRUE, recycle_material = "[name]"),
+		new /datum/stack_recipe("glamour bandage", /obj/item/stack/medical/crude_pack, 1, time = 2 SECONDS, pass_stack_color = TRUE, recycle_material = "[name]"),
+		new /datum/stack_recipe("bedsheet", /obj/item/bedsheet, 10, time = 30 SECONDS, pass_stack_color = TRUE, recycle_material = "[name]"),
+		new /datum/stack_recipe("uniform", /obj/item/clothing/under/color/white, 8, time = 15 SECONDS, pass_stack_color = TRUE, recycle_material = "[name]"),
+		new /datum/stack_recipe("foot wraps", /obj/item/clothing/shoes/footwraps, 2, time = 5 SECONDS, pass_stack_color = TRUE, recycle_material = "[name]"),
+		new /datum/stack_recipe("gloves", /obj/item/clothing/gloves/white, 2, time = 5 SECONDS, pass_stack_color = TRUE, recycle_material = "[name]"),
+		new /datum/stack_recipe("wig", /obj/item/clothing/head/powdered_wig, 4, time = 10 SECONDS, pass_stack_color = TRUE, recycle_material = "[name]"),
+		new /datum/stack_recipe("philosopher's wig", /obj/item/clothing/head/philosopher_wig, 50, time = 2 MINUTES, pass_stack_color = TRUE, recycle_material = "[name]"),
+		new /datum/stack_recipe("taqiyah", /obj/item/clothing/head/taqiyah, 3, time = 6 SECONDS, pass_stack_color = TRUE, recycle_material = "[name]"),
+		new /datum/stack_recipe("turban", /obj/item/clothing/head/turban, 3, time = 6 SECONDS, pass_stack_color = TRUE, recycle_material = "[name]"),
+		new /datum/stack_recipe("hijab", /obj/item/clothing/head/hijab, 3, time = 6 SECONDS, pass_stack_color = TRUE, recycle_material = "[name]"),
+		new /datum/stack_recipe("kippa", /obj/item/clothing/head/kippa, 3, time = 6 SECONDS, pass_stack_color = TRUE, recycle_material = "[name]"),
+		new /datum/stack_recipe("scarf", /obj/item/clothing/accessory/scarf/white, 4, time = 5 SECONDS, pass_stack_color = TRUE, recycle_material = "[name]"),
+		new /datum/stack_recipe("baggy pants", /obj/item/clothing/under/pants/baggy/white, 8, time = 10 SECONDS, pass_stack_color = TRUE, recycle_material = "[name]"),
+		new /datum/stack_recipe("belt pouch", /obj/item/storage/belt/fannypack/white, 25, time = 1 MINUTE, pass_stack_color = TRUE, recycle_material = "[name]"),
+		new /datum/stack_recipe("glamour net", /obj/item/material/fishing_net, 10, time = 5 SECONDS, supplied_material = "[name]", pass_stack_color = TRUE),
+		new /datum/stack_recipe("glamour ring", /obj/item/clothing/accessory/ring/material, 1, on_floor = 1, supplied_material = "[name]", pass_stack_color = TRUE),
+		new /datum/stack_recipe("glamour bracelet", /obj/item/clothing/accessory/bracelet/material, 1, on_floor = 1, supplied_material = "[name]", pass_stack_color = TRUE),
+		new /datum/stack_recipe("glamour armor plate", /obj/item/material/armor_plating, 1, time = 20, on_floor = 1, supplied_material = "[name]", pass_stack_color = TRUE),
+		new /datum/stack_recipe("whip", /obj/item/material/whip, 5, time = 15 SECONDS, pass_stack_color = TRUE, supplied_material = "[name]"),
+		new /datum/stack_recipe("Transparent Glamour", /obj/item/potion_material/glamour_transparent, 25, time = 15 SECONDS, pass_stack_color = FALSE, supplied_material = "[name]"),
+		new /datum/stack_recipe("Shrinking Glamour", /obj/item/potion_material/glamour_shrinking, 10, time = 15 SECONDS, pass_stack_color = FALSE, supplied_material = "[name]"),
+		new /datum/stack_recipe("Twinkling Glamour", /obj/item/potion_material/glamour_twinkling, 15, time = 15 SECONDS, pass_stack_color = FALSE, supplied_material = "[name]"),
+		new /datum/stack_recipe("Glamour Shard", /obj/item/potion_material/glamour_shard, 15, time = 20 SECONDS, pass_stack_color = FALSE, supplied_material = "[name]"),
+		new /datum/stack_recipe("Glamour Cell", /obj/item/capture_crystal/glamour, 50, time = 15 SECONDS, pass_stack_color = FALSE, supplied_material = "[name]"),
+		new /datum/stack_recipe("Speaking Glamour", /obj/item/universal_translator/glamour, 50, time = 15 SECONDS, pass_stack_color = FALSE, supplied_material = "[name]"),
+		new /datum/stack_recipe("Glamour Bubble", /obj/item/clothing/mask/gas/glamour, 20, time = 15 SECONDS, pass_stack_color = FALSE, supplied_material = "[name]"),
+		new /datum/stack_recipe("Pocket of Glamour", /obj/item/clothing/under/permit/glamour, 5, time = 15 SECONDS, pass_stack_color = FALSE, supplied_material = "[name]"),
+		new /datum/stack_recipe("glamour bow", /obj/item/gun/launcher/crossbow/bow/glamour, 15, time = 15 SECONDS, pass_stack_color = FALSE, supplied_material = "[name]"),
+		new /datum/stack_recipe("glamour arrow", /obj/item/arrow/standard/glamour, 1, time = 15 SECONDS, pass_stack_color = FALSE, supplied_material = "[name]")
+	)

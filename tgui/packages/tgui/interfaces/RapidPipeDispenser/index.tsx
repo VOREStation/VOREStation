@@ -1,5 +1,6 @@
-import { Stack } from '../../components';
-import { Window } from '../../layouts';
+import { Window } from 'tgui/layouts';
+import { Stack } from 'tgui-core/components';
+
 import { LayerSection } from './LayerSection';
 import { PipeTypeSection } from './PipeTypeSection';
 import { SelectionSection } from './SelectionSection';

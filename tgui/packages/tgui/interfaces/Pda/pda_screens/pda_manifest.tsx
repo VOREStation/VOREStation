@@ -1,5 +1,5 @@
 import { useBackend } from 'tgui/backend';
-import { Box } from 'tgui/components';
+import { Box } from 'tgui-core/components';
 
 import { CrewManifestContent } from '../../CrewManifest';
 

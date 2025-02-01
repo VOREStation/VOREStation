@@ -352,7 +352,7 @@ var/list/ai_verbs_default = list(
 		return
 
 	if (!custom_sprite)
-		var/new_sprite = tgui_input_list(usr, "Select an icon!", "AI", ai_icons)
+		var/new_sprite = tgui_input_list(src, "Select an icon!", "AI", ai_icons)
 		if(new_sprite) selected_sprite = new_sprite
 	update_icon()
 
@@ -366,7 +366,7 @@ var/list/ai_verbs_default = list(
 	if(message_cooldown)
 		to_chat(src, span_filter_notice("Please allow one minute to pass between announcements."))
 		return
-	var/input = tgui_input_text(usr, "Please write a message to announce to the station crew.", "A.I. Announcement")
+	var/input = tgui_input_text(src, "Please write a message to announce to the station crew.", "A.I. Announcement")
 	if(!input)
 		return
 
@@ -384,7 +384,7 @@ var/list/ai_verbs_default = list(
 	if(check_unable(AI_CHECK_WIRELESS))
 		return
 
-	var/confirm = tgui_alert(usr, "Are you sure you want to call the shuttle?", "Confirm Shuttle Call", list("Yes", "No"))
+	var/confirm = tgui_alert(src, "Are you sure you want to call the shuttle?", "Confirm Shuttle Call", list("Yes", "No"))
 
 	if(!confirm)
 		return
@@ -406,7 +406,7 @@ var/list/ai_verbs_default = list(
 	if(check_unable(AI_CHECK_WIRELESS))
 		return
 
-	var/confirm = tgui_alert(usr, "Are you sure you want to recall the shuttle?", "Confirm Shuttle Recall", list("Yes", "No"))
+	var/confirm = tgui_alert(src, "Are you sure you want to recall the shuttle?", "Confirm Shuttle Recall", list("Yes", "No"))
 	if(check_unable(AI_CHECK_WIRELESS))
 		return
 
@@ -422,14 +422,14 @@ var/list/ai_verbs_default = list(
 	if(check_unable(AI_CHECK_WIRELESS))
 		return
 	if(emergency_message_cooldown)
-		to_chat(usr, span_warning("Arrays recycling. Please stand by."))
+		to_chat(src, span_warning("Arrays recycling. Please stand by."))
 		return
-	var/input = sanitize(tgui_input_text(usr, "Please choose a message to transmit to [using_map.boss_short] via quantum entanglement.  Please be aware that this process is very expensive, and abuse will lead to... termination.  Transmission does not guarantee a response. There is a 30 second delay before you may send another message, be clear, full and concise.", "To abort, send an empty message.", ""))
+	var/input = sanitize(tgui_input_text(src, "Please choose a message to transmit to [using_map.boss_short] via quantum entanglement.  Please be aware that this process is very expensive, and abuse will lead to... termination.  Transmission does not guarantee a response. There is a 30 second delay before you may send another message, be clear, full and concise.", "To abort, send an empty message.", ""))
 	if(!input)
 		return
-	CentCom_announce(input, usr)
-	to_chat(usr, span_notice("Message transmitted."))
-	log_game("[key_name(usr)] has made an IA [using_map.boss_short] announcement: [input]")
+	CentCom_announce(input, src)
+	to_chat(src, span_notice("Message transmitted."))
+	log_game("[key_name(src)] has made an IA [using_map.boss_short] announcement: [input]")
 	emergency_message_cooldown = 1
 	spawn(300)
 		emergency_message_cooldown = 0
@@ -614,7 +614,7 @@ var/list/ai_verbs_default = list(
 				holo_color = input
 
 		if("Model")
-			choice = tgui_alert(usr, "Would you like to select a hologram based on a (visible) crew member, switch to unique avatar, or load your character from your character slot?","Hologram Selection",list("Crew Member","Unique","My Character"))
+			choice = tgui_alert(src, "Would you like to select a hologram based on a (visible) crew member, switch to unique avatar, or load your character from your character slot?","Hologram Selection",list("Crew Member","Unique","My Character"))
 
 			if(!choice)
 				return
@@ -623,7 +623,7 @@ var/list/ai_verbs_default = list(
 				if("Crew Member") //A seeable crew member (or a dog)
 					var/list/targets = trackable_mobs()
 					if(targets.len)
-						input = tgui_input_list(usr, "Select a crew member:", "Hologram Choice", targets) //The definition of "crew member" is a little loose...
+						input = tgui_input_list(src, "Select a crew member:", "Hologram Choice", targets) //The definition of "crew member" is a little loose...
 						//This is torture, I know. If someone knows a better way...
 						if(!input) return
 						var/new_holo = getHologramIcon(getCompoundIcon(targets[input]))
@@ -631,7 +631,7 @@ var/list/ai_verbs_default = list(
 						holo_icon = new_holo
 
 					else
-						tgui_alert_async(usr, "No suitable records found. Aborting.")
+						tgui_alert_async(src, "No suitable records found. Aborting.")
 
 				if("My Character") //Loaded character slot
 					if(!client || !client.prefs) return
@@ -671,7 +671,7 @@ var/list/ai_verbs_default = list(
 						"male skrell",
 						"female skrell"
 					)
-					input = tgui_input_list(usr, "Please select a hologram:", "Hologram Choice", icon_list)
+					input = tgui_input_list(src, "Please select a hologram:", "Hologram Choice", icon_list)
 					if(input)
 						qdel(holo_icon)
 						switch(input)
@@ -812,7 +812,7 @@ var/list/ai_verbs_default = list(
 	set category = "AI.Settings"
 	set desc = "Augment visual feed with internal sensor overlays"
 	sensor_type = !sensor_type //VOREStation Add
-	to_chat(usr, "You [sensor_type ? "enable" : "disable"] your sensors.") //VOREStation Add
+	to_chat(src, "You [sensor_type ? "enable" : "disable"] your sensors.") //VOREStation Add
 	toggle_sensor_mode()
 
 /mob/living/silicon/ai/proc/toggle_hologram_movement()
@@ -826,7 +826,7 @@ var/list/ai_verbs_default = list(
 		var/obj/effect/overlay/aiholo/hologram = holo.masters[src]
 		walk(hologram, 0)
 	//VOREStation Add End
-	to_chat(usr, span_filter_notice("Your hologram will [hologram_follow ? "follow" : "no longer follow"] you now."))
+	to_chat(src, span_filter_notice("Your hologram will [hologram_follow ? "follow" : "no longer follow"] you now."))
 
 
 /mob/living/silicon/ai/proc/check_unable(var/flags = 0, var/feedback = 1)

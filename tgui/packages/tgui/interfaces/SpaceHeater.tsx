@@ -1,15 +1,14 @@
-import { BooleanLike } from 'common/react';
-
-import { useBackend } from '../backend';
+import { useBackend } from 'tgui/backend';
+import { T0C } from 'tgui/constants';
+import { Window } from 'tgui/layouts';
 import {
   Button,
   Knob,
   LabeledControls,
   LabeledList,
   Section,
-} from '../components';
-import { T0C } from '../constants';
-import { Window } from '../layouts';
+} from 'tgui-core/components';
+import { BooleanLike } from 'tgui-core/react';
 
 type Data = {
   temp: number;

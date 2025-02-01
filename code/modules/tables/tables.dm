@@ -192,9 +192,9 @@ var/list/table_icon_cache = list()
 	visible_message(span_infoplain(span_bold("\The [user]") + " scratches at \the [src]!"))
 	return ..()
 
-/obj/structure/table/MouseDrop_T(obj/item/stack/material/what)
-	if(can_reinforce && isliving(usr) && (!usr.stat) && istype(what) && usr.get_active_hand() == what && Adjacent(usr))
-		reinforce_table(what, usr)
+/obj/structure/table/MouseDrop_T(obj/item/stack/material/what, mob/user)
+	if(can_reinforce && isliving(user) && (!user.stat) && istype(what) && user.get_active_hand() == what && Adjacent(user))
+		reinforce_table(what, user)
 	else
 		return ..()
 
