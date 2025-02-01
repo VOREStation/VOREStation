@@ -1,7 +1,7 @@
 import { filter, sortBy } from 'common/collections';
 import { useState } from 'react';
 import { useBackend } from 'tgui/backend';
-import { Box, Button, Icon, Section, Stack } from 'tgui-core/components';
+import { Box, Button, Section, Stack } from 'tgui-core/components';
 import { flow } from 'tgui-core/fp';
 
 import type { Data, supplyPack } from './types';
@@ -48,7 +48,6 @@ export const SupplyConsoleMenuOrder = (props) => {
               <Box key={pack.name}>
                 <Stack align="center" justify="flex-start">
                   <Stack.Item maxWidth="70%" basis="70%">
-                    {/* Fixes an issue with tgui core's styling for now
                     <Button
                       fluid
                       icon="shopping-cart"
@@ -57,27 +56,6 @@ export const SupplyConsoleMenuOrder = (props) => {
                       onClick={() => act('request_crate', { ref: pack.ref })}
                     >
                       {pack.name}
-                    </Button>*/}
-                    <Button
-                      fluid
-                      color={pack.cost > supply_points ? 'red' : undefined}
-                      onClick={() => act('request_crate', { ref: pack.ref })}
-                    >
-                      <Stack fill>
-                        <Stack.Item>
-                          <Icon name="shopping-cart" />
-                        </Stack.Item>
-                        <Stack.Item
-                          grow
-                          style={{
-                            overflow: 'hidden',
-                            textOverflow: 'ellipsis',
-                            display: 'block',
-                          }}
-                        >
-                          {pack.name}
-                        </Stack.Item>
-                      </Stack>
                     </Button>
                   </Stack.Item>
                   <Stack.Item>

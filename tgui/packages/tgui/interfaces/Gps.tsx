@@ -1,7 +1,6 @@
 // Currently not used!
 
 import { map, sortBy } from 'common/collections';
-import { vecLength, vecSubtract } from 'common/vector';
 import { useBackend } from 'tgui/backend';
 import { Window } from 'tgui/layouts';
 import {
@@ -15,6 +14,7 @@ import {
 import { flow } from 'tgui-core/fp';
 import { clamp } from 'tgui-core/math';
 import type { BooleanLike } from 'tgui-core/react';
+import { vecLength, vecSubtract } from 'tgui-core/vector';
 
 const coordsToVec = (coords) => map(coords.split(', '), parseFloat);
 
