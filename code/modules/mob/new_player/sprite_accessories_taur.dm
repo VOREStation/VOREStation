@@ -4,7 +4,7 @@
 	do_colouration = 1 // Yes color, using tail color
 	color_blend_mode = ICON_MULTIPLY  // The sprites for taurs are designed for ICON_MULTIPLY
 
-	var/can_ride = FALSE			//whether we're real rideable taur or just in that category
+	var/can_ride = TRUE			//whether we're real rideable taur or just in that category
 	offset_x = -16
 	em_block = TRUE
 
