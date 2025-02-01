@@ -117,7 +117,7 @@
 	cell = /obj/item/cell/super
 	capacitor = /obj/item/stock_parts/capacitor
 
-	fire_delay = 0
+	fire_delay = 0.1
 
 	slot_flags = SLOT_BELT
 
