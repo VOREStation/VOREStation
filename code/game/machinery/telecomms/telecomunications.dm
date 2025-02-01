@@ -189,7 +189,7 @@ var/global/list/obj/machinery/telecomms/telecomms_list = list()
 	..()
 
 /obj/machinery/telecomms/proc/checkheat()
-	if(QDELDETED(src))
+	if(QDELETED(src))
 		return
 	// Checks heat from the environment and applies any integrity damage
 	var/datum/gas_mixture/environment = loc.return_air()
