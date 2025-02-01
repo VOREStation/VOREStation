@@ -11,7 +11,7 @@
 		log_game("SQL ERROR during population polling. Failed to connect.")
 	else
 		var/sqltime = time2text(world.realtime, "YYYY-MM-DD hh:mm:ss")
-		var/datum/db_query/query = SSdbcore.NewQuery("INSERT INTO population ('playercount', 'admincount', 'time') VALUES ([playercount], [admincount], '[sqltime]')")
+		var/datum/db_query/query = SSdbcore.NewQuery("INSERT INTO population (`playercount`, `admincount`, `time`) VALUES ([playercount], [admincount], '[sqltime]')")
 		if(!query.Execute())
 			var/err = query.ErrorMsg()
 			log_game("SQL ERROR during population polling. Error : \[[err]\]\n")

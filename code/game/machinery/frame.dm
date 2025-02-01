@@ -445,6 +445,15 @@
 				circuit.construct(B)
 				circuit.loc = null
 				B.circuit = circuit
+
+				B.update_icon()
+				var/obj/machinery/computer/LC = locate() in get_step(B, turn(B.dir, 90))
+				var/obj/machinery/computer/RC = locate() in get_step(B, turn(B.dir, -90))
+				if(LC)
+					LC.update_icon()
+				if(RC)
+					RC.update_icon()
+
 				qdel(src)
 				return
 

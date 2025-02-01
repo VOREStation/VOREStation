@@ -93,7 +93,7 @@
 
 			// Yielding
 			var/new_color = tgui_color_picker(
-				usr,
+				ui.user,
 				"Select new color",
 				null,
 				default_value || COLOR_WHITE,

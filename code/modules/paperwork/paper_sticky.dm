@@ -34,7 +34,7 @@
 		if(writing_space <= 0)
 			to_chat(user, span_warning("There is no room left on \the [src]."))
 			return
-		var/text = sanitizeSafe(tgui_input_text(usr, "What would you like to write?", null, null, writing_space), writing_space)
+		var/text = sanitizeSafe(tgui_input_text(user, "What would you like to write?", null, null, writing_space), writing_space)
 		if(!text || thing.loc != user || (!Adjacent(user) && loc != user) || user.incapacitated())
 			return
 		user.visible_message(span_infoplain(span_bold("\The [user]") + " jots a note down on \the [src]."))
@@ -66,10 +66,10 @@
 	else
 		update_icon()
 
-/obj/item/sticky_pad/MouseDrop(mob/user as mob)
-	if(user == usr && !(usr.restrained() || usr.stat) && (usr.contents.Find(src) || in_range(src, usr)))
-		if(!isanimal(usr))
-			if( !usr.get_active_hand() )		//if active hand is empty
+/obj/item/sticky_pad/MouseDrop(mob/user)
+	if(user == usr && !(user.restrained() || user.stat) && (user.contents.Find(src) || in_range(src, user)))
+		if(!isanimal(user))
+			if( !user.get_active_hand() )		//if active hand is empty
 				var/mob/living/carbon/human/H = user
 				var/obj/item/organ/external/temp = H.organs_by_name["r_hand"]
 

@@ -65,7 +65,7 @@
 	set name = "Examine"
 	set category = "IC.Game"
 
-	if((is_blind(src) || usr.stat) && !isobserver(src))
+	if((is_blind(src) || src.stat) && !isobserver(src))
 		to_chat(src, span_notice("Something is there but you can't see it."))
 		return 1
 

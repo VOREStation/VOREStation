@@ -108,7 +108,7 @@
 	var/flight_y_offset = 0
 
 /obj/item/gun/CtrlClick(mob/user)
-	if(can_flashlight && ishuman(user) && src.loc == usr && !user.incapacitated(INCAPACITATION_ALL))
+	if(can_flashlight && ishuman(user) && loc == user && !user.incapacitated(INCAPACITATION_ALL))
 		toggle_flashlight()
 	else
 		return ..()

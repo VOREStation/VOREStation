@@ -11,6 +11,9 @@ rm vorestation.dmb
 # Copy example configs
 cp config/example/* config/
 
+# Create spritesheet directory
+mkdir -p data/spritesheets
+
 # Compile a copy of the codebase, and print errors as Github Actions annotations
 tools/build/build --ci dm -DCIBUILDING -DCITESTING ${EXTRA_ARGS}
 exitVal=$?

@@ -107,7 +107,7 @@
 			exclude_mobs |= src
 		else
 			exclude_mobs = list(src)
-		src.show_message(self_message, 1, blind_message, 2)
+		show_message(self_message, 1, blind_message, 2)
 	if(isnull(runemessage))
 		runemessage = -1
 	. = ..(message, blind_message, exclude_mobs, range, runemessage) // Really not ideal that atom/visible_message has different arg numbering :(
@@ -242,7 +242,7 @@
 	set name = "Point To"
 	set category = "Object"
 
-	if(!src || !isturf(src.loc) || !(A in view(src.loc)))
+	if(!src || !isturf(loc) || !(A in view(loc)))
 		return 0
 	if(istype(A, /obj/effect/decal/point))
 		return 0
@@ -328,8 +328,8 @@
 /mob/proc/update_flavor_text()
 	set src in usr
 	if(usr != src)
-		to_chat(usr, "No.")
-	var/msg = sanitize(tgui_input_text(usr,"Set the flavor text in your 'examine' verb.","Flavor Text",html_decode(flavor_text), multiline = TRUE, prevent_enter = TRUE), extra = 0)	//VOREStation Edit: separating out OOC notes
+		to_chat(src, "No.")
+	var/msg = sanitize(tgui_input_text(src,"Set the flavor text in your 'examine' verb.","Flavor Text",html_decode(flavor_text), multiline = TRUE, prevent_enter = TRUE), extra = 0)	//VOREStation Edit: separating out OOC notes
 
 	if(msg != null)
 		flavor_text = msg
@@ -393,22 +393,22 @@
 	set category = "OOC.Game"
 
 	if(stat != DEAD || !ticker)
-		to_chat(usr, span_boldnotice("You must be dead to use this!"))
+		to_chat(src, span_boldnotice("You must be dead to use this!"))
 		return
 
 	// Final chance to abort "respawning"
 	if(mind && timeofdeath) // They had spawned before
-		var/choice = tgui_alert(usr, "Returning to the menu will prevent your character from being revived in-round. Are you sure?", "Confirmation", list("No, wait", "Yes, leave"))
+		var/choice = tgui_alert(src, "Returning to the menu will prevent your character from being revived in-round. Are you sure?", "Confirmation", list("No, wait", "Yes, leave"))
 		if(!choice || choice == "No, wait")
 			return
 		else if(mind.assigned_role)
-			var/extra_check = tgui_alert(usr, "Do you want to Quit This Round before you return to lobby?\
+			var/extra_check = tgui_alert(src, "Do you want to Quit This Round before you return to lobby?\
 			This will properly remove you from manifest, as well as prevent resleeving. BEWARE: Pressing 'NO' will STILL return you to lobby!",
 			"Quit This Round",list("Quit Round","No"))
 			if(extra_check == "Quit Round")
 				//Update any existing objectives involving this mob.
 				for(var/datum/objective/O in all_objectives)
-					if(O.target == src.mind)
+					if(O.target == mind)
 						if(O.owner && O.owner.current)
 							to_chat(O.owner.current,span_warning("You get the feeling your target is no longer within your reach..."))
 						qdel(O)
@@ -418,47 +418,47 @@
 					SStranscore.leave_round(src)
 
 				//Job slot cleanup
-				var/job = src.mind.assigned_role
+				var/job = mind.assigned_role
 				job_master.FreeRole(job)
 
 				//Their objectives cleanup
-				if(src.mind.objectives.len)
-					qdel(src.mind.objectives)
-					src.mind.special_role = null
+				if(mind.objectives.len)
+					qdel(mind.objectives)
+					mind.special_role = null
 
 				//Cut the PDA manifest (ugh)
 				if(PDA_Manifest.len)
 					PDA_Manifest.Cut()
 				for(var/datum/data/record/R in data_core.medical)
-					if((R.fields["name"] == src.real_name))
+					if((R.fields["name"] == real_name))
 						qdel(R)
 				for(var/datum/data/record/T in data_core.security)
-					if((T.fields["name"] == src.real_name))
+					if((T.fields["name"] == real_name))
 						qdel(T)
 				for(var/datum/data/record/G in data_core.general)
-					if((G.fields["name"] == src.real_name))
+					if((G.fields["name"] == real_name))
 						qdel(G)
 
 				//This removes them from being 'active' list on join screen
-				src.mind.assigned_role = null
+				mind.assigned_role = null
 				to_chat(src,span_notice("Your job has been free'd up, and you can rejoin as another character or quit. Thanks for properly quitting round, it helps the server!"))
 
 	// Beyond this point, you're going to respawn
 
 	if(!client)
-		log_game("[usr.key] AM failed due to disconnect.")
+		log_game("[key] AM failed due to disconnect.")
 		return
 	client.screen.Cut()
 	client.screen += client.void
 	if(!client)
-		log_game("[usr.key] AM failed due to disconnect.")
+		log_game("[key] AM failed due to disconnect.")
 		return
 
 	announce_ghost_joinleave(client, 0)
 
 	var/mob/new_player/M = new /mob/new_player()
 	if(!client)
-		log_game("[usr.key] AM failed due to disconnect.")
+		log_game("[key] AM failed due to disconnect.")
 		qdel(M)
 		return
 
@@ -482,7 +482,7 @@
 	if(client.holder && (client.holder.rights & R_ADMIN|R_EVENT))
 		is_admin = 1
 	else if(stat != DEAD || isnewplayer(src))
-		to_chat(usr, span_filter_notice("[span_blue("You must be observing to use this!")]"))
+		to_chat(src, span_filter_notice("[span_blue("You must be observing to use this!")]"))
 		return
 
 	if(is_admin && stat == DEAD)
@@ -502,7 +502,7 @@
 	var/eye_name = null
 
 	var/ok = "[is_admin ? "Admin Observe" : "Observe"]"
-	eye_name = tgui_input_list(usr, "Select something to [ok]:", "Select Target", targets)
+	eye_name = tgui_input_list(src, "Select something to [ok]:", "Select Target", targets)
 
 	if (!eye_name)
 		return
@@ -529,8 +529,8 @@
 		src << browse(null, t1)
 
 	if(href_list["flavor_more"])
-		usr << browse(text("<HTML><HEAD><TITLE>[]</TITLE></HEAD><BODY><TT>[]</TT></BODY></HTML>", name, replacetext(flavor_text, "\n", "<BR>")), text("window=[];size=500x200", name))
-		onclose(usr, "[name]")
+		src << browse(text("<HTML><HEAD><TITLE>[]</TITLE></HEAD><BODY><TT>[]</TT></BODY></HTML>", name, replacetext(flavor_text, "\n", "<BR>")), text("window=[];size=500x200", name))
+		onclose(src, "[name]")
 	if(href_list["flavor_change"])
 		update_flavor_text()
 	return ..()
@@ -557,7 +557,7 @@
 
 /mob/proc/start_pulling(var/atom/movable/AM)
 
-	if ( !AM || !usr || src==AM || !isturf(src.loc) )	//if there's no person pulling OR the person is pulling themself OR the object being pulled is inside something: abort!
+	if ( !AM || src==AM || !isturf(loc) )	//if there's no person pulling OR the person is pulling themself OR the object being pulled is inside something: abort!
 		return
 
 	if (AM.anchored)
@@ -613,7 +613,7 @@
 		if(pulling_old == AM)
 			return
 
-	src.pulling = AM
+	pulling = AM
 	AM.pulledby = src
 
 	if(pullin)
@@ -629,7 +629,7 @@
 			visible_message(span_warning("\The [src] grips \the [H]'s arm."), span_notice("You grip \the [H]'s arm."), exclude_mobs = list(H))
 			if(!H.stat)
 				to_chat(H, span_warning("\The [src] grips your arm."))
-		playsound(src.loc, 'sound/weapons/thudswoosh.ogg', 25) //Quieter than hugging/grabbing but we still want some audio feedback
+		playsound(loc, 'sound/weapons/thudswoosh.ogg', 25) //Quieter than hugging/grabbing but we still want some audio feedback
 
 		if(H.pull_damage())
 			to_chat(src, span_filter_notice("[span_red(span_bold("Pulling \the [H] in their current condition would probably be a bad idea."))]"))
@@ -642,13 +642,13 @@
 // We have pulled something before, so we should be able to safely continue pulling it. This proc is only for portals!
 /mob/proc/continue_pulling(var/atom/movable/AM)
 
-	if ( !AM || src==AM || !isturf(src.loc) )	//if there's no person pulling OR the person is pulling themself OR the object being pulled is inside something: abort!
+	if ( !AM || src==AM || !isturf(loc) )	//if there's no person pulling OR the person is pulling themself OR the object being pulled is inside something: abort!
 		return
 
 	if (AM.anchored)
 		return
 
-	src.pulling = AM
+	pulling = AM
 	AM.pulledby = src
 
 	if(pullin)
@@ -663,7 +663,7 @@
 	return
 
 /mob/proc/is_active()
-	return (0 >= usr.stat)
+	return (0 >= stat)
 
 /mob/proc/is_dead()
 	return stat == DEAD
@@ -1003,9 +1003,9 @@
 	set_face_dir()
 
 	if(!facing_dir)
-		to_chat(usr, span_filter_notice("You are now not facing anything."))
+		to_chat(src, span_filter_notice("You are now not facing anything."))
 	else
-		to_chat(usr, span_filter_notice("You are now facing [dir2text(facing_dir)]."))
+		to_chat(src, span_filter_notice("You are now facing [dir2text(facing_dir)]."))
 
 /mob/proc/set_face_dir(var/newdir)
 	if(newdir == facing_dir)
@@ -1122,20 +1122,20 @@
 //Throwing stuff
 
 /mob/proc/toggle_throw_mode()
-	if (src.in_throw_mode)
+	if (in_throw_mode)
 		throw_mode_off()
 	else
 		throw_mode_on()
 
 /mob/proc/throw_mode_off()
-	src.in_throw_mode = 0
-	if(src.throw_icon && !issilicon(src)) //in case we don't have the HUD and we use the hotkey. Silicon use this for something else. Do not overwrite their HUD icon
-		src.throw_icon.icon_state = "act_throw_off"
+	in_throw_mode = 0
+	if(throw_icon && !issilicon(src)) //in case we don't have the HUD and we use the hotkey. Silicon use this for something else. Do not overwrite their HUD icon
+		throw_icon.icon_state = "act_throw_off"
 
 /mob/proc/throw_mode_on()
-	src.in_throw_mode = 1
-	if(src.throw_icon && !issilicon(src)) // Silicon use this for something else. Do not overwrite their HUD icon
-		src.throw_icon.icon_state = "act_throw_on"
+	in_throw_mode = 1
+	if(throw_icon && !issilicon(src)) // Silicon use this for something else. Do not overwrite their HUD icon
+		throw_icon.icon_state = "act_throw_on"
 
 /mob/verb/spacebar_throw_on()
 	set name = ".throwon"
@@ -1177,8 +1177,8 @@
 
 
 /obj/Destroy()
-	if(istype(src.loc, /mob))
-		var/mob/holder = src.loc
+	if(istype(loc, /mob))
+		var/mob/holder = loc
 		if(src in holder.exploit_addons)
 			holder.exploit_addons -= src
 	. = ..()
