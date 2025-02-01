@@ -308,4 +308,16 @@ var/global/list/image/splatter_cache=list()
 		for(var/datum/disease/D in viruses)
 			perp.ContractDisease(D)
 
+/obj/effect/decal/cleanable/mucus/extrapolator_act(mob/living/user, obj/item/extrapolator/extrapolator, dry_run)
+	. = ..()
+	EXTRAPOLATOR_ACT_ADD_DISEASES(., viruses)
+
+/obj/effect/decal/cleanable/vomit/extrapolator_act(mob/living/user, obj/item/extrapolator/extrapolator, dry_run)
+	. = ..()
+	EXTRAPOLATOR_ACT_ADD_DISEASES(., viruses)
+
+/obj/effect/decal/cleanable/blood/extrapolator_act(mob/living/user, obj/item/extrapolator/extrapolator, dry_run)
+	. = ..()
+	EXTRAPOLATOR_ACT_ADD_DISEASES(., viruses)
+
 #undef DRYING_TIME

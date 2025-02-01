@@ -22,7 +22,7 @@ BONUS
 	resistance = -1
 	stage_speed = -2
 	transmission = 2
-	level = 6
+	level = 9
 	severity = 2
 
 	var/gigagerms = FALSE

@@ -21,7 +21,7 @@ Bonus
 	resistance = -1
 	stage_speed = -2
 	transmission = -1
-	level = 6
+	level = 7
 	severity = 4
 
 	base_message_chance = 20
@@ -71,7 +71,7 @@ Bonus
 
 /datum/symptom/fire/proc/Firestacks_stage_4(mob/living/M, datum/disease/advance/A)
 	M.adjust_fire_stacks(1 * power)
-	M.take_overall_damage(burn = 3 * power)
+	M.take_overall_damage(burn = 2 * power)
 	if(infective)
 		M.visible_message(span_danger("[M] bursts into flames, spreading burning sparks about the area!"))
 	return TRUE

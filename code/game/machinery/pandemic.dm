@@ -299,8 +299,8 @@
 	var/obj/item/reagent_containers/glass/beaker/vial/bottle = new(drop_location())
 	bottle.name = "[adv_disease.name] culture vial"
 	bottle.desc = "A small vial containing [adv_disease.agent] culture in synthblood."
-	bottle.reagents.add_reagent(REAGENT_ID_BLOOD, 15, data)
-	beaker.reagents.remove_reagent(REAGENT_ID_BLOOD, 5)
+	bottle.reagents.add_reagent(REAGENT_ID_BLOOD, 10, data)
+	beaker.reagents.remove_reagent(REAGENT_ID_BLOOD, 10)
 	wait = TRUE
 	addtimer(CALLBACK(src, PROC_REF(reset_replicator_cooldown)), 5 SECONDS)
 	return TRUE

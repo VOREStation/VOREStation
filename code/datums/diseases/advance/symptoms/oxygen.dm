@@ -21,18 +21,52 @@ Bonus
 	resistance = -3
 	stage_speed = -3
 	transmission = -4
-	level = 6
-	severity = 0
+	level = 8
+	severity = -1
+	base_message_chance = 5
+	symptom_delay_min = 1
+	symptom_delay_max = 1
+	var/regenerate_blood = FALSE
 
-/datum/symptom/oxygen/Activate(var/datum/disease/advance/A)
-	..()
-	if(prob(SYMPTOM_ACTIVATION_PROB * 5))
-		var/mob/living/M = A.affected_mob
-		switch(A.stage)
-			if(4, 5)
-				if(M.reagents.get_reagent_amount(REAGENT_ID_DEXALIN) < 10)
-					M.reagents.add_reagent(REAGENT_ID_DEXALIN, 10)
-			else
-				if(prob(SYMPTOM_ACTIVATION_PROB * 5))
-					to_chat(M, span_notice(pick("Your lungs feel great.", "You realize you haven't been breathing.", "You don't feel the need to breathe.")))
+	threshold_descs = list(
+		"Resistance 8" = "Additionally regenerates lost blood."
+	)
+
+/datum/symptom/oxygen/Start(datum/disease/advance/A)
+	if(!..())
+		return
+	if(A.resistance >= 8)
+		regenerate_blood = TRUE
+
+/datum/symptom/oxygen/Activate(datum/disease/advance/A)
+	if(!..())
+		return
+	var/mob/living/carbon/human/H = A.affected_mob
+	switch(A.stage)
+		if(4, 5)
+			H.dna.SetSEState(NOBREATHBLOCK, 1)
+			domutcheck(H, null, TRUE)
+			H.oxyloss = max(0, H.oxyloss - 7)
+			H.losebreath = max(0, H.losebreath - 4)
+			if(regenerate_blood && H.vessel.get_reagent_amount(REAGENT_ID_BLOOD) < H.species.blood_volume)
+				H.add_chemical_effect(CE_BLOODRESTORE, 1)
+		else
+			if(prob(base_message_chance) && H.stat != DEAD)
+				to_chat(H, span_notice("[pick("Your lungs feel great.", "You realize you haven't been breathing.", "You don't feel the need to breathe.", "Something smells rotten.", "You feel peckish.")]"))
 	return
+
+/datum/symptom/oxygen/OnStageChange(new_stage, datum/disease/advance/A)
+	if(!..())
+		return FALSE
+	var/mob/living/carbon/human/H = A.affected_mob
+	if(A.stage <= 3)
+		H.dna.SetSEState(NOBREATHBLOCK, 0)
+		domutcheck(H, null, TRUE)
+	return TRUE
+
+/datum/symptom/oxygen/End(datum/disease/advance/A)
+	if(!..())
+		return
+	var/mob/living/carbon/human/H = A.affected_mob
+	H.dna.SetSEState(NOBREATHBLOCK, 0)
+	domutcheck(H, null, TRUE)

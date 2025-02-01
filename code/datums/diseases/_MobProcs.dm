@@ -134,12 +134,8 @@
 					Cl = H.shoes
 					passed = prob((Cl.permeability_coefficient*100) - 1)
 
-	if(!passed && (D.spread_flags & DISEASE_SPREAD_AIRBORNE) && !internal)
-		passed = (prob((50*D.permeability_mod) - 1))
-
 	if(passed)
 		AddDisease(D)
-	return passed
 
 /mob/living/proc/AirborneContractDisease(datum/disease/D, force_spread)
 	if(((D.spread_flags & DISEASE_SPREAD_AIRBORNE) || force_spread) && prob(50*D.spreading_modifier) - 1)

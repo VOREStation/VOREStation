@@ -39,9 +39,9 @@
 		starting_scanner.forceMove(src)
 		scanner = starting_scanner
 
-	if(ispath(reserve, /obj/item/reagent_containers/glass/beaker))
+	if(ispath(reserve, /obj/item/reagent_containers/glass/beaker/vial))
 		reserve = new starting_reserve(src)
-	else if(istype(starting_reserve, /obj/item/reagent_containers/glass/beaker))
+	else if(istype(starting_reserve, /obj/item/reagent_containers/glass/beaker/vial))
 		starting_reserve.forceMove(src)
 		reserve = starting_reserve
 
@@ -66,7 +66,7 @@
 			reserve = item
 			to_chat(user, span_notice("You install \the [reserve] in [src]."))
 		else
-			item.reagents.trans_to(reserve, items.amount_per_transfer_from_this)
+			item.reagents.trans_to(reserve)
 			to_chat(user, span_notice("You fill the internal [reserve] with [item]'s contents."))
 		return
 
@@ -111,7 +111,7 @@
 			. += span_notice("The internal reserve is missing.")
 		else
 			. += span_notice("A class <b>[scanner.rating]</b> scanning module is installed. It is <i>screwed</i> in place.")
-			. += span_notice("A \improper<b>[reserve]</b> is installed. It contains [reserve.reagents.get_reagent_amount(REAGENT_ID_BLOOD)] units of blood.")
+			. += span_notice("A <b>[reserve]</b> is installed. It contains [reserve.reagents.get_reagent_amount(REAGENT_ID_BLOOD)] units of blood.")
 			. += span_notice("Can detect diseases <b>below stealth [maximum_stealth]</b>.")
 			. += span_notice("Can extract diseases in <b>[DisplayTimeText(extract_time)]</b>.")
 			. += span_notice("Can isolate symptoms <b>[maximum_level >= 9 ? "of any level" : "below level [maximum_level]"]</b>, in <b>[DisplayTimeText(isolate_time)]</b>.")
@@ -230,7 +230,12 @@
 	if(!target_disease)
 		return
 	using = TRUE
-	. = isolate_disease(user, target, target_disease)
+	// I'll see about this...
+	// var/choice = tgui_alert(user, "What would you like to isolate?", "Isolate", list("Symptom", "Disease"))
+	// if(choice == "Symptom")
+	. = isolate_symptom(user, target, target_disease)
+	// else
+	//	. = isolate_disease(user, target, target_disease)
 	using = FALSE
 
 /obj/item/extrapolator/proc/isolate_symptom(mob/living/user, atom/target, datum/disease/advance/target_disease)

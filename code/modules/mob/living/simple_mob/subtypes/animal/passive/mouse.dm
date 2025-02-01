@@ -44,6 +44,8 @@
 
 	var/body_color //brown, gray, white and black, leave blank for random
 
+	var/list/datum/disease/rat_diseases
+
 /mob/living/simple_mob/animal/passive/mouse/New()
 	..()
 
@@ -74,6 +76,14 @@
 		holder_type = /obj/item/holder/mouse/white
 	if (body_color == "black")
 		holder_type = /obj/item/holder/mouse/black
+
+	if(prob(65))
+		LAZYINITLIST(rat_diseases)
+		rat_diseases += new /datum/disease/advance/random(rand(1, 6), 9, 1)
+
+/mob/living/simple_mob/animal/passive/mouse/extrapolator_act(mob/living/user, obj/item/extrapolator/extrapolator, dry_run = FALSE)
+	. = ..()
+	EXTRAPOLATOR_ACT_ADD_DISEASES(., rat_diseases)
 
 /mob/living/simple_mob/animal/passive/mouse/Crossed(atom/movable/AM as mob|obj)
 	if(AM.is_incorporeal())
