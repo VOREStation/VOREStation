@@ -645,3 +645,9 @@
 
 /atom/movable/proc/get_cell()
 	return
+
+/atom/movable/proc/emblocker_gc(var/datum/source)
+	UnregisterSignal(source, COMSIG_PARENT_QDELETING)
+	cut_overlay(source)
+	if(em_block == source)
+		em_block = null
