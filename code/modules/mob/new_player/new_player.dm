@@ -270,7 +270,7 @@
 			var/datum/db_query/query_insert = SSdbcore.NewQuery(sql)
 			query_insert.Execute()
 			to_chat(usr, span_bold("Thank you for your vote!"))
-			qdel(query)
+			qdel(query_insert)
 			usr << browse(null,"window=privacypoll")
 
 	if(!ready && href_list["preference"])
