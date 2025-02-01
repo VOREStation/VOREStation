@@ -73,7 +73,7 @@
 
 	last_special = world.time + 50
 
-	var/new_skin = input(src, "Please select a new body color.", "Shapeshifter Colour", rgb(r_skin, g_skin, b_skin)) as null|color
+	var/new_skin = tgui_color_picker(src, "Please select a new body color.", "Shapeshifter Colour", rgb(r_skin, g_skin, b_skin))
 	if(!new_skin)
 		return
 	lleill_set_colour(new_skin)

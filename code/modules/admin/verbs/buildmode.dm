@@ -324,7 +324,7 @@
 						if(input)
 							new_light_intensity = input
 					if("Color")
-						var/input = input(usr, "New light color.","Light Maker",3) as null|color
+						var/input = tgui_color_picker(usr, "New light color.","Light Maker",new_light_color)
 						if(input)
 							new_light_color = input
 			if(BUILDMODE_DROP)

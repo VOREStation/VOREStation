@@ -336,7 +336,7 @@
 			voice_holder.active = 0
 			to_chat(usr, span_blue("You disable the speech synthesiser."))
 		if("Set Name")
-			var/raw_choice = sanitize(input(usr, "Please enter a new name.")  as text|null, MAX_NAME_LEN)
+			var/raw_choice = sanitize(tgui_input_text(usr, "Please enter a new name.", max_length=MAX_NAME_LEN))
 			if(!raw_choice)
 				return 0
 			voice_holder.voice = raw_choice

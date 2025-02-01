@@ -34,7 +34,7 @@
 	set category = "IC.Settings"
 	set desc = "Set your flavour text."
 	set src = usr
-	var/new_flavour_text = sanitize((input("Please describe yourself.", "Flavour Text", flavor_text) as message|null), MAX_MESSAGE_LEN)
+	var/new_flavour_text = sanitize((tgui_input_text(src, "Please describe yourself.", "Flavour Text", flavor_text, MAX_MESSAGE_LEN, TRUE)))
 	if(length(new_flavour_text) && !QDELETED(src))
 		flavor_text = new_flavour_text
 		to_chat(src, span_notice("Your flavour text has been updated."))
