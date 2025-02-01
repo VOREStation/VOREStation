@@ -60,85 +60,9 @@
 /datum/tgui_module/appearance_changer/body_designer
 	name ="Appearance Editor (Body Designer)"
 	flags = APPEARANCE_ALL
-	var/datum/weakref/linked_body_design_console = null
+	customize_usr = TRUE
 
 /datum/tgui_module/appearance_changer/body_designer/tgui_status(mob/user, datum/tgui_state/state)
-	if(!istype(host,/obj/machinery/computer/transhuman/designer))
-		return STATUS_CLOSE
+	//if(!owner.transforming)
+	//	return STATUS_CLOSE
 	return ..()
-
-/datum/tgui_module/appearance_changer/body_designer/Destroy()
-	var/obj/machinery/computer/transhuman/designer/DC = linked_body_design_console?.resolve()
-	if(DC)
-		DC.selected_record = FALSE
-	. = ..()
-
-/datum/tgui_module/appearance_changer/body_designer/proc/make_fake_owner()
-	// checks for monkey to tell if on the menu
-	if(owner)
-		UnregisterSignal(owner, COMSIG_OBSERVER_MOVED)
-		qdel_null(owner)
-	owner = new(src)
-	owner.set_species(SPECIES_LLEILL)
-	owner.species.produceCopy(owner.species.traits.Copy(),owner,null,FALSE)
-	owner.invisibility = 101
-	// Add listeners back
-	owner.AddComponent(/datum/component/recursive_move)
-	RegisterSignal(owner, COMSIG_OBSERVER_MOVED, PROC_REF(update_active_camera_screen), override = TRUE)
-
-/datum/tgui_module/appearance_changer/body_designer/proc/load_record_to_body(var/datum/transhuman/body_record/current_project)
-	if(owner)
-		UnregisterSignal(owner, COMSIG_OBSERVER_MOVED)
-		qdel_null(owner)
-	//Get the DNA and generate a new mob
-	var/datum/dna2/record/R = current_project.mydna
-	owner = new /mob/living/carbon/human(src, R.dna.species)
-	//Fix the external organs
-	for(var/part in current_project.limb_data)
-		var/status = current_project.limb_data[part]
-		if(status == null) continue //Species doesn't have limb? Child of amputated limb?
-		var/obj/item/organ/external/O = owner.organs_by_name[part]
-		if(!O) continue //Not an organ. Perhaps another amputation removed it already.
-		if(status == 1) //Normal limbs
-			continue
-		else if(status == 0) //Missing limbs
-			O.remove_rejuv()
-		else if(status) //Anything else is a manufacturer
-			O.remove_rejuv() //Don't robotize them, leave them removed so robotics can attach a part.
-	for(var/part in current_project.organ_data)
-		var/status = current_project.organ_data[part]
-		if(status == null) continue //Species doesn't have organ? Child of missing part?
-		var/obj/item/organ/I = owner.internal_organs_by_name[part]
-		if(!I) continue//Not an organ. Perhaps external conversion changed it already?
-		if(status == 0) //Normal organ
-			continue
-		else if(status == 1) //Assisted organ
-			I.mechassist()
-		else if(status == 2) //Mechanical organ
-			I.robotize()
-		else if(status == 3) //Digital organ
-			I.digitize()
-	//Set the name or generate one
-	owner.real_name = R.dna.real_name
-	//Apply DNA
-	owner.dna = R.dna.Clone()
-	owner.original_player = current_project.ckey
-	//Apply legs
-	owner.digitigrade = R.dna.digitigrade // ensure clone mob has digitigrade var set appropriately
-	if(owner.dna.digitigrade <> R.dna.digitigrade)
-		owner.dna.digitigrade = R.dna.digitigrade // ensure cloned DNA is set appropriately from record??? for some reason it doesn't get set right despite the override to datum/dna/Clone()
-	//Update appearance, remake icons
-	owner.UpdateAppearance()
-	owner.sync_dna_traits(FALSE) // Traitgenes edit - Sync traits to genetics if needed
-	owner.sync_organ_dna()
-	owner.regenerate_icons()
-	// Traitgenes edit begin - Moved breathing equipment to AFTER the genes set it
-	owner.flavor_texts = current_project.mydna.flavor.Copy()
-	owner.resize(current_project.sizemult, FALSE)
-	owner.appearance_flags = current_project.aflags
-	owner.weight = current_project.weight
-	if(current_project.speciesname)
-		owner.custom_species = current_project.speciesname
-	// Add listeners back
-	owner.AddComponent(/datum/component/recursive_move)
-	RegisterSignal(owner, COMSIG_OBSERVER_MOVED, PROC_REF(update_active_camera_screen), override = TRUE)
