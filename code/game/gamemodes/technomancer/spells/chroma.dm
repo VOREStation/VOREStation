@@ -36,7 +36,7 @@
 		qdel(src)
 
 /obj/item/spell/chroma/on_use_cast(mob/user)
-	var/new_color = input(user, "Choose the color you want your light to be.", "Color selection") as null|color
+	var/new_color = tgui_color_picker(user, "Choose the color you want your light to be.", "Color selection")
 	if(new_color)
 		color_to_use = new_color
 		set_light(6, 5, l_color = new_color)

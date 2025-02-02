@@ -3982,7 +3982,7 @@
 		if( src.open )
 			return
 
-		var/t = sanitize(input(user, "Enter what you want to add to the tag:", "Write", null, null) as text, 30)
+		var/t = sanitize(tgui_input_text(user, "Enter what you want to add to the tag:", "Write", "", 30))
 
 		var/obj/item/pizzabox/boxtotagto = src
 		if( boxes.len > 0 )

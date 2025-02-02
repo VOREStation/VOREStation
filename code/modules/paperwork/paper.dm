@@ -425,7 +425,7 @@
 
 	if(href_list["write"])
 		var/id = href_list["write"]
-		//var/t = strip_html_simple(input(usr, "What text do you wish to add to " + (id=="end" ? "the end of the paper" : "field "+id) + "?", "[name]", null),8192) as message
+		//var/t = strip_html_simple(tgui_input_text(usr, "What text do you wish to add to " + (id=="end" ? "the end of the paper" : "field "+id) + "?", "[name]", null, multiline=TRUE),8192)
 
 		if(free_space <= 0)
 			to_chat(usr, span_info("There isn't enough space left on \the [src] to write anything."))

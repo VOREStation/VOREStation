@@ -217,7 +217,7 @@
 	switch(action)
 		if("change_freq")
 			. = TRUE
-			var/newfreq = input(ui.user, "Specify a new frequency for new signals to change to. Enter null to turn off frequency changing. Decimals assigned automatically.", src, network) as null|num
+			var/newfreq = tgui_input_number(ui.user, "Specify a new frequency for new signals to change to. Enter null to turn off frequency changing. Decimals assigned automatically.", src, network, round_value=FALSE)
 			if(canAccess(ui.user))
 				if(newfreq)
 					if(findtext(num2text(newfreq), "."))

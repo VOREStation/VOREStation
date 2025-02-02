@@ -62,7 +62,7 @@
 	if(QDELETED(src.media) || !istype(src.media))
 		to_chat(user, span_warning("You have no media datum to change, if you're not in the lobby tell an admin."))
 		return
-	var/value = input(user, "Choose your Jukebox volume.", "Jukebox volume", media.volume)
+	var/value = tgui_input_number(user, "Choose your Jukebox volume.", "Jukebox volume", media.volume, 100, 0)
 	value = round(max(0, min(100, value)))
 	media.update_volume(value)
 

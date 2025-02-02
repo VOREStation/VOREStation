@@ -61,6 +61,7 @@
 					var/category = query.item[3]
 					var/id = query.item[4]
 					dat += "<tr><td>[author]</td><td>[title]</td><td>[category]</td><td>[id]</td></tr>"
+				qdel(query)
 				dat += "</table><BR>"
 			dat += "<A href='byond://?src=\ref[src];back=1'>\[Go Back\]</A><BR></html>"
 	user << browse(dat, "window=publiclibrary")

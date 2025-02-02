@@ -614,7 +614,7 @@
 		// Otherwise fall back to asking them... and remind them what the current ID is.
 		if(id)
 			to_chat(user, "The window's current ID is [id].")
-		var/t = sanitizeSafe(input(user, "Enter the new ID for the window.", src.name, null), MAX_NAME_LEN)
+		var/t = sanitizeSafe(tgui_input_text(user, "Enter the new ID for the window.", src.name, id), MAX_NAME_LEN)
 		if(t && in_range(src, user))
 			src.id = t
 			to_chat(user, span_notice("The new ID of \the [src] is '[id]'."))
