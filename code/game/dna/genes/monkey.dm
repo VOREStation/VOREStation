@@ -45,8 +45,8 @@
 
 	if(M)
 		if (M.dna)
-			qdel_swap(O.dna, M.dna.Clone())
-			QDEL_NULL(M.dna)
+			O.dna = M.dna.Clone()
+			M.dna = null
 
 		if (M.suiciding)
 			O.suiciding = M.suiciding
@@ -116,8 +116,8 @@
 
 	if (M)
 		if (M.dna)
-			qdel_swap(O.dna, M.dna.Clone())
-			QDEL_NULL(M.dna)
+			O.dna = M.dna.Clone()
+			M.dna = null
 
 		if (M.suiciding)
 			O.suiciding = M.suiciding

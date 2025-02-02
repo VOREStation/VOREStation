@@ -414,7 +414,7 @@
 			I.digitize()
 
 	// Apply DNA
-	qdel_swap(H.dna, R.dna.Clone())
+	H.dna = R.dna.Clone()
 	H.UpdateAppearance() // Update all appearance stuff from the DNA record
 	// H.sync_dna_traits(FALSE) // Traitgenes edit - Sync traits to genetics if needed // Currently not implemented
 	H.sync_organ_dna() // Do this because sprites depend on DNA-gender of organs (chest etc)

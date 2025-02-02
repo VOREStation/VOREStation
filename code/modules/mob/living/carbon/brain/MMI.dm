@@ -124,7 +124,7 @@
 	brainmob = new(src)
 	brainmob.name = H.real_name
 	brainmob.real_name = H.real_name
-	qdel_swap(brainmob.dna, H.dna.Clone())
+	brainmob.dna = H.dna
 	brainmob.container = src
 
 	// Copy modifiers.
@@ -227,7 +227,7 @@
 	..()
 
 /obj/item/mmi/digital/transfer_identity(var/mob/living/carbon/H)
-	qdel_swap(brainmob.dna, H.dna.Clone())
+	brainmob.dna = H.dna
 	brainmob.timeofhostdeath = H.timeofdeath
 	brainmob.set_stat(CONSCIOUS)
 	if(H.mind)
