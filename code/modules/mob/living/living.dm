@@ -1343,7 +1343,7 @@
 /mob/living/verb/mob_sleep()
 	set name = "Sleep"
 	set category = "IC.Game"
-	if(!toggled_sleeping && alert(src, "Are you sure you wish to go to sleep? You will snooze until you use the Sleep verb again.", "Sleepy Time", "No", "Yes") == "No")
+	if(!toggled_sleeping && tgui_alert(src, "Are you sure you wish to go to sleep? You will snooze until you use the Sleep verb again.", "Sleepy Time", list("No", "Yes")) != "Yes")
 		return
 	toggled_sleeping = !toggled_sleeping
 	to_chat(src, span_notice("You are [toggled_sleeping ? "now sleeping. Use the Sleep verb again to wake up" : "no longer sleeping"]."))
