@@ -5,6 +5,7 @@
 	desc = "A surprisingly non-descript item, integrated into its user. You probably shouldn't be seeing this."
 	icon = 'icons/obj/surgery.dmi'
 	icon_state = "augment_box"
+	embed_chance = -1
 
 
 /obj/item/melee/augment/blade
