@@ -105,7 +105,7 @@
 
 /datum/design/item/internal/augment/bioaugment/thermalshades
 	desc = "A large implant that fits into a subject's eyes. It allows them to see through walls."
-	id = "surge_implant"
+	id = "thermal_implant"
 	req_tech = list(TECH_BIO = 7, TECH_MATERIAL = 4, TECH_POWER = 7, TECH_ENGINEERING = 7, TECH_COMBAT = 5, TECH_ILLEGAL = 2)
 	materials = list(MAT_STEEL = 6000, MAT_GLASS = 6000, MAT_PHORON = 10000, MAT_GOLD = 2000, MAT_DIAMOND = 10000, MAT_SILVER = 4000, MAT_TITANIUM = 1000) //this is thermals. this is expensive, yo.
 	build_path = /obj/item/organ/internal/augment/bioaugment/thermalshades
