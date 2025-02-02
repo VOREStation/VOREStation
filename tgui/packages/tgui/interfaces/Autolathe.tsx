@@ -1,5 +1,5 @@
-import { toTitleCase } from 'common/string';
 import { useCallback, useMemo } from 'react';
+import { useBackend, useSharedState } from 'tgui/backend';
 import { Window } from 'tgui/layouts';
 import {
   Box,
@@ -11,10 +11,10 @@ import {
   Tabs,
   VirtualList,
 } from 'tgui-core/components';
+import { formatSiUnit } from 'tgui-core/format';
 import { BooleanLike } from 'tgui-core/react';
+import { toTitleCase } from 'tgui-core/string';
 
-import { useBackend, useSharedState } from '../backend';
-import { formatSiUnit } from '../format';
 import { Materials } from './ExosuitFabricator/Material';
 
 type MaterialData = {
@@ -130,6 +130,7 @@ const Designs = (props) => {
               <Input
                 fluid
                 placeholder="Search all designs..."
+                updateOnPropsChange
                 value={searchText}
                 onChange={(e, val) => setSearchText(val)}
               />

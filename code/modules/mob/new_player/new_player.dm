@@ -270,6 +270,7 @@
 			var/datum/db_query/query_insert = SSdbcore.NewQuery(sql)
 			query_insert.Execute()
 			to_chat(usr, span_bold("Thank you for your vote!"))
+			qdel(query_insert)
 			usr << browse(null,"window=privacypoll")
 
 	if(!ready && href_list["preference"])
@@ -415,10 +416,10 @@
 	if (src != usr)
 		return 0
 	if(!ticker || ticker.current_state != GAME_STATE_PLAYING)
-		to_chat(usr, span_red("The round is either not ready, or has already finished..."))
+		to_chat(src, span_red("The round is either not ready, or has already finished..."))
 		return 0
 	if(!CONFIG_GET(flag/enter_allowed))
-		to_chat(usr, span_notice("There is an administrative lock on entering the game!"))
+		to_chat(src, span_notice("There is an administrative lock on entering the game!"))
 		return 0
 	if(!IsJobAvailable(rank))
 		tgui_alert_async(src,"[rank] is not available. Please try another.")

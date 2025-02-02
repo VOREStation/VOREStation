@@ -1,7 +1,7 @@
 import { useState } from 'react';
+import { useBackend } from 'tgui/backend';
+import { Button, Section, Tabs } from 'tgui-core/components';
 
-import { useBackend } from '../../backend';
-import { Button, Section, Tabs } from '../../components';
 import { ICON_BY_CATEGORY_NAME } from './constants';
 import { Data } from './types';
 

@@ -1,15 +1,14 @@
-import { BooleanLike } from 'common/react';
-
-import { useBackend } from '../backend';
+import { useBackend } from 'tgui/backend';
+import { Window } from 'tgui/layouts';
 import {
   AnimatedNumber,
   Button,
-  Flex,
   LabeledList,
   ProgressBar,
   Section,
-} from '../components';
-import { Window } from '../layouts';
+  Stack,
+} from 'tgui-core/components';
+import { BooleanLike } from 'tgui-core/react';
 
 type Data = {
   on: BooleanLike;
@@ -117,16 +116,16 @@ export const CookingAppliance = (props) => {
                   verticalAlign="middle"
                   key={i}
                 >
-                  <Flex spacing={1}>
-                    <Flex.Item>
+                  <Stack>
+                    <Stack.Item>
                       <Button
                         disabled={!containersRemovable}
                         onClick={() => act('slot', { slot: i + 1 })}
                       >
                         {content.container || 'No Container'}
                       </Button>
-                    </Flex.Item>
-                    <Flex.Item grow={1}>
+                    </Stack.Item>
+                    <Stack.Item grow>
                       <ProgressBar
                         color={content.progressText[0]}
                         value={content.progress}
@@ -134,8 +133,8 @@ export const CookingAppliance = (props) => {
                       >
                         {content.progressText[1]}
                       </ProgressBar>
-                    </Flex.Item>
-                  </Flex>
+                    </Stack.Item>
+                  </Stack>
                 </LabeledList.Item>
               );
             })}

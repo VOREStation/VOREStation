@@ -1,5 +1,5 @@
 import { useDispatch } from 'tgui/backend';
-import { Button } from 'tgui/components';
+import { Button } from 'tgui-core/components';
 
 import { dismissWarning } from './game/actions';
 

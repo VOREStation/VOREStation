@@ -248,7 +248,7 @@
 		alert_msg = emergency_alert + alert_msg
 		lastwarning = world.timeofday - WARNING_DELAY * 4
 		safe_warned = FALSE
-	else if(damage >= damage_archived) // The damage is still going up
+	else if(damage > 0 && damage >= damage_archived) // The damage is still going up
 		safe_warned = FALSE
 		alert_msg = warning_alert + alert_msg
 		lastwarning = world.timeofday

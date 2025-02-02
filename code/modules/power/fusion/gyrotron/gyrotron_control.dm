@@ -90,7 +90,7 @@
 		return
 
 	if(href_list["modifypower"])
-		var/new_val = input(usr, "Enter new emission power level (1 - 50)", "Modifying power level", G.mega_energy) as num
+		var/new_val = tgui_input_number(usr, "Enter new emission power level (1 - 50)", "Modifying power level", G.mega_energy, 50, 1)
 		if(!new_val)
 			to_chat(usr, span_warning("That's not a valid number."))
 			return 1
@@ -100,7 +100,7 @@
 		return 1
 
 	if(href_list["modifyrate"])
-		var/new_val = input(usr, "Enter new emission delay between 1 and 10 seconds.", "Modifying emission rate", G.rate) as num
+		var/new_val = tgui_input_number(usr, "Enter new emission delay between 1 and 10 seconds.", "Modifying emission rate", G.rate, 10, 1)
 		if(!new_val)
 			to_chat(usr, span_warning("That's not a valid number."))
 			return 1
@@ -119,7 +119,7 @@
 /obj/machinery/computer/gyrotron_control/attackby(var/obj/item/W, var/mob/user)
 	..()
 	if(istype(W, /obj/item/multitool))
-		var/new_ident = tgui_input_text(usr, "Enter a new ident tag.", "Gyrotron Control", monitor.gyro_tag, MAX_NAME_LEN)
+		var/new_ident = tgui_input_text(user, "Enter a new ident tag.", "Gyrotron Control", monitor.gyro_tag, MAX_NAME_LEN)
 		new_ident = sanitize(new_ident,MAX_NAME_LEN)
 		if(new_ident && user.Adjacent(src))
 			monitor.gyro_tag = new_ident

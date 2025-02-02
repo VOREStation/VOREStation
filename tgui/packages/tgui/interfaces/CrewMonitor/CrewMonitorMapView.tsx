@@ -1,5 +1,6 @@
 import { useBackend } from 'tgui/backend';
-import { Box, NanoMap } from 'tgui/components';
+import { NanoMap } from 'tgui/components';
+import { Box } from 'tgui-core/components';
 
 import { getStatColor } from './functions';
 import { Data } from './types';

@@ -1,17 +1,17 @@
-import { toFixed } from 'common/math';
-
-import { resolveAsset } from '../../assets';
-import { useBackend } from '../../backend';
+import { resolveAsset } from 'tgui/assets';
+import { useBackend } from 'tgui/backend';
 import {
   Box,
   Button,
-  Flex,
   Icon,
   Image,
   LabeledList,
   ProgressBar,
   Section,
-} from '../../components';
+  Stack,
+} from 'tgui-core/components';
+import { toFixed } from 'tgui-core/math';
+
 import { Data } from './types';
 
 export const CloningConsoleMain = (props) => {
@@ -162,13 +162,13 @@ export const CloningConsoleRecords = (props) => {
   const { records } = data;
   if (!records.length) {
     return (
-      <Flex height="100%">
-        <Flex.Item grow="1" align="center" textAlign="center" color="label">
+      <Stack height="100%">
+        <Stack.Item grow align="center" textAlign="center" color="label">
           <Icon name="user-slash" mb="0.5rem" size={5} />
           <br />
           No records found.
-        </Flex.Item>
-      </Flex>
+        </Stack.Item>
+      </Stack>
     );
   }
   return (

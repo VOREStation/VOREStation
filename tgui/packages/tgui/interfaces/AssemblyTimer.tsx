@@ -1,9 +1,13 @@
-import { round } from 'common/math';
-
-import { useBackend } from '../backend';
-import { Button, LabeledList, NumberInput, Section } from '../components';
-import { formatTime } from '../format';
-import { Window } from '../layouts';
+import { useBackend } from 'tgui/backend';
+import { Window } from 'tgui/layouts';
+import {
+  Button,
+  LabeledList,
+  NumberInput,
+  Section,
+} from 'tgui-core/components';
+import { formatTime } from 'tgui-core/format';
+import { round } from 'tgui-core/math';
 
 type Data = { timing: number; time: number };
 

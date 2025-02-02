@@ -57,6 +57,7 @@
 		while(cquery.NextRow())
 			var/list/row = cquery.GetRowData()
 			marks += row["rank"]
+	qdel(cquery)
 	*/
 	var/text = {"
 	<font size=4><center>Report</center></font><br>

@@ -1,7 +1,6 @@
-import { createSearch, decodeHtmlEntities } from 'common/string';
 import { useState } from 'react';
-
-import { useBackend } from '../backend';
+import { useBackend } from 'tgui/backend';
+import { Window } from 'tgui/layouts';
 import {
   Button,
   Icon,
@@ -11,9 +10,9 @@ import {
   Stack,
   Table,
   Tooltip,
-} from '../components';
-import { TableCell, TableRow } from '../components/Table';
-import { Window } from '../layouts';
+} from 'tgui-core/components';
+import { createSearch, decodeHtmlEntities } from 'tgui-core/string';
+
 import { InputButtons } from './common/InputButtons';
 import { Loader } from './common/Loader';
 
@@ -68,8 +67,8 @@ export const CheckboxInput = (props) => {
             <Section fill scrollable>
               <Table>
                 {toDisplay.map((item, index) => (
-                  <TableRow className="candystripe" key={index}>
-                    <TableCell>
+                  <Table.Row className="candystripe" key={index}>
+                    <Table.Cell>
                       <Button.Checkbox
                         checked={selections.includes(item)}
                         disabled={
@@ -81,8 +80,8 @@ export const CheckboxInput = (props) => {
                       >
                         {item}
                       </Button.Checkbox>
-                    </TableCell>
-                  </TableRow>
+                    </Table.Cell>
+                  </Table.Row>
                 ))}
               </Table>
             </Section>

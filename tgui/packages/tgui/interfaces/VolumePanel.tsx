@@ -1,6 +1,6 @@
-import { useBackend } from '../backend';
-import { Button, LabeledList, Section, Slider } from '../components';
-import { Window } from '../layouts';
+import { useBackend } from 'tgui/backend';
+import { Window } from 'tgui/layouts';
+import { Button, LabeledList, Section, Slider } from 'tgui-core/components';
 
 type Data = {
   volume_channels: { key; val: number }[];

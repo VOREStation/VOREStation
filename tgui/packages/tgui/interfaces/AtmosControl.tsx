@@ -1,9 +1,9 @@
 import { sortBy } from 'common/collections';
 import { useState } from 'react';
-
-import { useBackend } from '../backend';
-import { Box, Button, Icon, NanoMap, Section, Tabs } from '../components';
-import { Window } from '../layouts';
+import { useBackend } from 'tgui/backend';
+import { NanoMap } from 'tgui/components';
+import { Window } from 'tgui/layouts';
+import { Box, Button, Icon, Section, Tabs } from 'tgui-core/components';
 
 type alarm = {
   name: string;

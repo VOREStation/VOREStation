@@ -80,3 +80,11 @@
 /datum/gear/mask/half
 	display_name = "black half-mask"
 	path = /obj/item/clothing/accessory/gaiter/half
+
+/datum/gear/mask/wrestling
+	display_name = "wrestling mask"
+	path = /obj/item/clothing/mask/luchador/colorable
+	cost = 1
+
+/datum/gear/mask/wrestling/New()
+	gear_tweaks += gear_tweak_free_color_choice

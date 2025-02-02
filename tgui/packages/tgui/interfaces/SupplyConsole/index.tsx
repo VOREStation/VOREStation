@@ -1,9 +1,10 @@
-import { Section } from '../../components';
 import {
   ComplexModal,
   modalRegisterBodyOverride,
-} from '../../interfaces/common/ComplexModal';
-import { Window } from '../../layouts';
+} from 'tgui/interfaces/common/ComplexModal';
+import { Window } from 'tgui/layouts';
+import { Section } from 'tgui-core/components';
+
 import { SupplyConsoleMenu } from './SupplyConsoleMenu';
 import { SupplyConsoleShuttleStatus } from './SupplyConsoleShuttleStatus';
 import { viewCrateContents } from './viewCrateContents';

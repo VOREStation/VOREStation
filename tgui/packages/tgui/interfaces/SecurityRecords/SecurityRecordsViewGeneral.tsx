@@ -1,5 +1,6 @@
-import { useBackend } from '../../backend';
-import { Box, Button, Flex, Image, LabeledList } from '../../components';
+import { useBackend } from 'tgui/backend';
+import { Box, Button, Image, LabeledList, Stack } from 'tgui-core/components';
+
 import { doEdit } from '../GeneralRecords/functions';
 import { Data } from './types';
 
@@ -10,8 +11,8 @@ export const SecurityRecordsViewGeneral = (props) => {
     return <Box color="bad">General records lost!</Box>;
   }
   return (
-    <Flex>
-      <Flex.Item>
+    <Stack>
+      <Stack.Item>
         <LabeledList>
           {general.fields.map((field, i) => (
             <LabeledList.Item key={i} label={field.field}>
@@ -28,8 +29,8 @@ export const SecurityRecordsViewGeneral = (props) => {
             </LabeledList.Item>
           ))}
         </LabeledList>
-      </Flex.Item>
-      <Flex.Item textAlign="right">
+      </Stack.Item>
+      <Stack.Item textAlign="right">
         {!!general.has_photos &&
           general.photos!.map((p, i) => (
             <Box key={i} inline textAlign="center" color="label">
@@ -48,7 +49,7 @@ export const SecurityRecordsViewGeneral = (props) => {
           <Button onClick={() => act('photo_front')}>Update Front Photo</Button>
           <Button onClick={() => act('photo_side')}>Update Side Photo</Button>
         </Box>
-      </Flex.Item>
-    </Flex>
+      </Stack.Item>
+    </Stack>
   );
 };

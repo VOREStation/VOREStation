@@ -231,7 +231,7 @@
 	if(recipe.items && recipe.items.len)
 		for(var/obj/item/I in storage)
 			for(var/item_type in recipe.items)
-				if(istype(I, item_type))
+				if(istype(I, item_type) && prob(recipe.item_consume_chance))
 					storage -= I
 					qdel(I)
 					break
@@ -281,6 +281,7 @@
 	var/required_atmos_temp_min = 0		// The minimum ambient atmospheric temperature required, in kelvin.
 	var/required_atmos_temp_max = 600	// The maximum ambient atmospheric temperature required, in kelvin.
 	var/probability = 0					// The probability for the recipe to be produced. 0 will make it impossible.
+	var/item_consume_chance = 100		// The probability for the items (not materials) used in the recipe to be consume.
 
 /datum/particle_smasher_recipe/proc/check_items(var/obj/container as obj)
 	. = 1
@@ -417,6 +418,20 @@
 	required_atmos_temp_min = 400
 	required_atmos_temp_max = 20000
 	probability = 20
+
+/datum/particle_smasher_recipe/glamour
+	items = list(/obj/item/glamour_unstable)
+
+	result = /obj/item/stack/material/glamour
+	required_material = /obj/item/stack/material/phoron
+
+	required_energy_min = 500
+	required_energy_max = 600
+
+	required_atmos_temp_min = 0
+	required_atmos_temp_max = 50
+	probability = 100
+	item_consume_chance = 10 //Allows only a few unstable glamour to be given out to get lots of stable ones.
 
 #undef PS_RESULT_STACK
 #undef PS_RESULT_ITEM

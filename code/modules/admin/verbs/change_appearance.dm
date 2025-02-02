@@ -48,26 +48,26 @@
 		return
 	if(tgui_alert(usr, "Are you sure you wish to edit this mob's appearance? Skrell, Unathi, Tajaran can result in unintended consequences.","Danger!",list("Yes","No")) != "Yes")
 		return
-	var/new_facial = input(usr, "Please select facial hair color.", "Character Generation") as color
+	var/new_facial = tgui_color_picker(usr, "Please select facial hair color.", "Character Generation")
 	if(new_facial)
 		M.r_facial = hex2num(copytext(new_facial, 2, 4))
 		M.g_facial = hex2num(copytext(new_facial, 4, 6))
 		M.b_facial = hex2num(copytext(new_facial, 6, 8))
 
-	var/new_hair = input(usr, "Please select hair color.", "Character Generation") as color
+	var/new_hair = tgui_color_picker(usr, "Please select hair color.", "Character Generation")
 	if(new_facial)
 		M.r_hair = hex2num(copytext(new_hair, 2, 4))
 		M.g_hair = hex2num(copytext(new_hair, 4, 6))
 		M.b_hair = hex2num(copytext(new_hair, 6, 8))
 
-	var/new_eyes = input(usr, "Please select eye color.", "Character Generation") as color
+	var/new_eyes = tgui_color_picker(usr, "Please select eye color.", "Character Generation")
 	if(new_eyes)
 		M.r_eyes = hex2num(copytext(new_eyes, 2, 4))
 		M.g_eyes = hex2num(copytext(new_eyes, 4, 6))
 		M.b_eyes = hex2num(copytext(new_eyes, 6, 8))
 		M.update_eyes()
 
-	var/new_skin = input(usr, "Please select body color. This is for Tajaran, Unathi, and Skrell only!", "Character Generation") as color
+	var/new_skin = tgui_color_picker(usr, "Please select body color. This is for Tajaran, Unathi, and Skrell only!", "Character Generation")
 	if(new_skin)
 		M.r_skin = hex2num(copytext(new_skin, 2, 4))
 		M.g_skin = hex2num(copytext(new_skin, 4, 6))

@@ -568,10 +568,10 @@
 			if(!L.is_bruised() && prob(8))
 				rupture_lung()
 
-		throw_alert("pressure", /obj/screen/alert/lowpressure)
+		throw_alert("oxy", /obj/screen/alert/not_enough_atmos)
 		return 0
 	else
-		clear_alert("pressure")
+		clear_alert("oxy")
 
 	var/safe_pressure_min = species.minimum_breath_pressure // Minimum safe partial pressure of breathable gas in kPa
 
@@ -585,11 +585,6 @@
 			safe_pressure_min *= 1.5
 		else if(L.is_bruised())
 			safe_pressure_min *= 1.25
-		else if(breath)
-			if(breath.total_moles < BREATH_MOLES / 10 || breath.total_moles > BREATH_MOLES * 5)
-				if(is_below_sound_pressure(get_turf(src)))	//No more popped lungs from choking/drowning
-					if (prob(8))
-						rupture_lung()
 
 	var/safe_exhaled_max = 10
 	var/safe_toxins_max = 0.2
@@ -637,6 +632,8 @@
 	if(inhale_pp < safe_pressure_min)
 		if(prob(20))
 			spawn(0) emote("gasp")
+		if(is_below_sound_pressure(get_turf(src)) && prob(8))	//No more popped lungs from choking/drowning
+			rupture_lung()
 
 		var/ratio = inhale_pp/safe_pressure_min
 		// Don't fuck them up too fast (space only does HUMAN_MAX_OXYLOSS after all!)

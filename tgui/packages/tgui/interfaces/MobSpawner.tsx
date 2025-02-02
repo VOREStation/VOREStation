@@ -1,20 +1,19 @@
 import { useState } from 'react';
-
-import { BooleanLike } from '../../common/react';
-import { useBackend } from '../backend';
+import { useBackend } from 'tgui/backend';
+import { Window } from 'tgui/layouts';
 import {
   Button,
   Divider,
-  Flex,
   Input,
   Knob,
   LabeledList,
   NumberInput,
   Section,
+  Stack,
   Tabs,
   TextArea,
-} from '../components';
-import { Window } from '../layouts';
+} from 'tgui-core/components';
+import { BooleanLike } from 'tgui-core/react';
 
 type Data = {
   path: string;
@@ -219,8 +218,8 @@ const GeneralMobSettings = (props: {
         </LabeledList>
       </Section>
       <Section title="General Settings">
-        <Flex horizontal>
-          <Flex.Item FlexGrow>
+        <Stack>
+          <Stack.Item grow>
             <Section title="Positional Settings">
               <LabeledList>
                 <LabeledList.Item label="Spawn (X/Y/Z) Coords">
@@ -264,11 +263,11 @@ const GeneralMobSettings = (props: {
                 </LabeledList.Item>
               </LabeledList>
             </Section>
-          </Flex.Item>
-          <Flex.Item>
+          </Stack.Item>
+          <Stack.Item>
             <Divider vertical />
-          </Flex.Item>
-          <Flex.Item FlexGrow>
+          </Stack.Item>
+          <Stack.Item grow>
             <Section
               title="AI settings"
               buttons={
@@ -353,12 +352,12 @@ const GeneralMobSettings = (props: {
                   "Note: Only available for '/mob/living/simple_mob'"}
               </LabeledList>
             </Section>
-          </Flex.Item>
-        </Flex>
+          </Stack.Item>
+        </Stack>
       </Section>
       <Section title="Descriptions">
-        <Flex>
-          <Flex.Item width="50%">
+        <Stack>
+          <Stack.Item width="50%">
             Description:
             <br />
             <TextArea
@@ -366,8 +365,8 @@ const GeneralMobSettings = (props: {
               onChange={(e, val: string) => props.onDesc(val)}
               value={data.desc}
             />
-          </Flex.Item>
-          <Flex.Item width="50%">
+          </Stack.Item>
+          <Stack.Item width="50%">
             Flavor Text:
             <br />
             <TextArea
@@ -375,8 +374,8 @@ const GeneralMobSettings = (props: {
               value={data.flavor_text}
               onChange={(e, val: string) => props.onFlavor(val)}
             />
-          </Flex.Item>
-        </Flex>
+          </Stack.Item>
+        </Stack>
       </Section>
       <Button
         color="teal"

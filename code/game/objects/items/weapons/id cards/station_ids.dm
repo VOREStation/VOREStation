@@ -58,6 +58,12 @@
 	var/icon/F = getFlatIcon(M, defdir = SOUTH, no_anim = TRUE)
 	front = "'data:image/png;base64,[icon2base64(F)]'"
 
+/obj/item/card/id/proc/adjust_mining_points(var/points)
+	if(mining_points + points < 0)
+		return FALSE
+	mining_points += points
+	return TRUE
+
 /mob/proc/set_id_info(var/obj/item/card/id/id_card)
 	id_card.age = 0
 	id_card.registered_name		= real_name

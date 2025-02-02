@@ -1,5 +1,6 @@
-import { useBackend } from '../../backend';
-import { Box, Button, Icon, Input } from '../../components';
+import { useBackend } from 'tgui/backend';
+import { Box, Button, Icon, Input } from 'tgui-core/components';
+
 import { FullscreenNotice } from '../common/FullscreenNotice';
 import { Data } from './types';
 

@@ -120,7 +120,7 @@
 	else if(!enabled && screen_on)
 		turn_on(user)
 
-/obj/item/modular_computer/attackby(var/obj/item/W as obj, var/mob/user as mob)
+/obj/item/modular_computer/attackby(var/obj/item/W, var/mob/user)
 	if(istype(W, /obj/item/card/id)) // ID Card, try to insert it.
 		var/obj/item/card/id/I = W
 		if(!card_slot)
@@ -166,7 +166,7 @@
 			return
 
 		to_chat(user, "You begin repairing damage to \the [src]...")
-		if(WT.remove_fuel(round(damage/75)) && do_after(usr, damage/10))
+		if(WT.remove_fuel(round(damage/75)) && do_after(user, damage/10))
 			damage = 0
 			to_chat(user, "You repair \the [src].")
 		return
@@ -180,12 +180,12 @@
 		for(var/obj/item/computer_hardware/H in all_components)
 			component_names.Add(H.name)
 
-		var/choice = tgui_input_list(usr, "Which component do you want to uninstall?", "Computer maintenance", component_names)
+		var/choice = tgui_input_list(user, "Which component do you want to uninstall?", "Computer maintenance", component_names)
 
 		if(!choice)
 			return
 
-		if(!Adjacent(usr))
+		if(!Adjacent(user))
 			return
 
 		var/obj/item/computer_hardware/H = find_hardware_by_name(choice)

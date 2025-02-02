@@ -1,6 +1,7 @@
-import { useBackend } from '../backend';
-import { Button } from '../components';
-import { Window } from '../layouts';
+import { useBackend } from 'tgui/backend';
+import { Window } from 'tgui/layouts';
+import { Button } from 'tgui-core/components';
+
 import { tgui_construction } from './common/CommonTypes';
 
 type Data = {

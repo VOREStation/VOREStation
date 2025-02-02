@@ -1,10 +1,9 @@
-import { clamp } from 'common/math';
-import { BooleanLike } from 'common/react';
 import { Component, createRef, RefObject, useState } from 'react';
-
-import { useBackend } from '../backend';
-import { Box, Button, Stack } from '../components';
-import { Window } from '../layouts';
+import { useBackend } from 'tgui/backend';
+import { Window } from 'tgui/layouts';
+import { Box, Button, Stack } from 'tgui-core/components';
+import { clamp } from 'tgui-core/math';
+import { BooleanLike } from 'tgui-core/react';
 
 const PX_PER_UNIT = 24;
 

@@ -1,5 +1,5 @@
-import { useBackend } from '../../backend';
-import { Box, Button, Flex } from '../../components';
+import { useBackend } from 'tgui/backend';
+import { Box, Button, Stack } from 'tgui-core/components';
 
 export const DNAModifierBlocks = (props: {
   dnaString: string;
@@ -26,6 +26,8 @@ export const DNAModifierBlocks = (props: {
             selectedBlock === realBlock && selectedSubblock === realSubblock
           }
           mb="0"
+          width="20px"
+          height="20px"
           onClick={() =>
             act(action, {
               block: realBlock,
@@ -38,7 +40,10 @@ export const DNAModifierBlocks = (props: {
       );
     }
     dnaBlocks.push(
-      <Flex.Item flex="0 0 16%" mb="1rem">
+      <Stack.Item
+        mb="1rem"
+        style={realBlock === 1 ? { marginLeft: '0.5em' } : {}} // Remove once tgui core uses gap
+      >
         <Box
           inline
           width="20px"
@@ -52,8 +57,8 @@ export const DNAModifierBlocks = (props: {
           {realBlock}
         </Box>
         {subBlocks}
-      </Flex.Item>,
+      </Stack.Item>,
     );
   }
-  return <Flex wrap="wrap">{dnaBlocks}</Flex>;
+  return <Stack wrap="wrap">{dnaBlocks}</Stack>;
 };

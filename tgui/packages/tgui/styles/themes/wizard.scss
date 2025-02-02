@@ -7,12 +7,12 @@
 @use 'sass:meta';
 
 @use '../colors.scss' with (
-  $primary: #1596b6,
+  $primary: hsl(192, 79%, 40%),
   $fg-map-keys: (),
   $bg-map-keys: ()
 );
 @use '../base.scss' with (
-  $color-bg: #213e4e,
+  $color-bg: hsl(201, 41%, 22%),
   $color-bg-grad-spread: 6%,
   $border-radius: 2px
 );
@@ -23,36 +23,36 @@
 
   // Components
   @include meta.load-css(
-    '../components/Button.scss',
+    '~tgui-core/styles/components/Button.scss',
     $with: (
       'color-default': colors.$primary,
-      'color-disabled': #02426d,
-      'color-selected': #465899,
-      'color-caution': #be6209,
-      'color-danger': #b30707
+      'color-disabled': hsl(204, 96%, 22%),
+      'color-selected': hsl(227, 37%, 44%),
+      'color-caution': hsl(30, 91%, 39%),
+      'color-danger': hsl(0, 92%, 36%)
     )
   );
   @include meta.load-css(
-    '../components/Input.scss',
-    $with: ('border-color': #404b6e)
+    '~tgui-core/styles/components/Input.scss',
+    $with: ('border-color': hsl(226, 26%, 34%))
   );
   @include meta.load-css('../components/NanoMap.scss');
   @include meta.load-css(
-    '../components/NoticeBox.scss',
-    $with: ('background-color': #a82d55)
+    '~tgui-core/styles/components/NoticeBox.scss',
+    $with: ('background-color': hsl(340, 58%, 42%))
   );
   @include meta.load-css(
-    '../components/NumberInput.scss',
-    $with: ('border-color': #404b6e)
+    '~tgui-core/styles/components/NumberInput.scss',
+    $with: ('border-color': hsl(226, 26%, 34%))
   );
   @include meta.load-css(
-    '../components/ProgressBar.scss',
-    $with: ('background-color': rgba(0, 0, 0, 0.5))
+    '~tgui-core/styles/components/ProgressBar.scss',
+    $with: ('background-color': hsla(0, 0%, 0%, 0.5))
   );
-  @include meta.load-css('../components/Section.scss');
+  @include meta.load-css('~tgui-core/styles/components/Section.scss');
   @include meta.load-css(
-    '../components/Tooltip.scss',
-    $with: ('background-color': #2da848)
+    '~tgui-core/styles/components/Tooltip.scss',
+    $with: ('background-color': hsl(133, 58%, 42%))
   );
 
   // Layouts
@@ -60,7 +60,7 @@
   @include meta.load-css('../layouts/Window.scss');
   @include meta.load-css(
     '../layouts/TitleBar.scss',
-    $with: ('background-color': #1b9e26)
+    $with: ('background-color': hsl(125, 71%, 36%))
   );
 
   .Layout__content {

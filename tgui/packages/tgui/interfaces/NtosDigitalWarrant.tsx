@@ -1,9 +1,8 @@
 import { filter } from 'common/collections';
-import { BooleanLike } from 'common/react';
-
-import { useBackend } from '../backend';
-import { Button, LabeledList, Section, Table } from '../components';
-import { NtosWindow } from '../layouts';
+import { useBackend } from 'tgui/backend';
+import { NtosWindow } from 'tgui/layouts';
+import { Button, LabeledList, Section, Table } from 'tgui-core/components';
+import { BooleanLike } from 'tgui-core/react';
 
 type Data = {
   warrantname: string | null;
@@ -92,7 +91,7 @@ const WarrantList = (props) => {
           </Table.Row>
         ))) || (
         <Table.Row>
-          <Table.Cell colspan="3" color="bad">
+          <Table.Cell colSpan={3} color="bad">
             No {type} warrants found.
           </Table.Cell>
         </Table.Row>

@@ -1,8 +1,14 @@
-import { BooleanLike } from 'common/react';
-
-import { useBackend } from '../backend';
-import { Box, Button, Flex, NoticeBox, Section, Table } from '../components';
-import { Window } from '../layouts';
+import { useBackend } from 'tgui/backend';
+import { Window } from 'tgui/layouts';
+import {
+  Box,
+  Button,
+  NoticeBox,
+  Section,
+  Stack,
+  Table,
+} from 'tgui-core/components';
+import { BooleanLike } from 'tgui-core/react';
 
 type Data = {
   locked: BooleanLike;
@@ -89,12 +95,12 @@ export const SecureSafe = (props) => {
               )}
             </Box>
           </Section>
-          <Flex ml="3px">
-            <Flex.Item>
+          <Stack ml="3px">
+            <Stack.Item>
               <NukeKeypad />
-            </Flex.Item>
-            <Flex.Item ml="6px" width="129px" />
-          </Flex>
+            </Stack.Item>
+            <Stack.Item ml="6px" width="129px" />
+          </Stack>
         </Box>
       </Window.Content>
     </Window>

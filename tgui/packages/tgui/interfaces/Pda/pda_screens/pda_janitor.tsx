@@ -1,5 +1,5 @@
 import { useBackend } from 'tgui/backend';
-import { Box, LabeledList, Section } from 'tgui/components';
+import { Box, LabeledList, Section } from 'tgui-core/components';
 
 type Data = {
   janitor: {

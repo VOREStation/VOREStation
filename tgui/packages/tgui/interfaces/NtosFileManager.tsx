@@ -1,10 +1,9 @@
 /* eslint react/no-danger: "off" */
 
-import { BooleanLike } from 'common/react';
-
-import { useBackend } from '../backend';
-import { Button, Flex, Section, Table } from '../components';
-import { NtosWindow } from '../layouts';
+import { useBackend } from 'tgui/backend';
+import { NtosWindow } from 'tgui/layouts';
+import { Button, Section, Stack, Table } from 'tgui-core/components';
+import { BooleanLike } from 'tgui-core/react';
 
 type Data = {
   PC_device_theme: string;
@@ -110,8 +109,8 @@ export const NtosFileManager = (props) => {
           </>
         )}
         {error && (
-          <Flex wrap="wrap" position="fixed" bottom="5px">
-            <Flex.Item>
+          <Stack wrap="wrap" position="fixed" bottom="5px">
+            <Stack.Item>
               <Section>
                 <Button
                   bottom="0"
@@ -120,11 +119,11 @@ export const NtosFileManager = (props) => {
                   onClick={() => act('PRG_clearerror')}
                 />
               </Section>
-            </Flex.Item>
-            <Section>
-              <Flex.Item grow>{error}</Flex.Item>
-            </Section>
-          </Flex>
+            </Stack.Item>
+            <Stack.Item grow>
+              <Section>{error}</Section>
+            </Stack.Item>
+          </Stack>
         )}
       </NtosWindow.Content>
     </NtosWindow>

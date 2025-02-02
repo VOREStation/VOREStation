@@ -7,12 +7,12 @@
 @use 'sass:meta';
 
 @use '../colors.scss' with (
-  $primary: #000000,
+  $primary: hsl(0, 0%, 0%),
   $fg-map-keys: (),
   $bg-map-keys: ()
 );
 @use '../base.scss' with (
-  $color-bg: #e8e4c9,
+  $color-bg: hsl(52, 40%, 85%),
   $color-bg-grad-spread: 0%,
   $border-radius: 0
 );
@@ -25,34 +25,34 @@
 
   // Components
   @include meta.load-css(
-    '../components/Button.scss',
+    '~tgui-core/styles/components/Button.scss',
     $with: (
-      'color-default': #e8e4c9,
-      'color-disabled': #363636,
-      'color-selected': #9d0808,
-      'color-caution': #be6209,
-      'color-danger': #9a9d00
+      'color-default': hsl(52, 40%, 85%),
+      'color-disabled': hsl(0, 0%, 21%),
+      'color-selected': hsl(0, 90%, 32%),
+      'color-caution': hsl(30, 91%, 39%),
+      'color-danger': hsl(61, 100%, 31%)
     )
   );
   @include meta.load-css(
-    '../components/ProgressBar.scss',
-    $with: ('background-color': rgba(0, 0, 0, 0.5))
+    '~tgui-core/styles/components/ProgressBar.scss',
+    $with: ('background-color': hsla(0, 0%, 0%, 0.5))
   );
-  @include meta.load-css('../components/Section.scss');
+  @include meta.load-css('.~tgui-core/styles/components/Section.scss');
 
   // Layouts
   @include meta.load-css('../layouts/Layout.scss');
   @include meta.load-css('../layouts/Window.scss');
   @include meta.load-css(
     '../layouts/TitleBar.scss',
-    $with: ('background-color': #585337)
+    $with: ('background-color': hsl(51, 23%, 28%))
   );
 
   .Button {
     font-family: monospace;
     color: #161613;
-    border: base.em(2px) outset #e8e4c9;
-    outline: base.em(1px) solid #161613;
+    border: base.em(2px) outset hsl(52, 40%, 85%);
+    outline: base.em(1px) solid hsl(60, 7%, 8%);
   }
 
   .Layout__content {

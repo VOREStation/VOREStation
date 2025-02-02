@@ -4,17 +4,15 @@
  * @license MIT
  */
 
-import { classes } from 'common/react';
-import { decodeHtmlEntities, toTitleCase } from 'common/string';
-import { PropsWithChildren, ReactNode, useEffect } from 'react';
+import { ComponentProps, PropsWithChildren, ReactNode, useEffect } from 'react';
+import { backendSuspendStart, globalStore, useBackend } from 'tgui/backend';
+import { UI_DISABLED, UI_INTERACTIVE, UI_UPDATE } from 'tgui/constants';
+import { useDebug } from 'tgui/debug';
+import { toggleKitchenSink } from 'tgui/debug/actions';
+import { Box, Icon } from 'tgui-core/components';
+import { classes } from 'tgui-core/react';
+import { decodeHtmlEntities, toTitleCase } from 'tgui-core/string';
 
-import { backendSuspendStart, useBackend } from '../backend';
-import { globalStore } from '../backend';
-import { Icon } from '../components';
-import { BoxProps } from '../components/Box';
-import { UI_DISABLED, UI_INTERACTIVE, UI_UPDATE } from '../constants';
-import { useDebug } from '../debug';
-import { toggleKitchenSink } from '../debug/actions';
 import {
   dragStartHandler,
   recallWindowGeometry,
@@ -137,7 +135,7 @@ type ContentProps = Partial<{
   scrollable: boolean;
   vertical: boolean;
 }> &
-  BoxProps &
+  ComponentProps<typeof Box> &
   PropsWithChildren;
 
 const WindowContent = (props: ContentProps) => {

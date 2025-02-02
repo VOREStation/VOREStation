@@ -1,15 +1,15 @@
-import { BooleanLike } from 'common/react';
-
-import { useBackend } from '../backend';
+import { useBackend } from 'tgui/backend';
+import { Window } from 'tgui/layouts';
 import {
   AnimatedNumber,
   Box,
   Button,
-  Flex,
   LabeledList,
   Section,
-} from '../components';
-import { Window } from '../layouts';
+  Stack,
+} from 'tgui-core/components';
+import { BooleanLike } from 'tgui-core/react';
+
 import { OvermapPanControls } from './common/Overmap';
 
 type Data = {
@@ -57,16 +57,16 @@ const OvermapDisperserContent = (props) => {
   }
 
   return (
-    <Flex wrap="wrap" spacing={1}>
-      <Flex.Item basis="22%">
+    <Stack wrap="wrap">
+      <Stack.Item basis="22%">
         <Section title="Targeting" textAlign="center">
           <OvermapPanControls
             actToDo="choose"
             selected={(val) => val === overmapdir}
           />
         </Section>
-      </Flex.Item>
-      <Flex.Item basis="74%" grow={1}>
+      </Stack.Item>
+      <Stack.Item basis="74%" grow>
         <Section title="Charge">
           <LabeledList>
             {(nopower && (
@@ -90,8 +90,8 @@ const OvermapDisperserContent = (props) => {
             </LabeledList.Item>
           </LabeledList>
         </Section>
-      </Flex.Item>
-      <Flex.Item basis="50%" mt={1}>
+      </Stack.Item>
+      <Stack.Item basis="50%" mt={1}>
         <Section title="Calibration">
           <AnimatedNumber value={cal_accuracy} />%
           <Button
@@ -118,8 +118,8 @@ const OvermapDisperserContent = (props) => {
             ))}
           </Box>
         </Section>
-      </Flex.Item>
-      <Flex.Item basis="45%" grow={1} mt={1}>
+      </Stack.Item>
+      <Stack.Item basis="45%" grow mt={1}>
         <Section title="Setup">
           <LabeledList>
             <LabeledList.Item label="Strength">
@@ -138,12 +138,12 @@ const OvermapDisperserContent = (props) => {
             </LabeledList.Item>
           </LabeledList>
         </Section>
-      </Flex.Item>
-      <Flex.Item grow={1} mt={1}>
+      </Stack.Item>
+      <Stack.Item grow mt={1}>
         <Button fluid color="red" icon="bomb" onClick={() => act('fire')}>
           Fire ORB
         </Button>
-      </Flex.Item>
-    </Flex>
+      </Stack.Item>
+    </Stack>
   );
 };

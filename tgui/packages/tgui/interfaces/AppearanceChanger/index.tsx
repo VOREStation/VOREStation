@@ -1,9 +1,15 @@
-import { capitalize, decodeHtmlEntities } from 'common/string';
 import { useState } from 'react';
 import { useBackend } from 'tgui/backend';
-import { Box, Flex, LabeledList, Section, Tabs } from 'tgui/components';
 import { Window } from 'tgui/layouts';
-import { ByondUi } from 'tgui-core/components';
+import {
+  Box,
+  ByondUi,
+  LabeledList,
+  Section,
+  Stack,
+  Tabs,
+} from 'tgui-core/components';
+import { capitalize, decodeHtmlEntities } from 'tgui-core/string';
 
 import {
   AppearanceChangerEars,
@@ -126,8 +132,8 @@ export const AppearanceChanger = (props) => {
     <Window width={700} height={650} title={decodeHtmlEntities(title)}>
       <Window.Content>
         <Section title="Reflection">
-          <Flex>
-            <Flex.Item grow={1}>
+          <Stack>
+            <Stack.Item grow>
               <LabeledList>
                 <LabeledList.Item label="Name">{name}</LabeledList.Item>
                 <LabeledList.Item
@@ -181,8 +187,8 @@ export const AppearanceChanger = (props) => {
                   {wing_style ? capitalize(wing_style) : 'Not Set'}
                 </LabeledList.Item>
               </LabeledList>
-            </Flex.Item>
-            <Flex.Item>
+            </Stack.Item>
+            <Stack.Item>
               <ByondUi
                 style={{
                   width: '256px',
@@ -193,8 +199,8 @@ export const AppearanceChanger = (props) => {
                   type: 'map',
                 }}
               />
-            </Flex.Item>
-          </Flex>
+            </Stack.Item>
+          </Stack>
         </Section>
         <Tabs>
           {change_race ? (

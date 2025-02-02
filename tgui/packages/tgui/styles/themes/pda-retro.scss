@@ -2,14 +2,14 @@
 @use 'sass:meta';
 
 @use '../colors.scss' with (
-  $primary: #000000,
-  $label: #000000,
-  $average: #000000
+  $primary: hsl(0, 0%, 0%),
+  $label: hsl(0, 0%, 0%),
+  $average: hsl(0, 0%, 0%)
 );
 @use '../base.scss' with (
-  $color-bg: #6f7961,
+  $color-bg: hsl(85, 11%, 43%),
   $color-bg-grad-spread: 0%,
-  $color-fg: #000,
+  $color-fg: hsl(0, 0%, 0%),
   $border-radius: 0
 );
 
@@ -21,28 +21,31 @@
 
   // Components
   @include meta.load-css(
-    '../components/Button.scss',
+    '~tgui-core/styles/components/Button.scss',
     $with: (
-      'color-default': #e8e4c9,
-      'color-disabled': #505050,
-      'color-selected': #9d0808,
-      'color-caution': #be6209,
-      'color-danger': #9a9d00
+      'color-default': hsl(52, 40%, 85%),
+      'color-disabled': hsl(0, 0%, 31%),
+      'color-selected': hsl(0, 90%, 32%),
+      'color-caution': hsl(30, 91%, 39%),
+      'color-danger': hsl(61, 100%, 31%)
     )
   );
   @include meta.load-css(
-    '../components/ProgressBar.scss',
-    $with: ('background-color': rgba(0, 0, 0, 0.5))
+    '~tgui-core/styles/components/ProgressBar.scss',
+    $with: ('background-color': hsla(0, 0%, 0%, 0.502))
   );
   @include meta.load-css(
-    '../components/Section.scss',
-    $with: ('background-color': rgba(0, 0, 0, 0.1))
+    '~tgui-core/styles/components/Section.scss',
+    $with: ('background-color': hsla(0, 0%, 0%, 0.102))
   );
 
   // Interfaces
   @include meta.load-css(
     '../interfaces/TinderMessaging.scss',
-    $with: ('color-sent': #9faa91, 'color-received': #b8b37b)
+    $with: (
+      'color-sent': hsl(86, 13%, 62%),
+      'color-received': hsl(55, 30%, 60%)
+    )
   );
 
   // Layouts
@@ -50,13 +53,13 @@
   @include meta.load-css('../layouts/Window.scss');
   @include meta.load-css(
     '../layouts/TitleBar.scss',
-    $with: ('background-color': #363636)
+    $with: ('background-color': hsl(0, 0%, 21%))
   );
 
   .Button {
     color: #161613;
-    background-color: #565d4b;
-    border: 1px solid #000000;
+    background-color: hsl(83, 11%, 33%);
+    border: 1px solid hsl(0, 0%, 0%);
   }
 
   .Layout__content {
@@ -68,6 +71,6 @@
   }
 
   .Tooltip::after {
-    color: #ffffff;
+    color: hsl(0, 0%, 100%);
   }
 }

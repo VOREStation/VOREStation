@@ -1,7 +1,7 @@
-import { capitalize } from 'common/string';
+import { useBackend } from 'tgui/backend';
+import { Button, LabeledList, Section } from 'tgui-core/components';
+import { capitalize } from 'tgui-core/string';
 
-import { useBackend } from '../../backend';
-import { Button, LabeledList, Section } from '../../components';
 import { Data } from './types';
 
 export const RIGSuitHardware = (props) => {

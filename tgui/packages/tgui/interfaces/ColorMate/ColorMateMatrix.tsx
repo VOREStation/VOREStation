@@ -1,6 +1,4 @@
-import { toFixed } from 'common/math';
-
-import { useBackend } from '../../backend';
+import { useBackend } from 'tgui/backend';
 import {
   Box,
   Icon,
@@ -8,7 +6,9 @@ import {
   LabeledList,
   NumberInput,
   Table,
-} from '../../components';
+} from 'tgui-core/components';
+import { toFixed } from 'tgui-core/math';
+
 import { Data } from './types';
 
 export const ColorMateMatrix = (props) => {
@@ -243,6 +243,7 @@ export const ColorMateMatrix = (props) => {
         <LabeledList>
           <LabeledList.Item label="Config">
             <Input
+              updateOnPropsChange
               fluid
               value={Object.values(matrixcolors).toString()}
               onChange={(e, value: string) =>
