@@ -90,7 +90,8 @@ GLOBAL_LIST_BOILERPLATE(all_brain_organs, /obj/item/organ/internal/brain)
 				brainmob.client.screen.len = null //clear the hud
 
 /obj/item/organ/internal/brain/Destroy()
-	qdel(brainmob.dna)
+	if(brainmob && brainmob.dna)
+		qdel(brainmob.dna)
 	QDEL_NULL(brainmob)
 	. = ..()
 
