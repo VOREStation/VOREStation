@@ -604,7 +604,9 @@ var/list/ai_verbs_default = list(
 	var/input
 	var/choice
 
-	choice = alert("Would you like to modify your hologram's model, or color?",,"Model","Color","Cancel")
+	choice = tgui_alert(src, "Would you like to modify your hologram's model, or color?", "Modify Hologram", list("Model","Color","Cancel"))
+	if(!choice || choice == "Cancel")
+		return
 
 	switch(choice)
 		if("Color")
