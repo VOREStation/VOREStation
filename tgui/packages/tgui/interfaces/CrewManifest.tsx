@@ -1,8 +1,8 @@
-import { decodeHtmlEntities } from 'common/string';
 import { useBackend } from 'tgui/backend';
 import { COLORS } from 'tgui/constants';
 import { Window } from 'tgui/layouts';
 import { Box, Section, Table } from 'tgui-core/components';
+import { decodeHtmlEntities } from 'tgui-core/string';
 
 /*
  * Shared by the following templates (and used individually too)

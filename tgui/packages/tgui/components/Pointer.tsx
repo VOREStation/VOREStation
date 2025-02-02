@@ -12,8 +12,8 @@
  * SOFTWARE.
  */
 
-import { classes } from 'common/react';
 import React from 'react';
+import { classes } from 'tgui-core/react';
 
 interface PointerProps {
   className?: string;

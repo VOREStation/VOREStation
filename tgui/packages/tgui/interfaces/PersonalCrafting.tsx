@@ -1,21 +1,20 @@
 import { filter } from 'common/collections';
-import { flow } from 'common/fp';
-import { BooleanLike } from 'common/react';
-import { createSearch } from 'common/string';
 import { useState } from 'react';
-
-import { useBackend } from '../backend';
+import { useBackend } from 'tgui/backend';
+import { Window } from 'tgui/layouts';
 import {
   Button,
   Dimmer,
-  Flex,
   Icon,
   Input,
   LabeledList,
   Section,
+  Stack,
   Tabs,
-} from '../components';
-import { Window } from '../layouts';
+} from 'tgui-core/components';
+import { flow } from 'tgui-core/fp';
+import { BooleanLike } from 'tgui-core/react';
+import { createSearch } from 'tgui-core/string';
 
 type Data = {
   busy: BooleanLike;
@@ -141,8 +140,8 @@ export const PersonalCrafting = (props) => {
             placeholder="Search for recipes..."
             onInput={(e, value: string) => setSearchText(value)}
           />
-          <Flex>
-            <Flex.Item>
+          <Stack>
+            <Stack.Item>
               <Tabs vertical>
                 {categories.map((category, i) => (
                   <Tabs.Tab
@@ -160,15 +159,15 @@ export const PersonalCrafting = (props) => {
                   </Tabs.Tab>
                 ))}
               </Tabs>
-            </Flex.Item>
-            <Flex.Item grow={1} basis={0}>
+            </Stack.Item>
+            <Stack.Item grow basis={0}>
               <CraftingList
                 craftables={shownRecipes}
                 display_compact={display_compact}
                 display_craftable_only={display_craftable_only}
               />
-            </Flex.Item>
-          </Flex>
+            </Stack.Item>
+          </Stack>
         </Section>
       </Window.Content>
     </Window>
@@ -219,6 +218,7 @@ const CraftingList = (props: {
     // Full display
     return (
       <Section
+        ml={0}
         key={i}
         title={craftable.name}
         buttons={

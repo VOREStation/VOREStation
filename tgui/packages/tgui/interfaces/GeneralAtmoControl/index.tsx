@@ -1,5 +1,6 @@
-import { useBackend } from '../../backend';
-import { Window } from '../../layouts';
+import { useBackend } from 'tgui/backend';
+import { Window } from 'tgui/layouts';
+
 import { AtmoControlFuel } from './FuelControls';
 import { AtmoControlSensors } from './Sensors';
 import { AtmoControlTankCore } from './TankControls';

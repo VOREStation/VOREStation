@@ -15,14 +15,19 @@
 
 // Run all strings to be used in an SQL query through this proc first to properly escape out injection attempts.
 /proc/sanitizeSQL(var/t as text)
-	var/sqltext = dbcon.Quote(t);
-	return copytext(sqltext, 2, length(sqltext));//Quote() adds quotes around input, we already do that
+	//var/sqltext = dbcon.Quote(t);
+	//return copytext(sqltext, 2, length(sqltext));//Quote() adds quotes around input, we already do that
+	return t
+
+/proc/format_table_name(table as text)
+	//return CONFIG_GET(string/feedback_tableprefix) + table
+	return table // We don't implement tableprefix
 
 /*
  * Text sanitization
  */
 // Can be used almost the same way as normal input for text
-/proc/clean_input(Message, Title, Default, mob/user=usr)
+/proc/clean_input(Message, Title, Default, mob/user)
 	var/txt = input(user, Message, Title, Default) as text | null
 	if(txt)
 		return html_encode(txt)

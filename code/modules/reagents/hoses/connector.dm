@@ -13,7 +13,7 @@
 			if(LAZYLEN(available_sockets))
 				if(available_sockets.len == 1)
 					var/obj/item/hose_connector/AC = available_sockets[1]
-					var/choice = tgui_alert(usr, "Are you sure you want to disconnect [AC]?", "Confirm", list("Yes", "No"))
+					var/choice = tgui_alert(user, "Are you sure you want to disconnect [AC]?", "Confirm", list("Yes", "No"))
 
 					if(choice == "Yes" && Adjacent(user))
 						visible_message("[user] disconnects \the hose from \the [src].")
@@ -22,11 +22,11 @@
 
 			else
 
-				var/choice = tgui_input_list(usr, "Select a target hose connector.", "Socket Disconnect", available_sockets)
+				var/choice = tgui_input_list(user, "Select a target hose connector.", "Socket Disconnect", available_sockets)
 
 				if(choice)
 					var/obj/item/hose_connector/AC = choice
-					var/confirm = tgui_alert(usr, "Are you sure you want to disconnect [AC]?", "Confirm", list("Yes", "No"))
+					var/confirm = tgui_alert(user, "Are you sure you want to disconnect [AC]?", "Confirm", list("Yes", "No"))
 
 					if(confirm == "Yes" && Adjacent(user))
 						visible_message("[user] disconnects \the hose from \the [src].")

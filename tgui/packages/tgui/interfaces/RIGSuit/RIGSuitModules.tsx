@@ -1,7 +1,7 @@
-import { capitalize, toTitleCase } from 'common/string';
+import { useBackend } from 'tgui/backend';
+import { Box, Button, LabeledList, Section, Stack } from 'tgui-core/components';
+import { capitalize, toTitleCase } from 'tgui-core/string';
 
-import { useBackend } from '../../backend';
-import { Box, Button, Flex, LabeledList, Section } from '../../components';
 import { Data } from './types';
 
 export const RIGSuitModules = (props) => {
@@ -94,17 +94,17 @@ export const RIGSuitModules = (props) => {
             {module.damage >= 2 ? (
               <Box color="bad">-- MODULE DESTROYED --</Box>
             ) : (
-              <Flex spacing={1}>
-                <Flex.Item grow={1}>
+              <Stack>
+                <Stack.Item grow>
                   <Box color="average">Engage: {module.engagecost}</Box>
                   <Box color="average">Active: {module.activecost}</Box>
                   <Box color="average">Passive: {module.passivecost}</Box>
-                </Flex.Item>
-                <Flex.Item grow={1}>{module.desc}</Flex.Item>
-              </Flex>
+                </Stack.Item>
+                <Stack.Item grow>{module.desc}</Stack.Item>
+              </Stack>
             )}
             {module.charges ? (
-              <Flex.Item>
+              <Stack.Item>
                 <Section title="Module Charges">
                   <LabeledList>
                     <LabeledList.Item label="Selected">
@@ -130,7 +130,7 @@ export const RIGSuitModules = (props) => {
                     ))}
                   </LabeledList>
                 </Section>
-              </Flex.Item>
+              </Stack.Item>
             ) : (
               ''
             )}

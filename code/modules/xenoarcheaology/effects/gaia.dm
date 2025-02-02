@@ -1,7 +1,7 @@
-
+/// Verified to work with the Artifact Harvester
 /datum/artifact_effect/gaia
-	name = "gaia"
-	effect_type = EFFECT_ORGANIC
+	name = "Plant Rejuvenation"
+	effect_type = EFFECT_GAIA
 
 	var/list/my_glitterflies = list()
 

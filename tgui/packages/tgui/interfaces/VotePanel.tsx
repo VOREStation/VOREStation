@@ -1,6 +1,6 @@
-import { useBackend } from '../backend';
-import { Box, Button, Section } from '../components';
-import { Window } from '../layouts';
+import { useBackend } from 'tgui/backend';
+import { Window } from 'tgui/layouts';
+import { Box, Button, Section } from 'tgui-core/components';
 
 type Data = {
   remaining: number;

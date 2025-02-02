@@ -3,7 +3,7 @@
 	name = "dir pin"
 
 /datum/integrated_io/dir/ask_for_pin_data(mob/user)
-	var/new_data = tgui_input_number(usr, "Please type in a valid dir number.  \
+	var/new_data = tgui_input_number(user, "Please type in a valid dir number.  \
 	Valid dirs are;\n\
 	North/Fore = [NORTH],\n\
 	South/Aft = [SOUTH],\n\

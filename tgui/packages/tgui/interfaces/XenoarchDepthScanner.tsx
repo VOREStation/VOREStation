@@ -1,6 +1,6 @@
-import { useBackend } from '../backend';
-import { Box, Button, LabeledList, Section } from '../components';
-import { Window } from '../layouts';
+import { useBackend } from 'tgui/backend';
+import { Window } from 'tgui/layouts';
+import { Box, Button, LabeledList, Section } from 'tgui-core/components';
 
 type Data = {
   current: {
@@ -8,8 +8,6 @@ type Data = {
     time: string;
     coords: string;
     depth: number;
-    clearance: number;
-    dissonance_spread: number;
     material: string;
   };
   positive_locations: { index: string; time: string; coords: string }[];
@@ -44,12 +42,6 @@ export const XenoarchDepthScanner = (props) => {
               </LabeledList.Item>
               <LabeledList.Item label="Anomaly Depth">
                 {current.depth} cm
-              </LabeledList.Item>
-              <LabeledList.Item label="Anomaly Size">
-                {current.clearance} cm
-              </LabeledList.Item>
-              <LabeledList.Item label="Dissonance Spread">
-                {current.dissonance_spread}
               </LabeledList.Item>
               <LabeledList.Item label="Anomaly Material">
                 {current.material}

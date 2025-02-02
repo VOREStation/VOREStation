@@ -1,7 +1,7 @@
-import { BooleanLike } from 'common/react';
+import { useBackend } from 'tgui/backend';
+import { Button, Image, LabeledList, Stack } from 'tgui-core/components';
+import { BooleanLike } from 'tgui-core/react';
 
-import { useBackend } from '../../backend';
-import { Button, Flex, Image, LabeledList } from '../../components';
 import { stats } from './constants';
 import { contentData } from './types';
 
@@ -28,9 +28,9 @@ export const VoreContentsPanel = (props: {
       )) ||
         null}
       {(show_pictures && (
-        <Flex wrap="wrap" justify="center" align="center">
+        <Stack wrap="wrap" justify="center" align="center">
           {contents.map((thing) => (
-            <Flex.Item key={thing.name} basis="33%">
+            <Stack.Item key={thing.name} basis="32%">
               <Button
                 width="64px"
                 color={thing.absorbed ? 'purple' : stats[thing.stat]}
@@ -59,9 +59,9 @@ export const VoreContentsPanel = (props: {
                 />
               </Button>
               {thing.name}
-            </Flex.Item>
+            </Stack.Item>
           ))}
-        </Flex>
+        </Stack>
       )) || (
         <LabeledList>
           {contents.map((thing) => (

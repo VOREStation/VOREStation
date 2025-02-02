@@ -1,6 +1,6 @@
-import { useBackend } from '../backend';
-import { Button, Flex, Section } from '../components';
-import { Window } from '../layouts';
+import { useBackend } from 'tgui/backend';
+import { Window } from 'tgui/layouts';
+import { Button, Section, Stack } from 'tgui-core/components';
 
 type Data = {
   currTag: string;
@@ -23,11 +23,11 @@ export const DestinationTagger = (props) => {
         <Section title="Tagger Locations">
           {unique_levels.map((level) => (
             <Section key={level.location} title={level.location}>
-              <Flex wrap="wrap" spacing={1} justify="center">
+              <Stack wrap="wrap" justify="center">
                 {taggerLocs.map(
                   (tag) =>
                     level.z === tag.level && (
-                      <Flex.Item key={tag.tag}>
+                      <Stack.Item key={tag.tag}>
                         <Button
                           icon={
                             currTag === tag.tag ? 'check-square-o' : 'square-o'
@@ -37,10 +37,10 @@ export const DestinationTagger = (props) => {
                         >
                           {tag.tag}
                         </Button>
-                      </Flex.Item>
+                      </Stack.Item>
                     ),
                 )}
-              </Flex>
+              </Stack>
             </Section>
           ))}
         </Section>

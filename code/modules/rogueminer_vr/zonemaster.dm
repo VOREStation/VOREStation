@@ -244,8 +244,8 @@
 				archeo_turf.archaeo_overlay = "overlay_archaeo[rand(1,3)]"
 				archeo_turf.update_icon()
 
-		//have a chance for an artifact to spawn here, but not in animal or plant digsites
-		if(isnull(M.artifact_find) && digsite != DIGSITE_GARDEN && digsite != DIGSITE_ANIMAL)
+		//have a chance for an artifact to spawn here, but not in plant digsites
+		if(isnull(M.artifact_find) && digsite != DIGSITE_GARDEN)
 			SSxenoarch.artifact_spawning_turfs.Add(archeo_turf)
 
 	//create artifact machinery

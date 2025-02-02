@@ -243,6 +243,25 @@ SERVER your.domain:6000
 ## Remove the # to allow special 'Easter-egg' events on special holidays such as seasonal holidays and stuff like 'Talk Like a Pirate Day' :3 YAARRR
 ALLOW_HOLIDAYS
 
+## TOPIC RATE LIMITING
+## This allows you to limit how many topic calls (clicking on an interface window) the client can do in any given game second and/or game minute.
+## Admins are exempt from these limits.
+## Hitting the minute limit notifies admins.
+## Set to 0 or comment out to disable.
+SECOND_TOPIC_LIMIT 10
+
+MINUTE_TOPIC_LIMIT 200
+
+## CLICK RATE LIMITING
+## Same as above, but applies to clicking on objects in the game window.
+## This should be a higher then the interface limit to allow for the spam clickly nature of most battles.
+## Admins are exempt from these limits.
+## Hitting the minute limit notifies admins.
+## Set to 0 to disable.
+SECOND_CLICK_LIMIT 15
+
+MINUTE_CLICK_LIMIT 400
+
 ##Defines the ticklag for the world. Ticklag is the amount of time between game ticks (aka byond ticks) (in 1/10ths of a second).
 ##	This also controls the client network update rate, as well as the default client fps
 TICKLAG 0.5

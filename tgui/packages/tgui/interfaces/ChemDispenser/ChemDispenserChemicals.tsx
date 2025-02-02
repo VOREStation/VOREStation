@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
+import { useBackend } from 'tgui/backend';
+import { Button, Icon, Section, Stack, Tooltip } from 'tgui-core/components';
 
-import { useBackend } from '../../backend';
-import { Button, Flex, Icon, Section, Tooltip } from '../../components';
 import { Data } from './types';
 
 export const ChemDispenserChemicals = (props) => {
@@ -18,9 +18,9 @@ export const ChemDispenserChemicals = (props) => {
       scrollable
       buttons={<RecordingBlinker />}
     >
-      <Flex direction="row" wrap="wrap" height="100%" align="flex-start">
+      <Stack direction="row" wrap="wrap" height="100%" align="flex-start">
         {chemicals.map((c, i) => (
-          <Flex.Item key={i} grow="1" m={0.2} basis="40%" height="20px">
+          <Stack.Item key={i} grow m={0.2} basis="40%" height="20px">
             <Button
               icon="arrow-circle-down"
               width="100%"
@@ -34,12 +34,12 @@ export const ChemDispenserChemicals = (props) => {
             >
               {c.name + ' (' + c.volume + ')'}
             </Button>
-          </Flex.Item>
+          </Stack.Item>
         ))}
         {flexFillers.map((_, i) => (
-          <Flex.Item key={i} grow="1" basis="25%" height="20px" />
+          <Stack.Item key={i} grow basis="25%" height="20px" />
         ))}
-      </Flex>
+      </Stack>
     </Section>
   );
 };

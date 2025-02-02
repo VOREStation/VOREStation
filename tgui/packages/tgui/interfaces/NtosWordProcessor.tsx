@@ -1,9 +1,9 @@
 /* eslint react/no-danger: "off" */
-import { BooleanLike } from 'common/react';
+import { useBackend } from 'tgui/backend';
+import { NtosWindow } from 'tgui/layouts';
+import { Box, Button, Section, Table } from 'tgui-core/components';
+import { BooleanLike } from 'tgui-core/react';
 
-import { useBackend } from '../backend';
-import { Box, Button, Section, Table } from '../components';
-import { NtosWindow } from '../layouts';
 import { file } from './NtosFileManager';
 
 type Data = {

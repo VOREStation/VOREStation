@@ -218,6 +218,7 @@ var/global/list/additional_antag_types = list()
 		emergency_shuttle.auto_recall = 1
 
 	feedback_set_details("round_start","[time2text(world.realtime)]")
+	INVOKE_ASYNC(SSdbcore, TYPE_PROC_REF(/datum/controller/subsystem/dbcore, SetRoundStart))
 	if(ticker && ticker.mode)
 		feedback_set_details("game_mode","[ticker.mode]")
 	feedback_set_details("server_ip","[world.internet_address]:[world.port]")

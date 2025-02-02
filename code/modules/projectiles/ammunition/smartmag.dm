@@ -214,10 +214,10 @@
 		return
 
 	if(LAZYLEN(stored_ammo))
-		to_chat(usr, span_warning("You can't reset \the [src] unless it's empty!"))
+		to_chat(H, span_warning("You can't reset \the [src] unless it's empty!"))
 		return
 
-	to_chat(usr, span_notice("You clear \the [src]'s data buffers."))
+	to_chat(H, span_notice("You clear \the [src]'s data buffers."))
 
 	caliber = null
 	ammo_type = null

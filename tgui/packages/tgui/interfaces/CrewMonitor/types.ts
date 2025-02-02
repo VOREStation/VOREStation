@@ -1,4 +1,4 @@
-import { BooleanLike } from 'common/react';
+import { BooleanLike } from 'tgui-core/react';
 
 export type Data = {
   zoomScale: number;
@@ -13,7 +13,7 @@ export type crewmember = {
   rank: string;
   assignment: string;
   dead: BooleanLike;
-  stat: number;
+  stat?: number;
   oxy: number;
   tox: number;
   fire: number;

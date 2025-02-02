@@ -267,7 +267,7 @@ var/list/all_technomancer_assistance = subtypesof(/datum/technomancer/assistance
 			dat += "When a function refers to 'allies', it means you, your apprentices, currently controlled entities (with the \
 			Control function), and friendly simple-minded entities that you've summoned with the Scepter of Enhancement.<br>"
 			dat += "A meter is equal to one 'tile'.<br>"
-			user << browse("<htlm>[dat]</html>", "window=radio")
+			user << browse("<html>[dat]</html>", "window=radio")
 			onclose(user, "radio")
 
 // Proc: Topic()

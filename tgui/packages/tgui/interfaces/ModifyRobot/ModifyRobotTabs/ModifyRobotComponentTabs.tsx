@@ -1,15 +1,14 @@
-import { toFixed } from 'common/math';
-import { capitalize } from 'common/string';
 import { useBackend } from 'tgui/backend';
 import {
   Box,
   Collapsible,
   Dropdown,
-  Flex,
   Section,
   Slider,
   Stack,
-} from 'tgui/components';
+} from 'tgui-core/components';
+import { toFixed } from 'tgui-core/math';
+import { capitalize } from 'tgui-core/string';
 
 import { Cell, Comp, InstalledCell, Target } from '../types';
 
@@ -45,11 +44,11 @@ export const CellCommp = (props: {
           })
         }
       >
-        <Flex>
-          <Flex.Item>Current charge</Flex.Item>
-          <Flex.Item grow />
-          <Flex.Item>{cell.charge}</Flex.Item>
-        </Flex>
+        <Stack>
+          <Stack.Item>Current charge</Stack.Item>
+          <Stack.Item grow />
+          <Stack.Item>{cell.charge}</Stack.Item>
+        </Stack>
       </Slider>
       <Dropdown
         width="100%"
@@ -196,11 +195,11 @@ export const BadminTab = (props: { target: Target }) => {
                   })
                 }
               >
-                <Flex>
-                  <Flex.Item>Brute damage</Flex.Item>
-                  <Flex.Item grow />
-                  <Flex.Item>{component.brute_damage}</Flex.Item>
-                </Flex>
+                <Stack>
+                  <Stack.Item>Brute damage</Stack.Item>
+                  <Stack.Item grow />
+                  <Stack.Item>{component.brute_damage}</Stack.Item>
+                </Stack>
               </Slider>
               <Slider
                 color="orange"
@@ -216,11 +215,11 @@ export const BadminTab = (props: { target: Target }) => {
                   })
                 }
               >
-                <Flex>
-                  <Flex.Item>Electronics damage</Flex.Item>
-                  <Flex.Item grow />
-                  <Flex.Item>{component.electronics_damage}</Flex.Item>
-                </Flex>
+                <Stack>
+                  <Stack.Item>Electronics damage</Stack.Item>
+                  <Stack.Item grow />
+                  <Stack.Item>{component.electronics_damage}</Stack.Item>
+                </Stack>
               </Slider>
             </Collapsible>
           );
@@ -236,11 +235,11 @@ const ComponentInfo = (props: { comps: Comp }) => {
     <Stack vertical>
       <Stack.Item>Max Damage: {comps?.max_damage}</Stack.Item>
       <Stack.Item>
-        <Flex>
-          <Flex.Item>Idle Power: {comps?.idle_usage}</Flex.Item>
-          <Flex.Item grow />
-          <Flex.Item>Active Power: {comps?.active_usage}</Flex.Item>
-        </Flex>
+        <Stack>
+          <Stack.Item>Idle Power: {comps?.idle_usage}</Stack.Item>
+          <Stack.Item grow />
+          <Stack.Item>Active Power: {comps?.active_usage}</Stack.Item>
+        </Stack>
       </Stack.Item>
     </Stack>
   );

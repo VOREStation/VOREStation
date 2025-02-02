@@ -1,9 +1,8 @@
 import { filter } from 'common/collections';
-import { BooleanLike } from 'common/react';
-
-import { useBackend, useSharedState } from '../backend';
-import { Box, Button, LabeledList, Section, Tabs } from '../components';
-import { Window } from '../layouts';
+import { useBackend, useSharedState } from 'tgui/backend';
+import { Window } from 'tgui/layouts';
+import { Box, Button, LabeledList, Section, Tabs } from 'tgui-core/components';
+import { BooleanLike } from 'tgui-core/react';
 
 type Data = { badmin: BooleanLike; servers: server[]; consoles: console[] };
 

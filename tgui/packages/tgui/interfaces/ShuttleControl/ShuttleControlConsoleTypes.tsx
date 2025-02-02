@@ -1,5 +1,6 @@
-import { useBackend } from '../../backend';
-import { Button, LabeledList, Section } from '../../components';
+import { useBackend } from 'tgui/backend';
+import { Button, LabeledList, Section } from 'tgui-core/components';
+
 import { ShuttleControlSharedShuttleControls } from './ShuttleControlSharedShuttleControls';
 import { ShuttleControlSharedShuttleStatus } from './ShuttleControlSharedShuttleStatus';
 import { Data } from './types';

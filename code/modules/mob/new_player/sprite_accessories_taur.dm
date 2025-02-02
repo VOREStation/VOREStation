@@ -4,7 +4,7 @@
 	do_colouration = 1 // Yes color, using tail color
 	color_blend_mode = ICON_MULTIPLY  // The sprites for taurs are designed for ICON_MULTIPLY
 
-	var/can_ride = FALSE			//whether we're real rideable taur or just in that category
+	var/can_ride = TRUE			//whether we're real rideable taur or just in that category
 	offset_x = -16
 	em_block = TRUE
 
@@ -769,8 +769,7 @@
 	loaf_offset = 6
 	vore_tail_sprite_variant = "Drake"
 	belly_variant_when_loaf = TRUE
-	fullness_icons = 1
-	struggle_anim = TRUE
+	fullness_icons = 3
 
 /datum/sprite_accessory/tail/taur/drake/fat
 	name = "Fat Drake (Taur)"
@@ -916,7 +915,7 @@
 
 /datum/sprite_accessory/tail/taur/zorgoia/fat
 	name = "Zorgoia (Fat Taur)"
-	extra_overlay = "zorgoia_fat"
+	extra_overlay = "zorgoia_fat2"
 
 /datum/sprite_accessory/tail/taur/rat
 	name = "Rat (Taur)"

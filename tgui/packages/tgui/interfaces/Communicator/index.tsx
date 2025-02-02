@@ -1,8 +1,8 @@
 import { useState } from 'react';
+import { useBackend } from 'tgui/backend';
+import { Window } from 'tgui/layouts';
+import { Box } from 'tgui-core/components';
 
-import { useBackend } from '../../backend';
-import { Box } from '../../components';
-import { Window } from '../../layouts';
 import { CrewManifestContent } from '../CrewManifest';
 import { CommunicatorContactTab } from './CommunicatorContactTab';
 import {

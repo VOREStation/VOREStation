@@ -1623,7 +1623,7 @@
 	qdel(src)
 
 /obj/structure/sign/flag/attack_hand(mob/user)
-	if(alert("Do you want to rip \the [src] from its place?","You think...","Yes","No") == "Yes")
+	if(tgui_alert(user, "Do you want to rip \the [src] from its place?","You think...",list("Yes","No")) == "Yes")
 		if(!Adjacent(user)) //Cannot bring up dialogue and walk away
 			return FALSE
 		visible_message(span_warning("\The [user] rips \the [src] in a single, decisive motion!" ))

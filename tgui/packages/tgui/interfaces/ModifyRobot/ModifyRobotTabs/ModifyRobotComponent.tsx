@@ -1,18 +1,17 @@
-import { capitalize } from 'common/string';
 import { useState } from 'react';
 import { useBackend } from 'tgui/backend';
 import {
   Box,
   Button,
   Divider,
-  Flex,
   Icon,
   Input,
   Section,
   Stack,
   Tabs,
-} from 'tgui/components';
+} from 'tgui-core/components';
 import { classes } from 'tgui-core/react';
+import { capitalize } from 'tgui-core/string';
 
 import { NoSpriteWarning } from '../components';
 import {
@@ -148,8 +147,8 @@ export const ModifyRobotComponent = (props: {
   return (
     <>
       {!target.active && <NoSpriteWarning name={target.name} />}
-      <Flex height={!target.active ? '75%' : '80%'}>
-        <Flex.Item width="35%" fill>
+      <Stack height={!target.active ? '75%' : '80%'}>
+        <Stack.Item width="35%">
           <ComponentSection
             title="Repair Component"
             searchText={searchComponentReplaceText}
@@ -160,22 +159,22 @@ export const ModifyRobotComponent = (props: {
             buttonIcon="arrows-spin"
             componentLookup={componentLookup}
           />
-        </Flex.Item>
-        <Flex.Item width="30%" fill>
+        </Stack.Item>
+        <Stack.Item width="30%">
           <Stack vertical fill>
             <Stack.Item>
-              <Flex>
-                <Flex.Item grow />
-                <Flex.Item>
+              <Stack>
+                <Stack.Item grow />
+                <Stack.Item>
                   <Box
                     className={classes([
                       target.sprite_size,
                       target.sprite + 'E',
                     ])}
                   />
-                </Flex.Item>
-                <Flex.Item grow />
-              </Flex>
+                </Stack.Item>
+                <Stack.Item grow />
+              </Stack>
             </Stack.Item>
             <Stack.Item>
               <Tabs>
@@ -192,8 +191,8 @@ export const ModifyRobotComponent = (props: {
             </Stack.Item>
             {tabs[tab]}
           </Stack>
-        </Flex.Item>
-        <Flex.Item width="35%" fill>
+        </Stack.Item>
+        <Stack.Item width="35%">
           <ComponentSection
             title="Remove Component"
             searchText={searchComponentRemoveText}
@@ -203,8 +202,8 @@ export const ModifyRobotComponent = (props: {
             buttonColor="red"
             buttonIcon="burst"
           />
-        </Flex.Item>
-      </Flex>
+        </Stack.Item>
+      </Stack>
     </>
   );
 };
@@ -268,30 +267,32 @@ const ComponentSection = (props: {
               >
                 <Stack vertical>
                   <Stack.Item>
-                    <Flex varticalAlign="center">
-                      <Flex.Item>
+                    <Stack align="center">
+                      <Stack.Item>
                         {capitalize(component.name)}{' '}
                         {action === 'add_component' &&
                           '(' + component.max_damage + ')'}
-                      </Flex.Item>
-                      <Flex.Item grow />
-                      <Flex.Item>
+                      </Stack.Item>
+                      <Stack.Item grow />
+                      <Stack.Item>
                         <Icon
                           name={buttonIcon}
                           backgroundColor={buttonColor}
                           size={1.5}
                         />
-                      </Flex.Item>
-                    </Flex>
+                      </Stack.Item>
+                    </Stack>
                   </Stack.Item>
                   {action === 'add_component' && (
-                    <Flex>
-                      <Flex.Item>Idle Power: {component.idle_usage}</Flex.Item>
-                      <Flex.Item grow />
-                      <Flex.Item>
+                    <Stack>
+                      <Stack.Item>
+                        Idle Power: {component.idle_usage}
+                      </Stack.Item>
+                      <Stack.Item grow />
+                      <Stack.Item>
                         Active Power: {component.active_usage}
-                      </Flex.Item>
-                    </Flex>
+                      </Stack.Item>
+                    </Stack>
                   )}
                   <Stack.Item />
                   <Stack.Item>

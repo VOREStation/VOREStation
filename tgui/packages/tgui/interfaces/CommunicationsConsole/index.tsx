@@ -1,4 +1,5 @@
-import { Window } from '../../layouts';
+import { Window } from 'tgui/layouts';
+
 import { CommunicationsConsoleContent } from './CommunicationsConsoleContent';
 
 export const CommunicationsConsole = (props) => {

@@ -1,5 +1,6 @@
-import { useBackend } from '../../backend';
-import { Button, Section, Stack } from '../../components';
+import { useBackend } from 'tgui/backend';
+import { Button, Section, Stack } from 'tgui-core/components';
+
 import { SMESItem } from './RCONSMESItem';
 import { Data } from './types';
 

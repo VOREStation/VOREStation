@@ -1,4 +1,5 @@
-import { Box } from '../../components';
+import { Box } from 'tgui-core/components';
+
 import { BodyScannerMainAbnormalities } from './BodyScannerMainAbnormalities';
 import { BodyScannerMainDamage } from './BodyScannerMainDamage';
 import { BodyScannerMainOccupant } from './BodyScannerMainOccupant';

@@ -101,7 +101,7 @@
 	else
 		user << browse(null,"window=eftpos")
 
-/obj/item/eftpos/attackby(obj/item/O as obj, user as mob)
+/obj/item/eftpos/attackby(obj/item/O, mob/user)
 
 	var/obj/item/card/id/I = O.GetID()
 
@@ -109,7 +109,7 @@
 		if(linked_account)
 			scan_card(I, O)
 		else
-			to_chat(usr, "[icon2html(src, usr.client)]" + span_warning("Unable to connect to linked account."))
+			to_chat(user, "[icon2html(src, user.client)]" + span_warning("Unable to connect to linked account."))
 	else if (istype(O, /obj/item/spacecash/ewallet))
 		var/obj/item/spacecash/ewallet/E = O
 		if (linked_account)
@@ -134,11 +134,11 @@
 						T.time = stationtime2text()
 						linked_account.transaction_log.Add(T)
 					else
-						to_chat(usr, "[icon2html(src, usr.client)]" + span_warning("\The [O] doesn't have that much money!"))
+						to_chat(user, "[icon2html(src, user.client)]" + span_warning("\The [O] doesn't have that much money!"))
 			else
-				to_chat(usr, "[icon2html(src, usr.client)]" + span_warning("Connected account has been suspended."))
+				to_chat(user, "[icon2html(src, user.client)]" + span_warning("Connected account has been suspended."))
 		else
-			to_chat(usr, "[icon2html(src, usr.client)]" + span_warning("EFTPOS is not connected to an account."))
+			to_chat(user, "[icon2html(src, user.client)]" + span_warning("EFTPOS is not connected to an account."))
 
 	else
 		..()
@@ -158,9 +158,9 @@
 				else
 					to_chat(usr, "[icon2html(src, usr.client)]" + span_warning("Incorrect code entered."))
 			if("change_id")
-				var/attempt_code = text2num(input(usr, "Re-enter the current EFTPOS access code", "Confirm EFTPOS code"))
+				var/attempt_code = tgui_input_number(usr, "Re-enter the current EFTPOS access code", "Confirm EFTPOS code")
 				if(attempt_code == access_code)
-					eftpos_name = sanitize(input(usr, "Enter a new terminal ID for this device", "Enter new EFTPOS ID"), MAX_NAME_LEN) + " EFTPOS scanner"
+					eftpos_name = sanitize(tgui_input_text(usr, "Enter a new terminal ID for this device", "Enter new EFTPOS ID",max_length=MAX_NAME_LEN), MAX_NAME_LEN) + " EFTPOS scanner"
 					print_reference()
 				else
 					to_chat(usr, "[icon2html(src, usr.client)]" + span_warning("Incorrect code entered."))
@@ -175,8 +175,9 @@
 				else
 					to_chat(usr, "[icon2html(src, usr.client)]" + span_warning("Account not found."))
 			if("trans_purpose")
-				var/choice = sanitize(input(usr, "Enter reason for EFTPOS transaction", "Transaction purpose"))
-				if(choice) transaction_purpose = choice
+				var/choice = sanitize(tgui_input_text(usr, "Enter reason for EFTPOS transaction", "Transaction purpose"))
+				if(choice)
+					transaction_purpose = choice
 			if("trans_value")
 				var/try_num = tgui_input_number(usr, "Enter amount for EFTPOS transaction", "Transaction amount")
 				if(try_num < 0)
