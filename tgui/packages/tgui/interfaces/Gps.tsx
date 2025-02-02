@@ -1,6 +1,5 @@
 // Currently not used!
 
-import { sortBy } from 'common/collections';
 import { vecLength, vecSubtract } from 'common/vector';
 import { useBackend } from 'tgui/backend';
 import { Window } from 'tgui/layouts';
@@ -31,9 +30,18 @@ type Data = {
 type signal = {
   entrytag: string;
   coords: string;
-  dist: number;
+  dist?: number;
   degrees: number;
 };
+
+function sortSignal(a: signal, b: signal) {
+  if (a.dist === undefined && b.dist === undefined) return 0;
+  if (a.dist === undefined) return 1;
+  if (b.dist === undefined) return -1;
+  if (a.dist < b.dist) return -1;
+  if (a.dist > b.dist) return 1;
+  else return a.entrytag.localeCompare(b.entrytag);
+}
 
 export const Gps = (props) => {
   const { act, data } = useBackend<Data>();
@@ -55,14 +63,7 @@ export const Gps = (props) => {
           );
         return { ...signal, dist, index };
       }),
-    (signals: signal[]) =>
-      sortBy(
-        signals,
-        // Signals with distance metric go first
-        (signal) => signal.dist === undefined,
-        // Sort alphabetically
-        (signal) => signal.entrytag,
-      ),
+    (signals: signal[]) => signals.sort((a, b) => sortSignal(a, b)),
   ])(data.signals || []);
   return (
     <Window title="Global Positioning System" width={470} height={700}>
