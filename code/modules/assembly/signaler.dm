@@ -19,7 +19,7 @@
 
 /obj/item/assembly/signaler/Initialize()
 	..()
-	return INITIALIZE_HINT_LATELOAD // Outpost 21 edit - Experimental - Remove sleep()
+	return INITIALIZE_HINT_LATELOAD
 
 /obj/item/assembly/signaler/LateInitialize()
 	set_frequency(frequency)
