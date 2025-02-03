@@ -12,8 +12,13 @@ var/global/list/global_used_pois = list()
 /obj/effect/landmark/poi_loader/New()
 INITIALIZE_IMMEDIATE(/obj/effect/landmark/poi_loader)
 
+// BREWARE, IF YOU MAKE THIS JUST INITALIZE_HINT_LATELOAD, SOMETIMES ON THE GROUNDBASE YOU WILL GET RECURSIVE RUNTIMES THAT REACH UP TO 150K RUNTIMES
+// THE POI_LOADER WILL MAKE THE GAME QUIVER.
 /obj/effect/landmark/poi_loader/Initialize()
 	..()
+	return INITIALIZE_HINT_LATELOAD
+
+/obj/effect/landmark/poi_loader/LateInitialize()
 	INVOKE_ASYNC(src, PROC_REF(load_poi))
 
 /obj/effect/landmark/poi_loader/proc/get_turfs_to_clean()
