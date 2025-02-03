@@ -30,8 +30,6 @@
 		qdel_swap(O.dna, new/datum/dna()) //Uuughhhh... why do I have to do this?
 		O.dna.ResetUI()
 		O.dna.ResetSE()
-		spawn(10) //Limbs love to flop around. Who am I to deny them?
-			O.dir = 2
 		return O
 	return ..()
 

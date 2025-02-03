@@ -98,7 +98,8 @@
 		init_from_mob(copyfrom, add_to_db, ckeylock)
 
 /datum/transhuman/body_record/Destroy()
-	mydna = null
+	qdel_null(mydna.dna)
+	qdel_null(mydna)
 	client_ref = null
 	mind_ref = null
 	limb_data.Cut()
@@ -134,7 +135,7 @@
 
 	//The DNA2 stuff
 	mydna = new ()
-	mydna.dna = M.dna.Clone()
+	qdel_swap(mydna.dna, M.dna.Clone())
 	mydna.ckey = M.ckey
 	mydna.id = copytext(md5(M.real_name), 2, 6)
 	mydna.name = M.dna.real_name
@@ -205,7 +206,7 @@
 	ASSERT(!QDELETED(orig))
 	ASSERT(istype(orig))
 	src.mydna = new ()
-	src.mydna.dna = orig.mydna.dna.Clone()
+	qdel_swap(src.mydna.dna, orig.mydna.dna.Clone())
 	src.mydna.ckey = orig.mydna.ckey
 	src.mydna.id = orig.mydna.id
 	src.mydna.name = orig.mydna.name
