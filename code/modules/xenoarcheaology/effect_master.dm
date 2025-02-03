@@ -420,18 +420,18 @@ var/list/toxic_reagents = list(TOXIN_PATH)
 	var/turf/T = get_turf(holder)
 	var/datum/gas_mixture/env = T.return_air()
 	if(env)
-		if(env.temperature < 225)
+		if(env.temperature < ARTIFACT_COLD_TRIGGER)
 			trigger_cold = 1
-		else if(env.temperature > 375)
+		else if(env.temperature > ARTIFACT_HEAT_TRIGGER)
 			trigger_hot = 1
 
-		if(env.gas[GAS_PHORON] >= 10)
+		if(env.gas[GAS_PHORON] >= ARTIFACT_GAS_TRIGGER)
 			trigger_phoron = 1
-		if(env.gas[GAS_O2] >= 10)
+		if(env.gas[GAS_O2] >= ARTIFACT_GAS_TRIGGER)
 			trigger_oxy = 1
-		if(env.gas[GAS_CO2] >= 10)
+		if(env.gas[GAS_CO2] >= ARTIFACT_GAS_TRIGGER)
 			trigger_co2 = 1
-		if(env.gas[GAS_N2] >= 10)
+		if(env.gas[GAS_N2] >= ARTIFACT_GAS_TRIGGER)
 			trigger_nitro = 1
 
 	for(var/datum/artifact_effect/my_effect in my_effects)
