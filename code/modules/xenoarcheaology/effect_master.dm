@@ -125,7 +125,7 @@ var/list/toxic_reagents = list(TOXIN_PATH)
 	return effects
 
 /datum/component/artifact_master/proc/add_effect()
-	var/effect_type = input(usr, "What type do you want?", "Effect Type") as null|anything in subtypesof(/datum/artifact_effect)
+	var/effect_type = tgui_input_list(usr, "What type do you want?", "Effect Type", subtypesof(/datum/artifact_effect))
 	if(effect_type)
 		var/datum/artifact_effect/my_effect = new effect_type(src)
 		if(istype(holder, my_effect.req_type))
@@ -136,7 +136,7 @@ var/list/toxic_reagents = list(TOXIN_PATH)
 			qdel(my_effect)
 
 /datum/component/artifact_master/proc/remove_effect()
-	var/to_remove_effect = input(usr, "What effect do you want to remove?", "Remove Effect") as null|anything in my_effects
+	var/to_remove_effect = tgui_input_list(usr, "What effect do you want to remove?", "Remove Effect", my_effects)
 
 	if(to_remove_effect)
 		var/datum/artifact_effect/AE = to_remove_effect

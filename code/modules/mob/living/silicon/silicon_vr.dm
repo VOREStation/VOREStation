@@ -1,6 +1,6 @@
 /mob/living/silicon/Topic(href, href_list) //For Robots and pAI's. And possibly AI's too.
 	if(href_list["ooc_notes"])
-		Examine_OOC(usr)
+		do_examine_ooc(usr)
 		return 1
 	return ..()
 

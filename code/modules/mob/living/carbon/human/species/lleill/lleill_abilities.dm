@@ -73,7 +73,7 @@
 
 	last_special = world.time + 50
 
-	var/new_skin = input(src, "Please select a new body color.", "Shapeshifter Colour", rgb(r_skin, g_skin, b_skin)) as null|color
+	var/new_skin = tgui_color_picker(src, "Please select a new body color.", "Shapeshifter Colour", rgb(r_skin, g_skin, b_skin))
 	if(!new_skin)
 		return
 	lleill_set_colour(new_skin)
@@ -107,12 +107,15 @@
 		"Transparent Glamour" = /obj/item/potion_material/glamour_transparent,
 		"Shrinking Glamour" = /obj/item/potion_material/glamour_shrinking,
 		"Twinkling Glamour" = /obj/item/potion_material/glamour_twinkling,
+		"Unstable Glamour" = /obj/item/glamour_unstable,
 		"Glamour Shard" = /obj/item/potion_material/glamour_shard,
 		"Glamour Cell" = /obj/item/capture_crystal/glamour,
 		"Face of Glamour" = /obj/item/glamour_face,
 		"Speaking Glamour" = /obj/item/universal_translator/glamour,
 		"Glamour Bubble" = /obj/item/clothing/mask/gas/glamour,
-		"Pocket of Glamour" = /obj/item/clothing/under/permit/glamour
+		"Pocket of Glamour" = /obj/item/clothing/under/permit/glamour,
+		"glamour arrow" = /obj/item/arrow/standard/glamour,
+		"glamour bow" = /obj/item/gun/launcher/crossbow/bow/glamour
 		)
 
 	var/energy_cost = 50

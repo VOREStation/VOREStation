@@ -205,7 +205,6 @@
 
 		if("adjust temp")
 			target_temp = tgui_input_number(user, "Choose a target temperature.", "Temperature.", T20C, max_temp, min_temp, round_value = FALSE)
-			target_temp = CLAMP(target_temp, min_temp, max_temp)
 
 	update_icon()
 

@@ -1,4 +1,3 @@
-import { filter } from 'common/collections';
 import { useState } from 'react';
 import { useBackend } from 'tgui/backend';
 import { Window } from 'tgui/layouts';
@@ -208,7 +207,7 @@ export const prepareSearch = (
       if (!searchText) {
         return products;
       } else {
-        return filter(products, testSearch);
+        return products.filter(testSearch);
       }
     },
   ])(products);

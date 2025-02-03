@@ -36,11 +36,11 @@
 		to_chat(src, span_filter_notice("OOC notes updated. Don't forget to save!"))
 		log_admin("[key_name(src)] updated their OOC notes mid-round.")
 		ooc_notes_window(src)
-		set_metainfo_likes(FALSE)
-		set_metainfo_dislikes(FALSE)
+		set_metainfo_likes(src, FALSE)
+		set_metainfo_dislikes(src, FALSE)
 
-/mob/living/proc/set_metainfo_panel()
-	if(usr != src)
+/mob/living/proc/set_metainfo_panel(mob/user)
+	if(user != src)
 		return
 	var/new_metadata = strip_html_simple(tgui_input_text(src, "Enter any information you'd like others to see, such as Roleplay-preferences. This will not be saved permanently unless you click save in the OOC notes panel!", "Game Preference" , html_decode(ooc_notes), multiline = TRUE,  prevent_enter = TRUE))
 	if(new_metadata && CanUseTopic(src))
@@ -50,8 +50,8 @@
 		log_admin("[key_name(src)] updated their OOC notes mid-round.")
 		ooc_notes_window(src)
 
-/mob/living/proc/set_metainfo_likes(var/reopen = TRUE)
-	if(usr != src)
+/mob/living/proc/set_metainfo_likes(mob/user, var/reopen = TRUE)
+	if(user != src)
 		return
 	var/new_metadata = strip_html_simple(tgui_input_text(src, "Enter any information you'd like others to see relating to your LIKED roleplay preferences. This will not be saved permanently unless you click save in the OOC notes panel! Type \"!clear\" to empty.", "Game Preference" , html_decode(ooc_notes_likes), multiline = TRUE,  prevent_enter = TRUE))
 	if(new_metadata && CanUseTopic(src))
@@ -64,8 +64,8 @@
 		if(reopen)
 			ooc_notes_window(src)
 
-/mob/living/proc/set_metainfo_dislikes(var/reopen = TRUE)
-	if(usr != src)
+/mob/living/proc/set_metainfo_dislikes(mob/user, var/reopen = TRUE)
+	if(user != src)
 		return
 	var/new_metadata = strip_html_simple(tgui_input_text(src, "Enter any information you'd like others to see relating to your DISLIKED roleplay preferences. This will not be saved permanently unless you click save in the OOC notes panel! Type \"!clear\" to empty.", "Game Preference" , html_decode(ooc_notes_dislikes), multiline = TRUE,  prevent_enter = TRUE))
 	if(new_metadata && CanUseTopic(src))
@@ -78,8 +78,8 @@
 		if(reopen)
 			ooc_notes_window(src)
 
-/mob/living/proc/save_ooc_panel()
-	if(usr != src)
+/mob/living/proc/save_ooc_panel(mob/user)
+	if(user != src)
 		return
 	if(client.prefs.real_name != real_name)
 		to_chat(src, span_danger("Your selected character slot name is not the same as your character's name. Aborting save. Please select [real_name]'s character slot in character setup before saving."))
@@ -87,7 +87,7 @@
 	if(client.prefs.save_character())
 		to_chat(src, span_filter_notice("Character preferences saved."))
 
-/mob/living/proc/print_ooc_notes_to_chat()
+/mob/living/proc/print_ooc_notes_to_chat(mob/user)
 	if(!ooc_notes)
 		return
 	var/msg = ooc_notes

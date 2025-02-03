@@ -41,7 +41,7 @@
 	if(!M.mind)
 		return 0
 
-	var/input = sanitizeSafe(input(M, "Who do you want to dedicate the bracelet to?", ,""), MAX_NAME_LEN)
+	var/input = sanitizeSafe(tgui_input_text(M, "Who do you want to dedicate the bracelet to?","Friendship Bracelet" ,"", MAX_NAME_LEN), MAX_NAME_LEN)
 
 	if(src && input && !M.stat && in_range(M,src))
 		desc = "A beautiful friendship bracelet in all the colors of the rainbow. It's dedicated to [input]."
