@@ -36,8 +36,8 @@
 			qdel(arti_mstr)
 	. = ..()
 
-/obj/machinery/artifact/New()
-	..()
+/obj/machinery/artifact/Initialize(mapload)
+	. = ..()
 
 	if(ispath(artifact_master))
 		AddComponent(artifact_master)
