@@ -844,7 +844,7 @@ includes scars and tattoos
 /datum/sprite_accessory/marking/teshi_fluff
 	name = "Underfluff (Teshari)"
 	icon_state = "teshi_fluff"
-	body_parts = list(BP_HEAD, BP_TORSO, BP_GROIN, BP_R_LEG, BP_L_LEG)
+	body_parts = list(BP_HEAD, BP_TORSO, BP_GROIN, BP_R_LEG, BP_L_LEG, BP_L_FOOT, BP_R_FOOT)
 	color_blend_mode = ICON_MULTIPLY
 	species_allowed = list(SPECIES_TESHARI)
 
