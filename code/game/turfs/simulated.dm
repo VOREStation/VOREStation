@@ -142,60 +142,54 @@
 				bloodDNA = null
 
 		if(src.wet || (dirtslip && (dirt > 50 || outdoors == 1)))
-			INVOKE_ASYNC(src, PROC_REF(handle_slipping),A,dirtslip)
+			if(M.buckled || (src.wet == 1 && M.m_intent == I_WALK))
+				return
+
+			var/slip_dist = 1
+			var/slip_stun = 6
+			var/floor_type = "wet"
+			if(dirtslip)
+				slip_stun = 10
+				if(dirt > 50)
+					floor_type = "dirty"
+				else if(outdoors)
+					floor_type = "uneven"
+				if(src.wet == 0 && M.m_intent == I_WALK)
+					return
+			switch(src.wet)
+				if(2) // Lube
+					floor_type = "slippery"
+					slip_dist = 4
+					slip_stun = 10
+				if(3) // Ice
+					floor_type = "icy"
+					slip_stun = 4
+					slip_dist = rand(1,3)
+
+			if(M.slip("the [floor_type] floor", slip_stun))
+				addtimer(CALLBACK(src, PROC_REF(handle_slipping), M, slip_dist, dirtslip), 0)
+			else
+				M.inertia_dir = 0
 		else
 			M.inertia_dir = 0
 
 	..()
-/turf/simulated/proc/handle_slipping(var/mob/living/M,var/dirtslip)
+/turf/simulated/proc/handle_slipping(var/mob/living/M, var/slip_dist, var/dirtslip)
 	PRIVATE_PROC(TRUE)
-	if(M.buckled || (src.wet == 1 && M.m_intent == I_WALK))
+	if(!M || !slip_dist)
 		return
-
-	var/slip_dist = 1
-	var/slip_stun = 6
-	var/floor_type = "wet"
-	if(dirtslip)
-		slip_stun = 10
-		if(dirt > 50)
-			floor_type = "dirty"
-		else if(outdoors)
-			floor_type = "uneven"
-		if(src.wet == 0 && M.m_intent == I_WALK)
-			return
-	switch(src.wet)
-		if(2) // Lube
-			floor_type = "slippery"
-			slip_dist = 4
-			slip_stun = 10
-		if(3) // Ice
-			floor_type = "icy"
-			slip_stun = 4
-			slip_dist = rand(1,3)
-
-	if(M.slip("the [floor_type] floor", slip_stun))
-		if(slip_dist >= 100) //For Outpost 21 downstream. MEGA slip.
-			for(var/i = 1 to slip_dist)
-				if(isbelly(M.loc))	// Stop the slip if we're in a belly.
-					return
-				if(!step(M, M.dir))
-					return // done sliding, failed to move
-				// check tile for next slip
-				var/turf/simulated/ground = get_turf(M)
-				if(!istype(ground,/turf/simulated))
-					return // stop sliding as it is impossible to be on wet terrain?
-				if(ground.wet != 2)
-					return // done sliding, not lubed
-				sleep(1)
-		else
-			for(var/i = 1 to slip_dist)
-				if(isbelly(M.loc))	//Stop the slip if we're in a belly.
-					return
-				step(M, M.dir)
-				sleep(1)
-	else
-		M.inertia_dir = 0
-
+	if(isbelly(M.loc))	// Stop the slip if we're in a belly.
+		return
+	if(!step(M, M.dir) && !dirtslip)
+		return // done sliding, failed to move
+	// check tile for next slip
+	if(!dirtslip)
+		var/turf/simulated/ground = get_turf(M)
+		if(!istype(ground,/turf/simulated))
+			return // stop sliding as it is impossible to be on wet terrain?
+		if(ground.wet != 2)
+			return // done sliding, not lubed
+	addtimer(CALLBACK(src, PROC_REF(handle_slipping), M, --slip_dist, dirtslip), 1)
 
 //returns 1 if made bloody, returns 0 otherwise
 /turf/simulated/add_blood(mob/living/carbon/human/M as mob)
