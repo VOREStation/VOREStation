@@ -94,6 +94,9 @@
 		parent.children -= src
 		parent = null
 
+	if(wounds)
+		QDEL_LIST(wounds)
+
 	if(children)
 		for(var/obj/item/organ/external/C in children)
 			children -= C
