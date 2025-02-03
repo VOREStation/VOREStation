@@ -57,6 +57,9 @@
 
 /atom/movable/Destroy()
 	. = ..()
+
+	unbuckle_all_mobs()
+
 	for(var/atom/movable/AM in contents)
 		qdel(AM)
 
