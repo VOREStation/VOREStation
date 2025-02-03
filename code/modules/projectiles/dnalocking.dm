@@ -19,7 +19,7 @@
 	var/mob/living/M = user
 	if(!attached_lock.controller_lock)
 
-		if(!attached_lock.stored_dna && !(M.dna.unique_enzymes in attached_lock.stored_dna))
+		if(attached_lock.stored_dna && (M.dna.unique_enzymes in attached_lock.stored_dna))
 			to_chat(M, span_warning("\The [src] buzzes and displays a symbol showing the gun already contains your DNA."))
 			return 0
 		else
