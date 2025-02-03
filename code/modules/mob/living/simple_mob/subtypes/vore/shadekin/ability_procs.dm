@@ -106,16 +106,20 @@
 
 		cut_overlays()
 		flick("tp_out",src)
-		sleep(5)
-		invisibility = INVISIBILITY_LEVEL_TWO
-		see_invisible = INVISIBILITY_LEVEL_TWO
-		update_icon()
-		alpha = 127
+		addtimer(CALLBACK(src, PROC_REF(phase_invis_handling), original_canmove), 5, TIMER_DELETE_ME)
 
-		canmove = original_canmove
-		incorporeal_move = TRUE
-		density = FALSE
-		force_max_speed = TRUE
+/mob/living/simple_mob/shadekin/proc/phase_invis_handling(var/original_canmove)
+	PRIVATE_PROC(TRUE)
+	SHOULD_NOT_OVERRIDE(TRUE)
+	invisibility = INVISIBILITY_LEVEL_TWO
+	see_invisible = INVISIBILITY_LEVEL_TWO
+	update_icon()
+	alpha = 127
+
+	canmove = original_canmove
+	incorporeal_move = TRUE
+	density = FALSE
+	force_max_speed = TRUE
 
 /mob/living/simple_mob/shadekin/UnarmedAttack()
 	if(ability_flags & AB_PHASE_SHIFTED)

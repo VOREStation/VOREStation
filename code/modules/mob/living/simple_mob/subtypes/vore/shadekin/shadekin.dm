@@ -250,8 +250,7 @@
 	cut_overlays()
 	icon_state = ""
 	flick("tp_out",src)
-	spawn(1 SECOND)
-		qdel(src) //Back from whence you came!
+	QDEL_IN(src, 1 SECOND)
 
 	. = ..(FALSE, deathmessage)
 
@@ -496,7 +495,6 @@
 				continue
 
 			if(prob(destroy_lights))
-				spawn(rand(5,25))
-					L.broken()
+				addtimer(CALLBACK(L, TYPE_PROC_REF(/obj/machinery/light, broken)), rand(5,25), TIMER_DELETE_ME)
 			else
 				L.flicker(10)
