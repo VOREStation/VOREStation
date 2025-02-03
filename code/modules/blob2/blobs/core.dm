@@ -101,7 +101,7 @@ var/list/blob_cores = list()
 	START_PROCESSING(SSobj, src)
 	update_icon() //so it atleast appears
 	if(!placed && !overmind)
-		create_overmind(new_overmind)
+		addtimer(CALLBACK(src,PROC_REF(create_overmind), new_overmind), 0, TIMER_DELETE_ME)
 	if(overmind)
 		update_icon()
 	point_rate = new_rate

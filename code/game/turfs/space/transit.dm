@@ -7,7 +7,10 @@
 	return
 
 /turf/space/transit/Initialize()
-	. = ..()
+	..()
+	return INITIALIZE_HINT_LATELOAD
+
+/turf/space/transit/LateInitialize()
 	toggle_transit(reverse_dir[pushdirection])
 
 //------------------------

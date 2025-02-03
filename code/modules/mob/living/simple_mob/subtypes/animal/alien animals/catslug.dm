@@ -58,9 +58,9 @@
 	var/obj/item/clothing/head/hat = null // Scughat.
 	var/can_wear_hat = TRUE				  // Some have inbuilt hats
 
-	var/picked_color = FALSE
-
 	allow_mind_transfer = TRUE
+
+	var/picked_color = FALSE //This needs to be moved to simple_mob. Out of scope for this PR.
 
 	can_enter_vent_with = list(
 		/obj/item/implant,
@@ -68,6 +68,7 @@
 		/obj/item/holder,
 		/obj/machinery/camera,
 		/obj/belly,
+		//obj/soulgem, // Used downstream.
 		/obj/screen,
 		/atom/movable/emissive_blocker,
 		/obj/item/material,
@@ -765,7 +766,10 @@
 	item_state = "capslug"
 
 /mob/living/simple_mob/vore/alienanimals/catslug/custom/capslug/Initialize() 		//This is such an awful proc, but if someone wants it better they're welcome to have a go at it.
-	. = ..()
+	..()
+	return INITIALIZE_HINT_LATELOAD
+
+/mob/living/simple_mob/vore/alienanimals/catslug/custom/capslug/LateInitialize()
 	mob_radio = new /obj/item/radio/headset/mob_headset(src)
 	mob_radio.frequency = PUB_FREQ
 	mob_radio.ks2type = /obj/item/encryptionkey/heads/captain 		//Might not be able to speak, but the catslug can listen.
@@ -850,7 +854,11 @@
 	player_msg = "You are in the employ of a criminal syndicate hostile to corporate interests. Follow the Mercenary or Commando's orders and assist them in their goals by any means available."
 
 /mob/living/simple_mob/vore/alienanimals/catslug/custom/spaceslug/syndislug/Initialize()
-	. = ..()
+	..()
+	myid.access |= get_all_station_access()
+	return INITIALIZE_HINT_LATELOAD
+
+/mob/living/simple_mob/vore/alienanimals/catslug/custom/spaceslug/syndislug/LateInitialize()
 	mob_radio = new /obj/item/radio/headset/mob_headset(src)
 	mob_radio.frequency = SYND_FREQ
 	mob_radio.syndie = 1
@@ -894,7 +902,11 @@
 	Think through your actions and make the roleplay immersive! <b>Please remember all rules aside from those without explicit exceptions apply to the ERT.</b>"
 
 /mob/living/simple_mob/vore/alienanimals/catslug/custom/spaceslug/responseslug/Initialize()
-	. = ..()
+	..()
+	myid.access |= get_all_station_access()
+	return INITIALIZE_HINT_LATELOAD
+
+/mob/living/simple_mob/vore/alienanimals/catslug/custom/spaceslug/responseslug/LateInitialize()
 	mob_radio = new /obj/item/radio/headset/mob_headset(src)
 	mob_radio.frequency = ERT_FREQ
 	mob_radio.centComm = 1

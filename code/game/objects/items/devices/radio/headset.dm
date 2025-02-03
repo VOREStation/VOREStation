@@ -21,7 +21,7 @@
 	drop_sound = 'sound/items/drop/component.ogg'
 	pickup_sound = 'sound/items/pickup/component.ogg'
 
-/obj/item/radio/headset/New()
+/obj/item/radio/headset/New() // TODO - Radios need to be moved to Init()
 	..()
 	internal_channels.Cut()
 	if(ks1type)
@@ -162,6 +162,19 @@
 		if(keyslot1.syndie)
 			src.syndie = 1
 
+	if(!radio_controller)
+		addtimer(CALLBACK(src,PROC_REF(handle_finalize_recalculatechannels),setDescription),3 SECONDS)
+	else
+		addtimer(CALLBACK(src,PROC_REF(handle_finalize_recalculatechannels),setDescription),0 SECONDS)
+
+/obj/item/radio/headset/proc/handle_finalize_recalculatechannels(var/setDescription = 0)
+	PRIVATE_PROC(TRUE)
+	SHOULD_NOT_OVERRIDE(TRUE)
+	if(!radio_controller)
+		src.name = "broken radio headset"
+		return
+
+
 	if(keyslot2)
 		for(var/ch_name in keyslot2.channels)
 			if(ch_name in src.channels)
@@ -180,18 +193,10 @@
 
 
 	for (var/ch_name in channels)
-		if(!radio_controller)
-			sleep(30) // Waiting for the radio_controller to be created.
-		if(!radio_controller)
-			src.name = "broken radio headset"
-			return
-
 		secure_radio_connections[ch_name] = radio_controller.add_object(src, radiochannels[ch_name],  RADIO_CHAT)
 
 	if(setDescription)
 		setupRadioDescription()
-
-	return
 
 /obj/item/radio/headset/proc/setupRadioDescription()
 	var/radio_text = ""
