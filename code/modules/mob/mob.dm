@@ -1,4 +1,5 @@
 /mob/Destroy()//This makes sure that mobs withGLOB.clients/keys are not just deleted from the game.
+	SSmobs.currentrun -= src
 	mob_list -= src
 	dead_mob_list -= src
 	living_mob_list -= src
@@ -22,11 +23,18 @@
 	if(pulling)
 		stop_pulling() //TG does this on atom/movable but our stop_pulling proc is here so whatever
 
+	if(ability_master)
+		QDEL_NULL(ability_master)
+
 	vore_selected = null
 	if(vore_organs)
 		QDEL_NULL_LIST(vore_organs)
 	if(vorePanel)
 		QDEL_NULL(vorePanel)
+
+	for(var/mob/observer/dead/M in following_mobs)
+		M.stop_following()
+	following_mobs = null
 
 
 	if(mind)
