@@ -36,7 +36,6 @@ export const VoreUserPreferences = (props: {
     stumble_vore,
     slip_vore,
     throw_vore,
-    phase_vore,
     food_vore,
     digest_pain,
     nutrition_message_visible,
@@ -214,21 +213,6 @@ export const VoreUserPreferences = (props: {
       content: {
         enabled: 'Throw Vore Enabled',
         disabled: 'Throw Vore Disabled',
-      },
-    },
-    toggle_phase_vore: {
-      action: 'toggle_phase_vore',
-      test: phase_vore,
-      tooltip: {
-        main:
-          'Allows for phasing related spontaneous vore to occur. ' +
-          ' Note, you still need spontaneous vore pred and/or prey enabled.',
-        enable: 'Click here to allow for phase vore.',
-        disable: 'Click here to disable phase vore.',
-      },
-      content: {
-        enabled: 'Phase Vore Enabled',
-        disabled: 'Phase Vore Disabled',
       },
     },
     toggle_food_vore: {
