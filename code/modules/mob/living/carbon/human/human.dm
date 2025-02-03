@@ -75,10 +75,14 @@
 		QDEL_NULL(nif)	//VOREStation Add
 	worn_clothing.Cut()
 
+	if(stored_blob)
+		stored_blob.drop_l_hand()
+		stored_blob.drop_r_hand()
+		QDEL_NULL(stored_blob)
 
 	if(vessel)
 		QDEL_NULL(vessel)
-	return ..()
+	. = ..()
 
 /mob/living/carbon/human/get_status_tab_items()
 	. = ..()
