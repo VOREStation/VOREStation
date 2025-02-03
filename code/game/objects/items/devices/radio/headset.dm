@@ -21,14 +21,21 @@
 	drop_sound = 'sound/items/drop/component.ogg'
 	pickup_sound = 'sound/items/pickup/component.ogg'
 
-/obj/item/radio/headset/New()
-	..()
-	internal_channels.Cut()
+/obj/item/radio/headset/Initialize()
+	. = ..()
+	return INITIALIZE_HINT_LATELOAD
+
+/obj/item/radio/headset/LateInitialize()
+	to_world("LOC = [src.loc] loc of loc = [src.loc.loc] loc of loc of loc = [src.loc.loc.loc]")
+	if(internal_channels)
+		internal_channels.Cut()
 	if(ks1type)
 		keyslot1 = new ks1type(src)
 	if(ks2type)
 		keyslot2 = new ks2type(src)
-	recalculateChannels(1)
+	if(!ks1type && !ks2type) //This is here because LateInitialize is being called TWICE for some reason on character spawn
+		return
+	recalculateChannels(TRUE)
 
 /obj/item/radio/headset/Destroy()
 	qdel(keyslot1)
@@ -140,7 +147,7 @@
 
 	return
 
-/obj/item/radio/headset/recalculateChannels(var/setDescription = 0)
+/obj/item/radio/headset/recalculateChannels(var/setDescription = FALSE)
 	src.channels = list()
 	src.translate_binary = 0
 	src.translate_hive = 0
@@ -178,20 +185,20 @@
 		if(keyslot2.syndie)
 			src.syndie = 1
 
+	addtimer(CALLBACK(src,PROC_REF(handle_finalize_recalculatechannels),setDescription),3 SECONDS)
+
+/obj/item/radio/headset/proc/handle_finalize_recalculatechannels(var/setDescription = FALSE)
+	PRIVATE_PROC(TRUE)
+	SHOULD_NOT_OVERRIDE(TRUE)
+	if(!radio_controller)
+		name = "broken radio headset"
+		return
 
 	for (var/ch_name in channels)
-		if(!radio_controller)
-			sleep(30) // Waiting for the radio_controller to be created.
-		if(!radio_controller)
-			src.name = "broken radio headset"
-			return
-
 		secure_radio_connections[ch_name] = radio_controller.add_object(src, radiochannels[ch_name],  RADIO_CHAT)
 
 	if(setDescription)
 		setupRadioDescription()
-
-	return
 
 /obj/item/radio/headset/proc/setupRadioDescription()
 	var/radio_text = ""

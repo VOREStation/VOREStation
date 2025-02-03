@@ -25,8 +25,8 @@ var/global/list/default_medbay_channels = list(
 //VOREStation Edit End
 
 /obj/item/radio
-	icon = 'icons/obj/radio_vr.dmi' //VOREStation Edit
-	name = "shortwave radio" //VOREStation Edit
+	icon = 'icons/obj/radio_vr.dmi'
+	name = "shortwave radio"
 	desc = "Used to talk to people when headsets don't function. Range is limited."
 	suffix = "\[3\]"
 	icon_state = "walkietalkie"
@@ -728,14 +728,16 @@ GLOBAL_DATUM(autospeaker, /mob/living/silicon/ai/announcer)
 
 	for (var/ch_name in src.channels)
 		if(!radio_controller)
-			sleep(30) // Waiting for the radio_controller to be created.
-		if(!radio_controller)
-			src.name = "broken radio"
-			return
-
-		secure_radio_connections[ch_name] = radio_controller.add_object(src, radiochannels[ch_name],  RADIO_CHAT)
-
+			addtimer(CALLBACK(src,PROC_REF(controller_check), ch_name),3 SECONDS)
 	return
+
+/obj/item/radio/proc/controller_check(var/ch_name)
+	SHOULD_NOT_OVERRIDE(TRUE)
+	PRIVATE_PROC(TRUE)
+	if(!radio_controller)
+		src.name = "broken radio"
+	else
+		secure_radio_connections[ch_name] = radio_controller.add_object(src, radiochannels[ch_name],  RADIO_CHAT)
 
 /obj/item/radio/proc/config(op)
 	if(radio_controller)
