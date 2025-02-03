@@ -1,4 +1,3 @@
-import { sortBy } from 'common/collections';
 import { useBackend } from 'tgui/backend';
 import { Window } from 'tgui/layouts';
 import {
@@ -73,6 +72,10 @@ export const TelesciConsoleContent = (props) => {
     lastTeleData,
   } = data;
 
+  if (sectorOptions) {
+    sectorOptions.sort();
+  }
+
   return (
     <Section
       title="Telepad Controls"
@@ -120,7 +123,7 @@ export const TelesciConsoleContent = (props) => {
         </LabeledList.Item>
         <LabeledList.Item label="Sector">
           {sectorOptions &&
-            sortBy(sectorOptions, (v) => v).map((z) => (
+            sectorOptions.map((z) => (
               <Button
                 key={z}
                 icon="check-circle"

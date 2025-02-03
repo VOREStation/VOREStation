@@ -105,7 +105,7 @@
 		var/choice = tgui_alert(user, "Adjusting the base color of this canvas will replace ALL pixels with the selected color. Are you sure?", "Confirm Color Fill", list("Yes", "No"))
 		if(choice != "Yes")
 			return
-		var/basecolor = input(user, "Select a base color for the canvas:", "Base Color", canvas_color) as null|color
+		var/basecolor = tgui_color_picker(user, "Select a base color for the canvas:", "Base Color", canvas_color)
 		if(basecolor && Adjacent(user) && user.get_active_hand() == I)
 			canvas_color = basecolor
 			reset_grid()
@@ -214,7 +214,7 @@
 		return canvas_color
 
 /obj/item/canvas/proc/try_rename(mob/user)
-	var/new_name = stripped_input(user,"What do you want to name the painting?", max_length = 250)
+	var/new_name = tgui_input_text(user,"What do you want to name the painting?", max_length = 250, encode=TRUE)
 	if(new_name != painting_name && new_name && CanUseTopic(user, GLOB.tgui_physical_state))
 		painting_name = new_name
 		SStgui.update_uis(src)
@@ -305,7 +305,7 @@
 /obj/item/paint_palette/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/paint_brush))
 		var/obj/item/paint_brush/P = W
-		var/newcolor = input(user, "Select a new paint color:", "Paint Palette", P.selected_color) as null|color
+		var/newcolor = tgui_color_picker(user, "Select a new paint color:", "Paint Palette", P.selected_color)
 		if(newcolor && Adjacent(user, P) && Adjacent(user, src))
 			P.update_paint(newcolor)
 	else

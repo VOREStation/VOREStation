@@ -1,4 +1,3 @@
-import { sortBy } from 'common/collections';
 import { useState } from 'react';
 import { useBackend } from 'tgui/backend';
 import { NanoMap } from 'tgui/components';
@@ -32,9 +31,8 @@ export const AtmosControl = (props) => {
 export const AtmosControlContent = (props) => {
   const { act, data, config } = useBackend<Data>();
 
-  let sortedAlarms = sortBy(data.alarms || [], (alarm: alarm) => alarm.name);
-
-  // sortedAlarms = sortedAlarms.slice(1, 3);
+  const { alarms } = data;
+  alarms.sort((a, b) => a.name.localeCompare(b.name));
 
   const [tabIndex, setTabIndex] = useState(0);
   const [zoom, setZoom] = useState(1);
@@ -44,7 +42,7 @@ export const AtmosControlContent = (props) => {
   if (tabIndex === 0) {
     body = (
       <Section title="Alarms">
-        {sortedAlarms.map((alarm) => (
+        {alarms.map((alarm) => (
           <Button
             key={alarm.name}
             color={
@@ -64,7 +62,7 @@ export const AtmosControlContent = (props) => {
     body = (
       <Box height="526px" mb="0.5rem" overflow="hidden">
         <NanoMap zoomScale={data.zoomScale} onZoom={(v) => setZoom(v)}>
-          {sortedAlarms
+          {alarms
             .filter((x) => ~~x.z === ~~config.mapZLevel)
             .map((cm) => (
               <NanoMap.Marker

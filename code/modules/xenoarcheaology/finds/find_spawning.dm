@@ -341,11 +341,13 @@
 			// possible_laser_paths += /obj/item/projectile/animate //Funny 'turns object into mimic' beam. Currently unticked in the .dme, but here in case it gets toggled!
 			possible_laser_paths += /obj/item/projectile/ion
 			possible_laser_paths += subtypesof(/obj/item/projectile/energy/floramut)
+			// THE BLACKLIST
+			possible_laser_paths -= list(/obj/item/projectile/beam/pulse, /obj/item/projectile/beam/pulse/heavy)
 			var/new_laser = pick(possible_laser_paths)
 			new_gun.projectile_type = new_laser
 			new_item = new_gun
 			new_item.icon_state = "egun[rand(1,18)]"
-			new_gun.desc = "This is an antique energy weapon, you're not sure if it will fire or not."
+			new_gun.desc = "This is an antique energy weapon."
 
 			//10% chance to have an unchargeable cell
 			//15% chance to gain a random amount of starting energy, otherwise start with an empty cell
@@ -357,7 +359,7 @@
 				LAZYSET(new_gun.origin_tech, TECH_ARCANE, 1)
 			else
 				new_gun.power_supply.charge = 0
-			item_type = "gun"
+			item_type = "Relic Laser Gun"
 
 
 		/// Artifact type gun that requires a random caliber and selects a random bullet type it shoots out!.
@@ -365,7 +367,7 @@
 			var/obj/item/gun/projectile/artifact/new_gun = new /obj/item/gun/projectile/artifact(src.loc)
 			new_item = new_gun
 			new_item.icon_state = "gun[rand(1,7)]"
-			item_type = "gun"
+			item_type = "Relic Gun"
 			//There is no 'global list of all the gun caliber types' so...Whatever. This will have to do. (Side note: After further review, making it a global list would result in the gun requiring unobtainable calibers, so this is ideal.)
 			//When someone does make a global list of all the calibers, replace the below with it.
 			new_gun.caliber = "[pick(".357", "12g", ".38", "7.62mm", ".38", "9mm", "10mm", ".45", "5.45mm", "7.62mm")]" //A list of gun calibers that are obtainable.
@@ -428,7 +430,7 @@
 		if(ARCHAEO_REMAINS_HUMANOID)
 			//humanoid remains
 			apply_prefix = FALSE
-			item_type = "humanoid organ]"
+			item_type = "humanoid organ"
 			icon = 'icons/effects/blood.dmi'
 			icon_state = "remains"
 			apply_image_decorations = FALSE

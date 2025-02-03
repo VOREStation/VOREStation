@@ -1,4 +1,3 @@
-import { filter } from 'common/collections';
 import { useBackend, useSharedState } from 'tgui/backend';
 import { Window } from 'tgui/layouts';
 import {
@@ -579,7 +578,7 @@ const prepareSearch = (
       if (!searchText) {
         return laws;
       } else {
-        return filter(laws, testSearch);
+        return laws.filter(testSearch);
       }
     },
   ])(laws);

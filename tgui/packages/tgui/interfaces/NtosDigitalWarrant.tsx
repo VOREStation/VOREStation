@@ -1,4 +1,3 @@
-import { filter } from 'common/collections';
 import { useBackend } from 'tgui/backend';
 import { NtosWindow } from 'tgui/layouts';
 import { Button, LabeledList, Section, Table } from 'tgui-core/components';
@@ -63,8 +62,7 @@ const WarrantList = (props) => {
 
   const { allwarrants = [] } = data;
 
-  const ourWarrants = filter(
-    allwarrants,
+  const ourWarrants = allwarrants.filter(
     (w: warrant) => w.arrestsearch === type,
   );
 

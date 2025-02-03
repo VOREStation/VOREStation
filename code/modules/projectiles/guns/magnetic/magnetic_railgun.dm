@@ -57,7 +57,7 @@
 
 	cell = /obj/item/cell/infinite
 	capacitor = /obj/item/stock_parts/capacitor/super
-	fire_delay = 0
+	fire_delay = 0.1
 
 	slowdown = 2
 	slowdown_held = 3
@@ -67,7 +67,7 @@
 	w_class = ITEMSIZE_NO_CONTAINER
 
 	firemodes = list(
-		list(mode_name="semiauto", burst=1, fire_delay=0, move_delay=null, one_handed_penalty=15, burst_accuracy=null, dispersion=null),
+		list(mode_name="semiauto", burst=1, fire_delay=0.1, move_delay=null, one_handed_penalty=15, burst_accuracy=null, dispersion=null),
 		list(mode_name="short bursts", burst=3, fire_delay=null, move_delay=5, one_handed_penalty=30, burst_accuracy=list(0,-15,-15), dispersion=list(0.0, 0.6, 1.0)),
 		list(mode_name="long bursts", burst=6, fire_delay=null, move_delay=10, one_handed_penalty=30, burst_accuracy=list(0,-15,-15,-15,-30), dispersion=list(0.6, 0.6, 1.0, 1.0, 1.2)),
 		)
@@ -86,7 +86,7 @@
 	cell = /obj/item/cell/hyper
 	capacitor = /obj/item/stock_parts/capacitor/adv
 
-	fire_delay = 0
+	fire_delay = 0.1
 
 	slot_flags = SLOT_BACK
 
@@ -101,7 +101,7 @@
 	empty_sound = 'sound/weapons/smg_empty_alarm.ogg'
 
 	firemodes = list(
-		list(mode_name="semiauto", burst=1, fire_delay=0, move_delay=null, one_handed_penalty=15, burst_accuracy=null, dispersion=null),
+		list(mode_name="semiauto", burst=1, fire_delay=0.1, move_delay=null, one_handed_penalty=15, burst_accuracy=null, dispersion=null),
 		list(mode_name="short bursts", burst=3, fire_delay=null, move_delay=5, one_handed_penalty=30, burst_accuracy=list(0,-15,-15), dispersion=list(0.0, 0.6, 1.0)),
 		)
 
@@ -117,7 +117,7 @@
 	cell = /obj/item/cell/super
 	capacitor = /obj/item/stock_parts/capacitor
 
-	fire_delay = 0
+	fire_delay = 0.1
 
 	slot_flags = SLOT_BELT
 
@@ -133,7 +133,7 @@
 	empty_sound = 'sound/weapons/smg_empty_alarm.ogg'
 
 	firemodes = list(
-		list(mode_name="semiauto", burst=1, fire_delay=0, move_delay=null, one_handed_penalty=15, burst_accuracy=null, dispersion=null),
+		list(mode_name="semiauto", burst=1, fire_delay=0.1, move_delay=null, one_handed_penalty=15, burst_accuracy=null, dispersion=null),
 		list(mode_name="short bursts", burst=3, fire_delay=null, move_delay=5, one_handed_penalty=30, burst_accuracy=list(0,-15,-15), dispersion=list(0.0, 0.6, 1.0)),
 	)
 
@@ -221,6 +221,6 @@
 	empty_sound = 'sound/weapons/smg_empty_alarm.ogg'
 
 	firemodes = list(
-		list(mode_name="semiauto", burst=1, fire_delay=0, move_delay=null, one_handed_penalty=15, burst_accuracy=null, dispersion=null),
+		list(mode_name="semiauto", burst=1, fire_delay=0.1, move_delay=null, one_handed_penalty=15, burst_accuracy=null, dispersion=null),
 		list(mode_name="short bursts", burst=3, fire_delay=null, move_delay=5, one_handed_penalty=30, burst_accuracy=list(0,-15,-15), dispersion=list(0.0, 0.6, 1.0)),
 		)

@@ -850,7 +850,7 @@
 
 	//Again, no real need for a check on this. I'm unsure how it could be somehow abused.
 	//Even if they open the box 900 times, who cares, they get the wrong color and do it again.
-	var/new_color = input(src,"Select a new color","Body Glow",glow_color) as color
+	var/new_color = tgui_color_picker(src,"Select a new color","Body Glow",glow_color)
 	if(new_color)
 		glow_color = new_color
 
@@ -1179,21 +1179,21 @@
 	if(href_list["vore_prefs"])
 		display_voreprefs(usr)
 	if(href_list["ooc_notes"])
-		Examine_OOC(usr)
+		do_examine_ooc(usr)
 	if(href_list["edit_ooc_notes"])
 		if(usr == src)
-			set_metainfo_panel()
+			set_metainfo_panel(usr)
 	if(href_list["edit_ooc_note_likes"])
 		if(usr == src)
-			set_metainfo_likes()
+			set_metainfo_likes(usr)
 	if(href_list["edit_ooc_note_dislikes"])
 		if(usr == src)
-			set_metainfo_dislikes()
+			set_metainfo_dislikes(usr)
 	if(href_list["save_ooc_panel"])
 		if(usr == src)
-			save_ooc_panel()
+			save_ooc_panel(usr)
 	if(href_list["print_ooc_notes_to_chat"])
-		print_ooc_notes_to_chat()
+		print_ooc_notes_to_chat(usr)
 	if(href_list["save_private_notes"])
 		if(usr == src)
 			save_private_notes(usr)

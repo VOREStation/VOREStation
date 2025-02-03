@@ -63,6 +63,7 @@
 #define MAT_WEEDEXTRACT		"weed extract"
 #define MAT_CARDBOARD		"cardboard"
 #define MAT_COTTON			"cotton"
+#define MAT_GLAMOUR			"stable glamour"
 
 // cloth materials
 #define MAT_WOOL			"wool"
