@@ -13,8 +13,11 @@ var/global/list/global_used_pois = list()
 INITIALIZE_IMMEDIATE(/obj/effect/landmark/poi_loader)
 
 /obj/effect/landmark/poi_loader/Initialize()
-	INVOKE_ASYNC(src, PROC_REF(load_poi)) // Outpost 21 edit - Experimental - Remove sleep()
-	return ..()
+	..()
+	return INITIALIZE_HINT_LATELOAD
+
+/obj/effect/landmark/poi_loader/LateInitialize()
+	load_poi()
 
 /obj/effect/landmark/poi_loader/proc/get_turfs_to_clean()
 	return block(locate(src.x, src.y, src.z), locate((src.x + size_x - 1), (src.y + size_y - 1), src.z))
