@@ -1,4 +1,4 @@
-import { binaryInsertWith, sortBy } from 'common/collections';
+import { binaryInsertWith } from 'common/collections';
 import { ReactNode, useState } from 'react';
 import { useBackend } from 'tgui/backend';
 import {
@@ -25,8 +25,13 @@ const binaryInsertPreference = (
   value: PreferenceChild,
 ) => binaryInsertWith(collection, value, (child) => child.name);
 
+function sortPref(k: [string, PreferenceChild[]]) {
+  k[1].sort((a, b) => a.name.localeCompare(b.name));
+  return k;
+}
+
 const sortByName = (array: [string, PreferenceChild[]][]) =>
-  sortBy(array, ([name]) => name);
+  array.map((k, _) => sortPref(k)).sort((a, b) => a[0].localeCompare(b[0]));
 
 export const GamePreferencesPage = (props) => {
   const { act, data } = useBackend<PreferencesMenuData>();

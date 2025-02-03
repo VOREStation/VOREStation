@@ -1,4 +1,3 @@
-import { filter } from 'common/collections';
 import { flow } from 'tgui-core/fp';
 import { createSearch } from 'tgui-core/string';
 
@@ -23,7 +22,7 @@ export function prepareSearch<T extends SearchObject>(
       if (!searchText) {
         return objects as any;
       } else {
-        return filter(objects, testSearch) as any;
+        return objects.filter(testSearch) as any;
       }
     },
   ])(objects);

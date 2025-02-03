@@ -1,4 +1,3 @@
-import { filter } from 'common/collections';
 import { flow } from 'tgui-core/fp';
 import { createSearch } from 'tgui-core/string';
 
@@ -27,7 +26,7 @@ export function selectRecords(records: record[], searchText = ''): record[] {
       if (!searchText) {
         return records;
       } else {
-        return filter(records, (record) => {
+        return records.filter((record) => {
           return nameSearch(record) || idSearch(record) || dnaSearch(record);
         });
       }
