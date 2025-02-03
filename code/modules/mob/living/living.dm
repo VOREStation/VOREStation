@@ -19,6 +19,26 @@
 	selected_image = image(icon = buildmode_hud, loc = src, icon_state = "ai_sel")
 
 /mob/living/Destroy()
+	SSradiation.listeners -= src
+	remove_all_modifiers(TRUE)
+	QDEL_NULL(say_list)
+
+	for(var/datum/soul_link/S as anything in owned_soul_links)
+		S.owner_died(FALSE)
+		qdel(S) // If the owner is destroy()'d, the soullink is destroy()'d.
+	owned_soul_links = null
+	for(var/datum/soul_link/S as anything in shared_soul_links)
+		S.sharer_died(FALSE)
+		S.remove_soul_sharer(src) // If a sharer is destroy()'d, they are simply removed.
+	shared_soul_links = null
+
+	if(ai_holder)
+		ai_holder.holder = null
+		ai_holder.UnregisterSignal(src,COMSIG_MOB_STATCHANGE)
+		if(ai_holder.faction_friends && ai_holder.faction_friends.len) //This list is shared amongst the faction
+			ai_holder.faction_friends -= src
+			ai_holder.faction_friends = null
+		QDEL_NULL(ai_holder)
 	if(dsoverlay)
 		dsoverlay.loc = null //I'll take my coat with me
 		dsoverlay = null
@@ -78,7 +98,14 @@
 			internal_organs -= OR
 			qdel(OR)
 
-	return ..()
+	cultnet.updateVisibility(src, 0)
+
+	if(aiming)
+		qdel(aiming)
+		aiming = null
+	aimed.Cut()
+
+	. = ..()
 
 //mob verbs are faster than object verbs. See mob/verb/examine.
 /mob/living/verb/pulled(atom/movable/AM as mob|obj in oview(1))

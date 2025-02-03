@@ -146,7 +146,3 @@ SUBSYSTEM_DEF(radiation)
 		return
 	var/turf/epicentre = locate(round(world.maxx / 2), round(world.maxy / 2), source.z)
 	flat_radiate(epicentre, power, world.maxx, respect_maint)
-
-/mob/living/Destroy()
-	. = ..()
-	SSradiation.listeners -= src
