@@ -1,4 +1,3 @@
-import { filter, sortBy } from 'common/collections';
 import { useState } from 'react';
 import { useBackend } from 'tgui/backend';
 import { Window } from 'tgui/layouts';
@@ -10,7 +9,6 @@ import {
   Section,
   Stack,
 } from 'tgui-core/components';
-import { flow } from 'tgui-core/fp';
 import { BooleanLike, classes } from 'tgui-core/react';
 import { createSearch } from 'tgui-core/string';
 
@@ -57,31 +55,24 @@ export const selectCameras = (
   networkFilter: string = '',
 ): camera[] => {
   const testSearch = createSearch(searchText, (camera: camera) => camera.name);
-  return flow([
-    (cameras: camera[]) =>
-      // Null camera filter
-      filter(cameras, (camera) => notEmpty(camera?.name)),
-    (cameras: camera[]) => {
-      // Optional search term
+
+  return cameras
+    .filter((camera) => notEmpty(camera?.name))
+    .filter((camera) => {
       if (!searchText) {
-        return cameras;
+        return true;
       } else {
-        return filter(cameras, testSearch);
+        return testSearch(camera);
       }
-    },
-    (cameras: camera[]) => {
-      // Optional network filter
+    })
+    .filter((camera) => {
       if (!networkFilter) {
-        return cameras;
+        return true;
       } else {
-        return filter(cameras, (camera) =>
-          camera.networks.includes(networkFilter),
-        );
+        return camera.networks.includes(networkFilter);
       }
-    },
-    // Slightly expensive, but way better than sorting in BYOND
-    (cameras: camera[]) => sortBy(cameras, (camera) => camera.name),
-  ])(cameras);
+    })
+    .sort((a, b) => a.name.localeCompare(b.name));
 };
 
 export const CameraConsole = (props) => {

@@ -1,4 +1,3 @@
-import { filter } from 'common/collections';
 import { useBackend } from 'tgui/backend';
 import { Window } from 'tgui/layouts';
 import { LabeledList, Section } from 'tgui-core/components';
@@ -47,28 +46,29 @@ export const pAIAtmos = (props) => {
       <Window.Content scrollable>
         <Section>
           <LabeledList>
-            {filter(
-              aircontents,
-              (i: aircontent) =>
-                i.val !== '0' ||
-                i.entry === 'Pressure' ||
-                i.entry === 'Temperature',
-            ).map((item: aircontent) => (
-              <LabeledList.Item
-                key={item.entry}
-                label={item.entry}
-                color={getItemColor(
-                  parseFloat(item.val),
-                  item.bad_low,
-                  item.poor_low,
-                  item.poor_high,
-                  item.bad_high,
-                )}
-              >
-                {item.val}
-                {decodeHtmlEntities(item.units)}
-              </LabeledList.Item>
-            ))}
+            {aircontents
+              .filter(
+                (i: aircontent) =>
+                  i.val !== '0' ||
+                  i.entry === 'Pressure' ||
+                  i.entry === 'Temperature',
+              )
+              .map((item: aircontent) => (
+                <LabeledList.Item
+                  key={item.entry}
+                  label={item.entry}
+                  color={getItemColor(
+                    parseFloat(item.val),
+                    item.bad_low,
+                    item.poor_low,
+                    item.poor_high,
+                    item.bad_high,
+                  )}
+                >
+                  {item.val}
+                  {decodeHtmlEntities(item.units)}
+                </LabeledList.Item>
+              ))}
           </LabeledList>
         </Section>
       </Window.Content>
