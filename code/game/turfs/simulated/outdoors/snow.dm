@@ -69,8 +69,6 @@
 			return ..()
 		addtimer(CALLBACK(src,TYPE_PROC_REF(/turf/simulated/floor/outdoors/ice,cause_slip),M), 1 * world.tick_lag, TIMER_DELETE_ME)
 /turf/simulated/floor/outdoors/ice/cause_slip(var/mob/living/M)
-	PRIVATE_PROC(TRUE)
-	SHOULD_NOT_OVERRIDE(TRUE)
 	if(M.weakened == 0)
 		to_chat(M, span_warning("You slide across the ice!"))
 	M.SetWeakened(3)
