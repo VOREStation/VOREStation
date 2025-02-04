@@ -69,7 +69,10 @@
 	return ..()
 
 /datum/tgui_module/appearance_changer/body_designer/Destroy()
-	qdel_null(designer_mob)
+	RemoveComponentSource(owner,/datum/component/recursive_move)
+	UnregisterSignal(owner, COMSIG_OBSERVER_MOVED)
+	qdel_null(owner)
+	designer_mob = null
 	var/obj/machinery/computer/transhuman/designer/DC = linked_body_design_console?.resolve()
 	if(DC)
 		DC.selected_record = FALSE
@@ -77,16 +80,23 @@
 
 /datum/tgui_module/appearance_changer/body_designer/proc/make_fake_owner()
 	// checks for monkey to tell if on the menu
-	qdel(designer_mob)
+	RemoveComponentSource(owner,/datum/component/recursive_move)
+	UnregisterSignal(owner, COMSIG_OBSERVER_MOVED)
+	qdel_null(owner)
 	designer_mob = new(src)
-	designer_mob.set_species(SPECIES_MONKEY)
+	designer_mob.set_species(SPECIES_LLEILL)
 	designer_mob.species.produceCopy(designer_mob.species.traits.Copy(),designer_mob,null,FALSE)
-	designer_mob.invisibility = 101 // Invisible monkey
-	return designer_mob
+	designer_mob.invisibility = 101
+	// Finish up!
+	owner = designer_mob
+	owner.AddComponent(/datum/component/recursive_move)
+	RegisterSignal(owner, COMSIG_OBSERVER_MOVED, PROC_REF(update_active_camera_screen))
 
 /datum/tgui_module/appearance_changer/body_designer/proc/create_body(var/datum/transhuman/body_record/current_project)
 	//Get the DNA and generate a new mob
-	qdel(designer_mob)
+	RemoveComponentSource(owner,/datum/component/recursive_move)
+	UnregisterSignal(owner, COMSIG_OBSERVER_MOVED)
+	qdel_null(owner)
 	var/datum/dna2/record/R = current_project.mydna
 	designer_mob = new /mob/living/carbon/human(src, R.dna.species)
 	//Fix the external organs
@@ -135,4 +145,7 @@
 	designer_mob.weight = current_project.weight
 	if(current_project.speciesname)
 		designer_mob.custom_species = current_project.speciesname
-	return designer_mob
+	// Finish up!
+	owner = designer_mob
+	owner.AddComponent(/datum/component/recursive_move)
+	RegisterSignal(owner, COMSIG_OBSERVER_MOVED, PROC_REF(update_active_camera_screen))
