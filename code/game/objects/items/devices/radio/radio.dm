@@ -40,19 +40,19 @@ var/global/list/default_medbay_channels = list(
 	var/loudspeaker = TRUE // Allows borgs to disable canhear_range.
 	var/datum/wires/radio/wires = null
 	var/b_stat = 0
-	var/broadcasting = 0
-	var/listening = 1
+	var/broadcasting = FALSE
+	var/listening = TRUE
 	var/list/channels = list() //see communications.dm for full list. First channel is a "default" for :h
-	var/subspace_transmission = 0
+	var/subspace_transmission = FALSE
 	var/subspace_switchable = FALSE
 	var/adhoc_fallback = FALSE //Falls back to 'radio' mode if subspace not available
-	var/syndie = 0//Holder to see if it's a syndicate encrypted radio
-	var/centComm = 0//Holder to see if it's a CentCom encrypted radio
+	var/syndie = FALSE//Holder to see if it's a syndicate encrypted radio
+	var/centComm = FALSE//Holder to see if it's a CentCom encrypted radio
 	slot_flags = SLOT_BELT
 	throw_speed = 2
 	throw_range = 9
 	w_class = ITEMSIZE_SMALL
-	show_messages = 1
+	show_messages = TRUE
 
 	// Bluespace radios talk directly to telecomms equipment
 	var/bluespace_radio = FALSE
