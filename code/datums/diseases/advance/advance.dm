@@ -39,19 +39,7 @@ GLOBAL_LIST_INIT(advance_cures, list(
 	var/id = ""
 
 /datum/disease/advance/New(process = 1, datum/disease/advance/D)
-	if(!istype(D))
-		D = null
-
-	if(!symptoms || !length(symptoms))
-
-		if(!D || !D.symptoms || !length(D.symptoms))
-			symptoms = GenerateSymptoms(0, 2)
-		else
-			for(var/datum/symptom/S in D.symptoms)
-				symptoms += new S.type
-
 	Refresh()
-	..(process, D)
 	return
 
 /datum/disease/advance/Destroy()
