@@ -211,3 +211,10 @@
 	name = "shaft miner's jumpsuit"
 	icon_state = "miner"
 	rolled_sleeves = 0
+
+/obj/item/clothing/under/rank/mailman2
+	name = "mailman's suit"
+	desc = "A good looking suit for the delivery person!"
+	icon_state = "mailman2"
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
+	rolled_sleeves = 0

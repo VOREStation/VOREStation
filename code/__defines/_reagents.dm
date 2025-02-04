@@ -1238,7 +1238,8 @@
 #define REAGENT_ID_KOMPOT "kompot"
 #define REAGENT_KVASS "Kvass"
 #define REAGENT_ID_KVASS "kvass"
-
+#define REAGENT_CINNAMONPOWDER "Cinnamon powder"
+#define REAGENT_ID_CINNAMONPOWDER "cinnamonpowder"
 
 // Toxins
 #define REAGENT_TOXIN "Toxin"

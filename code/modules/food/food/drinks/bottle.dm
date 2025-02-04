@@ -761,3 +761,21 @@
 /obj/item/reagent_containers/food/drinks/bottle/small/dr_gibb/Initialize()
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_DRGIBB, 50)
+
+/obj/item/weapon/reagent_containers/glass/bottle/cakebatter
+	name = REAGENT_CAKEBATTER + " bottle"
+	desc = "A bottle of pre-made cake batter."
+	icon_state = "bottle-1"
+	prefill = list(REAGENT_ID_CAKEBATTER = 60)
+
+/obj/item/reagent_containers/glass/bottle/cinnamonpowder
+	name = "cinnamon powder bottle"
+	desc = "A bottle with expensive cinnamon powder."
+	icon_state = "bottle-1"
+	prefill = list(REAGENT_ID_CINNAMONPOWDER = 30) // Expensive!
+
+/obj/item/weapon/reagent_containers/glass/bottle/nothing
+	name = "empty bottle?"
+	desc = "An apparently empty bottle."
+	icon_state = "bottle-1"
+	prefill = list(REAGENT_ID_NOTHING = 60)
