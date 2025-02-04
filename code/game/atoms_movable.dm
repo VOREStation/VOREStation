@@ -640,3 +640,9 @@
 
 /atom/movable/proc/get_cell()
 	return
+
+/atom/movable/proc/abstract_move(atom/new_loc)
+	var/atom/old_loc = loc
+	var/direction = get_dir(old_loc, new_loc)
+	loc = new_loc
+	Moved(old_loc, direction, TRUE)
