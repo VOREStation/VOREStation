@@ -1166,8 +1166,7 @@
 /datum/sprite_accessory/tail/taur/naga/alt
 	name = "Naga alt (Taur)"
 	icon_state = "naga_alt_s"
-	//suit_sprites = 'modular_chomp/icons/mob/taursuits_naga_ch.dmi'
-	//vore_tail_sprite_variant = "NagaAlt" //TODO: MOVE THIS OVER
+	vore_tail_sprite_variant = "NagaAlt"
 	fullness_icons = 1
 
 /datum/sprite_accessory/tail/taur/naga/alt/second
