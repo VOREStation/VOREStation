@@ -74,26 +74,26 @@
 /obj/item/radio/intercom/omni
 	name = "global announcer"
 /obj/item/radio/intercom/omni/Initialize()
+	. = ..()
 	channels = radiochannels.Copy()
-	return ..()
 
-/obj/item/radio/intercom/New()
-	..()
+/obj/item/radio/intercom/Initialize()
+	. = ..()
 	circuit = new circuit(src)
 
-/obj/item/radio/intercom/department/medbay/New()
-	..()
+/obj/item/radio/intercom/department/medbay/Initialize()
+	. = ..()
 	internal_channels = default_medbay_channels.Copy()
 
-/obj/item/radio/intercom/department/security/New()
-	..()
+/obj/item/radio/intercom/department/security/Initialize()
+	. = ..()
 	internal_channels = list(
 		num2text(PUB_FREQ) = list(),
 		num2text(SEC_I_FREQ) = list(access_security)
 	)
 
-/obj/item/radio/intercom/entertainment/New()
-	..()
+/obj/item/radio/intercom/entertainment/Initialize()
+	. = ..()
 	internal_channels = list(
 		num2text(PUB_FREQ) = list(),
 		num2text(ENT_FREQ) = list()
@@ -106,8 +106,8 @@
 	subspace_transmission = 1
 	syndie = 1
 
-/obj/item/radio/intercom/syndicate/New()
-	..()
+/obj/item/radio/intercom/syndicate/Initialize()
+	. = ..()
 	internal_channels[num2text(SYND_FREQ)] = list(access_syndicate)
 
 /obj/item/radio/intercom/raider
@@ -117,8 +117,8 @@
 	subspace_transmission = 1
 	syndie = 1
 
-/obj/item/radio/intercom/raider/New()
-	..()
+/obj/item/radio/intercom/raider/Initialize()
+	. = ..()
 	internal_channels[num2text(RAID_FREQ)] = list(access_syndicate)
 
 /obj/item/radio/intercom/attack_ai(mob/user as mob)

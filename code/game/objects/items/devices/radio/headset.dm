@@ -26,7 +26,7 @@
 	return INITIALIZE_HINT_LATELOAD
 
 /obj/item/radio/headset/LateInitialize()
-	if(internal_channels)
+	if(internal_channels) //EVERYTHING breaks without this check.
 		internal_channels.Cut()
 	if(ks1type)
 		keyslot1 = new ks1type(src)
@@ -184,12 +184,15 @@
 		if(keyslot2.syndie)
 			src.syndie = 1
 
-	addtimer(CALLBACK(src,PROC_REF(handle_finalize_recalculatechannels),setDescription),3 SECONDS)
+	handle_finalize_recalculatechannels(setDescription, TRUE)
 
-/obj/item/radio/headset/proc/handle_finalize_recalculatechannels(var/setDescription = FALSE)
+/obj/item/radio/headset/proc/handle_finalize_recalculatechannels(var/setDescription = FALSE, var/initial_run = FALSE)
 	PRIVATE_PROC(TRUE)
 	SHOULD_NOT_OVERRIDE(TRUE)
-	if(!radio_controller)
+	if(!radio_controller && initial_run)
+		addtimer(CALLBACK(src,PROC_REF(handle_finalize_recalculatechannels),setDescription, FALSE),3 SECONDS)
+		return
+	if(!radio_controller && !initial_run)
 		name = "broken radio headset"
 		return
 

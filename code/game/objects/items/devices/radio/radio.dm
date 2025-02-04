@@ -73,23 +73,6 @@ var/global/list/default_medbay_channels = list(
 	frequency = new_frequency
 	radio_connection = radio_controller.add_object(src, frequency, RADIO_CHAT)
 
-/obj/item/radio/New()
-	..()
-	wires = new(src)
-	internal_channels = default_internal_channels.Copy()
-	listening_objects += src
-
-/obj/item/radio/Destroy()
-	qdel(wires)
-	wires = null
-	listening_objects -= src
-	if(radio_controller)
-		radio_controller.remove_object(src, frequency)
-		for (var/ch_name in channels)
-			radio_controller.remove_object(src, radiochannels[ch_name])
-	return ..()
-
-
 /obj/item/radio/Initialize()
 	. = ..()
 	if(frequency < RADIO_LOW_FREQ || frequency > RADIO_HIGH_FREQ)
@@ -134,6 +117,21 @@ var/global/list/default_medbay_channels = list(
 						break
 			if(!found)
 				testing("A radio [src] at [x],[y],[z] specified bluespace prelink IDs, but the machines with corresponding IDs ([bs_tx_preload_id], [bs_rx_preload_id]) couldn't be found.")
+
+	wires = new(src)
+	internal_channels = default_internal_channels.Copy()
+	listening_objects += src
+	return INITIALIZE_HINT_LATELOAD
+
+/obj/item/radio/Destroy()
+	qdel(wires)
+	wires = null
+	listening_objects -= src
+	if(radio_controller)
+		radio_controller.remove_object(src, frequency)
+		for (var/ch_name in channels)
+			radio_controller.remove_object(src, radiochannels[ch_name])
+	return ..()
 
 /obj/item/radio/proc/recalculateChannels()
 	return
@@ -726,17 +724,19 @@ GLOBAL_DATUM(autospeaker, /mob/living/silicon/ai/announcer)
 		if(keyslot.syndie)
 			src.syndie = 1
 
-	for (var/ch_name in src.channels)
-		if(!radio_controller)
-			addtimer(CALLBACK(src,PROC_REF(controller_check), ch_name),3 SECONDS)
+	controller_check(TRUE)
 	return
 
-/obj/item/radio/proc/controller_check(var/ch_name)
-	SHOULD_NOT_OVERRIDE(TRUE)
+/obj/item/radio/borg/proc/controller_check(var/initial_run = FALSE)
 	PRIVATE_PROC(TRUE)
-	if(!radio_controller)
-		src.name = "broken radio"
-	else
+	SHOULD_NOT_OVERRIDE(TRUE)
+	if(!radio_controller && initial_run)
+		addtimer(CALLBACK(src,PROC_REF(controller_check), FALSE),3 SECONDS)
+		return
+	if(!radio_controller && !initial_run)
+		name = "broken radio headset"
+		return
+	for (var/ch_name in channels)
 		secure_radio_connections[ch_name] = radio_controller.add_object(src, radiochannels[ch_name],  RADIO_CHAT)
 
 /obj/item/radio/proc/config(op)
@@ -764,6 +764,6 @@ GLOBAL_DATUM(autospeaker, /mob/living/silicon/ai/announcer)
 /obj/item/radio/phone/medbay
 	frequency = MED_I_FREQ
 
-/obj/item/radio/phone/medbay/New()
-	..()
+/obj/item/radio/phone/medbay/Initialize()
+	. = ..()
 	internal_channels = default_medbay_channels.Copy()
