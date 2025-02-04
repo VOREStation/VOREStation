@@ -1,6 +1,4 @@
 // Body weight limits on a character.
-#define WEIGHT_MIN 70
-#define WEIGHT_MAX 500
 #define WEIGHT_CHANGE_MIN 0
 #define WEIGHT_CHANGE_MAX 100
 
@@ -225,7 +223,5 @@
 
 	return ..();
 
-#undef WEIGHT_MIN
-#undef WEIGHT_MAX
 #undef WEIGHT_CHANGE_MIN
 #undef WEIGHT_CHANGE_MAX
