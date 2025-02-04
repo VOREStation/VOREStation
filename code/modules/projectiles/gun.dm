@@ -361,13 +361,19 @@
 	user.setMoveCooldown(shoot_time) //no moving while shooting either
 
 	next_fire_time = world.time + shoot_time
-	addtimer(CALLBACK(src, PROC_REF(handle_gunfire),target, user, clickparams, pointblank, reflex, 1, FALSE), 0, TIMER_DELETE_ME)
+	handle_gunfire(target, user, clickparams, pointblank, reflex, 1, FALSE)
 
 /obj/item/gun/proc/handle_gunfire(atom/target, mob/living/user, clickparams, pointblank=0, reflex=0, var/ticker, var/recursive = FALSE)
 	PRIVATE_PROC(TRUE)
 	SHOULD_NOT_OVERRIDE(TRUE)
 	if(ticker > burst)
 		return //we're done here
+	if(!ismob(loc)) //We've been dropped.
+		return
+	if(user.stat) //We've been KO'd or have died. No shooting while dead.
+		return
+	if(ticker >= 250) //If you go too far above this, your game will kick you and force you to reconnect. This is already EXTREMELY leninent.
+		return //In testing, I reached 937 bullets out of 1000 being fired with a delay  of 0.1 before being kicked.
 	var/held_twohanded = (user.can_wield_item(src) && is_held_twohanded(user))
 
 	//actually attempt to shoot
@@ -376,7 +382,6 @@
 	//update timing
 	if(recursive)
 		user.setClickCooldown(DEFAULT_QUICK_COOLDOWN)
-		user.setMoveCooldown(move_delay)
 		next_fire_time = world.time + fire_delay
 		if(muzzle_flash)
 			if(gun_light)
@@ -431,7 +436,7 @@
 
 	var/shoot_time = (burst - 1)* burst_delay
 	next_fire_time = world.time + shoot_time
-	addtimer(CALLBACK(src, PROC_REF(handle_userless_gunfire),target, 1, FALSE), 0, TIMER_DELETE_ME)
+	handle_userless_gunfire(target, 1, FALSE)
 
 // This is horrible. I tried to keep the old way it had because if I try to use the fancy procs above like handle_post_fire, it expects a user.
 // Which this doesn't have. It's ugly but whatever. This is used in literally one place (sawn off shotguns) and should honestly just be axed.
