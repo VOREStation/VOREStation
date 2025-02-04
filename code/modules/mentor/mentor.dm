@@ -104,16 +104,16 @@ var/list/mentor_verbs_default = list(
 		to_chat(C, create_text_tag("mentor", "MENTOR:", C) + " " + span_mentor_channel(span_name("[src]") + ": " + span_message("[msg]")))
 
 /proc/mentor_commands(href, href_list, client/C)
-	if(href_list["mhelp"])
-		var/mhelp_ref = href_list["mhelp"]
-		var/datum/mentor_help/MH = locate(mhelp_ref)
-		if (MH && istype(MH, /datum/mentor_help))
-			MH.Action(href_list["mhelp_action"])
+	if(href_list["ticket"])
+		var/ticket_ref = href_list["ticket"]
+		var/datum/ticket/T = locate(ticket_ref)
+		if (T && istype(T, /datum/ticket))
+			T.Action(href_list["ticket_action"])
 		else
-			to_chat(C, "Ticket [mhelp_ref] has been deleted!")
+			to_chat(C, "Ticket [ticket_ref] has been deleted!")
 
-	if (href_list["mhelp_tickets"])
-		GLOB.mhelp_tickets.BrowseTickets(text2num(href_list["mhelp_tickets"]))
+	if (href_list["tickets"])
+		GLOB.tickets.BrowseTickets(text2num(href_list["tickets"]))
 
 
 /datum/mentor/Topic(href, href_list)
@@ -146,15 +146,15 @@ var/list/mentor_verbs_default = list(
 			to_chat(src, span_admin_pm_warning("Error: Mentor-PM: Client not found."))
 		return
 
-	var/datum/mentor_help/MH = C.current_mentorhelp
+	var/datum/ticket/T = C.current_ticket
 
-	if(MH)
+	if(T)
 		message_mentors(span_mentor_channel("[src] has started replying to [C]'s mentor help."))
 	var/msg = tgui_input_text(src,"Message:", "Private message to [C]", multiline = TRUE)
 	if (!msg)
 		message_mentors(span_mentor_channel("[src] has cancelled their reply to [C]'s mentor help."))
 		return
-	cmd_mentor_pm(whom, msg, MH)
+	cmd_mentor_pm(whom, msg, T)
 
 /proc/has_mentor_powers(client/C)
 	return C.holder || C.mentorholder
@@ -182,7 +182,7 @@ var/list/mentor_verbs_default = list(
 	adminhelp(msg)
 
 
-/client/proc/cmd_mentor_pm(whom, msg, datum/mentor_help/MH)
+/client/proc/cmd_mentor_pm(whom, msg, datum/ticket/T)
 	set category = "Admin"
 	set name = "Mentor-PM"
 	set hidden = 1
@@ -192,7 +192,7 @@ var/list/mentor_verbs_default = list(
 		return
 
 	//Not a mentor and no open ticket
-	if(!has_mentor_powers(src) && !current_mentorhelp)
+	if(!has_mentor_powers(src) && !current_ticket)
 		to_chat(src, span_mentor_pm_warning("You can no longer reply to this ticket, please open another one by using the Mentorhelp verb if need be."))
 		to_chat(src, span_mentor_pm_notice("Message: [msg]"))
 		return
@@ -222,11 +222,11 @@ var/list/mentor_verbs_default = list(
 				to_chat(src, msg)
 			else
 				log_admin("Mentorhelp: [key_name(src)]: [msg]")
-				current_mentorhelp.MessageNoRecipient(msg)
+				current_ticket.MessageNoRecipient(msg)
 			return
 
 	//Has mentor powers but the recipient no longer has an open ticket
-	if(has_mentor_powers(src) && !recipient.current_mentorhelp)
+	if(has_mentor_powers(src) && !recipient.current_ticket)
 		to_chat(src, span_mentor_pm_warning("You can no longer reply to this ticket."))
 		to_chat(src, span_mentor_pm_notice("Message: [msg]"))
 		return
@@ -240,17 +240,17 @@ var/list/mentor_verbs_default = list(
 
 	var/interaction_message = span_mentor_pm_notice("Mentor-PM from-<b>[src]</b> to-<b>[recipient]</b>: [msg]")
 
-	if (recipient.current_mentorhelp && !has_mentor_powers(recipient))
-		recipient.current_mentorhelp.AddInteraction(interaction_message)
-	if (src.current_mentorhelp && !has_mentor_powers(src))
-		src.current_mentorhelp.AddInteraction(interaction_message)
+	if (recipient.current_ticket && !has_mentor_powers(recipient))
+		recipient.current_ticket.AddInteraction(interaction_message)
+	if (src.current_ticket && !has_mentor_powers(src))
+		src.current_ticket.AddInteraction(interaction_message)
 
 	// It's a little fucky if they're both mentors, but while admins may need to adminhelp I don't really see any reason a mentor would have to mentorhelp since you can literally just ask any other mentors online
 	if (has_mentor_powers(recipient) && has_mentor_powers(src))
-		if (recipient.current_mentorhelp)
-			recipient.current_mentorhelp.AddInteraction(interaction_message)
-		if (src.current_mentorhelp)
-			src.current_mentorhelp.AddInteraction(interaction_message)
+		if (recipient.current_ticket)
+			recipient.current_ticket.AddInteraction(interaction_message)
+		if (src.current_ticket)
+			src.current_ticket.AddInteraction(interaction_message)
 
 	to_chat(recipient, span_mentor(span_italics("Mentor-PM from-<b><a href='byond://?mentorhelp_msg=\ref[src]'>[src]</a></b>: [msg]")))
 	to_chat(src, span_mentor(span_italics("Mentor-PM to-<b>[recipient]</b>: [msg]")))

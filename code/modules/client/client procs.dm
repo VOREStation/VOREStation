@@ -257,8 +257,7 @@
 	initialize_commandbar_spy()
 	tgui_panel = new(src, "browseroutput")
 
-	GLOB.ahelp_tickets.ClientLogin(src)
-	GLOB.mhelp_tickets.ClientLogin(src)
+	GLOB.tickets.ClientLogin(src)
 
 	//Admin Authorisation
 	holder = GLOB.admin_datums[ckey]
@@ -374,8 +373,7 @@
 		if (!QDELING(src))
 			stack_trace("Client does not purport to be QDELING, this is going to cause bugs in other places!")
 
-		GLOB.ahelp_tickets.ClientLogout(src)
-		GLOB.mhelp_tickets.ClientLogout(src)
+		GLOB.tickets.ClientLogout(src)
 
 		// Yes this is the same as what's found in qdel(). Yes it does need to be here
 		// Get off my back

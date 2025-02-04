@@ -29,21 +29,21 @@
 		check_antagonists()
 		return
 
-	if(href_list["ahelp"])
+	if(href_list["ticket"])
 		if(!check_rights(R_ADMIN|R_MOD|R_DEBUG|R_EVENT))
 			return
 
-		var/ahelp_ref = href_list["ahelp"]
-		var/datum/admin_help/AH = locate(ahelp_ref)
-		if(AH)
-			AH.Action(href_list["ahelp_action"])
+		var/ticket_ref = href_list["ticket"]
+		var/datum/ticket/T = locate(ticket_ref)
+		if(T)
+			T.Action(href_list["ticket_action"])
 		else
-			to_chat(usr, "Ticket [ahelp_ref] has been deleted!")
+			to_chat(usr, "Ticket [ticket_ref] has been deleted!")
 
-	else if(href_list["ahelp_tickets"])
-		GLOB.ahelp_tickets.BrowseTickets(text2num(href_list["ahelp_tickets"]))
+	else if(href_list["tickets"])
+		GLOB.tickets.BrowseTickets(text2num(href_list["tickets"]))
 
-	mentor_commands(href, href_list, src)
+	// mentor_commands(href, href_list, src) - Skip because client is already admin & contents handled above
 
 	if(href_list["dbsearchckey"] || href_list["dbsearchadmin"])
 
@@ -865,9 +865,9 @@
 					to_chat(M, span_filter_system(span_warning("No ban appeals URL has been set.")))
 				log_admin("[usr.client.ckey] has banned [M.ckey].\nReason: [reason]\nThis will be removed in [mins] minutes.")
 				message_admins(span_blue("[usr.client.ckey] has banned [M.ckey].\nReason: [reason]\nThis will be removed in [mins] minutes."))
-				var/datum/admin_help/AH = M.client ? M.client.current_ticket : null
-				if(AH)
-					AH.Resolve()
+				var/datum/ticket/T = M.client ? M.client.current_ticket : null
+				if(T)
+					T.Resolve()
 				qdel(M.client)
 				//qdel(M)	// See no reason why to delete mob. Important stuff can be lost. And ban can be lifted before round ends.
 			if("No")
@@ -893,9 +893,9 @@
 				message_admins(span_blue("[usr.client.ckey] has banned [M.ckey].\nReason: [reason]\nThis is a permanent ban."))
 				feedback_inc("ban_perma",1)
 				DB_ban_record(BANTYPE_PERMA, M, -1, reason)
-				var/datum/admin_help/AH = M.client ? M.client.current_ticket : null
-				if(AH)
-					AH.Resolve()
+				var/datum/ticket/T = M.client ? M.client.current_ticket : null
+				if(T)
+					T.Resolve()
 				qdel(M.client)
 				//qdel(M)
 			if("Cancel")
