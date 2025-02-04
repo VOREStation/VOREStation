@@ -774,7 +774,7 @@
 	mob_radio.frequency = PUB_FREQ
 	mob_radio.ks2type = /obj/item/encryptionkey/heads/captain 		//Might not be able to speak, but the catslug can listen.
 	mob_radio.keyslot2 = new /obj/item/encryptionkey/heads/captain(mob_radio)
-	mob_radio.recalculateChannels(1)
+	mob_radio.recalculateChannels(TRUE)
 
 //=============================================================================
 //Admin-spawn only catslugs below - Expect overpowered things & silliness below
@@ -861,10 +861,10 @@
 /mob/living/simple_mob/vore/alienanimals/catslug/custom/spaceslug/syndislug/LateInitialize()
 	mob_radio = new /obj/item/radio/headset/mob_headset(src)
 	mob_radio.frequency = SYND_FREQ
-	mob_radio.syndie = 1
+	mob_radio.syndie = TRUE
 	mob_radio.ks2type = /obj/item/encryptionkey/syndicate
 	mob_radio.keyslot2 = new /obj/item/encryptionkey/syndicate(mob_radio)
-	mob_radio.recalculateChannels(1)
+	mob_radio.recalculateChannels(TRUE)
 	myid.access |= get_all_station_access()
 
 //ERT catslug
@@ -912,7 +912,7 @@
 	mob_radio.centComm = 1
 	mob_radio.ks2type = /obj/item/encryptionkey/ert
 	mob_radio.keyslot2 = new /obj/item/encryptionkey/ert(mob_radio)
-	mob_radio.recalculateChannels(1)
+	mob_radio.recalculateChannels(TRUE)
 	myid.access |= get_all_station_access()
 
 //Pilot Catslug

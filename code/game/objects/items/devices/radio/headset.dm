@@ -5,14 +5,14 @@
 	icon_state = "headset"
 	item_state = null //To remove the radio's state
 	matter = list(MAT_STEEL = 75)
-	subspace_transmission = 1
+	subspace_transmission = TRUE
 	canhear_range = 0 // can't hear headsets from very far away
 	slot_flags = SLOT_EARS
 	sprite_sheets = list(SPECIES_TESHARI = 'icons/inventory/ears/mob_teshari.dmi',
 						SPECIES_WEREBEAST = 'icons/inventory/ears/mob_vr_werebeast.dmi')
 
-	var/translate_binary = 0
-	var/translate_hive = 0
+	var/translate_binary = FALSE
+	var/translate_hive = FALSE
 	var/obj/item/encryptionkey/keyslot1 = null
 	var/obj/item/encryptionkey/keyslot2 = null
 	var/ks1type = null
@@ -148,9 +148,9 @@
 
 /obj/item/radio/headset/recalculateChannels(var/setDescription = FALSE)
 	src.channels = list()
-	src.translate_binary = 0
-	src.translate_hive = 0
-	src.syndie = 0
+	src.translate_binary = FALSE
+	src.translate_hive = FALSE
+	src.syndie = FALSE
 
 	if(keyslot1)
 		for(var/ch_name in keyslot1.channels)
@@ -160,13 +160,13 @@
 			src.channels[ch_name] = keyslot1.channels[ch_name]
 
 		if(keyslot1.translate_binary)
-			src.translate_binary = 1
+			src.translate_binary = TRUE
 
 		if(keyslot1.translate_hive)
-			src.translate_hive = 1
+			src.translate_hive = TRUE
 
 		if(keyslot1.syndie)
-			src.syndie = 1
+			src.syndie = TRUE
 
 	if(keyslot2)
 		for(var/ch_name in keyslot2.channels)
@@ -176,13 +176,13 @@
 			src.channels[ch_name] = keyslot2.channels[ch_name]
 
 		if(keyslot2.translate_binary)
-			src.translate_binary = 1
+			src.translate_binary = TRUE
 
 		if(keyslot2.translate_hive)
-			src.translate_hive = 1
+			src.translate_hive = TRUE
 
 		if(keyslot2.syndie)
-			src.syndie = 1
+			src.syndie = TRUE
 
 	handle_finalize_recalculatechannels(setDescription, TRUE)
 
