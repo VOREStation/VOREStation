@@ -474,10 +474,12 @@
 		/obj/item/storage/pill_bottle/antitox = 125,
 		/obj/item/reagent_containers/blood/OMinus = 125,
 		/obj/item/healthanalyzer/improved = 150,
+		/* // These will stay uncommented until we see what to do about the chems
 		/obj/item/storage/pill_bottle/neotane = 10,
 		/obj/item/storage/pill_bottle/burncard = 10,
 		/obj/item/storage/pill_bottle/flamecure = 10,
 		/obj/item/storage/pill_bottle/purifyingagent = 10,
+		*/
 		/obj/item/reagent_containers/hypospray/autoinjector/biginjector/clotting = 10
 	)
 	mail_color = COMMS_COLOR_MEDICAL
@@ -544,10 +546,12 @@
 		/obj/item/stack/medical/advanced/ointment = 175,
 		/obj/item/reagent_containers/syringe/antiviral = 100,
 		/obj/item/storage/pill_bottle/tramadol = 100,
+	/* // Commented until we know what to do with the many chomp chems
 		/obj/item/storage/pill_bottle/neotane = 10,
 		/obj/item/storage/pill_bottle/burncard = 10,
 		/obj/item/storage/pill_bottle/flamecure = 10,
 		/obj/item/storage/pill_bottle/purifyingagent = 10,
+	*/
 		/obj/item/reagent_containers/pill/myelamine = 10
 	)
 	mail_color = COMMS_COLOR_MEDICAL

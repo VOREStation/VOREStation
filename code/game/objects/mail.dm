@@ -329,7 +329,7 @@
 /obj/item/storage/bag/mail
 	name = "mail bag"
 	desc = "A bag for letters, envelopes and other postage."
-	icon = 'modular_chomp/icons/obj/bureaucracy.dmi'
+	icon = 'icons/obj/bureaucracy.dmi'
 	icon_state = "mailbag"
 	slot_flags = SLOT_BELT | SLOT_POCKET
 	w_class = ITEMSIZE_NORMAL

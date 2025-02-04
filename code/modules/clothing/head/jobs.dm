@@ -294,5 +294,3 @@
 	name = "mailman hat"
 	desc = "A hat used by the mailman to show who's the delivery person here."
 	icon_state = "mailman2"
-	icon = 'icons/obj/clothing/hats.dmi'
-	icon_override = 'icons/mob/head.dmi'
