@@ -84,6 +84,14 @@
 	if(..())
 		return TRUE
 
+	// Outpost 21 edit begin - Body designer update
+	var/obj/machinery/computer/transhuman/designer/DC = null
+	var/datum/tgui_module/appearance_changer/body_designer/BD = null
+	if(istype(src,/datum/tgui_module/appearance_changer/body_designer))
+		BD = src
+		DC = BD.linked_body_design_console?.resolve()
+	// Outpost 21 edit end
+
 	switch(action)
 		if("race")
 			if(can_change(owner, APPEARANCE_RACE) && (params["race"] in valid_species))
@@ -359,6 +367,193 @@
 							if (owner.change_marking_color(mark_datum, marking_color))
 								return TRUE
 		// VOREStation Add End
+		// Outpost 21 edit begin - Body designer update
+		if("rotate_view")
+			if(can_change(owner, APPEARANCE_RACE))
+				owner.set_dir(turn(owner.dir, 90))
+				return TRUE
+		if("rename")
+			if(owner)
+				var/raw_name = tgui_input_text(ui.user, "Choose the a name:", "Sleeve Name")
+				if(!isnull(raw_name) && can_change(owner, APPEARANCE_RACE))
+					var/new_name = sanitize_name(raw_name, owner.species, FALSE) // can't edit synths
+					if(new_name)
+						owner.dna.real_name = new_name
+						owner.real_name = new_name
+						owner.name = new_name
+						return TRUE
+					else
+						to_chat(ui.user, span_warning("Invalid name. Your name should be at least 2 and at most [MAX_NAME_LEN] characters long. It may only contain the characters A-Z, a-z, -, ' and ."))
+						return TRUE
+		if("race_name")
+			var/new_name = sanitize(tgui_input_text(ui.user, "Input custom species name:", "Custom Species Name", owner.custom_species, MAX_NAME_LEN), MAX_NAME_LEN)
+			if(can_change(owner, APPEARANCE_RACE)) // new name can be empty, it uses base species if so
+				owner.custom_species = new_name
+				return TRUE
+		if("base_icon")
+			if(owner.species.selects_bodytype == SELECTS_BODYTYPE_FALSE)
+				var/datum/species/S = GLOB.all_species[owner.species.name]
+				owner.species.base_species = S.base_species // Return to original form
+				generate_data(ui.user, owner)
+				changed_hook(APPEARANCECHANGER_CHANGED_RACE)
+				return TRUE
+			var/list/choices
+			var/datum/species/S = GLOB.all_species[owner.species.name]
+			if(S.selects_bodytype == SELECTS_BODYTYPE_SHAPESHIFTER)
+				choices = S.get_valid_shapeshifter_forms()
+			else if(S.selects_bodytype == SELECTS_BODYTYPE_CUSTOM)
+				choices = GLOB.custom_species_bases
+			var/new_species = tgui_input_list(ui.user, "Please select basic shape.", "Body Shape", choices)
+			if(new_species && can_change(owner, APPEARANCE_RACE))
+				owner.species.base_species = new_species
+				owner.regenerate_icons()
+				generate_data(ui.user, owner)
+				changed_hook(APPEARANCECHANGER_CHANGED_RACE)
+				return TRUE
+		if("blood_reagent")
+			var/new_blood_reagents = tgui_input_list(ui.user, "Please select blood restoration reagent:", "Character Preference", valid_bloodreagents)
+			if(new_blood_reagents && can_change(owner, APPEARANCE_RACE))
+				owner.species.blood_reagents = new_blood_reagents
+				changed_hook(APPEARANCECHANGER_CHANGED_RACE)
+				return TRUE
+		if("blood_color")
+			var/current = owner.species.blood_color ? owner.species.blood_color : "#A10808"
+			var/blood_col = tgui_color_picker(ui.user, "Please select marking color", "Marking color", current)
+			if(blood_col && can_change(owner, APPEARANCE_RACE))
+				owner.species.blood_color = blood_col
+				changed_hook(APPEARANCECHANGER_CHANGED_RACE)
+				return TRUE
+		if("weight")
+			var/new_weight = tgui_input_number(ui.user, "Choose tbe character's relative body weight.\n\
+			This measurement should be set relative to a normal 5'10'' person's body and not the actual size of the character.\n\
+			([WEIGHT_MIN]-[WEIGHT_MAX])", "Character Preference", null, WEIGHT_MAX, WEIGHT_MIN, round_value=FALSE)
+			if(new_weight && can_change(owner, APPEARANCE_RACE))
+				var/unit_of_measurement = tgui_alert(ui.user, "Is that number in pounds (lb) or kilograms (kg)?", "Confirmation", list("Pounds", "Kilograms"))
+				if(unit_of_measurement && can_change(owner, APPEARANCE_RACE))
+					if(unit_of_measurement == "Pounds")
+						new_weight = round(text2num(new_weight),4)
+					if(unit_of_measurement == "Kilograms")
+						new_weight = round(2.20462*text2num(new_weight),4)
+					owner.weight = sanitize_integer(new_weight, WEIGHT_MIN, WEIGHT_MAX, owner.weight)
+					changed_hook(APPEARANCECHANGER_CHANGED_RACE)
+					return TRUE
+		if("size_scale")
+			var/new_size = tgui_input_number(ui.user, "Choose size, ranging from [RESIZE_MINIMUM * 100]% to [RESIZE_MAXIMUM * 100]%", "Set Size", null, RESIZE_MAXIMUM * 100, RESIZE_MINIMUM * 100)
+			if(new_size && ISINRANGE(new_size,RESIZE_MINIMUM * 100,RESIZE_MAXIMUM * 100) && can_change(owner, APPEARANCE_RACE))
+				owner.size_multiplier = new_size / 100
+				owner.update_transform(TRUE)
+				owner.regenerate_icons()
+				changed_hook(APPEARANCECHANGER_CHANGED_RACE)
+				return TRUE
+		if("scale_appearance")
+			if(can_change(owner, APPEARANCE_RACE))
+				owner.dna.scale_appearance = !owner.dna.scale_appearance
+				owner.fuzzy = owner.dna.scale_appearance
+				owner.regenerate_icons()
+				return TRUE
+		if("offset_override")
+			if(can_change(owner, APPEARANCE_RACE))
+				owner.dna.offset_override = !owner.dna.offset_override
+				owner.offset_override = owner.dna.offset_override
+				owner.regenerate_icons()
+				return TRUE
+		if("digitigrade")
+			if(can_change(owner, APPEARANCE_RACE))
+				owner.digitigrade = !owner.digitigrade
+				owner.regenerate_icons()
+				generate_data(ui.user, owner)
+				changed_hook(APPEARANCECHANGER_CHANGED_RACE)
+				return TRUE
+		if("species_sound")
+			var/list/possible_species_sound_types = species_sound_map
+			var/choice = tgui_input_list(ui.user, "Which set of sounds would you like to use? (Cough, Sneeze, Scream, Pain, Gasp, Death)", "Species Sounds", possible_species_sound_types)
+			if(choice && can_change(owner, APPEARANCE_RACE))
+				owner.species.species_sounds = choice
+				return TRUE
+		if("flavor_text")
+			var/select_key = params["target"]
+			if(select_key && can_change(owner, APPEARANCE_RACE))
+				if(select_key in owner.flavor_texts)
+					switch(select_key)
+						if("general")
+							var/msg = strip_html_simple(tgui_input_text(ui.user,"Give a general description of the character. This will be shown regardless of clothings. Put in a single space to make blank.","Flavor Text",html_decode(owner.flavor_texts[select_key]), multiline = TRUE, prevent_enter = TRUE))
+							if(can_change(owner, APPEARANCE_RACE)) // allows empty to wipe flavor
+								owner.flavor_texts[select_key] = msg
+								return TRUE
+						else
+							var/msg = strip_html_simple(tgui_input_text(ui.user,"Set the flavor text for their [select_key]. Put in a single space to make blank.","Flavor Text",html_decode(owner.flavor_texts[select_key]), multiline = TRUE, prevent_enter = TRUE))
+							if(can_change(owner, APPEARANCE_RACE)) // allows empty to wipe flavor
+								owner.flavor_texts[select_key] = msg
+								return TRUE
+		// ***********************************
+		// Body designer UI
+		// ***********************************
+		if("view_brec")
+			var/datum/transhuman/body_record/BR = locate(params["view_brec"])
+			if(BR && istype(BR.mydna))
+				if(DC.allowed(ui.user) || BR.ckey == ui.user.ckey)
+					BD.load_record_to_body(BR)
+					owner.resleeve_lock = BR.locked
+					DC.selected_record = TRUE
+			return TRUE
+		if("view_stock_brec")
+			var/datum/species/S = GLOB.all_species[params["view_stock_brec"]]
+			if(S && (S.spawn_flags & (SPECIES_IS_WHITELISTED|SPECIES_CAN_JOIN)) == SPECIES_CAN_JOIN)
+				// Generate body record from species!
+				owner = new(null, S.name)
+				owner.real_name = "Stock [S.name] Body"
+				owner.name = owner.real_name
+				owner.dna.real_name = owner.real_name
+				owner.dna.base_species = S.base_species
+				owner.resleeve_lock = FALSE
+				owner.custom_species = "Custom Sleeve" // Custom name
+				DC.selected_record = TRUE
+			return TRUE
+		if("loadfromdisk")
+			if(!DC.disk)
+				return FALSE
+			if(DC.disk.stored && can_change(owner, APPEARANCE_RACE))
+				BD.load_record_to_body(DC.disk.stored)
+				DC.selected_record = TRUE
+				to_chat(ui.user,span_notice("\The [owner]'s bodyrecord was loaded from the disk."))
+			return TRUE
+		if("savetodisk")
+			if(!DC.selected_record)
+				return FALSE
+			if(!DC.disk)
+				return FALSE
+			if(owner.resleeve_lock)
+				var/answer = tgui_alert(ui.user,"This body record will be written to a disk and allow any mind to inhabit it. This is against the current body owner's configured OOC preferences for body impersonation. Please confirm that you have permission to do this, and are sure! Admins will be notified.","Mind Compatability",list("No","Yes"))
+				if(!answer)
+					return
+				if(answer == "No")
+					to_chat(ui.user, span_warning("ERROR: This body record is restricted."))
+				else
+					message_admins("[ui.user] wrote an unlocked version of [owner.real_name]'s bodyrecord to a disk. Their preferences do not allow body impersonation, but may be allowed with OOC consent.")
+					owner.resleeve_lock = FALSE // unlock it, even though it's only temp, so you don't get the warning every time
+			if(!owner.resleeve_lock && can_change(owner, APPEARANCE_RACE))
+				// Create it from the mob
+				if(DC.disk.stored)
+					qdel_null(DC.disk.stored)
+				to_chat(ui.user,span_notice("\The [owner]'s bodyrecord was saved to the disk."))
+				DC.disk.stored = new /datum/transhuman/body_record(owner, FALSE, FALSE) // Saves a COPY!
+				DC.disk.stored.locked = FALSE // remove lock
+				DC.disk.name = "[initial(DC.disk.name)] ([owner.real_name])"
+			return TRUE
+		if("ejectdisk")
+			if(!DC.disk)
+				return FALSE
+			if(can_change(owner, APPEARANCE_RACE))
+				to_chat(ui.user,span_notice("You eject the disk."))
+				DC.disk.forceMove(get_turf(DC))
+				DC.disk = null
+				return TRUE
+		if("back_to_library")
+			if(can_change(owner, APPEARANCE_RACE))
+				BD.make_fake_owner()
+				DC.selected_record = FALSE
+				return TRUE
+		// Outpost 21 edit end
 	return FALSE
 
 /datum/tgui_module/appearance_changer/tgui_interact(mob/user, datum/tgui/ui = null, datum/tgui/parent_ui = null, datum/tgui_state/custom_state)
@@ -420,6 +615,78 @@
 	var/list/data = ..()
 
 	generate_data(user, owner)
+
+	// Outpost 21 edit begin - Body designer update
+	data["is_design_console"] = FALSE
+	data["disk"] = FALSE
+	data["selected_a_record"] = FALSE
+	data["character_records"] = list()
+	data["stock_records"] = list()
+	// Handle some unique stuff to the body design console
+	var/obj/machinery/computer/transhuman/designer/DC = null
+	if(istype(src,/datum/tgui_module/appearance_changer/body_designer))
+		var/datum/tgui_module/appearance_changer/body_designer/BD = src
+		DC = BD.linked_body_design_console?.resolve()
+	if(DC)
+		data["is_design_console"] = TRUE
+		data["disk"] = !isnull(DC.disk)
+		// Monkey is a placeholder, because I am not hackcoding the appearance changer to accept a null owner - Willbird
+		data["selected_a_record"] = DC.selected_record
+		if(!DC.selected_record)
+			// Load all records on station that can be printed
+			var/list/bodyrecords_list_ui = list()
+			for(var/N in DC.our_db.body_scans)
+				var/datum/transhuman/body_record/BR = DC.our_db.body_scans[N]
+				var/datum/species/S = GLOB.all_species[BR.mydna.dna.species]
+				if((S.spawn_flags & (SPECIES_IS_WHITELISTED|SPECIES_CAN_JOIN)) != SPECIES_CAN_JOIN || BR.synthetic) continue
+				bodyrecords_list_ui[++bodyrecords_list_ui.len] = list("name" = N, "recref" = "\ref[BR]")
+			data["character_records"] = bodyrecords_list_ui
+			// Load all stock records printable
+			var/list/stock_bodyrecords_list_ui = list()
+			for (var/N in GLOB.all_species)
+				var/datum/species/S = GLOB.all_species[N]
+				if((S.spawn_flags & (SPECIES_IS_WHITELISTED|SPECIES_CAN_JOIN)) != SPECIES_CAN_JOIN) continue
+				stock_bodyrecords_list_ui += N
+			data["stock_records"] = stock_bodyrecords_list_ui
+			data["change_race"] = can_change(owner, APPEARANCE_RACE)
+			data["change_gender"] = can_change(owner, APPEARANCE_GENDER)
+			data["change_hair"] = can_change(owner, APPEARANCE_HAIR)
+			data["change_eye_color"] = can_change(owner, APPEARANCE_EYE_COLOR)
+			data["change_hair_color"] = can_change(owner, APPEARANCE_HAIR_COLOR)
+			data["change_facial_hair_color"] = can_change(owner, APPEARANCE_FACIAL_HAIR_COLOR)
+			// Drop out early, as we have nothing to edit, and are on the BR menu for the designer
+			return data
+	// species/body
+	data["species_name"] = owner.custom_species
+	data["use_custom_icon"] = (owner.species.selects_bodytype >= SELECTS_BODYTYPE_CUSTOM)
+	data["base_icon"] = owner.species.base_species
+	data["synthetic"] = owner.synthetic ? "Yes" : "No"
+	data["size_scale"] = player_size_name(owner.size_multiplier)
+	data["scale_appearance"] = owner.dna.scale_appearance ? "Fuzzy" : "Sharp"
+	data["offset_override"] = owner.dna.offset_override ? "Odd" : "Even"
+	data["weight"] = owner.weight
+	data["digitigrade"] = owner.digitigrade
+	data["blood_reagent"] = owner.species.blood_reagents
+	data["blood_color"] = owner.species.blood_color
+	data["species_sound"] = owner.species.species_sounds
+	// Are these needed? It seems to be only used if above is unset??
+	//data["species_sounds_gendered"] = owner.species.gender_specific_species_sounds
+	//data["species_sounds_female"] = owner.species.species_sounds_female
+	//data["species_sounds_male"] = owner.species.species_sounds_male
+	// flavor
+	var/list/flavors = owner.flavor_texts.Copy()
+	if(!flavors.len)
+		flavors["general"] = ""
+		flavors["head"] = ""
+		flavors["face"] = ""
+		flavors["eyes"] = ""
+		flavors["torso"] = ""
+		flavors["arms"] = ""
+		flavors["hands"] = ""
+		flavors["legs"] = ""
+		flavors["feet"] = ""
+	data["flavor_text"] = flavors
+  	// Outpost 21 edit end
 
 	data["name"] = owner.name
 	data["specimen"] = owner.species.name
