@@ -6728,7 +6728,7 @@
 /obj/item/reagent_containers/food/snacks/chips/bbq
 	name = "\improper Legendary BBQ Chips"
 	desc = "You know I can't grab your ghost chips!"
-	description_fluff = "A local brand, Legendary Chips have proudly sponsored Vir's anti-drink-piloting campaign since 2558."
+	description_fluff = "A local brand, Legendary Chips have proudly sponsored Virgo-Erigone's anti-drink-piloting campaign since 2310."
 	icon = 'icons/obj/food_snacks.dmi'
 	icon_state = "chips_bbq"
 	trash = /obj/item/trash/chips/bbq
