@@ -196,22 +196,19 @@
 	extra_overlay2 = "wolf_markings_2"
 	//icon_sprite_tag = "wolf2c"
 
-/datum/sprite_accessory/tail/taur/wolf/fatwolf_2c
+/datum/sprite_accessory/tail/taur/wolf/fatwolf_2c //COMPLETED
 	name = "Fat Wolf 3-color (Taur)"
-	icon = 'icons/mob/vore/taurs_ch.dmi' //Ported from Chomp
-	icon_state = "fatwolf_s"
-	extra_overlay = "fatwolf_markings"
-	extra_overlay2 = "fatwolf_markings_2" //Ported from Chomp
-	//icon_sprite_tag = "fatwolf2c"
+	icon_state = "fatwolf2_s"
+	extra_overlay = "fatwolf2_markings"
+	extra_overlay2 = "fatwolf2_markings_2"
 	loaf_offset = 3
 
-/datum/sprite_accessory/tail/taur/wolf/wolf_2c_wag
+/datum/sprite_accessory/tail/taur/wolf/wolf_2c_wag //COMPLETED
 	name = "Wolf 3-color (Taur, Fat vwag)"
-	icon = 'icons/mob/vore/taurs_ch.dmi' //Ported from Chomp
-	icon_state = "wolf_s"
-	extra_overlay = "wolf_markings"
-	extra_overlay2 = "wolf_markings_2"
-	ani_state = "fatwolf_s"
+	icon_state = "wolf2_s"
+	extra_overlay = "wolf2_markings"
+	extra_overlay2 = "wolf2_markings_2"
+	ani_state = "fatwolf2_s"
 
 /datum/sprite_accessory/tail/taur/wolf/synthwolf
 	name = "SynthWolf dual-color (Taur)"
@@ -610,26 +607,23 @@
 	can_loaf = TRUE
 	icon_loaf = 'icons/mob/vore/taurs_vr_loaf.dmi'
 
-/datum/sprite_accessory/tail/taur/feline/fatfeline_2c
+/datum/sprite_accessory/tail/taur/feline/fatfeline_2c //COMPLETED
 	name = "Fat Feline 3-color (Taur)"
-	icon = 'icons/mob/vore/taurs_ch.dmi' //Ported from Chomp
-	icon_state = "fatfeline_s"
-	extra_overlay = "fatfeline_markings"
-	extra_overlay2 = "fatfeline_markings_2" //Ported from Chomp
-	//icon_sprite_tag = "fatfeline2c"
+	icon_state = "fatfeline2_s"
+	extra_overlay = "fatfeline2_markings"
+	extra_overlay2 = "fatfeline2_markings_2"
 	can_loaf = TRUE
 	icon_loaf = 'icons/mob/vore/taurs_vr_loaf.dmi'
 	loaf_offset = 3
 
 /datum/sprite_accessory/tail/taur/feline/feline_2c_wag
 	name = "Feline 3-color (Taur, Fat vwag)"
-	icon = 'icons/mob/vore/taurs_ch.dmi' //Ported from Chomp
-	icon_state = "feline_s"
-	extra_overlay = "feline_markings"
-	extra_overlay2 = "feline_markings_2"
+	icon_state = "feline2_s"
+	extra_overlay = "feline2_markings"
+	extra_overlay2 = "feline2_markings_2"
 	ani_state = "fatfeline_s"
 	extra_overlay_w = "fatfeline_markings"
-	extra_overlay2_w = "fatfeline_markings_2" //Ported from Chomp
+	extra_overlay2_w = "fatfeline_markings_2"
 	loaf_offset = 3
 
 /datum/sprite_accessory/tail/taur/feline/synthfeline
@@ -1152,3 +1146,12 @@
 
 	msg_owner_grab_fail = "You step down onto %prey with one of your vines, forcing them onto the ground!"
 	msg_prey_grab_fail = "%owner steps down onto you with one of their vines, squishing you and forcing you onto the ground!"
+
+/datum/sprite_accessory/tail/taur/redpanda
+	name = "Red Panda (Taur)"
+	icon_state = "redpanda"
+
+/datum/sprite_accessory/tail/taur/redpandadc
+	name = "Red Panda (Taur dual-color)"
+	icon_state = "redpanda_dc"
+	extra_overlay = "redpanda_dc_markings"
