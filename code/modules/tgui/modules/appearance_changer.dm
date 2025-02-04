@@ -96,9 +96,7 @@
 		if("race")
 			if(can_change(owner, APPEARANCE_RACE) && (params["race"] in valid_species))
 				if(owner.change_species(params["race"]))
-					owner.species.base_species = null // Outpost 21 edit - Reset base icon
 					if(params["race"] == "Custom Species")
-						owner.species.base_species = SPECIES_HUMAN // Outpost 21 edit - Reset base icon
 						owner.custom_species = sanitize(tgui_input_text(ui.user, "Input custom species name:",
 							"Custom Species Name", null, MAX_NAME_LEN), MAX_NAME_LEN)
 					cut_data()
@@ -393,15 +391,25 @@
 				owner.custom_species = new_name
 				return TRUE
 		if("base_icon")
-			if(owner.species.selects_bodytype >= SELECTS_BODYTYPE_CUSTOM)
-				var/new_species = tgui_input_list(src, "Please select basic shape.", "Body Shape", list(owner.species.vanity_base_fit)|owner.species.get_valid_shapeshifter_forms())
-				if(new_species && can_change(owner, APPEARANCE_RACE))
-					owner.species.base_species = new_species
+			if(owner.species.selects_bodytype == SELECTS_BODYTYPE_FALSE)
+				var/datum/species/S = GLOB.all_species[owner.species.name]
+				owner.species.base_species = S.base_species // Return to original form
+				generate_data(ui.user, owner)
 				changed_hook(APPEARANCECHANGER_CHANGED_RACE)
-			else
-				owner.species.base_species = null
+				return TRUE
+			var/list/choices
+			var/datum/species/S = GLOB.all_species[owner.species.name]
+			if(S.selects_bodytype == SELECTS_BODYTYPE_SHAPESHIFTER)
+				choices = S.get_valid_shapeshifter_forms()
+			else if(S.selects_bodytype == SELECTS_BODYTYPE_CUSTOM)
+				choices = GLOB.custom_species_bases
+			var/new_species = tgui_input_list(ui.user, "Please select basic shape.", "Body Shape", choices)
+			if(new_species && can_change(owner, APPEARANCE_RACE))
+				owner.species.base_species = new_species
+				owner.regenerate_icons()
+				generate_data(ui.user, owner)
 				changed_hook(APPEARANCECHANGER_CHANGED_RACE)
-			return TRUE
+				return TRUE
 		if("blood_reagent")
 			var/new_blood_reagents = tgui_input_list(ui.user, "Please select blood restoration reagent:", "Character Preference", valid_bloodreagents)
 			if(new_blood_reagents && can_change(owner, APPEARANCE_RACE))
@@ -453,6 +461,7 @@
 			if(can_change(owner, APPEARANCE_RACE))
 				owner.digitigrade = !owner.digitigrade
 				owner.regenerate_icons()
+				generate_data(ui.user, owner)
 				changed_hook(APPEARANCECHANGER_CHANGED_RACE)
 				return TRUE
 		if("species_sound")
@@ -495,7 +504,7 @@
 				owner.real_name = "Stock [S.name] Body"
 				owner.name = owner.real_name
 				owner.dna.real_name = owner.real_name
-				owner.dna.base_species = owner.species.base_species
+				owner.dna.base_species = S.base_species
 				owner.resleeve_lock = FALSE
 				owner.custom_species = "Custom Sleeve" // Custom name
 				DC.selected_record = TRUE
@@ -868,8 +877,6 @@
 	if(X.name == DEVELOPER_WARNING_NAME)
 		return FALSE
 	if(!isnull(X.species_allowed) && !(target.species.name in X.species_allowed) && (!istype(target.species, /datum/species/custom))) // Letting custom species access wings/ears/tails.
-		return FALSE
-	if(X.name == DEVELOPER_WARNING_NAME) // Outpost 21 edit - Hide forbidden styles and markings
 		return FALSE
 
 	if(LAZYLEN(X.ckeys_allowed) && !(user?.ckey in X.ckeys_allowed) && !(target.ckey in X.ckeys_allowed))
