@@ -675,6 +675,8 @@
 #define REAGENT_ID_CAPSAICIN "capsaicin"
 #define REAGENT_CONDENSEDCAPSAICIN "Condensed Capsaicin"
 #define REAGENT_ID_CONDENSEDCAPSAICIN "condensedcapsaicin"
+#define REAGENT_GELATIN "Gelatin"
+#define REAGENT_ID_GELATIN "gelatin"
 
 #define REAGENT_DRINK "Drink"
 #define REAGENT_ID_DRINK "drink"

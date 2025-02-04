@@ -229,7 +229,7 @@
 		if(!preset_goodies)
 			var/list/job_goodies = this_job.get_mail_goodies(new_recipient, current_title)
 			if(LAZYLEN(job_goodies))
-				if(this_job.exclusive_mail_goodies)
+				if(this_job.get_mail_goodies())
 					goodies = job_goodies
 				else
 					goodies += job_goodies
@@ -375,7 +375,7 @@
 			to_chat(user, span_danger("This letter has already been scanned!"))
 			playsound(loc, 'sound/items/mail/maildenied.ogg', 50, TRUE)
 			return
-		user.balloon_alert(user, "Mail added to database")
+		to_chat(user, span_notice("Mail added to database"))
 		playsound(loc, 'sound/items/mail/mailscanned.ogg', 50, TRUE)
 		saved = A
 		return
@@ -383,7 +383,7 @@
 		var/mob/living/M = A
 
 		if(!saved)
-			user.balloon_alert(user, "No logged mail!")
+			to_chat(user, span_danger("No logged mail!"))
 			playsound(loc, 'sound/items/mail/maildenied.ogg', 50, TRUE)
 			return
 
@@ -438,7 +438,7 @@
 			/obj/item/reagent_containers/food/snacks/donkpocket/spicy,
 			/obj/item/reagent_containers/food/snacks/donkpocket/teriyaki,
 			/obj/item/toy/figure,
-			/obj/item/contraband,
+			/obj/item/contraband/package,
 			/obj/item/tool/screwdriver/sdriver,
 			/obj/item/storage/briefcase/target_toy
 		))
@@ -458,7 +458,7 @@
 		/obj/item/reagent_containers/food/snacks/donkpocket/spicy = "[initial(name)] with NEW SPICY-POCKET.",
 		/obj/item/reagent_containers/food/snacks/donkpocket/teriyaki = "[initial(name)] with NEW TERIYAKI-POCKET.",
 		/obj/item/toy/figure = "[initial(name)] from DoN**K*oC",
-		/obj/item/contraband = "[pick("oddly shaped", "strangely wrapped", "weird", "bulging")] [initial(name)]",
+		/obj/item/contraband/package = "[pick("oddly shaped", "strangely wrapped", "weird", "bulging")] [initial(name)]",
 		/obj/item/tool/screwdriver/sdriver = "[initial(name)] for Proffesor Who",
 		/obj/item/storage/briefcase/target_toy = "[initial(name)] for SIMPATHY, SUCCESS, MANHATTAN, BELIEFS"
 	)
