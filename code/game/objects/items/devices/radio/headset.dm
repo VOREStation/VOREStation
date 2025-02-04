@@ -26,7 +26,6 @@
 	return INITIALIZE_HINT_LATELOAD
 
 /obj/item/radio/headset/LateInitialize()
-	to_world("LOC = [src.loc] loc of loc = [src.loc.loc] loc of loc of loc = [src.loc.loc.loc]")
 	if(internal_channels)
 		internal_channels.Cut()
 	if(ks1type)
