@@ -61,7 +61,6 @@
 	name ="Appearance Editor (Body Designer)"
 	flags = APPEARANCE_ALL
 	var/datum/weakref/linked_body_design_console = null
-	var/mob/living/carbon/human/designer_mob
 
 /datum/tgui_module/appearance_changer/body_designer/tgui_status(mob/user, datum/tgui_state/state)
 	if(!istype(host,/obj/machinery/computer/transhuman/designer))
@@ -69,10 +68,6 @@
 	return ..()
 
 /datum/tgui_module/appearance_changer/body_designer/Destroy()
-	RemoveComponentSource(owner,/datum/component/recursive_move)
-	UnregisterSignal(owner, COMSIG_OBSERVER_MOVED)
-	qdel_null(owner)
-	designer_mob = null
 	var/obj/machinery/computer/transhuman/designer/DC = linked_body_design_console?.resolve()
 	if(DC)
 		DC.selected_record = FALSE
@@ -80,30 +75,29 @@
 
 /datum/tgui_module/appearance_changer/body_designer/proc/make_fake_owner()
 	// checks for monkey to tell if on the menu
-	RemoveComponentSource(owner,/datum/component/recursive_move)
-	UnregisterSignal(owner, COMSIG_OBSERVER_MOVED)
-	qdel_null(owner)
-	designer_mob = new(src)
-	designer_mob.set_species(SPECIES_LLEILL)
-	designer_mob.species.produceCopy(designer_mob.species.traits.Copy(),designer_mob,null,FALSE)
-	designer_mob.invisibility = 101
-	// Finish up!
-	owner = designer_mob
+	if(owner)
+		UnregisterSignal(owner, COMSIG_OBSERVER_MOVED)
+		qdel_null(owner)
+	owner = new(src)
+	owner.set_species(SPECIES_LLEILL)
+	owner.species.produceCopy(owner.species.traits.Copy(),owner,null,FALSE)
+	owner.invisibility = 101
+	// Add listeners back
 	owner.AddComponent(/datum/component/recursive_move)
-	RegisterSignal(owner, COMSIG_OBSERVER_MOVED, PROC_REF(update_active_camera_screen))
+	RegisterSignal(owner, COMSIG_OBSERVER_MOVED, PROC_REF(update_active_camera_screen), override = TRUE)
 
-/datum/tgui_module/appearance_changer/body_designer/proc/create_body(var/datum/transhuman/body_record/current_project)
+/datum/tgui_module/appearance_changer/body_designer/proc/load_record_to_body(var/datum/transhuman/body_record/current_project)
+	if(owner)
+		UnregisterSignal(owner, COMSIG_OBSERVER_MOVED)
+		qdel_null(owner)
 	//Get the DNA and generate a new mob
-	RemoveComponentSource(owner,/datum/component/recursive_move)
-	UnregisterSignal(owner, COMSIG_OBSERVER_MOVED)
-	qdel_null(owner)
 	var/datum/dna2/record/R = current_project.mydna
-	designer_mob = new /mob/living/carbon/human(src, R.dna.species)
+	owner = new /mob/living/carbon/human(src, R.dna.species)
 	//Fix the external organs
 	for(var/part in current_project.limb_data)
 		var/status = current_project.limb_data[part]
 		if(status == null) continue //Species doesn't have limb? Child of amputated limb?
-		var/obj/item/organ/external/O = designer_mob.organs_by_name[part]
+		var/obj/item/organ/external/O = owner.organs_by_name[part]
 		if(!O) continue //Not an organ. Perhaps another amputation removed it already.
 		if(status == 1) //Normal limbs
 			continue
@@ -114,7 +108,7 @@
 	for(var/part in current_project.organ_data)
 		var/status = current_project.organ_data[part]
 		if(status == null) continue //Species doesn't have organ? Child of missing part?
-		var/obj/item/organ/I = designer_mob.internal_organs_by_name[part]
+		var/obj/item/organ/I = owner.internal_organs_by_name[part]
 		if(!I) continue//Not an organ. Perhaps external conversion changed it already?
 		if(status == 0) //Normal organ
 			continue
@@ -125,27 +119,26 @@
 		else if(status == 3) //Digital organ
 			I.digitize()
 	//Set the name or generate one
-	designer_mob.real_name = R.dna.real_name
+	owner.real_name = R.dna.real_name
 	//Apply DNA
-	designer_mob.dna = R.dna.Clone()
-	designer_mob.original_player = current_project.ckey
+	owner.dna = R.dna.Clone()
+	owner.original_player = current_project.ckey
 	//Apply legs
-	designer_mob.digitigrade = R.dna.digitigrade // ensure clone mob has digitigrade var set appropriately
-	if(designer_mob.dna.digitigrade <> R.dna.digitigrade)
-		designer_mob.dna.digitigrade = R.dna.digitigrade // ensure cloned DNA is set appropriately from record??? for some reason it doesn't get set right despite the override to datum/dna/Clone()
+	owner.digitigrade = R.dna.digitigrade // ensure clone mob has digitigrade var set appropriately
+	if(owner.dna.digitigrade <> R.dna.digitigrade)
+		owner.dna.digitigrade = R.dna.digitigrade // ensure cloned DNA is set appropriately from record??? for some reason it doesn't get set right despite the override to datum/dna/Clone()
 	//Update appearance, remake icons
-	designer_mob.UpdateAppearance()
-	designer_mob.sync_dna_traits(FALSE) // Traitgenes edit - Sync traits to genetics if needed
-	designer_mob.sync_organ_dna()
-	designer_mob.regenerate_icons()
+	owner.UpdateAppearance()
+	owner.sync_dna_traits(FALSE) // Traitgenes edit - Sync traits to genetics if needed
+	owner.sync_organ_dna()
+	owner.regenerate_icons()
 	// Traitgenes edit begin - Moved breathing equipment to AFTER the genes set it
-	designer_mob.flavor_texts = current_project.mydna.flavor.Copy()
-	designer_mob.resize(current_project.sizemult, FALSE)
-	designer_mob.appearance_flags = current_project.aflags
-	designer_mob.weight = current_project.weight
+	owner.flavor_texts = current_project.mydna.flavor.Copy()
+	owner.resize(current_project.sizemult, FALSE)
+	owner.appearance_flags = current_project.aflags
+	owner.weight = current_project.weight
 	if(current_project.speciesname)
-		designer_mob.custom_species = current_project.speciesname
-	// Finish up!
-	owner = designer_mob
+		owner.custom_species = current_project.speciesname
+	// Add listeners back
 	owner.AddComponent(/datum/component/recursive_move)
-	RegisterSignal(owner, COMSIG_OBSERVER_MOVED, PROC_REF(update_active_camera_screen))
+	RegisterSignal(owner, COMSIG_OBSERVER_MOVED, PROC_REF(update_active_camera_screen), override = TRUE)

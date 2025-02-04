@@ -492,7 +492,7 @@
 			var/datum/transhuman/body_record/BR = locate(params["view_brec"])
 			if(BR && istype(BR.mydna))
 				if(DC.allowed(ui.user) || BR.ckey == ui.user.ckey)
-					owner = BD.create_body(BR)
+					BD.load_record_to_body(BR)
 					owner.resleeve_lock = BR.locked
 					DC.selected_record = TRUE
 			return TRUE
@@ -513,7 +513,7 @@
 			if(!DC.disk)
 				return FALSE
 			if(DC.disk.stored && can_change(owner, APPEARANCE_RACE))
-				owner = BD.create_body(DC.disk.stored)
+				BD.load_record_to_body(DC.disk.stored)
 				DC.selected_record = TRUE
 				to_chat(ui.user,span_notice("\The [owner]'s bodyrecord was loaded from the disk."))
 			return TRUE
@@ -550,7 +550,7 @@
 				return TRUE
 		if("back_to_library")
 			if(can_change(owner, APPEARANCE_RACE))
-				owner = BD.make_fake_owner()
+				BD.make_fake_owner()
 				DC.selected_record = FALSE
 				return TRUE
 		// Outpost 21 edit end
