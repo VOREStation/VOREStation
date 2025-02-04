@@ -1184,7 +1184,7 @@
 	extra_overlay = "scoli_markings1"
 	extra_overlay2 = "scoli_markings2"
 
-/datum/sprite_accessory/tail/taur/ch/sergal/wheaties
+/datum/sprite_accessory/tail/taur/sergal/wheaties
 	name = "Sergal (Taur)"
 	icon_state = "sergwheat"
 	icon_sprite_tag = "wolf"
