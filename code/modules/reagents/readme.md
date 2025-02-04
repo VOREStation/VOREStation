@@ -191,7 +191,8 @@ About Reagents:
 		glass_desc
 			Ditto for glass desciption.
 
-		glass_center_of_mass
+		glass_center_of_mass_x
+		glass_center_of_mass_y
 			Used for glass placement on tables.
 
 		color

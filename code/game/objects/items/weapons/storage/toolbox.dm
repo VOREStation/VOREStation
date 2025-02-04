@@ -7,7 +7,8 @@
 	icon = 'icons/obj/storage_vr.dmi'
 	icon_state = "red"
 	item_state_slots = list(slot_r_hand_str = "toolbox_red", slot_l_hand_str = "toolbox_red")
-	center_of_mass = list("x" = 16,"y" = 11)
+	center_of_mass_x = 16
+	center_of_mass_y = 9
 	force = 10
 	throwforce = 10
 	throw_speed = 1
