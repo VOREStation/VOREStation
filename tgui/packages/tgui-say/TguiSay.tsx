@@ -166,10 +166,58 @@ export function TguiSay() {
     setValue(newValue);
   }
 
+  function getMarkupString(
+    inputText: string,
+    markupType: string,
+    startPosition: number,
+    endPosition: number,
+  ) {
+    return `${inputText.substring(0, startPosition)}${markupType}${inputText.substring(startPosition, endPosition)}${markupType}${inputText.substring(endPosition)}`;
+  }
+
   function handleKeyDown(event: KeyboardEvent<HTMLTextAreaElement>): void {
     if (event.getModifierState('AltGraph')) return;
 
     switch (event.key) {
+      case 'u': // replace with tgui core 1.8.x
+        if (event.ctrlKey || event.metaKey) {
+          event.preventDefault();
+          const { value, selectionStart, selectionEnd } = event.currentTarget;
+          event.currentTarget.value = getMarkupString(
+            value,
+            '_',
+            selectionStart,
+            selectionEnd,
+          );
+          event.currentTarget.selectionEnd = selectionEnd + 2;
+        }
+        break;
+      case 'i': // replace with tgui core 1.8.x
+        if (event.ctrlKey || event.metaKey) {
+          event.preventDefault();
+          const { value, selectionStart, selectionEnd } = event.currentTarget;
+          event.currentTarget.value = getMarkupString(
+            value,
+            '|',
+            selectionStart,
+            selectionEnd,
+          );
+          event.currentTarget.selectionEnd = selectionEnd + 2;
+        }
+        break;
+      case 'b': // replace with tgui core 1.8.x
+        if (event.ctrlKey || event.metaKey) {
+          event.preventDefault();
+          const { value, selectionStart, selectionEnd } = event.currentTarget;
+          event.currentTarget.value = getMarkupString(
+            value,
+            '+',
+            selectionStart,
+            selectionEnd,
+          );
+          event.currentTarget.selectionEnd = selectionEnd + 2;
+        }
+        break;
       case KEY.Up:
       case KEY.Down:
         event.preventDefault();
