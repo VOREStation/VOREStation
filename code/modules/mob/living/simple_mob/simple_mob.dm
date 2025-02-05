@@ -205,6 +205,7 @@
 	if(CONFIG_GET(flag/allow_simple_mob_recolor))
 		add_verb(src, /mob/living/simple_mob/proc/ColorMate)
 
+	AddElement(/datum/element/footstep, FOOTSTEP_MOB_SHOE, 0.5, -6) // Need to go through all of the mobs to give them proper footsteps...
 
 	return ..()
 

@@ -710,12 +710,6 @@
 	failed_last_breath = 0 //So mobs that died of oxyloss don't revive and have perpetual out of breath.
 	reload_fullscreen()
 
-	RemoveElement(/datum/element/footstep)
-
-	if(ishuman(src))
-		var/mob/living/carbon/human/H = src
-		H.set_footsteps(H.species.footstep)
-
 	return
 
 /mob/living/proc/UpdateDamageIcon()
@@ -1358,11 +1352,3 @@
 	to_chat(src, span_notice("You are [toggled_sleeping ? "now sleeping. Use the Sleep verb again to wake up" : "no longer sleeping"]."))
 	if(toggled_sleeping)
 		Sleeping(1)
-
-/mob/living/proc/set_footsteps(footstep_sounds = FOOTSTEP_MOB_HUMAN)
-	AddElement(/datum/element/footstep, footstep_sounds, 1, -6)
-
-/*
-/mob/living/proc/set_slosh()
-	AddElement(/datum/element/slosh)
-*/
