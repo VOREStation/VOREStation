@@ -641,6 +641,7 @@
 
 #ifdef MAP_TEST
 #include "../offmap_vr/talon/talon_v2.dmm"
+#include "../offmap_vr/industrial_rig/industrial_rig.dmm"
 #endif
 
 /datum/map_template/common_lateload/offmap/talon_v2
@@ -654,3 +655,15 @@
 	flags = MAP_LEVEL_PLAYER|MAP_LEVEL_PERSIST|MAP_LEVEL_MAPPABLE
 	base_turf = /turf/space
 	z = Z_LEVEL_OFFMAP1
+
+/datum/map_template/common_lateload/offmap/industrial_rig
+	name = "Offmap Ship - Industrial Rig"
+	desc = "Offmap NT ops ship, the NT Wegener."
+	mappath = "maps/offmap_vr/industrial_rig/industrial_rig.dmm"
+	associated_map_datum = /datum/map_z_level/common_lateload/industrial_rig
+
+/datum/map_z_level/common_lateload/industrial_rig
+	name = "Industrial Rig"
+	flags = MAP_LEVEL_PLAYER|MAP_LEVEL_PERSIST|MAP_LEVEL_MAPPABLE
+	base_turf = /turf/space
+	z = Z_LEVEL_OFFMAP2
