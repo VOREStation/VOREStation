@@ -120,6 +120,7 @@
 			I.digitize()
 	//Set the name or generate one
 	owner.real_name = R.dna.real_name
+	owner.name = owner.real_name
 	//Apply DNA
 	owner.dna = R.dna.Clone()
 	owner.original_player = current_project.ckey

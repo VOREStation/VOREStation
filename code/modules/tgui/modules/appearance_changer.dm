@@ -380,6 +380,14 @@
 					else
 						to_chat(ui.user, span_warning("Invalid name. Your name should be at least 2 and at most [MAX_NAME_LEN] characters long. It may only contain the characters A-Z, a-z, -, ' and ."))
 						return TRUE
+		if("char_name")
+			if(DC) // Only body designer does this. no hrefing
+				var/new_name = sanitize(tgui_input_text(ui.user, "Input character's name:", "Name", owner.name, MAX_NAME_LEN), MAX_NAME_LEN)
+				if(can_change(owner, APPEARANCE_RACE)) // new name can be empty, it uses base species if so
+					owner.name = new_name
+					owner.real_name = owner.name
+					owner.dna.real_name = owner.name
+					return TRUE
 		if("race_name")
 			var/new_name = sanitize(tgui_input_text(ui.user, "Input custom species name:", "Custom Species Name", owner.custom_species, MAX_NAME_LEN), MAX_NAME_LEN)
 			if(can_change(owner, APPEARANCE_RACE)) // new name can be empty, it uses base species if so
@@ -438,6 +446,7 @@
 				owner.size_multiplier = new_size / 100
 				owner.update_transform(TRUE)
 				owner.regenerate_icons()
+				owner.set_dir(owner.dir) // Causes a visual update for fuzzy/offset
 				changed_hook(APPEARANCECHANGER_CHANGED_RACE)
 				return TRUE
 		if("scale_appearance")
@@ -445,12 +454,14 @@
 				owner.dna.scale_appearance = !owner.dna.scale_appearance
 				owner.fuzzy = owner.dna.scale_appearance
 				owner.regenerate_icons()
+				owner.set_dir(owner.dir) // Causes a visual update for fuzzy/offset
 				return TRUE
 		if("offset_override")
 			if(can_change(owner, APPEARANCE_RACE))
 				owner.dna.offset_override = !owner.dna.offset_override
 				owner.offset_override = owner.dna.offset_override
 				owner.regenerate_icons()
+				owner.set_dir(owner.dir) // Causes a visual update for fuzzy/offset
 				return TRUE
 		if("digitigrade")
 			if(can_change(owner, APPEARANCE_RACE))

@@ -35,7 +35,16 @@ export const AppearanceChangerSpecies = (props) => {
       </Section>
       <Section title="DNA">
         <LabeledList>
-          <LabeledList.Item label="Species Name">
+          {data.is_design_console ? (
+            <LabeledList.Item label="Character Name">
+              <Button icon="pen" onClick={() => act('char_name')}>
+                {data.name}
+              </Button>
+            </LabeledList.Item>
+          ) : (
+            ''
+          )}
+          <LabeledList.Item label="Custom Species Name">
             <Button icon="pen" onClick={() => act('race_name')}>
               {data.species_name ? data.species_name : specimen}
             </Button>
@@ -65,11 +74,13 @@ export const AppearanceChangerSpecies = (props) => {
               {data.digitigrade ? 'Yes' : 'No'}
             </Button>
           </LabeledList.Item>
+          {/* Disabled until species sounds ported up
           <LabeledList.Item label="Species Sound">
             <Button icon="pen" onClick={() => act('species_sound')}>
               {data.species_sound}
             </Button>
           </LabeledList.Item>
+          */}
         </LabeledList>
       </Section>
       <Section title="Sizing">

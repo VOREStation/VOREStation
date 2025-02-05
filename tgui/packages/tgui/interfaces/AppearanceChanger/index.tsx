@@ -19,6 +19,7 @@ import {
   AppearanceChangerTails,
   AppearanceChangerWings,
 } from './AppearanceChangerBody';
+import { AppearanceChangerBodyRecords } from './AppearanceChangerBodyRecords';
 import {
   AppearanceChangerColors,
   AppearanceChangerMarkings,
@@ -27,8 +28,7 @@ import {
   AppearanceChangerFacialHair,
   AppearanceChangerHair,
 } from './AppearanceChangerHairs';
-import { BodyDesignerBodyRecords } from './BodyDesignerBodyRecords';
-import { BodyDesignerHeader } from './BodyDesignerHeader';
+import { AppearanceChangerHeader } from './AppearanceChangerHeader';
 import { Data } from './types';
 
 export const AppearanceChanger = (props) => {
@@ -134,15 +134,15 @@ export const AppearanceChanger = (props) => {
   const [tabIndex, setTabIndex] = useState(firstAccesibleTab);
 
   return (
-    <Window width={700} height={650} title={decodeHtmlEntities(title)}>
+    <Window width={700} height={750} title={decodeHtmlEntities(title)}>
       {is_design_console && !selected_a_record ? (
         <Window.Content>
-          <BodyDesignerHeader />
-          <BodyDesignerBodyRecords />
+          <AppearanceChangerHeader />
+          <AppearanceChangerBodyRecords />
         </Window.Content>
       ) : (
         <Window.Content>
-          {is_design_console ? <BodyDesignerHeader /> : ''}
+          {is_design_console ? <AppearanceChangerHeader /> : ''}
           <Section title="Reflection">
             <Stack>
               <Stack.Item grow>
@@ -199,7 +199,6 @@ export const AppearanceChanger = (props) => {
                     {wing_style ? capitalize(wing_style) : 'Not Set'}
                   </LabeledList.Item>
                 </LabeledList>
-                <br />
                 <Button onClick={() => act('rotate_view')}>
                   Rotate Preview
                 </Button>

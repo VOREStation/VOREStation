@@ -3,7 +3,7 @@ import { Button, Section } from 'tgui-core/components';
 
 import { Data } from './types';
 
-export const BodyDesignerBodyRecords = () => {
+export const AppearanceChangerBodyRecords = () => {
   const { act, data } = useBackend<Data>();
   const { character_records, stock_records } = data;
   return (

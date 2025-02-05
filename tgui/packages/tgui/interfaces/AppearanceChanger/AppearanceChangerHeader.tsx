@@ -1,13 +1,13 @@
 import { useBackend } from 'tgui/backend';
-import { Box, Button } from 'tgui-core/components';
+import { Button, Section } from 'tgui-core/components';
 
 import { Data } from './types';
 
-export const BodyDesignerHeader = (props) => {
+export const AppearanceChangerHeader = (props) => {
   const { act, data } = useBackend<Data>();
   const { disk, selected_a_record } = data;
   return (
-    <Box>
+    <Section>
       <Button
         icon="arrow-left"
         disabled={!selected_a_record}
@@ -28,6 +28,6 @@ export const BodyDesignerHeader = (props) => {
       <Button icon="eject" onClick={() => act('ejectdisk')} disabled={!disk}>
         Eject
       </Button>
-    </Box>
+    </Section>
   );
 };
