@@ -1,4 +1,3 @@
-import { filter } from 'common/collections';
 import { ReactNode, useEffect, useRef, useState } from 'react';
 import { useBackend } from 'tgui/backend';
 import { Box, Button, Image, LabeledList, Section } from 'tgui-core/components';
@@ -290,8 +289,9 @@ const ActiveConversationASCII = (props: {
 
   return (
     <Box>
-      {filter(messages, (im: message) => im.target === active_conversation).map(
-        (im, i) => (
+      {messages
+        .filter((im: message) => im.target === active_conversation)
+        .map((im, i) => (
           <Box
             key={i}
             className={
@@ -300,8 +300,7 @@ const ActiveConversationASCII = (props: {
           >
             {im.sent ? 'You:' : 'Them:'} {decodeHtmlEntities(im.message)}
           </Box>
-        ),
-      )}
+        ))}
     </Box>
   );
 };

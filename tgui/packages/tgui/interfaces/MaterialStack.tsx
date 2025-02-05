@@ -1,8 +1,18 @@
+import { useState } from 'react';
 import { useBackend } from 'tgui/backend';
 import { Window } from 'tgui/layouts';
-import { Box, Button, Collapsible, Section, Table } from 'tgui-core/components';
+import {
+  Box,
+  Button,
+  Collapsible,
+  Input,
+  Section,
+  Stack,
+  Table,
+} from 'tgui-core/components';
+import { createSearch } from 'tgui-core/string';
 
-type Data = { amount: number; recipes: recipe[] };
+type Data = { amount: number; recipes: Record<string, recipe>[] };
 
 type recipe = {
   res_amount: number;
@@ -11,26 +21,48 @@ type recipe = {
   ref: string;
 };
 
-export const Stack = (props) => {
+export const MaterialStack = (props) => {
   const { data } = useBackend<Data>();
 
   const { amount, recipes } = data;
+  const [searchText, setSearchText] = useState('');
 
   return (
     <Window width={400} height={600}>
       <Window.Content scrollable>
         <Section title={'Amount: ' + amount}>
-          <RecipeList recipes={recipes} />
+          <Stack vertical>
+            <Stack.Item>
+              <Input
+                fluid
+                placeholder="Search for recipe..."
+                value={searchText}
+                onInput={(e, val) => setSearchText(val)}
+              />
+            </Stack.Item>
+            <Stack.Item>
+              <RecipeList recipes={recipes} searchText={searchText} />
+            </Stack.Item>
+          </Stack>
         </Section>
       </Window.Content>
     </Window>
   );
 };
 
-const RecipeList = (props: { recipes: recipe[] }) => {
-  const { recipes } = props;
+const RecipeList = (props: {
+  recipes: Record<string, recipe>[];
+  searchText: string;
+}) => {
+  const { recipes, searchText } = props;
 
   const sortedKeys = Object.keys(recipes).sort();
+
+  const searcher = createSearch(searchText, (recipe: string) => {
+    return recipe;
+  });
+
+  const filteredKeys = sortedKeys.filter(searcher);
 
   // Shunt all categories to the top.
   // We're not using this for now, keeping it here in case someone really hates color coding later.
@@ -41,7 +73,7 @@ const RecipeList = (props: { recipes: recipe[] }) => {
 
   // let newSortedKeys = nonCategories.concat(categories);
 
-  return sortedKeys.map((title, index) => {
+  return filteredKeys.map((title, index) => {
     // if (title === "--DIVIDER--") {
     //   return (
     //     <Box mt={1} mb={1}>
@@ -54,7 +86,7 @@ const RecipeList = (props: { recipes: recipe[] }) => {
       return (
         <Collapsible key={index} ml={1} mb={-0.7} color="label" title={title}>
           <Box ml={1}>
-            <RecipeList recipes={recipe} />
+            <RecipeList recipes={recipe} searchText={searchText} />
           </Box>
         </Collapsible>
       );
