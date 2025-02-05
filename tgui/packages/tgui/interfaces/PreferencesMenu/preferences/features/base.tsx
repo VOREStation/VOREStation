@@ -1,4 +1,3 @@
-import { sortBy } from 'common/collections';
 import {
   ComponentType,
   createElement,
@@ -6,6 +5,7 @@ import {
   useEffect,
   useState,
 } from 'react';
+import React from 'react';
 import { sendAct, useBackend } from 'tgui/backend';
 import {
   Box,
@@ -21,8 +21,12 @@ import { BooleanLike } from 'tgui-core/react';
 import { createSetPreference, PreferencesMenuData } from '../../data';
 import { ServerPreferencesFetcher } from '../../ServerPreferencesFetcher';
 
-export const sortChoices = (array: [string, ReactNode][]) =>
-  sortBy(array, ([name]) => name);
+function sortNode(...node: [string, ReactNode][]) {
+  node.sort((a, b) => a[0].localeCompare(b[0]));
+  return node;
+}
+
+export const sortChoices = (array: [string, ReactNode][]) => sortNode(...array);
 
 export type Feature<
   TReceiving,
