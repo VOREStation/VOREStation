@@ -374,7 +374,7 @@
 						if (owner.change_priority_of_marking(mark_datum, TRUE))
 							return TRUE
 					if (4) //color
-						var/current = markings[name_marking] ? markings[name_marking]["color"] : "#000000"
+						var/current = markings[name_marking] ? markings[name_marking] : "#000000"
 						var/marking_color = tgui_color_picker(ui.user, "Please select marking color", "Marking color", current)
 						if(marking_color && can_still_topic(ui.user, state))
 							var/datum/sprite_accessory/marking/mark_datum = body_marking_styles_list[name_marking]
@@ -619,7 +619,8 @@
 	if(can_change(owner, APPEARANCE_HAIR))
 		var/hair_styles[0]
 		for(var/hair_style in valid_hairstyles)
-			hair_styles[++hair_styles.len] = list("name" = hair_style)
+			var/datum/sprite_accessory/hair/S = hair_styles_list[hair_style]
+			hair_styles[++hair_styles.len] = list("name" = hair_style, "icon" = S.icon, "icon_state" = "[S.icon_state]_s")
 		data["hair_styles"] = hair_styles
 		data["ear_styles"] = valid_earstyles
 		data["tail_styles"] = valid_tailstyles
@@ -628,7 +629,8 @@
 	if(can_change(owner, APPEARANCE_FACIAL_HAIR))
 		var/facial_hair_styles[0]
 		for(var/facial_hair_style in valid_facial_hairstyles)
-			facial_hair_styles[++facial_hair_styles.len] = list("name" = facial_hair_style)
+			var/datum/sprite_accessory/facial_hair/S = facial_hair_styles_list[facial_hair_style]
+			facial_hair_styles[++facial_hair_styles.len] = list("name" = facial_hair_style, "icon" = S.icon, "icon_state" = "[S.icon_state]_s")
 		data["facial_hair_styles"] = facial_hair_styles
 
 	return data
@@ -827,6 +829,8 @@
 					"instance" = REF(instance),
 					"color" = !!instance.do_colouration,
 					"second_color" = !!instance.extra_overlay,
+					"icon" = instance.icon,
+					"icon_state" = instance.icon_state
 				)))
 
 	if(!LAZYLEN(valid_tailstyles))
@@ -838,6 +842,8 @@
 					"instance" = REF(instance),
 					"color" = !!instance.do_colouration,
 					"second_color" = !!instance.extra_overlay,
+					"icon" = instance.icon,
+					"icon_state" = instance.icon_state
 				)))
 
 	if(!LAZYLEN(valid_wingstyles))
@@ -849,6 +855,8 @@
 					"instance" = REF(instance),
 					"color" = !!instance.do_colouration,
 					"second_color" = !!instance.extra_overlay,
+					"icon" = instance.icon,
+					"icon_state" = instance.icon_state
 				)))
 
 /datum/tgui_module/appearance_changer/proc/get_genders(mob/living/carbon/human/target)

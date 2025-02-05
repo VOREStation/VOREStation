@@ -1,9 +1,9 @@
 import { Fragment, useState } from 'react';
 import { useBackend } from 'tgui/backend';
-import { Button, Input, Section, Stack } from 'tgui-core/components';
+import { ImageButton, Input, Section, Stack } from 'tgui-core/components';
 import { createSearch } from 'tgui-core/string';
 
-import { Data, styles } from './types';
+import { Data, hairStyle, styles } from './types';
 
 export const AppearanceChangerParts = (props: {
   sectionNames: string[];
@@ -46,15 +46,19 @@ export const AppearanceChangerParts = (props: {
           <Stack.Item grow>
             <Section title={section} fill scrollable>
               {canClear && (
-                <Button
+                <ImageButton
+                  tooltip="-- Not Set --"
                   onClick={() => act(actions[i], { clear: true })}
                   selected={currentStyle[i] === null}
                 >
                   -- Not Set --
-                </Button>
+                </ImageButton>
               )}
               {selectableStyles[i].map((style) => (
-                <Button
+                <ImageButton
+                  tooltip={style.name}
+                  dmIcon={style.icon}
+                  dmIconState={style.icon_state}
                   key={style.name}
                   onClick={() => {
                     act(actions[i], { ref: style.instance });
@@ -62,7 +66,7 @@ export const AppearanceChangerParts = (props: {
                   selected={style.name === currentStyle[i]}
                 >
                   {style.name}
-                </Button>
+                </ImageButton>
               ))}
             </Section>
           </Stack.Item>
@@ -74,7 +78,7 @@ export const AppearanceChangerParts = (props: {
 
 export const AppearanceChangerHair = (props: {
   sectionNames: string[];
-  possibleStyles: { name: string }[][];
+  possibleStyles: hairStyle[][];
   currentStyle: string[];
   actions: string[];
 }) => {
@@ -82,7 +86,7 @@ export const AppearanceChangerHair = (props: {
   const { sectionNames, possibleStyles, currentStyle, actions } = props;
   const [searchText, setSearchText] = useState<string>('');
 
-  const selectableStyles = possibleStyles.map((styles: { name: string }[]) => {
+  const selectableStyles = possibleStyles.map((styles: hairStyle[]) => {
     const searcher = createSearch(searchText, (style: styles) => {
       return style.name;
     });
@@ -109,7 +113,10 @@ export const AppearanceChangerHair = (props: {
           <Stack.Item grow>
             <Section title={section} fill scrollable>
               {selectableStyles[i].map((style) => (
-                <Button
+                <ImageButton
+                  tooltip={style.name}
+                  dmIcon={style.icon}
+                  dmIconState={style.icon_state}
                   key={style.name}
                   onClick={() => {
                     act(actions[i], { name: style.name });
@@ -117,7 +124,7 @@ export const AppearanceChangerHair = (props: {
                   selected={style.name === currentStyle[i]}
                 >
                   {style.name}
-                </Button>
+                </ImageButton>
               ))}
             </Section>
           </Stack.Item>

@@ -27,6 +27,19 @@ import {
   AppearanceChangerHair,
   AppearanceChangerParts,
 } from './AppearanceChangerParts';
+import {
+  TAB_COLORS,
+  TAB_EARS,
+  TAB_EARS2,
+  TAB_FACIAL_HAIR,
+  TAB_FLAVOR,
+  TAB_GENDER,
+  TAB_HAIR,
+  TAB_MARKINGS,
+  TAB_RACE,
+  TAB_TAIL,
+  TAB_WINGS,
+} from './constants';
 import { Data } from './types';
 
 export const AppearanceChanger = (props) => {
@@ -74,29 +87,29 @@ export const AppearanceChanger = (props) => {
     change_facial_hair_color;
 
   tab[-1] = <AppearanceChangerDefaultError />;
-  tab[0] = change_race ? (
+  tab[TAB_RACE] = change_race ? (
     <AppearanceChangerSpecies />
   ) : (
     <AppearanceChangerDefaultError />
   );
-  tab[1] = change_race ? (
+  tab[TAB_FLAVOR] = change_race ? (
     <AppearanceChangerFlavor />
   ) : (
     <AppearanceChangerDefaultError />
   );
-  tab[2] = change_gender ? (
+  tab[TAB_GENDER] = change_gender ? (
     <AppearanceChangerGender />
   ) : (
     <AppearanceChangerDefaultError />
   );
-  tab[3] = change_color ? (
+  tab[TAB_COLORS] = change_color ? (
     <AppearanceChangerColors />
   ) : (
     <AppearanceChangerDefaultError />
   );
-  tab[4] = change_hair ? (
+  tab[TAB_HAIR] = change_hair ? (
     <AppearanceChangerHair
-      key="hair"
+      key={TAB_HAIR}
       sectionNames={['Hair']}
       possibleStyles={[hair_styles]}
       currentStyle={[hair_style]}
@@ -105,9 +118,9 @@ export const AppearanceChanger = (props) => {
   ) : (
     <AppearanceChangerDefaultError />
   );
-  tab[5] = change_facial_hair ? (
+  tab[TAB_FACIAL_HAIR] = change_facial_hair ? (
     <AppearanceChangerHair
-      key="facialhair"
+      key={TAB_FACIAL_HAIR}
       sectionNames={['Facial Hair']}
       possibleStyles={[facial_hair_styles]}
       currentStyle={[facial_hair_style]}
@@ -116,21 +129,33 @@ export const AppearanceChanger = (props) => {
   ) : (
     <AppearanceChangerDefaultError />
   );
-  tab[6] = change_hair ? (
+  tab[TAB_EARS] = change_hair ? (
     <AppearanceChangerParts
-      key="ears"
-      sectionNames={['Ears', 'Ears - Secondary']}
-      possibleStyles={[ear_styles, ear_styles]}
-      currentStyle={[ear_style, ear_secondary_style]}
-      actions={['ear', 'ear_secondary']}
+      key={TAB_EARS}
+      sectionNames={['Ears']}
+      possibleStyles={[ear_styles]}
+      currentStyle={[ear_style]}
+      actions={['ear']}
       canClear
     />
   ) : (
     <AppearanceChangerDefaultError />
   );
-  tab[7] = change_hair ? (
+  tab[TAB_EARS2] = change_hair ? (
     <AppearanceChangerParts
-      key="tail"
+      key={TAB_EARS2}
+      sectionNames={['Ears - Secondary']}
+      possibleStyles={[ear_styles]}
+      currentStyle={[ear_secondary_style]}
+      actions={['ear_secondary']}
+      canClear
+    />
+  ) : (
+    <AppearanceChangerDefaultError />
+  );
+  tab[TAB_TAIL] = change_hair ? (
+    <AppearanceChangerParts
+      key={TAB_TAIL}
       sectionNames={['Tail']}
       possibleStyles={[tail_styles]}
       currentStyle={[tail_style]}
@@ -140,9 +165,9 @@ export const AppearanceChanger = (props) => {
   ) : (
     <AppearanceChangerDefaultError />
   );
-  tab[8] = change_hair ? (
+  tab[TAB_WINGS] = change_hair ? (
     <AppearanceChangerParts
-      key="wings"
+      key={TAB_WINGS}
       sectionNames={['Wings']}
       possibleStyles={[wing_styles]}
       currentStyle={[wing_style]}
@@ -152,7 +177,7 @@ export const AppearanceChanger = (props) => {
   ) : (
     <AppearanceChangerDefaultError />
   );
-  tab[9] = change_hair ? (
+  tab[TAB_MARKINGS] = change_hair ? (
     <AppearanceChangerMarkings />
   ) : (
     <AppearanceChangerDefaultError />
@@ -160,15 +185,15 @@ export const AppearanceChanger = (props) => {
 
   let firstAccesibleTab = -1;
   if (change_race) {
-    firstAccesibleTab = 0;
+    firstAccesibleTab = TAB_RACE;
   } else if (change_gender) {
-    firstAccesibleTab = 2;
+    firstAccesibleTab = TAB_GENDER;
   } else if (change_color) {
-    firstAccesibleTab = 3;
+    firstAccesibleTab = TAB_COLORS;
   } else if (change_hair) {
-    firstAccesibleTab = 4;
+    firstAccesibleTab = TAB_HAIR;
   } else if (change_facial_hair) {
-    firstAccesibleTab = 5;
+    firstAccesibleTab = TAB_FACIAL_HAIR;
   }
 
   const [tabIndex, setTabIndex] = useState(firstAccesibleTab);
@@ -275,48 +300,48 @@ export const AppearanceChanger = (props) => {
               <Tabs>
                 {change_race ? (
                   <Tabs.Tab
-                    selected={tabIndex === 0}
-                    onClick={() => setTabIndex(0)}
+                    selected={tabIndex === TAB_RACE}
+                    onClick={() => setTabIndex(TAB_RACE)}
                   >
                     Race
                   </Tabs.Tab>
                 ) : null}
                 {change_race ? (
                   <Tabs.Tab
-                    selected={tabIndex === 1}
-                    onClick={() => setTabIndex(1)}
+                    selected={tabIndex === TAB_FLAVOR}
+                    onClick={() => setTabIndex(TAB_FLAVOR)}
                   >
                     Flavor
                   </Tabs.Tab>
                 ) : null}
                 {change_gender ? (
                   <Tabs.Tab
-                    selected={tabIndex === 2}
-                    onClick={() => setTabIndex(2)}
+                    selected={tabIndex === TAB_GENDER}
+                    onClick={() => setTabIndex(TAB_GENDER)}
                   >
                     Gender & Sex
                   </Tabs.Tab>
                 ) : null}
                 {change_color ? (
                   <Tabs.Tab
-                    selected={tabIndex === 3}
-                    onClick={() => setTabIndex(3)}
+                    selected={tabIndex === TAB_COLORS}
+                    onClick={() => setTabIndex(TAB_COLORS)}
                   >
                     Colors
                   </Tabs.Tab>
                 ) : null}
                 {change_hair ? (
                   <Tabs.Tab
-                    selected={tabIndex === 4}
-                    onClick={() => setTabIndex(4)}
+                    selected={tabIndex === TAB_HAIR}
+                    onClick={() => setTabIndex(TAB_HAIR)}
                   >
                     Hair
                   </Tabs.Tab>
                 ) : null}
                 {change_facial_hair ? (
                   <Tabs.Tab
-                    selected={tabIndex === 5}
-                    onClick={() => setTabIndex(5)}
+                    selected={tabIndex === TAB_FACIAL_HAIR}
+                    onClick={() => setTabIndex(TAB_FACIAL_HAIR)}
                   >
                     Facial Hair
                   </Tabs.Tab>
@@ -324,26 +349,32 @@ export const AppearanceChanger = (props) => {
                 {change_hair ? (
                   <>
                     <Tabs.Tab
-                      selected={tabIndex === 6}
-                      onClick={() => setTabIndex(6)}
+                      selected={tabIndex === TAB_EARS}
+                      onClick={() => setTabIndex(TAB_EARS)}
                     >
-                      Ear
+                      Ears
                     </Tabs.Tab>
                     <Tabs.Tab
-                      selected={tabIndex === 7}
-                      onClick={() => setTabIndex(7)}
+                      selected={tabIndex === TAB_EARS2}
+                      onClick={() => setTabIndex(TAB_EARS2)}
+                    >
+                      Ears Secondary
+                    </Tabs.Tab>
+                    <Tabs.Tab
+                      selected={tabIndex === TAB_TAIL}
+                      onClick={() => setTabIndex(TAB_TAIL)}
                     >
                       Tail
                     </Tabs.Tab>
                     <Tabs.Tab
-                      selected={tabIndex === 8}
-                      onClick={() => setTabIndex(8)}
+                      selected={tabIndex === TAB_WINGS}
+                      onClick={() => setTabIndex(TAB_WINGS)}
                     >
-                      Wing
+                      Wings
                     </Tabs.Tab>
                     <Tabs.Tab
-                      selected={tabIndex === 9}
-                      onClick={() => setTabIndex(9)}
+                      selected={tabIndex === TAB_MARKINGS}
+                      onClick={() => setTabIndex(TAB_MARKINGS)}
                     >
                       Markings
                     </Tabs.Tab>

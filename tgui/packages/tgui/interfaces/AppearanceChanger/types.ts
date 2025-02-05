@@ -46,8 +46,8 @@ export type Data = {
   wing_color: string;
   wing2_color: string;
   wing3_color: string;
-  facial_hair_styles: { name: string }[];
-  hair_styles: { name: string }[];
+  facial_hair_styles: hairStyle[];
+  hair_styles: hairStyle[];
   ear_secondary_style: string;
   ear_secondary_colors: string[];
   is_design_console: BooleanLike; // If we have disk access
@@ -82,6 +82,14 @@ export type styles = {
   instance: string;
   color: boolean;
   second_color: boolean;
+  icon: string;
+  icon_state: string;
+};
+
+export type hairStyle = {
+  name: string;
+  icon: string;
+  icon_state: string;
 };
 
 export type species = { specimen: string };
