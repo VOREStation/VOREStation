@@ -95,10 +95,9 @@
 			buzzed = (world.time + 60)
 
 		icon_state = "holo_medical-deny"
-		sleep(10 SECONDS)
-		icon_state = "holo_medical"
+		addtimer(CALLBACK(PROC_REF(resetBump)), 10 SECONDS)
 
-/obj/structure/holosign/barrier/medical/resetBump()
+/obj/structure/holosign/barrier/medical/proc/resetBump()
 	icon_state = "holo_medical"
 
 /obj/structure/holosign/barrier/medical/proc/CheckHuman(mob/living/carbon/human/H)
