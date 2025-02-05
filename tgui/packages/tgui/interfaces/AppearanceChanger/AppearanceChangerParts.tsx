@@ -3,7 +3,7 @@ import { useBackend } from 'tgui/backend';
 import { ImageButton, Input, Section, Stack } from 'tgui-core/components';
 import { createSearch } from 'tgui-core/string';
 
-import { Data, hairStyle, styles } from './types';
+import { bodyStyle, Data, styles } from './types';
 
 export const AppearanceChangerParts = (props: {
   sectionNames: string[];
@@ -78,7 +78,7 @@ export const AppearanceChangerParts = (props: {
 
 export const AppearanceChangerHair = (props: {
   sectionNames: string[];
-  possibleStyles: hairStyle[][];
+  possibleStyles: bodyStyle[][];
   currentStyle: string[];
   actions: string[];
 }) => {
@@ -86,7 +86,7 @@ export const AppearanceChangerHair = (props: {
   const { sectionNames, possibleStyles, currentStyle, actions } = props;
   const [searchText, setSearchText] = useState<string>('');
 
-  const selectableStyles = possibleStyles.map((styles: hairStyle[]) => {
+  const selectableStyles = possibleStyles.map((styles: bodyStyle[]) => {
     const searcher = createSearch(searchText, (style: styles) => {
       return style.name;
     });

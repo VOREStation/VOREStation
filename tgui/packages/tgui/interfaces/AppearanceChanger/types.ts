@@ -47,8 +47,9 @@ export type Data = {
   wing_color: string;
   wing2_color: string;
   wing3_color: string;
-  facial_hair_styles: hairStyle[];
-  hair_styles: hairStyle[];
+  facial_hair_styles: bodyStyle[];
+  hair_styles: bodyStyle[];
+  marking_styles: bodyStyle[];
   ear_secondary_style: string;
   ear_secondary_colors: string[];
   is_design_console: BooleanLike; // If we have disk access
@@ -87,7 +88,7 @@ export type styles = {
   icon_state: string;
 };
 
-export type hairStyle = {
+export type bodyStyle = {
   name: string;
   icon: string;
   icon_state: string;

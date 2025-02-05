@@ -369,10 +369,8 @@
 								changed_hook(APPEARANCECHANGER_CHANGED_HAIRSTYLE)
 								return TRUE
 					if (1) //add
-						var/list/usable_markings = markings.Copy() ^ body_marking_styles_list.Copy()
-						var/new_marking = tgui_input_list(ui.user, "Choose a body marking:", "New Body Marking", usable_markings)
-						if(new_marking && can_still_topic(ui.user, state))
-							var/datum/sprite_accessory/marking/mark_datum = body_marking_styles_list[new_marking]
+						if(name_marking && can_still_topic(ui.user, state))
+							var/datum/sprite_accessory/marking/mark_datum = body_marking_styles_list[name_marking]
 							if (owner.add_marking(mark_datum))
 								changed_hook(APPEARANCECHANGER_CHANGED_HAIRSTYLE)
 								return TRUE
@@ -636,6 +634,14 @@
 		data["ear_styles"] = valid_earstyles
 		data["tail_styles"] = valid_tailstyles
 		data["wing_styles"] = valid_wingstyles
+
+		markings = owner.get_prioritised_markings()
+		var/list/usable_markings = markings.Copy() ^ body_marking_styles_list.Copy()
+		var/marking_styles[0]
+		for(var/marking_style in usable_markings)
+			var/datum/sprite_accessory/marking/S = body_marking_styles_list[marking_style]
+			marking_styles[++marking_styles.len] = list("name" = marking_style, "icon" = S.icon, "icon_state" = "[S.icon_state]")
+		data["marking_styles"] = marking_styles
 
 	if(can_change(owner, APPEARANCE_FACIAL_HAIR))
 		var/facial_hair_styles[0]
