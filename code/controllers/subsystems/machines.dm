@@ -105,7 +105,7 @@ SUBSYSTEM_DEF(machines)
 	while(current_run.len)
 		var/datum/pipe_network/PN = current_run[current_run.len]
 		current_run.len--
-		if(!PN)
+		if(!PN || QDELETED(PN))
 			networks.Remove(PN)
 			DISABLE_BITFIELD(PN?.datum_flags, DF_ISPROCESSING)
 		else
@@ -122,7 +122,7 @@ SUBSYSTEM_DEF(machines)
 	while(current_run.len)
 		var/obj/machinery/M = current_run[current_run.len]
 		current_run.len--
-		if(!M || (M.process(wait) == PROCESS_KILL))
+		if(!istype(M) || QDELETED(M) || (M.process(wait) == PROCESS_KILL))
 			processing_machines.Remove(M)
 			DISABLE_BITFIELD(M?.datum_flags, DF_ISPROCESSING)
 		if(MC_TICK_CHECK)

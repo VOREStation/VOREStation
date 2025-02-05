@@ -1,12 +1,12 @@
 /obj/item/radio/intercom
 	name = "station intercom (General)"
 	desc = "Talk through this."
-	icon = 'icons/obj/radio_vr.dmi' //VOREStation Edit - New Icon
+	icon = 'icons/obj/radio_vr.dmi'
 	icon_state = "intercom"
 	layer = ABOVE_WINDOW_LAYER
 	anchored = TRUE
 	w_class = ITEMSIZE_LARGE
-	canhear_range = 7 //VOREStation Edit
+	canhear_range = 7
 	flags = NOBLOODY
 	light_color = "#00ff00"
 	light_power = 0.25
@@ -14,7 +14,7 @@
 	vis_flags = VIS_HIDE // They have an emissive that looks bad in openspace due to their wall-mounted nature
 	var/circuit = /obj/item/circuitboard/intercom
 	var/number = 0
-	var/wiresexposed = 0
+	var/wiresexposed = FALSE
 
 /obj/item/radio/intercom/Initialize()
 	. = ..()
@@ -33,8 +33,8 @@
 
 /obj/item/radio/intercom/custom
 	name = "station intercom (Custom)"
-	broadcasting = 0
-	listening = 0
+	broadcasting = FALSE
+	listening = FALSE
 
 /obj/item/radio/intercom/interrogation
 	name = "station intercom (Interrogation)"
@@ -47,13 +47,13 @@
 /obj/item/radio/intercom/specops
 	name = "\improper Spec Ops intercom"
 	frequency = ERT_FREQ
-	subspace_transmission = 1
-	centComm = 1
+	subspace_transmission = TRUE
+	centComm = TRUE
 
 /obj/item/radio/intercom/department
 	canhear_range = 5
-	broadcasting = 0
-	listening = 1
+	broadcasting = FALSE
+	listening = TRUE
 
 /obj/item/radio/intercom/department/medbay
 	name = "station intercom (Medbay)"
@@ -74,26 +74,26 @@
 /obj/item/radio/intercom/omni
 	name = "global announcer"
 /obj/item/radio/intercom/omni/Initialize()
+	. = ..()
 	channels = radiochannels.Copy()
-	return ..()
 
-/obj/item/radio/intercom/New()
-	..()
+/obj/item/radio/intercom/Initialize()
+	. = ..()
 	circuit = new circuit(src)
 
-/obj/item/radio/intercom/department/medbay/New()
-	..()
+/obj/item/radio/intercom/department/medbay/Initialize()
+	. = ..()
 	internal_channels = default_medbay_channels.Copy()
 
-/obj/item/radio/intercom/department/security/New()
-	..()
+/obj/item/radio/intercom/department/security/Initialize()
+	. = ..()
 	internal_channels = list(
 		num2text(PUB_FREQ) = list(),
 		num2text(SEC_I_FREQ) = list(access_security)
 	)
 
-/obj/item/radio/intercom/entertainment/New()
-	..()
+/obj/item/radio/intercom/entertainment/Initialize()
+	. = ..()
 	internal_channels = list(
 		num2text(PUB_FREQ) = list(),
 		num2text(ENT_FREQ) = list()
@@ -103,22 +103,22 @@
 	name = "illicit intercom"
 	desc = "Talk through this. Evilly"
 	frequency = SYND_FREQ
-	subspace_transmission = 1
-	syndie = 1
+	subspace_transmission = TRUE
+	syndie = TRUE
 
-/obj/item/radio/intercom/syndicate/New()
-	..()
+/obj/item/radio/intercom/syndicate/Initialize()
+	. = ..()
 	internal_channels[num2text(SYND_FREQ)] = list(access_syndicate)
 
 /obj/item/radio/intercom/raider
 	name = "illicit intercom"
 	desc = "Pirate radio, but not in the usual sense of the word."
 	frequency = RAID_FREQ
-	subspace_transmission = 1
-	syndie = 1
+	subspace_transmission = TRUE
+	syndie = TRUE
 
-/obj/item/radio/intercom/raider/New()
-	..()
+/obj/item/radio/intercom/raider/Initialize()
+	. = ..()
 	internal_channels[num2text(RAID_FREQ)] = list(access_syndicate)
 
 /obj/item/radio/intercom/attack_ai(mob/user as mob)
@@ -223,8 +223,8 @@
 /obj/item/radio/intercom/locked/ai_private
 	name = "\improper AI intercom"
 	frequency = AI_FREQ
-	broadcasting = 1
-	listening = 1
+	broadcasting = TRUE
+	listening = TRUE
 
 /obj/item/radio/intercom/locked/confessional
 	name = "confessional intercom"

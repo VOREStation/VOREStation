@@ -79,6 +79,11 @@
 	density = FALSE
 	update_nearby_tiles()
 	. = ..()
+	/*
+	var/obj/effect/step_trigger/claymore_laser/las = locate() in loc
+	if(las)
+		las.Trigger(src)
+	*/
 
 /obj/machinery/door/process()
 	if(close_door_at && world.time >= close_door_at)
@@ -160,6 +165,7 @@
 	return !density // Block airflow unless density = FALSE
 
 /obj/machinery/door/proc/bumpopen(mob/user as mob)
+	if(!user)	return
 	if(operating)	return
 	if(user.last_airflow > world.time - vsc.airflow_delay) //Fakkit
 		return
@@ -376,7 +382,6 @@
 				playsound(src, 'sound/machines/buzz-two.ogg', 50, 0)
 	return
 
-
 /obj/machinery/door/proc/open(var/forced = 0)
 	if(!can_open(forced))
 		return
@@ -385,23 +390,52 @@
 	do_animate("opening")
 	icon_state = "door0"
 	set_opacity(0)
-	sleep(anim_length_before_density)
+	addtimer(CALLBACK(src, PROC_REF(open_internalsetdensity),forced), anim_length_before_density)
+
+/obj/machinery/door/proc/open_internalsetdensity(var/forced = 0)
+	PRIVATE_PROC(TRUE) //do not touch this or BYOND will devour you
+	SHOULD_NOT_OVERRIDE(TRUE)
 	src.density = FALSE
 	update_nearby_tiles()
-	sleep(anim_length_before_finalize)
+	addtimer(CALLBACK(src, PROC_REF(open_internalfinish),forced), anim_length_before_finalize)
+
+/obj/machinery/door/proc/open_internalfinish(var/forced = 0)
+	PRIVATE_PROC(TRUE) //do not touch this or BYOND will devour you
+	SHOULD_NOT_OVERRIDE(TRUE)
 	src.layer = open_layer
 	explosion_resistance = 0
 	update_icon()
 	set_opacity(0)
 	operating = 0
 
+	/*
+	var/obj/effect/step_trigger/claymore_laser/las = locate() in loc
+	if(las)
+		addtimer(CALLBACK(las, TYPE_PROC_REF(/obj/effect/step_trigger/claymore_laser,Trigger), src), 5)
+	*/
+
 	if(autoclose)
 		autoclose_in(next_close_wait())
 
 	return 1
-
 /obj/machinery/door/proc/next_close_wait()
-	return (normalspeed ? 150 : 5)
+	var/lowest_temp = T20C
+	var/highest_temp = T0C
+	for(var/D in cardinal)
+		var/turf/target = get_step(loc, D)
+		if(!target.density)
+			var/datum/gas_mixture/airmix = target.return_air()
+			if(!airmix)
+				continue
+			if(airmix.temperature < lowest_temp)
+				lowest_temp = airmix.temperature
+			if(airmix.temperature > highest_temp)
+				highest_temp = airmix.temperature
+	// Fast close to keep in the heat
+	var/open_speed = 150
+	if(abs(highest_temp - lowest_temp) >= 5)
+		open_speed = 15
+	return (normalspeed ? open_speed : 5)
 
 /obj/machinery/door/proc/close(var/forced = 0)
 	if(!can_close(forced))
@@ -410,12 +444,20 @@
 
 	close_door_at = 0
 	do_animate("closing")
-	sleep(anim_length_before_density)
+	addtimer(CALLBACK(src, PROC_REF(close_internalsetdensity),forced), anim_length_before_density)
+
+/obj/machinery/door/proc/close_internalsetdensity(var/forced = 0)
+	PRIVATE_PROC(TRUE) //do not touch this or BYOND will devour you
+	SHOULD_NOT_OVERRIDE(TRUE)
 	src.density = TRUE
 	explosion_resistance = initial(explosion_resistance)
 	src.layer = closed_layer
 	update_nearby_tiles()
-	sleep(anim_length_before_finalize)
+	addtimer(CALLBACK(src, PROC_REF(close_internalfinish),forced), anim_length_before_finalize)
+
+/obj/machinery/door/proc/close_internalfinish(var/forced = 0)
+	PRIVATE_PROC(TRUE) //do not touch this or BYOND will devour you
+	SHOULD_NOT_OVERRIDE(TRUE)
 	update_icon()
 	if(visible && !glass)
 		set_opacity(1)	//caaaaarn!
@@ -425,6 +467,12 @@
 	var/obj/fire/fire = locate() in loc
 	if(fire)
 		qdel(fire)
+
+	/*
+	var/obj/effect/step_trigger/claymore_laser/las = locate() in loc
+	if(las)
+		addtimer(CALLBACK(las, TYPE_PROC_REF(/obj/effect/step_trigger/claymore_laser,Trigger), src), 1)
+	*/
 
 	return 1
 

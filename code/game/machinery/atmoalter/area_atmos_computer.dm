@@ -15,7 +15,10 @@
 	var/zone = "This computer is working on a wireless range, the range is currently limited to "
 
 /obj/machinery/computer/area_atmos/Initialize()
-	. = ..()
+	..()
+	return INITIALIZE_HINT_LATELOAD
+
+/obj/machinery/computer/area_atmos/LateInitialize()
 	scanscrubbers()
 
 /obj/machinery/computer/area_atmos/attack_ai(var/mob/user as mob)

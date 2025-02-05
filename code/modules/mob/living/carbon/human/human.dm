@@ -1305,18 +1305,16 @@
 			var/datum/mob_descriptor/descriptor = species.descriptors[desctype]
 			descriptors[desctype] = descriptor.default_value
 
-	spawn(0)
-		if(regen_icons) regenerate_icons()
-		make_blood()
-		if(vessel.total_volume < species.blood_volume)
-			vessel.maximum_volume = species.blood_volume
-			vessel.add_reagent(REAGENT_ID_BLOOD, species.blood_volume - vessel.total_volume)
-		else if(vessel.total_volume > species.blood_volume)
-			vessel.remove_reagent(REAGENT_ID_BLOOD,vessel.total_volume - species.blood_volume) //This one should stay remove_reagent to work even lack of a O_heart
-			vessel.maximum_volume = species.blood_volume
-		fixblood()
-		species.update_attack_types() //VOREStation Edit - Required for any trait that updates unarmed_types in setup.
-		species.update_vore_belly_def_variant()
+	make_blood()
+	if(vessel.total_volume < species.blood_volume)
+		vessel.maximum_volume = species.blood_volume
+		vessel.add_reagent(REAGENT_ID_BLOOD, species.blood_volume - vessel.total_volume)
+	else if(vessel.total_volume > species.blood_volume)
+		vessel.remove_reagent(REAGENT_ID_BLOOD,vessel.total_volume - species.blood_volume) //This one should stay remove_reagent to work even lack of a O_heart
+		vessel.maximum_volume = species.blood_volume
+	fixblood()
+	species.update_attack_types() //Required for any trait that updates unarmed_types in setup.
+	species.update_vore_belly_def_variant()
 
 	// Rebuild the HUD. If they aren't logged in then login() should reinstantiate it for them.
 	update_hud()
