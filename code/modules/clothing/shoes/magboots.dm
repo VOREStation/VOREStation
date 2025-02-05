@@ -5,7 +5,8 @@
 	flags = PHORONGUARD
 	item_state_slots = list(slot_r_hand_str = "magboots", slot_l_hand_str = "magboots")
 	species_restricted = null
-	center_of_mass = list("x" = 17,"y" = 12)
+	center_of_mass_x = 17
+	center_of_mass_y = 12
 	force = 3
 	overshoes = 1
 	shoes_under_pants = -1	//These things are huge

@@ -4,7 +4,8 @@
 	icon_state = "meat"
 	health = 180
 	filling_color = "#FF1C1C"
-	center_of_mass = list("x"=16, "y"=14)
+	center_of_mass_x = 16
+	center_of_mass_y = 14
 
 /obj/item/reagent_containers/food/snacks/meat/Initialize()
 	. = ..()
@@ -73,7 +74,8 @@
 	desc = "A slice from a huge mushroom."
 	icon_state = "hugemushroomslice"
 	filling_color = "#E0D7C5"
-	center_of_mass = list("x"=17, "y"=16)
+	center_of_mass_x = 17
+	center_of_mass_y = 16
 	nutriment_amt = 3
 	nutriment_desc = list("raw" = 2, PLANT_MUSHROOMS = 2)
 	bitesize = 6
@@ -87,7 +89,8 @@
 	desc = "A slice from a huge tomato"
 	icon_state = "tomatomeat"
 	filling_color = "#DB0000"
-	center_of_mass = list("x"=17, "y"=16)
+	center_of_mass_x = 17
+	center_of_mass_y = 16
 	nutriment_amt = 3
 	nutriment_desc = list("raw" = 2, PLANT_TOMATO = 3)
 	bitesize = 6
@@ -97,7 +100,8 @@
 	desc = "A very manly slab of meat."
 	icon_state = "bearmeat"
 	filling_color = "#DB0000"
-	center_of_mass = list("x"=16, "y"=10)
+	center_of_mass_x = 16
+	center_of_mass_y = 10
 	bitesize = 3
 
 /obj/item/reagent_containers/food/snacks/bearmeat/Initialize()
@@ -110,7 +114,8 @@
 	desc = "A slab of green meat. Smells like acid."
 	icon_state = "xenomeat"
 	filling_color = "#43DE18"
-	center_of_mass = list("x"=16, "y"=10)
+	center_of_mass_x = 16
+	center_of_mass_y = 10
 	bitesize = 6
 
 /obj/item/reagent_containers/food/snacks/xenomeat/Initialize()
@@ -123,7 +128,8 @@
 	desc = "A slab of green meat."
 	icon_state = "xenomeat"
 	filling_color = "#43DE18"
-	center_of_mass = list("x"=16, "y"=10)
+	center_of_mass_x = 16
+	center_of_mass_y = 10
 	bitesize = 6
 
 /obj/item/reagent_containers/food/snacks/xenomeat/spidermeat/Initialize()
@@ -150,7 +156,8 @@
 	desc = "A slab of grub meat, it gives a gentle shock if you touch it"
 	icon = 'icons/obj/food.dmi'
 	icon_state = "grubmeat"
-	center_of_mass = list("x"=16, "y"=10)
+	center_of_mass_x = 16
+	center_of_mass_y = 10
 
 /obj/item/reagent_containers/food/snacks/meat/grubmeat/Initialize()
 	. = ..()
@@ -164,7 +171,8 @@
 	icon_state = "wormmeat"
 	health = 180
 	filling_color = "#551A8B"
-	center_of_mass = list("x"=16, "y"=14)
+	center_of_mass_x = 16
+	center_of_mass_y = 14
 
 /obj/item/reagent_containers/food/snacks/meat/worm/Initialize()
 	. = ..()
