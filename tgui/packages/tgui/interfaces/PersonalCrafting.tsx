@@ -136,6 +136,7 @@ export const PersonalCrafting = (props) => {
           <Input
             fluid
             value={searchText}
+            mb={1}
             placeholder="Search for recipes..."
             onInput={(e, value: string) => setSearchText(value)}
           />
