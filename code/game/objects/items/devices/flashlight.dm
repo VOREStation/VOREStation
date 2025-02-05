@@ -313,7 +313,8 @@
 	desc = "A desk lamp with an adjustable mount."
 	icon_state = "lamp"
 	force = 10
-	center_of_mass = list("x" = 13,"y" = 11)
+	center_of_mass_x = 13
+	center_of_mass_y = 11
 	light_range = 5
 	w_class = ITEMSIZE_LARGE
 	power_use = 0
@@ -332,14 +333,16 @@
 /obj/item/flashlight/lamp/green
 	desc = "A classic green-shaded desk lamp."
 	icon_state = "lampgreen"
-	center_of_mass = list("x" = 15,"y" = 11)
+	center_of_mass_x = 15
+	center_of_mass_y = 11
 	light_color = "#FFC58F"
 
 // clown lamp
 /obj/item/flashlight/lamp/clown
 	desc = "A whacky banana peel shaped lamp."
 	icon_state = "bananalamp"
-	center_of_mass = list("x" = 15,"y" = 11)
+	center_of_mass_x = 15
+	center_of_mass_y = 11
 
 
 /*

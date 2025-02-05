@@ -54,7 +54,7 @@ var/list/organ_cache = list()
 	if(transplant_data) transplant_data.Cut()
 	if(autopsy_data)    autopsy_data.Cut()
 	if(trace_chemicals) trace_chemicals.Cut()
-	dna = null
+	QDEL_NULL(dna)
 	species = null
 
 	return ..()
@@ -93,8 +93,8 @@ var/list/organ_cache = list()
 		var/mob/living/carbon/C = holder
 		species = GLOB.all_species[SPECIES_HUMAN]
 		if(holder.dna)
-			dna = C.dna.Clone()
-			species = C.species //VOREStation Edit - For custom species
+			qdel_swap(dna, C.dna.Clone())
+			species = C.species
 		else
 			log_debug("[src] at [loc] spawned without a proper DNA.")
 		var/mob/living/carbon/human/H = C
@@ -131,7 +131,7 @@ var/list/organ_cache = list()
 
 /obj/item/organ/proc/set_dna(var/datum/dna/new_dna)
 	if(new_dna)
-		dna = new_dna.Clone()
+		qdel_swap(dna, new_dna.Clone())
 		if(blood_DNA)
 			blood_DNA.Cut()
 			blood_DNA[dna.unique_enzymes] = dna.b_type

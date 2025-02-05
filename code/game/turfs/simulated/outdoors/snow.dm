@@ -4,10 +4,6 @@
 	edge_blending_priority = 6
 	movement_cost = 2
 	initial_flooring = /decl/flooring/snow
-	turf_layers = list(
-		/turf/simulated/floor/outdoors/rocks,
-		/turf/simulated/floor/outdoors/dirt
-		)
 	var/list/crossed_dirs = list()
 
 
@@ -41,6 +37,8 @@
 		..()
 
 /turf/simulated/floor/outdoors/snow/attack_hand(mob/user as mob)
+	if(!Adjacent(user))
+		return
 	visible_message("[user] starts scooping up some snow.", "You start scooping up some snow.")
 	if(do_after(user, 1 SECOND))
 		var/obj/S = new /obj/item/stack/material/snow(user.loc)
@@ -66,12 +64,15 @@
 	desc = "Dark rock that has been smoothened to be perfectly even. It's coated in a layer of slippey ice"
 
 /turf/simulated/floor/outdoors/ice/Entered(var/mob/living/M)
-	sleep(1 * world.tick_lag)
 	if(isliving(M))
-		if(M.stunned == 0)
-			to_chat(M, span_warning("You slide across the ice!"))
-		M.SetStunned(1)
-		step(M,M.dir)
+		if((M.weakened && prob(10)) || (M.m_intent == "walk" && prob(95)))
+			return ..()
+		addtimer(CALLBACK(src,TYPE_PROC_REF(/turf/simulated/floor/outdoors/ice,cause_slip),M), 1 * world.tick_lag, TIMER_DELETE_ME)
+/turf/simulated/floor/outdoors/ice/cause_slip(var/mob/living/M)
+	if(M.weakened == 0)
+		to_chat(M, span_warning("You slide across the ice!"))
+	M.SetWeakened(3)
+	step(M,M.dir)
 
 // Ice that is used for, say, areas floating on water or similar.
 /turf/simulated/floor/outdoors/shelfice
