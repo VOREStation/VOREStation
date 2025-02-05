@@ -622,7 +622,7 @@
 
 //For all species tails. Includes haircolored tails.
 /datum/sprite_accessory/tail/special
-	name = "Blank tail. Do not select."
+	name = DEVELOPER_WARNING_NAME
 	icon = 'icons/effects/species_tails.dmi'
 
 /datum/sprite_accessory/tail/special/unathi
