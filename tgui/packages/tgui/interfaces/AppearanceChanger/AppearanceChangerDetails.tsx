@@ -21,6 +21,7 @@ export const AppearanceChangerColors = (props) => {
     eye_color,
     skin_color,
     hair_color,
+    hair_color_grad,
     facial_hair_color,
     ears_color,
     ears2_color,
@@ -63,6 +64,12 @@ export const AppearanceChangerColors = (props) => {
           <Box>
             <ColorBox color={hair_color} mr={1} />
             <Button onClick={() => act('hair_color')}>Change Hair Color</Button>
+          </Box>
+          <Box>
+            <ColorBox color={hair_color_grad} mr={1} />
+            <Button onClick={() => act('hair_color_grad')}>
+              Change Hair gradiant Color
+            </Button>
           </Box>
           <Box>
             <ColorBox color={ears_color} mr={1} />

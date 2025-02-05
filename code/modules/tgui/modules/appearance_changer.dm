@@ -165,6 +165,17 @@
 						update_dna(owner)
 						changed_hook(APPEARANCECHANGER_CHANGED_HAIRCOLOR)
 						return 1
+		if("hair_color_grad")
+			if(can_change(owner, APPEARANCE_HAIR_COLOR))
+				var/new_grad = tgui_color_picker(ui.user, "Please select hair gradiant color.", "Hair Color", rgb(owner.r_grad, owner.g_grad, owner.b_grad))
+				if(new_grad && can_still_topic(ui.user, state))
+					var/r_grad = hex2num(copytext(new_grad, 2, 4))
+					var/g_grad = hex2num(copytext(new_grad, 4, 6))
+					var/b_grad = hex2num(copytext(new_grad, 6, 8))
+					if(owner.change_grad_color(r_grad, g_grad, b_grad))
+						update_dna(owner)
+						changed_hook(APPEARANCECHANGER_CHANGED_HAIRCOLOR)
+						return 1
 		if("facial_hair")
 			if(can_change(owner, APPEARANCE_FACIAL_HAIR) && (params["name"] in valid_facial_hairstyles))
 				if(owner.change_facial_hair(params["name"]))
@@ -757,6 +768,7 @@
 	data["change_hair_color"] = can_change(owner, APPEARANCE_HAIR_COLOR)
 	if(data["change_hair_color"])
 		data["hair_color"] = rgb(owner.r_hair, owner.g_hair, owner.b_hair)
+		data["hair_color_grad"] = rgb(owner.r_grad, owner.g_grad, owner.b_grad)
 		data["ears_color"] = rgb(owner.r_ears, owner.g_ears, owner.b_ears)
 		data["ears2_color"] = rgb(owner.r_ears2, owner.g_ears2, owner.b_ears2)
 

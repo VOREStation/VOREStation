@@ -37,6 +37,7 @@ export type Data = {
   eye_color: string;
   skin_color: string;
   hair_color: string;
+  hair_color_grad: string;
   facial_hair_color: string;
   ears_color: string;
   ears2_color: string;
