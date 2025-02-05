@@ -374,7 +374,7 @@
 						if (owner.change_priority_of_marking(mark_datum, TRUE))
 							return TRUE
 					if (4) //color
-						var/current = markings[name_marking] ? markings[name_marking] : "#000000"
+						var/current = markings[name_marking] ? markings[name_marking]["color"] : "#000000"
 						var/marking_color = tgui_color_picker(ui.user, "Please select marking color", "Marking color", current)
 						if(marking_color && can_still_topic(ui.user, state))
 							var/datum/sprite_accessory/marking/mark_datum = body_marking_styles_list[name_marking]
