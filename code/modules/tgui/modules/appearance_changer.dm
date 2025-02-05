@@ -149,8 +149,8 @@
 						changed_hook(APPEARANCECHANGER_CHANGED_SKINCOLOR)
 						return 1
 		if("hair")
-			if(can_change(owner, APPEARANCE_HAIR) && (params["hair"] in valid_hairstyles))
-				if(owner.change_hair(params["hair"]))
+			if(can_change(owner, APPEARANCE_HAIR) && (params["name"] in valid_hairstyles))
+				if(owner.change_hair(params["name"]))
 					update_dna(owner)
 					changed_hook(APPEARANCECHANGER_CHANGED_HAIRSTYLE)
 					return 1
@@ -166,8 +166,8 @@
 						changed_hook(APPEARANCECHANGER_CHANGED_HAIRCOLOR)
 						return 1
 		if("facial_hair")
-			if(can_change(owner, APPEARANCE_FACIAL_HAIR) && (params["facial_hair"] in valid_facial_hairstyles))
-				if(owner.change_facial_hair(params["facial_hair"]))
+			if(can_change(owner, APPEARANCE_FACIAL_HAIR) && (params["name"] in valid_facial_hairstyles))
+				if(owner.change_facial_hair(params["name"]))
 					update_dna(owner)
 					changed_hook(APPEARANCECHANGER_CHANGED_F_HAIRSTYLE)
 					return 1
@@ -619,7 +619,7 @@
 	if(can_change(owner, APPEARANCE_HAIR))
 		var/hair_styles[0]
 		for(var/hair_style in valid_hairstyles)
-			hair_styles[++hair_styles.len] = list("hairstyle" = hair_style)
+			hair_styles[++hair_styles.len] = list("name" = hair_style)
 		data["hair_styles"] = hair_styles
 		data["ear_styles"] = valid_earstyles
 		data["tail_styles"] = valid_tailstyles
@@ -628,7 +628,7 @@
 	if(can_change(owner, APPEARANCE_FACIAL_HAIR))
 		var/facial_hair_styles[0]
 		for(var/facial_hair_style in valid_facial_hairstyles)
-			facial_hair_styles[++facial_hair_styles.len] = list("facialhairstyle" = facial_hair_style)
+			facial_hair_styles[++facial_hair_styles.len] = list("name" = facial_hair_style)
 		data["facial_hair_styles"] = facial_hair_styles
 
 	return data

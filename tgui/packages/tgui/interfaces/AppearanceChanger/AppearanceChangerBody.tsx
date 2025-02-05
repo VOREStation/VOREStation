@@ -1,13 +1,5 @@
 import { useBackend } from 'tgui/backend';
-import {
-  Box,
-  Button,
-  ColorBox,
-  LabeledList,
-  Section,
-  Stack,
-} from 'tgui-core/components';
-import { capitalize } from 'tgui-core/string';
+import { Button, ColorBox, LabeledList, Section } from 'tgui-core/components';
 
 import { Data, species } from './types';
 
@@ -19,7 +11,6 @@ export const AppearanceChangerSpecies = (props) => {
     a.specimen.localeCompare(b.specimen),
   );
 
-  // Outpost 21 edit begin - Body designer update
   return (
     <Section title="Unique Identifiers" fill scrollable>
       <Section title="Species">
@@ -105,31 +96,8 @@ export const AppearanceChangerSpecies = (props) => {
           </Button>
         </LabeledList.Item>
       </Section>
-      <Section title="Flavor Text">
-        <LabeledList>
-          {Object.keys(data.flavor_text).map((key) => (
-            <LabeledList.Item key={key} label={capitalize(key)}>
-              <Button
-                icon="pen"
-                onClick={() =>
-                  act('flavor_text', {
-                    target: key,
-                  })
-                }
-              >
-                Edit
-              </Button>
-              <br />
-              <Box preserveWhitespace style={{ wordBreak: 'break-all' }}>
-                {data.flavor_text[key]}
-              </Box>
-            </LabeledList.Item>
-          ))}
-        </LabeledList>
-      </Section>
     </Section>
   );
-  // Outpost 21 edit end
 };
 
 export const AppearanceChangerGender = (props) => {
@@ -164,118 +132,6 @@ export const AppearanceChangerGender = (props) => {
           ))}
         </LabeledList.Item>
       </LabeledList>
-    </Section>
-  );
-};
-
-export const AppearanceChangerEars = (props) => {
-  const { act, data } = useBackend<Data>();
-
-  const { ear_style, ear_styles } = data;
-
-  ear_styles.sort((a, b) =>
-    a.name.toLowerCase().localeCompare(b.name.toLowerCase()),
-  );
-
-  return (
-    <Stack vertical fill>
-      <Stack.Item grow>
-        <Section title="Ears" fill scrollable>
-          <Button
-            onClick={() => act('ear', { clear: true })}
-            selected={ear_style === null}
-          >
-            -- Not Set --
-          </Button>
-          {ear_styles.map((ear) => (
-            <Button
-              key={ear.instance}
-              onClick={() => act('ear', { ref: ear.instance })}
-              selected={ear.name === ear_style}
-            >
-              {ear.name}
-            </Button>
-          ))}
-        </Section>
-      </Stack.Item>
-      <Stack.Item grow>
-        <Section title="Ears - Secondary" fill scrollable>
-          <Button
-            onClick={() => act('ear_secondary', { clear: true })}
-            selected={data.ear_secondary_style === null}
-          >
-            -- Not Set --
-          </Button>
-          {ear_styles.map((ear) => (
-            <Button
-              key={ear.instance}
-              onClick={() => act('ear_secondary', { ref: ear.instance })}
-              selected={ear.name === data.ear_secondary_style}
-            >
-              {ear.name}
-            </Button>
-          ))}
-        </Section>
-      </Stack.Item>
-    </Stack>
-  );
-};
-
-export const AppearanceChangerTails = (props) => {
-  const { act, data } = useBackend<Data>();
-
-  const { tail_style, tail_styles } = data;
-
-  tail_styles.sort((a, b) =>
-    a.name.toLowerCase().localeCompare(b.name.toLowerCase()),
-  );
-
-  return (
-    <Section title="Tails" fill scrollable>
-      <Button
-        onClick={() => act('tail', { clear: true })}
-        selected={tail_style === null}
-      >
-        -- Not Set --
-      </Button>
-      {tail_styles.map((tail) => (
-        <Button
-          key={tail.instance}
-          onClick={() => act('tail', { ref: tail.instance })}
-          selected={tail.name === tail_style}
-        >
-          {tail.name}
-        </Button>
-      ))}
-    </Section>
-  );
-};
-
-export const AppearanceChangerWings = (props) => {
-  const { act, data } = useBackend<Data>();
-
-  const { wing_style, wing_styles } = data;
-  wing_styles.sort((a, b) =>
-    a.name.toLowerCase().localeCompare(b.name.toLowerCase()),
-  );
-
-  return (
-    <Section title="Wings" fill scrollable>
-      <Button
-        onClick={() => act('wing', { clear: true })}
-        selected={wing_style === null}
-      >
-        -- Not Set --
-      </Button>
-      {wing_styles.map((wing) => (
-        <Button
-          key={wing.instance}
-          onClick={() => act('wing', { ref: wing.instance })}
-          selected={wing.name === wing_style}
-        >
-          {wing.name}
-        </Button>
-      ))}
     </Section>
   );
 };
