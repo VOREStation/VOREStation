@@ -95,10 +95,7 @@
 			buzzed = (world.time + 60)
 
 		icon_state = "holo_medical-deny"
-		addtimer(CALLBACK(PROC_REF(resetBump)), 10 SECONDS)
-
-/obj/structure/holosign/barrier/medical/proc/resetBump()
-	icon_state = "holo_medical"
+		addtimer(VARSET_CALLBACK(src, icon_state, "holo_medical"), 10 SECONDS, TIMER_DELETE_ME)
 
 /obj/structure/holosign/barrier/medical/proc/CheckHuman(mob/living/carbon/human/H)
 	if(istype(H.get_species(), SPECIES_XENOCHIMERA))
