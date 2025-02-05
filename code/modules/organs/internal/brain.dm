@@ -90,6 +90,8 @@ GLOBAL_LIST_BOILERPLATE(all_brain_organs, /obj/item/organ/internal/brain)
 				brainmob.client.screen.len = null //clear the hud
 
 /obj/item/organ/internal/brain/Destroy()
+	if(brainmob && brainmob.dna)
+		qdel(brainmob.dna)
 	QDEL_NULL(brainmob)
 	. = ..()
 
@@ -101,7 +103,7 @@ GLOBAL_LIST_BOILERPLATE(all_brain_organs, /obj/item/organ/internal/brain)
 		brainmob.real_name = H.real_name
 
 		if(istype(H))
-			brainmob.dna = H.dna.Clone()
+			qdel_swap(brainmob.dna, H.dna.Clone())
 			brainmob.timeofhostdeath = H.timeofdeath
 			brainmob.ooc_notes = H.ooc_notes //VOREStation Edit
 			brainmob.ooc_notes_likes = H.ooc_notes_likes
@@ -208,7 +210,7 @@ GLOBAL_LIST_BOILERPLATE(all_brain_organs, /obj/item/organ/internal/brain)
 
 /obj/item/organ/internal/brain/slime/proc/reviveBody()
 	var/datum/dna2/record/R = new /datum/dna2/record()
-	R.dna = brainmob.dna
+	qdel_swap(R.dna, brainmob.dna.Clone())
 	R.ckey = brainmob.ckey
 	R.id = copytext(md5(brainmob.real_name), 2, 6)
 	R.name = R.dna.real_name
@@ -248,7 +250,7 @@ GLOBAL_LIST_BOILERPLATE(all_brain_organs, /obj/item/organ/internal/brain)
 		H.dna = new /datum/dna()
 		H.dna.real_name = H.real_name
 	else
-		H.dna = R.dna
+		qdel_swap(H.dna, R.dna.Clone())
 
 	H.UpdateAppearance()
 	H.sync_organ_dna()
@@ -277,6 +279,8 @@ GLOBAL_LIST_BOILERPLATE(all_brain_organs, /obj/item/organ/internal/brain)
 	for(var/datum/language/L in R.languages)
 		H.add_language(L.name)
 	H.flavor_texts = R.flavor.Copy()
+	qdel(R.dna)
+	qdel(R)
 	qdel(src)
 	return 1
 
