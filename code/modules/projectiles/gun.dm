@@ -361,83 +361,70 @@
 	user.setMoveCooldown(shoot_time) //no moving while shooting either
 
 	next_fire_time = world.time + shoot_time
+	handle_gunfire(target, user, clickparams, pointblank, reflex, 1, FALSE)
 
-	var/held_twohanded = (user.can_wield_item(src) && src.is_held_twohanded(user))
+/obj/item/gun/proc/handle_gunfire(atom/target, mob/living/user, clickparams, pointblank=0, reflex=0, var/ticker, var/recursive = FALSE)
+	PRIVATE_PROC(TRUE)
+	SHOULD_NOT_OVERRIDE(TRUE)
+	if(ticker > burst)
+		return //we're done here
+	if(!ismob(loc)) //We've been dropped.
+		return
+	if(user.stat) //We've been KO'd or have died. No shooting while dead.
+		return
+	if(ticker >= 250) //If you go too far above this, your game will kick you and force you to reconnect. This is already EXTREMELY leninent.
+		return //In testing, I reached 937 bullets out of 1000 being fired with a delay  of 0.1 before being kicked.
+	var/held_twohanded = (user.can_wield_item(src) && is_held_twohanded(user))
 
 	//actually attempt to shoot
 	var/turf/targloc = get_turf(target) //cache this in case target gets deleted during shooting, e.g. if it was a securitron that got destroyed.
 
-/*	// Commented out for quality control and testing.
-	shooting = 1
-	if(automatic == 1 && auto_target && auto_target.active)//When we are going to shoot and have an auto_target AND its active meaning we clicked on it we tell it to burstfire 1000 rounds
-		burst = 1000//Yes its not EXACTLY full auto but when are we shooting more than 1000 normally and it can easily be made higher
-*/
-	for(var/i in 1 to burst)
-		/*	// Commented out for quality control and testing.
-		if(!reflex && automatic)//If we are shooting automatic then check our target, however if we are shooting reflex we dont use automatic
-			//extra sanity checking.
-			if(user.incapacitated())
-				return
-			if(user.get_active_hand() != src)
-				break
-			if(!auto_target) break//Stopped shooting
-			else if(auto_target.loc)
-				target = auto_target.loc
-			//Lastly just update our dir if needed
-			if(user.dir != get_dir(user, auto_target))
-				user.face_atom(auto_target)
-		*/
-		var/obj/projectile = consume_next_projectile(user)
-		if(!projectile)
-			handle_click_empty(user)
-			break
-
-		if(i == 1) // So one burst only makes one message and not 3+ messages.
-			handle_firing_text(user, target, pointblank, reflex)
-
-		process_accuracy(projectile, user, target, i, held_twohanded)
-
-		if(pointblank)
-			process_point_blank(projectile, user, target)
-
-		if(process_projectile(projectile, user, target, user.zone_sel.selecting, clickparams))
-			handle_post_fire(user, target, pointblank, reflex)
-			update_icon()
-
-		if(i < burst)
-			sleep(burst_delay)
-
-		if(!(target && target.loc))
-			target = targloc
-			pointblank = 0
-
-		last_shot = world.time
-
-/*
-	// Commented out for quality control and testing.
-	shooting = 0
-*/
-
-	// We do this down here, so we don't get the message if we fire an empty gun.
-	if(user.item_is_in_hands(src) && user.hands_are_full())
-		if(one_handed_penalty >= 20)
-			to_chat(user, span_warning("You struggle to keep \the [src] pointed at the correct position with just one hand!"))
-
 	//update timing
-	user.setClickCooldown(DEFAULT_QUICK_COOLDOWN)
-	user.setMoveCooldown(move_delay)
-	next_fire_time = world.time + fire_delay
+	if(recursive)
+		user.setClickCooldown(DEFAULT_QUICK_COOLDOWN)
+		next_fire_time = world.time + fire_delay
+		if(muzzle_flash)
+			if(gun_light)
+				set_light(light_brightness)
+			else
+				set_light(0)
 
-	accuracy = initial(accuracy)	//Reset the gun's accuracy
+	if(ticker <= burst)
+		var/obj/projectile = consume_next_projectile(user)
+		if(!projectile) //click, out of bullets
+			handle_click_empty(user)
+			return
 
-	if(muzzle_flash)
-		//VOREStation Edit - Flashlights
-		if(gun_light)
-			set_light(light_brightness)
 		else
-			set_light(0)
-		//VOREStation Edit End
-	user.hud_used.update_ammo_hud(user, src)
+			if(ticker == 1) // So one burst only makes one message and not 3+ messages.
+				handle_firing_text(user, target, pointblank, reflex)
+
+			process_accuracy(projectile, user, target, ticker, held_twohanded)
+
+			if(pointblank)
+				process_point_blank(projectile, user, target)
+
+			if(process_projectile(projectile, user, target, user.zone_sel.selecting, clickparams))
+				handle_post_fire(user, target, pointblank, reflex)
+				update_icon()
+
+			// We do this down here, so we don't get the message if we fire an empty gun.
+			if(user.item_is_in_hands(src) && user.hands_are_full())
+				if(one_handed_penalty >= 20)
+					to_chat(user, span_warning("You struggle to keep \the [src] pointed at the correct position with just one hand!"))
+
+			accuracy = initial(accuracy) //Reset our accuracy
+			last_shot = world.time
+			user.hud_used.update_ammo_hud(user, src)
+
+			if(!(target && target.loc))
+				target = targloc
+				pointblank = 0
+
+			if(ticker < burst)
+				addtimer(CALLBACK(src, PROC_REF(handle_gunfire),target, user, clickparams, pointblank, reflex, ++ticker, TRUE), burst_delay, TIMER_DELETE_ME)
+
+
 
 // Similar to the above proc, but does not require a user, which is ideal for things like turrets.
 /obj/item/gun/proc/Fire_userless(atom/target)
@@ -449,19 +436,34 @@
 
 	var/shoot_time = (burst - 1)* burst_delay
 	next_fire_time = world.time + shoot_time
+	handle_userless_gunfire(target, 1, FALSE)
 
+// This is horrible. I tried to keep the old way it had because if I try to use the fancy procs above like handle_post_fire, it expects a user.
+// Which this doesn't have. It's ugly but whatever. This is used in literally one place (sawn off shotguns) and should honestly just be axed.
+/obj/item/gun/proc/handle_userless_gunfire(atom/target, var/ticker, var/recursive = FALSE)
+	PRIVATE_PROC(TRUE)
+	SHOULD_NOT_OVERRIDE(TRUE)
+	if(ticker > burst)
+		return //we're done here
+
+	//actually attempt to shoot
 	var/turf/targloc = get_turf(target) //cache this in case target gets deleted during shooting, e.g. if it was a securitron that got destroyed.
-	for(var/i in 1 to burst)
-		var/obj/projectile = consume_next_projectile()
-		if(!projectile)
+
+	//update timing
+	if(recursive)
+		next_fire_time = world.time + fire_delay
+		if(muzzle_flash)
+			set_light(0)
+
+	if(ticker <= burst)
+		var/obj/item/projectile/P = consume_next_projectile()
+		if(!P) //click, out of bullets
 			handle_click_empty()
-			break
+			return
 
-		if(istype(projectile, /obj/item/projectile))
-			var/obj/item/projectile/P = projectile
-
-			var/acc = burst_accuracy[min(i, burst_accuracy.len)]
-			var/disp = dispersion[min(i, dispersion.len)]
+		else
+			var/acc = burst_accuracy[min(ticker, burst_accuracy.len)]
+			var/disp = dispersion[min(ticker, dispersion.len)]
 
 			P.accuracy = accuracy + acc
 			P.dispersion = disp
@@ -472,6 +474,7 @@
 			P.old_style_target(target)
 			P.fire()
 
+			accuracy = initial(accuracy)
 			last_shot = world.time
 
 			play_fire_sound()
@@ -480,22 +483,11 @@
 				set_light(muzzle_flash)
 			update_icon()
 
-		//process_accuracy(projectile, user, target, acc, disp)
+			if(!(target && target.loc))
+				target = targloc
 
-	//	if(pointblank)
-	//		process_point_blank(projectile, user, target)
-
-	//	if(process_projectile(projectile, null, target, user.zone_sel.selecting, clickparams))
-	//		handle_post_fire(null, target, pointblank, reflex)
-
-	//	update_icon()
-
-		if(i < burst)
-			sleep(burst_delay)
-
-		if(!(target && target.loc))
-			target = targloc
-			//pointblank = 0
+			if(ticker < burst)
+				addtimer(CALLBACK(src, PROC_REF(handle_gunfire),target, ++ticker, TRUE), burst_delay, TIMER_DELETE_ME)
 
 	var/target_for_log
 	if(ismob(target))
@@ -505,13 +497,6 @@
 
 	add_attack_logs("Unmanned",target_for_log,"Fired [src.name]")
 
-	//update timing
-	next_fire_time = world.time + fire_delay
-
-	accuracy = initial(accuracy)	//Reset the gun's accuracy
-
-	if(muzzle_flash)
-		set_light(0)
 
 //obtains the next projectile to fire
 /obj/item/gun/proc/consume_next_projectile()
