@@ -221,16 +221,6 @@ var/list/turf_edge_cache = list()
 	desc = "Looks dirty."
 	icon = 'icons/turf/outdoors_vr.dmi'
 	icon_base = "dirt0"
-	footstep_sounds = list("human" = list(
-		'sound/effects/footstep/asteroid1.ogg',
-		'sound/effects/footstep/asteroid2.ogg',
-		'sound/effects/footstep/asteroid3.ogg',
-		'sound/effects/footstep/asteroid4.ogg',
-		'sound/effects/footstep/asteroid5.ogg',
-		'sound/effects/footstep/MedDirt1.ogg',
-		'sound/effects/footstep/MedDirt2.ogg',
-		'sound/effects/footstep/MedDirt3.ogg',
-		'sound/effects/footstep/MedDirt4.ogg'))
 
 /turf/simulated/floor/outdoors/newdirt/Initialize(mapload)
 	var/possibledirts = list(
@@ -289,12 +279,6 @@ var/list/turf_edge_cache = list()
 	build_type = /obj/item/stack/tile/floor/sidewalk
 	can_paint = 1
 	can_engrave = FALSE
-
-	footstep_sounds = list("human" = list(
-		'sound/effects/footstep/LightStone1.ogg',
-		'sound/effects/footstep/LightStone2.ogg',
-		'sound/effects/footstep/LightStone3.ogg',
-		'sound/effects/footstep/LightStone4.ogg',))
 
 /obj/item/stack/tile/floor/sidewalk
 	name = "sidewalk tile"
