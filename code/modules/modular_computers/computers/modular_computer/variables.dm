@@ -27,7 +27,8 @@
 	blocks_emissive = FALSE
 	var/overlay_icon = null									// Icon file used for overlays
 	icon_state = null
-	center_of_mass = null									// No pixelshifting by placing on tables, etc.
+	center_of_mass_x = 0
+	center_of_mass_y = 0									// No pixelshifting by placing on tables, etc.
 	randpixel = 0											// And no random pixelshifting on-creation either.
 	var/icon_state_unpowered = null							// Icon state when the computer is turned off
 	var/icon_state_menu = "menu"							// Icon state overlay when the computer is turned on, but no program is loaded that would override the screen.

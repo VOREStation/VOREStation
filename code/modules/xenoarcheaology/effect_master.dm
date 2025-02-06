@@ -83,6 +83,10 @@ var/list/toxic_reagents = list(TOXIN_PATH)
  * Component System Registry.
  * Here be dragons.
  */
+/*
+ * Hi, it's me 3 years in the future
+ * Why would you do this to us
+ */
 
 /datum/component/artifact_master/proc/DoRegistry()
 //Melee Hit
@@ -108,6 +112,16 @@ var/list/toxic_reagents = list(TOXIN_PATH)
 /*
  *
  */
+
+/datum/component/artifact_master/proc/do_unregister()
+	UnregisterSignal(holder, COMSIG_PARENT_ATTACKBY)
+	UnregisterSignal(holder, COMSIG_ATOM_EX_ACT)
+	UnregisterSignal(holder, COMSIG_ATOM_BULLET_ACT)
+	UnregisterSignal(holder, COMSIG_ATOM_ATTACK_HAND)
+	UnregisterSignal(holder, COMSIG_MOVABLE_BUMP)
+	UnregisterSignal(holder, COMSIG_ATOM_BUMPED)
+	UnregisterSignal(holder, COMSIG_MOVABLE_MOVED)
+	UnregisterSignal(holder, COMSIG_REAGENTS_TOUCH)
 
 /datum/component/artifact_master/proc/get_active_effects()
 	var/list/active_effects = list()
@@ -144,6 +158,7 @@ var/list/toxic_reagents = list(TOXIN_PATH)
 		qdel(AE)
 
 /datum/component/artifact_master/Destroy()
+	do_unregister()
 	holder = null
 	for(var/datum/artifact_effect/AE in my_effects)
 		AE.master = null
@@ -152,7 +167,7 @@ var/list/toxic_reagents = list(TOXIN_PATH)
 
 	STOP_PROCESSING(SSobj,src)
 
-	. = ..()
+	. = ..(silent=TRUE)
 
 /datum/component/artifact_master/proc/do_setup()
 	if(LAZYLEN(make_effects))
@@ -420,18 +435,18 @@ var/list/toxic_reagents = list(TOXIN_PATH)
 	var/turf/T = get_turf(holder)
 	var/datum/gas_mixture/env = T.return_air()
 	if(env)
-		if(env.temperature < 225)
+		if(env.temperature < ARTIFACT_COLD_TRIGGER)
 			trigger_cold = 1
-		else if(env.temperature > 375)
+		else if(env.temperature > ARTIFACT_HEAT_TRIGGER)
 			trigger_hot = 1
 
-		if(env.gas[GAS_PHORON] >= 10)
+		if(env.gas[GAS_PHORON] >= ARTIFACT_GAS_TRIGGER)
 			trigger_phoron = 1
-		if(env.gas[GAS_O2] >= 10)
+		if(env.gas[GAS_O2] >= ARTIFACT_GAS_TRIGGER)
 			trigger_oxy = 1
-		if(env.gas[GAS_CO2] >= 10)
+		if(env.gas[GAS_CO2] >= ARTIFACT_GAS_TRIGGER)
 			trigger_co2 = 1
-		if(env.gas[GAS_N2] >= 10)
+		if(env.gas[GAS_N2] >= ARTIFACT_GAS_TRIGGER)
 			trigger_nitro = 1
 
 	for(var/datum/artifact_effect/my_effect in my_effects)

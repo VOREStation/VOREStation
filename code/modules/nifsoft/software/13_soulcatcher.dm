@@ -238,7 +238,7 @@
 	//If they have these values, apply them
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
-		brainmob.dna = H.dna
+		qdel_swap(brainmob.dna, H.dna.Clone())
 		brainmob.ooc_notes = H.ooc_notes
 		brainmob.ooc_notes_likes = H.ooc_notes_likes
 		brainmob.ooc_notes_dislikes = H.ooc_notes_dislikes
