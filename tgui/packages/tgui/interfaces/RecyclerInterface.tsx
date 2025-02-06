@@ -1,7 +1,7 @@
 import { resolveAsset } from 'tgui/assets';
+import { Box, Button, Flex, Image, Section } from 'tgui-core/components';
 
 import { useBackend } from '../backend';
-import { Box, Button, Flex, Image, Section } from '../components';
 import { Window } from '../layouts';
 
 type Data = {
@@ -32,7 +32,7 @@ export const RecyclerInterface = (props) => {
       </style>
 
       <Window.Content>
-        <Section title="Temporary Name Co Branded Recycling Interface">
+        <Section title="RSG Recycling Interface Input Terminal">
           <Flex align="center" direction="column">
             <Flex.Item align="center">
               <Image
@@ -116,7 +116,7 @@ export const RecyclerInterface = (props) => {
               </Flex.Item>
               <Flex.Item><Button
                 content="Recycle the current item"
-                onClick={() => act('eject')} />
+                onClick={() => act('recycle')} />
               </Flex.Item>
             </Flex>
           </Section>
