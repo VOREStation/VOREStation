@@ -79,7 +79,7 @@
 	if(istype(A,/datum/sprite_accessory/marking))
 		var/datum/sprite_accessory/marking/MA = A
 		for(var/BP in MA.body_parts)
-			actual_icon_state = "[actual_icon_state]-[BP]"
+			actual_icon_state = "[A.icon_state]-[BP]"
 			if(!(actual_icon_state in cached_icon_states(A.icon)))
 				log_unit_test("[A] - [A.type]: Cosmetic - Icon_state \"[actual_icon_state]\" is not present in [A.icon].")
 				failed = 1
