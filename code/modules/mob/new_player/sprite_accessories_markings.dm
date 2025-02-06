@@ -8,6 +8,7 @@
 includes scars and tattoos
 */
 /datum/sprite_accessory/marking
+	name = DEVELOPER_WARNING_NAME
 	icon = 'icons/mob/human_races/markings.dmi'
 	do_colouration = 1 //Almost all of them have it, COLOR_ADD
 
@@ -203,7 +204,7 @@ includes scars and tattoos
 	body_parts = list(BP_HEAD)
 
 /datum/sprite_accessory/marking/bandsface_human
-	name = "Color Bands (Face)"
+	name = "Color Bands (Face) (Human)"
 	icon_state = "bandshumanface"
 	body_parts = list(BP_HEAD)
 
@@ -1200,7 +1201,7 @@ includes scars and tattoos
 	icon_state = "bandage1_tesh"
 	species_allowed = list(SPECIES_TESHARI)
 
-/datum/sprite_accessory/marking/bandage/l_hand/l_hand2
+/datum/sprite_accessory/marking/bandage/l_hand/l_hand_2
 	name = "Bandage, Left Hand 2"
 	icon_state = "bandage2"
 
@@ -2497,6 +2498,9 @@ includes scars and tattoos
 
 //Replikant-specific markings
 
+/datum/sprite_accessory/marking/replikant
+	name = DEVELOPER_WARNING_NAME
+
 /datum/sprite_accessory/marking/replikant/replika_r_thigh
 	name = "Replikant Stripe - Right Thigh"
 	icon_state = "replika"
@@ -2535,7 +2539,7 @@ includes scars and tattoos
 
 //Digitigrade markings
 /datum/sprite_accessory/marking/digi
-	name = "Digitigrate Marking Subcat, Please Ignore"
+	name = DEVELOPER_WARNING_NAME
 	icon = 'icons/mob/human_races/markings_digi.dmi'
 	digitigrade_acceptance = MARKING_DIGITIGRADE_ONLY
 
