@@ -29,6 +29,9 @@
 	var/list/collection = list()
 	for(var/SP in L)
 		var/datum/sprite_accessory/A = L[SP]
+		if(!A)
+			log_unit_test("[SP]: Cosmetic - Path resolved to null in list.")
+			continue
 		if(!A.name)
 			log_unit_test("[A] - [A.type]: Cosmetic - Missing name.")
 			failed = 1
@@ -42,6 +45,5 @@
 		if(!A.icon_state)
 			log_unit_test("[A] - [A.type]: Cosmetic - Has no icon_state.")
 			failed = 1
-		qdel(A)
 
 	return failed
