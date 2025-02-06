@@ -1555,6 +1555,14 @@
 	name = "Shadekin Long Tail"
 	icon_state = "shadekin_long_s"
 
+/datum/sprite_accessory/tail/longtail/shadekin_tail/shadekin_tail_fat
+	name = "Shadekin Fat Tail"
+	icon_state = "shadekin_fat_s"
+
+/datum/sprite_accessory/tail/longtail/shadekin_tail/shadekin_tail_fat/spots
+	name = "Shadekin Fat Tail (Spotted)"
+	extra_overlay = "shadekin_fat_spots"
+
 /datum/sprite_accessory/tail/longtail/zaprat
 	name = "bolt-shaped tail, dual color"
 	icon = 'icons/mob/human_races/sprite_accessories/taurs.dmi'
