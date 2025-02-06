@@ -44,7 +44,7 @@
 		else
 			collection[A.name] = A.type
 
-		if(istype(A,path + "/invisible") && A.icon_state)
+		if(istype(A,text2path("[path]/invisible")) && A.icon_state)
 			log_unit_test("[A] - [A.type]: Cosmetic - Invisible subtype has icon_state.")
 			failed = 1
 		else if(!A.icon_state)
