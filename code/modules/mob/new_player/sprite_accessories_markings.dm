@@ -1303,7 +1303,7 @@ includes scars and tattoos
 	icon_state = "bandage1_tesh"
 	species_allowed = list(SPECIES_TESHARI)
 
-/datum/sprite_accessory/marking/bandage/l_foot/l_foot2
+/datum/sprite_accessory/marking/bandage/l_foot/l_foot_2
 	name = "Bandage, Left Foot 2"
 	icon_state = "bandage2"
 
@@ -1312,7 +1312,7 @@ includes scars and tattoos
 	icon_state = "bandage2_tesh"
 	species_allowed = list(SPECIES_TESHARI)
 
-/datum/sprite_accessory/marking/bandage/l_foot/l_foot3
+/datum/sprite_accessory/marking/bandage/l_foot/l_foot_3
 	name = "Bandage, Left Foot 3"
 	icon_state = "bandage3"
 
