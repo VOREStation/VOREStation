@@ -4,18 +4,13 @@
 /datum/unit_test/sprite_accessories_shall_be_unique/start_test()
 	var/failed = 0
 
-	failed += validate_accessory_list(hair_styles_list)
-	failed += validate_accessory_list(hair_styles_male_list)
-	failed += validate_accessory_list(hair_styles_female_list)
-	failed += validate_accessory_list(facial_hair_styles_list)
-	failed += validate_accessory_list(facial_hair_styles_male_list)
-	failed += validate_accessory_list(facial_hair_styles_female_list)
-	failed += validate_accessory_list(skin_styles_female_list) //unused
-	failed += validate_accessory_list(body_marking_styles_list)
-	failed += validate_accessory_list(body_marking_nopersist_list)
-	failed += validate_accessory_list(ear_styles_list)
-	failed += validate_accessory_list(tail_styles_list)
-	failed += validate_accessory_list(wing_styles_list)
+	failed += validate_accessory_list( /datum/sprite_accessory/ears)
+	failed += validate_accessory_list( /datum/sprite_accessory/facial_hair)
+	failed += validate_accessory_list( /datum/sprite_accessory/hair)
+	failed += validate_accessory_list( /datum/sprite_accessory/hair_accessory)
+	failed += validate_accessory_list( /datum/sprite_accessory/marking)
+	failed += validate_accessory_list( /datum/sprite_accessory/tail)
+	failed += validate_accessory_list( /datum/sprite_accessory/wing)
 
 	if(failed)
 		fail("One or more /datum/sprite_accessory definitions had invalid names, icon_states, or names were reused definitions")
@@ -23,12 +18,15 @@
 		pass("All /datum/sprite_accessory definitions had correct settings.")
 	return 1
 
-/datum/unit_test/sprite_accessories_shall_be_unique/proc/validate_accessory_list(var/list/L)
+/datum/unit_test/sprite_accessories_shall_be_unique/proc/validate_accessory_list(var/path)
 	var/failed = 0
+	var/total_good = 0
+	var/total_all = 0
 
 	var/list/collection = list()
-	for(var/SP in L)
-		var/datum/sprite_accessory/A = L[SP]
+	for(var/SP in subtypesof(path))
+		total_all++
+		var/datum/sprite_accessory/A = new SP()
 		if(!A)
 			log_unit_test("[SP]: Cosmetic - Path resolved to null in list.")
 			continue
@@ -46,4 +44,8 @@
 			log_unit_test("[A] - [A.type]: Cosmetic - Has no icon_state.")
 			failed = 1
 
+		total_good++
+		qdel(A)
+
+	log_unit_test("[path]: Cosmetic - Total valid count: [total_good]/[total_all].")
 	return failed
