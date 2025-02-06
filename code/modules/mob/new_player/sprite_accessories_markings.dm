@@ -860,7 +860,7 @@ includes scars and tattoos
 /datum/sprite_accessory/marking/diona_leaves
 	name = "Leaves (Diona)"
 	icon_state = "diona_leaves"
-	body_parts = list(BP_L_FOOT, BP_R_FOOT, BP_L_LEG, BP_R_LEG, BP_L_ARM, BP_R_ARM, BP_L_HAND, BP_R_HAND, BP_TORSO, BP_GROIN, BP_HEAD)
+	body_parts = list(BP_L_FOOT, BP_R_FOOT, BP_L_LEG, BP_R_LEG, BP_L_ARM, BP_R_ARM, BP_TORSO, BP_GROIN, BP_HEAD)
 
 /datum/sprite_accessory/marking/diona_thorns
 	name = "Thorns (Diona)"
@@ -992,10 +992,14 @@ includes scars and tattoos
 /datum/sprite_accessory/marking/aug/backside_left
 	name = "Augment (Backside Left, Head)"
 	icon_state = "aug_backside_l"
+	body_parts = list(BP_HEAD)
+
 
 /datum/sprite_accessory/marking/aug/backside_left/side_diode
 	name = "Augment (Backside Left Diode, Head)"
 	icon_state = "aug_sidediode_l"
+	body_parts = list(BP_TORSO)
+
 
 /datum/sprite_accessory/marking/aug/backside_right
 	name = "Augment (Backside Right, Head)"
@@ -1128,7 +1132,7 @@ includes scars and tattoos
 
 /datum/sprite_accessory/marking/bandage/torso/torso3
 	name = "Bandage, Torso 3"
-	icon_state = "bandage3"
+	icon_state = "bandage3" //someone needs to make a proper torso sprite
 
 /datum/sprite_accessory/marking/bandage/torso/torso3/teshari
 	name = "Bandage, Torso 3 (Teshari)"
@@ -2065,7 +2069,7 @@ includes scars and tattoos
 	name = "Wrist Fluff"
 	icon_state = "fluffy_cuffs"
 	color_blend_mode = ICON_MULTIPLY
-	body_parts = list(BP_L_ARM,BP_R_ARM,BP_L_HAND,BP_R_HAND)
+	body_parts = list(BP_L_ARM,BP_R_ARM)
 
 /datum/sprite_accessory/marking/vr_chubby_belly
 	name = "Chubby Belly"
@@ -2527,7 +2531,7 @@ includes scars and tattoos
 
 /datum/sprite_accessory/marking/replikant/replika_panels_body
 	name = "Replikant Paneling - SynthFlesh (body)"
-	icon_state = "replikao"
+	icon_state = "replika"
 	color_blend_mode = ICON_MULTIPLY
 	body_parts = list(BP_TORSO)
 

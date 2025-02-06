@@ -14,6 +14,7 @@ import {
 } from 'tgui-core/components';
 import { createSearch } from 'tgui-core/string';
 
+import { MARKINGS_PER_PAGE } from './constants';
 import { bodyStyle, Data, SPRITE_ACCESSORY_COLOR_CHANNEL_NAMES } from './types';
 
 export const AppearanceChangerColors = (props) => {
@@ -180,12 +181,15 @@ export const AppearanceChangerMarkings = (props) => {
   filteredStyles.sort((a, b) =>
     a.name.toLowerCase().localeCompare(b.name.toLowerCase()),
   );
-  const styleTabCount = Math.ceil(filteredStyles.length / 20);
+  const styleTabCount = Math.ceil(filteredStyles.length / MARKINGS_PER_PAGE);
 
   const shownStyles: bodyStyle[][] = [];
 
   for (let i = 0; i < styleTabCount; i++) {
-    shownStyles[i] = filteredStyles.slice(i * 20, i * 20 + 20);
+    shownStyles[i] = filteredStyles.slice(
+      i * MARKINGS_PER_PAGE,
+      i * MARKINGS_PER_PAGE + MARKINGS_PER_PAGE,
+    );
   }
 
   return (
@@ -258,7 +262,7 @@ export const AppearanceChangerMarkings = (props) => {
                     selected={tabIndex === i}
                     onClick={() => setTabIndex(i)}
                   >
-                    Page {i}
+                    Page {i + 1}
                   </Tabs.Tab>
                 </Stack.Item>
               ))}

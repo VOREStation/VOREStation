@@ -9,3 +9,4 @@ export const TAB_EARS2 = 7;
 export const TAB_TAIL = 8;
 export const TAB_WINGS = 9;
 export const TAB_MARKINGS = 10;
+export const MARKINGS_PER_PAGE = 30;
