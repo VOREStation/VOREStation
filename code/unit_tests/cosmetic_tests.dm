@@ -30,17 +30,24 @@
 		if(!A)
 			log_unit_test("[SP]: Cosmetic - Path resolved to null in list.")
 			continue
+
 		if(!A.name)
 			log_unit_test("[A] - [A.type]: Cosmetic - Missing name.")
 			failed = 1
+
 		if(A.name == DEVELOPER_WARNING_NAME)
 			continue
+
 		if(collection[A.name])
 			log_unit_test("[A] - [A.type]: Cosmetic - Name defined twice. Original def [collection[A.name]]")
 			failed = 1
 		else
 			collection[A.name] = A.type
-		if(!A.icon_state)
+
+		if(istype(A,path + "/invisible") && A.icon_state)
+			log_unit_test("[A] - [A.type]: Cosmetic - Invisible subtype has icon_state.")
+			failed = 1
+		else if(!A.icon_state)
 			log_unit_test("[A] - [A.type]: Cosmetic - Has no icon_state.")
 			failed = 1
 
