@@ -606,7 +606,7 @@
 	extra_overlay = "teshpattern_fem_tail"
 
 /datum/sprite_accessory/tail/tesh_pattern_fem_alt
-	name = "Teshari male tail alt. pattern"
+	name = "Teshari fem tail alt. pattern"
 	desc = ""
 	icon_state = "teshtail_s"
 	do_colouration = 1
