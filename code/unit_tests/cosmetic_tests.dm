@@ -23,7 +23,7 @@
 		pass("All /datum/sprite_accessory definitions had correct settings.")
 	return 1
 
-/datum/unit_test/sprite_accessories_shall_be_unique/validate_accessory_list(var/list/L)
+/datum/unit_test/sprite_accessories_shall_be_unique/proc/validate_accessory_list(var/list/L)
 	var/failed = 0
 
 	var/list/collection = list()
