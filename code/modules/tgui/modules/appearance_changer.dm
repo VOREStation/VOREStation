@@ -649,7 +649,10 @@
 		var/marking_styles[0]
 		for(var/marking_style in usable_markings)
 			var/datum/sprite_accessory/marking/S = body_marking_styles_list[marking_style]
-			marking_styles[++marking_styles.len] = list("name" = marking_style, "icon" = S.icon, "icon_state" = "[S.icon_state]")
+			var/our_iconstate = S.icon_state
+			if(LAZYLEN(S.body_parts))
+				our_iconstate += "-[S.body_parts[1]]"
+			marking_styles[++marking_styles.len] = list("name" = marking_style, "icon" = S.icon, "icon_state" = "[our_iconstate]")
 		data["marking_styles"] = marking_styles
 
 	if(can_change(owner, APPEARANCE_FACIAL_HAIR))

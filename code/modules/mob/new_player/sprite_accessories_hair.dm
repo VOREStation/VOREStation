@@ -1902,11 +1902,6 @@
 	name = "Quill Mohawk"
 	icon_state = "vox_mohawk"
 
-//Skrell 'hairstyles' - these were requested for a chimera and screw it, if one wants to eat seafood, go nuts
-/datum/sprite_accessory/hair/skr_tentacle_veryshort
-	name = "Skrell Very Short Tentacles"
-	icon_state = "skrell_hair_veryshort"
-
 /datum/sprite_accessory/hair/shadekin_hair_rivyr
 	name = "Rivyr Hair"
 	icon = 'icons/mob/human_face_vr.dmi'
