@@ -51,6 +51,11 @@
 		else if(!A.icon_state)
 			log_unit_test("[A] - [A.type]: Cosmetic - Has no icon_state.")
 			failed = 1
+		else
+			// Check if valid icon
+			if(!(A.icon_state in cached_icon_states(A.icon)))
+				log_unit_test("[A] - [A.type]: Cosmetic - Icon_state \"[A.icon_state]\" is not present in [A.icon].")
+				failed = 1
 
 		total_good++
 		qdel(A)
