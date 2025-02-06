@@ -53,12 +53,36 @@
 			failed = 1
 		else
 			// Check if valid icon
-			if(!(A.icon_state in cached_icon_states(A.icon)))
-				log_unit_test("[A] - [A.type]: Cosmetic - Icon_state \"[A.icon_state]\" is not present in [A.icon].")
-				failed = 1
+			failed += validate_icons(A)
 
 		total_good++
 		qdel(A)
 
 	log_unit_test("[path]: Cosmetic - Total valid count: [total_good]/[total_all].")
+	return failed
+
+/datum/unit_test/sprite_accessories_shall_be_unique/proc/validate_icons(var/datum/sprite_accessory/A)
+	var/failed = 0
+	var/actual_icon_state = A.icon_state
+	switch(A.type)
+
+		if(/datum/sprite_accessory/hair)
+			actual_icon_state = "[A.icon_state]_s"
+			if(!(actual_icon_state in cached_icon_states(A.icon)))
+				log_unit_test("[A] - [A.type]: Cosmetic - Icon_state \"[actual_icon_state]\" is not present in [A.icon].")
+				failed = 1
+
+		if(/datum/sprite_accessory/facial_hair)
+			actual_icon_state = "[A.icon_state]_s"
+			if(!(actual_icon_state in cached_icon_states(A.icon)))
+				log_unit_test("[A] - [A.type]: Cosmetic - Icon_state \"[actual_icon_state]\" is not present in [A.icon].")
+				failed = 1
+
+		if(/datum/sprite_accessory/marking)
+			for(var/BP in A.body_parts)
+				actual_icon_state = "[actual_icon_state]-[BP]"
+				if(!(actual_icon_state in cached_icon_states(A.icon)))
+					log_unit_test("[A] - [A.type]: Cosmetic - Icon_state \"[actual_icon_state]\" is not present in [A.icon].")
+					failed = 1
+
 	return failed
