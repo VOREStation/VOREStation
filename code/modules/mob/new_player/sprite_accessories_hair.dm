@@ -7,6 +7,7 @@
 */
 
 /datum/sprite_accessory/hair
+	name = DEVELOPER_WARNING_NAME
 	icon = 'icons/mob/Human_face_m.dmi'	  // default icon for all hairs
 	var/icon_add = 'icons/mob/human_face.dmi'
 	var/flags
@@ -1343,10 +1344,6 @@
 	icon_add = 'icons/mob/human_face_alt_add.dmi'
 	icon_state = "soghun_hood"
 
-/datum/sprite_accessory/hair/una_spines_short
-	name = "Short Unathi Spines"
-	icon_state = "soghun_shortspines"
-
 /datum/sprite_accessory/hair/una_quinthorns
 	name = "Quintiple Unathi Horns"
 	icon = 'icons/mob/human_face_vr.dmi'
@@ -1634,7 +1631,6 @@
 /datum/sprite_accessory/hair/skr/tentacle_veryshort
 	name = "Skrell Short Tentacles"
 	icon_state = "skrell_hair_short"
-	gender = MALE
 
 /datum/sprite_accessory/hair/skr/tentacle_average
 	name = "Skrell Long Tentacles"
@@ -1910,18 +1906,6 @@
 /datum/sprite_accessory/hair/skr_tentacle_veryshort
 	name = "Skrell Very Short Tentacles"
 	icon_state = "skrell_hair_veryshort"
-
-/datum/sprite_accessory/hair/skr_tentacle_short
-	name = "Skrell Short Tentacles"
-	icon_state = "skrell_hair_short"
-
-/datum/sprite_accessory/hair/skr_tentacle_average
-	name = "Skrell Average Tentacles"
-	icon_state = "skrell_hair_average"
-
-/datum/sprite_accessory/hair/skr_tentacle_verylong
-	name = "Skrell Long Tentacles"
-	icon_state = "skrell_hair_verylong"
 
 /datum/sprite_accessory/hair/shadekin_hair_rivyr
 	name = "Rivyr Hair"
