@@ -416,6 +416,7 @@
 			accuracy = initial(accuracy) //Reset our accuracy
 			last_shot = world.time
 			user.hud_used.update_ammo_hud(user, src)
+			user.setClickCooldown(DEFAULT_QUICK_COOLDOWN)
 
 			if(!(target && target.loc))
 				target = targloc
