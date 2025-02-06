@@ -998,7 +998,7 @@ includes scars and tattoos
 /datum/sprite_accessory/marking/aug/backside_left/side_diode
 	name = "Augment (Backside Left Diode, Head)"
 	icon_state = "aug_sidediode_l"
-	body_parts = list(BP_TORSO)
+	body_parts = list(BP_HEAD)
 
 
 /datum/sprite_accessory/marking/aug/backside_right
