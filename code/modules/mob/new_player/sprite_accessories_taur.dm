@@ -131,7 +131,7 @@
 	set category = "Abilities.General"
 	set desc = "Let people ride on you."
 
-	if(LAZYLEN(buckled_mobs))
+	if(LAZYLEN(buckled_mobs) && riding_datum)
 		var/datum/riding/R = riding_datum
 		for(var/rider in buckled_mobs)
 			R.force_dismount(rider)
@@ -144,7 +144,7 @@
 		visible_message(span_notice("[M] starts riding [name]!"))
 
 /mob/living/carbon/human/attack_hand(mob/user as mob)
-	if(LAZYLEN(buckled_mobs))
+	if(LAZYLEN(buckled_mobs) && riding_datum)
 		//We're getting off!
 		if(user in buckled_mobs)
 			riding_datum.force_dismount(user)
@@ -441,7 +441,6 @@
 /datum/sprite_accessory/tail/taur/lizard
 	name = "Lizard (Taur)"
 	icon_state = "lizard_s"
-//	suit_sprites = 'icons/mob/taursuits_lizard.dmi'	//Ported from Chomp
 	suit_sprites = 'icons/mob/taursuits_lizard_ch.dmi'
 	icon_sprite_tag = "lizard"
 	can_loaf = TRUE
@@ -927,40 +926,13 @@
 	clip_mask_state = "taur_clip_mask_noodle"
 	icon_sprite_tag = "noodle"
 
-/datum/sprite_accessory/tail/taur/sect_drone
-	name = "Sect Drone (Taur)"
-	icon_state = "sect_drone"
-	extra_overlay = "sect_drone_markings"
-	icon_sprite_tag = "sect_drone"
-
-	msg_owner_disarm_run = "You quickly push %prey to the ground with your leg!"
-	msg_prey_disarm_run = "%owner pushes you down to the ground with their leg!"
-
-	msg_owner_disarm_walk = "You firmly push your leg down on %prey, painfully but harmlessly pinning them to the ground!"
-	msg_prey_disarm_walk = "%owner firmly pushes their leg down on you, quite painfully but harmlessly pinning you to the ground!"
-
-	msg_owner_harm_walk = "You methodically place your leg down upon %prey's body, slowly applying pressure, crushing them against the floor!"
-	msg_prey_harm_walk = "%owner methodically places their leg upon your body, slowly applying pressure, crushing you against the floor!"
-
-	msg_owner_grab_success = "You pin %prey down on the ground with your front leg before using your other leg to pick them up, trapping them between two of your front legs!"
-	msg_prey_grab_success = "%owner pins you down on the ground with their front leg before using their other leg to pick you up, trapping you between two of their front legs!"
-
-	msg_owner_grab_fail = "You step down onto %prey, squishing them and forcing them down to the ground!"
-	msg_prey_grab_fail = "%owner steps down and squishes you with their leg, forcing you down to the ground!"
-
-/datum/sprite_accessory/tail/taur/sect_drone/fat
-	name = "Fat Sect Drone (Taur)"
-	icon_state = "fat_sect_drone"
-	extra_overlay = "fat_sect_drone_markings"
-	icon_sprite_tag = "sect_drone" //Ported from Chomp
-
 /datum/sprite_accessory/tail/taur/sect_drone/drone_wag
 	name = "Sect Drone (Taur, Fat vwag)"
 	icon_state = "sect_drone"
 	extra_overlay = "sect_drone_markings"
 	ani_state = "fat_sect_drone"
 	extra_overlay_w = "fat_sect_drone_markings"
-	icon_sprite_tag = "sect_drone" //Ported from Chomp
+	icon_sprite_tag = "sect_drone"
 
 /datum/sprite_accessory/tail/taur/giantspider
 	name = "Giant Spider (Taur)"
@@ -1225,10 +1197,11 @@
 	msg_owner_grab_fail = "You step down onto %prey, squishing them and forcing them down to the ground!"
 	msg_prey_grab_fail = "%owner steps down and squishes you with their leg, forcing you down to the ground!"
 
-/datum/sprite_accessory/tail/taur/fatsectdrone
+/datum/sprite_accessory/tail/taur/sect_drone/fat
 	name = "Fat Sect Drone (Taur)"
-	icon_state = "fatsectdrone"
-	extra_overlay = "fatsectdrone_markings"
+	icon_state = "fat_sect_drone"
+	extra_overlay = "fat_sect_drone_markings"
+	icon_sprite_tag = "sect_drone"
 
 /datum/sprite_accessory/tail/taur/sergal/fatwheaties
 	name = "Fat Sergal (Taur)"
