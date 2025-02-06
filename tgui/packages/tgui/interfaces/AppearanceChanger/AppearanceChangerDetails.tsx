@@ -4,6 +4,7 @@ import {
   Box,
   Button,
   ColorBox,
+  Dropdown,
   ImageButton,
   Input,
   LabeledList,
@@ -27,6 +28,7 @@ export const AppearanceChangerColors = (props) => {
     eye_color,
     skin_color,
     hair_color,
+    hair_grad,
     hair_color_grad,
     facial_hair_color,
     ears_color,
@@ -38,6 +40,7 @@ export const AppearanceChangerColors = (props) => {
     wing2_color,
     wing3_color,
     ear_secondary_colors,
+    hair_grads,
   } = data;
 
   return (
@@ -76,6 +79,18 @@ export const AppearanceChangerColors = (props) => {
             <Button onClick={() => act('hair_color_grad')}>
               Change Hair gradiant Color
             </Button>
+            <Dropdown
+              autoScroll={false}
+              width="30%"
+              selected={hair_grad || 'None'}
+              options={hair_grads.map((key: string) => {
+                return {
+                  displayText: key,
+                  value: key,
+                };
+              })}
+              onSelected={(val: string) => act('hair_grad', { picked: val })}
+            />
           </Box>
           <Box>
             <ColorBox color={ears_color} mr={1} />
@@ -89,7 +104,7 @@ export const AppearanceChangerColors = (props) => {
               Change Ears Color (Secondary)
             </Button>
           </Box>
-          {data.ear_secondary_colors.map((color, index) => (
+          {ear_secondary_colors.map((color, index) => (
             <Box key={index}>
               <ColorBox color={color} mr={1} />
               <Button

@@ -14,6 +14,7 @@ export type Data = {
   gender: string;
   gender_id: string;
   hair_style: string;
+  hair_grad: string;
   facial_hair_style: string;
   ear_style: string;
   ear_styles: styles[];
@@ -49,6 +50,7 @@ export type Data = {
   wing3_color: string;
   facial_hair_styles: bodyStyle[];
   hair_styles: bodyStyle[];
+  hair_grads: string[];
   marking_styles: bodyStyle[];
   ear_secondary_style: string;
   ear_secondary_colors: string[];

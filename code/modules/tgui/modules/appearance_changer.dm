@@ -42,6 +42,7 @@
 	var/list/valid_earstyles = list()
 	var/list/valid_tailstyles = list()
 	var/list/valid_wingstyles = list()
+	var/list/valid_gradstyles = list()
 	var/list/markings = null
 
 /datum/tgui_module/appearance_changer/New(
@@ -154,6 +155,14 @@
 					update_dna(owner)
 					changed_hook(APPEARANCECHANGER_CHANGED_HAIRSTYLE)
 					return 1
+		if("hair_grad")
+			var/picked = params["picked"]
+			if(picked && can_change(owner, APPEARANCE_HAIR_COLOR))
+				owner.grad_style = picked[1] // returned as a list
+				update_dna(owner)
+				owner.regenerate_icons()
+				changed_hook(APPEARANCECHANGER_CHANGED_HAIRSTYLE)
+				return 1
 		if("hair_color")
 			if(can_change(owner, APPEARANCE_HAIR_COLOR))
 				var/new_hair = tgui_color_picker(ui.user, "Please select hair color.", "Hair Color", rgb(owner.r_hair, owner.g_hair, owner.b_hair))
@@ -650,6 +659,9 @@
 			facial_hair_styles[++facial_hair_styles.len] = list("name" = facial_hair_style, "icon" = S.icon, "icon_state" = "[S.icon_state]_s")
 		data["facial_hair_styles"] = facial_hair_styles
 
+	if(can_change(owner, APPEARANCE_HAIR_COLOR))
+		data["hair_grads"] = valid_gradstyles
+
 	return data
 
 /datum/tgui_module/appearance_changer/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
@@ -778,6 +790,9 @@
 		data["ears_color"] = rgb(owner.r_ears, owner.g_ears, owner.b_ears)
 		data["ears2_color"] = rgb(owner.r_ears2, owner.g_ears2, owner.b_ears2)
 
+		// not a color, but it basically is
+		data["hair_grad"] = owner.grad_style
+
 		// secondary ear colors
 		var/list/ear_secondary_color_channels = owner.ear_secondary_colors || list()
 		ear_secondary_color_channels.len = owner.ear_secondary_style?.get_color_channel_count() || 0
@@ -826,6 +841,7 @@
 	valid_earstyles.Cut()
 	valid_tailstyles.Cut()
 	valid_wingstyles.Cut()
+	valid_gradstyles.Cut()
 
 /datum/tgui_module/appearance_changer/proc/generate_data(mob/user, mob/living/carbon/human/target)
 	if(!ishuman(target))
@@ -876,6 +892,10 @@
 					"icon" = instance.icon,
 					"icon_state" = instance.icon_state
 				)))
+
+	if(!LAZYLEN(valid_gradstyles))
+		for(var/key in GLOB.hair_gradients)
+			valid_gradstyles.Add(list(list(key)))
 
 /datum/tgui_module/appearance_changer/proc/get_genders(mob/living/carbon/human/target)
 	var/datum/species/S = target.species
