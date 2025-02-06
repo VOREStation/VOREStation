@@ -17,7 +17,7 @@
 	///Whether or not to add variation to the sounds played
 	var/sound_vary = FALSE
 
-/datum/element/footstep/Attach(datum/target, footstep_type = FOOTSTEP_MOB_BAREFOOT, volume = 0.1, e_range = -8, sound_vary = FALSE)
+/datum/element/footstep/Attach(datum/target, footstep_type = FOOTSTEP_MOB_BAREFOOT, volume = 0.5, e_range = -8, sound_vary = FALSE)
 	. = ..()
 	if(!ismovable(target))
 		return ELEMENT_INCOMPATIBLE
@@ -43,16 +43,14 @@
 			footstep_ret = GLOB.lightclawfootstep
 		if(FOOTSTEP_MOB_CLAW)
 			footstep_ret = GLOB.clawfootstep
+		if(FOOTSTEP_MOB_BAREFOOT)
+			footstep_ret = GLOB.barefootstep
 		if(FOOTSTEP_MOB_HEAVY)
 			footstep_ret = GLOB.heavyfootstep
 		if(FOOTSTEP_MOB_SHOE)
 			footstep_ret = GLOB.footstep
 		if(FOOTSTEP_MOB_SLIME)
 			footstep_ret = 'sound/effects/footstep/slime1.ogg'
-		if(FOOTSTEP_MOB_SLITHER)
-			footstep_ret = 'sound/effects/footstep/crawl1.ogg'
-		else
-			footstep_ret = GLOB.barefootstep
 	return footstep_ret
 
 /datum/element/footstep/Detach(atom/movable/source)
@@ -81,7 +79,7 @@
 		var/mob/living/carbon/carbon_source = source
 		if(!carbon_source.get_organ(BP_L_LEG) && !carbon_source.get_organ(BP_R_LEG))
 			return
-		if(carbon_source.m_intent == I_WALK)
+		if(carbon_source.m_intent == "walk")
 			return// stealth
 	steps_for_living[source] += 1
 	var/steps = steps_for_living[source]
@@ -96,14 +94,7 @@
 	if(steps != 0 && !get_gravity(source)) // don't need to step as often when you hop around
 		return
 
-	. = list(
-		FOOTSTEP_MOB_SHOE = turf.footstep,
-		FOOTSTEP_MOB_BAREFOOT = turf.barefootstep,
-		FOOTSTEP_MOB_HEAVY = turf.heavyfootstep,
-		FOOTSTEP_MOB_CLAW = turf.clawfootstep,
-		STEP_SOUND_PRIORITY = STEP_SOUND_NO_PRIORITY
-		)
-
+	. = list(FOOTSTEP_MOB_SHOE = turf.footstep, FOOTSTEP_MOB_BAREFOOT = turf.barefootstep, FOOTSTEP_MOB_HEAVY = turf.heavyfootstep, FOOTSTEP_MOB_CLAW = turf.clawfootstep, STEP_SOUND_PRIORITY = STEP_SOUND_NO_PRIORITY)
 	var/overriden = SEND_SIGNAL(turf, COMSIG_TURF_PREPARE_STEP_SOUND, .) & FOOTSTEP_OVERRIDEN
 	//The turf has no footstep sound (e.g. open space) and none of the objects on that turf (e.g. catwalks) overrides it
 	if(!overriden && isnull(turf.footstep))
@@ -113,17 +104,12 @@
 /datum/element/footstep/proc/play_simplestep(mob/living/source, atom/oldloc, direction, forced, list/old_locs, momentum_change)
 	SIGNAL_HANDLER
 
-	var/volume_multiplier = 0.3
-
-	if(!isturf(source.loc))
-		return
-
 	var/list/prepared_steps = prepare_step(source)
 	if(isnull(prepared_steps))
 		return
 
 	if(isfile(footstep_sounds) || istext(footstep_sounds))
-		playsound(source.loc, footstep_sounds, volume * volume_multiplier, falloff = 1, vary = sound_vary)
+		playsound(source.loc, footstep_sounds, volume, falloff = 1, vary = sound_vary)
 		return
 
 	var/turf_footstep = prepared_steps[footstep_type]
@@ -134,7 +120,7 @@
 /datum/element/footstep/proc/play_humanstep(mob/living/carbon/human/source, atom/oldloc, direction, forced, list/old_locs, momentum_change)
 	SIGNAL_HANDLER
 
-	var/volume_multiplier = 0.3
+	var/volume_multiplier = 1
 	var/range_adjustment = 0
 
 	var/list/prepared_steps = prepare_step(source)
@@ -157,16 +143,14 @@
 		// we are barefoot
 
 		if(source.species.special_step_sounds)
-			playsound(source.loc, pick(source.species.special_step_sounds), volume, TRUE, falloff = 1, vary = sound_vary)
+			playsound(source.loc, pick(source.species.special_step_sounds), 50, TRUE, falloff = 1, vary = sound_vary)
 		else if (istype(source.species, /datum/species/shapeshifter/promethean))
-			playsound(source.loc, 'sound/effects/footstep/slime1.ogg', volume, TRUE, falloff = 1)
-		else if (source.custom_footstep == FOOTSTEP_MOB_SLITHER)
-			playsound(source.loc, 'sound/effects/footstep/crawl1.ogg', 15 * volume, falloff = 1, vary = sound_vary)
+			playsound(source.loc, 'sound/effects/footstep/slime1.ogg', 25, TRUE, falloff = 1)
 		else
 			var/barefoot_type = prepared_steps[FOOTSTEP_MOB_BAREFOOT]
 			var/bare_footstep_sounds
-			if(source.custom_footstep != FOOTSTEP_MOB_HUMAN)
-				bare_footstep_sounds = check_footstep_type(source.custom_footstep)
+			if(source.species.footstep != FOOTSTEP_MOB_HUMAN)
+				bare_footstep_sounds = check_footstep_type(source.species.footstep)
 			else
 				bare_footstep_sounds = GLOB.barefootstep
 			if(!isnull(barefoot_type) && bare_footstep_sounds[barefoot_type]) // barefoot_type can be null
