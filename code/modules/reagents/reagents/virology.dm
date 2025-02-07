@@ -1,6 +1,7 @@
 /datum/reagent/vaccine
 	name = REAGENT_VACCINE
 	id = REAGENT_ID_VACCINE
+	description = "Liquid vaccine against some type of virus."
 	color = "#C81040"
 	taste_description = "antibodies"
 
