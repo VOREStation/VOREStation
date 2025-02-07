@@ -104,24 +104,26 @@
 	else
 		return null
 
-/obj/proc/updateUsrDialog()
+/obj/proc/updateUsrDialog(mob/user)
 	if(in_use)
+		to_world("we actually have a [user]")
+		to_world("we got a [usr]")
 		var/is_in_use = 0
 		var/list/nearby = viewers(1, src)
 		for(var/mob/M in nearby)
 			if ((M.client && M.machine == src))
 				is_in_use = 1
 				src.attack_hand(M)
-		if (isAI(usr) || isrobot(usr))
-			if (!(usr in nearby))
-				if (usr.client && usr.machine==src) // && M.machine == src is omitted because if we triggered this by using the dialog, it doesn't matter if our machine changed in between triggering it and this - the dialog is probably still supposed to refresh.
+		if (isAI(user) || isrobot(user))
+			if (!(user in nearby))
+				if (user.client && user.machine==src) // && M.machine == src is omitted because if we triggered this by using the dialog, it doesn't matter if our machine changed in between triggering it and this - the dialog is probably still supposed to refresh.
 					is_in_use = 1
-					src.attack_ai(usr)
+					src.attack_ai(user)
 
 		// check for TK users
 
-		if (ishuman(usr))
-			var/mob/living/carbon/human/H = usr
+		if (ishuman(user))
+			var/mob/living/carbon/human/H = user
 			if(H.get_type_in_hands(/obj/item/tk_grab))
 				if(!(H in nearby))
 					if(H.client && H.machine==src)
