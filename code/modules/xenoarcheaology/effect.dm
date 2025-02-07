@@ -190,18 +190,6 @@
 
 		if(TRIGGER_HEAT, TRIGGER_COLD) //Heat is easy to activate. Smack it with a welder. Cold? Have to cool the area.
 			. += " Activation index involves " + span_bold("precise temperature conditions.") + " Heating/Cooling the atmosphere (>[ARTIFACT_HEAT_TRIGGER]K or <[ARTIFACT_COLD_TRIGGER]K) or using a welder are potential triggers."
-
-		//Gases are separate since they are a pain in the rear to get activated and might as well let you know exactly what to do.
-		//I've been playing this game since the dawn of man and I've never seen someone bother to actually TRY to set up atmos to get these activated.
-		//Honestly, I'm slating these for removal.
-		if(TRIGGER_PHORON)
-			. += " Activation index involves "+ span_bold("precise local atmospheric conditions.") + " Phoron is a potential trigger. (Atmosphere must be >[ARTIFACT_GAS_TRIGGER] MOL of gas to activate device)"
-		if(TRIGGER_OXY)
-			. += " Activation index involves "+ span_bold("precise local atmospheric conditions.") + " Oxygen is a potential trigger. (Atmosphere must be >[ARTIFACT_GAS_TRIGGER] MOL of gas to activate device)"
-		if(TRIGGER_CO2)
-			. += " Activation index involves "+ span_bold("precise local atmospheric conditions.") + " Carbon Dioxide, is a potential trigger. (Atmosphere must be >[ARTIFACT_GAS_TRIGGER] MOL of gas to activate device)"
-		if(TRIGGER_NITRO)
-			. += " Activation index involves "+ span_bold("precise local atmospheric conditions.") + " Nitrous Oxide is a potential trigger. (Atmosphere must be >[ARTIFACT_GAS_TRIGGER] MOL of gas to activate device)"
 		else
 			. += " Unable to determine any data about activation trigger."
 
