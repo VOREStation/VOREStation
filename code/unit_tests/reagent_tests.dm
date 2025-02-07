@@ -124,10 +124,21 @@
 					failed = TRUE
 
 		qdel(R)
+
+	for(var/DC in subtypesof(/obj/item/reagent_containers/chem_disp_cartridge))
+		var/obj/item/reagent_containers/chem_disp_cartridge/D = new DC(container)
+
+		if(D.spawn_reagent)
+			if(!SSchemistry.chemical_reagents[D.spawn_reagent])
+				log_unit_test("[DC]: Reagents - chemical dispenser cartridge had invalid reagent ID \"[D.spawn_reagent]\".")
+				failed = TRUE
+
+		qdel(D)
+
 	qdel(container)
 
 	if(failed)
 		fail("One or more /obj/item/reagent_containers had an invalid prefill reagent.")
 	else
-		pass("All /obj/item/reagent_containers containers had valid prefill reagents.")
+		pass("All /obj/item/reagent_containers had valid prefill reagents.")
 	return TRUE
