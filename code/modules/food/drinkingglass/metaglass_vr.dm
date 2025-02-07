@@ -247,7 +247,7 @@
 /datum/reagent/ethanol/snowwhite
 	glass_icon_file = 'icons/obj/drinks_vr.dmi'
 
-/datum/reagent/ethanol/tequilla_sunrise
+/datum/reagent/ethanol/tequila_sunrise
 	glass_icon_file = 'icons/obj/drinks_vr.dmi'
 
 /datum/reagent/ethanol/white_russian

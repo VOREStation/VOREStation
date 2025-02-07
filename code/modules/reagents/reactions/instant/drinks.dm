@@ -61,7 +61,7 @@
 	name = REAGENT_PATRON
 	id = REAGENT_ID_PATRON
 	result = REAGENT_ID_PATRON
-	required_reagents = list(REAGENT_ID_TEQUILLA = 10, REAGENT_ID_SILVER = 1)
+	required_reagents = list(REAGENT_ID_TEQUILA = 10, REAGENT_ID_SILVER = 1)
 	result_amount = 10
 
 /decl/chemical_reaction/instant/drinks/bilk
@@ -340,14 +340,14 @@
 	name = REAGENT_BRAVEBULL
 	id = REAGENT_ID_BRAVEBULL
 	result = REAGENT_ID_BRAVEBULL
-	required_reagents = list(REAGENT_ID_TEQUILLA = 2, REAGENT_ID_KAHLUA = 1)
+	required_reagents = list(REAGENT_ID_TEQUILA = 2, REAGENT_ID_KAHLUA = 1)
 	result_amount = 3
 
 /decl/chemical_reaction/instant/drinks/tequilla_sunrise
 	name = "Tequilla Sunrise"
-	id = REAGENT_ID_TEQUILLASUNRISE
-	result = REAGENT_ID_TEQUILLASUNRISE
-	required_reagents = list(REAGENT_ID_TEQUILLA = 2, REAGENT_ID_ORANGEJUICE = 1)
+	id = REAGENT_ID_TEQUILASUNRISE
+	result = REAGENT_ID_TEQUILASUNRISE
+	required_reagents = list(REAGENT_ID_TEQUILA = 2, REAGENT_ID_ORANGEJUICE = 1)
 	result_amount = 3
 
 /decl/chemical_reaction/instant/drinks/phoron_special
@@ -417,14 +417,14 @@
 	name = REAGENT_MARGARITA
 	id = REAGENT_ID_MARGARITA
 	result = REAGENT_ID_MARGARITA
-	required_reagents = list(REAGENT_ID_TEQUILLA = 2, REAGENT_ID_LIMEJUICE = 1)
+	required_reagents = list(REAGENT_ID_TEQUILA = 2, REAGENT_ID_LIMEJUICE = 1)
 	result_amount = 3
 
 /decl/chemical_reaction/instant/drinks/longislandicedtea
 	name = REAGENT_LONGISLANDICEDTEA
 	id = REAGENT_ID_LONGISLANDICEDTEA
 	result = REAGENT_ID_LONGISLANDICEDTEA
-	required_reagents = list(REAGENT_ID_VODKA = 1, REAGENT_ID_GIN = 1, REAGENT_ID_TEQUILLA = 1, REAGENT_ID_RUMANDCOLA = 3)
+	required_reagents = list(REAGENT_ID_VODKA = 1, REAGENT_ID_GIN = 1, REAGENT_ID_TEQUILA = 1, REAGENT_ID_RUMANDCOLA = 3)
 	result_amount = 6
 
 /decl/chemical_reaction/instant/drinks/threemileisland
@@ -960,7 +960,7 @@
 	name = REAGENT_EREBUSMOONRISE
 	id = REAGENT_ID_EREBUSMOONRISE
 	result = REAGENT_ID_EREBUSMOONRISE
-	required_reagents = list(REAGENT_ID_WHISKEY = 1, REAGENT_ID_VODKA = 1, REAGENT_ID_TEQUILLA = 1)
+	required_reagents = list(REAGENT_ID_WHISKEY = 1, REAGENT_ID_VODKA = 1, REAGENT_ID_TEQUILA = 1)
 	result_amount = 3
 
 /decl/chemical_reaction/instant/drinks/balloon
@@ -1009,7 +1009,7 @@
 	name = REAGENT_BINMANBLISS
 	id = REAGENT_ID_BINMANBLISS
 	result = REAGENT_ID_BINMANBLISS
-	required_reagents = list(REAGENT_ID_SAKE = 1, REAGENT_ID_TEQUILLA = 1)
+	required_reagents = list(REAGENT_ID_SAKE = 1, REAGENT_ID_TEQUILA = 1)
 	result_amount = 2
 
 /decl/chemical_reaction/instant/drinks/chrysanthemum
@@ -1207,7 +1207,7 @@
 	name = REAGENT_PALOMA
 	id = REAGENT_ID_PALOMA
 	result = REAGENT_ID_PALOMA
-	required_reagents = list(REAGENT_ID_SODAWATER = 1, REAGENT_ID_TEQUILLASUNRISE = 2)
+	required_reagents = list(REAGENT_ID_SODAWATER = 1, REAGENT_ID_TEQUILASUNRISE = 2)
 	result_amount = 3
 
 /decl/chemical_reaction/instant/drinks/mojito

@@ -3101,6 +3101,7 @@
 
 //Base type for alchoholic drinks containing coffee
 /datum/reagent/ethanol/coffee
+	name = REAGENT_DEVELOPER_WARNING
 	overdose = 45
 	allergen_type = ALLERGEN_COFFEE|ALLERGEN_STIMULANT //Contains coffee or is made from coffee
 
@@ -3211,8 +3212,8 @@
 	allergen_type = ALLERGEN_FRUIT //Made from orange juice
 
 /datum/reagent/ethanol/tequila
-	name = REAGENT_TEQUILLA
-	id = REAGENT_ID_TEQUILLA
+	name = REAGENT_TEQUILA
+	id = REAGENT_ID_TEQUILA
 	description = "A strong and mildly flavored, Mexican produced spirit. Feeling thirsty hombre?"
 	taste_description = "paint thinner"
 	color = "#FFFF91"
@@ -4104,9 +4105,9 @@
 
 	allergen_type = ALLERGEN_GRAINS|ALLERGEN_STIMULANT //Made from beer(grain) and whiskeycola(whiskey(grain) and cola(caffeine))
 
-/datum/reagent/ethanol/tequilla_sunrise
-	name = REAGENT_TEQUILLASUNRISE
-	id = REAGENT_ID_TEQUILLASUNRISE
+/datum/reagent/ethanol/tequila_sunrise
+	name = REAGENT_TEQUILASUNRISE
+	id = REAGENT_ID_TEQUILASUNRISE
 	description = "Tequila and orange juice. Much like a Screwdriver, only Mexican~."
 	taste_description = "oranges"
 	color = "#FFE48C"
