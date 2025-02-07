@@ -2585,7 +2585,7 @@
 	glass_desc = "You can almost smell the tranquility emanating from this."
 	//allergen_type = ALLERGEN_FRUIT Sorry to break the news, chief. Honey is not a fruit.
 
-/datum/reagent/drink/lovepotion
+/datum/reagent/drink/love_potion
 	name = REAGENT_LOVEPOTION
 	id = REAGENT_ID_LOVEPOTION
 	description = "Creamy strawberries and sugar, simple and sweet."

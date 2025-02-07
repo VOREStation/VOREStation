@@ -1049,7 +1049,7 @@
     catalysts = list(REAGENT_ID_ENZYME = 10) //10u enzyme so it requires more than is usually added. Stops overlap with wine recipe
     result_amount = 5
 
-/decl/chemical_reaction/instant/drinks/lovepotion
+/decl/chemical_reaction/instant/drinks/love_potion
 	name = REAGENT_LOVEPOTION
 	id = REAGENT_ID_LOVEPOTION
 	result = REAGENT_ID_LOVEPOTION
