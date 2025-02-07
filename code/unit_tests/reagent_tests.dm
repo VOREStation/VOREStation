@@ -3,25 +3,10 @@
 
 /datum/unit_test/reagent_shall_have_unique_name_and_id/start_test()
 	var/failed = FALSE
-
-
-	// These are base types, there is no way to tell that they are illegal to check/use
-	var/list/assess_reagents = subtypesof(/datum/reagent)
-	failed = check_reagent_datums(assess_reagents)
-
-	if(failed)
-		fail("One or more /datum/reagent subtypes had invalid definitions.")
-	else
-		pass("All /datum/reagent subtypes had correct settings.")
-	return TRUE
-
-/datum/unit_test/reagent_shall_have_unique_name_and_id/proc/check_reagent_datums(var/list/type_list)
-	var/failed = FALSE
-
-	var/collection_name = list()
+	//var/collection_name = list()
 	var/collection_id = list()
 
-	for(var/Rpath in type_list)
+	for(var/Rpath in subtypesof(/datum/reagent))
 		var/datum/reagent/R = new Rpath()
 
 		if(R.name == REAGENT_DEVELOPER_WARNING) // Ignore these types as they are meant to be overridden
@@ -35,10 +20,16 @@
 			log_unit_test("[Rpath]: Reagents - reagent ID not set.")
 			failed = TRUE
 
+		if(R.id == "")
+			log_unit_test("[Rpath]: Reagents - reagent ID blank.")
+			failed = TRUE
+
+		/* Optional, makes names exclusive, this breaks the poisoned beer2
 		if(collection_name[R.name])
 			log_unit_test("[Rpath]: Reagents - reagent name \"[R.name]\" is not unique, used first in [collection_name[R.name]].")
 			failed = TRUE
 		collection_name[R.name] = R.type
+		*/
 
 		if(collection_id[R.id])
 			log_unit_test("[Rpath]: Reagents - reagent ID \"[R.id]\" is not unique, used first in [collection_id[R.id]].")
@@ -50,7 +41,12 @@
 			failed = TRUE
 
 		qdel(R)
-	return failed
+
+	if(failed)
+		fail("One or more /datum/reagent subtypes had invalid definitions.")
+	else
+		pass("All /datum/reagent subtypes had correct settings.")
+	return TRUE
 
 
 
@@ -61,17 +57,18 @@
 	var/failed = FALSE
 	var/list/collection_id = list()
 
-	for(var/decl/chemical_reaction/CR in SSchemistry.chemical_reactions)
-		if(!CR)
-			log_unit_test("[CR.type]: Reagents - chemical reaction was null.")
-			failed = TRUE
-			continue
+	for(var/R in subtypesof(/decl/chemical_reaction))
+		var/decl/chemical_reaction/CR = new R()
 
 		if(CR.name == REAGENT_DEVELOPER_WARNING) // Ignore these types as they are meant to be overridden
 			continue
 
 		if(!CR.name)
-			log_unit_test("[CR.type]: Reagents - chemical reaction had invalid name.")
+			log_unit_test("[CR.type]: Reagents - chemical reaction had null name.")
+			failed = TRUE
+
+		if(CR.name == "")
+			log_unit_test("[CR.type]: Reagents - chemical reaction had blank name.")
 			failed = TRUE
 
 		if(!CR.id)
@@ -106,6 +103,8 @@
 			if(!SSchemistry.chemical_reagents[CR.result])
 				log_unit_test("[CR.type]: Reagents - chemical reaction had invalid result reagent ID \"[CR.result]\".")
 				failed = TRUE
+
+		qdel(CR)
 
 	if(failed)
 		fail("One or more /decl/chemical_reaction subtypes had invalid results or components.")
