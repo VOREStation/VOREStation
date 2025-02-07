@@ -343,7 +343,7 @@
 	required_reagents = list(REAGENT_ID_TEQUILA = 2, REAGENT_ID_KAHLUA = 1)
 	result_amount = 3
 
-/decl/chemical_reaction/instant/drinks/tequilla_sunrise
+/decl/chemical_reaction/instant/drinks/tequila_sunrise
 	name = "Tequilla Sunrise"
 	id = REAGENT_ID_TEQUILASUNRISE
 	result = REAGENT_ID_TEQUILASUNRISE

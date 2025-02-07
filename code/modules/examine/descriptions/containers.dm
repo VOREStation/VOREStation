@@ -50,7 +50,7 @@
 	description_fluff = "Centauri Provisions claims that their vodka wins in blind taste-tests against traditional mixes from Earth, but they're not fooling anyone."
 
 /obj/item/reagent_containers/food/drinks/bottle/tequila
-	description_fluff = "This tequilla comes from the 'Cancer Craze' of the 20's, where consumer products would openly advertize their blatently carcinogenic nature to a burgeoning middle class with newfound access to cloned organs."
+	description_fluff = "This tequila comes from the 'Cancer Craze' of the 20's, where consumer products would openly advertize their blatently carcinogenic nature to a burgeoning middle class with newfound access to cloned organs."
 
 /obj/item/reagent_containers/food/drinks/bottle/patron
 	description_fluff = "This emerged as a response to Caccavo, with Patron advertising claiming to be even more toxic and dangerous. Unfortunately, when the Cancer Craze ended, Patron's stocks nosedived and they now operate only a handful of distilleries."
