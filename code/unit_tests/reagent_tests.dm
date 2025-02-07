@@ -13,7 +13,7 @@
 			continue
 
 		if(R.name == "")
-			log_unit_test("[Rpath]: Reagents - reagent ID blank.")
+			log_unit_test("[Rpath]: Reagents - reagent name blank.")
 			failed = TRUE
 
 		if(R.id == REAGENT_ID_DEVELOPER_WARNING)
