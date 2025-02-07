@@ -32,4 +32,4 @@ var/global/datum/global_init/init = new ()
 /datum/global_init/Destroy()
 	global.init = null
 	..()
-	return QDEL_HINT_IWILLGC
+	return 2 // QDEL_HINT_IWILLGC
