@@ -54,7 +54,7 @@
 	var/failed = FALSE
 	var/list/collection_id = list()
 
-	for(var/decl/chemical_reaction/CR in subtypesof(/decl/chemical_reaction))
+	for(var/decl/chemical_reaction/CR in decls_repository.get_decls_of_subtype(/decl/chemical_reaction))
 		if(CR.name == REAGENT_DEVELOPER_WARNING) // Ignore these types as they are meant to be overridden
 			continue
 
