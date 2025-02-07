@@ -79,19 +79,24 @@
 		var/obj/mecha/M = loc
 		return M.click_action(A, src, params)
 
+	/// So, this entire restrained check pretty much tells the rest of the code below you are restrained.
+	/// Primarily, this is just so you can do unarmed attacks while restrained (bites)
+	/// However, if you wanted to add some special interaction to objects or anything OTHER than mobs, use 'RestrainedClickOn' instead
+	/// If you want some interesting restrained interaction HERE, add it here.
+	var/currently_restrained = FALSE
 	if(restrained())
 		setClickCooldown(10)
 		RestrainedClickOn(A)
-		return 1
+		currently_restrained = TRUE
 
-	if(in_throw_mode && (isturf(A) || isturf(A.loc)) && throw_item(A))
+	if(!currently_restrained && in_throw_mode && (isturf(A) || isturf(A.loc)) && throw_item(A))
 		trigger_aiming(TARGET_CAN_CLICK)
 		throw_mode_off()
 		return TRUE
 
 	var/obj/item/W = get_active_hand()
 
-	if(W == A) // Handle attack_self
+	if(!currently_restrained && W == A) // Handle attack_self
 		W.attack_self(src)
 		trigger_aiming(TARGET_CAN_CLICK)
 		update_inv_active_hand(0)
@@ -100,7 +105,7 @@
 	//Atoms on your person
 	// A is your location but is not a turf; or is on you (backpack); or is on something on you (box in backpack); sdepth is needed here because contents depth does not equate inventory storage depth.
 	var/sdepth = A.storage_depth(src)
-	if((!isturf(A) && A == loc) || (sdepth != -1 && sdepth <= 1))
+	if(!currently_restrained && ((!isturf(A) && A == loc) || (sdepth != -1 && sdepth <= 1)))
 		if(W)
 			var/resolved = W.resolve_attackby(A, src, click_parameters = params)
 			if(!resolved && A && W)
@@ -114,7 +119,7 @@
 		return 1
 
 	// VOREStation Addition Start: inbelly item interaction
-	if(isbelly(loc) && (loc == A.loc))
+	if(!currently_restrained && isbelly(loc) && (loc == A.loc))
 		if(W)
 			var/resolved = W.resolve_attackby(A,src)
 			if(!resolved && A && W)
@@ -133,25 +138,32 @@
 	// A is a turf or is on a turf, or in something on a turf (pen in a box); but not something in something on a turf (pen in a box in a backpack)
 	sdepth = A.storage_depth_turf()
 	if(isturf(A) || isturf(A.loc) || (sdepth != -1 && sdepth <= 1))
-		if(A.Adjacent(src) || (W && W.attack_can_reach(src, A, W.reach)) ) // see adjacent.dm
-			if(W)
-				// Return 1 in attackby() to prevent afterattack() effects (when safely moving items for example)
-				var/resolved = W.resolve_attackby(A,src, click_parameters = params)
-				if(!resolved && A && W)
-					W.afterattack(A, src, 1, params) // 1: clicking something Adjacent
-			else
-				if(ismob(A)) // No instant mob attacking
-					setClickCooldown(get_attack_speed())
+		if(currently_restrained)
+			if(ismob(A) && A.Adjacent(src)) //We are RESTRAINED (handcuffed or otherwise) and ADJACENT
+				setClickCooldown(get_attack_speed())
 				UnarmedAttack(A, 1)
-			trigger_aiming(TARGET_CAN_CLICK)
-			return
-		else // non-adjacent click
-			if(W)
-				W.afterattack(A, src, 0, params) // 0: not Adjacent
-			else
-				RangedAttack(A, params)
+				trigger_aiming(TARGET_CAN_CLICK)
+				return
+		else
+			if(!currently_restrained && A.Adjacent(src) || (W && W.attack_can_reach(src, A, W.reach)) ) // see adjacent.dm
+				if(W && !restrained())
+					// Return 1 in attackby() to prevent afterattack() effects (when safely moving items for example)
+					var/resolved = W.resolve_attackby(A,src, click_parameters = params)
+					if(!resolved && A && W)
+						W.afterattack(A, src, 1, params) // 1: clicking something Adjacent
+				else
+					if(ismob(A)) // No instant mob attacking
+						setClickCooldown(get_attack_speed())
+					UnarmedAttack(A, 1)
+				trigger_aiming(TARGET_CAN_CLICK)
+				return
+			else // non-adjacent click
+				if(W)
+					W.afterattack(A, src, 0, params) // 0: not Adjacent
+				else
+					RangedAttack(A, params)
 
-			trigger_aiming(TARGET_CAN_CLICK)
+				trigger_aiming(TARGET_CAN_CLICK)
 	return 1
 
 /mob/proc/setClickCooldown(var/timeout)
