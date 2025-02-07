@@ -207,17 +207,12 @@
 
 /obj/item/storage/bag/ore/equipped(mob/user)
 	..()
-	if(user.get_inventory_slot(src) == slot_wear_suit || slot_l_hand || slot_l_hand || slot_belt) //Basically every place they can go. Makes sure it doesn't unregister if moved to other slots.
-		user.AddComponent(/datum/component/recursive_move)
-		RegisterSignal(user, COMSIG_OBSERVER_MOVED, /obj/item/storage/bag/ore/proc/autoload, user, override = TRUE)
+	user.AddComponent(/datum/component/recursive_move)
+	RegisterSignal(user, COMSIG_OBSERVER_MOVED, /obj/item/storage/bag/ore/proc/autoload, user)
 
 /obj/item/storage/bag/ore/dropped(mob/user)
 	..()
-	if(user.get_inventory_slot(src) == slot_wear_suit || slot_l_hand || slot_l_hand || slot_belt) //See above. This should really be a define.
-		user.AddComponent(/datum/component/recursive_move)
-		RegisterSignal(user, COMSIG_OBSERVER_MOVED, /obj/item/storage/bag/ore/proc/autoload, user, override = TRUE)
-	else
-		UnregisterSignal(user, COMSIG_OBSERVER_MOVED)
+	UnregisterSignal(user, COMSIG_OBSERVER_MOVED)
 
 /obj/item/storage/bag/ore/proc/autoload(mob/user)
 	var/obj/item/ore/O = locate() in get_turf(src)
@@ -326,11 +321,15 @@
 			break
 
 	if(!inserted)
-		usr.remove_from_mob(S)
-		if (usr.client && usr.s_active != src)
-			usr.client.screen -= S
-		S.dropped(usr)
-		S.loc = src
+		if(capacity < current + S.get_amount())
+			var/obj/item/stack/F = S.split(amount)
+			F.loc = src
+		else
+			usr.remove_from_mob(S)
+			if (usr.client && usr.s_active != src)
+				usr.client.screen -= S
+			S.dropped(usr)
+			S.loc = src
 
 	orient2hud(usr)
 	if(usr.s_active)

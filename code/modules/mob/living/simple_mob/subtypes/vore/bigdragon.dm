@@ -426,7 +426,7 @@ I think I covered everything.
 			choice = show_radial_menu(src, src, options, radius = 90)
 			if(!choice || QDELETED(src) || src.incapacitated())
 				return 0
-			var/new_color = input("Pick underbelly color:","Underbelly Color", overlay_colors["Underbelly"]) as null|color
+			var/new_color = tgui_color_picker(src, "Pick underbelly color:","Underbelly Color", overlay_colors["Underbelly"])
 			if(!new_color)
 				return 0
 			under = choice
@@ -439,7 +439,7 @@ I think I covered everything.
 			choice = show_radial_menu(src, src, options, radius = 90)
 			if(!choice || QDELETED(src) || src.incapacitated())
 				return 0
-			var/new_color = input("Pick body color:","Body Color", overlay_colors["Body"]) as null|color
+			var/new_color = tgui_color_picker(src, "Pick body color:","Body Color", overlay_colors["Body"])
 			if(!new_color)
 				return 0
 			body = choice
@@ -452,7 +452,7 @@ I think I covered everything.
 			choice = show_radial_menu(src, src, options, radius = 90)
 			if(!choice || QDELETED(src) || src.incapacitated())
 				return 0
-			var/new_color = input("Pick ear color:","Ear Color", overlay_colors["Ears"]) as null|color
+			var/new_color = tgui_color_picker(src, "Pick ear color:","Ear Color", overlay_colors["Ears"])
 			if(!new_color)
 				return 0
 			ears = choice
@@ -465,7 +465,7 @@ I think I covered everything.
 			choice = show_radial_menu(src, src, options, radius = 90)
 			if(!choice || QDELETED(src) || src.incapacitated())
 				return 0
-			var/new_color = input("Pick mane color:","Mane Color", overlay_colors["Mane"]) as null|color
+			var/new_color = tgui_color_picker(src, "Pick mane color:","Mane Color", overlay_colors["Mane"])
 			if(!new_color)
 				return 0
 			mane = choice
@@ -478,7 +478,7 @@ I think I covered everything.
 			choice = show_radial_menu(src, src, options, radius = 90)
 			if(!choice || QDELETED(src) || src.incapacitated())
 				return 0
-			var/new_color = input("Pick horn color:","Horn Color", overlay_colors["Horns"]) as null|color
+			var/new_color = tgui_color_picker(src, "Pick horn color:","Horn Color", overlay_colors["Horns"])
 			if(!new_color)
 				return 0
 			horns = choice
@@ -491,7 +491,7 @@ I think I covered everything.
 			choice = show_radial_menu(src, src, options, radius = 90)
 			if(!choice || QDELETED(src) || src.incapacitated())
 				return 0
-			var/new_color = input("Pick eye color:","Eye Color", overlay_colors["Eyes"]) as null|color
+			var/new_color = tgui_color_picker(src, "Pick eye color:","Eye Color", overlay_colors["Eyes"])
 			if(!new_color)
 				return 0
 			eyes = choice

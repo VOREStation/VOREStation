@@ -38,6 +38,7 @@
 #define isnewplayer(A)	istype(A, /mob/new_player)
 
 #define isanimal(A)		istype(A, /mob/living/simple_mob)
+#define ispassive(A)	istype(A, /mob/living/simple_mob/animal/passive)
 #define ismouse(A)		istype(A, /mob/living/simple_mob/animal/passive/mouse)
 #define iscorgi(A)		istype(A, /mob/living/simple_mob/animal/passive/dog/corgi)
 #define isslime(A)		istype(A, /mob/living/simple_mob/slime)

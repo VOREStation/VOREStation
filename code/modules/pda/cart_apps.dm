@@ -23,9 +23,9 @@
 				if("alert")
 					post_status("alert", params["alert"])
 				if("setmsg1")
-					message1 = clean_input("Line 1", "Enter Message Text", message1)
+					message1 = tgui_input_text(ui.user,"Line 1", "Enter Message Text", message1, encode=TRUE)
 				if("setmsg2")
-					message2 = clean_input("Line 2", "Enter Message Text", message2)
+					message2 = tgui_input_text(ui.user, "Line 2", "Enter Message Text", message2, encode=TRUE)
 				else
 					post_status(params["statdisp"])
 			return TRUE

@@ -1,9 +1,7 @@
-import { filter, sortBy } from 'common/collections';
-import { flow } from 'common/fp';
 import { useState } from 'react';
+import { useBackend } from 'tgui/backend';
+import { Box, Button, Section, Stack } from 'tgui-core/components';
 
-import { useBackend } from '../../backend';
-import { Box, Button, Section, Stack } from '../../components';
 import { Data, supplyPack } from './types';
 
 export const SupplyConsoleMenuOrder = (props) => {
@@ -13,15 +11,19 @@ export const SupplyConsoleMenuOrder = (props) => {
 
   const [activeCategory, setActiveCategory] = useState<string | null>(null);
 
-  const viewingPacks: supplyPack[] = flow([
-    (supply_packs: supplyPack[]) =>
-      filter(supply_packs, (val) => val.group === activeCategory),
-    (supply_packs: supplyPack[]) =>
-      filter(supply_packs, (val) => !val.contraband || !!contraband),
-    (supply_packs: supplyPack[]) => sortBy(supply_packs, (val) => val.name),
-    (supply_packs: supplyPack[]) =>
-      sortBy(supply_packs, (val) => val.cost > supply_points),
-  ])(supply_packs);
+  function sortPack(a: supplyPack, b: supplyPack) {
+    if (a.cost < supply_points && b.cost > supply_points) return -1;
+    if (a.cost > supply_points && b.cost < supply_points) return 1;
+
+    return a.name.localeCompare(b.name);
+  }
+
+  const viewingPacks: supplyPack[] = supply_packs
+    .filter(
+      (pack) =>
+        (pack.group === activeCategory && !pack.contraband) || !!contraband,
+    )
+    .sort((a, b) => sortPack(a, b));
 
   // const viewingPacks = sortBy(val => val.name)(supply_packs).filter(val => val.group === activeCategory);
 
@@ -42,7 +44,7 @@ export const SupplyConsoleMenuOrder = (props) => {
             ))}
           </Section>
         </Stack.Item>
-        <Stack.Item grow={1} ml={2}>
+        <Stack.Item grow ml={2}>
           <Section title="Contents" scrollable fill height="290px">
             {viewingPacks.map((pack) => (
               <Box key={pack.name}>
@@ -76,7 +78,7 @@ export const SupplyConsoleMenuOrder = (props) => {
                       Info
                     </Button>
                   </Stack.Item>
-                  <Stack.Item grow={1}>{pack.cost} points</Stack.Item>
+                  <Stack.Item grow>{pack.cost} points</Stack.Item>
                 </Stack>
               </Box>
             ))}

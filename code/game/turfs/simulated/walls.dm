@@ -120,7 +120,7 @@
 
 /turf/simulated/wall/ChangeTurf(var/turf/N, var/tell_universe, var/force_lighting_update, var/preserve_outdoors)
 	clear_plants()
-	..(N, tell_universe, force_lighting_update, preserve_outdoors)
+	. = ..(N, tell_universe, force_lighting_update, preserve_outdoors)
 
 //Appearance
 /turf/simulated/wall/examine(mob/user)
@@ -333,6 +333,11 @@
 		ChangeTurf(/turf/simulated/floor/airless, preserve_outdoors = TRUE)
 		return TRUE
 	return FALSE
+
+/turf/simulated/wall/occult_act(mob/living/user)
+	to_chat(user, span_cult("You consecrate the wall."))
+	ChangeTurf(/turf/simulated/wall/cult, preserve_outdoors = TRUE)
+	return TRUE
 
 /turf/simulated/wall/AltClick(mob/user)
 	if(isliving(user))

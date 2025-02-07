@@ -669,7 +669,7 @@
 
 		// Finished
 		body = "<body>[jobs]</body>"
-		dat = "<tt>[header][body]</tt>"
+		dat = "<html><tt>[header][body]</tt></html>"
 		usr << browse(dat, "window=jobban2;size=800x490")
 		return
 
@@ -1001,7 +1001,7 @@
 		dat += {"<A href='byond://?src=\ref[src];[HrefToken()];c_mode2=secret'>Secret</A><br>"}
 		dat += {"<A href='byond://?src=\ref[src];[HrefToken()];c_mode2=random'>Random</A><br>"}
 		dat += {"Now: [master_mode]"}
-		usr << browse(dat, "window=c_mode")
+		usr << browse("<html>[dat]</html>", "window=c_mode")
 
 	else if(href_list["f_secret"])
 		if(!check_rights(R_ADMIN|R_EVENT))	return
@@ -1015,7 +1015,7 @@
 			dat += {"<A href='byond://?src=\ref[src];[HrefToken()];f_secret2=[mode]'>[config.mode_names[mode]]</A><br>"}
 		dat += {"<A href='byond://?src=\ref[src];[HrefToken()];f_secret2=secret'>Random (default)</A><br>"}
 		dat += {"Now: [secret_force_mode]"}
-		usr << browse(dat, "window=f_secret")
+		usr << browse("<html>[dat]</html>", "window=f_secret")
 
 	else if(href_list["c_mode2"])
 		if(!check_rights(R_ADMIN|R_SERVER|R_EVENT))	return
@@ -1543,7 +1543,7 @@
 				var/obj/pageobj = B.pages[page]
 				data += "<A href='byond://?src=\ref[src];[HrefToken()];AdminFaxViewPage=[page];paper_bundle=\ref[B]'>Page [page] - [pageobj.name]</A><BR>"
 
-			usr << browse(data, "window=[B.name]")
+			usr << browse("<html>[data]</html>", "window=[B.name]")
 		else
 			to_chat(usr, span_warning("The faxed item is not viewable. This is probably a bug, and should be reported on the tracker: [fax.type]"))
 
@@ -1593,7 +1593,7 @@
 			usr.on_mob_jump()
 			usr.forceMove(T)
 			feedback_add_details("admin_verb","JM") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-			log_and_message_admins("[key_name_admin(usr)] jumped to [key_name_admin(M)]")
+			log_and_message_admins("jumped to [key_name_admin(M)]", usr)
 		else
 			to_chat(usr, span_filter_adminlog("This mob is not located in the game world."))
 

@@ -20,7 +20,7 @@
 	if(!shuttle_tag)
 		shuttle_tag = auto_detect_shuttle(M) // We don't have a preset tag, so lets try to auto-link.
 	if(shuttle_tag && M.set_shuttle_tag(shuttle_tag))
-		log_and_message_admins("[key_name_admin(usr)] built a [M] for [shuttle_tag] at [ADMIN_COORDJMP(M)]")
+		log_and_message_admins("built a [M] for [shuttle_tag] at [ADMIN_COORDJMP(M)]", usr)
 		M.ping("[M] auto-links with shuttle [shuttle_tag]")
 
 // Return shuttle_tag of shuttle of current area

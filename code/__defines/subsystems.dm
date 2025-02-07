@@ -75,7 +75,7 @@
 ///type and all subtypes should always immediately call Initialize in New()
 #define INITIALIZE_IMMEDIATE(X) ##X/New(loc, ...){\
 	..();\
-	if(!initialized) {\
+	if(!(flags & ATOM_INITIALIZED)) {\
 		args[1] = TRUE;\
 		SSatoms.InitAtom(src, args);\
 	}\
@@ -118,8 +118,9 @@ var/global/list/runlevel_flags = list(RUNLEVEL_LOBBY, RUNLEVEL_SETUP, RUNLEVEL_G
 // The numbers just define the ordering, they are meaningless otherwise.
 #define INIT_ORDER_SERVER_MAINT		93
 #define INIT_ORDER_WEBHOOKS			50
-#define INIT_ORDER_SQLITE			40
-#define INIT_ORDER_GARBAGE			39
+#define INIT_ORDER_SQLITE			41
+#define INIT_ORDER_GARBAGE			40
+#define INIT_ORDER_DBCORE			39
 #define INIT_ORDER_MEDIA_TRACKS		38 // Gotta get that lobby music up, yo
 #define INIT_ORDER_INPUT			37
 #define INIT_ORDER_CHEMISTRY		35

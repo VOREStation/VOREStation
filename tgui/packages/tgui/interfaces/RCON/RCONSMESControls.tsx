@@ -1,9 +1,9 @@
-import { BooleanLike } from 'common/react';
-import { capitalize } from 'common/string';
+import { useBackend } from 'tgui/backend';
+import { Button, Slider, Stack } from 'tgui-core/components';
+import { formatPower } from 'tgui-core/format';
+import { BooleanLike } from 'tgui-core/react';
+import { capitalize } from 'tgui-core/string';
 
-import { useBackend } from '../../backend';
-import { Button, Slider, Stack } from '../../components';
-import { formatPower } from '../../format';
 import { POWER_MUL } from './constants';
 import { rconSmes } from './types';
 
@@ -70,7 +70,7 @@ export const SMESControls = (props: { way: string; smes: rconSmes }) => {
   return (
     <Stack fill>
       <Stack.Item basis="20%">{capitalize(way)}</Stack.Item>
-      <Stack.Item grow={1}>
+      <Stack.Item grow>
         <Stack>
           <Stack.Item>
             <Button
@@ -106,7 +106,7 @@ export const SMESControls = (props: { way: string; smes: rconSmes }) => {
               }
             />
           </Stack.Item>
-          <Stack.Item grow={1}>
+          <Stack.Item grow>
             <Slider
               value={level / POWER_MUL}
               fillValue={available / POWER_MUL}

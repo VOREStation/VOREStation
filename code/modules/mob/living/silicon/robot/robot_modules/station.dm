@@ -682,7 +682,7 @@ var/global/list/robot_modules = list(
 	src.modules += new /obj/item/pickaxe/borgdrill(src)
 	src.modules += new /obj/item/storage/bag/sheetsnatcher/borg(src)
 	src.modules += new /obj/item/gripper/miner(src)
-	src.modules += new /obj/item/mining_scanner(src)
+	src.modules += new /obj/item/mining_scanner/robot(src)
 	src.modules += new /obj/item/card/id/cargo/miner/borg(src)
 	src.emag += new /obj/item/kinetic_crusher/machete/dagger(src)
 
@@ -712,6 +712,7 @@ var/global/list/robot_modules = list(
 	src.modules += new /obj/item/multitool(src)
 	src.modules += new /obj/item/surgical/hemostat/cyborg(src) //Synth repair
 	src.modules += new /obj/item/surgical/surgicaldrill/cyborg(src) //NIF repair
+	src.modules += new /obj/item/surgical/circular_saw/cyborg(src) // Synth limb replacement
 	src.modules += new /obj/item/reagent_containers/syringe(src)
 	src.modules += new /obj/item/reagent_containers/glass/beaker/large/borg(src)
 	src.modules += new /obj/item/storage/part_replacer(src)

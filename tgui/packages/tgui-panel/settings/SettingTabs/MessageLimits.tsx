@@ -1,6 +1,6 @@
-import { toFixed } from 'common/math';
 import { useDispatch, useSelector } from 'tgui/backend';
-import { Box, LabeledList, NumberInput, Section } from 'tgui/components';
+import { Box, LabeledList, NumberInput, Section } from 'tgui-core/components';
+import { toFixed } from 'tgui-core/math';
 
 import { updateSettings } from '../actions';
 import { selectSettings } from '../selectors';

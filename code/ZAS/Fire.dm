@@ -165,6 +165,8 @@ If it gains pressure too slowly, it may leak or just rupture instead of explodin
 				//reduce firelevel.
 				if(enemy_tile.fire_protection > world.time-30)
 					firelevel -= 1.5
+					if(firelevel < 0)
+						firelevel = 0
 					continue
 
 				//Spread the fire.
@@ -307,7 +309,8 @@ If it gains pressure too slowly, it may leak or just rupture instead of explodin
 			zone.remove_liquidfuel(used_liquid_fuel, !check_combustability())
 
 		//calculate the energy produced by the reaction and then set the new temperature of the mix
-		temperature = (starting_energy + vsc.fire_fuel_energy_release * (used_gas_fuel + used_liquid_fuel)) / heat_capacity()
+		if(heat_capacity() > 0)
+			temperature = min((starting_energy + vsc.fire_fuel_energy_release * (used_gas_fuel + used_liquid_fuel)) / heat_capacity(), MAX_ATMOS_TEMPERATURE)
 		update_values()
 
 		#ifdef FIREDBG

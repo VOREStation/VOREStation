@@ -9,7 +9,8 @@
 	icon_state = "taser"
 	item_state = null	//so the human update icon uses the icon_state instead.
 	projectile_type = /obj/item/projectile/beam/stun
-	charge_cost = 480
+	charge_cost = 160
+	fire_delay = 4
 
 /obj/item/gun/energy/taser/mounted
 	name = "mounted taser gun"
@@ -24,7 +25,6 @@
 
 /obj/item/gun/energy/taser/mounted/cyborg
 	name = "taser gun"
-	charge_cost = 400
 	recharge_time = 7 //Time it takes for shots to recharge (in ticks)
 
 /*
@@ -152,7 +152,7 @@
 		to_chat(M, span_notice("You don't feel cool enough to name this gun, chump."))
 		return 0
 
-	var/input = sanitizeSafe(input("What do you want to name the gun?", ,""), MAX_NAME_LEN)
+	var/input = sanitizeSafe(tgui_input_text(M,"What do you want to name the gun?","Rename Gun" ,"",MAX_NAME_LEN))
 
 	if(src && input && !M.stat && in_range(M,src))
 		name = input
@@ -173,7 +173,7 @@
 	options["Lawson Arms LTX1020 (Stainless)"] = "stainstunrevolver"
 	options["Lawson Arms LTX1020 (Ace)"] = "snubstunrevolver"
 	options["Lawson Arms LTX1020 (Gold)"] = "goldstunrevolver"
-	var/choice = input(M,"Choose your sprite!","Resprite Gun") in options
+	var/choice = tgui_input_list(M,"Choose your sprite!","Resprite Gun", options)
 	if(src && choice && !M.stat && in_range(M,src))
 		icon_state = options[choice]
 		unique_reskin = options[choice]

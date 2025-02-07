@@ -1,16 +1,14 @@
-import { clamp } from 'common/math';
 import {
   Component,
+  ComponentProps,
   PropsWithChildren,
   ReactNode,
   useEffect,
   useState,
 } from 'react';
-import { Box } from 'tgui/components';
 import { Window } from 'tgui/layouts';
-import { Button, Icon, ProgressBar, Stack } from 'tgui-core/components';
-
-import { BoxProps } from '../components/Box';
+import { Box, Button, Icon, ProgressBar, Stack } from 'tgui-core/components';
+import { clamp } from 'tgui-core/math';
 
 enum GameOverState {
   GameRunning = 0,
@@ -303,7 +301,7 @@ export class MouseTracker extends Component<MouseTrackerProps> {
   }
 }
 
-const FishingRod = (props: BoxProps) => {
+const FishingRod = (props: ComponentProps<typeof Box>) => {
   return (
     <Box {...props}>
       <svg viewBox="0 0 256 256">

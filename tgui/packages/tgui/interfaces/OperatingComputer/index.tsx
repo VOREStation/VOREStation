@@ -1,8 +1,7 @@
-import { Stack } from 'tgui-core/components';
+import { useBackend } from 'tgui/backend';
+import { Window } from 'tgui/layouts';
+import { Section, Stack, Tabs } from 'tgui-core/components';
 
-import { useBackend } from '../../backend';
-import { Section, Tabs } from '../../components';
-import { Window } from '../../layouts';
 import { OperatingComputerOptions } from './OperatingComputerOptions';
 import { OperatingComputerPatient } from './OperatingComputerPatient';
 import { OperatingComputerUnoccupied } from './OperatingComputerUnoccupied';

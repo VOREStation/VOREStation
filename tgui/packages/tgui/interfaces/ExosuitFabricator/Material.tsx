@@ -1,17 +1,17 @@
-import { toFixed } from 'common/math';
-import { classes } from 'common/react';
-import { toTitleCase } from 'common/string';
-
-import { useBackend, useSharedState } from '../../backend';
+import { useBackend, useSharedState } from 'tgui/backend';
 import {
   Box,
   Button,
-  Flex,
   Icon,
   NumberInput,
+  Stack,
   Tooltip,
-} from '../../components';
-import { formatMoney, formatSiUnit } from '../../format';
+} from 'tgui-core/components';
+import { formatMoney, formatSiUnit } from 'tgui-core/format';
+import { toFixed } from 'tgui-core/math';
+import { classes } from 'tgui-core/react';
+import { toTitleCase } from 'tgui-core/string';
+
 import { MATERIAL_KEYS } from './constants';
 import { Data, material } from './types';
 
@@ -86,25 +86,22 @@ export const Materials = (props: {
   }
 
   return (
-    <Flex wrap="wrap">
-      {display_materials.map(
-        (material) =>
-          (
-            <Flex.Item width="80px" key={material.name}>
-              <MaterialAmount
-                name={material.name}
-                amount={material.amount}
-                formatsi
-              />
-              {!disableEject && (
-                <Box mt={1} style={{ textAlign: 'center' }}>
-                  <EjectMaterial material={material} />
-                </Box>
-              )}
-            </Flex.Item>
-          ) || '',
-      )}
-    </Flex>
+    <Stack wrap="wrap">
+      {display_materials.map((material) => (
+        <Stack.Item width="80px" key={material.name}>
+          <MaterialAmount
+            name={material.name}
+            amount={material.amount}
+            formatsi
+          />
+          {!disableEject && (
+            <Box mt={1} style={{ textAlign: 'center' }}>
+              <EjectMaterial material={material} />
+            </Box>
+          )}
+        </Stack.Item>
+      ))}
+    </Stack>
   );
 };
 
@@ -130,8 +127,8 @@ export const MaterialAmount = (props: {
   }
 
   return (
-    <Flex direction="column" align="center">
-      <Flex.Item>
+    <Stack vertical align="center">
+      <Stack.Item>
         <Tooltip position="bottom" content={toTitleCase(name)}>
           <Box
             className={classes(['sheetmaterials32x32', MATERIAL_KEYS[name]])}
@@ -139,12 +136,12 @@ export const MaterialAmount = (props: {
             style={style}
           />
         </Tooltip>
-      </Flex.Item>
-      <Flex.Item>
+      </Stack.Item>
+      <Stack.Item>
         <Box textColor={color} style={{ textAlign: 'center' }}>
           {amountDisplay}
         </Box>
-      </Flex.Item>
-    </Flex>
+      </Stack.Item>
+    </Stack>
   );
 };

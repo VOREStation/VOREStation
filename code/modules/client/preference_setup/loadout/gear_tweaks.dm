@@ -35,7 +35,7 @@
 /datum/gear_tweak/color/get_metadata(var/user, var/metadata, var/title = "Character Preference")
 	if(valid_colors)
 		return tgui_input_list(user, "Choose a color.", title, valid_colors, metadata)
-	return input(user, "Choose a color.", title, metadata) as color|null
+	return tgui_color_picker(user, "Choose a color.", title, metadata)
 
 /datum/gear_tweak/color/tweak_item(var/obj/item/I, var/metadata)
 	if(valid_colors && !(metadata in valid_colors))
@@ -598,5 +598,20 @@ var/datum/gear_tweak/custom_desc/gear_tweak_free_desc = new()
 
 /datum/gear_tweak/implant_location/get_metadata(var/user, var/metadata)
 	return (tgui_input_list(user, "Select a bodypart for the implant to be implanted inside.", "Implant Location", bodypart_names_to_tokens || bodypart_tokens_to_names[BP_TORSO]))
+
+/datum/gear_tweak/collar_tag/get_contents(var/metadata)
+	return "Tag: [metadata]"
+
+/datum/gear_tweak/collar_tag/get_default()
+	return ""
+
+/datum/gear_tweak/collar_tag/get_metadata(var/user, var/metadata)
+	return sanitize( tgui_input_text(user, "Choose the tag text", "Character Preference", metadata, MAX_NAME_LEN), MAX_NAME_LEN )
+
+/datum/gear_tweak/collar_tag/tweak_item(var/obj/item/clothing/accessory/collar/C, var/metadata)
+	if(metadata == "")
+		return ..()
+	else
+		C.initialize_tag(metadata)
 
 #undef LOADOUT_BAN_STRING

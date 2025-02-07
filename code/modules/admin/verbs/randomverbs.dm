@@ -75,7 +75,7 @@
 		to_chat(src, "Some accounts did not have proper ages set in their clients.  This function requires database to be present.")
 
 	if(msg != "")
-		src << browse(msg, "window=Player_age_check")
+		src << browse("<html>[msg]</html>", "window=Player_age_check")
 	else
 		to_chat(src, "No matches for that age range found.")
 
@@ -813,11 +813,11 @@ Traitors and the like can also be revived with the previous role mostly intact.
 
 	switch(tgui_alert(usr, "Temporary Ban?","Temporary Ban",list("Yes","No")))
 	if("Yes")
-		var/mins = input(usr,"How long (in minutes)?","Ban time",1440) as num
+		var/mins = tgui_input_number(usr,"How long (in minutes)?","Ban time",1440) as num
 		if(!mins)
 			return
 		if(mins >= 525600) mins = 525599
-		var/reason = input(usr,"Reason?","reason","Griefer") as text
+		var/reason = tgui_input_text(usr,"Reason?","reason","Griefer")
 		if(!reason)
 			return
 		if(M)
@@ -833,7 +833,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		else
 
 	if("No")
-		var/reason = input(usr,"Reason?","reason","Griefer") as text
+		var/reason = tgui_input_text(usr,"Reason?","reason","Griefer")
 		if(!reason)
 			return
 		AddBan(M.ckey, M.computer_id, reason, usr.ckey, 0, 0)
@@ -1071,7 +1071,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 			human_cryopods[listname] = CP
 
 	//Gotta log this up here before they get ghostized and lose their key or anything.
-	log_and_message_admins("[key_name(src)] admin cryo'd [key_name(M)].")
+	log_and_message_admins("admin cryo'd [key_name(M)].", src)
 	feedback_add_details("admin_verb","ACRYO") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 	if(ishuman(M))

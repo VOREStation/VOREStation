@@ -22,11 +22,11 @@
 /spell/area_teleport/before_cast()
 	return
 
-/spell/area_teleport/choose_targets()
+/spell/area_teleport/choose_targets(mob/user)
 	var/A = null
 
 	if(!randomise_selection)
-		A = tgui_input_list(usr, "Area to teleport to", "Teleport", teleportlocs)
+		A = tgui_input_list(user, "Area to teleport to", "Teleport", teleportlocs)
 	else
 		A = pick(teleportlocs)
 

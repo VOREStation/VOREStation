@@ -43,6 +43,8 @@
 
 	var/last_scan_time = 0
 	var/scan_delay = 25
+	var/last_repopulation_time = 0
+	var/repopulation_delay = 600 //Anti spam.
 
 /obj/item/ano_scanner/attack_self(var/mob/living/user)
 	interact(user)
@@ -77,8 +79,16 @@
 				else
 					SSxenoarch.digsite_spawning_turfs.Remove(T)
 
+		if(SSxenoarch && ((nearestTargetDist == -1) || (nearestSimpleTargetDist == -1)) && user.z && (world.time - last_repopulation_time >= repopulation_delay))
+			if(user.z in using_map.xenoarch_exempt_levels) //We found no artifacts and our Z level is not spawn exempt. Time for random generation.
+				//Yeah we do nothing here. I tried to make the above a !user.z ... but VSC compiler screeched at me.
+			else
+				last_repopulation_time = world.time
+				to_chat(user, "The [src] beeps and buzzes, a warning popping up on screen stating 'No artifacts detected on current wavelength. Swapping to different wavelength. Please try scanning momentarily.'")
+				SSxenoarch.continual_generation(user)
+
 		if(nearestTargetDist >= 0)
-			to_chat(user, "Exotic energy detected on wavelength '[nearestTargetId]' in a radius of [nearestTargetDist]m[nearestSimpleTargetDist > 0 ? "; small anomaly detected in a radius of [nearestSimpleTargetDist]m" : ""]")
+			to_chat(user, "Large artifact energy signature detected on wavelength '[nearestTargetId]' in a radius of [nearestTargetDist]m[nearestSimpleTargetDist > 0 ? "; small anomaly detected in a radius of [nearestSimpleTargetDist]m" : ""]")
 		else if(nearestSimpleTargetDist >= 0)
 			to_chat(user, "Small anomaly detected in a radius of [nearestSimpleTargetDist]m.")
 		else
@@ -103,9 +113,7 @@
 	var/time = ""
 	var/coords = ""
 	var/depth = ""
-	var/clearance = 0
 	var/record_index = 1
-	var/dissonance_spread = 1
 	var/material = "unknown"
 
 /obj/item/depth_scanner/proc/scan_atom(var/mob/user, var/atom/A)
@@ -125,8 +133,7 @@
 			//find the first artifact and store it
 			if(M.finds.len)
 				var/datum/find/F = M.finds[1]
-				D.depth = "[F.excavation_required - F.clearance_range] - [F.excavation_required]"
-				D.clearance = F.clearance_range
+				D.depth = "[F.excavation_required]"
 				D.material = get_responsive_reagent(F.find_type)
 
 			positive_locations.Add(D)
@@ -144,8 +151,6 @@
 
 			//these values are arbitrary
 			D.depth = rand(150, 200)
-			D.clearance = rand(10, 50)
-			D.dissonance_spread = rand(750, 2500) / 100
 
 			positive_locations.Add(D)
 
@@ -172,8 +177,6 @@
 			"time" = current.time,
 			"coords" = current.coords,
 			"depth" = current.depth,
-			"clearance" = current.clearance,
-			"dissonance_spread" = current.dissonance_spread,
 			"index" = current.record_index,
 		)
 		data["current"]["material"] = "Unknown"

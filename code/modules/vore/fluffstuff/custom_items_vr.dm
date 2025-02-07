@@ -449,7 +449,7 @@
 	name = "custom security cuirass"
 	desc = "An armored vest that protects against some damage. It appears to be created for a wolfhound. The name 'Serdykov L. Antoz' is written on a tag inside one of the haunchplates."
 	species_restricted = null //Species restricted since all it cares about is a taur half
-	icon = 'icons/mob/taursuits_wolf_vr.dmi'
+	icon = 'icons/mob/taursuits_wolf.dmi'
 	icon_state = "serdy_armor"
 	item_state = "serdy_armor"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS //It's a full body suit, minus hands and feet. Arms and legs should be protected, not just the torso. Retains normal security armor values still.
@@ -872,7 +872,7 @@
 
 /obj/item/fluff/injector/monkey/attack(mob/living/M, mob/living/user)
 
-	if(usr == M) //Is the person using it on theirself?
+	if(user == M) //Is the person using it on theirself?
 		if(ishuman(M)) //If so, monkify them.
 			var/mob/living/carbon/human/H = user
 			H.monkeyize()
@@ -886,7 +886,7 @@
 
 /obj/item/fluff/injector/numb_bite/attack(mob/living/M, mob/living/user)
 
-	if(usr == M) //Is the person using it on theirself?
+	if(user == M) //Is the person using it on theirself?
 		if(ishuman(M)) //Give them numbing bites.
 			var/mob/living/carbon/human/H = user
 			H.species.give_numbing_bite() //This was annoying, but this is the easiest way of performing it.
@@ -962,7 +962,7 @@
 	else
 		set_light(0)
 
-/obj/item/melee/baton/fluff/stunstaff/dropped()
+/obj/item/melee/baton/fluff/stunstaff/dropped(mob/user)
 	..()
 	if(wielded)
 		wielded = 0
@@ -1076,7 +1076,7 @@
 	allowed = list(/obj/item/shield/fluff/wolfgirlshield)
 	damtype = HALLOSS
 
-/obj/item/melee/fluffstuff/wolfgirlsword/dropped(var/mob/user)
+/obj/item/melee/fluffstuff/wolfgirlsword/dropped(mob/user)
 	..()
 	if(!istype(loc,/mob))
 		deactivate(user)
@@ -1268,7 +1268,8 @@
 	base_name = "Clara's Vacuum Flask"
 	base_icon = "claraflask"
 	icon = 'icons/vore/custom_items_vr.dmi'
-	center_of_mass = list("x" = 15,"y" = 4)
+	center_of_mass_x = 15
+	center_of_mass_y = 4
 	filling_states = list(15, 30, 50, 60, 80, 100)
 	volume = 60
 
@@ -1579,3 +1580,11 @@
 
 	icon = 'icons/inventory/accessory/item.dmi'
 	icon_state = "silver"
+
+//beeholddrbeesphb: Evelynn
+/obj/item/laser_pointer/evelynn_fluff
+	name = "Evelynn's Laser Pointer"
+	desc = "A small, furry, and fluffy toy that looks like a bee. It has laser eyes. Upon firing, the lasers make a buzzing noise."
+	icon = 'icons/vore/custom_items_vr.dmi'
+	icon_state = "evelynn"
+	pointer_icon_state = "purple_laser"

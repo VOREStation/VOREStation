@@ -47,7 +47,7 @@
 	last_special = world.time + 50
 
 	var/new_species = null
-	new_species = tgui_input_list(usr, "Please select a species to emulate.", "Shapeshifter Body", species.get_valid_shapeshifter_forms(src))
+	new_species = tgui_input_list(src, "Please select a species to emulate.", "Shapeshifter Body", species.get_valid_shapeshifter_forms(src))
 
 	if(!new_species || !GLOB.all_species[new_species] || wrapped_species_by_ref["\ref[src]"] == new_species)
 		return
@@ -73,7 +73,7 @@
 
 	last_special = world.time + 50
 
-	var/new_skin = input(usr, "Please select a new body color.", "Shapeshifter Colour", rgb(r_skin, g_skin, b_skin)) as null|color
+	var/new_skin = tgui_color_picker(src, "Please select a new body color.", "Shapeshifter Colour", rgb(r_skin, g_skin, b_skin))
 	if(!new_skin)
 		return
 	lleill_set_colour(new_skin)
@@ -107,12 +107,15 @@
 		"Transparent Glamour" = /obj/item/potion_material/glamour_transparent,
 		"Shrinking Glamour" = /obj/item/potion_material/glamour_shrinking,
 		"Twinkling Glamour" = /obj/item/potion_material/glamour_twinkling,
+		"Unstable Glamour" = /obj/item/glamour_unstable,
 		"Glamour Shard" = /obj/item/potion_material/glamour_shard,
 		"Glamour Cell" = /obj/item/capture_crystal/glamour,
 		"Face of Glamour" = /obj/item/glamour_face,
 		"Speaking Glamour" = /obj/item/universal_translator/glamour,
 		"Glamour Bubble" = /obj/item/clothing/mask/gas/glamour,
-		"Pocket of Glamour" = /obj/item/clothing/under/permit/glamour
+		"Pocket of Glamour" = /obj/item/clothing/under/permit/glamour,
+		"glamour arrow" = /obj/item/arrow/standard/glamour,
+		"glamour bow" = /obj/item/gun/launcher/crossbow/bow/glamour
 		)
 
 	var/energy_cost = 50
@@ -142,13 +145,13 @@
 		return
 	else
 		visible_message(span_infoplain(span_bold("\The [src]") + " begins to change the form of \the [I]."))
-		if(!do_after(usr, 10 SECONDS, I, exclusive = TASK_USER_EXCLUSIVE))
+		if(!do_after(src, 10 SECONDS, I, exclusive = TASK_USER_EXCLUSIVE))
 			visible_message(span_infoplain(span_bold("\The [src]") + " leaves \the [I] in its original form."))
 			return 0
 		visible_message(span_infoplain(span_bold("\The [src]") + " transmutes \the [I] into \the [transmute_product.name]."))
 		drop_item(I)
 		qdel(I)
-		var/spawnloc = get_turf(usr)
+		var/spawnloc = get_turf(src)
 		var/obj/item/N = new transmute_product(spawnloc)
 		put_in_active_hand(N)
 		species.lleill_energy -= energy_cost
@@ -361,13 +364,13 @@
 		return
 	else
 		visible_message(span_infoplain(span_bold("\The [src]") + " begins to change the form of \the [I]."))
-		if(!do_after(usr, 10 SECONDS, I, exclusive = TASK_USER_EXCLUSIVE))
+		if(!do_after(src, 10 SECONDS, I, exclusive = TASK_USER_EXCLUSIVE))
 			visible_message(span_infoplain(span_bold("\The [src]") + " leaves \the [I] in its original form."))
 			return 0
 		visible_message(span_infoplain(span_bold("\The [src]") + " transmutes \the [I] into \the [transmute_product.name]."))
 		drop_item(I)
 		qdel(I)
-		var/spawnloc = get_turf(usr)
+		var/spawnloc = get_turf(src)
 		var/obj/item/N = new transmute_product(spawnloc)
 		put_in_active_hand(N)
 		species.lleill_energy -= energy_cost
@@ -529,7 +532,7 @@
 		log_debug("polymorph tf_type fail")
 		return
 	log_debug("polymorph tf_type pass")
-	var/new_mob = new tf_type(get_turf(src))
+	var/new_mob = new tf_type(src.loc)
 	return new_mob
 
 /mob/living/proc/revert_beast_form()
@@ -546,8 +549,38 @@
 		visible_message(span_infoplain(span_bold("\The [src]") + " ceases shifting their form."))
 		return 0
 	visible_message(span_infoplain(span_bold("\The [src]") + " has reverted to their original form."))
-	revert_mob_tf()
+	revert_beast_tf()
 
+/mob/living/proc/revert_beast_tf()
+	if(!tf_mob_holder)
+		return
+	var/mob/living/ourmob = tf_mob_holder
+	if(ourmob.ai_holder)
+		var/datum/ai_holder/our_AI = ourmob.ai_holder
+		our_AI.set_stance(STANCE_IDLE)
+	tf_mob_holder = null
+	ourmob.ckey = ckey
+	var/turf/beast_loc = src.loc
+	ourmob.loc = beast_loc
+	ourmob.forceMove(beast_loc)
+	ourmob.vore_selected = vore_selected
+	vore_selected = null
+	for(var/obj/belly/B as anything in vore_organs)
+		B.loc = ourmob
+		B.forceMove(ourmob)
+		B.owner = ourmob
+		vore_organs -= B
+		ourmob.vore_organs += B
+
+	ourmob.Life(1)
+
+	if(ishuman(src))
+		for(var/obj/item/W in src)
+			if(istype(W, /obj/item/implant/backup) || istype(W, /obj/item/nif))
+				continue
+			src.drop_from_inventory(W)
+
+	qdel(src)
 
 //Hanner variant
 

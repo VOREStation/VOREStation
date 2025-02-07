@@ -1,6 +1,6 @@
-import { toFixed } from 'common/math';
+import { ProgressBar, Section, Table } from 'tgui-core/components';
+import { toFixed } from 'tgui-core/math';
 
-import { ProgressBar, Section, Table } from '../../components';
 import { damageRange, damages } from './constants';
 import { mapTwoByTwo } from './functions';
 import { occupant } from './types';

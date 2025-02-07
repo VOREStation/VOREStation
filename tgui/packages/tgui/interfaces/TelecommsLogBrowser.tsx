@@ -1,16 +1,15 @@
-import { toFixed } from 'common/math';
-import { BooleanLike } from 'common/react';
-
-import { useBackend } from '../backend';
+import { useBackend } from 'tgui/backend';
+import { Window } from 'tgui/layouts';
 import {
   Box,
   Button,
-  Flex,
   LabeledList,
   NoticeBox,
   Section,
-} from '../components';
-import { Window } from '../layouts';
+  Stack,
+} from 'tgui-core/components';
+import { toFixed } from 'tgui-core/math';
+import { BooleanLike } from 'tgui-core/react';
 
 type Data = {
   universal_translate: BooleanLike;
@@ -183,11 +182,11 @@ const TelecommsSelectedServer = (props: {
         </LabeledList.Item>
       </LabeledList>
       <Section title="Stored Logs" mt="4px">
-        <Flex wrap="wrap">
+        <Stack wrap="wrap">
           {!server.logs || !server.logs.length
             ? 'No Logs Detected.'
             : server.logs.map((log) => (
-                <Flex.Item m="2px" key={log.id} basis="49%" grow={log.id % 2}>
+                <Stack.Item m="2px" key={log.id} basis="49%" grow={log.id % 2}>
                   <Section
                     title={
                       universal_translate ||
@@ -230,9 +229,9 @@ const TelecommsSelectedServer = (props: {
                       <TelecommsLog error />
                     )}
                   </Section>
-                </Flex.Item>
+                </Stack.Item>
               ))}
-        </Flex>
+        </Stack>
       </Section>
     </Section>
   );

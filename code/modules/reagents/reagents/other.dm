@@ -285,7 +285,7 @@
 
 /datum/reagent/hydrogen/tritium
 	name = REAGENT_TRITIUM
-	id = REAGENT_ID_SLIMEJELLY
+	id = REAGENT_ID_TRITIUM
 	description = "A radioactive isotope of hydrogen. It has two extra neutrons, and shares all other chemical characteristics with hydrogen."
 
 /datum/reagent/lithium/lithium6
@@ -445,6 +445,10 @@
 		var/mob/living/carbon/C = M
 		C.clean_blood(TRUE)
 
+	if(istype(M, /mob/living/simple_mob/vore/aggressive/macrophage)) // Big ouch for viruses
+		var/mob/living/simple_mob/macrophage = M
+		macrophage.adjustToxLoss(20)
+
 /datum/reagent/space_cleaner/touch_obj(var/obj/O)
 	..()
 	O.clean_blood()
@@ -462,6 +466,9 @@
 
 		for(var/mob/living/simple_mob/slime/M in T)
 			M.adjustToxLoss(rand(5, 10))
+
+		for(var/mob/living/simple_mob/vore/aggressive/macrophage/virus in T)
+			virus.adjustToxLoss(rand(5, 10))
 
 /datum/reagent/space_cleaner/affect_touch(var/mob/living/carbon/M, var/alien, var/removed)
 	if(M.r_hand)

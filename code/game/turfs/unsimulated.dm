@@ -7,7 +7,7 @@
 
 /turf/unsimulated/Initialize(mapload)
 	if(skip_init)
-		initialized = TRUE
+		flags |= ATOM_INITIALIZED
 		return INITIALIZE_HINT_NORMAL
 	. = ..()
 
@@ -17,7 +17,6 @@
 	icon = 'icons/turf/space.dmi'
 	icon_state = "0"
 	dynamic_lighting = FALSE
-	initialized = FALSE
 
 /turf/unsimulated/fake_space/Initialize(mapload)
 	. = ..()
@@ -29,4 +28,7 @@
 	return FALSE
 
 /turf/unsimulated/rcd_act(mob/living/user, obj/item/rcd/the_rcd, passed_mode)
+	return FALSE
+
+/turf/unsimulated/occult_act(mob/living/user)
 	return FALSE

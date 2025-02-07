@@ -102,7 +102,7 @@
 	helmet = new /obj/item/clothing/head/helmet/space/void/autolok //autoinstall the helmet
 
 //override the attackby screwdriver proc so that people can't remove the helmet
-/obj/item/clothing/suit/space/void/autolok/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/clothing/suit/space/void/autolok/attackby(obj/item/W, mob/user)
 
 	if(!isliving(user))
 		return
@@ -116,7 +116,7 @@
 
 	if(W.has_tool_quality(TOOL_SCREWDRIVER))
 		if(boots || tank || cooler)
-			var/choice = tgui_input_list(usr, "What component would you like to remove?", "Remove Component", list(boots,tank,cooler))
+			var/choice = tgui_input_list(user, "What component would you like to remove?", "Remove Component", list(boots,tank,cooler))
 			if(!choice) return
 
 			if(choice == tank)	//No, a switch doesn't work here. Sorry. ~Techhead

@@ -5,7 +5,8 @@
 	flags = PHORONGUARD
 	item_state_slots = list(slot_r_hand_str = "magboots", slot_l_hand_str = "magboots")
 	species_restricted = null
-	center_of_mass = list("x" = 17,"y" = 12)
+	center_of_mass_x = 17
+	center_of_mass_y = 12
 	force = 3
 	overshoes = 1
 	shoes_under_pants = -1	//These things are huge
@@ -48,7 +49,7 @@
 
 	if(H.shoes)
 		shoes = H.shoes
-		if(shoes.overshoes)
+		if(istype(shoes, /obj/item/clothing/shoes) && shoes.overshoes)
 			if(slot && slot == slot_shoes)
 				to_chat(user, "You are unable to wear \the [src] as \the [H.shoes] are in the way.")
 			shoes = null
@@ -69,7 +70,7 @@
 	wearer = H
 	return 1
 
-/obj/item/clothing/shoes/magboots/dropped()
+/obj/item/clothing/shoes/magboots/dropped(mob/user)
 	..()
 	var/mob/living/carbon/human/H = wearer
 	if(shoes)
@@ -114,10 +115,10 @@
 	user.update_mob_action_buttons()
 
 //In case they somehow come off while enabled.
-/obj/item/clothing/shoes/magboots/vox/dropped(mob/user as mob)
-	..()
+/obj/item/clothing/shoes/magboots/vox/dropped(mob/user)
+	..(user)
 	if(src.magpulse)
-		user.visible_message("The [src] go limp as they are removed from [usr]'s feet.", "The [src] go limp as they are removed from your feet.")
+		user.visible_message("The [src] go limp as they are removed from [user]'s feet.", "The [src] go limp as they are removed from your feet.")
 		item_flags &= ~NOSLIP
 		magpulse = 0
 		canremove = TRUE

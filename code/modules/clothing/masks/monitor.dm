@@ -29,7 +29,7 @@
 			icon_state = monitor_states[monitor_state_index]
 			to_chat(H, span_notice("\The [src] connects to your display output."))
 
-/obj/item/clothing/mask/monitor/dropped()
+/obj/item/clothing/mask/monitor/dropped(mob/user)
 	canremove = TRUE
 	return ..()
 
@@ -54,9 +54,9 @@
 	if(!istype(H) || H != usr)
 		return
 	if(H.wear_mask != src)
-		to_chat(usr, span_warning("You have not installed \the [src] yet."))
+		to_chat(H, span_warning("You have not installed \the [src] yet."))
 		return
-	var/choice = tgui_input_list(usr, "Select a screen icon:", "Head Monitor Choice", monitor_states)
+	var/choice = tgui_input_list(H, "Select a screen icon:", "Head Monitor Choice", monitor_states)
 	if(choice)
 		monitor_state_index = choice
 		update_icon()

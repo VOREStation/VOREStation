@@ -1,9 +1,14 @@
-import { toFixed } from 'common/math';
-
-import { useBackend } from '../backend';
-import { Box, Flex, LabeledList, ProgressBar, Section } from '../components';
-import { formatPower, formatSiUnit } from '../format';
-import { Window } from '../layouts';
+import { useBackend } from 'tgui/backend';
+import { Window } from 'tgui/layouts';
+import {
+  Box,
+  LabeledList,
+  ProgressBar,
+  Section,
+  Stack,
+} from 'tgui-core/components';
+import { formatPower, formatSiUnit } from 'tgui-core/format';
+import { toFixed } from 'tgui-core/math';
 
 type Data = {
   totalOutput: number;
@@ -45,14 +50,14 @@ export const TEGenerator = (props) => {
           </LabeledList>
         </Section>
         {primary && secondary ? (
-          <Flex spacing={1}>
-            <Flex.Item shrink={1} grow={1}>
+          <Stack>
+            <Stack.Item shrink={1} grow>
               <TEGCirculator name="Primary Circulator" values={primary} />
-            </Flex.Item>
-            <Flex.Item shrink={1} grow={1}>
+            </Stack.Item>
+            <Stack.Item shrink={1} grow>
               <TEGCirculator name="Secondary Circulator" values={secondary} />
-            </Flex.Item>
-          </Flex>
+            </Stack.Item>
+          </Stack>
         ) : (
           <Box color="bad">
             Warning! Both circulators must be connected in order to operate this

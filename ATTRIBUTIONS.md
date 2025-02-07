@@ -60,7 +60,7 @@
 **Creator:** Lamella-0587 (https://github.com/Skyrat-SS13/Skyrat-tg/pull/6740)<br>
 **License:** [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/)<br>
 <br>
-**File:** `icons/mob/vore/taurs_vr_loaf.dmi`and `icons/mob/vore/taurs_vr.dmi`<br>
+**File:** `icons/mob/vore/taurs_loaf.dmi`and `icons/mob/human_races/sprite_accessories/taurs.dmi`<br>
 **Title:** Deer tummy<br>
 **Icon-States:** `fatdeer_s` and `fatdeer_markings`<br>
 **Creator:** VerySoft (https://github.com/TS-Rogue-Star/Rogue-Star/pull/153)<br>
@@ -92,3 +92,15 @@
 **Creator:** grayscaledrake (Discord user)<br>
 **License:** [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/)
 **Notes:** Permission to use assets also given in writing, assets were created for use in Virgo and other space station 13 servers.
+<br>
+**File:** `icons/vore/custom_clothes_vr.dmi`<br>
+**Title:** Memory Crown<br>
+**Icon-States:** 'memorycrown', 'memorycrown_onmob'
+**Creator:** Sixberry<br>
+**License:** [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/)<br>
+<br>
+**Folder:** `icons/mob/robot/catborgs`<br>
+**Title:** Catborgs<br>
+**Creator / Copyright:** Toriate<br>
+**License Holders:** Matica, Cameron The Raven, Spotteh<br>
+**License:** [CC BY-NC-SA 3.0](https://creativecommons.org/licenses/by-nc-sa/3.0/)<br>

@@ -1,9 +1,14 @@
 import { useState } from 'react';
 import { useBackend } from 'tgui/backend';
-import { Box, Button, Flex, Input, Section, Stack } from 'tgui-core/components';
+import {
+  Box,
+  Button,
+  Input,
+  Section,
+  Stack,
+  Tooltip,
+} from 'tgui-core/components';
 import { classes } from 'tgui-core/react';
-
-import { Tooltip } from '../../components';
 
 export const IconSection = (props: {
   currentName: string;
@@ -36,6 +41,7 @@ export const IconSection = (props: {
           <Stack.Item grow>
             <Tooltip content="Adjust your name">
               <Input
+                updateOnPropsChange
                 fluid
                 value={robotName}
                 onChange={(e, value) => {
@@ -62,40 +68,40 @@ export const IconSection = (props: {
       {!!sprite && !!size && (
         <>
           <Stack.Item>
-            <Flex>
-              <Flex.Item grow />
-              <Flex.Item>
+            <Stack>
+              <Stack.Item grow />
+              <Stack.Item>
                 <Box className={classes([size, sprite + 'N'])} />
-              </Flex.Item>
-              <Flex.Item grow />
-            </Flex>
+              </Stack.Item>
+              <Stack.Item grow />
+            </Stack>
           </Stack.Item>
           <Stack.Item>
-            <Flex>
-              <Flex.Item grow />
-              <Flex.Item>
+            <Stack>
+              <Stack.Item grow />
+              <Stack.Item>
                 <Box className={classes([size, sprite + 'S'])} />
-              </Flex.Item>
-              <Flex.Item grow />
-            </Flex>
+              </Stack.Item>
+              <Stack.Item grow />
+            </Stack>
           </Stack.Item>
           <Stack.Item>
-            <Flex>
-              <Flex.Item grow />
-              <Flex.Item>
+            <Stack>
+              <Stack.Item grow />
+              <Stack.Item>
                 <Box className={classes([size, sprite + 'W'])} />
-              </Flex.Item>
-              <Flex.Item grow />
-            </Flex>
+              </Stack.Item>
+              <Stack.Item grow />
+            </Stack>
           </Stack.Item>
           <Stack.Item>
-            <Flex>
-              <Flex.Item grow />
-              <Flex.Item>
+            <Stack>
+              <Stack.Item grow />
+              <Stack.Item>
                 <Box className={classes([size, sprite + 'E'])} />
-              </Flex.Item>
-              <Flex.Item grow />
-            </Flex>
+              </Stack.Item>
+              <Stack.Item grow />
+            </Stack>
           </Stack.Item>
         </>
       )}

@@ -9,6 +9,7 @@
 	agent = "Gravitokinetic Bipotential SADS+"
 	viable_mobtypes = list(/mob/living/carbon/human)
 	severity = BIOHAZARD
+	disease_flags = CAN_NOT_POPULATE
 
 /datum/disease/gbs/stage_act()
 	if(!..())
@@ -46,4 +47,4 @@
 	cures = list(REAGENT_ID_CRYOXADONE)
 	cure_chance = 10
 	agent = "gibbis"
-	disease_flags = CURABLE
+	disease_flags = CURABLE|CAN_NOT_POPULATE

@@ -62,7 +62,7 @@
 			to_chat(usr, span_danger("[target] was recently reset, you must wait until module selection has been completed before continuing modifying."))
 			continue
 
-		log_and_message_admins("[key_name(src)] has used MODIFYROBOT ([modification_choice]) on [key_name(target)].")
+		log_and_message_admins("has used MODIFYROBOT ([modification_choice]) on [key_name(target)].", usr)
 		feedback_add_details("admin_verb","MODIFYROBOT") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 		switch(modification_choice)

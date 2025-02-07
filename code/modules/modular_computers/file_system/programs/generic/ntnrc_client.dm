@@ -101,7 +101,7 @@
 		if("PRG_savelog")
 			if(!channel)
 				return
-			var/logname = stripped_input(params["log_name"])
+			var/logname = sanitize(params["log_name"])
 			if(!logname)
 				return
 			var/datum/computer_file/data/logfile = new /datum/computer_file/data/logfile()

@@ -237,7 +237,7 @@
 /obj/random/mob/mouse
 	name = "Random Mouse"
 	desc = "This is a random boring maus."
-	icon_state = "mouse_gray"
+	icon_state = "animal"
 	spawn_nothing_percentage = 15
 
 /obj/random/mob/mouse/item_to_spawn()

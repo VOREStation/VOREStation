@@ -7,7 +7,7 @@
 	siemens_coefficient = 0.9
 	body_parts_covered = 0
 
-/obj/item/clothing/head/soft/dropped()
+/obj/item/clothing/head/soft/dropped(mob/user)
 	icon_state = initial(icon_state)
 	flipped=0
 	..()

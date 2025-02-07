@@ -113,11 +113,14 @@
 	var/rock_climbing = FALSE //If true, allows climbing cliffs using click drag for single Z, walls if multiZ
 	var/climbing_delay = 1 //If rock_climbing, lower better.
 
-/obj/item/New()
-	..()
+/obj/item/Initialize(mapload)
+	. = ..()
 
 	for(var/path in actions_types)
 		add_item_action(path)
+
+	if(islist(origin_tech))
+		origin_tech = typelist(NAMEOF(src, origin_tech), origin_tech)
 
 	if(embed_chance < 0)
 		if(sharp)
@@ -378,7 +381,8 @@
 		playsound(src, drop_sound, 30, preference = /datum/preference/toggle/drop_sounds)
 
 // apparently called whenever an item is removed from a slot, container, or anything else.
-/obj/item/proc/dropped(mob/user as mob)
+/obj/item/proc/dropped(mob/user)
+	SHOULD_CALL_PARENT(TRUE)
 	if(zoom)
 		zoom() //binoculars, scope, etc
 	appearance_flags &= ~NO_CLIENT_COLOR
@@ -1056,10 +1060,11 @@ closest to where the cursor has clicked on.
 Note: This proc can be overwritten to allow for different types of auto-alignment.
 */
 
-/obj/item/var/list/center_of_mass = list("x" = 16,"y" = 16)
+/obj/item/var/center_of_mass_x = 16
+/obj/item/var/center_of_mass_y = 16
 
 /proc/auto_align(obj/item/W, click_parameters, var/animate = FALSE)
-	if(!W.center_of_mass)
+	if(!W.center_of_mass_x && !W.center_of_mass_y)
 		W.randpixel_xy()
 		return
 
@@ -1075,8 +1080,8 @@ Note: This proc can be overwritten to allow for different types of auto-alignmen
 		var/cell_x = max(0, min(CELLS-1, round(mouse_x/CELLSIZE)))
 		var/cell_y = max(0, min(CELLS-1, round(mouse_y/CELLSIZE)))
 
-		var/target_x = (CELLSIZE * (0.5 + cell_x)) - W.center_of_mass["x"]
-		var/target_y = (CELLSIZE * (0.5 + cell_y)) - W.center_of_mass["y"]
+		var/target_x = (CELLSIZE * (0.5 + cell_x)) - W.center_of_mass_x
+		var/target_y = (CELLSIZE * (0.5 + cell_y)) - W.center_of_mass_y
 		if(animate)
 			var/dist_x = abs(W.pixel_x - target_x)
 			var/dist_y = abs(W.pixel_y - target_y)

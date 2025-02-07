@@ -58,8 +58,8 @@ var/list/adminfaxes = list()	//cache for faxes that have been sent to admins
 		return
 
 	scan.forceMove(loc)
-	if(ishuman(usr) && !usr.get_active_hand())
-		usr.put_in_hands(scan)
+	if(ishuman(L) && !L.get_active_hand())
+		L.put_in_hands(scan)
 		scan = null
 	authenticated = null
 

@@ -237,10 +237,10 @@ var/datum/paiController/paiController			// Global handler for pAI candidates
 			</table><br>
 			"}
 	dat += {"
-	<body>
+	</body>
 	"}
 
-	M << browse(dat, "window=paiRecruit;size=580x580;")
+	M << browse("<html>[dat]</html>", "window=paiRecruit;size=580x580;")
 
 /datum/paiController/proc/findPAI(var/obj/item/paicard/p, var/mob/user)
 	requestRecruits(user)

@@ -3,6 +3,7 @@
 		var/held = held_mob
 		dump_mob()
 		held_mob = held
+	..()
 
 /obj/item/holder/attack_hand(mob/living/user as mob) //straight up just copypasted from objects/items.dm with a few things changed (doesn't called dropped unless +actually dropped+)
 	if (!user) return

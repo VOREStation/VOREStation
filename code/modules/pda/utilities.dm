@@ -50,9 +50,9 @@
 	user.show_message(span_notice("Analyzing Results for [C]:"))
 	user.show_message(span_notice("    Overall Status: [C.stat > 1 ? "dead" : "[C.health - C.halloss]% healthy"]"), 1)
 	user.show_message(span_notice("    Damage Specifics:") + " [(C.getOxyLoss() > 50) ? span_warning(C.getOxyLoss()) : C.getOxyLoss()]-\
-									[(C.getToxLoss() > 50) ? span_warning(C.getToxLoss()) : C.getToxLoss()]-\
-									[(C.getFireLoss() > 50) ? span_warning(C.getFireLoss()) : C.getFireLoss()]-\
-									[(C.getBruteLoss() > 50) ? span_warning(C.getBruteLoss()) : C.getBruteLoss()]", 1)
+									[(C.getToxLoss() > 50) ? span_warning("[C.getToxLoss()]") : C.getToxLoss()]-\
+									[(C.getFireLoss() > 50) ? span_warning("[C.getFireLoss()]") : C.getFireLoss()]-\
+									[(C.getBruteLoss() > 50) ? span_warning("[C.getBruteLoss()]") : C.getBruteLoss()]", 1)
 	user.show_message(span_notice("    Key: Suffocation/Toxin/Burns/Brute"), 1)
 	user.show_message(span_notice("    Body Temperature: [C.bodytemperature-T0C]&deg;C ([C.bodytemperature*1.8-459.67]&deg;F)"), 1)
 	if(C.tod && (C.stat == DEAD || (C.status_flags & FAKEDEATH)))

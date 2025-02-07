@@ -1,5 +1,5 @@
 import { useBackend } from 'tgui/backend';
-import { Box, Button, LabeledList, Section } from 'tgui/components';
+import { Box, Button, LabeledList, Section } from 'tgui-core/components';
 
 import { GeneralRecord, MedicalRecord, RecordList } from '../pda_types';
 

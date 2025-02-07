@@ -29,7 +29,8 @@
 	var/item_path = /obj/item/bodybag
 	density = FALSE
 	storage_capacity = (MOB_MEDIUM * 2) - 1
-	var/contains_body = 0
+	var/contains_body = FALSE
+	var/has_label = FALSE
 
 /obj/structure/closet/body_bag/attackby(var/obj/item/W as obj, mob/user as mob)
 	if (istype(W, /obj/item/pen))
@@ -42,6 +43,7 @@
 		if (t)
 			src.name = "body bag - "
 			src.name += t
+			has_label = TRUE
 			add_overlay("bodybag_label")
 		else
 			src.name = "body bag"
@@ -50,6 +52,7 @@
 	else if(W.has_tool_quality(TOOL_WIRECUTTER))
 		to_chat(user, "You cut the tag off the bodybag")
 		src.name = "body bag"
+		has_label = FALSE
 		cut_overlays()
 		return
 
@@ -96,13 +99,11 @@
 	if(opened)
 		icon_state = "open"
 	else
-		icon_state = "closed_unlocked"
+		icon_state = "base"
 
 	cut_overlays()
-	/* Ours don't have toetags
 	if(has_label)
 		add_overlay("bodybag_label")
-	*/
 
 
 /obj/item/bodybag/cryobag

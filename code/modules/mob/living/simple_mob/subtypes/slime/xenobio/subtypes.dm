@@ -196,23 +196,23 @@
 	qdel(src)
 
 /mob/living/simple_mob/slime/xenobio/dark_purple/ex_act(severity)
-	log_and_message_admins("[src] ignited due to a chain reaction with an explosion.")
+	log_and_message_admins("ignited due to a chain reaction with an explosion.", src)
 	ignite()
 
 /mob/living/simple_mob/slime/xenobio/dark_purple/fire_act(datum/gas_mixture/air, temperature, volume)
-	log_and_message_admins("[src] ignited due to exposure to fire.")
+	log_and_message_admins("ignited due to exposure to fire.", src)
 	ignite()
 
 /mob/living/simple_mob/slime/xenobio/dark_purple/bullet_act(var/obj/item/projectile/P, var/def_zone)
 	if(P.damage_type && P.damage_type == BURN && P.damage) // Most bullets won't trigger the explosion, as a mercy towards Security.
-		log_and_message_admins("[src] ignited due to bring hit by a burning projectile[P.firer ? " by [key_name(P.firer)]" : ""].")
+		log_and_message_admins("ignited due to bring hit by a burning projectile[P.firer ? " by [key_name(P.firer)]" : ""].", src)
 		ignite()
 	else
 		..()
 
 /mob/living/simple_mob/slime/xenobio/dark_purple/attackby(var/obj/item/W, var/mob/user)
 	if(istype(W) && W.force && W.damtype == BURN)
-		log_and_message_admins("[src] ignited due to being hit with a burning weapon ([W]) by [key_name(user)].")
+		log_and_message_admins("ignited due to being hit with a burning weapon ([W]) by [key_name(user)].", src)
 		ignite()
 	else
 		..()
@@ -654,29 +654,29 @@
 		say(pick("Sacrifice...!", "Sssss...", "Boom...!"))
 		set_AI_busy(TRUE)
 		sleep(2 SECONDS)
-		log_and_message_admins("[src] has suicide-bombed themselves while trying to kill \the [L].")
+		log_and_message_admins("has suicide-bombed themselves while trying to kill \the [L].", src)
 		explode()
 
 	return ..()
 
 /mob/living/simple_mob/slime/xenobio/oil/ex_act(severity)
-	log_and_message_admins("[src] exploded due to a chain reaction with another explosion.")
+	log_and_message_admins("exploded due to a chain reaction with another explosion.", src)
 	explode()
 
 /mob/living/simple_mob/slime/xenobio/oil/fire_act(datum/gas_mixture/air, temperature, volume)
-	log_and_message_admins("[src] exploded due to exposure to fire.")
+	log_and_message_admins("exploded due to exposure to fire.", src)
 	explode()
 
 /mob/living/simple_mob/slime/xenobio/oil/bullet_act(obj/item/projectile/P, def_zone)
 	if(P.damage_type && P.damage_type == BURN && P.damage) // Most bullets won't trigger the explosion, as a mercy towards Security.
-		log_and_message_admins("[src] exploded due to bring hit by a burning projectile[P.firer ? " by [key_name(P.firer)]" : ""].")
+		log_and_message_admins("exploded due to bring hit by a burning projectile[P.firer ? " by [key_name(P.firer)]" : ""].", src)
 		explode()
 	else
 		..()
 
 /mob/living/simple_mob/slime/xenobio/oil/attackby(obj/item/W, mob/living/user)
 	if(istype(W) && W.force && W.damtype == BURN)
-		log_and_message_admins("[src] exploded due to being hit with a burning weapon ([W]) by [key_name(user)].")
+		log_and_message_admins("exploded due to being hit with a burning weapon ([W]) by [key_name(user)].", src)
 		explode()
 	else
 		..()

@@ -345,7 +345,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 
 		for(var/i=1,i<=3,i++)	//we get 3 attempts to pick a suitable name.
 			//newname = tgui_input_text(src,"You are \a [role]. Would you like to change your name to something else?", "Name change",oldname)
-			newname = input(src,"You are \a [role]. Would you like to change your name to something else?", "Name change",oldname)
+			newname = tgui_input_text(src,"You are \a [role]. Would you like to change your name to something else?", "Name change",oldname, MAX_NAME_LEN)
 			if((world.time-time_passed)>3000)
 				return	//took too long
 			newname = sanitizeName(newname, ,allow_numbers)	//returns null if the name doesn't meet some basic requirements. Tidies up a few other things like bad-characters.
@@ -802,7 +802,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 
 					//Move the mobs unless it's an AI eye or other eye type.
 					for(var/mob/M in T)
-						if(isobserver(M)) continue // If we need to check for more mobs, I'll add a variable
+						if(isEye(M)) continue // If we need to check for more mobs, I'll add a variable
 						M.loc = X
 
 						if(z_level_change) // Same goes for mobs.
@@ -945,7 +945,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 
 					for(var/mob/M in T)
 
-						if(!ismob(M) || isobserver(M)) continue // If we need to check for more mobs, I'll add a variable
+						if(!ismob(M) || isEye(M)) continue // If we need to check for more mobs, I'll add a variable
 						mobs += M
 
 					for(var/mob/M in mobs)

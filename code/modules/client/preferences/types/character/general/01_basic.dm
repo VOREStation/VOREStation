@@ -159,17 +159,28 @@
 /datum/preference/toggle/human/name_is_always_random/apply_to_human(mob/living/carbon/human/target, value)
 	return // handled in copy_to
 
-/datum/preference/choiced/human/spawnpoint
+/datum/preference/choiced/living/spawnpoint
 	category = PREFERENCE_CATEGORY_MANUALLY_RENDERED
 	savefile_key = "spawnpoint"
 	savefile_identifier = PREFERENCE_CHARACTER
 	can_randomize = FALSE
 
-/datum/preference/choiced/human/spawnpoint/init_possible_values()
+/datum/preference/choiced/living/spawnpoint/init_possible_values()
 	var/list/spawnkeys = list()
-	for(var/spawntype in spawntypes)
+	for(var/spawntype in get_spawn_points())
 		spawnkeys += spawntype
 	return spawnkeys
 
-/datum/preference/choiced/human/spawnpoint/apply_to_human(mob/living/carbon/human/target, value)
+/datum/preference/choiced/living/spawnpoint/apply_to_living(mob/living/target, value)
 	return // handled in job_controller
+
+/datum/preference/text/living/private_notes
+	category = PREFERENCE_CATEGORY_MANUALLY_RENDERED
+	savefile_identifier = PREFERENCE_CHARACTER
+	savefile_key = "Private_Notes"
+	maximum_value_length = MAX_MESSAGE_LEN * 4
+	can_randomize = FALSE
+
+/datum/preference/text/living/private_notes/apply_to_living(mob/living/target, value)
+	target.private_notes = value
+	return

@@ -5,7 +5,7 @@
  */
 
 import { useDispatch, useSelector } from 'tgui/backend';
-import { Section, Stack, Tabs } from 'tgui/components';
+import { Section, Stack, Tabs } from 'tgui-core/components';
 
 import { ChatPageSettings } from '../chat';
 import { changeSettingsTab } from './actions';
@@ -44,7 +44,7 @@ export const SettingsPanel = (props) => {
           </Tabs>
         </Section>
       </Stack.Item>
-      <Stack.Item grow={1} basis={0}>
+      <Stack.Item grow basis={0}>
         {activeTab === 'general' && <SettingsGeneral />}
         {activeTab === 'limits' && <MessageLimits />}
         {activeTab === 'export' && <ExportTab />}

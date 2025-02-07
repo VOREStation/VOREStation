@@ -4,9 +4,10 @@
  * @license MIT
  */
 
-import { resolveAsset } from '../assets';
-import { useBackend } from '../backend';
-import { Box, Button, Image } from '../components';
+import { resolveAsset } from 'tgui/assets';
+import { useBackend } from 'tgui/backend';
+import { Box, Button, Image } from 'tgui-core/components';
+
 import { Window } from './Window';
 
 export const NtosWindow = (props) => {

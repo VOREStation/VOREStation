@@ -15,7 +15,7 @@
 	var/max_name_len = 32		// Refuse if shuttle tag is longer than this.
 	var/max_area_turfs = 256	// Refuse if area has more than this many turfs.
 
-/obj/item/champagne/afterattack(var/atom/A, mob/user as mob, proximity)
+/obj/item/champagne/afterattack(var/atom/A, mob/user, proximity)
 	if(!proximity)
 		return
 	var/obj/machinery/computer/shuttle_control/explore/comp = A
@@ -27,7 +27,7 @@
 		return
 
 	user.visible_message(span_notice("[user] lifts [src] bottle over [comp]!"))
-	var/shuttle_name = tgui_input_text(usr, "Choose a name for the shuttle", "New Shuttle Name")
+	var/shuttle_name = tgui_input_text(user, "Choose a name for the shuttle", "New Shuttle Name")
 	if(!shuttle_name || QDELETED(src) || QDELETED(comp) || comp.shuttle_tag || user.incapacitated())
 		return // After input() safety re-checks
 
@@ -58,7 +58,7 @@
 	user.visible_message(span_notice("[user] smashes [src] on [comp]"),
 		span_info("You smash [src] on [comp], christening a new landable ship named [S.name]"),
 		span_notice("You hear glass shattering"))
-	log_and_message_admins("[key_name_admin(user)] Created a new shuttle [S.name]. [ADMIN_JMP(comp_turf)]")
+	log_and_message_admins("Created a new shuttle [S.name]. [ADMIN_JMP(comp_turf)]", user)
 	spawn(1 SECOND)
 		playsound(comp_turf, 'sound/voice/Serithi/Shuttlehere.ogg', 75, 0)
 	qdel(src)

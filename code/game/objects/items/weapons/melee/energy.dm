@@ -188,10 +188,12 @@
 		return
 
 	if(tgui_alert(user, "Are you sure you want to recolor your blade?", "Confirm Recolor", list("Yes", "No")) == "Yes")
-		var/energy_color_input = input(user,"","Choose Energy Color",lcolor) as color|null
+		var/energy_color_input = tgui_color_picker(user,"","Choose Energy Color",lcolor)
 		if(energy_color_input)
 			lcolor = sanitize_hexcolor(energy_color_input)
 		update_icon()
+		if(active)
+			set_light(lrange, lpower, lcolor)
 
 /obj/item/melee/energy/examine(mob/user)
 	. = ..()
@@ -279,7 +281,7 @@
 
 	projectile_parry_chance = 65
 
-/obj/item/melee/energy/sword/dropped(var/mob/user)
+/obj/item/melee/energy/sword/dropped(mob/user)
 	..()
 	if(!istype(loc,/mob))
 		deactivate(user)
@@ -453,7 +455,8 @@
 	user.drop_from_inventory(src)
 	spawn(1) if(src) qdel(src)
 
-/obj/item/melee/energy/blade/dropped()
+/obj/item/melee/energy/blade/dropped(mob/user)
+	..()
 	spawn(1) if(src) qdel(src)
 
 /obj/item/melee/energy/blade/process()

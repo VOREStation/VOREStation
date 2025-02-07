@@ -1,7 +1,8 @@
 /obj/structure/fitness
 	icon = 'icons/obj/stationobjs.dmi'
 	anchored = TRUE
-	var/being_used = 0
+	var/fitness_being_used = 0
+	var/weightloss_power = 1
 
 /obj/structure/fitness/punchingbag
 	name = "punching bag"
@@ -22,7 +23,8 @@
 			flick("[icon_state]_hit", src)
 			playsound(src, 'sound/effects/woodhit.ogg', 25, 1, -1)
 			user.do_attack_animation(src)
-			user.nutrition = user.nutrition - 5
+			user.adjust_nutrition(-5)
+			user.weight -= 0.25 * weightloss_power * (0.01 * user.weight_loss)
 			to_chat(user, span_warning("You [pick(hit_message)] \the [src]."))
 
 /obj/structure/fitness/weightlifter
@@ -48,19 +50,21 @@
 	if(user.nutrition < 50)
 		to_chat(user, span_warning("You need more energy to lift weights. Go eat something."))
 		return
-	if(being_used)
+	if(fitness_being_used)
 		to_chat(user, span_warning("The weight machine is already in use by somebody else."))
 		return
 	else
-		being_used = 1
+		fitness_being_used = 1
 		playsound(src, 'sound/effects/weightlifter.ogg', 50, 1)
 		user.set_dir(SOUTH)
 		flick("[icon_state]_[weight]", src)
 		if(do_after(user, 20 + (weight * 10)))
 			playsound(src, 'sound/effects/weightdrop.ogg', 25, 1)
 			user.adjust_nutrition(weight * -10)
+			var/weightloss_enhanced = weightloss_power * (weight * 0.5)
+			user.weight -= 0.25 * weightloss_enhanced * (0.01 * user.weight_loss)
 			to_chat(user, span_notice("You lift the weights [qualifiers[weight]]."))
-			being_used = 0
+			fitness_being_used = 0
 		else
 			to_chat(user, span_notice("Against your previous judgement, perhaps working out is not for you."))
-			being_used = 0
+			fitness_being_used = 0

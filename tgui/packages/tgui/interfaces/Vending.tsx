@@ -1,10 +1,6 @@
-import { filter } from 'common/collections';
-import { flow } from 'common/fp';
-import { BooleanLike, classes } from 'common/react';
-import { createSearch } from 'common/string';
 import { useState } from 'react';
-
-import { useBackend } from '../backend';
+import { useBackend } from 'tgui/backend';
+import { Window } from 'tgui/layouts';
 import {
   Box,
   Button,
@@ -13,8 +9,10 @@ import {
   Section,
   Table,
   Tooltip,
-} from '../components';
-import { Window } from '../layouts';
+} from 'tgui-core/components';
+import { flow } from 'tgui-core/fp';
+import { BooleanLike, classes } from 'tgui-core/react';
+import { createSearch } from 'tgui-core/string';
 
 type Data = {
   chargesMoney: BooleanLike;
@@ -209,7 +207,7 @@ export const prepareSearch = (
       if (!searchText) {
         return products;
       } else {
-        return filter(products, testSearch);
+        return products.filter(testSearch);
       }
     },
   ])(products);

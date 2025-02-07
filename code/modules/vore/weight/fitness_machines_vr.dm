@@ -21,7 +21,7 @@
 	else //If they have enough nutrition and body weight, they can exercise.
 		user.setClickCooldown(cooldown)
 		user.adjust_nutrition(-10 * weightloss_power)
-		user.weight -= 0.025 * weightloss_power * (0.01 * user.weight_loss)
+		user.weight -= 0.25 * weightloss_power * (0.01 * user.weight_loss)
 		flick("[icon_state]2", src)
 		var/message = pick(messages)
 		to_chat(user, span_notice("[message]."))

@@ -1,10 +1,16 @@
-import { BooleanLike } from 'common/react';
-import { DmIcon, Stack, Tooltip } from 'tgui-core/components';
+import { useBackend } from 'tgui/backend';
+import { Window } from 'tgui/layouts';
+import {
+  Box,
+  Button,
+  DmIcon,
+  Section,
+  Stack,
+  Tooltip,
+} from 'tgui-core/components';
+import { BooleanLike } from 'tgui-core/react';
 import { classes } from 'tgui-core/react';
 
-import { useBackend } from '../backend';
-import { Box, Button, Section } from '../components';
-import { Window } from '../layouts';
 import { AnimatedArrows } from './common/AnimatedArrows';
 
 type Item = {
@@ -142,7 +148,7 @@ const MicrowaveContents = (props) => {
                   width="64px"
                   position="relative"
                   m={1}
-                  style={{ border: '1px solid #4444ab', float: 'left ' }}
+                  style={{ border: '1px solid #4444ab', float: 'left' }}
                 >
                   <Box position="absolute" top={0} right={0}>
                     {r.amt}

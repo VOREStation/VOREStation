@@ -1,13 +1,13 @@
-import { toFixed } from 'common/math';
-
-import { useBackend } from '../../backend';
+import { useBackend } from 'tgui/backend';
 import {
   Box,
   Button,
   LabeledList,
   ProgressBar,
   Section,
-} from '../../components';
+} from 'tgui-core/components';
+import { toFixed } from 'tgui-core/math';
+
 import { stats, tempColors } from './constants';
 import { Data } from './types';
 

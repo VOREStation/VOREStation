@@ -58,9 +58,9 @@
 	var/obj/item/clothing/head/hat = null // Scughat.
 	var/can_wear_hat = TRUE				  // Some have inbuilt hats
 
-	var/picked_color = FALSE
-
 	allow_mind_transfer = TRUE
+
+	var/picked_color = FALSE //This needs to be moved to simple_mob. Out of scope for this PR.
 
 	can_enter_vent_with = list(
 		/obj/item/implant,
@@ -68,6 +68,7 @@
 		/obj/item/holder,
 		/obj/machinery/camera,
 		/obj/belly,
+		//obj/soulgem, // Used downstream.
 		/obj/screen,
 		/atom/movable/emissive_blocker,
 		/obj/item/material,
@@ -291,7 +292,7 @@
 	if(picked_color)
 		to_chat(src, span_notice("You have already picked a color! If you picked the wrong color, ask an admin to change your picked_color variable to 0."))
 		return
-	var/newcolor = input(usr, "Choose a color.", "", color) as color|null
+	var/newcolor = tgui_color_picker(src, "Choose a color.", "", color)
 	if(newcolor)
 		color = newcolor
 		picked_color = TRUE
@@ -770,7 +771,7 @@
 	mob_radio.frequency = PUB_FREQ
 	mob_radio.ks2type = /obj/item/encryptionkey/heads/captain 		//Might not be able to speak, but the catslug can listen.
 	mob_radio.keyslot2 = new /obj/item/encryptionkey/heads/captain(mob_radio)
-	mob_radio.recalculateChannels(1)
+	mob_radio.recalculateChannels(TRUE)
 
 //=============================================================================
 //Admin-spawn only catslugs below - Expect overpowered things & silliness below
@@ -853,10 +854,10 @@
 	. = ..()
 	mob_radio = new /obj/item/radio/headset/mob_headset(src)
 	mob_radio.frequency = SYND_FREQ
-	mob_radio.syndie = 1
+	mob_radio.syndie = TRUE
 	mob_radio.ks2type = /obj/item/encryptionkey/syndicate
 	mob_radio.keyslot2 = new /obj/item/encryptionkey/syndicate(mob_radio)
-	mob_radio.recalculateChannels(1)
+	mob_radio.recalculateChannels(TRUE)
 	myid.access |= get_all_station_access()
 
 //ERT catslug
@@ -900,7 +901,7 @@
 	mob_radio.centComm = 1
 	mob_radio.ks2type = /obj/item/encryptionkey/ert
 	mob_radio.keyslot2 = new /obj/item/encryptionkey/ert(mob_radio)
-	mob_radio.recalculateChannels(1)
+	mob_radio.recalculateChannels(TRUE)
 	myid.access |= get_all_station_access()
 
 //Pilot Catslug
@@ -1169,7 +1170,7 @@
 	if(victims.len == 1)
 		target = victims[1]
 	else
-		target = tgui_input_list(usr, "Kill", "Pick a victim", victims)
+		target = tgui_input_list(src, "Kill", "Pick a victim", victims)
 
 	if(target && istype(target))
 		target.adjustBruteLoss(3000)

@@ -1,7 +1,7 @@
 import { Fragment } from 'react';
+import { useBackend } from 'tgui/backend';
+import { Button, NoticeBox } from 'tgui-core/components';
 
-import { useBackend } from '../../backend';
-import { Button, NoticeBox } from '../../components';
 import { Data } from './types';
 
 export const MedicalRecordsViruses = (props) => {

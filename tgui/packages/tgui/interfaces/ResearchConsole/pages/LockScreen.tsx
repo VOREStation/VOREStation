@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { useBackend } from 'tgui/backend';
-import { Box, Button, Section, Stack } from 'tgui/components';
+import { Box, Button, Section, Stack } from 'tgui-core/components';
 
 export const LockScreen = (props) => {
   const { act } = useBackend();
@@ -41,6 +41,7 @@ export const LockScreen = (props) => {
         }
         y += y_i;
 
+        context.imageSmoothingEnabled = false;
         context.drawImage(image.current, x, y, 64, 64);
       },
       (1 / 60) * 1000, // 60fps

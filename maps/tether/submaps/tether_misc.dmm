@@ -2553,9 +2553,7 @@
 /turf/simulated/floor/holofloor/bmarble,
 /area/holodeck/source_chess)
 "wZ" = (
-/turf/unsimulated/floor{
-	icon_state = "sandwater"
-	},
+/turf/unsimulated/floor,
 /area/beach)
 "xc" = (
 /obj/machinery/scale,

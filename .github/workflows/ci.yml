@@ -11,7 +11,7 @@ jobs:
 
   run_linters:
     name: Run Linters
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
 
     steps:
       - uses: actions/checkout@v4
@@ -55,6 +55,7 @@ jobs:
           pip3 install setuptools
           bash tools/ci/install_node.sh
           bash tools/ci/install_ripgrep.sh
+          bash tools/ci/install_spaceman_dmm.sh dmm-tools
           tools/bootstrap/python -c ''
       - name: Run Grep Checks
         run: tools/ci/validate_files.sh
@@ -62,10 +63,12 @@ jobs:
         run: tools/bootstrap/python -m define_sanity.check
       - name: Run TGUI Checks
         run: tools/build/build --ci lint tgui-test
+      - name: Run Nanomap Checks
+        run: tools/github-actions/nanomap-renderer-invoker.sh --testing
 
   dreamchecker:
     name: DreamChecker
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
 
@@ -98,7 +101,7 @@ jobs:
     # name: Integration Tests (${{ matrix.map }})
     name: Integration Tests
     # needs: ['run_linters', 'dreamchecker']
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
       - name: Ensure +x on CI directory
@@ -127,7 +130,7 @@ jobs:
 
   extra_map_tests:
     name: Map Tests
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
       - name: Ensure +x on CI directory
@@ -154,7 +157,7 @@ jobs:
   tests_successful:
     name: Integration Tests
     needs: ['run_linters', 'dreamchecker', 'unit_tests', 'extra_map_tests']
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     steps:
       - name: Report Success
         run: |

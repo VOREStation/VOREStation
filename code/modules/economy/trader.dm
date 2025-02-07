@@ -258,7 +258,7 @@
 		dir = dt.dir
 		log_admin("[src] has been placed at [loc], [x],[y],[z]")
 	else
-		log_and_message_admins("[src] tried to move itself but its target pick list was empty, so it was not moved. (<A href='byond://?_src_=holder;[HrefToken()];adminplayerobservecoodjump=1;X=[x];Y=[y];Z=[z]'>JMP</a>)")
+		log_and_message_admins("[src] tried to move itself but its target pick list was empty, so it was not moved. (<A href='byond://?_src_=holder;[HrefToken()];adminplayerobservecoodjump=1;X=[x];Y=[y];Z=[z]'>JMP</a>)", null)
 
 /obj/move_trader_landmark //You need to place the trader somewhere in the world and enable the 'move_trader' var. When the trader initializes, it will make a list of these landmarks and then move itself.
 	name = "trader mover"

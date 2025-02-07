@@ -1,5 +1,6 @@
-import { useBackend } from '../../backend';
-import { Window } from '../../layouts';
+import { useBackend } from 'tgui/backend';
+import { Window } from 'tgui/layouts';
+
 import { AirlockConsoleAdvanced } from './AirlockConsoleAdvanced';
 import { AirlockConsoleDocking } from './AirlockConsoleDocking';
 import { AirlockConsolePhoron } from './AirlockConsolePhoron';

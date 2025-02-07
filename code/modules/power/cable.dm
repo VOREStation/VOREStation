@@ -89,7 +89,7 @@ var/list/possible_cable_coil_colours = list(
 /obj/structure/cable/white
 	color = COLOR_WHITE
 
-/obj/structure/cable/Initialize()
+/obj/structure/cable/Initialize(mapload)
 	. = ..()
 
 	// ensure d1 & d2 reflect the icon_state for entering and exiting cable
@@ -158,6 +158,9 @@ var/list/possible_cable_coil_colours = list(
 	return 1
 
 /obj/structure/cable/update_icon()
+	 // We rely on the icon state for the wire Initialize(), prevent any updates to the icon before init passed
+	if(!(flags & ATOM_INITIALIZED))
+		return
 	icon_state = "[d1]-[d2]"
 	alpha = invisibility ? 127 : 255
 
@@ -208,7 +211,7 @@ var/list/possible_cable_coil_colours = list(
 					if(c.d1 == UP || c.d2 == UP)
 						qdel(c)
 
-		investigate_log("was cut by [key_name(usr, usr.client)] in [user.loc.loc]","wires")
+		investigate_log("was cut by [key_name(user, user.client)] in [user.loc.loc]","wires")
 
 		qdel(src)
 		return
@@ -245,7 +248,7 @@ var/list/possible_cable_coil_colours = list(
 		var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
 		s.set_up(5, 1, src)
 		s.start()
-		if(usr.stunned)
+		if(user.stunned)
 			return 1
 	return 0
 
@@ -601,8 +604,8 @@ var/list/possible_cable_coil_colours = list(
 
 /obj/item/stack/cable_coil/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/multitool))
-		var/selected_type = tgui_input_list(usr, "Pick new colour.", "Cable Colour", possible_cable_coil_colours)
-		set_cable_color(selected_type, usr)
+		var/selected_type = tgui_input_list(user, "Pick new colour.", "Cable Colour", possible_cable_coil_colours)
+		set_cable_color(selected_type, user)
 		return
 	return ..()
 
@@ -612,16 +615,16 @@ var/list/possible_cable_coil_colours = list(
 	var/mob/M = usr
 
 	if(ishuman(M) && !M.restrained() && !M.stat && !M.paralysis && ! M.stunned)
-		if(!istype(usr.loc,/turf)) return
+		if(!istype(M.loc,/turf)) return
 		if(src.amount <= 14)
-			to_chat(usr, span_warning("You need at least 15 lengths to make restraints!"))
+			to_chat(M, span_warning("You need at least 15 lengths to make restraints!"))
 			return
-		var/obj/item/handcuffs/cable/B = new /obj/item/handcuffs/cable(usr.loc)
+		var/obj/item/handcuffs/cable/B = new /obj/item/handcuffs/cable(M.loc)
 		B.color = color
-		to_chat(usr, span_notice("You wind some cable together to make some restraints."))
+		to_chat(M, span_notice("You wind some cable together to make some restraints."))
 		src.use(15)
 	else
-		to_chat(usr, span_notice("You cannot do that."))
+		to_chat(M, span_notice("You cannot do that."))
 
 /obj/item/stack/cable_coil/cyborg/verb/set_colour()
 	set name = "Change Colour"
@@ -981,7 +984,7 @@ var/list/possible_cable_coil_colours = list(
 
 /obj/item/stack/cable_coil/alien/attack_hand(mob/user as mob)
 	if (user.get_inactive_hand() == src)
-		var/N = tgui_input_number(usr, "How many units of wire do you want to take from [src]? You can only take up to [amount] at a time.", "Split stacks", 1, amount)
+		var/N = tgui_input_number(user, "How many units of wire do you want to take from [src]? You can only take up to [amount] at a time.", "Split stacks", 1, amount)
 		if(N && N <= amount)
 			var/obj/item/stack/cable_coil/CC = new/obj/item/stack/cable_coil(user.loc)
 			CC.amount = N
@@ -992,8 +995,8 @@ var/list/possible_cable_coil_colours = list(
 				src.add_fingerprint(user)
 				CC.add_fingerprint(user)
 				spawn(0)
-					if (src && usr.machine==src)
-						src.interact(usr)
+					if (src && user.machine==src)
+						src.interact(user)
 		else
 			return
 	else

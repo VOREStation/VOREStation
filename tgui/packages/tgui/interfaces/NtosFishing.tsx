@@ -1,5 +1,6 @@
-import { useBackend } from '../backend';
-import { NtosWindow } from '../layouts';
+import { useBackend } from 'tgui/backend';
+import { NtosWindow } from 'tgui/layouts';
+
 import { GameWindow as FishingGame } from './FishingMinigame';
 
 type Data = {

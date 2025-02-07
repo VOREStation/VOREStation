@@ -1,8 +1,7 @@
 /* eslint react/no-danger: "off" */
-import { BooleanLike } from 'common/react';
-
-import { resolveAsset } from '../assets';
-import { useBackend } from '../backend';
+import { resolveAsset } from 'tgui/assets';
+import { useBackend } from 'tgui/backend';
+import { NtosWindow } from 'tgui/layouts';
 import {
   Button,
   Image,
@@ -10,8 +9,8 @@ import {
   NoticeBox,
   ProgressBar,
   Section,
-} from '../components';
-import { NtosWindow } from '../layouts';
+} from 'tgui-core/components';
+import { BooleanLike } from 'tgui-core/react';
 
 type Data = {
   message: string;

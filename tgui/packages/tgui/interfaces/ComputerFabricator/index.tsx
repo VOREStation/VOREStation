@@ -1,6 +1,7 @@
-import { useBackend } from '../../backend';
-import { Button, Section } from '../../components';
-import { Window } from '../../layouts';
+import { useBackend } from 'tgui/backend';
+import { Window } from 'tgui/layouts';
+import { Button, Section } from 'tgui-core/components';
+
 import { CfStep1 } from './CfStep1';
 import { CfStep2 } from './CfStep2';
 import { CfStep3 } from './CfStep3';

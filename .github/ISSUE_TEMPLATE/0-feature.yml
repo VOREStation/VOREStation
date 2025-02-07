@@ -1,0 +1,29 @@
+name: "✨ New feature"
+description: Suggest an idea for this codebase
+title: "✨ <title>"
+type: 'feature'
+labels: ['Type: Feature/Suggestion']
+body:
+- type: textarea
+  attributes:
+    label: Brief description of the feature
+    description: "Please provide a clear and concise description of what the feature should be."
+  validations:
+    required: true
+
+- type: textarea
+  attributes:
+    label: What you want to happen
+    description: "Please use as much detail as possible when describing the feature behavior, including any context that might be relevant."
+  validations:
+    required: false
+
+- type: textarea
+  attributes:
+    label: Anything else you may wish to add
+    description: |
+      Location if it's a mapping issue, screenshots, sprites, etc.
+
+      Tip: You can attach images or log files by clicking this area to highlight it and then dragging files in.
+  validations:
+    required: false

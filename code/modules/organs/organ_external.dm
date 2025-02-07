@@ -94,6 +94,9 @@
 		parent.children -= src
 		parent = null
 
+	if(wounds)
+		QDEL_LIST(wounds)
+
 	if(children)
 		for(var/obj/item/organ/external/C in children)
 			children -= C
@@ -166,9 +169,9 @@
 		return //no eating the limb until everything's been removed
 	return ..()
 
-/obj/item/organ/external/examine()
+/obj/item/organ/external/examine(mob/user)
 	. = ..()
-	if(in_range(usr, src) || isobserver(usr))
+	if(in_range(user, src) || isobserver(user))
 		for(var/obj/item/I in contents)
 			if(istype(I, /obj/item/organ))
 				continue

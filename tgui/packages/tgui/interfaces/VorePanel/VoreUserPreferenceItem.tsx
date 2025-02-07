@@ -1,5 +1,6 @@
-import { useBackend } from '../../backend';
-import { Button } from '../../components';
+import { useBackend } from 'tgui/backend';
+import { Button } from 'tgui-core/components';
+
 import { preferenceData } from './types';
 
 export const VoreUserPreferenceItem = (props: {

@@ -22,7 +22,7 @@
 		else if(tamper_proof)
 			to_chat(user, span_warning("This [name] is proofed against tampering!"))
 		else
-			var/to_weight = input("What should the [name] be weighted towards? You can't undo this later, only change the number!","Set the desired result") as null|num
+			var/to_weight = tgui_input_number(user, "What should the [name] be weighted towards? You can't undo this later, only change the number!","Set the desired result", 1, 6, 1)
 			if(isnull(to_weight) || (to_weight < 1) || (to_weight > sides)) //You must input a number higher than 0 and no greater than the number of sides
 				return 0
 			else
@@ -34,7 +34,7 @@
 	..()
 	if(cheater)
 		if(!loaded)
-			var/to_weight = input("What should the [name] be weighted towards?","Set the desired result") as null|num
+			var/to_weight = tgui_input_number(user, "What should the [name] be weighted towards?","Set the desired result", 1, 6, 1)
 			if(isnull(to_weight) || (to_weight < 1) || (to_weight > sides) ) //You must input a number higher than 0 and no greater than the number of sides
 				return 0
 			else

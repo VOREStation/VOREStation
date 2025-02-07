@@ -41,7 +41,8 @@
 	setUniqueSpeciesSprite()
 	..(S, user)
 
-/obj/item/clothing/accessory/choker/dropped()
+/obj/item/clothing/accessory/choker/dropped(mob/user)
+	..()
 	icon_override = icon_previous_override
 
 /obj/item/clothing/accessory/collar
@@ -79,7 +80,8 @@
 	setUniqueSpeciesSprite()
 	..(S, user)
 
-/obj/item/clothing/accessory/collar/dropped()
+/obj/item/clothing/accessory/collar/dropped(mob/user)
+	..()
 	icon_override = icon_previous_override
 
 /obj/item/clothing/accessory/collar/silver
@@ -253,7 +255,6 @@
 	item_state = "collarplanet_earth"
 	overlay_state = "collarplanet_earth"
 
-
 /obj/item/clothing/accessory/collar/holo
 	name = "Holo-collar"
 	desc = "An expensive holo-collar for the modern day pet."
@@ -383,6 +384,8 @@
 			M = loc.loc // This is about as terse as I can make my solution to the whole 'collar won't work when attached as accessory' thing.
 		var/mob/living/carbon/human/H = M
 		var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
+		if(!H)
+			return
 		if(!H.resizable)
 			H.visible_message(span_warning("The space around [H] compresses for a moment but then nothing happens."),span_notice("The space around you distorts but nothing happens to you."))
 			return
@@ -481,6 +484,8 @@
 			M = loc.loc // This is about as terse as I can make my solution to the whole 'collar won't work when attached as accessory' thing.
 		var/mob/living/carbon/human/H = M
 		var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
+		if(!H)
+			return
 		if(!H.resizable)
 			H.visible_message(span_warning("The space around [H] compresses for a moment but then nothing happens."),span_notice("The space around you distorts but nothing happens to you."))
 			return
@@ -553,6 +558,8 @@
 			M = loc.loc // This is about as terse as I can make my solution to the whole 'collar won't work when attached as accessory' thing.
 		var/mob/living/carbon/human/H = M
 		var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
+		if(!H)
+			return
 		if(!H.resizable)
 			H.visible_message(span_warning("The space around [H] compresses for a moment but then nothing happens."),span_notice("The space around you distorts but nothing happens to you."))
 			return

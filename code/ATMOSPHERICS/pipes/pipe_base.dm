@@ -71,34 +71,37 @@
 	return 1
 
 /obj/machinery/atmospherics/pipe/return_air()
-	if(!parent)
+	if(!QDELETED(src) || !parent)
 		parent = new /datum/pipeline()
 		parent.build_pipeline(src)
 
 	return parent.air
 
 /obj/machinery/atmospherics/pipe/build_network()
-	if(!parent)
+	if(!QDELETED(src) || !parent)
 		parent = new /datum/pipeline()
 		parent.build_pipeline(src)
 
 	return parent.return_network()
 
 /obj/machinery/atmospherics/pipe/network_expand(datum/pipe_network/new_network, obj/machinery/atmospherics/pipe/reference)
-	if(!parent)
+	if(!QDELETED(src) || !parent)
 		parent = new /datum/pipeline()
 		parent.build_pipeline(src)
 
 	return parent.network_expand(new_network, reference)
 
 /obj/machinery/atmospherics/pipe/return_network(obj/machinery/atmospherics/reference)
-	if(!parent)
+	if(!QDELETED(src) || !parent)
 		parent = new /datum/pipeline()
 		parent.build_pipeline(src)
 
 	return parent.return_network(reference)
 
 /obj/machinery/atmospherics/pipe/Destroy()
+	if(parent)
+		parent.members -= src
+		parent.edges -= src
 	QDEL_NULL(parent)
 	if(air_temporary)
 		loc.assume_air(air_temporary)

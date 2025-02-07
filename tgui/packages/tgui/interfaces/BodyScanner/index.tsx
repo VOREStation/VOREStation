@@ -1,5 +1,6 @@
-import { useBackend } from '../../backend';
-import { Window } from '../../layouts';
+import { useBackend } from 'tgui/backend';
+import { Window } from 'tgui/layouts';
+
 import { BodyScannerEmpty } from './BodyScannerEmpty';
 import { BodyScannerMain } from './BodyScannerMain';
 import { Data, occupant } from './types';

@@ -1,5 +1,6 @@
-import { useBackend } from '../../backend';
-import { Button, LabeledList, Section } from '../../components';
+import { useBackend } from 'tgui/backend';
+import { Button, LabeledList, Section } from 'tgui-core/components';
+
 import { Data } from './types';
 
 export const SupplyConsoleMenuHistoryExport = (props) => {

@@ -21,7 +21,7 @@ var/inactive_keys = "None<br>"
 	else
 		dat += "<a href='byond://?src=\ref[src];_src_=holder;[HrefToken()];populate_inactive_customitems=1'>Populate list (requires an active database connection)</a><br>"
 
-	usr << browse(dat, "window=inactive_customitems;size=600x480")
+	usr << browse("<html>[dat]</html>", "window=inactive_customitems;size=600x480")
 
 /proc/populate_inactive_customitems_list(var/client/C)
 	set background = 1
@@ -30,7 +30,7 @@ var/inactive_keys = "None<br>"
 		return
 
 	establish_db_connection()
-	if(!dbcon.IsConnected())
+	if(!SSdbcore.IsConnected())
 		return
 
 	//grab all ckeys associated with custom items
@@ -55,7 +55,7 @@ var/inactive_keys = "None<br>"
 	//run a query to get all ckeys inactive for over 2 months
 	var/list/inactive_ckeys = list()
 	if(ckeys_with_customitems.len)
-		var/DBQuery/query_inactive = dbcon.NewQuery("SELECT ckey, lastseen FROM erro_player WHERE datediff(Now(), lastseen) > 60")
+		var/datum/db_query/query_inactive = SSdbcore.NewQuery("SELECT ckey, lastseen FROM erro_player WHERE datediff(Now(), lastseen) > 60")
 		query_inactive.Execute()
 		while(query_inactive.NextRow())
 			var/cur_ckey = query_inactive.item[1]
@@ -63,14 +63,16 @@ var/inactive_keys = "None<br>"
 			if(ckeys_with_customitems.Find(cur_ckey))
 				ckeys_with_customitems.Remove(cur_ckey)
 				inactive_ckeys[cur_ckey] = "last seen on [query_inactive.item[2]]"
+		qdel(query_inactive)
 
 	//if there are ckeys left over, check whether they have a database entry at all
 	if(ckeys_with_customitems.len)
 		for(var/cur_ckey in ckeys_with_customitems)
-			var/DBQuery/query_inactive = dbcon.NewQuery("SELECT ckey FROM erro_player WHERE ckey = '[cur_ckey]'")
+			var/datum/db_query/query_inactive = SSdbcore.NewQuery("SELECT ckey FROM erro_player WHERE ckey = '[cur_ckey]'")
 			query_inactive.Execute()
-			if(!query_inactive.RowCount())
+			if(!length(query_inactive.rows))
 				inactive_ckeys += cur_ckey
+			qdel(query_inactive)
 
 	if(inactive_ckeys.len)
 		inactive_keys = ""

@@ -15,7 +15,8 @@
 	icon = 'icons/goonstation/objects/syringe_vr.dmi'
 	item_state = "syringe_0"
 	icon_state = "0"
-	center_of_mass = list("x" = 16,"y" = 14)
+	center_of_mass_x = 16
+	center_of_mass_y = 14
 	matter = list(MAT_GLASS = 150)
 	amount_per_transfer_from_this = 5
 	possible_transfer_amounts = null
@@ -414,7 +415,7 @@
 		infect_chance = 0
 	infect_chance += (targets.len-1)*10    //Extra 10% per extra target
 	if(prob(infect_chance))
-		log_and_message_admins("[loc] infected [target]'s [eo.name] with \the [src].")
+		log_and_message_admins("[loc] infected [target]'s [eo.name] with \the [src].", usr)
 		infect_limb(eo)
 
 	//75% chance to spread a virus if we have one

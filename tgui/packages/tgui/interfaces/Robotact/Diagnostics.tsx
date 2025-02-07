@@ -1,4 +1,3 @@
-import { toTitleCase } from 'common/string';
 import { useBackend } from 'tgui/backend';
 import {
   Box,
@@ -10,6 +9,7 @@ import {
   Section,
   Stack,
 } from 'tgui-core/components';
+import { toTitleCase } from 'tgui-core/string';
 
 import { Data } from './types';
 

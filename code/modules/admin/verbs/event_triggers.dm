@@ -88,7 +88,7 @@ Eventkit verb to be used to spawn the obj/effect/landmarks defined under code\ga
 							for(var/obj/effect/landmark/event_trigger/ET in others_list)
 								ET.delete_me = TRUE
 								qdel(ET)
-							log_and_message_admins("[src.ckey] deleted all of [other_ckey]'s event triggers while [other_ckey] was active")
+							log_and_message_admins("[src.ckey] deleted all of [other_ckey]'s event triggers while [other_ckey] was active", src)
 							return
 				var/confirm = tgui_alert(src, "ARE YOU SURE? THERE IS NO GOING BACK", "CONFIRM", list("Go Back", "Delete all my event triggers"), autofocus = FALSE)
 				if(!confirm || confirm == "Go Back")
@@ -96,7 +96,7 @@ Eventkit verb to be used to spawn the obj/effect/landmarks defined under code\ga
 				for(var/obj/effect/landmark/event_trigger/ET in others_list)
 					ET.delete_me = TRUE
 					qdel(ET)
-				log_and_message_admins("[src.ckey] deleted all of [other_ckey]'s event triggers. [other_ckey] was either inactive or disconnected at this time.")
+				log_and_message_admins("[src.ckey] deleted all of [other_ckey]'s event triggers. [other_ckey] was either inactive or disconnected at this time.", src)
 			else if(istype(choice, /obj/effect/landmark/event_trigger))
 				var/obj/effect/landmark/event_trigger/ET = choice
 				var/decision = tgui_alert(src, "Teleport to Landmark or Delete it?", "Manage [ET]", list("Teleport", "Delete"), autofocus = FALSE)
@@ -118,11 +118,11 @@ Eventkit verb to be used to spawn the obj/effect/landmarks defined under code\ga
 								Only proceed if you are absolutely certain.", "Force Delete", list("Confirm", "Cancel")) == "Confirm")
 								ET.delete_me = TRUE
 								qdel(ET)
-								log_and_message_admins("[src.ckey] tried to delete event trigger [ET.name] while [other_ckey] is active.")
+								log_and_message_admins("[src.ckey] tried to delete event trigger [ET.name] while [other_ckey] is active.", src)
 								return
 					var/confirm = tgui_alert(src, "ARE YOU SURE? THERE IS NO GOING BACK FROM DELETING [ET.name]", "CONFIRM", list("Go Back", "Delete it!"), autofocus = FALSE)
 					if(!confirm || confirm == "Go Back")
 						return
 					ET.delete_me = TRUE
 					qdel(ET)
-					log_and_message_admins("[src.ckey] tried to deleted event trigger [ET.name], [other_ckey] is either disconnected or inactive.")
+					log_and_message_admins("[src.ckey] tried to deleted event trigger [ET.name], [other_ckey] is either disconnected or inactive.", src)

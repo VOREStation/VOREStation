@@ -40,7 +40,7 @@
 
 /datum/dna2/record/proc/copy()
 	var/datum/dna2/record/newrecord = new /datum/dna2/record
-	newrecord.dna = dna.Clone()
+	qdel_swap(newrecord.dna, dna.Clone())
 	newrecord.types = types
 	newrecord.name = name
 	newrecord.mind = mind

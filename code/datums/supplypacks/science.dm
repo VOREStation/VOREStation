@@ -79,7 +79,8 @@
 				/obj/item/clothing/glasses/meson,
 				/obj/item/pickaxe,
 				/obj/item/storage/bag/fossils,
-				/obj/item/hand_labeler)
+				/obj/item/hand_labeler,
+				/obj/item/tool/wrench)
 	cost = 100
 	containertype = /obj/structure/closet/crate/secure/xion
 	containername = "Xenoarchaeology Tech crate"

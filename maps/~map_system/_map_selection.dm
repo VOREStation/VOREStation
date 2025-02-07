@@ -1,4 +1,4 @@
-#ifndef CITESTING
+#if !defined(CITESTING) && !defined(SPACEMAN_DMM)
 
 /*********************/
 /* MAP SELECTION     */
@@ -10,7 +10,7 @@
 //#define USE_MAP_GROUNDBASE
 
 // Debug
-// #define USE_MAP_MINITEST
+//#define USE_MAP_MINITEST
 
 /*********************/
 /* End Map Selection */
