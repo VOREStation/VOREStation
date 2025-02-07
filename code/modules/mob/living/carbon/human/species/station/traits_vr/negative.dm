@@ -194,3 +194,9 @@
 	var_changes = list("bad_swimmer" = 1, "water_movement" = 4, "swim_mult" = 1.25)
 	varchange_type = TRAIT_VARCHANGE_LESS_BETTER
 	excludes = list(/datum/trait/positive/good_swimmer)
+
+/datum/trait/negative/slipperydirt
+	name = "Dirt Vulnerability"
+	desc = "Even the tiniest particles of dirt give you uneasy footing, even through several layers of footwear."
+	cost = -5
+	var_changes = list("dirtslip" = TRUE)
