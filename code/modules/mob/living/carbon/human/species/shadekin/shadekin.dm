@@ -112,6 +112,8 @@
 	var/kin_type
 	var/energy_light = 0.25
 	var/energy_dark = 0.75
+	var/phase_gentle = TRUE
+	var/doing_phase = FALSE
 
 /datum/species/shadekin/New()
 	..()
