@@ -14,7 +14,7 @@
 /obj/item/anobattery/examine(mob/user)
 	. = ..()
 	if(Adjacent(user))
-		. += "It  currently has a charge of [stored_charge] out of [capacity]"
+		. += "It currently has a charge of [stored_charge] out of [capacity]"
 /obj/item/anobattery/Destroy()
 	battery_effect = null
 	..()
