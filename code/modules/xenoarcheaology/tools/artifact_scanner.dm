@@ -14,3 +14,8 @@
 		return
 	if(default_part_replacement(user, I))
 		return
+
+/obj/machinery/artifact_scanpad/Initialize()
+	. = ..()
+	default_apply_parts()
+	update_icon()
