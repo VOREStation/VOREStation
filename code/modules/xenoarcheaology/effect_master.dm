@@ -306,12 +306,13 @@ var/list/toxic_reagents = list(TOXIN_PATH)
 
 	var/triggered = FALSE
 
-	for(var/datum/artifact_effect/my_effect in my_effects)
-		if (my_effect.trigger == TRIGGER_TOUCH)
-			triggered = TRUE
-			my_effect.ToggleActivate()
-			if(my_effect.activated && my_effect.effect == EFFECT_TOUCH)
-				my_effect.DoEffectTouch(user)
+	if(ishuman(user) && !istype(user:gloves,/obj/item/clothing/gloves))
+		for(var/datum/artifact_effect/my_effect in my_effects)
+			if(my_effect.trigger == TRIGGER_TOUCH)
+				triggered = TRUE
+				my_effect.ToggleActivate()
+				if(my_effect.activated && my_effect.effect == EFFECT_TOUCH)
+					my_effect.DoEffectTouch(user)
 
 	if(triggered)
 		to_chat(user, span_filter_notice(span_bold("You touch [holder].")))
