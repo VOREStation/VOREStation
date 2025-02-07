@@ -415,7 +415,7 @@ Drinks Data
 	glass_center_of_mass_x = 15
 	glass_center_of_mass_y = 8
 
-/datum/reagent/ethanol/changelingsting
+/datum/reagent/ethanol/changeling_sting
 	glass_icon_state = "changelingsting"
 
 /datum/reagent/ethanol/martini
