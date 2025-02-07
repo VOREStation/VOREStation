@@ -494,7 +494,7 @@
 
 	var/action = 0
 	action = to_use.OnTopic(list2params(href_list), href_list, user)
-	if((action & TOPIC_UPDATE_PREVIEW || action & TOPIC_REFRESH_UPDATE_PREVIEW || action & TOPIC_HANDLED || action & TOPIC_REFRESH) && mannequin && active_br) // Handled and Refreshes also count for check!
+	if((action & TOPIC_UPDATE_PREVIEW || action & TOPIC_REFRESH_UPDATE_PREVIEW || action & TOPIC_HANDLED || action & TOPIC_REFRESH) && mannequin && active_br) // Outpost 21 edit - Handled and Refreshes also count for check!
 		switch(params["target_href"])
 			if("rename")
 				active_br.mydna.name = P.real_name
