@@ -16,7 +16,7 @@
 	var/voice_freq = 0
 	var/voice_sound = "beep-boop"
 	var/custom_speech_bubble = "default"
-	var/custom_footstep = FOOTSTEP_MOB_HUMAN
+	var/custom_footstep = "Default"
 
 // Definition of the stuff for Sizing
 /datum/category_item/player_setup_item/vore/size
@@ -86,7 +86,7 @@
 	. += span_bold("Voice Sounds:") + " <a href='byond://?src=\ref[src];voice_sounds_list=1'>[pref.voice_sound]</a><br>"
 	. += "<a href='byond://?src=\ref[src];voice_test=1'><b>Test Selected Voice</b></a><br>"
 	. += span_bold("Custom Speech Bubble:") + " <a href='byond://?src=\ref[src];customize_speech_bubble=1'>[pref.custom_speech_bubble]</a><br>"
-	. += "<b>Custom Footstep Sounds:</b><a href='?src=\ref[src];customize_footsteps=1'>[pref.custom_footstep]</a><br>"
+	. += span_bold("Custom Footstep Sounds:") + "<a href='byond://?src=\ref[src];customize_footsteps=1'>[pref.custom_footstep]</a><br>"
 	. += "<br>"
 	. += span_bold("Relative Weight:") + " <a href='byond://?src=\ref[src];weight=1'>[pref.weight_vr]</a><br>"
 	. += span_bold("Weight Gain Rate:") + " <a href='byond://?src=\ref[src];weight_gain=1'>[pref.weight_gain]</a><br>"

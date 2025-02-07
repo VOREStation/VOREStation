@@ -26,7 +26,7 @@
 #define FOOTSTEP_MOB_BAREFOOT "footstep_barefoot"
 #define FOOTSTEP_MOB_HEAVY "footstep_heavy"
 #define FOOTSTEP_MOB_SHOE "footstep_shoe"
-#define FOOTSTEP_MOB_HUMAN "footstep_human" //Warning: Only works on /mob/living/carbon/human
+#define FOOTSTEP_MOB_HUMAN "footstep_human"
 #define FOOTSTEP_MOB_SLIME "footstep_slime"
 #define FOOTSTEP_MOB_SLITHER "foostep_slither"
 #define FOOTSTEP_OBJ_MACHINE "footstep_machine"
