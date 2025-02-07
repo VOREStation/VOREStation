@@ -183,7 +183,7 @@
 		if(TRIGGER_TOUCH) //This one should be self explanatory.
 			. += "Activation index involves " + span_bold("physical interaction") + " with artifact surface."
 		if(TRIGGER_WATER, TRIGGER_ACID, TRIGGER_VOLATILE, TRIGGER_TOXIN) //No xenoarch would know how to activate these without code digging.
-			. += " Activation index involves " + span_bold("chemical interaction with artifact surface.") + " Water/Hydrogen, sulfuric acid, Thermite/Phoron, and toxin/toxic substances are potential triggers."
+			. += " Activation index involves " + span_bold("chemical interaction with artifact surface.") + " Water/Hydrogen, sulfuric acid, Thermite/Phoron, and toxin/toxic substances (such as lead, phoron, fertilizers, among others) are potential triggers."
 
 		if(TRIGGER_FORCE, TRIGGER_ENERGY) //Did you know multitools can activate energy artifacts?
 			. += " Activation index involves " + span_bold("forceful or energetic interaction with artifact surface.") + " Potential triggers are a pulse from a multitool or battering the artifact with a strong object."
