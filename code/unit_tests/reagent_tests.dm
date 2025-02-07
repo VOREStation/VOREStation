@@ -3,7 +3,7 @@
 
 /datum/unit_test/reagent_shall_have_unique_name_and_id/start_test()
 	var/failed = FALSE
-	//var/collection_name = list()
+	var/collection_name = list()
 	var/collection_id = list()
 
 	for(var/Rpath in subtypesof(/datum/reagent))
@@ -24,12 +24,9 @@
 			log_unit_test("[Rpath]: Reagents - reagent ID blank.")
 			failed = TRUE
 
-		/* Optional, makes names exclusive, this breaks the poisoned beer2
 		if(collection_name[R.name])
-			log_unit_test("[Rpath]: Reagents - reagent name \"[R.name]\" is not unique, used first in [collection_name[R.name]].")
-			failed = TRUE
+			log_unit_test("[Rpath]: Reagents - WARNING - reagent name \"[R.name]\" is not unique, used first in [collection_name[R.name]]. Is this intentional?")
 		collection_name[R.name] = R.type
-		*/
 
 		if(collection_id[R.id])
 			log_unit_test("[Rpath]: Reagents - reagent ID \"[R.id]\" is not unique, used first in [collection_id[R.id]].")
@@ -57,9 +54,7 @@
 	var/failed = FALSE
 	var/list/collection_id = list()
 
-	for(var/R in subtypesof(/decl/chemical_reaction))
-		var/decl/chemical_reaction/CR = new R()
-
+	for(var/decl/chemical_reaction/CR in subtypesof(/decl/chemical_reaction))
 		if(CR.name == REAGENT_DEVELOPER_WARNING) // Ignore these types as they are meant to be overridden
 			continue
 
@@ -103,8 +98,6 @@
 			if(!SSchemistry.chemical_reagents[CR.result])
 				log_unit_test("[CR.type]: Reagents - chemical reaction had invalid result reagent ID \"[CR.result]\".")
 				failed = TRUE
-
-		qdel(CR)
 
 	if(failed)
 		fail("One or more /decl/chemical_reaction subtypes had invalid results or components.")
