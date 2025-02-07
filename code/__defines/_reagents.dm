@@ -1,11 +1,17 @@
-// Gasses
+// Dev
+#define REAGENT_ID_DEVELOPER_WARNING "reagent"
+#define REAGENT_DEVELOPER_WARNING "Reagent"
+#define REAGENT_DESC_DEVELOPER_WARNING "A non-descript chemical."
 
+
+// Gasses
 #define GAS_CO2 "carbon_dioxide"
 #define GAS_N2 "nitrogen"
 #define GAS_N2O "nitrous_oxide"
 #define GAS_O2 "oxygen"
 #define GAS_PHORON "phoron"
 #define GAS_VOLATILE_FUEL "volatile_fuel"
+
 
 // Gas Reagents
 #define REAGENT_CARBON_DIOXIDE "Carbon Dioxide"
