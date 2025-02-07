@@ -269,7 +269,7 @@ var/list/toxic_reagents = list(TOXIN_PATH)
 		else if(ishuman(bumped) && GetAnomalySusceptibility(bumped) >= 0.5)
 			if (my_effect.trigger == TRIGGER_TOUCH)
 				my_effect.ToggleActivate()
-				if(my_effect.activated)
+				if(my_effect.activated && my_effect.effect == EFFECT_TOUCH)
 					my_effect.DoEffectTouch(bumped)
 				warn = 1
 
@@ -288,7 +288,7 @@ var/list/toxic_reagents = list(TOXIN_PATH)
 		else if(ishuman(M) && !istype(M:gloves,/obj/item/clothing/gloves))
 			if (my_effect.trigger == TRIGGER_TOUCH)
 				my_effect.ToggleActivate(M)
-				if(my_effect.activated)
+				if(my_effect.activated && my_effect.effect == EFFECT_TOUCH)
 					my_effect.DoEffectTouch(M)
 				warn = 1
 
@@ -310,7 +310,7 @@ var/list/toxic_reagents = list(TOXIN_PATH)
 		if (my_effect.trigger == TRIGGER_TOUCH)
 			triggered = TRUE
 			my_effect.ToggleActivate()
-			if(my_effect.activated)
+			if(my_effect.activated && my_effect.effect == EFFECT_TOUCH)
 				my_effect.DoEffectTouch(user)
 
 	if(triggered)
