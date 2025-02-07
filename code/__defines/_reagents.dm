@@ -902,7 +902,7 @@
 #define REAGENT_ID_NUCLEARWASTE "nuclearwaste"
 #define REAGENT_SODAOIL "Soda Oil"
 #define REAGENT_ID_SODAOIL "sodaoil"
-#define REAGENT_VIRGINMOJITO "Mojito"
+#define REAGENT_VIRGINMOJITO "Virgin Mojito"
 #define REAGENT_ID_VIRGINMOJITO "virginmojito"
 #define REAGENT_VIRGINSEXONTHEBEACH "Virgin Sex On The Beach"
 #define REAGENT_ID_VIRGINSEXONTHEBEACH "virginsexonthebeach"

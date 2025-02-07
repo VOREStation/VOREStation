@@ -1217,7 +1217,7 @@
 	required_reagents = list(REAGENT_ID_RUM = 3, REAGENT_ID_LIMEJUICE = 1, REAGENT_ID_MINT = 1)
 	result_amount = 5
 
-/decl/chemical_reaction/instant/drinks/virginmojito
+/decl/chemical_reaction/instant/drinks/virgin_mojito
 	name = REAGENT_VIRGINMOJITO
 	id = REAGENT_ID_VIRGINMOJITO
 	result = REAGENT_ID_VIRGINMOJITO

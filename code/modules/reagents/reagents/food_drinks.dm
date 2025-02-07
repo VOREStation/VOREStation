@@ -2691,7 +2691,7 @@
 				if(D.water_based)
 					M.adjustToxLoss(removed * -2)
 
-/datum/reagent/drink/mojito
+/datum/reagent/drink/virgin_mojito
 	name = REAGENT_VIRGINMOJITO
 	id = REAGENT_ID_VIRGINMOJITO
 	description = "Mint, bubbly water, and citrus, made for sailing."
