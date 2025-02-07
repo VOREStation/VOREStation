@@ -204,7 +204,7 @@
 /datum/reagent/ethanol/booger
 	price_tag = 4
 
-/datum/reagent/ethanol/brave_bull
+/datum/reagent/ethanol/coffee/brave_bull
 	price_tag = 4
 
 /datum/reagent/ethanol/changeling_sting
@@ -465,7 +465,7 @@
 /obj/item/reagent_containers/food/drinks/bottle/rum
 	price_tag = 15
 
-/obj/item/reagent_containers/food/drinks/bottle/tequila$
+/obj/item/reagent_containers/food/drinks/bottle/tequila
 	price_tag = 15
 
 /obj/item/reagent_containers/food/drinks/bottle/vodka

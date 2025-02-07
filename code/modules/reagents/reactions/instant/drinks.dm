@@ -603,7 +603,7 @@
 	required_reagents = list(REAGENT_ID_IRON = 1, REAGENT_ID_REDWINE = 5, REAGENT_ID_VODKA = 5)
 	result_amount = 10
 
-/decl/chemical_reaction/instant/drinks/changelingsting
+/decl/chemical_reaction/instant/drinks/changeling_sting
 	name = REAGENT_CHANGELINGSTING
 	id = REAGENT_ID_CHANGELINGSTING
 	result = REAGENT_ID_CHANGELINGSTING

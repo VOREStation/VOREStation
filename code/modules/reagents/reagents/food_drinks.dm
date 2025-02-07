@@ -3626,7 +3626,7 @@
 	glass_name = REAGENT_BRAVEBULL
 	glass_desc = "Tequilla and coffee liquor, brought together in a mouthwatering mixture. Drink up."
 
-/datum/reagent/ethanol/changelingsting
+/datum/reagent/ethanol/changeling_sting
 	name = REAGENT_CHANGELINGSTING
 	id = REAGENT_ID_CHANGELINGSTING
 	description = "You take a tiny sip and feel a burning sensation..."
