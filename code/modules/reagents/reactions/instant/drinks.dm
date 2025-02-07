@@ -1,3 +1,6 @@
+/decl/chemical_reaction/instant/drinks
+	name = REAGENT_DEVELOPER_WARNING // Unit test ignore
+
 /decl/chemical_reaction/instant/drinks/coffee
 	name = REAGENT_COFFEE
 	id = REAGENT_ID_COFFEE

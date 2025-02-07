@@ -3356,6 +3356,9 @@
 				else
 					L.take_damage(100, 0)
 
+/datum/reagent/ethanol/wine
+	name = REAGENT_DEVELOPER_WARNING // Unit test ignore
+
 /datum/reagent/ethanol/wine/champagne
 	name = REAGENT_CHAMPAGNE
 	id = REAGENT_ID_CHAMPAGNE

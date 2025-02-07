@@ -7,13 +7,6 @@
 
 	// These are base types, there is no way to tell that they are illegal to check/use
 	var/list/assess_reagents = subtypesof(/datum/reagent)
-	// TODO - Make these excluded
-	assess_reagents -= /datum/reagent/drink
-	assess_reagents -= /datum/reagent/medicine
-	assess_reagents -= /datum/reagent/boron
-	assess_reagents -= /datum/reagent/ethanol
-	assess_reagents -= /datum/reagent/ethanol/wine
-
 	failed = check_reagent_datums(assess_reagents)
 
 	if(failed)
@@ -72,6 +65,9 @@
 		if(!CR)
 			log_unit_test("[CR.type]: Reagents - chemical reaction was null.")
 			failed = TRUE
+			continue
+
+		if(CR.name == REAGENT_DEVELOPER_WARNING) // Ignore these types as they are meant to be overridden
 			continue
 
 		if(!CR.name)
