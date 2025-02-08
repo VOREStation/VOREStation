@@ -25,8 +25,8 @@ var/global/list/default_medbay_channels = list(
 //VOREStation Edit End
 
 /obj/item/radio
-	icon = 'icons/obj/radio_vr.dmi' //VOREStation Edit
-	name = "shortwave radio" //VOREStation Edit
+	icon = 'icons/obj/radio_vr.dmi'
+	name = "shortwave radio"
 	desc = "Used to talk to people when headsets don't function. Range is limited."
 	suffix = "\[3\]"
 	icon_state = "walkietalkie"
@@ -40,19 +40,19 @@ var/global/list/default_medbay_channels = list(
 	var/loudspeaker = TRUE // Allows borgs to disable canhear_range.
 	var/datum/wires/radio/wires = null
 	var/b_stat = 0
-	var/broadcasting = 0
-	var/listening = 1
+	var/broadcasting = FALSE
+	var/listening = TRUE
 	var/list/channels = list() //see communications.dm for full list. First channel is a "default" for :h
-	var/subspace_transmission = 0
+	var/subspace_transmission = FALSE
 	var/subspace_switchable = FALSE
 	var/adhoc_fallback = FALSE //Falls back to 'radio' mode if subspace not available
-	var/syndie = 0//Holder to see if it's a syndicate encrypted radio
-	var/centComm = 0//Holder to see if it's a CentCom encrypted radio
+	var/syndie = FALSE//Holder to see if it's a syndicate encrypted radio
+	var/centComm = FALSE//Holder to see if it's a CentCom encrypted radio
 	slot_flags = SLOT_BELT
 	throw_speed = 2
 	throw_range = 9
 	w_class = ITEMSIZE_SMALL
-	show_messages = 1
+	show_messages = TRUE
 
 	// Bluespace radios talk directly to telecomms equipment
 	var/bluespace_radio = FALSE
@@ -72,23 +72,6 @@ var/global/list/default_medbay_channels = list(
 	radio_controller.remove_object(src, frequency)
 	frequency = new_frequency
 	radio_connection = radio_controller.add_object(src, frequency, RADIO_CHAT)
-
-/obj/item/radio/New()
-	..()
-	wires = new(src)
-	internal_channels = default_internal_channels.Copy()
-	listening_objects += src
-
-/obj/item/radio/Destroy()
-	qdel(wires)
-	wires = null
-	listening_objects -= src
-	if(radio_controller)
-		radio_controller.remove_object(src, frequency)
-		for (var/ch_name in channels)
-			radio_controller.remove_object(src, radiochannels[ch_name])
-	return ..()
-
 
 /obj/item/radio/Initialize()
 	. = ..()
@@ -134,6 +117,21 @@ var/global/list/default_medbay_channels = list(
 						break
 			if(!found)
 				testing("A radio [src] at [x],[y],[z] specified bluespace prelink IDs, but the machines with corresponding IDs ([bs_tx_preload_id], [bs_rx_preload_id]) couldn't be found.")
+
+	wires = new(src)
+	internal_channels = default_internal_channels.Copy()
+	listening_objects += src
+	return INITIALIZE_HINT_LATELOAD
+
+/obj/item/radio/Destroy()
+	qdel(wires)
+	wires = null
+	listening_objects -= src
+	if(radio_controller)
+		radio_controller.remove_object(src, frequency)
+		for (var/ch_name in channels)
+			radio_controller.remove_object(src, radiochannels[ch_name])
+	return ..()
 
 /obj/item/radio/proc/recalculateChannels()
 	return
@@ -726,16 +724,20 @@ GLOBAL_DATUM(autospeaker, /mob/living/silicon/ai/announcer)
 		if(keyslot.syndie)
 			src.syndie = 1
 
-	for (var/ch_name in src.channels)
-		if(!radio_controller)
-			sleep(30) // Waiting for the radio_controller to be created.
-		if(!radio_controller)
-			src.name = "broken radio"
-			return
-
-		secure_radio_connections[ch_name] = radio_controller.add_object(src, radiochannels[ch_name],  RADIO_CHAT)
-
+	controller_check(TRUE)
 	return
+
+/obj/item/radio/borg/proc/controller_check(var/initial_run = FALSE)
+	PRIVATE_PROC(TRUE)
+	SHOULD_NOT_OVERRIDE(TRUE)
+	if(!radio_controller && initial_run)
+		addtimer(CALLBACK(src,PROC_REF(controller_check), FALSE),3 SECONDS)
+		return
+	if(!radio_controller && !initial_run)
+		name = "broken radio headset"
+		return
+	for (var/ch_name in channels)
+		secure_radio_connections[ch_name] = radio_controller.add_object(src, radiochannels[ch_name],  RADIO_CHAT)
 
 /obj/item/radio/proc/config(op)
 	if(radio_controller)
@@ -762,6 +764,6 @@ GLOBAL_DATUM(autospeaker, /mob/living/silicon/ai/announcer)
 /obj/item/radio/phone/medbay
 	frequency = MED_I_FREQ
 
-/obj/item/radio/phone/medbay/New()
-	..()
+/obj/item/radio/phone/medbay/Initialize()
+	. = ..()
 	internal_channels = default_medbay_channels.Copy()

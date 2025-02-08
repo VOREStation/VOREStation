@@ -25,7 +25,8 @@
 	icon = 'icons/obj/boxes.dmi'
 	icon_state = "box"
 	item_state = "syringe_kit"
-	center_of_mass = list("x" = 13,"y" = 10)
+	center_of_mass_x = 13
+	center_of_mass_y = 10
 	var/foldable = /obj/item/stack/material/cardboard	// BubbleWrap - if set, can be folded (when empty) into a sheet of cardboard
 	var/trash = null  // if set, can be crushed into a trash item when empty
 	max_w_class = ITEMSIZE_SMALL

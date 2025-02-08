@@ -84,7 +84,7 @@
 
 	parent_organ = BP_GROIN
 
-	target_parent_classes = list(ORGAN_FLESH, ORGAN_ASSISTED)
+	target_parent_classes = list(ORGAN_FLESH, ORGAN_ROBOT)
 
 	aug_cooldown = 2 MINUTES
 

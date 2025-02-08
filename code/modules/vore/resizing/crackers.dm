@@ -128,7 +128,7 @@
 	var/style = pick(styles)
 	icon_state = style
 	item_state = style
-	..()
+	. = ..()
 
 /obj/item/cracker/shrinking
 	name = "shrinking bluespace cracker"

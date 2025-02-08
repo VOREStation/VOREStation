@@ -1,4 +1,12 @@
 /// <summary>
+/// This is how much artifacts take to activate.
+/// </summary>
+#define ARTIFACT_GAS_TRIGGER 200	//In MOL
+#define ARTIFACT_HEAT_TRIGGER 375	//In Kelvin
+#define ARTIFACT_COLD_TRIGGER 225	//In Kelvin
+#define ARTIFACT_HEAT_BREAK 2500	//In Kelvin
+
+/// <summary>
 /// These are the defines for the SMALL (can hold in hand) artifacts.
 /// </summary>
 #define ARCHAEO_BOWL 1
