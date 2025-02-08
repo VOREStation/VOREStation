@@ -1593,6 +1593,7 @@
 
 /datum/sprite_accessory/hair/una/spines_short
 	name = "Short Unathi Spines"
+	icon_state = "soghun_shortspines"
 
 /datum/sprite_accessory/hair/una/frills_long
 	name = "Long Unathi Frills"
