@@ -13,12 +13,6 @@
 	var/base_desc = "The naked hull."
 	var/base_icon = 'icons/turf/flooring/plating_vr.dmi'
 	var/base_icon_state = "plating"
-	var/static/list/base_footstep_sounds = list("human" = list(
-		'sound/effects/footstep/plating1.ogg',
-		'sound/effects/footstep/plating2.ogg',
-		'sound/effects/footstep/plating3.ogg',
-		'sound/effects/footstep/plating4.ogg',
-		'sound/effects/footstep/plating5.ogg'))
 
 	var/list/old_decals = null
 
@@ -42,8 +36,6 @@
 	if(floortype)
 		set_flooring(get_flooring_data(floortype), TRUE)
 		. = INITIALIZE_HINT_LATELOAD // We'll update our icons after everyone is ready
-	else
-		footstep_sounds = base_footstep_sounds
 	if(can_dirty && can_start_dirty)
 		if(prob(dirty_prob))
 			dirt += rand(50,100)
@@ -63,7 +55,6 @@
 	if(is_plating() && !initializing) // Plating -> Flooring
 		swap_decals()
 	flooring = newflooring
-	footstep_sounds = newflooring.footstep_sounds
 	if(!initializing)
 		update_icon(1)
 	levelupdate()
@@ -80,7 +71,6 @@
 	desc = base_desc
 	icon = base_icon
 	icon_state = base_icon_state
-	footstep_sounds = base_footstep_sounds
 
 	if(!is_plating()) // Flooring -> Plating
 		swap_decals()

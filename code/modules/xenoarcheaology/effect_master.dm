@@ -167,7 +167,7 @@ var/list/toxic_reagents = list(TOXIN_PATH)
 
 	STOP_PROCESSING(SSobj,src)
 
-	. = ..(silent=TRUE)
+	. = ..()
 
 /datum/component/artifact_master/proc/do_setup()
 	if(LAZYLEN(make_effects))

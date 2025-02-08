@@ -88,6 +88,9 @@
 	var/male_sneeze_sound = 'sound/effects/mob_effects/sneeze.ogg'
 	var/female_sneeze_sound = 'sound/effects/mob_effects/f_sneeze.ogg'
 
+	var/footstep = FOOTSTEP_MOB_HUMAN
+	var/list/special_step_sounds = null
+
 	// Combat/health/chem/etc. vars.
 	var/total_health = 100								// How much damage the mob can take before entering crit.
 	var/list/unarmed_types = list(							// Possible unarmed attacks that the mob will use in combat,
@@ -331,6 +334,9 @@
 		inherent_verbs |= /mob/living/carbon/human/proc/regurgitate
 
 	update_sort_hint()
+
+/datum/species/proc/get_footsep_sounds()
+	return footstep
 
 /datum/species/proc/update_sort_hint()
 	if(spawn_flags & SPECIES_IS_RESTRICTED)
