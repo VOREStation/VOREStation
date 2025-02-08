@@ -3,6 +3,7 @@ import { useBackend } from 'tgui/backend';
 import { Window } from 'tgui/layouts';
 import {
   Box,
+  Button,
   ByondUi,
   LabeledList,
   Section,
@@ -12,20 +13,33 @@ import {
 import { capitalize, decodeHtmlEntities } from 'tgui-core/string';
 
 import {
-  AppearanceChangerEars,
   AppearanceChangerGender,
   AppearanceChangerSpecies,
-  AppearanceChangerTails,
-  AppearanceChangerWings,
 } from './AppearanceChangerBody';
+import { AppearanceChangerBodyRecords } from './AppearanceChangerBodyRecords';
 import {
   AppearanceChangerColors,
   AppearanceChangerMarkings,
 } from './AppearanceChangerDetails';
+import { AppearanceChangerFlavor } from './AppearanceChangerFlavor';
+import { AppearanceChangerHeader } from './AppearanceChangerHeader';
 import {
-  AppearanceChangerFacialHair,
   AppearanceChangerHair,
-} from './AppearanceChangerHairs';
+  AppearanceChangerParts,
+} from './AppearanceChangerParts';
+import {
+  TAB_COLORS,
+  TAB_EARS,
+  TAB_EARS2,
+  TAB_FACIAL_HAIR,
+  TAB_FLAVOR,
+  TAB_GENDER,
+  TAB_HAIR,
+  TAB_MARKINGS,
+  TAB_RACE,
+  TAB_TAIL,
+  TAB_WINGS,
+} from './constants';
 import { Data } from './types';
 
 export const AppearanceChanger = (props) => {
@@ -37,10 +51,16 @@ export const AppearanceChanger = (props) => {
     gender,
     gender_id,
     hair_style,
+    hair_styles,
     facial_hair_style,
+    facial_hair_styles,
     ear_style,
+    ear_styles,
+    ear_secondary_style,
     tail_style,
+    tail_styles,
     wing_style,
+    wing_styles,
     change_race,
     change_gender,
     change_eye_color,
@@ -51,6 +71,8 @@ export const AppearanceChanger = (props) => {
     change_hair,
     change_facial_hair,
     mapRef,
+    is_design_console,
+    selected_a_record,
   } = data;
 
   const { title } = config;
@@ -64,50 +86,98 @@ export const AppearanceChanger = (props) => {
     change_hair_color ||
     change_facial_hair_color;
 
-  const disabled = <Box />;
-
   tab[-1] = <AppearanceChangerDefaultError />;
-  tab[0] = change_race ? (
+  tab[TAB_RACE] = change_race ? (
     <AppearanceChangerSpecies />
   ) : (
     <AppearanceChangerDefaultError />
   );
-  tab[1] = change_gender ? (
+  tab[TAB_FLAVOR] = change_race ? (
+    <AppearanceChangerFlavor />
+  ) : (
+    <AppearanceChangerDefaultError />
+  );
+  tab[TAB_GENDER] = change_gender ? (
     <AppearanceChangerGender />
   ) : (
     <AppearanceChangerDefaultError />
   );
-  tab[2] = change_color ? (
+  tab[TAB_COLORS] = change_color ? (
     <AppearanceChangerColors />
   ) : (
     <AppearanceChangerDefaultError />
   );
-  tab[3] = change_hair ? (
-    <AppearanceChangerHair />
+  tab[TAB_HAIR] = change_hair ? (
+    <AppearanceChangerHair
+      key={TAB_HAIR}
+      sectionNames={['Hair']}
+      possibleStyles={[hair_styles]}
+      currentStyle={[hair_style]}
+      actions={['hair']}
+    />
   ) : (
     <AppearanceChangerDefaultError />
   );
-  tab[4] = change_facial_hair ? (
-    <AppearanceChangerFacialHair />
+  tab[TAB_FACIAL_HAIR] = change_facial_hair ? (
+    <AppearanceChangerHair
+      key={TAB_FACIAL_HAIR}
+      sectionNames={['Facial Hair']}
+      possibleStyles={[facial_hair_styles]}
+      currentStyle={[facial_hair_style]}
+      actions={['facial_hair']}
+    />
   ) : (
     <AppearanceChangerDefaultError />
   );
-  tab[5] = change_hair ? (
-    <AppearanceChangerEars />
+  tab[TAB_EARS] = change_hair ? (
+    <AppearanceChangerParts
+      key={TAB_EARS}
+      sectionNames={['Ears']}
+      possibleStyles={[ear_styles]}
+      currentStyle={[ear_style]}
+      actions={['ear']}
+      canClear
+    />
   ) : (
     <AppearanceChangerDefaultError />
   );
-  tab[6] = change_hair ? (
-    <AppearanceChangerTails />
+  tab[TAB_EARS2] = change_hair ? (
+    <AppearanceChangerParts
+      key={TAB_EARS2}
+      sectionNames={['Ears - Secondary']}
+      possibleStyles={[ear_styles]}
+      currentStyle={[ear_secondary_style]}
+      actions={['ear_secondary']}
+      canClear
+    />
   ) : (
     <AppearanceChangerDefaultError />
   );
-  tab[7] = change_hair ? (
-    <AppearanceChangerWings />
+  tab[TAB_TAIL] = change_hair ? (
+    <AppearanceChangerParts
+      key={TAB_TAIL}
+      sectionNames={['Tail']}
+      possibleStyles={[tail_styles]}
+      currentStyle={[tail_style]}
+      actions={['tail']}
+      canClear
+    />
   ) : (
     <AppearanceChangerDefaultError />
   );
-  tab[8] = change_hair ? (
+  tab[TAB_WINGS] = change_hair ? (
+    <AppearanceChangerParts
+      key={TAB_WINGS}
+      sectionNames={['Wings']}
+      possibleStyles={[wing_styles]}
+      currentStyle={[wing_style]}
+      actions={['wing']}
+      canClear
+    />
+  ) : (
+    <AppearanceChangerDefaultError />
+  );
+  tab[TAB_MARKINGS] = change_hair ? (
     <AppearanceChangerMarkings />
   ) : (
     <AppearanceChangerDefaultError />
@@ -115,151 +185,207 @@ export const AppearanceChanger = (props) => {
 
   let firstAccesibleTab = -1;
   if (change_race) {
-    firstAccesibleTab = 0;
+    firstAccesibleTab = TAB_RACE;
   } else if (change_gender) {
-    firstAccesibleTab = 1;
+    firstAccesibleTab = TAB_GENDER;
   } else if (change_color) {
-    firstAccesibleTab = 2;
+    firstAccesibleTab = TAB_COLORS;
   } else if (change_hair) {
-    firstAccesibleTab = 4;
+    firstAccesibleTab = TAB_HAIR;
   } else if (change_facial_hair) {
-    firstAccesibleTab = 5;
+    firstAccesibleTab = TAB_FACIAL_HAIR;
   }
 
   const [tabIndex, setTabIndex] = useState(firstAccesibleTab);
 
   return (
-    <Window width={700} height={650} title={decodeHtmlEntities(title)}>
-      <Window.Content>
-        <Section title="Reflection">
-          <Stack>
-            <Stack.Item grow>
-              <LabeledList>
-                <LabeledList.Item label="Name">{name}</LabeledList.Item>
-                <LabeledList.Item
-                  label="Species"
-                  color={!change_race ? 'grey' : undefined}
-                >
-                  {specimen}
-                </LabeledList.Item>
-                <LabeledList.Item
-                  label="Biological Sex"
-                  color={!change_gender ? 'grey' : undefined}
-                >
-                  {gender ? capitalize(gender) : 'Not Set'}
-                </LabeledList.Item>
-                <LabeledList.Item
-                  label="Gender Identity"
-                  color={!change_color ? 'grey' : undefined}
-                >
-                  {gender_id ? capitalize(gender_id) : 'Not Set'}
-                </LabeledList.Item>
-                <LabeledList.Item
-                  label="Hair Style"
-                  color={!change_hair ? 'grey' : undefined}
-                >
-                  {hair_style ? capitalize(hair_style) : 'Not Set'}
-                </LabeledList.Item>
-                <LabeledList.Item
-                  label="Facial Hair Style"
-                  color={!change_facial_hair ? 'grey' : undefined}
-                >
-                  {facial_hair_style
-                    ? capitalize(facial_hair_style)
-                    : 'Not Set'}
-                </LabeledList.Item>
-                <LabeledList.Item
-                  label="Ear Style"
-                  color={!change_hair ? 'grey' : undefined}
-                >
-                  {ear_style ? capitalize(ear_style) : 'Not Set'}
-                </LabeledList.Item>
-                <LabeledList.Item
-                  label="Tail Style"
-                  color={!change_hair ? 'grey' : undefined}
-                >
-                  {tail_style ? capitalize(tail_style) : 'Not Set'}
-                </LabeledList.Item>
-                <LabeledList.Item
-                  label="Wing Style"
-                  color={!change_hair ? 'grey' : undefined}
-                >
-                  {wing_style ? capitalize(wing_style) : 'Not Set'}
-                </LabeledList.Item>
-              </LabeledList>
-            </Stack.Item>
+    <Window width={700} height={850} title={decodeHtmlEntities(title)}>
+      {is_design_console && !selected_a_record ? (
+        <Window.Content>
+          <AppearanceChangerHeader />
+          <AppearanceChangerBodyRecords />
+        </Window.Content>
+      ) : (
+        <Window.Content>
+          <Stack vertical fill>
             <Stack.Item>
-              <ByondUi
-                style={{
-                  width: '256px',
-                  height: '256px',
-                }}
-                params={{
-                  id: mapRef,
-                  type: 'map',
-                }}
-              />
+              {is_design_console ? <AppearanceChangerHeader /> : ''}
+              <Section title="Reflection">
+                <Stack fill>
+                  <Stack.Item grow>
+                    <Stack fill vertical>
+                      <Stack.Item grow>
+                        <LabeledList>
+                          <LabeledList.Item label="Name">
+                            {name}
+                          </LabeledList.Item>
+                          <LabeledList.Item
+                            label="Species"
+                            color={!change_race ? 'grey' : undefined}
+                          >
+                            {specimen}
+                          </LabeledList.Item>
+                          <LabeledList.Item
+                            label="Biological Sex"
+                            color={!change_gender ? 'grey' : undefined}
+                          >
+                            {gender ? capitalize(gender) : 'Not Set'}
+                          </LabeledList.Item>
+                          <LabeledList.Item
+                            label="Gender Identity"
+                            color={!change_color ? 'grey' : undefined}
+                          >
+                            {gender_id ? capitalize(gender_id) : 'Not Set'}
+                          </LabeledList.Item>
+                          <LabeledList.Item
+                            label="Hair Style"
+                            color={!change_hair ? 'grey' : undefined}
+                          >
+                            {hair_style ? capitalize(hair_style) : 'Not Set'}
+                          </LabeledList.Item>
+                          <LabeledList.Item
+                            label="Facial Hair Style"
+                            color={!change_facial_hair ? 'grey' : undefined}
+                          >
+                            {facial_hair_style
+                              ? capitalize(facial_hair_style)
+                              : 'Not Set'}
+                          </LabeledList.Item>
+                          <LabeledList.Item
+                            label="Ear Style"
+                            color={!change_hair ? 'grey' : undefined}
+                          >
+                            {ear_style ? capitalize(ear_style) : 'Not Set'}
+                          </LabeledList.Item>
+                          <LabeledList.Item
+                            label="Tail Style"
+                            color={!change_hair ? 'grey' : undefined}
+                          >
+                            {tail_style ? capitalize(tail_style) : 'Not Set'}
+                          </LabeledList.Item>
+                          <LabeledList.Item
+                            label="Wing Style"
+                            color={!change_hair ? 'grey' : undefined}
+                          >
+                            {wing_style ? capitalize(wing_style) : 'Not Set'}
+                          </LabeledList.Item>
+                        </LabeledList>
+                      </Stack.Item>
+                      <Stack.Item>
+                        <Stack fill>
+                          <Stack.Item grow />
+                          <Stack.Item>
+                            <Button onClick={() => act('rotate_view')}>
+                              Rotate Preview
+                            </Button>
+                          </Stack.Item>
+                        </Stack>
+                      </Stack.Item>
+                    </Stack>
+                  </Stack.Item>
+                  <Stack.Item>
+                    <ByondUi
+                      style={{
+                        width: '256px',
+                        height: '256px',
+                      }}
+                      params={{
+                        id: mapRef,
+                        type: 'map',
+                      }}
+                    />
+                  </Stack.Item>
+                </Stack>
+              </Section>
+              <Tabs>
+                {change_race ? (
+                  <Tabs.Tab
+                    selected={tabIndex === TAB_RACE}
+                    onClick={() => setTabIndex(TAB_RACE)}
+                  >
+                    Race
+                  </Tabs.Tab>
+                ) : null}
+                {change_race ? (
+                  <Tabs.Tab
+                    selected={tabIndex === TAB_FLAVOR}
+                    onClick={() => setTabIndex(TAB_FLAVOR)}
+                  >
+                    Flavor
+                  </Tabs.Tab>
+                ) : null}
+                {change_gender ? (
+                  <Tabs.Tab
+                    selected={tabIndex === TAB_GENDER}
+                    onClick={() => setTabIndex(TAB_GENDER)}
+                  >
+                    Gender & Sex
+                  </Tabs.Tab>
+                ) : null}
+                {change_color ? (
+                  <Tabs.Tab
+                    selected={tabIndex === TAB_COLORS}
+                    onClick={() => setTabIndex(TAB_COLORS)}
+                  >
+                    Colors
+                  </Tabs.Tab>
+                ) : null}
+                {change_hair ? (
+                  <Tabs.Tab
+                    selected={tabIndex === TAB_HAIR}
+                    onClick={() => setTabIndex(TAB_HAIR)}
+                  >
+                    Hair
+                  </Tabs.Tab>
+                ) : null}
+                {change_facial_hair ? (
+                  <Tabs.Tab
+                    selected={tabIndex === TAB_FACIAL_HAIR}
+                    onClick={() => setTabIndex(TAB_FACIAL_HAIR)}
+                  >
+                    Facial Hair
+                  </Tabs.Tab>
+                ) : null}
+                {change_hair ? (
+                  <>
+                    <Tabs.Tab
+                      selected={tabIndex === TAB_EARS}
+                      onClick={() => setTabIndex(TAB_EARS)}
+                    >
+                      Ears
+                    </Tabs.Tab>
+                    <Tabs.Tab
+                      selected={tabIndex === TAB_EARS2}
+                      onClick={() => setTabIndex(TAB_EARS2)}
+                    >
+                      Ears Secondary
+                    </Tabs.Tab>
+                    <Tabs.Tab
+                      selected={tabIndex === TAB_TAIL}
+                      onClick={() => setTabIndex(TAB_TAIL)}
+                    >
+                      Tail
+                    </Tabs.Tab>
+                    <Tabs.Tab
+                      selected={tabIndex === TAB_WINGS}
+                      onClick={() => setTabIndex(TAB_WINGS)}
+                    >
+                      Wings
+                    </Tabs.Tab>
+                    <Tabs.Tab
+                      selected={tabIndex === TAB_MARKINGS}
+                      onClick={() => setTabIndex(TAB_MARKINGS)}
+                    >
+                      Markings
+                    </Tabs.Tab>
+                  </>
+                ) : null}
+              </Tabs>
             </Stack.Item>
+            <Stack.Item grow>{tab[tabIndex]}</Stack.Item>
           </Stack>
-        </Section>
-        <Tabs>
-          {change_race ? (
-            <Tabs.Tab selected={tabIndex === 0} onClick={() => setTabIndex(0)}>
-              Race
-            </Tabs.Tab>
-          ) : null}
-          {change_gender ? (
-            <Tabs.Tab selected={tabIndex === 1} onClick={() => setTabIndex(1)}>
-              Gender & Sex
-            </Tabs.Tab>
-          ) : null}
-          {change_color ? (
-            <Tabs.Tab selected={tabIndex === 2} onClick={() => setTabIndex(2)}>
-              Colors
-            </Tabs.Tab>
-          ) : null}
-          {change_hair ? (
-            <>
-              <Tabs.Tab
-                selected={tabIndex === 3}
-                onClick={() => setTabIndex(3)}
-              >
-                Hair
-              </Tabs.Tab>
-              <Tabs.Tab
-                selected={tabIndex === 5}
-                onClick={() => setTabIndex(5)}
-              >
-                Ear
-              </Tabs.Tab>
-              <Tabs.Tab
-                selected={tabIndex === 6}
-                onClick={() => setTabIndex(6)}
-              >
-                Tail
-              </Tabs.Tab>
-              <Tabs.Tab
-                selected={tabIndex === 7}
-                onClick={() => setTabIndex(7)}
-              >
-                Wing
-              </Tabs.Tab>
-              <Tabs.Tab
-                selected={tabIndex === 8}
-                onClick={() => setTabIndex(8)}
-              >
-                Markings
-              </Tabs.Tab>
-            </>
-          ) : null}
-          {change_facial_hair ? (
-            <Tabs.Tab selected={tabIndex === 4} onClick={() => setTabIndex(4)}>
-              Facial Hair
-            </Tabs.Tab>
-          ) : null}
-        </Tabs>
-        <Box height="43%">{tab[tabIndex]}</Box>
-      </Window.Content>
+        </Window.Content>
+      )}
     </Window>
   );
 };
