@@ -39,6 +39,11 @@
 ///Used for doing dry runs of the reference finder, to test for feature completeness
 //#define REFERENCE_TRACKING_DEBUG
 
+#ifdef FIND_REF_NO_CHECK_TICK
+/world
+	loop_checks = FALSE
+#endif
+
 ///Run a lookup on things hard deleting by default.
 //#define GC_FAILURE_HARD_LOOKUP
 #ifdef GC_FAILURE_HARD_LOOKUP
