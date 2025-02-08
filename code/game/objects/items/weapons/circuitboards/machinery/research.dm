@@ -105,3 +105,21 @@
 							/obj/item/stock_parts/manipulator = 1,
 							/obj/item/stock_parts/console_screen = 1,
 							/obj/item/stack/cable_coil = 5)
+
+/obj/item/circuitboard/artifact_harvester
+	name = T_BOARD("artifact harvester")
+	build_path = /obj/machinery/artifact_harvester
+	board_type = new /datum/frame/frame_types/machine
+	origin_tech = list(TECH_MATERIAL = 2, TECH_POWER = 4, TECH_ENGINEERING = 2)
+	req_components = list(
+							/obj/item/stock_parts/capacitor = 5, //Yes, it's ALL capacitors. It's only purpose is to store power!
+							/obj/item/stock_parts/console_screen = 1)
+
+/obj/item/circuitboard/artifact_scanpad
+	name = T_BOARD("artifact scanpad")
+	build_path = /obj/machinery/artifact_scanpad
+	board_type = new /datum/frame/frame_types/machine
+	origin_tech = list(TECH_MATERIAL = 2, TECH_POWER = 4, TECH_ENGINEERING = 2)
+	req_components = list(
+							/obj/item/stock_parts/manipulator = 1,
+							/obj/item/stock_parts/console_screen = 1)

@@ -269,10 +269,8 @@ var/list/toxic_reagents = list(TOXIN_PATH)
 		else if(ishuman(bumped) && GetAnomalySusceptibility(bumped) >= 0.5)
 			if (my_effect.trigger == TRIGGER_TOUCH)
 				my_effect.ToggleActivate()
-				warn = 1
-
-			if (my_effect.effect == EFFECT_TOUCH)
-				my_effect.DoEffectTouch(bumped)
+				if(my_effect.activated && my_effect.effect == EFFECT_TOUCH)
+					my_effect.DoEffectTouch(bumped)
 				warn = 1
 
 	if(warn && isliving(bumped))
@@ -289,11 +287,9 @@ var/list/toxic_reagents = list(TOXIN_PATH)
 
 		else if(ishuman(M) && !istype(M:gloves,/obj/item/clothing/gloves))
 			if (my_effect.trigger == TRIGGER_TOUCH)
-				my_effect.ToggleActivate()
-				warn = 1
-
-			if (my_effect.effect == EFFECT_TOUCH)
-				my_effect.DoEffectTouch(M)
+				my_effect.ToggleActivate(M)
+				if(my_effect.activated && my_effect.effect == EFFECT_TOUCH)
+					my_effect.DoEffectTouch(M)
 				warn = 1
 
 	if(warn && isliving(M))
@@ -310,15 +306,13 @@ var/list/toxic_reagents = list(TOXIN_PATH)
 
 	var/triggered = FALSE
 
-	for(var/datum/artifact_effect/my_effect in my_effects)
-
-		if(my_effect.trigger == TRIGGER_TOUCH)
-			triggered = TRUE
-			my_effect.ToggleActivate()
-
-		if (my_effect.effect == EFFECT_TOUCH)
-			triggered = TRUE
-			my_effect.DoEffectTouch(user)
+	if(ishuman(user) && !istype(user:gloves,/obj/item/clothing/gloves))
+		for(var/datum/artifact_effect/my_effect in my_effects)
+			if(my_effect.trigger == TRIGGER_TOUCH)
+				triggered = TRUE
+				my_effect.ToggleActivate()
+				if(my_effect.activated && my_effect.effect == EFFECT_TOUCH)
+					my_effect.DoEffectTouch(user)
 
 	if(triggered)
 		to_chat(user, span_filter_notice(span_bold("You touch [holder].")))
@@ -427,10 +421,6 @@ var/list/toxic_reagents = list(TOXIN_PATH)
 	//if any of our effects rely on environmental factors, work that out
 	var/trigger_cold = 0
 	var/trigger_hot = 0
-	var/trigger_phoron = 0
-	var/trigger_oxy = 0
-	var/trigger_co2 = 0
-	var/trigger_nitro = 0
 
 	var/turf/T = get_turf(holder)
 	var/datum/gas_mixture/env = T.return_air()
@@ -439,15 +429,6 @@ var/list/toxic_reagents = list(TOXIN_PATH)
 			trigger_cold = 1
 		else if(env.temperature > ARTIFACT_HEAT_TRIGGER)
 			trigger_hot = 1
-
-		if(env.gas[GAS_PHORON] >= ARTIFACT_GAS_TRIGGER)
-			trigger_phoron = 1
-		if(env.gas[GAS_O2] >= ARTIFACT_GAS_TRIGGER)
-			trigger_oxy = 1
-		if(env.gas[GAS_CO2] >= ARTIFACT_GAS_TRIGGER)
-			trigger_co2 = 1
-		if(env.gas[GAS_N2] >= ARTIFACT_GAS_TRIGGER)
-			trigger_nitro = 1
 
 	for(var/datum/artifact_effect/my_effect in my_effects)
 		my_effect.artifact_id = artifact_id
@@ -460,22 +441,6 @@ var/list/toxic_reagents = list(TOXIN_PATH)
 
 		//HEAT ACTIVATION
 		if(my_effect.trigger == TRIGGER_HEAT && (trigger_hot ^ my_effect.activated))
-			my_effect.ToggleActivate()
-
-		//PHORON GAS ACTIVATION
-		if(my_effect.trigger == TRIGGER_PHORON && (trigger_phoron ^ my_effect.activated))
-			my_effect.ToggleActivate()
-
-		//OXYGEN GAS ACTIVATION
-		if(my_effect.trigger == TRIGGER_OXY && (trigger_oxy ^ my_effect.activated))
-			my_effect.ToggleActivate()
-
-		//CO2 GAS ACTIVATION
-		if(my_effect.trigger == TRIGGER_CO2 && (trigger_co2 ^ my_effect.activated))
-			my_effect.ToggleActivate()
-
-		//NITROGEN GAS ACTIVATION
-		if(my_effect.trigger == TRIGGER_NITRO && (trigger_nitro ^ my_effect.activated))
 			my_effect.ToggleActivate()
 
 #undef HYDROGEN_PATH
