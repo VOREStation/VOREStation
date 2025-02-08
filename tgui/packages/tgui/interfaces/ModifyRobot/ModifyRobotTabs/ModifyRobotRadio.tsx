@@ -14,7 +14,7 @@ import { capitalize } from 'tgui-core/string';
 
 import { NoSpriteWarning } from '../components';
 import { prepareSearch } from '../functions';
-import { Target } from '../types';
+import type { Target } from '../types';
 
 export const ModifyRobotRadio = (props: { target: Target }) => {
   const { target } = props;

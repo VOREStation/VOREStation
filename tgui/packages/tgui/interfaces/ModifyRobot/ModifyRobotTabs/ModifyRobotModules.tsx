@@ -16,7 +16,7 @@ import { capitalize } from 'tgui-core/string';
 
 import { NoSpriteWarning } from '../components';
 import { prepareSearch } from '../functions';
-import { Module, Source, Target } from '../types';
+import type { Module, Source, Target } from '../types';
 
 export const ModifyRobotModules = (props: {
   target: Target;

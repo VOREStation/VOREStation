@@ -13,7 +13,7 @@ import {
 import type { BooleanLike } from 'tgui-core/react';
 
 import { ComplexModal, modalRegisterBodyOverride } from './common/ComplexModal';
-import { modalData } from './MedicalRecords/types';
+import type { modalData } from './MedicalRecords/types';
 
 type Data = {
   syringe_inserted: BooleanLike;

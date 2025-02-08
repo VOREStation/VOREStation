@@ -12,7 +12,7 @@ import type { BooleanLike } from 'tgui-core/react';
 import { toTitleCase } from 'tgui-core/string';
 
 import { Materials } from './ExosuitFabricator/Material';
-import { material } from './ExosuitFabricator/types';
+import type { material } from './ExosuitFabricator/types';
 
 type Data = {
   panelOpen: BooleanLike;

@@ -13,7 +13,7 @@ import { capitalize } from 'tgui-core/string';
 
 import { NoSpriteWarning } from '../components';
 import { prepareSearch } from '../functions';
-import { Access, Target } from '../types';
+import type { Access, Target } from '../types';
 
 export const ModifyRobotAccess = (props: {
   target: Target;

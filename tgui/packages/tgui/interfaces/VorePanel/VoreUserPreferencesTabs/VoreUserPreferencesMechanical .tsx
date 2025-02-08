@@ -2,7 +2,7 @@ import { useBackend } from 'tgui/backend';
 import { Button, Section, Stack } from 'tgui-core/components';
 import type { BooleanLike } from 'tgui-core/react';
 
-import { localPrefs } from '../types';
+import type { localPrefs } from '../types';
 import { VoreUserPreferenceItem } from '../VoreUserPreferenceItem';
 
 export const VoreUserPreferencesMechanical = (props: {

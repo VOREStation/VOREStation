@@ -22,9 +22,11 @@ import {
   AppearanceChangerMarkings,
 } from './AppearanceChangerDetails';
 import { AppearanceChangerFlavor } from './AppearanceChangerFlavor';
-import { AppearanceChangerHair } from './AppearanceChangerHairs';
 import { AppearanceChangerHeader } from './AppearanceChangerHeader';
-import { AppearanceChangerParts } from './AppearanceChangerParts';
+import {
+  AppearanceChangerHair,
+  AppearanceChangerParts,
+} from './AppearanceChangerParts';
 import {
   TAB_COLORS,
   TAB_EARS,

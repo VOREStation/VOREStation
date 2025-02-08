@@ -2,7 +2,7 @@ import { Window } from 'tgui/layouts';
 import { Stack } from 'tgui-core/components';
 
 import { LayerSection } from './LayerSection';
-import { PipeTypeSection } from './PipeTypeSection';
+import type { PipeTypeSection } from './PipeTypeSection';
 import { SelectionSection } from './SelectionSection';
 
 export const RapidPipeDispenser = (props) => {
