@@ -8,7 +8,7 @@
 	if (!default_language && species_language)
 		default_language = GLOB.all_languages[species_language]
 
-	AddElement(/datum/element/footstep, custom_footstep, -1, -6)
+	AddElement(/datum/element/footstep, custom_footstep, 1, -6)
 
 /mob/living/carbon/Life()
 	..()
