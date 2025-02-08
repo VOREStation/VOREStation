@@ -145,7 +145,7 @@
 				trigger_aiming(TARGET_CAN_CLICK)
 				return
 		else
-			if(!currently_restrained && A.Adjacent(src) || (W && W.attack_can_reach(src, A, W.reach)) ) // see adjacent.dm
+			if(A.Adjacent(src) || (W && W.attack_can_reach(src, A, W.reach)) ) // see adjacent.dm
 				if(W && !restrained())
 					// Return 1 in attackby() to prevent afterattack() effects (when safely moving items for example)
 					var/resolved = W.resolve_attackby(A,src, click_parameters = params)
