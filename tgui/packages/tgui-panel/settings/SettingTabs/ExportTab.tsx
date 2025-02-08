@@ -13,7 +13,7 @@ import {
 import { toFixed } from 'tgui-core/math';
 
 import { purgeChatMessageArchive, saveChatToDisk } from '../../chat/actions';
-import type { MESSAGE_TYPES } from '../../chat/constants';
+import { MESSAGE_TYPES } from '../../chat/constants';
 import { useGame } from '../../game';
 import { updateSettings, updateToggle } from '../actions';
 import { selectSettings } from '../selectors';
