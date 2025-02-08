@@ -86,7 +86,7 @@
 			flick("partslathe-lidopen", src)
 		icon_state = "partslathe-idle"
 
-/obj/machinery/partslathe/attackby(var/obj/item/O as obj, var/mob/user as mob)
+/obj/machinery/partslathe/attackby(var/obj/item/O, var/mob/user)
 	if(busy)
 		to_chat(user, span_notice("\The [src] is busy. Please wait for completion of previous operation."))
 		return 1
@@ -110,7 +110,7 @@
 		copy_board = O
 		O.forceMove(src)
 		user.visible_message("[user] inserts [O] into \the [src]'s circuit reader.", span_notice("You insert [O] into \the [src]'s circuit reader."))
-		updateUsrDialog()
+		updateUsrDialog(user)
 		return
 	if(try_load_materials(user, O))
 		return
@@ -136,7 +136,7 @@
 			count++
 		user.visible_message("[user] inserts [S.name] into \the [src].", span_notice("You insert [count] [S.name] into \the [src]."))
 		flick("partslathe-load-[S.material.name]", src)
-		updateUsrDialog()
+		updateUsrDialog(user)
 	else
 		to_chat(user, span_warning("\The [src] cannot hold more [S.name]."))
 	return 1

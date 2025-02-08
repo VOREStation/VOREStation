@@ -39,20 +39,20 @@
 		disk = null
 	. = ..()
 
-/obj/machinery/computer/transhuman/designer/attackby(obj/item/W as obj, mob/user as mob)
+/obj/machinery/computer/transhuman/designer/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/disk/body_record))
 		user.unEquip(W)
 		disk = W
 		disk.forceMove(src)
 		to_chat(user, span_notice("You insert \the [W] into \the [src]."))
-		SStgui.update_uis(src)
+		updateUsrDialog(user)
 	else
 		. = ..()
 
-/obj/machinery/computer/transhuman/designer/attack_ai(mob/user as mob)
-	attack_hand(user)
+/obj/machinery/computer/transhuman/designer/attack_ai(mob/user)
+	return attack_hand(user)
 
-/obj/machinery/computer/transhuman/designer/attack_hand(mob/user as mob)
+/obj/machinery/computer/transhuman/designer/attack_hand(mob/user)
 	add_fingerprint(user)
 	if(inoperable())
 		return
