@@ -1,13 +1,21 @@
+import { useState } from 'react';
 import { useBackend } from 'tgui/backend';
 import {
   Box,
   Button,
   ColorBox,
+  Dropdown,
+  ImageButton,
+  Input,
   LabeledList,
   Section,
+  Stack,
+  Tabs,
 } from 'tgui-core/components';
+import { createSearch } from 'tgui-core/string';
 
-import { Data, SPRITE_ACCESSORY_COLOR_CHANNEL_NAMES } from './types';
+import { MARKINGS_PER_PAGE } from './constants';
+import { bodyStyle, Data, SPRITE_ACCESSORY_COLOR_CHANNEL_NAMES } from './types';
 
 export const AppearanceChangerColors = (props) => {
   const { act, data } = useBackend<Data>();
@@ -21,6 +29,8 @@ export const AppearanceChangerColors = (props) => {
     eye_color,
     skin_color,
     hair_color,
+    hair_grad,
+    hair_color_grad,
     facial_hair_color,
     ears_color,
     ears2_color,
@@ -31,6 +41,7 @@ export const AppearanceChangerColors = (props) => {
     wing2_color,
     wing3_color,
     ear_secondary_colors,
+    hair_grads,
   } = data;
 
   return (
@@ -65,6 +76,24 @@ export const AppearanceChangerColors = (props) => {
             <Button onClick={() => act('hair_color')}>Change Hair Color</Button>
           </Box>
           <Box>
+            <ColorBox color={hair_color_grad} mr={1} />
+            <Button onClick={() => act('hair_color_grad')}>
+              Change Hair gradiant Color
+            </Button>
+            <Dropdown
+              autoScroll={false}
+              width="30%"
+              selected={hair_grad || 'None'}
+              options={hair_grads.map((key: string) => {
+                return {
+                  displayText: key,
+                  value: key,
+                };
+              })}
+              onSelected={(val: string) => act('hair_grad', { picked: val })}
+            />
+          </Box>
+          <Box>
             <ColorBox color={ears_color} mr={1} />
             <Button onClick={() => act('ears_color')}>
               Change Ears Color (Primary)
@@ -76,7 +105,7 @@ export const AppearanceChangerColors = (props) => {
               Change Ears Color (Secondary)
             </Button>
           </Box>
-          {data.ear_secondary_colors.map((color, index) => (
+          {ear_secondary_colors.map((color, index) => (
             <Box key={index}>
               <ColorBox color={color} mr={1} />
               <Button
@@ -138,42 +167,124 @@ export const AppearanceChangerColors = (props) => {
 export const AppearanceChangerMarkings = (props) => {
   const { act, data } = useBackend<Data>();
 
-  const { markings } = data;
+  const { markings, marking_styles } = data;
+
+  const [searchText, setSearchText] = useState<string>('');
+  const [tabIndex, setTabIndex] = useState(0);
+
+  const searcher = createSearch(searchText, (style: bodyStyle) => {
+    return style.name;
+  });
+
+  const filteredStyles = marking_styles.filter(searcher);
+
+  filteredStyles.sort((a, b) =>
+    a.name.toLowerCase().localeCompare(b.name.toLowerCase()),
+  );
+  const styleTabCount = Math.ceil(filteredStyles.length / MARKINGS_PER_PAGE);
+
+  const shownStyles: bodyStyle[][] = [];
+
+  for (let i = 0; i < styleTabCount; i++) {
+    shownStyles[i] = filteredStyles.slice(
+      i * MARKINGS_PER_PAGE,
+      i * MARKINGS_PER_PAGE + MARKINGS_PER_PAGE,
+    );
+  }
 
   return (
     <Section title="Markings" fill scrollable>
-      <Box>
-        <Button onClick={() => act('marking', { todo: 1, name: 'na' })}>
-          Add Marking
-        </Button>
-      </Box>
-      <LabeledList>
-        {markings.map((m) => (
-          <LabeledList.Item key={m.marking_name} label={m.marking_name}>
-            <ColorBox color={m.marking_color} mr={1} />
-            <Button
-              onClick={() => act('marking', { todo: 4, name: m.marking_name })}
+      <Stack vertical>
+        <Stack.Item>
+          <LabeledList>
+            {markings.map((m) => (
+              <LabeledList.Item key={m.marking_name} label={m.marking_name}>
+                <Stack>
+                  <Stack.Item grow />
+                  <Stack.Item>
+                    <ColorBox color={m.marking_color} mr={1} />
+                  </Stack.Item>
+                  <Stack.Item>
+                    <Button
+                      onClick={() =>
+                        act('marking', { todo: 4, name: m.marking_name })
+                      }
+                    >
+                      Change Color
+                    </Button>
+                  </Stack.Item>
+                  <Stack.Item>
+                    <Button
+                      onClick={() =>
+                        act('marking', { todo: 0, name: m.marking_name })
+                      }
+                    >
+                      -
+                    </Button>
+                  </Stack.Item>
+                  <Stack.Item>
+                    <Button
+                      onClick={() =>
+                        act('marking', { todo: 3, name: m.marking_name })
+                      }
+                    >
+                      Move down
+                    </Button>
+                  </Stack.Item>
+                  <Stack.Item>
+                    <Button
+                      onClick={() =>
+                        act('marking', { todo: 2, name: m.marking_name })
+                      }
+                    >
+                      Move up
+                    </Button>
+                  </Stack.Item>
+                </Stack>
+              </LabeledList.Item>
+            ))}
+          </LabeledList>
+        </Stack.Item>
+        <Stack.Item>
+          <Input
+            fluid
+            placeholder={'Search for markings...'}
+            value={searchText}
+            onInput={(e, val) => setSearchText(val)}
+          />
+        </Stack.Item>
+        <Stack.Item>
+          <Tabs>
+            <Stack wrap="wrap" justify="center">
+              {shownStyles.map((_, i) => (
+                <Stack.Item key={i}>
+                  <Tabs.Tab
+                    selected={tabIndex === i}
+                    onClick={() => setTabIndex(i)}
+                  >
+                    Page {i + 1}
+                  </Tabs.Tab>
+                </Stack.Item>
+              ))}
+            </Stack>
+          </Tabs>
+        </Stack.Item>
+        <Stack.Item>
+          {shownStyles[tabIndex]?.map((style) => (
+            <ImageButton
+              key={style.name}
+              tooltip={style.name}
+              dmIcon={style.icon}
+              dmIconState={style.icon_state}
+              onClick={() => {
+                act('marking', { todo: 1, name: style.name });
+              }}
             >
-              Change Color
-            </Button>
-            <Button
-              onClick={() => act('marking', { todo: 0, name: m.marking_name })}
-            >
-              -
-            </Button>
-            <Button
-              onClick={() => act('marking', { todo: 3, name: m.marking_name })}
-            >
-              Move down
-            </Button>
-            <Button
-              onClick={() => act('marking', { todo: 2, name: m.marking_name })}
-            >
-              Move up
-            </Button>
-          </LabeledList.Item>
-        ))}
-      </LabeledList>
+              {style.name}
+            </ImageButton>
+          ))}
+        </Stack.Item>
+      </Stack>
     </Section>
   );
 };

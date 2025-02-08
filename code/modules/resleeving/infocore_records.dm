@@ -197,7 +197,7 @@
 
 
 /**
- * Make a deep copy of this record so it can be saved on a disk without mofidications
+ * Make a deep copy of this record so it can be saved on a disk without modifications
  * to the original affecting the copy.
  * Just to be clear, this has nothing to do do with acutal biological cloning, body printing, resleeving,
  * or anything like that! This is the computer science concept of "cloning" a data structure!
@@ -220,9 +220,13 @@
 	src.speciesname = orig.speciesname
 	src.bodygender = orig.bodygender
 	src.body_oocnotes = orig.body_oocnotes
+	src.body_ooclikes = orig.body_ooclikes
+	src.body_oocdislikes = orig.body_oocdislikes
 	src.limb_data = orig.limb_data.Copy()
 	src.organ_data = orig.organ_data.Copy()
 	src.genetic_modifiers = orig.genetic_modifiers.Copy()
 	src.toocomplex = orig.toocomplex
 	src.sizemult = orig.sizemult
 	src.aflags = orig.aflags
+	src.breath_type = orig.breath_type
+	src.weight = orig.weight
