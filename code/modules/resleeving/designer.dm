@@ -45,12 +45,12 @@
 		disk = W
 		disk.forceMove(src)
 		to_chat(user, span_notice("You insert \the [W] into \the [src]."))
-		updateUsrDialog(user)
+		SStgui.update_uis(src)
 	else
 		. = ..()
 
 /obj/machinery/computer/transhuman/designer/attack_ai(mob/user)
-	return attack_hand(user)
+	attack_hand(user)
 
 /obj/machinery/computer/transhuman/designer/attack_hand(mob/user)
 	add_fingerprint(user)
