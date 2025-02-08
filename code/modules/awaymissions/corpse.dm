@@ -32,11 +32,8 @@
 
 /obj/effect/landmark/corpse/Initialize()
 	..()
-	return INITIALIZE_HINT_LATELOAD
-
-/obj/effect/landmark/corpse/LateInitialize()
 	createCorpse()
-	qdel(src)
+	return INITIALIZE_HINT_QDEL
 
 /obj/effect/landmark/corpse/proc/createCorpse() //Creates a mob and checks for gear in each slot before attempting to equip it.
 	var/mob/living/carbon/human/M = new /mob/living/carbon/human (src.loc)

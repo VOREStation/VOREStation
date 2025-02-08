@@ -19,34 +19,25 @@
 	var/special_temperature //Used for turf HE-Pipe interaction
 	var/climbable = FALSE //Adds proc to wall if set to TRUE on its initialization, defined here since not all walls are subtypes of wall
 
-	var/icon_edge = 'icons/turf/outdoors_edge.dmi'	//Allows for alternative edge icon files
-	var/wet_cleanup_timer
+	var/icon_edge = 'icons/turf/outdoors_edge.dmi'	//VOREStation Addition - Allows for alternative edge icon files
 
 // This is not great.
 /turf/simulated/proc/wet_floor(var/wet_val = 1)
 	if(wet > 2)	//Can't mop up ice
 		return
-	wet = wet_val
-	if(wet_overlay)
-		cut_overlay(wet_overlay)
-	wet_overlay = image('icons/effects/water.dmi', icon_state = "wet_floor")
-	add_overlay(wet_overlay)
-	if(wet_cleanup_timer)
-		deltimer(wet_cleanup_timer)
-		wet_cleanup_timer = null
-	if(wet == 2)
-		wet_cleanup_timer = addtimer(CALLBACK(src, PROC_REF(wet_floor_finish)), 160 SECONDS, TIMER_STOPPABLE)
-	else
-		wet_cleanup_timer = addtimer(CALLBACK(src, PROC_REF(wet_floor_finish)), 40 SECONDS, TIMER_STOPPABLE)
-
-/turf/simulated/proc/wet_floor_finish()
-	wet = 0
-	if(wet_cleanup_timer)
-		deltimer(wet_cleanup_timer)
-		wet_cleanup_timer = null
-	if(wet_overlay)
-		cut_overlay(wet_overlay)
-		wet_overlay = null
+	spawn(0)
+		wet = wet_val
+		if(wet_overlay)
+			cut_overlay(wet_overlay)
+		wet_overlay = image('icons/effects/water.dmi', icon_state = "wet_floor")
+		add_overlay(wet_overlay)
+		sleep(800)
+		if(wet == 2)
+			sleep(3200)
+		wet = 0
+		if(wet_overlay)
+			cut_overlay(wet_overlay)
+			wet_overlay = null
 
 /turf/simulated/proc/freeze_floor()
 	if(!wet) // Water is required for it to freeze.
@@ -75,7 +66,7 @@
 	levelupdate()
 	if(climbable)
 		verbs += /turf/simulated/proc/climb_wall
-	if(is_outdoors())
+	if(is_outdoors())	//VOREStation edit - quick fix for a planetary lighting issue
 		SSplanets.addTurf(src)
 
 /turf/simulated/examine(mob/user)
@@ -101,9 +92,8 @@
 
 /turf/simulated/Entered(atom/A, atom/OL)
 	if (isliving(A))
-		var/dirtslip = FALSE
 		var/mob/living/M = A
-		if(M.lying || M.flying || M.is_incorporeal())
+		if(M.lying || M.flying) //VOREStation Edit
 			return ..()
 
 		if(M.dirties_floor())
@@ -112,17 +102,13 @@
 
 		if(ishuman(M))
 			var/mob/living/carbon/human/H = M
-			dirtslip = H.species.dirtslip
-			if(H.species.mudking)
-				dirt = min(dirt+2, 101)
-				update_dirt()
 			// Tracking blood
 			var/list/bloodDNA = null
 			var/bloodcolor=""
 			if(H.shoes)
 				var/obj/item/clothing/shoes/S = H.shoes
 				if(istype(S))
-					S.handle_movement(src,(H.m_intent == I_RUN ? 1 : 0), H) // handle_movement now needs to know who is moving, for inshoe steppies
+					S.handle_movement(src,(H.m_intent == I_RUN ? 1 : 0))
 					if(S.track_blood && S.blood_DNA)
 						bloodDNA = S.blood_DNA
 						bloodcolor=S.blood_color
@@ -141,21 +127,15 @@
 
 				bloodDNA = null
 
-		if(src.wet || (dirtslip && (dirt > 50 || outdoors == 1)))
+		if(src.wet)
+
 			if(M.buckled || (src.wet == 1 && M.m_intent == I_WALK))
 				return
 
 			var/slip_dist = 1
 			var/slip_stun = 6
 			var/floor_type = "wet"
-			if(dirtslip)
-				slip_stun = 10
-				if(dirt > 50)
-					floor_type = "dirty"
-				else if(outdoors)
-					floor_type = "uneven"
-				if(src.wet == 0 && M.m_intent == I_WALK)
-					return
+
 			switch(src.wet)
 				if(2) // Lube
 					floor_type = "slippery"
@@ -164,32 +144,20 @@
 				if(3) // Ice
 					floor_type = "icy"
 					slip_stun = 4
-					slip_dist = rand(1,3)
+					slip_dist = 2
 
 			if(M.slip("the [floor_type] floor", slip_stun))
-				addtimer(CALLBACK(src, PROC_REF(handle_slipping), M, slip_dist, dirtslip), 0)
+				for(var/i = 1 to slip_dist)
+					if(isbelly(M.loc))	//VOREEdit, Stop the slip if we're in a belly. Inspired by a chompedit, cleaned it up with isbelly instead of a variable since the var was resetting too fast.
+						return
+					step(M, M.dir)
+					sleep(1)
 			else
 				M.inertia_dir = 0
 		else
 			M.inertia_dir = 0
 
 	..()
-/turf/simulated/proc/handle_slipping(var/mob/living/M, var/slip_dist, var/dirtslip)
-	PRIVATE_PROC(TRUE)
-	if(!M || !slip_dist)
-		return
-	if(isbelly(M.loc))	// Stop the slip if we're in a belly.
-		return
-	if(!step(M, M.dir) && !dirtslip)
-		return // done sliding, failed to move
-	// check tile for next slip
-	if(!dirtslip)
-		var/turf/simulated/ground = get_turf(M)
-		if(!istype(ground,/turf/simulated))
-			return // stop sliding as it is impossible to be on wet terrain?
-		if(ground.wet != 2)
-			return // done sliding, not lubed
-	addtimer(CALLBACK(src, PROC_REF(handle_slipping), M, --slip_dist, dirtslip), 1)
 
 //returns 1 if made bloody, returns 0 otherwise
 /turf/simulated/add_blood(mob/living/carbon/human/M as mob)
