@@ -1,6 +1,5 @@
 /mob/living/silicon/robot/Life()
 	set invisibility = 0
-	set background = 1
 
 	if (transforming)
 		return

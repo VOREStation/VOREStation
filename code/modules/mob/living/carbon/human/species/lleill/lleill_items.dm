@@ -286,5 +286,167 @@
 	icon = 'icons/obj/glamour.dmi'
 	icon_state = "pocket"
 
-//Glamour Floor
-//Glamour Wall
+//Unstable Glamour
+
+/obj/item/glamour_unstable
+	name = "unstable glamour"
+	desc = "A bright white glowing object that appears to move about on its own."
+	icon = 'icons/obj/glamour.dmi'
+	icon_state = "unstable"
+	w_class = ITEMSIZE_SMALL
+	origin_tech = list(TECH_BLUESPACE = 7, TECH_MATERIAL = 2)
+	var/tele_range = 4
+	var/tf_type = /mob/living/simple_mob/animal/passive/mouse
+	var/tf_possible_types = list(
+		"mouse" = /mob/living/simple_mob/animal/passive/mouse,
+		"rat" = /mob/living/simple_mob/animal/passive/mouse/rat,
+		"giant rat" = /mob/living/simple_mob/vore/aggressive/rat,
+		"dust jumper" = /mob/living/simple_mob/vore/alienanimals/dustjumper,
+		"woof" = /mob/living/simple_mob/vore/woof,
+		"corgi" = /mob/living/simple_mob/animal/passive/dog/corgi,
+		"cat" = /mob/living/simple_mob/animal/passive/cat,
+		"chicken" = /mob/living/simple_mob/animal/passive/chicken,
+		"cow" = /mob/living/simple_mob/animal/passive/cow,
+		"lizard" = /mob/living/simple_mob/animal/passive/lizard,
+		"rabbit" = /mob/living/simple_mob/vore/rabbit,
+		"fox" = /mob/living/simple_mob/animal/passive/fox,
+		"fennec" = /mob/living/simple_mob/vore/fennec,
+		"cute fennec" = /mob/living/simple_mob/animal/passive/fennec,
+		"fennix" = /mob/living/simple_mob/vore/fennix,
+		"red panda" = /mob/living/simple_mob/vore/redpanda,
+		"opossum" = /mob/living/simple_mob/animal/passive/opossum,
+		"horse" = /mob/living/simple_mob/vore/horse,
+		"goose" = /mob/living/simple_mob/animal/space/goose,
+		"sheep" = /mob/living/simple_mob/vore/sheep,
+		"space bumblebee" = /mob/living/simple_mob/vore/bee,
+		"space bear" = /mob/living/simple_mob/animal/space/bear,
+		"voracious lizard" = /mob/living/simple_mob/vore/aggressive/dino,
+		"giant frog" = /mob/living/simple_mob/vore/aggressive/frog,
+		"jelly blob" = /mob/living/simple_mob/vore/jelly,
+		"wolf" = /mob/living/simple_mob/vore/wolf,
+		"direwolf" = /mob/living/simple_mob/vore/wolf/direwolf,
+		"great wolf" = /mob/living/simple_mob/vore/greatwolf,
+		"sect queen" = /mob/living/simple_mob/vore/sect_queen,
+		"sect drone" = /mob/living/simple_mob/vore/sect_drone,
+		"panther" = /mob/living/simple_mob/vore/aggressive/panther,
+		"giant snake" = /mob/living/simple_mob/vore/aggressive/giant_snake,
+		"deathclaw" = /mob/living/simple_mob/vore/aggressive/deathclaw,
+		"otie" = /mob/living/simple_mob/vore/otie,
+		"mutated otie" =/mob/living/simple_mob/vore/otie/feral,
+		"red otie" = /mob/living/simple_mob/vore/otie/red,
+		"defanged xenomorph" = /mob/living/simple_mob/vore/xeno_defanged,
+		"catslug" = /mob/living/simple_mob/vore/alienanimals/catslug,
+		"monkey" = /mob/living/carbon/human/monkey,
+		"wolpin" = /mob/living/carbon/human/wolpin,
+		"sparra" = /mob/living/carbon/human/sparram,
+		"saru" = /mob/living/carbon/human/sergallingm,
+		"sobaka" = /mob/living/carbon/human/sharkm,
+		"farwa" = /mob/living/carbon/human/farwa,
+		"neaera" = /mob/living/carbon/human/neaera,
+		"stok" = /mob/living/carbon/human/stok,
+		"weretiger" = /mob/living/simple_mob/vore/weretiger,
+		"dragon" = /mob/living/simple_mob/vore/bigdragon/friendly,
+		"leopardmander" = /mob/living/simple_mob/vore/leopardmander
+		)
+
+/obj/item/glamour_unstable/attack_self(mob/user)
+	var/mob/living/M = user
+	if(!istype(M))
+		return
+	user.visible_message(span_warning("[user] triggers \the [src]!"), span_danger("You trigger \the [src]!"))
+	var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread()
+	s.set_up(5, 1, get_turf(src))
+	s.start()
+	var/effect_choice = rand(1,4)
+	switch(effect_choice)
+		if(1) //teleport
+			blink_mob(M)
+		if(2) //mob_tf, uses polymorph potion code
+			if(!M.allow_spontaneous_tf)
+				M.AdjustWeakened(50)
+			else
+				mob_tf(M)
+		if(3)
+			size_change(M)
+		if(4)
+			M.apply_effect(200, IRRADIATE)
+
+/obj/item/glamour_unstable/proc/blink_mob(mob/living/L)
+	var/starting_loc = (get_turf(src))
+	var/list/target_loc = list()
+	for(var/turf/simulated/floor/T in range(tele_range, starting_loc)) //Only appear on floors
+		if(!istype(T))
+			continue
+		if(T == starting_loc)
+			continue
+		target_loc |= T
+
+	if(target_loc.len)
+		var/final_loc = pick(target_loc)
+		do_teleport(L, final_loc, asoundin = 'sound/effects/phasein.ogg')
+
+/obj/item/glamour_unstable/proc/mob_tf(mob/living/target)
+	var/mob/living/M = target
+	if(!istype(M))
+		return
+	if(M.tf_mob_holder)
+		var/mob/living/ourmob = M.tf_mob_holder
+		if(ourmob.ai_holder)
+			var/datum/ai_holder/our_AI = ourmob.ai_holder
+			our_AI.set_stance(STANCE_IDLE)
+		M.tf_mob_holder = null
+		ourmob.ckey = M.ckey
+		var/turf/get_dat_turf = get_turf(target)
+		ourmob.loc = get_dat_turf
+		ourmob.forceMove(get_dat_turf)
+		ourmob.vore_selected = M.vore_selected
+		M.vore_selected = null
+		ourmob.mob_belly_transfer(M)
+
+		ourmob.Life(1)
+		if(ishuman(M))
+			for(var/obj/item/W in M)
+				if(istype(W, /obj/item/implant/backup) || istype(W, /obj/item/nif))
+					continue
+				M.drop_from_inventory(W)
+
+		qdel(target)
+		return
+	else
+		if(M.stat == DEAD)	//We can let it undo the TF, because the person will be dead, but otherwise things get weird.
+			return
+		var/mob/living/new_mob = spawn_mob(M)
+		new_mob.faction = M.faction
+
+		new_mob.mob_tf(M)
+
+
+/obj/item/glamour_unstable/proc/spawn_mob(var/mob/living/target)
+	var/choice = pick(tf_possible_types)
+	tf_type = tf_possible_types[choice]
+	if(!ispath(tf_type))
+		return
+	var/new_mob = new tf_type(get_turf(target))
+	return new_mob
+
+/obj/item/glamour_unstable/proc/size_change(mob/living/L)
+	var/new_size = (rand(25,200))/100
+	L.resize(new_size, ignore_prefs = FALSE)
+
+/obj/item/glamour_unstable/attack_hand(mob/user)
+	. = ..()
+
+	var/mob/living/M = user
+	if(!istype(M))
+		return
+
+	if(ishuman(M))
+		var/mob/living/carbon/human/H = user
+		var/obj/item/clothing/gloves/G = H.gloves
+		if(istype(G) && ((G.flags & THICKMATERIAL && prob(70)) || istype(G, /obj/item/clothing/gloves/gauntlets)))
+			return
+
+		if((H.species.name == SPECIES_HANNER) || (H.species.name == SPECIES_LLEILL))
+			return
+
+		attack_self(H)

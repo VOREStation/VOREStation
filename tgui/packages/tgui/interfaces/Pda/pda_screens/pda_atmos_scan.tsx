@@ -1,4 +1,3 @@
-import { filter } from 'common/collections';
 import { useBackend } from 'tgui/backend';
 import { Box, LabeledList } from 'tgui-core/components';
 import { decodeHtmlEntities } from 'tgui-core/string';
@@ -38,28 +37,29 @@ export const pda_atmos_scan = (props) => {
   return (
     <Box>
       <LabeledList>
-        {filter(
-          aircontents,
-          (i: aircontent) =>
-            i.val !== '0' ||
-            i.entry === 'Pressure' ||
-            i.entry === 'Temperature',
-        ).map((item) => (
-          <LabeledList.Item
-            key={item.entry}
-            label={item.entry}
-            color={getItemColor(
-              item.val,
-              item.bad_low,
-              item.poor_low,
-              item.poor_high,
-              item.bad_high,
-            )}
-          >
-            {item.val}
-            {decodeHtmlEntities(item.units)}
-          </LabeledList.Item>
-        ))}
+        {aircontents
+          .filter(
+            (i: aircontent) =>
+              i.val !== '0' ||
+              i.entry === 'Pressure' ||
+              i.entry === 'Temperature',
+          )
+          .map((item) => (
+            <LabeledList.Item
+              key={item.entry}
+              label={item.entry}
+              color={getItemColor(
+                item.val,
+                item.bad_low,
+                item.poor_low,
+                item.poor_high,
+                item.bad_high,
+              )}
+            >
+              {item.val}
+              {decodeHtmlEntities(item.units)}
+            </LabeledList.Item>
+          ))}
       </LabeledList>
     </Box>
   );

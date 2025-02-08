@@ -20,7 +20,7 @@
 	if(!cultwords["travel"])
 		runerandom()
 	var/list/runes = list("Teleport", "Teleport Other", "Spawn a Tome", "Change Construct Type", "Convert", "EMP", "Drain Blood", "See Invisible", "Resurrect", "Hide Runes", "Reveal Runes", "Astral Journey", "Manifest a Ghost", "Imbue Talisman", "Sacrifice", "Wall", "Free Cultist", "Summon Cultist", "Deafen", "Blind", "BloodBoil", "Communicate", "Stun")
-	var/r = input(user, "Choose a rune to scribe", "Rune Scribing") in runes //not cancellable.
+	var/r = tgui_input_list(user, "Choose a rune to scribe", "Rune Scribing", runes, timeout=30 SECONDS)
 	var/obj/effect/rune/R = new /obj/effect/rune(user.loc)
 	if(istype(user.loc,/turf))
 		var/area/A = get_area(user)
@@ -30,7 +30,7 @@
 				if(cast_check(1))
 					var/beacon
 					if(user)
-						beacon = input(user, "Select the last rune", "Rune Scribing") in rnwords
+						beacon = tgui_input_list(user, "Select the last rune", "Rune Scribing", rnwords, timeout=30 SECONDS)
 					R.word1=cultwords["travel"]
 					R.word2=cultwords["self"]
 					R.word3=beacon
@@ -39,7 +39,7 @@
 				if(cast_check(1))
 					var/beacon
 					if(user)
-						beacon = input(user, "Select the last rune", "Rune Scribing") in rnwords
+						beacon = tgui_input_list(user, "Select the last rune", "Rune Scribing", rnwords, timeout=30 SECONDS)
 					R.word1=cultwords["travel"]
 					R.word2=cultwords["other"]
 					R.word3=beacon
@@ -171,5 +171,5 @@
 					R.word3=cultwords["technology"]
 					R.check_icon()
 	else
-		to_chat(user, span_warning(" You do not have enough space to write a proper rune."))
+		to_chat(user, span_warning("You do not have enough space to write a proper rune."))
 	return

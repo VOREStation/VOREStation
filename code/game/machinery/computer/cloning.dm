@@ -34,6 +34,9 @@
 
 /obj/machinery/computer/cloning/Destroy()
 	releasecloner()
+	for(var/datum/dna2/record/R in records)
+		qdel(R.dna)
+		qdel(R)
 	return ..()
 
 /obj/machinery/computer/cloning/process()
@@ -210,6 +213,7 @@
 					return
 				if(check_access(C))
 					records.Remove(active_record)
+					qdel(active_record.dna)
 					qdel(active_record)
 					set_temp("Record deleted.", "success")
 					menu = MENU_RECORDS
@@ -344,6 +348,7 @@
 							set_temp("Initiating cloning cycle...", "success")
 							playsound(src, 'sound/machines/medbayscanner1.ogg', 100, 1)
 							records.Remove(C)
+							qdel(C.dna)
 							qdel(C)
 							menu = MENU_MAIN
 						else
@@ -423,7 +428,7 @@
 	subject.dna.check_integrity()
 
 	var/datum/dna2/record/R = new /datum/dna2/record()
-	R.dna = subject.dna
+	qdel_swap(R.dna, subject.dna)
 	R.ckey = subject.ckey
 	R.id = copytext(md5(subject.real_name), 2, 6)
 	R.name = R.dna.real_name

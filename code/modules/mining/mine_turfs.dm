@@ -540,14 +540,15 @@ var/list/mining_overlay_cache = list()
 
 	return attack_hand(user)
 
+//THIS IS THE 'YOU HIT AN ARTIFACT AND ARE GOING TOO DEEP' PROC. This is NOT the 'you destroyed the turf' proc. For that, look at 'GetDrilled'
 /turf/simulated/mineral/proc/wreckfinds(var/destroy = FALSE)
-	if(!destroy && prob(90)) //nondestructive methods have a chance of letting you step away to not trash things
-		if(prob(25))
-			excavate_find(prob(5), finds[1])
-	else if(prob(50) || destroy) //destructive methods will always destroy finds, no bowls menacing with spikes for you
+	if(!destroy) //nondestructive methods have a chance of letting you step away to not trash things
+		if(prob(10))	//This is to keep  you from just running into an artifact turf over and over and over and over while also keeping a small % chance to cause a small rock to drop if you truly accidentally went too deep.
+						//Technically you CAN KEEP RUNNING INTO THE TILE but like, you're wasting so much time at that point. Just buy a pick set from the mining vendor.
+			excavate_find(prob(1), finds[1]) //1 in 100 chance of digging it out
+	else //destructive methods will always destroy finds, no bowls menacing with spikes for you
 		finds.Remove(finds[1])
-		if(prob(50))
-			artifact_debris()
+		artifact_debris()
 
 /turf/simulated/mineral/proc/update_archeo_overlays(var/excavation_amount = 0)
 	var/updateIcon = 0
@@ -636,7 +637,7 @@ var/list/mining_overlay_cache = list()
 
 	//destroyed artifacts have weird, unpleasant effects
 	//make sure to destroy them before changing the turf though
-	if(artifact_find && artifact_fail)
+	if(finds && finds.len && prob(10)) //You destroyed an artifact turf!
 		var/pain = 0
 		if(prob(50))
 			pain = 1
@@ -644,15 +645,12 @@ var/list/mining_overlay_cache = list()
 			to_chat(M, span_danger("[pick("A high-pitched [pick("keening","wailing","whistle")]","A rumbling noise like [pick("thunder","heavy machinery")]")] somehow penetrates your mind before fading away!"))
 			if(pain)
 				flick("pain",M.pain)
-				if(prob(50))
-					M.adjustBruteLoss(5)
-			else
-				M.flash_eyes()
-				if(prob(50))
-					M.Stun(5)
-			SSradiation.flat_radiate(src, 25, 100)
+			M.flash_eyes()
+			if(prob(50))
+				M.Stun(5)
+			M.make_jittery(1000) //SHAKY
 		if(prob(25))
-			excavate_find(prob(5), finds[1])
+			excavate_find(prob(25), finds[1])
 	else if(rand(1,500) == 1)
 		visible_message(span_notice("An old dusty crate was buried within!"))
 		new /obj/structure/closet/crate/secure/loot(src)

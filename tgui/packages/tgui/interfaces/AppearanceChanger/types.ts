@@ -14,6 +14,7 @@ export type Data = {
   gender: string;
   gender_id: string;
   hair_style: string;
+  hair_grad: string;
   facial_hair_style: string;
   ear_style: string;
   ear_styles: styles[];
@@ -37,6 +38,7 @@ export type Data = {
   eye_color: string;
   skin_color: string;
   hair_color: string;
+  hair_color_grad: string;
   facial_hair_color: string;
   ears_color: string;
   ears2_color: string;
@@ -46,10 +48,35 @@ export type Data = {
   wing_color: string;
   wing2_color: string;
   wing3_color: string;
-  facial_hair_styles: { facialhairstyle: string }[];
-  hair_styles: { hairstyle: string }[];
+  facial_hair_styles: bodyStyle[];
+  hair_styles: bodyStyle[];
+  hair_grads: string[];
+  marking_styles: bodyStyle[];
   ear_secondary_style: string;
   ear_secondary_colors: string[];
+  is_design_console: BooleanLike; // If we have disk access
+  selected_a_record: BooleanLike; // If we're past record selection
+  character_records: bodyrecord[];
+  stock_records: string[];
+  disk: BooleanLike;
+  stock_bodyrecords: string[];
+  bodyrecords: string[];
+  species_name: string;
+  use_custom_icon: BooleanLike;
+  base_icon: string;
+  size_scale: number;
+  synthetic: BooleanLike;
+  scale_appearance: BooleanLike;
+  offset_override: BooleanLike;
+  weight: number;
+  digitigrade: BooleanLike;
+  blood_reagent: string;
+  blood_color: string;
+  species_sound: string;
+  // species_sounds_gendered: BooleanLike;
+  // species_sounds_female: string;
+  // species_sounds_male: string;
+  flavor_text: flavors;
 };
 
 type genders = { gender_name: string; gender_key: string }[];
@@ -59,6 +86,28 @@ export type styles = {
   instance: string;
   color: boolean;
   second_color: boolean;
+  icon: string;
+  icon_state: string;
+};
+
+export type bodyStyle = {
+  name: string;
+  icon: string;
+  icon_state: string;
 };
 
 export type species = { specimen: string };
+
+export type bodyrecord = { name: string; recref: string };
+
+export type flavors = {
+  general: string;
+  head: string;
+  face: string;
+  eyes: string;
+  torso: string;
+  arms: string;
+  hands: string;
+  legs: string;
+  feet: string;
+};

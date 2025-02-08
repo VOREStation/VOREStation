@@ -193,7 +193,8 @@
 					weapon_damage *= 1.5
 				weapon_attack_speed = G.fire_delay / (1 SECOND)
 				qdel(P)
-
+			if(weapon_attack_speed == 0)
+				CRASH("[G.type], using [G.projectile_type] has a 0 fire delay!")
 		var/average_damage = weapon_damage / weapon_attack_speed
 
 		threat_guess += average_damage

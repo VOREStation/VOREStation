@@ -1,4 +1,3 @@
-import { filter } from 'common/collections';
 import { useBackend } from 'tgui/backend';
 import { Box, LabeledList, Section } from 'tgui-core/components';
 import { decodeHtmlEntities, toTitleCase } from 'tgui-core/string';
@@ -16,28 +15,29 @@ export const CommunicatorWeatherTab = (props) => {
     <Section title="Weather">
       <Section title="Current Conditions">
         <LabeledList>
-          {filter(
-            aircontents,
-            (i: AirContent) =>
-              i.val !== '0' ||
-              i.entry === 'Pressure' ||
-              i.entry === 'Temperature',
-          ).map((item: AirContent) => (
-            <LabeledList.Item
-              key={item.entry}
-              label={item.entry}
-              color={getItemColor(
-                item.val,
-                item.bad_low,
-                item.poor_low,
-                item.poor_high,
-                item.bad_high,
-              )}
-            >
-              {item.val}
-              {decodeHtmlEntities(item.units)}
-            </LabeledList.Item>
-          ))}
+          {aircontents
+            .filter(
+              (i: AirContent) =>
+                i.val !== '0' ||
+                i.entry === 'Pressure' ||
+                i.entry === 'Temperature',
+            )
+            .map((item: AirContent) => (
+              <LabeledList.Item
+                key={item.entry}
+                label={item.entry}
+                color={getItemColor(
+                  item.val,
+                  item.bad_low,
+                  item.poor_low,
+                  item.poor_high,
+                  item.bad_high,
+                )}
+              >
+                {item.val}
+                {decodeHtmlEntities(item.units)}
+              </LabeledList.Item>
+            ))}
         </LabeledList>
       </Section>
       <Section title="Weather Reports">

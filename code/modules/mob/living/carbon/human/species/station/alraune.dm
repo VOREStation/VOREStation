@@ -352,8 +352,8 @@
 	var/mob/living/organ_owner = null
 	var/gen_cost = 0.5
 
-/obj/item/organ/internal/fruitgland/New()
-	..()
+/obj/item/organ/internal/fruitgland/Initialize(mapload, internal)
+	. = ..()
 	create_reagents(usable_volume)
 
 

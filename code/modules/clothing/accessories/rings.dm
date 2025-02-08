@@ -119,7 +119,10 @@
 	var/partnername = ""
 
 /obj/item/clothing/accessory/ring/wedding/attack_self(mob/user)
-	partnername = copytext(sanitize(input(user, "Would you like to change the holoengraving on the ring?", "Name your spouse", "Bae") as null|text),1,MAX_NAME_LEN)
+	var/input = tgui_input_text(user, "Would you like to change the holoengraving on the ring?", "Name your spouse", "Bae", MAX_NAME_LEN)
+	if(!input)
+		return
+	partnername = sanitize(input)
 	name = "[initial(name)] - [partnername]"
 
 /obj/item/clothing/accessory/ring/wedding/silver

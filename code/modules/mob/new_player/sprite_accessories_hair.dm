@@ -7,6 +7,7 @@
 */
 
 /datum/sprite_accessory/hair
+	name = DEVELOPER_WARNING_NAME
 	icon = 'icons/mob/Human_face_m.dmi'	  // default icon for all hairs
 	var/icon_add = 'icons/mob/human_face.dmi'
 	var/flags
@@ -338,6 +339,32 @@
 	name = "Celeb Curls"
 	icon_state = "hair_celebcurls"
 	flags = HAIR_TIEABLE
+
+/datum/sprite_accessory/hair/citheronia
+	name = "Citheronia Hair (Kira72)"
+	icon = 'icons/mob/human_face_vr.dmi'
+	icon_state = "citheronia_hair"
+	ckeys_allowed = list("Kira72")
+	do_colouration = 0
+
+/datum/sprite_accessory/hair/taramaw
+	name = "Hairmaw (Liquidfirefly)"
+	icon = 'icons/mob/human_face_vr.dmi'
+	icon_state = "maw_hair"
+	ckeys_allowed = list("liquidfirefly")
+	do_colouration = 0
+
+/datum/sprite_accessory/hair/twindrillslong
+	name = "Twin Drills Long"
+	icon = 'icons/mob/human_face_vr.dmi'
+	icon_add = 'icons/mob/human_face_vr_add.dmi'
+	icon_state = "hair_twincurllong"
+
+/datum/sprite_accessory/hair/crescent_moon
+	name = "Crescent-Moon"
+	icon = 'icons/mob/human_face_vr.dmi'
+	icon_add = 'icons/mob/human_face_vr_add.dmi'
+	icon_state = "crescent_moon"
 
 /datum/sprite_accessory/hair/citheronia_colorable
 	name = "Citheronia"
@@ -1317,6 +1344,12 @@
 	icon_add = 'icons/mob/human_face_alt_add.dmi'
 	icon_state = "soghun_hood"
 
+/datum/sprite_accessory/hair/una_quinthorns
+	name = "Quintiple Unathi Horns"
+	icon = 'icons/mob/human_face_vr.dmi'
+	icon_add = 'icons/mob/human_face_vr_add.dmi'
+	icon_state = "unathi_quintiple_horns"
+
 /datum/sprite_accessory/hair/una_doublehorns
 	name = "Double Unathi Horns"
 	icon = 'icons/mob/human_face_alt.dmi'
@@ -1598,7 +1631,6 @@
 /datum/sprite_accessory/hair/skr/tentacle_veryshort
 	name = "Skrell Short Tentacles"
 	icon_state = "skrell_hair_short"
-	gender = MALE
 
 /datum/sprite_accessory/hair/skr/tentacle_average
 	name = "Skrell Long Tentacles"
@@ -1764,9 +1796,11 @@
 /datum/sprite_accessory/hair/taj/bob
 	name = "Tajaran Bob"
 	icon_state = "hair_tbob"
-/datum/sprite_accessory/hair/taj/fingercurl
+
+/datum/sprite_accessory/hair/taj_ears_fingercurl
 	name = "Tajaran Finger Curls"
 	icon_state = "hair_fingerwave"
+
 
 //Teshari things
 /datum/sprite_accessory/hair/teshari
@@ -1867,3 +1901,68 @@
 /datum/sprite_accessory/hair/vox/quills_mohawk
 	name = "Quill Mohawk"
 	icon_state = "vox_mohawk"
+
+/datum/sprite_accessory/hair/shadekin_hair_rivyr
+	name = "Rivyr Hair"
+	icon = 'icons/mob/human_face_vr.dmi'
+	icon_add = 'icons/mob/human_face_vr_add.dmi'
+	icon_state = "shadekin_rivyr"
+	ckeys_allowed = list("verysoft")
+	species_allowed = list(SPECIES_SHADEKIN, SPECIES_SHADEKIN_CREW)
+	gender = NEUTER
+
+/datum/sprite_accessory/hair/slicker
+	name = "Slicker"
+	icon = 'icons/mob/human_face_vr.dmi'
+	icon_add = 'icons/mob/human_face_vr_add.dmi'
+	icon_state = "hair_slicker"
+
+/datum/sprite_accessory/facial_hair
+	icon = 'icons/mob/human_face_or_vr.dmi'
+	color_blend_mode = ICON_MULTIPLY
+
+
+/datum/sprite_accessory/facial_hair/vulp_ruff
+	name = "Ruff"
+	icon = 'icons/mob/human_face_vr.dmi'
+	icon_state = "vulp_facial_ruff"
+	gender = NEUTER
+
+/datum/sprite_accessory/facial_hair/vulp_kita
+	name = "Kita"
+	icon = 'icons/mob/human_face_vr.dmi'
+	icon_state = "vulp_facial_kita"
+	gender = NEUTER
+
+/datum/sprite_accessory/facial_hair/vulp_swift
+	name = "Swift"
+	icon = 'icons/mob/human_face_vr.dmi'
+	icon_state = "vulp_facial_swift"
+	gender = NEUTER
+
+/*
+////////////////////////////
+/  =--------------------=  /
+/  == Misc Definitions ==  /
+/  =--------------------=  /
+////////////////////////////
+*/
+
+// Yes, I have to add all of this just to make some glowy hair.
+// No, this isn't a character creation option, but... I guess in the future it could be, if anyone wants that?
+
+/datum/sprite_accessory/hair_accessory
+	name = DEVELOPER_WARNING_NAME
+	icon = 'icons/mob/vore/hair_accessories_vr.dmi'
+	do_colouration = 0 // Set to 1 to blend (ICON_ADD) hair color
+
+	var/ignores_lighting = 0 // Whether or not this hair accessory will ignore lighting and glow in the dark.
+	color_blend_mode = ICON_ADD // Only appliciable if do_coloration = 1
+	var/desc = DEVELOPER_WARNING_NAME
+
+/datum/sprite_accessory/hair_accessory/verie_hair_glow
+	name = "veries hair glow"
+	desc = ""
+	icon_state = "verie_hair_glow"
+	ignores_lighting = 1
+	//ckeys_allowed = list("vitoras") // This probably won't come into play EVER but better safe than sorry

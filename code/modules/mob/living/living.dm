@@ -716,10 +716,13 @@
 	return
 
 
-/mob/living/proc/Examine_OOC(mob/user = src)
+/mob/living/verb/Examine_OOC()
 	set name = "Examine Meta-Info (OOC)"
 	set category = "OOC.Game"
 	set src in view()
+	do_examine_ooc(usr)
+
+/mob/living/proc/do_examine_ooc(mob/user)
 	//VOREStation Edit Start - Making it so SSD people have prefs with fallback to original style.
 	if(CONFIG_GET(flag/allow_metadata))
 		if(ooc_notes)
@@ -1337,7 +1340,7 @@
 /mob/living/verb/mob_sleep()
 	set name = "Sleep"
 	set category = "IC.Game"
-	if(!toggled_sleeping && alert(src, "Are you sure you wish to go to sleep? You will snooze until you use the Sleep verb again.", "Sleepy Time", "No", "Yes") == "No")
+	if(!toggled_sleeping && tgui_alert(src, "Are you sure you wish to go to sleep? You will snooze until you use the Sleep verb again.", "Sleepy Time", list("No", "Yes")) != "Yes")
 		return
 	toggled_sleeping = !toggled_sleeping
 	to_chat(src, span_notice("You are [toggled_sleeping ? "now sleeping. Use the Sleep verb again to wake up" : "no longer sleeping"]."))
