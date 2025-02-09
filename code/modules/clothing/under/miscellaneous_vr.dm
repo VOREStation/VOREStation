@@ -78,9 +78,9 @@
 
 	var/new_size
 	if(H.has_large_resize_bounds())
-		new_size = tgui_input_number(H, "Put the desired size (25-200%), or (1-600%) in dormitory areas.", "Set Size", H.size_multiplier * 100, RESIZE_MAXIMUM_DORMS * 100, RESIZE_MINIMUM_DORMS * 100)
+		new_size = tgui_input_number(H, "Put the desired size ([RESIZE_MINIMUM * 100]-[RESIZE_MAXIMUM * 100]%), or ([RESIZE_MINIMUM_DORMS * 100]-[RESIZE_MAXIMUM_DORMS * 100]%) in dormitory areas.", "Set Size", H.size_multiplier * 100, RESIZE_MAXIMUM_DORMS * 100, RESIZE_MINIMUM_DORMS * 100)
 	else
-		new_size = tgui_input_number(H, "Put the desired size (25-200%), or (1-600%) in dormitory areas.", "Set Size", H.size_multiplier * 100, RESIZE_MAXIMUM * 100, RESIZE_MINIMUM * 100)
+		new_size = tgui_input_number(H, "Put the desired size ([RESIZE_MINIMUM * 100]-[RESIZE_MAXIMUM * 100]%), or ([RESIZE_MINIMUM_DORMS * 100]-[RESIZE_MAXIMUM_DORMS * 100]%) in dormitory areas.", "Set Size", H.size_multiplier * 100, RESIZE_MAXIMUM * 100, RESIZE_MINIMUM * 100)
 	if(!new_size)
 		return //cancelled
 
@@ -102,14 +102,11 @@
 		to_chat(H,span_notice("The safety features of the uniform prevent you from choosing this size."))
 		return
 
-	else if(new_size)
-		if(new_size != H.size_multiplier)
-			if(!original_size)
-				original_size = H.size_multiplier
-			H.resize(new_size/100, uncapped = H.has_large_resize_bounds(), ignore_prefs = TRUE) // Ignores prefs because you can only resize yourself
-			H.visible_message(span_warning("The space around [H] distorts as they change size!"),span_notice("The space around you distorts as you change size!"))
-		else //They chose their current size.
-			return
+	if(new_size != H.size_multiplier)
+		if(!original_size)
+			original_size = H.size_multiplier
+		H.resize(new_size/100, uncapped = H.has_large_resize_bounds(), ignore_prefs = TRUE) // Ignores prefs because you can only resize yourself
+		H.visible_message(span_warning("The space around [H] distorts as they change size!"),span_notice("The space around you distorts as you change size!"))
 
 /obj/item/clothing/under/hyperfiber/bluespace/mob_can_unequip(mob/M, slot, disable_warning = 0)
 	. = ..()
@@ -227,7 +224,12 @@
 		to_chat(H, span_warning("You must be WEARING the bracelet and have it uncovered to change your size."))
 		return
 
-	var/new_size = tgui_input_number(user, "Put the desired size you wish to be while wearing the bracelet ([RESIZE_MINIMUM*100]-[RESIZE_MAXIMUM*100]%).", "Set Size", H.size_multiplier*100, RESIZE_MAXIMUM*100, RESIZE_MINIMUM*100)
+	var/new_size
+	if(H.has_large_resize_bounds())
+		new_size = tgui_input_number(H, "Put the desired size ([RESIZE_MINIMUM * 100]-[RESIZE_MAXIMUM * 100]%), or ([RESIZE_MINIMUM_DORMS * 100]-[RESIZE_MAXIMUM_DORMS * 100]%) in dormitory areas.", "Set Size", H.size_multiplier * 100, RESIZE_MAXIMUM_DORMS * 100, RESIZE_MINIMUM_DORMS * 100)
+	else
+		new_size = tgui_input_number(H, "Put the desired size ([RESIZE_MINIMUM * 100]-[RESIZE_MAXIMUM * 100]%), or ([RESIZE_MINIMUM_DORMS * 100]-[RESIZE_MAXIMUM_DORMS * 100]%) in dormitory areas.", "Set Size", H.size_multiplier * 100, RESIZE_MAXIMUM * 100, RESIZE_MINIMUM * 100)
+
 	if(!new_size)
 		return
 
@@ -245,16 +247,13 @@
 		H.update_icons() //Just want the matrix transform
 		return
 
-	if(new_size)
-		if(new_size != H.size_multiplier)
-			if(!original_size)
-				original_size = H.size_multiplier
-			H.resize(new_size/100, ignore_prefs = TRUE) // Ignores prefs because you can only resize yourself
-			H.visible_message(span_notice("The space around [H] distorts as they change size!"), span_notice("The space around you distorts as you change size!"))
-			target_size = new_size/100
-			last_activated = world.time
-		else //They chose their current size.
-			return
+	if(new_size != H.size_multiplier)
+		if(!original_size)
+			original_size = H.size_multiplier
+		H.resize(new_size/100, ignore_prefs = TRUE) // Ignores prefs because you can only resize yourself
+		H.visible_message(span_notice("The space around [H] distorts as they change size!"), span_notice("The space around you distorts as you change size!"))
+		target_size = new_size/100
+		last_activated = world.time
 
 
 //Same as Nanotrasen Security Uniforms
