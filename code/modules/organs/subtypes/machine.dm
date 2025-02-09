@@ -47,9 +47,8 @@
 	return ..()
 
 /obj/item/organ/internal/mmi_holder/Initialize(mapload, var/internal, var/obj/item/mmi/installed)
-	..(mapload, internal)
-	var/mob/living/carbon/human/dummy/mannequin/M = loc
-	if(istype(M))
+	. = ..(mapload, internal)
+	if(!ishuman(loc) || istype(loc, /mob/living/carbon/human/dummy/mannequin))
 		return
 	if(installed)
 		stored_mmi = installed
