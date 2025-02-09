@@ -259,8 +259,10 @@
 /obj/item/dnainjector/set_trait/flashproof
 	trait_path = /datum/trait/positive/superpower_flashproof
 
+/* Not a gene on virgo
 /obj/item/dnainjector/set_trait/nonconduct
 	trait_path = /datum/trait/positive/nonconductive_plus
+*/
 
 /obj/item/dnainjector/set_trait/table_passer
 	trait_path = /datum/trait/positive/table_passer
