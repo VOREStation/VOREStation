@@ -19,7 +19,7 @@
 	value = CATALOGUER_REWARD_EASY
 
 /mob/living/simple_mob/mechanical/ward/monitor
-	desc = "It's a little flying drone. This one seems to be watching you..."
+	desc = "It's a little flying drone. This one seems to be watching you..." //gwah
 	catalogue_data = list(/datum/category_item/catalogue/technology/drone/ward)
 	icon_state = "ward"
 	glow_color = "#00FF00"
