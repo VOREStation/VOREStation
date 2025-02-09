@@ -252,13 +252,11 @@
 		return
 
 	if(signal.data["status"] != null)
-		spawn(2)
-			broadcast_status()
+		addtimer(CALLBACK(src, PROC_REF(broadcast_status)), 2, TIMER_DELETE_ME)
 		return //do not update_icon
 
 //			log_admin("DEBUG \[[world.timeofday]\]: vent_scrubber/receive_signal: unknown command \"[signal.data["command"]]\"\n[signal.debug_print()]")
-	spawn(2)
-		broadcast_status()
+	addtimer(CALLBACK(src, PROC_REF(broadcast_status)), 2, TIMER_DELETE_ME)
 	update_icon()
 	return
 
