@@ -13,6 +13,8 @@
 	var/scan = TRUE
 	/// The scanning module installed in the extrapolator. Used to determine extraction speed, and the stealthiest virus that's possible to extract.
 	var/obj/item/stock_parts/scanning_module/scanner
+	/// The internal blood reserve. Used to create cultures from extrapolated things.
+	var/obj/item/reagent_containers/glass/beaker/reserve
 	/// A list of advance IDs that this extrapolator has already extracted.
 	var/list/extracted_ids = list()
 	/// How long it takes for the extrapolator to extract a virus.
@@ -28,7 +30,7 @@
 	/// Cooldown for when the extrapolator can be used next.
 	COOLDOWN_DECLARE(usage_cooldown)
 
-/obj/item/extrapolator/Initialize(mapload, obj/item/stock_parts/scanning_module/starting_scanner)
+/obj/item/extrapolator/Initialize(mapload, obj/item/stock_parts/scanning_module/starting_scanner, obj/item/reagent_containers/glass/beaker/vial/starting_reserve)
 	. = ..()
 	starting_scanner = starting_scanner || default_scanning_module
 	if(ispath(starting_scanner, /obj/item/stock_parts/scanning_module))
@@ -36,6 +38,12 @@
 	else if(istype(starting_scanner))
 		starting_scanner.forceMove(src)
 		scanner = starting_scanner
+
+	if(ispath(reserve, /obj/item/reagent_containers/glass/beaker/vial))
+		reserve = new starting_reserve(src)
+	else if(istype(starting_reserve, /obj/item/reagent_containers/glass/beaker/vial))
+		starting_reserve.forceMove(src)
+		reserve = starting_reserve
 
 	refresh_parts()
 
@@ -51,13 +59,34 @@
 			to_chat(user, span_notice("[src] already has \the [scanner] installed."))
 		return
 
-	if(item.has_tool_quality(TOOL_SCREWDRIVER))
-		if(!scanner)
+	if(istype(item, /obj/item/reagent_containers/glass/beaker))
+		if(!reserve)
+			user.drop_item()
+			item.loc = src
+			reserve = item
+			to_chat(user, span_notice("You install \the [reserve] in [src]."))
+		else
+			item.reagents.trans_to(reserve)
+			to_chat(user, span_notice("You fill the internal [reserve] with [item]'s contents."))
+		return
+
+	if(item.has_tool_quality(TOOL_SCREWDRIVER) && scanner)
+		if(!scanner) // You never know
 			to_chat(user, span_warning("\The [src] has no scanner to remove!"))
 			return FALSE
 		to_chat(user, span_notice("You remove \the [scanner] from \the [src]."))
 		scanner.forceMove(drop_location())
 		scanner = null
+		playsound(src, item.usesound, 50, 1)
+		return TRUE
+
+	if(item.has_tool_quality(TOOL_SCREWDRIVER) && reserve)
+		if(!reserve) // Just in case
+			to_chat(user, span_warning("\The [src] has no internal reserve to remove!"))
+			return FALSE
+		to_chat(user, span_notice("You remove \the [reserve] from \the [src]."))
+		reserve.forceMove(drop_location())
+		reserve = null
 		playsound(src, item.usesound, 50, 1)
 		return TRUE
 
@@ -78,8 +107,11 @@
 	if(in_range(user, src) || isobserver(user))
 		if(!scanner)
 			. += span_notice("The scanner is missing.")
+		if(!reserve)
+			. += span_notice("The internal reserve is missing.")
 		else
 			. += span_notice("A class <b>[scanner.rating]</b> scanning module is installed. It is <i>screwed</i> in place.")
+			. += span_notice("A <b>[reserve]</b> is installed. It contains [reserve.reagents.get_reagent_amount(REAGENT_ID_BLOOD)] units of blood.")
 			. += span_notice("Can detect diseases <b>below stealth [maximum_stealth]</b>.")
 			. += span_notice("Can extract diseases in <b>[DisplayTimeText(extract_time)]</b>.")
 			. += span_notice("Can isolate symptoms <b>[maximum_level >= 9 ? "of any level" : "below level [maximum_level]"]</b>, in <b>[DisplayTimeText(isolate_time)]</b>.")
@@ -107,6 +139,9 @@
 		to_chat(user, span_warning("[icon2html(src, user)] The extrapolator is still recharging!"))
 		return
 	if(scanner)
+		if(!reserve)
+			to_chat(user, span_warning("The extrapolator lacks an internal reserve!"))
+			return
 		var/list/result = target?.extrapolator_act(user, src, dry_run = TRUE)
 		var/list/diseases = result && result[EXTRAPOLATOR_RESULT_DISEASES]
 		if(!length(diseases))
@@ -198,9 +233,9 @@
 	// I'll see about this...
 	// var/choice = tgui_alert(user, "What would you like to isolate?", "Isolate", list("Symptom", "Disease"))
 	// if(choice == "Symptom")
-	// . = isolate_symptom(user, target, target_disease)
+	. = isolate_symptom(user, target, target_disease)
 	// else
-	. = isolate_disease(user, target, target_disease)
+	//	. = isolate_disease(user, target, target_disease)
 	using = FALSE
 
 /obj/item/extrapolator/proc/isolate_symptom(mob/living/user, atom/target, datum/disease/advance/target_disease)
@@ -241,6 +276,9 @@
 	if(user.get_active_hand() != src)
 		to_chat(user, span_warning("The extrapolator must be held in your active hand to work!"))
 		return
+	if(!reserve.reagents.remove_reagent(REAGENT_ID_BLOOD, 5))
+		to_chat(user, span_warning("The extrapolator's internal reserves doesn't have enough blood!"))
+		return
 	var/obj/item/reagent_containers/glass/beaker/vial/culture_bottle = new(user.drop_location())
 	culture_bottle.name = "[disease.name] culture bottle"
 	culture_bottle.desc = "A small bottle. Contains [disease.agent] culture in synthblood medium."
@@ -250,6 +288,3 @@
 	COOLDOWN_START(src, usage_cooldown, 1 SECONDS)
 	extracted_ids[disease.GetDiseaseID()] = TRUE
 	return TRUE
-
-/obj/item/extrapolator/tier4
-	default_scanning_module = /obj/item/stock_parts/scanning_module/phasic
