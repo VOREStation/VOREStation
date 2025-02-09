@@ -83,6 +83,7 @@
 		EQUIPMENT("Defense Equipment - Smoke Bomb",				/obj/item/grenade/smokebomb,									100),
 		EQUIPMENT("Hybrid Equipment - Proto-Kinetic Dagger",	/obj/item/kinetic_crusher/machete/dagger,					500),
 		EQUIPMENT("Hybrid Equipment - Proto-Kinetic Machete",	/obj/item/kinetic_crusher/machete,							1000),
+		EQUIPMENT("Hybrid Equipment - Proto-Kinetic Gauntlets",	/obj/item/kinetic_crusher/machete/gauntlets,					1000), //eh this is two-hasnded so whatever, same price for slight dmg increase!
 		EQUIPMENT("Durasteel Fishing Rod",						/obj/item/material/fishing_rod/modern/strong,				7500),
 		EQUIPMENT("Titanium Fishing Rod",						/obj/item/material/fishing_rod/modern,						1000),
 		EQUIPMENT("Fishing Net",								/obj/item/material/fishing_net,								500),
@@ -128,10 +129,9 @@
 		EQUIPMENT("Premium Kinetic Accelerator",/obj/item/gun/energy/kinetic_accelerator/premiumka,		12000),
 	)
 	prize_list["Digging Tools"] = list(
-		// EQUIPMENT("Diamond Pickaxe",	/obj/item/pickaxe/diamond,				2000),
-		// EQUIPMENT("Kinetic Crusher",	/obj/item/twohanded/required/kinetic_crusher,	750),
 		EQUIPMENT("Resonator",			/obj/item/resonator,							900),
-		EQUIPMENT("Silver Pickaxe",		/obj/item/pickaxe/silver,				1200),
+		EQUIPMENT("Silver Pickaxe",		/obj/item/pickaxe/silver,						1200),
+		EQUIPMENT("Diamond Pickaxe",	/obj/item/pickaxe/diamond,				2000),
 		EQUIPMENT("Super Resonator",	/obj/item/resonator/upgraded,					2500),
 		EQUIPMENT("Archeology Equipment - Chisels",			/obj/item/storage/excavation,			500),
 		EQUIPMENT("Archeology Equipment - Scanner",			/obj/item/depth_scanner,				1000), // They can get a basic scanner for archeology, but not the anomaly scanner. Keeps job stealing at a minimum while also allowing miners to excavate any cool rocks they come across.

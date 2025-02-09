@@ -1,4 +1,3 @@
-import { sortBy } from 'common/collections';
 import { useBackend } from 'tgui/backend';
 import { Window } from 'tgui/layouts';
 import {
@@ -39,13 +38,15 @@ export const SeedStorage = (props) => {
 
   const { seeds } = data;
 
-  const sortedSeeds = sortBy(seeds, (seed: seed) => seed.name.toLowerCase());
+  seeds.sort((a, b) =>
+    a.name.toLowerCase().localeCompare(b.name.toLowerCase()),
+  );
 
   return (
     <Window width={600} height={760}>
       <Window.Content scrollable>
         <Section title="Seeds">
-          {sortedSeeds.map((seed) => (
+          {seeds.map((seed) => (
             <Stack mt={-1} key={seed.name + seed.uid}>
               <Stack.Item basis="60%">
                 <Collapsible title={toTitleCase(seed.name) + ' #' + seed.uid}>

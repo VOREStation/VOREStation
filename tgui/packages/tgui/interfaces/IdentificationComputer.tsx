@@ -1,4 +1,3 @@
-import { sortBy } from 'common/collections';
 import { Fragment } from 'react';
 import { useBackend } from 'tgui/backend';
 import { Window } from 'tgui/layouts';
@@ -276,13 +275,21 @@ export const IdentificationComputerRegions = (props: { actName: string }) => {
 
   const { regions } = data;
 
+  if (regions) {
+    regions.sort((a, b) => a.name.localeCompare(b.name));
+
+    for (let region of regions) {
+      region.accesses.sort((a, b) => a.desc.localeCompare(b.desc));
+    }
+  }
+
   return (
     <Stack wrap="wrap">
       {regions &&
-        sortBy(regions, (r) => r.name).map((region) => (
+        regions.map((region) => (
           <Stack.Item mb={1} basis="content" grow key={region.name}>
             <Section title={region.name} height="100%">
-              {sortBy(region.accesses, (a) => a.desc).map((access) => (
+              {region.accesses.map((access) => (
                 <Box key={access.ref}>
                   <Button
                     fluid

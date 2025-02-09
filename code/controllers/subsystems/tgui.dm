@@ -171,9 +171,9 @@ SUBSYSTEM_DEF(tgui)
  */
 /datum/controller/subsystem/tgui/proc/get_open_ui(mob/user, datum/src_object)
 	// No UIs opened for this src_object
-	if(!LAZYLEN(src_object?.open_uis))
+	if(!LAZYLEN(src_object?.open_tguis))
 		return null
-	for(var/datum/tgui/ui in src_object.open_uis)
+	for(var/datum/tgui/ui in src_object.open_tguis)
 		// Make sure we have the right user
 		if(ui.user == user)
 			return ui
@@ -190,10 +190,10 @@ SUBSYSTEM_DEF(tgui)
  */
 /datum/controller/subsystem/tgui/proc/update_uis(datum/src_object)
 	// No UIs opened for this src_object
-	if(!LAZYLEN(src_object?.open_uis))
+	if(!LAZYLEN(src_object?.open_tguis))
 		return 0
 	var/count = 0
-	for(var/datum/tgui/ui in src_object.open_uis)
+	for(var/datum/tgui/ui in src_object.open_tguis)
 		// Check if UI is valid.
 		if(ui?.src_object && ui.user && ui.src_object.tgui_host(ui.user))
 			INVOKE_ASYNC(ui, TYPE_PROC_REF(/datum/tgui, process), wait * 0.1, TRUE)
@@ -211,10 +211,10 @@ SUBSYSTEM_DEF(tgui)
  */
 /datum/controller/subsystem/tgui/proc/close_uis(datum/src_object)
 	// No UIs opened for this src_object
-	if(!LAZYLEN(src_object?.open_uis))
+	if(!LAZYLEN(src_object?.open_tguis))
 		return 0
 	var/count = 0
-	for(var/datum/tgui/ui in src_object.open_uis)
+	for(var/datum/tgui/ui in src_object.open_tguis)
 		// Check if UI is valid.
 		if(ui?.src_object && ui.user && ui.src_object.tgui_host(ui.user))
 			ui.close()
@@ -286,7 +286,7 @@ SUBSYSTEM_DEF(tgui)
  */
 /datum/controller/subsystem/tgui/proc/on_open(datum/tgui/ui)
 	ui.user?.tgui_open_uis |= ui
-	LAZYOR(ui.src_object.open_uis, ui)
+	LAZYOR(ui.src_object.open_tguis, ui)
 	all_uis |= ui
 
 /**
@@ -306,7 +306,7 @@ SUBSYSTEM_DEF(tgui)
 	if(ui.user)
 		ui.user.tgui_open_uis -= ui
 	if(ui.src_object)
-		LAZYREMOVE(ui.src_object.open_uis, ui)
+		LAZYREMOVE(ui.src_object.open_tguis, ui)
 	return TRUE
 
 /**

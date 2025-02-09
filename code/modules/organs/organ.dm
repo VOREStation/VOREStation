@@ -54,7 +54,7 @@ var/list/organ_cache = list()
 	if(transplant_data) transplant_data.Cut()
 	if(autopsy_data)    autopsy_data.Cut()
 	if(trace_chemicals) trace_chemicals.Cut()
-	dna = null
+	QDEL_NULL(dna)
 	species = null
 
 	return ..()
@@ -62,39 +62,39 @@ var/list/organ_cache = list()
 /obj/item/organ/proc/update_health()
 	return
 
-/obj/item/organ/New(var/mob/living/holder, var/internal)
-	..(holder)
+/obj/item/organ/Initialize(mapload, var/internal)
+	. = ..()
 	create_reagents(5)
 
-	if(isliving(holder))
-		src.owner = holder
-		src.w_class = max(src.w_class + mob_size_difference(holder.mob_size, MOB_MEDIUM), 1) //smaller mobs have smaller organs.
+	if(isliving(loc))
+		src.owner = loc
+		src.w_class = max(src.w_class + mob_size_difference(owner.mob_size, MOB_MEDIUM), 1) //smaller mobs have smaller organs.
 		if(internal)
-			if(!LAZYLEN(holder.internal_organs))
-				holder.internal_organs = list()
-			if(!LAZYLEN(holder.internal_organs_by_name))
-				holder.internal_organs_by_name = list()
+			if(!LAZYLEN(owner.internal_organs))
+				owner.internal_organs = list()
+			if(!LAZYLEN(owner.internal_organs_by_name))
+				owner.internal_organs_by_name = list()
 
-			holder.internal_organs |= src
-			holder.internal_organs_by_name[organ_tag] = src
+			owner.internal_organs |= src
+			owner.internal_organs_by_name[organ_tag] = src
 
 		else
-			if(!LAZYLEN(holder.organs))
-				holder.organs = list()
-			if(!LAZYLEN(holder.organs_by_name))
-				holder.organs_by_name = list()
+			if(!LAZYLEN(owner.organs))
+				owner.organs = list()
+			if(!LAZYLEN(owner.organs_by_name))
+				owner.organs_by_name = list()
 
-			holder.organs |= src
-			holder.organs_by_name[organ_tag] = src
+			owner.organs |= src
+			owner.organs_by_name[organ_tag] = src
 
 	if(!max_damage)
 		max_damage = min_broken_damage * 2
-	if(iscarbon(holder))
-		var/mob/living/carbon/C = holder
+	if(iscarbon(owner))
+		var/mob/living/carbon/C = owner
 		species = GLOB.all_species[SPECIES_HUMAN]
-		if(holder.dna)
-			dna = C.dna.Clone()
-			species = C.species //VOREStation Edit - For custom species
+		if(owner.dna)
+			qdel_swap(dna, C.dna.Clone())
+			species = C.species
 		else
 			log_debug("[src] at [loc] spawned without a proper DNA.")
 		var/mob/living/carbon/human/H = C
@@ -131,7 +131,7 @@ var/list/organ_cache = list()
 
 /obj/item/organ/proc/set_dna(var/datum/dna/new_dna)
 	if(new_dna)
-		dna = new_dna.Clone()
+		qdel_swap(dna, new_dna.Clone())
 		if(blood_DNA)
 			blood_DNA.Cut()
 			blood_DNA[dna.unique_enzymes] = dna.b_type

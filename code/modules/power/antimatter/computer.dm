@@ -54,7 +54,7 @@
 		if("logout")
 			authenticated = 0
 
-	src.updateUsrDialog()
+	src.updateUsrDialog(usr)
 
 /obj/machinery/computer/am_engine/attack_ai(var/mob/user as mob)
 	return src.attack_hand(user)

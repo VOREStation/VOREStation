@@ -257,7 +257,6 @@
 		H.custom_ask = dna.custom_ask
 		H.custom_whisper = dna.custom_whisper
 		H.custom_exclaim = dna.custom_exclaim
-		H.species.blood_color = dna.blood_color
 		H.fuzzy = dna.scale_appearance
 		H.offset_override = dna.offset_override
 		H.synth_markings = dna.synth_markings
@@ -269,10 +268,12 @@
 		H.custom_heat = dna.custom_heat
 		H.custom_cold = dna.custom_cold
 		var/datum/species/S = H.species
-		S.produceCopy(dna.species_traits, H, dna.base_species/*, FALSE*/) // Traitgenes edit - reset_dna flag required, or genes get reset on resleeve
+		S.produceCopy(dna.species_traits, H, dna.base_species, FALSE) // Traitgenes edit - reset_dna flag required, or genes get reset on resleeve
+		H.dna.blood_reagents = dna.blood_reagents
+		H.dna.blood_color = dna.blood_color
+		H.species.blood_reagents = H.dna.blood_reagents
+		H.species.blood_color = H.dna.blood_color
 		// VOREStation Edit End
-
-		H.species.blood_reagents = dna.blood_reagents
 		/* Currently not implemented on virgo
 		H.species.species_sounds = dna.species_sounds
 		H.species.gender_specific_species_sounds = dna.gender_specific_species_sounds
@@ -280,9 +281,9 @@
 		H.species.species_sounds_female = dna.species_sounds_female
 		*/
 
-		H.force_update_organs() //VOREStation Add - Gotta do this too
+		H.force_update_organs()
 		H.force_update_limbs()
-		//H.update_body(0) //VOREStation Edit - Done in force_update_limbs already
+		//H.update_body(0) //Done in force_update_limbs already
 		H.update_eyes()
 		H.update_hair()
 

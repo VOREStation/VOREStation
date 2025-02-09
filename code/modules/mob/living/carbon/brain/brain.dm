@@ -22,7 +22,11 @@
 		if(stat != DEAD)	//If not dead.
 			death(1)	//Brains can die again. AND THEY SHOULD AHA HA HA HA HA HA
 		ghostize()		//Ghostize checks for key so nothing else is necessary.
+	qdel(dna)
 	return ..()
+
+/mob/living/carbon/brain/emp_act(severity) //Brains can't be EMP'd...
+	return
 
 /mob/living/carbon/brain/say_understands(var/other)//Goddamn is this hackish, but this say code is so odd
 	if(istype(container, /obj/item/mmi))

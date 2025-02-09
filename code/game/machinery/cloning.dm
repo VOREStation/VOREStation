@@ -130,9 +130,9 @@
 
 	if(!R.dna)
 		H.dna = new /datum/dna()
-		H.dna.real_name = H.real_name
+		qdel_swap(H.dna, new /datum/dna())
 	else
-		H.dna = R.dna
+		qdel_swap(H.dna, R.dna)
 	H.UpdateAppearance()
 	H.sync_organ_dna()
 	if(heal_level < 60)
@@ -407,15 +407,12 @@
 		mess = 1
 		update_icon()
 		occupant.ghostize()
-		spawn(5)
-			qdel(occupant)
-	return
+		QDEL_IN(occupant, 0.5 SECONDS)
 
-/obj/machinery/clonepod/relaymove(mob/user as mob)
+/obj/machinery/clonepod/relaymove(mob/user)
 	if(user.stat)
 		return
 	go_out()
-	return
 
 /obj/machinery/clonepod/emp_act(severity)
 	if(prob(100/severity))
