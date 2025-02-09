@@ -34,6 +34,7 @@
 	var/list/dangerous_objects // List of 'dangerous' objs that the turf holds that can cause something bad to happen when stepped on, used for AI mobs.
 	var/tmp/changing_turf
 
+	var/blocks_nonghost_incorporeal = FALSE
 	var/footstep
 	var/barefootstep
 	var/heavyfootstep

@@ -28,7 +28,7 @@
 #define FOOTSTEP_MOB_SHOE "footstep_shoe"
 #define FOOTSTEP_MOB_HUMAN "footstep_human"
 #define FOOTSTEP_MOB_SLIME "footstep_slime"
-#define FOOTSTEP_MOB_SLITHER "foostep_slither"
+#define FOOTSTEP_MOB_SLITHER "footstep_slither"
 #define FOOTSTEP_OBJ_MACHINE "footstep_machine"
 #define FOOTSTEP_OBJ_ROBOT "footstep_robot"
 
