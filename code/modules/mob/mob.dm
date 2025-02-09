@@ -1329,4 +1329,4 @@ GLOBAL_LIST_EMPTY_TYPED(living_players_by_zlevel, /list)
 /mob/is_incorporeal()
 	if(incorporeal_move)
 		return 1
-	..()
+	return ..()
