@@ -237,7 +237,6 @@
 	varchange_type = TRAIT_VARCHANGE_LESS_BETTER
 	excludes = list(/datum/trait/positive/good_swimmer)
 
-
 /datum/trait/negative/less_blood
 	name = "Low Blood Volume"
 	desc = "You have 33.3% less blood volume compared to most species, making you more prone to blood loss issues."
@@ -697,3 +696,9 @@
 	//Traitgenes
 	is_genetrait = TRUE
 	hidden = FALSE
+
+/datum/trait/negative/slipperydirt
+	name = "Dirt Vulnerability"
+	desc = "Even the tiniest particles of dirt give you uneasy footing, even through several layers of footwear."
+	cost = -5
+	var_changes = list("dirtslip" = TRUE)

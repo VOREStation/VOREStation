@@ -206,7 +206,7 @@
 				servers = list()
 				temp = "<font color = #336699>- NEW NETWORK TAG SET IN ADDRESS \[[network]\] -</font>"
 
-	updateUsrDialog()
+	updateUsrDialog(usr)
 	return
 
 /obj/machinery/computer/telecomms/traffic/emag_act(var/remaining_charges, var/mob/user)
@@ -214,5 +214,5 @@
 		playsound(src, 'sound/effects/sparks4.ogg', 75, 1)
 		emagged = 1
 		to_chat(user, span_notice("You you disable the security protocols"))
-		src.updateUsrDialog()
+		updateUsrDialog(user)
 		return 1

@@ -38,16 +38,16 @@
 	density = 1
 	anchored = 0
 
-/obj/structure/crystalholder/attackby(obj/item/W as obj, mob/living/user as mob)
+/obj/structure/crystalholder/attackby(obj/item/W, mob/living/user)
 	if(istype(W,/obj/item/glamourcrystal) && !crystal)
 		icon_state = "crystalholder_full"
 		update_icon()
 		crystal = 1
 		user.drop_item()
 		qdel(W)
-		to_chat(usr, span_notice("You insert the crystal into the receptacle."))
+		to_chat(user, span_notice("You insert the crystal into the receptacle."))
 	else
-		to_chat(usr, span_notice("There isn't a slot for that."))
+		to_chat(user, span_notice("There isn't a slot for that."))
 
 /obj/machinery/crystalexperimenter
 	name = "crystal experimenter"
@@ -98,19 +98,3 @@
 /obj/machinery/button/remote/experimenter/trigger()
 	for(var/obj/machinery/crystalexperimenter/E in machines)
 		E.experiment()
-
-/turf/unsimulated/wall/glamour
-	name = "glamour"
-	desc = "A blindingly white light that appears to cast your reflection."
-	icon = 'icons/turf/flooring/glamour.dmi'
-	icon_state = "glamour"
-
-/turf/simulated/floor/glamour
-	name = "glamour"
-	desc = "A blindingly white light that appears to cast your reflection."
-	icon = 'icons/turf/flooring/glamour.dmi'
-	icon_state = "glamour"
-	light_range = 7
-	light_power = 1
-	light_color = "#ffffff"
-	light_on = TRUE

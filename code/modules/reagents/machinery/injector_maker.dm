@@ -52,7 +52,7 @@
 	return
 
 
-/obj/machinery/injector_maker/attackby(var/obj/item/O as obj, var/mob/user as mob)
+/obj/machinery/injector_maker/attackby(var/obj/item/O, var/mob/user)
 
 	if (istype(O, /obj/item/multitool))
 		return ..()
@@ -68,7 +68,7 @@
 			user.drop_item()
 			O.loc = src
 			update_icon()
-			src.updateUsrDialog()
+			src.updateUsrDialog(user)
 			return 0
 
 
@@ -144,10 +144,10 @@
 			for(var/datum/reagent/R in beaker.reagents.reagent_list)
 				. += span_notice("- [R.volume] units of [R.name].")
 
-/obj/machinery/injector_maker/attack_hand(mob/user as mob)
+/obj/machinery/injector_maker/attack_hand(mob/user)
 	interact(user)
 
-/obj/machinery/injector_maker/interact(mob/user as mob)
+/obj/machinery/injector_maker/interact(mob/user)
 	if(user.incapacitated() || !beaker)
 		return
 
@@ -227,7 +227,7 @@
 				update_icon()
 
 
-/obj/machinery/injector_maker/proc/make_injector(var/size, var/amount, var/new_name, var/material, mob/user as mob)
+/obj/machinery/injector_maker/proc/make_injector(var/size, var/amount, var/new_name, var/material, mob/user)
 	if(!beaker)
 		return
 	var/amount_per_injector = null
@@ -238,7 +238,7 @@
 		if("large injector")
 			amount_per_injector = CLAMP(beaker.reagents.total_volume / amount, 0, 15)
 	if((size == "small injector" && amount_per_injector < 5) || size == "large injector" && amount_per_injector < 15)
-		proceed = tgui_alert(usr, "Heads up! Less than max volume per injector!\n Making [amount] [size](s) filled with [amount_per_injector] total reagent volume each!","Proceed?",list("No","Yes"))
+		proceed = tgui_alert(user, "Heads up! Less than max volume per injector!\n Making [amount] [size](s) filled with [amount_per_injector] total reagent volume each!","Proceed?",list("No","Yes"))
 	if(!proceed || proceed == "No" || !amount_per_injector)
 		return
 	for(var/i, i < amount, i++)

@@ -1,4 +1,3 @@
-import { sortBy } from 'common/collections';
 import { useBackend } from 'tgui/backend';
 import { Window } from 'tgui/layouts';
 import { Button, Section, Table } from 'tgui-core/components';
@@ -35,11 +34,20 @@ export const ShuttleList = (props) => {
 
   const { shuttles, overmap_ships } = data;
 
+  shuttles.sort((a, b) => a.name.localeCompare(b.name));
+
+  overmap_ships.sort((a, b) => {
+    let a_cmp = a.name?.toLowerCase() || a.name || a.ref;
+    let b_cmp = a.name?.toLowerCase() || a.name || a.ref;
+
+    return a_cmp.localeCompare(b_cmp);
+  });
+
   return (
     <Section noTopPadding>
       <Section title="Classic Shuttles">
         <Table>
-          {sortBy(shuttles, (f: Shuttle) => f.name).map((shuttle) => (
+          {shuttles.map((shuttle) => (
             <Table.Row key={shuttle.ref}>
               <Table.Cell collapsing>
                 <Button
@@ -66,10 +74,7 @@ export const ShuttleList = (props) => {
       </Section>
       <Section title="Overmap Ships">
         <Table>
-          {sortBy(
-            overmap_ships,
-            (f: OvermapShip) => f.name?.toLowerCase() || f.name || f.ref,
-          ).map((ship) => (
+          {overmap_ships.map((ship) => (
             <Table.Row key={ship.ref}>
               <Table.Cell collapsing>
                 <Button onClick={() => act('adminobserve', { ref: ship.ref })}>

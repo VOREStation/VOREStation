@@ -112,7 +112,7 @@
 
 	while(bolt && tension && loc == current_user)
 		if(!do_after(user, 25)) //crossbow strings don't just magically pull back on their own.
-			user.visible_message("[usr] stops drawing and relaxes the string of [src].",span_warning("You stop drawing back and relax the string of [src]."))
+			user.visible_message("[user] stops drawing and relaxes the string of [src].",span_warning("You stop drawing back and relax the string of [src]."))
 			tension = 0
 			update_icon()
 			return
@@ -126,10 +126,10 @@
 
 		if(tension >= max_tension)
 			tension = max_tension
-			to_chat(usr, "[src] clunks as you draw the string to its maximum tension!")
+			to_chat(user, "[src] clunks as you draw the string to its maximum tension!")
 			return
 
-		user.visible_message("[usr] draws back the string of [src]!",span_notice("You continue drawing back the string of [src]!"))
+		user.visible_message("[user] draws back the string of [src]!",span_notice("You continue drawing back the string of [src]!"))
 
 /obj/item/gun/launcher/crossbow/proc/increase_tension(var/mob/user as mob)
 

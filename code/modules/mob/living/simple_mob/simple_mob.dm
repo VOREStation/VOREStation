@@ -205,6 +205,7 @@
 	if(CONFIG_GET(flag/allow_simple_mob_recolor))
 		add_verb(src, /mob/living/simple_mob/proc/ColorMate)
 
+	AddElement(/datum/element/footstep, FOOTSTEP_MOB_SHOE, 1, -6) // Need to go through all of the mobs to give them proper footsteps...
 
 	return ..()
 
@@ -361,10 +362,10 @@
 	set desc = "Allows to recolour once."
 
 	if(!has_recoloured)
-		var/datum/ColorMate/recolour = new /datum/ColorMate(usr)
-		recolour.tgui_interact(usr)
+		var/datum/ColorMate/recolour = new /datum/ColorMate(src)
+		recolour.tgui_interact(src)
 		return
-	to_chat(usr, "You've already recoloured yourself once. You are only allowed to recolour yourself once during a around.")
+	to_chat(src, "You've already recoloured yourself once. You are only allowed to recolour yourself once during a around.")
 
 //Thermal vision adding
 
@@ -374,14 +375,14 @@
 	set desc = "Uses you natural predatory instincts to seek out prey even through walls, or your natural survival instincts to spot predators from a distance."
 
 	if(hunting_cooldown + 5 MINUTES < world.time)
-		to_chat(usr, "You can sense other creatures by focusing carefully on your surroundings.")
+		to_chat(src, "You can sense other creatures by focusing carefully on your surroundings.")
 		sight |= SEE_MOBS
 		hunting_cooldown = world.time
 		spawn(600)
-			to_chat(usr, "Your concentration wears off.")
+			to_chat(src, "Your concentration wears off.")
 			sight -= SEE_MOBS
 	else if(hunting_cooldown + 5 MINUTES > world.time)
-		to_chat(usr, "You must wait for a while before using this again.")
+		to_chat(src, "You must wait for a while before using this again.")
 
 /mob/living/simple_mob/proc/hunting_vision_plus()
 	set name = "Thermal vision toggle"
@@ -389,10 +390,10 @@
 	set desc = "Uses you natural predatory instincts to seek out prey even through walls, or your natural survival instincts to spot predators from a distance."
 
 	if(!isthermal)
-		to_chat(usr, "You can sense other creatures by focusing carefully on your surroundings.")
+		to_chat(src, "You can sense other creatures by focusing carefully on your surroundings.")
 		sight |= SEE_MOBS
 	else
-		to_chat(usr, "You stop sensing creatures beyond the walls.")
+		to_chat(src, "You stop sensing creatures beyond the walls.")
 		sight -= SEE_MOBS
 
 /mob/living/simple_mob/proc/character_directory_species()

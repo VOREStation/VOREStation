@@ -71,21 +71,11 @@
 	playsound(src, 'sound/weapons/targeton.ogg', 50, 1)
 	user.update_mob_action_buttons()
 
-/obj/item/gun/projectile/shotgun/compact/verb/verb_toggle_stock(mob/user as mob)
+/obj/item/gun/projectile/shotgun/compact/verb/verb_toggle_stock()
 	set category = "Object"
 	set name = "Toggle stock"
 	set src in usr
 
-	if(issilicon(usr))
-		return
-
-	if (isliving(usr))
-		toggle_stock()
-	else
-		to_chat(usr, span_notice("You cannot do this in your current state."))
-
-
-/obj/item/gun/projectile/shotgun/compact/attack_self(mob/user as mob)
 	if(issilicon(usr))
 		return
 

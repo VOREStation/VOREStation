@@ -880,19 +880,19 @@
 		remove_verb(src, /mob/living/carbon/human/proc/morph)
 		return
 
-	var/new_facial = input(usr, "Please select facial hair color.", "Character Generation",rgb(r_facial,g_facial,b_facial)) as color
+	var/new_facial = tgui_color_picker(src, "Please select facial hair color.", "Character Generation",rgb(r_facial,g_facial,b_facial))
 	if(new_facial)
 		r_facial = hex2num(copytext(new_facial, 2, 4))
 		g_facial = hex2num(copytext(new_facial, 4, 6))
 		b_facial = hex2num(copytext(new_facial, 6, 8))
 
-	var/new_hair = input(usr, "Please select hair color.", "Character Generation",rgb(r_hair,g_hair,b_hair)) as color
+	var/new_hair = tgui_color_picker(src, "Please select hair color.", "Character Generation",rgb(r_hair,g_hair,b_hair))
 	if(new_facial)
 		r_hair = hex2num(copytext(new_hair, 2, 4))
 		g_hair = hex2num(copytext(new_hair, 4, 6))
 		b_hair = hex2num(copytext(new_hair, 6, 8))
 
-	var/new_eyes = input(usr, "Please select eye color.", "Character Generation",rgb(r_eyes,g_eyes,b_eyes)) as color
+	var/new_eyes = tgui_color_picker(src, "Please select eye color.", "Character Generation",rgb(r_eyes,g_eyes,b_eyes))
 	if(new_eyes)
 		r_eyes = hex2num(copytext(new_eyes, 2, 4))
 		g_eyes = hex2num(copytext(new_eyes, 4, 6))
@@ -909,7 +909,7 @@
 		hairs.Add(H.name) // add hair name to hairs
 		qdel(H) // delete the hair after it's all done
 
-	var/new_style = tgui_input_list(usr, "Please select hair style", "Character Generation", hairs)
+	var/new_style = tgui_input_list(src, "Please select hair style", "Character Generation", hairs)
 
 	// if new style selected (not cancel)
 	if (new_style)
@@ -924,12 +924,12 @@
 		fhairs.Add(H.name)
 		qdel(H)
 
-	new_style = tgui_input_list(usr, "Please select facial style", "Character Generation", fhairs)
+	new_style = tgui_input_list(src, "Please select facial style", "Character Generation", fhairs)
 
 	if(new_style)
 		f_style = new_style
 
-	var/new_gender = tgui_alert(usr, "Please select gender.", "Character Generation", list("Male", "Female", "Neutral"))
+	var/new_gender = tgui_alert(src, "Please select gender.", "Character Generation", list("Male", "Female", "Neutral"))
 	if (new_gender)
 		if(new_gender == "Male")
 			gender = MALE
@@ -959,16 +959,16 @@
 		if(h == src) // Don't target self
 			continue
 		creatures += h
-	var/mob/target = tgui_input_list(usr, "Who do you want to project your mind to?", "Project Mind", creatures)
+	var/mob/target = tgui_input_list(src, "Who do you want to project your mind to?", "Project Mind", creatures)
 	if (isnull(target))
 		return
 
-	var/say = sanitize(tgui_input_text(usr, "What do you wish to say?"))
+	var/say = sanitize(tgui_input_text(src, "What do you wish to say?"))
 	if(mRemotetalk in target.mutations)
 		target.show_message(span_filter_say("[span_blue("You hear [src.real_name]'s voice: [say]")]"))
 	else
 		target.show_message(span_filter_say("[span_blue("You hear a voice that seems to echo around the room: [say]")]"))
-	usr.show_message(span_filter_say("[span_blue("You project your mind into [target.real_name]: [say]")]"))
+	src.show_message(span_filter_say("[span_blue("You project your mind into [target.real_name]: [say]")]"))
 	log_say("(TPATH to [key_name(target)]) [say]",src)
 	for(var/mob/observer/dead/G in mob_list)
 		G.show_message(span_filter_say(span_italics("Telepathic message from " + span_bold("[src]") + " to " + span_bold("[target]") + ": [say]")))
@@ -1088,7 +1088,7 @@
 	set name = "sim"
 	set background = 1
 
-	var/damage = input(usr, "Wound damage","Wound damage") as num
+	var/damage = tgui_input_number(src, "Wound damage","Wound damage")
 
 	var/germs = 0
 	var/tdamage = 0
@@ -1317,18 +1317,7 @@
 			var/datum/mob_descriptor/descriptor = species.descriptors[desctype]
 			descriptors[desctype] = descriptor.default_value
 
-	spawn(0)
-		if(regen_icons) regenerate_icons()
-		make_blood()
-		if(vessel.total_volume < species.blood_volume)
-			vessel.maximum_volume = species.blood_volume
-			vessel.add_reagent(REAGENT_ID_BLOOD, species.blood_volume - vessel.total_volume)
-		else if(vessel.total_volume > species.blood_volume)
-			vessel.remove_reagent(REAGENT_ID_BLOOD,vessel.total_volume - species.blood_volume) //This one should stay remove_reagent to work even lack of a O_heart
-			vessel.maximum_volume = species.blood_volume
-		fixblood()
-		species.update_attack_types() //Required for any trait that updates unarmed_types in setup.
-		species.update_vore_belly_def_variant()
+	addtimer(CALLBACK(src, PROC_REF(initialize_vessel)), 0, TIMER_DELETE_ME) //Doing ASYNC fails here. This used to be a spawn(0)
 
 	// Rebuild the HUD. If they aren't logged in then login() should reinstantiate it for them.
 	update_hud()
@@ -1340,6 +1329,21 @@
 		return 1
 	else
 		return 0
+
+/mob/living/carbon/human/proc/initialize_vessel() //This needs fixing. For some reason mob species is not immediately set in set_species.
+	PRIVATE_PROC(TRUE)
+	SHOULD_NOT_OVERRIDE(TRUE)
+	if(regen_icons) regenerate_icons()
+	make_blood()
+	if(vessel.total_volume < species.blood_volume)
+		vessel.maximum_volume = species.blood_volume
+		vessel.add_reagent(REAGENT_ID_BLOOD, species.blood_volume - vessel.total_volume)
+	else if(vessel.total_volume > species.blood_volume)
+		vessel.remove_reagent(REAGENT_ID_BLOOD,vessel.total_volume - species.blood_volume) //This one should stay remove_reagent to work even lack of a O_heart
+		vessel.maximum_volume = species.blood_volume
+	fixblood()
+	species.update_attack_types() //Required for any trait that updates unarmed_types in setup.
+	species.update_vore_belly_def_variant()
 
 /mob/living/carbon/human/proc/bloody_doodle()
 	set category = "IC.Game"
@@ -1380,7 +1384,7 @@
 
 	var/max_length = bloody_hands * 30 //tweeter style
 
-	var/message = sanitize(tgui_input_text(usr, "Write a message. It cannot be longer than [max_length] characters.","Blood writing", ""))
+	var/message = sanitize(tgui_input_text(src, "Write a message. It cannot be longer than [max_length] characters.","Blood writing", ""))
 
 	if (message)
 		var/used_blood_amount = round(length(message) / 30, 1)

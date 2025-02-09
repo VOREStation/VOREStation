@@ -87,7 +87,7 @@ So here it sits, snowflake code for a single item.
 
 	return data
 /*
-/obj/item/rig/protean/tgui_act(action, params)
+/obj/item/rig/protean/tgui_act(action, params, datum/tgui/ui)
 	switch(action)
 		if("toggle_seals")
 			toggle_seals(wearer)
@@ -96,7 +96,7 @@ So here it sits, snowflake code for a single item.
 			toggle_cooling(wearer)
 			. = TRUE
 		if("toggle_ai_control")
-			to_chat(usr, span_notice("Proteans cannot be AI controlled."))
+			to_chat(ui.user, span_notice("Proteans cannot be AI controlled."))
 			. = TRUE
 		if("toggle_suit_lock")
 			locked = !locked

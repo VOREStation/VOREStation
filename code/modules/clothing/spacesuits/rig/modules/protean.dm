@@ -73,7 +73,7 @@ These should come standard with the Protean rigsuit, unless you want them to wor
 	var/armor_weight_ratio = 0.01	//This amount of slowdown per 1% of armour. 3 slowdown at the max armour.
 
 /obj/item/rig_module/protean/armor/engage()
-	var/armor_chosen = input(usr, "Which armor to adjust?", "Protean Armor") as null|anything in armor_settings
+	var/armor_chosen = tgui_input_list(usr, "Which armor to adjust?", "Protean Armor", armor_settings)
 	if(armor_chosen)
 		var/armorvalue = tgui_input_number(usr, "Set armour reduction value (Max of 60%)", "Protean Armor",0,60)
 		if(isnum(armorvalue))

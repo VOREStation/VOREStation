@@ -24,7 +24,7 @@
 /obj/machinery/computer/fusion_core_control/attackby(var/obj/item/thing, var/mob/user)
 	..()
 	if(istype(thing, /obj/item/multitool))
-		var/new_ident = sanitize_text(tgui_input_text(usr, "Enter a new ident tag.", "Core Control", monitor.core_tag))
+		var/new_ident = sanitize_text(tgui_input_text(user, "Enter a new ident tag.", "Core Control", monitor.core_tag))
 		if(new_ident && user.Adjacent(src))
 			monitor.core_tag = new_ident
 		return

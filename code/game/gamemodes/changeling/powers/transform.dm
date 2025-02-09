@@ -37,7 +37,7 @@
 		var/newSpecies = chosen_dna.speciesName
 		H.set_species(newSpecies,1)
 
-	src.dna = chosen_dna.dna.Clone()
+	qdel_swap(src.dna, chosen_dna.dna.Clone())
 	src.dna.b_type = "AB+" //This is needed to avoid blood rejection bugs.  The fact that the blood type might not match up w/ records could be a *FEATURE* too.
 	if(ishuman(src))
 		var/mob/living/carbon/human/H = src

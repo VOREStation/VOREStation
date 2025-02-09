@@ -27,13 +27,13 @@
 			I.loc = src
 	update_icon()
 
-/obj/structure/bookcase/attackby(obj/item/O as obj, mob/user as mob)
+/obj/structure/bookcase/attackby(obj/item/O, mob/user)
 	if(istype(O, /obj/item/book))
 		user.drop_item()
 		O.loc = src
 		update_icon()
 	else if(istype(O, /obj/item/pen))
-		var/newname = sanitizeSafe(tgui_input_text(usr, "What would you like to title this bookshelf?", null, null, MAX_NAME_LEN), MAX_NAME_LEN)
+		var/newname = sanitizeSafe(tgui_input_text(user, "What would you like to title this bookshelf?", null, null, MAX_NAME_LEN), MAX_NAME_LEN)
 		if(!newname)
 			return
 		else
@@ -55,11 +55,11 @@
 	else
 		..()
 
-/obj/structure/bookcase/attack_hand(var/mob/user as mob)
+/obj/structure/bookcase/attack_hand(var/mob/user)
 	if(contents.len)
-		var/obj/item/book/choice = tgui_input_list(usr, "Which book would you like to remove from the shelf?", "Book Selection", contents)
+		var/obj/item/book/choice = tgui_input_list(user, "Which book would you like to remove from the shelf?", "Book Selection", contents)
 		if(choice)
-			if(!usr.canmove || usr.stat || usr.restrained() || !in_range(loc, usr))
+			if(!user.canmove || user.stat || user.restrained() || !in_range(loc, user))
 				return
 			if(ishuman(user))
 				if(!user.get_active_hand())
@@ -107,7 +107,7 @@ Book Cart
 	anchored = FALSE
 	opacity = 0
 
-/obj/structure/bookcase/bookcart/attackby(obj/item/O as obj, mob/user as mob)
+/obj/structure/bookcase/bookcart/attackby(obj/item/O as obj, mob/user)
 	if(istype(O, /obj/item/book))
 		user.drop_item()
 		O.loc = src
@@ -188,7 +188,7 @@ Book Cart End
 	drop_sound = 'sound/items/drop/book.ogg'
 	pickup_sound = 'sound/items/pickup/book.ogg'
 
-/obj/item/book/attack_self(var/mob/user as mob)
+/obj/item/book/attack_self(var/mob/user)
 	if(carved)
 		if(store)
 			to_chat(user, span_notice("[store] falls out of [title]!"))
@@ -212,7 +212,7 @@ Book Cart End
 		dat = "<html>[dat]</html>"
 	user << browse(replacetext(dat, "<html>", "<html><TT><I>Penned by [author].</I></TT> <BR>"), "window=book")
 
-/obj/item/book/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/book/attackby(obj/item/W, mob/user)
 	if(carved)
 		if(!store)
 			if(W.w_class < ITEMSIZE_LARGE)
@@ -231,27 +231,27 @@ Book Cart End
 		if(unique)
 			to_chat(user, "These pages don't seem to take the ink well. Looks like you can't modify it.")
 			return
-		var/choice = tgui_input_list(usr, "What would you like to change?", "Change What?", list("Title", "Contents", "Author", "Cancel"))
+		var/choice = tgui_input_list(user, "What would you like to change?", "Change What?", list("Title", "Contents", "Author", "Cancel"))
 		switch(choice)
 			if("Title")
-				var/newtitle = reject_bad_text(sanitizeSafe(tgui_input_text(usr, "Write a new title:")))
+				var/newtitle = reject_bad_text(sanitizeSafe(tgui_input_text(user, "Write a new title:")))
 				if(!newtitle)
-					to_chat(usr, "The title is invalid.")
+					to_chat(user, "The title is invalid.")
 					return
 				else
 					src.name = newtitle
 					src.title = newtitle
 			if("Contents")
-				var/content = sanitize(input(usr, "Write your book's contents (HTML NOT allowed):") as message|null, MAX_BOOK_MESSAGE_LEN)
+				var/content = sanitize(tgui_input_text(user, "Write your book's contents (HTML NOT allowed):", max_length=MAX_BOOK_MESSAGE_LEN, multiline=TRUE), MAX_BOOK_MESSAGE_LEN)
 				if(!content)
-					to_chat(usr, "The content is invalid.")
+					to_chat(user, "The content is invalid.")
 					return
 				else
 					src.dat += content
 			if("Author")
-				var/newauthor = sanitize(tgui_input_text(usr, "Write the author's name:"))
+				var/newauthor = sanitize(tgui_input_text(user, "Write the author's name:"))
 				if(!newauthor)
-					to_chat(usr, "The name is invalid.")
+					to_chat(user, "The name is invalid.")
 					return
 				else
 					src.author = newauthor
@@ -298,7 +298,7 @@ Book Cart End
 	else
 		..()
 
-/obj/item/book/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
+/obj/item/book/attack(mob/living/carbon/M, mob/living/carbon/user)
 	if(user.zone_sel.selecting == O_EYES)
 		user.visible_message(span_notice("You open up the book and show it to [M]."), \
 			span_notice(" [user] opens up a book and shows it to [M]."))
@@ -313,7 +313,7 @@ Book Cart End
 	var/page = 1 //current page
 	var/list/pages = list() //the contents of each page
 
-/obj/item/book/bundle/proc/show_content(mob/user as mob)
+/obj/item/book/bundle/proc/show_content(mob/user)
 	if(!pages.len)
 		return
 	var/dat
@@ -332,7 +332,7 @@ Book Cart End
 		dat+= "<DIV STYLE='float:right; text-align:right; width:33.33333%'><A href='byond://?src=\ref[src];next_page=1'>Next Page</A></DIV><BR><HR>"
 	if(istype(pages[page], /obj/item/paper))
 		var/obj/item/paper/P = W
-		if(!(ishuman(usr) || isobserver(usr) || issilicon(usr)))
+		if(!(ishuman(user) || isobserver(user) || issilicon(user)))
 			dat += "<HTML><HEAD><TITLE>[P.name]</TITLE></HEAD><BODY>[stars(P.info)][P.stamps]</BODY></HTML>"
 		else
 			dat += "<HTML><HEAD><TITLE>[P.name]</TITLE></HEAD><BODY>[P.info][P.stamps]</BODY></HTML>"
@@ -346,15 +346,15 @@ Book Cart End
 		+ "[P.scribble ? "<div> Written on the back:<br><i>[P.scribble]</i>" : null]"\
 		+ "</body></html>", "window=[name]")
 	else if(!isnull(pages[page]))
-		if(!(ishuman(usr) || isobserver(usr) || issilicon(usr)))
+		if(!(ishuman(user) || isobserver(user) || issilicon(user)))
 			dat += "<HTML><HEAD><TITLE>Page [page]</TITLE></HEAD><BODY>[stars(pages[page])]</BODY></HTML>"
 		else
 			dat += "<HTML><HEAD><TITLE>Page [page]</TITLE></HEAD><BODY>[pages[page]]</BODY></HTML>"
 		user << browse(dat, "window=[name]")
 
-/obj/item/book/bundle/attack_self(mob/user as mob)
+/obj/item/book/bundle/attack_self(mob/user)
 	src.show_content(user)
-	add_fingerprint(usr)
+	add_fingerprint(user)
 	update_icon()
 	return
 
@@ -372,7 +372,7 @@ Book Cart End
 				page--
 				playsound(src, "pageturn", 50, 1)
 		src.attack_self(usr)
-		updateUsrDialog()
+		updateUsrDialog(usr)
 	else
 		to_chat(usr, span_notice("You need to hold it in your hands!"))
 
@@ -390,7 +390,7 @@ Book Cart End
 	var/obj/item/book/book	 //  Currently scanned book
 	var/mode = 0 					// 0 - Scan only, 1 - Scan and Set Buffer, 2 - Scan and Attempt to Check In, 3 - Scan and Attempt to Add to Inventory
 
-/obj/item/barcodescanner/attack_self(mob/user as mob)
+/obj/item/barcodescanner/attack_self(mob/user)
 	mode += 1
 	if(mode > 3)
 		mode = 0

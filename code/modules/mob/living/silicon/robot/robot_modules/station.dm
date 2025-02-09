@@ -682,7 +682,7 @@ var/global/list/robot_modules = list(
 	src.modules += new /obj/item/pickaxe/borgdrill(src)
 	src.modules += new /obj/item/storage/bag/sheetsnatcher/borg(src)
 	src.modules += new /obj/item/gripper/miner(src)
-	src.modules += new /obj/item/mining_scanner(src)
+	src.modules += new /obj/item/mining_scanner/robot(src)
 	src.modules += new /obj/item/card/id/cargo/miner/borg(src)
 	src.emag += new /obj/item/kinetic_crusher/machete/dagger(src)
 
