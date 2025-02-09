@@ -1008,7 +1008,7 @@
 	customize_usr = TRUE
 
 /datum/tgui_module/appearance_changer/superpower/tgui_status(mob/user, datum/tgui_state/state)
-	var/datum/gene/G = GLOB.trait_to_dna_genes[/datum/trait/positive/superpower_morph]
+	var/datum/gene/G = get_gene_from_trait(/datum/trait/positive/superpower_morph)
 	if(!owner.dna.GetSEState(G.block))
 		return STATUS_CLOSE
 	return ..()

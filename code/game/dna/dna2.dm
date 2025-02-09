@@ -15,11 +15,17 @@ var/global/list/assigned_blocks[DNA_SE_LENGTH]
 
 // Traitgenes Genes accessible by global VV, and lists for good and bad mutations for quick randomized selection of traitgenes. Removed dna from gene's path
 GLOBAL_LIST_EMPTY_TYPED(dna_genes, /datum/gene)
-GLOBAL_LIST_EMPTY(trait_to_dna_genes) // Reverse lookup genes
+GLOBAL_LIST_EMPTY(trait_to_dna_genes) // Reverse lookup genes, use get_gene_from_trait(var/trait_path) to read this
 GLOBAL_LIST_EMPTY_TYPED(dna_genes_good, /datum/gene/trait)
 GLOBAL_LIST_EMPTY_TYPED(dna_genes_neutral, /datum/gene/trait)
 GLOBAL_LIST_EMPTY_TYPED(dna_genes_bad, /datum/gene/trait)
 
+/proc/get_gene_from_trait(var/trait_path) // ALWAYS USE THIS
+	RETURN_TYPE(/datum/gene/trait)
+	var/G = GLOB.trait_to_dna_genes[trait_path]
+	if(!G) // This SHOULD NOT HAPPEN, be sure any viruses or injectors that give trait paths are actually traitgenes.
+		stack_trace("[trait_path] was used as a traitgene, without being flagged as one.")
+	return G
 
 /datum/dna
 	// READ-ONLY, GETS OVERWRITTEN

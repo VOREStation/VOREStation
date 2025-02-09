@@ -221,8 +221,9 @@
 	var/trait_path
 
 /obj/item/dnainjector/set_trait/Initialize()
-	if(trait_path && GLOB.trait_to_dna_genes[trait_path])
-		pick_block( GLOB.trait_to_dna_genes[trait_path], TRUE, FALSE)
+	var/G = get_gene_from_trait(trait_path)
+	if(trait_path && G)
+		pick_block( G, TRUE, FALSE)
 	else
 		qdel(src)
 		return
