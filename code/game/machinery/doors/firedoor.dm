@@ -417,7 +417,6 @@
 
 /obj/machinery/door/firedoor/close_internalfinish(forced = 0)
 	// Queue us for processing when we are closed!
-	PRIVATE_PROC(TRUE) //do not touch this or BYOND will devour you
 	..()
 	if(density)
 		START_MACHINE_PROCESSING(src)
