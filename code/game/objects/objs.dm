@@ -106,8 +106,6 @@
 
 /obj/proc/updateUsrDialog(mob/user)
 	if(in_use)
-		to_world("we actually have a [user]")
-		to_world("we got a [usr]")
 		var/is_in_use = 0
 		var/list/nearby = viewers(1, src)
 		for(var/mob/M in nearby)

@@ -100,7 +100,7 @@
 /obj/machinery/atmospherics/pipe/return_network(obj/machinery/atmospherics/reference)
 	if(QDELETED(src))
 		return
-	if(parent)
+	if(!parent)
 		parent = new /datum/pipeline()
 		parent.build_pipeline(src)
 
