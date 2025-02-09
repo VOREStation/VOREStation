@@ -145,7 +145,7 @@
 		Move_object(direct)
 
 	// Ghosty mob movement
-	if(my_mob.incorporeal_move && isobserver(my_mob))
+	if(my_mob.is_incorporeal() && isobserver(my_mob))
 		Process_Incorpmove(direct)
 		DEBUG_INPUT("--------")
 		next_move_dir_add = 0	// This one I *think* exists so you can tap move and it will move even if delay isn't quite up.
@@ -183,7 +183,7 @@
 
 	if(isliving(my_mob))
 		var/mob/living/L = my_mob
-		if(L.incorporeal_move)//Move though walls
+		if(L.is_incorporeal())//Move though walls
 			Process_Incorpmove(direct)
 			return
 		/* TODO observer unzoom

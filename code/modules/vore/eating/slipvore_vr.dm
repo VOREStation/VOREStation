@@ -42,7 +42,7 @@
 /mob/living/Crossed(var/atom/movable/AM)
 	..()
 	var/mob/living/target = AM
-	if(istype(target) && !target.incorporeal_move && !src.incorporeal_move)	//The slip vore begins
+	if(istype(target) && !target.is_incorporeal() && !src.is_incorporeal())	//The slip vore begins
 		if(can_slip_vore(target) && !src.slip_vore_in_progress && !target.slip_vore_in_progress)	//If we can vore them go for it
 			perform_the_nom(src,target,src,src.vore_selected,1)
 			target.slip_vore_in_progress = FALSE

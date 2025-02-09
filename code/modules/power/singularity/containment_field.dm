@@ -48,7 +48,7 @@
 	return 0
 
 /obj/machinery/containment_field/Crossed(mob/living/L)
-	if(!istype(L) || L.incorporeal_move)
+	if(!istype(L) || L.is_incorporeal())
 		return
 	shock(L)
 
@@ -60,7 +60,7 @@
 	if(isnull(AM))
 		log_debug("DEBUG: HasProximity called without reference on [src].")
 		return
-	if(!isliving(AM) || AM:incorporeal_move)
+	if(!isliving(AM) || AM.is_incorporeal())
 		return 0
 	if(!(get_dir(src,AM) in shockdirs))
 		return 0
