@@ -163,7 +163,7 @@
 	if(scrubbing && power_draw < 0 && controller_iteration > 10)	//99% of all scrubbers
 		//Fucking hibernate because you ain't doing shit.
 		hibernate = 1
-		addtimer(VARSET_CALLBACK(src, hibernate, 0), rand(10 SECONDS,20 SECONDS)) //hibernate randomly
+		addtimer(VARSET_CALLBACK(src, hibernate, 0), rand(10 SECONDS,20 SECONDS), TIMER_DELETE_ME) //hibernate randomly
 
 	if (power_draw >= 0)
 		last_power_draw = power_draw
