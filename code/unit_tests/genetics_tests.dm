@@ -26,7 +26,7 @@
 	if(failed)
 		fail("Must have at least one positive gene.")
 	else
-		pass("No positive genes.")
+		pass("Has at least one positive gene.")
 	return failed
 
 
@@ -42,7 +42,7 @@
 	if(failed)
 		fail("Must have at least one neutral gene.")
 	else
-		pass("No neutral genes.")
+		pass("Has at least one neutral gene.")
 	return failed
 
 
@@ -58,7 +58,7 @@
 	if(failed)
 		fail("Must have at least one bad gene.")
 	else
-		pass("No bad genes.")
+		pass("Has at least one bad gene.")
 	return failed
 
 
