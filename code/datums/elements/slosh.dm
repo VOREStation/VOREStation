@@ -59,11 +59,11 @@
 
 		step_count = 0
 
-	if(!vore_footstep_volume || !vore_footstep_chance)
-		return
+		if(!vore_footstep_volume || !vore_footstep_chance)
+			return
 
-	if(prob(vore_footstep_chance))
-		handle_vorefootstep(source)
+		if(prob(vore_footstep_chance))
+			handle_vorefootstep(source)
 
 /datum/element/slosh/proc/handle_vorefootstep(mob/living/source)
 	if(!CONFIG_GET(number/vorefootstep_volume) || !vore_footstep_volume)
