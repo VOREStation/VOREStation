@@ -87,7 +87,7 @@
 
 	if(source.buckled || source.lying || source.throwing || source.is_incorporeal())
 		return
-	if(!has_gravity(source) && prob(75))
+	if(!get_gravity(source) && prob(75))
 		return
 
 	playsound(source.loc, S, volume, FALSE, preference = /datum/preference/toggle/digestion_noises)
