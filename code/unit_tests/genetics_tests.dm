@@ -105,7 +105,7 @@
 
 
 /datum/unit_test/genetraits_should_have_valid_dna_bounds
-	name = "GENETICS: Enough free gene slots must be available."
+	name = "GENETICS: All genes should have valid activation bounds."
 
 /datum/unit_test/genetraits_should_have_valid_dna_bounds/start_test()
 	var/failed = FALSE
