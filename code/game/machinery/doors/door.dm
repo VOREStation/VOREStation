@@ -457,7 +457,6 @@
 
 /obj/machinery/door/proc/close_internalfinish(var/forced = 0)
 	PRIVATE_PROC(TRUE) //do not touch this or BYOND will devour you
-	SHOULD_NOT_OVERRIDE(TRUE)
 	update_icon()
 	if(visible && !glass)
 		set_opacity(1)	//caaaaarn!

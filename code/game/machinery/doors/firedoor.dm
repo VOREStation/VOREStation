@@ -414,9 +414,13 @@
 /obj/machinery/door/firedoor/close()
 	latetoggle()
 	. = ..()
+
+/obj/machinery/door/firedoor/close_internalfinish(forced = 0)
 	// Queue us for processing when we are closed!
+	PRIVATE_PROC(TRUE) //do not touch this or BYOND will devour you
 	if(density)
 		START_MACHINE_PROCESSING(src)
+	..()
 
 /obj/machinery/door/firedoor/open(var/forced = 0)
 	if(hatch_open)
