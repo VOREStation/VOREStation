@@ -52,7 +52,7 @@
 	return
 
 
-/obj/machinery/injector_maker/attackby(var/obj/item/O as obj, var/mob/user as mob)
+/obj/machinery/injector_maker/attackby(var/obj/item/O, var/mob/user)
 
 	if (istype(O, /obj/item/multitool))
 		return ..()
@@ -68,7 +68,7 @@
 			user.drop_item()
 			O.loc = src
 			update_icon()
-			src.updateUsrDialog()
+			src.updateUsrDialog(user)
 			return 0
 
 
@@ -144,10 +144,10 @@
 			for(var/datum/reagent/R in beaker.reagents.reagent_list)
 				. += span_notice("- [R.volume] units of [R.name].")
 
-/obj/machinery/injector_maker/attack_hand(mob/user as mob)
+/obj/machinery/injector_maker/attack_hand(mob/user)
 	interact(user)
 
-/obj/machinery/injector_maker/interact(mob/user as mob)
+/obj/machinery/injector_maker/interact(mob/user)
 	if(user.incapacitated() || !beaker)
 		return
 

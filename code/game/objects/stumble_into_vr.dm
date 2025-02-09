@@ -136,7 +136,7 @@
 	isopen = 0
 	update_icon()
 	add_fingerprint(M)
-	updateUsrDialog()
+	updateUsrDialog(M)
 	M.stop_flying()
 
 /obj/machinery/vending/stumble_into(mob/living/M)

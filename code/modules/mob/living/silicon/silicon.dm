@@ -37,6 +37,8 @@
 	init_id()
 	init_subsystems()
 
+	AddElement(/datum/element/footstep, FOOTSTEP_MOB_SHOE, 0.75, -6)
+
 /mob/living/silicon/Destroy()
 	silicon_mob_list -= src
 	for(var/datum/alarm_handler/AH in SSalarm.all_handlers)
