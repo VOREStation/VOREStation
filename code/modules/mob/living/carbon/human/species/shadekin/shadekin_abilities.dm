@@ -129,6 +129,8 @@
 
 		//Cosmetics mostly
 		var/obj/effect/temp_visual/shadekin/phase_in/phaseanim = new /obj/effect/temp_visual/shadekin/phase_in(src.loc)
+		phaseanim.pixel_y = (src.size_multiplier - 1) * 16 // Pixel shift for the animation placement
+		phaseanim.adjust_scale(src.size_multiplier, src.size_multiplier)
 		phaseanim.dir = dir
 		alpha = 0
 		custom_emote(1,"phases in!")
@@ -186,6 +188,8 @@
 			B.escapable = FALSE
 
 		var/obj/effect/temp_visual/shadekin/phase_out/phaseanim = new /obj/effect/temp_visual/shadekin/phase_out(src.loc)
+		phaseanim.pixel_y = (src.size_multiplier - 1) * 16 // Pixel shift for the animation placement
+		phaseanim.adjust_scale(src.size_multiplier, src.size_multiplier)
 		phaseanim.dir = dir
 		alpha = 0
 		add_modifier(/datum/modifier/shadekin_phase_vision)
