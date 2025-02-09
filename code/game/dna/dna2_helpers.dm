@@ -275,8 +275,10 @@
 		H.custom_cold = dna.custom_cold
 		var/datum/species/S = H.species
 		S.produceCopy(dna.species_traits, H, dna.base_species, FALSE) // Traitgenes edit - reset_dna flag required, or genes get reset on resleeve
-
-		H.species.blood_reagents = dna.blood_reagents
+		H.dna.blood_reagents = dna.blood_reagents
+		H.dna.blood_color = dna.blood_color
+		H.species.blood_reagents = H.dna.blood_reagents
+		H.species.blood_color = H.dna.blood_color
 		/*//TODO: Get these to work as well.
 		H.species.species_sounds = dna.species_sounds
 		H.species.gender_specific_species_sounds = dna.gender_specific_species_sounds
