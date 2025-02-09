@@ -41,7 +41,7 @@
 
 	if(!species)
 		if(new_species)
-			set_species(new_species,1)
+			set_species(new_species)
 		else
 			set_species()
 
@@ -1230,7 +1230,7 @@
 	else
 		to_chat(usr, span_warning("You failed to check the pulse. Try again."))
 
-/mob/living/carbon/human/proc/set_species(var/new_species, var/default_colour, var/regen_icons = TRUE, var/mob/living/carbon/human/example = null)
+/mob/living/carbon/human/proc/set_species(var/new_species)
 
 	if(!dna)
 		if(!new_species)
@@ -1271,12 +1271,7 @@
 	if(species.icon_scale_x != DEFAULT_ICON_SCALE_X || species.icon_scale_y != DEFAULT_ICON_SCALE_Y)
 		update_transform()
 
-	if(example)
-		if(!(example == src))
-			r_skin = example.r_skin
-			g_skin = example.g_skin
-			b_skin = example.b_skin
-	else if(species.base_color)
+	if(species.base_color)
 		//Apply color.
 		r_skin = hex2num(copytext(species.base_color,2,4))
 		g_skin = hex2num(copytext(species.base_color,4,6))
@@ -1333,7 +1328,7 @@
 /mob/living/carbon/human/proc/initialize_vessel() //This needs fixing. For some reason mob species is not immediately set in set_species.
 	PRIVATE_PROC(TRUE)
 	SHOULD_NOT_OVERRIDE(TRUE)
-	if(regen_icons) regenerate_icons()
+	regenerate_icons()
 	make_blood()
 	if(vessel.total_volume < species.blood_volume)
 		vessel.maximum_volume = species.blood_volume
