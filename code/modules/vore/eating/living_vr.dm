@@ -454,7 +454,7 @@
 //
 // Clearly super important. Obviously.
 //
-/mob/living/proc/lick(mob/living/tasted in living_mobs(1))
+/mob/living/proc/lick(mob/living/tasted in living_mobs_in_view(1))
 	set name = "Lick"
 	set category = "IC.Game"
 	set desc = "Lick someone nearby!"
@@ -829,6 +829,8 @@
 
 
 /mob/living/proc/feed_grabbed_to_self_falling_nom(var/mob/living/user, var/mob/living/prey)
+	if(user.is_incorporeal())
+		return FALSE
 	var/belly = user.vore_selected
 	return perform_the_nom(user, prey, user, belly, delay = 1) //1/10th of a second is probably fine.
 

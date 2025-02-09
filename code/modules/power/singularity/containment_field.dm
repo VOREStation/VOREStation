@@ -21,7 +21,7 @@
 /obj/machinery/containment_field/Initialize()
 	. = ..()
 	shockdirs = list(turn(dir,90),turn(dir,-90))
-	sense_proximity(callback = /atom/proc/HasProximity)
+	sense_proximity(callback = TYPE_PROC_REF(/atom,HasProximity))
 
 /obj/machinery/containment_field/set_dir(new_dir)
 	. = ..()
@@ -52,7 +52,14 @@
 		return
 	shock(L)
 
-/obj/machinery/containment_field/HasProximity(turf/T, atom/movable/AM, old_loc)
+/obj/machinery/containment_field/HasProximity(turf/T, datum/weakref/WF, old_loc)
+	SIGNAL_HANDLER
+	if(isnull(WF))
+		return
+	var/atom/movable/AM = WF.resolve()
+	if(isnull(AM))
+		log_debug("DEBUG: HasProximity called without reference on [src].")
+		return
 	if(!isliving(AM) || AM:incorporeal_move)
 		return 0
 	if(!(get_dir(src,AM) in shockdirs))

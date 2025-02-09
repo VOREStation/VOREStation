@@ -71,6 +71,9 @@
 	else if(stat)
 		to_chat(src, span_warning("Can't use that ability in your state!"))
 		return FALSE
+	else if(SK.doing_phase)
+		to_chat(src, span_warning("You are already trying to phase!"))
+		return FALSE
 	else if(shadekin_get_energy() < ability_cost && !(ability_flags & AB_PHASE_SHIFTED))
 		to_chat(src, span_warning("Not enough energy for that ability!"))
 		return FALSE
@@ -83,12 +86,14 @@
 		to_chat(src,span_warning("You can't use that here!"))
 		return FALSE
 
+	SK.doing_phase = TRUE // Prevent bugs when spamming phase button
 	//Shifting in
 	if(ability_flags & AB_PHASE_SHIFTED)
 		phase_in(T)
 	//Shifting out
 	else
 		phase_out(T)
+	SK.doing_phase = FALSE // Prevent bugs when spamming phase button
 
 
 /mob/living/carbon/human/proc/phase_in(var/turf/T)
@@ -185,8 +190,9 @@
 		alpha = 0
 		add_modifier(/datum/modifier/shadekin_phase_vision)
 		sleep(5)
-		invisibility = INVISIBILITY_LEVEL_TWO
-		see_invisible = INVISIBILITY_LEVEL_TWO
+		invisibility = INVISIBILITY_SHADEKIN
+		see_invisible = INVISIBILITY_SHADEKIN
+		see_invisible_default = INVISIBILITY_SHADEKIN // Allow seeing phased entities while phased.
 		//cut_overlays()
 		update_icon()
 		alpha = 127
@@ -335,3 +341,24 @@
 	holder.glow_color = initial(holder.glow_color)
 	holder.set_light(0)
 	my_kin = null
+
+// force dephase proc, to be called by other procs to dephase the shadekin. T is the target to force dephase them to.
+/mob/living/carbon/human/proc/attack_dephase(var/turf/T = null, atom/dephaser)
+	var/datum/species/shadekin/SK = species
+
+	// no assigned dephase-target, just use our own
+	if(!T)
+		T = get_turf(src)
+
+	// make sure it's possible to be dephased (and we're in phase)
+	if(!istype(SK) || SK.doing_phase || !T.CanPass(src,T) || loc != T || !(ability_flags & AB_PHASE_SHIFTED) )
+		return FALSE
+
+
+	log_admin("[key_name_admin(src)] was stunned out of phase at [T.x],[T.y],[T.z] by [dephaser.name], last touched by [dephaser.fingerprintslast].")
+	message_admins("[key_name_admin(src)] was stunned out of phase at [T.x],[T.y],[T.z] by [dephaser.name], last touched by [dephaser.fingerprintslast]. (<A href='byond://?_src_=holder;[HrefToken()];adminplayerobservecoodjump=1;X=[T.x];Y=[T.y];Z=[T.z]'>JMP</a>)", 1)
+	// start the dephase
+	phase_in(T)
+	shadekin_adjust_energy(-20) // loss of energy for the interception
+	// apply a little extra stun for good measure
+	src.Weaken(3)
