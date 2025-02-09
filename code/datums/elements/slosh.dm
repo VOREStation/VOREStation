@@ -85,10 +85,10 @@
 		if(!human_source.has_organ(BP_L_FOOT) && !human_source.has_organ(BP_R_FOOT))
 			return
 
-	if(source.buckled || source.lying || source.throwing)
+	if(source.buckled || source.lying || source.throwing || source.is_incorporeal())
 		return
 	if(!has_gravity(source) && prob(75))
 		return
 
-	playsound(source.loc, S, volume, FALSE, preference = /datum/client_preference/digestion_noises)
+	playsound(source.loc, S, volume, FALSE, preference = /datum/preference/toggle/digestion_noises)
 	return
