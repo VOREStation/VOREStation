@@ -114,7 +114,7 @@
 		canmove = FALSE
 		ability_flags &= ~AB_PHASE_SHIFTED
 		ability_flags |= AB_PHASE_SHIFTING
-		mouse_opacity = 1
+		throwpass = FALSE
 		name = get_visible_name()
 		for(var/obj/belly/B as anything in vore_organs)
 			B.escapable = initial(B.escapable)
@@ -180,7 +180,7 @@
 		// change
 		ability_flags |= AB_PHASE_SHIFTED
 		ability_flags |= AB_PHASE_SHIFTING
-		mouse_opacity = 0
+		throwpass = TRUE
 		custom_emote(1,"phases out!")
 		name = get_visible_name()
 
