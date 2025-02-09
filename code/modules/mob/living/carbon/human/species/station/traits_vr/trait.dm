@@ -30,7 +30,7 @@
 	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 	var/is_genetrait = FALSE // When their trait's datum is init, it will be added to the library of genes a carbon can be mutated to have or not have
-	var/activity_bounds = DNA_DEFAULT_BOUNDS // Activation requirement for trait to turn on/off. Dna is automatically configured for this when first spawned
+	var/list/activity_bounds = DNA_DEFAULT_BOUNDS // Activation requirement for trait to turn on/off. Dna is automatically configured for this when first spawned
 	var/hidden = FALSE  // If a trait does not show on the list, only useful for genetics only traits that cannot be taken at character creation
 	var/mutation = 0 	// Mutation to give (or 0)
 	var/disability = 0 	// Disability to give (or 0)
