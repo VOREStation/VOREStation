@@ -27,9 +27,9 @@
 
 	if(ishuman(source))
 		var/mob/living/carbon/human/source_human = source
-		if(source_human.m_intent == "walk" && step_count++ % 20 == 0)
+		if(source_human.m_intent == I_WALK && step_count++ % 20 == 0)
 			return
-		if(source_human.m_intent == "run" && step_count++ % 2 != 0)
+		if(source_human.m_intent == I_RUN && step_count++ % 2 != 0)
 			return
 		choose_vorefootstep(source)
 	if(issilicon(source))
@@ -76,7 +76,7 @@
 	if(ishuman(source))
 		var/mob/living/carbon/human/human_source = source
 
-		if(!human_source.shoes || human_source.m_intent == "walk")
+		if(!human_source.shoes || human_source.m_intent == I_WALK)
 			volume = CONFIG_GET(number/vorefootstep_volume) * (vore_footstep_volume/100) * 0.75
 		else if(human_source.shoes)
 			var/obj/item/clothing/shoes/feet = human_source.shoes
