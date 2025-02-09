@@ -429,6 +429,19 @@ GLOBAL_LIST_EMPTY_TYPED(dna_genes_bad, /datum/gene/trait)
 /datum/dna/proc/GetSEBlock(var/block)
 	return EncodeDNABlock(GetSEValue(block))
 
+// Get activation intensity, returns 0 to 1, you MUST check if the gene is active first! This is used for future expansion where genetraits can have multiple levels of activation/intensity
+/datum/dna/proc/GetSEActivationIntensity(var/block)
+	if (block<=0) return 0
+	var/list/BOUNDS=GetDNABounds(block)
+	var/value=GetSEValue(block)
+	var/val = (value - BOUNDS[DNA_ON_LOWERBOUND]) / (BOUNDS[DNA_ON_UPPERBOUND] - BOUNDS[DNA_ON_LOWERBOUND])
+	return val
+
+// Gets the activation intensity index. ex: if a genetrait has 5 levels of activations, the gene will have 5 possible levels of activation. this is a future TODO.
+/datum/dna/proc/GetSEActivationLevel(var/block,var/number_of_levels)
+	var/raw_val = GetSEActivationIntensity(block)
+	return round(raw_val * number_of_levels) // TODO - If this should be round/floor/ceil
+
 // Do not use this unless you absolutely have to.
 // Set a block from a hex string.  This is inefficient.  If you can, use SetUIValue().
 // Used in DNA modifiers.
