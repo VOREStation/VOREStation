@@ -4,7 +4,7 @@
 /datum/unit_test/enough_free_gene_slots_will_be_available/start_test()
 	var/failed = FALSE
 
-	if(trait_to_dna_genes.len > (DNA_SE_LENGTH - 10)) // Based off of traitgenes scanned on startup
+	if(GLOB.trait_to_dna_genes.len > (DNA_SE_LENGTH - 10)) // Based off of traitgenes scanned on startup
 		failed = TRUE
 
 	if(failed)
