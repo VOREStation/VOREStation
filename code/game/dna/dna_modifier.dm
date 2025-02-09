@@ -125,7 +125,8 @@
 			M.forceMove(get_turf(src))
 
 /obj/machinery/dna_scannernew/MouseDrop_T(var/mob/target, var/mob/user) //Allows borgs to clone people without external assistance
-	if(user.stat || user.lying || !Adjacent(user) || !target.Adjacent(user)|| !ishuman(target))
+	var/mob/living/carbon/WC = occupant?.resolve()
+	if(user.stat || user.lying || !Adjacent(user) || !target.Adjacent(user)|| !ishuman(target) || WC)
 		return
 	// Traitgenes Do not allow buckled or ridden mobs
 	if(target.buckled)
@@ -151,6 +152,10 @@
 		return
 	if(usr.abiotic())
 		to_chat(usr, span_warning("The subject cannot have abiotic items on."))
+		return
+	var/mob/living/carbon/WC = occupant?.resolve()
+	if(WC)
+		to_chat(usr, span_warning("There is already something inside."))
 		return
 	usr.stop_pulling()
 	usr.client.perspective = EYE_PERSPECTIVE
