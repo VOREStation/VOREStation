@@ -19,7 +19,6 @@
 
 /datum/element/slosh/Detach(datum/source)
 	UnregisterSignal(source, COMSIG_MOVABLE_MOVED)
-	step_count -= source
 	return ..()
 
 /datum/element/slosh/proc/handle_sloshstep(mob/living/source)
