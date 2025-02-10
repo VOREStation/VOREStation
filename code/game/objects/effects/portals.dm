@@ -27,7 +27,7 @@ GLOBAL_LIST_BOILERPLATE(all_portals, /obj/effect/portal)
 			return
 		if(iscarbon(AM))
 			var/mob/living/carbon/human/H = AM
-			H.attack_dephase()
+			H.attack_dephase(null, src)
 	if(ismob(AM) && !(isliving(AM)))
 		return	//do not send ghosts, zshadows, ai eyes, etc
 	spawn(0)
