@@ -8,11 +8,12 @@ var/global/list/sparring_attack_cache = list()
 	var/damage = 0						// Extra empty hand attack damage.
 	var/attack_sound = "punch"
 	var/miss_sound = 'sound/weapons/punchmiss.ogg'
-	var/shredding = 0 // Calls the old attack_alien() behavior on objects/mobs when on harm intent.
+	var/shredding = FALSE // Calls the old attack_alien() behavior on objects/mobs when on harm intent.
 	var/sharp = FALSE
 	var/edge = FALSE
 
 	var/damage_type = BRUTE
+	var/is_punch = FALSE //If the attack benefits from the damage increase things being on your hands give.
 	var/sparring_variant_type = /datum/unarmed_attack/light_strike
 
 	var/eye_attack_text
@@ -113,20 +114,21 @@ var/global/list/sparring_attack_cache = list()
 	attack_name = "bite"
 	attack_verb = list("bit")
 	attack_sound = 'sound/weapons/bite.ogg'
-	shredding = 0
 	damage = 0
-	sharp = FALSE
-	edge = FALSE
+	//sharp = TRUE //Enable if you want bites to make people bleed.
+	//germ_increase = 10 //Amount of germs each bite will give to the person.
 
 /datum/unarmed_attack/bite/event1
 
 /datum/unarmed_attack/bite/is_usable(var/mob/living/carbon/human/user, var/mob/living/carbon/human/target, var/zone)
-
-	if (user.is_muzzled())
-		return 0
-	if (user == target && (zone == BP_HEAD || zone == O_EYES || zone == O_MOUTH))
-		return 0
-	return TRUE
+	if (user.is_muzzled() || user.buckled)
+		return FALSE
+	if (user == target && ((zone == BP_GROIN && (prob(98)) || (zone == BP_HEAD || zone == O_EYES || zone == O_MOUTH)))) //biting your own groin is hard. 2% hit chance.
+		return FALSE
+	for(var/obj/item/organ/external/head/user_head in user.organs) //We have a head!
+		if(!user_head.dislocated && !(user_head.status & ORGAN_BROKEN)) //And it's not dislocated
+			return TRUE
+	return FALSE
 
 /datum/unarmed_attack/punch
 	attack_name = "punch"
@@ -135,6 +137,7 @@ var/global/list/sparring_attack_cache = list()
 	eye_attack_text = "fingers"
 	eye_attack_text_victim = "digits"
 	damage = 0
+	is_punch = TRUE
 
 /datum/unarmed_attack/punch/event1
 
@@ -149,7 +152,7 @@ var/global/list/sparring_attack_cache = list()
 
 	if(target == user)
 		user.visible_message(span_danger("[user] [pick(attack_verb)] [TU.himself] in the [organ]!"))
-		return 0
+		return FALSE
 
 	if(!target.lying)
 		switch(zone)
@@ -193,7 +196,7 @@ var/global/list/sparring_attack_cache = list()
 /datum/unarmed_attack/kick/event1
 
 /datum/unarmed_attack/kick/is_usable(var/mob/living/carbon/human/user, var/mob/living/carbon/human/target, var/zone)
-	if (user.legcuffed)
+	if(user.legcuffed || user.buckled)
 		return FALSE
 
 	if(!(zone in list("l_leg", "r_leg", "l_foot", "r_foot", BP_GROIN)))
@@ -238,7 +241,7 @@ var/global/list/sparring_attack_cache = list()
 
 /datum/unarmed_attack/stomp/is_usable(var/mob/living/carbon/human/user, var/mob/living/carbon/human/target, var/zone)
 
-	if (user.legcuffed)
+	if (user.legcuffed || user.buckled)
 		return FALSE
 
 	if(!istype(target))
@@ -279,7 +282,4 @@ var/global/list/sparring_attack_cache = list()
 	attack_verb = list("tapped", "lightly struck")
 	damage = 3
 	damage_type = HALLOSS
-	shredding = 0
-	damage = 0
-	sharp = FALSE
-	edge = FALSE
+	is_punch = TRUE

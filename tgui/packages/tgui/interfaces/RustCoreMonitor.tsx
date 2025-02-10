@@ -14,16 +14,16 @@ export const RustCoreMonitor = () => (
 type Data = {
   cores: {
     name: string;
-    x;
-    y;
-    z;
+    x: number;
+    y: number;
+    z: number;
     has_field: BooleanLike;
     core_operational: BooleanLike;
     ref: string;
     reactant_dump: BooleanLike;
-    field_instability;
-    field_temperature;
-    target_field_strength;
+    field_instability: number;
+    field_temperature: number;
+    target_field_strength: number;
   }[];
 };
 
@@ -49,7 +49,9 @@ export const RustCoreMonitorContent = (props) => {
           <Table.Cell>Reactant Mode</Table.Cell>
           <Table.Cell>Field Instability</Table.Cell>
           <Table.Cell>Field Temperature</Table.Cell>
-          <Table.Cell>Field Strength</Table.Cell>
+          <Table.Cell style={{ textAlign: 'center' }}>
+            Field Strength
+          </Table.Cell>
           <Table.Cell>Plasma Content</Table.Cell>
         </Table.Row>
         {cores.map((core) => (
@@ -90,7 +92,6 @@ export const RustCoreMonitorContent = (props) => {
             <Table.Cell>{core.field_temperature}</Table.Cell>
             <Table.Cell>
               <Knob
-                width="60px"
                 size={1.25}
                 color={!!core.has_field && 'yellow'}
                 value={core.target_field_strength}

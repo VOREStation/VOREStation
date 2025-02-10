@@ -107,7 +107,7 @@ Book Cart
 	anchored = FALSE
 	opacity = 0
 
-/obj/structure/bookcase/bookcart/attackby(obj/item/O as obj, mob/user as mob)
+/obj/structure/bookcase/bookcart/attackby(obj/item/O as obj, mob/user)
 	if(istype(O, /obj/item/book))
 		user.drop_item()
 		O.loc = src
@@ -188,7 +188,7 @@ Book Cart End
 	drop_sound = 'sound/items/drop/book.ogg'
 	pickup_sound = 'sound/items/pickup/book.ogg'
 
-/obj/item/book/attack_self(var/mob/user as mob)
+/obj/item/book/attack_self(var/mob/user)
 	if(carved)
 		if(store)
 			to_chat(user, span_notice("[store] falls out of [title]!"))
@@ -298,7 +298,7 @@ Book Cart End
 	else
 		..()
 
-/obj/item/book/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
+/obj/item/book/attack(mob/living/carbon/M, mob/living/carbon/user)
 	if(user.zone_sel.selecting == O_EYES)
 		user.visible_message(span_notice("You open up the book and show it to [M]."), \
 			span_notice(" [user] opens up a book and shows it to [M]."))
@@ -372,7 +372,7 @@ Book Cart End
 				page--
 				playsound(src, "pageturn", 50, 1)
 		src.attack_self(usr)
-		updateUsrDialog()
+		updateUsrDialog(usr)
 	else
 		to_chat(usr, span_notice("You need to hold it in your hands!"))
 
@@ -390,7 +390,7 @@ Book Cart End
 	var/obj/item/book/book	 //  Currently scanned book
 	var/mode = 0 					// 0 - Scan only, 1 - Scan and Set Buffer, 2 - Scan and Attempt to Check In, 3 - Scan and Attempt to Add to Inventory
 
-/obj/item/barcodescanner/attack_self(mob/user as mob)
+/obj/item/barcodescanner/attack_self(mob/user)
 	mode += 1
 	if(mode > 3)
 		mode = 0

@@ -55,7 +55,4 @@
 /obj/structure/ghost_pod/ghost_activated/Initialize(var/mapload)
 	. = ..()
 	if(!mapload)
-		return INITIALIZE_HINT_LATELOAD
-
-/obj/structure/ghost_pod/LateInitialize()
-	ghostpod_startup(spawn_active)
+		ghostpod_startup(spawn_active)

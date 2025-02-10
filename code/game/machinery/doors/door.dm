@@ -456,8 +456,7 @@
 	addtimer(CALLBACK(src, PROC_REF(close_internalfinish),forced), anim_length_before_finalize)
 
 /obj/machinery/door/proc/close_internalfinish(var/forced = 0)
-	PRIVATE_PROC(TRUE) //do not touch this or BYOND will devour you
-	SHOULD_NOT_OVERRIDE(TRUE)
+	PROTECTED_PROC(TRUE) //do not touch this or BYOND will devour you
 	update_icon()
 	if(visible && !glass)
 		set_opacity(1)	//caaaaarn!
