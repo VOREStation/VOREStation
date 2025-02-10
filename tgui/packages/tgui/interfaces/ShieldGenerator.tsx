@@ -49,7 +49,7 @@ export const ShieldGenerator = (props) => {
 
   return (
     <Window width={500} height={400}>
-      <Window.Content>
+      <Window.Content scrollable>
         {locked ? <ShieldGeneratorLocked /> : <ShieldGeneratorContent />}
       </Window.Content>
     </Window>
