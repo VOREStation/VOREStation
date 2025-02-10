@@ -235,7 +235,7 @@
 		//If we're in an area that is fucking ideal, and we don't have to do anything, chances are we won't next tick either so why redo these calculations?
 		//JESUS FUCK.  THERE ARE LITERALLY 250 OF YOU MOTHERFUCKERS ON ZLEVEL ONE AND YOU DO THIS SHIT EVERY TICK WHEN VERY OFTEN THERE IS NO REASON TO
 
-		if(pump_direction && pressure_checks == PRESSURE_CHECK_EXTERNAL && controller_iteration > 10)	//99% of all vents
+		if(pump_direction && pressure_checks == PRESSURE_CHECK_EXTERNAL && Master.iteration > 10)	//99% of all vents
 			//Fucking hibernate because you ain't doing shit.
 			hibernate = 1
 			addtimer(VARSET_CALLBACK(src, hibernate, 0), rand(10 SECONDS,20 SECONDS), TIMER_DELETE_ME) //hibernate randomly
