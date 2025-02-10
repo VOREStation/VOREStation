@@ -62,13 +62,10 @@
 
 	true_name = "[pick("Primary","Secondary","Tertiary","Quaternary")] [rand(1000,9999)]"
 
-	. = ..()
-
 	if(!roundstart && antag)
-		return INITIALIZE_HINT_LATELOAD
+		request_player()
 
-/mob/living/simple_mob/animal/borer/LateInitialize()
-	request_player()
+	return ..()
 
 /mob/living/simple_mob/animal/borer/handle_special()
 	if(host && !stat && !host.stat)

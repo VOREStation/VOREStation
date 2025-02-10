@@ -23,17 +23,11 @@
 
 /obj/item/radio/headset/Initialize()
 	. = ..()
-	return INITIALIZE_HINT_LATELOAD
-
-/obj/item/radio/headset/LateInitialize()
-	if(internal_channels) //EVERYTHING breaks without this check.
-		internal_channels.Cut()
+	internal_channels.Cut()
 	if(ks1type)
 		keyslot1 = new ks1type(src)
 	if(ks2type)
 		keyslot2 = new ks2type(src)
-	if(!ks1type && !ks2type) //This is here because LateInitialize is being called TWICE for some reason on character spawn
-		return
 	recalculateChannels(TRUE)
 
 /obj/item/radio/headset/Destroy()

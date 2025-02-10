@@ -268,15 +268,12 @@ var/global/list/obj/item/communicator/all_communicators = list()
 // Parameters: None
 // Description: Gives ghosts an exonet address based on their key and ghost name.
 /mob/observer/dead/Initialize()
-	..()
-	return INITIALIZE_HINT_LATELOAD
-
-/mob/observer/dead/LateInitialize()
+	. = ..()
 	exonet = new(src)
 	if(client)
-		exonet.make_address("communicator-[client]-[client.prefs.real_name]")
+		exonet.make_address("communicator-[src.client]-[src.client.prefs.real_name]")
 	else
-		exonet.make_address("communicator-[key]-[real_name]")
+		exonet.make_address("communicator-[key]-[src.real_name]")
 
 // Proc: Destroy()
 // Parameters: None
