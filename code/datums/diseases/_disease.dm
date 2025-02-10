@@ -110,7 +110,7 @@ GLOBAL_LIST_INIT(diseases, subtypesof(/datum/disease))
 /datum/disease/proc/spread(force_spread = 0)
 	if(!affected_mob)
 		return
-	if(!affected_mob.is_incorporeal())
+	if(affected_mob.is_incorporeal())
 		return
 
 	if((spread_flags & SPECIAL || spread_flags & NON_CONTAGIOUS || spread_flags & BLOOD) && !force_spread)
