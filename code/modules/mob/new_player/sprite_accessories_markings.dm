@@ -73,7 +73,7 @@ includes scars and tattoos
 
 /datum/sprite_accessory/marking/tat_campbell/leftleg
 	name = "Tattoo (Campbell, L.Leg)"
-	body_parts = list (BP_L_LEG,"left_jaw",O_HEART)
+	body_parts = list (BP_L_LEG)
 //END TODO
 
 /datum/sprite_accessory/marking/tat_silverburgh
