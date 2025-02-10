@@ -18,8 +18,11 @@
 	var/deadman = FALSE
 
 /obj/item/assembly/signaler/Initialize()
+	to_world("We are initing!")
 	. = ..()
+	to_world("We have gotten past the .=..!")
 	set_frequency(frequency)
+	to_world("We have gotten past the frequency set!")
 
 /obj/item/assembly/signaler/activate()
 	if(!process_cooldown())
@@ -121,14 +124,20 @@
 
 /obj/item/assembly/signaler/proc/set_frequency(new_frequency)
 	if(!frequency)
+		to_world("We have no freq! 124")
 		return
 	if(!radio_controller)
+		to_world("We have no radio controller SF")
 		addtimer(CALLBACK(src, PROC_REF(radio_checkup), new_frequency), 2 SECONDS)
-
+		return
+	radio_controller.remove_object(src, frequency)
+	frequency = new_frequency
+	radio_connection = radio_controller.add_object(src, frequency, RADIO_CHAT)
 
 /obj/item/assembly/signaler/proc/radio_checkup(new_frequency)
 	PROTECTED_PROC(TRUE)
 	if(!radio_controller)
+		to_world("We have no radio controller RC")
 		return
 
 	radio_controller.remove_object(src, frequency)
