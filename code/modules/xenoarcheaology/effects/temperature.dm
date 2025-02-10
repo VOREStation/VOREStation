@@ -46,7 +46,7 @@
 				temp_coef = (env.temperature/(target_temp+1)) //ET = 300, TT = 25. TC = 12. Next: ET=288 TT = 25, TC = 11.52. ETC.
 				env.temperature = max(env.temperature - temp_coef, 0)
 
-/datum/artifact_effect/temperature/DoEffectPulse(atom/holder) //Same as aura. Could probably be increased to be stronger with effect_range but eh, we don't want people to insta freeze/fry theirselves.
+/datum/artifact_effect/temperature/DoEffectPulse() //Same as aura. Could probably be increased to be stronger with effect_range but eh, we don't want people to insta freeze/fry theirselves.
 	var/atom/holder = get_master_holder()
 	if(holder)
 		var/datum/gas_mixture/env = holder.loc.return_air()
