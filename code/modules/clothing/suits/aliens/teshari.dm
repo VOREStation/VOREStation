@@ -274,7 +274,7 @@
 	item_state_slots = list(slot_r_hand_str = "tesh_hood_bo", slot_l_hand_str = "tesh_hood_bo")
 	flags_inv = BLOCKHAIR
 	body_parts_covered = HEAD
-species_restricted = list(SPECIES_TESHARI)
+	species_restricted = list(SPECIES_TESHARI)
 
 /obj/item/clothing/suit/storage/hooded/teshari/standard/black_orange
 	name = "black and orange hooded cloak"
