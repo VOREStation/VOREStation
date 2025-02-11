@@ -1,5 +1,6 @@
 /datum/unit_test/all_clothing_shall_be_valid
 	name = "CLOTHING: All clothing shall be valid"
+	var/signal_failed = FALSE
 
 /datum/unit_test/all_clothing_shall_be_valid/start_test()
 	var/failed = 0
@@ -54,62 +55,48 @@
 			log_unit_test("[C.type]: Clothing - Icon_state \"[C.icon_state]\" is not present in [C.icon]. This icon/state was changed by init. Initial icon \"[initial(C.icon)]\". initial icon_state \"[initial(C.icon_state)]\". Check code.")
 		failed = TRUE
 
-	/* Disabled, as currently not working in a presentable way, spams the CI hard, do not enable unless fixed
-	// held icons
-	var/list/slot_to_default = list(
-		slot_l_hand_str = INV_L_HAND_DEF_ICON,
-		slot_r_hand_str = INV_R_HAND_DEF_ICON,
-		slot_wear_id_str = INV_WEAR_ID_DEF_ICON,
-		slot_head_str = INV_HEAD_DEF_ICON,
-		slot_back_str = INV_BACK_DEF_ICON,
-		slot_wear_suit_str = INV_SUIT_DEF_ICON,
-		slot_gloves_str = INV_GLOVES_DEF_ICON,
-		slot_gloves_str = INV_EYES_DEF_ICON,
-		slot_l_ear_str = INV_EARS_DEF_ICON,
-		slot_r_ear_str = INV_EARS_DEF_ICON,
-		slot_shoes_str = INV_FEET_DEF_ICON,
-		slot_belt_str = INV_BELT_DEF_ICON,
-		slot_wear_mask_str = INV_MASK_DEF_ICON
-	)
-	var/list/slotlist = list(slot_back_str,
-							slot_l_hand_str,
-							slot_r_hand_str,
-							slot_w_uniform_str,
-							slot_head_str,
-							slot_wear_suit_str,
-							slot_l_ear_str,
-							slot_r_ear_str,
-							slot_belt_str,
-							slot_shoes_str,
-							slot_wear_mask_str,
-							slot_handcuffed_str,
-							slot_legcuffed_str,
-							slot_wear_id_str,
-							slot_gloves_str,
-							slot_glasses_str,
-							slot_s_store_str,
-							slot_tie_str)
-	var/list/body_types = list(SPECIES_HUMAN,SPECIES_VOX,SPECIES_TESHARI) // Otherwise we would be here for centuries
-	if(C.species_restricted && C.species_restricted.len)
-		if(C.species_restricted[1] == "exclude")
-			for(var/B in body_types)
-				if(B in C.species_restricted)
-					body_types -= B
-		else
-			var/list/new_list = list()
-			for(var/B in body_types)
-				if(B in C.species_restricted)
-					new_list += B
-			body_types = new_list
-
-	for(var/B in body_types)
-		for(var/slot in slotlist)
-			var/dmi = C.get_worn_icon_file(B, slot, slot_to_default[slot], FALSE)
-			var/state = C.get_worn_icon_state(slot)
-			if(dmi && !("[state]" in cached_icon_states(dmi)))
-				log_unit_test("[C.type]: Clothing - While being wearable by the species \"[B]\". A dmi \"[dmi]\" in the slot of \"[slot]\" was defined, but no item_state \"[state]\" was found inside of it.")
-				failed = TRUE
-	*/
+	// Disabled, as currently not working in a presentable way, spams the CI hard, do not enable unless fixed
+	#ifdef UNIT_TEST
+	// Time for the most brutal part. Dressing up some mobs with set species, and checking they have art
+	// An entire signal just for unittests had to be made for this!
+	var/original_holder = C.loc
+	var/turf/T = locate(1,1,1)
+	if(T)
+		var/list/body_types = list(SPECIES_HUMAN) //,SPECIES_VOX,SPECIES_TESHARI) // Otherwise we would be here for centuries
+		if(C.species_restricted && C.species_restricted.len)
+			if(C.species_restricted[1] == "exclude")
+				for(var/B in body_types)
+					if(B in C.species_restricted)
+						body_types -= B
+			else
+				var/list/new_list = list()
+				for(var/B in body_types)
+					if(B in C.species_restricted)
+						new_list += B
+				body_types = new_list
+		// Get actual species that can use this, based on the mess of restricted/excluded logic above
+		var/list/species = list()
+		for(var/B in body_types)
+			var/species_path = /mob/living/carbon/human
+			switch(B)
+				if(SPECIES_HUMAN)
+					species_path = /mob/living/carbon/human
+				if(SPECIES_VOX)
+					species_path = /mob/living/carbon/human/vox
+				if(SPECIES_TESHARI)
+					species_path = /mob/living/carbon/human/teshari
+			// spawn the mob, signalize it, and then give it the item to see what it gets.
+			var/mob/living/carbon/human/H = new species_path(T)
+			RegisterSignal(H, COMSIG_UNITTEST_DATA, PROC_REF(get_signal_data))
+			H.put_in_active_hand(C)
+			H.equip_to_appropriate_slot(C)
+			H.drop_from_inventory(C, original_holder)
+			UnregisterSignal(H, COMSIG_UNITTEST_DATA)
+			qdel(H)
+		// We failed the mob check
+		if(signal_failed)
+			failed = TRUE
+	#endif
 
 	// Temps
 	if(C.min_cold_protection_temperature < 0)
@@ -155,3 +142,25 @@
 					log_unit_test("[C.type]: Clothing - heat_protection uses EYES bitflag, this provides no protection, use HEAD.")
 					failed = TRUE
 	return failed
+
+/datum/unit_test/all_clothing_shall_be_valid/get_signal_data(datum/weakref/source, list/data = list())
+	switch(data[1])
+		if("set_slot")
+			var/slot_name 	= data[2]
+			var/set_icon 	= data[3]
+			var/set_state 	= data[4]
+			var/in_hands 	= data[5]
+			var/item_path 	= data[6]
+			var/species 	= data[7]
+			if(!species)
+				return
+			if(!set_icon)
+				return
+			if(!set_state)
+				return
+
+			// All that matters
+			if(!("[set_state]" in cached_icon_states(set_icon)))
+				log_unit_test("[item_path]: Clothing - Testing \"[species]\" state \"[set_state]\" for slot \"[slot_name]\", but it was not in dmi \"[set_icon]\"")
+				signal_failed = TRUE
+				return
