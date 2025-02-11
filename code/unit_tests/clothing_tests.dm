@@ -87,13 +87,18 @@
 							slot_glasses_str,
 							slot_s_store_str,
 							slot_tie_str)
-	var/list/species_list = C.species_restricted
-	if(!species_list)
-		species_list = GLOB.all_species
-	var/list/body_types = list()
-	for(var/species in species_list)
-		var/datum/species/S = GLOB.all_species[species]
-		body_types[S.get_bodytype()] = TRUE
+	var/list/body_types = list(SPECIES_HUMAN,SPECIES_VOX,SPECIES_TESHARI) // Otherwise we would be here for centuries
+	if(C.species_restricted && C.species_restricted.len)
+		if(C.species_restricted[1] == "exclude")
+			for(var/B in body_types)
+				if(B in C.species_restricted)
+					body_types -= B
+		else
+			var/list/new_list = list()
+			for(var/B in body_types)
+				if(B in C.species_restricted)
+					new_list += B
+			body_types = new_list
 
 	for(var/B in body_types)
 		for(var/slot in slotlist)
