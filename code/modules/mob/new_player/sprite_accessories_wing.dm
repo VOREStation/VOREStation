@@ -385,48 +385,6 @@
 	color_blend_mode = ICON_MULTIPLY
 	extra_overlay = "kaiju_spikes_a_glow"
 
-//exclusive wings
-/datum/sprite_accessory/wing/kara
-	name = "Pterokara wings"
-	desc = ""
-	icon_state = "feathered_kara"
-	ckeys_allowed = list("satinisle")
-
-/datum/sprite_accessory/wing/sepulchre
-	name = "demon wings (Sepulchre)"
-	desc = ""
-	icon_state = "sepulchre_wings"
-	ckeys_allowed = list("sepulchre")
-
-/datum/sprite_accessory/wing/miria_fluffdragon
-	name = "fluffdragon wings (Miria Masters)"
-	desc = ""
-	icon_state = "miria-fluffdragontail"
-	ckeys_allowed = list("miriamasters")
-
-/datum/sprite_accessory/wing/scree
-	name = "green taj wings (Scree)"
-	desc = ""
-	icon_state = "scree-wings"
-	ckeys_allowed = list("scree")
-
-/datum/sprite_accessory/wing/kerena
-	name = "wingwolf wings (Kerena)"
-	desc = ""
-	icon_state = "kerena-wings"
-	ckeys_allowed = list("somekindofpony")
-
-/datum/sprite_accessory/wing/shock //Unable to split the tail from the wings in the sprite, so let's just classify it as wings.
-	name = "pharoah hound tail (Shock Diamond)"
-	desc = ""
-	icon_state = "shock"
-	ckeys_allowed = list("icowom")
-
-/datum/sprite_accessory/wing/citheroniamoth
-	name = "citheronia wings"
-	desc = ""
-	icon_state = "citheronia_wings"
-	ckeys_allowed = list("kira72")
 
 /datum/sprite_accessory/wing/cyberangel
 	name = "Cyber angel wing (colorable)"
@@ -661,3 +619,46 @@
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
 	wing_offset = 16
+
+//exclusive wings
+/datum/sprite_accessory/wing/kara
+	name = "Pterokara wings"
+	desc = ""
+	icon_state = "feathered_kara"
+	ckeys_allowed = list("satinisle")
+
+/datum/sprite_accessory/wing/sepulchre
+	name = "demon wings (Sepulchre)"
+	desc = ""
+	icon_state = "sepulchre_wings"
+	ckeys_allowed = list("sepulchre")
+
+/datum/sprite_accessory/wing/miria_fluffdragon
+	name = "fluffdragon wings (Miria Masters)"
+	desc = ""
+	icon_state = "miria-fluffdragontail"
+	ckeys_allowed = list("miriamasters")
+
+/datum/sprite_accessory/wing/scree
+	name = "green taj wings (Scree)"
+	desc = ""
+	icon_state = "scree-wings"
+	ckeys_allowed = list("scree")
+
+/datum/sprite_accessory/wing/kerena
+	name = "wingwolf wings (Kerena)"
+	desc = ""
+	icon_state = "kerena-wings"
+	ckeys_allowed = list("somekindofpony")
+
+/datum/sprite_accessory/wing/shock //Unable to split the tail from the wings in the sprite, so let's just classify it as wings.
+	name = "pharoah hound tail (Shock Diamond)"
+	desc = ""
+	icon_state = "shock"
+	ckeys_allowed = list("icowom")
+
+/datum/sprite_accessory/wing/citheroniamoth
+	name = "citheronia wings"
+	desc = ""
+	icon_state = "citheronia_wings"
+	ckeys_allowed = list("kira72")
