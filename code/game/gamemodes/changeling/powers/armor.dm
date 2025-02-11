@@ -131,7 +131,7 @@
 /obj/item/clothing/gloves/combat/changeling //Combined insulated/fireproof gloves
 	name = "chitinous gauntlets"
 	desc = "Very resilient gauntlets made out of black chitin.  It looks very durable, and can probably resist electrical shock in addition to the elements."
-	icon_state = "lingarmorgloves"
+	icon_state = "ling"
 	armor = list(melee = 75, bullet = 60, laser = 60,energy = 60, bomb = 60, bio = 0, rad = 0) //No idea if glove armor gets checked
 	siemens_coefficient = 0
 
@@ -139,7 +139,7 @@
 	name = "chitinous boots"
 	desc = "Footwear made out of a hard, black chitinous material.  The bottoms of these appear to have spikes that can protrude or extract itself into and out \
 	of the floor at will, granting the wearer stability."
-	icon_state = "lingboots"
+	icon_state = "lingarmor"
 	armor = list(melee = 75, bullet = 60, laser = 70,energy = 60, bomb = 60, bio = 0, rad = 0)
 	siemens_coefficient = 0.3
 	min_cold_protection_temperature = SHOE_MIN_COLD_PROTECTION_TEMPERATURE
