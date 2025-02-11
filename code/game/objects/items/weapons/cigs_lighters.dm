@@ -82,7 +82,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 //FINE SMOKABLES//
 //////////////////
 /obj/item/clothing/mask/smokable
-	name = "smokable item"
+	name = DEVELOPER_WARNING_NAME
 	desc = "You're not sure what this is. You should probably ahelp it."
 	body_parts_covered = 0
 	var/lit = 0
