@@ -9,6 +9,13 @@
 //	banned_species = list(SPECIES_ALRAUNE, SPECIES_SHADEKIN_CREW, SPECIES_TESHARI, SPECIES_TAJARAN, SPECIES_DIONA, SPECIES_UNATHI) //Either not applicable or buffs ruin species flavour/balance
 //	custom_only = FALSE //Keeping these in comments in case we decide to open them up in future, so the species are already organised.
 
+	// Traitgenes Replaces /datum/trait/positive/superpower_increaserun, made into a genetrait
+	is_genetrait = TRUE
+	hidden = FALSE
+
+	activation_message="Your leg muscles pulsate."
+	primitive_expression_messages=list("dances around.")
+
 /datum/trait/positive/hardy
 	name = "Hardy"
 	desc = "Allows you to carry heavy equipment with less slowdown."
@@ -27,8 +34,8 @@
 
 /datum/trait/positive/endurance_high
 	name = "High Endurance"
-	desc = "Increases your maximum total hitpoints to 125"
-	cost = 4
+	desc = "Increases your maximum total hitpoints to 125. You require 250 damage in total to die, compared to 200 normally. You will still go into crit after losing 125 HP, compared to crit at 100 HP."
+	cost = 3
 	var_changes = list("total_health" = 125)
 	custom_only = FALSE
 	banned_species = list(SPECIES_TESHARI, SPECIES_UNATHI, SPECIES_SHADEKIN_CREW) //Either not applicable or buffs are too strong
@@ -39,19 +46,19 @@
 
 /datum/trait/positive/nonconductive
 	name = "Non-Conductive"
-	desc = "Decreases your susceptibility to electric shocks by a 10% amount."
-	cost = 1 //This effects tasers!
-	var_changes = list("siemens_coefficient" = 0.9)
+	desc = "Decreases your susceptibility to electric shocks by 25%."
+	cost = 2
+	var_changes = list("siemens_coefficient" = 0.75)
 
 /datum/trait/positive/nonconductive_plus
 	name = "Non-Conductive, Major"
-	desc = "Decreases your susceptibility to electric shocks by a 25% amount."
-	cost = 2 //Let us not forget this effects tasers!
-	var_changes = list("siemens_coefficient" = 0.75)
+	desc = "Decreases your susceptibility to electric shocks by 50%."
+	cost = 3
+	var_changes = list("siemens_coefficient" = 0.5)
 
 /datum/trait/positive/darksight
 	name = "Darksight"
-	desc = "Allows you to see a short distance in the dark."
+	desc = "Allows you to see a short distance in the dark and 10% more susceptible to flashes."
 	cost = 1
 	var_changes = list("darksight" = 5, "flash_mod" = 1.1)
 	custom_only = FALSE
@@ -59,7 +66,7 @@
 
 /datum/trait/positive/darksight_plus
 	name = "Darksight, Major"
-	desc = "Allows you to see in the dark for the whole screen."
+	desc = "Allows you to see in the dark for almost the whole screen and 20% more susceptible to flashes."
 	cost = 2
 	var_changes = list("darksight" = 8, "flash_mod" = 1.2)
 	custom_only = FALSE
@@ -190,6 +197,7 @@
 	name = "Aquatic"
 	desc = "You can breathe under water and can traverse water more efficiently. Additionally, you can eat others in the water."
 	cost = 1
+	custom_only = FALSE
 	var_changes = list("water_breather" = 1, "water_movement" = -4) //Negate shallow water. Half the speed in deep water.
 	allowed_species = list(SPECIES_HANNER, SPECIES_CUSTOM) //So it only shows up for custom species and hanner
 	custom_only = FALSE
@@ -301,3 +309,59 @@
 	varchange_type = TRAIT_VARCHANGE_LESS_BETTER
 	excludes = list(/datum/trait/negative/bad_swimmer)
 	banned_species = list(SPECIES_AKULA)	// They already swim better than this
+
+/datum/trait/positive/table_passer
+	name = "Table Passer"
+	desc = "You move over or under tables with ease of a Teshari."
+	cost = 2
+
+	// Traitgenes Replacement for /datum/trait/positive/superpower_midget, made into a genetrait
+	is_genetrait = TRUE
+	hidden = FALSE
+	activation_message="Your skin feels rubbery."
+
+	has_preferences = list("pass_table" = list(TRAIT_PREF_TYPE_BOOLEAN, "On spawn", TRAIT_NO_VAREDIT_TARGET, TRUE))
+
+/datum/trait/positive/table_passer/apply(var/datum/species/S,var/mob/living/carbon/human/H, var/list/trait_prefs)
+	..()
+	if (trait_prefs?["pass_table"] || !trait_prefs)
+		H.pass_flags |= PASSTABLE
+	add_verb(H,/mob/living/proc/toggle_pass_table)
+
+// Traitgenes All genetraits need an unapply proc if they do anything special
+/datum/trait/positive/table_passer/unapply(datum/species/S, mob/living/carbon/human/H)
+	. = ..()
+	if (H.pass_flags & PASSTABLE)
+		H.pass_flags ^= PASSTABLE
+	if(!(/mob/living/proc/toggle_pass_table in S.inherent_verbs)) // Teshari shouldn't lose agility
+		remove_verb(H,/mob/living/proc/toggle_pass_table)
+
+/datum/trait/positive/photosynth
+	name = "Photosynthesis"
+	desc = "Your body is able to produce nutrition from being in light."
+	cost = 3
+	var_changes = list("photosynthesizing" = TRUE)
+	can_take = ORGANICS|SYNTHETICS //Synths actually use nutrition, just with a fancy covering.
+
+/datum/trait/positive/rad_resistance
+	name = "Radiation Resistance"
+	desc = "You are generally more resistant to radiation, and it dissipates faster from your body."
+	cost = 1
+	var_changes = list("radiation_mod" = 0.65, "rad_removal_mod" = 3.5, "rad_levels" = list("safe" = 70, "danger_1" = 150, "danger_2" = 450, "danger_3" = 600, "danger_4" = 2250))
+
+/datum/trait/positive/rad_resistance_extreme
+	name = "Radiation Resistance, Major"
+	desc = "You are much more resistant to radiation, and it dissipates much faster from your body."
+	cost = 2
+	var_changes = list("radiation_mod" = 0.5, "rad_removal_mod" = 5, "rad_levels" = list("safe" = 150, "danger_1" = 300, "danger_2" = 600, "danger_3" = 1000, "danger_4" = 3000))
+
+/datum/trait/positive/rad_immune
+	name = "Radiation Immunity"
+	desc = "For whatever reason, be it a more dense build or some quirk of your genetic code, your body is completely immune to radiation."
+	cost = 3
+	var_changes = list("radiation_mod" = 0.0, "rad_removal_mod" = 10, "rad_levels" = list("safe" = 10000, "danger_1" = 10001, "danger_2" = 10002, "danger_3" = 10003, "danger_4" = 10004))
+
+	// Traitgenes
+	is_genetrait = TRUE
+	hidden = FALSE
+	activation_message="Your body feels mundane."

@@ -34,12 +34,12 @@
 
 /obj/item/reagent_containers/food/Initialize()
 	. = ..()
-	if (center_of_mass.len && !pixel_x && !pixel_y)
+	if ((center_of_mass_x || center_of_mass_y) && !pixel_x && !pixel_y)
 		src.pixel_x = rand(-6.0, 6) //Randomizes postion
 		src.pixel_y = rand(-6.0, 6)
 
 /obj/item/reagent_containers/food/afterattack(atom/A, mob/user, proximity, params)
-	if(center_of_mass.len && proximity && params && istype(A, /obj/structure/table))
+	if((center_of_mass_x || center_of_mass_y) && proximity && params && istype(A, /obj/structure/table))
 		//Places the item on a grid
 		var/list/mouse_control = params2list(params)
 
@@ -52,8 +52,8 @@
 		var/cell_x = max(0, min(CELLS-1, round(mouse_x/CELLSIZE)))
 		var/cell_y = max(0, min(CELLS-1, round(mouse_y/CELLSIZE)))
 
-		pixel_x = (CELLSIZE * (0.5 + cell_x)) - center_of_mass["x"]
-		pixel_y = (CELLSIZE * (0.5 + cell_y)) - center_of_mass["y"]
+		pixel_x = (CELLSIZE * (0.5 + cell_x)) - center_of_mass_x
+		pixel_y = (CELLSIZE * (0.5 + cell_y)) - center_of_mass_y
 
 /obj/item/reagent_containers/food/container_resist(mob/living/M)
 	if(food_inserted_micros)

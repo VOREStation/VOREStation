@@ -81,8 +81,6 @@
 		if(!D.has_AI())
 			continue
 		D.ai_holder.lose_target()
-
-	watchowner.emote("deathgasp")
 	watchowner.alpha = 15
 	makeacorpse(watchowner)
 	return
@@ -97,7 +95,8 @@
 	if(H.isSynthetic())
 		return
 	corpse = new /mob/living/carbon/human(H.loc)
-	corpse.setDNA(H.dna.Clone())
+	qdel_swap(corpse.dna,H.dna.Clone())
+	corpse.emote("deathgasp")
 	corpse.death(1) //Kills the new mob
 	var/obj/item/clothing/temp = null
 	if(H.get_equipped_item(slot_w_uniform))

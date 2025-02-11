@@ -13,6 +13,7 @@
 #define NOCLONE         8
 #define LASER           9  // Harm intent - click anywhere to shoot lasers from eyes.
 #define HEAL            10 // Healing people with hands.
+#define FLASHPROOF		11 // Flashproof eyes.
 
 #define SKELETON      29
 #define PLANT         30
@@ -36,14 +37,22 @@
 #define COUGHING    0x4
 #define TOURETTES   0x8
 #define NERVOUS     0x10
-
+/*
+#define DEPRESSION     	0x20	// Roleplay drugs
+#define SCHIZOPHRENIA  	0x40	// Roleplay drugs
+*/
+#define WINGDINGS     	0x80	// Better handling as disability
+#define DETERIORATE     0x100	// Body melts slowly, medical loves you!
+#define GIBBING     	0x200	// Landmine for genetics to find
+#define CENSORED     	0x400	// Cannot swear
 // sdisabilities
 #define BLIND 0x1
 #define MUTE  0x2
 #define DEAF  0x4
 
+/* Traitgenes (Blocks have finally been retired, huzzah!
 // The way blocks are handled badly needs a rewrite, this is horrible.
-// Too much of a project to handle at the moment, TODO for later.
+// Too much of a project to handle at the moment, TODO for later.)
 var/BLINDBLOCK    = 0
 var/DEAFBLOCK     = 0
 var/HULKBLOCK     = 0
@@ -74,6 +83,7 @@ var/HALLUCINATIONBLOCK = 0
 var/NOPRINTSBLOCK      = 0
 var/SHOCKIMMUNITYBLOCK = 0
 var/SMALLSIZEBLOCK     = 0
+*/
 
 // Define block bounds (off-low,off-high,on-low,on-high)
 // Used in setupgame.dm
@@ -147,7 +157,9 @@ var/SMALLSIZEBLOCK     = 0
 #define DNA_UI_WING3_B     57 // VOREStation snippet end.
 #define DNA_UI_LENGTH      57 // VOREStation Edit - Needs to match the highest number above.
 
-#define DNA_SE_LENGTH 49 // VOREStation Edit (original was UI+11)
+#define DNA_SE_LENGTH 90 // Traitgenes (Expanded from 49 to 84, there have been a considerable expansion of genes.
+// This leaves room for future expansion. This can be arbitrarily raised without worry if genes start to get crowded.
+// Should have more than 10 empty genes after setup. - Willbird)
 
 //DNA modifiers
 // Buffer datatype flags.
@@ -160,4 +172,4 @@ var/SMALLSIZEBLOCK     = 0
 
 // Gene flags
 #define GENE_ALWAYS_ACTIVATE 1
-#define MUTCHK_HIDEMSG       2
+#define MUTCHK_HIDEMSG       2 // Traitgenes (Hide gene activation/deactivation messages, mostly for resleeving so you don't get spammed)

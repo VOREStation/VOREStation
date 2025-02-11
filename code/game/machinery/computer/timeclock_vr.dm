@@ -22,9 +22,9 @@
 	var/obj/item/radio/intercom/announce	// Integreated announcer
 
 
-/obj/machinery/computer/timeclock/New()
+/obj/machinery/computer/timeclock/Initialize()
+	. = ..()
 	announce = new /obj/item/radio/intercom(src)
-	..()
 
 /obj/machinery/computer/timeclock/Destroy()
 	if(card)

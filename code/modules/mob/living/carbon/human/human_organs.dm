@@ -5,17 +5,6 @@
 		update_icons_body() //Body handles eyes
 		update_eyes() //For floating eyes only
 
-/*
-/mob/living/carbon/var/list/internal_organs = list()
-/mob/living/carbon/human/var/list/organs = list()
-/mob/living/carbon/human/var/list/organs_by_name = list() // map organ names to organs
-/mob/living/carbon/human/var/list/internal_organs_by_name = list() // so internal organs have less ickiness too
-
-/mob/living/carbon/human/proc/get_bodypart_name(var/zone)
-	var/obj/item/organ/external/E = get_organ(zone)
-	if(E) . = E.name
-*/
-
 /mob/living/carbon/human/proc/recheck_bad_external_organs()
 	var/damage_this_tick = getToxLoss()
 	for(var/obj/item/organ/external/O in organs)
@@ -47,7 +36,7 @@
 	if(!force_process && !bad_external_organs.len)
 		return
 
-	number_wounds = 0 //VOREStation Add - You have to reduce this at some point...
+	number_wounds = 0
 	for(var/obj/item/organ/external/E in bad_external_organs)
 		if(!E)
 			continue
@@ -62,6 +51,7 @@
 			//Moving around with fractured ribs won't do you any good
 				if (prob(10) && !stat && can_feel_pain() && chem_effects[CE_PAINKILLER] < 50 && E.is_broken() && E.internal_organs.len)
 					custom_pain("Pain jolts through your broken [E.encased ? E.encased : E.name], staggering you!", 50)
+					emote("pain")
 					drop_item(loc)
 					Stun(2)
 
@@ -104,7 +94,7 @@
 		else if (E.is_dislocated())
 			stance_damage += 0.5
 
-		if(E && (!E.is_usable() || E.is_broken() || E.is_dislocated())) //VOREStation Edit
+		if(E && (!E.is_usable() || E.is_broken() || E.is_dislocated()))
 			limb_pain = E.organ_can_feel_pain()
 
 	// Canes and crutches help you stand (if the latter is ever added)
@@ -117,7 +107,7 @@
 
 	// standing is poor
 	if(stance_damage >= 4 || (stance_damage >= 2 && prob(5)))
-		if(!(lying || resting) && !isbelly(loc)) //VOREStation Edit
+		if(!(lying || resting) && !isbelly(loc))
 			if(limb_pain)
 				emote("scream")
 			custom_emote(1, "collapses!")
@@ -147,7 +137,6 @@
 	// Check again...
 	if(!l_hand && !r_hand)
 		return
-
 	for (var/obj/item/organ/external/E in organs)
 		if(!E || !E.can_grasp)
 			continue
@@ -163,9 +152,11 @@
 						continue
 					drop_from_inventory(r_hand)
 
-			if(!isbelly(loc)) //VOREStation Add
+			if(!isbelly(loc))
 				var/emote_scream = pick("screams in pain and ", "lets out a sharp cry and ", "cries out and ")
 				custom_emote(VISIBLE_MESSAGE, "[(can_feel_pain()) ? "" : emote_scream ]drops what they were holding in their [E.name]!")
+				if(can_feel_pain())
+					emote("pain")
 
 		else if(E.is_malfunctioning())
 			switch(E.body_part)
@@ -178,7 +169,7 @@
 						continue
 					drop_from_inventory(r_hand)
 
-			if(!isbelly(loc)) //VOREStation Add
+			if(!isbelly(loc))
 				custom_emote(VISIBLE_MESSAGE, "drops what they were holding, their [E.name] malfunctioning!")
 
 				var/datum/effect/effect/system/spark_spread/spark_system = new /datum/effect/effect/system/spark_spread()
@@ -194,6 +185,31 @@
 	for(var/datum/reagent/A in reagents.reagent_list)
 		var/obj/item/organ/O = pick(organs)
 		O.trace_chemicals[A.name] = 100
+
+// Traitgenes Init genes based on the traits currently active
+/mob/living/carbon/human/proc/sync_dna_traits(var/refresh_traits, var/hide_message = TRUE)
+	if(!dna || !species)
+		return
+	// Traitgenes NO_SCAN and Synthetics cannot be mutated
+	if(isSynthetic())
+		return
+	if(species.flags & NO_SCAN)
+		return
+	if(refresh_traits && species.traits)
+		for(var/TR in species.traits)
+			var/datum/trait/T = all_traits[TR]
+			if(!T)
+				continue
+			if(!T.linked_gene)
+				continue
+			var/datum/gene/trait/gene = T.linked_gene
+			dna.SetSEState(gene.block, TRUE, TRUE)
+			// testing("[gene.name] Setup activated!")
+		dna.UpdateSE()
+	var/flgs = MUTCHK_FORCED
+	if(hide_message)
+		flgs |= MUTCHK_HIDEMSG
+	domutcheck( src, null, flgs)
 
 /mob/living/carbon/human/proc/sync_organ_dna()
 	var/list/all_bits = internal_organs|organs

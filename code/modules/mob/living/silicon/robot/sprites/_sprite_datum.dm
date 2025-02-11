@@ -55,39 +55,37 @@
 			if(shield && shield.active)
 				ourborg.add_overlay("[sprite_icon_state]-shield")
 
-	for(var/thing_to_check in ourborg.get_active_modules()) //We look at our active modules. Let's peep!
+	if(ourborg.activated_module_type_list(list(/obj/item/melee/robotic, /obj/item/gun/energy/robotic)))
+		for(var/thing_to_check in ourborg.get_active_modules()) //We look at our active modules. Let's peep!
 
-		//Melee Check
-		if(istype(thing_to_check, /obj/item/melee/robotic))
-			var/obj/item/melee/robotic/melee = thing_to_check
-			if(sprite_flag_check(ROBOT_HAS_MELEE_SPRITE) && melee.weapon_flag_check(COUNTS_AS_ROBOTIC_MELEE))
-				ourborg.add_overlay("[sprite_icon_state]-melee")
-				continue
-			if(sprite_flag_check(ROBOT_HAS_DAGGER_SPRITE) && melee.weapon_flag_check(COUNTS_AS_ROBOT_DAGGER))
-				ourborg.add_overlay("[sprite_icon_state]-dagger")
-				continue
-			if(sprite_flag_check(ROBOT_HAS_BLADE_SPRITE) && melee.weapon_flag_check(COUNTS_AS_ROBOT_BLADE))
-				ourborg.add_overlay("[sprite_icon_state]-blade")
-				continue
+			//Melee Check
+			if(istype(thing_to_check, /obj/item/melee/robotic))
+				var/obj/item/melee/robotic/melee = thing_to_check
+				if(sprite_flag_check(ROBOT_HAS_MELEE_SPRITE) && melee.weapon_flag_check(COUNTS_AS_ROBOTIC_MELEE))
+					ourborg.add_overlay("[sprite_icon_state]-melee")
+					continue
+				if(sprite_flag_check(ROBOT_HAS_DAGGER_SPRITE) && melee.weapon_flag_check(COUNTS_AS_ROBOT_DAGGER))
+					ourborg.add_overlay("[sprite_icon_state]-dagger")
+					continue
+				if(sprite_flag_check(ROBOT_HAS_BLADE_SPRITE) && melee.weapon_flag_check(COUNTS_AS_ROBOT_BLADE))
+					ourborg.add_overlay("[sprite_icon_state]-blade")
+					continue
 
-		//Gun Check
-		if(istype(thing_to_check, /obj/item/gun/energy/robotic))
-			var/obj/item/gun/energy/robotic/gun = thing_to_check
-			if(sprite_flag_check(ROBOT_HAS_GUN_SPRITE) && gun.gun_flag_check(COUNTS_AS_ROBOT_GUN))
-				ourborg.add_overlay("[sprite_icon_state]-gun")
-				continue
-			if(sprite_flag_check(ROBOT_HAS_LASER_SPRITE) && gun.gun_flag_check(COUNTS_AS_ROBOT_LASER))
-				ourborg.add_overlay("[sprite_icon_state]-laser")
-				continue
-			if(sprite_flag_check(ROBOT_HAS_TASER_SPRITE) && gun.gun_flag_check(COUNTS_AS_ROBOT_TASER))
-				ourborg.add_overlay("[sprite_icon_state]-taser")
-				continue
-			if(sprite_flag_check(ROBOT_HAS_DISABLER_SPRITE) && gun.gun_flag_check(COUNTS_AS_ROBOT_DISABLER))
-				ourborg.add_overlay("[sprite_icon_state]-disabler")
-				continue
-		else //We are NEITHER a melee or a gun (Or whatever else you add in here in the future)
-			continue //Go on to the next.
-	return
+			//Gun Check
+			if(istype(thing_to_check, /obj/item/gun/energy/robotic))
+				var/obj/item/gun/energy/robotic/gun = thing_to_check
+				if(sprite_flag_check(ROBOT_HAS_GUN_SPRITE) && gun.gun_flag_check(COUNTS_AS_ROBOT_GUN))
+					ourborg.add_overlay("[sprite_icon_state]-gun")
+					continue
+				if(sprite_flag_check(ROBOT_HAS_LASER_SPRITE) && gun.gun_flag_check(COUNTS_AS_ROBOT_LASER))
+					ourborg.add_overlay("[sprite_icon_state]-laser")
+					continue
+				if(sprite_flag_check(ROBOT_HAS_TASER_SPRITE) && gun.gun_flag_check(COUNTS_AS_ROBOT_TASER))
+					ourborg.add_overlay("[sprite_icon_state]-taser")
+					continue
+				if(sprite_flag_check(ROBOT_HAS_DISABLER_SPRITE) && gun.gun_flag_check(COUNTS_AS_ROBOT_DISABLER))
+					ourborg.add_overlay("[sprite_icon_state]-disabler")
+					continue
 
 /datum/robot_sprite/proc/get_belly_overlay(var/mob/living/silicon/robot/ourborg, var/size = 1, var/b_class)
 	//Size
