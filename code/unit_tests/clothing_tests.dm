@@ -74,9 +74,8 @@
 			body_types = new_list
 	// Get actual species that can use this, based on the mess of restricted/excluded logic above
 	var/obj/mob_storage = new()
-	var/mob/living/carbon/human/H = new species_path(mob_storage)
+	var/mob/living/carbon/human/H = new(mob_storage)
 	RegisterSignal(H, COMSIG_UNITTEST_DATA, PROC_REF(get_signal_data))
-	var/list/species = list()
 	for(var/B in body_types)
 		H.set_species(B)
 		// spawn the mob, signalize it, and then give it the item to see what it gets.
@@ -142,7 +141,7 @@
 			var/slot_name 	= data[2]
 			var/set_icon 	= data[3]
 			var/set_state 	= data[4]
-			var/in_hands 	= data[5]
+			//var/in_hands 	= data[5]
 			var/item_path 	= data[6]
 			var/species 	= data[7]
 			if(!species)
