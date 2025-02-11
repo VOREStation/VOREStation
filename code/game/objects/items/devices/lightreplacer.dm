@@ -257,9 +257,9 @@
 
 	if(!resetmode)
 		resetmode = 1
-		to_chat(usr, span_infoplain("Painter reset."))
+		to_chat(user, span_infoplain("Painter reset."))
 	else
-		var/color_input = tgui_color_picker(usr,"","Choose Light Color",setcolor)
+		var/color_input = tgui_color_picker(user,"","Choose Light Color",setcolor)
 		if(color_input)
 			setcolor = sanitize_hexcolor(color_input)
 			var/list/setcolorRGB = hex2rgb(setcolor)
@@ -268,7 +268,7 @@
 			var/setcolorB = num2hex(setcolorRGB[3] * dimming, 2)
 			setnightcolor = addtext("#", setcolorR, setcolorG, setcolorB)
 			resetmode = 0
-			to_chat(usr, span_infoplain("Painter color set."))
+			to_chat(user, span_infoplain("Painter color set."))
 
 
 /obj/item/lightpainter/proc/ColorLight(var/obj/machinery/light/target, var/mob/living/U)

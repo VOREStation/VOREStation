@@ -265,6 +265,6 @@
 		/obj/item/seeds/ambrosiavulgarisseed,
 		/obj/item/bodysnatcher)
 
-	user.put_in_hands(new contraband(usr.loc))
-	to_chat(user, "You unwrap the package.")
+	user.put_in_hands(new contraband(user.loc))
+	to_chat(user, span_notice("You unwrap the package."))
 	qdel(src)
