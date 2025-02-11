@@ -53,6 +53,30 @@
 			log_unit_test("[C.type]: Clothing - Icon_state \"[C.icon_state]\" is not present in [C.icon]. This icon/state was changed by init. Initial icon \"[initial(C.icon)]\". initial icon_state \"[initial(C.icon_state)]\". Check code.")
 		failed = TRUE
 
+	// held icons
+	var/list/slotlist = list(slot_back_str,
+							slot_l_hand_str,
+							slot_w_uniform_str,
+							slot_head_str,
+							slot_wear_suit_str,
+							slot_l_ear_str,
+							slot_r_ear_str,
+							slot_belt_str,
+							slot_shoes_str,
+							slot_wear_mask_str,
+							slot_handcuffed_str,
+							slot_legcuffed_str,
+							slot_wear_id_str,
+							slot_gloves_str,
+							slot_glasses_str,
+							slot_s_store_str,
+							slot_tie_str)
+	for(var/slot in slotlist)
+		var/dmi = item_icons[slot]
+		if(dmi && !("[C.]" in cached_icon_states(dmi)))
+			log_unit_test("[C.type]: Clothing - A dmi \"[dmi]\" in the slot of \"[slot]\" was defined, but no item_state \"[C.item_state]\" was found inside of it.")
+			failed = TRUE
+
 	// Species icons
 	/* (disabled for now, requires ALL clothing to have icons for all species that wear it)
 	for(var/species in C.sprite_sheets)
@@ -60,6 +84,7 @@
 		if(!("[C.icon_state]" in cached_icon_states(dmi)))
 			log_unit_test("[C.type]: Clothing - \"[species]\" Species unique \"[C.icon_state]\" is not present in [C.sprite_sheets[species]].")
 	*/
+
 
 	// Temps
 	if(C.min_cold_protection_temperature < 0)
