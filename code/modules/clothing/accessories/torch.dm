@@ -142,12 +142,13 @@ ribbons
 /*************
 specialty pins
 *************/
+/* //Lost to time.
 /obj/item/clothing/accessory/solgov/specialty
 	name = "speciality blaze"
 	desc = "A color blaze denoting fleet personnel in some special role. This one is silver."
 	icon_state = "marinerank_command"
 	slot = ACCESSORY_SLOT_INSIGNIA
-
+*/
 /obj/item/clothing/accessory/solgov/specialty/janitor
 	name = "custodial blazes"
 	desc = "Purple blazes denoting a custodial technician."
@@ -248,17 +249,20 @@ armbands
 /*****************
 armour attachments
 *****************/
+/obj/item/clothing/accessory/armor/tag
+	name = DEVELOPER_WARNING_NAME
+/*
 /obj/item/clothing/accessory/armor/tag/solgov
-	name = "\improper SCG Flag"
-	desc = "An emblem depicting the Sol Central Government's flag."
+	name = "\improper TCG Flag"
+	desc = "An emblem depicting the Terran Commonwealth's flag."
 	icon_state = "solflag"
 	slot = ACCESSORY_SLOT_ARMOR_M
 
 /obj/item/clothing/accessory/armor/tag/solgov/ec
 	name = "\improper Expeditionary Corps crest"
-	desc = "An emblem depicting the crest of the SCG Expeditionary Corps."
+	desc = "An emblem depicting the crest of the TCG Expeditionary Corps."
 	icon_state = "ecflag"
-
+*/
 /obj/item/clothing/accessory/armor/tag/solgov/sec
 	name = "\improper POLICE tag"
 	desc = "An armor tag with the word POLICE printed in silver lettering on it."
@@ -275,8 +279,8 @@ armour attachments
 	icon_state = "agenttag"
 
 /obj/item/clothing/accessory/armor/tag/solgov/com
-	name = "\improper SCG tag"
-	desc = "An armor tag with the words SOL CENTRAL GOVERNMENT printed in gold lettering on it."
+	name = "\improper TCG tag"
+	desc = "An armor tag with the words COMMONWEALTH OF SOL-PROCYON printed in gold lettering on it."
 	icon_state = "comtag"
 
 /obj/item/clothing/accessory/armor/tag/solgov/com/sec
@@ -285,7 +289,7 @@ armour attachments
 
 /obj/item/clothing/accessory/armor/helmcover/blue/sol
 	name = "peacekeeper helmet cover"
-	desc = "A fabric cover for armored helmets. This one is in SCG peacekeeper colors."
+	desc = "A fabric cover for armored helmets. This one is in TCG peacekeeper colors."
 
 /**************
 department tags

@@ -963,8 +963,8 @@
 /obj/item/clothing/under/fluff/earthenbreath
 	name = "Earth Swimsuit"
 	desc = "The suit of Subject 688,509,403. Made of an enviromentally safe elastic. Dry-clean not required."
-	icon_state = "fluffearthenbreath"
-	item_state = "fluffearthenbreath_mob"
+	icon_state = "swim_earth"
+	item_state = "swim_earth"
 
 //jacobdragon:Earthen Breath
 /obj/item/clothing/head/fluff/hairflowerpin
