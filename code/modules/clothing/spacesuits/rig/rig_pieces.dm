@@ -19,7 +19,8 @@
 	min_pressure_protection = null
 
 /obj/item/clothing/gloves/gauntlets/rig
-	name = DEVELOPER_WARNING_NAME // "gauntlets"
+	name = "gauntlets"
+	icon_state = "security_rig"
 	flags = PHORONGUARD
 	item_flags = THICKMATERIAL
 	species_restricted = list(SPECIES_HUMAN, SPECIES_SKRELL, SPECIES_TAJARAN, SPECIES_UNATHI, SPECIES_PROMETHEAN, SPECIES_TESHARI)

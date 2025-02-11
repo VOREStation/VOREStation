@@ -72,7 +72,7 @@
 /obj/item/clothing/shoes/magboots/dropped(mob/user)
 	..()
 
-	wearer.resolve()
+	wearer?.resolve()
 	var/mob/living/carbon/human/H = wearer
 
 	if(ishuman(H) && shoes)
