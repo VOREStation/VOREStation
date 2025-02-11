@@ -20,7 +20,7 @@
 		if(istype(C,/obj/item/clothing/suit/storage/hooded))
 			var/obj/item/clothing/suit/storage/hooded/H = C
 			if(H.hood) // Testing hoods when they init
-				failed += test_clothing(H.hood)
+				failed += test_clothing(H.hood,storage)
 
 		qdel(C)
 	qdel(storage)
@@ -31,7 +31,7 @@
 		pass("All /obj/item/clothing are valid.")
 	return 1
 
-/datum/unit_test/all_clothing_shall_be_valid/proc/test_clothing(var/obj/item/clothing/C)
+/datum/unit_test/all_clothing_shall_be_valid/proc/test_clothing(var/obj/item/clothing/C,var/obj/storage)
 	var/failed = FALSE
 
 	// Do not test base-types
@@ -59,43 +59,42 @@
 	#ifdef UNIT_TEST
 	// Time for the most brutal part. Dressing up some mobs with set species, and checking they have art
 	// An entire signal just for unittests had to be made for this!
-	var/original_holder = C.loc
-	var/turf/T = locate(1,1,1)
-	if(T)
-		var/list/body_types = list(SPECIES_HUMAN) //,SPECIES_VOX,SPECIES_TESHARI) // Otherwise we would be here for centuries
-		if(C.species_restricted && C.species_restricted.len)
-			if(C.species_restricted[1] == "exclude")
-				for(var/B in body_types)
-					if(B in C.species_restricted)
-						body_types -= B
-			else
-				var/list/new_list = list()
-				for(var/B in body_types)
-					if(B in C.species_restricted)
-						new_list += B
-				body_types = new_list
-		// Get actual species that can use this, based on the mess of restricted/excluded logic above
-		var/list/species = list()
-		for(var/B in body_types)
-			var/species_path = /mob/living/carbon/human
-			switch(B)
-				if(SPECIES_HUMAN)
-					species_path = /mob/living/carbon/human
-				if(SPECIES_VOX)
-					species_path = /mob/living/carbon/human/vox
-				if(SPECIES_TESHARI)
-					species_path = /mob/living/carbon/human/teshari
-			// spawn the mob, signalize it, and then give it the item to see what it gets.
-			var/mob/living/carbon/human/H = new species_path(T)
-			RegisterSignal(H, COMSIG_UNITTEST_DATA, PROC_REF(get_signal_data))
-			H.put_in_active_hand(C)
-			H.equip_to_appropriate_slot(C)
-			H.drop_from_inventory(C, original_holder)
-			UnregisterSignal(H, COMSIG_UNITTEST_DATA)
-			qdel(H)
-		// We failed the mob check
-		if(signal_failed)
-			failed = TRUE
+	var/list/body_types = list(SPECIES_HUMAN) //,SPECIES_VOX,SPECIES_TESHARI) // Otherwise we would be here for centuries
+	if(C.species_restricted && C.species_restricted.len)
+		if(C.species_restricted[1] == "exclude")
+			for(var/B in body_types)
+				if(B in C.species_restricted)
+					body_types -= B
+		else
+			var/list/new_list = list()
+			for(var/B in body_types)
+				if(B in C.species_restricted)
+					new_list += B
+			body_types = new_list
+	// Get actual species that can use this, based on the mess of restricted/excluded logic above
+	var/obj/mob_storage = new()
+	var/list/species = list()
+	for(var/B in body_types)
+		var/species_path = /mob/living/carbon/human
+		switch(B)
+			if(SPECIES_HUMAN)
+				species_path = /mob/living/carbon/human
+			if(SPECIES_VOX)
+				species_path = /mob/living/carbon/human/vox
+			if(SPECIES_TESHARI)
+				species_path = /mob/living/carbon/human/teshari
+		// spawn the mob, signalize it, and then give it the item to see what it gets.
+		var/mob/living/carbon/human/H = new species_path(mob_storage)
+		//H.RegisterSignal(src, COMSIG_UNITTEST_DATA, PROC_REF(get_signal_data))
+		H.put_in_active_hand(C)
+		H.equip_to_appropriate_slot(C)
+		H.drop_from_inventory(C, storage)
+		//H.UnregisterSignal(src, COMSIG_UNITTEST_DATA)
+		qdel(H)
+	qdel(mob_storage)
+	// We failed the mob check
+	if(signal_failed)
+		failed = TRUE
 	#endif
 
 	// Temps
@@ -143,7 +142,7 @@
 					failed = TRUE
 	return failed
 
-/datum/unit_test/all_clothing_shall_be_valid/get_signal_data(datum/weakref/source, list/data = list())
+/datum/unit_test/all_clothing_shall_be_valid/get_signal_data(atom/source, list/data = list())
 	switch(data[1])
 		if("set_slot")
 			var/slot_name 	= data[2]

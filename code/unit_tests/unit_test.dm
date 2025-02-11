@@ -109,5 +109,5 @@ var/total_unit_tests = 0
 	log_unit_test("[ASCII_YELLOW]---  DEBUG  --- \[[name]\]: [message][ASCII_RESET]")
 
 // This signal should never be possible to call if the game is not compiled for unit tests
-/datum/unit_test/proc/get_signal_data(datum/weakref/source, list/data = list())
+/datum/unit_test/proc/get_signal_data(atom/source, list/data = list())
 	SIGNAL_HANDLER
