@@ -7,6 +7,9 @@
 
 	var/list/scan = subtypesof(/obj/item/clothing)
 	scan -= typesof(/obj/item/clothing/head/hood) // These are part of clothing, need to be tested uniquely
+	// Remove material armors, as dev_warning cannot be used to set their name
+	scan -= /obj/item/clothing/suit/armor/material
+	scan -= /obj/item/clothing/head/helmet/material
 
 	for(var/path as anything in scan)
 		var/obj/item/clothing/C = new path(storage)

@@ -449,7 +449,7 @@
 ///////////////////////////////////////////////////////////////////////
 //Head
 /obj/item/clothing/head
-	name = "head"
+	name = DEVELOPER_WARNING_NAME
 	icon = 'icons/inventory/head/item.dmi'
 	item_icons = list(
 		slot_l_hand_str = 'icons/mob/items/lefthand_hats.dmi',
