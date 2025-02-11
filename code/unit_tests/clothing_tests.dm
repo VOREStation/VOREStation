@@ -28,6 +28,11 @@
 
 /datum/unit_test/all_clothing_shall_be_valid/proc/test_clothing(var/obj/item/clothing/C)
 	var/failed = FALSE
+
+	// Do not test base-types
+	if(C.name == DEVELOPER_WARNING_NAME)
+		return FALSE
+
 	// ID
 	if(!C.name)
 		log_unit_test("[C.type]: Clothing - Missing name.")
@@ -38,12 +43,11 @@
 		failed = TRUE
 
 	// Icons
-	var/actual_icon_state = "[C.icon_state]"
-	if(!(actual_icon_state in cached_icon_states(C.icon)))
-		if(C.icon == initial(C.icon) && actual_icon_state == initial(C.icon_state))
-			log_unit_test("[C.type]: Clothing - Icon_state \"[actual_icon_state]\" is not present in [C.icon].")
+	if(!("[C.icon_state]" in cached_icon_states(C.icon)))
+		if(C.icon == initial(C.icon) && C.icon_state == initial(C.icon_state))
+			log_unit_test("[C.type]: Clothing - Icon_state \"[C.icon_state]\" is not present in [C.icon].")
 		else
-			log_unit_test("[C.type]: Clothing - Icon_state \"[actual_icon_state]\" is not present in [C.icon]. This icon/state was changed by init. Initial icon \"[initial(C.icon)]\". initial icon_state \"[initial(C.icon_state)]\". Check code.")
+			log_unit_test("[C.type]: Clothing - Icon_state \"[C.icon_state]\" is not present in [C.icon]. This icon/state was changed by init. Initial icon \"[initial(C.icon)]\". initial icon_state \"[initial(C.icon_state)]\". Check code.")
 		failed = TRUE
 
 	// Species icons (disabled for now, requires ALL clothing to have icons for different species)

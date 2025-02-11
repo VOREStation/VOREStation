@@ -1,5 +1,5 @@
 /obj/item/clothing
-	name = "clothing"
+	name = DEVELOPER_WARNING_NAME
 	siemens_coefficient = 0.9
 	drop_sound = 'sound/items/drop/clothing.ogg'
 	pickup_sound = 'sound/items/pickup/clothing.ogg'
