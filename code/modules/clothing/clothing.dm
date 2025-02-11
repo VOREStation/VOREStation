@@ -1,5 +1,5 @@
 /obj/item/clothing
-	name = DEVELOPER_WARNING_NAME
+	name = DEVELOPER_WARNING_NAME // "Clothing"
 	siemens_coefficient = 0.9
 	drop_sound = 'sound/items/drop/clothing.ogg'
 	pickup_sound = 'sound/items/pickup/clothing.ogg'
@@ -282,7 +282,7 @@
 
 
 /obj/item/clothing/ears/offear
-	name = "Other ear"
+	name = DEVELOPER_WARNING_NAME // "Other ear"
 	w_class = ITEMSIZE_HUGE
 	icon = 'icons/mob/screen1_Midnight.dmi'
 	icon_state = "block"
@@ -298,7 +298,7 @@
 ////////////////////////////////////////////////////////////////////////////////////////
 //Gloves
 /obj/item/clothing/gloves
-	name = DEVELOPER_WARNING_NAME
+	name = DEVELOPER_WARNING_NAME // "Gloves"
 	item_icons = list(
 		slot_l_hand_str = 'icons/mob/items/lefthand_gloves.dmi',
 		slot_r_hand_str = 'icons/mob/items/righthand_gloves.dmi',
@@ -452,7 +452,7 @@
 //Rings
 
 /obj/item/clothing/gloves/ring
-	name = "ring"
+	name = DEVELOPER_WARNING_NAME // "ring"
 	w_class = ITEMSIZE_TINY
 	icon = 'icons/inventory/hands/item.dmi'
 	gender = NEUTER
@@ -468,7 +468,7 @@
 ///////////////////////////////////////////////////////////////////////
 //Head
 /obj/item/clothing/head
-	name = DEVELOPER_WARNING_NAME
+	name = DEVELOPER_WARNING_NAME // "Head"
 	icon = 'icons/inventory/head/item.dmi'
 	item_icons = list(
 		slot_l_hand_str = 'icons/mob/items/lefthand_hats.dmi',
@@ -617,7 +617,7 @@
 ///////////////////////////////////////////////////////////////////////
 //Shoes
 /obj/item/clothing/shoes
-	name = "shoes"
+	name = DEVELOPER_WARNING_NAME // "shoes"
 	icon = 'icons/inventory/feet/item.dmi'
 	item_icons = list(
 		slot_l_hand_str = 'icons/mob/items/lefthand_shoes.dmi',
@@ -759,19 +759,20 @@
 ///////////////////////////////////////////////////////////////////////
 //Suit
 /obj/item/clothing/suit
-	name = DEVELOPER_WARNING_NAME //Needed for unit tests. This should NEVER be spawned.
+	name = DEVELOPER_WARNING_NAME // "suit"
 	icon = 'icons/inventory/suit/item.dmi'
 	item_icons = list(
 		slot_l_hand_str = 'icons/mob/items/lefthand_suits.dmi',
 		slot_r_hand_str = 'icons/mob/items/righthand_suits.dmi',
 		)
+	var/fire_resist = T0C+100
+	body_parts_covered = CHEST|ARMS|LEGS
 	//Switch to taur sprites if a taur equips
 	sprite_sheets = list(
 		SPECIES_TESHARI = 'icons/inventory/suit/mob_teshari.dmi',
 		SPECIES_VOX = 'icons/inventory/suit/mob_vox.dmi',
 		SPECIES_WEREBEAST = 'icons/inventory/suit/mob_vr_werebeast.dmi')
 	max_heat_protection_temperature = T0C+100
-	body_parts_covered = CHEST|ARMS|LEGS
 	allowed = list(/obj/item/tank/emergency/oxygen)
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0)
 	slot_flags = SLOT_OCLOTHING

@@ -14,7 +14,7 @@
 	shoes = /obj/item/clothing/shoes/boots/tactical
 	suit = /obj/item/clothing/suit/storage/solgov/service/sifguard
 
-/decl/hierarchy/outfit/military/sifguard/dress
+/decl/hierarchy/outfit/military/sifguard/dress //The suit was changed due to missing sprites
 	name = OUTFIT_MILITARY("SifGuard Dress")
 	uniform = /obj/item/clothing/under/solgov/service/sifguard
 	shoes = /obj/item/clothing/shoes/dress

@@ -19,7 +19,7 @@
 	min_pressure_protection = null
 
 /obj/item/clothing/gloves/gauntlets/rig
-	name = "gauntlets"
+	name = DEVELOPER_WARNING_NAME // "gauntlets"
 	flags = PHORONGUARD
 	item_flags = THICKMATERIAL
 	species_restricted = list(SPECIES_HUMAN, SPECIES_SKRELL, SPECIES_TAJARAN, SPECIES_UNATHI, SPECIES_PROMETHEAN, SPECIES_TESHARI)
@@ -104,18 +104,18 @@
 //Rig pieces for non-spacesuit based rigs
 
 /obj/item/clothing/head/lightrig
-	name = "mask"
+	name = DEVELOPER_WARNING_NAME // "mask"
 	body_parts_covered = HEAD|FACE|EYES
 	flags =              THICKMATERIAL|AIRTIGHT
 
 /obj/item/clothing/suit/lightrig
-	name = "suit"
+	name = DEVELOPER_WARNING_NAME // "suit"
 	allowed = list(/obj/item/flashlight)
 	flags_inv =          HIDEJUMPSUIT
 	flags =              THICKMATERIAL
 
 /obj/item/clothing/shoes/lightrig
-	name = "boots"
+	name = DEVELOPER_WARNING_NAME // "boots"
 
 /obj/item/clothing/gloves/gauntlets/lightrig
 	flags = THICKMATERIAL

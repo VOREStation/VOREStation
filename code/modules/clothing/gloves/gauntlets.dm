@@ -7,7 +7,7 @@
  */
 
 /obj/item/clothing/gloves/gauntlets	//Used to cover gloves, otherwise act as gloves.
-	name = "gauntlets"
+	name = DEVELOPER_WARNING_NAME // "gauntlets"
 	desc = "These gloves go over regular gloves."
 	glove_level = 3
 	overgloves = 1
