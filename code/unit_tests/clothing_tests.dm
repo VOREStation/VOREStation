@@ -54,8 +54,24 @@
 		failed = TRUE
 
 	// held icons
+	var/list/slot_to_default = list(
+		slot_l_hand_str = INV_L_HAND_DEF_ICON,
+		slot_r_hand_str = INV_R_HAND_DEF_ICON,
+		slot_wear_id_str = INV_WEAR_ID_DEF_ICON,
+		slot_head_str = INV_HEAD_DEF_ICON,
+		slot_back_str = INV_BACK_DEF_ICON,
+		slot_wear_suit_str = INV_SUIT_DEF_ICON,
+		slot_gloves_str = INV_GLOVES_DEF_ICON,
+		slot_gloves_str = INV_EYES_DEF_ICON,
+		slot_l_ear_str = INV_EARS_DEF_ICON,
+		slot_r_ear_str = INV_EARS_DEF_ICON,
+		slot_shoes_str = INV_FEET_DEF_ICON,
+		slot_belt_str = INV_BELT_DEF_ICON,
+		slot_wear_mask_str = INV_MASK_DEF_ICON
+	)
 	var/list/slotlist = list(slot_back_str,
 							slot_l_hand_str,
+							slot_r_hand_str,
 							slot_w_uniform_str,
 							slot_head_str,
 							slot_wear_suit_str,
@@ -71,21 +87,20 @@
 							slot_glasses_str,
 							slot_s_store_str,
 							slot_tie_str)
-	for(var/slot in slotlist)
-		var/dmi = C.item_icons[slot]
-		var/state = C.get_worn_icon_state(slot)
-		if(dmi && !("[state]" in cached_icon_states(dmi)))
-			log_unit_test("[C.type]: Clothing - A dmi \"[dmi]\" in the slot of \"[slot]\" was defined, but no item_state \"[state]\" was found inside of it.")
-			failed = TRUE
-
-	// Species icons
-	/* (disabled for now, requires ALL clothing to have icons for all species that wear it)
-	for(var/species in C.sprite_sheets)
-		var/dmi = C.sprite_sheets[species]
-		if(!("[C.icon_state]" in cached_icon_states(dmi)))
-			log_unit_test("[C.type]: Clothing - \"[species]\" Species unique \"[C.icon_state]\" is not present in [C.sprite_sheets[species]].")
-	*/
-
+	var/list/species_list = C.species_restricted
+	if(!species_list)
+		species_list = GLOB.all_species
+	var/list/body_types = list()
+	for(var/species in species_list)
+		var/datum/species/S = GLOB.all_species[species]
+		body_types[S.get_bodytype()] = TRUE
+	for(var/B in body_types)
+		for(var/slot in slotlist)
+			var/dmi = C.get_worn_icon_file(B, slot, slot_to_default[slot], FALSE)
+			var/state = C.get_worn_icon_state(slot)
+			if(dmi && !("[state]" in cached_icon_states(dmi)))
+				log_unit_test("[C.type]: Clothing - While being wearable by the species \"[species]\". A dmi \"[dmi]\" in the slot of \"[slot]\" was defined, but no item_state \"[state]\" was found inside of it.")
+				failed = TRUE
 
 	// Temps
 	if(C.min_cold_protection_temperature < 0)
