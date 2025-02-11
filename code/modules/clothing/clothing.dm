@@ -759,12 +759,12 @@
 ///////////////////////////////////////////////////////////////////////
 //Suit
 /obj/item/clothing/suit
+	name = DEVELOPER_WARNING_NAME
 	icon = 'icons/inventory/suit/item.dmi'
 	item_icons = list(
 		slot_l_hand_str = 'icons/mob/items/lefthand_suits.dmi',
 		slot_r_hand_str = 'icons/mob/items/righthand_suits.dmi',
 		)
-	name = DEVELOPER_WARNING_NAME
 	var/fire_resist = T0C+100
 	body_parts_covered = CHEST|ARMS|LEGS
 	//Switch to taur sprites if a taur equips
@@ -772,7 +772,6 @@
 		SPECIES_TESHARI = 'icons/inventory/suit/mob_teshari.dmi',
 		SPECIES_VOX = 'icons/inventory/suit/mob_vox.dmi',
 		SPECIES_WEREBEAST = 'icons/inventory/suit/mob_vr_werebeast.dmi')
-	name = "suit"
 	max_heat_protection_temperature = T0C+100
 	allowed = list(/obj/item/tank/emergency/oxygen)
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0)
