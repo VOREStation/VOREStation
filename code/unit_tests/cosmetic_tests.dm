@@ -79,6 +79,10 @@
 	if(istype(A,/datum/sprite_accessory/marking))
 		var/datum/sprite_accessory/marking/MA = A
 		for(var/BP in MA.body_parts)
+			if(!(BP in BP_ALL))
+				log_unit_test("[A] - [A.type]: Cosmetic - Has an illegal bodypart \"[BP]\". ONLY use parts listed in BP_ALL.")
+				failed = 1
+
 			actual_icon_state = "[A.icon_state]-[BP]"
 			if(!(actual_icon_state in cached_icon_states(A.icon)))
 				log_unit_test("[A] - [A.type]: Cosmetic - Icon_state \"[actual_icon_state]\" is not present in [A.icon].")

@@ -166,3 +166,6 @@
 	var/block_hud
 
 	var/phobias		//For holding a list of phobias
+
+	var/loneliness_stage = 0
+	var/next_loneliness_time = 0
