@@ -26,11 +26,11 @@ obj/item/newspaper/attack_self(mob/user)
 		pages = 0
 		switch(screen)
 			if(0) //Cover
-				dat+="<DIV ALIGN='center'><B><FONT SIZE=6>The Griffon</FONT></B></div>"
-				dat+="<DIV ALIGN='center'><FONT SIZE=2>[using_map.company_name]-standard newspaper, for use on [using_map.company_name]© Space Facilities</FONT></div><HR>"
+				dat+="<DIV ALIGN='center'>" + span_bold(span_giganteus("The Griffon")) + "</div>"
+				dat+="<DIV ALIGN='center'>" + span_normal("[using_map.company_name]-standard newspaper, for use on [using_map.company_name]© Space Facilities") + "</div><HR>"
 				if(isemptylist(news_content))
 					if(important_message)
-						dat+="Contents:<BR><ul><B><FONT COLOR='red'>**</FONT>Important Security Announcement<FONT COLOR='red'>**</FONT></B> <FONT SIZE=2>\[page [pages+2]\]</FONT><BR></ul>"
+						dat+="Contents:<BR><ul>" + span_bold(span_red("**") + "Important Security Announcement" + span_red("**")) + " " + span_nornal("\[page [pages+2]\]") + "<BR></ul>"
 					else
 						dat+=span_italics("Other than the title, the rest of the newspaper is unprinted...")
 				else
@@ -38,7 +38,7 @@ obj/item/newspaper/attack_self(mob/user)
 					for(var/datum/feed_channel/NP in news_content)
 						pages++
 					if(important_message)
-						dat+=span_bold("<FONT COLOR='red'>**</FONT>Important Security Announcement<FONT COLOR='red'>**</FONT>") + " <FONT SIZE=2>\[page [pages+2]\]</FONT><BR>"
+						dat+=span_bold(span_red("**") + "Important Security Announcement" + span_red("**")) + " <FONT SIZE=2>\[page [pages+2]\]</FONT><BR>"
 					var/temp_page=0
 					for(var/datum/feed_channel/NP in news_content)
 						temp_page++

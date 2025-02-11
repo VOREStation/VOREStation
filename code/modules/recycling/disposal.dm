@@ -337,11 +337,11 @@
 
 // /obj/machinery/disposal/Topic(href, href_list)
 // 	if(usr.loc == src)
-// 		to_chat(usr, "<font color='red'>You cannot reach the controls from inside.</font>")
+// 		to_chat(usr, span_red("You cannot reach the controls from inside."))
 // 		return
 
 // 	if(mode==-1 && !href_list["eject"]) // only allow ejecting if mode is -1
-// 		to_chat(usr, "<font color='red'>The disposal units power is disabled.</font>")
+// 		to_chat(usr, span_red("The disposal units power is disabled."))
 // 		return
 // 	if(..())
 // 		return
