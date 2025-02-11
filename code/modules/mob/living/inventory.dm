@@ -183,7 +183,7 @@
 // This handles the drag-open inventory panel.
 /mob/living/MouseDrop(atom/over_object)
 	var/mob/living/L = over_object
-	if(istype(L) && L != src && L == usr && Adjacent(L))
+	if(istype(L) && L != src && L == usr && Adjacent(L) && !L.is_incorporeal())
 		show_inventory_panel(L)
 	. = ..()
 

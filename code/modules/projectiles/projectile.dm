@@ -679,6 +679,9 @@
 	if(!istype(target_mob))
 		return
 
+	if(target_mob.is_incorporeal())
+		return
+
 	if(target_mob in impacted_mobs)
 		return
 

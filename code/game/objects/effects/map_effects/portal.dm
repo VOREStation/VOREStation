@@ -71,8 +71,6 @@ when portals are shortly lived, or when portals are made to be obvious with spec
 
 // Called when something touches the portal, and usually teleports them to the other side.
 /obj/effect/map_effect/portal/Crossed(atom/movable/AM)
-	if(AM.is_incorporeal())
-		return
 	..()
 	if(!AM)
 		return

@@ -661,13 +661,20 @@ var/list/global/tank_gauge_cache = list()
 		tank.update_icon()
 		tank.cut_overlay("bomb_assembly")
 
-/obj/item/tankassemblyproxy/HasProximity(turf/T, atom/movable/AM, old_loc)
-	assembly?.HasProximity(T, AM, old_loc)
+/obj/item/tankassemblyproxy/HasProximity(turf/T, datum/weakref/WF, old_loc)
+	SIGNAL_HANDLER
+	if(isnull(WF))
+		return
+	var/atom/movable/AM = WF
+	if(isnull(AM))
+		log_debug("DEBUG: HasProximity called without reference on [src].")
+		return
+	assembly?.HasProximity(T, WEAKREF(AM), old_loc)
 
 /obj/item/tankassemblyproxy/Moved(old_loc, direction, forced)
 	if(isturf(old_loc))
-		unsense_proximity(callback = /atom/proc/HasProximity, center = old_loc)
+		unsense_proximity(callback = TYPE_PROC_REF(/atom,HasProximity), center = old_loc)
 	if(isturf(loc))
-		sense_proximity(callback = /atom/proc/HasProximity)
+		sense_proximity(callback = TYPE_PROC_REF(/atom,HasProximity))
 
 #undef TANK_IDEAL_PRESSURE

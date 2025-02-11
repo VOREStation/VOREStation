@@ -37,6 +37,8 @@
 /mob/living/carbon/human/attack_hand(mob/living/M as mob)
 	var/datum/gender/TT = gender_datums[M.get_visible_gender()]
 	var/mob/living/carbon/human/H = M
+	if(is_incorporeal())
+		return
 	if(istype(H))
 		var/obj/item/organ/external/temp = H.organs_by_name["r_hand"]
 		if(H.hand)
@@ -55,8 +57,6 @@
 			if(D.IsSpreadByTouch())
 				ContractDisease(D)
 
-	if(H.lying)
-		return
 	M.break_cloak()
 
 	..()

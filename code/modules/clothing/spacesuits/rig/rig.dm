@@ -576,7 +576,7 @@
 		var/mob/living/carbon/human/H = user
 		if(istype(H) && (H.back != src && H.belt != src))
 			fail_msg = span_warning("You must be wearing \the [src] to do this.")
-		else if(user.incorporeal_move)
+		else if(user.is_incorporeal())
 			fail_msg = span_warning("You must be solid to do this.")
 	if(sealing)
 		fail_msg = span_warning("The hardsuit is in the process of adjusting seals and cannot be activated.")
