@@ -181,25 +181,6 @@
 	drop_sound = 'sound/items/drop/cardboardbox.ogg'
 	pickup_sound = 'sound/items/pickup/cardboardbox.ogg'
 
-/obj/item/clothing/head/justice
-	name = "justice hat"
-	desc = "fight for what's righteous!"
-	icon_state = "justicered" //Does this even exist?
-	flags_inv = BLOCKHAIR
-	body_parts_covered = HEAD|EYES
-
-/obj/item/clothing/head/justice/blue
-	icon_state = "justiceblue"
-
-/obj/item/clothing/head/justice/yellow
-	icon_state = "justiceyellow"
-
-/obj/item/clothing/head/justice/green
-	icon_state = "justicegreen"
-
-/obj/item/clothing/head/justice/pink
-	icon_state = "justicepink"
-
 /obj/item/clothing/head/rabbitears
 	name = "rabbit ears"
 	desc = "Wearing these makes you looks useless, and only good for your sex appeal."

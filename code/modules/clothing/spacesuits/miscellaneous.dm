@@ -43,7 +43,7 @@
 /obj/item/clothing/head/helmet/space/deathsquad/beret
 	name = "officer's beret"
 	desc = "An armored beret commonly used by special operations officers."
-	icon_state = "beret_badge"
+	icon_state = "beret_black_security" //old sprite was lost, this is the next closest.
 	item_state_slots = list(slot_r_hand_str = "beret", slot_l_hand_str = "beret")
 	armor = list(melee = 65, bullet = 55, laser = 35,energy = 20, bomb = 30, bio = 30, rad = 30)
 	item_flags = 0

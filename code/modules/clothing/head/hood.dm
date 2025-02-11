@@ -1,7 +1,7 @@
 /obj/item/clothing/head/hood
 	name = "hood"
 	desc = "A generic hood."
-	icon_state = "generic_hood"
+	icon_state = "chaplain_hood" //just default to this, whatever. default_hood never existed.
 	flags_inv = HIDEEARS | BLOCKHAIR
 
 // Winter coats
