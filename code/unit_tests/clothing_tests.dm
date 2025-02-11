@@ -3,7 +3,7 @@
 
 /datum/unit_test/all_clothing_shall_be_valid/start_test()
 	var/failed = 0
-	var/turf/storage = new /turf/unsimulated/floor()
+	var/obj/storage = new()
 
 	var/list/scan = subtypesof(/obj/item/clothing)
 	scan -= typesof(/obj/item/clothing/head/hood) // These are part of clothing, need to be tested uniquely
@@ -57,6 +57,7 @@
 		log_unit_test("[C.type]: Clothing - Maximum heat protection was greater than minimum cold protection.")
 		failed = TRUE
 
+	//var/valid_range = HEAD|UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS|HANDS
 	if(C.cold_protection)
 		if(islist(C.cold_protection))
 			log_unit_test("[C.type]: Clothing - cold_protection was defined as a list, when it is a bitflag.")
@@ -65,7 +66,6 @@
 			log_unit_test("[C.type]: Clothing - cold_protection was defined as something other than a number, when it is a bitflag.")
 			failed = TRUE
 		else
-			var/valid_range = HEAD|UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS|HANDS
 			if(C.cold_protection && C.cold_protection != FULL_BODY)
 				// Check flags that should be unused
 				if(C.cold_protection & FACE)
@@ -83,7 +83,6 @@
 			log_unit_test("[C.type]: Clothing - heat_protection was defined as something other than a number, when it is a bitflag.")
 			failed = TRUE
 		else
-			var/valid_range = HEAD|UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS|HANDS
 			if(C.heat_protection && C.heat_protection != FULL_BODY)
 				// Check flags that should be unused
 				if(C.heat_protection & FACE)
