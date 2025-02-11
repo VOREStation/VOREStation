@@ -185,7 +185,7 @@
 
 	sprite_sheets_obj = list(
 		SPECIES_HUMAN			 = 'icons/mob/hands.dmi',
-		SPECIES_TAJARAN 			 = 'icons/mob/hands.dmi',
+		SPECIES_TAJARAN 		 = 'icons/mob/hands.dmi',
 		SPECIES_SKRELL 			 = 'icons/mob/hands.dmi',
 		SPECIES_UNATHI 			 = 'icons/mob/hands.dmi',
 		SPECIES_XENOHYBRID		 = 'icons/mob/hands.dmi',

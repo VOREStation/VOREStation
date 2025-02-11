@@ -262,6 +262,7 @@
 	actions_types = list(/datum/action/item_action/toggle_hood)
 	hoodtype = /obj/item/clothing/head/tesh_hood
 	allowed = list (/obj/item/pen, /obj/item/paper, /obj/item/flashlight,/obj/item/tank/emergency/oxygen, /obj/item/storage/fancy/cigarettes, /obj/item/storage/box/matches, /obj/item/reagent_containers/food/drinks/flask)
+	species_restricted = list(SPECIES_TESHARI)
 
 /obj/item/clothing/head/tesh_hood
 	name = "Cloak Hood"
@@ -273,6 +274,7 @@
 	item_state_slots = list(slot_r_hand_str = "tesh_hood_bo", slot_l_hand_str = "tesh_hood_bo")
 	flags_inv = BLOCKHAIR
 	body_parts_covered = HEAD
+species_restricted = list(SPECIES_TESHARI)
 
 /obj/item/clothing/suit/storage/hooded/teshari/standard/black_orange
 	name = "black and orange hooded cloak"
