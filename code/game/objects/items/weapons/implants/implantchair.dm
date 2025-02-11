@@ -29,9 +29,9 @@
 	var/health_text = ""
 	if(src.occupant)
 		if(src.occupant.health <= -100)
-			health_text = "<FONT color=red>Dead</FONT>"
+			health_text = span_red("Dead")
 		else if(src.occupant.health < 0)
-			health_text = "<FONT color=red>[round(src.occupant.health,0.1)]</FONT>"
+			health_text = span_red("[round(src.occupant.health,0.1)]")
 		else
 			health_text = "[round(src.occupant.health,0.1)]"
 
