@@ -759,7 +759,7 @@
 ///////////////////////////////////////////////////////////////////////
 //Suit
 /obj/item/clothing/suit
-	name = DEVELOPER_WARNING_NAME
+	name = DEVELOPER_WARNING_NAME //Needed for unit tests. This should NEVER be spawned.
 	icon = 'icons/inventory/suit/item.dmi'
 	item_icons = list(
 		slot_l_hand_str = 'icons/mob/items/lefthand_suits.dmi',
