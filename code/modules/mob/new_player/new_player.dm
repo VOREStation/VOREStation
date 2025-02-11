@@ -61,9 +61,10 @@
 			output += "<p>\[ " + span_linkOn(span_bold("Ready")) + " | <a href='byond://?src=\ref[src];ready=0'>Not Ready</a> \]</p>"
 		else
 			output += "<p>\[ <a href='byond://?src=\ref[src];ready=1'>Ready</a> | " + span_linkOn(span_bold("Not Ready")) + " \]</p>"
+		output += "<p><s>Join Game!</s></p>"
 
 	else
-		output += "<a href='byond://?src=\ref[src];manifest=1'>View the Crew Manifest</A><br><br>"
+		output += "<p><a href='byond://?src=\ref[src];manifest=1'>View the Crew Manifest</A></p>"
 		output += "<p><a href='byond://?src=\ref[src];late_join=1'>Join Game!</A></p>"
 
 	output += "<p><a href='byond://?src=\ref[src];observe=1'>Observe</A></p>"
@@ -86,21 +87,31 @@
 			qdel(query)
 
 			if(newpoll)
-				output += "<p><b><a href='byond://?src=\ref[src];showpoll=1'>Show Player Polls</A> (NEW!)</b></p>"
+				output += "<p><b><a href='byond://?src=\ref[src];showpoll=1'>Show Player Polls</A><br>(NEW!)</b></p>"
 			else
-				output += "<p><a href='byond://?src=\ref[src];showpoll=1'>Show Player Polls</A></p>"
+				output += "<p><a href='byond://?src=\ref[src];showpoll=1'>Show Player Polls</A><br><i>No Changes</i></p>"
 	*/
 
-	output += "<p><a href='byond://?src=\ref[src];open_changelog=1'>View Changelog</A></p>"
+	if(client?.check_for_new_server_news())
+		output += "<p><b><a href='byond://?src=\ref[src];shownews=1'>Show Server News</A><br>(NEW!)</b></p>"
+	else
+		output += "<p><a href='byond://?src=\ref[src];shownews=1'>Show Server News</A><br><i>No Changes</i></p>"
 
 	if(SSsqlite.can_submit_feedback(client))
 		output += "<p>[href(src, list("give_feedback" = 1), "Give Feedback")]</p>"
 
 	if(GLOB.news_data.station_newspaper)
 		if(client.prefs.lastlorenews == GLOB.news_data.newsindex)
-			output += "<p><a href='byond://?src=\ref[src];open_station_news=1'>Show [using_map.station_name] News</A></p>"
+			output += "<p><a href='byond://?src=\ref[src];open_station_news=1'>Show [using_map.station_name] News<br><i>No Changes</i></A></p>"
 		else
-			output += "<p><b><a href='byond://?src=\ref[src];open_station_news=1'>Show [using_map.station_name] News (NEW!)</A></b></p>"
+			output += "<p><b><a href='byond://?src=\ref[src];open_station_news=1'>Show [using_map.station_name] News<br>(NEW!)</A></b></p>"
+
+	/* //TODO: Actually add the fukin changelog. We need it DESPERATELY but this isn't the PR for it.
+	if(client.prefs.lastchangelog == changelog_hash)
+		output += "<p><a href='byond://?src=\ref[src];open_changelog=1'>Show Changelog</A><br><i>No Changes</i></p>"
+	else
+		output += "<p><b><a href='byond://?src=\ref[src];open_changelog=1'>Show Changelog</A><br>(NEW!)</b></p>"
+	*/
 
 	output += "</div>"
 
@@ -112,7 +123,7 @@
 		client.prefs.lastlorenews = GLOB.news_data.newsindex
 		SScharacter_setup.queue_preferences_save(client.prefs)
 
-	panel = new(src, "Welcome","Welcome", 210, 320, src) // VOREStation Edit
+	panel = new(src, "Welcome","Welcome", 210, 500, src)
 	panel.set_window_options("can_close=0")
 	panel.set_content(output)
 	panel.open()
@@ -166,7 +177,6 @@
 			ready = 0
 
 	if(href_list["refresh"])
-		//src << browse(null, "window=playersetup") //closes the player setup window
 		panel.close()
 		new_player_panel_proc()
 
@@ -179,7 +189,6 @@
 			client.prefs.dress_preview_mob(mannequin)
 			var/mob/observer/dead/observer = new(mannequin)
 			observer.moveToNullspace() //Let's not stay in our doomed mannequin
-			//qdel(mannequin)
 
 			spawning = 1
 			if(client.media)
@@ -207,7 +216,7 @@
 			observer.client.init_verbs()
 			qdel(src)
 
-			return 1
+			return TRUE
 
 	if(href_list["late_join"])
 
@@ -221,13 +230,6 @@
 		else if(time_till_respawn) // Nonzero time to respawn
 			to_chat(usr, span_warning("You can't respawn yet! You need to wait another [round(time_till_respawn/10/60, 0.1)] minutes."))
 			return
-/*
-		if(client.prefs.species != "Human" && !check_rights(R_ADMIN, 0)) //VORESTATION EDITS: THE COMMENTED OUT AREAS FROM LINE 154 TO 178
-			if (config.usealienwhitelist)
-				if(!is_alien_whitelisted(src, client.prefs.species))
-					tgui_alert(src, "You are currently not whitelisted to Play [client.prefs.species].")
-					return 0
-*/
 		LateChoices()
 
 	if(href_list["manifest"])
@@ -401,14 +403,12 @@
 		return 0
 	if(!job.player_old_enough(src.client))
 		return 0
-	//VOREStation Add
 	if(!job.player_has_enough_playtime(src.client))
 		return 0
 	if(!is_job_whitelisted(src,rank))
 		return 0
 	if(!job.player_has_enough_pto(src.client))
 		return 0
-	//VOREStation Add End
 	return 1
 
 
@@ -424,7 +424,7 @@
 	if(!IsJobAvailable(rank))
 		tgui_alert_async(src,"[rank] is not available. Please try another.")
 		return 0
-	if(!spawn_checks_vr(rank)) return 0 // VOREStation Insert
+	if(!spawn_checks_vr(rank)) return 0
 	if(!client)
 		return 0
 
@@ -473,11 +473,6 @@
 		qdel(C) //Deletes empty core (really?)
 		qdel(src) //Deletes new_player
 		return
-
-	// Equip our custom items only AFTER deploying to spawn points eh?
-	//equip_custom_items(character)	//VOREStation Removal
-
-	//character.apply_traits() //VOREStation Removal
 
 	// Moving wheelchair if they have one
 	if(character.buckled && istype(character.buckled, /obj/structure/bed/chair/wheelchair))
@@ -547,27 +542,17 @@
 
 	if(mind)
 		mind.active = 0					//we wish to transfer the key manually
-		// VOREStation edit to disable the destructive forced renaming for our responsible whitelist clowns.
-		//if(mind.assigned_role == JOB_CLOWN)				//give them a clownname if they are a clown
-		//	new_character.real_name = pick(clown_names)	//I hate this being here of all places but unfortunately dna is based on real_name!
-		//	new_character.rename_self("clown")
 		mind.original = new_character
-		// VOREStation
 		mind.loaded_from_ckey = client.ckey
 		mind.loaded_from_slot = client.prefs.default_slot
-		// VOREStation
-		//mind.traits = client.prefs.traits.Copy() // VOREStation conflict
 		mind.transfer_to(new_character)					//won't transfer key since the mind is not active
 
 	new_character.name = real_name
 	client.init_verbs()
 	new_character.dna.ready_dna(new_character)
 	new_character.dna.b_type = client.prefs.b_type
+	new_character.sync_dna_traits(TRUE) // Traitgenes Sync traits to genetics if needed
 	new_character.sync_organ_dna()
-	if(client.prefs.disabilities)
-		// Set defer to 1 if you add more crap here so it only recalculates struc_enzymes once. - N3X
-		new_character.dna.SetSEState(GLASSESBLOCK,1,0)
-		new_character.disabilities |= NEARSIGHTED
 
 	for(var/lang in client.prefs.alternate_languages)
 		var/datum/language/chosen_language = GLOB.all_languages[lang]
@@ -612,7 +597,6 @@
 	src << browse(null, "window=latechoices") //closes late choices window
 	src << browse(null, "window=preferences_window") //VOREStation Edit?
 	src << browse(null, "window=News") //closes news window
-	//src << browse(null, "window=playersetup") //closes the player setup window
 	panel.close()
 
 /mob/new_player/proc/has_admin_rights()

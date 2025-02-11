@@ -367,6 +367,8 @@
 			if(mob.check_holy(T))
 				to_chat(mob, span_warning("You cannot get past holy grounds while you are in this plane of existence!"))
 				return
+			else if(!istype(mob, /mob/observer/dead) && T.blocks_nonghost_incorporeal)
+				return
 			//RS Port #658 Start
 			if(!holder)
 				if(isliving(mob) && A.flag_check(AREA_BLOCK_PHASE_SHIFT))

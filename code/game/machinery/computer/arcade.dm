@@ -732,7 +732,7 @@
 							event()
 
 	src.add_fingerprint(usr)
-	src.updateUsrDialog()
+	src.updateUsrDialog(usr)
 	busy = 0
 	return
 

@@ -4,7 +4,8 @@
 	icon_state = "bio"
 	desc = "A hood that protects the head and face from biological comtaminants."
 	randpixel = 0
-	center_of_mass = null
+	center_of_mass_x = 0
+	center_of_mass_y = 0
 	permeability_coefficient = 0.01
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 100, rad = 20)
 	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|BLOCKHAIR

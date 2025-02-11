@@ -57,15 +57,45 @@
 /datum/species/monkey/handle_npc(var/mob/living/carbon/human/H)
 	if(H.stat != CONSCIOUS)
 		return
-	if(prob(33) && H.canmove && isturf(H.loc) && !H.pulledby) //won't move if being pulled
-		step(H, pick(cardinal))
-	if(prob(1))
-		H.emote(pick("scratch","jump","roll","tail"))
+	// Traitgenes Monkeys perform emotes based on their traits
+	if(H.canmove && isturf(H.loc) && !H.pulledby) //won't move if being pulled
+		if(prob(33))
+			step(H, pick(cardinal))
+		if(prob(5))
+			// Handle generic gene expression emotes
+			if(!H.species || !H.species.traits || H.species.traits.len == 0)
+				H.emote(pick("scratch","jump","roll","tail")) // fallbacks
+			else
+				var/datum/trait/T = all_traits[pick(H.species.traits)]
+				if(T)
+					var/geneexpression
+					if(T.primitive_expression_messages.len)
+						geneexpression = pick(T.primitive_expression_messages)
+					if(geneexpression)
+						H.custom_emote(VISIBLE_MESSAGE, "[geneexpression]")
+					else
+						H.emote(pick("scratch","jump","roll","tail"))
+		// More... intense, expressions...
+		if(prob(5) && H.mutations.len)
+			if((LASER in H.mutations))
+				// zappy monkeys
+				var/list/targs = list()
+				for(var/atom/X in orange(7, H))
+					targs.Add(X)
+				if(targs.len)
+					H.LaserEyes(pick(targs))
 
 	..()
 
 /datum/species/monkey/get_random_name()
 	return "[lowertext(name)] ([rand(100,999)])"
+
+/datum/species/monkey/handle_post_spawn(var/mob/living/carbon/human/H)
+	if(!H.ckey)
+		H.can_be_drop_prey = TRUE
+		H.digest_leave_remains = 1
+		H.low_priority = TRUE
+	return ..()
 
 /datum/species/monkey/tajaran
 	name = SPECIES_MONKEY_TAJ

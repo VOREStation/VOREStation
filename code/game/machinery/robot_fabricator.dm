@@ -122,7 +122,7 @@ Please wait until completion...</TT><BR>
 					being_built = new building(src)
 
 					add_overlay("fab-active")
-					updateUsrDialog()
+					updateUsrDialog(usr)
 
 					spawn (build_time)
 						if(!isnull(being_built))
