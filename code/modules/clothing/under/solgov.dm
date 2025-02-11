@@ -94,13 +94,13 @@
 /obj/item/clothing/under/solgov/utility/sifguard_skirt
 	name = "\improper SifGuard skirt"
 	desc = "A black turtleneck and skirt, the elusive ladies' uniform of the Sif Defense Force."
-	icon_state = "blackservicefem"
+	icon_state = "blackservicef"
 	worn_state = "blackservicefem"
 
 /obj/item/clothing/under/solgov/utility/sifguard_skirt/officer
-	name = "\improper SifGuard officer skirt"
-	desc = "A black turtleneck and skirt, the elusive ladies' uniform of the Sif Defense Force. This one has gold trim."
-	icon_state = "blackservicefem_com"
+	name = "\improper NDF officer skirt"
+	desc = "A black turtleneck and skirt, the elusive ladies' uniform of the Nanotrasen Defense Force. This one has gold trim."
+	icon_state = "blackservicef_com"
 	worn_state = "blackservicefem_com"
 
 /obj/item/clothing/under/solgov/utility/sifguard/command
