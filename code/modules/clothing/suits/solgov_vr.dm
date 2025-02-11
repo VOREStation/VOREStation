@@ -163,7 +163,7 @@
 //Service
 
 /obj/item/clothing/suit/storage/terran
-name = DEVELOPER_WARNING_NAME
+name = DEVELOPER_WARNING_NAME //Base type.
 
 /obj/item/clothing/suit/storage/terran/service/navy
 	name = "Ares coat"
