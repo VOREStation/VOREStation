@@ -72,6 +72,7 @@
 					new_list += B
 			body_types = new_list
 	// Get actual species that can use this, based on the mess of restricted/excluded logic above
+	/*
 	var/obj/mob_storage = new()
 	var/list/species = list()
 	for(var/B in body_types)
@@ -92,6 +93,7 @@
 		//H.UnregisterSignal(src, COMSIG_UNITTEST_DATA)
 		qdel(H)
 	qdel(mob_storage)
+	*/
 	// We failed the mob check
 	if(signal_failed)
 		failed = TRUE
