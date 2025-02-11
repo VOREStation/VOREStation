@@ -145,7 +145,7 @@
 	name = "black skirt"
 	desc = "A black skirt, very fancy!"
 	icon_state = "blackskirt"
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
+	body_parts_covered = CHEST|ARMS
 
 /obj/item/clothing/under/skirt/outfit/plaid_blue
 	name = "blue plaid skirt"

@@ -76,7 +76,7 @@
 
 /obj/item/clothing/suit/taur
 	icon = 'icons/mob/taursuits_horse.dmi'
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO
+	body_parts_covered = CHEST
 	pixel_x = -16
 
 /obj/item/clothing/suit/taur/dress

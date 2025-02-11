@@ -139,9 +139,8 @@
 		slot_l_hand_str = 'icons/mob/items/lefthand_masks.dmi',
 		slot_r_hand_str = 'icons/mob/items/righthand_masks.dmi',
 		)
-	body_parts_covered = HEAD
+	body_parts_covered = HEAD|FACE|EYES
 	slot_flags = SLOT_MASK
-	body_parts_covered = FACE|EYES
 	item_icons = list(
 		slot_wear_mask_str = 'icons/inventory/face/mob_vr.dmi'
 		)
@@ -160,13 +159,6 @@
 		SPECIES_WEREBEAST	= 'icons/inventory/face/mob_vr_werebeast.dmi'
 		)
 //"Spider" 		= 'icons/inventory/mask/mob_spider.dmi' Add this later when they have custom mask sprites and everything.
-
-//Switch to taur sprites if a taur equips
-/obj/item/clothing/suit
-	sprite_sheets = list(
-		SPECIES_TESHARI = 'icons/inventory/suit/mob_teshari.dmi',
-		SPECIES_VOX = 'icons/inventory/suit/mob_vox.dmi',
-		SPECIES_WEREBEAST = 'icons/inventory/suit/mob_vr_werebeast.dmi')
 
 /obj/item/clothing/under
 	sensor_mode = 3

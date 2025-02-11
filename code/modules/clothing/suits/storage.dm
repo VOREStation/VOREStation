@@ -56,6 +56,7 @@
 
 
 /obj/item/clothing/suit/storage/hooded/toggle
+	name = DEVELOPER_WARNING_NAME
 	flags_inv = HIDEHOLSTER
 	var/open = 0	//0 is closed, 1 is open, -1 means it won't be able to toggle
 
@@ -118,4 +119,3 @@
 		to_chat(usr, "\The [src] does not have a badge.")
 		return
 	update_clothing_icon()
-

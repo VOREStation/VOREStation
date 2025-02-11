@@ -19,7 +19,7 @@
 	worn_state = "miami"
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
 	siemens_coefficient = 0.9
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO
+	body_parts_covered = CHEST
 
 /obj/item/clothing/under/solgov/pt/sifguard
 	name = "\improper SifGuard pt uniform"

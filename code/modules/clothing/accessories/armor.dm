@@ -87,7 +87,9 @@
 	name = "light armor plate"
 	desc = "A basic armor plate made of steel-reinforced synthetic fibers. Attaches to a plate carrier."
 	icon_state = "armor_light"
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO
+	body_parts_covered = CHEST
+	heat_protection = CHEST
+	cold_protection = CHEST
 	armor = list(melee = 30, bullet = 15, laser = 40, energy = 10, bomb = 25, bio = 0, rad = 0)
 	slot = ACCESSORY_SLOT_ARMOR_C
 
@@ -189,6 +191,8 @@
 	icon_state = "armguards"
 	gender = PLURAL
 	body_parts_covered = ARMS
+	heat_protection = ARMS
+	cold_protection = ARMS
 	armor = list(melee = 40, bullet = 40, laser = 40, energy = 25, bomb = 30, bio = 0, rad = 0)
 	slot = ACCESSORY_SLOT_ARMOR_A
 
@@ -254,6 +258,8 @@
 	icon_state = "legguards"
 	gender = PLURAL
 	body_parts_covered = LEGS
+	heat_protection = LEGS
+	cold_protection = LEGS
 	armor = list(melee = 40, bullet = 40, laser = 40, energy = 25, bomb = 30, bio = 0, rad = 0)
 	slot = ACCESSORY_SLOT_ARMOR_L
 

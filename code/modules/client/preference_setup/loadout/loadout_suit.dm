@@ -39,7 +39,7 @@
 	..()
 	var/list/selector_uniforms = list(
 		"classic"=/obj/item/clothing/suit/storage/toggle/bomber,
-		"classic alternative"=/obj/item/clothing/suit/storage/bomber/alt,
+		"classic alternative"=/obj/item/clothing/suit/storage/bomber,
 		"retro"=/obj/item/clothing/suit/storage/toggle/bomber/retro
 	)
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(selector_uniforms))
