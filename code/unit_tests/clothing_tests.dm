@@ -14,9 +14,16 @@
 	scan -= /obj/item/clothing/ears/offear // This is used for equip logic, not ingame
 	scan -= /obj/item/clothing/mask/ai // Breaks unit test entirely TODO
 
+	var/i = 0
+	var/tenths = 1
+	var/a_tenth = scan.len / 10
 	for(var/path as anything in scan)
 		var/obj/item/clothing/C = new path(storage)
 		failed += test_clothing(C)
+
+		if(i > tenths * a_tenth)
+			log_unit_test("[C.type]: Clothing - Progress [tenths * 10]% - [i]/[scan.len]")
+			tenths++
 
 		if(istype(C,/obj/item/clothing/suit/storage/hooded))
 			var/obj/item/clothing/suit/storage/hooded/H = C
@@ -60,34 +67,38 @@
 	#ifdef UNIT_TEST
 	// Time for the most brutal part. Dressing up some mobs with set species, and checking they have art
 	// An entire signal just for unittests had to be made for this!
-	var/list/body_types = list(SPECIES_HUMAN) //,SPECIES_VOX,SPECIES_TESHARI) // Otherwise we would be here for centuries
-	if(C.species_restricted && C.species_restricted.len)
-		if(C.species_restricted[1] == "exclude")
-			for(var/B in body_types)
-				if(B in C.species_restricted)
-					body_types -= B
-		else
-			var/list/new_list = list()
-			for(var/B in body_types)
-				if(B in C.species_restricted)
-					new_list += B
-			body_types = new_list
-	// Get actual species that can use this, based on the mess of restricted/excluded logic above
-	var/obj/mob_storage = new()
-	var/mob/living/carbon/human/H = new(mob_storage)
-	RegisterSignal(H, COMSIG_UNITTEST_DATA, PROC_REF(get_signal_data))
-	for(var/B in body_types)
-		H.set_species(B)
-		// spawn the mob, signalize it, and then give it the item to see what it gets.
-		H.put_in_active_hand(C)
-		H.equip_to_appropriate_slot(C)
-		H.drop_from_inventory(C, storage)
-	UnregisterSignal(H, COMSIG_UNITTEST_DATA)
-	qdel(H)
-	qdel(mob_storage)
-	// We failed the mob check
-	if(signal_failed)
-		failed = TRUE
+	var/list/body_types = list(SPECIES_HUMAN,SPECIES_UNATHI,SPECIES_VOX,SPECIES_TESHARI) // Otherwise we would be here for centuries
+	// **************************************************************************************************************************
+	//body_types = list() // 	DISABLED FOR NOW, No single person can resolve how many sprites are missing.
+	// **************************************************************************************************************************
+	if(body_types.len)
+		if(C.species_restricted && C.species_restricted.len)
+			if(C.species_restricted[1] == "exclude")
+				for(var/B in body_types)
+					if(B in C.species_restricted)
+						body_types -= B
+			else
+				var/list/new_list = list()
+				for(var/B in body_types)
+					if(B in C.species_restricted)
+						new_list += B
+				body_types = new_list
+		// Get actual species that can use this, based on the mess of restricted/excluded logic above
+		var/obj/mob_storage = new()
+		var/mob/living/carbon/human/H = new(mob_storage)
+		RegisterSignal(H, COMSIG_UNITTEST_DATA, PROC_REF(get_signal_data))
+		for(var/B in body_types)
+			H.set_species(B)
+			// spawn the mob, signalize it, and then give it the item to see what it gets.
+			H.put_in_active_hand(C)
+			H.equip_to_appropriate_slot(C)
+			H.drop_from_inventory(C, storage)
+		UnregisterSignal(H, COMSIG_UNITTEST_DATA)
+		qdel(H)
+		qdel(mob_storage)
+		// We failed the mob check
+		if(signal_failed)
+			failed = TRUE
 	#endif
 
 	// Temps
