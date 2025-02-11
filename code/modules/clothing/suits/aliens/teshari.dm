@@ -1,3 +1,6 @@
+/obj/item/clothing/suit/storage/teshari
+	name = DEVELOPER_WARNING_NAME
+
 // Standard Cloaks
 /obj/item/clothing/suit/storage/teshari/cloak
 	name = "black cloak"
