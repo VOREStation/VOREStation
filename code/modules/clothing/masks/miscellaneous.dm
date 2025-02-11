@@ -128,7 +128,7 @@
 /obj/item/clothing/mask/ninjascarf
 	name = "ninja scarf"
 	desc = "A stealthy, dark scarf."
-	icon_state = "ninja_scarf"
+	icon_state = "s-ninja"
 	body_parts_covered = FACE
 	item_flags = FLEXIBLEMATERIAL
 	w_class = ITEMSIZE_SMALL
