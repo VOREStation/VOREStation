@@ -621,7 +621,7 @@
 	desc = "A small black dress with a flames print on it. Perfect for recoloring!"
 	icon = 'icons/inventory/uniform/item_vr.dmi'
 	default_worn_icon = 'icons/inventory/uniform/mob_vr.dmi'
-	icon_state = "cdress_fire"
+	icon_state = "cflame_dress"
 
 /obj/item/clothing/under/dress/cbridesmaid
 	name = "fancy dress"
@@ -633,6 +633,7 @@
 /obj/item/clothing/under/dress/cswoopdress
 	name = "swoop dress"
 	desc = "A fancy gown for those who like to show leg. Perfect for recoloring!"
+	icon = 'icons/inventory/uniform/mob_vr.dmi'
 	default_worn_icon = 'icons/inventory/uniform/mob_vr.dmi'
 	icon_state = "cswoopdress"
 

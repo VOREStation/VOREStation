@@ -364,12 +364,6 @@
 	body_parts_covered = 0
 	item_state_slots = list(slot_r_hand_str = "taq", slot_l_hand_str = "taq")
 
-/obj/item/clothing/head/cowl
-	name = "black cowl"
-	desc = "A gold-lined black cowl. It gives off uncomfortable cult vibes, but fancy."
-	icon_state = "cowl"
-	body_parts_covered = 0
-
 /obj/item/clothing/head/blackngoldheaddress
 	name = "black and gold headdress"
 	desc = "An odd looking headdress that covers the eyes."
@@ -392,7 +386,7 @@
 /obj/item/clothing/head/beret/corp/pcrc
 	name = "\improper PCRC beret"
 	desc = "A black beret with a PCRC logo insignia, denoting service with Proxima Centauri Risk Control. For private security personnel that are more inclined towards style than safety."
-	icon_state = "beret_black_observatory"
+	icon_state = "beret_black_pcrc"
 
 
 /obj/item/clothing/head/beret/corp/hedberg

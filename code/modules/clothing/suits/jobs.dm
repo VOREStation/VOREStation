@@ -265,8 +265,10 @@
 
 /obj/item/clothing/suit/suspenders/blue
 	name = "blue suspenders"
-	icon_state = "suspenders_blue"
+	desc = "A pair of blue suspenders...They don't look too blue, though."
+	icon_state = "suspenders_blue" //Need a sprite for this.
 
 /obj/item/clothing/suit/suspenders/grey
 	name = "grey suspenders"
-	icon_state = "suspenders_grey"
+	desc = "A pair of grey suspenders...They don't look too blue, though."
+	icon_state = "suspenders_grey" //Need a sprite for this.

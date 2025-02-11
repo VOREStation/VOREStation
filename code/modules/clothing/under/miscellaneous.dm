@@ -312,26 +312,6 @@
 	icon_state = "ascetic"
 	item_state_slots = list(slot_r_hand_str = "white", slot_l_hand_str = "white")
 
-/obj/item/clothing/under/robe
-	name = "black robe"
-	desc = "A black robe. It gives off uncomfortable cult vibes."
-	icon_state = "robe"
-
-/obj/item/clothing/under/whiterobe
-	name = "white robe"
-	desc = "A white robe. It gives off uncomfortable cult vibes."
-	icon_state = "whiterobe"
-
-/obj/item/clothing/under/goldrobe
-	name = "black gold-lined robe"
-	desc = "A gold-lined black robe. It gives off uncomfortable cult vibes, but fancy."
-	icon_state = "goldrobe"
-
-/obj/item/clothing/under/whitegoldrobe
-	name = "white gold-lined robe"
-	desc = "A gold-lined white robe. It gives off uncomfortable cult vibes, but fancy."
-	icon_state = "whitegoldrobe"
-
 /*
  * Dress Stuff
  */
@@ -596,11 +576,6 @@
     name = "verglas dress"
     desc = "The modern twist on a forgotten pattern, the Verglas style utilizes comfortable velvet and silver white satin to create an otherworldly effect evocative of winter, or the void."
     icon_state = "verglas_dress"
-
-/obj/item/clothing/under/dress/goddess
-	name = "goddess dress"
-	desc = "A blue and orange dress fit for a goddess."
-	icon_state = "goddess"
 
 /obj/item/clothing/under/dress/alpine
 	name = "alpine dress"
@@ -1122,26 +1097,6 @@
     name = "streamlined swimsuit"
     desc = "An all white one-piece that maintains modesty without sacrificing class."
     icon_state = "swim_stream"
-
-/obj/item/clothing/under/wetsuit
-	name = "wetsuit"
-	desc = "For when you need to scuba dive your way into an enemy base."
-	icon_state = "wetsuit"
-	body_parts_covered = CHEST|LEGS|ARMS
-	cold_protection = CHEST|ARMS|LEGS
-
-/obj/item/clothing/under/wetsuit_skimpy
-	name = "tactical wetsuit"
-	desc = "For when you need to scuba dive your way into an enemy base but still want to show off a little skin."
-	icon_state = "wetsuit_skimpy"
-	body_parts_covered = CHEST
-
-/obj/item/clothing/under/wetsuit_rec
-	name = "recreational wetsuit"
-	desc = "For when you need to kayak your way into an enemy base."
-	icon_state = "wetsuit_rec"
-	body_parts_covered = CHEST
-	cold_protection = CHEST
 
 /*
  * Pyjamas

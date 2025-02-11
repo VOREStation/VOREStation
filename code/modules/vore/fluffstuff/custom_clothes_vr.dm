@@ -900,7 +900,7 @@
 
 //Kitsuhana Uniforms
 /obj/item/clothing/under/rank/khi
-	name = "Delete Me"
+	name = DEVELOPER_WARNING_NAME
 	desc = "Why did you spawn this one? Dork."
 	sensor_mode = 3
 
@@ -949,6 +949,9 @@
 	desc = "A sleek, neocorporate style uniform. Snazzy silver trim marks this is as the general civilian branch. Smells like paperwork and bureaucracy."
 	icon_state = "khi_uniform_civ"
 	armor = list(melee = 0, bullet = 0, laser = 0, energy = 0, bomb = 0, bio = 0, rad = 0)
+
+/obj/item/clothing/under/rank/khi/fluff
+	name = DEVELOPER_WARNING_NAME
 
 /obj/item/clothing/under/rank/khi/fluff/aronai //Aro fluff version
 	name = "KHI meditech suit"
@@ -1144,6 +1147,7 @@ Departamental Swimsuits, for general use
 */
 
 /obj/item/clothing/under/swimsuit/fluff/
+	name = DEVELOPER_WARNING_NAME
 	icon = 'icons/vore/custom_clothes_vr.dmi'
 	icon_override = 'icons/vore/custom_clothes_vr.dmi'
 	siemens_coefficient = 1
