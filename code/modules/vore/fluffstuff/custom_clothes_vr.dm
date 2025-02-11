@@ -1801,7 +1801,7 @@ Departamental Swimsuits, for general use
 
 //General definition for bracer items. No icons.
 /obj/item/clothing/accessory/bracer
-	name = "bracer"
+	name = DEVELOPER_WARNING_NAME // "bracer"
 	desc = "A bracer."
 	icon_state = null
 	item_state = null

@@ -1,5 +1,5 @@
 /obj/item/clothing/mask/smokable/ecig
-	name = "electronic cigarette"
+	name = DEVELOPER_WARNING_NAME // "electronic cigarette"
 	desc = "For the modern approach to smoking."
 	icon = 'icons/obj/ecig.dmi'
 	var/active = 0
