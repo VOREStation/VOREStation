@@ -151,6 +151,12 @@
 			if(!set_state)
 				return
 
+			// Ignore storage
+			if(slot_name == slot_l_hand_str)
+				return
+			if(slot_name == slot_r_hand_str)
+				return
+
 			// All that matters
 			if(!("[set_state]" in cached_icon_states(set_icon)))
 				log_unit_test("[item_path]: Clothing - Testing \"[species]\" state \"[set_state]\" for slot \"[slot_name]\", but it was not in dmi \"[set_icon]\"")
