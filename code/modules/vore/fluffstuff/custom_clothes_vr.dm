@@ -1144,6 +1144,7 @@ Departamental Swimsuits, for general use
 */
 
 /obj/item/clothing/under/swimsuit/fluff/
+	name = DEVELOPER_WARNING_NAME
 	icon = 'icons/vore/custom_clothes_vr.dmi'
 	icon_override = 'icons/vore/custom_clothes_vr.dmi'
 	siemens_coefficient = 1
