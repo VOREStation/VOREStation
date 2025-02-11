@@ -165,14 +165,16 @@
 /obj/item/clothing/suit/storage/terran
 name = DEVELOPER_WARNING_NAME //Base type.
 
+/* //Could not find the icon_state anywhere.
 /obj/item/clothing/suit/storage/terran/service/navy
 	name = "Ares coat"
 	desc = "A Ares Navy service coat. Black and undecorated."
-
+*/
+/* //Could not find the icon_state anywhere.
 /obj/item/clothing/suit/storage/terran/service/navy/command
 	name = "Ares command coat"
 	desc = "An Ares Navy service command coat. White and undecorated."
-
+*/
 //Dress
 /obj/item/clothing/suit/dress/terran/navy
 	name = "Ares dress cloak"

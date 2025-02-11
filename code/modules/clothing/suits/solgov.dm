@@ -257,6 +257,9 @@
 	icon_state = "whitedress_flag"
 	item_state = "whitedress_flag"
 
+/obj/item/clothing/suit/dress
+	name = DEVELOPER_WARNING_NAME
+
 /obj/item/clothing/suit/dress/solgov
 	name = "dress jacket"
 	desc = "A uniform dress jacket, fancy."
