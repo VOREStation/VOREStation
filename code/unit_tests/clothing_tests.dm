@@ -8,14 +8,15 @@
 	var/list/scan = subtypesof(/obj/item/clothing)
 	scan -= typesof(/obj/item/clothing/head/hood) // These are part of clothing, need to be tested uniquely
 
-	for(var/path as anything in subtypesof(/obj/item/clothing))
+	for(var/path as anything in scan)
 		var/obj/item/clothing/C = new path(storage)
 		failed += test_clothing(C)
 
-		if(istype(C,/obj/item/clothing/head/hood))
-			var/obj/item/clothing/head/hood/H = C
+		if(istype(C,/obj/item/clothing/suit/storage/hooded))
+			var/obj/item/clothing/suit/storage/hooded/H = C
 			if(H.hood) // Testing hoods when they init
 				failed += test_clothing(H.hood)
+
 		qdel(C)
 	qdel(storage)
 
