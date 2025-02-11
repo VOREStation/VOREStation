@@ -1,5 +1,5 @@
 /obj/item/clothing
-	name = DEVELOPER_WARNING_NAME
+	name = DEVELOPER_WARNING_NAME // "Clothing"
 	siemens_coefficient = 0.9
 	drop_sound = 'sound/items/drop/clothing.ogg'
 	pickup_sound = 'sound/items/pickup/clothing.ogg'
@@ -298,7 +298,7 @@
 ////////////////////////////////////////////////////////////////////////////////////////
 //Gloves
 /obj/item/clothing/gloves
-	name = DEVELOPER_WARNING_NAME
+	name = DEVELOPER_WARNING_NAME // "Gloves"
 	item_icons = list(
 		slot_l_hand_str = 'icons/mob/items/lefthand_gloves.dmi',
 		slot_r_hand_str = 'icons/mob/items/righthand_gloves.dmi',
@@ -468,7 +468,7 @@
 ///////////////////////////////////////////////////////////////////////
 //Head
 /obj/item/clothing/head
-	name = DEVELOPER_WARNING_NAME
+	name = DEVELOPER_WARNING_NAME // "Head"
 	icon = 'icons/inventory/head/item.dmi'
 	item_icons = list(
 		slot_l_hand_str = 'icons/mob/items/lefthand_hats.dmi',
@@ -759,7 +759,7 @@
 ///////////////////////////////////////////////////////////////////////
 //Suit
 /obj/item/clothing/suit
-	name = DEVELOPER_WARNING_NAME
+	name = DEVELOPER_WARNING_NAME // "suit"
 	icon = 'icons/inventory/suit/item.dmi'
 	item_icons = list(
 		slot_l_hand_str = 'icons/mob/items/lefthand_suits.dmi',
