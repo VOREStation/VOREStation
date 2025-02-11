@@ -452,7 +452,7 @@
 //Rings
 
 /obj/item/clothing/gloves/ring
-	name = "ring"
+	name = DEVELOPER_WARNING_NAME // "ring"
 	w_class = ITEMSIZE_TINY
 	icon = 'icons/inventory/hands/item.dmi'
 	gender = NEUTER
