@@ -1,7 +1,7 @@
 /datum/unit_test/all_clothing_shall_be_valid
 	name = "CLOTHING: All clothing shall be valid"
 
-/datum/unit_test/loadout_test_shall_have_name_cost_path/start_test()
+/datum/unit_test/all_clothing_shall_be_valid/start_test()
 	var/failed = 0
 	var/obj/storage = new()
 
