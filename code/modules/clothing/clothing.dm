@@ -282,7 +282,7 @@
 
 
 /obj/item/clothing/ears/offear
-	name = DEVELOPER_WARNING_NAME // "Other ear"
+	name = "Other ear"
 	w_class = ITEMSIZE_HUGE
 	icon = 'icons/mob/screen1_Midnight.dmi'
 	icon_state = "block"
