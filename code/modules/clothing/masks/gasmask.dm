@@ -68,8 +68,8 @@
 	item_state_slots = list(slot_r_hand_str = "gas", slot_l_hand_str = "gas")
 	armor = list(melee = 0, bullet = 0, laser = 2,energy = 2, bomb = 0, bio = 90, rad = 0)
 	body_parts_covered = HEAD|FACE|EYES
-	heat_protection = HEAD|FACE|EYES
-	cold_protection = HEAD|FACE|EYES
+	heat_protection = HEAD
+	cold_protection = HEAD
 
 /obj/item/clothing/mask/gas/plaguedoctor/gold
 	name = "gold plague doctor mask"
