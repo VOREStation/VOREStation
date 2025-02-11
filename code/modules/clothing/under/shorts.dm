@@ -85,7 +85,7 @@
 
 /obj/item/clothing/under/shorts/jeans/grey/female
 	name = "grey jeans short shorts"
-	icon_state = "grey_shorts_f"
+	icon_state = "greyshorts" //the _f variant was lost to time. Not deleted to keep from messing with maps.
 
 /obj/item/clothing/under/shorts/khaki
 	name = "khaki shorts"

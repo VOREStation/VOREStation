@@ -370,12 +370,6 @@
 	icon_state = "cowl"
 	body_parts_covered = 0
 
-/obj/item/clothing/head/cowl
-	name = "white cowl"
-	desc = "A gold-lined white cowl. It gives off uncomfortable cult vibes, but fancy."
-	icon_state = "whitecowl"
-	body_parts_covered = 0
-
 /obj/item/clothing/head/blackngoldheaddress
 	name = "black and gold headdress"
 	desc = "An odd looking headdress that covers the eyes."
