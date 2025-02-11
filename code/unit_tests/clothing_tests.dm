@@ -85,11 +85,11 @@
 				species_path = /mob/living/carbon/human/teshari
 		// spawn the mob, signalize it, and then give it the item to see what it gets.
 		var/mob/living/carbon/human/H = new species_path(mob_storage)
-		RegisterSignal(H, COMSIG_UNITTEST_DATA, PROC_REF(get_signal_data))
+		H.RegisterSignal(src, COMSIG_UNITTEST_DATA, PROC_REF(get_signal_data))
 		H.put_in_active_hand(C)
 		H.equip_to_appropriate_slot(C)
 		H.drop_from_inventory(C, storage)
-		UnregisterSignal(H, COMSIG_UNITTEST_DATA)
+		H.UnregisterSignal(src, COMSIG_UNITTEST_DATA)
 		qdel(H)
 	qdel(mob_storage)
 	// We failed the mob check
@@ -142,7 +142,7 @@
 					failed = TRUE
 	return failed
 
-/datum/unit_test/all_clothing_shall_be_valid/get_signal_data(datum/weakref/source, list/data = list())
+/datum/unit_test/all_clothing_shall_be_valid/get_signal_data(atom/source, list/data = list())
 	switch(data[1])
 		if("set_slot")
 			var/slot_name 	= data[2]
