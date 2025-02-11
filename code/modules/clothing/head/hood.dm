@@ -2,8 +2,6 @@
 	name = "hood"
 	desc = "A generic hood."
 	icon_state = "generic_hood"
-	body_parts_covered = HEAD
-	cold_protection = HEAD
 	flags_inv = HIDEEARS | BLOCKHAIR
 
 // Winter coats

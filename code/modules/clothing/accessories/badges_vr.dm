@@ -58,13 +58,15 @@
 		return ..()
 
 /obj/item/clothing/accessory/dosimeter/proc/check_holder()
-	if(wearer)
-		if(current_film && (wearer.radiation >= 25) && (current_film.state == 0))
+	wearer?.resolve()
+	var/mob/living/carbon/human/H = wearer
+	if(H)
+		if(current_film && (H.radiation >= 25) && (current_film.state == 0))
 			update_state(1)
 			visible_message(span_warning("The film of \the [src] starts to darken."))
 			desc = "This seems like a dosimeter, but the film has darkened."
 			sleep(30)
-		else if(current_film && (wearer.radiation >= 50) && (current_film.state == 1))
+		else if(current_film && (H.radiation >= 50) && (current_film.state == 1))
 			visible_message(span_warning("The film of \the [src] has turned black!"))
 			update_state(2)
 			desc = "This seems like a dosimeter, but the film has turned black."

@@ -236,7 +236,7 @@
 	desc = "A coat that seems too small to fit a human."
 	icon = 'icons/inventory/suit/item_teshari.dmi'
 	icon_state = "tesharicoat"
-	body_parts_covered = UPPER_TORSO|ARMS|LOWER_TORSO|LEGS
+	body_parts_covered = CHEST|ARMS|LEGS
 	species_restricted = list(SPECIES_TESHARI)
 
 /obj/item/clothing/suit/storage/toggle/tesharicoatwhite
@@ -244,7 +244,7 @@
 	desc = "A coat that seems too small to fit a human."
 	icon = 'icons/inventory/suit/item_teshari.dmi'
 	icon_state = "tesharicoatwhite"
-	body_parts_covered = UPPER_TORSO|ARMS|LOWER_TORSO|LEGS
+	body_parts_covered = CHEST|ARMS|LEGS
 	species_restricted = list(SPECIES_TESHARI)
 
 //Hooded teshari cloaks
@@ -254,7 +254,7 @@
 	icon = 'icons/inventory/suit/item_teshari.dmi'
 	icon_state = "tesh_hcloak_bo"
 	item_state_slots = list(slot_r_hand_str = "tesh_hcloak_bo", slot_l_hand_str = "tesh_hcloak_bo")
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
+	body_parts_covered = CHEST|ARMS
 	flags_inv = HIDEHOLSTER|HIDETIE
 	actions_types = list(/datum/action/item_action/toggle_hood)
 	hoodtype = /obj/item/clothing/head/tesh_hood

@@ -71,7 +71,7 @@
 	icon_state = "dispatch"
 	item_state_slots = list(slot_r_hand_str = "detective", slot_l_hand_str = "detective")
 	armor = list(melee = 10, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS
+	body_parts_covered = CHEST|LEGS
 	siemens_coefficient = 0.9
 
 /obj/item/clothing/under/rank/security2
