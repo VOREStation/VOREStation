@@ -81,6 +81,7 @@
 
 // Food costumes
 /obj/item/clothing/suit/storage/hooded/foodcostume	//Separate type of costume that does not cover arms and legs. Similar to a cheap mascot costume. <Guy>
+	name = DEVELOPER_WARNING_NAME
 	body_parts_covered = CHEST
 	flags_inv = HIDETIE|HIDEHOLSTER
 	cold_protection = CHEST

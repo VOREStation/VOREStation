@@ -2219,6 +2219,8 @@ Departamental Swimsuits, for general use
 		add_attack_logs(user, target, "Teleported [target] with via \the [src]'s [translocator]!")
 	else ..()
 
+/obj/item/clothing/suit/storage/hooded/fluff
+	name = DEVELOPER_WARNING_NAME
 //Vitoras: Verie
 /obj/item/clothing/suit/storage/hooded/fluff/verie
 	name = "distressingly cyan hoodie"
@@ -2334,7 +2336,7 @@ Departamental Swimsuits, for general use
 /obj/item/clothing/head/hood/winter/fluff/mechanic
 	name = "mechanic winter hood"
 	desc = "A blue and yellow winter coat's hood."
-	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon = 'icons/inventory/head/item.dmi'
 	icon_state = "mechahood"
 
 	icon_override = 'icons/vore/custom_onmob_vr.dmi'

@@ -140,7 +140,7 @@
 
 //Forensics
 /obj/item/clothing/suit/storage/forensics
-	name = "jacket"
+	name = DEVELOPER_WARNING_NAME
 	desc = "A forensics technician jacket."
 	body_parts_covered = UPPER_TORSO|ARMS
 	flags_inv = HIDEHOLSTER
@@ -198,6 +198,10 @@
 	icon_state = "hazard_w"
 
 //Lawyer
+
+/obj/item/clothing/suit/storage/toggle/lawyer
+	name = DEVELOPER_WARNING_NAME
+
 /obj/item/clothing/suit/storage/toggle/lawyer/bluejacket
 	name = "blue suit jacket"
 	desc = "A snappy dress jacket."

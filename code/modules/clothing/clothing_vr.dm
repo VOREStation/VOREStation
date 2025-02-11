@@ -160,13 +160,6 @@
 		)
 //"Spider" 		= 'icons/inventory/mask/mob_spider.dmi' Add this later when they have custom mask sprites and everything.
 
-//Switch to taur sprites if a taur equips
-/obj/item/clothing/suit
-	sprite_sheets = list(
-		SPECIES_TESHARI = 'icons/inventory/suit/mob_teshari.dmi',
-		SPECIES_VOX = 'icons/inventory/suit/mob_vox.dmi',
-		SPECIES_WEREBEAST = 'icons/inventory/suit/mob_vr_werebeast.dmi')
-
 /obj/item/clothing/under
 	sensor_mode = 3
 	var/sensorpref = 5

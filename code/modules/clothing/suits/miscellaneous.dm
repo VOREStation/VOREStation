@@ -123,7 +123,7 @@
 	name = "cyborg suit"
 	desc = "Suit for a cyborg costume."
 	icon_state = "death"
-	fire_resist = T0C+5200
+	max_heat_protection_temperature = T0C+5200
 	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT|HIDETIE|HIDEHOLSTER
 
 /obj/item/clothing/suit/greatcoat
@@ -420,7 +420,7 @@
 /obj/item/clothing/suit/neocoat
 	name = "black coat"
 	desc = "A flowing, black coat."
-	icon_state = "neocoat"
+	icon_state = "neo_leather" //This didn't have an icon_state anywhere I can find. It used to be 'neocoat'. The closest replacement I could find was neo_leather
 	allowed = list (/obj/item/pen, /obj/item/paper, /obj/item/flashlight, /obj/item/tank/emergency/oxygen, /obj/item/storage/fancy/cigarettes, /obj/item/storage/box/matches, /obj/item/reagent_containers/food/drinks/flask)
 	item_state_slots = list(slot_r_hand_str = "leather_jacket", slot_l_hand_str = "leather_jacket")
 	flags_inv = HIDEHOLSTER
@@ -627,7 +627,7 @@
 	desc = "A retro style, fur-lined leather bomber jacket that invokes the early days of space exploration when spacemen were spacemen, and laser guns had funny little antennae on them."
 	icon_state = "retrojacket"
 
-/obj/item/clothing/suit/storage/bomber/alt
+/obj/item/clothing/suit/storage/bomber
 	name = "bomber jacket"
 	desc = "A thick, well-worn WW2 leather bomber jacket."
 	icon_state = "bomberjacket_new"
