@@ -970,7 +970,7 @@
 /obj/item/clothing/head/fluff/hairflowerpin
 	name = "Hair Flower Pin"
 	desc = "It's a flower fashioned into a hair pin. It's very nice."
-	icon_state = "hairflowerpin"
+	icon_state = "hairflowerpin_pink"
 	item_state = "hairflowerpin_mob"
 	body_parts_covered = 0
 
