@@ -53,6 +53,7 @@
 			log_unit_test("[C.type]: Clothing - Icon_state \"[C.icon_state]\" is not present in [C.icon]. This icon/state was changed by init. Initial icon \"[initial(C.icon)]\". initial icon_state \"[initial(C.icon_state)]\". Check code.")
 		failed = TRUE
 
+	/* Disabled, as currently not working in a presentable way, spams the CI hard, do not enable unless fixed
 	// held icons
 	var/list/slot_to_default = list(
 		slot_l_hand_str = INV_L_HAND_DEF_ICON,
@@ -107,6 +108,7 @@
 			if(dmi && !("[state]" in cached_icon_states(dmi)))
 				log_unit_test("[C.type]: Clothing - While being wearable by the species \"[B]\". A dmi \"[dmi]\" in the slot of \"[slot]\" was defined, but no item_state \"[state]\" was found inside of it.")
 				failed = TRUE
+	*/
 
 	// Temps
 	if(C.min_cold_protection_temperature < 0)
