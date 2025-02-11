@@ -72,8 +72,8 @@
 							slot_s_store_str,
 							slot_tie_str)
 	for(var/slot in slotlist)
-		var/dmi = item_icons[slot]
-		if(dmi && !("[C.]" in cached_icon_states(dmi)))
+		var/dmi = C.item_icons[slot]
+		if(dmi && !("[C.item_state]" in cached_icon_states(dmi)))
 			log_unit_test("[C.type]: Clothing - A dmi \"[dmi]\" in the slot of \"[slot]\" was defined, but no item_state \"[C.item_state]\" was found inside of it.")
 			failed = TRUE
 
