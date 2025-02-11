@@ -18,6 +18,6 @@
 	name = OUTFIT_MILITARY("SifGuard Dress")
 	uniform = /obj/item/clothing/under/solgov/service/sifguard
 	shoes = /obj/item/clothing/shoes/dress
-	suit = /obj/item/clothing/suit/storage/solgov/dress/sifguard
+	suit = /obj/item/clothing/suit/storage/solgov/dress/sifguard/chief
 	gloves = /obj/item/clothing/gloves/white
 	head = /obj/item/clothing/head/service/sifguard

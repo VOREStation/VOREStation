@@ -179,7 +179,7 @@
 //Dress - murder me with a gun why are these 3 different types
 
 /obj/item/clothing/suit/storage/solgov/dress
-	name = "dress jacket"
+	name = DEVELOPER_WARNING_NAME
 	desc = "A uniform dress jacket, fancy."
 	icon_state = "sgdress_xpl"
 	item_state = "sgdress_xpl"
@@ -189,7 +189,7 @@
 	allowed = list(/obj/item/tank/emergency/oxygen,/obj/item/flashlight,/obj/item/clothing/head/soft,/obj/item/clothing/head/beret,/obj/item/radio,/obj/item/pen)
 	valid_accessory_slots = (ACCESSORY_SLOT_MEDAL|ACCESSORY_SLOT_RANK)
 	restricted_accessory_slots = (ACCESSORY_SLOT_ARMBAND)
-
+/* //These two sprites were lost to time. Original PR doesn't appear to have them either.
 /obj/item/clothing/suit/storage/solgov/dress/sifguard
 	name = "\improper SifGuard dress jacket"
 	desc = "A silver and grey dress jacket belonging to the Sif Defense Force. Fashionable, for the 25th century at least."
@@ -200,7 +200,7 @@
 	name = "\improper SifGuard senior's dress coat"
 	icon_state = "sgdress_sxpl"
 	item_state = "sgdress_sxpl"
-
+*/
 /obj/item/clothing/suit/storage/solgov/dress/sifguard/chief
 	name = "\improper SifGuard chief's dress coat"
 	icon_state = "ecdress_cxpl"
@@ -211,7 +211,7 @@
 	desc = "A gold and black dress peacoat belonging to the Sif Defense Force. The height of fashion."
 	icon_state = "ecdress_ofcr"
 	item_state = "sgdress_ofcr"
-
+/* //Sprites lost to time.
 /obj/item/clothing/suit/storage/solgov/dress/sifguard/command/cdr
 	name = "\improper SifGuard commander's dress coat"
 	icon_state = "sgdress_cdr"
@@ -226,7 +226,7 @@
 	name = "\improper SifGuard admiral's dress coat"
 	icon_state = "sgdress_adm"
 	item_state = "sgdress_adm"
-
+*/
 /obj/item/clothing/suit/storage/solgov/dress/fleet
 	name = "fleet dress jacket"
 	desc = "A navy blue SCG Fleet dress jacket. Don't get near pasta sauce or vox."
