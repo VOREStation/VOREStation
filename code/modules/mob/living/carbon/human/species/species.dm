@@ -140,6 +140,8 @@
 	var/poison_type = GAS_PHORON								// Poisonous air.
 	var/exhale_type = GAS_CO2								// Exhaled gas type.
 	var/water_breather = FALSE
+	var/suit_inhale_sound = 'sound/effects/mob_effects/suit_breathe_in.ogg'
+	var/suit_exhale_sound = 'sound/effects/mob_effects/suit_breathe_out.ogg'
 	var/bad_swimmer = FALSE
 
 	var/body_temperature = 310.15							// Species will try to stabilize at this temperature. (also affects temperature processing)
@@ -225,6 +227,18 @@
 	var/holder_type
 	var/gluttonous											// Can eat some mobs. 1 for mice, 2 for monkeys, 3 for people.
 	var/soft_landing = FALSE								// Can fall down and land safely on small falls.
+
+	var/drippy = FALSE 										// If we drip or not. Primarily for goo beings.
+	var/photosynthesizing = FALSE							// If we get nutrition from light or not.
+	var/shrinks = FALSE										// If we shrink when we have no nutrition. Not added but here for downstream's sake.
+	var/grows = FALSE										// Same as above but if we grow when >1000 nutrition.
+	var/crit_mod = 1										// Used for when we go unconscious. Used downstream.
+	var/list/env_traits = list()
+	var/pixel_offset_x = 0									// Used for offsetting 64x64 and up icons.
+	var/pixel_offset_y = 0									// Used for offsetting 64x64 and up icons.
+	var/rad_levels = list("safe" = 50, "danger_1" = 100, "danger_2" = 300, "danger_3" = 400, "danger_4" = 1500) //For handle_mutations_and_radiation
+	var/rad_removal_mod = 1
+
 
 	var/rarity_value = 1									// Relative rarity/collector value for this species.
 	var/economic_modifier = 2								// How much money this species makes

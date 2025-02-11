@@ -1,26 +1,42 @@
 import { useBackend } from 'tgui/backend';
-import { Box, Button, Icon, LabeledList, Section } from 'tgui-core/components';
+import {
+  Box,
+  Button,
+  Icon,
+  LabeledList,
+  Section,
+  Stack,
+} from 'tgui-core/components';
 
-import { buffData, Data } from './types';
+import type { buffData, Data } from './types';
 
 export const DNAModifierMainBuffers = (props) => {
   const { data } = useBackend<Data>();
 
   const { buffers } = data;
 
-  let bufferElements = buffers.map((buffer, i) => (
-    <DNAModifierMainBuffersElement
-      key={i}
-      id={i + 1}
-      name={'Buffer ' + (i + 1)}
-      buffer={buffer}
-    />
+  const bufferElements = buffers.map((buffer, i) => (
+    <Stack.Item key={i}>
+      <DNAModifierMainBuffersElement
+        id={i + 1}
+        name={'Buffer ' + (i + 1)}
+        buffer={buffer}
+      />
+    </Stack.Item>
   ));
   return (
-    <>
-      <Section title="Buffers">{bufferElements}</Section>
-      <DNAModifierMainBuffersDisk />
-    </>
+    <Stack vertical fill>
+      <Stack.Item grow>
+        <Section fill scrollable title="Buffers">
+          <Stack vertical fill>
+            {bufferElements}
+          </Stack>
+        </Section>
+      </Stack.Item>
+      <Stack.Item minHeight="150px">
+        <DNAModifierMainBuffersDisk />
+      </Stack.Item>
+    </Stack>
   );
 };
 
@@ -31,94 +47,86 @@ const DNAModifierMainBuffersElement = (props: {
 }) => {
   const { act, data } = useBackend<Data>();
   const { id, name, buffer } = props;
-  const { isInjectorReady } = data;
+  const { isInjectorReady, hasOccupant, occupant } = data;
   const realName: string = name + (buffer.data ? ' - ' + buffer.label : '');
   return (
-    <Box backgroundColor="rgba(0, 0, 0, 0.33)" mb="0.5rem">
-      <Section
-        title={realName}
-        mx="0"
-        lineHeight="18px"
-        buttons={
-          <>
-            <Button.Confirm
-              disabled={!buffer.data}
-              icon="trash"
-              onClick={() =>
-                act('bufferOption', {
-                  option: 'clear',
-                  id: id,
-                })
-              }
-            >
-              Clear
-            </Button.Confirm>
-            <Button
-              disabled={!buffer.data}
-              icon="pen"
-              onClick={() =>
-                act('bufferOption', {
-                  option: 'changeLabel',
-                  id: id,
-                })
-              }
-            >
-              Rename
-            </Button>
-            <Button
-              disabled={!buffer.data || !data.hasDisk}
-              icon="save"
-              tooltip="Exports this buffer to the currently loaded data disk."
-              tooltipPosition="bottom-end"
-              onClick={() =>
-                act('bufferOption', {
-                  option: 'saveDisk',
-                  id: id,
-                })
-              }
-            >
-              Export
-            </Button>
-          </>
-        }
-      >
+    <Section
+      fill
+      title={realName}
+      mx="0"
+      lineHeight="18px"
+      buttons={
+        <>
+          <Button.Confirm
+            disabled={!buffer.data || !buffer.owner}
+            icon="trash"
+            onClick={() =>
+              act('bufferOption', {
+                option: 'clear',
+                id: id,
+              })
+            }
+          >
+            Clear
+          </Button.Confirm>
+          <Button
+            disabled={!buffer.data || !buffer.owner}
+            icon="pen"
+            onClick={() =>
+              act('bufferOption', {
+                option: 'changeLabel',
+                id: id,
+              })
+            }
+          >
+            Rename
+          </Button>
+          <Button
+            disabled={!buffer.data || !buffer.owner}
+            icon="user-plus"
+            tooltip="Grow a clone from the buffer's data."
+            tooltipPosition="bottom-end"
+            onClick={() =>
+              act('bufferOption', {
+                option: 'sleeveDisk',
+                id: id,
+              })
+            }
+          >
+            Grow Body
+          </Button>
+          <Button
+            disabled={!buffer.data || !data.hasDisk || !buffer.owner}
+            icon="save"
+            tooltip="Exports this buffer to the currently loaded data disk."
+            tooltipPosition="bottom-end"
+            onClick={() =>
+              act('bufferOption', {
+                option: 'saveDisk',
+                id: id,
+              })
+            }
+          >
+            Export
+          </Button>
+        </>
+      }
+    >
+      <Box backgroundColor="rgba(0, 0, 0, 0.33)" mb="0.5rem">
         <LabeledList>
           <LabeledList.Item label="Write">
             <Button
+              disabled={!hasOccupant || !occupant.isViableSubject}
               icon="arrow-circle-down"
               mb="0"
               onClick={() =>
                 act('bufferOption', {
-                  option: 'saveUI',
+                  option: 'saveDNA',
                   id: id,
                 })
               }
             >
-              Subject U.I
-            </Button>
-            <Button
-              icon="arrow-circle-down"
-              mb="0"
-              onClick={() =>
-                act('bufferOption', {
-                  option: 'saveUIAndUE',
-                  id: id,
-                })
-              }
-            >
-              Subject U.I and U.E.
-            </Button>
-            <Button
-              icon="arrow-circle-down"
-              mb="0"
-              onClick={() =>
-                act('bufferOption', {
-                  option: 'saveSE',
-                  id: id,
-                })
-              }
-            >
-              Subject S.E.
+              From Subject
             </Button>
             <Button
               disabled={!data.hasDisk || !data.disk.data}
@@ -147,7 +155,7 @@ const DNAModifierMainBuffersElement = (props: {
               </LabeledList.Item>
               <LabeledList.Item label="Transfer to">
                 <Button
-                  disabled={!isInjectorReady}
+                  disabled={!isInjectorReady || !buffer.owner}
                   icon={isInjectorReady ? 'syringe' : 'spinner'}
                   iconSpin={!isInjectorReady}
                   mb="0"
@@ -161,7 +169,7 @@ const DNAModifierMainBuffersElement = (props: {
                   Injector
                 </Button>
                 <Button
-                  disabled={!isInjectorReady}
+                  disabled={!isInjectorReady || !buffer.owner}
                   icon={isInjectorReady ? 'syringe' : 'spinner'}
                   iconSpin={!isInjectorReady}
                   mb="0"
@@ -176,6 +184,9 @@ const DNAModifierMainBuffersElement = (props: {
                   Block Injector
                 </Button>
                 <Button
+                  disabled={
+                    !hasOccupant || !buffer.owner || !occupant.isViableSubject
+                  }
                   icon="user"
                   mb="0"
                   onClick={() =>
@@ -196,8 +207,8 @@ const DNAModifierMainBuffersElement = (props: {
             This buffer is empty.
           </Box>
         )}
-      </Section>
-    </Box>
+      </Box>
+    </Section>
   );
 };
 
@@ -206,6 +217,7 @@ const DNAModifierMainBuffersDisk = (props) => {
   const { hasDisk, disk } = data;
   return (
     <Section
+      fill
       title="Data Disk"
       buttons={
         <>

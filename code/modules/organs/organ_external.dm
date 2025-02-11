@@ -960,6 +960,16 @@ Note that amputating the affected organ does in fact remove the infection from t
 				span_bolddanger("Your [src.name] explodes[gore]!"),\
 				span_danger("You hear the [gore_sound]."))
 
+		if(DROPLIMB_ACID)
+			if(cannot_gib)
+				return
+			var/gore = "[(robotic >= ORGAN_ROBOT) ? "": " in gush of gore"]"
+			var/gore_sound = "[(status >= ORGAN_ROBOT) ? "sizzling sound of melting metal" : "sickening drips of melting flesh"]"
+			owner.visible_message(
+				span_danger("\The [owner]'s [src.name] sloughs off[gore]!"),\
+				span_bolddanger("<b>Your [src.name] sloughs off of your body[gore]!</b>"),\
+				span_danger("You hear the [gore_sound]."))
+
 	var/mob/living/carbon/human/victim = owner //Keep a reference for post-removed().
 	var/obj/item/organ/external/parent_organ = parent
 
@@ -1037,6 +1047,14 @@ Note that amputating the affected organ does in fact remove the infection from t
 				I.throw_at(get_edge_target_turf(src,pick(alldirs)),rand(1,3),5)
 
 			qdel(src)
+
+		if(DROPLIMB_ACID)
+			appearance_flags &= ~PIXEL_SCALE
+			compile_icon()
+			add_blood(victim)
+			var/matrix/M = matrix()
+			M.Turn(rand(180))
+			transform = M
 
 	if(victim.l_hand)
 		if(istype(victim.l_hand,/obj/item/material/twohanded)) //if they're holding a two-handed weapon, drop it now they've lost a hand
