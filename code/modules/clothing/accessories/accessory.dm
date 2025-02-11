@@ -51,6 +51,8 @@
 
 	wearer?.resolve()
 	var/mob/living/carbon/human/H = wearer
+	if(!ishuman(H))
+		return
 
 	if(istype(loc,/obj/item/clothing/under))
 		var/obj/item/clothing/under/C = loc
