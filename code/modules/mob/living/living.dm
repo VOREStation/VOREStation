@@ -102,7 +102,7 @@
 	if(!..())
 		return FALSE
 
-	visible_message(span_info("<b>[src]</b> points at [pointing_at]."), span_info("You point at [pointing_at]."))
+	visible_message(span_info(span_bold("[src]") + " points at [pointing_at]."), span_info("You point at [pointing_at]."))
 
 /mob/living/verb/succumb()
 	set name = "Succumb to death"

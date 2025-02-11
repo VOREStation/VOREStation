@@ -839,7 +839,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	if(!..())
 		return FALSE
 
-	visible_message(span_deadsay("<b>[src]</b> points to [pointed_at]."))
+	visible_message(span_deadsay(span_bold("[src]") + " points to [pointed_at]."))
 
 /mob/observer/dead/proc/manifest(mob/user)
 	is_manifest = TRUE
