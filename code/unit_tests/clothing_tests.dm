@@ -60,42 +60,40 @@
 	// Time for the most brutal part. Dressing up some mobs with set species, and checking they have art
 	// An entire signal just for unittests had to be made for this!
 	var/original_holder = C.loc
-	var/turf/T = locate(1,1,1)
-	if(T)
-		var/list/body_types = list(SPECIES_HUMAN) //,SPECIES_VOX,SPECIES_TESHARI) // Otherwise we would be here for centuries
-		if(C.species_restricted && C.species_restricted.len)
-			if(C.species_restricted[1] == "exclude")
-				for(var/B in body_types)
-					if(B in C.species_restricted)
-						body_types -= B
-			else
-				var/list/new_list = list()
-				for(var/B in body_types)
-					if(B in C.species_restricted)
-						new_list += B
-				body_types = new_list
-		// Get actual species that can use this, based on the mess of restricted/excluded logic above
-		var/list/species = list()
-		for(var/B in body_types)
-			var/species_path = /mob/living/carbon/human
-			switch(B)
-				if(SPECIES_HUMAN)
-					species_path = /mob/living/carbon/human
-				if(SPECIES_VOX)
-					species_path = /mob/living/carbon/human/vox
-				if(SPECIES_TESHARI)
-					species_path = /mob/living/carbon/human/teshari
-			// spawn the mob, signalize it, and then give it the item to see what it gets.
-			var/mob/living/carbon/human/H = new species_path(T)
-			RegisterSignal(H, COMSIG_UNITTEST_DATA, PROC_REF(get_signal_data))
-			H.put_in_active_hand(C)
-			H.equip_to_appropriate_slot(C)
-			H.drop_from_inventory(C, original_holder)
-			UnregisterSignal(H, COMSIG_UNITTEST_DATA)
-			qdel(H)
-		// We failed the mob check
-		if(signal_failed)
-			failed = TRUE
+	var/list/body_types = list(SPECIES_HUMAN) //,SPECIES_VOX,SPECIES_TESHARI) // Otherwise we would be here for centuries
+	if(C.species_restricted && C.species_restricted.len)
+		if(C.species_restricted[1] == "exclude")
+			for(var/B in body_types)
+				if(B in C.species_restricted)
+					body_types -= B
+		else
+			var/list/new_list = list()
+			for(var/B in body_types)
+				if(B in C.species_restricted)
+					new_list += B
+			body_types = new_list
+	// Get actual species that can use this, based on the mess of restricted/excluded logic above
+	var/list/species = list()
+	for(var/B in body_types)
+		var/species_path = /mob/living/carbon/human
+		switch(B)
+			if(SPECIES_HUMAN)
+				species_path = /mob/living/carbon/human
+			if(SPECIES_VOX)
+				species_path = /mob/living/carbon/human/vox
+			if(SPECIES_TESHARI)
+				species_path = /mob/living/carbon/human/teshari
+		// spawn the mob, signalize it, and then give it the item to see what it gets.
+		var/mob/living/carbon/human/H = new species_path(original_holder)
+		RegisterSignal(H, COMSIG_UNITTEST_DATA, PROC_REF(get_signal_data))
+		H.put_in_active_hand(C)
+		H.equip_to_appropriate_slot(C)
+		H.drop_from_inventory(C, original_holder)
+		UnregisterSignal(H, COMSIG_UNITTEST_DATA)
+		qdel(H)
+	// We failed the mob check
+	if(signal_failed)
+		failed = TRUE
 	#endif
 
 	// Temps
