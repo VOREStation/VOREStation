@@ -770,7 +770,6 @@
 		SPECIES_TESHARI = 'icons/inventory/suit/mob_teshari.dmi',
 		SPECIES_VOX = 'icons/inventory/suit/mob_vox.dmi',
 		SPECIES_WEREBEAST = 'icons/inventory/suit/mob_vr_werebeast.dmi')
-	name = "suit"
 	max_heat_protection_temperature = T0C+100
 	body_parts_covered = CHEST|ARMS|LEGS
 	allowed = list(/obj/item/tank/emergency/oxygen)
