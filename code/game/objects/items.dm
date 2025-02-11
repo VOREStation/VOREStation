@@ -909,8 +909,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 	#ifdef UNIT_TEST
 	var/mob/living/carbon/human/H = loc
 	if(ishuman(H))
-		var/species = H?.species?.name
-		SEND_SIGNAL(H, COMSIG_UNITTEST_DATA, list("set_slot",slot_name,icon2use,state2use,inhands,type,species))
+		SEND_SIGNAL(H, COMSIG_UNITTEST_DATA, list("set_slot",slot_name,icon2use,state2use,inhands,type,H.species?.name))
 	#endif
 
 	//Generate the base onmob icon
