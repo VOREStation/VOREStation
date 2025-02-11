@@ -298,7 +298,7 @@
 ////////////////////////////////////////////////////////////////////////////////////////
 //Gloves
 /obj/item/clothing/gloves
-	name = "gloves"
+	name = DEVELOPER_WARNING_NAME
 	item_icons = list(
 		slot_l_hand_str = 'icons/mob/items/lefthand_gloves.dmi',
 		slot_r_hand_str = 'icons/mob/items/righthand_gloves.dmi',
