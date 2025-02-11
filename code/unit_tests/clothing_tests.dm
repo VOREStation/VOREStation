@@ -56,7 +56,7 @@
 		failed = TRUE
 
 	// Disabled, as currently not working in a presentable way, spams the CI hard, do not enable unless fixed
-	#ifdef UNIT_TESTS
+	#ifdef UNIT_TEST
 	// Time for the most brutal part. Dressing up some mobs with set species, and checking they have art
 	// An entire signal just for unittests had to be made for this!
 	var/original_holder = C.loc

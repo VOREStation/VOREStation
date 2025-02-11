@@ -811,6 +811,6 @@
 
 
 //Unittest data update
-#ifdef UNIT_TESTS
+#ifdef UNIT_TEST
 #define COMSIG_UNITTEST_DATA "unittest_send_data"
 #endif
