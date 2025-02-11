@@ -94,13 +94,13 @@
 	for(var/species in species_list)
 		var/datum/species/S = GLOB.all_species[species]
 		body_types[S.get_bodytype()] = TRUE
-	for(var/B in body_types)
-		for(var/slot in slotlist)
-			var/dmi = C.get_worn_icon_file(B, slot, slot_to_default[slot], FALSE)
-			var/state = C.get_worn_icon_state(slot)
-			if(dmi && !("[state]" in cached_icon_states(dmi)))
-				log_unit_test("[C.type]: Clothing - While being wearable by the species \"[species]\". A dmi \"[dmi]\" in the slot of \"[slot]\" was defined, but no item_state \"[state]\" was found inside of it.")
-				failed = TRUE
+		for(var/B in body_types)
+			for(var/slot in slotlist)
+				var/dmi = C.get_worn_icon_file(B, slot, slot_to_default[slot], FALSE)
+				var/state = C.get_worn_icon_state(slot)
+				if(dmi && !("[state]" in cached_icon_states(dmi)))
+					log_unit_test("[C.type]: Clothing - While being wearable by the species \"[species]\". A dmi \"[dmi]\" in the slot of \"[slot]\" was defined, but no item_state \"[state]\" was found inside of it.")
+					failed = TRUE
 
 	// Temps
 	if(C.min_cold_protection_temperature < 0)
