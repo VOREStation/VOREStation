@@ -552,6 +552,10 @@
 	item_state = "chicahead_mob"
 
 //Anamatronic Suits
+
+/obj/item/clothing/suit/fluff
+	name = DEVELOPER_WARNING_NAME
+
 /obj/item/clothing/suit/fluff/freddy
 	name = "Animatronic Suit"
 	desc = "Votre toast, je peux vous le rendre."
