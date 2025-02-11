@@ -10,6 +10,7 @@
 	// Remove material armors, as dev_warning cannot be used to set their name
 	scan -= /obj/item/clothing/suit/armor/material
 	scan -= /obj/item/clothing/head/helmet/material
+	scan -= /obj/item/clothing/ears/offear // This is used for equip logic, not ingame
 
 	for(var/path as anything in scan)
 		var/obj/item/clothing/C = new path(storage)
