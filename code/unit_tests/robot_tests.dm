@@ -9,19 +9,19 @@
 		var/datum/robot_sprite/RS = new sprite()
 
 		var/list/checks = list(
-			ROBOT_HAS_SPEED_SPRITE = "-roll",
-			ROBOT_HAS_SHIELD_SPRITE = "-shield",
-			ROBOT_HAS_SHIELD_SPEED_SPRITE = "-speed_shield",
-			ROBOT_HAS_MELEE_SPRITE = "-melee",
-			ROBOT_HAS_DAGGER_SPRITE = "-dagger",
-			ROBOT_HAS_BLADE_SPRITE = "-blade",
-			ROBOT_HAS_GUN_SPRITE = "-gun",
-			ROBOT_HAS_LASER_SPRITE = "-laser",
-			ROBOT_HAS_TASER_SPRITE = "-taser",
-			ROBOT_HAS_DISABLER_SPRITE = "-disabler"
+			"[ROBOT_HAS_SPEED_SPRITE]" = "-roll",
+			"[ROBOT_HAS_SHIELD_SPRITE]" = "-shield",
+			"[ROBOT_HAS_SHIELD_SPEED_SPRITE]" = "-speed_shield",
+			"[ROBOT_HAS_MELEE_SPRITE]" = "-melee",
+			"[ROBOT_HAS_DAGGER_SPRITE]" = "-dagger",
+			"[ROBOT_HAS_BLADE_SPRITE]" = "-blade",
+			"[ROBOT_HAS_GUN_SPRITE]" = "-gun",
+			"[ROBOT_HAS_LASER_SPRITE]" = "-laser",
+			"[ROBOT_HAS_TASER_SPRITE]" = "-taser",
+			"[ROBOT_HAS_DISABLER_SPRITE]" = "-disabler"
 		)
 		for(var/C in checks)
-			if(RS.sprite_flag_check(C))
+			if(RS.sprite_flag_check(text2num(C)))
 				if(check_state(RS,checks[C]))
 					failed = TRUE
 		if(RS.has_eye_sprites)
