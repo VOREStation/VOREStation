@@ -617,7 +617,7 @@
 ///////////////////////////////////////////////////////////////////////
 //Shoes
 /obj/item/clothing/shoes
-	name = "shoes"
+	name = DEVELOPER_WARNING_NAME // "shoes"
 	icon = 'icons/inventory/feet/item.dmi'
 	item_icons = list(
 		slot_l_hand_str = 'icons/mob/items/lefthand_shoes.dmi',
