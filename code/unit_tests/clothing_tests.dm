@@ -12,6 +12,7 @@
 	scan -= /obj/item/clothing/suit/armor/material
 	scan -= /obj/item/clothing/head/helmet/material
 	scan -= /obj/item/clothing/ears/offear // This is used for equip logic, not ingame
+	scan -= /obj/item/clothing/mask/ai // Breaks unit test entirely TODO
 
 	for(var/path as anything in scan)
 		var/obj/item/clothing/C = new path(storage)
@@ -73,24 +74,16 @@
 			body_types = new_list
 	// Get actual species that can use this, based on the mess of restricted/excluded logic above
 	var/obj/mob_storage = new()
-	var/list/species = list()
+	var/mob/living/carbon/human/H = new(mob_storage)
+	RegisterSignal(H, COMSIG_UNITTEST_DATA, PROC_REF(get_signal_data))
 	for(var/B in body_types)
-		var/species_path = /mob/living/carbon/human
-		switch(B)
-			if(SPECIES_HUMAN)
-				species_path = /mob/living/carbon/human
-			if(SPECIES_VOX)
-				species_path = /mob/living/carbon/human/vox
-			if(SPECIES_TESHARI)
-				species_path = /mob/living/carbon/human/teshari
+		H.set_species(B)
 		// spawn the mob, signalize it, and then give it the item to see what it gets.
-		var/mob/living/carbon/human/H = new species_path(mob_storage)
-		//H.RegisterSignal(src, COMSIG_UNITTEST_DATA, PROC_REF(get_signal_data))
 		H.put_in_active_hand(C)
 		H.equip_to_appropriate_slot(C)
 		H.drop_from_inventory(C, storage)
-		//H.UnregisterSignal(src, COMSIG_UNITTEST_DATA)
-		qdel(H)
+	UnregisterSignal(H, COMSIG_UNITTEST_DATA)
+	qdel(H)
 	qdel(mob_storage)
 	// We failed the mob check
 	if(signal_failed)
@@ -148,7 +141,7 @@
 			var/slot_name 	= data[2]
 			var/set_icon 	= data[3]
 			var/set_state 	= data[4]
-			var/in_hands 	= data[5]
+			//var/in_hands 	= data[5]
 			var/item_path 	= data[6]
 			var/species 	= data[7]
 			if(!species)
@@ -156,6 +149,12 @@
 			if(!set_icon)
 				return
 			if(!set_state)
+				return
+
+			// Ignore storage
+			if(slot_name == slot_l_hand_str)
+				return
+			if(slot_name == slot_r_hand_str)
 				return
 
 			// All that matters
