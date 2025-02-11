@@ -328,7 +328,7 @@
 	setClickCooldown(4)
 	var/turf/T = get_turf(src)
 
-	var/obj/item/projectile/beam/LE = new (T)
+	var/obj/item/projectile/beam/laser_vision/LE = new (T)
 	LE.icon = 'icons/effects/genetics.dmi'
 	LE.icon_state = "eyelasers"
 	playsound(src, 'sound/weapons/taser2.ogg', 75, 1)
