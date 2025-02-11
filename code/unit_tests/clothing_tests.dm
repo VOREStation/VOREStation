@@ -53,7 +53,13 @@
 			log_unit_test("[C.type]: Clothing - Icon_state \"[C.icon_state]\" is not present in [C.icon]. This icon/state was changed by init. Initial icon \"[initial(C.icon)]\". initial icon_state \"[initial(C.icon_state)]\". Check code.")
 		failed = TRUE
 
-	// Species icons (disabled for now, requires ALL clothing to have icons for different species)
+	// Species icons
+	/* (disabled for now, requires ALL clothing to have icons for all species that wear it)
+	for(var/species in C.sprite_sheets)
+		var/dmi = C.sprite_sheets[species]
+		if(!("[C.icon_state]" in cached_icon_states(dmi)))
+			log_unit_test("[C.type]: Clothing - \"[species]\" Species unique \"[C.icon_state]\" is not present in [C.sprite_sheets[species]].")
+	*/
 
 	// Temps
 	if(C.min_cold_protection_temperature < 0)
