@@ -732,7 +732,7 @@
 		slot_l_hand_str = 'icons/mob/items/lefthand_suits.dmi',
 		slot_r_hand_str = 'icons/mob/items/righthand_suits.dmi',
 		)
-	name = "suit"
+	name = DEVELOPER_WARNING_NAME
 	var/fire_resist = T0C+100
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
 	allowed = list(/obj/item/tank/emergency/oxygen)
