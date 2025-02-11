@@ -163,7 +163,7 @@
 //Service
 
 /obj/item/clothing/suit/storage/terran
-name = DEVELOPER_WARNING_NAME //Base type.
+	name = DEVELOPER_WARNING_NAME //Base type.
 
 /* //Could not find the icon_state anywhere.
 /obj/item/clothing/suit/storage/terran/service/navy
