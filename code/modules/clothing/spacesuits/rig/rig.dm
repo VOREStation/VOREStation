@@ -722,7 +722,6 @@
 		if(check_slot == use_obj && deploy_mode != ONLY_DEPLOY)
 
 			var/mob/living/carbon/human/holder
-			var/obj/item/clothing/clothes
 
 			if(use_obj)
 				holder = use_obj.loc
@@ -730,16 +729,12 @@
 					if(use_obj && check_slot == use_obj)
 						to_chat(H, span_boldnotice("Your [use_obj.name] [use_obj.gender == PLURAL ? "retract" : "retracts"] swiftly."))
 						playsound(src, 'sound/machines/rig/rigservo.ogg', 10, FALSE)
-						if(use_obj.contents)
-							clothes = use_obj.contents[1] //We should only ever have ONE THING per item. If you manage to get two things in your gauntlets...Well, good job.
 						use_obj.canremove = TRUE
 						holder.drop_from_inventory(use_obj)
 						use_obj.forceMove(get_turf(src))
 						use_obj.dropped(holder)
 						use_obj.canremove = FALSE
 						use_obj.forceMove(src)
-						if(clothes)
-							holder.equip_to_slot_if_possible(clothes, equip_to, 0, 1)
 
 		else if (deploy_mode != ONLY_RETRACT)
 			if(check_slot && check_slot == use_obj)
