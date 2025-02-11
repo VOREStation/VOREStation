@@ -339,6 +339,9 @@
 
 //Service
 
+/obj/item/clothing/suit/storage/saare
+	name = DEVELOPER_WARNING_NAME
+
 /obj/item/clothing/suit/storage/saare/service/
 	name = "SAARE coat"
 	desc = "An Stealth Assault Enterprises . Black and undecorated."

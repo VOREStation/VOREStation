@@ -2,7 +2,8 @@
 
 //Hoods for winter coats and chaplain hoodie etc
 
-/obj/item/clothing/suit/storage/hooded
+/obj/item/clothing/suit/
+	name = DEVELOPER_WARNING_NAME
 	var/obj/item/clothing/head/hood
 	var/hoodtype = null //so the chaplain hoodie or other hoodies can override this
 	var/hood_up = FALSE
@@ -72,6 +73,7 @@
 	icon_state = "[toggleicon][hood_up ? "_t" : ""]"
 
 /obj/item/clothing/suit/storage/hooded/costume
+	name = DEVELOPER_WARNING_NAME
 	body_parts_covered = CHEST|ARMS
 	flags_inv = HIDEJUMPSUIT|HIDETIE|HIDEHOLSTER
 	cold_protection = CHEST|ARMS

@@ -1,4 +1,5 @@
 /obj/item/clothing/suit/armor
+	name = DEVELOPER_WARNING_NAME
 	allowed = list(/obj/item/gun/energy,/obj/item/reagent_containers/spray/pepper,/obj/item/gun/projectile,/obj/item/ammo_magazine,/obj/item/ammo_casing,/obj/item/melee/baton,/obj/item/handcuffs,/obj/item/flashlight/maglight,/obj/item/clothing/head/helmet)
 	body_parts_covered = CHEST
 	item_flags = THICKMATERIAL
@@ -491,6 +492,7 @@
 	siemens_coefficient = 0
 
 /obj/item/clothing/suit/armor/tdome
+	name = DEVELOPER_WARNING_NAME
 	body_parts_covered = CHEST|LEGS|FEET|ARMS|HANDS
 	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
 	armor = list(melee = 60, bullet = 60, laser = 60, energy = 40, bomb = 40, bio = 0, rad = 0)

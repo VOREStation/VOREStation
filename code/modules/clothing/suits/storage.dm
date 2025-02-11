@@ -1,4 +1,5 @@
 /obj/item/clothing/suit/storage
+	name = DEVELOPER_WARNING_NAME
 	var/obj/item/storage/internal/pockets
 
 /obj/item/clothing/suit/storage/New()
@@ -29,6 +30,7 @@
 
 //Jackets with buttons, used for labcoats, IA jackets, First Responder jackets, and brown jackets.
 /obj/item/clothing/suit/storage/toggle
+	name = DEVELOPER_WARNING_NAME
 	flags_inv = HIDEHOLSTER
 	var/open = 0	//0 is closed, 1 is open, -1 means it won't be able to toggle
 

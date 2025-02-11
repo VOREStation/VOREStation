@@ -759,6 +759,7 @@
 ///////////////////////////////////////////////////////////////////////
 //Suit
 /obj/item/clothing/suit
+	name = DEVELOPER_WARNING_NAME
 	icon = 'icons/inventory/suit/item.dmi'
 	item_icons = list(
 		slot_l_hand_str = 'icons/mob/items/lefthand_suits.dmi',
