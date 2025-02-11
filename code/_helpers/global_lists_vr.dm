@@ -547,7 +547,7 @@ GLOBAL_LIST_EMPTY(existing_solargrubs)
 		GLOB.all_traits[path] = instance
 
 	// Traitgenes Initilize trait genes
-	setupgenetics(all_traits)
+	setupgenetics(GLOB.all_traits)
 
 	// Shakey shakey shake
 	sortTim(GLOB.all_traits, GLOBAL_PROC_REF(cmp_trait_datums_name), associative = TRUE)
