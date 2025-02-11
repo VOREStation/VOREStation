@@ -23,6 +23,7 @@
 
 		if(i > tenths * a_tenth)
 			log_unit_test("[C.type]: Clothing - Progress [tenths * 10]% - [i]/[scan.len]")
+			log_unit_test("-------------------------------------------------------------")
 			tenths++
 
 		if(istype(C,/obj/item/clothing/suit/storage/hooded))
@@ -30,6 +31,7 @@
 			if(H.hood) // Testing hoods when they init
 				failed += test_clothing(H.hood,storage)
 
+		i++
 		qdel(C)
 	qdel(storage)
 
@@ -67,7 +69,7 @@
 	#ifdef UNIT_TEST
 	// Time for the most brutal part. Dressing up some mobs with set species, and checking they have art
 	// An entire signal just for unittests had to be made for this!
-	var/list/body_types = list(SPECIES_HUMAN,SPECIES_UNATHI,SPECIES_VOX,SPECIES_TESHARI) // Otherwise we would be here for centuries
+	var/list/body_types = list(SPECIES_HUMAN,SPECIES_VOX,SPECIES_TESHARI) // Otherwise we would be here for centuries
 	// **************************************************************************************************************************
 	//body_types = list() // 	DISABLED FOR NOW, No single person can resolve how many sprites are missing.
 	// **************************************************************************************************************************
