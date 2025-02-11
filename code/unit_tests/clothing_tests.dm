@@ -19,7 +19,7 @@
 
 		// Icons
 		var/actual_icon_state = "[C.icon_state]"
-		if(!(actual_icon_state in cached_icon_states(A.icon)))
+		if(!(actual_icon_state in cached_icon_states(C.icon)))
 			if(C.icon == initial(C.icon) && actual_icon_state == initial(C.icon_state))
 				log_unit_test("[path]: Clothing - Icon_state \"[actual_icon_state]\" is not present in [C.icon].")
 			else
@@ -33,43 +33,43 @@
 			log_unit_test("[path]: Clothing - Cold protection was lower than 0.")
 			failed = 1
 
-		if(max_heat_protection_temperature && min_cold_protection_temperature && max_heat_protection_temperature < min_cold_protection_temperature)
+		if(C.max_heat_protection_temperature && C.min_cold_protection_temperature && C.max_heat_protection_temperature < C.min_cold_protection_temperature)
 			log_unit_test("[path]: Clothing - Maximum heat protection was greater than minimum cold protection.")
 			failed = 1
 
 		if(C.cold_protection)
 			if(islist(C.cold_protection))
-				log_unit_test("[path]: Clothing - cold_protection was defined as a list, when it is a bigflag.")
+				log_unit_test("[path]: Clothing - cold_protection was defined as a list, when it is a bitflag.")
 				failed = 1
 			else if(!isnum(C.cold_protection))
-				log_unit_test("[path]: Clothing - cold_protection was defined as something other than a number, when it is a bigflag.")
+				log_unit_test("[path]: Clothing - cold_protection was defined as something other than a number, when it is a bitflag.")
 				failed = 1
 			else
 				var/valid_range = HEAD|UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS|HANDS
 				if(C.cold_protection && C.cold_protection != FULL_BODY)
 					// Check flags that should be unused
-					if(check & FACE)
+					if(C.cold_protection & FACE)
 						log_unit_test("[path]: Clothing - cold_protection uses FACE bitflag, this provides no protection, use HEAD.")
 						failed = 1
-					if(check & EYES)
+					if(C.cold_protection & EYES)
 						log_unit_test("[path]: Clothing - cold_protection uses EYES bitflag, this provides no protection, use HEAD.")
 						failed = 1
 
 		if(C.heat_protection)
 			if(islist(C.heat_protection))
-				log_unit_test("[path]: Clothing - heat_protection was defined as a list, when it is a bigflag.")
+				log_unit_test("[path]: Clothing - heat_protection was defined as a list, when it is a bitflag.")
 				failed = 1
 			else if(!isnum(C.heat_protection))
-				log_unit_test("[path]: Clothing - heat_protection was defined as something other than a number, when it is a bigflag.")
+				log_unit_test("[path]: Clothing - heat_protection was defined as something other than a number, when it is a bitflag.")
 				failed = 1
 			else
 				var/valid_range = HEAD|UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS|HANDS
 				if(C.heat_protection && C.heat_protection != FULL_BODY)
 					// Check flags that should be unused
-					if(check & FACE)
+					if(C.heat_protection & FACE)
 						log_unit_test("[path]: Clothing - heat_protection uses FACE bitflag, this provides no protection, use HEAD.")
 						failed = 1
-					if(check & EYES)
+					if(C.heat_protection & EYES)
 						log_unit_test("[path]: Clothing - heat_protection uses EYES bitflag, this provides no protection, use HEAD.")
 						failed = 1
 		qdel(C)
