@@ -9,14 +9,14 @@
 	var/a_tenth = ty.len / 10
 
 	var/i = 0
-	for(var/path/x in ty)
+	for(var/x in ty)
 		if(i >= tenths * a_tenth)
 			log_unit_test("Items - [tenths * 10]% [i]/[ty.len].")
 			log_unit_test("------------------------------------")
 		i++
 
-		var/icon = initial(x.icon)
-		var/state = initial(x.icon_state)
+		var/icon = initial(x:icon)
+		var/state = initial(x:icon_state)
 		if(!icon)
 			log_unit_test("[x]: Items - Item was missing a default icon dmi.")
 			failed = TRUE
