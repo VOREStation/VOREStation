@@ -54,6 +54,7 @@
 					failed = TRUE
 				if(RS.has_vore_belly_resting_sprites)
 					for(var/rest_style in RS.rest_sprite_options)
+						rest_style = lowertext(rest_style)
 						if(rest_style == "Default")
 							rest_style = "rest"
 						if(check_state(RS,"-sleeper-r-[rest_style]"))
@@ -68,6 +69,7 @@
 						failed = TRUE
 					if(RS.has_vore_belly_resting_sprites)
 						for(var/rest_style in RS.rest_sprite_options)
+							rest_style = lowertext(rest_style)
 							if(rest_style == "Default")
 								rest_style = "rest"
 							if(check_state(RS,"-sleeper-r-[rest_style]-struggle"))
@@ -80,6 +82,7 @@
 					failed = TRUE
 				if(RS.has_vore_belly_resting_sprites)
 					for(var/rest_style in RS.rest_sprite_options)
+						rest_style = lowertext(rest_style)
 						if(rest_style == "Default")
 							rest_style = "rest"
 						if(check_state(RS,"-sleeper-[rest_style]"))
@@ -90,6 +93,7 @@
 						failed = TRUE
 					if(RS.has_vore_belly_resting_sprites)
 						for(var/rest_style in RS.rest_sprite_options)
+							rest_style = lowertext(rest_style)
 							if(rest_style == "Default")
 								rest_style = "rest"
 							if(check_state(RS,"-sleeper-[rest_style]-struggle"))
@@ -101,6 +105,7 @@
 					failed = TRUE
 				if(RS.has_vore_belly_resting_sprites)
 					for(var/rest_style in RS.rest_sprite_options)
+						rest_style = lowertext(rest_style)
 						if(rest_style == "Default")
 							rest_style = "rest"
 						if(check_state(RS,"-[belly]-[RS.belly_capacity_list[belly]]-[rest_style]"))
@@ -111,6 +116,7 @@
 						failed = TRUE
 					if(RS.has_vore_belly_resting_sprites)
 						for(var/rest_style in RS.rest_sprite_options)
+							rest_style = lowertext(rest_style)
 							if(rest_style == "Default")
 								rest_style = "rest"
 							if(check_state(RS,"-[belly]-[RS.belly_capacity_list[belly]]-[rest_style]-struggle"))
@@ -124,6 +130,7 @@
 						failed = TRUE
 					if(RS.has_vore_belly_resting_sprites)
 						for(var/rest_style in RS.rest_sprite_options)
+							rest_style = lowertext(rest_style)
 							if(rest_style == "Default")
 								rest_style = "rest"
 							if(check_state(RS,"-[belly]-[RS.belly_light_list[belly]]-r-[rest_style]"))
@@ -138,6 +145,7 @@
 							failed = TRUE
 						if(RS.has_vore_belly_resting_sprites)
 							for(var/rest_style in RS.rest_sprite_options)
+								rest_style = lowertext(rest_style)
 								if(rest_style == "Default")
 									rest_style = "rest"
 								if(check_state(RS,"-[belly]-[RS.belly_light_list[belly]]-r-[rest_style]-struggle"))
