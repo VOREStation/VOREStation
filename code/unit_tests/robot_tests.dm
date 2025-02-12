@@ -7,8 +7,7 @@
 
 	for(var/sprite in subtypesof(/datum/robot_sprite))
 		var/datum/robot_sprite/RS = new sprite()
-
-		if(RS.name == "") // Parent type, ignore me
+		if(!RS.name) // Parent type, ignore me
 			continue
 
 		var/list/checks = list(
@@ -37,7 +36,7 @@
 			if(check_state(RS,"-decals"))
 				failed = TRUE
 		if(RS.has_custom_open_sprites)
-			if(check_state(RS,"-openpanel_wc"))
+			if(check_state(RS,"-openpanel_nc"))
 				failed = TRUE
 			if(check_state(RS,"-openpanel_c"))
 				failed = TRUE
