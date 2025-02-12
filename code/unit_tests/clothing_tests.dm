@@ -22,8 +22,8 @@
 		failed += test_clothing(C)
 
 		if(i > tenths * a_tenth)
-			log_unit_test("[C.type]: Clothing - Progress [tenths * 10]% - [i]/[scan.len]")
-			log_unit_test("-------------------------------------------------------------")
+			log_unit_test("Clothing - Progress [tenths * 10]% - [i]/[scan.len]")
+			log_unit_test("---------------------------------------------------")
 			tenths++
 
 		if(istype(C,/obj/item/clothing/suit/storage/hooded))
