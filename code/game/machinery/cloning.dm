@@ -483,9 +483,8 @@
 	name = "Diskette Box"
 	icon_state = "disk_kit"
 
-/obj/item/storage/box/disks/New()
-	..()
-	// Traitgenes edit begin - Use body record disks instead of a unique one
+/obj/item/storage/box/Initialize()
+	. = ..()
 	new /obj/item/disk/body_record(src)
 	new /obj/item/disk/body_record(src)
 	new /obj/item/disk/body_record(src)
@@ -493,7 +492,6 @@
 	new /obj/item/disk/body_record(src)
 	new /obj/item/disk/body_record(src)
 	new /obj/item/disk/body_record(src)
-	// Traitgenes edit end
 
 /*
  *	Manual -- A big ol' manual.
