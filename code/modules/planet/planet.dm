@@ -63,7 +63,8 @@
 		weather_holder.process()
 
 /datum/planet/proc/update_sun_deferred(var/new_brightness, var/new_color)
+	if(new_brightness < 0 || new_brightness > 1)
+		CRASH("Planetary sun brightness was outside of sane bounds. Expected 0.00 to 1.00, got [new_brightness].")
 	sun["brightness"] = new_brightness
 	sun["color"] = new_color
 	needs_work |= PLANET_PROCESS_SUN
-
