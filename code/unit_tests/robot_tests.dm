@@ -34,22 +34,59 @@
 			if(check_state(RS,"-decals"))
 				failed = TRUE
 		if(RS.has_custom_open_sprites)
+			if(check_state(RS,"-openpanel_wc"))
+				failed = TRUE
+			if(check_state(RS,"-openpanel_c"))
+				failed = TRUE
 			if(check_state(RS,"-openpanel_w"))
 				failed = TRUE
-		/* I've no idea how to handle these
-		if(RS.has_vore_belly_resting_sprites)
-			if(check_state(RS,"-\\d-rest"))
-				failed = TRUE
-		if(RS.has_vore_belly_resting_sprites)
-			if(check_state(RS,"-\\d-sit"))
-				failed = TRUE
-		if(RS.has_vore_belly_resting_sprites)
-			if(check_state(RS,"-\\d-bellyup"))
-				failed = TRUE
-		if(RS.has_vore_belly_resting_sprites)
-			if(check_state(RS,"-sit"))
-				failed = TRUE
-		*/
+		if(RS.has_vore_belly_sprites && !RS.belly_capacity_list)
+			if(RS.has_sleeper_light_indicator)
+				if(check_state(RS,"-sleeper-r"))
+					failed = TRUE
+				if(check_state(RS,"-sleeper-g"))
+					failed = TRUE
+				if(RS.has_vore_belly_resting_sprites)
+					for(var/rest_style in RS.rest_sprite_options)
+						if(rest_style == "Default")
+							rest_style = "rest"
+						if(check_state(RS,"-sleeper-r-[rest_style]"))
+							failed = TRUE
+						if(check_state(RS,"-sleeper-g-[rest_style]"))
+							failed = TRUE
+			else
+				if(check_state(RS,"-sleeper"))
+					failed = TRUE
+				if(RS.has_vore_belly_resting_sprites)
+					for(var/rest_style in RS.rest_sprite_options)
+						if(rest_style == "Default")
+							rest_style = "rest"
+						if(check_state(RS,"-sleeper-[rest_style]"))
+							failed = TRUE
+		else if (RS.belly_capacity_list)
+			for(var/belly in RS.belly_capacity_list)
+				if(check_state(RS,"-[belly]-[belly_capacity_list[belly]]"))
+					failed = TRUE
+				if(RS.has_vore_belly_resting_sprites)
+					for(var/rest_style in RS.rest_sprite_options)
+						if(rest_style == "Default")
+							rest_style = "rest"
+						if(check_state(RS,"-[belly]-[belly_capacity_list[belly]]-[rest_style]"))
+							failed = TRUE
+			if(RS.belly_light_list)
+				for(var/belly in RS.belly_light_list)
+					if(check_state(RS,"-[belly]-[belly_light_list[belly]]-r"))
+						failed = TRUE
+					if(check_state(RS,"-[belly]-[belly_light_list[belly]]-g"))
+						failed = TRUE
+					if(RS.has_vore_belly_resting_sprites)
+						for(var/rest_style in RS.rest_sprite_options)
+							if(rest_style == "Default")
+								rest_style = "rest"
+							if(check_state(RS,"-[belly]-[belly_light_list[belly]]-r-[rest_style]"))
+								failed = TRUE
+							if(check_state(RS,"-[belly]-[belly_light_list[belly]]-g-[rest_style]"))
+								failed = TRUE
 		if(RS.rest_sprite_options in list("Sit"))
 			if(check_state(RS,"-sit"))
 				failed = TRUE
