@@ -8,6 +8,9 @@
 	for(var/sprite in subtypesof(/datum/robot_sprite))
 		var/datum/robot_sprite/RS = new sprite()
 
+		if(RS.name == "") // Parent type, ignore me
+			continue
+
 		var/list/checks = list(
 			"[ROBOT_HAS_SPEED_SPRITE]" = "-roll",
 			"[ROBOT_HAS_SHIELD_SPRITE]" = "-shield",
