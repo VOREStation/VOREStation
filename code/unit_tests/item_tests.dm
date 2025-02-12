@@ -13,6 +13,7 @@
 		if(i >= tenths * a_tenth)
 			log_unit_test("Items - [tenths * 10]% [i]/[ty.len].")
 			log_unit_test("------------------------------------")
+			tenths++
 		i++
 
 		var/icon = initial(x:icon)
