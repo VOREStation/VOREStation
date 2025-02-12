@@ -65,27 +65,27 @@
 							failed = TRUE
 		else if (RS.belly_capacity_list)
 			for(var/belly in RS.belly_capacity_list)
-				if(check_state(RS,"-[belly]-[belly_capacity_list[belly]]"))
+				if(check_state(RS,"-[belly]-[RS.belly_capacity_list[belly]]"))
 					failed = TRUE
 				if(RS.has_vore_belly_resting_sprites)
 					for(var/rest_style in RS.rest_sprite_options)
 						if(rest_style == "Default")
 							rest_style = "rest"
-						if(check_state(RS,"-[belly]-[belly_capacity_list[belly]]-[rest_style]"))
+						if(check_state(RS,"-[belly]-[RS.belly_capacity_list[belly]]-[rest_style]"))
 							failed = TRUE
 			if(RS.belly_light_list)
 				for(var/belly in RS.belly_light_list)
-					if(check_state(RS,"-[belly]-[belly_light_list[belly]]-r"))
+					if(check_state(RS,"-[belly]-[RS.belly_light_list[belly]]-r"))
 						failed = TRUE
-					if(check_state(RS,"-[belly]-[belly_light_list[belly]]-g"))
+					if(check_state(RS,"-[belly]-[RS.belly_light_list[belly]]-g"))
 						failed = TRUE
 					if(RS.has_vore_belly_resting_sprites)
 						for(var/rest_style in RS.rest_sprite_options)
 							if(rest_style == "Default")
 								rest_style = "rest"
-							if(check_state(RS,"-[belly]-[belly_light_list[belly]]-r-[rest_style]"))
+							if(check_state(RS,"-[belly]-[RS.belly_light_list[belly]]-r-[rest_style]"))
 								failed = TRUE
-							if(check_state(RS,"-[belly]-[belly_light_list[belly]]-g-[rest_style]"))
+							if(check_state(RS,"-[belly]-[RS.belly_light_list[belly]]-g-[rest_style]"))
 								failed = TRUE
 		if(RS.rest_sprite_options in list("Sit"))
 			if(check_state(RS,"-sit"))
