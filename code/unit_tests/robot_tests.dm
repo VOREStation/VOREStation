@@ -26,6 +26,7 @@
 			if(RS.sprite_flag_check(text2num(C)))
 				if(check_state(RS,checks[C]))
 					failed = TRUE
+		// eyes, lights, markings
 		if(RS.has_eye_sprites)
 			if(check_state(RS,"-eyes"))
 				failed = TRUE
@@ -35,6 +36,7 @@
 		if(RS.has_robotdecal_sprites)
 			if(check_state(RS,"-decals"))
 				failed = TRUE
+		// Control panel
 		if(RS.has_custom_open_sprites)
 			if(check_state(RS,"-openpanel_nc"))
 				failed = TRUE
@@ -42,8 +44,10 @@
 				failed = TRUE
 			if(check_state(RS,"-openpanel_w"))
 				failed = TRUE
+		// Bellies
 		if(RS.has_vore_belly_sprites && !RS.belly_capacity_list)
 			if(RS.has_sleeper_light_indicator)
+				// belly r/g light
 				if(check_state(RS,"-sleeper-r"))
 					failed = TRUE
 				if(check_state(RS,"-sleeper-g"))
@@ -56,7 +60,22 @@
 							failed = TRUE
 						if(check_state(RS,"-sleeper-g-[rest_style]"))
 							failed = TRUE
+				// struggling
+				if(RS.has_vore_struggle_sprite)
+					if(check_state(RS,"-sleeper-r-struggle"))
+						failed = TRUE
+					if(check_state(RS,"-sleeper-g-struggle"))
+						failed = TRUE
+					if(RS.has_vore_belly_resting_sprites)
+						for(var/rest_style in RS.rest_sprite_options)
+							if(rest_style == "Default")
+								rest_style = "rest"
+							if(check_state(RS,"-sleeper-r-[rest_style]-struggle"))
+								failed = TRUE
+							if(check_state(RS,"-sleeper-g-[rest_style]-struggle"))
+								failed = TRUE
 			else
+				// belly
 				if(check_state(RS,"-sleeper"))
 					failed = TRUE
 				if(RS.has_vore_belly_resting_sprites)
@@ -65,8 +84,19 @@
 							rest_style = "rest"
 						if(check_state(RS,"-sleeper-[rest_style]"))
 							failed = TRUE
+				// struggling
+				if(RS.has_vore_struggle_sprite)
+					if(check_state(RS,"-sleeper-struggle"))
+						failed = TRUE
+					if(RS.has_vore_belly_resting_sprites)
+						for(var/rest_style in RS.rest_sprite_options)
+							if(rest_style == "Default")
+								rest_style = "rest"
+							if(check_state(RS,"-sleeper-[rest_style]-struggle"))
+								failed = TRUE
 		else if (RS.belly_capacity_list)
 			for(var/belly in RS.belly_capacity_list)
+				// big belly
 				if(check_state(RS,"-[belly]-[RS.belly_capacity_list[belly]]"))
 					failed = TRUE
 				if(RS.has_vore_belly_resting_sprites)
@@ -75,8 +105,19 @@
 							rest_style = "rest"
 						if(check_state(RS,"-[belly]-[RS.belly_capacity_list[belly]]-[rest_style]"))
 							failed = TRUE
+				// struggling
+				if(RS.has_vore_struggle_sprite)
+					if(check_state(RS,"-[belly]-[RS.belly_capacity_list[belly]]-struggle"))
+						failed = TRUE
+					if(RS.has_vore_belly_resting_sprites)
+						for(var/rest_style in RS.rest_sprite_options)
+							if(rest_style == "Default")
+								rest_style = "rest"
+							if(check_state(RS,"-[belly]-[RS.belly_capacity_list[belly]]-[rest_style]-struggle"))
+								failed = TRUE
 			if(RS.belly_light_list)
 				for(var/belly in RS.belly_light_list)
+					// multi belly r/g light
 					if(check_state(RS,"-[belly]-[RS.belly_light_list[belly]]-r"))
 						failed = TRUE
 					if(check_state(RS,"-[belly]-[RS.belly_light_list[belly]]-g"))
@@ -89,6 +130,21 @@
 								failed = TRUE
 							if(check_state(RS,"-[belly]-[RS.belly_light_list[belly]]-g-[rest_style]"))
 								failed = TRUE
+					// struggling
+					if(RS.has_vore_struggle_sprite)
+						if(check_state(RS,"-[belly]-[RS.belly_light_list[belly]]-r-struggle"))
+							failed = TRUE
+						if(check_state(RS,"-[belly]-[RS.belly_light_list[belly]]-g-struggle"))
+							failed = TRUE
+						if(RS.has_vore_belly_resting_sprites)
+							for(var/rest_style in RS.rest_sprite_options)
+								if(rest_style == "Default")
+									rest_style = "rest"
+								if(check_state(RS,"-[belly]-[RS.belly_light_list[belly]]-r-[rest_style]-struggle"))
+									failed = TRUE
+								if(check_state(RS,"-[belly]-[RS.belly_light_list[belly]]-g-[rest_style]-struggle"))
+									failed = TRUE
+		// reseting
 		if(RS.rest_sprite_options in list("Sit"))
 			if(check_state(RS,"-sit"))
 				failed = TRUE
@@ -98,11 +154,13 @@
 		if(RS.rest_sprite_options in list("Bellyup"))
 			if(check_state(RS,"-bellyup"))
 				failed = TRUE
+		// death
 		if(RS.has_dead_sprite)
 			if(check_state(RS,"-wreck"))
 				failed = TRUE
-		if(RS.has_dead_sprite_overlay)
-			if(check_state(RS,"wreck-overlay"))
+		if(RS.has_dead_sprite_overlay) // Only one per dmi
+			if(!("wreck-overlay" in cached_icon_states(RS.sprite_icon)))
+				log_unit_test("[RS.type]: Robots - Robot sprite \"[RS.name]\", had wreck-overlay state enabled, but was missing icon_state wreck-overlay, in dmi \"[RS.sprite_icon]\".")
 				failed = TRUE
 		qdel(RS)
 
