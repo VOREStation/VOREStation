@@ -22,8 +22,8 @@
 		failed += test_clothing(C)
 
 		if(i > tenths * a_tenth)
-			log_unit_test("[C.type]: Clothing - Progress [tenths * 10]% - [i]/[scan.len]")
-			log_unit_test("-------------------------------------------------------------")
+			log_unit_test("Clothing - Progress [tenths * 10]% - [i]/[scan.len]")
+			log_unit_test("---------------------------------------------------")
 			tenths++
 
 		if(istype(C,/obj/item/clothing/suit/storage/hooded))
@@ -71,7 +71,7 @@
 	// An entire signal just for unittests had to be made for this!
 	var/list/body_types = list(SPECIES_HUMAN,SPECIES_VOX,SPECIES_TESHARI) // Otherwise we would be here for centuries
 	// **************************************************************************************************************************
-	//body_types = list() // 	DISABLED FOR NOW, No single person can resolve how many sprites are missing.
+	body_types = list() // 	DISABLED FOR NOW, No single person can resolve how many sprites are missing.
 	// **************************************************************************************************************************
 	if(body_types.len)
 		if(C.species_restricted && C.species_restricted.len)
