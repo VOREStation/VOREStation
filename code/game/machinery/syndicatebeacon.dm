@@ -40,18 +40,18 @@
 		return
 	if(href_list["betraitor"])
 		if(charges < 1)
-			updateUsrDialog()
+			updateUsrDialog(usr)
 			return
 		var/mob/M = locate(href_list["traitormob"])
 		if(M.mind.special_role || jobban_isbanned(M, JOB_SYNDICATE))
 			temptext = "<i>We have no need for you at this time. Have a pleasant day.</i><br>"
-			updateUsrDialog()
+			updateUsrDialog(usr)
 			return
 		charges -= 1
 		switch(rand(1,2))
 			if(1)
 				temptext = "<font color=red><i><b>Double-crosser. You planned to betray us from the start. Allow us to repay the favor in kind.</b></i></font>"
-				updateUsrDialog()
+				updateUsrDialog(usr)
 				spawn(rand(50,200)) selfdestruct()
 				return
 			if(2)
@@ -63,7 +63,7 @@
 			traitors.equip(N)
 			message_admins("[N]/([N.ckey]) has accepted a traitor objective from a syndicate beacon.")
 
-	updateUsrDialog()
+	updateUsrDialog(usr)
 	return
 
 /obj/machinery/syndicate_beacon/proc/selfdestruct()

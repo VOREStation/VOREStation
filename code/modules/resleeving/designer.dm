@@ -39,7 +39,7 @@
 		disk = null
 	. = ..()
 
-/obj/machinery/computer/transhuman/designer/attackby(obj/item/W as obj, mob/user as mob)
+/obj/machinery/computer/transhuman/designer/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/disk/body_record))
 		user.unEquip(W)
 		disk = W
@@ -49,10 +49,10 @@
 	else
 		. = ..()
 
-/obj/machinery/computer/transhuman/designer/attack_ai(mob/user as mob)
+/obj/machinery/computer/transhuman/designer/attack_ai(mob/user)
 	attack_hand(user)
 
-/obj/machinery/computer/transhuman/designer/attack_hand(mob/user as mob)
+/obj/machinery/computer/transhuman/designer/attack_hand(mob/user)
 	add_fingerprint(user)
 	if(inoperable())
 		return

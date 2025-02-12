@@ -294,49 +294,9 @@
 
 // Handle footstep sounds
 /mob/living/carbon/human/handle_footstep(var/turf/T)
-	if(!istype(T))
-		return
-	if(is_incorporeal())
-		return
-	if(!CONFIG_GET(number/footstep_volume) || !T.footstep_sounds || !T.footstep_sounds.len)
-		return
-	// Future Upgrades - Multi species support
-	var/list/footstep_sounds = T.footstep_sounds["human"]
-	if(!footstep_sounds)
-		return
-
-	var/S = pick(footstep_sounds)
-	GLOB.step_taken_shift_roundstat++
-	if(!S) return
-
-	// Play every 20 steps while walking, for the sneak
-	if(m_intent == I_WALK && step_count++ % 20 != 0)
-		return
-
-	// Play every other step while running
-	if(m_intent == I_RUN && step_count++ % 2 != 0)
-		return
-
-	var/volume = CONFIG_GET(number/footstep_volume)
-
-	// Reduce volume while walking or barefoot
-	if(!shoes || m_intent == I_WALK)
-		volume *= 0.5
-	else if(shoes)
-		var/obj/item/clothing/shoes/feet = shoes
-		if(istype(feet))
-			volume *= feet.step_volume_mod
-
-	if(!has_organ(BP_L_FOOT) && !has_organ(BP_R_FOOT))
-		return // no feet = no footsteps
-
-	if(buckled || lying || throwing)
-		return // people flying, lying down or sitting do not step
-
-	if(!get_gravity(src) && prob(75))
-		return // Far less likely to make noise in no gravity
-
-	playsound(T, S, volume, FALSE)
+	if(shoes && loc == T && get_gravity(loc) && !flying)
+		if(SEND_SIGNAL(shoes, COMSIG_SHOES_STEP_ACTION, m_intent))
+			return
 	return
 
 /mob/living/carbon/human/set_dir(var/new_dir)

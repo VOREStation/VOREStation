@@ -1,4 +1,5 @@
 /datum/unarmed_attack/bite/sharp/numbing //Is using this against someone you are truly trying to fight a bad idea? Yes. Yes it is.
+	attack_name = "numbing bite"
 	attack_verb = list("bit")
 	attack_noun = list("fangs")
 	attack_sound = 'sound/weapons/bite.ogg'

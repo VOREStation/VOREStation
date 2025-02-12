@@ -296,7 +296,7 @@ Just a object used in constructing fire alarms
 			var/tp = text2num(href_list["tp"])
 			time += tp
 			time = min(max(round(time), 0), 120)
-		updateUsrDialog()
+		updateUsrDialog(usr)
 
 		add_fingerprint(usr)
 	else

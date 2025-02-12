@@ -27,13 +27,17 @@ Bonus
 /datum/symptom/telepathy/Start(datum/disease/advance/A)
 	if(iscarbon(A))
 		var/mob/living/carbon/human/H = A.affected_mob
-		H.dna.SetSEState(REMOTETALKBLOCK, 1)
+		// Traitgenes Locate the gene from trait
+		var/datum/gene/trait/G = get_gene_from_trait(/datum/trait/positive/superpower_remotetalk)
+		H.dna.SetSEState(G.block, 1)
 		domutcheck(H, null, TRUE)
 		to_chat(H, span_notice("Your mind expands..."))
 
 /datum/symptom/telepathy/End(datum/disease/advance/A)
 	if(iscarbon(A))
 		var/mob/living/carbon/human/H = A.affected_mob
-		H.dna.SetSEState(REMOTETALKBLOCK, 0)
+		// Traitgenes  Locate the gene from trait
+		var/datum/gene/trait/G = get_gene_from_trait(/datum/trait/positive/superpower_remotetalk)
+		H.dna.SetSEState(G.block, 0)
 		domutcheck(H, null, TRUE)
 		to_chat(H, span_notice("Everything feels... Normal."))

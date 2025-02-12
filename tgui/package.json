@@ -48,7 +48,7 @@
     "sass-loader": "^16.0.3",
     "style-loader": "^4.0.0",
     "swc-loader": "^0.2.6",
-    "tgui-core": "^1.7.5",
+    "tgui-core": "^1.8.0",
     "typescript": "5.6.3",
     "url-loader": "^4.1.1",
     "webpack": "^5.96.1",
