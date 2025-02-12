@@ -365,3 +365,14 @@ var/global/list/selectable_footstep = list(
 	"Light Claw" = FOOTSTEP_MOB_TESHARI,
 	"Slither" = FOOTSTEP_MOB_SLITHER,
 )
+
+// Put any artifact effects that are duplicates, unique, or otherwise unwated in here! This prevents them from spawning via RNG.
+var/global/list/blacklisted_artifact_effects = list(
+	/datum/artifact_effect/gas/sleeping,
+	/datum/artifact_effect/gas/oxy,
+	/datum/artifact_effect/gas/carbondiox,
+	/datum/artifact_effect/gas/fuel,
+	/datum/artifact_effect/gas/nitro,
+	/datum/artifact_effect/gas/phoron,
+	/datum/artifact_effect/extreme
+)

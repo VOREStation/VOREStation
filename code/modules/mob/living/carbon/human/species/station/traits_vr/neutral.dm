@@ -7,6 +7,7 @@
 	cost = 0
 	var_changes = list("metabolic_rate" = 1.2, "hunger_factor" = 0.2, "metabolism" = 0.06) // +20% rate and 4x hunger (Teshari level)
 	excludes = list(/datum/trait/neutral/metabolism_down, /datum/trait/neutral/metabolism_apex)
+	custom_only = FALSE
 
 /datum/trait/neutral/metabolism_down
 	name = "Metabolism, Slow"
@@ -14,6 +15,7 @@
 	cost = 0
 	var_changes = list("metabolic_rate" = 0.8, "hunger_factor" = 0.04, "metabolism" = 0.0012) // -20% of default.
 	excludes = list(/datum/trait/neutral/metabolism_up, /datum/trait/neutral/metabolism_apex)
+	custom_only = FALSE
 
 /datum/trait/neutral/metabolism_apex
 	name = "Metabolism, Apex"
@@ -21,6 +23,7 @@
 	cost = 0
 	var_changes = list("metabolic_rate" = 1.4, "hunger_factor" = 0.4, "metabolism" = 0.012) // +40% rate and 8x hunger (Double Teshari)
 	excludes = list(/datum/trait/neutral/metabolism_up, /datum/trait/neutral/metabolism_down)
+	custom_only = FALSE
 
 /datum/trait/neutral/coldadapt
 	name = "Temp. Adapted, Cold"
@@ -30,6 +33,13 @@
 	can_take = ORGANICS
 	excludes = list(/datum/trait/neutral/hotadapt)
 
+	// Traitgenes Replaces /datum/trait/positive/superpower_cold_resist, made into a genetrait
+	is_genetrait = TRUE
+	hidden = FALSE
+
+	activation_message="Your body is filled with warmth."
+	primitive_expression_messages=list("pants, sweat dripping down their head.")
+
 /datum/trait/neutral/hotadapt
 	name = "Temp. Adapted, Heat"
 	desc = "You are able to withstand much hotter temperatures than other species, and can even be comfortable in extremely hot environments. You are also more vulnerable to cold environments, and have a higher body temperature as a consequence of these adaptations."
@@ -37,6 +47,14 @@
 	var_changes = list("heat_level_1" = 420, "heat_level_2" = 460, "heat_level_3" = 1100, "breath_heat_level_1" = 440, "breath_heat_level_2" = 510, "breath_heat_level_3" = 1500, "heat_discomfort_level" = 390, "cold_level_1" = 280, "cold_level_2" = 220, "cold_level_3" = 140, "breath_cold_level_1" = 260, "breath_cold_level_2" = 240, "breath_cold_level_3" = 120, "cold_discomfort_level" = 280, "body_temperature" = 330)
 	can_take = ORGANICS // negates the need for suit coolers entirely for synths, so no
 	excludes = list(/datum/trait/neutral/coldadapt)
+
+	// Traitgenes Made into a genetrait
+	is_genetrait = TRUE
+	hidden = FALSE
+
+	activation_message="Your body feels chilly."
+	primitive_expression_messages=list("shivers.")
+
 
 /datum/trait/neutral/autohiss_unathi
 	name = "Autohiss (Unathi)"
@@ -50,10 +68,8 @@
 			"x" = list("ks", "kss", "ksss")
 		),
 	autohiss_exempt = list(LANGUAGE_UNATHI))
-
-	excludes = list(/datum/trait/neutral/autohiss_tajaran, /datum/trait/neutral/autohiss_zaddat)
+	excludes = list(/datum/trait/neutral/autohiss_tajaran)
 	custom_only = FALSE
-	banned_species = list(SPECIES_TAJARAN, SPECIES_UNATHI, SPECIES_ZADDAT)
 
 /datum/trait/neutral/autohiss_tajaran
 	name = "Autohiss (Tajaran)"
@@ -64,9 +80,8 @@
 			"r" = list("rr", "rrr", "rrrr")
 		),
 	autohiss_exempt = list(LANGUAGE_SIIK,LANGUAGE_AKHANI,LANGUAGE_ALAI))
-	excludes = list(/datum/trait/neutral/autohiss_unathi, /datum/trait/neutral/autohiss_zaddat)
+	excludes = list(/datum/trait/neutral/autohiss_unathi)
 	custom_only = FALSE
-	banned_species = list(SPECIES_TAJARAN, SPECIES_UNATHI, SPECIES_ZADDAT)
 
 /datum/trait/neutral/autohiss_zaddat
 	name = "Autohiss (Zaddat)"
@@ -84,9 +99,8 @@
 			"v" = list("vv", "vvv")
 		),
 	autohiss_exempt = list(LANGUAGE_ZADDAT,LANGUAGE_VESPINAE))
-	excludes = list(/datum/trait/neutral/autohiss_tajaran, /datum/trait/neutral/autohiss_unathi)
+	excludes = list(/datum/trait/neutral/autohiss_tajaran)
 	custom_only = FALSE
-	banned_species = list(SPECIES_TAJARAN, SPECIES_UNATHI, SPECIES_ZADDAT)
 
 /datum/trait/neutral/bloodsucker
 	name = "Bloodsucker, Obligate"
@@ -103,7 +117,7 @@
 
 	cost = 0
 	custom_only = FALSE
-	var_changes = list("organic_food_coeff" = 0, "bloodsucker" = TRUE)
+	var_changes = list("organic_food_coeff" = 0, "bloodsucker" = TRUE) //The verb is given in human.dm
 	excludes = list(/datum/trait/neutral/bloodsucker_freeform)
 
 /datum/trait/neutral/bloodsucker/apply(var/datum/species/S,var/mob/living/carbon/human/H)
@@ -225,7 +239,7 @@
 	add_verb(H, /mob/living/proc/toggle_stuffing_mode)
 
 /datum/trait/neutral/hard_vore
-	name = "Brutal Predation"
+	name = "Hard Vore"
 	desc = "Allows you to tear off limbs & tear out internal organs."
 	cost = 0
 	custom_only = FALSE
@@ -241,10 +255,25 @@
 	custom_only = FALSE
 	var_changes = list("trashcan" = 1)
 
+	// Traitgenes made into a genetrait
+	is_genetrait = TRUE
+	hidden = FALSE
+
+	activation_message="Your stomach feels strange."
+	primitive_expression_messages=list("eats something off the ground.")
+
 /datum/trait/neutral/trashcan/apply(var/datum/species/S,var/mob/living/carbon/human/H)
 	..()
 	add_verb(H, /mob/living/proc/eat_trash)
-	add_verb(H, /mob/living/proc/toggle_trash_catching) //Ported from chompstation
+	add_verb(H, /mob/living/proc/toggle_trash_catching)
+
+// Traitgenes made into a genetrait
+/datum/trait/neutral/trashcan/unapply(datum/species/S, mob/living/carbon/human/H, trait_prefs)
+	..()
+	if(!(/mob/living/proc/eat_trash in S.inherent_verbs))
+		remove_verb(H,/mob/living/proc/eat_trash)
+	if(!(/mob/living/proc/toggle_trash_catching in S.inherent_verbs))
+		remove_verb(H,/mob/living/proc/toggle_trash_catching)
 
 /datum/trait/neutral/gem_eater
 	name = "Expensive Taste"
@@ -253,9 +282,22 @@
 	custom_only = FALSE
 	var_changes = list("organic_food_coeff" = 0, "eat_minerals" = 1)
 
+	// Traitgenes made into a genetrait
+	is_genetrait = TRUE
+	hidden = FALSE
+
+	activation_message="Your stomach feels strange."
+	primitive_expression_messages=list("picks up and eats something shiny off the ground.")
+
 /datum/trait/neutral/gem_eater/apply(var/datum/species/S,var/mob/living/carbon/human/H)
 	..()
 	add_verb(H, /mob/living/proc/eat_minerals)
+
+// Traitgenes made into a genetrait
+/datum/trait/neutral/gem_eater/unapply(datum/species/S, mob/living/carbon/human/H, trait_prefs)
+	..()
+	if(!(/mob/living/proc/eat_minerals in S.inherent_verbs))
+		remove_verb(H,/mob/living/proc/eat_minerals)
 
 /datum/trait/neutral/synth_chemfurnace
 	name = "Biofuel Processor"
@@ -263,7 +305,7 @@
 	cost = 0
 	custom_only = FALSE
 	can_take = SYNTHETICS
-	var_changes = list("organic_food_coeff" = 0, "synthetic_food_coeff" = 0.6)
+	var_changes = list("organic_food_coeff" = 0.75, "synthetic_food_coeff" = 1)
 	excludes = list(/datum/trait/neutral/biofuel_value_down)
 
 /datum/trait/neutral/synth_ethanolburner
@@ -290,9 +332,22 @@
 	var_changes = list("has_glowing_eyes" = 1)
 	has_preferences = list("has_glowing_eyes" = list(TRAIT_PREF_TYPE_BOOLEAN, "Glowing on spawn", TRAIT_VAREDIT_TARGET_SPECIES))
 
+	// Traitgenes Made into a genetrait
+	is_genetrait = TRUE
+	hidden = FALSE
+
+	activation_message="Your eyes feel brighter."
+	primitive_expression_messages=list("eyes twinkle.")
+
 /datum/trait/neutral/glowing_eyes/apply(var/datum/species/S,var/mob/living/carbon/human/H)
 	..()
 	add_verb(H, /mob/living/carbon/human/proc/toggle_eye_glow)
+
+// Traitgenes Made into a genetrait
+/datum/trait/neutral/glowing_eyes/unapply(var/datum/species/S,var/mob/living/carbon/human/H)
+	..()
+	if(!(/mob/living/carbon/human/proc/toggle_eye_glow in S.inherent_verbs))
+		remove_verb(H,/mob/living/carbon/human/proc/toggle_eye_glow)
 
 /datum/trait/neutral/glowing_body
 	name = "Glowing Body"
@@ -302,10 +357,25 @@
 	has_preferences = list("glow_toggle" = list(TRAIT_PREF_TYPE_BOOLEAN, "Glowing on spawn", TRAIT_VAREDIT_TARGET_MOB, FALSE), \
 							"glow_color" = list(TRAIT_PREF_TYPE_COLOR, "Glow color", TRAIT_VAREDIT_TARGET_MOB))
 
+	// Traitgenes Made into a genetrait
+	is_genetrait = TRUE
+	hidden = FALSE
+
+	activation_message="You feel enlightened."
+	primitive_expression_messages=list("shines and sparkles.")
+
 /datum/trait/neutral/glowing_body/apply(var/datum/species/S,var/mob/living/carbon/human/H)
 	..()
 	add_verb(H, /mob/living/proc/glow_toggle)
 	add_verb(H, /mob/living/proc/glow_color)
+
+// Traitgenes Made into a genetrait
+/datum/trait/neutral/glowing_body/unapply(var/datum/species/S,var/mob/living/carbon/human/H)
+	..()
+	if(!(/mob/living/proc/glow_toggle in S.inherent_verbs))
+		remove_verb(H,/mob/living/proc/glow_toggle)
+	if(!(/mob/living/proc/glow_color in S.inherent_verbs))
+		remove_verb(H,/mob/living/proc/glow_color)
 
 //Allergen traits! Not available to any species with a base allergens var.
 /datum/trait/neutral/allergy
@@ -315,9 +385,21 @@
 	custom_only = FALSE
 	var/allergen = ALLERGEN_GRAINS
 
+	// Traitgenes Made ALL ALLERGYS into gene traits
+	is_genetrait = TRUE
+	hidden = FALSE
+
+	activation_message="Something feels odd..."
+
 /datum/trait/neutral/allergy/apply(var/datum/species/S,var/mob/living/carbon/human/H)
 	S.allergens |= allergen
 	..()
+
+// Traitgenes edit begin - Made ALL ALLERGYS into gene traits
+/datum/trait/neutral/allergy/unapply(var/datum/species/S,var/mob/living/carbon/human/H)
+	S.allergens &= ~allergen
+	..()
+// Traitgenes edit end
 
 /datum/trait/neutral/allergy/meat
 	name = "Allergy: Meat"
@@ -480,6 +562,12 @@
 	custom_only = FALSE
 	var_changes = list("spice_mod" = 3) // 300% as effective if spice_mod is set to 1. If it's not 1 in species.dm, update this!
 
+	// Traitgenes Made into a gene trait
+	is_genetrait = TRUE
+	hidden = FALSE
+
+	activation_message="Your belly feels strange..."
+
 /datum/trait/neutral/spice_intolerance_basic
 	name = "Spice Intolerance, Heavy"
 	desc = "Spicy (and chilly) peppers are twice as strong. (This does not affect pepperspray.)"
@@ -515,6 +603,12 @@
 	custom_only = FALSE
 	var_changes = list("spice_mod" = 0.25) // 25% as effective if spice_mod is set to 1. If it's not 1 in species.dm, update this!
 
+	// Traitgenes Made into a gene trait
+	is_genetrait = TRUE
+	hidden = FALSE
+
+	activation_message="Your belly feels strange..."
+
 // Alcohol Traits Start Here, from negative to positive.
 /datum/trait/neutral/alcohol_intolerance_advanced
 	name = "Liver of Air"
@@ -522,6 +616,12 @@
 	cost = 0
 	custom_only = FALSE
 	var_changes = list("chem_strength_alcohol" = 0.33)
+
+	// Traitgenes Made into a gene trait
+	is_genetrait = TRUE
+	hidden = FALSE
+
+	activation_message="Your belly feels strange..."
 
 /datum/trait/neutral/alcohol_intolerance_basic
 	name = "Liver of Lilies"
@@ -565,34 +665,76 @@
 	cost = 0
 	custom_only = FALSE
 	var_changes = list("chem_strength_alcohol" = 4)
+
+	// Traitgenes Made into a gene trait
+	is_genetrait = TRUE
+	hidden = FALSE
+
+	activation_message="Your belly feels strange..."
 // Alcohol Traits End Here.
 
 /datum/trait/neutral/colorblind/mono
 	name = "Colorblindness (Monochromancy)"
 	desc = "You simply can't see colors at all, period. You are 100% colorblind."
 	cost = 0
+	custom_only = FALSE
+
+	// Traitgenes Made into a gene trait
+	is_genetrait = TRUE
+	hidden = FALSE
+
+	activation_message="Your eyes feel strange..."
 
 /datum/trait/neutral/colorblind/mono/apply(var/datum/species/S,var/mob/living/carbon/human/H)
 	..()
 	H.add_modifier(/datum/modifier/trait/colorblind_monochrome)
 
+// Traitgenes Made into a gene trait
+/datum/trait/neutral/colorblind/mono/unapply(var/datum/species/S,var/mob/living/carbon/human/H)
+	..()
+	H.remove_a_modifier_of_type(/datum/modifier/trait/colorblind_monochrome)
+
 /datum/trait/neutral/colorblind/para_vulp
 	name = "Colorblindness (Para Vulp)"
 	desc = "You have a severe issue with green colors and have difficulty recognizing them from red colors."
 	cost = 0
+	custom_only = FALSE
+
+	// Traitgenes Made into a gene trait
+	is_genetrait = TRUE
+	hidden = FALSE
+
+	activation_message="Your eyes feel strange..."
 
 /datum/trait/neutral/colorblind/para_vulp/apply(var/datum/species/S,var/mob/living/carbon/human/H)
 	..()
 	H.add_modifier(/datum/modifier/trait/colorblind_vulp)
 
+// Traitgenes Made into a gene trait
+/datum/trait/neutral/colorblind/para_vulp/unapply(var/datum/species/S,var/mob/living/carbon/human/H)
+	..()
+	H.remove_a_modifier_of_type(/datum/modifier/trait/colorblind_vulp)
+
 /datum/trait/neutral/colorblind/para_taj
 	name = "Colorblindness (Para Taj)"
 	desc = "You have a minor issue with blue colors and have difficulty recognizing them from red colors."
 	cost = 0
+	custom_only = FALSE
+
+	// Traitgenes - Made into a gene trait
+	is_genetrait = TRUE
+	hidden = FALSE
+
+	activation_message="Your eyes feel strange..."
 
 /datum/trait/neutral/colorblind/para_taj/apply(var/datum/species/S,var/mob/living/carbon/human/H)
 	..()
 	H.add_modifier(/datum/modifier/trait/colorblind_taj)
+
+// Traitgenes Made into a gene trait
+/datum/trait/neutral/colorblind/para_taj/unapply(var/datum/species/S,var/mob/living/carbon/human/H)
+	..()
+	H.remove_a_modifier_of_type(/datum/modifier/trait/colorblind_taj)
 
 // Body shape traits
 /datum/trait/neutral/taller
@@ -731,9 +873,21 @@
 	cost = 0
 	custom_only = FALSE
 
+	// Traitgenes made into a genetrait
+	is_genetrait = TRUE
+	hidden = FALSE
+
+	activation_message="Your mind feels more powerful."
+
 /datum/trait/neutral/dominate_predator/apply(var/datum/species/S,var/mob/living/carbon/human/H)
 	..()
 	add_verb(H, /mob/proc/dominate_predator)
+
+// Traitgenes made into a genetrait
+/datum/trait/neutral/dominate_predator/unapply(datum/species/S, mob/living/carbon/human/H, trait_prefs)
+	..()
+	if(!(/mob/proc/dominate_predator in S.inherent_verbs))
+		remove_verb(H,/mob/proc/dominate_predator)
 
 /datum/trait/neutral/dominate_prey
 	name = "Dominate Prey"
@@ -741,9 +895,21 @@
 	cost = 0
 	custom_only = FALSE
 
+	// Traitgenes made into a genetrait
+	is_genetrait = TRUE
+	hidden = FALSE
+
+	activation_message="Your mind feels more powerful."
+
 /datum/trait/neutral/dominate_prey/apply(var/datum/species/S,var/mob/living/carbon/human/H)
 	..()
 	add_verb(H, /mob/living/proc/dominate_prey)
+
+// Traitgenes made into a genetrait
+/datum/trait/neutral/dominate_prey/unapply(datum/species/S, mob/living/carbon/human/H, trait_prefs)
+	..()
+	if(!(/mob/living/proc/dominate_prey in S.inherent_verbs))
+		remove_verb(H,/mob/living/proc/dominate_prey)
 
 /datum/trait/neutral/submit_to_prey
 	name = "Submit To Prey"
@@ -751,9 +917,21 @@
 	cost = 0
 	custom_only = FALSE
 
+	// Traitgenes made into a genetrait
+	is_genetrait = TRUE
+	hidden = FALSE
+
+	activation_message="Your mind feels more fluid."
+
 /datum/trait/neutral/submit_to_prey/apply(var/datum/species/S,var/mob/living/carbon/human/H)
 	..()
 	add_verb(H, /mob/living/proc/lend_prey_control)
+
+// Traitgenes made into a genetrait
+/datum/trait/neutral/submit_to_prey/unapply(datum/species/S, mob/living/carbon/human/H, trait_prefs)
+	..()
+	if(!(/mob/living/proc/lend_prey_control in S.inherent_verbs))
+		remove_verb(H,/mob/living/proc/lend_prey_control)
 
 /datum/trait/neutral/vertical_nom
 	name = "Vertical Nom"
@@ -1216,6 +1394,19 @@
 						else
 							input += "s"
 	return input
+
+/datum/trait/neutral/drippy
+	name = "Drippy"
+	desc = "You cannot hold your form together, or produce a constant film of sludge that drips off of your body. Hope the station has a janitor."
+	cost = 0
+	var_changes = list("drippy" = 1)
+
+	// Traitgenes Made into a genetrait
+	is_genetrait = TRUE
+	hidden = FALSE
+
+	activation_message="You feel softer..."
+	primitive_expression_messages=list("drips.")
 
 /datum/trait/neutral/mudking
 	name = "Mudking"
