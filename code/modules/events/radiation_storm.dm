@@ -52,6 +52,7 @@
 				else
 					randmutg(H) // Applies good mutation
 					domutcheck(H,null,MUTCHK_FORCED)
+				H.UpdateAppearance()
 
 /datum/event/radiation_storm/end()
 	revoke_maint_all_access()

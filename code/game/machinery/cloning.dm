@@ -337,6 +337,7 @@
 		var/mob/living/carbon/human/patient = occupant
 		if(!(patient.species.flags & NO_SCAN)) //If, for some reason, someone makes a genetically-unalterable clone, let's not make them permanently disabled.
 			domutcheck(occupant) //Waiting until they're out before possible transforming.
+			occupant.UpdateAppearance()
 	occupant = null
 
 	update_icon()
