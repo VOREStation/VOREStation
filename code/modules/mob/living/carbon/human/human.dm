@@ -73,6 +73,7 @@
 	*/
 	if(nif)
 		QDEL_NULL(nif)	//VOREStation Add
+	alt_farmanimals -= src
 	worn_clothing.Cut()
 
 	if(stored_blob)
