@@ -29,36 +29,6 @@ const testHubStorage = testGeneric(
   () => window.hubStorage && window.hubStorage.getItem,
 );
 
-// TODO: Remove with 516
-// prettier-ignore
-const testIndexedDb = testGeneric(() => (
-  (window.indexedDB || window.msIndexedDB)
-  && (window.IDBTransaction || window.msIDBTransaction)
-));
-
-class MemoryBackend {
-  constructor() {
-    this.impl = IMPL_MEMORY;
-    this.store = {};
-  }
-
-  async get(key) {
-    return this.store[key];
-  }
-
-  async set(key, value) {
-    this.store[key] = value;
-  }
-
-  async remove(key) {
-    this.store[key] = undefined;
-  }
-
-  async clear() {
-    this.store = {};
-  }
-}
-
 class HubStorageBackend {
   constructor() {
     this.impl = IMPL_HUB_STORAGE;
@@ -84,63 +54,6 @@ class HubStorageBackend {
   }
 }
 
-class IndexedDbBackend {
-  // TODO: Remove with 516
-  constructor() {
-    this.impl = IMPL_INDEXED_DB;
-    /** @type {Promise<IDBDatabase>} */
-    this.dbPromise = new Promise((resolve, reject) => {
-      const indexedDB = window.indexedDB || window.msIndexedDB;
-      const req = indexedDB.open(INDEXED_DB_NAME, INDEXED_DB_VERSION);
-      req.onupgradeneeded = () => {
-        try {
-          req.result.createObjectStore(INDEXED_DB_STORE_NAME);
-        } catch (err) {
-          reject(new Error('Failed to upgrade IDB: ' + req.error));
-        }
-      };
-      req.onsuccess = () => resolve(req.result);
-      req.onerror = () => {
-        reject(new Error('Failed to open IDB: ' + req.error));
-      };
-    });
-  }
-
-  async getStore(mode) {
-    // prettier-ignore
-    return this.dbPromise.then((db) => db
-      .transaction(INDEXED_DB_STORE_NAME, mode)
-      .objectStore(INDEXED_DB_STORE_NAME));
-  }
-
-  async get(key) {
-    const store = await this.getStore(READ_ONLY);
-    return new Promise((resolve, reject) => {
-      const req = store.get(key);
-      req.onsuccess = () => resolve(req.result);
-      req.onerror = () => reject(req.error);
-    });
-  }
-
-  async set(key, value) {
-    // NOTE: We deliberately make this operation transactionless
-    const store = await this.getStore(READ_WRITE);
-    store.put(value, key);
-  }
-
-  async remove(key) {
-    // NOTE: We deliberately make this operation transactionless
-    const store = await this.getStore(READ_WRITE);
-    store.delete(key);
-  }
-
-  async clear() {
-    // NOTE: We deliberately make this operation transactionless
-    const store = await this.getStore(READ_WRITE);
-    store.clear();
-  }
-}
-
 /**
  * Web Storage Proxy object, which selects the best backend available
  * depending on the environment.
@@ -151,18 +64,6 @@ class StorageProxy {
       if (!Byond.TRIDENT && testHubStorage()) {
         return new HubStorageBackend();
       }
-      // TODO: Remove with 516
-      if (testIndexedDb()) {
-        try {
-          const backend = new IndexedDbBackend();
-          await backend.dbPromise;
-          return backend;
-        } catch {}
-      }
-      console.warn(
-        'No supported storage backend found. Using in-memory storage.',
-      );
-      return new MemoryBackend();
     })();
   }
 

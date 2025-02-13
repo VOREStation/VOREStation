@@ -3,7 +3,7 @@ import { Button, Input, Section, Stack } from 'tgui-core/components';
 
 import { robotSpriteSearcher } from './functions';
 import { SelectorElement } from './SelectorElement';
-import { spriteOption } from './types';
+import type { spriteOption } from './types';
 
 export const SpriteSection = (props: {
   title: string;
