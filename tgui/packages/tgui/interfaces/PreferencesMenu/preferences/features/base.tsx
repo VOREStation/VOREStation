@@ -18,7 +18,7 @@ import {
 } from 'tgui-core/components';
 import type { BooleanLike } from 'tgui-core/react';
 
-import { createSetPreference, PreferencesMenuData } from '../../data';
+import { createSetPreference, type PreferencesMenuData } from '../../data';
 import { ServerPreferencesFetcher } from '../../ServerPreferencesFetcher';
 
 function sortNode(...node: [string, ReactNode][]) {
