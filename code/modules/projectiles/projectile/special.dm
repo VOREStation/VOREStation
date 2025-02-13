@@ -173,6 +173,7 @@
 				else
 					randmutg(M)
 					domutcheck(M,null)
+				M.UpdateAppearance()
 			else
 				M.adjustFireLoss(rand(5,15))
 				M.show_message(span_red("The radiation beam singes you!"))
