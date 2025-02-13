@@ -83,7 +83,7 @@
 
 
 /proc/is_admin(var/mob/user)
-	return check_rights(R_ADMIN|R_EVENT, 0, user) != 0
+	return check_rights_for(user.client, R_ADMIN|R_EVENT) != 0
 
 /**
  * Moved into its own file as part of port from CHOMP.
