@@ -1,7 +1,7 @@
 import { useBackend } from 'tgui/backend';
 import { Button, ColorBox, LabeledList, Section } from 'tgui-core/components';
 
-import { Data, species } from './types';
+import type { Data, species } from './types';
 
 export const AppearanceChangerSpecies = (props) => {
   const { act, data } = useBackend<Data>();

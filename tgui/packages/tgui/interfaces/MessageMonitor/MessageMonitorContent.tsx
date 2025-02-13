@@ -8,7 +8,7 @@ import {
   MessageMonitorMain,
   MessageMonitorSpamFilter,
 } from './MessageMonitorTabs';
-import { Data } from './types';
+import type { Data } from './types';
 
 export const MessageMonitorContent = (props) => {
   const { act, data } = useBackend<Data>();

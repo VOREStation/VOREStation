@@ -14,8 +14,11 @@ import {
 } from 'tgui-core/components';
 import { createSearch } from 'tgui-core/string';
 
-import { MARKINGS_PER_PAGE } from './constants';
-import { bodyStyle, Data, SPRITE_ACCESSORY_COLOR_CHANNEL_NAMES } from './types';
+import {
+  MARKINGS_PER_PAGE,
+  SPRITE_ACCESSORY_COLOR_CHANNEL_NAMES,
+} from './constants';
+import type { bodyStyle, Data } from './types';
 
 export const AppearanceChangerColors = (props) => {
   const { act, data } = useBackend<Data>();

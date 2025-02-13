@@ -65,11 +65,13 @@
 	window_open = FALSE
 
 	var/minimumHeight = client?.prefs?.read_preference(/datum/preference/numeric/tgui_say_height) || 1
-	winset(client, "tgui_say", "pos=410,400;size=360,[(minimumHeight * 20) + 10];is-visible=0;")
+	var/minimumWidth = client?.prefs?.read_preference(/datum/preference/numeric/tgui_say_width) || 1
+	winset(client, "tgui_say", "pos=410,400;size=360,30;is-visible=0;")
 
 	window.send_message("props", list(
 		lightMode = client?.prefs?.read_preference(/datum/preference/toggle/tgui_say_light),
 		minimumHeight = minimumHeight,
+		minimumWidth = minimumWidth,
 		maxLength = max_length,
 	))
 

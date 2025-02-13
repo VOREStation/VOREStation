@@ -10,7 +10,7 @@ import {
   Tabs,
 } from 'tgui-core/components';
 
-import { ConstructorEnum, Data, Tab } from './data';
+import { ConstructorEnum, type Data, Tab } from './data';
 import { Constructor } from './pages/Constructor';
 import { DesignList } from './pages/DesignList';
 import { DestructiveAnalyzer } from './pages/DestructiveAnalyzer';

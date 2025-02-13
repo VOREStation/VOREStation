@@ -10,7 +10,7 @@ import { toFixed } from 'tgui-core/math';
 
 import { damageRange } from './constants';
 import { germStatus, reduceOrganStatus } from './functions';
-import { externalOrgan } from './types';
+import type { externalOrgan } from './types';
 
 export const BodyScannerMainOrgansExternal = (props: {
   organs: externalOrgan[];

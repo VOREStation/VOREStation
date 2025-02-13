@@ -159,6 +159,7 @@ var/hadevent    = 0
 				else
 					randmutg(H)
 					domutcheck(H,null,MUTCHK_FORCED)
+				H.UpdateAppearance()
 	sleep(100)
 	command_announcement.Announce("High levels of radiation detected near \the [station_name()]. Please report to the Med-bay if you feel strange.", "Anomaly Alert", new_sound = 'sound/AI/radiation.ogg')
 

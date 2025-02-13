@@ -517,6 +517,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		new_character.dna.ResetUIFrom(new_character)
 		new_character.sync_dna_traits(TRUE) // Traitgenes Sync traits to genetics if needed
 		new_character.sync_organ_dna()
+	new_character.initialize_vessel()
 	if(inhabit)
 		new_character.key = player_key
 		//Were they any particular special role? If so, copy.

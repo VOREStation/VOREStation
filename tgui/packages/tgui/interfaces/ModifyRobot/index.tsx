@@ -21,7 +21,7 @@ import { ModifyRobotModules } from './ModifyRobotTabs/ModifyRobotModules';
 import { ModifyRobotPKA } from './ModifyRobotTabs/ModifyRobotPKA';
 import { ModifyRobotRadio } from './ModifyRobotTabs/ModifyRobotRadio';
 import { ModifyRobotUpgrades } from './ModifyRobotTabs/ModifyRobotUpgrades';
-import { Data } from './types';
+import type { Data } from './types';
 
 export const ModifyRobot = (props) => {
   const { act, data } = useBackend<Data>();

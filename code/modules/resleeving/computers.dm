@@ -8,6 +8,7 @@
 	icon_keyboard = "med_key"
 	icon_screen = "dna"
 	light_color = "#315ab4"
+	bubble_icon = "medical"
 	circuit = /obj/item/circuitboard/resleeving_control
 	req_access = list(access_heads) //Only used for record deletion right now.
 	var/list/pods = null //Linked grower pods.
@@ -461,7 +462,8 @@
 				I.desc = "Resequences structural enzymes to match the body record this was created from."
 				I.buf = active_br.mydna.copy()
 				I.buf.types = DNA2_BUF_SE
-				addtimer(CALLBACK(src, PROC_REF(dispense_injector), I), 20 SECONDS, TIMER_DELETE_ME)
+				atom_say("Beginning injector synthesis.")
+				addtimer(CALLBACK(src, PROC_REF(dispense_injector), I), 10 SECONDS, TIMER_DELETE_ME)
 			. = TRUE
 		if("cleartemp")
 			temp = null

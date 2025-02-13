@@ -5,7 +5,7 @@ import { Stack } from 'tgui-core/components';
 import { IconSection } from './IconSection';
 import { ModuleSection } from './ModuleSection';
 import { SpriteSection } from './SpriteSection';
-import { Data } from './types';
+import type { Data } from './types';
 
 export const RobotChoose = (props) => {
   const { data } = useBackend<Data>();

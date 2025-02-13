@@ -3,7 +3,7 @@ import { useBackend } from 'tgui/backend';
 import { Button, Section, Tabs } from 'tgui-core/components';
 
 import { ICON_BY_CATEGORY_NAME } from './constants';
-import { Data } from './types';
+import type { Data } from './types';
 
 export const PipeTypeSection = (props) => {
   const { act, data } = useBackend<Data>();

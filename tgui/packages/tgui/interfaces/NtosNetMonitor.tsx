@@ -8,7 +8,7 @@ import {
   NumberInput,
   Section,
 } from 'tgui-core/components';
-import { BooleanLike } from 'tgui-core/react';
+import type { BooleanLike } from 'tgui-core/react';
 
 type Data = {
   ntnetstatus: BooleanLike;

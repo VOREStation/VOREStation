@@ -341,6 +341,7 @@ But for now, for what it's been used for, it works.
 				// Turn off gene
 				H.dna.SetSEState(gene.block,0)
 			domutcheck(H,null,MUTCHK_FORCED)
+			H.UpdateAppearance()
 			H.update_mutations()
 	if(H.species.name == SPECIES_VOX || SPECIES_ZADDAT)	//Species that 'actually' require survival gear to live. The rest don't.
 		H.species.equip_survival_gear(H)

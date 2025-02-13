@@ -3,7 +3,7 @@ import { Box, Button, Section } from 'tgui-core/components';
 
 import { StandardControls, StatusDisplay } from './EmbeddedControllerHelpers';
 import { PanelOpen } from './PanelOpen';
-import { AirlockConsoleAdvancedData } from './types';
+import type { AirlockConsoleAdvancedData } from './types';
 
 /**
  * Advanced airlock consoles display the external pressure,

@@ -9,7 +9,7 @@ import {
 import { toFixed } from 'tgui-core/math';
 
 import { stats } from './constants';
-import { occupant } from './types';
+import type { occupant } from './types';
 
 export const BodyScannerMainOccupant = (props: { occupant: occupant }) => {
   const { act } = useBackend();

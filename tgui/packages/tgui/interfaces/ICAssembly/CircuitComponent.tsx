@@ -5,7 +5,10 @@ import { shallowDiffers } from 'tgui-core/react';
 import { decodeHtmlEntities } from 'tgui-core/string';
 
 import { Port, PortProps } from './Port';
-import { CircuitData, PortTypesToColor as PORT_TYPES_TO_COLOR } from './types';
+import {
+  type CircuitData,
+  PortTypesToColor as PORT_TYPES_TO_COLOR,
+} from './types';
 
 export type CircuitProps = {
   x: number;

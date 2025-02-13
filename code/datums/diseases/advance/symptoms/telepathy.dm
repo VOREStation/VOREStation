@@ -31,6 +31,7 @@ Bonus
 		var/datum/gene/trait/G = get_gene_from_trait(/datum/trait/positive/superpower_remotetalk)
 		H.dna.SetSEState(G.block, 1)
 		domutcheck(H, null, TRUE)
+		H.UpdateAppearance()
 		to_chat(H, span_notice("Your mind expands..."))
 
 /datum/symptom/telepathy/End(datum/disease/advance/A)
@@ -40,4 +41,5 @@ Bonus
 		var/datum/gene/trait/G = get_gene_from_trait(/datum/trait/positive/superpower_remotetalk)
 		H.dna.SetSEState(G.block, 0)
 		domutcheck(H, null, TRUE)
+		H.UpdateAppearance()
 		to_chat(H, span_notice("Everything feels... Normal."))

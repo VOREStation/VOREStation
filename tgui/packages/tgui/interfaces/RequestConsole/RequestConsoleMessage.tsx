@@ -3,7 +3,7 @@ import { Box, Button, LabeledList, Section } from 'tgui-core/components';
 import { decodeHtmlEntities } from 'tgui-core/string';
 
 import { RCS_MAINMENU } from './constants';
-import { Data } from './types';
+import type { Data } from './types';
 
 export const RequestConsoleViewMessages = (props) => {
   const { act, data } = useBackend<Data>();

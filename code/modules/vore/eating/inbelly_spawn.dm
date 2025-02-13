@@ -146,6 +146,7 @@ Please do not abuse this ability.
 		new_character.dna.ResetUIFrom(new_character)
 		new_character.sync_dna_traits(TRUE) // Traitgenes Sync traits to genetics if needed
 		new_character.sync_organ_dna()
+	new_character.initialize_vessel()
 	new_character.key = player_key
 	if(new_character.mind)
 		var/datum/antagonist/antag_data = get_antag_data(new_character.mind.special_role)

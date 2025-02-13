@@ -2,7 +2,7 @@ import { useBackend } from 'tgui/backend';
 import { Box, Button, LabeledList, Section } from 'tgui-core/components';
 
 import { NEWSCASTER_SCREEN_MAIN } from './constants';
-import { Data } from './types';
+import type { Data } from './types';
 
 export const NewscasterPrint = (props: { setScreen: Function }) => {
   const { act, data } = useBackend<Data>();

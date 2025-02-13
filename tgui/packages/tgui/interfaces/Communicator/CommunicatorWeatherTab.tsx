@@ -2,7 +2,7 @@ import { useBackend } from 'tgui/backend';
 import { Box, LabeledList, Section } from 'tgui-core/components';
 import { decodeHtmlEntities, toTitleCase } from 'tgui-core/string';
 
-import { AirContent, WeatherTabData } from './types';
+import type { AirContent, WeatherTabData } from './types';
 
 export const CommunicatorWeatherTab = (props) => {
   const { act, data } = useBackend<WeatherTabData>();

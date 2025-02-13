@@ -8,7 +8,7 @@ import {
   Stack,
   Table,
 } from 'tgui-core/components';
-import { BooleanLike } from 'tgui-core/react';
+import type { BooleanLike } from 'tgui-core/react';
 
 type Data = {
   locked: BooleanLike;

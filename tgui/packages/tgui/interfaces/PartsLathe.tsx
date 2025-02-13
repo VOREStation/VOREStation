@@ -8,11 +8,11 @@ import {
   ProgressBar,
   Section,
 } from 'tgui-core/components';
-import { BooleanLike } from 'tgui-core/react';
+import type { BooleanLike } from 'tgui-core/react';
 import { toTitleCase } from 'tgui-core/string';
 
 import { Materials } from './ExosuitFabricator/Material';
-import { material } from './ExosuitFabricator/types';
+import type { material } from './ExosuitFabricator/types';
 
 type Data = {
   panelOpen: BooleanLike;

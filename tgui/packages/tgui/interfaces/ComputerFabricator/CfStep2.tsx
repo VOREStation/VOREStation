@@ -1,7 +1,7 @@
 import { useBackend } from 'tgui/backend';
 import { Box, Button, Section, Table, Tooltip } from 'tgui-core/components';
 
-import { Data } from './types';
+import type { Data } from './types';
 
 export const CfStep2 = (props) => {
   const { act, data } = useBackend<Data>();

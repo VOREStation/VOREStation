@@ -3,7 +3,7 @@ import { Window } from 'tgui/layouts';
 
 import { BodyScannerEmpty } from './BodyScannerEmpty';
 import { BodyScannerMain } from './BodyScannerMain';
-import { Data, occupant } from './types';
+import type { Data, occupant } from './types';
 
 export const BodyScanner = (props) => {
   const { data } = useBackend<Data>();

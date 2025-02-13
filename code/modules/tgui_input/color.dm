@@ -18,7 +18,7 @@
 		else
 			return
 	// Client does NOT have tgui_input on: Returns regular input
-	if(!user.client.prefs.read_preference(/datum/preference/toggle/tgui_input_mode) || user.client.byond_version < 516) // Todo, remove once virgo is on 516, but currently the TGUI interface is already programmed for edge
+	if(!user.client.prefs.read_preference(/datum/preference/toggle/tgui_input_mode))
 		return input(user, message, title, default) as color|null
 	var/datum/tgui_color_picker/picker = new(user, message, title, default, timeout, autofocus)
 	picker.tgui_interact(user)

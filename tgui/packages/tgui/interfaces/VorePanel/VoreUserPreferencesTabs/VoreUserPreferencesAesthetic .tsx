@@ -1,7 +1,7 @@
 import { useBackend } from 'tgui/backend';
 import { Button, Section, Stack } from 'tgui-core/components';
 
-import { localPrefs } from '../types';
+import type { localPrefs } from '../types';
 import { VoreUserPreferenceItem } from '../VoreUserPreferenceItem';
 
 export const VoreUserPreferencesAesthetic = (props: {

@@ -1,7 +1,7 @@
 import { useBackend } from 'tgui/backend';
 import { Box, Button, Icon, Stack } from 'tgui-core/components';
 
-import { record } from './types';
+import type { record } from './types';
 
 export const ResleevingConsoleRecords = (props: {
   records: record[];

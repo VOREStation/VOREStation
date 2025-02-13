@@ -1,7 +1,7 @@
 import { useBackend } from 'tgui/backend';
 import { Box, Button, LabeledList, Section } from 'tgui-core/components';
 
-import { Data, modalData } from './types';
+import type { Data, modalData } from './types';
 
 export const analyzeModalBodyOverride = (modal: modalData) => {
   const { act, data } = useBackend<Data>();

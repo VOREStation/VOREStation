@@ -1092,6 +1092,7 @@
 	owner.UpdateAppearance()
 	owner.sync_dna_traits(FALSE)
 	owner.sync_organ_dna()
+	owner.initialize_vessel()
 	owner.dna.blood_reagents = R.dna.blood_reagents
 	owner.dna.blood_color = R.dna.blood_color
 	owner.regenerate_icons()

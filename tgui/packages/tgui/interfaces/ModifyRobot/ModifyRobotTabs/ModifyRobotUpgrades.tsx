@@ -14,7 +14,7 @@ import { capitalize } from 'tgui-core/string';
 import { NoSpriteWarning } from '../components';
 import { install2col } from '../constants';
 import { prepareSearch } from '../functions';
-import { Target, Upgrade } from '../types';
+import type { Target, Upgrade } from '../types';
 
 export const ModifyRobotUpgrades = (props: { target: Target }) => {
   const { target } = props;
@@ -130,6 +130,7 @@ const UpgradeSection = (props: {
           {prepareSearch(upgrades, searchText).map((upgrade, i) => {
             return (
               <Button
+                ellipsis
                 fluid
                 key={i}
                 color={

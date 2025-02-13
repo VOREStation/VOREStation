@@ -1,7 +1,7 @@
 import { useBackend, useSharedState } from 'tgui/backend';
 import { Window } from 'tgui/layouts';
 import { Box, Button, LabeledList, Section, Tabs } from 'tgui-core/components';
-import { BooleanLike } from 'tgui-core/react';
+import type { BooleanLike } from 'tgui-core/react';
 
 type Data = { badmin: BooleanLike; servers: server[]; consoles: console[] };
 

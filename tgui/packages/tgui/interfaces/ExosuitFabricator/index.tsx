@@ -6,7 +6,7 @@ import { materialArrayToObj, queueCondFormat } from './functions';
 import { Materials } from './Material';
 import { PartLists, PartSets } from './Parts';
 import { Queue } from './Queue';
-import { Data } from './types';
+import type { Data } from './types';
 
 export const ExosuitFabricator = (props) => {
   const { act, data } = useBackend<Data>();

@@ -7,7 +7,7 @@ import {
   Section,
 } from 'tgui-core/components';
 
-import { Data } from './types';
+import type { Data } from './types';
 
 export const CloningConsoleTemp = (props) => {
   const { act, data } = useBackend<Data>();

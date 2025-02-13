@@ -4,10 +4,10 @@ import { getGasColor, getGasLabel } from 'tgui/constants';
 import { Window } from 'tgui/layouts';
 import { Box, Button, LabeledList, Section } from 'tgui-core/components';
 import { toFixed } from 'tgui-core/math';
-import { BooleanLike } from 'tgui-core/react';
+import type { BooleanLike } from 'tgui-core/react';
 
 import { Scrubber, Vent } from './common/AtmosControls';
-import { single_scrubber, single_vent } from './common/CommonTypes';
+import type { single_scrubber, single_vent } from './common/CommonTypes';
 import { InterfaceLockNoticeBox } from './common/InterfaceLockNoticeBox';
 
 type Data = {

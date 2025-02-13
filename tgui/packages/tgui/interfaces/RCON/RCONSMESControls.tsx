@@ -1,11 +1,11 @@
 import { useBackend } from 'tgui/backend';
 import { Button, Slider, Stack } from 'tgui-core/components';
 import { formatPower } from 'tgui-core/format';
-import { BooleanLike } from 'tgui-core/react';
+import type { BooleanLike } from 'tgui-core/react';
 import { capitalize } from 'tgui-core/string';
 
 import { POWER_MUL } from './constants';
-import { rconSmes } from './types';
+import type { rconSmes } from './types';
 
 export const SMESControls = (props: { way: string; smes: rconSmes }) => {
   const { act } = useBackend();

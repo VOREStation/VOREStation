@@ -3,7 +3,7 @@ import { NanoMap } from 'tgui/components';
 import { Box } from 'tgui-core/components';
 
 import { getStatColor } from './functions';
-import { Data } from './types';
+import type { Data } from './types';
 
 export const CrewMonitorMapView = (props: {
   zoom: number;

@@ -4,7 +4,7 @@ import { SleeperChemicals } from './SleeperChemicals';
 import { SleeperDamage } from './SleeperDamage';
 import { SleeperDialysisPump } from './SleeperDialysisPump';
 import { SleeperOccupant } from './SleeperOccupant';
-import { Data } from './types';
+import type { Data } from './types';
 
 export const SleeperMain = (props) => {
   const { data } = useBackend<Data>();

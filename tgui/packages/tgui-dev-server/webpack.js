@@ -31,7 +31,7 @@ class WebpackCompiler {
     // and retrieve all necessary dependencies.
     const requireFromRoot = createRequire(dirname(import.meta.url) + '/../..');
     const webpack = await requireFromRoot('webpack');
-    const createConfig = await requireFromRoot('./webpack.config.edge.js');
+    const createConfig = await requireFromRoot('./webpack.config.js');
     const config = createConfig({}, options);
     // Inject the HMR plugin into the config if we're using it
     if (options.hot) {

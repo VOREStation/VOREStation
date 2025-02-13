@@ -9,7 +9,7 @@ import {
 } from 'tgui-core/components';
 
 import { getNifCondition, getNutritionText } from './functions';
-import { Data } from './types';
+import type { Data } from './types';
 
 export const NIFMain = (props) => {
   const { act, data } = useBackend<Data>();

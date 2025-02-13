@@ -1,3 +1,10 @@
+export const SPRITE_ACCESSORY_COLOR_CHANNEL_NAMES = [
+  'Primary',
+  'Secondary',
+  'Tertiary',
+  'Quaternary',
+];
+
 export const TAB_RACE = 0;
 export const TAB_FLAVOR = 1;
 export const TAB_GENDER = 2;

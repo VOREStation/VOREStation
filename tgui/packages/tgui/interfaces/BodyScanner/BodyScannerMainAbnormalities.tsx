@@ -1,7 +1,7 @@
 import { Box, Section } from 'tgui-core/components';
 
 import { abnormalities } from './constants';
-import { occupant } from './types';
+import type { occupant } from './types';
 
 export const BodyScannerMainAbnormalities = (props: { occupant: occupant }) => {
   const { occupant } = props;

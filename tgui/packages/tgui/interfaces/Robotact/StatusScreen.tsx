@@ -11,7 +11,7 @@ import {
   Stack,
 } from 'tgui-core/components';
 
-import { Data } from './types';
+import type { Data } from './types';
 
 const quick_actions: {
   name: string;

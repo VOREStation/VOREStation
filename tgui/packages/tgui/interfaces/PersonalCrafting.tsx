@@ -12,7 +12,7 @@ import {
   Tabs,
 } from 'tgui-core/components';
 import { flow } from 'tgui-core/fp';
-import { BooleanLike } from 'tgui-core/react';
+import type { BooleanLike } from 'tgui-core/react';
 import { createSearch } from 'tgui-core/string';
 
 type Data = {
@@ -136,6 +136,7 @@ export const PersonalCrafting = (props) => {
           <Input
             fluid
             value={searchText}
+            mb={1}
             placeholder="Search for recipes..."
             onInput={(e, value: string) => setSearchText(value)}
           />

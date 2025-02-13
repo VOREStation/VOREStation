@@ -6,7 +6,7 @@ import { CfStep1 } from './CfStep1';
 import { CfStep2 } from './CfStep2';
 import { CfStep3 } from './CfStep3';
 import { CfStep4 } from './CfStep4';
-import { Data } from './types';
+import type { Data } from './types';
 
 export const ComputerFabricator = (props) => {
   const { act, data } = useBackend<Data>();

@@ -2,7 +2,7 @@ import { useBackend } from 'tgui/backend';
 import { Box, Button, Section } from 'tgui-core/components';
 import { decodeHtmlEntities } from 'tgui-core/string';
 
-import { Data } from './types';
+import type { Data } from './types';
 
 export const CommunicatorMessageSubTab = (props: {
   clipboardMode: boolean;

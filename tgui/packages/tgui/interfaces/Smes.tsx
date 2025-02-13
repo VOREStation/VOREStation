@@ -11,7 +11,7 @@ import {
 } from 'tgui-core/components';
 import { formatPower } from 'tgui-core/format';
 import { toFixed } from 'tgui-core/math';
-import { BooleanLike } from 'tgui-core/react';
+import type { BooleanLike } from 'tgui-core/react';
 
 // Common power multiplier
 const POWER_MUL: number = 1e3;

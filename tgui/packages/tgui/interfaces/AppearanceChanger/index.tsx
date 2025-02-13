@@ -40,7 +40,7 @@ import {
   TAB_TAIL,
   TAB_WINGS,
 } from './constants';
-import { Data } from './types';
+import type { Data } from './types';
 
 export const AppearanceChanger = (props) => {
   const { act, config, data } = useBackend<Data>();

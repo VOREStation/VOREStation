@@ -2,7 +2,7 @@ import { Box, LabeledList, ProgressBar, Section } from 'tgui-core/components';
 import { toFixed } from 'tgui-core/math';
 
 import { damageRange, damages, stats, tempColors } from './constants';
-import { occupant } from './types';
+import type { occupant } from './types';
 
 export const OperatingComputerPatient = (props: { occupant: occupant }) => {
   const { occupant } = props;

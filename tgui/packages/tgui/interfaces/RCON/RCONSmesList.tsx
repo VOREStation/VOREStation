@@ -2,7 +2,7 @@ import { useBackend } from 'tgui/backend';
 import { Button, Section, Stack } from 'tgui-core/components';
 
 import { SMESItem } from './RCONSMESItem';
-import { Data } from './types';
+import type { Data } from './types';
 
 export const RCONSmesList = (props) => {
   const { act, data } = useBackend<Data>();

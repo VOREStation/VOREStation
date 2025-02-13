@@ -3,7 +3,7 @@ import { toFixed } from 'tgui-core/math';
 
 import { damageRange, damages } from './constants';
 import { mapTwoByTwo } from './functions';
-import { occupant } from './types';
+import type { occupant } from './types';
 
 export const BodyScannerMainDamage = (props: { occupant: occupant }) => {
   const { occupant } = props;

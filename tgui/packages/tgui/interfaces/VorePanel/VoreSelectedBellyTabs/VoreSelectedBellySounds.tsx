@@ -1,7 +1,7 @@
 import { useBackend } from 'tgui/backend';
 import { Button, LabeledList, Stack } from 'tgui-core/components';
 
-import { selectedData } from '../types';
+import type { selectedData } from '../types';
 
 export const VoreSelectedBellySounds = (props: { belly: selectedData }) => {
   const { act } = useBackend();

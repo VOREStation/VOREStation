@@ -115,7 +115,7 @@
 	return
 
 /obj/machinery/dna_scannernew/proc/eject_occupant()
-	var/mob/living/carbon/WC = occupant.resolve()
+	var/mob/living/carbon/WC = occupant?.resolve()
 	go_out()
 	for(var/obj/O in src)
 		if((!istype(O,/obj/item/reagent_containers)) && (!istype(O,/obj/item/circuitboard/clonescanner)) && (!istype(O,/obj/item/stock_parts)) && (!istype(O,/obj/item/stack/cable_coil)))
@@ -836,6 +836,8 @@
 		if	(prob(80-radiation_duration))
 			//testing("Random bad mut!")
 			randmutb(WC)
+			domutcheck(WC,null,MUTCHK_FORCED)
+			WC.UpdateAppearance()
 	// Traitgenes Do gene updates here, and more comprehensively
 	if(ishuman(WC))
 		var/mob/living/carbon/human/H = WC
@@ -858,6 +860,8 @@
 		else
 			if(prob(95))
 				randmutg(WC)
+		domutcheck(WC,null,MUTCHK_FORCED)
+		WC.UpdateAppearance()
 	// Traitgenes Do gene updates here, and more comprehensively
 	if(ishuman(WC))
 		var/mob/living/carbon/human/H = WC
@@ -883,6 +887,7 @@
 		WC.dna.SE = buf.mydna.dna.SE.Copy()
 		WC.dna.UpdateSE()
 		domutcheck(WC,connected, MUTCHK_FORCED | MUTCHK_HIDEMSG) // TOO MANY MUTATIONS FOR MESSAGES
+		WC.UpdateAppearance()
 		to_chat(WC, span_warning("Your body stings as it wildly changes!"))
 
 		// apply genes

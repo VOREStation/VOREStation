@@ -8,7 +8,7 @@ import {
   Stack,
 } from 'tgui-core/components';
 
-import { Data } from './types';
+import type { Data } from './types';
 
 export const SleeperChemicals = (props) => {
   const { act, data } = useBackend<Data>();

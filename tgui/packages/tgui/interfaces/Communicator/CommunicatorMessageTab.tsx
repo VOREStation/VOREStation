@@ -3,7 +3,7 @@ import { Box, Button, Section, Table } from 'tgui-core/components';
 import { decodeHtmlEntities } from 'tgui-core/string';
 
 import { CONTTAB, MESSSUBTAB } from './constants';
-import { Data } from './types';
+import type { Data } from './types';
 
 export const CommunicatorMessageTab = (props) => {
   const { act, data } = useBackend<Data>();

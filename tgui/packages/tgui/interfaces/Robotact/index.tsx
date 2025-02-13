@@ -6,7 +6,7 @@ import { Button, NoticeBox, Stack, Tabs } from 'tgui-core/components';
 import { ComponentView } from './Diagnostics';
 import { Modules } from './Modules';
 import { StatusScreen } from './StatusScreen';
-import { Data } from './types';
+import type { Data } from './types';
 
 export const Robotact = (props) => {
   const { act, data } = useBackend<Data>();

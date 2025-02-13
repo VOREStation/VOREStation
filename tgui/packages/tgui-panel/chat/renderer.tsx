@@ -29,7 +29,7 @@ import {
   typeIsImportant,
 } from './model';
 import { highlightNode, linkifyNode } from './replaceInTextNode';
-import { message } from './types';
+import type { message } from './types';
 
 const logger = createLogger('chatRenderer');
 

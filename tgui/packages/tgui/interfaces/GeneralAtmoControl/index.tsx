@@ -4,7 +4,7 @@ import { Window } from 'tgui/layouts';
 import { AtmoControlFuel } from './FuelControls';
 import { AtmoControlSensors } from './Sensors';
 import { AtmoControlTankCore } from './TankControls';
-import { Data } from './types';
+import type { Data } from './types';
 
 export const GeneralAtmoControl = (props) => {
   const { data } = useBackend<Data>();

@@ -106,11 +106,8 @@
 			strict_mode = TRUE,
 			fancy = user.read_preference(/datum/preference/toggle/tgui_fancy),
 			assets = list(
-				// FIXME: Delete this when 516 is required!
-				user.client.byond_version >= 516 \
-					? get_asset_datum(/datum/asset/simple/tgui_edge) \
-					: get_asset_datum(/datum/asset/simple/tgui),
-			))
+				get_asset_datum(/datum/asset/simple/tgui),
+				))
 	else
 		window.send_message("ping")
 	send_assets()
