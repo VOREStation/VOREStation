@@ -990,12 +990,26 @@
 // *******************************************************
 /datum/tgui_module/appearance_changer/cocoon
 	name ="Appearance Editor (Cocoon)"
-	flags = APPEARANCE_ALL_HAIR
+	flags = APPEARANCE_ALL_HAIR | APPEARANCE_EYE_COLOR | APPEARANCE_SKIN
 	customize_usr = TRUE
 
 /datum/tgui_module/appearance_changer/cocoon/tgui_status(mob/user, datum/tgui_state/state)
 	//if(!istype(owner.loc, /obj/item/storage/vore_egg/bugcocoon))
 	if(!owner.transforming)
+		return STATUS_CLOSE
+	return ..()
+
+// *******************************************************
+// Morph Superpower
+// *******************************************************
+/datum/tgui_module/appearance_changer/superpower
+	name ="Appearance Editor (Superpower)"
+	flags = APPEARANCE_ALL_HAIR | APPEARANCE_EYE_COLOR | APPEARANCE_SKIN
+	customize_usr = TRUE
+
+/datum/tgui_module/appearance_changer/superpower/tgui_status(mob/user, datum/tgui_state/state)
+	var/datum/gene/G = get_gene_from_trait(/datum/trait/positive/superpower_morph)
+	if(!owner.dna.GetSEState(G.block))
 		return STATUS_CLOSE
 	return ..()
 
@@ -1076,7 +1090,7 @@
 		owner.dna.digitigrade = R.dna.digitigrade // ensure cloned DNA is set appropriately from record??? for some reason it doesn't get set right despite the override to datum/dna/Clone()
 	//Update appearance, remake icons
 	owner.UpdateAppearance()
-	//owner.sync_dna_traits(FALSE) //Needs trait genetics first
+	owner.sync_dna_traits(FALSE)
 	owner.sync_organ_dna()
 	owner.dna.blood_reagents = R.dna.blood_reagents
 	owner.dna.blood_color = R.dna.blood_color

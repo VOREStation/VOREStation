@@ -1,5 +1,6 @@
 import { useBackend } from 'tgui/backend';
 import { Window } from 'tgui/layouts';
+import { Stack } from 'tgui-core/components';
 
 import { ComplexModal } from '../common/ComplexModal';
 import { DNAModifierIrradiating } from './DNAModifierIrradiating';
@@ -12,18 +13,31 @@ export const DNAModifier = (props) => {
 
   const { irradiating, occupant } = data;
 
-  const isDNAInvalid: boolean =
-    !occupant.isViableSubject ||
-    !occupant.uniqueIdentity ||
-    !occupant.structuralEnzymes;
-
   return (
     <Window width={660} height={870}>
       <ComplexModal />
-      {irradiating && <DNAModifierIrradiating duration={irradiating} />}
+      {irradiating ? <DNAModifierIrradiating duration={irradiating} /> : ''}
       <Window.Content className="Layout__content--flexColumn">
-        <DNAModifierOccupant isDNAInvalid={isDNAInvalid} />
-        <DNAModifierMain isDNAInvalid={isDNAInvalid} />
+        <Stack vertical fill>
+          <Stack.Item>
+            <DNAModifierOccupant
+              isDNAInvalid={
+                !occupant.isViableSubject ||
+                !occupant.uniqueIdentity ||
+                !occupant.structuralEnzymes
+              }
+            />
+          </Stack.Item>
+          <Stack.Item grow>
+            <DNAModifierMain
+              isDNAInvalid={
+                !occupant.isViableSubject ||
+                !occupant.uniqueIdentity ||
+                !occupant.structuralEnzymes
+              }
+            />
+          </Stack.Item>
+        </Stack>
       </Window.Content>
     </Window>
   );

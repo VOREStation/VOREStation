@@ -27,9 +27,12 @@
 	var/can_defib = 1					//Horrible damage (like beheadings) will prevent defibbing organics.
 	var/active_regen = FALSE //Used for the regenerate proc in human_powers.dm
 	var/active_regen_delay = 300
+	var/last_breath_sound				//Allows us to store the value across proc calls per-mob.
 	var/list/teleporters = list() //Used for lleill abilities
 
 	var/rest_dir = 0					//To lay down in a specific direction
+	var/gutdeathpressure = 0			//For GIBBING trait
+	var/list/datum/genetics/side_effect/genetic_side_effects = list()	//For any genetic side effects we currently have.
 
 /mob/living/carbon/human/Initialize(mapload, var/new_species = null)
 	if(!dna)
@@ -38,7 +41,7 @@
 
 	if(!species)
 		if(new_species)
-			set_species(new_species,1)
+			set_species(new_species)
 		else
 			set_species()
 
@@ -61,18 +64,16 @@
 	if(dna)
 		dna.ready_dna(src)
 		dna.real_name = real_name
+		sync_dna_traits(FALSE) // Traitgenes Sync traits to genetics if needed
 		sync_organ_dna()
 
 	AddComponent(/datum/component/personal_crafting)
 
 /mob/living/carbon/human/Destroy()
 	human_mob_list -= src
-	/* //REMOVE - this is done on mob/living/Destroy
-	for(var/organ in organs)
-		qdel(organ)
-	*/
+	QDEL_NULL_LIST(organs)
 	if(nif)
-		QDEL_NULL(nif)	//VOREStation Add
+		QDEL_NULL(nif)
 	worn_clothing.Cut()
 
 
@@ -114,7 +115,6 @@
 			. += "Chemical Storage: [mind.changeling.chem_charges]"
 			. += "Genetic Damage Time: [mind.changeling.geneticdamage]"
 			. += "Re-Adaptations: [mind.changeling.readapts]/[mind.changeling.max_readapts]"
-
 	if(species)
 		species.get_status_tab_items(src)
 
@@ -193,6 +193,7 @@
 			if (!get_ear_protection() >= 2)
 				ear_damage += 30
 				ear_deaf += 120
+				// deaf_loop.start() // Used downstream
 			if (prob(70) && !shielded)
 				Paralyse(10)
 
@@ -203,6 +204,7 @@
 			if (!get_ear_protection() >= 2)
 				ear_damage += 15
 				ear_deaf += 60
+				// deaf_loop.start() // Used downstream
 			if (prob(50) && !shielded)
 				Paralyse(10)
 
@@ -738,7 +740,7 @@
 				src << browse(null, "window=flavor_changes")
 				return
 			if("general")
-				var/msg = strip_html_simple(tgui_input_text(usr,"Update the general description of your character. This will be shown regardless of clothing.","Flavor Text",html_decode(flavor_texts[href_list["flavor_change"]]), multiline = TRUE, prevent_enter = TRUE))	//VOREStation Edit: separating out OOC notes
+				var/msg = strip_html_simple(tgui_input_text(usr,"Update the general description of your character. This will be shown regardless of clothing.","Flavor Text",html_decode(flavor_texts[href_list["flavor_change"]]), multiline = TRUE, prevent_enter = TRUE))	//Separating out OOC notes
 				if(msg)
 					flavor_texts[href_list["flavor_change"]] = msg
 					set_flavor()
@@ -816,11 +818,9 @@
 	return 1
 
 /mob/living/carbon/human/IsAdvancedToolUser(var/silent)
-	// VOREstation start
 	if(feral)
 		to_chat(src, span_warning("Your primitive mind can't grasp the concept of that thing."))
 		return 0
-	// VOREstation end
 	if(species.has_fine_manipulation)
 		return 1
 	if(!silent)
@@ -956,6 +956,8 @@
 		return
 	var/list/creatures = list()
 	for(var/mob/living/carbon/h in mob_list)
+		if(h == src) // Don't target self
+			continue
 		creatures += h
 	var/mob/target = tgui_input_list(src, "Who do you want to project your mind to?", "Project Mind", creatures)
 	if (isnull(target))
@@ -984,18 +986,20 @@
 		remoteview_target = null
 		reset_view(0)
 		remove_verb(src, /mob/living/carbon/human/proc/remoteobserve)
-		return
-
 	if(client.eye != client.mob)
-		remoteview_target = null
 		reset_view(0)
 		return
 
 	var/list/mob/creatures = list()
 
+	var/turf/current = get_turf(src) // Needs to be on station or same z to perform telepathy
 	for(var/mob/living/carbon/h in mob_list)
 		var/turf/temp_turf = get_turf(h)
-		if((temp_turf.z != 1 && temp_turf.z != 5) || h.stat!=CONSCIOUS) //Not on mining or the station. Or dead
+		if(!istype(temp_turf,/turf/)) // Nullcheck fix
+			continue
+		if(h == src) // Traitgenes edit - Don't target self
+			continue
+		if(!((temp_turf.z in using_map.station_levels) || current.z == temp_turf.z) || h.stat!=CONSCIOUS) // Needs to be on station or same z to perform telepathy
 			continue
 		creatures += h
 
@@ -1051,13 +1055,19 @@
 						H.brainmob.mind.transfer_to(src)
 						qdel(H)
 
-	// Vorestation Addition - reapply markings/appearance from prefs for player mobs
+	// Traitgenes Disable all traits currently active, before prefs.copy_to() is applied, as it refreshes the traits list!
+	for(var/datum/gene/trait/gene in GLOB.dna_genes)
+		if(gene.name in active_genes)
+			gene.deactivate(src)
+			active_genes -= gene.name
+
+	// Reapply markings/appearance from prefs for player mobs
 	if(client) //just to be sure
 		client.prefs.copy_to(src)
 		if(dna)
 			dna.ResetUIFrom(src)
+			sync_dna_traits(TRUE) // Traitgenes Sync traits to genetics if needed
 			sync_organ_dna()
-	// end vorestation addition
 
 	losebreath = 0
 
@@ -1220,7 +1230,7 @@
 	else
 		to_chat(usr, span_warning("You failed to check the pulse. Try again."))
 
-/mob/living/carbon/human/proc/set_species(var/new_species, var/default_colour, var/regen_icons = TRUE, var/mob/living/carbon/human/example = null)	//VOREStation Edit - send an example
+/mob/living/carbon/human/proc/set_species(var/new_species)
 
 	if(!dna)
 		if(!new_species)
@@ -1237,7 +1247,7 @@
 
 	if(species)
 
-		if(species.name && species.name == new_species && species.name != "Custom Species") //VOREStation Edit
+		if(species.name && species.name == new_species && species.name != "Custom Species")
 			return
 		if(species.language)
 			remove_language(species.language)
@@ -1248,7 +1258,7 @@
 		// Clear out their species abilities.
 		species.remove_inherent_verbs(src)
 		holder_type = null
-		hunger_rate = initial(hunger_rate) //VOREStation Add
+		hunger_rate = initial(hunger_rate)
 
 	species = GLOB.all_species[new_species]
 
@@ -1261,13 +1271,8 @@
 	if(species.icon_scale_x != DEFAULT_ICON_SCALE_X || species.icon_scale_y != DEFAULT_ICON_SCALE_Y)
 		update_transform()
 
-	if(example)						//VOREStation Edit begin
-		if(!(example == src))
-			r_skin = example.r_skin
-			g_skin = example.g_skin
-			b_skin = example.b_skin
-	else if(species.base_color)	//VOREStation Edit end
-		//Apply colour.
+	if(species.base_color)
+		//Apply color.
 		r_skin = hex2num(copytext(species.base_color,2,4))
 		g_skin = hex2num(copytext(species.base_color,4,6))
 		b_skin = hex2num(copytext(species.base_color,6,8))
@@ -1284,16 +1289,18 @@
 
 	//icon_state = lowertext(species.name) //Necessary?
 
-	//VOREStation Edit start: swap places of those two procs
 	species.handle_post_spawn(src)
 
 	species.create_organs(src)
-	//VOREStation Edit end: swap places of those two procs
 
 
 	maxHealth = species.total_health
-	hunger_rate = species.hunger_factor //VOREStation Add
+	hunger_rate = species.hunger_factor
 
+	default_pixel_x = initial(pixel_x) + species.pixel_offset_x //For giving datum/species ways to change 64x64 sprite offsets
+	default_pixel_y = initial(pixel_y) + species.pixel_offset_y
+	pixel_x = default_pixel_x
+	pixel_y = default_pixel_y
 	center_offset = species.center_offset
 
 	if(LAZYLEN(descriptors))
@@ -1305,6 +1312,23 @@
 			var/datum/mob_descriptor/descriptor = species.descriptors[desctype]
 			descriptors[desctype] = descriptor.default_value
 
+	addtimer(CALLBACK(src, PROC_REF(initialize_vessel)), 0, TIMER_DELETE_ME) //Doing ASYNC fails here. This used to be a spawn(0)
+
+	// Rebuild the HUD. If they aren't logged in then login() should reinstantiate it for them.
+	update_hud()
+
+	//A slew of bits that may be affected by our species change
+	regenerate_icons()
+
+	if(species)
+		return 1
+	else
+		return 0
+
+/mob/living/carbon/human/proc/initialize_vessel() //This needs fixing. For some reason mob species is not immediately set in set_species.
+	PRIVATE_PROC(TRUE)
+	SHOULD_NOT_OVERRIDE(TRUE)
+	regenerate_icons()
 	make_blood()
 	if(vessel.total_volume < species.blood_volume)
 		vessel.maximum_volume = species.blood_volume
@@ -1315,19 +1339,6 @@
 	fixblood()
 	species.update_attack_types() //Required for any trait that updates unarmed_types in setup.
 	species.update_vore_belly_def_variant()
-
-	// Rebuild the HUD. If they aren't logged in then login() should reinstantiate it for them.
-	update_hud()
-
-	//A slew of bits that may be affected by our species change
-	regenerate_icons()
-
-	if(species)
-		//if(mind) //VOREStation Removal
-			//apply_traits() //VOREStation Removal
-		return 1
-	else
-		return 0
 
 /mob/living/carbon/human/proc/bloody_doodle()
 	set category = "IC.Game"
@@ -1495,9 +1506,14 @@
 		if(C.body_parts_covered & FEET)
 			footcoverage_check = TRUE
 			break
+	if(lying)
+		playsound(src, 'sound/misc/slip.ogg', 25, 1, -1)
+		drop_both_hands()
+		return 0
 	if((species.flags & NO_SLIP && !footcoverage_check) || (shoes && (shoes.item_flags & NOSLIP))) //Footwear negates a species' natural traction.
 		return 0
 	if(..(slipped_on,stun_duration))
+		drop_both_hands()
 		return 1
 
 /mob/living/carbon/human/proc/relocate()
@@ -1553,7 +1569,11 @@
 	current_limb.relocate()
 
 /mob/living/carbon/human/drop_from_inventory(var/obj/item/W, var/atom/target = null)
-	return !(W in organs) && ..()
+	if(W in organs)
+		return FALSE
+	if(isnull(target) && istype( src.loc,/obj/structure/disposalholder))
+		return remove_from_mob(W, src.loc)
+	return ..()
 
 /mob/living/carbon/human/reset_view(atom/A, update_hud = 1)
 	..()
@@ -1563,8 +1583,8 @@
 /mob/living/carbon/human/Check_Shoegrip()
 	if(shoes && (shoes.item_flags & NOSLIP) && istype(shoes, /obj/item/clothing/shoes/magboots))  //magboots + dense_object = no floating
 		return 1
-	if(flying) //VOREStation Edit. Checks to see if they have wings and are flying.
-		return 1 //VOREStation Edit.
+	if(flying) // Checks to see if they have wings and are flying.
+		return 1
 	return 0
 
 //Puts the item into our active hand if possible. returns 1 on success.
@@ -1661,12 +1681,10 @@
 /mob/living/carbon/human/can_feel_pain(var/obj/item/organ/check_organ)
 	if(isSynthetic())
 		return 0
-	//RS ADD START
 	if(!digest_pain && (isbelly(src.loc) || istype(src.loc, /turf/simulated/floor/water/digestive_enzymes)))
 		var/obj/belly/b = src.loc
 		if(b.digest_mode == DM_DIGEST || b.digest_mode == DM_SELECT)
 			return FALSE
-	//RS ADD END
 	for(var/datum/modifier/M in modifiers)
 		if(M.pain_immunity == TRUE)
 			return 0
@@ -1712,8 +1730,8 @@
 
 /mob/living/carbon/human/proc/get_display_species()
 	//Shows species in tooltip
-	if(src.custom_species) //VOREStation Add
-		return custom_species //VOREStation Add
+	if(src.custom_species)
+		return custom_species
 	//Beepboops get special text if obviously beepboop
 	if(looksSynthetic())
 		if(gender == MALE)
@@ -1818,7 +1836,7 @@
 /mob/living/carbon/human/verb/lay_down_left()
 	set name = "Rest-Left"
 
-	rest_dir = -1
+	rest_dir = 1
 	resting = !resting
 	to_chat(src, span_notice("You are now [resting ? "resting" : "getting up"]."))
 	update_canmove()
@@ -1826,7 +1844,7 @@
 /mob/living/carbon/human/verb/lay_down_right()
 	set name = "Rest-Right"
 
-	rest_dir = 1
+	rest_dir = 0
 	resting = !resting
 	to_chat(src, span_notice("You are now [resting ? "resting" : "getting up"]."))
 	update_canmove()

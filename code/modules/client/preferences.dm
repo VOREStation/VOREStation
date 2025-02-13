@@ -25,7 +25,7 @@ var/list/preferences_datums = list()
 	var/headset = 1						//headset type
 	var/backbag = 2						//backpack type
 	var/pdachoice = 1					//PDA type
-	var/shoe_hater = FALSE				//RS ADD - if true, will spawn with no shoes
+	var/shoe_hater = FALSE				//If true, will spawn with no shoes
 	var/no_jacket = FALSE				//if true, will not spawn with outfit's jacket/outer layer
 	var/h_style = "Bald"				//Hair type
 	var/grad_style = "none"				//Gradient style
@@ -41,7 +41,7 @@ var/list/preferences_datums = list()
 	var/gear_slot = 1					//The current gear save slot
 	var/list/traits						//Traits which modifier characters for better or worse (mostly worse).
 	var/synth_color	= 0					//Lets normally uncolorable synth parts be colorable.
-	var/synth_markings = 1				//Enable/disable markings on synth parts. //VOREStation Edit - 1 by default
+	var/synth_markings = 1				//Enable/disable markings on synth parts.
 	var/digitigrade = 0
 
 		//Some faction information.
@@ -103,7 +103,6 @@ var/list/preferences_datums = list()
 	var/sec_record = ""
 	var/gen_record = ""
 	var/exploit_record = ""
-	var/disabilities = 0
 
 	var/economic_status = "Average"
 
@@ -289,12 +288,13 @@ var/list/preferences_datums = list()
 		return 1
 
 	if(href_list["save"])
-		save_character()
+		if(save_character())
+			to_chat(usr,span_notice("Character [player_setup?.preferences?.real_name] saved!"))
 		save_preferences()
 	else if(href_list["reload"])
 		load_preferences()
 		load_character()
-		attempt_vr(client.prefs_vr,"load_vore","") //VOREStation Edit
+		attempt_vr(client.prefs_vr,"load_vore","")
 		sanitize_preferences()
 	else if(href_list["load"])
 		if(!IsGuestKey(usr.key))
@@ -342,7 +342,7 @@ var/list/preferences_datums = list()
 
 		preference.apply_pref_to(character, read_preference(preference.type))
 
-	// VOREStation Edit - Sync up all their organs and species one final time
+	// Sync up all their organs and species one final time
 	character.force_update_organs()
 
 	if(icon_updates)
@@ -393,7 +393,7 @@ var/list/preferences_datums = list()
 
 	load_preferences()
 	load_character(slotnum)
-	attempt_vr(user.client?.prefs_vr,"load_vore","") //VOREStation Edit
+	attempt_vr(user.client?.prefs_vr,"load_vore","")
 	sanitize_preferences()
 	save_preferences()
 	ShowChoices(user)
