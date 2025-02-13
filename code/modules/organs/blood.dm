@@ -21,14 +21,16 @@ var/const/CE_STABLE_THRESHOLD = 0.5
  * MUST be followed by calling fixblood() allways.
 ***/
 /mob/living/carbon/human/proc/make_blood(var/amt = 0)
-
+	testing("We are in MB!")
 	if(vessel)
+		testing("We have a vessel already!!")
 		return
 
 	if(species.flags & NO_BLOOD)
 		return
 
 	vessel = new/datum/reagents(species.blood_volume)
+	testing("We have made a vessel!")
 	vessel.my_atom = src
 
 	if(!should_have_organ(O_HEART)) //We want the var for safety but we can do without the actual blood.

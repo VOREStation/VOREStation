@@ -23,6 +23,7 @@
 
 //print a testing-mode debug message to world.log
 /proc/testing(msg)
+	to_world("Testing!")
 	to_world_log("## TESTING: [msg]")
 
 /proc/log_admin(text)
