@@ -11,14 +11,14 @@
 	activity_bounds = DNA_HARD_BOUNDS
 	activation_message="You feel no need to breathe."
 
-/*
+///This is set to HIDDEN = TRUE and is_genetrait = FALSE, meaning it's effectively unobtainable.
 /datum/trait/positive/superpower_remoteview
 	name = "Remote Viewing"
 	desc = "Remotely view other locations."
 	cost = 5
 	custom_only = FALSE
 
-	is_genetrait = TRUE
+	is_genetrait = FALSE
 	activity_bounds = DNA_HARDER_BOUNDS
 	hidden = TRUE // Cannot start with superpowers
 
@@ -33,7 +33,6 @@
 	. = ..()
 	if(/mob/living/carbon/human/proc/remoteobserve in S.inherent_verbs)
 		remove_verb(H, /mob/living/carbon/human/proc/remoteobserve)
-*/
 
 /datum/trait/positive/superpower_regenerate
 	name = "Regenerate"
