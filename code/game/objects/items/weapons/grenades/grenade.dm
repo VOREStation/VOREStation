@@ -25,8 +25,7 @@
 
 		activate(user)
 		add_fingerprint(user)
-		spawn(5)
-			detonate()
+		addtimer(CALLBACK(src, PROC_REF(detonate)), 5, TIMER_DELETE_ME)
 		return 0
 	return 1
 
@@ -39,9 +38,7 @@
 		active = 1
 		icon_state = initial(icon_state) + "_active"
 		playsound(src, 'sound/weapons/armbomb.ogg', 75, 1, -3)
-		spawn(det_time)
-			detonate()
-			return
+		addtimer(CALLBACK(src, PROC_REF(detonate)), det_time, TIMER_DELETE_ME)
 		user.set_dir(get_dir(user, target))
 		user.drop_item()
 		var/t = (isturf(target) ? target : target.loc)
@@ -82,9 +79,7 @@
 	active = 1
 	playsound(src, arm_sound, 75, 1, -3)
 
-	spawn(det_time)
-		detonate()
-		return
+	addtimer(CALLBACK(src, PROC_REF(detonate)), det_time, TIMER_DELETE_ME)
 
 
 /obj/item/grenade/proc/detonate()
