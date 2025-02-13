@@ -80,6 +80,10 @@ GLOBAL_VAR_INIT(jellyfish_count, 0)
 
 	var/reproduction_cooldown = 0
 
+/mob/living/simple_mob/vore/alienanimals/space_jellyfish/Initialize()
+	. = ..()
+	AddComponent(/datum/component/swarming)
+
 /datum/say_list/jellyfish
 	emote_see = list("flickers", "flashes", "looms","pulses","sways","shimmers hypnotically")
 
