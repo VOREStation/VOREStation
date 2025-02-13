@@ -553,6 +553,7 @@
 	new_character.dna.b_type = client.prefs.b_type
 	new_character.sync_dna_traits(TRUE) // Traitgenes Sync traits to genetics if needed
 	new_character.sync_organ_dna()
+	new_character.initialize_vessel()
 
 	for(var/lang in client.prefs.alternate_languages)
 		var/datum/language/chosen_language = GLOB.all_languages[lang]

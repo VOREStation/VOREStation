@@ -66,6 +66,7 @@
 		dna.real_name = real_name
 		sync_dna_traits(FALSE) // Traitgenes Sync traits to genetics if needed
 		sync_organ_dna()
+	initialize_vessel()
 
 	AddComponent(/datum/component/personal_crafting)
 
@@ -1068,6 +1069,7 @@
 			dna.ResetUIFrom(src)
 			sync_dna_traits(TRUE) // Traitgenes Sync traits to genetics if needed
 			sync_organ_dna()
+	initialize_vessel()
 
 	losebreath = 0
 
@@ -1312,7 +1314,9 @@
 			var/datum/mob_descriptor/descriptor = species.descriptors[desctype]
 			descriptors[desctype] = descriptor.default_value
 
-	addtimer(CALLBACK(src, PROC_REF(initialize_vessel)), 0, TIMER_DELETE_ME) //Doing ASYNC fails here. This used to be a spawn(0)
+	//This was the old location of initialize_vessel. A race condiiton happened here because of species code being JANK. This resulted in runtimes during unit test, but worked perfectly fine in game.
+	//Now, initialize_vessel has been moved to human/Initialize()
+	// addtimer(CALLBACK(src, PROC_REF(initialize_vessel)), 0, TIMER_DELETE_ME) //Doing ASYNC fails here. This used to be a spawn(0)
 
 	// Rebuild the HUD. If they aren't logged in then login() should reinstantiate it for them.
 	update_hud()
@@ -1326,7 +1330,6 @@
 		return 0
 
 /mob/living/carbon/human/proc/initialize_vessel() //This needs fixing. For some reason mob species is not immediately set in set_species.
-	PRIVATE_PROC(TRUE)
 	SHOULD_NOT_OVERRIDE(TRUE)
 	regenerate_icons()
 	make_blood()

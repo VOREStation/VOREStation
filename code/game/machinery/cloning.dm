@@ -136,6 +136,7 @@
 	H.UpdateAppearance()
 	H.sync_dna_traits(FALSE) // Traitgenes Sync traits to genetics if needed
 	H.sync_organ_dna()
+	H.initialize_vessel()
 
 	H.set_cloned_appearance()
 	update_icon()
