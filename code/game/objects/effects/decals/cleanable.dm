@@ -13,7 +13,7 @@ generic_filth = TRUE means when the decal is saved, it will be switched out for 
 	var/age = 0
 	var/list/random_icon_states = list()
 
-/obj/effect/decal/cleanable/Initialize(var/mapload, var/_age)
+/obj/effect/decal/cleanable/Initialize(mapload, var/_age)
 	if(!isnull(_age))
 		age = _age
 	if(random_icon_states && length(src.random_icon_states) > 0)
