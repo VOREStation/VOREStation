@@ -26,8 +26,16 @@ var/global/floorIsLava = 0
 
 /proc/admin_notice(var/message, var/rights)
 	for(var/mob/M in mob_list)
-		if(check_rights(rights, 0, M))
-			to_chat(M,message)
+		var/C = M.client
+
+		if(!C)
+			return
+
+		if(!(istype(C, /client)))
+			return
+
+		if(check_rights_for(C, rights))
+			to_chat(C, message)
 
 ///////////////////////////////////////////////////////////////////////////////////////////////Panels
 
