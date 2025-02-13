@@ -10,7 +10,7 @@
 	var/art_color
 	var/art_shade
 
-/obj/effect/decal/cleanable/crayon/Initialize(var/ml, main = "#FFFFFF",shade = "#000000",var/type = "rune", new_age = 0)
+/obj/effect/decal/cleanable/crayon/Initialize(mapload, main = "#FFFFFF",shade = "#000000",var/type = "rune", new_age = 0)
 	name = type
 	desc = "A [type] drawn in crayon."
 
@@ -25,7 +25,7 @@
 		if("graffiti")
 			type = pick("amyjon","face","matt","revolution","engie","guy","end","dwarf","uboa")
 
-	. = ..(ml, new_age) // mapload, age
+	. = ..(mapload, new_age) // mapload, age
 
 /obj/effect/decal/cleanable/crayon/update_icon()
 	cut_overlays()

@@ -352,6 +352,9 @@
 	glass_name = REAGENT_SCSATW
 	glass_desc = "The best accessory to daydrinking."
 
+/datum/reagent/drink
+	name = REAGENT_DEVELOPER_WARNING // Unit test ignore
+
 /datum/reagent/drink/choccymilk
 	name = REAGENT_CHOCCYMILK
 	id = REAGENT_ID_CHOCCYMILK

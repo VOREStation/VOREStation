@@ -1,3 +1,6 @@
+/decl/chemical_reaction/instant/food
+	name = REAGENT_DEVELOPER_WARNING // Unit test ignore
+
 /decl/chemical_reaction/instant/food/hot_ramen
 	name = REAGENT_HOTRAMEN
 	id = REAGENT_ID_HOTRAMEN

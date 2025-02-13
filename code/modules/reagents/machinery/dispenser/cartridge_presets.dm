@@ -72,7 +72,7 @@
 /obj/item/reagent_containers/chem_disp_cartridge/rum
 	spawn_reagent = REAGENT_ID_RUM
 /obj/item/reagent_containers/chem_disp_cartridge/tequila
-	spawn_reagent = REAGENT_ID_TEQUILLA
+	spawn_reagent = REAGENT_ID_TEQUILA
 /obj/item/reagent_containers/chem_disp_cartridge/vermouth
 	spawn_reagent = REAGENT_ID_VERMOUTH
 /obj/item/reagent_containers/chem_disp_cartridge/cognac

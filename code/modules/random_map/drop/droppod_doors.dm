@@ -10,7 +10,7 @@
 	var/deploying
 	var/deployed
 
-/obj/structure/droppod_door/Initialize(var/mapload, var/autoopen)
+/obj/structure/droppod_door/Initialize(mapload, var/autoopen)
 	. = ..()
 	if(autoopen)
 		addtimer(CALLBACK(src, PROC_REF(deploy)), 10 SECONDS)

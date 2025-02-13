@@ -28,7 +28,7 @@
 	var/datum/material/material
 	var/grille_type
 
-/obj/structure/low_wall/Initialize(var/mapload, var/materialtype)
+/obj/structure/low_wall/Initialize(mapload, var/materialtype)
 	. = ..()
 	icon_state = "blank"
 	var/turf/T = loc

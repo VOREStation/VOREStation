@@ -1,6 +1,7 @@
 /datum/reagent/vaccine
 	name = REAGENT_VACCINE
 	id = REAGENT_ID_VACCINE
+	description = "Liquid vaccine against some type of virus."
 	color = "#C81040"
 	taste_description = "antibodies"
 
@@ -28,6 +29,9 @@
 	id = REAGENT_ID_SUGARVIRUSFOOD
 	color = "#41B0C0"
 	taste_mult = 1.5
+
+/datum/reagent/medicine
+	name = REAGENT_DEVELOPER_WARNING // Unit test ignore
 
 /datum/reagent/medicine/adranol/adranolvirusfood
 	name = REAGENT_ADRANOLVIRUSFOOD

@@ -1,11 +1,17 @@
-// Gasses
+// Dev
+#define REAGENT_ID_DEVELOPER_WARNING "reagent"
+#define REAGENT_DEVELOPER_WARNING "Reagent"
+#define REAGENT_DESC_DEVELOPER_WARNING "A non-descript chemical."
 
+
+// Gasses
 #define GAS_CO2 "carbon_dioxide"
 #define GAS_N2 "nitrogen"
 #define GAS_N2O "nitrous_oxide"
 #define GAS_O2 "oxygen"
 #define GAS_PHORON "phoron"
 #define GAS_VOLATILE_FUEL "volatile_fuel"
+
 
 // Gas Reagents
 #define REAGENT_CARBON_DIOXIDE "Carbon Dioxide"
@@ -896,7 +902,7 @@
 #define REAGENT_ID_NUCLEARWASTE "nuclearwaste"
 #define REAGENT_SODAOIL "Soda Oil"
 #define REAGENT_ID_SODAOIL "sodaoil"
-#define REAGENT_VIRGINMOJITO "Mojito"
+#define REAGENT_VIRGINMOJITO "Virgin Mojito"
 #define REAGENT_ID_VIRGINMOJITO "virginmojito"
 #define REAGENT_VIRGINSEXONTHEBEACH "Virgin Sex On The Beach"
 #define REAGENT_ID_VIRGINSEXONTHEBEACH "virginsexonthebeach"
@@ -982,8 +988,8 @@
 #define REAGENT_ID_SAKE "sake"
 #define REAGENT_SEXONTHEBEACH "Sex On The Beach"
 #define REAGENT_ID_SEXONTHEBEACH "sexonthebeach"
-#define REAGENT_TEQUILLA "Tequila"
-#define REAGENT_ID_TEQUILLA "tequilla"
+#define REAGENT_TEQUILA "Tequila"
+#define REAGENT_ID_TEQUILA "tequila"
 #define REAGENT_THIRTEENLOKO "Thirteen Loko"
 #define REAGENT_ID_THIRTEENLOKO "thirteenloko"
 #define REAGENT_VERMOUTH "Vermouth"
@@ -1112,8 +1118,8 @@
 #define REAGENT_ID_SUIDREAM "suidream"
 #define REAGENT_SYNDICATEBOMB "Syndicate Bomb"
 #define REAGENT_ID_SYNDICATEBOMB "syndicatebomb"
-#define REAGENT_TEQUILLASUNRISE "Tequila Sunrise"
-#define REAGENT_ID_TEQUILLASUNRISE "tequillasunrise"
+#define REAGENT_TEQUILASUNRISE "Tequila Sunrise"
+#define REAGENT_ID_TEQUILASUNRISE "tequilasunrise"
 #define REAGENT_THREEMILEISLAND "Three Mile Island Iced Tea"
 #define REAGENT_ID_THREEMILEISLAND "threemileisland"
 #define REAGENT_PHORONSPECIAL "Toxins Special"

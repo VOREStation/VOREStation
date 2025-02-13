@@ -30,7 +30,7 @@
 	var/pass_color = FALSE // Will the item pass its own color var to the created item? Dyed cloth, wood, etc.
 	var/strict_color_stacking = FALSE // Will the stack merge with other stacks that are different colors? (Dyed cloth, wood, etc)
 
-/obj/item/stack/Initialize(var/ml, var/starting_amount)
+/obj/item/stack/Initialize(mapload, var/starting_amount)
 	. = ..()
 	if(!stacktype)
 		stacktype = type

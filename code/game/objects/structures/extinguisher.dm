@@ -9,7 +9,7 @@
 	var/obj/item/extinguisher/has_extinguisher
 	var/opened = 0
 
-/obj/structure/extinguisher_cabinet/Initialize(var/mapload, var/dir, var/building = 0)
+/obj/structure/extinguisher_cabinet/Initialize(mapload, var/dir, var/building = 0)
 	. = ..()
 
 	if(building)
