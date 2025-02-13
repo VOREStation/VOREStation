@@ -12,7 +12,7 @@ import {
 } from 'tgui-core/components';
 import { toFixed } from 'tgui-core/math';
 
-import { Data } from './types';
+import type { Data } from './types';
 
 export const CloningConsoleMain = (props) => {
   const { act, data } = useBackend<Data>();
