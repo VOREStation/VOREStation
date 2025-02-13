@@ -8,15 +8,18 @@ const SECONDS = 1000;
 export const byondMessages = {
   // Debounce: Prevents spamming the server
   channelIncrementMsg: debounce(
-    (visible: boolean) => Byond.sendMessage('thinking', { visible }),
+    (visible: boolean, channel: Channel) =>
+      Byond.sendMessage('thinking', { visible, channel }),
     0.4 * SECONDS,
   ),
   forceSayMsg: debounce(
-    (entry: string, channel: Channel) =>
-      Byond.sendMessage('force', { entry, channel }),
+    (entry: string) => Byond.sendMessage('force', { entry, channel: 'Say' }),
     1 * SECONDS,
     true,
   ),
   // Throttle: Prevents spamming the server
-  typingMsg: throttle(() => Byond.sendMessage('typing'), 4 * SECONDS),
+  typingMsg: throttle(
+    (channel: string) => Byond.sendMessage('typing', { channel }),
+    4 * SECONDS,
+  ),
 } as const;

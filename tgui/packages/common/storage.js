@@ -61,7 +61,17 @@ class HubStorageBackend {
 class StorageProxy {
   constructor() {
     this.backendPromise = (async () => {
-      if (!Byond.TRIDENT && testHubStorage()) {
+      if (!Byond.TRIDENT) {
+        if (!testHubStorage()) {
+          return new Promise((resolve) => {
+            const listener = () => {
+              document.removeEventListener('byondstorageupdated', listener);
+              resolve(new HubStorageBackend());
+            };
+
+            document.addEventListener('byondstorageupdated', listener);
+          });
+        }
         return new HubStorageBackend();
       }
     })();

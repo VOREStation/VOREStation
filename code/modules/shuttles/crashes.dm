@@ -41,11 +41,14 @@
 	for(var/area/A in shuttle_area)
 		for(var/mob/living/L in A)
 			victims += L
-			spawn(0)
-				shake_camera(L,2 SECONDS,4)
+			shake_camera(L,2 SECONDS,4)
 
 	//SHAKA SHAKA SHAKA
-	sleep(2 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(after_crash), victims, target), 2 SECONDS)
+
+/datum/shuttle/proc/after_crash(var/list/victims, var/obj/effect/shuttle_landmark/target)
+	PRIVATE_PROC(TRUE)
+	SHOULD_NOT_OVERRIDE(TRUE)
 
 	// Move the shuttle
 	if (!attempt_move(target))

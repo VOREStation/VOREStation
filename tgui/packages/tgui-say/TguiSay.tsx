@@ -130,7 +130,7 @@ export function TguiSay() {
     const prefix = currentPrefix ?? '';
     const grunt = iterator.isSay() ? prefix + value : value;
 
-    messages.current.forceSayMsg(grunt, iterator.current());
+    messages.current.forceSayMsg(grunt);
     unloadChat();
   }
 
@@ -140,10 +140,26 @@ export function TguiSay() {
     iterator.next();
     setButtonContent(iterator.current());
     setCurrentPrefix(null);
-    messages.current.channelIncrementMsg(iterator.isVisible());
+    messages.current.channelIncrementMsg(
+      iterator.isVisible(),
+      iterator.current(),
+    );
+  }
+
+  function handleDecrementChannel() {
+    const iterator = channelIterator.current;
+
+    iterator.prev();
+    setButtonContent(iterator.current());
+    setCurrentPrefix(null);
+    messages.current.channelIncrementMsg(
+      iterator.isVisible(),
+      iterator.current(),
+    );
   }
 
   function handleInput(event: FormEvent<HTMLTextAreaElement>): void {
+    const iterator = channelIterator.current;
     let newValue = event.currentTarget.value;
 
     let newPrefix = getPrefix(newValue) || currentPrefix;
@@ -160,7 +176,7 @@ export function TguiSay() {
 
     // Handles typing indicators
     if (channelIterator.current.isVisible() && newPrefix !== ',b ') {
-      messages.current.typingMsg();
+      messages.current.typingMsg(iterator.current());
     }
 
     setValue(newValue);
@@ -236,6 +252,10 @@ export function TguiSay() {
 
       case KEY.Tab:
         event.preventDefault();
+        if (event.shiftKey) {
+          handleDecrementChannel();
+          break;
+        }
         handleIncrementChannel();
         break;
 
