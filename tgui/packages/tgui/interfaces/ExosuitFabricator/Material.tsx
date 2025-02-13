@@ -13,7 +13,7 @@ import { classes } from 'tgui-core/react';
 import { toTitleCase } from 'tgui-core/string';
 
 import { MATERIAL_KEYS } from './constants';
-import { Data, material } from './types';
+import type { Data, material } from './types';
 
 const EjectMaterial = (props: { material: material }) => {
   const { act } = useBackend();

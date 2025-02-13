@@ -10,7 +10,7 @@ import {
 import { toFixed } from 'tgui-core/math';
 import { capitalize } from 'tgui-core/string';
 
-import { Cell, Comp, InstalledCell, Target } from '../types';
+import type { Cell, Comp, InstalledCell, Target } from '../types';
 
 export const CellCommp = (props: {
   cell: InstalledCell;

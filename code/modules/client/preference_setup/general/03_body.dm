@@ -338,7 +338,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 			var/key = pref.rlimb_data[name]
 			if(!istext(key))
 				log_debug("Bad rlimb_data for [key_name(pref.client)], [name] was set to [key]")
-				to_chat(user, span_warning("Error loading robot limb data for `[name]`, clearing pref."))
+				to_chat(usr, span_warning("Error loading robot limb data for `[name]`, clearing pref."))
 				pref.rlimb_data -= name
 			else
 				R = LAZYACCESS(all_robolimbs, key)
@@ -549,7 +549,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 				pref.set_biological_gender(mob_species.genders[1])
 			pref.custom_species = null
 			//grab one of the valid hair styles for the newly chosen species
-			var/list/valid_hairstyles = pref.get_valid_hairstyles(user)
+			var/list/valid_hairstyles = pref.get_valid_hairstyles()
 
 			if(valid_hairstyles.len)
 				if(!(pref.h_style in valid_hairstyles))
@@ -601,7 +601,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 			return TOPIC_REFRESH_UPDATE_PREVIEW
 
 	else if(href_list["hair_style"])
-		var/list/valid_hairstyles = pref.get_valid_hairstyles(user)
+		var/list/valid_hairstyles = pref.get_valid_hairstyles()
 
 		var/new_h_style = tgui_input_list(user, "Choose your character's hair style:", "Character Preference", valid_hairstyles, pref.h_style)
 		if(new_h_style && CanUseTopic(user))
@@ -618,7 +618,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 
 	else if(href_list["hair_style_left"])
 		var/H = href_list["hair_style_left"]
-		var/list/valid_hairstyles = pref.get_valid_hairstyles(user)
+		var/list/valid_hairstyles = pref.get_valid_hairstyles()
 		var/start = valid_hairstyles.Find(H)
 
 		if(start != 1) //If we're not the beginning of the list, become the previous element.
@@ -629,7 +629,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 
 	else if(href_list["hair_style_right"])
 		var/H = href_list["hair_style_right"]
-		var/list/valid_hairstyles = pref.get_valid_hairstyles(user)
+		var/list/valid_hairstyles = pref.get_valid_hairstyles()
 		var/start = valid_hairstyles.Find(H)
 
 		if(start != valid_hairstyles.len) //If we're not the end of the list, become the next element.
@@ -1043,7 +1043,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 			return TOPIC_REFRESH_UPDATE_PREVIEW
 
 	else if(href_list["ear_color2"])
-		var/new_earc2 = tgui_color_picker(user, "Choose your character's ear colour:", "Character Preference",
+		var/new_earc2 = tgui_color_picker(user, "Choose your character's secondary ear colour:", "Character Preference",
 			pref.read_preference(/datum/preference/color/human/ears_color2))
 		if(new_earc2)
 			pref.update_preference_by_type(/datum/preference/color/human/ears_color2, new_earc2)

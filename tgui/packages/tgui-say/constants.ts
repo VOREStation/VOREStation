@@ -1,16 +1,17 @@
 /** Window sizes in pixels */
-export enum WINDOW_SIZES {
-  small = 30,
-  medium = 50,
-  large = 70,
-  max = 130,
-  width = 360,
+export enum WindowSize {
+  Small = 30,
+  Medium = 50,
+  Large = 70,
+  Max = 410,
+  Width = 360,
+  MaxWidth = 800,
 }
 
 /** Line lengths for autoexpand */
-export enum LINE_LENGTHS {
-  small = 22,
-  medium = 45,
+export enum LineLength {
+  Small = 22,
+  Medium = 45,
 }
 
 /**

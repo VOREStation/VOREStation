@@ -1,7 +1,7 @@
 import { useBackend } from 'tgui/backend';
 import { Box, Button, Section, Stack } from 'tgui-core/components';
 
-import { Data } from './types';
+import type { Data } from './types';
 
 export const ChemDispenserRecipes = (props) => {
   const { act, data } = useBackend<Data>();

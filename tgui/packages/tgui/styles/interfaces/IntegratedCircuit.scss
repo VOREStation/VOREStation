@@ -18,7 +18,6 @@ $fg-map: colors.$fg-map !default;
 
   white-space: nowrap;
 
-  -ms-user-select: none; // TODO: Remove with 516
   user-select: none;
 }
 
@@ -26,7 +25,6 @@ $fg-map: colors.$fg-map !default;
   white-space: nowrap;
   background-color: hsla(0, 0%, 0%, 0.5);
 
-  -ms-user-select: none; // TODO: Remove with 516
   user-select: none;
 }
 
