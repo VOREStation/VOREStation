@@ -320,12 +320,12 @@
 	trait_path = /datum/trait/positive/superpower_nobreathe
 /obj/item/dnainjector/set_trait/nobreathe/disable
 	disabling = TRUE
-
+/*
 /obj/item/dnainjector/set_trait/remoteview // remoteview
 	trait_path = /datum/trait/positive/superpower_remoteview
 /obj/item/dnainjector/set_trait/remoteview/disable
 	disabling = TRUE
-
+*/
 /obj/item/dnainjector/set_trait/flashproof // flashproof
 	trait_path = /datum/trait/positive/superpower_flashproof
 /obj/item/dnainjector/set_trait/flashproof/disable
