@@ -10,7 +10,7 @@ import {
 } from 'tgui-core/components';
 import { formatTime } from 'tgui-core/format';
 import { toFixed } from 'tgui-core/math';
-import { BooleanLike } from 'tgui-core/react';
+import type { BooleanLike } from 'tgui-core/react';
 
 import { RankIcon } from './common/RankIcon';
 
