@@ -20,10 +20,9 @@
 	icon_scale_x = 1.2
 	icon_scale_y = 1.2
 
-/obj/mecha/medical/odysseus/New()
-	..()
+/obj/mecha/medical/odysseus/Initialize(mapload)
+	. = ..()
 	hud = new /obj/item/clothing/glasses/hud/health/mech(src)
-	return
 
 /obj/mecha/medical/odysseus/moved_inside(var/mob/living/carbon/human/H as mob)
 	if(..())

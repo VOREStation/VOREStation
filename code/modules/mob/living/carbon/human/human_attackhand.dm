@@ -267,7 +267,7 @@
 			var/real_damage = rand_damage
 			var/hit_dam_type = attack.damage_type
 			real_damage += attack.get_unarmed_damage(H)
-			if(H.gloves)
+			if(H.gloves && attack.is_punch)
 				if(istype(H.gloves, /obj/item/clothing/gloves))
 					var/obj/item/clothing/gloves/G = H.gloves
 					real_damage += G.punch_force

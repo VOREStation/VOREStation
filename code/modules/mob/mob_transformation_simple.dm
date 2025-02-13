@@ -41,7 +41,7 @@
 		M.real_name = src.real_name
 
 	if(src.dna)
-		M.dna = src.dna.Clone()
+		qdel_swap(M.dna, src.dna.Clone())
 
 	if(mind)
 		mind.transfer_to(M)

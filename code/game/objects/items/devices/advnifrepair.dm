@@ -17,8 +17,8 @@
 	pickup_sound = 'sound/items/pickup/device.ogg'
 	drop_sound = 'sound/items/drop/device.ogg'
 
-/obj/item/nifrepairer/New()
-	..()
+/obj/item/nifrepairer/Initialize(mapload)
+	. = ..()
 
 	supply = new(max = 60, A = src)
 

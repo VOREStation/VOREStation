@@ -42,3 +42,7 @@
 		entopic_users -= my_mob
 		if(my_mob.client)
 			my_mob.client.images -= entopic_images
+
+/mob/Destroy()
+	. = ..()
+	entopic_users -= src

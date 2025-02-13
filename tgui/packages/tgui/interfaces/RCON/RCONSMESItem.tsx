@@ -2,7 +2,7 @@ import { ProgressBar, Stack } from 'tgui-core/components';
 import { toFixed } from 'tgui-core/math';
 
 import { SMESControls } from './RCONSMESControls';
-import { rconSmes } from './types';
+import type { rconSmes } from './types';
 
 export const SMESItem = (props: { smes: rconSmes }) => {
   const { capacityPercent, capacity, charge, RCON_tag } = props.smes;

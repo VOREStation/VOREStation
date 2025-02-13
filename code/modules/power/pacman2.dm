@@ -54,7 +54,7 @@
 		else
 			for(var/mob/M in viewers(1, src))
 				if (M.client && M.machine == src)
-					src.updateUsrDialog()
+					src.updateUsrDialog(M)
 
 	proc
 		overheat()
@@ -141,20 +141,20 @@
 				if(!active && HasFuel())
 					active = 1
 					icon_state = "portgen1"
-					src.updateUsrDialog()
+					src.updateUsrDialog(usr)
 			if(href_list["action"] == "disable")
 				if (active)
 					active = 0
 					icon_state = "portgen0"
-					src.updateUsrDialog()
+					src.updateUsrDialog(usr)
 			if(href_list["action"] == "lower_power")
 				if (power_output > 1)
 					power_output--
-					src.updateUsrDialog()
+					src.updateUsrDialog(usr)
 			if (href_list["action"] == "higher_power")
 				if (power_output < 4 || emagged)
 					power_output++
-					src.updateUsrDialog()
+					src.updateUsrDialog(usr)
 			if (href_list["action"] == "close")
 				usr << browse(null, "window=port_gen")
 				usr.machine = null

@@ -13,7 +13,7 @@ import { formatPower } from 'tgui-core/format';
 import { toFixed } from 'tgui-core/math';
 
 import { Plane } from './Plane';
-import { Data } from './types';
+import type { Data } from './types';
 
 export const ICAssembly = (props) => {
   const [showInfo, setShowInfo] = useState(false);

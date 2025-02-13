@@ -5,7 +5,7 @@ import {
   EscapePodControls,
   EscapePodStatus,
 } from './EmbeddedControllerHelpers';
-import { EscapePodBerthConsoleData } from './types';
+import type { EscapePodBerthConsoleData } from './types';
 
 /**
  * These are the least airlock-like UIs here, but they're "close enough".

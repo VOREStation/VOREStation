@@ -17,7 +17,7 @@ import {
   MedicalRecordsView,
 } from './MedicalRecordsOptions';
 import { MedicalRecordsViruses } from './MedicalRecordsViruses';
-import { Data } from './types';
+import type { Data } from './types';
 import { virusModalBodyOverride } from './virusModalBodyOverride';
 
 export const MedicalRecords = (props) => {

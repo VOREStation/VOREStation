@@ -606,7 +606,7 @@
 	extra_overlay = "teshpattern_fem_tail"
 
 /datum/sprite_accessory/tail/tesh_pattern_fem_alt
-	name = "Teshari male tail alt. pattern"
+	name = "Teshari fem tail alt. pattern"
 	desc = ""
 	icon_state = "teshtail_s"
 	do_colouration = 1
@@ -622,7 +622,7 @@
 
 //For all species tails. Includes haircolored tails.
 /datum/sprite_accessory/tail/special
-	name = "Blank tail. Do not select."
+	name = DEVELOPER_WARNING_NAME
 	icon = 'icons/effects/species_tails.dmi'
 
 /datum/sprite_accessory/tail/special/unathi
@@ -1554,6 +1554,14 @@
 /datum/sprite_accessory/tail/longtail/shadekin_tail/shadekin_tail_long
 	name = "Shadekin Long Tail"
 	icon_state = "shadekin_long_s"
+
+/datum/sprite_accessory/tail/longtail/shadekin_tail/shadekin_tail_fat
+	name = "Shadekin Fat Tail"
+	icon_state = "shadekin_fat_s"
+
+/datum/sprite_accessory/tail/longtail/shadekin_tail/shadekin_tail_fat/spots
+	name = "Shadekin Fat Tail (Spotted)"
+	extra_overlay = "shadekin_fat_spots"
 
 /datum/sprite_accessory/tail/longtail/zaprat
 	name = "bolt-shaped tail, dual color"

@@ -14,7 +14,7 @@ import { createSearch } from 'tgui-core/string';
 
 import { MAX_SEARCH_RESULTS } from './constants';
 import { ItemList } from './ItemList';
-import { Data, item } from './types';
+import type { Data, item } from './types';
 
 export const GenericUplink = (props: {
   currencyAmount: number;

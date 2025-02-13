@@ -55,7 +55,7 @@
 	else
 		set_light(2, 2, emptycolor)
 
-/obj/machinery/slime/replicator/proc/replicate_slime()
+/obj/machinery/slime/replicator/proc/replicate_slime(mob/user)
 	if(!src.core)
 		src.visible_message("[icon2html(src,viewers(src))] [src] pings unhappily.")
 	else if(inuse)
@@ -64,21 +64,28 @@
 	inuse = 1
 	update_light_color()
 	icon_state = "restruct_1"
-	spawn(30)
-		var/mob/living/simple_mob/xeno/slime/S = new(src)
-		S.traitdat = new()	//New instance, so that if the core is deleted, the slime retains a trait datum.
-		S.nameVar = core.nameVar
-		S.name = "[S.nameVar] baby slime"
-		core.traits.copy_traits(S.traitdat)
-		S.ProcessTraits()
+	addtimer(CALLBACK(src, PROC_REF(spawn_slime), user), 3 SECONDS, TIMER_DELETE_ME)
 		spawn(30)
-			qdel(core)
-			core = null	//If qdel's being a bit slow or acting up, let's just make sure we can't clone the core.
-			inuse = 0
-			eject_slime()
-			icon_state = "restruct_0"
-			update_light_color()
-			src.updateUsrDialog()
+
+/obj/machinery/slime/replicator/proc/spawn_slime(mob/user)
+	PRIVATE_PROC(TRUE)
+	var/mob/living/simple_mob/xeno/slime/S = new(src)
+	S.traitdat = new()	//New instance, so that if the core is deleted, the slime retains a trait datum.
+	S.nameVar = core.nameVar
+	S.name = "[S.nameVar] baby slime"
+	core.traits.copy_traits(S.traitdat)
+	S.ProcessTraits()
+	qdel(core)
+	core = null	//If qdel's being a bit slow or acting up, let's just make sure we can't clone the core.
+	addtimer(CALLBACK(src, PROC_REF(finish_spawn)), 3 SECONDS, TIMER_DELETE_ME)
+
+/obj/machinery/slime/replicator/proc/finish_spawn(mob/user)
+	PRIVATE_PROC(TRUE)
+	inuse = 0
+	eject_slime()
+	icon_state = "restruct_0"
+	update_light_color()
+	src.updateUsrDialog(user)
 
 /obj/machinery/slime/replicator/proc/eject_slime()
 	for(var/mob/thing in contents)
@@ -123,10 +130,10 @@
 	usr.set_machine(src)
 	switch(href_list["action"])
 		if ("replicate")
-			replicate_slime()
+			replicate_slime(usr)
 		if("eject")
 			eject_core()
-	src.updateUsrDialog()
+	src.updateUsrDialog(usr)
 	return
 
 //Circuit board below,

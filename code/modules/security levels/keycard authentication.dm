@@ -117,7 +117,7 @@
 	if(href_list["reset"])
 		reset()
 
-	updateUsrDialog()
+	updateUsrDialog(usr)
 	add_fingerprint(usr)
 	return
 

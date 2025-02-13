@@ -69,6 +69,41 @@
 // Open Hatch Surgery
 ///////////////////////////////////////////////////////////////
 
+/datum/surgery_step/robotics/insertion_preparation
+	surgery_name = "Rewire Internals"
+	allowed_tools = list(
+		/obj/item/multitool = 100
+	)
+
+	min_duration = 30
+	max_duration = 40
+
+/datum/surgery_step/robotics/insertion_preparation/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+	if(..())
+		var/obj/item/organ/external/affected = target.get_organ(target_zone)
+		return affected && affected.open == 1
+
+/datum/surgery_step/robotics/insertion_preparation/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+	var/obj/item/organ/external/affected = target.get_organ(target_zone)
+	user.visible_message(span_filter_notice("[user] starts to modify the wiring in [target]'s [affected.name] with \the [tool]."),
+	span_filter_notice("You start to modify the wiring in [target]'s [affected.name] with \the [tool]."))
+	..()
+
+/datum/surgery_step/robotics/insertion_preparation/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+	var/obj/item/organ/external/affected = target.get_organ(target_zone)
+	user.visible_message(span_notice("[user] modifies the wiring in [target]'s [affected.name] with \the [tool]."), \
+	 span_notice("You modify the wiring in [target]'s [affected.name] with \the [tool]."))
+	affected.open = 2
+
+/datum/surgery_step/robotics/insertion_preparation/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+	var/obj/item/organ/external/affected = target.get_organ(target_zone)
+	user.visible_message(span_warning("[user]'s [tool.name] slips, failing to modify the wiring in [target]'s [affected.name]."),
+	span_warning("Your [tool] slips, failing to modify the wiring in [target]'s [affected.name]."))
+
+///////////////////////////////////////////////////////////////
+// Open Hatch Surgery
+///////////////////////////////////////////////////////////////
+
 /datum/surgery_step/robotics/open_hatch
 	surgery_name = "Open Hatch"
 	allowed_tools = list(

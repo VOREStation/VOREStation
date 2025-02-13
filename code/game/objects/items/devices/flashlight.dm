@@ -313,7 +313,8 @@
 	desc = "A desk lamp with an adjustable mount."
 	icon_state = "lamp"
 	force = 10
-	center_of_mass = list("x" = 13,"y" = 11)
+	center_of_mass_x = 13
+	center_of_mass_y = 11
 	light_range = 5
 	w_class = ITEMSIZE_LARGE
 	power_use = 0
@@ -332,14 +333,16 @@
 /obj/item/flashlight/lamp/green
 	desc = "A classic green-shaded desk lamp."
 	icon_state = "lampgreen"
-	center_of_mass = list("x" = 15,"y" = 11)
+	center_of_mass_x = 15
+	center_of_mass_y = 11
 	light_color = "#FFC58F"
 
 // clown lamp
 /obj/item/flashlight/lamp/clown
 	desc = "A whacky banana peel shaped lamp."
 	icon_state = "bananalamp"
-	center_of_mass = list("x" = 15,"y" = 11)
+	center_of_mass_x = 15
+	center_of_mass_y = 11
 
 
 /*
@@ -364,9 +367,9 @@
 	pickup_sound = 'sound/items/pickup/gloves.ogg'
 	light_system = MOVABLE_LIGHT
 
-/obj/item/flashlight/flare/New()
+/obj/item/flashlight/flare/Initialize()
 	fuel = rand(800, 1000) // Sorry for changing this so much but I keep under-estimating how long X number of ticks last in seconds.
-	..()
+	. = ..()
 
 /obj/item/flashlight/flare/process()
 	var/turf/pos = get_turf(src)
@@ -427,9 +430,9 @@
 	var/fuel = 0
 	power_use = 0
 
-/obj/item/flashlight/glowstick/New()
+/obj/item/flashlight/glowstick/Initialize()
 	fuel = rand(1600, 2000)
-	..()
+	. = ..()
 
 /obj/item/flashlight/glowstick/process()
 	fuel = max(fuel - 1, 0)

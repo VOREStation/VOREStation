@@ -44,6 +44,7 @@
 #define isslime(A)		istype(A, /mob/living/simple_mob/slime)
 #define isxeno(A)		istype(A, /mob/living/simple_mob/animal/space/alien)
 #define issimplekin(A)	istype(A, /mob/living/simple_mob/shadekin)
+#define isprotblob(A)	istype(A, /mob/living/simple_mob/protean_blob)
 
 #define iscarbon(A)		istype(A, /mob/living/carbon)
 #define isalien(A)		istype(A, /mob/living/carbon/alien)

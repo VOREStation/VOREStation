@@ -47,4 +47,4 @@
 	cures = list(REAGENT_ID_CRYOXADONE)
 	cure_chance = 10
 	agent = "gibbis"
-	disease_flags = CURABLE
+	disease_flags = CURABLE|CAN_NOT_POPULATE

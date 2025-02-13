@@ -139,7 +139,8 @@ SUBSYSTEM_DEF(plants)
 			return
 
 /datum/controller/subsystem/plants/proc/add_plant(var/obj/effect/plant/plant)
-	processing |= plant
+	if(!QDELETED(plant))
+		processing |= plant
 
 /datum/controller/subsystem/plants/proc/remove_plant(var/obj/effect/plant/plant)
 	processing -= plant

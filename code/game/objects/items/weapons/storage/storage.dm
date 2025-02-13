@@ -52,7 +52,7 @@
 	/// If you can use this storage while in a pocket
 	var/pocketable = FALSE
 
-/obj/item/storage/Initialize()
+/obj/item/storage/Initialize(mapload)
 	. = ..()
 
 	if(allow_quick_empty)

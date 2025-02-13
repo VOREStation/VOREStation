@@ -459,7 +459,8 @@
 	flags = OPENCONTAINER
 	bitesize = 12
 	filling_color = "#ADAC7F"
-	center_of_mass = list("x"=16, "y"=14)
+	center_of_mass_x = 16
+	center_of_mass_y = 14
 
 	var/food_type = "/obj/item/reagent_containers/food/snacks/proteinslab"
 
@@ -582,7 +583,8 @@
 	desc = "The universes best soup! Yum!!!"
 	icon_state = "milosoup"
 	trash = /obj/item/trash/snack_bowl
-	center_of_mass = list("x"=16, "y"=7)
+	center_of_mass_x = 16
+	center_of_mass_y = 7
 	nutriment_amt = 8
 	nutriment_desc = list("soy" = 8)
 	bitesize = 4
@@ -598,7 +600,8 @@
 	icon_state = "onionsoup"
 	trash = /obj/item/trash/snack_bowl
 	filling_color = "#E0C367"
-	center_of_mass = list("x"=16, "y"=7)
+	center_of_mass_x = 16
+	center_of_mass_y = 7
 	bitesize = 3
 	eating_sound = 'sound/items/drink.ogg'
 

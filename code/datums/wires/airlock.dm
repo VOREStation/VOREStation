@@ -62,7 +62,7 @@
 
 	switch(action)
 		if("set_id_tag")
-			var/new_id = tgui_input_text(usr, "Enter a new ID tag for [A]", "[A] ID Tag", A.id_tag, 30, FALSE, TRUE)
+			var/new_id = tgui_input_text(usr, "Enter a new ID tag for [A]", "[A] ID Tag", A.id_tag, 60, FALSE, TRUE)
 			if(new_id)
 				A.id_tag = new_id
 				return TRUE

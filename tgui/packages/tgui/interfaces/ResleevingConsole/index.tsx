@@ -14,7 +14,7 @@ import {
   ResleevingConsoleTemp,
 } from './ResleevingConsoleElements';
 import { ResleevingConsoleStatus } from './ResleevingConsoleStatus';
-import { Data } from './types';
+import type { Data } from './types';
 
 export const ResleevingConsole = (props) => {
   const { data } = useBackend<Data>();

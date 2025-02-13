@@ -131,10 +131,10 @@ GLOBAL_LIST_EMPTY(suit_cycler_typecache)
 
 	return loaded
 
-/obj/machinery/suit_cycler/attack_ai(mob/user as mob)
+/obj/machinery/suit_cycler/attack_ai(mob/user)
 	return attack_hand(user)
 
-/obj/machinery/suit_cycler/attackby(obj/item/I as obj, mob/user as mob)
+/obj/machinery/suit_cycler/attackby(obj/item/I, mob/user)
 
 	if(electrified != 0)
 		if(shock(user, 100))
@@ -174,7 +174,7 @@ GLOBAL_LIST_EMPTY(suit_cycler_typecache)
 			add_fingerprint(user)
 			qdel(G)
 
-			updateUsrDialog()
+			updateUsrDialog(user)
 
 			return
 	else if(I.has_tool_quality(TOOL_SCREWDRIVER))
@@ -182,7 +182,7 @@ GLOBAL_LIST_EMPTY(suit_cycler_typecache)
 		panel_open = !panel_open
 		playsound(src, I.usesound, 50, 1)
 		to_chat(user, "You [panel_open ?  "open" : "close"] the maintenance panel.")
-		updateUsrDialog()
+		updateUsrDialog(user)
 		return
 
 	else if(istype(I,/obj/item/clothing/head/helmet/space/void) && !istype(I, /obj/item/clothing/head/helmet/space/rig))
@@ -222,7 +222,7 @@ GLOBAL_LIST_EMPTY(suit_cycler_typecache)
 		helmet = I
 
 		update_icon()
-		updateUsrDialog()
+		updateUsrDialog(user)
 		return
 
 	else if(istype(I,/obj/item/clothing/suit/space/void))
@@ -262,7 +262,7 @@ GLOBAL_LIST_EMPTY(suit_cycler_typecache)
 		suit = I
 
 		update_icon()
-		updateUsrDialog()
+		updateUsrDialog(user)
 		return
 
 	..()
@@ -278,7 +278,7 @@ GLOBAL_LIST_EMPTY(suit_cycler_typecache)
 	emagged = 1
 	safeties = 0
 	req_access = list()
-	updateUsrDialog()
+	updateUsrDialog(user)
 	return 1
 
 /obj/machinery/suit_cycler/attack_hand(mob/user as mob)
@@ -396,7 +396,7 @@ GLOBAL_LIST_EMPTY(suit_cycler_typecache)
 			active = 1
 			spawn(100)
 				repair_suit()
-				finished_job()
+				finished_job(ui.user)
 			. = TRUE
 
 		if("apply_paintjob")
@@ -405,7 +405,7 @@ GLOBAL_LIST_EMPTY(suit_cycler_typecache)
 			active = 1
 			spawn(100)
 				apply_paintjob()
-				finished_job()
+				finished_job(ui.user)
 			. = TRUE
 
 		if("lock")
@@ -475,13 +475,13 @@ GLOBAL_LIST_EMPTY(suit_cycler_typecache)
 			occupant.take_organ_damage(0,radiation_level + rand(1,3))
 		occupant.apply_effect(radiation_level*10, IRRADIATE)
 
-/obj/machinery/suit_cycler/proc/finished_job()
+/obj/machinery/suit_cycler/proc/finished_job(mob/user)
 	var/turf/T = get_turf(src)
 	T.visible_message("[icon2html(src,viewers(src))]" + span_notice("The [src] beeps several times."))
 	icon_state = initial(icon_state)
 	active = 0
 	playsound(src, 'sound/machines/boobeebeep.ogg', 50)
-	updateUsrDialog()
+	updateUsrDialog(user)
 
 /obj/machinery/suit_cycler/proc/repair_suit()
 	if(!suit || !suit.damage || !suit.can_breach)
@@ -502,7 +502,7 @@ GLOBAL_LIST_EMPTY(suit_cycler_typecache)
 
 	eject_occupant(usr)
 
-/obj/machinery/suit_cycler/proc/eject_occupant(mob/user as mob)
+/obj/machinery/suit_cycler/proc/eject_occupant(mob/user)
 
 	if(locked || active)
 		to_chat(user, span_warning("The cycler is locked."))
@@ -519,7 +519,7 @@ GLOBAL_LIST_EMPTY(suit_cycler_typecache)
 	occupant = null
 
 	add_fingerprint(user)
-	updateUsrDialog()
+	updateUsrDialog(user)
 	update_icon()
 
 	return

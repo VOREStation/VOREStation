@@ -68,3 +68,5 @@
 
 	var/vore_icons = 0					// Bitfield for which fields we have vore icons for.
 	var/vore_eyes = FALSE				// For mobs with fullness specific eye overlays.
+
+	// var/obj/soulgem/soulgem			// Soulcatcher. Needs to be up-ported sometime.

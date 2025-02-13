@@ -2,7 +2,7 @@ import { useBackend } from 'tgui/backend';
 import { Section } from 'tgui-core/components';
 
 import { RequestConsoleSendMenu } from './RequestConsoleSend';
-import { Data } from './types';
+import type { Data } from './types';
 
 export const RequestConsoleSupplies = (props) => {
   const { data } = useBackend<Data>();

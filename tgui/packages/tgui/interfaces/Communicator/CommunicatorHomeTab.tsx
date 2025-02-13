@@ -1,7 +1,7 @@
 import { useBackend } from 'tgui/backend';
 import { Box, Button, Icon, Stack } from 'tgui-core/components';
 
-import { Data } from './types';
+import type { Data } from './types';
 
 export const CommunicatorHomeTab = (props) => {
   const { act, data } = useBackend<Data>();

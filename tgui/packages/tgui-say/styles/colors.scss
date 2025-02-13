@@ -1,10 +1,10 @@
 @use 'sass:map';
 
-$background: hsl(0, 0%, 7%);
-$button: hsl(0, 0%, 12%);
+$background: hsl(0, 0%, 7.5%);
+$button: hsl(0, 0%, 12.2%);
 $lightMode: hsl(0, 0%, 100%);
-$lightBorder: hsl(0, 0%, 73%);
-$lightHover: hsl(0, 0%, 92%);
+$lightBorder: hsl(0, 0%, 73.3%);
+$lightHover: hsl(0, 0%, 91.8%);
 $scrollbar-color-multiplier: 1 !default;
 
 $_channel_map: (

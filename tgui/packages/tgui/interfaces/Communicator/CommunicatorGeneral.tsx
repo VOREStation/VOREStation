@@ -10,7 +10,7 @@ import {
 import { decodeHtmlEntities } from 'tgui-core/string';
 
 import { HOMETAB } from './constants';
-import { Data } from './types';
+import type { Data } from './types';
 
 export const TemplateError = (props: { currentTab: number }) => {
   return (

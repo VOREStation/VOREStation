@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useBackend } from 'tgui/backend';
 import { Button, Icon, Section, Stack, Tooltip } from 'tgui-core/components';
 
-import { Data } from './types';
+import type { Data } from './types';
 
 export const ChemDispenserChemicals = (props) => {
   const { act, data } = useBackend<Data>();

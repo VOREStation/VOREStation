@@ -8,6 +8,7 @@
 includes scars and tattoos
 */
 /datum/sprite_accessory/marking
+	name = DEVELOPER_WARNING_NAME
 	icon = 'icons/mob/human_races/markings.dmi'
 	do_colouration = 1 //Almost all of them have it, COLOR_ADD
 
@@ -203,7 +204,7 @@ includes scars and tattoos
 	body_parts = list(BP_HEAD)
 
 /datum/sprite_accessory/marking/bandsface_human
-	name = "Color Bands (Face)"
+	name = "Color Bands (Face) (Human)"
 	icon_state = "bandshumanface"
 	body_parts = list(BP_HEAD)
 
@@ -859,7 +860,7 @@ includes scars and tattoos
 /datum/sprite_accessory/marking/diona_leaves
 	name = "Leaves (Diona)"
 	icon_state = "diona_leaves"
-	body_parts = list(BP_L_FOOT, BP_R_FOOT, BP_L_LEG, BP_R_LEG, BP_L_ARM, BP_R_ARM, BP_L_HAND, BP_R_HAND, BP_TORSO, BP_GROIN, BP_HEAD)
+	body_parts = list(BP_L_FOOT, BP_R_FOOT, BP_L_LEG, BP_R_LEG, BP_L_ARM, BP_R_ARM, BP_TORSO, BP_GROIN, BP_HEAD)
 
 /datum/sprite_accessory/marking/diona_thorns
 	name = "Thorns (Diona)"
@@ -991,10 +992,14 @@ includes scars and tattoos
 /datum/sprite_accessory/marking/aug/backside_left
 	name = "Augment (Backside Left, Head)"
 	icon_state = "aug_backside_l"
+	body_parts = list(BP_HEAD)
+
 
 /datum/sprite_accessory/marking/aug/backside_left/side_diode
 	name = "Augment (Backside Left Diode, Head)"
 	icon_state = "aug_sidediode_l"
+	body_parts = list(BP_HEAD)
+
 
 /datum/sprite_accessory/marking/aug/backside_right
 	name = "Augment (Backside Right, Head)"
@@ -1127,7 +1132,7 @@ includes scars and tattoos
 
 /datum/sprite_accessory/marking/bandage/torso/torso3
 	name = "Bandage, Torso 3"
-	icon_state = "bandage3"
+	icon_state = "bandage3" //someone needs to make a proper torso sprite
 
 /datum/sprite_accessory/marking/bandage/torso/torso3/teshari
 	name = "Bandage, Torso 3 (Teshari)"
@@ -1200,7 +1205,7 @@ includes scars and tattoos
 	icon_state = "bandage1_tesh"
 	species_allowed = list(SPECIES_TESHARI)
 
-/datum/sprite_accessory/marking/bandage/l_hand/l_hand2
+/datum/sprite_accessory/marking/bandage/l_hand/l_hand_2
 	name = "Bandage, Left Hand 2"
 	icon_state = "bandage2"
 
@@ -1302,7 +1307,7 @@ includes scars and tattoos
 	icon_state = "bandage1_tesh"
 	species_allowed = list(SPECIES_TESHARI)
 
-/datum/sprite_accessory/marking/bandage/l_foot/l_foot2
+/datum/sprite_accessory/marking/bandage/l_foot/l_foot_2
 	name = "Bandage, Left Foot 2"
 	icon_state = "bandage2"
 
@@ -1311,7 +1316,7 @@ includes scars and tattoos
 	icon_state = "bandage2_tesh"
 	species_allowed = list(SPECIES_TESHARI)
 
-/datum/sprite_accessory/marking/bandage/l_foot/l_foot3
+/datum/sprite_accessory/marking/bandage/l_foot/l_foot_3
 	name = "Bandage, Left Foot 3"
 	icon_state = "bandage3"
 
@@ -2064,7 +2069,7 @@ includes scars and tattoos
 	name = "Wrist Fluff"
 	icon_state = "fluffy_cuffs"
 	color_blend_mode = ICON_MULTIPLY
-	body_parts = list(BP_L_ARM,BP_R_ARM,BP_L_HAND,BP_R_HAND)
+	body_parts = list(BP_L_ARM,BP_R_ARM)
 
 /datum/sprite_accessory/marking/vr_chubby_belly
 	name = "Chubby Belly"
@@ -2497,6 +2502,9 @@ includes scars and tattoos
 
 //Replikant-specific markings
 
+/datum/sprite_accessory/marking/replikant
+	name = DEVELOPER_WARNING_NAME
+
 /datum/sprite_accessory/marking/replikant/replika_r_thigh
 	name = "Replikant Stripe - Right Thigh"
 	icon_state = "replika"
@@ -2523,7 +2531,7 @@ includes scars and tattoos
 
 /datum/sprite_accessory/marking/replikant/replika_panels_body
 	name = "Replikant Paneling - SynthFlesh (body)"
-	icon_state = "replikao"
+	icon_state = "replika"
 	color_blend_mode = ICON_MULTIPLY
 	body_parts = list(BP_TORSO)
 
@@ -2535,7 +2543,7 @@ includes scars and tattoos
 
 //Digitigrade markings
 /datum/sprite_accessory/marking/digi
-	name = "Digitigrate Marking Subcat, Please Ignore"
+	name = DEVELOPER_WARNING_NAME
 	icon = 'icons/mob/human_races/markings_digi.dmi'
 	digitigrade_acceptance = MARKING_DIGITIGRADE_ONLY
 

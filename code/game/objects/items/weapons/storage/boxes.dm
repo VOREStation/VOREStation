@@ -25,7 +25,8 @@
 	icon = 'icons/obj/boxes.dmi'
 	icon_state = "box"
 	item_state = "syringe_kit"
-	center_of_mass = list("x" = 13,"y" = 10)
+	center_of_mass_x = 13
+	center_of_mass_y = 10
 	var/foldable = /obj/item/stack/material/cardboard	// BubbleWrap - if set, can be folded (when empty) into a sheet of cardboard
 	var/trash = null  // if set, can be crushed into a trash item when empty
 	max_w_class = ITEMSIZE_SMALL
@@ -149,9 +150,11 @@
 	name = "box of DNA injectors"
 	desc = "This box contains injectors it seems."
 	icon_state = "dna"
+	// Traitgenes New injector loot
 	starts_with = list(
-		/obj/item/dnainjector/h2m = 3,
-		/obj/item/dnainjector/m2h = 3
+		/obj/item/dnainjector/random_good_labeled = 2,
+		/obj/item/dnainjector/random_neutral_labeled = 2,
+		/obj/item/dnainjector/random_labeled = 2
 	)
 
 /obj/item/storage/box/flashbangs
@@ -224,8 +227,8 @@
 
 /obj/item/storage/box/flare
 	name = "box of flares"
-	desc = "A box containing 4 flares."
-	starts_with = list(/obj/item/flashlight/flare = 4)
+	desc = "A box containing 14 flares."
+	starts_with = list(/obj/item/flashlight/flare = 14)
 
 /obj/item/storage/box/trackimp
 	name = "boxed tracking implant kit"

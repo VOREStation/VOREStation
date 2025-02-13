@@ -1,4 +1,12 @@
 /// <summary>
+/// This is how much artifacts take to activate.
+/// </summary>
+#define ARTIFACT_GAS_TRIGGER 200	//In MOL
+#define ARTIFACT_HEAT_TRIGGER 375	//In Kelvin
+#define ARTIFACT_COLD_TRIGGER 225	//In Kelvin
+#define ARTIFACT_HEAT_BREAK 2500	//In Kelvin
+
+/// <summary>
 /// These are the defines for the SMALL (can hold in hand) artifacts.
 /// </summary>
 #define ARCHAEO_BOWL 1
@@ -70,7 +78,6 @@
 /// <summary>
 /// These are the defines for what is required to ACTIVATE the artifact.
 /// </summary>
-/// TODO: Get rid of TRIGGER_PHORON/OXY/CO2/NITRO. They're unfun and tedious.
 #define TRIGGER_TOUCH 0
 #define TRIGGER_WATER 1
 #define TRIGGER_ACID 2
@@ -80,11 +87,7 @@
 #define TRIGGER_ENERGY 6
 #define TRIGGER_HEAT 7
 #define TRIGGER_COLD 8
-#define TRIGGER_PHORON 9
-#define TRIGGER_OXY 10
-#define TRIGGER_CO2 11
-#define TRIGGER_NITRO 12
-#define MAX_TRIGGER 12
+#define MAX_TRIGGER 8
 
 /// <summary>
 /// These are defines of what TYPE of artifact it is. See code/modules/xenoarcheaology/effects for each artifact.
@@ -112,4 +115,4 @@
 #define EFFECT_VAMPIRE 20
 #define EFFECT_HEALTH 21
 #define EFFECT_GENERATOR 22
-#define EFFECT_DNASWITCH 23 //Not in as of yet.
+#define EFFECT_DNASWITCH 23

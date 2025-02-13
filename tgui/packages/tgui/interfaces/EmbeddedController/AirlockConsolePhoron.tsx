@@ -2,7 +2,7 @@ import { useBackend } from 'tgui/backend';
 import { Box, Button, Section } from 'tgui-core/components';
 
 import { StandardControls, StatusDisplay } from './EmbeddedControllerHelpers';
-import { AirlockConsolePhoronData } from './types';
+import type { AirlockConsolePhoronData } from './types';
 
 /**
  * Phoron airlock consoles don't actually cycle *pressure*, they cycle

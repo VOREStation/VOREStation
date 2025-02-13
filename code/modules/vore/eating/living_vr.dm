@@ -396,14 +396,14 @@
 		return
 
 	load_character(slotnum)
-	attempt_vr(user.client?.prefs_vr,"load_vore","") //VOREStation Edit
+	attempt_vr(user.client?.prefs_vr,"load_vore","")
 	sanitize_preferences()
 
 	return remember_default
 
 /datum/preferences/proc/return_to_character_slot(mob/user, var/remembered_default)
 	load_character(remembered_default)
-	attempt_vr(user.client?.prefs_vr,"load_vore","") //VOREStation Edit
+	attempt_vr(user.client?.prefs_vr,"load_vore","")
 	sanitize_preferences()
 
 //

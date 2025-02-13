@@ -14,7 +14,7 @@ import { capitalize } from 'tgui-core/string';
 
 import { NoSpriteWarning } from '../components';
 import { prepareSearch } from '../functions';
-import { Target } from '../types';
+import type { Target } from '../types';
 
 export const ModifyRobotRadio = (props: { target: Target }) => {
   const { target } = props;
@@ -105,9 +105,10 @@ const RadioSection = (props: {
                   })
                 }
               >
-                <Stack align="center">
-                  <Stack.Item>{capitalize(channel)}</Stack.Item>
-                  <Stack.Item grow />
+                <Stack fill align="center">
+                  <Stack.Item grow overflow="hidden">
+                    {capitalize(channel)}
+                  </Stack.Item>
                   <Stack.Item>
                     <Icon
                       name={buttonIcon}

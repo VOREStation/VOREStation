@@ -61,10 +61,12 @@
 /obj/item/organ/internal/lungs/grey
 	icon_state = "lungs_grey"
 
-/obj/item/organ/internal/lungs/grey/colormatch/New()
+/obj/item/organ/internal/lungs/grey/colormatch/Initialize(mapload, internal)
 	..()
-	var/mob/living/carbon/human/H = null
-	spawn(15)
-		if(owner && ishuman(owner))
-			H = owner
-			color = H.species.blood_color
+	return INITIALIZE_HINT_LATELOAD
+
+/obj/item/organ/internal/lungs/grey/colormatch/LateInitialize()
+	. = ..()
+	if(owner && ishuman(loc))
+		var/mob/living/carbon/human/H = loc
+		color = H.species.blood_color

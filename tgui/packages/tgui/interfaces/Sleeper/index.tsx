@@ -3,7 +3,7 @@ import { Window } from 'tgui/layouts';
 
 import { SleeperEmpty } from './SleeperEmpty';
 import { SleeperMain } from './SleeperMain';
-import { Data } from './types';
+import type { Data } from './types';
 
 export const Sleeper = (props) => {
   const { data } = useBackend<Data>();

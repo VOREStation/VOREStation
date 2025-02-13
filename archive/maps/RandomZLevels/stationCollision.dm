@@ -71,7 +71,8 @@ obj/item/gun/energy/laser/retro/sc_retro
 /obj/item/gun/projectile/silenced/sc_silenced
 
 //Make it so that these guns only spawn with a couple bullets... if any
-/obj/item/gun/projectile/silenced/sc_silenced/New()
+/obj/item/gun/projectile/silenced/sc_silenced/Initialize(mapload)
+	. = ..()
 	for(var/ammo in loaded)
 		if(prob(95)) //95% chance
 			loaded -= ammo
@@ -79,7 +80,8 @@ obj/item/gun/energy/laser/retro/sc_retro
 //Syndicate sub-machine guns.
 /obj/item/gun/projectile/automatic/c20r/sc_c20r
 
-/obj/item/gun/projectile/automatic/c20r/sc_c20r/New()
+/obj/item/gun/projectile/automatic/c20r/sc_c20r/Initialize(mapload)
+	. = ..()
 	for(var/ammo in loaded)
 		if(prob(95)) //95% chance
 			loaded -= ammo
@@ -87,7 +89,8 @@ obj/item/gun/energy/laser/retro/sc_retro
 //Barman's shotgun
 /obj/item/gun/projectile/shotgun/pump/sc_pump
 
-/obj/item/gun/projectile/shotgun/pump/sc_pump/New()
+/obj/item/gun/projectile/shotgun/pump/sc_pump/Initialize(mapload)
+	. = ..()
 	for(var/ammo in loaded)
 		if(prob(95)) //95% chance
 			loaded -= ammo
@@ -113,12 +116,14 @@ var/sc_safecode5 = "[rand(0,9)]"
 /obj/item/paper/sc_safehint_paper_prison
 	name = "smudged paper"
 
-/obj/item/paper/sc_safehint_paper_prison/New()
+/obj/item/paper/sc_safehint_paper_prison/Initialize(mapload, text, title)
+	. = ..()
 	info = span_italics("The ink is smudged, you can only make out a couple numbers:") + " '[sc_safecode1]**[sc_safecode4]*'"
 
 /obj/item/paper/sc_safehint_paper_hydro
 	name = "shredded paper"
-/obj/item/paper/sc_safehint_paper_hydro/New()
+/obj/item/paper/sc_safehint_paper_hydro/Initialize(mapload, text, title)
+	. = ..()
 	info = span_italics("Although the paper is shredded, you can clearly see the number:") + " '[sc_safecode2]'"
 
 /obj/item/paper/sc_safehint_paper_caf
@@ -128,8 +133,10 @@ var/sc_safecode5 = "[rand(0,9)]"
 
 /obj/item/paper/sc_safehint_paper_bible
 	name = "hidden paper"
-/obj/item/paper/sc_safehint_paper_bible/New()
-	info =span_italics("It would appear that the pen hidden with the paper had leaked ink over the paper. \
+
+/obj/item/paper/sc_safehint_paper_bible/Initialize(mapload, text, title)
+	. = ..()
+	info = span_italics("It would appear that the pen hidden with the paper had leaked ink over the paper. \
 			However you can make out the last three digits:") + "' [sc_safecode3][sc_safecode4][sc_safecode5]'"
 
 /obj/item/paper/sc_safehint_paper_shuttle

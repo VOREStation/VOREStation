@@ -59,7 +59,8 @@
 			list(/obj/item/storage/belt/utility/chief/full, 8) = 2,
 			list(/obj/item/personal_shield_generator/belt/mining/loaded, 6) = 2,
 			list(pick(subtypesof(/obj/item/melee/energy/sword) - /obj/item/melee/energy/sword/charge), 6) = 2,
-			list(pick(/obj/item/dnainjector/xraymut, /obj/item/dnainjector/nobreath, /obj/item/dnainjector/insulation), 6) = 2,
+			// Traitgenes New injector loot
+			list(pick(/obj/item/dnainjector/random_good,/obj/item/dnainjector/random_good_labeled,/obj/item/dnainjector/random_labeled,/obj/item/dnainjector/random), 6) = 2,
 			list(/obj/item/gun/energy/netgun, 7) = 2,
 			list(pick(prob(300);/obj/item/gun/energy/mouseray,
 				prob(50);/obj/item/gun/energy/mouseray/corgi,
@@ -76,6 +77,7 @@
 				prob(5);/obj/item/gun/energy/mouseray/giantrat,
 				prob(50);/obj/item/gun/energy/mouseray/redpanda,
 				prob(5);/obj/item/gun/energy/mouseray/catslug,
+				prob(5);/obj/item/gun/energy/mouseray/teppi,
 				prob(1);/obj/item/gun/energy/mouseray/metamorphosis,
 				prob(1);/obj/item/gun/energy/mouseray/metamorphosis/advanced/random
 				), 8) = 2,
@@ -102,7 +104,8 @@
 			list(/obj/item/card/emag, 11) = 1,
 			list(/obj/item/melee/shock_maul, 11) = 3,
 			list(/obj/item/clothing/suit/storage/vest/martian_miner/reinforced, 4) = 6,
-			list(/obj/item/storage/backpack/sport/hyd/catchemall, 11) = 1
+			list(/obj/item/storage/backpack/sport/hyd/catchemall, 11) = 1,
+			list(/obj/item/prop/alien/junk, 12) = 1,
 			))
 		var/path = choice[1]
 		var/value = choice[2]

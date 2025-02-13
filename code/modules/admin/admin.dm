@@ -141,15 +141,33 @@ var/global/floorIsLava = 0
 				body += "<br><br>"
 				body += "<b>DNA Blocks:</b><br><table border='0'><tr><th>&nbsp;</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th>"
 				var/bname
-				for(var/block=1;block<=DNA_SE_LENGTH;block++)
+				var/list/output_list = list()
+				// Traitgenes more reliable way to check gene states
+				for(var/setup_block=1;setup_block<=DNA_SE_LENGTH;setup_block++)
+					output_list["[setup_block]"] = null
+				for(var/datum/gene/gene in GLOB.dna_genes) // Traitgenes Genes accessible by global VV. Removed /dna/ from path
+					output_list["[gene.block]"] = gene
+				for(var/block=1;block<=DNA_SE_LENGTH;block++) // Traitgenes more reliable way to check gene states
+					var/datum/gene/gene = output_list["[block]"] // Traitgenes Removed /dna/ from path
 					if(((block-1)%5)==0)
 						body += "</tr><tr><th>[block-1]</th>"
-					bname = assigned_blocks[block]
+					// Traitgenes more reliable way to check gene states
+					if(gene)
+						bname = gene.name
+					else
+						bname = ""
 					body += "<td>"
 					if(bname)
-						var/bstate=M.dna.GetSEState(block)
+						var/bstate=(bname in M.active_genes) // Traitgenes more reliable way to check gene states
+						// Traitgenes show trait linked names on mouseover
+						var/tname = bname
+						if(istype(gene,/datum/gene/trait))
+							var/datum/gene/trait/T = gene
+							tname = T.get_name()
 						var/bcolor="[(bstate)?"#006600":"#ff0000"]"
-						body += "<A href='byond://?src=\ref[src];[HrefToken()];togmutate=\ref[M];block=[block]' style='color:[bcolor];'>[bname]</A><sub>[block]</sub>"
+						if(!bstate && M.dna.GetSEState(block)) // Gene isn't active, but the dna says it is... Was blocked by another gene!
+							bcolor="#d88d00"
+						body += "<A href='byond://?src=\ref[src];[HrefToken()];togmutate=\ref[M];block=[block]' style='color:[bcolor];' title='[tname]'>[bname]</A><sub>[block]</sub>" // Traitgenes edit - show trait linked names on mouseover
 					else
 						body += "[block]"
 					body+="</td>"
@@ -627,7 +645,7 @@ var/global/floorIsLava = 0
 		if(!check_rights(R_SERVER,0))
 			message = sanitize(message, 500, extra = 0)
 		message = replacetext(message, "\n", "<br>") // required since we're putting it in a <p> tag
-		to_world(span_notice(span_bold("[usr.client.holder.fakekey ? "Administrator" : usr.key] Announces:") + "<p style='text-indent: 50px'>[message]</p>"))
+		send_ooc_announcement(message, "From [usr.client.holder.fakekey ? "Administrator" : usr.key]")
 		log_admin("Announce: [key_name(usr)] : [message]")
 	feedback_add_details("admin_verb","A") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
@@ -903,10 +921,6 @@ var/datum/announcement/minor/admin_min_announcer = new
 	set desc="Whether persistent data will be saved from now on."
 	set name="Toggle Persistent Data"
 	CONFIG_SET(flag/persistence_disabled, !CONFIG_GET(flag/persistence_disabled))
-	if(!CONFIG_GET(flag/persistence_disabled))
-		to_world(span_world("Persistence is now enabled."))
-	else
-		to_world(span_world("Persistence is no longer enabled."))
 	message_admins(span_blue("[key_name_admin(usr)] toggled persistence to [CONFIG_GET(flag/persistence_disabled) ? "Off" : "On"]."), 1)
 	log_admin("[key_name(usr)] toggled persistence to [CONFIG_GET(flag/persistence_disabled) ? "Off" : "On"].")
 	world.update_status()

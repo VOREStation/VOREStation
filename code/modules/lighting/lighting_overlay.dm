@@ -5,6 +5,8 @@
 	///whether we are already in the SSlighting.objects_queue list
 	var/needs_update = FALSE
 
+	var/sunlight_only = FALSE
+
 	///the turf that our light is applied to
 	var/turf/affected_turf
 
@@ -48,6 +50,7 @@
 
 /datum/lighting_object/proc/update()
 
+	if(sunlight_only) return
 	// To the future coder who sees this and thinks
 	// "Why didn't he just use a loop?"
 	// Well my man, it's because the loop performed like shit.
@@ -87,6 +90,7 @@
 		current_underlay.color = null
 	else
 		current_underlay.icon_state = "gradient"
+		current_underlay.color = null
 		current_underlay.color = list(
 			red_corner.cache_r, red_corner.cache_g, red_corner.cache_b, 00,
 			green_corner.cache_r, green_corner.cache_g, green_corner.cache_b, 00,
@@ -104,4 +108,31 @@
 	affected_turf.underlays -= current_underlay
 
 /datum/lighting_object/proc/addtoturf()
-	affected_turf.underlays += current_underlay
+	affected_turf.underlays |= current_underlay
+
+/datum/lighting_object/proc/update_sun()
+	if(QDELETED(src))
+		return
+	//Used to have more code here, but it became redundant.
+	affected_turf.set_luminosity(1)
+
+/datum/lighting_object/proc/set_sunonly(var/onlysun,var/datum/planet_sunlight_handler/pshandler)
+	if(QDELETED(affected_turf)) //this should never happen but god demanded I be sad
+		return
+	switch(sunlight_only)
+		if(SUNLIGHT_ONLY)
+			affected_turf.vis_contents -= pshandler.vis_overhead
+		if(SUNLIGHT_ONLY_SHADE)
+			affected_turf.vis_contents -= pshandler.vis_shade
+		if(FALSE)
+			affected_turf.underlays -= current_underlay
+
+	sunlight_only = onlysun
+
+	switch(onlysun)
+		if(SUNLIGHT_ONLY)
+			affected_turf.vis_contents += pshandler.vis_overhead
+		if(SUNLIGHT_ONLY_SHADE)
+			affected_turf.vis_contents += pshandler.vis_shade
+		if(FALSE)
+			affected_turf.underlays |= current_underlay

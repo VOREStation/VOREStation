@@ -105,7 +105,7 @@ var/global/list/ore_reagents = list( //have a number of reageents divisible by R
 	icon_state = "juicer"+num2text(!isnull(beaker))
 	return
 
-/obj/machinery/reagentgrinder/attackby(var/obj/item/O as obj, var/mob/user as mob)
+/obj/machinery/reagentgrinder/attackby(var/obj/item/O, var/mob/user)
 	if(beaker)
 		if(default_deconstruction_screwdriver(user, O))
 			return
@@ -124,11 +124,11 @@ var/global/list/ore_reagents = list( //have a number of reageents divisible by R
 		if (beaker)
 			return 1
 		else
-			src.beaker =  O
+			beaker =  O
 			user.drop_item()
 			O.loc = src
 			update_icon()
-			src.updateUsrDialog()
+			updateUsrDialog(user)
 			return 0
 
 	if(holdingitems && holdingitems.len >= limit)
@@ -159,7 +159,7 @@ var/global/list/ore_reagents = list( //have a number of reageents divisible by R
 		else
 			to_chat(user, "You fill \the [src] from \the [O].")
 
-		src.updateUsrDialog()
+		src.updateUsrDialog(user)
 		return 0
 
 	if(istype(O,/obj/item/gripper))
@@ -188,10 +188,10 @@ var/global/list/ore_reagents = list( //have a number of reageents divisible by R
 		return
 	replace_beaker(user)
 
-/obj/machinery/reagentgrinder/attack_hand(mob/user as mob)
+/obj/machinery/reagentgrinder/attack_hand(mob/user)
 	interact(user)
 
-/obj/machinery/reagentgrinder/interact(mob/user as mob) // The microwave Menu //I am reasonably certain that this is not a microwave
+/obj/machinery/reagentgrinder/interact(mob/user) // The microwave Menu //I am reasonably certain that this is not a microwave
 	if(inuse || user.incapacitated())
 		return
 

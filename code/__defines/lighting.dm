@@ -117,3 +117,34 @@ do { \
 		source.lum_b = 1; \
 	}; \
 } while (FALSE)
+
+//Fake ambient occlusion filter
+#define LIGHT_OK 0
+#define LIGHT_EMPTY 1
+#define LIGHT_BROKEN 2
+#define LIGHT_BURNED 3
+
+#define SUNLIGHT_RADIUS 9 //Tiles that sunlight penetrates into shade
+#define SUNLIGHT_NONE 0
+#define SUNLIGHT_POSSIBLE 1
+#define SUNLIGHT_CURRENT 2
+#define SUNLIGHT_OVERHEAD 3
+#define SUNLIGHT_ONLY 4
+#define SUNLIGHT_ONLY_SHADE 5
+
+// Keep in mind. Lighting corners accept the bottom left (northwest) set of cords to them as input
+// Handles dynamic light
+#define GENERATE_MISSING_CORNERS(gen_for) \
+	if (!gen_for.lighting_corner_NE) { \
+		gen_for.lighting_corner_NE = new /datum/lighting_corner(gen_for.x, gen_for.y, gen_for.z, gen_for.has_dynamic_lighting()); \
+	} \
+	if (!gen_for.lighting_corner_SE) { \
+		gen_for.lighting_corner_SE = new /datum/lighting_corner(gen_for.x, gen_for.y - 1, gen_for.z, gen_for.has_dynamic_lighting()); \
+	} \
+	if (!gen_for.lighting_corner_SW) { \
+		gen_for.lighting_corner_SW = new /datum/lighting_corner(gen_for.x - 1, gen_for.y - 1, gen_for.z, gen_for.has_dynamic_lighting()); \
+	} \
+	if (!gen_for.lighting_corner_NW) { \
+		gen_for.lighting_corner_NW = new /datum/lighting_corner(gen_for.x - 1, gen_for.y, gen_for.z, gen_for.has_dynamic_lighting()); \
+	} \
+	gen_for.lighting_corners_initialised = TRUE;

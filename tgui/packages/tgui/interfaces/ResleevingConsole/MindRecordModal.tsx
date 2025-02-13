@@ -1,7 +1,7 @@
 import { useBackend } from 'tgui/backend';
 import { Box, Button, LabeledList, Section } from 'tgui-core/components';
 
-import { modalMindData as ActiveMindRecordData } from './types';
+import type { modalMindData as ActiveMindRecordData } from './types';
 
 export const MindRecordModal = (props: { data: ActiveMindRecordData }) => {
   const { act } = useBackend();

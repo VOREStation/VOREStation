@@ -9,7 +9,7 @@
   "scripts": {
     "tgui:analyze": "webpack --analyze",
     "tgui:bench": "webpack --env TGUI_BENCH=1 && node packages/tgui-bench/index.js",
-    "tgui:build": "BROWSERSLIST_IGNORE_OLD_DATA=true webpack && webpack --config ./webpack.config.edge.js",
+    "tgui:build": "BROWSERSLIST_IGNORE_OLD_DATA=true webpack",
     "tgui:dev": "node --experimental-modules packages/tgui-dev-server/index.js",
     "tgui:lint": "eslint packages --ext .js,.cjs,.ts,.tsx",
     "tgui:prettier": "prettier --check .",
@@ -48,7 +48,7 @@
     "sass-loader": "^16.0.3",
     "style-loader": "^4.0.0",
     "swc-loader": "^0.2.6",
-    "tgui-core": "^1.7.5",
+    "tgui-core": "^1.8.0",
     "typescript": "5.6.3",
     "url-loader": "^4.1.1",
     "webpack": "^5.96.1",

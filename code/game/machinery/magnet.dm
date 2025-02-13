@@ -300,9 +300,6 @@
 
 		radio_connection.post_signal(src, signal, radio_filter = RADIO_MAGNETS)
 
-		spawn(1)
-			updateUsrDialog() // pretty sure this increases responsiveness
-
 	if(href_list["operation"])
 		switch(href_list["operation"])
 			if("plusspeed")
@@ -327,7 +324,7 @@
 					spawn() MagnetMove()
 
 
-	updateUsrDialog()
+	updateUsrDialog(usr)
 
 /obj/machinery/magnetic_controller/proc/MagnetMove()
 	if(looping) return

@@ -569,7 +569,7 @@
 				apply_image_decorations = TRUE
 			if(prob(25))
 				apply_material_decorations = FALSE
-			new_item = new /obj/item/telecube/randomized/mated(src.loc)
+			new_item = new /obj/item/telecube/randomized(src.loc)
 			item_type = new_item.name
 
 		if(ARCHAEO_BATTERY)

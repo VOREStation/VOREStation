@@ -45,7 +45,6 @@ SUBSYSTEM_DEF(planets)
 		else if(istype(T, /turf/simulated) && T.is_outdoors())
 			P.planet_floors += T
 			P.weather_holder.apply_to_turf(T)
-			P.sun_holder.apply_to_turf(T)
 
 /datum/controller/subsystem/planets/proc/removeTurf(var/turf/T,var/is_edge)
 	if(z_to_planet.len >= T.z)
@@ -108,6 +107,7 @@ SUBSYSTEM_DEF(planets)
 
 	var/new_color = P.sun["color"]
 	P.sun_holder.update_color(new_color)
+	SSlighting.update_sunlight(SSlighting.get_pshandler_planet(P))
 
 /datum/controller/subsystem/planets/proc/updateTemp(var/datum/planet/P)
 	//Set new temperatures

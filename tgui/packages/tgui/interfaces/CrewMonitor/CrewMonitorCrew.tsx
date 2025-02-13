@@ -1,6 +1,13 @@
 import { useState } from 'react';
 import { useBackend } from 'tgui/backend';
-import { Box, Button, Input, Stack, Table } from 'tgui-core/components';
+import {
+  Box,
+  Button,
+  Input,
+  Section,
+  Stack,
+  Table,
+} from 'tgui-core/components';
 import { createSearch } from 'tgui-core/string';
 
 import {
@@ -9,7 +16,7 @@ import {
   getStatColor,
   getStatText,
 } from './functions';
-import { crewmember, Data } from './types';
+import type { crewmember, Data } from './types';
 
 export const CrewMonitorCrew = (props: { crew: crewmember[] }) => {
   const { act, data } = useBackend<Data>();
@@ -57,154 +64,160 @@ export const CrewMonitorCrew = (props: { crew: crewmember[] }) => {
   );
 
   return (
-    <Table>
-      <Table.Row header>
-        <Table.Cell width="35%">Name</Table.Cell>
-        <Table.Cell>Status</Table.Cell>
-        <Table.Cell width="30%">Location</Table.Cell>
-      </Table.Row>
-      <Table.Row mb="rem">
-        <Table.Cell>
-          <Stack>
-            <Stack.Item grow>
-              <Input
-                fluid
-                value={nameSearch}
-                placeholder="Search for Name..."
-                onChange={(e, val) => setNameSearch(val)}
-              />
-            </Stack.Item>
-            <Stack.Item>
-              <Button
-                selected={sortType === 'name'}
-                icon={nameSortOrder ? 'arrow-down' : 'arrow-up'}
-                tooltip={nameSortOrder ? 'Descending order' : 'Ascending order'}
-                tooltipPosition="bottom-end"
-                ml="0.5rem"
-                mr="1rem"
-                onClick={() => {
-                  setSortType('name');
-                  setNameSortOrder(!nameSortOrder);
-                }}
-              />
-            </Stack.Item>
-          </Stack>
-        </Table.Cell>
-        <Table.Cell>
-          <Button.Checkbox
-            checked={livingStatus}
-            onClick={() => setLivingStatus(!livingStatus)}
-          >
-            Livin
-          </Button.Checkbox>
-          <Button.Checkbox
-            checked={unconsciousStatus}
-            onClick={() => setUnconsciousStatus(!unconsciousStatus)}
-          >
-            Uncon
-          </Button.Checkbox>
-          <Button.Checkbox
-            checked={deceasedStatus}
-            onClick={() => setDeceasedStatus(!deceasedStatus)}
-          >
-            Decea
-          </Button.Checkbox>
-          <Button
-            selected={sortType === 'damage'}
-            icon={damageSortOrder ? 'arrow-down' : 'arrow-up'}
-            tooltip={damageSortOrder ? 'Descending order' : 'Ascending order'}
-            tooltipPosition="bottom-end"
-            ml="0.5rem"
-            onClick={() => {
-              setSortType('damage');
-              setDamageSortOrder(!damageSortOrder);
-            }}
-          />
-        </Table.Cell>
-        <Table.Cell>
-          {our_levels
-            .sort((a, b) => Number(a) - Number(b))
-            .map((level) => (
-              <Button
-                key={level}
-                selected={locationSearch[level]}
-                onClick={() => {
-                  setLocationSearch({
-                    ...locationSearch,
-                    [level]: !locationSearch[level],
-                  });
-                }}
-              >
-                {level === -1 ? '?' : level.toString()}
-              </Button>
-            ))}
-          <Button
-            selected={sortType === 'location'}
-            icon={locationSortOrder ? 'arrow-down' : 'arrow-up'}
-            tooltip={locationSortOrder ? 'Descending order' : 'Ascending order'}
-            tooltipPosition="bottom-end"
-            ml="0.5rem"
-            onClick={() => {
-              setSortType('location');
-              setLocationSortOrder(!locationSortOrder);
-            }}
-          />
-        </Table.Cell>
-      </Table.Row>
-      {sortedCrew.map((cm) => (
-        <Table.Row key={cm.ref}>
+    <Section fill scrollable>
+      <Table>
+        <Table.Row header>
+          <Table.Cell width="35%">Name</Table.Cell>
+          <Table.Cell>Status</Table.Cell>
+          <Table.Cell width="35%">Location</Table.Cell>
+        </Table.Row>
+        <Table.Row>
           <Table.Cell>
-            {cm.name} ({cm.assignment})
-          </Table.Cell>
-          <Table.Cell>
-            <Box inline color={getStatColor(cm)}>
-              {getStatText(cm)}
-            </Box>
-            {cm.sensor_type >= 2 ? (
-              <Box inline>
-                {'('}
-                <Box inline color="red">
-                  {cm.brute}
-                </Box>
-                {'|'}
-                <Box inline color="orange">
-                  {cm.fire}
-                </Box>
-                {'|'}
-                <Box inline color="green">
-                  {cm.tox}
-                </Box>
-                {'|'}
-                <Box inline color="blue">
-                  {cm.oxy}
-                </Box>
-                {')'}
-              </Box>
-            ) : null}
-          </Table.Cell>
-          <Table.Cell>
-            {cm.sensor_type === 3 ? (
-              isAI ? (
-                <Button
+            <Stack>
+              <Stack.Item grow>
+                <Input
                   fluid
-                  icon="location-arrow"
-                  onClick={() =>
-                    act('track', {
-                      track: cm.ref,
-                    })
+                  value={nameSearch}
+                  placeholder="Search for Name..."
+                  onChange={(e, val) => setNameSearch(val)}
+                />
+              </Stack.Item>
+              <Stack.Item>
+                <Button
+                  selected={sortType === 'name'}
+                  icon={nameSortOrder ? 'arrow-down' : 'arrow-up'}
+                  tooltip={
+                    nameSortOrder ? 'Descending order' : 'Ascending order'
                   }
+                  tooltipPosition="bottom-end"
+                  ml="0.5rem"
+                  mr="1rem"
+                  onClick={() => {
+                    setSortType('name');
+                    setNameSortOrder(!nameSortOrder);
+                  }}
+                />
+              </Stack.Item>
+            </Stack>
+          </Table.Cell>
+          <Table.Cell>
+            <Button.Checkbox
+              checked={livingStatus}
+              onClick={() => setLivingStatus(!livingStatus)}
+            >
+              Livin
+            </Button.Checkbox>
+            <Button.Checkbox
+              checked={unconsciousStatus}
+              onClick={() => setUnconsciousStatus(!unconsciousStatus)}
+            >
+              Uncon
+            </Button.Checkbox>
+            <Button.Checkbox
+              checked={deceasedStatus}
+              onClick={() => setDeceasedStatus(!deceasedStatus)}
+            >
+              Decea
+            </Button.Checkbox>
+            <Button
+              selected={sortType === 'damage'}
+              icon={damageSortOrder ? 'arrow-down' : 'arrow-up'}
+              tooltip={damageSortOrder ? 'Descending order' : 'Ascending order'}
+              tooltipPosition="bottom-end"
+              ml="0.5rem"
+              onClick={() => {
+                setSortType('damage');
+                setDamageSortOrder(!damageSortOrder);
+              }}
+            />
+          </Table.Cell>
+          <Table.Cell>
+            {our_levels
+              .sort((a, b) => Number(a) - Number(b))
+              .map((level) => (
+                <Button
+                  key={level}
+                  selected={locationSearch[level]}
+                  onClick={() => {
+                    setLocationSearch({
+                      ...locationSearch,
+                      [level]: !locationSearch[level],
+                    });
+                  }}
                 >
-                  {cm.area + ' (' + cm.x + ', ' + cm.y + ')'}
+                  {level === -1 ? '?' : level.toString()}
                 </Button>
-              ) : (
-                cm.area + ' (' + cm.x + ', ' + cm.y + ', ' + cm.z + ')'
-              )
-            ) : (
-              'Not Available'
-            )}
+              ))}
+            <Button
+              selected={sortType === 'location'}
+              icon={locationSortOrder ? 'arrow-down' : 'arrow-up'}
+              tooltip={
+                locationSortOrder ? 'Descending order' : 'Ascending order'
+              }
+              tooltipPosition="bottom-end"
+              ml="0.5rem"
+              onClick={() => {
+                setSortType('location');
+                setLocationSortOrder(!locationSortOrder);
+              }}
+            />
           </Table.Cell>
         </Table.Row>
-      ))}
-    </Table>
+        {sortedCrew.map((cm) => (
+          <Table.Row key={cm.ref}>
+            <Table.Cell>
+              {cm.name} ({cm.assignment})
+            </Table.Cell>
+            <Table.Cell>
+              <Box inline color={getStatColor(cm)}>
+                {getStatText(cm)}
+              </Box>
+              {cm.sensor_type >= 2 ? (
+                <Box inline>
+                  {'('}
+                  <Box inline color="red">
+                    {cm.brute}
+                  </Box>
+                  {'|'}
+                  <Box inline color="orange">
+                    {cm.fire}
+                  </Box>
+                  {'|'}
+                  <Box inline color="green">
+                    {cm.tox}
+                  </Box>
+                  {'|'}
+                  <Box inline color="blue">
+                    {cm.oxy}
+                  </Box>
+                  {')'}
+                </Box>
+              ) : null}
+            </Table.Cell>
+            <Table.Cell>
+              {cm.sensor_type === 3 ? (
+                isAI ? (
+                  <Button
+                    fluid
+                    icon="location-arrow"
+                    onClick={() =>
+                      act('track', {
+                        track: cm.ref,
+                      })
+                    }
+                  >
+                    {cm.area + ' (' + cm.x + ', ' + cm.y + ')'}
+                  </Button>
+                ) : (
+                  cm.area + ' (' + cm.x + ', ' + cm.y + ', ' + cm.z + ')'
+                )
+              ) : (
+                'Not Available'
+              )}
+            </Table.Cell>
+          </Table.Row>
+        ))}
+      </Table>
+    </Section>
   );
 };

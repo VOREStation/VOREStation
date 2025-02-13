@@ -2,6 +2,8 @@
 	Global associative list for caching humanoid icons.
 	Index format m or f, followed by a string of 0 and 1 to represent bodyparts followed by husk fat hulk skeleton 1 or 0.
 */
+
+//TODO: Get all these up to date with Chomp. I'd rather not do an entire caching update with the genetics PR, thanks.
 var/global/list/human_icon_cache = list() //key is incredibly complex, see update_icons_body()
 var/global/list/tail_icon_cache = list() //key is [species.race_key][r_skin][g_skin][b_skin]
 var/global/list/wing_icon_cache = list() // See tail.
@@ -599,21 +601,7 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 	if(!LAZYLEN(mutations))
 		return //No mutations, no icons.
 
-	//TODO: THIS PROC???
-	var/fat
-	if(FAT in mutations)
-		fat = "fat"
-
 	var/image/standing	= image(icon = 'icons/effects/genetics.dmi', layer = BODY_LAYER+MUTATIONS_LAYER)
-	var/g = gender == FEMALE ? "f" : "m"
-
-	for(var/datum/dna/gene/gene in dna_genes)
-		if(!gene.block)
-			continue
-		if(gene.is_active(src))
-			var/underlay = gene.OnDrawUnderlays(src,g,fat)
-			if(underlay)
-				standing.underlays += underlay
 
 	for(var/mut in mutations)
 		if(mut == LASER)

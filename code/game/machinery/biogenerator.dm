@@ -207,7 +207,7 @@
 		icon_state = "biogen-work"
 	return
 
-/obj/machinery/biogenerator/attackby(var/obj/item/O as obj, var/mob/user as mob)
+/obj/machinery/biogenerator/attackby(var/obj/item/O, var/mob/user)
 	if(default_deconstruction_screwdriver(user, O))
 		return
 	if(default_deconstruction_crowbar(user, O))
@@ -223,7 +223,7 @@
 			user.remove_from_mob(O)
 			O.loc = src
 			beaker = O
-			updateUsrDialog()
+			updateUsrDialog(user)
 	else if(processing)
 		to_chat(user, span_notice("\The [src] is currently processing."))
 	else if(istype(O, /obj/item/storage/bag/plants))

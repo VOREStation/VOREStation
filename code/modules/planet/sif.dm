@@ -36,30 +36,30 @@ var/datum/planet/sif/planet_sif = null
 
 	switch(sun_position)
 		if(0 to 0.40) // Night
-			low_brightness = 0.2
-			low_color = "#000066"
+			low_brightness = 0.15
+			low_color = "#19195c"
 
-			high_brightness = 0.5
+			high_brightness = 0.3
 			high_color = "#66004D"
 			min = 0
 
 		if(0.40 to 0.50) // Twilight
-			low_brightness = 0.6
+			low_brightness = 0.3
 			low_color = "#66004D"
 
-			high_brightness = 0.8
+			high_brightness = 0.65
 			high_color = "#CC3300"
 			min = 0.40
 
-		if(0.50 to 0.70) // Sunrise/set
-			low_brightness = 0.8
+		if(0.50 to 0.60) // Sunrise/set
+			low_brightness = 0.65
 			low_color = "#CC3300"
 
 			high_brightness = 0.9
 			high_color = "#FF9933"
 			min = 0.50
 
-		if(0.70 to 1.00) // Noon
+		if(0.60 to 1.00) // Noon
 			low_brightness = 0.9
 			low_color = "#DDDDDD"
 

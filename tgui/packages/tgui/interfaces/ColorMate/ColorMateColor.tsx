@@ -2,7 +2,7 @@ import { useBackend } from 'tgui/backend';
 import { Button, Slider, Table } from 'tgui-core/components';
 import { toFixed } from 'tgui-core/math';
 
-import { Data } from './types';
+import type { Data } from './types';
 
 export const ColorMateTint = (props) => {
   const { act } = useBackend();

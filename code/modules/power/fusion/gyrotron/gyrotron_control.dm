@@ -96,7 +96,7 @@
 			return 1
 		G.mega_energy = CLAMP(new_val, 1, 50)
 		G.update_active_power_usage(G.mega_energy * 1500)
-		updateUsrDialog()
+		updateUsrDialog(usr)
 		return 1
 
 	if(href_list["modifyrate"])
@@ -105,12 +105,12 @@
 			to_chat(usr, span_warning("That's not a valid number."))
 			return 1
 		G.rate = CLAMP(new_val, 1, 10)
-		updateUsrDialog()
+		updateUsrDialog(usr)
 		return 1
 
 	if(href_list["toggle"])
 		G.activate(usr)
-		updateUsrDialog()
+		updateUsrDialog(usr)
 		return 1
 
 	return 0

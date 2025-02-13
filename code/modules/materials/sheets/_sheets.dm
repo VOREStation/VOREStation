@@ -6,7 +6,8 @@
 	w_class = ITEMSIZE_NORMAL
 	throw_speed = 3
 	throw_range = 3
-	center_of_mass = null
+	center_of_mass_x = 0
+	center_of_mass_y = 0
 	max_amount = 50
 	item_icons = list(
 		slot_l_hand_str = 'icons/mob/items/lefthand_material.dmi',

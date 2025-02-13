@@ -185,7 +185,7 @@
 			update_icon()
 
 		src.attack_self(usr)
-		updateUsrDialog()
+		updateUsrDialog(usr)
 	else
 		to_chat(usr, span_notice("You need to hold it in hands!"))
 

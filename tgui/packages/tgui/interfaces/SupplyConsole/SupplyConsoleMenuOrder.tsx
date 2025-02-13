@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useBackend } from 'tgui/backend';
 import { Box, Button, Section, Stack } from 'tgui-core/components';
 
-import { Data, supplyPack } from './types';
+import type { Data, supplyPack } from './types';
 
 export const SupplyConsoleMenuOrder = (props) => {
   const { act, data } = useBackend<Data>();
@@ -49,7 +49,7 @@ export const SupplyConsoleMenuOrder = (props) => {
             {viewingPacks.map((pack) => (
               <Box key={pack.name}>
                 <Stack align="center" justify="flex-start">
-                  <Stack.Item basis="70%">
+                  <Stack.Item maxWidth="70%" basis="70%">
                     <Button
                       fluid
                       icon="shopping-cart"

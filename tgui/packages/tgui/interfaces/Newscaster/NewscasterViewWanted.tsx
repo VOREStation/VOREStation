@@ -3,7 +3,7 @@ import { Box, Button, Image, LabeledList, Section } from 'tgui-core/components';
 import { decodeHtmlEntities } from 'tgui-core/string';
 
 import { NEWSCASTER_SCREEN_MAIN } from './constants';
-import { Data } from './types';
+import type { Data } from './types';
 
 export const NewscasterViewWanted = (props: { setScreen: Function }) => {
   const { data } = useBackend<Data>();

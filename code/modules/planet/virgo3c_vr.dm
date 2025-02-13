@@ -73,15 +73,15 @@ var/datum/planet/virgo3c/planet_virgo3c = null
 			low_brightness = 0.9
 			low_color = "#CC3300"
 
-			high_brightness = 3.0
+			high_brightness = 1.0
 			high_color = "#FF9933"
 			min = 0.50
 
 		if(0.45 to 1.00) // Noon
-			low_brightness = 3.0
+			low_brightness = 1.0
 			low_color = "#DDDDDD"
 
-			high_brightness = 10.0
+			high_brightness = 1.0
 			high_color = "#FFFFFF"
 			min = 0.70
 

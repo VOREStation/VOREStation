@@ -3,7 +3,7 @@ import { Box, Button, Section, Table } from 'tgui-core/components';
 import { decodeHtmlEntities } from 'tgui-core/string';
 
 import { MESSSUBTAB, PHONTAB } from './constants';
-import { ContactsTabData } from './types';
+import type { ContactsTabData } from './types';
 
 export const CommunicatorContactTab = (props) => {
   const { act, data } = useBackend<ContactsTabData>();

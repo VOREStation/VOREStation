@@ -10,7 +10,7 @@ import {
   Stack,
 } from 'tgui-core/components';
 import { toFixed } from 'tgui-core/math';
-import { BooleanLike } from 'tgui-core/react';
+import type { BooleanLike } from 'tgui-core/react';
 import { toTitleCase } from 'tgui-core/string';
 
 type Data = {

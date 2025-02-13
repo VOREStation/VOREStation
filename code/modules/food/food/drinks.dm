@@ -246,7 +246,8 @@
 	description_fluff = "A product of NanoPastures. Who would have thought that cows would thrive in zero-G?"
 	icon_state = "milk"
 	item_state = "carton"
-	center_of_mass = list("x"=16, "y"=9)
+	center_of_mass_x = 16
+	center_of_mass_y = 9
 	drop_sound = 'sound/items/drop/cardboardbox.ogg'
 	pickup_sound = 'sound/items/pickup/cardboardbox.ogg'
 
@@ -260,7 +261,8 @@
 	description_fluff = "A product of NanoPastures. For those skeptical that cows can thrive in zero-G."
 	icon_state = "soymilk"
 	item_state = "carton"
-	center_of_mass = list("x"=16, "y"=9)
+	center_of_mass_x = 16
+	center_of_mass_y = 9
 	drop_sound = 'sound/items/drop/cardboardbox.ogg'
 	pickup_sound = 'sound/items/pickup/cardboardbox.ogg'
 
@@ -275,7 +277,8 @@
 	volume = 30
 	icon_state = "mini-milk"
 	item_state = "carton"
-	center_of_mass = list("x"=16, "y"=9)
+	center_of_mass_x = 16
+	center_of_mass_y = 9
 	drop_sound = 'sound/items/drop/cardboardbox.ogg'
 	pickup_sound = 'sound/items/pickup/cardboardbox.ogg'
 
@@ -290,7 +293,8 @@
 	volume = 30
 	icon_state = "mini-milk_choco"
 	item_state = "carton"
-	center_of_mass = list("x"=16, "y"=9)
+	center_of_mass_x = 16
+	center_of_mass_y = 9
 	drop_sound = 'sound/items/drop/cardboardbox.ogg'
 	pickup_sound = 'sound/items/pickup/cardboardbox.ogg'
 
@@ -304,7 +308,8 @@
 	description_fluff = "Fresh coffee is almost unheard of outside of planets and stations where it is grown. Robust Coffee proudly advertises the six separate times it is freeze-dried during the production process of every cup of instant."
 	icon_state = "coffee"
 	trash = /obj/item/trash/coffee
-	center_of_mass = list("x"=15, "y"=10)
+	center_of_mass_x = 15
+	center_of_mass_y = 10
 	drop_sound = 'sound/items/drop/papercup.ogg'
 	pickup_sound = 'sound/items/pickup/papercup.ogg'
 
@@ -319,7 +324,8 @@
 	icon_state = "chai_vended"
 	item_state = "coffee"
 	trash = /obj/item/trash/coffee
-	center_of_mass = list("x"=16, "y"=14)
+	center_of_mass_x = 16
+	center_of_mass_y = 14
 	drop_sound = 'sound/items/drop/papercup.ogg'
 	pickup_sound = 'sound/items/pickup/papercup.ogg'
 
@@ -334,7 +340,8 @@
 	icon_state = "chai_vended"
 	item_state = "coffee"
 	trash = /obj/item/trash/coffee
-	center_of_mass = list("x"=16, "y"=14)
+	center_of_mass_x = 16
+	center_of_mass_y = 14
 	drop_sound = 'sound/items/drop/papercup.ogg'
 	pickup_sound = 'sound/items/pickup/papercup.ogg'
 
@@ -346,7 +353,8 @@
 	name = "cup of ice"
 	desc = "Careful, cold ice, do not chew."
 	icon_state = "ice"
-	center_of_mass = list("x"=15, "y"=10)
+	center_of_mass_x = 15
+	center_of_mass_y = 10
 /obj/item/reagent_containers/food/drinks/ice/Initialize()
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_ICE, 30)
@@ -358,7 +366,8 @@
 	icon_state = "coffee"
 	item_state = "hot_choc"
 	trash = /obj/item/trash/coffee
-	center_of_mass = list("x"=15, "y"=13)
+	center_of_mass_x = 15
+	center_of_mass_y = 13
 	drop_sound = 'sound/items/drop/papercup.ogg'
 	pickup_sound = 'sound/items/pickup/papercup.ogg'
 
@@ -373,7 +382,8 @@
 	icon_state = "greentea_vended"
 	item_state = "coffee"
 	trash = /obj/item/trash/coffee
-	center_of_mass = list("x"=16, "y"=14)
+	center_of_mass_x = 16
+	center_of_mass_y = 14
 	drop_sound = 'sound/items/drop/papercup.ogg'
 	pickup_sound = 'sound/items/pickup/papercup.ogg'
 
@@ -388,7 +398,8 @@
 	icon_state = "chai_vended"
 	item_state = "coffee"
 	trash = /obj/item/trash/coffee
-	center_of_mass = list("x"=16, "y"=14)
+	center_of_mass_x = 16
+	center_of_mass_y = 14
 	drop_sound = 'sound/items/drop/papercup.ogg'
 	pickup_sound = 'sound/items/pickup/papercup.ogg'
 
@@ -403,7 +414,8 @@
 	icon_state = "coffee"
 	item_state = "coffee"
 	trash = /obj/item/trash/coffee
-	center_of_mass = list("x"=16, "y"=14)
+	center_of_mass_x = 16
+	center_of_mass_y = 14
 	drop_sound = 'sound/items/drop/papercup.ogg'
 	pickup_sound = 'sound/items/pickup/papercup.ogg'
 
@@ -417,7 +429,8 @@
 	description_fluff = "Konohagakure Brand Ramen has been an instant meal staple for centuries. Cheap, quick and available in over two hundred varieties - though most taste like artifical chicken."
 	icon_state = "ramen"
 	trash = /obj/item/trash/ramen
-	center_of_mass = list("x"=16, "y"=11)
+	center_of_mass_x = 16
+	center_of_mass_y = 11
 	drop_sound = 'sound/items/drop/papercup.ogg'
 	pickup_sound = 'sound/items/pickup/papercup.ogg'
 
@@ -431,7 +444,8 @@
 	icon_state = "water_cup_e"
 	possible_transfer_amounts = null
 	volume = 10
-	center_of_mass = list("x"=16, "y"=12)
+	center_of_mass_x = 16
+	center_of_mass_y = 12
 	drop_sound = 'sound/items/drop/papercup.ogg'
 	pickup_sound = 'sound/items/pickup/papercup.ogg'
 
@@ -468,7 +482,8 @@
 	icon_state = "shaker"
 	amount_per_transfer_from_this = 10
 	volume = 120
-	center_of_mass = list("x"=17, "y"=10)
+	center_of_mass_x = 17
+	center_of_mass_y = 10
 
 /obj/item/reagent_containers/food/drinks/shaker/on_reagent_change()
 	..()
@@ -480,7 +495,8 @@
 	item_state = "teapot"
 	amount_per_transfer_from_this = 10
 	volume = 120
-	center_of_mass = list("x"=17, "y"=7)
+	center_of_mass_x = 17
+	center_of_mass_y = 7
 
 /obj/item/reagent_containers/food/drinks/teapot/on_reagent_change()
 	..()
@@ -491,7 +507,8 @@
 
 	icon_state = "flask"
 	volume = 60
-	center_of_mass = list("x"=17, "y"=7)
+	center_of_mass_x = 17
+	center_of_mass_y = 7
 
 /obj/item/reagent_containers/food/drinks/flask/on_reagent_change()
 	..()
@@ -511,18 +528,21 @@
 	desc = "A metal flask with a leather band and golden badge belonging to the detective."
 	icon_state = "detflask"
 	volume = 60
-	center_of_mass = list("x"=17, "y"=8)
+	center_of_mass_x = 17
+	center_of_mass_y = 8
 
 /obj/item/reagent_containers/food/drinks/flask/barflask
 	name = "flask"
 	desc = "For those who can't be bothered to hang out at the bar to drink."
 	icon_state = "barflask"
 	volume = 60
-	center_of_mass = list("x"=17, "y"=7)
+	center_of_mass_x = 17
+	center_of_mass_y = 7
 
 /obj/item/reagent_containers/food/drinks/flask/vacuumflask
 	name = "vacuum flask"
 	desc = "Keeping your drinks at the perfect temperature since 1892."
 	icon_state = "vacuumflask"
 	volume = 60
-	center_of_mass = list("x"=15, "y"=4)
+	center_of_mass_x = 15
+	center_of_mass_y = 4

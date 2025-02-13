@@ -10,7 +10,7 @@ import {
 } from 'tgui-core/components';
 import { formatPower, formatSiUnit } from 'tgui-core/format';
 import { toFixed } from 'tgui-core/math';
-import { BooleanLike } from 'tgui-core/react';
+import type { BooleanLike } from 'tgui-core/react';
 
 import { FullscreenNotice } from './common/FullscreenNotice';
 
@@ -49,7 +49,7 @@ export const ShieldGenerator = (props) => {
 
   return (
     <Window width={500} height={400}>
-      <Window.Content>
+      <Window.Content scrollable>
         {locked ? <ShieldGeneratorLocked /> : <ShieldGeneratorContent />}
       </Window.Content>
     </Window>

@@ -46,11 +46,7 @@ export const Constructor = (props: {
   const our_name = constructorEnumToName[type];
 
   if (!linked_data) {
-    return (
-      <Section title={`ERROR: Cannot Find ${our_name}`} fill>
-        Meow
-      </Section>
-    );
+    return <Section title={`ERROR: Cannot Find ${our_name}`} fill />;
   }
 
   return (

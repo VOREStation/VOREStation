@@ -106,7 +106,7 @@
 		screenstate = 0
 
 	src.add_fingerprint(usr)
-	src.updateUsrDialog()
+	src.updateUsrDialog(usr)
 	return
 
 
@@ -518,7 +518,7 @@
 		var/obj/item/book/NewBook = new newpath(get_turf(src))
 		NewBook.name = "Book: [NewBook.name]"
 	src.add_fingerprint(usr)
-	src.updateUsrDialog()
+	src.updateUsrDialog(usr)
 	return
 
 /*
@@ -569,7 +569,7 @@
 		for(var/obj/item/book/B in contents)
 			B.loc = src.loc
 	src.add_fingerprint(usr)
-	src.updateUsrDialog()
+	src.updateUsrDialog(usr)
 	return
 
 

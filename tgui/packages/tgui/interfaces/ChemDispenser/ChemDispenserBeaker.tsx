@@ -3,7 +3,7 @@ import { Box, Button, Section } from 'tgui-core/components';
 
 import { BeakerContents } from '../common/BeakerContents';
 import { removeAmounts } from './constants';
-import { Data } from './types';
+import type { Data } from './types';
 
 export const ChemDispenserBeaker = (props) => {
   const { act, data } = useBackend<Data>();

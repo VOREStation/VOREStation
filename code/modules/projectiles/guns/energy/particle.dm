@@ -20,6 +20,7 @@
 	charge_cost = 200	//slightly more shots than lasers
 	var/safetycatch = 0 //if 1, won't let you fire in pressurised environment, rather than malfunctioning
 	var/obj/item/pressurelock/attached_safety
+	recoil_mode = 0
 
 
 /obj/item/gun/energy/particle/advanced //particle equivalent of AEG

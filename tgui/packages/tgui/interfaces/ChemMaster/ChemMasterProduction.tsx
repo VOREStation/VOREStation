@@ -1,6 +1,6 @@
 import { useBackend } from 'tgui/backend';
 import { Button, Icon, Section, Stack } from 'tgui-core/components';
-import { BooleanLike } from 'tgui-core/react';
+import type { BooleanLike } from 'tgui-core/react';
 
 import { ChemMasterProductionChemical } from './ChemMasterProductionChemical';
 import { ChemMasterProductionCondiment } from './ChemMasterProductionCondiment';

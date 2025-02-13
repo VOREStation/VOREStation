@@ -28,7 +28,7 @@ import {
   RequestConsoleRelay,
   RequestConsoleSupplies,
 } from './RequestConsolTypes';
-import { Data } from './types';
+import type { Data } from './types';
 
 export const RequestConsole = (props) => {
   const { act, data } = useBackend<Data>();

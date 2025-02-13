@@ -16,7 +16,7 @@
 		if(sprite_datum.has_sleeper_light_indicator)
 			vore_light_states = list("sleeper" = 0)
 			sprite_datum.belly_light_list = list("sleeper")
-	update_fullness() //Set how full the newly defined bellies are, if they're already full
+	handle_belly_update() //Set how full the newly defined bellies are, if they're already full
 
 /mob/living/silicon/robot/proc/reset_belly_lights(var/b_class)
 	if(sprite_datum.belly_light_list.len && sprite_datum.belly_light_list.Find(b_class))

@@ -14,7 +14,8 @@
 	origin_tech = list(TECH_MATERIAL = 1)
 	icon = 'icons/obj/stacks.dmi'
 	randpixel = 7
-	center_of_mass = null
+	center_of_mass_x = 0
+	center_of_mass_y = 0
 	var/list/datum/stack_recipe/recipes
 	var/singular_name
 	var/amount = 1

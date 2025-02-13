@@ -8,11 +8,13 @@
 	active_power_usage = 750
 	use_power = USE_POWER_IDLE
 	var/harvesting = 0
+	var/harvesting_speed = 0
 	var/obj/item/anobattery/inserted_battery
 	var/obj/cur_artifact
 	var/obj/machinery/artifact_scanpad/owned_scanner = null
 	var/last_process = 0
 	bubble_icon = "science"
+	circuit = /obj/item/circuitboard/artifact_harvester
 
 /// If you want it to load smoothly, set it's dir to wherever the scanpad is!
 /obj/machinery/artifact_harvester/Initialize()
@@ -20,6 +22,30 @@
 	owned_scanner = locate(/obj/machinery/artifact_scanpad) in get_step(src, dir)
 	if(!owned_scanner)
 		owned_scanner = locate(/obj/machinery/artifact_scanpad) in orange(1, src)
+	default_apply_parts()
+	update_icon()
+
+/obj/machinery/artifact_harvester/RefreshParts(var/limited = 0)
+	harvesting_speed = 0
+	 // Rating goes from 1 to 5 and this bad boy has 5 caps. Let's say we want a normal one to charge a battery in 100 seconds.
+	 // Every machine process happens every 2 seconds. So, we should have it do 5 charge every second. So 10 charge a process.
+	 // Tier 3 is commonly availabe. Tier 4/5 is much harder to get.
+	 // Applying a straight rating * X resultes in either being too strong early or too weak late. So we do a switch depending on rating.
+	 // This means for a base 500 battery: Tier 1 takes 100 seconds, tier 2 takes 40 seconds, tier 3 takes 20 seconds, tier 4 takes 4 seconds, tier 5 takes 1 second.
+	 // Tier 4 and 5 may seem overkill, but when you get to the REALLY strong batteries, you'll want them.
+	for(var/obj/item/stock_parts/P in component_parts)
+		if(istype(P, /obj/item/stock_parts/capacitor))
+			switch(P.rating)
+				if(1)
+					harvesting_speed += 2
+				if(2)
+					harvesting_speed += 5
+				if(3)
+					harvesting_speed += 10
+				if(4)
+					harvesting_speed += 50
+				if(5)
+					harvesting_speed += 100
 
 /obj/machinery/artifact_harvester/attackby(var/obj/I as obj, var/mob/user as mob)
 	if(istype(I,/obj/item/anobattery))
@@ -31,10 +57,19 @@
 			SStgui.update_uis(src)
 		else
 			to_chat(user, span_red("There is already a battery in [src]."))
+	if(default_part_replacement(user, I))
+		return
+	if(!inserted_battery)
+		if(default_deconstruction_screwdriver(user, I))
+			return
+		if(default_deconstruction_crowbar(user, I))
+			return
 	else
 		return..()
 
 /obj/machinery/artifact_harvester/attack_hand(var/mob/user as mob)
+	if(..())
+		return 1
 	add_fingerprint(user)
 	if(stat & (NOPOWER|BROKEN))
 		return
@@ -106,7 +141,6 @@
 					if(tgui_alert(ui.user, "This action will dump all charge, safety gear is recommended before proceeding","Warning",list("Continue","Cancel")) == "Continue")
 						if(!inserted_battery.battery_effect.activated)
 							inserted_battery.battery_effect.ToggleActivate(1)
-						last_process = world.time
 						harvesting = -1
 						update_use_power(USE_POWER_ACTIVE)
 						icon_state = "incubator_on"
@@ -205,7 +239,6 @@
 			cur_artifact.being_used = 1
 			icon_state = "incubator_on"
 			atom_say("Beginning energy harvesting.")
-			last_process = world.time
 
 			//duplicate the artifact's effect datum
 			if(!inserted_battery.battery_effect)
@@ -228,8 +261,7 @@
 
 	if(harvesting > 0)
 		//charge at 33% consumption rate
-		inserted_battery.stored_charge += (world.time - last_process) / 3
-		last_process = world.time
+		inserted_battery.stored_charge += harvesting_speed
 
 		//check if we've finished
 		if(inserted_battery.stored_charge >= inserted_battery.capacity)
@@ -243,7 +275,7 @@
 
 	else if(harvesting < 0)
 		//dump some charge
-		inserted_battery.stored_charge -= (world.time - last_process) / 3
+		inserted_battery.stored_charge -= harvesting_speed
 
 		//do the effect
 		if(inserted_battery.battery_effect)

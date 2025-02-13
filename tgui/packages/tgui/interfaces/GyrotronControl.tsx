@@ -1,7 +1,7 @@
 import { useBackend } from 'tgui/backend';
 import { Window } from 'tgui/layouts';
 import { Button, Knob, Section, Table } from 'tgui-core/components';
-import { BooleanLike } from 'tgui-core/react';
+import type { BooleanLike } from 'tgui-core/react';
 
 export const GyrotronControl = () => (
   <Window width={627} height={700}>
@@ -14,14 +14,14 @@ export const GyrotronControl = () => (
 type Data = {
   gyros: {
     name: string;
-    x;
-    y;
-    z;
+    x: number;
+    y: number;
+    z: number;
     active: BooleanLike;
     deployed: BooleanLike;
     ref: string;
-    fire_delay;
-    strength;
+    fire_delay: number;
+    strength: number;
   }[];
 };
 
@@ -44,8 +44,8 @@ export const GyrotronControlContent = (props) => {
           <Table.Cell>Name</Table.Cell>
           <Table.Cell>Position</Table.Cell>
           <Table.Cell>Status</Table.Cell>
-          <Table.Cell>Fire Delay</Table.Cell>
-          <Table.Cell>Strength</Table.Cell>
+          <Table.Cell style={{ textAlign: 'center' }}>Fire Delay</Table.Cell>
+          <Table.Cell style={{ textAlign: 'center' }}>Strength</Table.Cell>
         </Table.Row>
         {gyros.map((gyro) => (
           <Table.Row key={gyro.name}>
@@ -69,7 +69,6 @@ export const GyrotronControlContent = (props) => {
             </Table.Cell>
             <Table.Cell>
               <Knob
-                width="60px"
                 size={1.25}
                 color={!!gyro.active && 'yellow'}
                 value={gyro.fire_delay}
@@ -87,7 +86,6 @@ export const GyrotronControlContent = (props) => {
             </Table.Cell>
             <Table.Cell>
               <Knob
-                width="60px"
                 size={1.25}
                 color={!!gyro.active && 'yellow'}
                 value={gyro.strength}

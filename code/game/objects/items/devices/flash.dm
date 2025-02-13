@@ -171,13 +171,13 @@
 	playsound(src, 'sound/weapons/flash.ogg', 100, 1)
 	var/flashfail = 0
 
-	//VOREStation Add - NIF
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		if(H.nif && H.nif.flag_check(NIF_V_FLASHPROT,NIF_FLAGS_VISION))
 			flashfail = 1
 			H.nif.notify("High intensity light detected, and blocked!",TRUE)
-	//VOREStation Add End
+		if(FLASHPROOF in H.mutations)
+			flashfail = 1
 
 	if(iscarbon(M) && !flashfail) //VOREStation Add - NIF
 		var/mob/living/carbon/C = M

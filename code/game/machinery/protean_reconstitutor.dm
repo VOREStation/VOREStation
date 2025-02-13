@@ -242,7 +242,9 @@
 					return
 				if(P.dna)
 					P.dna.ResetUIFrom(P)
+					P.sync_dna_traits(FALSE) // Traitgenes Sync traits to genetics if needed
 					P.sync_organ_dna()
+				P.initialize_vessel()
 
 				if(P.mind)
 					P.mind.loaded_from_ckey = picked_ckey

@@ -192,6 +192,9 @@
 	icon_state = "grass0"
 	can_dirty = FALSE //VOREStation Edit
 	initial_flooring = /decl/flooring/grass
+	footstep = FOOTSTEP_GRASS
+	barefootstep = FOOTSTEP_GRASS
+	clawfootstep = FOOTSTEP_GRASS
 
 /turf/simulated/floor/tiled
 	name = "floor"

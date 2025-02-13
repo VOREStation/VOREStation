@@ -136,6 +136,7 @@ var/image/contamination_overlay = image('icons/effects/contamination.dmi')
 			randmutb(src)
 			to_chat(src, span_danger("High levels of toxins cause you to spontaneously mutate!"))
 			domutcheck(src,null)
+			UpdateAppearance()
 
 /mob/living/carbon/human/proc/burn_eyes()
 	var/obj/item/organ/internal/eyes/E = internal_organs_by_name[O_EYES]

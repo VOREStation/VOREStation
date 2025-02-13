@@ -12,6 +12,7 @@
 	attack_noun = list("tendril")
 	eye_attack_text = "a tendril"
 	eye_attack_text_victim = "a tendril"
+	is_punch = TRUE
 
 /datum/unarmed_attack/claws
 	attack_name = "claws"

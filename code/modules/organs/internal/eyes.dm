@@ -15,20 +15,22 @@
 /obj/item/organ/internal/eyes/robot
 	name = "optical sensor"
 
-/obj/item/organ/internal/eyes/robot/New()
-	..()
+/obj/item/organ/internal/eyes/robot/Initialize(mapload, internal)
+	. = ..()
 	robotize()
 
 /obj/item/organ/internal/eyes/grey
 	icon_state = "eyes_grey"
 
-/obj/item/organ/internal/eyes/grey/colormatch/New()
+/obj/item/organ/internal/eyes/grey/colormatch/Initialize(mapload, internal)
 	..()
-	var/mob/living/carbon/human/H = null
-	spawn(15)
-		if(ishuman(owner))
-			H = owner
-			color = H.species.blood_color
+	return INITIALIZE_HINT_LATELOAD
+
+/obj/item/organ/internal/eyes/grey/colormatch/LateInitialize()
+	. = ..()
+	if(ishuman(loc))
+		var/mob/living/carbon/human/H = loc
+		color = H.species.blood_color
 
 /obj/item/organ/internal/eyes/proc/change_eye_color()
 	set name = "Change Eye Color"

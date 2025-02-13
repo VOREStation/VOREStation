@@ -468,6 +468,14 @@
 		var/obj/belly/B = loc
 		src.forceMove(card)
 		card.forceMove(B)
+
+	if(istype( src.loc,/obj/structure/disposalholder))
+		var/obj/structure/disposalholder/hold = loc
+		src.loc = card
+		card.loc = hold
+		src.forceMove(card)
+		card.forceMove(hold)
+
 	else				//Otherwise go on floor
 		src.loc = card
 		card.loc = get_turf(card)

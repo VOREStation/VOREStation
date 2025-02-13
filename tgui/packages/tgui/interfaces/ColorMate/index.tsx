@@ -12,7 +12,7 @@ import {
 
 import { ColorMateHSV, ColorMateTint } from './ColorMateColor';
 import { ColorMateMatrix } from './ColorMateMatrix';
-import { Data } from './types';
+import type { Data } from './types';
 
 export const ColorMate = (props) => {
   const { act, data } = useBackend<Data>();

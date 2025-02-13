@@ -77,7 +77,7 @@
 /datum/language/xenocommon
 	name = "Xenomorph"
 	colour = "alien"
-	desc = "The common tongue of the xenomorphs."
+	desc = "The common tongue of both the xenomorphs and the Genaprawns."
 	speech_verb = "hisses"
 	ask_verb = "hisses"
 	exclaim_verb = "hisses"

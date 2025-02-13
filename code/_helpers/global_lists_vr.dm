@@ -542,6 +542,9 @@ var/global/list/remainless_species = list(SPECIES_PROMETHEAN,
 		traits_costs[path] = cost
 		all_traits[path] = instance
 
+	// Traitgenes Initilize trait genes
+	setupgenetics(all_traits)
+
 	// Shakey shakey shake
 	sortTim(all_traits, GLOBAL_PROC_REF(cmp_trait_datums_name), associative = TRUE)
 
@@ -549,19 +552,20 @@ var/global/list/remainless_species = list(SPECIES_PROMETHEAN,
 	for(var/traitpath in all_traits)
 		var/datum/trait/T = all_traits[traitpath]
 		var/category = T.category
-		switch(category)
-			if(-INFINITY to -0.1)
-				negative_traits[traitpath] = T
-				if(!(T.custom_only))
-					everyone_traits_negative[traitpath] = T
-			if(0)
-				neutral_traits[traitpath] = T
-				if(!(T.custom_only))
-					everyone_traits_neutral[traitpath] = T
-			if(0.1 to INFINITY)
-				positive_traits[traitpath] = T
-				if(!(T.custom_only))
-					everyone_traits_positive[traitpath] = T
+		if(!T.hidden) // Traitgenes forbid hidden traits from showing, done to hide genetics only traits
+			switch(category)
+				if(-INFINITY to -0.1)
+					negative_traits[traitpath] = T
+					if(!(T.custom_only))
+						everyone_traits_negative[traitpath] = T
+				if(0)
+					neutral_traits[traitpath] = T
+					if(!(T.custom_only))
+						everyone_traits_neutral[traitpath] = T
+				if(0.1 to INFINITY)
+					positive_traits[traitpath] = T
+					if(!(T.custom_only))
+						everyone_traits_positive[traitpath] = T
 
 
 	// Weaver recipe stuff

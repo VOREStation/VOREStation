@@ -9,7 +9,6 @@ SUBSYSTEM_DEF(atoms)
 	flags = SS_NO_FIRE
 
 	var/static/initialized = INITIALIZATION_INSSATOMS
-	// var/list/created_atoms // This is never used, so don't bother. ~Leshana
 	var/static/old_initialized
 
 	var/list/late_loaders
@@ -18,7 +17,6 @@ SUBSYSTEM_DEF(atoms)
 	var/list/BadInitializeCalls = list()
 
 /datum/controller/subsystem/atoms/Initialize()
-	setupgenetics() //to set the mutations' place in structural enzymes, so initializers know where to put mutations.
 	initialized = INITIALIZATION_INNEW_MAPLOAD
 	to_world_log("Initializing objects")
 	admin_notice(span_danger("Initializing objects"), R_DEBUG)
@@ -61,11 +59,6 @@ SUBSYSTEM_DEF(atoms)
 			CHECK_TICK
 		testing("Late initialized [late_loaders.len] atoms")
 		late_loaders.Cut()
-
-	// Nothing ever checks return value of this proc, so don't bother.  If this ever changes fix code in /atom/New() ~Leshana
-	// if(atoms)
-	// 	. = created_atoms + atoms
-	// 	created_atoms = null
 
 /datum/controller/subsystem/atoms/proc/InitAtom(atom/A, list/arguments)
 	var/the_type = A.type

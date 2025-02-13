@@ -4,6 +4,8 @@
 
 #define NUM_E 2.71828183
 
+#define SQRT_2 (1.41421356237)
+#define ONE_OVER_SQRT_2 (0.707106781188095) // not 1/sqrt(2), instead it is 1/SQRT_2 (1/1.41421356237)
 #define M_PI						(3.14159265)
 #define INFINITY				(1.#INF)	//closer then enough
 

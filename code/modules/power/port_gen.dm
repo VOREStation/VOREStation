@@ -268,7 +268,7 @@
 		emagged = 1
 		return 1
 
-/obj/machinery/power/port_gen/pacman/attackby(var/obj/item/O as obj, var/mob/user as mob)
+/obj/machinery/power/port_gen/pacman/attackby(var/obj/item/O, var/mob/user)
 	if(istype(O, sheet_path))
 		var/obj/item/stack/addstack = O
 		var/amount = min((max_sheets - sheets), addstack.get_amount())
@@ -278,7 +278,7 @@
 		to_chat(user, span_notice("You add [amount] sheet\s to the [src.name]."))
 		sheets += amount
 		addstack.use(amount)
-		updateUsrDialog()
+		updateUsrDialog(user)
 		return
 	else if(!active)
 		if(O.has_tool_quality(TOOL_WRENCH))
@@ -299,7 +299,7 @@
 			return
 	return ..()
 
-/obj/machinery/power/port_gen/pacman/attack_hand(mob/user as mob)
+/obj/machinery/power/port_gen/pacman/attack_hand(mob/user)
 	..()
 	if (!anchored)
 		return

@@ -52,7 +52,8 @@
 	icon_state = "eggbox"
 	icon_type = REAGENT_ID_EGG
 	name = "egg box"
-	center_of_mass = list("x" = 16,"y" = 7)
+	center_of_mass_x = 16
+	center_of_mass_y = 7
 	storage_slots = 12
 	can_hold = list(
 		/obj/item/reagent_containers/food/snacks/egg,

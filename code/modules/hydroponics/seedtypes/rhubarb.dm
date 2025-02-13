@@ -1,8 +1,8 @@
 /datum/seed/rhubarb
-	name = PLANT_ROSE
-	seed_name = PLANT_ROSE
-	display_name = PLANT_ROSE
-	kitchen_tag = PLANT_ROSE
+	name = PLANT_RHUBARB
+	seed_name = PLANT_RHUBARB
+	display_name = PLANT_RHUBARB
+	kitchen_tag = PLANT_RHUBARB
 	chems = list(REAGENT_ID_NUTRIMENT = list(1,15))
 
 /datum/seed/rhubarb/New()

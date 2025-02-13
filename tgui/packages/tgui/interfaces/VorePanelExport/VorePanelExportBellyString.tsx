@@ -1,5 +1,5 @@
 import { ItemModeSpan, ModeSpan } from './constants';
-import { Belly } from './types';
+import type { Belly } from './types';
 import { GetAddons } from './VorePanelExportBellyStringHelpers';
 
 // prettier-ignore

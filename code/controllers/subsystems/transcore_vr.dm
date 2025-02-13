@@ -278,6 +278,8 @@ SUBSYSTEM_DEF(transcore)
 // Called from body_record to add itself to the transcore.
 /datum/transcore_db/proc/add_body(var/datum/transhuman/body_record/BR)
 	ASSERT(BR)
+	if(body_scans[BR.mydna.name])
+		qdel(body_scans[BR.mydna.name])
 	body_scans[BR.mydna.name] = BR
 	body_scans = sortAssoc(body_scans)
 	log_debug("Added [BR.mydna.name] to transcore body DB.")

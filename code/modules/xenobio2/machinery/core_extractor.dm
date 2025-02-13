@@ -91,7 +91,7 @@
 	else
 		set_light(2, 2, emptycolor)
 
-/obj/machinery/slime/extractor/proc/extract_cores()
+/obj/machinery/slime/extractor/proc/extract_cores(mob/user)
 	if(!src.occupant)
 		src.visible_message("[icon2html(src,viewers(src))] [src] pings unhappily.")
 	else if(inuse)
@@ -99,31 +99,36 @@
 
 	inuse = 1
 	update_light_color()
-	spawn(30)
-		icon_state = "scanner_1old"
-		for(var/i=1 to occupant.cores)
-			var/obj/item/xenoproduct/slime/core/C = new(src)
-			C.traits = new()
-			occupant.traitdat.copy_traits(C.traits)
+	addtimer(CALLBACK(src, PROC_REF(do_extraction), user) , 3 SECONDS, TIMER_DELETE_ME)
 
-			C.nameVar = occupant.nameVar
+/obj/machinery/slime/extractor/proc/do_extraction(mob/user)
+	PRIVATE_PROC(TRUE)
+	icon_state = "scanner_1old"
+	for(var/i=1 to occupant.cores)
+		var/obj/item/xenoproduct/slime/core/C = new(src)
+		C.traits = new()
+		occupant.traitdat.copy_traits(C.traits)
 
-			C.create_reagents(C.traits.traits[TRAIT_XENO_CHEMVOL])
-			for(var/reagent in occupant.traitdat.chems)
-				C.reagents.add_reagent(reagent, occupant.traitdat.chems[reagent])
+		C.nameVar = occupant.nameVar
 
-			C.color = C.traits.traits[TRAIT_XENO_COLOR]
-			if(occupant.traitdat.get_trait(TRAIT_XENO_BIOLUMESCENT))
-				C.set_light(occupant.traitdat.get_trait(TRAIT_XENO_GLOW_STRENGTH),occupant.traitdat.get_trait(TRAIT_XENO_GLOW_RANGE), occupant.traitdat.get_trait(TRAIT_XENO_BIO_COLOR))
+		C.create_reagents(C.traits.traits[TRAIT_XENO_CHEMVOL])
+		for(var/reagent in occupant.traitdat.chems)
+			C.reagents.add_reagent(reagent, occupant.traitdat.chems[reagent])
 
-		spawn(30)
-			icon_state = "scanner_0old"
-			qdel(occupant)
-			occupant = null	//If qdel's being slow or acting up, let's make sure we can't make more cores from this one.
-			inuse = 0
-			eject_contents()
-			update_light_color()
-			src.updateUsrDialog()
+		C.color = C.traits.traits[TRAIT_XENO_COLOR]
+		if(occupant.traitdat.get_trait(TRAIT_XENO_BIOLUMESCENT))
+			C.set_light(occupant.traitdat.get_trait(TRAIT_XENO_GLOW_STRENGTH),occupant.traitdat.get_trait(TRAIT_XENO_GLOW_RANGE), occupant.traitdat.get_trait(TRAIT_XENO_BIO_COLOR))
+	qdel(occupant)
+	occupant = null	//If qdel's being slow or acting up, let's make sure we can't make more cores from this one.
+	addtimer(CALLBACK(src, PROC_REF(finish_extraction), user) , 3 SECONDS, TIMER_DELETE_ME)
+
+/obj/machinery/slime/extractor/proc/finish_extraction(mob/user)
+	PRIVATE_PROC(TRUE)
+	icon_state = "scanner_0old"
+	inuse = 0
+	eject_contents()
+	update_light_color()
+	src.updateUsrDialog(user)
 
 /obj/machinery/slime/extractor/proc/eject_slime()
 	if(occupant)
@@ -168,10 +173,10 @@
 	usr.set_machine(src)
 	switch(href_list["action"])
 		if ("extract")
-			extract_cores()
+			extract_cores(usr)
 		if("eject")
 			eject_slime()
-	src.updateUsrDialog()
+	src.updateUsrDialog(usr)
 	return
 
 //Circuit board below,

@@ -72,7 +72,7 @@
 	else
 		..()
 
-/datum/species/proc/produceCopy(var/list/traits, var/mob/living/carbon/human/H, var/custom_base, var/reset_dna = TRUE)
+/datum/species/proc/produceCopy(var/list/traits, var/mob/living/carbon/human/H, var/custom_base, var/reset_dna = TRUE) // Traitgenes reset_dna flag required, or genes get reset on resleeve
 	ASSERT(src)
 	ASSERT(istype(H))
 	var/datum/species/new_copy = new src.type()
@@ -106,7 +106,6 @@
 
 	if(H.dna && reset_dna)
 		H.dna.ready_dna(H)
-
 	handle_base_eyes(H, custom_base)
 
 	return new_copy

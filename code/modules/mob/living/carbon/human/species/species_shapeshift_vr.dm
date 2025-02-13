@@ -280,7 +280,7 @@
 		else
 			to_chat(character, span_notice("You need to be aggressively grabbing someone before you can copy their form."))
 		return
-	if (!istype(victim))
+	if (!ishuman(victim))
 		to_chat(character, span_warning("You can only perform this on human mobs!"))
 		return
 	if (!victim.client)

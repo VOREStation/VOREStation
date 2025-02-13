@@ -8,10 +8,10 @@ import {
   Section,
   Stack,
 } from 'tgui-core/components';
-import { BooleanLike } from 'tgui-core/react';
+import type { BooleanLike } from 'tgui-core/react';
 import { decodeHtmlEntities } from 'tgui-core/string';
 
-import { Data } from './types';
+import type { Data } from './types';
 
 export const MessageMonitorMain = (props) => {
   const { act, data } = useBackend<Data>();

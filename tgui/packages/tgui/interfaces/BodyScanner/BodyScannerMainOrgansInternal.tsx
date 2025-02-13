@@ -3,7 +3,7 @@ import { toFixed } from 'tgui-core/math';
 
 import { damageRange } from './constants';
 import { germStatus, reduceOrganStatus } from './functions';
-import { internalOrgan } from './types';
+import type { internalOrgan } from './types';
 
 export const BodyScannerMainOrgansInternal = (props: {
   organs: internalOrgan[];

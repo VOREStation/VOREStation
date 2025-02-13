@@ -33,8 +33,6 @@
 	for(var/obj/item/W in src)
 		drop_from_inventory(W)
 	set_species(species.primitive_form)
-	dna.SetSEState(MONKEYBLOCK,1)
-	dna.SetSEValueRange(MONKEYBLOCK,0xDAC, 0xFFF)
 
 	to_chat(src, span_infoplain(span_bold("You are now [species.name]. ")))
 	qdel(animation)
@@ -51,12 +49,10 @@
 	for(var/t in organs)
 		qdel(t)
 
-	//VOREStation Edit Start - Hologram examine flavor
 	var/mob/living/silicon/ai/O = ..(move)
 	if(O)
 		O.flavor_text = O.client?.prefs?.flavor_texts["general"]
 		return O
-	//VOREStation Edit End
 
 	return ..(move)
 

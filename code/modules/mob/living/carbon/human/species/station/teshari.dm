@@ -160,6 +160,8 @@
 		/decl/emote/audible/teshtrill
 	)
 
+	footstep = FOOTSTEP_MOB_TESHARI
+
 /datum/species/teshari/equip_survival_gear(var/mob/living/carbon/human/H)
 	..()
 	if(!(H.client?.prefs?.shoe_hater))

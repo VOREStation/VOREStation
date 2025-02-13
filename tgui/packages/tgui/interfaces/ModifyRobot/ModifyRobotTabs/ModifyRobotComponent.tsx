@@ -24,7 +24,14 @@ import {
   RADIO,
 } from '../constants';
 import { prepareSearch } from '../functions';
-import { Cell, Comp, Component, InstalledCell, Lookup, Target } from '../types';
+import type {
+  Cell,
+  Comp,
+  Component,
+  InstalledCell,
+  Lookup,
+  Target,
+} from '../types';
 import { BadminTab, CellCommp, CompTab } from './ModifyRobotComponentTabs';
 
 export const ModifyRobotComponent = (props: {

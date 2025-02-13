@@ -125,5 +125,5 @@
 				gravity_generator:on = 1
 				A.gravitychange(1)
 
-		src.updateUsrDialog()
+		src.updateUsrDialog(usr)
 		return

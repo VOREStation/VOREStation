@@ -322,7 +322,7 @@
 			data_core.manifest_modify(writer.registered_name, writer.assignment, writer.rank)
 			callHook("reassign_employee", list(writer))
 
-	computer.updateUsrDialog()
+	computer.updateUsrDialog(usr)
 	return
 
 /datum/file/program/card_comp/centcom

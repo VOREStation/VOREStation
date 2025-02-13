@@ -2,7 +2,7 @@ import { useBackend } from 'tgui/backend';
 import { Button, LabeledList, Section } from 'tgui-core/components';
 
 import { DockingStatus, DockStatus } from './EmbeddedControllerHelpers';
-import { DockingConsoleSimpleData } from './types';
+import type { DockingConsoleSimpleData } from './types';
 
 /**
  * Simple docking consoles do not allow you to cycle the airlock. They can

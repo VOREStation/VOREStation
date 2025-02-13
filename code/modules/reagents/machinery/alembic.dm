@@ -31,7 +31,7 @@
 		icon_state = "alembic-bubble"
 	return
 
-/obj/machinery/alembic/attackby(var/obj/item/potion_material/O as obj, var/mob/user as mob)
+/obj/machinery/alembic/attackby(var/obj/item/potion_material/O, var/mob/user)
 	if(istype(O,/obj/item/potion_material))
 		if(potion_reagent != 0 )
 			to_chat(user, span_warning("There is already a reagent in the alembic!"))
@@ -44,7 +44,7 @@
 			O.loc = src
 			update_icon()
 			to_chat(user, span_notice("You place the [O] in the alembic."))
-			src.updateUsrDialog()
+			src.updateUsrDialog(user)
 			return
 	else if(istype(O,/obj/item/potion_base))
 		if(base_reagent != 0 )
@@ -56,13 +56,13 @@
 			O.loc = src
 			update_icon()
 			to_chat(user, span_notice("You place the [O] in the alembic."))
-			src.updateUsrDialog()
+			src.updateUsrDialog(user)
 			return
 	else
 		to_chat(user, span_warning("This item is no use in the alembic."))
 		return
 
-/obj/machinery/alembic/attack_hand(mob/user as mob)
+/obj/machinery/alembic/attack_hand(mob/user)
 
 	if(potion_reagent == 0 || base_reagent == 0) //If there is nothing in there
 		to_chat(user, span_warning("The alembic is not yet full!"))

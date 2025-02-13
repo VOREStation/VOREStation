@@ -345,4 +345,4 @@
 		usr.machine = src
 
 	src.add_fingerprint(usr)
-	src.updateUsrDialog()
+	src.updateUsrDialog(usr)

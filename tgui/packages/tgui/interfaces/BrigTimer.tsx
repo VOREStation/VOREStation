@@ -3,7 +3,7 @@ import { Window } from 'tgui/layouts';
 import { Button, NumberInput, Section, Stack } from 'tgui-core/components';
 import { formatTime } from 'tgui-core/format';
 import { round } from 'tgui-core/math';
-import { BooleanLike } from 'tgui-core/react';
+import type { BooleanLike } from 'tgui-core/react';
 
 type Data = {
   time_left: number;

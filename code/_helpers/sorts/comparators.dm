@@ -58,8 +58,8 @@
 		. = B[STAT_ENTRY_COUNT] - A[STAT_ENTRY_COUNT]
 
 /proc/cmp_typepaths_asc(A, B)
-	return sorttext("[B]","[A]") 
-	
+	return sorttext("[B]","[A]")
+
 /**
  * Sorts crafting recipe requirements before the crafting recipe is inserted into GLOB.crafting_recipes
  *
@@ -83,7 +83,7 @@
 /proc/cmp_media_track_asc(datum/track/A, datum/track/B)
 	var/genre_sort = sorttext(B.genre || "Uncategorized", A.genre || "Uncategorized")
 	return genre_sort || sorttext(B.title, A.title)
-	
+
 ///Filters have a numerical priority.
 /proc/cmp_filter_data_priority(list/A, list/B)
 	return A["priority"] - B["priority"]
@@ -98,3 +98,17 @@
 
 /proc/cmp_stored_item_name(datum/stored_item/A, datum/stored_item/B)
 	return sorttext(B.item_name, A.item_name)
+
+/proc/cmp_embed_text_asc(a,b)
+	if(isdatum(a))
+		a = REF(a)
+	if(isdatum(b))
+		b = REF(b)
+	return sorttext("[b]", "[a]")
+
+/proc/cmp_embed_text_dsc(a,b)
+	if(isdatum(a))
+		a = REF(a)
+	if(isdatum(b))
+		b = REF(b)
+	return sorttext("[a]", "[b]")

@@ -16,7 +16,7 @@ import {
   CloningConsoleMain,
   CloningConsoleRecords,
 } from './CloningConsoleTabs';
-import { Data } from './types';
+import type { Data } from './types';
 
 export const CloningConsole = (props) => {
   const { data } = useBackend<Data>();
