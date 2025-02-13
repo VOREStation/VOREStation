@@ -63,13 +63,13 @@
 		else
 			keymsg += " (Ingame)"
 
-		if(R_ADMIN & C.holder.rights && R_BAN & C.holder.rights) // R_ADMIN and R_BAN apparently an admin makes
+		if(check_rights_for(C, R_ADMIN) && check_rights_for(C, R_BAN)) // R_ADMIN and R_BAN apparently an admin makes
 			admin_keys += keymsg
 
-		else if(R_ADMIN & C.holder.rights && !(R_SERVER & C.holder.rights)) // R_ADMIN but not R_SERVER makes a moderator
+		else if(check_rights_for(C, R_ADMIN) && !(check_rights_for(C, R_SERVER))) // R_ADMIN but not R_SERVER makes a moderator
 			mod_keys += keymsg
 
-		else if(R_SERVER & C.holder.rights) // R_SERVER makes a dev
+		else if(check_rights_for(C, R_SERVER)) // R_SERVER makes a dev
 			dev_keys += keymsg
 
 		else // No R_ADMIN&&R_BAN, R_ADMIN!R_BAN, R_SERVER, must be a GM or something
