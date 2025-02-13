@@ -1,7 +1,7 @@
 import { Box, Button, LabeledList, Section } from 'tgui-core/components';
 
 import { useBackend } from '../../backend';
-import { ActiveBodyRecordData } from './types';
+import type { ActiveBodyRecordData } from './types';
 
 export const BodyRecordModal = (props: { data: ActiveBodyRecordData }) => {
   const { act } = useBackend();
@@ -46,6 +46,21 @@ export const BodyRecordModal = (props: { data: ActiveBodyRecordData }) => {
           >
             {synthetic ? 'Build' : 'Grow'}
           </Button>
+          {/* Traitgenes create a dna injector based off the BR currently selected, to allow normal doctors to reset someone's SEs */}
+          {!synthetic ? (
+            <Button
+              icon="syringe"
+              onClick={() =>
+                act('genereset', {
+                  ref: activerecord,
+                })
+              }
+            >
+              DNA Reset Injector
+            </Button>
+          ) : (
+            ''
+          )}
         </LabeledList.Item>
         <LabeledList.Item label="OOC Notes" verticalAlign="top">
           <Box height={10} mt={1} ml={1} mr={1}>

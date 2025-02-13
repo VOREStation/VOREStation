@@ -118,8 +118,6 @@
 
 	var/global/list/abilities = list()
 
-	var/monochromatic = FALSE //IGNORE ME
-
 	var/blob_appearance = "puddle1"
 	var/blob_color_1 = "#363636"
 	var/blob_color_2 = "#ba3636"

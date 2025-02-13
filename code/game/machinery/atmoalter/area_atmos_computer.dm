@@ -15,10 +15,7 @@
 	var/zone = "This computer is working on a wireless range, the range is currently limited to "
 
 /obj/machinery/computer/area_atmos/Initialize()
-	..()
-	return INITIALIZE_HINT_LATELOAD
-
-/obj/machinery/computer/area_atmos/LateInitialize()
+	. = ..()
 	scanscrubbers()
 
 /obj/machinery/computer/area_atmos/attack_ai(var/mob/user as mob)
@@ -75,7 +72,7 @@
 			INVOKE_ASYNC(src, PROC_REF(toggle_all), FALSE)
 			. = TRUE
 		if("scan")
-			scanscrubbers()
+			scanscrubbers(ui.user)
 			. = TRUE
 
 	add_fingerprint(ui.user)
@@ -95,7 +92,7 @@
 		return FALSE
 	return TRUE
 
-/obj/machinery/computer/area_atmos/proc/scanscrubbers()
+/obj/machinery/computer/area_atmos/proc/scanscrubbers(mob/user)
 	connectedscrubbers = list()
 
 	var/found = 0
@@ -106,13 +103,13 @@
 	if(!found)
 		status = "ERROR: No scrubber found!"
 
-	updateUsrDialog()
+	updateUsrDialog(user)
 
 // The one that only works in the same map area
 /obj/machinery/computer/area_atmos/area
 	zone = "This computer is working in a wired network limited to this area."
 
-/obj/machinery/computer/area_atmos/area/scanscrubbers()
+/obj/machinery/computer/area_atmos/area/scanscrubbers(mob/user)
 	connectedscrubbers.Cut()
 
 	var/found = 0
@@ -124,7 +121,7 @@
 	if(!found)
 		status = "ERROR: No scrubber found!"
 
-	src.updateUsrDialog()
+	updateUsrDialog(user)
 
 /obj/machinery/computer/area_atmos/area/validscrubber(var/obj/machinery/portable_atmospherics/powered/scrubber/huge/scrubber)
 	if(!istype(scrubber))

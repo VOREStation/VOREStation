@@ -8,7 +8,7 @@ import {
   Section,
 } from 'tgui-core/components';
 import { formatPower } from 'tgui-core/format';
-import { BooleanLike } from 'tgui-core/react';
+import type { BooleanLike } from 'tgui-core/react';
 
 type Data = {
   connected: BooleanLike;

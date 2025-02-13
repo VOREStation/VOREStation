@@ -135,6 +135,8 @@
 			return FALSE
 	if(isliving(the_target))
 		var/mob/living/L = the_target
+		if(holder.IIsAlly(L))
+			return FALSE
 		if(ishuman(L) || issilicon(L))
 			if(L.key && !L.client)	// SSD players get a pass
 				return FALSE
@@ -162,8 +164,6 @@
 					set_stance(STANCE_IDLE)
 					return FALSE	//Forgiven
 		//VOREStation add end
-		if(holder.IIsAlly(L))
-			return FALSE
 		return TRUE
 
 	if(istype(the_target, /obj/mecha))
