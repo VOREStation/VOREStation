@@ -24,8 +24,8 @@ Bonus
 	level = 8
 	severity = -1
 	base_message_chance = 5
-	symptom_delay_min = 1
-	symptom_delay_max = 1
+	symptom_delay_min = 1 SECONDS
+	symptom_delay_max = 1 SECONDS
 	var/regenerate_blood = FALSE
 
 	threshold_descs = list(

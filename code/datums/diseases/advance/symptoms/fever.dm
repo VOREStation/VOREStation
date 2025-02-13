@@ -25,8 +25,8 @@ Bonus
 	level = 2
 	severity = 0
 	base_message_chance = 20
-	symptom_delay_min = 10
-	symptom_delay_max = 30
+	symptom_delay_min = 20 SECONDS
+	symptom_delay_max = 40 SECONDS
 
 	var/unsafe = FALSE
 

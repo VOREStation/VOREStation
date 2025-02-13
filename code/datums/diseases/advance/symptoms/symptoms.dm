@@ -19,8 +19,8 @@ GLOBAL_LIST_INIT(list_symptoms, subtypesof(/datum/symptom))
 	var/id = ""
 	var/supress_warning = FALSE
 	var/next_activaction = 0
-	var/symptom_delay_min = 1
-	var/symptom_delay_max = 1
+	var/symptom_delay_min = 1 SECONDS
+	var/symptom_delay_max = 1 SECONDS
 	var/naturally_occuring = TRUE // If this symptom can roll from random diseases
 
 	var/base_message_chance = 10
@@ -36,7 +36,7 @@ GLOBAL_LIST_INIT(list_symptoms, subtypesof(/datum/symptom))
 
 // Called when processing of the advance disease, which holds this symptom, starts.
 /datum/symptom/proc/Start(datum/disease/advance/A)
-	next_activaction = world.time + rand(symptom_delay_min * 10, symptom_delay_max * 10)
+	next_activaction = world.time + rand(symptom_delay_min, symptom_delay_max)
 	return TRUE
 
 /datum/symptom/proc/severityset(datum/disease/advance/A)

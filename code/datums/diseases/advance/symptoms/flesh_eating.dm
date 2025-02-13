@@ -25,8 +25,8 @@ Bonus
 	level = 7
 	severity = 4
 	base_message_chance = 50
-	symptom_delay_min = 15
-	symptom_delay_max = 60
+	symptom_delay_min = 20 SECONDS
+	symptom_delay_max = 60 SECONDS
 
 	var/bleed = FALSE
 	var/damage = FALSE

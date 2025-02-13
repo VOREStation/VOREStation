@@ -24,8 +24,8 @@ Bonus
 	level = 3
 	severity = 2
 	base_message_chance = 50
-	symptom_delay_min = 25
-	symptom_delay_max = 80
+	symptom_delay_min = 30 SECONDS
+	symptom_delay_max = 80 SECONDS
 
 	var/remove_eyes = FALSE
 

@@ -22,7 +22,7 @@
 	/// The extrapolator can extract any virus with a stealth below this value.
 	var/maximum_stealth = 3
 	/// The extrapolator can extract any symptom with a stealth below this value.
-	var/maximum_level = 7
+	var/maximum_level = 5
 	/// The typepath of the default scanning module that will generate in the extrapolator, if it starts with none.
 	var/default_scanning_module = /obj/item/stock_parts/scanning_module
 	/// Cooldown for when the extrapolator can be used next.
@@ -79,9 +79,9 @@
 		if(!scanner)
 			. += span_notice("The scanner is missing.")
 		else
-			. += span_notice("A class <b>[scanner.rating]</b> scanning module is installed. It is <i>screwed</i> in place.")
-			. += span_notice("Can detect diseases <b>below stealth [maximum_stealth]</b>.")
-			. += span_notice("Can extract diseases in <b>[DisplayTimeText(extract_time)]</b>.")
+			. += span_notice("A class " + span_bold("[scanner.rating]") + " scanning module is installed. It is <i>screwed</i> in place.")
+			. += span_notice("Can detect diseases below stealth " + span_bold("[maximum_stealth]") + ".")
+			. += span_notice("Can extract diseases in " + span_bold("[DisplayTimeText(extract_time)]") + ".")
 			. += span_notice("Can isolate symptoms <b>[maximum_level >= 9 ? "of any level" : "below level [maximum_level]"]</b>, in <b>[DisplayTimeText(isolate_time)]</b>.")
 
 /obj/item/extrapolator/proc/refresh_parts()
@@ -91,7 +91,7 @@
 	extract_time = (10 SECONDS) / effective_scanner_rating
 	isolate_time = (15 SECONDS) / effective_scanner_rating
 	maximum_stealth = scanner.rating + 2
-	maximum_level = scanner.rating +7
+	maximum_level = scanner.rating + 5
 
 /obj/item/extrapolator/attack(atom/AM, mob/living/user)
 	return
@@ -198,9 +198,9 @@
 	// I'll see about this...
 	// var/choice = tgui_alert(user, "What would you like to isolate?", "Isolate", list("Symptom", "Disease"))
 	// if(choice == "Symptom")
-	//	. = isolate_symptom(user, target, target_disease)
+	. = isolate_symptom(user, target, target_disease)
 	// else
-	. = isolate_disease(user, target, target_disease)
+	//. = isolate_disease(user, target, target_disease)
 	using = FALSE
 
 /obj/item/extrapolator/proc/isolate_symptom(mob/living/user, atom/target, datum/disease/advance/target_disease)
@@ -216,7 +216,7 @@
 	var/datum/symptom/chosen = length(symptoms) > 1 ? tgui_input_list(user, "Select symptom to isolate", "Symptom Extraction", symptoms, default = symptoms[1]) : symptoms[1]
 	if(!chosen)
 		return
-	user.visible_message(span_notice("[user] slots [target] into [src], which begins to whir and beep!"), span_notice("[icon2html(src, user)] You begin isolating <b>[chosen.name]</b> from [target]..."),)
+	user.visible_message(span_notice("[user] slots [target] into [src], which begins to whir and beep!"), span_notice("[icon2html(src, user)] You begin isolating " + span_bold("[chosen.name]") + " from [target]..."),)
 	var/datum/disease/advance/symptom_holder = new
 	symptom_holder.name = chosen.name
 	symptom_holder.symptoms += chosen
@@ -229,24 +229,27 @@
 /obj/item/extrapolator/proc/isolate_disease(mob/living/user, atom/target, datum/disease/advance/target_disease, timer = 10 SECONDS)
 	. = FALSE
 	user.visible_message(span_notice("[user] begins to thoroughly scan [target] with [src]..."), \
-		span_notice("[icon2html(src, user)] You begin isolating <b>[target_disease.name]</b> from [target]..."))
+		span_notice("[icon2html(src, user)] You begin isolating " + span_bold("[target_disease.name]") + " from [target]..."))
 	if(do_after(user, isolate_time, target = target))
 		create_culture(user, target_disease, target)
 		return TRUE
 
 /obj/item/extrapolator/proc/create_culture(mob/living/user, datum/disease/advance/disease)
 	. = FALSE
-	var/datum/disease/advance/disease = disease.Copy()
+	var/datum/disease/advance/D = disease.Copy()
 	var/list/data = list("viruses" = list(disease))
 	if(user.get_active_hand() != src)
 		to_chat(user, span_warning("The extrapolator must be held in your active hand to work!"))
 		return
 	var/obj/item/reagent_containers/glass/beaker/vial/culture_bottle = new(user.drop_location())
-	culture_bottle.name = "[disease.name] culture bottle"
-	culture_bottle.desc = "A small bottle. Contains [disease.agent] culture in synthblood medium."
+	culture_bottle.name = "[D.name] culture bottle"
+	culture_bottle.desc = "A small bottle. Contains [D.agent] culture in synthblood medium."
 	culture_bottle.reagents.add_reagent(REAGENT_ID_BLOOD, 5, data)
 	user.put_in_hands(culture_bottle)
 	playsound(src, 'sound/machines/ping.ogg', vol = 30, vary = TRUE)
 	COOLDOWN_START(src, usage_cooldown, 1 SECONDS)
-	extracted_ids[disease.GetDiseaseID()] = TRUE
+	extracted_ids[D.GetDiseaseID()] = TRUE
 	return TRUE
+
+/obj/item/extrapolator/tier4
+	default_scanning_module = /obj/item/stock_parts/scanning_module/hyper

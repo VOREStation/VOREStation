@@ -25,8 +25,8 @@ BONUS
 	level = 1
 	severity = 0
 	base_message_chance = 100
-	symptom_delay_min = 15
-	symptom_delay_max = 30
+	symptom_delay_min = 20 SECONDS
+	symptom_delay_max = 40 SECONDS
 
 	threshold_descs = list(
 		"Stage Speed 6" = "Headaches will cause severe pain, that weakens the host.",

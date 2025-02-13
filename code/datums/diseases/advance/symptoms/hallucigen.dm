@@ -25,8 +25,8 @@ Bonus
 	level = 3
 	severity = 1
 	base_message_chance = 25
-	symptom_delay_min = 10
-	symptom_delay_max = 70
+	symptom_delay_min = 20 SECONDS
+	symptom_delay_max = 80 SECONDS
 
 	var/fake_healthy = FALSE
 

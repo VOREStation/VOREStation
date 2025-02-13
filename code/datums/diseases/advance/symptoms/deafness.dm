@@ -25,8 +25,8 @@ Bonus
 	level = 3
 	severity = 2
 	base_message_chance = 100
-	symptom_delay_min = 25
-	symptom_delay_max = 80
+	symptom_delay_min = 25 SECONDS
+	symptom_delay_max = 80 SECONDS
 
 	threshold_descs = list(
 		"Resistance 9" = "Causes permanent hearing loss.",

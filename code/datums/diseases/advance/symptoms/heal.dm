@@ -73,6 +73,74 @@
 			H.adjust_nutrition(0.3)
 		if(prob(2) && H.stat != DEAD)
 			to_chat(H, span_notice("You feel a mild warmth as your blood purifies itself."))
+
+
+/datum/symptom/growth
+	name = "Pituitary Disruption"
+	desc = "Causes unctrolled growth in the subject."
+	stealth = -3
+	resistance = -2
+	stage_speed = 1
+	transmission = -2
+	level = 8
+	severity = 1
+	symptom_delay_min = 5 SECONDS
+	symptom_delay_max = 10 SECONDS
+
+	var/current_size = 1
+	var/tetsuo = FALSE
+	var/bruteheal = FALSE
+
+	var/datum/mind/ownermind
+
+	threshold_descs = list(
+		"Stage Speed 6" = "The disease heals brute damage at a fast rate, but causes expulsion of benign tumors.",
+		"Stage Speed 12" = "The disease heals brute damage incredibly fast, but deteriorates cell health and causes tumors to become more advanced. The disease will also regenerate lost limbs."
+	)
+
+/datum/symptom/growth/Start(datum/disease/advance/A)
+	if(!..())
+		return
+	if(A.stage_rate >= 6)
+		bruteheal = TRUE
+		if(A.stage_rate >= 12)
+			tetsuo = TRUE
+			power = 3
+
+	var/mob/living/carbon/human/H = A.affected_mob
+	ownermind = H.mind
+
+/datum/symptom/growth/Activate(datum/disease/advance/A)
+	if(!..())
+		return
+	var/mob/living/carbon/human/H = A.affected_mob
+	switch(A.stage)
+		if(4, 5)
+			if(prob(10) && bruteheal)
+				if(H.stat != DEAD)
+					to_chat(H, span_userdanger("You retch, and a splatter of gore escapes your gullet!"))
+					H.vomit(lost_nutrition = 0, blood = TRUE, stun = FALSE)
+					// Spitting tumors go here! Whenever we get it up-ported.
+				if(tetsuo)
+					var/list/missing = H.get_missing_limbs()
+					if(prob(35) && H.mind && ishuman(H) && H.stat != DEAD)
+						new /obj/effect/decal/cleanable/blood/gibs(H.loc)
+					if(missing.len)
+						for(var/Z in missing)
+							if(H.regenerate_limb(Z, TRUE))
+								playsound(H, 'sound/effects/blobattack.ogg', 50, 1)
+								H.visible_message(span_warning("[H]'s missing limbs reform, making a loud, grotesque sound!"), span_userdanger("You limbs regrow, making a loud, cruncy sound and giving you great pain!"))
+								H.emote("scream")
+								if(Z == BP_HEAD)
+									if(isliving(ownermind.current))
+										var/mob/living/owner = ownermind.current
+										if(owner.stat != DEAD)
+											ownermind = null
+											break
+									ownermind.transfer_to(H)
+									H.grab_ghost()
+								break
+
 /*
 //////////////////////////////////////
 

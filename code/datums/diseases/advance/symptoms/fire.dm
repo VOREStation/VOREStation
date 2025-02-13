@@ -25,8 +25,8 @@ Bonus
 	severity = 4
 
 	base_message_chance = 20
-	symptom_delay_min = 20
-	symptom_delay_max = 75
+	symptom_delay_min = 40 SECONDS
+	symptom_delay_max = 85 SECONDS
 
 	var/infective = FALSE
 

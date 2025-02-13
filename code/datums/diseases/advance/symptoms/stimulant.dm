@@ -78,7 +78,6 @@ Bonus
 				H.make_jittery(2 * power)
 			if(clearacc)
 				if(prob(power) && prob(50))
-					realpower = power + 10
 					if(H.stat)
 						H.emote("scream")
 					H.hallucination = min(20, H.hallucination + (5 * power))

@@ -24,8 +24,8 @@ BONUS
 	transmission = 1
 	level = 1
 	severity = 0
-	symptom_delay_min = 5
-	symptom_delay_max = 25
+	symptom_delay_min = 15 SECONDS
+	symptom_delay_max = 35 SECONDS
 
 	var/scratch = FALSE
 

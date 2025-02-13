@@ -8,8 +8,8 @@
 	transmission = 1
 	level = 0
 	severity = 0
-	symptom_delay_min = 10
-	symptom_delay_max = 30
+	symptom_delay_min = 15 SECONDS
+	symptom_delay_max = 40 SECONDS
 
 	var/death_roaches = FALSE
 

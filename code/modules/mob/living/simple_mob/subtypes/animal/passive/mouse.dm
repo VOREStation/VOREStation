@@ -77,7 +77,7 @@
 	if (body_color == "black")
 		holder_type = /obj/item/holder/mouse/black
 
-	if(prob(65))
+	if(prob(25))
 		LAZYINITLIST(rat_diseases)
 		rat_diseases += new /datum/disease/advance/random(rand(1, 6), 9, 1)
 
@@ -203,3 +203,13 @@
 	speak = list("Squeek!","SQUEEK!","Squeek?")
 	emote_hear = list("squeeks","squeaks","squiks")
 	emote_see = list("runs in a circle", "shakes", "scritches at something")
+
+/mob/living/simple_mob/animal/passive/mouse/white/virology
+	name = "Fleming"
+	desc = "A small white rodent, often found in Virology. This one isn't quite the nuisance!"
+
+/mob/living/simple_mob/animal/passive/mouse/white/virology/New()
+	..()
+	name = initial(name)
+	desc = initial(desc)
+	rat_diseases += new /datum/disease/advance/random(2, 2, 1)

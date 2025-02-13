@@ -615,7 +615,7 @@
 /mob/living/proc/restore_all_organs()
 	return
 
-/mob/living/proc/is_mouth_covered(head_only = 0, mask_only = 0)
+/mob/living/proc/is_mouth_covered(head_only = FALSE, mask_only = FALSE)
 	return FALSE
 
 /mob/living/extrapolator_act(mob/living/user, obj/item/extrapolator/extrapolator, dry_run)
