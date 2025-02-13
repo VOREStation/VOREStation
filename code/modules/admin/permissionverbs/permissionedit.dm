@@ -19,21 +19,24 @@
 <div id='main'><table id='searchable' cellspacing='0'>
 <tr class='title'>
 <th style='width:125px;text-align:right;'>CKEY <a class='small' href='byond://?src=\ref[src];[HrefToken()];editrights=add'>\[+\]</a></th>
-<th style='width:125px;'>RANK</th><th style='width:100%;'>PERMISSIONS</th>
+<th style='width:125px;'>RANK</th>
+<th style='width:375px;'>PERMISSIONS</th>
+<th style='width:100%;'>VERB-OVERRIDES</th>
 </tr>
 "}
 
 	for(var/adm_ckey in admin_datums)
 		var/datum/admins/D = admin_datums[adm_ckey]
 		if(!D)	continue
-		var/rank = D.rank ? D.rank : "*none*"
-		var/rights = rights2text(D.rights," ")
+
+		var/rights = rights2text(D.rank.rights," ")
 		if(!rights)	rights = "*none*"
 
 		output += "<tr>"
 		output += "<td style='text-align:right;'>[adm_ckey] <a class='small' href='byond://?src=\ref[src];[HrefToken()];editrights=remove;ckey=[adm_ckey]'>\[-\]</a></td>"
-		output += "<td><a href='byond://?src=\ref[src];[HrefToken()];editrights=rank;ckey=[adm_ckey]'>[rank]</a></td>"
-		output += "<td><a class='small' href='byond://?src=\ref[src];[HrefToken()];editrights=permissions;ckey=[adm_ckey]'>[rights]</a></td>"
+		output += "<td><a href='byond://?src=\ref[src];editrights=rank;ckey=[adm_ckey]'>[D.rank.name]</a></td>"
+		output += "<td><a class='small' href='byond://?src=\ref[src];editrights=permissions;ckey=[adm_ckey]'>[rights]</a></td>"
+		output += "<td><a class='small' href='byond://?src=\ref[src];editrights=permissions;ckey=[adm_ckey]'>[rights2text(0," ",D.rank.adds,D.rank.subs)]</a></td>"
 		output += "</tr>"
 
 	output += {"
@@ -42,7 +45,7 @@
 </body>
 </html>"}
 
-	usr << browse(output,"window=editrights;size=600x500")
+	usr << browse(output,"window=editrights;size=900x650")
 
 /datum/admins/proc/log_admin_rank_modification(var/adm_ckey, var/new_rank)
 	if(CONFIG_GET(flag/admin_legacy_system))	return
@@ -50,7 +53,7 @@
 	if(!usr.client)
 		return
 
-	if(!usr.client.holder || !(usr.client.holder.rights & R_PERMISSIONS))
+	if (!check_rights(R_PERMISSIONS))
 		to_chat(usr, span_filter_adminlog("[span_red("You do not have permission to do this!")]"))
 		return
 
@@ -105,7 +108,7 @@
 	if(!usr.client)
 		return
 
-	if(!usr.client.holder || !(usr.client.holder.rights & R_PERMISSIONS))
+	if(check_rights(R_PERMISSIONS))
 		to_chat(usr, span_filter_adminlog("[span_red(">You do not have permission to do this!")]"))
 		return
 
@@ -114,45 +117,22 @@
 		to_chat(usr, span_filter_adminlog("[span_red("Failed to establish database connection!")]"))
 		return
 
-	if(!adm_ckey || !new_permission)
-		return
-
-	adm_ckey = ckey(adm_ckey)
-
-	if(!adm_ckey)
-		return
-
-	if(istext(new_permission))
-		new_permission = text2num(new_permission)
-
-	if(!istext(adm_ckey) || !isnum(new_permission))
+	if(!adm_ckey || !istext(adm_ckey) || !isnum(new_permission))
 		return
 
 	var/datum/db_query/select_query = SSdbcore.NewQuery("SELECT id, flags FROM erro_admin WHERE ckey = '[adm_ckey]'")
 	select_query.Execute()
 
 	var/admin_id
-	var/admin_rights
 	while(select_query.NextRow())
 		admin_id = text2num(select_query.item[1])
-		admin_rights = text2num(select_query.item[2])
 	qdel(select_query)
 	if(!admin_id)
 		return
 
-	if(admin_rights & new_permission) //This admin already has this permission, so we are removing it.
-		var/datum/db_query/insert_query = SSdbcore.NewQuery("UPDATE `erro_admin` SET flags = [admin_rights & ~new_permission] WHERE id = [admin_id]")
-		insert_query.Execute()
-		qdel(insert_query)
-		var/datum/db_query/log_query = SSdbcore.NewQuery("INSERT INTO `test`.`erro_admin_log` (`id` ,`datetime` ,`adminckey` ,`adminip` ,`log` ) VALUES (NULL , NOW( ) , '[usr.ckey]', '[usr.client.address]', 'Removed permission [rights2text(new_permission)] (flag = [new_permission]) to admin [adm_ckey]');")
-		log_query.Execute()
-		qdel(log_query)
-		to_chat(usr, span_filter_adminlog("[span_blue("Permission removed.")]"))
-	else //This admin doesn't have this permission, so we are adding it.
-		var/datum/db_query/insert_query = SSdbcore.NewQuery("UPDATE `erro_admin` SET flags = '[admin_rights | new_permission]' WHERE id = [admin_id]")
-		insert_query.Execute()
-		qdel(insert_query)
-		var/datum/db_query/log_query = SSdbcore.NewQuery("INSERT INTO `test`.`erro_admin_log` (`id` ,`datetime` ,`adminckey` ,`adminip` ,`log` ) VALUES (NULL , NOW( ) , '[usr.ckey]', '[usr.client.address]', 'Added permission [rights2text(new_permission)] (flag = [new_permission]) to admin [adm_ckey]')")
-		log_query.Execute()
-		qdel(log_query)
-		to_chat(usr, span_filter_adminlog("[span_blue("Permission added.")]"))
+	var/datum/db_query/insert_query = SSdbcore.NewQuery("UPDATE `erro_admin` SET flags = [new_permission] WHERE id = [admin_id]")
+	insert_query.Execute()
+	qdel(insert_query)
+	var/datum/db_query/log_query = SSdbcore.NewQuery("INSERT INTO `test`.`erro_admin_log` (`id` ,`datetime` ,`adminckey` ,`adminip` ,`log` ) VALUES (NULL , NOW( ) , '[usr.ckey]', '[usr.client.address]', 'Edit permission [rights2text(new_permission)] (flag = [new_permission]) to admin [adm_ckey]');")
+	log_query.Execute()
+	qdel(log_query)

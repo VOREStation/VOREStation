@@ -25,6 +25,8 @@
 
 	config.Load(params[OVERRIDE_CONFIG_DIRECTORY_PARAMETER])
 
+	load_admins()
+
 	ConfigLoaded()
 	makeDatumRefLists()
 	VgsNew()

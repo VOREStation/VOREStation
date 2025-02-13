@@ -4,9 +4,9 @@ GLOBAL_PROTECT(href_token)
 var/list/admin_datums = list()
 
 /datum/admins
-	var/rank			= "Temporary Admin"
+	var/datum/admin_rank/rank
+
 	var/client/owner	= null
-	var/rights = 0
 	var/fakekey			= null
 
 	var/datum/marked_datum
@@ -19,26 +19,34 @@ var/list/admin_datums = list()
 	var/href_token
 
 
-/datum/admins/New(initial_rank = "Temporary Admin", initial_rights = 0, ckey)
+/datum/admins/New(datum/admin_rank/R, ckey)
 	if(!ckey)
 		error("Admin datum created without a ckey argument. Datum has been deleted")
 		qdel(src)
 		return
+	if(!istype(R))
+		error("Admin datum created without a rank. Datum has been deleted")
+		del(src)
+		return
+	rank = R
 	admincaster_signature = "[using_map.company_name] Officer #[rand(0,9)][rand(0,9)][rand(0,9)]"
 	href_token = GenerateToken()
-	rank = initial_rank
-	rights = initial_rights
 	admin_datums[ckey] = src
-	if(rights & R_DEBUG) //grant profile access
+	if(check_rights(R_DEBUG)) //grant profile access
 		world.SetConfig("APP/admin", ckey, "role=admin")
 
-/datum/admins/proc/associate(client/C)
-	if(istype(C))
-		owner = C
-		owner.holder = src
-		owner.add_admin_verbs()	//TODO
-		owner.init_verbs() //re-initialize the verb list
-		GLOB.admins |= C
+/datum/admins/Destroy()
+	. = ..()
+
+/datum/admins/proc/associate(client/client)
+	if(!istype(client))
+		return
+
+	owner = client
+	owner.holder = src
+	owner.add_admin_verbs()
+	owner.init_verbs() //re-initialize the verb list
+	GLOB.admins |= client
 
 /datum/admins/proc/disassociate()
 	if(owner)
@@ -56,11 +64,7 @@ var/list/admin_datums = list()
 		owner.add_admin_verbs()
 
 /datum/admins/vv_edit_var(var_name, var_value)
-	if(var_name == NAMEOF(src, rights) || var_name == NAMEOF(src, owner) || var_name == NAMEOF(src, rank))
-		return FALSE
-	return ..()
-
-//TODO: Proccall guard, when all try/catch are removed and WrapAdminProccall is ported.
+	return FALSE //nice try trialmin
 
 /*
 checks if usr is an admin with at least ONE of the flags in rights_required. (Note, they don't need all the flags)
@@ -69,33 +73,21 @@ if it doesn't return 1 and show_msg=1 it will prints a message explaining why th
 generally it would be used like so:
 
 /proc/admin_proc()
-	if(!check_rights(R_ADMIN)) return
-	to_world("you have enough rights!")
+	if(!check_rights(R_ADMIN))
+		return
+	to_chat(world, "you have enough rights!", confidential = TRUE)
 
-NOTE: It checks usr by default. Supply the "user" argument if you wish to check for a specific mob.
+NOTE: it checks usr! not src! So if you're checking somebody's rank in a proc which they did not call
+you will have to do something like if(client.rights & R_ADMIN) yourself.
 */
-/proc/check_rights(rights_required, show_msg=1, var/client/C = usr)
-	if(ismob(C))
-		var/mob/M = C
-		C = M.client
-	if(!C)
-		return FALSE
-	if(!(istype(C, /client))) // If we still didn't find a client, something is wrong.
-		return FALSE
-	if(!C.holder)
-		if(show_msg)
-			to_chat(C, span_filter_adminlog(span_warning("Error: You are not an admin.")))
-		return FALSE
-
-	if(rights_required)
-		if(rights_required & C.holder.rights)
+/proc/check_rights(rights_required, show_msg=1)
+	if(usr?.client)
+		if (check_rights_for(usr.client, rights_required))
 			return TRUE
 		else
 			if(show_msg)
-				to_chat(C, span_filter_adminlog(span_warning("Error: You do not have sufficient rights to do that. You require one of the following flags:[rights2text(rights_required," ")].")))
-			return FALSE
-	else
-		return TRUE
+				to_chat(usr, "<font color='red'>Error: You do not have sufficient rights to do that. You require one of the following flags:[rights2text(rights_required," ")].</font>", confidential = TRUE)
+	return FALSE
 
 //probably a bit iffy - will hopefully figure out a better solution
 /proc/check_if_greater_rights_than(client/other)
@@ -103,10 +95,18 @@ NOTE: It checks usr by default. Supply the "user" argument if you wish to check 
 		if(usr.client.holder)
 			if(!other || !other.holder)
 				return 1
-			if(usr.client.holder.rights != other.holder.rights)
-				if( (usr.client.holder.rights & other.holder.rights) == other.holder.rights )
+			if(usr.client.holder.rank.rights != other.holder.rank.rights)	//Check values smaller than 65536
+				if( (usr.client.holder.rank.rights & other.holder.rank.rights) == other.holder.rank.rights )
 					return 1	//we have all the rights they have and more
-		to_chat(usr, span_filter_adminlog(span_warning("Error: Cannot proceed. They have more or equal rights to us.")))
+		to_chat(usr, span_filter_adminlog(span_warning("Error: Cannot proceed. They have greater or equal rights to us.")))
+	return 0
+
+//This proc checks whether subject has at least ONE of the rights specified in rights_required.
+/proc/check_rights_for(client/subject, rights_required)
+	if(subject && subject.holder && subject.holder.rank)
+		if(rights_required && !(rights_required & subject.holder.rank.rights))
+			return 0
+		return 1
 	return 0
 
 /client/proc/mark_datum(datum/D)
@@ -127,14 +127,6 @@ NOTE: It checks usr by default. Supply the "user" argument if you wish to check 
 		holder.disassociate()
 		//qdel(holder)
 	return 1
-
-//This proc checks whether subject has at least ONE of the rights specified in rights_required.
-/proc/check_rights_for(client/subject, rights_required)
-	if(subject && subject.holder)
-		if(rights_required && !(rights_required & subject.holder.rights))
-			return 0
-		return 1
-	return 0
 
 /proc/GenerateToken()
 	. = ""

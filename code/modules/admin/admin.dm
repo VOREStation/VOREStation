@@ -7,7 +7,7 @@ var/global/floorIsLava = 0
 	//log_adminwarn(msg) //log_and_message_admins is for this
 
 	for(var/client/C in GLOB.admins)
-		if((R_ADMIN|R_MOD) & C.holder.rights)
+		if(check_rights_for(C, (R_ADMIN|R_MOD)))
 			to_chat(C,
 					type = MESSAGE_TYPE_ADMINLOG,
 					html = msg,
@@ -16,7 +16,7 @@ var/global/floorIsLava = 0
 /proc/msg_admin_attack(var/text) //Toggleable Attack Messages
 	var/rendered = span_filter_attacklog(span_log_message(span_prefix("ATTACK:") + span_message("[text]")))
 	for(var/client/C in GLOB.admins)
-		if((R_ADMIN|R_MOD) & C.holder.rights)
+		if(check_rights_for(C, (R_ADMIN|R_MOD)))
 			if(C.prefs?.read_preference(/datum/preference/toggle/show_attack_logs))
 				var/msg = rendered
 				to_chat(C,
@@ -1353,7 +1353,7 @@ var/datum/announcement/minor/admin_min_announcer = new
 	if(istype(whom, /mob))
 		M = whom
 		C = M.client
-	if(R_HOST & C.holder.rights)
+	if(check_rights_for(C, R_HOST))
 		return 1
 	else
 		return 0
@@ -1562,12 +1562,12 @@ var/datum/announcement/minor/admin_min_announcer = new
 		if(P.sender) // sent as a reply
 			log_admin("[key_name(src.owner)] replied to a fax message from [key_name(P.sender)]")
 			for(var/client/C in GLOB.admins)
-				if((R_ADMIN | R_MOD | R_EVENT) & C.holder.rights)
+				if(check_rights_for(C, (R_ADMIN | R_MOD | R_EVENT)))
 					to_chat(C, span_log_message("[span_prefix("FAX LOG:")][key_name_admin(src.owner)] replied to a fax message from [key_name_admin(P.sender)] (<a href='byond://?_src_=holder;[HrefToken()];AdminFaxView=\ref[rcvdcopy]'>VIEW</a>)"))
 		else
 			log_admin("[key_name(src.owner)] has sent a fax message to [destination.department]")
 			for(var/client/C in GLOB.admins)
-				if((R_ADMIN | R_MOD | R_EVENT) & C.holder.rights)
+				if(check_rights_for(C, (R_ADMIN | R_MOD | R_EVENT)))
 					to_chat(C, span_log_message("[span_prefix("FAX LOG:")][key_name_admin(src.owner)] has sent a fax message to [destination.department] (<a href='byond://?_src_=holder;[HrefToken()];AdminFaxView=\ref[rcvdcopy]'>VIEW</a>)"))
 
 		var/plaintext_title = P.sender ? "replied to [key_name(P.sender)]'s fax" : "sent a fax message to [destination.department]"
