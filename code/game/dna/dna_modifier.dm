@@ -115,7 +115,7 @@
 	return
 
 /obj/machinery/dna_scannernew/proc/eject_occupant()
-	var/mob/living/carbon/WC = occupant.resolve()
+	var/mob/living/carbon/WC = occupant?.resolve()
 	go_out()
 	for(var/obj/O in src)
 		if((!istype(O,/obj/item/reagent_containers)) && (!istype(O,/obj/item/circuitboard/clonescanner)) && (!istype(O,/obj/item/stock_parts)) && (!istype(O,/obj/item/stack/cable_coil)))
