@@ -210,7 +210,7 @@
 /datum/robot_sprite/dogborg/tall/science/dullahan
 	name = "Dullahan"
 	sprite_icon_state = "dullahansci"
-	sprite_icon = 'icons/mob/robot/dullahan/v1/dullahan_mine.dmi'
+	sprite_icon = 'icons/mob/robot/dullahan/v1/dullahan_sci.dmi'
 	has_vore_belly_sprites = TRUE
 	has_eye_light_sprites = TRUE
 	sprite_hud_icon_state = "sci-borg"
