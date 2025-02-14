@@ -100,27 +100,28 @@
 								failed = TRUE
 		else if (RS.belly_capacity_list)
 			for(var/belly in RS.belly_capacity_list)
-				// big belly
-				if(check_state(RS,"-[belly]-[RS.belly_capacity_list[belly]]"))
-					failed = TRUE
-				if(RS.has_vore_belly_resting_sprites)
-					for(var/rest_style in RS.rest_sprite_options)
-						rest_style = lowertext(rest_style)
-						if(rest_style == "Default")
-							rest_style = "rest"
-						if(check_state(RS,"-[belly]-[RS.belly_capacity_list[belly]]-[rest_style]"))
-							failed = TRUE
-				// struggling
-				if(RS.has_vore_struggle_sprite)
-					if(check_state(RS,"-[belly]-[RS.belly_capacity_list[belly]]-struggle"))
+				for(var/num = 1 to RS.belly_capacity_list[belly])
+					// big belly
+					if(check_state(RS,"-[belly]-[num]"))
 						failed = TRUE
 					if(RS.has_vore_belly_resting_sprites)
 						for(var/rest_style in RS.rest_sprite_options)
 							rest_style = lowertext(rest_style)
 							if(rest_style == "Default")
 								rest_style = "rest"
-							if(check_state(RS,"-[belly]-[RS.belly_capacity_list[belly]]-[rest_style]-struggle"))
+							if(check_state(RS,"-[belly]-[num]-[rest_style]"))
 								failed = TRUE
+					// struggling
+					if(RS.has_vore_struggle_sprite)
+						if(check_state(RS,"-[belly]-[num]-struggle"))
+							failed = TRUE
+						if(RS.has_vore_belly_resting_sprites)
+							for(var/rest_style in RS.rest_sprite_options)
+								rest_style = lowertext(rest_style)
+								if(rest_style == "Default")
+									rest_style = "rest"
+								if(check_state(RS,"-[belly]-[num]-[rest_style]-struggle"))
+									failed = TRUE
 			if(RS.belly_light_list)
 				for(var/belly in RS.belly_light_list)
 					// multi belly r/g light
