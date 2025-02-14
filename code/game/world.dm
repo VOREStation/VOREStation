@@ -14,12 +14,25 @@
 	debug_log = start_log("[log_path]-debug.log")
 	//VOREStation Edit End
 
-	changelog_hash = md5('html/changelog.html')					//used for telling if the changelog has changed recently
+	//changelog_hash = md5('html/changelog.html') //used for telling if the changelog has changed recently //Chomp REMOVE
+	//ChompADD Start - Better Changelogs
+	var/latest_changelog = file("html/changelogs_ch/archive/" + time2text(world.timeofday, "YYYY-MM") + ".yml")
+	changelog_hash = fexists(latest_changelog) ? md5(latest_changelog) : 0 //for telling if the changelog has changed recently
+	//Newsfile
+	var/savefile/F = new(NEWSFILE)
+	if(F)
+		var/title
+		F["title"] >> title
+		F["title"] >> title //This is done twice on purpose. For some reason BYOND misses the first read, if performed before the world starts
+		var/body
+		F["body"] >> body
+		servernews_hash = md5("[title]" + "[body]")
+	//ChompADD End
 
 	if(byond_version < RECOMMENDED_VERSION)
 		to_world_log("Your server's byond version does not meet the recommended requirements for this server. Please update BYOND")
 
-	TgsNew()
+	TgsNew(new /datum/tgs_event_handler/impl, TGS_SECURITY_TRUSTED) // CHOMPEdit - tgs event handler
 
 	config.Load(params[OVERRIDE_CONFIG_DIRECTORY_PARAMETER])
 
@@ -37,7 +50,7 @@
 	// if(config && CONFIG_FLAG(flag/log_runtime))
 	// 	log = file("data/logs/runtime/[time2text(world.realtime,"YYYY-MM-DD-(hh-mm-ss)")]-runtime.log")
 
-	GLOB.timezoneOffset = get_timezone_offset()
+	GLOB.timezoneOffset = world.timezone * 36000
 
 	callHook("startup")
 	//Emergency Fix
@@ -108,8 +121,8 @@ var/world_topic_spam_protect_ip = "0.0.0.0"
 var/world_topic_spam_protect_time = world.timeofday
 
 /world/Topic(T, addr, master, key)
-	TGS_TOPIC
-	VGS_TOPIC // VOREStation Edit - VGS
+	VGS_TOPIC // VOREStation Edit - VGS //CHOMP Edit swapped lines around
+	TGS_TOPIC //CHOMP Edit swapped lines around
 	log_topic("\"[T]\", from:[addr], master:[master], key:[key]")
 
 	if (T == "ping")
@@ -202,42 +215,57 @@ var/world_topic_spam_protect_time = world.timeofday
 			var/real_rank = make_list_rank(t.fields["real_rank"])
 
 			var/department = 0
+			var/active = 0	//CHOMPStation Edit Begin
+			for(var/mob/M in player_list)
+				if(M.real_name == name && M.client && M.client.inactivity <= 10 MINUTES)
+					active = 1
+					break
+			var/isactive = active ? "Active" : "Inactive"
 			for(var/k in set_names)
 				if(real_rank in set_names[k])
 					if(!positions[k])
 						positions[k] = list()
-					positions[k][name] = rank
+					positions[k][name] = list(rank,isactive)
 					department = 1
 			if(!department)
 				if(!positions["misc"])
 					positions["misc"] = list()
-				positions["misc"][name] = rank
+				positions["misc"][name] = list(rank,isactive)
 
 		for(var/datum/data/record/t in data_core.hidden_general)
 			var/name = t.fields["name"]
 			var/rank = t.fields["rank"]
 			var/real_rank = make_list_rank(t.fields["real_rank"])
 
+			var/active = 0	//CHOMPStation Edit Begin
+			for(var/mob/M in player_list)
+				if(M.real_name == name && M.client && M.client.inactivity <= 10 MINUTES)
+					active = 1
+					break
+			var/isactive = active ? "Active" : "Inactive"
+
 			var/datum/job/J = SSjob.get_job(real_rank)
 			if(J?.offmap_spawn)
 				if(!positions["off"])
 					positions["off"] = list()
-				positions["off"][name] = rank
+				positions["off"][name] = list(rank,isactive)
 
 		// Synthetics don't have actual records, so we will pull them from here.
 		for(var/mob/living/silicon/ai/ai in mob_list)
+			var/isactive = (ai.client && ai.client.inactivity <= 10 MINUTES) ? "Active" : "Inactive"
 			if(!positions["bot"])
 				positions["bot"] = list()
-			positions["bot"][ai.name] = "Artificial Intelligence"
+			positions["bot"][ai.name] = list("Artificial Intelligence",isactive)
 		for(var/mob/living/silicon/robot/robot in mob_list)
 			// No combat/syndicate cyborgs, no drones, and no AI shells.
+			var/isactive = (robot.client && robot.client.inactivity <= 10 MINUTES) ? "Active" : "Inactive"
 			if(robot.shell)
 				continue
 			if(robot.module && robot.module.hide_on_manifest())
 				continue
 			if(!positions["bot"])
 				positions["bot"] = list()
-			positions["bot"][robot.name] = "[robot.modtype] [robot.braintype]"
+			positions["bot"][robot.name] = list("[robot.modtype] [robot.braintype]",isactive) //CHOMPEdit end
 
 		for(var/k in positions)
 			positions[k] = list2params(positions[k]) // converts positions["heads"] = list("Bob"="Captain", "Bill"="CMO") into positions["heads"] = "Bob=Captain&Bill=CMO"
@@ -252,7 +280,10 @@ var/world_topic_spam_protect_time = world.timeofday
 
 	else if(copytext(T,1,5) == "info")
 		var/input[] = params2list(T)
-		if(input["key"] != CONFIG_GET(string/comms_password))
+		var/password = CONFIG_GET(string/comms_password)
+		if(!password)
+			return
+		if(input["key"] != password)
 			if(world_topic_spam_protect_ip == addr && abs(world_topic_spam_protect_time - world.time) < 50)
 
 				spawn(50)
@@ -339,7 +370,10 @@ var/world_topic_spam_protect_time = world.timeofday
 
 
 		var/input[] = params2list(T)
-		if(input["key"] != CONFIG_GET(string/comms_password))
+		var/password = CONFIG_GET(string/comms_password)
+		if(!password)
+			return
+		if(input["key"] != password)
 			if(world_topic_spam_protect_ip == addr && abs(world_topic_spam_protect_time - world.time) < 50)
 
 				spawn(50)
@@ -389,7 +423,10 @@ var/world_topic_spam_protect_time = world.timeofday
 				2. validationkey = the key the bot has, it should match the gameservers commspassword in it's configuration.
 		*/
 		var/input[] = params2list(T)
-		if(input["key"] != CONFIG_GET(string/comms_password))
+		var/password = CONFIG_GET(string/comms_password)
+		if(!password)
+			return
+		if(input["key"] != password)
 			if(world_topic_spam_protect_ip == addr && abs(world_topic_spam_protect_time - world.time) < 50)
 
 				spawn(50)
@@ -404,7 +441,10 @@ var/world_topic_spam_protect_time = world.timeofday
 
 	else if(copytext(T,1,4) == "age")
 		var/input[] = params2list(T)
-		if(input["key"] != CONFIG_GET(string/comms_password))
+		var/password = CONFIG_GET(string/comms_password)
+		if(!password)
+			return
+		if(input["key"] != password)
 			if(world_topic_spam_protect_ip == addr && abs(world_topic_spam_protect_time - world.time) < 50)
 				spawn(50)
 					world_topic_spam_protect_time = world.time
@@ -613,6 +653,24 @@ var/failed_old_db_connections = 0
 		to_world_log("Your server failed to establish a connection with the feedback database.")
 	else
 		to_world_log("Feedback database connection established.")
+		// CHOMPEdit Begin - Truncating the temporary dialog/attacklog tables
+		var/datum/db_query/query_truncate = SSdbcore.NewQuery("TRUNCATE erro_dialog")
+		var/num_tries = 0
+		while(!query_truncate.Execute() && num_tries<5)
+			num_tries++
+
+		if(num_tries==5)
+			log_admin("ERROR TRYING TO CLEAR erro_dialog")
+		qdel(query_truncate)
+		var/datum/db_query/query_truncate2 = SSdbcore.NewQuery("TRUNCATE erro_attacklog")
+		num_tries = 0
+		while(!query_truncate2.Execute() && num_tries<5)
+			num_tries++
+
+		if(num_tries==5)
+			log_admin("ERROR TRYING TO CLEAR erro_attacklog")
+		qdel(query_truncate2)
+		// CHOMPEdit End
 	return 1
 
 /proc/setup_database_connection()
