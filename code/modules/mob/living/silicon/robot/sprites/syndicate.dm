@@ -174,7 +174,7 @@
 	has_eye_light_sprites = TRUE
 	has_custom_open_sprites = TRUE
 	has_vore_belly_sprites = TRUE
-	has_robotdecal_sprites = TRUE
+	has_robotdecal_sprites = FALSE //I didn't see any  sprites in the  .dmi for this.
 	rest_sprite_options = list("Default", "sit")
 
 /datum/robot_sprite/dogborg/tall/mechanist/syndimechraptor
