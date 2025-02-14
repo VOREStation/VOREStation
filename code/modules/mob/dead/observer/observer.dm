@@ -500,7 +500,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	if(get_z(target) in using_map?.secret_levels)
 		to_chat(src, span_warning("Sorry, that target is in an area that ghosts aren't allowed to go."))
 		return
-	if(target != src)
+	/*if(target != src)
 		if(following && following == target)
 			return
 		if(following)
@@ -524,7 +524,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 					// To stop the ghost flickering.
 					if(loc != T)
 						forceMove(T)
-					sleep(15)
+					sleep(15)*/
 
 	var/icon/I = icon(target.icon,target.icon_state,target.dir)
 
