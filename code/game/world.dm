@@ -253,9 +253,7 @@ var/world_topic_spam_protect_time = world.timeofday
 	else if(copytext(T,1,5) == "info")
 		var/input[] = params2list(T)
 		var/password = CONFIG_GET(string/comms_password)
-		if(!password)
-			return
-		if(input["key"] != password)
+		if(!password || input["key"] != password)
 			if(world_topic_spam_protect_ip == addr && abs(world_topic_spam_protect_time - world.time) < 50)
 
 				spawn(50)
@@ -343,9 +341,7 @@ var/world_topic_spam_protect_time = world.timeofday
 
 		var/input[] = params2list(T)
 		var/password = CONFIG_GET(string/comms_password)
-		if(!password)
-			return
-		if(input["key"] != password)
+		if(!password || input["key"] != password)
 			if(world_topic_spam_protect_ip == addr && abs(world_topic_spam_protect_time - world.time) < 50)
 
 				spawn(50)
@@ -396,9 +392,7 @@ var/world_topic_spam_protect_time = world.timeofday
 		*/
 		var/input[] = params2list(T)
 		var/password = CONFIG_GET(string/comms_password)
-		if(!password)
-			return
-		if(input["key"] != password)
+		if(!password || input["key"] != password)
 			if(world_topic_spam_protect_ip == addr && abs(world_topic_spam_protect_time - world.time) < 50)
 
 				spawn(50)
@@ -414,9 +408,7 @@ var/world_topic_spam_protect_time = world.timeofday
 	else if(copytext(T,1,4) == "age")
 		var/input[] = params2list(T)
 		var/password = CONFIG_GET(string/comms_password)
-		if(!password)
-			return
-		if(input["key"] != password)
+		if(!password || input["key"] != password)
 			if(world_topic_spam_protect_ip == addr && abs(world_topic_spam_protect_time - world.time) < 50)
 				spawn(50)
 					world_topic_spam_protect_time = world.time
