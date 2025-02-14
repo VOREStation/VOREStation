@@ -94,6 +94,7 @@
 	var/obj/item/dnalockingchip/attached_lock
 
 	var/last_shot = 0			//records the last shot fired
+	var/recoil_mode = 0			//If the gun will hurt micros if shot or not. Disabled on Virgo, used downstream.
 
 //VOREStation Add - /tg/ icon system
 	var/charge_sections = 4
@@ -418,14 +419,32 @@
 			user.hud_used.update_ammo_hud(user, src)
 			user.setClickCooldown(DEFAULT_QUICK_COOLDOWN)
 
+			if(recoil_mode && iscarbon(user))
+				var/mob/living/carbon/micro = user
+				var/mysize = micro.size_multiplier
+				if(recoil_mode > 0)
+					if(mysize <= 0.60)
+						micro.Weaken(1*recoil_mode)
+						if(!istype(src,/obj/item/gun/energy))
+							micro.adjustBruteLoss((5-mysize*4)*recoil_mode)
+							to_chat(micro, span_danger("You're so tiny that you drop the gun and hurt yourself from the recoil!"))
+						else
+							to_chat(micro, span_danger("You're so tiny that the pull of the trigger causes you to drop the gun!"))
+
 			if(!(target && target.loc))
 				target = targloc
 				pointblank = 0
 
 			if(ticker < burst)
 				addtimer(CALLBACK(src, PROC_REF(handle_gunfire),target, user, clickparams, pointblank, reflex, ++ticker, TRUE), burst_delay, TIMER_DELETE_ME)
+				return
 
-
+			if(ticker == burst)
+				if(muzzle_flash)
+					if(gun_light)
+						addtimer(CALLBACK(src, TYPE_PROC_REF(/atom, set_light),light_brightness), burst_delay, TIMER_DELETE_ME)
+					else
+						addtimer(CALLBACK(src, TYPE_PROC_REF(/atom, set_light),0), burst_delay, TIMER_DELETE_ME)
 
 // Similar to the above proc, but does not require a user, which is ideal for things like turrets.
 /obj/item/gun/proc/Fire_userless(atom/target)
@@ -581,8 +600,7 @@
 					to_chat(user, span_warning("You struggle to hold \the [src] steady!"))
 
 	if(recoil)
-		spawn()
-			shake_camera(user, recoil+1, recoil)
+		shake_camera(user, recoil+1, recoil)
 	update_icon()
 
 /obj/item/gun/proc/process_point_blank(obj/projectile, mob/user, atom/target)

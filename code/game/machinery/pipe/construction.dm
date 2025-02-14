@@ -38,7 +38,7 @@ Buildable meters
  * @param loc Location
  * @pipe_type
  */
-/obj/item/pipe/Initialize(var/mapload, var/_pipe_type, var/_dir, var/obj/machinery/atmospherics/make_from)
+/obj/item/pipe/Initialize(mapload, var/_pipe_type, var/_dir, var/obj/machinery/atmospherics/make_from)
 	if(make_from)
 		make_from_existing(make_from)
 	else

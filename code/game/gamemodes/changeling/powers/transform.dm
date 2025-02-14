@@ -35,7 +35,7 @@
 	if(ishuman(src))
 		var/mob/living/carbon/human/H = src
 		var/newSpecies = chosen_dna.speciesName
-		H.set_species(newSpecies,1)
+		H.set_species(newSpecies)
 
 	qdel_swap(src.dna, chosen_dna.dna.Clone())
 	src.dna.b_type = "AB+" //This is needed to avoid blood rejection bugs.  The fact that the blood type might not match up w/ records could be a *FEATURE* too.
@@ -47,6 +47,7 @@
 	src.real_name = chosen_dna.name
 	src.UpdateAppearance()
 	domutcheck(src, null)
+	UpdateAppearance()
 	changeling_update_languages(changeling.absorbed_languages)
 	if(chosen_dna.genMods)
 		var/mob/living/carbon/human/self = src

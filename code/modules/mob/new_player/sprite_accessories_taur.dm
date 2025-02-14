@@ -1312,7 +1312,9 @@
 	icon_loaf = 'icons/mob/vore/taurs_loaf.dmi' //This file needs to be nuked during the removal of 'taurs_ch_loaf.dmi' into the normal loaf file.
 	loaf_offset = 5
 
-/datum/sprite_accessory/tail/taur/lizard/fat/spotty
+
+
+/datum/sprite_accessory/tail/taur/lizard/spotty_fat
 	name = "Fat Spotted Lizard (Taur, Tricolor)"
 	icon_state = "fatspottedlizard_s"
 	extra_overlay = "fatspottedlizard_markings"

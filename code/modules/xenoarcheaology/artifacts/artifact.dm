@@ -69,7 +69,7 @@
 		my_effect.trigger = TRIGGER_TOUCH
 	else if(icon_num == 10)
 		desc = "A large alien device, there appear to be some kind of vents in the side."
-		my_effect.trigger = pick(TRIGGER_ENERGY, TRIGGER_HEAT, TRIGGER_COLD, TRIGGER_PHORON, TRIGGER_OXY, TRIGGER_CO2, TRIGGER_NITRO)
+		my_effect.trigger = pick(TRIGGER_ENERGY, TRIGGER_HEAT, TRIGGER_COLD)
 	else if(icon_num == 11)
 		name = "sealed alien pod"
 		desc = "A strange alien device."
@@ -77,7 +77,7 @@
 	else if(icon_num == 12 || icon_num == 14)
 		name = "intricately carved statue"
 		desc = "A strange statue."
-		my_effect.trigger = pick(TRIGGER_TOUCH, TRIGGER_HEAT, TRIGGER_COLD, TRIGGER_PHORON, TRIGGER_OXY, TRIGGER_CO2, TRIGGER_NITRO)
+		my_effect.trigger = pick(TRIGGER_TOUCH, TRIGGER_HEAT, TRIGGER_COLD)
 
 /obj/machinery/artifact/update_icon()
 	..()
