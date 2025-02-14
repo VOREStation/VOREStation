@@ -23,8 +23,8 @@
 	var/applies_material_colour = 1
 	var/flippable = TRUE
 
-/obj/structure/bed/Initialize(var/newloc, var/new_material, var/new_padding_material)
-	..(newloc)
+/obj/structure/bed/Initialize(mapload, var/new_material, var/new_padding_material)
+	..()
 	color = null
 	if(!new_material)
 		new_material = MAT_STEEL
@@ -199,19 +199,19 @@
 	icon_state = "psychbed"
 	base_icon = "psychbed"
 
-/obj/structure/bed/psych/Initialize(var/newloc)
-	. = ..(newloc,MAT_WOOD,MAT_LEATHER)
+/obj/structure/bed/psych/Initialize(mapload)
+	. = ..(mapload,MAT_WOOD,MAT_LEATHER)
 
-/obj/structure/bed/padded/Initialize(var/newloc)
-	. = ..(newloc,MAT_PLASTIC,MAT_COTTON)
+/obj/structure/bed/padded/Initialize(mapload)
+	. = ..(mapload,MAT_PLASTIC,MAT_COTTON)
 
 /obj/structure/bed/double
 	name = "double bed"
 	icon_state = "doublebed"
 	base_icon = "doublebed"
 
-/obj/structure/bed/double/padded/Initialize(var/newloc)
-	. = ..(newloc,MAT_WOOD,MAT_COTTON)
+/obj/structure/bed/double/padded/Initialize(mapload)
+	. = ..(mapload,MAT_WOOD,MAT_COTTON)
 
 /obj/structure/bed/double/post_buckle_mob(mob/living/M as mob)
 	if(M.buckled == src)
@@ -264,7 +264,8 @@
 	desc = "A collapsed roller bed that can be carried around."
 	icon = 'icons/obj/rollerbed.dmi'
 	icon_state = "folded_rollerbed"
-	center_of_mass = list("x" = 17,"y" = 7)
+	center_of_mass_x = 17
+	center_of_mass_y = 7
 	slot_flags = SLOT_BACK
 	w_class = ITEMSIZE_LARGE
 	var/rollertype = /obj/item/roller

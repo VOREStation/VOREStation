@@ -108,7 +108,7 @@
 				for(var/datum/reagent/R in B.reagents.reagent_list)
 					. += span_notice("[R.volume] units of [R.name]")
 
-/obj/item/gun/projectile/dartgun/attackby(obj/item/I as obj, mob/user as mob)
+/obj/item/gun/projectile/dartgun/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/reagent_containers/glass))
 		if(!istype(I, container_type))
 			to_chat(user, span_blue("[I] doesn't seem to fit into [src]."))
@@ -121,7 +121,7 @@
 		B.loc = src
 		beakers += B
 		to_chat(user, span_blue("You slot [B] into [src]."))
-		src.updateUsrDialog()
+		updateUsrDialog(user)
 		return 1
 	..()
 
@@ -197,7 +197,7 @@
 				B.loc = get_turf(src)
 	else if (href_list["eject_cart"])
 		unload_ammo(usr)
-	src.updateUsrDialog()
+	src.updateUsrDialog(usr)
 	return
 
 ///Variants of the Dartgun and Chemdarts.///

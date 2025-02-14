@@ -15,6 +15,7 @@
 	var/airlock_wire = null
 	var/datum/wires/connected = null
 	var/datum/radio_frequency/radio_connection
+	var/deadman = FALSE
 
 /obj/item/assembly/signaler/Initialize()
 	. = ..()
@@ -122,10 +123,20 @@
 	if(!frequency)
 		return
 	if(!radio_controller)
-		sleep(20)
+		addtimer(CALLBACK(src, PROC_REF(radio_checkup), new_frequency), 2 SECONDS)
+		return
+	set_radio(new_frequency)
+
+/obj/item/assembly/signaler/proc/radio_checkup(new_frequency)
+	PROTECTED_PROC(TRUE)
 	if(!radio_controller)
 		return
+	set_radio(new_frequency)
 
+
+/obj/item/assembly/signaler/proc/set_radio(new_frequency)
+	PROTECTED_PROC(TRUE)
+	SHOULD_NOT_OVERRIDE(TRUE)
 	radio_controller.remove_object(src, frequency)
 	frequency = new_frequency
 	radio_connection = radio_controller.add_object(src, frequency, RADIO_CHAT)

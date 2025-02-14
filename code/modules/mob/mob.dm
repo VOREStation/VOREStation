@@ -5,28 +5,28 @@
 	living_mob_list -= src
 	player_list -= src
 	unset_machine()
-	QDEL_NULL(hud_used)
 	clear_fullscreen()
 	if(client)
 		for(var/obj/screen/movable/spell_master/spell_master in spell_masters)
 			qdel(spell_master)
 		remove_screen_obj_references()
-		client.screen.Cut()
+		client.screen = list()
 	if(mind && mind.current == src)
 		spellremove(src)
-	ghostize()
-	if(focus)
-		focus = null
-	if(plane_holder)
-		QDEL_NULL(plane_holder)
-
+	if(!istype(src,/mob/observer))
+		ghostize()
+	// QDEL_NULL(soulgem) //Soulcatcher. Needs to be ported sometime.
+	QDEL_NULL(dna)
+	QDEL_NULL(plane_holder)
+	QDEL_NULL(hud_used)
+	for(var/key in alerts) //clear out alerts
+		clear_alert(key)
 	if(pulling)
 		stop_pulling() //TG does this on atom/movable but our stop_pulling proc is here so whatever
 
 	if(ability_master)
 		QDEL_NULL(ability_master)
 
-	vore_selected = null
 	if(vore_organs)
 		QDEL_NULL_LIST(vore_organs)
 	if(vorePanel)
@@ -35,7 +35,9 @@
 	for(var/mob/observer/dead/M in following_mobs)
 		M.stop_following()
 	following_mobs = null
-
+	previewing_belly = null // from code/modules/vore/eating/mob_ch.dm
+	vore_selected = null // from code/modules/vore/eating/mob_vr
+	focus = null
 
 	if(mind)
 		if(mind.current == src)
@@ -46,6 +48,7 @@
 	. = ..()
 	update_client_z(null)
 	//return QDEL_HINT_HARDDEL_NOW
+
 
 /mob/proc/remove_screen_obj_references()
 	hands = null

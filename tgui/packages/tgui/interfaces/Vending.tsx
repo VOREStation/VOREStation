@@ -1,4 +1,3 @@
-import { filter } from 'common/collections';
 import { useState } from 'react';
 import { useBackend } from 'tgui/backend';
 import { Window } from 'tgui/layouts';
@@ -12,7 +11,7 @@ import {
   Tooltip,
 } from 'tgui-core/components';
 import { flow } from 'tgui-core/fp';
-import { BooleanLike, classes } from 'tgui-core/react';
+import { type BooleanLike, classes } from 'tgui-core/react';
 import { createSearch } from 'tgui-core/string';
 
 type Data = {
@@ -208,7 +207,7 @@ export const prepareSearch = (
       if (!searchText) {
         return products;
       } else {
-        return filter(products, testSearch);
+        return products.filter(testSearch);
       }
     },
   ])(products);

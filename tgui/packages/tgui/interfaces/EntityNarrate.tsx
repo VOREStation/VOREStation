@@ -10,7 +10,7 @@ import {
   Tabs,
   TextArea,
 } from 'tgui-core/components';
-import { BooleanLike } from 'tgui-core/react';
+import type { BooleanLike } from 'tgui-core/react';
 
 type data = {
   mode_select: BooleanLike; // Data for emote/talk. 0 for talk, 1 for emote

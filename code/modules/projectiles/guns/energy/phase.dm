@@ -11,6 +11,7 @@
 	charge_cost = 240
 	projectile_type = /obj/item/projectile/energy/phase
 	one_handed_penalty = 15
+	recoil_mode = 0
 
 /obj/item/gun/energy/phasegun/mounted
 	self_recharge = 1
