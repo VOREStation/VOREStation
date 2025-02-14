@@ -240,3 +240,4 @@
 	sprite_icon_state = "vixsec"
 	sprite_hud_icon_state = "k9"
 	has_eye_light_sprites = TRUE
+	has_dead_sprite_overlay = FALSE

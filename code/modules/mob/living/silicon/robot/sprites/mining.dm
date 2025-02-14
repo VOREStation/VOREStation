@@ -223,6 +223,7 @@
 	sprite_icon_state = "vixmine"
 	has_vore_belly_resting_sprites = TRUE
 	has_eye_light_sprites = TRUE
+	has_dead_sprite_overlay = FALSE
 
 /datum/robot_sprite/dogborg/mining/catcargo
 	name = "Cat - Cargo"
@@ -230,3 +231,4 @@
 	sprite_icon_state = "vixcargo"
 	has_vore_belly_resting_sprites = TRUE
 	has_eye_light_sprites = TRUE
+	has_dead_sprite_overlay = FALSE
