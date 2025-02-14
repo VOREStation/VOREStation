@@ -52,7 +52,7 @@
 	if(notify)
 		trigger()
 
-/obj/structure/ghost_pod/ghost_activated/Initialize(var/mapload)
+/obj/structure/ghost_pod/ghost_activated/Initialize(mapload)
 	. = ..()
 	if(!mapload)
 		ghostpod_startup(spawn_active)

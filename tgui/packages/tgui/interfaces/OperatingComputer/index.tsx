@@ -5,7 +5,7 @@ import { Section, Stack, Tabs } from 'tgui-core/components';
 import { OperatingComputerOptions } from './OperatingComputerOptions';
 import { OperatingComputerPatient } from './OperatingComputerPatient';
 import { OperatingComputerUnoccupied } from './OperatingComputerUnoccupied';
-import { Data } from './types';
+import type { Data } from './types';
 
 export const OperatingComputer = (props) => {
   const { act, data } = useBackend<Data>();

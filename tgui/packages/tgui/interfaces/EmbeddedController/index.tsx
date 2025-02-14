@@ -10,7 +10,7 @@ import { DockingConsoleSimple } from './DockingConsoleSimple';
 import { DoorAccessConsole } from './DoorAccessConsole';
 import { EscapePodBerthConsole } from './EscapePodBerthConsole';
 import { EscapePodConsole } from './EscapePodConsole';
-import { Data } from './types';
+import type { Data } from './types';
 
 /**
  * This is an all-in-one replacement for the following NanoUI Templates:

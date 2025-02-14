@@ -5,17 +5,6 @@
 	var/list/owned_soul_links	// Soul links we are the owner of.
 	var/list/shared_soul_links	// Soul links we are a/the sharer of.
 
-/mob/living/Destroy()
-	for(var/datum/soul_link/S as anything in owned_soul_links)
-		S.owner_died(FALSE)
-		qdel(S) // If the owner is destroy()'d, the soullink is destroy()'d.
-	owned_soul_links = null
-	for(var/datum/soul_link/S as anything in shared_soul_links)
-		S.sharer_died(FALSE)
-		S.remove_soul_sharer(src) // If a sharer is destroy()'d, they are simply removed.
-	shared_soul_links = null
-	return ..()
-
 // Keeps track of a Mob->Mob (potentially Player->Player) connection.
 // Can be used to trigger actions on one party when events happen to another.
 // Eg: shared deaths.
