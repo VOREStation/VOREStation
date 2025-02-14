@@ -45,7 +45,7 @@
 	has_dead_sprite_overlay = FALSE
 	sprite_icon = 'icons/mob/robot/catborgs/departmental/small/kittyborg_cargo.dmi'
 	rest_sprite_options = list("Default", "Bellyup", "Sit")
-	belly_capacity_list = list("sleeper" = 2, "throat" =2)
+	belly_capacity_list = list("sleeper" = 2)
 	sprite_flags = ROBOT_HAS_SHIELD_SPRITE | ROBOT_HAS_GUN_SPRITE
 
 /// Engineering
@@ -235,7 +235,7 @@
 	has_eye_light_sprites = TRUE
 	has_sleeper_light_indicator = FALSE
 	has_vore_belly_resting_sprites = TRUE
-	has_robotdecal_sprites = TRUE
+	has_robotdecal_sprites = FALSE
 	sprite_icon = 'icons/mob/robot/catborgs/departmental/large/catborg_service.dmi'
 	rest_sprite_options = list("Default", "Bellyup", "Sit")
 	belly_capacity_list = list("sleeper" = 2, "throat" =2)
