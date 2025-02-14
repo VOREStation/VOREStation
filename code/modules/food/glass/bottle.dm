@@ -199,7 +199,7 @@
 	name = "gelatin bottle"
 	desc = "A bottle full of gelatin."
 	icon_state = "bottle-1"
-	prefill = list(REAGENT_GELATIN = 60)
+	prefill = list(REAGENT_ID_GELATIN = 60)
 
 /obj/item/reagent_containers/glass/bottle/lube
 	name = "lube bottle"
