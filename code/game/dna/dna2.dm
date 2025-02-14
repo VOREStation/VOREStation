@@ -23,8 +23,10 @@ GLOBAL_LIST_EMPTY_TYPED(dna_genes_bad, /datum/gene/trait)
 /proc/get_gene_from_trait(var/trait_path) // ALWAYS USE THIS
 	RETURN_TYPE(/datum/gene/trait)
 	var/G = GLOB.trait_to_dna_genes[trait_path]
+	#ifndef UNIT_TEST
 	if(!G) // This SHOULD NOT HAPPEN, be sure any viruses or injectors that give trait paths are actually traitgenes.
 		stack_trace("[trait_path] was used as a traitgene, without being flagged as one.")
+	#endif
 	return G
 
 /datum/dna

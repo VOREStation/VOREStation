@@ -30120,7 +30120,7 @@
 /obj/item/reagent_containers/food/drinks/bottle/wine,
 /obj/item/reagent_containers/food/drinks/bottle/patron,
 /obj/item/reagent_containers/food/drinks/bottle/absinthe,
-/obj/item/reagent_containers/food/drinks/bottle/tequilla,
+/obj/item/reagent_containers/food/drinks/bottle/tequila,
 /obj/item/reagent_containers/food/drinks/bottle/specialwhiskey,
 /turf/simulated/floor/wood,
 /area/vacant/vacant_bar_upper)

@@ -2585,7 +2585,7 @@
 	glass_desc = "You can almost smell the tranquility emanating from this."
 	//allergen_type = ALLERGEN_FRUIT Sorry to break the news, chief. Honey is not a fruit.
 
-/datum/reagent/drink/lovepotion
+/datum/reagent/drink/love_potion
 	name = REAGENT_LOVEPOTION
 	id = REAGENT_ID_LOVEPOTION
 	description = "Creamy strawberries and sugar, simple and sweet."
@@ -2691,7 +2691,7 @@
 				if(D.water_based)
 					M.adjustToxLoss(removed * -2)
 
-/datum/reagent/drink/mojito
+/datum/reagent/drink/virgin_mojito
 	name = REAGENT_VIRGINMOJITO
 	id = REAGENT_ID_VIRGINMOJITO
 	description = "Mint, bubbly water, and citrus, made for sailing."
@@ -3101,6 +3101,7 @@
 
 //Base type for alchoholic drinks containing coffee
 /datum/reagent/ethanol/coffee
+	name = REAGENT_DEVELOPER_WARNING
 	overdose = 45
 	allergen_type = ALLERGEN_COFFEE|ALLERGEN_STIMULANT //Contains coffee or is made from coffee
 
@@ -3211,8 +3212,8 @@
 	allergen_type = ALLERGEN_FRUIT //Made from orange juice
 
 /datum/reagent/ethanol/tequila
-	name = REAGENT_TEQUILLA
-	id = REAGENT_ID_TEQUILLA
+	name = REAGENT_TEQUILA
+	id = REAGENT_ID_TEQUILA
 	description = "A strong and mildly flavored, Mexican produced spirit. Feeling thirsty hombre?"
 	taste_description = "paint thinner"
 	color = "#FFFF91"
@@ -3355,6 +3356,9 @@
 					L.take_damage(10 * removed, 0)
 				else
 					L.take_damage(100, 0)
+
+/datum/reagent/ethanol/wine
+	name = REAGENT_DEVELOPER_WARNING // Unit test ignore
 
 /datum/reagent/ethanol/wine/champagne
 	name = REAGENT_CHAMPAGNE
@@ -3622,7 +3626,7 @@
 	glass_name = REAGENT_BRAVEBULL
 	glass_desc = "Tequilla and coffee liquor, brought together in a mouthwatering mixture. Drink up."
 
-/datum/reagent/ethanol/changelingsting
+/datum/reagent/ethanol/changeling_sting
 	name = REAGENT_CHANGELINGSTING
 	id = REAGENT_ID_CHANGELINGSTING
 	description = "You take a tiny sip and feel a burning sensation..."
@@ -4101,9 +4105,9 @@
 
 	allergen_type = ALLERGEN_GRAINS|ALLERGEN_STIMULANT //Made from beer(grain) and whiskeycola(whiskey(grain) and cola(caffeine))
 
-/datum/reagent/ethanol/tequilla_sunrise
-	name = REAGENT_TEQUILLASUNRISE
-	id = REAGENT_ID_TEQUILLASUNRISE
+/datum/reagent/ethanol/tequila_sunrise
+	name = REAGENT_TEQUILASUNRISE
+	id = REAGENT_ID_TEQUILASUNRISE
 	description = "Tequila and orange juice. Much like a Screwdriver, only Mexican~."
 	taste_description = "oranges"
 	color = "#FFE48C"

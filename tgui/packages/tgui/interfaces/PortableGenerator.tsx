@@ -9,7 +9,7 @@ import {
   Section,
 } from 'tgui-core/components';
 import { toFixed } from 'tgui-core/math';
-import { BooleanLike } from 'tgui-core/react';
+import type { BooleanLike } from 'tgui-core/react';
 
 type Data = {
   fuel_stored: number;

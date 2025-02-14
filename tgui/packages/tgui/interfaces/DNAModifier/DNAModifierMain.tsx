@@ -5,7 +5,7 @@ import { operations } from './constants';
 import { DNAModifierMainBuffers } from './DNAModifierMainBuffers';
 import { DNAModifierMainRejuvenators } from './DNAMofifierMainTabs/DNAModifierMainRejuvenators';
 import { DNAModifierMainSE } from './DNAMofifierMainTabs/DNAModifierMainSE';
-import { Data } from './types';
+import type { Data } from './types';
 
 export const DNAModifierMain = (props) => {
   const { act, data } = useBackend<Data>();
