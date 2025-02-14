@@ -355,7 +355,6 @@
 			radiation -= 10 * RADIATION_SPEED_COEFFICIENT * species.rad_removal_mod
 			return
 
-		to_world("rads =  [radiation] rad_levels = [GLOB.radiation_levels[species.rad_levels]["safe"]], [GLOB.radiation_levels[species.rad_levels]["danger_1"]], [GLOB.radiation_levels[species.rad_levels]["danger_2"]], [GLOB.radiation_levels[species.rad_levels]["danger_3"]], [GLOB.radiation_levels[species.rad_levels]["danger_4"]]")
 		if (radiation < GLOB.radiation_levels[species.rad_levels]["safe"]) //Less than 1.0 Gy. No side effects.
 			radiation -= 10 * RADIATION_SPEED_COEFFICIENT * species.rad_removal_mod
 			accumulated_rads += 10 * RADIATION_SPEED_COEFFICIENT //No escape from accumulated rads.
