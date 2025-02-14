@@ -137,16 +137,24 @@
 	has_vore_belly_sprites = FALSE
 	rest_sprite_options = list("Default", "Bellyup")
 
-/datum/robot_sprite/dogborg/tall/medical/dullahanv3
-	sprite_icon = 'icons/mob/tallborg/dullahans64x64.dmi'
-	//named v3 to avoid conflicts with downstream
-
-/datum/robot_sprite/dogborg/tall/medical/dullahanv3/medicaldully
-	name = "Dullahan medical v3"
-	sprite_icon_state = "dullahanmedical"
+/datum/robot_sprite/dogborg/tall/crisis/dullahan
+	name = "Dullahan"
+	sprite_icon_state = "dullahanmed"
+	module_type = "Crisis"
+	sprite_icon = 'icons/mob/robot/dullahan/v1/dullahan_med.dmi'
+	has_eye_light_sprites = TRUE
 	has_vore_belly_sprites = TRUE
-	has_robotdecal_sprites = TRUE
-	rest_sprite_options = list("Default", "sit")
+	rest_sprite_options = list("Default", "Sit")
+	pixel_x = 0
+
+/datum/robot_sprite/dogborg/tall/crisis/dullahan/crisisalt
+	name = "Dullahan v2"
+	sprite_icon_state = "dullahanmed_alt"
+
+/datum/robot_sprite/dogborg/tall/medical/dullahan/crisisalt2
+	name = "Dullahan medical v3"
+	sprite_icon = 'icons/mob/robot/dullahan/v3/medical.dmi'
+	sprite_icon_state = "dullahanmedical"
 
 // Surgeon
 

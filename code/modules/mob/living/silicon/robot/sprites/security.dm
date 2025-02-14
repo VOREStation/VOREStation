@@ -212,16 +212,27 @@
 	has_vore_belly_sprites = FALSE
 	rest_sprite_options = list("Default", "Bellyup")
 
-/datum/robot_sprite/dogborg/tall/security/dullahanv3
-	sprite_icon = 'icons/mob/tallborg/dullahans64x64.dmi'
-	//named v3 to avoid conflicts with downstream
+/datum/robot_sprite/dogborg/tall/security/dullahan
+	name = "Dullahan"
+	sprite_icon_state = "dullahansec"
+	sprite_icon = 'icons/mob/robot/dullahan/v1/dullahan_sec.dmi'
+	pixel_x = 0
+	sprite_hud_icon_state = "k9"
+	has_eye_light_sprites = TRUE
+	has_vore_belly_sprites = TRUE
+	has_robotdecal_sprites = FALSE
+	rest_sprite_options = list("Default", "sit")
 
-/datum/robot_sprite/dogborg/tall/security/dullahanv3/securitydully
+/datum/robot_sprite/dogborg/tall/security/dullahan/secalt
+	name = "Dullahan v2"
+	sprite_icon_state = "dullahansec_alt"
+
+/datum/robot_sprite/dogborg/tall/security/dullahan/securitydully
 	name = "Dullahan security v3"
+	sprite_icon = 'icons/mob/robot/dullahan/v3/security.dmi'
 	sprite_icon_state = "dullahansecurity"
 	has_vore_belly_sprites = TRUE
 	has_robotdecal_sprites = TRUE
-	rest_sprite_options = list("Default", "sit")
 
 /datum/robot_sprite/dogborg/security/cat
 	name = "Cat"

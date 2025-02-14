@@ -206,15 +206,24 @@
 	has_vore_belly_sprites = FALSE
 	rest_sprite_options = list("Default", "Bellyup")
 
-/datum/robot_sprite/dogborg/tall/science/dullahanv3
-	sprite_icon = 'icons/mob/tallborg/dullahans64x64.dmi'
-	//named v3 to avoid conflicts with downstream
 
-/datum/robot_sprite/dogborg/tall/science/dullahanv3/sciencedully
-	name = "Dullahan science v3"
-	sprite_icon_state = "dullahanscience"
+/datum/robot_sprite/dogborg/tall/science/dullahan
+	name = "Dullahan"
+	sprite_icon_state = "dullahansci"
+	sprite_icon = 'icons/mob/robot/dullahan/v1/dullahan_mine.dmi'
 	has_vore_belly_sprites = TRUE
-	has_robotdecal_sprites = TRUE
+	has_eye_light_sprites = TRUE
+	sprite_hud_icon_state = "sci-borg"
+	pixel_x = 0
+
+/datum/robot_sprite/dogborg/tall/science/dullahan/scialt
+	name = "Dullahan v2"
+	sprite_icon_state = "dullahansci_alt"
+
+/datum/robot_sprite/dogborg/tall/science/dullahan/scialt2
+	name = "Dullahan v3"
+	sprite_icon = 'icons/mob/robot/dullahan/v3/science.dmi'
+	sprite_icon_state = "dullahanscience"
 	rest_sprite_options = list("Default", "sit")
 
 /datum/robot_sprite/dogborg/science/cat

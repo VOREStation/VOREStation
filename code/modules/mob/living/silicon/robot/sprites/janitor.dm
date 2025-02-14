@@ -199,16 +199,24 @@
 	has_vore_belly_sprites = FALSE
 	rest_sprite_options = list("Default", "Bellyup")
 
-/datum/robot_sprite/dogborg/tall/janitor/dullahanv3
-	sprite_icon = 'icons/mob/tallborg/dullahans64x64.dmi'
-	//named v3 to avoid conflicts with downstream
-
-/datum/robot_sprite/dogborg/tall/janitor/dullahanv3/janitordully
-	name = "Dullahan janitor v3"
-	sprite_icon_state = "dullahanjanitor"
+/datum/robot_sprite/dogborg/tall/janitor/dullahan
+	name = "Dullahan v1"
+	sprite_icon_state = "dullahanjani"
+	module_type = "Janitor"
+	sprite_icon = 'icons/mob/robot/dullahan/v1/dullahan_jani.dmi'
+	has_eye_light_sprites = TRUE
 	has_vore_belly_sprites = TRUE
-	has_robotdecal_sprites = TRUE
-	rest_sprite_options = list("Default", "sit")
+	rest_sprite_options = list("Default", "Sit")
+	pixel_x = 0
+
+/datum/robot_sprite/dogborg/tall/janitor/dullahan/janitoralt
+	name = "Dullahan v2"
+	sprite_icon_state = "dullahanjani_alt"
+
+/datum/robot_sprite/dogborg/tall/janitor/dullahan/janitoralt2
+	name = "Dullahan v3"
+	sprite_icon = 'icons/mob/robot/dullahan/v3/janitor.dmi'
+	sprite_icon_state = "dullahanjanitor"
 
 /datum/robot_sprite/dogborg/janitor/cat
 	name = "Cat"

@@ -308,23 +308,28 @@
 	has_vore_belly_sprites = FALSE
 	rest_sprite_options = list("Default", "Bellyup")
 
-/datum/robot_sprite/dogborg/tall/service/dullahanv3
-	sprite_icon = 'icons/mob/tallborg/dullahans64x64.dmi'
-	//named v3 to avoid conflicts with downstream
+/datum/robot_sprite/dogborg/tall/service/dullahan
+	name = "Dullahan"
+	sprite_icon_state = "dullahanserv"
+	sprite_icon = 'icons/mob/robot/dullahan/v1/dullahan_serv.dmi'
+	rest_sprite_options = list("Default", "Sit")
+	has_eye_light_sprites = TRUE
+	has_vore_belly_sprites = TRUE
+	pixel_x = 0
 
-/datum/robot_sprite/dogborg/tall/service/dullahanv3/basic
-	name = "Dullahan service v3"
+/datum/robot_sprite/dogborg/tall/service/dullahan/servicealt
+	name = "Dullahan v2"
+	sprite_icon_state = "dullahanserv_alt"
+
+/datum/robot_sprite/dogborg/tall/service/dullahan/servicealt2
+	name = "Dullahan v3"
+	sprite_icon = 'icons/mob/robot/dullahan/v3/service.dmi'
 	sprite_icon_state = "dullahanservice"
-	has_vore_belly_sprites = TRUE
-	has_robotdecal_sprites = TRUE
-	rest_sprite_options = list("Default", "sit")
 
-/datum/robot_sprite/dogborg/tall/service/dullahanv3/barista
-	name = "Dullahan matcha v3"
+/datum/robot_sprite/dogborg/tall/service/dullahan/servicealt3
+	name = "Dullahan v4 matcha"
+	sprite_icon = 'icons/mob/robot/dullahan/v3/barista.dmi'
 	sprite_icon_state = "dullahanbarista"
-	has_vore_belly_sprites = TRUE
-	has_robotdecal_sprites = TRUE
-	rest_sprite_options = list("Default", "sit")
 
 // Clerical
 
