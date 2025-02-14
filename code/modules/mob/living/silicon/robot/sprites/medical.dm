@@ -76,9 +76,9 @@
 /datum/robot_sprite/surgical/worm
 	name = "W02M - Surgical"
 	sprite_icon_state = "worm-surgeon"
-	has_custom_open_sprites = TRUE
 	sprite_icon = 'icons/mob/robot/wormborg.dmi'
 	has_dead_sprite_overlay = FALSE
+	has_custom_open_sprites = FALSE
 	has_vore_belly_sprites = TRUE
 	has_dead_sprite = TRUE
 

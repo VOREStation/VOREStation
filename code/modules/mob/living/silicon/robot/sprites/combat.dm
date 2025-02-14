@@ -54,6 +54,7 @@
 	sprite_flags = ROBOT_HAS_SHIELD_SPRITE
 	sprite_icon = 'icons/mob/robot/wormborg.dmi'
 	has_dead_sprite_overlay = FALSE
+	has_custom_open_sprites = FALSE
 	has_vore_belly_sprites = TRUE
 	has_dead_sprite = TRUE
 

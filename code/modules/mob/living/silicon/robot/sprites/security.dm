@@ -109,9 +109,9 @@
 /datum/robot_sprite/security/worm
 	name = "W02M"
 	sprite_icon_state = "worm-security"
-	has_custom_open_sprites = TRUE
 	sprite_icon = 'icons/mob/robot/wormborg.dmi'
 	has_dead_sprite_overlay = FALSE
+	has_custom_open_sprites = FALSE
 	has_vore_belly_sprites = TRUE
 	has_dead_sprite = TRUE
 
