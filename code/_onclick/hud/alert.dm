@@ -13,7 +13,7 @@
  *override makes it so the alert is not replaced until cleared by a clear_alert with clear_override, and it's used for hallucinations.
  */
 /mob/proc/throw_alert(category, type, severity, obj/new_master)
-	if(!category || QDELETE(src))
+	if(!category || QDELETED(src))
 		return
 
 	var/obj/screen/alert/alert
