@@ -42,9 +42,7 @@
 /atom/movable/proc/has_buckled_mobs()
 	return LAZYLEN(buckled_mobs)
 
-/atom/movable/Destroy()
-	unbuckle_all_mobs()
-	return ..()
+
 
 
 /atom/movable/proc/buckle_mob(mob/living/M, forced = FALSE, check_loc = TRUE)

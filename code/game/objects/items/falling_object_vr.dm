@@ -26,8 +26,7 @@
 	dropped.density = FALSE
 	dropped.opacity = FALSE
 	animate(dropped, pixel_y = initial_y, pixel_x = initial_x , time = 7)
-	spawn(7)
-		dropped.end_fall(crushing)
+	addtimer(CALLBACK(dropped, TYPE_PROC_REF(/atom/movable,end_fall), crushing), 0.7 SECONDS)
 	qdel(src)
 
 /atom/movable/proc/end_fall(var/crushing = FALSE)

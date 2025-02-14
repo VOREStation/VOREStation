@@ -62,6 +62,9 @@
 		UnregisterSignal(em_block, COMSIG_PARENT_QDELETING)
 		QDEL_NULL(em_block)
 	. = ..()
+
+	unbuckle_all_mobs()
+
 	for(var/atom/movable/AM in contents)
 		qdel(AM)
 

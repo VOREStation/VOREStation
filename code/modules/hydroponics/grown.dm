@@ -15,7 +15,7 @@
 	var/potency = -1
 
 
-/obj/item/reagent_containers/food/snacks/grown/Initialize(var/mapload, var/planttype)
+/obj/item/reagent_containers/food/snacks/grown/Initialize(mapload, var/planttype)
 	. = ..()
 
 	if(!dried_type)

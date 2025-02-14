@@ -704,7 +704,7 @@
 /area/tether/surfacebase/outside/outside3)
 "abe" = (
 /obj/structure/closet,
-/obj/item/reagent_containers/food/drinks/bottle/tequilla,
+/obj/item/reagent_containers/food/drinks/bottle/tequila,
 /turf/simulated/floor/plating,
 /area/maintenance/lower/medsec_maintenance)
 "abf" = (

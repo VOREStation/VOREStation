@@ -85,7 +85,7 @@
 /// asset_list - A list of asset filenames to be sent to the client. Can optionally be assoicated with the asset's asset_cache_item datum.
 /// Returns TRUE if any assets were sent.
 /datum/asset_transport/proc/send_assets(client/client, list/asset_list)
-#if defined(UNIT_TESTS)
+#if defined(UNIT_TEST)
 	return
 #endif
 	if (!istype(client))

@@ -3,6 +3,9 @@
 
 /* Common reactions */
 
+/decl/chemical_reaction/instant
+	name = REAGENT_DEVELOPER_WARNING // Unit test ignore
+
 /decl/chemical_reaction/instant/inaprovaline
 	name = REAGENT_INAPROVALINE
 	id = REAGENT_ID_INAPROVALINE

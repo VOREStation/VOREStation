@@ -38,7 +38,7 @@
 	var/obj/effect/alien/weeds/node/linked_node = null
 	var/static/list/weedImageCache
 
-/obj/effect/alien/weeds/Initialize(var/mapload, var/node, var/newcolor)
+/obj/effect/alien/weeds/Initialize(mapload, var/node, var/newcolor)
 	. = ..()
 	if(isspace(loc))
 		return INITIALIZE_HINT_QDEL
@@ -75,7 +75,7 @@
 	var/node_range = NODERANGE
 	var/set_color = "#321D37"
 
-/obj/effect/alien/weeds/node/Initialize(var/mapload, var/node, var/newcolor)
+/obj/effect/alien/weeds/node/Initialize(mapload, var/node, var/newcolor)
 	. = ..()
 
 	for(var/obj/effect/alien/weeds/existing in loc)

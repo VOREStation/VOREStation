@@ -10,7 +10,3 @@
 	name = "Destroyed"
 */
 //Deprecated in favor of Comsigs
-
-/datum/Destroy()
-	SEND_SIGNAL(src,COMSIG_OBSERVER_DESTROYED)
-	. = ..()

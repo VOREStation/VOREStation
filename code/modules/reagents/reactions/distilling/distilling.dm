@@ -1,5 +1,5 @@
 /decl/chemical_reaction/distilling
-//	name = null
+	name = REAGENT_DEVELOPER_WARNING // Unit test ignore
 //	id = null
 //	result = null
 //	required_reagents = list()

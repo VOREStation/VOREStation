@@ -39,7 +39,7 @@
 					/obj/item/reagent_containers/food/drinks/bottle/rum = 10,
 					/obj/item/reagent_containers/food/drinks/bottle/sake = 10,
 					/obj/item/reagent_containers/food/drinks/bottle/specialwhiskey = 10,
-					/obj/item/reagent_containers/food/drinks/bottle/tequilla = 10,
+					/obj/item/reagent_containers/food/drinks/bottle/tequila = 10,
 					/obj/item/reagent_containers/food/drinks/bottle/vermouth = 10,
 					/obj/item/reagent_containers/food/drinks/bottle/vodka = 10,
 					/obj/item/reagent_containers/food/drinks/bottle/whiskey = 10,

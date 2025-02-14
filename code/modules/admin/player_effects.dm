@@ -776,8 +776,8 @@
 			log_and_message_admins("replied to [user]'s message: [reply].", target)
 
 		if("stop-orbits")
-			for(var/datum/orbit/X in target.orbiters)
-				X.orbiter.stop_orbit()
+			if(target.orbiters)
+				qdel(target.orbiters)
 
 		if("revert-mob-tf")
 			var/mob/living/Tar = target

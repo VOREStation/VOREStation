@@ -2,9 +2,9 @@
 
 
 /datum/reagent
-	var/name = "Reagent"
-	var/id = "reagent"
-	var/description = "A non-descript chemical."
+	var/name = REAGENT_DEVELOPER_WARNING
+	var/id = REAGENT_ID_DEVELOPER_WARNING
+	var/description = REAGENT_DESC_DEVELOPER_WARNING
 	var/taste_description = "bitterness"
 	var/taste_mult = 1 //how this taste compares to others. Higher values means it is more noticable
 	var/datum/reagents/holder = null
