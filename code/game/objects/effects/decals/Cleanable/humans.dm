@@ -51,7 +51,7 @@ var/global/list/image/splatter_cache=list()
 					qdel(B)
 
 //VOREstation edit - Moved timer call to Init, and made it not call on mapload
-/obj/effect/decal/cleanable/blood/Initialize(var/mapload, var/_age)
+/obj/effect/decal/cleanable/blood/Initialize(mapload, var/_age)
 	. = ..()
 	if(!mapload)
 		addtimer(CALLBACK(src, PROC_REF(dry)), DRYING_TIME * (amount+1))

@@ -2,6 +2,7 @@
 	data = new/list("donor" = null, "viruses" = null, "species" = SPECIES_HUMAN, "blood_DNA" = null, "blood_type" = null, "blood_colour" = "#A10808", "resistances" = null, "trace_chem" = null, REAGENT_ID_ANTIBODIES = list())
 	name = REAGENT_BLOOD
 	id = REAGENT_ID_BLOOD
+	description = "Blood."
 	taste_description = REAGENT_ID_IRON
 	taste_mult = 1.3
 	reagent_state = LIQUID
@@ -169,6 +170,7 @@
 
 /datum/reagent/blood/synthblood
 	name = REAGENT_SYNTHBLOOD
+	description = "Synthetic Blood"
 	id = REAGENT_ID_SYNTHBLOOD
 	color = "#999966"
 	volume_mod = 2
@@ -191,6 +193,7 @@
 /datum/reagent/antibodies
 	data = list(REAGENT_ID_ANTIBODIES=list())
 	name = REAGENT_ANTIBODIES
+	description = "Antibodies against some type of virus."
 	taste_description = "slime"
 	id = REAGENT_ID_ANTIBODIES
 	reagent_state = LIQUID

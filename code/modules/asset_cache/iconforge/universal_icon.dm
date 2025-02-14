@@ -11,7 +11,7 @@
 
 /// Don't instantiate these yourself, use uni_icon.
 /datum/universal_icon/New(icon/icon_file, icon_state="", dir=SOUTH, frame=1, datum/icon_transformer/transform=null, color=null)
-	#ifdef UNIT_TESTS
+	#ifdef UNIT_TEST
 	// This check is kinda slow and shouldn't fail unless a developer makes a mistake. So it'll get caught in unit tests.
 	if(!isicon(icon_file) || !isfile(icon_file) || "[icon_file]" == "/icon")
 		// bad! use 'icons/path_to_dmi.dmi' format only

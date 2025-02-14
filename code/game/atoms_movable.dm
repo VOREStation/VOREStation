@@ -62,6 +62,9 @@
 		UnregisterSignal(em_block, COMSIG_PARENT_QDELETING)
 		QDEL_NULL(em_block)
 	. = ..()
+
+	unbuckle_all_mobs()
+
 	for(var/atom/movable/AM in contents)
 		qdel(AM)
 
@@ -223,7 +226,7 @@
 
 	// If we moved, call Moved() on ourselves
 	if(.)
-		Moved(oldloc, direct, FALSE, movetime ? movetime : ( (TICKS2DS(WORLD_ICON_SIZE/glide_size)) * (moving_diagonally ? (0.5) : 1) ) )
+		Moved(oldloc, direct, FALSE, movetime ? movetime : MOVE_GLIDE_CALC(glide_size, moving_diagonally) )
 
 	// Update timers/cooldown stuff
 	move_speed = world.time - l_move_time

@@ -10,7 +10,7 @@ import {
   Tooltip,
 } from 'tgui-core/components';
 
-import { PreferencesMenuData } from './data';
+import type { PreferencesMenuData } from './data';
 import features from './preferences/features';
 import { FeatureValueInput } from './preferences/features/base';
 import { TabbedMenu } from './TabbedMenu';

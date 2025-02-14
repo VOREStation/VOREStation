@@ -96,9 +96,8 @@
 
 ///Setter for the byond luminosity var
 /turf/proc/set_luminosity(new_luminosity, force)
-	if((is_outdoors() && !force) || outdoors_adjacent)
-		if(check_for_sun()) //If another system handles our lighting, don't interfere
-			return
+	if(((is_outdoors() && !force) || outdoors_adjacent) && (z in fake_sunlight_zs)) //Special exception for fakesun lit tiles
+		return
 
 	luminosity = new_luminosity
 

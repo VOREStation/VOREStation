@@ -11,7 +11,7 @@
 	activity_bounds = DNA_HARD_BOUNDS
 	activation_message="You feel no need to breathe."
 
-/*
+
 /datum/trait/positive/superpower_remoteview
 	name = "Remote Viewing"
 	desc = "Remotely view other locations."
@@ -33,7 +33,6 @@
 	. = ..()
 	if(/mob/living/carbon/human/proc/remoteobserve in S.inherent_verbs)
 		remove_verb(H, /mob/living/carbon/human/proc/remoteobserve)
-*/
 
 /datum/trait/positive/superpower_regenerate
 	name = "Regenerate"
@@ -161,6 +160,7 @@
 		if(H.dna)
 			H.dna.SetSEState(linked_gene.block, FALSE, FALSE) // Turn this thing off or so help me--
 			domutcheck(H,null,MUTCHK_FORCED)
+			H.UpdateAppearance()
 		H.mutations.Remove(HULK)
 		H.Weaken(3)
 		H.emote("collapse")

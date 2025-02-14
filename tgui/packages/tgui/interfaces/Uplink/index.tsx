@@ -5,7 +5,7 @@ import { Section } from 'tgui-core/components';
 
 import { ExploitableInformation } from './ExploitableInformation';
 import { GenericUplink } from './GenericUplink';
-import { Data } from './types';
+import type { Data } from './types';
 import { UplinkHeader } from './UplinkHeader';
 
 export const Uplink = (props) => {
