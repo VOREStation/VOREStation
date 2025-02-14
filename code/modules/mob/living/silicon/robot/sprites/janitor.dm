@@ -96,8 +96,12 @@
 
 /datum/robot_sprite/janitor/worm
 	name = "W02M"
-	sprite_icon_state = "worm"
+	sprite_icon_state = "worm-janitor"
 	has_custom_open_sprites = TRUE
+	sprite_icon = 'icons/mob/robot/wormborg.dmi'
+	has_vore_belly_sprites = TRUE
+	has_dead_sprite = TRUE
+
 
 /datum/robot_sprite/janitor/uptall
 	name = "Feminine Humanoid"
@@ -225,3 +229,12 @@
 	has_vore_belly_resting_sprites = TRUE
 	has_eye_light_sprites = TRUE
 	has_dead_sprite_overlay = FALSE
+
+/datum/robot_sprite/dogborg/smolraptorjanitorsprite
+	sprite_icon = 'icons/mob/robot/smallraptors/smolraptor_jani.dmi'
+	module_type = "Janitor"
+	name = "Small Raptor"
+	sprite_icon_state = "smolraptor"
+	has_eye_light_sprites = TRUE
+	has_vore_belly_sprites = TRUE
+	rest_sprite_options = list("Default", "Sit")

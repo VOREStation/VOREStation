@@ -83,10 +83,14 @@
 	name = "XI-GUS"
 	sprite_icon_state = "spider"
 
+
 /datum/robot_sprite/science/worm
 	name = "W02M"
-	sprite_icon_state = "worm"
+	sprite_icon_state = "worm-science"
 	has_custom_open_sprites = TRUE
+	sprite_icon = 'icons/mob/robot/wormborg.dmi'
+	has_vore_belly_sprites = TRUE
+	has_dead_sprite = TRUE
 
 /datum/robot_sprite/science/uptall
 	name = "Feminine Humanoid"
@@ -234,3 +238,12 @@
 	has_vore_belly_resting_sprites = TRUE
 	has_eye_light_sprites = TRUE
 	has_dead_sprite_overlay = FALSE
+
+
+/datum/robot_sprite/dogborg/science/smolraptor
+	sprite_icon = 'icons/mob/robot/smallraptors/smolraptor_sci.dmi'
+	name = "Small Raptor"
+	sprite_icon_state = "smolraptor"
+	has_eye_light_sprites = TRUE
+	has_vore_belly_sprites = TRUE
+	rest_sprite_options = list("Default", "Sit")

@@ -108,8 +108,11 @@
 
 /datum/robot_sprite/security/worm
 	name = "W02M"
-	sprite_icon_state = "worm"
+	sprite_icon_state = "worm-security'
 	has_custom_open_sprites = TRUE
+	sprite_icon = 'icons/mob/robot/wormborg.dmi'
+	has_vore_belly_sprites = TRUE
+	has_dead_sprite = TRUE
 
 /datum/robot_sprite/security/uptall
 	name = "Feminine Humanoid"
@@ -234,6 +237,13 @@
 	has_vore_belly_sprites = TRUE
 	has_robotdecal_sprites = TRUE
 
+/datum/robot_sprite/dogborg/security/vale2
+	name = "Secborg model V-3"
+	sprite_icon = 'icons/mob/robot/widerobot/widerobot.dmi'
+	sprite_icon_state = "secvale"
+	sprite_hud_icon_state = "k9"
+	has_eye_light_sprites = TRUE
+
 /datum/robot_sprite/dogborg/security/cat
 	name = "Cat"
 	sprite_icon = 'icons/mob/robot/catborg_variant.dmi'
@@ -241,3 +251,11 @@
 	sprite_hud_icon_state = "k9"
 	has_eye_light_sprites = TRUE
 	has_dead_sprite_overlay = FALSE
+
+/datum/robot_sprite/dogborg/security/smolraptor
+	sprite_icon = 'icons/mob/robot/smallraptors/smolraptor_pk.dmi'
+	name = "Small Raptor"
+	sprite_icon_state = "smolraptor"
+	has_eye_light_sprites = TRUE
+	has_vore_belly_sprites = TRUE
+	rest_sprite_options = list("Default", "Sit")
