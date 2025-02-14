@@ -189,7 +189,7 @@
 	sprite_icon_state = "dullahanmine"
 	sprite_icon = 'icons/mob/robot/dullahan/v1/dullahan_mine.dmi'
 	has_vore_belly_sprites = TRUE
-	has_robotdecal_sprites = TRUE
+	has_robotdecal_sprites = FALSE
 	has_custom_open_sprites = FALSE
 	has_eye_light_sprites = TRUE
 	rest_sprite_options = list("Default", "sit")
@@ -203,6 +203,7 @@
 	name = "Dullahan mining v3"
 	sprite_icon = 'icons/mob/robot/dullahan/v3/mining.dmi'
 	sprite_icon_state = "dullahanmining"
+	has_robotdecal_sprites = TRUE
 
 /datum/robot_sprite/dogborg/tall/mining/dullahancarg
 	name = "Dullahan Cargo"
