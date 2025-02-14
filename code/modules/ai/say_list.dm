@@ -14,11 +14,6 @@
 		say_list = new say_list_type(src)
 	return ..()
 
-/mob/living/Destroy()
-	QDEL_NULL(say_list)
-	return ..()
-
-
 /datum/say_list
 	var/list/speak = list()				// Things the mob might say if it talks while idle.
 	var/list/emote_hear = list()		// Hearable emotes it might perform

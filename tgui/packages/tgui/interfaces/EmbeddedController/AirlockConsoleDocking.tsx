@@ -6,7 +6,7 @@ import {
   StandardControls,
   StatusDisplay,
 } from './EmbeddedControllerHelpers';
-import { AirlockConsoleDockingData } from './types';
+import type { AirlockConsoleDockingData } from './types';
 
 /**
  * This is a mix airlock & docking console. It lets you control the dock status

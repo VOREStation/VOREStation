@@ -21,8 +21,8 @@
 	drop_sound = 'sound/items/drop/paper.ogg'
 	pickup_sound = 'sound/items/pickup/paper.ogg'
 
-/obj/item/deck/cards/New()
-	..()
+/obj/item/deck/cards/Initialize(mapload)
+	. = ..()
 	var/datum/playingcard/P
 	for(var/suit in list("spades","clubs","diamonds","hearts"))
 
@@ -52,7 +52,7 @@
 		P.card_icon = "joker"
 		cards += P
 
-/obj/item/deck/attackby(obj/O as obj, mob/user as mob)
+/obj/item/deck/attackby(obj/O, mob/user)
 	if(istype(O,/obj/item/hand))
 		var/obj/item/hand/H = O
 		if(H.parentdeck == src)

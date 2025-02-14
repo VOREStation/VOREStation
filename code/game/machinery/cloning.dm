@@ -136,6 +136,7 @@
 	H.UpdateAppearance()
 	H.sync_dna_traits(FALSE) // Traitgenes Sync traits to genetics if needed
 	H.sync_organ_dna()
+	H.initialize_vessel()
 
 	H.set_cloned_appearance()
 	update_icon()
@@ -336,6 +337,7 @@
 		var/mob/living/carbon/human/patient = occupant
 		if(!(patient.species.flags & NO_SCAN)) //If, for some reason, someone makes a genetically-unalterable clone, let's not make them permanently disabled.
 			domutcheck(occupant) //Waiting until they're out before possible transforming.
+			occupant.UpdateAppearance()
 	occupant = null
 
 	update_icon()
@@ -483,9 +485,8 @@
 	name = "Diskette Box"
 	icon_state = "disk_kit"
 
-/obj/item/storage/box/disks/New()
-	..()
-	// Traitgenes edit begin - Use body record disks instead of a unique one
+/obj/item/storage/box/disks/Initialize()
+	. = ..()
 	new /obj/item/disk/body_record(src)
 	new /obj/item/disk/body_record(src)
 	new /obj/item/disk/body_record(src)
@@ -493,7 +494,6 @@
 	new /obj/item/disk/body_record(src)
 	new /obj/item/disk/body_record(src)
 	new /obj/item/disk/body_record(src)
-	// Traitgenes edit end
 
 /*
  *	Manual -- A big ol' manual.

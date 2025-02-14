@@ -3,7 +3,7 @@ import { useBackend } from 'tgui/backend';
 import { ImageButton, Input, Section, Stack } from 'tgui-core/components';
 import { createSearch } from 'tgui-core/string';
 
-import { bodyStyle, Data, styles } from './types';
+import type { bodyStyle, Data, styles } from './types';
 
 export const AppearanceChangerParts = (props: {
   sectionNames: string[];

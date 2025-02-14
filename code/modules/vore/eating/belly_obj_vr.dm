@@ -311,7 +311,7 @@
 		if(M.ai_holder)
 			M.ai_holder.handle_eaten()
 
-		owner.update_fullness()
+	owner.handle_belly_update()
 
 	// Intended for simple mobs
 	if(!owner.client && autotransferlocation && autotransferchance > 0)
@@ -331,7 +331,7 @@
 				L.toggle_hud_vis()
 		if((L.stat != DEAD) && L.ai_holder)
 			L.ai_holder.go_wake()
-	owner.update_fullness()
+	owner.handle_belly_update()
 	return
 
 
@@ -443,8 +443,6 @@
 
 	//Clean up our own business
 	items_preserved.Cut()
-	if(!ishuman(owner))
-		owner.update_icons()
 
 	//Determines privacy
 	var/privacy_range = world.view
@@ -528,9 +526,6 @@
 		if(ML.stat)
 			ML.SetSleeping(min(ML.sleeping,20))
 
-	//Clean up our own business
-	if(!ishuman(owner))
-		owner.update_icons()
 
 	//Determines privacy
 	var/privacy_range = world.view
@@ -578,8 +573,6 @@
 		var/mob/ourmob = prey
 		ourmob.reset_view(owner)
 	owner.updateVRPanel()
-	if(isanimal(owner))
-		owner.update_icon()
 
 	for(var/mob/living/M in contents)
 		M.updateVRPanel()
@@ -639,10 +632,7 @@
 	if(G)
 		G.forceMove(src)
 	qdel(M)
-	if(isanimal(owner))
-		owner.update_icon()
-	else
-		owner.update_fullness()
+	owner.handle_belly_update()
 
 // Handle a mob being absorbed
 /obj/belly/proc/absorb_living(mob/living/M)
@@ -690,10 +680,7 @@
 
 	//Update owner
 	owner.updateVRPanel()
-	if(isanimal(owner))
-		owner.update_icon()
-	else
-		owner.update_fullness()
+	owner.handle_belly_update()
 	// Finally, if they're to be sent to a special pudge belly, send them there
 	if(transferlocation_absorb)
 		var/obj/belly/dest_belly
@@ -720,10 +707,7 @@
 
 	//Update owner
 	owner.updateVRPanel()
-	if(isanimal(owner))
-		owner.update_icon()
-	else
-		owner.update_fullness()
+	owner.handle_belly_update()
 
 /////////////////////////////////////////////////////////////////////////
 /obj/belly/proc/handle_absorb_langs()
@@ -1020,7 +1004,7 @@
 	owner.updateVRPanel()
 	for(var/mob/living/M in contents)
 		M.updateVRPanel()
-	owner.update_icon()
+	owner.handle_belly_update()
 
 //Autotransfer callback
 /obj/belly/proc/check_autotransfer(var/prey, var/autotransferlocation)

@@ -161,7 +161,7 @@
 	item_state = "whiteshovel"
 	var/datum/material/material
 
-/obj/item/shovel/wood/Initialize(var/ml, var/_mat)
+/obj/item/shovel/wood/Initialize(mapload, var/_mat)
 	. = ..()
 	material = get_material_by_name(_mat)
 	if(!istype(material))

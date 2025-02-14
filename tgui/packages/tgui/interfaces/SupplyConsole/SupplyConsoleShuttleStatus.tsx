@@ -7,7 +7,7 @@ import {
 } from 'tgui-core/components';
 import { formatTime } from 'tgui-core/format';
 
-import { Data } from './types';
+import type { Data } from './types';
 
 export const SupplyConsoleShuttleStatus = (props) => {
   const { act, data } = useBackend<Data>();

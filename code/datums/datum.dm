@@ -126,6 +126,8 @@
 
 	SStgui.close_uis(src)
 
+	SEND_SIGNAL(src,COMSIG_OBSERVER_DESTROYED)
+
 	#ifdef REFERENCE_TRACKING
 	if(find_references_on_destroy)
 		return QDEL_HINT_FINDREFERENCE

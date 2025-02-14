@@ -13,7 +13,7 @@ import { capitalize } from 'tgui-core/string';
 
 import { NoSpriteWarning } from '../components';
 import { prepareSearch } from '../functions';
-import { Access, Target } from '../types';
+import type { Access, Target } from '../types';
 
 export const ModifyRobotAccess = (props: {
   target: Target;
@@ -158,9 +158,10 @@ const AccessSection = (props: {
                   })
                 }
               >
-                <Stack align="center">
-                  <Stack.Item>{capitalize(acc.name)}</Stack.Item>
-                  <Stack.Item grow />
+                <Stack fill align="center">
+                  <Stack.Item grow overflow="hidden">
+                    {capitalize(acc.name)}
+                  </Stack.Item>
                   <Stack.Item>
                     <Icon
                       name={buttonIcon}

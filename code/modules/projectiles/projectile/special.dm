@@ -109,7 +109,7 @@
 /obj/item/projectile/meteor
 	name = "meteor"
 	icon = 'icons/obj/meteor.dmi'
-	icon_state = "smallf"
+	icon_state = "small"
 	damage = 0
 	damage_type = BRUTE
 	nodamage = 1
@@ -120,8 +120,6 @@
 	if(A == firer)
 		loc = A.loc
 		return
-
-	sleep(-1) //Might not be important enough for a sleep(-1) but the sleep/spawn itself is necessary thanks to explosions and metoerhits
 
 	if(src)//Do not add to this if() statement, otherwise the meteor won't delete them
 		if(A)
@@ -173,6 +171,7 @@
 				else
 					randmutg(M)
 					domutcheck(M,null)
+				M.UpdateAppearance()
 			else
 				M.adjustFireLoss(rand(5,15))
 				M.show_message(span_red("The radiation beam singes you!"))

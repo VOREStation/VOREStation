@@ -389,7 +389,7 @@
 				/obj/item/reagent_containers/food/drinks/bottle/gin,
 				/obj/item/reagent_containers/food/drinks/bottle/specialwhiskey,
 				/obj/item/reagent_containers/food/drinks/bottle/vodka,
-				/obj/item/reagent_containers/food/drinks/bottle/tequilla,
+				/obj/item/reagent_containers/food/drinks/bottle/tequila,
 				/obj/item/reagent_containers/food/drinks/bottle/absinthe,
 				/obj/item/reagent_containers/food/drinks/bottle/wine,
 				/obj/item/reagent_containers/food/drinks/bottle/cognac,

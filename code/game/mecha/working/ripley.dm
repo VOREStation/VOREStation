@@ -125,8 +125,8 @@
 
 //Vorestation Edit Start
 
-/obj/mecha/working/ripley/New()
-	..()
+/obj/mecha/working/ripley/Initialize()
+	. = ..()
 	orescanner = new /obj/item/mining_scanner
 
 /obj/mecha/working/ripley/verb/detect_ore()
