@@ -78,6 +78,7 @@
 	sprite_icon_state = "worm-surgeon"
 	has_custom_open_sprites = TRUE
 	sprite_icon = 'icons/mob/robot/wormborg.dmi'
+	has_dead_sprite_overlay = FALSE
 	has_vore_belly_sprites = TRUE
 	has_dead_sprite = TRUE
 
@@ -440,11 +441,11 @@
 	has_eye_light_sprites = TRUE
 	has_sleeper_light_indicator = TRUE
 
-/datum/robot_sprite/dogborg/smolraptor
+/datum/robot_sprite/dogborg/crisis/smolraptor
 	sprite_icon = 'icons/mob/robot/smallraptors/smolraptor_med.dmi'
-	module_type = "Crisis"
 	name = "Small Raptor"
 	sprite_icon_state = "smolraptor"
+	has_dead_sprite_overlay = FALSE
 	has_eye_light_sprites = TRUE
 	has_vore_belly_sprites = TRUE
 	rest_sprite_options = list("Default", "Sit")

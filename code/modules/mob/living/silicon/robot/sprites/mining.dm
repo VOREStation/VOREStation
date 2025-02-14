@@ -98,6 +98,7 @@
 	sprite_icon_state = "worm-miner"
 	has_custom_open_sprites = TRUE
 	sprite_icon = 'icons/mob/robot/wormborg.dmi'
+	has_dead_sprite_overlay = FALSE
 	has_vore_belly_sprites = TRUE
 	has_dead_sprite = TRUE
 
@@ -282,6 +283,7 @@
 	sprite_icon_state = "smolraptor"
 	has_eye_light_sprites = TRUE
 	has_vore_belly_sprites = TRUE
+	has_dead_sprite_overlay = FALSE
 	rest_sprite_options = list("Default", "Sit")
 
 /datum/robot_sprite/dogborg/mining/smolraptorcargo
@@ -290,4 +292,5 @@
 	sprite_icon_state = "smolraptor"
 	has_eye_light_sprites = TRUE
 	has_vore_belly_sprites = TRUE
+	has_dead_sprite_overlay = FALSE
 	rest_sprite_options = list("Default", "Sit")

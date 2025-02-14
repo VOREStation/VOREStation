@@ -82,7 +82,7 @@
 	name = "MEKA"
 	sprite_icon_state = "mekaunity"
 	has_eye_light_sprites = TRUE
-	has_custom_open_sprites = TRUE
+	has_custom_open_sprites = FALSE
 	has_vore_belly_sprites = TRUE
 	rest_sprite_options = list("Default", "Sit")
 
@@ -90,7 +90,7 @@
 	name = "NIKO"
 	sprite_icon_state = "mmekaunity"
 	has_eye_light_sprites = TRUE
-	has_custom_open_sprites = TRUE
+	has_custom_open_sprites = FALSE
 	has_vore_belly_sprites = TRUE
 	rest_sprite_options = list("Default", "Sit")
 
@@ -98,7 +98,7 @@
 	name = "NIKA"
 	sprite_icon_state = "fmekaunity"
 	has_eye_light_sprites = TRUE
-	has_custom_open_sprites = TRUE
+	has_custom_open_sprites = FALSE
 	has_vore_belly_sprites = TRUE
 	rest_sprite_options = list("Default", "Sit")
 
@@ -106,6 +106,7 @@
 	name = "Small Raptor"
 	sprite_icon = 'icons/mob/robot/smallraptors/smolraptor_cc.dmi'
 	sprite_icon_state = "smolraptor"
+	has_dead_sprite_overlay = FALSE
 	has_eye_light_sprites = TRUE
 	has_vore_belly_sprites = TRUE
 	rest_sprite_options = list("Default", "Sit")
