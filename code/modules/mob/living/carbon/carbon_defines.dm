@@ -25,6 +25,9 @@
 
 	var/does_not_breathe = 0 //Used for specific mobs that can't take advantage of the species flags (changelings)
 
+	VAR_PROTECTED/list/addictions = list() // contains currently addicted chem reagent IDs
+	VAR_PROTECTED/list/addiction_counters = list() // contains counters by reagent ID
+
 	//these two help govern taste. The first is the last time a taste message was shown to the plaer.
 	//the second is the message in question.
 	var/last_taste_time = 0
