@@ -194,3 +194,17 @@
 	has_vore_belly_sprites = TRUE
 	has_robotdecal_sprites = TRUE
 	rest_sprite_options = list("Default", "sit")
+
+/datum/robot_sprite/dogborg/mining/cat
+	name = "Cat - Mining"
+	sprite_icon = 'icons/mob/robot/catborg_variant.dmi'
+	sprite_icon_state = "vixmine"
+	has_vore_belly_resting_sprites = TRUE
+	has_eye_light_sprites = TRUE
+
+/datum/robot_sprite/dogborg/mining/catcargo
+	name = "Cat - Cargo"
+	sprite_icon = 'icons/mob/robot/catborg_variant.dmi'
+	sprite_icon_state = "vixcargo"
+	has_vore_belly_resting_sprites = TRUE
+	has_eye_light_sprites = TRUE

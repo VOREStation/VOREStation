@@ -401,3 +401,10 @@
 
 		// None yet
 */
+
+/datum/robot_sprite/dogborg/service/cat
+	name = "Cat"
+	sprite_icon = 'icons/mob/robot/catborg_variant.dmi'
+	sprite_icon_state = "vixserv"
+	has_vore_belly_resting_sprites = TRUE
+	has_eye_light_sprites = TRUE

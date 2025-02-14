@@ -403,3 +403,11 @@
 	sprite_icon_state = "raptor"
 	has_custom_equipment_sprites = TRUE
 	rest_sprite_options = list("Default", "Bellyup")
+
+/datum/robot_sprite/dogborg/crisis/cat
+	name = "Cat"
+	sprite_icon = 'icons/mob/robot/catborg_variant.dmi'
+	sprite_icon_state = "vixmed"
+	has_vore_belly_resting_sprites = TRUE
+	has_eye_light_sprites = TRUE
+	has_sleeper_light_indicator = TRUE

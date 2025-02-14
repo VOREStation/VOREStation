@@ -224,3 +224,10 @@
 	has_vore_belly_sprites = TRUE
 	has_robotdecal_sprites = TRUE
 	rest_sprite_options = list("Default", "sit")
+
+/datum/robot_sprite/dogborg/engineering/cat
+	name = "Cat"
+	sprite_icon = 'icons/mob/robot/catborg_variant.dmi'
+	sprite_icon_state = "vixengi"
+	has_eye_light_sprites = TRUE
+	has_vore_belly_resting_sprites = TRUE

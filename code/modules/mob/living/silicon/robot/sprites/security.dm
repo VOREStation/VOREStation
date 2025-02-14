@@ -222,3 +222,10 @@
 	has_vore_belly_sprites = TRUE
 	has_robotdecal_sprites = TRUE
 	rest_sprite_options = list("Default", "sit")
+
+/datum/robot_sprite/dogborg/security/cat
+	name = "Cat"
+	sprite_icon = 'icons/mob/robot/catborg_variant.dmi'
+	sprite_icon_state = "vixsec"
+	sprite_hud_icon_state = "k9"
+	has_eye_light_sprites = TRUE
