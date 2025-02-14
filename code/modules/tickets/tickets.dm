@@ -1,7 +1,6 @@
 /client/var/datum/ticket/current_ticket	//the current ticket the (usually) not-admin client is dealing with
 /client/var/datum/ticket/selected_ticket //the current ticket being viewed in the Tickets Panel (usually) admin/mentor client
 
-// CHOMPEdit Begin
 /proc/get_ahelp_channel()
 	var/datum/tgs_api/v5/api = TGS_READ_GLOBAL(tgs)
 	if(istype(api) && CONFIG_GET(string/ahelp_channel_tag))
@@ -20,7 +19,6 @@
 		world.TgsChatBroadcast(message,ahelp_channel)
 	else
 		world.TgsTargetedChatBroadcast(message,TRUE)
-// CHOMPEdit End
 
 //
 //TICKET MANAGER
@@ -278,9 +276,9 @@ GLOBAL_DATUM_INIT(tickets, /datum/tickets, new)
 	var/list/activemins = adm["present"]
 	var activeMins = activemins.len
 	if(is_bwoink)
-		ahelp_discord_message("ADMINHELP: FROM: [key_name_admin(usr)] TO [initiator_ckey]/[initiator_key_name] - MSG: **[msg]** - Heard by [activeMins] NON-AFK staff members.") //CHOMPEdit
+		ahelp_discord_message("ADMINHELP: FROM: [key_name_admin(usr)] TO [initiator_ckey]/[initiator_key_name] - MSG: **[msg]** - Heard by [activeMins] NON-AFK staff members.")
 	else
-		ahelp_discord_message("ADMINHELP: FROM: [initiator_ckey]/[initiator_key_name] - MSG: **[msg]** - Heard by [activeMins] NON-AFK staff members.") //CHOMPEdit
+		ahelp_discord_message("ADMINHELP: FROM: [initiator_ckey]/[initiator_key_name] - MSG: **[msg]** - Heard by [activeMins] NON-AFK staff members.")
 	//YW EDIT END
 
 		// Also send it to discord since that's the hip cool thing now.
@@ -310,8 +308,8 @@ GLOBAL_DATUM_INIT(tickets, /datum/tickets, new)
 
 /datum/ticket/proc/AddInteraction(formatted_message)
 	var/curinteraction = "[gameTimestamp()]: [formatted_message]"
-	if(CONFIG_GET(flag/discord_ahelps_all))	//CHOMPEdit
-		ahelp_discord_message("ADMINHELP: TICKETID:[id] [strip_html_properly(curinteraction)]") //CHOMPEdit
+	if(CONFIG_GET(flag/discord_ahelps_all))
+		ahelp_discord_message("ADMINHELP: TICKETID:[id] [strip_html_properly(curinteraction)]")
 	_interactions += curinteraction
 
 /datum/ticket/proc/TicketPanel()
