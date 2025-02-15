@@ -13,7 +13,7 @@
 
 	desc = "A long since abandoned recycling kiosk. Now featuring a state of the art, monochrome holographic tube display!"
 	description_info = "This machine allows you to recycle a limited amount of objects per round, the points you get from it can be used for goodies from another machine somewhere in maint!"
-	description_fluff = "While the original owners stopped their partnership with NT after a data theft scandal, the machine itself has been adopted by endless hoardes of vintage hardware enthusiasts to Keep Maint Clean™️"
+	description_fluff = "While the original owners stopped their partnership with NT after a data theft scandal, the machine itself has been adopted by endless hoardes of vintage hardware enthusiasts to \"Keep Maint Clean™️\" and facilitate what has to be the galaxy's most neurodivergent black market "
 
 	anchored = TRUE
 	density = TRUE
@@ -175,7 +175,17 @@
 
 /obj/machinery/maint_recycler/attackby(obj/item/O, mob/user)
 	if(!door_open)
-		to_chat(user, span_warning("\The [src] doesn't have it's door open!"))
+		if(W.has_tool_quality(TOOL_CROWBAR))
+			if(stat & (BROKEN|NOPOWER))
+				to_chat(user, span_warning("you lever \The [src]'s door open!"))
+				open_door(user)
+				eject_item(user) //also kick out the item they're looking for
+				playsound(src,"sound/machines/door/airlock_creaking.ogg",4,FALSE)
+
+			else
+				to_chat(user, span_warning("\The [src]'s door won't budge!"))
+		else
+			to_chat(user, span_warning("\The [src] doesn't have it's door open!"))
 		return
 
 	if(inserted_item)
@@ -238,7 +248,7 @@
 	to_chat(user, span_warning("\The [src] rejects \The [O]!"))
 	if(prob(99))
 		playsound(src, 'code/modules/maint_recycler/sfx/generaldeny.ogg', 75, 1)
-		return //todo
+		return
 	else
 		playsound(src, 'code/modules/maint_recycler/sfx/voice/mad/denied.ogg', 75)
 
@@ -258,17 +268,9 @@
 
 	playsound(src,pick(angry_sounds),80)
 	setScreenState("screen_mad",30)
-	var/projectile = /obj/item/projectile/beam/stun
-	spawn(10)
-		for(var/i = 1 to 3 )
-		{
-			var/obj/item/projectile/P = new projectile(loc)
-			playsound(src, 'sound/weapons/Taser.ogg', 30, 1)
-			P.firer = src
-			P.old_style_target(user)
-			P.fire()
-			sleep(3)
-		}
+
+	addtimer(CALLBACK(src, PROC_REF(shoot_at), user,), 0.3 SECONDS)
+
 
 	credit_user(user,-10) //get fucked
 
@@ -291,6 +293,20 @@
 	hatch.icon_state = "door open"
 	door_open = TRUE
 	door_moving = FALSE
+
+/obj/machinery/maint_recycler/proc/shoot_at(var/mob/victim, var/burst = 3)
+	if(victim == null) return
+	var/projectile = /obj/item/projectile/beam/stun
+	for(var/i = 1 to burst)
+		var/obj/item/projectile/P = new projectile(loc)
+		playsound(src, 'sound/weapons/Taser.ogg', 30, 1)
+		P.firer = src
+		P.old_style_target(victim)
+		P.fire()
+		sleep(3)
+
+/obj/machinery/maint_recycler/container_resist(var/mob/living)
+	eject_item(living) //100% chance. don't sweat it.
 
 /obj/machinery/maint_recycler/proc/eject_item(var/mob/user)
 	if(inserted_item)
@@ -448,7 +464,7 @@ UTILITY PROCS
 /obj/machinery/maint_recycler/proc/mob_consent_check(var/mob/probable_victim)
 	if(probable_victim.key)
 		if(probable_victim.client) //sanity check to make sure they are alright with getting squished to death
-			return (tgui_alert(usr,"Do you want to be put in \The [src]? Industrial machinery is pretty damn deadly at the best of the times, you'll probably die. to death. A fine paste.", "Welcome to the Hydralulic Press Prompt", list("OSHA is for chumps", "what the fuck? get me outta here!")) == "OSHA is for chumps")
+			return (tgui_alert(usr,"Do you want to be put in \The [src]? Industrial machinery is pretty damn deadly, you'll probably die. to death. A fine paste.", "Welcome to the Hydralulic Press Prompt", list("OSHA is for chumps", "what the fuck? get me outta here!")) == "OSHA is for chumps")
 		else return FALSE //no logged out users
 	else return TRUE //mindless mobs that've never felt the gentle touch of a client are fine
 
