@@ -483,7 +483,14 @@
 /client/verb/changes()
 	set name = "Changelog"
 	set category = "OOC.Resources"
-	src << link("https://wiki.vore-station.net/Changelog")
+
+	if(!GLOB.changelog_tgui)
+		GLOB.changelog_tgui = new /datum/changelog()
+	GLOB.changelog_tgui.tgui_interact(usr)
+
+	if(prefs?.read_preference(/datum/preference/text/lastchangelog) != changelog_hash)
+		prefs?.write_preference(/datum/preference/text/lastchangelog, changelog_hash)
+		SScharacter_setup.queue_preferences_save(prefs)
 
 /mob/verb/observe()
 	set name = "Observe"
