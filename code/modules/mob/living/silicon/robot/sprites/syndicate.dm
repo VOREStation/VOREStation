@@ -85,7 +85,7 @@
 	has_eye_light_sprites = TRUE
 	has_custom_open_sprites = TRUE
 	has_vore_belly_sprites = TRUE
-	has_robotdecal_sprites = TRUE
+	sprite_decals = list("decals")
 	rest_sprite_options = list("Default", "sit")
 
 // Protector
@@ -183,7 +183,7 @@
 	has_eye_light_sprites = TRUE
 	has_custom_open_sprites = TRUE
 	has_vore_belly_sprites = TRUE
-	has_robotdecal_sprites = TRUE
+	sprite_decals = list("decals")
 	rest_sprite_options = list("Default", "sit")
 
 /datum/robot_sprite/dogborg/tall/mechanist/syndimechraptor

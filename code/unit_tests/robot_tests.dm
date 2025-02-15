@@ -33,9 +33,10 @@
 		if(RS.has_eye_light_sprites)
 			if(check_state(RS,"-lights"))
 				failed = TRUE
-		if(RS.has_robotdecal_sprites)
-			if(check_state(RS,"-decals"))
-				failed = TRUE
+		if(LAZYLEN(RS.sprite_decals))
+			for(var/decal in RS.sprite_decals)
+				if(check_state(RS,"-[decal]"))
+					failed = TRUE
 		// Control panel
 		if(RS.has_custom_open_sprites)
 			if(check_state(RS,"-openpanel_nc"))

@@ -230,6 +230,7 @@
 	sprite_icon = 'icons/mob/robot/dullahan/v3/science.dmi'
 	sprite_icon_state = "dullahanscience"
 	rest_sprite_options = list("Default", "sit")
+	sprite_decals = list("decals")
 
 /datum/robot_sprite/dogborg/science/cat
 	name = "Cat"

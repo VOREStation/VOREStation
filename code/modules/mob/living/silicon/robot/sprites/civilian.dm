@@ -330,11 +330,13 @@
 	name = "Dullahan v3"
 	sprite_icon = 'icons/mob/robot/dullahan/v3/service.dmi'
 	sprite_icon_state = "dullahanservice"
+	sprite_decals = list("decals")
 
 /datum/robot_sprite/dogborg/tall/service/dullahan/servicealt3
 	name = "Dullahan v4 matcha"
 	sprite_icon = 'icons/mob/robot/dullahan/v3/barista.dmi'
 	sprite_icon_state = "dullahanbarista"
+	sprite_decals = list("decals")
 
 // Clerical
 

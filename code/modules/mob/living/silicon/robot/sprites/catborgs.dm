@@ -259,7 +259,7 @@
 	has_eye_light_sprites = TRUE
 	has_sleeper_light_indicator = FALSE
 	has_vore_belly_resting_sprites = TRUE
-	has_robotdecal_sprites = TRUE
+	sprite_decals = list("decals")
 	is_whitelisted = FALSE //Putting this here as a declaration that it is NOT whitelisted.
 	// whitelist_ckey = "cameron653" //The owner of the character.
 	// There is only one version of this borg, so it gets all the departments.

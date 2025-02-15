@@ -237,6 +237,7 @@
 	name = "Dullahan v3"
 	sprite_icon = 'icons/mob/robot/dullahan/v3/engineer.dmi'
 	sprite_icon_state = "dullahanengineer"
+	sprite_decals = list("decals")
 
 /datum/robot_sprite/dogborg/engineering/cat
 	name = "Cat"

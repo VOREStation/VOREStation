@@ -10,7 +10,6 @@
 
 	var/has_eye_sprites = TRUE
 	var/has_eye_light_sprites = FALSE
-	var/has_robotdecal_sprites = FALSE
 	var/has_custom_open_sprites = FALSE
 	var/has_vore_belly_sprites = FALSE
 	var/has_vore_belly_resting_sprites = FALSE
@@ -33,6 +32,7 @@
 	var/whitelist_charname
 	var/list/belly_light_list = list() // Support multiple sleepers with r/g light "sleeper"
 	var/list/belly_capacity_list = list() //Support multiple bellies with multiple sizes, default: "sleeper" = 1
+	var/list/sprite_decals = list() // Allow extra decals
 
 /// Determines if the borg has the proper flags to show an overlay.
 /datum/robot_sprite/proc/sprite_flag_check(var/flag_to_check)
@@ -133,11 +133,12 @@
 	else
 		return
 
-/datum/robot_sprite/proc/get_robotdecal_overlay(var/mob/living/silicon/robot/ourborg)
-	if(!(ourborg.resting && has_robotdecal_sprites))
-		return "[sprite_icon_state]-decals"
-	else
-		return
+/datum/robot_sprite/proc/get_robotdecal_overlay(var/mob/living/silicon/robot/ourborg, var/type)
+	if(LAZYLEN(sprite_decals))
+		if(ourborg.resting)
+			return "[get_rest_sprite(ourborg)]-[type]"
+		return "[sprite_icon_state]-[type]"
+
 
 /datum/robot_sprite/proc/get_rest_sprite(var/mob/living/silicon/robot/ourborg)
 	if(!(ourborg.rest_style in rest_sprite_options))

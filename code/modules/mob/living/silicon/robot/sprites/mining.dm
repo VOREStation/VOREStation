@@ -207,7 +207,7 @@
 	name = "Dullahan mining v3"
 	sprite_icon = 'icons/mob/robot/dullahan/v3/mining.dmi'
 	sprite_icon_state = "dullahanmining"
-	has_robotdecal_sprites = TRUE
+	sprite_decals = list("decals")
 
 /datum/robot_sprite/dogborg/tall/mining/dullahancarg
 	name = "Dullahan Cargo"

@@ -157,6 +157,7 @@
 
 /datum/robot_sprite/dogborg/tall/medical/dullahan/crisisalt2
 	name = "Dullahan medical v3"
+	sprite_decals = list("decals")
 	sprite_icon = 'icons/mob/robot/dullahan/v3/medical.dmi'
 	sprite_icon_state = "dullahanmedical"
 

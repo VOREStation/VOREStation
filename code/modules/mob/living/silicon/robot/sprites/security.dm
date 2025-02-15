@@ -236,7 +236,7 @@
 	sprite_icon = 'icons/mob/robot/dullahan/v3/security.dmi'
 	sprite_icon_state = "dullahansecurity"
 	has_vore_belly_sprites = TRUE
-	has_robotdecal_sprites = TRUE
+	sprite_decals = list("decals")
 
 /datum/robot_sprite/dogborg/security/vale2
 	name = "Secborg model V-3"
