@@ -103,7 +103,7 @@
 	has_vore_belly_sprites = TRUE
 	rest_sprite_options = list("Default", "Sit")
 
-/datum/robot_sprite/dogborg/command/smolraptorcommandsprite/smolraptorcommand
+/datum/robot_sprite/dogborg/command/smolraptorcommand
 	name = "Small Raptor"
 	sprite_icon = 'icons/mob/robot/smallraptors/smolraptor_cc.dmi'
 	sprite_icon_state = "smolraptor"
