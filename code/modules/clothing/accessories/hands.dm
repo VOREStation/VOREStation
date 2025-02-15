@@ -53,7 +53,7 @@
 	icon_state = "materialbracelet"
 
 /obj/item/clothing/accessory/bracelet/material/Initialize(mapload, var/new_material)
-	..()
+	. = ..()
 	if(!new_material)
 		new_material = MAT_STEEL
 	material = get_material_by_name(new_material)
@@ -68,32 +68,31 @@
 	return material
 
 /obj/item/clothing/accessory/bracelet/material/wood/Initialize(mapload)
-	. = ..()
-	..(mapload, MAT_WOOD)
+	. = ..(mapload, MAT_WOOD)
 
 /obj/item/clothing/accessory/bracelet/material/plastic/Initialize(mapload)
-	..(mapload, MAT_PLASTIC)
+	. = ..(mapload, MAT_PLASTIC)
 
 /obj/item/clothing/accessory/bracelet/material/iron/Initialize(mapload)
-	..(mapload, MAT_IRON)
+	. = ..(mapload, MAT_IRON)
 
 /obj/item/clothing/accessory/bracelet/material/steel/Initialize(mapload)
-	..(mapload, MAT_STEEL)
+	. = ..(mapload, MAT_STEEL)
 
 /obj/item/clothing/accessory/bracelet/material/silver/Initialize(mapload)
-	..(mapload, MAT_SILVER)
+	. = ..(mapload, MAT_SILVER)
 
 /obj/item/clothing/accessory/bracelet/material/gold/Initialize(mapload)
-	..(mapload, MAT_GOLD)
+	. = ..(mapload, MAT_GOLD)
 
 /obj/item/clothing/accessory/bracelet/material/platinum/Initialize(mapload)
-	..(mapload, MAT_PLATINUM)
+	. = ..(mapload, MAT_PLATINUM)
 
 /obj/item/clothing/accessory/bracelet/material/phoron/Initialize(mapload)
-	..(mapload, MAT_PHORON)
+	. = ..(mapload, MAT_PHORON)
 
 /obj/item/clothing/accessory/bracelet/material/glass/Initialize(mapload)
-	..(mapload, MAT_GLASS)
+	. = ..(mapload, MAT_GLASS)
 
 //wristbands
 
