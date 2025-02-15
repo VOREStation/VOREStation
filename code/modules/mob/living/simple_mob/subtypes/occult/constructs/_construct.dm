@@ -97,8 +97,8 @@
 /mob/living/simple_mob/construct/cultify()
 	return
 
-/mob/living/simple_mob/construct/New()
-	..()
+/mob/living/simple_mob/construct/Initialize(mapload)
+	. = ..()
 	name = text("[initial(name)] ([rand(1, 1000)])")
 	real_name = name
 	for(var/spell in construct_spells)
