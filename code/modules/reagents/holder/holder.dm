@@ -18,6 +18,8 @@
 			var/datum/reagent/D = new path()
 			if(!D.name)
 				continue
+			if(D.name == REAGENT_DEVELOPER_WARNING) //We remove reagents that don't have a name from being put in the list.
+				continue
 			SSchemistry.chemical_reagents[D.id] = D
 
 /datum/reagents/Destroy()
