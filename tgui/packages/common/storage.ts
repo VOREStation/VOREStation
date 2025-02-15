@@ -9,9 +9,7 @@
 export const IMPL_MEMORY = 0;
 export const IMPL_HUB_STORAGE = 1;
 
-type StorageImplementation = 
-  | typeof IMPL_MEMORY
-  | typeof IMPL_HUB_STORAGE;
+type StorageImplementation = typeof IMPL_MEMORY | typeof IMPL_HUB_STORAGE;
 
 const INDEXED_DB_VERSION = 1;
 const INDEXED_DB_NAME = 'virgo';
