@@ -209,9 +209,7 @@ export class Changelog extends Component<
         </p>
         <p>
           {'Visit our wiki '}
-          <a href="https://wiki.vore-station.net/Main_Page">
-            here
-          </a>
+          <a href="https://wiki.vore-station.net/Main_Page">here</a>
           {', check out our discord server '}
           <a href="https://discord.gg/Zd5WMuq">here</a>.
         </p>
