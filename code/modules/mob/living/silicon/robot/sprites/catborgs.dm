@@ -235,7 +235,6 @@
 	has_eye_light_sprites = TRUE
 	has_sleeper_light_indicator = FALSE
 	has_vore_belly_resting_sprites = TRUE
-	sprite_decals = list("decals")
 	sprite_icon = 'icons/mob/robot/catborgs/departmental/large/catborg_service.dmi'
 	rest_sprite_options = list("Default", "Bellyup", "Sit")
 	belly_capacity_list = list("sleeper" = 2, "throat" =2)
