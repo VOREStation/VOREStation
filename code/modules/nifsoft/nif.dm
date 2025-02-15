@@ -73,8 +73,8 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 	var/list/planes_visible = list()
 
 //Constructor comes with a free AR HUD
-/obj/item/nif/New(var/newloc,var/wear,var/list/load_data)
-	..(newloc)
+/obj/item/nif/Initialize(mapload,var/wear,var/list/load_data)
+	. = ..()
 
 	//First one to spawn in the game, make a big icon
 	if(!big_icon)
@@ -90,13 +90,11 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 	examine_msg = saved_examine_msg
 
 	//If given a human on spawn (probably from persistence)
-	if(ishuman(newloc))
-		var/mob/living/carbon/human/H = newloc
+	if(ishuman(loc))
+		var/mob/living/carbon/human/H = loc
 		if(!quick_implant(H))
 			WARNING("NIF spawned in [H] failed to implant")
-			spawn(0)
-				qdel(src)
-			return FALSE
+			return INITIALIZE_HINT_QDEL
 
 	//If given wear (like when spawned) then done
 	if(wear)
@@ -152,13 +150,12 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 			return FALSE
 		forceMove(parent)
 		parent.implants += src
-		spawn(0) //Let the character finish spawning yo.
-			if(!H) //Or letting them get deleted
-				return
-			if(H.mind)
-				owner = H.mind.name
-				owner_key = H.ckey
-			implant(H)
+		if(!H) //Or letting them get deleted
+			return
+		if(H.mind)
+			owner = H.mind.name
+			owner_key = H.ckey
+		implant(H)
 		return TRUE
 
 	return FALSE

@@ -23,8 +23,8 @@
 	name = "sample bag box"
 	desc = "A box claiming to contain sample bags."
 
-/obj/item/storage/box/samplebags/New()
-	..()
+/obj/item/storage/box/samplebags/Initialize(mapload)
+	. = ..()
 	for(var/i = 1 to 7)
 		var/obj/item/evidencebag/S = new(src)
 		S.name = "sample bag"
@@ -232,8 +232,8 @@
 	var/scan_ticks = 0
 	var/obj/item/radio/target_radio
 
-/obj/item/beacon_locator/New()
-	..()
+/obj/item/beacon_locator/Initialize(mapload)
+	. = ..()
 	START_PROCESSING(SSobj, src)
 
 /obj/item/beacon_locator/Destroy()
@@ -333,7 +333,8 @@
 	var/obj/item/ano_scanner/anomaly_scanner = null
 	var/obj/item/depth_scanner/depth_scanner = null
 
-/obj/item/xenoarch_multi_tool/New()
+/obj/item/xenoarch_multi_tool/Initialize(mapload)
+	. = ..()
 	anomaly_scanner = new/obj/item/ano_scanner(src)
 	depth_scanner = new/obj/item/depth_scanner(src)
 
