@@ -51,11 +51,11 @@ export function TguiSay() {
   const [lightMode, setLightMode] = useState(false);
   const [value, setValue] = useState('');
 
-  function handleArrowKeys(direction: KEY.Up | KEY.Down): void {
+  function handleArrowKeys(direction: KEY.PageUp | KEY.PageDown): void {
     const chat = chatHistory.current;
     const iterator = channelIterator.current;
 
-    if (direction === KEY.Up) {
+    if (direction === KEY.PageUp) {
       if (chat.isAtLatest() && value) {
         // Save current message to temp history if at the most recent message
         chat.saveTemp(value);
