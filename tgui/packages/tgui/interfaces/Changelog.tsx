@@ -197,23 +197,23 @@ export class Changelog extends Component<
 
     const header = (
       <Section>
-        <h1>CHOMPStation Changelist</h1>
+        <h1>VOREStation Changelist</h1>
         <p>
           {'The GitHub repository can be found '}
-          <a href="https://github.com/CHOMPStation2/CHOMPStation2">here</a>
+          <a href="https://github.com/VOREStation/VOREStation">here</a>
           {', recent GitHub contributors can be found '}
-          <a href="https://github.com/CHOMPStation2/CHOMPStation2/pulse/monthly">
+          <a href="https://github.com/VOREStation/VOREStation/pulse/monthly">
             here
           </a>
           .
         </p>
         <p>
           {'Visit our wiki '}
-          <a href="https://wiki.chompstation13.net/index.php/Chomp_Station_Wiki">
+          <a href="https://wiki.vore-station.net/Main_Page">
             here
           </a>
           {', check out our discord server '}
-          <a href="https://discord.com/invite/chompers">here</a>.
+          <a href="https://discord.gg/Zd5WMuq">here</a>.
         </p>
         {dateDropdown}
       </Section>
@@ -222,12 +222,12 @@ export class Changelog extends Component<
     const footer = (
       <Section>
         {dateDropdown}
-        <h3>CHOMPStation License</h3>
+        <h3>VOREStation License</h3>
         <p>
           {'All code after '}
           <a
             href={
-              'https://github.com/CHOMPStation2/CHOMPStation2/commit/' +
+              'https://github.com/VOREStation/VOREStation/commit/' +
               '333c566b88108de218d882840e61928a9b759d8f'
             }
           >
@@ -239,11 +239,11 @@ export class Changelog extends Component<
           {'. All code before that commit is licensed under '}
           <a href="https://www.gnu.org/licenses/gpl-3.0.html">GNU GPL v3</a>
           {', including tools unless their readme specifies otherwise. See '}
-          <a href="https://github.com/CHOMPStation2/CHOMPStation2/blob/master/LICENSE">
+          <a href="https://github.com/VOREStation/VOREStation/blob/master/LICENSE">
             LICENSE
           </a>
           {' and '}
-          <a href="https://github.com/CHOMPStation2/CHOMPStation2/blob/master/LICENSE-GPL3.txt">
+          <a href="https://github.com/VOREStation/VOREStation/blob/master/LICENSE-GPL3.txt">
             GPLv3.txt
           </a>
           {' for more details.'}
@@ -253,7 +253,7 @@ export class Changelog extends Component<
           {' See the footer of '}
           <a
             href={
-              'https://github.com/CHOMPStation2/CHOMPStation2/blob/master' +
+              'https://github.com/VOREStation/VOREStation/blob/master' +
               '/code/__DEFINES/tgs.dm'
             }
           >
@@ -262,7 +262,7 @@ export class Changelog extends Component<
           {' and '}
           <a
             href={
-              'https://github.com/CHOMPStation2/CHOMPStation2/blob/master' +
+              'https://github.com/VOREStation/VOREStation/blob/master' +
               '/code/modules/tgs/LICENSE'
             }
           >

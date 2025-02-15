@@ -15,7 +15,6 @@ var/list/preferences_datums = list()
 	var/last_id
 
 	//game-preferences
-	var/lastchangelog = ""				//Last changlog to detect if there was a change
 	var/be_special = 0					//Special role selection
 
 	//character preferences
