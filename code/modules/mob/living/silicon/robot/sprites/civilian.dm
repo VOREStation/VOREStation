@@ -443,6 +443,13 @@
 	rest_sprite_options = list("Default", "Sit")
 	pixel_x = 0
 
+/datum/robot_sprite/dogborg/clown/stoat
+	name = "ST-04t"
+	sprite_icon = 'icons/mob/robot/stoatborg.dmi'
+	sprite_icon_state = "stoatclown"
+	has_eye_light_sprites = TRUE
+	has_vore_belly_resting_sprites = TRUE
+
 /datum/robot_sprite/dogborg/service/valech
 	name = "ServicehoundV2 - Alt"
 	sprite_icon = 'icons/mob/robot/widerobot/widerobot.dmi'

@@ -240,3 +240,10 @@
 	has_eye_light_sprites = TRUE
 	has_vore_belly_sprites = TRUE
 	rest_sprite_options = list("Default", "Sit")
+
+/datum/robot_sprite/dogborg/janitor/possum
+	name = "0-P0SSm"
+	sprite_icon = 'icons/mob/robot/possumborg.dmi'
+	sprite_icon_state = "possjani"
+	//has_vore_belly_resting_sprites = TRUE
+	has_eye_light_sprites = TRUE
