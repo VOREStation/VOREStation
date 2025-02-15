@@ -234,8 +234,8 @@ export function TguiSay() {
           event.currentTarget.selectionEnd = selectionEnd + 2;
         }
         break;
-      case KEY.Up:
-      case KEY.Down:
+      case KEY.PageUp:
+      case KEY.PageDown:
         event.preventDefault();
         handleArrowKeys(event.key);
         break;
