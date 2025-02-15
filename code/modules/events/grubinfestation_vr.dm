@@ -32,7 +32,7 @@
 
 /datum/event/grub_infestation/end()
 	var/list/area_names = list()
-	for(var/mob/living/G as anything in existing_solargrubs)
+	for(var/mob/living/G as anything in GLOB.existing_solargrubs)
 		if(!G || G.stat == DEAD)
 			continue
 		if(istype(G, /mob/living/simple_mob/animal/solargrub_larva))

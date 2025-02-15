@@ -195,9 +195,9 @@
 
 		// Equip them, if they are human and it is desirable.
 		if(ishuman(spawned_mob))
-			var/antag_type = tgui_input_list(usr, "Select an equipment template to use or cancel for nude.", all_antag_types)
+			var/antag_type = tgui_input_list(usr, "Select an equipment template to use or cancel for nude.", GLOB.all_antag_types)
 			if(antag_type)
-				var/datum/antagonist/A = all_antag_types[antag_type]
+				var/datum/antagonist/A = GLOB.all_antag_types[antag_type]
 				A.equip(spawned_mob)
 
 	if(tgui_alert(usr, "Are you SURE you wish to deploy this drop pod? It will cause a sizable explosion and gib anyone underneath it.","Danger!",list("No","Yes")) != "Yes")

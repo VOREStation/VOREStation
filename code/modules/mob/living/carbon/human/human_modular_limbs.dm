@@ -11,7 +11,7 @@
 /obj/item/organ/external/proc/get_modular_limb_category()
 	. = MODULAR_BODYPART_INVALID
 	if(robotic >= ORGAN_ROBOT && model)
-		var/datum/robolimb/manufacturer = all_robolimbs[model]
+		var/datum/robolimb/manufacturer = GLOB.all_robolimbs[model]
 		if(!isnull(manufacturer?.modular_bodyparts))
 			. = manufacturer.modular_bodyparts
 
@@ -167,7 +167,7 @@
 	for(var/obj/item/organ/external/child in E.children)
 		child.status &= ~ORGAN_CUT_AWAY
 
-	var/datum/gender/G = gender_datums[gender]
+	var/datum/gender/G = GLOB.gender_datums[gender]
 	visible_message(
 		span_notice("\The [src] attaches \the [E] to [G.his] body!"),
 		span_notice("You attach \the [E] to your body!"))
@@ -195,7 +195,7 @@
 	E.removed(src)
 	E.dropInto(loc)
 	put_in_hands(E)
-	var/datum/gender/G = gender_datums[gender]
+	var/datum/gender/G = GLOB.gender_datums[gender]
 	visible_message(
 		span_notice("\The [src] detaches [G.his] [E.name]!"),
 		span_notice("You detach your [E.name]!"))

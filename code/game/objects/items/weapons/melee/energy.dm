@@ -102,7 +102,7 @@
 			to_chat(user, span_notice("\The [src] does not seem to have power."))
 			return
 
-	var/datum/gender/TU = gender_datums[user.get_visible_gender()]
+	var/datum/gender/TU = GLOB.gender_datums[user.get_visible_gender()]
 	if (active)
 		if ((CLUMSY in user.mutations) && prob(50))
 			user.visible_message(span_danger("\The [user] accidentally cuts [TU.himself] with \the [src]."),\

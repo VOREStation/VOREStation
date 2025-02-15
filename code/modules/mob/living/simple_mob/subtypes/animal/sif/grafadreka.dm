@@ -212,7 +212,7 @@ Field studies suggest analytical abilities on par with some species of cepholapo
 
 	var/list/original_armor
 
-var/global/list/wounds_being_tended_by_drakes = list()
+GLOBAL_LIST_EMPTY(wounds_being_tended_by_drakes)
 /mob/living/simple_mob/animal/sif/grafadreka/proc/can_tend_wounds(var/mob/living/friend)
 
 	// We can't heal robots.
@@ -220,7 +220,7 @@ var/global/list/wounds_being_tended_by_drakes = list()
 		return FALSE
 
 	// Check if someone else is looking after them already.
-	if(global.wounds_being_tended_by_drakes["\ref[friend]"] > world.time)
+	if(GLOB.wounds_being_tended_by_drakes["\ref[friend]"] > world.time)
 		return FALSE
 
 	// Humans need to have a bleeding external organ to qualify.

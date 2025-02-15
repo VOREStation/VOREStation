@@ -55,7 +55,7 @@
 		pref.voice_freq			= sanitize_integer(pref.voice_freq, MIN_VOICE_FREQ, MAX_VOICE_FREQ, initial(pref.fuzzy))
 	if(pref.size_multiplier == null || pref.size_multiplier < RESIZE_TINY || pref.size_multiplier > RESIZE_HUGE)
 		pref.size_multiplier = initial(pref.size_multiplier)
-	if(!(pref.custom_speech_bubble in selectable_speech_bubbles))
+	if(!(pref.custom_speech_bubble in GLOB.selectable_speech_bubbles))
 		pref.custom_speech_bubble = "default"
 	if(!(pref.custom_footstep))
 		pref.custom_footstep = "Default"
@@ -69,7 +69,7 @@
 	character.voice_freq		= pref.voice_freq
 	character.resize(pref.size_multiplier, animate = FALSE, ignore_prefs = TRUE)
 	if(!pref.voice_sound)
-		character.voice_sounds_list = talk_sound
+		character.voice_sounds_list = GLOB.talk_sound
 	else
 		character.voice_sounds_list = get_talk_sound(pref.voice_sound)
 	character.custom_speech_bubble = pref.custom_speech_bubble
@@ -185,7 +185,7 @@
 			pref.voice_sound = choice
 		return TOPIC_REFRESH
 	else if(href_list["customize_speech_bubble"])
-		var/choice = tgui_input_list(user, "What speech bubble style do you want to use? (default for automatic selection)", "Custom Speech Bubble", selectable_speech_bubbles)
+		var/choice = tgui_input_list(user, "What speech bubble style do you want to use? (default for automatic selection)", "Custom Speech Bubble", GLOB.selectable_speech_bubbles)
 		if(!choice)
 			pref.custom_speech_bubble = "default"
 		else
@@ -203,33 +203,33 @@
 		var/sound/S
 		switch(pref.voice_sound)
 			if("beep-boop")
-				S = sound(pick(talk_sound))
+				S = sound(pick(GLOB.talk_sound))
 			if("goon speak 1")
-				S = sound(pick(goon_speak_one_sound))
+				S = sound(pick(GLOB.goon_speak_one_sound))
 			if("goon speak 2")
-				S = sound(pick(goon_speak_two_sound))
+				S = sound(pick(GLOB.goon_speak_two_sound))
 			if("goon speak 3")
-				S = sound(pick(goon_speak_three_sound))
+				S = sound(pick(GLOB.goon_speak_three_sound))
 			if("goon speak 4")
-				S = sound(pick(goon_speak_four_sound))
+				S = sound(pick(GLOB.goon_speak_four_sound))
 			if("goon speak blub")
-				S = sound(pick(goon_speak_blub_sound))
+				S = sound(pick(GLOB.goon_speak_blub_sound))
 			if("goon speak bottalk")
-				S = sound(pick(goon_speak_bottalk_sound))
+				S = sound(pick(GLOB.goon_speak_bottalk_sound))
 			if("goon speak buwoo")
-				S = sound(pick(goon_speak_buwoo_sound))
+				S = sound(pick(GLOB.goon_speak_buwoo_sound))
 			if("goon speak cow")
-				S = sound(pick(goon_speak_cow_sound))
+				S = sound(pick(GLOB.goon_speak_cow_sound))
 			if("goon speak lizard")
-				S = sound(pick(goon_speak_lizard_sound))
+				S = sound(pick(GLOB.goon_speak_lizard_sound))
 			if("goon speak pug")
-				S = sound(pick(goon_speak_pug_sound))
+				S = sound(pick(GLOB.goon_speak_pug_sound))
 			if("goon speak pugg")
-				S = sound(pick(goon_speak_pugg_sound))
+				S = sound(pick(GLOB.goon_speak_pugg_sound))
 			if("goon speak roach")
-				S = sound(pick(goon_speak_roach_sound))
+				S = sound(pick(GLOB.goon_speak_roach_sound))
 			if("goon speak skelly")
-				S = sound(pick(goon_speak_skelly_sound))
+				S = sound(pick(GLOB.goon_speak_skelly_sound))
 		if(S)
 			S.frequency = pick(pref.voice_freq)
 			S.volume = 50

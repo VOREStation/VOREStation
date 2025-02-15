@@ -542,7 +542,7 @@ the implant may become unstable and either pre-maturely inject the subject or si
 			STOP_PROCESSING(SSobj, src)
 		if ("emp")
 			var/obj/item/radio/headset/a = new /obj/item/radio/headset/heads/captain(null)
-			var/name = prob(50) ? t.name : pick(teleportlocs)
+			var/name = prob(50) ? t.name : pick(GLOB.teleportlocs)
 			a.autosay("[mobname] has died in [name]!", "[mobname]'s Death Alarm")
 //			a.autosay("[mobname] has died in [name]!", "[mobname]'s Death Alarm", "Security")
 //			a.autosay("[mobname] has died in [name]!", "[mobname]'s Death Alarm", "Medical")

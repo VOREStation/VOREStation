@@ -166,7 +166,7 @@
 					return
 
 		//extend the offer of battle to the other mech
-		var/datum/gender/T = gender_datums[user.get_visible_gender()]
+		var/datum/gender/T = GLOB.gender_datums[user.get_visible_gender()]
 		to_chat(user, span_notice("You offer battle to [target.name]!"))
 		to_chat(target, span_notice(span_bold("[user.name] wants to battle with [T.His] [name]!") + " " + span_italics("Attack them with a toy mech to initiate combat.")))
 		wants_to_battle = TRUE
@@ -393,7 +393,7 @@
 /obj/item/toy/mecha/proc/check_battle_start(mob/living/carbon/user, obj/item/toy/mecha/attacker, mob/living/carbon/target)
 	var/datum/gender/T
 	if(target)
-		T = gender_datums[target.get_visible_gender()] // Doing this because Polaris Code has shitty gender datums and it's clunkier than FUCK.
+		T = GLOB.gender_datums[target.get_visible_gender()] // Doing this because Polaris Code has shitty gender datums and it's clunkier than FUCK.
 	if(attacker && attacker.in_combat)
 		to_chat(user, span_notice("[target ? T.His : "Your" ] [attacker.name] is in combat."))
 		if(target)

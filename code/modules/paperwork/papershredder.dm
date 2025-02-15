@@ -162,7 +162,7 @@
 		..()
 
 /obj/item/shreddedp/proc/burnpaper(var/obj/item/flame/lighter/P, var/mob/user)
-	var/datum/gender/TU = gender_datums[user.get_visible_gender()]
+	var/datum/gender/TU = GLOB.gender_datums[user.get_visible_gender()]
 	if(user.restrained())
 		return
 	if(!P.lit)

@@ -103,7 +103,7 @@
 		// check trait if not. CONFLICT-O-TRON ENGAGE
 		conflict_traits[P] = FALSE
 
-		var/datum/trait/instance_test = all_traits[P]
+		var/datum/trait/instance_test = GLOB.all_traits[P]
 		if(path in instance_test.excludes)
 			conflict_traits[P] = TRUE
 			has_conflict = TRUE

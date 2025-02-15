@@ -175,7 +175,7 @@
 		H.concealed = 1
 		H.update_icon()
 	if(user==target)
-		var/datum/gender/TU = gender_datums[user.get_visible_gender()]
+		var/datum/gender/TU = GLOB.gender_datums[user.get_visible_gender()]
 		user.visible_message(span_notice("\The [user] deals [dcard] card(s) to [TU.himself]."))
 	else
 		user.visible_message(span_notice("\The [user] deals [dcard] card(s) to \the [target]."))

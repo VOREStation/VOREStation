@@ -20,7 +20,7 @@ var/list/sacrificed = list()
 	for(var/obj/effect/rune/R in rune_list)
 		if(R == src)
 			continue
-		if(R.word1 == cultwords["travel"] && R.word2 == cultwords["self"] && R.word3 == key && isPlayerLevel(R.z))
+		if(R.word1 == GLOB.cultwords["travel"] && R.word2 == GLOB.cultwords["self"] && R.word3 == key && isPlayerLevel(R.z))
 			index++
 			allrunesloc.len = index
 			allrunesloc[index] = R.loc
@@ -54,7 +54,7 @@ var/list/sacrificed = list()
 	for(var/obj/effect/rune/R in rune_list)
 		if(R == src)
 			continue
-		if(R.word1 == cultwords["travel"] && R.word2 == cultwords["other"] && R.word3 == key)
+		if(R.word1 == GLOB.cultwords["travel"] && R.word2 == GLOB.cultwords["other"] && R.word3 == key)
 			IP = R
 			runecount++
 	if(runecount >= 2)
@@ -160,7 +160,7 @@ var/list/sacrificed = list()
 		if (!target.can_feel_pain())
 			target.visible_message(span_warning("The markings below \the [target] glow a bloody red."))
 		else
-			var/datum/gender/TT = gender_datums[target.get_visible_gender()]
+			var/datum/gender/TT = GLOB.gender_datums[target.get_visible_gender()]
 			target.visible_message(span_warning("[target] writhes in pain as the markings below [TT.him] glow a bloody red."), span_danger("AAAAAAHHHH!"), span_warning("You hear an anguished scream."))
 
 		if(!waiting_for_input[target]) //so we don't spam them with dialogs if they hesitate
@@ -235,7 +235,7 @@ var/list/sacrificed = list()
 /obj/effect/rune/proc/drain()
 	var/drain = 0
 	for(var/obj/effect/rune/R in rune_list)
-		if(R.word1==cultwords["travel"] && R.word2==cultwords["blood"] && R.word3==cultwords["self"])
+		if(R.word1==GLOB.cultwords["travel"] && R.word2==GLOB.cultwords["blood"] && R.word3==GLOB.cultwords["self"])
 			for(var/mob/living/carbon/D in R.loc)
 				if(D.stat!=2)
 					add_attack_logs(usr,D,"Blood drain rune")
@@ -335,7 +335,7 @@ var/list/sacrificed = list()
 	is_sacrifice_target = 0
 	find_sacrifice:
 		for(var/obj/effect/rune/R in rune_list)
-			if(R.word1==cultwords["blood"] && R.word2==cultwords["join"] && R.word3==cultwords["hell"])
+			if(R.word1==GLOB.cultwords["blood"] && R.word2==GLOB.cultwords["join"] && R.word3==GLOB.cultwords["hell"])
 				for(var/mob/living/carbon/human/N in R.loc)
 					if(cult && N.mind && N.mind == cult.sacrifice_target)
 						is_sacrifice_target = 1
@@ -366,8 +366,8 @@ var/list/sacrificed = list()
 
 	if(corpse_to_raise.client)
 
-		var/datum/gender/TU = gender_datums[corpse_to_raise.get_visible_gender()]
-		var/datum/gender/TT = gender_datums[body_to_sacrifice.get_visible_gender()]
+		var/datum/gender/TU = GLOB.gender_datums[corpse_to_raise.get_visible_gender()]
+		var/datum/gender/TT = GLOB.gender_datums[body_to_sacrifice.get_visible_gender()]
 
 		cult.add_antagonist(corpse_to_raise.mind)
 		corpse_to_raise.revive()
@@ -423,7 +423,7 @@ var/list/sacrificed = list()
 /obj/effect/rune/proc/ajourney() //some bits copypastaed from admin tools - Urist
 	if(usr.loc==src.loc)
 		var/mob/living/carbon/human/L = usr
-		var/datum/gender/TU = gender_datums[L.get_visible_gender()]
+		var/datum/gender/TU = GLOB.gender_datums[L.get_visible_gender()]
 		usr.say("Fwe[pick("'","`")]sh mah erl nyag r'ya!")
 		usr.visible_message(span_warning("[usr]'s eyes glow blue as [TU.he] freeze[TU.s] in place, absolutely motionless."), \
 		span_warning("The shadow that is your spirit separates itself from your body. You are now in the realm beyond. While this is a great sight, being here strains your mind and body. Hurry..."), \
@@ -526,53 +526,53 @@ var/list/sacrificed = list()
 	for(var/obj/effect/rune/R in orange(1,src))
 		if(R==src)
 			continue
-		if(R.word1==cultwords["travel"] && R.word2==cultwords["self"])  //teleport
+		if(R.word1==GLOB.cultwords["travel"] && R.word2==GLOB.cultwords["self"])  //teleport
 			T = new(src.loc)
 			T.imbue = "[R.word3]"
 			T.info = "[R.word3]"
 			imbued_from = R
 			break
-		if(R.word1==cultwords["see"] && R.word2==cultwords["blood"] && R.word3==cultwords["hell"]) //tome
+		if(R.word1==GLOB.cultwords["see"] && R.word2==GLOB.cultwords["blood"] && R.word3==GLOB.cultwords["hell"]) //tome
 			T = new(src.loc)
 			T.imbue = "newtome"
 			imbued_from = R
 			break
-		if(R.word1==cultwords["destroy"] && R.word2==cultwords["see"] && R.word3==cultwords["technology"]) //emp
+		if(R.word1==GLOB.cultwords["destroy"] && R.word2==GLOB.cultwords["see"] && R.word3==GLOB.cultwords["technology"]) //emp
 			T = new(src.loc)
 			T.imbue = "emp"
 			imbued_from = R
 			break
-		if(R.word1==cultwords["blood"] && R.word2==cultwords["see"] && R.word3==cultwords["destroy"]) //conceal
+		if(R.word1==GLOB.cultwords["blood"] && R.word2==GLOB.cultwords["see"] && R.word3==GLOB.cultwords["destroy"]) //conceal
 			T = new(src.loc)
 			T.imbue = "conceal"
 			imbued_from = R
 			break
-		if(R.word1==cultwords["hell"] && R.word2==cultwords["destroy"] && R.word3==cultwords["other"]) //armor
+		if(R.word1==GLOB.cultwords["hell"] && R.word2==GLOB.cultwords["destroy"] && R.word3==GLOB.cultwords["other"]) //armor
 			T = new(src.loc)
 			T.imbue = "armor"
 			imbued_from = R
 			break
-		if(R.word1==cultwords["blood"] && R.word2==cultwords["see"] && R.word3==cultwords["hide"]) //reveal
+		if(R.word1==GLOB.cultwords["blood"] && R.word2==GLOB.cultwords["see"] && R.word3==GLOB.cultwords["hide"]) //reveal
 			T = new(src.loc)
 			T.imbue = "revealrunes"
 			imbued_from = R
 			break
-		if(R.word1==cultwords["hide"] && R.word2==cultwords["other"] && R.word3==cultwords["see"]) //deafen
+		if(R.word1==GLOB.cultwords["hide"] && R.word2==GLOB.cultwords["other"] && R.word3==GLOB.cultwords["see"]) //deafen
 			T = new(src.loc)
 			T.imbue = "deafen"
 			imbued_from = R
 			break
-		if(R.word1==cultwords["destroy"] && R.word2==cultwords["see"] && R.word3==cultwords["other"]) //blind
+		if(R.word1==GLOB.cultwords["destroy"] && R.word2==GLOB.cultwords["see"] && R.word3==GLOB.cultwords["other"]) //blind
 			T = new(src.loc)
 			T.imbue = "blind"
 			imbued_from = R
 			break
-		if(R.word1==cultwords["self"] && R.word2==cultwords["other"] && R.word3==cultwords["technology"]) //communicat
+		if(R.word1==GLOB.cultwords["self"] && R.word2==GLOB.cultwords["other"] && R.word3==GLOB.cultwords["technology"]) //communicat
 			T = new(src.loc)
 			T.imbue = "communicate"
 			imbued_from = R
 			break
-		if(R.word1==cultwords["join"] && R.word2==cultwords["hide"] && R.word3==cultwords["technology"]) //communicat
+		if(R.word1==GLOB.cultwords["join"] && R.word2==GLOB.cultwords["hide"] && R.word3==GLOB.cultwords["technology"]) //communicat
 			T = new(src.loc)
 			T.imbue = "runestun"
 			imbued_from = R
@@ -590,11 +590,11 @@ var/list/sacrificed = list()
 
 /obj/effect/rune/proc/mend()
 	var/mob/living/user = usr
-	var/datum/gender/TU = gender_datums[usr.get_visible_gender()]
+	var/datum/gender/TU = GLOB.gender_datums[usr.get_visible_gender()]
 	src = null
 	user.say("Uhrast ka'hfa heldsagen ver[pick("'","`")]lot!")
 	user.take_overall_damage(200, 0)
-	runedec+=10
+	GLOB.runedec+=10
 	user.visible_message(span_danger("\The [user] keels over dead, [TU.his] blood glowing blue as it escapes [TU.his] body and dissipates into thin air."), \
 	span_danger("In the last moment of your humble life, you feel an immense pain as fabric of reality mends... with your blood."), \
 	span_warning("You hear faint rustle."))
@@ -602,7 +602,7 @@ var/list/sacrificed = list()
 		sleep(600)
 		if (!user)
 			return
-	runedec-=10
+	GLOB.runedec-=10
 	return
 
 
@@ -878,7 +878,7 @@ var/list/sacrificed = list()
 		if (cultist == user) //just to be sure.
 			return
 		if(cultist.buckled || cultist.handcuffed || (!isturf(cultist.loc) && !istype(cultist.loc, /obj/structure/closet)))
-			var/datum/gender/TU = gender_datums[cultist.get_visible_gender()]
+			var/datum/gender/TU = GLOB.gender_datums[cultist.get_visible_gender()]
 			to_chat(user, span_warning("You cannot summon \the [cultist], for [TU.his] shackles of blood are strong."))
 			return fizzle()
 		cultist.loc = src.loc

@@ -1,7 +1,7 @@
-var/list/all_robolimbs = list()
-var/list/robolimb_data = list()
-var/list/chargen_robolimbs = list()
-var/datum/robolimb/basic_robolimb
+GLOBAL_LIST_EMPTY(all_robolimbs)
+GLOBAL_LIST_EMPTY(robolimb_data)
+GLOBAL_LIST_EMPTY(chargen_robolimbs)
+GLOBAL_DATUM(basic_robolimb, /datum/robolimb)
 var/const/standard_monitor_styles = "blank=ipc_blank;\
 	pink=ipc_pink;\
 	green=ipc_green;\
@@ -26,20 +26,20 @@ var/const/standard_monitor_styles = "blank=ipc_blank;\
 	database=ipc_database"
 
 /proc/populate_robolimb_list()
-	basic_robolimb = new()
+	GLOB.basic_robolimb = new()
 	for(var/limb_type in typesof(/datum/robolimb))
 		var/datum/robolimb/R = new limb_type()
-		all_robolimbs[R.company] = R
+		GLOB.all_robolimbs[R.company] = R
 		if(!R.unavailable_at_chargen)
-			chargen_robolimbs[R.company] = R //List only main brands and solo parts.
+			GLOB.chargen_robolimbs[R.company] = R //List only main brands and solo parts.
 
-	for(var/company in all_robolimbs)
-		var/datum/robolimb/R = all_robolimbs[company]
+	for(var/company in GLOB.all_robolimbs)
+		var/datum/robolimb/R = GLOB.all_robolimbs[company]
 		if(R.species_alternates)
 			for(var/species in R.species_alternates)
 				var/species_company = R.species_alternates[species]
-				if(species_company in all_robolimbs)
-					R.species_alternates[species] = all_robolimbs[species_company]
+				if(species_company in GLOB.all_robolimbs)
+					R.species_alternates[species] = GLOB.all_robolimbs[species_company]
 
 /datum/robolimb
 	var/company = "Unbranded"                            // Shown when selecting the limb.

@@ -143,7 +143,7 @@
 	var/list/possible_voice_types = get_talk_sound()
 	var/choice = tgui_input_list(src, "Which set of sounds would you like to use for your character's speech sounds?", "Voice Sounds", possible_voice_types)
 	if(!choice)
-		voice_sounds_list = talk_sound
+		voice_sounds_list = GLOB.talk_sound
 	voice_sounds_list = get_talk_sound(choice)
 
 /mob/living/proc/save_private_notes(mob/user)

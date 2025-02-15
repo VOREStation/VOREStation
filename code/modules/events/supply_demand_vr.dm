@@ -59,7 +59,7 @@
 	message += "<hr>"
 	message += "Deliver these items to [command_name()] via the supply shuttle.  Please put the ones you can into crates!<br>"
 
-	for(var/dpt in req_console_supplies)
+	for(var/dpt in GLOB.req_console_supplies)
 		send_console_message(message, dpt);
 
 	// Also announce over main comms so people know to look

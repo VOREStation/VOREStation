@@ -41,7 +41,7 @@
 	p.name = "Security Citation: [ticket_name]"
 	playsound(user, 'sound/items/ticket_printer.ogg', 75, 1)
 
-	security_printer_tickets |= details
+	GLOB.security_printer_tickets |= details
 	log_and_message_admins("has issued '[ticket_name]' a security citation: \"[details]\"", user)
 	last_print = world.time
 

@@ -46,10 +46,10 @@
 	return
 
 /obj/item/teleportation_scroll/proc/teleportscroll(var/mob/user)
-	var/A = tgui_input_list(user, "Area to jump to:", "Teleportation Scroll", teleportlocs)
+	var/A = tgui_input_list(user, "Area to jump to:", "Teleportation Scroll", GLOB.teleportlocs)
 	if(!A)
 		return
-	var/area/thearea = teleportlocs[A]
+	var/area/thearea = GLOB.teleportlocs[A]
 
 	if (user.stat || user.restrained())
 		return

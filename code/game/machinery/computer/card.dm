@@ -89,7 +89,7 @@
 	var/list/data =  ..()
 	if(data_core)
 		data_core.get_manifest_list()
-	data["manifest"] = PDA_Manifest
+	data["manifest"] = GLOB.PDA_Manifest
 	return data
 
 /obj/machinery/computer/card/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)

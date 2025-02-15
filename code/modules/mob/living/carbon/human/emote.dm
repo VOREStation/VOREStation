@@ -335,7 +335,7 @@ var/list/_simple_mob_default_emotes = list(
 	set desc = "Sets a description which will be shown when someone examines you."
 	set category = "IC.Settings"
 
-	var/datum/gender/T = gender_datums[get_visible_gender()]
+	var/datum/gender/T = GLOB.gender_datums[get_visible_gender()]
 
 	pose = strip_html_simple(tgui_input_text(src, "This is [src]. [T.he]...", "Pose", null))
 

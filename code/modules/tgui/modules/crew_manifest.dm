@@ -6,7 +6,7 @@
 	var/list/data = ..()
 	if(data_core)
 		data_core.get_manifest_list()
-	data["manifest"] = PDA_Manifest
+	data["manifest"] = GLOB.PDA_Manifest
 	return data
 
 /datum/tgui_module/crew_manifest/robot

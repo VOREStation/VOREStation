@@ -50,7 +50,7 @@ In short:
 	OverlayAndAmbientSet()
 	lightsout(0,0)
 
-	runedec += 9000	//basically removing the rune cap
+	GLOB.runedec += 9000	//basically removing the rune cap
 
 
 /datum/universal_state/hell/proc/AreaSet()

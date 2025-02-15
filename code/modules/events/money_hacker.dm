@@ -9,8 +9,8 @@ GLOBAL_VAR_INIT(account_hack_attempted, 0)
 
 /datum/event/money_hacker/setup()
 	end_time = world.time + 6000
-	if(all_money_accounts.len)
-		affected_account = pick(all_money_accounts)
+	if(GLOB.all_money_accounts.len)
+		affected_account = pick(GLOB.all_money_accounts)
 
 		GLOB.account_hack_attempted = 1
 	else
@@ -50,7 +50,7 @@ GLOBAL_VAR_INIT(account_hack_attempted, 0)
 		T.amount = pick("","([rand(0,99999)])","alla money","9001$","HOLLA HOLLA GET DOLLA","([lost])")
 		var/date1 = "31 December, 1999"
 		var/date2 = "[num2text(rand(1,31))] [pick("January","February","March","April","May","June","July","August","September","October","November","December")], [rand(1000,3000)]"
-		T.date = pick("", current_date_string, date1, date2)
+		T.date = pick("", GLOB.current_date_string, date1, date2)
 		var/time1 = rand(0, 99999999)
 		var/time2 = "[round(time1 / 36000)+12]:[(time1 / 600 % 60) < 10 ? add_zero(time1 / 600 % 60, 1) : time1 / 600 % 60]"
 		T.time = pick("", stationtime2text(), time2)

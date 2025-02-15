@@ -25,7 +25,7 @@ var/image/no_ceiling_image = null
 			icon_state = flooring.icon_base
 									//VOREStation Addition Start
 			if(flooring.check_season)
-				icon_state = "[icon_state]-[world_time_season]"	//VOREStation Addition End
+				icon_state = "[icon_state]-[GLOB.world_time_season]"	//VOREStation Addition End
 			if(flooring.has_base_range)
 				icon_state = "[icon_state][rand(0,flooring.has_base_range)]"
 				flooring_override = icon_state
