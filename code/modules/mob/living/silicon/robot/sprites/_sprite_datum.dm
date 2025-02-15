@@ -135,9 +135,15 @@
 
 /datum/robot_sprite/proc/get_robotdecal_overlay(var/mob/living/silicon/robot/ourborg, var/type)
 	if(LAZYLEN(sprite_decals))
-		if(ourborg.resting)
-			return "[get_rest_sprite(ourborg)]-[type]"
-		return "[sprite_icon_state]-[type]"
+		if(!ourborg.resting)
+			return "[sprite_icon_state]-[type]"
+		switch(ourborg.rest_style)
+			if("Sit")
+				return "[sprite_icon_state]-[type]-sit"
+			if("Bellyup")
+				return "[sprite_icon_state]-[type]-bellyup"
+			else
+				return "[sprite_icon_state]-[type]-rest"
 
 
 /datum/robot_sprite/proc/get_rest_sprite(var/mob/living/silicon/robot/ourborg)
