@@ -224,7 +224,6 @@
 	sprite_hud_icon_state = "k9"
 	has_eye_light_sprites = TRUE
 	has_vore_belly_sprites = TRUE
-	has_robotdecal_sprites = FALSE
 	rest_sprite_options = list("Default", "sit")
 
 /datum/robot_sprite/dogborg/tall/security/dullahan/secalt

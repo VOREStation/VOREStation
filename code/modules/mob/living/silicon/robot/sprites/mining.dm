@@ -193,7 +193,6 @@
 	sprite_icon_state = "dullahanmine"
 	sprite_icon = 'icons/mob/robot/dullahan/v1/dullahan_mine.dmi'
 	has_vore_belly_sprites = TRUE
-	has_robotdecal_sprites = FALSE
 	has_custom_open_sprites = FALSE
 	has_eye_light_sprites = TRUE
 	rest_sprite_options = list("Default", "sit")

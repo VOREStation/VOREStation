@@ -36,7 +36,7 @@
 						return
 
 /mob/living/silicon/robot/vs_animate(var/belly_class)
-	if(!has_vore_struggle_sprite)
+	if(!sprite_datum.has_vore_struggle_sprite)
 		return
 	var/vs_fullness = vore_fullness_ex[belly_class]
 	cut_overlay(sprite_datum.get_belly_overlay(src, vs_fullness, belly_class))
