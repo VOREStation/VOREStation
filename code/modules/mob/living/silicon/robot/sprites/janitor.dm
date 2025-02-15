@@ -247,3 +247,4 @@
 	sprite_icon_state = "possjani"
 	//has_vore_belly_resting_sprites = TRUE
 	has_eye_light_sprites = TRUE
+	wreck-has_dead_sprite_overlay = FALSE

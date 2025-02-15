@@ -449,6 +449,7 @@
 	sprite_icon_state = "stoatclown"
 	has_eye_light_sprites = TRUE
 	has_vore_belly_resting_sprites = TRUE
+	wreck-has_dead_sprite_overlay = FALSE
 
 /datum/robot_sprite/dogborg/service/valech
 	name = "ServicehoundV2 - Alt"
