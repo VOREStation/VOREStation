@@ -330,7 +330,7 @@
 		void = new()
 	screen += void
 
-	if((prefs?.read_preference(/datum/preference/text/lastchangelog) != changelog_hash) && isnewplayer(src.mob)) //bolds the changelog button on the interface so we know there are updates.
+	if((prefs?.read_preference(/datum/preference/text/lastchangelog) != GLOB.changelog_hash) && isnewplayer(src.mob)) //bolds the changelog button on the interface so we know there are updates.
 		to_chat(src, span_info("You have unread updates in the changelog."))
 		winset(src, "rpane.changelog", "background-color=#eaeaea;font-style=bold")
 		if(CONFIG_GET(flag/aggressive_changelog))

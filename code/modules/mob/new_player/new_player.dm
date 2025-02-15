@@ -106,7 +106,7 @@
 		else
 			output += "<p><b><a href='byond://?src=\ref[src];open_station_news=1'>Show [using_map.station_name] News<br>(NEW!)</A></b></p>"
 
-	if(read_preference(/datum/preference/text/lastchangelog) == changelog_hash)
+	if(read_preference(/datum/preference/text/lastchangelog) == GLOB.changelog_hash)
 		output += "<p><a href='byond://?src=\ref[src];open_changelog=1'>Show Changelog</A><br><i>No Changes</i></p>"
 	else
 		output += "<p><b><a href='byond://?src=\ref[src];open_changelog=1'>Show Changelog</A><br>(NEW!)</b></p>"
@@ -352,8 +352,7 @@
 			client.feedback_form = new(client)
 
 	if(href_list["open_changelog"])
-		write_preference_directly(/datum/preference/text/lastchangelog, changelog_hash)
-		SScharacter_setup.queue_preferences_save(client.prefs)
+		write_preference_directly(/datum/preference/text/lastchangelog, GLOB.changelog_hash)
 		client.changes()
 		return
 
