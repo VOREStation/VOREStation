@@ -6,14 +6,9 @@
  * @license MIT
  */
 
-export const IMPL_MEMORY = 0;
 export const IMPL_HUB_STORAGE = 1;
-export const IMPL_INDEXED_DB = 2;
 
-type StorageImplementation =
-  | typeof IMPL_MEMORY
-  | typeof IMPL_HUB_STORAGE
-  | typeof IMPL_INDEXED_DB;
+type StorageImplementation = typeof IMPL_HUB_STORAGE;
 
 const INDEXED_DB_VERSION = 1;
 const INDEXED_DB_NAME = 'virgo';
@@ -50,7 +45,7 @@ class HubStorageBackend implements StorageBackend {
   }
 
   async get(key: string): Promise<any> {
-    const value = await window.hubStorage.getItem(key);
+    const value = await window.hubStorage.getItem('virgo-' + key);
     if (typeof value === 'string') {
       return JSON.parse(value);
     }
@@ -58,11 +53,11 @@ class HubStorageBackend implements StorageBackend {
   }
 
   async set(key: string, value: any): Promise<void> {
-    window.hubStorage.setItem(key, JSON.stringify(value));
+    window.hubStorage.setItem('virgo-' + key, JSON.stringify(value));
   }
 
   async remove(key: string): Promise<void> {
-    window.hubStorage.removeItem(key);
+    window.hubStorage.removeItem('virgo-' + key);
   }
 
   async clear(): Promise<void> {
