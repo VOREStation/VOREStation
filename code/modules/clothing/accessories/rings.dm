@@ -138,7 +138,7 @@
 	icon_state = "material"
 
 /obj/item/clothing/accessory/ring/material/Initialize(mapload, var/new_material)
-	..()
+	. = ..()
 	if(!new_material)
 		new_material = MAT_STEEL
 	material = get_material_by_name(new_material)
