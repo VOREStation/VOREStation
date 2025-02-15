@@ -1,0 +1,10 @@
+2018-09-22:
+  Mechoid:
+  - rscadd: Adds two vehicles to Robotics and Cargo, the Quad and Spacebike.
+  Poojawa:
+  - rscadd: Ported /vg/ instrument code, improved the UI of instruments.
+  - rscadd: Added a client side pref that mutes instruments being played for you.
+  Woodrat:
+  - rscadd: Adds two rig suits. Military Rig suit from Bay and PMC rigsuit
+  - rscadd: Adds four exploration and pilot voidsuits (alternate sprites by Naidh)
+  - rscadd: Adds exploration and pilot voidsuits

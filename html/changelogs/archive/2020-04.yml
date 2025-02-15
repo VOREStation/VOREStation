@@ -1,0 +1,67 @@
+2020-04-05:
+  Atermonera:
+  - bugfix: Headphones (and other two-ear clothing items) don't break the off-ear
+      slot when click-dragged to unequip.
+  Neerti:
+  - tweak: The eject button on both the Chemical Dispenser and Chem Master will place
+      the ejected beaker into your hands, instead of on top of the machine, if possible.
+      (Requested by Nalarac.)
+  - tweak: Suit sensor consoles now display a friendly textual indicator of what z-level
+      someone is on, instead of a number. They will also now avoid spoiling the names
+      of Points of Interest.
+  - tweak: The beakers containing Cryoxadone near cryogenics are now labeled. (Requested
+      by Nalarac.)
+  - bugfix: The sleeper consoles now finally face towards the sleepers, at last. It
+      only took a year for someone to fix it.
+  novacat:
+  - rscadd: Adds action buttons for scoping all sniper weapons.
+2020-04-20:
+  Atermonera:
+  - bugfix: Circuit clothes can have accessories attached.
+  - tweak: Control-shift-click on circuit clothes to use items on the circuit.
+  - tweak: Employment records can have comments similar to medical records.
+  - rscadd: Added a preference to switch between a few extra modes of examining things.
+      Verb in the preferences tab.
+  - rscadd: Added Combat Logs filter category, to filter messages from things hitting
+      you. This category will also eat up most other messages that are red and bold,
+      please report any such messages that aren't specifically related to punching
+      things.
+  - rscadd: Added categories for sorting various types of admin logs.
+  - rscadd: Adds a preference to forcibly disable (or enable) VChat. Useful mostly
+      for people on linux, to skip the 60s waiting period where it tries to work and
+      keeps you from seeing chat. Reloading VChat or reconnecting to the server are
+      required for any changes to the preference to take effect. Support for issues
+      that arise as a result of this preference is not guaranteed.
+  Leshana:
+  - rscadd: Glass Emergency Shutters are now constructable and deconstructing them
+      will give you the glass back.
+  Neerti:
+  - rscadd: All sources of stasis (sleepers, stasis bags) will prolong the amount
+      of time that lets someone be revived by a defib, proportional to how powerful
+      the stasis effect is.
+  - tweak: Opening a stasis bag that's being used now gives a prompt to confirm if
+      you want to open it and make the bag expire. No more misclicks making doctors
+      want to murder you.
+2020-04-29:
+  Leshana:
+  - rscadd: Ship Helm, Sensors, Navigation, and Engine Control consoles are now de-/constructable.
+  - rscadd: Exploration (Overmap) Shuttle Console is now de-/constructable.
+  - tweak: Mappers no longer need to varedit shuttle_tag on shuttle consoles.
+  - rscadd: Admin Start Now verb can be used at any time during startup and it won't
+      actually start the game until initialization is completed.
+  - rscadd: Lobby stat panel shows time remaining on lobby votes and if the server
+      is done initializing.
+  Neerti:
+  - rscadd: You can now eat as much food as you want, even while 'full'.
+  Novacat:
+  - tweak: Re-enabled dual wielding penalties for most weapons that had them.
+  - rscadd: New dual-wielding sprites for weapons that needed them and did not have
+      them.
+  Shadow Quill:
+  - bugfix: Fixes the 'broken/damaged' message when an airlock is just broken.
+  - tweak: Heavy duty cell chargers now have flashing lights as they charge! When
+      all the lights are flashing, that means the cell is done.
+  atlantiscze:
+  - rscadd: Shutoff valve monitoring is now also available as a modular computer program.
+      Its UI has also been cleaned up a little.
+  - rscadd: Research robot module now has basic exploration and xenoarchaeology tools.

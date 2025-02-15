@@ -1,0 +1,100 @@
+2016-12-01:
+  Anewbe:
+  - bugfix: Adult Diona should be able to name themselves properly now. Tweaked from
+      a Baystation PR by FTangSteve.
+  - rscdel: Lightning spells and bioelectrogenesis will no longer stun outright.
+  - rscadd: FBPs should no longer get mutations from radiation.
+  - bugfix: Observe warning should properly show how long you have before you can
+      join.
+  - rscadd: Adds a Toggle Shoe Layer verb to shoes, that let them be worn over the
+      uniform (ie tucking your pants into your shoes).
+  - bugfix: Shoes now properly check if they can hold knives or not.
+  - bugfix: Sign language can now be used while muzzled.
+  Datraen:
+  - tweak: Skrell are now more resistant to various chemicals, more susceptible to
+      pepperspray.
+  ForFoxSake:
+  - bugfix: Fixed a possible href exploit allowing any living player to speak any
+      language.
+  - bugfix: Organic beings can no longer speak Encoded Audio Language, although they
+      can still understand it just fine.
+  - tweak: Positronic brains can now speak Encoded Audio Language.
+  - tweak: Station manufactured Full Body Prosthetics can now speak Encoded Audio
+      Language.
+  MagmaRam:
+  - tweak: Corpses will now process a select few chemicals, meaning you can now add
+      blood into people who bled out before defibbing them.
+  - bugfix: Defibrilators fixed again.
+  - bugfix: R&D machines will now accept stacks of metal and glass from Cargo orders
+      properly.
+  N3X15:
+  - bugfix: Electrical storms no longer affect only cargo. If you're not cargo, your
+      lights are no longer safe.
+  Nerezza:
+  - rscadd: APCs now have a new EMP behavior. Regular APCs shut off for a few minutes,
+      critical APCs (engine and AI) shut off for 30ish seconds. Medbay will now not
+      be permanently disabled by EMPs if no engineers are available to fix their APCs.
+  - rscadd: Bay's timed reboot interface for APCs has been ported for EMPed APCs.
+  - tweak: APCs affected by grid checks say so on their nanoUI now.
+  - tweak: APCs damaged by the apc_damage random event are now effectively emagged
+      APCs. Anyone can operate their interface.
+  - tweak: Emagged APCs can now be repaired by removing their power cell and using
+      a multitool to 'reboot' them manually.
+  - bugfix: Nin and twiz no longer **** up APCs if they drain the battery completely.
+  - tweak: Nin and twiz drain power from the wire an APC is connected to first, then
+      drain from the power cell to fill the drain's 'quota'. Because the amount of
+      power given from the power net is random, this means the battery will still
+      drain but this also means you don't need to crowbar tiles in a room if the APC
+      is empty.
+  - bugfix: Bluescreened APC wire panels now visibly open like they should.
+  - tweak: Bashing APCs open was only effective under certain circumstances, but would
+      spam everyone anyway. This has been changed to only spam the user and to be
+      more indicative of when you can bash the cover off.
+  - spellcheck: Full grammar pass on APCs.
+  - rscadd: Hazard shutters animate slightly and play a sound so players can more
+      readily identify where shutters are being pried.
+  - bugfix: Two people can't pry the same shutter simultaneously anymore.
+  - bugfix: Fixed a bug causing shutters to immediately pry open when people didn't
+      want the shutter open.
+  - rscadd: Inflatables can be deflated using ctrl-click.
+  - rscadd: Inflatables can be deployed on adjacent tiles by clicking them.
+  - bugfix: Bumping into closed inflatable doors will no longer freeze them for a
+      few moments.
+  Yoshax:
+  - maptweak: All Heads of Staff now get multi-color pens in their office.
+  - tweak: Doors that do not have an access requirement can now be opened when handcuffed.
+2016-12-17:
+  Anewbe:
+  - bugfix: EVA rig now has insulated gauntlets.
+  - rscadd: Adds another slot to select languages, if desired.
+  - rscadd: The base device cell is now selectable in the loadout.
+  ForFoxSake:
+  - tweak: Digital Valve pipes can now be made and moved.
+  - tweak: Air Vents can now have their direction changed.
+  - maptweak: Atmospherics is now a little less cluttered.
+  MagmaRam:
+  - rscadd: Added a nice implant that allows humans to speak EAL.
+  N3X15:
+  - rscadd: Added a changelog editing system that should cause fewer conflicts and
+      more accurate timestamps.
+  - rscdel: Killed innocent kittens.
+2016-12-30:
+  Anewbe:
+  - rscadd: Changed run/walk speed to be based only on a config file.
+  - tweak: Walking should be faster now.
+  - tweak: Removed shoeless slowdown.
+  Atermonera:
+  - bugfix: Science grippers can install and remove borg components
+  - bugfix: Exosuit grippers can install exosuit equipment
+  - bugfix: Sheetloaders can load materials into protolathes and circuit imprinters.
+  - tweak: Protolathes and circuit imprinters input materials like autolathes, taking
+      as much of the fed stack as it can.
+  MagmaRam:
+  - tweak: Beakers can now have longer labels.
+  - rscadd: Adds defibrilator crate for cargo.
+  - tweak: Changed how certain stacks spawn behind the scenes. Should fix a few esoteric
+      bugs without impacting anything else.
+  Neerti:
+  - bugfix: Subtracting, multiplying, and dividing with arithmetic circuits should
+      actually occur now.
+  - rscadd: Added new arithmetic circuits; sign, round, and exponent.

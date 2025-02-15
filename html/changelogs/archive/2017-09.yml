@@ -1,0 +1,70 @@
+2017-09-24:
+  Belsima:
+  - imageadd: Replaced air tank sprites.
+  - imageadd: Added new xeno weed, egg, and resin sprites.
+  - imageadd: Added two new bar sign sprites.
+  - imageadd: Replaced blast door sprites.
+  - spellcheck: Microwave is no longer a proper noun.
+  - rscadd: Added croissants to the available recipes.
+  - imageadd: Added new status displays for the AI.
+  - spellcheck: Made spelling of corporations and planets more consistent.
+  - rscadd: Added more planets to character setup.
+  - imageadd: Added a bunch of new hairstyles.
+  - imageadd: Added a new holographic hud.
+  - maptweak: Added a grinder and enzyme to the abandoned bar, for illicit operations.
+  - imageadd: Replaced solar panel sprites.
+  - imageadd: Replaced shield generator sprites with ones from the Eris.
+  - rscadd: Added Qerr-quem and Talum-quem, a pair of Skrellian drugs.
+  - soundadd: Added a variety of sounds for opening cans, explosions, sparks, falling
+      down, mechs, and bullet casings.
+  - soundadd: Added a new death sound for mice.
+  - imageadd: Vox have been entirely resprited.
+  - rscadd: Added wood buckets, craftable with hydropnoics.
+  - soundadd: Added sounds for chopping wood.
+  - bugfix: Fixed a bug that would make default Zippo lighters invisible.
+  Chaoko99:
+  - rscadd: Nitrous Oxide is now an oxidizer.
+  - rscdel: 'Removed all instances of Volatile Fuel ever being simulated. To devs:
+      It still exists. Please, for the love of god, only use it with assume_gas.'
+  Cyantime:
+  - tweak: Tabling now requires a completed aggressive grab.
+  Nalarac:
+  - tweak: Removes the module restraint for the cyborg jetpack upgrade
+  - rscadd: Added the hand drill and jaws of life to the protolathe
+  - tweak: Syndicate toolbox now comes with power tools
+  Neerti:
+  - wip: Adds the Lost Drone, which can be found on the Surface of the future map.
+  - rscadd: You can now modify an unslaved borg's laws by hitting it with a law module,
+      after a significant delay.
+  - rscadd: Adds several new lawsets.  Currently there are no lawboards for these.
+  - rscadd: Adds new 'shocker' baton, for the Lost Drone.
+  - tweak: Combat borg shields are now easier to use, only requiring that they sit
+      on one of your hands and not your active hand.  The shield is also more energy
+      efficent.
+  PrismaticGynoid:
+  - tweak: You now keep your languages when removed from/transplanted into a body.
+  - tweak: AIs and borgs load languages from preferences when spawning.
+  - bugfix: Fixed sign language being usable while lacking both hands.
+  - rscdel: Brains are no longer able to hear binary (robot talk).
+  - rscadd: Adds the ability for research to print drone brains.
+  - tweak: Makes all MMIs, posibrains, and drone brains radio-enabled. Anyone holding
+      the brain can also disable the radio for antag purposes.
+  SpadesNeil:
+  - tweak: Windows can no longer be damaged by very weak attacks.
+  Woodrat:
+  - tweak: Ported floor types and floor sprites (Techfloors) from Vorestation (who
+      ported them from Eris). Brought our floortypes in line with how Vorestation
+      has theirs set up.
+  - bugfix: Missing Techfloor floor tile sprites added.
+  - wip: Floor sprites from Vorestation not yet ported. To be done once we go to the
+      new map.
+  - maptweak: Added catwalks and railings to SC station. Fixed first Z-level.
+  - rscadd: Added the ability to make catwalks and railings as ported from vore.
+  - tweak: Cable heavy duty file tweaks to remove red overlay color from them.
+  - tweak: Added in a color icon for centcomm beach areas.
+  - maptweak: Fixed issues with SC centcomm z that prevented it from loading.
+  - maptweak: Rework of xenobio/xenoflora outpost on SC planetside main map.
+  - rscadd: Added Wilderness z-level for SC, teleportation transition to it may be
+      bugged.
+  - rscadd: Cable ender file added. Allows power transfer between z-levels.
+  - tweak: Southern cross files for areas and defines in relation to z-level work.

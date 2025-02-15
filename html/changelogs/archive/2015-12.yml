@@ -1,0 +1,95 @@
+2015-12-06:
+  Datraen:
+  - tweak: Changes standard and specific plant traits, more diverse plants.
+  HarpyEagle:
+  - tweak: Fabricated power cells start uncharged.
+  Hubblenaut:
+  - bugfix: Welding a broken camera will use the correct icon.
+  - tweak: Camera assemblies remember their tag and network from previous usage.
+  - rscadd: Light replacers can be refilled by clicking on a storage item.
+  - tweak: Light replacers now hold up to 32 light bulbs.
+  - tweak: Light replacers can be obtained through janitorial supply crates.
+  - tweak: A sheet of glass fills the light replacer by 16 bulbs.
+  - bugfix: Material stacks now properly merge upon creation.
+  - bugfix: Messages for adding to existing stack appear again.
+  - tweak: Mobs on help intent will not push others that aren't.
+  - rscadd: Adds tape for atmospherics.
+  - tweak: Tape graphics and algorithm changes. Looks a lot more appealing now.
+  - tweak: Starting and ending tape on the same turf will connect it to all surrounding
+      walls/windows.
+  - tweak: Lifting a part of the tape will lift an entire tape section.
+  - tweak: Mobs on help intent do stop for tape.
+  - bugfix: Crumpled tape does not affect tape breaking behavior anymore.
+  - bugfix: Fixes vending machines not adding stored goods when maintenance panel
+      is closed.
+  - tweak: Doors do only buzz once on failed closing attempt.
+  MagmaRam:
+  - bugfix: Fixed cloners killing fresh clones instantly with brain damage.
+  - bugfix: Fixed a bug where disposals pipes would show up above floors despite being
+      installed under them.
+  Neerti:
+  - rscadd: Adds NanoUI for communicators, the ability for communicators to call other
+      communicators on the station, the ability for station-bound people to call ghosts,
+      and for ghosts to toggle their visibility to communicators on or off in character
+      preferences (defaults to off).  Communicators can now also support more than
+      one call at the same time, for both ghosts and normal communicators.
+  - rscadd: Adds new machine to telecomms, the Exonet node.  It is very basic in terms
+      of functionality, but certain services can be selectively disabled from it,
+      such as newscaster updates, communicators, or external PDA messages.  Adds methods
+      for building and deconstructing Exonet nodes.
+  - experiment: Adds framework for a fake-networking system called EPv2 that communicators
+      will now use, and perhaps other machines will in the future, for good or for
+      evil.
+  - rscdel: Changeling Spacearmor reduced in protective ability.
+  - rscdel: Cryogenic String and Delayed Toxic Sting now have a three minute cooldown
+      upon stinging someone.
+  - rscdel: Cryotoxin, the chemical used in Cryogenic String, is 25% less potent now.
+  - rscdel: The rune to summon Narsie has been changed.  Narsie is no longer summoned,
+      but Hell still comes.
+  - rscdel: Spooky mobs spawned from spooky portals as a result of Hell coming have
+      had their speed, health, and damage reduced.
+  - rscdel: Manifested humans no longer count for summoning Hell.
+  - experiment: Changes how armor calculations work.  All the armor values remain
+      the same, but the 'two dice rolls' system has been replaced with a mix of reliable
+      damage reduction and a bit of RNG to keep things interesting.  The intention
+      is to make weaker armor more relevent and stronger armor less overpowered.
+  - tweak: When you are hit, it uses the armor protection as a base amount to protect
+      you from, then it does a roll between +25% and -25% of that base protection,
+      and adds it to the base protection. The result of that is how much damage is
+      reduced from the attack.  For example, if you are hit by an energy sword in
+      the chest while wearing armor that has 50 melee protection, the base protection
+      is 50, then RNG can make the final protection be between 37.5 and 62.5 percent.
+      The damage you'd take could range from 11.25 to 18.75, instead of 0, 15, or
+      30.  Remember that some weapons can penetrate armor.
+  - rscadd: Added personal communicators, a device that enables someone to talk to
+      someone else at vast distances.  You can talk to people who are far from the
+      station, so long as telecommunications remains operational.
+  - rscadd: To use, become a ghost, then use the appropiate verb and pick a communicator
+      to call.  Then you wait until someone picks up.  Once that occurs, you will
+      be placed inside the communicator.  The voice you use is your currently loaded
+      character.  Languages are supported as well.
+  - tweak: Round-end is now three minutes instead of one, and counts down, to allow
+      for some more post-round roleplay.  If the station blows up for whatever reason,
+      the old one minute restart is retained.
+  PsiOmegaDelta:
+  - rscdel: Manual radio frequency changes can no longer go outside the standard frequency
+      span.
+  - rscadd: Users with sufficient access can instead select pre-defined channels outside
+      this span, such as department channels, when using intercoms.
+  Zuhayr:
+  - tweak: Aiming has been rewritten, keep an eye out for weird behavior.
+  - rscdel: Removed the detective scanner and associated machinery.
+  - rscadd: Added a microscope, machine forensic scanner, etc. from Aurora forensics.
+2015-12-16:
+  HarpyEagle:
+  - bugfix: Fixed a couple of bugs causing phoron gas fires to burn cooler and slower
+      than they were supposed to.
+  - bugfix: Merc bombs are now appropriately explosive again. Same goes for bombs
+      made by toxins.
+  Hubblenaut:
+  - bugfix: Airlock backup power test light properly offline when backup power down.
+  - bugfix: Empty flavor texts no longer draw an empty line on examination.
+  - bugfix: Material stacks now properly merge upon creation.
+  - bugfix: Messages for adding to existing stack appear again.
+  TheWelp:
+  - rscdel: Removed higher Secret player requirements.

@@ -1,0 +1,38 @@
+2019-02-01:
+  Anewbe:
+  - tweak: Pilot consoles now require pilot access to use.
+  Atermonera:
+  - bugfix: Powersink drains have been unclogged and work once more
+  Mechoid:
+  - bugfix: Oversight regarding Changeling revive not removing restraints fixed.
+  - tweak: Straight Jackets can now be resisted out of in 8 minutes, or as low as
+      5 depending on species attacks. Shredding or hulked humans will break out in
+      20 seconds, destroying the jacket.
+  - tweak: Xenomorph plasma vessels now regenerate phoron passively, at an incredibly
+      slow rate. Can be accelerated by consuming liquid phoron.
+  - tweak: Xenomorph organs now give their respective abilities when implanted.
+  - tweak: Virtual Reality pods cleaned up.
+  - rscadd: Replicant organs added, versions of many organs that do not reject in
+      their host. Two currently exist that give special passives.
+2019-02-07:
+  Atermonera:
+  - bugfix: Stairs have been straightened and now connect to both the heavens and
+      hells, formerly just the hells.
+  Elgeonmb:
+  - rscadd: Added the Zaddat species, voidsuit-clad fragile bug people. Whitelist
+      applications will be available at a later date.
+  - rscadd: Added glucose hypos to the SWEATMAX vendors and a few other places thoughout
+      the station.
+  - rscadd: Zaddat equipment is now available through cargo.
+  - rscadd: Some new, very very chuuni accessories to play with; the half cape, the
+      full cape, and the sash
+  - tweak: Most accessories can now fit on suits.
+  - rscdel: Dionaea and vox can no longer use station rigs.
+  Mechoid:
+  - tweak: Flashes now actually run the risk of burning out.
+  - tweak: Flashes that burn out can be repaired after approximately 40 seconds and
+      with some luck, via a screwdriver.
+  - tweak: Cyborg flashes use charge only, and do not have the 10 flash limit. They
+      instead begin burning large amounts of charge.
+  - tweak: Flashes use miniscule charge in addition to their capacitor burn-out, totalling
+      12 uses, taking 4 to down a human. They can be charged within a standard charger.

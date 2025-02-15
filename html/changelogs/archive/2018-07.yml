@@ -1,0 +1,22 @@
+2018-07-12:
+  Anewbe:
+  - bugfix: Technomancer Apportation now properly checks for range and scepter, again.
+2018-07-14:
+  Anewbe:
+  - tweak: Certain languages now require assistance for a species to speak, but not
+      understand, much like EAL.
+  - tweak: Alai can only be `spoken` by Taj and Teshari.
+  - rscadd: Adds a voicebox/larynx organ. Its only purpose at the moment is to assist
+      in speaking certain langauges.
+  - tweak: Language implants, like the EAL implant, now affect the voicebox organ,
+      instead of being a freefloating implant.
+  - rscadd: Adds a language implant for Common Skrellian.
+  Atermonera:
+  - rscadd: Steel sheets can be used to construct Roofing Tiles
+  - rscadd: Roofing tiles can be used on tiles under open spaces or space tiles in
+      multiZ maps to place a lattice and plating on the space above
+  - rscadd: Roofing tiles can be used on outdoor turfs to make them indoors
+  - rscadd: Both functions work together on multiZ maps with outdoor turfs, only one
+      roofing tile is used per tile roofed.
+  Mechoid:
+  - rscadd: Adds a new surgical procedure for fixing brute and burn on limbs.

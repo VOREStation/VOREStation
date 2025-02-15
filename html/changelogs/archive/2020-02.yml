@@ -1,0 +1,60 @@
+2020-02-03:
+  Atermonera:
+  - rscadd: Added a printer to all preset (mapped-in) modular computers, so that word
+      processors can actually print stuff or something.
+  - tweak: Unregulated pressure regulators (Regulation set to OFF) no longer limit
+      flow rate, and instead act as one-way opened valves. For best results, place
+      away from other pumps.
+  - tweak: Automatic Shutoff Valves are more intelligent about finding leaks, and
+      won't close if there's other operating shutoff valves between them and the leak
+  PrismaticGynoid:
+  - rscadd: Adds a few toys to the loadout.
+  schnayy:
+  - rscadd: Adds book cart to library.
+2020-02-14:
+  Atermonera:
+  - tweak: Radiation has to accumulate at least a little bit before it starts to become
+      damaging. Very low levels of radiation can be safe for a number of minutes before
+      you are at risk of injury.
+  - bugfix: Unless you idle for several minutes near the supermatter before it's been
+      turned on, you should no longer be at risk of taking toxloss (Including those
+      few spots in cargo maintenance).
+  - rscadd: Shutoff valve monitoring console can now remotely control shutoff valves.
+  Heroman3003:
+  - tweak: FBP repair can no longer be done through the space suits.
+  - tweak: Surgery can no longer be done through the space suits.
+  Shadow Quill:
+  - tweak: Batons will no longer harmbaton on disarm intent, instead doing so on grab/harm.
+  Woodrat:
+  - wip: Added sofas (no options to build one in round yet, will be added after this
+      pull).
+  - rscadd: Add neonsigns, currently one neon sign, Cafe. (Code is copy pasta from
+      holosigns).
+  - rscadd: Add boxes with mugs and cups.
+  - tweak: Neon signs and holosigns now emit light while on.
+  - maptweak: Merged the Coffee Shop with the Library.
+  - maptweak: Moved the Locker Room to where the Coffee Shop was, adjusted the holodeck.
+  - maptweak: Old Locker Room turned into a construction area.
+  - maptweak: Adjusted holodeck maps to new orientation.
+  - tweak: Changed sprite of barcode scanner.
+  - tweak: Cleaned up furniture icon dmi, fixed arm rest icons for shuttle chairs.
+2020-02-28:
+  Cerebulon:
+  - rscadd: Added cataloguer info for the radioactive manhole cover and decoupled
+      engine PoIs
+  - tweak: Renamed several PoIs to have more descriptive/immersive names
+  - rscadd: Most items can now be placed precisely on tables and racks.
+  - rscadd: Thrown items now land on a random spot on the target tile.
+  Nalarac:
+  - tweak: The 'enable helmet camera' verb has been moved from the object tab to the
+      hardsuit tab.
+  Neerti:
+  - rscadd: Adds an in-game feedback system that can be activated in the server configuration.
+      Can be accessed from the lobby, with a button next to the other lobby buttons.
+      Additional features and restrictions on usage are controlled by the server configuration.
+  leshana:
+  - bugfix: NTNet Quantum Relay can be constructed/deconstructed without runtimes.
+  lorilili:
+  - tweak: You can now place defibs in rechargers.
+  - imageadd: Adds Holographic PDA type.
+  - soundadd: Skrell may now *warble.

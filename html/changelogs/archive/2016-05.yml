@@ -1,0 +1,105 @@
+2016-05-05:
+  Datraen:
+  - rscadd: Added three mixed modes, 'Mercenaries & Wizard', 'Mercenaries & Renegades',
+      and 'Traitors & Renegades'.
+  Hubblenaut:
+  - tweak: Hydroponics vendor and biogenerator offer full bottles of fertilizer. Prices
+      and amount available adjusted to accomodate.
+  Kelenius:
+  - tweak: Move delay after clicking has been removed.
+  PsiOmegaDelta:
+  - rscadd: Can now prefill the loadout flask and vacuum-flask with a relevant liquid
+      of your choice.
+  Yoshax:
+  - tweak: 'Splits gender into biological gender and gender identity. Biological gender
+      modifies the sprite (for between male and female) and gender identity determines
+      what pronouns show up when examined or suchlike. Both are displayed in medical
+      records and such. '
+  - tweak: Smoke grenades can now have their smoke color set by using a multitool
+      on them.
+2016-05-12:
+  Yoshax:
+  - tweak: Doubles the maximum length of records and names to 6144 & 52, respectively.
+      Also increases book length to 12288. (All numbers are in characters.)
+  - bugfix: Makes various services in the antag uplink purchasable once again. This
+      includes the fake crew arrival.
+  - bugifx: Neckgrabs will no longer force people to the ground. In addition, weakened
+      people can no longer resist.
+  - rscadd: All vending machines now have a small chance of vending an additional
+      item.
+  - tweak: Smoke from smoke bombs now lasts approximately 3 times as long and spawns
+      some more smoke to make a heavier cloud.
+  - bugfix: Smoke from smoke bombs now properly does a small amount of oxygen loss
+      damage. This damage is per cloud of smoke.
+2016-05-13:
+  HarpyEagle:
+  - tweak: Shotgun flare illumination now lasts longer, around 3-4 minutes.
+  - bugfix: Fixed attack animation playing when using flashes even if the flash was
+      not actually used due to being broken or recharging.
+  - bugfix: Fixed lightswitches layering over darkness. Now only the light layers
+      above shadow. Lightswitch illumination is now much more subtle.
+  Yoshax:
+  - bugfix: Processing strata floor can now be pried up with a crowbar.
+  - bugfix: Blue carpet can now also be removed with a crowbar, and has had it's ability
+      to burn and have corners restored.
+  - rscadd: Changelings will now store and apply the flavor text of their victims
+      when they absorb and transform into them.
+  - rscadd: Gives Diona a starting funds wage the same as Tajaran and Unathi.
+  - bugfix: Brain damage no longer prevent implant removal surgery.
+2016-05-16:
+  Yoshax:
+  - rscadd: Uplinks now have a discounted item every 15 minutes. This is per uplink,
+      and random, the discount is also random, but weighted as such that a low discount
+      such as 10% off, or 20% off has a higher chance of happening than a high discount
+      such as 90% of. An item will never cost less than 1.
+  - tweak: Mercenaries now spawn with their own, personal uplinks.
+  - bugfix: Faked announcements are now once again purchasable from the uplink, and
+      actually work.
+  - rscadd: Adds several new items to the uplink including tactical knives, metal
+      foam grenades, ambrosia seeds and much more.
+2016-05-17:
+  SilveryFerret:
+  - rscadd: Changes the Death Alarms from announcing over Common channel, to announcing
+      only over Medical and Security channels.
+  Yoshax:
+  - rscadd: Added shotglasses. These can contain 10 units. They have their whole contents
+      swalloed in one gulp. They can be produced in the autolathe or found in the
+      booze vending machine in the bar.
+2016-05-25:
+  Serithi:
+  - rscadd: Adds in lavender.
+  Yoshax:
+  - tweak: Cables of any color can now be merged.
+  - tweak: More and different colors are now available to be used by cable.
+  - tweak: Adjusting your suit sensors now displays a message to other people in range
+      that you did so. In addition, seeing someone else adjust someone's suit sensors
+      no longer informs you to what level.
+  - rscadd: Added towels to the loadout. These can be worn on the head, belt or outwear
+      slots. You can also whip people with them for a special message and sound! In
+      addition, using them in-hand will produce an emote where your towel yourself
+      off.
+2016-05-27:
+  Yoshax:
+  - rscadd: Added a new preference that allows you to disable fake nanoui styling
+      on relevant windows. However, if it is your first time loading with this new
+      preference you will need to save your character slot, as there is a problem
+      with satanisiation and it believes the preference is set to disable the nanoui
+      styling.
+2016-05-29:
+  Datraen:
+  - rscdel: Injecting people with mutationtoxin no longer mutates them into slime
+      people.
+  - rscdel: Removes amutationtoxin.
+  - rscdel: Removes slime core recipies.
+  - rscadd: Adds slime monkey cubes, which are created by injecting monkey cubes with
+      mutationtoxin and activating like a posibrain.
+  - wip: Maps for Xenobio2 research labs/stations.
+  Zuhayr:
+  - tweak: 'Backend change: allowed accessories to be placed on any clothing item
+      with the appropriate variables set.'
+2016-05-30:
+  EmperorJon:
+  - rscadd: Ports Baystation's setup screen changes, thanks to PsiOmegaDelta.
+  - rscadd: Includes character preview with toggleable equipment, visible loadout
+      items, ghost character sprites, and custom colour underwear. Your underwear
+      will have reset, so you'll need to set it back.

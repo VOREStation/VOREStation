@@ -1,0 +1,148 @@
+2016-10-02:
+  Anewbe:
+  - tweak: Pain from burn damage is now equal to that of brute damage.
+  - bugfix: Removed the exploit by which you could gain cargo points by ordering plastic
+      crates.
+  - rscadd: Upped cargo point gain by 50%.
+  - rscdel: Parapen in SpecOps crate replaced with a 4th smoke grenade.
+  HarpyEagle:
+  - rscadd: Adds applying pressure to body parts to reduce bleeding. With desired
+      body part selected, help-intent click yourself or get an aggressive grab, then
+      help-intent attack with the grab item. Each person should only be able to apply
+      pressure to one body part on one person at a time, so choose wisely. Applying
+      pressure will get blood on your hands.
+  Yoshax:
+  - rscadd: Armbands can now be attached to things that go in the outer suit slot.
+  - rscadd: Shanking has been added. You can shank someone by getting an aggressive
+      grab on them, targetting their chest and attacking them with a sharp item. This
+      has a special attack that has greatly increased chance to do internal damage,
+      also does bonus damage for weapons that are both sharp and have edge.
+  Zuhayr:
+  - rscadd: Added /vg/ direct-action ventcrawling. You will now crawl through the
+      actual pipe network, a step at a time. Have fun.
+2016-10-05:
+  Redstryker:
+  - rscadd: Added four sounds that are randomly played when bones break. Also allows
+      the Technomancer to play the bone break sound.
+  - rscadd: Adds a black variety of the Security Voidsuit called the 'Crowd Control'
+      voidsuit. It can be obtained from a Suit Cycler with Security clearence.
+  - bugfix: Codes in icon state for the Press Vest.
+  - rscadd: Added a child of the Medical armband with a red cross on it.  It is available
+      on the loadout.
+2016-10-06:
+  Anewbe:
+  - rscadd: Energy weapons and stunbatons now use special device power cells, these
+      can still be recharged.
+  - rscadd: Energy weapons can be unloaded and reloaded by clicking them with an empty
+      hand or a device cell, respectively. The process of loading a cell takes a few
+      moments.
+  - rscadd: Stunbatons no longer require a screwdriver to switch cells.
+  - tweak: Tweaked the order in which stunbatons check for power, they should now
+      visibly power off when their cell hits 0, instead of one hit after.
+  - rscadd: Security lockers (HoS, Warden, and Officer) now have an extra device cell
+      in them.
+  - rscadd: Protolathe can print device cells.
+  - rscadd: Adds start_recharge() proc to energy weapons. When called, this should
+      cause the affected weapon to begin self-charging.
+  - rscdel: Weapons that self-recharge won't do so for a short period after firing.
+  - tweak: On weapons that can fire both lethally and non-lethally, lasers drain twice
+      as much power as tasers.
+  - tweak: Laser cannon, LWAP, and self_recharging weapons cannot switch cells.
+  - tweak: Map has been changed to include more rechargers. Merc and ERT bases include
+      extra device cells.
+  Neerti:
+  - tweak: Cleaned up the work in progress event system.
+  - rscadd: Added framework for a new grid check for the new event system.
+  Spades Neil:
+  - tweak: Replaced Station Administrator with Colony Director, based on feedback
+      literally from NASA.
+  Yoshax:
+  - bugfix: You can now only fit one pizza per box, and pizzas will no longer vanish
+      to pizza gnomes.
+  - rscadd: Energy swords will now produce a small light. The light is determined
+      by the color of the blade.
+  - bugfix: Simple mobs such as slimes, or carp, will now ignore intent requirements
+      for passing applied tape.
+  - bugfix: Long records will no longer be devoured by long-record-goblins when attempting
+      to edit them using a console in-round.
+  - bugfix: AIs with special roles will now get access to the fancy law manager.
+2016-10-08:
+  Anewbe:
+  - bugfix: Unloading an energy weapon should now correctly show what was unloaded.
+  - tweak: Borg stun baton is back to the old cost, for balance reasons.
+  Redstryker:
+  - rscadd: '''Overseer'' added as an alt title to Colony Director alt titles list.'
+  Spades Neil:
+  - rscadd: Adds the ability to hack Jukeboxes.
+  Yoshax:
+  - rscadd: Flashlights now take powercells.
+  - rscadd: Flashlights now have multiple brightness levels, including low, medium
+      and high.
+2016-10-10:
+  Anewbe:
+  - tweak: The base device cell has been shrunk, for use in non-weapon devices.
+  - rscadd: Adds another class of device cell, for use in weapons.
+  - rscadd: Belts can now hold device cells.
+  - rscadd: Cryopods (including the portal and elevator) no longer consume ammo or
+      device cells.
+  - bugfix: Low Yield EMP grenades now have the proper EMP radii.
+  Redstryker:
+  - bugfix: Allows promotion to Colony Director on the ID console.
+2016-10-24:
+  Anewbe:
+  - tweak: The color selectable beret should now be more vibrantly colored.
+  - rscadd: Bullet armor has a higher chance of preventing an embed.
+  - tweak: The actual system by which embed works has been changed. The overall effect
+      should be negligible.
+  - tweak: Flashlights use device cells. Time of use should be roughly unchanged.
+  - rscadd: Device cells have a chance to spawn where normal cells do.
+  - rscadd: Internal Affairs Agent HUD icon added.
+  - tweak: Command, QM, and Bridge Secretary icons are now blue.
+  - tweak: Research department icons are now purple.
+  - tweak: Supply department icons are now brown.
+  - tweak: Chemist icon is now white and red, like the rest of medical.
+  - tweak: Using a roll of tape on a person requires the same level of grip as handcuffs.
+  - tweak: The disclocation chance when using disarm intent with a weapon has had
+      its' formula changed, meaning the threshold for always disclocatiing is now
+      higher, and no longer 15 force. Meaning weapons will dislocate limbs less often
+      and will also do less damage.
+  MagmaRam:
+  - tweak: Rates of blood loss now depend on the type of wound inflicted and where
+      the wound is inflicted, as well as the damage.
+  Neerti:
+  - tweak: Changes how the grid check event works.  A new machine called the grid
+      checker exists in engineering, near the engineering substation.  The actual
+      event now involves a power spike originating from the engine, which the grid
+      checker will activate upon sensing it, and causing a blackout.  Engineering
+      can restore power faster if they hack the grid checker correctly.  A piece of
+      paper left in the substation has more details.
+  - rscadd: Adds new 'spell power' mechanic, currently tied to technomancer cores.
+      Certain cores will augment various characteristics of spells, such as damage,
+      radius, etc Base spell power is 100% (internally 1.0) and some cores may raise
+      or lower it.
+  - rscadd: Adds new 'info' tab for Technomancers that hopefully tells new them what
+      they need to know.
+  - tweak: Round-end now shows every spell each technomancer has, as well as their
+      core type.
+  - tweak: Ability HUD buttons can be re-ordered by clickdragging one button onto
+      another.
+  - bugfix: Recycling core now actually works.
+  - rscadd: Adds two new cores. The Safety Core, which reduces instability by 70%,
+      however it hass less energy, lower recharge rate and lower spell power. Also
+      the Overcharged Core which uses more energy, caused more instability, but has
+      far higher spell potency.
+  - rscadd: Adds a new Spyglass item, that functions exactly like a pair of binoculars.
+      This is for Techomancers.
+  - tweak: Technomancer Resurrect now has a deadline of 30 minutes until a dead person
+      can't be revived, instead of 10 minutes.
+  - tweak: Technomancer Radiance is now three times as strong. Also Radiance with
+      a Scepter prevents the caster and allies from being afflicted.
+  PapaDrow:
+  - rscadd: Striped undergarments now exist.
+  Redstryker:
+  - rscadd: Added a blue variant of the Medical voidsuit called the 'Emergency Medical
+      Response Voidsuit' that can be obtained from the suit cycler.
+2016-10-25:
+  Anewbe:
+  - tweak: The effects from empty-handed disarming now have a cooldown.
+  - rscdel: HoS and Detective equipment is less protective.

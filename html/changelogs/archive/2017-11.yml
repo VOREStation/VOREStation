@@ -1,0 +1,24 @@
+2017-11-06:
+  Atermonera:
+  - bugfix: AI's can speak local rootspeak.
+  - rscadd: Implements Virtual Reality.
+  Woodrat:
+  - rscadd: Added 'see down' in open spaces from Vore.
+  - rscadd: Added talking and visible messages upward through open space from Vore.
+  - rscadd: Added a Syndicate ID with all access (admin spawn only).
+  - tweak: Port of 'Syndicate id cards now listen for owner destruction' from Bay.
+2017-11-29:
+  Anewbe:
+  - rscadd: FBPs are now affected by Radiation, it gives them ToxLoss. Wear your PPE.
+  - rscadd: FBPs can have ToxLoss decreased by going into a charger.
+  - rscadd: It is now possible to move FBPs and robots into chargers, via click+drag
+      or grabs.
+  Atermonera:
+  - bugfix: AI verbs are no longer hidden on the tabs.
+  - bugfix: Incapacitated mobs can no longer open your inventory and steal your gubbins.
+  MoondancerPony:
+  - bugfix: Fixed a mislabeled pulse pin on the microphone.
+  - bugfix: Fixed an issue with reference pins and multiplexers, and reference pins
+      in general.
+  PrismaticGynoid:
+  - tweak: Adjusts the amount of camera locations the AI can store from 10 to 30.

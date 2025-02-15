@@ -1,0 +1,69 @@
+2018-01-12:
+  Atermonera:
+  - rscadd: Communicators now have a weather app.
+  - rscadd: Mobs in VR can switch between translucent and opaque forms.
+  Leshana:
+  - tweak: Examining construction frames shows which circuit board (if any) is installed.
+  - tweak: Convert the machinery controller to a StonedMC subsystem
+  MrStonedOne:
+  - rscadd: Added admin verb 'Display del() Log' displaying garabage collector statistics.
+  PrismaticGynoid:
+  - rscadd: Adds the ability to 'crawl' to an adjacent turf by click-dragging yourself
+      to it, after a delay. This can be used to move while unable to stand. You can
+      also do this with other movable objects, if you really wanted to.
+  - tweak: Conscious mobs lying on the ground can now buckle themselves to chairs/beds.
+      This includes people missing legs.
+2018-01-25:
+  Anewbe:
+  - rscadd: Southern Cross Map is now live
+  Arokha:
+  - tweak: Remove borg hud items as they have normal huds as their sensor augs now,
+      and can see records with them.
+  Atermonera:
+  - rscadd: Communicators have a flashlight under the settings menu, functions as
+      the PDA one
+  - rscadd: Station-bound synthetics now have gps units
+  Cerebulon:
+  - rscadd: Added 19 food recipes from /tg/station
+  Leshana:
+  - soundadd: Sounds of Tesla engine lighting bolts
+  - imageadd: Sprites for grounding rod and Tesla coil
+  - imageadd: Sprites for lighting bolts
+  - rscadd: The Tesla Engine, Tesla Coils, and Grounding Rods
+  - rscadd: Wiki search URL is now configurable in config.txt
+  - rscadd: Breaker boxes can be constructed in game.
+  - bugfix: Construction of heat exchange pipes, vents, and scrubbers now works properly
+      again.
+  - tweak: Fix singularity energy balance so it is stable under normal operation.
+  - bugfix: Fix emitter beams and PA effects from being grav pulled or consumed.
+  - rscadd: Added the operating manual book for the Tesla Engine.
+  Mechoid:
+  - rscadd: Brains can be set to be a source of genetic information.
+  - rscadd: Promethean cores can be inserted into a cloning scanner to be cloned.
+      This gives them a worse modifier upon completion.
+  - rscadd: Promethean cores can now have chemicals added or removed from them. Base
+      for future slime cloner.
+  - rscadd: Species-based cloning sicknesses possible.
+  - spellcheck: Cyboernetic - > Cybernetic
+  Neerti:
+  - rscadd: Adds boats that can be ridden by multiple people, which use oars. Can
+      be crafted with large amounts of wooden planks.
+  - rscadd: Adds autopilot functionality to Southern Cross Shuttle One and Shuttle
+      Two.
+  - rscadd: Adds ability to rename certain shuttles on the Southern Cross.
+  - rscadd: Areas about to be occupied by a shuttle will display a visual warning,
+      of a bunch of circles growing over five seconds.
+  SunnyDaff:
+  - rscadd: Added new food items.
+  - rscadd: Added Cider.
+  - rscadd: Added Apple Juice to bar vending machine.
+  - bugfix: Fixed Vodka recipe.
+  - bugfix: Fixed Apple and Carrot cake recipes
+  - tweak: Changed Cake recipes to not include fruit juice
+  ZeroBits:
+  - rscadd: Added the ability to have multiple loadouts per character.
+  battlefieldCommander:
+  - rscadd: Adds a communicator watch, a variant of the communicator you can wear
+      on your wrist.
+  - rscadd: Replaces the communicator in the loadout with a communicator selection.
+      Choose either the traditional communicator, or the new commwatch.

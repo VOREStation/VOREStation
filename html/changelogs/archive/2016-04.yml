@@ -1,0 +1,37 @@
+2016-04-04:
+  Kelenius:
+  - bugfix: Monkeys can ventcrawl once again.
+  Yoshax:
+  - rscadd: Tasks that take time to perform now have a progress bar.
+  - rscadd: Visibility of progress bars can be toggled in preferences. Default is
+      on.
+2016-04-07:
+  Datraen:
+  - bugfix: If a slice of an item is spawned independently, it will get generic settings.
+  Kelenius:
+  - tweak: Changelings will now change appearance and species together when transforming.
+  - tweak: Changelings no longer have gender honorifics in lingchat.
+  - rscadd: Absorbing the DNA from any source will allow you to use its name, species,
+      and languages.
+  - bugfix: DNA extract sting won't produce a strange message if there's no target.
+  - tweak: Cultists no longer need to research words.
+2016-04-17:
+  Datraen:
+  - rscadd: Manually ports /tg/station's dark click code https://github.com/tgstation/-tg-station/pull/10272
+      by Razharas.
+  - bugfix: Teshari smocks now spawn as smocks, and not aqua jumpsuits.
+  - bugfix: Checks to see if new a two-handed weapon can be wielded when dropped.
+  EmperorJon:
+  - bugfix: Robotics Console now correctly shows the operational/lockdown state and
+      button based off if it thinks the synthetic is locked down or not.
+  - bugfix: Autotraitor synths now behave the same as Traitor synths - they are not
+      locked down.
+  Kelenius:
+  - rscadd: Solars now start wired.
+  Neerti:
+  - rscadd: Ports Bay's volume-based inventory system.  It works off by weight classes
+      instead of just slots, allowing you to hold more light items than you could
+      previously.
+  - rscadd: Bulky items can now go in your backpack, however it will require twice
+      the space of a normal sized item.
+  - rscdel: Spacesuits, RIGs, and sniper rifles made heavier.

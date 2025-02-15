@@ -1,0 +1,59 @@
+2018-03-05:
+  Anewbe:
+  - rscdel: Removes Command Liaison, Bridge Secretary, Hydroponicist, Prospector,
+      Sanitation Technician, Professor, and Historian alt-titles.
+  - rscdel: Removed universal translators from the loadout.
+  - rscadd: RnD can print earpiece translators.
+  Mechoid:
+  - rscadd: Add a surgical operation for repairing the brainstem of a decapitated
+      individual.
+  - rscadd: Add a permanent modifier for frankensteining individuals.
+  Nerezza:
+  - rscadd: Package bomb detonators can be re-bound by hitting the new package bomb
+      with them.
+  PrismaticGynoid:
+  - bugfix: The succumb verb will now work on species that can't take oxyloss damage.
+2018-03-15:
+  Anewbe:
+  - tweak: Pills and ingested reagents actually process at half speed, rather than
+      just ignoring half of the reagents.
+  - rscdel: Robotic limbs now need internal repair at 30 composite damage, rather
+      than 30 of burn or brute.
+  - tweak: Syringes now inject their entire payload with one click, but in 5 unit
+      increments. There is a delay in between each of these.
+  - rscadd: Assisted robotic organs (internals, eyes) are less vulnerable to EMP.
+  - rscdel: Lifelike robotic organs (currently VeyMed) are more vulnerable to EMP.
+  Cerebulon:
+  - rscadd: Added Akhani language for Tajaran.
+  - spellcheck: Fixed incorrect singular form of Tajaran in several places.
+  MisterLayne:
+  - rscadd: Added a version of the ED-209 called the ED-CLN. It is a more efficient
+      Cleanbot.
+  - bugfix: Reinforced snowballs can now actually be made in a reasonable time limit.
+  Nerezza:
+  - tweak: Broken APCs can be bashed open with slightly smaller objects now. This
+      means wrenches are acceptable, no need to hunt down a fire extinguisher.
+  - rscdel: EVA rigsuit/hardsuit no longer holds toolboxes in suit storage since those
+      have been a volume inventory for some time now. RIP ghetto satchel.
+  - rsctweak: CE's rigsuit/hardsuit no longer holds pickaxes and ore satchels, but
+      can now hold inflateables.
+  - bugfix: Retracting rigsuit/hardsuit helmets with no valid mask equipped now disables
+      internals.
+  - bugfix: Offline rigsuits/hardsuits are no longer considered valid air supplies
+      by the internals button. Before, your internals would instantly shut off before
+      you could get a breath out of the rigsuit. Now, the internals button will look
+      for a different tank instead.
+  - rscadd: Tajaran now get to keep their tails when they wear the EVA, RD, or Industrial
+      rigsuits/hardsuits. Unathi sprites to come soon!
+  - bugfix: Sifwood floor tiles now correctly use their double-stacked icon instead
+      of disappearing.
+  Woodrat:
+  - rscadd: Added in a weapons crate for explorers that has bolt action rifles.
+  - rscadd: Weapon powercells can be ordered from cargo (security access crate).
+  - tweak: Automatic weapons crate split into two crates now. One for SMGs one for
+      the rifle. Minor adjustments to other munitions and security supply packs as
+      well.
+  - rscadd: The automatic weapons ammo crate has also been split.
+  - tweak: Names of the crates for the munitions and security catogory supply packs
+      have been adjusted slightly. In certain places contents also adjusted.
+  - bugfix: Holoplant now comes in a crate.

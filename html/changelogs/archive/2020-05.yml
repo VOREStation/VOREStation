@@ -1,0 +1,45 @@
+2020-05-13:
+  Atermonera:
+  - rscadd: Added a preference to control multilingual parsing behaviour, with a few
+      different modes. Should hopefully be less punishing to people who stutter and
+      use hyphens as a language key.
+  - tweak: The examine mode preference should now persist across reconnections during
+      a single round, but if the server is fully restarted it still appears to reset.
+      This issue is also present for the multilingual preference, and I'm still looking
+      into it. Savefiles are cryptic.
+  Layne:
+  - rscadd: Added Promethean language.
+  Mechoid:
+  - rscadd: Adds more interactions with animals, like shearing and taming.
+  - rscadd: New PoIs
+  - rscadd: Thermal poncho attachment, has minor slowdown, but gives thermal protection
+      to the armor it is attached to.
+  - rscadd: Mercenaries now drop their guns again. Most likely to be broken, however
+      they can be repaired. Examining when adjacent will allow you to inspect the
+      gun for what is needed.
+  - rscadd: Mercenary Snipers now exist. They will telegraph their shots approximately
+      2 seconds in advance, and can fire at 14 tiles away. Will occasionally drop
+      pieces of their PTRs that survive combat.
+  - tweak: Clothing can now check attachments for temperature resistance.
+  - bugfix: MHD Howitzer beam effect actually exists again.
+  - bugfix: Xenoresin ground cover is properly colored again.
+  atlantiscze:
+  - rscadd: Robots can now search loot piles.
+  - rscadd: Hardsuits now allow backpacks to be carried in storage slot. This is limited
+      to hardsuits which are worn on the back slot.
+  - rscadd: SMES units now have automatic load balancing both on inputs and outputs
+  - rscadd: SMES units (and derived objects, such as PSUs) can now have more than
+      one input terminal. This allows for input from more otherwise isolated power
+      networks.
+  - tweak: Completely redesigned cell rack PSUs, removed ghetto variant. Cell rack
+      PSUs now support multiple power cells and hot-swapping of cells during operation.
+      This allows for either charging multiple cells at once in one device (directly
+      from power cable) or for powering up various machinery with only a power cell.
+      They are still inferior to SMESes in pretty much all aspects.
+  - tweak: Multitool on a cable now shows nicer results with large currents (uses
+      kW or MW accordingly)
+  - tweak: Multitool may be now used to change colour of cable coils.
+  - tweak: Supermatter delamination effects have been tweaked. Delamination is considerably
+      less laggy, and less directly destructive. Instead, it causes larger health
+      hazard and secondary engineering problems such as power outage or partial damage
+      of solar arrays.

@@ -1,0 +1,101 @@
+2019-06-04:
+  Chaoko99:
+  - tweak: The medibot's minimum configurable threshhold has been lowered to 0, from
+      5. Perfect for silly-billies coming into medical with 2 brute boo boos, thanks
+      to accidentally throwing something at themselves or.. something.
+  Heroman3003:
+  - tweak: Restricts Alarm Monitor modular computer program to engineering access.
+  - tweak: Removed access to departmental networks on camera modular computer program
+      for average people.
+  - rscadd: Added access to full network on camera modular computer program for heads.
+  Mechoid:
+  - tweak: Borers can speak through nearby mobs if they have a sufficient build-up
+      of chemicals.
+  - tweak: Borers have a max chemical volume.
+  - rscadd: The Sakimm, Frostfly, Glitterfly, River Leech, Crystal-Feathered Duck,
+      and Kururak are now able to be used on the map and PoIs.
+  - tweak: Glass jars can now hold glitterflies, river leeches, and frostflies.
+  - tweak: Glass jars now respect mobs that exist over the lighting plane, adding
+      a special overlay visible when on the ground.
+  Nalarac:
+  - bugfix: Closed all bugs on tracker that are no longer relevant or a bug.
+  Novacat:
+  - bugfix: Attempts to fix the timer SS to be moore robust
+  - tweak: Fixes bug with custom laptops.
+  - tweak: Raises cost of the elite model to 7 loadout points.
+  chaoko99:
+  - rscadd: Adds the clientside 'ping' and 'reconnect' commands to the file menu.
+  mistyLuminescence:
+  - bugfix: Prone people can no longer interact with an empty hand.
+  - bugfix: Two-handed items are now correctly unwielded when the user's offhand is
+      severed.
+  - bugfix: Mecha syringe guns now respect pierceproof clothing.
+  - bugfix: Securitrons now correctly ignore attacks when disabled.
+  - bugfix: Rechargers now correctly benefit from upgraded capacitors.
+  - bugfix: Medical record laptops and detective TV camera consoles no longer turn
+      into regular consoles when de- and re-constructed.
+  - bugfix: Zaddat Shrouds now retain their base name when damaged, if the shroud
+      has been customized.
+  - rscadd: Adds the makeover kit to the traitor uplink for 5 TC, also available in
+      the Infiltrator bundle null crate in Cargo. Makeover kits can be used to change
+      the user's hair style and color, and eye color.
+  - bugfix: Random event timers now wait until the round starts to begin counting
+      down.
+2019-06-23:
+  Mechoid:
+  - tweak: E-swords and Changeling arm-weapons can now block projectiles (again).
+  Novacat:
+  - rscadd: Adds greyscale pills, which are colored by their reagent
+  - rscadd: Adds colored pill bottles, most pre-spawned pill bottles are colored
+  - tweak: Prespawn pills and pill bottles have had their names simplified
+  - tweak: Attempts to make lighting less uniform
+  - tweak: Cleans up lighting code
+  TheFurryFeline:
+  - bugfix: Fixes infinite frame production for some machinery objects such as grounding
+      rods or exonet nodes. If there's no available circuit board to get, then don't
+      return anything when attempting deconstruction. Ported from Cit RP. Eliminates
+      'Cannot read null.board_type' runtimes where they apply.
+  - tweak: Allows hydroponic machines to be unwrenched.
+  Woodrat:
+  - rscadd: Turrets and respective controls added to each teleporter room.
+  - tweak: Air tank on shuttles switched out with an air canister.
+  - tweak: Roundstart Tcomms SMES starts fully charged.
+  - tweak: Air tanks on station have the same amount in them as air canisters.
+  - tweak: Expanded atmospheric tanks to be 2 by 3 instead of 2 by 2.
+  - tweak: Wilderness Shuttle landing point shelter updated.
+  - tweak: Teleporter room hand tele can now spawn in one of 4 places.
+  - tweak: Halved the warm up time when the autopilot on the shuttles start at round
+      start from ten minutes to five and nine respectively. Should mean the first
+      shuttle will be taking from the outpost when the second shuttle leaves the station.
+  - tweak: Reduced transit time from 75 seconds with pilot, 150 seconds without to
+      60 and 120 respectively.
+  - tweak: Amount of phoron in the outposts reduced.
+  - tweak: Ground Xenobio and Xenoflora torn down partially.
+  - rscdel: Reduction of the amount of steel and glass in engineering by half.
+  - rscdel: Reduction of the amount of steel and glass in EVA by half.
+  - bugfix: Fix for Dock 2 Transfer Shuttle airlock buttons not working.
+  - rscadd: Intercoms added to arrivals shuttle.
+  - rscadd: Modular computers scattered around the main station.
+  - rscadd: Elevator can be accessed at centcomm.
+  - bugfix: Fix Bridge Secretary Quarters tint.
+  - bugfix: Landmarks for Bluespacerift added.
+  - bugfix: Wilderness Shuttle landing sides should no longer shiskabob shuttles.
+  - bugfix: Modular Computers replacing wrong computers.
+  - bugfix: Chapel Mass Driver.
+  - bugfix: Merc Turrets function properly.
+  - bugfix: Map issues on the main outpost.
+  mistyLuminescence:
+  - tweak: Splints now work on all areas of the body.
+  - tweak: When the supermatter explodes, it now leaves behind a shattered plinth
+      that continues to emit radiation. You should probably get rid of it.
+  - bugfix: If you destroy the supermatter early (e.g. through admin deletion shenanigans),
+      it no longer irradiates everyone forever.
+  - bugfix: Welding lockers now actually updates their sprites properly.
+  - tweak: Every floor tile now has a minor (2%) chance to spawn with some dirt on
+      it. The Janitor now has a job again.
+  - tweak: Similarly, every Sif grass tile now has a minor (5%) chance to spawn with
+      some fancy eyebulb grass on it. It can be removed by clicking on it with harm
+      intent.
+  - rscadd: Adds cats-in-boxes, which can be activated (once) to spawn cats. There's
+      an orange tabby (Cargo cats) and a tuxedo (Runtime) version.
+  - bugfix: Fixes a material duplication exploit.

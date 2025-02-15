@@ -1,0 +1,11 @@
+2020-01-21:
+  Heroman3003:
+  - bugfix: A thin sheet of lead properly defeats radiation once more, but steel beams
+      remain permeable.
+  TheFurryFeline:
+  - bugfix: Name and desc vars switched for changeling combat boots so removal of
+      item doesn't output an excessively long name.
+  - bugfix: Fixes light frames returning 5 steel per deconstruction when 2 steel is
+      used to create the frame.
+  schnayy:
+  - rscadd: Added the Pyralis borg sprites.
