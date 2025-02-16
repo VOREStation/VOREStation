@@ -162,6 +162,19 @@
 		if(keyslot1.syndie)
 			src.syndie = TRUE
 
+	if(!radio_controller)
+		addtimer(CALLBACK(src,PROC_REF(handle_finalize_recalculatechannels),setDescription),3 SECONDS)
+	else
+		addtimer(CALLBACK(src,PROC_REF(handle_finalize_recalculatechannels),setDescription),0 SECONDS)
+
+/obj/item/radio/headset/proc/handle_finalize_recalculatechannels(var/setDescription = 0)
+	PRIVATE_PROC(TRUE)
+	SHOULD_NOT_OVERRIDE(TRUE)
+	if(!radio_controller)
+		src.name = "broken radio headset"
+		return
+
+
 	if(keyslot2)
 		for(var/ch_name in keyslot2.channels)
 			if(ch_name in src.channels)

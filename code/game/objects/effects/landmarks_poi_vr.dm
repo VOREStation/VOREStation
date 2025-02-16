@@ -12,9 +12,12 @@ var/global/list/global_used_pois = list()
 /obj/effect/landmark/poi_loader/New()
 INITIALIZE_IMMEDIATE(/obj/effect/landmark/poi_loader)
 
+// Atoms inits before Shuttles at the moment.
+// This means Atoms tries to talk to the shuttles, doesn't realize shuttles haven't init'd and throws out 140000 runtimes.
+// Obviously, this is extremely unideal See https://github.com/tgstation/tgstation/pull/89024 as well.
 /obj/effect/landmark/poi_loader/Initialize()
-	src.load_poi()
-	return ..()
+	..()
+	INVOKE_ASYNC(src, PROC_REF(load_poi))
 
 /obj/effect/landmark/poi_loader/proc/get_turfs_to_clean()
 	return block(locate(src.x, src.y, src.z), locate((src.x + size_x - 1), (src.y + size_y - 1), src.z))
