@@ -184,13 +184,6 @@
 	if(!ability_master)	//VOREStation Edit: S H A D E K I N
 		ability_master = new /obj/screen/movable/ability_master(src)
 
-
-/mob/Destroy()
-	..()
-	if(ability_master)
-		QDEL_NULL(ability_master)
-
-
 ///////////ACTUAL ABILITIES////////////
 //This is what you click to do things//
 ///////////////////////////////////////

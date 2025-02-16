@@ -7,7 +7,7 @@ import {
   Stack,
 } from 'tgui-core/components';
 
-import { Data, Module as ModuleData } from './types';
+import type { Data, Module as ModuleData } from './types';
 
 export const Modules = (props) => {
   const { act, data } = useBackend<Data>();

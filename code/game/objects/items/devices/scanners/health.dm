@@ -92,7 +92,6 @@
 	if(!(M.status_flags & FAKEDEATH))
 		analyzed_results = span_notice(analyzed_results)
 	dat += analyzed_results
-	//VOREStation edit/addition starts
 	if(M.timeofdeath && (M.stat == DEAD || (M.status_flags & FAKEDEATH)))
 		dat += 	span_notice("Time of Death: [worldtime2stationtime(M.timeofdeath)]")
 		dat += "<br>"
@@ -100,7 +99,6 @@
 		if(tdelta < (DEFIB_TIME_LIMIT * 10))
 			dat += span_boldnotice("Subject died [DisplayTimeText(tdelta)] ago - resuscitation may be possible!")
 			dat += "<br>"
-	//VOREStation edit/addition ends
 	if(ishuman(M) && mode == 1)
 		var/mob/living/carbon/human/H = M
 		var/list/damaged = H.get_damaged_organs(1,1)
@@ -118,6 +116,17 @@
 		else
 			dat += span_notice("    Limbs are OK.")
 			dat += "<br>"
+		// This handles genetic side effects and tells you the treatment, if any.
+		// These are handled in side_effects.dm
+		if(H.genetic_side_effects)
+			for(var/datum/genetics/side_effect/side_effect in H.genetic_side_effects)
+				var/datum/reagent/Rd = SSchemistry.chemical_reagents[side_effect.antidote_reagent]
+				dat += "<br>"
+				dat += span_danger("Patient is suffering from [side_effect.name]. ")
+				if(Rd)
+					dat += span_danger("Treatment: [Rd]<br>")
+				else
+					dat += "There is no known treatment.<br>"
 
 	OX = M.getOxyLoss() > 50 ? 	 "[span_cyan(span_bold("Severe oxygen deprivation detected"))]" 			: 	"Subject bloodstream oxygen level normal"
 	TX = M.getToxLoss() > 50 ? 	 "[span_green(span_bold("Dangerous amount of toxins detected"))]" 	: 	"Subject bloodstream toxin level minimal"

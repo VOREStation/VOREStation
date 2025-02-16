@@ -241,3 +241,5 @@
 
 	VAR_PROTECTED/list/viruses
 	VAR_PROTECTED/list/resistances
+
+	var/custom_footstep = FOOTSTEP_MOB_SHOE

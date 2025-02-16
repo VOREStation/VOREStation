@@ -1060,6 +1060,7 @@ closest to where the cursor has clicked on.
 Note: This proc can be overwritten to allow for different types of auto-alignment.
 */
 
+
 /obj/item/var/center_of_mass_x = 16
 /obj/item/var/center_of_mass_y = 16
 

@@ -113,10 +113,6 @@
 /mob/living
 	var/list/modifiers = list() // A list of modifier datums, which can adjust certain mob numbers.
 
-/mob/living/Destroy()
-	remove_all_modifiers(TRUE)
-	return ..()
-
 // Called by Life().
 /mob/living/proc/handle_modifiers()
 	if(!modifiers.len) // No work to do.

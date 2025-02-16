@@ -580,7 +580,6 @@
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
 	extra_overlay = "vulp_jackal-inner"
-	extra_overlay2 = "vulp_jackal-tips"
 
 /datum/sprite_accessory/ears/vulp_jackal/tri
 	name = "vulpkanin thin, tri-color (tips)"

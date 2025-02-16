@@ -17,7 +17,7 @@ import {
   searchFilter,
 } from './functions';
 import { MaterialAmount } from './Material';
-import { Data, internalPart } from './types';
+import type { Data, internalPart } from './types';
 
 export const PartSets = (props) => {
   const { data } = useBackend<Data>();

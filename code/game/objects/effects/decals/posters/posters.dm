@@ -18,7 +18,7 @@
 	var/decl/poster/poster_decl = null
 	var/poster_type = /obj/structure/sign/poster
 
-/obj/item/poster/Initialize(var/mapload, var/decl/poster/poster_decl = null)
+/obj/item/poster/Initialize(mapload, var/decl/poster/poster_decl = null)
 	if(ispath(src.poster_decl))
 		src.poster_decl = get_poster_decl(src.poster_decl, TRUE)
 	else if(istype(poster_decl))
@@ -126,7 +126,7 @@
 	var/roll_type = /obj/item/poster
 	var/ruined = FALSE
 
-/obj/structure/sign/poster/Initialize(var/newloc, var/placement_dir = null, var/obj/item/poster/P = null)
+/obj/structure/sign/poster/Initialize(mapload, var/placement_dir = null, var/obj/item/poster/P = null)
 	. = ..()
 
 	if(ispath(src.poster_decl))
