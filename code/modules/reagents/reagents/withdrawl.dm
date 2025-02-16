@@ -12,8 +12,7 @@
 		if(prob(2))
 			M.Weaken(1)
 	else if(current_addiction > 10)
-		if(M.bloodstr.has_reagent(REAGENT_ID_INAPROVALINE) || M.bloodstr.has_reagent(REAGENT_ID_INAPROVALAZE))
-			// Inaprovaline can be used to treat addiction
+		if(CE_STABLE in M.chem_effects) // Inaprovaline can be used to treat addiction
 			if(prob(1))
 				switch(rand(1,3))
 					if(1)
@@ -23,12 +22,12 @@
 					if(3)
 						to_chat(M, "<span class='danger'>Everything feels sore</span>")
 				// effects
-				if(current_addiction < 100 && prob(20))
+				if(current_addiction < 100 && prob(10))
 					M.emote(pick("pale","shiver","twitch"))
 				if(current_addiction <= 60)
 					if(prob(1))
 						M.Weaken(2)
-					if(prob(1))
+					if(prob(5) && prob(1))
 						M.emote("vomit")
 		else
 			// send a message to notify players
