@@ -55,7 +55,7 @@ export function TguiSay() {
   const [minimumHeight, setMinimumHeight] = useState(WindowSize.Small);
   const [minimumWidth, setMinimumWidth] = useState(WindowSize.Width);
   const [lightMode, setLightMode] = useState(false);
-  const [position, setPosition] = useState<number[]>();
+  const [position, setPosition] = useState([window.screenX, window.screenY]);
   const [value, setValue] = useState('');
 
   function handleArrowKeys(direction: KEY.PageUp | KEY.PageDown): void {
