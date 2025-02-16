@@ -175,7 +175,7 @@ GLOBAL_LIST_EMPTY(mapped_autostrips_mob)
 
 /obj/effect/step_trigger/teleporter/landmark/Initialize()
 	. = ..()
-	for(var/obj/effect/landmark/teleport_mark/mark in tele_landmarks)
+	for(var/obj/effect/landmark/teleport_mark/mark in GLOB.tele_landmarks)
 		if(mark.landmark_id == landmark_id)
 			the_landmark = mark
 			return
@@ -185,17 +185,17 @@ GLOBAL_LIST_EMPTY(mapped_autostrips_mob)
 		A.forceMove(get_turf(the_landmark))
 
 
-var/global/list/tele_landmarks = list() // Terrible, but the alternative is looping through world.
+GLOBAL_LIST_EMPTY(tele_landmarks)
 
 /obj/effect/landmark/teleport_mark
 	var/landmark_id = null
 
-/obj/effect/landmark/teleport_mark/New()
-	..()
-	tele_landmarks += src
+/obj/effect/landmark/teleport_mark/Initialize()
+	. = ..()
+	GLOB.tele_landmarks += src
 
 /obj/effect/landmark/teleport_mark/Destroy()
-	tele_landmarks -= src
+	GLOB.tele_landmarks -= src
 	return ..()
 
 /* Teleporter which simulates falling out of the sky. */

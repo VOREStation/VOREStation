@@ -14,7 +14,9 @@
 	debug_log = start_log("[log_path]-debug.log")
 	//VOREStation Edit End
 
-	changelog_hash = md5('html/changelog.html')					//used for telling if the changelog has changed recently
+	var/latest_changelog = file("[global.config.directory]/../html/changelogs/archive/" + time2text(world.timeofday, "YYYY-MM") + ".yml")
+	GLOB.changelog_hash = fexists(latest_changelog) ? md5(latest_changelog) : "" //for telling if the changelog has changed recently
+	to_world_log("Changelog Hash: '[GLOB.changelog_hash]' ([latest_changelog])")
 
 	if(byond_version < RECOMMENDED_VERSION)
 		to_world_log("Your server's byond version does not meet the recommended requirements for this server. Please update BYOND")

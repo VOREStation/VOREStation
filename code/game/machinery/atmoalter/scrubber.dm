@@ -20,9 +20,10 @@
 
 	var/list/scrubbing_gas = list(GAS_PHORON, GAS_CO2, GAS_N2O, GAS_VOLATILE_FUEL)
 
-/obj/machinery/portable_atmospherics/powered/scrubber/New()
-	..()
-	cell = new/obj/item/cell/apc(src)
+/obj/machinery/portable_atmospherics/powered/scrubber/Initialize(mapload, skip_cell)
+	. = ..()
+	if(!skip_cell)
+		cell = new/obj/item/cell/apc(src)
 
 /obj/machinery/portable_atmospherics/powered/scrubber/emp_act(severity)
 	if(stat & (BROKEN|NOPOWER))
@@ -164,9 +165,8 @@
 	var/global/gid = 1
 	var/id = 0
 
-/obj/machinery/portable_atmospherics/powered/scrubber/huge/New()
-	..()
-	cell = null
+/obj/machinery/portable_atmospherics/powered/scrubber/huge/Initialize(mapload)
+	. = ..(mapload, TRUE)
 
 	id = gid
 	gid++

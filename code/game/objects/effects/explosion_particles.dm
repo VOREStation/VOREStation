@@ -6,10 +6,9 @@
 	anchored = TRUE
 	mouse_opacity = 0
 
-/obj/effect/expl_particles/New()
-	..()
-	spawn (15)
-		qdel(src)
+/obj/effect/expl_particles/Initialize()
+	. = ..()
+	QDEL_IN(src, 1.5 SECONDS)
 	return
 
 /datum/effect/system/expl_particles
@@ -42,10 +41,9 @@
 	pixel_x = -32
 	pixel_y = -32
 
-/obj/effect/explosion/New()
-	..()
-	spawn (10)
-		qdel(src)
+/obj/effect/explosion/Initialize()
+	. = ..()
+	QDEL_IN(src, 1 SECOND)
 	return
 
 /datum/effect/system/explosion
@@ -60,10 +58,14 @@
 	var/datum/effect/system/expl_particles/P = new/datum/effect/system/expl_particles()
 	P.set_up(10,location)
 	P.start()
-	spawn(5)
-		var/datum/effect/effect/system/smoke_spread/S = new/datum/effect/effect/system/smoke_spread()
-		S.set_up(5,0,location,null)
-		S.start()
+	addtimer(CALLBACK(src, PROC_REF(spread_smoke)), 0.5 SECONDS)
+
+/datum/effect/system/explosion/proc/spread_smoke()
+	PRIVATE_PROC(TRUE)
+	SHOULD_NOT_OVERRIDE(TRUE)
+	var/datum/effect/effect/system/smoke_spread/S = new/datum/effect/effect/system/smoke_spread()
+	S.set_up(5,0,location,null)
+	S.start()
 
 /datum/effect/system/explosion/smokeless/start()
 	new/obj/effect/explosion(location)

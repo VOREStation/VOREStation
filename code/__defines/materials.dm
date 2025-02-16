@@ -64,6 +64,9 @@
 #define MAT_CARDBOARD		"cardboard"
 #define MAT_COTTON			"cotton"
 #define MAT_GLAMOUR			"stable glamour"
+#define MAT_DARKGLASS		"darkglass"
+#define MAT_FLESH			"flesh"
+#define MAT_FANCYBLACK		"fancyblack"
 
 // cloth materials
 #define MAT_WOOL			"wool"
