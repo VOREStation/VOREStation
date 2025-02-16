@@ -405,7 +405,7 @@
 
 /obj/item/spellbook/oneuse/horsemask/recoil(mob/living/carbon/user as mob)
 	if(ishuman(user))
-		to_chat(user, "<font size='15' color='red'><b>HOR-SIE HAS RISEN</b></font>")
+		to_chat(user, span_narsie(span_bolddanger("HOR-SIE HAS RISEN")))
 		var/obj/item/clothing/mask/horsehead/magichead = new /obj/item/clothing/mask/horsehead
 		magichead.canremove = FALSE		//curses!
 		magichead.flags_inv = null	//so you can still see their face

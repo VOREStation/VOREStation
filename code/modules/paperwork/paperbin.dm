@@ -67,7 +67,7 @@
 				P = new /obj/item/paper
 				if(Holiday == "April Fool's Day")
 					if(prob(30))
-						P.info = "<font face=\"[P.crayonfont]\" color=\"red\"><b>HONK HONK HONK HONK HONK HONK HONK<br>HOOOOOOOOOOOOOOOOOOOOOONK<br>APRIL FOOLS</b></font>"
+						P.info = span_red(span_bold("<font face=\"[P.crayonfont]\">HONK HONK HONK HONK HONK HONK HONK<br>HOOOOOOOOOOOOOOOOOOOOOONK<br>APRIL FOOLS</font>"))
 						P.rigged = 1
 						P.updateinfolinks()
 			else if (response == "Carbon-Copy")
