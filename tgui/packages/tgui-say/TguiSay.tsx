@@ -9,7 +9,13 @@ import { type BooleanLike, classes } from 'tgui-core/react';
 import { Channel, ChannelIterator } from './ChannelIterator';
 import { ChatHistory } from './ChatHistory';
 import { LineLength, RADIO_PREFIXES, WindowSize } from './constants';
-import { getPrefix, windowClose, windowOpen, windowSet } from './helpers';
+import {
+  getMarkupString,
+  getPrefix,
+  windowClose,
+  windowOpen,
+  windowSet,
+} from './helpers';
 import { byondMessages } from './timers';
 
 type ByondOpen = {
@@ -181,15 +187,6 @@ export function TguiSay() {
     }
 
     setValue(newValue);
-  }
-
-  function getMarkupString(
-    inputText: string,
-    markupType: string,
-    startPosition: number,
-    endPosition: number,
-  ) {
-    return `${inputText.substring(0, startPosition)}${markupType}${inputText.substring(startPosition, endPosition)}${markupType}${inputText.substring(endPosition)}`;
   }
 
   function handleKeyDown(event: KeyboardEvent<HTMLTextAreaElement>): void {
