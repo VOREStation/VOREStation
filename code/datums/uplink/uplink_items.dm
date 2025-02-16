@@ -75,7 +75,7 @@ var/datum/uplink/uplink = new()
 
 	return TRUE
 
-/datum/uplink_item/proc/cost(obj/item/uplink/U, mob/M)
+/datum/uplink_item/proc/cost(var/obj/item/uplink/U, var/telecrystals)
 	. = item_cost
 	if(U)
 		. = U.get_item_cost(src, .)
@@ -84,7 +84,7 @@ var/datum/uplink/uplink = new()
 	return desc
 
 // get_goods does not necessarily return physical objects, it is simply a way to acquire the uplink item without paying
-/datum/uplink_item/proc/get_goods(var/obj/item/uplink/U, var/loc, mob/user)
+/datum/uplink_item/proc/get_goods(var/obj/item/uplink/U, var/loc, var/mob/user)
 	return FALSE
 
 /datum/uplink_item/proc/log_icon()

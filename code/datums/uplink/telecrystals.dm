@@ -35,5 +35,5 @@
 /datum/uplink_item/item/telecrystal/all
 	name = "Telecrystals - Empty Uplink"
 
-/datum/uplink_item/item/telecrystal/all/cost(obj/item/uplink/U, mob/M)
-	return max(1, M.mind.tcrystals)
+/datum/uplink_item/item/telecrystal/all/cost(obj/item/uplink/U, tcrystals)
+	return max(1, tcrystals)
