@@ -168,6 +168,7 @@ export function TguiSay() {
       setButtonContent(RADIO_PREFIXES[newPrefix]);
       setCurrentPrefix(newPrefix);
       newValue = newValue.slice(3);
+      iterator.set('Say');
 
       if (newPrefix === ',b ') {
         Byond.sendMessage('thinking', { visible: false });
