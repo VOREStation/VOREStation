@@ -1,4 +1,4 @@
-/world/TgsNew(datum/tgs_event_handler/event_handler, minimum_required_security_level = TGS_SECURITY_ULTRASAFE)
+/world/TgsNew(datum/tgs_event_handler/event_handler, minimum_required_security_level = TGS_SECURITY_ULTRASAFE, datum/tgs_http_handler/http_handler = null)
 	var/current_api = TGS_READ_GLOBAL(tgs)
 	if(current_api)
 		TGS_ERROR_LOG("API datum already set (\ref[current_api] ([current_api]))! Was TgsNew() called more than once?")
@@ -40,13 +40,13 @@
 		if(5)
 			api_datum = /datum/tgs_api/v5
 
-	var/datum/tgs_version/max_api_version = TgsMaximumAPIVersion();
+	var/datum/tgs_version/max_api_version = TgsMaximumApiVersion();
 	if(version.suite != null && version.minor != null && version.patch != null && version.deprecated_patch != null && version.deprefixed_parameter > max_api_version.deprefixed_parameter)
-		TGS_ERROR_LOG("Detected unknown API version! Defaulting to latest. Update the DMAPI to fix this problem.")
+		TGS_ERROR_LOG("Detected unknown Interop API version! Defaulting to latest. Update the DMAPI to fix this problem.")
 		api_datum = /datum/tgs_api/latest
 
 	if(!api_datum)
-		TGS_ERROR_LOG("Found unsupported API version: [raw_parameter]. If this is a valid version please report this, backporting is done on demand.")
+		TGS_ERROR_LOG("Found unsupported Interop API version: [raw_parameter]. If this is a valid version please report this, backporting is done on demand.")
 		return
 
 	TGS_INFO_LOG("Activating API for version [version.deprefixed_parameter]")
@@ -55,7 +55,10 @@
 		TGS_ERROR_LOG("Invalid parameter for event_handler: [event_handler]")
 		event_handler = null
 
-	var/datum/tgs_api/new_api = new api_datum(event_handler, version)
+	if(!http_handler)
+		http_handler = new /datum/tgs_http_handler/byond_world_export
+
+	var/datum/tgs_api/new_api = new api_datum(event_handler, version, http_handler)
 
 	TGS_WRITE_GLOBAL(tgs, new_api)
 
@@ -64,10 +67,10 @@
 		TGS_WRITE_GLOBAL(tgs, null)
 		TGS_ERROR_LOG("Failed to activate API!")
 
-/world/TgsMaximumAPIVersion()
+/world/TgsMaximumApiVersion()
 	return new /datum/tgs_version("5.x.x")
 
-/world/TgsMinimumAPIVersion()
+/world/TgsMinimumApiVersion()
 	return new /datum/tgs_version("3.2.x")
 
 /world/TgsInitializationComplete()
@@ -106,6 +109,13 @@
 	var/datum/tgs_api/api = TGS_READ_GLOBAL(tgs)
 	if(api)
 		return api.ApiVersion()
+
+/world/TgsEngine()
+#ifdef OPENDREAM
+	return TGS_ENGINE_TYPE_OPENDREAM
+#else
+	return TGS_ENGINE_TYPE_BYOND
+#endif
 
 /world/TgsInstanceName()
 	var/datum/tgs_api/api = TGS_READ_GLOBAL(tgs)
@@ -153,31 +163,17 @@
 /world/TgsSecurityLevel()
 	var/datum/tgs_api/api = TGS_READ_GLOBAL(tgs)
 	if(api)
-		api.SecurityLevel()
+		return api.SecurityLevel()
 
-/*
-The MIT License
+/world/TgsVisibility()
+	var/datum/tgs_api/api = TGS_READ_GLOBAL(tgs)
+	if(api)
+		return api.Visibility()
 
-Copyright (c) 2017 Jordan Brown
+/world/TgsTriggerEvent(event_name, list/parameters, wait_for_completion = FALSE)
+	var/datum/tgs_api/api = TGS_READ_GLOBAL(tgs)
+	if(api)
+		if(!istype(parameters, /list))
+			parameters = list()
 
-Permission is hereby granted, free of charge,
-to any person obtaining a copy of this software and
-associated documentation files (the "Software"), to
-deal in the Software without restriction, including
-without limitation the rights to use, copy, modify,
-merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom
-the Software is furnished to do so,
-subject to the following conditions:
-
-The above copyright notice and this permission notice
-shall be included in all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
-OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
-IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR
-ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
-TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
-SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-*/
+		return api.TriggerEvent(event_name, parameters, wait_for_completion)
