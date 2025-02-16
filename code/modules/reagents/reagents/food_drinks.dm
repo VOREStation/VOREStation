@@ -5001,7 +5001,7 @@
 
 /datum/reagent/gelatin
 	name = REAGENT_GELATIN
-	id = REAGENT_GELATIN
+	id = REAGENT_ID_GELATIN
 	description = "It doesnt taste like anything."
 	taste_description = REAGENT_ID_NOTHING
 	color = "#aaabcf"
