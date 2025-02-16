@@ -4,10 +4,10 @@
 	icon_state = "x"
 	unacidable = TRUE//Just to be sure.
 
-/obj/effect/manifest/New()
+/obj/effect/manifest/Initialize()
+	. = ..()
 
-	src.invisibility = 101
-	return
+	invisibility = 101
 
 /obj/effect/manifest/proc/manifest()
 	var/dat = span_bold("Crew Manifest") + ":<BR>"

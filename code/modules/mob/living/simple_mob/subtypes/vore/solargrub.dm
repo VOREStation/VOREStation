@@ -57,9 +57,9 @@ List of things solar grubs should be able to do:
 /datum/say_list/solargrub
 	emote_see = list("squelches", "squishes")
 
-/mob/living/simple_mob/vore/solargrub/New()
+/mob/living/simple_mob/vore/solargrub/Initialize(mapload)
+	. = ..()
 	existing_solargrubs += src
-	..()
 
 /mob/living/simple_mob/vore/solargrub/Life()
 	. = ..()

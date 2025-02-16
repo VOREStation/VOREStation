@@ -7,8 +7,9 @@
 	blocks_emissive = FALSE
 	var/target
 
-/obj/effect/statclick/New(loc, text, target) //Don't port this to Initialize it's too critical
-	..()
+INITIALIZE_IMMEDIATE(/obj/effect/statclick)
+/obj/effect/statclick/Initialize(mapload, text, target)
+	. = ..()
 	name = text
 	src.target = target
 

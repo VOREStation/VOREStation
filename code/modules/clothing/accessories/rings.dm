@@ -137,14 +137,13 @@
 	icon = 'icons/inventory/hands/item.dmi'
 	icon_state = "material"
 
-/obj/item/clothing/accessory/ring/material/New(var/newloc, var/new_material)
-	..(newloc)
+/obj/item/clothing/accessory/ring/material/Initialize(mapload, var/new_material)
+	. = ..()
 	if(!new_material)
 		new_material = MAT_STEEL
 	material = get_material_by_name(new_material)
 	if(!istype(material))
-		qdel(src)
-		return
+		return INITIALIZE_HINT_QDEL
 	name = "[material.display_name] ring"
 	desc = "A ring made from [material.display_name]."
 	color = material.icon_colour
@@ -152,56 +151,56 @@
 /obj/item/clothing/accessory/ring/material/get_material()
 	return material
 
-/obj/item/clothing/accessory/ring/material/wood/New(var/newloc)
-	..(newloc, MAT_WOOD)
+/obj/item/clothing/accessory/ring/material/wood/Initialize(mapload)
+	. = ..(mapload, MAT_WOOD)
 
-/obj/item/clothing/accessory/ring/material/plastic/New(var/newloc)
-	..(newloc, MAT_PLASTIC)
+/obj/item/clothing/accessory/ring/material/plastic/Initialize(mapload)
+	. = ..(mapload, MAT_PLASTIC)
 
-/obj/item/clothing/accessory/ring/material/iron/New(var/newloc)
-	..(newloc, MAT_IRON)
+/obj/item/clothing/accessory/ring/material/iron/Initialize(mapload)
+	. = ..(mapload, MAT_IRON)
 
-/obj/item/clothing/accessory/ring/material/glass/New(var/newloc)
-	..(newloc, MAT_GLASS)
+/obj/item/clothing/accessory/ring/material/glass/Initialize(mapload)
+	. = ..(mapload, MAT_GLASS)
 
-/obj/item/clothing/accessory/ring/material/steel/New(var/newloc)
-	..(newloc, MAT_STEEL)
+/obj/item/clothing/accessory/ring/material/steel/Initialize(mapload)
+	. = ..(mapload, MAT_STEEL)
 
-/obj/item/clothing/accessory/ring/material/silver/New(var/newloc)
-	..(newloc, MAT_SILVER)
+/obj/item/clothing/accessory/ring/material/silver/Initialize(mapload)
+	. = ..(mapload, MAT_SILVER)
 
-/obj/item/clothing/accessory/ring/material/gold/New(var/newloc)
-	..(newloc, MAT_GOLD)
+/obj/item/clothing/accessory/ring/material/gold/Initialize(mapload)
+	. = ..(mapload, MAT_GOLD)
 
-/obj/item/clothing/accessory/ring/material/platinum/New(var/newloc)
-	..(newloc, MAT_PLATINUM)
+/obj/item/clothing/accessory/ring/material/platinum/Initialize(mapload)
+	. = ..(mapload, MAT_PLATINUM)
 
-/obj/item/clothing/accessory/ring/material/phoron/New(var/newloc)
-	..(newloc, MAT_PHORON)
+/obj/item/clothing/accessory/ring/material/phoron/Initialize(mapload)
+	. = ..(mapload, MAT_PHORON)
 
-/obj/item/clothing/accessory/ring/material/titanium/New(var/newloc)
-	..(newloc, MAT_TITANIUM)
+/obj/item/clothing/accessory/ring/material/titanium/Initialize(mapload)
+	. = ..(mapload, MAT_TITANIUM)
 
-/obj/item/clothing/accessory/ring/material/copper/New(var/newloc)
-	..(newloc, MAT_COPPER)
+/obj/item/clothing/accessory/ring/material/copper/Initialize(mapload)
+	. = ..(mapload, MAT_COPPER)
 
-/obj/item/clothing/accessory/ring/material/bronze/New(var/newloc)
-	..(newloc, MAT_BRONZE)
+/obj/item/clothing/accessory/ring/material/bronze/Initialize(mapload)
+	. = ..(mapload, MAT_BRONZE)
 
-/obj/item/clothing/accessory/ring/material/uranium/New(var/newloc)
-	..(newloc, MAT_URANIUM)
+/obj/item/clothing/accessory/ring/material/uranium/Initialize(mapload)
+	. = ..(mapload, MAT_URANIUM)
 
-/obj/item/clothing/accessory/ring/material/osmium/New(var/newloc)
-	..(newloc, MAT_OSMIUM)
+/obj/item/clothing/accessory/ring/material/osmium/Initialize(mapload)
+	. = ..(mapload, MAT_OSMIUM)
 
-/obj/item/clothing/accessory/ring/material/lead/New(var/newloc)
-	..(newloc, MAT_LEAD)
+/obj/item/clothing/accessory/ring/material/lead/Initialize(mapload)
+	. = ..(mapload, MAT_LEAD)
 
-/obj/item/clothing/accessory/ring/material/diamond/New(var/newloc)
-	..(newloc, MAT_DIAMOND)
+/obj/item/clothing/accessory/ring/material/diamond/Initialize(mapload)
+	. = ..(mapload, MAT_DIAMOND)
 
-/obj/item/clothing/accessory/ring/material/tin/New(var/newloc)
-	..(newloc, MAT_TIN)
+/obj/item/clothing/accessory/ring/material/tin/Initialize(mapload)
+	. = ..(mapload, MAT_TIN)
 
-/obj/item/clothing/accessory/ring/material/void_opal/New(var/newloc)
-	..(newloc, MAT_VOPAL)
+/obj/item/clothing/accessory/ring/material/void_opal/Initialize(mapload)
+	. = ..(mapload, MAT_VOPAL)

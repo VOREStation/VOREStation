@@ -183,7 +183,7 @@
 	var/vore_icons_cache = null // null by default. Going from ON to OFF should store vore_icons val here, OFF to ON reset as null
 
 
-/mob/living/simple_mob/Initialize()
+/mob/living/simple_mob/Initialize(mapload)
 	remove_verb(src, /mob/verb/observe)
 	health = maxHealth
 

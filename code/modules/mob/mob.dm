@@ -1,4 +1,5 @@
 /mob/Destroy()//This makes sure that mobs withGLOB.clients/keys are not just deleted from the game.
+	SSmobs.currentrun -= src
 	mob_list -= src
 	dead_mob_list -= src
 	living_mob_list -= src
@@ -23,12 +24,17 @@
 	if(pulling)
 		stop_pulling() //TG does this on atom/movable but our stop_pulling proc is here so whatever
 
-	vore_selected = null
+	if(ability_master)
+		QDEL_NULL(ability_master)
+
 	if(vore_organs)
 		QDEL_NULL_LIST(vore_organs)
 	if(vorePanel)
 		QDEL_NULL(vorePanel)
 
+	for(var/mob/observer/dead/M in following_mobs)
+		M.stop_following()
+	following_mobs = null
 	previewing_belly = null // from code/modules/vore/eating/mob_ch.dm
 	vore_selected = null // from code/modules/vore/eating/mob_vr
 	focus = null
@@ -60,7 +66,7 @@
 	spell_masters = null
 	zone_sel = null
 
-/mob/Initialize()
+/mob/Initialize(mapload)
 	mob_list += src
 	if(stat == DEAD)
 		dead_mob_list += src
@@ -477,7 +483,13 @@
 /client/verb/changes()
 	set name = "Changelog"
 	set category = "OOC.Resources"
-	src << link("https://wiki.vore-station.net/Changelog")
+
+	if(!GLOB.changelog_tgui)
+		GLOB.changelog_tgui = new /datum/changelog()
+	GLOB.changelog_tgui.tgui_interact(usr)
+
+	if(prefs?.read_preference(/datum/preference/text/lastchangelog) != GLOB.changelog_hash)
+		prefs.write_preference_by_type(/datum/preference/text/lastchangelog, GLOB.changelog_hash)
 
 /mob/verb/observe()
 	set name = "Observe"

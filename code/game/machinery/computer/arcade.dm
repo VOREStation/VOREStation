@@ -25,7 +25,7 @@
 							)
 	var/list/special_prizes = list() // Holds instanced objects, intended for admins to shove surprises inside or something.
 
-/obj/machinery/computer/arcade/Initialize()
+/obj/machinery/computer/arcade/Initialize(mapload)
 	. = ..()
 	// If it's a generic arcade machine, pick a random arcade
 	// circuit board for it and make the new machine
@@ -351,8 +351,8 @@
 	var/gameStatus = ORION_STATUS_START
 	var/canContinueEvent = 0
 
-/obj/machinery/computer/arcade/orion_trail/New()
-	..()
+/obj/machinery/computer/arcade/orion_trail/Initialize(mapload)
+	. = ..()
 	// Sets up the main trail
 	stops = list("Pluto","Asteroid Belt","Proxima Centauri","Dead Space","Rigel Prime","Tau Ceti Beta","Black Hole","Space Outpost Beta-9","Orion Prime")
 	stopblurbs = list(
@@ -1240,10 +1240,6 @@
 	vendor_account.transaction_log.Add(T)
 
 /// End Payment
-
-/obj/machinery/computer/arcade/clawmachine/New()
-	..()
-
 /obj/machinery/computer/arcade/clawmachine/attack_hand(mob/living/user)
 	if(..())
 		return

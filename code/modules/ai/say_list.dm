@@ -9,15 +9,10 @@
 	var/datum/say_list/say_list = null
 	var/say_list_type = /datum/say_list	// Type to give us on initialization. Default has empty lists, so the mob will be silent.
 
-/mob/living/Initialize()
+/mob/living/Initialize(mapload)
 	if(say_list_type)
 		say_list = new say_list_type(src)
 	return ..()
-
-/mob/living/Destroy()
-	QDEL_NULL(say_list)
-	return ..()
-
 
 /datum/say_list
 	var/list/speak = list()				// Things the mob might say if it talks while idle.

@@ -13,14 +13,14 @@
 	mecha = null//This does not appear to be used outside of reference in mecha.dm.
 
 
-/obj/item/mmi/digital/posibrain/attack_self(mob/user as mob)
+/obj/item/mmi/digital/posibrain/attack_self(mob/user)
 	if(brainmob && !brainmob.key && searching == 0)
 		//Start the process of searching for a new user.
 		to_chat(user, span_blue("You carefully locate the manual activation switch and start the positronic brain's boot process."))
 		icon_state = "posibrain-searching"
-		src.searching = 1
-		src.request_player()
-		spawn(600) reset_search()
+		searching = 1
+		request_player()
+		addtimer(CALLBACK(src, PROC_REF(reset_search)), 60 SECONDS, TIMER_DELETE_ME)
 
 /obj/item/mmi/digital/posibrain/proc/request_player()
 	for(var/mob/observer/dead/O in player_list)
@@ -100,7 +100,7 @@
 				src.brainmob.emp_damage += rand(0,5)
 	..()
 
-/obj/item/mmi/digital/posibrain/New()
-	..()
-	src.brainmob.name = "[pick(list("PBU","HIU","SINA","ARMA","OSI"))]-[rand(100, 999)]"
-	src.brainmob.real_name = src.brainmob.name
+/obj/item/mmi/digital/posibrain/Initialize(mapload)
+	. = ..()
+	brainmob.name = "[pick(list("PBU","HIU","SINA","ARMA","OSI"))]-[rand(100, 999)]"
+	brainmob.real_name = brainmob.name

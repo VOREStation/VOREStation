@@ -1,6 +1,6 @@
 /datum/material/flesh
-	name = "flesh"
-	display_name = "chunk of flesh"
+	name = MAT_FLESH
+	display_name = "chunk of " + MAT_FLESH
 	icon_colour = "#dd90aa"
 	sheet_singular_name = "meat"
 	sheet_plural_name = "meats"
@@ -20,15 +20,15 @@
 	weight = 20 //Strong as iron.
 
 /datum/material/darkglass
-	name = "darkglass"
-	display_name = "darkglass"
-	icon_base = "darkglass"
-	table_icon_base = "darkglass"
+	name = MAT_DARKGLASS
+	display_name = MAT_DARKGLASS
+	icon_base = MAT_DARKGLASS
+	table_icon_base = MAT_DARKGLASS
 	icon_colour = "#FFFFFF"
 
 /datum/material/fancyblack
-	name = "fancyblack"
-	display_name = "fancyblack"
-	icon_base = "fancyblack"
-	table_icon_base = "fancyblack"
+	name = MAT_FANCYBLACK
+	display_name = MAT_FANCYBLACK
+	icon_base = MAT_FANCYBLACK
+	table_icon_base = MAT_FANCYBLACK
 	icon_colour = "#FFFFFF"

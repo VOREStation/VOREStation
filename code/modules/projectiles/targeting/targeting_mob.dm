@@ -35,13 +35,6 @@
 	stop_aiming(no_message=1)
 	..()
 
-/mob/living/Destroy()
-	if(aiming)
-		qdel(aiming)
-		aiming = null
-	aimed.Cut()
-	return ..()
-
 /turf/Enter(var/mob/living/mover)
 	. = ..()
 	if(istype(mover))

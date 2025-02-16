@@ -1,3 +1,5 @@
+// Toggles
+
 /// Whether or not to toggle ambient occlusion, the shadows around people
 /datum/preference/toggle/ambient_occlusion
 	category = PREFERENCE_CATEGORY_GAME_PREFERENCES
@@ -93,3 +95,14 @@
 	savefile_key = "obfuscate_job"
 	default_value = FALSE
 	savefile_identifier = PREFERENCE_PLAYER
+
+// Text
+
+/datum/preference/text/lastchangelog
+	category = PREFERENCE_CATEGORY_GAME_PREFERENCES
+	savefile_key = "lastchangelog"
+	savefile_identifier = PREFERENCE_PLAYER
+
+/datum/preference/text/lastchangelog/is_accessible(datum/preferences/preferences)
+	..()
+	return FALSE
