@@ -55,6 +55,7 @@ export function TguiSay() {
   const [minimumHeight, setMinimumHeight] = useState(WindowSize.Small);
   const [minimumWidth, setMinimumWidth] = useState(WindowSize.Width);
   const [lightMode, setLightMode] = useState(false);
+  const [position, setPosition] = useState<number[]>();
   const [value, setValue] = useState('');
 
   function handleArrowKeys(direction: KEY.PageUp | KEY.PageDown): void {
@@ -141,6 +142,9 @@ export function TguiSay() {
   }
 
   function handleIncrementChannel(): void {
+    const xPos = window.screenX;
+    const yPos = window.screenY;
+    if (JSON.stringify(position) !== JSON.stringify([xPos, yPos])) return;
     const iterator = channelIterator.current;
 
     iterator.next();
@@ -266,6 +270,13 @@ export function TguiSay() {
     }
   }
 
+  function handleButtonDrag(e: React.MouseEvent<Element, MouseEvent>): void {
+    const xPos = window.screenX;
+    const yPos = window.screenY;
+    setPosition([xPos, yPos]);
+    dragStartHandler(e);
+  }
+
   function handleOpen(data: ByondOpen): void {
     setTimeout(() => {
       innerRef.current?.focus();
@@ -346,7 +357,7 @@ export function TguiSay() {
         <button
           className={`button button-${theme}`}
           onClick={handleIncrementChannel}
-          onMouseDown={dragStartHandler}
+          onMouseDown={handleButtonDrag}
           type="button"
         >
           {buttonContent}
