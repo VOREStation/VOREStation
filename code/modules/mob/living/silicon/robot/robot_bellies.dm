@@ -41,12 +41,22 @@
 	if(belly_class == "sleeper" && sleeper_state == 0 && vore_selected.silicon_belly_overlay_preference == "Sleeper")
 		return
 	var/vs_fullness = vore_fullness_ex[belly_class]
-	cut_overlay(sprite_datum.get_belly_overlay(src, vs_fullness, belly_class))
-	add_overlay("[sprite_datum.get_belly_overlay(src, vs_fullness, belly_class)]-struggle")
+	if(resting)
+		cut_overlay(sprite_datum.get_belly_resting_overlay(src, vs_fullness, belly_class))
+		add_overlay("[sprite_datum.get_belly_resting_overlay(src, vs_fullness, belly_class)]-struggle")
+	else
+		cut_overlay(sprite_datum.get_belly_overlay(src, vs_fullness, belly_class))
+		add_overlay("[sprite_datum.get_belly_overlay(src, vs_fullness, belly_class)]-struggle")
 	addtimer(CALLBACK(src, PROC_REF(end_vs_animate), belly_class), 1.2 SECONDS)
 
 /mob/living/silicon/robot/proc/end_vs_animate(var/belly_class)
 	var/vs_fullness = vore_fullness_ex[belly_class]
-	cut_overlay("[sprite_datum.get_belly_overlay(src, vs_fullness, belly_class)]-struggle")
+	if(resting)
+		cut_overlay("[sprite_datum.get_belly_resting_overlay(src, vs_fullness, belly_class)]-struggle")
+	else
+		cut_overlay("[sprite_datum.get_belly_overlay(src, vs_fullness, belly_class)]-struggle")
 	if(vs_fullness > 0)
-		add_overlay(sprite_datum.get_belly_overlay(src, vs_fullness, belly_class))
+		if(resting)
+			add_overlay(sprite_datum.get_belly_resting_overlay(src, vs_fullness, belly_class))
+		else
+			add_overlay(sprite_datum.get_belly_overlay(src, vs_fullness, belly_class))
