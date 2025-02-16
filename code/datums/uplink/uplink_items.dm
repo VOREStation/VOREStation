@@ -103,7 +103,7 @@ var/datum/uplink/uplink = new()
 *	Physical Uplink Entries		*
 *                           	*
 ********************************/
-/datum/uplink_item/item/buy(var/obj/item/uplink/U, var/mob/user)
+/datum/uplink_item/item/buy(obj/item/uplink/U, mob/user)
 	var/obj/item/I = ..()
 	if(!I)
 		return
@@ -117,7 +117,7 @@ var/datum/uplink/uplink = new()
 		A.put_in_any_hand_if_possible(I)
 	return I
 
-/datum/uplink_item/item/get_goods(var/obj/item/uplink/U, var/loc, var/mob/user)
+/datum/uplink_item/item/get_goods(obj/item/uplink/U, loc, mob/user)
 	var/obj/item/I = new path(loc)
 	return I
 
@@ -154,7 +154,7 @@ var/datum/uplink/uplink = new()
 	var/crate_path = /obj/structure/largecrate
 	var/list/paths = list()	// List of paths to be spawned into the crate.
 
-/datum/uplink_item/crated/get_goods(var/obj/item/uplink/U, var/loc)
+/datum/uplink_item/crated/get_goods(obj/item/uplink/U, loc, mob/user)
 	var/obj/L = new crate_path(get_turf(loc))
 
 	L.adjust_scale(rand(9, 12) / 10, rand(9, 12) / 10)	// Some variation in the crate / locker size.
