@@ -4996,16 +4996,16 @@
 	taste_description= "sweet spice with a hint of wood"
 	color = "#a96622"
 
-	glass_name = REAGENT_CINNAMONPOWDER
+	glass_name = REAGENT_ID_CINNAMONPOWDER
 	glass_desc = "A glass of ground cinnamon. Dare you take the challenge?"
 
 /datum/reagent/drink/juice/gelatin
-	name = REAGENT_ID_GELATIN
+	name = REAGENT_GELATIN
 	id = REAGENT_GELATIN
 	description = "It doesnt taste like anything."
 	taste_description = REAGENT_ID_NOTHING
 	nutrition = 0
 	color = "#aaabcf"
 
-	glass_name = REAGENT_ID_GELATIN
+	glass_name = REAGENT_GELATIN
 	glass_desc = "It's like flavourless slime."
