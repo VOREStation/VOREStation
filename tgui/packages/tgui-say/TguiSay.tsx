@@ -246,8 +246,10 @@ export function TguiSay() {
         break;
 
       case KEY.Enter:
-        event.preventDefault();
-        handleEnter();
+        if (!event.shiftKey) {
+          event.preventDefault();
+          handleEnter();
+        }
         break;
 
       case KEY.Tab:
