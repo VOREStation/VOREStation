@@ -37,7 +37,7 @@
 	name = "site manager's uniform jacket"
 	desc = "A less formal jacket for everyday " + JOB_SITE_MANAGER + " use."
 	icon_state = "capjacket"
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
+	body_parts_covered = CHEST|LEGS|ARMS
 	flags_inv = HIDEHOLSTER
 
 //Command
@@ -52,7 +52,7 @@
 	desc = "This suit says to you \"Hush\"!"
 	icon_state = "chaplain_hoodie"
 	item_state_slots = list(slot_r_hand_str = "suit_black", slot_l_hand_str = "suit_black")
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
+	body_parts_covered = CHEST|LEGS|ARMS
 	flags_inv = HIDEHOLSTER
 	hoodtype = /obj/item/clothing/head/chaplain_hood
 	allowed = list (/obj/item/storage/bible)
@@ -71,7 +71,7 @@
 	name = "nun robe"
 	desc = "Maximum piety in this star system."
 	icon_state = "nun"
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
+	body_parts_covered = CHEST|LEGS|ARMS
 	flags_inv = HIDESHOES|HIDEJUMPSUIT|HIDETIE|HIDEHOLSTER
 
 //Chef
@@ -81,7 +81,7 @@
 	icon_state = "chef"
 	gas_transfer_coefficient = 0.90
 	permeability_coefficient = 0.50
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
+	body_parts_covered = CHEST|ARMS
 	flags_inv = HIDETIE|HIDEHOLSTER
 	allowed = list (/obj/item/material/knife)
 
@@ -100,7 +100,7 @@
 	desc = "This jacket is for those special occasions when a security officer actually feels safe."
 	icon_state = "officerbluejacket"
 	item_state_slots = list(slot_r_hand_str = "suit_navy", slot_l_hand_str = "suit_navy")
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
+	body_parts_covered = CHEST|ARMS
 	flags_inv = HIDEHOLSTER
 
 /obj/item/clothing/suit/security/navywarden
@@ -108,7 +108,7 @@
 	desc = "Perfectly suited for the warden that wants to leave an impression of style on those who visit the brig."
 	icon_state = "wardenbluejacket"
 	item_state_slots = list(slot_r_hand_str = "suit_navy", slot_l_hand_str = "suit_navy")
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
+	body_parts_covered = CHEST|ARMS
 	flags_inv = HIDEHOLSTER
 
 /obj/item/clothing/suit/security/navyhos
@@ -116,7 +116,7 @@
 	desc = "This piece of clothing was specifically designed for asserting superior authority."
 	icon_state = "hosbluejacket"
 	item_state_slots = list(slot_r_hand_str = "suit_navy", slot_l_hand_str = "suit_navy")
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
+	body_parts_covered = CHEST|ARMS
 	flags_inv = HIDEHOLSTER
 
 //Detective
@@ -140,7 +140,7 @@
 
 //Forensics
 /obj/item/clothing/suit/storage/forensics
-	name = "jacket"
+	name = DEVELOPER_WARNING_NAME
 	desc = "A forensics technician jacket."
 	body_parts_covered = UPPER_TORSO|ARMS
 	flags_inv = HIDEHOLSTER
@@ -198,6 +198,10 @@
 	icon_state = "hazard_w"
 
 //Lawyer
+
+/obj/item/clothing/suit/storage/toggle/lawyer
+	name = DEVELOPER_WARNING_NAME
+
 /obj/item/clothing/suit/storage/toggle/lawyer/bluejacket
 	name = "blue suit jacket"
 	desc = "A snappy dress jacket."
@@ -245,7 +249,7 @@
 	desc = "A sterile blue apron for performing surgery."
 	icon_state = "surgical"
 	blood_overlay_type = "armor"
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO
+	body_parts_covered = CHEST
 	allowed = list(/obj/item/stack/medical, /obj/item/reagent_containers/dropper, /obj/item/reagent_containers/hypospray, /obj/item/reagent_containers/syringe, \
 	/obj/item/healthanalyzer, /obj/item/flashlight, /obj/item/radio, /obj/item/tank/emergency/oxygen,/obj/item/surgical/scalpel,/obj/item/surgical/retractor,/obj/item/surgical/hemostat, \
 	/obj/item/surgical/cautery,/obj/item/surgical/bonegel,/obj/item/surgical/FixOVein)
@@ -261,8 +265,10 @@
 
 /obj/item/clothing/suit/suspenders/blue
 	name = "blue suspenders"
-	icon_state = "suspenders_blue"
+	desc = "A pair of blue suspenders...They don't look too blue, though."
+	icon_state = "suspenders_blue" //Need a sprite for this.
 
 /obj/item/clothing/suit/suspenders/grey
 	name = "grey suspenders"
-	icon_state = "suspenders_grey"
+	desc = "A pair of grey suspenders...They don't look too blue, though."
+	icon_state = "suspenders_grey" //Need a sprite for this.

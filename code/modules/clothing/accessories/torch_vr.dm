@@ -161,37 +161,18 @@ armbands
 /*****************
 armour attachments
 *****************/
-/obj/item/clothing/accessory/armor/tag/solgov
-	name = "\improper TCG Flag"
-	desc = "An emblem depicting the Terran Commonwealth's flag."
 
-/obj/item/clothing/accessory/armor/tag/solgov/ec
-	name = "\improper Expeditionary Corps crest"
-	desc = "An emblem depicting the crest of the TCG Expeditionary Corps."
 
-/obj/item/clothing/accessory/armor/tag/solgov/sec
-	name = "\improper POLICE tag"
-	desc = "An armor tag with the word POLICE printed in silver lettering on it."
 
-/obj/item/clothing/accessory/armor/tag/solgov/medic
-	name = "\improper MEDIC tag"
-	desc = "An armor tag with the word MEDIC printed in red lettering on it."
 
-/obj/item/clothing/accessory/armor/tag/solgov/agent
-	name = "\improper OCIE AGENT tag"
-	desc = "An armor tag with the word OCIE AGENT printed in gold lettering on it."
 
-/obj/item/clothing/accessory/armor/tag/solgov/com
-	name = "\improper TCG tag"
-	desc = "An armor tag with the words COMMONWEALTH OF SOL-PROCYON printed in gold lettering on it."
 
-/obj/item/clothing/accessory/armor/tag/solgov/com/sec
-	name = "\improper POLICE tag"
-	desc = "An armor tag with the words POLICE printed in gold lettering on it."
 
-/obj/item/clothing/accessory/armor/helmcover/blue/sol
-	name = "peacekeeper helmet cover"
-	desc = "A fabric cover for armored helmets. This one is in TCG peacekeeper colors."
+
+
+
+
+
 
 /*********
 ranks - ndf

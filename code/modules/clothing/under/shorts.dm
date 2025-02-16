@@ -85,7 +85,7 @@
 
 /obj/item/clothing/under/shorts/jeans/grey/female
 	name = "grey jeans short shorts"
-	icon_state = "grey_shorts_f"
+	icon_state = "greyshorts" //the _f variant was lost to time. Not deleted to keep from messing with maps.
 
 /obj/item/clothing/under/shorts/khaki
 	name = "khaki shorts"
@@ -145,7 +145,7 @@
 	name = "black skirt"
 	desc = "A black skirt, very fancy!"
 	icon_state = "blackskirt"
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
+	body_parts_covered = CHEST|ARMS
 
 /obj/item/clothing/under/skirt/outfit/plaid_blue
 	name = "blue plaid skirt"

@@ -3,7 +3,7 @@
 	name = "roughspun robes"
 	desc = "A traditional Unathi garment."
 	icon_state = "robe-unathi"
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS
+	body_parts_covered = CHEST|LEGS
 	flags_inv = HIDETIE|HIDEHOLSTER
 
 /obj/item/clothing/suit/unathi/mantle

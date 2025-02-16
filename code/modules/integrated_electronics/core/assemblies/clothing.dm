@@ -79,13 +79,6 @@
 
 	add_item_action(new /datum/action/item_action/activate(src, name))
 
-/obj/item/clothing/Destroy()
-	if(IC)
-		IC.clothing = null
-		action_circuit = null // Will get deleted by qdel-ing the IC assembly.
-		qdel(IC)
-	return ..()
-
 // Specific subtypes.
 
 // Jumpsuit.

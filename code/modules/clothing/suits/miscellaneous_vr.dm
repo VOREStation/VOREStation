@@ -43,6 +43,7 @@
 			return 0
 
 /obj/item/clothing/suit/barding
+	name = DEVELOPER_WARNING_NAME
 	description_info = "You need to be a horsy to wear that."
 	icon = 'icons/mob/taursuits_horse.dmi'
 	item_state_slots = list(slot_r_hand_str = "capjacket", slot_l_hand_str = "capjacket")
@@ -75,8 +76,9 @@
 	icon_state = "Mason_barding"
 
 /obj/item/clothing/suit/taur
+	name = DEVELOPER_WARNING_NAME
 	icon = 'icons/mob/taursuits_horse.dmi'
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO
+	body_parts_covered = CHEST
 	pixel_x = -16
 
 /obj/item/clothing/suit/taur/dress

@@ -81,6 +81,7 @@
 	species_restricted = list(SPECIES_VOX)
 
 /obj/item/clothing/gloves/gauntlets/rig/vox
+	name = DEVELOPER_WARNING_NAME
 	siemens_coefficient = 0
 	species_restricted = list(SPECIES_VOX)
 	sprite_sheets = list(

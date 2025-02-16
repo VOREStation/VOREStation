@@ -97,6 +97,7 @@
 
 //scarves (fit in in mask slot)
 //None of these actually have on-mob sprites...
+/* //Lost to time.
 /obj/item/clothing/mask/bluescarf
 	name = "blue neck scarf"
 	desc = "A blue neck scarf."
@@ -123,11 +124,11 @@
 	item_flags = FLEXIBLEMATERIAL
 	w_class = ITEMSIZE_SMALL
 	gas_transfer_coefficient = 0.90
-
+*/
 /obj/item/clothing/mask/ninjascarf
 	name = "ninja scarf"
 	desc = "A stealthy, dark scarf."
-	icon_state = "ninja_scarf"
+	icon_state = "s-ninja"
 	body_parts_covered = FACE
 	item_flags = FLEXIBLEMATERIAL
 	w_class = ITEMSIZE_SMALL
@@ -187,7 +188,7 @@
 	body_parts_covered = HEAD|FACE|EYES
 	w_class = ITEMSIZE_SMALL
 	siemens_coefficient = 0.9
-
+/* //Lost to time.
 /obj/item/clothing/mask/nock_scarab
 	name = "nock mask (blue, scarab)"
 	desc = "To Nock followers, masks symbolize rebirth and a new persona. Damaging the wearer's mask is generally considered an attack on their person itself."
@@ -215,7 +216,7 @@
 	icon_state = "nock_ornate"
 	w_class = ITEMSIZE_SMALL
 	body_parts_covered = HEAD|FACE
-
+*/
 /obj/item/clothing/mask/horsehead/New()
     ..()
     // The horse mask doesn't cause voice changes by default, the wizard spell changes the flag as necessary
