@@ -32,7 +32,6 @@ var/href_logfile		= null
 // var/const/star_name		= "Vir"
 // var/const/starsys_name	= "Vir"
 var/const/game_version	= "VOREStation"
-var/changelog_hash		= ""
 var/game_year			= (text2num(time2text(world.realtime, "YYYY")) + 300) //VOREStation Edit
 var/round_progressing = 1
 

@@ -1,6 +1,6 @@
 import { Box, LabeledList, Section, Stack } from 'tgui-core/components';
 
-import { sensor } from './types';
+import type { sensor } from './types';
 
 export const AtmoControlSensors = (props: { sensors: sensor[] }) => {
   const { sensors } = props;

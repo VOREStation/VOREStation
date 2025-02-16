@@ -34,3 +34,10 @@
 
 /mob/living/proc/vs_animate(var/belly_to_animate)
 	return
+
+// use this instead of upsate fullness where you need to directly update a belly size
+/mob/proc/handle_belly_update()
+	if(ishuman(src))
+		update_fullness()
+		return
+	update_icon()

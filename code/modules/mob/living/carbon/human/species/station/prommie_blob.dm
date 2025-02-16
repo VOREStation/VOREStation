@@ -75,13 +75,6 @@
 	set_light(0)
 	return ..()
 
-/mob/living/carbon/human/Destroy()
-	if(stored_blob)
-		stored_blob.drop_l_hand()
-		stored_blob.drop_r_hand()
-		QDEL_NULL(stored_blob)
-	return ..()
-
 /mob/living/simple_mob/slime/promethean/update_misc_tabs()
 	. = ..()
 	if(humanform)

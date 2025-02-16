@@ -505,8 +505,7 @@
 		playsound(src, 'sound/effects/explosionfar.ogg', 50, 0, 0)
 		for(var/mob/M in range(10, src)) // Checks range
 			if(!M.stat && !isAI(M)) // Checks to make sure whoever's getting shaken is alive/not the AI
-				sleep(2) // Short delay to match up with the explosion sound
-				shake_camera(M, 2, 1)
+				addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(shake_camera), M, 2, 1), 0.2 SECONDS)
 	else
 		to_chat(user, span_warning("Nothing happens."))
 
