@@ -38,6 +38,8 @@
 /mob/living/silicon/robot/vs_animate(var/belly_class)
 	if(!sprite_datum.has_vore_struggle_sprite)
 		return
+	if(belly_class == "sleeper" && sleeper_state == 0 && vore_selected.silicon_belly_overlay_preference == "Sleeper")
+		return
 	var/vs_fullness = vore_fullness_ex[belly_class]
 	cut_overlay(sprite_datum.get_belly_overlay(src, vs_fullness, belly_class))
 	add_overlay("[sprite_datum.get_belly_overlay(src, vs_fullness, belly_class)]-struggle")
