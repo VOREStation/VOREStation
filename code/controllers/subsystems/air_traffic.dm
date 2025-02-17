@@ -1,16 +1,18 @@
 //Cactus, Speedbird, Dynasty, oh my
 //Also, massive additions/refactors by Killian, because the original incarnation was full of holes
 //Originally coded by above, massive refactor here to use datums instead of an if/else mess - Willbird
+SUBSYSTEM_DEF(atc)
+	name = "Air Traffic Control"
+	priority = FIRE_PRIORITY_ATC
+	runlevels = RUNLEVEL_GAME
 
-GLOBAL_DATUM_INIT(atc, /datum/lore/atc_controller, new)
-
-/datum/lore/atc_controller
-	var/delay_min = 45 MINUTES			//How long between ATC traffic, minimum
-	var/delay_max = 90 MINUTES			//Ditto, maximum
+	var/delay_min = 45 MINUTES				//How long between ATC traffic, minimum
+	var/delay_max = 90 MINUTES				//Ditto, maximum
 							//Shorter delays means more traffic, which gives the impression of a busier system, but also means a lot more radio noise
 	var/backoff_delay = 5 MINUTES			//How long to back off if we can't talk and want to.  Default is 5 mins.
 	var/initial_delay = 15 MINUTES			//How long to wait before sending the first message of the shift.
-	var/squelched = 0				//If ATC is squelched currently
+	var/squelched = FALSE					//If ATC is squelched currently
+	var/first_tick = TRUE
 
 	//define a block of frequencies so we can have them be static instead of being random for each call
 	var/ertchannel
@@ -19,36 +21,38 @@ GLOBAL_DATUM_INIT(atc, /datum/lore/atc_controller, new)
 	var/secchannel
 	var/sdfchannel
 
-/datum/lore/atc_controller/New()
+/datum/controller/subsystem/atc/Initialize()
 	//generate our static event frequencies for the shift. alternately they can be completely fixed, up in the core block
 	ertchannel = "[rand(700,749)].[rand(1,9)]"
 	medchannel = "[rand(750,799)].[rand(1,9)]"
 	engchannel = "[rand(800,849)].[rand(1,9)]"
 	secchannel = "[rand(850,899)].[rand(1,9)]"
 	sdfchannel = "[rand(900,999)].[rand(1,9)]"
+	admin_notice(span_danger("Air traffic control initialized."))
+	wait = 5 SECONDS
+	return SS_INIT_SUCCESS
 
-	// Calling two alarms at the same time for a GOOD REASON
-	// Don't do this normally
-	addtimer(CALLBACK(src, PROC_REF(start_shift)), 5 SECONDS) // Overridable message to show on roundstart, I don't want to chain process() from it, so downstream can just change the message, and still have the channel nums above
-	addtimer(CALLBACK(src, PROC_REF(process)), initial_delay) // Private+no override timer proc for the atc update loop, should never be touched.
+/datum/controller/subsystem/atc/fire()
+	if(first_tick)
+		first_tick = FALSE
+		start_shift()
+		wait = initial_delay
+		return
+	if(squelched)
+		wait = backoff_delay
+		return
+	random_convo()
+	wait = rand(delay_min,delay_max)
 
-/datum/lore/atc_controller/proc/start_shift() // Override/replace me!
+/datum/controller/subsystem/atc/proc/start_shift() // Override/replace me!
 	PRIVATE_PROC(TRUE)
 	msg("New shift beginning, resuming traffic control. This shift's Colony Frequencies are as follows: Emergency Responders: [ertchannel]. Medical: [medchannel]. Engineering: [engchannel]. Security: [secchannel]. System Defense: [sdfchannel].")
 
-/datum/lore/atc_controller/process()
-	SHOULD_NOT_OVERRIDE(TRUE)
-	if(squelched)
-		addtimer(CALLBACK(src, PROC_REF(process)), backoff_delay )
-		return
-	random_convo()
-	addtimer(CALLBACK(src, PROC_REF(process)), rand(delay_min,delay_max) )
-
-/datum/lore/atc_controller/proc/msg(var/message,var/sender)
+/datum/controller/subsystem/atc/proc/msg(var/message,var/sender)
 	ASSERT(message)
 	global_announcer.autosay("[message]", sender ? sender : "[using_map.dock_name] Control")
 
-/datum/lore/atc_controller/proc/reroute_traffic(var/yes = 1)
+/datum/controller/subsystem/atc/proc/reroute_traffic(var/yes = 1)
 	if(yes)
 		if(!squelched)
 			msg("Rerouting traffic away from [using_map.station_name].")
@@ -58,10 +62,10 @@ GLOBAL_DATUM_INIT(atc, /datum/lore/atc_controller, new)
 			msg("Resuming normal traffic routing around [using_map.station_name].")
 		squelched = 0
 
-/datum/lore/atc_controller/proc/shift_ending()
+/datum/controller/subsystem/atc/proc/shift_ending()
 	new /datum/atc_chatter/shift_end(null,null)
 
-/datum/lore/atc_controller/proc/random_convo()
+/datum/controller/subsystem/atc/proc/random_convo()
 	SHOULD_NOT_OVERRIDE(TRUE)
 	PRIVATE_PROC(TRUE)
 
@@ -76,7 +80,7 @@ GLOBAL_DATUM_INIT(atc, /datum/lore/atc_controller, new)
 	new path(source,secondary)
 
 // Override/Replace me downstream if you need different chatter, call parent at end if you want this dialog too! Returns a subtype path of /datum/atc_chatter!
-/datum/lore/atc_controller/proc/chatter_box(var/org_type,var/org_type2)
+/datum/controller/subsystem/atc/proc/chatter_box(var/org_type,var/org_type2)
 	PRIVATE_PROC(TRUE)
 	if((org_type == "government" || org_type == "neutral" || org_type == "military" || org_type == "corporate" || org_type == "system defense" || org_type == "spacer") && org_type2 == "pirate") //this is ugly but when I tried to do it with !='s it fired for pirate-v-pirate, still not sure why. might as well stick it up here so it takes priority over other combos.
 		return /datum/atc_chatter/distress

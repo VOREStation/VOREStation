@@ -93,7 +93,7 @@
 	data["emagged"]       = emagged
 	data["authenticated"] = is_authenticated(user, 0)
 	data["authmax"] = data["authenticated"] == COMM_AUTHENTICATION_MAX ? TRUE : FALSE
-	data["atcsquelch"] = GLOB.atc.squelched
+	data["atcsquelch"] = SSatc.squelched
 	data["boss_short"] = using_map.boss_short
 
 	data["stat_display"] =  list(
@@ -293,7 +293,7 @@
 			setMenuState(ui.user, COMM_SCREEN_MESSAGES)
 
 		if("toggleatc")
-			GLOB.atc.squelched = !GLOB.atc.squelched
+			SSatc.squelched = !SSatc.squelched
 
 		if("delmessage")
 			var/datum/comm_message_listener/l = obtain_message_listener()
