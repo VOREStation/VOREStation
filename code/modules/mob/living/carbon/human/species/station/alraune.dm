@@ -268,19 +268,19 @@
 		var/bodypart = pick(BP_L_FOOT,BP_R_FOOT,BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_L_HAND,BP_R_HAND,BP_TORSO,BP_GROIN,BP_HEAD)
 		if(breath.temperature >= breath_heat_level_1)
 			if(breath.temperature < breath_heat_level_2)
-				H.apply_damage(HEAT_GAS_DAMAGE_LEVEL_1, BURN, bodypart, used_weapon = "Excessive Heat")
+				H.apply_damage(HEAT_GAS_DAMAGE_LEVEL_1, BURN, bodypart)
 			else if(breath.temperature < breath_heat_level_3)
-				H.apply_damage(HEAT_GAS_DAMAGE_LEVEL_2, BURN, bodypart, used_weapon = "Excessive Heat")
+				H.apply_damage(HEAT_GAS_DAMAGE_LEVEL_2, BURN, bodypart)
 			else
-				H.apply_damage(HEAT_GAS_DAMAGE_LEVEL_3, BURN, bodypart, used_weapon = "Excessive Heat")
+				H.apply_damage(HEAT_GAS_DAMAGE_LEVEL_3, BURN, bodypart)
 
 		else if(breath.temperature <= breath_cold_level_1)
 			if(breath.temperature > breath_cold_level_2)
-				H.apply_damage(COLD_GAS_DAMAGE_LEVEL_1, BURN, bodypart, used_weapon = "Excessive Cold")
+				H.apply_damage(COLD_GAS_DAMAGE_LEVEL_1, BURN, bodypart)
 			else if(breath.temperature > breath_cold_level_3)
-				H.apply_damage(COLD_GAS_DAMAGE_LEVEL_2, BURN, bodypart, used_weapon = "Excessive Cold")
+				H.apply_damage(COLD_GAS_DAMAGE_LEVEL_2, BURN, bodypart)
 			else
-				H.apply_damage(COLD_GAS_DAMAGE_LEVEL_3, BURN, bodypart, used_weapon = "Excessive Cold")
+				H.apply_damage(COLD_GAS_DAMAGE_LEVEL_3, BURN, bodypart)
 
 
 		//breathing in hot/cold air also heats/cools you a bit

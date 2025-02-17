@@ -52,7 +52,7 @@ var/list/turf_edge_cache = list()
 			user.setClickCooldown(delay)
 			if(do_after(user, delay, src))
 				new/obj/structure/closet/grave/dirthole(src)
-				to_chat(user, span_notice("You dug up \a hole!"))
+				to_chat(user, span_notice("You dug up a hole!"))
 				return
 		else
 			to_chat(user, span_notice("\The [user] begins digging into \the [src] with \the [C]."))
