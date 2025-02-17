@@ -115,7 +115,7 @@ var/global/datum/emergency_shuttle_controller/emergency_shuttle = new
 	shuttle.move_time = SHUTTLE_TRANSIT_DURATION
 	var/estimated_time = round(estimate_arrival_time()/60,1)
 
-	priority_announcement.Announce(replacetext(replacetext(using_map.shuttle_called_message, "%dock_name%", "[using_map.dock_name]"),  "%ETA%", "[estimated_time] minute\s"), "Transfer System", 'sound/AI/tramcalled.ogg') //VOREStation Edit - TTS
+	priority_announcement.Announce(replacetext(replacetext(using_map.shuttle_called_message, "%dock_name%", "[using_map.dock_name]"),  "%ETA%", "[estimated_time] minute\s"), "Transfer System", 'sound/AI/tramcalled.ogg')
 	SSatc.shift_ending()
 
 //recalls the shuttle
