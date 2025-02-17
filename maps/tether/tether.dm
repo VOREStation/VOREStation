@@ -3,14 +3,9 @@
 	#include "tether_defines.dm"
 	#include "tether_turfs.dm"
 	#include "tether_things.dm"
-	#include "tether_phoronlock.dm"
-	#include "tether_areas.dm"
-	#include "tether_shuttle_defs.dm"
 	#include "tether_shuttles.dm"
 	#include "tether_telecomms.dm"
-	#include "tether_jobs.dm"
 	#include "tether_events.dm"
-	#include "../offmap_vr/common_offmaps.dm"
 
 	#ifndef AWAY_MISSION_TEST //Don't include these for just testing away missions
 		#include "tether-01-surface1.dmm"
