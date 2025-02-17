@@ -1,4 +1,5 @@
 //For bypassing locked /obj/structure/simple_doors
+//now with added fence gate support
 
 /obj/item/lockpick
 	name = "set of lockpicks"
@@ -15,6 +16,23 @@
 		return
 	if(istype(A, /obj/structure/simple_door))
 		var/obj/structure/simple_door/D = A
+		if(!D.locked)	//you can pick your nose, but you can't pick an unlocked door
+			to_chat(user, span_notice("\The [D] isn't locked."))
+			return
+		else if(D.lock_type != pick_type) //make sure our types match
+			to_chat(user, span_warning("\The [src] can't pick \the [D]. Another tool might work?"))
+			return
+		else if(!D.can_pick)	//make sure we're actually allowed to bypass it at all
+			to_chat(user, span_warning("\The [D] can't be [pick_verb]ed."))
+			return
+		else	//finally, we can assume that they do match
+			to_chat(user, span_notice("You start to [pick_verb] the lock on \the [D]..."))
+			playsound(src, D.keysound,100, 1)
+			if(do_after(user, pick_time * D.lock_difficulty))
+				to_chat(user, span_notice("Success!"))
+				D.locked = FALSE
+	if(istype(A, /obj/structure/fence/door))
+		var/obj/structure/fence/door/D = A
 		if(!D.locked)	//you can pick your nose, but you can't pick an unlocked door
 			to_chat(user, span_notice("\The [D] isn't locked."))
 			return

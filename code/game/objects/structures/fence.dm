@@ -69,6 +69,7 @@
 	return ..()
 
 /obj/structure/fence/attackby(obj/item/W, mob/user)
+	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 	if(W.has_tool_quality(TOOL_WIRECUTTER))
 		if(!cuttable)
 			to_chat(user, span_warning("This section of the fence can't be cut."))
@@ -122,6 +123,11 @@
 	cuttable = FALSE
 	var/open = FALSE
 	var/locked = FALSE
+	var/lock_id = null	//does the door have an associated key?
+	var/lock_type = "simple"	//string matched to "pick_type" on /obj/item/lockpick
+	var/can_pick = TRUE	//can it be picked/bypassed?
+	var/lock_difficulty = 1	//multiplier to picking/bypassing time
+	var/keysound = 'sound/items/toolbelt_equip.ogg'
 
 /obj/structure/fence/door/Initialize()
 	update_door_status()
@@ -143,6 +149,23 @@
 		to_chat(user, span_warning("\The [src] is [!open ? "locked" : "stuck open"]."))
 
 	return TRUE
+
+/obj/structure/fence/door/attackby(obj/item/W as obj, mob/user as mob)
+	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
+	if(istype(W,/obj/item/simple_key))
+		var/obj/item/simple_key/key = W
+		if(open)
+			to_chat(user,span_notice("\The [src] must be closed in order for you to lock it."))
+		else if(key.key_id != src.lock_id)
+			to_chat(user,span_warning("The [key] doesn't fit \the [src]'s lock!"))
+		else if(key.key_id == src.lock_id)
+			visible_message(span_notice("[user] [key.keyverb] \the [key] and [locked ? "unlocks" : "locks"] \the [src]."))
+			locked = !locked
+			playsound(src, keysound,100, 1)
+		return
+	else
+		attack_hand(user)
+	return
 
 /obj/structure/fence/door/proc/toggle(mob/user)
 	switch(open)
