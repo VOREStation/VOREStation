@@ -1,0 +1,4 @@
+author: "ItsSelis"
+delete-after: True
+changes:
+  - refactor: "moved one global var to a managed global (to test the workflow change)"
