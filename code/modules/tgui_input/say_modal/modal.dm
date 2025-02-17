@@ -26,7 +26,7 @@
 	/// Injury phrases to blurt out
 	var/list/hurt_phrases = list("GACK!", "GLORF!", "OOF!", "AUGH!", "OW!", "URGH!", "HRNK!")
 	/// Max message length
-	var/max_length = MAX_MESSAGE_LEN
+	var/max_length = MAX_HUGE_MESSAGE_LEN
 	/// The modal window
 	var/datum/tgui_window/window
 	/// Boolean for whether the tgui_say was opened by the user.
