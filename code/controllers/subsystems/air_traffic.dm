@@ -41,7 +41,7 @@ SUBSYSTEM_DEF(atc)
 	if(squelched)
 		wait = backoff_delay
 		return
-	random_convo()
+	INVOKE_ASYNC(src, PROC_REF(random_convo))
 	wait = rand(delay_min,delay_max)
 
 /datum/controller/subsystem/atc/proc/msg(var/message,var/sender)
