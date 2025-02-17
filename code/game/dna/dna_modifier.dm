@@ -298,7 +298,6 @@
 					ex_act(severity)
 				qdel(src)
 				return
-		else
 	return
 
 /obj/machinery/computer/scan_consolenew
