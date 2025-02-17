@@ -4,7 +4,7 @@ import { formatMoney } from 'tgui-core/format';
 
 import { COLOR_KEYS } from './constants';
 import { MaterialAmount } from './Material';
-import { Data } from './types';
+import type { Data } from './types';
 
 export const Queue = (props: {
   queueMaterials: Record<string, number>;

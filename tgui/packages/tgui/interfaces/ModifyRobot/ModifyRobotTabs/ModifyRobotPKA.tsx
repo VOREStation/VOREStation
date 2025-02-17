@@ -13,7 +13,7 @@ import { capitalize } from 'tgui-core/string';
 
 import { NoSpriteWarning } from '../components';
 import { getModuleIcon, prepareSearch } from '../functions';
-import { Target } from '../types';
+import type { Target } from '../types';
 
 export const ModifyRobotPKA = (props: { target: Target }) => {
   const { act } = useBackend();

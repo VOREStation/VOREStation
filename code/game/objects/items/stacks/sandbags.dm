@@ -32,8 +32,8 @@
 
 	bag_material = MAT_SYNCLOTH
 
-/obj/item/stack/sandbags/Initialize(var/ml, var/amt, var/bag_mat)
-	. = ..(ml, amt)
+/obj/item/stack/sandbags/Initialize(mapload, var/amt, var/bag_mat)
+	. = ..(mapload, amt)
 	recipes = sandbag_recipes
 	update_icon()
 	if(bag_mat)
@@ -132,8 +132,8 @@ var/global/list/datum/stack_recipe/sandbag_recipes = list( \
 
 	var/bag_material = MAT_CLOTH
 
-/obj/item/stack/emptysandbag/Initialize(var/ml, var/amt, var/bag_mat)
-	. = ..(ml, amt)
+/obj/item/stack/emptysandbag/Initialize(mapload, var/amt, var/bag_mat)
+	. = ..(mapload, amt)
 	if(bag_mat)
 		bag_material = bag_mat
 	var/datum/material/M = get_material_by_name("[bag_material]")

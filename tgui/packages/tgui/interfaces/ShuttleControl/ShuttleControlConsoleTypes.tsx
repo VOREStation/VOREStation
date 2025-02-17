@@ -3,7 +3,7 @@ import { Button, LabeledList, Section } from 'tgui-core/components';
 
 import { ShuttleControlSharedShuttleControls } from './ShuttleControlSharedShuttleControls';
 import { ShuttleControlSharedShuttleStatus } from './ShuttleControlSharedShuttleStatus';
-import { Data } from './types';
+import type { Data } from './types';
 
 export const ShuttleControlConsoleDefault = (props) => {
   return (

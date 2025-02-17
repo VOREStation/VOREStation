@@ -6,9 +6,9 @@ import {
   ProgressBar,
   Section,
 } from 'tgui-core/components';
-import { BooleanLike } from 'tgui-core/react';
+import type { BooleanLike } from 'tgui-core/react';
 
-import { Data } from './types';
+import type { Data } from './types';
 
 export const SleeperDialysisPump = (props: {
   active: BooleanLike;

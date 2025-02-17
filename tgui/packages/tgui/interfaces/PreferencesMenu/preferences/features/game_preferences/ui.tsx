@@ -82,3 +82,10 @@ export const tgui_say_height: FeatureNumeric = {
   description: 'Amount of lines to show in the tgui say input.',
   component: FeatureSliderInput,
 };
+
+export const tgui_say_width: FeatureNumeric = {
+  name: 'Say: TGUI Width (Pixel)',
+  category: 'UI',
+  description: 'The width to show in the tgui say input.',
+  component: FeatureSliderInput,
+};

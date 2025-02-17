@@ -50,7 +50,7 @@
 			visible_message(span_infoplain(span_bold("\The [user]") + " bonks \the [src] harmlessly."))
 	user.do_attack_animation(src)
 
-/obj/machinery/door/New()
+/obj/machinery/door/Initialize(mapload)
 	. = ..()
 	if(density)
 		layer = closed_layer
@@ -73,7 +73,6 @@
 	update_icon()
 
 	update_nearby_tiles(need_rebuild=1)
-	return
 
 /obj/machinery/door/Destroy()
 	density = FALSE

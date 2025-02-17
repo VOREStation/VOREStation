@@ -522,8 +522,8 @@ var/const/standard_monitor_styles = "blank=ipc_blank;\
 	parts = list(BP_L_LEG, BP_R_LEG, BP_L_FOOT, BP_R_FOOT)
 
 
-/obj/item/disk/limb/New(var/newloc)
-	..()
+/obj/item/disk/limb/Initialize(mapload)
+	. = ..()
 	if(company)
 		name = "[company] [initial(name)]"
 

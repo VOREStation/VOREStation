@@ -27,7 +27,7 @@
 	pickup_sound = 'sound/items/pickup/device.ogg'
 	drop_sound = 'sound/items/drop/device.ogg'
 
-/obj/item/uplink/Initialize(var/mapload)
+/obj/item/uplink/Initialize(mapload)
 	. = ..()
 	addtimer(CALLBACK(src, PROC_REF(next_offer)), offer_time) //It seems like only the /hidden type actually makes use of this...
 

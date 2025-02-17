@@ -5,7 +5,7 @@ import { CommunicationsConsoleAuth } from './CommunicationsConsoleAuth';
 import { CommunicationsConsoleMain } from './CommunicationsConsoleMain';
 import { CommunicationsConsoleMessage } from './CommunicationsConsoleMessage';
 import { CommunicationsConsoleStatusDisplay } from './CommunicationsConsoleStatusDisplay';
-import { Data } from './types';
+import type { Data } from './types';
 
 export const CommunicationsConsoleContent = (props) => {
   const { data } = useBackend<Data>();

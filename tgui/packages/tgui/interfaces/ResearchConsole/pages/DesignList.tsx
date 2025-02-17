@@ -2,7 +2,7 @@ import { useBackend } from 'tgui/backend';
 import { Box, Button, Input, LabeledList, Section } from 'tgui-core/components';
 
 import { PaginationChevrons } from '..';
-import { Data } from '../data';
+import type { Data } from '../data';
 
 export const DesignList = (props) => {
   const { act, data } = useBackend<Data>();

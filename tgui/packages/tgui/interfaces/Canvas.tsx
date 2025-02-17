@@ -3,7 +3,7 @@ import { useBackend } from 'tgui/backend';
 import { Window } from 'tgui/layouts';
 import { Box, Button, Stack } from 'tgui-core/components';
 import { clamp } from 'tgui-core/math';
-import { BooleanLike } from 'tgui-core/react';
+import type { BooleanLike } from 'tgui-core/react';
 
 const PX_PER_UNIT = 24;
 

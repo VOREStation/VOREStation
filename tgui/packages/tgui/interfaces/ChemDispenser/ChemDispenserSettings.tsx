@@ -2,7 +2,7 @@ import { useBackend } from 'tgui/backend';
 import { Button, LabeledList, Section, Slider } from 'tgui-core/components';
 
 import { dispenseAmounts } from './constants';
-import { Data } from './types';
+import type { Data } from './types';
 
 export const ChemDispenserSettings = (props) => {
   const { act, data } = useBackend<Data>();

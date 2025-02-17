@@ -3,7 +3,7 @@ import { LabeledList, ProgressBar, Section } from 'tgui-core/components';
 import { toFixed } from 'tgui-core/math';
 
 import { damageRange, damages } from './constants';
-import { Data } from './types';
+import type { Data } from './types';
 
 export const SleeperDamage = (props) => {
   const { data } = useBackend<Data>();

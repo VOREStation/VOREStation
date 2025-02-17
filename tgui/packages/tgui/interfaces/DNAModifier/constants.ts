@@ -5,7 +5,6 @@ export const stats: string[][] = [
 ];
 
 export const operations: string[][] = [
-  ['ui', 'Modify U.I.', 'dna'],
   ['se', 'Modify S.E.', 'dna'],
   ['buffer', 'Transfer Buffers', 'syringe'],
   ['rejuvenators', 'Rejuvenators', 'flask'],

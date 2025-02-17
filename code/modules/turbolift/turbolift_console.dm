@@ -29,9 +29,9 @@
 			user.visible_message(span_infoplain(span_bold("\The [user]") + " presses the lift button."))
 
 
-/obj/structure/lift/New(var/newloc, var/datum/turbolift/_lift)
+/obj/structure/lift/Initialize(mapload, var/datum/turbolift/_lift)
+	. = ..()
 	lift = _lift
-	return ..(newloc)
 
 /obj/structure/lift/attack_ai(var/mob/user)
 	return attack_hand(user)
