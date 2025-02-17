@@ -355,7 +355,6 @@
 			if(prob(50))
 				qdel(src)
 				return
-		else
 	return
 
 /obj/machinery/computer/scan_consolenew/Initialize()
