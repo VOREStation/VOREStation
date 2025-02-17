@@ -2,7 +2,7 @@
 
 /obj/item/evidencebag
 	name = "evidence bag"
-	desc = "An empty evidence bag."
+	desc = "An empty evidence bag.  Use by clicking on the bag and dragging it to the item you want to bag."
 	icon = 'icons/obj/storage.dmi'
 	icon_state = "evidenceobj"
 	item_state = null
@@ -27,7 +27,7 @@
 		//If it isn't on the floor. Do some checks to see if it's in our hands or a box. Otherwise give up.
 		if(istype(I.loc,/obj/item/storage))	//in a container.
 			var/sdepth = I.storage_depth(user)
-			if (sdepth == -1 || sdepth > 1)
+			if (sdepth > MAX_STORAGE_REACH)
 				return	//too deeply nested to access
 
 			var/obj/item/storage/U = I.loc

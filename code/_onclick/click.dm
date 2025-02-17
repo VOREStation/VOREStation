@@ -105,7 +105,7 @@
 	//Atoms on your person
 	// A is your location but is not a turf; or is on you (backpack); or is on something on you (box in backpack); sdepth is needed here because contents depth does not equate inventory storage depth.
 	var/sdepth = A.storage_depth(src)
-	if(!currently_restrained && ((!isturf(A) && A == loc) || (sdepth != -1 && sdepth <= 1)))
+	if(!currently_restrained && ((!isturf(A) && A == loc) || (sdepth <= MAX_STORAGE_REACH)))
 		if(W)
 			var/resolved = W.resolve_attackby(A, src, click_parameters = params)
 			if(!resolved && A && W)
@@ -137,7 +137,7 @@
 	//Atoms on turfs (not on your person)
 	// A is a turf or is on a turf, or in something on a turf (pen in a box); but not something in something on a turf (pen in a box in a backpack)
 	sdepth = A.storage_depth_turf()
-	if(isturf(A) || isturf(A.loc) || (sdepth != -1 && sdepth <= 1))
+	if(isturf(A) || isturf(A.loc) || (sdepth <= MAX_STORAGE_REACH))
 		if(currently_restrained)
 			if(ismob(A) && A.Adjacent(src)) //We are RESTRAINED (handcuffed or otherwise) and ADJACENT
 				setClickCooldown(get_attack_speed())
