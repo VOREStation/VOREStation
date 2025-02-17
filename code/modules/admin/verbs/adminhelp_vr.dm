@@ -1,3 +1,8 @@
+/*
+ * This file has been excluded from the compilation.
+ * Reason: Replaced with "Tickets System". Main logic has been moved to: modules/tickets/tickets.dm
+*/
+
 /datum/admin_help/proc/send2adminchat()
 	if(!CONFIG_GET(string/chat_webhook_url))
 		return
