@@ -65,8 +65,8 @@
 	defend_chance = 40	// The base chance for the weapon to parry.
 	projectile_parry_chance = 15	// The base chance for a projectile to be deflected.
 
-/obj/item/melee/changeling/New(location)
-	..()
+/obj/item/melee/changeling/Initialize(mapload)
+	. = ..()
 	START_PROCESSING(SSobj, src)
 	if(ismob(loc))
 		visible_message(span_warning("A grotesque weapon forms around [loc.name]\'s arm!"),

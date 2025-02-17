@@ -112,10 +112,9 @@
 
 	var/obj/item/clothing/glasses/hud/health/mech/hud
 
-/obj/mecha/combat/gygax/serenity/New()
-	..()
+/obj/mecha/combat/gygax/serenity/Initialize(mapload)
+	. = ..()
 	hud = new /obj/item/clothing/glasses/hud/health/mech(src)
-	return
 
 /obj/mecha/combat/gygax/serenity/moved_inside(var/mob/living/carbon/human/H as mob)
 	if(..())
@@ -141,8 +140,8 @@
 /obj/mecha/combat/gygax/old
 	desc = "A lightweight, security exosuit. Popular among private and corporate security. This one is particularly worn looking and likely isn't as sturdy."
 
-/obj/mecha/combat/gygax/old/New()
-	..()
+/obj/mecha/combat/gygax/old/Initialize(mapload)
+	. = ..()
 	health = 25
 	maxhealth = 250	//Just slightly worse.
 	cell.charge = rand(0, (cell.charge/2))

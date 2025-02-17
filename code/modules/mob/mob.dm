@@ -66,7 +66,7 @@
 	spell_masters = null
 	zone_sel = null
 
-/mob/Initialize()
+/mob/Initialize(mapload)
 	mob_list += src
 	if(stat == DEAD)
 		dead_mob_list += src
@@ -483,7 +483,13 @@
 /client/verb/changes()
 	set name = "Changelog"
 	set category = "OOC.Resources"
-	src << link("https://wiki.vore-station.net/Changelog")
+
+	if(!GLOB.changelog_tgui)
+		GLOB.changelog_tgui = new /datum/changelog()
+	GLOB.changelog_tgui.tgui_interact(usr)
+
+	if(prefs?.read_preference(/datum/preference/text/lastchangelog) != GLOB.changelog_hash)
+		prefs.write_preference_by_type(/datum/preference/text/lastchangelog, GLOB.changelog_hash)
 
 /mob/verb/observe()
 	set name = "Observe"

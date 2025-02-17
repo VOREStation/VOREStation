@@ -232,7 +232,7 @@
 	if(!pref_mob || !pref_mob.client)
 		return 1
 
-	. = OnTopic(href, href_list, usr)
+	. = OnTopic(href, href_list, pref_mob)
 
 	if(!pref_mob || !pref_mob.client)		// Just in case we disappeared during OnTopic
 		return 1

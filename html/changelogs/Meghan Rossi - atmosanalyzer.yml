@@ -1,4 +1,0 @@
-author: Meghan-Rossi
-delete-after: True
-changes: 
-  - bugfix: "Fixed some objects giving duplicate results when an analyzer was used on them"

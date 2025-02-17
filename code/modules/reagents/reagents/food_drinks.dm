@@ -3102,6 +3102,7 @@
 //Base type for alchoholic drinks containing coffee
 /datum/reagent/ethanol/coffee
 	name = REAGENT_DEVELOPER_WARNING
+	id = REAGENT_ID_DEVELOPER_WARNING
 	overdose = 45
 	allergen_type = ALLERGEN_COFFEE|ALLERGEN_STIMULANT //Contains coffee or is made from coffee
 
@@ -3359,6 +3360,7 @@
 
 /datum/reagent/ethanol/wine
 	name = REAGENT_DEVELOPER_WARNING // Unit test ignore
+	id = REAGENT_ID_DEVELOPER_WARNING
 
 /datum/reagent/ethanol/wine/champagne
 	name = REAGENT_CHAMPAGNE

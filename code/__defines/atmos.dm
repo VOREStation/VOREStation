@@ -98,4 +98,4 @@
 // Used in various things like tanks and oxygen pumps.
 #define TANK_MAX_RELEASE_PRESSURE (3*ONE_ATMOSPHERE)
 #define TANK_DEFAULT_RELEASE_PRESSURE ONE_ATMOSPHERE
-#define MAX_ATMOS_TEMPERATURE 1e7 //Without having a max temp, you can get .inf temps
+#define MAX_ATMOS_TEMPERATURE 1e30 //Without having a max temp, you can get .inf temps

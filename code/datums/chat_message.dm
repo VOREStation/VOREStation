@@ -195,7 +195,7 @@ var/list/runechat_image_cache = list()
 	var/rough_time = REALTIMEOFDAY
 
 	approx_lines = max(1, mheight / CHAT_MESSAGE_APPROX_LHEIGHT)
-	var/starting_height = target.maptext_height + owner.get_oversized_icon_offsets()["y"]
+	var/starting_height = target.runechat_y_offset()
 
 	// Translate any existing messages upwards, apply exponential decay factors to timers
 	message_loc = target.runechat_holder(src)
@@ -436,21 +436,21 @@ var/list/runechat_image_cache = list()
 /atom/proc/runechat_x_offset(width, height)
 	return (width - world.icon_size) * -0.5
 
-/atom/proc/runechat_y_offset(width, height)
-	return world.icon_size * 0.95
+/atom/proc/runechat_y_offset()
+	return maptext_height
 
 /atom/movable/runechat_x_offset(width, height)
 	return (width - bound_width) * -0.5 + get_oversized_icon_offsets()["x"]
 
-/atom/movable/runechat_y_offset(width, height)
-	return bound_height * 0.95 + get_oversized_icon_offsets()["y"]
+/atom/movable/runechat_y_offset()
+	return ..() + get_oversized_icon_offsets()["y"]
 
 /* Nothing special
 /mob/runechat_x_offset(width, height)
 	return (width - bound_width) * -0.5
 */
 
-/mob/runechat_y_offset(width, height)
+/mob/runechat_y_offset()
 	return ..()*size_multiplier
 
 // Allows you to specify a different attachment point for messages from yourself
