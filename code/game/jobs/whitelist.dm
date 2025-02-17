@@ -113,7 +113,7 @@ var/list/whitelist = list()
 /proc/whitelist_overrides(mob/M)
 	if(!CONFIG_GET(flag/usealienwhitelist))
 		return TRUE
-	if(check_rights(R_ADMIN|R_EVENT, 0, M))
+	if(check_rights_for(M.client, R_ADMIN|R_EVENT))
 		return TRUE
 
 	return FALSE
