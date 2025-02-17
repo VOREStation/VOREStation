@@ -1133,12 +1133,13 @@
 		to_chat(src, "You don't have enough space to spin a cocoon!")
 		return
 
+	if(buckled ||stat || paralysis || weakened || stunned || world.time < last_special) //No tongue flicking while stunned.
+		to_chat(src, span_warning("You can't do that in your current state."))
+		return
+
 	if(do_after(src, 25, exclusive = TASK_USER_EXCLUSIVE))
 		var/obj/item/storage/vore_egg/bugcocoon/C = new(loc)
 		forceMove(C)
-		transforming = TRUE
-		var/datum/tgui_module/appearance_changer/cocoon/V = new(src, src)
-		V.tgui_interact(src)
 
 		var/mob_holder_type = src.holder_type || /obj/item/holder
 		C.w_class = src.size_multiplier * 4 //Egg size and weight scaled to match occupant.
@@ -1149,6 +1150,8 @@
 		C.update_transform()
 		//egg_contents -= src
 		C.contents -= src
+		var/datum/tgui_module/appearance_changer/cocoon/V = new(src, src)
+		V.tgui_interact(src)
 
 /mob/living/carbon/human/proc/water_stealth()
 	set name = "Dive under water / Resurface"

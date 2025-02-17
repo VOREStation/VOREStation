@@ -77,20 +77,6 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 	update_icon_special()
 
 /mob/living/carbon/human/update_transform(var/instant = FALSE)
-	/* VOREStation Edit START
-	// First, get the correct size.
-	var/desired_scale_x = icon_scale_x
-	var/desired_scale_y = icon_scale_y
-
-	desired_scale_x *= species.icon_scale_x
-	desired_scale_y *= species.icon_scale_y
-
-	for(var/datum/modifier/M in modifiers)
-		if(!isnull(M.icon_scale_x_percent))
-			desired_scale_x *= M.icon_scale_x_percent
-		if(!isnull(M.icon_scale_y_percent))
-			desired_scale_y *= M.icon_scale_y_percent
-	*/
 	var/desired_scale_x = size_multiplier * icon_scale_x
 	var/desired_scale_y = size_multiplier * icon_scale_y
 	desired_scale_x *= species.icon_scale_x
@@ -102,7 +88,7 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 	appearance_flags |= PIXEL_SCALE
 	if(fuzzy)
 		appearance_flags &= ~PIXEL_SCALE
-	//VOREStation Edit End
+		center_offset = 0
 
 	// Regular stuff again.
 	var/matrix/M = matrix()
@@ -116,32 +102,23 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 		if(tail_style?.can_loaf && resting) // Only call these if we're resting?
 			update_tail_showing()
 			M.Scale(desired_scale_x, desired_scale_y)
+			M.Translate(cent_offset * desired_scale_x, (vis_height/2)*(desired_scale_y-1)) //CHOMPEdit
 		else
+			M.Scale(desired_scale_x, desired_scale_y)
+			if(isnull(rest_dir))
+				rest_dir = pick(FALSE, TRUE)
 			if(rest_dir)
-				if(rest_dir < 0)
-					M.Turn(-90)
-					rest_dir = 0
-				else
-					M.Turn(90)
-					rest_dir = 0
+				M.Translate((1 / desired_scale_x * -4) + (desired_scale_x * cent_offset), 0)
+				M.Turn(-90)
 			else
-				var/randn = rand(1, 2)
-				if(randn <= 1) // randomly choose a rotation
-					M.Turn(-90)
-				else
-					M.Turn(90)
-			if(species.icon_height == 64)
-				M.Translate(13,-22)
-			else
-				M.Translate(1,-6)
-			M.Scale(desired_scale_y, desired_scale_x)
-		M.Translate(cent_offset * desired_scale_x, (vis_height/2)*(desired_scale_y-1))
+				M.Translate((1 / desired_scale_x * 4) - (desired_scale_x * cent_offset), 0)
+				M.Turn(90)
 		layer = MOB_LAYER -0.01 // Fix for a byond bug where turf entry order no longer matters
 	else
-		M.Scale(desired_scale_x, desired_scale_y)//VOREStation Edit
+		M.Scale(desired_scale_x, desired_scale_y)
 		M.Translate(cent_offset * desired_scale_x, (vis_height/2)*(desired_scale_y-1))
-		if(tail_style?.can_loaf) // VOREStation Edit: Taur Loafing
-			update_tail_showing() // VOREStation Edit: Taur Loafing
+		if(tail_style?.can_loaf)
+			update_tail_showing()
 		layer = MOB_LAYER // Fix for a byond bug where turf entry order no longer matters
 
 	if(instant)

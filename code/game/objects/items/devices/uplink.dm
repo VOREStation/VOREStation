@@ -174,7 +174,7 @@
 				"items" = (category == selected_cat ? list() : null)
 			)
 		for(var/datum/uplink_item/item in category.items)
-			var/cost = item.cost(src, user) || "???"
+			var/cost = item.cost(src, user.mind.tcrystals) || "???"
 			cat["items"] += list(list(
 				"name" = item.name,
 				"cost" = cost,
