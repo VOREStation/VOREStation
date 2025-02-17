@@ -70,7 +70,6 @@ var/global/list/micro_tunnels = list()
 	for(var/datum/planet/P in SSplanets.planets)
 		if(myturf.z in P.expected_z_levels)
 			planet = P
-		else
 	for(var/obj/structure/micro_tunnel/t in micro_tunnels)
 		if(t == src)
 			continue
@@ -85,7 +84,6 @@ var/global/list/micro_tunnels = list()
 			if(targetturf.z in planet.expected_z_levels)
 				destinations |= t
 				continue
-			else
 		var/above = GetAbove(myturf)
 		if(above && t.z == z + 1)
 			destinations |= t

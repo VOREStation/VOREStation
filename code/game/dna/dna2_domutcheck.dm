@@ -19,7 +19,7 @@
 		if(!M || !M.dna)
 			return
 		if(gene.block)
-			if(gene.name in M.active_genes || gene.flags & GENE_ALWAYS_ACTIVATE)
+			if((gene.name in M.active_genes) || gene.flags & GENE_ALWAYS_ACTIVATE)
 				enabled_genes.Add(gene)
 			else
 				disabled_genes.Add(gene)

@@ -87,12 +87,12 @@
 			switch(damage_type)
 				if("BRUTE")
 					H.visible_message(span_danger("\The [src] creaks as it ravages [H]'s hands!"))
-					H.apply_damage(rand(min_damage,max_damage), BRUTE, "r_hand", used_weapon="Anomalous Material")
-					H.apply_damage(rand(min_damage,max_damage), BRUTE, "l_hand", used_weapon="Anomalous Material")
+					H.apply_damage(rand(min_damage,max_damage), BRUTE, "r_hand", used_weapon=src)
+					H.apply_damage(rand(min_damage,max_damage), BRUTE, "l_hand", used_weapon=src)
 				if("BURN")
 					H.visible_message(span_danger("\The [src] flashes as it scorches [H]'s hands!"))
-					H.apply_damage(rand(min_damage,max_damage), BURN, "r_hand", used_weapon="Anomalous Material")
-					H.apply_damage(rand(min_damage,max_damage), BURN, "l_hand", used_weapon="Anomalous Material")
+					H.apply_damage(rand(min_damage,max_damage), BURN, "r_hand", used_weapon=src)
+					H.apply_damage(rand(min_damage,max_damage), BURN, "l_hand", used_weapon=src)
 				if("TOX")
 					H.visible_message(span_danger("\The [src] seethes and hisses like burning acid!"))
 					if(!H.isSynthetic())
@@ -119,7 +119,7 @@
 		burn_user = FALSE
 
 	if(burn_user)
-		M.apply_damage(rand(min_damage,max_damage), BURN, null, used_weapon="Anomalous Material")
+		M.apply_damage(rand(min_damage,max_damage), BURN, null, used_weapon=src)
 
 /obj/item/research_sample/attack_self(mob/user)
 	var/mob/living/M = user
@@ -144,12 +144,12 @@
 			switch(damage_type)
 				if("BRUTE")
 					H.visible_message(span_danger("\The [src] creaks as it ravages [H]'s hands!"))
-					H.apply_damage(rand(min_damage,max_damage), BRUTE, "r_hand", used_weapon="Anomalous Material")
-					H.apply_damage(rand(min_damage,max_damage), BRUTE, "l_hand", used_weapon="Anomalous Material")
+					H.apply_damage(rand(min_damage,max_damage), BRUTE, "r_hand", used_weapon=src)
+					H.apply_damage(rand(min_damage,max_damage), BRUTE, "l_hand", used_weapon=src)
 				if("BURN")
 					H.visible_message(span_danger("\The [src] flashes as it scorches [H]'s hands!"))
-					H.apply_damage(rand(min_damage,max_damage), BURN, "r_hand", used_weapon="Anomalous Material")
-					H.apply_damage(rand(min_damage,max_damage), BURN, "l_hand", used_weapon="Anomalous Material")
+					H.apply_damage(rand(min_damage,max_damage), BURN, "r_hand", used_weapon=src)
+					H.apply_damage(rand(min_damage,max_damage), BURN, "l_hand", used_weapon=src)
 				if("TOX")
 					H.visible_message(span_danger("\The [src] seethes and hisses like burning acid!"))
 					if(!H.isSynthetic())
@@ -186,7 +186,7 @@
 		burn_user = FALSE
 
 	if(burn_user)
-		M.apply_damage(rand(min_damage,max_damage), BURN, null, used_weapon="Anomalous Material")
+		M.apply_damage(rand(min_damage,max_damage), BURN, null, used_weapon=src)
 
 /obj/item/research_sample/attackby(obj/item/P as obj, mob/user as mob)
 	..()

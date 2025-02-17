@@ -103,7 +103,7 @@
 	if(victim.vore_taste)
 		to_chat(user, span_infoplain(span_bold("[victim]") + " tastes like... [victim.vore_taste]!"))
 
-	victim.apply_damage(5, used_weapon = "straw")
+	victim.apply_damage(5, used_weapon=src)
 
 	// If you're human you get the reagent
 	if(ishuman(user))

@@ -462,7 +462,7 @@
 
 /obj/item/dogborg/sleeper/proc/inject_chem(mob/user, chem)
 	if(patient && patient.reagents)
-		if(chem in injection_chems + REAGENT_ID_INAPROVALINE)
+		if(chem in (injection_chems + REAGENT_ID_INAPROVALINE))
 			if(hound.cell.charge < 800) //This is so borgs don't kill themselves with it.
 				to_chat(hound, span_notice("You don't have enough power to synthesize fluids."))
 				return
