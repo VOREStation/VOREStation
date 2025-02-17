@@ -2,7 +2,7 @@
 //Also, massive additions/refactors by Killian, because the original incarnation was full of holes
 //Originally coded by above, massive refactor here to use datums instead of an if/else mess - Willbird
 
-var/datum/lore/atc_controller/atc = new/datum/lore/atc_controller
+GLOBAL_DATUM_INIT(atc, /datum/lore/atc_controller, new)
 
 /datum/lore/atc_controller
 	var/delay_min = 45 MINUTES			//How long between ATC traffic, minimum
@@ -38,7 +38,6 @@ var/datum/lore/atc_controller/atc = new/datum/lore/atc_controller
 
 /datum/lore/atc_controller/process()
 	SHOULD_NOT_OVERRIDE(TRUE)
-	PRIVATE_PROC(TRUE)
 	if(squelched)
 		addtimer(CALLBACK(src, PROC_REF(process)), backoff_delay )
 		return
@@ -145,7 +144,7 @@ var/datum/lore/atc_controller/atc = new/datum/lore/atc_controller
 					/datum/atc_chatter/misc,
 					/datum/atc_chatter/sdfchatter)
 	//if we somehow don't match any of the other existing filters once we've run through all of them
-	return  pick(5;/datum/atc_chatter/emerg,
+	return pick(5;/datum/atc_chatter/emerg,
 				25;/datum/atc_chatter/policescan,
 				25;/datum/atc_chatter/traveladvisory,
 				30;/datum/atc_chatter/pathwarning,

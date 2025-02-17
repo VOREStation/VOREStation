@@ -126,17 +126,26 @@
 	if(source.complex_tasks)				//if our source has the complex_tasks flag, regenerate with a two-stage assignment
 		mission_noun = "[pick(source.task_types)] [pick(source.flight_types)]"
 
+	// Get the ball rolling
+	squak()
+
 /datum/atc_chatter/proc/squak()
 	PROTECTED_PROC(TRUE)
 	// calls acknowledge at each message phase until final, where it qdel(src)
 	return
 
 /datum/atc_chatter/proc/next(var/multiplier = 1,var/pr_ref = null)
+	SHOULD_NOT_OVERRIDE(TRUE)
 	PROTECTED_PROC(TRUE)
 	if(!pr_ref) // don't advance the section unless we actually call squak(), otherwise it's a submessage override
 		pr_ref = PROC_REF(squak)
 		phase++ // next
 	addtimer(CALLBACK(src, pr_ref), (rand(MIN_MSG_DELAY,MAX_MSG_DELAY) SECONDS) * multiplier)
+
+/datum/atc_chatter/proc/finish() // Override me if you have any cleanup to do
+	SHOULD_CALL_PARENT(TRUE)
+	PROTECTED_PROC(TRUE)
+	qdel(src)
 
 #undef MIN_MSG_DELAY
 #undef MAX_MSG_DELAY
