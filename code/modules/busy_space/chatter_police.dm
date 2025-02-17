@@ -14,7 +14,7 @@
 		if(4)
 			var/complain = pick("I hope this doesn't take too long.","Can we hurry this up?","Make it quick.","This better not take too long.","Is this really necessary?","I'm sure you'll find everything to be in order, Control.")
 			SSatc.msg(complain,"[comm_first_name]")
-			next()
+			next(10)
 		else
 			var/completed = pick("You're free to proceed.","Everything looks fine, carry on.","You're clear, move along.","Apologies for the delay, you're clear.","Switch to channel [SSatc.sdfchannel] and await further instruction.")
 			SSatc.msg("[combined_first_name], [callname]. Scan complete. [completed]")
