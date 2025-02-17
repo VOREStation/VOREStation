@@ -5,15 +5,17 @@ SUBSYSTEM_DEF(atc)
 	name = "Air Traffic Control"
 	priority = FIRE_PRIORITY_ATC
 	runlevels = RUNLEVEL_GAME
+	wait = 2 SECONDS
+	flags = SS_BACKGROUND
 
-	var/datum/atc_chatter_type/chatter_datum = new() // don't change, override the chatter_box() proc
-	var/delay_min = 45 MINUTES				//How long between ATC traffic, minimum
-	var/delay_max = 90 MINUTES				//Ditto, maximum
+	VAR_PRIVATE/next_tick = 0
+	VAR_PRIVATE/datum/atc_chatter_type/chatter_datum = new() // don't change, override the chatter_box() proc
+	VAR_PRIVATE/delay_min = 45 MINUTES				//How long between ATC traffic, minimum
+	VAR_PRIVATE/delay_max = 90 MINUTES				//Ditto, maximum
 							//Shorter delays means more traffic, which gives the impression of a busier system, but also means a lot more radio noise
-	var/backoff_delay = 5 MINUTES			//How long to back off if we can't talk and want to.  Default is 5 mins.
-	var/initial_delay = 15 MINUTES			//How long to wait before sending the first message of the shift.
-	var/squelched = FALSE					//If ATC is squelched currently
-	var/first_tick = TRUE
+	VAR_PRIVATE/backoff_delay = 5 MINUTES			//How long to back off if we can't talk and want to.  Default is 5 mins.
+	VAR_PRIVATE/initial_delay = 15 MINUTES			//How long to wait before sending the first message of the shift.
+	VAR_PRIVATE/squelched = FALSE					//If ATC is squelched currently
 
 	//define a block of frequencies so we can have them be static instead of being random for each call
 	var/ertchannel
@@ -29,34 +31,25 @@ SUBSYSTEM_DEF(atc)
 	engchannel = "[rand(800,849)].[rand(1,9)]"
 	secchannel = "[rand(850,899)].[rand(1,9)]"
 	sdfchannel = "[rand(900,999)].[rand(1,9)]"
-	wait = 5 SECONDS
 	return SS_INIT_SUCCESS
 
 /datum/controller/subsystem/atc/fire()
-	if(first_tick)
-		first_tick = FALSE
-		new /datum/atc_chatter/shift_start(null,null)
-		wait = initial_delay
+	if(times_fired < 1)
+		return
+	if(times_fired == 1)
+		next_tick = world.time + initial_delay
+		INVOKE_ASYNC(src,PROC_REF(shift_starting))
+		return
+	if(world.time < next_tick)
 		return
 	if(squelched)
-		wait = backoff_delay
+		next_tick = world.time + backoff_delay
 		return
-	INVOKE_ASYNC(src, PROC_REF(random_convo))
-	wait = rand(delay_min,delay_max)
+	next_tick = world.time + rand(delay_min,delay_max)
+	INVOKE_ASYNC(src,PROC_REF(random_convo))
 
-/datum/controller/subsystem/atc/proc/msg(var/message,var/sender)
-	ASSERT(message)
-	global_announcer.autosay("[message]", sender ? sender : "[using_map.dock_name] Control")
-
-/datum/controller/subsystem/atc/proc/reroute_traffic(var/yes = 1)
-	if(yes)
-		if(!squelched)
-			msg("Rerouting traffic away from [using_map.station_name].")
-		squelched = 1
-	else
-		if(squelched)
-			msg("Resuming normal traffic routing around [using_map.station_name].")
-		squelched = 0
+/datum/controller/subsystem/atc/proc/shift_starting()
+	new /datum/atc_chatter/shift_start(null,null)
 
 /datum/controller/subsystem/atc/proc/shift_ending()
 	new /datum/atc_chatter/shift_end(null,null)
@@ -71,3 +64,20 @@ SUBSYSTEM_DEF(atc)
 	//Random chance things for variety
 	var/path = chatter_datum.chatter_box(source.org_type,secondary.org_type)
 	new path(source,secondary)
+
+/datum/controller/subsystem/atc/proc/reroute_traffic(var/yes = 1,var/silent = FALSE)
+	if(yes)
+		if(!squelched && !silent)
+			msg("Rerouting traffic away from [using_map.station_name].")
+		squelched = 1
+	else
+		if(squelched && !silent)
+			msg("Resuming normal traffic routing around [using_map.station_name].")
+		squelched = 0
+
+/datum/controller/subsystem/atc/proc/msg(var/message,var/sender)
+	ASSERT(message)
+	global_announcer.autosay("[message]", sender ? sender : "[using_map.dock_name] Control")
+
+/datum/controller/subsystem/atc/proc/is_squelched()
+	return squelched
