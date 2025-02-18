@@ -906,8 +906,7 @@
 	if(deaf >= 0)
 		ear_deaf = deaf
 
-/mob/living/proc/vomit(lost_nutrition = 10, blood = FALSE, stun = TRUE, distance = 1, message = TRUE, toxic = VOMIT_TOXIC, purge = FALSE)
-	var/mob/living/carbon/human/H
+/mob/living/proc/vomit(lost_nutrition = 10, blood = FALSE, stun = 5, distance = 1, message = TRUE, toxic = VOMIT_TOXIC, purge = FALSE)
 
 	if(!check_has_mouth())
 		return TRUE
@@ -917,48 +916,79 @@
 			visible_message(span_warning("[src] dry heaves!"), span_userdanger("You try to throw up, but there's nothing in your stomach!"))
 
 		if(stun)
-			Stun(5)
+			Stun(stun)
 		return TRUE
 
-	if(iscarbon(src))
-		H = src
+	var/obj/vomit_goal = get_active_hand()
 
-	if(H.is_mouth_covered())
+	if(!istype(vomit_goal, /obj/item/reagent_containers/glass/bucket))
+		vomit_goal = check_vomit_goal()
+
+	if(iscarbon(H) && H.is_mouth_covered())
 		if(message)
 			visible_message(span_danger("[src] throws up all over themself!"), span_userdanger("You throw up all over yourself!"))
+		distance = 0
+	else if(vomit_goal)
+		if(message)
+			visible_message(span_danger("[src] throws up into the [vomit_goal]!"), span_userdanger("You throw up into the [vomit_goal]!"))
+		if(istype(vomit_goal, /obj/item/reagent_containers/glass/bucket))
+			var/obj/item/organ/internal/stomach/S = organs_by_name[O_STOMACH]
+			var/obj/item/reagent_containers/glass/bucket/puke_bucket = vomit_goal
+            if(S && S.acidtype)
+				puke_bucket.reagents.add_reagent(S.acidtype,rand(3,6))
+			else
+                puke_bucket.reagents.add_reagent(REAGENT_ID_TOXIN,rand(3,6))
 		distance = 0
 	else
 		if(message)
 			visible_message(span_danger("[src] throws up!"), span_userdanger("You throw up!"))
 
 	if(stun)
-		Stun(5)
+		Stun(stun)
 
 	playsound(get_turf(src), 'sound/effects/splat.ogg', 50, 1)
 	var/turf/T = get_turf(src)
+	var/vomit_type = NONE
+
+	if(isSynthetic())
+		vomit_type = VOMIT_NANITE
+	else if(reagents.has_reagent(REAGENT_ID_PHORON) && !isSynthetic())
+		vomit_type = VOMIT_PURPLE
+	else if(toxloss && !isSynthetic())
+		vomit_type = VOMIT_TOXIC
+
 	if(!blood)
 		adjust_nutrition(-lost_nutrition)
 		adjustToxLoss(-3)
+
 	for(var/i=0 to distance)
-		if(isSynthetic())
-			if(T)
-				T.add_vomit_floor(src, VOMIT_NANITE, purge)
-		else if(blood)
+		if(blood)
 			if(T)
 				blood_splatter(T, H.get_blood(H.vessel), TRUE)
 			if(stun)
 				adjustBruteLoss(3)
 		else if(T)
-			if(reagents.has_reagent(REAGENT_ID_PHORON))
-				T.add_vomit_floor(src, VOMIT_PURPLE, purge)
-			else if(toxloss)
-				T.add_vomit_floor(src, VOMIT_TOXIC, purge)
-			else
-				T.add_vomit_floor(src, NONE, purge)
+			T.add_vomit_floor(src, vomit_type, purge)
 		T = get_step(T, dir)
-		if (!CanZASPass(T))
+		if (!CanPass(src, T))
 			break
 	return TRUE
+
+/mob/living/proc/check_vomit_goal()
+    PRIVATE_PROC(TRUE)
+    var/obj_list = list(/obj/machinery/disposal,/obj/structure/toilet,/obj/structure/sink,/obj/structure/urinal)
+    for(var/type in obj_list)
+        // check standing on
+        var/turf/T = get_turf(src)
+        var/obj/O = locate(type) in T
+        if(O)
+            return O
+        // check ahead of us
+        T = get_turf(get_step(T,dir))
+        O = locate(type) in T
+        if(O && O.Adjacent(src))
+            return O
+    return null
 
 /mob/living/update_canmove()
 	if(!resting && cannot_stand() && can_stand_overridden())
