@@ -40,6 +40,7 @@
 	health = 25
 	movement_cooldown = -2
 	hovering = TRUE
+	density = FALSE
 
 	vore_active = TRUE
 	vore_icons = SA_ICON_LIVING
@@ -89,19 +90,24 @@
 /mob/living/simple_mob/animal/space/carp/Initialize()
 	. = ..()
 	carp_randomify(rarechance)
-	update_icons()
+	update_icon()
 	AddComponent(/datum/component/swarming)
+
+// This is so carps can swarm (evil)
+/mob/living/simple_mob/animal/space/carp/CanPass(atom/movable/mover, turf/target)
+	if(isliving(mover) && !istype(mover, /mob/living/simple_mob/animal/space/carp) && mover.density == TRUE)
+		return FALSE
+	return ..()
 
 /mob/living/simple_mob/animal/space/carp/proc/carp_randomify(rarechance)
 	cut_overlays()
 	if(random_color)
-		var/our_color
+		var/image/carp = image(icon, icon_state)
 		if(prob(rarechance))
-			our_color = pick(carp_colors_rare)
-			add_atom_colour(carp_colors_rare[our_color], FIXED_COLOUR_PRIORITY)
+			carp.color = pick(carp_colors_rare)
 		else
-			our_color = pick(carp_colors)
-			add_atom_colour(carp_colors[our_color], FIXED_COLOUR_PRIORITY)
+			carp.color = pick(carp_colors)
+		add_overlay(carp)
 		regenerate_icons()
 
 /mob/living/simple_mob/animal/space/carp/proc/add_carp_overlay()
