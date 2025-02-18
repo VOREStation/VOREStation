@@ -1,4 +1,8 @@
 2025-02-15:
   ItsSelis:
   - rscadd: Automatic changelog generation & compilation
-  - code_imp: Changelog buttons now pointing to the autochangelogs instead of opening the wiki
+  - code_imp: Changelog buttons now pointing to the autochangelogs instead of opening
+      the wiki
+2025-02-18:
+  ItsSelis:
+  - refactor: moved one global var to a managed global (to test the workflow change)
