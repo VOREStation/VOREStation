@@ -6,3 +6,5 @@
 2025-02-18:
   ItsSelis:
   - refactor: moved one global var to a managed global (to test the workflow change)
+  Kashargul:
+  - qol: prevents too long messages from being sent in tgui say
