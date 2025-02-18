@@ -143,31 +143,32 @@
 	access = access_medical_equip
 
 /datum/supply_pack/voidsuits/medical/alt
-	name = "Vey-Med Autoadaptive voidsuits (humanoid)"
-	desc = "A pair of advanced Vey-Med Adaptive Medical voidsuits. Requires Medical access, fits most humanoids."
+	name = "Vey-Med Autoadaptive Lightweight voidsuits"
+	desc = "A pair of advanced Vey-Med Auto-adaptive Medical voidsuits. Autofits most humanoids without need for cycling. Requires Medical Equipment access."
 	contains = list(
-			/obj/item/clothing/suit/space/void/medical/alt = 2,
-			/obj/item/clothing/head/helmet/space/void/medical/alt = 2,
+			/obj/item/clothing/suit/space/void/medical/veymed = 2,
+			/obj/item/clothing/head/helmet/space/void/medical/veymed = 2,
 			/obj/item/clothing/mask/breath = 2,
 			/obj/item/clothing/shoes/magboots = 2,
 			/obj/item/tank/oxygen = 2
 			)
 	cost = 60
 	containertype = /obj/structure/closet/crate/secure/veymed
-	containername = "Vey-Med Autoadaptive voidsuit (humanoid) crate"
+	containername = "Vey-Med Autoadaptive Lightweight voidsuit crate"
 	access = access_medical_equip
 
-/datum/supply_pack/voidsuits/medical/alt/tesh
-	name = "Vey-Med Autoadaptive voidsuits (teshari)"
-	desc = "A pair of advanced Vey-Med Adaptive Medical voidsuits. Requires Medical access, fits teshari only."
+/datum/supply_pack/voidsuits/medical/alt/static
+	name = "Vey-Med Nonadaptive Lightweight voidsuits"
+	desc = "A pair of advanced Vey-Med Adaptive Medical voidsuits. The autoadaptive feature has been removed to reduce costs. Requires Medical Equipment access."
 	contains = list(
-			/obj/item/clothing/suit/space/void/medical/alt/tesh = 2,
-			/obj/item/clothing/head/helmet/space/void/medical/alt/tesh = 2,
+			/obj/item/clothing/suit/space/void/medical/veymed_static = 2,
+			/obj/item/clothing/head/helmet/space/void/medical/veymed_static = 2,
 			/obj/item/clothing/mask/breath = 2,
 			/obj/item/clothing/shoes/magboots = 2,
 			/obj/item/tank/oxygen = 2
 			)
-	containername = "Vey-Med Autoadaptive voidsuit (teshari) crate"
+	cost = 50
+	containername = "Vey-Med Nonadaptive Lightweight voidsuit crate"
 
 /datum/supply_pack/voidsuits/security
 	name = "Security voidsuits"
