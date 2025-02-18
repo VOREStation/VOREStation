@@ -1,0 +1,4 @@
+2025-02-15:
+  ItsSelis:
+  - rscadd: Automatic changelog generation & compilation
+  - code_imp: Changelog buttons now pointing to the autochangelogs instead of opening the wiki
