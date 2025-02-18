@@ -93,7 +93,7 @@
 	update_icon()
 	AddComponent(/datum/component/swarming)
 
-// This is so carps can swarm (evil)
+// This is so carps can swarm
 /mob/living/simple_mob/animal/space/carp/CanPass(atom/movable/mover, turf/target)
 	if(isliving(mover) && !istype(mover, /mob/living/simple_mob/animal/space/carp) && mover.density == TRUE)
 		return FALSE
