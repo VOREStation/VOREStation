@@ -712,3 +712,14 @@
 /// Controls whether simple mobs may recolour themselves once/spawn by giving them the recolour verb
 /// Admins may manually give them the verb even if disabled
 /datum/config_entry/flag/allow_simple_mob_recolor
+
+/// These are for tgs4 channels, for discord chatbots used in TGS.
+/datum/config_entry/string/ahelp_channel_tag
+
+/// Turn this off if you don't want the TGS bot sending you messages whenever an ahelp ticket is created.
+/datum/config_entry/flag/discord_ahelps_disabled
+	default = FALSE
+
+/// Turn this on if you want all admin-PMs to go to be sent to discord, and not only the first message of a ticket.
+/datum/config_entry/flag/discord_ahelps_all
+	default = FALSE
