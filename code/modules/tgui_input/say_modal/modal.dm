@@ -130,4 +130,8 @@
 	if(type == "entry" || type == "force")
 		handle_entry(type, payload)
 		return TRUE
+	if(type == "lenwarn")
+		var/mlen = params["length"]
+		var/maxlen = params["maxlength"]
+		to_chat(client, span_warning(span_bold(Warning) + ": Message with [mlen] exceeded the maximum length of [maxlen]."))
 	return FALSE
