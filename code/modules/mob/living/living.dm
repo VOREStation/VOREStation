@@ -924,7 +924,7 @@
 	if(!istype(vomit_goal, /obj/item/reagent_containers/glass/bucket))
 		vomit_goal = check_vomit_goal()
 
-	if(iscarbon(H) && H.is_mouth_covered())
+	if(iscarbon(src) && is_mouth_covered())
 		if(message)
 			visible_message(span_danger("[src] throws up all over themself!"), span_userdanger("You throw up all over yourself!"))
 		distance = 0
@@ -934,10 +934,10 @@
 		if(istype(vomit_goal, /obj/item/reagent_containers/glass/bucket))
 			var/obj/item/organ/internal/stomach/S = organs_by_name[O_STOMACH]
 			var/obj/item/reagent_containers/glass/bucket/puke_bucket = vomit_goal
-            if(S && S.acidtype)
-				puke_bucket.reagents.add_reagent(S.acidtype,rand(3,6))
+			if(S && S.acidtype)
+				puke_bucket.reagents.add_reagent(S.acidtype, rand(3, 6))
 			else
-                puke_bucket.reagents.add_reagent(REAGENT_ID_TOXIN,rand(3,6))
+				puke_bucket.reagents.add_reagent(REAGENT_ID_TOXIN, rand(3, 6))
 		distance = 0
 	else
 		if(message)
