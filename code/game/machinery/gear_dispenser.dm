@@ -788,8 +788,8 @@ var/list/dispenser_presets = list()
 			"helmet" = /obj/item/clothing/head/helmet/space/void/medical
 		),
 		prob(5);list(
-			"suit" = /obj/item/clothing/suit/space/void/medical/alt,
-			"helmet" = /obj/item/clothing/head/helmet/space/void/medical/alt
+			"suit" = /obj/item/clothing/suit/space/void/medical/veymed,
+			"helmet" = /obj/item/clothing/head/helmet/space/void/medical/veymed
 		),
 		prob(5);list(
 			"suit" = /obj/item/clothing/suit/space/void/medical/bio,
