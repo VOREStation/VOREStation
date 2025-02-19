@@ -213,3 +213,10 @@
 	name = initial(name)
 	desc = initial(desc)
 	rat_diseases += new /datum/disease/advance/random(2, 2, 1)
+
+/mob/living/simple_mob/animal/passive/mouse/white/virology/Crossed(atom/movable/AM)
+	. = ..()
+
+	if(isliving(AM) && !isnull(rat_diseases) && prob(20))
+		var/mob/living/L = AM
+		L.ContractDisease(pick(rat_diseases))
