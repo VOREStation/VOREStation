@@ -25,6 +25,8 @@
 
 	config.Load(params[OVERRIDE_CONFIG_DIRECTORY_PARAMETER])
 
+	load_admins()
+
 	ConfigLoaded()
 	makeDatumRefLists()
 	VgsNew()
@@ -154,7 +156,7 @@ var/world_topic_spam_protect_time = world.timeofday
 				if(C.holder)
 					if(C.holder.fakekey)
 						continue
-					admins[C.key] = C.holder.rank
+					admins[C.key] = C.holder.rank_names()
 				players += C.key
 				if(isliving(C.mob))
 					active++
@@ -510,7 +512,7 @@ var/world_topic_spam_protect_time = world.timeofday
 					continue
 
 				var/title = "Moderator"
-				var/rights = admin_ranks[title]
+				var/rights = GLOB.admin_ranks[title]
 
 				var/ckey = copytext(line, 1, length(line)+1)
 				var/datum/admins/D = new /datum/admins(title, rights, ckey)

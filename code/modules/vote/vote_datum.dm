@@ -169,7 +169,7 @@
 	data["question"] = question
 	data["choices"] = choices
 
-	if(show_counts || check_rights(R_ADMIN, FALSE, user))
+	if(show_counts || check_rights_for(user.client, R_ADMIN))
 		data["show_counts"] = TRUE
 
 		var/list/counts = list()

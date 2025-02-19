@@ -81,3 +81,4 @@
 		client.images += cloaked_selfimage
 	client.init_verbs()
 	SEND_SIGNAL(src, COMSIG_MOB_CLIENT_LOGIN, client)
+	SEND_SIGNAL(client, COMSIG_CLIENT_MOB_LOGIN, src)

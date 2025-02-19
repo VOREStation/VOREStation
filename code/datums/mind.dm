@@ -413,7 +413,7 @@
 				take_uplink()
 				memory = null//Remove any memory they may have had.
 			if("crystals")
-				if (usr.client.holder.rights & R_FUN)
+				if (check_rights_for(usr.client, R_FUN))
 				//	var/obj/item/uplink/hidden/suplink = find_syndicate_uplink() No longer needed, uses stored in mind
 					var/crystals
 					crystals = tcrystals
