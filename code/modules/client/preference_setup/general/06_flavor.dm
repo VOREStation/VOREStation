@@ -60,6 +60,7 @@
 	if(href_list["flavor_text"])
 		switch(href_list["flavor_text"])
 			if("open")
+				pass()
 			if("general")
 				var/msg = strip_html_simple(tgui_input_text(user,"Give a general description of your character. This will be shown regardless of clothings. Put in a single space to make blank.","Flavor Text",html_decode(pref.flavor_texts[href_list["flavor_text"]]), multiline = TRUE, prevent_enter = TRUE))	//VOREStation Edit: separating out OOC notes
 				if(CanUseTopic(user) && msg)
@@ -74,6 +75,7 @@
 	else if(href_list["flavour_text_robot"])
 		switch(href_list["flavour_text_robot"])
 			if("open")
+				pass()
 			if("Default")
 				var/msg = strip_html_simple(tgui_input_text(user,"Set the default flavour text for your robot. It will be used for any module without individual setting. Put in a single space to make blank.","Flavour Text",html_decode(pref.flavour_texts_robot["Default"]), multiline = TRUE, prevent_enter = TRUE))
 				if(CanUseTopic(user) && msg)

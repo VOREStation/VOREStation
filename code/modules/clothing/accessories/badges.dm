@@ -114,7 +114,7 @@
 
 		var/found = FALSE
 		for(var/access in valid_access)
-			if(access in id_card.GetAccess() || emagged)
+			if((access in id_card.GetAccess()) || emagged)
 				to_chat(user, "You imprint your ID details onto the badge.")
 				set_name(user.real_name)
 				found = TRUE

@@ -94,6 +94,22 @@ jobs:
         with:
           outputFile: output-annotations.txt
 
+  odlint:
+    name: Lint with OpenDream
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 9
+      - uses: actions/checkout@v4
+      - uses: robinraju/release-downloader@v1.9
+        with:
+          repository: "OpenDreamProject/OpenDream"
+          tag: "latest"
+          fileName: "DMCompiler_linux-x64.tar.gz"
+          extract: true
+      - run: ./DMCompiler_linux-x64/DMCompiler --suppress-unimplemented vorestation.dme
+
   unit_tests:
     strategy:
       matrix:

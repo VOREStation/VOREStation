@@ -274,7 +274,7 @@ var/global/list/Holiday = list() //Holidays are lists now, so we can have more t
 			for(var/blurb in holiday_blurbs)
 				to_world(span_filter_system(span_blue("<div align='center'>[blurb]</div>")))
 		switch(Holiday)			//special holidays
-			if("Easter")
+			//if("Easter")
 				//do easter stuff
 			if("Christmas Eve","Christmas")
 				Christmas_Game_Start()
@@ -286,7 +286,7 @@ var/global/list/Holiday = list() //Holidays are lists now, so we can have more t
 	if(isemptylist(Holiday))
 		return 0
 	switch(Holiday)			//special holidays
-		if("Easter")		//I'll make this into some helper procs at some point
+		//if("Easter")		//I'll make this into some helper procs at some point
 /*			var/list/turf/simulated/floor/Floorlist = list()
 			for(var/turf/simulated/floor/T)
 				if(T.contents)

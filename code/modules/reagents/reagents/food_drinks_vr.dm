@@ -87,6 +87,7 @@
 		if(M.species.organic_food_coeff) //it's still food!
 			switch(alien)
 				if(IS_DIONA) //Diona don't get any nutrition from nutriment or protein.
+					pass()
 				if(IS_SKRELL)
 					M.adjustToxLoss(0.25 * removed)  //Equivalent to half as much protein, since it's half protein.
 				if(IS_TESHARI)
@@ -453,6 +454,7 @@
 		if(M.species.organic_food_coeff) //it's still food!
 			switch(alien)
 				if(IS_DIONA) //Diona don't get any nutrition from nutriment or protein.
+					pass()
 				if(IS_SKRELL)
 					M.adjustToxLoss(0.25 * removed)  //Equivalent to half as much protein, since it's half protein.
 				if(IS_TESHARI)
