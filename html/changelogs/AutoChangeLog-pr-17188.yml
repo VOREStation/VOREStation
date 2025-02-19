@@ -1,0 +1,4 @@
+author: "TheGreatKitsune"
+delete-after: True
+changes:
+  - qol: "Adds text to art canvas descriptions indicating their size"
