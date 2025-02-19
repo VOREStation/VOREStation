@@ -27,7 +27,7 @@
 			display_name = usr.client.holder.fakekey
 
 	// Name shown to other players.  Admins whom are not also antags have their rank displayed.
-	var/player_display = (is_admin && !is_antag) ? "[display_name]([usr.client.holder.rank])" : display_name
+	var/player_display = (is_admin && !is_antag) ? "[display_name]([usr.client.holder.rank_names()])" : display_name
 
 	for(var/mob/M in mob_list)
 		if(check_rights_for(M.client, R_ADMIN|R_MOD|R_EVENT)) // Staff can see AOOC unconditionally, and with more details.

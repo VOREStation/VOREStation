@@ -85,7 +85,7 @@
 			category = R_EVENT
 			num_event_managers_online++
 
-		temp += "\t[C] is a [C.holder.rank]"
+		temp += "\t[C] is a [C.holder.rank_names()]"
 		if(holder)
 			if(C.holder.fakekey)
 				temp += " " + span_italics("(as [C.holder.fakekey])")
