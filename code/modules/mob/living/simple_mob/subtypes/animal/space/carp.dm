@@ -30,9 +30,9 @@
 	desc = "A ferocious, fang-bearing creature that resembles a fish."
 	catalogue_data = list(/datum/category_item/catalogue/fauna/carp)
 	icon = 'icons/mob/carp.dmi'
-	icon_state = "base"
-	icon_living = "base"
-	icon_dead = "base_dead"
+	icon_state = "carp"
+	icon_living = "carp"
+	icon_dead = "carp_dead"
 	icon_gib = "carp_gib"
 
 	faction = FACTION_CARP
@@ -90,7 +90,7 @@
 /mob/living/simple_mob/animal/space/carp/Initialize()
 	. = ..()
 	carp_randomify(rarechance)
-	update_icon()
+	update_icons()
 	AddComponent(/datum/component/swarming)
 
 // This is so carps can swarm
@@ -100,28 +100,28 @@
 	return ..()
 
 /mob/living/simple_mob/animal/space/carp/proc/carp_randomify(rarechance)
-	cut_overlays()
 	if(random_color)
-		var/image/carp = image(icon, icon_state)
+		var/our_color
 		if(prob(rarechance))
-			carp.color = pick(carp_colors_rare)
+			our_color = pick(carp_colors_rare)
+			add_atom_colour(carp_colors_rare[our_color], FIXED_COLOUR_PRIORITY)
 		else
-			carp.color = pick(carp_colors)
-		add_overlay(carp)
+			our_color = pick(carp_colors)
+			add_atom_colour(carp_colors[our_color], FIXED_COLOUR_PRIORITY)
 		regenerate_icons()
 
 /mob/living/simple_mob/animal/space/carp/proc/add_carp_overlay()
 	if(!random_color)
 		return
-	var/image/base_overlay = image(icon, "base_mouth")
-	base_overlay.appearance_flags |= RESET_COLOR
+	var/mutable_appearance/base_overlay = mutable_appearance(icon, "base_mouth")
+	base_overlay.appearance_flags = RESET_COLOR
 	add_overlay(base_overlay)
 
 /mob/living/simple_mob/animal/space/carp/proc/add_dead_carp_overlay()
 	if(!random_color)
 		return
-	var/image/base_dead_overlay = image(icon, "base_dead_mouth")
-	base_dead_overlay.appearance_flags |= RESET_COLOR
+	var/mutable_appearance/base_dead_overlay = mutable_appearance(icon, "base_dead_mouth")
+	base_dead_overlay.appearance_flags = RESET_COLOR
 	add_overlay(base_dead_overlay)
 
 /mob/living/simple_mob/animal/space/carp/death(gibbed)
