@@ -61,7 +61,7 @@ What Borgs are available is sadly handled in the above file in the proc
 	src.modules += new /obj/item/dogborg/sleeper/compactor/brewer(src)
 	src.modules += new /obj/item/reagent_containers/glass/beaker(src)//For holding the ALCOHOL
 	src.emag 	 = new /obj/item/dogborg/pounce(src)
-	add_verb(R,/mob/living/silicon/robot/proc/reskin_booze)  //CHOMPEdit
+	add_verb(R,/mob/living/silicon/robot/proc/reskin_booze)
 
 	var/obj/item/rsf/M = new /obj/item/rsf(src)
 	M.stored_matter = 30
@@ -110,7 +110,7 @@ What Borgs are available is sadly handled in the above file in the proc
 	R.vore_capacity = 1
 	R.vore_capacity_ex = list("stomach" = 1)
 	R.wideborg = TRUE
-	add_verb(R,/mob/living/silicon/robot/proc/ex_reserve_refill) //CHOMPEdit TGPanel
+	add_verb(R,/mob/living/silicon/robot/proc/ex_reserve_refill) //TGPanel
 	..()
 
 /obj/item/robot_module/robot/booze/respawn_consumable(var/mob/living/silicon/robot/R, var/amount)
@@ -135,7 +135,7 @@ What Borgs are available is sadly handled in the above file in the proc
 
 /mob/living/silicon/robot/proc/reskin_booze()
 	set name = "Change Drink Color"
-	set category = "Abilities.Silicon" //ChompEDIT - TGPanel
+	set category = "Abilities.Silicon" //TGPanel
 	set desc = "Choose the color of drink displayed inside you."
 
 	var/mob/M = usr
