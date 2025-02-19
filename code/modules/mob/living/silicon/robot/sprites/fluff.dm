@@ -38,7 +38,7 @@
 	sprite_hud_icon_state = "medihound"
 
 /datum/robot_sprite/fluff/argonne/surgical
-	module_type = "Surgeon"
+	module_type = "Crisis"
 
 	sprite_icon_state = "argonne-russ-surg"
 	sprite_hud_icon_state = "medihound"

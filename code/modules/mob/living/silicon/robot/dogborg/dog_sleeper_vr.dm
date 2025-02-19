@@ -813,4 +813,30 @@
 	max_item_count = 35
 	digest_multiplier = 3
 
+/obj/item/dogborg/sleeper/command //Command borg belly
+	name = "Bluespace Filing Belly"
+	desc = "A mounted bluespace storage unit for carrying paperwork"
+	icon_state = "sleeperd"
+	injection_chems = null
+	compactor = TRUE
+	recycles = FALSE
+	max_item_count = 25
+	medsensor = FALSE
+
+/obj/item/dogborg/sleeper/compactor/honkborg
+	name = "Jiggles Von Hungertron"
+	desc = "You've heard of Giggles Von Honkerton for the back, now get ready for Jiggles Von Hungertron for the front."
+	icon_state = "clowngut"
+	recycles = FALSE
+
+/obj/item/dogborg/sleeper/exploration
+	name = "Store-Belly"
+	desc = "Equipment for a ExploreHound unit. A mounted portable-storage device that holds supplies/person."
+	icon_state = "sleeperlost"
+	injection_chems = list(REAGENT_ID_INAPROVALINE) // Only to stabilize during extractions
+	compactor = TRUE
+	max_item_count = 4
+	medsensor = FALSE
+	recycles = TRUE
+
 #undef SLEEPER_INJECT_COST
