@@ -55,7 +55,7 @@ var/list/mentor_verbs_default = list(
 	if(!target)
 		return
 	var/client/C = targets[target]
-	if(has_mentor_powers(C) || C.deadmin_holder) // If an admin is deadminned you could mentor them and that will cause fuckery if they readmin
+	if(has_mentor_powers(C) || GLOB.deadmins[C.ckey]) // If an admin is deadminned you could mentor them and that will cause fuckery if they readmin
 		to_chat(src, span_admin_pm_warning("Error: They already have mentor powers."))
 		return
 	var/datum/mentor/M = new /datum/mentor(C.ckey)
