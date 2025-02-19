@@ -1,6 +1,6 @@
 /obj/item/healthanalyzer/verb/toggle_guide()
 	set name = "Toggle Guidance"
-	set desc = "Toggles whether or not \the [src] will provide guidance and instruction in addition to scanning."
+	set desc = "Toggles whether or not the health analyzer will provide guidance and instruction in addition to scanning."
 	set category = "Object"
 	guide = !guide
 	to_chat(usr, span_notice("You toggle \the [src]'s guidance system [guide ? "on" : "off"]."))
