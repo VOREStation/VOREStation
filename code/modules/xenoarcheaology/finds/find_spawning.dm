@@ -203,6 +203,7 @@
 			apply_material_decorations = FALSE
 			var/possible_object_paths = list()
 			possible_object_paths += subtypesof(/obj/item/stack/material)
+			possible_object_paths -= typesof(/obj/item/stack/material/cyborg)
 			//I looked through the code for any materials that should be banned...Most of the "DO NOT EVER GIVE THESE TO ANYONE EVER" materials are only in their /datum form and the ones that have sheets spawn in as normal sheets (ex: hull datums) so...This is here in case it's needed in the future.
 			var/list/banned_sheet_materials = list(
 				// Include if you enable in the .dme /obj/item/stack/material/debug

@@ -36,7 +36,7 @@
 	capacity = 100000000
 
 /*
-/obj/item/anobattery/New()
+/obj/item/anobattery/Initialize(mapload)
 	battery_effect = new()
 */
 
@@ -63,8 +63,8 @@
 	var/energy_consumed_on_touch = 100
 	var/mob/last_user_touched
 
-/obj/item/anodevice/New()
-	..()
+/obj/item/anodevice/Initialize(mapload)
+	. = ..()
 	START_PROCESSING(SSobj, src)
 
 /obj/item/anodevice/Destroy()
