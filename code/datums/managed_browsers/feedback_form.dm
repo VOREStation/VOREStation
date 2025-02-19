@@ -42,13 +42,12 @@ GENERAL_PROTECT_DATUM(/datum/managed_browser/feedback_form)
 /datum/managed_browser/feedback_form/get_html()
 	var/list/dat = list("<html><body>")
 	dat += "<center>"
-	dat += "<font size='2'>"
-	dat += "Here, you can write some feedback for the server.<br>"
-	dat += "Note that HTML is NOT supported!<br>"
-	dat += "Click the edit button to begin writing.<br>"
+	var/dat_text = "Here, you can write some feedback for the server.<br>"
+	dat_text += "Note that HTML is NOT supported!<br>"
+	dat_text += "Click the edit button to begin writing.<br>"
 
-	dat += "Your feedback is currently [length(feedback_body)]/[MAX_FEEDBACK_LENGTH] letters long."
-	dat += "</font>"
+	dat_text += "Your feedback is currently [length(feedback_body)]/[MAX_FEEDBACK_LENGTH] letters long."
+	dat += span_normal(dat_text)
 	dat += "<hr>"
 
 	dat += "<h2>Preview</h2></center>"

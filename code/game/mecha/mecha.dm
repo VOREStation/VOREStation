@@ -1587,8 +1587,8 @@
 					V.show_message("The [W] bounces off [src.name] armor.", 1)
 */
 		else
-			src.occupant_message("<font color='red'><b>[user] hits [src] with [W].</b></font>")
-			user.visible_message("<font color='red'><b>[user] hits [src] with [W].</b></font>", "<font color='red'><b>You hit [src] with [W].</b></font>")
+			src.occupant_message(span_boldwarning("[user] hits [src] with [W].")))
+			user.visible_message(span_boldwarning("[user] hits [src] with [W]."))", span_boldwarning("You hit [src] with [W].")))
 			src.take_damage(W.force,W.damtype)
 			src.check_for_internal_damage(list(MECHA_INT_TEMP_CONTROL,MECHA_INT_TANK_BREACH,MECHA_INT_CONTROL_LOST))
 */
@@ -2200,11 +2200,11 @@
 /obj/mecha/proc/report_internal_damage()
 	var/output = null
 	var/list/dam_reports = list(
-										"[MECHA_INT_FIRE]" = "<font color='red'><b>INTERNAL FIRE</b></font>",
-										"[MECHA_INT_TEMP_CONTROL]" = "<font color='red'><b>LIFE SUPPORT SYSTEM MALFUNCTION</b></font>",
-										"[MECHA_INT_TANK_BREACH]" = "<font color='red'><b>GAS TANK BREACH</b></font>",
-										"[MECHA_INT_CONTROL_LOST]" = "<font color='red'><b>COORDINATION SYSTEM CALIBRATION FAILURE</b></font> - <a href='byond://?src=\ref[src];repair_int_control_lost=1'>Recalibrate</a>",
-										"[MECHA_INT_SHORT_CIRCUIT]" = "<font color='red'><b>SHORT CIRCUIT</b></font>"
+										"[MECHA_INT_FIRE]" = span_red(span_bold("INTERNAL FIRE")),
+										"[MECHA_INT_TEMP_CONTROL]" = span_red(span_bold("LIFE SUPPORT SYSTEM MALFUNCTION")),
+										"[MECHA_INT_TANK_BREACH]" = span_red(span_bold("GAS TANK BREACH")),
+										"[MECHA_INT_CONTROL_LOST]" = span_red(span_bold("COORDINATION SYSTEM CALIBRATION FAILURE")) + " - <a href='byond://?src=\ref[src];repair_int_control_lost=1'>Recalibrate</a>",
+										"[MECHA_INT_SHORT_CIRCUIT]" = span_red(span_bold("SHORT CIRCUIT"))
 										)
 	for(var/tflag in dam_reports)
 		var/intdamflag = text2num(tflag)
@@ -2212,7 +2212,7 @@
 			output += dam_reports[tflag]
 			output += "<br />"
 	if(return_pressure() > WARNING_HIGH_PRESSURE)
-		output += "<font color='red'><b>DANGEROUSLY HIGH CABIN PRESSURE</b></font><br />"
+		output += span_red(span_bold("DANGEROUSLY HIGH CABIN PRESSURE")) + "<br />"
 	return output
 
 
@@ -2229,13 +2229,13 @@
 	var/output = {"[report_internal_damage()]
 						<b>Armor Integrity: </b>[AC?"[round(AC.integrity / AC.max_integrity * 100, 0.1)]%":span_warning("ARMOR MISSING")]<br>
 						<b>Hull Integrity: </b>[HC?"[round(HC.integrity / HC.max_integrity * 100, 0.1)]%":span_warning("HULL MISSING")]<br>
-						[integrity<30?"<font color='red'><b>DAMAGE LEVEL CRITICAL</b></font><br>":null]
+						[integrity<30? span_red(span_bold("DAMAGE LEVEL CRITICAL")) + "<br>":null]
 						<b>Chassis Integrity: </b> [integrity]%<br>
 						<b>Powercell charge: </b>[isnull(cell_charge)?"No powercell installed":"[cell.percent()]%"]<br>
 						<b>Air source: </b>[use_internal_tank?"Internal Airtank":"Environment"]<br>
 						<b>Airtank pressure: </b>[tank_pressure]kPa<br>
 						<b>Airtank temperature: </b>[tank_temperature]K|[tank_temperature - T0C]&deg;C<br>
-						<b>Cabin pressure: </b>[cabin_pressure>WARNING_HIGH_PRESSURE ? "<font color='red'>[cabin_pressure]</font>": cabin_pressure]kPa<br>
+						<b>Cabin pressure: </b>[cabin_pressure>WARNING_HIGH_PRESSURE ? span_red("[cabin_pressure]"): cabin_pressure]kPa<br>
 						<b>Cabin temperature: </b> [return_temperature()]K|[return_temperature() - T0C]&deg;C<br>
 						<b>Lights: </b>[lights?"on":"off"]<br>
 						[src.dna?"<b>DNA-locked:</b><br> <span style='font-size:10px;letter-spacing:-1px;'>[src.dna]</span> \[<a href='byond://?src=\ref[src];reset_dna=1'>Reset</a>\]<br>":null]
@@ -2381,7 +2381,7 @@
 		var/a_name = get_access_desc(a)
 		if(!a_name) continue //there's some strange access without a name
 		output += "[a_name] - <a href='byond://?src=\ref[src];add_req_access=[a];user=\ref[user];id_card=\ref[id_card]'>Add</a><br>"
-	output += "<hr><a href='byond://?src=\ref[src];finish_req_access=1;user=\ref[user]'>Finish</a> <font color='red'>(Warning! The ID upload panel will be locked. It can be unlocked only through Exosuit Interface.)</font>"
+	output += "<hr><a href='byond://?src=\ref[src];finish_req_access=1;user=\ref[user]'>Finish</a> " + span_red("(Warning! The ID upload panel will be locked. It can be unlocked only through Exosuit Interface.)")
 	output += "</body></html>"
 	user << browse(output, "window=exosuit_add_access")
 	onclose(user, "exosuit_add_access")
@@ -2424,12 +2424,16 @@
 
 /obj/mecha/proc/log_message(message as text,red=null)
 	log.len++
-	log[log.len] = list("time"=world.timeofday,"message"="[red?"<font color='red'>":null][message][red?"</font>":null]")
+	if(red)
+		message = span_red(message)
+	log[log.len] = list("time"=world.timeofday,"message"=message)
 	return log.len
 
 /obj/mecha/proc/log_append_to_last(message as text,red=null)
 	var/list/last_entry = src.log[src.log.len]
-	last_entry["message"] += "<br>[red?"<font color='red'>":null][message][red?"</font>":null]"
+	if(red)
+		message = span_red(message)
+	last_entry["message"] += "<br>" + message
 	return
 
 

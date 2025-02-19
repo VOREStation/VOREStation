@@ -138,7 +138,7 @@
 
 /obj/item/paper/Dauntless
 	name = "Notes about Dauntless"
-	info = {"<font size=1>Welcome to the Ironcrest Transport Group</font><br><br>
+	info = span_small("Welcome to the Ironcrest Transport Group") + {"<br><br>
 	<h4>ITG Dauntless</h4>
 	Welcome to the Dauntless, there are a few things you should know.<br><br>
 	WRITE DOWN THE DOCKING CODES<br>

@@ -149,13 +149,32 @@
 			t1 = "*dead*"
 		else
 			t1 = "Unknown"
-	return {"<font color="[occupant.health > 50 ? "blue" : "red"]"><b>Health:</b> [occupant.health]% ([t1])</font><br />
-				<font color="[occupant.bodytemperature > 50 ? "blue" : "red"]"><b>Core Temperature:</b> [src.occupant.bodytemperature-T0C]&deg;C ([src.occupant.bodytemperature*1.8-459.67]&deg;F)</font><br />
-				<font color="[occupant.getBruteLoss() < 60 ? "blue" : "red"]"><b>Brute Damage:</b> [occupant.getBruteLoss()]%</font><br />
-				<font color="[occupant.getOxyLoss() < 60 ? "blue" : "red"]"><b>Respiratory Damage:</b> [occupant.getOxyLoss()]%</font><br />
-				<font color="[occupant.getToxLoss() < 60 ? "blue" : "red"]"><b>Toxin Content:</b> [occupant.getToxLoss()]%</font><br />
-				<font color="[occupant.getFireLoss() < 60 ? "blue" : "red"]"><b>Burn Severity:</b> [occupant.getFireLoss()]%</font><br />
-				"}
+	var/text = ""
+	var/entry = span_bold("Health:") + " [occupant.health]% ([t1])"
+	text += occupant.health > 50 ? span_blue(entry) : span_red(entry)
+	text += "<br />"
+
+	entry = span_bold("Core Temperature:") + " [src.occupant.bodytemperature-T0C]&deg;C ([src.occupant.bodytemperature*1.8-459.67]&deg;F)"
+	text += occupant.bodytemperature > 50 ? span_blue(entry) : span_red(entry)
+	text += "<br />"
+
+	entry = span_bold("Brute Damage:") + " [occupant.getBruteLoss()]%"
+	text += occupant.getBruteLoss() < 60 ? span_blue(entry) : span_red(entry)
+	text += "<br />"
+
+	entry = span_bold("Respiratory Damage:") + " [occupant.getOxyLoss()]%"
+	text += occupant.getOxyLoss() < 60 ? span_blue(entry) : span_red(entry)
+	text += "<br />"
+
+	entry = span_bold("Toxin Content:") + " [occupant.getToxLoss()]%"
+	text += occupant.getToxLoss() < 60 ? span_blue(entry) : span_red(entry)
+	text += "<br />"
+
+	entry = span_bold("Burn Severity:") + " [occupant.getFireLoss()]%"
+	text += occupant.getFireLoss() < 60 ? span_blue(entry) : span_red(entry)
+	text += "<br />"
+
+	return text
 
 /obj/item/mecha_parts/mecha_equipment/tool/sleeper/proc/get_occupant_reagents()
 	if(occupant.reagents)
