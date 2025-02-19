@@ -1,5 +1,6 @@
 /obj/machinery/embedded_controller
 	name = "Embedded Controller"
+	layer = ABOVE_WINDOW_LAYER
 	anchored = TRUE
 	use_power = USE_POWER_IDLE
 	idle_power_usage = 10

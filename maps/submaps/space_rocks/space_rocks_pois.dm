@@ -10,21 +10,11 @@
 #include "tunnel2.dmm"
 #endif
 
-/area/submap/space_rocks
-	name = "POI - Space Rocks"
-	ambience = AMBIENCE_FOREBODING
-
-/area/submap/space_rocks/bittynest1
-	name = "POI - Bittynest1"
-
 /datum/map_template/space_rocks/bittynest1
 	name = "Bittynest1"
 	desc = "A smol nest for smol badguys"
 	mappath = "maps/submaps/space_rocks/bittynest1.dmm"
 	cost = 5
-
-/area/submap/space_rocks/bittynest2
-	name = "POI - Bittynest2"
 
 /datum/map_template/space_rocks/bittynest2
 	name = "Bittynest2"
@@ -32,17 +22,11 @@
 	mappath = "maps/submaps/space_rocks/bittynest2.dmm"
 	cost = 5
 
-/area/submap/space_rocks/bittynest3
-	name = "POI - Bittynest3"
-
 /datum/map_template/space_rocks/bittynest3
 	name = "Bittynest3"
 	desc = "A smol nest for smol badguys"
 	mappath = "maps/submaps/space_rocks/bittynest3.dmm"
 	cost = 5
-
-/area/submap/space_rocks/bittynest4
-	name = "POI - Bittynest4"
 
 /datum/map_template/space_rocks/bittynest4
 	name = "Bittynest4"
@@ -50,17 +34,11 @@
 	mappath = "maps/submaps/space_rocks/bittynest4.dmm"
 	cost = 5
 
-/area/submap/space_rocks/tunnel1
-	name = "POI - Tunnel1"
-
 /datum/map_template/space_rocks/tunnel1
 	name = "Tunnel1"
 	desc = "A tunnel left behind!"
 	mappath = "maps/submaps/space_rocks/tunnel1.dmm"
 	cost = 10
-
-/area/submap/space_rocks/tunnel2
-	name = "POI - Tunnel2"
 
 /datum/map_template/space_rocks/tunnel2
 	name = "Tunnel2"
@@ -68,26 +46,17 @@
 	mappath = "maps/submaps/space_rocks/tunnel2.dmm"
 	cost = 10
 
-/area/submap/space_rocks/spacecrystals
-	name = "POI - Space Crystals"
-
 /datum/map_template/space_rocks/tunnel2
 	name = "Space Crystals"
 	desc = "Some crystals living in space!"
 	mappath = "maps/submaps/space_rocks/spacecrystals.dmm"
 	cost = 10
 
-/area/submap/space_rocks/clearing
-	name = "POI - Clearing"
-
 /datum/map_template/space_rocks/clearing
 	name = "Clearing"
 	desc = "A clear spot for mischief to happen."
 	mappath = "maps/submaps/space_rocks/clearing.dmm"
 	cost = 10
-
-/area/submap/space_rocks/seventemple
-	name = "POI - Temple of the Seven"
 
 /datum/map_template/space_rocks/seventemple
 	name = "Temple of the Seven"

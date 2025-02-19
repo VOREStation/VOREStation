@@ -1,6 +1,6 @@
 	// Compile in the map for CI testing if we're testing compileability of all the maps
 #ifdef MAP_TEST
-#include "mercship.dmm"
+#include "kk_mercship.dmm"
 #endif
 
 
