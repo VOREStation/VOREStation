@@ -269,6 +269,7 @@
 				prob(1);/obj/item/beartrap,
 				prob(1);/obj/item/handcuffs,
 				prob(1);/obj/item/handcuffs/legcuffs,
+				prob(1);/obj/item/lockpick,
 				prob(2);/obj/item/reagent_containers/syringe/drugs,
 				prob(1);/obj/item/reagent_containers/syringe/steroid)
 
