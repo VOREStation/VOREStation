@@ -68,7 +68,9 @@
 	if(!docking_codes)
 		docking_codes = "[ascii2text(rand(65,90))][ascii2text(rand(65,90))][ascii2text(rand(65,90))][ascii2text(rand(65,90))]"
 
+	#ifdef TESTING
 	testing("Located sector \"[name]\" at [start_x],[start_y], containing Z [english_list(map_z)]")
+	#endif
 
 	LAZYADD(SSshuttles.sectors_to_initialize, src) //Queued for further init. Will populate the waypoint lists; waypoints not spawned yet will be added in as they spawn.
 	SSshuttles.process_init_queues()
