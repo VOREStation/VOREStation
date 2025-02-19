@@ -8,3 +8,6 @@
   - refactor: moved one global var to a managed global (to test the workflow change)
   Kashargul:
   - qol: prevents too long messages from being sent in tgui say
+2025-02-19:
+  TheGreatKitsune:
+  - qol: Adds text to art canvas descriptions indicating their size
