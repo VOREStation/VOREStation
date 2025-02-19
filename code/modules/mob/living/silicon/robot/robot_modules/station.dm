@@ -7,6 +7,7 @@ var/global/list/robot_modules = list(
 	"Research" 		= /obj/item/robot_module/robot/research,
 	"Miner" 		= /obj/item/robot_module/robot/miner,
 	"Crisis" 		= /obj/item/robot_module/robot/medical/crisis,
+	"Surgeon" 		= /obj/item/robot_module/robot/medical/surgeon,
 	"Security" 		= /obj/item/robot_module/robot/security/general,
 	"Combat" 		= /obj/item/robot_module/robot/security/combat,
 	"Exploration"	= /obj/item/robot_module/robot/exploration,
@@ -234,6 +235,78 @@ var/global/list/robot_modules = list(
 	pto_type = PTO_MEDICAL
 	supported_upgrades = list(/obj/item/borg/upgrade/restricted/bellycapupgrade)
 
+//This is a constant back and forth debate. 11 years ago, the 'medical' borg was split into surgery and crisis.
+//Two years ago(?), they were combined into Crisis elsewhere and the idea seems to be well appreciated.
+//However, given this seems as though it will remain a hot topic for as long as SS13 exists, we are going to leave the surgeon module here in the event that we split them. Again.
+//This also goes for the sprite datums. It's be a lot of work to 'clear' them of having surgery in their path just to have to split them again in 2-3 years.
+/obj/item/robot_module/robot/medical/surgeon
+	name = "surgeon robot module"
+
+
+/obj/item/robot_module/robot/medical/surgeon/create_equipment(var/mob/living/silicon/robot/robot)
+	..()
+	src.modules += new /obj/item/healthanalyzer(src)
+	src.modules += new /obj/item/sleevemate(src)
+	src.modules += new /obj/item/reagent_containers/borghypo/surgeon(src)
+	src.modules += new /obj/item/autopsy_scanner(src)
+	src.modules += new /obj/item/surgical/scalpel/cyborg(src)
+	src.modules += new /obj/item/surgical/hemostat/cyborg(src)
+	src.modules += new /obj/item/surgical/retractor/cyborg(src)
+	src.modules += new /obj/item/surgical/cautery/cyborg(src)
+	src.modules += new /obj/item/surgical/bonegel/cyborg(src)
+	src.modules += new /obj/item/surgical/FixOVein/cyborg(src)
+	src.modules += new /obj/item/surgical/bonesetter/cyborg(src)
+	src.modules += new /obj/item/surgical/circular_saw/cyborg(src)
+	src.modules += new /obj/item/surgical/surgicaldrill/cyborg(src)
+	src.modules += new /obj/item/surgical/bioregen/cyborg(src)
+	src.modules += new /obj/item/gripper/no_use/organ(src)
+	src.modules += new /obj/item/gripper/medical(src)
+	src.modules += new /obj/item/shockpaddles/robot(src)
+	src.modules += new /obj/item/reagent_containers/dropper(src) // Allows surgeon borg to fix necrosis
+	src.modules += new /obj/item/reagent_containers/syringe(src)
+
+	var/obj/item/reagent_containers/spray/PS = new /obj/item/reagent_containers/spray(src)
+	src.emag += PS
+	PS.reagents.add_reagent(REAGENT_ID_PACID, 250)
+	PS.name = "Polyacid spray"
+
+	var/datum/matter_synth/medicine = new /datum/matter_synth/medicine(10000)
+	synths += medicine
+
+	var/obj/item/stack/nanopaste/N = new /obj/item/stack/nanopaste(src)
+	var/obj/item/stack/medical/advanced/bruise_pack/B = new /obj/item/stack/medical/advanced/bruise_pack(src)
+	var/obj/item/stack/medical/advanced/ointment/O = new /obj/item/stack/medical/advanced/ointment(src) //VoreStation edit: we have burn surgeries so they should be able to do them
+	N.uses_charge = 1
+	N.charge_costs = list(1000)
+	N.synths = list(medicine)
+	B.uses_charge = 1
+	B.charge_costs = list(1000)
+	B.synths = list(medicine)
+	O.uses_charge = 1
+	O.charge_costs = list(1000)
+	O.synths = list(medicine)
+	src.modules += N
+	src.modules += B
+	src.modules += O
+
+	src.modules += new /obj/item/dogborg/sleeper/trauma(src)
+	src.emag += new /obj/item/dogborg/pounce(src)
+
+/obj/item/robot_module/robot/medical/surgeon/respawn_consumable(var/mob/living/silicon/robot/R, var/amount)
+
+	var/obj/item/reagent_containers/syringe/S = locate() in src.modules
+	if(S.mode == 2)
+		S.reagents.clear_reagents()
+		S.mode = initial(S.mode)
+		S.desc = initial(S.desc)
+		S.update_icon()
+
+	var/obj/item/reagent_containers/spray/PS = locate() in src.emag
+	if(PS)
+		PS.reagents.add_reagent(REAGENT_ID_PACID, 2 * amount)
+
+	..()
+
 /obj/item/robot_module/robot/medical/crisis
 	name = "crisis robot module"
 
@@ -250,6 +323,7 @@ var/global/list/robot_modules = list(
 	src.modules += new /obj/item/gripper/no_use/organ(src)
 	src.modules += new /obj/item/gripper/medical(src)
 	src.modules += new /obj/item/shockpaddles/robot(src)
+	//Surgeon Modules below
 	src.modules += new /obj/item/autopsy_scanner(src)
 	src.modules += new /obj/item/surgical/scalpel/cyborg(src)
 	src.modules += new /obj/item/surgical/hemostat/cyborg(src)
@@ -261,6 +335,7 @@ var/global/list/robot_modules = list(
 	src.modules += new /obj/item/surgical/circular_saw/cyborg(src)
 	src.modules += new /obj/item/surgical/surgicaldrill/cyborg(src)
 	src.modules += new /obj/item/surgical/bioregen/cyborg(src)
+	//Surgeon Modules End
 	src.modules += new /obj/item/inflatable_dispenser/robot(src)
 	//src.modules += new /obj/item/holosign_creator/medical(src) //Re-enable after Guti's PR.
 	var/obj/item/reagent_containers/spray/PS = new /obj/item/reagent_containers/spray(src)
