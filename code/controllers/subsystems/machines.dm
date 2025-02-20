@@ -40,7 +40,6 @@ SUBSYSTEM_DEF(machines)
 
 /datum/controller/subsystem/machines/fire(resumed = 0)
 	var/timer = TICK_USAGE
-	update_hibernating_vents()
 
 	INTERNAL_PROCESS_STEP(SSMACHINES_POWER_OBJECTS,FALSE,process_power_objects,cost_power_objects,SSMACHINES_PIPENETS) // Higher priority, damnit
 	INTERNAL_PROCESS_STEP(SSMACHINES_PIPENETS,TRUE,process_pipenets,cost_pipenets,SSMACHINES_MACHINERY)
@@ -118,6 +117,7 @@ SUBSYSTEM_DEF(machines)
 
 /datum/controller/subsystem/machines/proc/process_machinery(resumed = 0)
 	if (!resumed)
+		update_hibernating_vents()
 		src.current_run = processing_machines.Copy()
 
 	var/wait = src.wait
@@ -190,7 +190,7 @@ SUBSYSTEM_DEF(machines)
 	powerobjs = SSmachines.powerobjs
 
 /datum/controller/subsystem/machines/proc/update_hibernating_vents()
-	var/i = rand(20,30)
+	var/i = rand(20,50)
 	while(i-- > 0)
 		if(!hibernating_vents.len)
 			break
