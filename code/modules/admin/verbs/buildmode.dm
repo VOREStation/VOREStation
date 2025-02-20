@@ -658,12 +658,10 @@
 				return
 			if(pa.Find("left") && !pa.Find("ctrl"))
 				if(ispath(holder.buildmode.objholder))
-					var/obj/effect/falling_effect/FE = new /obj/effect/falling_effect(get_turf(object), holder.buildmode.objholder)
-					FE.crushing = FALSE
+					new /obj/effect/falling_effect(get_turf(object), holder.buildmode.objholder, FALSE)
 			else if(pa.Find("right"))
 				if(ispath(holder.buildmode.objholder))
-					var/obj/effect/falling_effect/FE = new /obj/effect/falling_effect(get_turf(object), holder.buildmode.objholder)
-					FE.crushing = TRUE
+					new /obj/effect/falling_effect(get_turf(object), holder.buildmode.objholder, TRUE)
 			else if(pa.Find("ctrl"))
 				holder.buildmode.objholder = object.type
 				to_chat(user, span_notice("[object]([object.type]) copied to buildmode."))
