@@ -49,6 +49,7 @@
 	id_tag = num2text(uid)
 
 /obj/machinery/atmospherics/unary/vent_scrubber/Destroy()
+	SSmachines.wake_vent(WEAKREF(src)) // So we are removed from hibernating list
 	unregister_radio(src, frequency)
 	if(initial_loc)
 		initial_loc.air_scrub_info -= id_tag

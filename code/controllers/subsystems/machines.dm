@@ -190,12 +190,19 @@ SUBSYSTEM_DEF(machines)
 	powerobjs = SSmachines.powerobjs
 
 /datum/controller/subsystem/machines/proc/update_hibernating_vents()
-	var/i = rand(20,50)
+	// pick at random
+	var/i = rand(20,40)
 	while(i-- > 0)
 		if(!hibernating_vents.len)
 			break
-		var/datum/weakref/WR = hibernating_vents[pick(hibernating_vents)]
-		wake_vent(WR)
+		wake_vent(hibernating_vents[pick(hibernating_vents)])
+	// do first 10 entries
+	i = 10
+	for(var/key in hibernating_vents)
+		if(i <= 0 || !hibernating_vents.len)
+			break
+		wake_vent(hibernating_vents[key])
+		i--
 
 /datum/controller/subsystem/machines/proc/hibernate_vent(var/obj/machinery/atmospherics/unary/V)
 	if(!V)

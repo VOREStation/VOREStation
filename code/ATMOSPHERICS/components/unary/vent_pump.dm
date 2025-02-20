@@ -98,6 +98,7 @@
 
 
 /obj/machinery/atmospherics/unary/vent_pump/Destroy()
+	SSmachines.wake_vent(WEAKREF(src)) // So we are removed from hibernating list
 	unregister_radio(src, frequency)
 	if(initial_loc)
 		initial_loc.air_vent_info -= id_tag
