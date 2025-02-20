@@ -1281,7 +1281,7 @@
 		if(ismob(M))
 			var/take_msg = span_notice("<b>ADMINHELP</b>: <b>[key_name(usr.client)]</b> is attending to <b>[key_name(M)]'s</b> adminhelp, please don't dogpile them.")
 			for(var/client/X in GLOB.admins)
-				if(check_rights_for(X, (R_ADMIN|R_MOD|R_SERVER))) //VOREStation Edit
+				if(check_rights_for(X, (R_ADMIN|R_MOD|R_SERVER)))
 					to_chat(X, take_msg)
 			to_chat(M, span_filter_pm(span_boldnotice("Your adminhelp is being attended to by [usr.client]. Thanks for your patience!")))
 			// VoreStation Edit Start
