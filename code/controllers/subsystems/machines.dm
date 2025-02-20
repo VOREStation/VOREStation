@@ -190,7 +190,9 @@ SUBSYSTEM_DEF(machines)
 
 /datum/controller/subsystem/machines/proc/update_hibernating_vents()
 	var/i = 20
-	while(i > 0 && hibernating_vents.len)
+	while(i-- > 0)
+		if(!hibernating_vents.len)
+			break
 		wake_vent(pick(hibernating_vents))
 
 /datum/controller/subsystem/machines/proc/hibernate_vent(var/obj/machinery/atmospherics/unary/V)
