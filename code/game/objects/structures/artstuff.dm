@@ -71,6 +71,7 @@
 /obj/item/canvas/Initialize()
 	. = ..()
 	reset_grid()
+	desc += " (Canvas size is [width]x[height].)"
 
 /obj/item/canvas/proc/reset_grid()
 	grid = new/list(width,height)

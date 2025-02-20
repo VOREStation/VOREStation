@@ -8,6 +8,10 @@
 	var/falling_type = /obj/item/reagent_containers/food/snacks/sliceable/pizza/margherita
 	var/crushing = TRUE
 
+/obj/effect/falling_effect/New(loc, type, var/crushing_type = TRUE)
+	crushing = crushing_type
+	..()
+
 /obj/effect/falling_effect/Initialize(mapload, type)
 	..()
 	if(type)
