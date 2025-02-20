@@ -26,7 +26,6 @@
 	var/area_uid
 	var/id_tag = null
 
-	var/hibernate = 0 //Do we even process?
 	var/pump_direction = 1 //0 = siphoning, 1 = releasing
 
 	var/external_pressure_bound = EXTERNAL_PRESSURE_BOUND
@@ -204,9 +203,6 @@
 /obj/machinery/atmospherics/unary/vent_pump/process()
 	..()
 
-	if (hibernate)
-		return 1
-
 	if (!node)
 		update_use_power(USE_POWER_OFF)
 	if(!can_pump())
@@ -237,9 +233,7 @@
 
 		if(pump_direction && pressure_checks == PRESSURE_CHECK_EXTERNAL && Master.iteration > 10)	//99% of all vents
 			//Fucking hibernate because you ain't doing shit.
-			hibernate = 1
-			addtimer(VARSET_CALLBACK(src, hibernate, 0), rand(10 SECONDS,20 SECONDS), TIMER_DELETE_ME) //hibernate randomly
-
+			SSmachines.hibernate_vent(src)
 
 	if (power_draw >= 0)
 		last_power_draw = power_draw
@@ -318,7 +312,7 @@
 	if(stat & (NOPOWER|BROKEN))
 		return
 
-	hibernate = 0
+	SSmachines.wake_vent(WEAKREF(src))
 
 	//log_admin("DEBUG \[[world.timeofday]\]: /obj/machinery/atmospherics/unary/vent_pump/receive_signal([signal.debug_print()])")
 	if(!signal.data["tag"] || (signal.data["tag"] != id_tag) || (signal.data["sigtype"]!="command"))

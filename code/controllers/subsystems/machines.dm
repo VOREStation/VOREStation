@@ -24,6 +24,7 @@ SUBSYSTEM_DEF(machines)
 	var/list/current_run = list()
 
 	var/list/all_machines = list()
+	var/list/hibernating_vents = list()
 
 	var/list/networks = list()
 	var/list/processing_machines = list()
@@ -39,6 +40,7 @@ SUBSYSTEM_DEF(machines)
 
 /datum/controller/subsystem/machines/fire(resumed = 0)
 	var/timer = TICK_USAGE
+	update_hibernating_vents()
 
 	INTERNAL_PROCESS_STEP(SSMACHINES_POWER_OBJECTS,FALSE,process_power_objects,cost_power_objects,SSMACHINES_PIPENETS) // Higher priority, damnit
 	INTERNAL_PROCESS_STEP(SSMACHINES_PIPENETS,TRUE,process_pipenets,cost_pipenets,SSMACHINES_MACHINERY)
@@ -185,6 +187,23 @@ SUBSYSTEM_DEF(machines)
 	processing_machines = SSmachines.processing_machines
 	powernets = SSmachines.powernets
 	powerobjs = SSmachines.powerobjs
+
+/datum/controller/subsystem/machines/proc/update_hibernating_vents()
+	var/i = 20
+	while(i > 0 && hibernating_vents.len)
+		wake_vent(pick(hibernating_vents))
+
+/datum/controller/subsystem/machines/proc/hibernate_vent(var/obj/machinery/atmospherics/unary/V)
+	var/datum/weakref/WR = WEAKREF(V)
+	hibernating_vents[WR.reference] = WR
+	STOP_MACHINE_PROCESSING(V)
+
+/datum/controller/subsystem/machines/proc/wake_vent(var/datum/weakref/WR)
+	var/obj/machinery/atmospherics/unary/V = WR?.resolve()
+	if(V)
+		START_MACHINE_PROCESSING(V)
+	hibernating_vents[WR.reference] = null
+	hibernating_vents.Remove(null)
 
 #undef SSMACHINES_PIPENETS
 #undef SSMACHINES_MACHINERY
