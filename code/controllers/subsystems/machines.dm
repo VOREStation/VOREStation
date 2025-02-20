@@ -95,6 +95,7 @@ SUBSYSTEM_DEF(machines)
 	msg += "MC:[SSmachines.processing_machines.len]|"
 	msg += "PN:[SSmachines.powernets.len]|"
 	msg += "PO:[SSmachines.powerobjs.len]|"
+	msg += "HV:[SSmachines.hibernating_vents.len]|"
 	msg += "MC/MS:[round((cost ? SSmachines.processing_machines.len/cost_machinery : 0),0.1)]"
 	return ..()
 
@@ -189,7 +190,7 @@ SUBSYSTEM_DEF(machines)
 	powerobjs = SSmachines.powerobjs
 
 /datum/controller/subsystem/machines/proc/update_hibernating_vents()
-	var/i = 20
+	var/i = rand(20,30)
 	while(i-- > 0)
 		if(!hibernating_vents.len)
 			break
@@ -197,16 +198,23 @@ SUBSYSTEM_DEF(machines)
 		wake_vent(WR)
 
 /datum/controller/subsystem/machines/proc/hibernate_vent(var/obj/machinery/atmospherics/unary/V)
+	if(!V)
+		return
 	var/datum/weakref/WR = WEAKREF(V)
+	if(!WR)
+		return
 	hibernating_vents[WR.reference] = WR
 	STOP_MACHINE_PROCESSING(V)
 
 /datum/controller/subsystem/machines/proc/wake_vent(var/datum/weakref/WR)
-	var/obj/machinery/atmospherics/unary/V = WR?.resolve()
+	if(!WR)
+		return
+	var/obj/machinery/atmospherics/unary/V = WR.resolve()
 	if(V)
 		START_MACHINE_PROCESSING(V)
-	hibernating_vents[WR.reference] = null
-	hibernating_vents.Remove(null)
+	if(WR.reference)
+		hibernating_vents[WR.reference] = null
+		hibernating_vents.Remove(WR.reference)
 
 #undef SSMACHINES_PIPENETS
 #undef SSMACHINES_MACHINERY
