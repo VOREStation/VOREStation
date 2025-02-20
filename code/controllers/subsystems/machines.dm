@@ -193,7 +193,8 @@ SUBSYSTEM_DEF(machines)
 	while(i-- > 0)
 		if(!hibernating_vents.len)
 			break
-		wake_vent(pick(hibernating_vents))
+		var/datum/weakref/WR = hibernating_vents[pick(hibernating_vents)]
+		wake_vent(WR)
 
 /datum/controller/subsystem/machines/proc/hibernate_vent(var/obj/machinery/atmospherics/unary/V)
 	var/datum/weakref/WR = WEAKREF(V)
