@@ -111,32 +111,19 @@
 			to_chat(user, span_notice("You secure the welder."))
 		else
 			to_chat(user, span_notice("The welder can now be attached and modified."))
-		src.add_fingerprint(user)
+		add_fingerprint(user)
 		return
 
 	if((!status) && (istype(W,/obj/item/stack/rods)))
 		var/obj/item/stack/rods/R = W
 		R.use(1)
-		var/obj/item/flamethrower/F = new/obj/item/flamethrower(user.loc)
-		src.loc = F
+		var/obj/item/flamethrower/F = new/obj/item/flamethrower(get_turf(user))
+		user.drop_from_inventory(src,F)
 		F.weldtool = src
-		if (user.client)
-			user.client.screen -= src
-		if (user.r_hand == src)
-			user.remove_from_mob(src)
-		else
-			user.remove_from_mob(src)
-		src.master = F
-		src.layer = initial(src.layer)
-		user.remove_from_mob(src)
-		if (user.client)
-			user.client.screen -= src
-		src.loc = F
-		src.add_fingerprint(user)
+		add_fingerprint(user)
 		return
 
 	..()
-	return
 
 /obj/item/weldingtool/process()
 	if(welding)
