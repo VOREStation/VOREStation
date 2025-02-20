@@ -172,9 +172,12 @@
 /client/VV_ckey_edit()
 	return list("key", "ckey")
 
-/datum/proc/may_edit_var(var/user, var/var_to_edit)
+/datum/proc/may_edit_var(var/user, var/var_to_edit) //User must be a CLIENT that is passed to this.
 	if(!user)
 		return FALSE
+	if(ismob(user)) //Failsafe catch in case someone feeds a mob into us.
+		var/mob/living = user
+		user = living.client
 	if(!(var_to_edit in vars))
 		to_chat(user, span_warning("\The [src] does not have a var '[var_to_edit]'"))
 		return FALSE

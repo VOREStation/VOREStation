@@ -7,7 +7,7 @@ var/global/floorIsLava = 0
 	//log_adminwarn(msg) //log_and_message_admins is for this
 
 	for(var/client/C in GLOB.admins)
-		if(check_rights_for(C, (R_ADMIN|R_MOD)))
+		if(check_rights_for(C, (R_ADMIN|R_MOD|R_SERVER)))
 			to_chat(C,
 					type = MESSAGE_TYPE_ADMINLOG,
 					html = msg,

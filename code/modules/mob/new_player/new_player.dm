@@ -524,7 +524,7 @@
 
 	if(chosen_species && use_species_name)
 		// Have to recheck admin due to no usr at roundstart. Latejoins are fine though.
-		if(is_alien_whitelisted(chosen_species))
+		if(is_alien_whitelisted(src.client, chosen_species))
 			new_character = new(T, use_species_name)
 
 	if(!new_character)
@@ -608,7 +608,7 @@
 	if(!chosen_species)
 		return SPECIES_HUMAN
 
-	if(is_alien_whitelisted(chosen_species))
+	if(is_alien_whitelisted(src.client, chosen_species))
 		return chosen_species.name
 
 	return SPECIES_HUMAN
