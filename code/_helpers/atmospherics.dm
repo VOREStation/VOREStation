@@ -16,7 +16,7 @@
 /proc/atmosanalyzer_scan(var/atom/target, var/datum/gas_mixture/mixture, var/mob/user)
 	var/list/results = list()
 
-	if (mixture && mixture.total_moles > 0)
+	if(mixture && mixture.total_moles > 0)
 		var/pressure = mixture.return_pressure()
 		var/total_moles = mixture.total_moles
 		results += span_notice("Pressure: [round(pressure,0.1)] kPa")
@@ -45,7 +45,7 @@
 	return atmosanalyzer_scan(src, src.parent.air, user)
 
 /obj/machinery/atmospherics/portables_connector/atmosanalyze(var/mob/user)
-	return atmosanalyzer_scan(src, src.network.gases, user)
+	return atmosanalyzer_scan(src, src.network.gases[1], user) //This is weird, but src.network.gases was giving atmosanalyze a list previously.
 
 /obj/machinery/atmospherics/unary/atmosanalyze(var/mob/user)
 	return atmosanalyzer_scan(src, src.air_contents, user)
