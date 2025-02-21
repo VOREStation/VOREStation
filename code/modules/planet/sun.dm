@@ -43,7 +43,7 @@
 
 /datum/sun_holder/proc/remove_from_turf(turf/T)
 	if(!(sun in T.vis_contents))
-		warning("Was asked to remove fake sun from [T.x], [T.y], [T.z] despite it not having us in it's vis contents")
+		// warning("Was asked to remove fake sun from [T.x], [T.y], [T.z] despite it not having us in it's vis contents") // Disable the warning
 		return
 	sun.remove_from_turf(T)
 

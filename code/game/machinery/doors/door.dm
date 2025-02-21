@@ -50,7 +50,7 @@
 			visible_message(span_infoplain(span_bold("\The [user]") + " bonks \the [src] harmlessly."))
 	user.do_attack_animation(src)
 
-/obj/machinery/door/New()
+/obj/machinery/door/Initialize(mapload)
 	. = ..()
 	if(density)
 		layer = closed_layer
@@ -73,7 +73,6 @@
 	update_icon()
 
 	update_nearby_tiles(need_rebuild=1)
-	return
 
 /obj/machinery/door/Destroy()
 	density = FALSE
@@ -456,8 +455,7 @@
 	addtimer(CALLBACK(src, PROC_REF(close_internalfinish),forced), anim_length_before_finalize)
 
 /obj/machinery/door/proc/close_internalfinish(var/forced = 0)
-	PRIVATE_PROC(TRUE) //do not touch this or BYOND will devour you
-	SHOULD_NOT_OVERRIDE(TRUE)
+	PROTECTED_PROC(TRUE) //do not touch this or BYOND will devour you
 	update_icon()
 	if(visible && !glass)
 		set_opacity(1)	//caaaaarn!

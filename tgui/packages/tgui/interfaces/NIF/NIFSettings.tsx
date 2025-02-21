@@ -1,7 +1,7 @@
 import { useBackend } from 'tgui/backend';
 import { Button, Dropdown, LabeledList, Stack } from 'tgui-core/components';
 
-import { Data } from './types';
+import type { Data } from './types';
 
 export const NIFSettings = (props) => {
   const { act, data } = useBackend<Data>();

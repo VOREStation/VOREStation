@@ -8,6 +8,10 @@
 	var/falling_type = /obj/item/reagent_containers/food/snacks/sliceable/pizza/margherita
 	var/crushing = TRUE
 
+/obj/effect/falling_effect/New(loc, type, var/crushing_type = TRUE)
+	crushing = crushing_type
+	..()
+
 /obj/effect/falling_effect/Initialize(mapload, type)
 	..()
 	if(type)
@@ -26,8 +30,7 @@
 	dropped.density = FALSE
 	dropped.opacity = FALSE
 	animate(dropped, pixel_y = initial_y, pixel_x = initial_x , time = 7)
-	spawn(7)
-		dropped.end_fall(crushing)
+	addtimer(CALLBACK(dropped, TYPE_PROC_REF(/atom/movable,end_fall), crushing), 0.7 SECONDS)
 	qdel(src)
 
 /atom/movable/proc/end_fall(var/crushing = FALSE)

@@ -15,7 +15,7 @@
 	var/menu = MENU_MAIN //Which menu screen to display
 	var/list/records = null
 	var/datum/dna2/record/active_record = null
-	var/obj/item/disk/data/diskette = null //Mostly so the geneticist can steal everything.
+	var/obj/item/disk/body_record/diskette = null // Traitgenes - Storing the entire body record
 	var/loading = 0 // Nice loading text
 	var/autoprocess = 0
 	var/obj/machinery/clonepod/selected_pod
@@ -94,7 +94,7 @@
 			P.name = "[initial(P.name)] #[num++]"
 
 /obj/machinery/computer/cloning/attackby(obj/item/W as obj, mob/user as mob, params)
-	if(istype(W, /obj/item/disk/data)) //INSERT SOME DISKETTES
+	if(istype(W, /obj/item/disk/body_record/)) //Traitgenes Storing the entire body record
 		if(!diskette)
 			user.drop_item()
 			W.loc = src
@@ -274,7 +274,7 @@
 				return
 			switch(params["option"])
 				if("load")
-					if(isnull(diskette) || isnull(diskette.buf))
+					if(isnull(diskette) || isnull(diskette.stored)) // Traitgenes Storing the entire body record
 						set_temp("Error: The disk's data could not be read.", "danger")
 						return
 					else if(isnull(active_record))
@@ -282,27 +282,14 @@
 						menu = MENU_MAIN
 						return
 
-					active_record = diskette.buf
+					active_record = diskette.stored.mydna // Traitgenes Storing the entire body record
 					set_temp("Successfully loaded from disk.", "success")
 				if("save")
-					if(isnull(diskette) || diskette.read_only || isnull(active_record))
+					if(isnull(diskette) || isnull(active_record)) // Traitgenes Removed readonly
 						set_temp("Error: The data could not be saved.", "danger")
 						return
 
-					// DNA2 makes things a little simpler.
-					var/types
-					switch(params["savetype"]) // Save as Ui/Ui+Ue/Se
-						if("ui")
-							types = DNA2_BUF_UI
-						if("ue")
-							types = DNA2_BUF_UI|DNA2_BUF_UE
-						if("se")
-							types = DNA2_BUF_SE
-						else
-							set_temp("Error: Invalid save format.", "danger")
-							return
-					diskette.buf = active_record
-					diskette.buf.types = types
+					diskette.stored.mydna = active_record // Traitgenes Storing the entire body record
 					diskette.name = "data disk - '[active_record.dna.real_name]'"
 					set_temp("Successfully saved to disk.", "success")
 				if("eject")
@@ -385,7 +372,7 @@
 		return
 	if(isnull(subject) || (!(ishuman(subject))) || (!subject.dna))
 		if(isalien(subject))
-			set_scan_temp("Xenomorphs are not scannable.", "bad")
+			set_scan_temp("Genaprawns are not scannable.", "bad")
 			SStgui.update_uis(src)
 			return
 		// can add more conditions for specific non-human messages here

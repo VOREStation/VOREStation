@@ -12,7 +12,7 @@ import {
   GeneralRecordsNavigation,
   GeneralRecordsView,
 } from './GeneralRecordsOptions';
-import { Data } from './types';
+import type { Data } from './types';
 
 export const GeneralRecords = (props) => {
   const { data } = useBackend<Data>();

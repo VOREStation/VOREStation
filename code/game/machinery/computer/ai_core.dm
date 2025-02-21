@@ -11,7 +11,7 @@
 	var/obj/item/mmi/brain = null
 
 // VOREstation edit: Respect map config's default
-/obj/structure/AIcore/Initialize(var/mapload)
+/obj/structure/AIcore/Initialize(mapload)
 	. = ..()
 	if(mapload)
 		laws = new global.using_map.default_law_type

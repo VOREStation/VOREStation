@@ -16,7 +16,7 @@ import { toFixed } from 'tgui-core/math';
 import { PEAK_DRAW } from './constants';
 import { powerRank } from './functions';
 import { AreaCharge, AreaStatusColorBox } from './PowerMonitorHelpers';
-import { area, sensor } from './types';
+import type { area, sensor } from './types';
 
 export const PowerMonitorFocus = (props: { focus: sensor }) => {
   const { act } = useBackend();
