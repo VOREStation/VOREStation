@@ -1,4 +1,0 @@
-author: "Cameron-The-Raven"
-delete-after: True
-changes:
-  - bugfix: "build mode  dropped items will no longer always gib"
