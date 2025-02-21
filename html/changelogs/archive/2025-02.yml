@@ -14,3 +14,11 @@
 2025-02-20:
   TheGreatKitsune:
   - rscadd: Add a button to set gender of simplemobs
+2025-02-21:
+  Cameron-The-Raven:
+  - bugfix: build mode  dropped items will no longer always gib
+  KillianKirilenko:
+  - rscadd: lockpick sets can now be found as part of the contraband pool in maint
+      items (useless on station though)
+  - rscadd: lockpick sets can now be used to pick fence gates as well
+  - image: resprited the basic lockpick set
