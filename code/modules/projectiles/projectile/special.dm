@@ -240,7 +240,7 @@
 	var/mob/living/M = target
 	if(ishuman(target)) //Make plantpeople thin, seeing as we're removing reagents from actual plants
 		var/mob/living/carbon/human/H = M
-		if((H.species.flags & IS_PLANT) && (M.nutrition < 500))
+		if((H.species.flags & IS_PLANT) && (M.nutrition > 30))
 			M.adjust_nutrition(-30)
 	else if (istype(target, /mob/living/carbon/))
 		M.show_message(span_blue("The radiation beam dissipates harmlessly through your body."))
