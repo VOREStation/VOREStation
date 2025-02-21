@@ -324,7 +324,7 @@
 
 /mob/living/simple_mob/protean_blob/Life()
 	. = ..()
-	if(!humannform)
+	if(!humanform)
 		return
 	if(!humanform.nano_dead_check(src))
 		if(. && istype(refactory) && humanform)
