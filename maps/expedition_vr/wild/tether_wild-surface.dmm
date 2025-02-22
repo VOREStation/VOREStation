@@ -113,10 +113,7 @@
 /area/tether/surfacebase/outside/wilderness)
 "p" = (
 /turf/simulated/floor/outdoors/dirt/virgo3b,
-/area/syndicate_station/southwest{
-	base_turf = /turf/simulated/floor/outdoors/dirt/virgo3b;
-	forced_ambience = list('sound/music/Sacred_Grove.ogg')
-	})
+/area/syndicate_station/southwest/outside)
 
 (1,1,1) = {"
 b

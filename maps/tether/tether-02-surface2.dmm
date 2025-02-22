@@ -997,15 +997,11 @@
 	dir = 8
 	},
 /turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/uppernorthstairwell{
-	name = "\improper North Medical Stairwell"
-	})
+/area/tether/surfacebase/medical/uppernorthstairwell)
 "abv" = (
 /obj/structure/stairs/spawner/east,
 /turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/uppernorthstairwell{
-	name = "\improper North Medical Stairwell"
-	})
+/area/tether/surfacebase/medical/uppernorthstairwell)
 "abw" = (
 /obj/machinery/power/apc{
 	dir = 1;
@@ -1101,9 +1097,7 @@
 /obj/structure/railing,
 /obj/structure/stairs/spawner/east,
 /turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/uppernorthstairwell{
-	name = "\improper North Medical Stairwell"
-	})
+/area/tether/surfacebase/medical/uppernorthstairwell)
 "abD" = (
 /obj/machinery/door/firedoor/glass/hidden/steel{
 	dir = 1
@@ -1363,9 +1357,7 @@
 	pixel_y = 22
 	},
 /turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/uppernorthstairwell{
-	name = "\improper North Medical Stairwell"
-	})
+/area/tether/surfacebase/medical/uppernorthstairwell)
 "abW" = (
 /obj/structure/railing{
 	dir = 1
@@ -1390,15 +1382,11 @@
 	dir = 8
 	},
 /turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/uppernorthstairwell{
-	name = "\improper North Medical Stairwell"
-	})
+/area/tether/surfacebase/medical/uppernorthstairwell)
 "abY" = (
 /obj/structure/railing,
 /turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/uppernorthstairwell{
-	name = "\improper North Medical Stairwell"
-	})
+/area/tether/surfacebase/medical/uppernorthstairwell)
 "abZ" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 1

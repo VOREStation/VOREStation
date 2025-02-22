@@ -4,152 +4,114 @@
 /area/template_noop)
 "ab" = (
 /turf/unsimulated/wall,
-/area/syndicate_mothership{
-	name = "\improper Trader Base"
-	})
+/area/syndicate_mothership/trader)
 "ac" = (
 /obj/structure/table/standard,
 /turf/unsimulated/floor{
 	icon_state = "steel"
 	},
-/area/syndicate_mothership{
-	name = "\improper Trader Base"
-	})
+/area/syndicate_mothership/trader)
 "ad" = (
 /obj/structure/closet/wardrobe/pink,
 /turf/unsimulated/floor{
 	icon_state = "steel"
 	},
-/area/syndicate_mothership{
-	name = "\improper Trader Base"
-	})
+/area/syndicate_mothership/trader)
 "ae" = (
 /obj/structure/closet/wardrobe/white,
 /turf/unsimulated/floor{
 	icon_state = "steel"
 	},
-/area/syndicate_mothership{
-	name = "\improper Trader Base"
-	})
+/area/syndicate_mothership/trader)
 "af" = (
 /obj/structure/closet/wardrobe/green,
 /turf/unsimulated/floor{
 	icon_state = "steel"
 	},
-/area/syndicate_mothership{
-	name = "\improper Trader Base"
-	})
+/area/syndicate_mothership/trader)
 "ag" = (
 /obj/structure/closet/wardrobe/grey,
 /turf/unsimulated/floor{
 	icon_state = "steel"
 	},
-/area/syndicate_mothership{
-	name = "\improper Trader Base"
-	})
+/area/syndicate_mothership/trader)
 "ah" = (
 /obj/structure/closet/wardrobe/black,
 /turf/unsimulated/floor{
 	icon_state = "steel"
 	},
-/area/syndicate_mothership{
-	name = "\improper Trader Base"
-	})
+/area/syndicate_mothership/trader)
 "ai" = (
 /obj/structure/closet/wardrobe/pjs,
 /turf/unsimulated/floor{
 	icon_state = "steel"
 	},
-/area/syndicate_mothership{
-	name = "\improper Trader Base"
-	})
+/area/syndicate_mothership/trader)
 "aj" = (
 /turf/unsimulated/floor{
 	icon_state = "steel"
 	},
-/area/syndicate_mothership{
-	name = "\improper Trader Base"
-	})
+/area/syndicate_mothership/trader)
 "ak" = (
 /obj/structure/closet/crate,
 /turf/unsimulated/floor{
 	icon_state = "vault";
 	dir = 1
 	},
-/area/syndicate_mothership{
-	name = "\improper Trader Base"
-	})
+/area/syndicate_mothership/trader)
 "al" = (
 /turf/unsimulated/floor{
 	icon_state = "dark"
 	},
-/area/syndicate_mothership{
-	name = "\improper Trader Base"
-	})
+/area/syndicate_mothership/trader)
 "am" = (
 /obj/structure/closet/wardrobe/yellow,
 /turf/unsimulated/floor{
 	icon_state = "steel"
 	},
-/area/syndicate_mothership{
-	name = "\improper Trader Base"
-	})
+/area/syndicate_mothership/trader)
 "an" = (
 /obj/structure/closet/wardrobe/suit,
 /turf/unsimulated/floor{
 	icon_state = "steel"
 	},
-/area/syndicate_mothership{
-	name = "\improper Trader Base"
-	})
+/area/syndicate_mothership/trader)
 "ao" = (
 /obj/item/stool/padded,
 /turf/unsimulated/floor{
 	icon_state = "dark"
 	},
-/area/syndicate_mothership{
-	name = "\improper Trader Base"
-	})
+/area/syndicate_mothership/trader)
 "ap" = (
 /turf/unsimulated/floor{
 	icon_state = "vault";
 	dir = 1
 	},
-/area/syndicate_mothership{
-	name = "\improper Trader Base"
-	})
+/area/syndicate_mothership/trader)
 "aq" = (
 /obj/item/stool/padded,
 /turf/unsimulated/floor{
 	icon_state = "steel"
 	},
-/area/syndicate_mothership{
-	name = "\improper Trader Base"
-	})
+/area/syndicate_mothership/trader)
 "ar" = (
 /obj/structure/closet/wardrobe/mixed,
 /turf/unsimulated/floor{
 	icon_state = "steel"
 	},
-/area/syndicate_mothership{
-	name = "\improper Trader Base"
-	})
+/area/syndicate_mothership/trader)
 "as" = (
 /obj/structure/closet/wardrobe/xenos,
 /turf/unsimulated/floor{
 	icon_state = "steel"
 	},
-/area/syndicate_mothership{
-	name = "\improper Trader Base"
-	})
+/area/syndicate_mothership/trader)
 "at" = (
 /obj/effect/landmark/late_antag/trader,
 /turf/unsimulated/floor{
 	icon_state = "dark"
 	},
-/area/syndicate_mothership{
-	name = "\improper Trader Base"
-	})
+/area/syndicate_mothership/trader)
 "au" = (
 /obj/machinery/door/blast/shutters{
 	dir = 8;
@@ -160,39 +122,29 @@
 	icon_state = "vault";
 	dir = 1
 	},
-/area/syndicate_mothership{
-	name = "\improper Trader Base"
-	})
+/area/syndicate_mothership/trader)
 "av" = (
 /obj/structure/toilet{
 	dir = 4
 	},
 /turf/simulated/shuttle/floor/red,
-/area/syndicate_mothership{
-	name = "\improper Trader Base"
-	})
+/area/syndicate_mothership/trader)
 "aw" = (
 /obj/machinery/door/airlock/silver{
 	name = "Toilet"
 	},
 /turf/simulated/shuttle/floor/white,
-/area/syndicate_mothership{
-	name = "\improper Trader Base"
-	})
+/area/syndicate_mothership/trader)
 "ax" = (
 /obj/machinery/door/airlock/multi_tile/glass{
 	dir = 4;
 	req_access = list(160)
 	},
 /turf/simulated/shuttle/floor/white,
-/area/syndicate_mothership{
-	name = "\improper Trader Base"
-	})
+/area/syndicate_mothership/trader)
 "ay" = (
 /turf/simulated/shuttle/floor,
-/area/syndicate_mothership{
-	name = "\improper Trader Base"
-	})
+/area/syndicate_mothership/trader)
 "az" = (
 /obj/structure/sink{
 	icon_state = "sink";
@@ -204,31 +156,23 @@
 	pixel_x = -28
 	},
 /turf/simulated/shuttle/floor/white,
-/area/syndicate_mothership{
-	name = "\improper Trader Base"
-	})
+/area/syndicate_mothership/trader)
 "aA" = (
 /obj/structure/curtain/open/shower,
 /obj/machinery/shower{
 	pixel_y = 3
 	},
 /turf/simulated/shuttle/floor,
-/area/syndicate_mothership{
-	name = "\improper Trader Base"
-	})
+/area/syndicate_mothership/trader)
 "aB" = (
 /obj/structure/table/standard,
 /obj/item/soap/deluxe,
 /turf/simulated/shuttle/floor,
-/area/syndicate_mothership{
-	name = "\improper Trader Base"
-	})
+/area/syndicate_mothership/trader)
 "aC" = (
 /obj/structure/undies_wardrobe,
 /turf/simulated/shuttle/floor,
-/area/syndicate_mothership{
-	name = "\improper Trader Base"
-	})
+/area/syndicate_mothership/trader)
 "aD" = (
 /obj/machinery/embedded_controller/radio/simple_docking_controller{
 	frequency = 1380;
@@ -242,9 +186,7 @@
 /turf/unsimulated/floor{
 	icon_state = "steel"
 	},
-/area/syndicate_mothership{
-	name = "\improper Trader Base"
-	})
+/area/syndicate_mothership/trader)
 "aE" = (
 /obj/machinery/door/airlock/glass_external{
 	frequency = 1380;
@@ -255,9 +197,7 @@
 /turf/unsimulated/floor{
 	icon_state = "steel"
 	},
-/area/syndicate_mothership{
-	name = "\improper Trader Base"
-	})
+/area/syndicate_mothership/trader)
 "aF" = (
 /turf/simulated/shuttle/wall/dark/hard_corner,
 /area/shuttle/trade)

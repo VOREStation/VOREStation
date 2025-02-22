@@ -331,6 +331,8 @@
 	name = "\improper Mining Substation"
 /area/maintenance/substation/bar
 	name = "\improper Bar Substation"
+/area/maintenance/substation/bar/civilian
+	name = "\improper Surface Civilian Substation"
 /area/maintenance/substation/surface_atmos
 	name = "\improper Surface Atmos Substation"
 /area/maintenance/substation/civ_west
@@ -1512,6 +1514,9 @@
 /area/shuttle/tether
 	name = "Tether Shuttle"
 	icon_state = "shuttle2"
+
+/area/shuttle/tether/reinforced_base
+	base_turf = /turf/simulated/floor/reinforced
 
 //Skipjack
 

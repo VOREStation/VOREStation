@@ -30,9 +30,7 @@
 	dir = 8
 	},
 /turf/simulated/floor/plating,
-/area/tether/surfacebase/medical/uppernorthstairwell{
-	name = "\improper North Medical Stairwell"
-	})
+/area/tether/surfacebase/medical/uppernorthstairwell)
 "aae" = (
 /turf/simulated/wall,
 /area/tether/surfacebase/security/iaa)
@@ -65,9 +63,7 @@
 	},
 /obj/structure/window/reinforced,
 /turf/simulated/floor/plating,
-/area/tether/surfacebase/medical/uppernorthstairwell{
-	name = "\improper North Medical Stairwell"
-	})
+/area/tether/surfacebase/medical/uppernorthstairwell)
 "aah" = (
 /turf/simulated/wall,
 /area/tether/surfacebase/medical/triage)
@@ -192,9 +188,7 @@
 	dir = 4
 	},
 /turf/simulated/floor/plating,
-/area/tether/surfacebase/medical/uppernorthstairwell{
-	name = "\improper North Medical Stairwell"
-	})
+/area/tether/surfacebase/medical/uppernorthstairwell)
 "aas" = (
 /obj/structure/table/rack,
 /obj/random/maintenance/medical,
@@ -226,9 +220,7 @@
 	dir = 8
 	},
 /turf/simulated/floor/plating,
-/area/tether/surfacebase/medical/uppernorthstairwell{
-	name = "\improper North Medical Stairwell"
-	})
+/area/tether/surfacebase/medical/uppernorthstairwell)
 "aau" = (
 /obj/structure/table/bench/steel,
 /obj/effect/floor_decal/borderfloor{
@@ -451,9 +443,7 @@
 /area/tether/surfacebase/medical/storage)
 "aaM" = (
 /turf/simulated/floor/plating,
-/area/tether/surfacebase/medical/uppernorthstairwell{
-	name = "\improper North Medical Stairwell"
-	})
+/area/tether/surfacebase/medical/uppernorthstairwell)
 "aaN" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 4
@@ -514,9 +504,7 @@
 /area/tether/surfacebase/security/upperhall)
 "aaQ" = (
 /turf/simulated/open,
-/area/tether/surfacebase/medical/uppernorthstairwell{
-	name = "\improper North Medical Stairwell"
-	})
+/area/tether/surfacebase/medical/uppernorthstairwell)
 "aaR" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced/full,
@@ -664,9 +652,7 @@
 	dir = 1
 	},
 /turf/simulated/open,
-/area/tether/surfacebase/medical/uppernorthstairwell{
-	name = "\improper North Medical Stairwell"
-	})
+/area/tether/surfacebase/medical/uppernorthstairwell)
 "abb" = (
 /obj/structure/disposalpipe/segment{
 	dir = 2;
@@ -849,9 +835,7 @@
 /area/tether/surfacebase/medical/surgery2)
 "abq" = (
 /turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/uppernorthstairwell{
-	name = "\improper North Medical Stairwell"
-	})
+/area/tether/surfacebase/medical/uppernorthstairwell)
 "abr" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
@@ -872,9 +856,7 @@
 	dir = 6
 	},
 /turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/uppernorthstairwell{
-	name = "\improper North Medical Stairwell"
-	})
+/area/tether/surfacebase/medical/uppernorthstairwell)
 "abt" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
@@ -1369,9 +1351,7 @@
 	dir = 8
 	},
 /turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/uppernorthstairwell{
-	name = "\improper North Medical Stairwell"
-	})
+/area/tether/surfacebase/medical/uppernorthstairwell)
 "acd" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 9
@@ -1767,15 +1747,11 @@
 /obj/structure/railing,
 /obj/machinery/light,
 /turf/simulated/open,
-/area/tether/surfacebase/medical/uppernorthstairwell{
-	name = "\improper North Medical Stairwell"
-	})
+/area/tether/surfacebase/medical/uppernorthstairwell)
 "acN" = (
 /obj/structure/railing,
 /turf/simulated/floor/plating,
-/area/tether/surfacebase/medical/uppernorthstairwell{
-	name = "\improper North Medical Stairwell"
-	})
+/area/tether/surfacebase/medical/uppernorthstairwell)
 "acO" = (
 /obj/structure/cable/green{
 	icon_state = "1-2"
@@ -2623,9 +2599,7 @@
 	dir = 10
 	},
 /turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/uppernorthstairwell{
-	name = "\improper North Medical Stairwell"
-	})
+/area/tether/surfacebase/medical/uppernorthstairwell)
 "aef" = (
 /obj/machinery/light{
 	dir = 1
@@ -3813,9 +3787,7 @@
 	pixel_x = -28
 	},
 /turf/simulated/floor/tiled/white,
-/area/crew_quarters/recreation_area_restroom{
-	name = "\improper Recreation Area Showers"
-	})
+/area/crew_quarters/recreation_area_restroom/showers)
 "afR" = (
 /obj/structure/table/bench/steel,
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
@@ -6313,9 +6285,7 @@
 	dir = 1
 	},
 /turf/simulated/floor/tiled/white,
-/area/crew_quarters/recreation_area_restroom{
-	name = "\improper Recreation Area Showers"
-	})
+/area/crew_quarters/recreation_area_restroom/showers)
 "ajL" = (
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -8953,9 +8923,7 @@
 /area/rnd/outpost/xenobiology/outpost_hallway)
 "aoX" = (
 /turf/simulated/wall,
-/area/crew_quarters/recreation_area_restroom{
-	name = "\improper Recreation Area Showers"
-	})
+/area/crew_quarters/recreation_area_restroom/showers)
 "aoY" = (
 /obj/machinery/power/apc{
 	cell_type = /obj/item/cell/super;
@@ -10445,9 +10413,7 @@
 	dir = 4
 	},
 /turf/simulated/floor/tiled/white,
-/area/crew_quarters/recreation_area_restroom{
-	name = "\improper Recreation Area Showers"
-	})
+/area/crew_quarters/recreation_area_restroom/showers)
 "arE" = (
 /obj/effect/floor_decal/corner/lightgrey{
 	dir = 9
@@ -10794,9 +10760,7 @@
 /turf/simulated/wall/fancy_shuttle{
 	fancy_shuttle_tag = "lifeboat1"
 	},
-/area/shuttle/tether{
-	base_turf = /turf/simulated/floor/reinforced
-	})
+/area/shuttle/tether/reinforced_base)
 "ask" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 8
@@ -11899,9 +11863,7 @@
 	dir = 4
 	},
 /turf/simulated/floor/plating,
-/area/maintenance/substation/bar{
-	name = "\improper Surface Civilian Substation"
-	})
+/area/maintenance/substation/bar/civilian)
 "auu" = (
 /turf/simulated/open,
 /area/rnd/staircase/thirdfloor)
@@ -12554,9 +12516,7 @@
 	dir = 9
 	},
 /turf/simulated/floor/tiled/white,
-/area/crew_quarters/recreation_area_restroom{
-	name = "\improper Recreation Area Showers"
-	})
+/area/crew_quarters/recreation_area_restroom/showers)
 "avG" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -12872,9 +12832,7 @@
 	pixel_x = 22
 	},
 /turf/simulated/floor/tiled/white,
-/area/crew_quarters/recreation_area_restroom{
-	name = "\improper Recreation Area Showers"
-	})
+/area/crew_quarters/recreation_area_restroom/showers)
 "awl" = (
 /obj/structure/toilet{
 	dir = 8
@@ -15562,9 +15520,7 @@
 	dir = 8
 	},
 /turf/simulated/floor/plating,
-/area/maintenance/substation/bar{
-	name = "\improper Surface Civilian Substation"
-	})
+/area/maintenance/substation/bar/civilian)
 "aAy" = (
 /obj/structure/table/woodentable,
 /obj/item/paper_bin{
@@ -15591,9 +15547,7 @@
 /area/library)
 "aAB" = (
 /turf/simulated/wall,
-/area/maintenance/substation/bar{
-	name = "\improper Surface Civilian Substation"
-	})
+/area/maintenance/substation/bar/civilian)
 "aAC" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced/full,
@@ -16909,9 +16863,7 @@
 	RCon_tag = "Surface Civilian Substation Bypass"
 	},
 /turf/simulated/floor/plating,
-/area/maintenance/substation/bar{
-	name = "\improper Surface Civilian Substation"
-	})
+/area/maintenance/substation/bar/civilian)
 "aCM" = (
 /obj/machinery/firealarm{
 	dir = 1;
@@ -16960,9 +16912,7 @@
 	},
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/plating,
-/area/maintenance/substation/bar{
-	name = "\improper Surface Civilian Substation"
-	})
+/area/maintenance/substation/bar/civilian)
 "aCQ" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/cable,
@@ -16973,9 +16923,7 @@
 	dir = 8
 	},
 /turf/simulated/floor/plating,
-/area/maintenance/substation/bar{
-	name = "\improper Surface Civilian Substation"
-	})
+/area/maintenance/substation/bar/civilian)
 "aCR" = (
 /obj/structure/flora/ausbushes/sunnybush,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -17961,9 +17909,7 @@
 	dir = 4
 	},
 /turf/simulated/floor/plating,
-/area/maintenance/substation/bar{
-	name = "\improper Surface Civilian Substation"
-	})
+/area/maintenance/substation/bar/civilian)
 "aEL" = (
 /obj/structure/closet/secure_closet/hydroponics,
 /obj/effect/floor_decal/borderfloor{
@@ -18025,9 +17971,7 @@
 	dir = 1
 	},
 /turf/simulated/floor/plating,
-/area/maintenance/substation/bar{
-	name = "\improper Surface Civilian Substation"
-	})
+/area/maintenance/substation/bar/civilian)
 "aEP" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 8
@@ -18201,9 +18145,7 @@
 	dir = 1
 	},
 /turf/simulated/floor/plating,
-/area/maintenance/substation/bar{
-	name = "\improper Surface Civilian Substation"
-	})
+/area/maintenance/substation/bar/civilian)
 "aFi" = (
 /obj/structure/table/glass,
 /obj/machinery/cell_charger,
@@ -18697,9 +18639,7 @@
 /obj/structure/table/steel,
 /obj/random/maintenance/engineering,
 /turf/simulated/floor/plating,
-/area/maintenance/substation/bar{
-	name = "\improper Surface Civilian Substation"
-	})
+/area/maintenance/substation/bar/civilian)
 "aFY" = (
 /obj/machinery/button/windowtint{
 	id = "draama";
@@ -19057,9 +18997,7 @@
 	name = "Bar Substation"
 	},
 /turf/simulated/floor/plating,
-/area/maintenance/substation/bar{
-	name = "\improper Surface Civilian Substation"
-	})
+/area/maintenance/substation/bar/civilian)
 "aGA" = (
 /obj/effect/floor_decal/borderfloor,
 /obj/effect/floor_decal/steeldecal/steel_decals7{
@@ -22349,9 +22287,7 @@
 	},
 /obj/structure/curtain/open/shower,
 /turf/simulated/floor/tiled/white,
-/area/crew_quarters/recreation_area_restroom{
-	name = "\improper Recreation Area Showers"
-	})
+/area/crew_quarters/recreation_area_restroom/showers)
 "aMx" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
@@ -22409,17 +22345,13 @@
 /turf/simulated/wall/fancy_shuttle{
 	fancy_shuttle_tag = "lifeboat1"
 	},
-/area/shuttle/tether{
-	base_turf = /turf/simulated/floor/reinforced
-	})
+/area/shuttle/tether/reinforced_base)
 "aMF" = (
 /obj/structure/window/fancy_shuttle{
 	fancy_shuttle_tag = "lifeboat1"
 	},
 /turf/simulated/floor,
-/area/shuttle/tether{
-	base_turf = /turf/simulated/floor/reinforced
-	})
+/area/shuttle/tether/reinforced_base)
 "aMG" = (
 /obj/structure/railing{
 	dir = 4
@@ -22632,9 +22564,7 @@
 	},
 /obj/machinery/computer/shuttle_control/tether_backup,
 /turf/simulated/floor/tiled,
-/area/shuttle/tether{
-	base_turf = /turf/simulated/floor/reinforced
-	})
+/area/shuttle/tether/reinforced_base)
 "aNb" = (
 /obj/structure/closet/emcloset,
 /obj/effect/floor_decal/fancy_shuttle{
@@ -22642,9 +22572,7 @@
 	name = "lifeboat1"
 	},
 /turf/simulated/floor/tiled,
-/area/shuttle/tether{
-	base_turf = /turf/simulated/floor/reinforced
-	})
+/area/shuttle/tether/reinforced_base)
 "aNc" = (
 /obj/machinery/alarm{
 	dir = 8;
@@ -22738,9 +22666,7 @@
 	name = "lifeboat1"
 	},
 /turf/simulated/floor/tiled,
-/area/shuttle/tether{
-	base_turf = /turf/simulated/floor/reinforced
-	})
+/area/shuttle/tether/reinforced_base)
 "aNn" = (
 /obj/effect/floor_decal/borderfloorblack{
 	dir = 4
@@ -22862,9 +22788,7 @@
 	name = "lifeboat1"
 	},
 /turf/simulated/floor/tiled,
-/area/shuttle/tether{
-	base_turf = /turf/simulated/floor/reinforced
-	})
+/area/shuttle/tether/reinforced_base)
 "aNA" = (
 /obj/machinery/power/apc{
 	dir = 4;
@@ -22982,9 +22906,7 @@
 	name = "lifeboat1"
 	},
 /turf/simulated/floor/tiled,
-/area/shuttle/tether{
-	base_turf = /turf/simulated/floor/reinforced
-	})
+/area/shuttle/tether/reinforced_base)
 "aNL" = (
 /obj/structure/window/basic/full,
 /obj/structure/grille,
@@ -23020,9 +22942,7 @@
 	name = "lifeboat1"
 	},
 /turf/simulated/floor/tiled,
-/area/shuttle/tether{
-	base_turf = /turf/simulated/floor/reinforced
-	})
+/area/shuttle/tether/reinforced_base)
 "aNQ" = (
 /turf/simulated/floor/plating,
 /area/rnd/outpost/xenobiology/outpost_stairs)
@@ -25096,9 +25016,7 @@
 	pixel_y = -30
 	},
 /turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/uppernorthstairwell{
-	name = "\improper North Medical Stairwell"
-	})
+/area/tether/surfacebase/medical/uppernorthstairwell)
 "aSj" = (
 /obj/structure/window/basic/full,
 /obj/structure/window/basic{
@@ -25132,9 +25050,7 @@
 	},
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
 /turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/uppernorthstairwell{
-	name = "\improper North Medical Stairwell"
-	})
+/area/tether/surfacebase/medical/uppernorthstairwell)
 "aSl" = (
 /obj/effect/floor_decal/industrial/warning{
 	dir = 8
@@ -33078,9 +32994,7 @@
 	},
 /obj/machinery/door/firedoor,
 /turf/simulated/floor/plating,
-/area/maintenance/substation/bar{
-	name = "\improper Surface Civilian Substation"
-	})
+/area/maintenance/substation/bar/civilian)
 "bgQ" = (
 /obj/structure/disposalpipe/segment{
 	dir = 1;
@@ -37663,9 +37577,7 @@
 	name = "lifeboat1"
 	},
 /turf/simulated/floor/tiled,
-/area/shuttle/tether{
-	base_turf = /turf/simulated/floor/reinforced
-	})
+/area/shuttle/tether/reinforced_base)
 "eMY" = (
 /obj/structure/sink{
 	pixel_y = 20
@@ -37936,9 +37848,7 @@
 	},
 /obj/machinery/light/floortube,
 /turf/simulated/floor/tiled,
-/area/shuttle/tether{
-	base_turf = /turf/simulated/floor/reinforced
-	})
+/area/shuttle/tether/reinforced_base)
 "fzK" = (
 /obj/structure/filingcabinet/chestdrawer,
 /turf/simulated/floor/wood,
@@ -39142,9 +39052,7 @@
 	pixel_y = -24
 	},
 /turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/uppernorthstairwell{
-	name = "\improper North Medical Stairwell"
-	})
+/area/tether/surfacebase/medical/uppernorthstairwell)
 "iQr" = (
 /obj/machinery/hologram/holopad,
 /obj/effect/landmark/start{
@@ -39993,9 +39901,7 @@
 	name = "HIGH VOLTAGE"
 	},
 /turf/simulated/wall,
-/area/maintenance/substation/bar{
-	name = "\improper Surface Civilian Substation"
-	})
+/area/maintenance/substation/bar/civilian)
 "kTn" = (
 /obj/machinery/light,
 /obj/machinery/atmospherics/unary/vent_pump/on{
@@ -40426,9 +40332,7 @@
 /turf/simulated/wall/fancy_shuttle{
 	fancy_shuttle_tag = "lifeboat1"
 	},
-/area/shuttle/tether{
-	base_turf = /turf/simulated/floor/reinforced
-	})
+/area/shuttle/tether/reinforced_base)
 "lSv" = (
 /obj/structure/cable/green{
 	icon_state = "1-4"
@@ -42003,9 +41907,7 @@
 	icon_state = "4-8"
 	},
 /turf/simulated/floor/tiled/steel_grid,
-/area/crew_quarters/recreation_area_restroom{
-	name = "\improper Recreation Area Showers"
-	})
+/area/crew_quarters/recreation_area_restroom/showers)
 "pXX" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4;
@@ -42555,9 +42457,7 @@
 	},
 /obj/structure/curtain/open/shower,
 /turf/simulated/floor/tiled/white,
-/area/crew_quarters/recreation_area_restroom{
-	name = "\improper Recreation Area Showers"
-	})
+/area/crew_quarters/recreation_area_restroom/showers)
 "rBz" = (
 /obj/effect/floor_decal/corner/grey/diagonal,
 /obj/structure/disposalpipe/segment{
@@ -42762,9 +42662,7 @@
 	icon_state = "0-8"
 	},
 /turf/simulated/floor/tiled/white,
-/area/crew_quarters/recreation_area_restroom{
-	name = "\improper Recreation Area Showers"
-	})
+/area/crew_quarters/recreation_area_restroom/showers)
 "snE" = (
 /obj/structure/cable/green{
 	icon_state = "2-4"
@@ -43547,9 +43445,7 @@
 	},
 /obj/machinery/light,
 /turf/simulated/floor/tiled/white,
-/area/crew_quarters/recreation_area_restroom{
-	name = "\improper Recreation Area Showers"
-	})
+/area/crew_quarters/recreation_area_restroom/showers)
 "uxj" = (
 /obj/effect/floor_decal/borderfloor,
 /obj/effect/floor_decal/corner/lightgrey/border,
@@ -43645,9 +43541,7 @@
 	dir = 1
 	},
 /turf/simulated/floor/tiled,
-/area/shuttle/tether{
-	base_turf = /turf/simulated/floor/reinforced
-	})
+/area/shuttle/tether/reinforced_base)
 "uAI" = (
 /obj/structure/cable/green{
 	icon_state = "1-2"
@@ -43746,9 +43640,7 @@
 	name = "lifeboat1"
 	},
 /turf/simulated/floor/tiled,
-/area/shuttle/tether{
-	base_turf = /turf/simulated/floor/reinforced
-	})
+/area/shuttle/tether/reinforced_base)
 "uUY" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4;
@@ -44080,9 +43972,7 @@
 "vWe" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/tiled/white,
-/area/crew_quarters/recreation_area_restroom{
-	name = "\improper Recreation Area Showers"
-	})
+/area/crew_quarters/recreation_area_restroom/showers)
 "vXo" = (
 /obj/structure/bed/chair/comfy/beige{
 	dir = 8

@@ -85,6 +85,9 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	name = "\improper Emergency Shuttle"
 	music = "music/escape.ogg"
 
+/area/shuttle/escape/techfloor_grid_base
+	base_turf = /turf/simulated/floor/tiled/techfloor/grid
+
 /area/shuttle/escape_pod1
 	name = "\improper Escape Pod One"
 	music = "music/escape.ogg"
@@ -255,6 +258,12 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	name = "\improper CentCom Security"
 	icon_state = "centcom_security"
 
+/area/centcom/security/residential
+	name = "\improper CentCom Residential Security"
+
+/area/centcom/security/arrivals
+	name = "\improper CentCom Security Arrivals"
+
 /area/centcom/medical
 	name = "\improper CentCom Medical"
 	icon_state = "centcom_medical"
@@ -290,6 +299,9 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	dynamic_lighting = 0
 	ambience = AMBIENCE_HIGHSEC
 	flags = AREA_FLAG_IS_NOT_PERSISTENT
+
+/area/syndicate_mothership/trader
+	name = "\improper Trader Base"
 
 /area/syndicate_mothership/control
 	name = "\improper Mercenary Control Room"
@@ -374,6 +386,10 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 /area/syndicate_station/southwest
 	name = "\improper south-west of SS13"
 	icon_state = "southwest"
+
+/area/syndicate_station/southwest/outside
+	base_turf = /turf/simulated/floor/outdoors/dirt/virgo3b
+	forced_ambience = list('sound/music/Sacred_Grove.ogg')
 
 /area/syndicate_station/northwest
 	name = "\improper north-west of SS13"
@@ -1215,6 +1231,9 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	name = "\improper Recreation Area Restroom"
 	icon_state = "recreation_area_restroom"
 	sound_env = SMALL_ENCLOSED
+
+/area/crew_quarters/recreation_area_restroom/showers
+	name = "\improper Recreation Area Showers"
 
 /area/crew_quarters/pool
 	name = "\improper Pool"
@@ -2417,6 +2436,9 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	name = "\improper Telecomms Teleporter"
 	icon_state = "tcomsatentrance"
 
+/area/tcommsat/entrance/actually
+	name = "\improper Telecomms Entrance"
+
 /area/tcommsat/chamber
 	name = "\improper Telecomms Central Compartment"
 	icon_state = "tcomsatcham"
@@ -2426,10 +2448,16 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	icon_state = "tcomsatlob"
 	ambience = AMBIENCE_ENGINEERING
 
+/area/tcomsat/lobby
+	name = "\improper Telecomms Lobby"
+
 /area/tcomfoyer
 	name = "\improper Telecomms Foyer"
 	icon_state = "tcomsatfoyer"
 	ambience = AMBIENCE_ENGINEERING
+
+/area/tcomfoyer/storage
+	name = "\improper Telecomms Storage"
 
 /area/tcomwest
 	name = "\improper Telecommunications Satellite West Wing"
