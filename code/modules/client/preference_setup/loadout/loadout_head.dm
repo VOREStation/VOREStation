@@ -551,3 +551,7 @@ Talon hats
 /datum/gear/head/purple_tiara
 	display_name = "pink tourmaline tiara"
 	path = /obj/item/clothing/head/fluff/pink_tiara
+
+/datum/gear/head/pirate_hat
+	display_name = "pirate hat"
+	path = /obj/item/clothing/head/pirate
