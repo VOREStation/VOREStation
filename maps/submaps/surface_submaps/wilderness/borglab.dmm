@@ -514,7 +514,6 @@
 "pY" = (
 /obj/machinery/power/port_gen/pacman,
 /obj/structure/cable/blue{
-	d2 = 2;
 	icon_state = "0-2"
 	},
 /turf/simulated/floor/plating,
