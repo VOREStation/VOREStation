@@ -387,10 +387,6 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	name = "\improper south-west of SS13"
 	icon_state = "southwest"
 
-/area/syndicate_station/southwest/outside
-	base_turf = /turf/simulated/floor/outdoors/dirt/virgo3b
-	forced_ambience = list('sound/music/Sacred_Grove.ogg')
-
 /area/syndicate_station/northwest
 	name = "\improper north-west of SS13"
 	icon_state = "northwest"

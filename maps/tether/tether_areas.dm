@@ -1412,6 +1412,10 @@
 	requires_power = 0
 	dynamic_lighting = 0
 
+/area/syndicate_station/southwest/outside
+	base_turf = /turf/simulated/floor/outdoors/dirt/virgo3b
+	forced_ambience = list('sound/music/Sacred_Grove.ogg')
+
 //Merc shuttle
 /area/shuttle/mercenary
 	name = "\improper Mercenary Shuttle"
