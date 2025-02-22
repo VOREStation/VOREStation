@@ -22,3 +22,9 @@
       items (useless on station though)
   - rscadd: lockpick sets can now be used to pick fence gates as well
   - image: resprited the basic lockpick set
+2025-02-22:
+  NickBelmont:
+  - rscadd: Reagent-removing 'Pruning mode' to the floral somatoray
+  Tost:
+  - qol: Changed nail polish's size to small
+  - code_imp: Added w_class = ITEMSIZE_SMALL to nail polish, which was missing originally.
