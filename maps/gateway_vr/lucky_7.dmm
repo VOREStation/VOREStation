@@ -4375,12 +4375,6 @@
 "yi" = (
 /turf/simulated/floor/tiled/white,
 /area/awaymission/lucky7/privateroom/four)
-"yk" = (
-/obj/structure/cable/green{
-	icon_state = "1-2"
-	},
-/turf/simulated/floor/tiled,
-/area/awaymission/lucky7/entry)
 "yo" = (
 /obj/structure/table/steel,
 /turf/simulated/floor/tiled,
@@ -6691,15 +6685,6 @@
 	},
 /turf/simulated/floor/carpet/blue2,
 /area/awaymission/lucky7/privategameroom/three)
-"Li" = (
-/obj/effect/floor_decal/rust,
-/obj/structure/disposalpipe/segment,
-/obj/structure/catwalk,
-/obj/structure/cable/green{
-	icon_state = "1-2"
-	},
-/turf/simulated/floor/plating,
-/area/awaymission/lucky7/maint2)
 "Lj" = (
 /obj/machinery/door/airlock{
 	name = "Breakroom"
@@ -9244,12 +9229,6 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/awaymission/lucky7/kitchen)
-"WE" = (
-/obj/structure/cable/green{
-	icon_state = "1-2"
-	},
-/turf/simulated/floor/tiled,
-/area/awaymission/lucky7/hall1)
 "WG" = (
 /obj/effect/floor_decal/spline/plain{
 	dir = 9
@@ -16902,11 +16881,11 @@ YX
 ZL
 Yk
 FF
-WE
-WE
-WE
-WE
-WE
+JC
+JC
+JC
+JC
+JC
 EB
 Jz
 MG
@@ -16914,10 +16893,10 @@ SE
 MG
 MG
 SP
-WE
-WE
+JC
+JC
 Fw
-yk
+sV
 TK
 Zj
 lu
@@ -20175,15 +20154,15 @@ vT
 Be
 WV
 Gr
-Li
-Li
-Li
+va
+va
+va
 Gr
 Gr
 Gr
 Gr
 EO
-Li
+va
 ao
 hh
 hh

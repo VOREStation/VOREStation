@@ -1968,6 +1968,7 @@
 "gD" = (
 /obj/structure/cable{
 	icon_state = "0-2";
+	
 	},
 /obj/machinery/porta_turret/alien/destroyed,
 /turf/simulated/shuttle/floor/alienplating,
