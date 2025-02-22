@@ -1,11 +1,13 @@
 import argparse
 import glob
+import os
 import pathlib
 import traceback
 import yaml
 
 from . import dmm, lint
 from .error import MaplintError
+from mapmerge2 import frontend
 
 def green(text):
     return "\033[32m" + str(text) + "\033[0m"
@@ -106,7 +108,8 @@ def main(args):
             traceback.print_exc()
             any_failed = True
 
-    for map_filename in (args.maps or glob.glob("**/*.dmm", recursive = True)):
+    default_maps_dir = os.path.join(frontend.read_settings().map_folder, '') # make sure it has a trailing slash
+    for map_filename in (args.maps or glob.glob(default_maps_dir + "**/*.dmm", recursive = True)):
         print(map_filename, end = " ")
 
         success = True
