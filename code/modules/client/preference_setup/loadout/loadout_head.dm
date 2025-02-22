@@ -546,3 +546,8 @@ Talon hats
 /datum/gear/head/eulrhat
 	display_name = "Sleek side cap"
 	path = /obj/item/clothing/head/eulrhat
+
+//Formerly my custom fluff gear, but free to use for anyone, now.
+/datum/gear/head/purple_tiara
+	display_name = "pink tourmaline tiara"
+	path = /obj/item/clothing/head/fluff/pink_tiara

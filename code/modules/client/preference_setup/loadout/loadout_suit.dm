@@ -1143,3 +1143,8 @@ Talon winter coat
 /datum/gear/suit/martianminer
 	display_name = "martian miner's coat, basic"
 	path = /obj/item/clothing/suit/storage/vest/martian_miner
+
+//Formerly my custom fluff gear, but free to use for anyone, now.
+/datum/gear/suit/purple_robes
+	display_name = "purple robes"
+	path = /obj/item/clothing/suit/fluff/purp_robes
