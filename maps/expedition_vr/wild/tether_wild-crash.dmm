@@ -764,8 +764,7 @@
 /obj/structure/flora/pottedplant{
 	icon_state = "plant-09";
 	name = "Esteban";
-	pixel_y = 8;
-	
+	pixel_y = 8
 	},
 /turf/simulated/shuttle/floor/black/virgo3b,
 /area/tether/surfacebase/outside/wilderness)

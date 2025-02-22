@@ -664,8 +664,7 @@
 /area/submap/virgo2/Rockybase)
 "cq" = (
 /obj/structure/cable{
-	icon_state = "0-4";
-	
+	icon_state = "0-4"
 	},
 /obj/machinery/light{
 	dir = 8

@@ -147,8 +147,7 @@
 /area/submap/virgo2/DoomP)
 "aH" = (
 /obj/structure/cable{
-	icon_state = "0-2";
-	
+	icon_state = "0-2"
 	},
 /obj/machinery/power/port_gen/pacman,
 /turf/simulated/floor/plating,
@@ -207,8 +206,7 @@
 	dir = 1
 	},
 /obj/structure/cable{
-	icon_state = "0-4";
-	
+	icon_state = "0-4"
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/submap/virgo2/DoomP)
@@ -218,8 +216,7 @@
 	dir = 1
 	},
 /obj/structure/cable{
-	icon_state = "0-4";
-	
+	icon_state = "0-4"
 	},
 /obj/structure/cable{
 	icon_state = "4-8";
