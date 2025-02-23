@@ -480,7 +480,9 @@
 
 #define VIS_CH_STOMACH		34
 
-#define VIS_COUNT			34 //Must be highest number from above.
+#define VIS_MOTIONTRACKER 	39
+
+#define VIS_COUNT			39 //Must be highest number from above.
 
 //Some mob icon layering defines
 #define BODY_LAYER		-100

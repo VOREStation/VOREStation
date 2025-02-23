@@ -131,6 +131,7 @@
 				span_danger("You step on \the [src]!"),
 				span_infoplain(span_bold("You hear a loud metallic snap!"))
 				)
+			SSmotiontracker.ping(src,100) // Clunk!
 			attack_mob(L)
 			if(!has_buckled_mobs())
 				anchored = FALSE
