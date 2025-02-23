@@ -104,7 +104,7 @@
 		if(CONFIG_GET(flag/chatlog_database_backend))
 			var/round_id = payload["roundId"]
 			if(round_id)
-				VCHATLOG_CALL("read_chatlog_round", client.key, round_id, FALSE)
+				vchatlog_read_round(client.key, round_id, FALSE)
 				client << browse_rsc(file("tmp/chatlogs/[client.key]-[round_id]"), "exported_chatlog")
 				window.send_message("exportDownloadReady")
 		else
@@ -115,7 +115,7 @@
 			if(!length)
 				length = 1000
 
-			VCHATLOG_CALL("read_chatlog", client.key, length, FALSE)
+			vchatlog_read(client.key, length, FALSE)
 			client << browse_rsc(file("tmp/chatlogs/[client.key]"), "exported_chatlog_history")
 		else
 			to_chat(client, span_warning("WARNING: lines chatlog not exported: database backend not enabled."))

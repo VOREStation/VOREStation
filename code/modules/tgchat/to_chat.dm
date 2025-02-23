@@ -45,11 +45,11 @@
 				var/client/c = CLIENT_FROM_VAR(tgt)
 				if(isnull(c))
 					continue
-				VCHATLOG_CALL("write_chatlog", c.key, html, GLOB.round_id)
+				vchatlog_write(c.key, html, GLOB.round_id)
 		else
 			var/client/c = CLIENT_FROM_VAR(target)
 			if(!isnull(c))
-				VCHATLOG_CALL("write_chatlog", c.key, html, GLOB.round_id)
+				vchatlog_write(c.key, html, GLOB.round_id)
 
 /**
  * Sends the message to the recipient (target).
@@ -102,8 +102,8 @@
 				var/client/c = CLIENT_FROM_VAR(tgt)
 				if(isnull(c))
 					continue
-				VCHATLOG_CALL("write_chatlog", c.key, html, GLOB.round_id)
+				vchatlog_write(c.key, html, GLOB.round_id)
 		else
 			var/client/c = CLIENT_FROM_VAR(target)
 			if(!isnull(c))
-				VCHATLOG_CALL("write_chatlog", c.key, html, GLOB.round_id)
+				vchatlog_write(c.key, html, GLOB.round_id)
