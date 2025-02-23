@@ -11,18 +11,18 @@
 #define Z_LEVEL_UNDERDARK					10
 #define Z_LEVEL_PLAINS						11
 #define Z_LEVEL_OFFMAP1						12
-//#define Z_LEVEL_OFFMAP2						12
-#define Z_LEVEL_ROGUEMINE_1					13
-#define Z_LEVEL_ROGUEMINE_2					14
-#define Z_LEVEL_BEACH						15
-#define Z_LEVEL_BEACH_CAVE					16
-#define Z_LEVEL_AEROSTAT					17
-#define Z_LEVEL_AEROSTAT_SURFACE			18
-#define Z_LEVEL_DEBRISFIELD					19
-#define Z_LEVEL_FUELDEPOT					20
-#define Z_LEVEL_GATEWAY						21
-#define Z_LEVEL_OM_ADVENTURE				22
-#define Z_LEVEL_REDGATE						23
+#define Z_LEVEL_OFFMAP2						13
+#define Z_LEVEL_ROGUEMINE_1					14
+#define Z_LEVEL_ROGUEMINE_2					15
+#define Z_LEVEL_BEACH						16
+#define Z_LEVEL_BEACH_CAVE					17
+#define Z_LEVEL_AEROSTAT					18
+#define Z_LEVEL_AEROSTAT_SURFACE			19
+#define Z_LEVEL_DEBRISFIELD					20
+#define Z_LEVEL_FUELDEPOT					21
+#define Z_LEVEL_GATEWAY						22
+#define Z_LEVEL_OM_ADVENTURE				23
+#define Z_LEVEL_REDGATE						24
 
 
 //Camera networks
