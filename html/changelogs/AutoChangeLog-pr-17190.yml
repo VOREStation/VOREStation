@@ -1,0 +1,4 @@
+author: "ItsSelis"
+delete-after: True
+changes:
+  - code_imp: "disabled some testing logs by default (now require -DTESTING to be set while compiling)"
