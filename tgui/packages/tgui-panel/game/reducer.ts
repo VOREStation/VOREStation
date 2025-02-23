@@ -14,6 +14,7 @@ const initialState = {
   roundRestartedAt: null,
   connectionLostAt: null,
   dismissedConnectionWarning: false,
+  databaseBackendEnabled: false,
 };
 
 export const gameReducer = (state = initialState, action) => {
@@ -29,6 +30,7 @@ export const gameReducer = (state = initialState, action) => {
       return {
         ...state,
         roundId: payload.round_id,
+        databaseBackendEnabled: payload.chatlog_db_backend,
       };
     }
   }

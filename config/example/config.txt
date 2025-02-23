@@ -565,3 +565,8 @@ JUKEBOX_TRACK_FILES config/jukebox.json
 # Admins may manually give them the verb even if disabled
 # Uncomment to enable
 #ALLOW_SIMPLE_MOB_RECOLOR
+
+# Chatlogs are now saved by calling the chatlogging library instead of letting the clients handle it
+# REQUIRES an database
+# Uncomment to enable
+#CHATLOG_DATABASE_BACKEND

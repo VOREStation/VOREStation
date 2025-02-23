@@ -5,9 +5,11 @@
  */
 
 import { createRoot } from 'react-dom/client';
+import { resolveAsset } from 'tgui/assets';
 import { createLogger } from 'tgui/logging';
 import { Tooltip } from 'tgui-core/components';
 import { EventEmitter } from 'tgui-core/events';
+import { fetchRetry } from 'tgui-core/http';
 import { classes } from 'tgui-core/react';
 
 import {
@@ -195,6 +197,7 @@ class ChatRenderer {
         blacklistregex: RegExp;
       }[]
     | null;
+  databaseBackendEnabled: boolean;
   constructor() {
     /** @type {HTMLElement} */
     this.loaded = false;
@@ -219,6 +222,7 @@ class ChatRenderer {
     this.interleaveEnabled = false;
     this.interleaveColor = '#909090';
     this.hideImportantInAdminTab = false;
+    this.databaseBackendEnabled = false;
     // Scroll handler
     /** @type {HTMLElement} */
     this.scrollNode = null;
@@ -454,6 +458,7 @@ class ChatRenderer {
     hideImportantInAdminTab: boolean,
     interleaveEnabled: boolean,
     interleaveColor: string,
+    databaseBackendEnabled: boolean,
   ) {
     this.visibleMessageLimit = visibleMessageLimit;
     this.combineMessageLimit = combineMessageLimit;
@@ -466,6 +471,7 @@ class ChatRenderer {
     this.hideImportantInAdminTab = hideImportantInAdminTab;
     this.interleaveEnabled = interleaveEnabled;
     this.interleaveColor = interleaveColor;
+    this.databaseBackendEnabled = databaseBackendEnabled;
   }
 
   changePage(page) {
@@ -692,6 +698,7 @@ class ChatRenderer {
       if (
         doArchive &&
         this.logEnable &&
+        !this.databaseBackendEnabled &&
         this.storedTypes &&
         canStoreType(this.storedTypes, message.type)
       ) {
@@ -831,58 +838,118 @@ class ChatRenderer {
     cssText += 'body, html { background-color: #141414 }\n';
     // Compile chat log as HTML text
     let messagesHtml = '';
-
     let tmpMsgArray: message[] = [];
-    if (startLine || endLine) {
-      if (!endLine) {
-        tmpMsgArray = this.archivedMessages.slice(startLine);
-      } else {
-        tmpMsgArray = this.archivedMessages.slice(startLine, endLine);
-      }
-      if (logLineCount > 0) {
-        tmpMsgArray = tmpMsgArray.slice(-logLineCount);
-      }
-    } else if (logLineCount > 0) {
-      tmpMsgArray = this.archivedMessages.slice(-logLineCount);
+
+    if (this.databaseBackendEnabled) {
+      // Fetch from server database
+      let opts = {
+        id: `ss13-chatlog-${this.roundId}`,
+        suggestedName: `ss13-chatlog-${this.roundId}.html`,
+        types: [
+          {
+            description: 'SS13 file',
+            accept: { 'text/plain': ['.html'] },
+          },
+        ],
+      };
+      // We have to do it likes this, otherwise we get a security error
+      // only 516 can do this btw
+      window.showSaveFilePicker(opts).then(async (fileHandle) => {
+        await new Promise<void>((resolve) => {
+          const listener = async () => {
+            document.removeEventListener('chatexportplaced', listener);
+
+            const response = await fetchRetry(resolveAsset('exported_chatlog'));
+            const text = await response.text();
+
+            const pageHtml =
+              '<!doctype html>\n' +
+              '<html>\n' +
+              '<head>\n' +
+              '<title>SS13 Chat Log - Round ' +
+              this.roundId +
+              '</title>\n' +
+              '<style>\n' +
+              cssText +
+              '</style>\n' +
+              '</head>\n' +
+              '<body>\n' +
+              '<div class="Chat">\n' +
+              text +
+              '</div>\n' +
+              '</body>\n' +
+              '</html>\n';
+
+            try {
+              const writableHandle = await fileHandle.createWritable();
+              await writableHandle.write(pageHtml);
+              await writableHandle.close();
+            } catch (e) {
+              console.error(e);
+            }
+
+            resolve();
+          };
+
+          document.addEventListener('chatexportplaced', listener);
+          Byond.sendMessage('databaseExportRound', { roundId: this.roundId });
+        });
+      });
     } else {
-      tmpMsgArray = this.archivedMessages;
-    }
-
-    // for (let message of this.visibleMessages) { // TODO: Actually having a better message archiving maybe for exports?
-    for (let message of tmpMsgArray) {
-      // Filter messages according to active tab for export
-      if (this.page && canPageAcceptType(this.page, message.type)) {
-        messagesHtml += message.html + '\n';
+      // Fetch from chat storage
+      if (startLine || endLine) {
+        if (!endLine) {
+          tmpMsgArray = this.archivedMessages.slice(startLine);
+        } else {
+          tmpMsgArray = this.archivedMessages.slice(startLine, endLine);
+        }
+        if (logLineCount > 0) {
+          tmpMsgArray = tmpMsgArray.slice(-logLineCount);
+        }
+      } else if (logLineCount > 0) {
+        tmpMsgArray = this.archivedMessages.slice(-logLineCount);
+      } else {
+        tmpMsgArray = this.archivedMessages;
       }
-      // if (message.node) {
-      //  messagesHtml += message.node.outerHTML + '\n';
-      // }
-    }
-    // Create a page
 
-    const pageHtml =
-      '<!doctype html>\n' +
-      '<html>\n' +
-      '<head>\n' +
-      '<title>SS13 Chat Log</title>\n' +
-      '<style>\n' +
-      cssText +
-      '</style>\n' +
-      '</head>\n' +
-      '<body>\n' +
-      '<div class="Chat">\n' +
-      messagesHtml +
-      '</div>\n' +
-      '</body>\n' +
-      '</html>\n';
-    // Create and send a nice blob
-    const blob = new Blob([pageHtml], { type: 'text/plain' });
-    const timestamp = new Date()
-      .toISOString()
-      .substring(0, 19)
-      .replace(/[-:]/g, '')
-      .replace('T', '-');
-    Byond.saveBlob(blob, `ss13-chatlog-${timestamp}.html`, '.html');
+      // for (let message of this.visibleMessages) { // TODO: Actually having a better message archiving maybe for exports?
+      for (let message of tmpMsgArray) {
+        // Filter messages according to active tab for export
+        if (this.page && canPageAcceptType(this.page, message.type)) {
+          messagesHtml += message.html + '\n';
+        }
+        // if (message.node) {
+        //  messagesHtml += message.node.outerHTML + '\n';
+        // }
+      }
+    }
+
+    if (!this.databaseBackendEnabled) {
+      // Create a page
+      const pageHtml =
+        '<!doctype html>\n' +
+        '<html>\n' +
+        '<head>\n' +
+        '<title>SS13 Chat Log</title>\n' +
+        '<style>\n' +
+        cssText +
+        '</style>\n' +
+        '</head>\n' +
+        '<body>\n' +
+        '<div class="Chat">\n' +
+        messagesHtml +
+        '</div>\n' +
+        '</body>\n' +
+        '</html>\n';
+      // Create and send a nice blob
+      const blob = new Blob([pageHtml], { type: 'text/plain' });
+      const timestamp = new Date()
+        .toISOString()
+        .substring(0, 19)
+        .replace(/[-:]/g, '')
+        .replace('T', '-');
+      Byond.saveBlob(blob, `ss13-chatlog-${timestamp}.html`, '.html');
+    }
   }
 
   purgeMessageArchive() {

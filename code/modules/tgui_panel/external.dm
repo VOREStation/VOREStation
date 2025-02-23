@@ -43,3 +43,21 @@
 	for(var/window_id in tgui_windows)
 		var/datum/tgui_window/window = tgui_windows[window_id]
 		window.reinitialize()
+
+/client/verb/export_chatlogs_round()
+	set name = "Export Chatlogs - Round (NEW)"
+	set category = "OOC"
+
+	var/round_id = tgui_input_number(src, "Which round do you want exported?", "RoundID", GLOB.round_id, INFINITY, -1)
+	if(round_id)
+		VCHATLOG_CALL("read_chatlog_round", src.key, round_id, TRUE)
+		src << ftp("tmp/chatlogs/[src.key]-[round_id].html")
+
+/client/verb/export_chatlogs_length()
+	set name = "Export Chatlogs - Last X (NEW)"
+	set category = "OOC"
+
+	var/length = tgui_input_number(src, "How many lines back do you want to be exported?", "Linecount", 1000, INFINITY, 1)
+	if(length)
+		VCHATLOG_CALL("read_chatlog", src.key, length, TRUE)
+		src << ftp("tmp/chatlogs/[src.key].html")

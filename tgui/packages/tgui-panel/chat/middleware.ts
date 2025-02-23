@@ -170,6 +170,7 @@ export const chatMiddleware = (store) => {
       settings.hideImportantInAdminTab,
       settings.interleave,
       settings.interleaveColor,
+      game.databaseBackendEnabled,
     );
     // Load the chat once settings are loaded
     if (!initialized && (settings.initialized || settings.firstLoad)) {
@@ -292,6 +293,10 @@ export const chatMiddleware = (store) => {
       settings.exportStart = 0;
       settings.exportEnd = 0;
       return;
+    }
+    if (type === 'exportDownloadReady') {
+      const event = new Event('chatexportplaced');
+      document.dispatchEvent(event);
     }
     return next(action);
   };

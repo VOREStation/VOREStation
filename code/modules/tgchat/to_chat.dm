@@ -39,6 +39,18 @@
 	// send it immediately
 	SSchat.send_immediate(target, message)
 
+	if (CONFIG_GET(flag/chatlog_database_backend))
+		if (islist(target))
+			for(var/tgt in target)
+				var/client/c = CLIENT_FROM_VAR(tgt)
+				if(isnull(c))
+					continue
+				VCHATLOG_CALL("write_chatlog", c.key, html, GLOB.round_id)
+		else
+			var/client/c = CLIENT_FROM_VAR(target)
+			if(!isnull(c))
+				VCHATLOG_CALL("write_chatlog", c.key, html, GLOB.round_id)
+
 /**
  * Sends the message to the recipient (target).
  *
@@ -83,3 +95,15 @@
 	if(html) message["html"] = html
 	if(avoid_highlighting) message["avoidHighlighting"] = avoid_highlighting
 	SSchat.queue(target, message)
+
+	if (CONFIG_GET(flag/chatlog_database_backend))
+		if (islist(target))
+			for(var/tgt in target)
+				var/client/c = CLIENT_FROM_VAR(tgt)
+				if(isnull(c))
+					continue
+				VCHATLOG_CALL("write_chatlog", c.key, html, GLOB.round_id)
+		else
+			var/client/c = CLIENT_FROM_VAR(target)
+			if(!isnull(c))
+				VCHATLOG_CALL("write_chatlog", c.key, html, GLOB.round_id)

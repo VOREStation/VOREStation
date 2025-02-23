@@ -37,58 +37,63 @@ export const ExportTab = (props) => {
   return (
     <Section>
       <Stack align="baseline">
-        {logEnable ? (
-          logConfirm ? (
+        {!game.databaseBackendEnabled &&
+          (logEnable ? (
+            logConfirm ? (
+              <Button
+                icon="ban"
+                color="red"
+                onClick={() => {
+                  dispatch(
+                    updateSettings({
+                      logEnable: false,
+                    }),
+                  );
+                  setLogConfirm(false);
+                }}
+              >
+                Disable?
+              </Button>
+            ) : (
+              <Button
+                icon="ban"
+                color="red"
+                onClick={() => {
+                  setLogConfirm(true);
+                  setTimeout(() => {
+                    setLogConfirm(false);
+                  }, 5000);
+                }}
+              >
+                Disable logging
+              </Button>
+            )
+          ) : (
             <Button
-              icon="ban"
-              color="red"
+              icon="download"
+              color="green"
               onClick={() => {
                 dispatch(
                   updateSettings({
-                    logEnable: false,
+                    logEnable: true,
                   }),
                 );
-                setLogConfirm(false);
               }}
             >
-              Disable?
+              Enable logging
             </Button>
-          ) : (
-            <Button
-              icon="ban"
-              color="red"
-              onClick={() => {
-                setLogConfirm(true);
-                setTimeout(() => {
-                  setLogConfirm(false);
-                }, 5000);
-              }}
-            >
-              Disable logging
-            </Button>
-          )
-        ) : (
-          <Button
-            icon="download"
-            color="green"
-            onClick={() => {
-              dispatch(
-                updateSettings({
-                  logEnable: true,
-                }),
-              );
-            }}
-          >
-            Enable logging
-          </Button>
-        )}
+          ))}
         <Stack.Item grow />
         <Stack.Item color="label">Round ID:&nbsp;</Stack.Item>
         <Stack.Item color={game.roundId ? '' : 'red'}>
           {game.roundId ? game.roundId : 'ERROR'}
         </Stack.Item>
+        <Stack.Item color="label">DB Chatlogging:&nbsp;</Stack.Item>
+        <Stack.Item color={game.databaseBackendEnabled ? 'green' : 'red'}>
+          {game.databaseBackendEnabled ? 'Enabled' : 'Disabled'}
+        </Stack.Item>
       </Stack>
-      {logEnable ? (
+      {logEnable && !game.databaseBackendEnabled ? (
         <>
           <LabeledList>
             <LabeledList.Item label="Amount of rounds to log (1 to 8)">
@@ -231,9 +236,11 @@ export const ExportTab = (props) => {
             }
           />
         </LabeledList.Item>
-        <LabeledList.Item label="Totally stored messages">
-          <Box>{totalStoredMessages}</Box>
-        </LabeledList.Item>
+        {!game.databaseBackendEnabled && (
+          <LabeledList.Item label="Totally stored messages">
+            <Box>{totalStoredMessages}</Box>
+          </LabeledList.Item>
+        )}
       </LabeledList>
       <Divider />
       <Button icon="save" onClick={() => dispatch(saveChatToDisk())}>
