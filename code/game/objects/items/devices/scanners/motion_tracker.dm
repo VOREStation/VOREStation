@@ -21,6 +21,9 @@
 	. = ..()
 
 /obj/item/motiontracker/Destroy(force, ...)
+	if(ismob(loc))
+		var/mob/M = loc
+		M.motiontracker_subscribe()
 	UnregisterSignal(SSmotiontracker, COMSIG_MOVABLE_MOTIONTRACKER)
 	. = ..()
 
