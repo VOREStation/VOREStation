@@ -8,15 +8,15 @@
 		RegisterSignal(SSmotiontracker, COMSIG_MOVABLE_MOTIONTRACKER, PROC_REF(handle_motion_tracking))
 		recalculate_vis()
 
-/mob/proc/motiontracker_unsubscribe()
+/mob/proc/motiontracker_unsubscribe(var/destroying = FALSE)
 	if(is_motion_tracking)
 		is_motion_tracking = FALSE
 		UnregisterSignal(SSmotiontracker, COMSIG_MOVABLE_MOTIONTRACKER)
 		recalculate_vis()
 
-/mob/living/carbon/human/motiontracker_unsubscribe()
+/mob/living/carbon/human/motiontracker_unsubscribe(destroying = FALSE)
 	// Block unsub if our species has vibration senses
-	if(species?.has_vibration_sense)
+	if(!destroying && species?.has_vibration_sense)
 		return
 	. = ..()
 
