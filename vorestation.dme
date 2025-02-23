@@ -2926,6 +2926,7 @@
 #include "code\modules\mob\mob_planes.dm"
 #include "code\modules\mob\mob_planes_vr.dm"
 #include "code\modules\mob\mob_transformation_simple.dm"
+#include "code\modules\mob\motiontracker.dm"
 #include "code\modules\mob\say.dm"
 #include "code\modules\mob\say_old.dm"
 #include "code\modules\mob\say_vr.dm"
