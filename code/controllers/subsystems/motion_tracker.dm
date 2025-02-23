@@ -6,6 +6,7 @@ SUBSYSTEM_DEF(motiontracker)
 	flags = SS_NO_INIT
 	var/min_range = 2
 	var/max_range = 8
+	var/all_echos_round = 0
 	var/all_pings_round = 0
 	var/list/queued_echo_turfs = list()
 	var/list/currentrun = list()
@@ -19,7 +20,7 @@ SUBSYSTEM_DEF(motiontracker)
 			count = track_list.len
 		else
 			count = 1 // listen_lookup optimizes single entries into just returning the only thing
-	msg = "L: [count] | Q: [queued_echo_turfs.len] | A: [all_pings_round]"
+	msg = "L: [count] | Q: [queued_echo_turfs.len] | A: [all_echos_round]/[all_pings_round]"
 	return ..()
 
 /datum/controller/subsystem/motiontracker/fire(resumed = 0)
@@ -74,3 +75,4 @@ SUBSYSTEM_DEF(motiontracker)
 	var/rfe = REF(At)
 	if(!queued_echo_turfs[rfe]) // We only care about the final turf, not the root turf for duping
 		queued_echo_turfs[rfe] = list(WEAKREF(At),WEAKREF(Rt),echo_count)
+		all_echos_round++
