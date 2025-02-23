@@ -1254,6 +1254,7 @@
 #include "code\game\objects\effects\manifest.dm"
 #include "code\game\objects\effects\mines.dm"
 #include "code\game\objects\effects\misc.dm"
+#include "code\game\objects\effects\motion_echo.dm"
 #include "code\game\objects\effects\overlays.dm"
 #include "code\game\objects\effects\portals.dm"
 #include "code\game\objects\effects\semirandom_mobs_vr.dm"

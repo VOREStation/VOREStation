@@ -25,15 +25,11 @@
 	SIGNAL_HANDLER
 	SHOULD_NOT_OVERRIDE(TRUE)
 	PRIVATE_PROC(TRUE)
-	var/atom/echo_source = RW?.resolve()
-	if(stat) // Ded
+	if(!client || stat)
 		return
+	var/atom/echo_source = RW?.resolve()
 	if(!echo_source || get_dist(src,echo_source) > SSmotiontracker.max_range  || get_dist(src,echo_source) < SSmotiontracker.min_range  || src.z != echo_source.z)
 		return
-	if(!client || echo_source == src) // Not ours
-		return
-	if(T.get_lumcount() >= 0.20 && can_see(src, T, 7)) // cheaper than oviewers
-		return // we already see it
 	var/echos = 1
 	if(prob(30))
 		echos = rand(1,3)
