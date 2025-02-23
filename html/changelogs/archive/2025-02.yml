@@ -28,3 +28,10 @@
   Tost:
   - qol: Changed nail polish's size to small
   - code_imp: Added w_class = ITEMSIZE_SMALL to nail polish, which was missing originally.
+2025-02-23:
+  Cameron-The-Raven:
+  - bugfix: Snake tail no longer has a stray white void pixel following you 24/7 when
+      facing south
+  - bugfix: pizza vouchers will no longer land with such speed that they gib any user,
+      even if not emagged.
+  - bugfix: no more crashing as a ghost
