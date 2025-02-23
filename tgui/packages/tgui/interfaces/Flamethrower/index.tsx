@@ -17,15 +17,15 @@ export const Flamethrower = (props) => {
   } = data;
 
   return (
-    <Window width={300} height={100}>
+    <Window width={300} height={120}>
       <Window.Content>
         <LabeledList>
           <LabeledList.Item
             label="Tank Status"
             buttons={
               <Button
+                fluid
                 disabled={!has_tank}
-                grow
                 style={{ textAlign: 'center' }}
                 onClick={() => act('remove')}
               >
@@ -38,9 +38,9 @@ export const Flamethrower = (props) => {
           <LabeledList.Item
             buttons={
               <Button
+                fluid
                 disabled={!has_tank || !constructed || fuel_kpa <= 0}
                 onClick={() => act('light')}
-                grow
                 style={{ textAlign: 'center' }}
               >
                 {lit && has_tank && fuel_kpa
@@ -51,15 +51,17 @@ export const Flamethrower = (props) => {
               </Button>
             }
           >
-            <Knob
-              minValue={throw_min}
-              maxValue={throw_max}
-              stepPixelSize={0.5}
-              value={throw_amount}
-              disabled={!constructed}
-              ml="0"
-              onChange={(e, val) => act('amount', { amount: val })}
-            />
+            {!!constructed && (
+              <Knob
+                size={1.5}
+                minValue={throw_min}
+                maxValue={throw_max}
+                stepPixelSize={0.5}
+                value={throw_amount}
+                ml="0"
+                onChange={(e, val) => act('amount', { amount: val })}
+              />
+            )}
           </LabeledList.Item>
         </LabeledList>
       </Window.Content>
