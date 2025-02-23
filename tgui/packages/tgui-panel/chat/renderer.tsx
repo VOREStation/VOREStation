@@ -854,47 +854,56 @@ class ChatRenderer {
       };
       // We have to do it likes this, otherwise we get a security error
       // only 516 can do this btw
-      window.showSaveFilePicker(opts).then(async (fileHandle) => {
-        await new Promise<void>((resolve) => {
-          const listener = async () => {
-            document.removeEventListener('chatexportplaced', listener);
+      try {
+        window.showSaveFilePicker(opts).then(async (fileHandle) => {
+          await new Promise<void>((resolve) => {
+            const listener = async () => {
+              document.removeEventListener('chatexportplaced', listener);
 
-            const response = await fetchRetry(resolveAsset('exported_chatlog'));
-            const text = await response.text();
+              const response = await fetchRetry(
+                resolveAsset('exported_chatlog'),
+              );
+              const text = await response.text();
 
-            const pageHtml =
-              '<!doctype html>\n' +
-              '<html>\n' +
-              '<head>\n' +
-              '<title>SS13 Chat Log - Round ' +
-              this.roundId +
-              '</title>\n' +
-              '<style>\n' +
-              cssText +
-              '</style>\n' +
-              '</head>\n' +
-              '<body>\n' +
-              '<div class="Chat">\n' +
-              text +
-              '</div>\n' +
-              '</body>\n' +
-              '</html>\n';
+              const pageHtml =
+                '<!doctype html>\n' +
+                '<html>\n' +
+                '<head>\n' +
+                '<title>SS13 Chat Log - Round ' +
+                this.roundId +
+                '</title>\n' +
+                '<style>\n' +
+                cssText +
+                '</style>\n' +
+                '</head>\n' +
+                '<body>\n' +
+                '<div class="Chat">\n' +
+                text +
+                '</div>\n' +
+                '</body>\n' +
+                '</html>\n';
 
-            try {
-              const writableHandle = await fileHandle.createWritable();
-              await writableHandle.write(pageHtml);
-              await writableHandle.close();
-            } catch (e) {
-              console.error(e);
-            }
+              try {
+                const writableHandle = await fileHandle.createWritable();
+                await writableHandle.write(pageHtml);
+                await writableHandle.close();
+              } catch (e) {
+                console.error(e);
+              }
 
-            resolve();
-          };
+              resolve();
+            };
 
-          document.addEventListener('chatexportplaced', listener);
-          Byond.sendMessage('databaseExportRound', { roundId: this.roundId });
+            document.addEventListener('chatexportplaced', listener);
+            Byond.sendMessage('databaseExportRound', { roundId: this.roundId });
+          });
         });
-      });
+      } catch (e) {
+        // Log the error if the error has nothing to do with the user aborting the download
+        if (e.name !== 'AbortError') {
+          console.error(e);
+        }
+      }
     } else {
       // Fetch from chat storage
       if (startLine || endLine) {

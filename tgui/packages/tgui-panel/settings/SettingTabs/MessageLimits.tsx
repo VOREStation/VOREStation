@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from 'tgui/backend';
 import { Box, LabeledList, NumberInput, Section } from 'tgui-core/components';
 import { toFixed } from 'tgui-core/math';
 
+import { useGame } from '../../game';
 import { updateSettings } from '../actions';
 import { selectSettings } from '../selectors';
 
@@ -14,6 +15,7 @@ export const MessageLimits = (props) => {
     combineIntervalLimit,
     saveInterval,
   } = useSelector(selectSettings);
+  const game = useGame();
   return (
     <Section>
       <LabeledList>
@@ -106,33 +108,35 @@ export const MessageLimits = (props) => {
             }
           />
         </LabeledList.Item>
-        <LabeledList.Item label="Message store interval 1-10 (Default: 10 Seconds) [Requires restart]">
-          <NumberInput
-            width="5em"
-            step={1}
-            stepPixelSize={5}
-            minValue={1}
-            maxValue={10}
-            value={saveInterval}
-            unit="s"
-            format={(value) => toFixed(value)}
-            onDrag={(value) =>
-              dispatch(
-                updateSettings({
-                  saveInterval: value,
-                }),
-              )
-            }
-          />
-          &nbsp;
-          {saveInterval <= 3 ? (
-            <Box inline fontSize="0.9em" color="red">
-              Warning, experimental! Might crash!
-            </Box>
-          ) : (
-            ''
-          )}
-        </LabeledList.Item>
+        {!game.databaseBackendEnabled && (
+          <LabeledList.Item label="Message store interval 1-10 (Default: 10 Seconds) [Requires restart]">
+            <NumberInput
+              width="5em"
+              step={1}
+              stepPixelSize={5}
+              minValue={1}
+              maxValue={10}
+              value={saveInterval}
+              unit="s"
+              format={(value) => toFixed(value)}
+              onDrag={(value) =>
+                dispatch(
+                  updateSettings({
+                    saveInterval: value,
+                  }),
+                )
+              }
+            />
+            &nbsp;
+            {saveInterval <= 3 ? (
+              <Box inline fontSize="0.9em" color="red">
+                Warning, experimental! Might crash!
+              </Box>
+            ) : (
+              ''
+            )}
+          </LabeledList.Item>
+        )}
       </LabeledList>
     </Section>
   );
