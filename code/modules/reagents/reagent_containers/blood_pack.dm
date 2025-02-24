@@ -109,3 +109,11 @@
 	desc = "Seems pretty useless... Maybe if there were a way to fill it?"
 	icon_state = "empty"
 	item_state = "bloodpack_empty"
+
+/obj/item/reagent_containers/blood/random_bloodsucker
+	name = "Ration BloodPack"
+	desc = "A standard issue BloodPack Ration given to crew that require blood to be sustained!"
+
+/obj/item/reagent_containers/blood/random_bloodsucker/Initialize()
+	blood_type = pick("A+", "A-", "B+", "B-", "O-", "O+", "AB+", "AB-")
+	. = ..()

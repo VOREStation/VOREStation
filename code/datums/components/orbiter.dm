@@ -22,14 +22,14 @@
 /datum/component/orbiter/RegisterWithParent()
 	. = ..()
 	var/atom/target = parent
-	while(ismovable(target))
+	if(ismovable(target))
 		RegisterSignal(target, COMSIG_MOVABLE_MOVED, PROC_REF(move_react))
 		target = target.loc
 
 /datum/component/orbiter/UnregisterFromParent()
 	. = ..()
 	var/atom/target = parent
-	while(ismovable(target))
+	if(ismovable(target))
 		UnregisterSignal(target, COMSIG_MOVABLE_MOVED)
 		target = target.loc
 
@@ -119,12 +119,12 @@
 	// These are prety rarely activated, how often are you following something in a bag?
 	if(oldloc && !isturf(oldloc)) // We used to be registered to it, probably
 		var/atom/target = oldloc
-		while(ismovable(target))
+		if(ismovable(target))
 			UnregisterSignal(target, COMSIG_MOVABLE_MOVED)
 			target = target.loc
 	if(orbited?.loc && orbited.loc != newturf) // We want to know when anything holding us moves too
 		var/atom/target = orbited.loc
-		while(ismovable(target))
+		if(ismovable(target))
 			RegisterSignal(target, COMSIG_MOVABLE_MOVED, PROC_REF(move_react), TRUE)
 			target = target.loc
 

@@ -316,3 +316,8 @@ modular computers
 	display_name = "podzu music player"
 	path = /obj/item/walkpod
 	cost = 2
+
+/datum/gear/utility/bloodbag //For your vampiric crew!
+	display_name = "blood bag (Randomized)"
+	path = /obj/item/reagent_containers/blood/random_bloodsucker
+	cost = 1

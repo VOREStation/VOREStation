@@ -1,6 +1,0 @@
-author: "KillianKirilenko"
-delete-after: True
-changes:
-  - rscadd: "lockpick sets can now be found as part of the contraband pool in maint items (useless on station though)"
-  - rscadd: "lockpick sets can now be used to pick fence gates as well"
-  - image: "resprited the basic lockpick set"

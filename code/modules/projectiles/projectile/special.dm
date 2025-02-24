@@ -221,6 +221,32 @@
 	else
 		return 1
 
+/obj/item/projectile/energy/floraprune
+	name = "delta somatoray"
+	icon_state = "energy2"
+	fire_sound = 'sound/effects/stealthoff.ogg'
+	damage = 0
+	damage_type = TOX
+	nodamage = 1
+	check_armour = "energy"
+	light_range = 2
+	light_power = 0.5
+	light_color = "#FFFFFF"
+	impact_effect_type = /obj/effect/temp_visual/impact_effect/monochrome_laser
+	var/lasermod = 0
+	hud_state = "electrothermal"
+
+/obj/item/projectile/energy/floraprune/on_hit(var/atom/target, var/blocked = 0)
+	var/mob/living/M = target
+	if(ishuman(target)) //Make plantpeople thin, seeing as we're removing reagents from actual plants
+		var/mob/living/carbon/human/H = M
+		if((H.species.flags & IS_PLANT) && (M.nutrition > 30))
+			M.adjust_nutrition(-30)
+	else if (istype(target, /mob/living/carbon/))
+		M.show_message(span_blue("The radiation beam dissipates harmlessly through your body."))
+	else
+		return 1
+
 
 /obj/item/projectile/beam/mindflayer
 	name = "flayer ray"
