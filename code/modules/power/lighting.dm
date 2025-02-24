@@ -744,8 +744,8 @@ var/global/list/light_type_cache = list()
 	if(!on) // Only play when the light turns off.
 		playsound(src, 'sound/effects/light_flicker.ogg', 50, 1)
 	if(remaining_flicks > 0)
-		addtimer(CALLBACK(src, PROC_REF(do_flicker), remaining_flicks), rand(5, 15), TIMER_DELETE_ME)
 		remaining_flicks--
+		addtimer(CALLBACK(src, PROC_REF(do_flicker), remaining_flicks), rand(5, 15), TIMER_DELETE_ME)
 		return
 	on = (status == LIGHT_OK)
 	update(0)
