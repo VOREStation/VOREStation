@@ -907,6 +907,10 @@ class ChatRenderer {
                 startId: startRound,
                 endId: endRound,
               });
+            } else if (startRound > 0) {
+              Byond.sendMessage('databaseExportRound', {
+                roundId: startRound,
+              });
             } else if (logLineCount > 0) {
               Byond.sendMessage('databaseExportLines', {
                 length: logLineCount,
