@@ -35,3 +35,10 @@
   - bugfix: pizza vouchers will no longer land with such speed that they gib any user,
       even if not emagged.
   - bugfix: no more crashing as a ghost
+2025-02-24:
+  Cameron-The-Raven:
+  - rscadd: Vampiric crew now have a source of nutrition in the loadout under the
+      Utility tab!
+  ItsSelis:
+  - code_imp: disabled some testing logs by default (now require -DTESTING to be set
+      while compiling)
