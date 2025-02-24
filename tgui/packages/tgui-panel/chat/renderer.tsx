@@ -842,7 +842,7 @@ class ChatRenderer {
 
     if (this.databaseBackendEnabled) {
       // Fetch from server database
-      let opts = {
+      const opts: SaveFilePickerOptions = {
         id: `ss13-chatlog-${this.roundId}`,
         suggestedName: `ss13-chatlog-${this.roundId}.html`,
         types: [
@@ -854,8 +854,9 @@ class ChatRenderer {
       };
       // We have to do it likes this, otherwise we get a security error
       // only 516 can do this btw
-      try {
-        window.showSaveFilePicker(opts).then(async (fileHandle) => {
+      window
+        .showSaveFilePicker(opts)
+        .then(async (fileHandle) => {
           await new Promise<void>((resolve) => {
             const listener = async () => {
               document.removeEventListener('chatexportplaced', listener);
@@ -895,15 +896,17 @@ class ChatRenderer {
             };
 
             document.addEventListener('chatexportplaced', listener);
-            Byond.sendMessage('databaseExportRound', { roundId: this.roundId });
+            Byond.sendMessage('databaseExportRound', {
+              roundId: this.roundId,
+            });
           });
+        })
+        .catch((e) => {
+          // Log the error if the error has nothing to do with the user aborting the download
+          if (e.name !== 'AbortError') {
+            console.error(e);
+          }
         });
-      } catch (e) {
-        // Log the error if the error has nothing to do with the user aborting the download
-        if (e.name !== 'AbortError') {
-          console.error(e);
-        }
-      }
     } else {
       // Fetch from chat storage
       if (startLine || endLine) {

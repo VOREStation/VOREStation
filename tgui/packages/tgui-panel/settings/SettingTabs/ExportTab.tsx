@@ -93,7 +93,7 @@ export const ExportTab = (props) => {
           {game.databaseBackendEnabled ? 'Enabled' : 'Disabled'}
         </Stack.Item>
       </Stack>
-      {logEnable && !game.databaseBackendEnabled ? (
+      {logEnable && !game.databaseBackendEnabled && (
         <>
           <LabeledList>
             <LabeledList.Item label="Amount of rounds to log (1 to 8)">
@@ -114,12 +114,10 @@ export const ExportTab = (props) => {
                 }
               />
               &nbsp;
-              {logRetainRounds > 3 ? (
+              {logRetainRounds > 3 && (
                 <Box inline fontSize="0.9em" color="red">
                   Warning, might crash!
                 </Box>
-              ) : (
-                ''
               )}
             </LabeledList.Item>
             <LabeledList.Item label="Hardlimit for the log archive (0 = inf. to 50000)">
@@ -140,7 +138,7 @@ export const ExportTab = (props) => {
                 }
               />
               &nbsp;
-              {logLimit > 0 ? (
+              {logLimit > 0 && (
                 <Box
                   inline
                   fontSize="0.9em"
@@ -150,8 +148,6 @@ export const ExportTab = (props) => {
                     ? 'Warning, might crash! Takes priority above round retention.'
                     : 'Takes priority above round retention.'}
                 </Box>
-              ) : (
-                ''
               )}
             </LabeledList.Item>
           </LabeledList>
@@ -175,8 +171,6 @@ export const ExportTab = (props) => {
             </Collapsible>
           </Section>
         </>
-      ) : (
-        ''
       )}
       <LabeledList>
         <LabeledList.Item label="Export round start (0 = curr.) / end (0 = dis.)">
@@ -246,31 +240,32 @@ export const ExportTab = (props) => {
       <Button icon="save" onClick={() => dispatch(saveChatToDisk())}>
         Save chat log
       </Button>
-      {purgeConfirm > 0 ? (
-        <Button
-          icon="trash"
-          color="red"
-          onClick={() => {
-            dispatch(purgeChatMessageArchive());
-            setPurgeConfirm(2);
-          }}
-        >
-          {purgeConfirm > 1 ? 'Purged!' : 'Are you sure?'}
-        </Button>
-      ) : (
-        <Button
-          icon="trash"
-          color="red"
-          onClick={() => {
-            setPurgeConfirm(1);
-            setTimeout(() => {
-              setPurgeConfirm(0);
-            }, 5000);
-          }}
-        >
-          Purge message archive
-        </Button>
-      )}
+      {!game.databaseBackendEnabled &&
+        (purgeConfirm > 0 ? (
+          <Button
+            icon="trash"
+            color="red"
+            onClick={() => {
+              dispatch(purgeChatMessageArchive());
+              setPurgeConfirm(2);
+            }}
+          >
+            {purgeConfirm > 1 ? 'Purged!' : 'Are you sure?'}
+          </Button>
+        ) : (
+          <Button
+            icon="trash"
+            color="red"
+            onClick={() => {
+              setPurgeConfirm(1);
+              setTimeout(() => {
+                setPurgeConfirm(0);
+              }, 5000);
+            }}
+          >
+            Purge message archive
+          </Button>
+        ))}
     </Section>
   );
 };

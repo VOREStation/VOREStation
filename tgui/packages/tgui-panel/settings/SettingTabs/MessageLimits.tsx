@@ -8,6 +8,7 @@ import { selectSettings } from '../selectors';
 
 export const MessageLimits = (props) => {
   const dispatch = useDispatch();
+  const game = useGame();
   const {
     visibleMessageLimit,
     persistentMessageLimit,
@@ -15,7 +16,6 @@ export const MessageLimits = (props) => {
     combineIntervalLimit,
     saveInterval,
   } = useSelector(selectSettings);
-  const game = useGame();
   return (
     <Section>
       <LabeledList>
@@ -37,12 +37,10 @@ export const MessageLimits = (props) => {
             }
           />
           &nbsp;
-          {visibleMessageLimit >= 5000 ? (
+          {visibleMessageLimit >= 5000 && (
             <Box inline fontSize="0.9em" color="red">
               Impacts performance!
             </Box>
-          ) : (
-            ''
           )}
         </LabeledList.Item>
         <LabeledList.Item label="Amount of visually persistent lines 0-10000 (Default: 1000)">
@@ -63,12 +61,10 @@ export const MessageLimits = (props) => {
             }
           />
           &nbsp;
-          {persistentMessageLimit >= 2500 ? (
+          {persistentMessageLimit >= 2500 && (
             <Box inline fontSize="0.9em" color="red">
               Delays initialization!
             </Box>
-          ) : (
-            ''
           )}
         </LabeledList.Item>
         <LabeledList.Item label="Amount of different lines in-between to combine 0-10 (Default: 5)">
@@ -128,12 +124,10 @@ export const MessageLimits = (props) => {
               }
             />
             &nbsp;
-            {saveInterval <= 3 ? (
+            {saveInterval <= 3 && (
               <Box inline fontSize="0.9em" color="red">
                 Warning, experimental! Might crash!
               </Box>
-            ) : (
-              ''
             )}
           </LabeledList.Item>
         )}
