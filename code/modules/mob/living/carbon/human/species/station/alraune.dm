@@ -404,7 +404,7 @@
 
 /mob/living/carbon/human/proc/alraune_fruit_pick()
 	set name = "Pick Fruit"
-	set desc = "Pick fruit off of [src]."
+	set desc = "Pick fruit off of the fruit gland."
 	set category = "Object"
 	set src in view(1)
 
