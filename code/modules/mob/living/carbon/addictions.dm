@@ -103,6 +103,12 @@
 /mob/living/carbon/proc/get_addiction_to_reagent(var/reagentid) // returns counter's value or 0
 	return addiction_counters ? addiction_counters[reagentid] : 0
 
+/mob/living/carbon/proc/get_all_addictions()
+	var/list/addict = list()
+	for(var/key in addiction_counters)
+		addict.Add(key)
+	return addict
+
 #undef ADDICTION_PROC
 #undef SLOWADDICT_PROC
 #undef FASTADDICT_PROC
