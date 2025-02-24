@@ -7,12 +7,14 @@
 		is_motion_tracking = TRUE
 		RegisterSignal(SSmotiontracker, COMSIG_MOVABLE_MOTIONTRACKER, PROC_REF(handle_motion_tracking))
 		recalculate_vis()
+		add_verb(src,/mob/proc/toggle_motion_echo_vis)
 
 /mob/proc/motiontracker_unsubscribe(var/destroying = FALSE)
 	if(is_motion_tracking)
 		is_motion_tracking = FALSE
 		UnregisterSignal(SSmotiontracker, COMSIG_MOVABLE_MOTIONTRACKER)
 		recalculate_vis()
+		remove_verb(src,/mob/proc/toggle_motion_echo_vis)
 
 /mob/living/carbon/human/motiontracker_unsubscribe(destroying = FALSE)
 	// Block unsub if our species has vibration senses
@@ -25,7 +27,7 @@
 	SIGNAL_HANDLER
 	SHOULD_NOT_OVERRIDE(TRUE)
 	PRIVATE_PROC(TRUE)
-	if(!client || stat)
+	if(!client || stat || !wants_to_see_motion_echos)
 		return
 	var/atom/echo_source = RW?.resolve()
 	if(!echo_source || get_dist(src,echo_source) > SSmotiontracker.max_range || src.z != echo_source.z)
@@ -36,3 +38,10 @@
 	if(prob(30))
 		echos = rand(1,3)
 	SSmotiontracker.queue_echo(get_turf(src),T,echos,client ? WEAKREF(client) : null)
+
+/mob/proc/toggle_motion_echo_vis()
+	set name = "Toggle Vibration Senses"
+	set desc = "Toggle the visibility of pings revealed by vibration senses or motion trackers."
+	set category = "Abilities.General"
+
+	wants_to_see_motion_echos = !wants_to_see_motion_echos
