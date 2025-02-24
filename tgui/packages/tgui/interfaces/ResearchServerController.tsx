@@ -1,8 +1,7 @@
-import { filter } from 'common/collections';
 import { useBackend, useSharedState } from 'tgui/backend';
 import { Window } from 'tgui/layouts';
 import { Box, Button, LabeledList, Section, Tabs } from 'tgui-core/components';
-import { BooleanLike } from 'tgui-core/react';
+import type { BooleanLike } from 'tgui-core/react';
 
 type Data = { badmin: BooleanLike; servers: server[]; consoles: console[] };
 
@@ -194,8 +193,9 @@ const ResearchServerData = (props: { server: server }) => {
         ))}
       </Section>
       <Section title="Designs">
-        {filter(server.designs, (design: techDes) => !!design.name).map(
-          (design) => (
+        {server.designs
+          .filter((design: techDes) => !!design.name)
+          .map((design) => (
             <LabeledList.Item
               label={design.name}
               key={design.name}
@@ -215,8 +215,7 @@ const ResearchServerData = (props: { server: server }) => {
                 </Button.Confirm>
               }
             />
-          ),
-        )}
+          ))}
       </Section>
     </>
   );

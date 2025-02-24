@@ -1,4 +1,3 @@
-import { filter } from 'common/collections';
 import { useBackend, useSharedState } from 'tgui/backend';
 import { Window } from 'tgui/layouts';
 import {
@@ -11,7 +10,7 @@ import {
   Tabs,
 } from 'tgui-core/components';
 import { flow } from 'tgui-core/fp';
-import { BooleanLike } from 'tgui-core/react';
+import type { BooleanLike } from 'tgui-core/react';
 import { createSearch } from 'tgui-core/string';
 
 type Data = {
@@ -579,7 +578,7 @@ const prepareSearch = (
       if (!searchText) {
         return laws;
       } else {
-        return filter(laws, testSearch);
+        return laws.filter(testSearch);
       }
     },
   ])(laws);

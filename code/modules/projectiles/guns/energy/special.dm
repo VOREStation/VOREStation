@@ -49,12 +49,14 @@
 	battery_lock = 1
 
 	var/decl/plantgene/gene = null
+	recoil_mode = 0
 	var/obj/item/stock_parts/micro_laser/emitter
 
 	firemodes = list(
 		list(mode_name="induce mutations", projectile_type=/obj/item/projectile/energy/floramut, modifystate="floramut"),
 		list(mode_name="increase yield", projectile_type=/obj/item/projectile/energy/florayield, modifystate="florayield"),
 		list(mode_name="induce specific mutations", projectile_type=/obj/item/projectile/energy/floramut/gene, modifystate="floramut"),
+		list(mode_name="prune reagents", projectile_type=/obj/item/projectile/energy/floraprune, modifystate="floramut"),
 		)
 
 /obj/item/gun/energy/floragun/Initialize()
@@ -120,6 +122,7 @@
 	var/obj/item/projectile/energy/floramut/gene/G = .
 	var/obj/item/projectile/energy/florayield/GY = .
 	var/obj/item/projectile/energy/floramut/GM = .
+	var/obj/item/projectile/energy/floraprune/GP = .
 	// Inserting the upgrade level of the gun to the projectile as there isn't a better way to do this.
 	if(istype(G))
 		G.gene = gene
@@ -128,6 +131,8 @@
 		GY.lasermod = emitter.rating
 	else if(istype(GM))
 		GM.lasermod = emitter.rating
+	else if(istype(GP))
+		GP.lasermod = emitter.rating
 
 /obj/item/gun/energy/meteorgun
 	name = "meteor gun"

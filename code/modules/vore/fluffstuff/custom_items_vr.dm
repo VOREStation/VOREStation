@@ -904,8 +904,8 @@
 				slot_r_hand_str = 'icons/vore/custom_items_right_hand_vr.dmi',
 				)
 
-/obj/item/material/twohanded/fluff/Initialize(var/newloc)
-	. = ..(newloc," ") //See materials_vr_dmi for more information as to why this is a blank space.
+/obj/item/material/twohanded/fluff/Initialize(mapload)
+	. = ..(mapload," ") //See materials_vr_dmi for more information as to why this is a blank space.
 
 //jacknoir413:Areax Third
 /obj/item/melee/baton/fluff/stunstaff
@@ -1268,7 +1268,8 @@
 	base_name = "Clara's Vacuum Flask"
 	base_icon = "claraflask"
 	icon = 'icons/vore/custom_items_vr.dmi'
-	center_of_mass = list("x" = 15,"y" = 4)
+	center_of_mass_x = 15
+	center_of_mass_y = 4
 	filling_states = list(15, 30, 50, 60, 80, 100)
 	volume = 60
 

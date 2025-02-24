@@ -1,7 +1,7 @@
 import { useBackend } from 'tgui/backend';
 import { Box, Button, Section, Table } from 'tgui-core/components';
 
-import { Data } from '../data';
+import type { Data } from '../data';
 
 export const ResearchList = (props) => {
   const { act, data } = useBackend<Data>();

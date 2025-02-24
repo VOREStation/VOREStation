@@ -8,21 +8,44 @@
 #
 # Valid Prefixes:
 #   bugfix
-#   wip (For works in progress)
-#   tweak
+#     - (fixes bugs)
+#   wip
+#     - (work in progress)
+#   qol
+#     - (quality of life)
 #   soundadd
+#     - (adds a sound)
 #   sounddel
-#   rscadd (general adding of nice things)
-#   rscdel (general deleting of nice things)
+#     - (removes a sound)
+#   rscadd
+#     - (adds a feature)
+#   rscdel
+#     - (removes a feature)
 #   imageadd
+#     - (adds an image or sprite)
 #   imagedel
+#     - (removes an image or sprite)
 #   maptweak
-#   spellcheck (typo fixes)
+#   spellcheck
+#     - (fixes spelling or grammar)
 #   experiment
+#     - (experimental change)
+#   balance
+#     - (balance changes)
+#   code_imp
+#     - (misc internal code change)
+#   refactor
+#     - (refactors code)
+#   config
+#     - (makes a change to the config files)
+#   admin
+#     - (makes changes to administrator tools)
+#   server
+#     - (miscellaneous changes to server)
 #################################
 
 # Your name.
-author: N3X15
+author: "
 
 # Optional: Remove this file after generating master changelog.  Useful for PR changelogs that won't get used again.
 delete-after: True

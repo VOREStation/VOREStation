@@ -36,12 +36,11 @@
 	icon_scale_y = 1.5
 
 /*
-/obj/mecha/combat/durand/New()
-	..()
+/obj/mecha/combat/durand/Initialize(mapload)
+	. = ..()
 	weapons += new /datum/mecha_weapon/ballistic/lmg(src)
 	weapons += new /datum/mecha_weapon/ballistic/scattershot(src)
 	selected_weapon = weapons[1]
-	return
 */
 
 
@@ -80,8 +79,8 @@
 /obj/mecha/combat/durand/old
 	desc = "An aging combat exosuit utilized by many corporations. Originally developed to combat hostile alien lifeforms. This one is particularly worn looking and likely isn't as sturdy."
 
-/obj/mecha/combat/durand/old/New()
-	..()
+/obj/mecha/combat/durand/old/Initialize(mapload)
+	. = ..()
 	health = 25
 	maxhealth = 250	//Just slightly worse.
 	cell.charge = rand(0, (cell.charge/2))

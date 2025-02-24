@@ -414,7 +414,10 @@
 /obj/machinery/door/firedoor/close()
 	latetoggle()
 	. = ..()
+
+/obj/machinery/door/firedoor/close_internalfinish(forced = 0)
 	// Queue us for processing when we are closed!
+	..()
 	if(density)
 		START_MACHINE_PROCESSING(src)
 

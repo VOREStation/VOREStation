@@ -43,6 +43,7 @@
 			render_target = ref(src)
 			em_block = new(src, render_target)
 			add_overlay(list(em_block), TRUE)
+			RegisterSignal(em_block, COMSIG_PARENT_QDELETING, PROC_REF(emblocker_gc))
 	if(opacity)
 		AddElement(/datum/element/light_blocking)
 	if(icon_scale_x != DEFAULT_ICON_SCALE_X || icon_scale_y != DEFAULT_ICON_SCALE_Y || icon_rotation != DEFAULT_ICON_ROTATION)
@@ -56,7 +57,14 @@
 			AddComponent(/datum/component/overlay_lighting, is_directional = TRUE, starts_on = light_on)
 
 /atom/movable/Destroy()
+	if(em_block)
+		cut_overlay(em_block)
+		UnregisterSignal(em_block, COMSIG_PARENT_QDELETING)
+		QDEL_NULL(em_block)
 	. = ..()
+
+	unbuckle_all_mobs()
+
 	for(var/atom/movable/AM in contents)
 		qdel(AM)
 
@@ -218,7 +226,7 @@
 
 	// If we moved, call Moved() on ourselves
 	if(.)
-		Moved(oldloc, direct, FALSE, movetime ? movetime : ( (TICKS2DS(WORLD_ICON_SIZE/glide_size)) * (moving_diagonally ? (0.5) : 1) ) )
+		Moved(oldloc, direct, FALSE, movetime ? movetime : MOVE_GLIDE_CALC(glide_size, moving_diagonally) )
 
 	// Update timers/cooldown stuff
 	move_speed = world.time - l_move_time
@@ -640,3 +648,9 @@
 
 /atom/movable/proc/get_cell()
 	return
+
+/atom/movable/proc/emblocker_gc(var/datum/source)
+	UnregisterSignal(source, COMSIG_PARENT_QDELETING)
+	cut_overlay(source)
+	if(em_block == source)
+		em_block = null

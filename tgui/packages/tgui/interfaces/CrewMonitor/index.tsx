@@ -16,7 +16,7 @@ export const CrewMonitor = () => {
   }
 
   return (
-    <Window width={800} height={600}>
+    <Window width={850} height={600}>
       <Window.Content>
         <CrewMonitorContent
           tabIndex={tabIndex}

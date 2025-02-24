@@ -88,6 +88,9 @@
 	var/male_sneeze_sound = 'sound/effects/mob_effects/sneeze.ogg'
 	var/female_sneeze_sound = 'sound/effects/mob_effects/f_sneeze.ogg'
 
+	var/footstep = FOOTSTEP_MOB_HUMAN
+	var/list/special_step_sounds = null
+
 	// Combat/health/chem/etc. vars.
 	var/total_health = 100								// How much damage the mob can take before entering crit.
 	var/list/unarmed_types = list(							// Possible unarmed attacks that the mob will use in combat,
@@ -137,6 +140,8 @@
 	var/poison_type = GAS_PHORON								// Poisonous air.
 	var/exhale_type = GAS_CO2								// Exhaled gas type.
 	var/water_breather = FALSE
+	var/suit_inhale_sound = 'sound/effects/mob_effects/suit_breathe_in.ogg'
+	var/suit_exhale_sound = 'sound/effects/mob_effects/suit_breathe_out.ogg'
 	var/bad_swimmer = FALSE
 
 	var/body_temperature = 310.15							// Species will try to stabilize at this temperature. (also affects temperature processing)
@@ -209,6 +214,7 @@
 	var/has_glowing_eyes = 0								// Whether the eyes are shown above all lighting
 	var/water_movement = 0									// How much faster or slower the species is in water
 	var/snow_movement = 0									// How much faster or slower the species is on snow
+	var/dirtslip = FALSE									// If we slip over dirt or not.
 	var/can_space_freemove = FALSE							// Can we freely move in space?
 	var/can_zero_g_move	= FALSE								// What about just in zero-g non-space?
 
@@ -222,10 +228,24 @@
 	var/gluttonous											// Can eat some mobs. 1 for mice, 2 for monkeys, 3 for people.
 	var/soft_landing = FALSE								// Can fall down and land safely on small falls.
 
+	var/drippy = FALSE 										// If we drip or not. Primarily for goo beings.
+	var/photosynthesizing = FALSE							// If we get nutrition from light or not.
+	var/shrinks = FALSE										// If we shrink when we have no nutrition. Not added but here for downstream's sake.
+	var/grows = FALSE										// Same as above but if we grow when >1000 nutrition.
+	var/crit_mod = 1										// Used for when we go unconscious. Used downstream.
+	var/list/env_traits = list()
+	var/pixel_offset_x = 0									// Used for offsetting 64x64 and up icons.
+	var/pixel_offset_y = 0									// Used for offsetting 64x64 and up icons.
+	var/rad_levels = NORMAL_RADIATION_RESISTANCE		//For handle_mutations_and_radiation
+	var/rad_removal_mod = 1
+
+
 	var/rarity_value = 1									// Relative rarity/collector value for this species.
 	var/economic_modifier = 2								// How much money this species makes
 
 	var/vanity_base_fit 									//when shapeshifting using vanity_copy_to, this allows you to have add something so they can go back to their original species fit
+
+	var/mudking = FALSE										// If we dirty up tiles quicker
 
 	var/vore_belly_default_variant = "H"
 
@@ -328,6 +348,9 @@
 		inherent_verbs |= /mob/living/carbon/human/proc/regurgitate
 
 	update_sort_hint()
+
+/datum/species/proc/get_footsep_sounds()
+	return footstep
 
 /datum/species/proc/update_sort_hint()
 	if(spawn_flags & SPECIES_IS_RESTRICTED)

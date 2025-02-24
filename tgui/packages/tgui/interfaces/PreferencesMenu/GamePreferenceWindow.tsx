@@ -4,7 +4,7 @@ import { useBackend } from 'tgui/backend';
 import { Window } from 'tgui/layouts';
 import { Stack } from 'tgui-core/components';
 
-import { GamePreferencesSelectedPage, PreferencesMenuData } from './data';
+import { GamePreferencesSelectedPage, type PreferencesMenuData } from './data';
 import { GamePreferencesPage } from './GamePreferencesPage';
 // import { KeybindingsPage } from './KeybindingsPage';
 

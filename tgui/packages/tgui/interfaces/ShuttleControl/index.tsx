@@ -7,7 +7,7 @@ import {
   ShuttleControlConsoleMulti,
 } from './ShuttleControlConsoleTypes';
 import { ShuttleControlConsoleWeb } from './ShuttleControlConsoleWeb';
-import { Data } from './types';
+import type { Data } from './types';
 
 export const ShuttleControl = (props) => {
   const { data } = useBackend<Data>();

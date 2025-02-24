@@ -70,7 +70,7 @@
 					/obj/item/reagent_containers/food/drinks/bottle/rum = 5,
 					/obj/item/reagent_containers/food/drinks/bottle/sake = 5,
 					/obj/item/reagent_containers/food/drinks/bottle/specialwhiskey = 5,
-					/obj/item/reagent_containers/food/drinks/bottle/tequilla = 5,
+					/obj/item/reagent_containers/food/drinks/bottle/tequila = 5,
 					/obj/item/reagent_containers/food/drinks/bottle/vermouth = 5,
 					/obj/item/reagent_containers/food/drinks/bottle/vodka = 5,
 					/obj/item/reagent_containers/food/drinks/bottle/whiskey = 5,

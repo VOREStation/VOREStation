@@ -161,7 +161,7 @@
 			in_use = FALSE
 			return
 		in_use = FALSE
-	updateUsrDialog()
+	updateUsrDialog(usr)
 
 
 

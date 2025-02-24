@@ -60,7 +60,7 @@
 **Creator:** Lamella-0587 (https://github.com/Skyrat-SS13/Skyrat-tg/pull/6740)<br>
 **License:** [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/)<br>
 <br>
-**File:** `icons/mob/vore/taurs_vr_loaf.dmi`and `icons/mob/vore/taurs_vr.dmi`<br>
+**File:** `icons/mob/vore/taurs_loaf.dmi`and `icons/mob/human_races/sprite_accessories/taurs.dmi`<br>
 **Title:** Deer tummy<br>
 **Icon-States:** `fatdeer_s` and `fatdeer_markings`<br>
 **Creator:** VerySoft (https://github.com/TS-Rogue-Star/Rogue-Star/pull/153)<br>

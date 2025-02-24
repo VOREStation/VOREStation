@@ -101,8 +101,8 @@
 	var/list/internal_log = list()
 	var/mode = 0  // 0 - making pass, 1 - viewing logs
 
-/obj/machinery/computer/guestpass/New()
-	..()
+/obj/machinery/computer/guestpass/Initialize(mapload)
+	. = ..()
 	uid = "[rand(100,999)]-G[rand(10,99)]"
 
 

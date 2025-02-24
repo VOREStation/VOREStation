@@ -109,7 +109,7 @@
 /obj/item/projectile/meteor
 	name = "meteor"
 	icon = 'icons/obj/meteor.dmi'
-	icon_state = "smallf"
+	icon_state = "small"
 	damage = 0
 	damage_type = BRUTE
 	nodamage = 1
@@ -120,8 +120,6 @@
 	if(A == firer)
 		loc = A.loc
 		return
-
-	sleep(-1) //Might not be important enough for a sleep(-1) but the sleep/spawn itself is necessary thanks to explosions and metoerhits
 
 	if(src)//Do not add to this if() statement, otherwise the meteor won't delete them
 		if(A)
@@ -173,6 +171,7 @@
 				else
 					randmutg(M)
 					domutcheck(M,null)
+				M.UpdateAppearance()
 			else
 				M.adjustFireLoss(rand(5,15))
 				M.show_message(span_red("The radiation beam singes you!"))
@@ -217,6 +216,32 @@
 		var/mob/living/carbon/human/H = M
 		if((H.species.flags & IS_PLANT) && (M.nutrition < 500))
 			M.adjust_nutrition(30)
+	else if (istype(target, /mob/living/carbon/))
+		M.show_message(span_blue("The radiation beam dissipates harmlessly through your body."))
+	else
+		return 1
+
+/obj/item/projectile/energy/floraprune
+	name = "delta somatoray"
+	icon_state = "energy2"
+	fire_sound = 'sound/effects/stealthoff.ogg'
+	damage = 0
+	damage_type = TOX
+	nodamage = 1
+	check_armour = "energy"
+	light_range = 2
+	light_power = 0.5
+	light_color = "#FFFFFF"
+	impact_effect_type = /obj/effect/temp_visual/impact_effect/monochrome_laser
+	var/lasermod = 0
+	hud_state = "electrothermal"
+
+/obj/item/projectile/energy/floraprune/on_hit(var/atom/target, var/blocked = 0)
+	var/mob/living/M = target
+	if(ishuman(target)) //Make plantpeople thin, seeing as we're removing reagents from actual plants
+		var/mob/living/carbon/human/H = M
+		if((H.species.flags & IS_PLANT) && (M.nutrition > 30))
+			M.adjust_nutrition(-30)
 	else if (istype(target, /mob/living/carbon/))
 		M.show_message(span_blue("The radiation beam dissipates harmlessly through your body."))
 	else
