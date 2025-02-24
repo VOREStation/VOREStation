@@ -20,7 +20,7 @@
 #define vchatlog_write(ckey, html, round_id, type) VCHATLOG_CALL("write_chatlog", ckey, html, round_id, type)
 
 /**
- * Requests the chatlog of an entire round. Upon completion the exported chatlog will be stored at tmp/chatlogs/ckey-roundid(.html).
+ * Requests the chatlog of an entire round. Upon completion the exported chatlog will be stored at data/chatlogs/ckey-roundid(.html).
  * The file will have the html ending, if rendered is set to TRUE.
  *
  * Arguments:
@@ -31,7 +31,7 @@
 #define vchatlog_read_round(ckey, round_id, rendered) VCHATLOG_CALL("read_chatlog_round", ckey, round_id, rendered)
 
 /**
- * Requests the chatlog of multiple rounds. Upon completion the exported chatlog will be stored at tmp/chatlogs/ckey-roundid(.html).
+ * Requests the chatlog of multiple rounds. Upon completion the exported chatlog will be stored at data/chatlogs/ckey-start_round-end_round(.html).
  * The file will have the html ending, if rendered is set to TRUE.
  *
  * Arguments:
@@ -43,7 +43,7 @@
 #define vchatlog_read_rounds(ckey, start_round, end_round, rendered) VCHATLOG_CALL("read_chatlog_rounds", ckey, start_round, end_round, rendered)
 
 /**
- * Requests the chatlog of a specified length. Upon completion the exported chatlog will be stored at tmp/chatlogs/ckey(.html).
+ * Requests the chatlog of a specified length. Upon completion the exported chatlog will be stored at data/chatlogs/ckey(.html/.json).
  * The file will have the html ending, if rendered is set to TRUE.
  *
  * Arguments:

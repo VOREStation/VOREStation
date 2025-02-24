@@ -116,7 +116,7 @@
 			if(!(end_round in stored_rounds))
 				return
 			vchatlog_read_rounds(client.key, start_round, end_round, FALSE)
-			client << browse_rsc(file("tmp/chatlogs/[client.key]-[start_round]-[end_round]"), "exported_chatlog")
+			client << browse_rsc(file("data/chatlogs/[client.key]-[start_round]-[end_round]"), "exported_chatlog")
 			window.send_message("exportDownloadReady")
 		else
 			to_chat(client, span_warning("WARNING: round chatlog not exported: database backend not enabled."))
@@ -125,7 +125,7 @@
 			var/round_id = payload["roundId"]
 			if(round_id)
 				vchatlog_read_round(client.key, round_id, FALSE)
-				client << browse_rsc(file("tmp/chatlogs/[client.key]-[round_id]"), "exported_chatlog")
+				client << browse_rsc(file("data/chatlogs/[client.key]-[round_id]"), "exported_chatlog")
 				window.send_message("exportDownloadReady")
 		else
 			to_chat(client, span_warning("WARNING: round chatlog not exported: database backend not enabled."))
@@ -136,7 +136,7 @@
 				length = 1000
 
 			vchatlog_read(client.key, length, FALSE, FALSE)
-			client << browse_rsc(file("tmp/chatlogs/[client.key]"), "exported_chatlog_history")
+			client << browse_rsc(file("data/chatlogs/[client.key]"), "exported_chatlog_history")
 		else
 			to_chat(client, span_warning("WARNING: lines chatlog not exported: database backend not enabled."))
 	if(type == "databaseExportLinesAsJson")
@@ -146,7 +146,7 @@
 				length = 1000
 
 			vchatlog_read(client.key, length, FALSE, TRUE)
-			client << browse_rsc(file("tmp/chatlogs/[client.key].json"), "exported_chatlog_history")
+			client << browse_rsc(file("data/chatlogs/[client.key].json"), "exported_chatlog_history")
 			window.send_message("chatexportplaced")
 		else
 			to_chat(client, span_warning("WARNING: lines chatlog not exported: database backend not enabled."))
