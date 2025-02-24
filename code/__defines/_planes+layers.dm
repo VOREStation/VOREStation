@@ -187,7 +187,6 @@ What is the naming convention for planes or layers?
 	#define CRIT_LAYER			18.3
 
 //Client UI HUD stuff
-#define PLANE_MOTIONTRACKER 	91 // Stuff seen when mob has motion tracker or vibration sensing
 #define PLANE_HOLOMAP_FRAME		92
 #define PLANE_HOLOMAP			93 // Holomap rendered here
 #define PLANE_HOLOMAP_ICONS		94 // Holomap markers and bobbins

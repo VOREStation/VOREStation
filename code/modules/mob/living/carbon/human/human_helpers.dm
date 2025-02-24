@@ -200,9 +200,6 @@
 	if(stomach_vision)
 		compiled_vis += VIS_CH_STOMACH
 
-	if(has_motiontracking())
-		compiled_vis += VIS_MOTIONTRACKER
-
 	if(!compiled_vis.len && !vis_enabled.len)
 		return //Nothin' doin'.
 

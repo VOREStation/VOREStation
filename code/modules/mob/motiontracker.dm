@@ -28,9 +28,11 @@
 	if(!client || stat)
 		return
 	var/atom/echo_source = RW?.resolve()
-	if(!echo_source || get_dist(src,echo_source) > SSmotiontracker.max_range  || get_dist(src,echo_source) < SSmotiontracker.min_range  || src.z != echo_source.z)
+	if(!echo_source || get_dist(src,echo_source) > SSmotiontracker.max_range || src.z != echo_source.z)
 		return
+	if(get_dist(src,echo_source) < SSmotiontracker.min_range || T.get_lumcount() >= 0.20 && can_see(src, T, 7)) // cheaper than oviewers
+		return // we already see it
 	var/echos = 1
 	if(prob(30))
 		echos = rand(1,3)
-	SSmotiontracker.queue_echo(get_turf(src),T,echos)
+	SSmotiontracker.queue_echo(get_turf(src),T,echos,client ? WEAKREF(client) : null)
