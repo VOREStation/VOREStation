@@ -5,15 +5,14 @@
 /mob/proc/motiontracker_subscribe()
 	if(!is_motion_tracking)
 		is_motion_tracking = TRUE
+		wants_to_see_motion_echos = TRUE
 		RegisterSignal(SSmotiontracker, COMSIG_MOVABLE_MOTIONTRACKER, PROC_REF(handle_motion_tracking))
-		recalculate_vis()
 		add_verb(src,/mob/proc/toggle_motion_echo_vis)
 
 /mob/proc/motiontracker_unsubscribe(var/destroying = FALSE)
 	if(is_motion_tracking)
 		is_motion_tracking = FALSE
 		UnregisterSignal(SSmotiontracker, COMSIG_MOVABLE_MOTIONTRACKER)
-		recalculate_vis()
 		remove_verb(src,/mob/proc/toggle_motion_echo_vis)
 
 /mob/living/carbon/human/motiontracker_unsubscribe(destroying = FALSE)
