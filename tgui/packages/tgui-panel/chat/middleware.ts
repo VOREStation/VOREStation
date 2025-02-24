@@ -4,6 +4,8 @@
  * @license MIT
  */
 
+import { resolveAsset } from 'tgui/assets';
+import { fetchRetry } from 'tgui-core/http';
 import type { Action, Store } from 'common/redux';
 import { storage } from 'common/storage';
 import DOMPurify from 'dompurify';
@@ -140,13 +142,35 @@ const loadChatFromStorage = async (store: Store<number, Action<string>>) => {
 };
 
 const loadChatFromDBStorage = async (store: Store<number, Action<string>>) => {
+  const settings = selectSettings(store.getState());
   const [state] = await Promise.all([storage.get('chat-state')]);
   // Discard incompatible versions
   if (state && state.version <= 4) {
     store.dispatch(loadChat());
     return;
   }
+
   const messages = [] as message[]; // FIX ME, load from DB
+  await new Promise<void>((resolve) => {
+    const listener = async () => {
+      document.removeEventListener('chatexportplaced', listener);
+
+      const response = await fetchRetry(
+        resolveAsset('exported_chatlog'),
+      );
+      const text = await response.text();
+
+      // FIX ME DO STUFF WITH THE CONTENTS OF THE FILE
+
+      resolve();
+    };
+
+    document.addEventListener('chatexportplaced', listener);
+    Byond.sendMessage('databaseExportLines', {
+      length: settings.visibleMessageLimit,
+    });
+  });
+
   if (messages) {
     for (let message of messages) {
       if (message.html) {
