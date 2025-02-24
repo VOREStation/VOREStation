@@ -822,7 +822,13 @@ class ChatRenderer {
     });
   }
 
-  saveToDisk(logLineCount, startLine = 0, endLine = 0) {
+  saveToDisk(
+    logLineCount,
+    startLine = 0,
+    endLine = 0,
+    startRound = 0,
+    endRound = 0,
+  ) {
     // Compile currently loaded stylesheets as CSS text
     let cssText = '';
     const styleSheets = document.styleSheets;
@@ -896,9 +902,20 @@ class ChatRenderer {
             };
 
             document.addEventListener('chatexportplaced', listener);
-            Byond.sendMessage('databaseExportRound', {
-              roundId: this.roundId,
-            });
+            if (startRound < endRound) {
+              Byond.sendMessage('databaseExportRounds', {
+                startId: startRound,
+                endId: endRound,
+              });
+            } else if (logLineCount > 0) {
+              Byond.sendMessage('databaseExportLines', {
+                length: logLineCount,
+              });
+            } else {
+              Byond.sendMessage('databaseExportRound', {
+                roundId: this.roundId,
+              });
+            }
           });
         })
         .catch((e) => {

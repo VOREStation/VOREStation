@@ -281,6 +281,8 @@ export const chatMiddleware = (store) => {
         settings.logLineCount,
         storedLines[storedLines.length - settings.exportEnd],
         storedLines[storedLines.length - settings.exportStart],
+        settings.exportEnd,
+        settings.exportStart,
       );
       return;
     }

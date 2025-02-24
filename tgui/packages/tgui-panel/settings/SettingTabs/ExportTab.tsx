@@ -5,6 +5,7 @@ import {
   Button,
   Collapsible,
   Divider,
+  Dropdown,
   LabeledList,
   NumberInput,
   Section,
@@ -174,43 +175,89 @@ export const ExportTab = (props) => {
       )}
       <LabeledList>
         <LabeledList.Item label="Export round start (0 = curr.) / end (0 = dis.)">
-          <NumberInput
-            width="5em"
-            step={1}
-            stepPixelSize={10}
-            minValue={0}
-            maxValue={exportEnd === 0 ? 0 : exportEnd - 1}
-            value={exportStart}
-            format={(value) => toFixed(value)}
-            onDrag={(value) =>
-              dispatch(
-                updateSettings({
-                  exportStart: value,
-                }),
-              )
-            }
-          />
-          <NumberInput
-            width="5em"
-            step={1}
-            stepPixelSize={10}
-            minValue={exportStart === 0 ? 0 : exportStart + 1}
-            maxValue={storedRounds}
-            value={exportEnd}
-            format={(value) => toFixed(value)}
-            onDrag={(value) =>
-              dispatch(
-                updateSettings({
-                  exportEnd: value,
-                }),
-              )
-            }
-          />
-          &nbsp;
-          <Box inline fontSize="0.9em" color="label">
-            Stored Rounds:&nbsp;
-          </Box>
-          <Box inline>{storedRounds}</Box>
+          <Stack align="center">
+            {game.databaseBackendEnabled ? (
+              <>
+                <Stack.Item>
+                  <Dropdown
+                    onSelected={(value) =>
+                      dispatch(
+                        updateSettings({
+                          exportStart: value,
+                        }),
+                      )
+                    }
+                    options={game.databseStoredRounds}
+                    selected={exportStart}
+                  />
+                </Stack.Item>
+                <Stack.Item>
+                  <Dropdown
+                    onSelected={(value) =>
+                      dispatch(
+                        updateSettings({
+                          exportEnd: value,
+                        }),
+                      )
+                    }
+                    options={game.databseStoredRounds}
+                    selected={exportEnd}
+                  />
+                </Stack.Item>
+              </>
+            ) : (
+              <>
+                <Stack.Item>
+                  <NumberInput
+                    width="5em"
+                    step={1}
+                    stepPixelSize={10}
+                    minValue={0}
+                    maxValue={exportEnd === 0 ? 0 : exportEnd - 1}
+                    value={exportStart}
+                    format={(value) => toFixed(value)}
+                    onDrag={(value) =>
+                      dispatch(
+                        updateSettings({
+                          exportStart: value,
+                        }),
+                      )
+                    }
+                  />
+                </Stack.Item>
+                <Stack.Item>
+                  <NumberInput
+                    width="5em"
+                    step={1}
+                    stepPixelSize={10}
+                    minValue={exportStart === 0 ? 0 : exportStart + 1}
+                    maxValue={storedRounds}
+                    value={exportEnd}
+                    format={(value) => toFixed(value)}
+                    onDrag={(value) =>
+                      dispatch(
+                        updateSettings({
+                          exportEnd: value,
+                        }),
+                      )
+                    }
+                  />
+                </Stack.Item>
+              </>
+            )}
+            <Stack.Item>
+              <Box fontSize="0.9em" color="label">
+                &nbsp;Stored Rounds:&nbsp;
+              </Box>
+            </Stack.Item>
+            <Stack.Item>
+              <Box>
+                {game.databaseBackendEnabled
+                  ? game.databseStoredRounds.length
+                  : storedRounds}
+              </Box>
+            </Stack.Item>
+          </Stack>
         </LabeledList.Item>
         <LabeledList.Item label="Amount of lines to export (0 = inf.)">
           <NumberInput
