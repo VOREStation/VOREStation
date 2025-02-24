@@ -73,9 +73,11 @@
 /datum/tgui_panel/proc/on_message(type, payload)
 	if(type == "ready")
 		broken = FALSE
+		var/list/stored_rounds = vchatlog_get_recent_roundids(client.ckey)
 		window.send_message("connected", list(
 			"round_id" = GLOB.round_id, // Sends the round ID to the chat, requires round IDs
 			"chatlog_db_backend" = CONFIG_GET(flag/chatlog_database_backend),
+			"chatlog_stored_rounds" = islist(stored_rounds) ? list("0") + stored_rounds : list("0")
 		))
 		window.send_message("update", list(
 			"config" = list(
@@ -100,6 +102,24 @@
 	if(type == "telemetry")
 		analyze_telemetry(payload)
 		return TRUE
+	if(type == "databaseExportRounds")
+		if(CONFIG_GET(flag/chatlog_database_backend))
+			var/start_round = payload["startId"]
+			var/end_round = payload["endId"]
+			if(start_round > end_round)
+				return
+			var/list/stored_rounds = vchatlog_get_recent_roundids(client.key)
+			if(!islist(stored_rounds))
+				return
+			if(!(start_round in stored_rounds))
+				return
+			if(!(end_round in stored_rounds))
+				return
+			vchatlog_read_rounds(client.key, start_round, end_round, FALSE)
+			client << browse_rsc(file("tmp/chatlogs/[client.key]-[start_round]-[end_round]"), "exported_chatlog")
+			window.send_message("exportDownloadReady")
+		else
+			to_chat(client, span_warning("WARNING: round chatlog not exported: database backend not enabled."))
 	if(type == "databaseExportRound")
 		if(CONFIG_GET(flag/chatlog_database_backend))
 			var/round_id = payload["roundId"]

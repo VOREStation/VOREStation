@@ -31,6 +31,18 @@
 #define vchatlog_read_round(ckey, round_id, rendered) VCHATLOG_CALL("read_chatlog_round", ckey, round_id, rendered)
 
 /**
+ * Requests the chatlog of multiple rounds. Upon completion the exported chatlog will be stored at tmp/chatlogs/ckey-roundid(.html).
+ * The file will have the html ending, if rendered is set to TRUE.
+ *
+ * Arguments:
+ * * ckey - Ckey of the message receiver
+ * * start_round - Round ID of the start to fetch
+ * * end_round - Round ID of the end to fetch
+ * * rendered - Tells the library if it should contain the rendered chatlog (css styling, etc.)
+ */
+#define vchatlog_read_rounds(ckey, start_round, end_round, rendered) VCHATLOG_CALL("read_chatlog_rounds", ckey, start_round, end_round, rendered)
+
+/**
  * Requests the chatlog of a specified length. Upon completion the exported chatlog will be stored at tmp/chatlogs/ckey(.html).
  * The file will have the html ending, if rendered is set to TRUE.
  *
