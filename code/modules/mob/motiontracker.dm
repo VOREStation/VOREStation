@@ -26,13 +26,14 @@
 	SIGNAL_HANDLER
 	SHOULD_NOT_OVERRIDE(TRUE)
 	PRIVATE_PROC(TRUE)
-	if(!client || stat || !wants_to_see_motion_echos)
+	if(!client || !wants_to_see_motion_echos || stat || is_deaf())
 		return
 	var/atom/echo_source = RW?.resolve()
 	if(!echo_source || get_dist(src,echo_source) > SSmotiontracker.max_range || src.z != echo_source.z)
 		return
-	if(get_dist(src,echo_source) < SSmotiontracker.min_range || T.get_lumcount() >= 0.20 && can_see(src, T, 7)) // cheaper than oviewers
-		return // we already see it
+	// Blind characters see all pings around them. Otherwise remove the closest, or any we can see. Pings behind walls or in the dark are always visible
+	if(!is_blind() && (get_dist(src,echo_source) < SSmotiontracker.min_range || (T.get_lumcount() >= 0.20 && can_see(src, T, 7)) ))
+		return
 	var/echos = 1
 	if(prob(30))
 		echos = rand(1,3)
