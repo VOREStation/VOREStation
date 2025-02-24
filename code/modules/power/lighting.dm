@@ -735,6 +735,8 @@ var/global/list/light_type_cache = list()
 		return
 
 /obj/machinery/light/proc/do_flicker(remaining_flicks)
+	SHOULD_NOT_OVERRIDE(TRUE)
+	PRIVATE_PROC(TRUE)
 	if(status != LIGHT_OK)
 		flickering = 0
 		return
