@@ -14,7 +14,7 @@ type gameState = {
   connectionLostAt: null | number;
   dismissedConnectionWarning: boolean;
   databaseBackendEnabled: boolean;
-  databseStoredRounds: string[];
+  databaseStoredRounds: string[];
 };
 
 const initialState: gameState = {
@@ -25,7 +25,7 @@ const initialState: gameState = {
   connectionLostAt: null,
   dismissedConnectionWarning: false,
   databaseBackendEnabled: false,
-  databseStoredRounds: [],
+  databaseStoredRounds: [],
 };
 
 export const gameReducer = (state = initialState, action) => {
@@ -42,7 +42,7 @@ export const gameReducer = (state = initialState, action) => {
         ...state,
         roundId: payload.round_id,
         databaseBackendEnabled: payload.chatlog_db_backend,
-        databseStoredRounds: payload.chatlog_stored_rounds,
+        databaseStoredRounds: payload.chatlog_stored_rounds,
       };
     }
   }

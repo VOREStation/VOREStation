@@ -187,7 +187,7 @@ export const ExportTab = (props) => {
                         }),
                       )
                     }
-                    options={game.databseStoredRounds}
+                    options={game.databaseStoredRounds}
                     selected={exportStart}
                   />
                 </Stack.Item>
@@ -200,7 +200,7 @@ export const ExportTab = (props) => {
                         }),
                       )
                     }
-                    options={game.databseStoredRounds}
+                    options={game.databaseStoredRounds}
                     selected={exportEnd}
                   />
                 </Stack.Item>
@@ -253,7 +253,7 @@ export const ExportTab = (props) => {
             <Stack.Item>
               <Box>
                 {game.databaseBackendEnabled
-                  ? game.databseStoredRounds.length
+                  ? game.databaseStoredRounds.length
                   : storedRounds}
               </Box>
             </Stack.Item>
