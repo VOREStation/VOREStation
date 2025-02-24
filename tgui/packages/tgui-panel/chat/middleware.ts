@@ -156,17 +156,18 @@ const loadChatFromDBStorage = async (store: Store<number, Action<string>>) => {
       document.removeEventListener('chatexportplaced', listener);
 
       const response = await fetchRetry(
-        resolveAsset('exported_chatlog'),
+        resolveAsset('exported_chatlog_history'),
       );
       const text = await response.text();
 
       // FIX ME DO STUFF WITH THE CONTENTS OF THE FILE
+      console.log(text);
 
       resolve();
     };
 
     document.addEventListener('chatexportplaced', listener);
-    Byond.sendMessage('databaseExportLines', {
+    Byond.sendMessage('databaseExportLinesAsJson', {
       length: settings.visibleMessageLimit,
     });
   });

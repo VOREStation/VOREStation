@@ -59,5 +59,5 @@
 
 	var/length = tgui_input_number(src, "How many lines back do you want to be exported?", "Linecount", 1000, INFINITY, 1)
 	if(length)
-		vchatlog_read(src.key, length, TRUE)
+		vchatlog_read(src.key, length, TRUE, FALSE)
 		src << ftp("tmp/chatlogs/[src.key].html")

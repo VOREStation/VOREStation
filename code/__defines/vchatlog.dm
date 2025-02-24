@@ -17,7 +17,7 @@
  * * html - HTML of the received message
  * * round_id - Current ID of the round (library will resolve this to -1 if invalid or non-existant)
  */
-#define vchatlog_write(ckey, html, round_id) VCHATLOG_CALL("write_chatlog", ckey, html, round_id)
+#define vchatlog_write(ckey, html, round_id, type) VCHATLOG_CALL("write_chatlog", ckey, html, round_id, type)
 
 /**
  * Requests the chatlog of an entire round. Upon completion the exported chatlog will be stored at tmp/chatlogs/ckey-roundid(.html).
@@ -50,8 +50,9 @@
  * * ckey - Ckey of the message receiver
  * * length - Amount of recent messages to fetch
  * * rendered - Tells the library if it should contain the rendered chatlog (css styling, etc.)
+ * * object - Tells the library if it should be exported as json (includes roundid, text, type and created_at). Rendered is also ignored
  */
-#define vchatlog_read(ckey, length, rendered) VCHATLOG_CALL("read_chatlog", ckey, length, rendered)
+#define vchatlog_read(ckey, length, rendered, object) VCHATLOG_CALL("read_chatlog", ckey, length, rendered, object)
 
 /**
  * This function returns a list of the 10 most recent roundids that are available to be exported.
