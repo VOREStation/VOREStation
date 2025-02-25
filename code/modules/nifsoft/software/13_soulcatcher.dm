@@ -107,9 +107,9 @@
 				html = span_nif(span_bold("\[[icon2html(nif.big_icon, nif.human.client)]NIF\]") + message))
 		if(whisper)
 			speak_verb = "whispers"
-				to_chat(sender,
-						type = MESSAGE_TYPE_NIF,
-						html = span_nif(span_bold("\[[icon2html(nif.big_icon, sender.client)]NIF\]") + span_italics(message)))
+			to_chat(sender,
+					type = MESSAGE_TYPE_NIF,
+					html = span_nif(span_bold("\[[icon2html(nif.big_icon, sender.client)]NIF\]") + span_italics(message)))
 		else
 			for(var/mob/living/carbon/brain/caught_soul/CS as anything in brainmobs)
 				to_chat(CS,
