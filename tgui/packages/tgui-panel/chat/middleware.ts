@@ -210,7 +210,6 @@ const loadChatFromDBStorage = async (store: Store<number, Action<string>>) => {
 
 export const chatMiddleware = (store) => {
   let initialized = false;
-  let dbLoading = false;
   let loaded = false;
   const sequences: number[] = [];
   const sequences_requested: number[] = [];
@@ -246,21 +245,18 @@ export const chatMiddleware = (store) => {
       game.databaseBackendEnabled,
     );
     // Load the chat once settings are loaded
-    if (
-      !initialized &&
-      game.dataReceived &&
-      (settings.initialized || settings.firstLoad)
-    ) {
+    if (!initialized && (settings.initialized || settings.firstLoad)) {
       initialized = true;
       setInterval(() => {
         saveChatToStorage(store);
       }, settings.saveInterval * 1000);
-      if (!game.databaseBackendEnabled) {
-        loadChatFromStorage(store);
-      } else if (!dbLoading) {
-        dbLoading = true;
-        loadChatFromDBStorage(store);
-      }
+      setTimeout(() => {
+        if (!game.databaseBackendEnabled) {
+          loadChatFromStorage(store);
+        } else {
+          loadChatFromDBStorage(store);
+        }
+      }, 1000);
     }
     if (type === 'chat/message') {
       let payload_obj;
