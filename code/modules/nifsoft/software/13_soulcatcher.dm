@@ -93,7 +93,7 @@
 		var/speak_verb = "says"
 		message = span_game(span_say(span_bold("[sender_name]") + " [speak_verb], \"[message]\""))
 		if(whisper)
-			var/speak_verb = "whispers"
+			speak_verb = "whispers"
 			sender.eyeobj.visible_message(span_italics(message), range = 1)
 		else
 			sender.eyeobj.visible_message(message)
