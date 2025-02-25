@@ -107,6 +107,7 @@
 		if(CONFIG_GET(flag/chatlog_database_backend))
 			var/start_round = payload["startId"]
 			var/end_round = payload["endId"]
+			var/timestamp = payload["timestamp"]
 			if(start_round > end_round)
 				return
 			var/list/stored_rounds = vchatlog_get_recent_roundids(client.key)
@@ -116,7 +117,7 @@
 				return
 			if(!(end_round in stored_rounds))
 				return
-			vchatlog_read_rounds(client.key, start_round, end_round, FALSE)
+			vchatlog_read_rounds(client.key, start_round, end_round, timestamp, FALSE)
 			client << browse_rsc(file("data/chatlogs/[client.key]-[start_round]-[end_round]"), "exported_chatlog")
 			window.send_message("exportDownloadReady")
 		else
@@ -124,8 +125,9 @@
 	if(type == "databaseExportRound")
 		if(CONFIG_GET(flag/chatlog_database_backend))
 			var/round_id = payload["roundId"]
+			var/timestamp = payload["timestamp"]
 			if(round_id)
-				vchatlog_read_round(client.key, round_id, FALSE)
+				vchatlog_read_round(client.key, round_id, timestamp, FALSE)
 				client << browse_rsc(file("data/chatlogs/[client.key]-[round_id]"), "exported_chatlog")
 				window.send_message("exportDownloadReady")
 		else
@@ -134,10 +136,11 @@
 		if(CONFIG_GET(flag/chatlog_database_backend))
 			var/length = payload["length"]
 			var/export_json = payload["json"]
+			var/timestamp = payload["timestamp"]
 			if(!length)
 				length = 1000
 
-			vchatlog_read(client.key, length, FALSE, export_json)
+			vchatlog_read(client.key, length, FALSE, timestamp, export_json)
 			client << browse_rsc(file("data/chatlogs/[client.key][export_json ? ".json" : ""]"), "exported_chatlog_history[export_json ? ".json" : ""]")
 			window.send_message("exportDownloadReady")
 		else

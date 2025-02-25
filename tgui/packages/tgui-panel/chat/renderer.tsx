@@ -906,18 +906,22 @@ class ChatRenderer {
               Byond.sendMessage('databaseExportRounds', {
                 startId: startRound,
                 endId: endRound,
+                timestamp: this.prependTimestamps,
               });
             } else if (startRound > 0) {
               Byond.sendMessage('databaseExportRound', {
                 roundId: startRound,
+                timestamp: this.prependTimestamps,
               });
             } else if (logLineCount > 0) {
               Byond.sendMessage('databaseExportLines', {
                 length: logLineCount,
+                timestamp: this.prependTimestamps,
               });
             } else {
               Byond.sendMessage('databaseExportRound', {
                 roundId: this.roundId,
+                timestamp: this.prependTimestamps,
               });
             }
           });

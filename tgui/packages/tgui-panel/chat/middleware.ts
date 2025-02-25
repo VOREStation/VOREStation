@@ -379,7 +379,6 @@ export const chatMiddleware = (store) => {
     if (type === 'exportDownloadReady') {
       const event = new Event('chatexportplaced');
       document.dispatchEvent(event);
-      return;
     }
     return next(action);
   };
