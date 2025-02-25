@@ -57,11 +57,12 @@
 
 /datum/ai_holder/proc/go_home()
 	if(home_turf)
-		//ai_log("go_home() : Telling holder to go home.", AI_LOG_INFO)
+		ai_log("go_home() : Telling holder to go home.", AI_LOG_INFO)
 		lose_follow() // So they don't try to path back and forth.
 		give_destination(home_turf, max_home_distance)
 	else
 		ai_log("go_home() : Told to go home without home_turf.", AI_LOG_ERROR)
+		pass() // Remove this ever ai_log does something
 
 /datum/ai_holder/proc/give_destination(turf/new_destination, min_distance = 1, combat = FALSE)
 	ai_log("give_destination() : Entering.", AI_LOG_DEBUG)
@@ -70,11 +71,12 @@
 	min_distance_to_destination = min_distance
 
 	if(new_destination != null)
-		//ai_log("give_destination() : Going to new destination.", AI_LOG_INFO)
+		ai_log("give_destination() : Going to new destination.", AI_LOG_INFO)
 		set_stance(combat ? STANCE_REPOSITION : STANCE_MOVE)
 		return TRUE
 	else
 		ai_log("give_destination() : Given null destination.", AI_LOG_ERROR)
+		pass() // Remove this ever ai_log does something
 
 	ai_log("give_destination() : Exiting.", AI_LOG_DEBUG)
 
