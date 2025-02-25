@@ -210,6 +210,7 @@ const loadChatFromDBStorage = async (store: Store<number, Action<string>>) => {
 
 export const chatMiddleware = (store) => {
   let initialized = false;
+  let dbLoading = false;
   let loaded = false;
   const sequences: number[] = [];
   const sequences_requested: number[] = [];
@@ -256,7 +257,8 @@ export const chatMiddleware = (store) => {
       }, settings.saveInterval * 1000);
       if (!game.databaseBackendEnabled) {
         loadChatFromStorage(store);
-      } else {
+      } else if (!dbLoading) {
+        dbLoading = true;
         loadChatFromDBStorage(store);
       }
     }
