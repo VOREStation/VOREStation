@@ -4,11 +4,11 @@
  * @license MIT
  */
 
-import { resolveAsset } from 'tgui/assets';
-import { fetchRetry } from 'tgui-core/http';
 import type { Action, Store } from 'common/redux';
 import { storage } from 'common/storage';
 import DOMPurify from 'dompurify';
+import { resolveAsset } from 'tgui/assets';
+import { fetchRetry } from 'tgui-core/http';
 
 import { selectGame } from '../game/selectors';
 import {
