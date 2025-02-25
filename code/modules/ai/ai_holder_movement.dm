@@ -57,7 +57,7 @@
 
 /datum/ai_holder/proc/go_home()
 	if(home_turf)
-		ai_log("go_home() : Telling holder to go home.", AI_LOG_INFO)
+		//ai_log("go_home() : Telling holder to go home.", AI_LOG_INFO)
 		lose_follow() // So they don't try to path back and forth.
 		give_destination(home_turf, max_home_distance)
 	else
@@ -70,7 +70,7 @@
 	min_distance_to_destination = min_distance
 
 	if(new_destination != null)
-		ai_log("give_destination() : Going to new destination.", AI_LOG_INFO)
+		//ai_log("give_destination() : Going to new destination.", AI_LOG_INFO)
 		set_stance(combat ? STANCE_REPOSITION : STANCE_MOVE)
 		return TRUE
 	else
