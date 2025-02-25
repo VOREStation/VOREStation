@@ -45,3 +45,4 @@
 	set category = "Abilities.General"
 
 	wants_to_see_motion_echos = !wants_to_see_motion_echos
+	to_chat(src,"You will [wants_to_see_motion_echos ? "now" : "no longer"] see echos")
