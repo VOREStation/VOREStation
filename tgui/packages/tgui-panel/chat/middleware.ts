@@ -150,25 +150,41 @@ const loadChatFromDBStorage = async (store: Store<number, Action<string>>) => {
     return;
   }
 
-  const messages = [] as message[]; // FIX ME, load from DB
+  const messages = [] as message[]; // FIX ME, load from DB, first load has errors => check console
   await new Promise<void>((resolve) => {
     const listener = async () => {
       document.removeEventListener('chatexportplaced', listener);
 
       const response = await fetchRetry(
-        resolveAsset('exported_chatlog_history'),
+        resolveAsset('exported_chatlog_history.json'),
       );
-      const text = await response.text();
+      const text = await response.json();
 
-      // FIX ME DO STUFF WITH THE CONTENTS OF THE FILE
-      console.log(text);
+      text.forEach(
+        (obj: {
+          msg_type: any; // TODO: string | null aka undefined?
+          text_raw: string;
+          created_at: number;
+          round_id: number;
+        }) => {
+          const msg: message = {
+            type: obj.msg_type,
+            html: obj.text_raw,
+            createdAt: obj.created_at,
+            roundId: obj.round_id,
+          };
+
+          messages.push(msg);
+        },
+      );
 
       resolve();
     };
 
     document.addEventListener('chatexportplaced', listener);
-    Byond.sendMessage('databaseExportLinesAsJson', {
+    Byond.sendMessage('databaseExportLines', {
       length: settings.visibleMessageLimit,
+      json: true,
     });
   });
 

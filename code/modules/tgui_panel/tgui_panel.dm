@@ -132,22 +132,13 @@
 	if(type == "databaseExportLines")
 		if(CONFIG_GET(flag/chatlog_database_backend))
 			var/length = payload["length"]
+			var/export_json = payload["json"]
 			if(!length)
 				length = 1000
 
-			vchatlog_read(client.key, length, FALSE, FALSE)
-			client << browse_rsc(file("data/chatlogs/[client.key]"), "exported_chatlog_history")
-		else
-			to_chat(client, span_warning("WARNING: lines chatlog not exported: database backend not enabled."))
-	if(type == "databaseExportLinesAsJson")
-		if(CONFIG_GET(flag/chatlog_database_backend))
-			var/length = payload["length"]
-			if(!length)
-				length = 1000
-
-			vchatlog_read(client.key, length, FALSE, TRUE)
-			client << browse_rsc(file("data/chatlogs/[client.key].json"), "exported_chatlog_history")
-			window.send_message("chatexportplaced")
+			vchatlog_read(client.key, length, FALSE, export_json)
+			client << browse_rsc(file("data/chatlogs/[client.key][export_json ? ".json" : ""]"), "exported_chatlog_history[export_json ? ".json" : ""]")
+			window.send_message("exportDownloadReady")
 		else
 			to_chat(client, span_warning("WARNING: lines chatlog not exported: database backend not enabled."))
 
