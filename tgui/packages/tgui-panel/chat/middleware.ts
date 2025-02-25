@@ -150,25 +150,24 @@ const loadChatFromDBStorage = async (store: Store<number, Action<string>>) => {
     return;
   }
 
-  const messages = [] as message[]; // FIX ME, load from DB, first load has errors => check console
+  const messages: message[] = []; // FIX ME, load from DB, first load has errors => check console
   await new Promise<void>((resolve) => {
     const listener = async () => {
       document.removeEventListener('chatexportplaced', listener);
 
-      const response = await fetchRetry(
+      const text = await fetchRetry(
         resolveAsset('exported_chatlog_history.json'),
-      );
-      const text = await response.json();
+      ).then((response) => response.json());
 
       text.forEach(
         (obj: {
-          msg_type: any; // TODO: string | null aka undefined?
+          msg_type: string | null; // TODO: string | null aka undefined?
           text_raw: string;
           created_at: number;
           round_id: number;
         }) => {
           const msg: message = {
-            type: obj.msg_type,
+            type: obj.msg_type ? obj.msg_type : '',
             html: obj.text_raw,
             createdAt: obj.created_at,
             roundId: obj.round_id,
@@ -178,6 +177,26 @@ const loadChatFromDBStorage = async (store: Store<number, Action<string>>) => {
         },
       );
 
+      if (messages) {
+        for (let message of messages) {
+          if (message.html) {
+            message.html = DOMPurify.sanitize(message.html, {
+              FORBID_TAGS: blacklisted_tags,
+            });
+          }
+        }
+        const batch = [
+          ...messages,
+          createMessage({
+            type: 'internal/reconnected',
+          }),
+        ];
+        chatRenderer.processBatch(batch, {
+          prepend: true,
+        });
+      }
+
+      store.dispatch(loadChat(state));
       resolve();
     };
 
@@ -187,27 +206,6 @@ const loadChatFromDBStorage = async (store: Store<number, Action<string>>) => {
       json: true,
     });
   });
-
-  if (messages) {
-    for (let message of messages) {
-      if (message.html) {
-        message.html = DOMPurify.sanitize(message.html, {
-          FORBID_TAGS: blacklisted_tags,
-        });
-      }
-    }
-    const batch = [
-      ...messages,
-      createMessage({
-        type: 'internal/reconnected',
-      }),
-    ];
-    chatRenderer.processBatch(batch, {
-      prepend: true,
-    });
-  }
-
-  store.dispatch(loadChat(state));
 };
 
 export const chatMiddleware = (store) => {
@@ -247,7 +245,11 @@ export const chatMiddleware = (store) => {
       game.databaseBackendEnabled,
     );
     // Load the chat once settings are loaded
-    if (!initialized && (settings.initialized || settings.firstLoad)) {
+    if (
+      !initialized &&
+      game.dataReceived &&
+      (settings.initialized || settings.firstLoad)
+    ) {
       initialized = true;
       setInterval(() => {
         saveChatToStorage(store);
@@ -377,6 +379,7 @@ export const chatMiddleware = (store) => {
     if (type === 'exportDownloadReady') {
       const event = new Event('chatexportplaced');
       document.dispatchEvent(event);
+      return;
     }
     return next(action);
   };

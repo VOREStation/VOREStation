@@ -12,6 +12,7 @@ type gameState = {
   roundTime: null | number;
   roundRestartedAt: null | number;
   connectionLostAt: null | number;
+  dataReceived: boolean;
   dismissedConnectionWarning: boolean;
   databaseBackendEnabled: boolean;
   databaseStoredRounds: string[];
@@ -23,6 +24,7 @@ const initialState: gameState = {
   roundTime: null,
   roundRestartedAt: null,
   connectionLostAt: null,
+  dataReceived: false,
   dismissedConnectionWarning: false,
   databaseBackendEnabled: false,
   databaseStoredRounds: [],
@@ -41,6 +43,7 @@ export const gameReducer = (state = initialState, action) => {
       return {
         ...state,
         roundId: payload.round_id,
+        dataReceived: payload.game_data_received,
         databaseBackendEnabled: payload.chatlog_db_backend,
         databaseStoredRounds: payload.chatlog_stored_rounds,
       };

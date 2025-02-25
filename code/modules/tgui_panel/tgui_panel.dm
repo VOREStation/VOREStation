@@ -76,6 +76,7 @@
 		var/list/stored_rounds = vchatlog_get_recent_roundids(client.ckey)
 		window.send_message("connected", list(
 			"round_id" = GLOB.round_id, // Sends the round ID to the chat, requires round IDs
+			"game_data_received" = TRUE,
 			"chatlog_db_backend" = CONFIG_GET(flag/chatlog_database_backend),
 			"chatlog_stored_rounds" = islist(stored_rounds) ? list("0") + stored_rounds : list("0")
 		))
