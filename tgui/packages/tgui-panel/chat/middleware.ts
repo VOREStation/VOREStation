@@ -263,7 +263,7 @@ export const chatMiddleware = (store) => {
             length: settings.visibleMessageLimit,
             json: true,
           });
-        }, 1);
+        }, 1000);
       }
     }
     if (type === 'chat/message') {
