@@ -245,18 +245,26 @@ export const chatMiddleware = (store) => {
       game.databaseBackendEnabled,
     );
     // Load the chat once settings are loaded
-    if (!initialized && (settings.initialized || settings.firstLoad)) {
+    if (
+      !initialized &&
+      game.gameDataFetched &&
+      (settings.initialized || settings.firstLoad)
+    ) {
       initialized = true;
       setInterval(() => {
         saveChatToStorage(store);
       }, settings.saveInterval * 1000);
-      setTimeout(() => {
-        if (!game.databaseBackendEnabled) {
-          loadChatFromStorage(store);
-        } else {
-          loadChatFromDBStorage(store);
-        }
-      }, 1000);
+      if (!game.databaseBackendEnabled) {
+        loadChatFromStorage(store);
+      } else {
+        loadChatFromDBStorage(store);
+        setTimeout(() => {
+          Byond.sendMessage('databaseExportLines', {
+            length: settings.visibleMessageLimit,
+            json: true,
+          });
+        }, 1);
+      }
     }
     if (type === 'chat/message') {
       let payload_obj;
