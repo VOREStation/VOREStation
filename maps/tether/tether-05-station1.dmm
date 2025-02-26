@@ -660,9 +660,6 @@
 /obj/machinery/atmospherics/pipe/simple/hidden{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden{
-	dir = 4
-	},
 /obj/machinery/door/firedoor/glass,
 /turf/simulated/floor/tiled/steel_grid,
 /area/engineering/engine_airlock)
@@ -14859,19 +14856,6 @@
 	fancy_shuttle_tag = "secbus"
 	},
 /area/shuttle/securiship/engines)
-"cbX" = (
-/obj/machinery/door/firedoor/glass,
-/obj/machinery/door/firedoor/glass,
-/obj/structure/grille,
-/obj/structure/window/reinforced/full,
-/obj/machinery/door/blast/shutters{
-	dir = 2;
-	id = "cargo_shutter";
-	layer = 3.3;
-	name = "Cargo Shutters"
-	},
-/turf/simulated/floor/plating,
-/area/quartermaster/office)
 "cbY" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 4
@@ -44914,7 +44898,7 @@ oWu
 qkG
 mkL
 iDA
-cbX
+yjH
 tnC
 tWj
 jhJ

@@ -731,7 +731,7 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 /atom/proc/test_telecomms()
 	var/datum/signal/signal = src.telecomms_process()
 	var/pos_z = get_z(src)
-	return (pos_z in signal.data["level"] && signal.data["done"])
+	return ((pos_z in signal.data["level"]) && signal.data["done"])
 
 /atom/proc/telecomms_process(var/do_sleep = 1)
 

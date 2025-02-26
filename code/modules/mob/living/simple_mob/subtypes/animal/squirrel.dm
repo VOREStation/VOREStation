@@ -160,6 +160,7 @@
 				if(prob(1))
 					winterize()
 			if("summer")
+				pass()
 			if("autumn")
 				vore_bump_chance = 20
 				if(prob(50))

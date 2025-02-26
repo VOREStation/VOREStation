@@ -132,7 +132,7 @@ Runs each statement in a block of code.
 			else if(istype(S, /node/statement/FunctionCall))
 				RunFunction(S)
 			else if(istype(S, /node/statement/FunctionDefinition))
-				//do nothing
+				pass() //do nothing
 			else if(istype(S, /node/statement/WhileLoop))
 				RunWhile(S)
 			else if(istype(S, /node/statement/IfStatement))

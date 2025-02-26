@@ -32,41 +32,52 @@
 	if (!cur_command)
 		return
 
-	spawn()
-		do_command(cur_command)
-		if (command_completed(cur_command))
-			cur_command = null
+	do_command(cur_command)
+
+/obj/machinery/door/airlock/proc/check_completion(var/do_lock, var/delayed_status)
+	PRIVATE_PROC(TRUE)
+	SHOULD_NOT_OVERRIDE(TRUE)
+	if(do_lock)
+		lock()
+	if(delayed_status)
+		addtimer(CALLBACK(src, PROC_REF(check_completion)), 0.2 SECONDS)
+		return
+	if(command_completed(cur_command))
+		cur_command = null
+	send_status()
 
 /obj/machinery/door/airlock/proc/do_command(var/command)
 	switch(command)
 		if("open")
 			open()
+			addtimer(CALLBACK(src, PROC_REF(check_completion)), anim_length_before_density + anim_length_before_finalize)
 
 		if("close")
 			close()
+			addtimer(CALLBACK(src, PROC_REF(check_completion)), anim_length_before_density + anim_length_before_finalize)
 
 		if("unlock")
 			unlock()
+			check_completion()
 
 		if("lock")
-			lock()
+			check_completion(TRUE)
 
 		if("secure_open")
 			unlock()
 
-			sleep(2)
-			open()
-
-			lock()
+			addtimer(CALLBACK(src, PROC_REF(do_secure_open)), 0.2 SECONDS)
 
 		if("secure_close")
 			unlock()
 			close()
+			addtimer(CALLBACK(src, PROC_REF(check_completion), TRUE, 0.2 SECONDS), anim_length_before_density + anim_length_before_finalize)
 
-			lock()
-			sleep(2)
-
-	send_status()
+/obj/machinery/door/airlock/proc/do_secure_open()
+	PRIVATE_PROC(TRUE)
+	SHOULD_NOT_OVERRIDE(TRUE)
+	open()
+	addtimer(CALLBACK(src, PROC_REF(check_completion), TRUE), anim_length_before_density + anim_length_before_finalize)
 
 /obj/machinery/door/airlock/proc/command_completed(var/command)
 	switch(command)

@@ -1,0 +1,5 @@
+author: "SatinIsle"
+delete-after: True
+changes:
+  - bugfix: "Fixed mantraps eating the same person instantly on escape, they now do not eat someone who has escaped them previously."
+  - bugfix: "Fixed a few mob names being capitalised."

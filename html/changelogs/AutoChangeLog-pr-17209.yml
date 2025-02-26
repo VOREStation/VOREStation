@@ -1,0 +1,4 @@
+author: "Kashargul"
+delete-after: True
+changes:
+  - code_imp: "enables the block spawn on runechat now where flicker is fixed"

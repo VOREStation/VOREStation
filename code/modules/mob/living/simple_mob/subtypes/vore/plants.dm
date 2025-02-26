@@ -1,7 +1,7 @@
 /////////////////////////////////////Man-Trap/////////////////////////////////////////
 
 /mob/living/simple_mob/vore/mantrap
-	name = "Mantrap"
+	name = "mantrap"
 	desc = "This massive plant lays in wait in the brush, and can be very difficult to spot. When laying open on the ground, the trap mechanism resembles a massive saw-toothed maw."
 	catalogue_data = list(/datum/category_item/catalogue/fauna/mantrap)
 	tt_desc = "Dionaea Humanis"
@@ -36,6 +36,7 @@
 	vore_default_mode = DM_SELECT
 	vore_pounce_maxhealth = 1000
 	vore_bump_emote = "encloses on"
+	var/list/eaten_mobs = list()
 
 /mob/living/simple_mob/vore/mantrap/init_vore()
 	if(!voremob_loaded)
@@ -73,8 +74,11 @@
 		return
 	if(isliving(AM))
 		var/mob/living/L = AM
+		if(L in eaten_mobs)
+			return
 		if(L.devourable && L.allowmobvore && (src.vore_fullness < src.vore_capacity))
 			perform_the_nom(src,L,src,src.vore_selected,1)
+			L |= eaten_mobs
 			return
 		else
 			return
@@ -84,7 +88,7 @@
 
 
 /mob/living/simple_mob/vore/pitcher
-	name = "Pitcher Plant"
+	name = "pitcher plant"
 	desc = "This large pitcher plant looks big enough to fit an entire person, with a little stretching. Long tendrils rest at the entrance."
 	catalogue_data = list(/datum/category_item/catalogue/fauna/pitcher)
 	tt_desc = "Nepenthes Titanis"

@@ -9110,9 +9110,6 @@
 /obj/structure/bed/chair/wheelchair{
 	dir = 4
 	},
-/obj/structure/bed/chair/wheelchair{
-	dir = 4
-	},
 /obj/machinery/camera/network/medbay{
 	dir = 4
 	},

@@ -3207,6 +3207,14 @@
 /obj/structure/flora/pottedplant/minitree,
 /turf/simulated/floor/wood,
 /area/groundbase/medical/cmo)
+"WN" = (
+/obj/structure/privacyswitch{
+	dir = 4;
+	pixel_y = 27;
+	pixel_x = -28
+	},
+/turf/simulated/floor/carpet/retro,
+/area/groundbase/dorms/bathroom)
 "WO" = (
 /obj/effect/floor_decal/industrial/warning{
 	dir = 5
@@ -9350,7 +9358,7 @@ mr
 Rq
 jP
 ip
-ip
+WN
 TU
 Rq
 jv

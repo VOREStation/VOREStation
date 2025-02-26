@@ -42,3 +42,6 @@
   ItsSelis:
   - code_imp: disabled some testing logs by default (now require -DTESTING to be set
       while compiling)
+2025-02-25:
+  ItsSelis:
+  - bugfix: fixed a few lines of code so that the code is compileable in OpenDream

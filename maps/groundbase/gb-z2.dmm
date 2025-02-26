@@ -2048,6 +2048,11 @@
 	dir = 2;
 	icon_state = "pipe-c"
 	},
+/obj/structure/privacyswitch{
+	dir = 4;
+	pixel_x = -30;
+	pixel_y = -27
+	},
 /turf/simulated/floor/wood,
 /area/groundbase/dorms/room4)
 "fc" = (
@@ -3701,6 +3706,11 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4;
 	icon_state = "pipe-c"
+	},
+/obj/structure/privacyswitch{
+	pixel_y = -27;
+	dir = 8;
+	pixel_x = 30
 	},
 /turf/simulated/floor/wood,
 /area/groundbase/dorms/room5)
@@ -8826,6 +8836,11 @@
 	dir = 1;
 	pixel_y = -30
 	},
+/obj/structure/privacyswitch{
+	dir = 1;
+	pixel_y = -30;
+	pixel_x = -5
+	},
 /turf/simulated/floor/wood,
 /area/groundbase/dorms/room1)
 "yC" = (
@@ -9720,6 +9735,11 @@
 /obj/structure/disposalpipe/segment{
 	dir = 2;
 	icon_state = "pipe-c"
+	},
+/obj/structure/privacyswitch{
+	dir = 4;
+	pixel_x = -30;
+	pixel_y = -27
 	},
 /turf/simulated/floor/wood,
 /area/groundbase/dorms/room6)
@@ -13403,6 +13423,11 @@
 	pixel_x = 7;
 	id = "dorm8"
 	},
+/obj/structure/privacyswitch{
+	dir = 4;
+	pixel_x = -30;
+	pixel_y = -27
+	},
 /turf/simulated/floor/wood,
 /area/groundbase/dorms/room8)
 "Lu" = (
@@ -15392,6 +15417,11 @@
 	pixel_x = -7;
 	id = "dorm7"
 	},
+/obj/structure/privacyswitch{
+	pixel_y = -27;
+	dir = 8;
+	pixel_x = 30
+	},
 /turf/simulated/floor/wood,
 /area/groundbase/dorms/room7)
 "QP" = (
@@ -15760,6 +15790,11 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4;
 	icon_state = "pipe-c"
+	},
+/obj/structure/privacyswitch{
+	pixel_y = -27;
+	dir = 8;
+	pixel_x = 30
 	},
 /turf/simulated/floor/wood,
 /area/groundbase/dorms/room3)
@@ -16974,6 +17009,11 @@
 	pixel_y = -7;
 	pixel_x = -27;
 	id = "dorm2"
+	},
+/obj/structure/privacyswitch{
+	dir = 4;
+	pixel_y = 27;
+	pixel_x = -30
 	},
 /turf/simulated/floor/wood,
 /area/groundbase/dorms/room2)

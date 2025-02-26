@@ -3,11 +3,12 @@
 	var/header
 	if(DA)
 		if (islist(DA))
+			var/list/data_list = DA
 			var/index = name
 			if (value)
-				name = DA[name] //name is really the index until this line
+				name = data_list[name] //name is really the index until this line
 			else
-				value = DA[name]
+				value = data_list[name]
 			header = "<li style='backgroundColor:white'>(<a href='byond://?_src_=vars;[HrefToken()];[VV_HK_LIST_EDIT]=1;target=\ref[DA];index=[index]'>E</a>) (<a href='byond://?_src_=vars;[HrefToken()];[VV_HK_LIST_CHANGE]=1;target=\ref[DA];index=[index]'>C</a>) (<a href='byond://?_src_=vars;[HrefToken()];[VV_HK_LIST_REMOVE]=1;target=\ref[DA];index=[index]'>-</a>) "
 		else
 			header = "<li style='backgroundColor:white'>(<a href='byond://?_src_=vars;[HrefToken()];datumedit=\ref[DA];varnameedit=[name]'>E</a>) (<a href='byond://?_src_=vars;[HrefToken()];datumchange=\ref[DA];varnamechange=[name]'>C</a>) (<a href='byond://?_src_=vars;[HrefToken()];datummass=\ref[DA];varnamemass=[name]'>M</a>) "

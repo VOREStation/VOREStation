@@ -195,7 +195,7 @@
 		var/newnet = tgui_input_text(usr, "Which network do you want to view?", "Comm Monitor", network, 15)
 		newnet = sanitize(newnet,15)
 
-		if(newnet && ((usr in range(1, src) || issilicon(usr))))
+		if(newnet && ((usr in range(1, src)) || issilicon(usr)))
 			if(length(newnet) > 15)
 				temp = "<font color = #D70B00>- FAILED: NETWORK TAG STRING TOO LENGHTLY -</font>"
 

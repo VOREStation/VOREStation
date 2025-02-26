@@ -13295,9 +13295,6 @@
 /turf/simulated/floor/tiled/monotile,
 /area/stellardelight/deck3/commandhall)
 "Vr" = (
-/obj/machinery/atmospherics/unary/vent_pump/on{
-	dir = 1
-	},
 /obj/structure/table/reinforced,
 /obj/item/paper_bin{
 	pixel_x = -3;
