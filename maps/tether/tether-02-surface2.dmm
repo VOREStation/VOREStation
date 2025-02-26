@@ -32938,6 +32938,13 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/chapel/main)
+"paD" = (
+/obj/machinery/alarm{
+	dir = 1;
+	pixel_y = -25
+	},
+/turf/simulated/floor/wood,
+/area/engineering/lower/breakroom)
 "pkt" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -46354,7 +46361,7 @@ aNP
 aOF
 aPq
 aQh
-aNP
+paD
 aRx
 aSd
 aSd
