@@ -40,7 +40,7 @@
 		comp.paused = FALSE
 		identifier = length(comp.identifier) > 0 ? comp.identifier : initial(identifier)
 		material = length(comp.material) > 0 ? comp.material : initial(material)
-		tint = length(comp.tint) > 0 ? comp.tint : initial(tint)
+		tint = length(comp.tint) > 0 ? comp.tint : initial(comp.tint)
 		adjective = length(comp.adjective) > 0 ? comp.adjective : initial(adjective)
 		if (copytext_char(adjective, -1) != "s")
 			adjective += "s"
