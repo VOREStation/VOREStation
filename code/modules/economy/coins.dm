@@ -1,7 +1,7 @@
 /*****************************Coin********************************/
 
 /obj/item/coin
-	icon = 'icons/obj/items.dmi'
+	icon = 'icons/obj/coins.dmi'
 	name = "Coin"
 	desc = "A simple coin you can flip."
 	icon_state = "coin"
@@ -50,7 +50,7 @@
 
 /obj/item/coin/platinum
 	name = "platinum coin"
-	icon_state = "coin_adamantine"
+	icon_state = "coin_platinum"
 	matter = list(MAT_GOLD = 250)
 
 /obj/item/coin/morphium

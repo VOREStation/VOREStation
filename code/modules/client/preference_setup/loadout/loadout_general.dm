@@ -30,6 +30,26 @@
 	display_name = "deck of cards"
 	path = /obj/item/deck/cards
 
+/datum/gear/fake_coin
+	display_name = "coin selection"
+	description = "A small piece of metal often exchanged for goods and services, but no longer considered legal tender in most jurisdictions. Doesn't look like it'll go in the coin slot of vending machines."
+	path = /obj/item/fake_coin/silver
+
+/datum/gear/fake_coin/New()
+	..()
+	var/cointype = list()
+	cointype["silver"] = /obj/item/fake_coin/silver
+	cointype["gold"] = /obj/item/fake_coin/gold
+	cointype["diamond"] = /obj/item/fake_coin/diamond
+	cointype["iron"] = /obj/item/fake_coin/iron
+	cointype["phoron"] = /obj/item/fake_coin/phoron
+	cointype["uranium"] = /obj/item/fake_coin/uranium
+	cointype["platinum"] = /obj/item/fake_coin/platinum
+	cointype["morphium"] = /obj/item/fake_coin/morphium
+	cointype["aluminium"] = /obj/item/fake_coin/aluminium
+	cointype["verdantium"] = /obj/item/fake_coin/verdantium
+	gear_tweaks += new/datum/gear_tweak/path(cointype)
+
 /datum/gear/tarot
 	display_name = "deck of tarot cards"
 	path = /obj/item/deck/tarot
