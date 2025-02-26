@@ -73,7 +73,7 @@
 /datum/tgui_panel/proc/on_message(type, payload)
 	if(type == "ready")
 		broken = FALSE
-		var/list/stored_rounds = vchatlog_get_recent_roundids(client.ckey)
+		var/list/stored_rounds = CONFIG_GET(flag/chatlog_database_backend) ? vchatlog_get_recent_roundids(client.ckey) : null
 		window.send_message("connected", list(
 			"round_id" = GLOB.round_id, // Sends the round ID to the chat, requires round IDs
 			"chatlog_db_backend" = CONFIG_GET(flag/chatlog_database_backend),
@@ -109,15 +109,15 @@
 			var/timestamp = payload["timestamp"]
 			if(start_round > end_round)
 				return
-			var/list/stored_rounds = vchatlog_get_recent_roundids(client.ckey)
+			var/list/stored_rounds = vchatlog_get_recent_roundids(client.key)
 			if(!islist(stored_rounds))
 				return
 			if(!(start_round in stored_rounds))
 				return
 			if(!(end_round in stored_rounds))
 				return
-			vchatlog_read_rounds(client.ckey, start_round, end_round, timestamp, FALSE)
-			client << browse_rsc(file("data/chatlogs/[client.ckey]-[start_round]-[end_round]"), "exported_chatlog")
+			vchatlog_read_rounds(client.key, start_round, end_round, timestamp, FALSE)
+			client << browse_rsc(file("data/chatlogs/[client.key]-[start_round]-[end_round]"), "exported_chatlog")
 			window.send_message("exportDownloadReady")
 		else
 			to_chat(client, span_warning("WARNING: round chatlog not exported: database backend not enabled."))
@@ -126,8 +126,8 @@
 			var/round_id = payload["roundId"]
 			var/timestamp = payload["timestamp"]
 			if(round_id)
-				vchatlog_read_round(client.ckey, round_id, timestamp, FALSE)
-				client << browse_rsc(file("data/chatlogs/[client.ckey]-[round_id]"), "exported_chatlog")
+				vchatlog_read_round(client.key, round_id, timestamp, FALSE)
+				client << browse_rsc(file("data/chatlogs/[client.key]-[round_id]"), "exported_chatlog")
 				window.send_message("exportDownloadReady")
 		else
 			to_chat(client, span_warning("WARNING: round chatlog not exported: database backend not enabled."))
@@ -139,8 +139,8 @@
 			if(!length)
 				length = 1000
 
-			vchatlog_read(client.ckey, length, FALSE, timestamp, export_json)
-			client << browse_rsc(file("data/chatlogs/[client.ckey][export_json ? ".json" : ""]"), "exported_chatlog_history[export_json ? ".json" : ""]")
+			vchatlog_read(client.key, length, FALSE, timestamp, export_json)
+			client << browse_rsc(file("data/chatlogs/[client.key][export_json ? ".json" : ""]"), "exported_chatlog_history[export_json ? ".json" : ""]")
 			window.send_message("exportDownloadReady")
 		else
 			to_chat(client, span_warning("WARNING: lines chatlog not exported: database backend not enabled."))
