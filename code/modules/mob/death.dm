@@ -79,6 +79,7 @@
 		src.visible_message(span_infoplain(span_bold("\The [src.name]") + " [deathmessage]"))
 
 	set_stat(DEAD)
+	SSmotiontracker.ping(src,80)
 
 	update_canmove()
 
