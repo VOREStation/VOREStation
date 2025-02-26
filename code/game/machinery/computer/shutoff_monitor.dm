@@ -7,8 +7,8 @@
 	circuit = /obj/item/circuitboard/shutoff_monitor
 	var/datum/tgui_module/shutoff_monitor/monitor
 
-/obj/machinery/computer/shutoff_monitor/New()
-	..()
+/obj/machinery/computer/shutoff_monitor/Initialize(mapload)
+	. = ..()
 	monitor = new(src)
 
 /obj/machinery/computer/shutoff_monitor/Destroy()

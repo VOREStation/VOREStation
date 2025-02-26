@@ -52,8 +52,8 @@
 /obj/item/clothing/accessory/bracelet/material
 	icon_state = "materialbracelet"
 
-/obj/item/clothing/accessory/bracelet/material/New(var/newloc, var/new_material)
-	..(newloc)
+/obj/item/clothing/accessory/bracelet/material/Initialize(mapload, var/new_material)
+	. = ..()
 	if(!new_material)
 		new_material = MAT_STEEL
 	material = get_material_by_name(new_material)
@@ -67,32 +67,32 @@
 /obj/item/clothing/accessory/bracelet/material/get_material()
 	return material
 
-/obj/item/clothing/accessory/bracelet/material/wood/New(var/newloc)
-	..(newloc, MAT_WOOD)
+/obj/item/clothing/accessory/bracelet/material/wood/Initialize(mapload)
+	. = ..(mapload, MAT_WOOD)
 
-/obj/item/clothing/accessory/bracelet/material/plastic/New(var/newloc)
-	..(newloc, MAT_PLASTIC)
+/obj/item/clothing/accessory/bracelet/material/plastic/Initialize(mapload)
+	. = ..(mapload, MAT_PLASTIC)
 
-/obj/item/clothing/accessory/bracelet/material/iron/New(var/newloc)
-	..(newloc, MAT_IRON)
+/obj/item/clothing/accessory/bracelet/material/iron/Initialize(mapload)
+	. = ..(mapload, MAT_IRON)
 
-/obj/item/clothing/accessory/bracelet/material/steel/New(var/newloc)
-	..(newloc, MAT_STEEL)
+/obj/item/clothing/accessory/bracelet/material/steel/Initialize(mapload)
+	. = ..(mapload, MAT_STEEL)
 
-/obj/item/clothing/accessory/bracelet/material/silver/New(var/newloc)
-	..(newloc, MAT_SILVER)
+/obj/item/clothing/accessory/bracelet/material/silver/Initialize(mapload)
+	. = ..(mapload, MAT_SILVER)
 
-/obj/item/clothing/accessory/bracelet/material/gold/New(var/newloc)
-	..(newloc, MAT_GOLD)
+/obj/item/clothing/accessory/bracelet/material/gold/Initialize(mapload)
+	. = ..(mapload, MAT_GOLD)
 
-/obj/item/clothing/accessory/bracelet/material/platinum/New(var/newloc)
-	..(newloc, MAT_PLATINUM)
+/obj/item/clothing/accessory/bracelet/material/platinum/Initialize(mapload)
+	. = ..(mapload, MAT_PLATINUM)
 
-/obj/item/clothing/accessory/bracelet/material/phoron/New(var/newloc)
-	..(newloc, MAT_PHORON)
+/obj/item/clothing/accessory/bracelet/material/phoron/Initialize(mapload)
+	. = ..(mapload, MAT_PHORON)
 
-/obj/item/clothing/accessory/bracelet/material/glass/New(var/newloc)
-	..(newloc, MAT_GLASS)
+/obj/item/clothing/accessory/bracelet/material/glass/Initialize(mapload)
+	. = ..(mapload, MAT_GLASS)
 
 //wristbands
 

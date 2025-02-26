@@ -106,12 +106,10 @@
 		else
 			output += "<p><b><a href='byond://?src=\ref[src];open_station_news=1'>Show [using_map.station_name] News<br>(NEW!)</A></b></p>"
 
-	/* //TODO: Actually add the fukin changelog. We need it DESPERATELY but this isn't the PR for it.
-	if(client.prefs.lastchangelog == changelog_hash)
+	if(read_preference(/datum/preference/text/lastchangelog) == GLOB.changelog_hash)
 		output += "<p><a href='byond://?src=\ref[src];open_changelog=1'>Show Changelog</A><br><i>No Changes</i></p>"
 	else
 		output += "<p><b><a href='byond://?src=\ref[src];open_changelog=1'>Show Changelog</A><br>(NEW!)</b></p>"
-	*/
 
 	output += "</div>"
 
@@ -354,7 +352,9 @@
 			client.feedback_form = new(client)
 
 	if(href_list["open_changelog"])
-		src << link("https://wiki.vore-station.net/Changelog")
+		write_preference_directly(/datum/preference/text/lastchangelog, GLOB.changelog_hash)
+		client.changes()
+		return
 
 /mob/new_player/proc/handle_server_news()
 	if(!client)

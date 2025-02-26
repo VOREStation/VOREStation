@@ -57,8 +57,13 @@ var/global/list/robot_modules = list(
 /obj/item/robot_module/proc/hide_on_manifest()
 	. = hide_on_manifest
 
-/obj/item/robot_module/New(var/mob/living/silicon/robot/R)
-	..()
+/obj/item/robot_module/Initialize(mapload)
+	. = ..()
+
+	if(!isrobot(loc))
+		return
+
+	var/mob/living/silicon/robot/R = loc
 	R.module = src
 
 	add_camera_networks(R)
@@ -193,9 +198,12 @@ var/global/list/robot_modules = list(
 			CHANNEL_EXPLORATION = 1
 			)
 
-/obj/item/robot_module/robot/New(var/mob/living/silicon/robot/R)
-	..()
+/obj/item/robot_module/robot/Initialize(mapload)
+	. = ..()
 
+	if(!isrobot(loc))
+		return
+	var/mob/living/silicon/robot/R = loc
 	if(R.sprite_datum)
 		R.sprite_datum.do_equipment_glamour(src)
 

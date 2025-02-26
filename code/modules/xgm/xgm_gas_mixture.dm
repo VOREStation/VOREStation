@@ -232,7 +232,7 @@
 /datum/gas_mixture/proc/remove_ratio(ratio, out_group_multiplier = 1)
 	if(ratio <= 0)
 		return null
-	out_group_multiplier = between(1, out_group_multiplier, group_multiplier)
+	out_group_multiplier = clamp(out_group_multiplier, 1, group_multiplier)
 
 	ratio = min(ratio, 1)
 
@@ -240,8 +240,8 @@
 	removed.group_multiplier = out_group_multiplier
 
 	for(var/g in gas)
-		removed.gas[g] = (gas[g] * ratio * group_multiplier / out_group_multiplier)
-		gas[g] = gas[g] * (1 - ratio)
+		removed.gas[g] = QUANTIZE((gas[g] * ratio * group_multiplier / out_group_multiplier))
+		gas[g] = QUANTIZE(gas[g] * (1 - ratio))
 
 	removed.temperature = temperature
 	removed.volume = volume * group_multiplier / out_group_multiplier

@@ -17513,18 +17513,6 @@
 	},
 /turf/simulated/floor,
 /area/bridge_hallway)
-"aEN" = (
-/obj/structure/cable/green{
-	icon_state = "4-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/turf/simulated/floor/plating,
-/area/maintenance/commandmaint)
 "aEO" = (
 /obj/structure/cable/green{
 	icon_state = "4-8"
@@ -30276,7 +30264,6 @@
 	dir = 1
 	},
 /obj/structure/grille,
-/obj/structure/grille,
 /obj/structure/window/reinforced{
 	dir = 8
 	},
@@ -32951,6 +32938,13 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/chapel/main)
+"paD" = (
+/obj/machinery/alarm{
+	dir = 1;
+	pixel_y = -25
+	},
+/turf/simulated/floor/wood,
+/area/engineering/lower/breakroom)
 "pkt" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -46367,7 +46361,7 @@ aNP
 aOF
 aPq
 aQh
-aNP
+paD
 aRx
 aSd
 aSd
@@ -46631,7 +46625,7 @@ aBW
 aCL
 aDC
 aAJ
-aEN
+azH
 aFp
 aGg
 aGK
@@ -46773,7 +46767,7 @@ aze
 aCM
 aDD
 aAJ
-aEN
+azH
 aFp
 aFp
 aFp

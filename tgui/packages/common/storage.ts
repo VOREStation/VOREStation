@@ -8,7 +8,8 @@
 
 export const IMPL_MEMORY = 0;
 export const IMPL_HUB_STORAGE = 1;
-export const IMPL_INDEXED_DB = 2;
+
+type StorageImplementation = typeof IMPL_MEMORY | typeof IMPL_HUB_STORAGE;
 
 const INDEXED_DB_VERSION = 1;
 const INDEXED_DB_NAME = 'virgo';
@@ -17,7 +18,15 @@ const INDEXED_DB_STORE_NAME = 'storage-v1';
 const READ_ONLY = 'readonly';
 const READ_WRITE = 'readwrite';
 
-const testGeneric = (testFn) => () => {
+type StorageBackend = {
+  impl: StorageImplementation;
+  get(key: string): Promise<any>;
+  set(key: string, value: any): Promise<void>;
+  remove(key: string): Promise<void>;
+  clear(): Promise<void>;
+};
+
+const testGeneric = (testFn: () => boolean) => (): boolean => {
   try {
     return Boolean(testFn());
   } catch {
@@ -26,30 +35,33 @@ const testGeneric = (testFn) => () => {
 };
 
 const testHubStorage = testGeneric(
-  () => window.hubStorage && window.hubStorage.getItem,
+  () => window.hubStorage && !!window.hubStorage.getItem,
 );
 
-class HubStorageBackend {
+class HubStorageBackend implements StorageBackend {
+  public impl: StorageImplementation;
+
   constructor() {
     this.impl = IMPL_HUB_STORAGE;
   }
 
-  async get(key) {
+  async get(key: string): Promise<any> {
     const value = await window.hubStorage.getItem('virgo-' + key);
     if (typeof value === 'string') {
       return JSON.parse(value);
     }
+    return undefined;
   }
 
-  set(key, value) {
+  async set(key: string, value: any): Promise<void> {
     window.hubStorage.setItem('virgo-' + key, JSON.stringify(value));
   }
 
-  remove(key) {
+  async remove(key: string): Promise<void> {
     window.hubStorage.removeItem('virgo-' + key);
   }
 
-  clear() {
+  async clear(): Promise<void> {
     window.hubStorage.clear();
   }
 }
@@ -58,7 +70,10 @@ class HubStorageBackend {
  * Web Storage Proxy object, which selects the best backend available
  * depending on the environment.
  */
-class StorageProxy {
+class StorageProxy implements StorageBackend {
+  private backendPromise: Promise<StorageBackend>;
+  public impl: StorageImplementation = IMPL_MEMORY;
+
   constructor() {
     this.backendPromise = (async () => {
       if (!Byond.TRIDENT) {
@@ -74,25 +89,25 @@ class StorageProxy {
         }
         return new HubStorageBackend();
       }
-    })();
+    })() as Promise<StorageBackend>;
   }
 
-  async get(key) {
+  async get(key: string): Promise<any> {
     const backend = await this.backendPromise;
     return backend.get(key);
   }
 
-  async set(key, value) {
+  async set(key: string, value: any): Promise<void> {
     const backend = await this.backendPromise;
     return backend.set(key, value);
   }
 
-  async remove(key) {
+  async remove(key: string): Promise<void> {
     const backend = await this.backendPromise;
     return backend.remove(key);
   }
 
-  async clear() {
+  async clear(): Promise<void> {
     const backend = await this.backendPromise;
     return backend.clear();
   }

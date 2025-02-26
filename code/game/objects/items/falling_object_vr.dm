@@ -8,8 +8,10 @@
 	var/falling_type = /obj/item/reagent_containers/food/snacks/sliceable/pizza/margherita
 	var/crushing = TRUE
 
-/obj/effect/falling_effect/Initialize(mapload, type)
+/obj/effect/falling_effect/Initialize(mapload, type, var/crushing_type)
 	..()
+	if(!isnull(crushing_type))
+		crushing = crushing_type
 	if(type)
 		falling_type = type
 	return INITIALIZE_HINT_LATELOAD
