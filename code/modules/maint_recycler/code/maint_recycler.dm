@@ -175,7 +175,7 @@
 
 /obj/machinery/maint_recycler/attackby(obj/item/O, mob/user)
 	if(!door_open)
-		if(W.has_tool_quality(TOOL_CROWBAR))
+		if(O.has_tool_quality(TOOL_CROWBAR))
 			if(stat & (BROKEN|NOPOWER))
 				to_chat(user, span_warning("you lever \The [src]'s door open!"))
 				open_door(user)

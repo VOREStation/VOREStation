@@ -2798,6 +2798,7 @@
 #include "code\modules\maint_recycler\code\client.dm"
 #include "code\modules\maint_recycler\code\maint_recycler.dm"
 #include "code\modules\maint_recycler\code\util.dm"
+#include "code\modules\maint_recycler\code\vendor_goodies\vendor_goodies.dm"
 #include "code\modules\makeup\nailpolish.dm"
 #include "code\modules\maps\bapi-dmm\bapi_bindings.dm"
 #include "code\modules\maps\bapi-dmm\bapi_dmm_reader.dm"
