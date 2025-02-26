@@ -201,10 +201,6 @@ const loadChatFromDBStorage = async (store: Store<number, Action<string>>) => {
     };
 
     document.addEventListener('chatexportplaced', listener);
-    Byond.sendMessage('databaseExportLines', {
-      length: settings.visibleMessageLimit,
-      json: true,
-    });
   });
 };
 
@@ -245,25 +241,23 @@ export const chatMiddleware = (store) => {
       game.databaseBackendEnabled,
     );
     // Load the chat once settings are loaded
-    if (
-      !initialized &&
-      game.gameDataFetched &&
-      (settings.initialized || settings.firstLoad)
-    ) {
+    if (!initialized && (settings.initialized || settings.firstLoad)) {
       initialized = true;
       setInterval(() => {
         saveChatToStorage(store);
       }, settings.saveInterval * 1000);
       if (!game.databaseBackendEnabled) {
+        // This needs to be handled on a timeout of the websocket...
         loadChatFromStorage(store);
       } else {
         loadChatFromDBStorage(store);
+        // Byond is bad for this. We need a websocket...
         setTimeout(() => {
           Byond.sendMessage('databaseExportLines', {
             length: settings.visibleMessageLimit,
             json: true,
           });
-        }, 1000);
+        }, 1);
       }
     }
     if (type === 'chat/message') {

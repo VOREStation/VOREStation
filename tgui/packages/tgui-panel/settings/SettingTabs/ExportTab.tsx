@@ -253,7 +253,7 @@ export const ExportTab = (props) => {
             <Stack.Item>
               <Box>
                 {game.databaseBackendEnabled
-                  ? game.databaseStoredRounds.length
+                  ? game.databaseStoredRounds.length - 1
                   : storedRounds}
               </Box>
             </Stack.Item>
