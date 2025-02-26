@@ -7,6 +7,8 @@
 import type { Action, Store } from 'common/redux';
 import { storage } from 'common/storage';
 import DOMPurify from 'dompurify';
+import { resolveAsset } from 'tgui/assets';
+import { fetchRetry } from 'tgui-core/http';
 
 import { selectGame } from '../game/selectors';
 import {
@@ -42,21 +44,24 @@ let storedRounds: number[] = [];
 let storedLines: number[] = [];
 
 const saveChatToStorage = async (store: Store<number, Action<string>>) => {
+  const game = selectGame(store.getState());
   const state = selectChat(store.getState());
   const settings = selectSettings(store.getState());
-  const fromIndex = Math.max(
-    0,
-    chatRenderer.messages.length - settings.persistentMessageLimit,
-  );
-  const messages = chatRenderer.messages
-    .slice(fromIndex)
-    .map((message) => serializeMessage(message));
   storage.set('chat-state', state);
-  storage.set('chat-messages', messages);
-  storage.set(
-    'chat-messages-archive',
-    chatRenderer.archivedMessages.map((message) => serializeMessage(message)),
-  ); // FIXME: Better chat history
+  if (!game.databaseBackendEnabled) {
+    const fromIndex = Math.max(
+      0,
+      chatRenderer.messages.length - settings.persistentMessageLimit,
+    );
+    const messages = chatRenderer.messages
+      .slice(fromIndex)
+      .map((message) => serializeMessage(message));
+    storage.set('chat-messages', messages);
+    storage.set(
+      'chat-messages-archive',
+      chatRenderer.archivedMessages.map((message) => serializeMessage(message)),
+    );
+  } // FIXME: Better chat history
 };
 
 const loadChatFromStorage = async (store: Store<number, Action<string>>) => {
@@ -136,6 +141,69 @@ const loadChatFromStorage = async (store: Store<number, Action<string>>) => {
   store.dispatch(loadChat(state));
 };
 
+const loadChatFromDBStorage = async (store: Store<number, Action<string>>) => {
+  const settings = selectSettings(store.getState());
+  const [state] = await Promise.all([storage.get('chat-state')]);
+  // Discard incompatible versions
+  if (state && state.version <= 4) {
+    store.dispatch(loadChat());
+    return;
+  }
+
+  const messages: message[] = []; // FIX ME, load from DB, first load has errors => check console
+  await new Promise<void>((resolve) => {
+    const listener = async () => {
+      document.removeEventListener('chatexportplaced', listener);
+
+      const text = await fetchRetry(
+        resolveAsset('exported_chatlog_history.json'),
+      ).then((response) => response.json());
+
+      text.forEach(
+        (obj: {
+          msg_type: string | null; // TODO: string | null aka undefined?
+          text_raw: string;
+          created_at: number;
+          round_id: number;
+        }) => {
+          const msg: message = {
+            type: obj.msg_type ? obj.msg_type : '',
+            html: obj.text_raw,
+            createdAt: obj.created_at,
+            roundId: obj.round_id,
+          };
+
+          messages.push(msg);
+        },
+      );
+
+      if (messages) {
+        for (let message of messages) {
+          if (message.html) {
+            message.html = DOMPurify.sanitize(message.html, {
+              FORBID_TAGS: blacklisted_tags,
+            });
+          }
+        }
+        const batch = [
+          ...messages,
+          createMessage({
+            type: 'internal/reconnected',
+          }),
+        ];
+        chatRenderer.processBatch(batch, {
+          prepend: true,
+        });
+      }
+
+      store.dispatch(loadChat(state));
+      resolve();
+    };
+
+    document.addEventListener('chatexportplaced', listener);
+  });
+};
+
 export const chatMiddleware = (store) => {
   let initialized = false;
   let loaded = false;
@@ -170,6 +238,7 @@ export const chatMiddleware = (store) => {
       settings.hideImportantInAdminTab,
       settings.interleave,
       settings.interleaveColor,
+      game.databaseBackendEnabled,
     );
     // Load the chat once settings are loaded
     if (!initialized && (settings.initialized || settings.firstLoad)) {
@@ -177,7 +246,19 @@ export const chatMiddleware = (store) => {
       setInterval(() => {
         saveChatToStorage(store);
       }, settings.saveInterval * 1000);
-      loadChatFromStorage(store);
+      if (!game.databaseBackendEnabled) {
+        // This needs to be handled on a timeout of the websocket...
+        loadChatFromStorage(store);
+      } else {
+        loadChatFromDBStorage(store);
+        // Byond is bad for this. We need a websocket...
+        setTimeout(() => {
+          Byond.sendMessage('databaseExportLines', {
+            length: settings.visibleMessageLimit,
+            json: true,
+          });
+        }, 1);
+      }
     }
     if (type === 'chat/message') {
       let payload_obj;
@@ -280,6 +361,8 @@ export const chatMiddleware = (store) => {
         settings.logLineCount,
         storedLines[storedLines.length - settings.exportEnd],
         storedLines[storedLines.length - settings.exportStart],
+        settings.exportEnd,
+        settings.exportStart,
       );
       return;
     }
@@ -292,6 +375,10 @@ export const chatMiddleware = (store) => {
       settings.exportStart = 0;
       settings.exportEnd = 0;
       return;
+    }
+    if (type === 'exportDownloadReady') {
+      const event = new Event('chatexportplaced');
+      document.dispatchEvent(event);
     }
     return next(action);
   };

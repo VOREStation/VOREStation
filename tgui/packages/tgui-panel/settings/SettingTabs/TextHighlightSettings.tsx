@@ -193,7 +193,7 @@ const TextHighlightSetting = (props) => {
           )
         }
       />
-      {highlightBlacklist ? (
+      {!!highlightBlacklist && (
         <TextArea
           height="3em"
           value={blacklistText}
@@ -207,8 +207,6 @@ const TextHighlightSetting = (props) => {
             )
           }
         />
-      ) : (
-        ''
       )}
     </Stack.Item>
   );

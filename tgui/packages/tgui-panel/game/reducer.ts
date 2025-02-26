@@ -7,13 +7,25 @@
 import { connectionLost } from './actions';
 import { connectionRestored, dismissWarning } from './actions';
 
-const initialState = {
+type gameState = {
+  roundId: number | null;
+  roundTime: null | number;
+  roundRestartedAt: null | number;
+  connectionLostAt: null | number;
+  dismissedConnectionWarning: boolean;
+  databaseBackendEnabled: boolean;
+  databaseStoredRounds: string[];
+};
+
+const initialState: gameState = {
   // TODO: This is where round info should be.
   roundId: null,
   roundTime: null,
   roundRestartedAt: null,
   connectionLostAt: null,
   dismissedConnectionWarning: false,
+  databaseBackendEnabled: false,
+  databaseStoredRounds: [],
 };
 
 export const gameReducer = (state = initialState, action) => {
@@ -29,6 +41,8 @@ export const gameReducer = (state = initialState, action) => {
       return {
         ...state,
         roundId: payload.round_id,
+        databaseBackendEnabled: payload.chatlog_db_backend,
+        databaseStoredRounds: payload.chatlog_stored_rounds,
       };
     }
   }

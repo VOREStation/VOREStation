@@ -712,3 +712,7 @@
 /// Controls whether simple mobs may recolour themselves once/spawn by giving them the recolour verb
 /// Admins may manually give them the verb even if disabled
 /datum/config_entry/flag/allow_simple_mob_recolor
+
+/// Chatlogs are now saved by calling the chatlogging library instead of letting the clients handle it
+/// REQUIRES an database
+/datum/config_entry/flag/chatlog_database_backend

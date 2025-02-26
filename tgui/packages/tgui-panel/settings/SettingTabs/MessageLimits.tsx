@@ -2,11 +2,13 @@ import { useDispatch, useSelector } from 'tgui/backend';
 import { Box, LabeledList, NumberInput, Section } from 'tgui-core/components';
 import { toFixed } from 'tgui-core/math';
 
+import { useGame } from '../../game';
 import { updateSettings } from '../actions';
 import { selectSettings } from '../selectors';
 
 export const MessageLimits = (props) => {
   const dispatch = useDispatch();
+  const game = useGame();
   const {
     visibleMessageLimit,
     persistentMessageLimit,
@@ -35,12 +37,10 @@ export const MessageLimits = (props) => {
             }
           />
           &nbsp;
-          {visibleMessageLimit >= 5000 ? (
+          {visibleMessageLimit >= 5000 && (
             <Box inline fontSize="0.9em" color="red">
               Impacts performance!
             </Box>
-          ) : (
-            ''
           )}
         </LabeledList.Item>
         <LabeledList.Item label="Amount of visually persistent lines 0-10000 (Default: 1000)">
@@ -61,12 +61,10 @@ export const MessageLimits = (props) => {
             }
           />
           &nbsp;
-          {persistentMessageLimit >= 2500 ? (
+          {persistentMessageLimit >= 2500 && (
             <Box inline fontSize="0.9em" color="red">
               Delays initialization!
             </Box>
-          ) : (
-            ''
           )}
         </LabeledList.Item>
         <LabeledList.Item label="Amount of different lines in-between to combine 0-10 (Default: 5)">
@@ -106,33 +104,33 @@ export const MessageLimits = (props) => {
             }
           />
         </LabeledList.Item>
-        <LabeledList.Item label="Message store interval 1-10 (Default: 10 Seconds) [Requires restart]">
-          <NumberInput
-            width="5em"
-            step={1}
-            stepPixelSize={5}
-            minValue={1}
-            maxValue={10}
-            value={saveInterval}
-            unit="s"
-            format={(value) => toFixed(value)}
-            onDrag={(value) =>
-              dispatch(
-                updateSettings({
-                  saveInterval: value,
-                }),
-              )
-            }
-          />
-          &nbsp;
-          {saveInterval <= 3 ? (
-            <Box inline fontSize="0.9em" color="red">
-              Warning, experimental! Might crash!
-            </Box>
-          ) : (
-            ''
-          )}
-        </LabeledList.Item>
+        {!game.databaseBackendEnabled && (
+          <LabeledList.Item label="Message store interval 1-10 (Default: 10 Seconds) [Requires restart]">
+            <NumberInput
+              width="5em"
+              step={1}
+              stepPixelSize={5}
+              minValue={1}
+              maxValue={10}
+              value={saveInterval}
+              unit="s"
+              format={(value) => toFixed(value)}
+              onDrag={(value) =>
+                dispatch(
+                  updateSettings({
+                    saveInterval: value,
+                  }),
+                )
+              }
+            />
+            &nbsp;
+            {saveInterval <= 3 && (
+              <Box inline fontSize="0.9em" color="red">
+                Warning, experimental! Might crash!
+              </Box>
+            )}
+          </LabeledList.Item>
+        )}
       </LabeledList>
     </Section>
   );
