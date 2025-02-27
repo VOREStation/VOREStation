@@ -14,6 +14,7 @@
 
 /obj/item/healthanalyzer/proc/guide(var/mob/living/carbon/human/M, mob/living/user)
 
+/* Enable this if you want non-medical users to be blocked from the guide. Kind of pointless, since the only ones that would really NEED the guide are non-medical users.
 	var/obj/item/card/id/ourid = user?.GetIdCard()
 	if(!ourid)
 		return
@@ -27,6 +28,7 @@
 		return
 	if(!ishuman(M))
 		return
+*/
 
 	var/dat = ""
 
@@ -72,45 +74,45 @@
 		bloodloss = TRUE
 
 	if(bleeding_external)
-		dat += span_bold("Surface bleeding") + " - Bandage immediately or apply brute-damage fixing chemicals (i.e. Bicaridine) if no bandages available.<br>"
+		dat += span_bold("Surface Bleeding") + " - Apply bandages or administer Bicaridine.<br>"
 	if(bleeding_internal)
-		dat += span_bold("Internal bleeding") + " - Commence internal vein repair surgery or apply clotting chemicals (i.e. Myelamine).<br>"
+		dat += span_bold("Internal Bleeding") + " - Commence an internal vein repair operation or administer coagulants, such as Myelamine.<br>"
 	if(M.getOxyLoss())
-		dat += span_bold("Suffociation") + " - Give Dexalin or Dexalin Plus. Check for heart or lung damage.<br>"
+		dat += span_bold("Suffocation") + " - Administer Dexalin or Dexalin Plus. Check for heart or lung damage.<br>"
 	if(infection)
-		dat += span_bold("Infection") + " - Give Spaceacillin. If severe, use Corophizine or overdose on Spaceacillin and monitor until well.<br>"
+		dat += span_bold("Infection") + " - Administer Spaceacillin. If severe, use Corophizine or overdose on Spaceacillin and monitor until well.<br>"
 	if(M.getBrainLoss() >= 1)
-		dat += span_bold("Brain damage") + " - Commence brain repair surgery, apply Alkysine, or universal organ-repair chemicals. (i.e. Peridaxon).<br>"
+		dat += span_bold("Traumatic Brain Injury") + " - Commence brain repair surgery, administer Alkysine or universal organ-repair chemicals such as Peridaxon.<br>"
 	if(M.radiation || M.accumulated_rads)
-		dat += span_bold("Radiation") + " - Give Hyronalin or Arithrazine. Monitor for genetic damage.<br>"
+		dat += span_bold("Radiation Exposure") + " - Administer Hyronalin or Arithrazine. Monitor for genetic damage.<br>"
 	if(organ)
-		dat += span_bold("Organ damage") + " - Give Peridaxon. Perform full body scan for targeted organ repair surgery.<br>"
+		dat += span_bold("Organ Damage") + " - Administer Peridaxon. Perform a full body scan for targeted organ repair surgery.<br>"
 	if(bloodloss)
 		dat += span_bold("Low blood volume") + " - Commence blood transfusion via IV drip or provide blood-restorative chemicals (e.g.: Copper for zorren and skrell, iron for the rest)."
 	if(M.getToxLoss())
-		dat += span_bold("Toxins") + " - Give Dylovene or Carthatoline. Vomitting is normal and helpful. Tends to be a symptom of larger issues, such as infection.<br>"
+		dat += span_bold("Toxin Buildup") + " - Inject Dylovene or Carthatoline. Monitor for damage to the liver or kidneys.<br>"
 	if(M.getBruteLoss())
-		dat += span_bold("Brute trauma") + " - Bandage wounded body part. Give Bicaridine or Vermicetol.<br>"
+		dat += span_bold("Physical Trauma") + " - Bandage the wounded body part. Administer Bicaridine or Vermicetol depending on the severity.<br>"
 	if(M.getFireLoss())
-		dat += span_bold("Surface burn") + " - Salve wounded body part in ointment. Give Kelotane or Dermaline. Check for infections.<br>"
+		dat += span_bold("Burn Wounds") + " - Salve the wounded body part in ointment. Administer Kelotane or Dermaline. Check for infections.<br>"
 	if(M.getCloneLoss())
-		dat += span_bold("Genetic damage") + " - Utilize cryogenic pod with appropriate chemicals (i.e. Cryoxadone) and below 70 K, or give Rezadone.<br>"
+		dat += span_bold("Genetic Damage") + " - Utilize cryogenic pod with appropriate chemicals (i.e. Cryoxadone) and below 70 K, or give Rezadone.<br>"
 	if(bone)
 		dat += span_bold("Bone fracture") + " - Splint damaged area. Treat with bone repair surgery or Osteodaxon after treating brute damage.<br>"
-	if(M.viruses.len)
+	if(M.viruses && M.viruses.len)
 		for(var/datum/disease/D in M.GetViruses())
 			if(D.visibility_flags & HIDDEN_SCANNER)
 				continue
 			else
 				dat += span_bold("Viral Infection") + " - Inform a Virologist or the Chief Medical Officer and administer antiviral chemicals such as Spaceacillin. Limit exposure to other personnel.<br>"
 	if(robotparts)
-		dat += span_bold("Robotic body parts") + " - Should not be repaired by medical personnel, refer to robotics if damaged."
+		dat += span_bold("Robotic Body Parts") + " - Inform the Robotics department."
 
 	var/peeb
 	if(dat)
-		peeb += span_boldnotice("GUIDANCE SYSTEM BEGIN")
-		peeb +="<br>"
+		peeb += span_notice(span_bold("GUIDANCE SYSTEM BEGIN"))
+		peeb += "<br>"
 		peeb += dat
-		peeb += span_notice("For more detailed information about patient condition, use the stationary scanner in medbay.")
+		peeb += span_notice("For more detailed information on the patient's condition, utilize a body scanner at the closest medical bay.")
 
 	user.show_message(peeb, 1)

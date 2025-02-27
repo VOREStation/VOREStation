@@ -49,7 +49,8 @@
 			continue
 		if(istype(DD.vars[V],/list))
 			var/list/L = D.vars[V]
-			DD.vars[V] = L.Copy()
+			if(L)
+				DD.vars[V] = L.Copy()
 		else
 			DD.vars[V] = D.vars[V]
 
