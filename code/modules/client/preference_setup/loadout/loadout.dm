@@ -83,7 +83,7 @@ var/list/gear_datums = list()
 		if(G.whitelisted && CONFIG_GET(flag/loadout_whitelist) != LOADOUT_WHITELIST_OFF && pref.client) //VOREStation Edit.
 			if(CONFIG_GET(flag/loadout_whitelist) == LOADOUT_WHITELIST_STRICT && G.whitelisted != pref.species)
 				continue
-			if(CONFIG_GET(flag/loadout_whitelist) == LOADOUT_WHITELIST_LAX && !is_alien_whitelisted(preference_mob(), GLOB.all_species[G.whitelisted]))
+			if(CONFIG_GET(flag/loadout_whitelist) == LOADOUT_WHITELIST_LAX && !is_alien_whitelisted(preference_mob.client, GLOB.all_species[G.whitelisted]))
 				continue
 		if(max_cost && G.cost > max_cost)
 			continue

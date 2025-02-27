@@ -27,7 +27,7 @@
 	var/datum/player_info/P = new
 	if (user)
 		P.author = user.key
-		P.rank = user.client.holder.rank
+		P.rank = user.client.holder.rank_names()
 	else
 		P.author = "Adminbot"
 		P.rank = "Friendly Robot"

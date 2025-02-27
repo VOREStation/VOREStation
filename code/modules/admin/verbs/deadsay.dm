@@ -15,7 +15,7 @@
 		to_chat(src, span_warning("You have deadchat muted."))
 		return
 
-	var/stafftype = uppertext(holder.rank)
+	var/stafftype = uppertext(holder.rank_names())
 
 	msg = sanitize(msg)
 	log_admin("DSAY: [key_name(src)] : [msg]")

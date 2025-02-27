@@ -196,7 +196,7 @@
 		return
 
 	//No whitelist
-	if(!is_alien_whitelisted(user, GLOB.all_species[user.client.prefs.species]))
+	if(!is_alien_whitelisted(user.client, GLOB.all_species[user.client.prefs.species]))
 		to_chat(user, span_warning("You cannot use this spawnpoint to spawn as a species you are not whitelisted for!"))
 		return
 

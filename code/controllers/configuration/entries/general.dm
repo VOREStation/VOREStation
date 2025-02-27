@@ -438,8 +438,17 @@
 
 /datum/config_entry/flag/no_click_cooldown
 
-/// Defines whether the server uses the legacy admin system with admins.txt or the SQL system. Config option in config.txt
-/datum/config_entry/flag/admin_legacy_system
+/datum/config_entry/flag/admin_legacy_system //Defines whether the server uses the legacy admin system with admins.txt or the SQL system
+	protection = CONFIG_ENTRY_LOCKED
+
+/datum/config_entry/flag/protect_legacy_admins //Stops any admins loaded by the legacy system from having their rank edited by the permissions panel
+	protection = CONFIG_ENTRY_LOCKED
+
+/datum/config_entry/flag/protect_legacy_ranks //Stops any ranks loaded by the legacy system from having their flags edited by the permissions panel
+	protection = CONFIG_ENTRY_LOCKED
+
+/datum/config_entry/flag/load_legacy_ranks_only //Loads admin ranks only from legacy admin_ranks.txt, while enabled ranks are mirrored to the database
+	protection = CONFIG_ENTRY_LOCKED
 
 /// Defines whether the server uses the legacy banning system with the files in /data or the SQL system. Config option in config.txt
 /datum/config_entry/flag/ban_legacy_system
@@ -712,3 +721,5 @@
 /// Controls whether simple mobs may recolour themselves once/spawn by giving them the recolour verb
 /// Admins may manually give them the verb even if disabled
 /datum/config_entry/flag/allow_simple_mob_recolor
+
+/datum/config_entry/flag/forbid_admin_profiling

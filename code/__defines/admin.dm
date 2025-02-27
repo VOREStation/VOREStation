@@ -22,25 +22,29 @@
 
 #define ROUNDSTART_LOGOUT_REPORT_TIME 6000 // Amount of time (in deciseconds) after the rounds starts, that the player disconnect report is issued.
 
-// Admin permissions.
-#define R_BUILDMODE     0x1
-#define R_ADMIN         0x2
-#define R_BAN           0x4
-#define R_FUN           0x8
-#define R_SERVER        0x10
-#define R_DEBUG         0x20
-#define R_POSSESS       0x40
-#define R_PERMISSIONS   0x80
-#define R_STEALTH       0x100
-#define R_REJUVINATE    0x200
-#define R_VAREDIT       0x400
-#define R_SOUNDS        0x800
-#define R_SPAWN         0x1000
-#define R_MOD           0x2000
-#define R_EVENT	        0x4000
-#define R_HOST          0x8000 //higher than this will overflow
+//Admin Permissions
+/// Used for signifying that all admins can use this regardless of actual permissions
+#define R_NONE NONE
+#define R_BUILDMODE (1<<0)
+#define R_ADMIN (1<<1)
+#define R_BAN (1<<2)
+#define R_FUN (1<<3)
+#define R_SERVER (1<<4)
+#define R_DEBUG (1<<5)
+#define R_POSSESS (1<<6)
+#define R_PERMISSIONS (1<<7)
+#define R_STEALTH (1<<8)
+#define R_REJUVINATE (1<<9)
+#define R_VAREDIT (1<<10)
+#define R_SOUNDS (1<<11)
+#define R_SPAWN (1<<12)
+#define R_MOD (1<<13)
+#define R_EVENT (1<<14)
+#define R_HOST (1<<15) //higher than this will overflow
 
-#define R_MAXPERMISSION 0x8000 // This holds the maximum value for a permission. It is used in iteration, so keep it updated.
+#define R_DEFAULT R_NONE
+
+#define R_EVERYTHING (1<<16)-1 //the sum of all other rank permissions, used for +EVERYTHING
 
 #define SMITE_BREAKLEGS				"Break Legs"
 #define SMITE_BLUESPACEARTILLERY	"Bluespace Artillery"
@@ -72,3 +76,6 @@
 #define AHELP_ACTIVE 1
 #define AHELP_CLOSED 2
 #define AHELP_RESOLVED 3
+
+/// A value for /datum/admins/cached_feedback_link to indicate empty, rather than unobtained
+#define NO_FEEDBACK_LINK "no_feedback_link"

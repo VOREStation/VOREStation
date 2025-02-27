@@ -1,46 +1,89 @@
-########################################################################################
-# ADMIN RANK DEFINES                                                                   #
-# The format of this is very simple. Rank name goes first.                             #
-# Rank is CASE-SENSITIVE, all punctuation will be stripped so spaces don't matter.     #
-# Each rank is then followed by keywords with the prefix "+".                          #
-# These keywords represent groups of verbs and abilities which are given to that rank. #
-# +@ (or +prev) is a special shorthand which adds all the rights of the rank above it. #
-# Ranks with no keywords will just be given the most basic verbs and abilities   ~Carn #
-########################################################################################
-# PLEASE NOTE: depending on config options, some abilities will be unavailable regardless if you have permission to use them!
-# ALSO NOTE: this is a WorkInProgress at the moment. Most of this is just arbitrarily thrown in whatever group because LoadsaWork2Do+LittleTime.
-#            I'll be doing more moving around as feedback comes in. So be sure to check the notes after updates.
+#Admin Rank format is as follows:
+#
+#Name = Game Admin
+#Include = @ ADMIN BAN SOUND
+#Exclude = FUN
+#Edit =
+#
+#Name will match anything after '=' and must be identical to an admin's rank in admins.txt to be linked but otherwise has no formatting restrictions.
+#A rank's permissions are defined with keywords that control access to groups of verbs and abilities, they are case-sensitive and separated by a space with no prefix.
+#To define no permissions for a type, leave it empty.
+#There are three types of permissions:
+#Include will give a keyword to a rank.
+#Exclude removes a keyword and takes precedence over Include.
+#Edit will allow an admin to edit these permissions on other ranks or change an admin's rank to another if they can edit all the permissions it has.
+#Edit is only used when SQL-based admin loading is enabled.
+#If SQL-based admin loading is enabled, ranks and their keywords listed here will be loaded first and override any with the same name loaded from the database.
+#
+#The following are valid permission keywords:
+#ADMIN = general admin tools, verbs etc.
+#FUN = events, other event-orientated actions. Access to the fun secrets in the secrets panel.
+#BAN = the ability to ban and unban.
+#STEALTH = the ability to stealthmin (make yourself appear with a fake name to everyone but other admins).
+#POSSESS = the ability to possess objects.
+#REJUVINATE = the ability to heal, respawn, modify damage and use godmode
+#BUILDMODE = the ability to use buildmode.
+#SERVER = the ability to restart the server, change the game mode or force a round to start/end.
+#DEBUG = debug tools used for diagnosing and fixing problems. It's useful to give this to coders so they can investigate problems on a live server.
+#VAREDIT = everyone may view viewvars/debugvars/whatever you call it. This keyword allows you to actually EDIT those variables.
+#PERMISSIONS = allows you to promote and/or demote people.
+#SOUNDS = allows you to upload and play SOUND.
+#SPAWN = mob transformations, spawning of most atoms including mobs (high-risk atoms, e.g. blackholes, will require the +FUN flag too).
+#EVENT = a group of verbs that make it possible to run an event, or other badminnery.
+#EVERYTHING = Simply gives you everything without having to type every flag.
+#@ = special keyword for the current permission type that adds all the keywords that the preceding rank has of the same type.
 
-# KEYWORDS:
-# +ADMIN = general admin tools, verbs etc
-# +FUN = events, other event-orientated actions. Access to the fun secrets in the secrets panel.
-# +BAN = the ability to ban, jobban and fullban
-# +STEALTH = the ability to stealthmin (make yourself appear with a fake name to everyone but other admins
-# +POSSESS = the ability to possess objects
-# +REJUV (or +REJUVINATE) = the ability to heal, respawn, modify damage and use godmode
-# +BUILD (or +BUILDMODE) = the ability to use buildmode
-# +SERVER = higher-risk admin verbs and abilities, such as those which affect the server configuration.
-# +DEBUG = debug tools used for diagnosing and fixing problems. It's useful to give this to coders so they can investigate problems on a live server.
-# +VAREDIT = everyone may view viewvars/debugvars/whatever you call it. This keyword allows you to actually EDIT those variables.
-# +RIGHTS (or +PERMISSIONS) = allows you to promote and/or demote people.
-# +SOUND (or +SOUNDS) = allows you to upload and play sounds
-# +SPAWN (or +CREATE) = mob transformations, spawning of most atoms including mobs (high-risk atoms, e.g. blackholes, will require the +FUN flag too)
-# +EVENT = a group of verbs that make it possible to run an event, or other badminnery.
-# +EVERYTHING (or +HOST or +ALL) = Simply gives you everything without having to type every flag
+Name = Admin Observer
+Include =
+Exclude =
+Edit =
 
-Admin Observer
-Moderator		+MOD
-Mentor                  +MENTOR
+Name = Moderator
+Include = MOD
+Exclude =
+Edit =
 
-Admin Candidate	+ADMIN
-Trial Admin		+@ +SPAWN +REJUV +VAREDIT +BAN
-Badmin			+@ +POSSESS +BUILDMODE +SERVER +FUN
-Game Admin		+@ +STEALTH +SOUNDS +DEBUG +PERMISSIONS
-Game Master		+EVERYTHING
-Head Admin		+EVERYTHING
-Retired Admin	+ADMIN +STEALTH
+Name = Admin Candidate
+Include = ADMIN
+Exclude =
+Edit =
 
-Host			+EVERYTHING
+Name = Trial Admin
+Include = @ SPAWN REJUVINATE VAREDIT BAN
+Exclude =
+Edit =
 
-Developer		+DEBUG +VAREDIT +SERVER +SPAWN +REJUV +POSSESS +BUILDMODE
-Dev Mod			+@ +MOD
+Name = Badmin
+Include = @ POSSESS BUILDMODE SERVER FUN
+Exclude =
+Edit =
+
+Name = Game Admin
+Include = @ STEALTH SOUNDS DEBUG PERMISSIONS
+Exclude =
+Edit =
+
+Name = Game Master
+Include = EVERYTHING
+Exclude =
+Edit = EVERYTHING
+
+Name = Head Admin
+Include = EVERYTHING
+Exclude =
+Edit = EVERYTHING
+
+Name = Retired Admin
+Include = ADMIN STEALTH
+Exclude =
+Edit =
+
+Name = Host
+Include = EVERYTHING
+Exclude =
+Edit = EVERYTHING
+
+Name = Developer
+Include = DEBUG VAREDIT SERVER SPAWN REJUVINATE POSSESS BUILDMODE
+Exclude =
+Edit =
