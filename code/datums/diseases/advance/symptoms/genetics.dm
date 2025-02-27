@@ -18,7 +18,7 @@
 /datum/symptom/genetic/Activate(datum/disease/advance/A)
 	if(!..())
 		return
-	var/mob/living/human/H = A.affected_mob
+	var/mob/living/carbon/human/H = A.affected_mob
 	switch(A.stage)
 		if(4, 5)
 			if(passive_message && prob(2))

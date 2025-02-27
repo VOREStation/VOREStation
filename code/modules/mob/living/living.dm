@@ -966,7 +966,7 @@
 	for(var/i=0 to distance)
 		if(blood)
 			if(T)
-				blood_splatter(T, H.get_blood(H.vessel), TRUE)
+				blood_splatter(T, large = TRUE)
 			if(stun)
 				adjustBruteLoss(3)
 		else if(T)

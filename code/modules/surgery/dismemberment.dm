@@ -8,7 +8,6 @@
 	for(var/organ in zone_list)
 		regenerate_limb(organ)
 
-
 /mob/living/proc/regenerate_limb(limb_zone, noheal)
 	return
 
