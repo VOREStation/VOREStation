@@ -473,7 +473,6 @@
 /area/submap/OtieShelter)
 "Nd" = (
 /obj/structure/table/marble,
-/obj/structure/table/marble,
 /obj/item/radio/phone,
 /turf/simulated/floor/carpet/turcarpet,
 /area/submap/OtieShelter)

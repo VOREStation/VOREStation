@@ -7560,12 +7560,6 @@
 /obj/item/clothing/under/color/lightred,
 /turf/simulated/floor/wood,
 /area/redgate/city/apartments)
-"jZT" = (
-/obj/structure/ladder/up{
-	pixel_y = 7
-	},
-/turf/simulated/floor/water/indoors,
-/area/redgate/city/pool)
 "kay" = (
 /obj/structure/sink{
 	dir = 8;
@@ -34123,7 +34117,7 @@ iLu
 nqa
 eRt
 gue
-jZT
+lxg
 lxg
 lxg
 dDr

@@ -1538,7 +1538,6 @@
 /area/shuttle/skipjack)
 "dI" = (
 /obj/structure/shuttle/engine/propulsion,
-/turf/space,
 /turf/simulated/shuttle/plating/airless/carry,
 /area/shuttle/skipjack)
 "dJ" = (

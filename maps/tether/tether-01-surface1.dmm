@@ -37591,11 +37591,6 @@
 /area/maintenance/substation/surfaceservicesubstation)
 "wjd" = (
 /obj/effect/floor_decal/rust,
-/obj/machinery/power/apc{
-	dir = 4;
-	name = "east bump";
-	pixel_x = 28
-	},
 /obj/structure/cable{
 	icon_state = "0-8"
 	},
@@ -38046,11 +38041,6 @@
 /turf/simulated/floor/tiled,
 /area/crew_quarters/visitor_laundry)
 "xtS" = (
-/obj/machinery/power/apc{
-	dir = 4;
-	name = "east bump";
-	pixel_x = 28
-	},
 /obj/structure/cable/green{
 	icon_state = "0-8"
 	},

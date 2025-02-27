@@ -6160,9 +6160,6 @@
 /obj/item/aiModule/paladin,
 /obj/item/aiModule/robocop,
 /obj/structure/cable/blue,
-/obj/machinery/power/apc/angled{
-	dir = 8
-	},
 /turf/simulated/floor/bluegrid,
 /area/ai_cyborg_station)
 "wq" = (
@@ -13958,9 +13955,6 @@
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/maintenance/stellardelight/deck3/foreportroomb)
 "XJ" = (
-/obj/machinery/power/apc/angled{
-	dir = 8
-	},
 /obj/structure/cable/blue,
 /turf/simulated/floor/tiled/dark,
 /area/lawoffice)
