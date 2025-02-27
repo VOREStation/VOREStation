@@ -1,7 +1,7 @@
 // Species flags.
 #define NO_MINOR_CUT      	0x1	// Can step on broken glass with no ill-effects. Either thick skin (diona), cut resistant (slimes) or incorporeal (shadows)
 #define IS_PLANT          	0x2	// Is a treeperson.
-#define NO_SCAN           	0x4	// Cannot be scanned in a DNA machine/genome-stolen.
+#define NO_SLEEVE        	0x4	// Cannot be resleeved by clonepods
 #define NO_PAIN           	0x8	// Cannot suffer halloss/recieves deceptive health indicator.
 #define NO_SLIP           	0x10	// Cannot fall over.
 #define NO_POISON         	0x20	// Cannot not suffer toxloss.
@@ -11,6 +11,7 @@
 #define UNDEAD			0x200	// Various things that living things don't do, mostly for skeletons
 #define NO_INFECT		0x400	// Don't allow infections in limbs or organs, similar to IS_PLANT, without other strings.
 #define NO_DEFIB		0x800	// Don't allow them to be defibbed
+#define NO_DNA          0x1000	// Cannot have mutations or have their dna changed by genetics/radiation/genome-stolen.
 // unused: 0x8000 - higher than this will overflow
 
 // Species EMP vuln for carbons
