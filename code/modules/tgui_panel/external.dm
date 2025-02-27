@@ -43,3 +43,8 @@
 	for(var/window_id in tgui_windows)
 		var/datum/tgui_window/window = tgui_windows[window_id]
 		window.reinitialize()
+
+/client/verb/panel_devtools()
+	set name = "Enable TGUI Devtools"
+	set category = "OOC.Settings"
+	winset(src, "", "browser-options=devtools")
