@@ -46,8 +46,8 @@
 				/obj/item/clothing/head/helmet/space/void/medical
 			),
 			prob(5);list(
-				/obj/item/clothing/suit/space/void/medical/alt,
-				/obj/item/clothing/head/helmet/space/void/medical/alt
+				/obj/item/clothing/suit/space/void/medical/veymed,
+				/obj/item/clothing/head/helmet/space/void/medical/veymed
 			),
 			prob(5);list(
 				/obj/item/clothing/suit/space/void/medical/bio,
@@ -178,8 +178,8 @@
 				/obj/item/clothing/head/helmet/space/void/medical
 			),
 			prob(1);list(
-				/obj/item/clothing/suit/space/void/medical/alt,
-				/obj/item/clothing/head/helmet/space/void/medical/alt
+				/obj/item/clothing/suit/space/void/medical/veymed,
+				/obj/item/clothing/head/helmet/space/void/medical/veymed
 			),
 			prob(3);list(
 				/obj/item/clothing/suit/space/void/medical/bio,
@@ -227,7 +227,7 @@
 				/obj/item/clothing/suit/space/void/refurb/pilot,
 				/obj/item/clothing/head/helmet/space/void/refurb/pilot
 			),
-			
+
 			prob(10);list(
 				/obj/item/clothing/suit/space/void/refurb/pilot,
 				/obj/item/clothing/head/helmet/space/void/refurb/pilot/alt
