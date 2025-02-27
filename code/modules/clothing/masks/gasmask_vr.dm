@@ -18,8 +18,3 @@
 	icon_override = 'icons/inventory/face/mob_vr.dmi'
 	body_parts_covered = FACE|EYES
 	flags_inv = HIDEEARS|HIDEEYES|HIDEFACE
-
-/obj/item/clothing/mask/gas/plaguedoctor
-	sprite_sheets = list(
-		SPECIES_TESHARI = 'icons/inventory/face/mob_vr_teshari.dmi'
-		)

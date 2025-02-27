@@ -354,7 +354,7 @@
 	corpsehelmet = /obj/item/clothing/head/beret/solgov/sifguard
 	corpsegloves = /obj/item/clothing/gloves/duty
 	corpseshoes = /obj/item/clothing/shoes/boots/tactical
-	corpsepocket1 = /obj/item/clothing/accessory/armor/tag/sifguard
+	//corpsepocket1 = /obj/item/clothing/accessory/armor/tag/sifguard
 	corpseid = 1
 	corpseidjob = "Sif Defense Force Patrolman"
 

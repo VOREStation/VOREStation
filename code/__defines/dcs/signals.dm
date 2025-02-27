@@ -809,3 +809,9 @@
 #define COMSIG_OBSERVER_ITEM_UNEQUIPPED "observer_item_unequipped"
 #define COMSIG_OBSERVER_APC "observer_apc"
 #define COMSIG_OBSERVER_GLOBALMOVED "observer_global_move"
+
+
+//Unittest data update
+#ifdef UNIT_TEST
+#define COMSIG_UNITTEST_DATA "unittest_send_data"
+#endif

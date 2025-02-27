@@ -181,25 +181,6 @@
 	drop_sound = 'sound/items/drop/cardboardbox.ogg'
 	pickup_sound = 'sound/items/pickup/cardboardbox.ogg'
 
-/obj/item/clothing/head/justice
-	name = "justice hat"
-	desc = "fight for what's righteous!"
-	icon_state = "justicered" //Does this even exist?
-	flags_inv = BLOCKHAIR
-	body_parts_covered = HEAD|EYES
-
-/obj/item/clothing/head/justice/blue
-	icon_state = "justiceblue"
-
-/obj/item/clothing/head/justice/yellow
-	icon_state = "justiceyellow"
-
-/obj/item/clothing/head/justice/green
-	icon_state = "justicegreen"
-
-/obj/item/clothing/head/justice/pink
-	icon_state = "justicepink"
-
 /obj/item/clothing/head/rabbitears
 	name = "rabbit ears"
 	desc = "Wearing these makes you looks useless, and only good for your sex appeal."
@@ -364,18 +345,6 @@
 	body_parts_covered = 0
 	item_state_slots = list(slot_r_hand_str = "taq", slot_l_hand_str = "taq")
 
-/obj/item/clothing/head/cowl
-	name = "black cowl"
-	desc = "A gold-lined black cowl. It gives off uncomfortable cult vibes, but fancy."
-	icon_state = "cowl"
-	body_parts_covered = 0
-
-/obj/item/clothing/head/cowl
-	name = "white cowl"
-	desc = "A gold-lined white cowl. It gives off uncomfortable cult vibes, but fancy."
-	icon_state = "whitecowl"
-	body_parts_covered = 0
-
 /obj/item/clothing/head/blackngoldheaddress
 	name = "black and gold headdress"
 	desc = "An odd looking headdress that covers the eyes."
@@ -398,7 +367,7 @@
 /obj/item/clothing/head/beret/corp/pcrc
 	name = "\improper PCRC beret"
 	desc = "A black beret with a PCRC logo insignia, denoting service with Proxima Centauri Risk Control. For private security personnel that are more inclined towards style than safety."
-	icon_state = "beret_black_observatory"
+	icon_state = "beret_black_pcrc"
 
 
 /obj/item/clothing/head/beret/corp/hedberg

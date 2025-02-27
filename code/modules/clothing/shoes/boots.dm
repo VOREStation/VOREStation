@@ -12,6 +12,8 @@
 	desc = "Lacking a durasteel horse to ride."
 	icon_state = "cowboy"
 	drop_sound = 'sound/items/drop/leather.ogg'
+	heat_protection = FEET|LEGS
+	cold_protection = FEET|LEGS
 
 /obj/item/clothing/shoes/boots/cowboy/classic
 	name = "classic cowboy boots"
@@ -22,7 +24,7 @@
 	name = "snake skin boots"
 	desc = "A pair of cowboy boots made from python skin."
 	icon_state = "cowboy_snakeskin"
-
+/* //Icons lost to time.
 /obj/item/clothing/shoes/boots/cowboy/green
 	name = "green cowboy boots"
 	desc = "A classic looking pair of durable cowboy boots made out of snappy green leather."
@@ -32,7 +34,7 @@
 	name = "blue cowboy boots"
 	desc = "A classic looking pair of durable cowboy boots made out of extra fancy blue leather."
 	icon_state = "cowboy_blue"
-
+*/
 /obj/item/clothing/shoes/boots/cowboy/brown
 	name = "brown cowboy boots"
 	desc = "A small sticker lets you know they've been inspected for snakes, It is unclear how long ago the inspection took place..."
@@ -74,6 +76,8 @@
 	desc = "Taller synthleather boots with an artificial shine."
 	icon_state = "kneeboots"
 	item_state_slots = list(slot_r_hand_str = "jackboots", slot_l_hand_str = "jackboots")
+	heat_protection = FEET|LEGS
+	cold_protection = FEET|LEGS
 
 /obj/item/clothing/shoes/boots/jackboots/toeless/knee
 	name = "toe-less knee-length jackboots"
@@ -81,12 +85,16 @@
 	icon_state = "digikneeboots"
 	item_state_slots = list(slot_r_hand_str = "jackboots", slot_l_hand_str = "jackboots")
 	species_restricted = null
+	heat_protection = FEET|LEGS
+	cold_protection = FEET|LEGS
 
 /obj/item/clothing/shoes/boots/jackboots/thigh
 	name = "thigh-length jackboots"
 	desc = "Even taller synthleather boots with an artificial shine."
 	icon_state = "thighboots"
 	item_state_slots = list(slot_r_hand_str = "jackboots", slot_l_hand_str = "jackboots")
+	heat_protection = FEET|LEGS
+	cold_protection = FEET|LEGS
 
 /obj/item/clothing/shoes/boots/jackboots/toeless/thigh
 	name = "toe-less thigh-length jackboots"
@@ -94,6 +102,8 @@
 	icon_state = "digithighboots"
 	item_state_slots = list(slot_r_hand_str = "jackboots", slot_l_hand_str = "jackboots")
 	species_restricted = null
+	heat_protection = FEET|LEGS
+	cold_protection = FEET|LEGS
 
 /obj/item/clothing/shoes/boots/jackboots/recolorable
 	icon_state = "boots_recolor"
@@ -118,9 +128,7 @@
 	name = "winter boots"
 	desc = "Boots lined with 'synthetic' animal fur."
 	icon_state = "winterboots"
-	cold_protection = FEET
 	min_cold_protection_temperature = SHOE_MIN_COLD_PROTECTION_TEMPERATURE
-	heat_protection = FEET
 	max_heat_protection_temperature = SHOE_MAX_HEAT_PROTECTION_TEMPERATURE
 	snow_speed = -1
 	step_volume_mod = 0.8
@@ -233,9 +241,7 @@
 	item_flags = NOSLIP
 	siemens_coefficient = 0.6
 
-	cold_protection = FEET
 	min_cold_protection_temperature = SHOE_MIN_COLD_PROTECTION_TEMPERATURE
-	heat_protection = FEET
 	max_heat_protection_temperature = SHOE_MAX_HEAT_PROTECTION_TEMPERATURE
 
 //Stolen from CM, refurbished to be less terrible.

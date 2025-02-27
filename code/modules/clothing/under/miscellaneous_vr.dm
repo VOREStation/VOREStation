@@ -267,7 +267,7 @@
 	icon_override = 'icons/inventory/uniform/mob_vr.dmi'
 	icon_state = "qipao"
 	item_state = "qipao"
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO
+	body_parts_covered = CHEST
 
 /obj/item/clothing/under/qipao/white
 	name = "white qipao"
@@ -481,7 +481,7 @@
 	icon_state = "qipao3"
 	item_state = "qipao3"
 	worn_state = "qipao3"
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO
+	body_parts_covered = CHEST
 
 /obj/item/clothing/under/qipao2_colorable
 	name = "slim qipao"
@@ -491,7 +491,7 @@
 	icon_state = "qipao2"
 	item_state = "qipao2"
 	worn_state = "qipao2"
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO
+	body_parts_covered = CHEST
 
 /obj/item/clothing/under/dress/antediluvian
 	name = "antediluvian corset"
@@ -501,7 +501,7 @@
 	icon_state = "antediluvian"
 	item_state = "antediluvian"
 	worn_state = "antediluvian"
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO
+	body_parts_covered = CHEST
 
 /obj/item/clothing/under/dress/antediluvian/sheerless
 	desc = "A regal black and gold tight corset with silky sleeves. This one is just the corset and sleeves, sans lace stockings and gloves."
@@ -621,7 +621,7 @@
 	desc = "A small black dress with a flames print on it. Perfect for recoloring!"
 	icon = 'icons/inventory/uniform/item_vr.dmi'
 	default_worn_icon = 'icons/inventory/uniform/mob_vr.dmi'
-	icon_state = "cdress_fire"
+	icon_state = "cflame_dress"
 
 /obj/item/clothing/under/dress/cbridesmaid
 	name = "fancy dress"
@@ -633,6 +633,7 @@
 /obj/item/clothing/under/dress/cswoopdress
 	name = "swoop dress"
 	desc = "A fancy gown for those who like to show leg. Perfect for recoloring!"
+	icon = 'icons/inventory/uniform/mob_vr.dmi'
 	default_worn_icon = 'icons/inventory/uniform/mob_vr.dmi'
 	icon_state = "cswoopdress"
 
@@ -648,7 +649,7 @@
 	item_state = "arar"
 	rolled_sleeves = -1
 	rolled_down = -1
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
+	body_parts_covered = CHEST|ARMS
 
 /obj/item/clothing/under/replika/arar
 	name = "repair-worker replikant bodysuit"
@@ -718,7 +719,7 @@
 	item_state = "gestalt_skirt"
 	rolled_sleeves = -1
 	rolled_down = -1
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
+	body_parts_covered = CHEST|ARMS|LEGS
 
 /obj/item/clothing/under/gestalt/sleek_skirt
 	name = "sleek crew skirt"
@@ -746,4 +747,4 @@
 	desc = "A tight-fitting, sleeveless single-piece black uniform with striking crimson trim."
 	icon_state = "gestalt_sleeveless"
 	item_state = "gestalt_sleeveless"
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS
+	body_parts_covered = CHEST|LEGS

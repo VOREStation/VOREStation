@@ -171,9 +171,9 @@
 		"cowboy boots, black"=/obj/item/clothing/shoes/boots/cowboy/black,
 		"cowboy boots, white"=/obj/item/clothing/shoes/boots/cowboy/white,
 		"cowboy boots, fancy"=/obj/item/clothing/shoes/boots/cowboy/fancy,
-		"cowboy boots, snakeskin"=/obj/item/clothing/shoes/boots/cowboy/snakeskin,
-		"cowboy boots, green"=/obj/item/clothing/shoes/boots/cowboy/green,
-		"cowboy boots, blue"=/obj/item/clothing/shoes/boots/cowboy/blue
+		"cowboy boots, snakeskin"=/obj/item/clothing/shoes/boots/cowboy/snakeskin
+		//"cowboy boots, green"=/obj/item/clothing/shoes/boots/cowboy/green,
+		//"cowboy boots, blue"=/obj/item/clothing/shoes/boots/cowboy/blue
 	)
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(selector_uniforms))
 

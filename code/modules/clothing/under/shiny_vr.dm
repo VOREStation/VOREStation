@@ -1,4 +1,5 @@
 /obj/item/clothing/under/shiny
+	name = DEVELOPER_WARNING_NAME
 	icon_override = 'icons/mob/modular_shiny_vr.dmi'
 	icon = 'icons/obj/clothing/modular_shiny_vr.dmi'
 	desc = "You can be a super-hero in this! Just don't forget your mask!"

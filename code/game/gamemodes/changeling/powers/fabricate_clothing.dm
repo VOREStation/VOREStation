@@ -157,12 +157,12 @@ var/global/list/changeling_fabricated_clothing = list(
 
 /obj/item/clothing/gloves/chameleon/changeling
 	name = "malformed hands"
-	icon_state = "lingchameleon"
+	icon_state = "ling"
 	item_icons = list(
 			slot_l_hand_str = 'icons/mob/items/lefthand_gloves.dmi',
 			slot_r_hand_str = 'icons/mob/items/righthand_gloves.dmi',
 			)
-	item_state = "lingchameleon"
+	item_state = "ling"
 	desc = "Our hands have a second layer of flesh on top.  We can reform our hands to resemble a large variety of fabrics and materials that biologicals \
 	tend to wear on their hands.  Remember that these won't protect your hands from harm."
 	origin_tech = list()

@@ -250,7 +250,7 @@
 // Triggers an effect when the wearer is 'in grave danger'.
 // Causes brainloss when it happens.
 /obj/item/clothing/head/psy_crown
-	name = "broken crown"
+	name = DEVELOPER_WARNING_NAME
 	desc = "A crown-of-thorns with a missing gem."
 	var/tension_threshold = 125
 	var/cooldown = null // world.time of when this was last triggered.

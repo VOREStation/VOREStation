@@ -22,9 +22,7 @@
 	name = "\improper NDF skirt"
 	desc = "A black turtleneck and skirt, the elusive ladies' uniform of the Nanotrasen Defense Force."
 
-/obj/item/clothing/under/solgov/utility/sifguard_skirt/officer
-	name = "\improper NDF officer skirt"
-	desc = "A black turtleneck and skirt, the elusive ladies' uniform of the Nanotrasen Defense Force. This one has gold trim."
+
 
 /obj/item/clothing/under/solgov/utility/sifguard/officer
 	name = "\improper NDF officer's uniform"
