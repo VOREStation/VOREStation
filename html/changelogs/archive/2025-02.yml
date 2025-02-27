@@ -45,3 +45,31 @@
 2025-02-25:
   ItsSelis:
   - bugfix: fixed a few lines of code so that the code is compileable in OpenDream
+2025-02-27:
+  Drathek:
+  - rscadd: Added OD pragma lints
+  - bugfix: Fixed various issues caught by errors e.g. icon_forge's apply method,
+      VV on a list, etc.
+  - bugfix: Fixed various issues with apply_damage where arguments were incorrect
+      for used_weapon
+  Kashargul:
+  - code_imp: enables the block spawn on runechat now where flicker is fixed
+  - bugfix: door controllers being instant triggerable
+  - code_imp: removes sleep from light flicker
+  SatinIsle:
+  - rscadd: Added privacy switches to all dorm rooms, these buttons make an overlay
+      appear on the room for ghosts preventing them seeing inside. This does not currently
+      prevent them hearing emotes from inside the room, it's purely a visual block.
+  - bugfix: Fixed station maps for the map linter PR.
+  - bugfix: Fixed a missing air alarm in the tether atmos break room.
+  - bugfix: Fixed mantraps eating the same person instantly on escape, they now do
+      not eat someone who has escaped them previously.
+  - bugfix: Fixed a few mob names being capitalised.
+  Will:
+  - rscadd: Adds a new motion tracker subsystem to the game to allow for tracking
+      entities through walls!
+  - rscadd: Adds a motion tracker item to R&D
+  - rscadd: Adds a vibration sense trait that allows users to hear entities moving
+      through walls
+  - qol: Teshari's and Xenochimera's 'listen in' verb has been upgraded to the new
+      listen-in trait
