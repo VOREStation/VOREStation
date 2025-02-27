@@ -20,12 +20,12 @@ Bonus
 	stealth = -2
 	resistance = -3
 	stage_speed = -3
-	transmittable = 0
+	transmission = 0
 	level = 6
 	severity = 3
 
 /datum/symptom/necrotic_agent/Start(datum/disease/advance/A)
-	A.allow_dead = TRUE
+	A.spread_dead = TRUE
 
 /datum/symptom/necrotic_agent/End(datum/disease/advance/A)
-	A.allow_dead = FALSE
+	A.spread_dead = FALSE

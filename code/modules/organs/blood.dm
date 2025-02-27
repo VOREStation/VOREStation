@@ -250,7 +250,7 @@ var/const/CE_STABLE_THRESHOLD = 0.5
 		B.data["viruses"] = list()
 
 	for(var/datum/disease/D in GetViruses())
-		if(D.spread_flags & SPECIAL)
+		if(D.spread_flags & DISEASE_SPREAD_SPECIAL)
 			continue
 		B.data["viruses"] |= D.Copy()
 
@@ -294,7 +294,7 @@ var/const/CE_STABLE_THRESHOLD = 0.5
 	var/list/sniffles = injected.data["viruses"]
 	for(var/ID in sniffles)
 		var/datum/disease/D = ID
-		if((D.spread_flags & SPECIAL) || (D.spread_flags & NON_CONTAGIOUS)) // You can't put non-contagius diseases in blood, but just in case
+		if((D.spread_flags & DISEASE_SPREAD_SPECIAL) || (D.spread_flags & DISEASE_SPREAD_NON_CONTAGIOUS)) // You can't put non-contagius diseases in blood, but just in case
 			continue
 		ContractDisease(D)
 	if (injected.data["resistances"] && prob(5))

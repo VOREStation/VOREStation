@@ -19,8 +19,10 @@ BONUS
 	name = "Spyndrome"
 	stealth = 2
 	resistance = 0
+	symptom_delay_min = 15 SECONDS
+	symptom_delay_max = 35 SECONDS
 	stage_speed = 3
-	transmittable = 1
+	transmission = 1
 	level = 1
 	severity = 0
 
