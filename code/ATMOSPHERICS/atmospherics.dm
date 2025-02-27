@@ -132,7 +132,7 @@ Pipelines + Other Objects -> Pipe network
 
 	return null
 
-/obj/machinery/atmospherics/proc/build_network()
+/obj/machinery/atmospherics/proc/build_network(var/new_attachment)
 	// Called to build a network from this node
 
 	return null
@@ -194,13 +194,17 @@ Pipelines + Other Objects -> Pipe network
 	atmos_init()
 	if(QDELETED(src))
 		return // TODO - Eventually should get rid of the need for this.
-	build_network()
 	var/list/nodes = get_neighbor_nodes_for_init()
 	for(var/obj/machinery/atmospherics/A in nodes)
 		A.atmos_init()
-		A.build_network()
-	// TODO - Should we do src.build_network() before or after the nodes?
-	// We've historically done before, but /tg does after. TODO research if there is a difference.
+		A.build_network(TRUE)
+	build_network()
+
+	// There was a coder comment her from 7 years ago asking 'tg does it this way, should we?' and the answer was yes.
+	// By building the network BEFORE our nodes build their network, two things happened:
+	// 1. The network was built and none of the pipes got their temporary air vaiables, resulting in the  pipes having no air in them
+	// 2. The previous network was nulled but never deleted, resulting in a memory leak.
+	// So now, we build our network AFTER the nodes build their network AND we delete the previous network.
 
 // This sets our piping layer.  Hopefully its cool.
 /obj/machinery/atmospherics/proc/setPipingLayer(new_layer)

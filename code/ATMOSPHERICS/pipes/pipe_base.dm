@@ -79,9 +79,11 @@
 
 	return parent.air
 
-/obj/machinery/atmospherics/pipe/build_network()
+/obj/machinery/atmospherics/pipe/build_network(new_attachment)
 	if(QDELETED(src))
 		return
+	if(new_attachment)
+		QDEL_NULL(parent)
 	if(!parent)
 		parent = new /datum/pipeline()
 		parent.build_pipeline(src)
