@@ -1,34 +1,3 @@
-//Normal map defs
-#define Z_LEVEL_SURFACE_LOW					1
-#define Z_LEVEL_SURFACE_MID					2
-#define Z_LEVEL_SURFACE_HIGH				3
-#define Z_LEVEL_TRANSIT						4
-#define Z_LEVEL_SPACE_LOW					5
-#define Z_LEVEL_SURFACE_MINE				6
-#define Z_LEVEL_SOLARS						7
-#define Z_LEVEL_CENTCOM						8
-#define Z_LEVEL_MISC						9
-#define Z_LEVEL_UNDERDARK					10
-#define Z_LEVEL_PLAINS						11
-#define Z_LEVEL_OFFMAP1						12
-//#define Z_LEVEL_OFFMAP2						12
-#define Z_LEVEL_ROGUEMINE_1					13
-#define Z_LEVEL_ROGUEMINE_2					14
-#define Z_LEVEL_BEACH						15
-#define Z_LEVEL_BEACH_CAVE					16
-#define Z_LEVEL_AEROSTAT					17
-#define Z_LEVEL_AEROSTAT_SURFACE			18
-#define Z_LEVEL_DEBRISFIELD					19
-#define Z_LEVEL_FUELDEPOT					20
-#define Z_LEVEL_GATEWAY						21
-#define Z_LEVEL_OM_ADVENTURE				22
-#define Z_LEVEL_REDGATE						23
-
-
-//Camera networks
-#define NETWORK_TETHER "Tether"
-#define NETWORK_OUTSIDE "Outside"
-
 /datum/map/tether/New()
 	..()
 	var/choice = pickweight(list(
@@ -278,21 +247,7 @@
 
 // Overmap represetation of tether
 /obj/effect/overmap/visitable/sector/virgo3b
-	name = "Virgo 3B"
-	desc = "Full of phoron, and home to the NSB Adephagia, where you can dock and refuel your craft."
-	scanner_desc = @{"[i]Registration[/i]: NSB Adephagia
-[i]Class[/i]: Installation
-[i]Transponder[/i]: Transmitting (CIV), NanoTrasen IFF
-[b]Notice[/b]: NanoTrasen Base, authorized personnel only"}
 	base = 1
-
-	icon = 'icons/obj/overmap_vr.dmi'
-	icon_state = "virgo3b"
-
-	skybox_icon = 'icons/skybox/virgo3b.dmi'
-	skybox_icon_state = "small"
-	skybox_pixel_x = 0
-	skybox_pixel_y = 0
 
 	initial_generic_waypoints = list(
 		"tether_dockarm_d1a1", //Bottom left,
@@ -319,7 +274,6 @@
 	)
 
 	levels_for_distress = list(Z_LEVEL_OFFMAP1, Z_LEVEL_BEACH, Z_LEVEL_AEROSTAT, Z_LEVEL_DEBRISFIELD, Z_LEVEL_FUELDEPOT)
-	var/mob_announce_cooldown = 0
 
 /obj/effect/overmap/visitable/sector/virgo3b/Crossed(var/atom/movable/AM)
 	. = ..()

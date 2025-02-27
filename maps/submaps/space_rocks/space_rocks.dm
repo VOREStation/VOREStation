@@ -1,5 +1,4 @@
 #include "space_rocks_pois.dm"
-#include "space_rocks_stuff.dm"
 
 /turf/simulated/mineral/vacuum/sdmine/make_ore(var/rare_ore)
 	if(mineral)
@@ -34,17 +33,6 @@
 		mineral = GLOB.ore_data[mineral_name]
 		UpdateMineral()
 	update_icon()
-
-/area/sdmine
-	ambience = list('sound/ambience/ambimine.ogg', 'sound/ambience/song_game.ogg')
-	base_turf = /turf/simulated/mineral/floor/vacuum
-/area/sdmine/unexplored
-	name = "asteroid field"
-	icon_state = "unexplored"
-/area/sdmine/explored
-	name = "asteroid field"
-	icon_state = "explored"
-
 
 /obj/effect/overmap/visitable/sector/virgo3b/generate_skybox(zlevel)
 	var/static/image/smallone = image(icon = 'icons/skybox/virgo3b.dmi', icon_state = "small")
