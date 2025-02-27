@@ -1,6 +1,6 @@
 /**********************Mint**************************/
 /obj/machinery/mineral/mint
-	name = "Coin press"
+	name = "coin press"
 	desc = "A relatively crude hand-operated coin press that turns sheets (or ingots, as the case may be) of materials into fresh coins. They're <i>probably</i> not going to be considered legal tender in most polities, but you might fool a vending machine with one..?<br><br><i>It looks like it'll accept silver, gold, diamond, iron, solid phoron, and uranium.</i>"
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "coinpress0"
@@ -10,6 +10,9 @@
 	var/list/validMats = list(MAT_SILVER, MAT_GOLD, MAT_DIAMOND, MAT_IRON, MAT_PHORON, MAT_URANIUM)	//what's valid stuff to make coins out of?
 
 /obj/machinery/mineral/mint/attackby(obj/item/stack/material/M, mob/user)
+	if(!anchored)
+		user.visible_message(span_warning("\The [src] must be properly secured to operate!"))
+		return
 	if(M.default_type in validMats)
 		user.visible_message("[user] starts to feed a sheet of [M.default_type] into \the [src].")
 		while(M.amount > 0)
