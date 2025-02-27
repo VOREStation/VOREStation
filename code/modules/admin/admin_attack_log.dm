@@ -20,9 +20,9 @@
 /* Old procs
 /proc/admin_attack_log(var/mob/attacker, var/mob/victim, var/attacker_message, var/victim_message, var/admin_message)
 	if(victim)
-		victim.attack_log += text("\[[time_stamp()]\] <font color='orange'>[key_name(attacker)] - [victim_message]</font>")
+		victim.attack_log += text("\[[time_stamp()]\]" + span_orange(" [key_name(attacker)] - [victim_message]"))
 	if(attacker)
-		attacker.attack_log += text("\[[time_stamp()]\] <font color='red'>[key_name(victim)] - [attacker_message]</font>")
+		attacker.attack_log += text("\[[time_stamp()]\]" + span_red(" [key_name(victim)] - [attacker_message]"))
 
 	msg_admin_attack("[key_name(attacker)] [admin_message] [key_name(victim)] (INTENT: [attacker? uppertext(attacker.a_intent) : "N/A"]) (<A href='byond://?_src_=holder;adminplayerobservecoodjump=1;X=[attacker.x];Y=[attacker.y];Z=[attacker.z]'>JMP</a>)")
 

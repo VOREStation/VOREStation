@@ -136,18 +136,18 @@ GLOBAL_LIST_BOILERPLATE(all_tracking_implants, /obj/item/implant/tracking)
 	return 1
 
 /obj/item/implant/tracking/get_data()
-	var/dat = {"<b>Implant Specifications:</b><BR>
-<b>Name:</b> Tracking Beacon<BR>
-<b>Life:</b> 10 minutes after death of host<BR>
-<b>Important Notes:</b> None<BR>
+	var/dat = {""} +span_bold("Implant Specifications:") + {"<BR>
+"} + span_bold("Name:") + {"Tracking Beacon<BR>
+"} + span_bold("Life:") + {"10 minutes after death of host<BR>
+"} + span_bold("Important Notes:") + {"None<BR>
 <HR>
-<b>Implant Details:</b> <BR>
-<b>Function:</b> Continuously transmits low power signal. Useful for tracking.<BR>
-<b>Special Features:</b><BR>
-<i>Neuro-Safe</i>- Specialized shell absorbs excess voltages self-destructing the chip if
+"} + span_bold("Implant Details:") + {"<BR>
+"} + span_bold("Function:") + {"Continuously transmits low power signal. Useful for tracking.<BR>
+"} + span_bold("Special Features:") + {"<BR>
+"} + span_italics("Neuro-Safe") + {"- Specialized shell absorbs excess voltages self-destructing the chip if
 a malfunction occurs thereby securing safety of subject. The implant will melt and
 disintegrate into bio-safe elements.<BR>
-<b>Integrity:</b> Gradient creates slight risk of being overcharged and frying the
+"} + span_bold("Integrity:") + {"Gradient creates slight risk of being overcharged and frying the
 circuitry. As a result neurotoxins can cause massive damage.<HR>
 Implant Specifics:<BR>"}
 	return dat
@@ -182,15 +182,15 @@ Implant Specifics:<BR>"}
 
 /obj/item/implant/dexplosive/get_data()
 	var/dat = {"
-<b>Implant Specifications:</b><BR>
-<b>Name:</b> Robust Corp RX-78 Employee Management Implant<BR>
-<b>Life:</b> Activates upon death.<BR>
-<b>Important Notes:</b> Explodes<BR>
+"} + span_bold("Implant Specifications:") + {"<BR>
+"} + span_bold("Name:") + {"Robust Corp RX-78 Employee Management Implant<BR>
+"} + span_bold("Life:") + {"Activates upon death.<BR>
+"} + span_bold("Important Notes:") + {"Explodes<BR>
 <HR>
-<b>Implant Details:</b><BR>
-<b>Function:</b> Contains a compact, electrically detonated explosive that detonates upon receiving a specially encoded signal or upon host death.<BR>
-<b>Special Features:</b> Explodes<BR>
-<b>Integrity:</b> Implant will occasionally be degraded by the body's immune system and thus will occasionally malfunction."}
+"} + span_bold("Implant Details:") + {"<BR>
+"} + span_bold("Function:") + {"Contains a compact, electrically detonated explosive that detonates upon receiving a specially encoded signal or upon host death.<BR>
+"} + span_bold("Special Features:") + {"Explodes<BR>
+"} + span_bold("Integrity:") + {"Implant will occasionally be degraded by the body's immune system and thus will occasionally malfunction."}
 	return dat
 
 
@@ -221,15 +221,15 @@ Implant Specifics:<BR>"}
 
 /obj/item/implant/explosive/get_data()
 	var/dat = {"
-<b>Implant Specifications:</b><BR>
-<b>Name:</b> Robust Corp RX-78 Intimidation Class Implant<BR>
-<b>Life:</b> Activates upon codephrase.<BR>
-<b>Important Notes:</b> Explodes<BR>
+"} + span_bold("Implant Specifications:") + {"<BR>
+"} + span_bold("Name:") + {"Robust Corp RX-78 Intimidation Class Implant<BR>
+"} + span_bold("Life:") + {"Activates upon codephrase.<BR>
+"} + span_bold("Important Notes:") + {"Explodes<BR>
 <HR>
-<b>Implant Details:</b><BR>
-<b>Function:</b> Contains a compact, electrically detonated explosive that detonates upon receiving a specially encoded signal or upon host death.<BR>
-<b>Special Features:</b> Explodes<BR>
-<b>Integrity:</b> Implant will occasionally be degraded by the body's immune system and thus will occasionally malfunction."}
+"} + span_bold("Implant Details:") + {"<BR>
+"} + span_bold("Function:") + {"Contains a compact, electrically detonated explosive that detonates upon receiving a specially encoded signal or upon host death.<BR>
+"} + span_bold("Special Features:") + {"Explodes<BR>
+"} + span_bold("Integrity:") + {"Implant will occasionally be degraded by the body's immune system and thus will occasionally malfunction."}
 	return dat
 
 /obj/item/implant/explosive/hear_talk(mob/M, list/message_pieces, verb)
@@ -357,19 +357,19 @@ GLOBAL_LIST_BOILERPLATE(all_chem_implants, /obj/item/implant/chem)
 
 /obj/item/implant/chem/get_data()
 	var/dat = {"
-<b>Implant Specifications:</b><BR>
-<b>Name:</b> Robust Corp MJ-420 Prisoner Management Implant<BR>
-<b>Life:</b> Deactivates upon death but remains within the body.<BR>
-<b>Important Notes: Due to the system functioning off of nutrients in the implanted subject's body, the subject<BR>
-will suffer from an increased appetite.</B><BR>
+"} + span_bold("Implant Specifications:") + {"<BR>
+"} + span_bold("Name:") + {"Robust Corp MJ-420 Prisoner Management Implant<BR>
+"} + span_bold("Life:") + {"Deactivates upon death but remains within the body.<BR>
+"} + span_bold("Important Notes: Due to the system functioning off of nutrients in the implanted subject's body, the subject") + {"<BR>
+"} + span_bold("will suffer from an increased appetite.") + {"<BR>
 <HR>
-<b>Implant Details:</b><BR>
-<b>Function:</b> Contains a small capsule that can contain various chemicals. Upon receiving a specially encoded signal<BR>
+"} + span_bold("Implant Details:") + {"<BR>
+"} + span_bold("Function:") + {"Contains a small capsule that can contain various chemicals. Upon receiving a specially encoded signal<BR>
 the implant releases the chemicals directly into the blood stream.<BR>
-<b>Special Features:</b>
-<i>Micro-Capsule</i>- Can be loaded with any sort of chemical agent via the common syringe and can hold 50 units.<BR>
+Special Features:
+"} + span_italics("Micro-Capsule") + {"- Can be loaded with any sort of chemical agent via the common syringe and can hold 50 units.<BR>
 Can only be loaded while still in its original case.<BR>
-<b>Integrity:</b> Implant will last so long as the subject is alive. However, if the subject suffers from malnutrition,<BR>
+"} + span_bold("Integrity:") + {"Implant will last so long as the subject is alive. However, if the subject suffers from malnutrition,<BR>
 the implant may become unstable and either pre-maturely inject the subject or simply break."}
 	return dat
 
@@ -428,15 +428,15 @@ the implant may become unstable and either pre-maturely inject the subject or si
 
 /obj/item/implant/loyalty/get_data()
 	var/dat = {"
-<b>Implant Specifications:</b><BR>
-<b>Name:</b> [using_map.company_name] Employee Management Implant<BR>
-<b>Life:</b> Ten years.<BR>
-<b>Important Notes:</b> Personnel injected with this device tend to be much more loyal to the company.<BR>
+"} + span_bold("Implant Specifications:") + {"<BR>
+"} + span_bold("Name:") + {"[using_map.company_name] Employee Management Implant<BR>
+"} + span_bold("Life:") + {"Ten years.<BR>
+"} + span_bold("Important Notes:") + {"Personnel injected with this device tend to be much more loyal to the company.<BR>
 <HR>
-<b>Implant Details:</b><BR>
-<b>Function:</b> Contains a small pod of nanobots that manipulate the host's mental functions.<BR>
-<b>Special Features:</b> Will prevent and cure most forms of brainwashing.<BR>
-<b>Integrity:</b> Implant will last so long as the nanobots are inside the bloodstream."}
+"} + span_bold("Implant Details:") + {"<BR>
+"} + span_bold("Function:") + {"Contains a small pod of nanobots that manipulate the host's mental functions.<BR>
+"} + span_bold("Special Features:") + {"Will prevent and cure most forms of brainwashing.<BR>
+"} + span_bold("Integrity:") + {"Implant will last so long as the nanobots are inside the bloodstream."}
 	return dat
 
 /obj/item/implant/loyalty/handle_implant(mob/M, target_zone = BP_TORSO)
@@ -464,15 +464,15 @@ the implant may become unstable and either pre-maturely inject the subject or si
 
 /obj/item/implant/adrenalin/get_data()
 	var/dat = {"
-<b>Implant Specifications:</b><BR>
-<b>Name:</b> Cybersun Industries Adrenalin Implant<BR>
-<b>Life:</b> Five days.<BR>
-<b>Important Notes:</b> <font color='red'>Illegal</font><BR>
+"} + span_bold("Implant Specifications:") + {"<BR>
+"} + span_bold("Name:") + {"Cybersun Industries Adrenalin Implant<BR>
+"} + span_bold("Life:") + {"Five days.<BR>
+"} + span_bold("Important Notes: ") + span_red("llegal") + {"<BR>
 <HR>
-<b>Implant Details:</b> Subjects injected with implant can activate a massive injection of adrenalin.<BR>
-<b>Function:</b> Contains nanobots to stimulate body to mass-produce Adrenalin.<BR>
-<b>Special Features:</b> Will prevent and cure most forms of brainwashing.<BR>
-<b>Integrity:</b> Implant can only be used three times before the nanobots are depleted."}
+"} + span_bold("Implant Details:") + {"Subjects injected with implant can activate a massive injection of adrenalin.<BR>
+"} + span_bold("Function:") + {"Contains nanobots to stimulate body to mass-produce adrenalin.<BR>
+"} + span_bold("Special Features:") + {"Will prevent and cure most forms of brainwashing.<BR>
+"} + span_bold("Integrity:") + {"Implant can only be used three times before the nanobots are depleted."}
 	return dat
 
 
@@ -503,15 +503,15 @@ the implant may become unstable and either pre-maturely inject the subject or si
 
 /obj/item/implant/death_alarm/get_data()
 	var/dat = {"
-<b>Implant Specifications:</b><BR>
-<b>Name:</b> [using_map.company_name] \"Profit Margin\" Class Employee Lifesign Sensor<BR>
-<b>Life:</b> Activates upon death.<BR>
-<b>Important Notes:</b> Alerts crew to crewmember death.<BR>
+"} + span_bold("Implant Specifications:") + {"<BR>
+"} + span_bold("Name:") + {"[using_map.company_name] \"Profit Margin\" Class Employee Lifesign Sensor<BR>
+"} + span_bold("Life:") + {"Activates upon death.<BR>
+"} + span_bold("Important Notes:") + {"Alerts crew to crewmember death.<BR>
 <HR>
-<b>Implant Details:</b><BR>
-<b>Function:</b> Contains a compact radio signaler that triggers when the host's lifesigns cease.<BR>
-<b>Special Features:</b> Alerts crew to crewmember death.<BR>
-<b>Integrity:</b> Implant will occasionally be degraded by the body's immune system and thus will occasionally malfunction."}
+"} + span_bold("Implant Details:") + {"<BR>
+"} + span_bold("Function:") + {"Contains a compact radio signaler that triggers when the host's lifesigns cease.<BR>
+"} + span_bold("Special Features:") + {"Alerts crew to crewmember death.<BR>
+"} + span_bold("Integrity:") + {"Implant will occasionally be degraded by the body's immune system and thus will occasionally malfunction."}
 	return dat
 
 /obj/item/implant/death_alarm/process()
@@ -588,15 +588,15 @@ the implant may become unstable and either pre-maturely inject the subject or si
 
 /obj/item/implant/compressed/get_data()
 	var/dat = {"
-<b>Implant Specifications:</b><BR>
-<b>Name:</b> [using_map.company_name] \"Profit Margin\" Class Employee Lifesign Sensor<BR>
-<b>Life:</b> Activates upon death.<BR>
-<b>Important Notes:</b> Alerts crew to crewmember death.<BR>
+"} + span_bold("Implant Specifications:") + {"<BR>
+"} + span_bold("Name:") + {"[using_map.company_name] \"Profit Margin\" Class Employee Lifesign Sensor<BR>
+"} + span_bold("Life:") + {"Activates upon death.<BR>
+"} + span_bold("Important Notes:") + {"Alerts crew to crewmember death.<BR>
 <HR>
-<b>Implant Details:</b><BR>
-<b>Function:</b> Contains a compact radio signaler that triggers when the host's lifesigns cease.<BR>
-<b>Special Features:</b> Alerts crew to crewmember death.<BR>
-<b>Integrity:</b> Implant will occasionally be degraded by the body's immune system and thus will occasionally malfunction."}
+"} + span_bold("Implant Details:") + {"<BR>
+"} + span_bold("Function:") + {"Contains a compact radio signaler that triggers when the host's lifesigns cease.<BR>
+"} + span_bold("Special Features:") + {"Alerts crew to crewmember death.<BR>
+"} + span_bold("Integrity:") + {"Implant will occasionally be degraded by the body's immune system and thus will occasionally malfunction."}
 	return dat
 
 /obj/item/implant/compressed/trigger(emote, mob/source as mob)

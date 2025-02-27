@@ -21,7 +21,7 @@ GLOBAL_LIST_EMPTY(_preloader_attributes)
 			value = deepCopyList(value)
 		#ifdef TESTING
 		if(what.vars[attribute] == value)
-			var/message = "<font color=green>[what.type]</font> at [AREACOORD(what)] - <b>VAR:</b> <font color=red>[attribute] = [isnull(value) ? "null" : (isnum(value) ? value : "\"[value]\"")]</font>"
+			var/message = span_green("[what.type]") + " at [AREACOORD(what)] - " + span_bold("VAR:") + " " + span_red("[attribute] = [isnull(value) ? "null" : (isnum(value) ? value : "\"[value]\"")]")
 			world.log << "DIRTY VAR: [message]"
 			dirty_vars += message
 		#endif

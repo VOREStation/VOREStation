@@ -28,7 +28,7 @@
 	. = ..()
 	if(show_heading)
 		compass_heading_marker = new /image/compass_marker
-		compass_heading_marker.maptext = "<center><font color = '#00ffffff' size = 2><b>△</b></font></center>"
+		compass_heading_marker.maptext = "<center>" + span_normal(span_cyan(span_bold("△"))) + "</center>"
 		compass_heading_marker.filters = filter(type="drop_shadow", color = "#00ffffaa", size = 2, offset = 1,x = 0, y = 0)
 		compass_heading_marker.layer = LAYER_HUD_UNDER
 		compass_heading_marker.plane = PLANE_PLAYER_HUD
@@ -45,10 +45,10 @@
 			else
 				str = angle_step_to_dir[CLAMP(round(angle/45)+1, 1, length(angle_step_to_dir))]
 			str_col = "#ffffffaa"
-		else 
+		else
 			str = "〡"
 			str_col = "#aaaaaa88"
-		I.maptext = "<center><font color = '[str_col]' size = '1px'><b>[str]</b></font></center>"
+		I.maptext = "<center><font color = '[str_col]' size = '1px'>" + span_bold("[str]") + "</font></center>"
 		var/matrix/M = matrix()
 		M.Translate(0, COMPASS_LABEL_OFFSET)
 		M.Turn(COMPASS_PERIOD * i)

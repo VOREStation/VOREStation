@@ -2,17 +2,17 @@
 
 /obj/machinery/syndicate_beacon/virgo/attack_hand(var/mob/user)
 	user.set_machine(src)
-	var/dat = "<font color=#005500><i>Scanning [pick("retina pattern", "voice print", "fingerprints", "dna sequence")]...<br>Identity confirmed,<br></i></font>"
+	var/dat = span_darkgreen(span_italics("Scanning [pick("retina pattern", "voice print", "fingerprints", "dna sequence")]...<br>Identity confirmed,<br>"))
 	if(ishuman(user) || isAI(user))
 		if(is_special_character(user))
-			dat += "<font color=#07700><i>Operative record found. Greetings, Agent [user.name].</i></font><br>"
+			dat += span_darkgreen(span_italics("Operative record found. Greetings, Agent [user.name].<br>"))
 		else if(charges < 1)
 			dat += "<TT>Connection severed.</TT><BR>"
 		else
 			var/honorific = "Mr."
 			if(user.gender == FEMALE)
 				honorific = "Ms."
-			dat += "<font color=red><i>Identity not found in operative database. What can the Black Market do for you today, [honorific] [user.name]?</i></font><br>"
+			dat += span_red(span_italics("Identity not found in operative database. What can the Black Market do for you today, [honorific] [user.name]?<br>"))
 			if(!selfdestructing)
 				dat += "<br><br><A href='byond://?src=\ref[src];betraitor=1;traitormob=\ref[user]'>\"[pick("Send me some supplies!", "Transfer supplies.")]\"</A><BR>"
 	dat += temptext

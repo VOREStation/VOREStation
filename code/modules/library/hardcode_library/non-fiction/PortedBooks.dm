@@ -31,7 +31,7 @@ Category: Non-Fiction
 				<sup>by Sene of Sheraeshi.</sup></center>
 				<hr>
 				<p class="borders">
-				One may find the problems inherent in co-habitation well illustrated through the ubiquity of light bulbs among virtually all settlements. In colonies like the <i>NCS Northern Star</i>, where I make my residence, the bulbs are uniform in design and output. But it is clear to see that various species require different amounts of light for proper vision -- we Teshari and our Tajaran comrades require less, while Dionaea require more. In addition, these light bulbs are low-heat, which the cold-blooded Unathi would certainly not prefer.
+				One may find the problems inherent in co-habitation well illustrated through the ubiquity of light bulbs among virtually all settlements. In colonies like the "} + span_italics("NCS Northern Star") + {", where I make my residence, the bulbs are uniform in design and output. But it is clear to see that various species require different amounts of light for proper vision -- we Teshari and our Tajaran comrades require less, while Dionaea require more. In addition, these light bulbs are low-heat, which the cold-blooded Unathi would certainly not prefer.
 				<br><br>
 				In short-- the standard light bulbs aboard even a cosmopolitan space station in the Vir Cluster are calibrated for the preferences and biology of humans and Skrell. It is obvious that we Teshari would benefit greatly from having structures tailored to our own culture and anatomy, from hallway redesign to the very filaments of the light-bulbs.
 				</p>
@@ -61,7 +61,7 @@ Category: Non-Fiction
 					</head>
 					<body>
 					<br><br><br>
-					<h1>The Viability of Corporate Government<br><small><i>by Yang Simiao</i></small></h1>
+					<h1>The Viability of Corporate Government<br><small>"} + span_italics("by Yang Simiao") + {"</small></h1>
 					</body>
 					</html>
 					"},
@@ -74,7 +74,7 @@ Category: Non-Fiction
 					</head>
 					<body>
 					<div class="border">
-					<i>Corporations frequently act</i> as the local government of space stations that they own and operate. This works fine for small stations - in fact, it might even be necessary, with the amount of support they tend to need. However, when stations get larger, and larger, and their populations soar to five and six digits, the situation becomes untenable.<br><br>
+					"} + span_italics("Corporations frequently act") + {" as the local government of space stations that they own and operate. This works fine for small stations - in fact, it might even be necessary, with the amount of support they tend to need. However, when stations get larger, and larger, and their populations soar to five and six digits, the situation becomes untenable.<br><br>
 					Representative democracies have been the most stable form of government for a variety of reasons. Firstly, they are a system that is not subject to the whims of a single person, or even a few, but are controlled by the general population, which is not as likely to shift rapidly and disastrously, not to mention far less likely to cause strife for the people. The second and more critical reason is that people, especially educated people with access to proper communications, desire the ability to rule their own lives. They may surrender this for material goods, but once material needs are satisfied, they will seek out the ability to fulfill their own purposes.<br><br>
 					Corporate government denies the ability to do this. It denies even the possibility, as why would a company give up a position that is giving them such amazing profits? The situation is untenable. Already we can see in some stations a small but growing element that is dissatisfied with the situation. Phrases like "tyranny" and "corporate dictatorship" are thrown around, and not without justification. If corporations do not act to give people control over the rule of their homes, things will go badly - for the companies.
 					</div>
@@ -91,7 +91,7 @@ Category: Non-Fiction
 					<body>
 					<div class="border">
 					In a fringe system, the Relan system, there is a history of these actions. Because of the poverty of the system, companies neglected to provide properly for stations housing families - systems such as power and gravity failed regularly, and even life support was not nearly as reliable as is required in Sol space. This pushed the natural tension between the people and the faraway rulers to the breaking point far more quickly. The people won, and companies were greatly neutered, losing about 85% of their operations on moons and asteroids within the system. There are now two governments within the system - the Relan System Authority, based on the system's only garden world, Taron, essentially a puppet-state of the companies, and the Free Relan Alliance, the 'spacer' government of the stations, asteroids, and moons that rebelled and won their freedom. Despite the planet being wealthier, and the spacers having far tougher conditions, standards of living are much higher for the spacers.<br><br>
-					It is without a doubt that this will happen in Solar space if nothing changes. Corporations such as NanoTrasen and Grayson must, <i>must</i> give the people of their stations the authority to govern themselves.
+					It is without a doubt that this will happen in Solar space if nothing changes. Corporations such as NanoTrasen and Grayson must, "} + span_italics("must") + {" give the people of their stations the authority to govern themselves.
 					</div>
 					</body>
 					</html>
@@ -120,8 +120,8 @@ Category: Non-Fiction
 					<body>
 					<br><br><br>
 					<center>
-					<h1><font size="5"><small>A Brief History Of</small><br><b>The Rise And Fall Of The Persian Empire</b></font><br>
-					<font size="3"><i>by Satrap</i></font></h1>
+					<h1>"} + span_small("A Brief History Of") + {"<br>"} + span_giant(span_bold("The Rise And Fall Of The Persian Empire")) + {"<br>
+					"} + span_large(span_italics("by Satrap")) + {"</h1>
 					</center>
 					</body>
 					</html>
@@ -148,7 +148,7 @@ Category: Non-Fiction
 					</style>
 					</head>
 					<body>
-					<center><b>Beginnings</b></center>
+					<center>"} + span_bold("Beginnings") + {"</center>
 					<div class="border">
 					The Persian empire first started as a vassal to the Median empire. In the year 612 B.C., the Medes had conquered much land, including the Assyrian capital of Nineveh. The Median king, Astyges, decided that he would arrange his daughter, Mandane, to the Persian king, Cambyses I. At this time, the Persians were little more than a tribe. With this marriage, he secured an alliance with the Persian people, and they soon bore a son they named Cyrus.<br><br>
 					Astyges had a dream, which his priests interpreted as a bad omen. They claimed that his grandson would one day overthrow him and grow an army to spread around the continent. To challenge this dream, he assigned his general, Harpagus, to kill his daughter's first child. He was ordered to take the infant and leave him to the mountainside to be eaten by the beasts, but he could not do that. Instead, he decided to give the child to an adoptive family.
@@ -164,7 +164,7 @@ Category: Non-Fiction
 					</style>
 					</head>
 					<body>
-					<center><b>Conquests</b></center>
+					<center>"} + span_bold("Conquests") + {"</center>
 					<div class="border">
 					The young Cyrus was indeed an ambitious figure. As historical records show, the Median general Harpagus decided to betray the king and assisted Cyrus in speedily taking over the throne. By capturing the Median capital of Ecbtana, Cyrus became king of both the Persians and the Medes, uniting the people as one. The neighboring country of Lydia had threatened the Medes in the past, to which Cyrus used as a justification to invade and conquered them as well. Cyrus would then be known as Cyrus the Great, and would be praised by his people for his exploits. His actions earned him the admiration of his people and rivals alike.<br><br>
 					Cyrus' most famous conquest would be historical Babylon. The Babylonian empire was built along the river of the Euphrates, and was regarded as a treasure of the world. Tempted by the prize, Cyrus set his course.<br><br>
@@ -182,7 +182,7 @@ Category: Non-Fiction
 					</style>
 					</head>
 					<body>
-					<center><b>A Superpower</b></center>
+					<center>"} + span_bold("A Superpower") + {"</center>
 					<div class="border">
 					By conquering Babylon, Cyrus had ultimately defeated the major threats to his empire, and expanded his borders to cover the Middle East, parts of Modern-day Turkey, Greece, Egypt, and Asia. Not only this, but his people were infatuated with him and how smoothly he ran his empire. Cyrus never ceased to expand his empire, until his death.<br><br>
 					Nearing his sixties, Cyrus continued to lead his troops to conquer more land and wealth for his people. Traveling up north, he encountered a tribe of people known as the Massagetae. According to legend, the tribal queen, Tomyris, witnessed Cyrus kill her son in battle. Tomyris proceeded to decapitate Cyrus and douse his head in a bucket of his own blood. A beautiful painting by the 18th century French Renaissance painter Jean-Simon Berthelemy depicts this gruesome scene.
@@ -198,7 +198,7 @@ Category: Non-Fiction
 					</style>
 					</head>
 					<body>
-					<center><b>Dynasty</b></center>
+					<center>"} + span_bold("Dynasty") + {"</center>
 					<div class="border">
 					Despite the death of their leader, the Persian empire remained a stable one. Cyrus' grandson, Darius I had immediately seized the throne. Darius wasted no time to carry on his grandfather's honor. He continued to expand the empire even further, all the way to the western hemisphere, right at the doorstep of the Greeks. Darius would be famous for his administrative prowess. He introduced the Satrap system to govern his lands. Since the territories were so vast, it was difficult for one man to effectively govern it all. Many rebellions would rise and would need to be quelled. Satraps were representatives of the king himself. They would serve as a governor of each Persian city-state. They would often enjoy the luxury of complete control of their lands if the king was away. This autocratic system of government would catch on in the form of autocracy in the western world.
 					</div>
@@ -213,7 +213,7 @@ Category: Non-Fiction
 					</style>
 					</head>
 					<body>
-					<center><b>Collapse</b></center>
+					<center>"} + span_bold("Collapse") + {"</center>
 					<div class="border">
 					Unfortunately, the empire would not last forever. After Darius The Great passed away, his heir Xerxes had much difficulties fending off the Greeks from his empire. A series of failures both in land and in naval combat marked a decline in Persian power. Suddenly, the whole world would be shocked, as a young Macedonian king named Alexander The Great would sweep through Persia and destroy the entire empire in a single campaign. By 330 B.C., the Persian empire had collapsed into several sprawling states, never to fully see the glory of it's legacy again.<br><br>
 					The empire lasted approximately 250 years through several generations, and the contributions it has made to society as we know it is immeasurable.

@@ -103,18 +103,18 @@
 		my_client.mob.mind.changeling.purchasePower(M, Thepower)
 
 	if(href_list["tutorial"])
-		textbody = "<tr><th><font color='#c72121'><center>What am I?</center></font><br></th></tr>"
+		textbody = "<tr><th><center>" + span_red("What am I?") + "</center><br></th></tr>"
 		textbody += "<tr><td>"
-		textbody += "<font color='#F7F7ED'>You are a changeling, a creature empowered with genetic-based abilities that change your body in bizarre ways."
-		textbody += " It's probably best the crew doesn't know about your power -- at least not right away.</font><br><br>"
-		textbody += "<font color='#F7F7ED'>What a changeling <i>is</i>, however, is up to you. Are you a strange alien impersonating crew? Are you a"
-		textbody += " normal crewmember infected with a parasite? An experiment gone wrong? It's up to you to make the story.</font><br><br>"
-		textbody += "<font color='#F7F7ED'>Of course, you need to know how it works to begin with.</font><br><br>"
-		textbody += "<font color='#F7F7ED'>Your abilities cost chemicals that your body will slowly regenerate with varying speeds based on enhancements obtained."
-		textbody += " There are a set of inherent abilities you will always have while the rest may be purchased through genomes.</font><br><br>"
-		textbody += "<font color='#F7F7ED'>You may obtain more genomes if you find another changeling and absorb them, but this is not required. If you've found "
-		textbody += "your abilities aren't to your liking, you have up to two re-adapts available, and these may be refilled by absorbing anyone -- including monkeys.</font><br><br>"
-		textbody += "<font color='#F7F7ED'>Good luck and remember, killing isn't always the end goal.</font>"
+		textbody += span_white("You are a changeling, a creature empowered with genetic-based abilities that change your body in bizarre ways.")
+		textbody += span_white(" It's probably best the crew doesn't know about your power -- at least not right away.") + "<br><br>"
+		textbody += span_white("What a changeling " + span_italics("is"), + " however, is up to you. Are you a strange alien impersonating crew? Are you a")
+		textbody += span_white(" normal crewmember infected with a parasite? An experiment gone wrong? It's up to you to make the story.") + "<br><br>"
+		textbody += span_white("Of course, you need to know how it works to begin with.") + "<br><br>"
+		textbody += span_white("Your abilities cost chemicals that your body will slowly regenerate with varying speeds based on enhancements obtained.")
+		textbody += span_white(" There are a set of inherent abilities you will always have while the rest may be purchased through genomes.") + "<br><br>"
+		textbody += span_white("You may obtain more genomes if you find another changeling and absorb them, but this is not required. If you've found ")
+		textbody += span_white("your abilities aren't to your liking, you have up to two re-adapts available, and these may be refilled by absorbing anyone -- including monkeys.") + "<br><br>"
+		textbody += span_white("Good luck and remember, killing isn't always the end goal.")
 		display()
 
 /datum/managed_browser/changelingevolution/proc/generate_abilitylist(cat)
@@ -149,17 +149,17 @@
 	create_textbody(ability_list, catname, info)
 
 /datum/managed_browser/changelingevolution/proc/create_textbody(ability_list, cat, catinfo)
-	textbody = "<tr><th><font color='#c72121'><center>[cat] Skills</font><br></th></tr>"
-	textbody += "<tr><td><font color='#F7F7ED'>[catinfo]</center></font><br><hr></td></tr>"
+	textbody = "<tr><th><center>" + span_red("[cat] Skills") + "<br></th></tr>"
+	textbody += "<tr><td>" + span_white("[catinfo]") + "</center><br><hr></td></tr>"
 	for(var/A in ability_list)
 		var/datum/power/changeling/powerdata = A
-		textbody += "<tr><td><center><font color='#c72121'><b>[initial(powerdata.name)]</b></font><br></center>"
-		textbody += "<font color='#F7F7ED'>[initial(powerdata.desc)]</font><br><br>"
-		textbody += "<font color='#F7F7ED'><i>[powerdata.helptext]</i></font><br>"
+		textbody += "<tr><td><center>" + span_red(span_bold("[initial(powerdata.name)]")) + "<br></center>"
+		textbody += span_white("[initial(powerdata.desc)]") + "<br><br>"
+		textbody += span_white(span_italics("[powerdata.helptext]")) + "<br>"
 		if(powerdata.enhancedtext != "")
-			textbody += "<font color='#F7F7ED'><b>WHEN ENHANCED: </b><i>[powerdata.enhancedtext]</i></font><br>"
+			textbody += span_white(span_bold("WHEN ENHANCED: ") + span_italics("[powerdata.enhancedtext]")) + "<br>"
 		if(powerdata in my_client.mob.mind.changeling.purchased_powers)
-			textbody += "<center><font color='#F7F7ED'><i><b>This ability is already evolved!</b></i></font></center>"
+			textbody += "<center>" + span_white(span_italics(span_bold("This ability is already evolved!"))) + "</center>"
 		else if(cat != "Inherent")
 			textbody += "<center>Cost: [powerdata.genomecost]</center>"
 			textbody += "<center><a style='background-color:#c72121;' href='byond://?src=\ref[src];evolve=[A]'>Evolve</a></center>"

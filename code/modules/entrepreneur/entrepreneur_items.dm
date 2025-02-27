@@ -452,7 +452,7 @@
 	if(!T.desc)
 		return
 	user.visible_message(span_notice("\The [user] examines the \the [T] with \the [src]!"))
-	to_chat(user, "<FONT size=4>[T.desc]</FONT>")
+	to_chat(user, span_huge("[T.desc]"))
 
 // Streamer and influencer
 

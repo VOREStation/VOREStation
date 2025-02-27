@@ -33,9 +33,9 @@
 				<h2>Setting up the accelerator</h2>
 
 				<ol>
-					<li><b>Wrench</b> all pieces to the floor</li>
-					<li>Add <b>wires</b> to all the pieces</li>
-					<li>Close all the panels with your <b>screwdriver</b></li>
+					<li>"} + span_bold("Wrench") + {" all pieces to the floor</li>
+					<li>Add "} + span_bold("wires") + {" to all the pieces</li>
+					<li>Close all the panels with your "} + span_bold("screwdriver") + {"</li>
 				</ol>
 
 				<h2>Using the accelerator</h2>
@@ -44,7 +44,7 @@
 					<li>Open the control panel</li>
 					<li>Set the speed to 2</li>
 					<li>Start firing at the singularity generator</li>
-					<li><font color='red'><b>When the singularity reaches a large enough size so it starts moving on it's own set the speed down to 0, but don't shut it off</b></font></li>
+					<li>"} + span_red(span_bold("When the singularity reaches a large enough size so it starts moving on it's own set the speed down to 0, but don't shut it off")) + {"</li>
 					<li>Remember to wear a radiation suit when working with this machine... we did tell you that at the start, right?</li>
 				</ol>
 
@@ -132,7 +132,7 @@
 				<li>Ensure the engine room has power. The blast doors and ejection platform are unresponsive without power.</li>
 				<li>Press Engine Ventilatory Control button to open engine core blast door to space.</li>
 				<li>Press Emergency Core Eject button to eject supermatter crystal. NOTE: Attempting crystal ejection while engine core vent is closed will result in ejection failure.</li>
-				<li>In event of ejection failure, <i>pending</i></li>
+				<li>In event of ejection failure, "} + span_italics("pending") + {"</li>
 				</ol>
 				</body>
 			</html>"}
@@ -181,7 +181,7 @@
 				<li>Bolt down Telsa Coils and Grounding Rods</li>
 				<li>Activate the Emitters</li>
 				<li>Activate each of the Field Generators, then wait until the containment field has completely formed.</li>
-				<li>Setup the Particle Accelerator (see our best seller <i>&quot;Particle Accelerator User&apos;s Guide&quot;</i>!) and activate it.</li>
+				<li>Setup the Particle Accelerator (see our best seller "} + span_italics("&quot;Particle Accelerator User&apos;s Guide&quot;") + {"!) and activate it.</li>
 				<li>After a short time the Telsa Generator will create an energy ball, being consumed in the process.</li>
 				</ol>
 				<br>
@@ -190,7 +190,7 @@
 				<li>Ensure that electrical protection and meson goggles are worn at all times while working in the engine room.</li>
 				<li>Ensure that Telsa Coils and/or Grounding Rods are placed to safely collect or ground any and all shock.</li>
 				<li>Ensure that all Emitters remain activated and have unobstructed lines of fire to the Field Generators.</li>
-				<li>Do <b>not</b> let the Emitters run out of power.</li>
+				<li>Do "} + span_bold("not") + {" let the Emitters run out of power.</li>
 				</ol>
 				<br>
 				<h2>SHUTDOWN PROCEDURE</h2>
@@ -203,7 +203,7 @@
 				<ol>
 				<li>Do not let it escape.</li>
 				<li>Have someone ready to blame when it does escape.</li>
-				<li>Buy our forthcoming manual &quot;<i>Celebrity Grounding Rod Shelters of the Galaxy</i>&quot;</li>
+				<li>Buy our forthcoming manual &quot;"} + span_italics("Celebrity Grounding Rod Shelters of the Galaxy") + {"&quot;</li>
 				</ol>
 				</body>
 			</html>"}
@@ -242,7 +242,7 @@
 				<li>Configure the SMES, turn the PACMAN off before it explodes.</li>
 				</ol>
 				<br>
-				<b>NOTES FOR NEWBIES</b>
+				"} + span_bold("NOTES FOR NEWBIES") + {"
 				<br>
 				Anything touching the field will mess with its stability and eventually cause it to rupture. Rupturing is bad. Use the gyrotron to keep instability down if you're running the engine on unstable fuel.
 				<br><br>
@@ -276,27 +276,27 @@
 				A power problem has made the entire station lose power? Could be station-wide wiring problems or illegal power sinks. In any case follow these steps:
 
 				<ol>
-					<li><b><font color='red'>PANIC!</font></b></li>
-					<li>Get your ass over to engineering! <b>QUICKLY!!!</b></li>
-					<li>Get to the <b>Area Power Controller</b> which controls the power to the emitters.</li>
-					<li>Swipe it with your <b>ID card</b> - if it doesn't unlock, continue with step 15.</li>
+					<li>"} + span_bold(span_red("PANIC!")) + {"</li>
+					<li>Get your ass over to engineering! "} + span_bold("QUICKLY!!!") + {"</li>
+					<li>Get to the "} + span_bold("Area Power Controller") + {" which controls the power to the emitters.</li>
+					<li>Swipe it with your "} + span_bold("ID card") + {" - if it doesn't unlock, continue with step 15.</li>
 					<li>Open the console and disengage the cover lock.</li>
-					<li>Pry open the APC with a <b>Crowbar.</b></li>
-					<li>Take out the empty <b>power cell.</b></li>
-					<li>Put in the new, <b>full power cell</b> - if you don't have one, continue with step 15.</li>
-					<li>Quickly put on a <b>Radiation suit.</b></li>
-					<li>Check if the <b>singularity field generators</b> withstood the down-time - if they didn't, continue with step 15.</li>
+					<li>Pry open the APC with a "} + span_bold("Crowbar.") + {"</li>
+					<li>Take out the empty "} + span_bold("power cell.") + {"</li>
+					<li>Put in the new, "} + span_bold("full power cell") + {" - if you don't have one, continue with step 15.</li>
+					<li>Quickly put on a "} + span_bold("Radiation suit.") + {"</li>
+					<li>Check if the "} + span_bold("singularity field generators") + {" withstood the down-time - if they didn't, continue with step 15.</li>
 					<li>Since disaster was averted you now have to ensure it doesn't repeat. If it was a powersink which caused it and if the engineering APC is wired to the same powernet, which the powersink is on, you have to remove the piece of wire which links the APC to the powernet. If it wasn't a powersink which caused it, then skip to step 14.</li>
 					<li>Grab your crowbar and pry away the tile closest to the APC.</li>
 					<li>Use the wirecutters to cut the wire which is connecting the grid to the terminal. </li>
 					<li>Go to the bar and tell the guys how you saved them all. Stop reading this guide here.</li>
-					<li><b>GET THE FUCK OUT OF THERE!!!</b></li>
+					<li>"} + span_bold("GET THE FUCK OUT OF THERE!!!") + {"</li>
 				</ol>
 
 				<h2>Shields get damaged</h2>
 
 				<ol>
-					<li><b>GET THE FUCK OUT OF THERE!!! FORGET THE WOMEN AND CHILDREN, SAVE YOURSELF!!!</b></li>
+					<li>"} + span_bold("GET THE FUCK OUT OF THERE!!! FORGET THE WOMEN AND CHILDREN, SAVE YOURSELF!!!") + {"</li>
 				</ol>
 				</body>
 			</html>
@@ -458,27 +458,27 @@
 				<body>
 				<center>
 				<br>
-				<span style='font-size: 12px;'><b>Weyland-Yutani - Building Better Worlds</b></span>
+				<span style='font-size: 12px;'>"} + span_bold("Weyland-Yutani - Building Better Worlds") + {"</span>
 				<h1>Autonomous Power Loader Unit \"Ripley\"</h1>
 				</center>
 				<h2>Specifications:</h2>
 				<ul class="a">
-				<li><b>Class:</b> Autonomous Power Loader</li>
-				<li><b>Scope:</b> Logistics and Construction</li>
-				<li><b>Weight:</b> 820kg (without operator and with empty cargo compartment)</li>
-				<li><b>Height:</b> 2.5m</li>
-				<li><b>Width:</b> 1.8m</li>
-				<li><b>Top speed:</b> 5km/hour</li>
-				<li><b>Operation in vacuum/hostile environment: Possible</b>
-				<li><b>Airtank volume:</b> 500 liters</li>
-				<li><b>Devices:</b>
+				<li>"} + span_bold("Class:") + {" Autonomous Power Loader</li>
+				<li>"} + span_bold("Scope:") + {" Logistics and Construction</li>
+				<li>"} + span_bold("Weight:") + {" 820kg (without operator and with empty cargo compartment)</li>
+				<li>"} + span_bold("Height:") + {" 2.5m</li>
+				<li>"} + span_bold("Width:") + {" 1.8m</li>
+				<li>"} + span_bold("Top speed:") + {" 5km/hour</li>
+				<li>"} + span_bold("Operation in vacuum/hostile environment: Possible") + {"
+				<li>"} + span_bold("Airtank volume:") + {" 500 liters</li>
+				<li>"} + span_bold("Devices:") + {"
 					<ul class="a">
 					<li>Hydraulic clamp</li>
 					<li>High-speed drill</li>
 					</ul>
 				</li>
-				<li><b>Propulsion device:</b> Powercell-powered electro-hydraulic system</li>
-				<li><b>Powercell capacity:</b> Varies</li>
+				<li>"} + span_bold("Propulsion device:") + {" Powercell-powered electro-hydraulic system</li>
+				<li>"} + span_bold("Powercell capacity:") + {" Varies</li>
 				</ul>
 
 				<h2>Construction:</h2>
@@ -538,9 +538,9 @@
 				<h1>Science For Dummies</h1>
 				So you want to further SCIENCE? Good man/woman/thing! However, SCIENCE is a complicated process even though it's quite easy. For the most part, it's a three step process:
 				<ol>
-					<li><b>Deconstruct</b> items in the Destructive Analyzer to advance technology or improve the design.</li>
-					<li><b>Build</b> unlocked designs in the Protolathe and Circuit Imprinter.</li>
-					<li><b>Repeat</b>!</li>
+					<li>"} + span_bold("Deconstruct") + {" items in the Destructive Analyzer to advance technology or improve the design.</li>
+					<li>"} + span_bold("Build") + {" unlocked designs in the Protolathe and Circuit Imprinter.</li>
+					<li>"} + span_bold("Repeat") + {"!</li>
 				</ol>
 
 				Those are the basic steps to furthering science. What do you do science with, however? Well, you have four major tools: R&D Console, the Destructive Analyzer, the Protolathe, and the Circuit Imprinter.
@@ -553,7 +553,7 @@
 				It also has a settings menu that lets you re-sync with nearby R&D devices (if they've become disconnected), lock the console from the unworthy,
 				upload the data to all other R&D consoles in the network (all R&D consoles are networked by default), connect/disconnect from the network, and purge all data from the database.<br><br>
 
-				<b>NOTE:</b> The technology list screen, circuit imprinter, and protolathe menus are accessible by non-scientists. This is intended to allow 'public' systems for the plebians to utilize some new devices.
+				"} + span_bold("NOTE:") + {" The technology list screen, circuit imprinter, and protolathe menus are accessible by non-scientists. This is intended to allow 'public' systems for the plebians to utilize some new devices.
 
 				<h2>Destructive Analyzer</h2>
 				This is the source of all technology. Whenever you put a handheld object in it, it analyzes it and determines what sort of technological advancements you can discover from it. If the technology of the object is equal or higher then your current knowledge,
@@ -979,21 +979,21 @@
 					<li>Extend and anchor the nuclear device from its interface.</li>
 					<li>Insert the nuclear authorisation disk into the slot.</li>
 					<li>Type the numeric authorisation code into the keypad. This should have been provided.<br>
-					<b>Note</b>: If you make a mistake, press R to reset the device.
+					"} + span_bold("Note") + {": If you make a mistake, press R to reset the device.
 					<li>Press the E button to log on to the device.</li>
 				</ul><br>
 
 				You now have activated the device. To deactivate the buttons at anytime, for example when you've already prepped the bomb for detonation, remove the authentication disk OR press R on the keypad.<br><br>
 				Now the bomb CAN ONLY be detonated using the timer. Manual detonation is not an option. Toggle off the SAFETY.<br>
-				<b>Note</b>: You wouldn't believe how many SAARE Operatives with doctorates have forgotten this step.<br><br>
+				"} + span_bold("Note") + {": You wouldn't believe how many SAARE Operatives with doctorates have forgotten this step.<br><br>
 
 				So use the - - and + + to set a detonation time between 5 seconds and 10 minutes. Then press the timer toggle button to start the countdown. Now remove the authentication disk so that the buttons deactivate.<br>
-				<b>Note</b>: THE BOMB IS STILL SET AND WILL DETONATE<br><br>
+				"} + span_bold("Note") + {": THE BOMB IS STILL SET AND WILL DETONATE<br><br>
 
 				Now before you remove the disk, if you need to move the bomb, you can toggle off the anchor, move it, and re-anchor.<br><br>
 
 				Remember the order:<br>
-				<b>Disk, Code, Safety, Timer, Disk, RUN!</b><br><br>
+				"} + span_bold("Disk, Code, Safety, Timer, Disk, RUN!") + {"<br><br>
 				Intelligence Analysts believe that normal corporate procedure is for the Site Manager to secure the nuclear authentication disk.<br><br>
 
 				Good luck!
@@ -1030,8 +1030,8 @@
 					<li><a href="#Final">Final Checks</a></li>
 				</ol><br>
 
-				<h1><a name="Foreword"><U><B>HOW TO NOT SUCK QUITE SO HARD AT ATMOSPHERICS</B></U></a></h1><BR>
-				<I>Or: What the fuck does a "pressure regulator" do?</I><BR><BR>
+				<h1><a name="Foreword">"} + span_underline(span_bold("HOW TO NOT SUCK QUITE SO HARD AT ATMOSPHERICS")) + {"</a></h1><BR>
+				"} + span_italics("Or: What the fuck does a \"pressure regulator\" do?") + {"<BR><BR>
 
 				Alright. It has come to my attention that a variety of people are unsure of what a "pipe" is and what it does.
 				Apparently, there is an unnatural fear of these arcane devices and their "gases." Spooky, spooky. So,
@@ -1040,67 +1040,67 @@
 				or something like that. Just what stuff does.<BR><BR>
 
 
-				<h1><a name="Basic"><B>Basic Pipes</B></a></h1>
-				<I>The boring ones.</I><BR>
+				<h1><a name="Basic">"} + span_bold("Basic Pipes") + {"</a></h1>
+				"} + span_italics("The boring ones.") + {"<BR>
 				Most ordinary pipes are pretty straightforward. They hold gas. If gas is moving in a direction for some reason, gas will flow in that direction.
 				That's about it. Even so, here's all of your wonderful pipe options.<BR>
 
 				<ul>
-				<li><b>Straight pipes:</b> They're pipes. One-meter sections. Straight line. Pretty simple. Just about every pipe and device is based around this
+				<li>"} + span_bold("Straight pipes:") + {" They're pipes. One-meter sections. Straight line. Pretty simple. Just about every pipe and device is based around this
 				standard one-meter size, so most things will take up as much space as one of these.</li>
-				<li><b>Bent pipes:</b> Pipes with a 90 degree bend at the half-meter mark. My goodness.</li>
-				<li><b>Pipe manifolds:</b> Pipes that are essentially a "T" shape, allowing you to connect three things at one point.</li>
-				<li><b>4-way manifold:</b> A four-way junction.</li>
-				<li><b>Pipe cap:</b> Caps off the end of a pipe. Open ends don't actually vent air, because of the way the pipes are assembled, so, uh, use them to decorate your house or something.</li>
-				<li><b>Manual valve:</b> A valve that will block off airflow when turned. Can't be used by the AI or cyborgs, because they don't have hands.</li>
-				<li><b>Manual T-valve:</b> Like a manual valve, but at the center of a manifold instead of a straight pipe.</li><BR><BR>
+				<li>"} + span_bold("Bent pipes:") + {" Pipes with a 90 degree bend at the half-meter mark. My goodness.</li>
+				<li>"} + span_bold("Pipe manifolds:") + {" Pipes that are essentially a "T" shape, allowing you to connect three things at one point.</li>
+				<li>"} + span_bold("4-way manifold:") + {" A four-way junction.</li>
+				<li>"} + span_bold("Pipe cap:") + {" Caps off the end of a pipe. Open ends don't actually vent air, because of the way the pipes are assembled, so, uh, use them to decorate your house or something.</li>
+				<li>"} + span_bold("Manual valve:") + {" A valve that will block off airflow when turned. Can't be used by the AI or cyborgs, because they don't have hands.</li>
+				<li>"} + span_bold("Manual T-valve:") + {" Like a manual valve, but at the center of a manifold instead of a straight pipe.</li><BR><BR>
 				</ul>
 
 				An important note here is that pipes are now done in three distinct lines - general, supply, and scrubber. You can move gases between these with a universal adapter. Use the correct position for the correct location.
 				Connecting scrubbers to a supply position pipe makes you an idiot who gives everyone a difficult job. Insulated and HE pipes don't go through these positions.
 
-				<h1><a name="Insulated"><B>Insulated Pipes</B></a></h1>
-				<li><I>Bent pipes:</I> Pipes with a 90 degree bend at the half-meter mark. My goodness.</li>
-				<li><I>Pipe manifolds:</I> Pipes that are essentially a "T" shape, allowing you to connect three things at one point.</li>
-				<li><I>4-way manifold:</I> A four-way junction.</li>
-				<li><I>Pipe cap:</I> Caps off the end of a pipe. Open ends don't actually vent air, because of the way the pipes are assembled, so, uh. Use them to decorate your house or something.</li>
-				<li><I>Manual Valve:</I> A valve that will block off airflow when turned. Can't be used by the AI or cyborgs, because they don't have hands.</li>
-				<li><I>Manual T-Valve:</I> Like a manual valve, but at the center of a manifold instead of a straight pipe.</li><BR><BR>
+				<h1><a name="Insulated">"} + span_bold("Insulated Pipes") + {"</a></h1>
+				<li>"} + span_italics("Bent pipes:") + {" Pipes with a 90 degree bend at the half-meter mark. My goodness.</li>
+				<li>"} + span_italics("Pipe manifolds:") + {" Pipes that are essentially a "T" shape, allowing you to connect three things at one point.</li>
+				<li>"} + span_italics("4-way manifold:") + {" A four-way junction.</li>
+				<li>"} + span_italics("Pipe cap:") + {" Caps off the end of a pipe. Open ends don't actually vent air, because of the way the pipes are assembled, so, uh. Use them to decorate your house or something.</li>
+				<li>"} + span_italics("Manual Valve:") + {" A valve that will block off airflow when turned. Can't be used by the AI or cyborgs, because they don't have hands.</li>
+				<li>"} + span_italics("Manual T-Valve:") + {" Like a manual valve, but at the center of a manifold instead of a straight pipe.</li><BR><BR>
 
-				<h1><a name="Insulated"><B>Insulated Pipes</B></a></h1><BR>
-				<I>Special Public Service Announcement.</I><BR>
+				<h1><a name="Insulated">"} + span_bold("Insulated Pipes") + {"</a></h1><BR>
+				"} + span_italics("Special Public Service Announcement.") + {"<BR>
 				Our regular pipes are already insulated. These are completely worthless. Punch anyone who uses them.<BR><BR>
 
-				<h1><a name="Devices"><B>Devices: </B></a></h1>
-				<I>They actually do something.</I><BR>
+				<h1><a name="Devices">"} + span_bold("Devices: ") + {"</a></h1>
+				"} + span_italics("They actually do something.") + {"<BR>
 				This is usually where people get frightened, afraid, and start calling on their gods and/or cowering in fear. Yes, I can see you doing that right now.
 				Stop it. It's unbecoming. Most of these are fairly straightforward.<BR>
 
 				<ul>
-				<li><b>Gas pump:</b> Take a wild guess. It moves gas in the direction it's pointing (marked by the red line on one end). It moves it based on pressure, the maximum output being 15000 kPa (kilopascals).
+				<li>"} + span_bold("Gas pump:") + {" Take a wild guess. It moves gas in the direction it's pointing (marked by the red line on one end). It moves it based on pressure, the maximum output being 15000 kPa (kilopascals).
 				Ordinary atmospheric pressure, for comparison, is 101.3 kPa, and the minimum pressure of room-temperature pure oxygen needed to not suffocate in a matter of minutes is 16 kPa
 				(though 18 kPa is preferred when using internals with pure oxygen, for various reasons). A high-powered variant will move gas more quickly at the expense of consuming more power. Do not turn the distribution loop up to 15000 kPa.
 				You will make engiborgs cry and the Chief Engineer will beat you.</li>
-				<li><b>Pressure regulator:</b> These replaced the old passive gates. You can choose to regulate pressure by input or output, and regulate flow rate. Regulating by input means that when input pressure is above the limit, gas will flow.
+				<li>"} + span_bold("Pressure regulator:") + {" These replaced the old passive gates. You can choose to regulate pressure by input or output, and regulate flow rate. Regulating by input means that when input pressure is above the limit, gas will flow.
 				Regulating by output means that when pressure is below the limit, gas will flow. Flow rate can be controlled.</li>
-				<li><b>Unary vent:</b> The basic vent used in rooms. It pumps gas into the room, but can't suck it back out. Controlled by the room's air alarm system.</li>
-				<li><b>Scrubber:</b> The other half of room equipment. Filters air, and can suck it in entirely in what's called a "panic siphon." Activating a panic siphon without very good reason will kill someone. Don't do it.</li>
-				<li><b>Meter:</b> A little box with some gauges and numbers. Fasten it to any pipe or manifold and it'll read you the pressure in it. Very useful.</li>
-				<li><b>Gas mixer:</b> Two sides are input, one side is output. Mixes the gases pumped into it at the ratio defined. The side perpendicular to the other two is "node 2," for reference, on non-mirrored mixers..
+				<li>"} + span_bold("Unary vent:") + {" The basic vent used in rooms. It pumps gas into the room, but can't suck it back out. Controlled by the room's air alarm system.</li>
+				<li>"} + span_bold("Scrubber:") + {" The other half of room equipment. Filters air, and can suck it in entirely in what's called a "panic siphon." Activating a panic siphon without very good reason will kill someone. Don't do it.</li>
+				<li>"} + span_bold("Meter:") + {" A little box with some gauges and numbers. Fasten it to any pipe or manifold and it'll read you the pressure in it. Very useful.</li>
+				<li>"} + span_bold("Gas mixer:") + {" Two sides are input, one side is output. Mixes the gases pumped into it at the ratio defined. The side perpendicular to the other two is "node 2," for reference, on non-mirrored mixers..
 				Output is controlled by flow rate. There is also an "omni" variant that allows you to set input and output sections freely..</li>
-				<li><b>Gas filter:</b> Essentially the opposite of a gas mixer. One side is input. The other two sides are output. One gas type will be filtered into the perpendicular output pipe,
+				<li>"} + span_bold("Gas filter:") + {" Essentially the opposite of a gas mixer. One side is input. The other two sides are output. One gas type will be filtered into the perpendicular output pipe,
 				the rest will continue out the other side. Can also output from 0-4500 kPa. The "omni" vairant allows you to set input and output sections freely.</li>
 				</ul>
 
-				<h1><a name="HES"><B>Heat Exchange Systems</B></a></h1>
-				<I>Will not set you on fire.</I><BR>
+				<h1><a name="HES">"} + span_bold("Heat Exchange Systems") + {"</a></h1>
+				"} + span_italics("Will not set you on fire.") + {"<BR>
 				These systems are used to only transfer heat between two pipes. They will not move gases or any other element, but will equalize the temperature (eventually). Note that because of how gases work (remember: pv=nRt),
 				a higher temperature will raise pressure, and a lower one will lower temperature.<BR>
 
-				<li><I>Pipe:</I> This is a pipe that will exchange heat with the surrounding atmosphere. Place in fire for superheating. Place in space for supercooling.</li>
-				<li><I>Bent pipe:</I> Take a wild guess.</li>
-				<li><I>Junction:</I> The point where you connect your normal pipes to heat exchange pipes. Not necessary for heat exchangers, but necessary for H/E pipes/bent pipes.</li>
-				<li><I>Heat exchanger:</I> These funky-looking bits attach to an open pipe end. Put another heat exchanger directly across from it, and you can transfer heat across two pipes without having to have the gases touch.
+				<li>"} + span_italics("Pipe:") + {" This is a pipe that will exchange heat with the surrounding atmosphere. Place in fire for superheating. Place in space for supercooling.</li>
+				<li>"} + span_italics("Bent pipe:") + {" Take a wild guess.</li>
+				<li>"} + span_italics("Junction:") + {" The point where you connect your normal pipes to heat exchange pipes. Not necessary for heat exchangers, but necessary for H/E pipes/bent pipes.</li>
+				<li>"} + span_italics("Heat exchanger:") + {" These funky-looking bits attach to an open pipe end. Put another heat exchanger directly across from it, and you can transfer heat across two pipes without having to have the gases touch.
 				This normally shouldn't exchange with the ambient air, despite being totally exposed. Just don't ask questions.</li><BR>
 
 				That's about it for pipes. Go forth, armed with this knowledge, and try not to break, burn down, or kill anything. Please.
@@ -1130,7 +1130,7 @@
 				<body>
 
 				<h1><a name="Foreword">EVA Gear and You: Not Spending All Day Inside, 2nd Edition</a></h1>
-				<I>Or: How not to suffocate because there's a hole in your shoes</I><BR>
+				"} + span_italics("Or: How not to suffocate because there's a hole in your shoes") + {"<BR>
 
 				<h2><a name="Contents">Contents</a></h2>
 				<ol>
@@ -1152,7 +1152,7 @@
 				Rather than oxygen, use a suit cooling unit. Many emergency equipment stores don't hold them, unfortunately, but dedicated EVA stores will. Be aware of your heat tolerances.<BR><BR>
 
 				<h2><a name="Softsuits">Softsuits and Emergency Equipment</a></h2>
-				<I>The bulkiest things this side of Alpha Centauri</I><BR>
+				"} + span_italics("The bulkiest things this side of Alpha Centauri") + {"<BR>
 				These suits are the both grey ones that are stored in EVA and orange emergency suits in emergency lockers. They're the more simple to get on, but are also a lot bulkier, and provide less protection from environmental hazards such as radiation or physical impact.
 				As Medical, Engineering, Security, and Mining all have voidsuits of their own, these don't see much use outside of emergencies. In an emergency, knowing how to put one on can save your life.<BR><BR>
 
@@ -1170,7 +1170,7 @@
 				These suits tend to be wearable by most species. They're large and flexible. They might be pretty uncomfortable for some, though, so keep that in mind.<BR><BR>
 
 				<h2><a name="Voidsuits">Voidsuits</a></h2>
-				<I>Heavy, uncomfortable, still the best option.</I><BR>
+				"} + span_italics("Heavy, uncomfortable, still the best option.") + {"<BR>
 				These suits come in many specialized varieties. The most common are engineering, atmospherics, security, medical, and mining varieties.
 				These provide a lot more protection than the standard suits, and depending on the specialization, can offer different protections.
 				For example, security suits have armor plating, engineering suits have radiation protection, and atmospherics suits are rated for extremely high temperatures.<BR><BR>
@@ -1186,7 +1186,7 @@
 				If a helmet is installed, you can skip it while putting the suit on, obviously. When deployed, it will deploy from the back of your neck, covering the head and sealing at the front.<BR><BR>
 
 				<h2><a name="Hardsuits">Hardsuits/Rigs</a></h2>
-				<I>The fancy stuff.</I><BR>
+				"} + span_italics("The fancy stuff.") + {"<BR>
 				Proper hardsuits are the most complex sort of EVA equipment available, and blur the line between spacesuits and smaller exosuits. They're sometimes known as 'rigs' or 'powered armor'.
 				These are the suits with the widest variety of uses, owing to the wide variety of equipment that can be installed on them. Like voidsuits, they come in different, specialized varieties, each one offering different protections and different equipment.
 				Equipment that can be installed includes weapons, power tools, mining equipment, medical equipment, AI assistants, and more.<BR><BR>
@@ -1199,7 +1199,7 @@
 				The potential of a suit breach is always there, and the use of powered equipment raises it significantly.<BR><BR>
 
 				<h2><a name="Advice">Miscellaneous Advice</a></h2>
-				<I>Pro tip: Safety first.</I><BR>
+				"} + span_italics("Pro tip: Safety first.") + {"<BR>
 				There's a lot of general advice that can be helpful for people who haven't taken a long-form instruction course. Much of this is going to be fairly obvious safety advice, but it's never bad to remind yourself of that.<BR><BR>
 
 				<ul>
@@ -1211,7 +1211,7 @@
 				</ul>
 
 				<h2><a name="Equipment">Modification Equipment</a></h2>
-				<I>How to actually make voidsuits fit you.</I><BR>
+				"} + span_italics("How to actually make voidsuits fit you.") + {"<BR>
 				There's a variety of equipment that can modify hardsuits to fit species that can't fit into them, making life quite a bit easier.<BR><BR>
 
 				The first piece of equipment is a suit cycler. This is a large machine resembling the storage pods that are in place in some places. These are machines that will automatically tailor a suit to certain specifications.
@@ -1274,20 +1274,20 @@
 				Before you jump in to making the next Black Death, you need to understand what's what. When you pop a tray into the disease analyzer you'll get a paper listing quite a few<br>
 				things about that virus!<br><br>
 
-				<b>Antigens</b><br>
+				"} + span_bold("Antigens") + {"<br>
 				The first thing you might notice on this analysis is the listed antigens of a virus. This, essentially, is what you need for cures. When a patient develops an antibody that<br>
 				matches a disease's antigen, they'll be immune to the virus.<br><br>
 
-				<b>Transmission</b><br>
+				"} + span_bold("Transmission") + {"<br>
 				This will list one of three methods of transmission: airborne, contact, or blood. Airborne viruses will spread through the air, meaning if a patient is coughing or sneezing<br>
 				it will spread quicker. Contactviruses need some sort of, well, contact. Blood on the floor, mucus, and vomit should all be cleaned up. Blood-transmission viruses will only<br>
 				spread through actual blood contact, meaning an injection of the virus would be necessary to spread it.<br><br>
 
-				<b>Species</b><br>
+				"} + span_bold("Species") + {"<br>
 				Not all viruses are compatible with all species! This will list off what can be infected by a particular virus. This can be changed through splicing. In rare cases you will<br>
 				get a virus that has infected crewmembers but cannot infect your lab monkeys. In these cases, you will likely have to splice different species data to safely make a cure.<br><br>
 
-				<b>Symptoms</b><br>
+				"} + span_bold("Symptoms") + {"<br>
 				This lists what all the virus does, along with the strength of the symptoms and their aggressiveness. A full list of symptoms and their stages can be found below.<br><br>
 
 				<h2>Protection</h2>
@@ -1300,21 +1300,21 @@
 					<li>One (1) box of sterile masks</li>
 					<li>One (1) box of latex gloves</li>
 				</ul><br>
-				<b>Make sure to gear up appropriately and take precautions to not bring the virus out of the lab!</b><br><br>
+				"} + span_bold("Make sure to gear up appropriately and take precautions to not bring the virus out of the lab!") + {"<br><br>
 				What needs to be worn varies from race to race, as some species cannot be affected by a virus, but<br>
 				precautions should always be taken to prevent accidentally carrying the virus out of containment.<br><br>
 
 				<h2>Machinery</h2>
 				These are the types of machines that you will be expected to use in this department. Study them, know them, and make sure you use them correctly!<br><br>
 
-				<b>Antibody Scanner</b><br>
+				"} + span_bold("Antibody Scanner") + {"<br>
 				A device similar to a health analyzer, when scanned over a patient it will tell you any present antibodies in their bloodstream.<br><br>
 
-				<b>Pathogenic Isolator</b><br>
+				"} + span_bold("Pathogenic Isolator") + {"<br>
 				This device can be loaded with blood samples via a syringe. It will tell you if there is a present viral pathogen, and if so it can isolate the pathogen,<br>
 				producing a virus dish for further research. This is the primary means of creating virus dishes.<br><br>
 
-				<b>Pathogenic Incubator</b><br>
+				"} + span_bold("Pathogenic Incubator") + {"<br>
 				One of the most important machines, you'll be sitting here a lot. Virus trays you produce will start small, and you will need to grow them to get anywhere.<br>
 				Load it with virus food (diluted milk, found in a wall mounted dispenser nearby) as well as a virus dish and turn it on. It will slowly grow the virus<br>
 				for analysis, splicing, or whatever other use you might find for it. It can also inject the virus into other chemicals (i.e. blood) which will allow you<br>
@@ -1322,16 +1322,16 @@
 
 				Additionally, it can irradiate a virus dish to cause mutation. This randomly alters the syndromes, allowing you to collect new data.<br><br>
 
-				<b>Disease Analyser</b><br>
+				"} + span_bold("Disease Analyser") + {"<br>
 				Virus dishes may be placed into this machine after it has been incubated sufficiently. It will create a reading of the virus' symptoms, species targeted,<br>
 				associated antibodies, and so on. It will also update the disease into the digital database, allowing it to be detected via Medical HUD or health analyzer.<br><br>
 
-				<b>Isolation Centrifuge</b><br>
+				"} + span_bold("Isolation Centrifuge") + {"<br>
 				Inserting a vial of blood into this machine will allow it to take a present pathogen or antibody, turning it into a pure virus or pure cure for your use.<br>
 				It will automatically detect if either are in the blood sample, so it is useful for determining if a sample is infected. The sample will be reusable if creating<br>
 				more of the virus, but will be expended upon creating antibodies.<br><br>
 
-				<b>Disease Splicer</b><br>
+				"} + span_bold("Disease Splicer") + {"<br>
 				As it's name implied, this machine is for splicing the disease symptoms and creating new viruses. Insert an analyzed virus sample to take a symptom which can<br>
 				then be saved on a GNA disk (created by the machine), or use an existing disk on the machine to load up a symptom and splice it in.<br><br>
 
@@ -1340,7 +1340,7 @@
 				and splicing. Keep in mind that infecting the whole station with a deadly virus is generally frowned upon in most societies, and even in an antagonistic role simply<br>
 				infecting everyone with a very deadly virus is not ideal.<br><br>
 
-				<b>Obtaining a Sample</b><br>
+				"} + span_bold("Obtaining a Sample") + {"<br>
 				The first step to making your own virus is to find a virus to start tinkering with. There are two ways of doing this: grabbing the pre-spawned virus dish from the<br>
 				freezer create in your laboratory, or taking a blood sample from an infected patient that you haven't cured yet and running it through the Pathogenic Isolator to<br>
 				produce a virus dish.<br><br>
@@ -1351,17 +1351,17 @@
 
 				Once that's all done, you're ready to start the real work.<br><br>
 
-				<b>Obtaining a Sample</b><br>
+				"} + span_bold("Obtaining a Sample") + {"<br>
 				Sometimes you just need to infect somebody. Usually, this is because you're doing some splicing work and want to make sure that you'll have some copies of a virus<br>
 				in reserve for future study. Fortunately, the process of deliberately infecting patients, as well as creating backups of your viruses, is actually very simple.<br><br>
 
-				If you have a virus dish and wish to infect a patient, place the dish into the <b>Pathogenic Incubator</b> along with a beaker full of blood. Ideally, this is the<br>
+				If you have a virus dish and wish to infect a patient, place the dish into the "} + span_bold("Pathogenic Incubator") + {" along with a beaker full of blood. Ideally, this is the<br>
 				patient's (or test monkey's) blood, though anyone's will do in a pinch - just be aware of the possibility of blood rejection, and be ready to deal with it accordingly.<br>
 				The incubator can inject a sample of the virus into the blood, which you can then inject into the patient to infect them. Alternatively, once a blood sample is infected<br>
-				you may place it in either the <b>Pathogenic Isolator</b> or <b>Isolation Centrifuge</b> to make as many samples of that virus you need without destroying the sample.<br>
+				you may place it in either the "} + span_bold("Pathogenic Isolator") + {" or "} + span_bold("Isolation Centrifuge") + {" to make as many samples of that virus you need without destroying the sample.<br>
 				No infections necessary!<br><br>
 
-				<b>Splicing</b><br>
+				"} + span_bold("Splicing") + {"<br>
 				To understand splicing, you must know that every virus has 4 GNA strands, each of which is tied to one of the syndromes that it can manifest. Each syndrome, and thus each<br>
 				strand, is ranked in order of its appearance when symptoms begin to manifest in a patient, and higher-ranked (and thus slower to appear) syndromes are likely to be more<br>
 				powerful than lower-ranked ones. (1) is the lowest, first symptom to manifest, and (4) is the highest, final symptom to manifest.<br><br>
@@ -1379,8 +1379,8 @@
 				its buffer. This effectively allows you to give a virus any set of symptoms you want, so long as it follows the rules of the ranking. A rank (1) symptom can fill<br>
 				any slot, while a (3) can only fill 3 and up, and a (4) can only be in the fourth slot.<br><br>
 
-				<b>Mutating</b><br>
-				Sometimes you just don't have any of the symptoms you want. Fortunately, mutating a virus dish is very simple. Simply place a dish in the <b>Pathogenic Incubator</b><br>
+				"} + span_bold("Mutating") + {"<br>
+				Sometimes you just don't have any of the symptoms you want. Fortunately, mutating a virus dish is very simple. Simply place a dish in the "} + span_bold("Pathogenic Incubator") + {"<br>
 				to get started and click 'add radiation'. This will fill up the radiation bar with each press. When the machine is on, this bar will slowly tick down as the radiation<br>
 				is applied to the sample. For any significant mutation the radiation should be over 500k, meaning at least half the bar. When a mutation occurs -- and multiple<br>
 				mutations can occur in a single sample -- there will be a ping from the machine. Once it's done growing and mutating, throw it into the analyzer and see what you got!<br><br>
@@ -1404,12 +1404,12 @@
 				the below, spacecillin can be used in a pinch to attempt to treat a virus if no virologist is present and someone decided to roll around in mucus. However this is not<br>
 				guaranteed to work, and can in fact simply make the virus more resistant to spacecillin.<br><br>
 
-				<b>Quarantine</b><br>
+				"} + span_bold("Quarantine") + {"<br>
 				If you or a crew member becomes infected by a virus, your first concern should be to isolate them as quickly as possible to prevent the disease from spreading. Ideally,<br>
 				this means getting the patient back to Virology and into a holding cell, but failing that, it's important to get them into an isolated room, shut the door, and keep anyone<br>
 				else from entering. It is also important to clean up any blood, vomit, or mucus left behind by the patient, as it may spread the virus as well.<br><br>
 
-				<b>Antibodies</b><br>
+				"} + span_bold("Antibodies") + {"<br>
 				Now that your patient is safely hidden away where they can't infect people without your permission, you want to cure them. The basic idea behind that is to get them to start<br>
 				synthesizing antibodies.<br><br>
 
@@ -1444,7 +1444,7 @@
 				A stage 4 syndrome, however, cannot appear any earlier than stage 4.<br><br>
 
 				<table>
-				<caption> <b>Syndromes</b> </caption>
+				<caption> "} + span_bold("Syndromes") + {" </caption>
 				<tr>
 				<th scope="col"> Stage</th>
 				<th scope="col"> Name</th>
@@ -1453,7 +1453,7 @@
 				<tr>
 				<td> 1 </td>
 				<td> Sneezing </td>
-				<td> Makes the patient sneeze. <b>Spreads airborne disease!</b>
+				<td> Makes the patient sneeze. "} + span_bold("Spreads airborne disease!") + {"
 				</td></tr>
 				<tr>
 				<td> 1 </td>
@@ -1463,7 +1463,7 @@
 				<tr>
 				<td> 1 </td>
 				<td> Salivary Gland Stimulation </td>
-				<td> Makes the patient drool. <b>Spreads the disease!</b>
+				<td> Makes the patient drool. "} + span_bold("Spreads the disease!") + {"
 				</td></tr>
 				<tr>
 				<td> 1 </td>
@@ -1493,7 +1493,7 @@
 				<tr>
 				<td> 2 </td>
 				<td> Vomiting </td>
-				<td> Makes the patient vomit. <b>Spreads the disease!</b>
+				<td> Makes the patient vomit. "} + span_bold("Spreads the disease!") + {"
 				</td></tr>
 				<tr>
 				<td> 2 </td>
@@ -1513,7 +1513,7 @@
 				<tr>
 				<td> 2 </td>
 				<td> Severe Cough </td>
-				<td> Causes coughing. <b>Spreads airborne disease!</b>
+				<td> Causes coughing. "} + span_bold("Spreads airborne disease!") + {"
 				</td></tr>
 				<tr>
 				<td> 2 </td>

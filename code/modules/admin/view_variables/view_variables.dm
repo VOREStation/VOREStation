@@ -225,7 +225,7 @@
 								</tr>
 							</table>
 							<div align='center'>
-								<b><font size='1'>[formatted_type]</font></b>
+								"} + span_bold(span_small("[formatted_type]")) + {"
 								<span id='marked'>[marked]</span>
 								<span id='varedited'>[varedited_line]</span>
 								<span id='deleted'>[deleted_line]</span>
@@ -249,11 +249,9 @@
 				</table>
 			</div>
 			<hr>
-			<font size='1'>
-				<b>E</b> - Edit, tries to determine the variable type by itself.<br>
-				<b>C</b> - Change, asks you for the var type first.<br>
-				<b>M</b> - Mass modify: changes this variable for all objects of this type.<br>
-			</font>
+				"} + span_small(span_bold("E") + " - Edit, tries to determine the variable type by itself.<br>") + {"
+				"} + span_small(span_bold("C") + " - Change, asks you for the var type first.<br>") + {"
+				"} + span_small(span_bold("M") + " - Mass modify: changes this variable for all objects of this type.<br>") + {"
 			<hr>
 			<table width='100%'>
 				<tr>

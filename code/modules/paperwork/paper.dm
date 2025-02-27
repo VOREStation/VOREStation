@@ -458,7 +458,7 @@
 		// check for exploits
 		for(var/bad in paper_blacklist)
 			if(findtext(t,bad))
-				to_chat(usr, "<font color='blue'>You think to yourself, \"Hm.. this is only paper...\</font>"")
+				to_chat(usr, span_blue("You think to yourself, \"Hm.. this is only paper...\""))
 				log_admin("PAPER: [usr] ([usr.ckey]) tried to use forbidden word in [src]: [bad].")
 				message_admins("PAPER: [usr] ([usr.ckey]) tried to use forbidden word in [src]: [bad].")
 				return

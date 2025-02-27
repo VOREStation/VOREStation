@@ -255,7 +255,7 @@ var/list/obj/machinery/requests_console/allConsoles = list()
 		if(inoperable(MAINT)) return
 		if(screen == RCS_MESSAUTH)
 			var/obj/item/card/id/T = O
-			msgVerified = text("<font color='green'><b>Verified by [T.registered_name] ([T.assignment])</b></font>")
+			msgVerified = span_green(span_bold("Verified by [T.registered_name] ([T.assignment])"))
 			SStgui.update_uis(src)
 		if(screen == RCS_ANNOUNCE)
 			var/obj/item/card/id/ID = O
@@ -270,7 +270,7 @@ var/list/obj/machinery/requests_console/allConsoles = list()
 		if(inoperable(MAINT)) return
 		if(screen == RCS_MESSAUTH)
 			var/obj/item/stamp/T = O
-			msgStamped = text("<font color='blue'><b>Stamped with the [T.name]</b></font>")
+			msgStamped = span_blue(span_bold("Stamped with the [T.name]"))
 			SStgui.update_uis(src)
 	return
 

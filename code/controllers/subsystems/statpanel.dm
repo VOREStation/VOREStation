@@ -158,17 +158,17 @@ SUBSYSTEM_DEF(statpanels)
 		target.obj_window.atoms_to_show += target.obj_window.examine_target
 		START_PROCESSING(SSobj_tab_items, target.obj_window)
 		refresh_client_obj_view(target)
-	examine_update += "[target.examine_icon]&emsp;<font size='5'>[description_holders["name"]]</font>" //The name, written in big letters.
+	examine_update += "[target.examine_icon]&emsp;" + span_giant("[description_holders["name"]]") //The name, written in big letters.
 	examine_update += "[description_holders["desc"]]" //the default examine text.
 	if(description_holders["info"])
-		examine_update += "<font color='#084B8A'>" + span_bold("[replacetext(description_holders["info"], "\n", "<BR>")]") + "</font><br />" //Blue, informative text.
+		examine_update += span_blue(span_bold("[replacetext(description_holders["info"], "\n", "<BR>")]")) + "<br />" //Blue, informative text.
 	if(description_holders["interactions"])
 		for(var/line in description_holders["interactions"])
-			examine_update += "<font color='#084B8A'>" + span_bold("[line]") + "</font><br />"
+			examine_update += span_blue(span_bold("[line]")) + "<br />"
 	if(description_holders["fluff"])
-		examine_update += "<font color='#298A08'>" + span_bold("[replacetext(description_holders["fluff"], "\n", "<BR>")]") + "</font><br />" //Green, fluff-related text.
+		examine_update += span_green(span_bold("[replacetext(description_holders["fluff"], "\n", "<BR>")]")) + "<br />" //Green, fluff-related text.
 	if(description_holders["antag"])
-		examine_update += "<font color='#8A0808'>" + span_bold("[description_holders["antag"]]") + "</font><br />" //Red, malicious antag-related text
+		examine_update += span_red(span_bold("[description_holders["antag"]]")) + "<br />" //Red, malicious antag-related text
 
 	target.stat_panel.send_message("update_examine", examine_update)
 

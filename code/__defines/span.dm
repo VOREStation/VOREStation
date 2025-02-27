@@ -226,6 +226,8 @@
 
 #define span_massive(str) "<font size='7'>" + str + "</font>"
 
+#define span_extramassive(str) "<font size='8'>" + str + "</font>"
+
 #define span_narsie(str) "<font size='15'>" + str + "</font>"
 
 #define span_cascade(str) "<span style='font-size:22pt'>" + str + "</span>"

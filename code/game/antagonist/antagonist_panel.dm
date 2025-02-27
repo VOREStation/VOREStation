@@ -28,8 +28,8 @@
 		dat += "<tr>"
 		if(M)
 			dat += "<td><a href='byond://?src=\ref[src];[HrefToken()];adminplayeropts=\ref[M]'>[M.real_name]/([player.key])</a>"
-			if(!M.client)      dat += " <i>(logged out)</i>"
-			if(M.stat == DEAD) dat += " <b><font color=red>(DEAD)</font></b>"
+			if(!M.client)      dat += " " + span_italics("(logged out)")
+			if(M.stat == DEAD) dat += " " + span_red(span_bold("(DEAD)"))
 			dat += "</td>"
 			dat += "<td>\[<A href='byond://?src=\ref[requester];[HrefToken()];adminplayeropts=\ref[M]'>PP</A>]\[<A href='byond://?src=\ref[requester];[HrefToken()];priv_msg=\ref[M]'>PM</A>\]\[<A href='byond://?src=\ref[requester];[HrefToken()];traitor=\ref[M]'>TP</A>\]</td>"
 		else

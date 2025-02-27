@@ -819,11 +819,11 @@ Traitors and the like can also be revived with the previous role mostly intact.
 			return
 		if(M)
 			AddBan(M.ckey, M.computer_id, reason, usr.ckey, 1, mins)
-			to_chat(M, "<font color='red'><BIG><B>You have been banned by [usr.client.ckey].\nReason: [reason].</B></BIG></font>")
-			to_chat(M, "<font color='red'>This is a temporary ban, it will be removed in [mins] minutes</font>.")
-			to_chat(M, "<font color='red'>To try to resolve this matter head to http://ss13.donglabs.com/forum/</font>")
+			to_chat(M, span_red(span_large(span_bold("You have been banned by [usr.client.ckey].\nReason: [reason]."))))
+			to_chat(M, span_red("This is a temporary ban, it will be removed in [mins] minutes."))
+			to_chat(M, span_red("To try to resolve this matter head to http://ss13.donglabs.com/forum/"))
 			log_admin("[usr.client.ckey] has banned [M.ckey].\nReason: [reason]\nThis will be removed in [mins] minutes.")
-			message_admins("<font color='blue'>[usr.client.ckey] has banned [M.ckey].\nReason: [reason]\nThis will be removed in [mins] minutes.</font>")
+			message_admins(span_blue("[usr.client.ckey] has banned [M.ckey].\nReason: [reason]\nThis will be removed in [mins] minutes."))
 			world.Export("http://216.38.134.132/adminlog.php?type=ban&key=[usr.client.key]&key2=[M.key]&msg=[html_decode(reason)]&time=[mins]&server=[replacetext(config.server_name, "#", "")]")
 			del(M.client)
 			qdel(M)
@@ -834,11 +834,11 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		if(!reason)
 			return
 		AddBan(M.ckey, M.computer_id, reason, usr.ckey, 0, 0)
-		to_chat(M, "<font color='red'><BIG><B>You have been banned by [usr.client.ckey].\nReason: [reason].</B></BIG></font>")
-		to_chat(M, "<font color='red'>This is a permanent ban.</font>")
-		to_chat(M, "<font color='red'>To try to resolve this matter head to http://ss13.donglabs.com/forum/</font>")
+		to_chat(M, span_red(span_large(span_bold("You have been banned by [usr.client.ckey].\nReason: [reason]."))))
+		to_chat(M, span_red("This is a permanent ban."))
+		to_chat(M, span_red("To try to resolve this matter head to http://ss13.donglabs.com/forum/"))
 		log_admin("[usr.client.ckey] has banned [M.ckey].\nReason: [reason]\nThis is a permanent ban.")
-		message_admins("<font color='blue'>[usr.client.ckey] has banned [M.ckey].\nReason: [reason]\nThis is a permanent ban.</font>")
+		message_admins(span_blue("[usr.client.ckey] has banned [M.ckey].\nReason: [reason]\nThis is a permanent ban."))
 		world.Export("http://216.38.134.132/adminlog.php?type=ban&key=[usr.client.key]&key2=[M.key]&msg=[html_decode(reason)]&time=perma&server=[replacetext(config.server_name, "#", "")]")
 		del(M.client)
 		qdel(M)
@@ -909,7 +909,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	mob.set_viewsize(view)
 
 	log_admin("[key_name(usr)] changed their view range to [view].")
-	message_admins("<font color='blue'>[key_name_admin(usr)] changed their view range to [view].</font>", 1)
+	message_admins(span_blue("[key_name_admin(usr)] changed their view range to [view]."), 1)
 
 	feedback_add_details("admin_verb","CVRA") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 

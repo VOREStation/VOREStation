@@ -40,7 +40,7 @@
 	jobs_all += "<td weight='100'><a href='byond://?src=\ref[src];;assign=Custom'>Custom</a></td>"
 
 	counter = 0
-	jobs_all += "</tr><tr><td><font color='#A50000'><b>Security</b></font></td>"//Red
+	jobs_all += "</tr><tr><td>" + span_red(span_bold("Security")) + "</td>"//Red
 	for(var/job in security_positions)
 		counter++
 		if(counter >= 6)
@@ -49,7 +49,7 @@
 		jobs_all += "<td height='20' weight='100'><a href='byond://?src=\ref[src];assign=[job]'>[replacetext(job, " ", "&nbsp")]</a></td>"
 
 	counter = 0
-	jobs_all += "</tr><tr><td><font color='#FFA500'><b>Engineering</b></font></td>"//Orange
+	jobs_all += "</tr><tr><td>" + span_orange(span_bold("Engineering")) + "</td>"//Orange
 	for(var/job in engineering_positions)
 		counter++
 		if(counter >= 6)
@@ -58,7 +58,7 @@
 		jobs_all += "<td height='20' weight='100'><a href='byond://?src=\ref[src];assign=[job]'>[replacetext(job, " ", "&nbsp")]</a></td>"
 
 	counter = 0
-	jobs_all += "</tr><tr height='20'><td><font color='#008000'><b>Medical</b></font></td>"//Green
+	jobs_all += "</tr><tr height='20'><td>" + span_green(span_bold("Medical")) + "</td>"//Green
 	for(var/job in medical_positions)
 		counter++
 		if(counter >= 6)
@@ -67,7 +67,7 @@
 		jobs_all += "<td weight='100'><a href='byond://?src=\ref[src];assign=[job]'>[replacetext(job, " ", "&nbsp")]</a></td>"
 
 	counter = 0
-	jobs_all += "</tr><tr height='20'><td><font color='#800080'><b>Science</b></font></td>"//Purple
+	jobs_all += "</tr><tr height='20'><td>" + span_purple(span_bold("Science")) + "</td>"//Purple
 	for(var/job in science_positions)
 		counter++
 		if(counter >= 6)
@@ -76,7 +76,7 @@
 		jobs_all += "<td weight='100'><a href='byond://?src=\ref[src];assign=[job]'>[replacetext(job, " ", "&nbsp")]</a></td>"
 
 	counter = 0
-	jobs_all += "</tr><tr height='20'><td><font color='#808080'><b>Civilian</b></font></td>"//Grey
+	jobs_all += "</tr><tr height='20'><td>" + span_grey(span_bold("Civilian")) + "</td>"//Grey
 	for(var/job in civilian_positions)
 		counter++
 		if(counter >= 6)
@@ -124,7 +124,7 @@
 		accesses += "<td style='width:14%' valign='top'>"
 		for(var/A in get_region_accesses(i))
 			if(A in writer.GetAccess())
-				accesses += topic_link(src,"access=[A]","<font color='red'>[replacetext(get_access_desc(A), " ", "&nbsp")]</font>") + " "
+				accesses += topic_link(src,"access=[A]",span_red("[replacetext(get_access_desc(A), " ", "&nbsp")]")) + " "
 			else
 				accesses += topic_link(src,"access=[A]",replacetext(get_access_desc(A), " ", "&nbsp")) + " "
 			accesses += "<br>"
@@ -185,7 +185,7 @@
 		L += R
 	for(var/R in sortList(L))
 		crew += "[R]<br>"
-	return "<tt><b>Crew Manifest:</b><br>Please use security record computer to modify entries.<br><br>[crew][topic_link(src,"print","Print")]<br><br>[topic_link(src,"mode=0","Access ID modification console.")]<br></tt>"
+	return "<tt>" + span_bold("Crew Manifest:") + "<br>Please use security record computer to modify entries.<br><br>[crew][topic_link(src,"print","Print")]<br><br>[topic_link(src,"mode=0","Access ID modification console.")]<br></tt>"
 
 // These are here partly in order to be overwritten by the centcom card computer code
 /datum/file/program/card_comp/proc/authenticate()
@@ -336,7 +336,7 @@
 	var/accesses = "<h5>[using_map.boss_name]:</h5>"
 	for(var/A in get_all_centcom_access())
 		if(A in writer.GetAccess())
-			accesses += topic_link(src,"access=[A]","<font color='red'>[replacetext(get_centcom_access_desc(A), " ", "&nbsp")]</font>") + " "
+			accesses += topic_link(src,"access=[A]",span_red("[replacetext(get_centcom_access_desc(A), " ", "&nbsp")]")) + " "
 		else
 			accesses += topic_link(src,"access=[A]",replacetext(get_centcom_access_desc(A), " ", "&nbsp")) + " "
 	return accesses

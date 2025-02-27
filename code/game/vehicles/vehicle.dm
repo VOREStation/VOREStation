@@ -99,5 +99,5 @@
 
 /obj/vehicle/proc/log_message(message as text,red=null)
 	log.len++
-	log[log.len] = list("time"=world.timeofday,"message"="[red?"<font color='red'>":null][message][red?"</font>":null]")
+	log[log.len] = list("time"=world.timeofday,"message"="[red?span_red("[message]"):[message]]")
 	return log.len

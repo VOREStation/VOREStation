@@ -304,7 +304,7 @@
 	if(display_contents_with_number)
 		for(var/datum/numbered_display/ND in display_contents)
 			ND.sample_object.screen_loc = "[cx]:16,[cy]:16"
-			ND.sample_object.maptext = "<font color='white'>[(ND.number > 1)? "[ND.number]" : ""]</font>"
+			ND.sample_object.maptext = span_white("[(ND.number > 1)? "[ND.number]" : ""]")
 			ND.sample_object.hud_layerise()
 			var/atom/movable/storage_slot/SS = new(null, ND.sample_object)
 			SS.screen_loc = ND.sample_object.screen_loc

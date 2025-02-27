@@ -656,15 +656,16 @@
 	if(!isliving(src))
 		custom_edit_name = "<a href='byond://?_src_=vars;[HrefToken()];datumedit=\ref[src];varnameedit=name'><b>[src]</b></a>"
 	. += {"
-		[custom_edit_name]
-		<br><font size='1'>
+		[custom_edit_name]<br>
+		"}
+	var/content = {"
 		<a href='byond://?_src_=vars;[HrefToken()];rotatedatum=\ref[src];rotatedir=left'><<</a>
 		<a href='byond://?_src_=vars;[HrefToken()];datumedit=\ref[src];varnameedit=dir'>[dir2text(dir)]</a>
 		<a href='byond://?_src_=vars;[HrefToken()];rotatedatum=\ref[src];rotatedir=right'>>></a>
-		</font>
 		"}
+	. += span_small(content)
 	var/turf/T = get_turf(src)
-	. += "<br><font size='1'>[ADMIN_COORDJMP(T)]</font>"
+	. += "<br>" + span_small("[ADMIN_COORDJMP(T)]")
 
 /atom/vv_edit_var(var_name, var_value)
 	switch(var_name)

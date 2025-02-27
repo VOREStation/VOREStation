@@ -20,9 +20,9 @@
 #define VV_MARKED_DATUM "Marked Datum"
 #define VV_BITFIELD "Bitfield"
 
-#define VV_MSG_MARKED "<br><font size='1' color='red'><b>Marked Object</b></font>"
-#define VV_MSG_EDITED "<br><font size='1' color='red'><b>Var Edited</b></font>"
-#define VV_MSG_DELETED "<br><font size='1' color='red'><b>Deleted</b></font>"
+#define VV_MSG_MARKED "<br>" + span_small(span_red(span_bold("Marked Object")))
+#define VV_MSG_EDITED "<br>" + span_small(span_red(span_bold("Var Edited")))
+#define VV_MSG_DELETED "<br>" + span_small(span_red(span_bold("Deleted")))
 
 #define VV_NORMAL_LIST_NO_EXPAND_THRESHOLD 50
 #define VV_SPECIAL_LIST_NO_EXPAND_THRESHOLD 150
