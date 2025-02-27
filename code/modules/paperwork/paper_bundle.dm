@@ -49,7 +49,7 @@
 		if(istype(W, /obj/item/tape_roll))
 			return 0
 		if(istype(W, /obj/item/pen))
-			user << browse("", "window=[name]") //Closes the dialog
+			user << browse(null, "window=[name]") //Closes the dialog
 		var/obj/P = pages[page]
 		P.attackby(W, user)
 
