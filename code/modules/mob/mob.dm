@@ -39,6 +39,8 @@
 	vore_selected = null // from code/modules/vore/eating/mob_vr
 	focus = null
 
+	motiontracker_unsubscribe(TRUE) // Force unsubscribe
+
 	if(mind)
 		if(mind.current == src)
 			mind.current = null

@@ -22,3 +22,26 @@
       items (useless on station though)
   - rscadd: lockpick sets can now be used to pick fence gates as well
   - image: resprited the basic lockpick set
+2025-02-22:
+  NickBelmont:
+  - rscadd: Reagent-removing 'Pruning mode' to the floral somatoray
+  Tost:
+  - qol: Changed nail polish's size to small
+  - code_imp: Added w_class = ITEMSIZE_SMALL to nail polish, which was missing originally.
+2025-02-23:
+  Cameron-The-Raven:
+  - bugfix: Snake tail no longer has a stray white void pixel following you 24/7 when
+      facing south
+  - bugfix: pizza vouchers will no longer land with such speed that they gib any user,
+      even if not emagged.
+  - bugfix: no more crashing as a ghost
+2025-02-24:
+  Cameron-The-Raven:
+  - rscadd: Vampiric crew now have a source of nutrition in the loadout under the
+      Utility tab!
+  ItsSelis:
+  - code_imp: disabled some testing logs by default (now require -DTESTING to be set
+      while compiling)
+2025-02-25:
+  ItsSelis:
+  - bugfix: fixed a few lines of code so that the code is compileable in OpenDream

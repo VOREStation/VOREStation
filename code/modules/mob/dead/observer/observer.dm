@@ -645,7 +645,8 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	to_chat(src, span_filter_notice(span_red("You are dead! You have no mind to store memory!")))
 
 /mob/observer/dead/Post_Incorpmove()
-	stop_following()
+	if(following) //This wasn't here before. It meant that we would do stop_following repeatedly every movement we made...Resulting in a DOS on our client.
+		stop_following()
 
 /mob/observer/dead/verb/analyze_air()
 	set name = "Analyze Air"
