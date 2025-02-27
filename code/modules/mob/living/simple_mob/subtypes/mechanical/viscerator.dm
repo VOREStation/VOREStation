@@ -32,7 +32,8 @@
 	health = 15
 	movement_cooldown = -2
 
-	pass_flags = PASSTABLE
+	pass_flags = PASSTABLE | PASSMOB
+	a_intent = I_HURT
 	mob_swap_flags = 0
 	mob_push_flags = 0
 
@@ -48,6 +49,10 @@
 	organ_names = /decl/mob_organ_names/viscerator
 
 	ai_holder_type = /datum/ai_holder/simple_mob/melee/evasive
+
+/mob/living/simple_mob/mechanical/viscerator/Initialize()
+	. = ..()
+	AddComponent(/datum/component/swarming)
 
 /mob/living/simple_mob/mechanical/viscerator/death()
 	..(null,"is smashed into pieces!")
