@@ -65,7 +65,7 @@
 		if(C.my_hose)
 			return FALSE
 
-		if(C.flow_direction in list(HOSE_INPUT, HOSE_OUTPUT) - flow_direction)
+		if(C.flow_direction in (list(HOSE_INPUT, HOSE_OUTPUT) - flow_direction))
 			return TRUE
 
 	return FALSE

@@ -15,12 +15,11 @@
 
 	equip_type = EQUIP_HULL
 
-/obj/item/mecha_parts/mecha_equipment/combat_shield/New()
-	..()
+/obj/item/mecha_parts/mecha_equipment/combat_shield/Initialize(mapload)
+	. = ..()
 	my_shield = new my_shield_type
 	my_shield.shield_regen_delay = equip_cooldown
 	my_shield.my_tool = src
-	return
 
 /obj/item/mecha_parts/mecha_equipment/combat_shield/critfail()
 	..()

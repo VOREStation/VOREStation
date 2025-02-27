@@ -507,7 +507,7 @@
 
 	for(var/K in damageable)
 		if(!(K in covered))
-			H.apply_damage(light_amount/4, BURN, K, 0, 0, "Abnormal growths")
+			H.apply_damage(light_amount/4, BURN, K, 0, 0)
 
 /datum/species/diona
 	name = SPECIES_DIONA

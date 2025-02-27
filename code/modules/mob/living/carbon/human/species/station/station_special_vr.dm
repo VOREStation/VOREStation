@@ -17,6 +17,7 @@
 	base_species = "Xenochimera"
 	selects_bodytype = SELECTS_BODYTYPE_CUSTOM
 	digi_allowed = TRUE
+	has_vibration_sense = TRUE
 
 	num_alternate_languages = 3
 	species_language = null
@@ -26,7 +27,7 @@
 	icobase_tail = 1
 	inherent_verbs = list(
 		/mob/living/carbon/human/proc/reconstitute_form,
-		/mob/living/carbon/human/proc/sonar_ping,
+		///mob/living/carbon/human/proc/sonar_ping,
 		/mob/living/carbon/human/proc/tie_hair)
 
 	virus_immune = 1 // They practically ARE one.
