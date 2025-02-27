@@ -251,37 +251,6 @@
 				client.eye = loc
 		return TRUE
 
-/mob/verb/pointed(atom/A as mob|obj|turf in view())
-	set name = "Point To"
-	set category = "Object"
-
-	if(!src || !isturf(loc) || !(A in view(loc)))
-		return 0
-	if(istype(A, /obj/effect/decal/point))
-		return 0
-
-	var/turf/tile = get_turf(A)
-	if (!tile)
-		return 0
-
-	var/turf/our_tile = get_turf(src)
-	var/obj/visual = new /obj/effect/decal/point(our_tile)
-	visual.invisibility = invisibility
-	visual.plane = ABOVE_PLANE
-	visual.layer = FLY_LAYER
-
-	animate(visual,
-		pixel_x = (tile.x - our_tile.x) * world.icon_size + A.pixel_x,
-		pixel_y = (tile.y - our_tile.y) * world.icon_size + A.pixel_y,
-		time = 1.7,
-		easing = EASE_OUT)
-
-	QDEL_IN(visual, 2 SECONDS) //Better qdel
-
-	face_atom(A)
-	return 1
-
-
 /mob/proc/ret_grab(list/L, flag)
 	return
 
