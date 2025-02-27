@@ -270,6 +270,8 @@
 	for(var/atom/thing in nearby_things)
 		if(thing.type != desired_type)
 			continue
+		if(thing.is_incorporeal())
+			continue
 		valid_things.Add(thing)
 	if(valid_things.len)
 		O.data = WEAKREF(pick(valid_things))
@@ -313,11 +315,15 @@
 			var/desired_type = A.type
 			if(desired_type)
 				for(var/atom/thing in nearby_things)
+					if(thing.is_incorporeal())
+						continue
 					if(thing.type == desired_type)
 						valid_things.Add(thing)
 	else if(istext(I.data))
 		var/DT = I.data
 		for(var/atom/thing in nearby_things)
+			if(thing.is_incorporeal())
+				continue
 			if(findtext(addtext(thing.name," ",thing.desc), DT, 1, 0) )
 				valid_things.Add(thing)
 	if(valid_things.len)
@@ -526,6 +532,7 @@
 	complexity = 8
 	inputs = list()
 	outputs = list(
+	"speaker ref",
 	"speaker" = IC_PINTYPE_STRING,
 	"message" = IC_PINTYPE_STRING
 	)
@@ -551,8 +558,9 @@
 			// as a translation, when it is not.
 			if(S.speaking && !istype(S.speaking, /datum/language/common))
 				translated = TRUE
-		set_pin_data(IC_OUTPUT, 1, M.GetVoice())
-		set_pin_data(IC_OUTPUT, 2, msg)
+		set_pin_data(IC_OUTPUT , 1, WEAKREF(M))
+		set_pin_data(IC_OUTPUT, 2, M.GetVoice())
+		set_pin_data(IC_OUTPUT, 3, msg)
 
 	push_data()
 	activate_pin(1)
@@ -570,6 +578,7 @@
 	complexity = 12
 	inputs = list()
 	outputs = list(
+	"speaker ref",
 	"speaker" = IC_PINTYPE_STRING,
 	"message" = IC_PINTYPE_STRING
 	)
@@ -596,16 +605,14 @@
 /obj/item/integrated_circuit/input/microphone/sign/hear_talk(mob/M, list/message_pieces, verb)
 	var/msg = multilingual_to_message(message_pieces)
 
-	var/translated = FALSE
+	var/translated = TRUE
 	if(M && msg)
 		for(var/datum/multilingual_say_piece/S in message_pieces)
-			if(S.speaking)
-				if(!((S.speaking.flags & NONVERBAL) || (S.speaking.flags & SIGNLANG)))
-					translated = TRUE
-					msg = stars(msg)
-					break
-		set_pin_data(IC_OUTPUT, 1, M.GetVoice())
-		set_pin_data(IC_OUTPUT, 2, msg)
+			if(!((S.speaking.flags & NONVERBAL) || (S.speaking.flags & SIGNLANG))||S.speaking.name == LANGUAGE_ECHOSONG) //Ignore verbal languages
+				return
+		set_pin_data(IC_OUTPUT , 1, WEAKREF(M))
+		set_pin_data(IC_OUTPUT, 2, M.GetVoice())
+		set_pin_data(IC_OUTPUT, 3, msg)
 
 	push_data()
 	if(!translated)
@@ -614,12 +621,11 @@
 		activate_pin(2)
 
 /obj/item/integrated_circuit/input/microphone/sign/hear_signlang(text, verb, datum/language/speaking, mob/M as mob)
-	var/translated = FALSE
+	var/translated = TRUE
 	if(M && text)
 		if(speaking)
-			if(!((speaking.flags & NONVERBAL) || (speaking.flags & SIGNLANG)))
-				translated = TRUE
-				text = speaking.scramble(text, my_langs)
+			if(!((speaking.flags & NONVERBAL) || (speaking.flags & SIGNLANG))||speaking.name == LANGUAGE_ECHOSONG)
+				return
 		set_pin_data(IC_OUTPUT, 1, M.GetVoice())
 		set_pin_data(IC_OUTPUT, 2, text)
 

@@ -145,12 +145,22 @@
 		Move_object(direct)
 
 	// Ghosty mob movement
-	if(my_mob.incorporeal_move && isobserver(my_mob))
-		Process_Incorpmove(direct)
-		DEBUG_INPUT("--------")
-		next_move_dir_add = 0	// This one I *think* exists so you can tap move and it will move even if delay isn't quite up.
-		next_move_dir_sub = 0 	// I'm not really sure why next_move_dir_sub even exists.
-		return
+	if(my_mob.is_incorporeal())
+		if(isobserver(my_mob)) //We're an observer! Don't worry about any more checks. Be free!
+			Process_Incorpmove(direct)
+			DEBUG_INPUT("--------")
+			next_move_dir_add = 0	// This one I *think* exists so you can tap move and it will move even if delay isn't quite up.
+			next_move_dir_sub = 0 	// I'm not really sure why next_move_dir_sub even exists.
+			return
+		else //We are anything BUT an observer.
+			if(!my_mob.canmove)//If you want to be very restrictive, add my_mob.restrained() and it'll stop people cuffed/straight jacketed. For now, that's too restrictive for a bugfix PR.
+				return
+			else //Proceed like normal.
+				Process_Incorpmove(direct)
+				DEBUG_INPUT("--------")
+				next_move_dir_add = 0
+				next_move_dir_sub = 0
+				return
 
 	// We're in the middle of another move we've already decided to do
 	if(moving)
@@ -183,7 +193,7 @@
 
 	if(isliving(my_mob))
 		var/mob/living/L = my_mob
-		if(L.incorporeal_move)//Move though walls
+		if(L.is_incorporeal())//Move though walls
 			Process_Incorpmove(direct)
 			return
 		/* TODO observer unzoom

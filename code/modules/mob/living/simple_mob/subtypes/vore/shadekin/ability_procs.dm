@@ -11,12 +11,18 @@
 		return FALSE
 	//RS Port #658 End
 
+	else if(doing_phase)
+		to_chat(src, span_warning("You are already trying to phase!"))
+		return FALSE
+
+	doing_phase = TRUE
 	//Shifting in
 	if(ability_flags & AB_PHASE_SHIFTED)
 		phase_in(T)
 	//Shifting out
 	else
 		phase_out(T)
+	doing_phase = FALSE
 
 /mob/living/simple_mob/shadekin/proc/phase_in(var/turf/T)
 	if(ability_flags & AB_PHASE_SHIFTED)
@@ -35,7 +41,7 @@
 
 		// change
 		ability_flags &= ~AB_PHASE_SHIFTED
-		mouse_opacity = 1
+		throwpass = FALSE
 		name = real_name
 		for(var/obj/belly/B as anything in vore_organs)
 			B.escapable = initial(B.escapable)
@@ -100,7 +106,7 @@
 
 		// change
 		ability_flags |= AB_PHASE_SHIFTED
-		mouse_opacity = 0
+		throwpass = TRUE
 		custom_emote(1,"phases out!")
 		real_name = name
 		name = "Something"

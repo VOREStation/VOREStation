@@ -108,7 +108,7 @@ Bonus
 
 	var/mob/living/unlucky = locate() in place
 
-	if(unlucky)
+	if(unlucky && !unlucky.is_incorporeal())
 		if(unlucky.can_be_drop_pred && mob.can_be_drop_prey && mob.devourable)
 			place = unlucky.vore_selected
 		else if(unlucky.devourable && unlucky.can_be_drop_prey && mob.can_be_drop_pred)

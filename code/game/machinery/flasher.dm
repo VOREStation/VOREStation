@@ -97,7 +97,15 @@
 		flash()
 	..(severity)
 
-/obj/machinery/flasher/portable/HasProximity(turf/T, atom/movable/AM, oldloc)
+/obj/machinery/flasher/portable/HasProximity(turf/T, datum/weakref/WF, oldloc)
+	SIGNAL_HANDLER
+	if(isnull(WF))
+		return
+
+	var/atom/movable/AM = WF.resolve()
+	if(isnull(AM))
+		log_debug("DEBUG: HasProximity called without reference on [src].")
+		return
 	if(disable || !anchored || (last_flash && world.time < last_flash + 150))
 		return
 
