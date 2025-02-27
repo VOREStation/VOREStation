@@ -1,4 +1,4 @@
-import { BooleanLike } from 'tgui-core/react';
+import type { BooleanLike } from 'tgui-core/react';
 
 export type Data = {
   beaker?: Beaker;
@@ -41,7 +41,7 @@ type Virus = {
   cure: string;
 };
 
-export type Symptom = {
+type Symptom = {
   name: string;
   desc: string;
   stealth: number;

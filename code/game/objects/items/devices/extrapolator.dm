@@ -2,7 +2,6 @@
 	name = "virus extrapolator"
 	icon = 'icons/obj/device.dmi'
 	icon_state = "extrapolator_scan"
-	default_worn_icon = "healthanalyzer"
 	desc = "A bulky scanning device, used to extract genetic material of potential pathogens."
 	item_flags = NOBLUDGEON
 	slot_flags = SLOT_BELT

@@ -9,6 +9,7 @@
 	symptom_delay_min = 1
 	symptom_delay_max = 1
 	var/passive_message = ""
+	var/mutation
 
 /datum/symptom/genetic/Start(datum/disease/advance/A)
 	if(!..())

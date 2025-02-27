@@ -10,7 +10,7 @@ import {
 import { capitalizeFirst, decodeHtmlEntities } from 'tgui-core/string';
 
 import { getColor } from './helpers';
-import { Data } from './types';
+import type { Data } from './types';
 
 export const VirusDisplay = (props) => {
   const { virus } = props;

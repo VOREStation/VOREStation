@@ -9,7 +9,7 @@ import {
 } from 'tgui-core/components';
 import { capitalizeFirst } from 'tgui-core/string';
 
-import { Data } from './types';
+import type { Data } from './types';
 
 export const BeakerDisplay = (props) => {
   const { act, data } = useBackend<Data>();

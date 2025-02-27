@@ -79,7 +79,7 @@
 	if(!dry_run && !EXTRAPOLATOR_ACT_CHECK(., EXTRAPOLATOR_ACT_PRIORITY_SPECIAL) && extrapolator.create_culture(user, base_disease))
 		user.visible_message(span_danger("[user] stabs [src] with [extrapolator], sucking it up!"), \
 			span_danger("You stab [src] with [extrapolator]'s probe, destroying it!"))
-		qdel(src)
+		death()
 		EXTRAPOLATOR_ACT_SET(., EXTRAPOLATOR_ACT_PRIORITY_SPECIAL)
 
 /mob/living/simple_mob/vore/aggressive/macrophage/proc/deathcheck()

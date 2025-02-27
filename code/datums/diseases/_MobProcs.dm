@@ -15,9 +15,9 @@
 	return FALSE
 
 /mob/proc/IsInfected()
-	if(viruses.len)
-		return TRUE
-	return FALSE
+	if(isemptylist(GetViruses()))
+		return FALSE
+	return TRUE
 
 /mob/proc/CanContractDisease(datum/disease/D)
 	if(stat == DEAD && !D.spread_dead)
@@ -55,7 +55,7 @@
 	DD.affected_mob = src
 	active_diseases += DD
 
-	var/list/skipped = list("affected_mob", "holder", "carrier", "stage", "type", "parent_type", "vars", "transformed")
+	var/list/skipped = list("affected_mob", "holder", "carrier", "stage", "type", "parent_type", "vars", "transformed", "_active_timers")
 	if(respect_carrier)
 		skipped -= "carrier"
 	for(var/V in DD.vars)
