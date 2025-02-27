@@ -14,6 +14,15 @@
 /mob/living/carbon/human/regenerate_limb(limb_zone, noheal)
 	var/obj/item/organ/external/bodypart
 	if(get_organ(limb_zone))
-		return FALSE
-	bodypart = get_organ(limb_zone)
-	bodypart.rejuvenate()
+		bodypart = get_organ(limb_zone)
+		if(!bodypart.is_stump())
+			return FALSE
+		bodypart.removed()
+		qdel(bodypart)
+		bodypart = null
+	var/list/organ_data = species.has_limbs[limb_zone]
+	var/limb_path = organ_data["path"]
+	var/obj/item/organ/O = new limb_path(src)
+	organ_data["descriptor"] = O.name
+
+	update_icons_body()

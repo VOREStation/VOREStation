@@ -18,9 +18,11 @@ Bonus
 /datum/symptom/dizzy
 	name = "Dizziness"
 	stealth = 2
-	resistance = -2
-	stage_speed = -3
-	transmission = -1
+	resistance = 2
+	stage_speed = 3
+	transmission = 1
+	symptom_delay_min = 15 SECONDS
+	symptom_delay_max = 40 SECONDS
 	level = 4
 	severity = 2
 

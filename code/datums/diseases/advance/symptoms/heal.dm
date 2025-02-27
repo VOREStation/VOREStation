@@ -77,7 +77,7 @@
 
 /datum/symptom/growth
 	name = "Pituitary Disruption"
-	desc = "Causes unctrolled growth in the subject."
+	desc = "Causes uncontrolled growth in the subject."
 	stealth = -3
 	resistance = -2
 	stage_speed = 1

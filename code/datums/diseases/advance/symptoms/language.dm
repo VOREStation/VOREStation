@@ -24,8 +24,8 @@ Bonus
 	transmission = 1
 	level = 1
 	severity = 1
-	symptom_delay_min = 20
-	symptom_delay_max = 50
+	symptom_delay_min = 20 SECONDS
+	symptom_delay_max = 50 SECONDS
 
 	var/gibberish = FALSE
 

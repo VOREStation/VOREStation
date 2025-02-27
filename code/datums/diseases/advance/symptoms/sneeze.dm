@@ -81,6 +81,8 @@ Bonus
 	resistance = 3
 	stage_speed = 0
 	transmission = 1
+	symptom_delay_min = 20 SECONDS
+	symptom_delay_max = 30 SECONDS
 	level = 4
 	severity = 3
 	symptom_delay_min = 5

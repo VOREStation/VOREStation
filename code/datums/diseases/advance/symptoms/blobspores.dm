@@ -20,7 +20,7 @@ BONUS
 	resistance = 6
 	stage_speed = -2
 	transmission = 1
-	level = -1
+	level = 9
 	severity = 3
 	naturally_occuring = FALSE
 

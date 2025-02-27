@@ -53,7 +53,7 @@ GLOBAL_LIST_INIT(list_symptoms, subtypesof(/datum/symptom))
 	if(world.time < next_activaction)
 		return FALSE
 	else
-		next_activaction = world.time + rand(symptom_delay_min * 10, symptom_delay_max * 10)
+		next_activaction = world.time + rand(symptom_delay_min, symptom_delay_max)
 		return TRUE
 
 // Called when the host dies

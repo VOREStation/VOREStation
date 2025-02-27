@@ -22,6 +22,8 @@ BONUS
 	resistance = 0
 	stage_speed = 3
 	transmission = 1
+	symptom_delay_min = 15 SECONDS
+	symptom_delay_max = 40 SECONDS
 	level = 1
 	severity = 0
 
@@ -33,8 +35,6 @@ BONUS
 	if(!..())
 		return
 	var/mob/living/M = A.affected_mob
-	if(prob(base_message_chance) && M.stat != DEAD)
-		if(prob(base_message_chance) && A.resistance >= 5)
-			M.emote("floorspin")
-		else if(prob(base_message_chance))
-			M.emote("spin")
+	if(A.resistance >= 5)
+		M.emote("floorspin")
+	else M.emote("spin")
