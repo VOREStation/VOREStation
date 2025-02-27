@@ -12,7 +12,7 @@ import {
 
 import { NIFMain } from './NIFMain';
 import { NIFSettings } from './NIFSettings';
-import { Data, module } from './types';
+import type { Data, module } from './types';
 
 export const NIF = (props) => {
   const { act, config, data } = useBackend<Data>();

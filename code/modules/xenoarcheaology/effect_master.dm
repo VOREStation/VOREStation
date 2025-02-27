@@ -183,7 +183,7 @@ var/list/toxic_reagents = list(TOXIN_PATH)
 
 /datum/component/artifact_master/proc/generate_effects()
 	while(effect_generation_chance > 0)
-		var/chosen_path = pick(subtypesof(/datum/artifact_effect) - /datum/artifact_effect/extreme)
+		var/chosen_path = pick(subtypesof(/datum/artifact_effect) - blacklisted_artifact_effects)
 		if(effect_generation_chance >= 100)	// If we're above 100 percent, just cut a flat amount and add an effect.
 			var/datum/artifact_effect/AE = new chosen_path(src)
 			if(istype(holder, AE.req_type))

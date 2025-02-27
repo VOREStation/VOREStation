@@ -36,8 +36,8 @@
 	..()
 
 	master = newmaster
-	effect = rand(0, MAX_EFFECT)
-	trigger = rand(0, MAX_TRIGGER)
+	effect = rand(EFFECT_TOUCH, MAX_EFFECT) //This can be overwritten per artifact, in case you want one to only be touch, aura, or pulse!
+	trigger = rand(TRIGGER_TOUCH, MAX_TRIGGER) //Same for this! You can make artifacts that can ONLY be activated through XYZ!
 
 	if(effect_icon && effect_state)
 		if(effect_state == "sparkles")

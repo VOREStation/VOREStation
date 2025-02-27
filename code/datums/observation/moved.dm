@@ -44,7 +44,7 @@ GLOBAL_DATUM_INIT(moved_event, /decl/observ/moved, new)
 	if(. && !loc)
 		SEND_SIGNAL(src,COMSIG_OBSERVER_MOVED, old_loc, null)
 
-/atom/movable/forceMove(atom/destination)
+/atom/movable/forceMove(atom/destination, direction, movetime) // pass movetime through
 	var/old_loc = loc
 	. = ..()
 	if(. && !loc)

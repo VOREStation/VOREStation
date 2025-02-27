@@ -283,7 +283,7 @@
 	character_name = list("Cappy Fuzzlyfeathers")
 
 /datum/gear/fluff/james_disk
-	path = /obj/item/disk/data
+	path = /obj/item/disk/body_record
 	display_name = "James' Disk"
 	ckeywhitelist = list("cockatricexl")
 	character_name = list("James Holder")

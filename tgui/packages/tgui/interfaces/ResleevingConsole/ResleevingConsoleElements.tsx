@@ -7,7 +7,7 @@ import { ResleevingConsolePodGrowers } from './ResleevingConsolePodGrowers';
 import { ResleevingConsolePodSleevers } from './ResleevingConsolePodSleevers';
 import { ResleevingConsolePodSpods } from './ResleevingConsolePodSpods';
 import { ResleevingConsoleRecords } from './ResleevingConsoleRecords';
-import { Data } from './types';
+import type { Data } from './types';
 
 export const ResleevingConsoleBody = (props) => {
   const { data } = useBackend<Data>();

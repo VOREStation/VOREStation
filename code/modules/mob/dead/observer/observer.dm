@@ -456,7 +456,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 	ManualFollow(M || jumpable_mobs()[mobname])
 
-/mob/observer/dead/forceMove(atom/destination, just_spawned = FALSE)
+/mob/observer/dead/forceMove(atom/destination, direction, movetime, just_spawned = FALSE) // pass movetime through
 	if(client?.holder)
 		return ..()
 
@@ -500,7 +500,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	if(get_z(target) in using_map?.secret_levels)
 		to_chat(src, span_warning("Sorry, that target is in an area that ghosts aren't allowed to go."))
 		return
-	if(target != src)
+	/*if(target != src)
 		if(following && following == target)
 			return
 		if(following)
@@ -524,7 +524,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 					// To stop the ghost flickering.
 					if(loc != T)
 						forceMove(T)
-					sleep(15)
+					sleep(15)*/
 
 	var/icon/I = icon(target.icon,target.icon_state,target.dir)
 
@@ -576,18 +576,13 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 			following_mobs -= M
 		else
 			if(M.loc != .)
-				M.forceMove(.)
+				M.forceMove(., movetime = MOVE_GLIDE_CALC(glide_size, moving_diagonally)) // pass movespeed
 
 /mob
 	var/list/following_mobs = list()
 
-/mob/Destroy()
-	for(var/mob/observer/dead/M in following_mobs)
-		M.stop_following()
-	following_mobs = null
-	return ..()
-
 /mob/observer/dead/Destroy()
+	visualnet.addVisibility(src, src.client)
 	visualnet = null
 	if(ismob(following))
 		var/mob/M = following
@@ -650,7 +645,8 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	to_chat(src, span_filter_notice(span_red("You are dead! You have no mind to store memory!")))
 
 /mob/observer/dead/Post_Incorpmove()
-	stop_following()
+	if(following) //This wasn't here before. It meant that we would do stop_following repeatedly every movement we made...Resulting in a DOS on our client.
+		stop_following()
 
 /mob/observer/dead/verb/analyze_air()
 	set name = "Analyze Air"
@@ -834,11 +830,11 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		W.add_hiddenprint(src)
 		W.visible_message(span_filter_notice(span_red("Invisible fingers crudely paint something in blood on [T]...")))
 
-/mob/observer/dead/pointed(atom/A as mob|obj|turf in view())
+/mob/observer/dead/_pointed(atom/pointed_at)
 	if(!..())
-		return 0
-	src.visible_message(span_deadsay(span_bold("[src]") + " points to [A]."))
-	return 1
+		return FALSE
+
+	visible_message(span_deadsay(span_bold("[src]") + " points to [pointed_at]."))
 
 /mob/observer/dead/proc/manifest(mob/user)
 	is_manifest = TRUE

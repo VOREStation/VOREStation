@@ -64,12 +64,14 @@
 /datum/tgui_say/proc/load()
 	window_open = FALSE
 
-	var/minimumHeight = client?.prefs?.read_preference(/datum/preference/numeric/tgui_say_height) || 1
-	winset(client, "tgui_say", "pos=410,400;size=360,[(minimumHeight * 20) + 10];is-visible=0;")
+	var/minimum_height = client?.prefs?.read_preference(/datum/preference/numeric/tgui_say_height) || 1
+	var/minimu_width = client?.prefs?.read_preference(/datum/preference/numeric/tgui_say_width) || 1
+	winset(client, "tgui_say", "pos=410,400;size=360,30;is-visible=0;")
 
 	window.send_message("props", list(
 		lightMode = client?.prefs?.read_preference(/datum/preference/toggle/tgui_say_light),
-		minimumHeight = minimumHeight,
+		minimumHeight = minimum_height,
+		minimumWidth = minimu_width,
 		maxLength = max_length,
 	))
 
@@ -128,4 +130,8 @@
 	if(type == "entry" || type == "force")
 		handle_entry(type, payload)
 		return TRUE
+	if(type == "lenwarn")
+		var/mlen = payload["length"]
+		var/maxlen = payload["maxlength"]
+		to_chat(client, span_warning(span_bold("Warning") + ": Message with [mlen] exceeded the maximum length of [maxlen]."))
 	return FALSE

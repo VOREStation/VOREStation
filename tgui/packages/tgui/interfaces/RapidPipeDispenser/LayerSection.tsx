@@ -2,7 +2,7 @@ import { useBackend } from 'tgui/backend';
 import { Box, Button, Section, Stack } from 'tgui-core/components';
 import { classes } from 'tgui-core/react';
 
-import { Data } from './types';
+import type { Data } from './types';
 
 export const LayerSection = (props) => {
   const { act, data } = useBackend<Data>();

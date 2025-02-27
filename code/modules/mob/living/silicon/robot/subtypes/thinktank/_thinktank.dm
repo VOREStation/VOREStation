@@ -64,7 +64,7 @@
 	if(mind)
 		mind.name = real_name
 
-/mob/living/silicon/robot/platform/Initialize(var/mapload)
+/mob/living/silicon/robot/platform/Initialize(mapload)
 	. = ..()
 	if(!mmi)
 		mmi = new /obj/item/mmi/digital/robot(src)

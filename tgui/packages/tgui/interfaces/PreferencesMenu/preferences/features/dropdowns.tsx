@@ -3,7 +3,11 @@ import { Box, Dropdown, Stack } from 'tgui-core/components';
 import { classes } from 'tgui-core/react';
 import { capitalizeFirst } from 'tgui-core/string';
 
-import { Feature, FeatureChoicedServerData, FeatureValueProps } from './base';
+import type {
+  Feature,
+  FeatureChoicedServerData,
+  FeatureValueProps,
+} from './base';
 
 type DropdownInputProps = FeatureValueProps<
   string,

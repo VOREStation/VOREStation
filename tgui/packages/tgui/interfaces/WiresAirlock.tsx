@@ -9,7 +9,7 @@ import {
 } from 'tgui-core/components';
 import { round } from 'tgui-core/math';
 
-import { WireData, WiresStatus, WiresWires } from './Wires';
+import { type WireData, WiresStatus, WiresWires } from './Wires';
 
 type WiresAirlockData = WireData & {
   id_tag: string;

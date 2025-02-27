@@ -66,4 +66,3 @@
 	sun["brightness"] = new_brightness
 	sun["color"] = new_color
 	needs_work |= PLANET_PROCESS_SUN
-

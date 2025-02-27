@@ -276,7 +276,7 @@
 /obj/item/reagent_containers/food/drinks/bottle/vodka,
 /obj/item/reagent_containers/food/drinks/bottle/wine,
 /obj/item/reagent_containers/food/drinks/cans/waterbottle,
-/obj/item/reagent_containers/food/drinks/bottle/tequilla,
+/obj/item/reagent_containers/food/drinks/bottle/tequila,
 /obj/item/reagent_containers/food/drinks/bottle/small/beer/meteor,
 /obj/item/reagent_containers/food/drinks/bottle/redeemersbrew,
 /turf/simulated/floor/outdoors/dirt{

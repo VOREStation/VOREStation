@@ -437,8 +437,14 @@
 
 			if(ticker < burst)
 				addtimer(CALLBACK(src, PROC_REF(handle_gunfire),target, user, clickparams, pointblank, reflex, ++ticker, TRUE), burst_delay, TIMER_DELETE_ME)
+				return
 
-
+			if(ticker == burst)
+				if(muzzle_flash)
+					if(gun_light)
+						addtimer(CALLBACK(src, TYPE_PROC_REF(/atom, set_light),light_brightness), burst_delay, TIMER_DELETE_ME)
+					else
+						addtimer(CALLBACK(src, TYPE_PROC_REF(/atom, set_light),0), burst_delay, TIMER_DELETE_ME)
 
 // Similar to the above proc, but does not require a user, which is ideal for things like turrets.
 /obj/item/gun/proc/Fire_userless(atom/target)
@@ -594,8 +600,7 @@
 					to_chat(user, span_warning("You struggle to hold \the [src] steady!"))
 
 	if(recoil)
-		spawn()
-			shake_camera(user, recoil+1, recoil)
+		shake_camera(user, recoil+1, recoil)
 	update_icon()
 
 /obj/item/gun/proc/process_point_blank(obj/projectile, mob/user, atom/target)
@@ -720,7 +725,7 @@
 		in_chamber.on_hit(M)
 		if(in_chamber.damage_type != HALLOSS && !in_chamber.nodamage)
 			log_and_message_admins("commited suicide using \a [src]", user)
-			user.apply_damage(in_chamber.damage*2.5, in_chamber.damage_type, "head", used_weapon = "Point blank shot in the mouth with \a [in_chamber]", sharp = TRUE)
+			user.apply_damage(in_chamber.damage*2.5, in_chamber.damage_type, "head", sharp = TRUE, used_weapon = src)
 			user.death()
 		else if(in_chamber.damage_type == HALLOSS)
 			to_chat(user, span_notice("Ow..."))

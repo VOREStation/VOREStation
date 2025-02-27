@@ -1,14 +1,14 @@
 /obj/structure/privacyswitch
 	name = "privacy switch"
-	desc = "A special switch to increase the room's privavy. (Blocks ghosts from seeing the area)"
+	desc = "A special switch to increase the room's privavy. (Blocks ghosts from seeing the area, green indicates that ghosts are blocked.) Please disable this after use so that people can see the room is free more easily."
 	icon = 'icons/obj/power_vr.dmi'
-	icon_state = "light0"
+	icon_state = "privacy0"
 	var/nextUse = 0
 
 /obj/structure/privacyswitch/Initialize()
 	var/area/A = get_area(src)
 	if(A?.flag_check(AREA_BLOCK_GHOST_SIGHT))
-		icon_state = "light1"
+		icon_state = "privacy1"
 	. = ..()
 
 /obj/structure/privacyswitch/attack_ai(mob/user)
@@ -28,13 +28,13 @@
 
 	if(A.flag_check(AREA_BLOCK_GHOST_SIGHT))
 		A.flags ^= AREA_BLOCK_GHOST_SIGHT
-		icon_state = "light0"
+		icon_state = "privacy0"
 		ghostnet.removeArea(A)
 		to_chat(user, span_notice("The area is no longer protected from ghost vison."))
 		log_and_message_admins("toggled ghost vision in [A] on.", user)
 	else
 		A.flags ^= AREA_BLOCK_GHOST_SIGHT
-		icon_state = "light1"
+		icon_state = "privacy1"
 		ghostnet.addArea(A)
 		to_chat(user, span_notice("The area is now protected from ghost vison."))
 		log_and_message_admins("toggled ghost vision in [A] off.", user)

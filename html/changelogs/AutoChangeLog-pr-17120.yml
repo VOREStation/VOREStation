@@ -1,0 +1,5 @@
+author: "TheCaramelion"
+delete-after: True
+changes:
+  - rscadd: "You can now point at things in your inventory"
+  - refactor: "Refactored pointing"

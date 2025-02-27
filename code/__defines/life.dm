@@ -18,3 +18,5 @@
 #define ENVIRONMENT_COMFORT_MARKER_HOT  2
 
 #define TECHNOMANCER_INSTABILITY_MIN_GLOW			10		// When above this number, the entity starts glowing, affecting others.
+
+#define RADIATION_SPEED_COEFFICIENT 0.1

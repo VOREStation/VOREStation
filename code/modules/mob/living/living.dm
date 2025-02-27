@@ -19,6 +19,26 @@
 	selected_image = image(icon = buildmode_hud, loc = src, icon_state = "ai_sel")
 
 /mob/living/Destroy()
+	SSradiation.listeners -= src
+	remove_all_modifiers(TRUE)
+	QDEL_NULL(say_list)
+
+	for(var/datum/soul_link/S as anything in owned_soul_links)
+		S.owner_died(FALSE)
+		qdel(S) // If the owner is destroy()'d, the soullink is destroy()'d.
+	owned_soul_links = null
+	for(var/datum/soul_link/S as anything in shared_soul_links)
+		S.sharer_died(FALSE)
+		S.remove_soul_sharer(src) // If a sharer is destroy()'d, they are simply removed.
+	shared_soul_links = null
+
+	if(ai_holder)
+		ai_holder.holder = null
+		ai_holder.UnregisterSignal(src,COMSIG_MOB_STATCHANGE)
+		if(ai_holder.faction_friends && ai_holder.faction_friends.len) //This list is shared amongst the faction
+			ai_holder.faction_friends -= src
+			ai_holder.faction_friends = null
+		QDEL_NULL(ai_holder)
 	if(dsoverlay)
 		dsoverlay.loc = null //I'll take my coat with me
 		dsoverlay = null
@@ -78,7 +98,14 @@
 			internal_organs -= OR
 			qdel(OR)
 
-	return ..()
+	cultnet.updateVisibility(src, 0)
+
+	if(aiming)
+		qdel(aiming)
+		aiming = null
+	aimed.Cut()
+
+	. = ..()
 
 //mob verbs are faster than object verbs. See mob/verb/examine.
 /mob/living/verb/pulled(atom/movable/AM as mob|obj in oview(1))
@@ -91,16 +118,18 @@
 	return
 
 //mob verbs are faster than object verbs. See above.
-/mob/living/pointed(atom/A as mob|obj|turf in view())
+/mob/living/pointed(atom/A as mob|obj|turf in view(client.view, src))
 	if(src.stat || src.restrained())
-		return 0
+		return FALSE
 	if(src.status_flags & FAKEDEATH)
-		return 0
-	if(!..())
-		return 0
+		return FALSE
+	return ..()
 
-	src.visible_message(span_filter_notice(span_bold("[src]") + " points to [A]."))
-	return 1
+/mob/living/_pointed(atom/pointing_at)
+	if(!..())
+		return FALSE
+
+	visible_message(span_info(span_bold("[src]") + " points at [pointing_at]."), span_info("You point at [pointing_at]."))
 
 /mob/living/verb/succumb()
 	set name = "Succumb to death"
@@ -840,6 +869,13 @@
 /mob/living/carbon/drop_from_inventory(var/obj/item/W, var/atom/target = null)
 	return !(W in internal_organs) && ..()
 
+/mob/living/proc/drop_both_hands()
+	if(l_hand)
+		unEquip(l_hand)
+	if(r_hand)
+		unEquip(r_hand)
+	return
+
 /mob/living/touch_map_edge()
 
 	//check for nuke disks
@@ -1352,3 +1388,47 @@
 	to_chat(src, span_notice("You are [toggled_sleeping ? "now sleeping. Use the Sleep verb again to wake up" : "no longer sleeping"]."))
 	if(toggled_sleeping)
 		Sleeping(1)
+
+/mob/living/proc/handle_dripping()
+	if(prob(95))
+		return
+	if(!isturf(src.loc))
+		return
+	if(ishuman(src))
+		var/mob/living/carbon/human/H = src
+		if(H.species && H.species.drippy)
+			// drip body color if human
+			var/obj/effect/decal/cleanable/blood/B
+			var/decal_type = /obj/effect/decal/cleanable/blood/splatter
+			var/turf/T = get_turf(src.loc)
+
+			// Are we dripping or splattering?
+			var/list/drips = list()
+			// Only a certain number of drips (or one large splatter) can be on a given turf.
+			for(var/obj/effect/decal/cleanable/blood/drip/drop in T)
+				drips |= drop.drips
+				qdel(drop)
+			if(drips.len < 6)
+				decal_type = /obj/effect/decal/cleanable/blood/drip
+
+			// Find a blood decal or create a new one.
+			B = locate(decal_type) in T
+			if(!B)
+				B = new decal_type(T)
+
+			var/obj/effect/decal/cleanable/blood/drip/drop = B
+			if(istype(drop) && drips && drips.len)
+				drop.add_overlay(drips)
+				drop.drips |= drips
+
+			// Update appearance.
+			drop.name = "drips of something"
+			drop.desc = "It's thick and gooey. Perhaps it's the chef's cooking?"
+			drop.dryname = "dried something"
+			drop.drydesc = "It's dry and crusty. The janitor isn't doing their job."
+			drop.basecolor = rgb(H.r_skin,H.g_skin,H.b_skin)
+			drop.update_icon()
+			drop.fluorescent  = 0
+			drop.invisibility = 0
+	//else
+		// come up with drips for other mobs someday
