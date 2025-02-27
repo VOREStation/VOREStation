@@ -142,7 +142,7 @@ SUBSYSTEM_DEF(robot_sprites)
 			// testing whitelist functionality ckey-...
 			if(findtext(icon, regex("ckey-")))
 				var/list/owner = splittext(icon, "-")
-				RS.whitelist_ckey = owner[3]
+				RS.whitelist_ckey = owner[2]
 				RS.is_whitelisted = TRUE
 				continue
 			// testing module types slots modules-...
@@ -150,6 +150,12 @@ SUBSYSTEM_DEF(robot_sprites)
 				var/list/jobs = splittext(icon, "-")
 				jobs -= "modules"
 				RS.module_type = jobs
+				continue
+			// special overlays that also can be used as decals, as some names have - in them, seperated by _
+			if(findtext(icon, regex("^decals")))
+				var/list/decals = splittext(icon, "_")
+				decals -= "decals"
+				RS.sprite_decals |= decals
 				continue
 			// Check for all the possible overlays
 			if(findtext(icon, regex("-roll")))
@@ -189,7 +195,10 @@ SUBSYSTEM_DEF(robot_sprites)
 				RS.has_eye_light_sprites = TRUE
 				continue
 			if(findtext(icon, regex("-decals")))
-				RS.has_robotdecal_sprites = TRUE
+				RS.sprite_decals |= list("decals")
+				continue
+			if(findtext(icon, regex("-struggle")))
+				RS.has_vore_struggle_sprite = TRUE
 				continue
 			if(findtext(icon, regex("-openpanel_w")))
 				RS.has_custom_open_sprites = TRUE
