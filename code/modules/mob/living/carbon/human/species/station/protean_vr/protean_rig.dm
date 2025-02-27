@@ -46,7 +46,7 @@
 /obj/item/rig/protean/ex_act(severity)
 	return
 
-/obj/item/rig/protean/New(var/newloc, var/mob/living/carbon/human/P)
+/obj/item/rig/protean/Initialize(mapload, var/mob/living/carbon/human/P)
 	if(P)
 		var/datum/species/protean/S = P.species
 		S.OurRig = src
@@ -55,7 +55,7 @@
 			myprotean = P
 		else
 			to_chat(P, span_notice("You should have spawned with a backpack to assimilate into your RIG. Try clicking it with a backpack."))
-	..(newloc)
+	. = ..()
 
 /obj/item/rig/protean/Destroy()
 	if(myprotean)
