@@ -42,10 +42,16 @@
 	return atmosanalyzer_scan(src, src.air_contents, user)
 
 /obj/machinery/atmospherics/pipe/atmosanalyze(var/mob/user)
-	return atmosanalyzer_scan(src, src.parent.air, user)
+	if(parent && parent.air) //Sometimes we may have a pipe that has no parent. This seems to happen if you add a pipe onto a pipeline, causing it to delete the parent for every pipe on that pipeline...Yeah. It's complicated and a bug.
+		return atmosanalyzer_scan(src, src.parent.air, user)
 
+// This one is strange. The connector is not guaranteed to have a network (if you placed it down by itself)
+// 'gases' is also a list. But the atmos analyzer wants you to give it a gas mixture.
+// The 'gases' list holds ONE gas mixture.
 /obj/machinery/atmospherics/portables_connector/atmosanalyze(var/mob/user)
-	return atmosanalyzer_scan(src, src.network.gases[1], user) //This is weird, but src.network.gases was giving atmosanalyze a list previously.
+	if(network && network.gases)
+		var/list/datum/gas_mixture/analyzed_gas = network.gases[1]
+		return atmosanalyzer_scan(src, analyzed_gas, user)
 
 /obj/machinery/atmospherics/unary/atmosanalyze(var/mob/user)
 	return atmosanalyzer_scan(src, src.air_contents, user)
@@ -67,7 +73,7 @@
 
 /obj/machinery/meter/atmosanalyze(var/mob/user)
 	var/datum/gas_mixture/mixture = null
-	if(src.target)
+	if(target && target.parent)
 		mixture = src.target.parent.air
 	return atmosanalyzer_scan(src, mixture, user)
 

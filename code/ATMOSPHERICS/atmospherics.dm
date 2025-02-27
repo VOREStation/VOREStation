@@ -158,11 +158,14 @@ Pipelines + Other Objects -> Pipe network
 	return null
 
 /obj/machinery/atmospherics/proc/can_unwrench()
+
+/* //Old version. We now handle unwrenching in the machinery itself.
 	var/datum/gas_mixture/int_air = return_air()
 	var/datum/gas_mixture/env_air = loc.return_air()
 	if((int_air.return_pressure()-env_air.return_pressure()) > 2*ONE_ATMOSPHERE)
-		return 0
-	return 1
+		return FALSE
+*/
+	return TRUE
 
 // Deconstruct into a pipe item.
 /obj/machinery/atmospherics/proc/deconstruct()
@@ -232,3 +235,21 @@ Pipelines + Other Objects -> Pipe network
 	// pixel_x = PIPE_PIXEL_OFFSET_X(piping_layer)
 	// pixel_y = PIPE_PIXEL_OFFSET_Y(piping_layer)
 	// layer = initial(layer) + PIPE_LAYER_OFFSET(piping_layer)
+
+/obj/machinery/atmospherics/proc/unsafe_pressure_release(mob/user, pressures = null)
+	if(!user)
+		return
+	if(!pressures)
+		var/datum/gas_mixture/int_air = return_air()
+		var/datum/gas_mixture/env_air = loc.return_air()
+		pressures = int_air.return_pressure() - env_air.return_pressure()
+
+	user.visible_message(span_danger("[user] is sent flying by pressure!"),span_userdanger("The pressure sends you flying!"))
+
+	// if get_dir(src, user) is not 0, target is the edge_target_turf on that dir
+	// otherwise, edge_target_turf uses a random cardinal direction
+	// range is pressures / 250
+	// speed is pressures / 1250
+	if(user.buckled)
+		user.buckled.unbuckle_mob(user, TRUE)
+	user.throw_at(get_edge_target_turf(user, get_dir(src, user) || pick(GLOB.cardinal)), pressures / 250, pressures / 1250)
