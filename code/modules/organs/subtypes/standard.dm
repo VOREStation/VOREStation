@@ -48,11 +48,11 @@
 	//Staph infection symptoms for CHEST
 	if (. >= 1)
 		if(prob(.))
-			owner.custom_pain("Your [name] [pick("aches","itches","throbs")]!",0)
+			owner.custom_pain("Your [name] [pick("aches","itches","throbs")] and a quick examination reveals it to be red and inflamed!",0)
 
 	if (. >= 2)
 		if(prob(.))
-			owner.custom_pain("A jolt of pain surges through your [name]!",1)
+			owner.custom_pain("A jolt of pain surges through your [name] as it burns and itches!",1)
 
 /obj/item/organ/external/groin
 	name = "lower body"
@@ -78,11 +78,11 @@
 	//Staph infection symptoms for GROIN
 	if (. >= 1)
 		if(prob(.))
-			owner.custom_pain("Your [name] [pick("aches","itches","throbs")]!",0)
+			owner.custom_pain("Your [name] [pick("aches","itches","throbs")] and a quick examination reveals it to be red and inflamed!",0)
 
 	if (. >= 2)
 		if(prob(.))
-			owner.custom_pain("A jolt of pain surges through your [name]!",1)
+			owner.custom_pain("A jolt of pain surges through your [name] as it burns and itches!",1)
 
 /obj/item/organ/external/arm
 	organ_tag = BP_L_ARM
@@ -106,11 +106,11 @@
 	//Staph infection symptoms for ARM
 	if (. >= 1)
 		if(prob(.))
-			owner.custom_pain("Your [name] [pick("aches","itches","throbs")]!",0)
+			owner.custom_pain("Your [name] [pick("aches","itches","throbs")] and a quick examination reveals it to be red and inflamed!",0)
 
 	if (. >= 2)
 		if(prob(.))
-			owner.custom_pain("A jolt of pain surges through your [name]!",1)
+			owner.custom_pain("A jolt of pain surges through your [name] as it burns and itches!",1)
 			if(organ_tag == BP_L_ARM) //Specific level 2 'feature
 				owner.drop_l_hand()
 			else if(organ_tag == BP_R_ARM)
@@ -147,11 +147,11 @@
 	//Staph infection symptoms for LEG
 	if (. >= 1)
 		if(prob(.))
-			owner.custom_pain("Your [name] [pick("aches","itches","throbs")]!",0)
+			owner.custom_pain("Your [name] [pick("aches","itches","throbs")] and a quick examination reveals it to be red and inflamed!",0)
 
 	if (. >= 2)
 		if(prob(.))
-			owner.custom_pain("A jolt of pain surges through your [name]!",1)
+			owner.custom_pain("A jolt of pain surges through your [name] as it burns and itches!",1)
 			owner.Weaken(5)
 
 /obj/item/organ/external/leg/right
@@ -191,11 +191,11 @@
 	//Staph infection symptoms for FOOT
 	if (. >= 1)
 		if(prob(.))
-			owner.custom_pain("Your [name] [pick("aches","itches","throbs")]!",0)
+			owner.custom_pain("Your [name] [pick("aches","itches","throbs")] and a quick examination reveals it to be red and inflamed!",0)
 
 	if (. >= 2)
 		if(prob(.))
-			owner.custom_pain("A jolt of pain surges through your [name]!",1)
+			owner.custom_pain("A jolt of pain surges through your [name] as it burns and itches!",1)
 			owner.Weaken(5)
 
 /obj/item/organ/external/foot/right
@@ -237,11 +237,11 @@
 	//Staph infection symptoms for HAND
 	if (. >= 1)
 		if(prob(.))
-			owner.custom_pain("Your [name] [pick("aches","itches","throbs")]!",0)
+			owner.custom_pain("Your [name] [pick("aches","itches","throbs")] and a quick examination reveals it to be red and inflamed!",0)
 
 	if (. >= 2)
 		if(prob(.))
-			owner.custom_pain("A jolt of pain surges through your [name]!",1)
+			owner.custom_pain("A jolt of pain surges through your [name] as it burns and itches!",1)
 			if(organ_tag == BP_L_HAND) //Specific level 2 'feature
 				owner.drop_l_hand()
 			else if(organ_tag == BP_R_HAND)
@@ -327,11 +327,11 @@
 	//Staph infection symptoms for HEAD
 	if (. >= 1)
 		if(prob(.))
-			owner.custom_pain("Your [name] [pick("aches","itches","throbs")]!",0)
+			owner.custom_pain("Your [name] [pick("aches","itches","throbs")] and a quick examination reveals it to be red and inflamed!",0)
 
 	if (. >= 2)
 		if(prob(.))
-			owner.custom_pain("A jolt of pain surges through your [name]!",1)
+			owner.custom_pain("A jolt of pain surges through your [name] as it burns and itches!",1)
 			owner.eye_blurry += 20 //Specific level 2 'feature
 
 /obj/item/organ/external/head/attackby(obj/item/I as obj, mob/user as mob)
