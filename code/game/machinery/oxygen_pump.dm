@@ -119,7 +119,7 @@
 		return
 	//when there is a breather:
 	if(breather && target != breather)
-		to_chat(user, span_warning("\The pump is already in use."))
+		to_chat(user, span_warning("\The [src] is already in use."))
 		return
 	//Checking if breather is still valid
 	if(target == breather && target.wear_mask != contained)

@@ -1802,7 +1802,7 @@
 			var/obj/item/organ/external/e = organs_by_name[name]
 			if(!e)
 				continue
-			if((e.status & ORGAN_BROKEN && (!e.splinted || (e.splinted in e.contents && prob(30))) || e.status & ORGAN_BLEEDING) && (getBruteLoss() + getFireLoss() >= 100))
+			if((e.status & ORGAN_BROKEN && (!e.splinted || ((e.splinted in e.contents) && prob(30))) || e.status & ORGAN_BLEEDING) && (getBruteLoss() + getFireLoss() >= 100))
 				return 1
 	else
 		return ..()
