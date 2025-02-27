@@ -104,9 +104,6 @@
 	attack_ai(mob/user as mob)
 		interact(user)
 
-	attack_paw(mob/user as mob)
-		interact(user)
-
 	proc
 		interact(mob/user)
 			if (get_dist(src, user) > 1 )
