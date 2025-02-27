@@ -61,12 +61,12 @@
 		)
 	starts_with = list(/obj/item/reagent_containers/food/snacks/egg = 12)
 
-/obj/item/storage/fancy/egg_box/New()
+/obj/item/storage/fancy/egg_box/Initialize(mapload)
+	. = ..()
 	if(!open_state)
 		open_state = "[initial(icon_state)]0"
 	if(!closed_state)
 		closed_state = "[initial(icon_state)]"
-	..()
 
 /obj/item/storage/fancy/egg_box/update_icon()
 	cut_overlays()
@@ -263,12 +263,12 @@
 			C.brand = brand
 			C.desc += " This one is \a [brand]."
 
-/obj/item/storage/fancy/cigarettes/New()
+/obj/item/storage/fancy/cigarettes/Initialize()
+	. = ..()
 	if(!open_state)
 		open_state = "[initial(icon_state)]_open"
 	if(!closed_state)
 		closed_state = "[initial(icon_state)]"
-	..()
 
 /obj/item/storage/fancy/cigarettes/update_icon()
 	cut_overlays()
@@ -410,12 +410,12 @@
 	reagents.trans_to_obj(C, (reagents.total_volume/contents.len))
 	return ..()
 
-/obj/item/storage/fancy/cigar/New()
+/obj/item/storage/fancy/cigar/Initialize()
+	. = ..()
 	if(!open_state)
 		open_state = "[initial(icon_state)]0"
 	if(!closed_state)
 		closed_state = "[initial(icon_state)]"
-	..()
 
 /obj/item/storage/fancy/cigar/update_icon()
 	cut_overlays()

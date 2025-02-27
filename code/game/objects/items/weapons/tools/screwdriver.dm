@@ -26,7 +26,8 @@
 	tool_qualities = list(TOOL_SCREWDRIVER)
 	var/random_color = TRUE
 
-/obj/item/tool/screwdriver/New()
+/obj/item/tool/screwdriver/Initialize(mapload)
+	. = ..()
 	if(random_color)
 		switch(pick("red","blue","purple","brown","green","cyan","yellow"))
 			if ("red")
@@ -52,8 +53,7 @@
 				item_state = "screwdriver_yellow"
 
 	if (prob(75))
-		src.pixel_y = rand(0, 16)
-	..()
+		pixel_y = rand(0, 16)
 
 /obj/item/tool/screwdriver/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
 	if(!istype(M) || user.a_intent == I_HELP)

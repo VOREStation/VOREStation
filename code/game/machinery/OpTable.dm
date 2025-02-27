@@ -15,8 +15,8 @@
 	var/strapped = 0.0
 	var/obj/machinery/computer/operating/computer = null
 
-/obj/machinery/optable/New()
-	..()
+/obj/machinery/optable/Initialize(mapload)
+	. = ..()
 	for(var/direction in list(NORTH,EAST,SOUTH,WEST))
 		computer = locate(/obj/machinery/computer/operating, get_step(src, direction))
 		if(computer)

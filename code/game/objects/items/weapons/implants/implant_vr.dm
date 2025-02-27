@@ -128,11 +128,10 @@
 'Ignore' - keywords in the speech won't have any effect.
 'Implant-toggle' - toggles implant."}
 
-/obj/item/implanter/sizecontrol/New()
+/obj/item/implanter/sizecontrol/Initialize(mapload)
+	. = ..()
 	src.imp = new /obj/item/implant/sizecontrol( src )
-	..()
 	update()
-	return
 
 
 //////////////////////////////
@@ -153,11 +152,10 @@ Due to the small chemical capacity of the implant, the life of the implant is re
 	safeties to prevent lethal or actively harmful commands from being input to lessen the severity of the crime if they are caught. This one has a golden stamp \
 	with the shape of a star on it, the letters 'KE' in black text on it."
 
-/obj/item/implanter/compliance/New()
-	src.imp = new /obj/item/implant/compliance( src )
-	..()
+/obj/item/implanter/compliance/Initialize(mapload)
+	. = ..()
+	imp = new /obj/item/implant/compliance(src)
 	update()
-	return
 
 /obj/item/implanter/compliance/attack_self(mob/user)
 	if(istype(imp,/obj/item/implant/compliance))

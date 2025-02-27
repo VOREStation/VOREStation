@@ -8,11 +8,10 @@
 	var/uses = 1.0
 
 
-/obj/item/implant/freedom/New()
-	src.activation_emote = pick("blink", "blink_r", "eyebrow", "chuckle", "twitch", "frown", "nod", "blush", "giggle", "grin", "groan", "shrug", "smile", "pale", "sniff", "whimper", "wink")
-	src.uses = rand(1, 5)
-	..()
-	return
+/obj/item/implant/freedom/Initialize(mapload)
+	. = ..()
+	activation_emote = pick("blink", "blink_r", "eyebrow", "chuckle", "twitch", "frown", "nod", "blush", "giggle", "grin", "groan", "shrug", "smile", "pale", "sniff", "whimper", "wink")
+	uses = rand(1, 5)
 
 
 /obj/item/implant/freedom/trigger(emote, mob/living/carbon/source as mob)
