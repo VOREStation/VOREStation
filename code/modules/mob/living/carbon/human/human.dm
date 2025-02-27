@@ -1847,21 +1847,19 @@
 /mob/living/carbon/human/get_mob_riding_slots()
 	return list(back, head, wear_suit)
 
-/mob/living/carbon/human/verb/lay_down_left()
-	set name = "Rest-Left"
+/mob/living/carbon/human/verb/flip_lying()
+	set name = "Flip Resting Direction"
+	set category = "Abilities.General"
+	set desc = "Switch your horizontal direction while prone."
 
-	rest_dir = 1
-	resting = !resting
-	to_chat(src, span_notice("You are now [resting ? "resting" : "getting up"]."))
-	update_canmove()
+	if(stat || paralysis || weakened || stunned || world.time < last_special)
+		to_chat(src, span_warning("You can't do that in your current state."))
+		return
 
-/mob/living/carbon/human/verb/lay_down_right()
-	set name = "Rest-Right"
-
-	rest_dir = 0
-	resting = !resting
-	to_chat(src, span_notice("You are now [resting ? "resting" : "getting up"]."))
-	update_canmove()
+	if(isnull(rest_dir))
+		rest_dir = FALSE
+	rest_dir = !rest_dir
+	update_transform(TRUE)
 
 /mob/living/carbon/human/get_digestion_nutrition_modifier()
 	return species.digestion_nutrition_modifier
