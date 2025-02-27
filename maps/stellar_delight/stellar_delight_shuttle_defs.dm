@@ -144,11 +144,17 @@
 	name = "Starstuff Cockpit"
 	requires_power = 1
 
+/area/shuttle/sdboat/fore/airless_base
+	base_turf = /turf/simulated/floor/reinforced/airless
+
 /area/shuttle/sdboat/aft
 	icon = 'icons/turf/areas_vr.dmi'
 	icon_state = "yelwhitri"
 	name = "Starstuff Crew Compartment"
 	requires_power = 1
+
+/area/shuttle/sdboat/aft/airless_base
+	base_turf = /turf/simulated/floor/reinforced/airless
 
 /////Virgo Flyer/////
 // The shuttle's 'shuttle' computer

@@ -317,12 +317,6 @@
 	},
 /turf/simulated/floor/bluegrid/virgo2,
 /area/tether_away/aerostat/inside)
-"aQ" = (
-/obj/structure/cable{
-	icon_state = "2-4"
-	},
-/turf/simulated/floor/bluegrid/virgo2,
-/area/tether_away/aerostat/inside)
 "aR" = (
 /obj/machinery/light/small,
 /turf/simulated/floor/bluegrid/virgo2,
@@ -11435,7 +11429,7 @@ cI
 be
 ac
 aK
-aQ
+aM
 dn
 dn
 dN

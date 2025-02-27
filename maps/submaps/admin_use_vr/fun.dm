@@ -49,6 +49,9 @@
 	power_environ = FALSE
 	power_light = FALSE
 
+/area/submap/admin_upload/AU2/req_no_power
+	requires_power = 0
+
 /area/submap/admin_upload/AU3
 	name = "\improper Unknown Area B"
 	requires_power = 1

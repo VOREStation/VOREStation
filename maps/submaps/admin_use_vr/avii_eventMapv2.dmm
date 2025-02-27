@@ -289,9 +289,7 @@
 /area/submap/pa_room)
 "bI" = (
 /turf/simulated/wall,
-/area/crew_quarters/recreation_area_restroom{
-	name = "\improper Recreation Area Showers"
-	})
+/area/crew_quarters/recreation_area_restroom/showers)
 "bJ" = (
 /turf/simulated/floor/tiled,
 /turf/simulated/wall/r_wall,
@@ -2355,9 +2353,7 @@
 /area/medical/medbay2)
 "lq" = (
 /turf/simulated/floor/tiled/white,
-/area/crew_quarters/recreation_area_restroom{
-	name = "\improper Recreation Area Showers"
-	})
+/area/crew_quarters/recreation_area_restroom/showers)
 "lr" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-8"
@@ -2395,9 +2391,7 @@
 	},
 /obj/structure/curtain/open/shower,
 /turf/simulated/floor/tiled/white,
-/area/crew_quarters/recreation_area_restroom{
-	name = "\improper Recreation Area Showers"
-	})
+/area/crew_quarters/recreation_area_restroom/showers)
 "ly" = (
 /obj/machinery/light/small{
 	dir = 4
@@ -2664,9 +2658,7 @@
 /area/medical/medbay)
 "mO" = (
 /turf/simulated/wall/r_wall,
-/area/crew_quarters/recreation_area_restroom{
-	name = "\improper Recreation Area Showers"
-	})
+/area/crew_quarters/recreation_area_restroom/showers)
 "mP" = (
 /obj/machinery/telecomms/server/presets/command,
 /turf/simulated/floor/tiled/dark{
@@ -3446,9 +3438,7 @@
 	pixel_x = -5
 	},
 /turf/simulated/floor/tiled/white,
-/area/crew_quarters/recreation_area_restroom{
-	name = "\improper Recreation Area Showers"
-	})
+/area/crew_quarters/recreation_area_restroom/showers)
 "qy" = (
 /obj/structure/cable/cyan{
 	icon_state = "1-2"
@@ -3474,9 +3464,7 @@
 	pixel_x = 5
 	},
 /turf/simulated/floor/tiled/white,
-/area/crew_quarters/recreation_area_restroom{
-	name = "\improper Recreation Area Showers"
-	})
+/area/crew_quarters/recreation_area_restroom/showers)
 "qH" = (
 /turf/simulated/floor/tiled,
 /turf/simulated/wall/r_wall,
@@ -3922,9 +3910,7 @@
 	dir = 9
 	},
 /turf/simulated/floor/tiled/white,
-/area/crew_quarters/recreation_area_restroom{
-	name = "\improper Recreation Area Showers"
-	})
+/area/crew_quarters/recreation_area_restroom/showers)
 "sr" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced,
@@ -4049,9 +4035,7 @@
 "sS" = (
 /obj/machinery/light/small,
 /turf/simulated/floor/tiled/white,
-/area/crew_quarters/recreation_area_restroom{
-	name = "\improper Recreation Area Showers"
-	})
+/area/crew_quarters/recreation_area_restroom/showers)
 "sT" = (
 /obj/machinery/door/airlock/glass_command,
 /obj/structure/cable{
@@ -5060,9 +5044,7 @@
 	dir = 1
 	},
 /turf/simulated/floor/tiled/white,
-/area/crew_quarters/recreation_area_restroom{
-	name = "\improper Recreation Area Showers"
-	})
+/area/crew_quarters/recreation_area_restroom/showers)
 "xY" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -6771,9 +6753,7 @@
 	},
 /obj/structure/curtain/open/shower,
 /turf/simulated/floor/tiled/white,
-/area/crew_quarters/recreation_area_restroom{
-	name = "\improper Recreation Area Showers"
-	})
+/area/crew_quarters/recreation_area_restroom/showers)
 "FT" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -7254,9 +7234,7 @@
 	dir = 1
 	},
 /turf/simulated/floor/tiled/white,
-/area/crew_quarters/recreation_area_restroom{
-	name = "\improper Recreation Area Showers"
-	})
+/area/crew_quarters/recreation_area_restroom/showers)
 "HX" = (
 /obj/structure/cable/cyan{
 	icon_state = "4-8"
@@ -7856,9 +7834,7 @@
 	pixel_x = 22
 	},
 /turf/simulated/floor/tiled/white,
-/area/crew_quarters/recreation_area_restroom{
-	name = "\improper Recreation Area Showers"
-	})
+/area/crew_quarters/recreation_area_restroom/showers)
 "KU" = (
 /obj/structure/table/standard,
 /obj/random/drinkbottle,
@@ -7969,9 +7945,7 @@
 	icon_state = "4-8"
 	},
 /turf/simulated/floor/tiled/steel_grid,
-/area/crew_quarters/recreation_area_restroom{
-	name = "\improper Recreation Area Showers"
-	})
+/area/crew_quarters/recreation_area_restroom/showers)
 "Lu" = (
 /obj/structure/cable{
 	icon_state = "2-8"
@@ -10138,9 +10112,7 @@
 	nightshift_setting = 2
 	},
 /turf/simulated/floor/tiled/white,
-/area/crew_quarters/recreation_area_restroom{
-	name = "\improper Recreation Area Showers"
-	})
+/area/crew_quarters/recreation_area_restroom/showers)
 "UV" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -10763,9 +10735,7 @@
 /obj/item/bikehorn/rubberducky,
 /obj/random/soap,
 /turf/simulated/floor/tiled/white,
-/area/crew_quarters/recreation_area_restroom{
-	name = "\improper Recreation Area Showers"
-	})
+/area/crew_quarters/recreation_area_restroom/showers)
 "Yo" = (
 /obj/structure/cable{
 	icon_state = "2-8"
@@ -10926,9 +10896,7 @@
 	dir = 4
 	},
 /turf/simulated/floor/tiled/white,
-/area/crew_quarters/recreation_area_restroom{
-	name = "\improper Recreation Area Showers"
-	})
+/area/crew_quarters/recreation_area_restroom/showers)
 "YX" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
 /turf/simulated/floor/plating,
@@ -11091,9 +11059,7 @@
 	},
 /obj/random/trash,
 /turf/simulated/floor/tiled/white,
-/area/crew_quarters/recreation_area_restroom{
-	name = "\improper Recreation Area Showers"
-	})
+/area/crew_quarters/recreation_area_restroom/showers)
 "ZH" = (
 /obj/structure/window/reinforced,
 /turf/space,
