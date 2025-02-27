@@ -118,16 +118,18 @@
 	return
 
 //mob verbs are faster than object verbs. See above.
-/mob/living/pointed(atom/A as mob|obj|turf in view())
+/mob/living/pointed(atom/A as mob|obj|turf in view(client.view, src))
 	if(src.stat || src.restrained())
-		return 0
+		return FALSE
 	if(src.status_flags & FAKEDEATH)
-		return 0
-	if(!..())
-		return 0
+		return FALSE
+	return ..()
 
-	src.visible_message(span_filter_notice(span_bold("[src]") + " points to [A]."))
-	return 1
+/mob/living/_pointed(atom/pointing_at)
+	if(!..())
+		return FALSE
+
+	visible_message(span_info(span_bold("[src]") + " points at [pointing_at]."), span_info("You point at [pointing_at]."))
 
 /mob/living/verb/succumb()
 	set name = "Succumb to death"

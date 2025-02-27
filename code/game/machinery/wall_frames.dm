@@ -70,11 +70,11 @@
 	var/turf/loc = get_turf(user)
 	var/area/A = loc.loc
 	if(!istype(loc, /turf/simulated/floor))
-		to_chat(user, span_danger("\The frame cannot be placed on this spot."))
+		to_chat(user, span_danger("\The [src] cannot be placed on this spot."))
 		return
 
 	if(A.requires_power == 0 || A.name == "Space")
-		to_chat(user, span_danger("\The [src] Alarm cannot be placed in this area."))
+		to_chat(user, span_danger("\The [src] cannot be placed in this area."))
 		return
 
 	if(gotwallitem(loc, ndir))
