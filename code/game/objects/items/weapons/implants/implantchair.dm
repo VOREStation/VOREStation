@@ -37,7 +37,7 @@
 
 	var/dat = span_bold("Implanter Status") + "<BR>"
 
-	dat += span_bold("Current occupant:") + " [src.occupant ? "<BR>Name: [src.occupant]<BR>Health: [health_text]<BR>" : "<FONT color=red>None</FONT>"]<BR>"
+	dat += span_bold("Current occupant:") + " [src.occupant ? "<BR>Name: [src.occupant]<BR>Health: [health_text]<BR>" : span_red("None")]<BR>"
 	dat += span_bold("Implants:") + " [src.implant_list.len ? "[implant_list.len]" : "<A href='byond://?src=\ref[src];replenish=1'>Replenish</A>"]<BR>"
 	if(src.occupant)
 		dat += "[src.ready ? "<A href='byond://?src=\ref[src];implant=1'>Implant</A>" : "Recharging"]<BR>"

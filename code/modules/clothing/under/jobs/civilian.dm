@@ -63,7 +63,7 @@
 	rolled_sleeves = 0
 
 /obj/item/clothing/under/rank/chef
-	desc = "It's an apron which is given only to the most <b>hardcore</b> chefs in space."
+	desc = "It's an apron which is given only to the most " + span_bold("hardcore") + " chefs in space."
 	name = "chef's uniform"
 	icon_state = "chef"
 	rolled_sleeves = 0
@@ -75,7 +75,7 @@
 
 /obj/item/clothing/under/rank/clown
 	name = "clown suit"
-	desc = "<i><font face='comic sans ms'>Honk!</i></font>"
+	desc = span_italics("<font face='comic sans ms'>Honk!</font>")
 	icon_state = "clown"
 	rolled_sleeves = -1
 
@@ -104,7 +104,7 @@
 	icon_state = "hydro"
 
 /obj/item/clothing/under/rank/internalaffairs
-	desc = "The plain, professional attire of an " + JOB_INTERNAL_AFFAIRS_AGENT + ". The collar is <i>immaculately</i> starched."
+	desc = "The plain, professional attire of an " + JOB_INTERNAL_AFFAIRS_AGENT + ". The collar is " + span_italics("immaculately") + " starched."
 	name = "Internal Affairs uniform"
 	icon_state = "internalaffairs"
 	item_state_slots = list(slot_r_hand_str = "ba_suit", slot_l_hand_str = "ba_suit")

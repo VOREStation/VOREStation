@@ -126,7 +126,7 @@
 			chimera_hatch()
 			add_modifier(/datum/modifier/resleeving_sickness/chimera, sickness_duration)
 			adjustBrainLoss(5) // if they're reviving from dead, they come back with 5 brainloss on top of whatever's unhealed.
-			visible_message(span_warning("<p><font size=4>The former corpse staggers to its feet, all its former wounds having vanished...</font></p>")) //Bloody hell...
+			visible_message(span_warning("<p>" + span_huge("The former corpse staggers to its feet, all its former wounds having vanished...") + "</p>")) //Bloody hell...
 			clear_alert("hatch")
 			return
 
@@ -134,7 +134,7 @@
 		else
 			chimera_hatch()
 
-			visible_message(span_warning("<p><font size=4>[src] rises to \his feet.</font></p>")) //Bloody hell...
+			visible_message(span_warning("<p>" + span_huge("[src] rises to \his feet.") + "</p>")) //Bloody hell...
 			clear_alert("hatch")
 
 /mob/living/carbon/human/proc/chimera_hatch()
@@ -160,7 +160,7 @@
 		var/blood_color = species.blood_color
 		var/flesh_color = species.flesh_color
 		new /obj/effect/gibspawner/human/xenochimera(T, null, flesh_color, blood_color)
-		visible_message(span_danger("<p><font size=4>The lifeless husk of [src] bursts open, revealing a new, intact copy in the pool of viscera.</font></p>")) //Bloody hell...
+		visible_message(span_danger("<p>" + span_huge("The lifeless husk of [src] bursts open, revealing a new, intact copy in the pool of viscera.") + "</p>")) //Bloody hell...
 		playsound(T, 'sound/effects/mob_effects/xenochimera/hatch.ogg', 50)
 	else //lower cost for doing a quick cosmetic revive
 		nutrition = old_nutrition * 0.9
@@ -652,7 +652,7 @@
 				T.apply_damage(500, OXY) //Kill them.
 				absorbing_prey = 0
 				to_chat(src, span_notice("You have completely drained [T], killing them in the process."))
-				to_chat(T, span_danger("<font size='7'>You... Feel... So... Weak...</font>"))
+				to_chat(T, span_danger(span_massive("You... Feel... So... Weak...")))
 				visible_message(span_danger("[src] seems to finish whatever they were doing to [T]."))
 				add_attack_logs(src,T,"Succubus drained (lethal)")
 				return
@@ -1582,29 +1582,29 @@
 		to_chat(src, span_notice("You will [trait_injection_verb] your targets."))
 		return
 	if(choice == "Chemical Refresher")
-		var/output = {"<B>Chemical Refresher!</B><HR>
-					<B>Options for venoms</B><BR>
+		var/output = {""} + span_bold("Chemical Refresher!") + {"<HR>
+					"} + span_bold("Options for venoms") + {"<BR>
 					<BR>
-					<B>Size Chemicals</B><BR>
+					"} + span_bold("Size Chemicals") + {"<BR>
 					Microcillin: Will make someone shrink. <br>
 					Macrocillin: Will make someone grow. <br>
 					Normalcillin: Will make someone normal size. <br>
 					Note: 1 unit = 100% size diff. 0.01 unit = 1% size diff. <br>
 					Note: Normacillin stops at 100%  size. <br>
 					<br>
-					<B>Gender Chemicals</B><BR>
+					"} + span_bold("Gender Chemicals") + {"<BR>
 					Androrovir: Will transform someone's sex to male. <br>
 					Gynorovir: Will transform someone's sex to female. <br>
 					Androgynorovir: Will transform someone's sex to plural. <br>
 					<br>
-					<B>Special Chemicals</B><BR>
+					"} + span_bold("Special Chemicals") + {"<BR>
 					Stoxin: Will make someone drowsy. <br>
 					Rainbow Toxin: Will make someone see rainbows. <br>
 					Paralysis Toxin: Will make someone paralyzed. <br>
 					Numbing Enzyme: Will make someone unable to feel pain. <br>
 					Pain Enzyme: Will make someone feel amplified pain. <br>
 					<br>
-					<B>Side Notes</B><BR>
+					"} + span_bold("Side Notes") + {"<BR>
 					You can select a value of 0 to inject nothing! <br>
 					Overdose threshold for most chemicals is 30 units. <br>
 					Exceptions to OD is: (Numbing Enzyme:20)<br>
