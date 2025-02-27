@@ -232,3 +232,11 @@
 				log_unit_test("[T.x].[T.y].[T.z]: Map - Ladder allows downward movement, but had no ladder beneath it")
 				failed = TRUE
 		if(T.density)
+			log_unit_test("[L.x].[L.y].[L.z]: Map - Ladder is inside a wall")
+			failed = TRUE
+
+	if(failed)
+		fail("Ladders were incorrectly placed, or missing connections.")
+	else
+		pass("All ladders were correctly placed and had connections.")
+	return failed
