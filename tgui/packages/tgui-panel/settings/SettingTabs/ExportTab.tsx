@@ -33,42 +33,30 @@ export const ExportTab = (props) => {
     totalStoredMessages,
     storedTypes,
   } = useSelector(selectSettings);
-  const [purgeConfirm, setPurgeConfirm] = useState(0);
-  const [logConfirm, setLogConfirm] = useState(false);
+  const [purgeButtonText, setPurgeButtonText] = useState(
+    'Purge message archive',
+  );
   return (
     <Section>
       <Stack align="baseline">
         {!game.databaseBackendEnabled &&
           (logEnable ? (
-            logConfirm ? (
-              <Button
-                icon="ban"
-                color="red"
-                onClick={() => {
-                  dispatch(
-                    updateSettings({
-                      logEnable: false,
-                    }),
-                  );
-                  setLogConfirm(false);
-                }}
-              >
-                Disable?
-              </Button>
-            ) : (
-              <Button
-                icon="ban"
-                color="red"
-                onClick={() => {
-                  setLogConfirm(true);
-                  setTimeout(() => {
-                    setLogConfirm(false);
-                  }, 5000);
-                }}
-              >
-                Disable logging
-              </Button>
-            )
+            <Button.Confirm
+              icon="ban"
+              color="red"
+              confirmIcon="ban"
+              confirmColor="red"
+              confirmContent="Disable?"
+              onClick={() => {
+                dispatch(
+                  updateSettings({
+                    logEnable: false,
+                  }),
+                );
+              }}
+            >
+              Disable logging
+            </Button.Confirm>
           ) : (
             <Button
               icon="download"
@@ -287,32 +275,24 @@ export const ExportTab = (props) => {
       <Button icon="save" onClick={() => dispatch(saveChatToDisk())}>
         Save chat log
       </Button>
-      {!game.databaseBackendEnabled &&
-        (purgeConfirm > 0 ? (
-          <Button
-            icon="trash"
-            color="red"
-            onClick={() => {
-              dispatch(purgeChatMessageArchive());
-              setPurgeConfirm(2);
-            }}
-          >
-            {purgeConfirm > 1 ? 'Purged!' : 'Are you sure?'}
-          </Button>
-        ) : (
-          <Button
-            icon="trash"
-            color="red"
-            onClick={() => {
-              setPurgeConfirm(1);
-              setTimeout(() => {
-                setPurgeConfirm(0);
-              }, 5000);
-            }}
-          >
-            Purge message archive
-          </Button>
-        ))}
+      {!game.databaseBackendEnabled && (
+        <Button.Confirm
+          icon="trash"
+          color="red"
+          confirmIcon="trash"
+          confirmColor="red"
+          confirmContent="Are you sure?"
+          onclick={() => {
+            dispatch(purgeChatMessageArchive());
+            setPurgeButtonText('Purged!');
+            setTimeout(() => {
+              setPurgeButtonText('Purge message archive');
+            }, 5000);
+          }}
+        >
+          {purgeButtonText}
+        </Button.Confirm>
+      )}
     </Section>
   );
 };

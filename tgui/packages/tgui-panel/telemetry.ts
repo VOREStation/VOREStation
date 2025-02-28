@@ -87,16 +87,16 @@ export const telemetryMiddleware = (store) => {
             telemetry.connections.pop();
           }
         }
+        if (firstMutate) {
+          firstMutate = false;
+          store.dispatch(
+            getChatData({ ckey: client.ckey, token: client.chatlog_token }),
+          );
+        }
         // Save telemetry
         if (telemetryMutated) {
           logger.debug('saving telemetry to storage', telemetry);
           storage.set('telemetry', telemetry);
-          if (firstMutate) {
-            firstMutate = false;
-            store.dispatch(
-              getChatData({ ckey: client.ckey, token: client.chatlog_token }),
-            );
-          }
         }
         // Continue deferred telemetry requests
         if (wasRequestedWithPayload) {
