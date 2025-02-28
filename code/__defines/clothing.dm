@@ -39,7 +39,7 @@ NOTICE: Do not leave trailing commas!!!!
 	/obj/item/lightreplacer
 
 #define POCKET_EMERGENCY \
-	/obj/item/tank/emergency/oxygen, \
+	/obj/item/tank/emergency, \
 	/obj/item/tool/prybar, \
 	/obj/item/radio, \
 	/obj/item/gps, \
