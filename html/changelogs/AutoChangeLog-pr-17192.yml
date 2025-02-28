@@ -1,8 +1,0 @@
-author: "Diana"
-delete-after: True
-changes:
-  - bugfix: "Makes it so you can attack without hands"
-  - bugfix: "Fixes grabbing a buckled entity to cause you to be perma-slowed"
-  - bugfix: "You will no longer bleed to death from a headbutt"
-  - code_imp: "Removes attack_paw"
-  - code_imp: "Makes the attack_hand code less garbage"
