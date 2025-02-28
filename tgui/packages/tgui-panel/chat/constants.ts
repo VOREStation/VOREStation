@@ -105,8 +105,8 @@ export const MESSAGE_TYPES = [
   },
   {
     type: MESSAGE_TYPE_ENT_RADIO,
-    name: 'Enterteinment',
-    description: 'Enterteinment radio messages',
+    name: 'Entertainment',
+    description: 'Entertainment radio messages',
     selector: '.entradio',
   },
   {
