@@ -108,8 +108,12 @@
 
 /datum/robot_sprite/security/worm
 	name = "W02M"
-	sprite_icon_state = "worm"
-	has_custom_open_sprites = TRUE
+	sprite_icon_state = "worm-security"
+	sprite_icon = 'icons/mob/robot/wormborg.dmi'
+	has_dead_sprite_overlay = FALSE
+	has_custom_open_sprites = FALSE
+	has_vore_belly_sprites = TRUE
+	has_dead_sprite = TRUE
 
 /datum/robot_sprite/security/uptall
 	name = "Feminine Humanoid"
@@ -212,13 +216,47 @@
 	has_vore_belly_sprites = FALSE
 	rest_sprite_options = list("Default", "Bellyup")
 
-/datum/robot_sprite/dogborg/tall/security/dullahanv3
-	sprite_icon = 'icons/mob/tallborg/dullahans64x64.dmi'
-	//named v3 to avoid conflicts with downstream
+/datum/robot_sprite/dogborg/tall/security/dullahan
+	name = "Dullahan"
+	sprite_icon_state = "dullahansec"
+	sprite_icon = 'icons/mob/robot/dullahan/v1/dullahan_sec.dmi'
+	pixel_x = 0
+	sprite_hud_icon_state = "k9"
+	has_eye_light_sprites = TRUE
+	has_vore_belly_sprites = TRUE
+	rest_sprite_options = list("Default", "sit")
 
-/datum/robot_sprite/dogborg/tall/security/dullahanv3/securitydully
+/datum/robot_sprite/dogborg/tall/security/dullahan/secalt
+	name = "Dullahan v2"
+	sprite_icon_state = "dullahansec_alt"
+
+/datum/robot_sprite/dogborg/tall/security/dullahan/securitydully
 	name = "Dullahan security v3"
+	sprite_icon = 'icons/mob/robot/dullahan/v3/security.dmi'
 	sprite_icon_state = "dullahansecurity"
 	has_vore_belly_sprites = TRUE
-	has_robotdecal_sprites = TRUE
-	rest_sprite_options = list("Default", "sit")
+	sprite_decals = list("decals")
+
+/datum/robot_sprite/dogborg/security/vale2
+	name = "Secborg model V-3"
+	sprite_icon = 'icons/mob/robot/widerobot/widerobot.dmi'
+	sprite_icon_state = "secvale"
+	sprite_hud_icon_state = "k9"
+	has_eye_light_sprites = TRUE
+
+/datum/robot_sprite/dogborg/security/cat
+	name = "Cat"
+	sprite_icon = 'icons/mob/robot/catborg_variant.dmi'
+	sprite_icon_state = "vixsec"
+	sprite_hud_icon_state = "k9"
+	has_eye_light_sprites = TRUE
+	has_dead_sprite_overlay = FALSE
+
+/datum/robot_sprite/dogborg/security/smolraptor
+	sprite_icon = 'icons/mob/robot/smallraptors/smolraptor_pk.dmi'
+	name = "Small Raptor"
+	sprite_icon_state = "smolraptor"
+	has_dead_sprite_overlay = FALSE
+	has_eye_light_sprites = TRUE
+	has_vore_belly_sprites = TRUE
+	rest_sprite_options = list("Default", "Sit")

@@ -1,6 +1,5 @@
 /*****************Marker Beacons**************************/
 var/list/marker_beacon_colors = list(
-"Random" = FALSE, //not a true color, will pick a random color
 "Burgundy" = LIGHT_COLOR_FLARE,
 "Bronze" = LIGHT_COLOR_ORANGE,
 "Yellow" = LIGHT_COLOR_YELLOW,
@@ -69,7 +68,10 @@ var/list/marker_beacon_colors = list(
 		return
 	if(!in_range(src, user))
 		return
-	var/input_color = tgui_input_list(user, "Choose a color.", "Beacon Color", marker_beacon_colors)
+
+	var/options = marker_beacon_colors.Copy()
+	options += list("Random" = FALSE) //not a true color, will pick a random color
+	var/input_color = tgui_input_list(user, "Choose a color.", "Beacon Color", options)
 	if(user.incapacitated() || !istype(user) || !in_range(src, user))
 		return
 	if(input_color)
@@ -145,7 +147,10 @@ var/list/marker_beacon_colors = list(
 		return
 	if(!in_range(src, user))
 		return
-	var/input_color = tgui_input_list(user, "Choose a color.", "Beacon Color", marker_beacon_colors)
+
+	var/options = marker_beacon_colors.Copy()
+	options += list("Random" = FALSE) //not a true color, will pick a random color
+	var/input_color = tgui_input_list(user, "Choose a color.", "Beacon Color", options)
 	if(user.incapacitated() || !istype(user) || !in_range(src, user))
 		return
 	if(input_color)

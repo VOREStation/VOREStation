@@ -1942,7 +1942,6 @@
 	dir = 9
 	},
 /obj/machinery/vitals_monitor,
-/obj/machinery/vitals_monitor,
 /obj/machinery/light,
 /obj/structure/cable/green{
 	icon_state = "1-2"
@@ -10790,13 +10789,14 @@
 /turf/simulated/floor/grass,
 /area/hydroponics)
 "asj" = (
-/turf/space,
-/turf/simulated/wall/fancy_shuttle{
-	fancy_shuttle_tag = "lifeboat1"
+/obj/structure/cable/orange{
+	icon_state = "4-8"
 	},
-/area/shuttle/tether{
-	base_turf = /turf/simulated/floor/reinforced
-	})
+/obj/machinery/atmospherics/pipe/simple/hidden/yellow{
+	dir = 4
+	},
+/turf/simulated/floor/reinforced,
+/area/tether/surfacebase/shuttle_pad)
 "ask" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 8
@@ -27486,7 +27486,6 @@
 	},
 /obj/effect/floor_decal/steeldecal/steel_decals7,
 /obj/machinery/atmospherics/unary/vent_pump/on,
-/obj/machinery/atmospherics/unary/vent_pump/on,
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/surface_three_hall/nwest)
 "aWu" = (
@@ -35379,12 +35378,6 @@
 	},
 /obj/effect/floor_decal/corner/paleblue/border{
 	dir = 8
-	},
-/obj/structure/bed/chair/wheelchair{
-	dir = 4
-	},
-/obj/structure/bed/chair/wheelchair{
-	dir = 4
 	},
 /obj/structure/bed/chair/wheelchair{
 	dir = 4
@@ -44557,9 +44550,6 @@
 /turf/simulated/floor/wood,
 /area/tether/surfacebase/entrepreneur)
 "xan" = (
-/obj/structure/window/reinforced{
-	dir = 1
-	},
 /obj/machinery/door/firedoor,
 /obj/structure/grille,
 /obj/structure/window/reinforced/full,
@@ -57184,7 +57174,7 @@ aKU
 aKU
 aKU
 aKU
-daD
+asj
 aKU
 aKU
 aKU
@@ -59032,7 +59022,7 @@ aNP
 uSA
 aNP
 aNP
-asj
+aME
 aKU
 abg
 aOk
@@ -59174,7 +59164,7 @@ fzG
 aNK
 aNK
 uzl
-asj
+aME
 aKU
 abg
 aOk
@@ -59316,7 +59306,7 @@ aNm
 eLD
 aNm
 aNm
-asj
+aME
 aKU
 abg
 aOk
