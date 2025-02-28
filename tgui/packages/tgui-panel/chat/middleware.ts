@@ -7,8 +7,6 @@
 import type { Action, Store } from 'common/redux';
 import { storage } from 'common/storage';
 import DOMPurify from 'dompurify';
-import { resolveAsset } from 'tgui/assets';
-import { fetchRetry } from 'tgui-core/http';
 
 import { selectGame } from '../game/selectors';
 import {
@@ -23,6 +21,7 @@ import {
   addChatPage,
   changeChatPage,
   changeScrollTracking,
+  getChatData,
   loadChat,
   moveChatPageLeft,
   moveChatPageRight,
@@ -37,7 +36,6 @@ import { createMessage, serializeMessage } from './model';
 import { chatRenderer } from './renderer';
 import { selectChat, selectCurrentChatPage } from './selectors';
 import { message } from './types';
-import { loadFromDb } from './constants';
 
 // List of blacklisted tags
 const blacklisted_tags = ['a', 'iframe', 'link', 'video'];
@@ -156,60 +154,8 @@ const loadChatFromDBStorage = async (
   }
 
   const messages: message[] = []; // FIX ME, load from DB, first load has errors => check console
-  /*
-  await new Promise<void>((resolve) => {
-    const listener = async () => {
-      document.removeEventListener('chatexportplaced', listener);
 
-      const text = await fetchRetry(
-        resolveAsset('exported_chatlog_history.json'),
-      ).then((response) => response.json());
-
-      text.forEach(
-        (obj: {
-          msg_type: string | null;
-          text_raw: string;
-          created_at: number;
-          round_id: number;
-        }) => {
-          const msg: message = {
-            type: obj.msg_type ? obj.msg_type : '',
-            html: obj.text_raw,
-            createdAt: obj.created_at,
-            roundId: obj.round_id,
-          };
-
-          messages.push(msg);
-        },
-      );
-
-      if (messages) {
-        for (let message of messages) {
-          if (message.html) {
-            message.html = DOMPurify.sanitize(message.html, {
-              FORBID_TAGS: blacklisted_tags,
-            });
-          }
-        }
-        const batch = [
-          ...messages,
-          createMessage({
-            type: 'internal/reconnected',
-          }),
-        ];
-        chatRenderer.processBatch(batch, {
-          prepend: true,
-        });
-      }
-
-      store.dispatch(loadChat(state));
-      resolve();
-    };
-
-    document.addEventListener('chatexportplaced', listener);
-  });
-  */
-
+  // eslint-disable-next-line no-async-promise-executor
   await new Promise<void>(async (resolve) => {
     const json = await fetch(
       `${game.chatlogApiEndpoint}/api/logs/${user_payload.ckey}/${settings.visibleMessageLimit}`,
@@ -260,7 +206,7 @@ const loadChatFromDBStorage = async (
       });
     }
 
-    await store.dispatch(loadChat(state));
+    store.dispatch(loadChat(state));
     resolve();
   });
 };
@@ -307,21 +253,7 @@ export const chatMiddleware = (store) => {
       setInterval(() => {
         saveChatToStorage(store);
       }, settings.saveInterval * 1000);
-      if (!game.databaseBackendEnabled) {
-        // This needs to be handled on a timeout of the websocket...
-        loadChatFromStorage(store);
-      } else {
-        // loadChatFromDBStorage(store);
-        // Byond is bad for this. We need a websocket...
-        /*
-        setTimeout(() => {
-          Byond.sendMessage('databaseExportLines', {
-            length: settings.visibleMessageLimit,
-            json: true,
-          });
-        }, 1);
-        */
-      }
+      // loadChatFromStorage(store);
     }
     if (type === 'chat/message') {
       let payload_obj;
@@ -443,9 +375,13 @@ export const chatMiddleware = (store) => {
       const event = new Event('chatexportplaced');
       document.dispatchEvent(event);
     }
-    if (type === loadFromDb.type) {
+    if (type === getChatData.type) {
       const user_payload = payload;
-      loadChatFromDBStorage(store, user_payload);
+      if (payload.token) {
+        loadChatFromDBStorage(store, user_payload);
+      } else {
+        loadChatFromStorage(store);
+      }
       return;
     }
     return next(action);
