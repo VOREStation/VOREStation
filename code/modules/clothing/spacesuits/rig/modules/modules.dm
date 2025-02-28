@@ -279,6 +279,8 @@
 
 /stat_rig_module/activate/Initialize(mapload)
 	. = ..()
+	if(!istype(module))
+		return INITIALIZE_HINT_QDEL
 	name = module.activate_string
 	if(module.active_power_cost)
 		name += " ([module.active_power_cost*10]A)"
@@ -289,6 +291,8 @@
 
 /stat_rig_module/deactivate/Initialize(mapload)
 	. = ..()
+	if(!istype(module))
+		return INITIALIZE_HINT_QDEL
 	name = module.deactivate_string
 	// Show cost despite being 0, if it means changing from an active cost.
 	if(module.active_power_cost || module.passive_power_cost)
@@ -301,6 +305,8 @@
 
 /stat_rig_module/engage/Initialize(mapload)
 	. = ..()
+	if(!istype(module))
+		return INITIALIZE_HINT_QDEL
 	name = module.engage_string
 	if(module.use_power_cost)
 		name += " ([module.use_power_cost*10]E)"
