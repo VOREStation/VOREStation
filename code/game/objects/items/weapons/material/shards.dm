@@ -144,7 +144,7 @@
 
 // Preset types - left here for the code that uses them
 /obj/item/material/shard/shrapnel/Initialize(mapload)
-	..(mapload, MAT_STEEL)
+	. = ..(mapload, MAT_STEEL)
 
 /obj/item/material/shard/phoron/Initialize(mapload)
-	..(mapload, MAT_PGLASS)
+	. = ..(mapload, MAT_PGLASS)
