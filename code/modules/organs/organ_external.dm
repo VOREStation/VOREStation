@@ -598,8 +598,8 @@ This function completely restores a damaged organ to perfect condition.
 	if((damage > 15) && (type != BURN) && (local_damage > 30) && prob(damage) && (robotic < ORGAN_ROBOT) && !(species.flags & NO_BLOOD))
 		var/datum/wound/internal_bleeding/I = new (min(damage - 15, 15))
 		wounds += I
-		owner.custom_pain("You feel something rip inside of your [name], bright blood gushing from the wound!", 50) //Let's make this CLEAR that an artery was severed. This was vague enough that most players didn't realize they had IB.
-		to_chat(owner, span_bolddanger("You get the feeling that your injuries will require more than just bandaging."))
+		owner.custom_pain("Something ruptures inside of your [name]. You get the feeling you'll need more ", 15, TRUE)
+		to_chat(owner, span_bolddanger(span_massive("OH GOD! Something just tore in your [name]!"))) //Let's make this CLEAR that an artery was severed. This was vague enough that most players didn't realize they had IB.
 
 //Burn damage can cause fluid loss due to blistering and cook-off
 
