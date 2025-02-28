@@ -570,3 +570,7 @@ JUKEBOX_TRACK_FILES config/jukebox.json
 # REQUIRES an database
 # Uncomment to enable
 #CHATLOG_DATABASE_BACKEND
+
+# The endpoint for the chat to fetch the chatlogs from (for example, the last 2500 messages on init for the history)
+# REQUIRES chatlog_database_backend to be enabled
+#CHATLOG_DATABASE_API_ENDPOINT https://example.com

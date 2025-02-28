@@ -77,12 +77,14 @@
 		window.send_message("connected", list(
 			"round_id" = GLOB.round_id, // Sends the round ID to the chat, requires round IDs
 			"chatlog_db_backend" = CONFIG_GET(flag/chatlog_database_backend),
+			"chatlog_api_endpoint" = CONFIG_GET(string/chatlog_database_api_endpoint),
 			"chatlog_stored_rounds" = islist(stored_rounds) ? list("0") + stored_rounds : list("0")
 		))
 		window.send_message("update", list(
 			"config" = list(
 				"client" = list(
 					"ckey" = client.ckey,
+					"chatlog_token" = client.chatlog_token,
 					"address" = client.address,
 					"computer_id" = client.computer_id,
 				),

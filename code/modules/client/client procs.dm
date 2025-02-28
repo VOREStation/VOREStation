@@ -244,6 +244,9 @@
 	GLOB.clients += src
 	GLOB.directory[ckey] = src
 
+	if (CONFIG_GET(flag/chatlog_database_backend))
+		chatlog_token = vchatlog_generate_token(ckey)
+
 	// Instantiate stat panel
 	stat_panel = new(src, "statbrowser")
 	stat_panel.subscribe(src, .proc/on_stat_panel_message)

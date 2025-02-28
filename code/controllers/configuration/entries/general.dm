@@ -716,3 +716,7 @@
 /// Chatlogs are now saved by calling the chatlogging library instead of letting the clients handle it
 /// REQUIRES an database
 /datum/config_entry/flag/chatlog_database_backend
+
+/// The endpoint for the chat to fetch the chatlogs from (for example, the last 2500 messages on init for the history)
+/// REQUIRES chatlog_database_backend to be enabled
+/datum/config_entry/string/chatlog_database_api_endpoint

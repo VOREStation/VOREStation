@@ -4,6 +4,10 @@
  * @license MIT
  */
 
+import { createAction } from '../../common/redux';
+
+export const loadFromDb = createAction('chat/loadFromDb');
+
 // export const MAX_VISIBLE_MESSAGES = 2500; No longer a constant
 // export const MAX_PERSISTED_MESSAGES = 1000; No longer a constant
 // export const MESSAGE_SAVE_INTERVAL = 10000; No longer a constant

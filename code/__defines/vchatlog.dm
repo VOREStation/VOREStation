@@ -10,6 +10,16 @@
 #define VCHATLOG_CALL(name, args...) call_ext(VCHATLOG, "byond:" + name)(args)
 
 /**
+ * Generates and returns a random access token, for external API communication.
+ * The token is only valid for the current round.
+ *
+ * Arguments:
+ * * ckey - Ckey of the message receiver
+ * * token - Randomized token
+ */
+#define vchatlog_generate_token(ckey) VCHATLOG_CALL("generate_token", ckey)
+
+/**
  * Writes a new chatlog entry to the database. This function does not return anything.
  *
  * Arguments:

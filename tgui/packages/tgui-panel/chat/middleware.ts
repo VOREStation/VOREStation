@@ -37,6 +37,7 @@ import { createMessage, serializeMessage } from './model';
 import { chatRenderer } from './renderer';
 import { selectChat, selectCurrentChatPage } from './selectors';
 import { message } from './types';
+import { loadFromDb } from './constants';
 
 // List of blacklisted tags
 const blacklisted_tags = ['a', 'iframe', 'link', 'video'];
@@ -141,7 +142,11 @@ const loadChatFromStorage = async (store: Store<number, Action<string>>) => {
   store.dispatch(loadChat(state));
 };
 
-const loadChatFromDBStorage = async (store: Store<number, Action<string>>) => {
+const loadChatFromDBStorage = async (
+  store: Store<number, Action<string>>,
+  user_payload: { ckey: String; token: String },
+) => {
+  const game = selectGame(store.getState());
   const settings = selectSettings(store.getState());
   const [state] = await Promise.all([storage.get('chat-state')]);
   // Discard incompatible versions
@@ -151,6 +156,7 @@ const loadChatFromDBStorage = async (store: Store<number, Action<string>>) => {
   }
 
   const messages: message[] = []; // FIX ME, load from DB, first load has errors => check console
+  /*
   await new Promise<void>((resolve) => {
     const listener = async () => {
       document.removeEventListener('chatexportplaced', listener);
@@ -161,7 +167,7 @@ const loadChatFromDBStorage = async (store: Store<number, Action<string>>) => {
 
       text.forEach(
         (obj: {
-          msg_type: string | null; // TODO: string | null aka undefined?
+          msg_type: string | null;
           text_raw: string;
           created_at: number;
           round_id: number;
@@ -201,6 +207,61 @@ const loadChatFromDBStorage = async (store: Store<number, Action<string>>) => {
     };
 
     document.addEventListener('chatexportplaced', listener);
+  });
+  */
+
+  await new Promise<void>(async (resolve) => {
+    const json = await fetch(
+      `${game.chatlogApiEndpoint}/api/logs/${user_payload.ckey}/${settings.visibleMessageLimit}`,
+      {
+        method: 'GET',
+        headers: {
+          Accept: 'application/json',
+          Authorization: `Bearer ${user_payload.token}`,
+          'Content-Type': 'application/json',
+        },
+      },
+    ).then((response) => response.json());
+
+    await json.forEach(
+      (obj: {
+        msg_type: string | null;
+        text_raw: string;
+        created_at: number;
+        round_id: number;
+      }) => {
+        const msg: message = {
+          type: obj.msg_type ? obj.msg_type : '',
+          html: obj.text_raw,
+          createdAt: obj.created_at,
+          roundId: obj.round_id,
+        };
+
+        messages.push(msg);
+      },
+    );
+
+    if (messages) {
+      for (let message of messages) {
+        if (message.html) {
+          message.html = await DOMPurify.sanitize(message.html, {
+            FORBID_TAGS: blacklisted_tags,
+          });
+        }
+      }
+      const batch = [
+        ...messages,
+        createMessage({
+          type: 'internal/reconnected',
+        }),
+      ];
+      chatRenderer.processBatch(batch, {
+        prepend: true,
+      });
+    }
+
+    await store.dispatch(loadChat(state));
+    resolve();
   });
 };
 
@@ -250,14 +311,16 @@ export const chatMiddleware = (store) => {
         // This needs to be handled on a timeout of the websocket...
         loadChatFromStorage(store);
       } else {
-        loadChatFromDBStorage(store);
+        // loadChatFromDBStorage(store);
         // Byond is bad for this. We need a websocket...
+        /*
         setTimeout(() => {
           Byond.sendMessage('databaseExportLines', {
             length: settings.visibleMessageLimit,
             json: true,
           });
         }, 1);
+        */
       }
     }
     if (type === 'chat/message') {
@@ -379,6 +442,11 @@ export const chatMiddleware = (store) => {
     if (type === 'exportDownloadReady') {
       const event = new Event('chatexportplaced');
       document.dispatchEvent(event);
+    }
+    if (type === loadFromDb.type) {
+      const user_payload = payload;
+      loadChatFromDBStorage(store, user_payload);
+      return;
     }
     return next(action);
   };
