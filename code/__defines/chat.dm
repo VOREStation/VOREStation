@@ -15,6 +15,7 @@
 #define MESSAGE_TYPE_PLOCALCHAT "plocalchat"
 #define MESSAGE_TYPE_HIVEMIND "hivemind"
 #define MESSAGE_TYPE_RADIO "radio"
+#define MESSAGE_TYPE_ENT_RADIO "entradio"
 #define MESSAGE_TYPE_NIF "nif"
 #define MESSAGE_TYPE_INFO "info"
 #define MESSAGE_TYPE_WARNING "warning"
