@@ -16,7 +16,7 @@ var/global/list/narsie_list = list()
 	consume_range = 3 //How many tiles out do we eat
 
 
-/obj/singularity/narsie/Initialize(mapload, ...)
+/obj/singularity/narsie/Initialize(mapload)
 	. = ..()
 	narsie_list.Add(src)
 
@@ -40,7 +40,7 @@ var/global/list/narsie_list = list()
 	var/announce=1
 	var/cause_hell = 1
 
-/obj/singularity/narsie/large/Initialize(mapload, ...)
+/obj/singularity/narsie/large/Initialize(mapload)
 	. = ..()
 	if(announce)
 		to_world(span_world(span_narsie(span_red("[uppertext(name)] HAS RISEN"))))
