@@ -812,12 +812,12 @@
 	else
 		icon_state = closed_state
 
-/obj/item/storage/trinketbox/New()
+/obj/item/storage/trinketbox/Initialize(mapload)
+	. = ..()
 	if(!open_state)
 		open_state = "[initial(icon_state)]_open"
 	if(!closed_state)
 		closed_state = "[initial(icon_state)]"
-	..()
 
 /obj/item/storage/trinketbox/attack_self()
 	open = !open
@@ -852,14 +852,15 @@
 	alpha = 200
 	var/datum/weakref/held_item
 
-/atom/movable/storage_slot/New(newloc, obj/item/held_item)
+/atom/movable/storage_slot/Initialize(mapload, obj/item/held_item)
+	. = ..()
 	ASSERT(held_item)
 	name += held_item.name
 	src.held_item = WEAKREF(held_item)
 
 /atom/movable/storage_slot/Destroy()
 	held_item = null
-	..()
+	. = ..()
 
 /// Has to be this way. The fact that the overlays will be constantly mutated by other storage means we can't wait.
 /atom/movable/storage_slot/add_overlay(list/somethings)

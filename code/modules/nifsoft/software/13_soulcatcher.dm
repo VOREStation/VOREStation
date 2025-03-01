@@ -510,7 +510,7 @@
 /mob/proc/nsay(message as text)
 	set name = "NSay"
 	set desc = "Speak into your NIF's Soulcatcher."
-	set category = "IC.NiF"
+	set category = "IC.NIF"
 
 	src.nsay_act(message)
 
@@ -540,7 +540,7 @@
 /mob/proc/nme(message as message)
 	set name = "NMe"
 	set desc = "Emote into your NIF's Soulcatcher."
-	set category = "IC.NiF"
+	set category = "IC.NIF"
 
 	src.nme_act(message)
 

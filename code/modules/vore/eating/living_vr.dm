@@ -887,7 +887,7 @@
 		to_chat(src, span_notice("You are not holding anything."))
 		return
 
-	if(is_type_in_list(I,edible_trash) | adminbus_trash)
+	if(is_type_in_list(I,edible_trash) || adminbus_trash)
 		if(!I.on_trash_eaten(src)) // shows object's rejection message itself
 			return
 		drop_item()
@@ -895,6 +895,7 @@
 		updateVRPanel()
 		log_admin("VORE: [src] used Eat Trash to swallow [I].")
 		I.after_trash_eaten(src)
+		visible_message(span_warning("[src] demonstrates their voracious capabilities by swallowing [I] whole!"))
 		return
 	to_chat(src, span_notice("This item is not appropriate for ethical consumption."))
 	return

@@ -466,10 +466,10 @@
 	var/atom/master = null
 	anchored = TRUE
 
-/atom/movable/overlay/New()
+/atom/movable/overlay/Initialize(mapload)
+	. = ..()
 	for(var/x in src.verbs)
 		src.verbs -= x
-	..()
 
 /atom/movable/overlay/attackby(a, b)
 	if (src.master)

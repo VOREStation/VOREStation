@@ -257,8 +257,8 @@
 
 	var/mob/living/carbon/human/hume
 
-/obj/item/cell/standin/New(newloc, var/mob/living/carbon/human/H)
-	..()
+/obj/item/cell/standin/Initialize(mapload, var/mob/living/carbon/human/H)
+	. = ..()
 	hume = H
 	charge = H.nutrition
 	maxcharge = initial(H.nutrition)
