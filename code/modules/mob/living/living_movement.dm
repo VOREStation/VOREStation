@@ -9,7 +9,7 @@
 	if(istype(mover, /obj/item/projectile))
 		var/obj/item/projectile/P = mover
 		return !P.can_hit_target(src, P.permutated, src == P.original, TRUE)
-	return (!mover.density || !density || lying)
+	return (!mover.density || !density || lying || is_incorporeal())
 
 /mob/CanZASPass(turf/T, is_zone)
 	return ATMOS_PASS_YES
@@ -269,6 +269,8 @@ default behaviour is:
 /mob/living/Moved(var/atom/oldloc, direct, forced, movetime)
 	. = ..()
 	handle_footstep(loc)
+	if(!forced && movetime)
+		SSmotiontracker?.ping(src) // Incase of before init "turf enter gravity" this is ?, unfortunately.
 	// Begin VOREstation edit
 	if(is_shifted)
 		is_shifted = FALSE

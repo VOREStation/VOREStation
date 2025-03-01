@@ -119,12 +119,9 @@
 	plane = MOB_PLANE
 	anchored = FALSE
 	drop_sound = null
+	flags = NOBLUDGEON
 
 	var/obj/item/stuck = null
-
-/obj/item/ducttape/New()
-	..()
-	flags |= NOBLUDGEON
 
 /obj/item/ducttape/examine(mob/user)
 	SHOULD_CALL_PARENT(FALSE)

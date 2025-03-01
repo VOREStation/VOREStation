@@ -131,6 +131,7 @@
 				span_danger("You step on \the [src]!"),
 				span_infoplain(span_bold("You hear a loud metallic snap!"))
 				)
+			SSmotiontracker.ping(src,100) // Clunk!
 			attack_mob(L)
 			if(!has_buckled_mobs())
 				anchored = FALSE
@@ -351,7 +352,7 @@
 
 	L.add_modifier(/datum/modifier/entangled, 3 SECONDS)
 
-	if(!L.apply_damage(force * (issilicon(L) ? 0.25 : 1), BRUTE, target_zone, blocked, soaked, src, sharp, edge))
+	if(!L.apply_damage(force * (issilicon(L) ? 0.25 : 1), BRUTE, target_zone, blocked, soaked, sharp, edge, src))
 		return
 
 	playsound(src, 'sound/effects/glass_step.ogg', 50, 1) // not sure how to handle metal shards with sounds

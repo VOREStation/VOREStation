@@ -123,6 +123,7 @@
 	var/emp_dmg_mod =		1			// Multiplier to all EMP damage sustained by the mob, if it's EMP-sensitive
 	var/emp_stun_mod = 		1			// Multiplier to all EMP disorient/etc. sustained by the mob, if it's EMP-sensitive
 	var/vision_flags = SEE_SELF							// Same flags as glasses.
+	var/has_vibration_sense = FALSE 	// Motion tracker subsystem
 
 	// Death vars.
 	var/meat_type = /obj/item/reagent_containers/food/snacks/meat/human
@@ -236,7 +237,7 @@
 	var/list/env_traits = list()
 	var/pixel_offset_x = 0									// Used for offsetting 64x64 and up icons.
 	var/pixel_offset_y = 0									// Used for offsetting 64x64 and up icons.
-	var/rad_levels = list("safe" = 50, "danger_1" = 100, "danger_2" = 300, "danger_3" = 400, "danger_4" = 1500) //For handle_mutations_and_radiation
+	var/rad_levels = NORMAL_RADIATION_RESISTANCE		//For handle_mutations_and_radiation
 	var/rad_removal_mod = 1
 
 

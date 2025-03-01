@@ -21,9 +21,11 @@
 /obj/machinery/portable_atmospherics/powered/pump/filled
 	start_pressure = 90 * ONE_ATMOSPHERE
 
-/obj/machinery/portable_atmospherics/powered/pump/New()
-	..()
-	cell = new/obj/item/cell/apc(src)
+/obj/machinery/portable_atmospherics/powered/pump/Initialize(mapload, skip_cell)
+	. = ..()
+
+	if(!skip_cell)
+		cell = new/obj/item/cell/apc(src)
 
 	var/list/air_mix = StandardAirMix()
 	src.air_contents.adjust_multi(GAS_O2, air_mix[GAS_O2], GAS_N2, air_mix[GAS_N2])

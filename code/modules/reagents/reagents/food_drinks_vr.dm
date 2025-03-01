@@ -87,6 +87,7 @@
 		if(M.species.organic_food_coeff) //it's still food!
 			switch(alien)
 				if(IS_DIONA) //Diona don't get any nutrition from nutriment or protein.
+					pass()
 				if(IS_SKRELL)
 					M.adjustToxLoss(0.25 * removed)  //Equivalent to half as much protein, since it's half protein.
 				if(IS_TESHARI)
@@ -352,6 +353,9 @@
 	glass_name = REAGENT_SCSATW
 	glass_desc = "The best accessory to daydrinking."
 
+/datum/reagent/drink
+	name = REAGENT_DEVELOPER_WARNING // Unit test ignore
+
 /datum/reagent/drink/choccymilk
 	name = REAGENT_CHOCCYMILK
 	id = REAGENT_ID_CHOCCYMILK
@@ -450,6 +454,7 @@
 		if(M.species.organic_food_coeff) //it's still food!
 			switch(alien)
 				if(IS_DIONA) //Diona don't get any nutrition from nutriment or protein.
+					pass()
 				if(IS_SKRELL)
 					M.adjustToxLoss(0.25 * removed)  //Equivalent to half as much protein, since it's half protein.
 				if(IS_TESHARI)

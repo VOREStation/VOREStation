@@ -208,7 +208,8 @@
 /obj/structure/monolith/fifth/update_icon()
 	add_overlay("5")
 
-/obj/structure/monolith/Initialize()
+/obj/structure/monolith/Initialize(mapload)
+	. = ..()
 	update_icon()
 	soundloop = new(list(src), TRUE)
 

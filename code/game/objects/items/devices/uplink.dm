@@ -27,7 +27,7 @@
 	pickup_sound = 'sound/items/pickup/device.ogg'
 	drop_sound = 'sound/items/drop/device.ogg'
 
-/obj/item/uplink/Initialize(var/mapload)
+/obj/item/uplink/Initialize(mapload)
 	. = ..()
 	addtimer(CALLBACK(src, PROC_REF(next_offer)), offer_time) //It seems like only the /hidden type actually makes use of this...
 
@@ -174,7 +174,7 @@
 				"items" = (category == selected_cat ? list() : null)
 			)
 		for(var/datum/uplink_item/item in category.items)
-			var/cost = item.cost(src, user) || "???"
+			var/cost = item.cost(src, user.mind.tcrystals) || "???"
 			cat["items"] += list(list(
 				"name" = item.name,
 				"cost" = cost,

@@ -52,7 +52,6 @@ var/const/PILOT 			=(1<<13)
 var/const/ENTERTAINER		=(1<<14)
 var/const/ENTREPRENEUR		=(1<<15)
 
-//VOREStation Add
 var/const/TALON				=(1<<3)
 
 var/const/TALCAP			=(1<<0)
@@ -61,7 +60,17 @@ var/const/TALDOC			=(1<<2)
 var/const/TALSEC			=(1<<3)
 var/const/TALENG			=(1<<4)
 var/const/TALMIN			=(1<<5)
-//VOREStation Add End
+
+var/list/command_positions = list(
+	JOB_SITE_MANAGER,
+	JOB_HEAD_OF_PERSONNEL,
+	JOB_HEAD_OF_SECURITY,
+	JOB_CHIEF_ENGINEER,
+	JOB_RESEARCH_DIRECTOR,
+	JOB_CHIEF_MEDICAL_OFFICER,
+	JOB_COMMAND_SECRETARY
+	//JOB_BLUESHIELD_GUARD
+)
 
 /proc/guest_jobbans(var/job)
 	return ( (job in SSjob.get_job_titles_in_department(DEPARTMENT_COMMAND)) || (job in SSjob.get_job_titles_in_department(DEPARTMENT_SYNTHETIC)) || (job in SSjob.get_job_titles_in_department(DEPARTMENT_SECURITY)) )

@@ -217,6 +217,7 @@ export const chatMiddleware = (store) => {
       chatRenderer.processBatch([payload_obj.content], {
         doArchive: true,
       });
+      sequences.push(sequence);
       if (game.roundId !== settings.lastId) {
         storedRounds.push(game.roundId);
         storedLines.push(settings.totalStoredMessages - 1);

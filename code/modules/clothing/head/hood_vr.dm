@@ -41,7 +41,7 @@
 	name = "centcom winter hood"
 	desc = "A cozy winter hood attached to a heavy winter jacket."
 	icon = 'icons/inventory/head/item_vr.dmi'
-	default_worn_icon = 'icons/inventory/head/mob_vr.dmi'
+	default_worn_icon = 'icons/inventory/head/mob.dmi'
 	icon_state = "winterhood_centcom"
 	armor = list(melee = 40, bullet = 45, laser = 45, energy = 35, bomb = 40, bio = 25, rad = 25, fire = 35, acid = 50)
 

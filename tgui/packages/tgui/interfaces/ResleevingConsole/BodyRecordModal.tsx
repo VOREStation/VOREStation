@@ -1,7 +1,7 @@
 import { Box, Button, LabeledList, Section } from 'tgui-core/components';
 
 import { useBackend } from '../../backend';
-import { ActiveBodyRecordData } from './types';
+import type { ActiveBodyRecordData } from './types';
 
 export const BodyRecordModal = (props: { data: ActiveBodyRecordData }) => {
   const { act } = useBackend();

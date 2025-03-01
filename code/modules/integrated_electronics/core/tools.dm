@@ -275,7 +275,7 @@
 		/obj/item/multitool
 		)
 
-/obj/item/storage/bag/circuits/basic/Initialize()
+/obj/item/storage/bag/circuits/basic/Initialize(mapload)
 	. = ..()
 	new /obj/item/storage/bag/circuits/mini/arithmetic(src)
 	new /obj/item/storage/bag/circuits/mini/trig(src)

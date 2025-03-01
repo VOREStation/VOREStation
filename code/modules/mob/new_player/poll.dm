@@ -15,7 +15,7 @@
 		privacy_poll()
 
 /mob/new_player/proc/privacy_poll()
-	var/output = "<div align='center'><B>Player poll</B>"
+	var/output = "<div align='center'>" + span_bold("Player poll")
 	output +="<hr>"
 	output += span_bold("We would like to expand our stats gathering.")
 	output += "<br>This however involves gathering data about player behavior, play styles, unique player numbers, play times, etc. Data like that cannot be gathered fully anonymously, which is why we're asking you how you'd feel if player-specific data was gathered. Prior to any of this actually happening, a privacy policy will be discussed, but before that can begin, we'd preliminarily like to know how you feel about the concept."
@@ -56,7 +56,7 @@
 		var/datum/db_query/select_query = SSdbcore.NewQuery("SELECT id, question FROM erro_poll_question WHERE [(isadmin ? "" : "adminonly = false AND")] Now() BETWEEN starttime AND endtime")
 		select_query.Execute()
 
-		var/output = "<div align='center'><B>Player polls</B>"
+		var/output = "<div align='center'>" + span_bold("Player polls")
 		output +="<hr>"
 
 		var/pollid
@@ -70,7 +70,7 @@
 		while(select_query.NextRow())
 			pollid = select_query.item[1]
 			pollquestion = select_query.item[2]
-			output += "<tr bgcolor='[ (i % 2 == 1) ? color1 : color2 ]'><td><a href=\"byond://?src=\ref[src];pollid=[pollid]\"><b>[pollquestion]</b></a></td></tr>"
+			output += "<tr bgcolor='[ (i % 2 == 1) ? color1 : color2 ]'><td><a href=\"byond://?src=\ref[src];pollid=[pollid]\">" + span_bold("[pollquestion]") + "</a></td></tr>"
 			i++
 		qdel(select_query)
 		output += "</table>"
@@ -129,10 +129,10 @@
 					PO.optiontext = options_query.item[2]
 					options += PO
 				qdel(options_query)
-				var/output = "<div align='center'><B>Player poll</B>"
+				var/output = "<div align='center'>" + span_bold("Player poll")
 				output +="<hr>"
 				output += span_bold("Question: [pollquestion]") + "<br>"
-				output += "<font size='2'>Poll runs from <b>[pollstarttime]</b> until <b>[pollendtime]</b></font><p>"
+				output += span_normal("Poll runs from " + span_bold("[pollstarttime]") + " until " + span_bold("[pollendtime]")) + "<p>"
 
 				if(!voted)	//Only make this a form if we have not voted yet
 					output += "<form name='cardcomp' action='?src=\ref[src]' method='get'>"
@@ -174,10 +174,10 @@
 				qdel(voted_query)
 
 
-				var/output = "<div align='center'><B>Player poll</B>"
+				var/output = "<div align='center'>" + span_bold("Player poll")
 				output +="<hr>"
 				output += span_bold("Question: [pollquestion]") + "<br>"
-				output += "<font size='2'>Feedback gathering runs from <b>[pollstarttime]</b> until <b>[pollendtime]</b></font><p>"
+				output += span_normal("Feedback gathering runs from " + span_bold("[pollstarttime]") + " until " + span_bold("[pollendtime]")) + "<p>"
 
 				if(!voted)	//Only make this a form if we have not voted yet
 					output += "<form name='cardcomp' action='?src=\ref[src]' method='get'>"
@@ -185,7 +185,7 @@
 					output += "<input type='hidden' name='votepollid' value='[pollid]'>"
 					output += "<input type='hidden' name='votetype' value='TEXT'>"
 
-					output += "<font size='2'>Please provide feedback below. You can use any letters of the English alphabet, numbers and the symbols: . , ! ? : ; -</font><br>"
+					output += span_normal("Please provide feedback below. You can use any letters of the English alphabet, numbers and the symbols: . , ! ? : ; -") + "<br>"
 					output += "<textarea name='replytext' cols='50' rows='14'></textarea>"
 
 					output += "<p><input type='submit' value='Submit'>"
@@ -208,10 +208,10 @@
 				var/datum/db_query/voted_query = SSdbcore.NewQuery("SELECT o.text, v.rating FROM erro_poll_option o, erro_poll_vote v WHERE o.pollid = [pollid] AND v.ckey = '[usr.ckey]' AND o.id = v.optionid")
 				voted_query.Execute()
 
-				var/output = "<div align='center'><B>Player poll</B>"
+				var/output = "<div align='center'>" + span_bold("Player poll")
 				output +="<hr>"
 				output += span_bold("Question: [pollquestion]") + "<br>"
-				output += "<font size='2'>Poll runs from <b>[pollstarttime]</b> until <b>[pollendtime]</b></font><p>"
+				output += span_normal("Poll runs from " + span_bold("[pollstarttime]") + " until " + span_bold("[pollendtime]")) + "<p>"
 
 				var/voted = 0
 				while(voted_query.NextRow())
@@ -220,7 +220,7 @@
 					var/optiontext = voted_query.item[1]
 					var/rating = voted_query.item[2]
 
-					output += "<br><b>[optiontext] - [rating]</b>"
+					output += "<br>" + span_bold("[optiontext] - [rating]") + ""
 				qdel(voted_query)
 				if(!voted)	//Only make this a form if we have not voted yet
 					output += "<form name='cardcomp' action='?src=\ref[src]' method='get'>"
@@ -303,10 +303,10 @@
 				if(select_query.item[5])
 					multiplechoiceoptions = text2num(select_query.item[5])
 
-				var/output = "<div align='center'><B>Player poll</B>"
+				var/output = "<div align='center'>" + span_bold("Player poll")
 				output +="<hr>"
 				output += span_bold("Question: [pollquestion]") + "<br>You can select up to [multiplechoiceoptions] options. If you select more, the first [multiplechoiceoptions] will be saved.<br>"
-				output += "<font size='2'>Poll runs from <b>[pollstarttime]</b> until <b>[pollendtime]</b></font><p>"
+				output += span_normal("Poll runs from " + span_bold("[pollstarttime]") + " until " + span_bold("[pollendtime]")) + "<p>"
 
 				if(!voted)	//Only make this a form if we have not voted yet
 					output += "<form name='cardcomp' action='?src=\ref[src]' method='get'>"

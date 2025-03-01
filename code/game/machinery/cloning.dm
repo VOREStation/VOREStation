@@ -440,7 +440,6 @@
 					ex_act(severity)
 				qdel(src)
 				return
-		else
 	return
 
 /obj/machinery/clonepod/update_icon()
@@ -485,7 +484,7 @@
 	name = "Diskette Box"
 	icon_state = "disk_kit"
 
-/obj/item/storage/box/Initialize()
+/obj/item/storage/box/disks/Initialize()
 	. = ..()
 	new /obj/item/disk/body_record(src)
 	new /obj/item/disk/body_record(src)
@@ -520,8 +519,7 @@
 	These diskettes are used to transfer genetic information between machines and profiles.
 	A load/save dialog will become available in each profile if a disk is inserted.</p><br>
 	<i>A good diskette is a great way to counter aforementioned genetic drift!</i><br>
-	<br>
-	<font size=1>This technology produced under license from Thinktronic Systems, LTD.</font>"}
+	<br>"} + span_small("This technology produced under license from Thinktronic Systems, LTD.")
 
 //SOME SCRAPS I GUESS
 /* EMP grenade/spell effect

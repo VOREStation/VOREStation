@@ -81,13 +81,29 @@
 	savefile_identifier = PREFERENCE_PLAYER
 
 	minimum = 1
-	maximum = 5
+	maximum = 20
 	step = 1
 
 /datum/preference/numeric/tgui_say_height/create_default_value()
 	return 1
 
 /datum/preference/numeric/tgui_say_height/apply_to_client(client/client, value)
+	client.tgui_say?.load()
+
+
+/datum/preference/numeric/tgui_say_width
+	category = PREFERENCE_CATEGORY_GAME_PREFERENCES
+	savefile_key = "tgui_say_width"
+	savefile_identifier = PREFERENCE_PLAYER
+
+	minimum = 360
+	maximum = 800
+	step = 20
+
+/datum/preference/numeric/tgui_say_width/create_default_value()
+	return 360
+
+/datum/preference/numeric/tgui_say_width/apply_to_client(client/client, value)
 	client.tgui_say?.load()
 
 /datum/preference/text/preset_colors
