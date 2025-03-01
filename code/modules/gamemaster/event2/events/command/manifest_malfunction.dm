@@ -6,14 +6,14 @@
 	event_type = /datum/event2/event/manifest_malfunction
 
 /datum/event2/meta/manifest_malfunction/get_weight()
-	var/security = metric.count_people_in_department(DEPARTMENT_SECURITY)
+	var/security = GLOB.metric.count_people_in_department(DEPARTMENT_SECURITY)
 
-	if(!security || !data_core)
+	if(!security || !GLOB.data_core)
 		return 0
 
-	var/command = metric.count_people_with_job(/datum/job/hop) + metric.count_people_with_job(/datum/job/captain)
-	var/synths = metric.count_people_in_department(DEPARTMENT_SYNTHETIC)
-	var/everyone = metric.count_people_in_department(DEPARTMENT_EVERYONE) - (synths + security + command) // So they don't get counted twice.
+	var/command = GLOB.metric.count_people_with_job(/datum/job/hop) + GLOB.metric.count_people_with_job(/datum/job/captain)
+	var/synths = GLOB.metric.count_people_in_department(DEPARTMENT_SYNTHETIC)
+	var/everyone = GLOB.metric.count_people_in_department(DEPARTMENT_EVERYONE) - (synths + security + command) // So they don't get counted twice.
 
 	return (security * 10) + (synths * 20) + (command * 20) + (everyone * 5)
 
@@ -51,10 +51,10 @@
 
 		switch(record_class_to_delete)
 			if("security")
-				R = safepick(data_core.security)
+				R = safepick(GLOB.data_core.security)
 
 			if("medical")
-				R = safepick(data_core.medical)
+				R = safepick(GLOB.data_core.medical)
 
 		if(R)
 			log_debug("Manifest malfunction event is now deleting [R.fields["name"]]'s [record_class_to_delete] record.")

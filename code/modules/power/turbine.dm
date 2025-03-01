@@ -328,11 +328,11 @@
 /obj/machinery/computer/turbine_computer/proc/locate_machinery()
 	if(!id)
 		return
-	for(var/obj/machinery/compressor/C in machines)
+	for(var/obj/machinery/compressor/C in GLOB.machines)
 		if(C.comp_id == id)
 			compressor = C
 	LAZYINITLIST(doors)
-	for(var/obj/machinery/door/blast/P in machines)
+	for(var/obj/machinery/door/blast/P in GLOB.machines)
 		if(P.id == id)
 			doors += P
 

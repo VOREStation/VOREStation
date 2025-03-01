@@ -68,11 +68,11 @@
 		"admin_ranks",
 		"admin_state",
 		"alien_whitelist",
-		"alldirs",
+		"GLOB.alldirs",
 		"ahelp_tickets",
 		"adminfaxes",
 		"adminlogs",
-		"cardinal",
+		"GLOB.cardinal",
 		"cardinalz",
 		"IClog"
 	)

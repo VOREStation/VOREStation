@@ -46,3 +46,6 @@
 #define PIXEL_MULTIPLIER WORLD_ICON_SIZE/32 //Needed for the R-UST port
 
 #define JOINTEXT(X) jointext(X, null)
+
+#define isbelly(A)		istype(A, /obj/belly)
+#define iscapturecrystal(A)		istype(A, /obj/item/capture_crystal)

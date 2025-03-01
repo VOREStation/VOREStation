@@ -236,7 +236,7 @@ VIRGO3B_TURF_CREATE(/turf/simulated/mineral/floor)
 /turf/simulated/floor/midpoint_glass/proc/do_icons()
 	var/new_junction = NONE
 
-	for(var/direction in cardinal) //Cardinal case first.
+	for(var/direction in GLOB.cardinal) //GLOB.cardinal case first.
 		var/turf/T = get_step(src, direction)
 		if(istype(T, type))
 			new_junction |= direction

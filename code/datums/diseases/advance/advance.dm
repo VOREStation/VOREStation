@@ -376,7 +376,7 @@ GLOBAL_LIST_INIT(advance_cures, list(
 		D.AssignName(new_name)
 		D.Refresh()
 
-		for(var/datum/disease/advance/AD in active_diseases)
+		for(var/datum/disease/advance/AD in GLOB.active_diseases)
 			AD.Refresh()
 
 		H = tgui_input_list(usr, "Choose infectee", "Infectees", human_mob_list)

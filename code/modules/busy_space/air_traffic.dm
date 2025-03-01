@@ -50,7 +50,7 @@ var/datum/lore/atc_controller/atc = new/datum/lore/atc_controller
 
 /datum/lore/atc_controller/proc/msg(var/message,var/sender)
 	ASSERT(message)
-	global_announcer.autosay("[message]", sender ? sender : "[using_map.dock_name] Control")
+	GLOB.global_announcer.autosay("[message]", sender ? sender : "[using_map.dock_name] Control")
 
 /datum/lore/atc_controller/proc/reroute_traffic(var/yes = 1)
 	if(yes)

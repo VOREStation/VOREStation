@@ -687,10 +687,10 @@ var/global/datum/controller/occupations/job_master
 				to_chat(C, span_warning("Your chosen spawnpoint ([spawnpos.display_name]) is unavailable for your chosen job. Please correct your spawn point choice."))
 				return
 			to_chat(C, span_filter_warning("Your chosen spawnpoint ([spawnpos.display_name]) is unavailable for your chosen job. Spawning you at the Arrivals shuttle instead."))
-			var/spawning = pick(latejoin)
+			var/spawning = pick(GLOB.latejoin)
 			.["turf"] = get_turf(spawning)
 			.["msg"] = "will arrive at the station shortly"
 	else if(!fail_deadly)
-		var/spawning = pick(latejoin)
+		var/spawning = pick(GLOB.latejoin)
 		.["turf"] = get_turf(spawning)
 		.["msg"] = "has arrived on the station"

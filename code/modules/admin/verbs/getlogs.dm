@@ -85,7 +85,7 @@
 	set name = "Show Server Log"
 	set desc = "Shows today's server log."
 
-	var/path = "[log_path].log"
+	var/path = "[GLOB.log_directory].log"
 	if( fexists(path) )
 		src << run( file(path) )
 	else

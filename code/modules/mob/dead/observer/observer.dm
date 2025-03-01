@@ -130,8 +130,8 @@
 			add_overlay(H.overlays_standing)
 		default_pixel_x = body.default_pixel_x
 		default_pixel_y = body.default_pixel_y
-	if(!T && length(latejoin))
-		T = pick(latejoin)			//Safety in case we cannot find the body's position
+	if(!T && length(GLOB.latejoin))
+		T = pick(GLOB.latejoin)			//Safety in case we cannot find the body's position
 	if(T)
 		forceMove(T, just_spawned = TRUE)
 	else
@@ -722,7 +722,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	var/mob/living/simple_mob/animal/passive/mouse/host
 	var/obj/machinery/atmospherics/unary/vent_pump/vent_found
 	var/list/found_vents = list()
-	for(var/obj/machinery/atmospherics/unary/vent_pump/v in machines)
+	for(var/obj/machinery/atmospherics/unary/vent_pump/v in GLOB.machines)
 		if(!v.welded && v.z == T.z && v.network && v.network.normal_members.len > 20)
 			found_vents.Add(v)
 	if(found_vents.len)

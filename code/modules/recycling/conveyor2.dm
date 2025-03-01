@@ -68,7 +68,7 @@
 	update_dir()
 
 /obj/machinery/conveyor/proc/update_dir()
-	if(!(dir in cardinal)) // Diagonal. Forwards is *away* from dir, curving to the right.
+	if(!(dir in GLOB.cardinal)) // Diagonal. Forwards is *away* from dir, curving to the right.
 		forwards = turn(dir, 45)
 		backwards = turn(dir, 135)
 	else
@@ -137,7 +137,7 @@
 				to_chat(user, "No input found. Please hang up and try your call again.")
 				return
 			id = input
-			for(var/obj/machinery/conveyor_switch/C in machines)
+			for(var/obj/machinery/conveyor_switch/C in GLOB.machines)
 				if(C.id == id)
 					C.conveyors |= src
 			return
@@ -230,7 +230,7 @@
 
 /obj/machinery/conveyor_switch/LateInitialize()
 	conveyors = list()
-	for(var/obj/machinery/conveyor/C in machines)
+	for(var/obj/machinery/conveyor/C in GLOB.machines)
 		if(C.id == id)
 			conveyors += C
 
@@ -286,7 +286,7 @@
 	update()
 
 	// find any switches with same id as this one, and set their positions to match us
-	for(var/obj/machinery/conveyor_switch/S in machines)
+	for(var/obj/machinery/conveyor_switch/S in GLOB.machines)
 		if(S.id == src.id)
 			S.position = position
 			S.update()
@@ -318,7 +318,7 @@
 			return
 		id = input
 		conveyors = list() // Clear list so they aren't double added.
-		for(var/obj/machinery/conveyor/C in machines)
+		for(var/obj/machinery/conveyor/C in GLOB.machines)
 			if(C.id == id)
 				conveyors += C
 		return

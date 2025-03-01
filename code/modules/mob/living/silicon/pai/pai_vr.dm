@@ -298,7 +298,7 @@
 			pai_nom(A)
 
 // Allow card inhabited machines to be interacted with
-// This has to override ClickOn because of storage depth nonsense with how pAIs are in cards in machines
+// This has to override ClickOn because of storage depth nonsense with how pAIs are in cards in GLOB.machines
 /mob/living/silicon/pai/ClickOn(var/atom/A, var/params)
 	if(istype(A, /obj/machinery))
 		var/obj/machinery/M = A

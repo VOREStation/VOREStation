@@ -207,7 +207,7 @@
 			if(!new_name)
 				return
 			A.AssignName(new_name)
-			for(var/datum/disease/advance/AD in active_diseases)
+			for(var/datum/disease/advance/AD in GLOB.active_diseases)
 				AD.Refresh()
 			update_tgui_static_data(ui.user)
 		if("switch_strain")

@@ -35,7 +35,7 @@
 /mob/living/carbon/human/attack_hand(mob/living/M as mob)
 	var/datum/gender/TT = gender_datums[M.get_visible_gender()]
 	var/mob/living/carbon/human/H = M
-  
+
 	if(is_incorporeal())
 		return
 
@@ -322,7 +322,7 @@
 				attack_message = "[H] attempted to strike [src], but missed!"
 			else
 				attack_message = "[H] attempted to strike [src], but [TT.he] rolled out of the way!"
-				src.set_dir(pick(cardinal))
+				src.set_dir(pick(GLOB.cardinal))
 			miss_type = 1
 
 	if(!miss_type && block)

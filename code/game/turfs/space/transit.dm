@@ -8,7 +8,7 @@
 
 /turf/space/transit/Initialize()
 	. = ..()
-	toggle_transit(reverse_dir[pushdirection])
+	toggle_transit(GLOB.reverse_dir[pushdirection])
 
 //------------------------
 

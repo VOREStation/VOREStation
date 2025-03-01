@@ -37,7 +37,7 @@
 	..()
 	// See if shields can stop it first
 	var/list/shields = list()
-	for(var/obj/machinery/power/shield_generator/G in global.machines)
+	for(var/obj/machinery/power/shield_generator/G in GLOB.machines)
 		if((G.z in affecting_z) && G.running && G.check_flag(MODEFLAG_EM))
 			shields += G
 	if(shields.len)

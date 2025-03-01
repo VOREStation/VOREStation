@@ -303,7 +303,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 
 	if(oldname)
 		//update the datacore records! This is goig to be a bit costly.
-		for(var/list/L in list(data_core.general,data_core.medical,data_core.security,data_core.locked))
+		for(var/list/L in list(GLOB.data_core.general, GLOB.data_core.medical, GLOB.data_core.security, GLOB.data_core.locked))
 			for(var/datum/data/record/R in L)
 				if(R.fields["name"] == oldname)
 					R.fields["name"] = newname
@@ -1145,8 +1145,8 @@ var/global/list/common_tools = list(
 	if(surface)
 		return surface
 
-/proc/reverse_direction(var/dir)
-	return global.reverse_dir[dir]
+/proc/reverse_direction(dir)
+	return GLOB.reverse_dir[dir]
 
 /*
 Checks if that loc and dir has a item on the wall

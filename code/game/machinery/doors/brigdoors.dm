@@ -43,11 +43,11 @@
 /obj/machinery/door_timer/LateInitialize()
 	. = ..()
 
-	for(var/obj/machinery/door/window/brigdoor/M in machines)
+	for(var/obj/machinery/door/window/brigdoor/M in GLOB.machines)
 		if(M.id == id)
 			LAZYADD(targets,M)
 
-	for(var/obj/machinery/flasher/F in machines)
+	for(var/obj/machinery/flasher/F in GLOB.machines)
 		if(F.id == id)
 			LAZYADD(targets,F)
 

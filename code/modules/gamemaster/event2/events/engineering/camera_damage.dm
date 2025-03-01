@@ -7,7 +7,7 @@
 	event_type = /datum/event2/event/camera_damage
 
 /datum/event2/meta/camera_damage/get_weight()
-	return 30 + (metric.count_people_in_department(DEPARTMENT_ENGINEERING) * 20) + (metric.count_people_in_department(DEPARTMENT_SYNTHETIC) * 40)
+	return 30 + (GLOB.metric.count_people_in_department(DEPARTMENT_ENGINEERING) * 20) + (GLOB.metric.count_people_in_department(DEPARTMENT_SYNTHETIC) * 40)
 
 /datum/event2/event/camera_damage
 	var/camera_range = 7

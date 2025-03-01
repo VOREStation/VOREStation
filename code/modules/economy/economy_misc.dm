@@ -41,7 +41,7 @@ var/global/economy_init = 0
 
 	create_station_account()
 
-	for(var/department in station_departments)
+	for(var/department in GLOB.station_departments)
 		create_department_account(department)
 	create_department_account("Vendor")
 	vendor_account = department_accounts["Vendor"]
@@ -53,7 +53,7 @@ var/global/economy_init = 0
 		if(CR.account_to_connect)
 			CR.linked_account = department_accounts[CR.account_to_connect]
 
-	current_date_string = "[num2text(rand(1,31))] [pick("January","February","March","April","May","June","July","August","September","October","November","December")], [game_year]"
+	current_date_string = "[num2text(rand(1,31))] [pick("January","February","March","April","May","June","July","August","September","October","November","December")], [GLOB.game_year]"
 
 	economy_init = 1
 	return 1
