@@ -14,8 +14,8 @@
 	cast_methods = CAST_USE
 	aspect = ASPECT_UNSTABLE
 
-/obj/item/spell/instability_tap/New()
-	..()
+/obj/item/spell/instability_tap/Initialize(mapload, coreless)
+	. = ..()
 	set_light(3, 2, l_color = "#FA58F4")
 
 /obj/item/spell/instability_tap/on_use_cast(mob/user)

@@ -263,7 +263,7 @@
 	to_chat(src, span_notice("You take a moment to listen in to your environment..."))
 	for(var/mob/living/L in range(client.view, src))
 		var/turf/T = get_turf(L)
-		if(!T || L == src || L.stat == DEAD || is_below_sound_pressure(T))
+		if(!T || L == src || L.stat == DEAD || is_below_sound_pressure(T) || L.is_incorporeal())
 			continue
 		heard_something = TRUE
 		var/feedback = list()

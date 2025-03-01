@@ -171,12 +171,12 @@
 	var/open_state
 	var/closed_state
 
-/obj/item/storage/box/fancy/chewables/tobacco/nico/New()
+/obj/item/storage/box/fancy/chewables/tobacco/nico/Initialize(mapload)
+	. = ..()
 	if(!open_state)
 		open_state = "[initial(icon_state)]0"
 	if(!closed_state)
 		closed_state = "[initial(icon_state)]"
-	..()
 
 /obj/item/storage/box/fancy/chewables/tobacco/nico/update_icon()
 	cut_overlays()

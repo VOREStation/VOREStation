@@ -26,7 +26,7 @@ CATEGORY: Reference
 					<br><br><br>
 					<center>
 					<h1><br>Thermodynamic Reactions and Research:<br>
-					<font size="2">A Guide to Phoron Studies and Safety<br>
+					"} + span_normal("A Guide to Phoron Studies and Safety") + {"<br>
 					by I.R.I.S.</font><br><br></h1>
 					</center>
 					</body>
@@ -68,7 +68,7 @@ CATEGORY: Reference
 					<body>
 					<div class="border">
 					<center>
-					<b>Understanding and Operating Research</b>
+					"} + span_bold("Understanding and Operating Research") + {"
 					</center><br>
 					As a phoron researcher, you will likely operate within two separate labs. The first is your department's research and development lab -- this is where you will study the elements of existing technology and build upon it. The second is your department's toxin's lab, in which all thermodynamic phoron research takes place.
 					<br><br>
@@ -99,13 +99,13 @@ CATEGORY: Reference
 					<body>
 					<div class="border">
 					<center>
-					<b>Thermodynamic Studies: Preparation</b>
+					"} + span_bold("Thermodynamic Studies: Preparation") + {"
 					</center><br>
 					While the research and development department is quite important to phoron studies, the toxins lab covers the relations between heat, energy, and phoron. Preparing and outfitting your lab is crucial to a successful study.
 					<br><br>
 					If your lab is not already equipped with a gas cooling system, it is recommended you seek out one to use. With some work, these are obtainable in your research lab, but aid from your station's engineering team or using an existing one -- such as those that can be found in a medical bay - are also suitable.
 					<br><br>
-					Next, note the pipes, ports, and where they all connect. Three ports should lead directly in to your mixing chamber. Two of these will pump <i>in</i> to it, while the third pumps out. There should be pumps within the airlock leading to the chamber that help operate these pipes. Two additional ports should lead to a heat exchanger. One side of the exchange should run pipes directly into the chamber, while the other only connects to the exchange. The former will heat up from an active mixing chamber, while the latter will heat the gas -- normally phoron -- in the canister attached to the port.
+					Next, note the pipes, ports, and where they all connect. Three ports should lead directly in to your mixing chamber. Two of these will pump "} + span_italics("in") + {" to it, while the third pumps out. There should be pumps within the airlock leading to the chamber that help operate these pipes. Two additional ports should lead to a heat exchanger. One side of the exchange should run pipes directly into the chamber, while the other only connects to the exchange. The former will heat up from an active mixing chamber, while the latter will heat the gas -- normally phoron -- in the canister attached to the port.
 					<br><br>
 					Finally, you should note where the vent control is on your mixing chamber, as it may be needed in emergencies, and where the air scrubbers are in your lab. It is advised to have these in operation when working.
 					<br><br>
@@ -126,7 +126,7 @@ CATEGORY: Reference
 					<body>
 					<div class="border">
 					<center>
-					<b>Thermodynamic Studies: The Mixing Chamber</b>
+					"} + span_bold("Thermodynamic Studies: The Mixing Chamber") + {"
 					</center><br>
 					Before you start your mix, ensure the chamber is empty and clear. You can rid it of any contaminating gases in two ways: pumping it through the output port and into a canister, or venting the chamber of it.
 					<br><br>
@@ -151,7 +151,7 @@ CATEGORY: Reference
 					<body>
 					<div class ="border">
 					<center>
-					<b>Thermodynamic Studies: What Next?</b>
+					"} + span_bold("Thermodynamic Studies: What Next?") + {"
 					</center><br>
 					Here is where the guidance ends. You have your heated phoron, and you have access to a gas cooling system. You may cool your available oxygen canisters and test the interaction of temperature and pressure variation.
 					<br><br>

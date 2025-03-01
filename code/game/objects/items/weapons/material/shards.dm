@@ -143,8 +143,8 @@
 			return
 
 // Preset types - left here for the code that uses them
-/obj/item/material/shard/shrapnel/New(loc)
-	..(loc, MAT_STEEL)
+/obj/item/material/shard/shrapnel/Initialize(mapload)
+	. = ..(mapload, MAT_STEEL)
 
-/obj/item/material/shard/phoron/New(loc)
-	..(loc, MAT_PGLASS)
+/obj/item/material/shard/phoron/Initialize(mapload)
+	. = ..(mapload, MAT_PGLASS)
