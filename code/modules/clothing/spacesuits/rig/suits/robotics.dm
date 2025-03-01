@@ -20,10 +20,7 @@
 	glove_type = null
 	cell_type =  null
 
-	allowed = list(
-		/obj/item/flashlight,
-		/obj/item/storage/box
-		)
+	allowed = list(POCKET_GENERIC, POCKET_EMERGENCY, POCKET_STORAGE)
 
 	req_access = list()
 	req_one_access = list()

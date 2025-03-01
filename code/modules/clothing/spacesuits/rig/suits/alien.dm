@@ -51,13 +51,7 @@
 	item_flags = THICKMATERIAL
 	siemens_coefficient = 0.2
 	offline_slowdown = 2.5
-	allowed = list(
-		/obj/item/gun,
-		/obj/item/flashlight,
-		/obj/item/tank,
-		/obj/item/suit_cooling_unit,
-		/obj/item/storage
-		)
+	allowed = list(POCKET_GENERIC, POCKET_EXPLO, POCKET_SUIT_REGULATORS, POCKET_ALL_TANKS, POCKET_STORAGE)
 
 	air_type = /obj/item/tank/vox
 
