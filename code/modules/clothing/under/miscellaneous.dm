@@ -69,7 +69,7 @@
 
 /obj/item/clothing/under/clown //i'm only putting it here to make subtypes of it, since the original suit is under/rank/clown
 	name = "clown suit"
-	desc = "<i><font face='comic sans ms'>Honk!</i></font>"
+	desc = span_italics("<font face='comic sans ms'>Honk!</font>")
 	icon_state = "clown"
 	rolled_sleeves = -1
 
@@ -812,7 +812,7 @@
 
 /obj/item/clothing/under/gov
 	name = "green formal uniform"
-	desc = "A neat proper uniform of someone on offical business. The collar is <i>immaculately</i> starched."
+	desc = "A neat proper uniform of someone on offical business. The collar is " + span_italics("immaculately") + " starched."
 	icon_state = "greensuit"
 	item_state_slots = list(slot_r_hand_str = "centcom", slot_l_hand_str = "centcom")
 	starting_accessories = list(/obj/item/clothing/accessory/tie/darkgreen)

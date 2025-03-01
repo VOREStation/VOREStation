@@ -122,12 +122,12 @@ var/list/all_technomancer_assistance = subtypesof(/datum/technomancer/assistance
 		if(0) //Functions
 			var/dat = ""
 			user.set_machine(src)
-			dat += "<align='center'><b>Functions</b> | "
+			dat += "<align='center'>" + span_bold("Functions") + " | "
 			dat += "<a href='byond://?src=\ref[src];tab_choice=1'>Equipment</a> | "
 			dat += "<a href='byond://?src=\ref[src];tab_choice=2'>Consumables</a> | "
 			dat += "<a href='byond://?src=\ref[src];tab_choice=3'>Assistance</a> | "
 			dat += "<a href='byond://?src=\ref[src];tab_choice=4'>Info</a></align><br>"
-			dat += "You currently have a budget of <b>[budget]/[max_budget]</b>.<br><br>"
+			dat += "You currently have a budget of " + span_bold("[budget]/[max_budget]") + ".<br><br>"
 			dat += "<a href='byond://?src=\ref[src];refund_functions=1'>Refund Functions</a><br><br>"
 
 			dat += "[show_categories(ALL_SPELLS)] | [show_categories(OFFENSIVE_SPELLS)] | [show_categories(DEFENSIVE_SPELLS)] | \
@@ -138,15 +138,15 @@ var/list/all_technomancer_assistance = subtypesof(/datum/technomancer/assistance
 				if(spell_tab != ALL_SPELLS && spell.category != spell_tab)
 					continue
 				dat += span_bold("[spell.name]") + "<br>"
-				dat += "<i>[spell.desc]</i><br>"
+				dat += span_italics("[spell.desc]") + "<br>"
 				if(spell.spell_power_desc)
-					dat += "<font color='purple'>Spell Power: [spell.spell_power_desc]</font><br>"
+					dat += span_purple("Spell Power: [spell.spell_power_desc]") + "<br>"
 				if(spell.enhancement_desc)
-					dat += "<font color='blue'>Scepter Effect: [spell.enhancement_desc]</font><br>"
+					dat += span_blue("Scepter Effect: [spell.enhancement_desc]") + "<br>"
 				if(spell.cost <= budget)
 					dat += "<a href='byond://?src=\ref[src];spell_choice=[spell.name]'>Purchase</a> ([spell.cost])<br><br>"
 				else
-					dat += "<font color='red'><b>Cannot afford!</b></font><br><br>"
+					dat += span_red(span_bold("Cannot afford!")) + "<br><br>"
 			user << browse("<html>[dat]</html>", "window=radio")
 			onclose(user, "radio")
 		if(1) //Equipment
@@ -157,14 +157,14 @@ var/list/all_technomancer_assistance = subtypesof(/datum/technomancer/assistance
 			dat += "<a href='byond://?src=\ref[src];tab_choice=2'>Consumables</a> | "
 			dat += "<a href='byond://?src=\ref[src];tab_choice=3'>Assistance</a> | "
 			dat += "<a href='byond://?src=\ref[src];tab_choice=4'>Info</a></align><br>"
-			dat += "You currently have a budget of <b>[budget]/[max_budget]</b>.<br><br>"
+			dat += "You currently have a budget of " + span_bold("[budget]/[max_budget]") + ".<br><br>"
 			for(var/datum/technomancer/equipment/E in equipment_instances)
 				dat += span_bold("[E.name]") + "<br>"
-				dat += "<i>[E.desc]</i><br>"
+				dat += span_italics("[E.desc]") + "<br>"
 				if(E.cost <= budget)
 					dat += "<a href='byond://?src=\ref[src];item_choice=[E.name]'>Purchase</a> ([E.cost])<br><br>"
 				else
-					dat += "<font color='red'><b>Cannot afford!</b></font><br><br>"
+					dat += span_red(span_bold("Cannot afford!")) + "<br><br>"
 			user << browse("<html>[dat]</html>", "window=radio")
 			onclose(user, "radio")
 		if(2) //Consumables
@@ -175,14 +175,14 @@ var/list/all_technomancer_assistance = subtypesof(/datum/technomancer/assistance
 			dat += span_bold("Consumables") + " | "
 			dat += "<a href='byond://?src=\ref[src];tab_choice=3'>Assistance</a> | "
 			dat += "<a href='byond://?src=\ref[src];tab_choice=4'>Info</a></align><br>"
-			dat += "You currently have a budget of <b>[budget]/[max_budget]</b>.<br><br>"
+			dat += "You currently have a budget of " + span_bold("[budget]/[max_budget]") + ".<br><br>"
 			for(var/datum/technomancer/consumable/C in consumable_instances)
 				dat += span_bold("[C.name]") + "<br>"
-				dat += "<i>[C.desc]</i><br>"
+				dat += span_italics("[C.desc]") + "<br>"
 				if(C.cost <= budget)
 					dat += "<a href='byond://?src=\ref[src];item_choice=[C.name]'>Purchase</a> ([C.cost])<br><br>"
 				else
-					dat += "<font color='red'><b>Cannot afford!</b></font><br><br>"
+					dat += span_red(span_bold("Cannot afford!")) + "<br><br>"
 			user << browse("<html>[dat]</html>", "window=radio")
 			onclose(user, "radio")
 		if(3) //Assistance
@@ -193,14 +193,14 @@ var/list/all_technomancer_assistance = subtypesof(/datum/technomancer/assistance
 			dat += "<a href='byond://?src=\ref[src];tab_choice=2'>Consumables</a> | "
 			dat += span_bold("Assistance") + " | "
 			dat += "<a href='byond://?src=\ref[src];tab_choice=4'>Info</a></align><br>"
-			dat += "You currently have a budget of <b>[budget]/[max_budget]</b>.<br><br>"
+			dat += "You currently have a budget of " + span_bold("[budget]/[max_budget]") + ".<br><br>"
 			for(var/datum/technomancer/assistance/A in assistance_instances)
 				dat += span_bold("[A.name]") + "<br>"
-				dat += "<i>[A.desc]</i><br>"
+				dat += span_italics("[A.desc]") + "<br>"
 				if(A.cost <= budget)
 					dat += "<a href='byond://?src=\ref[src];item_choice=[A.name]'>Purchase</a> ([A.cost])<br><br>"
 				else
-					dat += "<font color='red'><b>Cannot afford!</b></font><br><br>"
+					dat += span_red(span_bold("Cannot afford!")) + "<br><br>"
 			user << browse("<html>[dat]</html>", "window=radio")
 			onclose(user, "radio")
 		if(4) //Info
@@ -211,21 +211,21 @@ var/list/all_technomancer_assistance = subtypesof(/datum/technomancer/assistance
 			dat += "<a href='byond://?src=\ref[src];tab_choice=2'>Consumables</a> | "
 			dat += "<a href='byond://?src=\ref[src];tab_choice=3'>Assistance</a> | "
 			dat += span_bold("Info") + "</align><br>"
-			dat += "You currently have a budget of <b>[budget]/[max_budget]</b>.<br><br>"
+			dat += "You currently have a budget of " + span_bold("[budget]/[max_budget]") + ".<br><br>"
 			dat += "<br>"
 			dat += "<h1>Manipulation Core Owner's Manual</h1><br>"
 			dat += "This brief entry in your catalog will try to explain what everything does.  For starters, the thing you're \
-			probably wearing on your back is known as a <b>Manipulation Core</b>, or just a 'Core'.  It allows you to do amazing \
-			things with almost no effort, depending on what <b>functions</b> you've purchased for it.  Don't lose your core!<br>"
+			probably wearing on your back is known as a " + span_bold("Manipulation Core") + ", or just a 'Core'.  It allows you to do amazing \
+			things with almost no effort, depending on what " + span_bold("functions") + " you've purchased for it.  Don't lose your core!<br>"
 			dat += "<br>"
 			dat += "There are a few things you need to keep in mind as you use your Core to manipulate the universe.  The core \
-			requires a special type of <b>energy</b>, that is referred to as just 'Energy' in the catalog.  All cores generate \
+			requires a special type of " + span_bold("energy") + ", that is referred to as just 'Energy' in the catalog.  All cores generate \
 			their own energy, some more than others.  Most functions require energy be spent in order to work, so make sure not \
 			to run out in a critical moment.  Besides waiting for your Core to recharge, you can buy certain functions which \
 			do something to generate energy.<br>"
 			dat += "<br>"
 			dat += "The second thing you need to know is that awesome power over the physical world has consequences, in the form \
-			of <b>Instability</b>.  Instability is the result of your Core's energy being used to fuel it, and so little is \
+			of " + span_bold("Instability") + ".  Instability is the result of your Core's energy being used to fuel it, and so little is \
 			understood about it, even among fellow Core owners, however it is almost always a bad thing to have.  Instability will \
 			'cling' to you as you use functions, with powerful functions creating lots of instability.  The effects of holding onto \
 			instability are generally harmless or mildly annoying at low levels, with effects such as sparks in the air or forced \
@@ -235,7 +235,7 @@ var/list/all_technomancer_assistance = subtypesof(/datum/technomancer/assistance
 			dat += "Fortunately, all Cores come with a meter to tell you how much instability you currently hold.  \
 			Instability will go away on its own as time goes on.  You can tell if you have instability by the characteristic \
 			purple colored lightning that appears around something with instability lingering on it.  High amounts of instability \
-			may cause the object afflicted with it to glow a dark purple, which is often known simply as <b>Glow</b>, which spreads \
+			may cause the object afflicted with it to glow a dark purple, which is often known simply as " + span_bold("Glow") + ", which spreads \
 			the instability.  You should stay far away from anyone afflicted by Glow, as they will be a danger to both themselves and \
 			anything nearby.  Multiple sources of Glow can perpetuate the glow for a very long time if they are not separated.<br>"
 			dat += "<br>"
@@ -260,9 +260,9 @@ var/list/all_technomancer_assistance = subtypesof(/datum/technomancer/assistance
 			a target of your choice.<br>"
 			dat += "Some functions can have their abilities enhanced by a special rod called the Scepter of Enhancement.  \
 			If a function is able to be boosted with it, it will be shown underneath the description of the function as \
-			<font color='blue'><i>'Scepter Effect:'</i></font>.  Note that you must hold the scepter for it to work, so try to avoid losing it.<br>"
+			" + span_blue(span_italics("'Scepter Effect:'")) + ".  Note that you must hold the scepter for it to work, so try to avoid losing it.<br>"
 			dat += "Functions can also be boosted with the core itself.  A function that is able to benefit \
-			from this will have <font color='purple'><i>'Spell Power:'</i></font> underneath.  Different Cores have different \
+			from this will have " + span_purple(span_italics("'Spell Power:'")) + " underneath.  Different Cores have different \
 			amounts of spell power.<br>"
 			dat += "When a function refers to 'allies', it means you, your apprentices, currently controlled entities (with the \
 			Control function), and friendly simple-minded entities that you've summoned with the Scepter of Enhancement.<br>"

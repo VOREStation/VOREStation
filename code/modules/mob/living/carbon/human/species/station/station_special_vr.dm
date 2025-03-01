@@ -86,7 +86,7 @@
 		var/regen_sounds = H.regen_sounds
 		if(prob(2)) // 2% chance of playing squelchy noise while reviving, which is run roughly every 2 seconds/tick while regenerating.
 			playsound(H, pick(regen_sounds), 30)
-			H.visible_message(span_danger("<p><font size=4>[H.name]'s motionless form shudders grotesquely, rippling unnaturally.</font></p>"))
+			H.visible_message(span_danger("<p>" + span_huge("[H.name]'s motionless form shudders grotesquely, rippling unnaturally.") + "</p>"))
 
 	//Cold/pressure effects when not regenerating
 	else
@@ -274,28 +274,28 @@
 /datum/species/xenochimera/proc/go_feral(var/mob/living/carbon/human/H, var/stress, var/cause)
 	// Going feral due to hunger
 	if(cause == "hunger")
-		to_chat(H,span_danger("<big>Something in your mind flips, your instincts taking over, no longer able to fully comprehend your surroundings as survival becomes your primary concern - you must feed, survive, there is nothing else. Hunt. Eat. Hide. Repeat.</big>"))
+		to_chat(H,span_danger(span_large("Something in your mind flips, your instincts taking over, no longer able to fully comprehend your surroundings as survival becomes your primary concern - you must feed, survive, there is nothing else. Hunt. Eat. Hide. Repeat.")))
 		log_and_message_admins("has gone feral due to hunger.", H)
 
 	// If they're hurt, chance of snapping.
 	else if(cause == "shock")
 		//If the majority of their shock is due to halloss, give them a different message (3x multiplier on check as halloss is 2x - meaning t_s must be at least 3x for other damage sources to be the greater part)
 		if(3*H.halloss >= H.traumatic_shock)
-			to_chat(H,span_danger("<big>The pain! It stings! Got to get away! Your instincts take over, urging you to flee, to hide, to go to ground, get away from here...</big>"))
+			to_chat(H,span_danger(span_large("The pain! It stings! Got to get away! Your instincts take over, urging you to flee, to hide, to go to ground, get away from here...")))
 			log_and_message_admins("has gone feral due to halloss.", H)
 
 		//Majority due to other damage sources
 		else
-			to_chat(H,span_danger("<big>Your fight-or-flight response kicks in, your injuries too much to simply ignore - you need to flee, to hide, survive at all costs - or destroy whatever is threatening you.</big>"))
+			to_chat(H,span_danger(span_large("Your fight-or-flight response kicks in, your injuries too much to simply ignore - you need to flee, to hide, survive at all costs - or destroy whatever is threatening you.")))
 			log_and_message_admins("has gone feral due to injury.", H)
 
 	//No hungry or shock, but jittery
 	else if(cause == "jittery")
-		to_chat(H,span_warning("<big>Suddenly, something flips - everything that moves is... potential prey. A plaything. This is great! Time to hunt!</big>"))
+		to_chat(H,span_warning(span_large("Suddenly, something flips - everything that moves is... potential prey. A plaything. This is great! Time to hunt!")))
 		log_and_message_admins("has gone feral due to jitteriness.", H)
 
 	else // catch-all just in case something weird happens
-		to_chat(H,span_warning("<big>The stress of your situation is too much for you, and your survival instincts kick in!</big>"))
+		to_chat(H,span_warning(span_large("The stress of your situation is too much for you, and your survival instincts kick in!")))
 		log_and_message_admins("has gone feral for unknown reasons.", H)
 	//finally, set their feral var
 	H.feral = stress

@@ -374,7 +374,7 @@
 			return
 
 		playsound(src, W.usesound, 50, 1)
-		user.visible_message("<font color='red'>[user] cuts the fingertips off of the [src].</font>","<font color='red'>You cut the fingertips off of the [src].</font>")
+		user.visible_message(span_red("[user] cuts the fingertips off of the [src]."),span_red("You cut the fingertips off of the [src]."))
 
 		clipped = 1
 		name = "modified [name]"

@@ -278,37 +278,37 @@
 	dat += "<div class='statusDisplay'>"
 
 	if(!delivery && compactor && length(contents))//garbage counter for trashpup
-		dat += "<font color='red'><B>Current load:</B> [length(contents)] / [max_item_count] objects.</font><BR>"
-		dat += "<font color='gray'>([contents.Join(", ")])</font><BR><BR>"
+		dat += span_red(span_bold("Current load:") + " [length(contents)] / [max_item_count] objects.") + "<BR>"
+		dat += span_gray("([contents.Join(", ")])") + "<BR><BR>"
 
 	if(delivery && length(contents))
-		dat += "<font color='red'><B>Current load:</B> [length(contents)] / [max_item_count] objects.</font><BR>"
-		dat += "<font color='gray'>Cargo compartment slot: Cargo 1.</font><BR>"
+		dat += span_red(span_bold("Current load:") + " [length(contents)] / [max_item_count] objects.") + "<BR>"
+		dat += span_gray("Cargo compartment slot: Cargo 1.") + "<BR>"
 		if(length(deliveryslot_1))
-			dat += "<font color='gray'>([deliveryslot_1.Join(", ")])</font><BR>"
-		dat += "<font color='gray'>Cargo compartment slot: Cargo 2.</font><BR>"
+			dat += span_gray("([deliveryslot_1.Join(", ")])") + "<BR>"
+		dat += span_gray("Cargo compartment slot: Cargo 2.") + "<BR>"
 		if(length(deliveryslot_2))
-			dat += "<font color='gray'>([deliveryslot_2.Join(", ")])</font><BR>"
-		dat += "<font color='gray'>Cargo compartment slot: Cargo 3.</font><BR>"
+			dat += span_gray("([deliveryslot_2.Join(", ")])") + "<BR>"
+		dat += span_gray("Cargo compartment slot: Cargo 3.") + "<BR>"
 		if(length(deliveryslot_3))
-			dat += "<font color='gray'>([deliveryslot_3.Join(", ")])</font><BR>"
-		dat += "<font color='red'>Cargo compartment slot: Fuel.</font><BR>"
-		dat += "<font color='red'>([jointext(contents - (deliveryslot_1 + deliveryslot_2 + deliveryslot_3),", ")])</font><BR><BR>"
+			dat += span_gray("([deliveryslot_3.Join(", ")])") + "<BR>"
+		dat += span_red("Cargo compartment slot: Fuel.") + "<BR>"
+		dat += span_red("([jointext(contents - (deliveryslot_1 + deliveryslot_2 + deliveryslot_3),", ")])") + "<BR><BR>"
 
 	if(analyzer && !synced)
 		dat += "<A href='byond://?src=\ref[src];sync=1'>Sync Files</A><BR>"
 
 	//Cleaning and there are still un-preserved items
 	if(cleaning && length(contents - items_preserved))
-		dat += "<font color='red'><B>Self-cleaning mode.</B> [length(contents - items_preserved)] object(s) remaining.</font><BR>"
+		dat += span_red(span_bold("Self-cleaning mode.") + " [length(contents - items_preserved)] object(s) remaining.") + "<BR>"
 
 	//There are no items to be processed other than un-preserved items
 	else if(cleaning && length(items_preserved))
-		dat += "<font color='red'><B>Self-cleaning done. Eject remaining objects now.</B></font><BR>"
+		dat += span_red(span_bold("Self-cleaning done. Eject remaining objects now.")) + "<BR>"
 
 	//Preserved items count when the list is populated
 	if(length(items_preserved))
-		dat += "<font color='red'>[length(items_preserved)] uncleanable object(s).</font><BR>"
+		dat += span_red("[length(items_preserved)] uncleanable object(s).") + "<BR>"
 
 	if(!patient)
 		dat += "[src.name] Unoccupied"
