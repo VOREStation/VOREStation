@@ -1,0 +1,6 @@
+author: "Cameron-The-Raven"
+delete-after: True
+changes:
+  - spellcheck: "Adjusted the OOC escape text. Instead of starting strong with 'don't use this', let's be more passive tone."
+  - spellcheck: "Weight selection is less aggressive as well."
+  - bugfix: "dogborg id properly deletes"
