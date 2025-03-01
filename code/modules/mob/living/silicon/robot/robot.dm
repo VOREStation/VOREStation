@@ -24,7 +24,7 @@
 	var/crisis //Admin-settable for combat module use.
 	var/crisis_override = 0
 	var/integrated_light_power = 6
-	var/robotdecal_on = 0
+	var/list/robotdecal_on = list()
 	var/datum/wires/robot/wires
 
 	can_be_antagged = TRUE
@@ -449,8 +449,29 @@
 /mob/living/silicon/robot/verb/toggle_robot_decals() // loads overlay UNDER lights.
 	set category = "Abilities.Silicon"
 	set name = "Toggle extras"
-	robotdecal_on = !robotdecal_on
-	to_chat(src, span_filter_notice("You [robotdecal_on ? "enable" : "disable"] your extra apperances."))
+
+	if(!sprite_datum)
+		return
+	if(!LAZYLEN(sprite_datum.sprite_decals))
+		to_chat(src, span_warning("This module does not support decals."))
+		return
+
+	var/extra_message = "Enabled decals:\n"
+	for(var/decal in robotdecal_on)
+		extra_message += decal + "\n"
+
+	var/decal_to_toggle = tgui_input_list(src, "Please select which decal you want to toggle\n[extra_message]", "Decal Toggle", sprite_datum.sprite_decals)
+	if(!decal_to_toggle)
+		return
+
+	decal_to_toggle = lowertext(decal_to_toggle)
+
+	if(robotdecal_on.Find(decal_to_toggle))
+		robotdecal_on -= decal_to_toggle
+		to_chat(src, span_filter_notice("You disable your \"[decal_to_toggle]\" extra apperances."))
+	else
+		robotdecal_on += decal_to_toggle
+		to_chat(src, span_filter_notice("You enable your \"[decal_to_toggle]\" extra apperances."))
 	update_icon()
 
 /mob/living/silicon/robot/verb/spark_plug() //So you can still sparkle on demand without violence.
@@ -966,11 +987,12 @@
 				if(eyes_overlay)
 					add_overlay(eyes_overlay)
 
-		if(robotdecal_on && sprite_datum.has_robotdecal_sprites)
+		if(robotdecal_on.len && LAZYLEN(sprite_datum.sprite_decals))
 			if(!shell || deployed) // Shell borgs that are not deployed will have no eyes.
-				var/robotdecal_overlay = sprite_datum.get_robotdecal_overlay(src)
-				if(robotdecal_overlay)
-					add_overlay(robotdecal_overlay)
+				for(var/enabled_decal in robotdecal_on)
+					var/robotdecal_overlay = sprite_datum.get_robotdecal_overlay(src, enabled_decal)
+					if(robotdecal_overlay)
+						add_overlay(robotdecal_overlay)
 
 		if(lights_on && sprite_datum.has_eye_light_sprites)
 			if(!shell || deployed) // Shell borgs that are not deployed will have no eyes.

@@ -178,7 +178,6 @@ GLOBAL_LIST_EMPTY(vending_products)
 					malfunction()
 					return
 				return
-		else
 	return
 
 /obj/machinery/vending/emag_act(var/remaining_charges, var/mob/user)

@@ -269,6 +269,8 @@ default behaviour is:
 /mob/living/Moved(var/atom/oldloc, direct, forced, movetime)
 	. = ..()
 	handle_footstep(loc)
+	if(!forced && movetime)
+		SSmotiontracker?.ping(src) // Incase of before init "turf enter gravity" this is ?, unfortunately.
 	// Begin VOREstation edit
 	if(is_shifted)
 		is_shifted = FALSE
