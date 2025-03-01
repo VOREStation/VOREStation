@@ -123,7 +123,7 @@
 			return FALSE
 
 		cpr_time = 0
-		VARSET_IN(src, cpr_time, 1, 3 SECONDS)
+		addtimer(VARSET_CALLBACK(src, cpr_time, 1), 3 SECONDS, TIMER_DELETE_ME)
 
 		H.visible_message(span_danger("\The [H] is trying to perform CPR on \the [src]!"))
 
