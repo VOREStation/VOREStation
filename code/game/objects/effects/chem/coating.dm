@@ -7,8 +7,8 @@
 	icon_state = "dirt"
 
 /obj/effect/decal/cleanable/chemcoating/Initialize()
-	. = ..()
 	create_reagents(100)
+	. = ..()
 
 /obj/effect/decal/cleanable/chemcoating/Initialize()
 	. = ..()
