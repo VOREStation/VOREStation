@@ -304,7 +304,7 @@
 	if(display_contents_with_number)
 		for(var/datum/numbered_display/ND in display_contents)
 			ND.sample_object.screen_loc = "[cx]:16,[cy]:16"
-			ND.sample_object.maptext = "<font color='white'>[(ND.number > 1)? "[ND.number]" : ""]</font>"
+			ND.sample_object.maptext = span_white("[(ND.number > 1)? "[ND.number]" : ""]")
 			ND.sample_object.hud_layerise()
 			var/atom/movable/storage_slot/SS = new(null, ND.sample_object)
 			SS.screen_loc = ND.sample_object.screen_loc
@@ -717,13 +717,13 @@
 
 	while (cur_atom && !(cur_atom in container.contents))
 		if (isarea(cur_atom))
-			return -1
+			return INFINITY
 		if (istype(cur_atom.loc, /obj/item/storage))
 			depth++
 		cur_atom = cur_atom.loc
 
 	if (!cur_atom)
-		return -1	//inside something with a null loc.
+		return INFINITY	//inside something with a null loc.
 
 	return depth
 
@@ -735,13 +735,13 @@
 
 	while (cur_atom && !isturf(cur_atom))
 		if (isarea(cur_atom))
-			return -1
+			return INFINITY
 		if (istype(cur_atom.loc, /obj/item/storage))
 			depth++
 		cur_atom = cur_atom.loc
 
 	if (!cur_atom)
-		return -1	//inside something with a null loc.
+		return INFINITY	//inside something with a null loc.
 
 	return depth
 

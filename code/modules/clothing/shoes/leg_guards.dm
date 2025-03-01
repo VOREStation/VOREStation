@@ -1,5 +1,5 @@
 /obj/item/clothing/shoes/leg_guard
-	name = "leg guards"
+	name = DEVELOPER_WARNING_NAME // "leg guards"
 	desc = "These will protect your legs and feet."
 	body_parts_covered = LEGS|FEET
 	slowdown = SHOES_SLOWDOWN+0.5

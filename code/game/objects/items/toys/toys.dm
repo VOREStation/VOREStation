@@ -386,7 +386,7 @@
 	name = JOB_CLOWN + " action figure"
 	desc = "A \"Space Life\" brand " + JOB_CLOWN + " action figure."
 	icon_state = "clown"
-	toysay = "<font face='comic sans ms'><b>Honk!</b></font>"
+	toysay = "<font face='comic sans ms'>" + span_bold("Honk!") + "</font>"
 
 /obj/item/toy/figure/corgi
 	name = "Corgi action figure"

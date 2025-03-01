@@ -307,22 +307,22 @@
 	// 	user.unset_machine()
 	// 	return
 
-	// var/dat = "<head><title>Waste Disposal Unit</title></head><body><TT><B>Waste Disposal Unit</B><HR>"
+	// var/dat = "<head><title>Waste Disposal Unit</title></head><body><TT>" + span_bold("Waste Disposal Unit") + "<HR>"
 
 	// if(!ai)  // AI can't pull flush handle
 	// 	if(flush)
-	// 		dat += "Disposal handle: <A href='byond://?src=\ref[src];handle=0'>Disengage</A> <B>Engaged</B>"
+	// 		dat += "Disposal handle: <A href='byond://?src=\ref[src];handle=0'>Disengage</A> " + span_bold("Engaged")
 	// 	else
-	// 		dat += "Disposal handle: <B>Disengaged</B> <A href='byond://?src=\ref[src];handle=1'>Engage</A>"
+	// 		dat += "Disposal handle: " + span_bold("Disengaged") + " <A href='byond://?src=\ref[src];handle=1'>Engage</A>"
 
 	// 	dat += "<BR><HR><A href='byond://?src=\ref[src];eject=1'>Eject contents</A><HR>"
 
 	// if(mode <= 0)
-	// 	dat += "Pump: <B>Off</B> <A href='byond://?src=\ref[src];pump=1'>On</A><BR>"
+	// 	dat += "Pump: " + span_bold("Off") + " <A href='byond://?src=\ref[src];pump=1'>On</A><BR>"
 	// else if(mode == 1)
-	// 	dat += "Pump: <A href='byond://?src=\ref[src];pump=0'>Off</A> <B>On</B> (pressurizing)<BR>"
+	// 	dat += "Pump: <A href='byond://?src=\ref[src];pump=0'>Off</A> " + span_bold("On") + " (pressurizing)<BR>"
 	// else
-	// 	dat += "Pump: <A href='byond://?src=\ref[src];pump=0'>Off</A> <B>On</B> (idle)<BR>"
+	// 	dat += "Pump: <A href='byond://?src=\ref[src];pump=0'>Off</A> " + span_bold("On") + " (idle)<BR>"
 
 	// var/per = 100* air_contents.return_pressure() / (SEND_PRESSURE)
 
@@ -337,11 +337,11 @@
 
 // /obj/machinery/disposal/Topic(href, href_list)
 // 	if(usr.loc == src)
-// 		to_chat(usr, "<font color='red'>You cannot reach the controls from inside.</font>")
+// 		to_chat(usr, span_red("You cannot reach the controls from inside."))
 // 		return
 
 // 	if(mode==-1 && !href_list["eject"]) // only allow ejecting if mode is -1
-// 		to_chat(usr, "<font color='red'>The disposal units power is disabled.</font>")
+// 		to_chat(usr, span_red("The disposal units power is disabled."))
 // 		return
 // 	if(..())
 // 		return

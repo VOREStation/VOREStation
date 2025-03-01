@@ -39,7 +39,7 @@ CATEGORY: Fiction
 					</head>
 
 					<body>
-					<b>That night at the dinner table</b> he brought it out and set it down beside her plate. Doris stared at it, her hand to her mouth. "My God, what is it?" She looked up at him, bright-eyed.
+					"} + span_bold("That night at the dinner table") + {" he brought it out and set it down beside her plate. Doris stared at it, her hand to her mouth. "My God, what is it?" She looked up at him, bright-eyed.
 					<br><br>
 					"Well, open it."
 					<br><br>

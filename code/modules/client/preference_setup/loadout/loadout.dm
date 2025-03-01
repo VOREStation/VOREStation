@@ -137,7 +137,7 @@ var/list/gear_datums = list()
 		fcolor = "#E67300"
 
 	. += "<table align = 'center' width = 100%>"
-	. += "<tr><td colspan=3><center><a href='byond://?src=\ref[src];prev_slot=1'>\<\<</a><b><font color = '[fcolor]'>\[[pref.gear_slot]\]</font> </b><a href='byond://?src=\ref[src];next_slot=1'>\>\></a><b><font color = '[fcolor]'>[total_cost]/[MAX_GEAR_COST]</font> loadout points spent.</b> \[<a href='byond://?src=\ref[src];clear_loadout=1'>Clear Loadout</a>\]</center></td></tr>"
+	. += "<tr><td colspan=3><center><a href='byond://?src=\ref[src];prev_slot=1'>\<\<</a>" + span_bold("<font color = '[fcolor]'>\[[pref.gear_slot]\]</font> ") + "<a href='byond://?src=\ref[src];next_slot=1'>\>\></a>" + span_bold("<font color = '[fcolor]'>[total_cost]/[MAX_GEAR_COST]</font> loadout points spent.") + " \[<a href='byond://?src=\ref[src];clear_loadout=1'>Clear Loadout</a>\]</center></td></tr>"
 
 	. += "<tr><td colspan=3><center><b>"
 	var/firstcat = 1
@@ -166,7 +166,7 @@ var/list/gear_datums = list()
 
 	var/datum/loadout_category/LC = loadout_categories[current_tab]
 	. += "<tr><td colspan=3><hr></td></tr>"
-	. += "<tr><td colspan=3><b><center>[LC.category]</center></b></td></tr>"
+	. += "<tr><td colspan=3>" + span_bold("<center>[LC.category]</center>") + "</td></tr>"
 	. += "<tr><td colspan=3><hr></td></tr>"
 	for(var/gear_name in LC.gear)
 		var/datum/gear/G = LC.gear[gear_name]
@@ -178,7 +178,7 @@ var/list/gear_datums = list()
 		var/ticked = (G.display_name in pref.gear)
 		. += "<tr style='vertical-align:top;'><td width=25%><a style='white-space:normal;' [ticked ? "class='linkOn' " : ""]href='byond://?src=\ref[src];toggle_gear=[html_encode(G.display_name)]'>[G.display_name]</a></td>"
 		. += "<td width = 10% style='vertical-align:top'>[G.cost]</td>"
-		. += "<td><font size=2><i>[G.description]</i></font></td></tr>"
+		. += "<td>" + span_normal(span_italics("[G.description]")) + "</td></tr>"
 		if(G.show_roles && G.allowed_roles)
 			. += "<td colspan=3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Restricted to: [list2text(G.allowed_roles,", ")]</td>"
 		if(ticked)

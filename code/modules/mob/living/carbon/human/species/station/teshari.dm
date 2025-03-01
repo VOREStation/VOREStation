@@ -53,6 +53,7 @@
 	pass_flags = PASSTABLE
 	holder_type = /obj/item/holder/human
 //	short_sighted = 1
+	has_vibration_sense = TRUE
 	gluttonous = 1
 	blood_volume = 400
 	hunger_factor = 0.2
@@ -134,7 +135,7 @@
 		)
 
 	inherent_verbs = list(
-		/mob/living/carbon/human/proc/sonar_ping,
+		///mob/living/carbon/human/proc/sonar_ping,
 		/mob/living/proc/hide
 		)
 

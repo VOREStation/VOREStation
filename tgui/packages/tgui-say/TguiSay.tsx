@@ -9,7 +9,13 @@ import { type BooleanLike, classes } from 'tgui-core/react';
 import { Channel, ChannelIterator } from './ChannelIterator';
 import { ChatHistory } from './ChatHistory';
 import { LineLength, RADIO_PREFIXES, WindowSize } from './constants';
-import { getPrefix, windowClose, windowOpen, windowSet } from './helpers';
+import {
+  getMarkupString,
+  getPrefix,
+  windowClose,
+  windowOpen,
+  windowSet,
+} from './helpers';
 import { byondMessages } from './timers';
 
 type ByondOpen = {
@@ -45,10 +51,11 @@ export function TguiSay() {
     keyof typeof RADIO_PREFIXES | null
   >(null);
   const [size, setSize] = useState(WindowSize.Small);
-  const [maxLength, setMaxLength] = useState(1024);
+  const [maxLength, setMaxLength] = useState(4096);
   const [minimumHeight, setMinimumHeight] = useState(WindowSize.Small);
   const [minimumWidth, setMinimumWidth] = useState(WindowSize.Width);
   const [lightMode, setLightMode] = useState(false);
+  const [position, setPosition] = useState([window.screenX, window.screenY]);
   const [value, setValue] = useState('');
 
   function handleArrowKeys(direction: KEY.PageUp | KEY.PageDown): void {
@@ -110,14 +117,21 @@ export function TguiSay() {
     const iterator = channelIterator.current;
     const prefix = currentPrefix ?? '';
 
-    if (value?.length && value.length < maxLength) {
-      chatHistory.current.add(value);
-      Byond.sendMessage('entry', {
-        channel: iterator.current(),
-        entry: iterator.isSay() ? prefix + value : value,
-      });
+    if (value?.length) {
+      if (value.length < maxLength) {
+        chatHistory.current.add(value);
+        Byond.sendMessage('entry', {
+          channel: iterator.current(),
+          entry: iterator.isSay() ? prefix + value : value,
+        });
+      } else {
+        Byond.sendMessage('lenwarn', {
+          length: value.length,
+          maxlength: maxLength,
+        });
+        return;
+      }
     }
-
     handleClose();
   }
 
@@ -135,6 +149,9 @@ export function TguiSay() {
   }
 
   function handleIncrementChannel(): void {
+    const xPos = window.screenX;
+    const yPos = window.screenY;
+    if (JSON.stringify(position) !== JSON.stringify([xPos, yPos])) return;
     const iterator = channelIterator.current;
 
     iterator.next();
@@ -168,6 +185,7 @@ export function TguiSay() {
       setButtonContent(RADIO_PREFIXES[newPrefix]);
       setCurrentPrefix(newPrefix);
       newValue = newValue.slice(3);
+      iterator.set('Say');
 
       if (newPrefix === ',b ') {
         Byond.sendMessage('thinking', { visible: false });
@@ -180,15 +198,6 @@ export function TguiSay() {
     }
 
     setValue(newValue);
-  }
-
-  function getMarkupString(
-    inputText: string,
-    markupType: string,
-    startPosition: number,
-    endPosition: number,
-  ) {
-    return `${inputText.substring(0, startPosition)}${markupType}${inputText.substring(startPosition, endPosition)}${markupType}${inputText.substring(endPosition)}`;
   }
 
   function handleKeyDown(event: KeyboardEvent<HTMLTextAreaElement>): void {
@@ -266,6 +275,13 @@ export function TguiSay() {
           handleClose();
         }
     }
+  }
+
+  function handleButtonDrag(e: React.MouseEvent<Element, MouseEvent>): void {
+    const xPos = window.screenX;
+    const yPos = window.screenY;
+    setPosition([xPos, yPos]);
+    dragStartHandler(e);
   }
 
   function handleOpen(data: ByondOpen): void {
@@ -348,7 +364,7 @@ export function TguiSay() {
         <button
           className={`button button-${theme}`}
           onClick={handleIncrementChannel}
-          onMouseDown={dragStartHandler}
+          onMouseDown={handleButtonDrag}
           type="button"
         >
           {buttonContent}

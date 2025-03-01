@@ -7,9 +7,6 @@ THAT STUPID GAME KIT
 	src.board_stat = "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
 	src.selected = "CR"
 
-/obj/item/game_kit/attack_paw(mob/user as mob)
-	return src.attack_hand(user)
-
 /obj/item/game_kit/MouseDrop(mob/user as mob)
 	if (user == usr && !user.restrained() && !user.stat && (user.contents.Find(src) || in_range(src, user)))
 		if (user.hand)

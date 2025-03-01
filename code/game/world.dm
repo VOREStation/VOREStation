@@ -130,7 +130,7 @@ var/world_topic_spam_protect_time = world.timeofday
 	else if (copytext(T,1,7) == "status")
 		var/input[] = params2list(T)
 		var/list/s = list()
-		s["version"] = game_version
+		s["version"] = GLOB.game_version
 		s["mode"] = master_mode
 		s["respawn"] = CONFIG_GET(flag/abandon_allowed)
 		s["persistance"] = CONFIG_GET(flag/persistence_disabled)
@@ -559,7 +559,7 @@ var/world_topic_spam_protect_time = world.timeofday
 	s += span_bold("[station_name()]");
 	s += " ("
 	s += "<a href=\"https://\">" //Change this to wherever you want the hub to link to.
-//	s += "[game_version]"
+//	s += "[GLOB.game_version]"
 	s += "Default"  //Replace this with something else. Or ever better, delete it and uncomment the game version.
 	s += "</a>"
 	s += ")"

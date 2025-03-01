@@ -1,0 +1,6 @@
+author: "Kashargul"
+delete-after: True
+changes:
+  - bugfix: "memory leak"
+  - bugfix: "incorporeal handling"
+  - bugfix: "signlang translator"
