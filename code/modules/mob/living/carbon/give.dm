@@ -1,4 +1,4 @@
-/mob/living/verb/give(var/mob/living/target in living_mobs(1))
+/mob/living/verb/give(var/mob/living/target in living_mobs_in_view(1))
 	set category = "IC.Game"
 	set name = "Give"
 

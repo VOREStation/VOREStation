@@ -1262,7 +1262,7 @@
 	set category = "Abilities.Vore"
 	set desc = "Grab a target with any of your appendages!"
 
-	if(stat || paralysis || weakened || stunned || world.time < last_special) //No tongue flicking while stunned.
+	if(stat || paralysis || weakened || stunned || world.time < last_special || is_incorporeal()) //No tongue flicking while stunned.
 		to_chat(src, span_warning("You can't do that in your current state."))
 		return
 
