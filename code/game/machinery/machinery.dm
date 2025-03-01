@@ -196,7 +196,6 @@ Class Procs:
 			if(prob(25))
 				fall_apart(severity)
 				return
-		else
 	return
 
 /obj/machinery/vv_edit_var(var/var_name, var/new_value)

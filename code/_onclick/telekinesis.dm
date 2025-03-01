@@ -12,7 +12,7 @@ var/const/tk_maxrange = 15
 */
 /atom/proc/attack_tk(mob/user)
 	if(user.stat) return
-	user.UnarmedAttack(src,0) // attack_hand, attack_paw, etc
+	user.UnarmedAttack(src,0)
 	return
 
 /*

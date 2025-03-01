@@ -1,0 +1,5 @@
+author: "Will"
+delete-after: True
+changes:
+  - bugfix: "motion tracking ability now lets you properly motion track"
+  - qol: "Motion tracker subsystem can be toggled off for hide and seek modes"

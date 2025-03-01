@@ -1,5 +1,0 @@
-author: "Tost"
-delete-after: True
-changes:
-  - qol: "Changed nail polish's size to small"
-  - code_imp: "Added w_class = ITEMSIZE_SMALL to nail polish, which was missing originally."
