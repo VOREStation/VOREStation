@@ -173,7 +173,7 @@
 	WRITE_LOG(query_debug_log, "SQL: [text]")
 
 /proc/log_topic(text)
-	if(Debug2)
+	if(GLOB.Debug2)
 		WRITE_LOG(diary, "TOPIC: [text]")
 
 /proc/log_unit_test(text)

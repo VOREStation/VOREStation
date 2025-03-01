@@ -1,0 +1,3 @@
+GLOBAL_LIST_EMPTY(monkeystart)
+GLOBAL_LIST_EMPTY(wizardstart)
+GLOBAL_LIST_EMPTY(newplayer_start)

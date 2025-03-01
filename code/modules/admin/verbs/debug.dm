@@ -3,12 +3,12 @@
 	set name = "Debug-Game"
 	if(!check_rights(R_DEBUG))	return
 
-	if(Debug2)
-		Debug2 = 0
+	if(GLOB.Debug2)
+		GLOB.Debug2 = FALSE
 		message_admins("[key_name(src)] toggled debugging off.")
 		log_admin("[key_name(src)] toggled debugging off.")
 	else
-		Debug2 = 1
+		GLOB.Debug2 = TRUE
 		message_admins("[key_name(src)] toggled debugging on.")
 		log_admin("[key_name(src)] toggled debugging on.")
 

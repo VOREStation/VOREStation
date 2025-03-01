@@ -15,10 +15,10 @@
 
 	switch(name)			//some of these are probably obsolete
 		if("monkey")
-			monkeystart += loc
+			GLOB.monkeystart += loc
 			delete_me = TRUE
 		if("start")
-			newplayer_start += loc
+			GLOB.newplayer_start += loc
 			delete_me = TRUE
 		if("JoinLate") // Bit difference, since we need the spawn point to move.
 			latejoin += src

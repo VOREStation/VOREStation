@@ -37,20 +37,10 @@ var/round_progressing = 1
 var/master_mode       = "extended" // "extended"
 var/secret_force_mode = "secret"   // if this is anything but "secret", the secret rotation will forceably choose this mode.
 
-var/host = null //only here until check @ code\modules\ghosttrap\trap.dm:112 is fixed
-
-var/list/jobMax        = list()
 var/list/bombers       = list()
 var/list/admin_log     = list()
 var/list/lastsignalers = list() // Keeps last 100 signals here in format: "[src] used \ref[src] @ location [src.loc]: [freq]/[code]"
 var/list/lawchanges    = list() // Stores who uploaded laws to which silicon-based lifeform, and what the law was.
-var/list/reg_dna       = list()
-
-var/mouse_respawn_time = 2.5 // Amount of time that must pass between a player dying as a mouse and repawning as a mouse. In minutes. Vorestation Edit - Changed to 2.5 minutes, half of 5, in accordance with mouse nerfs and realignment.
-
-var/list/monkeystart     = list()
-var/list/wizardstart     = list()
-var/list/newplayer_start = list()
 
 //Spawnpoints.
 var/list/latejoin          = list()
@@ -81,14 +71,12 @@ var/list/reverse_dir = list( // reverse_dir[dir] = reverse of dir
 	41, 43, 36, 38, 37, 39, 44, 46, 45, 47, 16, 18, 17, 19, 24, 26, 25, 27, 20, 22, 21,
 	23, 28, 30, 29, 31, 48, 50, 49, 51, 56, 58, 57, 59, 52, 54, 53, 55, 60, 62, 61, 63
 )
-var/global/const/SQRT_TWO = 1.41421356237
 
 var/list/combatlog = list()
 var/list/IClog     = list()
 var/list/OOClog    = list()
 var/list/adminlog  = list()
 
-var/Debug2 = 0
 var/datum/debug/debugobj
 
 var/datum/moduletypes/mods = new()
@@ -100,16 +88,6 @@ var/join_motd = null
 var/datum/metric/metric = new() // Metric datum, used to keep track of the round.
 
 var/list/awaydestinations = list() // Away missions. A list of landmarks that the warpgate can take you to.
-
-// Forum MySQL configuration. (for use with forum account/key authentication)
-// These are all default values that will load should the forumdbconfig.txt file fail to read for whatever reason.
-var/forumsqladdress = "localhost"
-var/forumsqlport    = "3306"
-var/forumsqldb      = "tgstation"
-var/forumsqllogin   = "root"
-var/forumsqlpass    = ""
-var/forum_activated_group     = "2"
-var/forum_authenticated_group = "10"
 
 // For FTP requests. (i.e. downloading runtime logs.)
 // However it'd be ok to use for accessing attack logs and such too, which are even laggier.
@@ -182,3 +160,25 @@ var/static/icon/buildmode_hud = icon('icons/misc/buildmode.dmi')
 //Keyed list for caching icons so you don't need to make them for records, IDs, etc all separately.
 //Could be useful for AI impersonation or something at some point?
 var/static/list/cached_character_icons = list()
+
+var/list/vinestart			= list()
+var/list/verminstart		= list()
+
+var/list/awayabductors = list() // List of scatter landmarks for Abductors in Gateways
+var/list/eventdestinations = list() // List of scatter landmarks for VOREStation event portals
+var/list/eventabductors = list() // List of scatter landmarks for VOREStation abductor portals
+
+// Some "scary" sounds.
+var/static/list/scawwySownds = list(
+	'sound/voice/ScawwySownds/a scawey sownd.ogg',
+	'sound/voice/ScawwySownds/is that you.ogg',
+	'sound/voice/ScawwySownds/lookit this darkness wow.ogg',
+	'sound/voice/ScawwySownds/maint preds.ogg',
+	'sound/voice/ScawwySownds/spooky sounds.ogg',
+	'sound/voice/ScawwySownds/sus.ogg',
+	'sound/voice/ScawwySownds/this is scaewy.ogg',
+	'sound/voice/ScawwySownds/what is that behind you.ogg',
+	'sound/voice/ScawwySownds/what you doin over dere.ogg',
+	'sound/voice/ScawwySownds/whats up with all the trash.ogg',
+	'sound/voice/ScawwySownds/youre afraid of the dark arent you.ogg'
+	)
