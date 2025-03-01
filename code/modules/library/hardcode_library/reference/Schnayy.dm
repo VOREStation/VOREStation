@@ -26,7 +26,7 @@ CATEGORY: Reference
 					<br><br><br>
 					<center>
 					<h1><br>Thermodynamic Reactions and Research:<br>
-					"} + span_normal("A Guide to Phoron Studies and Safety<br>by I.R.I.S.</font>") + {"
+					"} + span_normal("A Guide to Phoron Studies and Safety<br>by I.R.I.S.") + {"
 					<br><br></h1>
 					</center>
 					</body>
