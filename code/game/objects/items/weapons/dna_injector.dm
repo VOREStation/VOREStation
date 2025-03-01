@@ -350,3 +350,7 @@
 /obj/item/dnainjector/set_trait/nonconduct/disable
 	disabling = TRUE
 */
+/obj/item/dnainjector/set_trait/badlegs // brokenspine
+	trait_path = /datum/trait/negative/disability_badlegs
+/obj/item/dnainjector/set_trait/badlegs/disable
+	disabling = TRUE
