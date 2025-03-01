@@ -837,6 +837,10 @@
 	set category = "Abilities.General"
 	set desc = "Toggle your glowing on/off!"
 
+	if(stat || paralysis || weakened || stunned || world.time < last_special)
+		to_chat(src, span_warning("You can't do that in your current state."))
+		return
+
 	//I don't really see a point to any sort of checking here.
 	//If they're passed out, the light won't help them. Same with buckled. Really, I think it's fine to do this whenever.
 	glow_toggle = !glow_toggle
@@ -867,6 +871,10 @@
 	set name = "Eat Trash"
 	set category = "Abilities.Vore"
 	set desc = "Consume held garbage."
+
+	if(stat || paralysis || weakened || stunned || world.time < last_special)
+		to_chat(src, span_warning("You can't do that in your current state."))
+		return
 
 	if(!vore_selected)
 		to_chat(src,span_warning("You either don't have a belly selected, or don't have a belly!"))
