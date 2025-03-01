@@ -1,6 +1,6 @@
 //SolGov Uniform Suits
 /obj/item/clothing/suit/storage/solgov
-	name = "master solgov jacket"
+	name = DEVELOPER_WARNING_NAME
 	icon = 'icons/inventory/suit/item.dmi'
 	icon_override = 'icons/inventory/suit/mob.dmi'
 
@@ -15,7 +15,7 @@
 	body_parts_covered = UPPER_TORSO|ARMS
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
 	siemens_coefficient = 0.9
-	flags_inv = HIDEHOLSTER //VOREStation Add - These obviously do.
+	flags_inv = HIDEHOLSTER
 	allowed = list(/obj/item/tank/emergency/oxygen,/obj/item/flashlight,/obj/item/pen,/obj/item/clothing/head/soft,/obj/item/clothing/head/beret,/obj/item/storage/fancy/cigarettes,/obj/item/flame/lighter,/obj/item/taperecorder,/obj/item/analyzer,/obj/item/radio,/obj/item/taperoll)
 	valid_accessory_slots = (ACCESSORY_SLOT_ARMBAND|ACCESSORY_SLOT_MEDAL|ACCESSORY_SLOT_INSIGNIA|ACCESSORY_SLOT_RANK|ACCESSORY_SLOT_DEPT)
 	restricted_accessory_slots = (ACCESSORY_SLOT_ARMBAND)
@@ -179,7 +179,7 @@
 //Dress - murder me with a gun why are these 3 different types
 
 /obj/item/clothing/suit/storage/solgov/dress
-	name = "dress jacket"
+	name = DEVELOPER_WARNING_NAME
 	desc = "A uniform dress jacket, fancy."
 	icon_state = "sgdress_xpl"
 	item_state = "sgdress_xpl"
@@ -189,44 +189,44 @@
 	allowed = list(/obj/item/tank/emergency/oxygen,/obj/item/flashlight,/obj/item/clothing/head/soft,/obj/item/clothing/head/beret,/obj/item/radio,/obj/item/pen)
 	valid_accessory_slots = (ACCESSORY_SLOT_MEDAL|ACCESSORY_SLOT_RANK)
 	restricted_accessory_slots = (ACCESSORY_SLOT_ARMBAND)
-
+/* //These two sprites were lost to time. Original PR doesn't appear to have them either.
 /obj/item/clothing/suit/storage/solgov/dress/sifguard
-	name = "\improper SifGuard dress jacket"
-	desc = "A silver and grey dress jacket belonging to the Sif Defense Force. Fashionable, for the 25th century at least."
+	name = "\improper NDF dress jacket"
+	desc = "A silver and grey dress jacket belonging to the Nanotrasen Defense Force. Fashionable, for the 25th century at least."
 	icon_state = "sgdress_xpl"
 	item_state = "sgdress_xpl"
 
 /obj/item/clothing/suit/storage/solgov/dress/sifguard/senior
-	name = "\improper SifGuard senior's dress coat"
+	name = "\improper NDF senior's dress coat"
 	icon_state = "sgdress_sxpl"
 	item_state = "sgdress_sxpl"
-
+*/
 /obj/item/clothing/suit/storage/solgov/dress/sifguard/chief
-	name = "\improper SifGuard chief's dress coat"
+	name = "\improper NDF chief's dress coat"
 	icon_state = "ecdress_cxpl"
 	item_state = "sgdress_cxpl"
 
 /obj/item/clothing/suit/storage/solgov/dress/sifguard/command
-	name = "\improper SifGuard officer's dress coat"
-	desc = "A gold and black dress peacoat belonging to the Sif Defense Force. The height of fashion."
+	name = "\improper NDF officer's dress coat"
+	desc = "A gold and black dress peacoat belonging to the Nanotrasen Defense Force. The height of fashion."
 	icon_state = "ecdress_ofcr"
 	item_state = "sgdress_ofcr"
-
+/* //Sprites lost to time.
 /obj/item/clothing/suit/storage/solgov/dress/sifguard/command/cdr
-	name = "\improper SifGuard commander's dress coat"
+	name = "\improper NDF commander's dress coat"
 	icon_state = "sgdress_cdr"
 	item_state = "sgdress_cdr"
 
 /obj/item/clothing/suit/storage/solgov/dress/sifguard/command/capt
-	name = "\improper SifGuard captain's dress coat"
+	name = "\improper NDF captain's dress coat"
 	icon_state = "sgdress_capt"
 	item_state = "sgdress_capt"
 
 /obj/item/clothing/suit/storage/solgov/dress/sifguard/command/adm
-	name = "\improper SifGuard admiral's dress coat"
+	name = "\improper NDF admiral's dress coat"
 	icon_state = "sgdress_adm"
 	item_state = "sgdress_adm"
-
+*/
 /obj/item/clothing/suit/storage/solgov/dress/fleet
 	name = "fleet dress jacket"
 	desc = "A navy blue SCG Fleet dress jacket. Don't get near pasta sauce or vox."
@@ -256,6 +256,9 @@
 	desc = "A navy blue SCG Fleet dress jacket with red accents. Don't get near pasta sauce or vox."
 	icon_state = "whitedress_flag"
 	item_state = "whitedress_flag"
+
+/obj/item/clothing/suit/dress
+	name = DEVELOPER_WARNING_NAME
 
 /obj/item/clothing/suit/dress/solgov
 	name = "dress jacket"
@@ -338,6 +341,9 @@
 //SAARE Mercenaries
 
 //Service
+
+/obj/item/clothing/suit/storage/saare
+	name = DEVELOPER_WARNING_NAME
 
 /obj/item/clothing/suit/storage/saare/service/
 	name = "SAARE coat"

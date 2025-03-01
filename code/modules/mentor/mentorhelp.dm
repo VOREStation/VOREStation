@@ -196,8 +196,8 @@ GLOBAL_DATUM_INIT(mhelp_tickets, /datum/mentor_help_tickets, new)
 //message from the initiator without a target, all people with mentor powers will see this
 /datum/mentor_help/proc/MessageNoRecipient(msg)
 	var/ref_src = "\ref[src]"
-	var/chat_msg = span_notice("(<A href='byond://?_src_=mentorholder;mhelp=[ref_src];[HrefToken()];mhelp_action=escalate'>ESCALATE</A>) Ticket [TicketHref("#[id]", ref_src)]<b>: [LinkedReplyName(ref_src)]:</b> [msg]")
-	AddInteraction("<font color='red'>[LinkedReplyName(ref_src)]: [msg]</font>")
+	var/chat_msg = span_notice("(<A href='byond://?_src_=mentorholder;mhelp=[ref_src];[HrefToken()];mhelp_action=escalate'>ESCALATE</A>) Ticket [TicketHref("#[id]", ref_src)]" + span_bold(": [LinkedReplyName(ref_src)]:") + " [msg]")
+	AddInteraction(span_red("[LinkedReplyName(ref_src)]: [msg]"))
 	for (var/client/C in GLOB.mentors)
 		if (C.prefs?.read_preference(/datum/preference/toggle/play_mentorhelp_ping))
 			C << 'sound/effects/mentorhelp.mp3'
@@ -227,7 +227,7 @@ GLOBAL_DATUM_INIT(mhelp_tickets, /datum/mentor_help_tickets, new)
 	if(initiator)
 		initiator.current_mentorhelp = src
 
-	AddInteraction("<font color='purple'>Reopened by [usr.ckey]</font>")
+	AddInteraction(span_purple("Reopened by [usr.ckey]"))
 	if(initiator)
 		to_chat(initiator, span_filter_adminlog("[span_purple("Ticket [TicketHref("#[id]")] was reopened by [usr.ckey].")]"))
 	var/msg = span_adminhelp("Ticket [TicketHref("#[id]")] reopened by [usr.ckey].")
@@ -271,15 +271,15 @@ GLOBAL_DATUM_INIT(mhelp_tickets, /datum/mentor_help_tickets, new)
 	var/list/dat = list("<html><head><title>Ticket #[id]</title></head>")
 	var/ref_src = "\ref[src]"
 	dat += "<h4>Mentor Help Ticket #[id]: [LinkedReplyName(ref_src)]</h4>"
-	dat += "<b>State: "
+	dat += span_bold("State: ")
 	switch(state)
 		if(AHELP_ACTIVE)
-			dat += "<font color='red'>OPEN</font>"
+			dat += span_bold(span_red("OPEN"))
 		if(AHELP_RESOLVED)
-			dat += "<font color='green'>RESOLVED</font>"
+			dat += span_bold(span_green("RESOLVED"))
 		else
 			dat += "UNKNOWN"
-	dat += "</b>[GLOB.TAB][TicketHref("Refresh", ref_src)]"
+	dat += "[GLOB.TAB][TicketHref("Refresh", ref_src)]"
 	if(state != AHELP_ACTIVE)
 		dat += "[GLOB.TAB][TicketHref("Reopen", ref_src, "reopen")]"
 	dat += "<br><br>Opened at: [gameTimestamp(wtime = opened_at)] (Approx [(world.time - opened_at) / 600] minutes ago)"
@@ -290,7 +290,7 @@ GLOBAL_DATUM_INIT(mhelp_tickets, /datum/mentor_help_tickets, new)
 		dat += span_bold("Actions:") + " [Context(ref_src)]<br>"
 	else
 		dat += span_bold("DISCONNECTED") + "[GLOB.TAB][ClosureLinks(ref_src)]<br>"
-	dat += "<br><b>Log:</b><br><br>"
+	dat += "<br>" + span_bold("Log:") + "<br><br>"
 	for(var/I in _interactions)
 		dat += "[I]<br>"
 	dat += "</html>"
@@ -463,7 +463,7 @@ GLOBAL_DATUM_INIT(mhelp_tickets, /datum/mentor_help_tickets, new)
 			if(current_mentorhelp)
 				log_admin("Mentorhelp: [key_name(src)]: [msg]")
 				current_mentorhelp.MessageNoRecipient(msg)
-				to_chat(usr, span_mentor_pm_notice("Mentor-PM to-<b>Mentors</b>: [msg]"))
+				to_chat(usr, span_mentor_pm_notice("Mentor-PM to-" + span_bold("Mentors") + ": [msg]"))
 				return
 			else
 				to_chat(usr, span_warning("Ticket not found, creating new one..."))

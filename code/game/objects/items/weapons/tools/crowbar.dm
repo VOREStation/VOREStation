@@ -105,7 +105,7 @@
 	item_state = "crowbar_red"
 	random_color = FALSE
 
-/obj/item/tool/prybar/New()
+/obj/item/tool/prybar/Initialize(mapload)
+	. = ..()
 	if(random_color)
 		icon_state = "prybar[pick("","_green","_aubergine","_blue")]"
-	. = ..()

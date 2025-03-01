@@ -59,9 +59,6 @@
 /obj/machinery/computer/am_engine/attack_ai(var/mob/user as mob)
 	return src.attack_hand(user)
 
-/obj/machinery/computer/am_engine/attack_paw(var/mob/user as mob)
-	return src.attack_hand(user)
-
 /obj/machinery/computer/am_engine/attack_hand(var/mob/user as mob)
 	if(..())
 		return

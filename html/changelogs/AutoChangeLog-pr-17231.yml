@@ -1,4 +1,4 @@
 author: "Kashargul"
 delete-after: True
 changes:
-  - code_imp: "removes sleep from light flicker"
+  - code_imp: "refactors more new to init"

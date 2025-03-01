@@ -2,8 +2,8 @@
 	description_info = "This pipe, and all other pipes, can be connected or disconnected by a wrench.  The internal pressure of the pipe must \
 	be less than 200 kPa above the ambient pressure to do this.  More pipes can be obtained from the pipe dispenser."
 
-/obj/machinery/atmospherics/pipe/New() //This is needed or else 20+ lines of copypasta to dance around inheritence.
-	..()
+/obj/machinery/atmospherics/pipe/Initialize() //This is needed or else 20+ lines of copypasta to dance around inheritence.
+	. = ..()
 	description_info += "<br>Most pipes and atmospheric devices can be connected or disconnected with a wrench.  The pipe's pressure must not be too high, \
 	or if it is a device, it must be turned off first."
 
@@ -164,4 +164,3 @@
 /obj/machinery/pipedispenser
 	description_info = "This can be moved by using a wrench.  You will need to wrench it again when you want to use it.  You can put \
 	excess (atmospheric) pipes into the dispenser, as well.  The dispenser requires electricity to function."
-

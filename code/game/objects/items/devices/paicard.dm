@@ -241,10 +241,10 @@ GLOBAL_LIST_BOILERPLATE(all_pai_cards, /obj/item/paicard)
 
 	if(pai)
 		dat += {"
-			<b><font size='3px'>Personal AI Device</font></b><br><br>
+			"} + span_bold("<font size='3px'>Personal AI Device</font>") + {"<br><br>
 			<table class="request">
 				<tr>
-					<td><font size='5px'; color=[screen_color]><b>[pai.name]</b></font></td>
+					<td><font size='5px'; color=[screen_color]>"} + span_bold("[pai.name]") + {"</font></td>
 				</tr>
 				<tr>
 					<td class="request">Integrity: [pai.health]</td>
@@ -297,7 +297,7 @@ GLOBAL_LIST_BOILERPLATE(all_pai_cards, /obj/item/paicard)
 			"}
 		else //</font></font>
 			dat += span_bold("Radio Uplink") + "<br>"
-			dat += "<font color=red><i>Radio firmware not loaded. Please install a pAI personality to load firmware.</i></font><br>"
+			dat += span_red(span_italics("Radio firmware not loaded. Please install a pAI personality to load firmware.")) + "<br>"
 		/* - //A button for instantly deleting people from the game is lame, especially considering that pAIs on our server tend to activate without a master.
 		dat += {"
 			<table>
@@ -312,7 +312,7 @@ GLOBAL_LIST_BOILERPLATE(all_pai_cards, /obj/item/paicard)
 	else
 		if(looking_for_personality)
 			dat += {"
-				<b><font size='3px'>pAI Request Module</font></b><br><br>
+				"} + span_bold("<font size='3px'>pAI Request Module</font>") + {"<br><br>
 				<p>Requesting AI personalities from central database... If there are no entries, or if a suitable entry is not listed, check again later as more personalities may be added.</p>
 				<img src='loading.gif' /> Searching for personalities<br><br>
 
@@ -326,7 +326,7 @@ GLOBAL_LIST_BOILERPLATE(all_pai_cards, /obj/item/paicard)
 			"}
 		else
 			dat += {"
-				<b><font size='3px'>pAI Request Module</font></b><br><br>
+				"} + span_bold("<font size='3px'>pAI Request Module</font>") + {"<br><br>
 			    <p>No personality is installed.</p>
 				<table>
 					<tr>
@@ -365,7 +365,7 @@ GLOBAL_LIST_BOILERPLATE(all_pai_cards, /obj/item/paicard)
 		var/confirm = tgui_alert(usr, "Are you CERTAIN you wish to delete the current personality? This action cannot be undone.", "Personality Wipe", list("Yes", "No"))
 		if(confirm == "Yes")
 			for(var/mob/M in src)
-				to_chat(M, "<font color = #ff0000><h2>You feel yourself slipping away from reality.</h2></font>")
+				to_chat(M, span_red("<h2>You feel yourself slipping away from reality.</h2>"))
 				to_chat(M, "<font color = #ff4d4d><h3>Byte by byte you lose your sense of self.</h3></font>")
 				to_chat(M, "<font color = #ff8787><h4>Your mental faculties leave you.</h4></font>")
 				to_chat(M, "<font color = #ffc4c4><h5>oblivion... </h5></font>")

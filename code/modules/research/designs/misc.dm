@@ -170,3 +170,10 @@
 	materials = list(MAT_STEEL = 4000, MAT_GLASS = 4000, MAT_URANIUM = 2000)
 	build_path = /obj/item/juke_remote
 	sort_string = "TCVAE"
+
+/datum/design/item/general/motion_tracker
+	name = "Motion Tracker"
+	id = "motion_tracker"
+	req_tech = list(TECH_MAGNET = 1, TECH_DATA = 2)
+	build_path = /obj/item/motiontracker
+	sort_string = "TAADC"

@@ -46,9 +46,6 @@
 		/obj/item/clothing/under/swimsuit/striped,
 		/obj/item/clothing/under/swimsuit/white,
 		/obj/item/clothing/under/swimsuit/earth,
-		/obj/item/clothing/under/wetsuit,
-		/obj/item/clothing/under/wetsuit_rec,
-		/obj/item/clothing/under/wetsuit_skimpy,
 		/obj/item/clothing/mask/snorkel = 2,
 		/obj/item/clothing/shoes/swimmingfins = 2)
 

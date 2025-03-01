@@ -97,15 +97,16 @@
 	set name = "hotkeys-help"
 	set category = "OOC.Resources"
 
-	var/admin = {"<font color='purple'>
+	var/admin = {"
 Admin:
 \tF5 = Aghost (admin-ghost)
 \tF6 = player-panel-new
 \tF7 = admin-pm
 \tF8 = Invisimin
-</font>"}
+"}
+	admin = span_purple(admin)
 
-	var/hotkey_mode = {"<font color='purple'>
+	var/hotkey_mode = {"
 Hotkey-Mode: (hotkey-mode must be on)
 \tTAB = toggle hotkey-mode
 \ta = left
@@ -130,9 +131,10 @@ Hotkey-Mode: (hotkey-mode must be on)
 \t4 = harm-intent
 \tCtrl+Click = pull
 \tShift+Click = examine
-</font>"}
+"}
+	hotkey_mode = span_purple(hotkey_mode)
 
-	var/other = {"<font color='purple'>
+	var/other = {"
 Any-Mode: (hotkey doesn't need to be on)
 \tCtrl+a = left
 \tCtrl+s = down
@@ -161,9 +163,10 @@ Any-Mode: (hotkey doesn't need to be on)
 \tPGUP = swap-hand
 \tPGDN = activate held object
 \tEND = throw
-</font>"}
+"}
+	other = span_purple(other)
 
-	var/robot_hotkey_mode = {"<font color='purple'>
+	var/robot_hotkey_mode = {"
 Hotkey-Mode: (hotkey-mode must be on)
 \tTAB = toggle hotkey-mode
 \ta = left
@@ -183,9 +186,10 @@ Hotkey-Mode: (hotkey-mode must be on)
 \t5 = emote
 \tCtrl+Click = pull
 \tShift+Click = examine
-</font>"}
+"}
+	robot_hotkey_mode = span_purple(robot_hotkey_mode)
 
-	var/robot_other = {"<font color='purple'>
+	var/robot_other = {"
 Any-Mode: (hotkey doesn't need to be on)
 \tCtrl+a = left
 \tCtrl+s = down
@@ -208,7 +212,8 @@ Any-Mode: (hotkey doesn't need to be on)
 \tINS = toggle intents
 \tPGUP = cycle active modules
 \tPGDN = activate held object
-</font>"}
+"}
+	robot_other = span_purple(robot_other)
 
 	if(isrobot(src.mob))
 		to_chat(src,robot_hotkey_mode)

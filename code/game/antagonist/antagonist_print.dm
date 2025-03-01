@@ -51,7 +51,7 @@
 
 /datum/antagonist/proc/print_player_lite(var/datum/mind/ply)
 	var/role = ply.assigned_role ? "\improper[ply.assigned_role]" : "\improper[ply.special_role]"
-	var/text = "<br>" + span_bold("[ply.name]") + " (" + span_bold("[ply.key]") + ") as \a " + span_bold("[role]") + " ("
+	var/text = "<br>" + span_bold("[ply.name]") + " (" + span_bold("[ply.key]") + ") as " + span_bold("\a [role]") + " ("
 	if(ply.current)
 		if(ply.current.stat == DEAD)
 			text += "died"

@@ -11,9 +11,7 @@
 	item_state = "black"
 	siemens_coefficient = 2
 	permeability_coefficient = 0.05
-	cold_protection = HANDS
 	min_cold_protection_temperature = GLOVES_MIN_COLD_PROTECTION_TEMPERATURE
-	heat_protection = HANDS
 	max_heat_protection_temperature = GLOVES_MAX_HEAT_PROTECTION_TEMPERATURE
 	armor = list(melee = 80, bullet = 50, laser = 10, energy = 0, bomb = 0, bio = 0, rad = 0)
 
@@ -31,9 +29,7 @@
 	item_state = "black"
 	siemens_coefficient = 2
 	permeability_coefficient = 0.05
-	cold_protection = HANDS
 	min_cold_protection_temperature = GLOVES_MIN_COLD_PROTECTION_TEMPERATURE
-	heat_protection = HANDS
 	max_heat_protection_temperature = GLOVES_MAX_HEAT_PROTECTION_TEMPERATURE
 	armor = list(melee = 0, bullet = 0, laser = 0, energy = 0, bomb = 0, bio = 0, rad = 0)
 
@@ -59,9 +55,9 @@
 		SPECIES_VOX = 'icons/inventory/hands/mob_vr_vox.dmi',
 		SPECIES_WEREBEAST = 'icons/inventory/hands/mob_vr_werebeast.dmi')
 
-	cold_protection = HANDS
+	heat_protection = HANDS|ARMS
+	cold_protection = HANDS|ARMS
 	min_cold_protection_temperature = GLOVES_MIN_COLD_PROTECTION_TEMPERATURE
-	heat_protection = HANDS
 	max_heat_protection_temperature = GLOVES_MAX_HEAT_PROTECTION_TEMPERATURE
 
 /obj/item/clothing/gloves/black/bloodletter

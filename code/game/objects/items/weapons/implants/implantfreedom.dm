@@ -8,11 +8,10 @@
 	var/uses = 1.0
 
 
-/obj/item/implant/freedom/New()
-	src.activation_emote = pick("blink", "blink_r", "eyebrow", "chuckle", "twitch", "frown", "nod", "blush", "giggle", "grin", "groan", "shrug", "smile", "pale", "sniff", "whimper", "wink")
-	src.uses = rand(1, 5)
-	..()
-	return
+/obj/item/implant/freedom/Initialize(mapload)
+	. = ..()
+	activation_emote = pick("blink", "blink_r", "eyebrow", "chuckle", "twitch", "frown", "nod", "blush", "giggle", "grin", "groan", "shrug", "smile", "pale", "sniff", "whimper", "wink")
+	uses = rand(1, 5)
 
 
 /obj/item/implant/freedom/trigger(emote, mob/living/carbon/source as mob)
@@ -49,22 +48,22 @@
 	return
 
 /obj/item/implant/freedom/post_implant(mob/source)
-	source.mind.store_memory("Freedom implant can be activated by using the [src.activation_emote] emote, <B>say *[src.activation_emote]</B> to attempt to activate.", 0, 0)
-	to_chat(source, "The implanted freedom implant can be activated by using the [src.activation_emote] emote, <B>say *[src.activation_emote]</B> to attempt to activate.")
+	source.mind.store_memory("Freedom implant can be activated by using the [src.activation_emote] emote, " + span_bold("say *[src.activation_emote] ") + "to attempt to activate.", 0, 0)
+	to_chat(source, "The implanted freedom implant can be activated by using the [src.activation_emote] emote, " + span_bold("say *[src.activation_emote]") + "to attempt to activate.")
 
 /obj/item/implant/freedom/get_data()
 	var/dat = {"
-<b>Implant Specifications:</b><BR>
-<b>Name:</b> Freedom Beacon<BR>
-<b>Life:</b> optimum 5 uses<BR>
-<b>Important Notes:</b> <font color='red'>Illegal</font><BR>
+"} + span_bold("Implant Specifications:") + {"<BR>
+"} + span_bold("Name:") + {"Freedom Beacon<BR>
+"} + span_bold("Life:") + {"optimum 5 uses<BR>
+"} + span_bold("Important Notes:") + span_red("Illegal") + {"<BR>
 <HR>
-<b>Implant Details:</b> <BR>
-<b>Function:</b> Transmits a specialized cluster of signals to override handcuff locking
+"} + span_bold("Implant Details:") + {"<BR>
+"} + span_bold("Function:") + {"Transmits a specialized cluster of signals to override handcuff locking
 mechanisms<BR>
-<b>Special Features:</b><BR>
-<i>Neuro-Scan</i>- Analyzes certain shadow signals in the nervous system<BR>
-<b>Integrity:</b> The battery is extremely weak and commonly after injection its
+"} + span_bold("Special Features:") + {"<BR>
+"} + span_italics("Neuro-Scan") + {"- Analyzes certain shadow signals in the nervous system<BR>
+"} + span_bold("Integrity:") + {"The battery is extremely weak and commonly after injection its
 life can drive down to only 1 use.<HR>
 No Implant Specifics"}
 	return dat

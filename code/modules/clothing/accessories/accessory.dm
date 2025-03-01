@@ -7,6 +7,7 @@
 	appearance_flags = RESET_COLOR	// Stops has_suit's color from being multiplied onto the accessory
 	slot_flags = SLOT_TIE
 	w_class = ITEMSIZE_SMALL
+	var/glove_level = 1							// What 'level' the accessory is on if equipped on the gloveslot. Lower = things can be put on top of it.
 	var/slot = ACCESSORY_SLOT_DECOR
 	var/can_remove = TRUE						// Can it be taken off once attached?
 	var/obj/item/clothing/has_suit = null		// The suit the tie may be attached to
@@ -16,7 +17,6 @@
 	var/punch_force	= 0							// added melee damage
 	var/punch_damtype = BRUTE					// added melee damage type
 	var/concealed_holster = 0
-	var/mob/living/carbon/human/wearer = null 	// To check if the wearer changes, so species spritesheets change properly.
 	var/list/on_rolled = list()					// Used when jumpsuit sleevels are rolled ("rolled" entry) or it's rolled down ("down"). Set to "none" to hide in those states.
 	sprite_sheets = list(SPECIES_TESHARI = 'icons/inventory/accessory/mob_teshari.dmi') //Teshari can into webbing, too!
 	drop_sound = 'sound/items/drop/accessory.ogg'
@@ -45,9 +45,14 @@
 		return
 	var/tmp_icon_state = "[overlay_state? "[overlay_state]" : "[icon_state]"]"
 	if(ishuman(has_suit.loc))
-		wearer = has_suit.loc
+		wearer = WEAKREF(has_suit.loc)
 	else
 		wearer = null
+
+	wearer?.resolve()
+	var/mob/living/carbon/human/H = wearer
+	if(!ishuman(H))
+		return
 
 	if(istype(loc,/obj/item/clothing/under))
 		var/obj/item/clothing/under/C = loc
@@ -60,8 +65,8 @@
 		if("[tmp_icon_state]_mob" in cached_icon_states(icon_override))
 			tmp_icon_state = "[tmp_icon_state]_mob"
 		mob_overlay = image("icon" = icon_override, "icon_state" = "[tmp_icon_state]")
-	else if(wearer && LAZYACCESS(sprite_sheets, wearer.species.get_bodytype(wearer))) //Teshari can finally into webbing, too!
-		mob_overlay = image("icon" = sprite_sheets[wearer.species.get_bodytype(wearer)], "icon_state" = "[tmp_icon_state]")
+	else if(H && LAZYACCESS(sprite_sheets, H.species.get_bodytype(H))) //Teshari can finally into webbing, too!
+		mob_overlay = image("icon" = sprite_sheets[H.species.get_bodytype(H)], "icon_state" = "[tmp_icon_state]")
 	else
 		mob_overlay = image("icon" = INV_ACCESSORIES_DEF_ICON, "icon_state" = "[tmp_icon_state]")
 	if(addblends)
@@ -198,6 +203,8 @@
 	desc = "Cylindrical looking tubes that go over your arms, weird."
 	slot_flags = SLOT_OCLOTHING | SLOT_GLOVES | SLOT_TIE
 	body_parts_covered = ARMS
+	heat_protection = ARMS
+	cold_protection = ARMS
 	description_info = "Wearable as gloves, or attachable to uniforms. May visually conflict with actual gloves when attached to uniforms. Caveat emptor."
 	icon_state = "maid_arms"
 
