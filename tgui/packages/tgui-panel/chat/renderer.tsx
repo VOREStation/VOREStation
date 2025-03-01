@@ -5,13 +5,12 @@
  */
 
 import { createRoot } from 'react-dom/client';
-import { resolveAsset } from 'tgui/assets';
 import { createLogger } from 'tgui/logging';
 import { Tooltip } from 'tgui-core/components';
 import { EventEmitter } from 'tgui-core/events';
-import { fetchRetry } from 'tgui-core/http';
 import { classes } from 'tgui-core/react';
 
+import { exportToDisk } from './chatExport';
 import {
   IMAGE_RETRY_DELAY,
   IMAGE_RETRY_LIMIT,
@@ -31,7 +30,7 @@ import {
   typeIsImportant,
 } from './model';
 import { highlightNode, linkifyNode } from './replaceInTextNode';
-import type { message } from './types';
+import type { message, Page } from './types';
 
 const logger = createLogger('chatRenderer');
 
@@ -74,7 +73,7 @@ const createHighlightNode = (text: string, color: string): HTMLElement => {
   return node;
 };
 
-const createMessageNode = (): HTMLElement => {
+export const createMessageNode = (): HTMLElement => {
   const node = document.createElement('div');
   node.className = 'ChatMessage';
   return node;
@@ -164,11 +163,11 @@ const updateMessageBadge = (message: message) => {
 class ChatRenderer {
   loaded: boolean;
   rootNode: HTMLElement | null;
-  queue: string[];
+  queue: message[];
   messages: message[];
   archivedMessages: message[];
   visibleMessages: message[];
-  page: null;
+  page: Page | null;
   events: EventEmitter;
   prependTimestamps: boolean;
   visibleMessageLimit: number;
@@ -178,7 +177,7 @@ class ChatRenderer {
   logLimit: number;
   logEnable: boolean;
   roundId: null | number;
-  storedTypes: {};
+  storedTypes: Record<string, string>;
   interleave: boolean;
   interleaveEnabled: boolean;
   interleaveColor: string;
@@ -452,7 +451,7 @@ class ChatRenderer {
     combineIntervalLimit: number,
     logEnable: boolean,
     logLimit: number,
-    storedTypes: {},
+    storedTypes: Record<string, string>,
     roundId: number | null,
     prependTimestamps: boolean,
     hideImportantInAdminTab: boolean,
@@ -474,7 +473,7 @@ class ChatRenderer {
     this.databaseBackendEnabled = databaseBackendEnabled;
   }
 
-  changePage(page) {
+  changePage(page: Page) {
     if (!this.isReady()) {
       this.page = page;
       this.tryFlushQueue();
@@ -515,7 +514,7 @@ class ChatRenderer {
     }
   }
 
-  getCombinableMessage(predicate) {
+  getCombinableMessage(predicate: message) {
     const now = Date.now();
     const len = this.visibleMessages.length;
     const from = len - 1;
@@ -538,7 +537,7 @@ class ChatRenderer {
   }
 
   processBatch(
-    batch,
+    batch: message[],
     options: {
       prepend?: boolean;
       notifyListeners?: boolean;
@@ -799,7 +798,7 @@ class ChatRenderer {
     }
   }
 
-  rebuildChat(rebuildLimit) {
+  rebuildChat(rebuildLimit: number) {
     if (!this.isReady()) {
       return;
     }
@@ -823,11 +822,11 @@ class ChatRenderer {
   }
 
   saveToDisk(
-    logLineCount,
-    startLine = 0,
-    endLine = 0,
-    startRound = 0,
-    endRound = 0,
+    logLineCount: number = 0,
+    startLine: number = 0,
+    endLine: number = 0,
+    startRound: number = 0,
+    endRound: number = 0,
   ) {
     // Compile currently loaded stylesheets as CSS text
     let cssText = '';
@@ -843,97 +842,19 @@ class ChatRenderer {
     }
     cssText += 'body, html { background-color: #141414 }\n';
     // Compile chat log as HTML text
-    let messagesHtml = '';
-    let tmpMsgArray: message[] = [];
 
     if (this.databaseBackendEnabled) {
-      // Fetch from server database
-      const opts: SaveFilePickerOptions = {
-        id: `ss13-chatlog-${this.roundId}`,
-        suggestedName: `ss13-chatlog-${this.roundId}.html`,
-        types: [
-          {
-            description: 'SS13 file',
-            accept: { 'text/plain': ['.html'] },
-          },
-        ],
-      };
-      // We have to do it likes this, otherwise we get a security error
-      // only 516 can do this btw
-      window
-        .showSaveFilePicker(opts)
-        .then(async (fileHandle) => {
-          await new Promise<void>((resolve) => {
-            const listener = async () => {
-              document.removeEventListener('chatexportplaced', listener);
-
-              const response = await fetchRetry(
-                resolveAsset('exported_chatlog'),
-              );
-              const text = await response.text();
-
-              const pageHtml =
-                '<!doctype html>\n' +
-                '<html>\n' +
-                '<head>\n' +
-                '<title>SS13 Chat Log - Round ' +
-                this.roundId +
-                '</title>\n' +
-                '<style>\n' +
-                cssText +
-                '</style>\n' +
-                '</head>\n' +
-                '<body>\n' +
-                '<div class="Chat">\n' +
-                text +
-                '</div>\n' +
-                '</body>\n' +
-                '</html>\n';
-
-              try {
-                const writableHandle = await fileHandle.createWritable();
-                await writableHandle.write(pageHtml);
-                await writableHandle.close();
-              } catch (e) {
-                console.error(e);
-              }
-
-              resolve();
-            };
-
-            document.addEventListener('chatexportplaced', listener);
-            if (startRound < endRound) {
-              Byond.sendMessage('databaseExportRounds', {
-                startId: startRound,
-                endId: endRound,
-                timestamp: this.prependTimestamps,
-              });
-            } else if (startRound > 0) {
-              Byond.sendMessage('databaseExportRound', {
-                roundId: startRound,
-                timestamp: this.prependTimestamps,
-              });
-            } else if (logLineCount > 0) {
-              Byond.sendMessage('databaseExportLines', {
-                length: logLineCount,
-                timestamp: this.prependTimestamps,
-              });
-            } else {
-              Byond.sendMessage('databaseExportRound', {
-                roundId: this.roundId,
-                timestamp: this.prependTimestamps,
-              });
-            }
-          });
-        })
-        .catch((e) => {
-          // Log the error if the error has nothing to do with the user aborting the download
-          if (e.name !== 'AbortError') {
-            console.error(e);
-          }
-        });
+      exportToDisk(
+        cssText,
+        startRound,
+        endRound,
+        this.prependTimestamps,
+        this.page,
+      );
     } else {
       // Fetch from chat storage
+      let messagesHtml = '';
+      let tmpMsgArray: message[] = [];
       if (startLine || endLine) {
         if (!endLine) {
           tmpMsgArray = this.archivedMessages.slice(startLine);
@@ -959,9 +880,7 @@ class ChatRenderer {
         //  messagesHtml += message.node.outerHTML + '\n';
         // }
       }
-    }
 
-    if (!this.databaseBackendEnabled) {
       // Create a page
       const pageHtml =
         '<!doctype html>\n' +

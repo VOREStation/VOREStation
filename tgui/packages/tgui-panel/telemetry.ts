@@ -8,6 +8,7 @@ import { storage } from 'common/storage';
 import { createLogger } from 'tgui/logging';
 
 import { getChatData } from './chat/actions';
+import { updateExportData } from './game/actions';
 
 const logger = createLogger('telemetry');
 
@@ -91,6 +92,12 @@ export const telemetryMiddleware = (store) => {
           firstMutate = false;
           store.dispatch(
             getChatData({ ckey: client.ckey, token: client.chatlog_token }),
+          );
+          store.dispatch(
+            updateExportData({
+              ckey: client.ckey,
+              token: client.chatlog_token,
+            }),
           );
         }
         // Save telemetry

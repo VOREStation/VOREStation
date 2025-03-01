@@ -277,17 +277,18 @@ export const ExportTab = (props) => {
       </Button>
       {!game.databaseBackendEnabled && (
         <Button.Confirm
+          disabled={purgeButtonText === 'Purged!'}
           icon="trash"
           color="red"
           confirmIcon="trash"
           confirmColor="red"
           confirmContent="Are you sure?"
-          onclick={() => {
+          onClick={() => {
             dispatch(purgeChatMessageArchive());
             setPurgeButtonText('Purged!');
             setTimeout(() => {
               setPurgeButtonText('Purge message archive');
-            }, 5000);
+            }, 1000);
           }}
         >
           {purgeButtonText}

@@ -30,44 +30,6 @@
 #define vchatlog_write(ckey, html, round_id, type) VCHATLOG_CALL("write_chatlog", ckey, html, round_id, type)
 
 /**
- * Requests the chatlog of an entire round. Upon completion the exported chatlog will be stored at data/chatlogs/ckey-roundid(.html).
- * The file will have the html ending, if rendered is set to TRUE.
- *
- * Arguments:
- * * ckey - Ckey of the message receiver
- * * round_id - Round ID of the chatlogs to fetch
- * * timestamps - Tells the library to add timestamps to the beginning of the message
- * * rendered - Tells the library if it should contain the rendered chatlog (css styling, etc.)
- */
-#define vchatlog_read_round(ckey, round_id, timestamp, rendered) VCHATLOG_CALL("read_chatlog_round", ckey, round_id, timestamp, rendered)
-
-/**
- * Requests the chatlog of multiple rounds. Upon completion the exported chatlog will be stored at data/chatlogs/ckey-start_round-end_round(.html).
- * The file will have the html ending, if rendered is set to TRUE.
- *
- * Arguments:
- * * ckey - Ckey of the message receiver
- * * start_round - Round ID of the start to fetch
- * * end_round - Round ID of the end to fetch
- * * timestamps - Tells the library to add timestamps to the beginning of the message
- * * rendered - Tells the library if it should contain the rendered chatlog (css styling, etc.)
- */
-#define vchatlog_read_rounds(ckey, start_round, end_round, timestamp, rendered) VCHATLOG_CALL("read_chatlog_rounds", ckey, start_round, end_round, timestamp, rendered)
-
-/**
- * Requests the chatlog of a specified length. Upon completion the exported chatlog will be stored at data/chatlogs/ckey(.html/.json).
- * The file will have the html ending, if rendered is set to TRUE.
- *
- * Arguments:
- * * ckey - Ckey of the message receiver
- * * length - Amount of recent messages to fetch
- * * rendered - Tells the library if it should contain the rendered chatlog (css styling, etc.)
- * * timestamps - Tells the library to add timestamps to the beginning of the message
- * * object - Tells the library if it should be exported as json (includes roundid, text, type and created_at). Rendered is also ignored
- */
-#define vchatlog_read(ckey, length, rendered, timestamp, object) VCHATLOG_CALL("read_chatlog", ckey, length, rendered, timestamp, object)
-
-/**
  * This function returns a list of the 10 most recent roundids that are available to be exported.
  * Note: -1 might appear. This id is used for internal library failures. Use with caution.
  *

@@ -16,6 +16,7 @@ import {
   updateHighlightSetting,
   updateSettings,
 } from '../settings/actions';
+import { blacklisted_tags } from '../settings/constants';
 import { selectSettings } from '../settings/selectors';
 import {
   addChatPage,
@@ -35,10 +36,9 @@ import {
 import { createMessage, serializeMessage } from './model';
 import { chatRenderer } from './renderer';
 import { selectChat, selectCurrentChatPage } from './selectors';
-import { message } from './types';
+import type { message } from './types';
 
 // List of blacklisted tags
-const blacklisted_tags = ['a', 'iframe', 'link', 'video'];
 let storedRounds: number[] = [];
 let storedLines: number[] = [];
 
@@ -142,7 +142,7 @@ const loadChatFromStorage = async (store: Store<number, Action<string>>) => {
 
 const loadChatFromDBStorage = async (
   store: Store<number, Action<string>>,
-  user_payload: { ckey: String; token: String },
+  user_payload: { ckey: string; token: string },
 ) => {
   const game = selectGame(store.getState());
   const settings = selectSettings(store.getState());
@@ -155,10 +155,10 @@ const loadChatFromDBStorage = async (
 
   const messages: message[] = []; // FIX ME, load from DB, first load has errors => check console
 
-  // eslint-disable-next-line no-async-promise-executor
-  await new Promise<void>(async (resolve) => {
-    const json = await fetch(
-      `${game.chatlogApiEndpoint}/api/logs/${user_payload.ckey}/${settings.visibleMessageLimit}`,
+  // Thanks for inventing async/await
+  await new Promise<void>((resolve) => {
+    fetch(
+      `${game.chatlogApiEndpoint}/api/logs/${user_payload.ckey}/${settings.persistentMessageLimit}`,
       {
         method: 'GET',
         headers: {
@@ -167,47 +167,53 @@ const loadChatFromDBStorage = async (
           'Content-Type': 'application/json',
         },
       },
-    ).then((response) => response.json());
+    )
+      .then((response) => response.json())
+      .then((json) => {
+        json.forEach(
+          (obj: {
+            msg_type: string | null;
+            text_raw: string;
+            created_at: number;
+            round_id: number;
+          }) => {
+            const msg: message = {
+              type: obj.msg_type ? obj.msg_type : '',
+              html: obj.text_raw,
+              createdAt: obj.created_at,
+              roundId: obj.round_id,
+            };
 
-    await json.forEach(
-      (obj: {
-        msg_type: string | null;
-        text_raw: string;
-        created_at: number;
-        round_id: number;
-      }) => {
-        const msg: message = {
-          type: obj.msg_type ? obj.msg_type : '',
-          html: obj.text_raw,
-          createdAt: obj.created_at,
-          roundId: obj.round_id,
-        };
+            messages.push(msg);
+          },
+        );
 
-        messages.push(msg);
-      },
-    );
-
-    if (messages) {
-      for (let message of messages) {
-        if (message.html) {
-          message.html = await DOMPurify.sanitize(message.html, {
-            FORBID_TAGS: blacklisted_tags,
+        if (messages) {
+          for (let message of messages) {
+            if (message.html) {
+              message.html = DOMPurify.sanitize(message.html, {
+                FORBID_TAGS: blacklisted_tags,
+              });
+            }
+          }
+          const batch = [
+            ...messages,
+            createMessage({
+              type: 'internal/reconnected',
+            }),
+          ];
+          chatRenderer.processBatch(batch, {
+            prepend: true,
           });
         }
-      }
-      const batch = [
-        ...messages,
-        createMessage({
-          type: 'internal/reconnected',
-        }),
-      ];
-      chatRenderer.processBatch(batch, {
-        prepend: true,
-      });
-    }
 
-    store.dispatch(loadChat(state));
-    resolve();
+        store.dispatch(loadChat(state));
+        resolve();
+      })
+      .catch(() => {
+        store.dispatch(loadChat(state));
+        resolve();
+      });
   });
 };
 
@@ -356,8 +362,8 @@ export const chatMiddleware = (store) => {
         settings.logLineCount,
         storedLines[storedLines.length - settings.exportEnd],
         storedLines[storedLines.length - settings.exportStart],
-        settings.exportEnd,
         settings.exportStart,
+        settings.exportEnd,
       );
       return;
     }

@@ -4,19 +4,9 @@
  * @license MIT
  */
 
-import { connectionLost } from './actions';
+import { connectionLost, updateExportData } from './actions';
 import { connectionRestored, dismissWarning } from './actions';
-
-type gameState = {
-  roundId: number | null;
-  roundTime: null | number;
-  roundRestartedAt: null | number;
-  connectionLostAt: null | number;
-  dismissedConnectionWarning: boolean;
-  databaseBackendEnabled: boolean;
-  chatlogApiEndpoint: string;
-  databaseStoredRounds: string[];
-};
+import type { gameState } from './types';
 
 const initialState: gameState = {
   // TODO: This is where round info should be.
@@ -28,6 +18,7 @@ const initialState: gameState = {
   databaseBackendEnabled: false,
   chatlogApiEndpoint: '',
   databaseStoredRounds: [],
+  userData: { ckey: '', token: '' },
 };
 
 export const gameReducer = (state = initialState, action) => {
@@ -66,6 +57,12 @@ export const gameReducer = (state = initialState, action) => {
     return {
       ...state,
       dismissedConnectionWarning: true,
+    };
+  }
+  if (type === updateExportData.type) {
+    return {
+      ...state,
+      userData: payload,
     };
   }
   return state;
