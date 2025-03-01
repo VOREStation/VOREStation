@@ -1,5 +1,5 @@
 /obj/item/clothing
-	name = "clothing"
+	name = DEVELOPER_WARNING_NAME // "Clothing"
 	siemens_coefficient = 0.9
 	drop_sound = 'sound/items/drop/clothing.ogg'
 	pickup_sound = 'sound/items/pickup/clothing.ogg'
@@ -26,6 +26,7 @@
 	var/update_icon_define_orig = null	// temp storage for original update_icon_define (if it exists)
 	var/update_icon_define_digi = null	// dmi used for the digi sprites
 	var/fit_for_digi = FALSE // flag for if clothing has already been reskinned to digitigrade
+	var/datum/weakref/wearer	//Who the person currently wearing us is.
 
 //Updates the icons of the mob wearing the clothing item, if any.
 /obj/item/clothing/proc/update_clothing_icon()
@@ -288,6 +289,7 @@
 	slot_flags = SLOT_EARS | SLOT_TWOEARS
 
 /obj/item/clothing/ears/offear/New(var/obj/O)
+	if(O)
 		name = O.name
 		desc = O.desc
 		icon = O.icon
@@ -297,7 +299,7 @@
 ////////////////////////////////////////////////////////////////////////////////////////
 //Gloves
 /obj/item/clothing/gloves
-	name = "gloves"
+	name = DEVELOPER_WARNING_NAME // "Gloves"
 	item_icons = list(
 		slot_l_hand_str = 'icons/mob/items/lefthand_gloves.dmi',
 		slot_r_hand_str = 'icons/mob/items/righthand_gloves.dmi',
@@ -309,13 +311,15 @@
 	blood_sprite_state = "bloodyhands"
 	var/wired = 0
 	var/obj/item/cell/cell = 0
-	var/fingerprint_chance = 0	//How likely the glove is to let fingerprints through
-	var/obj/item/clothing/gloves/ring = null		//Covered ring
-	var/mob/living/carbon/human/wearer = null	//Used for covered rings when dropping
-	var/glove_level = 2			//What "layer" the glove is on
-	var/overgloves = 0			//Used by gauntlets and arm_guards
-	var/punch_force = 0			//How much damage do these gloves add to a punch?
-	var/punch_damtype = BRUTE	//What type of damage does this make fists be?
+	var/fingerprint_chance = 0					//How likely the glove is to let fingerprints through
+	var/obj/item/clothing/accessory/ring = null	//Covered ring
+	var/obj/item/clothing/gloves/gloves = null	//Undergloves. Used for gauntlets.
+	var/glove_level = 2							//What "layer" the glove is on
+	var/overgloves = 0							//Used by gauntlets and arm_guards
+	var/punch_force = 0							//How much damage do these gloves add to a punch?
+	var/punch_damtype = BRUTE					//What type of damage does this make fists be?
+	heat_protection = HANDS
+	cold_protection = HANDS
 	body_parts_covered = HANDS
 	slot_flags = SLOT_GLOVES
 	attack_verb = list("challenged")
@@ -332,6 +336,16 @@
 	restricted_accessory_slots = (\
 		ACCESSORY_SLOT_RING\
 		|ACCESSORY_SLOT_WRIST)
+
+/obj/item/clothing/gloves/Destroy()
+	for(var/mob/living/M in contents)
+		M.forceMove(get_turf(src))
+	if(ring)
+		qdel_null(ring)
+	if(gloves)
+		qdel_null(gloves)
+	wearer = null
+	return ..()
 
 /obj/item/clothing/proc/set_clothing_index()
 	return
@@ -403,17 +417,23 @@
 		punch_force = initial(punch_force)
 		return 0
 
-	wearer = H //TODO clean this when magboots are cleaned
+	wearer = WEAKREF(H)
 	return 1
 
 /obj/item/clothing/gloves/dropped(mob/user)
 	..()
 
-	if(!wearer)
+	var/mob/living/carbon/human/H = wearer?.resolve()
+	if(!ishuman(H))
 		return
 
-	var/mob/living/carbon/human/H = wearer
-	if(ring && istype(H))
+	if(gloves) //We have nested gloves! Gloves under our gloves!
+		if(!H.equip_to_slot_if_possible(gloves, slot_gloves))
+			gloves.forceMove(get_turf(src))
+		if(ring)
+			gloves.ring = ring
+		src.gloves = null
+	else if(ring && istype(H)) //We do NOT have gloves under our gloves but have a ring under our glove instead!
 		if(!H.equip_to_slot_if_possible(ring, slot_gloves))
 			ring.forceMove(get_turf(src))
 		src.ring = null
@@ -433,7 +453,7 @@
 //Rings
 
 /obj/item/clothing/gloves/ring
-	name = "ring"
+	name = DEVELOPER_WARNING_NAME // "ring"
 	w_class = ITEMSIZE_TINY
 	icon = 'icons/inventory/hands/item.dmi'
 	gender = NEUTER
@@ -449,13 +469,15 @@
 ///////////////////////////////////////////////////////////////////////
 //Head
 /obj/item/clothing/head
-	name = "head"
+	name = DEVELOPER_WARNING_NAME // "Head"
 	icon = 'icons/inventory/head/item.dmi'
 	item_icons = list(
 		slot_l_hand_str = 'icons/mob/items/lefthand_hats.dmi',
 		slot_r_hand_str = 'icons/mob/items/righthand_hats.dmi',
 		)
 	body_parts_covered = HEAD
+	heat_protection = HEAD
+	cold_protection = HEAD
 	slot_flags = SLOT_HEAD
 	w_class = ITEMSIZE_SMALL
 	blood_sprite_state = "helmetblood"
@@ -566,7 +588,8 @@
 		slot_l_hand_str = 'icons/mob/items/lefthand_masks.dmi',
 		slot_r_hand_str = 'icons/mob/items/righthand_masks.dmi',
 		)
-	body_parts_covered = HEAD
+	heat_protection = FALSE //No heat protection anywhere
+	cold_protection = FALSE //No heat protection anywhere
 	slot_flags = SLOT_MASK
 	body_parts_covered = FACE|EYES
 	blood_sprite_state = "maskblood"
@@ -595,7 +618,7 @@
 ///////////////////////////////////////////////////////////////////////
 //Shoes
 /obj/item/clothing/shoes
-	name = "shoes"
+	name = DEVELOPER_WARNING_NAME // "shoes"
 	icon = 'icons/inventory/feet/item.dmi'
 	item_icons = list(
 		slot_l_hand_str = 'icons/mob/items/lefthand_shoes.dmi',
@@ -605,6 +628,8 @@
 	gender = PLURAL //Carn: for grammarically correct text-parsing
 	siemens_coefficient = 0.9
 	body_parts_covered = FEET
+	heat_protection = FEET
+	cold_protection = FEET
 	slot_flags = SLOT_FEET
 	blood_sprite_state = "shoeblood"
 
@@ -617,6 +642,7 @@
 	var/snow_speed = 0		//Speed boost/decrease on snow, lower/negative values mean more speed
 
 	var/step_volume_mod = 1	//How quiet or loud footsteps in this shoe are
+	var/obj/item/clothing/shoes/shoes = null	//If we are wearing shoes in our shoes. Used primarily for magboots.
 
 	permeability_coefficient = 0.50
 	slowdown = SHOES_SLOWDOWN
@@ -631,6 +657,13 @@
 	pickup_sound = 'sound/items/pickup/shoes.ogg'
 
 	update_icon_define_digi = "icons/inventory/feet/mob_digi.dmi"
+
+/obj/item/clothing/shoes/Destroy()
+	if(shoes)
+		qdel_null(shoes)
+	if(holding)
+		qdel_null(holding)
+	return ..()
 
 /obj/item/clothing/shoes/proc/draw_knife(mob/living/user)
 	set name = "Draw Boot Knife"
@@ -727,17 +760,25 @@
 ///////////////////////////////////////////////////////////////////////
 //Suit
 /obj/item/clothing/suit
+	name = DEVELOPER_WARNING_NAME // "suit"
 	icon = 'icons/inventory/suit/item.dmi'
 	item_icons = list(
 		slot_l_hand_str = 'icons/mob/items/lefthand_suits.dmi',
 		slot_r_hand_str = 'icons/mob/items/righthand_suits.dmi',
 		)
-	name = "suit"
 	var/fire_resist = T0C+100
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
+	body_parts_covered = CHEST|ARMS|LEGS
+	//Switch to taur sprites if a taur equips
+	sprite_sheets = list(
+		SPECIES_TESHARI = 'icons/inventory/suit/mob_teshari.dmi',
+		SPECIES_VOX = 'icons/inventory/suit/mob_vox.dmi',
+		SPECIES_WEREBEAST = 'icons/inventory/suit/mob_vr_werebeast.dmi')
+	max_heat_protection_temperature = T0C+100
 	allowed = list(/obj/item/tank/emergency/oxygen)
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0)
 	slot_flags = SLOT_OCLOTHING
+	heat_protection = ARMS|LEGS|CHEST //At a minimum. Some might be more covering or less covering!
+	cold_protection = ARMS|LEGS|CHEST //At a minimum. Some might be more covering or less covering!
 	var/blood_overlay_type = "suit"
 	blood_sprite_state = "suitblood" //Defaults to the suit's blood overlay, so that some blood renders instead of no blood.
 
@@ -815,9 +856,11 @@
 		slot_r_hand_str = 'icons/mob/items/righthand_uniforms.dmi',
 		)
 	name = "under"
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
+	body_parts_covered = ARMS|LEGS|ARMS
 	permeability_coefficient = 0.90
 	slot_flags = SLOT_ICLOTHING
+	heat_protection = ARMS|LEGS|CHEST
+	cold_protection = ARMS|LEGS|CHEST
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
 	equip_sound = 'sound/items/jumpsuit_equip.ogg'
 	w_class = ITEMSIZE_NORMAL
@@ -1018,6 +1061,8 @@
 	if(rolled_down)
 		body_parts_covered = initial(body_parts_covered)
 		body_parts_covered &= ~(UPPER_TORSO|ARMS)
+		heat_protection &= ~(UPPER_TORSO|ARMS)
+		cold_protection &= ~(UPPER_TORSO|ARMS)
 		if(worn_state in cached_icon_states(rolled_down_icon))
 			icon_override = rolled_down_icon
 			LAZYSET(item_state_slots, slot_w_uniform_str, worn_state)
@@ -1027,6 +1072,8 @@
 		to_chat(usr, span_notice("You roll down your [src]."))
 	else
 		body_parts_covered = initial(body_parts_covered)
+		heat_protection = initial(heat_protection)
+		cold_protection = initial(heat_protection)
 		if(icon_override == rolled_down_icon)
 			icon_override = initial(icon_override)
 		LAZYSET(item_state_slots, slot_w_uniform_str, worn_state)
@@ -1051,6 +1098,8 @@
 	rolled_sleeves = !rolled_sleeves
 	if(rolled_sleeves)
 		body_parts_covered &= ~(ARMS)
+		heat_protection &= ~(ARMS)
+		cold_protection &= ~(ARMS)
 		if(worn_state in cached_icon_states(rolled_down_sleeves_icon))
 			icon_override = rolled_down_sleeves_icon
 			LAZYSET(item_state_slots, slot_w_uniform_str, worn_state)
@@ -1059,6 +1108,8 @@
 		to_chat(usr, span_notice("You roll up your [src]'s sleeves."))
 	else
 		body_parts_covered = initial(body_parts_covered)
+		heat_protection = initial(heat_protection)
+		cold_protection = initial(heat_protection)
 		if(icon_override == rolled_down_sleeves_icon)
 			icon_override = initial(icon_override)
 		LAZYSET(item_state_slots, slot_w_uniform_str, worn_state)
@@ -1069,12 +1120,16 @@
 	sensor_mode = pick(0,1,2,3)
 	..()
 
-//Vorestation edit - eject mobs from clothing before deletion
 /obj/item/clothing/Destroy()
+	STOP_PROCESSING(SSobj, src)
+	if(IC)
+		IC.clothing = null
+		action_circuit = null // Will get deleted by qdel-ing the IC assembly.
+		qdel_null(IC)
 	for(var/mob/living/M in contents)
 		M.forceMove(get_turf(src))
+	wearer = null
 	return ..()
-//Vorestation edit end
 
 /obj/item/clothing/proc/handle_digitigrade(var/mob/user)
 	if(ishuman(user))

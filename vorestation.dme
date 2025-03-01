@@ -4430,6 +4430,7 @@
 #include "code\modules\xenobio\machinery\processor.dm"
 #include "code\modules\xgm\xgm_gas_data.dm"
 #include "code\modules\xgm\xgm_gas_mixture.dm"
+#include "code\unit_tests\clothing_tests.dm"
 #include "code\unit_tests\cosmetic_tests.dm"
 #include "code\unit_tests\decl_tests.dm"
 #include "code\unit_tests\genetics_tests.dm"

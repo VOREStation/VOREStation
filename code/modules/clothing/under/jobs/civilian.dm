@@ -40,7 +40,7 @@
 	name = "cargo technician's jumpsuit"
 	desc = "Shooooorts! They're comfy and easy to wear!"
 	icon_state = "cargo"
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
+	body_parts_covered = CHEST|ARMS
 	rolled_sleeves = 0
 
 /obj/item/clothing/under/rank/cargotech/jeans
