@@ -29,14 +29,17 @@
 				H.custom_pain("You feel a sharp pain in your hands!",1)
 	..()
 
+
 /obj/item/clothing/gloves/regen/dropped(var/mob/user)
 	..()
-	if(ishuman(H))
-		var/mob/living/carbon/human/H = user
-		if(H.can_feel_pain())
-			to_chat(H, span_danger("You feel the hypodermic needles as you slide \the [src] off!"))
-			H.custom_pain("Your hands hurt like hell!",1)
-		wearer = null
+
+	if(!ishuman(user))
+		return
+
+	var/mob/living/carbon/human/H = user
+	if(H.can_feel_pain())
+		to_chat(H, span_danger("You feel the hypodermic needles as you slide \the [src] off!"))
+		H.custom_pain("Your hands hurt like hell!",1)
 
 /obj/item/clothing/gloves/regen/Initialize(mapload)
 	. = ..()
