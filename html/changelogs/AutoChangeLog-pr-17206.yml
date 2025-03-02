@@ -1,0 +1,5 @@
+author: "ItsSelis"
+delete-after: True
+changes:
+  - qol: "using a database to store the round logs to reduce client-side lag"
+  - qol: "using same database to load the most recent messages into the chat (instead of having to fetch from client browser)"
