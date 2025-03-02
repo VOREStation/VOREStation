@@ -8,7 +8,7 @@
 	var/ore_key
 	var/image/scanner_image
 	var/ore_reagent	// Reagent from pumping water near this ore.
-	var/delete_me
+	var/delete_me = FALSE
 
 /obj/effect/mineral/Initialize(mapload, var/ore/M)
 	. = ..()
