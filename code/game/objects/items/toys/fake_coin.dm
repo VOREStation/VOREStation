@@ -17,47 +17,58 @@
 	drop_sound = 'sound/items/drop/ring.ogg'
 	pickup_sound = 'sound/items/pickup/ring.ogg'
 
-/obj/item/fake_coin/New()
+/obj/item/fake_coin/Initialize(mapload)
+	. = ..()
 	randpixel_xy()
 
 /obj/item/fake_coin/gold
-	name = "gold coin"
+	name = MAT_GOLD + " coin"
+	desc = "A shiny gold coin. Just like in the old movies with pirates!"
 	icon_state = "coin_gold"
 
 /obj/item/fake_coin/silver
-	name = "silver coin"
+	name = MAT_SILVER + " coin"
+	desc = "A shiny silver coin. You can almost see your reflection in it. Unless you're a vampire."
 	icon_state = "coin_silver"
 
 /obj/item/fake_coin/diamond
-	name = "diamond coin"
+	name = MAT_DIAMOND + " coin"
+	desc = "A coin made of solid diamond. Carbon, really, but who's counting?" // me, I'm counting
 	icon_state = "coin_diamond"
 
 /obj/item/fake_coin/iron
-	name = "iron coin"
+	name = MAT_IRON + " coin"
+	desc = "A dull iron coin. Not that it's boring, it's just a bit plain."
 	icon_state = "coin_iron"
 
 /obj/item/fake_coin/phoron
-	name = "solid phoron coin"
+	name = "solid " + MAT_PHORON + " coin"
+	desc = "Solid phoron, pressed into a coin and laminated for safety. Go ahead, lick it."
 	icon_state = "coin_phoron"
 
 /obj/item/fake_coin/uranium
-	name = "uranium coin"
+	name = MAT_URANIUM + " coin"
+	desc = "A uranium coin. You probably don't want to store this in your pants pocket..."
 	icon_state = "coin_uranium"
 
 /obj/item/fake_coin/platinum
-	name = "platinum coin"
+	name = MAT_PLATINUM + " coin"
+	desc = "A shiny platinum coin. Truth is, the game was rigged from the start."
 	icon_state = "coin_platinum"
 
 /obj/item/fake_coin/morphium
-	name = "morphium coin"
+	name = MAT_MORPHIUM + " coin"
+	desc = "Morphium, made into a coin. Extravagant is putting it lightly."
 	icon_state = "coin_morphium"
 
 /obj/item/fake_coin/aluminium
-	name = "aluminium coin"
+	name = MAT_ALUMINIUM + " coin"
+	desc = "Aluminium, in coin format. Now your wallet can be lighter than ever."
 	icon_state = "coin_aluminium"
 
 /obj/item/fake_coin/verdantium
-	name = "verdantium coin"
+	name = MAT_VERDANTIUM + " coin"
+	desc = "Shiny green verdantium, in a coin. Ding ding ding!"
 	icon_state = "coin_verdantium"
 
 /obj/item/fake_coin/attack_self(mob/user as mob)

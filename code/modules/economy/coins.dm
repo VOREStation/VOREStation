@@ -15,56 +15,67 @@
 	drop_sound = 'sound/items/drop/ring.ogg'
 	pickup_sound = 'sound/items/pickup/ring.ogg'
 
-/obj/item/coin/New()
+/obj/item/coin/Initialize(mapload)
+	. = ..()
 	randpixel_xy()
 
 /obj/item/coin/gold
-	name = "gold coin"
+	name = MAT_GOLD + " coin"
+	desc = "A shiny gold coin. Just like in the old movies with pirates!"
 	icon_state = "coin_gold"
 	matter = list(MAT_GOLD = 250)
 
 /obj/item/coin/silver
-	name = "silver coin"
+	name = MAT_SILVER + " coin"
+	desc = "A shiny silver coin. You can almost see your reflection in it. Unless you're a vampire."
 	icon_state = "coin_silver"
 	matter = list(MAT_SILVER = 250)
 
 /obj/item/coin/diamond
-	name = "diamond coin"
+	name = MAT_DIAMOND + " coin"
+	desc = "A coin made of solid diamond. Carbon, really, but who's counting?" // me, I'm counting
 	icon_state = "coin_diamond"
 	matter = list(MAT_DIAMOND = 250)
 
 /obj/item/coin/iron
-	name = "iron coin"
+	name = MAT_IRON + " coin"
+	desc = "A dull iron coin. Not that it's boring, it's just a bit plain."
 	icon_state = "coin_iron"
 	matter = list(MAT_IRON = 250)
 
 /obj/item/coin/phoron
-	name = "solid phoron coin"
+	name = "solid " + MAT_PHORON + " coin"
+	desc = "Solid phoron, pressed into a coin and laminated for safety. Go ahead, lick it."
 	icon_state = "coin_phoron"
 	matter = list(MAT_PHORON = 250)
 
 /obj/item/coin/uranium
-	name = "uranium coin"
+	name = MAT_URANIUM + " coin"
+	desc = "A uranium coin. You probably don't want to store this in your pants pocket..."
 	icon_state = "coin_uranium"
 	matter = list(MAT_URANIUM = 250)
 
 /obj/item/coin/platinum
-	name = "platinum coin"
+	name = MAT_PLATINUM + " coin"
+	desc = "A shiny platinum coin. Truth is, the game was rigged from the start."
 	icon_state = "coin_platinum"
 	matter = list(MAT_GOLD = 250)
 
 /obj/item/coin/morphium
-	name = "morphium coin"
+	name = MAT_MORPHIUM + " coin"
+	desc = "Morphium, made into a coin. Extravagant is putting it lightly."
 	icon_state = "coin_morphium"
 	matter = list(MAT_MORPHIUM = 250)
 
 /obj/item/coin/aluminium
-	name = "aluminium coin"
+	name = MAT_ALUMINIUM + " coin"
+	desc = "Aluminium, in coin format. Now your wallet can be lighter than ever."
 	icon_state = "coin_aluminium"
 	matter = list(MAT_ALUMINIUM = 250)
 
 /obj/item/coin/verdantium
-	name = "verdantium coin"
+	name = MAT_VERDANTIUM + " coin"
+	desc = "Shiny green verdantium, in a coin. Ding ding ding!"
 	icon_state = "coin_verdantium"
 	matter = list(MAT_VERDANTIUM = 250)
 
