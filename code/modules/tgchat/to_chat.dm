@@ -29,6 +29,9 @@
 	if(target == world)
 		target = GLOB.clients
 
+	if(islist(target) && !LAZYLEN(target))
+		return
+
 	// Build a message
 	var/message = list()
 	if(type) message["type"] = type
@@ -42,14 +45,14 @@
 	if (CONFIG_GET(flag/chatlog_database_backend))
 		if (islist(target))
 			for(var/tgt in target)
-				var/client/c = CLIENT_FROM_VAR(tgt)
-				if(isnull(c))
+				var/our_ckey = CKEY_FROM_VAR(tgt)
+				if(isnull(our_ckey))
 					continue
-				vchatlog_write(c.key, html, GLOB.round_id, type)
+				vchatlog_write(our_ckey, html, GLOB.round_id, type)
 		else
-			var/client/c = CLIENT_FROM_VAR(target)
-			if(!isnull(c))
-				vchatlog_write(c.key, html, GLOB.round_id, type)
+			var/our_ckey = CKEY_FROM_VAR(target)
+			if(!isnull(our_ckey))
+				vchatlog_write(our_ckey, html, GLOB.round_id, type)
 
 /**
  * Sends the message to the recipient (target).
@@ -88,6 +91,9 @@
 	if(target == world)
 		target = GLOB.clients
 
+	if(islist(target) && !LAZYLEN(target))
+		return
+
 	// Build a message
 	var/message = list()
 	if(type) message["type"] = type
@@ -99,11 +105,11 @@
 	if (CONFIG_GET(flag/chatlog_database_backend))
 		if (islist(target))
 			for(var/tgt in target)
-				var/client/c = CLIENT_FROM_VAR(tgt)
-				if(isnull(c))
+				var/our_ckey = CKEY_FROM_VAR(tgt)
+				if(isnull(our_ckey))
 					continue
-				vchatlog_write(c.key, html, GLOB.round_id, type)
+				vchatlog_write(our_ckey, html, GLOB.round_id, type)
 		else
-			var/client/c = CLIENT_FROM_VAR(target)
-			if(!isnull(c))
-				vchatlog_write(c.key, html, GLOB.round_id, type)
+			var/our_ckey = CKEY_FROM_VAR(target)
+			if(!isnull(our_ckey))
+				vchatlog_write(our_ckey, html, GLOB.round_id, type)
