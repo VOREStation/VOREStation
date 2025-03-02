@@ -52,7 +52,7 @@
 			if (alreadythere == src)
 				continue
 			else if (alreadyfound)
-				if(!(alreadyfound.flags & ATOM_INITIALIZED))
+				if(!(alreadythere.flags & ATOM_INITIALIZED))
 					delete_me = TRUE
 				else
 					qdel(alreadythere)
