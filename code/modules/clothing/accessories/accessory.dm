@@ -26,7 +26,7 @@
 	on_removed()
 	return ..()
 
-/obj/item/clothing/accessory/proc/get_inv_overlay()
+/obj/item/clothing/accessory/proc/get_inv_overlay() //Note: This is currently working. Good.
 	if(!inv_overlay)
 		var/tmp_icon_state = "[overlay_state? "[overlay_state]" : "[icon_state]"]"
 		if(icon_override)
@@ -44,14 +44,10 @@
 	if(!istype(loc,/obj/item/clothing/))	//don't need special handling if it's worn as normal item.
 		return
 	var/tmp_icon_state = "[overlay_state? "[overlay_state]" : "[icon_state]"]"
+	var/mob/living/carbon/human/H
 	if(ishuman(has_suit.loc))
-		wearer = WEAKREF(has_suit.loc)
-	else
-		wearer = null
-
-	wearer?.resolve()
-	var/mob/living/carbon/human/H = wearer
-	if(!ishuman(H))
+		H = has_suit.loc
+	if(!H || !ishuman(H))
 		return
 
 	if(istype(loc,/obj/item/clothing/under))
