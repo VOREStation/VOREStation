@@ -43,23 +43,3 @@
 	for(var/window_id in tgui_windows)
 		var/datum/tgui_window/window = tgui_windows[window_id]
 		window.reinitialize()
-
-/* TODO: Relay to the chat/panel?
-/client/verb/export_chatlogs_round()
-	set name = "Export Chatlogs - Round (NEW)"
-	set category = "OOC"
-
-	var/round_id = tgui_input_number(src, "Which round do you want exported?", "RoundID", GLOB.round_id, INFINITY, -1)
-	if(round_id)
-		vchatlog_read_round(src.key, round_id, TRUE)
-		src << ftp("data/chatlogs/[src.key]-[round_id].html")
-
-/client/verb/export_chatlogs_length()
-	set name = "Export Chatlogs - Last X (NEW)"
-	set category = "OOC"
-
-	var/length = tgui_input_number(src, "How many lines back do you want to be exported?", "Linecount", 1000, INFINITY, 1)
-	if(length)
-		vchatlog_read(src.key, length, TRUE, FALSE)
-		src << ftp("data/chatlogs/[src.key].html")
-*/
