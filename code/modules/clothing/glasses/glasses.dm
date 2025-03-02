@@ -242,8 +242,8 @@ BLIND     // can't see anything
 	vision_flags = SEE_OBJS
 	enables_planes = list(VIS_FULLBRIGHT)
 
-/obj/item/clothing/glasses/material/New()
-	..()
+/obj/item/clothing/glasses/material/Initialize(mapload)
+	. = ..()
 	overlay = global_hud.material
 
 /obj/item/clothing/glasses/material/prescription
