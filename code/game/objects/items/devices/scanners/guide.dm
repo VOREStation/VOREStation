@@ -97,7 +97,7 @@
 		dat += span_bold("Genetic damage") + " - Utilize cryogenic pod with appropriate chemicals (i.e. Cryoxadone) and below 70 K, or give Rezadone.<br>"
 	if(bone)
 		dat += span_bold("Bone fracture") + " - Splint damaged area. Treat with bone repair surgery or Osteodaxon after treating brute damage.<br>"
-	if(M.viruses.len)
+	if(M.IsInfected())
 		for(var/datum/disease/D in M.GetViruses())
 			if(D.visibility_flags & HIDDEN_SCANNER)
 				continue

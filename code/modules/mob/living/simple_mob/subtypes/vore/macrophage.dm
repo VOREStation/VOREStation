@@ -66,16 +66,25 @@
 /mob/living/simple_mob/vore/aggressive/macrophage/Initialize()
 	. = ..()
 	var/datum/disease/advance/random/macrophage/D = new
-	health += D.totalResistance()
-	maxHealth += D.totalResistance()
-	melee_damage_lower += max(0, D.totalResistance())
-	melee_damage_upper += max(0, D.totalResistance())
+	health += D.resistance
+	maxHealth += D.resistance
+	melee_damage_lower += max(0, D.resistance)
+	melee_damage_upper += max(0, D.resistance)
 	infections += D
 	base_disease = D
 
+/mob/living/simple_mob/vore/aggressive/macrophage/extrapolator_act(mob/living/user, obj/item/extrapolator/extrapolator, dry_run = FALSE)
+	. = ..()
+	EXTRAPOLATOR_ACT_ADD_DISEASES(., base_disease)
+	if(!dry_run && !EXTRAPOLATOR_ACT_CHECK(., EXTRAPOLATOR_ACT_PRIORITY_SPECIAL) && extrapolator.create_culture(user, base_disease))
+		user.visible_message(span_danger("[user] stabs [src] with [extrapolator], sucking it up!"), \
+			span_danger("You stab [src] with [extrapolator]'s probe, destroying it!"))
+		death()
+		EXTRAPOLATOR_ACT_SET(., EXTRAPOLATOR_ACT_PRIORITY_SPECIAL)
+
 /mob/living/simple_mob/vore/aggressive/macrophage/proc/deathcheck()
 	if(locate(/mob/living/carbon/human) in vore_selected)
-		addtimer(CALLBACK(src, TYPE_PROC_REF(/mob/living/simple_mob/vore/aggressive/macrophage, deathcheck)), 3000)
+		addtimer(CALLBACK(src, TYPE_PROC_REF(/mob/living/simple_mob/vore/aggressive/macrophage, deathcheck)), 3 MINUTES)
 	else
 		death()
 
@@ -138,7 +147,7 @@
 	var/mob/living/simple_mob/vore/aggressive/macrophage/macrophage = holder
 	for(var/list_target in our_targets)
 		var/mob/living/victim = list_target
-		if(victim.viruses)
+		if(victim.IsInfected())
 			if(victim.HasDisease(macrophage.base_disease) && prob(75)) // Less likely to be a target if you're infected
 				our_targets -= list_target
 				continue

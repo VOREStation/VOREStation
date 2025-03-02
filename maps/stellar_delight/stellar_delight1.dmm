@@ -8927,11 +8927,11 @@
 	pixel_x = -24
 	},
 /obj/structure/closet/crate/medical,
-/obj/item/reagent_containers/glass/bottle/culture/cold{
+/obj/item/reagent_containers/glass/beaker/vial/culture/cold{
 	pixel_x = -5;
 	pixel_y = 5
 	},
-/obj/item/reagent_containers/glass/bottle/culture/flu,
+/obj/item/reagent_containers/glass/beaker/vial/culture/flu,
 /turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/medical/virology)
 "sg" = (
