@@ -11,9 +11,9 @@
 	var/delete_me
 
 /obj/effect/mineral/Initialize(mapload, var/ore/M)
+	. = ..()
 	if(delete_me)
 		return INITIALIZE_HINT_QDEL
-	. = ..()
 	name = "[M.display_name] deposit"
 	ore_key = M.name
 	if(M.reagent)
