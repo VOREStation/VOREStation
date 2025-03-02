@@ -344,7 +344,7 @@ var/list/mining_overlay_cache = list()
 /turf/simulated/mineral/proc/UpdateMineral()
 	clear_ore_effects()
 	if(mineral)
-		new /obj/effect/mineral(src, mineral)
+		new /obj/effect/mineral(src)
 	update_icon()
 
 //Not even going to touch this pile of spaghetti
