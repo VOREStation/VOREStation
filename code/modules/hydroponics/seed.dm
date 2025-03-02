@@ -140,7 +140,7 @@
 
 		if(affecting)
 			to_chat(target, span_danger("\The [fruit]'s thorns pierce your [affecting.name] greedily!"))
-			target.apply_damage(damage, BRUTE, target_limb, blocked, soaked, TRUE, has_edge, "Thorns")
+			target.apply_damage(damage, BRUTE, target_limb, blocked, soaked, TRUE, has_edge)
 		else
 			to_chat(target, span_danger("\The [fruit]'s thorns pierce your flesh greedily!"))
 			target.adjustBruteLoss(damage)
@@ -149,7 +149,7 @@
 		has_edge = prob(get_trait(TRAIT_POTENCY)/5)
 		if(affecting)
 			to_chat(target, span_danger("\The [fruit]'s thorns dig deeply into your [affecting.name]!"))
-			target.apply_damage(damage, BRUTE, target_limb, blocked, soaked, TRUE, has_edge, "Thorns")
+			target.apply_damage(damage, BRUTE, target_limb, blocked, soaked, TRUE, has_edge)
 		else
 			to_chat(target, span_danger("\The [fruit]'s thorns dig deeply into your flesh!"))
 			target.adjustBruteLoss(damage)
@@ -160,7 +160,7 @@
 		return
 	if(chems && chems.len)
 
-		var/body_coverage = HEAD|FACE|EYES|UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS|HANDS
+		var/body_coverage = HEAD|FACE|EYES|CHEST|LEGS|FEET|ARMS|HANDS
 
 		for(var/obj/item/clothing/clothes in target)
 			if(target.item_is_in_hands(clothes))
@@ -204,7 +204,7 @@
 		for(var/mob/living/M in T.contents)
 			if(!M.reagents)
 				continue
-			var/body_coverage = HEAD|FACE|EYES|UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS|HANDS
+			var/body_coverage = HEAD|FACE|EYES|CHEST|LEGS|FEET|ARMS|HANDS
 			for(var/obj/item/clothing/clothes in M)
 				if(M.item_is_in_hands(clothes))
 					continue

@@ -95,8 +95,12 @@
 
 /datum/robot_sprite/mining/worm
 	name = "W02M"
-	sprite_icon_state = "worm"
-	has_custom_open_sprites = TRUE
+	sprite_icon_state = "worm-miner"
+	sprite_icon = 'icons/mob/robot/wormborg.dmi'
+	has_dead_sprite_overlay = FALSE
+	has_custom_open_sprites = FALSE
+	has_vore_belly_sprites = TRUE
+	has_dead_sprite = TRUE
 
 /datum/robot_sprite/mining/uptall
 	name = "Feminine Humanoid"
@@ -184,13 +188,108 @@
 	has_vore_belly_sprites = FALSE
 	rest_sprite_options = list("Default", "Bellyup")
 
-/datum/robot_sprite/dogborg/tall/mining/dullahanv3
-	sprite_icon = 'icons/mob/tallborg/dullahans64x64.dmi'
-	//named v3 to avoid conflicts with downstream
-
-/datum/robot_sprite/dogborg/tall/mining/dullahanv3/miningdully
-	name = "Dullahan mining v3"
-	sprite_icon_state = "dullahanmining"
+/datum/robot_sprite/dogborg/tall/mining/dullahan
+	name = "Dullahan Mining unit"
+	sprite_icon_state = "dullahanmine"
+	sprite_icon = 'icons/mob/robot/dullahan/v1/dullahan_mine.dmi'
 	has_vore_belly_sprites = TRUE
-	has_robotdecal_sprites = TRUE
+	has_custom_open_sprites = FALSE
+	has_eye_light_sprites = TRUE
 	rest_sprite_options = list("Default", "sit")
+	pixel_x = 0
+
+/datum/robot_sprite/dogborg/tall/mining/dullahan/mineralt
+	name = "Dullahan Mining unit v2"
+	sprite_icon_state = "dullahanmine_alt"
+
+/datum/robot_sprite/dogborg/tall/mining/dullahan/miningdully
+	name = "Dullahan mining v3"
+	sprite_icon = 'icons/mob/robot/dullahan/v3/mining.dmi'
+	sprite_icon_state = "dullahanmining"
+	sprite_decals = list("decals")
+
+/datum/robot_sprite/dogborg/tall/mining/dullahancarg
+	name = "Dullahan Cargo"
+	sprite_icon_state = "dullahancargo"
+	sprite_icon = 'icons/mob/robot/dullahan/v1/dullahan_cargo.dmi'
+	has_eye_light_sprites = TRUE
+	has_vore_belly_sprites = TRUE
+	rest_sprite_options = list("Default", "Sit")
+	pixel_x = 0
+
+/datum/robot_sprite/dogborg/tall/mining/dullahancarg/cargoalt
+	name = "Dullahan Cargo v2"
+	sprite_icon_state = "dullahancargo_alt"
+
+/datum/robot_sprite/dogborg/mining/cat
+	name = "Cat - Mining"
+	sprite_icon = 'icons/mob/robot/catborg_variant.dmi'
+	sprite_icon_state = "vixmine"
+	has_vore_belly_resting_sprites = TRUE
+	has_eye_light_sprites = TRUE
+	has_dead_sprite_overlay = FALSE
+
+/datum/robot_sprite/dogborg/mining/catcargo
+	name = "Cat - Cargo"
+	sprite_icon = 'icons/mob/robot/catborg_variant.dmi'
+	sprite_icon_state = "vixcargo"
+	has_vore_belly_resting_sprites = TRUE
+	has_eye_light_sprites = TRUE
+	has_dead_sprite_overlay = FALSE
+
+/datum/robot_sprite/dogborg/tall/mining/tall
+	sprite_icon = 'icons/mob/robot/tallrobot/tallrobots.dmi'
+	pixel_x = 0
+
+/datum/robot_sprite/dogborg/tall/mining/tall/mekacargo
+	name = "MEKA - Cargo"
+	sprite_icon_state = "mekacargo"
+	has_eye_light_sprites = TRUE
+	has_vore_belly_sprites = FALSE
+	rest_sprite_options = list("Default", "Sit")
+
+/datum/robot_sprite/dogborg/tall/mining/tall/mmekacargo
+	name = "NIKO - Cargo"
+	sprite_icon_state = "mmekacargo"
+	has_eye_light_sprites = TRUE
+	has_sleeper_light_indicator = TRUE
+	rest_sprite_options = list("Default", "Sit")
+
+/datum/robot_sprite/dogborg/tall/mining/tall/fmekacargo
+	name = "NIKA - Cargo"
+	sprite_icon_state = "fmekacargo"
+	has_eye_light_sprites = TRUE
+	has_sleeper_light_indicator = TRUE
+	rest_sprite_options = list("Default", "Sit")
+
+/datum/robot_sprite/dogborg/tall/mining/tall/k4tcargo
+	name = "K4T - Cargo"
+	sprite_icon_state = "k4tcargo"
+	has_eye_light_sprites = TRUE
+	has_vore_belly_sprites = FALSE
+	rest_sprite_options = list("Default", "Bellyup")
+
+/datum/robot_sprite/dogborg/tall/mining/tall/k4t_alt1cargo
+	name = "K4Talt - Cargo"
+	sprite_icon_state = "k4tcargo_alt1"
+	has_eye_light_sprites = TRUE
+	has_vore_belly_sprites = FALSE
+	rest_sprite_options = list("Default", "Bellyup")
+
+/datum/robot_sprite/dogborg/mining/smolraptorminer
+	sprite_icon = 'icons/mob/robot/smallraptors/smolraptor_min.dmi'
+	name = "Small Raptor Miner"
+	sprite_icon_state = "smolraptor"
+	has_eye_light_sprites = TRUE
+	has_vore_belly_sprites = TRUE
+	has_dead_sprite_overlay = FALSE
+	rest_sprite_options = list("Default", "Sit")
+
+/datum/robot_sprite/dogborg/mining/smolraptorcargo
+	sprite_icon = 'icons/mob/robot/smallraptors/smolraptor_car.dmi'
+	name = "Small Raptor Cargo"
+	sprite_icon_state = "smolraptor"
+	has_eye_light_sprites = TRUE
+	has_vore_belly_sprites = TRUE
+	has_dead_sprite_overlay = FALSE
+	rest_sprite_options = list("Default", "Sit")

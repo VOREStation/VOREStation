@@ -54,9 +54,9 @@
 /obj/item/soap/deluxe
 	icon_state = "soapdeluxe"
 
-/obj/item/soap/deluxe/New()
+/obj/item/soap/deluxe/Initialize(mapload)
+	. = ..()
 	desc = "A deluxe Waffle Co. brand bar of soap. Smells of [pick("lavender", "vanilla", "strawberry", "chocolate" ,"space")]."
-	..()
 
 /obj/item/soap/syndie
 	desc = "An untrustworthy bar of soap. Smells of fear."
@@ -490,10 +490,10 @@
 	drop_sound = 'sound/items/drop/component.ogg'
 	pickup_sound = 'sound/items/pickup/component.ogg'
 
-/obj/item/stock_parts/New()
+/obj/item/stock_parts/Initialize(mapload)
+	. = ..()
 	src.pixel_x = rand(-5.0, 5)
 	src.pixel_y = rand(-5.0, 5)
-	..()
 
 /obj/item/stock_parts/get_rating()
 	return rating
@@ -518,7 +518,7 @@
 	var/charge = 0
 	var/max_charge = 1000
 
-/obj/item/stock_parts/capacitor/New()
+/obj/item/stock_parts/capacitor/Initialize(mapload)
 	. = ..()
 	max_charge *= rating
 

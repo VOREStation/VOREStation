@@ -279,7 +279,7 @@
 			if(!I.rank)
 				I.rank = "N/A"
 				update_file = 1
-			dat += "<font color=#008800>[I.content]</font> <i>by [I.author] ([I.rank])</i> on <i><font color=blue>[I.timestamp]</i></font> "
+			dat += span_green("[I.content]") + " " + span_italics("by [I.author] ([I.rank])") + " on " + span_italics(span_blue("[I.timestamp]")) + " "
 			if(I.author == usr.key || I.author == "Adminbot" || ishost(usr))
 				dat += "<A href='byond://?src=\ref[src];[HrefToken()];remove_player_info_legacy=[key];remove_index=[i]'>Remove</A>"
 			dat += "<br><br>"

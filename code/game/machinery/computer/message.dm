@@ -53,7 +53,7 @@
 			var/obj/item/paper/monitorkey/MK = new/obj/item/paper/monitorkey
 			MK.loc = loc
 			// Will help make emagging the console not so easy to get away with.
-			MK.info += "<br><br><font color='red'>£%@%(*$%&(£&?*(%&£/{}</font>"
+			MK.info += "<br><br>" + span_red("£%@%(*$%&(£&?*(%&£/{}")
 			spawn(100*length(linkedServer.decryptkey)) UnmagConsole()
 			temp = rebootmsg
 			update_icon()

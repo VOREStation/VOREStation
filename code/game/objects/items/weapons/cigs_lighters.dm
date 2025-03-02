@@ -82,7 +82,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 //FINE SMOKABLES//
 //////////////////
 /obj/item/clothing/mask/smokable
-	name = "smokable item"
+	name = DEVELOPER_WARNING_NAME // "smokable item"
 	desc = "You're not sure what this is. You should probably ahelp it."
 	body_parts_covered = 0
 	var/lit = 0
@@ -424,8 +424,8 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	ignitermes = span_notice("USER fiddles with FLAME, and manages to light their NAME with the power of science.")
 	is_pipe = 1
 
-/obj/item/clothing/mask/smokable/pipe/New()
-	..()
+/obj/item/clothing/mask/smokable/pipe/Initialize()
+	. = ..()
 	name = "empty [initial(name)]"
 
 /obj/item/clothing/mask/smokable/pipe/attack_self(mob/user as mob)
