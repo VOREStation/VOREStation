@@ -72,8 +72,7 @@
 /obj/item/clothing/shoes/magboots/dropped(mob/user)
 	..()
 
-	wearer?.resolve()
-	var/mob/living/carbon/human/H = wearer
+	var/mob/living/carbon/human/H = wearer?.resolve()
 
 	if(ishuman(H) && shoes)
 		if(!H.equip_to_slot_if_possible(shoes, slot_shoes))
