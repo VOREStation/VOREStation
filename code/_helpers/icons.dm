@@ -84,6 +84,8 @@
 	var/list/RGB2 = ReadRGB(rgb2)
 
 	// add missing alpha if needed
+	if(!RGB1 || !RGB2) //Don't blend if we don't two! No use blending what we don't have!
+		return
 	if(RGB1.len < RGB2.len) RGB1 += 255
 	else if(RGB2.len < RGB1.len) RGB2 += 255
 	var/usealpha = RGB1.len > 3
