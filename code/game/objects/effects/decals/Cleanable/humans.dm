@@ -23,6 +23,7 @@ var/global/list/image/splatter_cache=list()
 	var/amount = 5
 	generic_filth = TRUE
 	persistent = FALSE
+	var/delete_me = FALSE
 
 /obj/effect/decal/cleanable/blood/reveal_blood()
 	if(!fluorescent)
@@ -39,6 +40,8 @@ var/global/list/image/splatter_cache=list()
 
 /obj/effect/decal/cleanable/blood/Initialize(mapload)
 	. = ..()
+	if(delete_me)
+		return INITIALIZE_HINT_QDEL
 	update_icon()
 	if(istype(src, /obj/effect/decal/cleanable/blood/gibs))
 		return
@@ -48,7 +51,10 @@ var/global/list/image/splatter_cache=list()
 				if(B != src)
 					if (B.blood_DNA)
 						blood_DNA |= B.blood_DNA.Copy()
-					qdel(B)
+					if(!(B.flags & ATOM_INITIALIZED))
+						B.delete_me = TRUE
+					else
+						qdel(B)
 
 //VOREstation edit - Moved timer call to Init, and made it not call on mapload
 /obj/effect/decal/cleanable/blood/Initialize(mapload, var/_age)
