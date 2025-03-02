@@ -38,6 +38,7 @@ var/global/list/image/splatter_cache=list()
 	..(ignore=1)
 
 /obj/effect/decal/cleanable/blood/Initialize(mapload)
+	. = ..()
 	update_icon()
 	if(istype(src, /obj/effect/decal/cleanable/blood/gibs))
 		return
