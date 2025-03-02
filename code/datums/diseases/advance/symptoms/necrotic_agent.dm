@@ -24,8 +24,8 @@ Bonus
 	level = 6
 	severity = 3
 
-/datum/symptom/necrotic_agent/Start(datum/disease/advance/A)
+/datum/symptom/necrotic_agent/OnAdd(datum/disease/advance/A)
 	A.spread_dead = TRUE
 
-/datum/symptom/necrotic_agent/End(datum/disease/advance/A)
+/datum/symptom/necrotic_agent/OnRemove(datum/disease/advance/A)
 	A.spread_dead = FALSE

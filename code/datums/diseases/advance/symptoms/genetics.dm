@@ -8,13 +8,19 @@
 	base_message_chance = 20
 	symptom_delay_min = 1
 	symptom_delay_max = 1
-	var/passive_message = ""
+	var/passive_message
 	var/mutation
 
 /datum/symptom/genetic/Start(datum/disease/advance/A)
 	if(!..())
 		return FALSE
 	return TRUE
+
+/datum/symptom/genetic/OnAdd(datum/disease/advance/A)
+	. = ..()
+
+/datum/symptom/genetic/OnRemove()
+	. = ..()
 
 /datum/symptom/genetic/Activate(datum/disease/advance/A)
 	if(!..())
