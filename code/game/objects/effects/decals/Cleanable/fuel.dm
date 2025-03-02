@@ -10,7 +10,6 @@
 	persistent = FALSE
 
 /obj/effect/decal/cleanable/liquid_fuel/Initialize(mapload, amt=1, nologs=1)
-	. = ..()
 	if(!isturf(loc))
 		return INITIALIZE_HINT_QDEL
 	if(!nologs)
