@@ -16,6 +16,7 @@
 
 	var/default_type = MAT_STEEL
 	var/datum/material/material
+	var/coin_type = null
 	var/perunit = SHEET_MATERIAL_AMOUNT
 	var/apply_colour //temp pending icon rewrite
 	drop_sound = 'sound/items/drop/axe.ogg'
