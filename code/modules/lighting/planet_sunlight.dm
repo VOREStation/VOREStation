@@ -124,5 +124,5 @@
 
 /datum/simple_sun/planetary/update()
 	. = ..()
-	brightness = sun.our_brightness
+	brightness = CLAMP01(sun.our_brightness)
 	color = sun.our_color
