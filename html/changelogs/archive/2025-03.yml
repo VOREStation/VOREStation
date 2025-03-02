@@ -5,3 +5,46 @@
   - bugfix: motion tracking ability now lets you properly motion track
   - qol: Motion tracker subsystem can be toggled off for hide and seek modes
   - bugfix: no more randomly invisible marker beacons
+2025-03-02:
+  Cameron-The-Raven:
+  - bugfix: Properly merges the crisis and surgery bots
+  - spellcheck: Adjusted the OOC escape text. Instead of starting strong with 'don't
+      use this', let's be more passive tone.
+  - spellcheck: Weight selection is less aggressive as well.
+  - bugfix: dogborg id properly deletes
+  Diana:
+  - bugfix: You no longer check if you can remove your internal organs to throw them
+      at people
+  - bugfix: You can no longer become immortal via cocoon weaver
+  - bugfix: Cocoon weaver now properly makes a TGUI window and keeps it.
+  - qol: Replaces face-left and face-right with a 'change facing' verb from Chomp
+      for when you're laying down.
+  - bugfix: You can no longer change facing direction, toggle glow,
+  - bugfix: Spin cocoon can no longer be used while buckled which caused space time
+      reality to break
+  - code_imp: Upgrades update_icons to work better and support change-facing
+  - bugfix: You can no longer cause telecrystal inflation
+  - code_imp: Gets a few things standardized by having the base /proc/ have /var and
+      its children being normal.
+  Diana, Will:
+  - bugfix: Protean rigs actually have a proper sprite and aren't just invisible.
+  - bugfix: Fixes RIG gear to not drop your equipped items
+  - bugfix: If a suit tells you it 'protects you between X any Y temperatures' it
+      actually does, now!
+  - code_imp: There is now a unit test that will tell you if your icons are broken!
+  - bugfix: Over a 100+ uniforms, accessories, gloves, boots, suits, etc have been
+      fixed spritewise.
+  - code_imp: over 3600 missing sprite icons have been identified...
+  Kashargul:
+  - bugfix: memory leak
+  - bugfix: incorporeal handling
+  - bugfix: signlang translator
+  - bugfix: subtle and whisper for soulcatcher mobs
+  - rscadd: ctrl u, i, b markups for text inputs
+  - admin: fix internet audio player
+  - code_imp: refactors more new to init
+  - code_imp: some more 516 things
+  Kashargul, Nadyr:
+  - code_imp: replaces more font tags
+  Will:
+  - bugfix: Potentially fixes your organs exploding when you spawn in
