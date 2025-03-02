@@ -116,10 +116,6 @@
 	lum_g += delta_g
 	lum_b += delta_b
 
-	lum_r = CLAMP01(lum_r)
-	lum_g = CLAMP01(lum_g)
-	lum_b = CLAMP01(lum_b)
-
 	if(sunlight == SUNLIGHT_CURRENT && !LAZYLEN(affecting) && !from_sholder)
 		update_sunlight_handlers()
 		update_sunlight_handlers()
