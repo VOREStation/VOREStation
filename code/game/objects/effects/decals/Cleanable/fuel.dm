@@ -55,7 +55,6 @@
 	anchored = FALSE
 
 /obj/effect/decal/cleanable/liquid_fuel/flamethrower_fuel/Initialize(mapload, amt = 1, d = 0)
-	. = ..()
 	set_dir(d) //Setting this direction means you won't get torched by your own flamethrower.
 	if(istype(loc, /turf/simulated))
 		var/turf/simulated/T = loc
