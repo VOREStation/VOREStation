@@ -27,7 +27,7 @@
 	if(deploying) return
 	deploying = TRUE
 	to_chat(user, span_danger("You prime the explosive bolts. Better get clear!"))
-	addtimer(CALLBACK(src, PROC_RED(deploy)), 3 SECONDS, TIMER_DELETE_ME)
+	addtimer(CALLBACK(src, PROC_REF(deploy)), 3 SECONDS, TIMER_DELETE_ME)
 
 /obj/structure/droppod_door/proc/deploy()
 	if(deployed)

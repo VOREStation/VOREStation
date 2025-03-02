@@ -8,8 +8,11 @@
 	var/ore_key
 	var/image/scanner_image
 	var/ore_reagent	// Reagent from pumping water near this ore.
+	var/delete_me
 
 /obj/effect/mineral/Initialize(mapload, var/ore/M)
+	if(delete_me)
+		return INITIALIZE_HINT_QDEL
 	. = ..()
 	name = "[M.display_name] deposit"
 	ore_key = M.name

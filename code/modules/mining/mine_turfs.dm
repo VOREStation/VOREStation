@@ -589,7 +589,10 @@ var/list/mining_overlay_cache = list()
 
 /turf/simulated/mineral/proc/clear_ore_effects()
 	for(var/obj/effect/mineral/M in contents)
-		qdel(M)
+		if(!(M.flags & ATOM_INITIALIZED))
+			M.delete_me = TRUE
+		else
+			qdel(M)
 
 /turf/simulated/mineral/proc/DropMineral()
 	if(!mineral)
