@@ -1,7 +1,0 @@
-author: "Will"
-delete-after: True
-changes:
-  - rscadd: "Adds a new motion tracker subsystem to the game to allow for tracking entities through walls!"
-  - rscadd: "Adds a motion tracker item to R&D"
-  - rscadd: "Adds a vibration sense trait that allows users to hear entities moving through walls"
-  - qol: "Teshari's and Xenochimera's 'listen in' verb has been upgraded to the new listen-in trait"

@@ -61,6 +61,8 @@
 	return 1
 
 /obj/structure/table/MouseDrop_T(obj/O, mob/user, src_location, over_location, src_control, over_control, params)
+	if(user.is_incorporeal())
+		return
 	if(ismob(O.loc)) //If placing an item
 		if(!isitem(O) || user.get_active_hand() != O)
 			return ..()

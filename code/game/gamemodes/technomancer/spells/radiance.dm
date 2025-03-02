@@ -16,8 +16,8 @@
 	var/power = 250
 	toggled = 1
 
-/obj/item/spell/radiance/New()
-	..()
+/obj/item/spell/radiance/Initialize(mapload, coreless)
+	. = ..()
 	set_light(7, 4, l_color = "#D9D900")
 	START_PROCESSING(SSobj, src)
 	log_and_message_admins("has casted [src].")

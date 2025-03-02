@@ -608,6 +608,8 @@
 		return
 
 	ui = SStgui.try_update_ui(user, src, ui)
+	if(!owner || !owner.species) //We tried to update our UI and no longer have an owner!
+		return
 	if(!ui)
 		owner.AddComponent(/datum/component/recursive_move)
 		RegisterSignal(owner, COMSIG_OBSERVER_MOVED, PROC_REF(update_active_camera_screen), TRUE)
@@ -994,8 +996,7 @@
 	customize_usr = TRUE
 
 /datum/tgui_module/appearance_changer/cocoon/tgui_status(mob/user, datum/tgui_state/state)
-	//if(!istype(owner.loc, /obj/item/storage/vore_egg/bugcocoon))
-	if(!owner.transforming)
+	if(!istype(owner.loc, /obj/item/holder/micro))
 		return STATUS_CLOSE
 	return ..()
 

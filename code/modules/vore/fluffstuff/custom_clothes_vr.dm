@@ -55,7 +55,7 @@
 
 	icon_override = 'icons/vore/custom_clothes_vr.dmi'
 	item_state = "wolfgirluni_mob"
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
+	body_parts_covered = CHEST|ARMS|LEGS
 
 //SpoopyLizz: Roiz Lizden
 /obj/item/clothing/suit/storage/hooded/wintercoat/roiz
@@ -234,7 +234,7 @@
 	item_state = "fedcoat"
 
 	blood_overlay_type = "coat"
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
+	body_parts_covered = CHEST|ARMS
 	allowed = list(
 				/obj/item/tank/emergency/oxygen,
 				/obj/item/flashlight,
@@ -304,7 +304,7 @@
 	item_state = "fedmodern"
 
 	blood_overlay_type = "coat"
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
+	body_parts_covered = CHEST|ARMS
 	allowed = list(
 				/obj/item/tank/emergency/oxygen,
 				/obj/item/flashlight,
@@ -514,7 +514,7 @@
 	item_state = "tasvest"
 
 	blood_overlay_type = "coat"
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
+	body_parts_covered = CHEST|LEGS|ARMS
 	armor = list(melee = 40, bullet = 30, laser = 30, energy = 10, bomb = 10, bio = 0, rad = 0)
 
 //Event Costumes Below
@@ -552,6 +552,10 @@
 	item_state = "chicahead_mob"
 
 //Anamatronic Suits
+
+/obj/item/clothing/suit/fluff
+	name = DEVELOPER_WARNING_NAME
+
 /obj/item/clothing/suit/fluff/freddy
 	name = "Animatronic Suit"
 	desc = "Votre toast, je peux vous le rendre."
@@ -564,7 +568,7 @@
 
 	gas_transfer_coefficient = 0.01
 	permeability_coefficient = 0.02
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS|HANDS
+	body_parts_covered = CHEST|LEGS|FEET|ARMS|HANDS
 	allowed = list(/obj/item/flashlight,/obj/item/tank)
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
 	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
@@ -896,7 +900,7 @@
 
 //Kitsuhana Uniforms
 /obj/item/clothing/under/rank/khi
-	name = "Delete Me"
+	name = DEVELOPER_WARNING_NAME
 	desc = "Why did you spawn this one? Dork."
 	sensor_mode = 3
 
@@ -946,6 +950,9 @@
 	icon_state = "khi_uniform_civ"
 	armor = list(melee = 0, bullet = 0, laser = 0, energy = 0, bomb = 0, bio = 0, rad = 0)
 
+/obj/item/clothing/under/rank/khi/fluff
+	name = DEVELOPER_WARNING_NAME
+
 /obj/item/clothing/under/rank/khi/fluff/aronai //Aro fluff version
 	name = "KHI meditech suit"
 	desc = "Kitsuhana Heavy Industries uniform. This one has the colors of a resleeving or mnemonics engineer. It has 'Aronai' written inside the top."
@@ -956,15 +963,15 @@
 /obj/item/clothing/under/fluff/earthenbreath
 	name = "Earth Swimsuit"
 	desc = "The suit of Subject 688,509,403. Made of an enviromentally safe elastic. Dry-clean not required."
-	icon_state = "fluffearthenbreath"
-	item_state = "fluffearthenbreath_mob"
+	icon_state = "swim_earth"
+	item_state = "swim_earth"
 
 //jacobdragon:Earthen Breath
 /obj/item/clothing/head/fluff/hairflowerpin
 	name = "Hair Flower Pin"
 	desc = "It's a flower fashioned into a hair pin. It's very nice."
-	icon_state = "hairflowerpin"
-	item_state = "hairflowerpin_mob"
+	icon_state = "hairflower_pink"
+	item_state = "hairflower_pink"
 	body_parts_covered = 0
 
 //bwoincognito:Octavious Ward
@@ -1124,7 +1131,7 @@
 	icon_override = 'icons/vore/custom_clothes_vr.dmi'
 	item_state = "chococoat_on"
 	icon_state = "chococoat"
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
+	body_parts_covered = CHEST|ARMS
 	allowed = list (/obj/item/material/knife)
 
 //KiwiDaNinja: Chakat Taiga
@@ -1140,6 +1147,7 @@ Departamental Swimsuits, for general use
 */
 
 /obj/item/clothing/under/swimsuit/fluff/
+	name = DEVELOPER_WARNING_NAME
 	icon = 'icons/vore/custom_clothes_vr.dmi'
 	icon_override = 'icons/vore/custom_clothes_vr.dmi'
 	siemens_coefficient = 1
@@ -1251,7 +1259,7 @@ Departamental Swimsuits, for general use
 	icon = 'icons/inventory/suit/item_vr.dmi'
 	default_worn_icon = 'icons/inventory/suit/mob_vr.dmi'
 	icon_state = "trek_ds9_coat"
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
+	body_parts_covered = CHEST|ARMS
 	permeability_coefficient = 0.50
 	allowed = list(
 		/obj/item/flashlight, /obj/item/analyzer,
@@ -1634,7 +1642,7 @@ Departamental Swimsuits, for general use
 	item_state = "kilanodress_mob"
 
 	species_restricted = null
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
+	body_parts_covered = CHEST|ARMS
 
 //BeyondMyLife:Kilano Soryu
 /obj/item/clothing/gloves/fluff/kilano
@@ -1694,7 +1702,7 @@ Departamental Swimsuits, for general use
 	sprite_sheets = list(
 			SPECIES_TESHARI = 'icons/vore/custom_clothes_tesh_vr.dmi'
 			)
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO
+	body_parts_covered = CHEST
 
 //Aztectornado:Tron inspired Siren outfit
 /obj/item/clothing/under/fluff/siren
@@ -1787,13 +1795,13 @@ Departamental Swimsuits, for general use
 	item_state = "sweater_annie"
 
 	slot_flags = SLOT_OCLOTHING | SLOT_TIE
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
+	body_parts_covered = CHEST|ARMS
 	w_class = ITEMSIZE_NORMAL
 	slot = ACCESSORY_SLOT_OVER
 
 //General definition for bracer items. No icons.
 /obj/item/clothing/accessory/bracer
-	name = "bracer"
+	name = DEVELOPER_WARNING_NAME // "bracer"
 	desc = "A bracer."
 	icon_state = null
 	item_state = null
@@ -1911,7 +1919,7 @@ Departamental Swimsuits, for general use
 /obj/item/clothing/under/fluff/excess
 	name = "XS-21E Labeled Latex Clothing"
 	desc = "A latex navy blue tube-top and matching compression shorts, with a bright yellow stripe down the side. \"XS-21E\" is written on the thigh. \"Warning\" is written in yellow by the stripe on the top."
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO
+	body_parts_covered = CHEST
 	icon = 'icons/vore/custom_clothes_vr.dmi'
 	icon_state = "latex_clothes"
 	item_state = "latex_clothes_mob"
@@ -2042,7 +2050,7 @@ Departamental Swimsuits, for general use
 	flags = null
 	armor = list(melee = 0, bullet = 0, laser = 0, energy = 0, bomb = 0, bio = 0, rad = 0) // It's not armor, it's a dorky frickin cape
 	body_parts_covered = null // Cape ain't gonna cover a THING
-	cold_protection = UPPER_TORSO|LOWER_TORSO|ARMS // It will keep you toasty tho, it's more than big enough to help with that! Just wrap the thing around you when on the surface, idk
+	cold_protection = CHEST|ARMS // It will keep you toasty tho, it's more than big enough to help with that! Just wrap the thing around you when on the surface, idk
 	icon = 'icons/vore/custom_clothes_vr.dmi'
 	icon_override = 'icons/vore/custom_onmob_vr.dmi'
 	icon_state = "nikkicape"
@@ -2219,6 +2227,8 @@ Departamental Swimsuits, for general use
 		add_attack_logs(user, target, "Teleported [target] with via \the [src]'s [translocator]!")
 	else ..()
 
+/obj/item/clothing/suit/storage/hooded/fluff
+	name = DEVELOPER_WARNING_NAME
 //Vitoras: Verie
 /obj/item/clothing/suit/storage/hooded/fluff/verie
 	name = "distressingly cyan hoodie"
@@ -2263,7 +2273,7 @@ Departamental Swimsuits, for general use
 	icon_override = 'icons/vore/custom_onmob_vr.dmi'
 	item_state = "veriesuit"
 
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|FEET|ARMS|HANDS
+	body_parts_covered = CHEST|FEET|ARMS|HANDS
 
 //PastelPrinceDan: Kiyoshi Maki
 /obj/item/clothing/accessory/poncho/roles/cloak/fluff/cloakglowing
@@ -2334,7 +2344,7 @@ Departamental Swimsuits, for general use
 /obj/item/clothing/head/hood/winter/fluff/mechanic
 	name = "mechanic winter hood"
 	desc = "A blue and yellow winter coat's hood."
-	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon = 'icons/inventory/head/item.dmi'
 	icon_state = "mechahood"
 
 	icon_override = 'icons/vore/custom_onmob_vr.dmi'
@@ -2489,7 +2499,7 @@ Departamental Swimsuits, for general use
 
 	icon_override = 'icons/vore/custom_clothes_vr.dmi'
 	item_state = "foxflightsuit_mob"
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
+	body_parts_covered = CHEST|ARMS|LEGS
 
 //Shalax: Cerise Duelliste
 /obj/item/storage/belt/security/fluff/cerise
@@ -2513,7 +2523,7 @@ Departamental Swimsuits, for general use
 
 	icon_override = 'icons/vore/custom_clothes_vr.dmi'
 	item_state = "greek_dress"
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
+	body_parts_covered = CHEST|ARMS|LEGS
 
 //JadeManique: Freyr
 /obj/item/clothing/mask/fluff/freyr_mask
@@ -2550,7 +2560,7 @@ Departamental Swimsuits, for general use
 
 	icon_override = 'icons/vore/custom_onmob_vr.dmi'
 	item_state = "perrinrobes_s"
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO
+	body_parts_covered = CHEST
 
 //Fuackwit422: Zera Livanne
 /obj/item/clothing/suit/storage/toggle/labcoat/fluff/zera

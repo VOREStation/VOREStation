@@ -519,8 +519,7 @@
 	These diskettes are used to transfer genetic information between machines and profiles.
 	A load/save dialog will become available in each profile if a disk is inserted.</p><br>
 	<i>A good diskette is a great way to counter aforementioned genetic drift!</i><br>
-	<br>
-	<font size=1>This technology produced under license from Thinktronic Systems, LTD.</font>"}
+	<br>"} + span_small("This technology produced under license from Thinktronic Systems, LTD.")
 
 //SOME SCRAPS I GUESS
 /* EMP grenade/spell effect

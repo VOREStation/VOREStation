@@ -1,6 +1,0 @@
-author: "Drathek"
-delete-after: True
-changes:
-  - rscadd: "Added OD pragma lints"
-  - bugfix: "Fixed various issues caught by errors e.g. icon_forge's apply method, VV on a list, etc."
-  - bugfix: "Fixed various issues with apply_damage where arguments were incorrect for used_weapon"
