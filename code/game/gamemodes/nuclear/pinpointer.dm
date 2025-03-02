@@ -55,7 +55,7 @@
 
 /obj/item/pinpointer/examine(mob/user)
 	. = ..()
-	for(var/obj/machinery/nuclearbomb/bomb in machines)
+	for(var/obj/machinery/nuclearbomb/bomb in GLOB.machines)
 		if(bomb.timing)
 			. += "Extreme danger.  Arming signal detected.   Time remaining: [bomb.timeleft]"
 
@@ -287,7 +287,7 @@
 		return PROCESS_KILL
 
 	if(!our_shuttle)
-		for(var/obj/machinery/computer/shuttle_control/S in machines)
+		for(var/obj/machinery/computer/shuttle_control/S in GLOB.machines)
 			if(S.shuttle_tag == shuttle_comp_id) // Shuttle tags are used so that it will work if the computer path changes, as it does on the southern cross map.
 				our_shuttle = S
 				break

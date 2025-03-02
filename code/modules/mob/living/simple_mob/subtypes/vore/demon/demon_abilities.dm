@@ -68,7 +68,7 @@
 		//Affect nearby lights
 		var/destroy_lights = 0
 
-		for(var/obj/machinery/light/L in machines)
+		for(var/obj/machinery/light/L in GLOB.machines)
 			if(L.z != z || get_dist(src,L) > 10)
 				continue
 

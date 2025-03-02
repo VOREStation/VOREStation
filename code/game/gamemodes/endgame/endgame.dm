@@ -58,14 +58,14 @@
 
 // Apply changes to a new turf.
 /datum/universal_state/proc/OnTurfChange(var/turf/NT)
- 	return
+	return
 
 /datum/universal_state/proc/OverlayAndAmbientSet()
 	return
 
 /proc/SetUniversalState(var/newstate,var/on_exit=1, var/on_enter=1)
 	if(on_exit)
-		universe.OnExit()
-	universe = new newstate
+		GLOB.universe.OnExit()
+	GLOB.universe = new newstate
 	if(on_enter)
-		universe.OnEnter()
+		GLOB.universe.OnEnter()

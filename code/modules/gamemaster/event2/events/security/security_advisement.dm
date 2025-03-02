@@ -6,23 +6,23 @@
 
 /datum/event2/meta/security_screening/get_weight()
 	. = 0
-	var/sec = metric.count_people_in_department(DEPARTMENT_SECURITY)
+	var/sec = GLOB.metric.count_people_in_department(DEPARTMENT_SECURITY)
 	if(!sec < 2)
 		return 0 // Can't screen with no security.
 	. += sec * 10
-	. += metric.count_people_in_department(DEPARTMENT_EVERYONE) * 2
+	. += GLOB.metric.count_people_in_department(DEPARTMENT_EVERYONE) * 2
 
 	// Having ""suspecious"" people present makes this more likely to be picked.
 	var/suspicious_people = 0
-	suspicious_people += metric.count_all_of_specific_species(SPECIES_PROMETHEAN) * 20
-	suspicious_people += metric.count_all_of_specific_species(SPECIES_UNATHI) * 10
-	suspicious_people += metric.count_all_of_specific_species(SPECIES_ZADDAT) * 10
-	suspicious_people += metric.count_all_of_specific_species(SPECIES_SKRELL) * 5 // Not sure why skrell are so high.
-	suspicious_people += metric.count_all_of_specific_species(SPECIES_TAJARAN) * 5
-	suspicious_people += metric.count_all_of_specific_species(SPECIES_TESHARI) * 5
-	suspicious_people += metric.count_all_of_specific_species(SPECIES_HUMAN_VATBORN) * 5
-	suspicious_people += metric.count_all_FBPs_of_kind(FBP_DRONE) * 20
-	suspicious_people += metric.count_all_FBPs_of_kind(FBP_POSI) * 10
+	suspicious_people += GLOB.metric.count_all_of_specific_species(SPECIES_PROMETHEAN) * 20
+	suspicious_people += GLOB.metric.count_all_of_specific_species(SPECIES_UNATHI) * 10
+	suspicious_people += GLOB.metric.count_all_of_specific_species(SPECIES_ZADDAT) * 10
+	suspicious_people += GLOB.metric.count_all_of_specific_species(SPECIES_SKRELL) * 5 // Not sure why skrell are so high.
+	suspicious_people += GLOB.metric.count_all_of_specific_species(SPECIES_TAJARAN) * 5
+	suspicious_people += GLOB.metric.count_all_of_specific_species(SPECIES_TESHARI) * 5
+	suspicious_people += GLOB.metric.count_all_of_specific_species(SPECIES_HUMAN_VATBORN) * 5
+	suspicious_people += GLOB.metric.count_all_FBPs_of_kind(FBP_DRONE) * 20
+	suspicious_people += GLOB.metric.count_all_FBPs_of_kind(FBP_POSI) * 10
 	if(!suspicious_people)
 		return 0
 	. += suspicious_people
@@ -52,7 +52,7 @@
 	// First pass makes popular things more likely to get picked, e.g. 5 prommies vs 1 drone.
 	for(var/species_name in species_weights)
 		var/give_weight = 0
-		for(var/datum/data/record/R in data_core.general)
+		for(var/datum/data/record/R in GLOB.data_core.general)
 			if(R.fields["species"] == species_name)
 				give_weight += species_weights[species_name]
 
@@ -60,7 +60,7 @@
 
 	for(var/bot_type in synth_weights)
 		var/give_weight = 0
-		for(var/datum/data/record/R in data_core.general)
+		for(var/datum/data/record/R in GLOB.data_core.general)
 			if(R.fields["brain_type"] == bot_type)
 				give_weight += synth_weights[bot_type]
 
@@ -72,11 +72,11 @@
 		var/victim_chosen = pickweight(end_weights)
 
 		if(victim_chosen in synth_weights)
-			if(metric.count_all_FBPs_of_kind(victim_chosen) > 0)
+			if(GLOB.metric.count_all_FBPs_of_kind(victim_chosen) > 0)
 				victim = victim_chosen
 				break
 		else
-			if(metric.count_all_of_specific_species(victim_chosen) > 0)
+			if(GLOB.metric.count_all_of_specific_species(victim_chosen) > 0)
 				victim = victim_chosen
 				break
 		if(!victim)

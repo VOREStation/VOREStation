@@ -60,7 +60,7 @@
 	// Traitgenes Monkeys perform emotes based on their traits
 	if(H.canmove && isturf(H.loc) && !H.pulledby) //won't move if being pulled
 		if(prob(33))
-			step(H, pick(cardinal))
+			step(H, pick(GLOB.cardinal))
 		if(prob(5))
 			// Handle generic gene expression emotes
 			if(!H.species || !H.species.traits || H.species.traits.len == 0)

@@ -179,7 +179,7 @@
 /obj/structure/portal_gateway/Bumped(mob/M as mob|obj)
 	if(ismob(M) && !(isliving(M)))
 		return	//do not send ghosts, zshadows, ai eyes, etc
-	var/obj/effect/landmark/dest = pick(eventdestinations)
+	var/obj/effect/landmark/dest = pick(GLOB.eventdestinations)
 	if(dest)
 		M << 'sound/effects/phasein.ogg'
 		playsound(src, 'sound/effects/phasein.ogg', 100, 1)
@@ -211,7 +211,7 @@
 							if(istype(II,/obj/item/implant) || istype(II,/obj/item/nif))
 								continue
 							MI.drop_from_inventory(II, dest.loc)
-					var/obj/effect/landmark/finaldest = pick(awayabductors)
+					var/obj/effect/landmark/finaldest = pick(GLOB.awayabductors)
 					MI.forceMove(finaldest.loc)
 					sleep(1)
 					MI.Paralyse(10)
@@ -221,7 +221,7 @@
 					if(istype(I,/obj/item/implant) || istype(I,/obj/item/nif))
 						continue
 					L.drop_from_inventory(I, dest.loc)
-			var/obj/effect/landmark/finaldest = pick(awayabductors)
+			var/obj/effect/landmark/finaldest = pick(GLOB.awayabductors)
 			L.forceMove(finaldest.loc)
 			sleep(1)
 			L.Paralyse(10)

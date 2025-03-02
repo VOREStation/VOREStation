@@ -6,7 +6,7 @@
 
 /datum/event2/meta/sudden_weather_shift/get_weight()
 	// The proc name is a bit misleading, it only counts players outside, not all mobs.
-	return (metric.count_all_outdoor_mobs() * 20) / (times_ran + 1)
+	return (GLOB.metric.count_all_outdoor_mobs() * 20) / (times_ran + 1)
 
 /datum/event2/event/sudden_weather_shift
 	start_delay_lower_bound = 30 SECONDS

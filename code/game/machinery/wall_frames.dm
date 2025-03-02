@@ -41,7 +41,7 @@
 
 	var/ndir
 	ndir = user.dir
-	if(!(ndir in cardinal))
+	if(!(ndir in GLOB.cardinal))
 		return
 
 	var/obj/machinery/M = new build_machine_type(get_turf(src.loc), ndir, 1, frame_type)
@@ -64,7 +64,7 @@
 	else
 		ndir = get_dir(on_wall, user)
 
-	if(!(ndir in cardinal))
+	if(!(ndir in GLOB.cardinal))
 		return
 
 	var/turf/loc = get_turf(user)

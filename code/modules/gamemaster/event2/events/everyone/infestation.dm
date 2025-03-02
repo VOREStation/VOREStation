@@ -3,7 +3,7 @@
 	departments = list(DEPARTMENT_EVERYONE)
 
 /datum/event2/meta/infestation/get_weight()
-	return metric.count_people_in_department(DEPARTMENT_EVERYONE) * 10
+	return GLOB.metric.count_people_in_department(DEPARTMENT_EVERYONE) * 10
 
 /datum/event2/meta/infestation/rodents
 	name = "infestation - rodents"

@@ -65,7 +65,7 @@ SUBSYSTEM_DEF(motiontracker)
 	if(!prob(hear_chance))
 		return
 	if(hear_chance <= 40)
-		T = get_step(T,pick(cardinal))
+		T = get_step(T,pick(GLOB.cardinal))
 		if(!T) // incase...
 			return
 	// Echo time, we have a turf

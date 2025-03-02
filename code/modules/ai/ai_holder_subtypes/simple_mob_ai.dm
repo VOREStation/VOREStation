@@ -140,7 +140,7 @@
 
 /datum/ai_holder/simple_mob/melee/evasive/post_melee_attack(atom/A)
 	if(holder.Adjacent(A))
-		holder.IMove(get_step(holder, pick(alldirs)))
+		holder.IMove(get_step(holder, pick(GLOB.alldirs)))
 		holder.face_atom(A)
 
 
@@ -206,12 +206,12 @@
 
 // Juke
 /datum/ai_holder/simple_mob/humanoid/hostile/post_melee_attack(atom/A)
-	holder.IMove(get_step(holder, pick(alldirs)))
+	holder.IMove(get_step(holder, pick(GLOB.alldirs)))
 	holder.face_atom(A)
 
 /datum/ai_holder/simple_mob/humanoid/hostile/post_ranged_attack(atom/A)
 	//Pick a random turf to step into
-	var/turf/T = get_step(holder, pick(alldirs))
+	var/turf/T = get_step(holder, pick(GLOB.alldirs))
 	if((A in check_trajectory(A, T))) // Can we even hit them from there?
 		holder.IMove(T)
 		holder.face_atom(A)

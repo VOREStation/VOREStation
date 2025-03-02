@@ -51,7 +51,7 @@
 		on_engagement(target)
 		if(firing_lanes && !test_projectile_safety(target))
 			// Nudge them a bit, maybe they can shoot next time.
-			var/turf/T = get_step(holder, pick(cardinal))
+			var/turf/T = get_step(holder, pick(GLOB.cardinal))
 			if(T)
 				holder.IMove(T) // IMove() will respect movement cooldown.
 				holder.face_atom(target)
@@ -269,7 +269,7 @@
 /datum/ai_holder/proc/destroy_surroundings(direction, violent = TRUE)
 	ai_log("destroy_surroundings() : Entering.", AI_LOG_TRACE)
 	if(!direction)
-		direction = pick(cardinal) // FLAIL WILDLY
+		direction = pick(GLOB.cardinal) // FLAIL WILDLY
 		ai_log("destroy_surroundings() : No direction given, picked [direction] randomly.", AI_LOG_DEBUG)
 
 	var/turf/problem_turf = get_step(holder, direction)
@@ -288,7 +288,7 @@
 		ai_log("destroy_surroundings() : Going to try to violently clear [problem_turf].", AI_LOG_DEBUG)
 		// First, kill windows in the way.
 		for(var/obj/structure/window/W in problem_turf)
-			if(W.dir == reverse_dir[holder.dir]) // So that windows get smashed in the right order
+			if(W.dir == GLOB.reverse_dir[holder.dir]) // So that windows get smashed in the right order
 				ai_log("destroy_surroundings() : Attacking side window.", AI_LOG_INFO)
 				return melee_attack(W)
 

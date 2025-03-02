@@ -14,7 +14,7 @@
 // This has an abnormally high weight due to antags being very important for the round,
 // however the weight will decay with more antags, and more attempts to add antags.
 /datum/event2/meta/random_antagonist/get_weight()
-	var/antags = metric.count_all_antags()
+	var/antags = GLOB.metric.count_all_antags()
 	return 200 / (antags + times_ran + 1)
 
 

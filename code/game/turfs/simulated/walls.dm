@@ -238,7 +238,7 @@
 	if(locate(/obj/effect/overlay/wallrot) in src)
 		return FALSE
 
-	// Wall-rot can't go onto walls that are surrounded in all four cardinal directions.
+	// Wall-rot can't go onto walls that are surrounded in all four GLOB.cardinal directions.
 	// Because of spores, or something. It's actually to avoid the pain that is removing wallrot surrounded by
 	// four r-walls.
 	var/at_least_one_open_turf = FALSE

@@ -173,7 +173,7 @@
 	LAZYADD(A.all_arfgs, src)
 	areas_added = list(A)
 
-	for(var/direction in cardinal)
+	for(var/direction in GLOB.cardinal)
 		A = get_area(get_step(src,direction))
 		if(istype(A) && !(A in areas_added))
 			LAZYADD(A.all_arfgs, src)

@@ -32,7 +32,7 @@
 
 /datum/event/escaped_slimes/start()
 	var/list/vents = list()
-	for(var/obj/machinery/atmospherics/unary/vent_pump/temp_vent in machines)
+	for(var/obj/machinery/atmospherics/unary/vent_pump/temp_vent in GLOB.machines)
 		if(temp_vent.network && temp_vent.loc.z in using_map.station_levels && !is_area_occupied(temp_vent.loc.loc)) //borrowed from spiders event, but it works. Distribute the slimes only in rooms with vents
 			vents += temp_vent
 

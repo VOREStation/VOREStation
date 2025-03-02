@@ -38,7 +38,7 @@ GLOBAL_LIST_BOILERPLATE(all_singularities, /obj/singularity)
 
 	..()
 	START_PROCESSING(SSobj, src)
-	for(var/obj/machinery/power/singularity_beacon/singubeacon in machines)
+	for(var/obj/machinery/power/singularity_beacon/singubeacon in GLOB.machines)
 		if(singubeacon.active)
 			target = singubeacon
 			break
@@ -283,7 +283,7 @@ GLOBAL_LIST_BOILERPLATE(all_singularities, /obj/singularity)
 	if(!move_self)
 		return 0
 
-	var/movement_dir = pick(alldirs - last_failed_movement)
+	var/movement_dir = pick(GLOB.alldirs - last_failed_movement)
 
 	if(force_move)
 		movement_dir = force_move
