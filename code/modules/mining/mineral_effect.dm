@@ -12,7 +12,7 @@
 
 /obj/effect/mineral/Initialize(mapload, var/ore/M)
 	. = ..()
-	if(delete_me)
+	if(delete_me || !istype(loc, /turf/simulated/mineral))
 		return INITIALIZE_HINT_QDEL
 	name = "[M.display_name] deposit"
 	ore_key = M.name
