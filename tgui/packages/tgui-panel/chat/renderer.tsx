@@ -124,18 +124,19 @@ const handleImageError = (e: ErrorEvent) => {
   setTimeout(() => {
     /** @type {HTMLImageElement} */
     const node = e.target as HTMLImageElement;
-    if (node) {
-      const attempts =
-        parseInt(node.getAttribute('data-reload-n') || '', 10) || 0;
-      if (attempts >= IMAGE_RETRY_LIMIT) {
-        // logger.error(`failed to load an image after ${attempts} attempts`);
-        return;
-      }
-      const src = node.src;
-      node.src = '';
-      node.src = src + '#' + attempts;
-      node.setAttribute('data-reload-n', (attempts + 1).toString());
+    if (!node) {
+      return;
     }
+    const attempts =
+      parseInt(node.getAttribute('data-reload-n') || '', 10) || 0;
+    if (attempts >= IMAGE_RETRY_LIMIT) {
+      // logger.error(`failed to load an image after ${attempts} attempts`);
+      return;
+    }
+    const src = node.src;
+    node.src = '';
+    node.src = src + '#' + attempts;
+    node.setAttribute('data-reload-n', (attempts + 1).toString());
   }, IMAGE_RETRY_DELAY);
 };
 
