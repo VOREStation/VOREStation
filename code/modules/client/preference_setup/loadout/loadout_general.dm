@@ -38,10 +38,17 @@
 /datum/gear/fake_coin/New()
 	..()
 	var/cointype = list()
-	cointype["silver"] = /obj/item/fake_coin/silver
 	cointype["gold"] = /obj/item/fake_coin/gold
+	cointype["silver"] = /obj/item/fake_coin/silver
+	cointype["copper"] = /obj/item/fake_coin/copper
 	cointype["diamond"] = /obj/item/fake_coin/diamond
+	cointype["graphite"] = /obj/item/fake_coin/graphite
 	cointype["iron"] = /obj/item/fake_coin/iron
+	cointype["steel"] = /obj/item/fake_coin/steel
+	cointype["durasteel"] = /obj/item/fake_coin/durasteel
+	cointype["plasteel"] = /obj/item/fake_coin/plasteel
+	cointype["titanium"] = /obj/item/fake_coin/titanium
+	cointype["lead"] = /obj/item/fake_coin/lead
 	cointype["phoron"] = /obj/item/fake_coin/phoron
 	cointype["uranium"] = /obj/item/fake_coin/uranium
 	cointype["platinum"] = /obj/item/fake_coin/platinum
