@@ -1,9 +1,0 @@
-author: "Diana, Will"
-delete-after: True
-changes:
-  - bugfix: "Protean rigs actually have a proper sprite and aren't just invisible."
-  - bugfix: "Fixes RIG gear to not drop your equipped items"
-  - bugfix: "If a suit tells you it 'protects you between X any Y temperatures' it actually does, now!"
-  - code_imp: "There is now a unit test that will tell you if your icons are broken!"
-  - bugfix: "Over a 100+ uniforms, accessories, gloves, boots, suits, etc have been fixed spritewise."
-  - code_imp: "over 3600 missing sprite icons have been identified..."

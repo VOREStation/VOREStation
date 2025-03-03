@@ -73,7 +73,7 @@ var/global/list/default_medbay_channels = list(
 	frequency = new_frequency
 	radio_connection = radio_controller.add_object(src, frequency, RADIO_CHAT)
 
-/obj/item/radio/Initialize()
+/obj/item/radio/Initialize(mapload)
 	. = ..()
 	if(frequency < RADIO_LOW_FREQ || frequency > RADIO_HIGH_FREQ)
 		frequency = sanitize_frequency(frequency, RADIO_LOW_FREQ, RADIO_HIGH_FREQ)
@@ -82,6 +82,13 @@ var/global/list/default_medbay_channels = list(
 	for (var/ch_name in channels)
 		secure_radio_connections[ch_name] = radio_controller.add_object(src, radiochannels[ch_name],  RADIO_CHAT)
 
+	wires = new(src)
+	internal_channels = default_internal_channels.Copy()
+	listening_objects += src
+	return INITIALIZE_HINT_LATELOAD
+
+/obj/item/radio/LateInitialize()
+	. = ..()
 	if(bluespace_radio)
 		if(bs_tx_preload_id)
 			//Try to find a receiver
@@ -117,11 +124,6 @@ var/global/list/default_medbay_channels = list(
 						break
 			if(!found)
 				testing("A radio [src] at [x],[y],[z] specified bluespace prelink IDs, but the machines with corresponding IDs ([bs_tx_preload_id], [bs_rx_preload_id]) couldn't be found.")
-
-	wires = new(src)
-	internal_channels = default_internal_channels.Copy()
-	listening_objects += src
-	return INITIALIZE_HINT_LATELOAD
 
 /obj/item/radio/Destroy()
 	qdel(wires)

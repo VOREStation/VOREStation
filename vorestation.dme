@@ -155,6 +155,7 @@
 #include "code\__defines\typeids.dm"
 #include "code\__defines\unit_tests.dm"
 #include "code\__defines\update_icons.dm"
+#include "code\__defines\vchatlog.dm"
 #include "code\__defines\verb_manager.dm"
 #include "code\__defines\visualnet.dm"
 #include "code\__defines\vore.dm"

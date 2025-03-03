@@ -423,10 +423,12 @@
 /obj/item/clothing/gloves/dropped(mob/user)
 	..()
 
-	var/mob/living/carbon/human/H = wearer?.resolve()
-	if(!ishuman(H))
+	punch_force = initial(punch_force)
+	wearer = null
+	if(!ishuman(user))
 		return
 
+	var/mob/living/carbon/human/H = user
 	if(gloves) //We have nested gloves! Gloves under our gloves!
 		if(!H.equip_to_slot_if_possible(gloves, slot_gloves))
 			gloves.forceMove(get_turf(src))
@@ -437,8 +439,6 @@
 		if(!H.equip_to_slot_if_possible(ring, slot_gloves))
 			ring.forceMove(get_turf(src))
 		src.ring = null
-	punch_force = initial(punch_force)
-	wearer = null
 
 /obj/item/clothing/gloves
 	var/datum/unarmed_attack/special_attack = null //do the gloves have a special unarmed attack?

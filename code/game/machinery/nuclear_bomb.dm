@@ -25,8 +25,8 @@ var/bomb_set
 	                      // 3 is sealant open, 4 is unwrenched, 5 is removed from bolts.
 	use_power = USE_POWER_OFF
 
-/obj/machinery/nuclearbomb/New()
-	..()
+/obj/machinery/nuclearbomb/Initialize(mapload)
+	. = ..()
 	r_code = "[rand(10000, 99999.0)]"//Creates a random code upon object spawn.
 	wires["Red"] = 0
 	wires["Blue"] = 0
@@ -52,7 +52,7 @@ var/bomb_set
 		for(var/mob/M in viewers(1, src))
 			if((M.client && M.machine == src))
 				attack_hand(M)
-	return
+	return ..()
 
 /obj/machinery/nuclearbomb/attackby(obj/item/O as obj, mob/user as mob)
 	if(O.has_tool_quality(TOOL_SCREWDRIVER))
@@ -412,9 +412,9 @@ var/bomb_set
 
 #undef NUKERANGE
 
-/obj/item/disk/nuclear/New()
-	..()
-	nuke_disks |= src
+/obj/item/disk/nuclear/Initialize(mapload)
+	. = ..()
+	nuke_disks += src
 
 /obj/item/disk/nuclear/Destroy()
 	if(!nuke_disks.len && blobstart.len > 0)

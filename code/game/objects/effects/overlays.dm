@@ -10,9 +10,9 @@
 	plane = ABOVE_OBJ_PLANE
 	var/tmp/atom/BeamSource
 
-/obj/effect/overlay/beam/New()
-	..()
-	spawn(10) qdel(src)
+/obj/effect/overlay/beam/Initialize(mapload)
+	. = ..()
+	QDEL_IN(src, 1 SECOND)
 
 /obj/effect/overlay/palmtree_r
 	name = "Palm tree"
