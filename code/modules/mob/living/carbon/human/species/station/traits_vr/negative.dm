@@ -593,16 +593,6 @@
 	..()
 	H.setMaxHealth(S.total_health)
 
-/datum/trait/negative/endurance_glass // Glass Cannon
-	name = "Glass Endurance"
-	desc = "Your body is very fragile. Reduces your maximum hitpoints to 25. Beware sneezes. You require only 50 damage in total to die, compared to 200 normally. You will go into crit after losing 25 HP, compared to crit at 100 HP."
-	cost = -12 // Similar to Very Low Endurance, this straight up will require you NEVER getting in a fight. This is extremely crippling. I salute the madlad that takes this.
-	var_changes = list("total_health" = 25)
-
-/datum/trait/negative/endurance_glass/apply(var/datum/species/S,var/mob/living/carbon/human/H)
-	..()
-	H.setMaxHealth(S.total_health)
-
 /datum/trait/negative/reduced_biocompat_minor
 	name = "Reduced Biocompatibility, Minor"
 	desc = "For whatever reason, you're one of the unlucky few who don't get as much benefit from modern-day chemicals. Remember to note this down in your medical records! Chems are only 80% as effective on you!"
@@ -686,6 +676,34 @@
 
 	activation_message="You feel as though the airflow around you is painful..."
 	primitive_expression_messages=list("bumps their toe, screaming in pain")
+
+/datum/trait/negative/sensitive_biochem
+	name = "Sensitive Biochemistry, Minor"
+	desc = "Your biochemistry is a little delicate, rendering you more susceptible to both deadly toxins and the more subtle ones. You'll probably want to list this in your medical records, and perhaps in your exploitable info as well. Toxin damages and knockout drugs are 25% stronger on you."
+	cost = -1
+	var_changes = list("chem_strength_tox" = 1.25)
+
+	//Traitgenes
+	is_genetrait = FALSE
+	hidden = FALSE
+
+/datum/trait/negative/sensitive_biochem/moderate
+	name = "Sensitive Biochemistry, Moderate"
+	desc = "Your biochemistry is delicate, rendering you more moderately more susceptible to both deadly toxins and the more subtle ones. You'll probably want to list this in your medical records, and perhaps in your exploitable info as well. Toxin damages and knockout drugs are 50% stronger on you."
+	cost = -2
+	var_changes = list("chem_strength_tox" = 1.5)
+
+	//Traitgenes
+	is_genetrait = FALSE
+
+/datum/trait/negative/sensitive_biochem/major
+	name = "Sensitive Biochemistry, Major"
+	desc = "Your biochemistry is delicate, rendering you more massively more susceptible to both deadly toxins and the more subtle ones. You'll probably want to list this in your medical records, and perhaps in your exploitable info as well. Toxin damages and knockout drugs are 100% stronger on you."
+	cost = -3
+	var_changes = list("chem_strength_tox" = 2)
+
+	//Traitgenes
+	is_genetrait = TRUE
 
 /datum/trait/negative/sensitive_biochem
 	name = "Sensitive Biochemistry"

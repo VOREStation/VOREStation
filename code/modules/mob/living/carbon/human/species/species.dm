@@ -110,7 +110,7 @@
 
 	var/chem_strength_heal =    1						// Multiplier to most beneficial chem strength
 	var/chem_strength_pain =    1						// Multiplier to painkiller strength (could be used in a negative trait to simulate long-term addiction reducing effects, etc.)
-	var/chem_strength_tox =	    1						// Multiplier to toxic chem strength (inc. chloral/sopo/mindbreaker/etc. thresholds)
+	var/chem_strength_tox =	    1						// Multiplier to the strength of toxic or deabilitating chemicals (inc. chloral/sopo/mindbreaker/ambrosia/etc. thresholds)
 	var/chem_strength_alcohol = 1						// Multiplier to alcohol effect thresholds; higher means more is needed to reach a given effect tier
 
 	var/chemOD_threshold =		1						// Multiplier to overdose threshold; lower = easier overdosing
