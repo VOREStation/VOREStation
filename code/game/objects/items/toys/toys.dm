@@ -1156,6 +1156,7 @@
 	desc = "Officer Tiny-Tin, now with rooty-tooty-shooty action! Press his belly to hear a sound!"
 	icon = 'icons/obj/toy.dmi'
 	icon_state = "plushie_tinsec"
+	var/cooldown = 0
 
 /obj/item/toy/plushie/tinytin_sec/attack_self(mob/user as mob)
 	if(!cooldown)
