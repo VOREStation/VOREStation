@@ -119,21 +119,6 @@
 	melee_damage_upper = 15
 	attack_armor_pen = 0
 
-/mob/living/simple_mob/animal/space/carp
-	icon = 'icons/mob/vore.dmi'
-	vore_active = 1
-	vore_icons = SA_ICON_LIVING
-	response_help = "pets"
-	response_disarm = "gently pushes aside"
-	response_harm = "hits"
-
-/mob/living/simple_mob/animal/space/carp/large
-	vore_icons = 0
-/mob/living/simple_mob/animal/space/carp/large/huge
-	vore_icons = 0
-/mob/living/simple_mob/animal/space/carp/holodeck
-	vore_icons = 0
-
 /* //VOREStation AI Temporary removal
 /mob/living/simple_mob/hostile/creature/vore
 	vore_active = 1
