@@ -97,6 +97,8 @@
 						var span = spans\[i\];
 
 						var id = span.getAttribute("id");
+						if(!id)
+							continue;
 
 						if(!(id.indexOf("item")==0))
 							continue;
