@@ -15,7 +15,8 @@
 	var/mopcount = 0
 
 
-/obj/item/mop_deploy/New()
+/obj/item/mop_deploy/Initialize(mapload)
+	. = ..()
 	create_reagents(5)
 	START_PROCESSING(SSobj, src)
 

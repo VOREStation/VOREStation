@@ -455,8 +455,8 @@
 		return can_telecomm(src,node)
 	return 0
 
-/obj/item/integrated_circuit/input/EPv2/New()
-	..()
+/obj/item/integrated_circuit/input/EPv2/Initialize(mapload)
+	. = ..()
 	exonet = new(src)
 	exonet.make_address("EPv2_circuit-\ref[src]")
 	desc += "<br>This circuit's EPv2 address is: [exonet.address]"
