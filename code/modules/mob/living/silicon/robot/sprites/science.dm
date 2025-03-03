@@ -219,6 +219,7 @@
 	has_vore_belly_sprites = TRUE
 	has_eye_light_sprites = TRUE
 	sprite_hud_icon_state = "sci-borg"
+	rest_sprite_options = list("Default", "Sit")
 	pixel_x = 0
 
 /datum/robot_sprite/dogborg/tall/science/dullahan/scialt
@@ -229,7 +230,6 @@
 	name = "Dullahan v3"
 	sprite_icon = 'icons/mob/robot/dullahan/v3/science.dmi'
 	sprite_icon_state = "dullahanscience"
-	rest_sprite_options = list("Default", "sit")
 	sprite_decals = list("decals")
 
 /datum/robot_sprite/dogborg/science/cat

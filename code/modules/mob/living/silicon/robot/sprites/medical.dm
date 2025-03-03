@@ -160,6 +160,7 @@
 	sprite_decals = list("decals")
 	sprite_icon = 'icons/mob/robot/dullahan/v3/medical.dmi'
 	sprite_icon_state = "dullahanmedical"
+	rest_sprite_options = list("Default", "Sit")
 
 // Surgeon
 
@@ -433,6 +434,7 @@
 	sprite_hud_icon_state = "medihound"
 	has_eye_light_sprites = TRUE
 	has_sleeper_light_indicator = TRUE
+	rest_sprite_options = list("Default")
 
 /datum/robot_sprite/dogborg/crisis/cat
 	name = "Cat"
