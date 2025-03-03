@@ -646,6 +646,10 @@
 			var/mob/living/silicon/robot/drone/drone = AM
 			src.destinationTag = drone.mail_destination
 
+		if(istype(AM, /obj/item/mail) && !hasmob)
+			var/obj/item/mail/T = AM
+			src.destinationTag = T.sortTag
+
 
 // start the movement process
 // argument is the disposal unit the holder started in
