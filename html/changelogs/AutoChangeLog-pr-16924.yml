@@ -1,0 +1,4 @@
+author: "Drathek"
+delete-after: True
+changes:
+  - refactor: "Reworked map includes for ground base, stellar delight, and tether to have all paths included simultaneously"
