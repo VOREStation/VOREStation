@@ -48,7 +48,7 @@ jobs:
         #if: steps.value_holder.outputs.ACTIONS_ENABLED
         run: |
           git config --local user.name "vorestation-ci[bot]"
-          git config --local user.email "12787406+vorestation-ci[bot]@users.noreply.github.com"
+          git config --local user.email "199609141+vorestation-ci[bot]@users.noreply.github.com"
           git pull origin master
           git add html/changelogs
           git commit -m "Automatic changelog compile [ci skip]" -a || true

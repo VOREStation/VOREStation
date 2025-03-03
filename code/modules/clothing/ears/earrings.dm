@@ -1,6 +1,6 @@
 //Material earrings
 /obj/item/clothing/ears/earring
-	name = "earring"
+	name = DEVELOPER_WARNING_NAME
 	desc = "An earring of some kind."
 	icon = 'icons/inventory/ears/item.dmi'
 

@@ -34,8 +34,8 @@
 	updateVisibility(src)
 	return ..()
 
-/obj/structure/New()
-	..()
+/obj/structure/Initialize(mapload)
+	. = ..()
 	updateVisibility(src)
 
 // EFFECTS

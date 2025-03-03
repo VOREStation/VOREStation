@@ -123,6 +123,7 @@
 	var/emp_dmg_mod =		1			// Multiplier to all EMP damage sustained by the mob, if it's EMP-sensitive
 	var/emp_stun_mod = 		1			// Multiplier to all EMP disorient/etc. sustained by the mob, if it's EMP-sensitive
 	var/vision_flags = SEE_SELF							// Same flags as glasses.
+	var/has_vibration_sense = FALSE 	// Motion tracker subsystem
 
 	// Death vars.
 	var/meat_type = /obj/item/reagent_containers/food/snacks/meat/human

@@ -7,21 +7,31 @@
 import { storage } from 'common/storage';
 import { createLogger } from 'tgui/logging';
 
+import { getChatData } from './chat/actions';
+import { updateExportData } from './game/actions';
+
 const logger = createLogger('telemetry');
 
 const MAX_CONNECTIONS_STORED = 10;
 
-type Client = { ckey: string; address: string; computer_id: string };
+type Client = {
+  ckey: string;
+  chatlog_token: string;
+  address: string;
+  computer_id: string;
+};
 type Telemetry = { limits: { connections: number }[]; connections: Client[] };
 
 const connectionsMatch = (a: Client, b: Client) =>
   a.ckey === b.ckey &&
+  a.chatlog_token === b.chatlog_token &&
   a.address === b.address &&
   a.computer_id === b.computer_id;
 
 export const telemetryMiddleware = (store) => {
   let telemetry: Telemetry;
   let wasRequestedWithPayload: Telemetry | null;
+  let firstMutate: boolean = true;
   return (next) => (action) => {
     const { type, payload } = action;
     // Handle telemetry requests
@@ -77,6 +87,18 @@ export const telemetryMiddleware = (store) => {
           if (telemetry.connections.length > MAX_CONNECTIONS_STORED) {
             telemetry.connections.pop();
           }
+        }
+        if (firstMutate) {
+          firstMutate = false;
+          store.dispatch(
+            getChatData({ ckey: client.ckey, token: client.chatlog_token }),
+          );
+          store.dispatch(
+            updateExportData({
+              ckey: client.ckey,
+              token: client.chatlog_token,
+            }),
+          );
         }
         // Save telemetry
         if (telemetryMutated) {

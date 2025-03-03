@@ -51,7 +51,7 @@ export function TguiSay() {
     keyof typeof RADIO_PREFIXES | null
   >(null);
   const [size, setSize] = useState(WindowSize.Small);
-  const [maxLength, setMaxLength] = useState(1024);
+  const [maxLength, setMaxLength] = useState(4096);
   const [minimumHeight, setMinimumHeight] = useState(WindowSize.Small);
   const [minimumWidth, setMinimumWidth] = useState(WindowSize.Width);
   const [lightMode, setLightMode] = useState(false);
@@ -117,14 +117,21 @@ export function TguiSay() {
     const iterator = channelIterator.current;
     const prefix = currentPrefix ?? '';
 
-    if (value?.length && value.length < maxLength) {
-      chatHistory.current.add(value);
-      Byond.sendMessage('entry', {
-        channel: iterator.current(),
-        entry: iterator.isSay() ? prefix + value : value,
-      });
+    if (value?.length) {
+      if (value.length < maxLength) {
+        chatHistory.current.add(value);
+        Byond.sendMessage('entry', {
+          channel: iterator.current(),
+          entry: iterator.isSay() ? prefix + value : value,
+        });
+      } else {
+        Byond.sendMessage('lenwarn', {
+          length: value.length,
+          maxlength: maxLength,
+        });
+        return;
+      }
     }
-
     handleClose();
   }
 
@@ -197,7 +204,7 @@ export function TguiSay() {
     if (event.getModifierState('AltGraph')) return;
 
     switch (event.key) {
-      case 'u': // replace with tgui core 1.8.x
+      case 'u':
         if (event.ctrlKey || event.metaKey) {
           event.preventDefault();
           const { value, selectionStart, selectionEnd } = event.currentTarget;
@@ -210,7 +217,7 @@ export function TguiSay() {
           event.currentTarget.selectionEnd = selectionEnd + 2;
         }
         break;
-      case 'i': // replace with tgui core 1.8.x
+      case 'i':
         if (event.ctrlKey || event.metaKey) {
           event.preventDefault();
           const { value, selectionStart, selectionEnd } = event.currentTarget;
@@ -223,7 +230,7 @@ export function TguiSay() {
           event.currentTarget.selectionEnd = selectionEnd + 2;
         }
         break;
-      case 'b': // replace with tgui core 1.8.x
+      case 'b':
         if (event.ctrlKey || event.metaKey) {
           event.preventDefault();
           const { value, selectionStart, selectionEnd } = event.currentTarget;
