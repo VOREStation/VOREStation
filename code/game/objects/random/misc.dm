@@ -792,7 +792,7 @@
 
 /obj/random/toy/item_to_spawn()
 	return pick(/obj/item/toy/bosunwhistle,
-				/obj/item/toy/plushie/therapy/red,
+				/obj/item/toy/plushie/therapy,
 				/obj/item/toy/plushie/therapy/purple,
 				/obj/item/toy/plushie/therapy/blue,
 				/obj/item/toy/plushie/therapy/yellow,
