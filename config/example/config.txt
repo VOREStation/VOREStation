@@ -264,10 +264,10 @@ MINUTE_CLICK_LIMIT 400
 
 ##Defines the ticklag for the world. Ticklag is the amount of time between game ticks (aka byond ticks) (in 1/10ths of a second).
 ##	This also controls the client network update rate, as well as the default client fps
-TICKLAG 0.5
+TICKLAG 0.25
 
 ##Can also be set as per-second value, the following value is identical to the above.
-#FPS 20
+#FPS 40
 
 ## Defines if Tick Compensation is used.  It results in a minor slowdown of movement of all mobs, but attempts to result in a level movement speed across all ticks.  Recommended if tickrate is lowered.
 ## FIXME: Unused config. Only uncomment if changed in code.
