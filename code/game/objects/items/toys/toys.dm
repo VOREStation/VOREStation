@@ -804,7 +804,7 @@
 	var/searching = FALSE
 	var/opened = FALSE	// has this been slit open? this will allow you to store an object in a plushie.
 	var/obj/item/stored_item	// Note: Stored items can't be bigger than the plushie itself.
-	var/adjusted_name // Our original name. Used so people don't do funny business with us!
+	var/adjusted_name // Our modified name. Used so people don't do funny business with us!
 
 /obj/item/toy/plushie/Initialize(mapload)
 	. = ..()
