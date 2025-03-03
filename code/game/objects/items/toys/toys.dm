@@ -1170,7 +1170,7 @@
 /obj/item/toy/plushie/tinytin/attack_self(mob/user as mob)
 	if(!cooldown)
 		playsound(user, 'sound/voice/peep.ogg', 20, 0)
-		atom_say(span_danger("Peep peep!"))
+		atom_say("Peep peep!")
 		cooldown = TRUE
 		addtimer(VARSET_CALLBACK(src, cooldown, FALSE), 15 SECONDS, TIMER_DELETE_ME)
 	return ..()
