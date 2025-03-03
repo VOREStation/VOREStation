@@ -94,3 +94,14 @@
 //returns the ETA in deciseconds
 /datum/shuttle/autodock/ferry/supply/proc/eta_deciseconds()
 	return round(arrive_time - world.time)
+
+/datum/shuttle/autodock/ferry/supply/cargo
+	name = "Supply"
+	location = FERRY_LOCATION_OFFSITE
+	shuttle_area = /area/shuttle/supply
+	warmup_time = 10
+	landmark_offsite = "supply_cc"
+	landmark_station = "supply_station"
+	docking_controller_tag = "supply_shuttle"
+	flags = SHUTTLE_FLAGS_PROCESS|SHUTTLE_FLAGS_SUPPLY
+	move_direction = WEST
