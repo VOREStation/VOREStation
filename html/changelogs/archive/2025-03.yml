@@ -48,3 +48,12 @@
   - code_imp: replaces more font tags
   Will:
   - bugfix: Potentially fixes your organs exploding when you spawn in
+2025-03-03:
+  Cameron-The-Raven:
+  - rscadd: Accessories show up properly now.
+  Diana:
+  - bugfix: Accessories will now properly show. (Broke this like a dummy... whoops)
+  ItsSelis:
+  - qol: using a database to store the round logs to reduce client-side lag
+  - qol: using same database to load the most recent messages into the chat (instead
+      of having to fetch from client browser)
