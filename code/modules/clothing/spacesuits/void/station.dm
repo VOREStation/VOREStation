@@ -196,77 +196,37 @@
 	slowdown = 1.5
 
 //Medical Streamlined Voidsuit
-/obj/item/clothing/head/helmet/space/void/medical/alt
-	name = "streamlined medical voidsuit helmet"
+/obj/item/clothing/head/helmet/space/void/medical/veymed
+	name = "lightweight medical voidsuit helmet"
 	desc = "A trendy, lightly radiation-shielded voidsuit helmet trimmed in a sleek blue. It possesses advanced autoadaptive systems and doesn't need to be cycled to change species fit for most large humanoids."
 	icon_state = "rig0-medicalalt"
 	armor = list(melee = 20, bullet = 5, laser = 20,energy = 5, bomb = 15, bio = 100, rad = 30)
 	light_overlay = "helmet_light_dual_blue"
-	species_restricted = list("exclude",SPECIES_DIONA,SPECIES_VOX,SPECIES_TESHARI)	//this thing can autoadapt to most species, but diona/vox are too weird, and tesh are too small
+	species_restricted = list("exclude",SPECIES_DIONA,SPECIES_VOX)	//this thing can autoadapt to most species, but diona/vox are too weird
 	no_cycle = TRUE
 
-/obj/item/clothing/head/helmet/space/void/medical/alt
-	sprite_sheets = list(
-		SPECIES_HUMAN			= 'icons/inventory/head/mob.dmi',
-		SPECIES_TAJARAN 			= 'icons/inventory/head/mob_tajaran.dmi',
-		SPECIES_SKRELL 			= 'icons/inventory/head/mob_skrell.dmi',
-		SPECIES_UNATHI 			= 'icons/inventory/head/mob_unathi.dmi'
-	)
-	sprite_sheets_obj = list(
-		SPECIES_TAJARAN 			= 'icons/inventory/head/item.dmi',
-		SPECIES_SKRELL			= 'icons/inventory/head/item.dmi',
-		SPECIES_UNATHI			= 'icons/inventory/head/item.dmi'
-	)
-
-/obj/item/clothing/head/helmet/space/void/medical/alt/tesh
-	name = "streamlined teshari medical voidsuit helmet"
-	desc = "A trendy, lightly radiation-shielded voidsuit helmet trimmed in a sleek blue. This teshari-specific model lacks the autoadaption feature due to the reduced amount of materials."
-	species_restricted = list(SPECIES_TESHARI)
-	no_cycle = FALSE //no autoadaption means it can be refitted
-
-/obj/item/clothing/head/helmet/space/void/medical/alt/tesh
-	sprite_sheets = list(
-		SPECIES_TESHARI			= 'icons/inventory/head/mob_teshari.dmi'
-		)
-	sprite_sheets_obj = list(
-		SPECIES_TESHARI			= 'icons/inventory/head/item.dmi'
-		)
-
-/obj/item/clothing/suit/space/void/medical/alt
-	name = "streamlined medical voidsuit"
+/obj/item/clothing/suit/space/void/medical/veymed
+	name = "lightweight medical voidsuit"
 	desc = "A more recent model of Vey-Med voidsuit, exchanging physical protection for fully unencumbered movement and a complete range of motion. It possesses advanced autoadaptive systems and doesn't need to be cycled to change species fit for most large humanoids."
 	icon_state = "rig-medicalalt"
 	slowdown = 0
 	armor = list(melee = 20, bullet = 5, laser = 20,energy = 5, bomb = 15, bio = 100, rad = 30)
-	species_restricted = list("exclude",SPECIES_DIONA,SPECIES_VOX,SPECIES_TESHARI)	//this thing can autoadapt, but diona/vox are too weird, and tesh are too small
+	species_restricted = list("exclude",SPECIES_DIONA,SPECIES_VOX)	//this thing can autoadapt, but diona/vox are too weird
 	no_cycle = TRUE
 
-/obj/item/clothing/suit/space/void/medical/alt
-	sprite_sheets = list(
-		SPECIES_HUMAN			= 'icons/inventory/suit/mob.dmi',
-		SPECIES_TAJARAN 			= 'icons/inventory/suit/mob_tajaran.dmi',
-		SPECIES_SKRELL 			= 'icons/inventory/suit/mob_skrell.dmi',
-		SPECIES_UNATHI 			= 'icons/inventory/suit/mob_unathi.dmi'
-		)
-	sprite_sheets_obj = list(
-		SPECIES_TAJARAN			= 'icons/inventory/suit/item.dmi',
-		SPECIES_SKRELL			= 'icons/inventory/suit/item.dmi',
-		SPECIES_UNATHI			= 'icons/inventory/suit/item.dmi'
-		)
+/obj/item/clothing/head/helmet/space/void/medical/veymed_static
+	name = "nonadaptive lightweight medical voidsuit helmet"
+	desc = "A trendy, lightly radiation-shielded voidsuit helmet trimmed in a sleek blue. This specific model lacks the autoadaption feature as a cost-saving measure."
+	icon_state = "rig0-medicalalt"
+	armor = list(melee = 20, bullet = 5, laser = 20,energy = 5, bomb = 15, bio = 100, rad = 30)
+	light_overlay = "helmet_light_dual_blue"
 
-/obj/item/clothing/suit/space/void/medical/alt/tesh
-	name = "streamlined teshari medical voidsuit"
-	desc = "A more recent model of Vey-Med voidsuit, exchanging physical protection for fully unencumbered movement and a complete range of motion. This teshari-specific model lacks the autoadaption feature due to the reduced amount of materials."
-	species_restricted = list(SPECIES_TESHARI)
-	no_cycle = FALSE //no autoadaption means it can be refitted
-
-/obj/item/clothing/suit/space/void/medical/alt/tesh
-	sprite_sheets = list(
-		SPECIES_TESHARI			= 'icons/inventory/suit/mob_teshari.dmi'
-		)
-	sprite_sheets_obj = list(
-		SPECIES_TESHARI			= 'icons/inventory/suit/item.dmi'
-		)
+/obj/item/clothing/suit/space/void/medical/veymed_static
+	name = "nonadaptive lightweight medical voidsuit"
+	desc = "A more recent model of Vey-Med voidsuit, exchanging physical protection for fully unencumbered movement and a complete range of motion. This specific model lacks the autoadaption feature as a cost-saving measure."
+	icon_state = "rig-medicalalt"
+	slowdown = 0
+	armor = list(melee = 20, bullet = 5, laser = 20,energy = 5, bomb = 15, bio = 100, rad = 30)
 
 //Security
 /obj/item/clothing/head/helmet/space/void/security
