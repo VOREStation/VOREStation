@@ -21,8 +21,8 @@
 	pickup_sound = 'sound/items/pickup/device.ogg'
 	drop_sound = 'sound/items/drop/device.ogg'
 
-/obj/item/taperecorder/New()
-	..()
+/obj/item/taperecorder/Initialize(mapload)
+	. = ..()
 	if(ispath(mytape))
 		mytape = new mytape(src)
 		update_icon()
@@ -436,5 +436,6 @@
 
 
 //Random colour tapes
-/obj/item/rectape/random/New()
+/obj/item/rectape/random/Initialize(mapload)
+	. = ..()
 	icon_state = "tape_[pick("white", "blue", "red", "yellow", "purple")]"

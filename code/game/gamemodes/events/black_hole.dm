@@ -8,7 +8,7 @@
 	density = FALSE
 	anchored = TRUE
 
-/obj/effect/bhole/Initialize()
+/obj/effect/bhole/Initialize(mapload)
 	. = ..()
 	addtimer(CALLBACK(src, PROC_REF(controller)), 0.4 SECONDS, TIMER_DELETE_ME)
 

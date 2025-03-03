@@ -175,6 +175,8 @@
 	chest = null
 	cell = null
 	air_supply = null
+	for(var/obj/item/rig_module/module in installed_modules)
+		qdel(module)
 	STOP_PROCESSING(SSobj, src)
 	qdel(wires)
 	wires = null

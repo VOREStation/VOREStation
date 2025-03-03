@@ -28,7 +28,7 @@
 	var/door_on_mode
 	var/teleport_on_mode
 
-/obj/away_mission_init/alienship/Initialize()
+/obj/away_mission_init/alienship/Initialize(mapload)
 	. = ..()
 
 	if(!mission_mode) //WE ARE NUMBER ONE

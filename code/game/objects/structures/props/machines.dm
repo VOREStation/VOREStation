@@ -579,6 +579,7 @@
 
 	var/contents_vis_flags = NONE
 	var/contents_original_pixel_y = 0
+	var/changing_state = FALSE
 
 /obj/structure/prop/machine/nt_pod/Initialize(mapload)
 	. = ..()
@@ -641,33 +642,30 @@
 		return
 	if(!user.client?.holder)
 		return
+	if(changing_state)
+		return
 
 	AM.forceMove(src)
 
 /obj/structure/prop/machine/nt_pod/change_state(state)
 	. = ..()
+	if(changing_state)
+		return
 	switch(state)
 		if("open")
+			changing_state = TRUE
 			cut_overlay("nt_pod_top_on")
 			cut_overlay("nt_pod_under")
 
 			// Fluid drains
 			fluid.icon_state = "nothing"
 			flick("nt_pod_emptying", fluid) // 8ds
-			sleep(8)
 
 			// Door opens
-			door.icon_state = "nothing"
-			flick("nt_pod_opening", door) // 9ds
-			sleep(9)
-
-			// GET OUT
-			outside.layer = BELOW_MOB_LAYER
-			if(contents.len)
-				for(var/atom/movable/AM as anything in contents)
-					unduct(AM)
+			addtimer(CALLBACK(src, PROC_REF(delayed_flick), door, "nothing", "nt_pod_opening", 0.9 SECONDS), 0.8 SECONDS) // 9ds
 
 		if("closed")
+			changing_state = TRUE
 			outside.layer = ABOVE_MOB_LAYER
 			cut_overlay("nt_pod_top_on")
 			add_overlay("nt_pod_top_on")
@@ -676,10 +674,8 @@
 			// Door closes
 			door.icon_state = "nt_pod_glass"
 			flick("nt_pod_closing", door) // 9ds
-			sleep(9)
 			// Fluid fills
-			fluid.icon_state = "nt_pod_liquid"
-			flick("nt_pod_filling", fluid) // 8ds
+			addtimer(CALLBACK(src, PROC_REF(delayed_flick), fluid, "nt_pod_liquid", "nt_pod_filling"), 0.9 SECONDS) // 8ds
 
 		if("panel_open")
 			cut_overlay("nt_pod_panel")
@@ -688,6 +684,22 @@
 			cut_overlay("nt_pod_panel")
 
 // Old Virology stuff
+
+/obj/structure/prop/machine/nt_pod/proc/delayed_flick(var/obj/effect/overlay/ovrl, var/icon_state, var/flicked, var/get_out_time)
+	ovrl.icon_state = icon_state
+	flick(flicked, ovrl)
+	// GET OUT
+	if(get_out_time)
+		addtimer(CALLBACK(src, PROC_REF(get_out)), get_out_time)
+		return
+	changing_state = FALSE
+
+/obj/structure/prop/machine/nt_pod/proc/get_out()
+	outside.layer = BELOW_MOB_LAYER
+	if(contents.len)
+		for(var/atom/movable/AM as anything in contents)
+			unduct(AM)
+	changing_state = FALSE
 
 /obj/structure/prop/machine/centrifuge
 	name = "centrifuge"

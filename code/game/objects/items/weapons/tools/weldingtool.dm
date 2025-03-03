@@ -43,7 +43,7 @@
 	pickup_sound = 'sound/items/pickup/weldingtool.ogg'
 	tool_qualities = list(TOOL_WELDER)
 
-/obj/item/weldingtool/Initialize()
+/obj/item/weldingtool/Initialize(mapload)
 	. = ..()
 //	var/random_fuel = min(rand(10,20),max_fuel)
 	var/datum/reagents/R = new/datum/reagents(max_fuel)
@@ -493,13 +493,13 @@
 	always_process = TRUE
 	var/obj/item/weldpack/mounted_pack = null
 
-/obj/item/weldingtool/tubefed/New(location)
-	..()
-	if(istype(location, /obj/item/weldpack))
-		var/obj/item/weldpack/holder = location
+/obj/item/weldingtool/tubefed/Initialize(mapload)
+	. = ..()
+	if(istype(loc, /obj/item/weldpack))
+		var/obj/item/weldpack/holder = loc
 		mounted_pack = holder
 	else
-		qdel(src)
+		return INITIALIZE_HINT_QDEL
 
 /obj/item/weldingtool/tubefed/Destroy()
 	mounted_pack.nozzle = null
@@ -556,11 +556,12 @@
 	acti_sound = 'sound/effects/sparks4.ogg'
 	deac_sound = 'sound/effects/sparks4.ogg'
 
-/obj/item/weldingtool/electric/unloaded/New()
+/obj/item/weldingtool/electric/unloaded/Initialize(mapload)
 	cell_type = null
+	. = ..()
 
-/obj/item/weldingtool/electric/New()
-	..()
+/obj/item/weldingtool/electric/Initialize(mapload)
+	. = ..()
 	if(cell_type == null)
 		update_icon()
 	else if(cell_type)

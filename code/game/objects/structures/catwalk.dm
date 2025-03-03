@@ -18,12 +18,18 @@
 		/obj/item/stack/tile/floor/techgrey = "#363f43")
 	var/health = 100
 	var/maxhealth = 100
+	var/delete_me = FALSE
 
 /obj/structure/catwalk/Initialize()
 	. = ..()
+	if(delete_me)
+		return INITIALIZE_HINT_QDEL
 	for(var/obj/structure/catwalk/C in get_turf(src))
 		if(C != src)
-			qdel(C)
+			if(!(C.flags & ATOM_INITIALIZED))
+				C.delete_me = TRUE
+			else
+				qdel(C)
 	update_connections(1)
 	update_icon()
 

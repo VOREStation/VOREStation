@@ -112,3 +112,7 @@
 		var/obj/item/organ/internal/eyes/E = H.internal_organs_by_name[O_EYES]
 		if(istype(E))
 			E.change_eye_color()
+
+/obj/item/makeover/Destroy()
+	qdel(M)
+	. = ..()
