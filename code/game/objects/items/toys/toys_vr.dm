@@ -198,6 +198,7 @@
 	icon = 'icons/obj/toy_vr.dmi'
 	icon_state = "plushie_ipc"
 	bubble_icon = "synthetic"
+	pokephrase = "Ping!"
 	var/cooldown = 0
 
 /obj/item/reagent_containers/food/snacks/slice/bread
@@ -235,7 +236,6 @@
 /obj/item/toy/plushie/ipc/attack_self(mob/user as mob)
 	if(!cooldown)
 		playsound(user, 'sound/machines/ping.ogg', 10, 0)
-		src.visible_message(span_danger("Ping!"))
 		cooldown = TRUE
 		addtimer(VARSET_CALLBACK(src, cooldown, FALSE), 15 SECONDS, TIMER_DELETE_ME)
 	return ..()
@@ -278,15 +278,15 @@
 	var/cooldown = FALSE
 
 /obj/item/toy/plushie/marketable_pip/attackby(obj/item/I, mob/user)
-	var/responses = list("I'm not giving you all-access.", "Do you want an ID modification?", "Where are you swiping that!?", "Congratulations! You've been promoted to unemployed!")
 	var/obj/item/card/id/id = I.GetID()
-	if(istype(id))
-		if(!cooldown)
-			user.visible_message(span_notice("[user] swipes \the [I] against \the [src]."))
-			atom_say(pick(responses))
-			playsound(user, 'sound/effects/whistle.ogg', 10, 0)
-			cooldown = TRUE
-			addtimer(VARSET_CALLBACK(src, cooldown, FALSE), 15 SECONDS, TIMER_DELETE_ME)
+	if(istype(id) && !cooldown)
+		var/responses = list("I'm not giving you all-access.", "Do you want an ID modification?", "Where are you swiping that!?", "Congratulations! You've been promoted to unemployed!")
+		pokephrase = pick(responses)
+		user.visible_message(span_notice("[user] swipes \the [I] against \the [src]."))
+		playsound(user, 'sound/effects/whistle.ogg', 10, 0)
+		say_phrase()
+		cooldown = TRUE
+		addtimer(VARSET_CALLBACK(src, cooldown, FALSE), 15 SECONDS, TIMER_DELETE_ME)
 		return ..()
 
 /obj/item/toy/plushie/marketable_pip/attack_self(mob/user as mob)

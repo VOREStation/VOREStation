@@ -804,7 +804,11 @@
 	var/searching = FALSE
 	var/opened = FALSE	// has this been slit open? this will allow you to store an object in a plushie.
 	var/obj/item/stored_item	// Note: Stored items can't be bigger than the plushie itself.
+	var/adjusted_name // Our original name. Used so people don't do funny business with us!
 
+/obj/item/toy/plushie/Initialize(mapload)
+	. = ..()
+	adjusted_name = name
 
 /obj/item/toy/plushie/examine(mob/user)
 	. = ..()
@@ -837,8 +841,13 @@
 		user.visible_message(span_notice(span_bold("\The [user]") + " pokes [src]."),span_notice("You poke [src]."))
 		playsound(src, 'sound/items/drop/plushie.ogg', 25, 0)
 	if(pokephrase) //There was no indiciation you had to use disarm intent to make it speak...So now it speaks if you touch it at all!
-		atom_say("[pokephrase]")
+		say_phrase()
 	last_message = world.time
+
+/obj/item/toy/plushie/proc/say_phrase()
+	name = initial(name) //No namestealing.
+	atom_say("[pokephrase]")
+	name = adjusted_name
 
 /obj/item/toy/plushie/verb/rename_plushie()
 	set name = "Name Plushie"
@@ -852,6 +861,7 @@
 
 	if(src && input && !M.stat && in_range(M,src))
 		name = input
+		adjusted_name = input
 		to_chat(M, "You name the plushie [input], giving it a hug for good luck.")
 		return 1
 
@@ -1164,13 +1174,12 @@
 	desc = "A tiny fluffy nevrean plush with the label 'Tiny-Tin.' Press his belly to hear a sound!"
 	icon = 'icons/obj/toy.dmi'
 	icon_state = "plushie_tin"
-	pokephrase = null
+	pokephrase = "Peep peep!"
 	var/cooldown = 0
 
 /obj/item/toy/plushie/tinytin/attack_self(mob/user as mob)
 	if(!cooldown)
 		playsound(user, 'sound/voice/peep.ogg', 20, 0)
-		atom_say("Peep peep!")
 		cooldown = TRUE
 		addtimer(VARSET_CALLBACK(src, cooldown, FALSE), 15 SECONDS, TIMER_DELETE_ME)
 	return ..()
@@ -1181,13 +1190,12 @@
 	icon = 'icons/obj/toy.dmi'
 	icon_state = "plushie_tinsec"
 	bubble_icon = "security"
-	pokephrase = null
+	pokephrase = "That means you fucked up!"
 	var/cooldown = 0
 
 /obj/item/toy/plushie/tinytin_sec/attack_self(mob/user as mob)
 	if(!cooldown)
 		playsound(user, 'sound/voice/tinytin_fuckedup.ogg', 25, 0)
-		atom_say(span_danger("That means you fucked up!"))
 		cooldown = TRUE
 		addtimer(VARSET_CALLBACK(src, cooldown, FALSE), 15 SECONDS, TIMER_DELETE_ME)
 	return ..()
