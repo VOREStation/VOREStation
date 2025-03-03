@@ -11,6 +11,7 @@ import DOMPurify from 'dompurify';
 import { selectGame } from '../game/selectors';
 import {
   addHighlightSetting,
+  importSettings,
   loadSettings,
   removeHighlightSetting,
   updateHighlightSetting,
@@ -338,7 +339,8 @@ export const chatMiddleware = (store) => {
       type === loadSettings.type ||
       type === addHighlightSetting.type ||
       type === removeHighlightSetting.type ||
-      type === updateHighlightSetting.type
+      type === updateHighlightSetting.type ||
+      type === importSettings.type
     ) {
       next(action);
       chatRenderer.setHighlight(

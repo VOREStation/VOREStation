@@ -8,6 +8,7 @@ import { MESSAGE_TYPES } from '../chat/constants';
 import {
   addHighlightSetting,
   changeSettingsTab,
+  importSettings,
   loadSettings,
   openChatSettings,
   removeHighlightSetting,
@@ -18,6 +19,7 @@ import {
 } from './actions';
 import { FONTS, MAX_HIGHLIGHT_SETTINGS, SETTINGS_TABS } from './constants';
 import { createDefaultHighlightSetting } from './model';
+import { importChatSettings } from './settingsImExport';
 
 const defaultHighlightSetting = createDefaultHighlightSetting();
 
@@ -144,6 +146,14 @@ export function settingsReducer(
 
         return nextState;
       }
+    }
+    case importSettings.type: {
+      const newSettings = importChatSettings(payload);
+      const nextState = {
+        ...state,
+        ...newSettings,
+      };
+      return nextState;
     }
 
     case toggleSettings.type: {

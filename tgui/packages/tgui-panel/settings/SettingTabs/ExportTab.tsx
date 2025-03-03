@@ -16,7 +16,12 @@ import { toFixed } from 'tgui-core/math';
 import { purgeChatMessageArchive, saveChatToDisk } from '../../chat/actions';
 import { MESSAGE_TYPES } from '../../chat/constants';
 import { useGame } from '../../game';
-import { updateSettings, updateToggle } from '../actions';
+import {
+  exportSettings,
+  importSettings,
+  updateSettings,
+  updateToggle,
+} from '../actions';
 import { selectSettings } from '../selectors';
 
 export const ExportTab = (props) => {
@@ -272,6 +277,16 @@ export const ExportTab = (props) => {
         )}
       </LabeledList>
       <Divider />
+      <Button icon="compact-disc" onClick={() => dispatch(exportSettings())}>
+        Export settings
+      </Button>
+      <Button.File
+        accept=".json"
+        icon="arrow-up-from-bracket"
+        onSelectFiles={(files) => dispatch(importSettings(files))}
+      >
+        Import settings
+      </Button.File>
       <Button icon="save" onClick={() => dispatch(saveChatToDisk())}>
         Save chat log
       </Button>
