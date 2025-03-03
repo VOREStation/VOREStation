@@ -1134,6 +1134,37 @@
 	icon_state = "fumoplushie"
 	pokephrase = "I just don't think about losing."
 
+// Tiny tin, rip - OP21
+
+/obj/item/toy/plushie/tinytin
+	name = "tiny tin plushie"
+	desc = "A tiny fluffy nevrean plush with the label 'Tiny-Tin.' Press his belly to hear a sound!"
+	icon = 'icons/obj/toy.dmi'
+	icon_state = "plushie_tin"
+	var/cooldown = 0
+
+/obj/item/toy/plushie/tinytin/attack_self(mob/user as mob)
+	if(!cooldown)
+		playsound(user, 'sound/voice/peep.ogg', 30, 0)
+		src.visible_message(span_danger("Peep peep!"))
+		cooldown = TRUE
+		VARSET_IN(src, cooldown, FALSE, 50) // Safety
+	return ..()
+
+/obj/item/toy/plushie/tinytin_sec
+	name = "officer tiny tin plushie"
+	desc = "Officer Tiny-Tin, now with rooty-tooty-shooty action! Press his belly to hear a sound!"
+	icon = 'icons/obj/toy.dmi'
+	icon_state = "plushie_tinsec"
+
+/obj/item/toy/plushie/tinytin_sec/attack_self(mob/user as mob)
+	if(!cooldown)
+		playsound(user, 'sound/voice/tinytin_fuckedup.ogg', 75, 0)
+		src.visible_message(span_danger("That means you fucked up!"))
+		cooldown = TRUE
+		VARSET_IN(src, cooldown, FALSE, 50) // Safety
+	return ..()
+
 //Toy cult sword
 /obj/item/toy/cultsword
 	name = "foam sword"
