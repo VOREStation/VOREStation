@@ -1,5 +1,5 @@
 /obj/item/clothing/glasses/hud
-	name = "HUD"
+	name = DEVELOPER_WARNING_NAME
 	desc = "A heads-up display that provides important info in (almost) real time."
 	flags = 0 //doesn't protect eyes because it's a monocle, duh
 	origin_tech = list(TECH_MAGNET = 3, TECH_BIO = 2)

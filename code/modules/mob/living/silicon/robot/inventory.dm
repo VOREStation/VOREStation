@@ -154,6 +154,15 @@
 				return TRUE
 	return FALSE
 
+// Checks if the activated module is of the given type
+/mob/living/silicon/robot/proc/activated_module_type_list(var/list/type_to_compare, var/explicit = FALSE)
+	if(!islist(type_to_compare))
+		return FALSE
+	for(var/type in type_to_compare)
+		if(istype(module_active, type))
+			return TRUE
+	return FALSE
+
 /mob/living/silicon/robot/proc/is_type_in_modules(var/type, var/list/modules, var/explicit = FALSE)
 	for(var/atom/module in modules)
 		if(explicit && isatom(module))
@@ -210,6 +219,7 @@
 				inv2.icon_state = "inv2"
 				inv3.icon_state = "inv3"
 				module_active = module_state_1
+				update_icon()
 				return
 		if(2)
 			if(module_active != module_state_2)
@@ -217,6 +227,7 @@
 				inv2.icon_state = "inv2 +a"
 				inv3.icon_state = "inv3"
 				module_active = module_state_2
+				update_icon()
 				return
 		if(3)
 			if(module_active != module_state_3)
@@ -224,6 +235,7 @@
 				inv2.icon_state = "inv2"
 				inv3.icon_state = "inv3 +a"
 				module_active = module_state_3
+				update_icon()
 				return
 	return
 
@@ -236,16 +248,19 @@
 			if(module_active == module_state_1)
 				inv1.icon_state = "inv1"
 				module_active = null
+				update_icon()
 				return
 		if(2)
 			if(module_active == module_state_2)
 				inv2.icon_state = "inv2"
 				module_active = null
+				update_icon()
 				return
 		if(3)
 			if(module_active == module_state_3)
 				inv3.icon_state = "inv3"
 				module_active = null
+				update_icon()
 				return
 	return
 

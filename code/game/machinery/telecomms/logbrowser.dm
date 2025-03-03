@@ -131,7 +131,7 @@
 			var/newnet = tgui_input_text(ui.user, "Which network do you want to view?", "Comm Monitor", network, 15)
 			newnet = sanitize(newnet,15)
 
-			if(newnet && ((ui.user in range(1, src) || issilicon(ui.user))))
+			if(newnet && ((ui.user in range(1, src)) || issilicon(ui.user)))
 				if(length(newnet) > 15)
 					set_temp("FAILED: NETWORK TAG STRING TOO LENGTHY", "bad")
 					return TRUE
@@ -150,7 +150,7 @@
 		playsound(src, 'sound/effects/sparks4.ogg', 75, 1)
 		emagged = 1
 		to_chat(user, span_notice("You you disable the security protocols"))
-		src.updateUsrDialog()
+		updateUsrDialog(user)
 		return 1
 
 /obj/machinery/computer/telecomms/server/proc/set_temp(var/text, var/color = "average")

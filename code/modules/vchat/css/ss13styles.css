@@ -194,6 +194,8 @@ h1.alert, h2.alert		{color: #000000;}
 .say_quote_italics		{font-style: italic; font-family: Georgia, Verdana, sans-serif;}
 .terminus				{font-family: "Times New Roman", Times, serif, sans-serif}
 .interface				{color: #330033;}
+.psionic				{color: #993399;}
+.wingdings				{color: #0077FF;font-family: Wingdings, Webdings}
 .spacer					{color: #9c660b;} /* VOREStation Add */
 .blob					{color: #ff950d; font-weight: bold; font-style: italic;}
 .teppi					{color: #816540; word-spacing:4pt; font-family: "Segoe Script Bold","Segoe Script",sans-serif,Verdana;}

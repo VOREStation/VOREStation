@@ -68,10 +68,10 @@
 	var/sawn_off = FALSE
 
 /obj/item/gun/projectile/shotgun/pump/rifle/ceremonial/attackby(var/obj/item/A as obj, mob/user as mob)
-	if(sawn_off)
-		to_chat(user, span_warning("The [src] is already shortened!"))
-		return
 	if(istype(A, /obj/item/surgical/circular_saw) || istype(A, /obj/item/melee/energy) || istype(A, /obj/item/pickaxe/plasmacutter) && w_class != ITEMSIZE_NORMAL)
+		if(sawn_off)
+			to_chat(user, span_warning("The [src] is already shortened!"))
+			return
 		to_chat(user, span_notice("You begin to shorten the barrel and stock of \the [src]."))
 		if(loaded.len)
 			afterattack(user, user)

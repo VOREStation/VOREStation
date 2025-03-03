@@ -52,6 +52,7 @@
 #define     TOTAL_HUDS 14 // Total number of HUDs. Like body layers, and other things, it comes up sometimes.
 
 #define CLIENT_FROM_VAR(I) (ismob(I) ? I:client : (isclient(I) ? I : null))
+#define CKEY_FROM_VAR(I) ((ismob(I) || isclient(I)) ? I:ckey : null)
 
 //	Shuttles.
 
@@ -567,3 +568,6 @@ GLOBAL_LIST_INIT(all_volume_channels, list(
 #define RESIZE_A_BIGNORMAL (RESIZE_BIG + RESIZE_NORMAL) / 2
 #define RESIZE_A_NORMALSMALL (RESIZE_NORMAL + RESIZE_SMALL) / 2
 #define RESIZE_A_SMALLTINY (RESIZE_SMALL + RESIZE_TINY) / 2
+
+#define WEIGHT_MIN 70
+#define WEIGHT_MAX 500

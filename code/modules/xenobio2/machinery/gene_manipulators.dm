@@ -34,8 +34,8 @@
 	name = "biological disk box"
 	desc = "A box of biological data disks, apparently."
 
-/obj/item/storage/box/xenobiodisk/New()
-	..()
+/obj/item/storage/box/xenobiodisk/Initialize(mapload)
+	. = ..()
 	for(var/i = 0 to 7)
 		new /obj/item/disk/xenobio(src)
 
@@ -246,7 +246,7 @@
 	usr.set_machine(src)
 	src.add_fingerprint(usr)
 
-	src.updateUsrDialog()
+	src.updateUsrDialog(usr)
 	return
 
 /obj/machinery/xenobio/editor

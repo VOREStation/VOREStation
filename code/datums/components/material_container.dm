@@ -60,7 +60,7 @@
 			mat_amt = 0
 		materials[mat_ref] += mat_amt
 
-/datum/component/material_container/Destroy(force, silent)
+/datum/component/material_container/Destroy(force)
 	materials = null
 	allowed_materials = null
 	if(insertion_check)

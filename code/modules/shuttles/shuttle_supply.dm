@@ -38,6 +38,7 @@
 			return
 
 		if (!at_station())	//at centcom
+			SSmail.create_mail()
 			SSsupply.buy()
 
 		//We pretend it's a long_jump by making the shuttle stay at centcom for the "in-transit" period.

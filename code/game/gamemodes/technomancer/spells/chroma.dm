@@ -14,8 +14,8 @@
 	aspect = ASPECT_LIGHT
 	var/color_to_use = "#FFFFFF"
 
-/obj/item/spell/chroma/New()
-	..()
+/obj/item/spell/chroma/Initialize(mapload, coreless)
+	. = ..()
 	set_light(6, 5, l_color = color_to_use)
 
 /obj/effect/temporary_effect/chroma
@@ -24,7 +24,7 @@
 	invisibility = 101
 	time_to_die = 2 MINUTES //Despawn after this time, if set.
 
-/obj/effect/temporary_effect/chroma/Initialize(var/mapload, var/new_color = "#FFFFFF")
+/obj/effect/temporary_effect/chroma/Initialize(mapload, var/new_color = "#FFFFFF")
 	. = ..()
 	set_light(6, 5, l_color = new_color)
 

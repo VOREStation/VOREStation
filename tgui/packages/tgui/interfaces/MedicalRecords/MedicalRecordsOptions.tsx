@@ -3,7 +3,7 @@ import { Button, Section, Tabs } from 'tgui-core/components';
 
 import { MedicalRecordsViewGeneral } from './MedicalRecordsViewGeneral';
 import { MedicalRecordsViewMedical } from './MedicalRecordsViewMedical';
-import { Data } from './types';
+import type { Data } from './types';
 
 export const MedicalRecordsMaintenance = (props) => {
   const { act } = useBackend();

@@ -88,7 +88,13 @@ export function getSortedCrew(
   return flow([
     (shownCrew: crewmember[]) => {
       if (sortType === 'name') {
-        const sorted = shownCrew.sort((a, b) => a.name.localeCompare(b.name));
+        const sorted = shownCrew.sort(
+          (a, b) =>
+            a.name.localeCompare(b.name) ||
+            a.realZ - b.realZ ||
+            a.x - b.x ||
+            a.y - b.y,
+        );
         if (nameSortOrder) {
           return sorted.reverse();
         }
@@ -100,7 +106,9 @@ export function getSortedCrew(
     (shownCrew: crewmember[]) => {
       if (sortType === 'damage') {
         const sorted = shownCrew.sort(
-          (a, b) => getTotalDamage(a) - getTotalDamage(b),
+          (a, b) =>
+            getTotalDamage(a) - getTotalDamage(b) ||
+            a.name.localeCompare(b.name),
         );
         if (damageSortOrder) {
           return sorted.reverse();
@@ -112,29 +120,13 @@ export function getSortedCrew(
     },
     (shownCrew: crewmember[]) => {
       if (sortType === 'location') {
-        const sorted = shownCrew.sort((a, b) => a.x - b.x);
-        if (locationSortOrder) {
-          return sorted.reverse();
-        }
-        return sorted;
-      } else {
-        return shownCrew;
-      }
-    },
-    (shownCrew: crewmember[]) => {
-      if (sortType === 'location') {
-        const sorted = shownCrew.sort((a, b) => a.y - b.y);
-        if (locationSortOrder) {
-          return sorted.reverse();
-        }
-        return sorted;
-      } else {
-        return shownCrew;
-      }
-    },
-    (shownCrew: crewmember[]) => {
-      if (sortType === 'location') {
-        const sorted = shownCrew.sort((a, b) => a.realZ - b.realZ);
+        const sorted = shownCrew.sort(
+          (a, b) =>
+            a.realZ - b.realZ ||
+            a.x - b.x ||
+            a.y - b.y ||
+            a.name.localeCompare(b.name),
+        );
         if (locationSortOrder) {
           return sorted.reverse();
         }

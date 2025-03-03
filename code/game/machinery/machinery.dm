@@ -128,7 +128,7 @@ Class Procs:
 	if(ispath(circuit))
 		circuit = new circuit(src)
 
-/obj/machinery/Initialize(var/mapload)
+/obj/machinery/Initialize(mapload)
 	. = ..()
 	SSmachines.all_machines += src
 	if(ispath(circuit))
@@ -196,7 +196,6 @@ Class Procs:
 			if(prob(25))
 				fall_apart(severity)
 				return
-		else
 	return
 
 /obj/machinery/vv_edit_var(var/var_name, var/new_value)

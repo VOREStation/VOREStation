@@ -20,7 +20,7 @@ import { CommunicatorPhoneTab } from './CommunicatorPhoneTab';
 import { CommunicatorSettingsTab } from './CommunicatorSettingsTab';
 import { CommunicatorWeatherTab } from './CommunicatorWeatherTab';
 import { notFound, tabs } from './constants';
-import { Data } from './types';
+import type { Data } from './types';
 
 export const Communicator = () => {
   const { act, data } = useBackend<Data>();

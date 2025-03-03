@@ -49,8 +49,17 @@ export class NanoMap extends Component<Props, State> {
   handleDragMove: (e: MouseEvent) => void;
   handleDragEnd: (e: MouseEvent) => void;
   handleZoom: (e: Event, v: number) => void;
+  handleWheel: (e: WheelEvent) => void;
   handleKey: (e: KeyEvent) => void;
   ref: EventTarget;
+
+  componentDidMount() {
+    document.addEventListener('wheel', this.handleWheel);
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener('wheel', this.handleWheel);
+  }
 
   setZoom(zoom: number) {
     const newZoom = Math.min(Math.max(zoom, 1), 8);
@@ -132,6 +141,14 @@ export class NanoMap extends Component<Props, State> {
       document.removeEventListener('mousemove', this.handleDragMove);
       document.removeEventListener('mouseup', this.handleDragEnd);
       pauseEvent(e);
+    };
+
+    this.handleWheel = (e: WheelEvent) => {
+      if (e.deltaY > 0) {
+        this.setZoom(this.state.zoom + 1);
+      } else if (e.deltaY < 0) {
+        this.setZoom(this.state.zoom - 1);
+      }
     };
 
     this.handleZoom = (_e: Event, value: number) => {

@@ -1,7 +1,7 @@
 import { useBackend } from 'tgui/backend';
 import { Window } from 'tgui/layouts';
 import { Button, LabeledList, NoticeBox, Section } from 'tgui-core/components';
-import { BooleanLike } from 'tgui-core/react';
+import type { BooleanLike } from 'tgui-core/react';
 
 type Data = {
   tank_one: string;
