@@ -679,7 +679,7 @@
 
 /datum/trait/negative/sensitive_biochem
 	name = "Sensitive Biochemistry, Minor"
-	desc = "Your biochemistry is a little delicate, rendering you more susceptible to both deadly toxins and the more subtle ones. You'll probably want to list this in your medical records, and perhaps in your exploitable info as well. Toxin damages and knockout drugs are 25% stronger on you."
+	desc = "Your biochemistry is a little delicate, rendering you more susceptible to the negative effects of some chemicals. You'll probably want to list this in your medical records, and perhaps in your exploitable info as well. Toxin damage and negative drug effects are 25% stronger on you. Additionally, knockout drugs work 25% faster on you."
 	cost = -1
 	var_changes = list("chem_strength_tox" = 1.25)
 
@@ -689,7 +689,7 @@
 
 /datum/trait/negative/sensitive_biochem/moderate
 	name = "Sensitive Biochemistry, Moderate"
-	desc = "Your biochemistry is delicate, rendering you more moderately more susceptible to both deadly toxins and the more subtle ones. You'll probably want to list this in your medical records, and perhaps in your exploitable info as well. Toxin damages and knockout drugs are 50% stronger on you."
+	desc = "Your biochemistry is a little delicate, rendering you more susceptible to the negative effects of some chemicals. You'll probably want to list this in your medical records, and perhaps in your exploitable info as well. Toxin damage and negative drug effects are 25% stronger on you. Additionally, knockout drugs work 25% faster on you."
 	cost = -2
 	var_changes = list("chem_strength_tox" = 1.5)
 
@@ -698,22 +698,12 @@
 
 /datum/trait/negative/sensitive_biochem/major
 	name = "Sensitive Biochemistry, Major"
-	desc = "Your biochemistry is delicate, rendering you more massively more susceptible to both deadly toxins and the more subtle ones. You'll probably want to list this in your medical records, and perhaps in your exploitable info as well. Toxin damages and knockout drugs are 100% stronger on you."
+	desc = "Your biochemistry is a little delicate, rendering you more susceptible to the negative effects of some chemicals. You'll probably want to list this in your medical records, and perhaps in your exploitable info as well. Toxin damage and negative drug effects are 25% stronger on you. Additionally, knockout drugs work 25% faster on you."
 	cost = -3
 	var_changes = list("chem_strength_tox" = 2)
 
 	//Traitgenes
 	is_genetrait = TRUE
-
-/datum/trait/negative/sensitive_biochem
-	name = "Sensitive Biochemistry"
-	desc = "Your biochemistry is a little delicate, rendering you more susceptible to both deadly toxins and the more subtle ones. You'll probably want to list this in your medical records, and perhaps in your exploitable info as well. Toxin damages and knockout drugs are 25% stronger on you."
-	cost = -1
-	var_changes = list("chem_strength_tox" = 1.25)
-
-	//Traitgenes
-	is_genetrait = TRUE
-	hidden = FALSE
 
 /datum/trait/negative/slipperydirt
 	name = "Dirt Vulnerability"
