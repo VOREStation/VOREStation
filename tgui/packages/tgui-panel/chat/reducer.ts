@@ -130,29 +130,20 @@ export const chatReducer = (state = initialState, action) => {
     };
   }
   if (type === importSettings.type) {
-    const newPages: Page[] = payload.newPages;
-    if (!newPages) {
+    const pagesById: Record<string, Page>[] = payload.newPages;
+    if (!pagesById) {
       return state;
     }
-    const newPageIds: string[] = payload.newSettings.pages;
+    const newPageIds: string[] = Object.keys(pagesById);
     if (!newPageIds) {
       return state;
     }
-    const pageById: Record<string, Page> = newPageIds.reduce(
-      (acc, entry, idx) => {
-        acc[entry] = newPages[idx];
-        return acc;
-      },
-      {},
-    );
 
-    alert(JSON.stringify(pageById));
-    alert(JSON.stringify(newPageIds));
     const nextState = {
       ...state,
       currentPageId: newPageIds[0],
       pages: [...newPageIds],
-      pageById: { ...pageById },
+      pageById: { ...pagesById },
     };
     return nextState;
   }

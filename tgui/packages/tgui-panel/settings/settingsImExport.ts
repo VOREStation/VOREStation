@@ -5,7 +5,7 @@ import { importSettings } from './actions';
 
 export function exportChatSettings(
   settings: Record<string, any>,
-  pages: Page[],
+  pages: Record<string, Page>[],
 ) {
   const opts: SaveFilePickerOptions = {
     id: `ss13-chatprefs-${Date.now()}`,
@@ -47,6 +47,9 @@ export function importChatSettings(settings: string | string[]) {
   if (!Array.isArray(settings)) {
     const dispatch = useDispatch();
     const ourImport = JSON.parse(settings);
-    dispatch(importSettings(ourImport, ourImport['chatPages']));
+    const pageRecord = ourImport['chatPages'];
+    delete ourImport['chatPages'];
+
+    dispatch(importSettings(ourImport, pageRecord));
   }
 }
