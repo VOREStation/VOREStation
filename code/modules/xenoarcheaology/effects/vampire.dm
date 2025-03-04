@@ -82,7 +82,7 @@
 
 	if(charges >= 10) //Listen, if you have INTENTIONALLY FED THE SPOOKY, SCARY ARTIFACT THAT IS DRAINING YOUR BLOOD, then go ahead and have your spooky reward.
 		charges -= 10
-		var/manifestation = pick(/obj/item/soulstone, /obj/item/melee/artifact_blade, /obj/item/book/tome, /obj/item/clothing/head/helmet/space/cult, /obj/item/clothing/suit/space/cult, /obj/structure/constructshell)
+		var/manifestation = pick(/obj/item/soulstone, /obj/item/melee/artifact_blade, /obj/item/book/tome, /obj/item/clothing/head/helmet/space/cult, /obj/item/clothing/suit/space/cult, /obj/structure/constructshell, /obj/item/clothing/shoes/cult)
 		new manifestation(pick(RANGE_TURFS(1,T)))
 
 	if(charges >= 3)

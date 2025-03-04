@@ -70,6 +70,10 @@
 	name = "Party Cannon"
 	desc = "Confetti, pies, banana peels, chaos!"
 
+/obj/item/gun/launcher/confetti_cannon/robot
+	name = "Party Cannon"
+	desc = "Confetti, pies, banana peels, chaos!"
+
 /obj/item/gun/launcher/confetti_cannon/robot/pump(mob/user)
 	playsound(user, 'sound/weapons/shotgunpump.ogg', 60, 1)
 	if(!chambered)

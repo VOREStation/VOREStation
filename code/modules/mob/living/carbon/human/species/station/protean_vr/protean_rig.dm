@@ -46,7 +46,7 @@
 /obj/item/rig/protean/ex_act(severity)
 	return
 
-/obj/item/rig/protean/New(var/newloc, var/mob/living/carbon/human/P)
+/obj/item/rig/protean/Initialize(mapload, var/mob/living/carbon/human/P)
 	if(P)
 		var/datum/species/protean/S = P.species
 		S.OurRig = src
@@ -55,7 +55,7 @@
 			myprotean = P
 		else
 			to_chat(P, span_notice("You should have spawned with a backpack to assimilate into your RIG. Try clicking it with a backpack."))
-	..(newloc)
+	. = ..()
 
 /obj/item/rig/protean/Destroy()
 	if(myprotean)
@@ -117,7 +117,7 @@
 	sprite_sheets = list(
 		SPECIES_PROTEAN			 = 'icons/mob/head.dmi',
 		SPECIES_HUMAN			 = 'icons/mob/head.dmi',
-		SPECIES_TAJARAN 			 = 'icons/mob/species/tajaran/helmet.dmi',
+		SPECIES_TAJARAN 		 = 'icons/mob/species/tajaran/helmet.dmi',
 		SPECIES_SKRELL 			 = 'icons/mob/species/skrell/helmet.dmi',
 		SPECIES_UNATHI 			 = 'icons/mob/species/unathi/helmet.dmi',
 		SPECIES_XENOHYBRID		 = 'icons/mob/species/unathi/helmet.dmi',
@@ -137,7 +137,7 @@
 	sprite_sheets_obj = list(
 		SPECIES_PROTEAN			 = 'icons/mob/head.dmi',
 		SPECIES_HUMAN			 = 'icons/mob/head.dmi',
-		SPECIES_TAJARAN 			 = 'icons/mob/head.dmi',
+		SPECIES_TAJARAN 		 = 'icons/mob/head.dmi',
 		SPECIES_SKRELL 			 = 'icons/mob/head.dmi',
 		SPECIES_UNATHI 			 = 'icons/mob/head.dmi',
 		SPECIES_XENOHYBRID		 = 'icons/mob/head.dmi',
@@ -153,8 +153,10 @@
 		SPECIES_VOX				 = 'icons/mob/head.dmi',
 		SPECIES_XENOMORPH_HYBRID = 'icons/mob/head.dmi'
 		)
-	icon = 'icons/mob/head.dmi'
+	icon = 'icons/inventory/head/item.dmi'
 	default_worn_icon = 'icons/mob/head.dmi'
+	icon_state = "nanomachine_rig"
+	//item_state = "nanomachine_rig"
 
 /obj/item/clothing/gloves/gauntlets/rig/protean
 	name = "mass"
@@ -164,7 +166,7 @@
 	sprite_sheets = list(
 		SPECIES_PROTEAN			 = 'icons/mob/hands.dmi',
 		SPECIES_HUMAN			 = 'icons/mob/hands.dmi',
-		SPECIES_TAJARAN 			 = 'icons/mob/hands.dmi',
+		SPECIES_TAJARAN 		 = 'icons/mob/hands.dmi',
 		SPECIES_SKRELL 			 = 'icons/mob/hands.dmi',
 		SPECIES_UNATHI 			 = 'icons/mob/hands.dmi',
 		SPECIES_XENOHYBRID		 = 'icons/mob/hands.dmi',
@@ -183,7 +185,7 @@
 
 	sprite_sheets_obj = list(
 		SPECIES_HUMAN			 = 'icons/mob/hands.dmi',
-		SPECIES_TAJARAN 			 = 'icons/mob/hands.dmi',
+		SPECIES_TAJARAN 		 = 'icons/mob/hands.dmi',
 		SPECIES_SKRELL 			 = 'icons/mob/hands.dmi',
 		SPECIES_UNATHI 			 = 'icons/mob/hands.dmi',
 		SPECIES_XENOHYBRID		 = 'icons/mob/hands.dmi',
@@ -199,8 +201,10 @@
 		SPECIES_VOX				 = 'icons/mob/hands.dmi',
 		SPECIES_XENOMORPH_HYBRID = 'icons/mob/hands.dmi'
 		)
-	icon = 'icons/mob/hands.dmi'
+	icon = 'icons/inventory/hands/item.dmi'
 	default_worn_icon = 'icons/mob/hands.dmi'
+	icon_state = "nanomachine_rig"
+	//item_state = "nanomachine_rig"
 
 /obj/item/clothing/shoes/magboots/rig/protean
 	name = "mass"
@@ -212,8 +216,10 @@
 		SPECIES_XENOMORPH_HYBRID = 'icons/mob/species/xenomorph_hybrid/shoes.dmi'
 		)
 	sprite_sheets_obj = list()
-	icon = 'icons/mob/feet.dmi'
+	icon = 'icons/inventory/feet/item.dmi'
 	default_worn_icon = 'icons/mob/feet.dmi'
+	icon_state = "nanomachine_rig"
+	//item_state = "nanomachine_rig"
 
 /obj/item/clothing/suit/space/rig/protean
 	name = "mass"
@@ -235,8 +241,10 @@
 		)
 
 	sprite_sheets_obj = list()
-	icon = 'icons/mob/spacesuit.dmi'
+	icon = 'icons/inventory/suit/item.dmi'
 	default_worn_icon = 'icons/mob/spacesuit.dmi'
+	icon_state = "nanomachine_rig"
+	//item_state = "nanomachine_rig"
 
 //Copy pasted most of this proc from base because I don't feel like rewriting the base proc with a shit load of exceptions
 /obj/item/rig/protean/attackby(obj/item/W, mob/living/user)
@@ -469,7 +477,7 @@
 		return 0
 	return 1
 
-/obj/item/rig/protean/toggle_seals(mob/living/carbon/human/M, instant)
+/obj/item/rig/protean/toggle_seals(mob/living/carbon/human/M, instant = TRUE)
 	M = src.wearer
 	..()
 

@@ -20,12 +20,9 @@ var/global/list/micro_tunnels = list()
 		/mob/living/simple_mob/slime
 	)
 
-/obj/structure/micro_tunnel/New()
-	. = ..()
-	micro_tunnels.Add(src)
-
 /obj/structure/micro_tunnel/Initialize()
 	. = ..()
+	micro_tunnels.Add(src)
 	if(name == initial(name))
 		var/area/our_area = get_area(src)
 		name = "[our_area.name] [name]"
