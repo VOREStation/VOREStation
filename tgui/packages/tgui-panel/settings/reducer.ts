@@ -145,6 +145,7 @@ export function settingsReducer(
         return nextState;
       }
     }
+
     case importSettings.type: {
       const newSettings = payload.newSettings;
       if (!newSettings) {
