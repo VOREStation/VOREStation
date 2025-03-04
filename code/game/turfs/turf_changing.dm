@@ -149,7 +149,8 @@
 	if(istype(cur_turf) && is_open != was_open)
 		do
 			cur_turf = GetBelow(cur_turf)
-			if(is_open)
+			var/area/A = cur_turf.loc
+			if(is_open && !A.isAlwaysIndoors())
 				cur_turf.make_outdoors()
 			else
 				cur_turf.make_indoors()
