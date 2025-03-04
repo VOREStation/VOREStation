@@ -42,6 +42,7 @@
 
 	var/has_reproduced = FALSE
 	var/used_dominate							// world.time when the dominate power was last used.
+	var/datum/ghost_query/Q						// Used to unregister our signal
 
 /mob/living/simple_mob/animal/borer/roundstart
 	roundstart = TRUE
@@ -180,11 +181,16 @@
 	host = null
 
 /mob/living/simple_mob/animal/borer/proc/request_player()
-	var/datum/ghost_query/Q = new /datum/ghost_query/borer()
-	var/list/winner = Q.query() // This will sleep the proc for awhile.
-	if(winner.len)
-		var/mob/observer/dead/D = winner[1]
+	Q = new /datum/ghost_query/borer()
+	RegisterSignal(Q, COMSIG_GHOST_QUERY_COMPLETE, PROC_REF(get_winner))
+	Q.query() // This will sleep the proc for awhile.
+
+/mob/living/simple_mob/animal/borer/proc/get_winner()
+	if(Q && Q.candidates.len) //Q should NEVER get deleted but...whatever, sanity.
+		var/mob/observer/dead/D = Q.candidates[1]
 		transfer_personality(D)
+	UnregisterSignal(Q, COMSIG_GHOST_QUERY_COMPLETE)
+	qdel_null(Q) //get rid of the query
 
 /mob/living/simple_mob/animal/borer/proc/transfer_personality(mob/candidate)
 	if(!candidate || !candidate.mind)

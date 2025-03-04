@@ -4,6 +4,7 @@
 	var/ghost_query_type = null
 	var/searching = FALSE
 	var/datum/effect/effect/system/spark_spread/sparks
+	var/datum/ghost_query/Q //This is used so we can unregister ourself.
 
 /obj/item/antag_spawner/New()
 	..()
@@ -28,13 +29,18 @@
 		return // Already searching.
 	searching = TRUE
 
-	var/datum/ghost_query/Q = new ghost_query_type()
-	var/list/winner = Q.query()
-	if(winner.len)
-		var/mob/observer/dead/D = winner[1]
+	Q = new ghost_query_type()
+	RegisterSignal(Q, COMSIG_GHOST_QUERY_COMPLETE, PROC_REF(get_winner))
+	Q.query()
+
+/obj/item/antag_spawner/proc/get_winner()
+	if(Q && Q.candidates.len)
+		var/mob/observer/dead/D = Q.candidates[1]
 		spawn_antag(D.client, get_turf(src))
 	else
 		reset_search()
+	UnregisterSignal(Q, COMSIG_GHOST_QUERY_COMPLETE)
+	qdel_null(Q) //get rid of the query
 	return
 
 /obj/item/antag_spawner/proc/reset_search()
