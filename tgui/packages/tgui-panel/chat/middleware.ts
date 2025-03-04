@@ -23,6 +23,7 @@ import {
   addChatPage,
   changeChatPage,
   changeScrollTracking,
+  clearChat,
   getChatData,
   loadChat,
   moveChatPageLeft,
@@ -367,6 +368,10 @@ export const chatMiddleware = (store) => {
         settings.exportStart,
         settings.exportEnd,
       );
+      return;
+    }
+    if (type === clearChat.type) {
+      chatRenderer.clearChat();
       return;
     }
     if (type === purgeChatMessageArchive.type) {

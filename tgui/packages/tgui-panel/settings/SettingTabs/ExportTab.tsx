@@ -13,7 +13,11 @@ import {
 } from 'tgui-core/components';
 import { toFixed } from 'tgui-core/math';
 
-import { purgeChatMessageArchive, saveChatToDisk } from '../../chat/actions';
+import {
+  clearChat,
+  purgeChatMessageArchive,
+  saveChatToDisk,
+} from '../../chat/actions';
 import { MESSAGE_TYPES } from '../../chat/constants';
 import { useGame } from '../../game';
 import { exportSettings, updateSettings, updateToggle } from '../actions';
@@ -303,6 +307,15 @@ export const ExportTab = (props) => {
           >
             Save chat log
           </Button>
+        </Stack.Item>
+        <Stack.Item mt={0.15}>
+          <Button.Confirm
+            icon="trash"
+            tooltip="Erase current tab history"
+            onClick={() => dispatch(clearChat())}
+          >
+            Clear chat
+          </Button.Confirm>
         </Stack.Item>
         {!game.databaseBackendEnabled && (
           <Stack.Item mt={0.15}>
