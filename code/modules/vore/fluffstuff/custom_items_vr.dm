@@ -502,7 +502,7 @@
 	flags_inv = HIDEJUMPSUIT|HIDETIE|HIDEHOLSTER
 
 /obj/item/clothing/head/fluff/pink_tiara
-	name = "Pink Tourmaline Tiara"
+	name = "pink tourmaline tiara"
 	desc = "A small, steel tiara with a large, pink tourmaline gem in the center."
 	icon_state = "amp"
 	body_parts_covered = 0
