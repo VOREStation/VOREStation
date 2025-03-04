@@ -572,3 +572,13 @@
 		return
 	A.flags &= ~(AREA_BLOCK_GHOST_SIGHT)
 	ghostnet.removeArea(A)
+
+/client/proc/hide_motion_tracker_feedback()
+	set name = "Toggle Motion Echos"
+	set desc = "Hides or reveals motion tracker echos globally."
+	set category = "Admin.Events"
+
+	if(!check_rights(R_ADMIN|R_EVENT))
+		return
+	SSmotiontracker.hide_all = !SSmotiontracker.hide_all
+	log_admin("[key_name(usr)] changed the motion echo visibility to [SSmotiontracker.hide_all ? "hidden" : "visible"].")
