@@ -1,0 +1,4 @@
+author: "Kashargul"
+delete-after: True
+changes:
+  - bugfix: "changeTurf will no longer create outdoor turfs in turbolifts or shuttles"
