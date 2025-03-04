@@ -73,7 +73,9 @@
 /datum/tgui_panel/proc/on_message(type, payload)
 	if(type == "ready")
 		broken = FALSE
-		var/list/stored_rounds = CONFIG_GET(flag/chatlog_database_backend) ? vchatlog_get_recent_roundids(client.ckey) : null
+		var/list/stored_rounds = null
+		if (CONFIG_GET(flag/chatlog_database_backend))
+			stored_rounds = vchatlog_get_recent_roundids(client.ckey)
 		window.send_message("connected", list(
 			"round_id" = GLOB.round_id, // Sends the round ID to the chat, requires round IDs
 			"chatlog_db_backend" = CONFIG_GET(flag/chatlog_database_backend),
