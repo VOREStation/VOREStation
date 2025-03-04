@@ -1224,13 +1224,6 @@
 /mob/living/simple_mob/humanoid/pirate,
 /turf/simulated/floor/tiled,
 /area/awaymission/zoo/pirateship)
-"dK" = (
-/obj/machinery/power/fractal_reactor/fluff/converter{
-	mapped_in = 1;
-	power_generation_rate = 10000
-	},
-/turf/simulated/floor/plating,
-/area/awaymission/zoo/pirateship)
 "dL" = (
 /obj/machinery/power/terminal{
 	dir = 8
@@ -25428,10 +25421,10 @@ ad
 bO
 bO
 al
-dK
 al
 al
-dK
+al
+al
 al
 fj
 bO

@@ -192,8 +192,7 @@
 /obj/machinery/airlock_sensor/airlock_exterior{
 	frequency = 1200;
 	id_tag = "westairlock";
-	master_tag = "westexteriorsensor";
-	pixel_w = 26
+	master_tag = "westexteriorsensor"
 	},
 /turf/simulated/mineral/floor,
 /area/mercbase/roid)
@@ -205,8 +204,7 @@
 /obj/machinery/airlock_sensor/airlock_interior{
 	frequency = 1200;
 	id_tag = "westairlock";
-	master_tag = "westchambersensor";
-	pixel_z = 23
+	master_tag = "westchambersensor"
 	},
 /turf/simulated/floor,
 /area/mercbase/airlock)
@@ -214,8 +212,7 @@
 /obj/machinery/airlock_sensor/airlock_interior{
 	frequency = 1200;
 	id_tag = "westairlock";
-	master_tag = "westinteriorsensor";
-	pixel_z = 23
+	master_tag = "westinteriorsensor"
 	},
 /turf/simulated/floor/tiled/dark,
 /area/mercbase/hall)
@@ -986,9 +983,7 @@
 	icon_state = "0-2";
 	pixel_y = 0
 	},
-/obj/structure/closet/hydrant{
-	pixel_w = -32
-	},
+/obj/structure/closet/hydrant,
 /turf/simulated/floor/tiled/dark,
 /area/mercbase/solar)
 "hM" = (
@@ -1181,9 +1176,7 @@
 /area/mercbase/hall)
 "id" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/structure/closet/hydrant{
-	pixel_w = -32
-	},
+/obj/structure/closet/hydrant,
 /turf/simulated/floor,
 /area/mercbase/airlock)
 "ie" = (
@@ -1417,9 +1410,7 @@
 /obj/structure/cable{
 	icon_state = "1-4"
 	},
-/obj/structure/closet/hydrant{
-	pixel_w = -32
-	},
+/obj/structure/closet/hydrant,
 /turf/simulated/floor/tiled/dark,
 /area/mercbase/medicalstorage)
 "iG" = (
@@ -1446,9 +1437,7 @@
 	icon_state = "map_scrubber_on";
 	dir = 8
 	},
-/obj/structure/closet/hydrant{
-	pixel_w = 32
-	},
+/obj/structure/closet/hydrant,
 /turf/simulated/floor/tiled/dark,
 /area/mercbase/medicalOR)
 "iK" = (
@@ -1525,9 +1514,7 @@
 /obj/structure/cable{
 	icon_state = "1-4"
 	},
-/obj/structure/closet/hydrant{
-	pixel_w = -32
-	},
+/obj/structure/closet/hydrant,
 /turf/simulated/floor,
 /area/mercbase/atmos)
 "iV" = (
@@ -1586,9 +1573,7 @@
 /turf/simulated/floor/tiled/dark,
 /area/mercbase/medical)
 "jc" = (
-/obj/structure/closet/hydrant{
-	pixel_w = -32
-	},
+/obj/structure/closet/hydrant,
 /obj/structure/bed/roller,
 /turf/simulated/floor/tiled/dark,
 /area/mercbase/medical)
@@ -2315,9 +2300,7 @@
 /obj/structure/cable{
 	icon_state = "1-4"
 	},
-/obj/structure/closet/hydrant{
-	pixel_w = -32
-	},
+/obj/structure/closet/hydrant,
 /turf/simulated/floor/tiled/dark,
 /area/mercbase/eqroom)
 "kD" = (
@@ -3539,15 +3522,11 @@
 /turf/simulated/floor/tiled/dark,
 /area/mercbase/medicalstorage)
 "of" = (
-/obj/structure/closet/hydrant{
-	pixel_w = -32
-	},
+/obj/structure/closet/hydrant,
 /turf/simulated/floor/tiled/dark,
 /area/mercbase/hall)
 "og" = (
-/obj/structure/closet/hydrant{
-	pixel_w = -32
-	},
+/obj/structure/closet/hydrant,
 /turf/simulated/floor/tiled/dark,
 /area/mercbase/command)
 "oh" = (
@@ -3559,35 +3538,25 @@
 /turf/simulated/floor/tiled/dark,
 /area/mercbase/medical)
 "oi" = (
-/obj/structure/closet/hydrant{
-	pixel_w = -32
-	},
+/obj/structure/closet/hydrant,
 /turf/simulated/floor/tiled/dark,
 /area/mercbase/barracks)
 "oj" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/fuel,
 /obj/machinery/meter,
-/obj/structure/closet/hydrant{
-	pixel_w = -32
-	},
+/obj/structure/closet/hydrant,
 /turf/simulated/floor,
 /area/mercbase/fuel)
 "ok" = (
-/obj/structure/closet/hydrant{
-	pixel_w = -32
-	},
+/obj/structure/closet/hydrant,
 /turf/simulated/floor/tiled/dark,
 /area/mercbase/roid)
 "ol" = (
-/obj/structure/closet/hydrant{
-	pixel_w = -32
-	},
+/obj/structure/closet/hydrant,
 /turf/simulated/floor/tiled/dark,
 /area/mercbase/dock)
 "om" = (
-/obj/structure/closet/hydrant{
-	pixel_w = -32
-	},
+/obj/structure/closet/hydrant,
 /turf/simulated/floor/tiled/dark,
 /area/mercbase/power)
 "on" = (
@@ -3668,9 +3637,7 @@
 /area/mercbase/eqroom)
 "ou" = (
 /obj/structure/table/reinforced,
-/obj/structure/closet/hydrant{
-	pixel_w = -32
-	},
+/obj/structure/closet/hydrant,
 /obj/item/storage/toolbox/syndicate,
 /turf/simulated/floor/tiled/dark,
 /area/mercbase/engineering)
@@ -3738,6 +3705,15 @@
 	},
 /obj/machinery/door/firedoor,
 /turf/simulated/floor/tiled/dark,
+/area/mercbase/hall)
+"wF" = (
+/obj/machinery/airlock_sensor/airlock_interior{
+	frequency = 1200;
+	id_tag = "westairlock";
+	master_tag = "westinteriorsensor";
+	pixel_z = 23
+	},
+/turf/simulated/wall/r_wall,
 /area/mercbase/hall)
 
 (1,1,1) = {"
@@ -11912,7 +11888,7 @@ ih
 kF
 hg
 jY
-gc
+wF
 jM
 kz
 gE

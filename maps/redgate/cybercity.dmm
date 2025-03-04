@@ -7360,7 +7360,6 @@
 /area/redgate/city/restaurant)
 "jNC" = (
 /obj/structure/table/alien,
-/obj/structure/table/alien,
 /turf/simulated/shuttle/floor/alienplating/blue/half{
 	dir = 1
 	},
@@ -7560,12 +7559,6 @@
 /obj/item/clothing/under/color/lightred,
 /turf/simulated/floor/wood,
 /area/redgate/city/apartments)
-"jZT" = (
-/obj/structure/ladder/up{
-	pixel_y = 7
-	},
-/turf/simulated/floor/water/indoors,
-/area/redgate/city/pool)
 "kay" = (
 /obj/structure/sink{
 	dir = 8;
@@ -14266,7 +14259,6 @@
 /turf/simulated/floor/carpet/brown,
 /area/redgate/city/tarot)
 "sAV" = (
-/obj/structure/table/standard,
 /obj/structure/table/standard,
 /turf/simulated/floor/tiled/white,
 /area/redgate/city/scughouse)
@@ -34123,7 +34115,7 @@ iLu
 nqa
 eRt
 gue
-jZT
+lxg
 lxg
 lxg
 dDr

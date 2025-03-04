@@ -507,7 +507,6 @@
 /area/submap/virgo2/Rockybase)
 "bM" = (
 /obj/structure/table/standard,
-/obj/structure/table/standard,
 /obj/effect/decal/cleanable/dirt,
 /obj/item/reagent_containers/hypospray/autoinjector/biginjector/burn,
 /turf/simulated/floor/tiled/techfloor/virgo2,
@@ -664,7 +663,7 @@
 /area/submap/virgo2/Rockybase)
 "cq" = (
 /obj/structure/cable{
-	icon_state = "0-4";
+	icon_state = "0-4"
 	},
 /obj/machinery/light{
 	dir = 8

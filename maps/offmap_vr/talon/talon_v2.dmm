@@ -201,11 +201,9 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/talon_v2/workroom)
 "aw" = (
-/obj/structure/table/standard,
 /obj/item/clothing/gloves/sterile/nitrile,
 /obj/item/clothing/mask/surgical,
 /obj/item/clothing/suit/surgicalapron,
-/obj/structure/table/standard,
 /obj/structure/table/standard,
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 1
@@ -294,26 +292,6 @@
 /obj/structure/table/steel,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/talon_v2/engineering)
-"aF" = (
-/obj/machinery/door/firedoor/glass/talon,
-/obj/structure/grille,
-/obj/structure/window/reinforced/full,
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/obj/machinery/door/blast/regular/open{
-	dir = 2;
-	id = "talon_bridge_shields"
-	},
-/obj/machinery/door/blast/regular/open{
-	dir = 2;
-	id = "talon_bridge_shields"
-	},
-/turf/simulated/floor/plating,
-/area/talon_v2/bridge)
 "aG" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
@@ -25836,7 +25814,7 @@ XP
 XP
 XP
 WL
-aF
+LB
 ZC
 WL
 MW

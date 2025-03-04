@@ -41,7 +41,6 @@
 	},
 /area/submap/virgo2/Blackshuttledown)
 "ak" = (
-/turf/simulated/mineral/floor/ignore_mapgen/virgo2,
 /turf/simulated/shuttle/wall/dark{
 	icon_state = "dark10";
 	name = "Unknown Shuttle"
@@ -141,7 +140,6 @@
 /turf/simulated/floor/tiled/steel,
 /area/submap/virgo2/Blackshuttledown)
 "az" = (
-/turf/simulated/mineral/floor/ignore_mapgen/virgo2,
 /turf/simulated/shuttle/wall/dark{
 	icon_state = "dark9";
 	name = "Unknown Shuttle"
@@ -379,7 +377,6 @@
 /turf/simulated/floor/tiled/steel,
 /area/submap/virgo2/Blackshuttledown)
 "bp" = (
-/obj/structure/bed,
 /obj/item/bedsheet,
 /obj/structure/bed,
 /turf/simulated/floor/tiled/steel,
@@ -433,6 +430,18 @@
 "bz" = (
 /mob/living/simple_mob/humanoid/merc/ranged/space,
 /turf/simulated/mineral/floor/ignore_mapgen/virgo2,
+/area/submap/virgo2/Blackshuttledown)
+"hd" = (
+/turf/simulated/shuttle/wall/dark{
+	icon_state = "dark5";
+	name = "Unknown Shuttle"
+	},
+/area/submap/virgo2/Blackshuttledown)
+"Aw" = (
+/turf/simulated/shuttle/wall/dark{
+	icon_state = "dark6";
+	name = "Unknown Shuttle"
+	},
 /area/submap/virgo2/Blackshuttledown)
 
 (1,1,1) = {"
@@ -671,14 +680,14 @@ af
 af
 af
 af
-ai
+Aw
 aj
 aW
 aY
 aY
 bb
 aj
-au
+hd
 af
 af
 af
@@ -739,11 +748,11 @@ af
 af
 ad
 ad
-ai
+Aw
 aj
 aj
-au
-ai
+hd
+Aw
 aj
 aL
 aq
@@ -754,11 +763,11 @@ aq
 aq
 aL
 aj
-au
-ai
+hd
+Aw
 aj
 aj
-au
+hd
 af
 af
 ab
@@ -1350,7 +1359,7 @@ bm
 bm
 bv
 aj
-au
+hd
 af
 af
 ad
@@ -1368,7 +1377,7 @@ af
 af
 af
 af
-ai
+Aw
 aj
 aj
 aq

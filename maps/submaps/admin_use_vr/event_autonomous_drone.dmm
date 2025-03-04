@@ -19,7 +19,7 @@
 /obj/machinery/atmospherics/pipe/manifold/visible/fuel,
 /obj/machinery/power/port_gen/pacman/mrs,
 /obj/structure/cable{
-	dir = 4
+	icon_state = "0-8"
 	},
 /turf/simulated/shuttle/floor/yellow,
 /area/submap/event_autonomous_drone/engineering)
@@ -131,11 +131,12 @@
 /obj/machinery/atmospherics/binary/pump/fuel/on{
 	dir = 4
 	},
-/obj/structure/cable{
-	dir = 8
-	},
 /obj/structure/fuel_port{
 	pixel_y = 28
+	},
+/obj/structure/cable{
+	icon_state = "0-4";
+	d2 = 4
 	},
 /turf/simulated/shuttle/floor/yellow,
 /area/submap/event_autonomous_drone/engineering)
@@ -415,7 +416,7 @@
 	},
 /obj/machinery/power/port_gen/pacman/mrs,
 /obj/structure/cable{
-	dir = 4
+	icon_state = "0-8"
 	},
 /turf/simulated/shuttle/floor/yellow,
 /area/submap/event_autonomous_drone/engineering)
