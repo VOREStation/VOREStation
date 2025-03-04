@@ -900,12 +900,14 @@
 
 /datum/reagent/drink/coffee/nukie/mega/high/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
 	..()
-	var/threshold = 1 * M.species.chem_strength_tox
+	var/threshold = 1
+	if(M.species.chem_strength_tox > 0) //Closer to 0 means they're more resistant to toxins. Higher than 1 means they're weaker to toxins.
+		threshold /= M.species.chem_strength_tox //Ex: If you have a CST of 0.01 (100x resistant) threshold will = 100
 	if(alien == IS_SKRELL)
-		threshold = 1.2
+		threshold /= 1.2
 
 	if(alien == IS_SLIME)
-		threshold = 0.8
+		threshold /= 6
 
 	M.druggy = max(M.druggy, 30)
 	M.adjust_nutrition(-10 * removed)

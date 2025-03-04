@@ -58,10 +58,12 @@
 /datum/reagent/drugs/bliss/affect_blood(mob/living/carbon/M, var/alien, var/removed)
 	..()
 	var/drug_strength = 15
+	if(M.species.chem_strength_tox > 0)
+		drug_strength /= M.species.chem_strength_tox
 	if(alien == IS_SKRELL)
-		drug_strength = drug_strength * 0.8
+		drug_strength /= 1.2
 	if(alien == IS_SLIME)
-		drug_strength = drug_strength * 1.2
+		drug_strength /= 6
 
 	M.druggy = max(M.druggy, drug_strength)
 	if(prob_proc == TRUE && prob(10) && isturf(M.loc) && !istype(M.loc, /turf/space) && M.canmove && !M.restrained())
@@ -102,10 +104,12 @@
 /datum/reagent/drugs/ambrosia_extract/affect_blood(mob/living/carbon/M, var/alien, var/removed)
 	..()
 	var/drug_strength = 3
+	if(M.species.chem_strength_tox > 0) //Closer to 0 means they're more resistant to toxins. Higher than 1 means they're weaker to toxins.
+		drug_strength /= M.species.chem_strength_tox //Ex: If you have a CST of 0.01 (100x resistant) threshold will = 100
 	if(alien == IS_SKRELL)
-		drug_strength = drug_strength * 0.8
+		drug_strength /= 1.2
 	if(alien == IS_SLIME)
-		drug_strength = drug_strength * 1.2
+		drug_strength /= 6
 
 	M.adjustToxLoss(-2)
 	M.druggy = max(M.druggy, drug_strength)
@@ -134,12 +138,14 @@
 /datum/reagent/drugs/psilocybin/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	..()
 
-	var/threshold = 1 * M.species.chem_strength_tox
+	var/threshold = 1
+	if(M.species.chem_strength_tox > 0) //Closer to 0 means they're more resistant to toxins. Higher than 1 means they're weaker to toxins.
+		threshold /= M.species.chem_strength_tox //Ex: If you have a CST of 0.01 (100x resistant) threshold will = 100
 	if(alien == IS_SKRELL)
-		threshold = 1.2
+		threshold /= 1.2
 
 	if(alien == IS_SLIME)
-		threshold = 0.8
+		threshold /= 6
 
 	M.druggy = max(M.druggy, 30)
 
@@ -187,7 +193,9 @@
 /datum/reagent/drugs/talum_quem/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	..()
 
-	var/drug_strength = 29 * M.species.chem_strength_tox
+	var/drug_strength = 29
+	if(M.species.chem_strength_tox > 0) //Closer to 0 means they're more resistant to toxins. Higher than 1 means they're weaker to toxins.
+		drug_strength /= M.species.chem_strength_tox //Ex: If you have a CST of 0.01 (100x resistant) drug_strength will = 100
 	if(alien == IS_SKRELL)
 		drug_strength = drug_strength * 0.8
 	else
