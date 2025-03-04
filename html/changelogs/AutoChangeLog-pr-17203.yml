@@ -1,9 +1,0 @@
-author: "Cameron-The-Raven"
-delete-after: True
-changes:
-  - rscadd: "Adds Purple Robes and Tiara to loadout"
-  - qol: "lowers cost of suit clothing fluff (This helps you identify which ones have armor and which ones don't, as some things are naturally priced higher due to their innate armor)"
-  - qol: "Brings some loadout items to normal prices (increased is reserved for ones that give armor)"
-  - bugfix: "Fixes neural implant always having 2 cost due to implant/language existing and taking priority."
-  - qol: "Neural implant only costs one loadout point, now."
-  - rscadd: "Adds pirate coat and pirate hat to loadout. Yarr!"

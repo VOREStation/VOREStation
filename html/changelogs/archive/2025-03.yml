@@ -57,3 +57,33 @@
   - qol: using a database to store the round logs to reduce client-side lag
   - qol: using same database to load the most recent messages into the chat (instead
       of having to fetch from client browser)
+2025-03-04:
+  Cameron-The-Raven:
+  - rscadd: Adds Purple Robes and Tiara to loadout
+  - qol: lowers cost of suit clothing fluff (This helps you identify which ones have
+      armor and which ones don't, as some things are naturally priced higher due to
+      their innate armor)
+  - qol: Brings some loadout items to normal prices (increased is reserved for ones
+      that give armor)
+  - bugfix: Fixes neural implant always having 2 cost due to implant/language existing
+      and taking priority.
+  - qol: Neural implant only costs one loadout point, now.
+  - rscadd: Adds pirate coat and pirate hat to loadout. Yarr!
+  Drathek:
+  - refactor: Reworked map includes for ground base, stellar delight, and tether to
+      have all paths included simultaneously
+  Kashargul:
+  - bugfix: changeTurf will no longer create outdoor turfs in turbolifts or shuttles
+  KillianKirilenko:
+  - qol: veymed autoadaptive suits can now handle teshari
+  - balance: veymed tesh suits changed to generic nonadaptive suits
+  - qol: '"streamlined" changed to "lightweight" in veymed suit names'
+  TheCaramelion:
+  - rscadd: Atmos and Medical holosigns
+  - rscadd: Super Matter lighters
+  - rscadd: Light painters
+  - rscadd: Mail System, blank envelopes, and mail scanner.
+  - rscadd: Blank envelopes
+  - rscadd: Mail scanner
+  Will:
+  - code_imp: Vents work better
