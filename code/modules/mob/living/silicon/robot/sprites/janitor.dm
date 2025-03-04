@@ -249,3 +249,4 @@
 	//has_vore_belly_resting_sprites = TRUE
 	has_eye_light_sprites = TRUE
 	has_dead_sprite_overlay = FALSE
+	rest_sprite_options = list("Default")
