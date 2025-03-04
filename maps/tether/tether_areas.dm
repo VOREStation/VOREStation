@@ -331,6 +331,8 @@
 	name = "\improper Mining Substation"
 /area/maintenance/substation/bar
 	name = "\improper Bar Substation"
+/area/maintenance/substation/bar/civilian
+	name = "\improper Surface Civilian Substation"
 /area/maintenance/substation/surface_atmos
 	name = "\improper Surface Atmos Substation"
 /area/maintenance/substation/civ_west
@@ -1410,6 +1412,10 @@
 	requires_power = 0
 	dynamic_lighting = 0
 
+/area/syndicate_station/southwest/outside
+	base_turf = /turf/simulated/floor/outdoors/dirt/virgo3b
+	forced_ambience = list('sound/music/Sacred_Grove.ogg')
+
 //Merc shuttle
 /area/shuttle/mercenary
 	name = "\improper Mercenary Shuttle"
@@ -1512,6 +1518,9 @@
 /area/shuttle/tether
 	name = "Tether Shuttle"
 	icon_state = "shuttle2"
+
+/area/shuttle/tether/reinforced_base
+	base_turf = /turf/simulated/floor/reinforced
 
 //Skipjack
 

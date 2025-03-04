@@ -1,80 +1,661 @@
-"aa" = (/turf/template_noop,/area/submap/house1)
-"ab" = (/obj/structure/railing,/turf/template_noop,/area/submap/house1)
-"ac" = (/obj/structure/railing{dir = 4},/turf/template_noop,/area/submap/house1)
-"ad" = (/turf/simulated/floor/outdoors/grass/sif,/area/submap/house1)
-"ae" = (/obj/structure/railing{dir = 8},/turf/template_noop,/area/submap/house1)
-"af" = (/obj/structure/railing{dir = 4},/turf/simulated/floor/outdoors/grass/sif,/area/submap/house1)
-"ag" = (/turf/simulated/floor/outdoors/dirt,/area/submap/house1)
-"ah" = (/obj/structure/table/bench/wooden,/turf/simulated/floor/outdoors/dirt,/area/submap/house1)
-"ai" = (/obj/structure/railing{dir = 8},/turf/simulated/floor/outdoors/grass/sif,/area/submap/house1)
-"aj" = (/obj/structure/target_stake,/turf/simulated/floor/outdoors/dirt,/area/submap/house1)
-"ak" = (/obj/structure/bonfire/sifwood,/turf/simulated/floor/outdoors/dirt,/area/submap/house1)
-"al" = (/obj/item/target,/turf/simulated/floor/outdoors/grass/sif,/area/submap/house1)
-"am" = (/obj/item/target/syndicate,/turf/simulated/floor/outdoors/grass/sif,/area/submap/house1)
-"an" = (/turf/simulated/wall/wood,/area/submap/house1)
-"ao" = (/obj/structure/simple_door/wood,/turf/simulated/floor/wood,/area/submap/house1)
-"ap" = (/obj/structure/table/marble,/obj/item/material/kitchen/rollingpin,/turf/simulated/floor/tiled,/area/submap/house1)
-"aq" = (/obj/structure/table/marble,/obj/item/material/knife,/turf/simulated/floor/tiled,/area/submap/house1)
-"ar" = (/obj/structure/grille/rustic,/obj/structure/window/reinforced/full,/turf/simulated/floor/plating,/area/submap/house1)
-"as" = (/turf/simulated/floor/wood,/area/submap/house1)
-"at" = (/obj/structure/table/standard,/obj/item/reagent_containers/hypospray/autoinjector/biginjector/brute,/obj/item/reagent_containers/hypospray/autoinjector/biginjector/burn,/obj/item/reagent_containers/hypospray/autoinjector/biginjector/purity,/turf/simulated/floor/tiled/freezer,/area/submap/house1)
-"au" = (/obj/structure/toilet,/turf/simulated/floor/tiled/freezer,/area/submap/house1)
-"av" = (/obj/structure/table/marble,/obj/random/drinkbottle,/turf/simulated/floor/tiled,/area/submap/house1)
-"aw" = (/obj/item/flashlight/lantern,/turf/simulated/floor/tiled,/area/submap/house1)
-"ax" = (/obj/structure/table/glass,/obj/structure/window/reinforced,/obj/item/coin/phoron,/turf/simulated/floor/wood,/area/submap/house1)
-"ay" = (/obj/item/clothing/head/bearpelt{pixel_y = 6},/obj/structure/table/glass,/obj/structure/window/reinforced,/turf/simulated/floor/wood,/area/submap/house1)
-"az" = (/obj/item/material/harpoon,/obj/structure/table/glass,/obj/structure/window/reinforced,/turf/simulated/floor/wood,/area/submap/house1)
-"aA" = (/obj/structure/table/glass,/obj/structure/window/reinforced,/obj/item/clothing/accessory/medal/conduct{pixel_y = 6},/turf/simulated/floor/wood,/area/submap/house1)
-"aB" = (/obj/structure/sink{icon_state = "sink"; dir = 8; pixel_x = -12; pixel_y = 2},/obj/structure/mirror{dir = 4; pixel_x = -28; pixel_y = 0},/turf/simulated/floor/tiled/freezer,/area/submap/house1)
-"aC" = (/obj/item/towel,/turf/simulated/floor/tiled/freezer,/area/submap/house1)
-"aD" = (/obj/structure/closet/secure_closet/freezer/fridge,/turf/simulated/floor/tiled,/area/submap/house1)
-"aE" = (/turf/simulated/floor/tiled,/area/submap/house1)
-"aF" = (/obj/structure/simple_door/wood,/turf/simulated/floor/tiled,/area/submap/house1)
-"aG" = (/obj/structure/simple_door/wood,/turf/simulated/floor/tiled/freezer,/area/submap/house1)
-"aH" = (/obj/item/flashlight/lantern,/turf/simulated/floor/tiled/freezer,/area/submap/house1)
-"aI" = (/obj/structure/window/reinforced/tinted{dir = 8; icon_state = "twindow"},/obj/machinery/shower{dir = 1},/obj/random/soap,/turf/simulated/floor/tiled/freezer,/area/submap/house1)
-"aJ" = (/turf/simulated/floor/carpet/turcarpet,/area/submap/house1)
-"aK" = (/obj/structure/bed/chair/wood,/turf/simulated/floor/carpet/turcarpet,/area/submap/house1)
-"aL" = (/obj/structure/bed/chair/wood{dir = 4},/turf/simulated/floor/carpet/turcarpet,/area/submap/house1)
-"aM" = (/obj/structure/table/wooden_reinforced,/obj/item/storage/fancy/candle_box,/turf/simulated/floor/carpet/turcarpet,/area/submap/house1)
-"aN" = (/obj/structure/table/wooden_reinforced,/obj/item/binoculars/spyglass,/turf/simulated/floor/carpet/turcarpet,/area/submap/house1)
-"aO" = (/obj/structure/table/wooden_reinforced,/obj/item/flashlight/lantern,/turf/simulated/floor/carpet/turcarpet,/area/submap/house1)
-"aP" = (/obj/structure/bed/chair/wood{dir = 1},/turf/simulated/floor/carpet/turcarpet,/area/submap/house1)
-"aQ" = (/obj/structure/table/rack,/obj/item/gps/explorer,/turf/simulated/floor/wood,/area/submap/house1)
-"aR" = (/obj/structure/simple_door/wood,/turf/simulated/floor/carpet/sblucarpet,/area/submap/house1)
-"aS" = (/turf/simulated/floor/carpet/sblucarpet,/area/submap/house1)
-"aT" = (/obj/machinery/space_heater,/turf/simulated/floor/carpet/sblucarpet,/area/submap/house1)
-"aU" = (/obj/structure/table/rack,/obj/item/clothing/under/explorer,/obj/item/cell/device,/obj/item/cell/device,/obj/item/cell/device,/turf/simulated/floor/wood,/area/submap/house1)
-"aV" = (/obj/item/flashlight/lantern,/turf/simulated/floor/wood,/area/submap/house1)
-"aW" = (/obj/machinery/space_heater,/turf/simulated/floor/wood,/area/submap/house1)
-"aX" = (/obj/structure/coatrack,/turf/simulated/floor/wood,/area/submap/house1)
-"aY" = (/obj/structure/table/rack,/obj/item/clothing/suit/storage/hooded/explorer,/obj/item/clothing/mask/gas/explorer,/obj/item/material/knife/tacknife/survival,/turf/simulated/floor/wood,/area/submap/house1)
-"aZ" = (/obj/item/clothing/shoes/boots/winter/explorer,/turf/simulated/floor/wood,/area/submap/house1)
-"ba" = (/obj/structure/table/woodentable,/obj/random/action_figure,/obj/item/flashlight/lantern,/turf/simulated/floor/carpet/sblucarpet,/area/submap/house1)
-"bb" = (/obj/item/bedsheet/hopdouble,/obj/structure/bed/double/padded,/turf/simulated/floor/carpet/sblucarpet,/area/submap/house1)
-"bc" = (/obj/structure/sign/kiddieplaque{desc = "To anyone reading this, you'll note that I'm not home right now, and unfortunately due to reassignment, I won't be for a very long time. Exploring somewhere really far and dangerous now. You can stay if you want, but please try to keep my home in good condition."; name = "read me visitors"},/turf/simulated/wall/wood,/area/submap/house1)
-"bd" = (/obj/structure/loot_pile/maint/trash,/turf/simulated/floor/outdoors/grass/sif,/area/submap/house1)
-"be" = (/obj/structure/loot_pile/maint/junk,/turf/simulated/floor/outdoors/grass/sif,/area/submap/house1)
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"aa" = (
+/turf/template_noop,
+/area/submap/house1)
+"ab" = (
+/obj/structure/railing,
+/turf/template_noop,
+/area/submap/house1)
+"ac" = (
+/obj/structure/railing{
+	dir = 4
+	},
+/turf/template_noop,
+/area/submap/house1)
+"ad" = (
+/turf/simulated/floor/outdoors/grass/sif,
+/area/submap/house1)
+"ae" = (
+/obj/structure/railing{
+	dir = 8
+	},
+/turf/template_noop,
+/area/submap/house1)
+"af" = (
+/obj/structure/railing{
+	dir = 4
+	},
+/turf/simulated/floor/outdoors/grass/sif,
+/area/submap/house1)
+"ag" = (
+/turf/simulated/floor/outdoors/dirt,
+/area/submap/house1)
+"ah" = (
+/obj/structure/table/bench/wooden,
+/turf/simulated/floor/outdoors/dirt,
+/area/submap/house1)
+"ai" = (
+/obj/structure/railing{
+	dir = 8
+	},
+/turf/simulated/floor/outdoors/grass/sif,
+/area/submap/house1)
+"aj" = (
+/obj/structure/target_stake,
+/turf/simulated/floor/outdoors/dirt,
+/area/submap/house1)
+"ak" = (
+/obj/structure/bonfire/sifwood,
+/turf/simulated/floor/outdoors/dirt,
+/area/submap/house1)
+"al" = (
+/obj/item/target,
+/turf/simulated/floor/outdoors/grass/sif,
+/area/submap/house1)
+"am" = (
+/obj/item/target/syndicate,
+/turf/simulated/floor/outdoors/grass/sif,
+/area/submap/house1)
+"an" = (
+/turf/simulated/wall/wood,
+/area/submap/house1)
+"ao" = (
+/obj/structure/simple_door/wood,
+/turf/simulated/floor/wood,
+/area/submap/house1)
+"ap" = (
+/obj/structure/table/marble,
+/obj/item/material/kitchen/rollingpin,
+/turf/simulated/floor/tiled,
+/area/submap/house1)
+"aq" = (
+/obj/structure/table/marble,
+/obj/item/material/knife,
+/turf/simulated/floor/tiled,
+/area/submap/house1)
+"ar" = (
+/obj/structure/grille/rustic,
+/obj/structure/window/reinforced/full,
+/turf/simulated/floor/plating,
+/area/submap/house1)
+"as" = (
+/turf/simulated/floor/wood,
+/area/submap/house1)
+"at" = (
+/obj/structure/table/standard,
+/obj/item/reagent_containers/hypospray/autoinjector/biginjector/brute,
+/obj/item/reagent_containers/hypospray/autoinjector/biginjector/burn,
+/obj/item/reagent_containers/hypospray/autoinjector/biginjector/purity,
+/turf/simulated/floor/tiled/freezer,
+/area/submap/house1)
+"au" = (
+/obj/structure/toilet,
+/turf/simulated/floor/tiled/freezer,
+/area/submap/house1)
+"av" = (
+/obj/structure/table/marble,
+/obj/random/drinkbottle,
+/turf/simulated/floor/tiled,
+/area/submap/house1)
+"aw" = (
+/obj/item/flashlight/lantern,
+/turf/simulated/floor/tiled,
+/area/submap/house1)
+"ax" = (
+/obj/structure/table/glass,
+/obj/structure/window/reinforced,
+/obj/item/coin/phoron,
+/turf/simulated/floor/wood,
+/area/submap/house1)
+"ay" = (
+/obj/item/clothing/head/bearpelt{
+	pixel_y = 6
+	},
+/obj/structure/table/glass,
+/obj/structure/window/reinforced,
+/turf/simulated/floor/wood,
+/area/submap/house1)
+"az" = (
+/obj/item/material/harpoon,
+/obj/structure/table/glass,
+/obj/structure/window/reinforced,
+/turf/simulated/floor/wood,
+/area/submap/house1)
+"aA" = (
+/obj/structure/table/glass,
+/obj/structure/window/reinforced,
+/obj/item/clothing/accessory/medal/conduct{
+	pixel_y = 6
+	},
+/turf/simulated/floor/wood,
+/area/submap/house1)
+"aB" = (
+/obj/structure/sink{
+	icon_state = "sink";
+	dir = 8;
+	pixel_x = -12;
+	pixel_y = 2
+	},
+/obj/structure/mirror{
+	dir = 4;
+	pixel_x = -28;
+	pixel_y = 0
+	},
+/turf/simulated/floor/tiled/freezer,
+/area/submap/house1)
+"aC" = (
+/obj/item/towel,
+/turf/simulated/floor/tiled/freezer,
+/area/submap/house1)
+"aD" = (
+/obj/structure/closet/secure_closet/freezer/fridge,
+/turf/simulated/floor/tiled,
+/area/submap/house1)
+"aE" = (
+/turf/simulated/floor/tiled,
+/area/submap/house1)
+"aF" = (
+/obj/structure/simple_door/wood,
+/turf/simulated/floor/tiled,
+/area/submap/house1)
+"aG" = (
+/obj/structure/simple_door/wood,
+/turf/simulated/floor/tiled/freezer,
+/area/submap/house1)
+"aH" = (
+/obj/item/flashlight/lantern,
+/turf/simulated/floor/tiled/freezer,
+/area/submap/house1)
+"aI" = (
+/obj/structure/window/reinforced/tinted{
+	dir = 8;
+	icon_state = "twindow"
+	},
+/obj/machinery/shower{
+	dir = 1
+	},
+/obj/random/soap,
+/turf/simulated/floor/tiled/freezer,
+/area/submap/house1)
+"aJ" = (
+/turf/simulated/floor/carpet/turcarpet,
+/area/submap/house1)
+"aK" = (
+/obj/structure/bed/chair/wood,
+/turf/simulated/floor/carpet/turcarpet,
+/area/submap/house1)
+"aL" = (
+/obj/structure/bed/chair/wood{
+	dir = 4
+	},
+/turf/simulated/floor/carpet/turcarpet,
+/area/submap/house1)
+"aM" = (
+/obj/structure/table/wooden_reinforced,
+/obj/item/storage/fancy/candle_box,
+/turf/simulated/floor/carpet/turcarpet,
+/area/submap/house1)
+"aN" = (
+/obj/structure/table/wooden_reinforced,
+/obj/item/binoculars/spyglass,
+/turf/simulated/floor/carpet/turcarpet,
+/area/submap/house1)
+"aO" = (
+/obj/structure/table/wooden_reinforced,
+/obj/item/flashlight/lantern,
+/turf/simulated/floor/carpet/turcarpet,
+/area/submap/house1)
+"aP" = (
+/obj/structure/bed/chair/wood{
+	dir = 1
+	},
+/turf/simulated/floor/carpet/turcarpet,
+/area/submap/house1)
+"aQ" = (
+/obj/structure/table/rack,
+/obj/item/gps/explorer,
+/turf/simulated/floor/wood,
+/area/submap/house1)
+"aR" = (
+/obj/structure/simple_door/wood,
+/turf/simulated/floor/carpet/sblucarpet,
+/area/submap/house1)
+"aS" = (
+/turf/simulated/floor/carpet/sblucarpet,
+/area/submap/house1)
+"aT" = (
+/obj/machinery/space_heater,
+/turf/simulated/floor/carpet/sblucarpet,
+/area/submap/house1)
+"aU" = (
+/obj/structure/table/rack,
+/obj/item/clothing/under/explorer,
+/obj/item/cell/device,
+/obj/item/cell/device,
+/obj/item/cell/device,
+/turf/simulated/floor/wood,
+/area/submap/house1)
+"aV" = (
+/obj/item/flashlight/lantern,
+/turf/simulated/floor/wood,
+/area/submap/house1)
+"aW" = (
+/obj/machinery/space_heater,
+/turf/simulated/floor/wood,
+/area/submap/house1)
+"aX" = (
+/obj/structure/coatrack,
+/turf/simulated/floor/wood,
+/area/submap/house1)
+"aY" = (
+/obj/structure/table/rack,
+/obj/item/clothing/suit/storage/hooded/explorer,
+/obj/item/clothing/mask/gas/explorer,
+/obj/item/material/knife/tacknife/survival,
+/turf/simulated/floor/wood,
+/area/submap/house1)
+"aZ" = (
+/obj/item/clothing/shoes/boots/winter/explorer,
+/turf/simulated/floor/wood,
+/area/submap/house1)
+"ba" = (
+/obj/structure/table/woodentable,
+/obj/random/action_figure,
+/obj/item/flashlight/lantern,
+/turf/simulated/floor/carpet/sblucarpet,
+/area/submap/house1)
+"bb" = (
+/obj/item/bedsheet/hopdouble,
+/obj/structure/bed/double/padded,
+/turf/simulated/floor/carpet/sblucarpet,
+/area/submap/house1)
+"bc" = (
+/obj/structure/sign/kiddieplaque{
+	desc = "To anyone reading this, you'll note that I'm not home right now, and unfortunately due to reassignment, I won't be for a very long time. Exploring somewhere really far and dangerous now. You can stay if you want, but please try to keep my home in good condition.";
+	name = "read me visitors"
+	},
+/turf/simulated/wall/wood,
+/area/submap/house1)
+"bd" = (
+/obj/structure/loot_pile/maint/trash,
+/turf/simulated/floor/outdoors/grass/sif,
+/area/submap/house1)
+"be" = (
+/obj/structure/loot_pile/maint/junk,
+/turf/simulated/floor/outdoors/grass/sif,
+/area/submap/house1)
 
 (1,1,1) = {"
-aaabababababababababababababababaa
-acadadadadadadadadadadadadadadadae
-afadagagagagagagagagagahahahagadai
-afagajagagagagagagagagagakagagagai
-afadagagagagagagagagagahahahagadai
-afalamaladadadagagagadadadadadadai
-adananananadadanaoanadadananananad
-adanapaqanarananasananaranatauanad
-adaravawanaxayanaoanazaAanaBaCanad
-adanaDaEaFasasasasasasasaGaHaIanad
-adananananasaJaKaKaKaJasananananad
-adadadadanasaLaMaNaOaPasanadadadad
-adananananasaJaPaPaPaJasananananad
-adanaQasaoasasasasasasasaRaSaTanad
-adaraUaVanasaWanaoanaXasanaSaSarad
-adanaYaZanarananasananaranbabbanad
-adananananadadanaobcadadananananad
-adbdbdbdbeadadadagadadadadadadadad
-adagagagagagagagagagagagagagagagad
-adagagagagagagagagagagagagagagagad
+aa
+ac
+af
+af
+af
+af
+ad
+ad
+ad
+ad
+ad
+ad
+ad
+ad
+ad
+ad
+ad
+ad
+ad
+ad
+"}
+(2,1,1) = {"
+ab
+ad
+ad
+ag
+ad
+al
+an
+an
+ar
+an
+an
+ad
+an
+an
+ar
+an
+an
+bd
+ag
+ag
+"}
+(3,1,1) = {"
+ab
+ad
+ag
+aj
+ag
+am
+an
+ap
+av
+aD
+an
+ad
+an
+aQ
+aU
+aY
+an
+bd
+ag
+ag
+"}
+(4,1,1) = {"
+ab
+ad
+ag
+ag
+ag
+al
+an
+aq
+aw
+aE
+an
+ad
+an
+as
+aV
+aZ
+an
+bd
+ag
+ag
+"}
+(5,1,1) = {"
+ab
+ad
+ag
+ag
+ag
+ad
+an
+an
+an
+aF
+an
+an
+an
+ao
+an
+an
+an
+be
+ag
+ag
+"}
+(6,1,1) = {"
+ab
+ad
+ag
+ag
+ag
+ad
+ad
+ar
+ax
+as
+as
+as
+as
+as
+as
+ar
+ad
+ad
+ag
+ag
+"}
+(7,1,1) = {"
+ab
+ad
+ag
+ag
+ag
+ad
+ad
+an
+ay
+as
+aJ
+aL
+aJ
+as
+aW
+an
+ad
+ad
+ag
+ag
+"}
+(8,1,1) = {"
+ab
+ad
+ag
+ag
+ag
+ag
+an
+an
+an
+as
+aK
+aM
+aP
+as
+an
+an
+an
+ad
+ag
+ag
+"}
+(9,1,1) = {"
+ab
+ad
+ag
+ag
+ag
+ag
+ao
+as
+ao
+as
+aK
+aN
+aP
+as
+ao
+as
+ao
+ag
+ag
+ag
+"}
+(10,1,1) = {"
+ab
+ad
+ag
+ag
+ag
+ag
+an
+an
+an
+as
+aK
+aO
+aP
+as
+an
+an
+bc
+ad
+ag
+ag
+"}
+(11,1,1) = {"
+ab
+ad
+ag
+ag
+ag
+ad
+ad
+an
+az
+as
+aJ
+aP
+aJ
+as
+aX
+an
+ad
+ad
+ag
+ag
+"}
+(12,1,1) = {"
+ab
+ad
+ah
+ag
+ah
+ad
+ad
+ar
+aA
+as
+as
+as
+as
+as
+as
+ar
+ad
+ad
+ag
+ag
+"}
+(13,1,1) = {"
+ab
+ad
+ah
+ak
+ah
+ad
+an
+an
+an
+aG
+an
+an
+an
+aR
+an
+an
+an
+ad
+ag
+ag
+"}
+(14,1,1) = {"
+ab
+ad
+ah
+ag
+ah
+ad
+an
+at
+aB
+aH
+an
+ad
+an
+aS
+aS
+ba
+an
+ad
+ag
+ag
+"}
+(15,1,1) = {"
+ab
+ad
+ag
+ag
+ag
+ad
+an
+au
+aC
+aI
+an
+ad
+an
+aT
+aS
+bb
+an
+ad
+ag
+ag
+"}
+(16,1,1) = {"
+ab
+ad
+ad
+ag
+ad
+ad
+an
+an
+an
+an
+an
+ad
+an
+an
+ar
+an
+an
+ad
+ag
+ag
+"}
+(17,1,1) = {"
+aa
+ae
+ai
+ai
+ai
+ai
+ad
+ad
+ad
+ad
+ad
+ad
+ad
+ad
+ad
+ad
+ad
+ad
+ad
+ad
 "}

@@ -1,33 +1,320 @@
-"a" = (/turf/template_noop,/area/template_noop)
-"b" = (/obj/effect/decal/cleanable/liquid_fuel,/turf/simulated/floor/outdoors/dirt,/area/submap/Mudpit)
-"c" = (/turf/simulated/floor/outdoors/dirt,/area/submap/Mudpit)
-"d" = (/turf/simulated/floor/outdoors/mud,/area/submap/Mudpit)
-"e" = (/obj/effect/decal/cleanable/liquid_fuel,/obj/effect/decal/cleanable/liquid_fuel,/turf/simulated/floor/outdoors/dirt,/area/submap/Mudpit)
-"f" = (/obj/effect/decal/cleanable/liquid_fuel,/obj/effect/decal/cleanable/liquid_fuel,/obj/effect/decal/cleanable/liquid_fuel,/turf/simulated/floor/outdoors/dirt,/area/submap/Mudpit)
-"g" = (/obj/effect/decal/remains/mouse,/turf/simulated/floor/outdoors/dirt,/area/submap/Mudpit)
-"h" = (/obj/effect/decal/remains/mouse,/obj/effect/decal/cleanable/liquid_fuel,/obj/effect/decal/cleanable/liquid_fuel,/turf/simulated/floor/outdoors/dirt,/area/submap/Mudpit)
-"i" = (/obj/effect/decal/cleanable/liquid_fuel,/turf/template_noop,/area/template_noop)
-"j" = (/turf/simulated/mineral,/area/submap/Mudpit)
-"k" = (/obj/structure/reagent_dispensers/fueltank,/turf/simulated/floor/outdoors/dirt,/area/submap/Mudpit)
-"l" = (/obj/machinery/portable_atmospherics/canister/empty/phoron,/turf/simulated/floor/outdoors/dirt,/area/submap/Mudpit)
-"m" = (/obj/effect/decal/remains,/obj/item/clothing/suit/space/void/merc/fire,/obj/item/clothing/head/helmet/space/void/merc/fire,/turf/simulated/floor/outdoors/dirt,/area/submap/Mudpit)
-"n" = (/mob/living/simple_mob/animal/giant_spider/thermic,/turf/simulated/floor/outdoors/dirt,/area/submap/Mudpit)
-"o" = (/obj/effect/decal/mecha_wreckage/ripley/firefighter,/turf/simulated/floor/outdoors/dirt,/area/submap/Mudpit)
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/template_noop,
+/area/template_noop)
+"b" = (
+/obj/effect/decal/cleanable/liquid_fuel,
+/turf/simulated/floor/outdoors/dirt,
+/area/submap/Mudpit)
+"c" = (
+/turf/simulated/floor/outdoors/dirt,
+/area/submap/Mudpit)
+"d" = (
+/turf/simulated/floor/outdoors/mud,
+/area/submap/Mudpit)
+"e" = (
+/obj/effect/decal/cleanable/liquid_fuel,
+/obj/effect/decal/cleanable/liquid_fuel,
+/turf/simulated/floor/outdoors/dirt,
+/area/submap/Mudpit)
+"f" = (
+/obj/effect/decal/cleanable/liquid_fuel,
+/obj/effect/decal/cleanable/liquid_fuel,
+/obj/effect/decal/cleanable/liquid_fuel,
+/turf/simulated/floor/outdoors/dirt,
+/area/submap/Mudpit)
+"g" = (
+/obj/effect/decal/remains/mouse,
+/turf/simulated/floor/outdoors/dirt,
+/area/submap/Mudpit)
+"h" = (
+/obj/effect/decal/remains/mouse,
+/obj/effect/decal/cleanable/liquid_fuel,
+/obj/effect/decal/cleanable/liquid_fuel,
+/turf/simulated/floor/outdoors/dirt,
+/area/submap/Mudpit)
+"i" = (
+/obj/effect/decal/cleanable/liquid_fuel,
+/turf/template_noop,
+/area/template_noop)
+"j" = (
+/turf/simulated/mineral,
+/area/submap/Mudpit)
+"k" = (
+/obj/structure/reagent_dispensers/fueltank,
+/turf/simulated/floor/outdoors/dirt,
+/area/submap/Mudpit)
+"l" = (
+/obj/machinery/portable_atmospherics/canister/empty/phoron,
+/turf/simulated/floor/outdoors/dirt,
+/area/submap/Mudpit)
+"m" = (
+/obj/effect/decal/remains,
+/obj/item/clothing/suit/space/void/merc/fire,
+/obj/item/clothing/head/helmet/space/void/merc/fire,
+/turf/simulated/floor/outdoors/dirt,
+/area/submap/Mudpit)
+"n" = (
+/mob/living/simple_mob/animal/giant_spider/thermic,
+/turf/simulated/floor/outdoors/dirt,
+/area/submap/Mudpit)
+"o" = (
+/obj/effect/decal/mecha_wreckage/ripley/firefighter,
+/turf/simulated/floor/outdoors/dirt,
+/area/submap/Mudpit)
 
 (1,1,1) = {"
-aaaaaaaaaaaaaaa
-abcccaacbbbdeea
-acccbcccbbddefa
-accdddgcccdddha
-aibcddjjcbcddca
-aibbdjjjccccdca
-aibjjjjcccgcdaa
-accjjjkccccccaa
-agdjjjlcmnoccia
-adddjjjccccccca
-acddddjgnccddca
-aadddddbbbbddca
-aacdddddbbdddda
-abbacgcccacddba
-aaaaaaaaaaaaaaa
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+"}
+(2,1,1) = {"
+a
+b
+c
+c
+i
+i
+i
+c
+g
+d
+c
+a
+a
+b
+a
+"}
+(3,1,1) = {"
+a
+c
+c
+c
+b
+b
+b
+c
+d
+d
+d
+d
+c
+b
+a
+"}
+(4,1,1) = {"
+a
+c
+c
+d
+c
+b
+j
+j
+j
+d
+d
+d
+d
+a
+a
+"}
+(5,1,1) = {"
+a
+c
+b
+d
+d
+d
+j
+j
+j
+j
+d
+d
+d
+c
+a
+"}
+(6,1,1) = {"
+a
+a
+c
+d
+d
+j
+j
+j
+j
+j
+d
+d
+d
+g
+a
+"}
+(7,1,1) = {"
+a
+a
+c
+g
+j
+j
+j
+k
+l
+j
+j
+d
+d
+c
+a
+"}
+(8,1,1) = {"
+a
+c
+c
+c
+j
+j
+c
+c
+c
+c
+g
+b
+d
+c
+a
+"}
+(9,1,1) = {"
+a
+b
+b
+c
+c
+c
+c
+c
+m
+c
+n
+b
+b
+c
+a
+"}
+(10,1,1) = {"
+a
+b
+b
+c
+b
+c
+c
+c
+n
+c
+c
+b
+b
+a
+a
+"}
+(11,1,1) = {"
+a
+b
+d
+d
+c
+c
+g
+c
+o
+c
+c
+b
+d
+c
+a
+"}
+(12,1,1) = {"
+a
+d
+d
+d
+d
+c
+c
+c
+c
+c
+d
+d
+d
+d
+a
+"}
+(13,1,1) = {"
+a
+e
+e
+d
+d
+d
+d
+c
+c
+c
+d
+d
+d
+d
+a
+"}
+(14,1,1) = {"
+a
+e
+f
+h
+c
+c
+a
+a
+i
+c
+c
+c
+d
+b
+a
+"}
+(15,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
 "}
