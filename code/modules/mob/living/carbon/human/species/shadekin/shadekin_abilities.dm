@@ -133,7 +133,7 @@
 		phaseanim.adjust_scale(src.size_multiplier, src.size_multiplier)
 		phaseanim.dir = dir
 		alpha = 0
-		custom_emote(1,"phases in!")
+		INVOKE_ASYNC(src,custom_emote,1,"phases in!")
 
 		addtimer(CALLBACK(src, PROC_REF(shadekin_complete_phase_in), original_canmove), 5, TIMER_DELETE_ME)
 

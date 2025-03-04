@@ -56,7 +56,7 @@
 
 		//Cosmetics mostly
 		flick("tp_in",src)
-		custom_emote(1,"phases in!")
+		INVOKE_ASYNC(src,custom_emote,1,"phases in!")
 
 		addtimer(CALLBACK(src, PROC_REF(shadekin_complete_phase_in), original_canmove), 5, TIMER_DELETE_ME)
 
