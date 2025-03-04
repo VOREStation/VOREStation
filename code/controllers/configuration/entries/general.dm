@@ -438,8 +438,17 @@
 
 /datum/config_entry/flag/no_click_cooldown
 
-/// Defines whether the server uses the legacy admin system with admins.txt or the SQL system. Config option in config.txt
-/datum/config_entry/flag/admin_legacy_system
+/datum/config_entry/flag/admin_legacy_system //Defines whether the server uses the legacy admin system with admins.txt or the SQL system
+	protection = CONFIG_ENTRY_LOCKED
+
+/datum/config_entry/flag/protect_legacy_admins //Stops any admins loaded by the legacy system from having their rank edited by the permissions panel
+	protection = CONFIG_ENTRY_LOCKED
+
+/datum/config_entry/flag/protect_legacy_ranks //Stops any ranks loaded by the legacy system from having their flags edited by the permissions panel
+	protection = CONFIG_ENTRY_LOCKED
+
+/datum/config_entry/flag/load_legacy_ranks_only //Loads admin ranks only from legacy admin_ranks.txt, while enabled ranks are mirrored to the database
+	protection = CONFIG_ENTRY_LOCKED
 
 /// Defines whether the server uses the legacy banning system with the files in /data or the SQL system. Config option in config.txt
 /datum/config_entry/flag/ban_legacy_system
@@ -721,3 +730,5 @@
 /// The endpoint for the chat to fetch the chatlogs from (for example, the last 2500 messages on init for the history)
 /// REQUIRES chatlog_database_backend to be enabled
 /datum/config_entry/string/chatlog_database_api_endpoint
+
+/datum/config_entry/flag/forbid_admin_profiling

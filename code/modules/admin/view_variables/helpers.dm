@@ -172,21 +172,24 @@
 /client/VV_ckey_edit()
 	return list("key", "ckey")
 
-/datum/proc/may_edit_var(var/user, var/var_to_edit)
+/datum/proc/may_edit_var(var/user, var/var_to_edit) //User must be a CLIENT that is passed to this.
 	if(!user)
 		return FALSE
+	if(ismob(user)) //Failsafe catch in case someone feeds a mob into us.
+		var/mob/living = user
+		user = living.client
 	if(!(var_to_edit in vars))
 		to_chat(user, span_warning("\The [src] does not have a var '[var_to_edit]'"))
 		return FALSE
 	if(var_to_edit in VV_static())
 		return FALSE
-	if((var_to_edit in VV_secluded()) && !check_rights(R_ADMIN|R_DEBUG, FALSE, C = user))
+	if((var_to_edit in VV_secluded()) && !check_rights_for(user, R_ADMIN|R_DEBUG))
 		return FALSE
-	if((var_to_edit in VV_locked()) && !check_rights(R_DEBUG, C = user))
+	if((var_to_edit in VV_locked()) && !check_rights_for(user, R_DEBUG))
 		return FALSE
-	if((var_to_edit in VV_ckey_edit()) && !check_rights(R_SPAWN|R_DEBUG, C = user))
+	if((var_to_edit in VV_ckey_edit()) && !check_rights_for(user, R_SPAWN|R_DEBUG))
 		return FALSE
-	if((var_to_edit in VV_icon_edit_lock()) && !check_rights(R_FUN|R_DEBUG, C = user))
+	if((var_to_edit in VV_icon_edit_lock()) && !check_rights_for(user, R_FUN|R_DEBUG))
 		return FALSE
 	return TRUE
 
