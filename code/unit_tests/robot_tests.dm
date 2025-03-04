@@ -56,7 +56,7 @@
 				if(RS.has_vore_belly_resting_sprites)
 					for(var/rest_style in RS.rest_sprite_options)
 						rest_style = lowertext(rest_style)
-						if(rest_style == "Default")
+						if(rest_style == "default")
 							rest_style = "rest"
 						if(check_state(RS,"-sleeper-r-[rest_style]"))
 							failed = TRUE
@@ -71,7 +71,7 @@
 					if(RS.has_vore_belly_resting_sprites)
 						for(var/rest_style in RS.rest_sprite_options)
 							rest_style = lowertext(rest_style)
-							if(rest_style == "Default")
+							if(rest_style == "default")
 								rest_style = "rest"
 							if(check_state(RS,"-sleeper-r-[rest_style]-struggle"))
 								failed = TRUE
@@ -84,7 +84,7 @@
 				if(RS.has_vore_belly_resting_sprites)
 					for(var/rest_style in RS.rest_sprite_options)
 						rest_style = lowertext(rest_style)
-						if(rest_style == "Default")
+						if(rest_style == "default")
 							rest_style = "rest"
 						if(check_state(RS,"-sleeper-[rest_style]"))
 							failed = TRUE
@@ -95,7 +95,7 @@
 					if(RS.has_vore_belly_resting_sprites)
 						for(var/rest_style in RS.rest_sprite_options)
 							rest_style = lowertext(rest_style)
-							if(rest_style == "Default")
+							if(rest_style == "default")
 								rest_style = "rest"
 							if(check_state(RS,"-sleeper-[rest_style]-struggle"))
 								failed = TRUE
@@ -108,7 +108,7 @@
 					if(RS.has_vore_belly_resting_sprites)
 						for(var/rest_style in RS.rest_sprite_options)
 							rest_style = lowertext(rest_style)
-							if(rest_style == "Default")
+							if(rest_style == "default")
 								rest_style = "rest"
 							if(check_state(RS,"-[belly]-[num]-[rest_style]"))
 								failed = TRUE
@@ -119,7 +119,7 @@
 						if(RS.has_vore_belly_resting_sprites)
 							for(var/rest_style in RS.rest_sprite_options)
 								rest_style = lowertext(rest_style)
-								if(rest_style == "Default")
+								if(rest_style == "default")
 									rest_style = "rest"
 								if(check_state(RS,"-[belly]-[num]-[rest_style]-struggle"))
 									failed = TRUE
@@ -134,7 +134,7 @@
 						if(RS.has_vore_belly_resting_sprites)
 							for(var/rest_style in RS.rest_sprite_options)
 								rest_style = lowertext(rest_style)
-								if(rest_style == "Default")
+								if(rest_style == "default")
 									rest_style = "rest"
 								if(check_state(RS,"-[belly]-[num]-r-[rest_style]"))
 									failed = TRUE
@@ -149,21 +149,18 @@
 							if(RS.has_vore_belly_resting_sprites)
 								for(var/rest_style in RS.rest_sprite_options)
 									rest_style = lowertext(rest_style)
-									if(rest_style == "Default")
+									if(rest_style == "default")
 										rest_style = "rest"
 									if(check_state(RS,"-[belly]-[num]-r-[rest_style]-struggle"))
 										failed = TRUE
 									if(check_state(RS,"-[belly]-[num]-g-[rest_style]-struggle"))
 										failed = TRUE
 		// reseting
-		if(RS.rest_sprite_options in list("Sit"))
-			if(check_state(RS,"-sit"))
-				failed = TRUE
-		if(RS.rest_sprite_options in list("Default"))
-			if(check_state(RS,"-rest"))
-				failed = TRUE
-		if(RS.rest_sprite_options in list("Bellyup"))
-			if(check_state(RS,"-bellyup"))
+		for(var/rest_style in RS.rest_sprite_options)
+			rest_style = lowertext(rest_style)
+			if(rest_style == "default")
+				rest_style = "rest"
+			if(check_state(RS,"-[rest_style]"))
 				failed = TRUE
 		// death
 		if(RS.has_dead_sprite)

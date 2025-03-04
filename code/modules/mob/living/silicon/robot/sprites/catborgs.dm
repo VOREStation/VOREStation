@@ -241,6 +241,20 @@
 	sprite_flags = ROBOT_HAS_SHIELD_SPRITE | ROBOT_HAS_DISABLER_SPRITE | ROBOT_HAS_TASER_SPRITE | ROBOT_HAS_LASER_SPRITE
 	module_type = list("Service", "Clerical", "Janitor") //They get Janitor because no specific janitor sprite.
 
+/datum/robot_sprite/dogborg/combat_medic/catborg
+	name = "Catborg"
+	sprite_icon_state = "syndicat"
+	sprite_hud_icon_state = "syndicat"
+	has_eye_sprites = TRUE
+	has_eye_light_sprites = TRUE
+	has_sleeper_light_indicator = FALSE
+	has_vore_belly_resting_sprites = TRUE
+	sprite_icon = 'icons/mob/robot/catborgs/departmental/large/catborg_combatmed.dmi'
+	rest_sprite_options = list("Default", "Bellyup", "Sit")
+	belly_capacity_list = list("sleeper" = 2, "throat" =2)
+	belly_light_list = list("sleeper" = 2)
+	sprite_flags = ROBOT_HAS_SHIELD_SPRITE | ROBOT_HAS_DISABLER_SPRITE | ROBOT_HAS_TASER_SPRITE | ROBOT_HAS_LASER_SPRITE
+
 /// CUSTOM
 
 /// Custom Catborg set up like a gryphon.

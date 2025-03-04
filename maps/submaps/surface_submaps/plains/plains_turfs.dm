@@ -1,4 +1,3 @@
-VIRGO3B_TURF_CREATE(/turf/simulated/floor/outdoors/rocks)
 VIRGO3B_TURF_CREATE(/turf/simulated/floor/outdoors/mud)
 VIRGO3B_TURF_CREATE(/turf/simulated/floor/outdoors/snow)
 VIRGO3B_TURF_CREATE(/turf/simulated/floor/water)

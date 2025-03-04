@@ -231,3 +231,22 @@ CREATE TABLE IF NOT EXISTS `round` (
   `station_name` VARCHAR(80) NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+CREATE TABLE IF NOT EXISTS `chatlogs_ckeys` (
+  `ckey` varchar(45) NOT NULL,
+  `token` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`ckey`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+CREATE TABLE IF NOT EXISTS `chatlogs_logs` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `round_id` int(11) NOT NULL DEFAULT -1,
+  `target` varchar(45) NOT NULL,
+  `text` mediumtext NOT NULL,
+  `text_raw` mediumtext NOT NULL,
+  `type` varchar(128) DEFAULT NULL,
+  `created_at` bigint(20) unsigned NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `chatlogs_ckeys_FK` (`target`),
+  CONSTRAINT `chatlogs_ckeys_FK` FOREIGN KEY (`target`) REFERENCES `chatlogs_ckeys` (`ckey`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;

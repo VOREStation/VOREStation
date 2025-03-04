@@ -8,15 +8,6 @@ mapdirs=(
 	"maps/tether"
 	"maps/offmap_vr/talon"
 )
-#Put a define file to include. One per line matching mapdirs.
-#If the same define is reused it will be batched if in sequence.
-mapdefines=(
-	"maps/groundbase/groundbase.dm"
-	"maps/stellar_delight/stellar_delight.dm"
-	"maps/tether/tether.dm"
-	"maps/tether/tether.dm"
-)
-dme="vorestation.dme"
 
 RED='\033[0;31m'
 GREEN="\033[0;32m"
@@ -42,48 +33,19 @@ printf "\n\n\n"
 #Duplicate stderr because dmm-tools doesn't return an error code for bad icons or bad path so we need to capture it
 exec 5>&2
 
-#Now render per group to initial images
+#Render maps to initial images ignoring some tg specific icon_state handling
 any_errors=0
-map_files=()
-index=0
-for mapdir in "${mapdirs[@]}"; do
-	#https://stackoverflow.com/a/23357277
-	while IFS= read -r -d $'\0'; do
-		map_files+=("$REPLY")
-	done < <(find "${BASEDIR}/${mapdir}" -maxdepth 1 -name '*[0-9]*.dmm' -print0)
-	cur_define=${mapdefines[index++]}
+result=$(~/dmm-tools minimap "${map_files[@]}" --disable smart-cables,overlays,pretty,transit-tube 2>&1 | tee /dev/fd/5)
 
-	if [[ (index -lt ${#mapdefines[@]}) && ("${cur_define}" == "${mapdefines[$index]}") ]]; then
-		# Next iteration uses the same define so batch it
-		echo "Batching next iteration..."
-		continue
-	fi
-
-	#Insert the define file into the dme if needed
-	if [[ "${cur_define}" != "" ]]; then
-		echo "Injecting ${cur_define} into ${dme}..."
-		echo "#include \"${cur_define}\"" >> ${dme}
-	fi
-
-	#Render maps to initial images ignoring some tg specific icon_state handling
-	result=$(~/dmm-tools minimap "${map_files[@]}" --disable smart-cables,overlays,pretty,transit-tube 2>&1 | tee /dev/fd/5)
-
-	#Check if anything errored
-	if [[ ($? -ne 0) || ("${result}" =~ ("bad icon"|"bad path"|"error")) ]]; then
-		any_errors=1
-	fi
-
-	#Undo changes for next iteration
-	map_files=()
-	if [[ "${cur_define}" != "" ]]; then
-		sed -i '$ d' ${dme}
-	fi
-
-	printf "\n"
-done
+#Check if anything errored
+if [[ ($? -ne 0) || ("${result}" =~ ("bad icon"|"bad path"|"error")) ]]; then
+	any_errors=1
+fi
 
 #Close the new file descriptor
 exec 5>&-
+
+printf "\n"
 
 #Give results if we're just testing
 if [[ $1 == "--testing" ]]; then
