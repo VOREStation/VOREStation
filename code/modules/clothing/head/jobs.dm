@@ -289,3 +289,8 @@
 	name = "quartermaster's beret"
 	desc = "This headwear shows off your Cargonian leadership."
 	icon_state = "beretqm"
+
+/obj/item/clothing/head/mailman2
+	name = "mailman hat"
+	desc = "A hat used by the mailman to show who's the delivery person here."
+	icon_state = "mailman2"

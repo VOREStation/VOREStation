@@ -1,0 +1,9 @@
+author: "TheCaramelion"
+delete-after: True
+changes:
+  - rscadd: "Atmos and Medical holosigns"
+  - rscadd: "Super Matter lighters"
+  - rscadd: "Light painters"
+  - rscadd: "Mail System, blank envelopes, and mail scanner."
+  - rscadd: "Blank envelopes"
+  - rscadd: "Mail scanner"

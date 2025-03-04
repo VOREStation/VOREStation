@@ -195,7 +195,7 @@
 		sync_validate = TRUE
 		var/datum/config_entry/number/ticklag/TL = config.entries_by_type[/datum/config_entry/number/ticklag]
 		if(!TL.sync_validate)
-			TL.ValidateAndSet(10 / config_entry_value)
+			TL.ValidateAndSet("[10 / config_entry_value]")
 		sync_validate = FALSE
 
 /datum/config_entry/number/ticklag
@@ -213,7 +213,7 @@
 		sync_validate = TRUE
 		var/datum/config_entry/number/fps/FPS = config.entries_by_type[/datum/config_entry/number/fps]
 		if(!FPS.sync_validate)
-			FPS.ValidateAndSet(10 / config_entry_value)
+			FPS.ValidateAndSet("[10 / config_entry_value]")
 		sync_validate = FALSE
 
 /// SSinitialization throttling
@@ -712,3 +712,12 @@
 /// Controls whether simple mobs may recolour themselves once/spawn by giving them the recolour verb
 /// Admins may manually give them the verb even if disabled
 /datum/config_entry/flag/allow_simple_mob_recolor
+
+/// Chatlogs are now saved by calling the chatlogging library instead of letting the clients handle it
+/// REQUIRES an database
+/datum/config_entry/flag/chatlog_database_backend
+	default = FALSE
+
+/// The endpoint for the chat to fetch the chatlogs from (for example, the last 2500 messages on init for the history)
+/// REQUIRES chatlog_database_backend to be enabled
+/datum/config_entry/string/chatlog_database_api_endpoint

@@ -20,12 +20,10 @@
 /datum/gear/mask/sterile
 	display_name = "sterile mask"
 	path = /obj/item/clothing/mask/surgical
-	cost = 2
 
 /datum/gear/mask/sterile/white
 	display_name = "white sterile mask"
 	path = /obj/item/clothing/mask/surgical/white
-	cost = 2
 
 /datum/gear/mask/sterile/white/dust
 	display_name = "dust mask"
@@ -60,7 +58,6 @@
 /datum/gear/mask/gaiter
 	display_name = "neck gaiter selection"
 	path = /obj/item/clothing/accessory/gaiter
-	cost = 1
 
 /datum/gear/mask/gaiter/New()
 	..()
@@ -84,7 +81,6 @@
 /datum/gear/mask/wrestling
 	display_name = "wrestling mask"
 	path = /obj/item/clothing/mask/luchador/colorable
-	cost = 1
 
 /datum/gear/mask/wrestling/New()
 	gear_tweaks += gear_tweak_free_color_choice
