@@ -71,6 +71,8 @@
 	return 1
 
 /obj/machinery/atmospherics/pipe/return_air()
+	if(QDELETED(src))
+		return
 	if(!parent)
 		parent = new /datum/pipeline()
 		parent.build_pipeline(src)
@@ -78,6 +80,8 @@
 	return parent.air
 
 /obj/machinery/atmospherics/pipe/build_network()
+	if(QDELETED(src))
+		return
 	if(!parent)
 		parent = new /datum/pipeline()
 		parent.build_pipeline(src)
@@ -85,6 +89,8 @@
 	return parent.return_network()
 
 /obj/machinery/atmospherics/pipe/network_expand(datum/pipe_network/new_network, obj/machinery/atmospherics/pipe/reference)
+	if(QDELETED(src))
+		return
 	if(!parent)
 		parent = new /datum/pipeline()
 		parent.build_pipeline(src)
@@ -92,6 +98,8 @@
 	return parent.network_expand(new_network, reference)
 
 /obj/machinery/atmospherics/pipe/return_network(obj/machinery/atmospherics/reference)
+	if(QDELETED(src))
+		return
 	if(!parent)
 		parent = new /datum/pipeline()
 		parent.build_pipeline(src)

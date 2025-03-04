@@ -13,9 +13,8 @@
 	var/global/gid = 1
 	var/id = 0
 
-/obj/machinery/portable_atmospherics/powered/pump/huge/New()
-	..()
-	cell = null
+/obj/machinery/portable_atmospherics/powered/pump/huge/Initialize(mapload)
+	. = ..(mapload, TRUE)
 
 	id = gid
 	gid++

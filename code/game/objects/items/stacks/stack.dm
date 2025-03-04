@@ -14,7 +14,8 @@
 	origin_tech = list(TECH_MATERIAL = 1)
 	icon = 'icons/obj/stacks.dmi'
 	randpixel = 7
-	center_of_mass = null
+	center_of_mass_x = 0
+	center_of_mass_y = 0
 	var/list/datum/stack_recipe/recipes
 	var/singular_name
 	var/amount = 1
@@ -29,7 +30,7 @@
 	var/pass_color = FALSE // Will the item pass its own color var to the created item? Dyed cloth, wood, etc.
 	var/strict_color_stacking = FALSE // Will the stack merge with other stacks that are different colors? (Dyed cloth, wood, etc)
 
-/obj/item/stack/Initialize(var/ml, var/starting_amount)
+/obj/item/stack/Initialize(mapload, var/starting_amount)
 	. = ..()
 	if(!stacktype)
 		stacktype = type

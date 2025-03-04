@@ -9,8 +9,8 @@
 		return
 
 	for(var/obj/item/W in M)
-		if(istype(W, /obj/item/implant/backup) || istype(W, /obj/item/nif))	//VOREStation Edit - There's basically no reason to remove either of these
-			continue	//VOREStation Edit
+		if(istype(W, /obj/item/implant/backup) || istype(W, /obj/item/nif))	//There's basically no reason to remove either of these
+			continue
 		M.drop_from_inventory(W)
 
 	log_admin("[key_name(usr)] made [key_name(M)] drop everything!")
@@ -432,8 +432,8 @@ Traitors and the like can also be revived with the previous role mostly intact.
 			return
 		if(samejob == "Yes")
 			charjob = record_found.fields["real_rank"]
-		else if(samejob == JOB_ALT_VISITOR) //VOREStation Edit - Visitor not Assistant
-			charjob = JOB_ALT_VISITOR //VOREStation Edit - Visitor not Assistant
+		else if(samejob == JOB_ALT_VISITOR)
+			charjob = JOB_ALT_VISITOR
 	else
 		records = tgui_alert(src,"No data core entry detected. Would you like add them to the manifest, and sec/med/HR records?","Records",list("No", "Yes", "Cancel"))
 		if(!records || records == "Cancel")
@@ -465,10 +465,8 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	//For logging later
 	var/admin = key_name_admin(src)
 	var/player_key = picked_client.key
-	//VOREStation Add - Needed for persistence
 	var/picked_ckey = picked_client.ckey
 	var/picked_slot = picked_client.prefs.default_slot
-	//VOREStation Add End
 
 	var/mob/living/carbon/human/new_character
 	var/spawnloc
@@ -517,7 +515,9 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	picked_client.prefs.copy_to(new_character)
 	if(new_character.dna)
 		new_character.dna.ResetUIFrom(new_character)
+		new_character.sync_dna_traits(TRUE) // Traitgenes Sync traits to genetics if needed
 		new_character.sync_organ_dna()
+	new_character.initialize_vessel()
 	if(inhabit)
 		new_character.key = player_key
 		//Were they any particular special role? If so, copy.
@@ -527,11 +527,9 @@ Traitors and the like can also be revived with the previous role mostly intact.
 				antag_data.add_antagonist(new_character.mind)
 				antag_data.place_mob(new_character)
 
-	//VOREStation Add - Required for persistence
 	if(new_character.mind)
 		new_character.mind.loaded_from_ckey = picked_ckey
 		new_character.mind.loaded_from_slot = picked_slot
-	//VOREStation Add End
 
 	for(var/lang in picked_client.prefs.alternate_languages)
 		var/datum/language/chosen_language = GLOB.all_languages[lang]
@@ -546,7 +544,6 @@ Traitors and the like can also be revived with the previous role mostly intact.
 			if(new_character.mind)
 				new_character.mind.assigned_role = charjob
 				new_character.mind.role_alt_title = job_master.GetPlayerAltTitle(new_character, charjob)
-		//equip_custom_items(new_character)	//VOREStation Removal
 
 	//If desired, add records.
 	if(records)
@@ -555,7 +552,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	//A redraw for good measure
 	new_character.regenerate_icons()
 
-	new_character.update_transform() //VOREStation Edit
+	new_character.update_transform()
 
 	//If we're announcing their arrival
 	if(announce)
@@ -700,7 +697,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	set category = "Fun.Do Not"
 	set name = "Explosion"
 
-	if(!check_rights(R_DEBUG|R_FUN))	return //VOREStation Edit
+	if(!check_rights(R_DEBUG|R_FUN))	return
 
 	var/devastation = tgui_input_number(usr, "Range of total devastation. -1 to none", text("Input"), min_value=-1)
 	if(devastation == null) return
@@ -728,7 +725,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	set category = "Fun.Do Not"
 	set name = "EM Pulse"
 
-	if(!check_rights(R_DEBUG|R_FUN))	return //VOREStation Edit
+	if(!check_rights(R_DEBUG|R_FUN))	return
 
 	var/heavy = tgui_input_number(usr, "Range of heavy pulse.", text("Input"))
 	if(heavy == null) return
@@ -754,7 +751,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	set category = "Fun.Do Not"
 	set name = "Gib"
 
-	if(!check_rights(R_ADMIN|R_FUN))	return //VOREStation Edit
+	if(!check_rights(R_ADMIN|R_FUN))	return
 
 	var/confirm = tgui_alert(src, "You sure?", "Confirm", list("Yes", "No"))
 	if(confirm != "Yes") return
@@ -822,11 +819,11 @@ Traitors and the like can also be revived with the previous role mostly intact.
 			return
 		if(M)
 			AddBan(M.ckey, M.computer_id, reason, usr.ckey, 1, mins)
-			to_chat(M, "<font color='red'><BIG><B>You have been banned by [usr.client.ckey].\nReason: [reason].</B></BIG></font>")
-			to_chat(M, "<font color='red'>This is a temporary ban, it will be removed in [mins] minutes</font>.")
-			to_chat(M, "<font color='red'>To try to resolve this matter head to http://ss13.donglabs.com/forum/</font>")
+			to_chat(M, span_red(span_large(span_bold("You have been banned by [usr.client.ckey].\nReason: [reason]."))))
+			to_chat(M, span_red("This is a temporary ban, it will be removed in [mins] minutes."))
+			to_chat(M, span_red("To try to resolve this matter head to http://ss13.donglabs.com/forum/"))
 			log_admin("[usr.client.ckey] has banned [M.ckey].\nReason: [reason]\nThis will be removed in [mins] minutes.")
-			message_admins("<font color='blue'>[usr.client.ckey] has banned [M.ckey].\nReason: [reason]\nThis will be removed in [mins] minutes.</font>")
+			message_admins(span_blue("[usr.client.ckey] has banned [M.ckey].\nReason: [reason]\nThis will be removed in [mins] minutes."))
 			world.Export("http://216.38.134.132/adminlog.php?type=ban&key=[usr.client.key]&key2=[M.key]&msg=[html_decode(reason)]&time=[mins]&server=[replacetext(config.server_name, "#", "")]")
 			del(M.client)
 			qdel(M)
@@ -837,11 +834,11 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		if(!reason)
 			return
 		AddBan(M.ckey, M.computer_id, reason, usr.ckey, 0, 0)
-		to_chat(M, "<font color='red'><BIG><B>You have been banned by [usr.client.ckey].\nReason: [reason].</B></BIG></font>")
-		to_chat(M, "<font color='red'>This is a permanent ban.</font>")
-		to_chat(M, "<font color='red'>To try to resolve this matter head to http://ss13.donglabs.com/forum/</font>")
+		to_chat(M, span_red(span_large(span_bold("You have been banned by [usr.client.ckey].\nReason: [reason]."))))
+		to_chat(M, span_red("This is a permanent ban."))
+		to_chat(M, span_red("To try to resolve this matter head to http://ss13.donglabs.com/forum/"))
 		log_admin("[usr.client.ckey] has banned [M.ckey].\nReason: [reason]\nThis is a permanent ban.")
-		message_admins("<font color='blue'>[usr.client.ckey] has banned [M.ckey].\nReason: [reason]\nThis is a permanent ban.</font>")
+		message_admins(span_blue("[usr.client.ckey] has banned [M.ckey].\nReason: [reason]\nThis is a permanent ban."))
 		world.Export("http://216.38.134.132/adminlog.php?type=ban&key=[usr.client.key]&key2=[M.key]&msg=[html_decode(reason)]&time=perma&server=[replacetext(config.server_name, "#", "")]")
 		del(M.client)
 		qdel(M)
@@ -855,7 +852,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 /client/proc/cmd_admin_check_contents(mob/living/M as mob in mob_list)
 	set category = "Admin.Investigate"
 	set name = "Check Contents"
-	set popup_menu = FALSE //VOREStation Edit - Declutter.
+	set popup_menu = FALSE
 
 	if(!holder)
 		return
@@ -912,7 +909,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	mob.set_viewsize(view)
 
 	log_admin("[key_name(usr)] changed their view range to [view].")
-	//message_admins("<font color='blue'>[key_name_admin(usr)] changed their view range to [view].</font>", 1)	//why? removed by order of XSI
+	message_admins(span_blue("[key_name_admin(usr)] changed their view range to [view]."), 1)
 
 	feedback_add_details("admin_verb","CVRA") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
@@ -923,7 +920,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	if ((!( ticker ) || !emergency_shuttle.location()))
 		return
 
-	if(!check_rights(R_ADMIN))	return //VOREStation Edit
+	if(!check_rights(R_ADMIN))	return
 
 	var/confirm = tgui_alert(src, "You sure?", "Confirm", list("Yes", "No"))
 	if(confirm != "Yes") return
@@ -952,7 +949,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	set category = "Admin.Events"
 	set name = "Cancel Shuttle"
 
-	if(!check_rights(R_ADMIN))	return //VOREStation Edit
+	if(!check_rights(R_ADMIN|R_FUN))	return
 
 	if(tgui_alert(src, "You sure?", "Confirm", list("Yes", "No")) != "Yes") return
 
@@ -973,7 +970,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	if (!ticker)
 		return
 
-	if(!check_rights(R_ADMIN))	return //VOREStation Edit
+	if(!check_rights(R_ADMIN))	return
 
 	emergency_shuttle.deny_shuttle = !emergency_shuttle.deny_shuttle
 
@@ -1029,7 +1026,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	set name = "Toggle random events on/off"
 	set desc = "Toggles random events such as meteors, black holes, blob (but not space dust) on/off"
 
-	if(!check_rights(R_SERVER))	return //VOREStation Edit
+	if(!check_rights(R_SERVER))	return
 
 	if(!CONFIG_GET(flag/allow_random_events))
 		CONFIG_SET(flag/allow_random_events, TRUE)

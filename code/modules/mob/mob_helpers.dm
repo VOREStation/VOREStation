@@ -253,8 +253,11 @@
 			if(p >= 70)
 				letter = ""
 
+			var/rand_set = list("#","@","*","&","%","$","/", "<", ">", ";","*","*","*","*","*","*","*")
+			if(p >= 80)
+				rand_set += alphabet_uppercase
 			for(var/j = 1, j <= rand(0, 2), j++)
-				letter += pick("#","@","*","&","%","$","/", "<", ">", ";","*","*","*","*","*","*","*")
+				letter += pick(rand_set)
 
 		returntext += letter
 
@@ -686,3 +689,58 @@ var/global/image/backplane
 
 /mob/proc/can_feed()
 	return TRUE
+
+
+/atom/proc/living_mobs_in_view(var/range = world.view, var/count_held = FALSE)
+	var/list/viewers = oviewers(src, range)
+	if(count_held)
+		viewers = viewers(src,range)
+	var/list/living = list()
+	for(var/mob/living/L in viewers)
+		if(L.is_incorporeal())
+			continue
+		living += L
+		if(count_held)
+			for(var/obj/item/holder/H in L.contents)
+				if(istype(H.held_mob, /mob/living))
+					living += H.held_mob
+	return living
+
+/proc/censor_swears(t)
+	/* Bleeps our swearing */
+	var/static/swear_censoring_list = list("fuck",
+										"shit",
+										"damn",
+										"piss",
+										"whore",
+										"cunt",
+										"bitch",
+										"bastard",
+										"dick",
+										"cock",
+										"slut",
+										"dong",
+										"pussy",
+										"twat",
+										"snatch",
+										"schlong",
+										"damn",
+										"dammit",
+										"damnit",
+										"ass",
+										"tit",
+										"douch",
+										"prick",
+										"hell",
+										"crap")
+	var/haystack = t
+	for(var/filter in swear_censoring_list)
+		var/regex/needle = regex(filter, "i")
+		while(TRUE)
+			var/pos = needle.Find(haystack)
+			if(!pos)
+				break
+			var/partial_start = copytext(haystack,1,pos)
+			var/partial_end   = copytext(haystack,pos+length(filter),length(haystack)+1)
+			haystack = "[partial_start][pick("BEEP","BLEEP","BOINK","BEEEEEP")][partial_end]"
+	return haystack

@@ -32,6 +32,8 @@
 		return 0
 
 	var/mob/living/pred = hit_atom
+	if(pred.is_incorporeal())
+		return
 	var/safe_fall = FALSE
 	if(pred.softfall || (isanimal(pred) && pred.mob_size <= MOB_SMALL))		// TODO: add ability for mob below to be 'soft' and cushion fall
 		safe_fall = TRUE

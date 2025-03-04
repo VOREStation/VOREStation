@@ -14,7 +14,7 @@
 	w_class = ITEMSIZE_TINY
 	var/list/item_quants = list()
 
-/obj/item/seedbag/attack_self(mob/user as mob)
+/obj/item/seedbag/attack_self(mob/user)
 	user.machine = src
 	interact(user)
 
@@ -29,7 +29,7 @@
 		if(0)
 			to_chat(usr, "The bag now picks up one seed pouch at a time.")
 
-/obj/item/seeds/attackby(var/obj/item/O as obj, var/mob/user as mob)
+/obj/item/seeds/attackby(var/obj/item/O, var/mob/user)
 	..()
 	if (istype(O, /obj/item/seedbag))
 		var/obj/item/seedbag/S = O
@@ -43,7 +43,7 @@
 						S.item_quants[G.name] = 1
 				else
 					to_chat(user, span_warning("The seed bag is full."))
-					S.updateUsrDialog()
+					S.updateUsrDialog(user)
 					return
 			to_chat(user, span_notice("You pick up all the seeds."))
 		else
@@ -55,21 +55,20 @@
 					S.item_quants[name] = 1
 			else
 				to_chat(user, span_warning("The seed bag is full."))
-		S.updateUsrDialog()
+		S.updateUsrDialog(user)
 	return
 
-/obj/item/seedbag/interact(mob/user as mob)
+/obj/item/seedbag/interact(mob/user)
 
 	var/dat = "<TT><b>Select an item:</b><br>"
 
 	if (contents.len == 0)
-		dat += "<font color = 'red'>No seeds loaded!</font>"
+		dat += span_red("No seeds loaded!")
 	else
 		for (var/O in item_quants)
 			if(item_quants[O] > 0)
 				var/N = item_quants[O]
-				dat += "<FONT color = 'blue'><B>[capitalize(O)]</B>:"
-				dat += " [N] </font>"
+				dat += span_blue(span_bold("[capitalize(O)]") + ": [N] ")
 				dat += "<a href='byond://?src=\ref[src];vend=[O]'>Vend</A>"
 				dat += "<br>"
 
@@ -102,10 +101,10 @@
 		for(var/obj/O in contents )
 			O.loc = get_turf(src)
 
-	src.updateUsrDialog()
+	src.updateUsrDialog(usr)
 	return
 
-/obj/item/seedbag/updateUsrDialog()
+/obj/item/seedbag/updateUsrDialog(mob/user)
 	var/list/nearby = range(1, src)
 	for(var/mob/M in nearby)
 		if ((M.client && M.machine == src))

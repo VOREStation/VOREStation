@@ -4,22 +4,39 @@
 
 /obj/item/anobattery
 	name = "Anomaly power battery"
+	desc = "A device that is able to harness the power of anomalies!"
 	icon = 'icons/obj/xenoarchaeology.dmi'
 	icon_state = "anobattery0"
 	var/datum/artifact_effect/battery_effect
 	var/capacity = 500
 	var/stored_charge = 0
 
+/obj/item/anobattery/examine(mob/user)
+	. = ..()
+	if(Adjacent(user))
+		. += "It currently has a charge of [stored_charge] out of [capacity]"
 /obj/item/anobattery/Destroy()
 	battery_effect = null
 	..()
+
+/obj/item/anobattery/moderate
+	name = "moderate anomaly battery"
+	capacity = 1000
 
 /obj/item/anobattery/advanced
 	name = "advanced anomaly battery"
 	capacity = 3000
 
+/obj/item/anobattery/exotic
+	name = "exotic anomaly battery"
+	capacity = 10000
+
+/obj/item/anobattery/adminbus //Adminspawn only. Do not make this accessible or I will gnaw you.
+	name = "godly anomaly battery"
+	capacity = 100000000
+
 /*
-/obj/item/anobattery/New()
+/obj/item/anobattery/Initialize(mapload)
 	battery_effect = new()
 */
 
@@ -46,8 +63,8 @@
 	var/energy_consumed_on_touch = 100
 	var/mob/last_user_touched
 
-/obj/item/anodevice/New()
-	..()
+/obj/item/anodevice/Initialize(mapload)
+	. = ..()
 	START_PROCESSING(SSobj, src)
 
 /obj/item/anodevice/Destroy()

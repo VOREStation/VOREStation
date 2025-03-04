@@ -223,7 +223,7 @@ var/savefile/Banlistjob
 /datum/admins/proc/unjobbanpanel()
 	var/count = 0
 	var/dat
-	//var/dat = "<HR><B>Unban Player:</B> <font color='blue'>(U) = Unban , (E) = Edit Ban</font> <font color='green'>(Total<HR><table border=1 rules=all frame=void cellspacing=0 cellpadding=3 </font>>"
+	//var/dat = "<HR>" + span_bold("Unban Player: ") + span_blue("(U) = Unban , (E) = Edit Ban") + span_green("(Total<HR><table border=1 rules=all frame=void cellspacing=0 cellpadding=3 >")
 	Banlistjob.cd = "/base"
 	for (var/A in Banlistjob.dir)
 		count++
@@ -231,29 +231,29 @@ var/savefile/Banlistjob
 		dat += text("<tr><td><A href='byond://?src=\ref[src];[HrefToken()];unjobbanf=[Banlistjob["key"]][Banlistjob["id"]][Banlistjob["rank"]]'>(U)</A> Key: <B>[Banlistjob["key"]] </B>Rank: <B>[Banlistjob["rank"]]</B></td><td> ([Banlistjob["temp"] ? "[GetBanExpjob(Banlistjob["minutes"]) ? GetBanExpjob(Banlistjob["minutes"]) : "Removal pending" ]" : "Permaban"])</td><td>(By: [Banlistjob["bannedby"]])</td><td>(Reason: [Banlistjob["reason"]])</td></tr>")
 
 	dat += "</table>"
-	dat = "<HR><B>Bans:</B> <FONT COLOR=blue>(U) = Unban , </FONT> - <FONT COLOR=green>([count] Bans)</FONT><HR><table border=1 rules=all frame=void cellspacing=0 cellpadding=3 >[dat]"
+	dat = "<HR>" + span_bold("Bans:") + " " span_blue("(U) = Unban , ") + " - " + span_green("([count] Bans)") + "<HR><table border=1 rules=all frame=void cellspacing=0 cellpadding=3 >[dat]"
 	usr << browse("<html>[dat]</html>", "window=unbanp;size=875x400")
 
 /*/datum/admins/proc/permjobban(ckey, computerid, reason, bannedby, temp, minutes, rank)
 	if(AddBanjob(ckey, computerid, reason, usr.ckey, 0, 0, job))
-		to_chat(M, "<font color='red'><BIG><B>You have been banned from [job] by [usr.client.ckey].\nReason: [reason].</B></BIG></font>")
-		to_chat(M, "<font color='red'>This is a permanent ban.</font>")
+		to_chat(M, span_large(span_red(span_bold("You have been banned from [job] by [usr.client.ckey].\nReason: [reason]."))))
+		to_chat(M, span_red("This is a permanent ban."))
 		if(config.banappeals)
-			to_chat(M, "<font color='red'>To try to resolve this matter head to [config.banappeals]</font>")
+			to_chat(M, span_red("To try to resolve this matter head to [config.banappeals]"))
 		else
-			to_chat(M, "<font color='red'>No ban appeals URL has been set.</font>")
+			to_chat(M, span_red("No ban appeals URL has been set."))
 		log_admin("[usr.client.ckey] has banned from [job] [ckey].\nReason: [reason]\nThis is a permanent ban.")
-		message_admins("<font color='blue'>[usr.client.ckey] has banned from [job] [ckey].\nReason: [reason]\nThis is a permanent ban.</font>")
+		message_admins(span_blue("[usr.client.ckey] has banned from [job] [ckey].\nReason: [reason]\nThis is a permanent ban."))
 /datum/admins/proc/timejobban(ckey, computerid, reason, bannedby, temp, minutes, rank)
 	if(AddBanjob(ckey, computerid, reason, usr.ckey, 1, mins, job))
-		to_chat(M, "<font color='red'><BIG><B>You have been jobbanned from [job] by [usr.client.ckey].\nReason: [reason].</B></BIG></font>")
-		to_chat(M, "<font color='red'>This is a temporary ban, it will be removed in [mins] minutes.</font>")
+		to_chat(M, span_large(span_red(span_bold("You have been jobbanned from [job] by [usr.client.ckey].\nReason: [reason]."))))
+		to_chat(M, span_red("This is a temporary ban, it will be removed in [mins] minutes."))
 		if(config.banappeals)
-			to_chat(M, "<font color='red'>To try to resolve this matter head to [config.banappeals]</font>")
+			to_chat(M, span_red("To try to resolve this matter head to [config.banappeals]"))
 		else
-			to_chat(M, "<font color='red'>No ban appeals URL has been set.</font>")
+			to_chat(M, span_red("No ban appeals URL has been set."))
 		log_admin("[usr.client.ckey] has jobbanned from [job] [ckey].\nReason: [reason]\nThis will be removed in [mins] minutes.")
-		message_admins("<font color='blue'>[usr.client.ckey] has banned from [job] [ckey].\nReason: [reason]\nThis will be removed in [mins] minutes.</font>")*/
+		message_admins(span_blue("[usr.client.ckey] has banned from [job] [ckey].\nReason: [reason]\nThis will be removed in [mins] minutes."))*/
 //////////////////////////////////// DEBUG ////////////////////////////////////
 
 /proc/CreateBansjob()

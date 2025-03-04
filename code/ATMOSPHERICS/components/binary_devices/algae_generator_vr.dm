@@ -36,8 +36,8 @@
 /obj/machinery/atmospherics/binary/algae_farm/filled
 	stored_material = list(MAT_ALGAE = 10000, MAT_GRAPHITE = 0)
 
-/obj/machinery/atmospherics/binary/algae_farm/New()
-	..()
+/obj/machinery/atmospherics/binary/algae_farm/Initialize(mapload)
+	. = ..()
 	desc = initial(desc) + " Its outlet port is to the [dir2text(dir)]."
 	default_apply_parts()
 	update_icon()
@@ -259,7 +259,7 @@
 			S.use(1)
 			count++
 		user.visible_message("\The [user] inserts [S.name] into \the [src].", span_notice("You insert [count] [S.name] into \the [src]."))
-		updateUsrDialog()
+		updateUsrDialog(user)
 	else
 		to_chat(user, span_warning("\The [src] cannot hold more [S.name]."))
 	return 1

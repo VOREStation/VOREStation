@@ -1,5 +1,5 @@
 /mob/living/simple_mob/vore/sonadile
-	name = "Sonadile"
+	name = "sonadile"
 	desc = "A tall, oddly proportioned bipedal reptile. Whilst its body is fairly large on its own, the incredibly long neck brings its height up to near 14 feet tall. Covered in green scales with a yellow underbelly, with a long thin tail, short legs and stubby arms. It has orange frills down its spine and the eyes are an odd grey colour, it doesn't appear to be able to see very well."
 	catalogue_data = list(/datum/category_item/catalogue/fauna/sonadile)
 	tt_desc = "Crocodylidae"

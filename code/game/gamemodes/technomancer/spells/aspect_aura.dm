@@ -41,14 +41,14 @@
 	aspect = ASPECT_CHROMATIC
 	var/glow_color = "#FFFFFF"
 
-/obj/item/spell/aura/New()
-	..()
+/obj/item/spell/aura/Initialize(mapload)
+	. = ..()
 	set_light(7, 4, l_color = glow_color)
 	START_PROCESSING(SSobj, src)
 
 /obj/item/spell/aura/Destroy()
 	STOP_PROCESSING(SSobj, src)
-	..()
+	. = ..()
 
 /obj/item/spell/aura/process()
 	return

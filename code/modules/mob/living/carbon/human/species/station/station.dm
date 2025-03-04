@@ -173,6 +173,8 @@
 		/decl/emote/human/stopsway
 	)
 
+	footstep = FOOTSTEP_MOB_CLAW
+
 /datum/species/unathi/equip_survival_gear(var/mob/living/carbon/human/H)
 	..()
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/sandal(H),slot_shoes)
@@ -505,7 +507,7 @@
 
 	for(var/K in damageable)
 		if(!(K in covered))
-			H.apply_damage(light_amount/4, BURN, K, 0, 0, "Abnormal growths")
+			H.apply_damage(light_amount/4, BURN, K, 0, 0)
 
 /datum/species/diona
 	name = SPECIES_DIONA

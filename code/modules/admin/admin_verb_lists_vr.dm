@@ -125,7 +125,8 @@ var/list/admin_verbs_admin = list(
 	/client/proc/removetickets,
 	/client/proc/delbook,
 	/client/proc/toggle_spawning_with_recolour,
-	/client/proc/start_vote
+	/client/proc/start_vote,
+	/client/proc/hide_motion_tracker_feedback
 	)
 
 var/list/admin_verbs_ban = list(
@@ -180,6 +181,7 @@ var/list/admin_verbs_spawn = list(
 	/datum/admins/proc/check_custom_items,
 	/datum/admins/proc/spawn_plant,
 	/datum/admins/proc/spawn_atom,		//allows us to spawn instances,
+	/datum/admins/proc/spawn_mail,
 	/client/proc/cmd_admin_droppod_spawn,
 	/client/proc/respawn_character,
 	/client/proc/spawn_character_mob,  //VOREStation Add,
@@ -566,7 +568,8 @@ var/list/admin_verbs_event_manager = list(
 	/client/proc/AdminCreateVirus,
 	/client/proc/ReleaseVirus,
 	/client/proc/add_hidden_area,
-	/client/proc/remove_hidden_area
+	/client/proc/remove_hidden_area,
+	/client/proc/hide_motion_tracker_feedback
 )
 
 /client/proc/add_admin_verbs()

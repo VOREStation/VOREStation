@@ -19,11 +19,11 @@ em						{font-style: normal;font-weight: bold;}
 .motd a, .motd a:link, .motd a:visited, .motd a:active, .motd a:hover
 						{color: #638500;}
 
-.italics				{					font-style: italic;}
+.italics				{font-style: italic;}
 
-.bold					{					font-weight: bold;}
+.bold					{font-weight: bold;}
 
-.underline				{			text-decoration: underline;}
+.underline				{text-decoration: underline;}
 
 .prefix					{font-weight: bold;}
 .log_message			{color: #386AFF;	font-weight: bold;}
