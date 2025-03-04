@@ -35,7 +35,7 @@
 			if(!evaluate_candidate(D))
 				candidates -= D
 		finished = TRUE
-		SEND_SIGNAL(src, COMSIG_GHOST_QUERY_COMPLETE, src.candidates)
+		SEND_SIGNAL(src, COMSIG_GHOST_QUERY_COMPLETE)
 
 
 
