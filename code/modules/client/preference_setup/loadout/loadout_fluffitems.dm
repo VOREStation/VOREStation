@@ -483,6 +483,18 @@
 
 //  H CKEYS
 
+/datum/gear/fluff/mechanic_overalls
+	path = /obj/item/clothing/under/fluff/mechanic_overalls
+	display_name = "mechanic overalls"
+	ckeywhitelist = list("hatterhat")
+	character_name = list("Harold Robinson")
+
+/datum/gear/fluff/mechanic_coat
+	path = /obj/item/clothing/suit/storage/hooded/wintercoat/fluff/mechanic
+	display_name = "mechanic winter coat"
+	ckeywhitelist = list("hatterhat")
+	character_name = list("Harold Robinson")
+
 /datum/gear/fluff/lauren_medal
 	path = /obj/item/clothing/accessory/medal/conduct
 	display_name = "Lauren's Medal"
@@ -971,31 +983,13 @@
 	path = /obj/item/clothing/accessory/poncho/roles/cloak/fluff/cloakglowing
 	display_name = "glowing cloak"
 	ckeywhitelist = list("pastelprincedan")
-	character_name = list("Kiyoshi Maki", "Masumi Maki")
+	character_name = list("Masumi Maki")
 
 /datum/gear/fluff/entchtut_medal
 	path = /obj/item/clothing/accessory/medal/conduct
 	display_name = "Entchtut's Conduct Medal"
 	ckeywhitelist = list("positronicjune")
 	character_name = list("Entchtut Cenein")
-
-/datum/gear/fluff/mechanic_overalls
-	path = /obj/item/clothing/under/fluff/mechanic_overalls
-	display_name = "mechanic overalls"
-	ckeywhitelist = list("pastelprincedan", "hatterhat")
-	character_name = list("Masumi Maki", "Harold Robinson")
-
-/datum/gear/fluff/mechanic_coat
-	path = /obj/item/clothing/suit/storage/hooded/wintercoat/fluff/mechanic
-	display_name = "mechanic winter coat"
-	ckeywhitelist = list("pastelprincedan", "hatterhat")
-	character_name = list("Masumi Maki", "Harold Robinson")
-
-/datum/gear/fluff/slimecat_rd_plush
-	path = /obj/item/toy/plushie/fluff/slimeowshi
-	display_name = "slimecat RD plushie"
-	ckeywhitelist = list("pastelprincedan")
-	character_name = list("Kiyoshi Maki", "Masumi Maki")
 
 //  Q CKEYS
 

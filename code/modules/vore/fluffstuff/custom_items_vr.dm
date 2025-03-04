@@ -1474,16 +1474,6 @@
 	sharp = TRUE
 	edge = TRUE
 
-//PastelPrinceDan - Kiyoshi/Masumi Maki
-/obj/item/toy/plushie/fluff/slimeowshi
-	name = "Slime-Cat " + JOB_RESEARCH_DIRECTOR + " plushie"
-	desc = "An adorable stuffed toy that resembles a slime. It's pink, and has little cat ears, as well as a tail! Atop its head is a small beret with a " + JOB_RESEARCH_DIRECTOR + "'s insignia."
-	icon = 'icons/vore/custom_items_vr.dmi'
-	icon_state = "kimeowshi"
-	attack_verb = list("blorbled", "slimed", "absorbed", "glomped")
-	gender = PLURAL // this seems like a good idea but probably prone to changing. todo: ask dan
-	// the only reason this thought is relevant because the base slimeplush has its gender set to female
-
 //YeCrowbarMan - Lemon Yellow
 /obj/item/toy/plushie/fluff/lemonplush
 	name = "yellow slime plushie"
