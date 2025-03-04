@@ -43,6 +43,7 @@ export const ExportTab = (props) => {
         {!game.databaseBackendEnabled &&
           (logEnable ? (
             <Button.Confirm
+              tooltip="Disable local chat logging"
               icon="ban"
               color="red"
               confirmIcon="ban"
@@ -60,6 +61,7 @@ export const ExportTab = (props) => {
             </Button.Confirm>
           ) : (
             <Button
+              tooltip="Enable local chat logging"
               icon="download"
               color="green"
               onClick={() => {
@@ -273,38 +275,58 @@ export const ExportTab = (props) => {
         )}
       </LabeledList>
       <Divider />
-      <Button icon="compact-disc" onClick={() => dispatch(exportSettings())}>
-        Export settings
-      </Button>
-      <Button.File
-        accept=".json"
-        icon="arrow-up-from-bracket"
-        onSelectFiles={(files) => importChatSettings(files)}
-      >
-        Import settings
-      </Button.File>
-      <Button icon="save" onClick={() => dispatch(saveChatToDisk())}>
-        Save chat log
-      </Button>
-      {!game.databaseBackendEnabled && (
-        <Button.Confirm
-          disabled={purgeButtonText === 'Purged!'}
-          icon="trash"
-          color="red"
-          confirmIcon="trash"
-          confirmColor="red"
-          confirmContent="Are you sure?"
-          onClick={() => {
-            dispatch(purgeChatMessageArchive());
-            setPurgeButtonText('Purged!');
-            setTimeout(() => {
-              setPurgeButtonText('Purge message archive');
-            }, 1000);
-          }}
-        >
-          {purgeButtonText}
-        </Button.Confirm>
-      )}
+      <Stack fill>
+        <Stack.Item mt={0.15}>
+          <Button
+            icon="compact-disc"
+            tooltip="Export chat settings"
+            onClick={() => dispatch(exportSettings())}
+          >
+            Export settings
+          </Button>
+        </Stack.Item>
+        <Stack.Item mt={0.15}>
+          <Button.File
+            accept=".json"
+            tooltip="Import chat settings"
+            icon="arrow-up-from-bracket"
+            onSelectFiles={(files) => importChatSettings(files)}
+          >
+            Import settings
+          </Button.File>
+        </Stack.Item>
+        <Stack.Item grow mt={0.15}>
+          <Button
+            icon="save"
+            tooltip="Export current tab history into HTML file"
+            onClick={() => dispatch(saveChatToDisk())}
+          >
+            Save chat log
+          </Button>
+        </Stack.Item>
+        {!game.databaseBackendEnabled && (
+          <Stack.Item mt={0.15}>
+            <Button.Confirm
+              disabled={purgeButtonText === 'Purged!'}
+              icon="trash"
+              tooltip="Erase current tab history"
+              color="red"
+              confirmIcon="trash"
+              confirmColor="red"
+              confirmContent="Are you sure?"
+              onClick={() => {
+                dispatch(purgeChatMessageArchive());
+                setPurgeButtonText('Purged!');
+                setTimeout(() => {
+                  setPurgeButtonText('Purge message archive');
+                }, 1000);
+              }}
+            >
+              {purgeButtonText}
+            </Button.Confirm>
+          </Stack.Item>
+        )}
+      </Stack>
     </Section>
   );
 };
