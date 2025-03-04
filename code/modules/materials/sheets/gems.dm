@@ -5,6 +5,7 @@
 	no_variants = FALSE
 	drop_sound = 'sound/items/drop/glass.ogg'
 	pickup_sound = 'sound/items/pickup/glass.ogg'
+	coin_type = /obj/item/coin/phoron
 
 /obj/item/stack/material/diamond
 	name = MAT_DIAMOND
@@ -12,6 +13,7 @@
 	default_type = MAT_DIAMOND
 	drop_sound = 'sound/items/drop/glass.ogg'
 	pickup_sound = 'sound/items/pickup/glass.ogg'
+	coin_type = /obj/item/coin/diamond
 
 /obj/item/stack/material/painite
 	name = MAT_PAINITE
@@ -53,6 +55,7 @@
 	default_type = MAT_VERDANTIUM
 	no_variants = FALSE
 	apply_colour = TRUE
+	coin_type = /obj/item/coin/verdantium
 
 /obj/item/stack/material/morphium
 	name = MAT_MORPHIUM
@@ -61,6 +64,7 @@
 	default_type = MAT_MORPHIUM
 	no_variants = FALSE
 	apply_colour = TRUE
+	coin_type = /obj/item/coin/morphium
 
 /obj/item/stack/material/glamour
 	name = MAT_GLAMOUR

@@ -231,6 +231,9 @@ GLOBAL_LIST_EMPTY(vending_products)
 		if(panel_open)
 			attack_hand(user)
 		return
+	else if(istype(W, /obj/item/fake_coin) && has_premium)
+		to_chat(user, span_notice("\The [W] doesn't fit into the coin slot on \the [src]."))
+		return
 	else if(istype(W, /obj/item/coin) && has_premium)
 		user.drop_item()
 		W.forceMove(src)
