@@ -64,7 +64,7 @@ const regexParseNode = (params: {
       fragment.appendChild(new_node);
     }
     // Commit the fragment
-    if (node && node.parentNode) {
+    if (node?.parentNode) {
       node.parentNode.replaceChild(fragment, node);
     }
   }
