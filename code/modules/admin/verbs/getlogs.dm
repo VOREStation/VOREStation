@@ -19,9 +19,9 @@
 //Runtimes can be used to meta or spot game-crashing exploits so it's advised to only grant coders that
 //you trust access. Also, it may be wise to ensure that they are not going to play in the current round.
 /client/proc/giveruntimelog()
-	set name = ".giveruntimelog"
+	set name = "Give Runtime Log"
 	set desc = "Give somebody access to any session logfiles saved to the /log/runtime/ folder."
-	set category = null
+	set category = "Admin.Logs"
 
 	if(!src.holder)
 		to_chat(src, span_red("Only Admins may use this command."))
@@ -40,31 +40,28 @@
 //This proc allows download of runtime logs saved within the data/logs/ folder by dreamdeamon.
 //It works similarly to show-server-log.
 /client/proc/getruntimelog()
-	set name = ".getruntimelog"
+	set name = "Get runtime logs"
 	set desc = "Retrieve any session logfiles saved by dreamdeamon."
-	set category = null
-
-	var/path = browse_files("data/logs/runtime/")
-	if(!path)
-		return
-
-	if(file_spam_check())
-		return
-
-	message_admins("[key_name_admin(src)] accessed file: [path]")
-	src << run( file(path) )
-	to_chat(src, "Attempting to send file, this may take a fair few minutes if the file is very large.")
-	return
-
+	set category = "Admin.Logs"
+	browseserverlogs(FALSE, TRUE)
 
 //This proc allows download of past server logs saved within the data/logs/ folder.
 //It works similarly to show-server-log.
 /client/proc/getserverlog()
-	set name = ".getserverlog"
+	set name = "Get server logs"
 	set desc = "Fetch logfiles from data/logs"
-	set category = null
+	set category = "Admin.Logs"
+	browseserverlogs()
 
-	var/path = browse_files("data/logs/")
+
+/client/proc/browseserverlogs(current=FALSE, runtimes=FALSE)
+	var/log_choice = BROWSE_ROOT_ALL_LOGS
+	if(current)
+		log_choice = BROWSE_ROOT_CURRENT_LOGS
+	else if (runtimes)
+		log_choice = BROWSE_ROOT_RUNTIME_LOGS
+	var/path = browse_files(log_choice)
+	feedback_add_details("admin_verb","VTL") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	if(!path)
 		return
 
@@ -72,44 +69,13 @@
 		return
 
 	message_admins("[key_name_admin(src)] accessed file: [path]")
-	src << run( file(path) )
-	to_chat(src, "Attempting to send file, this may take a fair few minutes if the file is very large.")
-	return
-
-
-//Other log stuff put here for the sake of organisation
-
-//Shows today's server log
-/datum/admins/proc/view_txt_log()
-	set category = "Admin.Logs"
-	set name = "Show Server Log"
-	set desc = "Shows today's server log."
-
-	var/path = "[log_path].log"
-	if( fexists(path) )
-		src << run( file(path) )
-	else
-		to_chat(src, span_red("Error: view_txt_log(): File not found/Invalid path([path])."))
-		return
-	feedback_add_details("admin_verb","VTL") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-	return
-
-//Shows today's attack log
-/datum/admins/proc/view_atk_log()
-	set category = "Admin.Logs"
-	set name = "Show Server Attack Log"
-	set desc = "Shows today's server attack log."
-
-	to_chat(usr, "This verb doesn't actually do anything.")
-
-	/*
-	var/path = "data/logs/[time2text(world.realtime,"YYYY/MM-Month/DD-Day")] Attack.log"
-	if( fexists(path) )
-		src << run( file(path) )
-	else
-		to_chat(src, "<font color='red'>Error: view_atk_log(): File not found/Invalid path([path]).</font>")
-		return
-	usr << run( file(path) )
-	feedback_add_details("admin_verb","SSAL") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-	return
-	*/
+	switch(tgui_alert(src,"View (in game), Open (in your system's text editor), or Download?", path, list("View", "Open", "Download")))
+		if ("View")
+			src << browse("<html><pre style='word-wrap: break-word;'>[html_encode(file2text(file(path)))]</pre></html>", list2params(list("window" = "viewfile.[path]")))
+		if ("Open")
+			src << run(file(path))
+		if ("Download")
+			src << ftp(file(path))
+		else
+			return
+	to_chat(src, "Attempting to send [path], this may take a fair few minutes if the file is very large.", confidential = TRUE)
