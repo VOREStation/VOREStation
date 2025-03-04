@@ -1,6 +1,6 @@
 import { useDispatch } from 'tgui/backend';
 
-import { Page } from '../chat/types';
+import type { Page } from '../chat/types';
 import { importSettings } from './actions';
 
 export function exportChatSettings(

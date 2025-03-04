@@ -292,7 +292,7 @@ class ChatRenderer {
   }
 
   assignStyle(style = {}) {
-    for (let key of Object.keys(style)) {
+    for (const key of Object.keys(style)) {
       if (this.rootNode) {
         this.rootNode.style.setProperty(key, style[key]);
       }
