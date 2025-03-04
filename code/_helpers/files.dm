@@ -26,8 +26,7 @@ GLOBAL_VAR_INIT(fileaccess_timer, 0)
 		if(BROWSE_ROOT_ALL_LOGS)
 			root = "data/logs/"
 		if(BROWSE_ROOT_CURRENT_LOGS)
-			root = "data/logs/"
-			// root = "[GLOB.log_directory]/"
+			root = log_path
 	var/path = root
 
 	for(var/i in 1 to max_iterations)
