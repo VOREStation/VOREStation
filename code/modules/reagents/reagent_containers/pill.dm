@@ -120,13 +120,13 @@
 
 //Pills
 /obj/item/reagent_containers/pill/antitox
-	name = REAGENT_ANTITOXIN + " (30u)" //VOREStation Edit
+	name = REAGENT_ANTITOXIN + " (30u)"
 	desc = "Neutralizes many common toxins."
 	icon_state = "pill1"
 
 /obj/item/reagent_containers/pill/antitox/Initialize()
 	. = ..()
-	reagents.add_reagent(REAGENT_ID_ANTITOXIN, 30) //VOREStation Edit
+	reagents.add_reagent(REAGENT_ID_ANTITOXIN, 30)
 	color = reagents.get_color()
 
 /obj/item/reagent_containers/pill/tox
@@ -170,13 +170,13 @@
 	color = reagents.get_color()
 
 /obj/item/reagent_containers/pill/kelotane
-	name = REAGENT_KELOTANE + " (20u)" //VOREStation Edit
+	name = REAGENT_KELOTANE + " (20u)"
 	desc = "Used to treat burns."
 	icon_state = "pill3"
 
 /obj/item/reagent_containers/pill/kelotane/Initialize()
 	. = ..()
-	reagents.add_reagent(REAGENT_ID_KELOTANE, 20) //VOREStation Edit
+	reagents.add_reagent(REAGENT_ID_KELOTANE, 20)
 	color = reagents.get_color()
 
 /obj/item/reagent_containers/pill/paracetamol
@@ -220,13 +220,13 @@
 	color = reagents.get_color()
 
 /obj/item/reagent_containers/pill/dexalin
-	name = REAGENT_DEXALIN + " (7.5u)" //VOREstation Edit
+	name = REAGENT_DEXALIN + " (7.5u)"
 	desc = "Used to treat oxygen deprivation."
 	icon_state = "pill1"
 
 /obj/item/reagent_containers/pill/dexalin/Initialize()
 	. = ..()
-	reagents.add_reagent(REAGENT_ID_DEXALIN, 7.5) //VOREStation Edit
+	reagents.add_reagent(REAGENT_ID_DEXALIN, 7.5)
 	color = reagents.get_color()
 
 /obj/item/reagent_containers/pill/dexalin_plus
@@ -280,7 +280,7 @@
 	color = reagents.get_color()
 
 /obj/item/reagent_containers/pill/spaceacillin
-	name = REAGENT_SPACEACILLIN + " (15u)" //VOREStation Edit
+	name = REAGENT_SPACEACILLIN + " (15u)"
 	desc = "A theta-lactam antibiotic. Effective against many diseases likely to be encountered in space."
 	icon_state = "pill3"
 
@@ -290,23 +290,23 @@
 	color = reagents.get_color()
 
 /obj/item/reagent_containers/pill/carbon
-	name = REAGENT_CARBON + " (30u)" //VOREStation Edit
+	name = REAGENT_CARBON + " (30u)"
 	desc = "Used to neutralise chemicals in the stomach."
 	icon_state = "pill3"
 
 /obj/item/reagent_containers/pill/carbon/Initialize()
 	. = ..()
-	reagents.add_reagent(REAGENT_ID_CARBON, 30) //VOREStation Edit
+	reagents.add_reagent(REAGENT_ID_CARBON, 30)
 	color = reagents.get_color()
 
 /obj/item/reagent_containers/pill/iron
-	name = REAGENT_IRON + " (30u)" //VOREStation Edit
+	name = REAGENT_IRON + " (30u)"
 	desc = "Used to aid in blood regeneration after bleeding for red-blooded crew."
 	icon_state = "pill1"
 
 /obj/item/reagent_containers/pill/iron/Initialize()
 	. = ..()
-	reagents.add_reagent(REAGENT_ID_IRON, 30) //VOREStation Edit
+	reagents.add_reagent(REAGENT_ID_IRON, 30)
 	color = reagents.get_color()
 
 /obj/item/reagent_containers/pill/copper
@@ -351,5 +351,70 @@
 
 /obj/item/reagent_containers/pill/diet/Initialize()
 	. = ..()
-	reagents.add_reagent(REAGENT_ID_LIPOZINE, 15) //VOREStation Edit
+	reagents.add_reagent(REAGENT_ID_LIPOZINE, 15)
+	color = reagents.get_color()
+
+// DISPENSER PILLS!
+// These are smaller variants of pills that the medical kiosk gives!
+/obj/item/reagent_containers/pill/small_blood_restoration
+	name = "blood restoration pill"
+	desc = "Used to aid in blood regeneration after or during bleeding for crew with commonly found blood types."
+	icon_state = "pill1"
+
+/obj/item/reagent_containers/pill/small_blood_restoration/Initialize()
+	. = ..()
+	reagents.add_reagent(REAGENT_ID_IRON, 5)
+	reagents.add_reagent(REAGENT_ID_COPPER, 5)
+	reagents.add_reagent(REAGENT_ID_SILVER, 5)
+	reagents.add_reagent(REAGENT_ID_GOLD, 5)
+	color = reagents.get_color()
+
+/obj/item/reagent_containers/pill/small_inaprovaline
+	name = REAGENT_INAPROVALINE + " (5u)"
+	desc = "Used to stabilize patients."
+	icon_state = "pill2"
+
+/obj/item/reagent_containers/pill/small_inaprovaline/Initialize()
+	. = ..()
+	reagents.add_reagent(REAGENT_ID_INAPROVALINE, 5)
+	color = reagents.get_color()
+
+/obj/item/reagent_containers/pill/small_prussian_blue
+	name = REAGENT_PRUSSIANBLUE + " (5u)"
+	desc = "Used for the temporary cessation of radiation effects."
+	icon_state = "pill2"
+
+/obj/item/reagent_containers/pill/small_prussian_blue/Initialize()
+	. = ..()
+	reagents.add_reagent(REAGENT_ID_PRUSSIANBLUE, 5)
+	color = reagents.get_color()
+
+/obj/item/reagent_containers/pill/small_tramadol
+	name = REAGENT_TRAMADOL + " (5u)"
+	desc = "A reelatively moderate painkiller typically given for more severe injuries."
+	icon_state = "pill2"
+
+/obj/item/reagent_containers/pill/small_tramadol/Initialize()
+	. = ..()
+	reagents.add_reagent(REAGENT_ID_TRAMADOL, 5)
+	color = reagents.get_color()
+
+/obj/item/reagent_containers/pill/small_paracetamol
+	name = REAGENT_PARACETAMOL + " (5u)"
+	desc = "A rather weak painkiller typically given for minor injuries."
+	icon_state = "pill3"
+
+/obj/item/reagent_containers/pill/small_paracetamol/Initialize()
+	. = ..()
+	reagents.add_reagent(REAGENT_ID_PARACETAMOL, 5)
+	color = reagents.get_color()
+
+/obj/item/reagent_containers/pill/small_dylovene
+	name = REAGENT_ANTITOXIN + " (5u)"
+	desc = "A broad-spectrum anti-toxin."
+	icon_state = "pill1"
+
+/obj/item/reagent_containers/pill/small_dylovene/Initialize()
+	. = ..()
+	reagents.add_reagent(REAGENT_ID_ANTITOXIN, 5)
 	color = reagents.get_color()

@@ -179,8 +179,34 @@ var/const/CE_STABLE_THRESHOLD = 0.5
 
 		//This 30 is the "baseline" of a cut in the "vital" regions (head and torso).
 		for(var/obj/item/organ/external/temp in bad_external_organs)
-			if(!(temp.status & ORGAN_BLEEDING) || (temp.robotic >= ORGAN_ROBOT))
+
+			///First, we make sure it's not robotic.
+			if(temp.robotic >= ORGAN_ROBOT)
 				continue
+
+			///Second, we process internal bleeding.
+			for(var/datum/wound/internal_bleeding/W in temp.wounds)
+				blood_loss_divisor = blood_loss_divisor+10 //IB is slower bloodloss than normal.
+				var/bicardose = reagents.get_reagent_amount(REAGENT_ID_BICARIDINE)
+				var/inaprovaline = reagents.get_reagent_amount(REAGENT_ID_INAPROVALINE)
+				var/myeldose = reagents.get_reagent_amount(REAGENT_ID_MYELAMINE)
+				if(!(W.can_autoheal() || (bicardose && inaprovaline) || myeldose))	//bicaridine and inaprovaline stop internal wounds from growing bigger with time, unless it is so small that it is already healing
+					W.open_wound(0.1)
+				if(prob(1))
+					custom_pain("You feel a stabbing pain in your [name]!", 50)
+				if(CE_STABLE in chem_effects)
+					blood_loss_divisor = max(blood_loss_divisor + 30, 1) //Inaprovaline is great on internal wounds.
+				if(temp.applied_pressure) //Putting pressure on the afflicted wound helps stop the arterial bleeding.
+					if(ishuman(temp.applied_pressure))
+						var/mob/living/carbon/human/H = temp.applied_pressure
+						H.bloody_hands(src, 0)
+						blood_loss_divisor += 30 //If you're putting pressure on that limb due to there being an external bleed there, you apply some pressure to the internal bleed as well.
+				remove_blood(W.damage/blood_loss_divisor) //line should possibly be moved to handle_blood, so all the bleeding stuff is in one place. //Hi. 2025 here. Just did that. ~Diana
+
+			///Thirdly, we check to see if the limb is bleeding EXTERNALLY
+			if(!(temp.status & ORGAN_BLEEDING))
+				continue
+			///Finally, we process external wounds.
 			for(var/datum/wound/W in temp.wounds)
 				if(W.bleeding())
 					if(W.damage_type == PIERCE) //gunshots and spear stabs bleed more

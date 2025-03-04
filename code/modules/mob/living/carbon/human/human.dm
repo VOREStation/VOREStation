@@ -1091,11 +1091,14 @@
 	var/obj/item/organ/internal/lungs/L = internal_organs_by_name[O_LUNGS]
 	return L && L.is_bruised()
 
-/mob/living/carbon/human/proc/rupture_lung()
+/mob/living/carbon/human/proc/rupture_lung(var/gradual)
 	var/obj/item/organ/internal/lungs/L = internal_organs_by_name[O_LUNGS]
 
 	if(L)
-		L.rupture()
+		if(gradual && (L.damage < (L.min_bruised_damage-1))) //We do slow ticking damage up to 9. After 9, we rupture completely.
+			L.damage++
+		else
+			L.rupture()
 
 /*
 /mob/living/carbon/human/verb/simulate()
