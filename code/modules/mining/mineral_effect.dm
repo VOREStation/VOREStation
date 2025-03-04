@@ -8,12 +8,9 @@
 	var/ore_key
 	var/image/scanner_image
 	var/ore_reagent	// Reagent from pumping water near this ore.
-	var/delete_me = FALSE
 
 /obj/effect/mineral/Initialize(mapload)
 	. = ..()
-	if(delete_me)
-		return INITIALIZE_HINT_QDEL
 	var/turf/simulated/mineral/min_turf = loc
 	if(!istype(min_turf))
 		return INITIALIZE_HINT_QDEL

@@ -67,7 +67,7 @@ var/list/mining_overlay_cache = list()
 		ORE_RUTILE = /obj/item/ore/rutile
 	)
 
-	has_resources = 1
+	turf_resource_types = TURF_HAS_MINERALS
 
 /turf/simulated/mineral/ChangeTurf(turf/N, tell_universe, force_lighting_update, preserve_outdoors)
 	clear_ore_effects()
@@ -197,6 +197,10 @@ var/list/mining_overlay_cache = list()
 
 /turf/simulated/mineral/Initialize()
 	. = ..()
+	if(turf_resource_types & TURF_HAS_RARE_ORE)
+		make_ore(1)
+	else if (turf_resource_types & TURF_HAS_ORE)
+		make_ore()
 	if(prob(20))
 		overlay_detail = "asteroid[rand(0,9)]"
 	update_icon(1)
@@ -588,11 +592,9 @@ var/list/mining_overlay_cache = list()
 		update_icon()
 
 /turf/simulated/mineral/proc/clear_ore_effects()
+	turf_resource_types &= ~(TURF_HAS_ORE | TURF_HAS_RARE_ORE)
 	for(var/obj/effect/mineral/M in contents)
-		if(!(M.flags & ATOM_INITIALIZED))
-			M.delete_me = TRUE
-		else
-			qdel(M)
+		qdel(M)
 
 /turf/simulated/mineral/proc/DropMineral()
 	if(!mineral)
