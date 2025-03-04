@@ -86,7 +86,7 @@
 	has_custom_open_sprites = TRUE
 	has_vore_belly_sprites = TRUE
 	sprite_decals = list("decals")
-	rest_sprite_options = list("Default", "sit")
+	rest_sprite_options = list("Default", "Sit")
 
 // Protector
 
@@ -184,7 +184,7 @@
 	has_custom_open_sprites = TRUE
 	has_vore_belly_sprites = TRUE
 	sprite_decals = list("decals")
-	rest_sprite_options = list("Default", "sit")
+	rest_sprite_options = list("Default", "Sit")
 
 /datum/robot_sprite/dogborg/tall/mechanist/syndimechraptor
 	name = "Raptor V-4"

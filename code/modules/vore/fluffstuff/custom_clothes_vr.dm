@@ -2275,7 +2275,7 @@ Departamental Swimsuits, for general use
 
 	body_parts_covered = CHEST|FEET|ARMS|HANDS
 
-//PastelPrinceDan: Kiyoshi Maki
+//PastelPrinceDan: Masumi Maki
 /obj/item/clothing/accessory/poncho/roles/cloak/fluff/cloakglowing
 	name = "glowing cloak"
 	desc = "A fancy cloak with a RGB LED color strip along the trim, cycling through the colors of the rainbow."
@@ -2321,7 +2321,7 @@ Departamental Swimsuits, for general use
 
 	colorswap(usr)
 
-//PastelPrinceDan: Masumi Maki & Hatterhat: Harold Robinson
+//Hatterhat: Harold Robinson
 /obj/item/clothing/under/fluff/mechanic_overalls
 	name = "mechanic overalls"
 	desc = "A set of white and blue overalls, paired with a yellow shirt."
@@ -2330,7 +2330,7 @@ Departamental Swimsuits, for general use
 	item_state = "mechaoveralls"
 	icon_override = 'icons/vore/custom_onmob_vr.dmi'
 
-//PastelPrinceDan: Masumi Maki & Hatterhat: Harold Robinson
+//Hatterhat: Harold Robinson
 /obj/item/clothing/suit/storage/hooded/wintercoat/fluff/mechanic
 	name = "mechanic winter coat"
 	desc = "A blue and yellow winter coat, worn only by overachievers."

@@ -102,7 +102,7 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 		if(tail_style?.can_loaf && resting) // Only call these if we're resting?
 			update_tail_showing()
 			M.Scale(desired_scale_x, desired_scale_y)
-			M.Translate(cent_offset * desired_scale_x, (vis_height/2)*(desired_scale_y-1)) //CHOMPEdit
+			M.Translate(cent_offset * desired_scale_x, (vis_height/2)*(desired_scale_y-1))
 		else
 			M.Scale(desired_scale_x, desired_scale_y)
 			if(isnull(rest_dir))
