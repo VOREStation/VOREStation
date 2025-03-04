@@ -1,4 +1,12 @@
-export function exportChatSettings(settings: Record<string, any>) {
+import { useDispatch } from 'tgui/backend';
+
+import { Page } from '../chat/types';
+import { importSettings } from './actions';
+
+export function exportChatSettings(
+  settings: Record<string, any>,
+  pages: Page[],
+) {
   const opts: SaveFilePickerOptions = {
     id: `ss13-chatprefs-${Date.now()}`,
     suggestedName: `ss13-chatsettings-${new Date().toJSON().slice(0, 10)}.json`,
@@ -10,12 +18,17 @@ export function exportChatSettings(settings: Record<string, any>) {
     ],
   };
 
+  const pagesEntry: Record<string, Page>[] = [];
+  pagesEntry['chatPages'] = pages;
+
+  const exportObject = Object.assign(settings, pagesEntry);
+
   window
     .showSaveFilePicker(opts)
     .then((fileHandle) => {
       try {
         fileHandle.createWritable().then((writableHandle) => {
-          writableHandle.write(JSON.stringify(settings));
+          writableHandle.write(JSON.stringify(exportObject));
           writableHandle.close();
         });
       } catch (e) {
@@ -30,6 +43,10 @@ export function exportChatSettings(settings: Record<string, any>) {
     });
 }
 
-export function importChatSettings(settings: string) {
-  return JSON.parse(settings);
+export function importChatSettings(settings: string | string[]) {
+  if (!Array.isArray(settings)) {
+    const dispatch = useDispatch();
+    const ourImport = JSON.parse(settings);
+    dispatch(importSettings(ourImport, ourImport['chatPages']));
+  }
 }

@@ -19,7 +19,6 @@ import {
 } from './actions';
 import { FONTS, MAX_HIGHLIGHT_SETTINGS, SETTINGS_TABS } from './constants';
 import { createDefaultHighlightSetting } from './model';
-import { importChatSettings } from './settingsImExport';
 
 const defaultHighlightSetting = createDefaultHighlightSetting();
 
@@ -148,7 +147,10 @@ export function settingsReducer(
       }
     }
     case importSettings.type: {
-      const newSettings = importChatSettings(payload);
+      const newSettings = payload.newSettings;
+      if (!newSettings) {
+        return state;
+      }
       const nextState = {
         ...state,
         ...newSettings,

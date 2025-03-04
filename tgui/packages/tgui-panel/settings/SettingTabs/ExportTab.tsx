@@ -16,13 +16,9 @@ import { toFixed } from 'tgui-core/math';
 import { purgeChatMessageArchive, saveChatToDisk } from '../../chat/actions';
 import { MESSAGE_TYPES } from '../../chat/constants';
 import { useGame } from '../../game';
-import {
-  exportSettings,
-  importSettings,
-  updateSettings,
-  updateToggle,
-} from '../actions';
+import { exportSettings, updateSettings, updateToggle } from '../actions';
 import { selectSettings } from '../selectors';
+import { importChatSettings } from '../settingsImExport';
 
 export const ExportTab = (props) => {
   const dispatch = useDispatch();
@@ -283,7 +279,7 @@ export const ExportTab = (props) => {
       <Button.File
         accept=".json"
         icon="arrow-up-from-bracket"
-        onSelectFiles={(files) => dispatch(importSettings(files))}
+        onSelectFiles={(files) => importChatSettings(files)}
       >
         Import settings
       </Button.File>

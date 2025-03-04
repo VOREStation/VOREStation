@@ -6,6 +6,7 @@
 
 import { storage } from 'common/storage';
 
+import { selectChatPages } from '../chat/selectors';
 import { setClientTheme } from '../themes';
 import {
   addHighlightSetting,
@@ -94,7 +95,8 @@ export function settingsMiddleware(store) {
     }
     if (type === exportSettings.type) {
       const settings = selectSettings(store.getState());
-      exportChatSettings(settings);
+      const state = store.getState();
+      exportChatSettings(settings, selectChatPages(state));
       return;
     }
     if (

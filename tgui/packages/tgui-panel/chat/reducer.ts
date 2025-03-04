@@ -4,6 +4,7 @@
  * @license MIT
  */
 
+import { importSettings } from '../settings/actions';
 import {
   addChatPage,
   changeChatPage,
@@ -17,6 +18,7 @@ import {
   updateMessageCount,
 } from './actions';
 import { canPageAcceptType, createMainPage } from './model';
+import { Page } from './types';
 
 const mainPage = createMainPage();
 
@@ -126,6 +128,33 @@ export const chatReducer = (state = initialState, action) => {
         [payload.id]: payload,
       },
     };
+  }
+  if (type === importSettings.type) {
+    const newPages: Page[] = payload.newPages;
+    if (!newPages) {
+      return state;
+    }
+    const newPageIds: string[] = payload.newSettings.pages;
+    if (!newPageIds) {
+      return state;
+    }
+    const pageById: Record<string, Page> = newPageIds.reduce(
+      (acc, entry, idx) => {
+        acc[entry] = newPages[idx];
+        return acc;
+      },
+      {},
+    );
+
+    alert(JSON.stringify(pageById));
+    alert(JSON.stringify(newPageIds));
+    const nextState = {
+      ...state,
+      currentPageId: newPageIds[0],
+      pages: [...newPageIds],
+      pageById: { ...pageById },
+    };
+    return nextState;
   }
   if (type === changeChatPage.type) {
     const { pageId } = payload;
