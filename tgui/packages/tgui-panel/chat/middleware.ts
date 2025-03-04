@@ -255,7 +255,7 @@ export const chatMiddleware = (store) => {
       game.databaseBackendEnabled,
     );
     // Load the chat once settings are loaded
-    if (!initialized && (settings.initialized || settings.firstLoad)) {
+    if (!initialized && settings.initialized) {
       initialized = true;
       setInterval(() => {
         saveChatToStorage(store);

@@ -58,7 +58,6 @@ const initialState = {
   exportEnd: 0,
   lastId: null,
   initialized: false,
-  firstLoad: false,
   storedTypes: {},
   hideImportantInAdminTab: false,
   interleave: false,
@@ -98,7 +97,7 @@ export function settingsReducer(
             ...state,
             ...payload,
           };
-          nextState.firstLoad = true;
+          nextState.initialized = true;
           return nextState;
         }
 
