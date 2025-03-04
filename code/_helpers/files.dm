@@ -25,8 +25,6 @@ GLOBAL_VAR_INIT(fileaccess_timer, 0)
 	switch(root_type)
 		if(BROWSE_ROOT_ALL_LOGS)
 			root = "data/logs/"
-		if(BROWSE_ROOT_RUNTIME_LOGS)
-			root = "data/logs/runtimes"
 		if(BROWSE_ROOT_CURRENT_LOGS)
 			root = "data/logs/"
 			// root = "[GLOB.log_directory]/"
