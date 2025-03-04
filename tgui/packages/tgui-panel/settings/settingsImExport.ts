@@ -47,6 +47,9 @@ export function importChatSettings(settings: string | string[]) {
   if (!Array.isArray(settings)) {
     const dispatch = useDispatch();
     const ourImport = JSON.parse(settings);
+    if (!ourImport?.version) {
+      return;
+    }
     const pageRecord = ourImport['chatPages'];
     delete ourImport['chatPages'];
 
