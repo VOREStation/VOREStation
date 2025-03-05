@@ -363,7 +363,7 @@
 	id = REAGENT_ID_STOXIN
 	result = REAGENT_ID_STOXIN
 	required_reagents = list(REAGENT_ID_CHLORALHYDRATE = 1, REAGENT_ID_SUGAR = 4)
-	inhibitors = list(REAGENT_ID_PHOSPHORUS) // Messes with the smoke
+	inhibitors = list(REAGENT_ID_PHOSPHORUS = 1) // Messes with the smoke
 	result_amount = 5
 
 /decl/chemical_reaction/instant/chloralhydrate
