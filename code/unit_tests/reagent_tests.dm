@@ -209,6 +209,9 @@
 	fake_beaker.reagents.clear_reagents()
 
 	var/scale = 1
+	if(CR.result_amount < 1)
+		scale = 1 / CR.result_amount // Create at least 1 unit
+
 	if(inhib.len) // taken from argument and not reaction! Put in FIRST!
 		for(var/RR in inhib)
 			fake_beaker.reagents.add_reagent(RR, inhib[RR] * scale)
