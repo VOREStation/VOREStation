@@ -179,13 +179,19 @@
 			for(var/RR in CR.inhibitors)
 				fake_beaker.reagents.add_reagent(RR, CR.inhibitors[RR] * scale)
 
+		fake_beaker.reagents.handle_reactions() // Force
+
 		if(CR.catalysts) // Required for reaction
 			for(var/RR in CR.catalysts)
 				fake_beaker.reagents.add_reagent(RR, CR.catalysts[RR] * scale)
 
+		fake_beaker.reagents.handle_reactions() // Force
+
 		if(CR.required_reagents)
 			for(var/RR in CR.required_reagents)
 				fake_beaker.reagents.add_reagent(RR, CR.required_reagents[RR] * scale)
+
+		fake_beaker.reagents.handle_reactions() // Force
 
 		if(fake_beaker.reagents.get_master_reagent_id() != CR.result)
 			log_unit_test("[CR.type]: Reagents - chemical reaction did not produce its intended result. CONTAINS: [fake_beaker.reagents.get_reagents()]")
