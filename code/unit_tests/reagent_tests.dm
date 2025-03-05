@@ -207,8 +207,13 @@
 	// clear for inhibitor searches
 	fake_beaker.reagents.clear_reagents()
 
+	if(CR.result == REAGENT_ID_LEXORIN)
+		log_unit_test("LEX TEST INHIB LENGTH : [inhib.len]")
+
 	if(inhib.len) // taken from argument and not reaction! Put in FIRST!
 		for(var/RR in inhib)
+			if(CR.result == REAGENT_ID_LEXORIN)
+				log_unit_test("LEX TEST ADD INHIB [RR] + [inhib[RR]]")
 			fake_beaker.reagents.add_reagent(RR, inhib[RR])
 
 	if(CR.result == REAGENT_ID_LEXORIN)
@@ -254,7 +259,7 @@
 				continue
 			if(!test_react.inhibitors.len)
 				continue
-			if(perform_reaction(CR, test_react.inhibitors.Copy())) // returns true if it failed!
+			if(perform_reaction(CR, test_react.inhibitors)) // returns true if it failed!
 				continue
 			return FALSE // SUCCESS using an inhibitor!
 
