@@ -162,12 +162,16 @@
 		fake_beaker.reagents.clear_reagents()
 
 		if(CR.name == REAGENT_DEVELOPER_WARNING) // Ignore these types as they are meant to be overridden
+			log_unit_test("[CR.type]: NO NAME")
 			continue
 		if(!CR.name || CR.name == "" || !CR.id || CR.id == "")
+			log_unit_test("[CR.type]: NO ID")
 			continue
 		if(CR.result_amount <= 0) //Makes nothing anyway, or maybe an effect/explosion!
+			log_unit_test("[CR.type]: WAS 0")
 			continue
 		if(!CR.result) // Cannot check for this
+			log_unit_test("[CR.type]: NO RESULT")
 			continue
 
 		var/scale = 10
