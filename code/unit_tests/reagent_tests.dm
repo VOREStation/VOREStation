@@ -142,3 +142,52 @@
 	else
 		pass("All /obj/item/reagent_containers had valid prefill reagents.")
 	return TRUE
+
+
+/datum/unit_test/chemical_reactions_shall_not_conflict
+	name = "REAGENTS: Chemical Reactions shall not conflict"
+
+/datum/unit_test/chemical_reactions_shall_not_conflict/start_test()
+	var/failed = FALSE
+
+	var/obj/fake_beaker = null
+	for(var/decl/chemical_reaction/CR in decls_repository.get_decls_of_subtype(/decl/chemical_reaction))
+		if(!fake_beaker)
+			fake_beaker = new /obj
+			fake_beaker.reagents = new(5000)
+		fake_beaker.reagents.clear_reagents()
+
+		if(CR.name == REAGENT_DEVELOPER_WARNING) // Ignore these types as they are meant to be overridden
+			continue
+		if(!CR.name || CR.name == "" || R.id)
+			continue
+		if(result_amount == 0) //Makes nothing anyway, or maybe an effect/explosion!
+			return
+		if(!CR.result) // Cannot check for this
+			return
+
+		if(CR.inhibitors) // Add first to give it the best chance of not being overlapped
+			for(var/RR in CR.inhibitors)
+				fake_beaker.reagents.add_reagent(RR,50)
+
+		if(CR.catalysts) // Required for reaction
+			for(var/RR in CR.catalysts)
+				fake_beaker.reagents.add_reagent(RR,50)
+
+		if(CR.required_reagents)
+			for(var/RR in CR.required_reagents)
+				fake_beaker.reagents.add_reagent(RR,50)
+
+		if(fake_beaker.reagents.get_reagent_amount(CR.result) <= 0)
+			log_unit_test("[CR.type]: Reagents - chemical reaction did not produce its intended result. CONTAINS: [fake_beaker.reagents.get_reagents()]")
+			failed = TRUE
+
+		// Some reactions are not nice to their beakers
+		if(QDELING(fake_beaker))
+			fake_beaker = null
+
+	if(failed)
+		fail("One or more /decl/chemical_reaction subtypes conflict with another reaction.")
+	else
+		pass("All /decl/chemical_reaction subtypes had no conflicts.")
+	return TRUE
