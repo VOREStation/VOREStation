@@ -82,23 +82,32 @@
 			log_unit_test("[CR.type]: Reagents - chemical reaction id \"[CR.name]\" had less than 0 as as result_amount?")
 			failed = TRUE
 
+		var/chem_count = 0
 		if(CR.required_reagents)
 			for(var/RR in CR.required_reagents)
 				if(!SSchemistry.chemical_reagents[RR])
 					log_unit_test("[CR.type]: Reagents - chemical reaction had invalid required reagent ID \"[RR]\".")
 					failed = TRUE
+				else
+					chem_count++
 
 		if(CR.catalysts)
 			for(var/RR in CR.catalysts)
 				if(!SSchemistry.chemical_reagents[RR])
 					log_unit_test("[CR.type]: Reagents - chemical reaction had invalid required reagent ID \"[RR]\".")
 					failed = TRUE
+				else
+					chem_count++
 
 		if(CR.inhibitors)
 			for(var/RR in CR.inhibitors)
 				if(!SSchemistry.chemical_reagents[RR])
 					log_unit_test("[CR.type]: Reagents - chemical reaction had invalid required reagent ID \"[RR]\".")
 					failed = TRUE
+
+		if(chem_count <= 1 && !istype(CR,/decl/chemical_reaction/distilling) && !istype(CR,/decl/chemical_reaction/instant/slime))
+			log_unit_test("[CR.type]: Reagents - chemical reaction had only a single reagent, and was not a distillation or slime reaction.")
+			failed = TRUE
 
 		if(CR.result)
 			if(!SSchemistry.chemical_reagents[CR.result])
