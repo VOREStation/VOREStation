@@ -203,7 +203,7 @@
 		pass("All /decl/chemical_reaction subtypes had no conflicts.")
 	return TRUE
 
-/datum/unit_test/chemical_reactions_shall_not_conflict/proc/perform_reaction(/decl/chemical_reaction/CR, var/list/inhibitors = list())
+/datum/unit_test/chemical_reactions_shall_not_conflict/proc/perform_reaction(var/decl/chemical_reaction/CR, var/list/inhibitors = list())
 	if(CR.catalysts) // Required for reaction
 		for(var/RR in CR.catalysts)
 			fake_beaker.reagents.add_reagent(RR, CR.catalysts[RR])
