@@ -50,43 +50,43 @@
 			for(var/datum/reagent/R in I.reagents.reagent_list)
 				if(!R.name)
 					continue
-				to_chat(user, span_notice( "Contains [R.volume]u of <b>[R.name]</b>.<br>[R.description]<br><br>"))
+				to_chat(user, span_notice("Contains [R.volume]u of " + span_bold("[R.name]") + ".<br>[R.description]<br><br>"))
 				/* Downstream addiction code
 				if(R.id in addictives)
-					to_chat(user, span_notice("<b>DANGER, [(R.id in fast_addictives) ? "highly " : ""]addictive.</b><br>"))
+					to_chat(user, span_boldnotice(span_red("DANGER") + ", [(R.id in fast_addictives) ? "highly " : ""]addictive.)")) + "<br>"
 				*/
 				var/list/products = SSchemistry.chemical_reactions_by_product[R.id]
 				if(products != null && products.len > 0)
 					var/segment = 1
 					var/list/display_reactions = list()
 					for(var/decl/chemical_reaction/CR in products)
-						if(!CR.spoiler)
-							display_reactions.Add(CR)
+						// if(!CR.spoiler) - Downstream self documenting wiki code
+						display_reactions.Add(CR)
 					for(var/decl/chemical_reaction/CR in display_reactions)
 						if(display_reactions.len == 1)
-							to_chat(user, span_notice( "Potential Chemical breakdown: <br>"))
+							to_chat(user, span_notice("Potential Chemical breakdown: <br>"))
 						else
-							to_chat(user, span_notice( "Potential Chemical breakdown [segment]: <br>"))
+							to_chat(user, span_notice("Potential Chemical breakdown [segment]: <br>"))
 						segment += 1
 
 						for(var/RQ in CR.required_reagents)
 							var/decl/chemical_reaction/r_RQ = SSchemistry.chemical_reagents[RQ]
 							if(!r_RQ)
 								continue
-							to_chat(user, span_notice( " -parts [r_RQ.name]<br>"))
+							to_chat(user, span_notice(" -parts [r_RQ.name]<br>"))
 						for(var/IH in CR.inhibitors)
 							var/decl/chemical_reaction/r_IH = SSchemistry.chemical_reagents[IH]
 							if(!r_IH)
 								continue
-							to_chat(user, span_notice( " -inhbi [r_IH.name]<br>"))
+							to_chat(user, span_notice(" -inhbi [r_IH.name]<br>"))
 						for(var/CL in CR.catalysts)
 							var/decl/chemical_reaction/r_CL = SSchemistry.chemical_reagents[CL]
 							if(!r_CL)
 								continue
-							to_chat(user, span_notice( " -catyl [r_CL.name]<br>"))
-						to_chat(user, span_notice( "<br>"))
+							to_chat(user, span_notice(" -catyl [r_CL.name]<br>"))
+						to_chat(user, "<br>")
 				else
-					to_chat(user, span_notice( "Potential Chemical breakdown: <br>UNKNOWN OR BASE-REAGENT<br><br>"))
+					to_chat(user, span_notice("Potential Chemical breakdown: <br>UNKNOWN OR BASE-REAGENT<br><br>"))
 
 				var/list/distilled_products = SSchemistry.distilled_reactions_by_product[R.id]
 				if(distilled_products != null && distilled_products.len > 0)
@@ -94,41 +94,41 @@
 
 					var/list/display_reactions = list()
 					for(var/decl/chemical_reaction/distilling/CR in distilled_products)
-						if(!CR.spoiler)
-							display_reactions.Add(CR)
+						// if(!CR.spoiler) - Downstream self documenting wiki code
+						display_reactions.Add(CR)
 
 					for(var/decl/chemical_reaction/distilling/CR in display_reactions)
 						if(display_reactions.len == 1)
-							to_chat(user, span_notice( "Potential Chemical Distillation: <br>"))
+							to_chat(user, span_notice("Potential Chemical Distillation: <br>"))
 						else
-							to_chat(user, span_notice( "Potential Chemical Distillation [segment]: <br>"))
+							to_chat(user, span_notice("Potential Chemical Distillation [segment]: <br>"))
 						segment += 1
 
-						to_chat(user, span_notice( " -temps [CR.temp_range[1]]k - [CR.temp_range[2]]k<br>"))
+						to_chat(user, span_notice(" -temps [CR.temp_range[1]]k - [CR.temp_range[2]]k<br>"))
 
 						for(var/RQ in CR.required_reagents)
 							var/decl/chemical_reaction/r_RQ = SSchemistry.chemical_reagents[RQ]
 							if(!r_RQ)
 								continue
-							to_chat(user, span_notice( " -parts [r_RQ.name]<br>"))
+							to_chat(user, span_notice(" -parts [r_RQ.name]<br>"))
 						for(var/IH in CR.inhibitors)
 							var/decl/chemical_reaction/r_IH = SSchemistry.chemical_reagents[IH]
 							if(!r_IH)
 								continue
-							to_chat(user, span_notice( " -inhbi [r_IH.name]<br>"))
+							to_chat(user, span_notice(" -inhbi [r_IH.name]<br>"))
 						for(var/CL in CR.catalysts)
 							var/decl/chemical_reaction/r_CL = SSchemistry.chemical_reagents[CL]
 							if(!r_CL)
 								continue
-							to_chat(user, span_notice( " -catyl [r_CL.name]<br>"))
-					to_chat(user, span_notice( "<br>"))
+							to_chat(user, span_notice(" -catyl [r_CL.name]<br>"))
+					to_chat(user, "<br>")
 
 		// Last, unseal it if it's an autoinjector.
 		if(istype(I,/obj/item/reagent_containers/hypospray/autoinjector/biginjector) && !(I.flags & OPENCONTAINER))
 			I.flags |= OPENCONTAINER
-			to_chat(user, span_notice( "Sample container unsealed.<br>"))
+			to_chat(user, span_notice("Sample container unsealed.<br>"))
 
-		to_chat(user, span_notice( "Scanning of \the [I] complete."))
+		to_chat(user, span_notice("Scanning of \the [I] complete."))
 		analyzing = FALSE
 		update_icon()
 		return
