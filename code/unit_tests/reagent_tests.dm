@@ -83,7 +83,7 @@
 			failed = TRUE
 
 		if(CR.required_reagents && CR.required_reagents.len)
-			if(islist(CR.required_reagents) && istext(CR.required_reagents[1]))
+			if(!istext(CR.required_reagents[1]))
 				log_unit_test("[CR.type]: Reagents - chemical reaction required list was in invalid format.")
 				failed = TRUE
 			else
@@ -97,7 +97,7 @@
 
 
 		if(CR.catalysts && CR.catalysts.len)
-			if(islist(CR.catalysts) && istext(CR.catalysts[1]))
+			if(!istext(CR.catalysts[1]))
 				log_unit_test("[CR.type]: Reagents - chemical reaction catalysts list was in invalid format.")
 				failed = TRUE
 			else
@@ -110,7 +110,7 @@
 						failed = TRUE
 
 		if(CR.inhibitors && CR.inhibitors.len)
-			if(islist(CR.inhibitors) && istext(CR.inhibitors[1]))
+			if(!istext(CR.inhibitors[1]))
 				log_unit_test("[CR.type]: Reagents - chemical reaction inhibitors list was in invalid format.")
 				failed = TRUE
 			else
