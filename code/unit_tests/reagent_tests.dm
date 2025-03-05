@@ -187,7 +187,7 @@
 			for(var/RR in CR.required_reagents)
 				fake_beaker.reagents.add_reagent(RR, CR.required_reagents[RR] * scale)
 
-		if(fake_beaker.reagents.get_master_reagent_id() != CR.result)
+		if(fake_beaker.reagents.has_reagent(CR.result))
 			log_unit_test("[CR.type]: Reagents - chemical reaction did not produce its intended result. CONTAINS: [fake_beaker.reagents.get_reagents()]")
 			failed = TRUE
 
