@@ -87,7 +87,7 @@
 							final_message += " -catyl [span_info(r_CL.name)]<br>"
 						final_message += "<br>"
 				else
-					final_message += span_underline("Potential Chemical breakdown:") + "<br>UNKNOWN OR BASE-REAGENT<br><br>"
+					final_message += span_underline("Potential Chemical breakdown:") + "<br>" + span_red("UNKNOWN OR BASE-REAGENT") + "<br><br>"
 
 				var/list/distilled_products = SSchemistry.distilled_reactions_by_product[R.id]
 				if(distilled_products != null && distilled_products.len > 0)
