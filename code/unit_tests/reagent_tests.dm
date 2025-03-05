@@ -191,10 +191,10 @@
 			fake_beaker.reagents.maximum_volume = 5000
 
 		// Perform test! If it fails once, it will perform a deeper check trying to use the inhibitors of anything in the beaker
-		failed = perform_reaction(CR)
-		if(failed)
+		if(perform_reaction(CR))
 			// Check if we failed the test with inhibitors in use, if so we absolutely couldn't make it...
 			log_unit_test("[CR.type]: Reagents - chemical reaction did not produce \"[CR.result]\". CONTAINS: \"[fake_beaker.reagents.get_reagents()]\"")
+			failed = TRUE
 	qdel_null(fake_beaker)
 
 	if(failed)
@@ -235,6 +235,8 @@
 					possible_reactions = SSchemistry.distilled_reactions_by_reagent[RR.id]
 				// Multiple chems could make this result... Try em all.
 				for(var/chem in possible_reactions)
+					log_unit_test("[CR.type]: Reagents - WAT [chem]")
+
 					var/decl/chemical_reaction/test_react = possible_reactions[chem]
 					// Some of these reagents mean nothing to us. If nothing has
 					// inhibitors, then we've been blocked out from making this chem.
