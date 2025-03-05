@@ -163,7 +163,7 @@
 
 		if(istype(CR, /decl/chemical_reaction/instant/slime))
 		 	// slime time
-			var/decl/chemical_reaction/slime/SR = CR
+			var/decl/chemical_reaction/instant/slime/SR = CR
 			qdel_swap(fake_beaker, new SR.required())
 			fake_beaker.reagents.maximum_volume = 5000
 		else if(istype(CR, /decl/chemical_reaction/distilling))
