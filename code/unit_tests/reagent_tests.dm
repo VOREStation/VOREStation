@@ -250,7 +250,7 @@
 				continue
 			// Test one by one
 			for(var/each in test_react.inhibitors)
-				if(!perform_reaction(CR, list("[each]" = test_react.inhibitors[])))
+				if(!perform_reaction(CR, list("[each]" = test_react.inhibitors["[each]"])))
 					return FALSE // SUCCESS using an inhibitor!
 			// Test all at once
 			if(!perform_reaction(CR, test_react.inhibitors))
