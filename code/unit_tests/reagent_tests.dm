@@ -220,11 +220,11 @@
 			fake_beaker.reagents.add_reagent(RR, CR.required_reagents[RR])
 
 	if(fake_beaker.reagents.has_reagent(CR.result))
-		return FALSE // SUCCESS!
+		return FALSE // INSTANT SUCCESS!
 
 	if(inhib.len)
-		// We've checked with inhibitors, so we're in second phase.
-		// If so we've absolutely failed this time. There is no way to make this...
+		// We've checked with inhibitors, so we're already in inhibitor checking phase.
+		// So we've absolutely failed this time. There is no way to make this...
 		return TRUE
 
 	if(!fake_beaker.reagents.reagent_list.len)
@@ -248,5 +248,6 @@
 			if(perform_reaction(CR, test_react.inhibitors)) // returns true if it failed!
 				continue
 			return FALSE // SUCCESS using an inhibitor!
+
 	// No inhibiting reagent worked...
 	return TRUE
