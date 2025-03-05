@@ -203,7 +203,7 @@
 		pass("All /decl/chemical_reaction subtypes had no conflicts.")
 	return TRUE
 
-/datum/unit_test/chemical_reactions_shall_not_conflict/proc/perform_reaction(var/decl/chemical_reaction/CR, var/list/inhibitors = list())
+/datum/unit_test/chemical_reactions_shall_not_conflict/proc/perform_reaction(var/decl/chemical_reaction/CR, var/list/inhib = list())
 	if(CR.catalysts) // Required for reaction
 		for(var/RR in CR.catalysts)
 			fake_beaker.reagents.add_reagent(RR, CR.catalysts[RR])
@@ -212,12 +212,12 @@
 		for(var/RR in CR.required_reagents)
 			fake_beaker.reagents.add_reagent(RR, CR.required_reagents[RR])
 
-	if(inhibitors.len) // taken from argument and not reaction!
-		for(var/RR in inhibitors)
-			fake_beaker.reagents.add_reagent(RR, inhibitors[RR])
+	if(inhib.len) // taken from argument and not reaction!
+		for(var/RR in inhib)
+			fake_beaker.reagents.add_reagent(RR, inhib[RR])
 
 	if(!fake_beaker.reagents.has_reagent(CR.result))
-		if(inhibitors.len)
+		if(inhib.len)
 			// We've checked with inhibitors, so we're in second phase.
 			// If so we've absolutely failed this time. There is no way to make this...
 			return TRUE
