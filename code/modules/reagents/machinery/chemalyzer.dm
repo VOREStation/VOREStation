@@ -56,6 +56,7 @@
 				if(R.id in addictives)
 					final_message += span_boldnotice(span_red("DANGER") + ", [(R.id in fast_addictives) ? "highly " : ""]addictive.)") + "<br>"
 				*/
+				// Sanitize out slime reactions
 				var/list/products = SSchemistry.chemical_reactions_by_product[R.id]
 				if(products != null && products.len > 0)
 					var/segment = 1
@@ -70,21 +71,34 @@
 							final_message += span_underline("Potential Chemical breakdown [segment]: <br>")
 						segment += 1
 
-						for(var/RQ in CR.required_reagents)
-							var/decl/chemical_reaction/r_RQ = SSchemistry.chemical_reagents[RQ]
-							if(!r_RQ)
-								continue
-							final_message += " -parts [span_info(r_RQ.name)]<br>"
-						for(var/IH in CR.inhibitors)
-							var/decl/chemical_reaction/r_IH = SSchemistry.chemical_reagents[IH]
-							if(!r_IH)
-								continue
-							final_message += " -inhbi [span_info(r_IH.name)]<br>"
-						for(var/CL in CR.catalysts)
-							var/decl/chemical_reaction/r_CL = SSchemistry.chemical_reagents[CL]
-							if(!r_CL)
-								continue
-							final_message += " -catyl [span_info(r_CL.name)]<br>"
+						if(istype(CR,/decl/chemical_reaction/instant/slime))
+							// Handle slimes
+							var/decl/chemical_reaction/instant/slime/SR = CR
+							if(SR.required)
+								var/slime_path = SR.required
+								final_message += " -core [span_info(initial(slime_path:name))]<br>"
+								for(var/RQ in CR.required_reagents)
+									var/decl/chemical_reaction/r_RQ = SSchemistry.chemical_reagents[RQ]
+									if(!r_RQ)
+										continue
+									final_message += " -inducer [span_info(r_RQ.name)]<br>"
+						else
+							// Standard
+							for(var/RQ in CR.required_reagents)
+								var/decl/chemical_reaction/r_RQ = SSchemistry.chemical_reagents[RQ]
+								if(!r_RQ)
+									continue
+								final_message += " -parts [span_info(r_RQ.name)]<br>"
+							for(var/IH in CR.inhibitors)
+								var/decl/chemical_reaction/r_IH = SSchemistry.chemical_reagents[IH]
+								if(!r_IH)
+									continue
+								final_message += " -inhbi [span_info(r_IH.name)]<br>"
+							for(var/CL in CR.catalysts)
+								var/decl/chemical_reaction/r_CL = SSchemistry.chemical_reagents[CL]
+								if(!r_CL)
+									continue
+								final_message += " -catyl [span_info(r_CL.name)]<br>"
 						final_message += "<br>"
 				else
 					final_message += span_underline("Potential Chemical breakdown:") + "<br>" + span_red("UNKNOWN OR BASE-REAGENT") + "<br><br>"
