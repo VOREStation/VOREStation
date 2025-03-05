@@ -283,6 +283,8 @@
 
 	for(var/grind in global.sheet_reagents + global.ore_reagents)
 		var/list/results = global.sheet_reagents[grind]
+		if(!results)
+			results = global.ore_reagents[grind]
 		if(!results || !islist(results))
 			log_unit_test("[grind]: Reagents - Grinding result had invalid list.")
 			failed = TRUE
