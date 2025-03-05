@@ -207,7 +207,7 @@
 	// clear for inhibitor searches
 	fake_beaker.reagents.clear_reagents()
 
-	var/scale = 10
+	var/scale = 1
 	if(inhib.len) // taken from argument and not reaction! Put in FIRST!
 		for(var/RR in inhib)
 			fake_beaker.reagents.add_reagent(RR, inhib[RR] * scale)
