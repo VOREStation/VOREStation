@@ -152,11 +152,11 @@
 
 /datum/unit_test/chemical_reactions_shall_not_conflict
 	name = "REAGENTS: Chemical Reactions shall not conflict"
+	var/obj/fake_beaker = null
 
 /datum/unit_test/chemical_reactions_shall_not_conflict/start_test()
 	var/failed = FALSE
 
-	var/obj/fake_beaker = null
 	var/list/all_reactions = decls_repository.get_decls_of_subtype(/decl/chemical_reaction)
 	for(var/rtype in all_reactions)
 		var/decl/chemical_reaction/CR = all_reactions[rtype]
@@ -190,27 +190,56 @@
 			qdel_swap(fake_beaker, new /obj/item/reagent_containers/glass/beaker())
 			fake_beaker.reagents.maximum_volume = 5000
 
-		var/scale = 1
-		if(CR.catalysts) // Required for reaction
-			for(var/RR in CR.catalysts)
-				fake_beaker.reagents.add_reagent(RR, CR.catalysts[RR] * scale)
-
-		if(CR.required_reagents)
-			for(var/RR in CR.required_reagents)
-				fake_beaker.reagents.add_reagent(RR, CR.required_reagents[RR] * scale)
-
-		/* For reference, but we don't want this in the mix ever, we won't get the chem!
-		if(CR.inhibitors)
-			for(var/RR in CR.inhibitors)
-				fake_beaker.reagents.add_reagent(RR, CR.inhibitors[RR] * scale)
-		*/
-
-		if(!fake_beaker.reagents.has_reagent(CR.result))
+		// Perform test! If it fails once, it will perform a deeper check trying to use the inhibitors of anything in the beaker
+		failed = perform_reaction(CR)
+		if(failed)
+			// Check if we failed the test with inhibitors in use, if so we absolutely couldn't make it...
 			log_unit_test("[CR.type]: Reagents - chemical reaction did not produce \"[CR.result]\". CONTAINS: \"[fake_beaker.reagents.get_reagents()]\"")
-			failed = TRUE
+	qdel_null(fake_beaker)
 
 	if(failed)
 		fail("One or more /decl/chemical_reaction subtypes conflict with another reaction.")
 	else
 		pass("All /decl/chemical_reaction subtypes had no conflicts.")
 	return TRUE
+
+/datum/unit_test/chemical_reactions_shall_not_conflict/proc/perform_reaction(/decl/chemical_reaction/CR, var/list/inhibitors = list())
+	if(CR.catalysts) // Required for reaction
+		for(var/RR in CR.catalysts)
+			fake_beaker.reagents.add_reagent(RR, CR.catalysts[RR])
+
+	if(CR.required_reagents)
+		for(var/RR in CR.required_reagents)
+			fake_beaker.reagents.add_reagent(RR, CR.required_reagents[RR])
+
+	if(inhibitors.len) // taken from argument and not reaction!
+		for(var/RR in inhibitors)
+			fake_beaker.reagents.add_reagent(RR, inhibitors[RR])
+
+	if(!fake_beaker.reagents.has_reagent(CR.result))
+		if(inhibitors.len)
+			// We've checked with inhibitors, so we're in second phase.
+			// If so we've absolutely failed this time. There is no way to make this...
+			return TRUE
+		else
+			// Container was empty, so something real bad must of happened
+			if(!fake_beaker.reagents.reagent_list.len)
+				log_unit_test("[CR.type]: Reagents - chemical reaction did not produce \"[CR.result]\". CONTAINS: \"[fake_beaker.reagents.get_reagents()]\"")
+				return TRUE
+			// Otherwise we check the resulting reagents and use their inhibitor this time!
+			var/failure = TRUE
+			for(var/datum/reagent/RR in fake_beaker.reagents.reagent_list)
+				// Get the reaction type, as SSchem stores two different lists for each reaction type!
+				var/decl/chemical_reaction/test_react = SSchemistry.instant_reactions_by_reagent[RR.id]
+				if(istype(CR,/decl/chemical_reaction/distilling))
+					test_react = SSchemistry.distilled_reactions_by_reagent[RR.id]
+				// Some of these reagents mean nothing to us. If nothing has
+				// inhibitors, then we've been blocked out from making this chem.
+				if(!test_react)
+					continue
+				if(!test_react.inhibitors.len)
+					continue
+				if(!perform_reaction( CR, test_react.inhibitors)) // returns if it failed!
+					failure = FALSE // So we want to cancel our assumed failure!
+			return failure
+	return FALSE
