@@ -161,7 +161,7 @@
 	for(var/rtype in all_reactions)
 		var/decl/chemical_reaction/CR = all_reactions[rtype]
 		if(!fake_beaker)
-			fake_beaker = new /obj
+			fake_beaker = new()
 			fake_beaker.reagents.maximum_volume = 5000
 		fake_beaker.reagents.clear_reagents()
 
