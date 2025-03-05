@@ -157,6 +157,6 @@
 	name = REAGENT_ANTIBODIES
 	id = "antibodiesmix"
 	result = REAGENT_ID_ANTIBODIES
-	required_reagents = list(REAGENT_ID_VACCINE = 1, REAGENT_ID_INAPROVALINE = 0)
+	required_reagents = list(REAGENT_ID_VACCINE = 1)
 	catalysts = list(REAGENT_ID_INAPROVALINE = 0.1)
 	result_amount = 0.5
