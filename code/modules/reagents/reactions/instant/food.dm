@@ -146,11 +146,13 @@
 	inhibitors = list(REAGENT_ID_WATER = 1, REAGENT_ID_BEER = 1, REAGENT_ID_SUGAR = 1) //To prevent it messing with batter recipes
 	result_amount = 1
 
+#ifndef UNIT_TEST
 /decl/chemical_reaction/instant/food/dough/on_reaction(var/datum/reagents/holder, var/created_volume)
 	var/location = get_turf(holder.my_atom)
 	for(var/i = 1, i <= created_volume, i++)
 		new /obj/item/reagent_containers/food/snacks/dough(location)
 	return
+#endif
 
 /decl/chemical_reaction/instant/food/syntiflesh
 	name = "Syntiflesh"
