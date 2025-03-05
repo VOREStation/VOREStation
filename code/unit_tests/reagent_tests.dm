@@ -186,6 +186,8 @@
 		if(fake_beaker.reagents.get_master_reagent_id() != CR.result)
 			log_unit_test("[CR.type]: Reagents - chemical reaction did not produce its intended result. CONTAINS: [fake_beaker.reagents.get_reagents()]")
 			failed = TRUE
+		else
+			log_unit_test("[CR.type]: Reagents - Testing [CR.name]. CONTAINS: [fake_beaker.reagents.get_reagents()]")
 
 		// Some reactions are not nice to their beakers
 		if(QDELING(fake_beaker))
