@@ -204,6 +204,10 @@
 	return TRUE
 
 /datum/unit_test/chemical_reactions_shall_not_conflict/proc/perform_reaction(var/decl/chemical_reaction/CR, var/list/inhib = list())
+	if(inhib.len) // taken from argument and not reaction! Put in FIRST!
+		for(var/RR in inhib)
+			fake_beaker.reagents.add_reagent(RR, inhib[RR])
+
 	if(CR.catalysts) // Required for reaction
 		for(var/RR in CR.catalysts)
 			fake_beaker.reagents.add_reagent(RR, CR.catalysts[RR])
@@ -211,11 +215,6 @@
 	if(CR.required_reagents)
 		for(var/RR in CR.required_reagents)
 			fake_beaker.reagents.add_reagent(RR, CR.required_reagents[RR])
-
-	if(inhib.len) // taken from argument and not reaction!
-		for(var/RR in inhib)
-			log_unit_test("[CR.type]: Reagents - TRY INHIB [RR] : [inhib[RR]]")
-			fake_beaker.reagents.add_reagent(RR, inhib[RR])
 
 	if(!fake_beaker.reagents.has_reagent(CR.result))
 		if(inhib.len)
@@ -225,11 +224,9 @@
 		else
 			// Container was empty, so something real bad must of happened
 			if(!fake_beaker.reagents.reagent_list.len)
-				log_unit_test("[CR.type]: Reagents - chemical reaction did not produce \"[CR.result]\". CONTAINS: \"[fake_beaker.reagents.get_reagents()]\"")
 				return TRUE
 			// Otherwise we check the resulting reagents and use their inhibitor this time!
 			var/list/reset_beaker_reagents = fake_beaker.reagents.reagent_list.Copy()
-			var/failure = TRUE
 			for(var/datum/reagent/RR in fake_beaker.reagents.reagent_list)
 				// Get the reaction type, as SSchem stores two different lists for each reaction type!
 				var/list/possible_reactions = SSchemistry.instant_reactions_by_reagent[RR.id]
@@ -243,17 +240,8 @@
 						continue
 					if(!test_react.inhibitors.len)
 						continue
-					if(!perform_reaction( CR, test_react.inhibitors)) // returns if it failed!
-						failure = FALSE // So we want to cancel our assumed failure!
-					else
-						// Prevent contamination of the next loop by resetting the chems
-						reset_beaker_chems(reset_beaker_reagents)
-			return failure
+					if(perform_reaction(CR, test_react.inhibitors)) // returns true if it failed!
+						continue
+					return FALSE // DONE!
+			return TRUE
 	return FALSE
-
-/datum/unit_test/chemical_reactions_shall_not_conflict/proc/reset_beaker_chems(var/list/reset)
-	fake_beaker.reagents.clear_reagents()
-	fake_beaker.flags |= NOREACT // Restoring previous state, don't react
-	for(var/R in reset)
-		fake_beaker.reagents.add_reagent(R,reset[R])
-	fake_beaker.flags &= ~NOREACT
