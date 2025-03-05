@@ -56,6 +56,7 @@
 	var/level_max = 2
 
 /decl/chemical_reaction/instant/mix_virus/picky
+	id = "mixviruspicky"
 	var/list/datum/symptom/symptoms
 
 /decl/chemical_reaction/instant/mix_virus/on_reaction(datum/reagents/holder)

@@ -614,14 +614,15 @@
 /decl/chemical_reaction/instant/solidification/steel
 	name = "Solid Steel"
 	id = "solidsteel"
-	required_reagents = list(REAGENT_ID_FROSTOIL = 5, REAGENT_ID_STEEL = REAGENTS_PER_SHEET)
+	required_reagents = list(REAGENT_ID_FROSTOIL = 10, REAGENT_ID_IRON = REAGENTS_PER_SHEET, REAGENT_ID_CARBON = REAGENTS_PER_SHEET)
+	inhibitors = list(REAGENT_ID_PLATINUM = 1) // do not block plasteel formation
 	sheet_to_give = /obj/item/stack/material/steel
 
 
 /decl/chemical_reaction/instant/solidification/plasteel
 	name = "Solid Plasteel"
 	id = "solidplasteel"
-	required_reagents = list(REAGENT_ID_FROSTOIL = 10, REAGENT_ID_PLASTEEL = REAGENTS_PER_SHEET)
+	required_reagents = list(REAGENT_ID_FROSTOIL = 10, REAGENT_ID_IRON = REAGENTS_PER_SHEET, REAGENT_ID_CARBON = REAGENTS_PER_SHEET, REAGENT_ID_PLATINUM = REAGENTS_PER_SHEET)
 	sheet_to_give = /obj/item/stack/material/plasteel
 
 

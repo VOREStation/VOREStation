@@ -103,6 +103,8 @@
 /// Miscellaneous Reactions
 
 /decl/chemical_reaction/instant/foam/softdrink
+	name = "Decarbonated Drink"
+	id = "soda_fizz"
 	required_reagents = list(REAGENT_ID_COLA = 1, REAGENT_ID_MINT = 1)
 
 /decl/chemical_reaction/instant/firefightingfoam //TODO: Make it so we can add this to the foam tanks to refill them
