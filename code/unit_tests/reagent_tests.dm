@@ -233,6 +233,7 @@
 				var/decl/chemical_reaction/test_react = SSchemistry.instant_reactions_by_reagent[RR.id]
 				if(istype(CR,/decl/chemical_reaction/distilling))
 					test_react = SSchemistry.distilled_reactions_by_reagent[RR.id]
+				log_unit_test("[CR.type]: DBG [test_react] ")
 				// Some of these reagents mean nothing to us. If nothing has
 				// inhibitors, then we've been blocked out from making this chem.
 				if(!test_react)
