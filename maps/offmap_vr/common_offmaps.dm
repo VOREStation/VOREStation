@@ -66,6 +66,16 @@
 	mappath = "maps/expedition_vr/aerostat/surface.dmm"
 	associated_map_datum = /datum/map_z_level/common_lateload/away_aerostat_surface
 
+/datum/map_template/virgo2
+	name = "Surface Content - Virgo 2"
+	desc = "For seeding submaps on Virgo 2"
+	allow_duplicates = FALSE
+
+/datum/random_map/noise/ore/virgo2
+	descriptor = "virgo 2 ore distribution map"
+	deep_val = 0.2
+	rare_val = 0.1
+
 /datum/map_template/common_lateload/away_aerostat_surface/on_map_loaded(z)
 	. = ..()
 	seed_submaps(list(Z_LEVEL_AEROSTAT_SURFACE), 120, /area/offmap/aerostat/surface/unexplored, /datum/map_template/virgo2)

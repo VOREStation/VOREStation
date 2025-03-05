@@ -174,8 +174,6 @@
 ///from base of atom/attack_hand(): (mob/user)
 #define COMSIG_ATOM_ATTACK_HAND "atom_attack_hand"
 ///from base of atom/attack_paw(): (mob/user)
-#define COMSIG_ATOM_ATTACK_PAW "atom_attack_paw"
-	#define COMPONENT_NO_ATTACK_HAND (1<<0)								//works on all 3.
 //This signal return value bitflags can be found in __DEFINES/misc.dm
 
 ///called for each movable in a turf contents on /turf/zImpact(): (atom/movable/A, levels)
@@ -269,6 +267,9 @@
 	/* #define HEARING_RADIO_FREQ 5
 	#define HEARING_SPANS 6
 	#define HEARING_MESSAGE_MODE 7 */
+
+///from /datum/controller/subsystem/motion_tracker/notice() (/datum/weakref/source_atom,/turf/echo_turf_location)
+#define COMSIG_MOVABLE_MOTIONTRACKER "move_motiontracker"
 
 ///called when the movable is added to a disposal holder object for disposal movement: (obj/structure/disposalholder/holder, obj/machinery/disposal/source)
 #define COMSIG_MOVABLE_DISPOSING "movable_disposing"
@@ -808,3 +809,9 @@
 #define COMSIG_OBSERVER_ITEM_UNEQUIPPED "observer_item_unequipped"
 #define COMSIG_OBSERVER_APC "observer_apc"
 #define COMSIG_OBSERVER_GLOBALMOVED "observer_global_move"
+
+
+//Unittest data update
+#ifdef UNIT_TEST
+#define COMSIG_UNITTEST_DATA "unittest_send_data"
+#endif

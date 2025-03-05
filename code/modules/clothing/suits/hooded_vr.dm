@@ -81,9 +81,10 @@
 
 // Food costumes
 /obj/item/clothing/suit/storage/hooded/foodcostume	//Separate type of costume that does not cover arms and legs. Similar to a cheap mascot costume. <Guy>
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO
+	name = DEVELOPER_WARNING_NAME
+	body_parts_covered = CHEST
 	flags_inv = HIDETIE|HIDEHOLSTER
-	cold_protection = UPPER_TORSO|LOWER_TORSO
+	cold_protection = CHEST
 	actions_types = list(/datum/action/item_action/toggle_hood)
 
 /obj/item/clothing/suit/storage/hooded/foodcostume/hotdog	//Belly filler uniform :^).
@@ -113,9 +114,9 @@
 	icon_override = 'icons/inventory/suit/mob_vr.dmi'
 	icon_state = "hoodie_plain"
 	item_state_slots = list(slot_r_hand_str = "grey_hoodie", slot_l_hand_str = "grey_hoodie")
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
+	body_parts_covered = CHEST|ARMS|LEGS
 	flags_inv = HIDEHOLSTER
-	cold_protection = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
+	cold_protection = CHEST|ARMS|LEGS
 	min_cold_protection_temperature = SPACE_SUIT_MIN_COLD_PROTECTION_TEMPERATURE
 	hoodtype = /obj/item/clothing/head/hood/hoodie
 	allowed = list(/obj/item/pen, /obj/item/paper, /obj/item/flashlight, /obj/item/tank/emergency/oxygen, /obj/item/storage/fancy/cigarettes,

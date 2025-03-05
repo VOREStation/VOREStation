@@ -7,7 +7,7 @@
 import { createUuid } from 'tgui-core/uuid';
 
 import { MESSAGE_TYPE_INTERNAL, MESSAGE_TYPES } from './constants';
-import { message, Page } from './types';
+import type { message, Page } from './types';
 
 export const canPageAcceptType = (page: Page, type: string): string | boolean =>
   type.startsWith(MESSAGE_TYPE_INTERNAL) || page.acceptedTypes[type];
@@ -41,8 +41,10 @@ export const adminPageOnly = (page: Page): boolean => {
   return checked > 0 && adminTab;
 };
 
-export const canStoreType = (storedTypes: Object, type: string) =>
-  storedTypes[type];
+export const canStoreType = (
+  storedTypes: Record<string, string>,
+  type: string,
+) => storedTypes[type];
 
 export const createPage = (obj?: Object): Page => {
   let acceptedTypes = {};

@@ -28,8 +28,8 @@ Category: Religion
 					<body>
 					<br><br><br>
 					<center>
-					<h1><font size="5"><b>A Basic Understanding of Zoroastrianism</b></font><br>
-					<font size="3"><i>by Satrap</i></font></h1>
+					<h1>"} + span_giant(span_bold("A Basic Understanding of Zoroastrianism")) + {"<br>
+					"} + span_large(span_italics("by Satrap")) + {"</h1>
 					</center>
 					</body>
 					</html>
@@ -48,9 +48,9 @@ Category: Religion
 					<br><br>
 					Zoroastrianism was founded by the prophet, Zoroaster. Zoroaster was a priest in an area that preached mostly polytheistic religions. He rejected these beliefs, mostly because they were used to classify people in a rigid social structure with priests controlling the ordinary people. One day, while bathing in a river, Zoroaster received a vision from God.
 					<br><br>
-					Zoroaster reportedly found the visions of a God named Ahura Mazda, or the <i>"Wise Lord"</i>. Ahura Mazda came down to Zoroaster in the form of his Amesha Spentas, or <i>"Divine Immortals"</i>. This experience changed his worldview, and he sought to spread his religion through the lands. Despite some struggles, he was successful in that the Persian Empire picked up his beliefs, and spread them far and wide (but did not do so forcefully).
+					Zoroaster reportedly found the visions of a God named Ahura Mazda, or the "} + span_italics("\"Wise Lord\"") + {". Ahura Mazda came down to Zoroaster in the form of his Amesha Spentas, or "} + span_italics("\"Divine Immortals\"") + {". This experience changed his worldview, and he sought to spread his religion through the lands. Despite some struggles, he was successful in that the Persian Empire picked up his beliefs, and spread them far and wide (but did not do so forcefully).
 					<br><br>
-					Zoroastrianism is a simple religion. There is one God, Ahura Mazda. He is omnipotent, omnipresent, and the force behind all creation. His six Amesha Spentas are representations of himself in various aspects and forms. An analogy to think of is that he is the sun, and they are all rays of the sun. Ahura Mazda is opposed by a devil named Angra Mainyu, or the <i>"Destructive Spirit"</i>. While Ahura Mazda seeks to create life and beauty, Angra Mainyu only seeks to destroy his greatness and glory at every turn.
+					Zoroastrianism is a simple religion. There is one God, Ahura Mazda. He is omnipotent, omnipresent, and the force behind all creation. His six Amesha Spentas are representations of himself in various aspects and forms. An analogy to think of is that he is the sun, and they are all rays of the sun. Ahura Mazda is opposed by a devil named Angra Mainyu, or the "} + span_italics("\"Destructive Spirit\"") + {". While Ahura Mazda seeks to create life and beauty, Angra Mainyu only seeks to destroy his greatness and glory at every turn.
 					<hr>
 					</p>
 					</body>
@@ -193,7 +193,7 @@ Category: Religion
 				<body>
 				<h1>The Sun Goddess of Korea </h1>
 				<p class="border">
-				<i>Let us enjoy reading this Korean mythological story of the Sun-Goddess of Korea.</i><br><br>
+				"} + span_italics("Let us enjoy reading this Korean mythological story of the Sun-Goddess of Korea.") + {"<br><br>
 				Byun-soon, Dael-soon and Hae-soon were three sisters. One day a tiger came to their house, and on seeing him the girls ran out of the back door and climbed a tree.<br><br>
 				When the tiger began to climb the tree, the sisters prayed to the gods to save them. Their prayers were answered.<br><br>
 				An iron chain descended from the skies and the sisters climbed up to safety.<br><br>

@@ -454,7 +454,7 @@
 //
 // Clearly super important. Obviously.
 //
-/mob/living/proc/lick(mob/living/tasted in living_mobs(1))
+/mob/living/proc/lick(mob/living/tasted in living_mobs_in_view(1, TRUE))
 	set name = "Lick"
 	set category = "IC.Game"
 	set desc = "Lick someone nearby!"
@@ -543,7 +543,7 @@
 			s.undo_prey_takeover(TRUE)
 			return
 		var/obj/belly/B = loc
-		var/confirm = tgui_alert(src, "You're in a mob. Don't use this as a trick to get out of hostile animals. This is for escaping from preference-breaking and if you're otherwise unable to escape from endo (pred AFK for a long time).", "Confirmation", list("Okay", "Cancel"))
+		var/confirm = tgui_alert(src, "Please feel free to use this button at any time you are uncomfortable and in a belly. Consent is important.", "Confirmation", list("Okay", "Cancel"))
 		if(confirm != "Okay" || loc != B)
 			return
 		//Actual escaping
@@ -829,6 +829,8 @@
 
 
 /mob/living/proc/feed_grabbed_to_self_falling_nom(var/mob/living/user, var/mob/living/prey)
+	if(user.is_incorporeal())
+		return FALSE
 	var/belly = user.vore_selected
 	return perform_the_nom(user, prey, user, belly, delay = 1) //1/10th of a second is probably fine.
 
@@ -836,6 +838,10 @@
 	set name = "Glow (Toggle)"
 	set category = "Abilities.General"
 	set desc = "Toggle your glowing on/off!"
+
+	if(stat || paralysis || weakened || stunned || world.time < last_special)
+		to_chat(src, span_warning("You can't do that in your current state."))
+		return
 
 	//I don't really see a point to any sort of checking here.
 	//If they're passed out, the light won't help them. Same with buckled. Really, I think it's fine to do this whenever.
@@ -868,6 +874,10 @@
 	set category = "Abilities.Vore"
 	set desc = "Consume held garbage."
 
+	if(stat || paralysis || weakened || stunned || world.time < last_special)
+		to_chat(src, span_warning("You can't do that in your current state."))
+		return
+
 	if(!vore_selected)
 		to_chat(src,span_warning("You either don't have a belly selected, or don't have a belly!"))
 		return
@@ -877,131 +887,14 @@
 		to_chat(src, span_notice("You are not holding anything."))
 		return
 
-	if(is_type_in_list(I,item_vore_blacklist) && !adminbus_trash) //If someone has adminbus, they can eat whatever they want.
-		to_chat(src, span_warning("You are not allowed to eat this."))
-		return
-
-	if(!I.trash_eatable) //OOC pref. This /IS/ respected, even if adminbus_trash is enabled
-		to_chat(src, span_warning("You can't eat that so casually!"))
-		return
-
-	if(istype(I, /obj/item/paicard))
-		var/obj/item/paicard/palcard = I
-		var/mob/living/silicon/pai/pocketpal = palcard.pai
-		if(pocketpal && (!pocketpal.devourable))
-			to_chat(src, span_warning("\The [pocketpal] doesn't allow you to eat it."))
+	if(is_type_in_list(I,edible_trash) || adminbus_trash)
+		if(!I.on_trash_eaten(src)) // shows object's rejection message itself
 			return
-
-	if(istype(I, /obj/item/book))
-		var/obj/item/book/book = I
-		if(book.carved)
-			to_chat(src, span_warning("\The [book] is not worth eating without the filling."))
-			return
-
-	if(is_type_in_list(I,edible_trash) | adminbus_trash)
-		if(I.hidden_uplink)
-			to_chat(src, span_warning("You really should not be eating this."))
-			message_admins("[key_name(src)] has attempted to ingest an uplink item. ([src ? ADMIN_JMP(src) : "null"])")
-			return
-		if(istype(I,/obj/item/pda))
-			var/obj/item/pda/P = I
-			if(P.owner)
-				var/watching = FALSE
-				for(var/mob/living/carbon/human/H in view(src))
-					if(H.real_name == P.owner && H.client)
-						watching = TRUE
-						break
-				if(!watching)
-					return
-				else
-					visible_message(span_warning("[src] is threatening to make [P] disappear!"))
-					if(P.id)
-						var/confirm = tgui_alert(src, "The PDA you're holding contains a vulnerable ID card. Will you risk it?", "Confirmation", list("Definitely", "Cancel"))
-						if(confirm != "Definitely")
-							return
-					if(!do_after(src, 100, P))
-						return
-					visible_message(span_warning("[src] successfully makes [P] disappear!"))
-			to_chat(src, span_notice("You can taste the sweet flavor of delicious technology."))
-			drop_item()
-			I.forceMove(vore_selected)
-			updateVRPanel()
-			return
-		if(istype(I,/obj/item/clothing/shoes))
-			var/obj/item/clothing/shoes/S = I
-			if(S.holding)
-				to_chat(src, span_warning("There's something inside!"))
-				return
-		if(iscapturecrystal(I))
-			var/obj/item/capture_crystal/C = I
-			if(!C.bound_mob.devourable)
-				to_chat(src, span_warning("That doesn't seem like a good idea. (\The [C.bound_mob]'s prefs don't allow it.)"))
-				return
 		drop_item()
 		I.forceMove(vore_selected)
 		updateVRPanel()
-
 		log_admin("VORE: [src] used Eat Trash to swallow [I].")
-
-		if(istype(I,/obj/item/flashlight/flare) || istype(I,/obj/item/flame/match) || istype(I,/obj/item/storage/box/matches))
-			to_chat(src, span_notice("You can taste the flavor of spicy cardboard."))
-		else if(istype(I,/obj/item/flashlight/glowstick))
-			to_chat(src, span_notice("You found out the glowy juice only tastes like regret."))
-		else if(istype(I,/obj/item/trash/cigbutt))
-			to_chat(src, span_notice("You can taste the flavor of bitter ash. Classy."))
-		else if(istype(I,/obj/item/clothing/mask/smokable))
-			var/obj/item/clothing/mask/smokable/C = I
-			if(C.lit)
-				to_chat(src, span_notice("You can taste the flavor of burning ash. Spicy!"))
-			else
-				to_chat(src, span_notice("You can taste the flavor of aromatic rolling paper and funny looks."))
-		else if(istype(I,/obj/item/paper))
-			to_chat(src, span_notice("You can taste the dry flavor of bureaucracy."))
-		else if(istype(I,/obj/item/book))
-			to_chat(src, span_notice("You can taste the dry flavor of knowledge."))
-		else if(istype(I,/obj/item/dice) || istype(I,/obj/item/roulette_ball))
-			to_chat(src, span_notice("You can taste the bitter flavor of cheating."))
-		else if(istype(I,/obj/item/lipstick))
-			to_chat(src, span_notice("You can taste the flavor of couture and style. Toddler at the make-up bag style."))
-		else if(istype(I,/obj/item/soap))
-			to_chat(src, span_notice("You can taste the bitter flavor of verbal purification."))
-		else if(istype(I,/obj/item/spacecash) || istype(I,/obj/item/storage/wallet))
-			to_chat(src, span_notice("You can taste the flavor of wealth and reckless waste."))
-		else if(istype(I,/obj/item/broken_bottle) || istype(I,/obj/item/material/shard))
-			to_chat(src, span_notice("You can taste the flavor of pain. This can't possibly be healthy for your guts."))
-		else if(istype(I,/obj/item/light))
-			var/obj/item/light/L = I
-			if(L.status == LIGHT_BROKEN)
-				to_chat(src, span_notice("You can taste the flavor of pain. This can't possibly be healthy for your guts."))
-			else
-				to_chat(src, span_notice("You can taste the flavor of really bad ideas."))
-		else if(istype(I,/obj/item/bikehorn/tinytether))
-			to_chat(src, span_notice("You feel a rush of power swallowing such a large, err, tiny structure."))
-		else if(istype(I,/obj/item/mmi/digital/posibrain) || istype(I,/obj/item/aicard))
-			to_chat(src, span_notice("You can taste the sweet flavor of digital friendship. Or maybe it is something else."))
-		else if(istype(I,/obj/item/paicard))
-			to_chat(src, span_notice("You can taste the sweet flavor of digital friendship."))
-			var/obj/item/paicard/ourcard = I
-			if(ourcard.pai && ourcard.pai.client && isbelly(ourcard.loc))
-				var/obj/belly/B = ourcard.loc
-				to_chat(ourcard.pai, span_boldnotice("[B.desc]"))
-		else if(istype(I,/obj/item/reagent_containers/food))
-			var/obj/item/reagent_containers/food/F = I
-			if(!F.reagents.total_volume)
-				to_chat(src, span_notice("You can taste the flavor of garbage and leftovers. Delicious?"))
-			else
-				to_chat(src, span_notice("You can taste the flavor of gluttonous waste of food."))
-		else if (istype(I,/obj/item/clothing/accessory/collar))
-			to_chat(src, span_notice("You can taste the submissiveness in the wearer of [I]!"))
-		else if(iscapturecrystal(I))
-			var/obj/item/capture_crystal/C = I
-			if(C.bound_mob && (C.bound_mob in C.contents))
-				if(isbelly(C.loc))
-					var/obj/belly/B = C.loc
-					to_chat(C.bound_mob, span_notice("Outside of your crystal, you can see; " + span_notice("[B.desc]")))
-					to_chat(src, span_notice("You can taste the the power of command."))
-		else
-			to_chat(src, span_notice("You can taste the flavor of garbage. Delicious."))
+		I.after_trash_eaten(src)
 		visible_message(span_warning("[src] demonstrates their voracious capabilities by swallowing [I] whole!"))
 		return
 	to_chat(src, span_notice("This item is not appropriate for ethical consumption."))

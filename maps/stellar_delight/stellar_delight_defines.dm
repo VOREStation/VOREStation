@@ -1,25 +1,3 @@
-//Normal map defs
-#define Z_LEVEL_SHIP_LOW					1
-#define Z_LEVEL_SHIP_MID					2
-#define Z_LEVEL_SHIP_HIGH					3
-#define Z_LEVEL_CENTCOM						4
-#define Z_LEVEL_MISC						5
-#define Z_LEVEL_SPACE_ROCKS					6
-#define Z_LEVEL_BEACH						7
-#define Z_LEVEL_BEACH_CAVE					8
-#define Z_LEVEL_AEROSTAT					9
-#define Z_LEVEL_AEROSTAT_SURFACE			10
-#define Z_LEVEL_DEBRISFIELD					11
-#define Z_LEVEL_FUELDEPOT					12
-#define Z_LEVEL_OVERMAP						13
-#define Z_LEVEL_OFFMAP1						14
-#define Z_LEVEL_GATEWAY						15
-#define Z_LEVEL_OM_ADVENTURE				16
-#define Z_LEVEL_REDGATE						17
-
-//Camera networks
-#define NETWORK_HALLS "Halls"
-
 /datum/map/stellar_delight/New()
 	..()
 	var/choice = pickweight(list(
@@ -234,35 +212,6 @@
 		Z_LEVEL_BEACH
 	)
 
-/obj/effect/landmark/map_data/stellar_delight
-	height = 3
-
-/obj/effect/overmap/visitable/ship/stellar_delight
-	name = "NRV Stellar Delight"
-	icon = 'icons/obj/overmap_vr.dmi'
-	icon_state = "stellar_delight_g"
-	desc = "Spacefaring vessel. Friendly IFF detected."
-	scanner_desc = @{"[i]Registration[/i]: NRV Stellar Delight
-[i]Class[/i]: Nanotrasen Response Vessel
-[i]Transponder[/i]: Transmitting (CIV), non-hostile"
-[b]Notice[/b]: A response vessel registered to Nanotrasen."}
-	vessel_mass = 25000
-	vessel_size = SHIP_SIZE_LARGE
-	initial_generic_waypoints = list("starboard_shuttlepad","port_shuttlepad","sd-1-23-54","sd-1-67-15","sd-1-70-130","sd-1-115-85","sd-2-25-98","sd-2-117-98","sd-3-22-78","sd-3-36-33","sd-3-104-33","sd-3-120-78")
-	initial_restricted_waypoints = list("Exploration Shuttle" = list("sd_explo"), "Mining Shuttle" = list("sd_mining"))
-	levels_for_distress = list(Z_LEVEL_OFFMAP1, Z_LEVEL_BEACH, Z_LEVEL_AEROSTAT, Z_LEVEL_DEBRISFIELD, Z_LEVEL_FUELDEPOT)
-	unowned_areas = list(/area/shuttle/sdboat)
-	known = TRUE
-	start_x = 2
-	start_y = 2
-
-	fore_dir = NORTH
-
-	skybox_icon = 'stelardelightskybox.dmi'
-	skybox_icon_state = "skybox"
-	skybox_pixel_x = 450
-	skybox_pixel_y = 200
-
 /obj/effect/overmap/visitable/ship/stellar_delight/build_skybox_representation()
 	..()
 	if(!cached_skybox_image)
@@ -384,3 +333,49 @@
 	desc = "The Virgo 2 Aerostat away mission."
 	mappath = "maps/expedition_vr/aerostat/aerostat_science_outpost.dmm"
 	associated_map_datum = /datum/map_z_level/common_lateload/away_aerostat
+
+/////FOR CENTCOMM (at least)/////
+/obj/effect/overmap/visitable/sector/virgo3b
+	known = TRUE
+	in_space = TRUE
+
+	initial_generic_waypoints = list("sr-c","sr-n","sr-s")
+	initial_restricted_waypoints = list("Central Command Shuttlepad" = list("cc_shuttlepad"))
+
+	extra_z_levels = list(Z_LEVEL_SPACE_ROCKS)
+
+/////SD Starts at V3b to pick up crew refuel and repair (And to make sure it doesn't spawn on hazards)
+/obj/effect/overmap/visitable/sector/virgo3b/Initialize()
+	. = ..()
+	for(var/obj/effect/overmap/visitable/ship/stellar_delight/sd in world)
+		sd.forceMove(loc, SOUTH)
+		return
+
+/obj/effect/overmap/visitable/sector/virgo3b/Crossed(var/atom/movable/AM)
+	. = ..()
+	announce_atc(AM,going = FALSE)
+
+/obj/effect/overmap/visitable/sector/virgo3b/Uncrossed(var/atom/movable/AM)
+	. = ..()
+	announce_atc(AM,going = TRUE)
+
+/obj/effect/overmap/visitable/sector/virgo3b/proc/announce_atc(var/atom/movable/AM, var/going = FALSE)
+	if(istype(AM, /obj/effect/overmap/visitable/ship/simplemob))
+		if(world.time < mob_announce_cooldown)
+			return
+		else
+			mob_announce_cooldown = world.time + 5 MINUTES
+	var/message = "Sensor contact for vessel '[AM.name]' has [going ? "left" : "entered"] ATC control area."
+	//For landables, we need to see if their shuttle is cloaked
+	if(istype(AM, /obj/effect/overmap/visitable/ship/landable))
+		var/obj/effect/overmap/visitable/ship/landable/SL = AM //Phew
+		var/datum/shuttle/autodock/multi/shuttle = SSshuttles.shuttles[SL.shuttle]
+		if(!istype(shuttle) || !shuttle.cloaked) //Not a multishuttle (the only kind that can cloak) or not cloaked
+			atc.msg(message)
+
+	//For ships, it's safe to assume they're big enough to not be sneaky
+	else if(istype(AM, /obj/effect/overmap/visitable/ship))
+		atc.msg(message)
+
+/obj/effect/overmap/visitable/sector/virgo3b/get_space_zlevels()
+	return list(Z_LEVEL_SPACE_ROCKS)
