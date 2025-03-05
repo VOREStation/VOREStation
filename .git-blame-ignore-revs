@@ -6,3 +6,6 @@
 
 # Whitespace Standardization
 7c8bb85de3ea757ea54840c24638cc271969aaff
+
+# Removes /obj/item/weapon and /obj/item/device
+55942407f2dafc3d79db9b2be4ba1073bb0b2910
