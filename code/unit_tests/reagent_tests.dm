@@ -246,17 +246,24 @@
 		return TRUE
 
 	// Otherwise we check the resulting reagents and use their inhibitor this time!
-	for(var/datum/reagent/RR in fake_beaker.reagents.reagent_list)
+	var/list/reagent_scan = fake_beaker.reagents.reagent_list.Copy()
+	for(var/datum/reagent/RR in reagent_scan)
 		// Get the reaction type, as SSchem stores two different lists for each reaction type!
 		var/list/possible_reactions = SSchemistry.instant_reactions_by_reagent[RR.id]
 		if(istype(CR,/decl/chemical_reaction/distilling))
 			possible_reactions = SSchemistry.distilled_reactions_by_reagent[RR.id]
+		if(CR.result == REAGENT_ID_LEXORIN)
+			log_unit_test("LEX TEST - Checking inhibitors of [RR] - reactions: [possible_reactions]")
 		// Multiple chems could make this result... Try em all.
 		// Some of these reagents mean nothing to us. If nothing has
 		// inhibitors, then we've been blocked out from making this chem.
 		for(var/decl/chemical_reaction/test_react in possible_reactions)
+			if(CR.result == REAGENT_ID_LEXORIN)
+				log_unit_test("LEX TEST - [test_react]")
 			if(!test_react)
 				continue
+			if(CR.result == REAGENT_ID_LEXORIN)
+				log_unit_test("LEX TEST - [test_react] - [test_react.inhibitors.len]")
 			if(!test_react.inhibitors.len)
 				continue
 			if(perform_reaction(CR, test_react.inhibitors)) // returns true if it failed!
