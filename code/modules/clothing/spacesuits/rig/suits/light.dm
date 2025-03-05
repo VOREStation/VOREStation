@@ -30,18 +30,18 @@
 	rigsuit_min_pressure = 0							  // Min pressure the rig protects against when sealed
 
 /obj/item/clothing/suit/space/rig/light
-	name = "suit"
+	name = DEVELOPER_WARNING_NAME // "suit"
 	breach_threshold = 18 //comparable to voidsuits
 
 /obj/item/clothing/gloves/gauntlets/rig/light
-	name = "gloves"
+	name = DEVELOPER_WARNING_NAME // "gloves"
 
 /obj/item/clothing/shoes/magboots/rig/light
-	name = "shoes"
+	name = DEVELOPER_WARNING_NAME // "shoes"
 	step_volume_mod = 0.8
 
 /obj/item/clothing/head/helmet/space/rig/light
-	name = "hood"
+	name = DEVELOPER_WARNING_NAME // "hood"
 
 /obj/item/rig/light/hacker
 	name = "cybersuit control module"

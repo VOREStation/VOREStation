@@ -127,8 +127,8 @@
 	max_w_class = ITEMSIZE_SMALL
 	use_to_pickup = TRUE
 
-/obj/item/storage/excavation/New()
-	..()
+/obj/item/storage/excavation/Initialize(mapload)
+	. = ..()
 	new /obj/item/pickaxe/brush(src)
 	new /obj/item/pickaxe/one_pick(src)
 	new /obj/item/pickaxe/two_pick(src)

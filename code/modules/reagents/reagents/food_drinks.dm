@@ -3102,6 +3102,7 @@
 //Base type for alchoholic drinks containing coffee
 /datum/reagent/ethanol/coffee
 	name = REAGENT_DEVELOPER_WARNING
+	id = REAGENT_ID_DEVELOPER_WARNING
 	overdose = 45
 	allergen_type = ALLERGEN_COFFEE|ALLERGEN_STIMULANT //Contains coffee or is made from coffee
 
@@ -3359,6 +3360,7 @@
 
 /datum/reagent/ethanol/wine
 	name = REAGENT_DEVELOPER_WARNING // Unit test ignore
+	id = REAGENT_ID_DEVELOPER_WARNING
 
 /datum/reagent/ethanol/wine/champagne
 	name = REAGENT_CHAMPAGNE
@@ -4986,3 +4988,23 @@
 	nutriment_factor = 2
 	glass_name = REAGENT_ID_KVASS
 	glass_desc = "A hearty glass of Slavic brew."
+
+/datum/reagent/cinnamonpowder
+	name = REAGENT_CINNAMONPOWDER
+	id = REAGENT_ID_CINNAMONPOWDER
+	description = "Cinnamon, a spice made from tree bark, ground into a fine powder. Probably not a good idea to eat on its own!"
+	taste_description= "sweet spice with a hint of wood"
+	color = "#a96622"
+
+	glass_name = REAGENT_ID_CINNAMONPOWDER
+	glass_desc = "A glass of ground cinnamon. Dare you take the challenge?"
+
+/datum/reagent/gelatin
+	name = REAGENT_GELATIN
+	id = REAGENT_ID_GELATIN
+	description = "It doesnt taste like anything."
+	taste_description = REAGENT_ID_NOTHING
+	color = "#aaabcf"
+
+	glass_name = REAGENT_GELATIN
+	glass_desc = "It's like flavourless slime."

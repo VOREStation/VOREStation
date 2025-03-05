@@ -277,7 +277,6 @@
 		if(3.0)
 			qdel(src)
 			return
-		else
 	return
 
 // Duplicated from structures.dm, but its a bit different.

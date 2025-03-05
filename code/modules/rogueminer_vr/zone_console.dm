@@ -159,5 +159,4 @@
 	<h4>Traveling to the belt</h4>
 	When a new zone has been scanned, your station's shuttle destination will be updated to direct it to the newly discovered area automatically.<br>
 	You can then travel to the new area to mine in that location.<br>
-	<br>
-	<font size=1>This technology produced under license from Thinktronic Systems, LTD.</font>"}
+	<br> "} + span_small("This technology produced under license from Thinktronic Systems, LTD.")

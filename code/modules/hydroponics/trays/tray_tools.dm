@@ -146,11 +146,11 @@
 	var/dat = "<h3>Plant data for [form_title]</h3>"
 	dat += "<h2>General Data</h2>"
 	dat += "<table>"
-	dat += "<tr><td><b>Endurance</b></td><td>[grown_seed.get_trait(TRAIT_ENDURANCE)]</td></tr>"
-	dat += "<tr><td><b>Yield</b></td><td>[grown_seed.get_trait(TRAIT_YIELD)]</td></tr>"
-	dat += "<tr><td><b>Maturation time</b></td><td>[grown_seed.get_trait(TRAIT_MATURATION)]</td></tr>"
-	dat += "<tr><td><b>Production time</b></td><td>[grown_seed.get_trait(TRAIT_PRODUCTION)]</td></tr>"
-	dat += "<tr><td><b>Potency</b></td><td>[grown_seed.get_trait(TRAIT_POTENCY)]</td></tr>"
+	dat += "<tr><td>" + span_bold("Endurance") + "</td><td>[grown_seed.get_trait(TRAIT_ENDURANCE)]</td></tr>"
+	dat += "<tr><td>" + span_bold("Yield") + "</td><td>[grown_seed.get_trait(TRAIT_YIELD)]</td></tr>"
+	dat += "<tr><td>" + span_bold("Maturation time") + "</td><td>[grown_seed.get_trait(TRAIT_MATURATION)]</td></tr>"
+	dat += "<tr><td>" + span_bold("Production time") + "</td><td>[grown_seed.get_trait(TRAIT_PRODUCTION)]</td></tr>"
+	dat += "<tr><td>" + span_bold("Potency") + "</td><td>[grown_seed.get_trait(TRAIT_POTENCY)]</td></tr>"
 	dat += "</table>"
 
 	if(LAZYLEN(last_reagents))

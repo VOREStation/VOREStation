@@ -1,4 +1,0 @@
-author: Meghan-Rossi
-delete-after: True
-changes: 
-  - rscadd: "The Tesla Generator is now available from cargo. Coils and grounding rods for it may be printed on the protolathe and autolathe, respectively."

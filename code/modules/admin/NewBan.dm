@@ -169,7 +169,7 @@ var/savefile/Banlist
 /datum/admins/proc/unbanpanel()
 	var/count = 0
 	var/dat
-	//var/dat = "<HR><B>Unban Player:</B> <font color='blue'>(U) = Unban</font> , (E) = Edit Ban <font color='green'>(Total<HR><table border=1 rules=all frame=void cellspacing=0 cellpadding=3 ></font>"
+	//var/dat = "<HR>" + span_bold("Unban Player:") + " " + span_blue("(U) = Unban") + " , (E) = Edit Ban " + span_green("(Total<HR><table border=1 rules=all frame=void cellspacing=0 cellpadding=3 >")
 	Banlist.cd = "/base"
 	for (var/A in Banlist.dir)
 		count++
@@ -189,7 +189,7 @@ var/savefile/Banlist
 		dat += text("<tr><td><A href='byond://?src=[ref];[HrefToken()];unbanf=[key][id]'>(U)</A><A href='byond://?src=[ref];[HrefToken()];unbane=[key][id]'>(E)</A> Key: <B>[key]</B></td><td>ComputerID: <B>[id]</B></td><td>IP: <B>[ip]</B></td><td> [expiry]</td><td>(By: [by])</td><td>(Reason: [reason])</td></tr>")
 
 	dat += "</table>"
-	dat = "<HR><B>Bans:</B> <FONT COLOR=blue>(U) = Unban , (E) = Edit Ban</FONT> - <FONT COLOR=green>([count] Bans)</FONT><HR><table border=1 rules=all frame=void cellspacing=0 cellpadding=3 >[dat]"
+	dat = "<HR>" + span_bold("Bans:") + " " + span_blue("(U) = Unban , (E) = Edit Ban") + " - " + span_green("([count] Bans)") + "<HR><table border=1 rules=all frame=void cellspacing=0 cellpadding=3 >[dat]"
 	usr << browse("<html>[dat]</html>", "window=unbanp;size=875x400")
 
 //////////////////////////////////// DEBUG ////////////////////////////////////

@@ -1,6 +1,8 @@
 /mob/living/proc/CanStumbleVore(mob/living/target)
 	if(!can_be_drop_pred)
 		return FALSE
+	if(is_incorporeal() || target.is_incorporeal())
+		return FALSE
 	if(!is_vore_predator(src))
 		return FALSE
 	if(!target.devourable)
@@ -14,8 +16,10 @@
 /mob/living/Bump(atom/movable/AM)
 	//. = ..()
 	if(isliving(AM))
-		if(buckled != AM && (((confused || is_blind()) && stat == CONSCIOUS && prob(50) && m_intent==I_RUN) || flying && flight_vore))
-			AM.stumble_into(src)
+		var/mob/living/L = AM
+		if(!L.is_incorporeal())
+			if(buckled != AM && (((confused || is_blind()) && stat == CONSCIOUS && prob(50) && m_intent==I_RUN) || flying && flight_vore))
+				AM.stumble_into(src)
 	return ..()
 // Because flips toggle density
 /mob/living/Crossed(var/atom/movable/AM)

@@ -16,11 +16,13 @@ import {
   updateHighlightSetting,
   updateSettings,
 } from '../settings/actions';
+import { blacklisted_tags } from '../settings/constants';
 import { selectSettings } from '../settings/selectors';
 import {
   addChatPage,
   changeChatPage,
   changeScrollTracking,
+  getChatData,
   loadChat,
   moveChatPageLeft,
   moveChatPageRight,
@@ -34,29 +36,31 @@ import {
 import { createMessage, serializeMessage } from './model';
 import { chatRenderer } from './renderer';
 import { selectChat, selectCurrentChatPage } from './selectors';
-import { message } from './types';
+import type { message } from './types';
 
 // List of blacklisted tags
-const blacklisted_tags = ['a', 'iframe', 'link', 'video'];
 let storedRounds: number[] = [];
 let storedLines: number[] = [];
 
 const saveChatToStorage = async (store: Store<number, Action<string>>) => {
+  const game = selectGame(store.getState());
   const state = selectChat(store.getState());
   const settings = selectSettings(store.getState());
-  const fromIndex = Math.max(
-    0,
-    chatRenderer.messages.length - settings.persistentMessageLimit,
-  );
-  const messages = chatRenderer.messages
-    .slice(fromIndex)
-    .map((message) => serializeMessage(message));
   storage.set('chat-state', state);
-  storage.set('chat-messages', messages);
-  storage.set(
-    'chat-messages-archive',
-    chatRenderer.archivedMessages.map((message) => serializeMessage(message)),
-  ); // FIXME: Better chat history
+  if (!game.databaseBackendEnabled) {
+    const fromIndex = Math.max(
+      0,
+      chatRenderer.messages.length - settings.persistentMessageLimit,
+    );
+    const messages = chatRenderer.messages
+      .slice(fromIndex)
+      .map((message) => serializeMessage(message));
+    storage.set('chat-messages', messages);
+    storage.set(
+      'chat-messages-archive',
+      chatRenderer.archivedMessages.map((message) => serializeMessage(message)),
+    );
+  } // FIXME: Better chat history
 };
 
 const loadChatFromStorage = async (store: Store<number, Action<string>>) => {
@@ -136,6 +140,83 @@ const loadChatFromStorage = async (store: Store<number, Action<string>>) => {
   store.dispatch(loadChat(state));
 };
 
+const loadChatFromDBStorage = async (
+  store: Store<number, Action<string>>,
+  user_payload: { ckey: string; token: string },
+) => {
+  const game = selectGame(store.getState());
+  const settings = selectSettings(store.getState());
+  const [state] = await Promise.all([storage.get('chat-state')]);
+  // Discard incompatible versions
+  if (state && state.version <= 4) {
+    store.dispatch(loadChat());
+    return;
+  }
+
+  const messages: message[] = []; // FIX ME, load from DB, first load has errors => check console
+
+  // Thanks for inventing async/await
+  await new Promise<void>((resolve) => {
+    fetch(
+      `${game.chatlogApiEndpoint}/api/logs/${user_payload.ckey}/${settings.persistentMessageLimit}`,
+      {
+        method: 'GET',
+        headers: {
+          Accept: 'application/json',
+          Authorization: `Bearer ${user_payload.token}`,
+          'Content-Type': 'application/json',
+        },
+      },
+    )
+      .then((response) => response.json())
+      .then((json) => {
+        json.forEach(
+          (obj: {
+            msg_type: string | null;
+            text_raw: string;
+            created_at: number;
+            round_id: number;
+          }) => {
+            const msg: message = {
+              type: obj.msg_type ? obj.msg_type : '',
+              html: obj.text_raw,
+              createdAt: obj.created_at,
+              roundId: obj.round_id,
+            };
+
+            messages.push(msg);
+          },
+        );
+
+        if (messages) {
+          for (let message of messages) {
+            if (message.html) {
+              message.html = DOMPurify.sanitize(message.html, {
+                FORBID_TAGS: blacklisted_tags,
+              });
+            }
+          }
+          const batch = [
+            ...messages,
+            createMessage({
+              type: 'internal/reconnected',
+            }),
+          ];
+          chatRenderer.processBatch(batch, {
+            prepend: true,
+          });
+        }
+
+        store.dispatch(loadChat(state));
+        resolve();
+      })
+      .catch(() => {
+        store.dispatch(loadChat(state));
+        resolve();
+      });
+  });
+};
+
 export const chatMiddleware = (store) => {
   let initialized = false;
   let loaded = false;
@@ -170,6 +251,7 @@ export const chatMiddleware = (store) => {
       settings.hideImportantInAdminTab,
       settings.interleave,
       settings.interleaveColor,
+      game.databaseBackendEnabled,
     );
     // Load the chat once settings are loaded
     if (!initialized && (settings.initialized || settings.firstLoad)) {
@@ -177,7 +259,7 @@ export const chatMiddleware = (store) => {
       setInterval(() => {
         saveChatToStorage(store);
       }, settings.saveInterval * 1000);
-      loadChatFromStorage(store);
+      // loadChatFromStorage(store);
     }
     if (type === 'chat/message') {
       let payload_obj;
@@ -280,6 +362,8 @@ export const chatMiddleware = (store) => {
         settings.logLineCount,
         storedLines[storedLines.length - settings.exportEnd],
         storedLines[storedLines.length - settings.exportStart],
+        settings.exportStart,
+        settings.exportEnd,
       );
       return;
     }
@@ -291,6 +375,19 @@ export const chatMiddleware = (store) => {
       settings.storedRounds = 0;
       settings.exportStart = 0;
       settings.exportEnd = 0;
+      return;
+    }
+    if (type === 'exportDownloadReady') {
+      const event = new Event('chatexportplaced');
+      document.dispatchEvent(event);
+    }
+    if (type === getChatData.type) {
+      const user_payload = payload;
+      if (payload.token) {
+        loadChatFromDBStorage(store, user_payload);
+      } else {
+        loadChatFromStorage(store);
+      }
       return;
     }
     return next(action);

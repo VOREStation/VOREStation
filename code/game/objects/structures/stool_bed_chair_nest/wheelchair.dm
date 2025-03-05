@@ -34,10 +34,12 @@
 /obj/structure/bed/chair/wheelchair/can_buckle_check(mob/living/M, forced = FALSE)
 	. = ..()
 	if(.)
+		// We don't even USE mob sizes really... Monkeys are the only 'small' mobs that come to mind.
+		// Teshari and prometheans have both have their mob sizes ripped from them (because frankly, the implementation led to some exploity things)
 		if(M.mob_size < min_mob_buckle_size)
 			to_chat(M, span_warning("You are too small to use \the [src]."))
 			. = FALSE
-		else if(M.mob_size >= max_mob_buckle_size)
+		else if(M.mob_size > max_mob_buckle_size)
 			to_chat(M, span_warning("You are too large to use \the [src]."))
 			. = FALSE
 
