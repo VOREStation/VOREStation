@@ -162,13 +162,13 @@
 		var/decl/chemical_reaction/CR = all_reactions[rtype]
 
 		if(istype(CR, /decl/chemical_reaction/distilling))
-			qdel_swap(fake_beaker, new /obj/item/reagent_containers/glass/beaker())
-			fake_beaker.reagents.maximum_volume = 5000
-		else
 			var/obj/machinery/portable_atmospherics/powered/reagent_distillery/D = new()
 			var/decl/chemical_reaction/distilling/DR = CR
 			D.current_temp = DR.temp_range[1]
 			qdel_swap(fake_beaker, D)
+			fake_beaker.reagents.maximum_volume = 5000
+		else
+			qdel_swap(fake_beaker, new /obj/item/reagent_containers/glass/beaker())
 			fake_beaker.reagents.maximum_volume = 5000
 
 		if(CR.name == REAGENT_DEVELOPER_WARNING) // Ignore these types as they are meant to be overridden
