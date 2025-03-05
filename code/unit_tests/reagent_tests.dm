@@ -214,6 +214,7 @@
 
 	if(inhib.len) // taken from argument and not reaction!
 		for(var/RR in inhib)
+			log_unit_test("[CR.type]: Reagents - TRY INHIB [RR] : [inhib[RR]]")
 			fake_beaker.reagents.add_reagent(RR, inhib[RR])
 
 	if(!fake_beaker.reagents.has_reagent(CR.result))
@@ -227,6 +228,7 @@
 				log_unit_test("[CR.type]: Reagents - chemical reaction did not produce \"[CR.result]\". CONTAINS: \"[fake_beaker.reagents.get_reagents()]\"")
 				return TRUE
 			// Otherwise we check the resulting reagents and use their inhibitor this time!
+			var/list/reset_beaker_reagents = fake_beaker.reagents.reagent_list.Copy()
 			var/failure = TRUE
 			for(var/datum/reagent/RR in fake_beaker.reagents.reagent_list)
 				// Get the reaction type, as SSchem stores two different lists for each reaction type!
@@ -234,10 +236,7 @@
 				if(istype(CR,/decl/chemical_reaction/distilling))
 					possible_reactions = SSchemistry.distilled_reactions_by_reagent[RR.id]
 				// Multiple chems could make this result... Try em all.
-				for(var/chem in possible_reactions)
-					log_unit_test("[CR.type]: Reagents - WAT [chem]")
-
-					var/decl/chemical_reaction/test_react = possible_reactions[chem]
+				for(var/decl/chemical_reaction/test_react in possible_reactions)
 					// Some of these reagents mean nothing to us. If nothing has
 					// inhibitors, then we've been blocked out from making this chem.
 					if(!test_react)
@@ -246,5 +245,15 @@
 						continue
 					if(!perform_reaction( CR, test_react.inhibitors)) // returns if it failed!
 						failure = FALSE // So we want to cancel our assumed failure!
+					else
+						// Prevent contamination of the next loop by resetting the chems
+						reset_beaker_chems(reset_beaker_reagents)
 			return failure
 	return FALSE
+
+/datum/unit_test/chemical_reactions_shall_not_conflict/proc/reset_beaker_chems(var/list/reset)
+	fake_beaker.reagents.clear_reagents()
+	fake_beaker.flags |= NOREACT // Restoring previous state, don't react
+	for(var/R in reset)
+		fake_beaker.reagents.add_reagent(R,reset[R])
+	fake_beaker.flags &= ~NOREACT
