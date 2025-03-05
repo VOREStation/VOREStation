@@ -156,7 +156,7 @@
 /datum/unit_test/chemical_reactions_shall_not_conflict/start_test()
 	var/failed = FALSE
 
-	var/obj/item/reagent_containers/glass/beaker
+	var/obj/item/reagent_containers/glass/beaker/fake_beaker = null
 	var/list/all_reactions = decls_repository.get_decls_of_subtype(/decl/chemical_reaction)
 	for(var/rtype in all_reactions)
 		var/decl/chemical_reaction/CR = all_reactions[rtype]
