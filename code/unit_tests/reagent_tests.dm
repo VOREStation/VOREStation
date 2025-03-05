@@ -248,9 +248,13 @@
 				continue
 			if(!test_react.inhibitors.len)
 				continue
-			if(perform_reaction(CR, test_react.inhibitors)) // returns true if it failed!
-				continue
-			return FALSE // SUCCESS using an inhibitor!
+			// Test one by one
+			for(var/each in test_react.inhibitors)
+				if(!perform_reaction(CR, list("[each]" = test_react.inhibitors[])))
+					return FALSE // SUCCESS using an inhibitor!
+			// Test all at once
+			if(!perform_reaction(CR, test_react.inhibitors))
+				return FALSE // SUCCESS using all inhibitors!
 
 	// No inhibiting reagent worked...
 	return TRUE
