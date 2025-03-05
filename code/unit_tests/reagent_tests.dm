@@ -82,32 +82,45 @@
 			log_unit_test("[CR.type]: Reagents - chemical reaction id \"[CR.name]\" had less than 0 as as result_amount?")
 			failed = TRUE
 
-		var/chem_count = 0
-		if(CR.required_reagents)
-			for(var/RR in CR.required_reagents)
-				if(!SSchemistry.chemical_reagents[RR])
-					log_unit_test("[CR.type]: Reagents - chemical reaction had invalid required reagent ID \"[RR]\".")
-					failed = TRUE
-				else
-					chem_count++
+		if(CR.required_reagents && CR.required_reagents.len)
+			if(islist(CR.required_reagents) && istext(CR.required_reagents[1]))
+				log_unit_test("[CR.type]: Reagents - chemical reaction required list was in invalid format.")
+				failed = TRUE
+			else
+				for(var/RR in CR.required_reagents)
+					if(!SSchemistry.chemical_reagents[RR])
+						log_unit_test("[CR.type]: Reagents - chemical reaction had invalid required reagent ID \"[RR]\".")
+						failed = TRUE
+					if(CR.required_reagents[RR] <= 0)
+						log_unit_test("[CR.type]: Reagents - chemical reaction had invalid required reagent amount \"[CR.required_reagents[RR]]\".")
+						failed = TRUE
 
-		if(CR.catalysts)
-			for(var/RR in CR.catalysts)
-				if(!SSchemistry.chemical_reagents[RR])
-					log_unit_test("[CR.type]: Reagents - chemical reaction had invalid required reagent ID \"[RR]\".")
-					failed = TRUE
-				else
-					chem_count++
 
-		if(CR.inhibitors)
-			for(var/RR in CR.inhibitors)
-				if(!SSchemistry.chemical_reagents[RR])
-					log_unit_test("[CR.type]: Reagents - chemical reaction had invalid required reagent ID \"[RR]\".")
-					failed = TRUE
+		if(CR.catalysts && CR.catalysts.len)
+			if(islist(CR.catalysts) && istext(CR.catalysts[1]))
+				log_unit_test("[CR.type]: Reagents - chemical reaction catalysts list was in invalid format.")
+				failed = TRUE
+			else
+				for(var/RR in CR.catalysts)
+					if(!SSchemistry.chemical_reagents[RR])
+						log_unit_test("[CR.type]: Reagents - chemical reaction had invalid required reagent ID \"[RR]\".")
+						failed = TRUE
+					if(CR.catalysts[RR] <= 0)
+						log_unit_test("[CR.type]: Reagents - chemical reaction had invalid catalysts amount \"[CR.catalysts[RR]]\".")
+						failed = TRUE
 
-		if(chem_count <= 1 && !istype(CR,/decl/chemical_reaction/distilling) && !istype(CR,/decl/chemical_reaction/instant/slime))
-			log_unit_test("[CR.type]: Reagents - chemical reaction had only a single reagent, and was not a distillation or slime reaction.")
-			failed = TRUE
+		if(CR.inhibitors && CR.inhibitors.len)
+			if(islist(CR.inhibitors) && istext(CR.inhibitors[1]))
+				log_unit_test("[CR.type]: Reagents - chemical reaction inhibitors list was in invalid format.")
+				failed = TRUE
+			else
+				for(var/RR in CR.inhibitors)
+					if(!SSchemistry.chemical_reagents[RR])
+						log_unit_test("[CR.type]: Reagents - chemical reaction had invalid required reagent ID \"[RR]\".")
+						failed = TRUE
+					if(CR.inhibitors[RR] <= 0)
+						log_unit_test("[CR.type]: Reagents - chemical reaction had invalid inhibitors amount \"[CR.inhibitors[RR]]\".")
+						failed = TRUE
 
 		if(CR.result)
 			if(!SSchemistry.chemical_reagents[CR.result])
