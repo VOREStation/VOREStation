@@ -255,6 +255,8 @@
 			return FALSE // SUCCESS using all inhibitors!
 
 	// No inhibiting reagent worked...
+	for(var/decl/chemical_reaction/test_react in result_reactions)
+		log_unit_test("[CR.type]: Reagents - Used [test_react] but failed.")
 	return TRUE
 
 /datum/unit_test/chemical_reactions_shall_not_conflict/get_signal_data(atom/source, list/data = list())

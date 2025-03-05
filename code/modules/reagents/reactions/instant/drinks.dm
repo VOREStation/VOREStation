@@ -150,8 +150,8 @@
 
 /decl/chemical_reaction/instant/drinks/mocha
 	name = REAGENT_MOCHA
-	id = REAGENT_ID_MOCHA
-	result = REAGENT_ID_MOCHA + "_milk"
+	id = REAGENT_ID_MOCHA + "_milk"
+	result = REAGENT_ID_MOCHA
 	required_reagents = list(REAGENT_ID_MILK = 1, REAGENT_ID_CREAM = 1, REAGENT_ID_MILKFOAM = 1, REAGENT_ID_HOTCOCO = 2, REAGENT_ID_BREVE = 5) // 2 coffee, 2 milk, 2 cream, 2 milk foam and 2 hot coco
 	result_amount = 10
 
