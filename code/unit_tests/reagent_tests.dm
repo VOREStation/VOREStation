@@ -191,10 +191,6 @@
 			fake_beaker.reagents.maximum_volume = 5000
 
 		var/scale = 1
-		if(CR.inhibitors) // Add first to give it the best chance of not being overlapped
-			for(var/RR in CR.inhibitors)
-				fake_beaker.reagents.add_reagent(RR, CR.inhibitors[RR] * scale)
-
 		if(CR.catalysts) // Required for reaction
 			for(var/RR in CR.catalysts)
 				fake_beaker.reagents.add_reagent(RR, CR.catalysts[RR] * scale)
@@ -202,6 +198,12 @@
 		if(CR.required_reagents)
 			for(var/RR in CR.required_reagents)
 				fake_beaker.reagents.add_reagent(RR, CR.required_reagents[RR] * scale)
+
+		/* For reference, but we don't want this in the mix ever, we won't get the chem!
+		if(CR.inhibitors)
+			for(var/RR in CR.inhibitors)
+				fake_beaker.reagents.add_reagent(RR, CR.inhibitors[RR] * scale)
+		*/
 
 		if(!fake_beaker.reagents.has_reagent(CR.result))
 			log_unit_test("[CR.type]: Reagents - chemical reaction did not produce \"[CR.result]\". CONTAINS: \"[fake_beaker.reagents.get_reagents()]\"")
