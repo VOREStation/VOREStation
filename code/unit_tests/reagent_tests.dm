@@ -76,6 +76,10 @@
 		else
 			collection_id[CR.id] = CR.type
 
+		if(CR.result_amount < 0)
+			log_unit_test("[CR.type]: Reagents - chemical reaction id \"[CR.name]\" had less than 0 as as result_amount?")
+			failed = TRUE
+
 		if(CR.required_reagents)
 			for(var/RR in CR.required_reagents)
 				if(!SSchemistry.chemical_reagents[RR])
@@ -159,12 +163,12 @@
 
 		if(CR.name == REAGENT_DEVELOPER_WARNING) // Ignore these types as they are meant to be overridden
 			continue
-		if(!CR.name || CR.name == "" || R.id)
+		if(!CR.name || CR.name == "" || !CR.id || CR.id == "")
 			continue
-		if(result_amount == 0) //Makes nothing anyway, or maybe an effect/explosion!
-			return
+		if(CR.result_amount <= 0) //Makes nothing anyway, or maybe an effect/explosion!
+			continue
 		if(!CR.result) // Cannot check for this
-			return
+			continue
 
 		if(CR.inhibitors) // Add first to give it the best chance of not being overlapped
 			for(var/RR in CR.inhibitors)
