@@ -238,6 +238,8 @@
 
 	if(!result_reactions.len)
 		// Nothing to check for inhibitors...
+		for(var/decl/chemical_reaction/test_react in result_reactions)
+			log_unit_test("[CR.type]: Reagents - Used [test_react] but failed.")
 		return TRUE
 
 	// Otherwise we check the resulting reagents and use their inhibitor this time!
