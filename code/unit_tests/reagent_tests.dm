@@ -257,9 +257,12 @@
 		// Multiple chems could make this result... Try em all.
 		// Some of these reagents mean nothing to us. If nothing has
 		// inhibitors, then we've been blocked out from making this chem.
-		for(var/decl/chemical_reaction/test_react in possible_reactions)
+		for(var/key in possible_reactions)
 			if(CR.result == REAGENT_ID_LEXORIN)
-				log_unit_test("LEX TEST - [test_react]")
+				log_unit_test("LEX TEST KEY - [key]")
+			var/decl/chemical_reaction/test_react = possible_reactions[key]
+			if(CR.result == REAGENT_ID_LEXORIN)
+				log_unit_test("LEX TEST REACT - [test_react]")
 			if(!test_react)
 				continue
 			if(CR.result == REAGENT_ID_LEXORIN)
