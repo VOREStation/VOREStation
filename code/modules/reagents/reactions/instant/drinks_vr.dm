@@ -77,15 +77,6 @@
 	required_reagents = list(REAGENT_ID_BULLDOG = 1, REAGENT_ID_SBAGLIATO = 1)
 	result_amount = 2
 
-
-/decl/chemical_reaction/instant/drinks/badchem
-	name = "bad chem"
-	id = "bad_chem"
-	result = REAGENT_ID_SUGARRUSH
-	required_reagents = list(REAGENT_ID_BULLDOG = 1, REAGENT_ID_SBAGLIATO = 1, REAGENT_ID_VODKA = 1)
-	result_amount = 5
-
-
 /decl/chemical_reaction/instant/drinks/sugarrush
 	name = REAGENT_SUGARRUSH
 	id = REAGENT_ID_SUGARRUSH
