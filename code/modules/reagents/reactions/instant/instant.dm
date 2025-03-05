@@ -784,6 +784,8 @@
 	result_amount = 2
 	log_is_important = 1
 
+#ifndef UNIT_TEST
+// If it becomes possible to make this without exploding and clearing reagents, remove the UNIT_TEST wrapper
 /decl/chemical_reaction/instant/nitroglycerin/on_reaction(var/datum/reagents/holder, var/created_volume)
 	var/datum/effect/effect/system/reagents_explosion/e = new()
 	e.set_up(round (created_volume/2, 1), holder.my_atom, 0, 0)
@@ -792,14 +794,13 @@
 		var/mob/living/L = holder.my_atom
 		if(L.stat!=DEAD)
 			e.amount *= 0.5
-	//VOREStation Add Start
 	else
 		holder.clear_reagents() //No more powergaming by creating a tiny amount of this
-	//VOREStation Add End
 	e.start()
 
 	//holder.clear_reagents() //VOREStation Removal
 	return
+#endif
 
 /decl/chemical_reaction/instant/napalm
 	name = "Napalm"
