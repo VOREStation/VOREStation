@@ -204,6 +204,9 @@
 	return TRUE
 
 /datum/unit_test/chemical_reactions_shall_not_conflict/proc/perform_reaction(var/decl/chemical_reaction/CR, var/list/inhib = list())
+	// clear for inhibitor searches
+	fake_beaker.reagents.clear_reagents()
+
 	if(inhib.len) // taken from argument and not reaction! Put in FIRST!
 		for(var/RR in inhib)
 			fake_beaker.reagents.add_reagent(RR, inhib[RR])
