@@ -207,31 +207,15 @@
 	// clear for inhibitor searches
 	fake_beaker.reagents.clear_reagents()
 
-	if(CR.result == REAGENT_ID_LEXORIN)
-		log_unit_test("LEX TEST INHIB LENGTH : [inhib.len]")
-
 	if(inhib.len) // taken from argument and not reaction! Put in FIRST!
 		for(var/RR in inhib)
-			if(CR.result == REAGENT_ID_LEXORIN)
-				log_unit_test("LEX TEST ADD INHIB [RR] + [inhib[RR]]")
 			fake_beaker.reagents.add_reagent(RR, inhib[RR])
-
-	if(CR.result == REAGENT_ID_LEXORIN)
-		log_unit_test("LEX TEST 1 - [fake_beaker.reagents.get_reagents()]")
-
 	if(CR.catalysts) // Required for reaction
 		for(var/RR in CR.catalysts)
 			fake_beaker.reagents.add_reagent(RR, CR.catalysts[RR])
-
-	if(CR.result == REAGENT_ID_LEXORIN)
-		log_unit_test("LEX TEST 2 - [fake_beaker.reagents.get_reagents()]")
-
 	if(CR.required_reagents)
 		for(var/RR in CR.required_reagents)
 			fake_beaker.reagents.add_reagent(RR, CR.required_reagents[RR])
-
-	if(CR.result == REAGENT_ID_LEXORIN)
-		log_unit_test("LEX TEST 3 - [fake_beaker.reagents.get_reagents()]")
 
 	if(fake_beaker.reagents.has_reagent(CR.result))
 		return FALSE // INSTANT SUCCESS!
@@ -240,7 +224,6 @@
 		// We've checked with inhibitors, so we're already in inhibitor checking phase.
 		// So we've absolutely failed this time. There is no way to make this...
 		return TRUE
-
 	if(!fake_beaker.reagents.reagent_list.len)
 		// Nothing to check for inhibitors...
 		return TRUE
@@ -252,18 +235,12 @@
 		var/list/possible_reactions = SSchemistry.chemical_reactions_by_product[RR.id]
 		if(istype(CR,/decl/chemical_reaction/distilling))
 			possible_reactions = SSchemistry.distilled_reactions_by_product[RR.id]
-		if(CR.result == REAGENT_ID_LEXORIN)
-			log_unit_test("LEX TEST - Checking inhibitors of [RR] - reactions: [possible_reactions]")
 		// Multiple chems could make this result... Try em all.
 		// Some of these reagents mean nothing to us. If nothing has
 		// inhibitors, then we've been blocked out from making this chem.
 		for(var/decl/chemical_reaction/test_react in possible_reactions)
-			if(CR.result == REAGENT_ID_LEXORIN)
-				log_unit_test("LEX TEST REACT - [test_react]")
 			if(!test_react)
 				continue
-			if(CR.result == REAGENT_ID_LEXORIN)
-				log_unit_test("LEX TEST - [test_react] - [test_react.inhibitors.len]")
 			if(!test_react.inhibitors.len)
 				continue
 			if(perform_reaction(CR, test_react.inhibitors)) // returns true if it failed!
