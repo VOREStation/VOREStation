@@ -193,6 +193,7 @@
 		// Perform test! If it fails once, it will perform a deeper check trying to use the inhibitors of anything in the beaker
 		if(perform_reaction(CR))
 			// Check if we failed the test with inhibitors in use, if so we absolutely couldn't make it...
+			// Uncomment the UNIT_TEST section in code\modules\reagents\reactions\_reactions.dm if you require more info
 			log_unit_test("[CR.type]: Reagents - chemical reaction did not produce \"[CR.result]\". CONTAINS: \"[fake_beaker.reagents.get_reagents()]\"")
 			failed = TRUE
 	qdel_null(fake_beaker)

@@ -103,7 +103,7 @@
 	if(result)
 		holder.add_reagent(result, amt_produced, data, safety = 1)
 		#ifdef UNIT_TEST
-		log_unit_test("-Reagent reaction result: [result] [amt_produced]")
+		log_unit_test("[name] - Reagent reaction result: [result] [amt_produced]")
 		#endif
 
 	on_reaction(holder, amt_produced)
