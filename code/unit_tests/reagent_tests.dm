@@ -212,21 +212,21 @@
 			fake_beaker.reagents.add_reagent(RR, inhib[RR])
 
 	if(CR.result == REAGENT_ID_LEXORIN)
-		og_unit_test("LEX TEST 1 - [fake_beaker.reagents.get_reagents()]")
+		log_unit_test("LEX TEST 1 - [fake_beaker.reagents.get_reagents()]")
 
 	if(CR.catalysts) // Required for reaction
 		for(var/RR in CR.catalysts)
 			fake_beaker.reagents.add_reagent(RR, CR.catalysts[RR])
 
 	if(CR.result == REAGENT_ID_LEXORIN)
-		og_unit_test("LEX TEST 2 - [fake_beaker.reagents.get_reagents()]")
+		log_unit_test("LEX TEST 2 - [fake_beaker.reagents.get_reagents()]")
 
 	if(CR.required_reagents)
 		for(var/RR in CR.required_reagents)
 			fake_beaker.reagents.add_reagent(RR, CR.required_reagents[RR])
 
 	if(CR.result == REAGENT_ID_LEXORIN)
-		og_unit_test("LEX TEST 3 - [fake_beaker.reagents.get_reagents()]")
+		log_unit_test("LEX TEST 3 - [fake_beaker.reagents.get_reagents()]")
 
 	if(fake_beaker.reagents.has_reagent(CR.result))
 		return FALSE // INSTANT SUCCESS!
