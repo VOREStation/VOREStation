@@ -170,19 +170,20 @@
 		if(!CR.result) // Cannot check for this
 			continue
 
+		var/scale = 10
 		if(CR.inhibitors) // Add first to give it the best chance of not being overlapped
 			for(var/RR in CR.inhibitors)
-				fake_beaker.reagents.add_reagent(RR,50)
+				fake_beaker.reagents.add_reagent(RR, CR.inhibitors[RR] * scale)
 
 		if(CR.catalysts) // Required for reaction
 			for(var/RR in CR.catalysts)
-				fake_beaker.reagents.add_reagent(RR,50)
+				fake_beaker.reagents.add_reagent(RR, CR.catalysts[RR] * scale)
 
 		if(CR.required_reagents)
 			for(var/RR in CR.required_reagents)
-				fake_beaker.reagents.add_reagent(RR,50)
+				fake_beaker.reagents.add_reagent(RR, CR.required_reagents[RR] * scale)
 
-		if(fake_beaker.reagents.get_reagent_amount(CR.result) <= 0)
+		if(fake_beaker.reagents.get_master_reagent_id() != CR.result)
 			log_unit_test("[CR.type]: Reagents - chemical reaction did not produce its intended result. CONTAINS: [fake_beaker.reagents.get_reagents()]")
 			failed = TRUE
 
