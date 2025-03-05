@@ -157,6 +157,18 @@
 					final_message += grind_results
 					final_message += "<br>"
 
+				// The long forgotten fluid pumps!
+				// TODO : Update turfs to provide what their fluidpump outputs are too
+				var/pump_results = ""
+				for(var/O in GLOB.ore_data)
+					var/ore/OR = GLOB.ore_data[O]
+					if(OR.reagent == R.id)
+						pump_results += " -erosion [span_info(OR.display_name)]<br>"
+				if(pump_results != "")
+					final_message += span_underline("Fluid Pump Filtrate: <br>")
+					final_message += pump_results
+					final_message += "<br>"
+
 		// Last, unseal it if it's an autoinjector.
 		if(istype(I,/obj/item/reagent_containers/hypospray/autoinjector/biginjector) && !(I.flags & OPENCONTAINER))
 			I.flags |= OPENCONTAINER
