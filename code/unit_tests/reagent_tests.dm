@@ -161,13 +161,20 @@
 	for(var/rtype in all_reactions)
 		var/decl/chemical_reaction/CR = all_reactions[rtype]
 
-		if(istype(CR, /decl/chemical_reaction/distilling))
-			var/obj/machinery/portable_atmospherics/powered/reagent_distillery/D = new()
+		if(istype(CR, /decl/chemical_reaction/instant/slime))
+		 	// slime time
+			var/decl/chemical_reaction/slime/SR = CR
+			qdel_swap(fake_beaker, new SR.required())
+			fake_beaker.reagents.maximum_volume = 5000
+		else if(istype(CR, /decl/chemical_reaction/distilling))
+			// distilling
 			var/decl/chemical_reaction/distilling/DR = CR
+			var/obj/machinery/portable_atmospherics/powered/reagent_distillery/D = new()
 			D.current_temp = DR.temp_range[1]
 			qdel_swap(fake_beaker, D)
 			fake_beaker.reagents.maximum_volume = 5000
 		else
+			// regular beaker
 			qdel_swap(fake_beaker, new /obj/item/reagent_containers/glass/beaker())
 			fake_beaker.reagents.maximum_volume = 5000
 
