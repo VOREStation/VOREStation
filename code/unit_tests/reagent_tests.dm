@@ -254,7 +254,7 @@
 				continue
 			if(!test_react.inhibitors.len)
 				continue
-			if(perform_reaction(CR, test_react.inhibitors)) // returns true if it failed!
+			if(perform_reaction(CR, test_react.inhibitors.Copy())) // returns true if it failed!
 				continue
 			return FALSE // SUCCESS using an inhibitor!
 
