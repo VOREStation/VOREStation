@@ -156,14 +156,20 @@
 /datum/unit_test/chemical_reactions_shall_not_conflict/start_test()
 	var/failed = FALSE
 
-	var/obj/item/reagent_containers/glass/beaker/fake_beaker = null
+	var/obj/fake_beaker = null
 	var/list/all_reactions = decls_repository.get_decls_of_subtype(/decl/chemical_reaction)
 	for(var/rtype in all_reactions)
 		var/decl/chemical_reaction/CR = all_reactions[rtype]
-		if(!fake_beaker)
-			fake_beaker = new()
+
+		if(istype(CR, /decl/chemical_reaction/distilling))
+			qdel_swap(fake_beaker, new /obj/item/reagent_containers/glass/beaker())
 			fake_beaker.reagents.maximum_volume = 5000
-		fake_beaker.reagents.clear_reagents()
+		else
+			var/obj/machinery/portable_atmospherics/powered/reagent_distillery/D = new()
+			var/decl/chemical_reaction/distilling/DR = CR
+			D.current_temp = DR.temp_range[1]
+			qdel_swap(fake_beaker, D)
+			fake_beaker.reagents.maximum_volume = 5000
 
 		if(CR.name == REAGENT_DEVELOPER_WARNING) // Ignore these types as they are meant to be overridden
 			continue
@@ -190,10 +196,6 @@
 		if(!fake_beaker.reagents.has_reagent(CR.result))
 			log_unit_test("[CR.type]: Reagents - chemical reaction did not produce its intended result. CONTAINS: [fake_beaker.reagents.get_reagents()]")
 			failed = TRUE
-
-		// Some reactions are not nice to their beakers
-		if(QDELING(fake_beaker))
-			fake_beaker = null
 
 	if(failed)
 		fail("One or more /decl/chemical_reaction subtypes conflict with another reaction.")
