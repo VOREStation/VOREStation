@@ -180,7 +180,7 @@
 		if(!CR.result) // Cannot check for this
 			continue
 
-		var/scale = 10
+		var/scale = 1
 		if(CR.inhibitors) // Add first to give it the best chance of not being overlapped
 			for(var/RR in CR.inhibitors)
 				fake_beaker.reagents.add_reagent(RR, CR.inhibitors[RR] * scale)
@@ -194,7 +194,7 @@
 				fake_beaker.reagents.add_reagent(RR, CR.required_reagents[RR] * scale)
 
 		if(!fake_beaker.reagents.has_reagent(CR.result))
-			log_unit_test("[CR.type]: Reagents - chemical reaction did not produce its intended result. CONTAINS: [fake_beaker.reagents.get_reagents()]")
+			log_unit_test("[CR.type]: Reagents - chemical reaction did not produce \"[CR.result]\". CONTAINS: \"[fake_beaker.reagents.get_reagents()]\"")
 			failed = TRUE
 
 	if(failed)
