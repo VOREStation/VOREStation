@@ -784,7 +784,6 @@
 	result_amount = 2
 	log_is_important = 1
 
-#ifndef UNIT_TEST
 // If it becomes possible to make this without exploding and clearing reagents, remove the UNIT_TEST wrapper
 /decl/chemical_reaction/instant/nitroglycerin/on_reaction(var/datum/reagents/holder, var/created_volume)
 	var/datum/effect/effect/system/reagents_explosion/e = new()
@@ -800,7 +799,6 @@
 
 	//holder.clear_reagents() //VOREStation Removal
 	return
-#endif
 
 /decl/chemical_reaction/instant/napalm
 	name = "Napalm"

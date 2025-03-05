@@ -153,6 +153,7 @@
 /datum/unit_test/chemical_reactions_shall_not_conflict
 	name = "REAGENTS: Chemical Reactions shall not conflict"
 	var/obj/fake_beaker = null
+	var/list/result_reactions = list()
 
 /datum/unit_test/chemical_reactions_shall_not_conflict/start_test()
 	var/failed = FALSE
@@ -191,11 +192,13 @@
 			fake_beaker.reagents.maximum_volume = 5000
 
 		// Perform test! If it fails once, it will perform a deeper check trying to use the inhibitors of anything in the beaker
+		RegisterSignal(fake_beaker.reagents, COMSIG_UNITTEST_DATA, PROC_REF(get_signal_data))
 		if(perform_reaction(CR))
 			// Check if we failed the test with inhibitors in use, if so we absolutely couldn't make it...
 			// Uncomment the UNIT_TEST section in code\modules\reagents\reactions\_reactions.dm if you require more info
 			log_unit_test("[CR.type]: Reagents - chemical reaction did not produce \"[CR.result]\". CONTAINS: \"[fake_beaker.reagents.get_reagents()]\"")
 			failed = TRUE
+		UnregisterSignal(fake_beaker.reagents, COMSIG_UNITTEST_DATA)
 	qdel_null(fake_beaker)
 
 	if(failed)
@@ -207,6 +210,7 @@
 /datum/unit_test/chemical_reactions_shall_not_conflict/proc/perform_reaction(var/decl/chemical_reaction/CR, var/list/inhib = list())
 	// clear for inhibitor searches
 	fake_beaker.reagents.clear_reagents()
+	result_reactions.Cut()
 
 	var/scale = 1
 	if(CR.result_amount < 1)
@@ -229,32 +233,27 @@
 		// We've checked with inhibitors, so we're already in inhibitor checking phase.
 		// So we've absolutely failed this time. There is no way to make this...
 		return TRUE
-	if(!fake_beaker.reagents.reagent_list.len)
+
+	if(!result_reactions.len)
 		// Nothing to check for inhibitors...
 		return TRUE
 
 	// Otherwise we check the resulting reagents and use their inhibitor this time!
-	var/list/reagent_scan = fake_beaker.reagents.reagent_list.Copy()
-	for(var/datum/reagent/RR in reagent_scan)
-		// Get the reaction type, as SSchem stores two different lists for each reaction type!
-		var/list/possible_reactions = SSchemistry.chemical_reactions_by_product[RR.id]
-		if(istype(CR,/decl/chemical_reaction/distilling))
-			possible_reactions = SSchemistry.distilled_reactions_by_product[RR.id]
-		// Multiple chems could make this result... Try em all.
-		// Some of these reagents mean nothing to us. If nothing has
-		// inhibitors, then we've been blocked out from making this chem.
-		for(var/decl/chemical_reaction/test_react in possible_reactions)
-			if(!test_react)
-				continue
-			if(!test_react.inhibitors.len)
-				continue
-			// Test one by one
-			for(var/each in test_react.inhibitors)
-				if(!perform_reaction(CR, list("[each]" = test_react.inhibitors["[each]"])))
-					return FALSE // SUCCESS using an inhibitor!
-			// Test all at once
-			if(!perform_reaction(CR, test_react.inhibitors))
-				return FALSE // SUCCESS using all inhibitors!
+	for(vvar/decl/chemical_reaction/test_react in result_reactions)
+		if(!test_react)
+			continue
+		if(!test_react.inhibitors.len)
+			continue
+		// Test one by one
+		for(var/each in test_react.inhibitors)
+			if(!perform_reaction(CR, list("[each]" = test_react.inhibitors["[each]"])))
+				return FALSE // SUCCESS using an inhibitor!
+		// Test all at once
+		if(!perform_reaction(CR, test_react.inhibitors))
+			return FALSE // SUCCESS using all inhibitors!
 
 	// No inhibiting reagent worked...
 	return TRUE
+
+/datum/unit_test/chemical_reactions_shall_not_conflict/get_signal_data(atom/source, list/data = list())
+	result_reactions.Add(C) // Append the reactions that happened, then use that to check their inhibitors
