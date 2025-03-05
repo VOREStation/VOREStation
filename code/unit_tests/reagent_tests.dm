@@ -161,10 +161,22 @@
 	for(var/rtype in all_reactions)
 		var/decl/chemical_reaction/CR = all_reactions[rtype]
 
+		if(CR.name == REAGENT_DEVELOPER_WARNING) // Ignore these types as they are meant to be overridden
+			continue
+		if(!CR.name || CR.name == "" || !CR.id || CR.id == "")
+			continue
+		if(CR.result_amount <= 0) //Makes nothing anyway, or maybe an effect/explosion!
+			continue
+		if(!CR.result) // Cannot check for this
+			continue
+
 		if(istype(CR, /decl/chemical_reaction/instant/slime))
 		 	// slime time
 			var/decl/chemical_reaction/instant/slime/SR = CR
-			qdel_swap(fake_beaker, new SR.required())
+			if(!SR.required)
+				continue
+			var/obj/item/slime_extract/E = new SR.required()
+			qdel_swap(fake_beaker, E)
 			fake_beaker.reagents.maximum_volume = 5000
 		else if(istype(CR, /decl/chemical_reaction/distilling))
 			// distilling
@@ -177,15 +189,6 @@
 			// regular beaker
 			qdel_swap(fake_beaker, new /obj/item/reagent_containers/glass/beaker())
 			fake_beaker.reagents.maximum_volume = 5000
-
-		if(CR.name == REAGENT_DEVELOPER_WARNING) // Ignore these types as they are meant to be overridden
-			continue
-		if(!CR.name || CR.name == "" || !CR.id || CR.id == "")
-			continue
-		if(CR.result_amount <= 0) //Makes nothing anyway, or maybe an effect/explosion!
-			continue
-		if(!CR.result) // Cannot check for this
-			continue
 
 		var/scale = 1
 		if(CR.inhibitors) // Add first to give it the best chance of not being overlapped
