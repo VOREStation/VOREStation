@@ -30,10 +30,10 @@
 	if(istype(I,/obj/item/reagent_containers))
 		analyzing = TRUE
 		update_icon()
-		to_chat(user, span_notice( "Analyzing \the [I], please stand by..."))
+		to_chat(user, span_notice("Analyzing \the [I], please stand by..."))
 
 		if(!do_after(user, 2 SECONDS, src))
-			to_chat(user, span_warning( "Sample moved outside of scan range, please try again and remain still."))
+			to_chat(user, span_warning("Sample moved outside of scan range, please try again and remain still."))
 			analyzing = FALSE
 			update_icon()
 			return
@@ -45,15 +45,16 @@
 				I.identify(IDENTITY_FULL, user)
 
 		// Now tell us everything that is inside.
+		var/final_message = ""
 		if(I.reagents && I.reagents.reagent_list.len)
-			to_chat(user, "<br>") // To add padding between regular chat and the output.
+			final_message += "<br>" // To add padding between regular chat and the output.
 			for(var/datum/reagent/R in I.reagents.reagent_list)
 				if(!R.name)
 					continue
-				to_chat(user, span_notice("Contains [R.volume]u of " + span_bold("[R.name]") + ".<br>[R.description]<br><br>"))
+				final_message += span_notice("Contains " + span_info("[R.volume]u") + " of " + span_bold(span_underline("[R.name]")) + ".<br>[R.description]<br><br>")
 				/* Downstream addiction code
 				if(R.id in addictives)
-					to_chat(user, span_boldnotice(span_red("DANGER") + ", [(R.id in fast_addictives) ? "highly " : ""]addictive.)")) + "<br>"
+					final_message += span_boldnotice(span_red("DANGER") + ", [(R.id in fast_addictives) ? "highly " : ""]addictive.)") + "<br>"
 				*/
 				var/list/products = SSchemistry.chemical_reactions_by_product[R.id]
 				if(products != null && products.len > 0)
@@ -64,29 +65,29 @@
 						display_reactions.Add(CR)
 					for(var/decl/chemical_reaction/CR in display_reactions)
 						if(display_reactions.len == 1)
-							to_chat(user, span_notice("Potential Chemical breakdown: <br>"))
+							final_message += span_underline("Potential Chemical breakdown: <br>")
 						else
-							to_chat(user, span_notice("Potential Chemical breakdown [segment]: <br>"))
+							final_message += span_underline("Potential Chemical breakdown [segment]: <br>")
 						segment += 1
 
 						for(var/RQ in CR.required_reagents)
 							var/decl/chemical_reaction/r_RQ = SSchemistry.chemical_reagents[RQ]
 							if(!r_RQ)
 								continue
-							to_chat(user, span_notice(" -parts [r_RQ.name]<br>"))
+							final_message += " -parts [span_info(r_RQ.name)]<br>"
 						for(var/IH in CR.inhibitors)
 							var/decl/chemical_reaction/r_IH = SSchemistry.chemical_reagents[IH]
 							if(!r_IH)
 								continue
-							to_chat(user, span_notice(" -inhbi [r_IH.name]<br>"))
+							final_message += " -inhbi [span_info(r_IH.name)]<br>"
 						for(var/CL in CR.catalysts)
 							var/decl/chemical_reaction/r_CL = SSchemistry.chemical_reagents[CL]
 							if(!r_CL)
 								continue
-							to_chat(user, span_notice(" -catyl [r_CL.name]<br>"))
-						to_chat(user, "<br>")
+							final_message += " -catyl [span_info(r_CL.name)]<br>"
+						final_message += "<br>"
 				else
-					to_chat(user, span_notice("Potential Chemical breakdown: <br>UNKNOWN OR BASE-REAGENT<br><br>"))
+					final_message += span_underline("Potential Chemical breakdown:") + "<br>UNKNOWN OR BASE-REAGENT<br><br>"
 
 				var/list/distilled_products = SSchemistry.distilled_reactions_by_product[R.id]
 				if(distilled_products != null && distilled_products.len > 0)
@@ -99,36 +100,37 @@
 
 					for(var/decl/chemical_reaction/distilling/CR in display_reactions)
 						if(display_reactions.len == 1)
-							to_chat(user, span_notice("Potential Chemical Distillation: <br>"))
+							final_message += span_underline("Potential Chemical Distillation: <br>")
 						else
-							to_chat(user, span_notice("Potential Chemical Distillation [segment]: <br>"))
+							final_message += span_underline("Potential Chemical Distillation [segment]: <br>")
 						segment += 1
 
-						to_chat(user, span_notice(" -temps [CR.temp_range[1]]k - [CR.temp_range[2]]k<br>"))
+						final_message += " -temps " + span_info("[CR.temp_range[1]]k") + " - " + span_info("[CR.temp_range[2]]k") + "<br>"
 
 						for(var/RQ in CR.required_reagents)
 							var/decl/chemical_reaction/r_RQ = SSchemistry.chemical_reagents[RQ]
 							if(!r_RQ)
 								continue
-							to_chat(user, span_notice(" -parts [r_RQ.name]<br>"))
+							final_message += " -parts [span_info(r_RQ.name)]<br>"
 						for(var/IH in CR.inhibitors)
 							var/decl/chemical_reaction/r_IH = SSchemistry.chemical_reagents[IH]
 							if(!r_IH)
 								continue
-							to_chat(user, span_notice(" -inhbi [r_IH.name]<br>"))
+							final_message += " -inhbi [span_info(r_IH.name)]<br>"
 						for(var/CL in CR.catalysts)
 							var/decl/chemical_reaction/r_CL = SSchemistry.chemical_reagents[CL]
 							if(!r_CL)
 								continue
-							to_chat(user, span_notice(" -catyl [r_CL.name]<br>"))
-					to_chat(user, "<br>")
+							final_message += " -catyl [span_info(r_CL.name)]<br>"
+					final_message += "<br>"
 
 		// Last, unseal it if it's an autoinjector.
 		if(istype(I,/obj/item/reagent_containers/hypospray/autoinjector/biginjector) && !(I.flags & OPENCONTAINER))
 			I.flags |= OPENCONTAINER
-			to_chat(user, span_notice("Sample container unsealed.<br>"))
+			final_message += "Sample container unsealed.<br>"
+		final_message += "Scanning of \the [I] complete."
 
-		to_chat(user, span_notice("Scanning of \the [I] complete."))
+		to_chat(user, span_notice(final_message))
 		analyzing = FALSE
 		update_icon()
 		return
