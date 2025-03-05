@@ -156,13 +156,13 @@
 /datum/unit_test/chemical_reactions_shall_not_conflict/start_test()
 	var/failed = FALSE
 
-	var/obj/fake_beaker = null
+	var/obj/item/reagent_containers/glass/beaker
 	var/list/all_reactions = decls_repository.get_decls_of_subtype(/decl/chemical_reaction)
 	for(var/rtype in all_reactions)
 		var/decl/chemical_reaction/CR = all_reactions[rtype]
 		if(!fake_beaker)
 			fake_beaker = new /obj
-			fake_beaker.reagents = new(5000)
+			fake_beaker.reagents.max_vol = 5000
 		fake_beaker.reagents.clear_reagents()
 
 		if(CR.name == REAGENT_DEVELOPER_WARNING) // Ignore these types as they are meant to be overridden
@@ -179,19 +179,13 @@
 			for(var/RR in CR.inhibitors)
 				fake_beaker.reagents.add_reagent(RR, CR.inhibitors[RR] * scale)
 
-		fake_beaker.reagents.handle_reactions() // Force
-
 		if(CR.catalysts) // Required for reaction
 			for(var/RR in CR.catalysts)
 				fake_beaker.reagents.add_reagent(RR, CR.catalysts[RR] * scale)
 
-		fake_beaker.reagents.handle_reactions() // Force
-
 		if(CR.required_reagents)
 			for(var/RR in CR.required_reagents)
 				fake_beaker.reagents.add_reagent(RR, CR.required_reagents[RR] * scale)
-
-		fake_beaker.reagents.handle_reactions() // Force
 
 		if(fake_beaker.reagents.get_master_reagent_id() != CR.result)
 			log_unit_test("[CR.type]: Reagents - chemical reaction did not produce its intended result. CONTAINS: [fake_beaker.reagents.get_reagents()]")
