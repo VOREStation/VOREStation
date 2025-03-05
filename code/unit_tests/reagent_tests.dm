@@ -273,3 +273,31 @@
 
 /datum/unit_test/chemical_reactions_shall_not_conflict/get_signal_data(atom/source, list/data = list())
 	result_reactions.Add(data[1]) // Append the reactions that happened, then use that to check their inhibitors
+
+
+/datum/unit_test/chemical_grinding_must_produce_valid_results
+	name = "REAGENTS: Chemical Grinding Must Have Valid Results"
+
+/datum/unit_test/chemical_grinding_must_produce_valid_results/start_test()
+	var/failed = FALSE
+
+	for(var/grind in global.sheet_reagents + global.ore_reagents)
+		var/list/results = global.sheet_reagents[grind]
+		if(!results || !islist(results))
+			log_unit_test("[grind]: Reagents - Grinding result had invalid list.")
+			failed = TRUE
+			continue
+		if(!results.len)
+			log_unit_test("[grind]: Reagents - Grinding result had empty.")
+			failed = TRUE
+			continue
+		for(var/reg_id in results)
+			if(!SSchemistry.chemical_reagents[reg_id])
+				log_unit_test("[grind]: Reagents - Grinding result had invalid reagent id \"[reg_id]\".")
+				failed = TRUE
+
+	if(failed)
+		fail("One or more grindable sheet or ore entries had invalid reagents or lists.")
+	else
+		pass("All grindable sheet or ore entries had valid lists and reagents.")
+	return TRUE

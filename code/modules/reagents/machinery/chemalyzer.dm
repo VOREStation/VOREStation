@@ -56,7 +56,6 @@
 				if(R.id in addictives)
 					final_message += span_boldnotice(span_red("DANGER") + ", [(R.id in fast_addictives) ? "highly " : ""]addictive.)") + "<br>"
 				*/
-				// Sanitize out slime reactions
 				var/list/products = SSchemistry.chemical_reactions_by_product[R.id]
 				if(products != null && products.len > 0)
 					var/segment = 1
@@ -102,7 +101,6 @@
 						final_message += "<br>"
 				else
 					final_message += span_underline("Potential Chemical breakdown:") + "<br>" + span_red("UNKNOWN OR BASE-REAGENT") + "<br><br>"
-
 				var/list/distilled_products = SSchemistry.distilled_reactions_by_product[R.id]
 				if(distilled_products != null && distilled_products.len > 0)
 					var/segment = 1
@@ -136,6 +134,27 @@
 							if(!r_CL)
 								continue
 							final_message += " -catyl [span_info(r_CL.name)]<br>"
+					final_message += "<br>"
+
+				// We can get some reagents by grinding sheets and ores!
+				var/grind_results = ""
+				for(var/source in global.sheet_reagents)
+					if(R.id in global.sheet_reagents[source])
+						var/nm = initial(source:name)
+						grind_results += " -grind [span_info(nm)]<br>"
+				if(grind_results != "")
+					final_message += span_underline("Material Sources: <br>")
+					final_message += grind_results
+					final_message += "<br>"
+
+				grind_results = ""
+				for(var/source in global.ore_reagents)
+					if(R.id in global.ore_reagents[source])
+						var/nm = initial(source:name)
+						grind_results += " -grind [span_info(nm)]<br>"
+				if(grind_results != "")
+					final_message += span_underline("Ore Sources: <br>")
+					final_message += grind_results
 					final_message += "<br>"
 
 		// Last, unseal it if it's an autoinjector.
