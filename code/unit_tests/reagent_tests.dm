@@ -230,17 +230,18 @@
 			var/failure = TRUE
 			for(var/datum/reagent/RR in fake_beaker.reagents.reagent_list)
 				// Get the reaction type, as SSchem stores two different lists for each reaction type!
-				var/decl/chemical_reaction/test_react = SSchemistry.instant_reactions_by_reagent[RR.id]
+				var/list/possible_reactions = SSchemistry.instant_reactions_by_reagent[RR.id]
 				if(istype(CR,/decl/chemical_reaction/distilling))
-					test_react = SSchemistry.distilled_reactions_by_reagent[RR.id]
-				log_unit_test("[CR.type]: DBG [test_react] ")
-				// Some of these reagents mean nothing to us. If nothing has
-				// inhibitors, then we've been blocked out from making this chem.
-				if(!test_react)
-					continue
-				if(!test_react.inhibitors.len)
-					continue
-				if(!perform_reaction( CR, test_react.inhibitors)) // returns if it failed!
-					failure = FALSE // So we want to cancel our assumed failure!
+					possible_reactions = SSchemistry.distilled_reactions_by_reagent[RR.id]
+				// Multiple chems could make this result... Try em all.
+				for(var/decl/chemical_reaction/test_react in possible_reactions)
+					// Some of these reagents mean nothing to us. If nothing has
+					// inhibitors, then we've been blocked out from making this chem.
+					if(!test_react)
+						continue
+					if(!test_react.inhibitors.len)
+						continue
+					if(!perform_reaction( CR, test_react.inhibitors)) // returns if it failed!
+						failure = FALSE // So we want to cancel our assumed failure!
 			return failure
 	return FALSE
