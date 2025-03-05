@@ -54,8 +54,9 @@
 	var/failed = FALSE
 	var/list/collection_id = list()
 
-	for(var/decl/chemical_reaction/CR in decls_repository.get_decls_of_subtype(/decl/chemical_reaction))
-		log_unit_test("[CR.type]: [CR]")
+	var/list/all_reactions = decls_repository.get_decls_of_subtype(/decl/chemical_reaction)
+	for(var/rtype in all_reactions)
+		var/decl/chemical_reaction/CR = all_reactions[rtype]
 		if(CR.name == REAGENT_DEVELOPER_WARNING) // Ignore these types as they are meant to be overridden
 			continue
 
@@ -156,8 +157,9 @@
 	var/failed = FALSE
 
 	var/obj/fake_beaker = null
-	for(var/decl/chemical_reaction/CR in decls_repository.get_decls_of_subtype(/decl/chemical_reaction))
-		log_unit_test("[CR.type]: [CR]")
+	var/list/all_reactions = decls_repository.get_decls_of_subtype(/decl/chemical_reaction)
+	for(var/rtype in all_reactions)
+		var/decl/chemical_reaction/CR = all_reactions[rtype]
 		if(!fake_beaker)
 			fake_beaker = new /obj
 			fake_beaker.reagents = new(5000)
@@ -188,8 +190,6 @@
 		if(fake_beaker.reagents.get_master_reagent_id() != CR.result)
 			log_unit_test("[CR.type]: Reagents - chemical reaction did not produce its intended result. CONTAINS: [fake_beaker.reagents.get_reagents()]")
 			failed = TRUE
-		else
-			log_unit_test("[CR.type]: Reagents - Testing [CR.name]. CONTAINS: [fake_beaker.reagents.get_reagents()]")
 
 		// Some reactions are not nice to their beakers
 		if(QDELING(fake_beaker))
