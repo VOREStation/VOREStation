@@ -213,6 +213,7 @@
 	desc = "Due to neurological damage, you are unable to use your legs. Collapsing to the ground as soon as you try to stand. You should check the loadout menu for something to assist you."
 	cost = -3
 	custom_only = FALSE
+	can_take = ORGANICS
 
 	is_genetrait = TRUE
 	hidden = FALSE
