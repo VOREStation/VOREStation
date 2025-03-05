@@ -1,6 +1,0 @@
-author: "Diana. Tacoguy, Kash"
-delete-after: True
-changes:
-  - rscadd: "Tacoguy - Adds Combat Medic Catborg sprite."
-  - code_imp: "Kash - Robot linter will now properly detect stomach states."
-  - code_imp: "Diana - Fixes invisible robot sprites."

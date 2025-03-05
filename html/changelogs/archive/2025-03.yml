@@ -87,3 +87,10 @@
   - rscadd: Mail scanner
   Will:
   - code_imp: Vents work better
+2025-03-05:
+  Diana:
+  - bugfix: Teshari can now use small wheelchairs (and so can others)
+  Diana. Tacoguy, Kash:
+  - rscadd: Tacoguy - Adds Combat Medic Catborg sprite.
+  - code_imp: Kash - Robot linter will now properly detect stomach states.
+  - code_imp: Diana - Fixes invisible robot sprites.

@@ -1544,10 +1544,6 @@
 	layer = 3.3;
 	pixel_x = 26
 	},
-/obj/machinery/power/apc{
-	name = "south bump";
-	pixel_y = -28
-	},
 /obj/structure/cable/green{
 	icon_state = "0-8"
 	},
@@ -15660,7 +15656,7 @@
 /obj/item/reagent_containers/glass/bucket,
 /obj/effect/floor_decal/industrial/hatch/yellow,
 /turf/simulated/floor/tiled,
-/area/janitor)
+/area/hallway/station/atrium)
 "cOV" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 1
@@ -17899,7 +17895,7 @@
 /obj/machinery/light/small,
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/tiled,
-/area/janitor)
+/area/hallway/station/atrium)
 "fwY" = (
 /obj/effect/shuttle_landmark{
 	base_area = /area/space;
@@ -22844,11 +22840,6 @@
 /area/maintenance/station/eng_lower)
 "knK" = (
 /obj/effect/floor_decal/rust,
-/obj/machinery/power/apc{
-	dir = 1;
-	name = "north bump";
-	pixel_y = 28
-	},
 /obj/structure/cable/green{
 	icon_state = "0-8"
 	},
@@ -22857,7 +22848,7 @@
 	icon_state = "pipe-c"
 	},
 /turf/simulated/floor/tiled,
-/area/janitor)
+/area/hallway/station/atrium)
 "knR" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 1
@@ -26184,11 +26175,6 @@
 /turf/simulated/floor/plating,
 /area/quartermaster/belterdock/refinery)
 "nEB" = (
-/obj/machinery/power/apc{
-	dir = 4;
-	name = "east bump";
-	pixel_x = 28
-	},
 /obj/structure/cable/green{
 	icon_state = "0-8"
 	},
@@ -26880,7 +26866,7 @@
 	req_access = list(26)
 	},
 /turf/simulated/floor/tiled,
-/area/janitor)
+/area/hallway/station/atrium)
 "oFh" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/door/firedoor/glass,
@@ -27477,9 +27463,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/quartermaster/belterdock)
-"pKC" = (
-/turf/simulated/wall,
-/area/janitor)
 "pLb" = (
 /obj/effect/mouse_hole_spawner{
 	dir = 4
@@ -32325,7 +32308,7 @@
 	pixel_y = 22
 	},
 /turf/simulated/floor/tiled,
-/area/janitor)
+/area/hallway/station/atrium)
 "vAn" = (
 /obj/effect/floor_decal/steeldecal/steel_decals4{
 	dir = 9
@@ -33661,7 +33644,7 @@
 /obj/machinery/disposal,
 /obj/effect/floor_decal/industrial/outline/yellow,
 /turf/simulated/floor/tiled,
-/area/janitor)
+/area/hallway/station/atrium)
 "xoV" = (
 /obj/machinery/atmospherics/pipe/simple/hidden{
 	dir = 10
@@ -33751,7 +33734,7 @@
 /obj/item/soap/nanotrasen,
 /obj/structure/closet,
 /turf/simulated/floor/tiled,
-/area/janitor)
+/area/hallway/station/atrium)
 "xur" = (
 /turf/simulated/wall/r_wall,
 /area/quartermaster/belterdock/refinery)
@@ -45025,7 +45008,7 @@ dch
 dch
 bZv
 oEH
-pKC
+bZv
 aaD
 aaD
 aaD
