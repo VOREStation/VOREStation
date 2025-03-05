@@ -158,6 +158,7 @@
 /datum/unit_test/chemical_reactions_shall_not_conflict/start_test()
 	var/failed = FALSE
 
+	#ifdef UNIT_TEST
 	var/list/all_reactions = decls_repository.get_decls_of_subtype(/decl/chemical_reaction)
 	for(var/rtype in all_reactions)
 		var/decl/chemical_reaction/CR = all_reactions[rtype]
@@ -200,6 +201,7 @@
 			failed = TRUE
 		UnregisterSignal(fake_beaker.reagents, COMSIG_UNITTEST_DATA)
 	qdel_null(fake_beaker)
+	#endif
 
 	if(failed)
 		fail("One or more /decl/chemical_reaction subtypes conflict with another reaction.")
@@ -239,7 +241,7 @@
 		return TRUE
 
 	// Otherwise we check the resulting reagents and use their inhibitor this time!
-	for(vvar/decl/chemical_reaction/test_react in result_reactions)
+	for(var/decl/chemical_reaction/test_react in result_reactions)
 		if(!test_react)
 			continue
 		if(!test_react.inhibitors.len)
@@ -256,4 +258,4 @@
 	return TRUE
 
 /datum/unit_test/chemical_reactions_shall_not_conflict/get_signal_data(atom/source, list/data = list())
-	result_reactions.Add(C) // Append the reactions that happened, then use that to check their inhibitors
+	result_reactions.Add(data[1]) // Append the reactions that happened, then use that to check their inhibitors
