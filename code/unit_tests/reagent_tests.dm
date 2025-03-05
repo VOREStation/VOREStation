@@ -162,7 +162,7 @@
 		var/decl/chemical_reaction/CR = all_reactions[rtype]
 		if(!fake_beaker)
 			fake_beaker = new /obj
-			fake_beaker.reagents.max_vol = 5000
+			fake_beaker.reagents.maximum_volume = 5000
 		fake_beaker.reagents.clear_reagents()
 
 		if(CR.name == REAGENT_DEVELOPER_WARNING) // Ignore these types as they are meant to be overridden
