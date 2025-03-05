@@ -234,7 +234,8 @@
 				if(istype(CR,/decl/chemical_reaction/distilling))
 					possible_reactions = SSchemistry.distilled_reactions_by_reagent[RR.id]
 				// Multiple chems could make this result... Try em all.
-				for(var/decl/chemical_reaction/test_react in possible_reactions)
+				for(var/chem in possible_reactions)
+					var/decl/chemical_reaction/test_react = possible_reactions[chem]
 					// Some of these reagents mean nothing to us. If nothing has
 					// inhibitors, then we've been blocked out from making this chem.
 					if(!test_react)
