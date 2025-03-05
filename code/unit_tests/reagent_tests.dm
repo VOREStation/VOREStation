@@ -209,7 +209,7 @@
 
 	if(inhib.len) // taken from argument and not reaction! Put in FIRST!
 		for(var/RR in inhib)
-			fake_beaker.reagents.add_reagent(RR, inhib[RR])
+			fake_beaker.reagents.add_reagent(RR, inhib[RR] * 2)
 
 	if(CR.catalysts) // Required for reaction
 		for(var/RR in CR.catalysts)
@@ -219,32 +219,34 @@
 		for(var/RR in CR.required_reagents)
 			fake_beaker.reagents.add_reagent(RR, CR.required_reagents[RR])
 
-	if(!fake_beaker.reagents.has_reagent(CR.result))
-		if(inhib.len)
-			// We've checked with inhibitors, so we're in second phase.
-			// If so we've absolutely failed this time. There is no way to make this...
-			return TRUE
-		else
-			// Container was empty, so something real bad must of happened
-			if(!fake_beaker.reagents.reagent_list.len)
-				return TRUE
-			// Otherwise we check the resulting reagents and use their inhibitor this time!
-			var/list/reset_beaker_reagents = fake_beaker.reagents.reagent_list.Copy()
-			for(var/datum/reagent/RR in fake_beaker.reagents.reagent_list)
-				// Get the reaction type, as SSchem stores two different lists for each reaction type!
-				var/list/possible_reactions = SSchemistry.instant_reactions_by_reagent[RR.id]
-				if(istype(CR,/decl/chemical_reaction/distilling))
-					possible_reactions = SSchemistry.distilled_reactions_by_reagent[RR.id]
-				// Multiple chems could make this result... Try em all.
-				for(var/decl/chemical_reaction/test_react in possible_reactions)
-					// Some of these reagents mean nothing to us. If nothing has
-					// inhibitors, then we've been blocked out from making this chem.
-					if(!test_react)
-						continue
-					if(!test_react.inhibitors.len)
-						continue
-					if(perform_reaction(CR, test_react.inhibitors)) // returns true if it failed!
-						continue
-					return FALSE // DONE!
-			return TRUE
-	return FALSE
+	if(fake_beaker.reagents.has_reagent(CR.result))
+		return FALSE // SUCCESS!
+
+	if(inhib.len)
+		// We've checked with inhibitors, so we're in second phase.
+		// If so we've absolutely failed this time. There is no way to make this...
+		return TRUE
+
+	if(!fake_beaker.reagents.reagent_list.len)
+		// Nothing to check for inhibitors...
+		return TRUE
+
+	// Otherwise we check the resulting reagents and use their inhibitor this time!
+	for(var/datum/reagent/RR in fake_beaker.reagents.reagent_list)
+		// Get the reaction type, as SSchem stores two different lists for each reaction type!
+		var/list/possible_reactions = SSchemistry.instant_reactions_by_reagent[RR.id]
+		if(istype(CR,/decl/chemical_reaction/distilling))
+			possible_reactions = SSchemistry.distilled_reactions_by_reagent[RR.id]
+		// Multiple chems could make this result... Try em all.
+		// Some of these reagents mean nothing to us. If nothing has
+		// inhibitors, then we've been blocked out from making this chem.
+		for(var/decl/chemical_reaction/test_react in possible_reactions)
+			if(!test_react)
+				continue
+			if(!test_react.inhibitors.len)
+				continue
+			if(perform_reaction(CR, test_react.inhibitors)) // returns true if it failed!
+				continue
+			return FALSE // SUCCESS using an inhibitor!
+	// No inhibiting reagent worked...
+	return TRUE
