@@ -1,0 +1,7 @@
+author: "KillianKirilenko"
+delete-after: True
+changes:
+  - rscadd: "added fake coins to loadouts, can be flipped, can't be put in vendors"
+  - rscadd: "added seven new coin types (plus fakes): steel, titanium, copper, durasteel, plasteel, graphite, and lead. some of these are in the random coin spawner."
+  - image: "moved coin icons into their own dmi"
+  - refactor: "a sheet's coin type is now set on the stack obj definition, tidied up the mint code to not be a string of if/else if, and to not require a list of valid materials on the machine, so now it's easier to add new coin types. coin names also use material def names now."
