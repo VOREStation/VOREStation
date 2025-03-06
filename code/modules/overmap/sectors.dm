@@ -233,6 +233,8 @@
 	icon_state = "sector"
 	anchored = TRUE
 
+/obj/effect/overmap/visitable/sector/proc/announce_atc(var/atom/movable/AM, var/going = FALSE) //Base proc. Used for virgo3b at this time.
+	return
 // Because of the way these are spawned, they will potentially have their invisibility adjusted by the turfs they are mapped on
 // prior to being moved to the overmap. This blocks that. Use set_invisibility to adjust invisibility as needed instead.
 /obj/effect/overmap/visitable/sector/hide()
