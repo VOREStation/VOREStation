@@ -28,6 +28,12 @@ GLOBAL_PROTECT(href_token)
 
 	var/deadmined
 
+	var/datum/filter_editor/filteriffic
+	var/datum/particle_editor/particle_test
+
+	/// A lazylist of tagged datums, for quick reference with the View Tags verb
+	var/list/tagged_datums
+
 	var/given_profiling = FALSE
 
 
@@ -249,19 +255,6 @@ you will have to do something like if(client.rights & R_ADMIN) yourself.
 	if(subject?.holder)
 		return subject.holder.check_for_rights(rights_required)
 	return FALSE
-
-/client/proc/mark_datum(datum/D)
-	if(!holder)
-		return
-	if(holder.marked_datum)
-		vv_update_display(holder.marked_datum, "marked", "")
-	holder.marked_datum = D
-	vv_update_display(D, "marked", VV_MSG_MARKED)
-
-/client/proc/mark_datum_mapview(datum/D as mob|obj|turf|area in view(view))
-	set category = "Debug.Game"
-	set name = "Mark Object"
-	mark_datum(D)
 
 /proc/GenerateToken()
 	. = ""
