@@ -39,7 +39,7 @@
 		t1 += "Access requirement is set to "
 		t1 += one_access ? "<a style='color: green' href='byond://?src=\ref[src];one_access=1'>ONE</a><hr>" : "<a style='color: red' href='byond://?src=\ref[src];one_access=1'>ALL</a><hr>"
 
-		t1 += conf_access == null ? "<font color=red>All</font><br>" : "<a href='byond://?src=\ref[src];access=all'>All</a><br>"
+		t1 += conf_access == null ? span_red("All") + "<br>" : "<a href='byond://?src=\ref[src];access=all'>All</a><br>"
 
 		t1 += "<br>"
 

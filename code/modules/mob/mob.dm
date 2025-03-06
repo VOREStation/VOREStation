@@ -467,7 +467,7 @@
 	set category = "OOC.Game"
 	var/is_admin = 0
 
-	if(client.holder && (client.holder.rights & R_ADMIN|R_EVENT))
+	if(check_rights_for(client, R_ADMIN|R_EVENT))
 		is_admin = 1
 	else if(stat != DEAD || isnewplayer(src))
 		to_chat(src, span_filter_notice("[span_blue("You must be observing to use this!")]"))
@@ -1308,3 +1308,8 @@ GLOBAL_LIST_EMPTY_TYPED(living_players_by_zlevel, /list)
 /mob/proc/grab_ghost(force)
 	if(mind)
 		return mind.grab_ghost(force = force)
+
+/mob/is_incorporeal()
+	if(incorporeal_move)
+		return 1
+	return ..()

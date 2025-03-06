@@ -204,7 +204,7 @@ export function TguiSay() {
     if (event.getModifierState('AltGraph')) return;
 
     switch (event.key) {
-      case 'u': // replace with tgui core 1.8.x
+      case 'u':
         if (event.ctrlKey || event.metaKey) {
           event.preventDefault();
           const { value, selectionStart, selectionEnd } = event.currentTarget;
@@ -217,7 +217,7 @@ export function TguiSay() {
           event.currentTarget.selectionEnd = selectionEnd + 2;
         }
         break;
-      case 'i': // replace with tgui core 1.8.x
+      case 'i':
         if (event.ctrlKey || event.metaKey) {
           event.preventDefault();
           const { value, selectionStart, selectionEnd } = event.currentTarget;
@@ -230,7 +230,7 @@ export function TguiSay() {
           event.currentTarget.selectionEnd = selectionEnd + 2;
         }
         break;
-      case 'b': // replace with tgui core 1.8.x
+      case 'b':
         if (event.ctrlKey || event.metaKey) {
           event.preventDefault();
           const { value, selectionStart, selectionEnd } = event.currentTarget;

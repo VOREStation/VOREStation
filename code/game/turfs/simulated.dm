@@ -4,7 +4,7 @@
 	var/image/wet_overlay = null
 
 	//Mining resources (for the large drills).
-	var/has_resources
+	var/turf_resource_types
 	var/list/resources
 
 	var/thermite = 0

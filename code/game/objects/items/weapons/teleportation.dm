@@ -98,7 +98,7 @@ Frequency:
 
 				src.temp += span_bold("You are at \[[sr.x],[sr.y],[sr.z]\]") + " in orbital coordinates.<BR><BR><A href='byond://?src=\ref[src];refresh=1'>Refresh</A><BR>"
 			else
-				src.temp += span_bold("<FONT color='red'>Processing Error:</FONT>") + " Unable to locate orbital position.<BR>"
+				src.temp += span_bold(span_red("Processing Error:")) + " Unable to locate orbital position.<BR>"
 		else
 			if (href_list["freq"])
 				src.frequency += text2num(href_list["freq"])

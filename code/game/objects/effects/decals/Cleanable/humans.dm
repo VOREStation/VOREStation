@@ -23,6 +23,7 @@ var/global/list/image/splatter_cache=list()
 	var/amount = 5
 	generic_filth = TRUE
 	persistent = FALSE
+	var/delete_me = FALSE
 
 /obj/effect/decal/cleanable/blood/reveal_blood()
 	if(!fluorescent)
@@ -37,8 +38,10 @@ var/global/list/image/splatter_cache=list()
 		amount = 0
 	..(ignore=1)
 
-/obj/effect/decal/cleanable/blood/New()
-	..()
+/obj/effect/decal/cleanable/blood/Initialize(mapload)
+	. = ..()
+	if(delete_me)
+		return INITIALIZE_HINT_QDEL
 	update_icon()
 	if(istype(src, /obj/effect/decal/cleanable/blood/gibs))
 		return
@@ -48,7 +51,10 @@ var/global/list/image/splatter_cache=list()
 				if(B != src)
 					if (B.blood_DNA)
 						blood_DNA |= B.blood_DNA.Copy()
-					qdel(B)
+					if(!(B.flags & ATOM_INITIALIZED))
+						B.delete_me = TRUE
+					else
+						qdel(B)
 
 //VOREstation edit - Moved timer call to Init, and made it not call on mapload
 /obj/effect/decal/cleanable/blood/Initialize(mapload, var/_age)
@@ -164,8 +170,8 @@ var/global/list/image/splatter_cache=list()
 	amount = 0
 	var/list/drips = list()
 
-/obj/effect/decal/cleanable/blood/drip/New()
-	..()
+/obj/effect/decal/cleanable/blood/drip/Initialize(mapload)
+	. = ..()
 	drips |= icon_state
 
 /obj/effect/decal/cleanable/blood/writing
@@ -176,8 +182,8 @@ var/global/list/image/splatter_cache=list()
 	amount = 0
 	var/message
 
-/obj/effect/decal/cleanable/blood/writing/New()
-	..()
+/obj/effect/decal/cleanable/blood/writing/Initialize(mapload)
+	. = ..()
 	if(random_icon_states.len)
 		for(var/obj/effect/decal/cleanable/blood/writing/W in loc)
 			random_icon_states.Remove(W.icon_state)

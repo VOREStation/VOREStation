@@ -785,6 +785,9 @@ GLOBAL_LIST_EMPTY(vending_products)
 	if(!target)
 		return 0
 
+	if(target.is_incorporeal()) // Don't shoot at things that aren't there.
+		return 0
+
 	for(var/datum/stored_item/vending_product/R in shuffle(product_records))
 		throw_item = R.get_product(loc)
 		if(!throw_item)

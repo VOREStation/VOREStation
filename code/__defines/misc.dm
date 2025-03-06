@@ -52,6 +52,7 @@
 #define     TOTAL_HUDS 14 // Total number of HUDs. Like body layers, and other things, it comes up sometimes.
 
 #define CLIENT_FROM_VAR(I) (ismob(I) ? I:client : (isclient(I) ? I : null))
+#define CKEY_FROM_VAR(I) ((ismob(I) || isclient(I)) ? I:ckey : null)
 
 //	Shuttles.
 

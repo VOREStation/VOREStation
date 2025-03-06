@@ -112,6 +112,8 @@ GLOBAL_LIST_INIT(diseases, subtypesof(/datum/disease))
 /datum/disease/proc/spread(force_spread = 0)
 	if(!affected_mob)
 		return
+	if(affected_mob.is_incorporeal())
+		return
 
 	if(!(spread_flags & DISEASE_SPREAD_AIRBORNE) && !force_spread)
 		return
@@ -133,6 +135,8 @@ GLOBAL_LIST_INIT(diseases, subtypesof(/datum/disease))
 	var/turf/target = affected_mob.loc
 	if(istype(target))
 		for(var/mob/living/carbon/human/C in oview(spread_range, affected_mob))
+			if(C.is_incorporeal())
+				continue
 			var/turf/current = get_turf(C)
 			if(disease_air_spread_walk(target, current))
 				C.AirborneContractDisease(src, force_spread)
