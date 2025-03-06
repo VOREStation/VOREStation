@@ -83,4 +83,4 @@
 #define BROWSE_ROOT_CURRENT_LOGS 3
 
 /// A value for /datum/admins/cached_feedback_link to indicate empty, rather than unobtained
-#define NO_FEEDBACK_LINK "no_feedback_link
+#define NO_FEEDBACK_LINK "no_feedback_link"
