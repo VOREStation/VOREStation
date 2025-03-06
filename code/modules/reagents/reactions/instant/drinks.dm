@@ -87,7 +87,7 @@
 
 /decl/chemical_reaction/instant/drinks/icecoffee/alt
 	name = "Iced Drip Coffee"
-	id = REAGENT_ID_ICECOFFEE + "_ALT"
+	id = REAGENT_ID_ICECOFFEE + "_drip"
 	result = REAGENT_ID_ICECOFFEE
 	required_reagents = list(REAGENT_ID_ICE = 1, REAGENT_ID_DRIPCOFFEE = 2)
 	result_amount = 3
