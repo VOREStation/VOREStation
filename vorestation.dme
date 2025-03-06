@@ -1432,6 +1432,7 @@
 #include "code\game\objects\items\stacks\tiles\fifty_spawner_tiles.dm"
 #include "code\game\objects\items\stacks\tiles\tile_types.dm"
 #include "code\game\objects\items\toys\balls_vr.dm"
+#include "code\game\objects\items\toys\fake_coin.dm"
 #include "code\game\objects\items\toys\godfigures.dm"
 #include "code\game\objects\items\toys\mech_toys.dm"
 #include "code\game\objects\items\toys\target_toy.dm"
