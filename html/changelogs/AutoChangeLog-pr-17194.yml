@@ -1,0 +1,15 @@
+author: "Diana"
+delete-after: True
+changes:
+  - rscadd: "You can now unwrench pipes that are over-pressurized, at the cost of being flung back."
+  - bugfix: "Atmos analyzers will no longer fail on portable connectors"
+  - bugfix: "No more attempting to blendRGB if we have nothing to blend."
+  - bugfix: "Diseases will not try to copy non-existent vars over."
+  - bugfix: "Recursive explosions no longer runtime if the turf it tries to step into is invalid."
+  - qol: "Health analyzer guide now tells users what to do, no longer requiring medical access. Also some wording changes."
+  - bugfix: "Health analyzer guide no longer runtimes if someone has no viruses."
+  - bugfix: "Cards no longer runtime if you try to pull a card without being a human."
+  - bugfix: "Anything-turned-protean will alert you if it has no humanform"
+  - bugfix: "Tunneler spiders will no longer runtime if the turf they try to tunnel into doesn't exist"
+  - bugfix: "Mannequins now properly get deleted when you observe."
+  - bugfix: "When placing a pipe on a pipeline, the pipeline will no longer lose all the gas within the pipeline. This occurred when you placed a new pipe on a pipeline that had not had not previously had a pipe unwrenched on the pipeline, resulting in the pipes on the pipeline not saving the gas, resulting in all the gas within the pipes on that pipeline being voided."
