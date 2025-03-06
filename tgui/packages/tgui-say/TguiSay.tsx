@@ -372,13 +372,13 @@ export function TguiSay() {
           {buttonContent}
         </button>
         <textarea
+          spellCheck
           autoCorrect="off"
           className={`textarea textarea-${theme}`}
           maxLength={maxLength}
           onInput={handleInput}
           onKeyDown={handleKeyDown}
           ref={innerRef}
-          spellCheck={false}
           rows={ROWS[size] || 1}
           value={value}
         />
