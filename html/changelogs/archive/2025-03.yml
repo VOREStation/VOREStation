@@ -94,3 +94,20 @@
   - rscadd: Tacoguy - Adds Combat Medic Catborg sprite.
   - code_imp: Kash - Robot linter will now properly detect stomach states.
   - code_imp: Diana - Fixes invisible robot sprites.
+2025-03-06:
+  Diana:
+  - rscadd: You no longer hallucinate while absorbed with low blood sugar
+  ItsSelis:
+  - code_imp: updated the minimum compiler version of the project
+  - qol: admin ranks are now datums
+  - admin: admin ranks can be now made out of multiple ranks
+  - server: updates to the database schema and configuration examples
+  Kashargul:
+  - qol: allows chat settings to be ex / imported
+  - qol: allows to prune history of specific tabs
+  - code_imp: resolves some more init and destroy issues
+  SatinIsle:
+  - bugfix: Fixed duplicate APCs in the same area on station maps.
+  - bugfix: Fixed redgate ladders that allowed upwards movement without having a z-level
+      above.
+  - bugfix: More maps fixed for the linter.

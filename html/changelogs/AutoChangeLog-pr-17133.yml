@@ -1,6 +1,0 @@
-author: "ItsSelis"
-delete-after: True
-changes:
-  - qol: "admin ranks are now datums"
-  - admin: "admin ranks can be now made out of multiple ranks"
-  - server: "updates to the database schema and configuration examples"

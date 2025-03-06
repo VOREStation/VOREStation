@@ -1,4 +1,0 @@
-author: "Kashargul"
-delete-after: True
-changes:
-  - code_imp: "resolves some more init and destroy issues"

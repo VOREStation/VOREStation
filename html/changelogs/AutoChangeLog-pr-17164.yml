@@ -1,4 +1,0 @@
-author: "ItsSelis"
-delete-after: True
-changes:
-  - code_imp: "updated the minimum compiler version of the project"

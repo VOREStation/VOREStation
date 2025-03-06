@@ -1,5 +1,0 @@
-author: "Kashargul"
-delete-after: True
-changes:
-  - qol: "allows chat settings to be ex / imported"
-  - qol: "allows to prune history of specific tabs"
