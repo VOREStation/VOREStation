@@ -11,6 +11,10 @@
 	var/wait_time = 60 SECONDS 	// How long to wait until returning the list of candidates.
 	var/cutoff_number = 0		// If above 0, when candidates list reaches this number, further potential candidates are rejected.
 
+/datum/ghost_query/Destroy(force)
+	candidates = null
+	. = ..()
+
 /// Begin the ghost asking
 /datum/ghost_query/proc/query()
 	// First, ask all the ghosts who want to be asked.
@@ -19,20 +23,21 @@
 			ask_question(D)
 
 	// Then wait awhile.
-	while(!finished)
-		sleep(1 SECOND)
-		wait_time -= 1 SECOND
-		if(wait_time <= 0)
-			finished = TRUE
+	if(wait_time)
+		our_timer(wait_time)
+		return
 
-	// Prune the list after the wait, incase any candidates logged out.
-	for(var/mob/observer/dead/D as anything in candidates)
-		if(!evaluate_candidate(D))
-			candidates -= D
+/datum/ghost_query/proc/our_timer(var/current_wait_time)
+	if(current_wait_time)
+		addtimer(CALLBACK(src, PROC_REF(our_timer), FALSE), current_wait_time, TIMER_DELETE_ME)
+	else
+		for(var/mob/observer/dead/D as anything in candidates)
+			if(!evaluate_candidate(D))
+				candidates -= D
+		finished = TRUE
+		SEND_SIGNAL(src, COMSIG_GHOST_QUERY_COMPLETE)
 
-	// Now we're done.
-	finished = TRUE
-	return candidates
+
 
 /// Test a candidate for allowance to join as this
 /datum/ghost_query/proc/evaluate_candidate(mob/observer/dead/candidate)
@@ -52,10 +57,8 @@
 
 /// Send async alerts and ask for responses. Expects you to have tested D for client and type already
 /datum/ghost_query/proc/ask_question(var/mob/observer/dead/D)
-	//VOREStation Add Start		Check the ban status before we ask
 	if(jobban_isbanned(D, JOB_GHOSTROLES))
 		return
-	//VOREStation Add End
 
 	var/client/C = D.client
 	window_flash(C)
