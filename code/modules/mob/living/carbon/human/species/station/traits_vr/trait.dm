@@ -49,7 +49,7 @@
 	ASSERT(S)
 	if(var_changes)
 		for(var/V in var_changes)
-			if(V == "flags") // Is bitflag
+			if(V == "flags") // Is bitflag, implimentation means traits can only GIVE you flags, not remove them.
 				S.vars[V] |= var_changes[V]
 			else
 				S.vars[V] = var_changes[V]
@@ -80,13 +80,9 @@
 	ASSERT(S)
 	if(var_changes)
 		for(var/V in var_changes)
-			if(V == "flags") // Is bitflag
-				// Remove the flag with inverted and
-				S.vars[V] &= ~var_changes[V]
-				// Isolate the flag we change, only enabled if we had it to begin with
-				var/org_flags = initial(S.vars[V])
-				var/masked_org = org_flags & var_changes[V]
-				S.vars[V] |= masked_org
+			if(V == "flags") // Is bitflag, this assumes traits can only ever GIVE you flags.
+				if(!(initial(S.vars[V]) & var_changes[V]))
+					S.vars[V] &= ~var_changes[V]
 			else
 				S.vars[V] = initial(S.vars[V])
 	if (trait_prefs)
