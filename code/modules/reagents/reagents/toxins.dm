@@ -14,16 +14,16 @@
 	var/skin_danger = 0.2 // The multiplier for how effective the toxin is when making skin contact.
 
 /datum/reagent/toxin/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	strength *= M.species.chem_strength_tox
+	var/poison_strength = strength * M.species.chem_strength_tox
 	if(strength && alien != IS_DIONA)
 		if(issmall(M)) removed *= 2 // Small bodymass, more effect from lower volume.
 		if(alien == IS_SLIME)
 			removed *= 0.25 // Results in half the standard tox as normal. Prometheans are 'Small' for flaps.
 			if(dose >= 10)
-				M.adjust_nutrition(strength * removed) // Body has to deal with the massive influx of toxins, rather than try using them to repair.
+				M.adjust_nutrition(poison_strength * removed) // Body has to deal with the massive influx of toxins, rather than try using them to repair.
 			else
-				M.heal_organ_damage((10/strength) * removed, (10/strength) * removed) //Doses of toxins below 10 units, and 10 strength, are capable of providing useful compounds for repair.
-		M.adjustToxLoss(strength * removed)
+				M.heal_organ_damage((10/poison_strength) * removed, (10/poison_strength) * removed) //Doses of toxins below 10 units, and 10 strength, are capable of providing useful compounds for repair.
+		M.adjustToxLoss(poison_strength * removed)
 
 /datum/reagent/toxin/affect_touch(var/mob/living/carbon/M, var/alien, var/removed)
 	affect_blood(M, alien, removed * 0.2)
@@ -662,12 +662,14 @@
 	if(alien == IS_DIONA)
 		return
 
-	var/threshold = 1 * M.species.chem_strength_tox
+	var/threshold = 1
+	if(M.species.chem_strength_tox > 0) //Closer to 0 means they're more resistant to toxins. Higher than 1 means they're weaker to toxins.
+		threshold /= M.species.chem_strength_tox //Ex: If you have a CST of 0.01 (100x resistant) threshold will = 100
 	if(alien == IS_SKRELL)
-		threshold = 1.2
+		threshold /= 1.2
 
 	if(alien == IS_SLIME)
-		threshold = 6	//Evens to 3 due to the fact they are considered 'small' for flaps.
+		threshold /= 6	//Evens to 3 due to the fact they are considered 'small' for flaps.
 
 	var/effective_dose = dose
 	if(issmall(M))
@@ -710,12 +712,14 @@
 	if(alien == IS_DIONA)
 		return
 
-	var/threshold = 1 * M.species.chem_strength_tox
+	var/threshold = 1
+	if(M.species.chem_strength_tox > 0) //Closer to 0 means they're more resistant to toxins. Higher than 1 means they're weaker to toxins.
+		threshold /= M.species.chem_strength_tox //Ex: If you have a CST of 0.01 (100x resistant) threshold will = 100
 	if(alien == IS_SKRELL)
-		threshold = 1.2
+		threshold /= 1.2
 
 	if(alien == IS_SLIME)
-		threshold = 6	//Evens to 3 due to the fact they are considered 'small' for flaps.
+		threshold /= 6	//Evens to 3 due to the fact they are considered 'small' for flaps.
 
 	var/effective_dose = dose
 	if(issmall(M))
@@ -804,13 +808,14 @@
 /datum/reagent/cryptobiolin/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(alien == IS_DIONA)
 		return
-	var/drug_strength = 4 * M.species.chem_strength_tox
-
+	var/drug_strength = 4
+	if(M.species.chem_strength_tox > 0) //Closer to 0 means they're more resistant to toxins. Higher than 1 means they're weaker to toxins.
+		drug_strength /= M.species.chem_strength_tox //Ex: If you have a CST of 0.01 (100x resistant) threshold will = 100
 	if(alien == IS_SKRELL)
-		drug_strength = drug_strength * 0.8
+		drug_strength /= 1.2
 
 	if(alien == IS_SLIME)
-		drug_strength = drug_strength * 1.2
+		drug_strength /= 6
 
 	M.make_dizzy(drug_strength)
 	M.Confuse(drug_strength * 5)
@@ -839,24 +844,27 @@
 /datum/reagent/mindbreaker
 	name = REAGENT_MINDBREAKER
 	id = REAGENT_ID_MINDBREAKER
-	description = "A powerful hallucinogen, it can cause fatal effects in users."
+	description = "A powerful hallucinogen that causes immediate, prolonged hallucinations in its users."
 	taste_description = "sourness"
 	reagent_state = LIQUID
 	color = "#B31008"
-	metabolism = REM * 0.25
+	metabolism = REM * 4 //0.8 per second...This is an 'immediate effect' drug that you hit someone with and they have effects for a prolonged period after.
 	overdose = REAGENTS_OVERDOSE
 
 /datum/reagent/mindbreaker/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(alien == IS_DIONA)
 		return
 
-	var/drug_strength = 100 * M.species.chem_strength_tox
-
+	var/drug_strength = 100
+	if(M.species.chem_strength_tox > 0) //Closer to 0 means they're more resistant to toxins. Higher than 1 means they're weaker to toxins.
+		drug_strength /= M.species.chem_strength_tox //Ex: If you have a CST of 0.01 (100x resistant) drug_strength would = 10000
 	if(alien == IS_SKRELL)
-		drug_strength *= 0.8
+		drug_strength /= 1.2
 
 	if(alien == IS_SLIME)
-		drug_strength *= 1.2
+		drug_strength /= 6
+
+	drug_strength = CLAMP(drug_strength, 0, 150) //Let's not have users be hallucinating more than 5 minutes.
 
 	M.hallucination = max(M.hallucination, drug_strength)
 
