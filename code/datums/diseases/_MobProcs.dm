@@ -168,7 +168,7 @@
 	set name = "Release Virus"
 	set desc = "Release a pre-set virus."
 
-	if(!is_admin())
+	if(!check_rights(R_FUN|R_EVENT))
 		return FALSE
 
 	var/disease = tgui_input_list(usr, "Choose virus", "Viruses", subtypesof(/datum/disease), subtypesof(/datum/disease))
