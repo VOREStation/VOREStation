@@ -24,6 +24,10 @@
 			log_unit_test("[Rpath]: Reagents - reagent ID blank.")
 			failed = TRUE
 
+		if(R.id != lowertext(R.id))
+			log_unit_test("[Rpath]: Reagents - Reagent ID must be all lowercase.")
+			failed = TRUE
+
 		if(collection_name[R.name])
 			log_unit_test("[Rpath]: Reagents - WARNING - reagent name \"[R.name]\" is not unique, used first in [collection_name[R.name]]. Is this intentional?")
 		collection_name[R.name] = R.type
@@ -69,17 +73,21 @@
 			failed = TRUE
 
 		if(!CR.id)
-			log_unit_test("[CR.type]: Reagents - chemical reaction had invalid id.")
+			log_unit_test("[CR.type]: Reagents - chemical reaction had invalid ID.")
+			failed = TRUE
+
+		if(CR.id != lowertext(CR.id))
+			log_unit_test("[CR.type]: Reagents - chemical reaction ID must be all lowercase.")
 			failed = TRUE
 
 		if(CR.id in collection_id)
-			log_unit_test("[CR.type]: Reagents - chemical reaction id \"[CR.name]\" is not unique, used first in [collection_id[CR.id]].")
+			log_unit_test("[CR.type]: Reagents - chemical reaction ID \"[CR.name]\" is not unique, used first in [collection_id[CR.id]].")
 			failed = TRUE
 		else
 			collection_id[CR.id] = CR.type
 
 		if(CR.result_amount < 0)
-			log_unit_test("[CR.type]: Reagents - chemical reaction id \"[CR.name]\" had less than 0 as as result_amount?")
+			log_unit_test("[CR.type]: Reagents - chemical reaction ID \"[CR.name]\" had less than 0 as as result_amount?")
 			failed = TRUE
 
 		if(CR.required_reagents && CR.required_reagents.len)
