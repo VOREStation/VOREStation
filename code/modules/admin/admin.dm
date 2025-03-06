@@ -7,7 +7,7 @@ var/global/floorIsLava = 0
 	//log_adminwarn(msg) //log_and_message_admins is for this
 
 	for(var/client/C in GLOB.admins)
-		if((R_ADMIN|R_MOD) & C.holder.rights)
+		if(check_rights_for(C, (R_ADMIN|R_MOD|R_SERVER)))
 			to_chat(C,
 					type = MESSAGE_TYPE_ADMINLOG,
 					html = msg,
@@ -16,7 +16,7 @@ var/global/floorIsLava = 0
 /proc/msg_admin_attack(var/text) //Toggleable Attack Messages
 	var/rendered = span_filter_attacklog(span_log_message(span_prefix("ATTACK:") + span_message("[text]")))
 	for(var/client/C in GLOB.admins)
-		if((R_ADMIN|R_MOD) & C.holder.rights)
+		if(check_rights_for(C, (R_ADMIN|R_MOD)))
 			if(C.prefs?.read_preference(/datum/preference/toggle/show_attack_logs))
 				var/msg = rendered
 				to_chat(C,
@@ -26,8 +26,16 @@ var/global/floorIsLava = 0
 
 /proc/admin_notice(var/message, var/rights)
 	for(var/mob/M in mob_list)
-		if(check_rights(rights, 0, M))
-			to_chat(M,message)
+		var/C = M.client
+
+		if(!C)
+			return
+
+		if(!(istype(C, /client)))
+			return
+
+		if(check_rights_for(C, rights))
+			to_chat(C, message)
 
 ///////////////////////////////////////////////////////////////////////////////////////////////Panels
 
@@ -49,7 +57,7 @@ var/global/floorIsLava = 0
 	body += "<body>Options panel for" + span_bold("[M]")
 	if(M.client)
 		body += " played by " + span_bold("[M.client]")
-		body += "\[<A href='byond://?src=\ref[src];[HrefToken()];editrights=show'>[M.client.holder ? M.client.holder.rank : "Player"]</A>\]"
+		body += "\[<A href='byond://?src=\ref[src];[HrefToken()];editrights=show'>[M.client.holder ? M.client.holder.rank_names() : "Player"]</A>\]"
 
 	if(isnewplayer(M))
 		body += span_bold(" Hasn't Entered Game")
@@ -1353,7 +1361,7 @@ var/datum/announcement/minor/admin_min_announcer = new
 	if(istype(whom, /mob))
 		M = whom
 		C = M.client
-	if(R_HOST & C.holder.rights)
+	if(check_rights_for(C, R_HOST))
 		return 1
 	else
 		return 0
@@ -1562,12 +1570,12 @@ var/datum/announcement/minor/admin_min_announcer = new
 		if(P.sender) // sent as a reply
 			log_admin("[key_name(src.owner)] replied to a fax message from [key_name(P.sender)]")
 			for(var/client/C in GLOB.admins)
-				if((R_ADMIN | R_MOD | R_EVENT) & C.holder.rights)
+				if(check_rights_for(C, (R_ADMIN | R_MOD | R_EVENT)))
 					to_chat(C, span_log_message("[span_prefix("FAX LOG:")][key_name_admin(src.owner)] replied to a fax message from [key_name_admin(P.sender)] (<a href='byond://?_src_=holder;[HrefToken()];AdminFaxView=\ref[rcvdcopy]'>VIEW</a>)"))
 		else
 			log_admin("[key_name(src.owner)] has sent a fax message to [destination.department]")
 			for(var/client/C in GLOB.admins)
-				if((R_ADMIN | R_MOD | R_EVENT) & C.holder.rights)
+				if(check_rights_for(C, (R_ADMIN | R_MOD | R_EVENT)))
 					to_chat(C, span_log_message("[span_prefix("FAX LOG:")][key_name_admin(src.owner)] has sent a fax message to [destination.department] (<a href='byond://?_src_=holder;[HrefToken()];AdminFaxView=\ref[rcvdcopy]'>VIEW</a>)"))
 
 		var/plaintext_title = P.sender ? "replied to [key_name(P.sender)]'s fax" : "sent a fax message to [destination.department]"
@@ -1590,3 +1598,18 @@ var/datum/announcement/minor/admin_min_announcer = new
 		qdel(P)
 		faxreply = null
 	return
+
+/datum/admins/proc/set_uplink(mob/living/carbon/human/H as mob)
+	set category = "Debug.Events"
+	set name = "Set Uplink"
+	set desc = "Allows admins to set up an uplink on a character. This will be required for a character to use telecrystals."
+	set popup_menu = FALSE
+
+	if(check_rights(R_ADMIN|R_DEBUG))
+		traitors.spawn_uplink(H)
+		H.mind.tcrystals = DEFAULT_TELECRYSTAL_AMOUNT
+		H.mind.accept_tcrystals = 1
+		var/msg = "[key_name(usr)] has given [H.ckey] an uplink."
+		message_admins(msg)
+	else
+		to_chat(usr, "You do not have access to this command.")
