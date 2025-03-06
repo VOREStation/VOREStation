@@ -1,0 +1,16 @@
+author: "Diana"
+delete-after: True
+changes:
+  - qol: "Reworks the medical kiosk to have use. It now dispenses small amounts of painpills and medications to help stabilize you to get you to medical before you croak."
+  - qol: "Lungs no longer IMMEDIATELY risk popping if you forget internals for one second. You now have gradually accumulate damage over time. Get those internals on quick!"
+  - qol: "Infections now give you a better alert that it's an INFECTION you have instead of just a random 'you feel itchy' so players are less blindsided by infections."
+  - qol: "Adjusts the text that you get when you suffer internal bleeding. Now it sticks out more during fights so you can know you have IB and get to medical quicker."
+  - rscadd: "Makes the medical kiosk actually DETECT more issues than before. Now it actually does a full body scan on you to see what's wrong with you!"
+  - qol: "Crayons and markers are no longer the strongest poison in the game. One crayon won't OD you anymore, but two will. One marker can still OD you with disaster effects if you eat it entirely. OORAH"
+  - bugfix: "Crayons and markers get properly added to your stomach"
+  - bugfix: "inaprovaline PROPERLY affects internal bleeding now."
+  - qol: "Putting pressure on an external wound will put some pressure on arterial bleeds as well, helping decrease (but not entirely stop) bloodloss."
+  - qol: "Vox can be defibbed."
+  - code_imp: "Changes a few sections in the code to use REAGENTS_OVERDOSE instead of just a plain number."
+  - code_imp: "Gets rid of a few //EDIT comments for better code quality."
+  - code_imp: "Moved internal wound handling to handle_blood()"
