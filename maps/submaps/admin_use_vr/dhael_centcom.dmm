@@ -13505,11 +13505,7 @@
 /area/centcom/bar)
 "zZ" = (
 /obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/snacks/toastedsandwich{
-	pixel_w = 0;
-	pixel_x = 0;
-	pixel_y = 10
-	},
+/obj/item/reagent_containers/food/snacks/toastedsandwich,
 /turf/unsimulated/floor/steel{
 	icon = 'icons/turf/floors_vr.dmi';
 	icon_state = "wood"

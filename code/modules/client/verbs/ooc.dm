@@ -51,13 +51,13 @@
 	if(holder && !holder.fakekey)
 		ooc_style = "elevated"
 
-		if(holder.rights & R_EVENT) //Retired Admins
+		if(check_rights(R_EVENT)) //Retired Admins
 			ooc_style = "event_manager"
-		if(holder.rights & R_ADMIN && !(holder.rights & R_BAN)) //Game Masters
+		if(check_rights(R_ADMIN) && !(check_rights(R_BAN))) //Game Masters
 			ooc_style = "moderator"
-		if(holder.rights & R_SERVER && !(holder.rights & R_BAN)) //Developers
+		if(check_rights(R_SERVER) && !(check_rights(R_BAN))) //Developers
 			ooc_style = "developer"
-		if(holder.rights & R_ADMIN && holder.rights & R_BAN) //Admins
+		if(check_rights(R_ADMIN) && check_rights(R_BAN)) //Admins
 			ooc_style = "admin"
 
 	msg = GLOB.is_valid_url.Replace(msg,span_linkify("$1"))
@@ -74,7 +74,7 @@
 					else
 						display_name = holder.fakekey
 			var/pref_color = prefs.read_preference(/datum/preference/color/ooc_color)
-			if(holder && !holder.fakekey && (holder.rights & R_ADMIN|R_FUN|R_EVENT) && CONFIG_GET(flag/allow_admin_ooccolor) && pref_color != "#010000") // keeping this for the badmins
+			if(holder && !holder.fakekey && (check_rights(R_ADMIN|R_FUN|R_EVENT)) && CONFIG_GET(flag/allow_admin_ooccolor) && pref_color != "#010000") // keeping this for the badmins
 				to_chat(target, span_ooc("<font color='[pref_color]'>" + create_text_tag("ooc", "OOC:", target) + " <EM>[display_name]:</EM> [span_message(msg)]</font>"))
 			else
 				to_chat(target, span_ooc("<span class='[ooc_style]'>" + create_text_tag("ooc", "OOC:", target) + " <EM>[display_name]:</EM> " + span_message(msg)) + "</span>")
@@ -163,7 +163,7 @@
 	// Admins with RLOOC displayed who weren't already in
 	for(var/client/admin in GLOB.admins)
 		if(!(admin in receivers) && admin.prefs?.read_preference(/datum/preference/toggle/holder/show_rlooc))
-			if(check_rights(R_SERVER, FALSE, admin)) //Stop rLOOC showing for retired staff
+			if(check_rights_for(admin, R_SERVER)) //Stop rLOOC showing for retired staff
 				r_receivers |= admin
 
 	msg = GLOB.is_valid_url.Replace(msg,span_linkify("$1"))

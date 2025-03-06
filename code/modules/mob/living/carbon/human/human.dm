@@ -67,6 +67,7 @@
 		sync_dna_traits(FALSE) // Traitgenes Sync traits to genetics if needed
 		sync_organ_dna()
 	initialize_vessel()
+	regenerate_icons()
 
 	AddComponent(/datum/component/personal_crafting)
 
@@ -1342,7 +1343,6 @@
 
 /mob/living/carbon/human/proc/initialize_vessel() //This needs fixing. For some reason mob species is not immediately set in set_species.
 	SHOULD_NOT_OVERRIDE(TRUE)
-	regenerate_icons()
 	make_blood()
 	if(vessel.total_volume < species.blood_volume)
 		vessel.maximum_volume = species.blood_volume
@@ -1833,21 +1833,19 @@
 /mob/living/carbon/human/get_mob_riding_slots()
 	return list(back, head, wear_suit)
 
-/mob/living/carbon/human/verb/lay_down_left()
-	set name = "Rest-Left"
+/mob/living/carbon/human/verb/flip_lying()
+	set name = "Flip Resting Direction"
+	set category = "Abilities.General"
+	set desc = "Switch your horizontal direction while prone."
 
-	rest_dir = 1
-	resting = !resting
-	to_chat(src, span_notice("You are now [resting ? "resting" : "getting up"]."))
-	update_canmove()
+	if(stat || paralysis || weakened || stunned || world.time < last_special)
+		to_chat(src, span_warning("You can't do that in your current state."))
+		return
 
-/mob/living/carbon/human/verb/lay_down_right()
-	set name = "Rest-Right"
-
-	rest_dir = 0
-	resting = !resting
-	to_chat(src, span_notice("You are now [resting ? "resting" : "getting up"]."))
-	update_canmove()
+	if(isnull(rest_dir))
+		rest_dir = FALSE
+	rest_dir = !rest_dir
+	update_transform(TRUE)
 
 /mob/living/carbon/human/get_digestion_nutrition_modifier()
 	return species.digestion_nutrition_modifier

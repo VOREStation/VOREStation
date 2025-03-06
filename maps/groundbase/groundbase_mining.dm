@@ -39,13 +39,3 @@
 
 /datum/random_map/noise/ore/mining/check_map_sanity()
 	return 1 //Totally random, but probably beneficial.
-
-/area/gb_mine/
-	ambience = list('sound/ambience/ambimine.ogg', 'sound/ambience/song_game.ogg')
-	base_turf = /turf/simulated/mineral/floor
-/area/gb_mine/unexplored
-	name = "Virgo 3c Underground"
-	icon_state = "unexplored"
-/area/gb_mine/explored
-	name = "Virgo 3c Underground"
-	icon_state = "explored"

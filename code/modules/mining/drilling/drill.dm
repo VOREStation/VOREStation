@@ -164,7 +164,7 @@
 		var/turf/simulated/harvesting = pick(resource_field)
 
 		while(resource_field.len && !harvesting.resources)
-			harvesting.has_resources = 0
+			harvesting.turf_resource_types &= ~(TURF_HAS_MINERALS)
 			harvesting.resources = null
 			resource_field -= harvesting
 			if(resource_field.len) // runtime protection
@@ -209,7 +209,7 @@
 					current_capacity++	// Adds the ore to the drill's capacity.
 
 		if(!found_resource)	// If a drill can't see an advanced material, it will destroy it while going through.
-			harvesting.has_resources = 0
+			harvesting.turf_resource_types &= ~(TURF_HAS_MINERALS)
 			harvesting.resources = null
 			resource_field -= harvesting
 	else
@@ -377,7 +377,7 @@
 		for(var/ix = 0, ix < drill_range, ix++)
 			mine_turf = locate(tx + ix, ty + iy, T.z)
 			if(!istype(mine_turf, /turf/space/))
-				if(mine_turf && mine_turf.has_resources)
+				if(mine_turf && mine_turf.turf_resource_types & TURF_HAS_MINERALS)
 					resource_field += mine_turf
 
 	if(!resource_field.len)

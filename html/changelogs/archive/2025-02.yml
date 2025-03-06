@@ -73,3 +73,25 @@
       through walls
   - qol: Teshari's and Xenochimera's 'listen in' verb has been upgraded to the new
       listen-in trait
+2025-02-28:
+  Diana:
+  - bugfix: Makes it so you can attack without hands
+  - bugfix: Fixes grabbing a buckled entity to cause you to be perma-slowed
+  - bugfix: You will no longer bleed to death from a headbutt
+  - code_imp: Removes attack_paw
+  - code_imp: Makes the attack_hand code less garbage
+  TheCaramelion:
+  - rscadd: You can now point at things in your inventory
+  - refactor: Refactored pointing
+  Will:
+  - code_imp: Trasheater is no longer an abomination to look at in the code
+  Will, Diana, Kash.:
+  - code_imp: There is now a unit test that will ENSURE every borg sprite from this
+      point forwards in time will have proper sprites. - Will
+  - bugfix: Fixes a LOT of broken sprites. - Diana
+  - rscadd: Adds variant catborgs (old variant), Dullahan variants
+  - rscadd: A BUNCH of sprites
+  - rscadd: Up-ports the Stoat and Possum from Outpost
+  - rscadd: Worm Borgs now have better sprites
+  - rscadd: More than one decal can be added to borgs
+  - qol: Surgery and crisis combined

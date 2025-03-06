@@ -4,6 +4,7 @@ SUBSYSTEM_DEF(motiontracker)
 	wait = 1 SECOND
 	runlevels = RUNLEVEL_GAME | RUNLEVEL_POSTGAME
 	flags = SS_NO_INIT
+	var/hide_all = FALSE // Hide and seek mode
 	var/min_range = 2
 	var/max_range = 8
 	var/all_echos_round = 0
@@ -20,7 +21,10 @@ SUBSYSTEM_DEF(motiontracker)
 			count = track_list.len
 		else
 			count = 1 // listen_lookup optimizes single entries into just returning the only thing
-	msg = "L: [count] | Q: [queued_echo_turfs.len] | A: [all_echos_round]/[all_pings_round]"
+	if(hide_all)
+		msg = "HIDE AND SEEK"
+	else
+		msg = "L: [count] | Q: [queued_echo_turfs.len] | A: [all_echos_round]/[all_pings_round]"
 	return ..()
 
 /datum/controller/subsystem/motiontracker/fire(resumed = 0)
@@ -53,6 +57,8 @@ SUBSYSTEM_DEF(motiontracker)
 // We get this from anything in the world that would cause a motion tracker ping
 // From sounds to motions, to mob attacks. This then sends a signal to anyone listening.
 /datum/controller/subsystem/motiontracker/proc/ping(var/atom/source, var/hear_chance = 30)
+	if(hide_all) // No pings, admins turned us off
+		return
 	var/turf/T = get_turf(source)
 	if(!isturf(T)) // ONLY call from turfs
 		return
