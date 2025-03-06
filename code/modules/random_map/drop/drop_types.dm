@@ -230,7 +230,9 @@ var/global/list/datum/supply_drop_loot/supply_drop
 		/obj/item/toy/katana,
 		/obj/item/toy/katana,
 		/obj/item/inflatable_duck,
-		/obj/item/inflatable_duck)
+		/obj/item/inflatable_duck,
+		/obj/item/toy/plushie/tinytin,
+		/obj/item/toy/plushie/tinytin_sec)
 
 /datum/supply_drop_loot/christmas
 	name = "Surplus Christmas Supplies"
