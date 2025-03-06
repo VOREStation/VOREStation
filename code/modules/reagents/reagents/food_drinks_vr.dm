@@ -729,7 +729,7 @@
 
 	glass_name = REAGENT_ID_NUKIE
 	glass_desc = "A drink to perk you up and refresh you!"
-	overdose = 30
+	overdose = REAGENTS_OVERDOSE
 
 	taste_description = "flavourless energy"
 
