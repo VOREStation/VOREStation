@@ -23750,12 +23750,6 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/machinery/power/apc{
-	name = "south bump";
-	nightshift_setting = 0;
-	pixel_y = -28;
-	req_access = list(67)
-	},
 /obj/effect/floor_decal/borderfloorwhite,
 /obj/effect/floor_decal/corner/paleblue/border,
 /obj/effect/floor_decal/borderfloorwhite/corner2,
@@ -33569,11 +33563,6 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/tether/surfacebase/topairlock)
 "bhV" = (
-/obj/machinery/power/apc{
-	dir = 1;
-	name = "north bump";
-	pixel_y = 28
-	},
 /obj/structure/cable/orange{
 	icon_state = "0-2"
 	},
