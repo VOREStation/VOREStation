@@ -79,12 +79,12 @@
 		to_chat(ghost, span_warning("You are not whitelisted to spawn as this species!"))
 		return
 
-	/* // Comments out NO_SCAN restriction, as per headmin/maintainer request.
+	/* // Comments out NO_SLEEVE restriction, as per headmin/maintainer request.
 	var/datum/species/chosen_species
 	if(ghost.client.prefs.species) // In case we somehow don't have a species set here.
 		chosen_species = GLOB.all_species[ghost_client.prefs.species]
 
-	if(chosen_species.flags && NO_SCAN) // Sanity. Prevents species like Xenochimera, Proteans, etc from rejoining the round via resleeve, as they should have their own methods of doing so already, as agreed to when you whitelist as them.
+	if(chosen_species.flags && NO_SLEEVE) // Sanity. Prevents species like Xenochimera, Proteans, etc from rejoining the round via resleeve, as they should have their own methods of doing so already, as agreed to when you whitelist as them.
 		to_chat(ghost, span_warning("This species cannot be resleeved!"))
 		return
 	*/

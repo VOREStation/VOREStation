@@ -49,7 +49,10 @@
 	ASSERT(S)
 	if(var_changes)
 		for(var/V in var_changes)
-			S.vars[V] = var_changes[V]
+			if(V == "flags") // Is bitflag, implimentation means traits can only GIVE you flags, not remove them.
+				S.vars[V] |= var_changes[V]
+			else
+				S.vars[V] = var_changes[V]
 	if (trait_prefs)
 		for (var/trait in trait_prefs)
 			switch(has_preferences[trait][3])
@@ -77,7 +80,11 @@
 	ASSERT(S)
 	if(var_changes)
 		for(var/V in var_changes)
-			S.vars[V] = initial(S.vars[V])
+			if(V == "flags") // Is bitflag, this assumes traits can only ever GIVE you flags.
+				if(!(initial(S.vars[V]) & var_changes[V]))
+					S.vars[V] &= ~var_changes[V]
+			else
+				S.vars[V] = initial(S.vars[V])
 	if (trait_prefs)
 		for (var/trait in trait_prefs)
 			switch(has_preferences[trait][3])

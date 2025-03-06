@@ -23,12 +23,12 @@
 // Give Random Bad Mutation to M
 /proc/randmutb(var/mob/living/M)
 	if(!M || !(M.dna)) return
-	// Traitgenes NO_SCAN and Synthetics cannot be mutated
+	// Traitgenes NO_DNA and Synthetics cannot be mutated
 	if(M.isSynthetic())
 		return
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
-		if(!H.species || H.species.flags & NO_SCAN)
+		if(!H.species || H.species.flags & NO_DNA)
 			return
 	M.dna.check_integrity()
 	// Traitgenes Pick from bad traitgenes
@@ -38,12 +38,12 @@
 // Give Random Good Mutation to M
 /proc/randmutg(var/mob/living/M)
 	if(!M || !(M.dna)) return
-	// Traitgenes NO_SCAN and Synthetics cannot be mutated
+	// Traitgenes NO_DNA and Synthetics cannot be mutated
 	if(M.isSynthetic())
 		return
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
-		if(!H.species || H.species.flags & NO_SCAN)
+		if(!H.species || H.species.flags & NO_DNA)
 			return
 	M.dna.check_integrity()
 	// Traitgenes Pick from good traitgenes
@@ -53,12 +53,12 @@
 // Scramble UI or SE.
 /proc/scramble(var/UI, var/mob/M, var/prob)
 	if(!M || !(M.dna))	return
-	// Traitgenes edit begin - NO_SCAN and Synthetics cannot be mutated
+	// Traitgenes edit begin - NO_DNA and Synthetics cannot be mutated
 	if(M.isSynthetic())
 		return
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
-		if(!H.species || H.species.flags & NO_SCAN)
+		if(!H.species || H.species.flags & NO_DNA)
 			return
 	// Traitgenes edit end
 	M.dna.check_integrity()
