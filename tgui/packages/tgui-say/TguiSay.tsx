@@ -20,6 +20,8 @@ import { byondMessages } from './timers';
 
 type ByondOpen = {
   channel: Channel;
+  minimumWidth: number;
+  minimumHeight: number;
 };
 
 type ByondProps = {
@@ -287,8 +289,8 @@ export function TguiSay() {
   function handleOpen(data: ByondOpen): void {
     setTimeout(() => {
       innerRef.current?.focus();
-      windowSet(WindowSize.Width, WindowSize.Small);
-      setSize(WindowSize.Width);
+      setSize(minimumHeight);
+      windowSet(minimumWidth, minimumHeight);
     }, 1);
 
     const { channel } = data;
@@ -339,7 +341,7 @@ export function TguiSay() {
     } else {
       newSize = WindowSize.Small;
     }
-    newSize = clamp(newSize, minimumHeight * 20 + 10, WindowSize.Max);
+    newSize = clamp(newSize, minimumHeight, WindowSize.Max);
 
     if (size !== newSize) {
       setSize(newSize);
@@ -380,6 +382,14 @@ export function TguiSay() {
           rows={ROWS[size] || 1}
           value={value}
         />
+        <button
+          key="escape"
+          className={`button button-${theme}`}
+          onClick={handleClose}
+          type="submit"
+        >
+          X
+        </button>
       </div>
     </>
   );
