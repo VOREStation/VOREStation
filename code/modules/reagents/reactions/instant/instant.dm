@@ -683,7 +683,7 @@
 
 /decl/chemical_reaction/instant/carpetify/pcarpet
 	name = "Purple Carpet"
-	id = "Purplecarpet"
+	id = "purplecarpet"
 	required_reagents = list(REAGENT_ID_LIQUIDCARPETP = 2, REAGENT_ID_PLASTICIDE = 1)
 	carpet_type = /obj/item/stack/tile/carpet/purcarpet
 
