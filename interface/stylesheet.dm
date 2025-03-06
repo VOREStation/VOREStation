@@ -181,4 +181,10 @@ BIG IMG.icon 			{width: 32px; height: 32px;}
 .pnarrate				{color: #009AB2;}
 
 
+.brute					{color: #FF3333;}
+.burn					{color: #FF9933;}
+.tox					{color: #00CC66;}
+.oxy					{color: #0053FA;}
+.clone					{color: #00CCCC;}
+
 </style>"}

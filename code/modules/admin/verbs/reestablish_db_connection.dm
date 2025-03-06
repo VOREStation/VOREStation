@@ -14,7 +14,7 @@ ADMIN_VERB(reestablish_db_connection, R_NONE, "Reestablish DB Connection", "Atte
 
 		SSdbcore.Disconnect()
 		log_admin("[key_name(user)] has forced the database to disconnect")
-		message_admins("[key_name_admin(user)] has <b>forced</b> the database to disconnect!")
+		message_admins("[key_name_admin(user)] has " + span_bold("forced") + " the database to disconnect!")
 		//BLACKBOX_LOG_ADMIN_VERB("Force Reestablished Database Connection")
 
 	log_admin("[key_name(user)] is attempting to re-establish the DB Connection")

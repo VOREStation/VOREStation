@@ -1,7 +1,7 @@
 /// Shows a header name on top when you investigate an appearance/image
 /image/vv_get_header()
 	. = list()
-	var/icon_name = "<b>[icon || "null"]</b><br/>"
+	var/icon_name = span_bold("[icon || "null"]") + "<br/>"
 	. += replacetext(icon_name, "icons/obj", "") // shortens the name. We know the path already.
 	if(icon)
 		. += icon_state ? "\"[icon_state]\"" : "(icon_state = null)"

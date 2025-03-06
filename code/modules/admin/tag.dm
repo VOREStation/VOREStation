@@ -40,14 +40,15 @@
 		to_chat(owner, span_warning("[target_datum] was not already tagged."))
 
 /// Quick define for readability
-#define TAG_DEL(X) "<b>(<A href='byond://?_src_=holder;[HrefToken(forceGlobal = TRUE)];del_tag=[REF(X)]'>UNTAG</a>)</b>"
-#define TAG_MARK(X) "<b>(<A href='byond://?_src_=holder;[HrefToken(forceGlobal = TRUE)];mark_datum=[REF(X)]'>MARK</a>)</b>"
-#define TAG_SIMPLE_HEALTH(X) "<font color='#ff0000'><b>Health: [X.health]</b></font>"
-#define TAG_CARBON_HEALTH(X) "<font color='#ff0000'><b>Health: [X.health]</b></font> (\
-					<font color='#ff3333'>[X.getBruteLoss()]</font> \
-					<font color='#ff9933'>[X.getFireLoss()]</font> \
-					<font color='#00cc66'>[X.getToxLoss()]</font> \
-					<font color='#00cccc'>[X.getOxyLoss()]</font>"
+#define TAG_DEL(X) span_bold("(<A href='byond://?_src_=holder;[HrefToken(forceGlobal = TRUE)];del_tag=[REF(X)]'>UNTAG</a>)")
+#define TAG_MARK(X) span_bold("(<A href='byond://?_src_=holder;[HrefToken(forceGlobal = TRUE)];mark_datum=[REF(X)]'>MARK</a>)")
+#define TAG_SIMPLE_HEALTH(X) span_red(span_bold("Health: [X.health]"))
+#define TAG_CARBON_HEALTH(X) span_red(span_bold("Health: [X.health]")) +" (\
+					" + span_brute("[X.getBruteLoss()]") + " \
+					" + span_burn("[X.getFireLoss()]") + " \
+					" + span_tox("[X.getToxLoss()]") + " \
+					" + span_oxy("[X.getOxyLoss()]") + " \
+					" + span_clone("[X.getCloneLoss()]")
 
 ADMIN_VERB(display_tags, R_ADMIN, "View Tags", "Display all of the tagged datums.", ADMIN_CATEGORY_GAME)
 	var/index = 0
@@ -87,7 +88,7 @@ ADMIN_VERB(display_tags, R_ADMIN, "View Tags", "Display all of the tagged datums
 			// else, it's just a /datum
 
 			dat += "\t[index]: [iter_datum] | [specific_info] | [ADMIN_VV(iter_datum)] | [TAG_DEL(iter_datum)] | [iter_datum == marked_datum ? "<b>Marked</b>" : TAG_MARK(iter_datum)] "
-			dat += "\t(<b><font size='2'>[iter_datum.type])</font></b>"
+			dat += "\t(" + span_bold(span_normal("[iter_datum.type])"))
 	else
 		dat += "No datums tagged :("
 
