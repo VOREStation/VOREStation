@@ -26,7 +26,8 @@
 /obj/item/lipstick/random
 	name = "lipstick"
 
-/obj/item/lipstick/random/New()
+/obj/item/lipstick/random/Initialize(mapload)
+	. = ..()
 	colour = pick("red","purple","jade","black")
 	name = "[colour] lipstick"
 
@@ -111,3 +112,7 @@
 		var/obj/item/organ/internal/eyes/E = H.internal_organs_by_name[O_EYES]
 		if(istype(E))
 			E.change_eye_color()
+
+/obj/item/makeover/Destroy()
+	qdel(M)
+	. = ..()

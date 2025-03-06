@@ -39,6 +39,8 @@
 	vore_selected = null // from code/modules/vore/eating/mob_vr
 	focus = null
 
+	motiontracker_unsubscribe(TRUE) // Force unsubscribe
+
 	if(mind)
 		if(mind.current == src)
 			mind.current = null
@@ -248,37 +250,6 @@
 				client.perspective = EYE_PERSPECTIVE
 				client.eye = loc
 		return TRUE
-
-/mob/verb/pointed(atom/A as mob|obj|turf in view())
-	set name = "Point To"
-	set category = "Object"
-
-	if(!src || !isturf(loc) || !(A in view(loc)))
-		return 0
-	if(istype(A, /obj/effect/decal/point))
-		return 0
-
-	var/turf/tile = get_turf(A)
-	if (!tile)
-		return 0
-
-	var/turf/our_tile = get_turf(src)
-	var/obj/visual = new /obj/effect/decal/point(our_tile)
-	visual.invisibility = invisibility
-	visual.plane = ABOVE_PLANE
-	visual.layer = FLY_LAYER
-
-	animate(visual,
-		pixel_x = (tile.x - our_tile.x) * world.icon_size + A.pixel_x,
-		pixel_y = (tile.y - our_tile.y) * world.icon_size + A.pixel_y,
-		time = 1.7,
-		easing = EASE_OUT)
-
-	QDEL_IN(visual, 2 SECONDS) //Better qdel
-
-	face_atom(A)
-	return 1
-
 
 /mob/proc/ret_grab(list/L, flag)
 	return
@@ -496,7 +467,7 @@
 	set category = "OOC.Game"
 	var/is_admin = 0
 
-	if(client.holder && (client.holder.rights & R_ADMIN|R_EVENT))
+	if(check_rights_for(client, R_ADMIN|R_EVENT))
 		is_admin = 1
 	else if(stat != DEAD || isnewplayer(src))
 		to_chat(src, span_filter_notice("[span_blue("You must be observing to use this!")]"))
@@ -1337,3 +1308,8 @@ GLOBAL_LIST_EMPTY_TYPED(living_players_by_zlevel, /list)
 /mob/proc/grab_ghost(force)
 	if(mind)
 		return mind.grab_ghost(force = force)
+
+/mob/is_incorporeal()
+	if(incorporeal_move)
+		return 1
+	return ..()

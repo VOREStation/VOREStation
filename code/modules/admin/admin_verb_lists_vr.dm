@@ -3,7 +3,7 @@ var/list/admin_verbs_default = list(
 //	/datum/admins/proc/show_player_panel,	//shows an interface for individual players, with various links (links require additional flags, //VOREStation Remove,
 //	/client/proc/player_panel_new, //shows an interface for all players, with links to various panels, //VOREStation Remove,
 //	/client/proc/player_panel,			//VOREStation Remove,
-	/client/proc/deadmin_self,			//destroys our own admin datum so we can play as a regular player,
+	/client/proc/deadmin,			//destroys our own admin datum so we can play as a regular player,
 	/client/proc/cmd_admin_say,			//VOREStation Add,
 	/client/proc/cmd_mod_say,			//VOREStation Add,
 	/client/proc/cmd_event_say,			//VOREStation Add,
@@ -127,7 +127,8 @@ var/list/admin_verbs_admin = list(
 	/client/proc/removetickets,
 	/client/proc/delbook,
 	/client/proc/toggle_spawning_with_recolour,
-	/client/proc/start_vote
+	/client/proc/start_vote,
+	/client/proc/hide_motion_tracker_feedback
 	)
 
 var/list/admin_verbs_ban = list(
@@ -182,6 +183,7 @@ var/list/admin_verbs_spawn = list(
 	/datum/admins/proc/check_custom_items,
 	/datum/admins/proc/spawn_plant,
 	/datum/admins/proc/spawn_atom,		//allows us to spawn instances,
+	/datum/admins/proc/spawn_mail,
 	/client/proc/cmd_admin_droppod_spawn,
 	/client/proc/respawn_character,
 	/client/proc/spawn_character_mob,  //VOREStation Add,
@@ -309,7 +311,7 @@ var/list/admin_verbs_rejuv = list(
 
 //verbs which can be hidden - needs work
 var/list/admin_verbs_hideable = list(
-	/client/proc/deadmin_self,
+	/client/proc/deadmin,
 //	/client/proc/deadchat,
 	/datum/admins/proc/show_traitor_panel,
 	/datum/admins/proc/toggleenter,
@@ -572,29 +574,31 @@ var/list/admin_verbs_event_manager = list(
 	/client/proc/AdminCreateVirus,
 	/client/proc/ReleaseVirus,
 	/client/proc/add_hidden_area,
-	/client/proc/remove_hidden_area
+	/client/proc/remove_hidden_area,
+	/client/proc/hide_motion_tracker_feedback
 )
 
 /client/proc/add_admin_verbs()
 	if(holder)
+		var/rights = holder.rank_flags()
 		add_verb(src, admin_verbs_default)
-		if(holder.rights & R_BUILDMODE)		add_verb(src, /client/proc/togglebuildmodeself)
-		if(holder.rights & R_ADMIN)			add_verb(src, admin_verbs_admin)
-		if(holder.rights & R_BAN)			add_verb(src, admin_verbs_ban)
-		if(holder.rights & R_FUN)			add_verb(src, admin_verbs_fun)
-		if(holder.rights & R_SERVER)		add_verb(src, admin_verbs_server)
-		if(holder.rights & R_DEBUG)
+		if(rights & R_BUILDMODE)		add_verb(src, /client/proc/togglebuildmodeself)
+		if(rights & R_ADMIN)			add_verb(src, admin_verbs_admin)
+		if(rights & R_BAN)			add_verb(src, admin_verbs_ban)
+		if(rights & R_FUN)			add_verb(src, admin_verbs_fun)
+		if(rights & R_SERVER)		add_verb(src, admin_verbs_server)
+		if(rights & R_DEBUG)
 			add_verb(src, admin_verbs_debug)
-			if(CONFIG_GET(flag/debugparanoid) && !(holder.rights & R_ADMIN))
+			if(CONFIG_GET(flag/debugparanoid) && !(rights & R_ADMIN))
 				remove_verb(src, admin_verbs_paranoid_debug)			//Right now it's just callproc but we can easily add others later on.
-		if(holder.rights & R_POSSESS)		add_verb(src, admin_verbs_possess)
-		if(holder.rights & R_PERMISSIONS)	add_verb(src, admin_verbs_permissions)
-		if(holder.rights & R_STEALTH)		add_verb(src, /client/proc/stealth)
-		if(holder.rights & R_REJUVINATE)	add_verb(src, admin_verbs_rejuv)
-		if(holder.rights & R_SOUNDS)		add_verb(src, admin_verbs_sounds)
-		if(holder.rights & R_SPAWN)			add_verb(src, admin_verbs_spawn)
-		if(holder.rights & R_MOD)			add_verb(src, admin_verbs_mod)
-		if(holder.rights & R_EVENT)			add_verb(src, admin_verbs_event_manager)
+		if(rights & R_POSSESS)		add_verb(src, admin_verbs_possess)
+		if(rights & R_PERMISSIONS)	add_verb(src, admin_verbs_permissions)
+		if(rights & R_STEALTH)		add_verb(src, /client/proc/stealth)
+		if(rights & R_REJUVINATE)	add_verb(src, admin_verbs_rejuv)
+		if(rights & R_SOUNDS)		add_verb(src, admin_verbs_sounds)
+		if(rights & R_SPAWN)			add_verb(src, admin_verbs_spawn)
+		if(rights & R_MOD)			add_verb(src, admin_verbs_mod)
+		if(rights & R_EVENT)			add_verb(src, admin_verbs_event_manager)
 
 /client/proc/remove_admin_verbs()
 	remove_verb(src, list(

@@ -15630,24 +15630,6 @@
 /obj/structure/catwalk,
 /turf/simulated/floor/plating,
 /area/maintenance/lower/research)
-"aAu" = (
-/obj/structure/cable/heavyduty{
-	icon_state = "1-2"
-	},
-/obj/structure/railing{
-	dir = 8
-	},
-/obj/structure/railing{
-	dir = 4
-	},
-/obj/machinery/light/small{
-	dir = 4
-	},
-/obj/machinery/light/small{
-	dir = 4
-	},
-/turf/simulated/floor/virgo3b_indoors,
-/area/maintenance/lower/solars)
 "aAv" = (
 /obj/structure/cable{
 	icon_state = "1-4"
@@ -16982,8 +16964,6 @@
 /turf/simulated/floor/plating,
 /area/maintenance/asmaint2)
 "aCL" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/door/airlock/mining,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -19637,6 +19617,11 @@
 /obj/structure/cable/orange{
 	icon_state = "1-2"
 	},
+/obj/structure/privacyswitch{
+	dir = 8;
+	pixel_y = 11;
+	pixel_x = 24
+	},
 /turf/simulated/floor/wood,
 /area/crew_quarters/sleep/maintDorm2)
 "aHF" = (
@@ -19841,6 +19826,11 @@
 	},
 /obj/structure/cable/orange{
 	icon_state = "1-2"
+	},
+/obj/structure/privacyswitch{
+	dir = 8;
+	pixel_y = 11;
+	pixel_x = 24
 	},
 /turf/simulated/floor/wood,
 /area/crew_quarters/sleep/maintDorm1)
@@ -21957,6 +21947,10 @@
 	pixel_y = 26
 	},
 /obj/random/drinkbottle,
+/obj/structure/privacyswitch{
+	pixel_y = 26;
+	pixel_x = 5
+	},
 /turf/simulated/floor/wood,
 /area/crew_quarters/sleep/Dorm_8)
 "aLT" = (
@@ -22605,6 +22599,10 @@
 	dir = 1;
 	pixel_y = -24
 	},
+/obj/structure/privacyswitch{
+	pixel_y = -24;
+	pixel_x = -11
+	},
 /turf/simulated/floor/wood,
 /area/crew_quarters/sleep/Dorm_7)
 "aNk" = (
@@ -23227,6 +23225,10 @@
 	pixel_y = 26
 	},
 /obj/random/carp_plushie,
+/obj/structure/privacyswitch{
+	pixel_y = 26;
+	pixel_x = 5
+	},
 /turf/simulated/floor/wood,
 /area/crew_quarters/sleep/Dorm_6)
 "aOr" = (
@@ -23604,6 +23606,10 @@
 /obj/machinery/firealarm{
 	dir = 1;
 	pixel_y = -24
+	},
+/obj/structure/privacyswitch{
+	pixel_y = -24;
+	pixel_x = -11
 	},
 /turf/simulated/floor/wood,
 /area/crew_quarters/sleep/Dorm_5)
@@ -24329,6 +24335,10 @@
 	pixel_y = 26
 	},
 /obj/random/donkpocketbox,
+/obj/structure/privacyswitch{
+	pixel_y = 26;
+	pixel_x = 5
+	},
 /turf/simulated/floor/wood,
 /area/crew_quarters/sleep/Dorm_4)
 "aQl" = (
@@ -24826,6 +24836,10 @@
 /obj/machinery/firealarm{
 	dir = 1;
 	pixel_y = -24
+	},
+/obj/structure/privacyswitch{
+	pixel_y = -24;
+	pixel_x = -11
 	},
 /turf/simulated/floor/wood,
 /area/crew_quarters/sleep/Dorm_3)
@@ -25433,6 +25447,10 @@
 	pixel_y = 26
 	},
 /obj/random/donkpocketbox,
+/obj/structure/privacyswitch{
+	pixel_y = 26;
+	pixel_x = 5
+	},
 /turf/simulated/floor/wood,
 /area/crew_quarters/sleep/Dorm_2)
 "aSt" = (
@@ -25888,6 +25906,10 @@
 /obj/machinery/firealarm{
 	dir = 1;
 	pixel_y = -24
+	},
+/obj/structure/privacyswitch{
+	pixel_y = -24;
+	pixel_x = -11
 	},
 /turf/simulated/floor/wood,
 /area/crew_quarters/sleep/Dorm_1)
@@ -28437,6 +28459,11 @@
 	},
 /obj/structure/cable/orange{
 	icon_state = "1-2"
+	},
+/obj/structure/privacyswitch{
+	dir = 8;
+	pixel_y = 11;
+	pixel_x = 24
 	},
 /turf/simulated/floor/wood,
 /area/crew_quarters/sleep/maintDorm3)
@@ -35492,9 +35519,6 @@
 /obj/machinery/station_map{
 	pixel_y = 32
 	},
-/obj/machinery/station_map{
-	pixel_y = 32
-	},
 /turf/simulated/floor/tiled,
 /area/hallway/lower/first_west)
 "pFF" = (
@@ -37567,11 +37591,6 @@
 /area/maintenance/substation/surfaceservicesubstation)
 "wjd" = (
 /obj/effect/floor_decal/rust,
-/obj/machinery/power/apc{
-	dir = 4;
-	name = "east bump";
-	pixel_x = 28
-	},
 /obj/structure/cable{
 	icon_state = "0-8"
 	},
@@ -38022,11 +38041,6 @@
 /turf/simulated/floor/tiled,
 /area/crew_quarters/visitor_laundry)
 "xtS" = (
-/obj/machinery/power/apc{
-	dir = 4;
-	name = "east bump";
-	pixel_x = 28
-	},
 /obj/structure/cable/green{
 	icon_state = "0-8"
 	},
@@ -40513,7 +40527,7 @@ aib
 aib
 iwg
 iwg
-aAu
+aAs
 iwg
 iwg
 iwg

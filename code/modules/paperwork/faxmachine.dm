@@ -421,7 +421,7 @@ Extracted to its own procedure for easier logic handling with paper bundles.
 	msg = span_notice(msg)
 
 	for(var/client/C in GLOB.admins)
-		if(check_rights((R_ADMIN|R_MOD|R_EVENT),0,C))
+		if(check_rights_for(C, (R_ADMIN|R_MOD|R_EVENT)))
 			to_chat(C,msg)
 			C << 'sound/machines/printer.ogg'
 

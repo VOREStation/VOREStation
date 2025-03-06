@@ -69,3 +69,12 @@ export function getPrefix(
 
   return adjusted;
 }
+
+export function getMarkupString(
+  inputText: string,
+  markupType: string,
+  startPosition: number,
+  endPosition: number,
+) {
+  return `${inputText.substring(0, startPosition)}${markupType}${inputText.substring(startPosition, endPosition)}${markupType}${inputText.substring(endPosition)}`;
+}
