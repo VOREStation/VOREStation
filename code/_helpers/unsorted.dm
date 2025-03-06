@@ -1499,6 +1499,10 @@ var/mob/dview/dview_mob = new
 		return !QDELETED(D)
 	return FALSE
 
+/// No op
+/proc/pass(...)
+	return
+
 //gives us the stack trace from CRASH() without ending the current proc.
 /proc/stack_trace(msg)
 	CRASH(msg)

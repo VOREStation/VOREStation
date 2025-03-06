@@ -14,8 +14,6 @@
 	var/magpulse = 0
 	var/icon_base = "magboots"
 	actions_types = list(/datum/action/item_action/toggle_magboots)
-	var/obj/item/clothing/shoes/shoes = null	//Undershoes
-	var/mob/living/carbon/human/wearer = null	//For shoe procs
 	step_volume_mod = 1.3
 	drop_sound = 'sound/items/drop/metalboots.ogg'
 	pickup_sound = 'sound/items/pickup/toolbox.ogg'
@@ -45,6 +43,7 @@
 	user.update_mob_action_buttons()
 
 /obj/item/clothing/shoes/magboots/mob_can_equip(mob/user, slot, disable_warning = FALSE)
+
 	var/mob/living/carbon/human/H = user
 
 	if(H.shoes)
@@ -67,17 +66,20 @@
 		if(slot && slot == slot_shoes)
 			to_chat(user, "You slip \the [src] on over \the [shoes].")
 	set_slowdown()
-	wearer = H
+	wearer = WEAKREF(H)
 	return 1
 
 /obj/item/clothing/shoes/magboots/dropped(mob/user)
 	..()
-	var/mob/living/carbon/human/H = wearer
-	if(shoes)
-		if(!H.equip_to_slot_if_possible(shoes, slot_shoes))
-			shoes.forceMove(get_turf(src))
-		src.shoes = null
 	wearer = null
+
+	var/mob/living/carbon/human/H = user
+	if(!ishuman(H) || !shoes)
+		return
+
+	if(!H.equip_to_slot_if_possible(shoes, slot_shoes))
+		shoes.forceMove(get_turf(src))
+	shoes = null
 
 /obj/item/clothing/shoes/magboots/examine(mob/user)
 	. = ..()

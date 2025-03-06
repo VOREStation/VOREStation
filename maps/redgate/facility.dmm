@@ -16,11 +16,6 @@
 	},
 /turf/simulated/floor/wood/alt,
 /area/redgate/facility/office7)
-"aca" = (
-/obj/structure/table/standard,
-/obj/structure/table/standard,
-/turf/simulated/floor/tiled/white,
-/area/redgate/facility/nw)
 "adz" = (
 /obj/structure/window/basic/full,
 /turf/simulated/floor/wood/alt,
@@ -4905,7 +4900,6 @@
 /area/redgate/facility/ne)
 "gPW" = (
 /obj/structure/table/standard,
-/obj/structure/table/standard,
 /obj/random/forgotten_tram,
 /turf/simulated/floor/tiled/white,
 /area/redgate/facility/nw)
@@ -6179,7 +6173,6 @@
 /turf/simulated/floor/tiled/white,
 /area/redgate/facility/ne)
 "itM" = (
-/obj/structure/table/hardwoodtable,
 /obj/structure/table/hardwoodtable,
 /obj/machinery/light{
 	dir = 1
@@ -13210,7 +13203,7 @@
 /area/redgate/facility/cell29)
 "sFc" = (
 /obj/structure/cable{
-	dir = 1
+	icon_state = "0-2"
 	},
 /turf/unsimulated/floor/techfloor_grid{
 	name = "singularity flooring"
@@ -13533,7 +13526,7 @@
 /area/redgate/facility/lab4)
 "tge" = (
 /obj/structure/cable{
-	dir = 8
+	icon_state = "0-4"
 	},
 /turf/unsimulated/floor/techfloor_grid{
 	name = "singularity flooring"
@@ -13621,7 +13614,7 @@
 /area/redgate/facility/cell29)
 "tkR" = (
 /obj/structure/cable{
-	dir = 4
+	icon_state = "0-8"
 	},
 /turf/unsimulated/floor/techfloor_grid{
 	name = "singularity flooring"
@@ -14680,12 +14673,6 @@
 /obj/random/forgotten_tram,
 /turf/simulated/floor/tiled/white,
 /area/redgate/facility/entrance)
-"uHO" = (
-/obj/structure/table/hardwoodtable,
-/obj/structure/table/hardwoodtable,
-/obj/item/modular_computer/laptop/preset/custom_loadout/rugged,
-/turf/simulated/floor/wood/alt,
-/area/redgate/facility/ne)
 "uIp" = (
 /obj/effect/floor_decal/spline/plain{
 	dir = 8
@@ -15537,10 +15524,10 @@
 /area/redgate/facility/cell29)
 "vQS" = (
 /obj/structure/cable{
-	dir = 8
+	icon_state = "1-4"
 	},
 /obj/structure/cable{
-	icon_state = "1-4"
+	icon_state = "0-4"
 	},
 /turf/unsimulated/floor/techfloor_grid{
 	name = "singularity flooring"
@@ -17145,10 +17132,10 @@
 /area/redgate/facility/ne)
 "ycU" = (
 /obj/machinery/power/smes,
+/obj/machinery/light,
 /obj/structure/cable{
 	icon_state = "0-4"
 	},
-/obj/machinery/light,
 /turf/simulated/floor/tiled/eris/dark/orangecorner,
 /area/redgate/facility/cell29)
 "yel" = (
@@ -24126,7 +24113,7 @@ vio
 xxi
 dvk
 jZu
-aca
+iHH
 buD
 wJW
 fnR
@@ -24268,7 +24255,7 @@ vio
 xxi
 dvk
 jZu
-aca
+iHH
 tCX
 wJW
 fnR
@@ -36334,7 +36321,7 @@ eCT
 eYi
 fmS
 pQc
-uHO
+eKY
 uta
 hAX
 fVF

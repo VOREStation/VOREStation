@@ -27,7 +27,7 @@
 	drop_sound = 'sound/items/drop/card.ogg'
 	pickup_sound = 'sound/items/pickup/card.ogg'
 
-/obj/item/card/New()
+/obj/item/card/Initialize(mapload)
 	. = ..()
 	reset_icon()
 
@@ -299,4 +299,4 @@
 		UnregisterSignal(src, COMSIG_OBSERVER_MOVED)
 		R = null
 		last_robot_loc = null
-	..()
+	. = ..()

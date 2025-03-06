@@ -225,7 +225,7 @@
 	if(job_civilian_low & ASSISTANT)
 		previewJob = job_master.GetJob(JOB_ALT_VISITOR)
 	else if(client && ispAI(client.mob))	//VOREStation Edit! - pAIs shouldn't wear job gear~!
-		//Don't do anything!
+		pass() //Don't do anything!
 	else
 		for(var/datum/job/job in job_master.occupations)
 			var/job_flag

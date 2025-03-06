@@ -62,6 +62,25 @@
 	transform.crop(x1, y1, x2, y2)
 	return src
 
+/// Internally performs a crop.
+/datum/universal_icon/proc/shift(dir, amount, icon_width, icon_height)
+	if(!transform)
+		transform = new
+	var/list/offsets = dir2offset(dir)
+	var/shift_x = -offsets[1] * amount
+	var/shift_y = -offsets[2] * amount
+	transform.crop(1 + shift_x, 1 + shift_y, icon_width + shift_x, icon_height + shift_y)
+	return src
+
+/// Internally performs a color blend.
+/// Amount ranges from 0-1 (100% opacity)
+/datum/universal_icon/proc/change_opacity(amount)
+	if(!transform)
+		transform = new
+	transform.blend_color("#ffffff[num2hex(clamp(amount, 0, 1) * 255, 2)]", ICON_MULTIPLY)
+	return src
+
+
 /datum/universal_icon/proc/to_list()
 	RETURN_TYPE(/list)
 	return list("icon_file" = "[icon_file]", "icon_state" = icon_state, "dir" = dir, "frame" = frame, "transform" = !isnull(transform) ? transform.to_list() : list())
@@ -93,17 +112,17 @@
 	for(var/transform in src.transforms)
 		switch(transform["type"])
 			if(RUSTG_ICONFORGE_BLEND_COLOR)
-				target.Blend(target["color"], target["blend_mode"])
+				target.Blend(transform["color"], transform["blend_mode"])
 			if(RUSTG_ICONFORGE_BLEND_ICON)
-				var/datum/universal_icon/icon_object = target["icon"]
+				var/datum/universal_icon/icon_object = transform["icon"]
 				if(!istype(icon_object))
 					stack_trace("Invalid icon found in icon transformer during apply()! [icon_object]")
 					continue
-				target.Blend(icon_object.to_icon(), target["blend_mode"])
+				target.Blend(icon_object.to_icon(), transform["blend_mode"])
 			if(RUSTG_ICONFORGE_SCALE)
-				target.Scale(target["width"], target["height"])
+				target.Scale(transform["width"], transform["height"])
 			if(RUSTG_ICONFORGE_CROP)
-				target.Crop(target["x1"], target["y1"], target["x2"], target["y2"])
+				target.Crop(transform["x1"], transform["y1"], transform["x2"], transform["y2"])
 	return target
 
 /datum/icon_transformer/proc/copy()
@@ -115,36 +134,60 @@
 	return new_transformer
 
 /datum/icon_transformer/proc/blend_color(color, blend_mode)
+	#ifdef UNIT_TEST
+	if(!istext(color))
+		CRASH("Invalid color provided to blend_color: [color]")
+	if(!isnum(blend_mode))
+		CRASH("Invalid blend_mode provided to blend_color: [blend_mode]")
+	#endif
 	transforms += list(list("type" = RUSTG_ICONFORGE_BLEND_COLOR, "color" = color, "blend_mode" = blend_mode))
 
 /datum/icon_transformer/proc/blend_icon(datum/universal_icon/icon_object, blend_mode)
+	#ifdef UNIT_TEST
+	// icon_object's type is checked later in to_list
+	if(!isnum(blend_mode))
+		CRASH("Invalid blend_mode provided to blend_icon: [blend_mode]")
+	#endif
 	transforms += list(list("type" = RUSTG_ICONFORGE_BLEND_ICON, "icon" = icon_object, "blend_mode" = blend_mode))
 
 /datum/icon_transformer/proc/scale(width, height)
+	#ifdef UNIT_TEST
+	if(!isnum(width) || !isnum(height))
+		CRASH("Invalid arguments provided to scale: [width],[height]")
+	#endif
 	transforms += list(list("type" = RUSTG_ICONFORGE_SCALE, "width" = width, "height" = height))
 
 /datum/icon_transformer/proc/crop(x1, y1, x2, y2)
+	#ifdef UNIT_TEST
+	if(!isnum(x1) || !isnum(y1) || !isnum(x2) || !isnum(y2))
+		CRASH("Invalid arguments provided to crop: [x1],[y1],[x2],[y2]")
+	#endif
 	transforms += list(list("type" = RUSTG_ICONFORGE_CROP, "x1" = x1, "y1" = y1, "x2" = x2, "y2" = y2))
 
+/// Recursively converts all contained [/datum/universal_icon]s and their associated [/datum/icon_transformer]s into list form so the transforms can be JSON encoded.
 /datum/icon_transformer/proc/to_list()
 	RETURN_TYPE(/list)
 	var/list/transforms_out = list()
-	for(var/transform in src.transforms.Copy())
-		var/this_transform = transform
+	var/list/transforms_original = src.transforms.Copy()
+	for(var/list/transform as anything in transforms_original)
+		var/list/this_transform = transform.Copy() // copy it so we don't mutate the original
 		if(transform["type"] == RUSTG_ICONFORGE_BLEND_ICON)
 			var/datum/universal_icon/icon_object = this_transform["icon"]
 			if(!istype(icon_object))
 				stack_trace("Invalid icon found in icon transformer during to_list()! [icon_object]")
 				continue
+			// This mutates the inner transform list!!! Make sure it only runs on copies.
 			this_transform["icon"] = icon_object.to_list()
 		transforms_out += list(this_transform)
 	return transforms_out
 
+/// Reverse operation of /datum/icon_transformer/to_list()
 /proc/icon_transformer_from_list(list/input)
 	RETURN_TYPE(/datum/icon_transformer)
 	var/list/transforms = list()
-	for(var/transform in input)
-		var/this_transform = transform
+	for(var/list/transform as anything in input)
+		// don't mutate the input :(
+		var/this_transform = transform.Copy()
 		if(transform["type"] == RUSTG_ICONFORGE_BLEND_ICON)
 			this_transform["icon"] = universal_icon_from_list(transform["icon"])
 		transforms += list(this_transform)

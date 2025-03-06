@@ -366,7 +366,7 @@
 
 /obj/item/throw_impact(atom/hit_atom)
 	..()
-	if(isliving(hit_atom)) //Living mobs handle hit sounds differently.
+	if(isliving(hit_atom) && !hit_atom.is_incorporeal()) //Living mobs handle hit sounds differently.
 		var/volume = get_volume_by_throwforce_and_or_w_class()
 		if (throwforce > 0)
 			if (mob_throw_hit_sound)
@@ -905,6 +905,12 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 				state2use += "_l"
 
 	// testing("[src] (\ref[src]) - Slot: [slot_name], Inhands: [inhands], Worn Icon:[icon2use], Worn State:[state2use], Worn Layer:[layer2use]")
+	// Send icon data to unit test when it is running, hello old testing(). I'm like, your great great grandkid! THE FUTURE IS NOW OLD MAN!
+	#ifdef UNIT_TEST
+	var/mob/living/carbon/human/H = loc
+	if(ishuman(H))
+		SEND_SIGNAL(H, COMSIG_UNITTEST_DATA, list("set_slot",slot_name,icon2use,state2use,inhands,type,H.species?.name))
+	#endif
 
 	//Generate the base onmob icon
 	var/icon/standing_icon = icon(icon = icon2use, icon_state = state2use)

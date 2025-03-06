@@ -109,8 +109,8 @@
 		return
 	..()
 
-/obj/item/rig_module/New()
-	..()
+/obj/item/rig_module/Initialize(mapload)
+	. = ..()
 	if(suit_overlay_inactive)
 		suit_overlay = suit_overlay_inactive
 
@@ -135,7 +135,9 @@
 	stat_modules +=	new/stat_rig_module/select(src)
 	stat_modules +=	new/stat_rig_module/charge(src)
 
-/obj/item/rig_module/Destroy(force, ...)
+/obj/item/rig_module/Destroy()
+	holder.installed_modules -= src
+	holder = null
 	QDEL_NULL_LIST(stat_modules)
 	. = ..()
 
@@ -239,9 +241,11 @@
 	var/module_mode = ""
 	var/obj/item/rig_module/module
 
-/stat_rig_module/New(var/obj/item/rig_module/module)
-	..()
-	src.module = module
+/stat_rig_module/Initialize(mapload)
+	. = ..()
+	module = loc
+	if(!istype(module))
+		return INITIALIZE_HINT_QDEL
 
 /stat_rig_module/Destroy()
 	module = null
@@ -275,8 +279,10 @@
 /stat_rig_module/DblClick()
 	return Click()
 
-/stat_rig_module/activate/New(var/obj/item/rig_module/module)
-	..()
+/stat_rig_module/activate/Initialize(mapload)
+	. = ..()
+	if(!istype(module))
+		return INITIALIZE_HINT_QDEL
 	name = module.activate_string
 	if(module.active_power_cost)
 		name += " ([module.active_power_cost*10]A)"
@@ -285,8 +291,10 @@
 /stat_rig_module/activate/CanUse()
 	return module.toggleable && !module.active
 
-/stat_rig_module/deactivate/New(var/obj/item/rig_module/module)
-	..()
+/stat_rig_module/deactivate/Initialize(mapload)
+	. = ..()
+	if(!istype(module))
+		return INITIALIZE_HINT_QDEL
 	name = module.deactivate_string
 	// Show cost despite being 0, if it means changing from an active cost.
 	if(module.active_power_cost || module.passive_power_cost)
@@ -297,8 +305,10 @@
 /stat_rig_module/deactivate/CanUse()
 	return module.toggleable && module.active
 
-/stat_rig_module/engage/New(var/obj/item/rig_module/module)
-	..()
+/stat_rig_module/engage/Initialize(mapload)
+	. = ..()
+	if(!istype(module))
+		return INITIALIZE_HINT_QDEL
 	name = module.engage_string
 	if(module.use_power_cost)
 		name += " ([module.use_power_cost*10]E)"
@@ -307,8 +317,8 @@
 /stat_rig_module/engage/CanUse()
 	return module.usable
 
-/stat_rig_module/select/New()
-	..()
+/stat_rig_module/select/Initialize(mapload)
+	. = ..()
 	name = "Select"
 	module_mode = "select"
 
@@ -318,8 +328,8 @@
 		return 1
 	return 0
 
-/stat_rig_module/charge/New()
-	..()
+/stat_rig_module/charge/Initialize(mapload)
+	. = ..()
 	name = "Change Charge"
 	module_mode = "select_charge_type"
 

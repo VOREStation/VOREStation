@@ -365,3 +365,24 @@
 	is_genetrait = TRUE
 	hidden = FALSE
 	activation_message="Your body feels mundane."
+
+/datum/trait/positive/vibration_sense
+	name = "Vibration Sense"
+	desc = "Allows you to sense subtle vibrations nearby, even if the source cannot be seen."
+	cost = 2
+	var_changes = list("has_vibration_sense" = TRUE)
+
+	// Traitgenes edit begin - Made into a gene trait
+	is_genetrait = TRUE
+	hidden = FALSE
+
+	activation_message="Your ears ring, and hear everything..."
+	// Traitgenes edit end
+
+/datum/trait/positive/vibration_sense/apply(datum/species/S, mob/living/carbon/human/H, trait_prefs)
+	. = ..()
+	H.motiontracker_subscribe()
+
+/datum/trait/positive/vibration_sense/unapply(datum/species/S, mob/living/carbon/human/H, trait_prefs)
+	. = ..()
+	H.motiontracker_unsubscribe()

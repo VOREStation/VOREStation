@@ -148,7 +148,7 @@
 	visualnet = ghostnet
 
 /mob/observer/dead/proc/checkStatic()
-	return !(check_rights(R_ADMIN|R_FUN|R_EVENT|R_SERVER, 0, src) || (client && client.buildmode) || isbelly(loc))
+	return !(check_rights_for(src.client, R_ADMIN|R_FUN|R_EVENT|R_SERVER) || (client && client.buildmode) || isbelly(loc))
 
 /mob/observer/dead/Moved(atom/old_loc, direction, forced)
 	. = ..()
@@ -260,7 +260,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		announce_ghost_joinleave(ghostize(1))
 	else
 		var/response
-		if(check_rights(R_ADMIN|R_SERVER|R_MOD,FALSE,src)) //No need to sanity check for client and holder here as that is part of check_rights
+		if(check_rights_for(src.client, R_ADMIN|R_SERVER|R_MOD)) //No need to sanity check for client and holder here as that is part of check_rights
 			response = tgui_alert(src, "You have the ability to Admin-Ghost. The regular Ghost verb will announce your presence to dead chat. Both variants will allow you to return to your body using 'aghost'.\n\nWhat do you wish to do?", "Are you sure you want to ghost?", list("Admin Ghost", "Ghost", "Stay in body"))
 			if(response == "Admin Ghost")
 				if(!src.client)
@@ -604,7 +604,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	return 0
 
 /mob/observer/dead/check_holy(var/turf/T)
-	if(check_rights(R_ADMIN|R_FUN|R_EVENT, 0, src))
+	if(check_rights_for(src.client, R_ADMIN|R_FUN|R_EVENT))
 		return 0
 
 	return (T && T.holy) && (is_manifest || (mind in cult.current_antagonists))
@@ -830,11 +830,11 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		W.add_hiddenprint(src)
 		W.visible_message(span_filter_notice(span_red("Invisible fingers crudely paint something in blood on [T]...")))
 
-/mob/observer/dead/pointed(atom/A as mob|obj|turf in view())
+/mob/observer/dead/_pointed(atom/pointed_at)
 	if(!..())
-		return 0
-	src.visible_message(span_deadsay(span_bold("[src]") + " points to [A]."))
-	return 1
+		return FALSE
+
+	visible_message(span_deadsay(span_bold("[src]") + " points to [pointed_at]."))
 
 /mob/observer/dead/proc/manifest(mob/user)
 	is_manifest = TRUE
@@ -914,7 +914,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	return 1
 
 /mob/observer/dead/proc/can_admin_interact()
-	return check_rights(R_ADMIN|R_EVENT, 0, src)
+	return check_rights_for(src.client, R_ADMIN|R_EVENT|R_DEBUG)
 
 /mob/observer/dead/verb/toggle_ghostsee()
 	set name = "Toggle Ghost Vision"
@@ -1082,7 +1082,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	if(flashwindow)
 		window_flash(client)
 	if(message)
-		to_chat(src, span_ghostalert("<font size=4>[message]</font>"))
+		to_chat(src, span_ghostalert(span_huge("[message]")))
 		if(source)
 			throw_alert("\ref[source]_notify_revive", /obj/screen/alert/notify_cloning, new_master = source)
 	to_chat(src, span_ghostalert("<a href='byond://?src=[REF(src)];reenter=1'>(Click to re-enter)</a>"))

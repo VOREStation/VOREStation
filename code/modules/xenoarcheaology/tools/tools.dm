@@ -80,9 +80,7 @@
 					SSxenoarch.digsite_spawning_turfs.Remove(T)
 
 		if(SSxenoarch && ((nearestTargetDist == -1) || (nearestSimpleTargetDist == -1)) && user.z && (world.time - last_repopulation_time >= repopulation_delay))
-			if(user.z in using_map.xenoarch_exempt_levels) //We found no artifacts and our Z level is not spawn exempt. Time for random generation.
-				//Yeah we do nothing here. I tried to make the above a !user.z ... but VSC compiler screeched at me.
-			else
+			if(!(user.z in using_map.xenoarch_exempt_levels)) //We found no artifacts and our Z level is not spawn exempt. Time for random generation.
 				last_repopulation_time = world.time
 				to_chat(user, "The [src] beeps and buzzes, a warning popping up on screen stating 'No artifacts detected on current wavelength. Swapping to different wavelength. Please try scanning momentarily.'")
 				SSxenoarch.continual_generation(user)

@@ -32,6 +32,7 @@
 		if(!ignore_walls && !can_see(turf_source, T, length = maxdistance * 2))
 			continue
 
+		SSmotiontracker.ping(source,vol) // Nearly everything pings this, the quieter the less likely
 		M.playsound_local(turf_source, soundin, vol, vary, frequency, falloff, is_global, channel, pressure_affected, S, preference, volume_channel)
 
 /mob/proc/check_sound_preference(list/preference)

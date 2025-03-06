@@ -1,6 +1,0 @@
-author: "SatinIsle"
-delete-after: True
-changes:
-  - rscadd: "Added privacy switches to all dorm rooms, these buttons make an overlay appear on the room for ghosts preventing them seeing inside. This does not currently prevent them hearing emotes from inside the room, it's purely a visual block."
-  - bugfix: "Fixed station maps for the map linter PR."
-  - bugfix: "Fixed a missing air alarm in the tether atmos break room."
