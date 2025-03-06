@@ -616,6 +616,28 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 			pref.grad_style = new_grad_style
 			return TOPIC_REFRESH_UPDATE_PREVIEW
 
+	else if(href_list["grad_style_left"])
+		var/H = href_list["grad_style_left"]
+		var/list/valid_gradients = GLOB.hair_gradients
+		var/start = valid_gradients.Find(H)
+
+		if(start != 1) //If we're not the beginning of the list, become the previous element.
+			pref.grad_style = valid_gradients[start-1]
+		else //But if we ARE, become the final element.
+			pref.grad_style = valid_gradients[valid_gradients.len]
+		return TOPIC_REFRESH_UPDATE_PREVIEW
+
+	else if(href_list["grad_style_right"])
+		var/H = href_list["grad_style_right"]
+		var/list/valid_gradients = GLOB.hair_gradients
+		var/start = valid_gradients.Find(H)
+
+		if(start != valid_gradients.len) //If we're not the end of the list, become the next element.
+			pref.grad_style = valid_gradients[start+1]
+		else //But if we ARE, become the first element.
+			pref.grad_style = valid_gradients[1]
+		return TOPIC_REFRESH_UPDATE_PREVIEW
+
 	else if(href_list["hair_style_left"])
 		var/H = href_list["hair_style_left"]
 		var/list/valid_hairstyles = pref.get_valid_hairstyles(user)
