@@ -35,7 +35,7 @@
 	name = MAT_COPPER + " coin"
 	desc = "A sturdy " + MAT_COPPER + " coin. The preferred tender of people who like to make other people count a lot."
 	icon_state = "coin_copper"
-	matter = list(MAT_ = 250)
+	matter = list(MAT_COPPER = 250)
 
 /obj/item/coin/diamond
 	name = MAT_DIAMOND + " coin"
@@ -111,7 +111,7 @@
 
 /obj/item/coin/aluminium
 	name = MAT_ALUMINIUM + " coin"
-	desc = "Someone decided to make a coin out of + "MAT_ALUMINIUM + ". Now your wallet can be lighter than ever."
+	desc = "Someone decided to make a coin out of" + MAT_ALUMINIUM + ". Now your wallet can be lighter than ever."
 	icon_state = "coin_aluminium"
 	matter = list(MAT_ALUMINIUM = 250)
 

@@ -98,7 +98,7 @@
 
 /obj/item/fake_coin/aluminium
 	name = MAT_ALUMINIUM + " coin"
-	desc = "Someone decided to make a coin out of + "MAT_ALUMINIUM + ". Now your wallet can be lighter than ever."
+	desc = "Someone decided to make a coin out of" + MAT_ALUMINIUM + ". Now your wallet can be lighter than ever."
 	icon_state = "coin_aluminium"
 
 /obj/item/fake_coin/verdantium
