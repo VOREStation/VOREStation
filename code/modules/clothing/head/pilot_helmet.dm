@@ -11,9 +11,7 @@
 	flags = THICKMATERIAL
 	armor = list(melee = 20, bullet = 10, laser = 10, energy = 5, bomb = 10, bio = 0, rad = 0)
 	flags_inv = HIDEEARS
-	cold_protection = HEAD
 	min_cold_protection_temperature = HELMET_MIN_COLD_PROTECTION_TEMPERATURE
-	heat_protection = HEAD
 	max_heat_protection_temperature = HELMET_MAX_HEAT_PROTECTION_TEMPERATURE
 	w_class = ITEMSIZE_NORMAL
 
@@ -159,7 +157,7 @@
 	set category = "Object"
 	set src in usr
 
-	var/newcolor = input(usr,"Pick a color!","HUD Color") as null|color
+	var/newcolor = tgui_color_picker(usr,"Pick a color!","HUD Color")
 	if(newcolor)
 		for(var/img in list("top_words","left_bar","right_bar","flyboxes"))
 			var/image/I = images[img]

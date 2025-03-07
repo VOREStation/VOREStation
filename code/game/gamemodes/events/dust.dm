@@ -91,24 +91,23 @@ The "dust" will damage the hull of the station causin minor hull breaches.
 	qdel(src)
 
 /obj/effect/space_dust/Bump(atom/A)
-	spawn(0)
-		if(prob(50))
-			for(var/mob/M in range(10, src))
-				if(!M.stat && !isAI(M))
-					shake_camera(M, 3, 1)
-		if (A)
-			playsound(src, 'sound/effects/meteorimpact.ogg', 40, 1)
+	if(prob(50))
+		for(var/mob/M in range(10, src))
+			if(!M.stat && !isAI(M))
+				shake_camera(M, 3, 1)
+	if (A)
+		playsound(src, 'sound/effects/meteorimpact.ogg', 40, 1)
 
-			if(ismob(A))
-				A.ex_act(strength)//This should work for now I guess
-			else if(!istype(A,/obj/machinery/power/emitter) && !istype(A,/obj/machinery/field_generator)) //Protect the singularity from getting released every round!
-				A.ex_act(strength) //Changing emitter/field gen ex_act would make it immune to bombs and C4
+		if(ismob(A))
+			A.ex_act(strength)//This should work for now I guess
+		else if(!istype(A,/obj/machinery/power/emitter) && !istype(A,/obj/machinery/field_generator)) //Protect the singularity from getting released every round!
+			A.ex_act(strength) //Changing emitter/field gen ex_act would make it immune to bombs and C4
 
-			life--
-			if(life <= 0)
-				walk(src,0)
-				qdel(src)
-				return
+		life--
+		if(life <= 0)
+			walk(src,0)
+			qdel(src)
+			return
 	return
 
 

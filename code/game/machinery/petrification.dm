@@ -19,7 +19,7 @@
 	var/mob/living/carbon/human/target
 	var/list/remotes = list()
 
-/obj/machinery/petrification/New()
+/obj/machinery/petrification/Initialize(mapload)
 	. = ..()
 	if(!pixel_x && !pixel_y)
 		pixel_x = (dir & 3) ? 0 : (dir == 4 ? 26 : -26)
@@ -202,7 +202,7 @@
 			if (!length(targets))
 				popup_msg(user, "No targets within range. Make sure there is a humanoid being within a 3x3 metre square in front of the interface.")
 				return
-			var/selected = input(user, "Choose the target.", "Petrification Target") as null|anything in targets
+			var/selected = tgui_input_list(user, "Choose the target.", "Petrification Target", targets)
 			if (selected && ishuman(targets[selected]) && is_valid_target(targets[selected]))
 				var/confirmation = tgui_alert(targets[selected], "You have been selected as a petrification target. If you press confirm, you will possibly be turned into a statue, and if the option is selected, possibly one that cannot be reverted back from a statue at all.","Petrification Target",list("Confirm", "Cancel"))
 				if (confirmation != "Confirm")

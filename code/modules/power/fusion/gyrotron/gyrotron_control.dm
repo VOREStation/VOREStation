@@ -90,27 +90,27 @@
 		return
 
 	if(href_list["modifypower"])
-		var/new_val = input(usr, "Enter new emission power level (1 - 50)", "Modifying power level", G.mega_energy) as num
+		var/new_val = tgui_input_number(usr, "Enter new emission power level (1 - 50)", "Modifying power level", G.mega_energy, 50, 1)
 		if(!new_val)
 			to_chat(usr, span_warning("That's not a valid number."))
 			return 1
 		G.mega_energy = CLAMP(new_val, 1, 50)
 		G.update_active_power_usage(G.mega_energy * 1500)
-		updateUsrDialog()
+		updateUsrDialog(usr)
 		return 1
 
 	if(href_list["modifyrate"])
-		var/new_val = input(usr, "Enter new emission delay between 1 and 10 seconds.", "Modifying emission rate", G.rate) as num
+		var/new_val = tgui_input_number(usr, "Enter new emission delay between 1 and 10 seconds.", "Modifying emission rate", G.rate, 10, 1)
 		if(!new_val)
 			to_chat(usr, span_warning("That's not a valid number."))
 			return 1
 		G.rate = CLAMP(new_val, 1, 10)
-		updateUsrDialog()
+		updateUsrDialog(usr)
 		return 1
 
 	if(href_list["toggle"])
 		G.activate(usr)
-		updateUsrDialog()
+		updateUsrDialog(usr)
 		return 1
 
 	return 0

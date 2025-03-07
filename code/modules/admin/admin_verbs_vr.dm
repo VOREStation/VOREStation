@@ -26,10 +26,10 @@
 		if(isobj(T))
 			possible_things |= T
 	if(!center)
-		center = input(usr, "What should act as the center of the orbit?", "Center") as anything in possible_things
+		center = tgui_input_list(src, "What should act as the center of the orbit?", "Center", possible_things)
 		possible_things -= center
 	if(!orbiter)
-		orbiter = input(usr, "What should act as the orbiter of the orbit?", "Orbiter") as anything in possible_things
+		orbiter = tgui_input_list(src, "What should act as the orbiter of the orbit?", "Orbiter", possible_things)
 	if(!center || !orbiter)
 		to_chat(usr, span_warning("A center of orbit and an orbiter must be configured. You can also do this by marking a target."))
 		return
@@ -97,7 +97,7 @@
 	establish_db_connection()
 
 	if(!SSdbcore.IsConnected())
-		dat += "<font color=red><b>ERROR</b>: Unable to contact External Archive. Please contact your system administrator for assistance.</font>"
+		dat += span_red(span_bold("ERROR") + ": Unable to contact External Archive. Please contact your system administrator for assistance.")
 	else
 		dat += {"<A href='byond://?our_comp=\ref[our_comp];[HrefToken()];orderbyid=1'>(Order book by SS<sup>13</sup>BN)</A><BR><BR>
 		<table>

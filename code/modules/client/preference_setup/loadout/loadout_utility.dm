@@ -305,9 +305,19 @@ modular computers
 /datum/gear/utility/bs_bracelet
 	display_name = "bluespace bracelet"
 	path = /obj/item/clothing/gloves/bluespace
-	cost = 2
+	cost = 1
+
+/datum/gear/utility/bs_bracelet_deluxe
+	display_name = "deluxe bluespace bracelet"
+	path = /obj/item/clothing/gloves/bluespace/deluxe
+	cost = 3
 
 /datum/gear/utility/walkpod
 	display_name = "podzu music player"
 	path = /obj/item/walkpod
 	cost = 2
+
+/datum/gear/utility/bloodbag //For your vampiric crew!
+	display_name = "blood bag (Randomized)"
+	path = /obj/item/reagent_containers/blood/random_bloodsucker
+	cost = 1

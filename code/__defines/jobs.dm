@@ -107,6 +107,7 @@
 	#define JOB_ALT_CARGO_HANDLER "Cargo Handler"
 	#define JOB_ALT_SUPPLY_COURIER "Supply Courier"
 	#define JOB_ALT_DISPOSALS_SORTER "Disposals Sorter"
+	#define JOB_ALT_MAILMAN "Mailman"
 
 #define JOB_SHAFT_MINER "Shaft Miner"
 	// Shaft Miner alt titles

@@ -186,7 +186,7 @@
 						M.open()
 					else
 						M.close()
-		updateUsrDialog()
+		updateUsrDialog(usr)
 	return
 
 

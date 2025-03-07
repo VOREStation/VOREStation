@@ -13,7 +13,8 @@
 	desc = "Reassuringly artificial. Contains caffeine."
 	description_fluff = "The 'Space' branding was originally added to the 'Alpha Cola' product line in order to justify selling cans for 50% higher prices to 'off-world' retailers. Despite being chemically identical, Space Cola proved so popular that Centauri Provisions eventually applied the name to the entire product line - price hike and all."
 	icon_state = "cola"
-	center_of_mass = list("x"=16, "y"=10)
+	center_of_mass_x = 16
+	center_of_mass_y = 10
 
 /obj/item/reagent_containers/food/drinks/cans/cola/Initialize()
 	. = ..()
@@ -24,7 +25,8 @@
 	desc = "More reassuringly artificial than ever before."
 	description_fluff = "The 'Space' branding was originally added to the 'Alpha Cola' product line in order to justify selling cans for 50% higher prices to 'off-world' retailers. Despite being chemically identical, Space Cola proved so popular that Centauri Provisions eventually applied the name to the entire product line - price hike and all."
 	icon_state = "decafcola"
-	center_of_mass = list("x"=16, "y"=10)
+	center_of_mass_x = 16
+	center_of_mass_y = 10
 
 /obj/item/reagent_containers/food/drinks/cans/decaf_cola/Initialize()
 	. = ..()
@@ -34,7 +36,8 @@
 	name = "bottled water"
 	desc = "Ice cold and utterly tasteless, this 'all-natural' mineral water comes 'fresh' from one of NanoTrasen's heavy-duty bottling plants in the Sivian poles."
 	icon_state = "waterbottle"
-	center_of_mass = list("x"=16, "y"=8)
+	center_of_mass_x = 16
+	center_of_mass_y = 8
 	drop_sound = 'sound/items/drop/disk.ogg'
 	pickup_sound = 'sound/items/pickup/disk.ogg'
 	cant_chance = 0
@@ -48,7 +51,8 @@
 	desc = "Blows right through you like a space wind. Contains caffeine."
 	description_fluff = "The 'Space' branding was originally added to the 'Alpha Cola' product line in order to justify selling cans for 50% higher prices to 'off-world' retailers. Despite being chemically identical, Space Cola proved so popular that Centauri Provisions eventually applied the name to the entire product line - price hike and all."
 	icon_state = "space_mountain_wind"
-	center_of_mass = list("x"=16, "y"=8)
+	center_of_mass_x = 16
+	center_of_mass_y = 8
 
 /obj/item/reagent_containers/food/drinks/cans/space_mountain_wind/Initialize()
 	. = ..()
@@ -58,7 +62,8 @@
 	name = "\improper Thirteen Loko"
 	desc = "The Vir Health Board has advised consumers that consumption of Thirteen Loko may result in seizures, blindness, drunkenness, or even death. Please Drink Responsibly."
 	icon_state = "thirteen_loko"
-	center_of_mass = list("x"=16, "y"=10)
+	center_of_mass_x = 16
+	center_of_mass_y = 10
 
 /obj/item/reagent_containers/food/drinks/cans/thirteenloko/Initialize()
 	. = ..()
@@ -69,7 +74,8 @@
 	desc = "A delicious mixture of 42 different flavors. Contains caffine."
 	description_fluff = "Following a 2490 lawsuit and a spate of deaths, Gilthari Exports reminds customers that the 'Dr.' legally stands for 'Drink'."
 	icon_state = "dr_gibb"
-	center_of_mass = list("x"=16, "y"=8)
+	center_of_mass_x = 16
+	center_of_mass_y = 8
 
 /obj/item/reagent_containers/food/drinks/cans/dr_gibb/Initialize()
 	. = ..()
@@ -80,7 +86,8 @@
 	desc = "A delicious mixture of 42 different flavors, one of which is water. Contains caffeine."
 	description_fluff = "Following a 2490 lawsuit and a spate of deaths, Gilthari Exports reminds customers that the 'Dr.' legally stands for 'Drink'."
 	icon_state = "dr_gibb_diet"
-	center_of_mass = list("x"=16, "y"=8)
+	center_of_mass_x = 16
+	center_of_mass_y = 8
 
 /obj/item/reagent_containers/food/drinks/cans/dr_gibb_diet/Initialize()
 	. = ..()
@@ -91,7 +98,8 @@
 	desc = "The taste of a star in liquid form. And, a bit of tuna...? Contains caffeine."
 	description_fluff = "Brought back by popular demand in 2275 after a limited-run release in 2270, the cult success of this bizarre tasting soda has never truly been accounted for by economists."
 	icon_state = "starkist"
-	center_of_mass = list("x"=16, "y"=8)
+	center_of_mass_x = 16
+	center_of_mass_y = 8
 
 /obj/item/reagent_containers/food/drinks/cans/starkist/Initialize()
 	. = ..()
@@ -102,7 +110,8 @@
 	desc = "The taste of a star in liquid form, in a special decaffineated blend. Still tastes faintly of tuna?"
 	description_fluff = "A special variant of the Starkist brand soda introduced after popular outcry following a reformulation of the basic drink decades ago. This decaffineated variant outsells 'New' Starkist in many markets."
 	icon_state = "decafstarkist"
-	center_of_mass = list("x"=16, "y"=8)
+	center_of_mass_x = 16
+	center_of_mass_y = 8
 
 /obj/item/reagent_containers/food/drinks/cans/starkistdecaf/Initialize()
 	. = ..()
@@ -113,7 +122,8 @@
 	desc = "Tastes like a hull breach in your mouth."
 	description_fluff = "The 'Space' branding was originally added to the 'Alpha Cola' product line in order to justify selling cans for 50% higher prices to 'off-world' retailers. Despite being chemically identical, Space Cola proved so popular that Centauri Provisions eventually applied the name to the entire product line - price hike and all."
 	icon_state = "space-up"
-	center_of_mass = list("x"=16, "y"=8)
+	center_of_mass_x = 16
+	center_of_mass_y = 8
 
 /obj/item/reagent_containers/food/drinks/cans/space_up/Initialize()
 	. = ..()
@@ -124,7 +134,8 @@
 	desc = "You wanted ORANGE. It gave you Lemon-Lime."
 	description_fluff = "Not to be confused with 'lemon & lime soda', Lemon-Lime is specially formulated using the highly propriatary Lemon-Lime Fruit. Growing the Lemon-Lime without a license is punishable by fines or jail time. Accept no immitations."
 	icon_state = "lemon-lime"
-	center_of_mass = list("x"=16, "y"=8)
+	center_of_mass_x = 16
+	center_of_mass_y = 8
 
 /obj/item/reagent_containers/food/drinks/cans/lemon_lime/Initialize()
 	. = ..()
@@ -135,7 +146,8 @@
 	desc = "That sweet, refreshing southern earthy flavor. That's where it's from, right? South Earth? Contains caffeine."
 	description_fluff = "Produced exclusively on the planet Oasis, Vrisk Serket Iced Tea is not sold outside of the Golden Crescent, let alone Earth."
 	icon_state = "ice_tea_can"
-	center_of_mass = list("x"=16, "y"=8)
+	center_of_mass_x = 16
+	center_of_mass_y = 8
 
 /obj/item/reagent_containers/food/drinks/cans/iced_tea/Initialize()
 	. = ..()
@@ -146,7 +158,8 @@
 	desc = "500 pages of rules of how to appropriately enter into a combat with this juice!"
 	description_fluff = "Strangely, this unassuming grape soda is a product of Hephaestus Industries."
 	icon_state = "purple_can"
-	center_of_mass = list("x"=16, "y"=8)
+	center_of_mass_x = 16
+	center_of_mass_y = 8
 
 /obj/item/reagent_containers/food/drinks/cans/grape_juice/Initialize()
 	. = ..()
@@ -157,7 +170,8 @@
 	desc = "Quinine tastes funny, but at least it'll keep the Malaria away."
 	description_fluff = "Due to its technically medicinal properties and the complexities of chemical copyright law, T-Borg's Tonic Water is a rare product of Zeng-Hu's 'LifeWater' refreshments division."
 	icon_state = "tonic"
-	center_of_mass = list("x"=16, "y"=8)
+	center_of_mass_x = 16
+	center_of_mass_y = 8
 
 /obj/item/reagent_containers/food/drinks/cans/tonic/Initialize()
 	. = ..()
@@ -167,7 +181,8 @@
 	name = "soda water"
 	desc = "A can of soda water. Still water's more refreshing cousin."
 	icon_state = "sodawater"
-	center_of_mass = list("x"=16, "y"=8)
+	center_of_mass_x = 16
+	center_of_mass_y = 8
 
 /obj/item/reagent_containers/food/drinks/cans/sodawater/Initialize()
 	. = ..()
@@ -178,7 +193,8 @@
 	desc = "For when you need to be more retro than NanoTrasen already pays you for."
 	description_fluff = "'Classic' beverages is a registered trademark of the Centauri Provisions corporation."
 	icon_state = "gingerale"
-	center_of_mass = list("x"=16, "y"=8)
+	center_of_mass_x = 16
+	center_of_mass_y = 8
 
 /obj/item/reagent_containers/food/drinks/cans/gingerale/Initialize()
 	. = ..()
@@ -189,7 +205,8 @@
 	desc = "Guaranteed to be both Rootin' and Tootin'."
 	description_fluff = "Despite centuries of humanity's expansion, this particular soda is still produced almost exclusively on Earth, in North America."
 	icon_state = "root_beer"
-	center_of_mass = list("x"=16, "y"=10)
+	center_of_mass_x = 16
+	center_of_mass_y = 10
 
 /obj/item/reagent_containers/food/drinks/cans/root_beer/Initialize()
 	. = ..()
@@ -202,7 +219,8 @@
 	desc = "A true Slavic soda."
 	description_fluff = "A classic Slavic beverage which many space-faring Slavs still enjoy to this day. Fun fact, it is actually considered a weak beer by non-Russians."
 	icon_state = "kvass"
-	center_of_mass = list("x"=16, "y"=10)
+	center_of_mass_x = 16
+	center_of_mass_y = 10
 
 /obj/item/reagent_containers/food/drinks/cans/kvass/Initialize()
 	. = ..()
@@ -213,7 +231,8 @@
 	desc = "A taste of Russia in the summertime - canned for you consumption."
 	description_fluff = "A sweet and fruity beverage that was traditionally used to preserve fruits in harsh Russian winters that is now available for widespread consumption."
 	icon_state = "kompot"
-	center_of_mass = list("x"=16, "y"=10)
+	center_of_mass_x = 16
+	center_of_mass_y = 10
 
 /obj/item/reagent_containers/food/drinks/cans/kompot/Initialize()
 	. = ..()
@@ -223,7 +242,8 @@
 	name = "\improper Boda"
 	desc = "State regulated soda beverage. Enjoy comrades."
 	icon_state = "boda"
-	center_of_mass = list("x"=16, "y"=8)
+	center_of_mass_x = 16
+	center_of_mass_y = 8
 
 /obj/item/reagent_containers/food/drinks/cans/boda/Initialize()
 	. = ..()
@@ -233,7 +253,8 @@
 	name = "\improper Boda-Plyus"
 	desc = "State regulated soda beverage, now with added surplus flavoring. Enjoy comrades."
 	icon_state = "bodaplus"
-	center_of_mass = list("x"=16, "y"=8)
+	center_of_mass_x = 16
+	center_of_mass_y = 8
 
 /obj/item/reagent_containers/food/drinks/cans/bodaplus/Initialize()
 	. = ..()
@@ -252,7 +273,8 @@
 	name = "\improper Red Army Twist"
 	desc = "A taste of what keeps our glorious nation running! Served as Space Commissariat Stahlin prefers it! Luke warm."
 	icon_state = "red_army"
-	center_of_mass = list("x"=16, "y"=8)
+	center_of_mass_x = 16
+	center_of_mass_y = 8
 
 /obj/item/reagent_containers/food/drinks/cans/redarmy/Initialize()
 	. = ..()
@@ -263,7 +285,8 @@
 	name = "\improper Arstotzka Brü"
 	desc = "Just what any bureaucrat needs to get through the day. Keep stamping those papers!"
 	icon_state = "arst_bru"
-	center_of_mass = list("x"=16, "y"=8)
+	center_of_mass_x = 16
+	center_of_mass_y = 8
 
 /obj/item/reagent_containers/food/drinks/cans/arstbru/Initialize()
 	. = ..()
@@ -274,7 +297,8 @@
 	desc = "Made by the people. Served to the people."
 	description_fluff = "A can of the only soft drink state approved for the benefit of the people. Served at room temperature regardless of ambient temperatures thanks to innovative Terran insulation technology."
 	icon_state = "terra_cola"
-	center_of_mass = list("x"=16, "y"=8)
+	center_of_mass_x = 16
+	center_of_mass_y = 8
 
 /obj/item/reagent_containers/food/drinks/cans/terra_cola/Initialize()
 	. = ..()
@@ -287,7 +311,8 @@
 	name = "\improper Superior Strawberry"
 	desc = "Feel superior above all with Superior Strawberry!"
 	icon_state = "strawcoke"
-	center_of_mass = list("x"=16, "y"=8)
+	center_of_mass_x = 16
+	center_of_mass_y = 8
 
 /obj/item/reagent_containers/food/drinks/cans/straw_cola/Initialize()
 	. = ..()
@@ -297,7 +322,8 @@
 	name = "\improper Andromeda Apple"
 	desc = "Look to the stars and prepare to explore with Andromeda Apple!"
 	icon_state = "applecoke"
-	center_of_mass = list("x"=16, "y"=8)
+	center_of_mass_x = 16
+	center_of_mass_y = 8
 
 /obj/item/reagent_containers/food/drinks/cans/apple_cola/Initialize()
 	. = ..()
@@ -307,7 +333,8 @@
 	name = "\improper Lunar Lemon"
 	desc = "Feel back at home on the Lunar Colonies with this classic beverage straight from the source!"
 	icon_state = "lemoncoke"
-	center_of_mass = list("x"=16, "y"=8)
+	center_of_mass_x = 16
+	center_of_mass_y = 8
 
 /obj/item/reagent_containers/food/drinks/cans/lemon_cola/Initialize()
 	. = ..()
@@ -317,7 +344,8 @@
 	name = "\improper Starship Sarsaparilla"
 	desc = "Take off and shoot for the stars with this classic cowboy cola!"
 	icon_state = "sarsaparilla"
-	center_of_mass = list("x"=16, "y"=8)
+	center_of_mass_x = 16
+	center_of_mass_y = 8
 
 /obj/item/reagent_containers/food/drinks/cans/sarsaparilla/Initialize()
 	. = ..()
@@ -327,7 +355,8 @@
 	name = "\improper Gravity Grape"
 	desc = "Get down with Newton's favorite carbonated science experiment!"
 	icon_state = "grapesoda"
-	center_of_mass = list("x"=16, "y"=8)
+	center_of_mass_x = 16
+	center_of_mass_y = 8
 
 /obj/item/reagent_containers/food/drinks/cans/grape_cola/Initialize()
 	. = ..()
@@ -337,7 +366,8 @@
 	name = "\improper Orion Orange"
 	desc = "Take a taste-tastic trip to Orion's Belt with Orion Orange!"
 	icon_state = "orangesoda"
-	center_of_mass = list("x"=16, "y"=8)
+	center_of_mass_x = 16
+	center_of_mass_y = 8
 
 /obj/item/reagent_containers/food/drinks/cans/orange_cola/Initialize()
 	. = ..()
@@ -347,7 +377,8 @@
 	name = "\improper Bacon Soda"
 	desc = "Taste something out of this world with Bacon Soda!"
 	icon_state = "porkcoke"
-	center_of_mass = list("x"=16, "y"=8)
+	center_of_mass_x = 16
+	center_of_mass_y = 8
 
 /obj/item/reagent_containers/food/drinks/cans/baconsoda/Initialize()
 	. = ..()
@@ -361,7 +392,8 @@
 	popular as Space Cola, many people across known space enjoy the sweet beverage."
 	icon = 'icons/obj/drinks_vr.dmi'
 	icon_state = "bepis"
-	center_of_mass = list("x"=16, "y"=10)
+	center_of_mass_x = 16
+	center_of_mass_y = 10
 
 /obj/item/reagent_containers/food/drinks/cans/bepis/Initialize()
 	. = ..()
@@ -372,7 +404,8 @@
 	desc = "A can of refreshing 'spring' water! Or so the can claims."
 	icon = 'icons/obj/drinks_vr.dmi'
 	icon_state = "watercan"
-	center_of_mass = list("x"=16, "y"=10)
+	center_of_mass_x = 16
+	center_of_mass_y = 10
 
 /obj/item/reagent_containers/food/drinks/cans/astrodew/Initialize()
 	. = ..()
@@ -388,7 +421,8 @@
 	years now, however all attempts they've made have failed."
 	icon = 'icons/obj/drinks_vr.dmi'
 	icon_state = "coffeecan"
-	center_of_mass = list("x"=16, "y"=10)
+	center_of_mass_x = 16
+	center_of_mass_y = 10
 
 /obj/item/reagent_containers/food/drinks/cans/icecoffee/Initialize()
 	. = ..()
@@ -399,7 +433,8 @@
 	desc = "Uses real honey, making it a sweet tooth's dream drink."
 	icon = 'icons/obj/drinks_vr.dmi'
 	icon_state = "buzzfuzz"
-	center_of_mass = list("x"=16, "y"=10)
+	center_of_mass_x = 16
+	center_of_mass_y = 10
 
 /obj/item/reagent_containers/food/drinks/cans/buzz/Initialize()
 	. = ..()
@@ -410,7 +445,8 @@
 	desc = "~Shake me up some of that Shambler's Juice!~"
 	icon = 'icons/obj/drinks_vr.dmi'
 	icon_state = "shambler"
-	center_of_mass = list("x"=16, "y"=10)
+	center_of_mass_x = 16
+	center_of_mass_y = 10
 
 /obj/item/reagent_containers/food/drinks/cans/shambler/Initialize()
 	. = ..()
@@ -421,7 +457,8 @@
 	desc = "A delicious blend of fresh cranberry juice and various spices, the perfect drink."
 	icon = 'icons/obj/drinks_vr.dmi'
 	icon_state = "cranberry"
-	center_of_mass = list("x"=16, "y"=10)
+	center_of_mass_x = 16
+	center_of_mass_y = 10
 
 /obj/item/reagent_containers/food/drinks/cans/cranberry/Initialize()
 	. = ..()
@@ -433,7 +470,8 @@
 	name = "\improper Sunshine Brew"
 	desc = "Beat the heat with this refreshing brewed beverage."
 	icon_state = "beercan"
-	center_of_mass = list("x"=16, "y"=8)
+	center_of_mass_x = 16
+	center_of_mass_y = 8
 
 /obj/item/reagent_containers/food/drinks/cans/beercan/Initialize()
 	. = ..()
@@ -443,7 +481,8 @@
 	name = "\improper Spacecastle Pale Ale"
 	desc = "A delicious IPA that's canned for your pleasure. Drink up!"
 	icon_state = "alecan"
-	center_of_mass = list("x"=16, "y"=8)
+	center_of_mass_x = 16
+	center_of_mass_y = 8
 
 /obj/item/reagent_containers/food/drinks/cans/alecan/Initialize()
 	. = ..()
@@ -455,7 +494,8 @@
 	name = "\improper Nukies - Peach Blaster"
 	desc = "Harness the power of the atom with this over-caffinated energy drink."
 	icon_state = "nukie_peach"
-	center_of_mass = list("x"=16, "y"=8)
+	center_of_mass_x = 16
+	center_of_mass_y = 8
 	volume = 60
 
 /obj/item/reagent_containers/food/drinks/cans/nukie_peach/Initialize()
@@ -466,7 +506,8 @@
 	name = "\improper Nukies - Great Pear"
 	desc = "Harness the power of the atom with this over-caffinated energy drink."
 	icon_state = "nukie_pear"
-	center_of_mass = list("x"=16, "y"=8)
+	center_of_mass_x = 16
+	center_of_mass_y = 8
 	volume = 60
 
 /obj/item/reagent_containers/food/drinks/cans/nukie_pear/Initialize()
@@ -477,7 +518,8 @@
 	name = "\improper Nukies - Popping Cherry"
 	desc = "Harness the power of the atom with this over-caffinated energy drink."
 	icon_state = "nukie_cherry"
-	center_of_mass = list("x"=16, "y"=8)
+	center_of_mass_x = 16
+	center_of_mass_y = 8
 	volume = 60
 
 /obj/item/reagent_containers/food/drinks/cans/nukie_cherry/Initialize()
@@ -488,7 +530,8 @@
 	name = "\improper Nukies - Melon Squirter"
 	desc = "Harness the power of the atom with this over-caffinated energy drink."
 	icon_state = "nukie_melon"
-	center_of_mass = list("x"=16, "y"=8)
+	center_of_mass_x = 16
+	center_of_mass_y = 8
 	volume = 60
 
 /obj/item/reagent_containers/food/drinks/cans/nukie_melon/Initialize()
@@ -499,7 +542,8 @@
 	name = "\improper Nukies - Bursting Banana"
 	desc = "Harness the power of the atom with this over-caffinated energy drink."
 	icon_state = "nukie_banana"
-	center_of_mass = list("x"=16, "y"=8)
+	center_of_mass_x = 16
+	center_of_mass_y = 8
 	volume = 60
 
 /obj/item/reagent_containers/food/drinks/cans/nukie_banana/Initialize()
@@ -510,7 +554,8 @@
 	name = "\improper Nukies - Insatiable Rose"
 	desc = "Harness the power of the atom with this over-caffinated energy drink."
 	icon_state = "nukie_rose"
-	center_of_mass = list("x"=16, "y"=8)
+	center_of_mass_x = 16
+	center_of_mass_y = 8
 	volume = 60
 
 /obj/item/reagent_containers/food/drinks/cans/nukie_rose/Initialize()
@@ -521,7 +566,8 @@
 	name = "\improper Nukies - Citrus Got Real"
 	desc = "Harness the power of the atom with this over-caffinated energy drink."
 	icon_state = "nukie_lemon"
-	center_of_mass = list("x"=16, "y"=8)
+	center_of_mass_x = 16
+	center_of_mass_y = 8
 	volume = 60
 
 /obj/item/reagent_containers/food/drinks/cans/nukie_lemon/Initialize()
@@ -532,7 +578,8 @@
 	name = "\improper Nukies - Swelling Fruit"
 	desc = "Harness the power of the atom with this over-caffinated energy drink."
 	icon_state = "nukie_fruit"
-	center_of_mass = list("x"=16, "y"=8)
+	center_of_mass_x = 16
+	center_of_mass_y = 8
 	volume = 60
 
 /obj/item/reagent_containers/food/drinks/cans/nukie_fruit/Initialize()
@@ -543,7 +590,8 @@
 	name = "\improper Nukies - Limited Edition"
 	desc = "Harness the power of the atom with this over-caffinated energy drink."
 	icon_state = "nukie_special"
-	center_of_mass = list("x"=16, "y"=8)
+	center_of_mass_x = 16
+	center_of_mass_y = 8
 	volume = 60
 
 /obj/item/reagent_containers/food/drinks/cans/nukie_special/Initialize()
@@ -557,7 +605,8 @@
 	name = "\improper Nukies Mega - Plum Peeper"
 	desc = "Harness the power of the atom with this illegal, unfit for organic consumption and absolutely not regulator approved energy drink."
 	icon_state = "nukie_mega_sight"
-	center_of_mass = list("x"=16, "y"=8)
+	center_of_mass_x = 16
+	center_of_mass_y = 8
 	volume = 60
 
 /obj/item/reagent_containers/food/drinks/cans/nukie_mega_sight/Initialize()
@@ -568,7 +617,8 @@
 	name = "\improper Nukies Mega - Juice Pumper"
 	desc = "Harness the power of the atom with this illegal, unfit for organic consumption and absolutely not regulator approved energy drink."
 	icon_state = "nukie_mega_heart"
-	center_of_mass = list("x"=16, "y"=8)
+	center_of_mass_x = 16
+	center_of_mass_y = 8
 	volume = 60
 
 /obj/item/reagent_containers/food/drinks/cans/nukie_mega_heart/Initialize()
@@ -579,7 +629,8 @@
 	name = "\improper Nukies Nega - Vibrating Nights"
 	desc = "Harness the power of the atom with this illegal, unfit for organic consumption and absolutely not regulator approved energy drink."
 	icon_state = "nukie_mega_sleep"
-	center_of_mass = list("x"=16, "y"=8)
+	center_of_mass_x = 16
+	center_of_mass_y = 8
 	volume = 60
 
 /obj/item/reagent_containers/food/drinks/cans/nukie_mega_sleep/Initialize()
@@ -590,7 +641,8 @@
 	name = "\improper Nukies Mega - Jolt Railer"
 	desc = "Harness the power of the atom with this illegal, unfit for organic consumption and absolutely not regulator approved energy drink."
 	icon_state = "nukie_mega_strong"
-	center_of_mass = list("x"=16, "y"=8)
+	center_of_mass_x = 16
+	center_of_mass_y = 8
 	volume = 60
 
 /obj/item/reagent_containers/food/drinks/cans/nukie_mega_shock/Initialize()
@@ -601,7 +653,8 @@
 	name = "\improper Nukies Mega - Rapid Rager"
 	desc = "Harness the power of the atom with this illegal, unfit for organic consumption and absolutely not regulator approved energy drink."
 	icon_state = "nukie_mega_fast"
-	center_of_mass = list("x"=16, "y"=8)
+	center_of_mass_x = 16
+	center_of_mass_y = 8
 	volume = 60
 
 /obj/item/reagent_containers/food/drinks/cans/nukie_mega_fast/Initialize()
@@ -612,7 +665,8 @@
 	name = "\improper Nukies Mega - Diamond Sky"
 	desc = "Harness the power of the atom with this illegal, unfit for organic consumption and absolutely not regulator approved energy drink."
 	icon_state = "nukie_mega_high"
-	center_of_mass = list("x"=16, "y"=8)
+	center_of_mass_x = 16
+	center_of_mass_y = 8
 	volume = 60
 
 /obj/item/reagent_containers/food/drinks/cans/nukie_mega_high/Initialize()
@@ -623,7 +677,8 @@
 	name = "\improper Nukies Mega - Shrinking Flower"
 	desc = "Harness the power of the atom with this illegal, unfit for organic consumption and absolutely not regulator approved energy drink."
 	icon_state = "nukie_mega_shrink"
-	center_of_mass = list("x"=16, "y"=8)
+	center_of_mass_x = 16
+	center_of_mass_y = 8
 	volume = 60
 
 /obj/item/reagent_containers/food/drinks/cans/nukie_mega_shrink/Initialize()
@@ -634,7 +689,8 @@
 	name = "\improper Nukies Mega - Growing Geyser"
 	desc = "Harness the power of the atom with this illegal, unfit for organic consumption and absolutely not regulator approved energy drink."
 	icon_state = "nukie_mega_grow"
-	center_of_mass = list("x"=16, "y"=8)
+	center_of_mass_x = 16
+	center_of_mass_y = 8
 	volume = 60
 
 /obj/item/reagent_containers/food/drinks/cans/nukie_mega_grow/Initialize()

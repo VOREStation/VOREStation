@@ -2,7 +2,7 @@ import { useBackend } from 'tgui/backend';
 import { Button, LabeledList, Section } from 'tgui-core/components';
 
 import { PanelOpen } from './PanelOpen';
-import { DoorAccessConsoleData } from './types';
+import type { DoorAccessConsoleData } from './types';
 
 /**
  * Airlock but without anything other than doors. Separates clean rooms.

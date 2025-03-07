@@ -189,7 +189,7 @@
 /datum/ai_holder/proc/walk_to_target()
 	ai_log("walk_to_target() : Entering.", AI_LOG_DEBUG)
 	// Make sure we can still chase/attack them.
-	if(!target || !can_attack(target))
+	if(QDELETED(target) || !can_attack(target))
 		ai_log("walk_to_target() : Lost target.", AI_LOG_INFO)
 		lose_target()
 		return

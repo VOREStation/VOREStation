@@ -150,6 +150,11 @@ The box in your backpack has an oxygen tank and gas mask in it."
 	name = "Choking (No Sleeping Gas)"
 	desc = "You're not getting enough sleeping gas. Find some good air before you pass out!"
 	icon_state = "not_enough_tox"
+
+/obj/screen/alert/not_enough_atmos
+	name = "Choking (No Breath)"
+	desc = "The atmosphere around you lacks any form of breathable air! Find some good air before you pass out!"
+	icon_state = "not_enough_oxy"
 //End gas alerts
 
 

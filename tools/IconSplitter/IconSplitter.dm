@@ -32,7 +32,7 @@ obj
 
 	var/user_input
 	while(!user_input)
-		user_input = input(usr, "Enter the criteria for the icon_states you wish to be split. For example, doing _d_s will remove all rolled down jumpsuits.","Split Criteria", "")
+		user_input = tgui_input_text(usr, "Enter the criteria for the icon_states you wish to be split. For example, doing _d_s will remove all rolled down jumpsuits.","Split Criteria", "")
 	to_world("Your split criteria is [user_input]")
 
 	for(var/OriginalState in icon_states(DMIToSplit))

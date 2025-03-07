@@ -19,8 +19,8 @@
 	var/volume_rate = 500              //Needed for borg jetpack transfer
 	actions_types = list(/datum/action/item_action/toggle_jetpack)
 
-/obj/item/tank/jetpack/New()
-	..()
+/obj/item/tank/jetpack/Initialize()
+	. = ..()
 	ion_trail = new /datum/effect/effect/system/ion_trail_follow()
 	ion_trail.set_up(src)
 

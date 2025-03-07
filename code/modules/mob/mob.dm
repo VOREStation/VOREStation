@@ -1,33 +1,45 @@
 /mob/Destroy()//This makes sure that mobs withGLOB.clients/keys are not just deleted from the game.
+	SSmobs.currentrun -= src
 	mob_list -= src
 	dead_mob_list -= src
 	living_mob_list -= src
 	player_list -= src
 	unset_machine()
-	QDEL_NULL(hud_used)
 	clear_fullscreen()
 	if(client)
 		for(var/obj/screen/movable/spell_master/spell_master in spell_masters)
 			qdel(spell_master)
 		remove_screen_obj_references()
-		client.screen.Cut()
+		client.screen = list()
 	if(mind && mind.current == src)
 		spellremove(src)
-	ghostize()
-	if(focus)
-		focus = null
-	if(plane_holder)
-		QDEL_NULL(plane_holder)
-
+	if(!istype(src,/mob/observer))
+		ghostize()
+	// QDEL_NULL(soulgem) //Soulcatcher. Needs to be ported sometime.
+	QDEL_NULL(dna)
+	QDEL_NULL(plane_holder)
+	QDEL_NULL(hud_used)
+	for(var/key in alerts) //clear out alerts
+		clear_alert(key)
 	if(pulling)
 		stop_pulling() //TG does this on atom/movable but our stop_pulling proc is here so whatever
 
-	vore_selected = null
+	if(ability_master)
+		QDEL_NULL(ability_master)
+
 	if(vore_organs)
 		QDEL_NULL_LIST(vore_organs)
 	if(vorePanel)
 		QDEL_NULL(vorePanel)
 
+	for(var/mob/observer/dead/M in following_mobs)
+		M.stop_following()
+	following_mobs = null
+	previewing_belly = null // from code/modules/vore/eating/mob_ch.dm
+	vore_selected = null // from code/modules/vore/eating/mob_vr
+	focus = null
+
+	motiontracker_unsubscribe(TRUE) // Force unsubscribe
 
 	if(mind)
 		if(mind.current == src)
@@ -38,6 +50,7 @@
 	. = ..()
 	update_client_z(null)
 	//return QDEL_HINT_HARDDEL_NOW
+
 
 /mob/proc/remove_screen_obj_references()
 	hands = null
@@ -55,7 +68,7 @@
 	spell_masters = null
 	zone_sel = null
 
-/mob/Initialize()
+/mob/Initialize(mapload)
 	mob_list += src
 	if(stat == DEAD)
 		dead_mob_list += src
@@ -237,37 +250,6 @@
 				client.perspective = EYE_PERSPECTIVE
 				client.eye = loc
 		return TRUE
-
-/mob/verb/pointed(atom/A as mob|obj|turf in view())
-	set name = "Point To"
-	set category = "Object"
-
-	if(!src || !isturf(loc) || !(A in view(loc)))
-		return 0
-	if(istype(A, /obj/effect/decal/point))
-		return 0
-
-	var/turf/tile = get_turf(A)
-	if (!tile)
-		return 0
-
-	var/turf/our_tile = get_turf(src)
-	var/obj/visual = new /obj/effect/decal/point(our_tile)
-	visual.invisibility = invisibility
-	visual.plane = ABOVE_PLANE
-	visual.layer = FLY_LAYER
-
-	animate(visual,
-		pixel_x = (tile.x - our_tile.x) * world.icon_size + A.pixel_x,
-		pixel_y = (tile.y - our_tile.y) * world.icon_size + A.pixel_y,
-		time = 1.7,
-		easing = EASE_OUT)
-
-	QDEL_IN(visual, 2 SECONDS) //Better qdel
-
-	face_atom(A)
-	return 1
-
 
 /mob/proc/ret_grab(list/L, flag)
 	return
@@ -472,7 +454,13 @@
 /client/verb/changes()
 	set name = "Changelog"
 	set category = "OOC.Resources"
-	src << link("https://wiki.vore-station.net/Changelog")
+
+	if(!GLOB.changelog_tgui)
+		GLOB.changelog_tgui = new /datum/changelog()
+	GLOB.changelog_tgui.tgui_interact(usr)
+
+	if(prefs?.read_preference(/datum/preference/text/lastchangelog) != GLOB.changelog_hash)
+		prefs.write_preference_by_type(/datum/preference/text/lastchangelog, GLOB.changelog_hash)
 
 /mob/verb/observe()
 	set name = "Observe"
@@ -529,8 +517,8 @@
 		src << browse(null, t1)
 
 	if(href_list["flavor_more"])
-		src << browse(text("<HTML><HEAD><TITLE>[]</TITLE></HEAD><BODY><TT>[]</TT></BODY></HTML>", name, replacetext(flavor_text, "\n", "<BR>")), text("window=[];size=500x200", name))
-		onclose(src, "[name]")
+		usr << browse(text("<HTML><HEAD><TITLE>[]</TITLE></HEAD><BODY><TT>[]</TT></BODY></HTML>", name, replacetext(flavor_text, "\n", "<BR>")), text("window=[];size=500x200", name))
+		onclose(usr, "[name]")
 	if(href_list["flavor_change"])
 		update_flavor_text()
 	return ..()
@@ -1320,3 +1308,8 @@ GLOBAL_LIST_EMPTY_TYPED(living_players_by_zlevel, /list)
 /mob/proc/grab_ghost(force)
 	if(mind)
 		return mind.grab_ghost(force = force)
+
+/mob/is_incorporeal()
+	if(incorporeal_move)
+		return 1
+	return ..()

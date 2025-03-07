@@ -1,4 +1,3 @@
-import { filter } from 'common/collections';
 import { useState } from 'react';
 import { useBackend } from 'tgui/backend';
 import { Window } from 'tgui/layouts';
@@ -13,7 +12,7 @@ import {
   Tabs,
 } from 'tgui-core/components';
 import { flow } from 'tgui-core/fp';
-import { BooleanLike } from 'tgui-core/react';
+import type { BooleanLike } from 'tgui-core/react';
 import { createSearch } from 'tgui-core/string';
 
 type Data = {
@@ -96,12 +95,12 @@ export const PersonalCrafting = (props) => {
 
   const shownRecipes: uiRecipe[] = flow([
     (recipes: uiRecipe[]) =>
-      filter(recipes, (recipe) => recipe.category === tab),
+      recipes.filter((recipe) => recipe.category === tab),
     (recipes: uiRecipe[]) => {
       if (!searchText) {
         return recipes;
       } else {
-        return filter(recipes, testSearch);
+        return recipes.filter(testSearch);
       }
     },
   ])(recipes);
@@ -137,6 +136,7 @@ export const PersonalCrafting = (props) => {
           <Input
             fluid
             value={searchText}
+            mb={1}
             placeholder="Search for recipes..."
             onInput={(e, value: string) => setSearchText(value)}
           />

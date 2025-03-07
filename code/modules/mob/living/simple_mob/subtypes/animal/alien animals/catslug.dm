@@ -58,9 +58,9 @@
 	var/obj/item/clothing/head/hat = null // Scughat.
 	var/can_wear_hat = TRUE				  // Some have inbuilt hats
 
-	var/picked_color = FALSE
-
 	allow_mind_transfer = TRUE
+
+	var/picked_color = FALSE //This needs to be moved to simple_mob. Out of scope for this PR.
 
 	can_enter_vent_with = list(
 		/obj/item/implant,
@@ -68,6 +68,7 @@
 		/obj/item/holder,
 		/obj/machinery/camera,
 		/obj/belly,
+		//obj/soulgem, // Used downstream.
 		/obj/screen,
 		/atom/movable/emissive_blocker,
 		/obj/item/material,
@@ -770,7 +771,7 @@
 	mob_radio.frequency = PUB_FREQ
 	mob_radio.ks2type = /obj/item/encryptionkey/heads/captain 		//Might not be able to speak, but the catslug can listen.
 	mob_radio.keyslot2 = new /obj/item/encryptionkey/heads/captain(mob_radio)
-	mob_radio.recalculateChannels(1)
+	mob_radio.recalculateChannels(TRUE)
 
 //=============================================================================
 //Admin-spawn only catslugs below - Expect overpowered things & silliness below
@@ -853,10 +854,10 @@
 	. = ..()
 	mob_radio = new /obj/item/radio/headset/mob_headset(src)
 	mob_radio.frequency = SYND_FREQ
-	mob_radio.syndie = 1
+	mob_radio.syndie = TRUE
 	mob_radio.ks2type = /obj/item/encryptionkey/syndicate
 	mob_radio.keyslot2 = new /obj/item/encryptionkey/syndicate(mob_radio)
-	mob_radio.recalculateChannels(1)
+	mob_radio.recalculateChannels(TRUE)
 	myid.access |= get_all_station_access()
 
 //ERT catslug
@@ -900,7 +901,7 @@
 	mob_radio.centComm = 1
 	mob_radio.ks2type = /obj/item/encryptionkey/ert
 	mob_radio.keyslot2 = new /obj/item/encryptionkey/ert(mob_radio)
-	mob_radio.recalculateChannels(1)
+	mob_radio.recalculateChannels(TRUE)
 	myid.access |= get_all_station_access()
 
 //Pilot Catslug

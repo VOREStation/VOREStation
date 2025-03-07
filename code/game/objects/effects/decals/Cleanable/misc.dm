@@ -24,8 +24,8 @@
 
 /obj/effect/decal/cleanable/greenglow
 
-/obj/effect/decal/cleanable/greenglow/New()
-	..()
+/obj/effect/decal/cleanable/greenglow/Initialize(mapload, _age)
+	. = ..()
 	QDEL_IN(src, 2 MINUTES)
 
 /obj/effect/decal/cleanable/dirt
@@ -38,7 +38,7 @@
 	icon_state = "dirt"
 	mouse_opacity = 0
 
-/obj/effect/decal/cleanable/dirt/Initialize(var/mapload, var/_age, var/dirt)
+/obj/effect/decal/cleanable/dirt/Initialize(mapload, var/_age, var/dirt)
 	.=..()
 	var/turf/simulated/our_turf = src.loc
 	if(our_turf && istype(our_turf) && our_turf.can_dirty)

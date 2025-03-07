@@ -191,7 +191,7 @@
 	if (!istype(src,/datum/admins))
 		to_chat(usr, "Error: you are not an admin!")
 		return
-	var/filter = input(usr, "Filter string (case-insensitive regex)", "Player notes filter")
+	var/filter = tgui_input_text(usr, "Filter string (case-insensitive regex)", "Player notes filter")
 	PlayerNotesPageLegacy(1, filter)
 
 /datum/admins/proc/PlayerNotesPageLegacy(page, filter)
@@ -279,7 +279,7 @@
 			if(!I.rank)
 				I.rank = "N/A"
 				update_file = 1
-			dat += "<font color=#008800>[I.content]</font> <i>by [I.author] ([I.rank])</i> on <i><font color=blue>[I.timestamp]</i></font> "
+			dat += span_green("[I.content]") + " " + span_italics("by [I.author] ([I.rank])") + " on " + span_italics(span_blue("[I.timestamp]")) + " "
 			if(I.author == usr.key || I.author == "Adminbot" || ishost(usr))
 				dat += "<A href='byond://?src=\ref[src];[HrefToken()];remove_player_info_legacy=[key];remove_index=[i]'>Remove</A>"
 			dat += "<br><br>"
@@ -296,7 +296,7 @@
 
 	if(href_list["add_player_info_legacy"])
 		var/key = href_list["add_player_info_legacy"]
-		var/add = sanitize(input(usr, "Add Player Info (Legacy)"))
+		var/add = sanitize(tgui_input_text(usr, "Add Player Info (Legacy)", multiline=TRUE))
 		if(!add) return
 
 		notes_add(key,add,usr)

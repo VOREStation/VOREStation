@@ -61,6 +61,7 @@
 					var/category = query.item[3]
 					var/id = query.item[4]
 					dat += "<tr><td>[author]</td><td>[title]</td><td>[category]</td><td>[id]</td></tr>"
+				qdel(query)
 				dat += "</table><BR>"
 			dat += "<A href='byond://?src=\ref[src];back=1'>\[Go Back\]</A><BR></html>"
 	user << browse(dat, "window=publiclibrary")
@@ -105,7 +106,7 @@
 		screenstate = 0
 
 	src.add_fingerprint(usr)
-	src.updateUsrDialog()
+	src.updateUsrDialog(usr)
 	return
 
 
@@ -517,7 +518,7 @@
 		var/obj/item/book/NewBook = new newpath(get_turf(src))
 		NewBook.name = "Book: [NewBook.name]"
 	src.add_fingerprint(usr)
-	src.updateUsrDialog()
+	src.updateUsrDialog(usr)
 	return
 
 /*
@@ -568,7 +569,7 @@
 		for(var/obj/item/book/B in contents)
 			B.loc = src.loc
 	src.add_fingerprint(usr)
-	src.updateUsrDialog()
+	src.updateUsrDialog(usr)
 	return
 
 

@@ -1,11 +1,12 @@
 /obj/item/clothing/suit/armor
+	name = DEVELOPER_WARNING_NAME
 	allowed = list(/obj/item/gun/energy,/obj/item/reagent_containers/spray/pepper,/obj/item/gun/projectile,/obj/item/ammo_magazine,/obj/item/ammo_casing,/obj/item/melee/baton,/obj/item/handcuffs,/obj/item/flashlight/maglight,/obj/item/clothing/head/helmet)
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO
+	body_parts_covered = CHEST
 	item_flags = THICKMATERIAL
 
-	cold_protection = UPPER_TORSO|LOWER_TORSO
+	cold_protection = CHEST
 	min_cold_protection_temperature = ARMOR_MIN_COLD_PROTECTION_TEMPERATURE
-	heat_protection = UPPER_TORSO|LOWER_TORSO
+	heat_protection = CHEST
 	max_heat_protection_temperature = ARMOR_MAX_HEAT_PROTECTION_TEMPERATURE
 	siemens_coefficient = 0.6
 
@@ -113,7 +114,7 @@
 	desc = "A suit of armor most often used by Special Weapons and Tactics squads. Includes padded vest with pockets along with shoulder and kneeguards."
 	icon_state = "swatarmor"
 	item_state_slots = list(slot_r_hand_str = "swat", slot_l_hand_str = "swat")
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
+	body_parts_covered = CHEST|LEGS|ARMS
 	flags_inv = HIDETIE|HIDEHOLSTER
 	slowdown = 1
 	armor = list(melee = 60, bullet = 60, laser = 60, energy = 40, bomb = 40, bio = 0, rad = 0)
@@ -127,7 +128,7 @@
 	gas_transfer_coefficient = 0.01
 	permeability_coefficient = 0.01
 	item_flags = THICKMATERIAL
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS
+	body_parts_covered = CHEST|LEGS|FEET|ARMS
 	allowed = list(/obj/item/gun,/obj/item/ammo_magazine,/obj/item/ammo_casing,/obj/item/melee/baton,/obj/item/handcuffs,/obj/item/tank/emergency/oxygen,/obj/item/clothing/head/helmet)
 	slowdown = 1
 	w_class = ITEMSIZE_HUGE
@@ -156,7 +157,7 @@
 	icon_state = "detective-armor"
 	item_state_slots = list(slot_r_hand_str = "armor", slot_l_hand_str = "armor")
 	blood_overlay_type = "armor"
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO
+	body_parts_covered = CHEST
 	armor = list(melee = 40, bullet = 30, laser = 30, energy = 10, bomb = 10, bio = 0, rad = 0)
 
 
@@ -220,7 +221,7 @@
 	blood_overlay_type = "armor"
 	item_state_slots = list(slot_r_hand_str = "armor", slot_l_hand_str = "armor")
 	slowdown = -1
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO
+	body_parts_covered = CHEST
 	armor = list(melee = 50, bullet = 50, laser = 50, energy = 50, bomb = 50, bio = 0, rad = 40)
 	siemens_coefficient = 0.4
 	var/block_chance = 20
@@ -231,7 +232,7 @@
 	description_info = "It has a 40% chance to completely nullify an incoming attack."
 	icon_state = "alien_tank"
 	slowdown = 0
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
+	body_parts_covered = CHEST|LEGS|ARMS
 	armor = list(melee = 70, bullet = 70, laser = 70, energy = 70, bomb = 70, bio = 0, rad = 40)
 	block_chance = 40
 
@@ -247,7 +248,7 @@
 	desc = "A set of armor worn by members of the Emergency Response Team."
 	icon_state = "ertarmor_cmd"
 	item_state_slots = list(slot_r_hand_str = "armor", slot_l_hand_str = "armor")
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
+	body_parts_covered = CHEST|ARMS
 	armor = list(melee = 60, bullet = 60, laser = 60, energy = 40, bomb = 20, bio = 0, rad = 0)
 
 //Commander
@@ -283,12 +284,12 @@
 	armor = list(melee = 40, bullet = 30, laser = 30, energy = 10, bomb = 10, bio = 0, rad = 0)
 	allowed = list(/obj/item/gun,/obj/item/reagent_containers/spray/pepper,/obj/item/ammo_magazine,/obj/item/ammo_casing,/obj/item/melee/baton,/obj/item/handcuffs,/obj/item/flashlight/maglight,/obj/item/clothing/head/helmet)
 
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO
+	body_parts_covered = CHEST
 	item_flags = THICKMATERIAL
 
-	cold_protection = UPPER_TORSO|LOWER_TORSO
+	cold_protection = CHEST
 	min_cold_protection_temperature = ARMOR_MIN_COLD_PROTECTION_TEMPERATURE
-	heat_protection = UPPER_TORSO|LOWER_TORSO
+	heat_protection = CHEST
 	max_heat_protection_temperature = ARMOR_MAX_HEAT_PROTECTION_TEMPERATURE
 	siemens_coefficient = 0.6
 
@@ -305,9 +306,7 @@
 	desc = "A set of lightweight armor designed to be worn over the matching ACE security undersuit. Includes thigh, shin, and forearm protectors in addition to standard torso and groin guards."
 	icon_state = "aces_armor"
 	item_state_slots = list(slot_r_hand_str = "armor", slot_l_hand_str = "armor")
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
-	cold_protection = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
-	heat_protection = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
+	body_parts_covered = CHEST|LEGS|ARMS
 
 /obj/item/clothing/suit/storage/vest/warden
 	name = "warden armor vest"
@@ -322,14 +321,14 @@
 	desc = "An armoured jacket with silver rank pips and livery."
 	icon_state = "warden_jacket"
 	blood_overlay_type = "suit"
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
+	body_parts_covered = CHEST|ARMS|LEGS
 	flags_inv = HIDETIE|HIDEHOLSTER
 
 /obj/item/clothing/suit/storage/vest/wardencoat/alt
 	name = JOB_WARDEN + "'s jacket"
 	desc = "An armoured jacket with silver rank pips and livery."
 	icon_state = "warden_alt"
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
+	body_parts_covered = CHEST|ARMS|LEGS
 
 /obj/item/clothing/suit/storage/vest/hos
 	name = "head of security armor vest"
@@ -344,7 +343,7 @@
 	desc = "A greatcoat enhanced with a special alloy for some protection and style."
 	icon_state = "hos"
 	blood_overlay_type = "suit"
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
+	body_parts_covered = CHEST|ARMS|LEGS
 	flags_inv = HIDETIE|HIDEHOLSTER
 
 //Jensen cosplay gear
@@ -396,7 +395,7 @@
 	icon_state = "flexitac"
 	item_state = "flexitac"
 	armor = list(melee = 40, bullet = 40, laser = 60, energy = 35, bomb = 30, bio = 0, rad = 0)
-	cold_protection = UPPER_TORSO|LOWER_TORSO
+	cold_protection = CHEST
 	min_cold_protection_temperature = T0C - 20
 	slowdown = 0.5
 
@@ -472,7 +471,7 @@
 	icon_state = "centcom"
 	item_state_slots = list(slot_r_hand_str = "armor", slot_l_hand_str = "armor")
 	w_class = ITEMSIZE_LARGE//bulky item
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS|HANDS
+	body_parts_covered = CHEST|LEGS|FEET|ARMS|HANDS
 	allowed = list(/obj/item/gun/energy,/obj/item/melee/baton,/obj/item/handcuffs,/obj/item/tank/emergency/oxygen,/obj/item/clothing/head/helmet)
 	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT|HIDETIE|HIDEHOLSTER
 	cold_protection = UPPER_TORSO | LOWER_TORSO | LEGS | FEET | ARMS | HANDS
@@ -487,13 +486,14 @@
 	armor = list(melee = 90, bullet = 80, laser = 10, energy = 10, bomb = 80, bio = 0, rad = 0)
 	w_class = ITEMSIZE_HUGE // Very bulky, very heavy.
 	gas_transfer_coefficient = 0.90
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS|HANDS
+	body_parts_covered = CHEST|LEGS|FEET|ARMS|HANDS
 	slowdown = 5 // If you're a tank you're gonna move like a tank.
 	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT|HIDETIE|HIDEHOLSTER
 	siemens_coefficient = 0
 
 /obj/item/clothing/suit/armor/tdome
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS|HANDS
+	name = DEVELOPER_WARNING_NAME
+	body_parts_covered = CHEST|LEGS|FEET|ARMS|HANDS
 	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
 	armor = list(melee = 60, bullet = 60, laser = 60, energy = 40, bomb = 40, bio = 0, rad = 0)
 
@@ -554,7 +554,7 @@
 	icon_state = "explorer"
 	flags = THICKMATERIAL
 	min_cold_protection_temperature = SPACE_SUIT_MIN_COLD_PROTECTION_TEMPERATURE
-	cold_protection = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
+	cold_protection = CHEST|LEGS|ARMS
 
 /obj/item/clothing/suit/armor/pcarrier/light
 	starting_accessories = list(/obj/item/clothing/accessory/armor/armorplate)

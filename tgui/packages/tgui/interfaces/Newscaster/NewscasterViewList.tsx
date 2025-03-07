@@ -6,7 +6,7 @@ import {
   NEWSCASTER_SCREEN_MAIN,
   NEWSCASTER_SCREEN_SELECTEDCHANNEL,
 } from './constants';
-import { Data } from './types';
+import type { Data } from './types';
 
 export const NewscasterViewList = (props: { setScreen: Function }) => {
   const { act, data } = useBackend<Data>();

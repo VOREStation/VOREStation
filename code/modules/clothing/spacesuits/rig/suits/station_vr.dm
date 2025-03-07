@@ -68,7 +68,7 @@
 /obj/item/rig/focalpoint
 	name = "\improper F.P.E. hardsuit control module"
 	desc = "A high-end hardsuit produced by Focal Point Energistics, focused around repair and construction."
-	
+
 	icon = 'icons/obj/rig_modules_vr.dmi' // the item
 	default_mob_icon = 'icons/mob/rig_back_vr.dmi' // the onmob
 	icon_state = "techno_rig"
@@ -85,7 +85,7 @@
 	max_heat_protection_temperature = FIRESUIT_MAX_HEAT_PROTECTION_TEMPERATURE // so it's like a rig firesuit
 	armor = list("melee" = 40, "bullet" = 10, "laser" = 30, "energy" = 55, "bomb" = 70, "bio" = 100, "rad" = 100)
 	allowed = list(/obj/item/flashlight,/obj/item/tank,/obj/item/suit_cooling_unit,/obj/item/storage/backpack)
-	
+
 	chest_type = /obj/item/clothing/suit/space/rig/focalpoint
 	helm_type = /obj/item/clothing/head/helmet/space/rig/focalpoint
 	boot_type = /obj/item/clothing/shoes/magboots/rig/ce/focalpoint
@@ -136,7 +136,7 @@
 /obj/item/rig/hephaestus
 	name = "\improper Hephaestus hardsuit control module"
 	desc = "A high-end hardsuit produced by Hephaestus Industries, focused on destroying the competition. Literally."
-	
+
 	icon = 'icons/obj/rig_modules_vr.dmi' // the item
 	default_mob_icon = 'icons/mob/rig_back_vr.dmi' // the onmob
 	icon_state = "ihs_rig"
@@ -148,7 +148,7 @@
 	/obj/item/storage/firstaid, /obj/item/reagent_containers/hypospray, /obj/item/roller, /obj/item/suit_cooling_unit, /obj/item/storage/backpack,/obj/item/bluespaceradio, /obj/item/defib_kit)
 
 	armor = list("melee" = 70, "bullet" = 70, "laser" = 70, "energy" = 50, "bomb" = 60, "bio" = 100, "rad" = 20)
-	
+
 	chest_type = /obj/item/clothing/suit/space/rig/hephaestus
 	helm_type = /obj/item/clothing/head/helmet/space/rig/hephaestus
 	boot_type = /obj/item/clothing/shoes/magboots/rig/hephaestus
@@ -198,7 +198,7 @@
 /obj/item/rig/zero
 	name = "null hardsuit control module"
 	desc = "A very lightweight suit designed to allow use inside mechs and starfighters. It feels like you're wearing nothing at all."
-	
+
 	icon = 'icons/obj/rig_modules_vr.dmi' // the item
 	default_mob_icon = 'icons/mob/rig_back_vr.dmi' // the onmob
 	icon_state = "null_rig"
@@ -211,7 +211,7 @@
 	glove_type = null
 
 	allowed = list(/obj/item/gun,/obj/item/flashlight,/obj/item/tank,/obj/item/suit_cooling_unit,/obj/item/storage/backpack, /obj/item/bluespaceradio, /obj/item/defib_kit)
-	
+
 	slowdown = 0
 	offline_slowdown = 1
 	offline_vision_restriction = 2
@@ -237,14 +237,14 @@
 	icon_state = "null_rig"
 	sprite_sheets = ALL_VR_SPRITE_SHEETS_SUIT_MOB
 	sprite_sheets_obj = ALL_VR_SPRITE_SHEETS_SUIT_ITEM
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS|HANDS // like a voidsuit
+	body_parts_covered = CHEST|LEGS|FEET|ARMS|HANDS // like a voidsuit
 	slowdown = 0
 
 // Medical rig from bay
 /obj/item/rig/baymed
 	name = "\improper Commonwealth medical hardsuit control module"
 	desc = "A lightweight first responder hardsuit from the Commonwealth. Not suitable for combat use, but advanced myomer fibers can push the user to incredible speeds."
-	
+
 	icon = 'icons/obj/rig_modules_vr.dmi' // the item
 	default_mob_icon = 'icons/mob/rig_back_vr.dmi' // the onmob
 	icon_state = "medical_rig_bay"
@@ -273,7 +273,7 @@
 	armor = list("melee" = 10, "bullet" = 5, "laser" = 10, "energy" = 5, "bomb" = 25, "bio" = 100, "rad" = 20)
 
 /obj/item/rig/baymed/equipped
-	
+
 	initial_modules = list(
 		/obj/item/rig_module/maneuvering_jets,
 		/obj/item/rig_module/sprinter,
@@ -318,7 +318,7 @@
 /obj/item/rig/bayeng
 	name = "\improper Commonwealth engineering hardsuit control module"
 	desc = "An advanced construction hardsuit from the Commonwealth. Built like a tank. Don't expect to be taking any tight corners while running."
-	
+
 	icon = 'icons/obj/rig_modules_vr.dmi' // the item
 	default_mob_icon = 'icons/mob/rig_back_vr.dmi' // the onmob
 	icon_state = "engineering_rig_bay"
@@ -394,7 +394,7 @@
 /obj/item/rig/pathfinder
 	name = "\improper Commonwealth pathfinder hardsuit control module"
 	desc = "A Commonwealth pathfinder hardsuit is hard to come by... how'd this end up on the frontier?"
-	
+
 	icon = 'icons/obj/rig_modules_vr.dmi' // the item
 	default_mob_icon = 'icons/mob/rig_back_vr.dmi' // the onmob
 	icon_state = "pathfinder_rig_bay"

@@ -2,7 +2,7 @@ import { useBackend } from 'tgui/backend';
 import { Window } from 'tgui/layouts';
 import { Button } from 'tgui-core/components';
 
-import { tgui_construction } from './common/CommonTypes';
+import type { tgui_construction } from './common/CommonTypes';
 
 type Data = {
   tgui_construction: tgui_construction;

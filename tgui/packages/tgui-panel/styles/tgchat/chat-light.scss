@@ -33,13 +33,13 @@ img {
   margin: 0;
   padding: 0;
   line-height: 1;
-  -ms-interpolation-mode: nearest-neighbor; // TODO: Remove with 516
   image-rendering: pixelated;
 }
 
 img.icon {
   height: 1em;
   min-height: 16px;
+  min-width: 16px;
   width: auto;
   vertical-align: bottom;
 }
@@ -1454,6 +1454,11 @@ $border-width-px: $border-width * 1px;
   line-height: 0.3;
 }
 
+.psionic {
+  color: #993399;
+}
+
 .wingdings {
+  color: #0077ff;
   font-family: Wingdings, Webdings;
 }

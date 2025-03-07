@@ -12,7 +12,6 @@ var/list/wrapped_species_by_ref = list()
 		)
 
 	var/list/valid_transform_species = list()
-	var/monochromatic
 	//var/default_form = SPECIES_HUMAN //VOREStation edit
 
 /datum/species/shapeshifter/get_valid_shapeshifter_forms(var/mob/living/carbon/human/H)
@@ -64,13 +63,6 @@ var/list/wrapped_species_by_ref = list()
 /datum/species/shapeshifter/handle_post_spawn(var/mob/living/carbon/human/H)
 	..()
 	wrapped_species_by_ref["\ref[H]"] = base_species //VOREStation edit
-	if(monochromatic)
-		H.r_hair =   H.r_skin
-		H.g_hair =   H.g_skin
-		H.b_hair =   H.b_skin
-		H.r_facial = H.r_skin
-		H.g_facial = H.g_skin
-		H.b_facial = H.b_skin
 
 	for(var/obj/item/organ/external/E in H.organs)
 		E.sync_colour_to_human(H)
@@ -179,7 +171,7 @@ var/list/wrapped_species_by_ref = list()
 
 	last_special = world.time + 50
 
-	var/new_skin = input(src, "Please select a new body color.", "Shapeshifter Colour", rgb(r_skin, g_skin, b_skin)) as null|color
+	var/new_skin = tgui_color_picker(src, "Please select a new body color.", "Shapeshifter Colour", rgb(r_skin, g_skin, b_skin))
 	if(!new_skin)
 		return
 	shapeshifter_set_colour(new_skin)
@@ -193,14 +185,6 @@ var/list/wrapped_species_by_ref = list()
 	g_synth = g_skin
 	b_synth = b_skin
 
-	var/datum/species/shapeshifter/S = species
-	if(S.monochromatic)
-		r_hair =   r_skin
-		g_hair =   g_skin
-		b_hair =   b_skin
-		r_facial = r_skin
-		g_facial = g_skin
-		b_facial = b_skin
 
 	for(var/obj/item/organ/external/E in organs)
 		E.sync_colour_to_human(src)
@@ -217,15 +201,15 @@ var/list/wrapped_species_by_ref = list()
 
 	last_special = world.time + 50
 
-	var/new_hair = input(src, "Please select a new hair color.", "Hair Colour") as color
+	var/new_hair = tgui_color_picker(src, "Please select a new hair color.", "Hair Colour")
 	if(!new_hair)
 		return
 	shapeshifter_set_hair_color(new_hair)
-	var/new_grad = input(src, "Please select a new hair gradient color.", "Hair Gradient Colour") as color
+	var/new_grad = tgui_color_picker(src, "Please select a new hair gradient color.", "Hair Gradient Colour")
 	if(!new_grad)
 		return
 	shapeshifter_set_grad_color(new_grad)
-	var/new_fhair = input(src, "Please select a new facial hair color.", "Facial Hair Color") as color
+	var/new_fhair = tgui_color_picker(src, "Please select a new facial hair color.", "Facial Hair Color")
 	if(!new_fhair)
 		return
 	shapeshifter_set_facial_color(new_fhair)
@@ -317,7 +301,7 @@ var/list/wrapped_species_by_ref = list()
 	last_special = world.time + 50
 
 	var/current_color = rgb(r_eyes,g_eyes,b_eyes)
-	var/new_eyes = input(src, "Pick a new color for your eyes.","Eye Color", current_color) as null|color
+	var/new_eyes = tgui_color_picker(src, "Pick a new color for your eyes.","Eye Color", current_color)
 	if(!new_eyes)
 		return
 

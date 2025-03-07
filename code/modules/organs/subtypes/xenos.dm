@@ -13,13 +13,15 @@
 /obj/item/organ/internal/xenos/eggsac/grey
 	icon_state = "sac_grey"
 
-/obj/item/organ/internal/xenos/eggsac/grey/colormatch/New()
+/obj/item/organ/internal/xenos/eggsac/grey/colormatch/Initialize(mapload, internal)
 	..()
-	var/mob/living/carbon/human/H = null
-	spawn(15)
-		if(ishuman(owner))
-			H = owner
-			color = H.species.blood_color
+	return INITIALIZE_HINT_LATELOAD
+
+/obj/item/organ/internal/xenos/eggsac/grey/colormatch/LateInitialize()
+	. = ..()
+	if(ishuman(loc))
+		var/mob/living/carbon/human/H = loc
+		color = H.species.blood_color
 
 /obj/item/organ/internal/xenos/plasmavessel
 	name = "plasma vessel"
@@ -54,13 +56,15 @@
 	icon_state = "plasma_grey"
 	stored_plasma = 200
 
-/obj/item/organ/internal/xenos/plasmavessel/grey/colormatch/New()
+/obj/item/organ/internal/xenos/plasmavessel/grey/colormatch/Initialize(mapload, internal)
 	..()
-	var/mob/living/carbon/human/H = null
-	spawn(15)
-		if(ishuman(owner))
-			H = owner
-			color = H.species.blood_color
+	return INITIALIZE_HINT_LATELOAD
+
+/obj/item/organ/internal/xenos/plasmavessel/grey/colormatch/LateInitialize()
+	. = ..()
+	if(ishuman(loc))
+		var/mob/living/carbon/human/H = loc
+		color = H.species.blood_color
 
 /obj/item/organ/internal/xenos/plasmavessel/queen
 	name = "bloated plasma vessel"
@@ -91,13 +95,15 @@
 /obj/item/organ/internal/xenos/acidgland/grey
 	icon_state = "acidgland_grey"
 
-/obj/item/organ/internal/xenos/acidgland/grey/colormatch/New()
+/obj/item/organ/internal/xenos/acidgland/grey/colormatch/Initialize(mapload, internal)
 	..()
-	var/mob/living/carbon/human/H = null
-	spawn(15)
-		if(ishuman(owner))
-			H = owner
-			color = H.species.blood_color
+	return INITIALIZE_HINT_LATELOAD
+
+/obj/item/organ/internal/xenos/acidgland/grey/colormatch/LateInitialize()
+	. = ..()
+	if(ishuman(loc))
+		var/mob/living/carbon/human/H = loc
+		color = H.species.blood_color
 
 /obj/item/organ/internal/xenos/hivenode
 	name = "hive node"
@@ -108,13 +114,15 @@
 /obj/item/organ/internal/xenos/hivenode/grey
 	icon_state = "xenode_grey"
 
-/obj/item/organ/internal/xenos/hivenode/grey/colormatch/New()
+/obj/item/organ/internal/xenos/hivenode/grey/colormatch/Initialize(mapload, internal)
 	..()
-	var/mob/living/carbon/human/H = null
-	spawn(15)
-		if(ishuman(owner))
-			H = owner
-			color = H.species.blood_color
+	return INITIALIZE_HINT_LATELOAD
+
+/obj/item/organ/internal/xenos/hivenode/grey/colormatch/LateInitialize()
+	. = ..()
+	if(ishuman(loc))
+		var/mob/living/carbon/human/H = loc
+		color = H.species.blood_color
 
 /obj/item/organ/internal/xenos/resinspinner
 	name = "resin spinner"
@@ -130,13 +138,15 @@
 /obj/item/organ/internal/xenos/resinspinner/grey
 	icon_state = "xenode_grey"
 
-/obj/item/organ/internal/xenos/resinspinner/grey/colormatch/New()
+/obj/item/organ/internal/xenos/resinspinner/grey/colormatch/Initialize(mapload, internal)
 	..()
-	var/mob/living/carbon/human/H = null
-	spawn(15)
-		if(ishuman(owner))
-			H = owner
-			color = H.species.blood_color
+	return INITIALIZE_HINT_LATELOAD
+
+/obj/item/organ/internal/xenos/resinspinner/grey/colormatch/LateInitialize()
+	. = ..()
+	if(ishuman(loc))
+		var/mob/living/carbon/human/H = loc
+		color = H.species.blood_color
 
 
 // XENOMORPH EXTERNAL ORGANS

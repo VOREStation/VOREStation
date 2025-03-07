@@ -23,8 +23,8 @@
 	name = "sample bag box"
 	desc = "A box claiming to contain sample bags."
 
-/obj/item/storage/box/samplebags/New()
-	..()
+/obj/item/storage/box/samplebags/Initialize(mapload)
+	. = ..()
 	for(var/i = 1 to 7)
 		var/obj/item/evidencebag/S = new(src)
 		S.name = "sample bag"
@@ -80,9 +80,7 @@
 					SSxenoarch.digsite_spawning_turfs.Remove(T)
 
 		if(SSxenoarch && ((nearestTargetDist == -1) || (nearestSimpleTargetDist == -1)) && user.z && (world.time - last_repopulation_time >= repopulation_delay))
-			if(user.z in using_map.xenoarch_exempt_levels) //We found no artifacts and our Z level is not spawn exempt. Time for random generation.
-				//Yeah we do nothing here. I tried to make the above a !user.z ... but VSC compiler screeched at me.
-			else
+			if(!(user.z in using_map.xenoarch_exempt_levels)) //We found no artifacts and our Z level is not spawn exempt. Time for random generation.
 				last_repopulation_time = world.time
 				to_chat(user, "The [src] beeps and buzzes, a warning popping up on screen stating 'No artifacts detected on current wavelength. Swapping to different wavelength. Please try scanning momentarily.'")
 				SSxenoarch.continual_generation(user)
@@ -232,8 +230,8 @@
 	var/scan_ticks = 0
 	var/obj/item/radio/target_radio
 
-/obj/item/beacon_locator/New()
-	..()
+/obj/item/beacon_locator/Initialize(mapload)
+	. = ..()
 	START_PROCESSING(SSobj, src)
 
 /obj/item/beacon_locator/Destroy()
@@ -333,7 +331,8 @@
 	var/obj/item/ano_scanner/anomaly_scanner = null
 	var/obj/item/depth_scanner/depth_scanner = null
 
-/obj/item/xenoarch_multi_tool/New()
+/obj/item/xenoarch_multi_tool/Initialize(mapload)
+	. = ..()
 	anomaly_scanner = new/obj/item/ano_scanner(src)
 	depth_scanner = new/obj/item/depth_scanner(src)
 

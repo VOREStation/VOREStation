@@ -75,13 +75,6 @@
 	set_light(0)
 	return ..()
 
-/mob/living/carbon/human/Destroy()
-	if(stored_blob)
-		stored_blob.drop_l_hand()
-		stored_blob.drop_r_hand()
-		QDEL_NULL(stored_blob)
-	return ..()
-
 /mob/living/simple_mob/slime/promethean/update_misc_tabs()
 	. = ..()
 	if(humanform)
@@ -309,7 +302,7 @@
 
 	last_special = world.time + 25
 
-	var/new_skin = input(src, "Please select a new body color.", "Shapeshifter Colour", color) as null|color
+	var/new_skin = tgui_color_picker(src, "Please select a new body color.", "Shapeshifter Colour", color)
 	if(!new_skin)
 		return
 	color = new_skin

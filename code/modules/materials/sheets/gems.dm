@@ -61,3 +61,11 @@
 	default_type = MAT_MORPHIUM
 	no_variants = FALSE
 	apply_colour = TRUE
+
+/obj/item/stack/material/glamour
+	name = MAT_GLAMOUR
+	icon_state = "sheet-glamour"
+	item_state = "mhydrogen"
+	default_type = MAT_GLAMOUR
+	no_variants = FALSE
+	apply_colour = TRUE

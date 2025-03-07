@@ -367,7 +367,7 @@ var/global/list/valid_bloodreagents = list("default",REAGENT_ID_IRON,REAGENT_ID_
 		return TOPIC_REFRESH_UPDATE_PREVIEW
 
 	else if(href_list["blood_color"])
-		var/color_choice = input(user, "Pick a blood color (does not apply to synths)","Blood Color",pref.blood_color) as color
+		var/color_choice = tgui_color_picker(user, "Pick a blood color (does not apply to synths)","Blood Color",pref.blood_color)
 		if(color_choice)
 			pref.blood_color = sanitize_hexcolor(color_choice, default="#A10808")
 		return TOPIC_REFRESH
@@ -538,7 +538,6 @@ var/global/list/valid_bloodreagents = list("default",REAGENT_ID_IRON,REAGENT_ID_
 				else
 					picklist = everyone_traits_negative.Copy() - pref.neg_traits
 					mylist = pref.neg_traits
-			else
 
 		if(isnull(picklist))
 			return TOPIC_REFRESH
@@ -605,11 +604,11 @@ var/global/list/valid_bloodreagents = list("default",REAGENT_ID_IRON,REAGENT_ID_
 				tgui_alert_async(user, "The trait you've selected cannot be taken by the species you've chosen!", "Error")
 				return TOPIC_REFRESH
 
-			if(trait_choice in pref.pos_traits + pref.neu_traits + pref.neg_traits)
+			if(trait_choice in (pref.pos_traits + pref.neu_traits + pref.neg_traits))
 				conflict = instance.name
 
 			varconflict:
-				for(var/P in pref.pos_traits + pref.neu_traits + pref.neg_traits)
+				for(var/P in (pref.pos_traits + pref.neu_traits + pref.neg_traits))
 					var/datum/trait/instance_test = all_traits[P]
 					if(path in instance_test.excludes)
 						conflict = instance_test.name

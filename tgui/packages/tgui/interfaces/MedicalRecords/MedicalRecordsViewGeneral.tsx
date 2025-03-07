@@ -2,7 +2,7 @@ import { useBackend } from 'tgui/backend';
 import { Box, Button, Image, LabeledList, Stack } from 'tgui-core/components';
 
 import { doEdit } from '../GeneralRecords/functions';
-import { Data } from './types';
+import type { Data } from './types';
 
 export const MedicalRecordsViewGeneral = (props) => {
   const { data } = useBackend<Data>();

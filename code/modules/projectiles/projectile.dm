@@ -336,6 +336,9 @@
 	if(isnum(angle))
 		setAngle(angle)
 	starting = get_turf(src)
+	if(!starting)
+		qdel(src)
+		return
 	if(isnull(Angle))	//Try to resolve through offsets if there's no angle set.
 		if(isnull(xo) || isnull(yo))
 			stack_trace("WARNING: Projectile [type] deleted due to being unable to resolve a target after angle was null!")
@@ -674,6 +677,9 @@
 //Called when the projectile intercepts a mob. Returns 1 if the projectile hit the mob, 0 if it missed and should keep flying.
 /obj/item/projectile/proc/attack_mob(mob/living/target_mob, distance, miss_modifier = 0)
 	if(!istype(target_mob))
+		return
+
+	if(target_mob.is_incorporeal())
 		return
 
 	if(target_mob in impacted_mobs)

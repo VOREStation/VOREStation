@@ -337,7 +337,7 @@
 
 		var/signature
 		if(tgui_alert(user, "Would you like to add your signature?", "Signature", list("Yes","No")) == "Yes")
-			signature = "<font face=\"Times New Roman\"><i>[user ? user.real_name : "Anonymous"]</i></font>"
+			signature = "<font face=\"Times New Roman\">" + span_italics("[user ? user.real_name : "Anonymous"]") + "</font>"
 		else
 			signature = "<span class=\"paper_field\"></span>"
 
@@ -346,17 +346,17 @@
 		visible_message(span_notice("[src] rattles and prints out a sheet of paper."))
 		playsound(loc, 'sound/machines/printer.ogg', 50, 1)
 
-		P.info = "<U><font size=\"4\"><B><center> Releasing Virus </B></center></font></U>"
+		P.info = span_underline(span_huge(span_bold("<center> Releasing Virus </center>")))
 		P.info += "<HR>"
-		P.info += "<U>Name of the Virus:</U> [D.name] <BR>"
-		P.info += "<U>Symptoms:</U> [symtoms]<BR>"
-		P.info += "<U>Spreads by:</U> [D.spread_text]<BR>"
-		P.info += "<U>Cured by:</U> [D.cure_text]<BR>"
+		P.info += span_underline("Name of the Virus:") + " [D.name] <BR>"
+		P.info += span_underline("Symptoms:") + " [symtoms]<BR>"
+		P.info += span_underline("Spreads by:") + " [D.spread_text]<BR>"
+		P.info += span_underline("Cured by:") + " [D.cure_text]<BR>"
 		P.info += "<BR>"
-		P.info += "<U>Reason for releasing:</U> [reason]"
+		P.info += span_underline("Reason for releasing:") + " [reason]"
 		P.info += "<HR>"
 		P.info += "The Virologist is responsible for any biohazards caused by the virus released.<BR>"
-		P.info += "<U>Virologist's sign:</U> [signature]<BR>"
+		P.info += span_underline("Virologist's sign:") + " [signature]<BR>"
 		P.info += "If approved, stamp below with the Chief Medical Officer's stamp, and/or the Captain's stamp if required:"
 		P.updateinfolinks()
 		P.name = "Releasing Virus - [D.name]"

@@ -62,6 +62,7 @@
 		give_destination(home_turf, max_home_distance)
 	else
 		ai_log("go_home() : Told to go home without home_turf.", AI_LOG_ERROR)
+		pass() // Remove this ever ai_log does something
 
 /datum/ai_holder/proc/give_destination(turf/new_destination, min_distance = 1, combat = FALSE)
 	ai_log("give_destination() : Entering.", AI_LOG_DEBUG)
@@ -75,6 +76,7 @@
 		return TRUE
 	else
 		ai_log("give_destination() : Given null destination.", AI_LOG_ERROR)
+		pass() // Remove this ever ai_log does something
 
 	ai_log("give_destination() : Exiting.", AI_LOG_DEBUG)
 

@@ -8,6 +8,8 @@
 	if (!default_language && species_language)
 		default_language = GLOB.all_languages[species_language]
 
+	AddElement(/datum/element/footstep, custom_footstep, 1, -6)
+
 /mob/living/carbon/Life()
 	..()
 
@@ -155,10 +157,10 @@
 	if (shock_damage<1)
 		return 0
 
-	src.apply_damage(0.2 * shock_damage, BURN, def_zone, used_weapon="Electrocution") //shock the target organ
-	src.apply_damage(0.4 * shock_damage, BURN, BP_TORSO, used_weapon="Electrocution") //shock the torso more
-	src.apply_damage(0.2 * shock_damage, BURN, null, used_weapon="Electrocution") //shock a random part!
-	src.apply_damage(0.2 * shock_damage, BURN, null, used_weapon="Electrocution") //shock a random part!
+	src.apply_damage(0.2 * shock_damage, BURN, def_zone) //shock the target organ
+	src.apply_damage(0.4 * shock_damage, BURN, BP_TORSO) //shock the torso more
+	src.apply_damage(0.2 * shock_damage, BURN, null) //shock a random part!
+	src.apply_damage(0.2 * shock_damage, BURN, null) //shock a random part!
 
 	playsound(src, "sparks", 50, 1, -1)
 	if (shock_damage > 15)
@@ -300,8 +302,8 @@
 						M.adjust_fire_stacks(-1)
 					if(M.on_fire)
 						src.IgniteMob()
-					if(do_after(M, 0.5 SECONDS)) //.5 second delay. Makes it a bit stronger than just typing rest.
-						M.resting = 0 //Hoist yourself up up off the ground. No para/stunned/weakened removal.
+					M.resting = 0 //Hoist yourself up up off the ground. No para/stunned/weakened removal.
+					update_canmove()
 				else if(istype(hugger))
 					hugger.species.hug(hugger,src)
 				else
