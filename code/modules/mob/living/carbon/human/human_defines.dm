@@ -150,6 +150,7 @@
 	var/r_wing = 30
 	var/g_wing = 30
 	var/b_wing = 30
+	var/a_wing = 255 //applied to both portions.
 	var/r_wing2 = 30
 	var/g_wing2 = 30
 	var/b_wing2 = 30

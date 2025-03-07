@@ -475,6 +475,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 			. += "<a href='byond://?src=\ref[src];wing_color2=1'>Change Secondary Color</a> [color_square(hex = pref.read_preference(/datum/preference/color/human/wing_color2))]<br>"
 		if(wings.extra_overlay2)
 			. += "<a href='byond://?src=\ref[src];wing_color3=1'>Change Secondary Color</a> [color_square(hex = pref.read_preference(/datum/preference/color/human/wing_color3))]<br>"
+		.+= "<a href='byond://?src=\ref[src];wing_alpha=1'>Change Wing Alpha</a> Current:[pref.read_preference(/datum/preference/numeric/human/wing_alpha)]<br>"
 	else
 		. += " Style: <a href='byond://?src=\ref[src];wing_style=1'>Select</a><br>"
 
@@ -1135,6 +1136,12 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 			pref.read_preference(/datum/preference/color/human/wing_color3))
 		if(new_wingc)
 			pref.update_preference_by_type(/datum/preference/color/human/wing_color3, new_wingc)
+			return TOPIC_REFRESH_UPDATE_PREVIEW
+	else if(href_list["wing_alpha"])
+		var/new_wing_alpha = tgui_input_number(user, "Choose how transparent your character's wings are.", "Character Preference",
+		 pref.read_preference(/datum/preference/numeric/human/wing_alpha), 255, 0)
+		if(new_wing_alpha)
+			pref.update_preference_by_type(/datum/preference/numeric/human/wing_alpha, new_wing_alpha)
 			return TOPIC_REFRESH_UPDATE_PREVIEW
 	return ..()
 

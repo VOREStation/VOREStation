@@ -194,6 +194,10 @@
 			g_wing3 = new_color_rgb_list[2]
 			b_wing3 = new_color_rgb_list[3]
 
+		var/new_alpha = tgui_input_number(src, "Set wing alpha (0-255):","Wing Alpha", a_wing)
+		if(new_alpha)
+			a_wing = new_alpha
+
 
 	update_wing_showing()
 

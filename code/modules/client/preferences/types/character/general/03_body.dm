@@ -131,6 +131,20 @@
 	target.g_wing3 = hex2num(copytext(value, 4, 6))
 	target.b_wing3 = hex2num(copytext(value, 6, 8))
 
+/datum/preference/numeric/human/wing_alpha
+	category = PREFERENCE_CATEGORY_MANUALLY_RENDERED
+	savefile_identifier = PREFERENCE_CHARACTER
+	savefile_key = "wing_alpha"
+	can_randomize = FALSE
+	minimum = 0
+	maximum = 255 //while it'd be dumb to have fully transparent wings, I'm not your mom.
+
+/datum/preference/numeric/human/wing_alpha/create_default_value()
+	return 255 //no randomization here.
+
+/datum/preference/numeric/human/wing_alpha/apply_to_human(mob/living/carbon/human/target, value)
+	target.a_wing = value
+
 
 /datum/preference/color/human/ears_color1
 	category = PREFERENCE_CATEGORY_MANUALLY_RENDERED

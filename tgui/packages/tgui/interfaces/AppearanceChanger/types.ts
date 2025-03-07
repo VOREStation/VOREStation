@@ -41,6 +41,7 @@ export type Data = {
   wing_color: string;
   wing2_color: string;
   wing3_color: string;
+  wing_alpha: number;
   facial_hair_styles: bodyStyle[];
   hair_styles: bodyStyle[];
   hair_grads: string[];

@@ -1117,7 +1117,7 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 
 	if(wing_image)
 		wing_image.layer = BODY_LAYER+WING_LAYER
-		wing_image.alpha = chest?.transparent ? 180 : 255 //VORESTATION EDIT: transparent instead of nonsolid
+		wing_image.alpha = chest?.transparent ? 180 : a_wing //should this just be gotten rid of wholesale?
 		overlays_standing[WING_LAYER] = wing_image
 	if(wing_style && wing_style.multi_dir)
 		wing_image = get_wing_image(TRUE)
@@ -1236,6 +1236,7 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 				wing_s.Blend(overlay, ICON_OVERLAY)
 				qdel(overlay)
 		var/image/working = image(wing_s)
+		working.alpha = src.a_wing
 		if(wing_style.em_block)
 			working.overlays += em_block_image_generic(working) // Leaving this as overlays +=
 		working.pixel_x -= wing_style.wing_offset
