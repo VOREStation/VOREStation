@@ -111,3 +111,62 @@
   - bugfix: Fixed redgate ladders that allowed upwards movement without having a z-level
       above.
   - bugfix: More maps fixed for the linter.
+2025-03-07:
+  Diana:
+  - rscadd: You can now unwrench pipes that are over-pressurized, at the cost of being
+      flung back.
+  - bugfix: Atmos analyzers will no longer fail on portable connectors
+  - bugfix: No more attempting to blendRGB if we have nothing to blend.
+  - bugfix: Diseases will not try to copy non-existent vars over.
+  - bugfix: Recursive explosions no longer runtime if the turf it tries to step into
+      is invalid.
+  - qol: Health analyzer guide now tells users what to do, no longer requiring medical
+      access. Also some wording changes.
+  - bugfix: Health analyzer guide no longer runtimes if someone has no viruses.
+  - bugfix: Cards no longer runtime if you try to pull a card without being a human.
+  - bugfix: Anything-turned-protean will alert you if it has no humanform
+  - bugfix: Tunneler spiders will no longer runtime if the turf they try to tunnel
+      into doesn't exist
+  - bugfix: Mannequins now properly get deleted when you observe.
+  - bugfix: When placing a pipe on a pipeline, the pipeline will no longer lose all
+      the gas within the pipeline. This occurred when you placed a new pipe on a pipeline
+      that had not had not previously had a pipe unwrenched on the pipeline, resulting
+      in the pipes on the pipeline not saving the gas, resulting in all the gas within
+      the pipes on that pipeline being voided.
+  - qol: Reworks the medical kiosk to have use. It now dispenses small amounts of
+      painpills and medications to help stabilize you to get you to medical before
+      you croak.
+  - qol: Lungs no longer IMMEDIATELY risk popping if you forget internals for one
+      second. You now have gradually accumulate damage over time. Get those internals
+      on quick!
+  - qol: Infections now give you a better alert that it's an INFECTION you have instead
+      of just a random 'you feel itchy' so players are less blindsided by infections.
+  - qol: Adjusts the text that you get when you suffer internal bleeding. Now it sticks
+      out more during fights so you can know you have IB and get to medical quicker.
+  - rscadd: Makes the medical kiosk actually DETECT more issues than before. Now it
+      actually does a full body scan on you to see what's wrong with you!
+  - qol: Crayons and markers are no longer the strongest poison in the game. One crayon
+      won't OD you anymore, but two will. One marker can still OD you with disaster
+      effects if you eat it entirely. OORAH
+  - bugfix: Crayons and markers get properly added to your stomach
+  - bugfix: inaprovaline PROPERLY affects internal bleeding now.
+  - qol: Putting pressure on an external wound will put some pressure on arterial
+      bleeds as well, helping decrease (but not entirely stop) bloodloss.
+  - qol: Vox can be defibbed.
+  - code_imp: Changes a few sections in the code to use REAGENTS_OVERDOSE instead
+      of just a plain number.
+  - code_imp: Gets rid of a few //EDIT comments for better code quality.
+  - code_imp: Moved internal wound handling to handle_blood()
+  Kashargul:
+  - bugfix: some rare scaling issues
+  - qol: adds close button
+  - qol: resizes button
+  KillianKirilenko:
+  - rscadd: added fake coins to loadouts, can be flipped, can't be put in vendors
+  - rscadd: 'added seven new coin types (plus fakes): steel, titanium, copper, durasteel,
+      plasteel, graphite, and lead. some of these are in the random coin spawner.'
+  - image: moved coin icons into their own dmi
+  - refactor: a sheet's coin type is now set on the stack obj definition, tidied up
+      the mint code to not be a string of if/else if, and to not require a list of
+      valid materials on the machine, so now it's easier to add new coin types. coin
+      names also use material def names now.
