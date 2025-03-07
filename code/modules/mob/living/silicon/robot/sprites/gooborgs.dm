@@ -24,6 +24,7 @@
 	has_sleeper_light_indicator = FALSE
 	has_vore_belly_resting_sprites = TRUE
 	has_vore_struggle_sprite = TRUE
+	has_dead_sprite_overlay = FALSE
 	sprite_icon = 'icons/mob/robot/gooborgs/departmental/gooborg_cargo.dmi'
 	rest_sprite_options = list("Default", "Bellyup", "Sit")
 	belly_capacity_list = list("sleeper" = 2, "throat" =2)
@@ -48,6 +49,7 @@
 	has_sleeper_light_indicator = FALSE
 	has_vore_belly_resting_sprites = TRUE
 	has_vore_struggle_sprite = TRUE
+	has_dead_sprite_overlay = FALSE
 	sprite_icon = 'icons/mob/robot/gooborgs/departmental/gooborg_engi.dmi'
 	rest_sprite_options = list("Default", "Bellyup", "Sit")
 	belly_capacity_list = list("sleeper" = 2, "throat" =2)
@@ -62,6 +64,7 @@
 	has_sleeper_light_indicator = FALSE
 	has_vore_belly_resting_sprites = TRUE
 	has_vore_struggle_sprite = TRUE
+	has_dead_sprite_overlay = FALSE
 	sprite_icon = 'icons/mob/robot/gooborgs/departmental/gooborg_med.dmi'
 	rest_sprite_options = list("Default", "Bellyup", "Sit")
 	belly_capacity_list = list("sleeper" = 2, "throat" =2)
@@ -77,6 +80,7 @@
 	has_sleeper_light_indicator = FALSE
 	has_vore_belly_resting_sprites = TRUE
 	has_vore_struggle_sprite = TRUE
+	has_dead_sprite_overlay = FALSE
 	sprite_icon = 'icons/mob/robot/gooborgs/departmental/gooborg_sci.dmi'
 	rest_sprite_options = list("Default", "Bellyup", "Sit")
 	belly_capacity_list = list("sleeper" = 2, "throat" =2)
@@ -91,6 +95,7 @@
 	has_sleeper_light_indicator = FALSE
 	has_vore_belly_resting_sprites = TRUE
 	has_vore_struggle_sprite = TRUE
+	has_dead_sprite_overlay = FALSE
 	sprite_icon = 'icons/mob/robot/gooborgs/departmental/gooborg_sec.dmi'
 	rest_sprite_options = list("Default", "Bellyup", "Sit")
 	belly_capacity_list = list("sleeper" = 2, "throat" =2)
@@ -112,6 +117,7 @@
 	has_sleeper_light_indicator = FALSE
 	has_vore_belly_resting_sprites = TRUE
 	has_vore_struggle_sprite = TRUE
+	has_dead_sprite_overlay = FALSE
 	sprite_icon = 'icons/mob/robot/gooborgs/departmental/gooborg_service.dmi'
 	rest_sprite_options = list("Default", "Bellyup", "Sit")
 	belly_capacity_list = list("sleeper" = 2, "throat" =2)
@@ -126,6 +132,7 @@
 	has_sleeper_light_indicator = FALSE
 	has_vore_belly_resting_sprites = TRUE
 	has_vore_struggle_sprite = TRUE
+	has_dead_sprite_overlay = FALSE
 	sprite_icon = 'icons/mob/robot/gooborgs/departmental/gooborg_jani.dmi'
 	rest_sprite_options = list("Default", "Bellyup", "Sit")
 	belly_capacity_list = list("sleeper" = 2, "throat" =2)
@@ -139,7 +146,7 @@
 	has_sleeper_light_indicator = FALSE
 	has_vore_belly_resting_sprites = TRUE
 	has_vore_struggle_sprite = TRUE
-
+	has_dead_sprite_overlay = FALSE
 	sprite_icon = 'icons/mob/robot/gooborgs/departmental/gooborg_peacekeeper.dmi'
 	rest_sprite_options = list("Default", "Bellyup", "Sit")
 	belly_capacity_list = list("sleeper" = 2, "throat" =2)
@@ -161,6 +168,7 @@
 	has_sleeper_light_indicator = FALSE
 	has_vore_belly_resting_sprites = TRUE
 	has_vore_struggle_sprite = TRUE
+	has_dead_sprite_overlay = FALSE
 	sprite_icon = 'icons/mob/robot/gooborgs/departmental/gooborg_jester.dmi'
 	rest_sprite_options = list("Default", "Bellyup", "Sit")
 	belly_capacity_list = list("sleeper" = 2, "throat" =2)
@@ -175,6 +183,7 @@
 	has_sleeper_light_indicator = FALSE
 	has_vore_belly_resting_sprites = TRUE
 	has_vore_struggle_sprite = TRUE
+	has_dead_sprite_overlay = FALSE
 	sprite_icon = 'icons/mob/robot/gooborgs/custom/gooborg_ninja.dmi'
 	rest_sprite_options = list("Default", "Bellyup", "Sit")
 	belly_capacity_list = list("sleeper" = 2, "throat" =2)
@@ -196,6 +205,7 @@
 	has_sleeper_light_indicator = FALSE
 	has_vore_belly_resting_sprites = TRUE
 	has_vore_struggle_sprite = TRUE
+	has_dead_sprite_overlay = FALSE
 	sprite_icon = 'icons/mob/robot/gooborgs/custom/gooborg_syndi.dmi'
 	rest_sprite_options = list("Default", "Bellyup", "Sit")
 	belly_capacity_list = list("sleeper" = 2, "throat" =2)
