@@ -43,6 +43,7 @@ export const AppearanceChangerColors = (props) => {
     wing_color,
     wing2_color,
     wing3_color,
+    wing_alpha,
     ear_secondary_colors,
     hair_grads,
   } = data;
@@ -151,6 +152,11 @@ export const AppearanceChangerColors = (props) => {
             <ColorBox color={wing3_color} mr={1} />
             <Button onClick={() => act('wing3_color')}>
               Change Tertiary Wing Color
+            </Button>
+          </Box>
+          <Box>
+            <Button onClick={() => act('wing_alpha')}>
+              Change Wing Alpha: Current {wing_alpha}
             </Button>
           </Box>
         </>

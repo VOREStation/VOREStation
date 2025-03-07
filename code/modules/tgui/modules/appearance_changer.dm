@@ -366,6 +366,17 @@
 					owner.update_wing_showing()
 					changed_hook(APPEARANCECHANGER_CHANGED_HAIRCOLOR)
 					return 1
+
+		if("wing_alpha")
+			if(can_change(owner, APPEARANCE_HAIR_COLOR))
+				var/new_alpha = tgui_input_number(ui.user, "Choose your character's wing transparency:\n(0 - 255)", "Wing Transparency", owner.a_wing, 255, 0)
+				if(isnum(new_alpha) && can_still_topic(ui.user, state))
+					owner.a_wing = new_alpha
+					update_dna(owner)
+					owner.update_wing_showing()
+					changed_hook(APPEARANCECHANGER_CHANGED_HAIRCOLOR)
+					return 1
+
 		if("marking")
 			if(can_change(owner, APPEARANCE_ALL_HAIR))
 				var/todo = params["todo"]
@@ -809,6 +820,7 @@
 		data["wing_color"] = rgb(owner.r_wing, owner.g_wing, owner.b_wing)
 		data["wing2_color"] = rgb(owner.r_wing2, owner.g_wing2, owner.b_wing2)
 		data["wing3_color"] = rgb(owner.r_wing3, owner.g_wing3, owner.b_wing3)
+		data["wing_alpha"] = owner.a_wing
 
 	data["change_facial_hair_color"] = can_change(owner, APPEARANCE_FACIAL_HAIR_COLOR)
 	if(data["change_facial_hair_color"])
