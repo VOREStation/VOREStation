@@ -1,15 +1,15 @@
 #define MAINTVENDOR_GENERIC "Unsorted Listings"
 #define MAINTVENDOR_SCENETOOLS "Funky Town Odds & Ends"
 #define MAINTVENDOR_CONSTRUCTION "DIY Construction Supplies"
-#define MAINTVENDOR_SWAG ""
+#define MAINTVENDOR_SWAG "BlingCo Product Distribution"
 
-#define MAINTVENDOR_ACCESS_CHECK_OR = TRUE
-#define MAINTVENDOR_ACCESS_CHECK_AND = FALSE
+#define MAINTVENDOR_ACCESS_CHECK_OR TRUE
+#define MAINTVENDOR_ACCESS_CHECK_AND FALSE
 
 
 /datum/maint_recycler_vendor_entry
-	name = "Cool Object to buy" //what it's shown as in the vendor
-	desc = "What the object actually is" //what's shown to the user upon clicking the .../? details button
+	var/name = "Cool Object to buy" //what it's shown as in the vendor
+	var/desc = "What the object actually is" //what's shown to the user upon clicking the .../? details button
 	var/object_type_to_spawn
 	var/item_cost = 15 //in RP/Recycle Points
 
@@ -18,7 +18,7 @@
 	var/per_round_cap = -1 //ditto. Global. for everyone. etc.
 	var/list/purchased_by //associated list. client.key to amount bought.
 
-	var/required_access = null //for stuff that doesn't make sense to have as standard station equipment or from cargo
+	var/list/required_access = null //for stuff that doesn't make sense to have as standard station equipment or from cargo
 	// but would be weird to hand out to just anyone.
 	//can technically be cheesed as the source of "money" isn't tied to the ID, so you can borrow someone's access
 	//but if someone's willing to be a big enough nerd, I'm not gonna waste time trying to stop it.

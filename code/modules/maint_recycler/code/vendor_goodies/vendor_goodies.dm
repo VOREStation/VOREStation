@@ -1,6 +1,3 @@
-//anything big gets it's own file, this is for the simple reskin stuff or stuff that needs like, 3 procs of code max.
-
-
 //bling item for medical. will make fun of the poors.
 /obj/item/healthanalyzer/bling
 	name = "Health Scamalyzer"
