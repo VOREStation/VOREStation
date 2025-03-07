@@ -35,9 +35,11 @@ export type Data = {
   facial_hair_color: string;
   ears_color: string;
   ears2_color: string;
+  ears_alpha: number;
   tail_color: string;
   tail2_color: string;
   tail3_color: string;
+  tail_alpha:number;
   wing_color: string;
   wing2_color: string;
   wing3_color: string;

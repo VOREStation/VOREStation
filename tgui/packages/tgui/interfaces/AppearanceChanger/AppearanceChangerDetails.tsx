@@ -37,9 +37,11 @@ export const AppearanceChangerColors = (props) => {
     facial_hair_color,
     ears_color,
     ears2_color,
+    ears_alpha,
     tail_color,
     tail2_color,
     tail3_color,
+    tail_alpha,
     wing_color,
     wing2_color,
     wing3_color,
@@ -109,6 +111,11 @@ export const AppearanceChangerColors = (props) => {
               Change Ears Color (Secondary)
             </Button>
           </Box>
+          <Box>
+            <Button onClick={() => act('ears_alpha')}>
+              Change Ears Alpha: Current {ears_alpha}
+            </Button>
+          </Box>
           {ear_secondary_colors.map((color, index) => (
             <Box key={index}>
               <ColorBox color={color} mr={1} />
@@ -136,6 +143,11 @@ export const AppearanceChangerColors = (props) => {
             <ColorBox color={tail3_color} mr={1} />
             <Button onClick={() => act('tail3_color')}>
               Change Tertiary Tail Color
+            </Button>
+          </Box>
+          <Box>
+            <Button onClick={() => act('tail_alpha')}>
+              Change Tail Alpha: Current {tail_alpha}
             </Button>
           </Box>
           <Box>

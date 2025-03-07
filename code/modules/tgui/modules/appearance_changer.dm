@@ -263,6 +263,15 @@
 					owner.update_hair()
 					changed_hook(APPEARANCECHANGER_CHANGED_HAIRCOLOR)
 					return 1
+		if("ears_alpha")
+			var/new_alpha = tgui_input_number(ui.user, "Choose your character's wing transparency:\n(0 - 255)", "Wing Transparency", owner.a_wing, 255, 0)
+			if(isnum(new_alpha) && can_still_topic(ui.user, state))
+				owner.a_ears = new_alpha
+				update_dna(owner)
+				owner.update_hair()
+				changed_hook(APPEARANCECHANGER_CHANGED_HAIRCOLOR)
+				return 1
+
 		if("ears_secondary_color")
 			if(can_change(owner, APPEARANCE_HAIR_COLOR))
 				var/channel = params["channel"]
@@ -321,6 +330,15 @@
 					owner.update_tail_showing()
 					changed_hook(APPEARANCECHANGER_CHANGED_HAIRCOLOR)
 					return 1
+		if("tail_alpha")
+			var/new_alpha = tgui_input_number(ui.user, "Choose your character's tail transparency:\n(0 - 255)", "Wing Transparency", owner.a_wing, 255, 0)
+			if(isnum(new_alpha) && can_still_topic(ui.user, state))
+				owner.a_tail = new_alpha
+				update_dna(owner)
+				owner.update_tail_showing()
+				changed_hook(APPEARANCECHANGER_CHANGED_HAIRCOLOR)
+				return 1
+
 		if("wing")
 			if(can_change(owner, APPEARANCE_ALL_HAIR))
 				var/datum/sprite_accessory/wing/instance = locate(params["ref"])
@@ -821,6 +839,8 @@
 		data["wing2_color"] = rgb(owner.r_wing2, owner.g_wing2, owner.b_wing2)
 		data["wing3_color"] = rgb(owner.r_wing3, owner.g_wing3, owner.b_wing3)
 		data["wing_alpha"] = owner.a_wing
+		data["tail_alpha"] = owner.a_tail
+		data["ears_alpha"] = owner.a_ears
 
 	data["change_facial_hair_color"] = can_change(owner, APPEARANCE_FACIAL_HAIR_COLOR)
 	if(data["change_facial_hair_color"])
