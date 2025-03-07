@@ -179,6 +179,9 @@
 		new_player_panel_proc()
 
 	if(href_list["observe"])
+		if(!SSticker || SSticker.current_state == GAME_STATE_INIT)
+			to_chat(src, span_warning("The game is still setting up, please try again later."))
+			return 0
 		if(tgui_alert(src,"Are you sure you wish to observe? If you do, make sure to not use any knowledge gained from observing if you decide to join later.","Observe Round?",list("Yes","No")) == "Yes")
 			if(!client)	return 1
 
