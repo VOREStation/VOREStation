@@ -87,6 +87,14 @@
 				if(sprite_flag_check(ROBOT_HAS_DISABLER_SPRITE) && gun.gun_flag_check(COUNTS_AS_ROBOT_DISABLER))
 					ourborg.add_overlay("[sprite_icon_state]-disabler")
 					continue
+	//These are outliers that don't fit the normal sprite flags. These should not be expanded unless absolutely neccessary.
+	if(ourborg.activated_module_type_list(list(/obj/item/pickaxe)))
+		for(var/thing_to_check in ourborg.get_active_modules()) //We look at our active modules. Let's peep!
+			if(istype(thing_to_check, /obj/item/pickaxe))
+				var/obj/item/pickaxe/melee = thing_to_check
+				if(sprite_flag_check(ROBOT_HAS_MELEE_SPRITE) && melee.weapon_flag_check(COUNTS_AS_ROBOTIC_MELEE))
+					ourborg.add_overlay("[sprite_icon_state]-melee")
+					continue
 
 /datum/robot_sprite/proc/get_belly_overlay(var/mob/living/silicon/robot/ourborg, var/size = 1, var/b_class)
 	//Size

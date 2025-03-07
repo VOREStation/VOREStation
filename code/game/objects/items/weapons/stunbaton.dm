@@ -21,7 +21,6 @@
 	var/status = 0		//whether the thing is on or not
 	var/obj/item/cell/bcell = null
 	var/hitcost = 240
-	var/use_external_power = FALSE //only used to determine if it's a cyborg baton
 	var/grip_safety = TRUE
 	var/taped_safety = FALSE
 
@@ -118,8 +117,6 @@
 			. += span_warning("The baton does not have a power source installed.")
 
 /obj/item/melee/baton/attackby(obj/item/W, mob/user)
-	if(use_external_power)
-		return
 	if(istype(W, /obj/item/cell))
 		if(istype(W, /obj/item/cell/device))
 			if(!bcell)
@@ -159,11 +156,6 @@
 		return ..()
 
 /obj/item/melee/baton/attack_self(mob/user)
-	if(use_external_power)
-		//try to find our power cell
-		var/mob/living/silicon/robot/R = loc
-		if (istype(R))
-			bcell = R.cell
 	if(bcell && bcell.charge >= hitcost)
 		status = !status
 		to_chat(user, span_notice("[src] is now [status ? "on" : "off"]."))
@@ -229,11 +221,6 @@
 		bcell.emp_act(severity)	//let's not duplicate code everywhere if we don't have to please.
 	..()
 
-//secborg stun baton module
-/obj/item/melee/baton/robot
-	hitcost = 500
-	use_external_power = TRUE
-
 //Makeshift stun baton. Replacement for stun gloves.
 /obj/item/melee/baton/cattleprod
 	name = "stunprod"
@@ -274,24 +261,3 @@
 	results += ..()
 
 	return results
-
-// Rare version of a baton that causes lesser lifeforms to really hate the user and attack them.
-/obj/item/melee/baton/shocker
-	name = "shocker"
-	desc = "A device that appears to arc electricity into a target to incapacitate or otherwise hurt them, similar to a stun baton.  It looks inefficent."
-	description_info = "Hitting a lesser lifeform with this while it is on will compel them to attack you above other nearby targets.  Otherwise \
-	it works like a regular stun baton, just less effectively."
-	icon_state = "shocker"
-	force = 10
-	throwforce = 5
-	agonyforce = 25 // Less efficent than a regular baton.
-	attack_verb = list("poked")
-
-/obj/item/melee/baton/shocker/apply_hit_effect(mob/living/target, mob/living/user, var/hit_zone)
-	..(target, user, hit_zone)
-	if(status && target.has_AI())
-		target.taunt(user)
-
-// Borg version, for the lost module.
-/obj/item/melee/baton/shocker/robot
-	use_external_power = TRUE
