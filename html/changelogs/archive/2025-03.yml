@@ -94,9 +94,3 @@
   - rscadd: Tacoguy - Adds Combat Medic Catborg sprite.
   - code_imp: Kash - Robot linter will now properly detect stomach states.
   - code_imp: Diana - Fixes invisible robot sprites.
-2025-03-06:
-  SatinIsle:
-  - bugfix: Fixed duplicate APCs in the same area on station maps.
-  - bugfix: Fixed redgate ladders that allowed upwards movement without having a z-level
-      above.
-  - bugfix: More maps fixed for the linter.
