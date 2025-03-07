@@ -15,7 +15,7 @@
  * * encode - Toggling this determines if input is filtered via html_encode. Setting this to FALSE gives raw input.
  * * timeout - The timeout of the textbox, after which the modal will close and qdel itself. Set to zero for no timeout.
  */
-/proc/tgui_input_text(mob/user, message = "", title = "Text Input", default, max_length = INFINITY, multiline = FALSE, encode = FALSE, timeout = 0, prevent_enter = FALSE)
+/proc/tgui_input_text(mob/user, message = "", title = "Text Input", default, max_length = 130000, multiline = FALSE, encode = FALSE, timeout = 0, prevent_enter = FALSE) // 130k limit due to chunking limit... if we need longer that needs fixing
 	if (!user)
 		user = usr
 	if (!istype(user))

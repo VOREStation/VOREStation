@@ -12,12 +12,13 @@
 	icon = 'icons/effects/map_effects.dmi'
 	icon_state = "gibspawn"
 
-/obj/effect/gibspawner/New(location, var/datum/dna/MobDNA, var/fleshcolor, var/bloodcolor)
-	..()
+/obj/effect/gibspawner/Initialize(mapload, var/datum/dna/MobDNA, var/fleshcolor, var/bloodcolor)
+	. = ..()
 
 	if(fleshcolor) src.fleshcolor = fleshcolor
 	if(bloodcolor) src.bloodcolor = bloodcolor
 	Gib(loc,MobDNA)
+	return INITIALIZE_HINT_QDEL
 
 /obj/effect/gibspawner/proc/Gib(atom/location, var/datum/dna/MobDNA = null)
 	if(gibtypes.len != gibamounts.len || gibamounts.len != gibdirections.len)
@@ -54,5 +55,3 @@
 					var/list/directions = gibdirections[i]
 					if(directions.len)
 						gib.streak(directions)
-
-	qdel(src)
