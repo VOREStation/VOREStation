@@ -103,7 +103,7 @@
 	if (isliving(A))
 		var/dirtslip = FALSE
 		var/mob/living/M = A
-		if(M.lying || M.flying || M.is_incorporeal())
+		if(M.lying || M.flying || M.is_incorporeal() || !(M.flags & ATOM_INITIALIZED)) // Also ignore newly spawning mobs
 			return ..()
 
 		if(M.dirties_floor())
