@@ -1,0 +1,6 @@
+author: "Kashargul"
+delete-after: True
+changes:
+  - bugfix: "hair gradient selection arrows"
+  - bugfix: "wrong blood volumes on apply prefs"
+  - bugfix: "early spawns in nullspace"
