@@ -28,6 +28,14 @@
 	"%7b%22type%22%3a%22[type]%22%2c%22payload%22%3a[url_encode(json_encode(payload))]%7d" \
 )
 
+/**
+ * Gets a ui_state that checks to see if the user has specific admin permissions.
+ *
+ * Arguments:
+ * * required_perms: Which admin permission flags to check the user for, such as [R_ADMIN]
+ */
+#define ADMIN_STATE(required_perms) (GLOB.admin_states["[required_perms]"] ||= new /datum/tgui_state/admin_state(required_perms))
+
 /// Max length for Modal Input
 #define TGUI_MODAL_INPUT_MAX_LENGTH 1024
 /// Max length for Modal Input for names
