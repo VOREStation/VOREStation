@@ -57,8 +57,8 @@
 			M.gib()
 
 
-/obj/machinery/gibber/New()
-	..()
+/obj/machinery/gibber/Initialize(mapload)
+	. = ..()
 	add_overlay("grjam")
 
 /obj/machinery/gibber/update_icon()

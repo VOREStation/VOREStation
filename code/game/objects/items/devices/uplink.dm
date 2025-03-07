@@ -218,7 +218,7 @@
 // Includes normal radio uplink, multitool uplink,
 // implant uplink (not the implant tool) and a preset headset uplink.
 /obj/item/radio/uplink/Initialize(mapload)
-	..()
+	. = ..()
 	hidden_uplink = new(src)
 	icon_state = "radio"
 
