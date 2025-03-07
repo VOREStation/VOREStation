@@ -18,13 +18,12 @@ var/global/ingredientLimit = 20
 	var/image/topping
 	var/image/filling
 
-/obj/item/reagent_containers/food/snacks/customizable/Initialize(loc,ingredient)
+/obj/item/reagent_containers/food/snacks/customizable/Initialize(mapload,ingredient)
 	. = ..()
 	topping = image(icon,,"[initial(icon_state)]_top")
 	filling = image(icon,,"[initial(icon_state)]_filling")
-	src.reagents.add_reagent(REAGENT_ID_NUTRIMENT,3)
-	src.updateName()
-	return
+	reagents.add_reagent(REAGENT_ID_NUTRIMENT,3)
+	updateName()
 
 /obj/item/reagent_containers/food/snacks/customizable/attackby(obj/item/I, mob/user)
 	if(istype(I,/obj/item/reagent_containers/food/snacks))

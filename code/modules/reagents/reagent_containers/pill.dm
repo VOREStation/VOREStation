@@ -361,7 +361,7 @@
 	desc = "Used to aid in blood regeneration after or during bleeding for crew with commonly found blood types."
 	icon_state = "pill1"
 
-/obj/item/reagent_containers/pill/small_blood_restoration/Initialize()
+/obj/item/reagent_containers/pill/small_blood_restoration/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_IRON, 5)
 	reagents.add_reagent(REAGENT_ID_COPPER, 5)
@@ -374,7 +374,7 @@
 	desc = "Used to stabilize patients."
 	icon_state = "pill2"
 
-/obj/item/reagent_containers/pill/small_inaprovaline/Initialize()
+/obj/item/reagent_containers/pill/small_inaprovaline/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_INAPROVALINE, 5)
 	color = reagents.get_color()
@@ -384,7 +384,7 @@
 	desc = "Used for the temporary cessation of radiation effects."
 	icon_state = "pill2"
 
-/obj/item/reagent_containers/pill/small_prussian_blue/Initialize()
+/obj/item/reagent_containers/pill/small_prussian_blue/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_PRUSSIANBLUE, 5)
 	color = reagents.get_color()
@@ -394,7 +394,7 @@
 	desc = "A reelatively moderate painkiller typically given for more severe injuries."
 	icon_state = "pill2"
 
-/obj/item/reagent_containers/pill/small_tramadol/Initialize()
+/obj/item/reagent_containers/pill/small_tramadol/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_TRAMADOL, 5)
 	color = reagents.get_color()
@@ -404,7 +404,7 @@
 	desc = "A rather weak painkiller typically given for minor injuries."
 	icon_state = "pill3"
 
-/obj/item/reagent_containers/pill/small_paracetamol/Initialize()
+/obj/item/reagent_containers/pill/small_paracetamol/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_PARACETAMOL, 5)
 	color = reagents.get_color()
@@ -414,7 +414,7 @@
 	desc = "A broad-spectrum anti-toxin."
 	icon_state = "pill1"
 
-/obj/item/reagent_containers/pill/small_dylovene/Initialize()
+/obj/item/reagent_containers/pill/small_dylovene/Initialize(mapload)
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_ANTITOXIN, 5)
 	color = reagents.get_color()
