@@ -22,6 +22,7 @@
 	var/has_dead_sprite_overlay = FALSE
 	var/has_extra_customization = FALSE
 	var/has_custom_equipment_sprites = FALSE
+	var/has_glow_sprites = FALSE
 	var/vis_height = 32
 	var/pixel_x = 0
 	var/icon_x = 32
@@ -128,6 +129,17 @@
 			return "[get_belly_overlay(ourborg, size, b_class)]-bellyup"
 		else
 			return "[get_belly_overlay(ourborg, size, b_class)]-rest"
+
+/datum/robot_sprite/proc/get_glow_overlay(var/mob/living/silicon/robot/ourborg)
+	if(!ourborg.resting)
+		return "[sprite_icon_state]-glow"
+	switch(ourborg.rest_style)
+		if("Sit")
+			return "[sprite_icon_state]-sit-glow"
+		if("Bellyup")
+			return "[sprite_icon_state]-bellyup-glow"
+		else
+			return "[sprite_icon_state]-rest-glow"
 
 /datum/robot_sprite/proc/get_eyes_overlay(var/mob/living/silicon/robot/ourborg)
 	if(!(ourborg.resting && has_rest_sprites))
