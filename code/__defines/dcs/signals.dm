@@ -32,7 +32,7 @@
 //////////////////////////////////////////////////////////////////
 
 // /datum signals
-///from base of atom/proc/Initialize(mapload)um: (/datum/component)
+/// when a component is added to a datum: (/datum/component)
 #define COMSIG_COMPONENT_ADDED "component_added"
 /// before a component is removed from a datum because of RemoveComponent: (/datum/component)
 #define COMSIG_COMPONENT_REMOVING "component_removing"

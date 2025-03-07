@@ -21,8 +21,8 @@
 	var/apply_colour //temp pending icon rewrite
 	drop_sound = 'sound/items/drop/axe.ogg'
 	pickup_sound = 'sound/items/pickup/axe.ogg'
+
 /obj/item/stack/material/Initialize(mapload)
-/obj/item/stack/material/Initialize()
 	. = ..()
 
 	randpixel_xy()
