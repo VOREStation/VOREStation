@@ -54,6 +54,10 @@
 			g_ears3 = new_color_rgb_list[2]
 			b_ears3 = new_color_rgb_list[3]
 
+	var/new_ear_alpha = tgui_input_number(src, "Set ear alpha (0-255):","Ear Alpha", a_ears)
+	if(new_ear_alpha)
+		a_ears = new_ear_alpha
+
 	update_hair() //Includes Virgo ears
 
 /mob/living/carbon/human/proc/shapeshifter_select_secondary_ears()
@@ -140,6 +144,11 @@
 			g_tail3 = new_color_rgb_list[2]
 			b_tail3 = new_color_rgb_list[3]
 
+
+	var/new_tail_alpha = tgui_input_number(src, "Set tail alpha (0-255):","Tail Alpha", a_tail)
+	if(new_tail_alpha)
+		a_tail = new_tail_alpha
+
 	update_tail_showing()
 
 /mob/living/carbon/human/proc/shapeshifter_select_wings()
@@ -194,9 +203,9 @@
 			g_wing3 = new_color_rgb_list[2]
 			b_wing3 = new_color_rgb_list[3]
 
-		var/new_alpha = tgui_input_number(src, "Set wing alpha (0-255):","Wing Alpha", a_wing)
-		if(new_alpha)
-			a_wing = new_alpha
+	var/new_alpha = tgui_input_number(src, "Set wing alpha (0-255):","Wing Alpha", a_wing)
+	if(new_alpha)
+		a_wing = new_alpha
 
 
 	update_wing_showing()
