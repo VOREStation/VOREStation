@@ -1,6 +1,0 @@
-author: "Kashargul"
-delete-after: True
-changes:
-  - bugfix: "some rare scaling issues"
-  - qol: "adds close button"
-  - qol: "resizes button"
