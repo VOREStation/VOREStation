@@ -17,7 +17,7 @@
 	circuit = /obj/item/circuitboard/artifact_harvester
 
 /// If you want it to load smoothly, set it's dir to wherever the scanpad is!
-/obj/machinery/artifact_harvester/Initialize()
+/obj/machinery/artifact_harvester/Initialize(mapload)
 	. = ..()
 	owned_scanner = locate(/obj/machinery/artifact_scanpad) in get_step(src, dir)
 	if(!owned_scanner)

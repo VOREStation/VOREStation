@@ -31,7 +31,7 @@
 /obj/machinery/power/sensor/New()
 	..()
 	auto_set_name()
-/obj/machinery/power/sensor/Initialize()
+/obj/machinery/power/sensor/Initialize(mapload)
 	. = ..()
 	history["supply"] = list()
 	history["demand"] = list()

@@ -51,7 +51,7 @@
 		else
 			return "vanilla"
 
-/obj/machinery/icecream_vat/Initialize()
+/obj/machinery/icecream_vat/Initialize(mapload)
 	. = ..()
 	create_reagents(100)
 	while(product_types.len < 6)

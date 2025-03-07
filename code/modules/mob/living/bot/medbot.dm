@@ -527,7 +527,7 @@
 	var/skin = null //Same as medbot, set to tox or ointment for the respective kits.
 	w_class = ITEMSIZE_NORMAL
 
-/obj/item/firstaid_arm_assembly/Initialize()
+/obj/item/firstaid_arm_assembly/Initialize(mapload)
 	. = ..()
 	if(skin)
 		add_overlay("kit_skin_[src.skin]")

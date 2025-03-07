@@ -161,7 +161,7 @@ var/list/dispenser_presets = list()
 	to_chat(user, span_warning("Your moral standards prevent you from emagging this machine!"))
 	return -1 // Letting people emag this one would be bad times
 
-/obj/machinery/gear_dispenser/Initialize()
+/obj/machinery/gear_dispenser/Initialize(mapload)
 	. = ..()
 	if(!gear_distributed_to["[type]"] && (dispenser_flags & GD_NOGREED))
 		gear_distributed_to["[type]"] = list()
@@ -391,7 +391,7 @@ var/list/dispenser_presets = list()
 /obj/machinery/gear_dispenser/custom
 	name = "personal gear dispenser"
 
-/obj/machinery/gear_dispenser/custom/Initialize()
+/obj/machinery/gear_dispenser/custom/Initialize(mapload)
 	dispenses = subtypesof(/datum/gear_disp/custom)
 	. = ..()
 
@@ -874,7 +874,7 @@ var/list/dispenser_presets = list()
 		)
 	var/chance_to_delete = 0
 
-/obj/machinery/gear_dispenser/adventure_box/Initialize()
+/obj/machinery/gear_dispenser/adventure_box/Initialize(mapload)
 	. = ..()
 	if(prob(chance_to_delete))
 		return INITIALIZE_HINT_QDEL

@@ -9,7 +9,7 @@
 
 	mouse_opacity = 0
 
-/obj/effect/landmark/looking_glass/Initialize()
+/obj/effect/landmark/looking_glass/Initialize(mapload)
 	. = ..()
 	viewers = list()
 
@@ -62,5 +62,5 @@
 	holding.loc = null
 	holding = null
 
-	
+
 #undef LG_IMAGE_SIZE

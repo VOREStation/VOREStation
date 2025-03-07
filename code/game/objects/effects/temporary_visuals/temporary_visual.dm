@@ -9,7 +9,7 @@
 	var/randomdir = TRUE
 	var/timerid
 
-/obj/effect/temp_visual/Initialize()
+/obj/effect/temp_visual/Initialize(mapload)
 	. = ..()
 	if(randomdir)
 		dir = pick(list(NORTH, SOUTH, EAST, WEST))

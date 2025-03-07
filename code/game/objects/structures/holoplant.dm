@@ -17,7 +17,7 @@
 		"plant-13"
 	)
 
-/obj/machinery/holoplant/Initialize()
+/obj/machinery/holoplant/Initialize(mapload)
 	. = ..()
 	activate()
 
@@ -102,5 +102,5 @@
 
 /obj/machinery/holoplant/shipped
 	anchored = FALSE
-/obj/machinery/holoplant/shipped/Initialize()
+/obj/machinery/holoplant/shipped/Initialize(mapload)
 	. = ..()

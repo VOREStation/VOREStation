@@ -265,7 +265,7 @@ var/global/list/image/splatter_cache=list()
 	var/list/datum/disease/viruses = list()
 	var/dry = 0 // Keeps the lag down
 
-/obj/effect/decal/cleanable/mucus/Initialize()
+/obj/effect/decal/cleanable/mucus/mapped/Initialize(mapload)
 	. = ..()
 	VARSET_IN(src, dry, TRUE, DRYING_TIME * 2)
 

@@ -86,7 +86,7 @@
 	if(!QDELETED(src))
 		qdel(src)
 
-/obj/structure/ghost_pod/ghost_activated/swarm_drone/event/Initialize()
+/obj/structure/ghost_pod/ghost_activated/swarm_drone/event/Initialize(mapload)
 	. = ..()
 
 	var/turf/T = get_turf(src)

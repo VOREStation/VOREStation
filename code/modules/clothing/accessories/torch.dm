@@ -212,7 +212,7 @@ badges
 	badge_string = "Sol Central Government"
 	slot_flags = SLOT_MASK | SLOT_TIE
 
-/obj/item/clothing/accessory/badge/solgov/tags/Initialize()
+/obj/item/clothing/accessory/badge/solgov/tags/Initialize(mapload)
 	. = ..()
 	var/mob/living/carbon/human/H
 	H = get_holder_of_type(src, /mob/living/carbon/human)

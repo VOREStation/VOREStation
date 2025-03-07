@@ -678,7 +678,7 @@
 	flame_intensity = 1
 	eye_safety_modifier = 2
 	always_process = TRUE
-
+/obj/item/weldingtool/electric/mounted/exosuit/Initialize(mapload)
 /obj/item/weldingtool/electric/mounted/exosuit/Initialize()
 	. = ..()
 

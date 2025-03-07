@@ -17,7 +17,7 @@
 	monitor_type = /datum/tgui_module/alarm_monitor/all
 	circuit = /obj/item/circuitboard/stationalert_all
 
-/obj/machinery/computer/station_alert/Initialize()
+/obj/machinery/computer/station_alert/Initialize(mapload)
 	alarm_monitor = new monitor_type(src)
 	alarm_monitor.register_alarm(src, "update_console_icon")
 	. = ..()

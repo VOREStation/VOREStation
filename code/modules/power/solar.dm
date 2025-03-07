@@ -285,7 +285,7 @@ GLOBAL_LIST_EMPTY(solars_list)
 /obj/machinery/power/solar_control/config_start
 	auto_start = SOLAR_AUTO_START_CONFIG
 
-/obj/machinery/power/solar_control/Initialize()
+/obj/machinery/power/solar_control/Initialize(mapload)
 	. = ..()
 	connect_to_network()
 	set_panels(cdir)

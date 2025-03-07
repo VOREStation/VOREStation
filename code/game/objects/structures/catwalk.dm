@@ -19,7 +19,7 @@
 	var/health = 100
 	var/maxhealth = 100
 	var/delete_me = FALSE
-
+/obj/structure/catwalk/Initialize(mapload)
 /obj/structure/catwalk/Initialize()
 	. = ..()
 	if(delete_me)

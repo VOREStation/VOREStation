@@ -50,7 +50,7 @@
 	var/tilted = 0
 	icon_state = "holdingduffle"
 
-/obj/item/storage/backpack/holding/duffle/Initialize()
+/obj/item/storage/backpack/holding/duffle/Initialize(mapload)
 	. = ..()
 	if(prob(50))
 		icon_state = "[icon_state]_tilted"
@@ -176,7 +176,7 @@
 	var/can_tilt = 1
 	max_storage_space = INVENTORY_DUFFLEBAG_SPACE
 
-/obj/item/storage/backpack/dufflebag/Initialize()
+/obj/item/storage/backpack/dufflebag/Initialize(mapload)
 	. = ..()
 	if(prob(50))
 		icon_state = "[icon_state]_tilted"

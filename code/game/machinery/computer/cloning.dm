@@ -25,7 +25,7 @@
 
 	light_color = "#315ab4"
 
-/obj/machinery/computer/cloning/Initialize()
+/obj/machinery/computer/cloning/Initialize(mapload)
 	. = ..()
 	pods = list()
 	records = list()

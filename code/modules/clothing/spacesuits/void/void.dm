@@ -50,7 +50,7 @@
 	var/no_cycle = FALSE	//stop this item from being put in a cycler
 
 //Does it spawn with any Inbuilt devices?
-/obj/item/clothing/suit/space/void/Initialize()
+/obj/item/clothing/suit/space/void/Initialize(mapload)
 	. = ..()
 	if(boots && ispath(boots))
 		boots = new boots(src)

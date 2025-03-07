@@ -227,7 +227,7 @@
 	var/connected_mob
 	var/area_name
 
-/obj/structure/glamour_ring/Initialize()
+/obj/structure/glamour_ring/Initialize(mapload)
 	. = ..()
 	var/area/A = get_area(src)
 	area_name = A.name

@@ -23,7 +23,7 @@
 /obj/machinery/gibber/autogibber
 	var/turf/input_plate
 
-/obj/machinery/gibber/autogibber/Initialize()
+/obj/machinery/gibber/autogibber/Initialize(mapload)
 	. = ..()
 	for(var/i in cardinal)
 		var/obj/machinery/mineral/input/input_obj = locate( /obj/machinery/mineral/input, get_step(src.loc, i) )
