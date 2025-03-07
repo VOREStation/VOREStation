@@ -1,0 +1,5 @@
+author: "SpadesNeil"
+delete-after: True
+changes:
+  - balance: "Rat health reduced to 5, same as mice"
+  - rscadd: "Strong rat variant"
