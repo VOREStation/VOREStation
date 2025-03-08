@@ -170,3 +170,13 @@
       the mint code to not be a string of if/else if, and to not require a list of
       valid materials on the machine, so now it's easier to add new coin types. coin
       names also use material def names now.
+2025-03-08:
+  Kashargul:
+  - bugfix: hair gradient selection arrows
+  - bugfix: wrong blood volumes on apply prefs
+  - bugfix: early spawns in nullspace
+  SpadesNeil:
+  - balance: Rat health reduced to 5, same as mice
+  - rscadd: Strong rat variant
+  Willburd:
+  - image: added missing sidewalk turf edge overlays
