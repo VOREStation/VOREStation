@@ -209,7 +209,6 @@
 	dir = 1
 	},
 /obj/structure/table/gamblingtable,
-/obj/item/starcaster_news,
 /obj/item/deck/cards,
 /obj/structure/fireaxecabinet{
 	pixel_y = 27
@@ -282,7 +281,6 @@
 /obj/item/storage/box/survival/comp,
 /obj/item/storage/box/survival/comp,
 /obj/item/storage/toolbox/mechanical,
-/obj/item/toy/crossbow,
 /turf/simulated/shuttle/floor/voidcraft/light,
 /area/survivalpod)
 "I" = (
@@ -331,7 +329,6 @@
 /turf/simulated/shuttle/floor/voidcraft/dark,
 /area/survivalpod)
 "S" = (
-/obj/machinery/iv_drip,
 /obj/machinery/iv_drip,
 /obj/machinery/vending/wallmed1{
 	dir = 8;

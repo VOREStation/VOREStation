@@ -9,7 +9,7 @@
 
 	var/active = FALSE
 
-/area/looking_glass/Initialize()
+/area/looking_glass/Initialize(mapload)
 	. = ..()
 	our_landmark = locate() in src
 	if(!our_landmark)

@@ -131,7 +131,7 @@
 
 	return ..()
 
-/obj/item/card/id/Initialize()
+/obj/item/card/id/Initialize(mapload)
 	. = ..()
 	var/datum/job/J = job_master.GetJob(rank)
 	if(J)
@@ -170,7 +170,7 @@
 	item_state = "idgreen"
 	assignment = "Synthetic"
 
-/obj/item/card/id/synthetic/Initialize()
+/obj/item/card/id/synthetic/Initialize(mapload)
 	. = ..()
 	access = get_all_station_access().Copy() + access_synth
 
@@ -180,7 +180,7 @@
 	icon_state = "id-robot-n"
 	assignment = "Lost"
 
-/obj/item/card/id/lost/Initialize()
+/obj/item/card/id/lost/Initialize(mapload)
 	. = ..()
 	access += access_lost
 
@@ -203,11 +203,11 @@
 	registered_name = "Central Command"
 	assignment = "General"
 
-/obj/item/card/id/centcom/Initialize()
+/obj/item/card/id/centcom/Initialize(mapload)
 	. = ..()
 	access = get_all_centcom_access().Copy()
 
-/obj/item/card/id/centcom/station/Initialize()
+/obj/item/card/id/centcom/station/Initialize(mapload)
 	. = ..()
 	access |= get_all_station_access()
 
@@ -217,7 +217,7 @@
 	icon_state = "ert-id"
 	rank = JOB_EMERGENCY_RESPONSE_TEAM
 
-/obj/item/card/id/centcom/ERT/Initialize()
+/obj/item/card/id/centcom/ERT/Initialize(mapload)
 	. = ..()
 	access |= get_all_station_access()
 

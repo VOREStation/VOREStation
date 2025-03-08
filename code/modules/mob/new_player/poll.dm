@@ -398,7 +398,7 @@
 
 		var/adminrank = "Player"
 		if(usr && usr.client && usr.client.holder)
-			adminrank = usr.client.holder.rank
+			adminrank = usr.client.holder.rank_names()
 
 
 		var/datum/db_query/insert_query = SSdbcore.NewQuery("INSERT INTO erro_poll_vote (id ,datetime ,pollid ,optionid ,ckey ,ip ,adminrank) VALUES (null, Now(), [pollid], [optionid], '[usr.ckey]', '[usr.client.address]', '[adminrank]')")
@@ -449,7 +449,7 @@
 
 		var/adminrank = "Player"
 		if(usr && usr.client && usr.client.holder)
-			adminrank = usr.client.holder.rank
+			adminrank = usr.client.holder.rank_names()
 
 
 		replytext = replacetext(replytext, "%BR%", "")
@@ -522,7 +522,7 @@
 
 		var/adminrank = "Player"
 		if(usr && usr.client && usr.client.holder)
-			adminrank = usr.client.holder.rank
+			adminrank = usr.client.holder.rank_names()
 
 
 		var/datum/db_query/insert_query = SSdbcore.NewQuery("INSERT INTO erro_poll_vote (id ,datetime ,pollid ,optionid ,ckey ,ip ,adminrank, rating) VALUES (null, Now(), [pollid], [optionid], '[usr.ckey]', '[usr.client.address]', '[adminrank]', [(isnull(rating)) ? "null" : rating])")

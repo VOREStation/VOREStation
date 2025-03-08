@@ -687,12 +687,6 @@
 	},
 /turf/simulated/floor/wood,
 /area/awaymission/lucky7/privateroom/vip)
-"cH" = (
-/obj/structure/lattice,
-/obj/structure/lattice,
-/obj/structure/grille,
-/turf/space,
-/area/space)
 "cI" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 1
@@ -2275,11 +2269,6 @@
 /obj/structure/flora/pottedplant/stoutbush,
 /turf/simulated/floor/tiled,
 /area/awaymission/lucky7/hall1)
-"lE" = (
-/obj/structure/lattice,
-/obj/structure/lattice,
-/turf/space,
-/area/space)
 "lF" = (
 /obj/machinery/atmospherics/pipe/simple/hidden{
 	dir = 4
@@ -6011,12 +6000,6 @@
 /obj/machinery/light,
 /turf/simulated/floor/carpet/blue2,
 /area/awaymission/lucky7/privategameroom/three)
-"HF" = (
-/obj/structure/lattice,
-/obj/structure/grille,
-/obj/structure/grille,
-/turf/space,
-/area/space)
 "HH" = (
 /obj/effect/floor_decal/rust,
 /obj/structure/mopbucket,
@@ -20891,10 +20874,10 @@ rm
 vO
 vO
 id
-cH
+id
 vO
 vO
-cH
+id
 id
 vO
 vO
@@ -21901,7 +21884,7 @@ uu
 uu
 vO
 vO
-lE
+vO
 vO
 rm
 rm
@@ -22469,7 +22452,7 @@ KK
 KK
 vO
 vO
-cH
+id
 id
 vO
 rm
@@ -23037,7 +23020,7 @@ uR
 uR
 vO
 vO
-cH
+id
 rm
 rm
 rm
@@ -23605,7 +23588,7 @@ DL
 DL
 vO
 vO
-cH
+id
 rm
 rm
 rm
@@ -24316,7 +24299,7 @@ Tv
 Ou
 Lw
 vO
-cH
+id
 rm
 rm
 rm
@@ -25168,7 +25151,7 @@ qB
 Sv
 Lw
 vO
-cH
+id
 rm
 rm
 rm
@@ -25690,7 +25673,7 @@ id
 id
 vO
 id
-HF
+id
 id
 vO
 rm

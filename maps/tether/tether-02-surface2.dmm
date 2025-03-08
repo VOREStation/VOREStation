@@ -28071,11 +28071,6 @@
 /obj/structure/cable/green{
 	icon_state = "0-8"
 	},
-/obj/machinery/power/apc{
-	dir = 4;
-	name = "east bump";
-	pixel_x = 28
-	},
 /turf/simulated/floor/tiled/steel_dirty,
 /area/maintenance/asmaint2)
 "bbz" = (
@@ -28374,11 +28369,6 @@
 /turf/simulated/floor/plating,
 /area/maintenance/lower/south)
 "bcO" = (
-/obj/machinery/power/apc{
-	dir = 4;
-	name = "east bump";
-	pixel_x = 28
-	},
 /obj/structure/cable{
 	icon_state = "0-2"
 	},

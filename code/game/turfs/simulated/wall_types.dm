@@ -174,7 +174,7 @@
 	light_on = TRUE
 	block_tele = TRUE // Will be used for dungeons so this is needed to stop cheesing with handteles.
 
-/turf/simulated/shuttle/wall/alien/Initialize()
+/turf/simulated/shuttle/wall/alien/Initialize(mapload)
 	. = ..()
 	update_light()
 
@@ -188,7 +188,7 @@
 	icon_state = "alien-nj"
 	join_group = null
 
-/turf/simulated/shuttle/wall/Initialize()
+/turf/simulated/shuttle/wall/Initialize(mapload)
 	. = ..()
 
 	//To allow mappers to rename shuttle walls to like "redfloor interior" or whatever for ease of use.
@@ -272,7 +272,7 @@
 /turf/simulated/shuttle/wall/voidcraft/green
 	stripe_color = "#00FF00"
 
-/turf/simulated/shuttle/wall/voidcraft/Initialize()
+/turf/simulated/shuttle/wall/voidcraft/Initialize(mapload)
 	. = ..()
 	update_icon()
 
@@ -294,7 +294,7 @@
 	density = TRUE
 	breakable = TRUE
 
-/obj/structure/hull_corner/Initialize()
+/obj/structure/hull_corner/Initialize(mapload)
 	..()
 	return INITIALIZE_HINT_LATELOAD
 

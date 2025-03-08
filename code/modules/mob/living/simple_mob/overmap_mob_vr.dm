@@ -35,7 +35,7 @@
 		parent = new_parent
 	return ..()
 
-/obj/effect/overmap/visitable/simplemob/Initialize()
+/obj/effect/overmap/visitable/simplemob/Initialize(mapload)
 	. = ..()
 	if(!parent_mob_type && !parent)
 		log_and_message_admins("An improperly configured OM mob event tried to spawn, and was deleted.")
@@ -144,7 +144,7 @@
 		child_om_marker = new_child
 	return ..()
 
-/mob/living/simple_mob/vore/overmap/Initialize()
+/mob/living/simple_mob/vore/overmap/Initialize(mapload)
 	. = ..()
 	if(!om_child_type)
 		log_and_message_admins("An improperly configured OM mob tried to spawn, and was deleted.")
@@ -177,7 +177,7 @@
 		parent = new_parent
 	return ..()
 
-/obj/effect/overmap/visitable/ship/simplemob/Initialize()
+/obj/effect/overmap/visitable/ship/simplemob/Initialize(mapload)
 	. = ..()
 	if(!parent_mob_type && !parent)
 		log_and_message_admins("An improperly configured OM mob event tried to spawn, and was deleted.")

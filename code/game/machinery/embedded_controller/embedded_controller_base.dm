@@ -8,7 +8,7 @@
 	var/list/valid_actions = list()
 	var/on = 1
 
-/obj/machinery/embedded_controller/Initialize()
+/obj/machinery/embedded_controller/Initialize(mapload)
 	if(ispath(program))
 		program = new program(src)
 	return ..()
@@ -84,7 +84,7 @@
 	var/radio_filter = null
 	var/datum/radio_frequency/radio_connection
 
-/obj/machinery/embedded_controller/radio/Initialize()
+/obj/machinery/embedded_controller/radio/Initialize(mapload)
 	set_frequency(frequency) // Set it before parent instantiates program
 	. = ..()
 

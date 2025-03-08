@@ -17,8 +17,20 @@ $include sqlite.txt
 ## Server name: This appears at the top of the screen in-game. In this case it will read "tgstation: station_name" where station_name is the randomly generated name of the station for the round. Remove the # infront of SERVERNAME and replace 'tgstation' with the name of your choice
 # SERVERNAME spacestation13
 
-## Add a # infront of this if you want to use the SQL based admin system, the legacy system uses admins.txt. You need to set up your database to use the SQL based system.
+## Comment this out if you want to use the SQL based admin system, the legacy system uses admins.txt.
+## You need to set up your database to use the SQL based system.
+## This flag is automatically enabled if SQL_ENABLED isn't
 ADMIN_LEGACY_SYSTEM
+
+##Uncomment this to stop any admins loaded by the legacy system from having their rank edited by the permissions panel
+#PROTECT_LEGACY_ADMINS
+
+##Uncomment this to stop any ranks loaded by the legacy system from having their flags edited by the permissions panel
+#PROTECT_LEGACY_RANKS
+
+##Uncomment this to have admin ranks only loaded from the legacy admin_ranks.txt
+##If enabled, each time admins are loaded ranks the database will be updated with the current ranks and their flags
+#LOAD_LEGACY_RANKS_ONLY
 
 ## Add a # infront of this if you want to use the SQL based banning system. The legacy systems use the files in the data folder. You need to set up your database to use the SQL based system.
 BAN_LEGACY_SYSTEM
@@ -574,3 +586,6 @@ JUKEBOX_TRACK_FILES config/jukebox.json
 # The endpoint for the chat to fetch the chatlogs from (for example, the last 2500 messages on init for the history)
 # REQUIRES chatlog_database_backend to be enabled
 #CHATLOG_DATABASE_API_ENDPOINT https://example.com
+
+## Uncomment to block granting profiling privileges to users with R_DEBUG, for performance purposes
+#FORBID_ADMIN_PROFILING

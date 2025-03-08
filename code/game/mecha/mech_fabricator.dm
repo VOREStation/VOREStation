@@ -83,7 +83,7 @@
 								"Misc",
 								)
 
-/obj/machinery/mecha_part_fabricator/Initialize()
+/obj/machinery/mecha_part_fabricator/Initialize(mapload)
 	. = ..()
 
 // Go through all materials, and add them to the possible storage, but hide them unless we contain them.

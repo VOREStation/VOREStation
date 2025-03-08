@@ -83,7 +83,7 @@
 
 
 /proc/is_admin(var/mob/user)
-	return check_rights(R_ADMIN|R_EVENT, 0, user) != 0
+	return check_rights_for(user.client, R_ADMIN|R_EVENT) != 0
 
 /**
  * Moved into its own file as part of port from CHOMP.
@@ -404,7 +404,7 @@ var/list/intents = list(I_HELP,I_DISARM,I_GRAB,I_HURT)
 		return // Can't talk in deadchat if you can't see it.
 
 	for(var/mob/M in player_list)
-		if(M.client && ((!isnewplayer(M) && M.stat == DEAD) || (M.client.holder && M.client.holder.rights && M.client?.prefs?.read_preference(/datum/preference/toggle/holder/show_staff_dsay))) && M.client?.prefs?.read_preference(/datum/preference/toggle/show_dsay))
+		if(M.client && ((!isnewplayer(M) && M.stat == DEAD) || (M.client.holder && check_rights_for(M.client, R_NONE) && M.client?.prefs?.read_preference(/datum/preference/toggle/holder/show_staff_dsay))) && M.client?.prefs?.read_preference(/datum/preference/toggle/show_dsay))
 			var/follow
 			var/lname
 			if(M.forbid_seeing_deadchat && !M.client.holder)
@@ -434,7 +434,7 @@ var/list/intents = list(I_HELP,I_DISARM,I_GRAB,I_HURT)
 
 /proc/say_dead_object(var/message, var/obj/subject = null)
 	for(var/mob/M in player_list)
-		if(M.client && ((!isnewplayer(M) && M.stat == DEAD) || (M.client.holder && M.client.holder.rights && M.client?.prefs?.read_preference(/datum/preference/toggle/holder/show_staff_dsay))) && M.client?.prefs?.read_preference(/datum/preference/toggle/show_dsay))
+		if(M.client && ((!isnewplayer(M) && M.stat == DEAD) || (M.client.holder && check_rights_for(M.client, R_NONE) && M.client?.prefs?.read_preference(/datum/preference/toggle/holder/show_staff_dsay))) && M.client?.prefs?.read_preference(/datum/preference/toggle/show_dsay))
 			var/follow
 			var/lname = "Game Master"
 			if(M.forbid_seeing_deadchat && !M.client.holder)

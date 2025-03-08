@@ -883,7 +883,6 @@
 /obj/machinery/atmospherics/unary/engine{
 	dir = 1
 	},
-/turf/space,
 /turf/simulated/shuttle/plating/airless/carry,
 /area/shuttle/generic_shuttle/eng)
 "dV" = (

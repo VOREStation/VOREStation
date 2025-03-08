@@ -34,7 +34,7 @@
 	bypass_protection = TRUE // Because mercs tend to be in spacesuits.
 	reagent_ids = list(REAGENT_ID_HEALINGNANITES, REAGENT_ID_HYPERZINE, REAGENT_ID_TRAMADOL, REAGENT_ID_OXYCODONE, REAGENT_ID_SPACEACILLIN, REAGENT_ID_PERIDAXON, REAGENT_ID_OSTEODAXON, REAGENT_ID_MYELAMINE, REAGENT_ID_SYNTHBLOOD)
 
-/obj/item/reagent_containers/borghypo/Initialize()
+/obj/item/reagent_containers/borghypo/Initialize(mapload)
 	. = ..()
 
 	for(var/T in reagent_ids)

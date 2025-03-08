@@ -1,6 +1,0 @@
-author: "KillianKirilenko"
-delete-after: True
-changes:
-  - qol: "veymed autoadaptive suits can now handle teshari"
-  - balance: "veymed tesh suits changed to generic nonadaptive suits"
-  - qol: "\"streamlined\" changed to \"lightweight\" in veymed suit names"

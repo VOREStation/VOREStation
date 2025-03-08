@@ -56,8 +56,7 @@
 /obj/structure/table/steel,
 /obj/item/circuitboard/comm_server,
 /obj/machinery/light{
-	dir = 8;
-	status = LIGHT_EMPTY
+	dir = 8
 	},
 /turf/simulated/floor/tiled/asteroid_steel,
 /area/submap/cave/deadBeacon)

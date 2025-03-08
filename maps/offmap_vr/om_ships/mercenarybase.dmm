@@ -28,11 +28,9 @@
 /area/mercbase/airlock)
 "ae" = (
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 1
 	},
 /obj/machinery/atmospherics/portables_connector/aux{
-	icon_state = "map_connector-aux";
 	dir = 4
 	},
 /obj/machinery/portable_atmospherics/canister/air/airlock,
@@ -42,19 +40,15 @@
 /obj/machinery/power/apc{
 	dir = 1;
 	name = "north bump";
-	pixel_x = 0;
 	pixel_y = 24
 	},
 /obj/machinery/power/terminal{
-	icon_state = "term";
 	dir = 1
 	},
 /obj/structure/cable{
-	icon_state = "0-2";
-	pixel_y = 0
+	icon_state = "0-2"
 	},
 /obj/machinery/atmospherics/pipe/manifold/hidden/aux{
-	icon_state = "map-aux";
 	dir = 1
 	},
 /turf/simulated/floor,
@@ -76,7 +70,6 @@
 /area/mercbase/airlock)
 "ai" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/aux{
-	icon_state = "intact-aux";
 	dir = 10
 	},
 /turf/simulated/floor,
@@ -86,7 +79,6 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/binary/passive_gate{
-	icon_state = "map";
 	dir = 1
 	},
 /turf/simulated/floor,
@@ -104,18 +96,15 @@
 /area/mercbase/airlock)
 "al" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
-	icon_state = "map_scrubber_on";
 	dir = 8
 	},
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 1
 	},
 /turf/simulated/floor/plating,
 /area/mercbase/airlock)
 "am" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/aux{
-	icon_state = "map-aux";
 	dir = 4
 	},
 /turf/simulated/floor/plating,
@@ -125,11 +114,9 @@
 	icon_state = "1-4"
 	},
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply{
-	icon_state = "map-supply";
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/aux{
-	icon_state = "intact-aux";
 	dir = 5
 	},
 /turf/simulated/floor/plating,
@@ -142,14 +129,12 @@
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/aux{
-	icon_state = "intact-aux";
 	dir = 8
 	},
 /turf/simulated/floor/plating,
 /area/mercbase/airlock)
 "ap" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/universal{
-	icon_state = "map_universal";
 	dir = 4
 	},
 /turf/simulated/floor/plating,
@@ -163,27 +148,23 @@
 	icon_state = "1-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/aux{
-	icon_state = "intact-aux";
 	dir = 8
 	},
 /turf/simulated/floor/plating,
 /area/mercbase/airlock)
 "as" = (
 /obj/machinery/atmospherics/binary/passive_gate{
-	icon_state = "map";
 	dir = 4
 	},
 /turf/simulated/floor/plating,
 /area/mercbase/airlock)
 "at" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	icon_state = "intact-supply";
 	dir = 5
 	},
 /obj/machinery/alarm{
 	dir = 4;
-	pixel_x = -22;
-	pixel_y = 0
+	pixel_x = -22
 	},
 /turf/simulated/floor/plating,
 /area/mercbase/airlock)
@@ -191,8 +172,7 @@
 /obj/machinery/airlock_sensor/airlock_exterior{
 	frequency = 1200;
 	id_tag = "westairlock";
-	master_tag = "westexteriorsensor";
-	pixel_w = 26
+	master_tag = "westexteriorsensor"
 	},
 /turf/simulated/mineral/floor,
 /area/mercbase/roid)
@@ -204,8 +184,7 @@
 /obj/machinery/airlock_sensor/airlock_interior{
 	frequency = 1200;
 	id_tag = "westairlock";
-	master_tag = "westchambersensor";
-	pixel_z = 23
+	master_tag = "westchambersensor"
 	},
 /turf/simulated/floor,
 /area/mercbase/airlock)
@@ -213,8 +192,7 @@
 /obj/machinery/airlock_sensor/airlock_interior{
 	frequency = 1200;
 	id_tag = "westairlock";
-	master_tag = "westinteriorsensor";
-	pixel_z = 23
+	master_tag = "westinteriorsensor"
 	},
 /turf/simulated/floor/tiled/dark,
 /area/mercbase/hall)
@@ -235,8 +213,7 @@
 /area/space)
 "aL" = (
 /obj/structure/cable{
-	icon_state = "0-2";
-	pixel_y = 0
+	icon_state = "0-2"
 	},
 /turf/space,
 /area/space)
@@ -272,8 +249,7 @@
 	id = "syndsol"
 	},
 /obj/structure/cable{
-	icon_state = "0-2";
-	pixel_y = 0
+	icon_state = "0-2"
 	},
 /turf/simulated/floor/plating,
 /area/mercbase/panels)
@@ -286,9 +262,7 @@
 /area/mercbase/panels)
 "de" = (
 /obj/machinery/firealarm{
-	dir = 2;
 	layer = 3.3;
-	pixel_x = 0;
 	pixel_y = 32
 	},
 /turf/simulated/floor/tiled/dark,
@@ -309,11 +283,9 @@
 /obj/machinery/power/apc{
 	dir = 1;
 	name = "north bump";
-	pixel_x = 0;
 	pixel_y = 24
 	},
 /obj/machinery/power/terminal{
-	icon_state = "term";
 	dir = 1
 	},
 /obj/structure/cable{
@@ -358,8 +330,7 @@
 "fY" = (
 /obj/machinery/alarm{
 	dir = 4;
-	pixel_x = -22;
-	pixel_y = 0
+	pixel_x = -22
 	},
 /turf/simulated/floor/tiled/dark,
 /area/mercbase/command)
@@ -422,8 +393,7 @@
 "gq" = (
 /obj/machinery/alarm{
 	dir = 4;
-	pixel_x = -22;
-	pixel_y = 0
+	pixel_x = -22
 	},
 /obj/machinery/computer/operating,
 /turf/simulated/floor/tiled/dark,
@@ -434,7 +404,6 @@
 /area/mercbase/fuel)
 "gs" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/fuel{
-	icon_state = "intact-fuel";
 	dir = 9
 	},
 /turf/simulated/floor,
@@ -445,14 +414,12 @@
 /area/mercbase/fuel)
 "gu" = (
 /obj/machinery/atmospherics/binary/pump/fuel{
-	icon_state = "map_off-fuel";
 	dir = 1
 	},
 /turf/simulated/floor,
 /area/mercbase/fuel)
 "gv" = (
 /obj/structure/window/reinforced{
-	icon_state = "rwindow";
 	dir = 8
 	},
 /obj/machinery/portable_atmospherics/canister/phoron,
@@ -468,7 +435,6 @@
 /area/mercbase/atmos)
 "gy" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/universal{
-	icon_state = "map_universal";
 	dir = 4
 	},
 /turf/simulated/floor,
@@ -479,7 +445,6 @@
 /area/mercbase/atmos)
 "gA" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/black{
-	icon_state = "intact";
 	dir = 9
 	},
 /turf/simulated/floor,
@@ -501,14 +466,12 @@
 "gD" = (
 /obj/machinery/alarm{
 	dir = 4;
-	pixel_x = -22;
-	pixel_y = 0
+	pixel_x = -22
 	},
 /turf/simulated/floor/tiled/dark,
 /area/mercbase/power)
 "gE" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	icon_state = "intact-supply";
 	dir = 8
 	},
 /turf/simulated/floor,
@@ -523,21 +486,18 @@
 /area/mercbase/atmos)
 "gH" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/black{
-	icon_state = "intact";
 	dir = 6
 	},
 /turf/simulated/floor,
 /area/mercbase/atmos)
 "gI" = (
 /obj/machinery/atmospherics/binary/pump{
-	icon_state = "map_off";
 	dir = 4
 	},
 /turf/simulated/floor,
 /area/mercbase/atmos)
 "gJ" = (
 /obj/machinery/atmospherics/portables_connector{
-	icon_state = "map_connector";
 	dir = 8
 	},
 /obj/machinery/portable_atmospherics/canister/empty,
@@ -551,7 +511,6 @@
 /area/mercbase/atmos)
 "gL" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	icon_state = "intact-scrubbers";
 	dir = 8
 	},
 /turf/simulated/floor,
@@ -572,7 +531,6 @@
 /area/mercbase/command)
 "gQ" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/aux{
-	icon_state = "intact-aux";
 	dir = 5
 	},
 /turf/simulated/floor,
@@ -709,7 +667,6 @@
 /area/mercbase/hall)
 "hh" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/aux{
-	icon_state = "intact-aux";
 	dir = 8
 	},
 /turf/simulated/floor/tiled/dark,
@@ -725,7 +682,6 @@
 /area/mercbase/hall)
 "hj" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
-	icon_state = "map-scrubbers";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -737,7 +693,6 @@
 /area/mercbase/hall)
 "hk" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	icon_state = "intact-supply";
 	dir = 5
 	},
 /obj/structure/cable{
@@ -750,7 +705,6 @@
 	dir = 5
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	icon_state = "intact-supply";
 	dir = 8
 	},
 /obj/structure/cable{
@@ -760,11 +714,9 @@
 /area/mercbase/barracks)
 "hm" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	icon_state = "intact-supply";
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	icon_state = "intact-scrubbers";
 	dir = 8
 	},
 /obj/structure/cable{
@@ -782,11 +734,9 @@
 /area/mercbase/medical)
 "ho" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	icon_state = "intact-scrubbers";
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	icon_state = "intact-supply";
 	dir = 8
 	},
 /obj/structure/cable{
@@ -804,7 +754,6 @@
 /area/mercbase/dock)
 "hq" = (
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /turf/simulated/floor/tiled/dark,
@@ -830,11 +779,9 @@
 /area/mercbase/airlock)
 "hv" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
-	icon_state = "map-scrubbers";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply{
-	icon_state = "map-supply";
 	dir = 4
 	},
 /obj/structure/cable{
@@ -847,14 +794,12 @@
 /area/mercbase/hall)
 "hw" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/aux{
-	icon_state = "intact-aux";
 	dir = 8
 	},
 /turf/simulated/floor,
 /area/mercbase/airlock)
 "hy" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply{
-	icon_state = "map-supply";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -876,7 +821,6 @@
 	dir = 6
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/aux{
-	icon_state = "intact-aux";
 	dir = 10
 	},
 /obj/structure/cable{
@@ -892,18 +836,15 @@
 /area/mercbase/command)
 "hD" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	icon_state = "intact-scrubbers";
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	icon_state = "intact-supply";
 	dir = 8
 	},
 /turf/simulated/floor/tiled/dark,
 /area/mercbase/command)
 "hE" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	icon_state = "intact-scrubbers";
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
@@ -913,7 +854,6 @@
 /area/mercbase/command)
 "hF" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	icon_state = "intact-scrubbers";
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
@@ -923,7 +863,6 @@
 /area/mercbase/command)
 "hG" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	icon_state = "intact-scrubbers";
 	dir = 9
 	},
 /turf/simulated/floor/tiled/dark,
@@ -936,7 +875,6 @@
 /area/mercbase/medicalstorage)
 "hJ" = (
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 1
 	},
 /turf/simulated/floor/tiled/dark,
@@ -948,19 +886,17 @@
 /obj/machinery/power/apc{
 	dir = 1;
 	name = "north bump";
-	pixel_x = 0;
 	pixel_y = 24
 	},
 /obj/machinery/power/terminal{
-	icon_state = "term";
 	dir = 1
 	},
 /obj/structure/cable{
-	icon_state = "0-2";
-	pixel_y = 0
+	d2 = 2;
+	icon_state = "0-2"
 	},
 /obj/structure/closet/hydrant{
-	pixel_w = -32
+	pixel_x = -26
 	},
 /turf/simulated/floor/tiled/dark,
 /area/mercbase/solar)
@@ -978,11 +914,9 @@
 /area/mercbase/medical)
 "hN" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	icon_state = "intact-supply";
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	icon_state = "intact-scrubbers";
 	dir = 8
 	},
 /obj/structure/cable{
@@ -1000,7 +934,6 @@
 /area/mercbase/medicalstorage)
 "hP" = (
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 1
 	},
 /obj/structure/closet/syndicate{
@@ -1032,11 +965,9 @@
 /area/mercbase/medical)
 "hR" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 9;
-	pixel_y = 0
+	dir = 9
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	icon_state = "intact-scrubbers";
 	dir = 8
 	},
 /obj/structure/cable{
@@ -1046,7 +977,6 @@
 /area/mercbase/medicalOR)
 "hS" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
-	icon_state = "map_vent_out";
 	dir = 4
 	},
 /obj/structure/cable{
@@ -1056,7 +986,6 @@
 /area/mercbase/medical)
 "hT" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply{
-	icon_state = "map-supply";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -1072,16 +1001,13 @@
 /obj/machinery/power/apc{
 	dir = 1;
 	name = "north bump";
-	pixel_x = 0;
 	pixel_y = 24
 	},
 /obj/machinery/power/terminal{
-	icon_state = "term";
 	dir = 1
 	},
 /obj/structure/cable{
-	icon_state = "0-2";
-	pixel_y = 0
+	icon_state = "0-2"
 	},
 /turf/simulated/floor/tiled/dark,
 /area/mercbase/eqroom)
@@ -1093,11 +1019,9 @@
 /area/mercbase/medical)
 "hW" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	icon_state = "intact-supply";
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	icon_state = "intact-scrubbers";
 	dir = 8
 	},
 /obj/structure/cable{
@@ -1107,7 +1031,6 @@
 /area/mercbase/medicalOR)
 "hX" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/aux{
-	icon_state = "intact-aux";
 	dir = 8
 	},
 /turf/simulated/floor/plating,
@@ -1118,7 +1041,6 @@
 /area/mercbase/airlock)
 "hZ" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/aux{
-	icon_state = "intact-aux";
 	dir = 9
 	},
 /turf/simulated/floor/plating,
@@ -1126,7 +1048,6 @@
 "ia" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
-	icon_state = "map-scrubbers";
 	dir = 4
 	},
 /obj/structure/cable{
@@ -1136,7 +1057,6 @@
 /area/mercbase/medical)
 "ib" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply{
-	icon_state = "map-supply";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -1148,21 +1068,18 @@
 "id" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/structure/closet/hydrant{
-	pixel_w = -32
+	pixel_x = -26
 	},
 /turf/simulated/floor,
 /area/mercbase/airlock)
 "ie" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	icon_state = "intact-supply";
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/aux{
-	icon_state = "intact-aux";
 	dir = 5
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	icon_state = "intact-scrubbers";
 	dir = 8
 	},
 /obj/structure/cable{
@@ -1185,15 +1102,12 @@
 /area/mercbase/airlock)
 "ig" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	icon_state = "intact-supply";
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	icon_state = "intact-scrubbers";
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/aux{
-	icon_state = "intact-aux";
 	dir = 8
 	},
 /obj/structure/cable{
@@ -1203,11 +1117,9 @@
 /area/mercbase/hall)
 "ih" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply{
-	icon_state = "map-supply";
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
-	icon_state = "map-scrubbers";
 	dir = 8
 	},
 /obj/structure/cable{
@@ -1252,14 +1164,12 @@
 /area/mercbase/medicalstorage)
 "ik" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	icon_state = "intact-supply";
 	dir = 5
 	},
 /turf/simulated/floor/tiled/dark,
 /area/mercbase/medicalstorage)
 "il" = (
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /turf/simulated/floor/tiled/dark,
@@ -1280,8 +1190,7 @@
 	},
 /obj/machinery/alarm{
 	dir = 4;
-	pixel_x = -22;
-	pixel_y = 0
+	pixel_x = -22
 	},
 /turf/simulated/floor/tiled/dark,
 /area/mercbase/solar)
@@ -1307,7 +1216,6 @@
 /area/mercbase/medicalstorage)
 "is" = (
 /obj/machinery/power/apc{
-	dir = 2;
 	name = "south bump";
 	pixel_y = -32
 	},
@@ -1334,11 +1242,9 @@
 /area/mercbase/power)
 "iy" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	icon_state = "intact-supply";
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	icon_state = "intact-scrubbers";
 	dir = 8
 	},
 /obj/machinery/door/airlock/glass_security{
@@ -1353,7 +1259,6 @@
 /area/mercbase/command)
 "iB" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
-	icon_state = "map_vent_out";
 	dir = 1
 	},
 /turf/simulated/floor/tiled/dark,
@@ -1368,7 +1273,6 @@
 /area/mercbase/barracks)
 "iE" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
-	icon_state = "map_scrubber_on";
 	dir = 8
 	},
 /turf/simulated/floor/tiled/dark,
@@ -1380,13 +1284,12 @@
 	icon_state = "1-4"
 	},
 /obj/structure/closet/hydrant{
-	pixel_w = -32
+	pixel_x = -26
 	},
 /turf/simulated/floor/tiled/dark,
 /area/mercbase/medicalstorage)
 "iG" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
-	icon_state = "map_scrubber_on";
 	dir = 4
 	},
 /turf/simulated/floor/tiled/dark,
@@ -1405,21 +1308,18 @@
 /area/mercbase/solar)
 "iJ" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
-	icon_state = "map_scrubber_on";
 	dir = 8
 	},
 /obj/structure/closet/hydrant{
-	pixel_w = 32
+	pixel_x = 26
 	},
 /turf/simulated/floor/tiled/dark,
 /area/mercbase/medicalOR)
 "iK" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	icon_state = "intact-supply";
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	icon_state = "intact-scrubbers";
 	dir = 8
 	},
 /obj/machinery/door/airlock/glass_security{
@@ -1434,35 +1334,30 @@
 /area/mercbase/dock)
 "iL" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
-	icon_state = "map_vent_out";
 	dir = 1
 	},
 /turf/simulated/floor/tiled/dark,
 /area/mercbase/eqroom)
 "iM" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
-	icon_state = "map_scrubber_on";
 	dir = 1
 	},
 /turf/simulated/floor/tiled/dark,
 /area/mercbase/eqroom)
 "iN" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
-	icon_state = "map_vent_out";
 	dir = 4
 	},
 /turf/simulated/floor/tiled/dark,
 /area/mercbase/hall)
 "iO" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
-	icon_state = "map_scrubber_on";
 	dir = 4
 	},
 /turf/simulated/floor/tiled/dark,
 /area/mercbase/medical)
 "iP" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
-	icon_state = "map_scrubber_on";
 	dir = 8
 	},
 /turf/simulated/floor/tiled/dark,
@@ -1488,13 +1383,12 @@
 	icon_state = "1-4"
 	},
 /obj/structure/closet/hydrant{
-	pixel_w = -32
+	pixel_x = -26
 	},
 /turf/simulated/floor,
 /area/mercbase/atmos)
 "iV" = (
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 4
 	},
 /turf/simulated/floor/tiled/dark,
@@ -1505,15 +1399,12 @@
 /area/mercbase/airlock)
 "iX" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply{
-	icon_state = "map-supply";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
-	icon_state = "map-scrubbers";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/aux{
-	icon_state = "intact-aux";
 	dir = 9
 	},
 /obj/structure/cable{
@@ -1526,7 +1417,6 @@
 /area/mercbase/hall)
 "iY" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
-	icon_state = "map_scrubber_on";
 	dir = 4
 	},
 /turf/simulated/floor/tiled/dark,
@@ -1549,7 +1439,7 @@
 /area/mercbase/medical)
 "jc" = (
 /obj/structure/closet/hydrant{
-	pixel_w = -32
+	pixel_x = -26
 	},
 /obj/structure/bed/roller,
 /turf/simulated/floor/tiled/dark,
@@ -1560,7 +1450,6 @@
 /area/mercbase/medical)
 "je" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/purple{
-	icon_state = "intact";
 	dir = 5
 	},
 /turf/simulated/floor/tiled/dark,
@@ -1571,7 +1460,6 @@
 /area/mercbase/medical)
 "jg" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/purple{
-	icon_state = "intact";
 	dir = 9
 	},
 /turf/simulated/floor/tiled/dark,
@@ -1594,16 +1482,13 @@
 /obj/machinery/power/apc{
 	dir = 1;
 	name = "north bump";
-	pixel_x = 0;
 	pixel_y = 24
 	},
 /obj/machinery/power/terminal{
-	icon_state = "term";
 	dir = 1
 	},
 /obj/structure/cable{
-	icon_state = "0-2";
-	pixel_y = 0
+	icon_state = "0-2"
 	},
 /turf/simulated/floor/tiled/dark,
 /area/mercbase/medicalstorage)
@@ -1611,26 +1496,21 @@
 /obj/machinery/power/apc{
 	dir = 1;
 	name = "north bump";
-	pixel_x = 0;
 	pixel_y = 24
 	},
 /obj/machinery/power/terminal{
-	icon_state = "term";
 	dir = 1
 	},
 /obj/structure/cable{
-	icon_state = "0-2";
-	pixel_y = 0
+	icon_state = "0-2"
 	},
 /turf/simulated/floor/tiled/dark,
 /area/mercbase/hall)
 "jl" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	icon_state = "intact-supply";
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	icon_state = "intact-scrubbers";
 	dir = 8
 	},
 /obj/structure/cable{
@@ -1657,16 +1537,13 @@
 /obj/machinery/power/apc{
 	dir = 1;
 	name = "north bump";
-	pixel_x = 0;
 	pixel_y = 24
 	},
 /obj/machinery/power/terminal{
-	icon_state = "term";
 	dir = 1
 	},
 /obj/structure/cable{
-	icon_state = "0-2";
-	pixel_y = 0
+	icon_state = "0-2"
 	},
 /turf/simulated/floor/tiled/dark,
 /area/mercbase/engineering)
@@ -1680,7 +1557,6 @@
 /area/mercbase/engineering)
 "jp" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	icon_state = "intact-scrubbers";
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply,
@@ -1691,7 +1567,6 @@
 /area/mercbase/hall)
 "jq" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	icon_state = "intact-supply";
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers,
@@ -1702,11 +1577,9 @@
 /area/mercbase/hall)
 "jr" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 9;
-	pixel_y = 0
+	dir = 9
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	icon_state = "intact-scrubbers";
 	dir = 9
 	},
 /obj/structure/cable{
@@ -1716,11 +1589,9 @@
 /area/mercbase/medical)
 "js" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	icon_state = "intact-scrubbers";
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	icon_state = "intact-supply";
 	dir = 8
 	},
 /obj/structure/cable{
@@ -1730,7 +1601,6 @@
 /area/mercbase/hall)
 "ju" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
-	icon_state = "map_scrubber_on";
 	dir = 1
 	},
 /turf/simulated/floor,
@@ -1777,7 +1647,6 @@
 "jA" = (
 /obj/machinery/power/solar_control/config_start{
 	dir = 8;
-	icon_state = "solar";
 	id = "syndsol"
 	},
 /turf/simulated/floor/tiled/dark,
@@ -1875,16 +1744,13 @@
 /obj/machinery/power/apc{
 	dir = 1;
 	name = "north bump";
-	pixel_x = 0;
 	pixel_y = 24
 	},
 /obj/machinery/power/terminal{
-	icon_state = "term";
 	dir = 1
 	},
 /obj/structure/cable{
-	icon_state = "0-2";
-	pixel_y = 0
+	icon_state = "0-2"
 	},
 /turf/simulated/floor,
 /area/mercbase/atmos)
@@ -1922,7 +1788,6 @@
 /area/mercbase/medical)
 "jS" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
-	icon_state = "map_vent_out";
 	dir = 4
 	},
 /obj/structure/cable{
@@ -1944,7 +1809,6 @@
 /area/mercbase/airlock)
 "jW" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/aux{
-	icon_state = "intact-aux";
 	dir = 8
 	},
 /obj/machinery/door/airlock/glass_external,
@@ -1952,7 +1816,6 @@
 /area/mercbase/airlock)
 "jX" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/aux{
-	icon_state = "intact-aux";
 	dir = 8
 	},
 /obj/machinery/door/airlock/glass_external,
@@ -1975,8 +1838,7 @@
 "jZ" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 9;
-	pixel_y = 0
+	dir = 9
 	},
 /obj/structure/cable{
 	icon_state = "1-8"
@@ -1985,11 +1847,9 @@
 /area/mercbase/fuel)
 "ka" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	icon_state = "intact-scrubbers";
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	icon_state = "intact-supply";
 	dir = 8
 	},
 /obj/structure/cable{
@@ -2010,12 +1870,10 @@
 /area/mercbase/engineering)
 "kc" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	icon_state = "intact-scrubbers";
 	dir = 9
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 9;
-	pixel_y = 0
+	dir = 9
 	},
 /obj/structure/cable{
 	icon_state = "1-8"
@@ -2049,16 +1907,13 @@
 /obj/machinery/power/apc{
 	dir = 1;
 	name = "north bump";
-	pixel_x = 0;
 	pixel_y = 24
 	},
 /obj/machinery/power/terminal{
-	icon_state = "term";
 	dir = 1
 	},
 /obj/structure/cable{
-	icon_state = "0-2";
-	pixel_y = 0
+	icon_state = "0-2"
 	},
 /turf/simulated/floor/plating,
 /area/mercbase/airlock)
@@ -2066,16 +1921,13 @@
 /obj/machinery/power/apc{
 	dir = 1;
 	name = "north bump";
-	pixel_x = 0;
 	pixel_y = 24
 	},
 /obj/machinery/power/terminal{
-	icon_state = "term";
 	dir = 1
 	},
 /obj/structure/cable{
-	icon_state = "0-2";
-	pixel_y = 0
+	icon_state = "0-2"
 	},
 /turf/simulated/floor,
 /area/mercbase/fuel)
@@ -2094,8 +1946,7 @@
 "kk" = (
 /obj/machinery/power/smes,
 /obj/structure/cable{
-	icon_state = "0-2";
-	pixel_y = 0
+	icon_state = "0-2"
 	},
 /turf/simulated/floor/tiled/dark,
 /area/mercbase/engineering)
@@ -2110,7 +1961,6 @@
 /area/mercbase/engineering)
 "km" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	icon_state = "intact-supply";
 	dir = 5
 	},
 /obj/machinery/light,
@@ -2141,11 +1991,9 @@
 /area/mercbase/engineering)
 "kq" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	icon_state = "intact-supply";
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	icon_state = "intact-scrubbers";
 	dir = 8
 	},
 /obj/structure/cable{
@@ -2164,7 +2012,6 @@
 	dir = 10
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/aux{
-	icon_state = "intact-aux";
 	dir = 6
 	},
 /obj/structure/cable{
@@ -2174,11 +2021,9 @@
 /area/mercbase/hall)
 "ks" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	icon_state = "intact-scrubbers";
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	icon_state = "intact-supply";
 	dir = 8
 	},
 /obj/machinery/door/airlock/security{
@@ -2215,7 +2060,6 @@
 	dir = 6
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	icon_state = "intact-supply";
 	dir = 8
 	},
 /obj/structure/cable{
@@ -2229,11 +2073,9 @@
 /area/mercbase/eqroom)
 "kB" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	icon_state = "intact-supply";
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	icon_state = "intact-scrubbers";
 	dir = 8
 	},
 /obj/structure/cable{
@@ -2251,7 +2093,7 @@
 	icon_state = "1-4"
 	},
 /obj/structure/closet/hydrant{
-	pixel_w = -32
+	pixel_x = -26
 	},
 /turf/simulated/floor/tiled/dark,
 /area/mercbase/eqroom)
@@ -2282,7 +2124,6 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 4
 	},
 /turf/simulated/floor/tiled/dark,
@@ -2318,18 +2159,15 @@
 	icon_state = "2-4"
 	},
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 1
 	},
 /turf/simulated/floor/tiled/dark,
 /area/mercbase/eqroom)
 "kI" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	icon_state = "intact-supply";
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	icon_state = "intact-scrubbers";
 	dir = 8
 	},
 /obj/structure/cable{
@@ -2343,7 +2181,6 @@
 /area/mercbase/eqroom)
 "kJ" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
-	icon_state = "map-scrubbers";
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -2351,7 +2188,6 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 4
 	},
 /turf/simulated/floor/tiled/dark,
@@ -2362,35 +2198,30 @@
 /area/mercbase/eqroom)
 "kL" = (
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /turf/simulated/floor/tiled/dark,
 /area/mercbase/hall)
 "kM" = (
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 1
 	},
 /turf/simulated/floor,
 /area/mercbase/airlock)
 "kN" = (
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 1
 	},
 /turf/simulated/floor/tiled/dark,
 /area/mercbase/hall)
 "kO" = (
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 1
 	},
 /turf/simulated/floor/plating,
 /area/mercbase/airlock)
 "kP" = (
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /turf/simulated/floor/tiled/dark,
@@ -2403,25 +2234,21 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /turf/simulated/floor/tiled/dark,
 /area/mercbase/solar)
 "kR" = (
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 1
 	},
 /turf/simulated/floor/tiled/dark,
 /area/mercbase/engineering)
 "kS" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	icon_state = "intact-scrubbers";
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	icon_state = "intact-supply";
 	dir = 8
 	},
 /obj/structure/cable{
@@ -2433,7 +2260,6 @@
 "kT" = (
 /obj/machinery/atmospherics/unary/freezer,
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 1
 	},
 /turf/simulated/floor/tiled/dark,
@@ -2447,14 +2273,12 @@
 /area/mercbase/medicalstorage)
 "kV" = (
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 8
 	},
 /turf/simulated/floor/tiled/dark,
 /area/mercbase/medical)
 "kW" = (
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 1
 	},
 /turf/simulated/floor,
@@ -2462,20 +2286,16 @@
 "kX" = (
 /obj/machinery/atmospherics/portables_connector/fuel,
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 1
 	},
 /obj/machinery/firealarm{
-	dir = 2;
 	layer = 3.3;
-	pixel_x = 0;
 	pixel_y = 32
 	},
 /turf/simulated/floor,
 /area/mercbase/fuel)
 "kY" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	icon_state = "intact-scrubbers";
 	dir = 8
 	},
 /obj/machinery/light,
@@ -2483,7 +2303,6 @@
 /area/mercbase/atmos)
 "kZ" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/black{
-	icon_state = "intact";
 	dir = 8
 	},
 /obj/machinery/meter,
@@ -2493,13 +2312,10 @@
 "lB" = (
 /obj/machinery/alarm{
 	dir = 8;
-	pixel_x = 22;
-	pixel_y = 0
+	pixel_x = 22
 	},
 /obj/machinery/firealarm{
-	dir = 2;
 	layer = 3.3;
-	pixel_x = 0;
 	pixel_y = 32
 	},
 /obj/structure/closet/secure_closet/chemical{
@@ -2509,7 +2325,6 @@
 /area/mercbase/medicalstorage)
 "lC" = (
 /obj/machinery/power/apc{
-	dir = 2;
 	name = "south bump";
 	pixel_y = -32
 	},
@@ -2521,11 +2336,9 @@
 /area/mercbase/medical)
 "lD" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	icon_state = "intact-supply";
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	icon_state = "intact-scrubbers";
 	dir = 8
 	},
 /obj/structure/cable{
@@ -2540,49 +2353,42 @@
 "lE" = (
 /obj/machinery/alarm{
 	dir = 8;
-	pixel_x = 22;
-	pixel_y = 0
+	pixel_x = 22
 	},
 /turf/simulated/floor/tiled/dark,
 /area/mercbase/engineering)
 "lF" = (
 /obj/machinery/alarm{
 	dir = 4;
-	pixel_x = -22;
-	pixel_y = 0
+	pixel_x = -22
 	},
 /turf/simulated/floor/tiled/dark,
 /area/mercbase/hall)
 "lG" = (
 /obj/machinery/alarm{
 	dir = 4;
-	pixel_x = -22;
-	pixel_y = 0
+	pixel_x = -22
 	},
 /turf/simulated/floor,
 /area/mercbase/airlock)
 "lH" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	icon_state = "intact-supply";
 	dir = 5
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/alarm{
 	dir = 4;
-	pixel_x = -22;
-	pixel_y = 0
+	pixel_x = -22
 	},
 /turf/simulated/floor,
 /area/mercbase/atmos)
 "lJ" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/fuel{
-	icon_state = "intact-fuel";
 	dir = 5
 	},
 /obj/machinery/alarm{
 	dir = 4;
-	pixel_x = -22;
-	pixel_y = 0
+	pixel_x = -22
 	},
 /turf/simulated/floor,
 /area/mercbase/fuel)
@@ -2592,7 +2398,6 @@
 /area/mercbase/barracks)
 "lL" = (
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 1
 	},
 /obj/structure/bed/padded,
@@ -2651,18 +2456,15 @@
 /area/mercbase/eqroom)
 "lR" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	icon_state = "intact-supply";
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	icon_state = "intact-scrubbers";
 	dir = 8
 	},
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 1
 	},
 /obj/machinery/recharger/wallcharger{
@@ -2706,11 +2508,9 @@
 /area/mercbase/engineering)
 "lV" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	icon_state = "intact-scrubbers";
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	icon_state = "intact-supply";
 	dir = 8
 	},
 /obj/structure/cable{
@@ -2737,9 +2537,7 @@
 "lZ" = (
 /obj/structure/bed/padded,
 /obj/machinery/firealarm{
-	dir = 2;
 	layer = 3.3;
-	pixel_x = 0;
 	pixel_y = 32
 	},
 /turf/simulated/floor/tiled/dark,
@@ -2766,7 +2564,6 @@
 /area/mercbase/engineering)
 "mf" = (
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 1
 	},
 /obj/structure/table/reinforced,
@@ -2774,7 +2571,6 @@
 /area/mercbase/engineering)
 "mm" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
-	icon_state = "map_scrubber_on";
 	dir = 8
 	},
 /turf/simulated/floor/tiled/dark,
@@ -2829,11 +2625,9 @@
 /area/mercbase/dock)
 "mz" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	icon_state = "intact-supply";
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	icon_state = "intact-scrubbers";
 	dir = 8
 	},
 /obj/structure/cable{
@@ -2875,25 +2669,21 @@
 	pixel_y = 22
 	},
 /obj/machinery/power/terminal{
-	icon_state = "term";
 	dir = 1
 	},
 /obj/structure/cable{
-	icon_state = "0-2";
-	pixel_y = 0
+	icon_state = "0-2"
 	},
 /turf/simulated/floor/tiled/dark,
 /area/mercbase/roid)
 "mD" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
-	icon_state = "map_vent_out";
 	dir = 1
 	},
 /turf/simulated/floor/tiled/dark,
 /area/mercbase/roid)
 "mE" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
-	icon_state = "map_scrubber_on";
 	dir = 1
 	},
 /turf/simulated/floor/tiled/dark,
@@ -2954,7 +2744,6 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply{
-	icon_state = "map-supply";
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
@@ -2967,19 +2756,16 @@
 /area/mercbase/command)
 "mO" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	icon_state = "intact-scrubbers";
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	icon_state = "intact-supply";
 	dir = 8
 	},
 /turf/simulated/floor/tiled/dark,
 /area/mercbase/dock)
 "mP" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 9;
-	pixel_y = 0
+	dir = 9
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 9
@@ -2989,8 +2775,7 @@
 "mQ" = (
 /obj/machinery/alarm{
 	dir = 4;
-	pixel_x = -22;
-	pixel_y = 0
+	pixel_x = -22
 	},
 /turf/simulated/floor/tiled/dark,
 /area/mercbase/dock)
@@ -3031,7 +2816,6 @@
 	dir = 6
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	icon_state = "intact-supply";
 	dir = 8
 	},
 /obj/structure/cable{
@@ -3049,11 +2833,9 @@
 /area/mercbase/roid)
 "mX" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	icon_state = "intact-scrubbers";
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	icon_state = "intact-supply";
 	dir = 8
 	},
 /turf/simulated/floor/tiled/dark,
@@ -3063,7 +2845,6 @@
 	dir = 10
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	icon_state = "intact-supply";
 	dir = 8
 	},
 /turf/simulated/floor/tiled/dark,
@@ -3096,11 +2877,9 @@
 /area/mercbase/engineering)
 "nb" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	icon_state = "intact-scrubbers";
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	icon_state = "intact-supply";
 	dir = 8
 	},
 /obj/machinery/door/airlock/security{
@@ -3115,11 +2894,9 @@
 /area/mercbase/eqroom)
 "nc" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	icon_state = "intact-supply";
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	icon_state = "intact-scrubbers";
 	dir = 8
 	},
 /obj/structure/cable{
@@ -3170,7 +2947,6 @@
 /area/mercbase/roid)
 "nk" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
-	icon_state = "map_scrubber_on";
 	dir = 1
 	},
 /obj/structure/table/standard,
@@ -3179,7 +2955,6 @@
 /area/mercbase/roid)
 "nl" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
-	icon_state = "map_vent_out";
 	dir = 1
 	},
 /obj/structure/table/standard,
@@ -3202,16 +2977,13 @@
 /obj/machinery/power/apc{
 	dir = 1;
 	name = "north bump";
-	pixel_x = 0;
 	pixel_y = 32
 	},
 /turf/simulated/floor/tiled/dark,
 /area/mercbase/roid)
 "nq" = (
 /obj/machinery/firealarm{
-	dir = 2;
 	layer = 3.3;
-	pixel_x = 0;
 	pixel_y = 32
 	},
 /turf/simulated/floor/tiled/dark,
@@ -3219,36 +2991,28 @@
 "nr" = (
 /obj/machinery/optable,
 /obj/machinery/firealarm{
-	dir = 2;
 	layer = 3.3;
-	pixel_x = 0;
 	pixel_y = 32
 	},
 /turf/simulated/floor/tiled/dark,
 /area/mercbase/medicalOR)
 "ns" = (
 /obj/machinery/firealarm{
-	dir = 2;
 	layer = 3.3;
-	pixel_x = 0;
 	pixel_y = 32
 	},
 /turf/simulated/floor/tiled/dark,
 /area/mercbase/power)
 "nt" = (
 /obj/machinery/firealarm{
-	dir = 2;
 	layer = 3.3;
-	pixel_x = 0;
 	pixel_y = 32
 	},
 /turf/simulated/floor/tiled/dark,
 /area/mercbase/solar)
 "nu" = (
 /obj/machinery/firealarm{
-	dir = 2;
 	layer = 3.3;
-	pixel_x = 0;
 	pixel_y = 32
 	},
 /turf/simulated/floor/tiled/dark,
@@ -3256,27 +3020,21 @@
 "nv" = (
 /obj/machinery/atmospherics/unary/vent_pump/on,
 /obj/machinery/firealarm{
-	dir = 2;
 	layer = 3.3;
-	pixel_x = 0;
 	pixel_y = 32
 	},
 /turf/simulated/floor/tiled/dark,
 /area/mercbase/hall)
 "nw" = (
 /obj/machinery/firealarm{
-	dir = 2;
 	layer = 3.3;
-	pixel_x = 0;
 	pixel_y = 32
 	},
 /turf/simulated/floor,
 /area/mercbase/atmos)
 "nx" = (
 /obj/machinery/firealarm{
-	dir = 2;
 	layer = 3.3;
-	pixel_x = 0;
 	pixel_y = 32
 	},
 /turf/simulated/floor/tiled/dark,
@@ -3363,7 +3121,6 @@
 /area/mercbase/hall)
 "nM" = (
 /obj/structure/sign/vacuum{
-	pixel_x = 0;
 	pixel_y = 30
 	},
 /turf/simulated/floor/tiled/dark,
@@ -3422,15 +3179,12 @@
 /area/mercbase/hall)
 "nV" = (
 /obj/machinery/light{
-	dir = 8;
-	icon_state = "tube1";
-	pixel_y = 0
+	dir = 8
 	},
 /turf/simulated/floor/tiled/dark,
 /area/mercbase/dock)
 "nW" = (
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 4
 	},
 /turf/simulated/floor/tiled/dark,
@@ -3465,19 +3219,18 @@
 /area/mercbase/medicalstorage)
 "of" = (
 /obj/structure/closet/hydrant{
-	pixel_w = -32
+	pixel_x = -26
 	},
 /turf/simulated/floor/tiled/dark,
 /area/mercbase/hall)
 "og" = (
 /obj/structure/closet/hydrant{
-	pixel_w = -32
+	pixel_x = -26
 	},
 /turf/simulated/floor/tiled/dark,
 /area/mercbase/command)
 "oh" = (
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 1
 	},
 /obj/structure/bed/roller,
@@ -3485,7 +3238,7 @@
 /area/mercbase/medical)
 "oi" = (
 /obj/structure/closet/hydrant{
-	pixel_w = -32
+	pixel_x = -26
 	},
 /turf/simulated/floor/tiled/dark,
 /area/mercbase/barracks)
@@ -3493,25 +3246,25 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/fuel,
 /obj/machinery/meter,
 /obj/structure/closet/hydrant{
-	pixel_w = -32
+	pixel_x = -26
 	},
 /turf/simulated/floor,
 /area/mercbase/fuel)
 "ok" = (
 /obj/structure/closet/hydrant{
-	pixel_w = -32
+	pixel_x = -26
 	},
 /turf/simulated/floor/tiled/dark,
 /area/mercbase/roid)
 "ol" = (
 /obj/structure/closet/hydrant{
-	pixel_w = -32
+	pixel_x = -26
 	},
 /turf/simulated/floor/tiled/dark,
 /area/mercbase/dock)
 "om" = (
 /obj/structure/closet/hydrant{
-	pixel_w = -32
+	pixel_x = -26
 	},
 /turf/simulated/floor/tiled/dark,
 /area/mercbase/power)
@@ -3539,7 +3292,6 @@
 /area/mercbase/medical)
 "op" = (
 /obj/structure/bed/chair/office/light{
-	icon_state = "officechair_white";
 	dir = 4
 	},
 /turf/simulated/floor/tiled/dark,
@@ -3594,7 +3346,7 @@
 "ou" = (
 /obj/structure/table/reinforced,
 /obj/structure/closet/hydrant{
-	pixel_w = -32
+	pixel_x = -26
 	},
 /obj/item/storage/toolbox/syndicate,
 /turf/simulated/floor/tiled/dark,
@@ -3634,24 +3386,19 @@
 /area/mercbase/roid)
 "oJ" = (
 /obj/machinery/firealarm{
-	dir = 2;
 	layer = 3.3;
-	pixel_x = 0;
 	pixel_y = 32
 	},
 /turf/simulated/floor/tiled/dark,
 /area/mercbase/command)
 "oK" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	icon_state = "intact-supply";
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	icon_state = "intact-scrubbers";
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/aux{
-	icon_state = "intact-aux";
 	dir = 8
 	},
 /obj/structure/cable{
@@ -3663,6 +3410,15 @@
 	},
 /obj/machinery/door/firedoor,
 /turf/simulated/floor/tiled/dark,
+/area/mercbase/hall)
+"wF" = (
+/obj/machinery/airlock_sensor/airlock_interior{
+	frequency = 1200;
+	id_tag = "westairlock";
+	master_tag = "westinteriorsensor";
+	pixel_z = 23
+	},
+/turf/simulated/wall/r_wall,
 /area/mercbase/hall)
 
 (1,1,1) = {"
@@ -11837,7 +11593,7 @@ ih
 kF
 hg
 jY
-gc
+wF
 jM
 kz
 gE

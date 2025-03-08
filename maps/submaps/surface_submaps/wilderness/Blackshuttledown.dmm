@@ -42,7 +42,6 @@
 	},
 /area/submap/Blackshuttledown)
 "ak" = (
-/turf/template_noop,
 /turf/simulated/shuttle/wall/dark{
 	icon_state = "dark10";
 	name = "Unknown Shuttle"
@@ -144,7 +143,6 @@
 /turf/simulated/floor/tiled/white,
 /area/submap/Blackshuttledown)
 "av" = (
-/turf/simulated/floor/tiled/steel,
 /turf/simulated/shuttle/wall/dark{
 	icon_state = "dark5";
 	name = "Unknown Shuttle"
@@ -201,15 +199,7 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/submap/Blackshuttledown)
-"aG" = (
-/turf/simulated/floor/tiled/steel,
-/turf/simulated/shuttle/wall/dark{
-	icon_state = "dark9";
-	name = "Unknown Shuttle"
-	},
-/area/submap/Blackshuttledown)
 "aH" = (
-/turf/simulated/floor/tiled/steel,
 /turf/simulated/shuttle/wall/dark{
 	icon_state = "dark6";
 	name = "Unknown Shuttle"
@@ -366,13 +356,6 @@
 "be" = (
 /obj/machinery/door/airlock/glass,
 /turf/simulated/floor/tiled/white,
-/area/submap/Blackshuttledown)
-"bf" = (
-/turf/simulated/floor/tiled/steel,
-/turf/simulated/shuttle/wall/dark{
-	icon_state = "dark10";
-	name = "Unknown Shuttle"
-	},
 /area/submap/Blackshuttledown)
 "bg" = (
 /obj/machinery/computer/communications,
@@ -690,12 +673,6 @@
 	},
 /turf/simulated/floor/tiled/steel,
 /area/submap/Blackshuttledown)
-"ce" = (
-/obj/structure/bed,
-/obj/item/bedsheet,
-/obj/structure/bed,
-/turf/simulated/floor/tiled/steel,
-/area/submap/Blackshuttledown)
 "cf" = (
 /obj/machinery/light/small{
 	dir = 4;
@@ -763,15 +740,7 @@
 /obj/item/toy/plushie/spider,
 /turf/simulated/floor/tiled/steel,
 /area/submap/Blackshuttledown)
-"cp" = (
-/turf/template_noop,
-/turf/simulated/shuttle/wall/dark{
-	icon_state = "dark5";
-	name = "Unknown Shuttle"
-	},
-/area/submap/Blackshuttledown)
 "cq" = (
-/turf/template_noop,
 /turf/simulated/shuttle/wall/dark{
 	icon_state = "dark9";
 	name = "Unknown Shuttle"
@@ -1096,7 +1065,7 @@ ab
 ab
 ad
 ad
-ai
+aH
 aj
 aj
 av
@@ -1115,7 +1084,7 @@ av
 aH
 aj
 aj
-cp
+av
 ab
 ab
 ab
@@ -1555,7 +1524,7 @@ bu
 bP
 aj
 bY
-ce
+bY
 bY
 bY
 aj
@@ -1707,7 +1676,7 @@ bY
 bY
 co
 aj
-cp
+av
 ab
 ab
 ad
@@ -1840,18 +1809,18 @@ aj
 aj
 aj
 aj
-aG
+cq
 ab
-bf
+ak
 aj
 bw
 bK
 bK
 bI
 aj
-aG
+cq
 ab
-bf
+ak
 aj
 aj
 aj
@@ -1876,20 +1845,20 @@ ab
 aj
 aj
 aj
-aG
+cq
 ab
 ab
 ab
-bf
+ak
 al
 al
 al
 al
-aG
+cq
 ab
 ab
 ab
-bf
+ak
 al
 al
 cq

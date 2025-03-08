@@ -3,7 +3,7 @@
 	icon = 'icons/effects/effects_vr.dmi'
 	icon_state = "confetti"
 
-/obj/effect/effect/sparks/Initialize()
+/obj/effect/effect/sparks/Initialize(mapload)
 	. = ..()
 	playsound(src, "sounds/items/confetti.ogg ", 100, 1)
 

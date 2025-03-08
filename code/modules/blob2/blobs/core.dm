@@ -95,8 +95,8 @@ var/list/blob_cores = list()
 /obj/structure/blob/core/classic
 	desired_blob_type = /datum/blob_type/classic
 
-/obj/structure/blob/core/Initialize(newloc, client/new_overmind = null, new_rate = 2, placed = 0)
-	. = ..(newloc)
+/obj/structure/blob/core/Initialize(mapload, client/new_overmind = null, new_rate = 2, placed = 0)
+	. = ..()
 	blob_cores += src
 	START_PROCESSING(SSobj, src)
 	update_icon() //so it atleast appears

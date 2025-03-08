@@ -1006,7 +1006,7 @@ var/list/ai_verbs_default = list(
 /mob/living/silicon/ai/announcer
 	is_dummy = 1
 
-/mob/living/silicon/ai/announcer/Initialize()
+/mob/living/silicon/ai/announcer/Initialize(mapload)
 	. = ..()
 	mob_list -= src
 	living_mob_list -= src

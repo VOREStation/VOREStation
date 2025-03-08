@@ -23,7 +23,7 @@
 									 /obj/machinery/replicator,
 									 /obj/structure/crystal)
 
-/obj/machinery/artifact_analyser/Initialize()
+/obj/machinery/artifact_analyser/Initialize(mapload)
 	. = ..()
 	reconnect_scanner()
 

@@ -48,7 +48,7 @@
 	var/static/radial_safety = image(icon = 'icons/mob/radial.dmi', icon_state = "radial_safety")
 	var/static/radial_output = image(icon = 'icons/mob/radial.dmi', icon_state = "radial_change_output")
 
-/obj/machinery/appliance/Initialize()
+/obj/machinery/appliance/Initialize(mapload)
 	. = ..()
 
 	default_apply_parts()

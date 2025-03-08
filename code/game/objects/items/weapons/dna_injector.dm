@@ -20,7 +20,7 @@
 	var/has_radiation = TRUE
 	// Traitgenes edit end
 
-/obj/item/dnainjector/Initialize() // Traitgenes edit - Moved to init
+/obj/item/dnainjector/Initialize(mapload) // Traitgenes edit - Moved to init
 	if(datatype && block)
 		buf=new
 		buf.dna=new
@@ -168,54 +168,54 @@
 	desc = "This injects the person with DNA."
 
 // Purely rando
-/obj/item/dnainjector/random/Initialize()
+/obj/item/dnainjector/random/Initialize(mapload)
 	pick_block( pick(GLOB.dna_genes_good + GLOB.dna_genes_neutral + GLOB.dna_genes_bad), FALSE, TRUE)
 	. = ..()
 
-/obj/item/dnainjector/random_labeled/Initialize()
+/obj/item/dnainjector/random_labeled/Initialize(mapload)
 	pick_block( pick(GLOB.dna_genes_good + GLOB.dna_genes_neutral + GLOB.dna_genes_bad), TRUE, TRUE)
 	. = ..()
 
 // Good/bad but also neutral genes mixed in, less OP selection of genes
-/obj/item/dnainjector/random_good/Initialize()
+/obj/item/dnainjector/random_good/Initialize(mapload)
 	pick_block( pick(GLOB.dna_genes_good + GLOB.dna_genes_neutral ), FALSE, TRUE)
 	. = ..()
 
-/obj/item/dnainjector/random_good_labeled/Initialize()
+/obj/item/dnainjector/random_good_labeled/Initialize(mapload)
 	pick_block( pick(GLOB.dna_genes_good + GLOB.dna_genes_neutral ), TRUE, TRUE)
 	. = ..()
 
-/obj/item/dnainjector/random_bad/Initialize()
+/obj/item/dnainjector/random_bad/Initialize(mapload)
 	pick_block( pick(GLOB.dna_genes_bad + GLOB.dna_genes_neutral ), FALSE, TRUE)
 	. = ..()
 
-/obj/item/dnainjector/random_bad_labeled/Initialize()
+/obj/item/dnainjector/random_bad_labeled/Initialize(mapload)
 	pick_block( pick(GLOB.dna_genes_bad + GLOB.dna_genes_neutral ), TRUE, TRUE)
 	. = ..()
 
 // Purely good/bad genes, intended to be usually good rewards or punishments
-/obj/item/dnainjector/random_verygood/Initialize()
+/obj/item/dnainjector/random_verygood/Initialize(mapload)
 	pick_block( pick(GLOB.dna_genes_good), FALSE, FALSE)
 	. = ..()
 
-/obj/item/dnainjector/random_verygood_labeled/Initialize()
+/obj/item/dnainjector/random_verygood_labeled/Initialize(mapload)
 	pick_block( pick(GLOB.dna_genes_good), TRUE, FALSE)
 	. = ..()
 
-/obj/item/dnainjector/random_verybad/Initialize()
+/obj/item/dnainjector/random_verybad/Initialize(mapload)
 	pick_block( pick(GLOB.dna_genes_bad), FALSE, FALSE)
 	. = ..()
 
-/obj/item/dnainjector/random_verybad_labeled/Initialize()
+/obj/item/dnainjector/random_verybad_labeled/Initialize(mapload)
 	pick_block( pick(GLOB.dna_genes_bad), TRUE, FALSE)
 	. = ..()
 
 // Random neutral traits
-/obj/item/dnainjector/random_neutral/Initialize()
+/obj/item/dnainjector/random_neutral/Initialize(mapload)
 	pick_block( pick(GLOB.dna_genes_neutral ), FALSE, TRUE)
 	. = ..()
 
-/obj/item/dnainjector/random_neutral_labeled/Initialize()
+/obj/item/dnainjector/random_neutral_labeled/Initialize(mapload)
 	pick_block( pick(GLOB.dna_genes_neutral ), TRUE, TRUE)
 	. = ..()
 
@@ -224,7 +224,7 @@
 	var/trait_path
 	var/disabling = FALSE
 
-/obj/item/dnainjector/set_trait/Initialize()
+/obj/item/dnainjector/set_trait/Initialize(mapload)
 	var/G = get_gene_from_trait(trait_path)
 	if(trait_path && G)
 		pick_block( G, TRUE, FALSE, disabling)

@@ -44,7 +44,7 @@
 		"Aux" = PIPING_LAYER_AUX
 	)
 
-/obj/item/pipe_dispenser/Initialize()
+/obj/item/pipe_dispenser/Initialize(mapload)
 	. = ..()
 	src.spark_system = new /datum/effect/effect/system/spark_spread
 	spark_system.set_up(5, 0, src)

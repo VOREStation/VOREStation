@@ -720,7 +720,6 @@
 /area/submap/Rockybase)
 "cu" = (
 /obj/structure/table/standard,
-/obj/structure/table/standard,
 /obj/effect/decal/cleanable/dirt,
 /obj/item/reagent_containers/hypospray/autoinjector/biginjector/burn,
 /turf/simulated/floor/tiled,

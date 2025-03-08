@@ -434,7 +434,7 @@
 	charge_amount = 100
 	var/mob/living/carbon/human/charger
 
-/obj/item/cell/protean/Initialize()
+/obj/item/cell/protean/Initialize(mapload)
 	. = ..()
 	charge = maxcharge
 	update_icon()
