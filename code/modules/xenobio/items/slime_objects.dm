@@ -123,7 +123,7 @@
 	nutriment_amt = 25 // Very filling.
 	nutriment_desc = list("slime" = 10, "sweetness" = 10, REAGENT_ID_BLISS = 5)
 
-/obj/item/reagent_containers/food/snacks/slime/Initialize()
+/obj/item/reagent_containers/food/snacks/slime/Initialize(mapload)
 	. = ..()
 	bitesize = 5
 
@@ -143,7 +143,7 @@
 	on = 1 //Bio-luminesence has one setting, on.
 	power_use = 0
 
-/obj/item/flashlight/slime/Initialize()
+/obj/item/flashlight/slime/Initialize(mapload)
 	. = ..()
 	set_light(light_range, light_power, light_color)
 
@@ -166,7 +166,7 @@
 	light_range = 2
 	w_class = ITEMSIZE_TINY
 
-/obj/item/slime_irradiator/Initialize()
+/obj/item/slime_irradiator/Initialize(mapload)
 	. = ..()
 	START_PROCESSING(SSobj, src)
 	set_light(light_range, light_power, light_color)

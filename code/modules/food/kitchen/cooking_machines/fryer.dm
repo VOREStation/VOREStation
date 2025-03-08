@@ -34,7 +34,7 @@
 	var/datum/reagents/oil
 	var/optimal_oil = 9000 //90 litres of cooking oil
 
-/obj/machinery/appliance/cooker/fryer/Initialize()
+/obj/machinery/appliance/cooker/fryer/Initialize(mapload)
 	. = ..()
 	fry_loop = new(list(src), FALSE)
 

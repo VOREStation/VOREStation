@@ -12,7 +12,7 @@
 /obj/item/animal_spawner
 	var/critter_type = /mob/living/simple_mob/animal/passive/mouse
 
-/obj/item/animal_spawner/Initialize()
+/obj/item/animal_spawner/Initialize(mapload)
 	..()
 
 	var/mob/living/simple_mob/critter = critter_type
@@ -183,7 +183,7 @@
 	else
 		icon_state = icon_living
 
-/mob/living/simple_mob/animal/passive/opossum/Initialize()
+/mob/living/simple_mob/animal/passive/opossum/Initialize(mapload)
 	. = ..()
 	add_verb(src, /mob/living/proc/ventcrawl)
 	add_verb(src, /mob/living/proc/hide)

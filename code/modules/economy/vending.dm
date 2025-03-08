@@ -81,7 +81,7 @@
 	var/can_rotate = 1 //Defaults to yes, can be set to 0 for vendors without or with unwanted directionals.
 
 
-/obj/machinery/vending/Initialize()
+/obj/machinery/vending/Initialize(mapload)
 	. = ..()
 	wires = new(src)
 	if(product_slogans)

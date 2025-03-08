@@ -20,7 +20,7 @@
 		return TRUE
 	return ..()
 
-/obj/structure/shuttle/window/Initialize()
+/obj/structure/shuttle/window/Initialize(mapload)
 	. = ..()
 	auto_join()
 

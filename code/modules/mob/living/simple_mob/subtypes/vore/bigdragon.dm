@@ -251,7 +251,7 @@ I think I covered everything.
 	//add_verb(src, /mob/living/simple_mob/vore/bigdragon/proc/set_desc) //Implemented upstream
 	faction = FACTION_NEUTRAL
 
-/mob/living/simple_mob/vore/bigdragon/Initialize()
+/mob/living/simple_mob/vore/bigdragon/Initialize(mapload)
 	. = ..()
 	src.adjust_nutrition(src.max_nutrition)
 	build_icons(1)

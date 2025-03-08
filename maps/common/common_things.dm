@@ -94,7 +94,7 @@
 
 	var/area/shock_area = /area/tether/surfacebase/tram
 
-/turf/simulated/floor/maglev/Initialize()
+/turf/simulated/floor/maglev/Initialize(mapload)
 	. = ..()
 	shock_area = locate(shock_area)
 
@@ -322,7 +322,7 @@
 	name = "science outpost linked multitool"
 	desc = "It has the data for the science outpost's quantum pad pre-loaded... assuming you didn't override it."
 
-/obj/item/multitool/scioutpost/Initialize()
+/obj/item/multitool/scioutpost/Initialize(mapload)
 	. = ..()
 	for(var/obj/machinery/power/quantumpad/scioutpost/outpost in world)
 		connectable = outpost

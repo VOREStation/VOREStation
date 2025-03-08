@@ -56,7 +56,7 @@
 	var/category_implants	 = 1
 	var/category_event		 = 1	//For special events, holidays, etc
 
-/obj/machinery/casino_prize_dispenser/Initialize()
+/obj/machinery/casino_prize_dispenser/Initialize(mapload)
 	. = ..()
 	power_change()
 

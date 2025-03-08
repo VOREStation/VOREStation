@@ -1,7 +1,7 @@
 /obj/item/stack/medical/advanced
 	icon = 'icons/obj/stacks_vr.dmi'
 
-/obj/item/stack/medical/advanced/Initialize()
+/obj/item/stack/medical/advanced/Initialize(mapload)
 	. = ..()
 	update_icon()
 

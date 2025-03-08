@@ -44,7 +44,7 @@
 	var/static/image/radial_image_random = image(icon = 'icons/mob/radial_vr.dmi', icon_state = "sheet-random")
 
 
-/obj/item/rms/Initialize()
+/obj/item/rms/Initialize(mapload)
 	. = ..()
 	src.spark_system = new /datum/effect/effect/system/spark_spread
 	spark_system.set_up(5, 0, src)

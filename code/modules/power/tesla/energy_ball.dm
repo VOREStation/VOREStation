@@ -27,7 +27,7 @@
 	..()
 	miniball = is_miniball
 
-/obj/singularity/energy_ball/Initialize()
+/obj/singularity/energy_ball/Initialize(mapload)
 	. = ..()
 	if(!miniball)
 		set_light(10, 7, "#EEEEFF")

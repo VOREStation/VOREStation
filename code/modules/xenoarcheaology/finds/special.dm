@@ -5,7 +5,7 @@
 /obj/item/reagent_containers/glass/replenishing
 	var/spawning_id
 
-/obj/item/reagent_containers/glass/replenishing/Initialize()
+/obj/item/reagent_containers/glass/replenishing/Initialize(mapload)
 	. = ..()
 	START_PROCESSING(SSobj, src)
 	//Taken from hydroponics/seed.dm...This should be a global list at some point and reworked in both places.

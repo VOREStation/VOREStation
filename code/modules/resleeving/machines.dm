@@ -10,7 +10,7 @@
 	circuit = /obj/item/circuitboard/transhuman_clonepod
 
 //A full version of the pod
-/obj/machinery/clonepod/transhuman/full/Initialize()
+/obj/machinery/clonepod/transhuman/full/Initialize(mapload)
 	. = ..()
 	for(var/i = 1 to container_limit)
 		containers += new /obj/item/reagent_containers/glass/bottle/biomass(src)

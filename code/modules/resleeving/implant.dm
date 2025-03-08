@@ -34,7 +34,7 @@
 	. = ..()
 	src.db_key = db_key
 
-/obj/item/implant/backup/Initialize()
+/obj/item/implant/backup/Initialize(mapload)
 	. = ..()
 	our_db = SStranscore.db_by_key(db_key)
 

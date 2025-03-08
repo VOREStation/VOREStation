@@ -99,7 +99,7 @@
 		UpdateMineral()
 	update_icon()
 
-/turf/space/v3b_midpoint/Initialize()
+/turf/space/v3b_midpoint/Initialize(mapload)
 	. = ..()
 	new /obj/effect/step_trigger/teleporter/planetary_fall/virgo3b(src)
 
