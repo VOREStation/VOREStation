@@ -27,10 +27,10 @@
 	var/interval_lower_bound = 5 SECONDS // Lower number for how often the map_effect will trigger.
 	var/interval_upper_bound = 5 SECONDS // Higher number for above.
 
-/obj/effect/map_effect/interval/Initialize()
+/obj/effect/map_effect/interval/Initialize(mapload)
 	. = ..()
 	START_PROCESSING(SSobj, src)
-	
+
 /obj/effect/map_effect/interval/Destroy()
 	STOP_PROCESSING(SSobj, src)
 	return ..()
@@ -44,7 +44,7 @@
 	//Not yet!
 	if(world.time < next_attempt)
 		return
-	
+
 	// Check to see if we're useful first.
 	if(!always_run && !check_for_player_proximity(src, proximity_needed, ignore_ghosts, ignore_afk))
 		next_attempt = world.time + retry_delay

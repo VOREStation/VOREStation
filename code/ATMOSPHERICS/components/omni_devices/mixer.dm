@@ -24,7 +24,7 @@
 
 	var/list/mixing_inputs = list()
 
-/obj/machinery/atmospherics/omni/mixer/Initialize()
+/obj/machinery/atmospherics/omni/mixer/Initialize(mapload)
 	. = ..()
 
 	if(mapper_set())

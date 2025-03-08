@@ -43,7 +43,7 @@ GLOBAL_LIST_BOILERPLATE(all_portals, /obj/effect/portal)
 		return
 	return
 
-/obj/effect/portal/Initialize()
+/obj/effect/portal/Initialize(mapload)
 	. = ..()
 	QDEL_IN(src, 30 SECONDS)
 

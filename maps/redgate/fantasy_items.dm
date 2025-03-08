@@ -179,7 +179,7 @@
 		to_chat(user, "You carefully place \the [I] into the cistern.")
 		return
 
-/obj/structure/toilet/wooden/Initialize()
+/obj/structure/toilet/wooden/Initialize(mapload)
 	open = 1 //just to make sure it works
 	icon_state = "toilet3"
 	. = ..()

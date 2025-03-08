@@ -14,7 +14,7 @@
 	gps_tag = "COM0"
 	emped = 0
 
-/obj/item/gps/advanced/Initialize()
+/obj/item/gps/advanced/Initialize(mapload)
 	. = ..()
 	add_overlay("working")
 

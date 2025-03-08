@@ -123,7 +123,7 @@
 	J.info = joke
 	qdel(src)
 
-/obj/item/cracker/Initialize()
+/obj/item/cracker/Initialize(mapload)
 	var/list/styles = list("blue","green","yellow","red","heart","hazard")
 	var/style = pick(styles)
 	icon_state = style
@@ -168,7 +168,7 @@
 	body_parts_covered = 0
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
 
-/obj/item/clothing/head/paper_crown/Initialize()
+/obj/item/clothing/head/paper_crown/Initialize(mapload)
 	var/list/styles = list("paper_crown_blue","paper_crown_green","paper_crown_yellow","paper_crown_red","paper_crown_pink")
 	var/style = pick(styles)
 	icon_state = style

@@ -31,7 +31,7 @@
 	. += "Video feed is [camera.status ? "on" : "off"]"
 	. += "Audio feed is [radio.broadcasting ? "on" : "off"]"
 
-/obj/item/tvcamera/Initialize()
+/obj/item/tvcamera/Initialize(mapload)
 	. = ..()
 	camera = new(src)
 	camera.c_tag = channel

@@ -6,7 +6,7 @@
 	density = TRUE
 	var/list/starts_with
 
-/obj/structure/largecrate/Initialize()
+/obj/structure/largecrate/Initialize(mapload)
 	. = ..()
 	if(starts_with)
 		create_objects_in_loc(src, starts_with)
@@ -75,7 +75,7 @@
 	desc = "Wulf Aeronautics says it comes in a box for the consumer's sake... How is this so light?"
 	icon_state = "vehiclecrate"
 
-/obj/structure/largecrate/vehicle/Initialize()
+/obj/structure/largecrate/vehicle/Initialize(mapload)
 	. = ..()
 	for(var/obj/O in contents)
 		O.update_icon()

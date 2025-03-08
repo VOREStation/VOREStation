@@ -7,8 +7,8 @@
 	center_of_mass_y = 10
 	volume = 50
 
-/obj/item/reagent_containers/food/drinks/bluespace_coffee/Initialize()
-	..()
+/obj/item/reagent_containers/food/drinks/bluespace_coffee/Initialize(mapload)
+	. = ..()
 	reagents.add_reagent(REAGENT_ID_COFFEE, 50)
 
 	//Infinite Coffee

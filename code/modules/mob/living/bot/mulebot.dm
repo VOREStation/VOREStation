@@ -36,7 +36,7 @@
 
 	var/global/amount = 0
 
-/mob/living/bot/mulebot/Initialize()
+/mob/living/bot/mulebot/Initialize(mapload)
 	. = ..()
 
 	var/turf/T = get_turf(loc)

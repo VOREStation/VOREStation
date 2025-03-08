@@ -26,7 +26,7 @@ GLOBAL_LIST_EMPTY(GPS_list)
 	pickup_sound = 'sound/items/pickup/device.ogg'
 	drop_sound = 'sound/items/drop/device.ogg'
 
-/obj/item/gps/Initialize()
+/obj/item/gps/Initialize(mapload)
 	. = ..()
 	compass = new(src)
 	GLOB.GPS_list += src

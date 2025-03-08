@@ -280,7 +280,7 @@ personally I recommend using the ship's boat if you need to evacuate, but if you
 	item_state = "tdgreen"
 	assignment = "Talon synthetic"
 
-/obj/item/card/id/synthetic/talon/Initialize()
+/obj/item/card/id/synthetic/talon/Initialize(mapload)
 	. = ..()
 	access = list(access_talon, access_synth)
 

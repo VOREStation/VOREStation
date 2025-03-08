@@ -18,7 +18,7 @@
 	turbolifts -= src
 	return ..()
 
-/obj/turbolift_map_holder/Initialize()
+/obj/turbolift_map_holder/Initialize(mapload)
 	..()
 	turbolifts += src
 	return INITIALIZE_HINT_LATELOAD

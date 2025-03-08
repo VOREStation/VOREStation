@@ -10,7 +10,7 @@
 	subspace_transmission = TRUE
 	adhoc_fallback = TRUE
 
-/obj/item/radio/emergency/Initialize()
+/obj/item/radio/emergency/Initialize(mapload)
 	. = ..()
 	internal_channels = default_medbay_channels.Copy()
 

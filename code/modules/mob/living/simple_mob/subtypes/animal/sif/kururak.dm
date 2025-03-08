@@ -94,7 +94,7 @@
 	health = 250
 	instinct = 50
 
-/mob/living/simple_mob/animal/sif/kururak/Initialize()
+/mob/living/simple_mob/animal/sif/kururak/Initialize(mapload)
 	. = ..()
 	if(!instinct)
 		if(prob(20))
@@ -333,7 +333,7 @@
 	else
 		remove_modifiers_of_type(/datum/modifier/ace)
 
-/mob/living/simple_mob/animal/sif/kururak/hibernate/Initialize()
+/mob/living/simple_mob/animal/sif/kururak/hibernate/Initialize(mapload)
 	. = ..()
 	lay_down()
 	instinct = 0

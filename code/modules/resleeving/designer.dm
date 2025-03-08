@@ -23,7 +23,7 @@
 	var/db_key
 	var/datum/transcore_db/our_db // These persist all round and are never destroyed, just keep a hard ref
 
-/obj/machinery/computer/transhuman/designer/Initialize()
+/obj/machinery/computer/transhuman/designer/Initialize(mapload)
 	. = ..()
 	our_db = SStranscore.db_by_key(db_key)
 

@@ -33,7 +33,7 @@
 	//component vars
 	circuit = /obj/item/circuitboard/protean_reconstitutor
 
-/obj/machinery/protean_reconstitutor/Initialize()
+/obj/machinery/protean_reconstitutor/Initialize(mapload)
 	component_parts = list()
 	component_parts += new /obj/item/stock_parts/matter_bin(src)
 	component_parts += new /obj/item/stock_parts/manipulator(src)

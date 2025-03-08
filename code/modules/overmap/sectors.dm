@@ -49,7 +49,7 @@
 
 	var/unique_identifier //Define this for objs that we want to be able to rename. Needed to avoid compiler errors if not included.
 
-/obj/effect/overmap/visitable/Initialize()
+/obj/effect/overmap/visitable/Initialize(mapload)
 	. = ..()
 	if(. == INITIALIZE_HINT_QDEL)
 		return

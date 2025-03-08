@@ -30,7 +30,7 @@
 
 	return new projectile_type(src)
 
-/obj/item/gun/magic/Initialize()
+/obj/item/gun/magic/Initialize(mapload)
 	. = ..()
 	charges = max_charges
 	if(can_charge)

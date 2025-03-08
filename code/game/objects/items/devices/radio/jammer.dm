@@ -34,7 +34,7 @@ var/global/list/active_radio_jammers = list()
 	pickup_sound = 'sound/items/pickup/device.ogg'
 	drop_sound = 'sound/items/drop/device.ogg'
 
-/obj/item/radio_jammer/Initialize()
+/obj/item/radio_jammer/Initialize(mapload)
 	. = ..()
 	power_source = new(src)
 	update_icon() // So it starts with the full overlay.
