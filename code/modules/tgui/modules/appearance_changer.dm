@@ -264,7 +264,7 @@
 					changed_hook(APPEARANCECHANGER_CHANGED_HAIRCOLOR)
 					return 1
 		if("ears_alpha")
-			var/new_alpha = tgui_input_number(ui.user, "Choose your character's wing transparency:\n(0 - 255)", "Wing Transparency", owner.a_wing, 255, 0)
+			var/new_alpha = clamp(params["ears_alpha"], 0, 255)
 			if(isnum(new_alpha) && can_still_topic(ui.user, state))
 				owner.a_ears = new_alpha
 				update_dna(owner)
@@ -331,7 +331,7 @@
 					changed_hook(APPEARANCECHANGER_CHANGED_HAIRCOLOR)
 					return 1
 		if("tail_alpha")
-			var/new_alpha = tgui_input_number(ui.user, "Choose your character's tail transparency:\n(0 - 255)", "Wing Transparency", owner.a_wing, 255, 0)
+			var/new_alpha = clamp(params["tail_alpha"], 0, 255)
 			if(isnum(new_alpha) && can_still_topic(ui.user, state))
 				owner.a_tail = new_alpha
 				update_dna(owner)
@@ -386,14 +386,13 @@
 					return 1
 
 		if("wing_alpha")
-			if(can_change(owner, APPEARANCE_HAIR_COLOR))
-				var/new_alpha = tgui_input_number(ui.user, "Choose your character's wing transparency:\n(0 - 255)", "Wing Transparency", owner.a_wing, 255, 0)
-				if(isnum(new_alpha) && can_still_topic(ui.user, state))
-					owner.a_wing = new_alpha
-					update_dna(owner)
-					owner.update_wing_showing()
-					changed_hook(APPEARANCECHANGER_CHANGED_HAIRCOLOR)
-					return 1
+			var/new_alpha = clamp(params["wing_alpha"], 0, 255)
+			if(isnum(new_alpha) && can_still_topic(ui.user, state))
+				owner.a_wing = new_alpha
+				update_dna(owner)
+				owner.update_wing_showing()
+				changed_hook(APPEARANCECHANGER_CHANGED_HAIRCOLOR)
+				return 1
 
 		if("marking")
 			if(can_change(owner, APPEARANCE_ALL_HAIR))
