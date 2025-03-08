@@ -105,3 +105,5 @@
 									"'s hands are shaking.",
 									" is rocking slightly from side to side."
 									)
+
+	var/patting_defence = FALSE

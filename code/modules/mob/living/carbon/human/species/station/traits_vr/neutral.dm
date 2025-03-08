@@ -1414,3 +1414,14 @@
 	cost = 0
 	var_changes = list("mudking" = TRUE)
 	custom_only = FALSE
+
+/datum/trait/neutral/patting_defence
+	name = "Reflexive Biting"
+	desc = "You will reflexively bite hands that attempt to pat your head or boop your nose, this can be toggled off."
+	cost = 0
+	custom_only = FALSE
+
+/datum/trait/neutral/patting_defence/apply(var/datum/species/S,var/mob/living/carbon/human/H)
+	..()
+	H.patting_defence = TRUE
+	add_verb(H, /mob/living/proc/toggle_patting_defence)

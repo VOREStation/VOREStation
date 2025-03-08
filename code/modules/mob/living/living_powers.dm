@@ -30,3 +30,12 @@
 
 	to_chat(src, span_notice("You will [allow_self_surgery ? "now" : "no longer"] attempt to operate upon yourself."))
 	log_admin("DEBUG \[[world.timeofday]\]: [src.ckey ? "[src.name]:([src.ckey])" : "[src.name]"] has [allow_self_surgery ? "Enabled" : "Disabled"] self surgery.")
+
+/mob/living/proc/toggle_patting_defence()
+	set name = "Toggle Reflexive Biting"
+	set desc = "Toggles the automatic biting for if someone pats you on the head or boops your nose."
+	set category = "Abilities.General"
+
+	patting_defence = !patting_defence
+
+	to_chat(src,span_notice("You will [patting_defence ? "now" : "no longer"] bite hands who pat or boop you."))
