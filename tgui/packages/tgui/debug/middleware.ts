@@ -4,7 +4,7 @@
  * @license MIT
  */
 
-import type { Action, Store } from 'common/redux';
+import type { AnyAction, Middleware } from 'common/redux';
 import { globalEvents } from 'tgui-core/events';
 import { acquireHotKey } from 'tgui-core/hotkeys';
 import { KEY_BACKSPACE, KEY_F10, KEY_F11, KEY_F12 } from 'tgui-core/keycodes';
@@ -14,7 +14,6 @@ import {
   toggleDebugLayout,
   toggleKitchenSink,
 } from './actions';
-import type { ActionData } from './types';
 
 // prettier-ignore
 const relayedTypes = [
@@ -22,15 +21,15 @@ const relayedTypes = [
   'chat/message',
 ];
 
-export const debugMiddleware = (store: Store<number, Action<string>>) => {
+export const debugMiddleware: Middleware = (store) => {
   acquireHotKey(KEY_F11);
   acquireHotKey(KEY_F12);
   globalEvents.on('keydown', (key) => {
     if (key.code === KEY_F11) {
-      store.dispatch(toggleDebugLayout());
+      store.dispatch(toggleDebugLayout() as any);
     }
     if (key.code === KEY_F12) {
-      store.dispatch(toggleKitchenSink());
+      store.dispatch(toggleKitchenSink() as any);
     }
     if (key.ctrl && key.alt && key.code === KEY_BACKSPACE) {
       // NOTE: We need to call this in a timeout, because we need a clean
@@ -44,10 +43,10 @@ export const debugMiddleware = (store: Store<number, Action<string>>) => {
       });
     }
   });
-  return (next: Function) => (action: ActionData) => next(action);
+  return (next) => (action) => next(action);
 };
 
-export const relayMiddleware = (store: Store<number, Action<string>>) => {
+export const relayMiddleware: Middleware = (store) => {
   const devServer = require('tgui-dev-server/link/client.cjs');
   const externalBrowser = location.search === '?external';
   if (externalBrowser) {
@@ -64,12 +63,12 @@ export const relayMiddleware = (store: Store<number, Action<string>>) => {
     acquireHotKey(KEY_F10);
     globalEvents.on('keydown', (key) => {
       if (key === KEY_F10) {
-        store.dispatch(openExternalBrowser());
+        store.dispatch(openExternalBrowser() as any);
       }
     });
   }
-  return (next: Function) => (action: ActionData) => {
-    const { type, payload, relayed } = action;
+  return (next) => (action) => {
+    const { type, payload, relayed } = action as AnyAction;
     if (type === openExternalBrowser.type) {
       window.open(location.href + '?external', '_blank');
       return;
