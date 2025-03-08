@@ -112,7 +112,7 @@ export const VoreSelectedBellyDescriptions = (props: {
                 Number of prey digested in this belly.
               </LabeledList.Item>
               <LabeledList.Item label="%item">
-                Only used in resist messages - item the prey is using to escape.
+                item the prey is using to escape in resist messages, or the item ingested via trash eater
               </LabeledList.Item>
               <LabeledList.Item label="%dest">
                 Only used in transfer messages - belly prey is going to.

@@ -155,6 +155,10 @@
 		"Their body looks somewhat larger than usual around the area of their %belly.",
 		"Their %belly looks larger than usual.")
 
+	var/list/trash_eater_messages = list(
+		"%pred demonstrates their voracious capabilities by swallowing %item whole!"
+	)
+
 GLOBAL_LIST_INIT(vore_words_goo, list("muck","goo","sludge","slime","mire","ectoplasm","quagmire","glop","jelly","ooze","slush","mush","quicksand"))//%goo
 GLOBAL_LIST_INIT(vore_words_hbellynoises, list("gurgle","gloorp","squelch","gloosh","squish","groan","grrrrrrn","sloooooOrp","slooosh","grrrbles","worbles"))//%happybelly
 GLOBAL_LIST_INIT(vore_words_fat, list("love handles","fat","pudge","plumpness","squish","chunk","meat","softness","blubber","flab","paunch","hip dip","mass","dough","chub","marshmellowy goodness","girth","fluff","thickness","jello","adipose "))//%fat
