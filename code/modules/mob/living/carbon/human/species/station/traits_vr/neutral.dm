@@ -1428,7 +1428,7 @@
 
 /datum/trait/neutral/personal_space
 	name = "Personal Space Bubble"
-	desc = "You will reflexively dodge any attempt to hug, pat, boop you or even shake your hand, this can be toggled off."
+	desc = "You are adept at avoiding unwanted physical contact and dodge it with ease. You will reflexively dodge any attempt to hug, pat, boop you or even shake your hand, this can be toggled off."
 	cost = 0
 	custom_only = FALSE
 
