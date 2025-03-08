@@ -13,7 +13,7 @@
 	build_path = /obj/item/storage/bag/ore/holding
 	sort_string = "QAAAA"
 
-/datum/design/item/boh/ore_holding
+/datum/design/item/boh/sheet_holding
 	name = "Sheet Snatcher of Holding"
 	desc = "For those who really hate walking up and down the stairs more than once!"
 	id = "sheet_holding"

@@ -403,7 +403,7 @@
 	icon_state = "sheetsnatcher_bspace"
 	desc = "A patented storage system designed for any kind of mineral sheet, this one has been upgraded with bluespace technology to allow it to carry ten times as much."
 
-	var/capacity = 5000; //Should be far more than enough.
+	capacity = 5000; //Should be far more than enough.
 
 // -----------------------------
 //    Sheet Snatcher (Cyborg)
