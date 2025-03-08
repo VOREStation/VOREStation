@@ -10,7 +10,7 @@
 	var/base_icon_state = "nboard0"
 	var/const/max_notices = 5
 
-/obj/structure/noticeboard/Initialize()
+/obj/structure/noticeboard/Initialize(mapload)
 	. = ..()
 
 	// Grab any mapped notices.

@@ -117,7 +117,7 @@
 	else
 		return ..()
 
-/obj/structure/redgate/away/Initialize()
+/obj/structure/redgate/away/Initialize(mapload)
 	. = ..()
 	if(!find_partner())
 		log_and_message_admins("An away redgate spawned but wasn't able to find a gateway to link to. If this appeared at roundstart, something has gone wrong, otherwise if you spawn another gate they should connect.")
@@ -1483,7 +1483,7 @@
 	var/start_pos
 	var/flag_return_delay = 3 SECONDS	//how long you have to hold onto your team's flag before it returns home
 
-/obj/item/laserdome_flag/Initialize()
+/obj/item/laserdome_flag/Initialize(mapload)
 	. = ..()
 	start_pos = src.loc	//save our starting location for later
 
@@ -1618,7 +1618,7 @@
 	w_class = ITEMSIZE_NO_CONTAINER
 	redgate_allowed = FALSE //you can't take the demonstration balls and go home either
 
-/obj/item/laserdome_hyperball/Initialize()
+/obj/item/laserdome_hyperball/Initialize(mapload)
 	. = ..()
 	start_pos = src.loc	//save our starting location for later
 

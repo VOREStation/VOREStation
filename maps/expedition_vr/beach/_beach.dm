@@ -61,7 +61,7 @@
 	name = "away mission initializer - beachcave"
 
 //In our case, it initializes the ores and random submaps in the beach's cave, then deletes itself
-/obj/away_mission_init/beachcave/Initialize()
+/obj/away_mission_init/beachcave/Initialize(mapload)
 	// Cave submaps are first.
 	/*seed_submaps(list(z), 50, /area/tether_away/cave/unexplored/normal, /datum/map_template/surface/mountains/normal)
 	seed_submaps(list(z), 50, /area/tether_away/cave/unexplored/deep, /datum/map_template/surface/mountains/deep)
@@ -118,14 +118,14 @@
 
 // These are step-teleporters, for map edge transitions
 // This top one goes INTO the cave
-/obj/effect/step_trigger/teleporter/away_beach_tocave/Initialize()
+/obj/effect/step_trigger/teleporter/away_beach_tocave/Initialize(mapload)
 	. = ..()
 	teleport_x = src.x //X is horizontal. This is a top of map transition, so you want the same horizontal alignment in the cave as you have on the beach
 	teleport_y = 2 //2 is because it's putting you on row 2 of the map to the north
 	teleport_z = z+1 //The cave is always our Z-level plus 1, because it's loaded after us
 
 //This one goes OUT OF the cave
-/obj/effect/step_trigger/teleporter/away_beach_tobeach/Initialize()
+/obj/effect/step_trigger/teleporter/away_beach_tobeach/Initialize(mapload)
 	. = ..()
 	teleport_x = src.x //Same reason as bove
 	teleport_y = world.maxy - 1 //This means "1 space from the top of the map"
@@ -138,7 +138,7 @@
 	name = "Water"
 	icon_state = "water"
 
-/turf/simulated/floor/beach/coastwater/Initialize()
+/turf/simulated/floor/beach/coastwater/Initialize(mapload)
 	. = ..()
 	add_overlay(image("icon"='icons/misc/beach.dmi',"icon_state"="water","layer"=MOB_LAYER+0.1))
 

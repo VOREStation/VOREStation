@@ -311,7 +311,7 @@ var/list/holder_mob_icon_cache = list()
 	item_icons = null
 	w_class = ITEMSIZE_SMALL
 
-/obj/item/holder/bird/Initialize()
+/obj/item/holder/bird/Initialize(mapload)
 	. = ..()
 	held_mob?.lay_down()
 

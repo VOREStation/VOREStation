@@ -30,7 +30,7 @@
 
 	faction = FACTION_VAMPIRE
 
-/mob/living/simple_mob/vore/vampire/Initialize()
+/mob/living/simple_mob/vore/vampire/Initialize(mapload)
 	. = ..()
 	if(random_skin)
 		icon_living = pick(skins)

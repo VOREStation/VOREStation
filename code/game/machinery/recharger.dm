@@ -17,7 +17,7 @@
 	var/portable = 1
 	circuit = /obj/item/circuitboard/recharger
 
-/obj/machinery/recharger/Initialize()
+/obj/machinery/recharger/Initialize(mapload)
 	. = ..()
 	default_apply_parts()
 

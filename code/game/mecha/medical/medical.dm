@@ -17,7 +17,7 @@
 		/obj/item/mecha_parts/component/electrical
 		)
 
-/obj/mecha/medical/Initialize()
+/obj/mecha/medical/Initialize(mapload)
 	. = ..()
 	var/turf/T = get_turf(src)
 	if(isPlayerLevel(T.z))

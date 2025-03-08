@@ -14,7 +14,7 @@
 
 	var/obj/item/radio/bluespacehandset/linked/handset = /obj/item/radio/bluespacehandset/linked
 
-/obj/item/bluespaceradio/Initialize()
+/obj/item/bluespaceradio/Initialize(mapload)
 	. = ..()
 	if(ispath(handset))
 		handset = new handset(src, src)

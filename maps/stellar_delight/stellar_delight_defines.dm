@@ -345,7 +345,7 @@
 	extra_z_levels = list(Z_LEVEL_SPACE_ROCKS)
 
 /////SD Starts at V3b to pick up crew refuel and repair (And to make sure it doesn't spawn on hazards)
-/obj/effect/overmap/visitable/sector/virgo3b/Initialize()
+/obj/effect/overmap/visitable/sector/virgo3b/Initialize(mapload)
 	. = ..()
 	for(var/obj/effect/overmap/visitable/ship/stellar_delight/sd in world)
 		sd.forceMove(loc, SOUTH)

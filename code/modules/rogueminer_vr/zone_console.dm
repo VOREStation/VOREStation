@@ -20,7 +20,7 @@
 	var/legacy_zone = 0 //Disable scanning and whatnot.
 	var/obj/machinery/computer/shuttle_control/belter/shuttle_control
 
-/obj/machinery/computer/roguezones/Initialize()
+/obj/machinery/computer/roguezones/Initialize(mapload)
 	. = ..()
 	shuttle_control = locate(/obj/machinery/computer/shuttle_control/belter)
 	return INITIALIZE_HINT_LATELOAD

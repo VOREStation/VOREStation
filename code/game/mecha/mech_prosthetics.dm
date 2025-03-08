@@ -70,7 +70,7 @@
 					"Misc",
 					)
 
-/obj/machinery/mecha_part_fabricator/pros/Initialize()
+/obj/machinery/mecha_part_fabricator/pros/Initialize(mapload)
 	. = ..()
 	manufacturer = basic_robolimb.company
 

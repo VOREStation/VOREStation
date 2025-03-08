@@ -296,7 +296,7 @@
 	name = "Robot Exploration ID"
 	rank = JOB_EXPLORER
 
-/obj/item/card/id/exploration/borg/Initialize()
+/obj/item/card/id/exploration/borg/Initialize(mapload)
 	. = ..()
 	if(isrobot(loc?.loc))
 		R = loc.loc

@@ -16,7 +16,7 @@ Admin verb is called by code\modules\admin\verbs\event_triggers.dm
 	var/isLoud = FALSE
 	var/isNarrate = FALSE
 
-/obj/effect/landmark/event_trigger/Initialize()
+/obj/effect/landmark/event_trigger/Initialize(mapload)
 	. = ..()
 	coordinates = "(X:[loc.x];Y:[loc.y];Z:[loc.z])"
 
@@ -89,7 +89,7 @@ Admin verb is called by code\modules\admin\verbs\event_triggers.dm
 	var/isWarning = FALSE 	//For personal messages
 	isNarrate = TRUE
 
-/obj/effect/landmark/event_trigger/auto_narrate/Initialize()
+/obj/effect/landmark/event_trigger/auto_narrate/Initialize(mapload)
 	. = ..()
 	message_range = world.view
 

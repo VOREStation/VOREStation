@@ -430,7 +430,7 @@
 /obj/effect/step_trigger/zlevel_fall //Don't ever use this, only use subtypes.Define a new var/static/target_z on each
 	affect_ghosts = 1
 
-/obj/effect/step_trigger/zlevel_fall/Initialize()
+/obj/effect/step_trigger/zlevel_fall/Initialize(mapload)
 	. = ..()
 
 	if(istype(get_turf(src), /turf/simulated/floor))
@@ -493,7 +493,7 @@
 	var/mob/living/simple_mob/my_mob
 	var/depleted = FALSE
 
-/obj/tether_away_spawner/Initialize()
+/obj/tether_away_spawner/Initialize(mapload)
 	. = ..()
 
 	if(!LAZYLEN(mobs_to_pick_from))

@@ -16,10 +16,10 @@ var/list/floor_decals = list()
 		color = newcolour
 	..(newloc)
 
-// TODO: identify what is causing these atoms to be qdeleted in New()/Initialize()
+// TODO: identify what is causing these atoms to be qdeleted in New()/Initialize(mapload)
 // somewhere in this chain. Alternatively repath to /obj/floor_decal or some other
 // abstract handler that explicitly doesn't invoke any obj behavior.
-/obj/effect/floor_decal/Initialize()
+/obj/effect/floor_decal/Initialize(mapload)
 	add_to_turf_decals()
 	flags |= ATOM_INITIALIZED
 	return INITIALIZE_HINT_QDEL
@@ -52,7 +52,7 @@ var/list/floor_decals = list()
 /obj/effect/floor_decal/reset
 	name = "reset marker"
 
-/obj/effect/floor_decal/reset/Initialize()
+/obj/effect/floor_decal/reset/Initialize(mapload)
 	..()
 	var/turf/T = get_turf(src)
 	if(T.decals && T.decals.len)

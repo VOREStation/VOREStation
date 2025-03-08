@@ -167,7 +167,7 @@ GLOBAL_VAR_INIT(jellyfish_count, 0)
 	inherited_nutriment	= inherit
 	. = ..()
 
-/obj/item/reagent_containers/food/snacks/jellyfishcore/Initialize()
+/obj/item/reagent_containers/food/snacks/jellyfishcore/Initialize(mapload)
 	nutriment_amt += inherited_nutriment
 	. = ..()
 	reagents.add_reagent(REAGENT_ID_NUTRIMENT, nutriment_amt, nutriment_desc)

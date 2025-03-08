@@ -53,7 +53,7 @@
 			A.turret_controls -= src
 	..()
 
-/obj/machinery/turretid/Initialize()
+/obj/machinery/turretid/Initialize(mapload)
 	if(!control_area)
 		control_area = get_area(src)
 	else if(ispath(control_area))

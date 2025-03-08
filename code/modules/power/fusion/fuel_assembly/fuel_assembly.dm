@@ -17,7 +17,7 @@
 	fuel_colour = _colour
 	..(newloc)
 
-/obj/item/fuel_assembly/Initialize()
+/obj/item/fuel_assembly/Initialize(mapload)
 	. = ..()
 	var/datum/material/material = get_material_by_name(fuel_type)
 	if(istype(material))

@@ -29,7 +29,7 @@
 
 	var/state = 0
 
-/obj/item/gun/magnetic/Initialize()
+/obj/item/gun/magnetic/Initialize(mapload)
 	. = ..()
 	// So you can have some spawn with components
 	if(ispath(cell))
