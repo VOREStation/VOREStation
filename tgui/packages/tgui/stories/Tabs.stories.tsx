@@ -102,23 +102,23 @@ const Story = (props) => {
         </Button.Checkbox>
       </Section>
       <Section fitted>
-        <TabsPrefab />
+        <TabsPrefab tabProps={tabProps} />
       </Section>
       <Section title="Normal section">
-        <TabsPrefab />
+        <TabsPrefab tabProps={tabProps} />
         Some text
       </Section>
       <Section>
         Section-less tabs appear the same as tabs in a fitted section:
       </Section>
-      <TabsPrefab />
+      <TabsPrefab tabProps={tabProps} />
     </>
   );
 };
 
 const TabsPrefab = (props) => {
   const [tabIndex, setTabIndex] = useState(0);
-  const [tabProps] = useState({} as TabProps);
+  const { tabProps } = props;
   return (
     <Tabs
       vertical={tabProps.vertical}
