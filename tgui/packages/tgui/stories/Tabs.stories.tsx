@@ -12,10 +12,19 @@ export const meta = {
   render: () => <Story />,
 };
 
+type TabProps = {
+  vertical: boolean;
+  leftSlot: boolean;
+  rightSlot: boolean;
+  icon: boolean;
+  fluid: boolean;
+  centered: boolean;
+};
+
 const TAB_RANGE = ['Tab #1', 'Tab #2', 'Tab #3', 'Tab #4'];
 
 const Story = (props) => {
-  const [tabProps, setTabProps] = useState({});
+  const [tabProps, setTabProps] = useState({} as TabProps);
   return (
     <>
       <Section>
@@ -109,7 +118,7 @@ const Story = (props) => {
 
 const TabsPrefab = (props) => {
   const [tabIndex, setTabIndex] = useState(0);
-  const [tabProps] = useState({});
+  const [tabProps] = useState({} as TabProps);
   return (
     <Tabs
       vertical={tabProps.vertical}
@@ -120,7 +129,7 @@ const TabsPrefab = (props) => {
         <Tabs.Tab
           key={i}
           selected={i === tabIndex}
-          icon={tabProps.icon && 'info-circle'}
+          icon={tabProps.icon ? 'info-circle' : undefined}
           leftSlot={
             tabProps.leftSlot && (
               <Button circular compact color="transparent" icon="times" />

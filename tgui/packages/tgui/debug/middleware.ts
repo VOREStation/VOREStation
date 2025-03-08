@@ -4,6 +4,7 @@
  * @license MIT
  */
 
+import { Action, Store } from 'common/redux';
 import { globalEvents } from 'tgui-core/events';
 import { acquireHotKey } from 'tgui-core/hotkeys';
 import { KEY_BACKSPACE, KEY_F10, KEY_F11, KEY_F12 } from 'tgui-core/keycodes';
@@ -13,6 +14,7 @@ import {
   toggleDebugLayout,
   toggleKitchenSink,
 } from './actions';
+import type { ActionData } from './types';
 
 // prettier-ignore
 const relayedTypes = [
@@ -20,7 +22,7 @@ const relayedTypes = [
   'chat/message',
 ];
 
-export const debugMiddleware = (store) => {
+export const debugMiddleware = (store: Store<number, Action<string>>) => {
   acquireHotKey(KEY_F11);
   acquireHotKey(KEY_F12);
   globalEvents.on('keydown', (key) => {
@@ -42,10 +44,10 @@ export const debugMiddleware = (store) => {
       });
     }
   });
-  return (next) => (action) => next(action);
+  return (next: Function) => (action: ActionData) => next(action);
 };
 
-export const relayMiddleware = (store) => {
+export const relayMiddleware = (store: Store<number, Action<string>>) => {
   const devServer = require('tgui-dev-server/link/client.cjs');
   const externalBrowser = location.search === '?external';
   if (externalBrowser) {
@@ -66,7 +68,7 @@ export const relayMiddleware = (store) => {
       }
     });
   }
-  return (next) => (action) => {
+  return (next: Function) => (action: ActionData) => {
     const { type, payload, relayed } = action;
     if (type === openExternalBrowser.type) {
       window.open(location.href + '?external', '_blank');
