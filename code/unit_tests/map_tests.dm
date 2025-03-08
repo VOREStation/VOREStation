@@ -25,7 +25,7 @@
 						/area/mine,
 						/area/vacant/vacant_shop,
 						/area/rnd/research_storage, // This should probably be fixed,
-						/area/security/riot_control // This should probably be fixed,
+						/area/security/riot_control, // This should probably be fixed,
 						)
 
 	var/list/exempt_from_apc = typesof(/area/construction,
@@ -47,9 +47,21 @@
 			var/area_good = 1
 			var/bad_msg = "--------------- [A.name]([A.type])"
 
-			if(isnull(A.apc) && !(A.type in exempt_from_apc))
-				log_unit_test("[bad_msg] lacks an APC. (X[A.x]|Y[A.y]) - Z[A.z])")
-				area_good = 0
+			// Scan for areas with extra APCs
+			if(!(A.type in exempt_from_apc))
+				if(isnull(A.apc))
+					log_unit_test("[bad_msg] lacks an APC. (X[A.x]|Y[A.y]) - Z[A.z])")
+					area_good = 0
+				else
+					var/list/apc_list = list()
+					for(var/turf/T in get_current_area_turfs(A))
+						for(var/atom/S in T.contents)
+							if(istype(S,/obj/machinery/power/apc))
+								apc_list.Add(S)
+					if(apc_list.len > 1)
+						area_good = 0
+						for(var/obj/machinery/power/P in apc_list)
+							log_unit_test("[bad_msg] has too many APCs. (X[P.x]|Y[P.y]) - Z[P.z])")
 
 			if(!A.air_scrub_info.len && !(A.type in exempt_from_atmos))
 				log_unit_test("[bad_msg] lacks an Air scrubber. (X[A.x]|Y[A.y]) - (Z[A.z])")
@@ -122,6 +134,30 @@
 
 	return 1
 
+/datum/unit_test/template_noops
+	name = "MAP: Template no-ops (all maps)"
+
+/datum/unit_test/template_noops/start_test()
+
+	var/list/log = list()
+
+	var/turf_noop_count = 0
+	for(var/turf/template_noop/T in world)
+		turf_noop_count++
+		log += "+-- Template Turf @ [T.x], [T.y], [T.z] ([T.loc])"
+
+	var/area_noop_count = 0
+	for(var/area/template_noop/A in world)
+		area_noop_count++
+		log += "+-- Template Area"
+
+	if(turf_noop_count || area_noop_count)
+		fail("Map contained [turf_noop_count] template turfs and [area_noop_count] template areas at round-start.\n" + log.Join("\n"))
+	else
+		pass("No template turfs or areas.")
+
+	return 1
+
 /datum/unit_test/active_edges
 	name = "MAP: Active edges (all maps)"
 
@@ -174,3 +210,33 @@
 		pass("No active edges.")
 
 	return 1
+
+/datum/unit_test/ladder_test
+	name = "MAP: Ladder Test"
+
+/datum/unit_test/ladder_test/start_test()
+	var/failed = FALSE
+
+	for(var/obj/structure/ladder/L in world)
+		var/turf/T = get_turf(L)
+		if(!T)
+			log_unit_test("[L.x].[L.y].[L.z]: Map - Ladder on invalid turf")
+			failed = TRUE
+			continue
+		if(L.allowed_directions & UP)
+			if(!L.target_up)
+				log_unit_test("[T.x].[T.y].[T.z]: Map - Ladder allows upward movement, but had no ladder above it")
+				failed = TRUE
+		if(L.allowed_directions & DOWN)
+			if(!L.target_down)
+				log_unit_test("[T.x].[T.y].[T.z]: Map - Ladder allows downward movement, but had no ladder beneath it")
+				failed = TRUE
+		if(T.density)
+			log_unit_test("[L.x].[L.y].[L.z]: Map - Ladder is inside a wall")
+			failed = TRUE
+
+	if(failed)
+		fail("Ladders were incorrectly placed, or missing connections.")
+	else
+		pass("All ladders were correctly placed and had connections.")
+	return failed
