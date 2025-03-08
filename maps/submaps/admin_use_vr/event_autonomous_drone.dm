@@ -27,7 +27,7 @@
 	landmark_tag = "omship_event_autonomous_drone"
 	shuttle_type = /datum/shuttle/autodock/overmap/event_autonomous_drone
 
-/obj/effect/shuttle_landmark/shuttle_initializer/event_autonomous_drone/Initialize()
+/obj/effect/shuttle_landmark/shuttle_initializer/event_autonomous_drone/Initialize(mapload)
 	var/obj/effect/overmap/visitable/O = get_overmap_sector(get_z(src)) //make this into general system some other time
 	LAZYINITLIST(O.initial_restricted_waypoints)
 	O.initial_restricted_waypoints["Autonomous Cargo Drone"] = list(landmark_tag)
@@ -40,7 +40,7 @@
 	vessel_size = SHIP_SIZE_SMALL
 	shuttle = "Autonomous Cargo Drone"
 
-/obj/effect/overmap/visitable/ship/landable/event_autonomous_drone/Initialize()
+/obj/effect/overmap/visitable/ship/landable/event_autonomous_drone/Initialize(mapload)
 	. = ..()
 	var/datum/lore/organization/O = loremaster.organizations[/datum/lore/organization/tsc/nanotrasen]
 	var/newname = "NTV [pick(O.ship_names)]"

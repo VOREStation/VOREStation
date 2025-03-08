@@ -81,7 +81,7 @@
 /obj/machinery/atmospherics/unary/engine/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
 	return 0
 
-/obj/machinery/atmospherics/unary/engine/Initialize()
+/obj/machinery/atmospherics/unary/engine/Initialize(mapload)
 	. = ..()
 	controller = new(src)
 	update_nearby_tiles(need_rebuild=1)

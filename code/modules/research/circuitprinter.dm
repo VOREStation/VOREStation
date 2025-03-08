@@ -24,7 +24,7 @@ using metal and glass, it uses glass and reagents (usually sulphuric acid).
 	idle_power_usage = 30
 	active_power_usage = 2500
 
-/obj/machinery/r_n_d/circuit_imprinter/Initialize()
+/obj/machinery/r_n_d/circuit_imprinter/Initialize(mapload)
 	. = ..()
 
 	spawn()	// Go through all materials, and add them to the possible storage, but hide them unless we contain them.

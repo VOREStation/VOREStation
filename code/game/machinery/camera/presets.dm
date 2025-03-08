@@ -165,7 +165,7 @@ var/global/list/engineering_networks = list(
 /obj/machinery/camera/autoname
 	var/static/list/by_area
 
-/obj/machinery/camera/autoname/Initialize()
+/obj/machinery/camera/autoname/Initialize(mapload)
 	. = ..()
 	var/area/A = get_area(src)
 	if(!A)

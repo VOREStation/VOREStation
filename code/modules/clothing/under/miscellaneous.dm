@@ -1189,7 +1189,7 @@
 	rolled_down = 0
 	rolled_sleeves = 0
 
-/obj/item/clothing/under/color/ranger/Initialize()
+/obj/item/clothing/under/color/ranger/Initialize(mapload)
 	. = ..()
 	if(icon_state == "ranger_uniform") //allows for custom items
 		name = "[unicolor] ranger uniform"

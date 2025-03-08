@@ -70,7 +70,7 @@
 		"JOINING THE NAVY? HERE'S 15 EXPERT TIPS FOR AVOIDING BRAIN PARASITES"
 	)
 
-/obj/item/tabloid/Initialize()
+/obj/item/tabloid/Initialize(mapload)
 	. = ..()
 
 	pixel_x = 5-rand(10)

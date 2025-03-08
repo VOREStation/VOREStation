@@ -16,7 +16,7 @@
 	allow_quick_empty = TRUE
 	use_sound = 'sound/items/drop/flesh.ogg'
 
-/obj/item/storage/vore_egg/Initialize()
+/obj/item/storage/vore_egg/Initialize(mapload)
 	. = ..()
 	randpixel_xy()
 

@@ -23,7 +23,7 @@
 	cell_type = null
 	opened = TRUE
 
-/obj/item/inducer/Initialize()
+/obj/item/inducer/Initialize(mapload)
 	. = ..()
 	if(!cell && cell_type)
 		cell = new cell_type
@@ -224,7 +224,7 @@
 	powertransfer = 500
 	opened = TRUE
 
-/obj/item/inducer/sci/Initialize()
+/obj/item/inducer/sci/Initialize(mapload)
 	. = ..()
 	update_icon() //To get the 'open' state applied
 

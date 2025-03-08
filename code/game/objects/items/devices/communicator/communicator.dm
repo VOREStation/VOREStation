@@ -95,7 +95,7 @@ var/global/list/obj/item/communicator/all_communicators = list()
 // Parameters: None
 // Description: Adds the new communicator to the global list of all communicators, sorts the list, obtains a reference to the Exonet node, then tries to
 //				assign the device to the holder's name automatically in a spectacularly shitty way.
-/obj/item/communicator/Initialize()
+/obj/item/communicator/Initialize(mapload)
 	. = ..()
 	all_communicators += src
 	all_communicators = sortAtom(all_communicators)

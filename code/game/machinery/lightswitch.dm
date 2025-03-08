@@ -18,7 +18,7 @@
 	var/otherarea = null
 	var/image/overlay
 
-/obj/machinery/light_switch/Initialize()
+/obj/machinery/light_switch/Initialize(mapload)
 	. = ..()
 
 	area = get_area(src)
@@ -96,4 +96,3 @@
 	icon = 'icons/obj/power_breaker.dmi'
 	icon_state = "light1"
 	on = 0
-

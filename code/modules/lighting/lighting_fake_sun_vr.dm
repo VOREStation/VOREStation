@@ -96,7 +96,7 @@ var/static/list/fake_sunlight_zs = list()
 	. = ..()
 	world_suns += src
 
-/obj/effect/fake_sun/Initialize()
+/obj/effect/fake_sun/Initialize(mapload)
 	..()
 	if(!advanced_lighting)
 		return INITIALIZE_HINT_LATELOAD

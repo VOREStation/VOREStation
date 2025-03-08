@@ -30,7 +30,7 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 	//Linked bluespace radios
 	var/list/linked_radios_weakrefs = list()
 
-/obj/machinery/telecomms/processor/Initialize()
+/obj/machinery/telecomms/processor/Initialize(mapload)
 	. = ..()
 	default_apply_parts()
 

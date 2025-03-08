@@ -35,7 +35,7 @@
 	visible_message(span_cult("\The [src] is completely unaffected by the blast."))
 	return
 
-/obj/machinery/door/blast/puzzle/Initialize()
+/obj/machinery/door/blast/puzzle/Initialize(mapload)
 	. = ..()
 	implicit_material = get_material_by_name("dungeonium")
 	if(locks.len)

@@ -172,7 +172,7 @@
 	icon_state = "redgate_hole"
 	icon_state_opened = "redgate_hole"
 
-/obj/structure/ghost_pod/ghost_activated/maintpred/redgate/Initialize()
+/obj/structure/ghost_pod/ghost_activated/maintpred/redgate/Initialize(mapload)
 	. = ..()
 	if(!(src in active_ghost_pods))
 		active_ghost_pods += src
@@ -251,7 +251,7 @@
 	new_character.visible_message(span_warning("[new_character] appears to crawl out of somewhere."))
 	qdel(src)
 
-/obj/structure/ghost_pod/ghost_activated/maint_lurker/Initialize()
+/obj/structure/ghost_pod/ghost_activated/maint_lurker/Initialize(mapload)
 	. = ..()
 	if(!(src in active_ghost_pods))
 		active_ghost_pods += src

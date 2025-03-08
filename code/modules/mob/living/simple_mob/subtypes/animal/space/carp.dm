@@ -177,7 +177,7 @@
 
 	mob_class = MOB_CLASS_PHOTONIC // Xeno-taser won't work on this as its not a 'real' carp.
 
-/mob/living/simple_mob/animal/space/carp/holographic/Initialize()
+/mob/living/simple_mob/animal/space/carp/holographic/Initialize(mapload)
 	set_light(2) // Hologram lighting.
 	return ..()
 

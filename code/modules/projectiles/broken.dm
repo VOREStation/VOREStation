@@ -17,7 +17,7 @@
 			return
 		setup_repair_needs()
 
-/obj/item/broken_gun/Initialize()
+/obj/item/broken_gun/Initialize(mapload)
 	. = ..()
 	spawn(30 SECONDS)
 		if(!my_guntype && !QDELETED(src))

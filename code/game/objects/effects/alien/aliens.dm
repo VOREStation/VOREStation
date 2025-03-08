@@ -33,6 +33,7 @@
 	unacidable = TRUE
 	plane = TURF_PLANE
 	layer = ABOVE_TURF_LAYER
+	var/delete_me
 
 	var/health = 15
 	var/obj/effect/alien/weeds/node/linked_node = null
@@ -40,7 +41,7 @@
 
 /obj/effect/alien/weeds/Initialize(mapload, var/node, var/newcolor)
 	. = ..()
-	if(isspace(loc))
+	if(isspace(loc) || delete_me)
 		return INITIALIZE_HINT_QDEL
 
 	linked_node = node
@@ -82,6 +83,9 @@
 		if(existing == src)
 			continue
 		else
+			if(!(existing.flags & ATOM_INITIALIZED))
+				existing.delete_me = TRUE
+				continue
 			qdel(existing)
 
 	linked_node = src

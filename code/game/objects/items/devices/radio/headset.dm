@@ -21,7 +21,7 @@
 	drop_sound = 'sound/items/drop/component.ogg'
 	pickup_sound = 'sound/items/pickup/component.ogg'
 
-/obj/item/radio/headset/Initialize()
+/obj/item/radio/headset/Initialize(mapload)
 	. = ..()
 	internal_channels.Cut()
 	if(ks1type)
@@ -607,7 +607,7 @@
 	syndie = 1
 	ks1type = /obj/item/encryptionkey/raider
 
-/obj/item/radio/headset/raider/Initialize()
+/obj/item/radio/headset/raider/Initialize(mapload)
 	. = ..()
 	set_frequency(RAID_FREQ)
 

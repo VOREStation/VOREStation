@@ -101,7 +101,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	blood_sprite_state = null //Can't bloody these
 	drop_sound = 'sound/items/cigs_lighters/cig_snuff.ogg'
 
-/obj/item/clothing/mask/smokable/Initialize()
+/obj/item/clothing/mask/smokable/Initialize(mapload)
 	. = ..()
 	flags |= NOREACT // so it doesn't react until you light it
 	create_reagents(chem_volume) // making the cigarrete a chemical holder with a maximum volume of 15
@@ -289,7 +289,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	weldermes = span_notice("USER casually lights the NAME with FLAME.")
 	ignitermes = span_notice("USER fiddles with FLAME, and manages to light their NAME.")
 
-/obj/item/clothing/mask/smokable/cigarette/Initialize()
+/obj/item/clothing/mask/smokable/cigarette/Initialize(mapload)
 	. = ..()
 	if(nicotine_amt)
 		reagents.add_reagent(REAGENT_ID_NICOTINE, nicotine_amt)
@@ -387,7 +387,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	slot_flags = SLOT_EARS
 	throwforce = 1
 
-/obj/item/trash/cigbutt/Initialize()
+/obj/item/trash/cigbutt/Initialize(mapload)
 	. = ..()
 	randpixel_xy()
 	transform = turn(transform,rand(0,360))
@@ -424,7 +424,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	ignitermes = span_notice("USER fiddles with FLAME, and manages to light their NAME with the power of science.")
 	is_pipe = 1
 
-/obj/item/clothing/mask/smokable/pipe/Initialize()
+/obj/item/clothing/mask/smokable/pipe/Initialize(mapload)
 	. = ..()
 	name = "empty [initial(name)]"
 
@@ -612,7 +612,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 /obj/item/flame/lighter/random
 
 // Randomizes Cheap Lighters on Spawn
-/obj/item/flame/lighter/Initialize()
+/obj/item/flame/lighter/Initialize(mapload)
 	. = ..()
 	var/image/I = image(icon, "lighter-[pick("trans","tall","matte")]")
 	I.color = pick(available_colors)
@@ -677,7 +677,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	activation_sound = 'sound/items/zippo_on.ogg'
 	deactivation_sound = 'sound/items/zippo_off.ogg'
 
-/obj/item/flame/lighter/zippo/Initialize()
+/obj/item/flame/lighter/zippo/Initialize(mapload)
 	. = ..()
 	cut_overlays() //Prevents the Cheap Lighter overlay from appearing on this
 

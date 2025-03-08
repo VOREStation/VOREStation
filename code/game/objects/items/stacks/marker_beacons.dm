@@ -37,7 +37,7 @@ var/list/marker_beacon_colors = list(
 /obj/item/stack/marker_beacon/hundred
 	amount = 100
 
-/obj/item/stack/marker_beacon/Initialize()
+/obj/item/stack/marker_beacon/Initialize(mapload)
 	. = ..()
 	update_icon()
 
