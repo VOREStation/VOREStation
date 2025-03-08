@@ -76,7 +76,8 @@
 	desc = "A set of armored robes worn by the followers of Nar-Sie."
 	icon_state = "cultrobes"
 	origin_tech = list(TECH_MATERIAL = 3, TECH_ARCANE = 1)
-	allowed = list(/obj/item/book/tome,/obj/item/melee/cultblade)
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
+	allowed = list(POCKET_GENERIC, POCKET_EMERGENCY, POCKET_CULT)
 	armor = list(melee = 50, bullet = 30, laser = 50, energy = 80, bomb = 25, bio = 10, rad = 0)
 	flags_inv = HIDEJUMPSUIT
 	siemens_coefficient = 0
@@ -111,7 +112,7 @@
 	origin_tech = list(TECH_MATERIAL = 3, TECH_ARCANE = 1)
 	desc = "A bulky suit of armour, bristling with spikes. It looks space-worthy."
 	w_class = ITEMSIZE_NORMAL
-	allowed = list(/obj/item/book/tome,/obj/item/melee/cultblade,/obj/item/tank/emergency/oxygen,/obj/item/suit_cooling_unit)
+	allowed = list(POCKET_EMERGENCY, POCKET_SUIT_REGULATORS, POCKET_CULT)
 	slowdown = 0.5
 	armor = list(melee = 60, bullet = 50, laser = 30, energy = 80, bomb = 30, bio = 30, rad = 30)
 	siemens_coefficient = 0

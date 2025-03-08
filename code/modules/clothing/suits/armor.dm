@@ -1,6 +1,6 @@
 /obj/item/clothing/suit/armor
 	name = DEVELOPER_WARNING_NAME
-	allowed = list(/obj/item/gun/energy,/obj/item/reagent_containers/spray/pepper,/obj/item/gun/projectile,/obj/item/ammo_magazine,/obj/item/ammo_casing,/obj/item/melee/baton,/obj/item/handcuffs,/obj/item/flashlight/maglight,/obj/item/clothing/head/helmet)
+	allowed = list(POCKET_GENERIC, POCKET_EMERGENCY, POCKET_SECURITY)
 	body_parts_covered = CHEST
 	item_flags = THICKMATERIAL
 
@@ -129,7 +129,7 @@
 	permeability_coefficient = 0.01
 	item_flags = THICKMATERIAL
 	body_parts_covered = CHEST|LEGS|FEET|ARMS
-	allowed = list(/obj/item/gun,/obj/item/ammo_magazine,/obj/item/ammo_casing,/obj/item/melee/baton,/obj/item/handcuffs,/obj/item/tank/emergency/oxygen,/obj/item/clothing/head/helmet)
+	allowed = list(POCKET_GENERIC, POCKET_EMERGENCY, POCKET_SECURITY)
 	slowdown = 1
 	w_class = ITEMSIZE_HUGE
 	armor = list(melee = 80, bullet = 60, laser = 50,energy = 25, bomb = 50, bio = 100, rad = 100)
@@ -282,7 +282,7 @@
 	blood_overlay_type = "armor"
 	item_state_slots = list(slot_r_hand_str = "armor", slot_l_hand_str = "armor")
 	armor = list(melee = 40, bullet = 30, laser = 30, energy = 10, bomb = 10, bio = 0, rad = 0)
-	allowed = list(/obj/item/gun,/obj/item/reagent_containers/spray/pepper,/obj/item/ammo_magazine,/obj/item/ammo_casing,/obj/item/melee/baton,/obj/item/handcuffs,/obj/item/flashlight/maglight,/obj/item/clothing/head/helmet)
+	allowed = list(POCKET_GENERIC, POCKET_EMERGENCY, POCKET_SECURITY)
 
 	body_parts_covered = CHEST
 	item_flags = THICKMATERIAL
@@ -412,7 +412,7 @@
 	icon_state = "pvest"
 	desc = "A simple kevlar plate carrier. This one has the word 'Press' embroidered on patches on the back and front."
 	item_state_slots = list(slot_r_hand_str = "armor", slot_l_hand_str = "armor")
-	allowed = list(/obj/item/flashlight,/obj/item/taperecorder,/obj/item/pen,/obj/item/camera_film,/obj/item/camera,/obj/item/clothing/head/helmet)
+	allowed = list(POCKET_GENERIC, POCKET_EMERGENCY, POCKET_DETECTIVE, /obj/item/camera,/obj/item/clothing/head/helmet)
 
 /obj/item/clothing/suit/storage/vest/heavy
 	name = "heavy armor vest"
@@ -472,7 +472,7 @@
 	item_state_slots = list(slot_r_hand_str = "armor", slot_l_hand_str = "armor")
 	w_class = ITEMSIZE_LARGE//bulky item
 	body_parts_covered = CHEST|LEGS|FEET|ARMS|HANDS
-	allowed = list(/obj/item/gun/energy,/obj/item/melee/baton,/obj/item/handcuffs,/obj/item/tank/emergency/oxygen,/obj/item/clothing/head/helmet)
+	allowed = list(POCKET_GENERIC, POCKET_EMERGENCY, POCKET_SECURITY)
 	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT|HIDETIE|HIDEHOLSTER
 	cold_protection = UPPER_TORSO | LOWER_TORSO | LEGS | FEET | ARMS | HANDS
 	min_cold_protection_temperature = SPACE_SUIT_MIN_COLD_PROTECTION_TEMPERATURE

@@ -14,18 +14,7 @@
 	siemens_coefficient = 0.3
 	glove_type = /obj/item/clothing/gloves/gauntlets/rig/eva
 	helm_type = /obj/item/clothing/head/helmet/space/rig/merc
-	allowed = list(
-		/obj/item/flashlight,
-		/obj/item/tank,
-		/obj/item/suit_cooling_unit,
-		/obj/item/gun,
-		/obj/item/ammo_magazine,
-		/obj/item/ammo_casing,
-		/obj/item/melee/baton,
-		/obj/item/melee/energy/sword,
-		/obj/item/handcuffs,
-		/obj/item/storage
-		)
+	allowed = list(POCKET_GENERIC, POCKET_ALL_TANKS, POCKET_EXPLO, POCKET_SUIT_REGULATORS, POCKET_STORAGE)
 
 	initial_modules = list(
 		/obj/item/rig_module/mounted,

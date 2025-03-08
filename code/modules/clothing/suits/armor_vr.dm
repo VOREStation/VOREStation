@@ -153,16 +153,7 @@
 	slowdown=0
 	siemens_coefficient = 0.9
 	armor = list(melee = 30, bullet = 20, laser = 20, energy = 20, bomb = 35, bio = 75, rad = 35) // Inferior to sec vests in bullet/laser but better for environmental protection.
-	allowed = list(
-		/obj/item/flashlight,
-		/obj/item/gun,
-		/obj/item/ammo_magazine,
-		/obj/item/melee,
-		/obj/item/material/knife,
-		/obj/item/tank,
-		/obj/item/radio,
-		/obj/item/pickaxe
-		)
+	allowed = list(POCKET_GENERIC, POCKET_EMERGENCY, POCKET_EXPLO, POCKET_ALL_TANKS, POCKET_MINING)
 
 /obj/item/clothing/suit/armor/combat/crusader_explo/FM
 	name = "field medic low tech suit"

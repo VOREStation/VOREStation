@@ -219,7 +219,7 @@
 	item_state = "russofurcoat"
 
 	armor = list(melee = 0, bullet = 0, laser = 0, energy = 0, bomb = 0, bio = 0, rad = 0)
-	allowed = list (/obj/item/pen, /obj/item/paper, /obj/item/flashlight, /obj/item/tank/emergency/oxygen, /obj/item/storage/fancy/cigarettes, /obj/item/storage/box/matches, /obj/item/reagent_containers/food/drinks/flask)
+	allowed = list(POCKET_GENERIC, POCKET_EMERGENCY)
 	flags_inv = HIDETIE|HIDEHOLSTER
 
 //For general use
@@ -235,18 +235,7 @@
 
 	blood_overlay_type = "coat"
 	body_parts_covered = CHEST|ARMS
-	allowed = list(
-				/obj/item/tank/emergency/oxygen,
-				/obj/item/flashlight,
-				/obj/item/gun/energy,
-				/obj/item/gun/projectile,
-				/obj/item/ammo_magazine,
-				/obj/item/ammo_casing,
-//				/obj/item/storage/fancy/shotgun_ammo,
-				/obj/item/melee/baton,
-				/obj/item/handcuffs,
-//				/obj/item/detective_scanner,
-				/obj/item/taperecorder)
+	allowed = list(POCKET_GENERIC, POCKET_EMERGENCY, POCKET_SECURITY, POCKET_DETECTIVE)
 	armor = list(melee = 50, bullet = 15, laser = 25, energy = 10, bomb = 0, bio = 0, rad = 0)
 	var/unbuttoned = 0
 
@@ -305,18 +294,7 @@
 
 	blood_overlay_type = "coat"
 	body_parts_covered = CHEST|ARMS
-	allowed = list(
-				/obj/item/tank/emergency/oxygen,
-				/obj/item/flashlight,
-				/obj/item/gun/energy,
-				/obj/item/gun/projectile,
-				/obj/item/ammo_magazine,
-				/obj/item/ammo_casing,
-//				/obj/item/storage/fancy/shotgun_ammo,
-				/obj/item/melee/baton,
-				/obj/item/handcuffs,
-//				/obj/item/detective_scanner,
-				/obj/item/taperecorder)
+	allowed = list(POCKET_GENERIC, POCKET_EMERGENCY, POCKET_SECURITY, POCKET_DETECTIVE)
 	armor = list(melee = 50, bullet = 15, laser = 25, energy = 10, bomb = 0, bio = 0, rad = 0)
 
 	//Variants
@@ -569,7 +547,7 @@
 	gas_transfer_coefficient = 0.01
 	permeability_coefficient = 0.02
 	body_parts_covered = CHEST|LEGS|FEET|ARMS|HANDS
-	allowed = list(/obj/item/flashlight,/obj/item/tank)
+	allowed = list(POCKET_GENERIC, POCKET_ALL_TANKS)
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
 	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
 	cold_protection = UPPER_TORSO | LOWER_TORSO | LEGS | FEET | ARMS | HANDS
@@ -860,7 +838,7 @@
 
 	armor = list(melee = 50, bullet = 40, laser = 45, energy = 25, bomb = 50, bio = 100, rad = 50) //These values were taken from the combat rigs and adjusted to be weaker than said rigs.
 	slowdown = 0
-	allowed = list(/obj/item/gun,/obj/item/flashlight,/obj/item/tank,/obj/item/suit_cooling_unit,/obj/item/melee/baton)
+	allowed = list(POCKET_GENERIC, POCKET_ALL_TANKS, POCKET_SECURITY, POCKET_SUIT_REGULATORS)
 
 	icon = 'icons/vore/custom_clothes_vr.dmi'
 	icon_state = "joansuit"
@@ -983,7 +961,7 @@
 	icon_override = 'icons/vore/custom_clothes_vr.dmi'
 	item_state = "octavgentlecoat_mob"
 	blood_overlay_type = "coat"
-	allowed = list(/obj/item/tank/emergency/oxygen, /obj/item/flashlight,/obj/item/gun/energy,/obj/item/gun/projectile,/obj/item/ammo_magazine,/obj/item/ammo_casing,/obj/item/melee/baton,/obj/item/handcuffs,/obj/item/storage/fancy/cigarettes,/obj/item/flame/lighter,/obj/item/taperecorder,/obj/item/uv_light)
+	allowed = list(POCKET_GENERIC, POCKET_EMERGENCY, POCKET_SECURITY, POCKET_DETECTIVE)
 
 //bwoincognito:Octavious Ward
 /obj/item/clothing/under/det/fluff/octavious
@@ -1261,14 +1239,8 @@ Departamental Swimsuits, for general use
 	icon_state = "trek_ds9_coat"
 	body_parts_covered = CHEST|ARMS
 	permeability_coefficient = 0.50
-	allowed = list(
-		/obj/item/flashlight, /obj/item/analyzer,
-		/obj/item/radio, /obj/item/tank/emergency/oxygen,
-		/obj/item/reagent_containers/hypospray, /obj/item/healthanalyzer,
-		/obj/item/reagent_containers/dropper,/obj/item/reagent_containers/syringe,
-		/obj/item/reagent_containers/glass/bottle,/obj/item/reagent_containers/glass/beaker,
-		/obj/item/reagent_containers/pill,/obj/item/storage/pill_bottle
-		)
+
+	allowed = list(POCKET_GENERIC, POCKET_EMERGENCY, POCKET_SUIT_REGULATORS, POCKET_ENGINEERING, POCKET_MEDICAL)
 	armor = list(melee = 20, bullet = 0, laser = 0, energy = 0, bomb = 0, bio = 20, rad = 25)
 
 /obj/item/clothing/suit/storage/trek/ds9/admiral // Only for adminuz
