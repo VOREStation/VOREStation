@@ -16,6 +16,10 @@ const logger = createLogger('dreamseeker');
 const instanceByPid = new Map();
 
 export class DreamSeeker {
+  pid: number;
+  addr: string;
+  client: any;
+  static getInstancesByPids: (pids: any) => Promise<any[]>;
   constructor(pid, addr) {
     this.pid = pid;
     this.addr = addr;
@@ -37,6 +41,8 @@ export class DreamSeeker {
   }
 }
 
+type Entry = { pid: number; addr: string };
+
 /**
  * @param {number[]} pids
  * @returns {DreamSeeker[]}
@@ -45,8 +51,8 @@ DreamSeeker.getInstancesByPids = async (pids) => {
   if (process.platform !== 'win32') {
     return [];
   }
-  const instances = [];
-  const pidsToResolve = [];
+  const instances: any[] = [];
+  const pidsToResolve: number[] = [];
   for (let pid of pids) {
     const instance = instanceByPid.get(pid);
     if (instance) {
@@ -64,7 +70,7 @@ DreamSeeker.getInstancesByPids = async (pids) => {
       });
       // Line format:
       // proto addr mask mode pid
-      const entries = [];
+      const entries: Entry[] = [];
       const lines = stdout.split('\r\n');
       for (let line of lines) {
         const words = line.match(/\S+/g);

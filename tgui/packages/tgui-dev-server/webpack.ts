@@ -26,6 +26,9 @@ export const createCompiler = async (options) => {
 };
 
 class WebpackCompiler {
+  webpack: any;
+  config: any;
+  bundleDir: string;
   async setup(options) {
     // Create a require context that is relative to project root
     // and retrieve all necessary dependencies.
