@@ -14,6 +14,7 @@ const axios = require('axios');
 const logger = createLogger('dreamseeker');
 
 const instanceByPid = new Map();
+
 export class DreamSeeker {
   pid: number;
   addr: string;
