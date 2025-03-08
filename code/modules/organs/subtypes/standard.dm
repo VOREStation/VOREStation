@@ -151,6 +151,16 @@
 			owner.custom_pain("Your [name] burns like it's on fire!",15)
 			owner.Weaken(5)
 
+/obj/item/organ/external/leg/is_usable() // We only do legs, otherwise the stance_damage will be 8 instead of 4, meaning crutches do nothing as they only negate 4
+	if(robotic == ORGAN_FLESH && owner.sdisabilities & SPINE)
+		return FALSE
+	. = ..()
+
+/obj/item/organ/external/leg/organ_can_feel_pain()
+	if(robotic < ORGAN_ROBOT && owner.sdisabilities & SPINE)
+		return FALSE
+	. = ..()
+
 /obj/item/organ/external/leg/right
 	organ_tag = BP_R_LEG
 	name = "right leg"
@@ -193,6 +203,11 @@
 		if(prob(.))
 			owner.custom_pain("Your [name] burns like it's on fire!",15)
 			owner.Weaken(5)
+
+/obj/item/organ/external/foot/organ_can_feel_pain()
+	if(robotic < ORGAN_ROBOT && owner.sdisabilities & SPINE)
+		return FALSE
+	. = ..()
 
 /obj/item/organ/external/foot/right
 	organ_tag = BP_R_FOOT

@@ -207,3 +207,17 @@
 	disability=CENSORED
 	activation_message="You feel less rude..."
 	primitive_expression_messages=list("BEEPS!")
+
+/datum/trait/negative/disability_damagedspine
+	name = "Lumbar Impairment"
+	desc = "Due to neurological damage, you are unable to use your legs. Collapsing to the ground as soon as you try to stand. You should check the loadout menu for something to assist you."
+	cost = -3
+	custom_only = FALSE
+	can_take = ORGANICS
+
+	is_genetrait = TRUE
+	hidden = FALSE
+	activity_bounds = DNA_HARDER_BOUNDS // Shouldn't be easy for genetics to find this
+
+	sdisability=SPINE
+	activation_message="Your legs shake..."
