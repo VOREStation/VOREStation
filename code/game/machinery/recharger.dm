@@ -54,11 +54,6 @@
 			if(!C.battery_module)
 				to_chat(user, span_notice("\The [C] does not have a battery installed. "))
 				return
-		if(istype(G, /obj/item/melee/baton))
-			var/obj/item/melee/baton/B = G
-			if(B.use_external_power)
-				to_chat(user, span_notice("\The [B] has no recharge port."))
-				return
 		if(istype(G, /obj/item/flash))
 			var/obj/item/flash/F = G
 			if(F.use_external_power)

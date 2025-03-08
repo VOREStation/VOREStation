@@ -416,6 +416,10 @@ var/global/list/belly_colorable_only_fullscreens = list("a_synth_flesh_mono",
 			var/obj/belly/NB = new(host)
 			NB.name = new_name
 			host.vore_selected = NB
+			//Ensures that new stomachs that are made have the same silicon overlay pref as the first stomach.
+			if(LAZYLEN(host.vore_organs))
+				var/obj/belly/belly_to_check = host.vore_organs[1]
+				NB.silicon_belly_overlay_preference = belly_to_check.silicon_belly_overlay_preference
 			unsaved_changes = TRUE
 			return TRUE
 		if("importpanel")
