@@ -116,7 +116,7 @@ const Story = (props) => {
   );
 };
 
-const TabsPrefab = (props) => {
+const TabsPrefab = (props: { tabProps: TabProps }) => {
   const [tabIndex, setTabIndex] = useState(0);
   const { tabProps } = props;
   return (
