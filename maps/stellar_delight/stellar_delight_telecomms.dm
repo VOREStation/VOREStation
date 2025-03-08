@@ -23,8 +23,10 @@
 		num2text(EXP_FREQ) = list(access_explorer)
 	)
 
-/obj/item/multitool/station_buffered/Initialize(mapload)
-	. = ..()
+/obj/item/multitool/station_buffered
 	name = "pre-linked multitool (sd hub)"
 	desc = "This multitool has already been linked to the SD telecomms hub and can be used to configure one (1) relay."
+
+/obj/item/multitool/station_buffered/Initialize(mapload)
+	. = ..()
 	buffer = locate(/obj/machinery/telecomms/hub/preset/sd)

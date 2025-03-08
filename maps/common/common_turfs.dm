@@ -74,6 +74,7 @@ VIRGO3B_TURF_CREATE(/turf/simulated/floor/reinforced)
 	color = "#FFBBBB"
 
 /turf/simulated/sky/virgo3b/Initialize(mapload)
+	. = ..()
 	SSplanets.addTurf(src)
 	set_light(2, 2, "#FFBBBB")
 
